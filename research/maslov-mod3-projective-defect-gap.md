@@ -24,6 +24,11 @@ Equivalently, neither nontrivial twisted sector admits a sequence of
 finite-dimensional projective almost representations with defect tending to
 zero.
 
+By `maslov-inverse-sector-symmetry`, the two nontrivial sectors are exchanged
+by an anti-symplectic automorphism.  Analytically it is enough to prove the gap
+for `alpha`; the `alpha^2` case follows with the same constant after changing
+presentation coordinates.
+
 ## Attempts
 
 - **Twisted Fox/Jacobian gap.** Linearize the projective relators with the
@@ -36,10 +41,16 @@ zero.
   a sum-of-squares inequality converting that nonzero curvature into a lower
   bound for the relator HS energy.  The certificate must be trace-density
   sensitive; bare determinant divisibility is not enough.
-- **Finite-subgroup cone atlas.** Exactify bounded torsion-subgroup tables by
-  Gowers--Hatami and search for a rational positive-cone separation among
-  projective irreducible multiplicities on overlaps.  A valid certificate must
-  force positive-density mismatch, not merely a dimension congruence.
+- **Finite-dimensional relation Laplacian.** Regard every candidate tuple as
+  an exact representation of the free presentation group and study the
+  positive relation-energy operator `D_R=sum_r (r(U)-1)^*(r(U)-1)`.  Seek a
+  trace-normalized modulus forcing the central mark energy to vanish whenever
+  `tr_d(D_R)` vanishes, uniformly in `d`.  Twisted Fox/cochain spectral gaps
+  and low-energy rank-profile bootstraps are concrete subattacks.
+- **Finite-subgroup atlas no-go.** Restriction multiplicities on finitely many
+  finite subgroups cannot alone separate the multiplier: scaled projective
+  regular representations give an exactly compatible local multiplicity ray
+  on every finite atlas.
 - **No tracial-positivity shortcut.** The twisted left-regular representation
   exists in infinite dimension, so a moment/SOS certificate valid in every
   tracial von Neumann algebra cannot exclude `alpha`.  Any separator must use
