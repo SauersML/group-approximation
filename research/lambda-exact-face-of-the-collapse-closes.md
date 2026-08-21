@@ -147,6 +147,32 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   degree of freedom in the `Lambda`-exact face is gone except the
   one flat tower, whose realizability is verbatim the recorded
   coset-Bernoulli / Kun--Thom stand-or-fall configuration.
+- **ENDGAME: the flat tower's cocycle (2026-08-21, terminal
+  frontier of the day).**  On the flat profile the enemy candidate
+  MATERIALIZES up to one obstruction: pullback along `Ad(h)` is a
+  canonical isomorphism of constituent sets between scale bands,
+  flatness matches multiplicities, so canonical unitary band
+  transports exist; they compose correctly across the Weyl system
+  (`Ad(h') Ad(h'') = Ad(h)` exactly) UP TO the in-band automorphism
+  freedom — a specific cocycle on the flat band groupoid twisted by
+  the `S_3`-action — and the canonical block-shift has EXACTLY zero
+  trace on all `h`-powers, so the Haar tower conditions are free.
+  Hence: (YES) if the cocycle trivializes compatibly with the
+  remaining Behr relations, the `Lambda`-exact flat-tower enemy
+  EXISTS and the `SL_3` pair at `p = 2` is decided on the
+  hyperlinear side of the fork; (NO) if the cocycle is obstructed,
+  the flat tower dies and with it the whole `Lambda`-exact face.
+  Consistency check in hand: at coprime levels the transport is
+  INNER (the `h`-image exists), no shift structure arises, and the
+  closed coprime theorem is precisely the statement that the
+  analogous selection is obstructed there — the two results are
+  compatible because the mechanisms differ exactly where `p`
+  invertibility differs.  This cocycle — the Weyl-cohomological
+  selection the conjugator dichotomy predicted on its YES branch —
+  is now THE single decision point of the `Lambda`-exact face, fully
+  explicit: compute the composition defects of the canonical
+  transports on the flat band groupoid of the 2-adic congruence
+  tower.  Both outcomes are major; neither is assumed.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
