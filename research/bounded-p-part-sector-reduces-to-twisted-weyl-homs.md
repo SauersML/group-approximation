@@ -169,18 +169,32 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   is glassy and produces no signal in either direction; only
   linearization, exact rank certificates, and finite enumeration
   yield conclusions.
-- **Named next computation: the quadratic obstruction on the tangent
-  room.**  The commutation constraints of `(BP1)` have vanishing
-  linear part at `W = 1` but genuine second order: a tangent
-  direction `X` integrates only if `[X^((w)), X^((w'))] = 0` for the
-  Weyl conjugates, and the `(b)`-relation adds its own quadratic
-  term.  So the enemy's infinitesimal room (the standard-isotypic
-  kernel of the two-relation system, per the correction above) must
-  additionally lie on the commuting locus — a determinantal
-  condition that can cut it drastically, computable exactly per
-  gauge by the same certificate methods.  Deciding whether the
-  quadratic obstruction closes the C = 1 gauge is the next
-  well-posed exact step.
+- **The quadratic obstruction RESOLVED, in both directions
+  (2026-08-21, final pass).**  The commutation constraints of
+  `(BP1)` vanish to first order and obstruct at second order
+  (`[X^((w)), X^((w'))] = 0`); but the obstruction does NOT close
+  the gauge: on a FREE `S_3`-orbit of a generic matrix-unit pair
+  (twelve distinct points with no row/column coincidences across
+  translates — choosable among 168), all products of the orbit units
+  vanish in both orders, so the Baker--Campbell--Hausdorff series is
+  exact, the Weyl-conjugate family commutes exactly, and the
+  two-dimensional `(BP1)`-kernel inside the regular
+  orbit-representation of `S_3` integrates to EXACT nontrivial
+  one-parameter solution families of the true (weak-membership)
+  `C = 1` system: the gauge is genuinely non-rigid.  HOWEVER the
+  same disjointness caps the construction's spectral weight: at most
+  `2 * 14 / 168 = 1/6` of the spectrum can leave `1` (at most
+  fourteen disjoint twelve-point orbits), so every solution of the
+  disjoint-support class has a spectral atom of mass at least `5/6`
+  at `1` — flatly incompatible with the Haar `h`-tower spectrum the
+  enemy's regular trace forces.  The bounded-gauge battle is
+  therefore now exactly: do SPREAD-SPECTRUM solutions (supports
+  forced to overlap, commutators no longer free) exist?  The
+  overlap regime is where the quadratic obstruction genuinely bites,
+  and quantifying the trade-off between spectral spread and the
+  commuting-locus constraints is the named open frontier — a
+  spectral-capacity question about an explicit variety, exactly the
+  right shape for certificate methods.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
