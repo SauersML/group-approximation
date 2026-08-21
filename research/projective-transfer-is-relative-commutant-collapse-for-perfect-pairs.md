@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: projective-transfer-is-relative-commutant-collapse-for-perfect-pairs
+id: projective-transfer-equals-rcc-for-perfect-pairs
 kind: claim
 title: Projective transfer has no asymptotic slack for a perfect ambient arithmetic pair
 distinct_from:

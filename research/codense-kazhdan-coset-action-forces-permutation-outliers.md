@@ -5,7 +5,7 @@ kind: claim
 title: A co-dense Kazhdan coset action has a uniform orbit-atlas gap on every exact finite action
 distinct_from:
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that gives the generalized Bernoulli crossed product as a conditional matrix-ultraproduct falsifier; this proves that its underlying coset atlas cannot come from exact finite actions or from approximations correctable to them.
-  projective-transfer-is-relative-commutant-collapse-for-perfect-pairs: that identifies the unitary matrix-ultraproduct frontier; this isolates the corresponding permutation-action frontier and proves a quantitative exact-model exclusion.
+  projective-transfer-equals-rcc-for-perfect-pairs: that identifies the unitary matrix-ultraproduct frontier; this isolates the corresponding permutation-action frontier and proves a quantitative exact-model exclusion.
   exact-projective-codensity-has-a-uniform-trace-square-gap: that controls a unitary conjugator in an exact finite-dimensional representation; this applies the same Kazhdan/co-density mechanism to the one-hot labels in a finite orbit atlas.
 ---
 
