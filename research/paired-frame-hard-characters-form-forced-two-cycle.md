@@ -32,3 +32,9 @@ differ, all eight contain the transposition `(101 011)`.  Consequently:
 In particular, the reverse reservoir is not merely one of several possible
 finite leaks.  It is the unique compulsory partner of the forbidden
 character, with exact return time two after forgetting any infinite label.
+
+There is no finite automorphism-reset loophole. By
+`closed-covariant-reynolds-cycle-has-full-overlap`, a reset which renames the
+reverse character also transports the entire reverse frame. Closing that
+framed cycle returns the complete Reynolds projection and therefore has full
+overlap, rather than the local `1/98` deficit.

@@ -95,3 +95,12 @@ immune to spectator amplification.
   actuator must retain the private orientation or decorate it by a
   nonreturning infinite label; conditioning only on the invariant logical
   product is stationary.
+- **Every finite covariant reset cycle is blind.**
+  `closed-covariant-reynolds-cycle-has-full-overlap` shows that adjoining a
+  second packet automorphism to rename `011` as `101` does not recover the
+  untransported minus frame at `101`: the reset transports the whole framed
+  subgroup and its conditioned Reynolds projection. Any subsequent honest
+  identification closing the framed cycle gives full overlap. Hence the
+  missing actuator cannot be a finite chain of packet automorphisms or HNN
+  subgroup isomorphisms; it must use compression/averaging or an infinite
+  one-sided ownership coordinate.
