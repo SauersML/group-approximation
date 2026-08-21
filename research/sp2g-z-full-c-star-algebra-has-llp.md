@@ -26,11 +26,10 @@ discussion after Question 1.10; source-verified 2026-08-21).
   fails LLP for `n >= 3`, and `C^*(Z^2 rtimes F_2)` (standard action,
   `F_2 <= SL_2(Z)` finite index) fails LLP.  LLP passes to subgroups
   (Fournier-Facio--Willett Cor. 3.17), so a positive answer requires that
-  `Sp_(2g)(Z)` contain no subgroup of the fenced kinds.  `Sp_(2g)(Z)`
-  contains no `SL_3(Z)` acting through a 3-dimensional symplectic...
-  no: it does contain `SL_g(Z)` (Siegel Levi) for `g >= 3`, which KILLS
-  the claim for `g >= 3` by subgroup permanence.  The claim therefore
-  lives at `g = 2` ONLY: `Sp_4(Z)`, whose Siegel Levi is `GL_2(Z)`
+  `Sp_(2g)(Z)` contain no subgroup of the fenced kinds.  For `g >= 3`
+  the Siegel Levi `GL_g(Z) <= Sp_(2g)(Z)` contains `SL_g(Z)`, which fails
+  LLP, so subgroup permanence refutes the claim for `g >= 3` outright.
+  The claim therefore lives at `g = 2` only: `Sp_4(Z)`, whose Siegel Levi is `GL_2(Z)`
   (virtually free, LLP-safe) and whose Klingen unipotent radical is the
   integer Heisenberg group (amenable, LLP-safe).  The open content is
   whether the Ioana--Spaas--Wiersma cohomological obstruction extends
@@ -42,10 +41,11 @@ discussion after Question 1.10; source-verified 2026-08-21).
 - **Why a positive answer is not absurd.**  The known LLP failures all
   pass through second cohomology of relative-(T) pairs with COEFFICIENTS
   where the standard pair has its obstruction class; `Sp_4(Z)` is the
-  classical case where the relevant `H^2` is carried by the Deligne
-  class, which is a BOUNDED class with finite-image restriction to every
-  congruence subgroup's... this is exactly the arithmetic the direct
-  Deligne lane (`deligne-central-mark-hs-collapse`) manipulates.  No
+  classical case where the relevant second cohomology is carried by the
+  Deligne/Maslov class — exactly the arithmetic that the direct Deligne
+  lane (`deligne-central-mark-hs-collapse`) manipulates — and no
+  published computation locates an Ioana--Spaas--Wiersma-type
+  obstruction class for the Siegel or Klingen pairs of `Sp_4(Z)`.  No
   computation in either direction is recorded; this node parks the
   question in its sharpest form (`g = 2`).
 - **Method note.**  Any attack should start from Ioana--Spaas--Wiersma's
