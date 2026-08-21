@@ -7,6 +7,7 @@ target: non-hyperlinear-group
 requires:
   - atlas-steinberg-rank-five-translation
   - pauli-packet-incoming-mass-exceeds-corner-capacity
+  - pauli-overlap-yields-positive-spectral-corner
   - mixed-relations-force-holonomy-or-transverse-recovery
   - contraction-branch-capacity-forces-collision
   - fixed-holonomy-on-overlap-pays-relator-energy
@@ -45,10 +46,9 @@ Both branches give a fixed positive floor, so `Gamma_St` is not hyperlinear.
 **What this route is and is not.**  Compared with
 `nonhyperlinear-from-fractional-pauli-pressure`, which needs a whole weighted
 network with reproduction number above one, this route needs supercriticality at
-a *single corner* and puts all remaining weight on the dichotomy.  Both of its
-premises are open and the first is worse than open: the mass budget `(PIM1)` is
-an assertion from outside this repository which a grep of `notes/` does not
-confirm, so the route is stated with that dependency explicit rather than
-folded into prose.  The two constants it produces, `5/32` and `c(1-c)`, are
-dimension-free, which is the property a non-hyperlinearity proof ultimately
-needs.
+a *single corner* and puts all remaining weight on the dichotomy.  The mass
+budget `(PIM1)` is now established by the exact transported-coefficient block
+table.  The only open premise specific to this route is
+`mixed-relations-force-holonomy-or-transverse-recovery`.  The two constants it
+produces, `5/32` and `c(1-c)`, are dimension-free, which is the property a
+non-hyperlinearity proof ultimately needs.

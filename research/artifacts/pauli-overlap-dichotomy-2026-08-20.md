@@ -43,7 +43,16 @@ Three lemmas were re-derived here rather than transcribed:
   `2(1-|tr A|) tau(R)`.  For two distinct `S_3` reflections `[U,V]=(UV)^2` is
   rotation by 240 degrees, normalized trace `-1/2`, giving `(FHO3)`.
 
-## 3. The headline number is not in this repository
+## 3. Subsequent closure of the headline number
+
+**Update, 2026-08-21.**  The original audit below was correct when written,
+but is now superseded by
+`transported-coefficient-raw-character-isotropic-mixing`.  Its exact rational
+block tables name `X_i=Q(comb^*B_i comb)Q` and give masses `3/8` and `1/4`.
+Thus `M_tot=5/8`, `q=1/2`, and the overlap floor is `5/32`; the replay is
+`experiments/verify_pauli_incoming_mass.py`.
+
+### Original audit
 
 The claim that carries the dossier's main structural conclusion -- "the existing
 Pauli packet is ALREADY supercritical" -- rests on

@@ -14,7 +14,11 @@ distinct_from:
 Let `Q` be the transported coefficient corner of the fixed raw/comb Pauli
 packet and let the compulsory overlap of
 `pauli-packet-incoming-mass-exceeds-corner-capacity` be present, so that some
-pair of transported operators has cross-Gram mass at least `5/32`.
+pair of transported operators has ordered cross-Gram mass at least `5/32`.
+By `pauli-overlap-yields-positive-spectral-corner`, after choosing one of two
+orientations there is already a canonical spectral projection `R_0` of trace
+at least `5/123` on which the oriented product is bounded below by
+`sqrt(5/128)`.
 
 **Claim.**  There are fixed constants `c>0`, `kappa>0`, independent of matrix
 dimension, such that in every sufficiently accurate atlas microstate at least
@@ -59,9 +63,11 @@ Either way a fixed positive energy is paid.
   finite groups is virtually free and hyperlinear, so no gluing of that shape
   can force `(HOL)` or `(TRV)` on a positive-density corner.  The relations must
   be genuinely two-dimensional holonomy, or compressor/self-similar.
-- **Not attempted: the corner.**  Both branches are stated on a subcorner of
-  fixed trace `c`.  Nothing here produces that subcorner from the `5/32` overlap;
-  extracting it is the first step and is unaddressed.
+- **The positive corner is now supplied.**  The former first gap—extracting a
+  fixed-density corner from the `5/32` overlap—is closed by
+  `pauli-overlap-yields-positive-spectral-corner`, with trace `5/123` and
+  singular-value floor `sqrt(5/128)`.  The remaining gap is to show that a
+  fixed portion of this corner obeys `(HOL)` or `(TRV)` under the mixed words.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using

@@ -7,16 +7,34 @@ artifacts:
   - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
   - notes/TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md
   - research/artifacts/pauli-overlap-dichotomy-2026-08-20.md
+  - experiments/atlas_transported_coefficient_raw_character_mixing.py
+  - experiments/atlas-transported-coefficient-raw-character-mixing.json
+  - experiments/verify_pauli_incoming_mass.py
 distinct_from:
   atlas-fractional-pauli-return-network: that asks for a weighted network over many states whose rational reproduction number exceeds one; this is the single-corner mass budget of two named transported involutions, and if true it says the search that node describes has already succeeded at one corner.
   atlas-supercritical-pauli-branching-cycle: that asks for an integer branch incidence matrix with a supercritical strongly connected component; this asserts a numerical inequality between Hilbert-Schmidt masses at one corner.
   pauli-two-child-transfer-packet: that is the exact two-child cell with its trace-1/8 children; this is a mass budget for transported coefficient involutions into a trace-1/2 corner.
 ---
 
-In the fixed raw/comb Pauli packet of the atlas presentation, let `Q` be the
-transported coefficient corner of trace `q = 1/2` and let `X_1, X_2` be the two
-transported coefficient involutions compressed into it.  The claim is the mass
-budget
+**ESTABLISHED.**  In the fixed raw/comb Pauli packet, let `F_epsilon` be the
+four raw coefficient-character cuts, put `Q=sum_epsilon F_epsilon`, and let
+
+```text
+T_i=comb^* B_i comb,   X_i=Q T_i Q,   i=0,1.
+```
+
+Thus `tau(Q)=q=1/2`.  The exact rational block tables proved in
+`transported-coefficient-raw-character-isotropic-mixing` sum to
+
+```text
+||X_0||_2^2 = 3/8,   ||X_1||_2^2 = 1/4.                           (PIM0)
+```
+
+Indeed the first table has four diagonal entries `21/256` and twelve
+off-diagonal entries `1/256`; the second has four diagonal entries `5/128`
+and twelve off-diagonal entries `1/128`.  Orthogonality of the cuts and
+cyclicity identify the sums with the two compressed squared masses.  Hence
+the mass budget is
 
 ```text
 M_tot = ||X_1||_2^2 + ||X_2||_2^2 = 5/8,                             (PIM1)
@@ -35,29 +53,17 @@ and the compulsory ordered cross-Gram overlap is
 sum_(a != b) ||X_b^* X_a||_2^2 >= M_tot^2/q - M_tot = 5/32.          (PIM3)
 ```
 
-If `(PIM1)` holds then supercriticality does not have to be constructed: it is
-already present in the packet the repository has, and the open problem narrows
-to what the mixed relations force the compulsory `5/32` of overlap to do.
+Thus supercriticality is already present in the packet, and the open problem
+narrows to what the mixed relations force the compulsory `5/32` of overlap to
+do.  `verify_pauli_incoming_mass.py` replays all sums from the checked JSON
+using exact rational arithmetic.
 
-## Attempts
+## Superseded audit and interpretation
 
-- **The number is not in the notes and must be recomputed.**  This is the
-  reason the claim is open.  `notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md` and
-  `notes/TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md` record the exact traces
-  `tau(E)=tau(R_0)=tau(R_1)=1/8`, `tau(F)=1/4`, `tau(F_eps)=tau(G_eta)=1/8` and
-  `tau(F_eps G_eta)=1/64`, and a grep of `notes/` for `5/8` returns nothing.
-  So `(PIM1)` is an assertion from outside this repository about which two
-  involutions are meant and what their compressed masses are.  Until the two
-  operators are named against the packet notes and their `||.||_2^2` recomputed
-  by the same exact rational group-algebra arithmetic that produced `1/64`, the
-  claim is unverified.
-- **What would falsify it cheaply.**  The four raw character cuts have total
-  trace `1/2` and pairwise transported masses `1/64`; a budget of `5/8` into a
-  corner of trace `1/2` must therefore come from operators substantially larger
-  than the character-level blocks, whose guaranteed coverage
-  `supercritical-network-needs-noncanonical-cuts` caps at `1/2` of a source cut.
-  Identifying the two involutions and checking whether their masses can exceed
-  the character budget is the single computation this node needs.
+- **Why the earlier node was open.**  The overlap dossier predated the exact
+  transported-coefficient block tables, so it correctly reported that the
+  operators and `5/8` sum were then unnamed.  The later table computation
+  supplies exactly the missing data and supersedes that audit.
 - **It does not conflict with the canonical-network gate.**  A reader may
   expect a clash with `supercritical-network-needs-noncanonical-cuts`, which
   forbids canonical supercritical networks.  There is none: that gate forbids a
