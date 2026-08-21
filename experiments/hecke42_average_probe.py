@@ -426,6 +426,190 @@ def probe(d, restarts, iters, beta, gamma, zeta, reg_len, warm=0):
     return results
 
 
+# ---------------------------------------------------------------------------
+# Tower mode: the two-adic S3-interlocked closure probe.
+# See research/artifacts/two-adic-tower-probe-protocol-2026-08-21.md.
+# ---------------------------------------------------------------------------
+
+def perm_rep_tower(s: int):
+    """Permutation rep of SL_3(Z/2^(2s)) on cosets of the
+    h^s-parahoric C^(s) = {2^s | x21, 2^(2s) | x31, 2^s | x32}
+    (a SUBGROUP for every s: the closure-critical product
+    x32 * x21 is divisible by 2^(2s); the naive corner-only
+    refinement is NOT a subgroup for levels above 4 -- verified the
+    hard way).  s = 1 gives the 42-coset level-4 module."""
+    m = 2 ** (2 * s)
+    q = 2 ** s
+
+    def mod(t):
+        return tuple(tuple(v % m for v in row) for row in t)
+
+    def mmul(x, y):
+        return tuple(tuple(sum(x[r][k] * y[k][c] for k in range(3)) % m
+                           for c in range(3)) for r in range(3))
+
+    def in_C(t):
+        return (t[1][0] % q == 0 and t[2][0] % m == 0
+                and t[2][1] % q == 0)
+
+    def minv(t):
+        def cof(r, c):
+            rs = [x for x in range(3) if x != r]
+            cs = [x for x in range(3) if x != c]
+            return (t[rs[0]][cs[0]] * t[rs[1]][cs[1]]
+                    - t[rs[0]][cs[1]] * t[rs[1]][cs[0]])
+        return mod(tuple(tuple((-1) ** (r + c) * cof(c, r) for c in range(3))
+                         for r in range(3)))
+
+    gens = []
+    for (i, j) in ELEM.values():
+        for e in (1, -1):
+            gens.append(mod(elem_mat(i, j, e)))
+    ident = mod(elem_mat(0, 1, 0))
+    # BFS over cosets: representatives, identified by coset test.
+    reps = [ident]
+    frontier = [ident]
+    while frontier:
+        nxt = []
+        for t in frontier:
+            for g in gens:
+                u = mmul(g, t)
+                if not any(in_C(mmul(minv(r), u)) for r in reps):
+                    reps.append(u)
+                    nxt.append(u)
+        frontier = nxt
+    d = len(reps)
+
+    def sigma(gmat):
+        g = mod(gmat)
+        P = np.zeros((d, d))
+        for j, r in enumerate(reps):
+            u = mmul(g, r)
+            for i, r2 in enumerate(reps):
+                if in_C(mmul(minv(r2), u)):
+                    P[i, j] = 1.0
+                    break
+            else:
+                raise RuntimeError("coset not found")
+        return P.astype(complex)
+
+    return d, sigma
+
+
+def tower_probe(a: int, restarts: int, iters: int, beta: float):
+    """Minimize the S3-interlock + intertwining + Haar/regularity
+    defect over V in U(d) for the level-2^a coset module."""
+    d, sigma = perm_rep_tower(a)
+    W12 = [[0, -1, 0], [1, 0, 0], [0, 0, 1]]
+    W23 = [[1, 0, 0], [0, 0, -1], [0, 1, 0]]
+    W13 = [[0, 0, -1], [0, -1, 0], [-1, 0, 0]]
+    pairs = [((1, 0, 2), (1, 0, 1)), ((2, 0, 4), (2, 0, 1)),
+             ((2, 1, 2), (2, 1, 1)),
+             ((0, 1, 1), (0, 1, 2)), ((0, 2, 1), (0, 2, 4)),
+             ((1, 2, 1), (1, 2, 2))]
+    consts = {"w12": sigma(W12), "w23": sigma(W23), "w13": sigma(W13)}
+    for idx, ((i, j, r), (i2, j2, r2)) in enumerate(pairs):
+        consts[f"A{idx}"] = sigma(elem_mat(i, j, r))
+        consts[f"B{idx}"] = sigma(elem_mat(i2, j2, r2))
+    lam_ball = [sigma(elem_mat(i, j, e)) for (i, j) in ELEM.values()
+                for e in (1, -1)]
+    results = []
+    for rr in range(restarts):
+        Z = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        V = np.linalg.qr(Z)[0]
+        step = 1e-2
+        for _ in range(iters):
+            val, G = tower_value_grad(V, consts, lam_ball, beta, d)
+            Om = (G @ V.conj().T - V @ G.conj().T) / 2
+            V2 = polar_unitary((np.eye(d) - step * Om) @ V)
+            v2, _ = tower_value_grad(V2, consts, lam_ball, beta, d)
+            if v2 < val:
+                V = V2
+                step = min(step * 1.3, 0.2)
+            else:
+                step *= 0.4
+                if step < 1e-12:
+                    break
+        delta, haar, reg = tower_report(V, consts, lam_ball, d)
+        rec = {"s": a, "level": 4 ** a, "d": d, "restart": rr,
+               "delta_interlock": round(delta, 5),
+               "haar_pressure": round(haar, 5),
+               "reg_residual": round(reg, 5)}
+        print(json.dumps(rec), flush=True)
+        results.append(rec)
+    return results
+
+
+def tower_value_grad(V, consts, lam_ball, beta, d):
+    """Objective and analytic gradient wrt V.  Every term is
+    2 - 2 Re tr(word)/d or |tr(word)/d|^2 with V the only variable;
+    grad accumulated via grad_re_tr with env holding constants.
+    grad_re_tr differentiates Re(coeff * tr(word)), so the 1/d
+    normalization goes into coeff."""
+    env = dict(consts)
+    for i, L in enumerate(lam_ball[:6]):
+        env[f"L{i}"] = L
+    env["V"] = V
+    grads = np.zeros((d, d), dtype=complex)
+    val = 0.0
+
+    def add_word(word, value_of_t, grad_coeff_of_t):
+        nonlocal val, grads
+        t = np.trace(word_product(word, env)) / d
+        val += value_of_t(t)
+        g = grad_re_tr(word, env, grad_coeff_of_t(t) / d)
+        gv = g.get("V")
+        if gv is not None:
+            grads += gv
+
+    relation_shaped = [
+        [("V", 1), ("w23", 1), ("V", -1), ("w23", -1),
+         ("w12", 1), ("V", -1), ("w12", -1)],
+        [("w13", 1), ("V", 1), ("w13", -1), ("V", 1)],
+        [("V", 1), ("w12", 1), ("V", 1), ("w12", -1),
+         ("V", -1), ("w12", 1), ("V", -1), ("w12", -1)],
+    ]
+    for idx in range(6):
+        relation_shaped.append(
+            [("V", 1), (f"A{idx}", 1), ("V", -1), (f"B{idx}", -1)])
+    for w in relation_shaped:
+        add_word(w, lambda t: 2 - 2 * t.real, lambda t: -2.0)
+    for mpow in range(1, 5):
+        add_word([("V", 1)] * mpow,
+                 lambda t: beta * abs(t) ** 2,
+                 lambda t: 2 * beta * np.conj(t))
+    for i in range(min(6, len(lam_ball))):
+        add_word([("V", 1), (f"L{i}", 1)],
+                 lambda t: beta * abs(t) ** 2,
+                 lambda t: 2 * beta * np.conj(t))
+    return val, grads
+
+
+def tower_report(V, consts, lam_ball, d):
+    env = dict(consts)
+    env["V"] = V
+    delta = 0.0
+    for idx in range(6):
+        w = [("V", 1), (f"A{idx}", 1), ("V", -1), (f"B{idx}", -1)]
+        t = np.trace(word_product(w, env)).real / d
+        delta = max(delta, 2 - 2 * t)
+    for w in ([("w13", 1), ("V", 1), ("w13", -1), ("V", 1)],
+              [("V", 1), ("w23", 1), ("V", -1), ("w23", -1),
+               ("w12", 1), ("V", -1), ("w12", -1)],
+              [("V", 1), ("w12", 1), ("V", 1), ("w12", -1),
+               ("V", -1), ("w12", 1), ("V", -1), ("w12", -1)]):
+        t = np.trace(word_product(w, env)).real / d
+        delta = max(delta, 2 - 2 * t)
+    haar = max(abs(np.trace(np.linalg.matrix_power(V, mm)) / d)
+               for mm in range(1, 5))
+    reg = 0.0
+    for i, L in enumerate(lam_ball[:6]):
+        env[f"L{i}"] = L
+        t = abs(np.trace(word_product([("V", 1), (f"L{i}", 1)], env)) / d)
+        reg = max(reg, t)
+    return float(delta), float(haar), float(reg)
+
+
 def gradcheck(d=4, eps=1e-6):
     """Central-difference validation of value_and_grad at small size."""
     cw = coset_words_mod4()
@@ -488,7 +672,53 @@ def main():
     ap.add_argument("--reg-len", type=int, default=2)
     ap.add_argument("--warm", type=int, default=0,
                     help="warm-start multiplicity N (d = 7N, perm rep)")
+    ap.add_argument("--tower", type=int, default=0,
+                    help="two-adic tower probe at level 2^a (pass a)")
+    ap.add_argument("--towercheck", action="store_true")
     args = ap.parse_args()
+    if args.towercheck:
+        d, sigma = perm_rep_tower(2)
+        W12 = [[0, -1, 0], [1, 0, 0], [0, 0, 1]]
+        W23 = [[1, 0, 0], [0, 0, -1], [0, 1, 0]]
+        W13 = [[0, 0, -1], [0, -1, 0], [-1, 0, 0]]
+        pairs = [((1, 0, 2), (1, 0, 1)), ((2, 0, 4), (2, 0, 1)),
+                 ((2, 1, 2), (2, 1, 1)), ((0, 1, 1), (0, 1, 2)),
+                 ((0, 2, 1), (0, 2, 4)), ((1, 2, 1), (1, 2, 2))]
+        consts = {"w12": sigma(W12), "w23": sigma(W23),
+                  "w13": sigma(W13)}
+        for idx, ((i, j, r), (i2, j2, r2)) in enumerate(pairs):
+            consts[f"A{idx}"] = sigma(elem_mat(i, j, r))
+            consts[f"B{idx}"] = sigma(elem_mat(i2, j2, r2))
+        lam_ball = [sigma(elem_mat(i, j, e))
+                    for (i, j) in ELEM.values() for e in (1, -1)]
+        Z = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        V = np.linalg.qr(Z)[0]
+        _, G = tower_value_grad(V, consts, lam_ball, 3.0, d)
+        H = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        H = (H + H.conj().T) / 2
+        H = H / np.linalg.norm(H)
+        w_, v_ = np.linalg.eigh(H)
+        eps = 1e-6
+
+        def fval(s):
+            V2 = (v_ * np.exp(1j * s * w_)) @ v_.conj().T @ V
+            return tower_value_grad(V2, consts, lam_ball, 3.0, d)[0]
+
+        num = (fval(eps) - fval(-eps)) / (2 * eps)
+        ana = np.trace(G.conj().T @ ((1j * H) @ V)).real
+        rel = abs(num - ana) / max(1e-12, abs(num) + abs(ana))
+        print(f"towercheck d={d}: num={num:+.8f} ana={ana:+.8f} "
+              f"rel={rel:.2e}")
+        print("TOWERCHECK-" + ("PASS" if rel < 1e-4 else "FAIL"),
+              file=sys.stderr)
+        return
+    if args.tower:
+        res = tower_probe(args.tower, args.restarts, args.iters,
+                          args.beta)
+        with open(f"tower-probe-a{args.tower}.json", "w") as f:
+            json.dump(res, f, indent=1)
+        print("TOWER-DONE", file=sys.stderr)
+        return
     if args.selftest:
         selftest()
         return

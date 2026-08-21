@@ -63,14 +63,28 @@ candidate enemy and would need to be tested against the
   which is exactly what the Weyl evaluation cannot reach without the
   slot.  The residual constraint is the interlock of part 2 plus the
   trace; whether they pin `Ad(V)` on the tower is the open point.
-- **Probe protocol designed.**  The finite-level closure question is
-  a modulus question (single levels are vacuous: the corner
-  intertwining loses two levels), so the experiment measures the
-  defect floor `delta*(a)` across levels `a = 2, 3, 4` with Haar and
-  mixed-word regularity pressure; full design in
-  `research/artifacts/two-adic-tower-probe-protocol-2026-08-21.md`,
-  reusing the validated optimizer of
-  `experiments/hecke42_average_probe.py`.
+- **Probe protocol designed and first level measured (2026-08-21,
+  sioux).**  Design in
+  `research/artifacts/two-adic-tower-probe-protocol-2026-08-21.md`;
+  `experiments/hecke42_average_probe.py --tower s` implements it on
+  the `h^s`-parahoric coset modules of `SL_3(Z/4^s)` (conditions
+  `2^s, 2^(2s), 2^s` — a subgroup for every `s`; the naive
+  corner-only refinement is NOT a subgroup above level 4 and
+  produced garbage coset counts before the fix).  RESULT at `s = 1`
+  (`d = 42`): four independent random starts all converge to the
+  SAME rational interlock floor `delta* = 32/21` (worst word trace
+  `10/42 = 5/21`) with Haar and regularity pressure at `~10^-2` —
+  an exact finite obstruction: in this bounded-multiplicity module
+  the system cannot close even approximately, consistent with the
+  cycle-type mismatch of `e_21(1)` (order 4) versus `e_21(2)`
+  (order 2), whose optimal spectral matching quantizes the floor.
+  Interpretation per protocol: bounded-multiplicity coset towers
+  provably cannot host the enemy; the modulus question lives in
+  modules whose per-element spectral distributions converge (regular
+  type), where the matching cost between uniform measures on
+  `2^a`-th versus `2^(a-1)`-th roots of unity tends to `0`.  The
+  `s >= 2` runs need the block parametrization and an sbatch lane
+  (dense descent at `d ~ 600` exceeds interactive budgets).
 - **Relation to the Iwahori lane.**  Part 1 restricted to one level
   is the `SL_3`-at-`2` version of the `B_+/B_-` compatibility of
   Dogon--Vigdorovich Question 1.4; the interlock adds two more
