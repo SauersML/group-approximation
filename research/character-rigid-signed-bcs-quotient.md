@@ -16,8 +16,8 @@ projection `q=z_rho`, and a unital surjection
 q C^*(Gamma) q -> B,                                  (CRQ1)
 ```
 
-where `B` is one fixed finite BCS algebra with tracial states and no
-Connes-embeddable tracial state, such that:
+where `B` is one fixed finite BCS algebra with a **unique** tracial state,
+and that state is not Connes embeddable, such that:
 
 1. no finite-dimensional representation of `Gamma` contains `rho` on `K`;
 2. every extremal normalized character of `Gamma` supported on `q` is either
@@ -26,6 +26,64 @@ Connes-embeddable tracial state, such that:
 Then the signed corner has unique trace, and
 `unique-trace-signed-corner-quotient-forces-nonhyperlinear` proves that
 `Gamma` is nonhyperlinear.
+
+The uniqueness requirement on `B` is necessary, not an optional
+strengthening.  If `A=qC^*(Gamma)q` has unique trace `tau_q` and
+`Phi:A->B` is unital and onto, then for any two traces `sigma_1,sigma_2` on
+`B`,
+
+```text
+sigma_1 Phi=tau_q=sigma_2 Phi.
+```
+
+Surjectivity gives `sigma_1=sigma_2`.  Thus any quotient in `(CRQ1)` is
+automatically monotracial.  The established input
+`mipstar-bcs-tracial-nonru-exists` supplies a finite BCS algebra with at least
+one trace and no Connes-embeddable trace, but it does **not** supply
+monotraciality.  Before the signed quotient can be built, one must therefore
+either produce a finite unique-trace non-CE BCS algebra or a finite BCS
+quotient retaining non-CE while making the trace unique.
+
+## Exact signed-sector face audit
+
+Conditions 1 and 2 do give the claimed uniqueness once the objects exist.
+Traces on `qC^*(Gamma)q` correspond to normalized characters supported on
+`q`, and their extreme points are the extremal such characters.  Condition 2
+says each extreme point is canonical or finite-dimensional.  Condition 1
+removes the latter: a finite-dimensional corner representation with unit
+`q` is exactly a finite-dimensional representation of `Gamma` whose
+restriction to `K` contains `rho`.  Hence the canonical `q`-regular trace is
+the only extreme point and therefore the only trace.
+
+This also excludes every **exact** finite-dimensional representation of the
+signed corner.  It is not by itself a quantitative whole-face exclusion for
+approximate matrix states: hyperlinear microstates need not be close to exact
+finite-dimensional representations.  The non-Connes-embeddable quotient is
+what excludes those approximate states.  Indeed any trace `sigma` on `B`
+pulls back to `tau_q`; surjectivity identifies their GNS von Neumann
+algebras, so Connes embeddability of the canonical signed corner would make
+`sigma` Connes embeddable.  Character rigidity and exact finite-dimensional
+type exclusion cannot replace this quotient step.
+
+There is also an exact direction-of-map test for `(CRQ1)`.  Since `q` is
+central, every `qg` is a unitary in the corner with unit `q`.  Therefore a
+unital surjection `Phi` is equivalent to a unitary representation
+
+```text
+u:Gamma -> U(B),        u_g=Phi(qg),                   (CRQ2)
+```
+
+such that the integrated representation sends `q` to `1_B` and
+`C^*(u(Gamma))=B`.  The first condition says that `u|K` is entirely
+`rho`-isotypic; the second is exactly surjectivity.  Conversely any such
+generating representation integrates to `(CRQ1)`.
+
+Thus placing BCS projections or Hecke operators **inside**
+`qC^*(Gamma)q` proves a map in the opposite direction and does not construct
+this quotient.  The missing signed-quotient theorem is a generating
+`rho`-sector representation of the character-rigid group in the BCS algebra,
+compatible with its finite presentation.  It must be installed without
+creating a new extremal sector character of `Gamma`.
 
 This target separates the two construction jobs cleanly.  The quotient in
 `(CRQ1)` is weaker than the signed-Hecke **embedding** target: local BCS
@@ -45,6 +103,10 @@ the BCS quotient without destroying that sector character classification.
   character dichotomy and pass to a finite central extension whose selected
   type is killed by every finite-dimensional representation.  This supplies
   trace uniqueness but no map onto the BCS algebra.
+- The available MIP*=RE BCS source is not known here to be monotracial.  Since
+  every quotient of the proposed unique-trace corner must be monotracial,
+  using that source requires a new finite unique-trace BCS reduction before
+  any Hecke or group-corner construction begins.
 - Start from the signed-Hecke predicate packets, where a quotient onto each
   local context block is explicit.  Ordinary finite amalgamation can glue the
   local blocks only along amenable edges and remains hyperlinear; equivalently
@@ -52,7 +114,6 @@ the BCS quotient without destroying that sector character classification.
   vertices to a rigid lattice also gives no known permanence theorem for the
   lattice's character classification.
 - The next concrete test is whether a known character-rigid central extension
-  admits a finite set of matrix-valued Hecke operators satisfying the BCS
-  relations **as a quotient**.  Failure should be recorded at the level of
-  double-coset support or sector characters rather than by demanding the much
-  stronger corner embedding.
+  has a generating unitary representation `(CRQ2)` inside a monotracial
+  non-CE BCS algebra.  A family of Hecke operators in the group corner would
+  instead construct the opposite map and does not address `(CRQ1)`.
