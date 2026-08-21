@@ -21,23 +21,31 @@ one.  (Dogon--Vigdorovich hyperfinite HS-stability, unconditional at
 representation into a genuine embedding picture with controlled
 trace; the content left is where the embedding sits.)
 
-**Step 2 (disintegration over the relative commutant).**  Let
-`Z = Z(iota(N)' cap M)` be the center of the relative commutant.
-Cutting `iota` by the spectral projections of `Z` decomposes the
-embedding into pieces whose relative commutants are factors --
-extreme points of Brown's convex-like structure on the embedding
-space [arXiv:1010.1214; axiomatics arXiv:1105.1270].  Property (T)
-of `SL_3(Z)` makes the extreme points discrete and gives local
-rigidity: two extreme pieces that are close on a Kazhdan generating
-set are conjugate up to small corners.  The step to write carefully
-(flagged, not assumed): measurable selection plus discreteness
-upgrades the disintegration to a COUNTABLE weighted direct sum of
-factorial-commutant embeddings -- the atomicity uses (T), not
-generalities, and fails for free groups.
+**Step 2 (disintegration over the relative commutant --
+CORRECTED 2026-08-21).**  Let `Z = Z(iota(N)' cap M)` be the center
+of the relative commutant.  Disintegrating `iota` over the spectrum
+of `Z` gives fibers whose relative commutants are factors -- extreme
+points of Brown's convex-like structure [arXiv:1010.1214; axiomatics
+arXiv:1105.1270].  The base is in general DIFFUSE: for the canonical
+coset-Bernoulli enemy the Lambda-commutant is `L^infinity(X)^Lambda`,
+which contains the shell averages of the lamp coordinates, a
+diffuse algebra (an earlier draft claimed an atomic decomposition;
+that is false).  What property (T) gives is weaker and sufficient:
+extreme points are discrete in Brown's metric and two fibers that
+are close on a Kazhdan generating set are conjugate, so the
+measurable class map from the base to the (discrete) set of
+conjugacy classes of extreme embeddings has COUNTABLY many classes
+of positive measure, and
+`iota|_Lambda = direct_sum_i  pi_i  tensor  1_(L^infinity(Z_i))`:
+countably many extreme embeddings, each amplified by a diffuse (or
+atomic) abelian multiplicity algebra.  This needs (T); for free
+groups the class set is not discrete and the argument fails.
 
-**Step 3 (correct each atom, then reassemble).**  The required
-claim corrects each factorial-commutant atom to a congruence-
-realized embedding.  The congruence-realized class is closed under
+**Step 3 (correct each class, then reassemble).**  The required
+claim corrects each factorial-commutant class representative
+`pi_i` to a congruence-realized embedding; abelian amplification
+preserves the congruence class (tensor the microstates with
+diagonal matrices, i.e. take direct sums of copies).  The congruence-realized class is closed under
 countable direct sums with matrix-ultraproduct weights (interleave
 levels; project weights onto dyadic corners with vanishing error)
 and is closed in the embedding metric (diagonalize corrections),

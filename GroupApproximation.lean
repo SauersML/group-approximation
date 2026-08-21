@@ -1479,6 +1479,7 @@ import GroupApproximation.Higman.GeneratedCoords
 import GroupApproximation.Higman.GeneratedPin
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
+import GroupApproximation.Higman.GeneratedPin
 import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate

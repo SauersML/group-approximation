@@ -257,6 +257,16 @@ W4: assembly.  Instantiate slimmed source data (W0d) + router output
   State the final theorem in the ∃-form with `IsPowerTorsionFree` and
   bridge `IsMulTorsionFree` once.
 
+W6 RE-PRICING (same night): the §4 closures are NOT six independent
+  small items — either ONE fixed apparatus (Higman 4.1–4.3) plus six
+  short consequences, or per-operation F₃-native witnesses (the route
+  in progress).  Current honest state: θ DONE modulo closures-2's two
+  lane inputs; ζ/π DONE modulo two row-subgroup facts + OmegaInput;
+  ρ = FlipWitness BUILT + the shared amalgam torsion lemma
+  (w6-amalgam); τ = construction OPEN (witness-level swap); ω =
+  OmegaInput residue (Mikaelian §4 route); base S = d-side in the
+  sources and UNPRICED F₃-natively — assign explicitly.
+
 W6 §4 APPARATUS TRAP (2026-08-21 night, caught by closures-1, confirmed
   by lit at source): Higman's §4 closure proofs (4.4–4.10, all but
   ι/υ) live in ⟨a,d,e⟩ and presuppose the d/e apparatus (Lemmas

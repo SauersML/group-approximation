@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.SmallCancellationRouter
 import GroupApproximation.Sofic.PeriodicOverlap
+import GroupApproximation.Sofic.TorsionDescent
 
 /-!
 # The free-group gate half, its two open leaves named as gates, and the router

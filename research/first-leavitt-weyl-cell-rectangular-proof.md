@@ -46,5 +46,12 @@ trace-preserving conditional expectation, and set
  <= (2p)! sqrt(2p) (sum_j delta_j^2)^(1/2).
 ```
 
-Combine this with the target lower bound `kappa_p-O_p(target_error)` and
-square.  This proves `(FWC6)`.
+The target perturbation bound is
+
+```text
+||s_(2p)(D_1,...,D_(2p))||_2
+ >= kappa_p-2p(2p)! epsilon.
+```
+
+Combine the last two displays, take the positive part, and square.  This
+proves `(FWC6)` with the stated explicit constant.

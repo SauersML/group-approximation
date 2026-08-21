@@ -91,11 +91,13 @@ only on the fixed field characteristic and not on ambient multiplicity.
 
 There is also a square-summable form, better suited to an HS energy ledger.
 For any amplification `B=M_p tensor 1_m` and any contractions
-`D_1,...,D_(2p)` carrying the target table,
+`D_1,...,D_(2p)` with
+`max_j ||D_j-Y_j||_2<=epsilon`, one has
 
 ```text
 sum_j dist_2(D_j,B)^2
- >= kappa_p^2/(2p ((2p)!)^2) - O_p(target_error).          (FWC6)
+ >= ((kappa_p-2p(2p)! epsilon)_+)^2
+      /(2p ((2p)!)^2).                                    (FWC6)
 ```
 
 Indeed choose the trace-preserving conditional expectation `E_B`, apply
