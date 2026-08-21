@@ -1455,6 +1455,7 @@ import GroupApproximation.Algebra.SteinbergSL3
 import GroupApproximation.Algebra.FinitePresentationFiniteIndex
 import GroupApproximation.Sofic.PeriodicOverlap
 import GroupApproximation.Sofic.FreeProductRouterObstruction
+import GroupApproximation.Sofic.GreendlingerDeepestMatch
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
