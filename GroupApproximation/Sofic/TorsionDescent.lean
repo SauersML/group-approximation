@@ -496,7 +496,8 @@ theorem transport_of_quot_conj {R : Set (List (α × Bool))} {W W' : List (α ×
   constructor
   · intro k hk
     rw [mem_iff_mk'_eq_one] at hk ⊢
-    rw [map_pow, hc, conj_pow, ← map_pow, hk, map_one, mul_one, mul_inv_cancel]
+    rw [map_pow, hc, conj_pow, ← map_pow, hk]
+    group
   · intro hmem
     rw [mem_iff_mk'_eq_one] at hmem ⊢
     rw [hc] at hmem

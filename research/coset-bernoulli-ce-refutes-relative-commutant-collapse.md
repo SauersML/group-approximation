@@ -75,3 +75,14 @@ the hard matrix-coordinate content.
   is `C`-fixed and not `A`-fixed, but `l2(A/C)` is weakly contained in the
   regular representation only when `C` is amenable.  The required
   finite-coordinate realization is precisely the missing CE statement.
+- **The p = 3 dichotomy (2026-08-21).**  For the pair
+  `SL_3(Z) < SL_3(Z[1/3])` the Lambda-exact face of the collapse is
+  closed and subgroup-exact outliers do not exist, so Connes
+  embeddability of `(CB1)` at this pair would force its microstates
+  to restrict to `SL_3(Z)` as regular-trace families uniformly far
+  from the genuine representations of every finite-index subgroup,
+  with the base lamp as the coupling.  Route
+  `nonhyperlinear-coset-wreath-from-p3-collapse` records the goal
+  edge; the conditional firewall is now two-sided and sharp: the
+  wreath group `W_3` is hyperlinear iff such everywhere-inexact
+  coupled microstates exist.
