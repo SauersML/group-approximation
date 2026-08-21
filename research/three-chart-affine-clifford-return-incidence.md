@@ -52,3 +52,19 @@ constraint which kills those independent commutant rotations in finite
 matrices without killing the amplified infinite completeness model.  The
 twenty-qubit packet closes the edge-dimension audit but does not supply this
 constraint.
+
+## Attempts
+
+- `s3-equivariant-edge-closes-common-marginals` supplies the constraint
+  structurally, by closing all three transports into one `S_3`-semidirect
+  edge; its finite audit (`s3-equivariant-affine-clifford-return-edge`) must
+  close the full generated edge group and is still open.
+- `three-chart-return-from-cross-context-relators` supplies it by quotient
+  instead: the raw radical basis words are fixed zero-one packet words
+  (SER1), so the two `(RNS1)` agreements can be imposed as two explicit
+  cross-context conjugation relators `(CCR1)` — equivalently, the two
+  comparison loops centralize their shared radical words up to a fixed
+  central character.  The events become images of fixed words, so no
+  independent rotation exists to kill; the whole burden moves to one
+  completeness computation,
+  `covariant-model-satisfies-cross-context-radical-relators`.
