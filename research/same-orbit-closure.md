@@ -20,3 +20,14 @@ square bistochastic forward/return kernels with normalized cyclic overlap
 one permutation and its inverse with dimension- and alphabet-independent
 loss.  Thus the load-bearing content here is exactly **same reservoir / no
 rectangular enlargement**, not permutation recovery afterward.
+
+Nor is recursive error accumulation a further gate.  If the closed reservoir
+is followed through `m` binary steps, then
+`closed-multiplicity-cycle-kills-carrier-trace` gives directly
+
+```text
+tr(P_0) <= 3 epsilon + ||P_m-P_0||_2/(2^m-1),
+```
+
+with no factor of `m`.  Closure supplies the returned projection; cyclic trace
+then performs the entire contractive ledger automatically.

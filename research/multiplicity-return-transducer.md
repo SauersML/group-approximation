@@ -99,3 +99,11 @@ which is what normalized Hilbert--Schmidt norm can see.
   mass before correction.  Fixed-word telescoping transfers the latter
   locally.  The remaining return/payment interface is therefore only
   `fixed-scale-contextual-multiplicity-holonomy`.
+- **Closing the reservoir automatically gives the desired constant-loss
+  recurrence.**  The scalar endpoint no longer needs to be designed:
+  `closed-multiplicity-cycle-kills-carrier-trace` shows that an `m`-step
+  binary return with per-cell defect `epsilon` forces
+  `tr(P_0) <= 3 epsilon + return_error/(2^m-1)`.  Hence the load-bearing word
+  in clauses 2--5 is **same**: the contextual network must return to the same
+  fixed packet multiplicity reservoir.  Once it does, cyclic trace converts
+  the extensive surplus to a dimension-independent HS floor.

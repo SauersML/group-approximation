@@ -103,3 +103,11 @@ all-representations decoder `(ALD1)--(ALD2)`.
   label count.  The robust paired `1/36` floor then consumes the crossed-zero
   relation.  Hence the unresolved estimate is only the same-reservoir
   boundary payment that excludes `rectangular-escape`.
+- **A closed multilevel return has no depth loss.**  Once the same physical
+  reservoir is identified at the end of a binary depth-`N` cycle,
+  `closed-multiplicity-cycle-kills-carrier-trace` gives
+  `tr(P_0) <= 3 epsilon + return_error/(2^N-1)`.  Thus the desired contractive
+  recurrence does not need to be proved cell by cell with separately tracked
+  constants.  The only missing estimate is the matrix-coordinate assertion
+  that boundary mass cannot pay for label doubling by shrinking multiplicity
+  before the return.
