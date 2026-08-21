@@ -58,6 +58,14 @@ content is its rank-independent quantitative stability.  The current
 centralizer-fiber circuit proves `(SW0)` only with a factor
 `K_n=O(n^(1+log_2 3))`.
 
+The most direct scalar counterrepresentation lane is also closed.
+`phased-translations-reduce-to-alpha-plane-test` considers every table obtained
+by conjugating the regular translation action by an arbitrary diagonal Boolean
+phase.  Kaufman--Sudan single-orbit soundness gives the dimension-free squared
+HS estimate `full defect <=(27/2) sampled defect` for this entire family.
+Thus any obstruction to `(SW0)` must use genuinely operator-valued mixing, not
+one scalar phase orbit.
+
 ## Attempts
 
 - **Propagate one matrix bridge.**  The local bridge estimate is quadratic
