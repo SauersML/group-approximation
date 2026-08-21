@@ -43,6 +43,23 @@ refutation, and this claim makes the reduction precise.
 
 ## Attempts
 
+- **The two-primary enemy is a computable feasibility sequence.**
+  Inside the tower sector, the regular restricted trace forces the
+  level to grow (`a_m -> infinity`: any fixed level has
+  `(1/d) Tr rho(lambda)` bounded away from `0` on the congruence
+  kernel).  At a fixed level, the (T) conjugation squeeze pins the
+  witness into the multiplicity algebra with dimension-free error, so
+  the leak constraints reduce to BRANCHING data: define `delta(a)` as
+  the minimal total defect of a leak configuration over
+  `G_a = SL_3(Z/2^a)` — a finite representation-theoretic
+  optimization, because the `h`-conjugation map is defined on the
+  parahoric image `P-bar` and DESCENDS ONE LEVEL (`P-bar -> G_(a-1)`;
+  two lifts of a mod-`2^a` point differ after conjugation by a
+  mod-`2^(a-1)` element), making each instance a two-level tower
+  coupling.  Refuting the tower sector is exactly
+  `liminf delta(a) > 0`.  Small instances (`a = 1, 2`:
+  `|SL_3(Z/2)| = 168`, `SL_3(Z/4)`) are machine-checkable and would
+  give the first data on the actual wall — the designated next probe.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
