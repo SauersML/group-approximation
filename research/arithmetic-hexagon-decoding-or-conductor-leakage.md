@@ -80,6 +80,14 @@ the fixed-depth nonhyperlinearity criterion.
   `adjacent-a2-chambers-share-only-commuting-wall` satisfy every pairwise
   shared-root moment.  Closing the six-edge carrier, rather than improving
   one-wall rounding, is essential.
+- **Edge rounding after exact band recovery is complete.**  On any band on
+  which the two endpoint `SL_3(Z)` actions are genuine representations,
+  `kazhdan-polar-rounding-produces-supported-gallery-edges` turns the raw
+  almost intertwiner into an exact partial intertwiner.  Its source/target
+  trace loss is at most `(eta/kappa)^2` and its HS displacement is at most
+  `2 eta/kappa`, uniformly in dimension and multiplicity.  Thus property
+  `(T)` solves the analytic edge-rounding step, but cannot be invoked before
+  compatible genuine band representations have been extracted.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
