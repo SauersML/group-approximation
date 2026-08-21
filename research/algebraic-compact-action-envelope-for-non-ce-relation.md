@@ -225,3 +225,23 @@ generated stabilizer whose projection to `Gamma_0` is injective.  Thus a
 finitely generated nonseparable stabilizer must have a nontrivial vertical
 intersection with `SL_3(Z)`; otherwise the only remaining coset option is an
 infinitely generated stabilizer.
+
+The nonseparable-stabilizer box is nonempty and effective.
+`mihailova-nonseparable-coset-stabilizer` takes a finitely presented nonsofic
+group `Q`, forms its finitely generated Mihailova fiber product inside free
+subgroups of `Gamma_0` and `SL_3(Z)`, and obtains
+
+```text
+P < Gamma_0 x SL_3(Z)
+```
+
+which is not separable and has a large vertical intersection.  Thus the Haar
+coset module `(Z/2)^((Gamma_0 x SL_3(Z))/P)` is an explicit recursively
+presented survivor of every preceding actor, graph, and separability fence.
+What is proved is precisely that its coset action is not residually finite.
+It is not legitimate to infer nonsoficity of that action merely from the
+nonsofic quotient used in the fiber product: action soficity does not
+automatically descend through the free-cover kernel.  The live question is
+now analytic and concrete: decide Connes embeddability of this Mihailova
+coset-Bernoulli crossed product, or construct the fixed-source inclusion in
+it.
