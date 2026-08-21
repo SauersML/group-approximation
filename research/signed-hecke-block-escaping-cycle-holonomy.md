@@ -58,6 +58,12 @@ chosen representation.
   partitions are named.  No current group presentation forces the additive
   equality `(BCH2)` for the resulting sums without already assuming the
   desired compatible atlas.
+- **Single literal compression and finite Bass--Serre networks are dead.**
+  `common-corner-literal-contexts-stop-at-bass-serre` proves both that a
+  unitary compression `qgq` forces `gq=qg` and that a compatible atlas in any
+  finite graph-of-finite-groups corner would create a forbidden CE trace.
+  Hence the escape cell must have genuinely multi-piece group-ring support
+  and non-Bass--Serre holonomy.
 - **One binary chord is solved exactly.**
   `one-binary-marginal-block-escape` uses a
   same-sign Hadamard rotation and independent free phases.  Its atom

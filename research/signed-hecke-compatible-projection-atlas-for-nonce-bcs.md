@@ -58,6 +58,14 @@ trace is required.
 - Ordinary free products or Bass--Serre amalgams preserve independent context
   choices and therefore do not force `(BPA3)`. A successful construction
   needs nontrivial finite holonomy among the context partitions.
+- **Literal local contexts are completely solved, but finite Bass--Serre
+  compatibility is impossible.**
+  `common-corner-literal-contexts-stop-at-bass-serre` tensors all selected
+  predicate types behind one projection and makes every marginal a compressed
+  literal involution.  It also proves that any compatible completion inside a
+  finite graph of finite groups would pull a CE canonical corner trace back to
+  the no-CE BCS.  Thus no more elaborate finite amalgamation can close the
+  overlap equations.
 - **Returning to the finite root block is impossible.**
   `root-block-piecewise-transport-cannot-host-nonce-bcs` shows that if all
   transported context projections lie in `q_D C[K_D]q_D`, the atlas is a
