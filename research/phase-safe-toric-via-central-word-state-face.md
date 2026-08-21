@@ -8,6 +8,8 @@ requires:
   - mipstar-bcs-tracial-nonru-exists
   - toric-gap-is-a-relative-fd-central-word-face
   - finite-morita-toricization-cannot-encode-nonaffine-support
+  - spherical-root-type-selection-is-phase-unsafe
+  - extraspecial-spin-predicate-centralization-kills-phase
   - central-word-state-face-compiler
 ---
 

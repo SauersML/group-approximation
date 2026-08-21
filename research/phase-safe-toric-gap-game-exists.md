@@ -82,3 +82,21 @@ survive by induction.  Under normal phase safety every clause
 image, and the quotient has the exact central-product presentation `(RTF6)`.
 Thus the surviving compiler target is a robust **central-word state-face**
 compiler, not an ordinary local reversible circuit.
+
+**Finite spherical root / Hecke packet.**  The strongest local version works:
+for `H_R=(C_2)^R semidirect Sym(R)` and the coordinate character of
+`K_R=(C_2)^R semidirect Stab(r_0)`, the induced spherical module is exactly the
+irreducible tautological signed-permutation answer type.  But its scalar root
+clauses are phase-unsafe.  Conjugacy moves a `+1` coordinate lamp to the
+`-1` root lamp, so the normal closure contains the bare nontrivial scalar.
+`spherical-root-type-selection-is-phase-unsafe` proves the general invariant-
+extension criterion and this explicit collision.
+
+**Extraspecial spin packet with private letters.**  Also blocked in its direct
+form.  Every noncentral Pauli word `p` has `[p,x]=J`; normal toric
+groupification centralizes each player clause word and therefore kills `J`.
+Wrapping `p` as `t^(-1)pt` only conjugates the commutator witness.  See
+`extraspecial-spin-predicate-centralization-kills-phase`.  A more elaborate
+private-letter cycle remains admissible only if every clause word avoids
+normally generating `J` through its commutators, a condition which must be
+checked before state-vector completeness.
