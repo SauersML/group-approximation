@@ -98,6 +98,7 @@ vanishing defect, contradicting `(LEP3)`; the consolidation bullet
 of `two-power-sector-conjugator-dichotomy` reduces every
 bounded-gauge corrector to the same conjugacy question, and the
 coprime sector is `odd-congruence-lambda-exact-sector-collapses`.
-Together the `Lambda`-exact face of `(RC3)` is closed, and the
-surviving enemy is confined to microstates at uniform distance from
-every genuine representation of `SL_3(Z)`.
+Together the canonical (regular-type) `Lambda`-exact sectors of
+`(RC3)` are closed; per the claim's scope paragraph, the surviving
+enemy is confined to uniform outliers or to `Lambda`-exact
+microstates of genuinely non-regular isotypic weight profile.

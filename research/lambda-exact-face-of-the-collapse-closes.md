@@ -6,7 +6,7 @@ title: No twisted conjugator exists over regular-type towers, and the canonical 
 distinct_from:
   two-power-sector-conjugator-dichotomy: that proved the corrector question is all-or-nothing and consolidated the bounded gauges into the same twisted-pair conjugacy question; this resolves the dichotomy on the NO branch — a uniform Kazhdan floor holds at every level — so the question is decided, not just structured.
   odd-congruence-lambda-exact-sector-collapses: that closed the coprime-level sector by the Weyl evaluation against the exact slot; this closes the complementary 2-power and bounded-gauge sectors by intertwiner-support geometry, completing the Lambda-exact trichotomy.
-  sl3z-regular-microstates-are-congruence-correctable: that hole asks whether outlier microstates can be corrected INTO the exact sector; this theorem makes the stakes sharp — the exact sector is now entirely dead, so correctability would finish the collapse outright.
+  sl3z-regular-microstates-are-congruence-correctable: that hole asks whether outlier microstates can be corrected into the exact sector; this theorem sharpens the stakes — the canonical (regular-type) exact sector is dead, so correctability to regular-type targets would finish the collapse on this face.
 ---
 
 THEOREM.  Let `Lambda_0 = <A>` be the finite-index property (T)
@@ -25,10 +25,10 @@ max_i || V lambda-image(A_i) V^* - lambda-image(B_i) ||_2
 
 for every unitary `V` at every level, `epsilon_0` the Kazhdan
 constant of `(Lambda_0, A)`.  Hence no exact twisted conjugator
-exists in any 2-power ultraproduct; by
+exists in any regular-type 2-power ultraproduct; by
 `two-power-sector-conjugator-dichotomy` (whose consolidation reduced
-every bounded gauge to the same question) the ENTIRE
-`Lambda`-exact face of the collapse `(RC3)` is closed:
+every bounded gauge to the same question) the CANONICAL
+`Lambda`-exact sectors of the collapse `(RC3)` are closed:
 
 - coprime levels: closed by
   `odd-congruence-lambda-exact-sector-collapses`;
