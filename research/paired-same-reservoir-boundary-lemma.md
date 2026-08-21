@@ -57,6 +57,40 @@ use finite matrix coordinates: multiplicity, finite-label recovery, or an
 equivalent microstate feature that is unavailable in an arbitrary finite
 tracial representation.
 
+## The exact `Phi`/`s4` specialization
+
+The iterated self-similarity formula has now been isolated in
+`iterated-leavitt-self-similarity-is-dual-prefix-matrix-chart`:
+
+```text
+Phi_n(r)_(u,v)=t_u r s_v,       Phi_n(s_ut_v)=E_(u,v).  (PSR1)
+```
+
+Thus the dual-prefix pairing, common central sign, and all depth-one target
+matrix units are already exact.  They do not supply same-reservoir closure:
+`Phi_1` can exchange label dimension for spectator multiplicity.
+
+For `p=2`, a sufficient first-step form of this claim is consequently very
+small.  Recover one positive-density corner and one source factor
+`B=M_2 tensor I_m` on it, and prove that the same four returned words
+
+```text
+(I tensor X,I tensor Z,X tensor I,Z tensor I)           (PSR2)
+```
+
+both satisfy the two-qubit Pauli table up to `epsilon` and lie within
+`delta` of `B`.  Then
+`four-pauli-standard-polynomial-gives-a-fixed-rectangular-gap` gives
+
+```text
+144 epsilon+96 delta>=8.                                (PSR3)
+```
+
+This is the exact common-corner endpoint; no new polynomial calculation or
+additional Leavitt pairing relation remains.  What is open is solely the
+finite-matrix word theorem recovering that same corner/factor from the
+mixed Steinberg returns.
+
 ## Attempts
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into

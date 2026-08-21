@@ -9,6 +9,8 @@ distinct_from:
   affine-active-corner-has-faithful-binary-leavitt-envelope: that is the coefficient-algebra branching theorem; this compiles it into one ordinary finitely presented property-T group and one group word.
 ---
 
+**ESTABLISHED.**
+
 Let
 
 ```text

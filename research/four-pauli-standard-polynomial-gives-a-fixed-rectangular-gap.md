@@ -5,6 +5,8 @@ kind: claim
 title: Four Pauli words give an explicit amplification-blind gap against rectangular escape
 ---
 
+**ESTABLISHED.**
+
 Four approximate two-qubit Pauli words have standard-polynomial norm at
 least `8-144 epsilon`, while four words within `delta` of one `M_2` factor
 have norm at most `96 delta`.  Hence `144 epsilon+96 delta>=8`, and a common

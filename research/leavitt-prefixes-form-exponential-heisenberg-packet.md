@@ -9,6 +9,8 @@ distinct_from:
   affine-leavitt-steinberg-mark-is-fd-invisible: that proves every exact finite-dimensional representation kills the active root by a finite coefficient quotient; this gives an explicit quantitative family of finite subgroups explaining the dimension pressure.
 ---
 
+**ESTABLISHED.**
+
 Let `R=L_A(S)` be the free relative binary Leavitt envelope over a finite
 field `k` of characteristic `p`. For a binary word
 `alpha=(alpha_1,...,alpha_n)`, define
@@ -23,6 +25,10 @@ Repeated use of `t_i s_j=delta_(ij)A` and the active support relations gives
 ```text
 t_alpha s_beta=delta_(alpha,beta) A.                     (LHP2)
 ```
+
+This is the `r=A` diagonal of the exact iterated matrix chart in
+`iterated-leavitt-self-similarity-is-dual-prefix-matrix-chart`; no additional
+prefix-pairing axiom is being assumed.
 
 Inside `St_5(R)`, put
 

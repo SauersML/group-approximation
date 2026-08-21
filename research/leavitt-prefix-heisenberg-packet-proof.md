@@ -6,6 +6,7 @@ title: Cancel reversed prefixes and apply finite Stone--von Neumann theory
 target: leavitt-prefixes-form-exponential-heisenberg-packet
 requires:
   - affine-active-corner-has-faithful-binary-leavitt-envelope
+  - iterated-leavitt-self-similarity-is-dual-prefix-matrix-chart
 ---
 
 The reversed convention in `(LHP1)` places
