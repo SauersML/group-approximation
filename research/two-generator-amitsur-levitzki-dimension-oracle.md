@@ -41,3 +41,12 @@ This is deliberately not a group or C*-algebra theorem.  The operations in
 formal inverses in `(ALO4)` need not be bounded operators in any positive
 representation.  Turning `(ALO4)` into finite unitary group relations with a
 constant normalized-HS gap is a separate open compiler problem.
+
+The bounded-representation issue disappears after weakening the oracle to
+one-sided inverses.  `one-sided-amitsur-oracle-has-bounded-fock-model`
+represents `x,y` by the two Fock creation isometries and uses the prefix-free
+words `xy^jx`; the alternating monomials have orthogonal ranges, so
+`p_n^*p_n=(2n)!I` and `((2n)!)^(-1)p_n^*` is a bounded left inverse.  The
+dimension-matched matrix defect remains exactly one.  What still has to be
+compiled is the moving instruction and its growing additive word mass, not a
+bounded infinite model.
