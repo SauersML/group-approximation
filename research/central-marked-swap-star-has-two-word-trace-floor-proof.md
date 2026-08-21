@@ -27,3 +27,8 @@ exact star with nonzero source, `h` acts nontrivially as a three-cycle on the
 source and two range copies; on the same subspace `yh=-h`, so neither word
 is identity.  Canonical trace separation then gives `(MSS5)` and the stated
 nonhyperlinearity criterion.
+
+For the extension, multiply
+`tau(p_chi h)>=tau(p_chi)/4-o(1)` by `|C|` and expand `(MSS7)`.  This is
+exactly `(MSS8)`.  Canonical trace kills every nonidentity `c` and every
+nonidentity `ch`, giving the asserted limits.

@@ -84,6 +84,34 @@ The factor two is the length of `h=j_0j_1`; any fixed finite-packet rounding
 error can be absorbed into `epsilon`.  No estimate on the complementary
 sector appears.
 
+## Finite central-character extension
+
+The same argument is not limited to one involution.  Let `C` be any fixed
+finite central subgroup and `chi` one of its characters.  Put
+
+```text
+p_chi=1/|C| sum_(c in C) conjugate(chi(c)) c.          (MSS7)
+```
+
+If the binary star is decoded only on `p_chi H`, then
+
+```text
+Re sum_(c in C) conjugate(chi(c)) tau(ch)
+ >=1/4 sum_(c in C) conjugate(chi(c)) tau(c)-o(1).     (MSS8)
+```
+
+This is still a fixed finite linear combination of ordinary group-word
+traces.  In canonical microstates, the right side tends to `1/4`, while the
+left side tends to zero provided every `ch` is nonidentity.  Exact
+nontriviality is automatic from a nonzero star witness: on the selected
+corner `ch` is a scalar multiple of a genuine three-cycle and hence cannot
+be the identity.
+
+This extension is useful for Pauli/Schur packets whose natural selected
+source is a joint central-character sector rather than the negative sector
+of one involution.  It removes all other central characters without asking
+that they have controlled swap-complement signs.
+
 ## Attempts and firewalls
 
 - **Lower-bound `tau(h)` directly.**  Uncontrolled finite-character sectors
@@ -91,6 +119,9 @@ sector appears.
   difference `h-yh` removes them exactly.
 - **Use the group-algebra projection `p` as the final mark.**  Unnecessary:
   `(MSS4)` is the difference of the traces of two ordinary group words.
+- **Require the selected packet to have one central bit.**  Unnecessary:
+  `(MSS7)--(MSS8)` isolate any fixed finite central character with finitely
+  many ordinary word moments.
 - **Claim the D8 packet already supplies two ranges.**  One D8 swap supplies
   one common source.  Orthogonalizing two ranges on the same marked source
   remains the load-bearing compiler step.

@@ -36,6 +36,11 @@ No condition is imposed on `(1-p)H`.  By
 `central-marked-swap-star-has-two-word-trace-floor`, these clauses already
 imply nonhyperlinearity.
 
+One may replace the involution `y` by a fixed finite central subgroup and
+work in one character projection.  The finite central Fourier extension of
+the same theorem then uses the fixed word list `{ch:c in C}`; this is often
+the native form of a Pauli/Schur selected carrier.
+
 The natural local seed is `pauli-two-child-transfer-packet`, which has one
 exact source and two orthogonal ranges.  The missing assertion is promotion
 of that selected Pauli carrier to the whole marked source in finite matrix
