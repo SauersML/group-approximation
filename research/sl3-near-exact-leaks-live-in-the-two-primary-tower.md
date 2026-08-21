@@ -286,6 +286,26 @@ refutation, and this claim makes the reduction precise.
   `sum conj(t_j) t_(j-2)` of the per-layer phases of `K`'s
   trivial-isotypic block, the cleanest place to test the mechanism by
   hand.
+- **Slot bookkeeping and carrier localization (2026-08-21, by
+  hand).**  The 26 one-dimensional parahoric slots decompose exactly:
+  `4` from the layer trivials (all on the `Q_1`-trivial character,
+  multiplicity `>= 4`, never a carrier), `12` from the three 6-dim
+  slots (`4` characters each), `10` from the two 21-dim slots (`5`
+  each) — total `26`, matching the computed profile and validating
+  every table at the character level.  The dims `28, 84, 112` contain
+  NO one-dimensional parahoric content, so at level `3` every
+  potential rigid carrier is fed by 6- or 21-dim `G`-irreps —
+  shallow-layer content.  Whether any slot actually has
+  `mtilde = 1` depends on character coincidences across the 6/21
+  feeds (multiplicity `m >= 2` feeds disqualify their own characters
+  outright: they contribute `m` to each), which the running probe's
+  block census answers.  HONEST CONCERN for uniformity: shallow-layer
+  carriers sit at the BOUNDARY of the layer chain, while the
+  transfer-operator mechanism wants locked weight in the BULK; at
+  higher levels the new deep layers bring their own parahoric
+  character content, and whether the carrier census keeps positive
+  weight as `a` grows is now identified as THE precise
+  uniformity question for the tower sector.
 - **Wire hand-test: negative, and clarifying (2026-08-21).**  The
   four G-invariant vectors sit inside the single Q_1-TRIVIAL isotypic
   block, whose multiplicity is the full count of Q_1-orbits on the
