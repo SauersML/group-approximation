@@ -167,3 +167,19 @@ Thus local defects cannot be hidden by moving them through ever larger or
 unrelated reservoirs.  The only remaining gate is matrix-only authentication
 of the mixed selector rows themselves; neither common-reservoir alignment nor
 twist cancellation remains necessary once a cyclic decoder supplies them.
+
+The global BCS endpoint is now
+`global-marked-type-cycle-selector-decoder`: permute all marked
+context-types, pack the cyclic row floors by isotypic orthogonality, and use
+the shared non-CE forbidden mass only after summing over the entire menu. Its
+two open inputs are a finite-matrix domination of the summed compressed rows
+and global forbidden-mass coverage. This avoids both universal-row collapse
+and the circular demand that one context already carry positive mass.
+
+The self-referential gauge mechanism is also explicit.
+`recursive-clifford-tail-supplies-anchor-but-not-contraction` realizes every
+parent `CZ tensor V` with `V` equal to the product of its two child tail
+gates; that child product is the exact same-gauge identity-outer anchor.
+Finite-depth Clifford regular models prove the recursion is stationary, so
+the remaining breakthrough must be a payload-dependent first-hit or
+proper-corner exposure inequality with contraction factor below one.

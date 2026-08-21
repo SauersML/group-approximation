@@ -235,3 +235,27 @@ defect into the next reservoir cannot dilute it after one full return.  The
 properly infinite Leavitt model realizes every row exactly, so completeness
 survives.  What remains is solely matrix-only authentication of the selector
 reflections; the cycle no longer needs a common carrier or gauge alignment.
+
+`global-marked-type-cycle-selector-decoder` now connects this trace ledger to
+the non-CE BCS source. A global permutation of all `(context, marked type)`
+sectors decomposes into selector cycles; isotypic orthogonality packs their
+compressed row energies with a loss depending only on the fixed number of
+contexts. The final construction has exactly two matrix-only obligations:
+ordinary actuator energy must dominate the **sum** of type-compressed mixed
+rows, and the decoded carriers must globally cover a fixed fraction of the
+shared forbidden BCS mass. No individual context or type needs positive
+mass, and no row is asserted as a universal identity.
+
+Two further audits sharpen the syntax. Quasi-regular coset modules can make
+a literal involution quarter-negative, but
+`hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving` shows the
+dichotomy: without type authentication the regular sector is balanced, while
+after authentication every ordinary HNN/Hecke edge preserves the very
+multiplicity that a coarse-to-fine row must change. Conversely,
+`recursive-clifford-tail-supplies-anchor-but-not-contraction` constructs the
+desired identity-outer Clifford anchor exactly: the parent tail gate is the
+local `CZ` times the two child tail gates, so the child product carries the
+same multiplicity gauge and cancels it. Finite Clifford truncations remain
+stationary, however. Self-reference solves gauge coherence but supplies no
+strict contraction; a payload-dependent first-hit/proper-corner exposure law
+is still required.
