@@ -1464,6 +1464,7 @@ import GroupApproximation.Leavitt.HilbertHotelSaturation
 import GroupApproximation.Leavitt.HilbertHotelWhitehead
 import GroupApproximation.Leavitt.HilbertHotelBinary
 import GroupApproximation.Leavitt.HilbertHotelDefectNormal
+import GroupApproximation.Leavitt.HilbertHotelCover
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure
@@ -1478,6 +1479,7 @@ import GroupApproximation.Higman.GeneratedPin
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
 import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
+import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerBetaBranch
 import GroupApproximation.Sofic.GreendlingerReducedness
