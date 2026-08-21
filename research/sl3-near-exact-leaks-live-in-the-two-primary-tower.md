@@ -154,6 +154,28 @@ refutation, and this claim makes the reduction precise.
   (`Q_0` is a `2`-group of order `2^18`, so its representation theory
   is monomial and the required tables are computable).  This is the
   designated route to a proved per-level `delta`-floor.
+- **Exact commutant anatomy of the prototype (2026-08-21,
+  `experiments/sl3_orbit_algebra.py`,
+  `experiments/sl3-orbit-algebra.json`).**  Union-find on the 262144
+  pairs and generic-element spectra give the full Wedderburn data.
+  Witness algebra `rho(G)'`: dimension `37`, NONcommutative;
+  generic-spectrum profile (irrep-dim : total multiplicity):
+  `1:4, 6:3, 21:2, 28:2, 84:2, 112:2` (checks: `sum dim*mult = 512`,
+  and `sum m^2 = 37` forces either the 6-dim slot as one irrep with
+  `m = 3` plus two of the four large dims split `1+1`, or the 6-dim
+  slot split `2+1` with all four large dims at `m = 2`).  So `K` is a
+  unitary in a 37-dimensional algebra with a `4x4` block on the
+  orbit-level wire (trivial isotypic: the four divisibility orbits)
+  and small rotational blocks elsewhere.  Twisted commutant
+  `rho(Q_1)'`: dimension `265` (independently matching
+  `||chi_8||^2_(Q_0) = 265` — transpose symmetry — validating the
+  whole pipeline), profile `1:26, 2:15, 4:18, 8:12, 16:10, 32:4`.
+  The floor analysis now needs only the pairing weights: for each
+  `G`-isotypic block, its `Q_1`-decomposition (computable by
+  compressing the `Q_1`-orbit algebra to `G`-isotypic projectors and
+  reading generic spectra again).  Multiplicity-one `Q_1`-blocks fed
+  by multiplicity-one `G`-blocks are the phase-locked channels the
+  mechanism predicts must carry an irreducible leak floor.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
