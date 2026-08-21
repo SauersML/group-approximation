@@ -129,7 +129,10 @@ W_e Z_(e,x) W_e^*=X_(e,x).                              (IPG9)
 This explicitly realizes the two-sided Pauli connector on an
 incidence-private factor.  No orbit-covariantization argument is needed,
 although the same representation is the Fourier form of the finite gauge
-orbit.  Add one common countable amplification.
+orbit.  In the finite presentation, impose the cross-edge Pauli commutators
+and identify their central signs, so all edge factors form one extraspecial
+group `E_M`.  The displayed tensor product is its unique `J=-1` spin type.
+Add one common countable amplification.
 
 For each context `c`, the joint support of its lifted commuting tuple is
 
@@ -219,3 +222,12 @@ closes `(FTC6a)--(FTC6c)` and the exact developability issue only.  It does
 not prove that finite-dimensional approximate representations select the
 same Gram state, accept the predicates on that state, or satisfy the anchor
 rows `(FTC8)--(FTC10)`.
+
+`half-edge-gauges-preserve-fanizza-gap` audits the finite-matrix cost of this
+refinement.  Tying every duplicated share product to the same global logical
+word makes coarsening over gauge signs an exact decoder back to the original
+context PVM, so the static game gap is unchanged.  Putting all half-edge
+Pauli pairs in one extraspecial central product gives canonical spin mass
+`1/2`, independent of their number.  The only surviving finite problem is
+the pre-existing task of putting the different selected context packets on
+one positive Gram state.
