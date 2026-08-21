@@ -6,11 +6,13 @@ title: LLP lifts the hyperlinear approximation to ucp maps, then the non-RF Kazh
 target: llp-non-rf-kazhdan-group-is-non-hyperlinear
 requires:
   - non-rf-kazhdan-weak-ucp-iff-non-hyperlinear
+  - llp-implies-weak-ucp-stability
 ---
 
 Two inputs.
 
-**Literature input (statement level).**  Ioana--Spaas--Wiersma,
+**Literature input (statement level; now factored as
+`llp-implies-weak-ucp-stability`).**  Ioana--Spaas--Wiersma,
 *Cohomological obstructions to lifting properties for full C*-algebras of
 property (T) groups*, GAFA 30 (2020) 1402--1438, arXiv:2006.01874,
 Corollary 1.7, as quoted in Dogon arXiv:2211.10492 (v3, p. 4, the
