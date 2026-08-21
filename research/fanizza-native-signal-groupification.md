@@ -18,8 +18,9 @@ Gamma_m=<S_m|R_m>
 ```
 
 which retains every original BCS involution as a named generator, in
-particular `d_m=x_(D,m)`, and computable finite constants `A_m,B_m` with the
-following properties.
+particular `d_m=x_(D,m)`, and computable moduli `omega_m,nu_m` tending to zero
+at zero, with an effective modulus of convergence, with the following
+properties.
 
 1. If machine `m` halts, there is some exact representation of `Gamma_m`, on
    an arbitrary Hilbert space, in which `d_m` is nonidentity.  It is enough
@@ -30,15 +31,15 @@ following properties.
    `B_m`, with exact Bob involution `X_(D,m)`, such that
 
 ```text
-epsilon(S_U) <= A_m eta^2,                                      (NSG1)
-||U(d_m)-X_(D,m)||_2 <= B_m eta.                                (NSG2)
+epsilon(S_U) <= omega_m(eta),                                   (NSG1)
+||U(d_m)-X_(D,m)||_2 <= nu_m(eta).                              (NSG2)
 ```
 
-The constants need only be computable from the finite index `m`.  They need
-not be uniform over the family and must not depend on whether, or after how
-many steps, machine `m` eventually halts.  Context selectors must remain
-local: the construction is invalid if it globally centralizes them and turns
-the BCS into a classical CSP.
+The moduli need only be computable from the finite index `m`.  They need not
+be linear, polynomial, or uniform over the family, and must not depend on
+whether, or after how many steps, machine `m` eventually halts.  Context
+selectors must remain local: the construction is invalid if it globally
+centralizes them and turns the BCS into a classical CSP.
 
 ## Attempts
 
@@ -71,3 +72,9 @@ the BCS into a classical CSP.
   affine parity half-space.  The word `d_m` remains the final mark, while the
   nonlinear predicate must be carried by a higher-dimensional packet or by
   multiplicity holonomy.
+- **Scalar Reynolds self-hash.**
+  `fanizza-native-groupifier-via-overlap-actuators` reduces the finite
+  compiler to one adjoint overlap moment per context.  The Schur Reynolds
+  rank gap turns the moment bound into `q_c=O(sqrt(eta))`; that non-linear
+  modulus is sufficient because this diagonal permits arbitrary computable
+  instance-dependent thresholds.

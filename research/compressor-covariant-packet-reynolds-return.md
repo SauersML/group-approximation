@@ -93,3 +93,9 @@ dimension.  Bare relations
   on forbidden sectors.  The live route
   `covariant-return-via-schur-child-masas` reduces this claim to returning
   those two genuine child modules through one infinite compressor cell.
+- **One scalar overlap is sufficient.**
+  `adjoint-reynolds-return-needs-one-overlap-moment` shows that the entire
+  rank payment follows from a lower bound on
+  `tr_ad(R_A T^*R_BTR_A)`.  Its finite word-moment expansion is now the
+  weakest live actuator target, recorded as
+  `schur-reynolds-one-overlap-actuator`.

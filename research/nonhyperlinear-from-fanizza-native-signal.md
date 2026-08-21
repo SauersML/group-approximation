@@ -22,18 +22,20 @@ If `m` does not halt, combine `(NSG1)--(NSG2)` with `(NSM2)`:
 
 ```text
 ||U(w_m)-I||_2
- <= B_m eta+||X_(D,m)-I||_2
- <= (B_m+2sqrt(C_m A_m)) eta
- =K_m eta.                                                       (NFD1)
+ <= nu_m(eta)+||X_(D,m)-I||_2
+ <= nu_m(eta)+2sqrt(C_m omega_m(eta))
+ =kappa_m(eta),                                                  (NFD1)
 ```
 
-All constants in `K_m` are computable from `m`.  Set
+The computable modulus `kappa_m(eta)` tends effectively to zero.  Search for
+a positive rational `delta_m` such that `kappa_m(delta_m)<1`, and set
 
 ```text
-alpha_m=1,                 delta_m=1/(1+K_m).
+alpha_m=1.
 ```
 
-Then `eta<delta_m` implies `||U(w_m)-I||_2<1<sqrt(2)`.  The compiler therefore
+After replacing the moduli by computable nondecreasing upper envelopes if
+needed, `eta<delta_m` implies `||U(w_m)-I||_2<1<sqrt(2)`.  The compiler therefore
 satisfies `(KHC1)--(KHC3)`, and
 `kleene-halting-mark-collapse-diagonal` effectively produces a finitely
 presented nonhyperlinear group.
