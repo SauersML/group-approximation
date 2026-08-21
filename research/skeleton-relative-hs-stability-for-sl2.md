@@ -139,6 +139,30 @@ never activates.
   control.  Compared to every previous form of the far sector: all
   towers exact, one swap exact, NO amplified defects anywhere, and
   the whole problem is two fixed words on compact torsors.
+- **The torus-inversion residual is a twisted-coboundary equation
+  with a spread/degenerate dichotomy (2026-08-21).**  Write
+  `e := W s^{-1} W s` for the `(R1)` defect; chasing the exact
+  square (upper tower, swap, transported tower) shows `e`
+  almost-commutes with the exact upper tower, so after a clustering
+  squeeze `e` lies in the tower's commutant, and correcting
+  `s -> s c` with `c` in the compact torsor `U(commutant)` turns
+  `(R1)` into the twisted-coboundary equation `psi(c) c^{-1} = e`,
+  where `psi` composes the solenoid shift with the swap transport.
+  Along each shift-cycle of commutant blocks the equation propagates
+  freely and closes iff a single holonomy `H(e)` lies in the twisted
+  commutator set `{M_0 g M_0^{-1} g^{-1}}` of the cycle's exact
+  monodromy `M_0`.  DICHOTOMY: if `M_0` is spectrally spread, the
+  commutator map is a quantitative submersion and every holonomy
+  `delta`-close to `1` is EXACTLY absorbable — `(R1)` solves and the
+  block is done; if `M_0` is nearly scalar, the block is close to a
+  scalar multiple of a smaller exact model and the multiplicity
+  tensor factor splits off — recurse on the smaller model.  The
+  proposed proof of the whole claim is this dichotomy-plus-induction
+  on every cycle, with `(R2)` (the `w(2)`-word) entering as a second
+  holonomy on the same cycles after `(R1)` is exact; the remaining
+  bookkeeping risks are the accumulation of losses along the
+  induction and the joint treatment of the two holonomies, both
+  compact-space accounting questions with no dimension entering.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
