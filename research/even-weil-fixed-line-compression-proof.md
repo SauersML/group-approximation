@@ -37,6 +37,20 @@ the identity `(EWC3')`.  It also shows that both off-diagonal excursions
 have unnormalized Frobenius norm squared `1-1/p`, so the deleted-line
 boundary is genuinely rank one rather than a diffuse estimate artifact.
 
+To verify `(EWC3'')`, write `R delta_0=r delta_0`.  The exact full-space
+relation `XRX=R^(-1)` gives
+
+```text
+R X delta_0=r^(-1)X delta_0.
+```
+
+Since `<delta_0,X delta_0>` is nonzero, comparison of the `delta_0`
+component forces `r=r^(-1)`.  Thus `v=PX delta_0` is also an `R`-eigenvector
+with eigenvalue `r`.  On `v^perp`, the off-diagonal block `QXP` vanishes,
+so `X_0=A=X` there and the full-space dihedral relation restricts exactly.
+On `C v`, both `R` and `X_0` are scalar and `r^2=1`, giving the same
+identity.  Therefore `X_0RX_0=R^(-1)` on all of `H_0`.
+
 Every compressed presentation word differs from the compression of the
 exact full-space word by a bounded sum of terms containing `PXQ` or `QXP`.
 Each such term has rank at most one and operator norm at most one, hence

@@ -52,6 +52,16 @@ Thus neither the polar step nor the deleted-line coupling hides an
 additional diffuse error: the whole boundary mode has rank one and the
 repair cost is sharply of order `p^(-1/2)`.
 
+The polar correction also preserves the dihedral relation exactly:
+
+```text
+X_0 R X_0=R^(-1).                                    (EWC3'')
+```
+
+Hence the compressed boundary model has no residual on `X^2=1` or
+`(XR)^2=1`; all presentation defect is confined to the two modular cubic
+constraints.
+
 Because `R,S` preserve `P`, compressing any one of the four fixed Iwahori
 words loses only excursions through the one-dimensional `Q` corner.  Word
 telescoping and `(EWC3)` therefore give a universal constant `C` such that
