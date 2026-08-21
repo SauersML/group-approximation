@@ -2,7 +2,7 @@
 rg: 2
 id: projective-transfer-equals-rcc-for-perfect-pairs
 kind: claim
-title: Projective transfer has no asymptotic slack for a perfect ambient arithmetic pair
+title: Projective transfer equals relative-commutant collapse for a perfect ambient pair
 distinct_from:
   exact-projective-codensity-has-a-uniform-trace-square-gap: that proves a uniform inequality on exact finite-dimensional representations; this identifies the genuinely approximate matrix-ultraproduct statement and shows that projectivization does not weaken it.
   projective-trace-square-transfer-for-sl3-pair: that asks for an affine quantitative modulus on approximate presentation models; this proves that its qualitative zero-defect limit is exactly ordinary relative-commutant collapse.
