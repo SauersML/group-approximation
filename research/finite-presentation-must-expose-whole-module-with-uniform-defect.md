@@ -38,11 +38,90 @@ Once `(FME1)` is proved,
 same-dimensional finite-support PVM for the whole module.  The actor
 transport then feeds `one-seed-infinite-character-expansion-collapses-mark`.
 
+## Compactness criterion for a fixed word exposure
+
+Fix any word representative `w_m` in the presentation generators for each
+`m in M`, and evaluate
+
+```text
+phi_U(m)=w_m(U).
+```
+
+Put
+
+```text
+D_M(U)=sup_(m,n in M)
+ ||w_(m+n)(U)-w_m(U)w_n(U)||_2.                       (FME2)
+```
+
+There is a modulus in `(FME1)` for this word section if and only if there is
+no sequence of matrix tuples `U_k` and moving pairs `(m_k,n_k)` such that
+
+```text
+Def_R(U_k)->0,
+||w_(m_k+n_k)(U_k)-w_(m_k)(U_k)w_(n_k)(U_k)||_2
+  >=epsilon                                             (FME3)
+```
+
+for one fixed `epsilon>0`.  The forward implication is immediate.  For the
+reverse implication define
+
+```text
+omega(t)=sup{D_M(U):Def_R(U)<=t}.
+```
+
+If `omega(t)` did not tend to zero, choosing almost-maximizers at
+`t=1/k` would give `(FME3)`.  Thus the desired uniform modulus is exactly a
+**no moving-word leak** theorem.
+
+For every fixed pair `(m,n)`, the corresponding word is trivial in `Gamma`,
+so its defect tends to zero by a finite van Kampen diagram (or by
+`hyperlinear-radical-presentation-compactness`).  This pointwise statement
+does not exclude `(FME3)`: both the witness pair and its filling area may
+escape to infinity.  Recursive enumeration of the module table therefore
+adds no compactness beyond the already known fixed-word result.
+
+## Uniform-area recursive exposure is impossible
+
+There is a decisive no-go for proving `(FME1)` by one uniformly bounded
+family of van Kampen fillings for the intended infinite module.  Fix
+`0!=b in M`.  It has order two, and the infinite subgroup `M` lies in
+`C_Gamma(b)`.  For any choice of word
+representatives `w_h`,
+`bounded-centralizer-fillings-force-finite-stabilizer` gives
+
+```text
+sup_(h in M) Area_R([w_b,w_h])=infinity.               (FME4)
+```
+
+On the other hand, uniformly bounded fillings for the two multiplication
+identities
+
+```text
+w_b w_h w_(b+h)^(-1),
+w_h w_b w_(h+b)^(-1)
+```
+
+would concatenate to a uniform filling of `[w_b,w_h]`, contradicting
+`(FME4)`.  Hence no recursive scheme which exposes every virtual module
+product by a bounded number of conjugates of the defining relators can prove
+the required uniform modulus.
+
+This does **not** refute `(FME1)`.  A genuinely analytic mechanism can evade
+filling area—for example, same-dimension HS stability could first replace the
+whole tuple by an exact representation, after which every module identity is
+exact.  What `(FME4)` rules out is precisely the proposed bounded recursive
+word compiler.  The surviving theorem must exclude the moving leaks `(FME3)`
+by matrix stability, a global square function, or another non-van-Kampen
+argument.
+
 ## Attempts
 
 - **Choose one word for every module element.**  A multiplication identity
   between remote words has van Kampen area depending on their addresses, so
-  the direct estimate is `A_(m,n) delta`, not one uniform modulus.
+  the direct estimate is `A_(m,n) delta`, not one uniform modulus.  Equation
+  `(FME4)` shows that no alternative word section can make all those areas
+  uniformly bounded.
 - **Round every finite module window separately.**  Uniform abelian
   stability rounds each completed all-pairs table, but a finite presentation
   has not supplied those tables with a window-independent defect, and the
