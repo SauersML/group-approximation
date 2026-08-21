@@ -497,3 +497,22 @@ stable group that is not Kazhdan but contains a profinitely dense,
 finite-dimensionally co-dense, infinite-index finitely generated (T;FD)
 subgroup; `SL_3(Z) <= SL_3(Z[1/p])` has every property except the
 stability of the big group.
+
+## 10. An explicit host pair: `SL_2(Z[1/p]) <= SL_2(Z[1/pq])`
+
+Every finite-dimensional unitary representation of `G = SL_2(Z[1/pq])`
+factors through a finite quotient: the unipotent `u` is conjugate by
+`diag(p, p^(-1))` to `u^(p^2)`, so its unitary image has spectrum stable
+under `z -> z^(p^2)`, hence finite order, and the normal closure of a
+unipotent power is a congruence subgroup by Serre's congruence subgroup
+property.  `G_0 = SL_2(Z[1/p])` is dense in `prod_(l != p,q) SL_2(Z_l)` by
+strong approximation, so it surjects onto every finite quotient of `G`:
+the pair is co-dense.  `G_0` has (T;FD) (Lubotzky--Zimmer).  Hence
+
+> if `SL_2(Z[1/pq])` is HS-stable, the finitely presented Pauli
+> lamplighter `Gamma_(p,q)` of `(SA1)` is not hyperlinear.
+
+The stability of `SL_2(Z[1/pq])` is the same kind of open problem as the
+stability of `SL_2(Z[1/p])` that Dogon--Vigdorovich reduce their central
+extension route to; the lamplighter route needs one more inverted prime
+and no central extension.
