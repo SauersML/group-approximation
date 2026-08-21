@@ -72,17 +72,28 @@ def run(p, k):
     print(f"p={p} k={k} (q={q}): primitives wF={wF:.1e} wP={wP:.1e}; "
           f"F0^4 scalar {c_sc:.6f} nonsc={c_ns:.1e}", flush=True)
 
-    for t in (1, -1, 2):
+    # (W0 M(1))^3 = -I (order 6, trace 1) -> word needs P;
+    # (W0 M(-1))^3 = +I (order 3, trace -1) -> word is the bare cube.
+    scs = {}
+    for t, use_p in ((1, True), (-1, False)):
         M = np.diag(e(((inv2 * t % q) * (x * x) % q) / q))
-        wM = witness(M, (1, 0, t, 1), q, X, Z)
+        wM = witness(M, (1, 0, t % q, 1), q, X, Z)
         B = F0 @ M
-        A = B @ B @ B @ P
+        A = B @ B @ B
+        if use_p:
+            A = A @ P
         sc = np.trace(A) / q
         ns = np.linalg.norm(A - sc * np.eye(q)) / np.sqrt(q)
         ok = max(wM, wF, wP) < 1e-8 and ns < 1e-8 and abs(abs(sc) - 1) < 1e-8
         arg8 = np.angle(sc) / (2 * np.pi) * 8
+        scs[t] = sc if ok else None
         print(f"    A({t:+d}): scalar {sc:+.6f} arg={arg8:+.4f}/8 "
               f"nonsc={ns:.1e} wM={wM:.1e} {'OK' if ok else 'VOID'}",
+              flush=True)
+    if scs[1] is not None and scs[-1] is not None:
+        ratio = scs[1] / scs[-1]
+        arg8 = np.angle(ratio) / (2 * np.pi) * 8
+        print(f"    class ratio A(+1)/A(-1): {ratio:+.6f} arg={arg8:+.4f}/8",
               flush=True)
 
 

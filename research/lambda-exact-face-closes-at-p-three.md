@@ -75,3 +75,25 @@ evading the pinning) is explicitly what the route excludes.
 - **What remains for the goal at p = 3.**  Only the uniform-outlier
   sector: microstates far from all genuine representations.  Every
   instrument of the lane now aims at one target for one pair.
+- **Arithmetic engine operationally confirmed; instrument autopsies
+  absorbed (2026-08-21, sioux, witness-clean).**  Two naive
+  instruments were VOID by their own witnesses and are recorded in
+  `artifacts/svn-pinning-derivation-2026-08-21.md`: the plain-DFT
+  loop was algebraically trivial (F^4 = 1 — no anomaly without
+  quadratic phases), and no Levi SL_2 exists in the SL_3 unipotent
+  frame (Weyl elements leave the upper triangle), which also
+  exposed that the hexagon's double-weight direction ROTATES
+  (h: e_13, h': e_23, h'': e_12) — the flux's correct formal home
+  is the Lion--Vergne / Maslov triple index.  The corrected
+  instrument (verified primitives only, phase-free witnesses
+  against Weyl-symmetrized Heisenberg operators at 1e-15) then
+  measured the canonical anomaly classes on l^2(Z/p^k):
+  A(1) = (F_0 mult(1))^3 P = (2|q) eps_q exactly at seven levels,
+  and the quotient A(+1)/A(-1) = (-1|q) exactly — the capstone's
+  (p,p)_p class realized as a canonical operator holonomy,
+  alternating per tower level at p = 3 and trivial at p = 5, with
+  F_0^4 = 1 as the no-anomaly control.  The flux-identification
+  dependency is now one precisely-shaped lemma: the DICTIONARY
+  expressing the S_3 hexagon of parahoric band transports as a
+  Maslov triple of an explicit quadratic form built from two
+  coweight legs (artifact, section C).

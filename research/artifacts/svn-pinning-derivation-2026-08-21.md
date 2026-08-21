@@ -109,6 +109,42 @@ over Z_p built from two coweight legs, so that the engine's
 gamma-arithmetic evaluates the SL_3 flux.  This replaces the
 "SvN-pinning write-up" dependency with one precisely-shaped lemma.
 
+## C'. Engine CONFIRMED (2026-08-21, witness-clean)
+
+The v3 instrument (verified primitives only: F0 with kernel
+e(-ux/q)/sqrt(q), mult(t) = diag e(2bar t x^2/q), parity P; every
+factor a fixed concrete matrix, witnesses phase-free against the
+Weyl-symmetrized rho_W at 1e-15) measured the canonical anomaly word
+A(1) = (F0 mult(1))^3 P, equal to the identity in SL_2(Z/q), hence
+scalar by Schur with NO free phase anywhere.  Result, all witnesses
+passing (nonscalarity ~ 1e-16, |scalar| = 1):
+
+    q     9    27    81    243   25    125   625
+    A(1)  +1   -i    +1    -i    +1    -1    +1
+
+which is EXACTLY (2|q) * eps_q (Jacobi symbol times the Gauss sign,
+eps_q = 1 for q = 1 mod 4, i for q = 3 mod 4) at every level -- in
+particular -1 at q = 125 where q = 1 mod 4 separates the Jacobi
+factor from the eps factor.  Control: F0^4 = 1 exactly (the plain
+DFT carries no anomaly, consistent with the vacuous-instrument
+autopsy in A).  CONCLUSION: canonical operator composites on the
+finite oscillator models produce classical Gauss-sum classes on the
+nose, with the p = 3 versus p = 5 arithmetic split operational.
+The order-3 word (F0 mult(-1))^3 = +1 in SL_2 provides the second
+class, measured witness-clean at every level, and the QUOTIENT is
+the theorem-shaped output:
+
+    A(+1)/A(-1) = (-1 | q)   exactly, at all seven levels:
+    -1 at q = 27, 243 (p = 3, odd k); +1 at q = 9, 81, 25, 125, 625.
+
+The Legendre class (-1|p) -- the capstone's (p,p)_p -- appears as a
+canonical operator holonomy that ALTERNATES per tower level at
+p = 3 mod 4 (Jacobi squares kill even levels) and is trivial at
+every level for p = 1 mod 4.  This is exactly the shape the flux
+mechanism requires: a per-level sign carried by depth-one legs, so
+the depth-two h-route versus the (h', h'') hexagon split differ by
+the class.  What remains is only the dictionary of C(ii).
+
 ## D. What remains cited (unchanged)
 
 The identification of the hexagon scalar with the Matsumoto/
