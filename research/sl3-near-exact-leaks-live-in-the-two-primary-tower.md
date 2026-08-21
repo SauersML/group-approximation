@@ -527,6 +527,29 @@ refutation, and this claim makes the reduction precise.
   curve `|c*|` versus defect.  This supersedes both the vacuous
   first-order form and the erroneous positivity claim, and it is
   exactly computable from the control dictionary and the census.
+- **The inversion: the floor is the residue of dictionary
+  impossibility (2026-08-21).**  A PERFECT dictionary implements the
+  level shift, which maps the native sector off itself (level
+  compression), forcing `c* ~ 0`; so nonzero retention is not a
+  virtue of the dictionary but the signature of its FAILURE — and at
+  fixed level the failure is proven (the positive spectral floor).
+  The mechanism chain is therefore: fixed-level dictionary
+  impossibility `=>` un-implementable part of the shift `=>` retained
+  native self-alignment `c*(V) > 0` on the whole low-defect manifold
+  `=>` leak floor `|c*| - R`.  The awaited computation of `c*` at the
+  control dictionary tests this quantitatively (prediction:
+  `|c*| ~ 0.14`, the measured floor), and v2's `+13`-defect escape is
+  the enemy buying dictionary quality it cannot afford at this level.
+  TOWER version: at deep levels the six-pair spectra become
+  compatible (`OT ~ 4^(-a)`), but the shift is mass-asymmetric — the
+  top two layers' native mass (asymptotically everything) has no
+  shift-image to align with — so the question becomes whether the
+  dictionary relations force enough of `V`'s mass flow to leave a
+  retention residue at the top: `inf {defect : c* = 0}` versus
+  `inf {defect}`, a gap statement along the tower.  Next experiment
+  (v7): trace the `|c*|`-versus-defect frontier by joint
+  minimization; next theorem target: a lower bound for `|c*|` in
+  terms of the spectral-floor gap at fixed level.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
