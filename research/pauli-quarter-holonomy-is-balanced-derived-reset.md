@@ -57,3 +57,17 @@ derived lift is no longer hypothetical.  What remains before this closes
 derived-packet words, attach their two balanced signs to the old and fresh
 gauge shares, and prove that the exact marked representation extends across
 that incidence.  The exact Pauli/reset arithmetic itself is complete.
+
+The reset is balanced but not already semantically localized.  If
+`q_raw` and `q_comb` denote the two pre-existing trace-half coefficient
+corners, the exact replay gives
+
+```text
+H q_raw != H,              tau(H q_raw)  = 1/16,
+H q_comb != H,             tau(H q_comb) = 1/16.       (PDR5)
+```
+
+Thus exactly half of `H` lies in either old corner, but `H` is contained in
+neither.  The D8 calculation closes the local derived-phase and balance
+problems; it does not identify the reset with the active BCS carrier.  A
+semantic/gauge return remains load-bearing.

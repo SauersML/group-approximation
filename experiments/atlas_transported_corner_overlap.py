@@ -167,6 +167,20 @@ def main():
         "derived_holonomy_carrier_trace": rational_string(
             ga_trace(derived_holonomy_carrier)
         ),
+        "derived_holonomy_carrier_lies_under_raw_corner": ga_equal(
+            ga_mul(q, derived_holonomy_carrier),
+            derived_holonomy_carrier,
+        ),
+        "derived_holonomy_carrier_raw_corner_overlap": rational_string(
+            ga_trace(ga_mul(q, derived_holonomy_carrier))
+        ),
+        "derived_holonomy_carrier_lies_under_comb_corner": ga_equal(
+            ga_mul(comb_corner, derived_holonomy_carrier),
+            derived_holonomy_carrier,
+        ),
+        "derived_holonomy_carrier_comb_corner_overlap": rational_string(
+            ga_trace(ga_mul(comb_corner, derived_holonomy_carrier))
+        ),
         "derived_holonomy_carrier_commutes_with_both_reflections": [
             ga_equal(
                 ga_mul(derived_holonomy_carrier, reflection),

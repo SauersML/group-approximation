@@ -56,3 +56,10 @@ proved in `pauli-quarter-holonomy-is-balanced-derived-reset`.
 
 The truth-table and analytic-floor parts are proved.  The remaining work is
 the finite equal-type incidence plus its exact properly infinite extension.
+
+The derived trace-`1/8` carrier is transverse rather than already localized:
+its overlap with either old trace-half coefficient corner is `1/16`, and it
+is contained in neither.  Consequently the D8 carrier cannot simply be
+renamed as the active semantic carrier.  Any closure theorem must still
+couple it to the BCS/gauge sector; omitting that incidence would silently
+assume the main remaining step.
