@@ -60,10 +60,16 @@ More generally, if support word `w` has an individual transport error
 sum_j |c_j| eta_(f_j)+sum_k |d_k| eta_(g_k) >= 1/8.    (FWT6)
 ```
 
-This weighted form is the right interface for a van Kampen/relator audit:
-each support word may have its own bounded derivation area.  Because the
-support is fixed and finite, any finite areas give one positive
-dimension-independent threshold.
+This weighted form is the right interface **after a finite-matrix coordinate
+decoder has chosen the two returned algebras**.  Each support word may then
+have its own bounded relator/rounding cost, and the fixed finite support gives
+one dimension-independent threshold.
+
+It is not a pure van Kampen theorem.  Literal group-word identities placing
+all supports in commuting subalgebras would also hold in the left regular
+representation and would contradict the exact D8 moment.  The load-bearing
+input remains matrix-only reservoir selection or boundary payment; this
+claim says that its subsequent transport audit has only 41 fixed terms.
 
 The support sizes and coefficient masses are replayed with exact rational
 prefix arithmetic on MSI.  No floating-point approximation is used.

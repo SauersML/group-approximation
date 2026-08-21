@@ -74,8 +74,10 @@ support words of coefficient mass `11/4` for `F` and four support words of
 coefficient mass `1` for `G`.  By
 `forty-one-word-native-carrier-transport-certificate`, transporting every
 one of these words with error `eta` would force `eta>=1/30`.  The open task is
-therefore to derive the 41 target-algebra placements from the mixed
-rank-five multiplication triangles with bounded word areas.
+therefore to extract the finite-matrix returned algebras/reservoir from the
+mixed rank-five multiplication triangles and then control these 41
+target-algebra placements.  The extraction cannot be replaced by literal
+word identities: those would also apply to the regular exact model.
 
 ## Falsification gate
 

@@ -129,7 +129,8 @@ words.
   The two Hecke expressions have only 41 support words in total, with
   coefficient masses `11/4` and `1`; hence
   `forty-one-word-native-carrier-transport-certificate` turns this into a
-  bounded word-placement audit with explicit threshold `1/30`.
+  bounded post-decoding word-placement audit with explicit threshold `1/30`.
+  The finite-matrix decoder choosing the returned algebras remains essential.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using
