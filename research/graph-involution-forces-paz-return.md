@@ -184,13 +184,16 @@ Then
 For the first block this gives
 
 ```text
-||[R,R']||_2<=epsilon/2.                              (GIF19)
+||[R,R']||_2<=epsilon.                                (GIF19)
 ```
+
+Here a harmless fixed `sqrt(2)` block-normalization loss has been absorbed;
+no assumption that the approximate `Y` is already block diagonal is needed.
 
 With `K=RR'R`, the standard two-projection identity is
 
 ```text
-tau_2(K-K^2)=1/2||[R,R']||_2^2<=epsilon^2/8.          (GIF20)
+tau_2(K-K^2)=1/2||[R,R']||_2^2<=epsilon^2/2.          (GIF20)
 ```
 
 Equation `(GIF14)` and `(GIF4)` give
@@ -211,7 +214,7 @@ Also `tau_2(K)>=b^2 tau(G)/2`.  Combining
 
 ```text
 tau(G)
- <=epsilon^2/[4b^2(1-a^2)].                           (GIF23)
+ <=epsilon^2/[b^2(1-a^2)].                            (GIF23)
 ```
 
 Finally
@@ -221,7 +224,7 @@ eta_0(Q)
  <=(1+rho)tau(G)
  <=K_rho epsilon^2,                                   (GIF24)
 
-K_rho=(1+rho)/[(1-rho)^2(1-(1+rho)^2/4)].
+K_rho=4(1+rho)/[(1-rho)^2(1-(1+rho)^2/4)].
 ```
 
 If `Y` is only approximately involutive, fixed spectral rounding adds the
