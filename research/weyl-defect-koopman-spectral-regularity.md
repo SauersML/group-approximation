@@ -101,6 +101,54 @@ RELATOR defect, a bounded word) that may force HS `pprox` Wasserstein
 on it; (ii) an elliptic-type a-priori estimate for `1 - T_*` on the
 regular sector using the tower multiplicity as ellipticity.
 
+## Exact Fourier solution of the coboundary; the crux is one trace sum
+
+Solve the abelian coboundary `(1 - L) g = nu` (`L` = Ruelle operator of
+`x4`) explicitly in Fourier modes on the `V`-spectrum.  `L` acts as a
+weighted downward shift: `(Lg)^_m = g^_(4m)`, so
+`g^_m - g^_(4m) = nu^_(m)`, which solves EXACTLY
+
+```text
+g^_m = sum_(n>=0) nu^_(4^n m)      (forward x4-orbit of frequency m).
+```
+
+Each Fourier moment is a WORD TRACE: with `R = s h s^{-1} h` the Weyl
+relator and `u` the unipotent (`V = pi(u)`),
+
+```text
+nu^_(k) = tau(e' V^{-k}) = tau_micro(R u^{-k}).
+```
+
+Hence the HS norm of the coboundary `c` is EXACTLY
+
+```text
+|| c ||_2^2  =  sum_m | sum_(n>=0) tau_micro(R u^{-4^n m}) |^2,     (TS)
+```
+
+and the ENTIRE frontier is the single trace-summability statement
+`(TS) = O(delta^2)`.
+
+- **Why this is genuinely attackable.**  `(TS)` is not abstract
+  rigidity: it is an explicit sum over the explicit words
+  `R u^{-4^n m}`.  Each term `tau_micro(R u^{-k})` tends to
+  `tau_reg(R u^{-k}) = 0` (the word is nontrivial in the free/HNN
+  group), and the frequencies `4^n m` are geometrically sparse.  The
+  question is purely the RATE: does the microstate trace of these
+  growing words vanish fast enough for the double sum to be
+  `O(delta^2)`?  This is a quantitative-mixing / large-sieve estimate
+  for the microstate along one lacunary (`x4`) frequency family, and it
+  is the sharpest and most concrete form the whole non-hyperlinearity
+  program has reached.
+- **The lacunary structure is favorable.**  The inner sum runs over the
+  lacunary set `{4^n m}`; lacunary Fourier sums obey strong
+  (Sidon / large-sieve) bounds, so `|sum_n tau_micro(R u^{-4^n m})|` is
+  controlled by an `ell^2` norm of the individual moments rather than
+  their `ell^1`, and the outer `sum_m` then telescopes across
+  `x4`-orbits of frequencies with the geometric `4`-sparsity providing
+  convergence.  Making this rigorous -- a lacunary large-sieve bound on
+  the microstate word-traces -- is the exact next step, and it is a
+  concrete harmonic-analysis computation on one explicit word family.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
