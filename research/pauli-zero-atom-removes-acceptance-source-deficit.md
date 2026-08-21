@@ -154,3 +154,32 @@ Equivalently, direct polarization gives
 
 Thus no expanded verifier row remains.  The final matrix-only interface is
 one capacity-gated block-unitary corner norm.
+
+`zero-atom-exit-is-the-missing-return-cell` now falsifies every attempt to
+derive that corner norm from the surrounding finite cells.  Its exact bad
+model uses the intended controller orientation `u_j=I`, the selected Pauli
+spin type, the support-menu packets, all half-edge product ties, the triangle
+two-cell, and zero-defect capacity/reservoir commutator locks.  A forbidden
+`C_D` atom supports `Q`; putting that rejection first gives
+`P_0W_gameP_0Q=0` and `eta_0(Q)=2^(-m)tau(Q)`.
+
+The same audit weakens the remaining positive target.  It is unnecessary to
+fix `P_0Q` pointwise.  Unitarity and the strict game contraction show that it
+suffices to prevent `W_gameP_0Q` from leaving the zero-control atom.  Existing
+Pauli controls detect that exit through
+
+```text
+sum_j||(Z_jW_game-W_gameZ_j)P_0Q||_2^2,               (PAZ13)
+```
+
+or one finite control clock `D_ctl` with a unique zero-atom eigenvalue
+compresses the row to
+
+```text
+||(D_ctlW_game-W_gameD_ctl)P_0Q||_2^2.                (PAZ14)
+```
+
+Either has a fixed lower bound proportional to `2^(-m)tau(Q)`.  The open
+ordinary-word problem is now to authenticate one of these **capacity-gated**
+rows; the invalid global commutator `[D_ctl,W_game]=1` would not pass the
+perfect-witness firewall.
