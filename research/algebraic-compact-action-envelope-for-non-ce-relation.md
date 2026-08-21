@@ -79,3 +79,15 @@ special non-CE Haar algebraic action natively, or produce a genuinely
 non-Cartan/non-base-equivariant inclusion `(ACAE1)` in which the original
 relation action is not a measurable factor of `K` and its normalizers are not
 identified with the global `Lambda`-unitaries.
+
+There is a stronger no-go for the preferred finite-type implementation.
+`finite-type-linear-subshifts-over-virtually-free-groups-are-residually-finite`
+uses the residual-finiteness theorem for finitely presented modules over
+finite-field free-group algebras (Garrido--Jaikin-Zapirain, Proposition 5.3)
+to prove that every finite-type linear subshift over a finitely generated
+virtually free group has residually finite dual semidirect product.  Manzoor's
+native acting group is virtually free.  Therefore a finite list of linear
+local rules over that group always gives a sofic/hyperlinear crossed product
+and can never contain `N`.  Within the native acting group, the linear-subshift
+branch must use infinitely many r.e. relations producing a genuinely
+non-residually-finite module; no finite constraint gadget can close the route.
