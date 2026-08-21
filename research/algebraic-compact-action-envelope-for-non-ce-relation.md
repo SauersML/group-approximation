@@ -149,4 +149,10 @@ of a Haar algebraic `Z`-action has maximal spectral type dominated by circle
 Haar measure plus atoms at roots of unity.  Thus singular-continuous Gaussian
 actions cannot be algebraized this way: the Gaussian first chaos already
 violates the required spectral type.  Gaussian compactification supplies no
-universal route around the permutation-spectrum obstruction.
+universal route around the permutation-spectrum obstruction.  More exactly,
+`gaussian-action-haar-algebraic-factor-criterion` proves for every countable
+actor that a Gaussian action is a Haar algebraic action factor **if and only
+if** its defining orthogonal representation is contained in a countable
+permutation representation.  Hence the Gaussian route is now fully reduced
+to a representation-containment test; it has no additional nonlinear
+compactification freedom.
