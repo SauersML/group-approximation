@@ -26,6 +26,11 @@ import time
 import torch
 
 torch.set_default_dtype(torch.float64)
+# MSI's Sioux nodes are shared.  These tiny dense-matrix probes do not benefit
+# from spawning one BLAS worker per hardware thread, so keep the process inside
+# a modest fixed CPU budget even when invoked outside Slurm.
+torch.set_num_threads(8)
+torch.set_num_interop_threads(1)
 
 
 def hs(A):

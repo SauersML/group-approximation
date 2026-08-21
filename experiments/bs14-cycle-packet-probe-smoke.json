@@ -1,0 +1,21 @@
+{
+  "status": "heuristic packet classifier; not a proof",
+  "date": "2026-08-21",
+  "machine": "MSI acn112, one CPU thread",
+  "method": "coordinate descent over every exact dihedral reflection phase on scalar-monodromy cycle packets",
+  "exact_family_signal": [
+    {"p": 7, "orbit_length": 3, "monodromy": 1, "combined_squared_defect": 5.15e-14},
+    {"p": 11, "orbit_length": 5, "monodromy": 1, "combined_squared_defect": 2.85e-11},
+    {"p": 19, "orbit_length": 9, "monodromy": 1, "combined_squared_defect": 8.96e-11},
+    {"p": 23, "orbit_length": 11, "monodromy": 1, "combined_squared_defect": 1.40e-10},
+    {"p": 47, "orbit_length": 23, "monodromy": 1, "combined_squared_defect": 1.88e-10}
+  ],
+  "contrast": [
+    {"q": 5, "orbit_length": 2, "monodromy": 1, "combined_squared_defect": 2.38},
+    {"q": 13, "orbit_length": 6, "monodromy": 1, "combined_squared_defect": 0.93},
+    {"q": 17, "orbit_length": 4, "monodromy": 1, "combined_squared_defect": 1.09},
+    {"q": 31, "orbit_length": 5, "monodromy": 1, "combined_squared_defect": 2.25},
+    {"q": 43, "orbit_length": 7, "monodromy": 1, "combined_squared_defect": 1.58}
+  ],
+  "warning": "A positive residual is only an optimizer output and is not a lower-bound certificate. Near-zero rows are explained independently by the exact Weil construction."
+}
