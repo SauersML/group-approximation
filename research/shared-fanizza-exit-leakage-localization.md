@@ -4,6 +4,7 @@ id: shared-fanizza-exit-leakage-localization
 kind: claim
 title: The returned exit leakage localizes to the original shared Fanizza tuple
 distinct_from:
+  capacity-gated-common-corner-bcs-two-cell: that proves the analytic common-source estimate controlling the localized functional; this records the resulting NCL13 target for the actual returned exits.
   localized-non-ce-leakage-forces-cross-gram-overlap: that proves the matrix-only leakage-or-overlap inequality once this localization estimate is supplied; this is exactly the remaining word-decoder estimate NCL13.
   shared-bcs-eight-slice-full-overlap-actuator: that asks for near-full return into capacity; this asks only that off-capacity leakage be an approximately reducing BCS-quiet corner.
 ---
@@ -36,3 +37,9 @@ use the finite-matrix decoder and the mixed shared-word actuator.
 Once `(SFEL2)` is proved, no near-full overlap actuator is needed.
 `positive-overlap-antiphase-closes-fanizza-return` combines it with the
 explicit three-book HNN antiphase cell and gives the fixed energy floor.
+
+The analytic reduction is now established by
+`capacity-gated-common-corner-bcs-two-cell`.  The sole remaining construction
+is `capacity-gated-common-source-gram-word-cell`: decode context intertwiners
+whose Gram source is literally the same projection `(SFEL1)` for all four
+native contexts.  Context-private sources do not suffice.
