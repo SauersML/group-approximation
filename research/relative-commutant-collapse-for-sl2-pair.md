@@ -39,6 +39,13 @@ this produces an explicit non-hyperlinear group.
   `SL_2(Z[1/2])` implies `(RCC)` (correct microstates, then co-density);
   `(RCC)` may be strictly weaker since it only asks about the commutant of a
   fixed subalgebra, not correction of the whole representation.
+- **1-bounded entropy.**  For the higher-rank pair
+  (`sl3-pair-relative-commutant-route`) both group factors have property (T)
+  hence 1-bounded entropy zero (Jung; Hayes arXiv:1505.06682), which
+  constrains the relative commutants to `h = 0` algebras (no free-group-
+  factor content); for the `SL_2` pair the subgroup is only Haagerup and
+  this tool does not apply on the subgroup side, so the `SL_3` pair is the
+  one where 1-bounded-entropy absorption has a chance to prove `(RCC)`.
 - **Proper proximality.**  `SL_2(Z)` (and `SL_3(Z)`) are properly proximal
   (Boutonnet--Ioana--Peterson, arXiv:1809.01881), so `L(SL_2(Z))` is
   solid/rigid and its commutants are controlled; a properly-proximal

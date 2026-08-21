@@ -78,3 +78,19 @@ in the matrix ultraproduct carrying `G`'s regular trace.
 - **Tool.**  Peterson--Thom / Bekka character rigidity holds for
   `SL_3(Z[1/2])` too (higher rank), giving hyperfinite HS-stability by the
   same DV Prop 8.3; the residual non-hyperfinite gap is again `(RC3)`.
+- **1-bounded entropy (the modern handle, added 2026-08-21).**  Property (T)
+  implies the group factor is strongly 1-bounded, `h(L(SL_3(Z))) = 0` and
+  `h(L(SL_3(Z[1/2]))) = 0` (Jung, "Strongly 1-bounded von Neumann
+  algebras"; Hayes, arXiv:1505.06682).  By Hayes' monotonicity
+  (`h(M) <= h(N)` when `N`'s singular subspace generates `M`, Thm 1.5) the
+  relative commutant `A' cap M` and the normalizer `N_M(A)''` of
+  `A = L(SL_3(Z))` lie in an `h = 0` algebra, so they cannot contain a free
+  group factor and are strongly constrained -- this is exactly the rigidity
+  the Haagerup subgroup `SL_2(Z)` could not provide.  The precise target is:
+  `h = 0` for both `A` and `B = L(SL_3(Z[1/2]))`, plus the commensuration
+  `Ad(h)`, forces `A' cap M = B' cap M`, i.e. the expanding automorphism
+  `h` fixes the (necessarily `h = 0`, hence amenable-or-rigid) space
+  `A' cap M`.  This reframes `(RC3)` as a 1-bounded-entropy absorption
+  statement, the class of results Hayes--Jekel--Kunnawalkam Elayavalli have
+  been proving for property (T) inclusions in ultraproducts, and is the most
+  concrete available line of attack on the goal.
