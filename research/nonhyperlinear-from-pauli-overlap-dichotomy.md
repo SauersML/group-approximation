@@ -8,6 +8,7 @@ requires:
   - atlas-steinberg-rank-five-translation
   - pauli-packet-incoming-mass-exceeds-corner-capacity
   - pauli-overlap-yields-positive-spectral-corner
+  - transported-coefficient-corners-share-flat-quarter-carrier
   - mixed-relations-force-holonomy-or-transverse-recovery
   - contraction-branch-capacity-forces-collision
   - fixed-holonomy-on-overlap-pays-relator-energy

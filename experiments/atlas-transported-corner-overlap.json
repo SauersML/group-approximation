@@ -1,0 +1,18 @@
+{
+  "corner_trace": "1/2",
+  "transported_corner_overlap": "1/4",
+  "transported_corner_overlap_square": "1/4",
+  "angle_variance": "0",
+  "reflection_group_commutator_hs_sq": "0",
+  "commutator_equals_16_angle_variance": true,
+  "transported_corners_commute": true,
+  "common_product_is_projection": true,
+  "common_trace": "1/4",
+  "common_lies_under_raw_corner": false,
+  "common_raw_cut_overlaps": {
+    "(-1, -1)": "3/64",
+    "(-1, 1)": "3/64",
+    "(1, -1)": "3/64",
+    "(1, 1)": "3/64"
+  }
+}

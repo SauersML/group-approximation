@@ -20,6 +20,15 @@ orientations there is already a canonical spectral projection `R_0` of trace
 at least `5/123` on which the oriented product is bounded below by
 `sqrt(5/128)`.
 
+The exact packet is stronger still:
+`transported-coefficient-corners-share-flat-quarter-carrier` identifies one
+canonical projection `F_0=P_0P_1` of trace exactly `1/4` common to the two
+transported coefficient corners.  It is flat against all four raw character
+cuts and stays at squared distance `23/128` from their algebra.  Thus the
+word "same" is closed at the transported-corner level; the open content is
+to force recovery of this same `F_0` in the two *descendant algebras*, not to
+manufacture or align two unrelated carriers.
+
 **Claim.**  There are fixed constants `c>0`, `kappa>0`, independent of matrix
 dimension, such that in every sufficiently accurate atlas microstate at least
 one of the following holds on a subcorner `R` of trace at least `c`:
@@ -68,6 +77,12 @@ Either way a fixed positive energy is paid.
   `pauli-overlap-yields-positive-spectral-corner`, with trace `5/123` and
   singular-value floor `sqrt(5/128)`.  The remaining gap is to show that a
   fixed portion of this corner obeys `(HOL)` or `(TRV)` under the mixed words.
+- **The exact common carrier is also supplied.**  The later exact calculation
+  `transported-coefficient-corners-share-flat-quarter-carrier` improves the
+  soft corner to a canonical trace-`1/4` projection common to both transported
+  corners.  It does not by itself put that projection into the raw and comb
+  descendant algebras; that transverse recovery is the remaining use of the
+  mixed rank-five relations.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using
