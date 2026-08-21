@@ -5,6 +5,7 @@ kind: claim
 title: Cancel multiplicity commutators in one reversible cell for the three Fanizza predicates
 artifacts:
   - research/artifacts/reverse-kleene-multiplicity-holonomy-audit-2026-08-20.md
+  - experiments/inner_conjugate_clifford_antiphase.py
 distinct_from:
   signed-hecke-compatible-projection-atlas-for-nonce-bcs: that asks for an exact BCS representation in a positive canonical group corner; this permits arbitrary infinite HALT completion and asks only for a finite-matrix decoder estimate.
   shared-context-pairwise-antiphase-v4-routing: that tries to label every failure branch by pair-specific Clifford phases; this computes the fixed nonlinear predicates by reversible gate commutators and targets their external multiplicity residue directly.
@@ -53,6 +54,24 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
   retained as the signal, it is just one finite-packet word and returns to the
   nonlinear scalar-support barrier.  Merely enlarging the packet does not
   rescue this template.
+
+- **Inner-conjugate Clifford antiphase exists, but is exactly the packet word
+  in `(DSI5)`.**  On one qubit let `alpha=Ad(H)` and dress its implementer by
+  `X`.  Since `H X H=Z`,
+
+  ```text
+  H(XHX)=ZX=-XZ=-(XHX)H.
+  ```
+
+  Thus `Ad(H)` and `Ad(XHX)` commute while their lifts anticommute.  In the
+  abstract Pauli packet, however, `c=X alpha(X)=XZ` and
+  `alpha(c)c^(-1)=J`; hence `(DSI5)` gives `[u,XuX]=J` identically.  Requiring
+  the dressed letters to commute kills `J` globally rather than charging one
+  forbidden selector atom.  Making this sign atom-dependent is exactly the
+  nonlinear finite-word support problem, not a cancellation of it.  The MSI
+  screen listed above exhausts the projective one-qubit Clifford group and
+  independently finds twelve such inner-conjugate antiphase pairs, including
+  `(H,XHX)`.
 
 - **Independent covariance implementers: fails exactly.**  Schur's lemma
   leaves factors `R,T` on the external multiplicity space, and `(CPM4)` shows

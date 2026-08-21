@@ -33,6 +33,19 @@ commutant, or the full `A8` commutant is required.
 
 ## Attempts
 
+- **Reduced abstract quotient probe.**  The exporter
+  `experiments/atlas_a4_packet_19243_quotient.py --core` now forms
+
+  ```text
+  (A8*A8)/<< fourteen rank-three pair-cubes, q_19243 >>.
+  ```
+
+  A bounded GAP 4.14 probe through Sage on MSI reached coset-table enlargement
+  rather than a small collapse and was stopped at sixty seconds.  Thus this
+  quotient is not a cheap finite certificate.  No order, infinitude, or factor
+  survival claim is inferred from the timeout; the useful output is the exact
+  reduced presentation for a later subgroup- or rewriting-specific attack.
+
 - **Two rectangles, not thirty contexts.**  The fourteen-word core is two
   copies of `K_(2,2)`.  After extracting one qutrit/multiplicity edge message
   per distinct pair, `unitary-k2m-rectangle-synchronization` leaves exactly one

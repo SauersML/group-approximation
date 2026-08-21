@@ -49,3 +49,10 @@ provide an older glibc; the five-minute batch probe therefore failed in four
 seconds before GAP started.  No rebuild or container pull was attempted.  The
 quotient order and factor-image sizes remain uncomputed.
 
+The exporter now also accepts `--core`, retaining only the fourteen
+rank-three pair-cubes of `atlas-a4-rank-three-core`.  On 2026-08-21 the system
+Sage 10.7/GAP 4.14 stack on MSI did start that reduced presentation.  A
+sixty-second signal probe reached GAP's automatic coset-table enlargement and
+was terminated; it produced neither an order nor factor-image sizes.  This
+supersedes the obsolete binary diagnosis for future runs, but it does not
+change the mathematical status of the quotient.

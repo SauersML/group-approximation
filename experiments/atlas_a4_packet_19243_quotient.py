@@ -19,6 +19,7 @@ import os
 import numpy as np
 
 from atlas_a4_packet_generation import select_packet, x_lengths
+from atlas_a4_rank_three_core import H18_LABEL_HEX, center, matrix_key, packet_edge, subgroup
 from atlas_boundary_h_tangent_screen import INNER_ALIGNMENT_HEX
 from atlas_boundary_group_algebra_audit import matrix_from_key
 from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kernel_words
@@ -49,11 +50,32 @@ def embedded_word(word):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--skip-size", action="store_true")
+    parser.add_argument(
+        "--core",
+        action="store_true",
+        help="use only the fourteen rank-three packet relators",
+    )
     args = parser.parse_args()
 
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
     packet = [word for _index, word in select_packet(words, x_lengths())]
+    if args.core:
+        h18 = subgroup([
+            np.frombuffer(bytes.fromhex(value), dtype=np.uint8).reshape(4, 4).copy()
+            for value in H18_LABEL_HEX
+        ])
+        central_order_three = {
+            matrix_key(value)
+            for value in center(h18)
+            if matrix_key(value) != matrix_key(I4)
+        }
+        packet = [
+            word
+            for word in packet
+            if matrix_key(packet_edge(word)[2]) not in central_order_three
+        ]
+        assert len(packet) == 14
 
     here = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as stream:
@@ -74,7 +96,7 @@ def main():
     print("raw:=P/rels;;")
     print("nat:=GroupHomomorphismByImages(P,raw,GeneratorsOfGroup(P),GeneratorsOfGroup(raw));;")
     print("simp:=IsomorphismSimplifiedFpGroup(raw);; Q:=Image(simp);;")
-    print('Print("packet_relators 30\\n");')
+    print('Print("packet_relators %d\\n");' % len(packet))
     print('Print("collision_relators 1\\n");')
     print('Print("simplified_generators ",Length(GeneratorsOfGroup(Q)),"\\n");')
     print('Print("simplified_relators ",Length(RelatorsOfFpGroup(Q)),"\\n");')
