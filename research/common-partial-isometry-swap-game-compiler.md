@@ -195,6 +195,15 @@ may break predicate equivariance, but it must wordize those mixing residuals
 as consistency rows.  The remaining finite target is one literal common-
 source frame, not another predicate-preserving carrier family.
 
+There is a zero-defect firewall on how that frame can be groupified.
+`algebraic-selector-mixing-frame-collapses-forbidden-sector` proves that an
+operator frame supplied universally by a finite Weyl, controlled-Fourier, or
+finite Morita packet, combined with exact wordized mixing rows, forces the
+forbidden source projection to vanish in `C^*(Gamma)`.  This contradicts a
+phase-safe embedding of the full marked selector packet.  Therefore the
+frame lower bound itself must be matrix-only or canonical-trace-only; the
+obvious exact finite Weyl tight-frame realization cannot close `(CPS9)`.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
@@ -268,3 +277,9 @@ context observables.
   no longer conjugate copies of the same predicate and their consistency with
   the literal shared variables becomes a new payload-mixing relation.  Thus
   free position alone does not solve the alignment seam.
+- **Use an exact finite Weyl/controlled-Fourier mixer.**  Its tight-frame
+  identity is an operator inequality in the finite packet algebra.  Once the
+  mixing residuals are ordinary defining words, compressing that identity to
+  the forbidden atom makes the atom zero in every representation.  Keeping
+  it nonzero for phase safety therefore requires a trace-cyclic or other
+  genuinely finite-matrix frame, not a larger exact mixer packet.
