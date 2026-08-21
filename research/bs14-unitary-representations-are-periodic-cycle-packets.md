@@ -41,8 +41,13 @@ of the orbit convention).  Conversely every packet `(BP3)--(BP4)` satisfies
 `(BP1)`, and orthogonal sums of such packets give all finite-dimensional
 unitary representations of `BS(1,4)`.
 
-Thus exactifying the solenoid core does not reduce it merely to finite-image
-permutation representations: the return monodromies `V` are genuine
-continuous multiplicity data.  Any relative repair of the Iwahori
-involution must control how it couples these cycle packets and their inverse
-monodromies, rather than only match the scalar parabolic spectrum.
+There is a useful further reduction.  Diagonalize `V` and apply that one
+change of basis simultaneously on all `m` orbit spaces in `(BP3)`.  The
+packet then splits orthogonally into `k` multiplicity-one packets, one for
+each eigenvalue `v in T` of `V`; on such a packet `R^m=v`.  Thus the
+monodromy data are continuous but **scalar**.  They are not an irreducible
+`U(k)` obstruction.  Any relative repair of the Iwahori involution must
+control how it couples scalar packets `(O,v)` with inverse `R`-spectral data,
+rather than solve a genuinely matrix-valued return problem.  It still cannot
+match only the spectrum of `S`: the phase `v` is an independent continuous
+coordinate.

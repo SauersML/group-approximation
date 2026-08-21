@@ -30,11 +30,14 @@ independent of `d`, the periodic orbit lengths, and the multiplicity
 monodromies in
 `bs14-unitary-representations-are-periodic-cycle-packets`.
 
-The exact core decomposes into fourth-power cycle packets with arbitrary
-return monodromy `V`.  The relation `X R X=R^(-1)` pairs the `R`-spectral
-and monodromy data with their inverses, while the two cubic equations require
-the same `X` to extend both modular triangles.  The load-bearing content is
-simultaneous packet matching: repairing either cubic equation separately, or
+The exact core decomposes into fourth-power cycle packets.  After
+diagonalizing each return monodromy as in
+`bs14-unitary-representations-are-periodic-cycle-packets`, every irreducible
+packet is multiplicity one and has a scalar return phase `v in T`.  The
+relation `X R X=R^(-1)` pairs the `R`-spectral data, hence the scalar phases
+`v` and `v^(-1)`, while the two cubic equations require the same `X` to
+extend both modular triangles.  The load-bearing content is simultaneous
+scalar-packet matching: repairing either cubic equation separately, or
 matching only the scalar spectrum of `S`, need not produce one common
 involution.
 
@@ -43,16 +46,16 @@ involution.
 - **Core exactification is available.**  The one-solenoid dense-periodic-
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
-- **Scalar periodic-orbit matching is insufficient.**  Each cycle carries an
-  arbitrary `U(k)` return monodromy.  A proof that ignores it can match every
-  parabolic eigenvalue while leaving a full-rank obstruction in the
-  multiplicity space.
+- **The matrix-monodromy obstruction disappears.**  The return unitary is
+  diagonalizable, so the core is a sum of scalar-phase packets.  The phase
+  coordinate remains essential, but no noncommutative `U(k)` matching
+  theorem is needed.
 - **Fixed-stratum Newton is insufficient globally.**  It controls packets
   after all torsion multiplicities are fixed.  Small-rank stratum changes
   approach one another in normalized HS as dimension grows and require the
   separate reconciliation step.
-- **Finite packet target.**  On each orbit pair, write `R` in the normal form
-  `(BP4)` and express `(BRI1)` as equations on the Hankel intertwiners between
-  the `V` and `V^(-1)` multiplicity spaces.  A dimension-free polar/matching
-  theorem for those intertwiners, coupled across both cubic constraints,
-  would prove the claim.
+- **Finite packet target.**  Refine the core into scalar packets `(O,v)`.
+  Express `(BRI1)` as equations on the Hankel coefficients between packets
+  whose `R`-spectra are inverse.  A dimension-free transport/matching theorem
+  for those scalar packet coefficients, coupled across both cubic
+  constraints, would prove the claim.

@@ -22,3 +22,9 @@ around each cycle.  Choose bases successively so that all but the final
 transport are the identity; their product around the cycle is one unitary
 `V in U(k)`.  This gives `(BP3)--(BP4)`, and direct substitution proves the
 converse.
+
+Finally choose an orthonormal eigenbasis of the unitary `V` and use it on
+every vertex of the cycle.  Since `S` is scalar on each vertex and all
+non-return transports are identities, this decomposes `(BP3)--(BP4)` into
+multiplicity-one invariant packets with scalar return phases equal to the
+eigenvalues of `V`.
