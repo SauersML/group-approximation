@@ -47,6 +47,15 @@ because `x+y+b_0 in B`.  Thus `V` is a linear subspace and `B=b_0+V` is an
 affine coset.  The converse follows immediately by adding three elements of a
 coset in characteristic two.
 
+More generally, if `B=b_0+V` and `x_1,...,x_(2k+1)` lie in `B`, then
+
+```text
+sum_j x_j = b_0 + sum_j (x_j+b_0) in b_0+V.
+```
+
+Hence affinity is sufficient for every odd-XOR aggregate, not just for three
+labels.
+
 Therefore, if `B` is nonaffine, choose `x,y,z in B` with
 `x+y+z notin B`; `(AOX3)` produces an exact feasible scalar selector model
 whose aggregate decoder is rejected by every source branch.  Refinement,

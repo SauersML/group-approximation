@@ -42,7 +42,11 @@ x+y+z in B.                                               (AOX2)
 
 Consequently, a branch-complete aggregate compiler with three independently
 duplicable labels can work for all payloads in `B` only if `B` is an affine
-subspace coset.  In particular, whenever one finite source context has a
+subspace coset.  This condition is also sufficient for the scalar aggregate
+step: an odd sum of elements of one affine coset lies in that coset.  Thus,
+under independent payload copies and unrestricted branch duplication, the
+odd-XOR decoder preserves accepted scalar behavior **if and only if** `B` is
+affine.  In particular, whenever one finite source context has a
 nonaffine accepted-behavior union `B`, none of the following repairs the
 cross-context alignment problem:
 
