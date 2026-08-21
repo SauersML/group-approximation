@@ -45,4 +45,8 @@ balanced Morita edge.
   active finite calculation is to replace one old hyperbolic pair by this
   derived pair and compare both restriction matrices over the remaining
   codimension-two spin subgroup.
-
+- `gauge-symmetrizing-hard-pair-cancels-paired-overlap-gap` rules out a weaker
+  interpretation of the bridge: summing the two private gauge orientations
+  and returning only their invariant logical product cancels the paired-frame
+  scalar gap exactly.  The derived lift must therefore transport an oriented
+  gauge share at equal spin scale, not merely the gauge-invariant sum.

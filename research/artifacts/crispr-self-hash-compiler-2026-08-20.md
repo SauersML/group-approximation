@@ -87,6 +87,13 @@ reservoir, where it can return into the wrong conditioned carrier.
 6. On a finite HNN edge the conditioned overlap follows the induced central
    character permutation exactly.  In the paired frame the hard carrier
    still escapes through `101<->011`; scalarization does not erase ownership.
+7. Gauge symmetrization cannot simply quotient out that ownership.  Pullback
+   by the hard involution interchanges both the source characters and the two
+   coefficient packets.  Equal gauge-orbit multiplicities therefore make the
+   direct-sum plus and minus Reynolds carriers unitarily conjugate, cancelling
+   the oriented `1/98` gap.  Gauge doubling is still useful for exact
+   covariance, but a successful actuator must retain or infinitely decorate
+   the private orientation.
 
 ## Primary next search
 

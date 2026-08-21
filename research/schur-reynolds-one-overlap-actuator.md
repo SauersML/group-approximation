@@ -87,3 +87,11 @@ immune to spectator amplification.
   `101<->011` reservoir.  The actuator must add an infinite label, a
   gauge-doubled logical invariant, or an equivalent nonstationary ownership
   mechanism; merely rewriting the return as one scalar does not remove it.
+- **Naive gauge forgetting cancels the detector.**
+  `gauge-symmetrizing-hard-pair-cancels-paired-overlap-gap` proves that equal
+  gauge-orbit multiplicities on `101` and `011` make the plus and minus
+  Reynolds carriers unitarily conjugate after summing the two orientations.
+  Gauge doubling remains a valid completeness/covariance device, but the
+  actuator must retain the private orientation or decorate it by a
+  nonreturning infinite label; conditioning only on the invariant logical
+  product is stationary.
