@@ -49,6 +49,38 @@ Bernoulli wreath `C_2 wr_(Gamma/Lambda) SL_3(Z[1/3])`) to the
   `C^*(SL_n(Z))` (`n >= 3`) fails LLP, so the claim cannot be imported
   from a lifting property.  It must be a genuine rigidity statement about
   almost-representations.
+- **Source-verified literature boundary (2026-08-21 audit).**  Dogon
+  arXiv:2211.10492, immediately after Theorem 1.6, states only the forward
+  implications
+
+  ```text
+  flexible HS-stability => weak ucp-stability,
+  LLP of C^*(Gamma)     => weak ucp-stability.            (WUS1)
+  ```
+
+  Ioana--Spaas--Wiersma arXiv:2006.01874, Corollary B, explicitly proves
+  that `C^*(SL_n(Z))` fails LLP for every `n>=3`.  This failure is inherited
+  from the subgroup `Z^2 rtimes SL_2(Z)`; it is not a converse to `(WUS1)`
+  and therefore does NOT refute weak ucp-stability of `SL_3(Z)`.  The cited
+  papers provide no subgroup-to-ambient permanence theorem for weak
+  ucp-stability that would transport the subgroup obstruction.
+
+  Dogon's actual property-`(T)` obstruction is Theorem 3.1: a sequence of
+  nontrivial scalar `2`-cocycles converging pointwise to `1`, with every
+  twisted group von Neumann algebra Connes embeddable, refutes weak
+  ucp-stability.  No such sequence for `SL_3(Z)` is supplied by the LLP
+  proof.  In particular the LLP obstruction cannot simply be relabelled as
+  a weak-ucp obstruction.  Conversely, residual finiteness gives the
+  factorization property and satisfies the NECESSARY conclusion of Dogon
+  Proposition 1.11, but it constructs only one regular-trace ucp
+  approximation and does not correct an arbitrary prescribed one.
+
+  Hence no known LLP/property-`(T)` theorem in these sources establishes or
+  refutes this claim.  The precise open sector is prescribed regular-type
+  hyperlinear approximations: property `(T)` can turn an already supplied
+  Stinespring corner into a nearby finite invariant corner (as in
+  `kazhdan-subgroup-weak-ucp-exactification-proof`), but it does not produce
+  the initial ucp approximation.
 - **Hyperfinite sector is free, regular sector is the content.**  By
   Bekka's character rigidity and Dogon--Vigdorovich Thm 6.2, `SL_3(Z)` is
   hyperfinitely HS-stable: hyperlinear approximations whose limit

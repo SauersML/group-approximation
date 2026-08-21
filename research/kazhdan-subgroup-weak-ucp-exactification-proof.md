@@ -112,13 +112,37 @@ so `W_n : H_n -> V_n` is a partial isometry with
 **Step 5 (transport and exactify on `C`).**  Define on `V_n`
 
 ```text
-phi~_n(g) := W_n phi_n(g) W_n^* + (1_(V_n) - W_n W_n^*),   g in G.  (P8)
+A_n(g) := W_n phi_n(g) W_n^* + (1_(V_n) - W_n W_n^*),      g in G.  (P8)
 ```
 
-Because `W_n` is near-unitary in normalized HS and the padding corner has
-vanishing normalized trace, `phi~_n` is again a hyperlinear approximation
-of `G` and `|| phi~_n(g) - W_n phi_n(g) W_n^* ||_(2,d'_n) -> 0`.  For
-`c in C`, by `(P7)`, `(P1)` and `(P6)` (all multiplied by contractions):
+There is a small but essential polar-correction here: `A_n(g)` need not be
+unitary because the initial projection `q_n=W_n^*W_n` need not equal
+`1_(H_n)` exactly.  Put `r_n=W_nW_n^*`.  The two summands in `(P8)` have
+orthogonal supports, and
+
+```text
+A_n(g)^*A_n(g)-1
+ =W_n phi_n(g)^* q_n phi_n(g) W_n^*-r_n,
+||A_n(g)^*A_n(g)-1||_(2,d'_n)
+ <=||q_n-1_(H_n)||_(2,d_n) sqrt(d_n/d'_n)=o(1).          (P8a)
+```
+
+The analogous estimate holds for `A_n(g)A_n(g)^*-1`.  Extend the polar
+partial isometry of the square matrix `A_n(g)` to a unitary
+`phi~_n(g) in U(V_n)`.  Singular-value calculus gives
+
+```text
+||phi~_n(g)-A_n(g)||_2
+ <=||1-|A_n(g)||||_2
+ <=||1-A_n(g)^*A_n(g)||_2=o(1),                          (P8b)
+```
+
+since `|1-s|<=|1-s^2|` for `s>=0`.  Thus `phi~_n` is pointwise `o(1)`
+from the transported hyperlinear approximation, hence is itself a
+hyperlinear approximation of `G`, and
+`||phi~_n(g)-W_n phi_n(g)W_n^*||_(2,d'_n)->0` (the padding projection has
+vanishing normalized trace).  For `c in C`, by `(P7)`, `(P1)` and `(P6)`
+(all multiplied by contractions):
 
 ```text
 || rho_n(c) - W_n phi_n(c) W_n^* ||_(2,d'_n)
