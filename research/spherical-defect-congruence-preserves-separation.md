@@ -49,3 +49,20 @@ No lower bound on the number of `E`-classes is asserted or needed: the
 cardinality-preserving weighted blow-up in
 `defect-congruence-exactifies-permutation-table` converts `(SDC2)` directly
 into Hamming separation.
+
+## Attempts
+
+- **Bound every congruence class by the short-chord radius.**  This is false as
+  a formal argument: invariance adds conjugates of the defect pairs, and an
+  arbitrarily long chain of individually short moves can travel macroscopic
+  distance.  Any proof must control percolation/normal closure, not just one
+  edge length.
+- **Require linearly many quotient classes.**  Unnecessary.  The weighted
+  blow-up in `defect-congruence-exactifies-permutation-table` keeps exactly
+  `N` states even when `X/E` is tiny.  The only relevant statistic is the
+  weighted word-collision set in `(SDC2)`.
+- **Deferred falsifier.**  For fixed small tables, sample the cloud, choose
+  independent tight matchings, close the good defect pairs under the chosen
+  permutations by union-find/orbit saturation, and track `(SDC2)` as `rho`
+  and the matrix defect shrink.  Positive-density collapse of a tested
+  nontrivial word would kill this route directly.
