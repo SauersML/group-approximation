@@ -75,6 +75,32 @@ coprime to `p`.  Then:
   A structured follow-up probe should parametrize `W` directly in the
   block commutant of a congruence model and descend the mixed-trace
   regularity residual.
+- **The Weyl relations constrain the corrector — and kill every
+  translation-type ansatz (2026-08-21, worked out).**  The relation
+  `w h w^(-1) = h^(-1)` holds EXACTLY in `Gamma` for the signed
+  permutation `w = w_13 in Lambda` (conjugation inverts the diagonal),
+  so in `M`: substituting `V = V' W` and `w h w^(-1) = h^(-1) mod n`,
+
+  ```text
+  lambda(w) W lambda(w)^(-1) = V' W^(-1) V'^(-1),          (OI2)
+  ```
+
+  and the three-term Weyl-orbit relation `h = h' h''^(-1)` couples the
+  correctors of the conjugate diagonals likewise.  Consequence: a
+  corrector of pure right-translation type on a regular level (the
+  "group-like/abelian" ansatz `W = rho(g)`) must define an
+  `S_3`-invariant homomorphism from the coweight lattice of `SL_3`,
+  and the `S_3`-COINVARIANTS OF THE COWEIGHT LATTICE VANISH (each
+  transposition negates a root coweight and the cycle identifies
+  them), so `W = 1`: no translation-type enemy exists at any odd
+  level.  For `SL_2` the coinvariants are `Z/2` — exactly the ONE
+  INVOLUTION of the Iwahori square-root presentation
+  (`iwahori-square-root-presentation-is-bs14-plus-one-involution`),
+  i.e. the known `SL_2` enemy seed.  The rank-two Weyl system `(OI2)`
+  is the structural asset the higher-rank sector has and `SL_2` does
+  not; the open question is whether `(OI2)` plus mixed-trace
+  regularity forces `Ad(W)` trivial on `pi(Lambda)' cap M` for
+  GENERAL `W`, not just translation type.
 - **Falsification gate.**  A `W` witnessing sector failure yields a
   leak, hence refutes `(RC3)` and, through the carrier
   correspondence, produces a hyperlinear character of the carrier
