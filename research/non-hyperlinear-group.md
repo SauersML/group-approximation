@@ -113,3 +113,15 @@ cannot supply the required coordinates;
 `canonical-finite-packet-data-stop-at-scalar-overlaps` proves that they fix
 Plancherel masses and scalar overlap checks but leave the multiplicity gauge
 arbitrary.
+
+The second-pass adversarial synthesis is recorded in
+`research/artifacts/adversarial-error-delocalization-second-pass-2026-08-21.md`.
+It identifies the useful version of the heavy-tail metaphor as a nonamenable
+distribution on challenge **addresses**, not an unbounded operator statistic;
+proposes a streaming Gram-rank overflow detector as a potentially smaller
+same-model alternative to the supercritical Clifford table; and isolates the
+exact role of a finite cyclic verifier as a holonomy return on an already
+positive-density no-capture carrier.  The shortest bypass remains an exact
+unital realization of the fixed non-CE BCS algebra in a signed group-algebra
+corner.  None of these refinements is presently a proof; each has explicit
+dimension-, runtime-, direct-sum-, and amenable-tail falsification tests.
