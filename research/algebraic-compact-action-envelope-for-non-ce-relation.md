@@ -45,6 +45,20 @@ known to pass to arbitrary quotients.
   into a relation factor but does not provide a compact abelian base or an
   algebraic action.  No consequence for a discrete group follows until this
   extra structure is installed.
+- **Source audit: the universal property-(T) construction is genuinely
+  nonabelian.**  In Chifan--Drimbe--Ioana's proof the ambient factor is
+  `Q=M_tilde^C rtimes_(beta,w) C`, where `M_tilde` is a nonabelian factor
+  containing the input and `(beta,w)` is a cocycle action.  The paper also
+  explicitly leaves embedding universality of group factors open.  See
+  `cdi-property-t-envelope-has-nonabelian-base`.  Consequently the word
+  "wreath-like" in that source cannot be read as an ordinary abelian-base
+  wreath product, and its theorem supplies no hidden instance of `(ACAE1)`.
+- **Unrestricted algebraic envelopes are exactly the main problem.**
+  `unrestricted-algebraic-envelope-equals-nonhyperlinearity` shows
+  that allowing an arbitrary non-CE source and arbitrary actor is equivalent
+  to existence of a non-hyperlinear group (the reverse direction uses the
+  trivial compact base).  The fixed `N`, effective presentation, and genuine
+  module structure are therefore load-bearing, not cosmetic refinements.
 - **ZPC/LCS opportunity and risk.** Finite-field constraints naturally define
   closed linear subshifts, avoiding the current robust groupification decoder.
   The unresolved step is to embed the non-CE GNS/relation algebra, not merely
