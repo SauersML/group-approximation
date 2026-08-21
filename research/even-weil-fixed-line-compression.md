@@ -39,6 +39,19 @@ selfadjoint involution `X_0=sgn(A)` on `H_0` with
 ||X_0-A||_(2,H_0) <= 1/sqrt(dim H_0).                 (EWC3)
 ```
 
+In fact the polar deficiency is exactly one-dimensional.  In the normalized
+Schrodinger model `|<delta_0,X delta_0>|=p^(-1/2)`, so `A` has one singular
+value `p^(-1/2)` and every other singular value is one.  Therefore
+
+```text
+||X_0-A||_(2,H_0)
+  =(1-p^(-1/2))/sqrt((p-1)/2).                         (EWC3')
+```
+
+Thus neither the polar step nor the deleted-line coupling hides an
+additional diffuse error: the whole boundary mode has rank one and the
+repair cost is sharply of order `p^(-1/2)`.
+
 Because `R,S` preserve `P`, compressing any one of the four fixed Iwahori
 words loses only excursions through the one-dimensional `Q` corner.  Word
 telescoping and `(EWC3)` therefore give a universal constant `C` such that
