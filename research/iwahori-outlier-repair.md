@@ -5,6 +5,8 @@ kind: claim
 title: "Iwahori endpoint: full-rank outlier repair"
 artifacts:
   - research/artifacts/open-problem-attacks-2026-08-17.md
+  - experiments/psl2_far_sector_probe.py
+  - experiments/psl2-far-sector-probe-smoke.json
   - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
   - notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
   - notes/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md
@@ -48,3 +50,11 @@ substance, with one intermediate now named explicitly (2026-08-19):
 -> `non-hyperlinear-group`.  That intermediate is Dogon--Vigdorovich's printed
 Question 1.2; this claim is a sufficient condition for it in the one sector
 their variety decomposition leaves open.
+
+- *Bounded adversarial probe, 2026-08-21.*
+  `experiments/psl2_far_sector_probe.py` now exposes small CLI budgets and was
+  smoke-tested on MSI at `d=6` with one restart and `120` steps.  Rewarding
+  short-odd-order farness did not lower the gluing defect (`.574` versus
+  `.520` without the reward), but this is only a development check.  The
+  diagnostic scans odd orders only up to a chosen cutoff and is explicitly
+  not a certificate of distance from the full congruence locus.

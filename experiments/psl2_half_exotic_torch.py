@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import math
+import argparse
 import sys
 import time
 
@@ -131,9 +132,17 @@ def search(Dx, Dy, d, restarts, steps, lr, rng_seed, tag):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sanity-only", action="store_true",
+                        help="check exact congruence tuples and skip optimization")
+    parser.add_argument("--primes", default="11,13,17,23,29")
+    parser.add_argument("--restarts", type=int, default=None)
+    parser.add_argument("--steps", type=int, default=None)
+    parser.add_argument("--output", default="psl2-half-exotic-torch.json")
+    args = parser.parse_args()
     results = []
     t0 = time.time()
-    for p in (11, 13, 17, 23, 29):
+    for p in tuple(int(x) for x in args.primes.split(",") if x):
         rho, d = perm_rep_P1(p)
         inv2 = pow(2, -1, p)
         S = [[0, -1], [1, 0]]
@@ -153,6 +162,8 @@ def main():
         print(json.dumps(sanity))
         sys.stdout.flush()
         results.append(sanity)
+        if args.sanity_only:
+            continue
         Dx, Dy = spectral_model(x), spectral_model(y)
         # also a balanced (regular-like) spectral model
         if d % 6 == 0 or True:
@@ -161,13 +172,13 @@ def main():
             w = complex(math.cos(2 * math.pi / 3), math.sin(2 * math.pi / 3))
             k3 = d // 3
             Dyb = torch.diag(torch.tensor([1.0] * (d - 2 * k3) + [w] * k3 + [w * w] * k3, dtype=torch.complex128))
-        restarts = 6 if p <= 13 else 4
-        steps = 3000 if p <= 13 else 2500
+        restarts = args.restarts if args.restarts is not None else (6 if p <= 13 else 4)
+        steps = args.steps if args.steps is not None else (3000 if p <= 13 else 2500)
         results += search(Dx, Dy, d, restarts, steps, 0.02, 100 + p, f"congruence-spectra-p{p}")
         results += search(Dxb, Dyb, d, restarts, steps, 0.02, 200 + p, f"balanced-spectra-d{d}")
         print(f"# elapsed {time.time()-t0:.0f}s")
         sys.stdout.flush()
-    with open("experiments/psl2-half-exotic-torch.json", "w") as fh:
+    with open(args.output, "w") as fh:
         json.dump(results, fh, indent=1)
     print("DONE-SENTINEL")
 

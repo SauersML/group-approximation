@@ -11,7 +11,7 @@ distinct_from:
   iwahori-nielsen-hs-bilipschitz: that controls a specific involution on representation coordinates; this is a lower bound on the Mayer--Vietoris mismatch map for all cocycle pairs.
 ---
 
-Let `rho` be a congruence representation of `SL_2(Z[1/2]) = V_1 *_B V_2`
+**ESTABLISHED (for the stated congruence representations).**  Let `rho` be a congruence representation of `SL_2(Z[1/2]) = V_1 *_B V_2`
 (`V_i` the two modular vertex groups, `B = Gamma^0(2)` the Iwahori edge
 group) on `C^d`.  For cocycles `c_i in Z^1(V_i, Ad rho)` let
 
@@ -19,7 +19,7 @@ group) on `C^d`.  For cocycles `c_i in Z^1(V_i, Ad rho)` let
 def(c_1, c_2) = max_(b in S_B) || c_1(b) - c_2(sigma b) ||_2
 ```
 
-be the linearized local defect.  **Claim:** there is `sigma_0 > 0`,
+be the linearized local defect.  There is `sigma_0 > 0`,
 independent of `rho` and `d`, such that for all `(c_1, c_2)` there is a
 common `x in M_d` with
 
@@ -31,6 +31,15 @@ Equivalently, the smallest nonzero singular value of the Mayer--Vietoris
 mismatch map on `Z^1(V_1) (+) Z^1(V_2)` (whose kernel is the diagonal
 coboundaries, because `H^1(SL_2(Z[1/2]), Ad rho) = 0` by property (T;FD))
 is bounded below uniformly.
+
+The proof is `infinitesimal-rigidity-from-three-parts`.  The boundary
+splitting is the explicit property-`(tau)` adjoint formula for modular
+parabolic restriction, while the cuspidal Deligne gap is realized directly
+in the cellular Hodge norm by
+`iwahori-cuspidal-cellular-hecke-angle`.  Property `(tau)` for the edge then
+controls the difference of the two coboundary potentials and congruence
+co-density identifies the edge-fixed and amalgam-fixed subspaces, giving one
+common potential `x` in `(UIR)`.
 
 ## Attempts
 
@@ -55,7 +64,7 @@ is bounded below uniformly.
   comparison between the cochain Hilbert--Schmidt norm and the Petersson
   norm on harmonic representatives, which must be uniform in `d`; the
   coboundary directions are controlled by Selberg's `(tau)`.
-- **What it would give.**  With uniform second-derivative bounds (the
+- **What it gives.**  With uniform second-derivative bounds (the
   mismatch map is a fixed polynomial in the generators), a
   Newton--Kantorovich iteration with dimension-free constants yields
   `D(pi) <= K def(pi)` for pairs within a fixed distance of the compatible

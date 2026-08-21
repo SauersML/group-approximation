@@ -9,21 +9,25 @@ distinct_from:
   iwahori-eisenstein-angle: that proves transversality of the two vertex restriction maps after passing to the residue model; this asks that the residue and interior pieces themselves have a uniformly conditioned splitting in the original fixed-generator cochain norm.
 ---
 
-For each of the three fixed modular groups `V` and every finite-dimensional
-unitary congruence local system `E=Ad rho`, consider the boundary sequence
+**ESTABLISHED.**  For each of the two conjugate modular vertex groups `V` and every
+finite-dimensional unitary congruence local system `E=Ad rho`, consider the boundary sequence
 from parabolic/interior cohomology to ordinary cohomology and cusp residues.
-Prove that it admits a splitting whose operator norm, measured in the fixed
+It admits a splitting whose operator norm, measured in the fixed
 cellular quotient norm, is bounded independently of `rho` and its dimension.
 Equivalently, the angle between the interior and Eisenstein summands stays
 uniformly positive over all congruence coefficient sectors.
 
-This is the remaining bookkeeping not supplied by the general fixed-complex
-Hodge comparison.  Near-invariant eigenvectors of a parabolic generator make
-the assertion nonformal: an argument may not invert `1-Ad rho(u)` on its
-orthogonal complement without a uniform spectral bound, because its nonzero
-eigenvalues can approach zero in high-order congruence quotients.  A valid
-proof must instead use the orbit-size weighted residue model, the two
-complementary Iwahori cusp widths, or a global property-`(tau)` estimate.
+The Iwahori edge does not require a separate boundary splitting in the
+application: its **total** harmonic norm is compared with the fixed-generator
+cochain norm by
+`fixed-complex-unitary-local-system-hodge-norms-are-uniform`; only the two
+vertex classes are decomposed before restriction.
+
+The proof is `triple-angle-gap-proves-uniform-parabolic-splitting`, using the
+explicit adjoint formula and Selberg property `(tau)` from
+`selberg-tau-proves-modular-parabolic-triple-angle`.  It never inverts
+`1-Ad rho(u)`; its constant is at most `2/kappa`, where `kappa` is a fixed
+congruence Kazhdan constant for the modular generators.
 
 ## Attempts
 
@@ -40,3 +44,28 @@ complementary Iwahori cusp widths, or a global property-`(tau)` estimate.
   insufficient unless restriction preserves that orthogonal decomposition
   with uniform norm.  This is exactly the cancellation that must be excluded
   when the cuspidal and Eisenstein lower bounds are assembled.
+- **Exact operator reduction.**
+  `modular-parabolic-restriction-is-a-three-projection-angle` identifies the
+  harmonic cohomology with `ker P_(C2) cap ker P_(C3)` and restriction with
+  `-2P_(<u>)`.  Hence this claim is now reduced to the single spectral
+  statement `congruence-modular-parabolic-triple-angle-gap`.  A bounded MSI
+  screen through `p=23` finds a floor between `.429` and `.667`, settling near
+  `.51` in the tested `Ad(P^1(F_p))` family.
+
+## Hecke-square reduction
+
+The fixed Hecke polynomial
+
+```text
+K_2=T_2^2/(2<2>).
+```
+
+Independently, by `iwahori-hecke-square-separates-cuspidal-and-eisenstein`, its algebraic
+cuspidal spectrum lies in `[0,4]`, while its Eisenstein spectrum lies on an
+ellipse at distance `1/2` from that segment.  Before the direct proof above,
+this reduced the claim to a dimension-uniform bound for the Riesz projector of `K_2`
+around either of these two fixed spectral sets (and the analogous
+Bernstein-central operator on the Iwahori edge).  This is sharper than
+inverting `1-Ad rho(u)`, but spectral separation alone does not control
+projectors for a nonnormal operator.  This alternate route remains incomplete
+and is not a dependency of the established claim.

@@ -3,6 +3,8 @@ rg: 2
 id: affine-leavitt-boundary-shear-payment
 kind: claim
 title: Paired Steinberg shears charge the full binary boundary of the affine active window
+artifacts:
+  - research/artifacts/affine-leavitt-normalized-hs-decoder-audit-2026-08-21.md
 distinct_from:
   affine-leavitt-steinberg-hs-coefficient-decoder: that asks for four contractions with one modulus valid for every sufficiently accurate representation; this asks only for depth-dependent scalar mark estimates on canonical-trace microstates.
   steinberg-root-shear-plancherel-covariance: that gives full stationary transport on one invariant finite root window; this must retain the non-invariant boundary and charge it through paired multiplication triangles.

@@ -31,3 +31,9 @@ The same statement holds for a fixed compact core with the corresponding
 relative/interior cohomology.  No spectral gap for the local system is used;
 the comparison is between quotient norms and follows from bounded chain maps
 in both directions.
+
+This does **not** by itself compare the compact-core harmonic norm with the
+full Petersson `L^2` norm on an infinite cusp.  Such a comparison can lose
+uniformity when parabolic holonomy approaches the identity; applications to
+cuspidal automorphic cohomology must control that tail separately or work
+directly in the cellular Hodge norm.
