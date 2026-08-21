@@ -248,6 +248,13 @@ W4: assembly.  Instantiate slimmed source data (W0d) + router output
   State the final theorem in the ∃-form with `IsPowerTorsionFree` and
   bridge `IsMulTorsionFree` once.
 
+W6 TRANSCRIPTION TRAPS (from the source pin; full detail in the
+  program memory and the Higman memo): Lemma 2.8 is false as printed
+  for X = ∅ (cite with the explicit hypothesis); σ³ζσ in the
+  W-construction is DELIBERATE (ζ punches the single parity hole — do
+  not "simplify" to σ⁴); the a(r) < 0 < b(r) step needs the widened
+  window at h(r) = 0; p.464's local E clashes with the sequence space.
+
 W6 (added 2026-08-21 after the W0 trace): the SOURCE BASE — a
   property-(T) group with proper self-embedding, centralizing root and
   nontrivial marked commutator inside a torsion-free f.p. ambient.

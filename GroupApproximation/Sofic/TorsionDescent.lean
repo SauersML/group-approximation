@@ -182,6 +182,48 @@ theorem isPowerTorsionFree_of_wordTorsion {R : Set (List (α × Bool))}
   rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk']
   exact this
 
+/-- **The cyclic reduction does not lengthen.**  The strengthening of
+`exists_cyclicallyReduced_conj` that the descent needs: reduction and cyclic
+reduction both cut letters, never add them, so the conjugate representative is
+no longer than the word one started from. -/
+theorem exists_cyclicallyReduced_conj_le (L : List (α × Bool)) :
+    ∃ (W : List (α × Bool)) (c : FreeGroup α),
+      FreeGroup.IsCyclicallyReduced W ∧ FreeGroup.mk L = c * FreeGroup.mk W * c⁻¹ ∧
+      W.length ≤ L.length := by
+  classical
+  refine ⟨FreeGroup.reduceCyclically (FreeGroup.mk L).toWord,
+    FreeGroup.mk (FreeGroup.reduceCyclically.conjugator (FreeGroup.mk L).toWord),
+    FreeGroup.reduceCyclically.isCyclicallyReduced FreeGroup.isReduced_toWord, ?_, ?_⟩
+  · have h := FreeGroup.reduceCyclically.conj_conjugator_reduceCyclically
+      (FreeGroup.mk L).toWord
+    conv_lhs => rw [← FreeGroup.mk_toWord (x := FreeGroup.mk L), ← h]
+    rw [← FreeGroup.mul_mk, ← FreeGroup.mul_mk, FreeGroup.inv_mk]
+  · have h := congrArg List.length
+      (FreeGroup.reduceCyclically.conj_conjugator_reduceCyclically (FreeGroup.mk L).toWord)
+    simp only [List.length_append] at h
+    have hML : (FreeGroup.mk L).toWord.length ≤ L.length := by
+      rw [FreeGroup.toWord_mk]
+      exact FreeGroup.reduce.red.length_le
+    omega
+
+/-- A symmetrized relator lies in the relator subgroup: symmetrizing does not
+change the normal closure. -/
+theorem mk_mem_of_mem_symmetrization {R : Set (List (α × Bool))}
+    {r : List (α × Bool)} (hr : r ∈ symmetrization R) :
+    FreeGroup.mk r ∈ Subgroup.normalClosure (FreeGroup.mk '' R) := by
+  rw [← normalClosure_symmetrization R]
+  exact Subgroup.subset_normalClosure ⟨r, hr, rfl⟩
+
+/-- **A rotation spells a conjugate**, by the prefix rotated past. -/
+theorem mk_rotate_eq_conj (W : List (α × Bool)) {s : ℕ} (hs : s ≤ W.length) :
+    FreeGroup.mk (W.rotate s)
+      = (FreeGroup.mk (W.take s))⁻¹ * FreeGroup.mk W * FreeGroup.mk (W.take s) := by
+  have hsplit : FreeGroup.mk W
+      = FreeGroup.mk (W.take s) * FreeGroup.mk (W.drop s) := by
+    rw [FreeGroup.mul_mk, List.take_append_drop]
+  rw [List.rotate_eq_drop_append_take hs, ← FreeGroup.mul_mk, hsplit]
+  group
+
 /-! ## 4.  The descent principle -/
 
 /-- **One shortening step discharges the whole word-level statement.**  If every
