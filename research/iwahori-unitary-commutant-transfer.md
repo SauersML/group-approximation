@@ -65,3 +65,15 @@ commutator with the second vertex stays macroscopic.
   first-vertex commutators tending to zero but a second-vertex commutator
   bounded below.  Such a sequence would also give the almost-centralizer
   needed by canonical microstates of the HNN candidate.
+- **Two-block normal form.**
+  `iwahori-transfer-failure-reduces-to-two-block-projection` shows that every
+  counterexample may be taken projection-valued after harmless doubling.
+  Hence the remaining question is whether the second vertex can have
+  macroscopic off-diagonal mass across a decomposition that asymptotically
+  reduces the first vertex and the Iwahori edge.  This is narrower than
+  repairing an arbitrary low-energy intertwiner.
+- **The blocks cannot dilute.**
+  `iwahori-transfer-failure-has-two-positive-density-blocks` shows that a
+  second-vertex commutator bounded below by `epsilon_0` forces both blocks to
+  have normalized rank at least `epsilon_0^2/2`.  Thus a counterexample is a
+  positive-density extension-mixing phenomenon, not a vanishing-rank tail.

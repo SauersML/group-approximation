@@ -617,3 +617,25 @@ Failure of a quantitative modulus and failure of this relative-commutant
 identity are the same by the ultraproduct contrapositive.  This isolates the
 one place where finite-dimensional co-density must be upgraded to matricial
 co-density; no global representation repair is logically required.
+
+There is also no loss in restricting the missing equality to two-block
+projection witnesses.  Given a failed unitary witness `v`, double the vertex
+representations and replace it by the selfadjoint unitary
+`[[0,v],[v^*,0]]`; its positive spectral projection has exactly half the
+commutator norm.  Thus a negative answer must exhibit a projection that
+asymptotically reduces the first `SL_2(Z)` vertex and the common Iwahori edge
+while the second vertex retains a fixed amount of off-diagonal mass.  This is
+the minimal finite-stage obstruction now recorded as
+`iwahori-transfer-failure-reduces-to-two-block-projection`.
+
+Moreover, if the second-vertex commutator of that projection is at least
+`epsilon_0`, comparison of `P` with `UPU^*` gives
+
+```text
+epsilon_0^2
+ <=2 min(tr(P),1-tr(P)).
+```
+
+So both blocks have positive linear rank.  The remaining obstruction cannot
+be a vanishing physical-rank tail.  It is a positive-density mixing of two
+asymptotic first-vertex/Iwahori reducing blocks by the second vertex.
