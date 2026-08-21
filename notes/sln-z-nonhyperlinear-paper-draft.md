@@ -109,8 +109,8 @@ Put `C=<a,b> <= SL_3(Z)`, where
 `SL_3(Z)`, surjects onto `SL_3(Z/m)` for every `m>1`, and has property (tau)
 with respect to this congruence family.
 
-*Proof.* Detinko--Flannery--Hulpke, *Experimenting with Zariski dense
-subgroups* (arXiv:2303.06236, Section 3.3), construct `a,b` inside Humphries's
+*Proof.* Detinko--Flannery--Hulpke, *Zariski density and computing with
+`S`-integral groups* (arXiv:2303.06236, Section 3.3), construct `a,b` inside Humphries's
 free subgroup `G_4 < SL_3(Z)`.  They verify surjectivity modulo `4` and every
 prime and apply their profinite-generation criterion to conclude surjectivity
 for every modulus.  As a subgroup of `G_4`, `C` is free; its noncyclic finite

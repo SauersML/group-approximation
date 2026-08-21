@@ -19,7 +19,8 @@ b = [ -40193888    -3684209   -44180039 ]
     [   3829559      351021     4209349 ].
 ```
 
-Detinko--Flannery--Hulpke, *Experimenting with Zariski dense subgroups*
+Detinko--Flannery--Hulpke, *Zariski density and computing with
+`S`-integral groups*
 (arXiv:2303.06236, Section 3.3), construct these matrices inside Humphries's
 free subgroup `G_4 < SL_3(Z)` and verify that `C` surjects onto
 `SL_3(Z/q)` for `q = 4` and for every prime `q`.  Their profinite-generation
@@ -74,4 +75,3 @@ w_exp = [t,r] != 1.                                     (ES5)
 The exact finite-dimensional endpoint is complete: in every exact
 finite-dimensional representation of `A`, a unitary centralizing `a,b`
 centralizes all of `A`, and hence centralizes `r`.
-
