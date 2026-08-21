@@ -172,7 +172,15 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   is now THE single decision point of the `Lambda`-exact face, fully
   explicit: compute the composition defects of the canonical
   transports on the flat band groupoid of the 2-adic congruence
-  tower.  Both outcomes are major; neither is assumed.
+  tower.  Both outcomes are major; neither is assumed.  COMPUTABILITY
+  (same pass): on bands whose constituents are irreducible the
+  in-band automorphism freedom is Schur-scalar, so the composition
+  defects are `T`-VALUED — the obstruction is an abelian
+  (`H^2`-type) class of the `S_3`-shift system with circle
+  coefficients, computable from the character data of the
+  `SL_3(Z/2^a)`-duals and the three `Ad`-pullback maps on generating
+  band triples: a finite, scriptable computation per level (MSI
+  lane), and the natural first target is `a = 3, 4`.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
