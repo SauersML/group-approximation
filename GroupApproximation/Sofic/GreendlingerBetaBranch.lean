@@ -255,11 +255,11 @@ known to close the Greendlinger conclusion
 free-group half-form gate reduced to exactly the deep arc and the landing
 production. -/
 theorem greendlingerConclusion_of_deepArc_of_landing [DecidableEq α]
-    {R : Set (List (α × Bool))} (hRne : ∀ r ∈ R, r ≠ [])
-    (hmetric : MetricSmallCancellation R (1 / 6))
+    {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     (hdeep : DeepArcSource R) (hland : LandingProduction R) :
     GreendlingerConclusion R :=
-  greendlingerConclusion_of_cascadeLanding hRne hmetric
+  greendlingerConclusion_of_cascadeLanding hR hRne
     (cascadeLanding_of_deepArc_of_landing hdeep hland)
 
 end SmallCancellationRouter
