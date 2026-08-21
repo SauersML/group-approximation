@@ -111,13 +111,15 @@ quarter-density, and averaging the two matchings gives `1/8`.
 
 ## Scope
 
-This is not yet the entangled sampler theorem.  A general exact
-representation of the two additive observable groups may move the
-`X`-character fibers by a nonlinear commuting action or by multiplicity
-intertwiners rather than one global translation `L`.  The remaining
-metapixel theorem must prove that the two matching tests reduce that action
-to the linear sector on positive mass, or exhibit an additional bounded
-matching which does so.
+The exact arbitrary-action extension is now closed, by a different and
+strictly stronger argument:
+`two-untwisted-field-matchings-force-complete-cross-commutation` uses
+centralizer-fiber closure and Hua's identity to prove that the two untwisted
+matchings force every cross commutator in an arbitrary group.  Tensoring with
+a canonical Pauli pair also forces the complete twisted Weyl table at
+arbitrary spectral multiplicity.  What remains for the metapixel is only a
+rank-independent normalized-HS modulus; the known direct ratio-circuit bound
+still grows polynomially with `n`.
 
 ## Attempts
 
