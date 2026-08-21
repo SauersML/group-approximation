@@ -5,7 +5,7 @@ kind: route
 title: Newton iteration near the compatible locus, outlier repair away from it
 target: iwahori-local-global-defect-question
 requires:
-  - iwahori-uniform-infinitesimal-rigidity
+  - iwahori-newton-closes-near-sector
   - iwahori-outlier-repair
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
