@@ -45,6 +45,15 @@ group-ring corner has finitely supported character and therefore equals
 CDI residue does not secretly close the central-extension, induction,
 marked-corner, or regular Clifford routes.
 
+The surviving non-Cartan route is now exact in
+`cdi-noncartan-bridge-has-two-exact-gates`.  The CDI character itself gives a
+finite central group sector precisely if it vanishes off its scalar kernel
+and the resulting projective multiplier is torsion.  Those two conditions
+would immediately produce a non-hyperlinear finite central extension.
+Finite-index Q-systems preserve non-CE but do not manufacture the missing
+group-like basis, while scalarizing the source's operator-valued cocycle
+still leaves its nonabelian coefficient factor untouched.
+
 Primary source: Chifan--Drimbe--Ioana,
 [*Embedding universality for II1 factors with property (T)*](https://arxiv.org/abs/2205.07442),
 Remark 1.1 and the proof of Theorem A(1), especially Proposition 3.8 as used in
