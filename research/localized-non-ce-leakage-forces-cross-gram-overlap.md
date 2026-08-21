@@ -7,6 +7,7 @@ distinct_from:
   corner-localized-non-ce-bcs-energy-gap: that gives a source-specific energy floor on every approximately reducing matrix corner; this applies it to exit leakage and combines it with Gram capacity.
   global-v4-exit-capacity-is-cross-gram-curvature: that proves leakage-or-overlap from dimension accounting alone; this proves that BCS-quiet leakage is impossible in matrices and hence forces the overlap alternative.
   one-cross-gram-moment-extracts-the-common-polar-gauge: that turns a supplied cross-Gram moment into a common gauge; this supplies a positive cross-Gram lower bound from the actual shared non-CE tuple under an explicit localized covariance hypothesis.
+  context-local-fanizza-exits-do-not-control-global-leakage: that proves the established occurrence bridges do not imply the localized covariance hypothesis and reduces it to one explicit capacity-gated mixed energy.
 ---
 
 Fix the finite non-Connes-embeddable BCS `B`, its shared involution words
@@ -170,6 +171,22 @@ where `E_rel` is formed from the original shared Fanizza words before the
 context occurrences split.  Establishing `(NCL13)` is now the only
 source-specific transport statement: the exit leakage must be an
 approximately reducing, BCS-quiet corner.
+
+This transport statement does **not** follow from the current context-local
+Fanizza packet bridges.  `context-local-fanizza-exits-do-not-control-global-leakage`
+gives an exact finite Bass--Serre countermodel and proves the sharp reduction
+
+```text
+Lambda <= K_B E_mix,
+```
+
+where `E_mix` consists precisely of the off-capacity blocks
+`(1-C)[E_i,Z_x]` and `(1-C)R(Z)E_i`, together with commutators of `C` with the
+shared tuple.  Bounding this mixed capacity-gated energy by `E_rel` is one
+sufficient construction.  The weaker cancellation-friendly alternative in
+`capacity-gated-common-corner-bcs-two-cell` directly controls `Lambda` by
+making all allowed-context intertwiners share the analytic source `L_i`.
+Contextwise survivor reduction is insufficient in either formulation.
 
 Independent context packets do not imply `(NCL13)`, and finite tags cannot
 replace it.  But if the mixed actuator relations provide `(NCL13)`, then
