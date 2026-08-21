@@ -114,6 +114,15 @@ finite root or triggers the isotypic finite-edge support theorem.  The global
 relation also fails the HALT firewall because it does not switch off when
 `Q=0`.
 
+`stacked-global-covariance-has-unit-compression-tax` makes this obstruction
+sharp under repetition.  If `N` globally covariant rows are stacked and
+normalized so that their common source Gram is still `Q`, their compressed
+covariance energy is **exactly** `||[Z,Q]||_2^2`; without normalization both
+sides scale by `N`.  Thus neither orthogonal row packing nor expander
+averaging lowers the circular commutator coefficient.  The surviving Hecke
+moment must be capacity-gated before stacking, rather than obtained by
+compressing an averaged global relation afterward.
+
 `hecke-dilations-do-not-lock-capacity-gram` proves
 that `V+(1-q)` has an exact fixed-rank Steinberg word, and that a finite wreath
 packet can realize the controlled sum by one monomial element.  These settle
