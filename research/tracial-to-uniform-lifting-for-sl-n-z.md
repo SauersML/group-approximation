@@ -57,3 +57,45 @@ trace).
   Ioana--Spaas--Wiersma -- a result of independent interest.  The
   known obstructions to lifting (ISW) live in `H^2(Gamma; R)`, which
   vanishes here.
+- **The absorber lemma and the exact form of the problem
+  (2026-08-21).**  Let `A` be the operator-norm ultraproduct, `I`
+  the trace-null ideal, `sigma : F_S -> U(A)` the word-extension of
+  generator lifts of `pi`, and `c_w = sigma(w) - 1 in I` for `w` in
+  the normal closure `R` of the relators (countably many).  Arveson's
+  theorem gives an approximate unit of `I` quasi-central for the
+  countable set `sigma(F_S)`; countable saturation of `A` (with the
+  definable trace) turns the net into ONE element: a positive
+  contraction `e in I` with `[e, sigma(g)] = 0` for all `g in F_S`
+  and `e c_w = c_w = c_w e` for all `w in R`, EXACTLY in `A`.  Hence
+  every `sigma(w)`, `w in R`, is the identity on `ker e` (as a
+  subspace of the Hilbert-space ultraproduct `H_U`), and
+  `K = ker e` has co-trace zero.  The `R`-fixed subspace
+  `H_0 = intersection_w ker(sigma(w) - 1)` contains `K`, is
+  `sigma(F_S)`-invariant because `R` is normal, and therefore
+  carries a GENUINE unitary representation of `Gamma`.  So the
+  lifting claim is EXACTLY: `H_0` contains an INTERNAL
+  `sigma`-invariant subspace of co-trace zero (an ultraproduct of
+  subspaces `L_m subset H_m` with operator-norm almost-invariance
+  and exact relators in the limit); given one, the compressions are
+  a lift on a vanishing corner.  By saturation this is a finite-
+  satisfiability statement: for finitely many generators, relators
+  and `eps > 0`, an internal projection `L >= 1_K` with
+  `|| [L, sigma(s)] ||_op < eps` and `|| (sigma(w) - 1) L ||_op < eps`.
+- **Why the natural candidates fail (the ramp).**  The orbit spans
+  `L^(N) = join_(|g| <= N) sigma(g) K` are internal, lie in `H_0`,
+  have co-trace zero, and satisfy the relator condition, but
+  `sigma(s) L^(N) subset L^(N+1)` with increments that are
+  trace-null yet of operator norm one, so `[L^(N), sigma(s)]` is
+  never operator-small; filling the rank-tiny holes by arbitrary
+  unitaries restores unitarity but leaves relator defects of
+  operator norm one on the holes, and the exactly `R`-fixed subspace
+  of the modified representation can collapse.  The one-generator
+  "ramp" (`e_m = diag(0,...,0, 1/k, ..., 1)`, `sigma = ` cyclic
+  shift, `k -> infinity`, `k/d -> 0`) shows the phenomenon with NO
+  relators at all: `e` is trace-null and exactly commutes in the
+  limit, no level set of `e` is operator-almost-invariant, and yet
+  the exact representation exists trivially (all of `H`).  So the
+  invariant subspace must be sought away from level sets of the
+  absorber -- the content is genuinely global, and this is the
+  cleanest known statement of what separates normalized from
+  operator-norm stability.
