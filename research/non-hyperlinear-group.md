@@ -139,3 +139,22 @@ The raw version is now fenced by
 globally rank-deficient while every bounded Gram window becomes orthonormal,
 so rank overflow supplies no constant local HS gap without the same kind of
 global PCP machinery the proposal hoped to avoid.
+
+The dual-prefix Leavitt lane now has a one-scalar endpoint. The exact
+three-root prefix swap and the coarse/fine rank calculation reduce the whole
+same-reservoir problem to controlling
+
+```text
+||(1-f)Je||_2^2
+```
+
+for one coarse `M_2` selector `e`, one fine `M_4` selector `f`, and one named
+unitary word `J`. Equivalently,
+`coarse-fine-selector-covariance-has-quarter-trace-floor` gives the fixed
+payment `||JeJ^*-f||_2^2>=tau(P)/4`. The current Clifford compiler leaves an
+arbitrary multiplicity involution in the fine atom reflection, and
+`pure-prefix-swap-invariants-are-selector-blind` proves that no pure spectrum,
+determinant, index, or power-trace test can remove it. The surviving attack
+must pin this **mixed** selector moment by finite multiplicity or make the
+multiplicity twist recur contractively; universal algebraic frames are ruled
+out by `algebraic-selector-mixing-frame-collapses-forbidden-sector`.

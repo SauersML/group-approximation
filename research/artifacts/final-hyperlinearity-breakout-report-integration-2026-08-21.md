@@ -158,3 +158,63 @@ implementation that blocks rectangular escape. For the trace-promotion lane,
 the missing statement is a finite group-word compiler that fixes the entire
 forbidden BCS face rather than only scalar packet masses. Neither gap is
 silently promoted to a proof of a nonhyperlinear group.
+
+## Post-audit contraction of the Leavitt seam
+
+Subsequent attacks substantially reduced, but did not close, the
+same-reservoir problem.
+
+`one-coarse-to-fine-prefix-isometry-closes-the-reservoir` proves that one
+operator from a coarse `M_2` atom to a fine `M_4` atom already has normalized
+Gram defect at least one quarter of the common carrier trace. The exact
+Leavitt completeness model supplies `x=s_(00)t_0`, `y=s_0t_(00)`, whose
+partial swap is the fixed three-root word `E_12(x)E_21(y)E_12(x)`.
+
+The analytic decoder is now complete. By
+`unitary-offdiagonal-block-gram-is-support-leakage`, for projections `e,f`
+and a unitary word `J`, the block `X=fJe` obeys
+
+```text
+e-X^*X=((1-f)Je)^*((1-f)Je).
+```
+
+If the carrier reflections are words, the one support word
+`R_f J R_e J^*` controls this Gram defect. Even that block can be discarded:
+`coarse-fine-selector-covariance-has-quarter-trace-floor` gives directly
+
+```text
+||J e J^*-f||_2^2 >= tau(P)/4.
+```
+
+Thus the remaining positive target is exactly one mixed selector-support
+moment, not a mutual bicommutant, a four-Pauli placement theorem, or a family
+of Morita arrows.
+
+Three sharp firewalls delimit this target.
+
+- `literal-prefix-three-root-swap-retains-typed-carriers` gives an exact
+  finite countermodel in which the word swaps separately typed equal-rank
+  leaves while the coarse and fine packet identities remain unrelated.
+- `controlled-pauli-corner-has-clifford-groupification` realizes the fine
+  atom reflection only as `CZ tensor V`, with an arbitrary multiplicity
+  involution `V`; the support row sees `V` even though conjugation covariance
+  does not.
+- `pure-prefix-swap-invariants-are-selector-blind` proves that spectrum,
+  power traces, determinant, multiplicity, and rectangular index cannot
+  remove this ambiguity. The first useful scalar is necessarily the mixed
+  moment `tau(e)-tau(fJeJ^*)`.
+
+The algebraic-frame alternative is also closed:
+`algebraic-selector-mixing-frame-collapses-forbidden-sector` shows that a
+universal tight frame plus exact selector mixing kills the forbidden sector
+in every representation, contradicting completeness. Hence any successful
+support-moment estimate must use finite external multiplicity or a genuinely
+canonical-microstate selection.
+
+Finally, the exact Nielsen compact-cocycle annihilation theorem has no
+structure-free quantitative upgrade.
+`sofic-nielsen-charts-defeat-uniform-compact-collapse` constructs commutative
+finite-dimensional asymptotic models with vanishing local action/covariance
+defect while the killed mark stays at distance `sqrt(2)`. A positive Nielsen
+route must therefore use the specific nonsofic/Kazhdan geometry of its
+compressor, not compactness alone.
