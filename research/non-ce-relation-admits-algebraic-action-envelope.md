@@ -179,6 +179,24 @@ non-hyperlinear group `hat K rtimes Lambda`.
   OTHER non-amenable-stabilizer coset modules than the arithmetic
   ones (e.g. over the graph's own nonsofic group), which is the one
   degree of freedom the KT fork does not already exhaust.
+- **Z-alignment is the algebraic format (2026-08-21, from the
+  Aldous--Lyons papers arXiv:2408.00110 and arXiv:2501.00173).**  In
+  the subgroup-test framework the completeness side of the halting
+  reduction is a perfect Z-ALIGNED permutation strategy (readable
+  variables diagonal) commuting along edges.  Z-alignment is exactly
+  diagonality in a distinguished basis — and Haar-module strategies
+  are Z-aligned in the FOURIER basis: order-two dual characters are
+  the diagonal readables of the algebraic world.  Branch (a) is
+  therefore formally: does the value of the separating subgroup tests
+  over Z-ALIGNED HAAR-ALGEBRAIC strategies (stabilizer IRSs of
+  algebraic actions, per the index dictionary above) still exceed the
+  quantum/co-sofic bound?  The design box says exactly which
+  algebraic IRSs are available: index-reciprocal profiles with
+  element-wise virtual triviality on the positive-trace subgroup and
+  no separating finite invariant structure.  This is the right
+  meeting point of this hole with the subgroup-test technology, and
+  it makes branch (a) a question ABOUT the BCLV completeness
+  construction rather than about an abstract envelope.
 - **Falsification test.**  Fourier positivity is a real constraint:
   coefficients of Haar algebraic processes satisfy character-positivity
   identities that a general p.m.p. correlation need not.  Check the
