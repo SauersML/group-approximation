@@ -18,12 +18,20 @@ Write `B = sigma_p(image of Lambda_-)'`, a fixed finite-dimensional
 algebra.  Then, with `V' = sigma(lambda_h)` for `lambda_h = h mod
 q_m` and `= 1 mod p^C`:
 
-1. The corrector `W = V'^* V` lies in `R_q otimes-bar B` (property
-   (T) lifting; the coprime leg has full image), every `V'`-type slot
-   lies in `sigma_q(G_q) otimes 1` and commutes with it, and
-   conjugation by `pi(w)` (`w` a Weyl element) acts on `W` only
-   through the gauge: `W^((w)) := (1 otimes sigma_p(w)) W (1 otimes
-   sigma_p(w))^(-1)`.
+1. CORRECTED (2026-08-21, second pass; the first version overstated
+   the membership).  `V` implements `Ad(h)` on `pi(Lambda_-)` in
+   full, but `V'` implements it only on the coprime leg, so the two
+   conjugations agree exactly on the smaller subgroup `Lambda_0 =
+   {lambda in Lambda_- : h lambda h^(-1) = lambda mod p^C}` — still
+   finite index (it contains `Lambda(p^(C+2)) cap Lambda_-`), but
+   its `p`-part image is DEEP-CONGRUENCE (at `C = 1` it is trivial:
+   the mod-2 agreement condition forces even upper entries).  Hence
+   property (T) lifting places the corrector in `R_q otimes-bar B_0`
+   with `B_0 = sigma_p(image of Lambda_0)'` — for small `C`
+   essentially the FULL matrix block, much larger than the parahoric
+   commutant `B` originally claimed.  The slots still lie in
+   `sigma_q(G_q) otimes 1`, commute with the corrector algebra, and
+   the Weyl conjugation acts through the gauge twist as before.
 2. The Weyl evaluation of the coprime sector now runs verbatim on
    the `q`-leg and leaves the exact system
 
@@ -113,20 +121,25 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   Hom(V-bar_pi, V-bar_pi')`, so the right legs are spectators and
   the kernel decomposes over irreducible pairs of `GL_3(F_2)`
   (dimensions `1, 3, 3, 6, 7, 8`): the certification is an exact
-  rational computation on small blocks.  CERTIFIED (same day,
-  `experiments/gauge_cert_c1.py` on sioux): over the exact
-  3528-dimensional B-orbit basis of the Borel commutant (mod 2 all
-  Weyl signs vanish, so every operator is pure permutation
-  combinatorics on matrix units), the stacked tangent-constraint
-  matrix has FULL COLUMN RANK 3528 modulo the prime 2147483629;
-  since rank can only drop under reduction mod p, the rank over `Q`
-  is full and the kernel over `C` is exactly zero.  Together with
-  the corner and multiplicity reductions this is an exact,
-  machine-verified theorem: in the `C = 1` gauge (the smallest
-  gauge — its Weyl twist is already nontrivial, correcting the
-  earlier guess that `C = 2` was the smallest) the twisted system is
-  infinitesimally rigid at the trivial corrector for EVERY
-  representation.
+  rational computation on small blocks.  A certificate was computed
+  (`experiments/gauge_cert_c1.py` on sioux): over the exact
+  3528-dimensional B-orbit basis of the BOREL commutant the stacked
+  tangent-constraint matrix has full column rank 3528 mod 2147483629,
+  hence zero kernel over `C` — an exact machine-verified statement.
+  SCOPE CORRECTION (same day): after fixing part 1, the true gauge
+  system carries only the weak `B_0`-membership, NOT
+  Borel-commutancy, so this certificate decides an over-constrained
+  subsystem, not the gauge; indeed the unconstrained two-relation
+  tangent system has a LARGE kernel (the standard `S_3`-isotypic
+  satisfies both relation families: on the `(1,0,-1)`-line of the
+  standard representation, `(s_23 + s_12) v = v`).  The certificate
+  retains value exactly where full `Lambda_-`-commutancy is
+  available — and there the coprime theorem already forces `W = 1`
+  outright — so the honest status of the bounded-gauge sector is:
+  REDUCED to the `(BP1)` classification over the weak membership
+  `R_q otimes-bar B_0`, genuinely open, with the equivariant-hom
+  tangent directions (standard-isotypic) as the enemy's
+  infinitesimal room.
 - **Why the global C=1 decision is genuinely harder than the
   linearized one.**  The tangent system at `W = 1` splits over the
   `G`-isotypic blocks of `End(l^2 G)` because its operators are
