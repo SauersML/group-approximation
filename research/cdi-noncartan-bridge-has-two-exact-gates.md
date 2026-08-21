@@ -64,3 +64,19 @@ additionally give that base a compatible projective group basis.  Since it
 contains the original non-CE algebra, that extra step is itself a
 canonical-trace bridge, not a formal cocycle untwisting.
 
+For the **actual** CDI representation these gates are evaluated as far as
+the source permits by
+`cdi-wreath-extension-preserves-projective-basis-gate`.  Proposition 3.8
+gives
+
+```text
+chi_G(x,b)=0 (b!=e),
+chi_G(x,e)=product_d chi_A(x_d).
+```
+
+Therefore `(G1)` for the final character is equivalent to `(G1)` for the
+chosen input representation `pi:F_3->U(M_tilde)`; the wreath extension does
+not create it.  Its scalar phase group is exactly the input scalar phase
+group.  The generator lemma used to choose `pi` controls only von Neumann
+generation, not these coefficients, so the published proof does not decide
+`(G1)` or `(G2)`.
