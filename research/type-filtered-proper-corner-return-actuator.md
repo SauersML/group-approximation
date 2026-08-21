@@ -7,6 +7,7 @@ distinct_from:
   finite-matrix-only-exhaustive-marked-type-actuator: that states the general finite-dimensional exhaustive interface; this gives the strongest surviving concrete moment implementation.
   central-marked-swap-star-has-two-word-trace-floor: that assumes one central marked swap star; this filters separately by every primitive marked type and by the context rejection projection.
   single-triangle-trace-cyclic-return-cell: that targets one native Fanizza incidence chord; this targets all types of one fixed context packet and lets finite duality remove alignment.
+  one-filtered-wandering-return-is-already-nonhyperlinearity: that proves any one nonzero instance of this interface is already a terminal contradiction, so exhaustive construction is stronger than necessary.
 ---
 
 **OPEN.**  For each marked type `lambda` of each fixed context packet, put
@@ -41,6 +42,14 @@ If `(TFP1)` is proved, `type-filtered-wandering-moments-sum-rejection-mass`
 and the fixed game gap remove the whole marked source.  No selected-type
 alignment theorem remains.
 
+In fact `one-filtered-wandering-return-is-already-nonhyperlinearity` shows
+that the stated target is stronger than this paragraph suggests.  Whenever
+`P_(c,lambda)!=0`, clauses 1--2 alone already prove the output group
+nonhyperlinear: the canonical trace of the positive finite-packet projection
+is nonzero, whereas the filtered wandering moment is zero.  Thus one should
+search for **one** nonzero filtered actuator, not build the full finite menu
+first.
+
 ## Why this survives the induction firewall
 
 The induced representation of a rejected `H`-type is infinite-dimensional
@@ -64,3 +73,16 @@ canonical microstates still pay its full normalized mass.
 - **Use a finite graph of finite groups.**  Stationary multiplicity flow
   realizes the return in finite dimensions; an infinite-order proper-corner
   actuator or another finite-rank asymmetry is required.
+- **Use a residually finite Bass--Serre extension.**
+  `residually-finite-models-refute-filtered-wandering-return` constructs an
+  exact finite quotient, canonical on any prescribed finite window, in which
+  the filtered moment is zero and the filter has its full positive regular
+  trace.  This rules out the proposed inequality itself, not only one proof
+  strategy.
+- **Use a co-dense nonamenable HNN edge.**  This is the surviving HNN form.
+  `projective-transfer-gives-universal-filtered-actuator` proves
+  that the open projective `SL_3` transfer modulus, followed by one free
+  phase-cancelling commutator, gives one word satisfying `(TFP1)` for every
+  packet filter simultaneously.  The remaining gap is precisely the robust
+  projective commutant transfer, which is already a terminal
+  nonhyperlinearity interface.
