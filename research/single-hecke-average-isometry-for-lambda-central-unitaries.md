@@ -47,19 +47,26 @@ about ONE explicit operator.
   at shrinking `eta` would be evidence for a leak, and a proof must
   explain why decay forces multiplicativity failure at a definite
   scale.
-- **Probe equipment (authored 2026-08-21, not yet run).**
-  `experiments/hecke42_average_probe.py` implements the refutation-side
-  search over the APPROXIMATE representation variety (the sector the
-  exact-quotient PRT1 probe provably cannot see, since `h` has no
-  image mod `2^k`): variables are the six elementary `SL_3(Z)`
-  generators, `V ~ rho(h)` and `k`; penalties are Steinberg +
-  `h`-expansion relation defects, a rational-image-certified
-  regular-trace penalty, and `Lambda`-centrality; it descends
-  `|| S(k) ||_2^2` over the `42` machine-enumerated coset words and
-  reports Pareto points against the enemy value `43/168`.  Its
-  integer selftest passed: `42` cosets, pairwise-distinctness
-  verified.  MSI lane only; results, when run, land next to
-  `experiments/prt1-threshold-probe.json` conventions.
+- **Probe results (2026-08-21, `experiments/hecke42_average_probe.py`,
+  run on sioux).**  Refutation-side Riemannian descent over the
+  APPROXIMATE representation variety (six elementary generators,
+  `V ~ rho(h)`, witness `k`; Steinberg + `h`-expansion penalties,
+  rational-image-certified regular-trace penalty,
+  `Lambda`-centrality; polar retraction -- raw numpy QR retraction
+  stalls on its R-diagonal phase jumps; analytic word-gradients
+  gradchecked to `1e-9`).  With strong penalty weights, EVERY run --
+  cold starts at `d = 8` and warm starts on the `Lambda`-exact
+  variety (`SL_3(F_2)` permutation model, `d = 14, 28`) -- collapsed
+  to `|| S(k) ||_2^2 = 1.0` exactly with `E_C = 0`: descent always
+  pushes the witness INTO the full commutant, and the enemy value
+  `43/168` was never approached (weak penalties reach it trivially by
+  abandoning centrality, which is vacuous).  Consistent with the
+  one-commutator modulus and with the prediction of
+  `odd-congruence-exact-sector-is-one-inner-action`: an enemy needs a
+  deliberately structured `W` acting on the congruence multiplicity
+  tower, which naive descent does not build.  A structured follow-up
+  should parametrize `W` in the block commutant of a congruence model
+  and descend the mixed-trace regularity residual directly.
 - **What the established contraction adds.**  By
   `hecke-averaging-realizes-commutant-expectation`, failure of `(SH1)`
   self-amplifies: `|| S(k) ||_2 <= 1 - c` gives

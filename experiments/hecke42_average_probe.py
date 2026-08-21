@@ -186,6 +186,14 @@ def short_nontrivial_words(max_len: int):
 # Unitary layer: words, traces, gradients.
 # ---------------------------------------------------------------------------
 
+def polar_unitary(M):
+    """Closest unitary to M (polar factor); smooth retraction, unlike
+    raw numpy QR whose R-diagonal phases jump discontinuously."""
+    w, V = np.linalg.eigh(M.conj().T @ M)
+    w = np.maximum(w, 1e-18)
+    return M @ (V * (1.0 / np.sqrt(w))) @ V.conj().T
+
+
 def word_product(word, env):
     d = next(iter(env.values())).shape[0]
     m = np.eye(d, dtype=complex)
@@ -339,7 +347,27 @@ def relation_words():
     return rels
 
 
-def probe(d, restarts, iters, beta, gamma, zeta, reg_len):
+def perm_rep_mod2(N: int):
+    """The permutation representation of SL_3(F_2) on the 7 nonzero
+    vectors of F_2^3, tensored with 1_N: exact on the Steinberg
+    relations, giving a warm start on the Lambda-exact variety."""
+    pts = [(a, b, c) for a in (0, 1) for b in (0, 1) for c in (0, 1)
+           if (a, b, c) != (0, 0, 0)]
+    idx = {p: i for i, p in enumerate(pts)}
+    mats = {}
+    for name, (i, j) in ELEM.items():
+        m = [[int(r == c) for c in range(3)] for r in range(3)]
+        m[i][j] = 1
+        P = np.zeros((7, 7))
+        for p in pts:
+            q = tuple(sum(m[r][c] * p[c] for c in range(3)) % 2
+                      for r in range(3))
+            P[idx[q], idx[p]] = 1.0
+        mats[name] = np.kron(P, np.eye(N)).astype(complex)
+    return mats
+
+
+def probe(d, restarts, iters, beta, gamma, zeta, reg_len, warm=0):
     cw = coset_words_mod4()
     obj = Objective(cw, relation_words(),
                     short_nontrivial_words(reg_len),
@@ -349,34 +377,37 @@ def probe(d, restarts, iters, beta, gamma, zeta, reg_len):
     results = []
     for r in range(restarts):
         env = {}
+        if warm:
+            d = 7 * warm
+            env.update(perm_rep_mod2(warm))
         for n in names:
+            if n in env:
+                continue
             Z = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
             env[n] = np.linalg.qr(Z)[0]
-        step = 0.1
+        step = 1e-3
         last = None
+        stall = 0
         for _ in range(iters):
             val, grads = obj.value_and_grad(env)
-            if last is not None and abs(last - val) < 1e-10:
+            if last is not None and abs(last - val) < 1e-12:
                 break
             new_env = {}
             for n in names:
                 G, X = grads[n], env[n]
                 Om = (G @ X.conj().T - X @ G.conj().T) / 2
-                nrm = np.linalg.norm(Om)
-                if nrm < 1e-14:
-                    new_env[n] = X
-                    continue
-                new_env[n] = np.linalg.qr(
-                    (np.eye(d) - step * Om / nrm) @ X)[0]
+                new_env[n] = polar_unitary((np.eye(d) - step * Om) @ X)
             nval, _ = obj.value_and_grad(new_env)
             if nval < val:
-                env, last, step = new_env, val, min(step * 1.05, 0.3)
+                env, last = new_env, val
+                step = min(step * 1.3, 0.2)
+                stall = 0
             else:
-                step *= 0.5
-                if step < 1e-7:
+                step *= 0.4
+                stall += 1
+                if step < 1e-12 or stall > 60:
                     break
         s2 = obj.s_norm_sq(env)
-        _, _ = obj.value_and_grad(env)
         ec = sum(2 - 2 * np.trace(word_product(
             [("k", 1), (n, 1), ("k", -1), (n, -1)], env)).real / d
             for n in obj.lam)
@@ -455,6 +486,8 @@ def main():
     ap.add_argument("--gamma", type=float, default=4.0)
     ap.add_argument("--zeta", type=float, default=1.0)
     ap.add_argument("--reg-len", type=int, default=2)
+    ap.add_argument("--warm", type=int, default=0,
+                    help="warm-start multiplicity N (d = 7N, perm rep)")
     args = ap.parse_args()
     if args.selftest:
         selftest()
@@ -462,7 +495,8 @@ def main():
     if args.gradcheck:
         sys.exit(0 if gradcheck() else 1)
     res = probe(args.d, args.restarts, args.iters,
-                args.beta, args.gamma, args.zeta, args.reg_len)
+                args.beta, args.gamma, args.zeta, args.reg_len,
+                warm=args.warm)
     with open("hecke42-average-probe.json", "w") as f:
         json.dump(res, f, indent=1)
     print("PROBE-DONE", file=sys.stderr)
