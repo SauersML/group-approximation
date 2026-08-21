@@ -94,6 +94,28 @@ refutation, and this claim makes the reduction precise.
   `2j + 1 >= a`, so the true wall shape is `delta(a, J)` with depth
   `J ~ a/2` — the level/depth coupling is where a cross-level
   coherence argument would have to bite.
+- **Probe v2: a large per-level leak cost (2026-08-21,
+  `experiments/sl3_delta3_tower_probe_v2.py`,
+  `experiments/sl3-delta3-tower-probe-v2.json`).**  With
+  finite-difference-validated gradients (the harness caught four real
+  bugs; all terms now match to eight decimals) and the exact spectral
+  floor `2.732` subtracted: the unconstrained intertwining optimum at
+  the `(a = 3`, permutation-representation`)` instance has raw defect
+  `~6.97` and NATURALLY retains leak correlation `~0.23-0.32`;
+  forcing the exact-leak orthogonality (`|<VKV*, K>| < 0.004`) raises
+  the optimum to `~20.1` — a `+13.1` cost on a `24`-scale, consistent
+  across restarts.  First numerical evidence that the tower sector
+  has a genuine PER-LEVEL obstruction at fixed constraint lists:
+  orthogonality of a `Lambda`-commuting unitary from its own
+  `V`-conjugate is very expensive when `V` must intertwine the
+  parahoric dictionary.  Caveats: local optimization (an upper-bound
+  signal on infeasibility, not a proof), one representation choice,
+  soft `K`-centrality.  The mechanism hunt is now the priority: both
+  `K` and `VKV*` live in small commutant algebras (`rho(G)'` and its
+  `phi`-twist), and the orthogonality demand plays against unitarity
+  inside that small algebra — a provable per-level floor here, with
+  (T)-uniform constants in `a`, would eliminate the tower sector
+  entirely and leave the SL_3 enemy as uniform outlier only.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
