@@ -8,6 +8,8 @@ requires:
   - relative-c-sixth-pauli-incidence-labeling
   - relative-c-sixth-protects-sign-double-cosets
   - sign-double-cosets-separate-pauli-clouds
+artifacts:
+  - research/artifacts/relative-small-cancellation-occurrence-support-2026-08-21.md
 ---
 
 Form the recursive relative graphical-small-cancellation quotient `G` of
@@ -31,8 +33,13 @@ Injectivity preserves `(1)` and the cloud-coset inequalities: every factor
 in a proposed equality still lies in the embedded copy of `G`.  Therefore
 all four clauses of `colored-cayley-pauli-incidence-separation` hold in `A`.
 
+For a primary-source strengthening, Wagner arXiv:2404.00841v2, Theorem A
+provides a quasi-isometric malnormal CEP Higman embedding.  By
+`higman-embedding-preserves-occurrence-coset-separation`, ordinary injectivity
+already proves the coset assertions above, while CEP also preserves any source
+normal-closure firewall.
+
 No quasi-isometric or quantitative Higman theorem is needed.  Every tested
 occurrence relation is a conjugate of a relator involving one of the fixed
 offset words, so its normalized-HS cost is independent of the length of the
 address.
-

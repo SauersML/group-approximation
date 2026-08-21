@@ -3,6 +3,8 @@ rg: 2
 id: colored-cayley-pauli-incidence-separation
 kind: claim
 title: Place degree-reduced Pauli incidence graphs in separated Cayley cosets
+artifacts:
+  - research/artifacts/relative-small-cancellation-occurrence-support-2026-08-21.md
 distinct_from:
   fp-cayley-expanders-give-bounded-occurrence-edges: that places an untyped expander family with bounded edge words; this additionally preserves logical row classes, column classes, and the two Pauli signs as relative double-coset data.
   two-transitive-occurrence-sections-have-unbounded-pair-holonomy: that proves a global two-role section cannot have bounded corrections; this asks for bounded-neighbor expander clouds of actual Cayley flags instead of a section.
@@ -94,3 +96,25 @@ The sharper formulation is
 eight.  Once supplied, `relative-c-sixth-incidence-closes-placement` proves
 the full placement and then uses ordinary Higman embedding only
 algebraically; no distortion estimate enters the HS modulus.
+
+## Primary theorem support now pinned
+
+The long-relator and finite-presentation stages are not additional open gates.
+`osin-relative-ball-injectivity-protects-sign-double-cosets` preserves every
+sign boundary at once once `H_X,H_Z` are peripheral and the threshold
+rectangles have been handled in the base/labeling.  After a recursively
+presented separated source is built,
+`higman-embedding-preserves-occurrence-coset-separation` puts it in a finitely
+presented group without losing selected cosets, double cosets, bounded finite
+offsets, or source normal-closure firewalls.
+
+What remains is exactly the relative threshold labeling/base packet and the
+global cloud-coset bookkeeping.  Finite generation of the equality groups
+alone is not an applicable Freiheitssatz hypothesis.
+
+There is a sharp limit on that formulation.  The original finite-offset
+Pauli rectangles cannot themselves be relative `Gr'(1/6)`, by
+`finite-offset-pauli-rectangles-violate-relative-gr-sixth`.  Hence the direct
+relative route needs an additional dimension-preserving mixed-incidence
+replacement.  Without that replacement, the ordinary balanced-Greendlinger
+route is the only surviving small-cancellation lane.

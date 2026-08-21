@@ -5,12 +5,17 @@ kind: route
 title: Apply the free-product Greendlinger lemma to a four-syllable collision word
 target: relative-c-sixth-protects-sign-double-cosets
 requires: []
+artifacts:
+  - research/artifacts/relative-small-cancellation-occurrence-support-2026-08-21.md
 ---
 
 The free-product `C'(1/6)` Greendlinger lemma says that a nonempty freely
 reduced word trivial in `(RC6-3)` contains a consecutive segment longer
 than half of some defining relator.  The usual minimal reduced diagram proof
 also proves that every free factor embeds.
+
+Primary source pin: Steenbock, arXiv:1307.0981v2, Theorem 1.1 gives the
+free-product estimate and Lemma 1.3 gives the graphical-region version.
 
 Suppose `(RC6-4)` fails.  Then for some `h_X in H_X`, `h_Z in H_Z`,
 `p_0 in P_0`, and `p_1 in P_1`,
