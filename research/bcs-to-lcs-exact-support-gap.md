@@ -49,6 +49,71 @@ as a weaker route around perfect completeness. `exact-support-relator-sparsifica
 remains useful downstream for finite-moment extraction once such an exact
 sub-menu has been found.
 
+## Minimal exact-support fork: the affine-support relaxation
+
+Fix a tracial satisfying state `tau` of the source BCS.  For each context
+`c`, let
+
+```text
+S_c={a:tau(P_(c,a))>0},        A_c=Aff_(F_2)(S_c),      (ESF1)
+```
+
+and let `L_tau` be the finite LCS consisting of affine equations cutting out
+the `A_c`, together with the standard rows enforcing every required
+contextwise commutation.  By `tracial-support-affine-linearization` and
+`finite-linear-commutation-system-to-lcs`, the original tracial operators
+extend to a perfect operator solution of `L_tau` with its solution-group
+involution represented by `J=-I`.
+
+> **Affine-relaxation criterion.**  If `L_tau` is not `R^U`-satisfiable, then
+> `L_tau` itself supplies `bcs-to-lcs-exact-support-gap`, with the exact menu
+> equal to its full finite relator list.
+
+Indeed, non-`R^U`-satisfiability says that the marked involution cannot remain
+separated in a sequence of finite-dimensional assignments whose complete
+finite LCS relator defect tends to zero.  Fix any `delta>0` below
+`d_2(-I,I)`.  If there were no uniform `eta>0` such that every assignment
+with `d_2(J,I)>=delta` has some relator defect at least `eta`, choosing one
+counterexample for each `eta=1/n` would give exactly such a forbidden
+approximate sequence.  Hence some `eta>0` exists.  Put uniform measure on the
+finite relator list and choose `eps_plus<eta`.  The tracial witness satisfies
+every relator, so `g=1`, while each marked finite-dimensional assignment
+rejects at least one relator and therefore
+
+```text
+q<=1-1/|S|<1=g.                                        (ESF2)
+```
+
+This isolates a concrete one-instance question:
+
+```text
+Does some tracial state of the fixed non-RU BCS have a
+non-RU affine-support relaxation L_tau?                 (ESF3)
+```
+
+An affirmative answer finishes this compiler without a long code, mask, PCP,
+or sparsification argument.
+
+There is also a sharp limit on improving `L_tau` by a context-local exact
+gadget.  Suppose a proposed local parity gadget has visible context bits `x`,
+affine auxiliary bits `y`, and admits an honest auxiliary assignment for
+every `a in S_c`.  Its classical solution set is affine, and its projection
+to the visible coordinates is affine by
+`affine-auxiliary-control-flow-barrier`.  That projection contains `S_c`, so
+it contains all of `A_c=Aff(S_c)`.  Thus no assignmentwise local exact LCS
+gadget—regardless of how many affine auxiliaries it uses—can exclude any of
+the extra points introduced by `(ESF1)`.
+
+Consequently a route beyond `(ESF3)` must use genuinely global
+cross-context operator relations, not a stronger local linearization of the
+same support.  `linear-encoding-lcs-admits-odd-subset-cheats` gives the next
+obstruction: global linear encodings which remain exact on all honest support
+points also retain consistent odd-subset characters.  Proving `(ESF3)`, or
+globally eliminating those odd-subset profiles without losing the tracial
+solution, is the remaining exact-support content.  Exact finite-dimensional
+invisibility alone is insufficient by
+`exact-fd-invisibility-has-no-general-hs-robustification`.
+
 ## Attempts
 
 - **Published Taller--Vidick test, unmodified.** Their completeness loss comes
