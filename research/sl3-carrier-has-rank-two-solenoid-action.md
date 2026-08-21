@@ -47,6 +47,24 @@ Z^2` be the diagonal subgroup, `U` the upper unipotent subgroup and
 
 ## Attempts
 
+- **The diagonal half of the same system (addendum).**  In ANY
+  regular-trace model, elementary exact facts pin the `h`-slot
+  itself: the images of `D iso Z^2` commute exactly
+  (`[pi(h_x), pi(h_y)] = pi([h_x, h_y]) = 1`), the regular trace
+  forces their JOINT spectral measure on the 2-torus to be exactly
+  Haar (`tau(pi(h_x)) = 0` for `x != 0`), Weyl conjugation by
+  `pi(w) in pi(Lambda)` permutes the tuple through the `S_3`-action
+  on coweights, and conjugation on each root image implements the
+  `p^(<alpha, x>)` expansion.  So the enemy's full `Q`-data is a
+  Weyl-equivariant coupling of an exactly-Haar `Z^2`-torus system
+  with an exactly-Haar joint solenoid system, with prescribed
+  expansion cross-relations, realized in a matrix ultraproduct --
+  every marginal is forced; ONLY the coupling is free, and the open
+  question is which couplings are matricially realizable.  This is
+  the `SL_3` form of the "square-root gluing" freedom recorded for
+  `SL_2` in `no-exact-quasi-regular-leak`, now with the rank-two
+  rigidity data attached.
+
 - **What this does and does not give.**  Parts 1-2 are elementary
   (proof route) and unconditional; part 3 is a toolkit unlock, not a
   proof: the enemy is constrained by MORE than invariance of one
