@@ -1478,6 +1478,7 @@ import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
 import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Sofic.GreendlingerFreeGate
+import GroupApproximation.Sofic.GreendlingerBetaBranch
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
