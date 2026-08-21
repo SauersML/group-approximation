@@ -107,6 +107,49 @@ non-hyperlinear group `hat K rtimes Lambda`.
   structure.  This doubles as a screen for the algebraic-completeness
   branch: if tailored-game module strategies can always be taken over
   residually finite modules, that branch dies.
+- **The design box (2026-08-21, second pass): index dictionary and
+  virtual triviality.**  For an algebraic action the fixed set of every
+  element is a CLOSED SUBGROUP, so the crossed-product trace obeys the
+  dictionary `tau(u_w) = Haar(Fix w) = 1/[K : Fix(w)]`, with value `0`
+  at infinite index: algebraic IRS characters are exactly the
+  index-reciprocal profiles of stabilizer subgroup lattices.  A
+  non-CE GNS forces some `w != e` with `tau(u_w) > 0` (otherwise the
+  character is regular and the GNS is `L(Lambda_0)`, CE since
+  `Lambda_0` is virtually free).  For such `w`, `[K : Fix(w)]` finite
+  dualizes to `(w-1) hat K` FINITE; and by
+  `(st-1) = s(t-1) + (s-1)`, finiteness of `(s-1) hat K` on a
+  generating set propagates to every word of the generated subgroup.
+  So the enemy module must be VIRTUALLY TRIVIAL element-by-element on
+  the whole positive-trace subgroup while remaining globally
+  non-residually-finite (previous bullet) — a very tight box: each
+  listed element moves only a finite chunk of the dual, yet no
+  separating finite invariant structure exists globally.
+- **Deciding `omega_alg > omega*` IS the goal, not a preliminary.**
+  A positive answer makes `hat K rtimes Lambda_0` non-hyperlinear
+  outright, so no cheap decision should be expected; the actionable
+  work is the box above plus the finite-type screen: **does a
+  finitely presented non-residually-finite `F_2[F_k]`-module exist?**
+  If no, finite-type linear tree-shifts can never carry the envelope
+  and recursively-enumerable rules are forced (the Higman step then
+  does real work); if yes, the witness modules are the candidate
+  bases.  This is a clean, well-posed question in the algebra of
+  free group rings — the module-language form of the periodic-density
+  screen — and it is where this hole should be attacked next.
+- **The finite-type screen is now closed (proved, 2026-08-21).**
+  Garrido--Jaikin-Zapirain, Proposition 5.3, prove that every finitely
+  presented module over `F_p[F]`, for `F` a finitely generated free group, is
+  residually finite.  Restriction to a finite-index normal free subgroup and
+  intersection of finitely many conjugate separating submodules extends this
+  to every finitely generated virtually free group.  The dual of a finite-type
+  linear subshift is finitely presented, so
+  `finite-type-linear-subshifts-over-virtually-free-groups-are-residually-finite`
+  proves that EVERY finite-type Haar-linear subshift over the Manzoor source
+  group has residually finite semidirect product and a Connes-embeddable
+  crossed product.  Thus the question in the preceding bullet has answer NO:
+  a finitely presented non-residually-finite `F_2[F_k]`-module does not exist.
+  Branch (a) can survive only with infinitely many r.e. module relations, a
+  different acting group, or a genuinely non-Cartan embedding.  Enlarging a
+  finite local rule table can never help.
 - **Falsification test.**  Fourier positivity is a real constraint:
   coefficients of Haar algebraic processes satisfy character-positivity
   identities that a general p.m.p. correlation need not.  Check the
