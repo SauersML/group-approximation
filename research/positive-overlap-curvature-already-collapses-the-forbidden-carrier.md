@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: positive-overlap-curvature-already-collapses-the-forbidden-carrier
+id: positive-overlap-curvature-collapses-carrier
 kind: claim
 title: Positive source-specific overlap and disjoint tag covariance already collapse the forbidden carrier
 distinct_from:
