@@ -8,26 +8,40 @@ distinct_from:
   same-orbit-closure: that concerns the affine-Leavitt paired-label decoder rather than the sparse Weyl occurrence compiler.
 ---
 
-OPEN.  After same-basis rounding, let `(P_v)_(v in Omega_n)` be the spectral
-PVM on the marked carrier.  Choose a bounded-degree family of sampled mixed
-Weyl tests whose induced label transports generate a graph `G_n` with
-uniform spectral gap and
+OPEN.  After same-basis rounding, let `U,W:F_2^n->U(H)` be the two exact
+additive actions on the marked carrier.  For the two field matchings
+
+```text
+a=b,                         a=alpha b,
+```
+
+prove the dimension-independent RMS closure estimate
+
+```text
+(E_(a,b) ||U(a)W(b)-(-1)^<a,b>W(b)U(a)||_2^2)^(1/2)
+ <= C epsilon^theta,                                          (SW0)
+```
+
+where `epsilon` is the larger RMS defect on the two sampled matchings and
+`C,theta>0` are independent of `n` and matrix dimension.
+
+By `full-weyl-defect-equals-pvm-transport-energy`, `(SW0)` is **equivalent**
+to controlling the complete-translation transport energy of the spectral
+PVM `(P_v)`:
 
 ```text
 |Omega_n| >= 2^(c n).                                         (SW1)
 ```
 
-Prove that mixed-test defect `epsilon` supplies unitaries `W_s` on the
-**same Hilbert space and the same PVM** such that
-
 ```text
-(1/D) sum_s sum_v ||W_s P_v W_s^*-P_(s v)||_2^2
+(1/2^n) sum_b sum_v ||W(b) P_v W(b)^*-P_(v+b)||_2^2
  <= C epsilon^theta                                            (SW2)
 ```
 
 for fixed `C,theta>0`, independent of `n` and matrix dimension.
 
-Together with `expander-pvm-transport-forces-dimension-or-mass-collapse`,
+Together with the Parseval identity and
+`expander-pvm-transport-forces-dimension-or-mass-collapse`,
 this gives
 
 ```text
@@ -37,20 +51,22 @@ d >= 2^(c n-1)       or       marked mass <= C' epsilon^theta,
 which is exactly the dimension-witness/mass-collapse alternative required
 by the occurrence compiler.
 
-The abstract exact two-field-matching closure is already established by
+The abstract exact two-field-matching closure (the zero-defect case of
+`(SW0)`) is already established by
 `two-untwisted-field-matchings-force-complete-cross-commutation`; the open
-content is the normalized-HS conversion from sparse sampled commutators to
-the *summed* transport estimate `(SW2)`.
+content is its rank-independent quantitative stability.  The current
+centralizer-fiber circuit proves `(SW0)` only with a factor
+`K_n=O(n^(1+log_2 3))`.
 
 ## Attempts
 
 - **Propagate one matrix bridge.**  The local bridge estimate is quadratic
   in the bridge amplitude, so iteration loses tiny blocks.
 - **Use only dimension expansion of the linear maps.**  Rank/support
-  expansion gives no Poincare estimate for a weighted approximate model.
-  The needed hypothesis is spectral expansion of the induced transport
-  graph, together with `(SW2)`.
+  expansion gives no rank-independent closure estimate.  Parseval shows
+  that the desired endpoint is already the full average defect `(SW0)`;
+  deriving it from two matchings remains a two-dimensional
+  curvature/agreement problem, not a one-dimensional Poincare estimate.
 - **Compare context PVMs separately.**  This permits incompatible couplings
   and rectangular/multiplicity escape.  The estimate must concern one
   common PVM on one Hilbert space.
-

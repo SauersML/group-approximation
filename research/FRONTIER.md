@@ -2947,11 +2947,11 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-21 · schreier-square-function-for-weak-commutator-layers [OPEN] Sum the Schreier gaps of all weak-commutator exterior layers in one HS square function
 - 2026-08-21 · schreier-matchings-kill-alternating-forms [ESTABLISHED] Involutive Schreier matchings uniformly kill every alternating commutator form
 - 2026-08-21 · schreier-matching-sampler-closes-metapixel [OPEN] Use bounded involutive Schreier matchings as the robust mixed Pauli sampler
+- 2026-08-21 · iwahori-outlier-repair [OPEN] Iwahori endpoint: full-rank outlier repair
 - 2026-08-21 · involutive-schreier-alternating-form-gap-proof [COMPLETE] Polarize a sampled quadratic form into the independent-pair Schreier gradient
 - 2026-08-21 · bounded-involutive-cayley-expander-proof [COMPLETE] Factor uniform simple-group expander generators into four involutions
 - 2026-08-21 · bounded-involutive-cayley-expanders-for-sl-n-two [ESTABLISHED] The groups SL_n(2) admit bounded involutive Cayley expanders
 - 2026-08-21 · two-power-sector-conjugator-dichotomy [ESTABLISHED] Property T makes the two-power corrector all-or-nothing, and the sector is a Jung-type embedding question
-- 2026-08-21 · two-adic-tower-format-of-surviving-lambda-exact-enemy [ESTABLISHED] The surviving Lambda-exact enemy is an S3-interlocked depth-shifting tower system over the two-adic congruence quotients
 
 ## Active claims
 
