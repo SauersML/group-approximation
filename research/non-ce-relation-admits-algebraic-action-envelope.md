@@ -142,7 +142,7 @@ non-hyperlinear group `hat K rtimes Lambda`.
   intersection of finitely many conjugate separating submodules extends this
   to every finitely generated virtually free group.  The dual of a finite-type
   linear subshift is finitely presented, so
-  `finite-type-linear-subshifts-over-virtually-free-groups-are-residually-finite`
+  `finite-type-linear-vfree-envelope-is-residually-finite`
   proves that EVERY finite-type Haar-linear subshift over the Manzoor source
   group has residually finite semidirect product and a Connes-embeddable
   crossed product.  Thus the question in the preceding bullet has answer NO:

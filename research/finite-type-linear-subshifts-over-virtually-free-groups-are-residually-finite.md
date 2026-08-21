@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-type-linear-subshifts-over-virtually-free-groups-are-residually-finite
+id: finite-type-linear-vfree-envelope-is-residually-finite
 kind: claim
 title: Finite-type linear subshifts over virtually free groups have residually finite dual semidirect products
 distinct_from:

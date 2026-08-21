@@ -81,7 +81,7 @@ relation action is not a measurable factor of `K` and its normalizers are not
 identified with the global `Lambda`-unitaries.
 
 There is a stronger no-go for the preferred finite-type implementation.
-`finite-type-linear-subshifts-over-virtually-free-groups-are-residually-finite`
+`finite-type-linear-vfree-envelope-is-residually-finite`
 uses the residual-finiteness theorem for finitely presented modules over
 finite-field free-group algebras (Garrido--Jaikin-Zapirain, Proposition 5.3)
 to prove that every finite-type linear subshift over a finitely generated
