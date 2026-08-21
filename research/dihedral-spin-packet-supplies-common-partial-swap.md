@@ -7,6 +7,7 @@ distinct_from:
   partial-isometry-swap-wordizes-one-bcs-gram-row: that starts from the literal reflection attached to a partial isometry; this constructs the partial isometry and a sufficient common reflection from two ordinary involutions and one central commutator mark.
   controlled-swap-wordizes-matrix-corner-without-adjoint-dilution: that treats a controlled copy swap whose support projection has already been named; this recovers the support as the odd dihedral spin sector and never names its projection by a group word.
   finite-selector-gadget-induction-barrier: that rules out nonlinear pruning of a commuting selector cube by a finite packet; this packet does not prune selectors and uses the noncommuting dihedral pair only to authenticate one common Gram source.
+  finite-role-packet-cannot-supply-hybrid-predicate-row: that proves the hybrid row isolated here cannot be universally oriented by any ordinary word of a finite role packet, even when the common swap cancels every external multiplicity commutator.
   perfect-tracial-bcs-has-one-common-module-swap: that constructs the exact full standard-form swap in the perfect infinite model; this authenticates a positive-density partial swap in every finite marked packet and proves the dimension-free row estimate.
 ---
 
@@ -309,3 +310,10 @@ type, while the row controller must act with the fixed orientation
 - **Claim the full game compiler is finished.**  It is not.  Ordinary words
   still have to name each hybrid block involution without imposing the
   Alice-context relations on the Bob block or losing the common Bob action.
+- **Cancel the external multiplicity commutator with role-covariant gates.**
+  This is useful on a selected type but cannot make the row universal on the
+  whole marked D8 spin.  The finite regular-sector calculation in
+  `finite-role-packet-cannot-supply-hybrid-predicate-row` forces any such
+  universally scalar ordinary word back into the abelian role-selector
+  subgroup, where its phase is affine (and a nontrivial upper-only phase is
+  impossible even for an affine predicate).
