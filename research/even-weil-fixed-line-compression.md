@@ -57,11 +57,34 @@ would factor through `PSL_2(F_p)`, whose smallest nontrivial complex degree
 is `(p+1)/2>dim H_0`.  Adding back the single line `C delta_0`, however,
 recovers the exact Weil representation.
 
+There is in fact a constant `c>0`, independent of `p`, such that for all
+large `p=1 mod 4`, the tuple on `H_0` is at generator distance at least `c`
+from **every** exact Iwahori representation of dimension `(p-1)/2`.  To see
+this, let `pi_p` be the irreducible full even Weil representation and suppose
+an exact same-dimensional representation `sigma_p` approached the compressed
+tuple.  Then `sigma_p (+) 1` would approach `pi_p`, because adjoining one
+trivial line changes the compressed tuple to `pi_p` by only `O(p^(-1/2))`.
+Property `(T;FD)` of `PSL_2(Z[1/2])` gives a uniform spectral gap on the
+finite-dimensional conjugation representation
+
+```text
+pi_p tensor conjugate(sigma_p (+) 1).
+```
+
+Two sufficiently close exact tuples would therefore have a nonzero
+intertwiner.  Since `pi_p` is irreducible and both sides have dimension
+`(p+1)/2`, this would make `sigma_p (+) 1` isomorphic to `pi_p`, impossible
+because the former has an invariant line.  Thus these tuples are an explicit
+strict-HS-instability sequence even though they are flexibly repaired by one
+dimension.
+
 ## Meaning for the open repair problem
 
-Strict same-dimensional relative repair is false.  The flexible formulation
-in `bs14-relative-involution-extension-stability` survives, but the example
-fixes its necessary scale: defect `Theta(d^(-1/2))` can encode exactly one
-missing dimension, so the correct reconciliation estimate is quadratic,
-`padding/d = O(defect^2)`.  Any proposed positive-density packet gap that
-forbids `(EWC4)` is false.
+Same-dimensional metric repair is uniformly impossible, while one-dimensional
+flexible repair is explicit.  Hence the example fixes the necessary scale:
+defect `Theta(d^(-1/2))` can encode exactly one missing dimension, so a sharp
+reconciliation theorem should permit `padding/d = O(defect^2)`.  This does
+not refute the flexible Dogon--Vigdorovich target: their generalized metric
+allows the full `(p+1)/2`-dimensional Weil representation, which is
+`O(p^(-1/2))` from the compressed tuple.  Any proposed positive-density
+packet gap that forbids `(EWC4)` is false.

@@ -31,6 +31,15 @@ spectral rank contributes at least `C^(-1)sqrt(r/d)` to the Iwahori defect.
 
 ## Attempts
 
+- **The sharp boundary model is now explicit.**
+  `sl2-half-explicit-strict-flexible-separation` deletes the single fixed
+  line from the even Weil representation.  It has defect
+  `Theta(d^(-1/2))`, is uniformly far from every exact same-dimensional
+  representation by `(T;FD)`, and becomes exact after one dimension of
+  flexible padding.  Thus no same-dimensional stratum theorem is possible;
+  the correct quantitative target is precisely
+  `padding/d=O(defect^2)` (or its multi-block analogue).
+
 - Continuous Newton cannot change the discrete multiplicities.
 - Discarding the changed block works only for flexible stability; the native
   endpoint requires an explicitly controlled same-dimensional repair.

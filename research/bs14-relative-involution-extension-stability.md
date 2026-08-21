@@ -43,14 +43,18 @@ involution.
 
 ## Attempts
 
-- **Same-dimensional repair is false; flexible padding is essential.**
+- **Strict repair fails, and one-dimensional flexible repair is sharp.**
   `even-weil-fixed-line-compression` removes the one `R,S`-invariant fixed
   line from the even Weil representation for every prime `p=1 mod 4` and
   polar-rounds the compressed involution.  The BS core remains exact, all
   four remaining relators have defect `O(p^(-1/2))`, but no exact extension
   exists in dimension `(p-1)/2`.  Adding back one dimension gives an exact
-  model.  Thus the allowed flexible padding is load-bearing, and the sharp
-  target must permit `padding/d=O(epsilon^2)`.
+  model.  Property `(T;FD)` upgrades the algebraic nonextension to uniform
+  distance from every exact same-dimensional representation: otherwise,
+  after adjoining one trivial line, two exact equal-dimensional
+  representations would violate the `(T;FD)` intertwiner gap.  Thus strict
+  stability fails but the flexible claim survives, and its sharp target must
+  permit `padding/d=O(epsilon^2)`.
 - **Primitive prime packets are now classified exactly.**
   `prime-bs14-packet-extension-classification` proves that a scalar packet
   extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,

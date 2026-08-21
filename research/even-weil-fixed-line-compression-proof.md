@@ -32,3 +32,14 @@ uniform `O(p^(-1/2))` estimate.
 The exact nonextension follows from the mod-`p` quotient theorem and the
 minimal character degree of `PSL_2(F_p)`; restoring `QH` gives the original
 exact Weil model.
+
+For strict separation, fix a `(T;FD)` Kazhdan pair for
+`PSL_2(Z[1/2])`.  If exact same-dimensional `sigma_p` approached the
+compressed tuple, then `sigma_p (+) 1` and the irreducible full Weil
+representation `pi_p` would be closer than the Kazhdan constant for large
+`p`.  The identity matrix is then an almost-invariant unit vector in
+`pi_p tensor conjugate(sigma_p (+) 1)`.  Property `(T;FD)` produces a
+nonzero invariant vector, equivalently a nonzero intertwiner.  Irreducibility
+and equality of total dimensions force `sigma_p (+) 1 ~= pi_p`, contradicting
+the invariant trivial line on the left.  The same argument gives a uniform
+positive lower bound after subtracting the `O(p^(-1/2))` compression error.
