@@ -88,7 +88,20 @@ Exactly one implication, in two readings:
     MetricSmallCancellation R (1/6) → GreendlingerLengthBound R
     MetricSmallCancellation R (1/6) → TorsionIntoFactors (relatorSubgroup R)
 
-for expressions with **two or more** conjugate factors.  The one-factor case
+**As displayed, both are FALSE — corrected 2026-08-21.**  Three hypotheses are
+missing, each with a witness recorded in `Sofic/GreendlingerRelativeTransfer`:
+`R` must be symmetrized (a one-element family has no pieces at all, so the
+metric condition holds vacuously); no relator may be a proper power (the
+symmetrized family of `(xy)^7` over `ℤ * ℤ` has no pieces either, and the image
+of `xy` has order seven, so the torsion reading fails); and the constant must
+drop below `1/6` against long relators, for the fragment reason set out at the
+end of this docstring.  The length reading fails too, over `ℤ * ℤ/3` with the
+relator `e·b⁻¹`.  What follows describes the combinatorial core that remains
+open once those hypotheses are supplied; the repaired statements live in
+`Sofic/GreendlingerRelativeTransfer`.
+
+The core is open for expressions with **two or more** conjugate factors.  The
+one-factor case
 is `wlen_le_sylLength_conj` above, and it is proved; what the general case
 needs is the count that says the cancellations between different conjugates
 cannot all be large, and that count is not soft.  Two independent checks that
@@ -126,13 +139,26 @@ Conclusion`, `GreendlingerLengthBound` and `TorsionIntoFactors` are predicates
 on a relator family, each with proved instances, so nothing in this file is a
 typed literature input and no statement here is conditional on a citation.
 
-One honest caveat about the definitions.  Pieces are measured in whole
-syllables (`IsPiece`, `MetricSmallCancellation`).  Over a free product a piece
-can also be a *fragment* of a syllable — `u = u₁u₂` with only `u₁` shared —
-and Lyndon--Schupp handle that with semi-reduced words.  The caveat concerns
-only the unproved implication above, where it makes the hypothesis stronger
-than the classical one; every theorem in this file takes the Greendlinger
-conclusion as given and is unaffected.
+One honest caveat about the definitions, **corrected 2026-08-21 — the first
+version of this paragraph had the direction backwards.**  Pieces are measured
+in whole syllables (`IsPiece`, `MetricSmallCancellation`).  Over a free product
+a piece can also be a *fragment* of a syllable — `u = u₁u₂` with only `u₁`
+shared — and Lyndon--Schupp handle that with semi-reduced words, counting the
+fragment as a full syllable of the piece.  So the classical family of pieces
+strictly contains the whole-syllable one, and constraining fewer pieces is a
+**weaker** demand: the condition defined here is weaker than classical
+`C'(1/6)`, not stronger.
+
+Truncating a classical piece to its complete syllables leaves a whole-syllable
+piece, so the gap is exactly one syllable and whole-syllable `C'(lam)` yields
+classical `C'(lam + 1/|r|)` and no better.  The consequence for the implication
+above is that it needs `lam` strictly below `1/6` together with a relator-length
+bound — `lam · |r| + 1 ≤ (1/6) · |r|`, so `|r| ≥ 1 / (1/6 - lam)`; at
+`lam = 1/6` no length works.  `Sofic/GreendlingerRelativeTransfer` carries the
+repaired statements, with `FragmentSlack` as the named condition.
+
+The caveat concerns only the unproved implication: every theorem in this file
+takes the Greendlinger conclusion as given, and those are unaffected.
 -/
 
 namespace GroupApproximation
