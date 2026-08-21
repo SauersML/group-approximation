@@ -31,6 +31,17 @@ Pauli covariance + defining relators
      up to a computable dimension-free HS error.        (HRI1)
 ```
 
+By `trace-conditioned-reverse-kleene-collapse`, the return theorem need only
+hold for tuples satisfying finitely many canonical-trace moment tests.  Hence
+each exactified finite subgroup may be assumed to have near-Plancherel
+multiplicities.  This is a genuine weakening of `(HRI1)`, but it does not by
+itself select the tautological block: the regular character contains every
+irreducible type, and a router not known to normalize the full constant
+packet can leak between its central isotypic projections.  Any proposed use
+of trace conditioning must therefore either make the marked word trivial on
+all uncontrolled Plancherel types or prove that the router preserves the
+active type.
+
 It is not automatic.  Covariance fixes only the irreducible Pauli action;
 constants outside the Pauli normalizer can move or multiply its isotypic
 carrier.  This is the exact point at which the otherwise complete balanced
