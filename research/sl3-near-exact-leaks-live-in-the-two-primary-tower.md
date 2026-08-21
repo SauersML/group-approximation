@@ -609,6 +609,34 @@ refutation, and this claim makes the reduction precise.
   uniform two-level version, for which tonight's derived structures
   (layer nesting, native freshness, conductor mismatch, sum-of-
   squares core) are the transferable machinery.
+- **Concluding structural assessment: the plateau design and the
+  collapse of the local program (2026-08-21, pure analysis).**  The
+  full-parahoric dictionary demands approximate invariance of the
+  multiplicity measure under a TRANSLATION of the root-conductor box
+  `[0,a]^6` (upper roots down by `(1,2,1)`, lower roots up by
+  `(1,2,1)`).  Two sectors die provably: top-face (regular-like)
+  data escapes the box under the lower-root raise (defect at least
+  the top-face mass — the mass-asymmetry made precise), and shallow
+  data is killed by fixed-character regularity with the co-density
+  arguments.  But MIDDLE-CONDUCTOR PLATEAUS evade everything:
+  translation stays interior (boundary defect `~ shift/width -> 0`),
+  shallow marginals stay regular, and these plateaus are exactly
+  truncated solenoid-Haar — the finite shadows of the coset-Bernoulli
+  enemy.  CONSEQUENCES: (i) provable confinement — the tower enemy's
+  vertex data must be DOUBLY-DEEP (all root conductors `omega(1)`
+  from both ends); (ii) all level-local obstructions, including the
+  fixed-level floors measured here, fade as the level grows — the
+  level-3 floor is a boundary artifact of a box with no middle;
+  (iii) the tower sector is asymptotically LOCALLY consistent, so the
+  tower-versus-outlier split collapses at depth: both funnel into
+  growing-length global consistency, the Kun--Thom wall relocated,
+  and further fixed-level floor work has bounded goal-value.  The
+  transferable outputs of this campaign are the confinement theorems
+  (odd sector, two-primary, doubly-deep) and the exact machinery
+  (block-trace reduction, sum-of-squares core, conductor-mismatch
+  vanishing), which now describe the enemy's necessary shape with
+  unprecedented precision: a truncated solenoid-Haar plateau carrying
+  an exactly quasi-regular witness — one object, one wall.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
