@@ -62,8 +62,7 @@ matrix dimension or on `t`.  Thus the constant-sound terminal half of
 downstream use, a self-indexed compiler may return one additive commutator
 residual instead of authenticating `YX` and `XY` separately.
 
-This reduction is sharp when the decoded matrices are not required to have
-uniform operator norm.  For every `C in M_d(C)`,
+This reduction is sharp.  For every `C in M_d(C)`,
 
 ```text
 inf_(X,Y in M_d(C)) ||C-[Y,X]||_2=|tr_d(C)|.          (ACJ5)
@@ -89,8 +88,40 @@ Applied to `C=P-A_t`, `(ACJ5)` says that the best possible commutator
 residual is exactly the scalar mismatch that the Fanizza endpoint must
 force.  Thus a compiler for `(ACJ3)` is neither hiding a stronger rank
 theorem nor paying for a multiplication table: semantically it is a robust
-trace-zero certificate.  Uniform norm bounds on the decoded `X,Y` would be
-an additional, genuinely stronger demand and are not asserted here.
+trace-zero certificate.
+
+For the self-adjoint Fanizza target there is, moreover, no hidden
+dimension-dependent norm cost.  If `C=C^*` and `tr(C)=0`, order its real
+eigenvalues `lambda_1,...,lambda_d` greedily: when the current partial sum is
+nonnegative choose a remaining nonpositive eigenvalue, and conversely.
+Because the total sum is zero, the required sign is available until the
+end, and every partial sum `s_i=sum_(j<=i) lambda_j` satisfies
+
+```text
+|s_i|<=max_j |lambda_j|<=||C||.                       (ACJ6)
+```
+
+In an eigenbasis let `S` be the cyclic shift, put
+`X=S diag(s_1,...,s_d)` (with the cyclic indexing chosen so that
+`s_i-s_(i-1)=lambda_i`) and `Y=S^*`.  Then
+
+```text
+[Y,X]=C,        ||Y||=1,        ||X||<=||C||.         (ACJ7)
+```
+
+For arbitrary self-adjoint `C`, apply this to
+`C_0=C-tr_d(C)I`.  It realizes the exact optimum in `(ACJ5)` with `Y`
+unitary and
+
+```text
+||X||<=||C_0||<=2||C||.                               (ACJ8)
+```
+
+Since `P` and `A_t` are positive contractions, `||P-A_t||<=1`; hence the
+optimal Fanizza commutator residual always has factors bounded by `2` and
+`1`, independent of depth and dimension.  Producing the eigenvalue ordering
+and cyclic shift from group relations is still a finite-coordinate decoder
+problem, but unbounded coefficient norms are not an analytic obstruction.
 
 ## Coefficient-level Steinberg compression
 
@@ -100,14 +131,14 @@ commutator convention `[g,h]=ghg^(-1)h^(-1)`.  The Steinberg relation gives
 
 ```text
 [e_12(Y),e_23(X)] [e_12(X),e_23(Y)]^(-1)
-   =e_13(YX-XY)=e_13([Y,X]).                          (ACJ6)
+   =e_13(YX-XY)=e_13([Y,X]).                          (ACJ9)
 ```
 
 Therefore `(ACJ3)` is one root-coefficient comparison with
 `e_13(P-A_t)`.  In the standard `3 by 3` matrix realization,
 
 ```text
-||e_13(C)-e_13(D)||_(2,tr_3)=||C-D||_2/sqrt(3),       (ACJ7)
+||e_13(C)-e_13(D)||_(2,tr_3)=||C-D||_2/sqrt(3),       (ACJ10)
 ```
 
 so this compression has a dimension- and runtime-independent constant.  It
@@ -116,7 +147,7 @@ even require two separately authenticated output coefficients.
 
 ## Exact boundary
 
-Equations `(ACJ6)--(ACJ7)` are a coefficient-level reduction, not a missing
+Equations `(ACJ9)--(ACJ10)` are a coefficient-level reduction, not a missing
 normalized-HS coefficient decoder for an abstract unitary representation of
 a Steinberg group.  That decoder remains the load-bearing groupification
 step.  Nor may `(ACJ3)` be imposed as a fixed identity valid in every finite
