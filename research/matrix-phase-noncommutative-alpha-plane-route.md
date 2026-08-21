@@ -76,6 +76,17 @@ the complete positive Fourier fourth moment.
   mixing of pairs of Fourier matrices.  Plain Cauchy--Schwarz bounds it by one
   and does not recover the diagonal positive fourth moment in `(NC5)`.  The
   missing input is precisely the orientation energy `(NC1)`.
+- **Replace the four vertices by one correlated corrector each and cancel the
+  resulting twelve factors.**  Writing `B=1+alpha`, the two corrected edges
+  have six point labels on each side, built from
+  `p+alpha c,p+B c,p+c`.  Exhausting all `6!` unsigned matchings (stars may be
+  removed after a gauge) gives inconsistent linear equations for the four
+  correction directions; the same holds a fortiori for sign-preserving
+  matchings.  This was checked over `F_(2^n)` for `2<=n<=10`.  Choosing a
+  different missing slot gives no new decoder: all four slot orientations
+  have the same ordered offsets `(alpha,B,1)` from the target.  Thus a direct
+  proof needs nested corrections or a comparison subtler than literal word
+  cancellation.
 
 ## Promising joint attack
 

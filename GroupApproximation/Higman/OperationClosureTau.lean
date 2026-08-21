@@ -53,56 +53,55 @@ namespace Seq
 
 open GroupApproximation.Higman.Conj
 
-/-! ## 1.  The coding of a one-point sequence -/
+/-! ## 1.  The coding splits at a cut
 
-theorem elt_single (i m : ℤ) : elt (Finsupp.single i m) = FreeGroup.of i ^ m := by
-  by_cases hm : m = 0
-  · rw [hm, Finsupp.single_zero, elt_zero, zpow_zero]
-  · unfold elt
-    rw [Finsupp.support_single i hm, Finset.sort_singleton, List.map_cons, List.map_nil,
-      List.prod_cons, List.prod_nil, mul_one, Finsupp.single_eq_same]
-
-/-! ## 2.  The coding splits at a cut -/
+The cut lemma itself belongs to `Higman.SeqFilter`, whose `Split.elt_split`
+cuts at a *threshold*.  What the window argument below wants is the
+disjoint-support form, and the two differ by choosing the threshold; that
+choice is the only thing proved here.  (An earlier draft of this file proved
+the disjoint-support form from scratch, by sorted-list uniqueness.  It is the
+same mathematics as `Split.elt_split` and has been absorbed into it.) -/
 
 /-- **The coding is multiplicative across a cut.**  If every index in the
-support of `u` is below every index in the support of `v`, then the sorted
-product that defines `elt (u + v)` is the concatenation of the two sorted
-products, because a sorted list is determined by its multiset. -/
+support of `u` lies below every index in the support of `v`, the codes
+multiply.  This is `Split.elt_split` at a threshold separating the two
+supports, namely the largest index of `u`. -/
 theorem elt_add_of_lt {u v : E} (h : ∀ i ∈ u.support, ∀ j ∈ v.support, i < j) :
     elt (u + v) = elt u * elt v := by
-  have hdisj : Disjoint u.support v.support := by
-    rw [Finset.disjoint_left]
-    intro i hi hi'
-    exact absurd (h i hi i hi') (lt_irrefl i)
-  have hsort : (u + v).support.sort (· ≤ ·)
-      = u.support.sort (· ≤ ·) ++ v.support.sort (· ≤ ·) := by
-    rw [Finsupp.support_add_eq hdisj]
-    refine List.Perm.eq_of_sortedLE
-      (List.Pairwise.sortedLE (Finset.pairwise_sort _ _)) ?_ ?_
-    · refine List.Pairwise.sortedLE ?_
-      rw [List.pairwise_append]
-      refine ⟨Finset.pairwise_sort _ _, Finset.pairwise_sort _ _, fun i hi j hj => ?_⟩
-      exact le_of_lt (h i (by simpa using hi) j (by simpa using hj))
-    · rw [← Multiset.coe_eq_coe]
-      have hcoe : ((u.support.sort (· ≤ ·) ++ v.support.sort (· ≤ ·) : List ℤ) : Multiset ℤ)
-          = ((u.support.sort (· ≤ ·) : List ℤ) : Multiset ℤ)
-            + ((v.support.sort (· ≤ ·) : List ℤ) : Multiset ℤ) := rfl
-      rw [hcoe, Finset.sort_eq, Finset.sort_eq, Finset.sort_eq,
-        ← Finset.disjUnion_eq_union u.support v.support hdisj]
-      rfl
-  unfold elt
-  rw [hsort, List.map_append, List.prod_append]
-  congr 1
-  · refine congrArg List.prod (List.map_congr_left fun j hj => ?_)
-    have hju : j ∈ u.support := by simpa using hj
-    have hjv : v j = 0 :=
-      Finsupp.notMem_support_iff.mp fun hc => absurd (h j hju j hc) (lt_irrefl j)
-    rw [Finsupp.add_apply, hjv, add_zero]
-  · refine congrArg List.prod (List.map_congr_left fun j hj => ?_)
-    have hjv : j ∈ v.support := by simpa using hj
-    have hju : u j = 0 :=
-      Finsupp.notMem_support_iff.mp fun hc => absurd (h j hc j hjv) (lt_irrefl j)
-    rw [Finsupp.add_apply, hju, zero_add]
+  by_cases hu : u.support.Nonempty
+  · have hkmem : u.support.max' hu ∈ u.support := u.support.max'_mem hu
+    have hule : ∀ i ∈ u.support, i ≤ u.support.max' hu := fun i hi =>
+      Finset.le_max' _ i hi
+    have hvgt : ∀ j ∈ v.support, ¬ j ≤ u.support.max' hu := fun j hj hle =>
+      absurd (h _ hkmem j hj) (not_lt.mpr hle)
+    have h1 : Finsupp.filter (fun i => i ≤ u.support.max' hu) (u + v) = u := by
+      refine Finsupp.ext fun i => ?_
+      rw [Finsupp.filter_apply]
+      by_cases hi : i ≤ u.support.max' hu
+      · rw [if_pos hi, Finsupp.add_apply]
+        have hvi : v i = 0 :=
+          Finsupp.notMem_support_iff.mp fun hc => hvgt i hc hi
+        rw [hvi, add_zero]
+      · rw [if_neg hi]
+        have hui : u i = 0 :=
+          Finsupp.notMem_support_iff.mp fun hc => hi (hule i hc)
+        rw [hui]
+    have h2 : Finsupp.filter (fun i => ¬ i ≤ u.support.max' hu) (u + v) = v := by
+      refine Finsupp.ext fun i => ?_
+      rw [Finsupp.filter_apply]
+      by_cases hi : i ≤ u.support.max' hu
+      · rw [if_neg (not_not_intro hi)]
+        have hvi : v i = 0 :=
+          Finsupp.notMem_support_iff.mp fun hc => hvgt i hc hi
+        rw [hvi]
+      · rw [if_pos hi, Finsupp.add_apply]
+        have hui : u i = 0 :=
+          Finsupp.notMem_support_iff.mp fun hc => hi (hule i hc)
+        rw [hui, zero_add]
+    rw [Split.elt_split (u.support.max' hu) (u + v), h1, h2]
+  · have hu0 : u = 0 := by
+      refine Finsupp.ext fun i => Finsupp.notMem_support_iff.mp fun hc => hu ⟨i, hc⟩
+    rw [hu0, zero_add, elt_zero, one_mul]
 
 /-! ## 3.  The window -/
 
@@ -174,7 +173,7 @@ theorem elt_window (f : E) :
     have hj2 : 2 ≤ j := highPart_le hj
     omega
   have hA := elt_add_of_lt hord2
-  rw [elt_single] at hA
+  rw [Split.elt_single] at hA
   have hord1 : ∀ i ∈ (Finsupp.single (0 : ℤ) (f 0)).support,
       ∀ j ∈ (Finsupp.single (1 : ℤ) (f 1) + highPart f).support, i < j := by
     intro i hi j hj
@@ -185,7 +184,7 @@ theorem elt_window (f : E) :
           have := highPart_le hk; omega) j hj
     omega
   have hB := elt_add_of_lt hord1
-  rw [elt_single, hA] at hB
+  rw [Split.elt_single, hA] at hB
   have hord0 : ∀ i ∈ (lowPart f).support,
       ∀ j ∈ (Finsupp.single (0 : ℤ) (f 0) +
         (Finsupp.single (1 : ℤ) (f 1) + highPart f)).support, i < j := by
