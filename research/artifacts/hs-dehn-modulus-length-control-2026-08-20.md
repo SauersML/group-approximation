@@ -567,3 +567,53 @@ feeds their finite central extension.  The two routes are independent in
 their mechanism: theirs passes through asymptotically projective
 representations and a central `Z`; this one through a single (tau)
 projection, co-density and Britton's lemma.
+
+## 13. A weaker local endpoint: transfer only unitary commutants
+
+The HNN proof does not need a nearby exact representation of the whole base.
+Write
+
+```text
+SL_2(Z[1/2])=C_+ *_(B_+=B_-) C_-,       C_+=C_-=SL_2(Z).
+```
+
+Each vertex copy is same-dimension HS-stable by the elementary cyclic
+presentation `C_4 *_(C_2) C_6`: round the order-four generator, use its
+square as the common sign, block-centralize the order-six generator, and
+round its cube separately on the two sign blocks.  Hence a microstate of the
+HNN candidate can be reduced to two exact vertex representations with an
+almost-matched Iwahori edge.
+
+What remains is only this one-sided assertion: a unitary that almost
+centralizes the first exact vertex must almost centralize the second, with a
+modulus depending only on the Iwahori mismatch and the first commutators.
+This is `iwahori-unitary-commutant-transfer`.  At zero mismatch it follows
+from finite-dimensional co-density.  It is weaker than the printed Iwahori
+question because it neither perturbs the pair to a compatible representation
+nor constructs an invertible edge intertwiner.  If it holds, the word
+`[t,a]`, `a` in the second vertex, collapses in every canonical matrix
+microstate while Britton keeps it nontrivial.  Thus it alone produces the
+explicit nonhyperlinear group
+
+```text
+<SL_2(Z[1/2]),t | [t,SL_2(Z)]=1>.
+```
+
+The physical-rank outlier remains relevant but its burden is sharper: a
+counterexample now needs a **unitary** in the low-energy outlier whose
+commutator with the second vertex stays macroscopic.  Merely observing that a
+sparse operator subspace may contain an invertible matrix no longer blocks
+the argument.
+
+Equivalently, for every sequence of almost-compatible exact vertex
+representations, the homomorphism of the amalgam into the resulting tracial
+matrix ultraproduct must satisfy
+
+```text
+rho(C_+)' intersect M_omega = rho(SL_2(Z[1/2]))' intersect M_omega.
+```
+
+Failure of a quantitative modulus and failure of this relative-commutant
+identity are the same by the ultraproduct contrapositive.  This isolates the
+one place where finite-dimensional co-density must be upgraded to matricial
+co-density; no global representation repair is logically required.
