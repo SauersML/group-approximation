@@ -21,20 +21,20 @@ Consequently their generated relative elementary subgroup is the depth
 `a-2` principal congruence layer in `SL_3(Z/2^a)`.  Thus the Weyl interlock
 does cover all root depths needed for a two-level conductor descent.
 
-For an arbitrary finite-dimensional congruence representation, let `S_i` be
-the projection onto the constituents factoring through the common quotient
-for Weyl direction `i`.  If a unitary has directional intertwining defect
-`eta`, property `(T)` and the exact Schur-support formula give
+For an arbitrary finite-dimensional congruence representation, let
+`S_(i,epsilon)` be the source-aligned common-quotient projections for the
+three positive Weyl directions and their inverses.  If the same carrier is
+aligned across these six orientations and the directional intertwining
+defect is `eta`, property `(T)` and the exact Schur-support formula give
 
 ```text
-1-tr(S_i) <= (eta/epsilon_0)^2.                         (WKD2)
+1-tr(S_(i,epsilon)) <= (eta/epsilon_0)^2.               (WKD2)
 ```
 
-After transporting the three projections into one Weyl-aligned source
-coordinate, their intersection has trace at least
+Their intersection in the common source coordinate has trace at least
 
 ```text
-1-3(eta/epsilon_0)^2                                  (WKD3)
+1-6(eta/epsilon_0)^2                                  (WKD3)
 ```
 
 and factors through level `a-2`.  Iterating a fixed number `N` of times gives

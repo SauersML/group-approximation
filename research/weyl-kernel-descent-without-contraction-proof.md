@@ -16,19 +16,20 @@ Together they supply `(WKD1)`; the rank-three relative elementary generation
 theorem identifies their generated subgroup with the depth-`a-2` congruence
 layer.
 
-For one direction, the orthogonal projection of a unitary `V` onto the exact
-intertwiner space is supported on `S_i`.  Hence
+For one orientation, the orthogonal projection of a unitary `V` onto the
+exact intertwiner space is supported on `S_(i,epsilon)`.  Hence
 
 ```text
-dist_2(V,Hom_i)^2 >= 1-tr(S_i).
+dist_2(V,Hom_(i,epsilon))^2 >= 1-tr(S_(i,epsilon)).
 ```
 
 The Kazhdan estimate bounds the left side by
-`(eta/epsilon_0)^2`, proving `(WKD2)`.  Weyl covariance puts the three
-supports on one source space.  The codimension of an intersection of finite
-dimensional subspaces is at most the sum of their codimensions, even when
-their orthogonal projections do not commute, which proves `(WKD3)`.  Repeat
-at the descended conductor for fixed `N`.
+`(eta/epsilon_0)^2`, proving `(WKD2)`.  The stipulated common-carrier/Weyl
+alignment puts all six oriented supports on one source space.  The
+codimension of an intersection of finite-dimensional subspaces is at most
+the sum of their codimensions, even when their orthogonal projections do not
+commute, which proves `(WKD3)`.  Repeat at the descended conductor for fixed
+`N`.
 
 Finally, an inflated regular representation from level `b_m` has regular
 character on every fixed nonidentity integral matrix once `b_m` is large,
