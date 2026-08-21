@@ -87,6 +87,26 @@ non-hyperlinear group `hat K rtimes Lambda`.
   effort on branch (b).  This meshes with the graph's existing
   LCS/BCS compiler lane, but consumes only completeness-side
   structure — no robust finite-dimensional soundness is needed.
+- **Necessary condition (proved, 2026-08-21): the dual module must not
+  be residually finite.**  If `hat K` admits a separating family of
+  finite `Lambda`-invariant-cofinite submodules and `Lambda` is
+  residually finite (virtually free groups are), then
+  `hat K rtimes Lambda` is residually finite, hence sofic, hence
+  hyperlinear, and `L^infinity(K) rtimes Lambda` is Connes embeddable
+  — no non-CE algebra can embed, and the envelope fails for that `K`.
+  (The free module `F_2[Lambda]^m` itself IS residually finite —
+  separate a finite support by a finite quotient of `Lambda` — so
+  full shifts and any subshift with residually finite dual are
+  barren.)  The defining linear rules must therefore produce a
+  NON-residually-finite `F_2[Lambda]`-module: the algebraic shadow of
+  the non-soficity we are trying to manufacture.  Note the general
+  abelian-kernel extension problem (`A` abelian, `G/A` sofic, is
+  `A rtimes Lambda` sofic?) is OPEN — this lemma uses only the
+  residually finite case, so the envelope is not killed, but it is
+  squeezed exactly onto modules with no separating finite invariant
+  structure.  This doubles as a screen for the algebraic-completeness
+  branch: if tailored-game module strategies can always be taken over
+  residually finite modules, that branch dies.
 - **Falsification test.**  Fourier positivity is a real constraint:
   coefficients of Haar algebraic processes satisfy character-positivity
   identities that a general p.m.p. correlation need not.  Check the
