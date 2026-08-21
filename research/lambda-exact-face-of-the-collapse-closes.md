@@ -80,6 +80,27 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   and the closure is consistent with the two-sided doctrine — it
   produces no enemy and no hyperlinearity certificate, it kills a
   sector.
+- **The surviving weight profiles, characterized (same day,
+  continuation).**  Three further facts pin the non-regular sector.
+  (i) PROVED: for every FIXED level `l`, the weight `f(l)` of the
+  level-`l`-factoring part satisfies `f(l) <= 1/2 + o(1)` along the
+  tower: at a kernel element `gamma` of that level,
+  `|tr - f| <= 1 - f` (the below-part contributes exactly `+f`, the
+  rest is bounded by its mass — no sign issue), so regularity forces
+  `2 f - 1 -> 0`.  Bottom-heavy profiles are dead.  (ii) The k-fold
+  twist iteration (`V^k` against the join dropped by `2k` levels)
+  kills every profile whose top band does not thin, for each fixed
+  `k`; it fails to close the sector only because the Kazhdan
+  constants of the intersection subgroups `cap h^(-j) Lambda_0 h^j`
+  may degrade as `k` grows — the race between that degradation and
+  the fraction decay is the sharp open point.  (iii) Consequently
+  the ONLY surviving `Lambda`-exact enemies are SCALE-SPREAD
+  profiles: isotypic weight spread over unboundedly many scale
+  bands, at most half-mass at every fixed level, top band thinning,
+  with the conjugator living in the (large, but Schur-structured)
+  cross-band intertwiner space.  No construction of such an object
+  is known; no closure of it is known; it is the sharpest remaining
+  `Lambda`-exact question, alongside the uniform outliers.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
