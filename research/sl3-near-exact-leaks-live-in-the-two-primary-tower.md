@@ -377,6 +377,18 @@ refutation, and this claim makes the reduction precise.
   probe's block census as ground truth.  The whole prototype floor
   is now derived structure: monomial natives, swap symmetry, and the
   block-trace theorem.
+- **Machine confirmation of the derived structure (2026-08-21,
+  interim harvest).**  The joint probe's block extraction returns
+  `profZ = [[1,84],[1,84],[1,112],[1,112],[2,21],[2,28],[3,6],[4,1]]`
+  — exactly the hand-derived pullback-nesting profile: four
+  multiplicity-one native blocks, `21/28` at `m = 2`, the 6-dim at
+  `m = 3`, the trivial at `m = 4`.  The v4 floor over the exact
+  unitary manifold at the control dictionary converges to `~0.142`
+  (48 restarts, `unit_err = 0`), and the joint `(K, W)` floor is
+  holding at `~0.17` over the early torsor sweep: the residual
+  freedom is NOT collapsing the floor.  The twisted census head shows
+  multiplicity-one blocks exist (`[1,2]` and `[1,4]` entries); the
+  decisive 16- and 32-dim block sizes are being read out.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
