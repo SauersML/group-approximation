@@ -50,3 +50,9 @@ transport then feeds `one-seed-infinite-character-expansion-collapses-mark`.
 - **Use only pairwise lamp commutators.**  Pairwise almost commutation is not
   itself the all-pairs approximate multiplication law `(FME1)` for chosen
   products of arbitrarily many lamps; naïve telescoping grows with support.
+- **Spread finitely many orbital prototypes by actor conjugacy.**  For the
+  arithmetic coset host, diagonal conjugacy preserves the pair double coset.
+  `finite-orbital-checksum-cannot-expose-sl3-coset-module` gives an exact
+  partial graph-product model retaining every checked orbital while an
+  unchecked orbital remains noncommuting.  Thus any positive result must be
+  matrix-only; no finite van Kampen checksum of valid lamp words suffices.

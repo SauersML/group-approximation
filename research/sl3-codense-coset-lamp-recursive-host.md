@@ -67,3 +67,17 @@ This completely removes the actor finite-presentation/effectivity issue from
 the expanding-character route.  The remaining load-bearing theorem is the
 finite-matrix global same-basis PVM/actor-word-energy decoder; no claim about
 that analytic interface is made here.
+
+For this particular two-point seed there is an even smaller endpoint.
+`sl3-two-point-lamp-mark-is-single-rcc-scalar` observes that
+
+```text
+m_0=[c,h].
+```
+
+Therefore an ordinary normalized-HS relative-commutant transfer from `C` to
+the single generator `h` kills the mark directly.  This is an alternative to
+the full all-pairs/PVM route, not a consequence of additive rounding: the
+exact infinite lamp model has `m_0!=1`.  Pure finite-orbital propagation
+cannot supply uniform module exposure by
+`finite-orbital-checksum-cannot-expose-sl3-coset-module`.
