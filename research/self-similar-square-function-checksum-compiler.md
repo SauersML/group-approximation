@@ -92,6 +92,15 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   compact data.  That lane must mix in a genuinely non-locally-finite tail,
   put the tests on orthogonal operator domains, and actually prove the
   backward carrier recurrence.
+- There is a sharp positive noncommutative escape from this compactness wall.
+  `kazhdan-generators-resolve-all-fd-types` proves that one finite Kazhdan
+  generator packet controls the total transport among **all** inequivalent
+  finite-dimensional isotypic components, with no dimension or type-count
+  bound.  A property-(T) Toeplitz tail can therefore supply infinite type
+  resolution once its action has been decoded exactly.  It still does not
+  make the first-hit scale domains orthogonal or prove `(SSC3)`; the surviving
+  construction problem is now a Kazhdan-resolved carrier return, rather than
+  an infinite checksum library.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
