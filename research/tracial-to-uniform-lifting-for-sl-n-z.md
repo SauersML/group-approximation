@@ -122,3 +122,33 @@ trace).
   vanishes-for-sl-n-z`).  Any attack should be designed so that no
   correction is ever added to a unitary; every correction should
   replace a unitary by a nearby unitary.
+- **The Reiter obstruction: why (T)-lifting is inherently tracial
+  (2026-08-21).**  The Steinberg presentation of `St_n(Z)`, `n >= 3`,
+  has all relations inside rank-two root subsystems, so `St_n(Z)` is
+  the colimit of NILPOTENT pieces (`Z`, `Z^2`, `H_3(Z)`), each of
+  which can be made exact inside `I` multiplicatively (Kazhdan
+  averaging, amenable HS-stability); the quotient by `K_2(Z) = Z/2`
+  is a finite central adjustment.  Gluing column by column reduces
+  to: given an EXACT representation `rho` of `Gamma' = SL_(n-1)(Z)`
+  and an almost-equivariant almost-representation of the abelian
+  column `V = Z^(n-1)`, produce an exactly `rho`-equivariant exact
+  `V`-representation -- equivalently one unitary `u_1 = v(e_1)` that
+  commutes EXACTLY (operator norm, internally) with the genuine
+  Kazhdan action `Ad rho(Stab(e_1))` and satisfies finitely many
+  module relations.  Internal exact invariant elements cannot be
+  produced by averaging: an averaging kernel `mu_n` on a group makes
+  `Ad rho(mu_n)(u_1)` exactly invariant in operator norm only if
+  `|| delta_h mu_n - mu_n ||_(l^1) -> 0`, which is Reiter's
+  condition, i.e. AMENABILITY; the Kazhdan projection converges only
+  in the `C^*`-norm, which controls 2-norm (tracial) invariance.
+  Hence every "(T)-lifting" in this lane (Lambda-central elements
+  into the congruence commutant tower, etc.) is a statement in the
+  tracial quotient, never in the operator-norm ultraproduct, and the
+  column-extension step is blocked by non-amenability at exactly the
+  point where the Steinberg induction needs it.  Any proof of this
+  claim must therefore produce exact invariant elements WITHOUT
+  averaging -- by a global construction (a fixed point of a
+  non-averaging map, a spectral-gap-with-gap absorber, or an
+  entirely different lift) -- and a disproof would likely come from
+  exhibiting an almost-representation whose column data admits no
+  internal invariant completion.
