@@ -7,6 +7,7 @@ distinct_from:
   context-local-fanizza-exits-do-not-control-global-leakage: that gives an exact countermodel when every context owns a different exit carrier; this states the minimal common-source interface which defeats that countermodel.
   corner-localized-non-ce-bcs-energy-gap: that turns a supplied globally reducing BCS-quiet matrix corner into an energy floor; this constructs such a corner quantitatively from context packet intertwiners sharing one source projection.
   shared-bcs-eight-slice-full-overlap-actuator: that asks for the final source-to-capacity scalar overlap; this controls only the off-capacity leakage functional needed to select a positive cross-Gram overlap and does not amplify that overlap to the full source.
+  common-source-hnn-bridges-need-one-gram-saturation-identity: that audits ordinary HNN bridges and isolates the single source-Gram estimate required to construct the common-source intertwiners assumed here.
 ---
 
 Fix the finite shared BCS `B`, with variables `Z_x`, contexts `c`, and
@@ -162,3 +163,10 @@ For the native Fanizza incidence this is a fixed finite object: the only
 cycle is the `C_Z-C_D-C_R` triangle and `C_X` is one attached leaf.  The leaf
 must be included in the source-Gram two-cell; transporting only the three
 triangle separators leaves the exact countermodel `(CFL11)` untouched.
+
+`common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
+ordinary context HNN edges do not identify these source projections.  Their
+precise missing scalar is the saturation deficit
+`sum_c||(1-p_c)U_cQ||_2^2`; countable amplification makes that identity
+compatible with the exact witness, while finite selector induction prevents
+it from following from the edge restriction tables alone.
