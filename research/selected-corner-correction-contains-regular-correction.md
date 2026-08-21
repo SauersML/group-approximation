@@ -46,6 +46,42 @@ use the `h`-transport and several four-atom/parahoric corners **during** the
 correction; it cannot first correct each corner from its lattice restriction
 alone.
 
+Nor is it enough to correct the entire six-corner atlas to one genuine
+compatible `C`-action.  Let
+
+```text
+D=C cap hCh^-1,             X=C/D.                     (SCC6)
+```
+
+Here `[C:D]=42`.  Given an arbitrary regular microstate `U_n` of `C`, let
+`C` act on the fixed finite Bernoulli bit space indexed by
+
+```text
+{star} disjointUnion X,
+```
+
+fixing `star` and permuting `X`; write `kappa` for the Koopman
+representation.  Then
+
+```text
+Utilde_n=U_n tensor kappa                                (SCC7)
+```
+
+has an exactly `C`-fixed base bit and, at every Weyl coset `wD`, an exactly
+`wDw^-1`-fixed second bit.  Their four atoms have exact Weyl covariance and
+regular mixed corner traces.  If a six-corner theorem corrected this whole
+atlas to a genuine `C`-representation, compress to the constant vector of
+the fixed Koopman factor.  That projection exactly commutes with
+`Utilde_n`; after correction it almost commutes with the genuine action, and
+property `(T)` rounds it to an invariant projection.  Compression then gives
+a genuine representation close to the original `U_n` (with the same
+flexible convention).
+
+Thus even **global compatible-atlas exactification** contains regular
+lattice correction.  The genuinely weaker target must output only the six
+supported edges and a scalar first-exit ledger; it must not output a
+corrected `C`-action.
+
 ## The native four atoms are regular, not hyperfinite
 
 Let `c` and `d=hch^-1` be the two commuting canonical lamp involutions and

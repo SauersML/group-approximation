@@ -97,6 +97,14 @@ the fixed-depth nonhyperlinearity criterion.
   `selected-corner-correction-contains-regular-correction`.
   The needed theorem must therefore correct the six corners and their
   transitions jointly, rather than exactifying them independently.
+- **Even a flat six-corner corrector can keep overlap `1/4`.**  Reduction of
+  the `A_2` coweight lattice modulo two gives a nonconstant affine corrector
+  satisfying every inverse, Weyl, triangle, and closed-hexagon equation with
+  zero holonomy; its finite lamp model retains independent half projections.
+  See `coxeter-hexagon-admits-flat-affine-corrector`.  Thus the open decoder
+  must use a mixed root outside each directional parahoric and charge the
+  affine tail `(FAC10)` to conductor exit.  Raw or corrector hexagon closure
+  alone is insufficient.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor

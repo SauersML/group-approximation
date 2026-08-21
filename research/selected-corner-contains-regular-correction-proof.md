@@ -19,3 +19,10 @@ the four canonical group traces in `(SCC5)`.  All vanish away from the
 identity, so the normalized corner trace is regular.  This excludes the
 amenable-limit character-rigidity theorem as a source of the desired corner
 correction.
+
+For the six-corner strengthening, tensor with the fixed Koopman
+representation of the `42`-coset bit atlas.  The constant Koopman vector
+recovers the original microstate.  If the amplified atlas is corrected,
+property `(T)` rounds that fixed finite-rank-factor projection to a reducing
+projection for the corrected representation, and compression corrects the
+original tuple.
