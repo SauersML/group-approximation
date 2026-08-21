@@ -8,6 +8,7 @@ distinct_from:
   controlled-swap-wordizes-matrix-corner-without-adjoint-dilution: that treats a controlled copy swap whose support projection has already been named; this recovers the support as the odd dihedral spin sector and never names its projection by a group word.
   finite-selector-gadget-induction-barrier: that rules out nonlinear pruning of a commuting selector cube by a finite packet; this packet does not prune selectors and uses the noncommuting dihedral pair only to authenticate one common Gram source.
   finite-role-packet-cannot-supply-hybrid-predicate-row: that proves the hybrid row isolated here cannot be universally oriented by any ordinary word of a finite role packet, even when the common swap cancels every external multiplicity commutator.
+  shared-multiplicity-commutator-builds-selected-hybrid-row: that constructs the row on one selected hyperoctahedral type by leaving one common multiplicity commutator on both roles and cancelling it only in the final commutator with the common swap.
   perfect-tracial-bcs-has-one-common-module-swap: that constructs the exact full standard-form swap in the perfect infinite model; this authenticates a positive-density partial swap in every finite marked packet and proves the dimension-free row estimate.
 ---
 
@@ -317,3 +318,9 @@ type, while the row controller must act with the fixed orientation
   universally scalar ordinary word back into the abelian role-selector
   subgroup, where its phase is affine (and a nontrivial upper-only phase is
   impossible even for an affine predicate).
+- **Keep one common multiplicity commutator on both roles.**  This is the
+  valid projective loophole.  The final commutator with `j` cancels the common
+  factor exactly.  `shared-multiplicity-commutator-builds-selected-hybrid-row`
+  gives an explicit doubled signed-permutation commutator for every truth
+  table on one selected type.  The remaining issue is promoting that selected
+  type to a common carrier across the BCS contexts, not orienting its row.

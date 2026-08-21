@@ -8,6 +8,7 @@ distinct_from:
   finite-selector-gadget-induction-barrier: that proves every selector character occurs in some marked representation; this proves that an ordinary word correct on all those character spaces must itself be a selector word.
   dihedral-spin-packet-supplies-common-partial-swap: that constructs the common D8 partial source and isolates the hybrid row as the remaining compiler problem; this rules out solving that problem by a universally saturated finite packet, including a role-covariant commutator circuit.
   controlled-pauli-commutator-is-and-times-multiplicity-commutator: that isolates the external multiplicity commutator left by two controlled gates; this proves that even perfect cancellation of that commutator cannot produce the required universal hybrid row inside one finite packet.
+  shared-multiplicity-commutator-builds-selected-hybrid-row: that deliberately does not cancel the common external factor inside the row; the final D8 swap commutator cancels it and constructs the hybrid test on one selected type.
 ---
 
 Let `H` be a finite group, let
@@ -248,6 +249,20 @@ theorem:
 
 Merely adding more finite role-covariant reversible gates, even with perfect
 external-multiplicity cancellation, cannot close the row.
+
+There is one important projective loophole, and it is constructive rather
+than a gap in the theorem.  The D8 soundness test is invariant under a common
+unitary factor on the two role blocks.  Thus it is enough to produce
+
+```text
+e=diag(h_f,I) tensor V                                (FRP21)
+```
+
+with arbitrary `V`, not the scalar row `(FRP12)` itself.  The present theorem
+does not rule out `(FRP21)` because `e` is not scalar on selector-weight
+spaces.  `shared-multiplicity-commutator-builds-selected-hybrid-row` realizes
+exactly this loophole on one selected finite type.  What remains open is
+promotion of that selected carrier, not its role orientation.
 
 ## Attempts and firewalls
 

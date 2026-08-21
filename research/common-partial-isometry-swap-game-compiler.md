@@ -7,6 +7,7 @@ distinct_from:
   fanizza-native-signal-groupification: that asks for a uniform finite-matrix decoder for a computable BCS family and feeds a reverse-Kleene diagonal; this is a one-instance static compiler for an already separated commuting-versus-finite game.
   block-encoded-acceptance-still-needs-corner-return: that packages all tests into a cyclic superoperator return and needs a Hecke-corner authentication; this asks instead for one common matrix partial-isometry swap and then uses one ordinary commutator per test.
   capacity-gated-common-corner-bcs-two-cell: that asks for one globally reducing common corner; this only asks for a common partial-isometry source and uses exact graph-swap commutator identities rather than intersection rounding.
+  shared-multiplicity-commutator-builds-selected-hybrid-row: that constructs every nonlinear predicate row on one selected context type with exact multiplicity cancellation in the final D8 test; this still needs joint promotion of those selected types to the common source.
 ---
 
 **OPEN.**  Fix the finite constraint-variable game `G_cv` from
@@ -94,20 +95,41 @@ packet `D_8=<z,j,y>` authenticates the common partial isometry: the odd
 the one literal generator `j` is the partial isometry, and its normalized
 mass is at least half the marked mass.
 
-The remaining object is a finite ordinary-group packet which names the
-**hybrid row involutions** `diag(A_(c,x),B_x)` and
-`diag(I-2F_c,I)` on that common `z`-grading.  It must allow the separate
-context representations required by the perfect infinite model while
-keeping the same global-variable action in every negative block.
+The local finite ordinary-group predicate row is now constructed on every
+selected support-menu type.  In
+`shared-multiplicity-commutator-builds-selected-hybrid-row`, a doubled
+signed-permutation truth table is one commutator `[S_c,P_c]`.  Inner-covariant
+implementers have
 
-The first half can be weakened further.  One literal variable involution
+```text
+u_c=S_c tensor R_c,             v_c=P_c tensor T_c,
+e_c=[u_c,v_c]=D_c tensor [R_c,T_c].                  (CPS8)
+```
+
+The arbitrary factor `[R_c,T_c]` is common to both roles, so the final word
+`[e_c,j]` cancels it exactly and is `-1` precisely on rejecting labels.  The
+presentation uses `[e_c,j]=1` as the predicate relator.  Support-adaptive
+menu types make this exact in every perfect model: its selected support
+contains only allowed labels, so the final word is identically `1` there.
+
+One literal variable involution
 `d_x` commuting with `z` already has blocks `diag(A_x,B_x)` and introduces
 no commutation between unrelated contexts.  The load-bearing unsolved row
-is the oriented nonlinear predicate reflection `diag(I-2F_c,I)`: an
-ordinary Boolean word in the `d_x` has the predicate value on **both**
-blocks.  The controller rule which erases its negative-block value is the
-remaining selected-type/Hecke orientation problem.  The induction audit is
-spelled out in `dihedral-spin-packet-supplies-common-partial-swap`.
+is no longer its truth table or orientation.  It is promotion/alignment of
+the separately selected context types to the **same** D8 source.  In the
+notation of the selected-row construction, the exact remaining axiom is
+
+```text
+sum_(c,T) ||([e_(c,T),j]-1)Q_(c,T)||_2^2
+ >= kappa E_BCS(S_D8)-o(1)                            (CPS9)
+```
+
+for one `kappa>0`, with all rows evaluated on the common partial isometry
+`S_D8`.  Separate Plancherel bounds for each `Q_(c,T)` do not imply `(CPS9)`;
+the projections can occupy disjoint carriers.  Equivalently one may prove
+contextwise selected-type saturation of `S_D8` plus shared-variable
+compression alignment.  This is the sole promotion axiom left by the local
+D8 compiler.
 
 The absolute orientation bit is no longer open.
 `centralizing-d8-word-anchors-relative-row-orientation` adjoins one
@@ -119,9 +141,9 @@ centralizing involution `e` for which
 
 Thus a simultaneous wrong relative twist pays the full marked distance,
 while arbitrary transported whole-row multiplicity carried by `e` preserves
-all row energies.  The remaining issue is narrower: a selected nonlinear
-row packet must expose a **relative comparison** tying its extension bit to
-this anchor.  It still may not ask one ordinary finite-packet word to equal
+all row energies.  The shared-multiplicity construction has exactly this
+permitted form, so the row's absolute orientation is no longer an additional
+open datum.  It still may not ask one ordinary finite-packet word to equal
 the nonlinear hybrid reflection on the entire marked regular sector.
 
 `perfect-tracial-bcs-has-one-common-module-swap` proves that this common
@@ -129,13 +151,14 @@ swap exists exactly in the standard form of every perfect tracial source.
 Thus exact completeness is not asking for a new operator-algebraic
 phenomenon.  The open work is only its finite packet localization.
 
-Finite context packets already name every local predicate reflection, and
+Finite context packets now name every local predicate test word, and
 countable amplification supplies exact infinite multiplicities.  The known
-failure is source alignment: ordinary finite HNN edges either see too little
-of the selector type or, when the logical selectors centralize the edge,
-force full selector support.  A successful compiler must therefore use a
-multi-piece/Hecke or properly-infinite source which is common at the level of
-`(CPS3)` but does not globally identify unrelated context observables.
+failure is only source alignment: ordinary finite HNN edges either see too
+little of the selector type or, when the logical selectors centralize the
+edge, force full selector support.  A successful compiler must prove
+`(CPS9)` by a multi-piece/Hecke or genuinely finite-matrix return which is
+common at the level of `(CPS3)` but does not globally identify unrelated
+context observables.
 
 ## Attempts
 
@@ -154,5 +177,6 @@ multi-piece/Hecke or properly-infinite source which is common at the level of
   commutation and may destroy the exact perfect commuting representation.
 - **Leave the selected rows in an unanchored comparison cycle.**  A common
   relative `z`-twist survives exactly.  The D8 anchor `(CPS7)` removes the
-  absolute bit, but the row-to-anchor comparison word remains part of the
-  nonlinear selected-type compiler.
+  absolute bit, and the shared-factor row is compatible with its arbitrary
+  whole-row multiplicity.  What remains is the joint carrier inequality
+  `(CPS9)`, not another scalar orientation choice.
