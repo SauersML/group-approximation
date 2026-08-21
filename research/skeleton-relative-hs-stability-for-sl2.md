@@ -184,6 +184,63 @@ never activates.
   refinement — a statement about a concrete compact dynamical
   system, the true bottom of the SL_2 far sector after tonight's
   reductions.
+- **Syzygy computation, done (2026-08-21): the pair lies on the
+  joint-coboundary variety, with one honest residual.**  Rank-one
+  Steinberg for `SL_2(Z[1/2])` on `e_+(x), e_-(x), h` has, as its
+  defining identities beyond the two abelian additivities: (A) the
+  Weyl relation `w e_+(x) w^{-1} = e_-(-x)` with
+  `w = e_+(1) e_-(-1) e_+(1)`, and (B) the torus action
+  `h e_+(x) h^{-1} = e_+(4x)`, with `h = w(2) w(1)^{-1}` where
+  `w(t) = e_+(t) e_-(-t^{-1}) e_+(t)`.  The KEY SYZYGY is the
+  Steinberg cocycle identity `w(s) w(t)^{-1} = h(s/t)` (diagonal
+  `diag(s/t, t/s)`), a relation among the `w`-words ALONE.  Applied
+  to the two microstate holonomies `e_1` (from the `w(1)`-swap) and
+  `e_2` (from `w(2)`), it forces `e_2 = (transport of e_1 under the
+  x4 map) + delta(h-defect)`: the two holonomies are NOT independent
+  — `e_2` is the `x4`-pushforward of `e_1` up to the ALREADY-EXACT
+  `h`-relation defect.  So the single unknown `c` absorbing `e_1`
+  simultaneously absorbs `e_2` UP TO the commutator of the correction
+  with the exact torus, `[c, h_exact]`, which is itself a twisted
+  coboundary in the SAME cycle system and closes by the cascade.  Net:
+  the two-equation obstruction reduces to ONE plus an exact-torus
+  commutator term, and the joint-variety placement HOLDS.  Honest
+  residual: the `x4`-pushforward step loses the `h`-defect modulus,
+  which the top-down exactification bounds at fixed depth — so the
+  constant depends on the relator depth, uniform in dimension but not
+  yet shown uniform in the depth needed as the microstate accuracy
+  improves.  That depth-uniformity is the single remaining
+  quantifier, and it is a statement about the fixed BS(1,4) modulus,
+  not about SL_2 — the smallest the crux has ever been.
+- **The depth concern dissolves on the odd model (2026-08-21).**
+  On the EXACT odd skeleton the base has odd order and `z -> z^4`
+  permutes its spectrum bijectively (4 is a unit mod odd order), so
+  every `x4`-pushforward in the syzygy is a LOSSLESS automorphism:
+  the depth-`4^k` amplification only ever afflicted APPROXIMATE
+  towers, and leg (1) has already moved us onto the exact odd model
+  before the syzygy is applied.  The `h`-defect term is not an extra
+  loss either — the single torus `h` acts as `x4` on `e_+` and `x/4`
+  on `e_-`, so the lower `h`-relation IS the swap-torus residual
+  `(R1)` we already track, not a new quantity.  Net: after leg (1),
+  all `x4` maps are exact, the two holonomies collapse to one by the
+  syzygy, and the ONLY analytic content left is the convergence of
+  the single-holonomy absorption cascade — the exact same species as
+  the PROVED local-rigidity theorem `bs14-exact-representation-
+  variety-is-hs-locally-rigid`.
+- **Honest terminal assessment (2026-08-21).**  With the depth
+  concern gone, this claim reduces to exactly two technical lemmas
+  ATOP the proved local-rigidity core: (a) the solenoid-group
+  extension of local rigidity (recorded follow-on; same multiscale
+  proof with the joint solenoid spectrum), and (b) rigorous
+  Holder-modulus convergence of the absorption cascade (argued of the
+  proved theorem's species, not yet written line by line).  If both
+  hold, the skeleton claim holds, and the whole chain to the goal
+  closes.  This is a plausible proof ARCHITECTURE for
+  `SL_2(Z[1/2])` HS-stability, which is the Dogon--Vigdorovich open
+  problem: difficulty is CONSERVED, as it must be for a genuine open
+  problem, but it is now localized in two named same-species lemmas
+  over a proved base rather than diffused across the whole stability
+  question.  Not landed; sharply reduced.  A rigorous write-up of
+  (a) and (b) is the work; nothing here claims those are automatic.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
