@@ -3,6 +3,9 @@ rg: 2
 id: affine-selector-clifford-rank-swap-balanced
 kind: claim
 title: An inert selector qubit supplies the equal-scale full-character reset spin
+artifacts:
+  - experiments/affine_selector_dummy_full_character_audit.py
+  - experiments/affine-selector-dummy-full-character.json
 distinct_from:
   four-point-gauge-orbit-has-balanced-derived-rank-swap: that gives the abstract two-sign rank arithmetic; this uses an inert dummy selector qubit to compute the restriction after all four semantic selector signs, rather than only the reset sign, are fixed.
 ---

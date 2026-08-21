@@ -43,3 +43,10 @@ context, with the following properties.
   the existing one-sided Toeplitz/Fanizza recurrence, where the factor-two
   violation ledger is contractive and polynomial transport losses are
   summable.
+- The corrected twenty-qubit affine packet closes the one-edge
+  full-character count (`2 rho_15` on both sides), but a common fresh finite
+  vertex still identifies only irreducible type counts.  The radical bit has
+  moved into the multiplicity commutant, where the three edge intertwiners can
+  rotate its endpoint projections independently.  The missing word-level
+  common-marginal statement is isolated as
+  `three-chart-affine-clifford-return-incidence`.

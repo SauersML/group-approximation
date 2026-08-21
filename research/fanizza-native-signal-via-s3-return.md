@@ -28,8 +28,10 @@ by packet-center labels.
 The finite BCS has a computable finite number of contexts.  Consequently the
 fixed local exactification, payment, overlap, and telescoping constants sum to
 computable `A_m,B_m`; no uniform bound in `m` is needed.  The local payments
-give `(NSG1)`, while exactifying the original involution relator for `d_m`
-gives `(NSG2)`.
+give `(NSG1)` only after the return incidence identifies the three endpoint
+projections inside one multiplicity algebra; equality of finite-group type
+vectors alone does not suffice.  Exactifying the original involution relator
+for `d_m` then gives `(NSG2)`.
 
 For completeness, start with any exact BCS representation.  The context-local
 packet extension retains `d_m`, and every reset/HNN incidence embeds the

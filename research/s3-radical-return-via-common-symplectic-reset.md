@@ -8,6 +8,7 @@ requires:
   - three-radical-twist-crossed-products-have-uniform-scale
   - fanizza-radical-charts-admit-common-symplectic-reset-subgroups
   - fresh-selector-renewal-after-symplectic-chart-reset
+  - three-chart-affine-clifford-return-incidence
   - finite-schur-clifford-packet-flexible-hs-exactification
   - finite-group-shared-overlap-polar-alignment
   - context-local-schur-packet-marked-extension
@@ -18,6 +19,14 @@ symplectic reset subgroup.  The two orthogonal chart blocks then become two
 copies of one `M_(D_0)` type, so ordinary finite-group multiplicity transport
 sees their sum and pays any lost mass.  Apply the selector-renewal cell to
 move the old central characters to private junk and install the next Fanizza
-context on the same spin carrier.  Exactification and shared-overlap polar
-alignment give the required `O(sqrt(E))` transport bound, while the marked
-extension and bounded-overlap presentation preserve the global carrier.
+context on the same spin carrier.
+
+The remaining requirement
+`three-chart-affine-clifford-return-incidence` is deliberately stronger than
+landing all three reset cells in one exactified fresh-context vertex.  A
+common vertex identifies type counts, but its independent edge intertwiners
+still rotate the binary endpoint projections in the multiplicity commutant.
+The required incidence must identify those projections by words and thereby
+supply the common marginals `(RNS1)`.  Once that is done, exactification and
+shared-overlap polar alignment give the required `O(sqrt(E))` transport bound,
+and the normal-form marked extension preserves the global carrier.
