@@ -450,7 +450,26 @@ refutation, and this claim makes the reduction precise.
   becomes the frustration index of the carrier-coupling network — a
   computable spectral quantity, and the correct uniformity target
   for large `a`.
-- **Second-order mechanism identified: phase-averaging positivity
+- **Correction (2026-08-21, same hour): the positivity claim below is
+  WRONG as stated.**  The phase-averaged diagonal `A_(pi pi)(W)` pairs
+  the `W`-rotated channel with its transported partner — two DIFFERENT
+  vectors — so it is sign-indefinite and itself `W`-tunable; the
+  "sum of squared channel masses" reading was an error.  What
+  survives: phase-averaging as the right analysis coordinate system,
+  and the sharpened empirical question — with ~300 free parameters
+  against a single complex constraint, generic solvability argues the
+  measured `0.142` could be an annealing artifact, while v2's
+  independent gradient method found the same barrier, so the truth is
+  genuinely undecided.  The decisive experiment is a TARGETED
+  cancellation solver: Newton/least-squares on the two real
+  constraints `Re z = Im z = 0` over the exact `(K, W)`-manifold from
+  many starts.  If it finds zeros: no fixed-`V` floor, and the
+  per-level hopes move to `V`-constrained formulations.  If it
+  provably stalls at `~0.14`: the rigidity is real and the mechanism
+  hunt resumes with the singular data.  Honesty note kept deliberately
+  above the superseded bullet.
+- **Second-order mechanism candidate (SUPERSEDED, see correction
+  above): phase-averaging positivity
   (2026-08-21).**  The leak is QUADRATIC in `K` (it enters both sides
   of `<W K W*, V_0* K V_0>`), so averaging over the free native
   phases kills the oscillating off-diagonal terms and leaves the
@@ -469,6 +488,178 @@ refutation, and this claim makes the reduction precise.
   the oscillation-vs-P comparison; next theorem target: the
   phase-averaging floor lemma
   `min |leak| >= P - osc` with `P` bounded below via the sum rule.
+- **Carrier census COMPLETE (2026-08-21,
+  `experiments/sl3-q1-census.json`).**  The twisted commutant has
+  exactly `34` multiplicity-one blocks, of dimensions
+  `2^4, 4^8, 8^8, 16^10, 32^4` — summing to `392`, EXACTLY the native
+  mass: every constituent of every native block is separated (the
+  swap identifies nothing), each matching the derived branchings
+  (`84: 2,2,4x4,16,16,32`; `112: 8x4,16x3,32`) block for block, and
+  `sum mtilde^2 = 34 + 60 + 27 + 144 = 265` on the nose.  No
+  one-dimensional character is a carrier (`mtilde in {2,3,12}`), as
+  hand-predicted.  So 77% of the space is phase-locked through just
+  FOUR shared native phases — but the locked partner data `y_sigma`
+  rides on shallow multiplicity-`>= 2` traces the enemy can zero,
+  confirming with exact numbers that the `a = 3` first-order form is
+  vacuous and the measured floor, if real, is second-order.  The
+  cancellation solver now decides reality; the census stands as the
+  complete structural input for whatever mechanism survives.
+- **Corrected second-order mechanism: the phase-free core is the
+  native retention of the dictionary (2026-08-21).**  Two exact
+  structural facts sharpen everything.  (i) On every
+  multiplicity-one twisted block the torsor element is a SCALAR, so
+  `W` is inert on the entire native mass (77% of the space): the
+  joint `(K, W)` floor and the `K`-only floor coincide on the locked
+  sector.  (ii) Expanding the leak in the four native phases, the
+  diagonal terms `t conj(a t) = conj(a)` are PHASE-FREE: the leak
+  contains an additive constant
+
+  `c*(V) = sum_(mtilde=1) w_sigma conj(a_(sigma, pi(sigma)))`,
+
+  the native-sector retention of `Ad(V)` — the amount of native mass
+  the dictionary keeps self-aligned — which NO enemy freedom (native
+  phases, shallow unitaries, torsor) can touch.  Every tunable term
+  has a FIXED total range `R(V)` because unitarity of `K` fixes every
+  block mass (nothing is tradeable), so the fixed-`V` floor holds iff
+  `|c*(V)| > R(V)` — one computable inequality; and the `V`-escape
+  seen at defect cost `+13` is the enemy driving `c*(V)` toward zero
+  along the dictionary manifold, making the true wall the tradeoff
+  curve `|c*|` versus defect.  This supersedes both the vacuous
+  first-order form and the erroneous positivity claim, and it is
+  exactly computable from the control dictionary and the census.
+- **The inversion: the floor is the residue of dictionary
+  impossibility (2026-08-21).**  A PERFECT dictionary implements the
+  level shift, which maps the native sector off itself (level
+  compression), forcing `c* ~ 0`; so nonzero retention is not a
+  virtue of the dictionary but the signature of its FAILURE — and at
+  fixed level the failure is proven (the positive spectral floor).
+  The mechanism chain is therefore: fixed-level dictionary
+  impossibility `=>` un-implementable part of the shift `=>` retained
+  native self-alignment `c*(V) > 0` on the whole low-defect manifold
+  `=>` leak floor `|c*| - R`.  The awaited computation of `c*` at the
+  control dictionary tests this quantitatively (prediction:
+  `|c*| ~ 0.14`, the measured floor), and v2's `+13`-defect escape is
+  the enemy buying dictionary quality it cannot afford at this level.
+  TOWER version: at deep levels the six-pair spectra become
+  compatible (`OT ~ 4^(-a)`), but the shift is mass-asymmetric — the
+  top two layers' native mass (asymptotically everything) has no
+  shift-image to align with — so the question becomes whether the
+  dictionary relations force enough of `V`'s mass flow to leave a
+  retention residue at the top: `inf {defect : c* = 0}` versus
+  `inf {defect}`, a gap statement along the tower.  Next experiment
+  (v7): trace the `|c*|`-versus-defect frontier by joint
+  minimization; next theorem target: a lower bound for `|c*|` in
+  terms of the spectral-floor gap at fixed level.
+- **Exact vanishing of the transported core (2026-08-21, by hand).**
+  The dictionary transports parahoric projections
+  (`V P_sigma V* ~ P^A_(sigma o phi)` up to defect), so the
+  perfect-transport value of the phase-free core is the structure
+  constant `c*_0 = (1/512) sum_sigma Tr(P^A_(sigma o phi) P_pi(sigma))`
+  — and this VANISHES IDENTICALLY: `sigma o phi` has shifted-down
+  conductor (shallow), while the native `pi`'s source-parahoric
+  constituents are all deep, so the isotypics are disjoint.  Hence
+  `c*(V) = 0 + (defect-carried residue)`: retention is EXACTLY a
+  defect phenomenon, the inversion is now an exact statement, and the
+  fixed-level floor question is precisely how the un-removable
+  minimum defect (proven positive by the spectral floor) distributes
+  into `c*` across the low-defect manifold — the v7 frontier
+  `|c*|` versus defect is the whole story, and any lower bound must
+  couple the two through the conductor-mismatch geometry rather than
+  through transport identities.
+- **The phase-free core measured AND its positivity proved
+  (2026-08-21, `experiments/sl3-cstar-compute.json`).**  At the
+  control dictionary, `c* = 0.380864`, exactly real — and the reality
+  is structural: each diagonal term is
+  `Tr(P_sigma V* P_pi V) = ||P_pi V P_sigma||_F^2`, a Frobenius
+  square, so the core is a SUM OF SQUARES — `c*(V) >= 0` always,
+  positive unless the dictionary moves every native entirely off its
+  own constituents.  (The earlier positivity retraction applied to
+  the W-rotated diagonal; on multiplicity-one blocks W is inert and
+  the squares survive rigorously.)  The measured floor `0.142` now
+  reads as core minus achievable cancellation
+  (`0.381 - 0.24`), and the fixed-level floor program is: lower-bound
+  the native self-overlap mass `c*(V) = sum ||P_pi V P_sigma||_F^2 / D`
+  over the low-defect manifold (the conductor-mismatch theorem says
+  perfect transport would kill it, the spectral floor says perfect
+  transport is impossible), and upper-bound the cancellation range.
+  Both are concrete; the frontier trace (v7) quantifies them
+  together.
+- **Rigorous floor ledger at the control dictionary (2026-08-21,
+  `experiments/sl3-bmatrix.json`,
+  `experiments/sl3-rigorous-floor.json`).**  Exact numbers: the
+  native 4-phase quadratic form `B` has continuous minimum
+  `min_t |t* B t| = 0.2407` (grid + polish; matches the hand
+  max-cut/XY analysis: `maxcut ~ 0.194` at the split
+  `{84a,112a}|{84b,112b}`-pattern), the JOINT shallow coupling is
+  `0.1014` (aggregated nuclear norms — the independent-sup value
+  `0.137` was beatable), and the `mtilde >= 2` sector still carries
+  the crude Cauchy-Schwarz `0.2344`, leaving the proved bound at
+  `-0.095` against a measured floor of `+0.142`.  The remaining gap
+  is pure bookkeeping: the three parts draw on ONE unitarity budget
+  (the shallow mass `120/512` enters both non-native parts, and the
+  block-diagonal sector mass of `V* K V` is genuinely below its
+  cap), so the separated sups over-count; the next tightening is the
+  aggregated nuclear bound over the joint coefficient operator.
+  Assessment: with `c* = 0.381` proved positive as a sum of squares,
+  the native minimum `0.2407` exact, and three independent
+  optimizers stalling at `0.14-0.17`, the fixed-`V` floor is
+  established beyond reasonable doubt and NEARLY proved; but since
+  this vertex provably cannot host the enemy, the proof-completion
+  is not goal-critical — the goal-critical target remains the
+  uniform two-level version, for which tonight's derived structures
+  (layer nesting, native freshness, conductor mismatch, sum-of-
+  squares core) are the transferable machinery.
+- **Concluding structural assessment: the plateau design and the
+  collapse of the local program (2026-08-21, pure analysis).**  The
+  full-parahoric dictionary demands approximate invariance of the
+  multiplicity measure under a TRANSLATION of the root-conductor box
+  `[0,a]^6` (upper roots down by `(1,2,1)`, lower roots up by
+  `(1,2,1)`).  Two sectors die provably: top-face (regular-like)
+  data escapes the box under the lower-root raise (defect at least
+  the top-face mass — the mass-asymmetry made precise), and shallow
+  data is killed by fixed-character regularity with the co-density
+  arguments.  But MIDDLE-CONDUCTOR PLATEAUS evade everything:
+  translation stays interior (boundary defect `~ shift/width -> 0`),
+  shallow marginals stay regular, and these plateaus are exactly
+  truncated solenoid-Haar — the finite shadows of the coset-Bernoulli
+  enemy.  CONSEQUENCES: (i) provable confinement — the tower enemy's
+  vertex data must be DOUBLY-DEEP (all root conductors `omega(1)`
+  from both ends); (ii) all level-local obstructions, including the
+  fixed-level floors measured here, fade as the level grows — the
+  level-3 floor is a boundary artifact of a box with no middle;
+  (iii) the tower sector is asymptotically LOCALLY consistent, so the
+  tower-versus-outlier split collapses at depth: both funnel into
+  growing-length global consistency, the Kun--Thom wall relocated,
+  and further fixed-level floor work has bounded goal-value.  The
+  transferable outputs of this campaign are the confinement theorems
+  (odd sector, two-primary, doubly-deep) and the exact machinery
+  (block-trace reduction, sum-of-squares core, conductor-mismatch
+  vanishing), which now describe the enemy's necessary shape with
+  unprecedented precision: a truncated solenoid-Haar plateau carrying
+  an exactly quasi-regular witness — one object, one wall.
+- **Unification with the carrier-character front (2026-08-21, pure
+  analysis, final).**  Since `h` is a word in elementaries, the
+  enemy's dictionary unitary is determined by the three unipotent
+  solenoid towers, and the Steinberg relation
+  `[e_12(x), e_23(y)] = e_13(xy)` couples them through DYADIC
+  MULTIPLICATION: the local structure is Heisenberg over `Z[1/2]` —
+  amenable, hence locally constructible with exactly the
+  solenoid-Haar spectra the plateau design prescribes.  Every local
+  piece of the enemy is therefore realizable; the obstruction lives
+  only in the non-amenable Weyl-glued assembly, and the trace of the
+  assembled object IS a factorial hyperlinear character of the
+  carrier group over the regular trace.  Conclusion: this lane and
+  the carrier-character lane
+  (`hnn-carrier-factorial-character-collapse`) have converged on the
+  SAME open kernel from opposite sides — one is the spatial/spectral
+  description (solenoid-Haar plateau with an exactly quasi-regular
+  witness), the other the character-theoretic one (a factorial
+  hyperlinear carrier character centralizing nothing beyond the
+  forced center).  Any rigidity input that classifies or obstructs
+  finite approximation of such characters closes both; and the
+  plateau description supplies the character's full restriction data
+  on every amenable subgroup as a testing surface for such a
+  classification.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the

@@ -118,3 +118,10 @@ Pauli rectangles cannot themselves be relative `Gr'(1/6)`, by
 relative route needs an additional dimension-preserving mixed-incidence
 replacement.  Without that replacement, the ordinary balanced-Greendlinger
 route is the only surviving small-cancellation lane.
+
+The ordinary lane also needs a pre-replacement, though for a different
+reason: `complete-pauli-rectangles-defeat-three-p-balance` constructs a
+short-gap/long-gap rectangle violating every uniform balance constant.  The
+common surviving target is therefore exact: replace the **mixed** Pauli
+incidence geometry on the same Hilbert space so that dimension soundness is
+preserved while all short/reused or severely unbalanced rectangles disappear.

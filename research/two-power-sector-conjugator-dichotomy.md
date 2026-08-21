@@ -96,6 +96,53 @@ algebras.  Then:
   invisible to every finite quotient — the same
   non-residually-witnessable character as the uniform-outlier
   residue, now appearing at the embedding level.
+- **CONSOLIDATION: the bounded gauges reduce to this same dichotomy
+  (2026-08-21, closing computation).**  At a bounded gauge the
+  enemy's binding constraint is the level-coupled intertwining of
+  the pair of tuples `(sigma_q(lambda) (x) sigma_p(lambda-bar))` and
+  `(sigma_q(h lambda h^(-1)) (x) sigma_p(eta(lambda)))` over
+  `lambda in Lambda_-`.  Their asymptotic mixed `*`-moments AGREE:
+  in the regular-type limit a word contributes only when
+  `w(lambda) = e` in `Lambda_-`, and then both `p`-legs evaluate to
+  the identity because BOTH `lambda mapsto lambda-bar` and
+  `eta : lambda mapsto h lambda h^(-1) mod p^C` are homomorphisms —
+  so every relation of `Lambda_-` evaluates identically on the two
+  sides.  Hence the bounded-gauge question is ALSO a moment-equal
+  `h`-twisted pair conjugacy question, the (T) all-or-nothing
+  dichotomy applies verbatim (`Lambda_-` has property (T)), and the
+  kernel-invariance no-go transfers (the same depth shift violates
+  quotient kernels): bounded or unbounded, the ENTIRE Lambda-exact
+  face of the collapse beyond the closed coprime sector rests on ONE
+  question-type — is the `h`-twisted congruence embedding pair
+  unitarily conjugate in matrix ultraproducts? — with the
+  `1/q`-interleaving picture as its spectral shadow and quantum-only
+  witnesses on the YES branch.
+- **Finite-level inequivalence, exactly (2026-08-21, last pass).**
+  At each level `a` the two representations `lambda compose A` and
+  `lambda compose B` of `Lambda_0` on `l^2(G_a)` are BOTH multiples
+  of the regular representation of their image
+  (`[G_a : image] . Reg`), so they are unitarily equivalent iff
+  their kernels coincide — and the kernels differ at every level by
+  the depth shift (`ker B = h^(-1) Lambda(2^a) h cap Lambda_0 !=
+  Lambda(2^a) cap Lambda_0`).  Hence EXACT intertwiners never exist
+  at any finite level (a second, representation-theoretic proof of
+  the quotient no-go), while the tuples are asymptotically
+  moment-equal and their limit algebra is the non-amenable (T)
+  congruence-limit `L(closure of Lambda_0 in SL_3(Z_2))`.  The pair
+  is therefore a CANONICAL EXPLICIT candidate for the
+  Jung-non-uniqueness phenomenon (embeddings of a non-amenable
+  algebra, moment-equal yet possibly non-conjugate), pinned in
+  arithmetic: deciding it either way is the whole Lambda-exact face,
+  and it is exactly the kind of test pair the model-theory-of-II_1
+  and embedding-space literature (Brown's convex structure;
+  Jung's theorem and its converse) has lacked an explicit arithmetic
+  instance of.  Bimodule form for attack: conjugators correspond to
+  unitary matrices constant on the orbits of `gamma : (x, y) mapsto
+  (A(gamma) x, y B(gamma)^(-1))` on `G_a x G_a`; in the product
+  coordinate the orbit space is the `A`-`B`-twisted conjugation
+  action `z mapsto A(gamma) z B(gamma)^(-1)` on `G_a` — the
+  finite-geometry object whose asymptotic unitarizability IS the
+  question.
 - **The probe connection.**  `(CD1)` predicts the tower probes on
   regular-type modules see either defect `-> 0` (conjugacy branch)
   or a floor `>= delta_0` -- never a slow drift to zero; the

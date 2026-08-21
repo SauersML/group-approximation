@@ -18,12 +18,20 @@ Write `B = sigma_p(image of Lambda_-)'`, a fixed finite-dimensional
 algebra.  Then, with `V' = sigma(lambda_h)` for `lambda_h = h mod
 q_m` and `= 1 mod p^C`:
 
-1. The corrector `W = V'^* V` lies in `R_q otimes-bar B` (property
-   (T) lifting; the coprime leg has full image), every `V'`-type slot
-   lies in `sigma_q(G_q) otimes 1` and commutes with it, and
-   conjugation by `pi(w)` (`w` a Weyl element) acts on `W` only
-   through the gauge: `W^((w)) := (1 otimes sigma_p(w)) W (1 otimes
-   sigma_p(w))^(-1)`.
+1. CORRECTED (2026-08-21, second pass; the first version overstated
+   the membership).  `V` implements `Ad(h)` on `pi(Lambda_-)` in
+   full, but `V'` implements it only on the coprime leg, so the two
+   conjugations agree exactly on the smaller subgroup `Lambda_0 =
+   {lambda in Lambda_- : h lambda h^(-1) = lambda mod p^C}` — still
+   finite index (it contains `Lambda(p^(C+2)) cap Lambda_-`), but
+   its `p`-part image is DEEP-CONGRUENCE (at `C = 1` it is trivial:
+   the mod-2 agreement condition forces even upper entries).  Hence
+   property (T) lifting places the corrector in `R_q otimes-bar B_0`
+   with `B_0 = sigma_p(image of Lambda_0)'` — for small `C`
+   essentially the FULL matrix block, much larger than the parahoric
+   commutant `B` originally claimed.  The slots still lie in
+   `sigma_q(G_q) otimes 1`, commute with the corrector algebra, and
+   the Weyl conjugation acts through the gauge twist as before.
 2. The Weyl evaluation of the coprime sector now runs verbatim on
    the `q`-leg and leaves the exact system
 
@@ -81,6 +89,151 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   (`p = 2, C = 2`) the relevant data is the character theory of the
   1024-element parahoric image in `SL_3(Z/4)` — an enumerable
   object.
+- **The smallest gauge is infinitesimally rigid at the trivial point
+  (2026-08-21, computed on sioux).**  Linearizing the twisted system
+  at `W = 1` on the 168-dimensional regular module of `SL_3(F_2)`
+  gives a rational self-adjoint PSD constraint operator `Q`
+  (self-adjointness verified to `3e-17`); shifted power iteration
+  converges at machine precision (eigenresidual `7e-16`) to
+
+  ```text
+  lambda_min(Q) ~= 0.2398 > 0 :                                  (BP2)
+  ```
+
+  the linearized system has NO nonzero solutions — no tangent
+  directions to the solution variety at `W = 1`.  Two provable
+  reductions make this one computation decide the whole gauge's
+  infinitesimal question: `G`-equivariant corners commute with every
+  constraint operator, so the kernel on any subrepresentation embeds
+  in the regular kernel; and multiplicity legs are untouched by the
+  constraints, so kernels tensor.  Hence `W = 1` is infinitesimally
+  rigid in the `C = 1` gauge for EVERY representation.  Scope
+  honesty: this rules out a solution continuum through the trivial
+  point, not distant components (which is what an enemy — needing
+  Haar `h`-tower spectrum — would use); descent searches for distant
+  solutions found none but the landscape is glassy (baseline runs
+  cannot even find `W = 1` from random starts), so that evidence is
+  weak.  `Q` is rational in the permutation basis (entries in
+  `(1/8) Z` after clearing the Borel average), so `ker Q = 0` is
+  certifiable EXACTLY — and cheaply: every building block of `Q`
+  conjugates by elements of `lambda(G)`, which act only on the LEFT
+  tensor legs of `End(l^2 G) = (+)_(pi,pi') Hom(V_pi, V_pi') (x)
+  Hom(V-bar_pi, V-bar_pi')`, so the right legs are spectators and
+  the kernel decomposes over irreducible pairs of `GL_3(F_2)`
+  (dimensions `1, 3, 3, 6, 7, 8`): the certification is an exact
+  rational computation on small blocks.  A certificate was computed
+  (`experiments/gauge_cert_c1.py` on sioux): over the exact
+  3528-dimensional B-orbit basis of the BOREL commutant the stacked
+  tangent-constraint matrix has full column rank 3528 mod 2147483629,
+  hence zero kernel over `C` — an exact machine-verified statement.
+  SCOPE CORRECTION (same day): after fixing part 1, the true gauge
+  system carries only the weak `B_0`-membership, NOT
+  Borel-commutancy, so this certificate decides an over-constrained
+  subsystem, not the gauge; indeed the unconstrained two-relation
+  tangent system has a LARGE kernel (the standard `S_3`-isotypic
+  satisfies both relation families: on the `(1,0,-1)`-line of the
+  standard representation, `(s_23 + s_12) v = v`).  The certificate
+  retains value exactly where full `Lambda_-`-commutancy is
+  available — and there the coprime theorem already forces `W = 1`
+  outright — so the honest status of the bounded-gauge sector is:
+  REDUCED to the `(BP1)` classification over the weak membership
+  `R_q otimes-bar B_0`, genuinely open, with the equivariant-hom
+  tangent directions (standard-isotypic) as the enemy's
+  infinitesimal room.
+- **Why the global C=1 decision is genuinely harder than the
+  linearized one.**  The tangent system at `W = 1` splits over the
+  `G`-isotypic blocks of `End(l^2 G)` because its operators are
+  block-preserving and LINEAR; the full system does not split: the
+  multiplicative constraints (`W = W^((w_12)) W^((w_23))` etc.) are
+  matrix products across the block grading, which mix blocks.  So
+  distant solution components, if any, are global objects; deciding
+  their absence needs either the twisted-hom classification over
+  S3-stable abelian subalgebras or exact real-algebraic methods on
+  the full variety — the two named continuations.
+- **The left-convolution subcase and its exact combinatorial form
+  (2026-08-21, late).**  For solutions whose family lies in the
+  left-convolution algebra `lambda(G)''`, the system splits over the
+  irreducible blocks of `G` (products stay blockwise there), and in
+  each block a solution is equivalent to an `S_3`-COVARIANT CRYSTAL:
+  one spectral decomposition of the block per root coweight, each
+  invariant under ITS OWN parahoric (`W_x in pi(U_x)'`), permuted by
+  the Weyl action, carrying multiplicative character data with the
+  three-term relations.  Caution recorded against a tempting
+  shortcut: the JOINT eigenspaces of the commuting family are not
+  invariant under any single parahoric (only each `W_x`'s own
+  spectral projections are `U_x`-invariant), so the family does NOT
+  trivially reduce to `G`-invariant subspaces; the crystal
+  combinatorics per block (`dim <= 8`, six blocks) is a finite exact
+  enumeration and is the right instrument.  Methods note, now
+  thrice-confirmed: gradient/stochastic descent on these varieties
+  is glassy and produces no signal in either direction; only
+  linearization, exact rank certificates, and finite enumeration
+  yield conclusions.
+- **The quadratic obstruction RESOLVED, in both directions
+  (2026-08-21, final pass).**  The commutation constraints of
+  `(BP1)` vanish to first order and obstruct at second order
+  (`[X^((w)), X^((w'))] = 0`); but the obstruction does NOT close
+  the gauge: on a FREE `S_3`-orbit of a generic matrix-unit pair
+  (twelve distinct points with no row/column coincidences across
+  translates — choosable among 168), all products of the orbit units
+  vanish in both orders, so the Baker--Campbell--Hausdorff series is
+  exact, the Weyl-conjugate family commutes exactly, and the
+  two-dimensional `(BP1)`-kernel inside the regular
+  orbit-representation of `S_3` integrates to EXACT nontrivial
+  one-parameter solution families of the true (weak-membership)
+  `C = 1` system: the gauge is genuinely non-rigid.  HOWEVER the
+  same disjointness caps the construction's spectral weight: at most
+  `2 * 14 / 168 = 1/6` of the spectrum can leave `1` (at most
+  fourteen disjoint twelve-point orbits), so every solution of the
+  disjoint-support class has a spectral atom of mass at least `5/6`
+  at `1` — flatly incompatible with the Haar `h`-tower spectrum the
+  enemy's regular trace forces.  The bounded-gauge battle is
+  therefore now exactly: do SPREAD-SPECTRUM solutions (supports
+  forced to overlap, commutators no longer free) exist?  The
+  overlap regime is where the quadratic obstruction genuinely bites.
+  COMPLETION OF THE SYSTEM (same pass; the `(BP1)` statement above is
+  incomplete as the full gauge system): beyond the Weyl-derived
+  relations, the corrector must also satisfy the PRIMARY conjugation
+  constraint that `(BP1)`'s extraction silently dropped — on the
+  `p`-block, `W_p` must intertwine `sigma_p` composed with the mod-`p`
+  upper image of `Lambda_-` and `sigma_p` composed with the
+  DEEPER-BIT lower-valued homomorphism `lambda mapsto h lambda
+  h^(-1) mod p` (conjugation by `h` scales the upper entries to zero
+  mod `p` and reads the lower entries' next bits): this level-coupled
+  intertwining is the solenoid heart that
+  `two-adic-tower-format-of-surviving-lambda-exact-enemy` always
+  carried, and it is the binding constraint.  Consequences
+  re-scoped: the spectral-capacity discussion above classifies
+  `(BP1)`-only solutions — including EXACT spread-spectrum ones
+  (block construction on right-cosets of a transposition stabilizer:
+  spectrum `{1, z, z^(-1)}` with multiplicity `56` each and `z`
+  arbitrary, so even `tr W = 0` is attainable) and the disjoint-orbit
+  families — but enemy-relevance additionally requires the
+  level-coupled intertwining, which none of these constructions
+  addresses.  The bounded-gauge frontier, correctly stated: solutions
+  of `(BP1)` AND the level-coupled intertwining with spread spectrum
+  — the finite-level shadow of the depth-shift, back exactly where
+  the two-adic format node placed it, now with the surrounding
+  `(BP1)`-solution landscape mapped.
+- **The interleaving handle (2026-08-21, closing pass).**  A
+  would-be closure via exact inconsistency was caught before
+  landing: at any FIXED finite level the intertwining is exactly
+  inconsistent (take `lambda = e_31(4) in Lambda_-`, trivial mod 2,
+  with `h lambda h^(-1) = e_31(1)` nontrivial mod 2; simplicity of
+  `SL_3(F_2)` makes every nontrivial gauge faithful), but in the
+  ultraproduct the obstruction decays: the mismatched spectral mass
+  (`>= 1/dim sigma_p`, at sign-twisted positions) must transport
+  only distance `~ pi/q` to the nearest coprime-side eigenvalue, so
+  single-element defects vanish like `1/q^2` — the recurring lesson
+  that fixed-word tests die asymptotically.  What survives as a TRUE
+  constraint: the enemy's coprime-side eigenvalue distributions must
+  INTERLEAVE at scale `1/q` against the fixed `p`-side twists,
+  simultaneously for every element of `Lambda_-` and covariantly
+  under the Weyl action — a joint interleaving-rigidity structure
+  with no analogue in the coprime sector, and the natural next
+  object to formalize: whether Weyl-covariant `1/q`-interleavings of
+  near-uniform spectra exist jointly is a finite-geometry question
+  per level pair, again certificate-shaped.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a

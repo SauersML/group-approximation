@@ -90,9 +90,13 @@ candidate enemy and would need to be tested against the
   therefore lives in modules whose per-element spectral
   distributions converge (regular type), where the matching cost
   between uniform measures on `2^a`-th versus `2^(a-1)`-th roots of
-  unity tends to `0`.  The `s >= 2` runs need the block
-  parametrization; an sbatch job is queued (dense descent at
-  `d ~ 600` exceeds interactive budgets).
+  unity tends to `0`.  SECOND LEVEL MEASURED (sbatch, 2026-08-21):
+  at `s = 2` (the `h^2`-parahoric module of `SL_3(Z/16)`, `d = 672`)
+  the interlock floor RISES to `~1.89` (one restart, Haar and
+  regularity pressures `~10^-2`): the obstruction does not decay
+  with depth in the bounded-multiplicity coset family, consistent
+  with the per-element spectral-mismatch mechanism persisting; the
+  live modulus question remains exclusively in regular-type towers.
 - **Relation to the Iwahori lane.**  Part 1 restricted to one level
   is the `SL_3`-at-`2` version of the `B_+/B_-` compatibility of
   Dogon--Vigdorovich Question 1.4; the interlock adds two more

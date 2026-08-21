@@ -60,6 +60,17 @@ separately bounded centralizer corrections.  Only an interacting chart
 diagram in which the two twisted flows cancel after the vertices are
 combined can still establish `(LSC1)`.
 
+Two further constraints now make that interface precise.  First,
+`collective-centralizer-cycles-are-free-gauge-identities` shows that a scalar
+product of corrections around a cycle freely telescopes: it has zero cost
+because it has zero information.  Second,
+`a5-carmichael-triangle-covers-involution-kernels` gives the surviving
+fixed-size positive mechanism.  The three edge involutions of one Carmichael
+triangle have a uniform sum-of-squares gap in every representation of its
+local `A_5`.  Thus a stabilized rectangular Morita cell may keep those three
+edge defects in separate channels and use the `A_5` gap; it cannot merely
+multiply them into one cycle boundary.
+
 If `(LSC1)` holds, `bounded-area-high-chromatic-conjugacy-collapse` applied to
 the complete graphs `K_M` kills `b` in every tracial matrix ultraproduct.
 Since `b!=1` in `Delta`, this proves that the explicit finitely presented

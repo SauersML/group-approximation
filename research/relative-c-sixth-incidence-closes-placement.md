@@ -5,6 +5,8 @@ kind: route
 title: Apply relative Greendlinger, separate Pauli clouds, and Higman-embed the address group
 target: colored-cayley-pauli-incidence-separation
 requires:
+  - equality-synchronized-lifts-create-two-pair-contours
+  - finite-offset-pauli-rectangles-violate-relative-gr-sixth
   - relative-c-sixth-pauli-incidence-labeling
   - relative-c-sixth-protects-sign-double-cosets
   - sign-double-cosets-separate-pauli-clouds

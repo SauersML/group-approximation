@@ -31,8 +31,20 @@ three of them.
 - **Take an arbitrary covering lift.**  This can improve local geometry but
   can unwind the contextual cycles or lose the dimension bound by the sheet
   factor.
+- **Growing pair clouds plus endpoint equality expanders.**  The game gap is
+  preserved on the same Hilbert space, but every two copies of one logical
+  pair edge form a mixed contour containing exactly two pair edges.  Taking
+  that whole contour as the interval in `(BG2)` violates balance.  See
+  `equality-synchronized-lifts-create-two-pair-contours`.
 
-The surviving design target is a replacement product in which equality
-consistency remains an expander while pair ports form a uniform net on every
-cycle, with a same-Hilbert-space decoder.
+The surviving design target must avoid equality-connecting two copies of the
+same logical pair edge.  A replacement product of ordinary equality fibers
+cannot do this.  The remaining options are direct threshold-rectangle
+labeling or a non-equality synchronizing code with a same-Hilbert decoder.
 
+This replacement is genuinely necessary.  By
+`complete-pauli-rectangles-defeat-three-p-balance`, the unmodified complete
+table always has rectangles with one equality-edge gap and another gap of
+growing diameter; an interval with only two pair edges then covers a fraction
+tending to one.  Thus no relabeling of independent equality expanders can
+establish `(BG2)`.

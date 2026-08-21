@@ -1,0 +1,486 @@
+{
+ "D0": 6.915488191982743,
+ "cstar": [
+  0.380864,
+  0.0
+ ],
+ "abs_cstar": 0.380864,
+ "rows": [
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.002564,
+    -0.0
+   ],
+   "all_over_D": [
+    0.002184,
+    0.000645,
+    0.001901,
+    0.002564
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.002917,
+    0.0
+   ],
+   "all_over_D": [
+    0.002917,
+    0.000601,
+    0.001049,
+    0.002616
+   ]
+  },
+  {
+   "d_sigma": 2,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.001759,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001759,
+    0.000688,
+    0.000837,
+    0.000388
+   ]
+  },
+  {
+   "d_sigma": 2,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.002556,
+    0.0
+   ],
+   "all_over_D": [
+    0.000394,
+    0.000272,
+    0.000265,
+    0.002556
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.008231,
+    0.0
+   ],
+   "all_over_D": [
+    0.001228,
+    0.001901,
+    0.008231,
+    0.001552
+   ]
+  },
+  {
+   "d_sigma": 32,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.025057,
+    0.0
+   ],
+   "all_over_D": [
+    0.025057,
+    0.003569,
+    0.005407,
+    0.015111
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.011495,
+    -0.0
+   ],
+   "all_over_D": [
+    0.008255,
+    0.001851,
+    0.003118,
+    0.011495
+   ]
+  },
+  {
+   "d_sigma": 32,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.035921,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001588,
+    0.007767,
+    0.035921,
+    0.002004
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.014669,
+    0.0
+   ],
+   "all_over_D": [
+    0.003163,
+    0.004504,
+    0.014669,
+    0.003407
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.020399,
+    0.0
+   ],
+   "all_over_D": [
+    0.001018,
+    0.020399,
+    0.004345,
+    0.001557
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003158,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001594,
+    0.001196,
+    0.001271,
+    0.003158
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.010819,
+    0.0
+   ],
+   "all_over_D": [
+    0.008174,
+    0.002161,
+    0.0037,
+    0.010819
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003399,
+    -0.0
+   ],
+   "all_over_D": [
+    0.003399,
+    0.000487,
+    0.001467,
+    0.00123
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.021372,
+    0.0
+   ],
+   "all_over_D": [
+    0.000713,
+    0.021372,
+    0.002316,
+    0.00162
+   ]
+  },
+  {
+   "d_sigma": 32,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.018596,
+    -0.0
+   ],
+   "all_over_D": [
+    0.014786,
+    0.003776,
+    0.00803,
+    0.018596
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003189,
+    0.0
+   ],
+   "all_over_D": [
+    0.002863,
+    0.000487,
+    0.000576,
+    0.003189
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.010671,
+    0.0
+   ],
+   "all_over_D": [
+    0.000792,
+    0.010671,
+    0.001278,
+    0.001123
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.019998,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001239,
+    0.003543,
+    0.019998,
+    0.001688
+   ]
+  },
+  {
+   "d_sigma": 32,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.037066,
+    -0.0
+   ],
+   "all_over_D": [
+    0.00116,
+    0.037066,
+    0.006917,
+    0.003503
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.009844,
+    0.0
+   ],
+   "all_over_D": [
+    0.001045,
+    0.009844,
+    0.001384,
+    0.001286
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.008387,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001347,
+    0.008387,
+    0.002296,
+    0.001623
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.008274,
+    -0.0
+   ],
+   "all_over_D": [
+    0.001159,
+    0.002629,
+    0.008274,
+    0.001424
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.02193,
+    -0.0
+   ],
+   "all_over_D": [
+    0.00153,
+    0.002176,
+    0.02193,
+    0.001563
+   ]
+  },
+  {
+   "d_sigma": 2,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.001872,
+    -0.0
+   ],
+   "all_over_D": [
+    0.000481,
+    0.000264,
+    0.000866,
+    0.001872
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003079,
+    -0.0
+   ],
+   "all_over_D": [
+    0.003079,
+    0.000415,
+    0.000786,
+    0.002707
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.012351,
+    -0.0
+   ],
+   "all_over_D": [
+    0.012351,
+    0.001729,
+    0.002069,
+    0.008639
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.007902,
+    0.0
+   ],
+   "all_over_D": [
+    0.00106,
+    0.003143,
+    0.007902,
+    0.001641
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.00886,
+    0.0
+   ],
+   "all_over_D": [
+    0.00096,
+    0.00886,
+    0.001929,
+    0.001963
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.012138,
+    0.0
+   ],
+   "all_over_D": [
+    0.012138,
+    0.001935,
+    0.00211,
+    0.008289
+   ]
+  },
+  {
+   "d_sigma": 16,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.0155,
+    -0.0
+   ],
+   "all_over_D": [
+    0.002555,
+    0.0155,
+    0.005985,
+    0.002731
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003248,
+    0.0
+   ],
+   "all_over_D": [
+    0.002686,
+    0.000565,
+    0.000608,
+    0.003248
+   ]
+  },
+  {
+   "d_sigma": 8,
+   "feed_native_dim": 112,
+   "diag_overlap_over_D": [
+    0.00735,
+    0.0
+   ],
+   "all_over_D": [
+    0.001685,
+    0.00332,
+    0.00735,
+    0.001878
+   ]
+  },
+  {
+   "d_sigma": 2,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.00276,
+    -0.0
+   ],
+   "all_over_D": [
+    0.00276,
+    0.000318,
+    0.00027,
+    0.000222
+   ]
+  },
+  {
+   "d_sigma": 4,
+   "feed_native_dim": 84,
+   "diag_overlap_over_D": [
+    0.003531,
+    -0.0
+   ],
+   "all_over_D": [
+    0.003531,
+    0.000609,
+    0.000512,
+    0.002412
+   ]
+  }
+ ]
+}

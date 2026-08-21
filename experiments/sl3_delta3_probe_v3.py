@@ -145,77 +145,139 @@ def main():
     print(json.dumps({"phase1_control_defect": round(float(D0), 5)}),
           flush=True)
 
+    # precompute association-scheme structure: products E_i E_j in basis
+    print(json.dumps({"precompute": "structure constants"}), flush=True)
+    reps = []
+    seenrep = {}
+    for x in range(D):
+        for y in range(D):
+            l = int(LAB[x, y])
+            if l not in seenrep:
+                seenrep[l] = (x, y)
+            if len(seenrep) == NOR:
+                break
+        if len(seenrep) == NOR:
+            break
+    S = np.zeros((NOR, NOR, NOR))
+    for i in range(NOR):
+        Mi = mats[i]
+        for j in range(NOR):
+            P = Mi @ mats[j]
+            for k in range(NOR):
+                x, y = seenrep[k]
+                S[i, j, k] = P[x, y]
+    # adjoint orbit: E_i^T = E_{it[i]}
+    it = np.empty(NOR, dtype=np.int64)
+    for i in range(NOR):
+        x, y = seenrep[i]
+        it[i] = int(LAB[y, x])
+    osize = np.array([mats[i].sum() for i in range(NOR)])
+    diagmask = np.array([1.0 if LAB[0, 0] == i or
+                         (mats[i] * np.eye(D)).sum() > 0 else 0.0
+                         for i in range(NOR)])
+    trE = np.array([(mats[i] * np.eye(D)).sum() for i in range(NOR)])
+
+    def Kmat(c):
+        K = np.zeros((D, D), dtype=complex)
+        for i in range(NOR):
+            K += c[i] * mats[i]
+        return K
+
+    def unit_quartic(c):
+        # K*K = sum_{i,j} conj(c_it[i]) ... K* = sum conj(c_i) E_{it[i]}
+        # d_k = sum_{i,j} conj(c_i) c_j S[it[i], j, k]; want d = e_id
+        dvec = np.zeros(NOR, dtype=complex)
+        for i in range(NOR):
+            ci = np.conj(c[i])
+            dvec += ci * (S[it[i]] .T @ c)
+        # identity element in basis: orbit of (x,x) classes: identity
+        # matrix = sum over diagonal orbits with coefficient 1
+        target = trE / np.maximum(osize, 1)  # 1 on diagonal orbits
+        r = dvec - target
+        # ||K*K - 1||_2^2 / D = sum_k |r_k|^2 * osize_k / D
+        val = float(np.sum(np.abs(r) ** 2 * osize) / D)
+        grad = np.zeros(NOR, dtype=complex)
+        for i in range(NOR):
+            # d dvec/d conj(c_i) = S[it[i]].T @ c
+            grad[i] += np.sum(np.conj(r) * (S[it[i]].T @ c) * osize) / D
+        # plus term from c in dvec: d dvec_k / d c_j = sum_i conj(c_i) S[it[i], j, k]
+        T = np.zeros((NOR, NOR), dtype=complex)
+        for i in range(NOR):
+            T += np.conj(c[i]) * S[it[i]]
+        grad += (T.conj() @ (r * osize)) / D
+        return val, grad
+
     out = {"orbits": int(NOR), "D0": float(D0), "runs": []}
     for SLACK in (0.5, 1.0, 2.0):
-        best = None
         for restart in range(2):
-            c = rng.normal(size=NOR) + 1j*rng.normal(size=NOR)
-            K = build_K(c)
-            # normalize to near-unitary: scale so ||K||_2 ~ sqrt(D)
-            K *= np.sqrt(D) / np.linalg.norm(K)
-            c *= np.sqrt(D) / np.linalg.norm(build_K(np.ones(NOR)*0+c))
+            c = (rng.normal(size=NOR) + 1j * rng.normal(size=NOR))
+            K = Kmat(c)
+            c *= np.sqrt(D) / np.linalg.norm(K)
             Vw = V.copy()
-            LAM, MUU = 50.0, 200.0
-            stepC, stepV = 0.05, 0.3
-            for it in range(300):
-                K = build_K(c)
-                lk = leak(K, Vw)
-                up = unit_pen(K)
-                df = defect_V(Vw)
-                over = max(0.0, df - D0 - SLACK)
-                F = lk**2 + MUU*up + LAM*over**2
-                # numeric gradient in c (cheap: NOR dims)
-                gc = np.zeros(NOR, dtype=complex)
-                h = 1e-5
-                for i in range(NOR):
-                    for pha in (1.0, 1j):
-                        c2 = c.copy()
-                        c2[i] += h*pha
-                        K2 = build_K(c2)
-                        F2 = leak(K2, Vw)**2 + MUU*unit_pen(K2)
-                        g = (F2 - (lk**2 + MUU*up)) / h
-                        gc[i] += g * (pha.real - 1j*pha.imag if pha == 1j
-                                      else 1.0) * (1.0 if pha == 1.0 else 1j)
+            LAM, MUU = 60.0, 300.0
+            stepC, stepV = 0.1, 0.3
+            Qf = None
+            for itn in range(220):
+                if itn % 4 == 0:
+                    VE = [Vw[:, perm_of.__defaults__] if False else None]
+                    Qf = np.zeros((NOR, NOR), dtype=complex)
+                    K1 = None
+                    VEj = []
+                    for j in range(NOR):
+                        VEj.append(Vw @ mats[j] @ Vw.conj().T)
+                    for i in range(NOR):
+                        for j in range(NOR):
+                            Qf[i, j] = np.vdot(mats[i], VEj[j]) / D
+                q = np.conj(c) @ (Qf @ c)
+                uv, ug = unit_quartic(c)
+                trk = np.sum(c * trE) / D
+                F = abs(q) ** 2 + MUU * uv + 5.0 * abs(trk) ** 2
+                gq = 2 * np.conj(q) * (Qf @ c)
+                gc = gq + MUU * 2 * ug + 5.0 * 2 * np.conj(trk) * trE / D
                 c2 = c - stepC * gc / max(np.linalg.norm(gc), 1e-12)
-                K2 = build_K(c2)
-                F2 = (leak(K2, Vw)**2 + MUU*unit_pen(K2) + LAM*over**2)
+                q2 = np.conj(c2) @ (Qf @ c2)
+                uv2, _ = unit_quartic(c2)
+                trk2 = np.sum(c2 * trE) / D
+                F2 = abs(q2) ** 2 + MUU * uv2 + 5.0 * abs(trk2) ** 2
                 if F2 < F:
                     c = c2
+                    stepC = min(stepC * 1.1, 0.3)
                 else:
-                    stepC *= 0.7
-                # V-step on leak + defect-overrun
-                A2 = Vw @ K @ Vw.conj().T
-                q = np.vdot(K, A2) / D
-                NV = (2.0/D)*np.conj(q)*(A2 @ K.conj().T - K.conj().T @ A2)
-                if over > 0:
-                    for (pa, pb), (pai, pbi) in zip(pl, pli):
-                        W = Vw[:, pa] @ Vw.conj().T
-                        NV += -2*LAM*over*(2.0/D)*(W[:, pbi] - W[pb, :])
-                Y = (NV - NV.conj().T)/2.0
-                nn = max(np.linalg.norm(Y), 1e-14)
-                A = (stepV/nn)*Y
-                V2 = np.linalg.solve(np.eye(D)-A/2, (np.eye(D)+A/2) @ Vw)
-                lk2 = leak(build_K(c), V2)
-                df2 = defect_V(V2)
-                F2 = lk2**2 + MUU*unit_pen(build_K(c)) + \
-                    LAM*max(0.0, df2-D0-SLACK)**2
-                F1 = leak(build_K(c), Vw)**2 + MUU*unit_pen(build_K(c)) + \
-                    LAM*max(0.0, defect_V(Vw)-D0-SLACK)**2
-                if F2 < F1:
-                    Vw = V2
-                    stepV = min(stepV*1.1, 0.6)
-                else:
-                    stepV *= 0.6
-            K = build_K(c)
+                    stepC *= 0.6
+                # V-step every 4 iters
+                if itn % 4 == 3:
+                    K = Kmat(c)
+                    A2 = Vw @ K @ Vw.conj().T
+                    qq = np.vdot(K, A2) / D
+                    NV = (2.0 / D) * np.conj(qq) * (A2 @ K.conj().T -
+                                                    K.conj().T @ A2)
+                    df = defect_V(Vw)
+                    over = max(0.0, df - D0 - SLACK)
+                    if over > 0:
+                        for (pa, pb), (pai, pbi) in zip(pl, pli):
+                            W = Vw[:, pa] @ Vw.conj().T
+                            NV += -2 * LAM * over * (2.0 / D) *                                 (W[:, pbi] - W[pb, :])
+                    Y = (NV - NV.conj().T) / 2.0
+                    nn = max(np.linalg.norm(Y), 1e-14)
+                    A = (stepV / nn) * Y
+                    V2 = np.linalg.solve(np.eye(D) - A / 2,
+                                         (np.eye(D) + A / 2) @ Vw)
+                    l1 = abs(np.vdot(K, Vw @ K @ Vw.conj().T) / D) ** 2 +                         LAM * max(0.0, defect_V(Vw) - D0 - SLACK) ** 2
+                    l2 = abs(np.vdot(K, V2 @ K @ V2.conj().T) / D) ** 2 +                         LAM * max(0.0, defect_V(V2) - D0 - SLACK) ** 2
+                    if l2 < l1:
+                        Vw = V2
+                        stepV = min(stepV * 1.1, 0.6)
+                    else:
+                        stepV *= 0.6
+            K = Kmat(c)
+            A2 = Vw @ K @ Vw.conj().T
             rec = {"slack": SLACK, "restart": restart,
-                   "leak": round(float(leak(K, Vw)), 5),
-                   "unit_pen": round(float(unit_pen(K)), 6),
+                   "leak": round(float(abs(np.vdot(K, A2)) / D), 5),
+                   "unit_pen": round(float(unit_quartic(c)[0]), 6),
                    "defect": round(float(defect_V(Vw)), 4),
-                   "trK": round(float(abs(np.trace(K))/D), 5)}
+                   "trK": round(float(abs(np.sum(c * trE)) / D), 5)}
             print(json.dumps(rec), flush=True)
             out["runs"].append(rec)
-            if best is None or rec["leak"] < best:
-                best = rec["leak"]
     with open("sl3_delta3_probe_v3.json", "w") as f:
         json.dump(out, f, indent=1)
     print("PROBE-DONE", file=sys.stderr)
