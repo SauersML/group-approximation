@@ -77,6 +77,14 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
   obstruction is narrower: Pauli covariance does not force the larger
   hyperoctahedral constants to have trivial external multiplicity action.
   `hyperoctahedral-router-interface-for-fanizza` records exactly that return.
+- **Selector-correlated direct power: local lookup closed.**
+  `selector-correlated-direct-power-router` pairs the characters of one
+  commuting selector context with packet coordinates.  A single ordinary
+  coordinatewise-inner automorphism then supplies the complete
+  selector-dependent conjugation table, and the balanced word cancels all
+  multiplicity.  The construction does not provide one selected projection
+  shared by different noncommuting contexts; common-carrier return is now the
+  precise residual obstruction.
 - **Gauge-double the logical selector into two balanced controls. Fenced.**
   The identity `X=AB` preserves an arbitrary logical involution while both
   shares admit Pauli partners.  However

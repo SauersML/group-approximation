@@ -98,6 +98,18 @@ representation, with no type selection.  Thus the frontier has two clean
 forms: preserve `q_rho`, or groupify the selector-dependent full conjugation
 table.  Merely adding more scalar Pauli covariances does neither.
 
+`selector-correlated-direct-power-router` now groupifies that complete table
+for **one** commuting context.  It pairs each selector character with one
+coordinate of a direct power of the truth packet; one fixed coordinatewise
+inner automorphism then restricts to the correct selector-labelled router,
+and its correlated central type is invariant.  This removes both router and
+constant-packet multiplicity on that local carrier with ordinary group
+relations.  It does not finish `(HRI1)`: the correlated central projections
+for two noncommuting contexts are different and need not commute.  Identifying
+them would classicalize the machine variables.  The frontier is therefore no
+longer local full-table lookup, but a common-carrier/coherent-verifier return
+across contexts.
+
 On the HALT side no trace preservation is needed: tensor the Fanizza GNS
 model with the natural packet, take `c` to be the selector-controlled
 translation, and `(HBT3)` makes every predicate relator exact.  For a
