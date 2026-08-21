@@ -408,6 +408,26 @@ refutation, and this claim makes the reduction precise.
   structure — and measure the carrier census and floor THERE.  The
   present prototype remains the mechanism testbed where the
   block-trace machinery and the carrier anatomy were established.
+- **General-level census DERIVED (2026-08-21, by hand).**  The
+  native anatomy generalizes: layer-`j` natives are monomial sheaves
+  over pairs `(vbar in prims mod 2^(j-1), xi)` with the single
+  pairing invariant, giving two orbit-sheaves of dimensions
+  `3 |prims_(j-1)|` and `4 |prims_(j-1)|` — verified at `j = 2`
+  (`21 = 3*7`, `28 = 4*7`, unsplit) and `j = 3`
+  (`84+84 = 3*56`, `112+112 = 4*56`, sign-split).  For `j >= 3` the
+  stabilizer sign character splits each sheaf, so EVERY level adds
+  four fresh multiplicity-one native blocks: the rigid-carrier
+  supply grows linearly in `a`, with per-layer weight a constant
+  fraction of the layer.  The uniformity mechanism of the transfer
+  argument is therefore DERIVED structure, not a hope: what remains
+  per layer is (i) the separation (swap-invariance) of each pair's
+  deep parahoric constituents and (ii) the `M`-form pairing entries
+  under the shift-by-two descent — both finite, layer-periodic
+  checks.  This also replaces heavy numerics: the branching tables
+  at every level are now analytically accessible through the
+  monomial-sheaf structure (Mackey theory over the parahoric), so
+  the uniform one-step floor is a symbolic computation, not an
+  optimization.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
