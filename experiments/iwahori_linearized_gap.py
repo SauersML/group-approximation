@@ -166,17 +166,12 @@ def analyze(p, which):
 
 def main():
     results = []
-    for p in (23, 29, 31, 37):
+    for p in (41, 43, 47, 53):
         r = analyze(p, "P1")
         results.append(r)
         print(json.dumps(r))
         sys.stdout.flush()
-    for p in (3, 5, 7, 11):
-        r = analyze(p, "vec")
-        results.append(r)
-        print(json.dumps(r))
-        sys.stdout.flush()
-    with open("experiments/iwahori-linearized-gap-2.json", "w") as fh:
+    with open("experiments/iwahori-linearized-gap-3.json", "w") as fh:
         json.dump(results, fh, indent=1)
     print("DONE-SENTINEL")
 

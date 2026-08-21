@@ -110,7 +110,15 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   question at first order is whether its inverse on the image is bounded
   *uniformly in `rho` and in the dimension* with respect to the normalized
   Hilbert--Schmidt norms on cochains; the full question adds the nonlinear
-  terms.  No such uniform bound is in the graph.
+  terms.  Numerically (`experiments/iwahori_linearized_gap.py`, artifact
+  Section 14) the smallest nonzero singular value of the mismatch map for
+  the permutation representations of `SL_2(F_p)` on `P^1` is `0.82, 0.74,
+  0.71, 0.57, 0.47, 0.41, 0.35, 0.27, 0.27, 0.30, 0.27` for `p = 3, ...,
+  37`: a plateau, consistent with a uniform first-order gap coming from
+  Deligne's bound `|a_2| <= 2 sqrt 2 < 3` through the identity
+  `||res_1 f - res_2 g||^2 = 3||f||^2 + 3||g||^2 - 2 Re <f, T_2 g>`.  A
+  proof of uniform infinitesimal rigidity along these lines would be the
+  natural first theorem toward this question; it would not settle it.
 - **What a counterexample must look like.**  Exotic microstates of
   `SL_2(Z[1/2])`: defect and traces tending to zero, bounded distance from
   all congruence representations.  They cannot be built by perturbing

@@ -590,18 +590,33 @@ image in every finite quotient, together with `(tau)` for `SL_2(Z)`.
 `experiments/iwahori_linearized_gap.py` computes, for the permutation
 representation `rho` of `SL_2(F_p)` on `P^1(F_p)` (`d = p+1`), the
 Mayer--Vietoris mismatch map on `Z^1(SL_2(Z), Ad rho) (+) Z^1(SL_2(Z)^t, Ad
-rho)`.  Its kernel is exactly the diagonal coboundaries for every `p`
-tested (so `H^1(SL_2(Z[1/2]), Ad rho) = 0`, as (T;FD) predicts), but the
-smallest nonzero singular value in the cochain Hilbert--Schmidt norm
-decays: `0.82, 0.74, 0.71, 0.57, 0.47, 0.41, 0.35` for `p = 3, 5, 7, 11,
-13, 17, 19`.  A Hecke heuristic (the two restrictions are the degeneracy
-maps whose trace-composition is `T_2`, so on cusp classes the angle is at
-least `3 - 2 sqrt 2` by Deligne) predicts a uniform first-order gap on the
-cuspidal part; the decay must therefore come from non-cuspidal (Eisenstein,
-Steinberg-isotypic, `a_2 = 3`) classes, for which the harmonic
-representatives are not square-integrable and the cochain norm is not the
-Petersson norm.  A decaying first-order gap does not by itself refute
-flexible stability (the second-order Kuranishi obstruction in
-`H^2(SL_2(Z[1/2]), Ad rho)`, of dimension about `d^2/12`, can block the
-integration of near-kernel directions), but it says that any proof of
-stability cannot be a uniform linearization argument.
+rho)` in the cochain Hilbert--Schmidt norm.  Its kernel is exactly the
+diagonal coboundaries for every `p` tested (so `H^1(SL_2(Z[1/2]), Ad rho) =
+0`, as (T;FD) predicts).  Its smallest nonzero singular value is
+
+```text
+p        3     5     7     11    13    17    19    23    29    31    37
+sigma  0.816 0.741 0.711 0.570 0.474 0.408 0.351 0.271 0.275 0.300 0.273
+```
+
+a small-level transient followed by a plateau near `0.27`; the permutation
+representations on `F_p^2 \ 0` give the same values for `p = 3, 5, 7`.  This
+is consistent with a uniform first-order rigidity: the two restrictions are
+the degeneracy maps whose trace-composition is the Hecke operator `T_2`, so
+`||res_1 f - res_2 g||^2 = 3||f||^2 + 3||g||^2 - 2 Re<f, T_2 g>`, and
+Deligne's bound `|a_2| <= 2 sqrt 2 < 3` on cusp forms gives a gap
+`3 - 2 sqrt 2` on the cuspidal part in the Petersson norm; the plateau value
+in the cochain norm is a renormalization of that.  The conjectural
+statement extracted from the data and the heuristic is:
+
+> **(uniform infinitesimal rigidity)** there is `sigma_0 > 0` such that for
+> every congruence representation `rho` of `SL_2(Z[1/2])` and every pair of
+> cocycles `(c_1, c_2)` on the two vertex groups, some common `x` has
+> `||c_i - delta x||_2 <= sigma_0^(-1) max_b ||c_1(b) - c_2(sigma b)||_2`.
+
+This is the first-order content of `iwahori-local-global-defect-question`.
+It is not the question itself: the nonlinear terms and the Kuranishi
+obstruction in `H^2(SL_2(Z[1/2]), Ad rho)` (of dimension about `d^2/12`,
+hence nonzero) must be controlled uniformly, and the question also concerns
+pairs far from every compatible representation, which no linearization
+sees.
