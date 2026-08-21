@@ -107,3 +107,12 @@ while `determinant-index-cannot-authenticate-julia-heat-overlap` rules out
 determinant, parity and bounded Fredholm defects.  The surviving gate is an
 extensive finite-coordinate Hall/conductor matching on the same marked
 multiplicity reservoir.
+
+There is now a second, potentially weaker finite-coordinate formulation.
+`dimension-reported-julia-amplitude-return` uses the residual multiplicity
+algebra as an Amitsur--Levitzki tape.  Its stopping index need only select a
+slowly growing heat depth and activate the two cyclic products above; it does
+not have to generate a supercritical Clifford table or compare an integer
+index with the ambient dimension.  The unresolved step remains
+runtime-independent normalized-HS transport from that endogenous stopping
+flag to the two products.
