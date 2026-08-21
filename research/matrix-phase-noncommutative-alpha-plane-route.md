@@ -102,3 +102,89 @@ should write this tensor square directly in `L^2(M_d)`, use Pythagoras/Jensen
 instead of plurality, and bound the constant number of factor reversals by
 `I(R)`.  This is more specific than first diagonalizing: the row and column
 constraints and orientation errors must be summed in the same square function.
+
+### Exact `4 x 4` affine-form ledger
+
+Change from `(x,b)` to the two endpoints `(u,v)=(x,x+b)`.  With
+`B=1+alpha`, the alpha-plane forms are the rows of
+
+```text
+L = [ (1,0), (0,1), (B,alpha), (alpha,B) ].                  (NC8)
+```
+
+For
+
+```text
+Gamma = [ t  y ]
+        [ z  r ],
+```
+
+set `M_ij=L_i Gamma L_j^T`.  Every row and every column of `M` is one
+alpha-plane query.  Row one is the query with endpoint variables `(t,y)` and
+column one is the query with endpoint variables `(t,z)`.  Thus, with the heap
+
+```text
+H(a,b,c)=a b^* c,
+```
+
+their missing-corner decodes are
+
+```text
+C_t(t+y)=H(R(M_13),R(M_14),R(M_12)),
+C_t(t+z)=H(R(M_31),R(M_41),R(M_21)).                         (NC9)
+```
+
+For `i,j in {2,3,4}`, write `L_i=(p_i,q_i)`.  The random `(y,z,r)`
+coefficient vector of `M_ij` is
+
+```text
+(p_i q_j, q_i p_j, q_i q_j)
+ =q_i q_j (p_i/q_i, p_j/q_j, 1).                            (NC10)
+```
+
+The three ratios are `0,B/alpha,alpha/B`, which are distinct.  Therefore all
+nine interior forms are pairwise independent and every pair of their values is
+uniform on `K^2`.  This is the exact fact needed to charge each orientation
+swap by `(NC1)`.
+
+Let `x_ij=R(M_ij)` on the interior.  Decoding the first-row entries down their
+columns and then decoding the top-left corner gives
+
+```text
+D_row = x_33 x_43^* x_23 x_24^* x_44 x_34^* x_32 x_42^* x_22.
+                                                                    (NC11)
+```
+
+Decoding the first-column entries across their rows gives
+
+```text
+D_col = x_33 x_34^* x_32 x_42^* x_44 x_43^* x_23 x_24^* x_22.
+                                                                    (NC12)
+```
+
+These are the two sides of the heap medial identity
+
+```text
+H(H(a,b,c),H(d,e,f),H(g,h,i))
+ =H(H(a,d,g),H(b,e,h),H(c,f,i)).                            (NC13)
+```
+
+For an exact Boolean torsor `(NC13)` holds.  Quantitatively, choose any one of
+the nine `x_ij` as gauge anchor.  The eight anchor orientation relations make
+the other quotients approximately self-adjoint; pair orientation relations
+then make those quotients approximately commute.  Telescoping `(NC11)` to
+`(NC12)` uses only a constant number of these replacements.  Pairwise
+independence from `(NC10)` and Cauchy--Schwarz therefore give the intermediate
+estimate
+
+```text
+E_(t,y,z)||C_t(t+y)-C_t(t+z)||_2^2 <= C_0(A(R)+I(R))         (NC14)
+```
+
+for an absolute, explicitly enumerable `C_0`.  The row/column replacements
+cost six alpha-query defects; the remaining cost is the medial telescope.
+The unresolved step is to turn the continuous correction concentration
+`(NC14)` into the complete energy `(NC3)` without the scalar proof's discrete
+plurality/positive-probability argument.  Polarizing the mean correction gives
+a nearby unitary table, but a contraction estimate for its test energy has not
+yet been proved.
