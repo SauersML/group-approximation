@@ -147,6 +147,27 @@ must therefore retain the infinite translate closure and the relation
 normalizers' multiplication; matching the finite base probabilities alone is
 never enough.
 
+The infinite translate closure now has an exact test.
+`infinite-label-process-is-haar-linear-iff-fourier-binary` starts from finite
+or countably many `F_p`-valued labels `f_i` and their full `SL_3(Z)` name
+process.  Its law is Haar on a closed linear subshift **if and only if** every
+finite Fourier moment
+
+```text
+E exp((2 pi i/p) sum_(g,i) a_(g,i) f_i(g^(-1)x))
+```
+
+is exactly `0` or `1`.  The moment-one patterns form the annihilator
+`F_p[SL_3(Z)]`-module and reconstruct the dual module explicitly.  If the
+labels generate the probability algebra, this is a measurable conjugacy,
+not an approximation, and a non-CE source action immediately yields the
+non-hyperlinear semidirect product.  Conversely any one finite moment outside
+`{0,1}` kills the proposed recoding.  For binary labels the condition is
+especially concrete: every nonzero finite linear combination of translated
+bits must be exactly balanced.  Thus countable recoding supplies no softer
+intermediate regime; satisfying all binary Fourier tests is already the full
+compiler theorem.
+
 The actor restriction is substantially stronger than “not virtually free.”
 `haagerup-actors-cannot-host-property-t-algebraic-envelope` applies Popa's
 relative property-H rigidity theorem: if `Lambda` is Haagerup, then
