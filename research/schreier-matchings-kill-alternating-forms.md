@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: involutive-schreier-matchings-uniformly-kill-alternating-commutator-forms
+id: schreier-matchings-kill-alternating-forms
 kind: claim
 title: Involutive Schreier matchings uniformly kill every alternating commutator form
 distinct_from:
@@ -52,4 +52,4 @@ This does not yet control the nonlinear Sidki `R` layers or arbitrary
 matrix-block multiplicity.  The full robust metapixel needs an orthogonal
 square function which applies the same Schreier gap to every exterior layer
 without paying once per nilpotency degree.  That target is isolated in
-`schreier-grassmann-square-function-for-all-weak-commutator-layers`.
+`schreier-square-function-for-weak-commutator-layers`.

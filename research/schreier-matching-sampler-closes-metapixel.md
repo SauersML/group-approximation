@@ -5,7 +5,7 @@ kind: route
 title: Use bounded involutive Schreier matchings as the robust mixed Pauli sampler
 target: bounded-degree-entangled-agreement-pauli-metapixel
 requires:
-  - schreier-grassmann-square-function-for-all-weak-commutator-layers
+  - schreier-square-function-for-weak-commutator-layers
   - two-untwisted-field-matchings-force-complete-cross-commutation
   - bounded-involutive-cayley-expanders-for-sl-n-two
 ---

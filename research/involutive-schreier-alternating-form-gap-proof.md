@@ -3,7 +3,7 @@ rg: 2
 id: involutive-schreier-alternating-form-gap-proof
 kind: route
 title: Polarize a sampled quadratic form into the independent-pair Schreier gradient
-target: involutive-schreier-matchings-uniformly-kill-alternating-commutator-forms
+target: schreier-matchings-kill-alternating-forms
 requires: []
 ---
 

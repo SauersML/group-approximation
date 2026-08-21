@@ -244,6 +244,66 @@ theorem hasPeriod_flatten_replicate {β : Type*} (W : List β) {k : ℕ} (hk : 0
   rw [h1, List.drop_left, ← h1, h2]
   exact List.prefix_append _ _
 
+/-! ## 5b.  An arc no longer than one period is a cyclic subword -/
+
+/-- **A short factor of a periodic word is a factor of one period, read
+cyclically.**  If `u` sits inside `z` at offset `a` and is no longer than the
+period, then `u` prefixes the rotation of `z`'s first period by `a % n`: every
+index computation on both sides collapses to `z` at the same residue.
+
+This is what turns "the Greendlinger arc is short" into "the arc is a cyclic
+subword of `W`", which is what the Dehn replacement needs. -/
+theorem exists_prefix_rotate_of_infix {β : Type*} {z u : List β} {n : ℕ}
+    (hn : 0 < n) (hper : List.HasPeriod z n) (hnz : n ≤ z.length)
+    (hu : u <:+: z) (hlen : u.length ≤ n) :
+    ∃ s, s < n ∧ u <+: (z.take n).rotate s := by
+  obtain ⟨A, B, hAB⟩ := hu
+  have htake : (z.take n).length = n := List.length_take_of_le hnz
+  have hAu : A.length + u.length ≤ z.length := by
+    have h := congrArg List.length hAB
+    simp only [List.length_append] at h
+    omega
+  refine ⟨A.length % n, Nat.mod_lt _ hn, ?_⟩
+  rw [List.prefix_iff_getElem?]
+  intro i hi
+  have hin : i < n := lt_of_lt_of_le hi hlen
+  have hiz : A.length + i < z.length := by omega
+  -- the left-hand side is `z` at index `A.length + i`
+  have hleft : u[i]? = z[A.length + i]? := by
+    rw [← hAB, List.getElem?_append_left (by simp; omega),
+      List.getElem?_append_right (by omega)]
+    simp
+  -- the right-hand side is `z` at the residue of that index
+  have hmod : (i + A.length % n) % n = (A.length + i) % n := by
+    rw [Nat.add_comm A.length i]
+    conv_rhs => rw [Nat.add_mod]
+    conv_lhs => rw [Nat.add_mod]
+    simp
+  have hright : ((z.take n).rotate (A.length % n))[i]? = z[(A.length + i) % n]? := by
+    rw [List.getElem?_rotate (by omega), htake, hmod]
+    exact List.getElem?_take_of_lt (Nat.mod_lt _ hn)
+  rw [hleft, hright]
+  exact (List.hasPeriod_iff_forall_getElem?_mod.mp hper _ hiz)
+
+/-- The form the descent consumes: a Greendlinger arc no longer than the base
+is a prefix of some rotation of the base. -/
+theorem exists_prefix_rotate_of_infix_pow {β : Type*} {W u : List β} {k : ℕ}
+    (hk : 0 < k) (hW : W ≠ []) (hu : u <:+: (List.replicate k W).flatten)
+    (hlen : u.length ≤ W.length) :
+    ∃ s, s < W.length ∧ u <+: W.rotate s := by
+  have hn : 0 < W.length := List.length_pos_of_ne_nil hW
+  have hflat : (List.replicate k W).flatten.length = k * W.length :=
+    PeriodicOverlap.length_flatten_replicate k W
+  have hnz : W.length ≤ (List.replicate k W).flatten.length := by
+    rw [hflat]
+    exact Nat.le_mul_of_pos_left _ hk
+  obtain ⟨j, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
+  have htake : (List.replicate (j + 1) W).flatten.take W.length = W := by
+    rw [List.replicate_succ, List.flatten_cons, List.take_left]
+  obtain ⟨s, hs, hpre⟩ :=
+    exists_prefix_rotate_of_infix hn (hasPeriod_flatten_replicate W hk) hnz hu hlen
+  exact ⟨s, hs, by rwa [htake] at hpre⟩
+
 /-! ## 6.  The overhang dichotomy
 
 This is the branch the periodicity lane was built for, and it is where

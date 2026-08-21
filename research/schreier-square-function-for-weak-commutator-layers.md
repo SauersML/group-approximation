@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: schreier-grassmann-square-function-for-all-weak-commutator-layers
+id: schreier-square-function-for-weak-commutator-layers
 kind: claim
 title: Sum the Schreier gaps of all weak-commutator exterior layers in one HS square function
 distinct_from:
-  involutive-schreier-matchings-uniformly-kill-alternating-commutator-forms: that proves the complete exterior-square inequality; this must include every nonlinear Sidki layer and arbitrary operator multiplicity.
+  schreier-matchings-kill-alternating-forms: that proves the complete exterior-square inequality; this must include every nonlinear Sidki layer and arbitrary operator multiplicity.
   dimension-expander-two-matching-square-function: that starts from subspace dimension growth; this uses a uniform Cayley/Schreier spectral gap on independent frames, which is strictly stronger than dimension expansion.
 ---
 
@@ -21,7 +21,7 @@ twisted-commutator defect controls the complete Weyl defect with constants
 independent of `n` and the matrix dimension.
 
 The class-two term is now closed by
-`involutive-schreier-matchings-uniformly-kill-alternating-commutator-forms`.
+`schreier-matchings-kill-alternating-forms`.
 The proposed higher-layer ledger is as follows.  The successive multilinear
 initial terms of the diagonal weak-commutativity kernel are alternating
 commutator tensors.  At exterior degree `k`, evaluate such a tensor on the
@@ -57,3 +57,15 @@ layers would leave an `n epsilon` loss and is not sufficient.
   `f(sb)-f(b)`.  Formula `(SG2)` constructs the gradient only after
   polarization at degree two.  The higher-degree analogues must be proved;
   ordinary scalar expander mixing cannot be substituted for them.
+
+## Attempts
+
+- **Apply Poincare directly to `b |-> [X(sb),Z(b)]`.**  This is a vertex
+  defect, not an edge difference, so the Cayley gap has nothing to act on.
+- **Bound every exterior degree separately.**  Grassmann distance gives a
+  constant at each degree, but summing the same sampled defect over `n`
+  degrees loses a factor `n`; the missing first-hit square function must make
+  the degree pieces orthogonal before charging them.
+- **Use dimension expansion in place of Cayley expansion.**  It controls
+  support dimensions but not Hilbert-valued edge energy and therefore does
+  not imply the required normalized-HS Poincare inequality.
