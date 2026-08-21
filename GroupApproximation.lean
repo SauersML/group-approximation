@@ -1464,6 +1464,7 @@ import GroupApproximation.Higman.OperationClosureRho
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
+import GroupApproximation.Higman.AmalgamTorsion
 import GroupApproximation.Higman.GeneratedBasic
 import GroupApproximation.Higman.GeneratedCoords
 import GroupApproximation.Higman.GeneratedPin
