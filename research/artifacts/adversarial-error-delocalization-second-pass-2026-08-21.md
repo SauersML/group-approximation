@@ -58,7 +58,7 @@ identity before any machine semantics matter.
 
 ## 2. Streaming Gram overflow
 
-There is a dimension detector more geometric than evaluating the growing
+There is a possible dimension detector more geometric than evaluating the growing
 Amitsur--Levitzki polynomial.  For a separated word `w` and conjugating words
 `h_i`, consider centered operator vectors
 
@@ -116,6 +116,18 @@ This route is adjacent to, but not identical with,
 pairwise anticommuting observables and an exponential divisibility bound;
 streaming Gram overflow uses linear dependence in the adjoint operator space
 and may admit a smaller local verifier.
+
+### Immediate firewall: raw Gram locality has vanishing gap
+
+The new claim `raw-gram-rank-overflow-has-no-constant-local-gap` sharply
+limits this proposal.  The `r+1` vertices of a regular simplex in `C^r` are
+globally dependent but have every off-diagonal inner product equal to
+`-1/r`; every fixed-size Gram window converges to the identity.  Thus no
+bounded-query continuous test of raw Gram entries or bounded minors has a
+dimension-free rejection gap.  Streaming rank overflow is not a smaller
+replacement for the existing PCP machinery unless it supplies a robust PCP
+of the entire growing rank computation.  In particular, “there are more than
+`d^2` conjugates” is only a capacity fact, not a constant-HS payment.
 
 ## 3. Finite cyclic self-verification: what it can and cannot do
 
@@ -179,9 +191,10 @@ statement.
 
 1. Try the signed-corner chord first: it bypasses every quantitative HS and
    runtime issue if the algebraic corner map can be built.
-2. In parallel, formulate a constant-gap streaming rank test that avoids
-   determinant/Gram--Schmidt conditioning.  Reject the route immediately if
-   the soundness coefficient grows with the pivot index.
+2. Deprioritize raw streaming rank.  Resume it only with a genuine global-PCP
+   mechanism that defeats the regular-simplex local-gap firewall and avoids
+   determinant/Gram--Schmidt conditioning with constants independent of the
+   pivot index.
 3. Treat the infinite-character interface as the mathematically correct
    heavy-tail route.  Demand a common-PVM Parseval identity before developing
    actor or machine syntax.

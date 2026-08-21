@@ -125,3 +125,8 @@ positive-density no-capture carrier.  The shortest bypass remains an exact
 unital realization of the fixed non-CE BCS algebra in a signed group-algebra
 corner.  None of these refinements is presently a proof; each has explicit
 dimension-, runtime-, direct-sum-, and amenable-tail falsification tests.
+The raw version is now fenced by
+`raw-gram-rank-overflow-has-no-constant-local-gap`: regular simplices are
+globally rank-deficient while every bounded Gram window becomes orthonormal,
+so rank overflow supplies no constant local HS gap without the same kind of
+global PCP machinery the proposal hoped to avoid.
