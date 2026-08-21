@@ -96,6 +96,15 @@ mixed Steinberg returns.
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
   `V direct_sum V` satisfy every four pairing identity while shrinking
   multiplicity; this is `rectangular-escape`.
+- **The canonical stabilized Whitehead repair fails.**  The tempting repair
+  is to Whitehead-compress `g` into the first child, conjugate by the branch
+  swap to obtain the second child, and multiply.  This does exactly produce
+  `diag(g,g)` in the `Phi_1` chart, but
+  `whitehead-swap-copy-completion-retains-rectangular-escape` realizes the
+  entire construction on `E direct sum (E direct sum E)`.  The full target
+  two-qubit tuple then has `s_4` norm `8 sqrt(2/3)` while every Whitehead and
+  swap identity is exact.  Stabilization has amplified the label rather than
+  returned it to the source reservoir.
 - **Equal ambient dimension fails.**  The larger target Weyl factor uses the
   same matrix dimension by consuming the source multiplicity, so a dimension
   count alone sees no loss.
