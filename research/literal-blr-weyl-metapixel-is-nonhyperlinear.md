@@ -36,8 +36,9 @@ and finitely generated linear affine groups in particular.
 The obstruction is not orbit enumeration.  Under the simultaneous linear and
 contragredient actions, BLR pairs `(a,b)` and Weyl pairs `(a,phi)` each have
 only five orbit types.  What fails in the amenable oligomorphic and
-Thompson-tape models is the passage from a contextual simultaneous transporter
-to the fixed global words in `(LBW1)` with bounded area.  If that passage had
+linear-affine models, and what remains precisely unproved for the Thompson
+tape, is the passage from a contextual simultaneous transporter to the fixed
+global words in `(LBW1)` with bounded area.  If that passage had
 dimension-independent normalized-HS cost, `(LBW2)` would give a uniformly
 bounded complete Pauli table and hence the stated contradiction.
 
