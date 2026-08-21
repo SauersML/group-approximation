@@ -62,6 +62,27 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   algebras `C^*(*_i U_(alpha_i))`, which HAS LLP (Pisier: LLP is preserved
   by free products); LLP is not preserved by quotients in general, so the
   question is whether the Kac--Moody relations destroy it.
+- **Second flagged candidate: the Deligne lattice itself.**  Let
+  `Gamma~_4` be the pullback of `Sp_4(Z)` to the universal cover of
+  `Sp_4(R)`.  It is finitely generated, has property (T) (the Deligne
+  class is primitive, so the abelianization is finite), and is
+  non-residually finite (Deligne) — a member of this hole's class, so
+  LLP of `C^*(Gamma~_4)` would make `Gamma~_4` itself the witness with
+  no corollary needed.  This hypothesis is formally INCOMPARABLE to
+  `sp2g-z-full-c-star-algebra-has-llp` (LLP does not pass to quotients,
+  so neither implies the other), and the subgroup fences must be
+  rechecked upstairs: at `g >= 3` the preimage of the Siegel `SL_g(Z)`
+  is a `Z`-extension whose class has finite order (`K_2(Z) = Z/2`), so
+  whether a straight `SL_3(Z)` sits inside depends on whether the
+  `K_2`-double-cover class dies on a congruence subgroup — unrecorded;
+  at `g = 2` the same Klingen/Siegel audit as downstairs applies.  The
+  metaplectic cocycle question
+  `sp4-metaplectic-class-pointwise-coboundary-limit` presses on this
+  candidate too: its YES branch feeds Ioana--Spaas--Wiersma Theorem A
+  with the pulled-back classes, which are COBOUNDARIES upstairs
+  (the extension is the point of `Gamma~_4`), so the refutation
+  mechanism does NOT transport verbatim — one more sense in which the
+  extension is the softer target.
 - **Thom's groups are on the wrong side.**  Thom's hyperlinear Kazhdan
   groups without the factorization property (Groups Geom. Dyn. 4 (2010))
   are non-RF Kazhdan and hyperlinear, hence by the theorem their full
