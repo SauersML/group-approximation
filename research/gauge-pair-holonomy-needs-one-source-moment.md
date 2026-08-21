@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: gauge-pair-free-phase-holonomy-reduces-common-source-to-one-moment
+id: gauge-pair-holonomy-needs-one-source-moment
 kind: claim
 title: Gauge-pair free-phase holonomy makes the common Gram automatic and leaves one mixed moment
 distinct_from:

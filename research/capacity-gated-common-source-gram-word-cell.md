@@ -87,7 +87,7 @@ the edge/holonomy, or prove a normalized-HS boundary payment excluding
 rectangular enlargement.
 
 There is nevertheless a concrete surviving Hecke cell.
-`gauge-pair-free-phase-holonomy-reduces-common-source-to-one-moment` uses a
+`gauge-pair-holonomy-needs-one-source-moment` uses a
 Hadamard/free-phase unitary on each two-share gauge orbit.  It fixes the
 logical product, acts nontrivially on the individual shares, and escapes the
 finite root block.  For every capacity-gated `Q<=q`, the four compressed
