@@ -450,7 +450,26 @@ refutation, and this claim makes the reduction precise.
   becomes the frustration index of the carrier-coupling network — a
   computable spectral quantity, and the correct uniformity target
   for large `a`.
-- **Second-order mechanism identified: phase-averaging positivity
+- **Correction (2026-08-21, same hour): the positivity claim below is
+  WRONG as stated.**  The phase-averaged diagonal `A_(pi pi)(W)` pairs
+  the `W`-rotated channel with its transported partner — two DIFFERENT
+  vectors — so it is sign-indefinite and itself `W`-tunable; the
+  "sum of squared channel masses" reading was an error.  What
+  survives: phase-averaging as the right analysis coordinate system,
+  and the sharpened empirical question — with ~300 free parameters
+  against a single complex constraint, generic solvability argues the
+  measured `0.142` could be an annealing artifact, while v2's
+  independent gradient method found the same barrier, so the truth is
+  genuinely undecided.  The decisive experiment is a TARGETED
+  cancellation solver: Newton/least-squares on the two real
+  constraints `Re z = Im z = 0` over the exact `(K, W)`-manifold from
+  many starts.  If it finds zeros: no fixed-`V` floor, and the
+  per-level hopes move to `V`-constrained formulations.  If it
+  provably stalls at `~0.14`: the rigidity is real and the mechanism
+  hunt resumes with the singular data.  Honesty note kept deliberately
+  above the superseded bullet.
+- **Second-order mechanism candidate (SUPERSEDED, see correction
+  above): phase-averaging positivity
   (2026-08-21).**  The leak is QUADRATIC in `K` (it enters both sides
   of `<W K W*, V_0* K V_0>`), so averaging over the free native
   phases kills the oscillating off-diagonal terms and leaves the
