@@ -141,3 +141,13 @@ all-representations decoder `(ALD1)--(ALD2)`.
   transport this projection (and pay the fixed gap) or explicitly leak into
   a new multiplicity reservoir.  Proving that transport/leakage dichotomy
   from the rank-five/six Steinberg words remains the open step.
+- **Pure rank-five/six mixed loops still have a rectangular model.**
+  `mixed-steinberg-loops-admit-morita-rectangular-model` evaluates every root
+  commutator triangle as a rectangular block transvection between finite
+  spaces `E` and `F=E direct_sum E`.  The Leavitt inclusion/projection table
+  and every associativity/Hall--Witt refinement hold exactly, but the source
+  and target identities remain `1_E` and `1_F`.  Hence no currently named
+  mixed root loop transports the commutant projection of `(WCS4)` to the
+  identical reservoir.  The required new loop must retain a same-object
+  coefficient identification after net refinement; adding further ordinary
+  Steinberg triangle pastings cannot do it.
