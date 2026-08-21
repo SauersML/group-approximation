@@ -49,15 +49,31 @@ new and is the whole point.
   harmonic projection in degree two -- a Garland-type local-averaging
   formula -- or any SOS certificate for the degree-2 gap whose
   Neumann expansion has `kappa < 1`.
-- **What is known on the gap side (source-verified earlier in the
-  lane).**  Bader--Sauer [arXiv:2308.06517] give `(T_(N-2))` for
-  `SL_N(Z)`, i.e. vanishing of (reduced) unitary cohomology through
-  degree `N - 2`, so degree-2 vanishing holds for `N >= 4` and is
-  sharp; the Kaluba--Mizerka--Nowak certified-SOS program supplies
-  explicit degree-1 gaps at `SL_3` and is the natural source of an
-  explicit degree-2 certificate at `SL_4` or `SL_5`.  The trivial-
-  coefficient part is harmless: `H^2(SL_N(Z); C) = 0` for `N >= 3`
-  (Borel stable range, Soule at `N = 3`).
+- **What is known on the gap side (source-verified 2026-08-21).**
+  Bader--Sauer [arXiv:2308.06517, Theorem A]: `SL_n(R)` and all its
+  lattices have property `(T_(n-2))` in the UNREDUCED sense --
+  `H^j(Gamma, V) = 0` for `1 <= j <= n-2` and every unitary `V`
+  without invariant vectors (an earlier note in this lane said
+  "reduced"; that was too weak).  So for `N >= 4` the degree-2
+  vanishing holds for the single ultraproduct Ad-module
+  `L^2(M) minus invariants`, and the open mapping theorem gives a
+  2-norm modulus for THAT module with no uniformity issue; the
+  invariant-vector part is harmless since `H^2(SL_N(Z); C) = 0` for
+  `N >= 3` (Borel stable range, Soule at `N = 3`).  Consequently
+  Bader--Lubotzky--Sauer--Weinberger [BLSW23, cited in
+  arXiv:2512.09180] obtain FROBENIUS (unnormalized) stability for
+  higher-rank lattices of rank at least three, i.e. `SL_N(Z)` for
+  `N >= 4`; `SL_3(Z)` is open even for Frobenius stability
+  (arXiv:2512.09180 also shows `(T_2)` is not necessary for Frobenius
+  stability).  The norm gap is therefore the ENTIRE distance between
+  the literature and the correctability input at rank >= 4: a
+  normalized defect `delta` is a Frobenius defect `sqrt(d) delta`,
+  far outside any Newton basin, so Frobenius stability cannot be
+  scaled down; the normalized iteration must run natively, and its
+  only new need is the operator bound of this claim.  The
+  Kaluba--Mizerka--Nowak certified-SOS program (explicit degree-1
+  gaps at `SL_3`, degree-2 inducing results) is the natural source of
+  an explicit positive-coefficient or low-`kappa` certificate.
 - **Falsification gate.**  An Ad-module 2-cocycle of `SL_N(Z)` with
   `|| c ||_op <= 2`, 2-norm primitive, but no operator-bounded
   primitive would refute this claim; by the route it would have to
