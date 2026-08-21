@@ -115,6 +115,15 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
 - **One unconstrained stable letter:** it can conjugate `X_0` to `X_1`, but
   does not put their common value in both separator commutants and therefore
   breaks a parent attachment.
+- **Literalizing a dense marginal in one edge:** support-rigid and dead.
+  `britton-support-traps-dense-free-phase-chord` shows that returning
+  `tX_0t^(-1)` to the base group algebra forces every basis coefficient of
+  `X_0` into the associated subgroup.  For a Fourier-dense escaped marginal,
+  those coefficients generate the whole effective group `K_D times L_D`.
+  If the target is also dense, both edge groups are the whole base and the
+  HNN is an automorphism mapping torus.  Therefore the live proper edge must
+  exploit separator-block sparsity or a genuinely multi-piece coupling; a
+  generic endpoint regauge makes the literalization problem strictly worse.
 - **Live attack:** couple finitely generated nonamenable proper infinite
   support subgroups asymmetrically so that `(IEC2)--(IEC3)` hold while the
   height kernel is not the path graph product above.  The transport must fix

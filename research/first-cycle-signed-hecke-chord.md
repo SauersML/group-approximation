@@ -71,3 +71,12 @@ least one non-root assignment projection must survive.
   finite iterations of these HNN extensions remain residually finite.  The
   decisive chord must use an infinite associated subgroup or another
   genuinely non-residual-finiteness-preserving extension.
+- **A dense infinite-edge literalization collapses to a mapping torus.**
+  `britton-support-traps-dense-free-phase-chord` proves the converse support
+  rule for additive HNN transport: if `tXt^(-1)` returns to the base group
+  algebra, every coefficient in `supp(X)` must lie in the associated
+  subgroup.  A dense escaped free-phase marginal has support generating the
+  whole effective packet group `K_D times L_D`.  Transporting two such
+  marginals therefore forces a whole-base automorphism HNN, which is
+  hyperlinear.  A live infinite-edge chord must be separator-block sparse,
+  genuinely multi-piece/non-graphical, or non-HNN.
