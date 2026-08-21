@@ -2,7 +2,7 @@
 rg: 2
 id: two-pauli-quarter-carriers-have-fixed-reflection-holonomy
 kind: claim
-title: The two canonical Pauli quarter carriers have exact reflection-commutator energy one half
+title: The two canonical Pauli quarter carriers generate an exact positive-density D8 holonomy packet
 artifacts:
   - experiments/atlas_transported_corner_overlap.py
   - experiments/atlas-transported-corner-overlap.json
@@ -46,12 +46,45 @@ This is a fixed normalized-HS holonomy already present in the exact atlas
 packet.  It is stronger than mere non-identification of the carriers and is
 immune to spectator amplification.
 
+The holonomy is not merely metric.  Exact reduction also gives
+
+```text
+(R_F R_G)^3 != 1,
+(R_F R_G)^4 = 1.                                     (QFH4)
+```
+
+Since `R_F,R_G` are involutions and do not commute, they generate a literal
+dihedral group `D_8`.  Its central commutator is
+
+```text
+K=[R_F,R_G]=(R_F R_G)^2,
+K^2=1,
+tau(K)=3/4.                                          (QFH5)
+```
+
+Therefore the negative central cut
+
+```text
+H=(1-K)/2
+```
+
+has trace exactly `1/8`.  On `H`, the two reflections anticommute:
+
+```text
+H R_F R_G = - H R_G R_F.                             (QFH6)
+```
+
+Thus the overlap itself manufactures a fresh exact Pauli pair on a canonical
+positive-density corner.  No spectral truncation or condition-number
+estimate is needed.
+
 It is not yet a group-presentation contradiction.  The reflections are
 Hecke/projection polynomials, not automatically words in the original unitary
 generators, and no defining relation currently requires them to commute.
 The narrowed compiler target is therefore finite and explicit: implement
-`R_F` and `R_G` as legal derived-packet selector phases (the gauge-doubled
-router construction is designed for exactly this issue), then make the mixed
-rank-five return demand trivial holonomy.  If that implementation has
-dimension-independent decoding loss below `1/2`, `(QFH3)` supplies the fixed
-energy floor required by the nonhyperlinearity route.
+this `D_8` as a legal derived packet (the gauge-doubled router construction is
+designed for exactly this issue), then make the mixed rank-five return demand
+trivial holonomy or feed its trace-`1/8` Pauli corner into the next proper
+compressor cell.  If that implementation has dimension-independent decoding
+loss below `1/2`, `(QFH3)` supplies the fixed energy floor required by the
+nonhyperlinearity route.

@@ -16,6 +16,10 @@
   "common_transported_pauli_carrier_angle_variance": "1/64",
   "common_commutes_transported_pauli_carrier": false,
   "common_transported_pauli_carrier_reflection_commutator_hs_sq": "1/2",
+  "common_transported_pauli_carrier_reflection_product_cube_is_identity": false,
+  "common_transported_pauli_carrier_reflection_product_cube_trace": "1/4",
+  "common_transported_pauli_carrier_reflection_product_fourth_is_identity": true,
+  "common_transported_pauli_carrier_reflection_product_fourth_trace": "1",
   "common_raw_cut_overlaps": {
     "(-1, -1)": "3/64",
     "(-1, 1)": "3/64",

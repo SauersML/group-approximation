@@ -102,6 +102,10 @@ tau(F Q_P^comb)-tau(F Q_P^comb F Q_P^comb)=1/64,
 ||R_F R_P R_F R_P-1||_2^2=1/2.                       (TCQ9)
 ```
 
+In fact `(R_F R_P)^4=1` and `(R_F R_P)^3!=1`, so the two
+reflections generate `D_8`.  Its central negative sector has trace `1/8` and
+carries an exact anticommuting Pauli pair.
+
 So the capacity-generated common corner and the previous branch-transfer
 carrier already carry a fixed noncommutative holonomy rather than furnishing
 one another's missing decoder.  This falsifies the tempting direct

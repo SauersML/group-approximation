@@ -93,6 +93,15 @@ def main():
         carrier_reflections[0],
         carrier_reflections[1],
     )
+    carrier_reflection_product = ga_mul(
+        carrier_reflections[0], carrier_reflections[1]
+    )
+    carrier_reflection_product_cube = ga_mul(
+        carrier_group_commutator, carrier_reflection_product
+    )
+    carrier_reflection_product_fourth = ga_mul(
+        carrier_group_commutator, carrier_group_commutator
+    )
 
     result = {
         "corner_trace": rational_string(ga_trace(q)),
@@ -135,6 +144,18 @@ def main():
         ),
         "common_transported_pauli_carrier_reflection_commutator_hs_sq": (
             rational_string(2 - 2 * ga_trace(carrier_group_commutator))
+        ),
+        "common_transported_pauli_carrier_reflection_product_cube_is_identity": (
+            ga_equal(carrier_reflection_product_cube, identity)
+        ),
+        "common_transported_pauli_carrier_reflection_product_cube_trace": (
+            rational_string(ga_trace(carrier_reflection_product_cube))
+        ),
+        "common_transported_pauli_carrier_reflection_product_fourth_is_identity": (
+            ga_equal(carrier_reflection_product_fourth, identity)
+        ),
+        "common_transported_pauli_carrier_reflection_product_fourth_trace": (
+            rational_string(ga_trace(carrier_reflection_product_fourth))
         ),
         "common_raw_cut_overlaps": {
             str(character): rational_string(ga_trace(ga_mul(common, cut)))

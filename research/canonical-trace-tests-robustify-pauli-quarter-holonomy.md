@@ -39,6 +39,12 @@ tau(PQ)=1/16,       tau(PQPQ)=3/64,                   (CTH2)
 
 so `(CTH1)` equals `1/2`.
 
+The exact packet also satisfies `(RS)^4=1` and `(RS)^3!=1`.  Hence the
+commutator `K=(RS)^2` is a central involution in the generated `D_8`, with
+`tau(K)=3/4`; its negative cut has trace `1/8`.  The trace window therefore
+robustifies not only a scalar energy but a fixed positive-density Pauli
+holonomy sector.
+
 All ingredients are fixed finite polynomials in the named atlas packet
 unitaries.  Exactify the fixed involution packets and replace the resulting
 almost projections by their spectral projections.  Word telescoping,

@@ -46,5 +46,12 @@ canonical trace window forces energy `1/2-o(1)`.  Condition (5) is the
 completeness firewall; without it, imposing the return may simply collapse
 the mark algebraically.
 
+The exact packet has an additional option: the two truth phases already
+generate `D_8`, and their central negative cut has trace `1/8`.  Instead of
+forcing their commutator to vanish immediately, the incidence may use that
+cut as the next derived Pauli carrier.  This aligns the holonomy branch with
+the gauge-renewal program and avoids throwing away the positive-density
+obstruction after one cell.
+
 The truth-table and analytic-floor parts are proved.  The remaining work is
 the finite equal-type incidence plus its exact properly infinite extension.
