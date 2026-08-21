@@ -1,0 +1,66 @@
+---
+rg: 2
+id: skeleton-relative-hs-stability-for-sl2
+kind: claim
+title: SL2(Z[1/2]) is HS-stable relative to its two exact parabolic skeletons
+distinct_from:
+  approximate-doubling-invariant-joint-measure-is-atomic: that is the target common-odd-model statement; this is the residual gluing problem after Levit--Vigdorovich exactifies both parabolic BS(1,4) skeletons, and it is strictly smaller than raw stability because the remaining freedom lives in compact centralizer torsors of exact finite-order data.
+  iwahori-outlier-repair: that is the far-sector endpoint in square-root form; this isolates the one new stability ingredient the skeleton synthesis needs, with the alignment steps and the odd-collapse endgame already supplied by finite arguments and established nodes.
+  odd-congruence-vertex-sector-admits-no-exact-leak: that consumes a common odd model to kill the leak by co-density; this produces the common odd model from the skeletons.
+---
+
+Let `pi` be an asymptotic finite-dimensional representation of
+`SL_2(Z[1/2])`.  By Levit--Vigdorovich (arXiv:2206.02268, Cor D(3);
+`BS(1,4)` is HS-stable), each parabolic skeleton
+`(pi(u), pi(h))` and `(pi(l), pi(h))` is HS-close to an EXACT
+`BS(1,4)` pair whose base unitary has finite ODD order.  CLAIM: the
+two exact skeletons can be corrected further, with dimension-free
+loss, so that ALL of the following hold exactly on a common model:
+a single `h`-component shared by both skeletons; an intertwiner
+implementing the Weyl swap; and the Weyl element expressed as its
+defining word in the two parabolics.  Equivalently: `SL_2(Z[1/2])` is
+HS-stable RELATIVE to exact skeleton data.
+
+Why this is strictly smaller than raw HS-stability: after the two
+skeletons are exact, the remaining freedom is (i) the relative
+position of two exact finite-odd-order structures — spectra align by
+Hoffman--Wielandt, a finite problem — and (ii) gluing corrections
+ranging over the CENTRALIZER TORSORS of the exact skeletons, which
+are compact groups; the obstruction theory is an alignment/cohomology
+problem over compact torsors rather than a stability problem over all
+of `U(d)`.
+
+Consequence chain if established:
+`skeletons exact (LV) + this claim` gives the common finite ODD model
+of `approximate-doubling-invariant-joint-measure-is-atomic`; on an
+odd model conjugation by `diag(2, 1/2)` is INNER, co-density applies,
+and the leak collapses by the mechanism of
+`odd-congruence-vertex-sector-admits-no-exact-leak` — the far sector
+closes, `iwahori-outlier-repair` resolves, and the goal follows
+through the Iwahori route.  The two-adic content that obstructs
+everything elsewhere is absent here by construction: the
+Levit--Vigdorovich skeletons are odd, and multiplication by four is
+an automorphism on odd spectra, so the conductor-box escape mechanism
+never activates.
+
+## Attempts
+
+- **The torsor reduction is the designed attack.**  Fix the exact
+  `u`-skeleton `(V_0, W_0)`.  The second skeleton's `h`-part `W_0'`
+  satisfies `||W_0' - W_0|| = o(1)`; correcting `W_0'` to `W_0`
+  within exact `BS(1,4)`-pairs is a RELATIVE stability question for
+  `BS(1,4)` over its `<h>`-subgroup — plausibly accessible by the
+  same dense-periodic-measure technique, conditioning the Marcus
+  argument on the `h`-component.  Then the Weyl word
+  `s = e_12(1) e_21(-1) e_12(1)` is DETERMINED by the exact data, and
+  the final consistency (that the determined `s` approximately
+  implements the swap it must) is a closed condition on the compact
+  torsor of gluings — a fixed-point/averaging problem on a compact
+  group, where dimension-free tools (Gowers--Hatami on the finite odd
+  model's image, the (tau) squeeze) are available.
+- **Where the obvious attack could die.**  If the torsor fixed-point
+  problem has an obstruction class that grows with the odd order,
+  the loss would not be dimension-free; the analogue at the level of
+  finite models is a cohomology comparison for
+  `SL_2(Z/m)`-extensions, uniform in odd `m` — Selberg/(tau) should
+  control it, but this is exactly the step that must be written.
