@@ -36,10 +36,14 @@ zero.
   a sum-of-squares inequality converting that nonzero curvature into a lower
   bound for the relator HS energy.  The certificate must be trace-density
   sensitive; bare determinant divisibility is not enough.
-- **Twisted character SDP.** Search over a bounded word ball for a positive
-  semidefinite moment/character certificate that is feasible in the trivial
-  multiplier sector but infeasible for `alpha` and `alpha^2`.  Any numerical
-  gap must be rationally post-certified before promotion to proof.
+- **Finite-subgroup cone atlas.** Exactify bounded torsion-subgroup tables by
+  Gowers--Hatami and search for a rational positive-cone separation among
+  projective irreducible multiplicities on overlaps.  A valid certificate must
+  force positive-density mismatch, not merely a dimension congruence.
+- **No tracial-positivity shortcut.** The twisted left-regular representation
+  exists in infinite dimension, so a moment/SOS certificate valid in every
+  tracial von Neumann algebra cannot exclude `alpha`.  Any separator must use
+  genuinely finite-dimensional structure.
 - **Falsification.** Direct nonlinear optimization in increasing dimensions
   should be run first.  If the minimum projective relator energy visibly
   decays toward zero, this claim is false and the Deligne lane must use a
