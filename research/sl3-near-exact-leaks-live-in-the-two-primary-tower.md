@@ -250,6 +250,22 @@ refutation, and this claim makes the reduction precise.
   positive the prototype floor is real against ALL low-defect
   dictionaries, and the remaining escape is only the defect-budget
   tradeoff already charted by v2 (`+13.1`).
+- **One uniform one-step floor suffices (2026-08-21, pure
+  reduction).**  The exact profile demands `psi(h^j) = 0` for EVERY
+  fixed `j`, and the `j`-th demand is a one-step two-level pairing of
+  the level-`2^a` data with its level-`2^(a-2j)` descent.  So there is
+  no need for a cross-level coherence argument at all: if the
+  ONE-STEP floor `min |leak| >= c_0 > 0` of the block-trace reduction
+  holds uniformly in the starting level for the honest two-level
+  pairing, then already the single fixed constraint `psi(h) = 0` is
+  violated at every sufficiently deep tower configuration, and the
+  entire tower sector dies.  The uniformity target is therefore:
+  bound `min_p (|p* M_a p| - S(p))` below by a constant independent
+  of `a`, where `M_a` is the matched branching form of the level-`a`
+  two-level pairing — a sequence of explicit finite inequalities
+  whose structure (parahoric branching under one descent step) is
+  level-periodic in the tower, exactly the sort of statement the
+  Hecke/(T) technology is built to make uniform.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
