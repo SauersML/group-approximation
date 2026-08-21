@@ -37,6 +37,13 @@ Pr[w_1,...,w_k in H],                                   (MHC3)
 which are the quantities constrained to `0` or `p^(-r)` for stabilizers of a
 Haar `F_p`-linear action.
 
+This loss is intrinsic, not merely caused by the game using finitely many
+words.  `irs-character-does-not-determine-haar-cylinders` gives two explicit
+IRSs on `S_3` (and hence, by pullback, on `F_2`) with identical values of
+`t(w)` for **every** word but different two-word cylinders.  Thus even a full
+oracle for Manzoor's GNS trace would not identify the measure-level data
+needed for a direct Haar-stabilizer test.
+
 The only explicit cylinder values imposed in the paper are the strategy
 axioms:
 

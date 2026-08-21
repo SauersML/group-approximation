@@ -44,6 +44,12 @@ prove that this extreme point is the earlier strategy or preserve any
 unlisted cylinder data.  These three existential choices prove the claimed
 underdetermination.
 
+The stronger claim that complete one-word data still does not suffice is
+proved independently and explicitly at
+`irs-character-does-not-determine-haar-cylinders`; it is also consistent with
+Manzoor's observation after Definition 2.8 that the affine map from IRSs to
+characters is not injective.
+
 For the literal linear-subshift observation, let `z_H(g)=1_(g in H)`.  Every
 subgroup contains the identity, so `z_H(e)=1` almost surely.  A closed linear
 subshift `K <= F_p^F` contains `0`.  Coordinate evaluation at `e` is a
