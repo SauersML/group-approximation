@@ -343,15 +343,52 @@ random pairs: all polar-corrected values now lie in one abelian tracial von
 Neumann algebra.
 
 Finally `(NC21)` says `h_t=q_t` for almost every `t`.  Thus `h_t` is a
-reflection almost everywhere, its alpha-plane rejection is zero, and replacing
-the null exceptional set does not change either sampled or full energies.
-Represent the abelian algebra as an `L^infty` space and apply scalar
-Kaufman--Sudan soundness on each spectral fiber.  The scalar inequality also
-holds for Boolean tables on the hyperfinite Loeb field: approximate a Loeb
-measurable set by internal sets, apply the finite inequality with constant
-`27/2`, and use translation invariance plus the four-vertex union bound to
-pass to the limit.  Fubini then gives zero full parallelogram energy for `h`.
-Since `h=q` almost everywhere and gauge does not change the energies, this
+reflection almost everywhere and its alpha-plane rejection is zero.  One must
+not at this point assume that `t |-> h_t(omega)` has a jointly measurable
+spectral realization.  Instead use the following probability-algebra form of
+Loeb transfer.
+
+For every standard `m`, form the tracial ultraproduct
+
+```text
+D_m=prod_U (ell^infty(K_n^m) tensor M_(d_n)),                (NC28)
+```
+
+with the uniform-coordinate trace.  If `L:K^m->K` is any internal affine
+form, let `H_L in D_m` be the element represented by
+`u |-> h_(n,L_n(u))`.  Equation `(NC27)` for every internal pair is equivalent
+to
+
+```text
+lim_U sup_(t,s)||[h_(n,t),h_(n,s)]||_2=0;                   (NC29)
+```
+
+otherwise maximizing pairs would give an internal counterpair.  Hence all the
+`H_L` in every `D_m` commute.  Start with the von Neumann algebras generated
+by these affine evaluations and the central scalar coordinate algebras, and
+close the graded family under the finitely many coordinate-forgetting
+conditional expectations and affine substitutions used in the tester proof.
+This closure remains commutative: conditional expectation is coordinatewise
+averaging, so an averaged word still commutes with every affine-evaluation
+word.  We obtain commutative probability algebras `B_m` for which forgetting
+a variable gives a trace-preserving conditional expectation
+`B_(m+1)->B_m`, while every internal invertible affine change of variables
+gives a trace-preserving automorphism.  Pairwise-independent affine forms give
+exactly the product/uniform marginals used in the scalar proof.
+
+This is sufficient to rerun Kaufman--Sudan without choosing spectral points.
+Their proof uses only rejection-event projections, finite joins (union
+bounds), conditional expectations over fresh uniform variables, the two
+spectral projections defining Boolean plurality, and trace-preserving affine
+changes of variables.  All of these operations exist in the commutative
+probability algebras `B_m`.  Thus the scalar `27/2` inequality holds for the
+traces of the Loeb affine-evaluation elements themselves.  This
+probability-algebra argument is the required replacement for joint
+measurability and for an illegitimate interchange of a hyperfinite average
+with a spectral integral.
+
+Zero alpha energy now gives zero full parallelogram energy for `h`.  Since
+`h=q` almost everywhere and gauge does not change the energies, this
 contradicts the positive limiting value of `F(R_n)`.
 
 Taking the supremum of `F(R)` over all finite `n,d` with `I(R)+A(R)<=delta`
