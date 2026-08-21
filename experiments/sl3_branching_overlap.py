@@ -23,34 +23,49 @@ import numpy as np
 MOD = 8
 
 
-def val2(x, cap=10):
-    x = int(x) % (1 << cap)
+def vint(x):
+    """2-adic valuation of an exact integer; None for 0 (= infinity)."""
+    x = int(x)
     if x == 0:
-        return cap
-    return (x & -x).bit_length() - 1
+        return None
+    return (abs(x) & -abs(x)).bit_length() - 1
 
 
-def chi_perm(g):
-    """|ker(g - I) mod 8| = 2^(sum_i min(3, v_i)), v_i = Smith valuations."""
-    B = [[(g[i][j] - (1 if i == j else 0)) for j in range(3)]
+def chi_perm(g, k=3):
+    """|ker(g - I) mod 2^k| via integer-lift Smith valuations.
+
+    Lift entries to [0, 2^k); minors and det computed exactly over Z.
+    Valuations are lift-independent below k + (previous divisor sum),
+    which is all the capped exponents use; exact zero means infinity.
+    """
+    mod = 1 << k
+    B = [[(g[i][j] - (1 if i == j else 0)) % mod for j in range(3)]
          for i in range(3)]
-    ents = [B[i][j] for i in range(3) for j in range(3)]
-    v1 = min(val2(e, 12) for e in ents)
+    vals = [vint(B[i][j]) for i in range(3) for j in range(3)]
+    fin = [v for v in vals if v is not None]
+    v1 = min(fin) if fin else None
+    if v1 is None:
+        return (1 << k) ** 3
     minors = []
     for r in ((0, 1), (0, 2), (1, 2)):
         for c in ((0, 1), (0, 2), (1, 2)):
             m = B[r[0]][c[0]] * B[r[1]][c[1]] - B[r[0]][c[1]] * B[r[1]][c[0]]
             minors.append(m)
-    v12 = min(val2(m, 12) for m in minors)
+    mv = [vint(m) for m in minors]
+    mfin = [v for v in mv if v is not None]
+    v12 = min(mfin) if mfin else None
     det = (B[0][0] * (B[1][1] * B[2][2] - B[1][2] * B[2][1])
            - B[0][1] * (B[1][0] * B[2][2] - B[1][2] * B[2][0])
            + B[0][2] * (B[1][0] * B[2][1] - B[1][1] * B[2][0]))
-    v123 = val2(det, 12)
-    a = min(v1, 12)
-    b = max(v12 - v1, 0)
-    c = max(v123 - v12, 0)
-    e = sum(min(3, t) for t in (a, b, c))
-    return 1 << e
+    dv = vint(det)
+    a = min(k, v1)
+    if v12 is None:
+        b = k
+        c = k
+    else:
+        b = min(k, max(v12 - v1, 0))
+        c = k if dv is None else min(k, max(dv - v12, 0))
+    return 1 << (a + b + c)
 
 
 def main():
@@ -70,11 +85,12 @@ def main():
                 if i < j:
                     if q[i][j] % div[i][j] != 0:
                         return None
-                    M[i][j] = (q[i][j] // div[i][j]) % MOD
+                    # (1,3) divides by 4: well-defined only mod 2
+                    M[i][j] = (q[i][j] // div[i][j]) % 2
                 elif i > j:
-                    M[i][j] = (q[i][j] * mul[i][j]) % MOD
+                    M[i][j] = (q[i][j] * mul[i][j]) % 2
                 else:
-                    M[i][j] = q[i][j] % MOD
+                    M[i][j] = q[i][j] % 2
         return M
 
     N = 0
@@ -108,8 +124,8 @@ def main():
                             bad += 1
                             continue
                         N += 1
-                        c1 = chi_perm(q)
-                        c2 = chi_perm(fq)
+                        c1 = chi_perm(q, 3)
+                        c2 = chi_perm(fq, 1)
                         S1 += c1 * c1
                         S2 += c1 * c2
                         S3 += c2 * c2
@@ -118,7 +134,8 @@ def main():
            "S3_phinorm2_times_N": int(S3),
            "norm2_source": S1 / N, "overlap": S2 / N,
            "norm2_twisted": S3 / N,
-           "character_distance_sq": (S1 + S3 - 2 * S2) / N}
+           "note": "two-level descent: chi8 source vs chi2 twisted",
+           "cross_defect": (S1 / N) + (S3 / N) - 2 * (S2 / N)}
     print(json.dumps(out, indent=1), flush=True)
     with open("sl3_branching_overlap.json", "w") as f:
         json.dump(out, f, indent=1)

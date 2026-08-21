@@ -117,23 +117,24 @@ refutation, and this claim makes the reduction precise.
   (T)-uniform constants in `a`, would eliminate the tower sector
   entirely and leave the SL_3 enemy as uniform outlier only.
 - **Exact character data for the `delta(3)` instance (2026-08-21,
-  `experiments/sl3_branching_overlap.py`,
-  `experiments/sl3-branching-overlap.json`).**  Over the source
-  parahoric `Q_0 <= SL_3(Z/8)` (order exactly `2^18 = 262144`), with
-  `chi` the 512-point permutation character and `phi = Ad(h^{-1})` the
-  level-shift dictionary (total on `Q_0`): `||chi||^2 = 250.819`,
-  `||chi o phi||^2 = 292.059`, `<chi, chi o phi> = 225.988`, so the
-  character distance squared is `90.901`.  Consequences: the source
-  and twisted restrictions are PROVABLY non-isomorphic — the exact
-  intertwiner manifold of the probe instance is empty, explaining the
-  measured control floor algebraically — and the norm asymmetry
-  (`292 > 251`) shows the `phi`-twist CONCENTRATES multiplicity, the
-  algebraic signature of level compression: the twisted side sees
-  coarser level data with bigger isotypic blocks.  These three
-  moments are the branching-correlation data any per-level floor
-  theorem should consume; the mechanism target is to convert the
-  multiplicity mismatch plus unitarity of the witness into a lower
-  bound on the leak correlation at bounded intertwining defect.
+  corrected; `experiments/sl3_branching_overlap.py`,
+  `experiments/sl3-branching-overlap.json`).**  Getting this
+  computation honest reproved the node's own lesson twice: the
+  dictionary `phi = Ad(h^{-1})` is NOT well-defined at level `2^a` —
+  the simple-root entries divide by `2` (one level down) and the long
+  root `e_13` divides by `4` (TWO levels down, since `h` has weight
+  `4` on the long root) — so the only well-defined character pairing
+  couples the level-`8` source with the level-`2` twist.  Validated
+  integers (brute-force-checked kernel formula): over the source
+  parahoric `Q_0` of order exactly `2^18`,
+  `||chi_8||^2 = 265`, `<chi_8, chi_2 o phi> = 53`,
+  `||chi_2 o phi||^2 = 19`, correlation `53 / sqrt(265 * 19) = 0.747`.
+  These are the branching-correlation constants any per-level floor
+  argument consumes, and the two-level descent with the long root
+  twice as fast is the exact root-weight anatomy of the level
+  compression.  (Earlier figures quoted from ill-defined single-level
+  pairings were wrong and are superseded by these; the fractional
+  norms were the tell.)
 - **Floor mechanism candidate: phase locking in multiplicity-one
   blocks (2026-08-21).**  Structural restatement of the instance: with
   `A = rho(Q_0)''` and `B = rho(phi Q_0)''` one has `A v B = rho(G)''`
