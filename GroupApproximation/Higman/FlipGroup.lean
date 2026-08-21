@@ -655,31 +655,7 @@ means whoever proves the general statement closes `ρ` with no further work ---
 and the general statement is the one `τ` and any other operation that moves the
 index set by something other than an endomorphism of `F₃` will need too. -/
 
-/-- **The general input: the torsion-free form of the image half of Higman's
-Lemma 3.3.**  Benignness with a torsion-free witness is monotone in the ambient
-group.
-
-`Higman.BenignWitness.mapEmb` proves this *without* the torsion clause, by the
-amalgam `K *_G N` of the witness with the new ambient group.  What the clause
-costs, and the whole of what it costs, is:
-
-> an amalgamated free product of torsion-free groups is torsion-free,
-
-which `Higman.BenignTorsionFree` was deliberately organized to avoid ever
-needing, and which is nowhere in this repository.  It is classical --- torsion
-in an amalgam is conjugate into a factor --- and the repository has done the
-free-product analogue by cyclic reduction
-(`Algebra.CoprodICyclicReduction.isPowerTorsionFree_coprodI`); the amalgam
-version is the same argument over `Monoid.PushoutI.NormalWord`, which
-`Higman.AmalgamPushout` already identifies the repository's amalgam with.
-
-**Nothing inhabits this.** -/
-def TorsionFreeImageClosure : Prop :=
-  ∀ (G N : Type) [Group G] [Group N] [Group.FG G] [Group.IsFinitelyPresented N],
-    IsPowerTorsionFree N → ∀ (H : Subgroup G) (θ : G →* N), Function.Injective θ →
-      BenignTF H → BenignTF (H.map θ)
-
-theorem transport_of_imageClosure (himg : TorsionFreeImageClosure) :
+theorem transport_of_imageClosure (himg : Seq.TorsionFreeImageClosure) :
     ∀ H : Subgroup F₃, BenignTF H → BenignTF (H.map emb) := by
   letI : Group.FG F₃ := fg_of_isFinitelyPresented F₃
   letI : Group.IsFinitelyPresented G₂ := isFinitelyPresented_G₂
@@ -690,7 +666,7 @@ theorem transport_of_imageClosure (himg : TorsionFreeImageClosure) :
 
 Every other ingredient --- the reflection identity, the automorphism `rhoAut`,
 the flip group, the flip, and the transport calculus --- is proved. -/
-theorem benignTF_ASub_rhoOp_of_imageClosure (himg : TorsionFreeImageClosure)
+theorem benignTF_ASub_rhoOp_of_imageClosure (himg : Seq.TorsionFreeImageClosure)
     (B : Set Seq.E) (h : BenignTF (Seq.ASub B)) :
     BenignTF (Seq.ASub (Seq.rhoOp B)) :=
   benignTF_ASub_rhoOp_of_transport (transport_of_imageClosure himg) B h

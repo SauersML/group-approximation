@@ -102,3 +102,18 @@ split into two auditable statements:
    (or finitely present the augmentation extension by another mechanism);
 2. prove global finite-stage same-basis rounding for its elementary abelian
    occurrence module.
+
+The direct lamp construction really requires an fp actor:
+`direct-sharp-actor-wreath-forces-actor-fp` obtains the actor by killing one
+normally generating root lamp.  Ordinary Higman embedding changes the
+permutation pair and generally creates infinitely many double cosets, so it
+does not preserve the bounded-template action.
+
+The best current fp-envelope formulation is
+`bffhz-envelope-closes-exact-actor-host`.  The BFFHZ automorphism-action
+image is highly transitive, has finitely generated point stabilizers, and
+contains the André--Guirardel simple property-`(T)` group acting freely.
+Finite presentation of that faithful image would therefore give the exact
+lamp host and its two-point seed.  This is precisely the existing open claim
+`bffhz-action-image-is-finitely-presented`; no new analytic PVM assertion is
+being folded into it.

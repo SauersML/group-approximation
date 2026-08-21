@@ -1458,12 +1458,15 @@ import GroupApproximation.Sofic.PeriodicOverlap
 import GroupApproximation.Sofic.FreeProductRouterObstruction
 import GroupApproximation.Sofic.GreendlingerDeepestMatch
 import GroupApproximation.Sofic.GreendlingerCoincidence
+import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
 import GroupApproximation.Leavitt.HilbertHotelSaturation
 import GroupApproximation.Leavitt.HilbertHotelWhitehead
 import GroupApproximation.Leavitt.HilbertHotelBinary
 import GroupApproximation.Leavitt.HilbertHotelDefectNormal
+import GroupApproximation.Leavitt.HilbertHotelCover
+import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure

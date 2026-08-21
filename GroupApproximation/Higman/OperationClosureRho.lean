@@ -344,6 +344,35 @@ structure FlipWitness where
 
 attribute [instance] FlipWitness.group FlipWitness.fp
 
+/-- **The general input: the torsion-free form of the image half of Higman's
+Lemma 3.3.**  Benignness with a torsion-free witness is monotone in the ambient
+group.
+
+`Higman.BenignWitness.mapEmb` proves this *without* the torsion clause, by the
+amalgam `K *_G N` of the witness with the new ambient group.  What the clause
+costs, and the whole of what it costs, is:
+
+> an amalgamated free product of torsion-free groups is torsion-free,
+
+which `Higman.BenignTorsionFree` was deliberately organized never to need, and
+which is nowhere in this repository.  It is classical --- torsion in an amalgam
+is conjugate into a factor --- and the repository has done the free-product
+analogue by cyclic reduction
+(`Algebra.CoprodICyclicReduction.isPowerTorsionFree_coprodI`); the amalgam
+version is the same argument over `Monoid.PushoutI.NormalWord`, which
+`Higman.AmalgamPushout` already identifies the repository's amalgam with, and
+whose last step is Mathlib's `Monoid.PushoutI.Reduced.eq_empty_of_mem_range`.
+
+This is the one input `ρ` and `τ` share, and `θ` uses it too --- there at
+`G = N = F₃`, where it is the statement that the image of a benign subgroup
+under an injective endomorphism of `F₃` is benign.
+
+**Nothing inhabits this.** -/
+def TorsionFreeImageClosure : Prop :=
+  ∀ (G N : Type) [Group G] [Group N] [Group.FG G] [Group.IsFinitelyPresented N],
+    IsPowerTorsionFree N → ∀ (H : Subgroup G) (θ : G →* N), Function.Injective θ →
+      BenignTF H → BenignTF (H.map θ)
+
 /-- **Conjugation inside an enlarged ambient group transports benignness.**
 
 If `F₃` embeds in a group in which benignness with a torsion-free witness

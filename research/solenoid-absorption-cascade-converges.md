@@ -157,6 +157,88 @@ recursion terminates; the total correction is
   a coboundary after all.  Possibility (a) is the likely one and is a
   finite-subgroup-stability statement, the cleanest the far sector has
   reduced to; it is the next thing to write.
+- **The E_3 obstruction is a spectral-mass quantity the regular trace
+  fights (2026-08-21).**  Finite-subgroup stability does NOT apply
+  directly: `u` is unipotent, so its order-`3` action on the cube-root
+  eigenspace `E_3` is an approximation artifact, not a genuine finite
+  subgroup.  The right lever is the trace.  For the regular trace of
+  `SL_2(Z[1/2])`, `tau(u^k) = 0` for all `k != 0`, so the spectral
+  measure of `pi(u)` tends to LEBESGUE on the circle -- which has NO
+  atoms.  The cube-root positions (and each fixed `3`-primary root)
+  therefore carry vanishing spectral mass, so `e'`'s component on
+  `E_3` contributes `<= sqrt(dim E_3 / d)` to normalized HS, which
+  tends to `0` provided the `3`-primary eigenspace is a vanishing
+  dimension fraction.  So the obstruction is real only if the exact
+  `LV` base order `N` has a `3`-primary part `3^(v_3(N))` that is a
+  non-vanishing fraction of `N`.  The genuine remaining question is
+  thus purely arithmetic-analytic: does `LV`-exactification of the
+  Lebesgue-spectrum unipotent keep `3^(v_3(N)) = o(N)` (equivalently
+  keep the `3`-adic valuation of the order sub-logarithmic)?  The
+  trace pushes toward yes (no atoms means no concentration on the
+  sparse `3`-primary roots), but the `LV` rounding could in principle
+  pile refinement onto the `3`-primary tower.  This is the honest
+  bottom of the cascade: a competition between the atomless limiting
+  spectrum and the `3`-adic valuation of the rounded order -- the
+  first fully arithmetic form the residual has taken, and the exact
+  statement to settle next.
+- **The sharp fixed part (order-3 roots) is KILLED; residual is the
+  graded 3-power tower (2026-08-21).**  Refine the fixed locus.  `x4`
+  fixes a root of unity `zeta` iff `zeta^4 = zeta` iff `zeta^3 = 1` --
+  ONLY the order-`3` roots `{1, omega, omega^2}`.  On order-`9` roots
+  `x4` already has order `3` (`4, 7, 1 mod 9`), so it is NOT the
+  identity there, and `(x4 - 1)` is invertible on the primitive
+  order-`9` part; likewise every higher `3`-power level.  So the
+  strictly UNABSORBABLE locus (`psi_* - 1 = 0` exactly) is the sparse
+  three-point set `{1, omega, omega^2}`, a FIXED finite set.  Under
+  the regular trace the spectral measure of `pi(u)` tends to Lebesgue,
+  which gives each of these three points mass `0`; the exact base
+  `R_0`, being HS-close, has order-`3` eigenspace dimension fraction
+  `-> 0`, so `e'`'s component there is normalized-HS negligible.  The
+  sharpest piece of the crux -- `e'` on the primitive cube roots --
+  therefore DIES by the atomless trace.  What remains is only the
+  graded `3`-power tower (orders `9, 27, ...`): there `(psi_* - 1)` is
+  invertible but with gap `~ j/3^(k-1)` shrinking up the tower, so the
+  residual is exactly the cascade-convergence competition
+  (peeled residual size vs shrinking gap) restricted to the
+  `3`-power sub-tower -- a measure-`0`-limiting, dense-but-thin set
+  whose mass the trace also suppresses.  Net: the crux is no longer a
+  hard fixed-point obstruction but a graded convergence on a
+  trace-thin sub-tower, strictly weaker than where it stood an hour
+  ago.
+- **The convergence mechanism: near the identity, mass thins as fast
+  as the gap (2026-08-21).**  The shrinking gap is not special to `3`;
+  it is the general near-identity phenomenon.  For an eigenvalue
+  `zeta` at distance `rho` from `1`, the `x4` displacement is
+  `|zeta^4 - zeta| = |zeta||zeta^3 - 1| ~ 3 rho`, so the peeling gap
+  scales LINEARLY in `rho`.  Crucially, under the regular trace the
+  limiting spectral measure is EXACTLY Lebesgue (all moments
+  `tau(u^k) = 0`), so the spectral mass in the annulus at distance
+  `~ rho` from `1` is `~ rho` (arc length) -- it also thins linearly.
+  Group the eigenvalues into dyadic annuli `rho in [2^{-(j+1)},
+  2^{-j}]`: the gap is `~ 2^{-j}` and the mass fraction is `~ 2^{-j}`.
+  If the defect `e'` restricted to an annulus has normalized-HS norm
+  proportional to that annulus's MASS times the global defect `delta`,
+  the per-annulus absorption cost is
+  `(mass * delta)/gap ~ (2^{-j} delta)/2^{-j} = delta`, and summing
+  over the `~ log(1/delta)` resolvable scales gives total
+  `~ delta log(1/delta) -> 0`, dimension-free.  So the cascade
+  converges PROVIDED the near-identity defect scales as annulus mass,
+  not as its square root.
+- **The last exponent, stated exactly.**  `||e'|_annulus||_2` is
+  `sqrt(mass) * (local defect density)`; convergence needs the local
+  defect density in the near-identity annuli to itself carry a
+  `sqrt(mass)` factor (equivalently, the defect is not uniform but
+  concentrates away from the identity in proportion to mass).  This is
+  a regularity statement about WHERE the Weyl-relation defect sits
+  spectrally: does it avoid the near-identity (near-`1`) band in
+  proportion to the vanishing mass there?  The regular trace makes the
+  mass vanish there; whether the defect vanishes at the matching rate
+  is the single remaining analytic exponent.  If yes,
+  `||c||_2 ~ delta log(1/delta)` and lemma (b) -- and with it the
+  skeleton gluing, the far sector, and the goal along the Iwahori
+  route -- closes.  This is the complete reduction: everything is
+  proved or arithmetic except this one near-identity regularity
+  exponent.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect

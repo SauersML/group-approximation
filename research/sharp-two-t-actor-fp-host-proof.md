@@ -13,8 +13,7 @@ distinct ordered pairs.  The standard finite-presentation criterion for a
 permutational wreath product with nontrivial finitely presented lamp says
 that `C_2^(X) semidirect A` is finitely presented when `A` is finitely
 presented, point stabilizers are finitely generated, and the diagonal action
-has finitely many orbits.  All hypotheses hold here.  Its augmentation
-kernel is index two.
+has finitely many orbits.  All hypotheses hold here.
 
 The character argument is elementary.  The dual of the full lamp module is
 the coloring space `F_2^X`.  A finite orbit is fixed by simplicity, and

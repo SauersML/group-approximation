@@ -402,7 +402,6 @@ theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
             (FreeGroup.mk W')
           = c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
               (FreeGroup.mk W) * c⁻¹ := by
-  set Nrel := Subgroup.normalClosure (FreeGroup.mk '' R) with hNrel
   obtain ⟨v, hv⟩ := hru
   obtain ⟨t, ht⟩ := hWu
   have hrlen : r.length = u.length + v.length := by rw [← hv]; simp
@@ -420,43 +419,177 @@ theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
     rw [← ht, ← FreeGroup.mul_mk]
   have h3 : FreeGroup.mk r = FreeGroup.mk u * FreeGroup.mk v := by
     rw [← hv, ← FreeGroup.mul_mk]
-  have hker : QuotientGroup.mk' Nrel (FreeGroup.mk u) *
-      QuotientGroup.mk' Nrel (FreeGroup.mk v) = 1 := by
-    rw [← map_mul, ← h3, ← MonoidHom.mem_ker, QuotientGroup.ker_mk', hNrel]
+  have hker : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk u) *
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk v) = 1 := by
+    rw [← map_mul, ← h3, ← MonoidHom.mem_ker, QuotientGroup.ker_mk']
     exact mk_mem_of_mem_symmetrization hr
-  have huv : QuotientGroup.mk' Nrel (FreeGroup.mk u)
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk v))⁻¹ :=
+  have huv : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk u)
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk v))⁻¹ :=
     eq_inv_of_mul_eq_one_left hker
-  have hqeq : QuotientGroup.mk' Nrel (FreeGroup.mk (FreeGroup.invRev v ++ t))
-      = QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s)) := by
+  have hqeq : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (FreeGroup.invRev v ++ t))
+      = QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.rotate s)) := by
     rw [h1, h2, map_mul, map_mul, map_inv, huv]
-  have hrot : QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s))
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+  have hrot : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.rotate s))
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) := by
     rw [mk_rotate_eq_conj W hs, map_mul, map_mul, map_inv]
   obtain ⟨W', c₁, hcyc', hconj', hlen'⟩ :=
     exists_cyclicallyReduced_conj_le (FreeGroup.invRev v ++ t)
   refine ⟨W', hcyc', by omega,
-    (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) *
-      QuotientGroup.mk' Nrel c₁)⁻¹, ?_⟩
-  have hq' : QuotientGroup.mk' Nrel c₁ * QuotientGroup.mk' Nrel (FreeGroup.mk W') *
-      (QuotientGroup.mk' Nrel c₁)⁻¹
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+    (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) *
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹, ?_⟩
+  have hq' : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁ * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W') *
+      (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) := by
     rw [← hrot, ← hqeq, hconj', map_mul, map_mul, map_inv]
-  have hfinal : QuotientGroup.mk' Nrel (FreeGroup.mk W')
-      = (QuotientGroup.mk' Nrel c₁)⁻¹ *
-        ((QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-          QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-          QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s))) *
-        QuotientGroup.mk' Nrel c₁ := by
+  have hfinal : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W')
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹ *
+        ((QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+          QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+          QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s))) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁ := by
     rw [← hq']
     group
-  rw [hNrel] at hfinal ⊢
   rw [hfinal]
   group
+
+/-! ## 8.  Assembly -/
+
+/-- The half-form bound at a single arc, from the sharp one. -/
+theorem two_mul_lt_of_sharp {lam : ℚ} (hlam : lam ≤ 1 / 6)
+    {r u : List (α × Bool)}
+    (h : (1 - 3 * lam) * (r.length : ℚ) < (u.length : ℚ)) :
+    r.length < 2 * u.length := by
+  have hr0 : (0 : ℚ) ≤ (r.length : ℚ) := Nat.cast_nonneg _
+  have hhalf : (1 : ℚ) / 2 * (r.length : ℚ) ≤ (1 - 3 * lam) * (r.length : ℚ) :=
+    mul_le_mul_of_nonneg_right (by linarith) hr0
+  have hq : (r.length : ℚ) < 2 * (u.length : ℚ) := by linarith
+  exact_mod_cast hq
+
+/-- Membership of the relator subgroup, read in the quotient. -/
+theorem mem_iff_mk'_eq_one {R : Set (List (α × Bool))} (x : FreeGroup α) :
+    x ∈ Subgroup.normalClosure (FreeGroup.mk '' R) ↔
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) x = 1 := by
+  constructor
+  · intro h
+    rw [← QuotientGroup.ker_mk' (Subgroup.normalClosure (FreeGroup.mk '' R))] at h
+    exact h
+  · intro h
+    rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk'] at h
+    exact h
+
+/-- **Conjugate images transport both halves of the descent.**  Triviality and
+"the `k`-th power is trivial" are conjugacy-invariant in the quotient. -/
+theorem transport_of_quot_conj {R : Set (List (α × Bool))} {W W' : List (α × Bool)}
+    (h : ∃ c : FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R),
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W')
+        = c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+            (FreeGroup.mk W) * c⁻¹) :
+    (∀ k : ℕ, (FreeGroup.mk W) ^ k ∈ Subgroup.normalClosure (FreeGroup.mk '' R) →
+        (FreeGroup.mk W') ^ k ∈ Subgroup.normalClosure (FreeGroup.mk '' R)) ∧
+      (FreeGroup.mk W' ∈ Subgroup.normalClosure (FreeGroup.mk '' R) →
+        FreeGroup.mk W ∈ Subgroup.normalClosure (FreeGroup.mk '' R)) := by
+  obtain ⟨c, hc⟩ := h
+  constructor
+  · intro k hk
+    rw [mem_iff_mk'_eq_one] at hk ⊢
+    rw [map_pow, hc, ← conj_pow, ← map_pow, hk, map_one, mul_one, mul_inv_cancel]
+  · intro hmem
+    rw [mem_iff_mk'_eq_one] at hmem ⊢
+    rw [hc] at hmem
+    simpa using congrArg (fun x => c⁻¹ * x * c) hmem
+
+/-- **One shortening step, from the sharp Greendlinger conclusion.**  The four
+branches of the module docstring, in order: the arc is short and a Dehn
+replacement applies; the arc spans a period and the relator is fixed by the
+period's rotation, so it is a proper power; the relator is short and the *whole
+period* serves as the arc for the same replacement; or the residual, which
+`lam ≤ 1/8` empties. -/
+theorem exists_shorter_step {R : Set (List (α × Bool))} {lam : ℚ}
+    (hlam8 : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp R lam)
+    (hmetric : MetricSmallCancellation R lam)
+    (hnpp : ∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r)
+    {W : List (α × Bool)} (hcyc : FreeGroup.IsCyclicallyReduced W) (hne : W ≠ [])
+    {k : ℕ} (hk : 0 < k)
+    (hpow : (FreeGroup.mk W) ^ k ∈ Subgroup.normalClosure (FreeGroup.mk '' R)) :
+    ∃ W' : List (α × Bool), FreeGroup.IsCyclicallyReduced W' ∧ W'.length < W.length ∧
+      ∃ c : FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R),
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+            (FreeGroup.mk W')
+          = c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+              (FreeGroup.mk W) * c⁻¹ := by
+  have hn : 0 < W.length := List.length_pos_of_ne_nil hne
+  have hWklen : ((List.replicate k W).flatten).length = k * W.length :=
+    PeriodicOverlap.length_flatten_replicate k W
+  have hWkne : (List.replicate k W).flatten ≠ [] := by
+    intro hcon
+    rw [hcon] at hWklen
+    simp only [List.length_nil] at hWklen
+    have : 0 < k * W.length := Nat.mul_pos hk hn
+    omega
+  have hWkmem : FreeGroup.mk ((List.replicate k W).flatten)
+      ∈ Subgroup.normalClosure (FreeGroup.mk '' R) := by
+    rw [PeriodicOverlap.mk_flatten_replicate]
+    exact hpow
+  obtain ⟨r, hr, u, huinf, hupre, hu⟩ :=
+    hsharp _ (hcyc.flatten_replicate k).isReduced hWkne hWkmem
+  by_cases hcase : u.length ≤ W.length
+  · obtain ⟨s, hs, hpre⟩ := exists_prefix_rotate_of_infix_pow hk hne huinf hcase
+    exact exists_shorter_of_short_arc hs.le hr hupre
+      (two_mul_lt_of_sharp (by linarith) hu) hpre
+  · replace hcase : W.length < u.length := by omega
+    have hper : List.HasPeriod u W.length :=
+      (hasPeriod_flatten_replicate W hk).infix huinf
+    rcases isProperPower_or_isPiece_drop hn hr hupre hper hcase with hpp | hpiece
+    · exact absurd hpp
+        (PeriodicOverlap.not_isProperPower_of_mem_symmetrization hnpp hr)
+    · have hdp : u.drop W.length <+: r :=
+        (PeriodicOverlap.hasPeriod_iff_drop_prefix.mp hper).trans hupre
+      have hmb : ((u.drop W.length).length : ℚ) < lam * (r.length : ℚ) :=
+        hmetric _ hpiece r hr hdp
+      have hdlen : (u.drop W.length).length = u.length - W.length := by simp
+      by_cases hband : 2 * W.length ≤ r.length
+      · exfalso
+        refine residual_empty_of_lam_le_eighth (N := (W.length : ℚ))
+          (M := ((u.drop W.length).length : ℚ)) (Rl := (r.length : ℚ))
+          (Nat.cast_nonneg _) hlam8 hmb ?_ (by exact_mod_cast hband)
+        rw [hdlen, Nat.cast_sub hcase.le]
+        linarith
+      · replace hband : r.length < 2 * W.length := by omega
+        have htk : u.take W.length <:+: (List.replicate k W).flatten :=
+          ((List.take_prefix _ _).isInfix).trans huinf
+        have htklen : (u.take W.length).length = W.length :=
+          List.length_take_of_le hcase.le
+        obtain ⟨s, hs, hpre⟩ :=
+          exists_prefix_rotate_of_infix_pow hk hne htk (by omega)
+        have heq : u.take W.length = W.rotate s :=
+          hpre.eq_of_length (by rw [htklen, List.length_rotate])
+        refine exists_shorter_of_short_arc hs.le hr ?_ ?_ List.prefix_rfl
+        · rw [← heq]
+          exact (List.take_prefix _ _).trans hupre
+        · rw [List.length_rotate]
+          omega
+
+/-- **The free-group small-cancellation torsion theorem, from the sharp
+conclusion.**  Unconditional given the sharp Greendlinger conclusion at a
+constant of at most `1/8`: no residual case survives. -/
+theorem isPowerTorsionFree_of_sharp {R : Set (List (α × Bool))} {lam : ℚ}
+    (hlam8 : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp R lam)
+    (hmetric : MetricSmallCancellation R lam)
+    (hnpp : ∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r) :
+    IsPowerTorsionFree
+      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) := by
+  refine isPowerTorsionFree_of_wordTorsion (wordTorsion_of_step ?_)
+  intro W hcyc hne k hk hpow _
+  obtain ⟨W', hcyc', hlt, hconj⟩ :=
+    exists_shorter_step hlam8 hsharp hmetric hnpp hcyc hne hk hpow
+  obtain ⟨hpowT, hmemT⟩ := transport_of_quot_conj hconj
+  exact ⟨W', hcyc', hlt, hpowT k hpow, fun hcon => absurd (hmemT hcon) ‹_›⟩
 
 end TorsionDescent
 end GroupApproximation

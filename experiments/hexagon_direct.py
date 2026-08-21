@@ -78,16 +78,55 @@ def solve_leg(qU, qD, consU, consD, lamU, lamD):
                   - np.kron(np.eye(qU), torus(qD, lamD)))
     M = np.vstack(blocks)
     _, s, Vh = np.linalg.svd(M)
-    smin, s2 = s[-1], s[-2]
-    Tvec = Vh[-1].conj()
-    T = Tvec.reshape((qU, qD)).T
-    # polar normalize rows onto the image
+    null = [Vh[i].conj().reshape((qU, qD)).T for i in range(len(s)) if s[i] < 1e-8]
+    smin = s[-1]
+    s2 = s[-1 - len(null)] if len(null) < len(s) else 0.0
+    return null, (smin, s2, len(null))
+
+
+def polar_rows(T):
     G = T @ T.conj().T
     ev, W = np.linalg.eigh(G)
     keep = ev > ev.max() * 1e-8
     inv = np.where(keep, 1.0 / np.sqrt(np.maximum(ev, 1e-30)), 0.0)
-    T = W @ np.diag(inv) @ W.conj().T @ T
-    return T, (smin, s2)
+    return W @ np.diag(inv) @ W.conj().T @ T
+
+
+def dft0(q):
+    x = np.arange(q)
+    return e(-(np.outer(x, x) % q) / q) / np.sqrt(q)
+
+
+def select_positive(null, frameU, frameD):
+    """Pick the combination of the null-space basis whose entries, viewed
+    in the frame (frameD @ T @ frameU^*), are real and nonnegative; this
+    is the mechanism's slot selection (positive kernel in the leg's own
+    polarization).  Returns (T_in_standard_frame, status)."""
+    basis = [frameD @ B @ frameU.conj().T for B in null]
+    d = len(basis)
+    vecs = np.array([B.reshape(-1) for B in basis])  # d x n
+    # real-linear system: Im(sum c_i v_i) = 0 with c_i = a_i + i b_i
+    # unknown r = (a_1..a_d, b_1..b_d); Im(c v) = a Im v + b Re v
+    A = np.concatenate([vecs.imag, vecs.real], axis=0).T  # n x 2d
+    _, sv, Vt = np.linalg.svd(A, full_matrices=True)
+    rank = int((sv > 1e-8).sum())
+    sols = Vt[rank:]  # real null vectors r
+    best = None
+    for r in sols:
+        c = r[:d] + 1j * r[d:]
+        T = sum(ci * B for ci, B in zip(c, basis))
+        v = T.reshape(-1).real
+        if v.max() > 0 and v.min() < -1e-9 * v.max():
+            v2 = -v
+            if v2.min() < -1e-9 * v2.max():
+                continue
+            c = -c
+        if best is None:
+            best = c
+    if best is None:
+        return None, f"no positive slot (real-solution dim {len(sols)})"
+    T = sum(ci * B for ci, B in zip(best, null))
+    return polar_rows(T), f"positive slot found (real-solution dim {len(sols)}, null dim {d})"
 
 
 def run(p):
@@ -117,22 +156,37 @@ def run(p):
     # V_h' : m -> lo   (variant 1: x(1)->x(1) is impossible at weight -1,
     # the correct domain form after h'' is x(p)->x(1), y(p^2)->y(p))
     Vp, gp = solve_leg(m, lo,
-                       [shift(m, p), ymod(m, p * p)],
+                       [shift(m, 1), ymod(m, p * p)],
                        [shift(lo, 1), ymod(lo, p)],
                        lam, lam)
 
-    for name, (smin, s2) in (("V_h", gh), ("V_h''", gpp), ("V_h'", gp)):
-        print(f"    {name}: smin={smin:.2e} next={s2:.2e} "
-              f"{'UNIQUE' if s2 > 1e-6 and smin < 1e-8 else 'CHECK'}", flush=True)
+    for name, (smin, s2, nd) in (("V_h", gh), ("V_h''", gpp), ("V_h'", gp)):
+        print(f"    {name}: smin={smin:.2e} next-nonnull={s2:.2e} null-dim={nd}", flush=True)
 
-    # hexagon: compare V_h against V_h' V_h''
-    Lcomp = Vp @ Vpp          # q -> lo through the mid level
-    # overlap of the two canonical routes, phase-invariant:
-    num = np.trace(Vh @ Lcomp.conj().T)
-    den = np.sqrt(abs(np.trace(Vh @ Vh.conj().T) * np.trace(Lcomp @ Lcomp.conj().T)))
+    I_q, I_m, I_lo = np.eye(q), np.eye(m), np.eye(lo)
+    # mechanism slot selection: h (agnostic) positive in the standard frame;
+    # h' (double weight on y = the diagonal/position direction) positive in
+    # the standard frame; h'' (double weight on x) positive in the Fourier
+    # frame built from the verified F0 kernel.
+    Th, sh = select_positive(Vh, I_q, I_lo)
+    Tp, sp = select_positive(Vp, I_m, I_lo)
+    Tpp, spp = select_positive(Vpp, dft0(q), dft0(m))
+    print(f"    slots: V_h: {sh}; V_h': {sp}; V_h'': {spp}", flush=True)
+    if Th is None or Tp is None or Tpp is None:
+        print("    VOID: a mechanism slot is missing", flush=True)
+        return
+    Lcomp = Tp @ Tpp
+    num = np.trace(Th @ Lcomp.conj().T)
+    den = np.sqrt(abs(np.trace(Th @ Th.conj().T) * np.trace(Lcomp @ Lcomp.conj().T)))
     ov = num / den if den > 1e-12 else 0.0
-    print(f"    hexagon overlap <V_h, V_h' V_h''> = {ov:+.6f} "
-          f"|.|={abs(ov):.4f} arg={np.angle(ov)/np.pi:+.4f} pi", flush=True)
+    # scalarity of the hexagon on the band: L = Th^* (Tp Tpp) restricted
+    P = Th.conj().T @ Th
+    L = Th.conj().T @ Lcomp
+    sc = np.trace(L) / max(np.trace(P).real, 1e-12)
+    ns = np.linalg.norm(L - sc * P) / np.sqrt(max(np.trace(P).real, 1e-12))
+    print(f"    hexagon: overlap {ov:+.6f} |.|={abs(ov):.4f} "
+          f"arg={np.angle(ov)/np.pi:+.4f} pi; band scalar {sc:+.6f} "
+          f"nonscalarity={ns:.2e}", flush=True)
     # Only |overlap| is meaningful here: each intrinsic leg carries an
     # arbitrary SVD phase.  |overlap| ~ 1 means the two canonical routes
     # agree projectively (obligation (ii) holds: the hexagon is a pure

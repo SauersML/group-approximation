@@ -153,3 +153,42 @@ the regular decomposition remain cited-level steps of
 `lambda-exact-p-three-closure-route`; this artifact replaces only
 the "SvN-pinning write-up" dependency with an explicit derivation
 and a falsifiable instrument design.
+
+## C''. Direct hexagon probe on the bare Heisenberg tower (p = 3, k = 4): slots are NOT cut
+
+`experiments/hexagon_direct.py` solves the three leg transports
+INTRINSICALLY (Heisenberg intertwining + psi-stable torus
+equivariance, exact null spaces of the stacked systems) at levels
+81 -> 27 -> 9.  Findings, all witness-clean:
+* `V_h` (two-level, agnostic) is UNIQUE (null dim 1, next singular
+  value 0.68) and is automatically the uniform transport -- the shift
+  constraint wraps u mod 9 while x runs mod 81, coupling the three
+  lifts; this confirms mechanism step (iii) exactly.
+* `V_h'` and `V_h''` (one-level legs) each have a 2-DIMENSIONAL slot
+  space; positivity of the kernel in the leg's own polarization frame
+  leaves a 2-real-parameter cone and does not pin the slot.
+* With any positive slots the hexagon is scalar on the band
+  (nonscalarity 3e-12) with value +1: in a single model all legs can
+  be chosen positive in one frame and compose FUNCTORIALLY, so no
+  anomaly can appear -- exactly the vacuity mechanism of section A
+  in a subtler guise.
+(An earlier bookkeeping slip -- x(p) upstairs against y(p^2) at the
+mid level, whose commutator is trivial -- made the h'-system
+inconsistent; the correct h'-domain is x(1) -> x(1), y(p^2) -> y(p).)
+
+CONSEQUENCE FOR OBLIGATION (ii), now stated precisely.  On a flat
+tower a leg transport on an isotypic band of multiplicity m is an
+element of `Hom(irrep (x) C^m, irrep' (x) C^m)` = (SvN intertwiner)
+(x) U(m); flatness matches m but does not cut U(m).  The U(m) parts
+are constrained only by the group elements that move BETWEEN bands
+(the Weyl elements and the parahoric root groups outside the
+Heisenberg), i.e. by the S_3 interlock in the FULL representation.
+Obligation (ii) is therefore: around the hexagon the in-band U(m)
+parts cancel (they are conjugated by the same interlock on both
+routes), leaving the scalar Gauss class of C'.  The bare Heisenberg
+model cannot test this; the test requires the flat tower's full
+parabolic action, i.e. it is asymptotic (regular type), consistent
+with the bounded-multiplicity floors measured at p = 2.  p = 5 was
+not run (dense SVD infeasible at 15625 unknowns; a combinatorial
+solver exists in principle but the conclusion above makes the bare
+model's p = 5 value uninformative).

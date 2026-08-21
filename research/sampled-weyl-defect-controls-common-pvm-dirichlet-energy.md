@@ -66,6 +66,13 @@ HS estimate `full defect <=(27/2) sampled defect` for this entire family.
 Thus any obstruction to `(SW0)` must use genuinely operator-valued mixing, not
 one scalar phase orbit.
 
+`matrix-phased-translations-exact-identity-scalarize` extends that conclusion
+to arbitrary block-diagonal matrix phases when the identity matching is exact:
+the blocks become commuting reflections and `(SW0)` holds with squared-energy
+constant `27/2`.  The same node explains why near-identity rounding cannot be
+performed before using the alpha constraint: sparse Pauli anticommutation
+graphs obstruct a uniform standalone simultaneous-diagonalization lemma.
+
 ## Attempts
 
 - **Propagate one matrix bridge.**  The local bridge estimate is quadratic
