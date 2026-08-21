@@ -100,9 +100,14 @@ collapse lane, but with phases already quotiented out.
   verbatim: any failure of `(PRT1)` along microstates is pinned to the
   even-level/non-congruence vertex sector, i.e. the two-adic solenoid
   wall of `far-sector-is-solenoid-measure-rigidity`.
-- **Projective far-defect formula (deferred).**  For `U` projectively
-  `Lambda`-central, `g -> |tr([U, rho(g)])|^2` is a coefficient of the
-  doubled adjoint representation; the Hecke/Howe--Moore splitting of
-  `hecke-far-commutator-defect-formula` should extend to it, giving a
-  projective far-defect scalar and a spherical enemy classification in
-  `PU`.  Not yet written.
+- **Projective far-defect formula (now a theorem).**  Established as
+  `projective-far-defect-formula`: doubling the adjoint representation
+  cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
+  the Hecke/Howe--Moore splitting reruns verbatim, the far projective
+  energy is the single scalar `1 - s_proj` with `s_proj =
+  ||E_2(|U><U|)||_HS^2`, the extreme value `s_proj = 1` forces exact
+  centrality for `n >= 3` by perfectness, and the doubled lazy Hecke
+  average contracts onto `E_2` at the same rate `delta_0`.  Through
+  `sl3-collapse-from-projective-transfer` the `SL_3` instance of this
+  claim now also implies the full collapse `(RC3)`, so the projective
+  lane and the exact lane converge at higher rank.
