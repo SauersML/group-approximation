@@ -111,8 +111,17 @@ multiplicity reservoir.
 There is now a second, potentially weaker finite-coordinate formulation.
 `dimension-reported-julia-amplitude-return` uses the residual multiplicity
 algebra as an Amitsur--Levitzki tape.  Its stopping index need only select a
-slowly growing heat depth and activate the two cyclic products above; it does
-not have to generate a supercritical Clifford table or compare an integer
-index with the ambient dimension.  The unresolved step remains
-runtime-independent normalized-HS transport from that endogenous stopping
-flag to the two products.
+slowly growing heat depth; it does not have to generate a supercritical
+Clifford table or compare an integer index with the ambient dimension.
+Moreover `one-additive-commutator-suffices-for-julia-return` reduces the
+terminal payload from the two cyclic products to
+
+```text
+[Y,X] approximately P-B_t^*B_t.
+```
+
+Matrix trace then gives the heat bound directly.  The commutator has one
+constant-size Steinberg root-coefficient word and, because the target is a
+self-adjoint contraction, its factors may be chosen with operator norms at
+most one and two uniformly in dimension.  The sole surviving issue is the
+finite-coordinate decoding of that root comparison at an endogenous depth.
