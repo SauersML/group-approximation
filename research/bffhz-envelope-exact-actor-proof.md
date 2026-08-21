@@ -5,7 +5,6 @@ kind: route
 title: Put a two-point Pauli seed in one free property-T translation orbit
 target: bffhz-envelope-closes-exact-actor-host
 requires:
-  - bffhz-action-image-is-finitely-presented
   - relative-automorphism-action-is-highly-transitive
   - infinite-character-actor-kills-fd-mark
 ---
