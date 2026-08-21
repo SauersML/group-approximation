@@ -595,18 +595,23 @@ diagonal coboundaries for every `p` tested (so `H^1(SL_2(Z[1/2]), Ad rho) =
 0`, as (T;FD) predicts).  Its smallest nonzero singular value is
 
 ```text
-p        3     5     7     11    13    17    19    23    29    31    37
-sigma  0.816 0.741 0.711 0.570 0.474 0.408 0.351 0.271 0.275 0.300 0.273
+p       3     5     7     11    13    17    19    23    29    31    37    41    43    47
+sigma 0.816 0.741 0.711 0.570 0.474 0.408 0.351 0.271 0.275 0.300 0.273 0.264 0.253 0.206
 ```
 
-a small-level transient followed by a plateau near `0.27`; the permutation
-representations on `F_p^2 \ 0` give the same values for `p = 3, 5, 7`.  This
-is consistent with a uniform first-order rigidity: the two restrictions are
+slowly decreasing with fluctuations; the permutation representations on
+`F_p^2 \ 0` give the same values for `p = 3, 5, 7`.  The data do not
+distinguish slow convergence to a positive floor from decay to zero.  A
+positive floor is what the Hecke heuristic predicts: the two restrictions are
 the degeneracy maps whose trace-composition is the Hecke operator `T_2`, so
 `||res_1 f - res_2 g||^2 = 3||f||^2 + 3||g||^2 - 2 Re<f, T_2 g>`, and
 Deligne's bound `|a_2| <= 2 sqrt 2 < 3` on cusp forms gives a gap
-`3 - 2 sqrt 2` on the cuspidal part in the Petersson norm; the plateau value
-in the cochain norm is a renormalization of that.  The conjectural
+`3 - 2 sqrt 2` on the cuspidal part in the Petersson norm, and by
+Sato--Tate the maximum of `|a_2(f)|` over the roughly `p/12` forms of level
+`p` approaches `2 sqrt 2` from below only slowly, which would produce
+exactly a slow decrease toward a positive floor.  Non-cuspidal
+(Eisenstein, `a_2 = 3`) classes and the comparison between the cochain and
+Petersson norms are the two places the heuristic could fail.  The conjectural
 statement extracted from the data and the heuristic is:
 
 > **(uniform infinitesimal rigidity)** there is `sigma_0 > 0` such that for

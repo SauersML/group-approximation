@@ -113,9 +113,9 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   terms.  Numerically (`experiments/iwahori_linearized_gap.py`, artifact
   Section 14) the smallest nonzero singular value of the mismatch map for
   the permutation representations of `SL_2(F_p)` on `P^1` is `0.82, 0.74,
-  0.71, 0.57, 0.47, 0.41, 0.35, 0.27, 0.27, 0.30, 0.27` for `p = 3, ...,
-  37`: a plateau, consistent with a uniform first-order gap coming from
-  Deligne's bound `|a_2| <= 2 sqrt 2 < 3` through the identity
+  0.71, 0.57, 0.47, 0.41, 0.35, 0.27, 0.27, 0.30, 0.27, 0.26, 0.25, 0.21`
+  for `p = 3, ..., 47`: slowly decreasing, undecided between a positive
+  floor and zero; a positive floor is what would follow from Deligne's bound `|a_2| <= 2 sqrt 2 < 3` through the identity
   `||res_1 f - res_2 g||^2 = 3||f||^2 + 3||g||^2 - 2 Re <f, T_2 g>`.  A
   proof of uniform infinitesimal rigidity along these lines would be the
   natural first theorem toward this question; it would not settle it.
