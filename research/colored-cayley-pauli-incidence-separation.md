@@ -7,6 +7,7 @@ distinct_from:
   fp-cayley-expanders-give-bounded-occurrence-edges: that places an untyped expander family with bounded edge words; this additionally preserves logical row classes, column classes, and the two Pauli signs as relative double-coset data.
   two-transitive-occurrence-sections-have-unbounded-pair-holonomy: that proves a global two-role section cannot have bounded corrections; this asks for bounded-neighbor expander clouds of actual Cayley flags instead of a section.
   gsc-does-not-separate-sign-double-cosets: that gives an arbitrarily strong small-cancellation sign collision; this asks for extra relative incidence hypotheses strong enough to exclude it.
+  relative-c-sixth-protects-sign-double-cosets: that proves sign separation above relative girth eight; this must additionally absorb or safely lengthen the Pauli rectangle contours of relative length at most eight.
 ---
 
 OPEN.  Starting with the bounded-degree robust games supplied by
@@ -68,3 +69,28 @@ product is safe because its proof decodes on the same Hilbert space.
 The attack is therefore not deferred: the next lemma is a relative
 Greendlinger/Freiheitssatz theorem whose hypotheses use sign-consistency of
 the actual Pauli incidence graphs, not just their piece length.
+
+There is now a precise partial theorem and a precise failure point.
+`relative-c-sixth-protects-sign-double-cosets` proves the desired sign
+separation for a free-product `C'(1/6)` quotient whose new relators have at
+least eight relative syllables.  The natural Pauli rectangles have at most
+eight syllables, so they are the threshold case: they must remain reduced and
+have no repeated relative piece of length two.  The placement problem is now
+precisely to obtain that relative labeling (or absorb the bounded rectangle
+templates into a sign-separated base address group).
+
+A second, ordinary-word-metric route handles composite diagrams cleanly.
+`balanced-greendlinger-separates-sign-cosets` permits arbitrary pure X/Z
+cloud relators and proves sign separation when every long exposed interval
+of a mixed contour contains at least three pair edges.  Its remaining
+combinatorial input is `balanced-pauli-incidence-labeling`: construct the
+expander occurrence reduction so that no mixed contour has one dominant
+equality arc.  This is now a live decomposed route rather than an implicit
+appeal to ordinary small cancellation.
+
+The sharper formulation is
+`relative-c-sixth-pauli-incidence-labeling`.  It asks for free-product
+`Gr'(1/6)` directly over `H_X*H_Z*F(P)`, with minimum relative contour length
+eight.  Once supplied, `relative-c-sixth-incidence-closes-placement` proves
+the full placement and then uses ordinary Higman embedding only
+algebraically; no distortion estimate enters the HS modulus.

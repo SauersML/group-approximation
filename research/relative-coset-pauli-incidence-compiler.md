@@ -58,6 +58,11 @@ write an explicit `A`-invariant infinite bipartite Clifford form on the two
 coset spaces.  No appeal to a hoped-for compatibility of the finite games is
 needed.
 
+For nondegenerate Pauli sign tables, the two cloud-injectivity assumptions
+can be replaced by row/column separation of the tested sign profile:
+`sign-double-cosets-separate-pauli-clouds` derives injectivity directly from
+`(RCI2)`.
+
 The last sentence in clause 4 is load-bearing for an application to a Pauli
 braiding/linearity game: the equality and signed-pair presentation is the
 unbounded incidence core, while the finite local decorations must still be
