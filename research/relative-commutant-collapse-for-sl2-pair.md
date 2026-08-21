@@ -39,6 +39,13 @@ this produces an explicit non-hyperlinear group.
   `SL_2(Z[1/2])` implies `(RCC)` (correct microstates, then co-density);
   `(RCC)` may be strictly weaker since it only asks about the commutant of a
   fixed subalgebra, not correction of the whole representation.
+- **Proper proximality.**  `SL_2(Z)` (and `SL_3(Z)`) are properly proximal
+  (Boutonnet--Ioana--Peterson, arXiv:1809.01881), so `L(SL_2(Z))` is
+  solid/rigid and its commutants are controlled; a properly-proximal
+  criterion for relative commutants inside a matrix ultraproduct (as opposed
+  to a crossed product) is the missing form.  Alekseev--Thom Open Problem
+  6.2 is exactly this collapse in general; `(RCC)` is its most explicit
+  instance, so it is genuinely open, not a known theorem.
 - **What a counterexample is.**  A faithful `pi` and a unitary `k in M`
   with `[k, pi(SL_2(Z))] = 0` but `[k, pi(diag(2,1/2))] != 0`; such a `k`
   would make the HNN group hyperlinear and would refute both `(RCC)` and,
