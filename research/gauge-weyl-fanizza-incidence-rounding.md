@@ -59,12 +59,12 @@ There is a literal minimal triangle repair.  With transports oriented
 U_ZR U_DZ=U_DR.
 ```
 
-It is compatible with the exact marked model after common countable
-amplification **if** the full private gauge/Weyl edge-intertwiner torsors
-close: choosing `U_cd=V_dV_c^*` then makes the equality tautological.  The
-separator signs themselves are classically flat, but amplification alone
-does not prove this full-packet cocycle condition; see
-`fanizza-triangle-two-cell-has-an-intertwiner-torsor-obstruction`.  Once
-developable, the relation removes cycle holonomy but still leaves the
-load-bearing task of producing one positive-norm Gram block accepted by all
-rooted context rows.
+It is compatible with the exact marked model after the half-edge gauge
+refinement in `private-gauges-close-fanizza-triangle`.  That construction
+gives every cycle edge its own Pauli tensor factor, extends the actual HALT
+spectral supports through one fixed finite packet menu, and writes three
+intertwiners whose product closes exactly.  Amplification without this
+factorization would not suffice.  The relation therefore removes cycle
+holonomy on the exact side, while the load-bearing finite-dimensional task
+of producing one positive-norm Gram block accepted by all rooted context
+rows remains open.

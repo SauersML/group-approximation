@@ -122,9 +122,9 @@ really have the factorization `(FTC6a)`.  Gauge doubling makes that design
 plausible, but the current finite packet incidence note has not proved the
 simultaneous factorization.
 
-Accordingly the literal relation `(FTC3)` is a valid candidate, but exact
-HALT completeness is conditional on an explicit full-packet solution of
-`(FTC4)`.  The shortcut
+Accordingly, before the half-edge refinement below, exact HALT completeness
+was conditional on an explicit full-packet solution of `(FTC4)`.  The
+shortcut
 
 ```text
 U_cd=V_d V_c^*                                        (FTC7)
@@ -134,6 +134,33 @@ is valid only after constructing context identifications `V_c` which
 simultaneously realize every finite edge chart.  Assuming such `V_c` is
 equivalent to assuming `(FTC4)`; countable amplification alone does not
 construct them.
+
+## Exact completeness is closed by half-edge gauge refinement
+
+`private-gauges-close-fanizza-triangle` supplies the previously missing
+full-packet solution.  Duplicate the gauge share pair whenever one context
+variable participates in two different graph edges, while keeping the
+product of every pair equal to the same original logical word.  Each triangle
+edge then owns a private Pauli tensor factor.  A finite support-adaptive
+hyperoctahedral menu extends the actual nonzero joint spectral support of an
+arbitrary countably amplified HALT representation, so zero-weight allowed
+atoms cause no extension obstruction.
+
+On the three private factors, let `W_DZ,W_ZR,W_DR` be the required Hadamard
+resets and choose
+
+```text
+U_DZ=W_DZ W_DR,
+U_ZR=W_ZR,
+U_DR=W_ZR W_DZ W_DR.                                  (FTC7a)
+```
+
+The resets commute, every extra factor action is invisible to the
+corresponding edge group, and `U_ZR U_DZ=U_DR` exactly.  Hence `(FTC4)` holds
+for this refined packet and the triangular two-cell passes the exact HALT
+firewall.  What countable amplification alone could not prove is supplied by
+the explicit incidence-private tensor decomposition; no claim is made for a
+packet that reuses one gauge coordinate on two cycle edges.
 
 ## What remains even if `(FTC4)` is solved
 

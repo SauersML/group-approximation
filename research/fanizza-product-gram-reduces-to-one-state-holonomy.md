@@ -244,18 +244,16 @@ the logical BCS words.  At the separator-sign level the native triangle is
 classically flat, so this construction is compatible with the exact marked
 model and does not force a forbidden Boolean assignment.
 
-There is nevertheless a genuine developability audit for the **full**
-private Weyl/gauge packet.  Countable amplification makes each edge
-intertwiner space nonempty, but does not prove that the product of the
-`D->Z` and `Z->R` intertwiner torsors meets the `D->R` torsor.  This exact
-double-coset condition is isolated in
-`fanizza-triangle-two-cell-has-an-intertwiner-torsor-obstruction`.  Until it
-is checked, `(FPG17b)` is a candidate relation, not a proved exact HALT
-extension.  That node also gives an explicit positive construction when the
-three private gauge registers are incidence-private tensor factors: unused
-register actions can absorb the third reset and make the cocycle flat.  What
-remains in that audit is the simultaneous realization of this factorization
-inside the full Schur/Pauli context packets.
+There is a genuine developability condition for the **full** private
+Weyl/gauge packet: countable amplification by itself makes each edge
+intertwiner space nonempty but does not close their product torsor.
+`private-gauges-close-fanizza-triangle` now closes this exact condition after
+a semantics-preserving half-edge gauge refinement.  Each cycle edge receives
+its own Pauli tensor factor, a finite support-adaptive Schur menu extends the
+actual HALT spectral support, and unused factor actions absorb the direct
+reset.  Thus `(FPG17b)` is a proved exact HALT extension for that refined
+packet.  This does not add any finite-dimensional Gram or predicate
+soundness estimate.
 
 This repair is not the completed backend.  It pays `e_hol`, but it does not
 produce a nonzero `G`, make the selected packet predicates accept `V_cG`, or
