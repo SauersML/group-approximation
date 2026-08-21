@@ -54,3 +54,9 @@ collapse.
 - **Dual-search bad multiplicity modes.**  If the ceiling fails in a finite
   truncation, keep the maximizing tracial/multiplicity mode as a concrete dual
   obstruction and enlarge only the packet residuals that see it.
+- **Audit the abstract packet-collision quotient first.**
+  `atlas-a4-packet-collision-quotient-audit` shows that a finite quotient gives
+  a decisive fork: a collapsed chart factor closes the exact-regular lane by
+  finite-group HS stability, while two surviving factors return an exact
+  regular-margin multiplicity mode on which the proposed ceiling can be tested
+  directly.

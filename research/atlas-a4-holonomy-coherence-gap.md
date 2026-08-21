@@ -84,3 +84,9 @@ is the common multiplicity `k_n`; every local group is exact and regular.
   multiplicity sectors.  The new generation/commutant facts rule out hiding in
   a packet-invisible chart subgroup, but do not by themselves convert the
   collision word into the needed commutator residual.
+- **The abstract quotient is a bounded exact fork.**
+  `atlas-a4-packet-collision-quotient-audit` packages the thirty pair-cubes and
+  collision into one quotient of `A8*A8`.  If that quotient is finite, either a
+  chart factor collapses (and finite-group HS stability proves this claim) or
+  its regular representation is an explicit exact regular-margin nonclassical
+  mode that the remaining Dirichlet estimate must beat.
