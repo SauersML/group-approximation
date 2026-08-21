@@ -107,8 +107,15 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   cannot even find `W = 1` from random starts), so that evidence is
   weak.  `Q` is rational in the permutation basis (entries in
   `(1/8) Z` after clearing the Borel average), so `ker Q = 0` is
-  certifiable EXACTLY by a sparse full-rank computation modulo a
-  prime — queued as the certification step.
+  certifiable EXACTLY — and cheaply: every building block of `Q`
+  conjugates by elements of `lambda(G)`, which act only on the LEFT
+  tensor legs of `End(l^2 G) = (+)_(pi,pi') Hom(V_pi, V_pi') (x)
+  Hom(V-bar_pi, V-bar_pi')`, so the right legs are spectators and
+  the kernel decomposes over irreducible pairs of `GL_3(F_2)`
+  (dimensions `1, 3, 3, 6, 7, 8`): the certification is an exact
+  rational computation (in `Q(sqrt(-7))` for the two cubic
+  representations) on blocks of size at most `8 x 8` — queued as the
+  certification step.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
