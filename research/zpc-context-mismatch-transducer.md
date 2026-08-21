@@ -61,6 +61,23 @@ additional odd selector characters.
   tree of its incident contexts.  The target is an `L^2` Poincare-style bound
   from those local test losses to `D_glue`, with constants depending only on
   the fixed finite source game.
+- **Raw equality and aggregation do not expose the decoded copy.**
+  `priority-decoded-contexts-are-not-glued-by-raw-gate-equality` gives exact
+  countermodels: branchwise equality of every raw gate across two contexts can
+  coexist with maximal decoded mismatch when the selector allocations differ,
+  and `product_a G_(c,a,i)` need not equal the priority-decoded observable on
+  a multi-active odd sector.  The missing check must therefore be
+  selector-payload coupled; ordinary equality rows on the unconditioned gates
+  are insufficient.
+- **The remaining analytic estimate is elementary once labels align.**
+  `priority-decoder-lipschitz-under-selector-gate-alignment` proves that the
+  identity-completed decoded copies are dimension-free Lipschitz in the
+  squared selector mismatch plus squared raw-gate mismatch, with an explicit
+  constant depending only on the number of local labels.  Thus the genuinely
+  missing construction is a completeness-preserving LCS mechanism producing
+  *matched selector allocations* across the verifier's differently labelled
+  overlapping contexts; no further matrix-dimensional estimate is hidden
+  after that mechanism.
 - **Do not globalize readable bits unnecessarily.**  The source ZPC hypotheses
   provide local commutation, not one global readable algebra.  The transducer
   should glue decoded unreadable observables across contexts rather than
