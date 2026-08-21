@@ -20,7 +20,7 @@ there is a uniform floor
 
 ```text
 max_i || V lambda-image(A_i) V^* - lambda-image(B_i) ||_2
-   >= epsilon_0 . sqrt(3) / 2                                    (LE1)
+   >= epsilon_0 . sqrt(15) / 4                                   (LE1)
 ```
 
 for every unitary `V` at every level, `epsilon_0` the Kazhdan
@@ -59,16 +59,16 @@ them near the invariant space, which is the intertwiner space
 `Hom(lambda compose B, lambda compose A)`.  Both representations are
 multiples of regular representations of their image quotients
 `Q_A, Q_B`; by Schur, every intertwiner is supported in the
-constituents factoring through the JOIN quotient `Q_AB`.  The
-`Ad(h)`-weights sum to zero, so the skew-depth kernel of the
-`B`-side has the same index as the `A`-side (`|Q_B| = |Q_A|`), while
-the shallow `(1,3)`-direction places a visible `Z/4` inside the join
-kernel's image, giving `|Q_AB| <= |Q_A| / 4`.  Hence the common
-isotypic fraction is at most `1/4`; the mean-ergodic projection of a
-unitary onto invariants has operator norm at most `1`, so its
-Hilbert--Schmidt mass in the common part is at most `1/4`, giving
-`dist_2(V, Inv) >= sqrt(3)/2` and, by the Kazhdan inequality,
-`(LE1)`.
+constituents factoring through the JOIN quotient `Q_AB`.  The exact
+kernel computation in
+`depth-shifted-regular-overlap-is-exactly-one-sixteenth` identifies
+the image of the shifted kernel as the 16-element shallow upper packet
+with depths `(a-1,a-2,a-1)`.  Thus `|Q_B|=|Q_A|` and
+`|Q_AB|=|Q_A|/16`.  Hence the common isotypic fraction is exactly
+`1/16`; the mean-ergodic projection of a unitary onto invariants has
+operator norm at most `1`, so its Hilbert--Schmidt mass in the common
+part is at most `1/16`, giving `dist_2(V, Inv) >= sqrt(15)/4` and, by
+the Kazhdan inequality, `(LE1)`.
 
 ## Attempts
 

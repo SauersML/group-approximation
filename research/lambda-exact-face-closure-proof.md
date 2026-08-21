@@ -2,11 +2,12 @@
 rg: 2
 id: lambda-exact-face-closure-proof
 kind: route
-title: Schur support in the join quotient plus zero-sum weights give the quarter bound, and Kazhdan converts it to a floor
+title: Schur support and the exact sixteen-element kernel join give the regular-type Kazhdan floor
 target: lambda-exact-face-of-the-collapse-closes
 requires:
   - two-power-sector-conjugator-dichotomy
   - odd-congruence-lambda-exact-sector-collapses
+  - depth-shifted-regular-overlap-is-exactly-one-sixteenth
 ---
 
 Fix a level `a >= 3` of the tower, `G = image of Lambda in the
@@ -65,31 +66,30 @@ subgroups is normal).  By Schur's lemma every intertwiner
 || xi ||_2^2 = tr(P_B xi^* xi P_B)/d <= || xi ||_op^2 . tr(P_B)/d.
 ```
 
-**Step 4 (the quarter bound).**  Depth bookkeeping for
+**Step 4 (the exact one-sixteenth bound).**  Depth bookkeeping for
 `ker B = { lambda : h lambda h^(-1) = 1 mod 2^a }`: conjugation by
 `h` scales the off-diagonal entries by `2^(w)` with weights
 `w = +1, +2, +1, -1, -2, -1` on the six root directions and `0` on
 the diagonal, so the `B`-kernel's congruence depths are skewed by
-exactly those weights.  The weights SUM TO ZERO, so
-`|Q_B| = |Q_A|` (for `a >= 3`, by the smooth congruence
-filtration).  The shallow `(1,3)`-direction contributes
-`e_13(2^(a-2)) in ker B` whose image in `Q_A` generates a cyclic
-group of order `4`; it lies in the image of `ker A . ker B`, so
-`|Q_AB| <= |Q_A| / 4`.  Hence the common fraction is
+exactly those weights.  The full image of `ker B` in `Q_A` is the
+upper-unitriangular packet with `12,23` entries in
+`2^(a-1) Z/2^a` and `13` entry in `2^(a-2) Z/2^a`; it has order
+`2*2*4=16`.  Transpose-inverse exchanges the two tuples, so
+`|Q_B|=|Q_A|`.  Therefore the common fraction is exactly
 
 ```text
-tr(P_B)/d <= |Q_AB| / |Q_B| <= 1/4.                             (LEP2)
+tr(P_B)/d = |Q_AB| / |Q_B| = 1/16.                              (LEP2)
 ```
 
 **Step 5 (mean ergodic bound and conclusion).**  The invariant
 projection of a unitary lies in the closed convex hull of its
 `rho`-orbit (Alaoglu--Birkhoff mean ergodic theorem), which consists
 of products of unitaries, so `|| P_Inv(V) ||_op <= 1`; with Steps 3
-and 4, `|| P_Inv(V) ||_2^2 <= 1/4`, so `dist_2(V, Inv) >=
-sqrt(1 - 1/4) = sqrt(3)/2`.  Combining with `(LEP1)`:
+and 4, `|| P_Inv(V) ||_2^2 <= 1/16`, so `dist_2(V, Inv) >=
+sqrt(1 - 1/16) = sqrt(15)/4`.  Combining with `(LEP1)`:
 
 ```text
-eta >= epsilon_0 . sqrt(3)/2                                    (LEP3)
+eta >= epsilon_0 . sqrt(15)/4                                   (LEP3)
 ```
 
 for every unitary at every level — the uniform floor `(LE1)`.  An
