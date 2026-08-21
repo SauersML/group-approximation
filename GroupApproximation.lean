@@ -1474,6 +1474,7 @@ import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
 import GroupApproximation.Higman.GeneratedBasic
 import GroupApproximation.Higman.GeneratedCoords
+import GroupApproximation.Sofic.GreendlingerFreeGate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
