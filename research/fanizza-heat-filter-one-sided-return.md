@@ -49,3 +49,28 @@ The firewall is essential.  A literal group conjugacy between `p_m` and
 model impossible.  The return must appear only after a finite-dimensional
 packet/multiplicity compression, exactly where cyclic trace or finite rank is
 available.
+
+## Minimal scalar endpoint and Toeplitz audit
+
+The exact two-product endpoint is now
+`fanizza-heat-return-is-one-cyclic-amplitude-product`.  For
+`B_t=D_Rp_t(H_m)` it is enough to decode
+
+```text
+YX approximately P,
+XY approximately B_t^*B_t.
+```
+
+Cyclic trace then bounds the returned projection by
+`C_m/(4t^2)` plus the two decoder errors.  This is strictly more precise than
+the phrase “returned copy” above and is compatible with the countably
+amplified perfect model, where `B_t^*B_t=D_R`.
+
+However `support-only-toeplitz-return-cannot-see-heat-decay` rules out the
+most direct Leavitt/Toeplitz attempt.  Small operator norm does not imply
+small support rank: the filtered operator may remain full-support on the
+signal carrier.  Therefore a multiplicity shift which returns only its range
+projection discards exactly the amplitude that `(FHR2)` controls.  The live
+cell must return the amplitude square itself, or authenticate a
+matrix-dependent spectral cutoff; and this inference must fail in the
+regular tracial representation.
