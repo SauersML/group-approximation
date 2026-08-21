@@ -10,6 +10,7 @@ distinct_from:
   d-ary-leavitt-groups-nonsofic-over-finite-fields: that is a soficity statement about d-ary Leavitt unit and elementary groups, proved here through property (T); this is a ring identity demanded of one modular group algebra, and soficity of the group would refute it rather than supply it.
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
+  - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its

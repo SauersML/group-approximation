@@ -3,6 +3,8 @@ rg: 2
 id: coset-bernoulli-ce-refutes-relative-commutant-collapse
 kind: claim
 title: Connes embeddability of the coset Bernoulli crossed product refutes relative-commutant collapse
+artifacts:
+  - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that asserts commutant equality in every matrix ultraproduct; this gives an explicit crossed-product obstruction whose Connes embeddability would refute it.
   sl3-pair-relative-commutant-route: that proposes a higher-rank pair with a Kazhdan subgroup; this obstruction applies to every proper subgroup pair, including both arithmetic pairs.
@@ -75,6 +77,12 @@ the hard matrix-coordinate content.
   is `C`-fixed and not `A`-fixed, but `l2(A/C)` is weakly contained in the
   regular representation only when `C` is amenable.  The required
   finite-coordinate realization is precisely the missing CE statement.
+- **The p = 2 Bruhat--Tits action.**  If the action
+  `PSL_2(Z[1/2])` on its vertex orbit `A/C` is sofic, then the binary coset
+  wreath product is sofic and `(CB1)` is Connes embeddable.  This refutes
+  Iwahori relative-commutant transfer and therefore flexible Iwahori
+  stability.  This implication is one-sided: proving the action nonsofic does
+  not prove the crossed product non-CE or produce a nonhyperlinear group.
 - **The p = 3 dichotomy (2026-08-21).**  For the pair
   `SL_3(Z) < SL_3(Z[1/3])` the Lambda-exact face of the collapse is
   closed and subgroup-exact outliers do not exist, so Connes

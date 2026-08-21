@@ -5,6 +5,7 @@ kind: claim
 title: Local Iwahori defect controls global distance to a compatible representation
 artifacts:
   - research/artifacts/two-paper-ingestion-2026-08-19.md
+  - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
   - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
 distinct_from:
   iwahori-outlier-repair: that is this repository's proposed sufficient condition -- a full-rank repair theorem in the one sector its own analysis leaves open; this is the published question in Dogon-Vigdorovich's own local-defect/global-defect form, which the repair theorem is an attack on.
@@ -77,6 +78,13 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
 - **Not attempted here: the negative side.**  No construction in this
   repository produces a sequence with `def(pi_n) -> 0` and `D(pi_n)` bounded
   below.  A negative answer would kill this route without touching the goal.
+- **Tree-action falsification test.**  If the coset action
+  `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
+  permanence makes its coset wreath product sofic and hence Connes
+  embeddable.  The base lamp is then an exact relative-commutant leak, so the
+  present stability claim is false.  The converse is not valid: nonsoficity
+  of this action does not prove stability or nonhyperlinearity.  The precise
+  implication audit is in the 2026-08-21 artifact.
 
 ## Attempts (added 2026-08-21, from the HNN route)
 

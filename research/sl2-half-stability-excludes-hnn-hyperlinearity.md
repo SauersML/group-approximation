@@ -5,6 +5,7 @@ kind: claim
 title: SL2(Z[1/2]) cannot be both flexibly HS-stable and have a hyperlinear HNN extension centralizing SL2(Z)
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
 distinct_from:
   hnn-over-codense-kazhdan-subgroup-not-hyperlinear: that is the general theorem; this is its contrapositive specialized to the Dogon--Vigdorovich lattice, recorded because it turns the open question into a dichotomy with a concrete second horn.
 ---
