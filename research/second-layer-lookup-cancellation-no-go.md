@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: arbitrary-second-layer-multiplicity-cannot-cancel-a-nontrivial-lookup
+id: second-layer-lookup-cancellation-no-go
 kind: claim
 title: Universal cancellation of an arbitrary second-layer packet would also erase the finite truth table
 distinct_from:
@@ -38,4 +38,3 @@ the remaining multiplicity action in
 `hyperoctahedral-router-interface-for-fanizza`.  A successful return must add
 relations coupling the router multiplicity to the constant-packet
 multiplicity, or isolate a packet type on which the latter action is trivial.
-

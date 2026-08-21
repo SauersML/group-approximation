@@ -54,7 +54,7 @@ action.  A final packet must either isolate its trivial type or cancel those
 multiplicity commutators.  The coordinate-gauge problem is no longer part of
 the frontier.
 
-`arbitrary-second-layer-multiplicity-cannot-cancel-a-nontrivial-lookup` shows
+`second-layer-lookup-cancellation-no-go` shows
 that merely replacing `W_F` by a longer or more cleverly balanced word cannot
 finish the job.  If a word vanished for an arbitrary representation of the
 constant packet together with an arbitrary router multiplicity, its element

@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: arbitrary-second-layer-multiplicity-cannot-cancel-a-nontrivial-lookup-proof
+id: second-layer-lookup-cancellation-no-go-proof
 kind: route
 title: Evaluate the proposed cancellation in a faithful representation of the free product
-target: arbitrary-second-layer-multiplicity-cannot-cancel-a-nontrivial-lookup
+target: second-layer-lookup-cancellation-no-go
 requires: []
 ---
 
@@ -27,4 +27,3 @@ Thus a nontrivial finite truth output cannot be protected from a completely
 arbitrary second-layer action by balancing, commutator nesting, or a longer
 word; some additional relation or type selection is mathematically
 necessary.
-
