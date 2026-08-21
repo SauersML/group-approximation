@@ -3,7 +3,7 @@ rg: 2
 id: subhomogeneous-energetic-carrier-no-gap-proof
 kind: route
 title: Disintegrate the carrier trace into bounded matrix factors and extend each factor across the central summand
-target: subhomogeneous-energetic-carriers-cannot-have-a-strict-regular-gap
+target: subhomogeneous-energetic-carrier-no-strict-gap
 requires: []
 ---
 
@@ -51,4 +51,3 @@ equivalently writing it on the `m` packet translates of the `p`-fiber, shows
 that its dimension is at most `m` times the dimension of an irreducible
 `pAp` constituent.  Thus `pAp` being `D`-subhomogeneous implies `qAq` is
 `mD`-subhomogeneous.  Apply the central case.
-

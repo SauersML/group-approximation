@@ -86,11 +86,11 @@ use their simultaneous realization as literal conjugates of the one fixed
 word `U(b)` in a model of the whole Bleak--Quick presentation, rather than
 independent context gauges.
 
-There is now an exact smaller target.  The route
-`thompson-v-common-frame-carmichael-reduction` shows that it is enough to
-certify two stabilizer corrections for each pair: one disjoint transposition
-and one disjoint three-cycle.  If those centralizer loops have R1--R5 area at
-most `C`, the pair relator has area at most `4C+A_0`, where `A_0` is the fixed
-local-S4 area.  Thus all finite-permutation algebra is constant-cost; the
-remaining problem is solely the uniform address-coherence statement
-`thompson-v-r5-uniform-common-pivot-centralizers`.
+The tempting common-frame subroute is now closed negatively.
+`finite-mark-centralizer-commutator-area-is-proper` proves that the individual
+endpoint corrections in that reduction have filling area tending to infinity
+as their centralizer cosets escape.  In particular,
+`thompson-v-r5-uniform-common-pivot-centralizers` is refuted, even allowing
+fillings to use every R1--R5 relator.  A surviving proof of `(CCF)` must cancel
+several endpoint holonomies collectively, use an averaged synchronization
+inequality, or avoid uniformly bounded individual centralizer commutators.

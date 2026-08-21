@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: subhomogeneous-energetic-carriers-cannot-have-a-strict-regular-gap
+id: subhomogeneous-energetic-carrier-no-strict-gap
 kind: claim
 title: A uniformly subhomogeneous energetic carrier cannot separate the regular trace from finite-dimensional traces
 distinct_from:
@@ -49,4 +49,3 @@ be uniformly subhomogeneous.  Any viable bounded extractor must be
 conditional on the canonical microstate in a way not inherited by all
 representations of the carrier, or must use a non-functorial matrix-only
 selection rather than a subhomogeneous C-star corner.
-

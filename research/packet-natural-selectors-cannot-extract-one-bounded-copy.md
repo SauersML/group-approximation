@@ -4,7 +4,7 @@ id: packet-natural-selectors-cannot-extract-one-bounded-copy
 kind: claim
 title: A packet-natural selector cannot extract one bounded irreducible copy from arbitrary multiplicity
 distinct_from:
-  subhomogeneous-energetic-carriers-cannot-have-a-strict-regular-gap: that rules out bounding every irreducible of the energetic carrier; this rules out a canonical bounded-copy selection even when the fixed packet irreducible itself has small dimension.
+  subhomogeneous-energetic-carrier-no-strict-gap: that rules out bounding every irreducible of the energetic carrier; this rules out a canonical bounded-copy selection even when the fixed packet irreducible itself has small dimension.
   finite-normalizer-star-no-go: that uses the regular marked sector to refute one swap-star geometry; this is the multiplicity-symmetry obstruction for every packet-local reducing projection.
   fixed-packet-orbits-cannot-amplify-a-gram-line: that shows a bounded packet orbit cannot turn one adjoint vector into positive density; this shows the dual failure, that packet data cannot choose one bounded summand out of a large multiplicity space.
   bounded-output-energetic-decoder-gives-the-canonical-ceiling: that is the positive compactness theorem once bounded output has been supplied; this proves that the output cannot be selected naturally from a fixed packet alone.
@@ -42,4 +42,3 @@ function of one fixed packet table.  It must use outside matrices to break
 the full multiplicity-unitary symmetry, and it must do so in a
 canonical-profile-dependent way not equivalent to making the whole orbit
 corner subhomogeneous.
-

@@ -5,7 +5,7 @@ kind: route
 title: Use the finitary-symmetric kernel and amenability of Houghton groups
 target: houghton-carmichael-sections-have-unbounded-edge-area
 requires:
-  - hyperlinear-groups-force-area-divergence-in-high-chromatic-sections
+  - high-chromatic-sections-force-area-divergence
 ---
 
 The Houghton group `H_k` consists of permutations of `k` rays which are
@@ -27,5 +27,5 @@ u_i^3=h_i b^3 h_i^(-1),
 so all cube areas equal the fixed finite number `Area_R(b^3)`.  The graphs are
 the complete graphs `K_M`, whose chromatic numbers are `M`, and `b` is
 nontrivial in `H_k`.  Applying
-`hyperlinear-groups-force-area-divergence-in-high-chromatic-sections` proves
+`high-chromatic-sections-force-area-divergence` proves
 `(HCA2)` for every finite presentation and every choice of conjugators.

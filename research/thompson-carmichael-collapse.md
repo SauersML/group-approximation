@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: coherent-carmichael-family-forces-thompson-three-cycle-collapse
+id: thompson-carmichael-collapse
 kind: claim
 title: An unbounded Carmichael family of conjugates forces its matrix three-cycle to collapse
 artifacts:

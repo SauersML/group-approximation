@@ -6,7 +6,7 @@ title: Collapse the Bleak--Quick three-cycle using only a coherent Carmichael st
 target: thompson-v-one-word-strict-hs-ceiling
 requires:
   - thompson-v-r5-coherent-carmichael-family
-  - coherent-carmichael-family-forces-thompson-three-cycle-collapse
+  - thompson-carmichael-collapse
 ---
 
 Take the word `w=b=(01 10 11)`.  The compiler and compact-packing theorem give

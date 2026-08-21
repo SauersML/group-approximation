@@ -36,14 +36,14 @@ twisted-commutator energy implies small uniform twisted-commutator energy.
 The implication must be operator-valued and entanglement-sound; ordinary
 scalar expander mixing is not enough.
 
-There is now a constant-incidence positive theorem on the first nontrivial
-sector.  `two-field-matchings-rigidify-linear-weyl-mislabels` proves that,
+The exact mixed sampler is now completely rigid.
+`two-untwisted-field-matchings-force-complete-cross-commutation` proves that,
 after exact same-basis linearity, the two algebraic matchings `a=b` and
-`a=alpha b` eliminate every global linear translation error.  Thus the
-mixed sampler need not approximate the complete pair distribution merely
-to detect linear Weyl mislabeling.  Its remaining task is precisely to
-control nonlinear actions on the `X`-character fibers and multiplicity
-intertwiners.
+`a=alpha b` force every untwisted cross commutator in an arbitrary group;
+canonical-tensor untwisting then forces the complete Weyl table at arbitrary
+spectral multiplicity.  Its remaining task is precisely quantitative: obtain
+a normalized-HS soundness modulus independent of `n`.  The current direct
+ratio-circuit propagation has loss `O(n^(1+log_2 3))`.
 
 Once this claim is proved, attach a relative graphical-small-cancellation
 label to its bounded incidence complex and apply

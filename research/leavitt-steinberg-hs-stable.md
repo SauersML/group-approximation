@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - notes/ATLAS_HS_CRITERION.md
   - notes/NOTEPAD.md
+  - research/artifacts/hilbert-hotel-character-rigidity-seam-audit-2026-08-21.md
 ---
 
 Prove normalized Hilbert--Schmidt stability of
@@ -118,19 +119,28 @@ paragraph before spending on it, since a KL-violating equation would also
 refute the Kervaire--Laudenbach conjecture and is therefore a red flag on
 any candidate rather than a plan.
 
-**Character rigidity cannot be the engine, for a structural reason.**
-The higher-rank technology (Dogon--Vigdorovich Theorem 1.6; Lavi--Levit,
+**Available character-rigidity theorems do not apply.**  The higher-rank
+technology (Dogon--Vigdorovich Theorem 1.6; Lavi--Levit,
 arXiv:2007.15547, Adv. Math. 419 (2023) 108948) routes stability through
-character rigidity.  That is substantive for a lattice, which has many
-characters.  It is empty for `Q=EL_4(L_(F_2)(1,2))`, because simplicity
-already forces every nontrivial homomorphism into a tracial matrix
-ultraproduct to be faithful: nothing remains for a character classification
-to rule out.  Separately, Lavi--Levit assume `R` commutative Noetherian and
-`d` above the stable range, and a literature sweep on 2026-08-14 found **no**
-character-rigidity theorem for `EL_n` over a noncommutative ring; the
-binary Leavitt algebra is noncommutative, non-Noetherian and of infinite
-Bass stable rank.  So this lane is closed both by hypothesis mismatch and
-by vacuity.
+character rigidity.  Simplicity of `Q=EL_4(L_(F_2)(1,2))` reduces the kernel
+of a nontrivial factor representation to zero, but does not classify its
+character: faithful nonregular factorial characters remain possible until a
+genuine character theorem excludes them.  Lavi--Levit assume `R` commutative
+Noetherian and `d` above the stable range, and a literature sweep found **no**
+character-rigidity theorem for `EL_n` over a noncommutative ring; the binary
+Leavitt algebra is noncommutative, non-Noetherian and of infinite Bass stable
+rank.  Thus the known character-rigidity engine is unavailable by hypothesis
+mismatch, not vacuity.
+
+The exact root-level audit is now recorded separately in
+`finite-root-algebra-forces-steinberg-triviality` and
+`factoriality-does-not-finitize-leavitt-root-data`.  Simplicity settles the
+kernel dichotomy, but it does **not** make character classification vacuous:
+faithful nonregular factorial characters still have to be excluded.
+What the root relations prove is only that every nontrivial representation is
+faithful on each root subgroup.  In the regular representation those root
+algebras are diffuse, so the finite coefficient-quotient argument cannot be
+reused at factor level.
 
 **Where the branch is actually decided.**  The only mechanism that has ever
 closed a question of this shape for this group is the one that proved `Q`

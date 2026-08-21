@@ -4,7 +4,7 @@ id: bounded-area-high-chromatic-conjugacy-collapse
 kind: claim
 title: A bounded-area high-chromatic conjugacy graph collapses its marked word in matrix microstates
 distinct_from:
-  coherent-carmichael-family-forces-thompson-three-cycle-collapse: that is the complete-graph Carmichael specialization; this is the reusable criterion for arbitrary finite graphs of unbounded chromatic number and arbitrary bounded-area relator certificates.
+  thompson-carmichael-collapse: that is the complete-graph Carmichael specialization; this is the reusable criterion for arbitrary finite graphs of unbounded chromatic number and arbitrary bounded-area relator certificates.
   word-recursion-cannot-amplify-sublinear-summands: that rules out manufacturing macroscopic mass from a reducing small corner; this begins with one conjugacy orbit and uses compactness plus high chromaticity to force a close related pair in the full ambient matrix dimension.
   thompson-v-r5-cap-implies-one-word-collapse: that constructs a full approximate alternating-group multiplication table and invokes finite-group stability; this needs only order-three vertex relators and order-two edge products, with no table or exactification.
 ---

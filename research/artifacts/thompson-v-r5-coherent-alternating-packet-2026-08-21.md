@@ -277,23 +277,29 @@ Area_R((u_i u_j)^2)<=4C+A_0.                            (CF3)
 
 Thus the finite permutation algebra is constant-cost.  The exact remaining
 question is the uniform address-coherence statement in `(CF2)`, recorded as
-`thompson-v-r5-uniform-common-pivot-centralizers`.
+`thompson-v-r5-uniform-common-pivot-centralizers`.  That proposed subtarget is
+now refuted by `finite-mark-centralizer-commutator-area-is-proper`: the
+individual endpoint corrections escape in the marked-subgroup Schreier graph,
+so their full R1--R5 filling areas are unbounded.  Only a collective or
+averaged cancellation mechanism can survive this obstruction.
 
 Bleak--Quick's proof establishes the required swap relations through depth
 three and then verifies a fixed Cannon--Floyd--Parry presentation.  It proves
 that every loop in `(CF2)` is null, but does not give a bound uniform in the
 addresses.  Iterating the displayed R2 transport and R3 split derivations
-charges their number of steps.  This observation is not a no-go: a long
-boundary word may still bound one conjugated defining cell.  A genuine
-negative result would require a relation-module or corridor lower bound, not
-merely the growth of the published derivation.
+charges their number of steps.  The necessary negative result is now supplied
+by `finite-mark-centralizer-commutator-area-is-proper`: a twisted Schreier
+coefficient bounds the area below by centralizer-coset distance, independently
+of which R1--R5 cells a diagram uses.
 
 Even that negative direction has a firewall.  Thompson `V` is integrally
 acyclic, so `H_1(V,Z)=H_2(V,Z)=0` and every central extension by a trivial
 abelian coefficient group splits.  Hence no conjugation-invariant scalar
 phase or signed R5-cell count can provide the desired depth lower bound.  A
-successful obstruction would need nontrivial module coefficients or a
-nonabelian corridor invariant.
+successful obstruction therefore needs nontrivial module coefficients or a
+nonabelian corridor invariant.  The new theorem uses precisely the first
+option: Galois-conjugate local coefficients induced from the finite marked
+subgroup.
 
 There is also a rigorous limit on this double-coset plan.  In the free group
 on the Bleak--Quick generators, conjugates of the free generator `b` act on
