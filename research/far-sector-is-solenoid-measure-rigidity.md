@@ -48,8 +48,37 @@ Bekka--Kalantar / character-rigidity input.
 
 ## Attempts
 
-- **Single-map rigidity: false.**  Recorded above (Gibbs measures for
-  `z -> z^4`).  Any far-sector proof must use the involution or (T;FD).
+- **The abelian direction is UNCONDITIONALLY fine (Levit--Vigdorovich,
+  arXiv:2206.02268).**  Correction to the pessimistic reading above: their
+  theorem is that a system has *dense periodic measures* -- periodic-orbit
+  (atomic) measures are weak-* dense among ALL invariant measures -- exactly
+  when the associated metabelian group is HS-stable, and a SINGLE ergodic
+  toral/solenoid automorphism always has dense periodic measures (via
+  Marcus 1980).  Since `Z[1/2]` inverts only the prime `2`, the relevant
+  dynamics is the single automorphism `x2` (equivalently `x4`) of the
+  2-solenoid, which is ergodic, so it HAS dense periodic measures and
+  `BS(1,2) = Z rtimes Z[1/2]` is HS-stable.  The Gibbs measures do exist but
+  are approximable by periodic (atomic) ones -- that is the content of dense
+  periodic measures -- so they are NOT an obstruction.  The Furstenberg
+  `x2 x3` / higher-rank measure-rigidity difficulty (their Question 4,
+  `Z^2 rtimes Z[1/6]`) arises only when two independent primes are inverted,
+  which does NOT happen for `Z[1/2]`.  Conclusion: the abelian/solenoid part
+  of the far sector is unconditionally rigid, and the entire remaining
+  obstruction is the non-amenable coupling through the involution and
+  (T;FD).
+- **The trace side is also done.**  By Peterson--Thom character rigidity,
+  every character of `SL_2(Z[1/2])` is a limit of finite-dimensional traces
+  (congruence traces `1_(Gamma(n)) -> delta_e`), i.e. the Hadwin--Shulman
+  criterion holds; this is hyperfinite HS-stability.  For the AMENABLE
+  `BS(1,2)` this criterion equals stability, but for the non-amenable
+  `SL_2(Z[1/2])` it is weaker, and the gap is exactly the non-hyperfinite
+  asymptotic representations -- the same object as `(RCC)`.
+- **Single-map rigidity is not the issue after all; the coupling is.**  Any
+  far-sector proof must use the involution or (T;FD) to control the
+  non-amenable direction, not the abelian dynamics, which is settled.  Known
+  non-amenable HS-stability results to mine for the technique: Atkinson,
+  Hadwin--Shulman, Ioana--Spaas--Wiersma (ISW20), Gao--Shen (GS21),
+  Ioana (Ioa21).
 - **Two-map upgrade.**  `L = S U S^(-1)` has its own `alpha`-invariant
   measure equal (via `S`) to that of `U`, but `S` does not give a second
   COMMUTING multiplication on the same solenoid; it is an outer symmetry.
