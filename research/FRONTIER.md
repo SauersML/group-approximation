@@ -2944,14 +2944,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-21 · thompson-v-r5-coherent-carmichael-family [OPEN] Compile arbitrarily large Carmichael families from the Bleak--Quick R5 presentation
-- 2026-08-21 · skeleton-relative-hs-stability-for-sl2 [OPEN] SL2(Z[1/2]) is HS-stable relative to its two exact parabolic skeletons
+- 2026-08-21 · sampled-weyl-defect-controls-common-pvm-dirichlet-energy [OPEN] Make sparse Weyl defects control transport energy of one common spectral PVM
+- 2026-08-21 · full-weyl-defect-pvm-parseval-proof [COMPLETE] Fourier-expand conjugation and apply operator-valued Parseval
+- 2026-08-21 · full-weyl-defect-equals-pvm-transport-energy [ESTABLISHED] Complete RMS Weyl defect is exactly the common-PVM transport energy
 - 2026-08-21 · schreier-square-function-for-weak-commutator-layers [OPEN] Sum the Schreier gaps of all weak-commutator exterior layers in one HS square function
 - 2026-08-21 · schreier-matchings-kill-alternating-forms [ESTABLISHED] Involutive Schreier matchings uniformly kill every alternating commutator form
 - 2026-08-21 · schreier-matching-sampler-closes-metapixel [OPEN] Use bounded involutive Schreier matchings as the robust mixed Pauli sampler
-- 2026-08-21 · sampled-weyl-defect-controls-common-pvm-dirichlet-energy [OPEN] Make sparse Weyl defects control transport energy of one common spectral PVM
-- 2026-08-21 · same-dimension-abelian-rounding-narrows-same-basis-gate [OPEN] Use abelian same-dimension stability after bounded-template all-pairs decoding
-- 2026-08-21 · same-basis-rounding-interface-for-sparse-weyl-sampler [OPEN] Round same-basis occurrence tests to one PVM without dimension loss
+- 2026-08-21 · iwahori-outlier-repair [OPEN] Iwahori endpoint: full-rank outlier repair
+- 2026-08-21 · involutive-schreier-alternating-form-gap-proof [COMPLETE] Polarize a sampled quadratic form into the independent-pair Schreier gradient
 
 ## Active claims
 
