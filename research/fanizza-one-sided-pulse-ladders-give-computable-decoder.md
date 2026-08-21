@@ -8,7 +8,7 @@ distinct_from:
   fanizza-turing-bcs-signal-collapse: that starts from a near-perfect BCS strategy and collapses its native signal; this constructs that strategy from an arbitrary finite-dimensional approximate representation of one finitely presented group.
 ---
 
-Fix a machine index `m` and its finite Fanizza BCS `B_m`.  There is an
+OPEN.  Fix a machine index `m` and its finite Fanizza BCS `B_m`.  Seek an
 effective finite group presentation `Gamma_m` containing the original BCS
 involutions, including `d_m=x_(D,m)`, with these properties.
 
@@ -63,12 +63,30 @@ computable vanishing bound for every forbidden probability and hence
 No uniformity in `m`, ambient matrix dimension, or machine runtime is used.
 On the exact side, perfectness makes all forbidden exit atoms zero.  Gauge
 covariance balances the private hard signs, free occurrence amalgams retain
-contextuality, and countable amplification absorbs the finite packet and HNN
+contextuality, tag-to-successor commutators make each analytic survivor reduce
+the next occurrence, and countable amplification absorbs the finite packet
 multiplicities.  Thus the original membership GNS representation, and in
 particular a nontrivial `d_m`, survives.
 
-This claim is intentionally conditional on
+The prefix conclusion would use
 `tagged-s3-survivor-installs-next-recurrent-carrier`.  Merely returning the
 three active atoms by HNN and charging a separate pulse does not imply the
 prefix incidence in `(FPL2)`; the exact countermodel is
 `free-occurrence-hnn-return-does-not-preserve-first-hit-prefix`.
+
+The remaining obstruction is stronger than prefix placement.
+`exact-first-hit-ladder-kills-regular-carrier` shows that the zero-error
+version of `(FPL2)` is trace-functorial and therefore kills `q_(r,0)` in the
+canonical group von Neumann algebra.  A valid decoder must insert a genuinely
+finite-dimensional rank/multiplicity step before `(FPL2)`; the two-bit tag
+geometry alone cannot do so.
+
+## Attempts
+
+- **Independent binary pulse plus endpoint-only HNN.**  Fails at zero defect:
+  the returned active summand need not lie below the pulse survivor.
+- **Whole marked successor corner.**  It is reducing but forgets the
+  forbidden/context projection, so its mass has no Fanizza exit lower bound.
+- **Context-atom tag ladder.**  This repairs the local semantic incidence,
+  but its exact BFE ledger also holds in the regular trace and therefore
+  cannot be the missing matrix-only decoder.
