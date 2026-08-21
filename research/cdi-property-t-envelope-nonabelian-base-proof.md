@@ -30,3 +30,13 @@ representation" in Theorem A is not being asserted to mean "is a group von
 Neumann algebra with its canonical trace."  The relation version likewise
 provides a relation-factor inclusion, not an algebraic-action realization.
 
+For the positive residue, the discussion after Theorem A explicitly notes
+that a cocompact lattice `H<Sp(n,1)`, `n>=2`, is hyperbolic and has property
+`(T)`, so Theorem A(1) applies.  Lattices are finitely generated, and this `H`
+is a finitely generated linear group, hence residually finite by Mal'cev.
+Because `pi(H)''=Q`, the GNS von Neumann algebra of the character
+`chi=tau_Q o pi` is `Q`.  If the input `M` is non-CE, then `Q` is non-CE since
+it contains `M`; hence `chi` is non-CE although the canonical trace of the
+residually finite group `H` is CE.  This directly shows why the source's group
+representation cannot substitute for the Fourier/canonical-trace
+identification required by the algebraic envelope compiler.
