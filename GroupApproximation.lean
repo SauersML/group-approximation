@@ -1,3 +1,4 @@
+import GroupApproximation.Algebra.CoweightCoinvariants
 import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Algebra.SemidirectProductAssoc
 import GroupApproximation.Algebra.TwoGeneratedFreeQuotient
@@ -1462,6 +1463,16 @@ import GroupApproximation.Leavitt.HilbertHotelBlocks
 import GroupApproximation.Leavitt.HilbertHotelSaturation
 import GroupApproximation.Leavitt.HilbertHotelWhitehead
 import GroupApproximation.Leavitt.HilbertHotelBinary
+import GroupApproximation.Leavitt.HilbertHotelDefectNormal
+import GroupApproximation.Higman.CoordCalculus
+import GroupApproximation.Higman.SeqFilter
+import GroupApproximation.Higman.AgreeClosure
+import GroupApproximation.Higman.OmegaClosure
+import GroupApproximation.Higman.OperationClosureRho
+import GroupApproximation.Higman.OperationClosureTheta
+import GroupApproximation.Higman.OperationClosureTau
+import GroupApproximation.Higman.GeneratedBasic
+import GroupApproximation.Higman.GeneratedCoords
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
