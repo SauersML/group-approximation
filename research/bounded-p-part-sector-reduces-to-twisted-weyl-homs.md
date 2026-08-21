@@ -169,6 +169,18 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   is glassy and produces no signal in either direction; only
   linearization, exact rank certificates, and finite enumeration
   yield conclusions.
+- **Named next computation: the quadratic obstruction on the tangent
+  room.**  The commutation constraints of `(BP1)` have vanishing
+  linear part at `W = 1` but genuine second order: a tangent
+  direction `X` integrates only if `[X^((w)), X^((w'))] = 0` for the
+  Weyl conjugates, and the `(b)`-relation adds its own quadratic
+  term.  So the enemy's infinitesimal room (the standard-isotypic
+  kernel of the two-relation system, per the correction above) must
+  additionally lie on the commuting locus — a determinantal
+  condition that can cut it drastically, computable exactly per
+  gauge by the same certificate methods.  Deciding whether the
+  quadratic obstruction closes the C = 1 gauge is the next
+  well-posed exact step.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
