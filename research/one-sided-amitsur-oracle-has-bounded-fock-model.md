@@ -87,3 +87,8 @@ moving unit defect and transport it to a fixed marked carrier.  The gain is
 sharp: bounded HALT completeness and the finite-dimensional semantic gap are
 no longer part of that compiler problem.
 
+`prefix-address-compresses-one-sided-amitsur-oracle` additionally shows that
+the countable list of generators `q_n` is not essential: prefix-free corners
+of one bounded operator recover all of them in a five-generator recursively
+presented star algebra.  It does not remove the countable relator family or
+the growing evaluation cost.
