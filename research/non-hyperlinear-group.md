@@ -76,6 +76,19 @@ also corrects the report's Shulman attribution: arXiv:2603.13564 proves an
 operator-norm MF theorem for C-star amalgams, not an HS-stability theorem that
 promotes every hyperlinear trace.
 
+The computer-science reframing is now audited rather than used as a slogan.
+`nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound` proves
+`HYP in Pi^0_2` and `non-HYP in Sigma^0_2` for finite-presentation codes; no
+matching hardness or RE claim is made.  The associated artifact
+`computer-science-framing-audit-2026-08-21` identifies the live compiler as a
+perfect-exact-completeness, constant finite-matrix-soundness problem analogous
+to quantum PCP, while keeping the unbounded-dimension and non-CE-tracial
+differences explicit.  The quantitative fences are collected in
+`section-three-quantitative-no-go-audit-2026-08-21`: twisted-regular predicate
+atoms retain positive trace, the `1/sqrt(log d)` Clifford scale is conditional
+on a complete-table decoder and positive carrier, and block-diagonal adjoint
+gap leaves an uncontrolled block-scalar kernel.
+
 The machine interface has now been reduced further. The strong
 `threshold-free-reverse-kleene-higman-diagonal` needs a NONHALT word in the
 full hyperlinear radical, while the weaker `canonical-profile-kleene-higman`

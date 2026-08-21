@@ -298,6 +298,48 @@ holonomy while the cyclic selector floor stays positive. A positive actuator
 must compress intermediate stages by the analytic forbidden cuts or impose a
 genuinely matrix-coordinate condition that removes that last-edge gauge.
 
+## Computer-science and quantitative-no-go audit
+
+The proof-system framing is retained in corrected form in
+`computer-science-framing-audit-2026-08-21`.  The rigorous computability
+statement is
+
+```text
+finite-presentation HYP in Pi^0_2,
+finite-presentation non-HYP in Sigma^0_2,
+```
+
+proved by `nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound`.
+This is an upper bound, not a matching hardness theorem and not an RE
+enumeration of nonhyperlinear presentations.  The tensor/direct-sum
+normalization needed to pass from separately separating finite word tests to
+one simultaneous near-canonical microstate is included in the proof.  The
+productive interpretation is that a successful compiler needs perfect exact
+tracial completeness and dimension-independent finite-matrix soundness.  It
+is analogous to a perfect-completeness quantum PCP for group words, but it is
+not the standard quantum PCP conjecture: dimensions are unbounded and the
+complete witness may exist only in a non-CE tracial algebra.
+
+The three proposed quantitative obstructions are audited in
+`section-three-quantitative-no-go-audit-2026-08-21`.  Nonzero finite
+predicate projections have positive twisted-regular trace, so universal
+tracial group relators cannot delete nonlinear selector atoms.  A
+supercritical Clifford challenge has the conditional critical row scale
+`Theta(1/sqrt(log d))` only after a dimension-uniform complete-table decoder
+and positive-density corner have been supplied; those hypotheses are not
+currently consequences of the local Clifford presentation.  Finally,
+block-diagonal exact models leave the whole block-scalar algebra in the
+adjoint Laplacian kernel, so a scalar spectral gap inside every block does not
+localize coherent normalized-HS error.  These are fences around the native
+gap/fault-tolerance lane, not a proof of its missing HS-to-site-noise bridge.
+
+The recursive tail itself is no longer a syntax problem:
+`free-cone-shift-finitely-wordizes-recursive-clifford-tails` gives a fixed
+four-generator presentation, linear addressed tail words, and one-cell
+recursion and anchor diagrams.  The remaining recursive obstruction is only
+the selector-controlled aggregate child.  The tail cancels its multiplicity
+gauge after selection; it does not perform the selection.
+
 ## Optimizer, arithmetic HNN, and exit audit
 
 The bounded PSL2 optimizer is retained only as the heuristic artifact
