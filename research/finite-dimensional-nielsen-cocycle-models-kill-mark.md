@@ -64,3 +64,12 @@ being exact at every stage.  Thus the surviving route is sharply identified:
 it must use genuinely asymptotic finite-dimensional actions, and the cocycle
 `g -> b_(g o)^(-1)` must retain order-one normalized-HS mass while escaping
 compact-image reversal.
+
+This escape is real for compressor pairs in general, not merely a logical
+possibility.  `sofic-nielsen-charts-defeat-uniform-compact-collapse` constructs
+one fixed monomial ascending-HNN pair with finite-dimensional commutative
+models whose local action and covariance defects vanish while the strict
+Nielsen mark stays at distance `sqrt(2)`.  Therefore compact recurrence has no
+dimension-free approximate form even for that fixed pair.  A corresponding
+theorem for the Kun--Thom pair would have to use its extra nonsofic/Kazhdan
+geometry.
