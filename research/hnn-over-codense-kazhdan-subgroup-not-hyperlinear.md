@@ -82,6 +82,23 @@ exact representation to be small, so the padded tuple is within
    that version is equivalent to the conclusion (take the regular
    representation of `G` itself), so stability cannot be dropped.
 
+**The `(tau)` form.**  The proof uses (T;FD) of `C` only through the
+conjugation representations `Ad rho|_C` for the finite-dimensional
+representations `rho` of `A` that stability produces.  So it suffices that
+`C` have a uniform spectral gap on those: for instance property `(tau)` of
+`C` with respect to a family of finite quotients through which all
+finite-dimensional representations of `A` factor.  With
+`A = SL_2(Z[1/p])`, `C = SL_2(Z)`
+(`sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`) this gives:
+
+> if `SL_2(Z[1/p])` is flexibly HS-stable, then
+> `G_p = <SL_2(Z[1/p]), t | [t, SL_2(Z)] = 1>` is not hyperlinear.
+
+For `p = 2` the hypothesis is exactly Dogon--Vigdorovich's
+`iwahori-local-global-defect-question`, so the goal now has two routes from
+that one question: their finite central extension of `SL_2(Z[1/2])` and this
+HNN extension of it.
+
 **The explicit instance.**
 
 ```text

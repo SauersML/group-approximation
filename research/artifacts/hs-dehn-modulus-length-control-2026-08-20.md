@@ -544,3 +544,26 @@ is equivalent to the conclusion (the regular representation of `G` is a
 counterexample), so it does not remove the stability hypothesis; it does
 confirm that every ingredient except the stability of the big group is a
 theorem.
+
+## 12. Down to Dogon--Vigdorovich's question
+
+The (T;FD) hypothesis on `C` is used only on the conjugation representations
+of the finite-dimensional representations of `A` produced by stability, so a
+uniform gap on those -- property `(tau)` of `C` for a family of finite
+quotients through which all finite-dimensional representations of `A` factor
+-- suffices.  For `A = SL_2(Z[1/p])` every finite-dimensional unitary
+representation factors through some `SL_2(Z/m)`, `gcd(m,p) = 1` (unipotent
+conjugate to its `p^2`-th power, Bass--Milnor--Serre, Serre's CSP), `C =
+SL_2(Z)` surjects onto all of them, and Selberg's theorem is `(tau)` for
+these quotients.  Hence
+
+> **if `SL_2(Z[1/p])` is flexibly Hilbert--Schmidt stable, the finitely
+> presented group `<SL_2(Z[1/p]), t | [t, SL_2(Z)] = 1>` is not
+> hyperlinear.**
+
+For `p = 2` the hypothesis is literally Dogon--Vigdorovich's Question (their
+`iwahori-local-global-defect-question` in this graph), the same input that
+feeds their finite central extension.  The two routes are independent in
+their mechanism: theirs passes through asymptotically projective
+representations and a central `Z`; this one through a single (tau)
+projection, co-density and Britton's lemma.
