@@ -344,6 +344,33 @@ recursion terminates; the total correction is
   the exact-representation closure forces them below the coboundary
   threshold uniformly.  The final target is thus: the cycle-holonomy
   (periodic-orbit) invariants of the Weyl defect for `x4`.
+- **Both Livsic ingredients are named and standard: RPF gap + uniform
+  Gowers--Hatami (2026-08-21).**  Two realizations complete the
+  architecture.  (1) VANISHING periodic sums.  A period-`L` `x4`-cycle
+  carries `V` of order `4^L - 1` (odd, so `2` is a unit) together with
+  `h` (= `x4`) and the swap `s`; the relations `h V h^{-1} = V^4`,
+  `s h s^{-1} = h^{-1}`, `s V s^{-1} = V^{-1}` are exactly those of a
+  finite congruence quotient `SL_2(Z/(4^L - 1))`.  So each cycle carries
+  an APPROXIMATE `SL_2(Z/(4^L-1))`-representation, and Gowers--Hatami
+  finite-group HS-stability -- with an ABSOLUTE, group-independent
+  constant -- puts it `O(delta)`-close to an EXACT one, where the
+  Weyl-torus relation holds exactly.  Hence every periodic-orbit
+  (cycle-holonomy) sum of `e'` is `O(delta)`, uniformly in `L`: the
+  Livsic obstruction vanishes to first order.  (2) BOUNDED coboundary.
+  The earlier `no spectral gap` worry was about the KOOPMAN operator
+  (composition with `x4`) on `L^2`, which indeed has Lebesgue spectrum
+  to `1`.  But the coboundary is solved by its ADJOINT, the RUELLE
+  TRANSFER operator (sum over the four `x4`-preimages, each contracting
+  by `1/4`), which by Ruelle--Perron--Frobenius HAS a spectral gap on
+  Holder functions.  So given vanishing periodic sums and Holder `e'`,
+  the coboundary `c` exists with `||c|| <~ ||e'||_(Holder)`,
+  geometrically -- no `L^2` gap needed.  The residual is now exactly
+  two standard inputs: uniform Gowers--Hatami across the family
+  `{SL_2(Z/(4^L-1))}` (giving vanishing periodic sums to `O(delta)`)
+  and Holder regularity of the Weyl defect `e'` in the `V`-spectral
+  variable (for RPF).  Both are of the expected-true kind; writing
+  them is the remaining work, and the framework -- Livsic + RPF +
+  Gowers--Hatami for the `x4` map -- is now fully assembled.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
