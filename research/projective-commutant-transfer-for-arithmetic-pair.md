@@ -83,6 +83,23 @@ collapse lane, but with phases already quotiented out.
   to its projective fixed variety, split as usual into a near sector
   (Hessian/Newton, matching `iwahori-newton-closes-near-sector`
   architecture) and a far sector (packet energy floor).
+- **Numerical probe on odd quotients (2026-08-21,
+  `experiments/prt1_threshold_probe.py`,
+  `experiments/prt1-threshold-probe.json`).**  Riemannian ascent on the
+  regularized ratio `E_h/(E_C + delta)` over `U(d)` for the regular
+  representations of `SL_2(Z/3)`, `SL_2(Z/5)` with multiplicities
+  `N = 1, 2, 4` (`d` up to `240`, restarts per config): the best ratio
+  found anywhere is `2.64` (at `m=3, N=1`, an interior point
+  `E_h = 0.45`, `E_C = 0.16`), and every attempt to push `E_h` to its
+  cap `1` dragged `E_C` to its MAXIMUM `2` — the exact-leak signature
+  (`E_h = 1`, `E_C ~ 0`) was never approached, and the ratio does not
+  grow with multiplicity or level.  Evidence for a linear `(PRT1)`
+  with small `K` on the odd-congruence sector, in agreement with
+  `odd-congruence-vertex-sector-admits-no-exact-leak`.  Scope honesty:
+  exact quotient probes can NEVER see the even sector — `h` has no
+  image mod `2^k` and exact representations of `Gamma` exist only at
+  odd levels — so the probe confirms the theorem's regime and
+  reconfirms that the enemy is a strictly non-exact phenomenon.
 - **SOS certificate formulation.**  `e(U,V)` is a degree-four trace
   polynomial; `(PRT1)` is a trace-positivity statement over the
   presentation ideal.  A rational dimension-free sum-of-squares
