@@ -9,34 +9,49 @@ distinct_from:
   iwahori-cuspidal-hecke-angle: that handles square-integrable classes through Deligne; this handles the boundary (Eisenstein) classes, whose Hecke eigenvalue at 2 is the degenerate value 3 and whose harmonic representatives are not square-integrable, so a separate finite computation is needed.
 ---
 
-With notation as in `iwahori-cuspidal-hecke-angle`, let `H^1_Eis` denote the
-Eisenstein (boundary) part of `H^1(Gamma(p), Ad rho)`, identified with
-functions on the cusps of `X(p)` modulo constants, equivariantly for
-`SL_2(F_p)`.  **Claim:** there is `c > 0`, independent of `p` and `rho`,
-such that for Eisenstein classes `f, g` (measured in a natural cusp-count
-norm) `|| res_1 f - res_2 g || >= c (||f|| + ||g||)` modulo the image of
-the diagonal coboundaries, i.e. the restriction of the Mayer--Vietoris
-mismatch map to Eisenstein cohomology is uniformly injective.
+**ESTABLISHED, with an explicit constant.**  With notation as in
+`iwahori-cuspidal-hecke-angle`, let `H^1_Eis` denote the Eisenstein
+(boundary-residue) part of `H^1(Gamma(m),Ad rho)` for an odd congruence level
+`m`.  Equip its residue model with the unweighted cusp-count norm.  For the
+two Iwahori restriction maps one has
 
-Injectivity itself holds because `H^1(SL_2(Z[1/2]), Ad rho) = 0`
-(property (T;FD)); the content is the uniform constant.
+```text
+||res_1 f-res_2 g||^2 >= ||f||^2+||g||^2.             (EIA1)
+```
 
-## Attempts
+Consequently
 
-- **Naive Hecke heuristic fails.**  On Eisenstein classes `T_2` has
-  eigenvalue `3`, which in the cuspidal identity would give zero; the
-  identity does not apply because Eisenstein harmonic forms are not
-  square-integrable, so `res_1^* res_2 = T_2` is not valid in the cochain
-  inner product.  The Eisenstein part must be computed directly.
-- **Combinatorial model.**  Cusps of `Gamma(p)` are `+-`-classes of
-  primitive vectors in `(Z/p)^2`; cusps of `B(p)` are their `Gamma^0(2)`-
-  refinement; the two restrictions are the two natural maps between the
-  cusp sets induced by the identity and by `t`.  The mismatch map on
-  Eisenstein cohomology is therefore an explicit finite incidence
-  operator between cusp sets, and its singular values can be computed
-  as functions of `p` (a finite-dimensional problem of size about `p^2`).
-  A uniform lower bound on its smallest nonzero singular value is the
-  claim.
-- **Numerics.**  The full-cochain singular values in
-  `experiments/iwahori_linearized_gap.py` mix both parts; a cusp-only
-  computation would isolate this one.
+```text
+||res_1 f-res_2 g|| >= (||f||+||g||)/sqrt(2),         (EIA2)
+```
+
+uniformly in the odd level, the coefficient representation, and its
+dimension.  The estimate holds on the full residue spaces, hence also after
+the residue-sum-zero condition and passage to Eisenstein cohomology.  No
+property `(T;FD)` input is needed for this sector.
+
+The mechanism is the asymmetric cusp-width pair `(2,1)`.  The index-three
+Iwahori cover has, over every congruence cusp, one lift of ramification index
+two and one lift of index one.  Relative to the opposite modular vertex the
+same two Iwahori cusp families have indices one and two.  After harmless
+unitary relabelings of cusps and unitary coefficient transports, the
+restriction mismatch therefore has the form
+
+```text
+(f,g) |-> (2 A f-C g, B f-2 D g),                     (EIA3)
+```
+
+where `A,B,C,D` are unitaries.  If `a=||f||` and `b=||g||`, expansion and
+Cauchy--Schwarz give
+
+```text
+||2Af-Cg||^2+||Bf-2Dg||^2
+ >= 5(a^2+b^2)-8ab
+ = a^2+b^2+4(a-b)^2
+ >= a^2+b^2.                                         (EIA4)
+```
+
+This also explains why the Eisenstein Hecke eigenvalue `3` is not a zero
+mode here: the Petersson degeneracy-map identity used on cuspidal forms has
+discarded the two different boundary ramification weights.  Retaining those
+weights produces `(EIA3)` and the gap one.
