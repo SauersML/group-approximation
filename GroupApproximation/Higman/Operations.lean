@@ -95,7 +95,8 @@ inductive HigmanGenerated : Set E → Prop
   | theta {B : Set E} : HigmanGenerated B → HigmanGenerated (thetaOp B)
   | zeta {B : Set E} : HigmanGenerated B → HigmanGenerated (zetaOp B)
   | pi {B : Set E} : HigmanGenerated B → HigmanGenerated (piOp B)
-  | omega {B : Set E} (m : ℕ) : HigmanGenerated B → HigmanGenerated (omegaOp m B)
+  | omega {B : Set E} (m : ℕ) (hm : 0 < m) :
+      HigmanGenerated B → HigmanGenerated (omegaOp m B)
 
 end Seq
 
@@ -125,8 +126,12 @@ structure OperationClosures where
   zeta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.zetaOp B))
   /-- Closure under `π`. -/
   pi : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.piOp B))
-  /-- Closure under `ωₘ`. -/
-  omega : ∀ (m : ℕ) (B : Set Seq.E), BenignTF (Seq.ASub B) →
+  /-- Closure under `ωₘ`, for positive `m`.  Higman's Theorem 3 quantifies `ωₘ`
+  over the *positive* integers, and the restriction is not cosmetic: `blockAt 0`
+  is identically zero, so `ω₀ B` is the whole sequence space whenever `0 ∈ B`,
+  and an unrestricted field would silently demand that `A_E` be benign — which
+  neither Higman's Lemma 4.10 nor Mikaelian's replacement covers. -/
+  omega : ∀ (m : ℕ), 0 < m → ∀ (B : Set Seq.E), BenignTF (Seq.ASub B) →
     BenignTF (Seq.ASub (Seq.omegaOp m B))
 
 /-- The three closures this repository proves, in the torsion-free form. -/
@@ -166,7 +171,7 @@ theorem benignTF_of_higmanGenerated (h : OperationClosures) {B : Set Seq.E}
   | theta _ ih => exact h.theta _ ih
   | zeta _ ih => exact h.zeta _ ih
   | pi _ ih => exact h.pi _ ih
-  | omega m _ ih => exact h.omega m _ ih
+  | omega m hm _ ih => exact h.omega m hm _ ih
 
 end Higman
 end GroupApproximation

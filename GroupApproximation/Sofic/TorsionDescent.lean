@@ -282,8 +282,8 @@ theorem exists_prefix_rotate_of_infix {β : Type*} {z u : List β} {n : ℕ}
   have hright : ((z.take n).rotate (A.length % n))[i]? = z[(A.length + i) % n]? := by
     rw [List.getElem?_rotate (by omega), htake, hmod]
     exact List.getElem?_take_of_lt (Nat.mod_lt _ hn)
-  rw [hleft, hright]
-  exact (List.hasPeriod_iff_forall_getElem?_mod.mp hper _ hiz)
+  rw [hright, ← List.hasPeriod_iff_forall_getElem?_mod.mp hper _ hiz, ← hleft]
+  exact List.getElem?_eq_getElem hi
 
 /-- The form the descent consumes: a Greendlinger arc no longer than the base
 is a prefix of some rotation of the base. -/

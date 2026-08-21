@@ -183,8 +183,9 @@ theorem mem_transitionSet_iff (k : ℕ) (A : Set E) (f : E) :
 /-- **The device, as a generation statement.**  This is the form Section 2
 consumes: a generated set of `2k`-tuples yields the generated set of sequences
 whose adjacent `k`-blocks are all related by it. -/
-theorem higmanGenerated_transitionSet (k : ℕ) {A : Set E}
+theorem higmanGenerated_transitionSet (k : ℕ) (hk : 0 < k) {A : Set E}
     (hA : HigmanGenerated A) : HigmanGenerated (transitionSet k A) := by
+  have hk2 : 0 < 2 * k := by omega
   have hiter : ∀ (n : ℕ) {B : Set E}, HigmanGenerated B →
       HigmanGenerated (sigmaOp^[n] B) := by
     intro n
@@ -199,8 +200,8 @@ theorem higmanGenerated_transitionSet (k : ℕ) {A : Set E}
     ext f
     exact (mem_transitionSet_iff k A f).symm
   rw [hset]
-  exact HigmanGenerated.inter (HigmanGenerated.omega (2 * k) hA)
-    (hiter k (HigmanGenerated.omega (2 * k) hA))
+  exact HigmanGenerated.inter (HigmanGenerated.omega (2 * k) hk2 hA)
+    (hiter k (HigmanGenerated.omega (2 * k) hk2 hA))
 
 end Seq
 end Higman

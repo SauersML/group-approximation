@@ -72,35 +72,42 @@ OPPOSITE root groups e_21, e_32 in parahoric depth; their images
 under pi_{k,s} generate the commutant coordinates that select a
 unique irreducible multiplicity slot.
 
-## C. The computable loop
+## C. The correct formal home: the Maslov triple index
 
-The S_3 hexagon: transport around
-    T_{h'} vs T_h o T_{h''}^{-1}
-on a fixed band of pi_{k,s} with k >= 3.  Every edge transport
-appears once forward and once backward in the comparison scalar
+Attempting to phase-pin the naive hexagon
+`T_{h'}^* T_h T_{h''}^{-1}` fails: the three edge transports live on
+DIFFERENT level pairs, the S_3 conjugations relate transports only
+across levels, and each edge appears once, so a free phase
+theta_h' + theta_h'' - theta_h survives.  The structural reason is
+sharper and is the artifact's main finding: the DOUBLE-weight
+direction of Ad(h) is e_13, of Ad(h') is e_23, of Ad(h'') is e_12 --
+the "center" of the relevant Heisenberg data ROTATES around the S_3
+hexagon.  The three legs use three different polarization-type data,
+and the closed loop is a triple-intertwiner composite between three
+pairwise-transverse realizations: exactly the Lion--Vergne /
+Maslov-triple-index mechanism, whose composite scalar is the Weil
+index gamma of the triple's quadratic form -- in the p-adic
+normalization (Rao), a Gauss-sum quotient whose class computes
+Hilbert symbols.  This is the correct derivation route for the
+capstone's flux = (p,p)_p identification: not a Levi SL_2 (none
+exists in the SL_3 unipotent frame -- section A), but the triple
+index of the three coweight polarizations on the flag complex.
 
-    flux(k, s) = scalar of ( T_{h'}^* T_h T_{h''}^{-1} )
-
-restricted to the common band, so all three edge phases cancel and
-the scalar is canonical.  The Gauss sums enter through the
-multiplicity cut: the h'-leg and the (h, h'')-composite leg select
-their slots through quadratic exponential sums over the corner
-coordinate (the e_13-direction carries the p^2 central shift on one
-route and two single shifts on the other; matching the two slot
-selections is a level-p^2 vs level-p Gauss-sum comparison, and the
-Weil-Rao normalization gives gamma-quotients = Hilbert symbols).
-Numerically ALL of this is solvable without closed forms: each leg
-transport = min-singular-vector of its own intertwining system
-(Heisenberg constraints + parahoric normalizer constraints), each
-polar-normalized; the hexagon scalar is then convention-free.
-Nontriviality witnesses (must both hold or the run is void):
-(i) each leg's intertwining residual < 1e-10 with Schur gap > 0.1;
-(ii) replacing the parahoric constraints by NOTHING must reproduce
-a multiplicity ambiguity (Schur gap ~ 0), proving the constraints
-are load-bearing.
-Prediction under the flux identification: hexagon scalar = -1 at
-p = 3, +1 at p = 5 (and +1 at p ≡ 1 mod 4 generally); any level
-k >= 3, stable in k.
+Two consequences.  (i) The ARITHMETIC ENGINE is testable in the
+clean SL_2 setting: for product-one triples of SL_2(Z/p^k) elements
+with invertible lower-left entries, the composite of the three
+canonical metaplectic kernels (one fixed formula) is scalar by
+Schur, and the scalar's 8th-root class is the Weil-cocycle triple
+product; run identically at p = 3 and p = 5, the class difference
+is the (-1|p) split.  Instrument: experiments/maslov_triple_flux.py
+(witness-gated: kernels must intertwine the Weyl-symmetrized
+Heisenberg operators phase-free at 1e-8, composite must be scalar
+at 1e-8, else VOID).  (ii) The remaining derivation step for the
+capstone is the DICTIONARY: expressing the S_3 hexagon of parahoric
+band transports as a Maslov triple for an explicit quadratic form
+over Z_p built from two coweight legs, so that the engine's
+gamma-arithmetic evaluates the SL_3 flux.  This replaces the
+"SvN-pinning write-up" dependency with one precisely-shaped lemma.
 
 ## D. What remains cited (unchanged)
 
