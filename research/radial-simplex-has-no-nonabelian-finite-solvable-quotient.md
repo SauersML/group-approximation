@@ -60,5 +60,8 @@ nonsolvable and has a nonabelian finite simple composition factor.  In a
 minimal such quotient the derived subgroup is a direct power of a
 nonabelian finite simple group and the quotient by it is elementary abelian
 2.  This explains, without computation, the absence of nonabelian `S_3` and
-`S_4` models.  It does not exclude an `A_5`-type or larger semisimple core;
-full abelianity remains open precisely there.
+`S_4` models.  The separate claim
+`radial-simplex-excludes-partitioned-involution-targets` now also rules out
+simple quotients `PSL_2(2^r)`, including the smallest candidate `A5`.  Any
+remaining semisimple core must have genuinely interacting involution
+carriers.
