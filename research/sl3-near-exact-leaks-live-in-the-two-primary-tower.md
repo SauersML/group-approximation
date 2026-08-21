@@ -116,6 +116,24 @@ refutation, and this claim makes the reduction precise.
   inside that small algebra — a provable per-level floor here, with
   (T)-uniform constants in `a`, would eliminate the tower sector
   entirely and leave the SL_3 enemy as uniform outlier only.
+- **Exact character data for the `delta(3)` instance (2026-08-21,
+  `experiments/sl3_branching_overlap.py`,
+  `experiments/sl3-branching-overlap.json`).**  Over the source
+  parahoric `Q_0 <= SL_3(Z/8)` (order exactly `2^18 = 262144`), with
+  `chi` the 512-point permutation character and `phi = Ad(h^{-1})` the
+  level-shift dictionary (total on `Q_0`): `||chi||^2 = 250.819`,
+  `||chi o phi||^2 = 292.059`, `<chi, chi o phi> = 225.988`, so the
+  character distance squared is `90.901`.  Consequences: the source
+  and twisted restrictions are PROVABLY non-isomorphic — the exact
+  intertwiner manifold of the probe instance is empty, explaining the
+  measured control floor algebraically — and the norm asymmetry
+  (`292 > 251`) shows the `phi`-twist CONCENTRATES multiplicity, the
+  algebraic signature of level compression: the twisted side sees
+  coarser level data with bigger isotypic blocks.  These three
+  moments are the branching-correlation data any per-level floor
+  theorem should consume; the mechanism target is to convert the
+  multiplicity mismatch plus unitarity of the witness into a lower
+  bound on the leak correlation at bounded intertwining defect.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
