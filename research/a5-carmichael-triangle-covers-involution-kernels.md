@@ -48,3 +48,11 @@ a Carmichael triangle.  This does not by itself give bounded presentation
 cost: the three edge errors must remain in separate Hilbert channels.
 Combined as one scalar cycle product, they erase themselves by
 `collective-centralizer-cycles-are-free-gauge-identities`.
+
+Nor does simply storing those three endpoint-correction loops in orthogonal
+channels close the presentation problem:
+`orthogonal-centralizer-channels-retain-area-properness` shows that every
+fixed-channel direct sum retains the twisted-Schreier area lower bound.  The
+surviving use of `(A5K1)` must therefore act directly on combined Carmichael
+edge errors supplied by a new bounded local chart, rather than on separately
+filled centralizer commutators.

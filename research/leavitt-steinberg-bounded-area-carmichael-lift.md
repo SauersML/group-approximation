@@ -71,6 +71,14 @@ local `A_5`.  Thus a stabilized rectangular Morita cell may keep those three
 edge defects in separate channels and use the `A_5` gap; it cannot merely
 multiply them into one cycle boundary.
 
+Even that separation is not by itself a filling shortcut.
+`orthogonal-centralizer-channels-retain-area-properness` proves that a fixed
+direct sum of the individual endpoint-correction loops still has proper
+ambient filling area, under arbitrary fixed channel mixing.  Accordingly the
+rectangular cell must output the three **combined edge defects themselves**
+at bounded cost.  It cannot first fill the three centralizer commutators and
+then invoke the `A_5` inequality.
+
 If `(LSC1)` holds, `bounded-area-high-chromatic-conjugacy-collapse` applied to
 the complete graphs `K_M` kills `b` in every tracial matrix ultraproduct.
 Since `b!=1` in `Delta`, this proves that the explicit finitely presented
