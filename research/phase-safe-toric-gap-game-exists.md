@@ -3,6 +3,8 @@ rg: 2
 id: phase-safe-toric-gap-game-exists
 kind: claim
 title: Some finite two-player toric game has a commuting/finite-dimensional gap whose scalar phase survives normal closure
+artifacts:
+  - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
   phase-safe-toric-gap-implies-nonhyperlinear: that is the proved implication from such a game to a nonhyperlinear group; this is the missing object itself, and it is where all the difficulty sits
   hyperlinear-nonsofic-group: that asks for a hyperlinear group failing soficity; a witness here goes the other way and produces a nonhyperlinear group
@@ -47,6 +49,14 @@ it is not a shortcut past it.  The gain from the toric formulation is that
 full LCS syntax is not logically necessary -- normal toric syntax, or merely a
 phase-safe normal-closure certificate, suffices -- so the search space is
 wider than "perfect LCS or nothing".
+
+**2025--2026 static-game and gadget audit.**  Lin, arXiv:2510.07162,
+Theorem 6.15 does supply a finite synchronous game with `omega_co=1` and
+`omega_*<=1/2`; it supplies neither toric phase safety nor LCS solution-group
+syntax.  Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408, characterize
+robust commutativity gadgets, but their `qa`/`qc` gadget-class separation is
+explicitly conditional on a nonhyperlinear group.  Thus neither theorem
+constructs the object requested here.
 
 **Use synchrony to get normality for free.**  Dead.  For a synchronous game
 the perfect strategies are tracial states on the one-player synchronous

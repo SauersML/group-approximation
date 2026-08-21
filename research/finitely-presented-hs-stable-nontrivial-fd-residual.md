@@ -3,6 +3,8 @@ rg: 2
 id: finitely-presented-hs-stable-nontrivial-fd-residual
 kind: claim
 title: Exhibit a finitely presented uniformly HS-stable group with nontrivial finite-dimensional residual
+artifacts:
+  - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
   leavitt-steinberg-hs-stable: that asks only for stability of the binary Leavitt Steinberg group, whose finite-dimensional invisibility data must still be matched to a nontrivial abstract word.
   literal-mark-quotient-not-stable-in-finite-actions: that proves instability for permutation/Hamming models of a specific sofic quotient rather than normalized-HS stability.
@@ -32,3 +34,13 @@ stability.
   collapse data, but `leavitt-steinberg-hs-stable` remains open.
 - A nontrivial finite residual is algebraically convenient, but the known
   non-residually-finite telescope examples are not thereby HS-stable.
+- **Primary-source audit, 2026-08-21.**  The new polynomially stable
+  lamplighter group (Dogon--Vidick, arXiv:2607.20135) is residually finite and
+  not finitely presented; the new chordal graph-product examples (Spaas,
+  arXiv:2603.02058) are residually finite in the finitely generated cases.
+  Published non-residually-finite examples in arXiv:2307.13155 are explicitly
+  only *locally* HS-stable and not HS-stable.  No checked example meets all
+  three requirements of this claim.
+- Exact invisibility cannot fill the analytic gap:
+  `exact-fd-invisibility-has-no-general-hs-robustification` gives a finitely
+  presented sofic counterexample.
