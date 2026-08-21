@@ -8,8 +8,9 @@ distinct_from:
   same-orbit-closure: that concerns the affine-Leavitt paired-label decoder rather than the sparse Weyl occurrence compiler.
 ---
 
-OPEN.  After same-basis rounding, let `U,W:F_2^n->U(H)` be the two exact
-additive actions on the marked carrier.  For the two field matchings
+ESTABLISHED via `matrix-phase-inequality-closes-block-conjugators`.  After
+same-basis rounding, let `U,W:F_2^n->U(H)` be the two exact additive actions
+on the marked carrier.  For the two field matchings
 
 ```text
 a=b,                         a=alpha b,
@@ -19,11 +20,12 @@ prove the dimension-independent RMS closure estimate
 
 ```text
 (E_(a,b) ||U(a)W(b)-(-1)^<a,b>W(b)U(a)||_2^2)^(1/2)
- <= C epsilon^theta,                                          (SW0)
+ <= omega(epsilon),                                           (SW0)
 ```
 
 where `epsilon` is the larger RMS defect on the two sampled matchings and
-`C,theta>0` are independent of `n` and matrix dimension.
+the universal modulus `omega(epsilon)->0` is independent of `n` and matrix
+dimension.  An effective power modulus is stronger than needed here.
 
 By `full-weyl-defect-equals-pvm-transport-energy`, `(SW0)` is **equivalent**
 to controlling the complete-translation transport energy of the spectral
@@ -35,27 +37,28 @@ PVM `(P_v)`:
 
 ```text
 (1/2^n) sum_b sum_v ||W(b) P_v W(b)^*-P_(v+b)||_2^2
- <= C epsilon^theta                                            (SW2)
+ <= omega(epsilon)                                             (SW2)
 ```
 
-for fixed `C,theta>0`, independent of `n` and matrix dimension.
+with the same convention of absorbing fixed square/root changes into `omega`.
 
 Together with the Parseval identity and
 `expander-pvm-transport-forces-dimension-or-mass-collapse`,
 this gives
 
 ```text
-d >= 2^(c n-1)       or       marked mass <= C' epsilon^theta,
+d >= 2^(c n-1)       or       marked mass <= omega(epsilon)/gamma,
 ```
 
 which is exactly the dimension-witness/mass-collapse alternative required
 by the occurrence compiler.
 
 The abstract exact two-field-matching closure (the zero-defect case of
-`(SW0)`) is already established by
-`two-untwisted-field-matchings-force-complete-cross-commutation`; the open
-content is its rank-independent quantitative stability.  The current
-centralizer-fiber circuit proves `(SW0)` only with a factor
+`(SW0)`) is established by
+`two-untwisted-field-matchings-force-complete-cross-commutation`.  The
+rank-independent robust content comes from the polar-consensus compactness
+theorem `(NC25)`; it is qualitative and supplies no effective rate.  The
+centralizer-fiber circuit by itself gives only a factor
 `K_n=O(n^(1+log_2 3))`.
 
 The most direct scalar counterrepresentation lane is also closed.
@@ -73,12 +76,13 @@ constant `27/2`.  The same node explains why near-identity rounding cannot be
 performed before using the alpha constraint: sparse Pauli anticommutation
 graphs obstruct a uniform standalone simultaneous-diagonalization lemma.
 
-The joint use succeeds for the entire signed-Pauli block sector:
+The joint use has a direct effective proof for the signed-Pauli block sector:
 `pauli-block-phases-have-uniform-two-matching-soundness` first corrects the
 Pauli labels by vector-valued alpha-plane soundness, uses the identity matching
 to kill the corrected symplectic form, and then scalarizes.  The remaining
 case therefore requires block phases outside every finite Pauli/Clifford label
-model, or mixing not representable by a single block-diagonal conjugator.
+model.  Arbitrary matrix blocks are handled qualitatively by
+`matrix-phase-noncommutative-alpha-plane-route`.
 
 ## Attempts
 

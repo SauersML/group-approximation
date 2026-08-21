@@ -34,14 +34,14 @@ mu <= E_PVM/gamma.                                             (EP3)
 ```
 
 The estimate is independent of `d` and `|Omega|`.  Thus a decoder which
-produces one common marked PVM of mass `mu` and controls `(EP1)` by
-`C epsilon^theta` already gives the desired dichotomy
+produces one common marked PVM of mass `mu` and controls `(EP1)` by any
+dimension-free modulus `omega(epsilon)->0` gives the desired qualitative
+dichotomy
 
 ```text
-d >= |Omega|/2       or       mu <= (C/gamma) epsilon^theta.
+d >= |Omega|/2       or       mu <= omega(epsilon)/gamma.
 ```
 
 This is the scalar endpoint required by the sparse two-matching route.  It
 does not ask for uniform lower bounds on individual Fourier blocks and does
 not telescope along paths.
-

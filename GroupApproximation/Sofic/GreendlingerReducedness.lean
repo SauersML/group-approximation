@@ -44,9 +44,14 @@ theorem rotate_eq_append_singleton {t' z : List (α × Bool)} {x : α × Bool}
 
 /-- **L-red.**  In the conjugator-overrun regime the coincidence is void, and
 reducedness of the head palindrome alone refutes it. -/
-theorem reducednessVoidsCoincidence [DecidableEq α] :
-    ReducednessVoidsCoincidence α := by
-  intro c t t' i hpal hi hic halign hcoin
+theorem invRev_ne_rotate_of_isReduced_core [DecidableEq α]
+    {c t s : List (α × Bool)} {i : ℕ}
+    (hpal : FreeGroup.IsReduced (palindrome c t))
+    (hi : 0 < i) (hic : i ≤ c.length)
+    (halign : c.drop (c.length - i) <+: s) :
+    FreeGroup.invRev t ≠ s.rotate i := by
+  intro hcoin
+  set t' := s with ht'
   -- the aligned block, of length exactly `i`
   set k := c.length - i with hk
   have hdlen : (c.drop k).length = i := by
@@ -111,16 +116,25 @@ theorem reducednessVoidsCoincidence [DecidableEq α] :
   rw [hsplit] at hpal
   exact not_isReduced_cancel hpal
 
+/-- **L-red at the chunk origin.**  The core lemma applied to `t'.rotate k`:
+the alignment sits `k` letters into the landing relator, and composing the two
+rotations gives `k + i`. -/
+theorem reducednessVoidsCoincidence [DecidableEq α] :
+    ReducednessVoidsCoincidence α := by
+  intro c t t' i k hpal hi hic halign
+  have h := invRev_ne_rotate_of_isReduced_core (s := t'.rotate k) hpal hi hic halign
+  rwa [List.rotate_rotate] at h
+
 /-- The (β) coincidence discharge, unconditional: the predicate is inhabited,
 so `GreendlingerBetaBranch.invRev_ne_rotate_of_reduced` no longer needs its
 gate hypothesis. -/
 theorem invRev_ne_rotate_of_isReduced [DecidableEq α]
-    {c t t' : List (α × Bool)} {i : ℕ}
+    {c t t' : List (α × Bool)} {i k : ℕ}
     (hpal : FreeGroup.IsReduced (palindrome c t))
     (hi : 0 < i) (hic : i ≤ c.length)
-    (halign : c.drop (c.length - i) <+: t') :
-    FreeGroup.invRev t ≠ t'.rotate i :=
-  reducednessVoidsCoincidence c t t' i hpal hi hic halign
+    (halign : c.drop (c.length - i) <+: t'.rotate k) :
+    FreeGroup.invRev t ≠ t'.rotate (k + i) :=
+  reducednessVoidsCoincidence c t t' i k hpal hi hic halign
 
 end SmallCancellationRouter
 end GroupApproximation

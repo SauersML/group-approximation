@@ -8,12 +8,14 @@ requires: []
 ---
 
 Because `c^2=1`, the pair lamp at `C,hC` is
-`c h c h^-1=[c,h]`.  For any unitary `m,z`,
+`c h c h^-1=[c,h]`.  For any unitary `m,z` and scalar phase `lambda`,
 
 ```text
-||m z m^-1 z^-1-I||_2 <= 2||m-I||_2.
+||m z m^-1 z^-1-I||_2 <= 2||m-lambda I||_2.
 ```
 
-Insert the D8 relator error to obtain `(RCS3)`.  Hence ordinary relative
-commutant transfer for the single actor word `h` collapses `J`.  This is a
-separate sufficient endpoint from global all-pairs lamp rounding.
+Minimize over `lambda` and use
+`D(m)^2<=2(1-|tr(m)|^2)`.  Insert the D8 relator error to obtain
+`(RCS3)--(RCS4)`.  Hence projective relative-commutant transfer for the single
+actor word `h` collapses `J`.  This is a separate sufficient endpoint from
+global all-pairs lamp rounding.

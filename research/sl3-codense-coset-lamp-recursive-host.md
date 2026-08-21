@@ -75,8 +75,9 @@ For this particular two-point seed there is an even smaller endpoint.
 m_0=[c,h].
 ```
 
-Therefore an ordinary normalized-HS relative-commutant transfer from `C` to
-the single generator `h` kills the mark directly.  This is an alternative to
+Therefore projective normalized-HS relative-commutant transfer from `C` to
+the single generator `h` kills the mark directly: any scalar phase of
+`[c,h]` disappears in its D8 commutator with `z`.  This is an alternative to
 the full all-pairs/PVM route, not a consequence of additive rounding: the
 exact infinite lamp model has `m_0!=1`.  Pure finite-orbital propagation
 cannot supply uniform module exposure by

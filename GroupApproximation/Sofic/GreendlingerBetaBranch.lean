@@ -119,30 +119,32 @@ The proof to write, entirely elementary:
 * hence `c ++ t` places a letter beside its inverse, contradicting
   `FreeGroup.IsReduced (palindrome c t)`.
 
-One index convention is deliberately fixed here and must match whatever the
-assembly produces: `halign` is stated against `t'` UNROTATED, so the overrun
-begins at position `0` of the landing rotation and the coincidence reads
-`invRev t = t'.rotate i` with the same `i`.  If the surrounding analysis
-measures the overrun from the start of the landing *chunk* instead, both need
-an offset `k` — alignment against `t'.rotate k`, conclusion
-`invRev t ≠ t'.rotate (k + i)` — and the two are different statements even
-though the proof is the same. -/
+The index origin is the landing CHUNK, not the relator word.  `i` counts
+letters eaten into the chunk's relator territory, and that territory begins at
+rotation offset `k` of `t'` whenever the previous junction consumed the
+landing factor's conjugator entirely plus a prefix of its relator — so the
+alignment is against `t'.rotate k` and the coincidence reads
+`t'.rotate (k + i)`.  Stating it at general `k` is what lets the assembly
+typecheck against whatever bookkeeping it has: the alternative, rotating the
+factor's relator word to make `k = 0`, would perturb that factor's conjugator
+and weight, which a minimality argument must not do.  The unrotated form is
+the `k = 0` instance. -/
 def ReducednessVoidsCoincidence (α : Type*) : Prop :=
-  ∀ (c t t' : List (α × Bool)) (i : ℕ),
+  ∀ (c t t' : List (α × Bool)) (i k : ℕ),
     FreeGroup.IsReduced (palindrome c t) → 0 < i → i ≤ c.length →
-    c.drop (c.length - i) <+: t' →
-    FreeGroup.invRev t ≠ t'.rotate i
+    c.drop (c.length - i) <+: t'.rotate k →
+    FreeGroup.invRev t ≠ t'.rotate (k + i)
 
 /-- The (β) coincidence discharge, in the shape the landing analysis consumes:
 the same conclusion `GreendlingerCoincidence.invRev_ne_rotate_of_minimal`
 produces for the `i_c = 0` branch, so one slot serves both. -/
 theorem invRev_ne_rotate_of_reduced (hred : ReducednessVoidsCoincidence α)
-    {c t t' : List (α × Bool)} {i : ℕ}
+    {c t t' : List (α × Bool)} {i k : ℕ}
     (hpal : FreeGroup.IsReduced (palindrome c t))
     (hi : 0 < i) (hic : i ≤ c.length)
-    (halign : c.drop (c.length - i) <+: t') :
-    FreeGroup.invRev t ≠ t'.rotate i :=
-  hred c t t' i hpal hi hic halign
+    (halign : c.drop (c.length - i) <+: t'.rotate k) :
+    FreeGroup.invRev t ≠ t'.rotate (k + i) :=
+  hred c t t' i k hpal hi hic halign
 
 end SmallCancellationRouter
 end GroupApproximation

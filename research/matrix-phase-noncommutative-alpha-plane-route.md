@@ -2,14 +2,15 @@
 rg: 2
 id: matrix-phase-noncommutative-alpha-plane-route
 kind: claim
-title: Prove a noncommutative alpha-plane energy inequality for arbitrary block phases
+title: Arbitrary matrix phases have a uniform qualitative alpha-plane modulus
 distinct_from:
   matrix-phased-translations-exact-identity-scalarize: that assumes zero identity energy and diagonalizes exactly; this asks for a joint inequality when both sampled energies are nonzero.
   pauli-block-phases-have-uniform-two-matching-soundness: that uses discrete Pauli labels and a symplectic form; this allows arbitrary unitary blocks with no finite label model.
+  matrix-phase-linear-alpha-plane-inequality: that asks for an effective linear bound; this proves only a nonconstructive vanishing modulus.
 ---
 
-OPEN.  The arbitrary block-diagonal conjugator sector has one self-contained
-formulation.  For `R:K->U(d)`, define
+ESTABLISHED.  The arbitrary block-diagonal conjugator sector has one
+self-contained formulation.  For `R:K->U(d)`, define
 
 ```text
 I(R)=E_(x,y)||R_y R_x^*-R_x R_y^*||_2^2,                    (NC1)
@@ -22,14 +23,21 @@ F(R)=E_(x,a,b)||R_(x+b)R_x^*
 ```
 
 For the tables `(MP1)`, these are exactly the identity-matching,
-alpha-matching, and complete cross-commutator energies.  Prove, or disprove,
+alpha-matching, and complete cross-commutator energies.  There is a universal
+modulus `omega(delta)->0`, independent of `n,d`, such that
+
+```text
+F(R) <= omega(I(R)+A(R)).                                    (NC4q)
+```
+
+The stronger effective conjecture asks whether
 
 ```text
 F(R) <= C(I(R)+A(R))                                         (NC4)
 ```
 
-with universal `C`, independent of `n,d`.  This would settle every
-single-block-PVM orbit and leave only mixing between inequivalent `X`-orbits.
+holds with universal `C`, independent of `n,d`; it is recorded separately in
+`matrix-phase-linear-alpha-plane-inequality`.
 
 The endpoint already has a positive noncommutative Fourier formula.  With
 normalized Fourier matrices

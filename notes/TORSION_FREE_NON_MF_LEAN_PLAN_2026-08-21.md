@@ -257,6 +257,18 @@ W4: assembly.  Instantiate slimmed source data (W0d) + router output
   State the final theorem in the ∃-form with `IsPowerTorsionFree` and
   bridge `IsMulTorsionFree` once.
 
+W6 §4 APPARATUS TRAP (2026-08-21 night, caught by closures-1, confirmed
+  by lit at source): Higman's §4 closure proofs (4.4–4.10, all but
+  ι/υ) live in ⟨a,d,e⟩ and presuppose the d/e apparatus (Lemmas
+  4.1–4.3, incl. the weight-vector property 4.2); the repo's coding is
+  F₃-native with ASCENDING-sorted products, so ρ (order-reversing) and
+  τ (exponent-swap, not letter-swap) are NOT automorphism clones of
+  the σ shortcut — that shortcut works only because σ preserves order.
+  Continue the F₃-native per-operation route (FlipWitness; τ via a
+  witness-overgroup automorphism per Mikaelian §4); see
+  HIGMAN_EMBEDDING_FORMALIZATION_PLAN.md §9.  θ needs no image-closure
+  lemma (oddZero = ω₂(ζZ), closures-2); the shared lemma blocks ρ/τ.
+
 W6 TRANSCRIPTION TRAPS (from the source pin; full detail in the
   program memory and the Higman memo): Lemma 2.8 is false as printed
   for X = ∅ (cite with the explicit hypothesis); σ³ζσ in the

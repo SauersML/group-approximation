@@ -113,3 +113,15 @@ all-representations decoder `(ALD1)--(ALD2)`.
   constants.  The only missing estimate is the matrix-coordinate assertion
   that boundary mass cannot pay for label doubling by shrinking multiplicity
   before the return.
+- **The depth-one marginal packet has an exact matrix countermodel.**
+  `first-leavitt-weyl-cell-has-exact-rectangular-model` puts the source Weyl
+  pair in `M_p tensor 1_p`, the two children in the full `M_(p^2)`, and uses
+  tensor swap for the second branch.  Source/child tables, crossed relations,
+  both returns, and finite-packet canonical trace all survive.  Therefore a
+  one-step recurrence cannot follow from those marginals.  The same claim
+  isolates a sharp scalar endpoint for the first genuinely mixed loop: once
+  `2p` returned target Pauli words are placed near the **same** source factor,
+  their squared HS placement error has the fixed floor
+  `kappa_p^2/(2p((2p)!)^2)`.  The only missing part is the matrix-coordinate
+  mixed-word theorem producing that same-factor placement; literal universal
+  confinement is impossible because it would also kill the regular model.

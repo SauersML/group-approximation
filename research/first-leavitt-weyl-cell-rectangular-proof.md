@@ -34,3 +34,17 @@ most
 
 If the approximating tuple lies in `M_p tensor 1`, its polynomial is zero,
 which proves `(FWC5)`.
+
+For the trace-square form, put `B=M_p tensor 1_m`, let `E_B` be the
+trace-preserving conditional expectation, and set
+`delta_j=||D_j-E_B(D_j)||_2`.  Since
+`s_(2p)(E_BD_1,...,E_BD_(2p))=0`, the same monomial telescoping gives
+
+```text
+||s_(2p)(D_1,...,D_(2p))||_2
+ <= (2p)! sum_j delta_j
+ <= (2p)! sqrt(2p) (sum_j delta_j^2)^(1/2).
+```
+
+Combine this with the target lower bound `kappa_p-O_p(target_error)` and
+square.  This proves `(FWC6)`.

@@ -89,6 +89,21 @@ kappa_p <= 2p (2p)! delta                               (FWC5)
 up to the corresponding target-table decoding error.  The constant depends
 only on the fixed field characteristic and not on ambient multiplicity.
 
+There is also a square-summable form, better suited to an HS energy ledger.
+For any amplification `B=M_p tensor 1_m` and any contractions
+`D_1,...,D_(2p)` carrying the target table,
+
+```text
+sum_j dist_2(D_j,B)^2
+ >= kappa_p^2/(2p ((2p)!)^2) - O_p(target_error).          (FWC6)
+```
+
+Indeed choose the trace-preserving conditional expectation `E_B`, apply
+Amitsur--Levitzki to `(E_B D_j)`, telescope the `(2p)!` monomials, and use
+Cauchy--Schwarz.  This is the desired dimension-free trace-square floor
+**after source confinement**.  It leaves only the mixed-word placement of
+the returned target words near that same source factor.
+
 The conclusion `(FWC5)` cannot be obtained from a literal universal
 group-word confinement relation.  If, in every tracial representation on a
 surviving central phase, the full two-child target algebra were contained in
