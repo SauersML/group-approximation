@@ -48,9 +48,7 @@ noncomputable def swap01 (f : E) : E :=
 @[simp] theorem swap01_apply (f : E) (i : ℤ) :
     swap01 f i = f (Equiv.swap (0 : ℤ) 1 i) := by
   unfold swap01
-  rw [Finsupp.equivMapDomain_apply]
-  congr 1
-  exact (Equiv.swap_apply_self (0 : ℤ) 1 i).symm
+  rw [Finsupp.equivMapDomain_apply, Equiv.symm_swap]
 
 /-- `τ` moves the pin from the origin to coordinate `1`. -/
 theorem tauOp_pinZero (c : ℤ) : tauOp (pinZero c) = pinOne c := by
@@ -116,7 +114,7 @@ theorem thetaOp_succSeq (c : ℤ) :
     · have h0 : (2 : ℤ) * i ≠ 0 := by omega
       have h1 : (2 : ℤ) * i ≠ 1 := by omega
       rw [Finsupp.single_apply, if_neg (Ne.symm hi)]
-      simp [succSeq, Finsupp.single_apply, Ne.symm h0, Ne.symm h1]
+      simp [succSeq, Ne.symm h0, Ne.symm h1]
   · intro hf
     have hf' : f = Finsupp.single (0 : ℤ) c := hf
     refine ⟨succSeq c, rfl, ?_⟩
@@ -127,7 +125,7 @@ theorem thetaOp_succSeq (c : ℤ) :
     · have h0 : (2 : ℤ) * i ≠ 0 := by omega
       have h1 : (2 : ℤ) * i ≠ 1 := by omega
       rw [Finsupp.single_apply, if_neg (Ne.symm hi)]
-      simp [succSeq, Finsupp.single_apply, Ne.symm h0, Ne.symm h1]
+      simp [succSeq, Ne.symm h0, Ne.symm h1]
 
 /-- The same after a `τ`-swap, which reads off the other end of the pair. -/
 theorem thetaOp_tauOp_succSeq (c : ℤ) :
@@ -145,7 +143,7 @@ theorem thetaOp_tauOp_succSeq (c : ℤ) :
     · have h0 : (2 : ℤ) * i ≠ 0 := by omega
       have h1 : (2 : ℤ) * i ≠ 1 := by omega
       rw [Finsupp.single_apply, if_neg (Ne.symm hi), hgr _ h0 h1, hg'']
-      simp [succSeq, Finsupp.single_apply, Ne.symm h0, Ne.symm h1]
+      simp [succSeq, Ne.symm h0, Ne.symm h1]
   · intro hf
     have hf' : f = Finsupp.single (0 : ℤ) (c + 1) := hf
     refine ⟨swap01 (succSeq c), ⟨succSeq c, rfl, ?_, ?_, ?_⟩, ?_⟩
@@ -162,7 +160,7 @@ theorem thetaOp_tauOp_succSeq (c : ℤ) :
         have h1 : (2 : ℤ) * i ≠ 1 := by omega
         rw [Finsupp.single_apply, if_neg (Ne.symm hi),
           Equiv.swap_apply_of_ne_of_ne h0 h1]
-        simp [succSeq, Finsupp.single_apply, Ne.symm h0, Ne.symm h1]
+        simp [succSeq, Ne.symm h0, Ne.symm h1]
 
 /-! ## The induction -/
 
@@ -171,19 +169,18 @@ theorem thetaOp_tauOp_succSeq (c : ℤ) :
 theorem higmanGenerated_singleZero (c : ℤ) :
     HigmanGenerated ({Finsupp.single (0 : ℤ) c} : Set E) := by
   induction c using Int.induction_on with
-  | hz =>
+  | zero =>
       have h : ({Finsupp.single (0 : ℤ) (0 : ℤ)} : Set E) = Zset := by
         rw [Finsupp.single_zero]; rfl
       rw [h]
       exact HigmanGenerated.zero
-  | hp n ih =>
+  | succ n ih =>
       rw [← thetaOp_tauOp_succSeq (n : ℤ), ← Sset_inter_pinZero (n : ℤ)]
       exact HigmanGenerated.theta (HigmanGenerated.tau
         (HigmanGenerated.inter HigmanGenerated.succ
           (higmanGenerated_pinZero (n : ℤ) ih)))
-  | hn n ih =>
-      have harith : (-(n : ℤ) - 1) = (-(n : ℤ)) - 1 := rfl
-      rw [harith, ← thetaOp_succSeq ((-(n : ℤ)) - 1),
+  | pred n ih =>
+      rw [← thetaOp_succSeq ((-(n : ℤ)) - 1),
         show ({succSeq ((-(n : ℤ)) - 1)} : Set E)
             = Sset ∩ pinOne (-(n : ℤ)) from (Sset_inter_pinOne (-(n : ℤ))).symm,
         ← tauOp_pinZero (-(n : ℤ))]
