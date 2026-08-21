@@ -6,8 +6,9 @@ title: Replace the Fanizza heat-filter tower by one wandering return word
 target: non-hyperlinear-group
 requires:
   - two-copy-bcs-game-hamiltonian-dominates-fanizza-signal
+  - uniform-clock-reflection-block-encodes-game-hamiltonian
   - wandering-mark-cesaro-amplifier
-  - fanizza-wandering-dirichlet-return
+  - fanizza-coherent-verifier-wandering-promotion
   - kleene-completeness-needs-only-a-nontrivial-exact-representation
 ---
 
@@ -17,9 +18,11 @@ The two-copy theorem gives the explicit semantic inequality
 D_R <= C_m H_m
 ```
 
-on every exact representation in the nonmember case.  Instead of returning
-all polynomial filters of `H_m`, construct one infinite-order group word `w`
-whose finite-matrix packet compression satisfies
+on every exact representation in the nonmember case.  The uniform clock and
+controlled flag package the entire `H_m` into one explicit algebraic
+reflection `V_m`, with corner Dirichlet form exactly `H_m`.  Promote this
+reflection to one infinite-order group word `w` whose finite-matrix packet
+compression satisfies
 
 ```text
 H_m <= C'(1-Re w)                                     (FWD1)
