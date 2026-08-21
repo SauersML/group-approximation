@@ -324,6 +324,7 @@ recursion terminates; the total correction is
   Erdos--Turan / large-sieve bound.  This is no longer a delicate
   exponent sign but a routine equidistribution estimate; it is the
   last step, and it is a mild one.
+- **Correct framework: this is the x4 cohomological equation; obstruction is Livsic periodic-orbit data (2026-08-21).** Correcting the measure-contraction optimism: in the ultraproduct V has diffuse Lebesgue spectrum and psi=Ad(h) is the KOOPMAN operator of the x4 map; a mixing expanding map has Lebesgue spectrum reaching 1, so (1-psi) has NO spectral gap. Thus c psi(c)^{-1}=e' IS the cohomological equation c - c o (x4) = e' for x4, solvable (Livsic) iff e's sums over periodic orbits vanish - and the periodic orbits of x4 are exactly the ROOTS OF UNITY. That is why roots of unity and 4-1=3 governed the whole lane: they are the periodic-orbit spectrum. Residual = Livsic periodic-orbit obstructions of the Weyl defect e' for x4; e' is HS-small, boundary e'(0)=0 kills the fixed-point obstructions, Livsic needs Holder + vanishing periodic sums. Honest final form, not a free bound.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
