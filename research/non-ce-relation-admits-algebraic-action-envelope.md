@@ -150,6 +150,16 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Branch (a) can survive only with infinitely many r.e. module relations, a
   different acting group, or a genuinely non-Cartan embedding.  Enlarging a
   finite local rule table can never help.
+- **The native virtually-free actor is completely closed (proved,
+  2026-08-21).**  `abelian-by-virtually-free-groups-are-sofic` removes the
+  finite-type hypothesis entirely.  For every countable abelian module `A`,
+  `A rtimes F_r` is an iterated HNN extension over the amenable subgroup `A`,
+  hence sofic; a normal finite-index free subgroup and sofic-by-amenable
+  permanence extend this to every finitely generated virtually free actor.
+  Therefore every compact-abelian Haar crossed product with the native
+  Manzoor actor is CE, even for infinitely related/non-residually-finite
+  modules, and even if the desired inclusion is non-Cartan.  Any surviving
+  algebraic envelope must change the acting group.
 - **Falsification test.**  Fourier positivity is a real constraint:
   coefficients of Haar algebraic processes satisfy character-positivity
   identities that a general p.m.p. correlation need not.  Check the

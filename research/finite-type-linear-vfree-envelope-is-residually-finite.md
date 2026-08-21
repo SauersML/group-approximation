@@ -106,18 +106,17 @@ Fourier isomorphism `(VFL3)`.
 
 ## Exact scope
 
-The finite-type hypothesis is load-bearing.  A recursively enumerable linear
-subshift has a dual module that is finitely generated but may have infinitely
-many relations, so it need not be finitely presented and the
-Garrido--Jaikin-Zapirain theorem does not apply.  The algebraic-envelope route
-therefore survives only by leaving at least one of the following safe zones:
+The finite-type hypothesis is load-bearing for the **residual-finiteness**
+conclusion: a recursively enumerable linear subshift has a finitely generated
+dual module with possibly infinitely many relations, so the
+Garrido--Jaikin-Zapirain module theorem does not apply.
 
-- use an infinite-type/r.e. linear subshift whose dual module is genuinely
-  non-residually-finite;
-- change to a non-virtually-free acting group for which the module theorem
-  fails; or
-- use a non-Cartan embedding not represented by the native finite-type
-  Haar-linear action.
+It is not load-bearing for the weaker conclusion needed to kill this route.
+`abelian-by-virtually-free-groups-are-sofic` proves that `A rtimes G` is sofic
+for every countable abelian `G`-module whenever `G` is virtually free.  Thus
+neither infinite r.e. relations nor a non-Cartan embedding repair the native
+Manzoor actor: its whole compact-abelian crossed product is CE.  The surviving
+algebraic-envelope route must change to a non-virtually-free acting group.
 
 In particular, merely making the finite local constraint table larger cannot
 work: every finite table still produces a finitely presented module and hence

@@ -106,3 +106,15 @@ difference `delta_q-delta_1` dies in every finite module quotient, so neither
 has sofic kernel and amenable quotient, hence `A rtimes F` is sofic.  The live
 infinite-type module must therefore carry a genuinely nonsofic action/CE
 obstruction, not merely lack separating finite invariant quotients.
+
+In fact the native acting group is now completely ruled out, without any
+finite-type hypothesis.  `abelian-by-virtually-free-groups-are-sofic` proves
+that for every countable abelian module `A` and every finitely generated
+virtually free group `Lambda`, the semidirect product `A rtimes Lambda` is
+sofic: build `A rtimes F_r` by iterated HNN extensions over the amenable
+subgroup `A`, then pass from a normal finite-index free subgroup to `Lambda`
+by amenable-extension permanence.  Hence every compact-abelian Haar crossed
+product with Manzoor's native virtually-free actor is Connes embeddable,
+including every infinite-type/r.e. module and every proposed non-Cartan
+placement inside that ambient algebra.  The route can survive only by
+changing the acting group, not merely the module presentation.
