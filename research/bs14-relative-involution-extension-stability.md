@@ -55,6 +55,13 @@ involution.
   representations would violate the `(T;FD)` intertwiner gap.  Thus strict
   stability fails but the flexible claim survives, and its sharp target must
   permit `padding/d=O(epsilon^2)`.
+  The sharpened boundary calculation shows more: polar rounding leaves
+  `X^2=1` and `XRX=R^(-1)` exactly.  The compressed operator has one deficient
+  singular value `p^(-1/2)`, and correcting it preserves the dihedral
+  relation.  Thus this canonical obstruction is carried entirely by the two
+  cubic constraints.  A proof cannot charge the necessary padding to
+  approximate inversion of `R`; it must recover the boundary rank from the
+  simultaneous defects of `(XS^2)^3` and `(XRS)^3`.
 - **Primitive prime packets are now classified exactly.**
   `prime-bs14-packet-extension-classification` proves that a scalar packet
   extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,
