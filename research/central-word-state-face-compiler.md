@@ -60,3 +60,62 @@ out an all-allowed-states local dilation: product words fixing the three
 allowed Boolean rectangles automatically fix the fourth.  The only surviving
 finite-ancilla interpretation is genuinely state-dependent and must prove the
 whole-face soundness in Property 2.
+
+## Property 2: the minimal quantitative decoder
+
+Property 2 has a precise sufficient interface which does not depend on the
+choice of gadget in Properties 1 and 3.  Let `R_B` be the fixed finite list of
+involution, within-context commutator, and forbidden-product polynomials in
+`non-ce-bcs-has-robust-approximate-energy-gap`, and let `beta_B^rob>0` be its
+gap.  For unitaries `Z_x in M_d(C)` and a density matrix `rho` define
+
+```text
+E_B(rho,Z)=sum_(R in R_B) Tr(rho R(Z)^*R(Z)).           (CWF1)
+```
+
+> **Weighted tracial decoder lemma.**  If `rho>=0`, `Tr(rho)=1`, and
+> `[rho,Z_x]=0` for every BCS variable, then
+>
+> ```text
+> E_B(rho,Z)>=beta_B^rob.                               (CWF2)
+> ```
+
+Indeed, write the spectral decomposition
+`rho=sum_j lambda_j Q_j`.  Every `Q_j` reduces every `Z_x`.  Applying the
+normalized-HS robust gap on the nonzero corner `Q_j C^d` gives
+
+```text
+sum_(R in R_B) tau_(Q_j)(R(Z)^*R(Z))>=beta_B^rob.
+```
+
+Multiplication by `lambda_j rank(Q_j)` and summation proves `(CWF2)`, because
+those coefficients are nonnegative and sum to `Tr(rho)=1`.
+
+Consequently it is enough for a target compiler to map every
+finite-dimensional target vector state `(pi,xi)` to `(rho,Z)` as above and
+prove, for one constant `C` independent of dimension,
+
+```text
+E_B(rho,Z)<=C E_target(pi,xi).                          (CWF3)
+```
+
+Then `(CWF2)--(CWF3)` give
+`E_target(pi,xi)>=beta_B^rob/C`.  This excludes not just one intended target
+state but the entire weak-star finite-dimensional clause face: a sequence of
+finite-dimensional vector states converging to that face would have target
+energy tending to zero, contradicting the same bound.
+
+The commutant condition in this lemma is load-bearing.  The target face is
+made of arbitrary finite-dimensional **vector** states, whose natural density
+is rank one.  There is no dimension-free comparison between
+`Tr(rho X^*X)` and the normalized Hilbert--Schmidt norm of `X`; for example a
+rank-one `rho` gives zero weight to every operator supported on its orthogonal
+complement.  Centralization of the target clause words does not by itself put
+the decoded BCS variables in `rho'`.  Thus
+`non-ce-bcs-has-robust-approximate-energy-gap` alone cannot prove Property 2
+from abstract centralizable words: the missing construction must either
+produce the commuting density in `(CWF1)--(CWF3)`, or retain the vector-state
+weight and use the already recorded Gram decoder
+`one-gram-vector-decodes-a-finite-bcs-strategy` together with the static
+finite-game gap.  Merely bounding normalized-HS BCS energy is not a
+whole-face decoder.
