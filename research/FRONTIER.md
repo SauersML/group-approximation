@@ -2988,6 +2988,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-21 · matrix-phase-noncommutative-alpha-plane-route [OPEN] Prove a noncommutative alpha-plane energy inequality for arbitrary block phases
 - 2026-08-21 · solenoid-absorption-cascade-converges [OPEN] The twisted-coboundary absorption cascade on an odd solenoid tower converges dimension-free
 - 2026-08-21 · hs-stability-from-bounded-degree-two-primitives [OPEN] A normalized-HS Newton iteration with truncation turns operator-bounded degree-two primitives into flexible HS-stability
 - 2026-08-21 · finite-orbital-checksum-no-go-proof [COMPLETE] Keep unchecked double cosets noncommuting in an invariant graph product
@@ -2995,7 +2996,6 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-21 · bounded-degree-two-primitives-for-higher-rank-lattices [OPEN] Operator-bounded degree-two primitives for Ad-modules of SL_N(Z), N at least 4
 - 2026-08-21 · sl3-two-point-lamp-mark-is-single-rcc-scalar [ESTABLISHED] The arithmetic two-point lamp mark is already the single relative-commutant scalar
 - 2026-08-21 · sl3-single-rcc-scalar-reduction-proof [COMPLETE] Identify the two-point seed with one commutator and telescope the D8 word
-- 2026-08-21 · sl3-codense-coset-lamp-recursive-host [ESTABLISHED] The SL3 codense coset action gives an explicit recursive expanding-character lamp host
 
 ## Active claims
 

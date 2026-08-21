@@ -33,18 +33,19 @@ transposition on the coding.  `SwapWitness` is that input and
 sorted normal forms, which is not the restriction of anything the row
 calculus produces.  That is the honest state of `τ`.
 
-## What is proved here, and is reusable
+## Where the cut lemma lives
 
-Sections 1 and 2 are not about `τ`.  They are the statement that the coding is
+Section 1 is not about `τ`: it is the statement that the coding is
 multiplicative across a cut,
 
-    elt (u + v) = elt u * elt v      when supp u lies below supp v,
+    elt (u + v) = elt u * elt v      when supp u lies below supp v.
 
-together with `elt (single i m) = (of i)^m`.  Every Higman operation that
-touches a set of coordinates and leaves the rest alone --- `ζ` (free the
-coordinate `0`), `π` (free the positive coordinates), `ωₘ` (blocks), and the
-`κ` of `Higman.OperationClosureTheta` --- needs exactly this, and none of them
-can be stated without it.
+Every Higman operation that touches a set of coordinates and leaves the rest
+alone --- `ζ`, `π`, `ωₘ`, and the `κ` of `Higman.OperationClosureTheta` ---
+needs it.  It is owned by `Higman.SeqFilter`, in the threshold form
+`Split.elt_split`, and the one line left here is the choice of threshold.  The
+companion `elt (single i m) = (of i)^m` is `Split.elt_single` and is used
+directly.
 -/
 
 namespace GroupApproximation
