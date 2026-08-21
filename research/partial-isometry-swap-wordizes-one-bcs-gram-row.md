@@ -9,6 +9,7 @@ distinct_from:
   paz-gram-vector-is-not-a-graph-projection: that rules out promoting one adjoint-space vector to a positive-density graph projection; this stays in a fixed `2d` matrix amplification and loses no factor depending on `d`.
 ---
 
+ESTABLISHED.
 Let `(M,tau)` be a finite tracial matrix algebra.  Let `S in M` be a
 partial isometry and put
 

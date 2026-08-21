@@ -9,6 +9,7 @@ distinct_from:
   maximally-entangled-vectorization-is-hs-isometry: that treats the special maximally entangled vector `G=I`; this gives the exact weighted identity for an arbitrary Gram operator and includes forbidden-answer energy.
 ---
 
+ESTABLISHED.
 Let `B` be a finite constraint-variable BCS game.  For every context `c`, let
 
 ```text

@@ -9,6 +9,7 @@ distinct_from:
   common-partial-isometry-swap-game-compiler: that asks for finite ordinary syntax and positive-density matrix soundness; this proves only its exact semantic common-swap clause.
 ---
 
+ESTABLISHED.
 Let `(M,tau)` be a finite tracial von Neumann algebra carrying an exact BCS
 representation.  Write
 
@@ -113,4 +114,3 @@ the separate context algebras into one finite classical packet.
 - **Put every context truth table in one finite packet.**  The resulting
   label observables commute across contexts; matching shared variables is
   equivalent to a global classical support condition and need not exist.
-
