@@ -248,17 +248,18 @@ After this, what `CyclicReduction` still asks for is the induction on
 
 section Absorb
 
+variable [DecidableEq ι] [∀ i, DecidableEq (G i)]
+
 theorem prod_equiv {d : NormalWord.Transversal φ} (x : PushoutI φ) :
     (NormalWord.equiv (d := d) x).prod = x :=
   NormalWord.equiv.symm_apply_apply x
 
+omit [DecidableEq ι] [∀ i, DecidableEq (G i)] in
 theorem ofCoprodI_prod (w : Word G) :
     (ofCoprodI w.prod : PushoutI φ)
       = (w.toList.map fun y : Σ i, G i => of (φ := φ) y.1 y.2).prod := by
   rw [Word.prod, map_list_prod, List.map_map]
   exact congrArg List.prod (List.map_congr_left fun y _ => ofCoprodI_of y.1 y.2)
-
-variable [DecidableEq ι] [∀ i, DecidableEq (G i)]
 
 /-- A list of letters avoiding the base, with distinct adjacent indices, is a
 word. -/
