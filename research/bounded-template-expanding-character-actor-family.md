@@ -103,11 +103,28 @@ split into two auditable statements:
 2. prove global finite-stage same-basis rounding for its elementary abelian
    occurrence module.
 
-The direct lamp construction really requires an fp actor:
+The direct **finitely presented** lamp construction really requires an fp actor:
 `direct-sharp-actor-wreath-forces-actor-fp` obtains the actor by killing one
 normally generating root lamp.  Ordinary Higman embedding changes the
 permutation pair and generally creates infinitely many double cosets, so it
 does not preserve the bounded-template action.
+
+But Higman embedding should be applied **after** the normalized-HS
+nonhyperlinearity proof, not before it.  By
+`higman-bypass-needs-only-fg-recursive-nonhyperlinear`, it is enough that the
+marked lamp host be finitely generated and recursively presented.
+`recursive-permutational-lamp-presentation` gives such a presentation from a
+recursively presented actor: for the involution-conjugacy action, the point
+stabilizer is a centralizer and its word preimage is recursively enumerable.
+Thus finite presentation of the actor and finite generation of its stabilizer
+are no longer terminal requirements.
+
+For the André--Guirardel actor, the remaining algebraic issue is the strictly
+weaker effectivity claim `andre-guirardel-recursive-presentation-audit`.  Their
+published direct-limit proof uses semantic HNN choices and existential
+small-cancellation quotients and does not verify a recursive enumeration of
+the final kernel.  If that effective refinement is supplied, only the global
+finite-stage same-basis rounding/word-energy gate remains before Higman.
 
 The best current fp-envelope formulation is
 `bffhz-envelope-closes-exact-actor-host`.  The BFFHZ automorphism-action

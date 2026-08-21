@@ -279,7 +279,6 @@ theorem benignTF_ASub_zetaOp_Zset : BenignTF (ASub (zetaOp Zset)) := by
   rw [Coord.ASub_eq_Aset, bElt_image_zetaOp_Zset, ← hone]
   exact Coord.benignTF_Aset_mul hS hbK hA hU
 
-/-- **Every `1`-block is supported in `{0}`, so `ω₁` imposes nothing.** -/
 /-- **The third `Agree` input follows from the `ω` input.**
 
 The two set identities are `Higman.GeneratedBasic`'s: `Seq.omegaOp_one_atZero`

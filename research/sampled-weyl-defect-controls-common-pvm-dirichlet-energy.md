@@ -73,6 +73,13 @@ constant `27/2`.  The same node explains why near-identity rounding cannot be
 performed before using the alpha constraint: sparse Pauli anticommutation
 graphs obstruct a uniform standalone simultaneous-diagonalization lemma.
 
+The joint use succeeds for the entire signed-Pauli block sector:
+`pauli-block-phases-have-uniform-two-matching-soundness` first corrects the
+Pauli labels by vector-valued alpha-plane soundness, uses the identity matching
+to kill the corrected symplectic form, and then scalarizes.  The remaining
+case therefore requires block phases outside every finite Pauli/Clifford label
+model, or mixing not representable by a single block-diagonal conjugator.
+
 ## Attempts
 
 - **Propagate one matrix bridge.**  The local bridge estimate is quadratic

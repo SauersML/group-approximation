@@ -326,26 +326,25 @@ structure CoverResiduals where
   /-- The defect of the core is all of the cover group. -/
   top_le_defectNormal : (⊤ : Subgroup (CoverGroup C)) ≤ core.defectNormal
 
-variable (R : CoverResiduals C)
-
 /-- **Saturation in the cover group**, projected from the residuals. -/
-theorem defectNormal_eq_top :
+theorem defectNormal_eq_top (R : CoverResiduals C) :
     Subgroup.normalClosure ({defect C} : Set (CoverGroup C)) = ⊤ :=
   R.normalClosure_defect_eq_top
 
 /-- The cover group is nontrivial. -/
-theorem coverGroup_nontrivial : Nontrivial (CoverGroup C) :=
+theorem coverGroup_nontrivial (R : CoverResiduals C) : Nontrivial (CoverGroup C) :=
   ⟨⟨defect C, 1, R.defect_ne_one⟩⟩
 
 /-- Property `(T)` for the whole group, read as a subgroup. -/
-theorem top_hasKazhdanPropertyT :
+theorem top_hasKazhdanPropertyT (R : CoverResiduals C) :
     HasKazhdanPropertyT.{0, 0} ↥(⊤ : Subgroup (CoverGroup C)) :=
   HasKazhdanPropertyT.of_mulEquiv Subgroup.topEquiv R.kazhdan
 
 /-- **The assembly.**  Feeding the compression core to the normal-Kazhdan
 criterion at `K = ⊤` gives the full MF residual: the cover group is not
 operator MF. -/
-theorem not_isOperatorMF_coverGroup : ¬ IsOperatorMF (CoverGroup C) := by
+theorem not_isOperatorMF_coverGroup (R : CoverResiduals C) :
+    ¬ IsOperatorMF (CoverGroup C) := by
   haveI : Nontrivial (CoverGroup C) := coverGroup_nontrivial C R
   exact QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect
     R.core ⊤ (top_hasKazhdanPropertyT C R) R.top_le_defectNormal top_ne_bot
