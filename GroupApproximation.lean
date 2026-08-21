@@ -1443,6 +1443,11 @@ import GroupApproximation.Algebra.HNNBridgeFreeness
 import GroupApproximation.Algebra.HNNBridgeTorsionFree
 import GroupApproximation.Analysis.CStarCompactSelfModule
 import GroupApproximation.Sofic.GreendlingerMaxConjugator
+import GroupApproximation.Sofic.OrderPreservingDegeneracy
+import GroupApproximation.Sofic.BareDefectSource
+import GroupApproximation.Algebra.CongruenceTorsionFree
+import GroupApproximation.Kazhdan.SL3Certificate
+import GroupApproximation.Sofic.BespokeRouterConstruction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
