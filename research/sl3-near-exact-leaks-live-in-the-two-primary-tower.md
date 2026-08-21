@@ -286,6 +286,22 @@ refutation, and this claim makes the reduction precise.
   `sum conj(t_j) t_(j-2)` of the per-layer phases of `K`'s
   trivial-isotypic block, the cleanest place to test the mechanism by
   hand.
+- **Wire hand-test: negative, and clarifying (2026-08-21).**  The
+  four G-invariant vectors sit inside the single Q_1-TRIVIAL isotypic
+  block, whose multiplicity is the full count of Q_1-orbits on the
+  512 points; the torsor `W` rotates that whole block, mixing the
+  wire into it, so by the block-trace theorem only the BLOCK TRACE is
+  locked there — and the enemy can zero a block trace whenever the
+  block is large (unitarity permits any value in the disk).  The
+  truncated-shift-pairing suggestion above is therefore wrong as a
+  floor source: the trivial block carries no rigidity.  The floor
+  carriers are exactly the multiplicity-ONE twisted blocks fed by
+  multiplicity-one Z-blocks (rigid phase in, rigid phase out, weight
+  `w_sigma` locked into the quadratic form).  The decisive census —
+  which twisted blocks have `mtilde_sigma = 1` and which Z-blocks
+  feed them — is the block-structure output of the running joint
+  probe; the uniform floor holds iff that census carries enough
+  locked weight along the tower, per the transfer-operator mechanism.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
