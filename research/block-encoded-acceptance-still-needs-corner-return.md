@@ -221,3 +221,11 @@ Together with `(BAE12)` and a lower bound on `tau(Q)`, `(BAE20)` pays the
 marked mass immediately.  Neither ordinary HNN covariance nor finite wreath
 exactification proves `(BAE20)`; it is exactly the remaining capacity-gated
 corner-return theorem.
+
+There is one important specialization.  If the fresh controls are realized
+inside the unique marked spin type of an extraspecial Pauli packet and the
+original source commutes with the full control packet, then
+`pauli-zero-atom-removes-acceptance-source-deficit` takes `G=P_0Q` directly
+and proves `||G||_2^2=2^(-m)tau(Q)` (up to fixed packet-rounding error).  In
+that model `(BAE10)` is unnecessary: only the corner-return scalar
+`eta_ret(P_0Q)` remains open.
