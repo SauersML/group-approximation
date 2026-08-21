@@ -67,8 +67,33 @@ refutation, and this claim makes the reduction precise.
   reduce to the identity), so honest machine-checkable instances
   start at `a = 3`, where the regular representation is too large
   (`|SL_3(Z/8)| ~ 1.1e7`) and the natural permutation representation
-  on `(Z/8)^3` (`d = 512`) is the right probe carrier — the
-  designated next experiment.
+  on `(Z/8)^3` (`d = 512`) is the right probe carrier.
+- **Probe v1 and the spectral floor (2026-08-21,
+  `experiments/sl3_delta3_tower_probe.py`,
+  `experiments/sl3-delta3-tower-probe.json`).**  A first optimization
+  run under-converged (defect `~23.5` of max `24` — descent stalled;
+  gradient formulas need finite-difference validation on a toy
+  instance before a rerun).  The failure analysis produced the sharper
+  tools: (i) by Hoffman--Wielandt, the per-pair defect floor is
+  EXACTLY the squared optimal-transport distance between the spectral
+  measures of `rho(lam)` and `rho(phi lam)`, computable from cycle
+  structure for permutation models — any honest `delta(a)` must
+  subtract this analytic floor and measure only the beyond-spectral
+  (eigenvector/joint) obstruction; (ii) the generator constraints say
+  the unipotent spectral measure is approximately DOUBLING-INVARIANT
+  (`e_12(1)^2 = e_12(2)`), which is precisely
+  `parabolic-spectrum-is-doubling-invariant`; exact invariance at
+  finite two-levels forces `mu = delta_1` (all mass cascades to `1`
+  in `a` doubling steps), and the enemy survives only because
+  doubling has Lipschitz constant `2`, so the cascade amplifies the
+  per-step defect by `2^a` and telescoping fails — the quantitative
+  form of the recorded fact that single-map rigidity is false.
+  (iii) Honest instances must also carry DEPTH: the fixed elements
+  `h^j` all demand exact orthogonality (`psi(h^j) = 0` for every
+  fixed `j`), and the `phi^j`-dictionary degenerates when
+  `2j + 1 >= a`, so the true wall shape is `delta(a, J)` with depth
+  `J ~ a/2` — the level/depth coupling is where a cross-level
+  coherence argument would have to bite.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the

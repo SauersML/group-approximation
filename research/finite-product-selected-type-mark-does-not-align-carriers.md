@@ -6,7 +6,7 @@ title: A surviving product of selected-type projections need not contain any com
 distinct_from:
   finite-packet-central-sign-cannot-enforce-nonlinear-support: that produces noncanonical forbidden-sector representations; this gives a canonical-profile counterexample to using a product of packet projections as its own alignment certificate.
   canonical-full-type-overlap-is-algebraic-corner-containment: that characterizes the full-overlap condition which would suffice; this shows why mere nonzero product norm is strictly weaker.
-  fanizza-canonical-profile-groupification: that permits a group-algebra mark and asks for canonical selected-type alignment; this rules out the most direct product-mark implementation of that alignment.
+  group-algebra-mark-reverse-kleene-collapse: that permits a selected packet idempotent as the mark once its canonical collapse is proved; this rules out the most direct product-mark implementation of the missing alignment.
 ---
 
 Let

@@ -1,15 +1,11 @@
 ---
 rg: 2
 id: canonical-selected-type-carrier-dichotomy
-kind: route
+kind: claim
 title: Reduce canonical Fanizza type alignment to algebraic corner transport or a matrix-only common-carrier theorem
-target: fanizza-canonical-profile-groupification
-requires:
-  - finite-product-selected-type-mark-does-not-align-carriers
-  - canonical-full-type-overlap-is-algebraic-corner-containment
-  - selector-edge-type-support-is-twist-invariant
-  - all-bcs-contexts-share-one-hyperoctahedral-signed-type
-  - tracial-bcs-rationalizes-full-overlap-distributions
+distinct_from:
+  fanizza-native-signal-ultraproduct-groupification: that asks for unconditional mark death in every matrix-ultraproduct homomorphism; this isolates the selected-carrier alternatives available after restricting to canonical-profile microstates.
+  signed-hecke-balanced-holonomy-route: that pursues the algebraic option below for a fixed no-CE BCS; this records the dichotomy for the machine-indexed Fanizza compiler and also audits the product-mark alternative.
 ---
 
 Canonical-delta microstates restrict to the regular character on every fixed
