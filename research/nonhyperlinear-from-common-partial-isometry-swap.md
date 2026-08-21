@@ -8,6 +8,7 @@ requires:
   - oracularizable-tracial-nonru-game-exists
   - one-gram-vector-decodes-a-finite-bcs-strategy
   - partial-isometry-swap-wordizes-one-bcs-gram-row
+  - perfect-tracial-bcs-has-one-common-module-swap
   - common-partial-isometry-swap-game-compiler
 ---
 
@@ -38,4 +39,3 @@ E_S>=(1-theta)||S||_2^2
 ```
 
 a contradiction.  Therefore `Gamma` is non-hyperlinear.
-

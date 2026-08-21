@@ -90,6 +90,11 @@ finite ordinary-group packet which authenticates **one common nonlinear
 partial-isometry swap** on the marked carrier while allowing the separate
 context representations required by the perfect infinite model.
 
+`perfect-tracial-bcs-has-one-common-module-swap` proves that this common
+swap exists exactly in the standard form of every perfect tracial source.
+Thus exact completeness is not asking for a new operator-algebraic
+phenomenon.  The open work is only its finite packet localization.
+
 Finite context packets already name every local predicate reflection, and
 countable amplification supplies exact infinite multiplicities.  The known
 failure is source alignment: ordinary finite HNN edges either see too little
@@ -111,4 +116,3 @@ multi-piece/Hecke or properly-infinite source which is common at the level of
   nonlinear and cannot be cut out by parity relations.
 - **Globally identify all context variables.**  This adds cross-context
   commutation and may destroy the exact perfect commuting representation.
-
