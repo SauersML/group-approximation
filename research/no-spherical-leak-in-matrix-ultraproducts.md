@@ -93,6 +93,28 @@ the finite-dimensionality of the microstates, not tracial abstraction.
   statement of what remains: one dynamical-rigidity theorem for `x4`,
   complementing an already-proven combinatorial one.
 
+- **Popa--Vaes W*-rigidity checked, does not reach (2026-08-21).**
+  For `Gamma` with property (T) the Bernoulli crossed product `L(W)`
+  has the lamp algebra as its UNIQUE Cartan (Popa / Ozawa--Popa
+  strong rigidity).  A hyperlinear `W` embeds `L(W)`, hence that
+  unique Cartan `A`, into the matrix ultraproduct `M`, where Cor D
+  forbids permutation-approximating `A`.  This would close the goal
+  IF a masa normalized by an approximate representation inside a
+  matrix ultraproduct were forced to be permutation-approximable
+  (Cartan-like).  No such ultraproduct-masa-normalization rigidity
+  exists -- masas in `R^omega`-type ultraproducts can be exotic and
+  need not be AFD-normalized -- so the internal uniqueness of the
+  Cartan does not transfer to an obstruction inside `M`.  Toolkit
+  survey now complete: `1`-bounded entropy (consistent, no
+  contradiction), character rigidity / charmenability (amenable part
+  only; charmenability of the carrier is false), Popa--Vaes Cartan
+  rigidity (internal, does not transfer), and elementary
+  near-identity forcing (fails at the Weyl swap) all checked and
+  mapped.  The non-Cartan exclusion is beyond the standard operator-
+  algebraic toolkit; the far-sector `x4` dynamical-rigidity route
+  (`weyl-defect-koopman-spectral-regularity`) is the one genuinely
+  new instrument aimed at it, and it is the live frontier.
+
 - **The goal needs strictly less than this claim.**
   `no-exact-quasi-regular-leak` isolates the single extreme profile
   `s = 0`, `psi = 1_Lambda` — the only configuration a hyperlinear
