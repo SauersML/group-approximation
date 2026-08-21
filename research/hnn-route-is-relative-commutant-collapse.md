@@ -10,7 +10,7 @@ distinct_from:
   approximate-collapse-for-kt-compressor: that is the (AC) wall for EL_r(F_q[x])'s compressed Kazhdan copy; this is the same wall for the explicit arithmetic pair SL_2(Z) <= SL_2(Z[1/2]), where co-density replaces the compressor and the arithmetic may be more tractable.
 ---
 
-Let `A` be finitely generated with a co-dense subgroup `C` (every
+Let `A` be finitely generated with a proper co-dense subgroup `C` (every
 finite-dimensional representation of `A` restricts on `C` to one with the
 same commutant: `rho(C)' = rho(A)'`), and form the HNN extension
 `G = <A, t | [t, C] = 1>`.  Pass to the tracial matrix ultraproduct
