@@ -27,6 +27,26 @@ the finite-dimensionality of the microstates, not tracial abstraction.
 
 ## Attempts
 
+- **Unified-frontier shot via 1-bounded entropy, and why it does not
+  close (2026-08-21).**  All three open program routes -- this Hecke
+  face, the `x4`-dynamical KSR face
+  (`weyl-defect-koopman-spectral-regularity`), and the factorial-trace
+  face (`hnn-carrier-factorial-character-collapse`) -- reduce to ONE
+  statement: exclude a non-amenable MIXING `G = PSL_n(Q_p)`-subrep with
+  `Lambda`-fixed cyclic vector inside `pi(Lambda)' cap M`.  Fired the
+  sharpest tool at it: the enemy factor `N = W*(L(Lambda), k)` is
+  strongly `1`-bounded (`Lambda` has (T), so `h(L(Lambda)) = 0`; `k`
+  wq-normalizes it, Hayes monotonicity gives `h(N) <= 0`), and
+  `N subseteq M` is Connes-embeddable.  So the enemy is a strongly
+  `1`-bounded, CE, non-amenable factor carrying a mixing (T)-rep.
+  NO CONTRADICTION is available: `L(SL_3(Z))` itself is strongly
+  `1`-bounded, non-amenable, and CE, so these properties are mutually
+  consistent, and `1`-bounded entropy does not force `k` into
+  `pi(Gamma)' cap M`.  This is exactly Alekseev--Thom Open Problem 6.2.
+  Closing it needs machinery beyond `1`-bounded entropy / character
+  rigidity on the non-amenable part -- the genuine CEP-adjacent
+  frontier at which all program routes meet.
+
 - **The goal needs strictly less than this claim.**
   `no-exact-quasi-regular-leak` isolates the single extreme profile
   `s = 0`, `psi = 1_Lambda` — the only configuration a hyperlinear
