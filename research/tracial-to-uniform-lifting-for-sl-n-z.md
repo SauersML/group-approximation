@@ -99,3 +99,26 @@ trace).
   absorber -- the content is genuinely global, and this is the
   cleanest known statement of what separates normalized from
   operator-norm stability.
+- **Multiplicative versus additive corrections (2026-08-21).**  For
+  unitaries, 2-norm errors propagate LINEARLY through words of
+  bounded length: `|| u v - u' v' ||_2 <= || u - u' ||_2 + || v -
+  v' ||_2`.  Consequently every step of Kazhdan's averaging argument
+  for amenable subgroups (`sigma-bar(g) = E_k sigma(g k) sigma(k)^(-1)`
+  over Folner sets, then polar correction) transplants verbatim from
+  operator norm to normalized HS -- amenable subgroups can be made
+  EXACT inside the ideal `I` at 2-cost `O(defect)`, consistent with
+  Hadwin--Shulman.  The quadratic-term obstruction of the normalized
+  Newton iteration arises ONLY from ADDITIVE corrections
+  `(1 + x) sigma`, and that is precisely the form of the gluing step
+  in every known Ulam-stability proof for high-rank lattices
+  (Burger--Ozawa--Thom: bounded generation by root subgroups plus a
+  bounded-cohomology primitive; Glebsky--Lubotzky--Monod--Rangarajan:
+  asymptotic-cohomology primitive, defect diminishing).  So the
+  residue of this claim is exactly a MULTIPLICATIVE gluing of local
+  amenable corrections across the bounded generation of `SL_N(Z)` by
+  root subgroups (Carter--Keller) -- a nonabelian replacement for the
+  vanishing of bounded `H^2` -- and the abelianized version of that
+  gluing is already available (`abelian-lifting-obstruction-
+  vanishes-for-sl-n-z`).  Any attack should be designed so that no
+  correction is ever added to a unitary; every correction should
+  replace a unitary by a nearby unitary.
