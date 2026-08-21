@@ -1,0 +1,174 @@
+{
+  "all_value_and_reset_residuals": false,
+  "all_value_residuals": true,
+  "records": [
+    {
+      "alpha_hex": "0x1",
+      "arity": 1,
+      "beta_all_hex": null,
+      "beta_values_hex": "0x2",
+      "compatible_reset_values_hex": [],
+      "matrix_size": 2,
+      "nonzero_reset_forms": 1,
+      "reset_restriction_ranks": [
+        0
+      ],
+      "reset_values_hex": [
+        "0x1"
+      ],
+      "value_and_all_resets_common_residual": false,
+      "value_forms": 2,
+      "value_only_common_residual": true,
+      "value_restriction_ranks": [
+        1,
+        1
+      ]
+    },
+    {
+      "alpha_hex": "0x1",
+      "arity": 2,
+      "beta_all_hex": null,
+      "beta_values_hex": "0x9",
+      "compatible_reset_values_hex": [
+        "0xa"
+      ],
+      "matrix_size": 4,
+      "nonzero_reset_forms": 3,
+      "reset_restriction_ranks": [
+        2,
+        3,
+        2
+      ],
+      "reset_values_hex": [
+        "0xd",
+        "0xa",
+        "0x7"
+      ],
+      "value_and_all_resets_common_residual": false,
+      "value_forms": 4,
+      "value_only_common_residual": true,
+      "value_restriction_ranks": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha_hex": "0x1",
+      "arity": 3,
+      "beta_all_hex": null,
+      "beta_values_hex": "0x31",
+      "compatible_reset_values_hex": [
+        "0xf"
+      ],
+      "matrix_size": 8,
+      "nonzero_reset_forms": 7,
+      "reset_restriction_ranks": [
+        6,
+        6,
+        6,
+        7,
+        6,
+        6,
+        6
+      ],
+      "reset_values_hex": [
+        "0x4e",
+        "0xf7",
+        "0xb9",
+        "0xf",
+        "0x41",
+        "0xf8",
+        "0xb6"
+      ],
+      "value_and_all_resets_common_residual": false,
+      "value_forms": 8,
+      "value_only_common_residual": true,
+      "value_restriction_ranks": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ]
+    },
+    {
+      "alpha_hex": "0x1",
+      "arity": 4,
+      "beta_all_hex": null,
+      "beta_values_hex": "0x4ddc",
+      "compatible_reset_values_hex": [
+        "0x2ce6",
+        "0xb0eb",
+        "0x9c0d",
+        "0x762",
+        "0x2b84",
+        "0xb789",
+        "0xb8aa",
+        "0x24a7",
+        "0x841"
+      ],
+      "matrix_size": 16,
+      "nonzero_reset_forms": 15,
+      "reset_restriction_ranks": [
+        15,
+        15,
+        15,
+        14,
+        14,
+        14,
+        14,
+        15,
+        15,
+        15,
+        14,
+        14,
+        15,
+        15,
+        15
+      ],
+      "reset_values_hex": [
+        "0x2ce6",
+        "0xb0eb",
+        "0x9c0d",
+        "0x932e",
+        "0xbfc8",
+        "0x23c5",
+        "0xf23",
+        "0x762",
+        "0x2b84",
+        "0xb789",
+        "0x9b6f",
+        "0x944c",
+        "0xb8aa",
+        "0x24a7",
+        "0x841"
+      ],
+      "value_and_all_resets_common_residual": false,
+      "value_forms": 16,
+      "value_only_common_residual": true,
+      "value_restriction_ranks": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ]
+    }
+  ]
+}

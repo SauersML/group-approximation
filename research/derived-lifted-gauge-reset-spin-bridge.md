@@ -72,3 +72,11 @@ balanced Morita edge.
   one baseline hyperbolic pair is now an explicit constant-rank ordinary-word
   operation.  What remains is precisely the common rank-`N-1` residual for the
   finite selector menu.
+- `fanizza-schur-menu-has-common-codimension-one-residual` closes that finite
+  linear-algebra audit for the universal arity-four compiler: fixed
+  rank-fifteen source/target hyperplanes are nondegenerate in every baseline
+  sector and in a reset direction, after a harmless selector basis change.
+  The remaining work is no longer a search for a residual.  It is to realize
+  the finitely many residual symplectic congruences in one finite incidence
+  whose relevant representation restrictions contain no extra multiplicity
+  modes.

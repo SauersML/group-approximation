@@ -63,7 +63,9 @@ finite group `(GRS3)` directly.
 
 This packet removes the last *one-pair* scale ambiguity in the derived reset.
 For a rank-`N` Schur baseline it can replace one hyperbolic pair while a common
-rank-`N-1` residual packet carries the remaining pairs.  Establishing that
-common residual simultaneously for the finite Fanizza selector menu remains
-the sole local representation-ring audit.
+rank-`N-1` residual packet carries the remaining pairs.
 
+`fanizza-schur-menu-has-common-codimension-one-residual` now supplies fixed
+rank-fifteen hyperplanes for the universal arity-four menu and a compatible
+reset direction.  What remains is the finite incidence implementing the
+sectorwise symplectic congruences of those nondegenerate residual forms.
