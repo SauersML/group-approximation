@@ -64,3 +64,25 @@ single unitary `u in M` and all `lambda`.
   correctability hole into such an object, so refutation here is
   refutation there -- the two claims stand or fall together, which
   is exactly what makes this the irreducible core.
+- **Atomic dichotomy for the enemy (2026-08-21).**  Apply the (T)
+  disintegration to the Lambda-restriction of an enemy's Gamma-
+  embedding: `k in iota(Lambda)' cap M` commutes with the center of
+  the relative commutant, so `k` is block-diagonal across the
+  Lambda-atoms with `k_atom in Q_atom` (a factor).  Two cases.
+  (a) Every atom has SCALAR commutant: then `k` is a scalar per
+  atom and the enemy is an abelian coupling -- a countable weighted
+  atom system on which `Gamma` acts through the Hecke
+  correspondence (Lambda_-/Lambda_+ refinements exchanged by `h`),
+  whose commutator profile is a spherical coefficient of the
+  far-defect formula; this is the coset-Bernoulli/quasi-regular
+  family, with its extreme profile the separately attacked hole
+  `no-exact-quasi-regular-leak`.  (b) Some atom has NON-scalar
+  factorial commutant hosting `k_atom`: then by
+  `hnn-carrier-enemy-moment-splitting` the Gamma-commutant tensor-
+  splits off `L(Gamma)`, so `k_atom` lives in `Q_(Lambda,atom)`
+  strictly above the tensor-split `Q_(Gamma,atom)` -- the enemy
+  needs Lambda-atoms whose commutant is a genuine amplification
+  factor NOT absorbed by the Gamma-structure.  This splits the wall
+  into two named sub-walls (abelian coupling; non-scalar atoms),
+  each with its own existing instruments, and the non-scalar case
+  is the one the extreme-point classification must address.

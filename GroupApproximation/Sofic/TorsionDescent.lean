@@ -402,7 +402,6 @@ theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
             (FreeGroup.mk W')
           = c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
               (FreeGroup.mk W) * c⁻¹ := by
-  set Nrel := Subgroup.normalClosure (FreeGroup.mk '' R) with hNrel
   obtain ⟨v, hv⟩ := hru
   obtain ⟨t, ht⟩ := hWu
   have hrlen : r.length = u.length + v.length := by rw [← hv]; simp
@@ -420,41 +419,40 @@ theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
     rw [← ht, ← FreeGroup.mul_mk]
   have h3 : FreeGroup.mk r = FreeGroup.mk u * FreeGroup.mk v := by
     rw [← hv, ← FreeGroup.mul_mk]
-  have hker : QuotientGroup.mk' Nrel (FreeGroup.mk u) *
-      QuotientGroup.mk' Nrel (FreeGroup.mk v) = 1 := by
-    rw [← map_mul, ← h3, ← MonoidHom.mem_ker, QuotientGroup.ker_mk', hNrel]
+  have hker : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk u) *
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk v) = 1 := by
+    rw [← map_mul, ← h3, ← MonoidHom.mem_ker, QuotientGroup.ker_mk']
     exact mk_mem_of_mem_symmetrization hr
-  have huv : QuotientGroup.mk' Nrel (FreeGroup.mk u)
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk v))⁻¹ :=
+  have huv : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk u)
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk v))⁻¹ :=
     eq_inv_of_mul_eq_one_left hker
-  have hqeq : QuotientGroup.mk' Nrel (FreeGroup.mk (FreeGroup.invRev v ++ t))
-      = QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s)) := by
+  have hqeq : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (FreeGroup.invRev v ++ t))
+      = QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.rotate s)) := by
     rw [h1, h2, map_mul, map_mul, map_inv, huv]
-  have hrot : QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s))
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+  have hrot : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.rotate s))
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) := by
     rw [mk_rotate_eq_conj W hs, map_mul, map_mul, map_inv]
   obtain ⟨W', c₁, hcyc', hconj', hlen'⟩ :=
     exists_cyclicallyReduced_conj_le (FreeGroup.invRev v ++ t)
   refine ⟨W', hcyc', by omega,
-    (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) *
-      QuotientGroup.mk' Nrel c₁)⁻¹, ?_⟩
-  have hq' : QuotientGroup.mk' Nrel c₁ * QuotientGroup.mk' Nrel (FreeGroup.mk W') *
-      (QuotientGroup.mk' Nrel c₁)⁻¹
-      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+    (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) *
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹, ?_⟩
+  have hq' : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁ * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W') *
+      (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)) := by
     rw [← hrot, ← hqeq, hconj', map_mul, map_mul, map_inv]
-  have hfinal : QuotientGroup.mk' Nrel (FreeGroup.mk W')
-      = (QuotientGroup.mk' Nrel c₁)⁻¹ *
-        ((QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
-          QuotientGroup.mk' Nrel (FreeGroup.mk W) *
-          QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s))) *
-        QuotientGroup.mk' Nrel c₁ := by
+  have hfinal : QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W')
+      = (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁)⁻¹ *
+        ((QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s)))⁻¹ *
+          QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk W) *
+          QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) (FreeGroup.mk (W.take s))) *
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) c₁ := by
     rw [← hq']
     group
-  rw [hNrel] at hfinal ⊢
   rw [hfinal]
   group
 
