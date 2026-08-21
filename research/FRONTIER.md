@@ -2950,12 +2950,12 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 - 2026-08-21 · solenoid-absorption-cascade-converges [OPEN] The twisted-coboundary absorption cascade on an odd solenoid tower converges dimension-free
 - 2026-08-21 · sharply-two-transitive-lamp-fd-invisibility-proof [COMPLETE] Simple sharply 2-transitive actors make every finite-dimensional representation kill augmentation lamps
+- 2026-08-21 · augmentation-lamp-fp-criterion-proof [COMPLETE] Pass finite presentability across the parity-index subgroup and apply Cornulier
+- 2026-08-21 · andre-guirardel-actor-does-not-yet-close-global-pvm-gate [OPEN] The Andre-Guirardel actor feeds the infinite-character backend only after finite-presentation and global-PVM gates
 - 2026-08-21 · sharply-two-transitive-augmentation-lamp-host-audit [ESTABLISHED] A simple property-T sharply 2-transitive actor gives the exact lamp backend, subject to two open gates
-- 2026-08-21 · sharp-two-t-actor-gives-fp-host [ESTABLISHED] A finitely presented sharp-two property-T actor gives the required aperiodic two-point lamp host
-- 2026-08-21 · sharp-two-t-actor-fp-host-proof [COMPLETE] Apply the two-orbit permutational-wreath presentation criterion
-- 2026-08-21 · sampled-weyl-defect-controls-common-pvm-dirichlet-energy [OPEN] Make sparse Weyl defects control transport energy of one common spectral PVM
-- 2026-08-21 · property-t-must-upgrade-global-augmentation-rounding [OPEN] Property T must supply the missing global augmentation-module rounding
-- 2026-08-21 · property-t-global-pvm-feeds-infinite-actor-backend [OPEN] Use a property-T augmentation decoder before the actor energy estimate
+- 2026-08-21 · augmentation-lamp-finite-presentation-criterion [ESTABLISHED] Finite presentation of a 2-transitive augmentation lamp group is equivalent to two actor finiteness conditions
+- 2026-08-21 · bffhz-envelope-exact-actor-proof [COMPLETE] Put a two-point Pauli seed in one free property-T translation orbit
+- 2026-08-21 · matrix-phased-translations-exact-identity-scalarize [ESTABLISHED] Exact identity matching scalarizes every matrix-phased translation table
 
 ## Active claims
 
