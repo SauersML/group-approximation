@@ -91,3 +91,19 @@ multiplicity algebras.  They cannot create the return `(HAP3)` without also
 creating it in the regular representation.  The remaining minimum scalar is
 therefore one matrix-only comparison between the fixed marked carrier and
 the cross-Gram moment `tr(EQ_t)`.
+
+This comparison is now sharpened to
+`julia-authenticated-high-spectrum-rank-selector`.  It is enough to place
+the normalized marked rank below the rank of
+
+```text
+1_[alpha_t,1](E Q_t E),
+```
+
+for thresholds with `alpha_t t^2->infinity`.  Markov's inequality then gives
+the required decay.  `odd-clock-julia-overlap-floor-is-tracial` proves that
+a literal odd cyclic clock supplies only a universal tracial overlap floor,
+while `determinant-index-cannot-authenticate-julia-heat-overlap` rules out
+determinant, parity and bounded Fredholm defects.  The surviving gate is an
+extensive finite-coordinate Hall/conductor matching on the same marked
+multiplicity reservoir.
