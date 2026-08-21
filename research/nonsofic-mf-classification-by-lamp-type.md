@@ -75,4 +75,10 @@ Kun--Thom example.
   applies: `C^*(F_infty)` is residually finite-dimensional, hence MF, while its
   QWEP status is Kirchberg's conjecture, false after the negative solution of
   Connes embedding. Group-level weak MF and algebra-level MF must not be
-  conflated.
+  conflated.  The split form now supplies a sharper boundary:
+  `finite-dimensional-nielsen-cocycle-models-kill-mark` proves that **every
+  exact finite-dimensional equivariant quantum model** of the free radical
+  kills the marked free generator.  Thus Gao--Kunnawalkam Elayavalli--Mj's
+  ambient-strong-convergence upgrade cannot start from exact actions here;
+  any reduced-MF proof must construct genuinely asymptotic actions already at
+  the finite stages.
