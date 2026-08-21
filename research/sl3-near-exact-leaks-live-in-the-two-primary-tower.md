@@ -488,6 +488,22 @@ refutation, and this claim makes the reduction precise.
   the oscillation-vs-P comparison; next theorem target: the
   phase-averaging floor lemma
   `min |leak| >= P - osc` with `P` bounded below via the sum rule.
+- **Carrier census COMPLETE (2026-08-21,
+  `experiments/sl3-q1-census.json`).**  The twisted commutant has
+  exactly `34` multiplicity-one blocks, of dimensions
+  `2^4, 4^8, 8^8, 16^10, 32^4` — summing to `392`, EXACTLY the native
+  mass: every constituent of every native block is separated (the
+  swap identifies nothing), each matching the derived branchings
+  (`84: 2,2,4x4,16,16,32`; `112: 8x4,16x3,32`) block for block, and
+  `sum mtilde^2 = 34 + 60 + 27 + 144 = 265` on the nose.  No
+  one-dimensional character is a carrier (`mtilde in {2,3,12}`), as
+  hand-predicted.  So 77% of the space is phase-locked through just
+  FOUR shared native phases — but the locked partner data `y_sigma`
+  rides on shallow multiplicity-`>= 2` traces the enemy can zero,
+  confirming with exact numbers that the `a = 3` first-order form is
+  vacuous and the measured floor, if real, is second-order.  The
+  cancellation solver now decides reality; the census stands as the
+  complete structural input for whatever mechanism survives.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
