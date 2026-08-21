@@ -188,6 +188,16 @@ the fixed-depth nonhyperlinearity criterion.
   energy bounded by word defect plus the already-defined first exits.  Once
   that dictionary is proved, the established Schreier PVM inequality
   supplies the missing fixed `kappa`.
+- **Common-PVM rounding is one scalar Gram estimate.**  Given the `42`
+  labelled candidate branch projections with total rank at most the ambient
+  dimension, `forty-two-branch-gram-polar-rounding` simultaneously
+  orthogonalizes them by polar decomposition of their block-column synthesis
+  map.  The total squared movement is at most four times
+  `Omega=sum_(i!=j)tr(P_iP_j)`, and the rounded PVM covariance energy is at
+  most `3 E_raw+24 Omega`.  Thus no further same-basis rounding theorem is
+  needed after proving `Omega<=C(mixedRootEnergy+firstExitMass)`.  This
+  cross-overlap inequality is now the exact algebraic content of the common
+  `42`-branch extraction; bounded local jointness alone cannot supply it.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
