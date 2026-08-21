@@ -3,15 +3,12 @@ rg: 2
 id: andre-guirardel-actor-does-not-yet-close-global-pvm-gate
 kind: route
 title: The Andre-Guirardel actor feeds the infinite-character backend only after finite-presentation and global-PVM gates
-from:
+target: same-basis-rounding-interface-for-sparse-weyl-sampler
+requires:
   - sharply-two-transitive-augmentation-lamp-host-audit
   - augmentation-lamp-finite-presentation-criterion
-to:
-  - same-basis-rounding-interface-for-sparse-weyl-sampler
-requires:
   - property-t-must-upgrade-global-augmentation-rounding
   - infinite-character-actor-word-energy-interface
-status: open
 ---
 
 The exact actor-side ingredients are present: one nonzero augmentation

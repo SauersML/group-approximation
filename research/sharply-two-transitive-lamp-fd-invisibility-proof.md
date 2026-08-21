@@ -1,10 +1,10 @@
 ---
 rg: 2
 id: sharply-two-transitive-lamp-fd-invisibility-proof
-kind: proof
+kind: route
 title: Simple sharply 2-transitive actors make every finite-dimensional representation kill augmentation lamps
-proves:
-  - sharply-two-transitive-augmentation-lamp-host-audit
+target: sharply-two-transitive-augmentation-lamp-host-audit
+requires: []
 ---
 
 Let `A`, `X`, `M`, and `Gamma` be as in
