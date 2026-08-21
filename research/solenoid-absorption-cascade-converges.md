@@ -105,6 +105,33 @@ recursion terminates; the total correction is
   Everything downstream (K_2 3-torsion-freeness, 3-coprime base)
   is correct arithmetic ONLY once `psi_*` is confirmed to reduce to a
   fixed-point-free-plus-`x4` form.
+- **Caveat RESOLVED by computation: `psi_* = Ad(h)`, pure `x4`, no
+  swap (2026-08-21).**  Compute the correction equation explicitly.
+  The lower tower is defined by the swap, `L(y) = s e_+(-y) s^{-1}`,
+  and `(R1)` is exactly the failure of the Weyl-torus relation
+  `s h s^{-1} = h^{-1}` (a one-line check: `h L(y) h^{-1} = L(y/4)`
+  holds iff `s h s^{-1} = h^{-1}`, using `h e_+(x) h^{-1} = e_+(4x)`).
+  To fix it WITHOUT disturbing the exact upper tower, correct
+  `s -> s c` with `c` in the base commutant `Z = {V}'`
+  (`V = pi(u)`).  The resulting equation for `c` is
+  `c (h c^{-1} h^{-1}) = e'`, i.e.
+
+  ```text
+  c psi(c)^{-1} = e',    psi = Ad(h) on Z = {V}'.
+  ```
+
+  `Ad(h)` maps the `V`-eigenspace of `lambda` to that of
+  `lambda^(4^{±1})` (since `h V h^{-1} = V^4`), so `psi_*` is the PURE
+  `x4` spectral shift on the discrete cycle data -- the swap `s` is
+  NOT in the operator, it only enters the right-hand side `e'`.  The
+  feared two-copy-swap model (`psi^2 = 1`, large fixed space) does not
+  arise, because `c` lives in the single upper base commutant and the
+  swap has been absorbed into the target.  Hence `(psi_* - 1)` is
+  `4^{±1} - 1` on `Z/N` -- a unit times `3` either way -- and the
+  `prime 3` conclusion is CONFIRMED, not conjectural: lemma (b)
+  reduces to `(I)` a `3`-coprime `LV` exact base, or `(II)` `e'`
+  avoiding the `3`-primary `x4`-orbits.  The K_2 and elementary
+  framings above now both apply with the operator pinned down.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
