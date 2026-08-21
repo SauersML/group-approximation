@@ -12,8 +12,16 @@ artifacts:
 ---
 
 Work in a fixed matched central sector of the Dogon--Vigdorovich Iwahori
-problem.  Let `rho_n,sigma_n` be the two exact edge representations on
-`C^(d_n)` with edge defect tending to zero.  Write their `B`-isotypic
+problem.  Let `pi_n^+,pi_n^-` be exact representations of the two modular
+vertices and, after the fixed inner identification of the edge, put
+
+```text
+rho_n=pi_n^+|B,          alpha^*(sigma_n)=pi_n^-|B,
+```
+
+where `alpha` is the Nielsen involution in
+`iwahori-commensurator-nielsen-involution`.  Assume the identity comparison
+between `rho_n,sigma_n` has edge defect tending to zero.  Write their `B`-isotypic
 projections as `(P_(n,i))` and `(Q_(n,j))`, let `lambda_(n,i,j)` be the bottom
 mixed-intertwiner energy on `P_(n,i) M_(d_n) Q_(n,j)`, and put
 
@@ -63,3 +71,11 @@ separate extension-locus transversality problem.
    irreducible, but the two vertex decompositions have independent relative
    position.  A cardinality-free operator-valued matching theorem is still
    needed.
+4. **Ordinary modular extendibility is still insufficient.**
+   `same-side-modular-extensions-do-not-integralize-edge-transport` uses a
+   continuous two-dimensional family of exact `C_2*C_3` representations and
+   a Hadamard block rotation to reproduce the fixed `pi/4` obstruction with
+   irreducible edge types that all extend to the modular group.  Therefore
+   the load-bearing hypothesis above is specifically that the second type
+   lies in the **opposite `alpha`-twisted extension locus**.  Omitting that
+   condition makes the claim false.
