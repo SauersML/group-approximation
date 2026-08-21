@@ -77,3 +77,13 @@ on `(Q x Q)/Delta Q` is sofic regardless of `Q`.  The combined `F_m x F_m`
 action is not residually finite; deciding whether it is sofic is precisely a
 commuting-actions problem.  Whether `L(W)` contains the fixed non-CE relation
 factor (or is itself non-CE) is the remaining analytic question.
+
+The weakest orbit-chart attack is now closed.
+`mihailova-left-right-local-models-do-not-see-q` applies Alekseev--Thom to
+show that the left-right action has finite local isometric models for every
+quotient `Q`, because the actor `F_m x F_m` is residually finite.  This remains
+true for the nonsofic `Q` used here.  Such models therefore cannot decide the
+combined action.  What remains is exactly the upgrade from arbitrary finite
+metric patches to positive-density Hamming orbit charts, or equivalently an
+operator-level promotion toward finite-dimensional approximation of the
+left-right representation on `ell^2(Q)`.
