@@ -40,12 +40,62 @@ The exact canonical packet moment is `tr(H)=1/8`, so canonical matrix
 microstates cannot satisfy vanishing defect.  Clause 3 keeps the mark
 algebraically nonzero; clause 4 is the regular-representation firewall.
 
+There is now a strictly weaker two-orientation alternative to clause 2.
+By `two-oriented-trace-cyclic-returns-cancel-the-gauge`, it suffices to
+decode a model-dependent projection `G<=H` and two cyclic returns
+
+```text
+E -> E-H+G,                  E -> E-G,                 (STR1')
+```
+
+with total scalar trace error `omega(def)`.  The two cyclic deficits are
+`H-G` and `G`, so they add to `H` without any orientation or common-basis
+selection.  For the D8 packet one may take the two complementary Pauli
+halves `(TGR5)`.  This removes the stationary chord gauge from the scalar
+endpoint; constructing the two finite-matrix-only return maps remains the
+open group-word step.
+
 Because the native additive incidence graph has only one cycle, this cell is
 source-specific and local.  It does not have to return an arbitrary BCS
 atlas, synchronize a long computation, or provide a uniform family of
 proper-corner gadgets.  What remains open is still genuine: ordinary group
 words are invertible, so the one-sided maps must arise only after
 finite-dimensional packet compression, not as literal group equations.
+
+Two further exact audits sharply restrict that compression.
+
+First, `central-character-regular-flow-defeats-finite-d8-return` proves that
+selecting the negative central character of the D8 packet does not defeat
+the regular stationary flow.  Every finite graph of finite packet groups
+which preserves the common D8 center has an exact finite-dimensional
+negative-character representation; on it `H` is the identity.  Thus a
+single Bass--Serre/HNN incidence cell, even after central-type selection,
+cannot satisfy `(STR1)`.
+
+Second, `universal-block-return-violates-the-regular-firewall` proves that a
+Julia unitary, Steinberg block linearization, or literal Toeplitz relation
+cannot supply `(STR1)` as fixed group-algebra identities.  The left regular
+finite trace would then give `tr(H)=0`, contradicting the faithful
+trace-`1/8` D8 projection.  Consequently the missing two-cell must act on
+the **finite chord multiplicity coordinates** and must not be derivable in
+an arbitrary finite tracial von Neumann algebra.
+
+After these audits, the minimal unresolved scalar is precise: on the
+selected central-character stationary packet, the native prescribed-word
+two-cell must force the chord multiplicity transport to lose exactly the
+`H` carrier in finite matrices, while countably infinite multiplicity
+absorbs that loss.  Neither packet restriction multiplicities nor a
+universal block identity can be the source of this loss.
+
+Nor can a fixed determinant or projective-index test provide the loss.
+`fixed-d8-holonomy-has-no-determinant-density` fills the external
+multiplicity by exact bounded Clifford blocks and confines every mismatch to
+one bounded remainder.  Tensoring that remainder with the positive-density
+D8 spin leaves normalized HS error `O(m^(-1/2))`.  Two independent return
+orientations only replace the bounded block size by another fixed constant.
+They become useful only if the native prescribed words make them act on a
+growing family of multiplicity coordinates or prove the extensive
+proper-corner loss in `(STR1)` itself.
 
 The triangle alone supplies no charge.  It is classically flat, with all
 eight separator assignments extendible.  Hence clause 1 must fail if the
