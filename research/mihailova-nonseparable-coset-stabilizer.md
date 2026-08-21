@@ -87,3 +87,18 @@ combined action.  What remains is exactly the upgrade from arbitrary finite
 metric patches to positive-density Hamming orbit charts, or equivalently an
 operator-level promotion toward finite-dimensional approximation of the
 left-right representation on `ell^2(Q)`.
+
+The operator promotion is now isolated in
+`mihailova-actor-liftable-ce-forces-q-hyperlinear`.  If a Connes embedding of
+the Bernoulli crossed product represents the canonical `F_m x F_m` actor by
+exact finite-dimensional projective representations at every matrix level,
+conjugating
+the centered base lamp gives finite-dimensional coefficients converging to
+the quasi-regular coefficient of `ell^2(Q)`.  Hence `Q` would be hyperlinear.
+This needs no Cartan assumption, but it is only a boundary: the explicit `Q`
+here is known nonsofic, not nonhyperlinear, so hyperlinearity of `Q` would not
+contradict the input.  The unresolved gap in bare Connes embeddability is
+exactly that its actor matrices obey the cross-commutation relations only
+modulo normalized Hilbert--Schmidt error, rather than merely scalar error,
+at each level; a diagonal Cartan does not by itself exactify those
+normalizers even projectively.
