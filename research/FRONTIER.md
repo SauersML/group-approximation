@@ -2948,12 +2948,12 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 - 2026-08-21 · solenoid-absorption-cascade-converges [OPEN] The twisted-coboundary absorption cascade on an odd solenoid tower converges dimension-free
 - 2026-08-21 · skeleton-relative-hs-stability-for-sl2 [OPEN] SL2(Z[1/2]) is HS-stable relative to its two exact parabolic skeletons
-- 2026-08-21 · single-triangle-trace-cyclic-return-cell [OPEN] Build one trace-cyclic proper-corner cell for the native Fanizza triangle
+- 2026-08-21 · cascade-convergence-closes-skeleton-gluing [OPEN] Rigidity plus syzygy plus cascade convergence give the skeleton gluing
 - 2026-08-21 · one-seed-character-expansion-proof [COMPLETE] Put half the mark in nonzero characters and apply the PVM expander ledger
 - 2026-08-21 · one-seed-actor-closes-bounded-pauli-metapixel [OPEN] Replace the mixed Weyl table by one seed and an expanding actor orbit
 - 2026-08-21 · one-pauli-seed-character-expansion [ESTABLISHED] One Pauli seed plus expanding character covariance forces dimension or mark collapse
-- 2026-08-21 · functorial-packet-return-firewall [ESTABLISHED] Fixed tracially functorial packet compression cannot produce the trace-cyclic proper returns
-- 2026-08-21 · fixed-functorial-packet-compression-firewall-proof [COMPLETE] Apply the proposed packet decoder inside the left regular finite factor
+- 2026-08-21 · bounded-template-expanding-character-actor-family [OPEN] Compile an unbounded expanding character actor with bounded occurrence templates
+- 2026-08-21 · single-triangle-trace-cyclic-return-cell [OPEN] Build one trace-cyclic proper-corner cell for the native Fanizza triangle
 
 ## Active claims
 
