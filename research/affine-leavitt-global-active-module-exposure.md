@@ -1,0 +1,50 @@
+---
+rg: 2
+id: affine-leavitt-global-active-module-exposure
+kind: claim
+title: Decode the whole affine-Leavitt last-column module with uniform actor energy
+distinct_from:
+  affine-leavitt-steinberg-hs-coefficient-decoder: that asks for one approximate relative Leavitt cell; this asks for a global additive root-module PVM and actor covariance instead.
+  affine-leavitt-boundary-shear-payment: that asks for fixed-depth scalar estimates and allows constants to grow with depth; this asks for one uniform whole-module quasirepresentation.
+  finite-presentation-must-expose-whole-module-with-uniform-defect: that is the abstract augmentation-module interface; this instantiates it in the active last-column root subgroup of the affine-Leavitt Steinberg presentation.
+---
+
+OPEN.  From every sufficiently accurate matrix tuple for the fixed finite
+presentation of
+
+```text
+St_6(L_A(k[C_aff]))
+```
+
+construct a whole-module map
+
+```text
+phi:(A R)^5 -> U(d)
+```
+
+with a dimension-independent uniform all-pairs additive defect, preserving
+`x_16(A)`, and with uniform transport energy under a fixed Kazhdan generating
+set of the first-five-coordinate Steinberg actor.
+
+Uniform abelian HS stability would round `phi` to one same-dimensional
+finite-support PVM.  Then
+`affine-leavitt-global-root-pvm-collapses-active-mark` finishes.
+
+## Attempts
+
+- **Close one finite root Fourier window.**  It turns the coefficient shears
+  into permutations of Plancherel atoms and erases the expanding boundary.
+- **Increase the window depth.**  Word/area constants grow with the remote
+  coefficient addresses, so no uniform all-pairs defect follows.
+- **Use deterministic equivariant child maps.**  `rectangular-escape`
+  enlarges the recovered label quotient while shrinking multiplicity in the
+  same ambient matrix dimension.  Such finite-depth data do not assemble to
+  one global covariant PVM.
+
+Accordingly the character-orbit backend does not prove the old
+affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by
+a cleaner property-`(T)` PVM endpoint.  The global exposure assertion is
+stronger than the fixed-depth boundary estimate and is not known to be
+equivalent to it; the rectangular model explains why every current local
+extraction attempt fails at the same boundary/multiplicity interface.
+
