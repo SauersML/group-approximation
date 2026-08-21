@@ -248,7 +248,7 @@ mass, and no row is asserted as a universal identity.
 
 Two further audits sharpen the syntax. Quasi-regular coset modules can make
 a literal involution quarter-negative, but
-`hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving` shows the
+`hecke-quarter-selector-is-untyped-or-rank-preserving` shows the
 dichotomy: without type authentication the regular sector is balanced, while
 after authentication every ordinary HNN/Hecke edge preserves the very
 multiplicity that a coarse-to-fine row must change. Conversely,

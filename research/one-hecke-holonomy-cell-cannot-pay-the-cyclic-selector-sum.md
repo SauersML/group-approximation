@@ -7,7 +7,7 @@ distinct_from:
   matrix-only-cyclic-carrier-invariance: that shows a product of the mixed selector row errors can cancel and that pure transport words do not locate fine atoms; this allows the two-cell to constrain the actual transport holonomy and proves that the last free edge gauge closes it while the selector pressure is unchanged.
   finite-packet-graph-atlases-have-a-regular-stationary-flow: that constructs positive regular vertex and edge multiplicities before any two-cell is attached; this extends that stationary model across one square multiplicity-holonomy cell and compares its zero word energy directly with the cyclic selector sum.
   proper-packet-rank-growth-needs-compressed-two-cell: that isolates a compressed unequal-carrier return as the surviving interface; this proves that a two-cell which sees only the uncompressed product of edge intertwiners is still flat and therefore does not supply that interface.
-  hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving: that obstructs authenticating a quarter selector by a single finite edge; this gives the independent multi-edge obstruction even when analytic half and quarter cuts have already been chosen on every carrier.
+  hecke-quarter-selector-is-untyped-or-rank-preserving: that obstructs authenticating a quarter selector by a single finite edge; this gives the independent multi-edge obstruction even when analytic half and quarter cuts have already been chosen on every carrier.
 ---
 
 **ESTABLISHED.**  A single closed Hecke transport holonomy, including one
