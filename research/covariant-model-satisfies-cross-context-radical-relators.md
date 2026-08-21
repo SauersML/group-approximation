@@ -46,6 +46,48 @@ nothing here: in any finite tuple the relators are part of the energy
 `E`, and violation of the common endpoint marginals is charged to `E`
 directly.
 
+## Why no edge can ever carry the bit
+
+The obvious alternative — enlarge the reset subgroup so the label word is
+edge-carried and the events become type-level — is impossible, not merely
+unattempted.  On a forbidden sector the chart-`i` label word is the
+`delta_i`-invariant raw radical direction, i.e. the unique solution of
+`A_f(a) w = 0`, `ell_i(w) = 0`; by the block form `(CHR1)` this is exactly
+the radical line of `B_i(a)`.  The nondegeneracy certificate `(CHR2)`
+requires `phi_i` to be nonzero on every `B_i`-radical line, so
+`phi_i(w) = 1` and `w` lies outside `W_i = ker(phi_i)` for every admissible
+hyperplane.  The Morita merge is therefore structural: chart `i`'s own bit
+can never live in chart `i`'s edge subgroup, the two labels always fuse over
+`L_i`, and any constraint pinning the endpoint events must be imposed
+transversally to the graph-of-groups data — which is what `(CCR1)` does.
+This also confirms the relators are genuinely non-Bass--Serre: they are not
+consequences of any legal edge enlargement.
+
+## Proof plan
+
+1. Express each context transport as the composite of the established
+   cells: the `(CHR3)` chart restriction, the two-copy Weyl derivative
+   reset `(WDR2)`, gauge doubling, and the affine Clifford packet edge.
+2. Track the two shares of each radical bit through the doubling.  The
+   logical (shared) coordinate is the orbit product `w^((0)) w^((1))` of
+   `(WDR3)`-type, and gauge flips fix logical products by
+   `gauge-doubling-gives-selector-flip-symmetries`, so the gauge-orbit
+   covariantization preserves whatever alignment the finite cells give.
+3. Use `finite-group-shared-overlap-polar-alignment` to choose the two
+   edge identifications of the paired contexts so that both send the
+   shared radical coordinate to the same fresh reading; `(CCR1)` then
+   holds exactly in the aligned covariant model, with the central
+   exponent `c_(a,j)` equal to the twist-functional difference.
+4. Marked-base separation descends because the aligned model satisfies
+   the relators exactly and already separates the marked word.
+
+The open step is 3: the polar alignment is currently proved for the type
+vectors of a shared overlap subgroup, and the radical bit is precisely not
+in the overlap subgroup (see above), so the alignment must be extended to
+one designated outside word per context pair — a strictly weaker demand
+than the full `S_3`-semidirect edge closure, since only two word images
+must be matched, not a whole group action.
+
 ## Attempts
 
 - **Common fresh vertex instead of relators.**  Gluing the three reset
