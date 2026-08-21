@@ -89,6 +89,16 @@ restriction map must robustly detect every decomposable `u wedge v` of the
 classical global section space; otherwise a one-qubit Pauli labeling is an
 exact or asymptotically perfect counterstrategy.
 
+That necessary first layer is achievable without densifying the template.
+`expander-edge-overlay-detects-simplex-exterior-square` overlays a
+constant-degree spectral expander on the simplex coordinates and uses an
+unrestricted two-coordinate joint-PVM view on each edge.  Balanced affine
+fibers give the uniform inequality `D <= (8/5)L_G`; the overlay has no
+equality clouds, and two edge contexts never share two coordinates.  Thus the
+Pauli-cycle countermodel does not prove an impossibility for simplex sections.
+The remaining gap is ordered correctly: decode arbitrary operator local views
+to global simplex sections while preserving the edge commutation energy.
+
 ## Attempts
 
 - A direct candidate is a bounded-degree subset of the projective-line BLR
