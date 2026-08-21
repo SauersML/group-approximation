@@ -112,6 +112,17 @@ the fixed-depth nonhyperlinearity criterion.
   a dimension-independent HS modulus.  See
   `actual-parahoric-triangle-kills-abelian-correctors`.  The remaining mixed
   tail is therefore genuinely nonabelian, not another conductor torus.
+- **Periodic conductor plateaux pay a constant seam.**  A truncated dyadic
+  shift makes every fixed root-depth test have squared defect `O(C_N/L)`,
+  but independent root clocks fail the first adjacent-root Steinberg
+  triangle with squared defect exactly `2`.  Replacing each chamber by an
+  exact finite Chevalley packet merely moves this constant failure to the
+  literal shared-root identities between adjacent chambers.  On arbitrary
+  block-diagonal mixtures, target overlap `1/4` forces some one of the six
+  wall defects to have square at least `1/3`; see
+  `periodic-conductor-plateaux-pay-a-shared-root-seam`.  Thus the open enemy
+  is non-block-diagonal rectangular multiplicity transport, not a long flat
+  conductor band.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
