@@ -74,5 +74,8 @@ about ONE explicit operator.
   average is computed exactly by the coset combinatorics:
   `<pi(w_i) k pi(w_i)^*, pi(w_j) k pi(w_j)^*> = 1_Lambda(w_j^(-1) w_i)
   = delta_(ij)` and each conjugate is orthogonal to `k`, so
-  `|| S(k) ||_2^2 = 1/4 + 1/(4L)`.  Any candidate refuting
+  `|| S(k) ||_2^2 = 1/4 + 1/(4L)`; by
+  `expanding-double-coset-degree-is-p-times-flags`, `L = p(p+1)(p^2+p+1)`,
+  so at the wired pair `(3, 2)` the average runs over `42` words and
+  the enemy value is exactly `43/168`.  Any candidate refuting
   construction should be tested against that number first.
