@@ -62,3 +62,26 @@ moment, one context-intertwiner row for each of the four native contexts, and
 one two-cell identifying their source supports.  The leaf context `C_X` must
 participate: synchronizing only the `C_Z-C_D-C_R` triangle leaves the exact
 leaf-rotation countermodel alive.
+
+## Finite-edge and Leavitt audits
+
+Two natural implementations have now been sharply fenced.
+
+- `isotypic-finite-edge-forces-full-commuting-selector-support` proves that a
+  common finite HNN edge type cannot have zero-loss source-Gram saturation
+  into a proper nonlinear predicate type when the logical selectors commute
+  with the edge.  The selected target type itself then contains every
+  compatible selector character.  Gauge doubling is inside this no-go
+  because its logical products are fixed by the gauge edge.
+- `common-source-leavitt-cell-inherits-rectangular-root-escape` shows that a
+  relative Leavitt coefficient cell gives the formal common source exactly,
+  but a fixed collection of Steinberg root Fourier tables still admits the
+  four-target rectangular label-expansion/multiplicity-contraction model.
+  The Leavitt syntax closes this claim only after the same-reservoir scalar
+  saturation estimate `(CLR6)` is proved.
+
+Thus neither a larger logical-invariant finite packet nor a one-level root
+table removes the load-bearing scalar.  A successful construction must make
+the capacity-gated source matrix-only, carry nontrivial selector action in
+the edge/holonomy, or prove a normalized-HS boundary payment excluding
+rectangular enlargement.
