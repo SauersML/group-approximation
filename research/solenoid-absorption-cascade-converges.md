@@ -132,6 +132,31 @@ recursion terminates; the total correction is
   reduces to `(I)` a `3`-coprime `LV` exact base, or `(II)` `e'`
   avoiding the `3`-primary `x4`-orbits.  The K_2 and elementary
   framings above now both apply with the operator pinned down.
+- **The true crux: cube-root eigenspaces, where `x4 = id` and the
+  prime 3 is `SL_2(Z)` torsion (2026-08-21).**  `4 = 1 mod 3`, so on
+  the `3`-primary spectrum the `x4` shift is the IDENTITY: there
+  `(psi_* - 1) = 0`, the equation `c psi(c)^{-1} = e'` degenerates to
+  `1 = e'`, and NO correction `c` can absorb a nontrivial `e'`.  So
+  lemma (b) does not close unconditionally; it requires precisely that
+  the Weyl-torus defect `e'` VANISH on the cube-root eigenspaces of
+  `V = pi(u)`.  This is not an artifact: the cube and sixth roots of
+  unity are exactly the eigenvalues of the order-3 and order-6
+  ELLIPTIC elements of `SL_2(Z)` (whose abelianization is
+  `Z/12 = Z/4 x Z/3`), so the prime `3` here IS `SL_2(Z)`'s torsion
+  prime, arriving through `4 - 1`.  The remaining content is therefore
+  a genuine arithmetic question, now sharply posed: in an accurate
+  microstate, is the Weyl relation `s h s^{-1} = h^{-1}` defect forced
+  to vanish on the subspace where `pi(u)` has order dividing `3`?  Two
+  honest possibilities: (a) it vanishes -- because on that subspace
+  the elliptic structure of `SL_2(Z)` is itself HS-stable (finite
+  subgroups are stable, Gowers--Hatami), pinning the Weyl relation
+  exactly there -- in which case lemma (b) closes and the far sector
+  with it; (b) it does not, and the `3`-primary elliptic sector is a
+  real residual obstruction, in which case the coset-Bernoulli /
+  `K_2` reconciliation must be invoked to show the surviving class is
+  a coboundary after all.  Possibility (a) is the likely one and is a
+  finite-subgroup-stability statement, the cleanest the far sector has
+  reduced to; it is the next thing to write.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
