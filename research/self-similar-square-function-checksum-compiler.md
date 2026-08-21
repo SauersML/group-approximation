@@ -128,6 +128,11 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   finite pro-`p` quotient by
   `full-h1-rank-free-endomorphism-families-periodize`.  The remaining free
   case requires at least two branches and a singular-`H_1` endomorphism.
+  Nonabelian nilpotent packets do not repair the recurrence:
+  `nilpotent-endomorphism-families-have-periodizations` proves that every
+  finite family of injective endomorphisms of a finitely generated
+  torsion-free nilpotent packet acts by automorphisms on one common finite
+  `p`-group quotient retaining any prescribed mark.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite

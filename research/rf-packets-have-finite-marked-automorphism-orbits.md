@@ -68,3 +68,7 @@ torus, including singular abelianization, while
 `full-h1-rank-free-endomorphism-families-periodize` gives one common
 characteristic pro-`p` quotient for arbitrary finite families with
 nonsingular rational `H_1` maps.
+`nilpotent-endomorphism-families-have-periodizations` closes the analogous
+proper-endomorphism branch for every finitely generated torsion-free
+nilpotent packet: injectivity forces finite-index image and hence a common
+marked characteristic pro-`p` quotient.
