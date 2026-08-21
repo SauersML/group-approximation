@@ -97,6 +97,18 @@ an ordinary group word enforcing the additive equality.
   exactify their union as a single finite packet.  The open point is an
   injective finitely presented group realization of those one-sided corners
   with the marked completeness representation intact.
+- **Exact affine one-to-two corner is now groupified.**  The coefficient
+  theorem `affine-active-corner-has-faithful-binary-leavitt-envelope` and its
+  Steinberg compilation `affine-leavitt-steinberg-mark-is-fd-invisible`
+  realize a literal active-module branch `A R ~= A R direct_sum A R` in a
+  faithful infinite model and kill the active root in every exact finite
+  matrix representation.  This closes the exact injective/finitely-presented
+  proper-corner subproblem.  What remains for `(CDS1)` is the robust
+  normalized-HS decoder from approximate Steinberg words to the coefficient
+  corner; exact root-kernel intersection has no dimension-free modulus.
+  Once decoded, `approximate-relative-leavitt-cell-kills-active-trace`
+  supplies the required local payment with the explicit dimension-free
+  constant `3`; no finite-depth rank quantization is used.
 - **Properly infinite completeness is admissible.**  The exact witness for
   the marked word may realize the restriction current with infinite
   multiplicity, so there is no need to extend the source tracial BCS state

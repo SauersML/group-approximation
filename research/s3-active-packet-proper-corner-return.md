@@ -34,6 +34,14 @@ This is the residual placement theorem after the endpoint atlas, local
 failure payment, private-gauge renewal, and reducing-corner estimates have
 all been separated out.
 
+The exact algebraic placement half is now supplied by
+`affine-active-corner-has-faithful-binary-leavitt-envelope`: the active
+idempotent supports a faithful one-to-two corner, and
+`affine-leavitt-steinberg-mark-is-fd-invisible` compiles it into a finitely
+presented group-word system with exact finite-dimensional collapse.  The
+remaining content of this node is the quantitative normalized-HS comparison
+in clauses 1--3, not existence or completeness of a proper corner.
+
 ## Attempts
 
 - An ordinary finite amalgam or HNN edge is insufficient: the regular
