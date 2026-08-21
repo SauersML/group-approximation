@@ -337,6 +337,30 @@ refutation, and this claim makes the reduction precise.
   characters of the parahoric versus layer stabilizer closures, per
   level.  Hand-tractable at `a = 4` and decisive; the running probe's
   block census gives the `a = 3` ground truth to calibrate the count.
+- **Multiplicity structure RESOLVED by pullback nesting (2026-08-21,
+  by hand).**  Layer `j+1` contains the full pullback of layer `j`
+  (primitive vectors mod `2^(j+1)` fiber over those mod `2^j`), so
+  the layer contents nest: `448 = 56 (pullback) + 392 (native)` and
+  `392 = 84 + 112 + 84 + 112` exactly.  Hence the trivial has
+  `m = 4`, the 6-dim `m = 3`, the 21- and 28-dim `m = 2` (same irrep
+  repeated by pullback), and the four NATIVE deep constituents
+  `84a, 84b, 112a, 112b` are pairwise-distinct irreps of
+  MULTIPLICITY ONE: profile `16+9+4+4+1+1+1+1 = 37`, uniquely
+  resolving the earlier two-scenario ambiguity.  Consequences invert
+  the census heuristic: every one-dimensional slot is fed by
+  `m >= 2` irreps and carries NO rigidity; the rigid `Z`-phases are
+  exactly the four native deep blocks, and the floor carriers are
+  their BIG parahoric constituents — four `32`-dim slots (weight
+  `1/16` each) and the `16`-dim slots — provided the constituents of
+  `84a/84b` and `112a/112b` are distinct characters (`mtilde = 1`),
+  which is precisely what the running block census decides.  The
+  measured floor `~0.149` matches two effective 32-dim carriers
+  (`2/16 = 0.125`), suggesting one pair shares and one separates.
+  UNIFORMITY MECHANISM IDENTIFIED: every level's native layer brings
+  fresh multiplicity-one deep irreps (new principal series), so the
+  locked weight plausibly stays a constant fraction of the space at
+  every level — the bulk-carrier existence the transfer mechanism
+  needs, now with a named source.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
