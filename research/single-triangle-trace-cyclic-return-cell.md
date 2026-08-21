@@ -55,6 +55,41 @@ halves `(TGR5)`.  This removes the stationary chord gauge from the scalar
 endpoint; constructing the two finite-matrix-only return maps remains the
 open group-word step.
 
+Even the common hidden projection is unnecessary.
+`trace-cyclic-triangle-balances-independent-return-gauges` allows the two
+returns to use unrelated `G_0,G_1<=H`.  A third block pair on the remaining
+triangle edge need only satisfy
+
+```text
+tr(BA) approx tr(G_0),              tr(AB) approx tr(G_1).  (STR1'')
+```
+
+Cyclicity balances `tr(G_0)` and `tr(G_1)`, and the three-edge ledger still
+gives `tr(H)<=omega(def)`.  This is the native-triangle analogue of a
+two-matching field balance: it asks for a same-occurrence **rank** coupling,
+not operator alignment of the chord multiplicity gauges.  The balance edge
+may be an ordinary tracially functorial incidence; only the two proper
+returns must remain genuinely matrix-only.
+
+The two proper returns cannot be extracted from the abstract triangle
+tables or from separator rank matching.
+`flat-fanizza-triangle-realizes-every-separator-distribution` constructs an
+exact finite diagonal model for every rational distribution on
+`(O_Q,O_P,Z_tilde)`, with all four context predicates satisfied and shared
+occurrences literally equal.  It survives arbitrary equality clouds and an
+independent positive D8 packet.  Therefore a two-matching/dimension-expander
+repair must act on the noncommuting **native machine-word multiplicity**
+(`P,X_tilde,U,Z_tilde,J` and the guarded recurrence), rather than merely
+expand or balance the three separator marginals.
+
+Moreover `dimension-expander-sampler-is-not-a-fixed-proper-return` shows
+that any one finite such sampler has an exact amplified Weyl--D8 model and
+cannot imply the two proper returns.  An all-depth sampler with uniform local
+cost could instead close the separate occurrence/capacity route directly.
+For this local actuator, dimension expansion helps only if the native
+prescribed words already expose that uniform unbounded family; no such
+native multiplicity-coordinate compiler is presently proved.
+
 Because the native additive incidence graph has only one cycle, this cell is
 source-specific and local.  It does not have to return an arbitrary BCS
 atlas, synchronize a long computation, or provide a uniform family of
