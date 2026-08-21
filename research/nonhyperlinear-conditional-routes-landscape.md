@@ -75,3 +75,44 @@ operator/relative-commutant statement) remains, and it is the same `(RCC)`.
   (Popa deformation/rigidity, proper proximality) or on a direct
   construction of a flexibly stable (T;FD) group, not on multiplying
   conditional routes.
+
+## The published attack toolkit (2026-08-21, two independent agent surveys)
+
+No published group is a ready host (`no-published-unconditional-codense-stable-host`),
+so the goal needs a new flexible-stability theorem for one congruence-rigid
+group.  The candidate hosts, all with the SAME single open hypothesis and
+everything else published: `SL_2(Z[1/p])` (DV question), `SL_2(Z[1/pq])`,
+`SL_3(Z[1/p]) supset SL_3(Z)`, `Sp_4(Z)`, and the plain lattice `SL_n(Z)`
+(`n >= 3`) with a thin co-dense subgroup (`sln-z-thin-codense-tau-pair`,
+NEW -- covered by neither Dogon nor Dogon--Vigdorovich).  The sharpest
+published tools toward proving such a stability theorem / closing the far
+sector:
+
+- **de la Salle, arXiv:2204.07084.**  Thm 1.4: every FINITE group is
+  flexibly stable with a LINEAR dimension-free modulus (169 eps), defect
+  averaged over the group, target ANY tracial von Neumann algebra (so it
+  runs inside the matrix ultraproduct).  Lemma 1.7: the correction can be
+  made compatible with a subgroup on which the map is multiplicative (the
+  tool for the joint root/involution exactification of the (SR2)
+  coordinates).  Cor 1.8: almost-commuting finite-group homomorphisms are
+  near exactly-commuting ones.  Consequence: the far sector reduces, with
+  published constants, to LENGTH CONTROL for the congruence relator family
+  against Taback's exponential Dehn function (arXiv:math/0302191).
+- **Dogon--Vidick, arXiv:2607.20135 (Jul 2026).**  Polynomial HS-stability
+  of the lamplighter via an EFFECTIVE tower decomposition for approximately
+  invariant measures with periodic points -- the approximate-measure-
+  rigidity technology for exactly the Schmidt/DCC class of `x4` on the
+  2-adic solenoid.  Best import: make the `BS(1,4)` skeleton polynomial-
+  effective, setting the scale `M` for the length-control estimate.
+- **NOT available (checked):** quantitative character rigidity for
+  `SL_2(Z[1/p])` (Peterson--Thom's quantitative section needs Ozawa T_Q,
+  `m >= 3`, Haagerup targets); Frobenius-norm lattice (in)stability (BLSW,
+  Fournier-Facio) is the wrong norm (a normalized-HS microstate has
+  Frobenius defect `sqrt(d) t -> infinity`); effective `xa xb` rigidity
+  (BLMV) needs exact invariance under two commuting maps.
+
+The single highest-leverage write-up is the `SL_n(Z)` host route: it converts
+the program's only open hypothesis into the flexible HS-stability of the
+most-studied lattice, on which any future progress (either direction)
+resolves the conditional, and it has a permutation twin (flexible
+P-stability of `SL_n(Z)` implies non-sofic, HS analogue of Bowen--Burton).

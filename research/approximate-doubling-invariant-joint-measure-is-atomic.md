@@ -31,3 +31,28 @@ words hold exactly.  The modulus must be independent of matrix dimension.
 - **Numerical status.**  `experiments/psl2_far_sector_probe.py` only measures
   distance from *short* tested odd orders.  It is a bounded falsifier for
   candidate optimization landscapes, not evidence for the operator theorem.
+
+## The single-parabolic form is now PROVABLE (BS(1,4) skeleton, 2026-08-21)
+
+Correction and upgrade.  The subgroup `<u, h> <= SL_2(Z[1/2])` with
+`h u h^{-1} = u^4` is `BS(1,4) = Z rtimes_4 Z`, which is HS-stable
+(Levit--Vigdorovich arXiv:2206.02268 Cor D(3); dense periodic measures for
+the single ergodic solenoid automorphism, Marcus).  Hence every asymptotic
+representation of `SL_2(Z[1/2])` has `(pi(u), pi(h))` HS-close to an EXACT
+`BS(1,4)`-pair `(V_0, W_0)`, in which the base unitary `V_0` has finite ODD
+order (its spectrum is a union of `z -> z^4`-cycles of odd roots of unity).
+By Hoffman--Wielandt (unitaries are normal), the empirical spectral measure
+of `pi(u)` is `W_2`-close to a measure EXACTLY supported on odd roots of
+unity.  So the SINGLE-parabolic form of this claim is a theorem -- the
+earlier "single-parabolic version is false (Gibbs)" was wrong (Gibbs
+measures ARE weak-* limits of periodic measures, which is the mechanism of
+BS(1,4) stability).
+
+**But this does NOT close the far sector.**  Odd order `M -> infinity`
+approximates any weak-* measure, so the atomic skeleton does not exclude a
+Lebesgue/Gibbs-shaped COARSE spectral profile.  The upgrade is from
+"measure approximately invariant" to "measure approximately supported on an
+odd-order skeleton"; the remaining obstruction is the JOINT/coupled
+statement (parabolic + opposite via the involution + the odd square root),
+localized by the next node to spectral scale `1/M`.  The single-parabolic
+theorem should be recorded, but the far sector is the joint version.

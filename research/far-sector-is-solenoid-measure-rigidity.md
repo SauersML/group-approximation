@@ -31,8 +31,14 @@ periodic (atomic) measures?
 
 **Why the abelian data is not enough.**  `alpha` is a single hyperbolic
 solenoid automorphism.  Its invariant measures are NOT only Haar and the
-periodic ones: like `z -> z^4` on the circle it carries a full family of
-Gibbs/Cantor invariant measures, and Furstenberg-style rigidity (which would
+periodic ones: like `z -> z^4` on the circle it carries a
+family of Gibbs/Cantor invariant measures; HOWEVER (correction 2026-08-21)
+those Gibbs measures are themselves weak-* limits of periodic-orbit
+(atomic) measures -- Sigmund's specification theorem for the full shift --
+which is exactly WHY BS(1,4) is HS-stable (dense periodic measures,
+Levit--Vigdorovich).  So the single-parabolic measure IS approximable by
+atomic ones; the earlier claim that Gibbs measures refute single-map
+rigidity was wrong.  What the single map does NOT give is Furstenberg-style rigidity (which would
 force Haar-or-atomic) requires TWO multiplicatively independent maps
 (`x2` and `x3`), whereas `SL_2(Z[1/2])` inverts only `2` and supplies only
 the `x4` (equivalently `x2` via half-parabolics) direction.  Hence the far

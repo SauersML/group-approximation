@@ -30,10 +30,16 @@ quotients).
 - **`SL_3(Z) <= SL_3(Z[1/p])`.**  Co-dense by strong approximation and
   superrigidity (finite-dimensional unitary representations of the
   S-arithmetic group factor through finite quotients, onto which `SL_3(Z)`
-  already maps), and `SL_3(Z)` has (T).  Dies because `SL_3(Z[1/p])` is an
-  infinite hyperlinear Kazhdan group, hence not HS-stable
-  (`infinite-hyperlinear-kazhdan-group-is-not-hs-stable`).  The host must
-  not have (T).
+  already maps), and `SL_3(Z)` has (T).  **CORRECTION (2026-08-21):** this
+  host is ALIVE, not dead.  The earlier "dies" claim conflated two stability
+  notions: `infinite-hyperlinear-kazhdan-group-is-not-hs-stable` rules out
+  only STRICT/local same-dimension stability, and that node's own statement
+  says it "does not rule out flexible HS stability".  The HNN corollary
+  consumes only FLEXIBLE HS-stability, which is OPEN for (T) groups -- that
+  openness is the entire subject of Dogon arXiv:2211.10492 (which uses (T)
+  hosts).  So `SL_3(Z[1/p])` with `C = SL_3(Z)` is a valid host and the goal
+  follows from its flexible HS-stability; see `sl3-pair-relative-commutant-route`
+  and `non-hyperlinear-from-hnn-over-sln-z`.  A host may have (T).
 - **Dogon--Vigdorovich's candidate `SL_2(Z[1/p])`.**  (T;FD) and
   conjecturally stable, but its finitely generated infinite-index subgroups
   act on Serre's tree: those fixing a vertex are virtually free and those
