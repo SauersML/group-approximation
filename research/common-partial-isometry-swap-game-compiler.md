@@ -217,6 +217,72 @@ floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
 model; repackaging the existing local rows cannot do so.
 
+### One-Gram reduction: only forbidden-weighted saturation is needed
+
+`one-gram-vector-decodes-a-finite-bcs-strategy` strictly weakens the
+remaining carrier target.  The selected context types do **not** have to
+saturate the whole D8 source.  They only have to saturate the part seen by
+the forbidden predicate projection.
+
+To state this precisely, after fixed-packet exactification let `P_c` be the
+aggregate selected carrier for context `c` (the sum of its mutually
+orthogonal selected type projections), arranged to commute with the decoded
+forbidden projection `F_c`.  Put
+
+```text
+C_forb=sum_c mu_c ||P_c F_c S_D8||_2^2,
+L_forb=sum_c mu_c ||(1-P_c)F_c S_D8||_2^2.             (CPS10)
+```
+
+Orthogonality of `P_c` and `1-P_c`, together with `[P_c,F_c]=0`, gives the
+exact Pythagorean identity
+
+```text
+E_pred(S_D8)=C_forb+L_forb.                            (CPS11)
+```
+
+The fixed selected-row calculation and packet exactification give universal
+two-sided constants comparing the predicate word energy in the left side of
+`(CPS9)` with `C_forb`, up to `o(1)`.  Let `E_cons` denote the already
+wordized shared-variable consistency energy.  It follows that `(CPS9)`,
+after adding the existing consistency rows, is quantitatively equivalent to
+one scalar inequality
+
+```text
+L_forb <= K(C_forb+E_cons)+o(1)                        (CPS12)
+```
+
+for some dimension-independent `K`.
+
+For sufficiency, `(CPS11)--(CPS12)` bound `E_pred` by a fixed multiple of
+`C_forb+E_cons`, which the local predicate and consistency words control.
+Conversely, if the total word energy controls `E_pred` and the selected
+predicate rows are also bounded above by a fixed multiple of `C_forb`, then
+subtracting the covered term in `(CPS11)` gives `(CPS12)` with another fixed
+constant.  Thus `(CPS12)` is the exact analytic residual of the selected-row
+architecture, not merely a sufficient full-source hypothesis.
+
+This is strictly weaker than every previously proposed saturation identity:
+
+```text
+||(1-P_c)S_D8||_2 small  ==>  L_forb small,
+```
+
+but the converse fails whenever the uncovered source is accepting for
+context `c`.  Such accepting mass is harmless in the one-Gram game energy
+and need never be aligned with that context packet.  In particular a future
+matrix-only frame may be conditional on `F_c`; it need not be a universal
+operator frame on the entire marked source, the form ruled out by
+`algebraic-selector-mixing-frame-collapses-forbidden-sector`.
+
+The orthogonal-amalgam model still shows that `(CPS12)` is not a consequence
+of D8 compatibility or local selected rows: it can place forbidden Gram mass
+in `(1-P_c)` at zero local row cost.  What has changed is the minimal positive
+target.  One now needs a finite-matrix **forbidden-weighted carrier return**,
+possibly paid by `E_cons`, rather than contextwise saturation of all of
+`S_D8`.  No established common-source, exhaustive-type, D8, Hecke, or exact
+finite-frame node supplies `(CPS12)`.
+
 The absolute orientation bit is no longer open.
 `centralizing-d8-word-anchors-relative-row-orientation` adjoins one
 centralizing involution `e` for which
