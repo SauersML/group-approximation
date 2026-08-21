@@ -3,6 +3,7 @@ rg: 2
 id: literal-group-not-sofic
 kind: claim
 title: The literal finitely presented non-MF group is not sofic
+refuted_by: literal-group-sofic
 root: true
 distinct_from:
   literal-group-sofic: That claim asserts soficity of `E`; this is its negation, kept as a separate node because the kernel only understands implications and both sides now have live routes.

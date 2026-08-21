@@ -10,6 +10,8 @@ This script reports the traps recorded in the authoring notes:
   D. OPEN claims without an `## Attempts` section (legacy nodes).
   E. Backticked id-like tokens in bodies that name neither a node nor an
      artifact (stale references after renames).
+  F. OPEN claims that an ESTABLISHED claim's `distinct_from` text calls its
+     negation, with no `refuted_by:` recorded (unrecorded refutations).
 Run `bin/cairn check` first so the cache is fresh.  Read-only.
 """
 import collections, glob, json, os, re, sys
@@ -51,6 +53,23 @@ for nid, n in nodes.items():
             continue
         E[tok] += 1; Eex[tok].add(nid)
 
+F = []
+for nid, n in nodes.items():
+    if n['kind'] != 'claim' or n.get('status') != 'ESTABLISHED':
+        continue
+    fm, _ = split(n['path'])
+    m = re.search(r'^distinct_from:\n((?:  .*\n)+)', fm + '\n', re.M)
+    if not m:
+        continue
+    for line in m.group(1).splitlines():
+        mm = re.match(r'  ([a-z0-9-]+):\s*(.*)', line)
+        if not mm:
+            continue
+        key, txt = mm.groups()
+        if key in nodes and nodes[key].get('status') == 'OPEN' and re.search(r'\bnegation\b|\bnegates\b', txt, re.I):
+            if 'refuted_by' not in open(nodes[key]['path']).read():
+                F.append((key, nid))
+
 def show(title, items, limit=40):
     print(f'\n== {title}: {len(items)}')
     for x in items[:limit]:
@@ -62,6 +81,7 @@ show('A. established claims with open/conjecture opening prose', A)
 show('B. complete routes whose opening says dead/refuted', B)
 show('C. invalidates: on non-established claims (inert kills)', C)
 show('D. open claims without ## Attempts', D, 15)
+show('F. open claims called "negation" by an established claim, no refuted_by', F)
 print(f'\n== E. dangling id-like tokens: {len(E)} distinct, {sum(E.values())} mentions')
 for tok, c in E.most_common(25):
     print(f'   {c:3d}  {tok}   e.g. {sorted(Eex[tok])[0]}')

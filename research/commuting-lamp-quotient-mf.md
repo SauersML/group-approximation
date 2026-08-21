@@ -3,6 +3,7 @@ rg: 2
 id: commuting-lamp-quotient-mf
 kind: claim
 title: MF property of the commuting-lamp witness quotient
+refuted_by: commuting-lamp-quotient-not-mf
 distinct_from:
   literal-mark-quotient-mf: This concerns the Clifford witness modulo its sign, whose lamp kernel is elementary abelian; the other concerns the literal presented group modulo its mark, whose lamp kernel is a free product of copies of `(Z/2)^8`.
   corona-hs-radical-is-finite-residual: That established claim says every corona representation of this group is trace-blind on the finite residual; this open claim asks for one that is nevertheless injective in operator norm.

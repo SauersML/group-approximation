@@ -3,6 +3,7 @@ rg: 2
 id: literal-mark-quotient-mf
 kind: claim
 title: MF property of the literal marked quotient
+refuted_by: literal-mark-quotient-not-mf
 distinct_from:
   commuting-lamp-quotient-mf: This concerns the literal presented group modulo its mark, whose lamp kernel is a free product of copies of `(Z/2)^8`; the other concerns the Clifford witness modulo its sign, where those blocks have been collapsed and the lamp kernel is elementary abelian.
   literal-mark-quotient-not-stable-in-finite-actions: That proved claim is about permutation almost-actions in the Hamming metric; this open claim is about operator-norm microstates, and neither implies the other for this group.

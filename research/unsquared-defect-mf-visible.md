@@ -3,6 +3,7 @@ rg: 2
 id: unsquared-defect-mf-visible
 kind: claim
 title: MF visibility of the unsquared compression defect
+refuted_by: unsquared-defect-mf-invisible
 root: true
 ---
 
