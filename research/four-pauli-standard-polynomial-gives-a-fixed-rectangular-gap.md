@@ -4,7 +4,6 @@ id: four-pauli-standard-polynomial-gives-a-fixed-rectangular-gap
 kind: claim
 title: Four Pauli words give an explicit amplification-blind gap against the rectangular escape
 distinct_from:
-  fixed-pi-degree-fingerprints-packet-label-factor: that states the general fixed-degree PI strategy conditionally on a full target tuple; this gives the first explicit tuple and a robust numerical inequality at source degree two.
   rectangular-escape: that constructs the label-doubling/multiplicity-halving countermodel; this proves a fixed scalar test which detects exactly that conversion once one common transported tuple is exposed.
   universal-tracial-certificates-cannot-force-eight-slice-overlap: that forbids a universal tracial proof of the final BCS actuator; the inequality here is a universal analytic endpoint and therefore does not supply the matrix-only common-carrier decoder by itself.
 ---
