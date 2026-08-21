@@ -57,7 +57,17 @@ about ONE explicit operator.
   spherical leak, and conversely.  Any quantitative finite-level
   argument may thus assume the decay is geometric with the explicit
   rate `delta_0(n, p)`.
-- **Why (T) of the subgroup does not close it.**  Row 2 of
+- **Exact models sit at exactly one, so the enemy is a uniform
+  outlier.**  If the microstates can be chosen as genuine
+  finite-dimensional representations, property (T) of `Lambda`
+  (uniform conjugation gap) moves each `k_m` near
+  `rho_m(Lambda)' = rho_m(Gamma)'` (co-density), so `k in
+  pi(Gamma)' cap M` and `|| S(k) ||_2 = 1` -- the same mechanism as
+  `exact-projective-codensity-has-a-uniform-trace-square-gap` one
+  level down.  An enemy achieving `43/168` therefore lives at a
+  definite distance from the representation variety at every finite
+  level: the fingerprint quantifies the outlier depth the
+  Iwahori/HS-Dehn far sector must produce.  Row 2 of
   `rc3-standard-tools-all-fail-audit`: the statement compares exact
   fixed spaces of nested subgroups; almost-invariance technology sees
   only the isolation of each space.  The averaging operator is the
