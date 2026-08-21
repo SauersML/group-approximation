@@ -116,3 +116,10 @@ matrix-coordinate exclusion of the independent two-coordinate overlap.
   transfer.  Existing automatic soficity covers amenable stabilizers, not the
   present stabilizer `SL_3(Z)`.  Thus a proof here necessarily proves the
   nonsoficity of this explicit nonamenable-stabilizer graph action.
+- **Bounded-rank no-go.**  `native-hecke-edge-rank-integrality-is-bounded`
+  proves that the one orbital graph is locally finite and has uniformly
+  bounded clique number.  Conjugating the native commutation relation can
+  therefore force only a fixed-size joint Boolean packet.  Its rank
+  divisibility is absorbed by spectator amplification; unbounded capacity
+  would have to propagate through noncommuting regions using actor expansion,
+  not through larger commuting cliques.
