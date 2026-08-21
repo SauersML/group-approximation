@@ -191,3 +191,13 @@ many orthogonal equal-trace translates.  Therefore no positive-trace
 canonical coset corner can import `N` at infinite index.  The remaining
 change-of-actor freedom is genuinely non-Cartan: its image cannot be obtained
 by cutting the global `Lambda` unitaries down to the old actor.
+
+The simplest mixed module for `Gamma_0 x SL_3(Z)` is also barren.  Given a
+homomorphism `phi:Gamma_0 -> SL_3(Z)`, take the finite lamp module on the
+cosets of its graph.  `graph-coset-mixed-module-is-sofic` proves that the
+graph is automatically separable: residual finiteness of `SL_3(Z)` separates
+`(g,h)` from the graph whenever `h != phi(g)`.  The coset action is therefore
+sofic, and so is its generalized wreath group.  This remains true when the
+`SL_3(Z)` image is infinite and nonamenable, so the preceding necessary
+coupling test is not sufficient.  The mixed-module target must now use a
+nonseparable stabilizer or leave the permutation/coset-module class.
