@@ -108,3 +108,13 @@ consistency checks are literal conjugates and no section is used.  What is
 still missing is not expander naming: it is a globally satisfiable placement
 of the complete degree-reduced Pauli pair/linearity incidence system on those
 words, with many logical equality classes rather than one subgroup orbit.
+
+That statement is now formalized exactly.  Expander-cloud replacement is
+dimension-preserving by
+`expander-cloud-reduction-preserves-pauli-dimension-gap`.  Given a typed
+Cayley placement with distinct row and column cosets and disjoint sign double
+cosets, `relative-coset-pauli-incidence-compiler` constructs the finite group
+presentation and an explicit infinite Clifford model keeping `J!=1`.
+The remaining placement theorem is
+`colored-cayley-pauli-incidence-separation`; its load-bearing content is the
+relative coset/double-coset separation `(CCP1)`, not bounded edge length.

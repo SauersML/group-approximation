@@ -7,6 +7,12 @@ target: phase-safe-toric-gap-game-exists
 requires:
   - mipstar-bcs-tracial-nonru-exists
   - toric-gap-is-a-relative-fd-central-word-face
+  - finite-morita-toricization-cannot-encode-nonaffine-support
+  - spherical-root-type-selection-is-phase-unsafe
+  - extraspecial-spin-predicate-centralization-kills-phase
+  - product-word-stabilizers-cannot-linearize-one-losing-corner
+  - two-player-product-has-no-proper-nontrivial-malnormal-subgroup
+  - non-ce-trace-does-not-promote-to-subgroup-character-gap
   - central-word-state-face-compiler
 ---
 
@@ -18,4 +24,3 @@ face, decode every finite-dimensional target state back to the source, and
 encode the predicates through centralizable player words.  Once it does,
 the target toric game has `omega_qc=1>omega_qa` and its scalar phase survives
 normal closure.
-

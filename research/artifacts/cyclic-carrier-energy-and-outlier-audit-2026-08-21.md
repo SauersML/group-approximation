@@ -200,3 +200,52 @@ relator failure on a vanishing-trace spectral region.  This is an explicit
 outlier factory, not yet an error-delocalization theorem: fixed word
 recursions and adjoint expanders cannot manufacture positive density from
 such a region without an additional ownership or capacity mechanism.
+
+## 5. Bounded energetic decoders: exact closure and finite-packet no-go
+
+There is a qualitative bounded-output theorem which is exactly strong enough
+for the cyclic reverse-Kleene diagonal.  If every canonical-profile
+microstate sequence `U_n` admits tuples `V_n` in dimensions `r_n<=D` with
+
+```text
+def_R(V_n)->0,
+liminf(E(V_n)-E(U_n))>=0,
+```
+
+then a subsequence has constant output dimension and converges to an exact
+finite-dimensional representation of energy at least `E_reg`.  Hence
+
+```text
+G hyperlinear  =>  E_reg<=beta_fd.
+```
+
+No modulus is needed.  This is
+`bounded-output-energetic-decoder-gives-the-canonical-ceiling`.
+
+The tempting way to obtain the bounded output from one fixed finite packet
+fails twice.
+
+First, if the central energetic carrier itself is uniformly
+subhomogeneous, every carrier trace disintegrates into normalized traces of
+bounded-dimensional factors, and those factors extend across the central
+summand.  Thus `E_reg<=beta_fd` holds unconditionally.  The desired strict
+gap is already impossible.  A finite orbit of noncentral packet projections
+has the same problem by finite Morita induction.
+
+Second, one cannot naturally select a single bounded copy from a packet
+isotypic space.  On `rho tensor I_m`, every packet-natural reducing
+projection is `I_r tensor Q`; invariance under the multiplicity automorphisms
+`I_r tensor U(m)` forces `Q=0` or `I_m`.  Its nonzero rank therefore grows
+like `rm`.  Common amplification defeats every spectral-idempotent,
+Reynolds, or finite-normalizer selector built only from the packet table.
+
+For a split normalizer `K rtimes H` the obstruction is even more elementary:
+the finite quotient `K rtimes im(H->Aut(K))` is injective on `K`, so every
+positive packet-local energy has a finite quotient-regular trace equal to its
+canonical regular trace.  Hence `beta_fd>=E_reg`.
+
+The surviving target is consequently narrow.  A useful bounded decoder must
+use outside matrices to break multiplicity symmetry, select a bounded tuple
+nonfunctorially from the canonical profile, and avoid making the entire
+energetic orbit corner type I of bounded degree.  No fixed finite
+packet/automorphism normalizer currently supplies those three properties.

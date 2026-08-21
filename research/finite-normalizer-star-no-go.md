@@ -61,6 +61,29 @@ letters, Thompson-style renamings, a finite cycle, or an expander which acts
 only by automorphisms of the fixed packet cannot remove `(FNA2)`.  Common
 amplification gives the same zero-defect model in every larger dimension.
 
+There is a packet-local energy version of the obstruction.  For a split
+semidirect product `G=K rtimes H`, let `A` be the finite image of
+`H->Aut(K)`.  The homomorphism
+
+```text
+G -> K rtimes A,                 (k,h) |-> (k,alpha_h)    (FNA6)
+```
+
+is a finite quotient and is injective on `K`.  Hence for every positive
+`a in C[K]` its quotient-regular normalized trace agrees with the canonical
+group trace:
+
+```text
+tr_(K rtimes A)(a)=tau_G(a).                             (FNA7)
+```
+
+Thus every trace-polynomial energy supported in the fixed packet satisfies
+`beta_fd>=E_reg`.  A split finite packet/automorphism normalizer cannot be
+the bounded energetic decoder in the cyclic reverse-Kleene route: it destroys
+the required strict regular-versus-finite ceiling before any stability issue
+arises.  A finite-packet candidate must at minimum use a nonsplit extension
+or matrix-only holonomy on the multiplicity space.
+
 The same argument applies to a finite orbit of packet copies: the regular
 representation of the corresponding finite wreath/semidirect packet is a
 stationary exact model.  For unbounded prefix clones,

@@ -5,6 +5,7 @@ kind: claim
 title: A computable LCS family with exact finite-dimensional completeness on halting inputs and constant soundness on nonhalting inputs
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
   taller-vidick-lcs-re-hardness: that theorem has completeness `1 - epsilon` and its decoder needs the noise; this asks for `epsilon = 0`, which the paper explicitly does not prove.
   hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for an exact finite-dimensional side on halting inputs and matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.
@@ -74,3 +75,10 @@ explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
   `MIP^co = coRE` compiler: its exact side is the commuting side on
   nonhalting inputs, which is the other orientation
   (`kleene-mipco-self-destroying-game`).
+- **2026 shortcut audit.**  Cleve--Culf--Taller, arXiv:2607.06876, now give
+  RE-hard tilted-XOR games, but their inherited completeness is
+  `3/4-epsilon`, not one.  Culf, arXiv:2603.14746, rounds almost-perfect
+  projection strategies to approximately tracial strategies; it does not
+  create an exact finite-dimensional LCS solution.  Neither result supplies
+  `(PC1)`, and Taller--Vidick v2 still explicitly identifies `epsilon=0` as
+  the nonhyperlinear-group threshold.

@@ -42,4 +42,21 @@ the target theorem.
 Local finite controlled-reflection gadgets remain possible, but finite-group
 induction recreates forbidden selector types.  The missing actuator must
 therefore be global/state-dependent or genuinely finite-dimensional-only.
+The categorical finite-Morita obstruction, including matrix amplification
+and full corners, is proved in
+`finite-morita-toricization-cannot-encode-nonaffine-support`.
 
+Two finite-packet shortcuts are now excluded before quantitative soundness.
+`spherical-root-type-selection-is-phase-unsafe` shows that a transitive
+`H/K` root can isolate the desired answer type on the cyclic vector, but its
+moving inducing character kills the scalar phase under normal closure.
+`extraspecial-spin-predicate-centralization-kills-phase` shows that a
+noncentral Pauli predicate word, even behind a private conjugator, has a
+commutator equal to the common phase and is therefore killed when the toric
+clause centralizes that word.  Thus Properties 1 and 3 cannot be obtained by
+simply anchoring one finite selected type or one conjugated spin word.
+Moreover `product-word-stabilizers-cannot-linearize-one-losing-corner` rules
+out an all-allowed-states local dilation: product words fixing the three
+allowed Boolean rectangles automatically fix the fourth.  The only surviving
+finite-ancilla interpretation is genuinely state-dependent and must prove the
+whole-face soundness in Property 2.

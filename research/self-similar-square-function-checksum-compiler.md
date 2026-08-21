@@ -72,8 +72,25 @@ precise finite-presentation target left by the user's heavy-tail idea.
   trace-cyclic corner or the external common-source swap star at level one,
   by `cuntz-first-hit-checksum-is-a-one-scale-corner`.  Its remaining gap is
   the existing matrix-only authentication of that first-level chart.
+- A noncontracting Baumslag--Solitar clock also does not supply the checksum
+  from spectral recurrence alone.  By
+  `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
+  doubling-permutation models have arbitrarily long one-atom first-hit
+  layers, zero local relator defect, and Haar limiting marginals.  Cyclically
+  gluing four edges does not repair this at the marginal level:
+  `split-higman-cycle-has-haar-marginals-and-maximal-role-gap` gives exact
+  split edge models whose repeated roles have identical limiting moments but
+  asymptotically maximal Hilbert--Schmidt discrepancy.
+- Adding one unlocalized mixed holonomy word does not repair that defect.
+  `one-product-holonomy-does-not-sew-four-bs-clocks` alternates exact clock
+  mismatches `P_q` and `P_q^(-1)`, so the product holonomy is exactly trivial
+  while all four occurrence gaps remain macroscopic.  A viable one-word
+  compiler must therefore make the scale syndromes positive/orthogonal;
+  ordinary unitary product cancellation is fatal.
 
 Therefore the genuinely new possibility left by `(SSC1)--(SSC5)` is a
 noncontracting or matrix-coordinate square-function decomposition which is
 visible as one finite word without functorially decoding a Cuntz family in
-the regular representation.
+the regular representation.  In a Higman-type host it must be a genuinely
+joint eigenbasis-holonomy or common-occurrence estimate; a scalar spectral
+first-hit ledger or bare product holonomy is insufficient.

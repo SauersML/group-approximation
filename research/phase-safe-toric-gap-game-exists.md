@@ -3,6 +3,8 @@ rg: 2
 id: phase-safe-toric-gap-game-exists
 kind: claim
 title: Some finite two-player toric game has a commuting/finite-dimensional gap whose scalar phase survives normal closure
+artifacts:
+  - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
   phase-safe-toric-gap-implies-nonhyperlinear: that is the proved implication from such a game to a nonhyperlinear group; this is the missing object itself, and it is where all the difficulty sits
   hyperlinear-nonsofic-group: that asks for a hyperlinear group failing soficity; a witness here goes the other way and produces a nonhyperlinear group
@@ -48,6 +50,14 @@ full LCS syntax is not logically necessary -- normal toric syntax, or merely a
 phase-safe normal-closure certificate, suffices -- so the search space is
 wider than "perfect LCS or nothing".
 
+**2025--2026 static-game and gadget audit.**  Lin, arXiv:2510.07162,
+Theorem 6.15 does supply a finite synchronous game with `omega_co=1` and
+`omega_*<=1/2`; it supplies neither toric phase safety nor LCS solution-group
+syntax.  Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408, characterize
+robust commutativity gadgets, but their `qa`/`qc` gadget-class separation is
+explicitly conditional on a nonhyperlinear group.  Thus neither theorem
+constructs the object requested here.
+
 **Use synchrony to get normality for free.**  Dead.  For a synchronous game
 the perfect strategies are tracial states on the one-player synchronous
 algebra (Paddock--Slofstra, arXiv:2310.07901), and it is tempting to argue a
@@ -82,3 +92,37 @@ survive by induction.  Under normal phase safety every clause
 image, and the quotient has the exact central-product presentation `(RTF6)`.
 Thus the surviving compiler target is a robust **central-word state-face**
 compiler, not an ordinary local reversible circuit.
+
+**Finite spherical root / Hecke packet.**  The strongest local version works:
+for `H_R=(C_2)^R semidirect Sym(R)` and the coordinate character of
+`K_R=(C_2)^R semidirect Stab(r_0)`, the induced spherical module is exactly the
+irreducible tautological signed-permutation answer type.  But its scalar root
+clauses are phase-unsafe.  Conjugacy moves a `+1` coordinate lamp to the
+`-1` root lamp, so the normal closure contains the bare nontrivial scalar.
+`spherical-root-type-selection-is-phase-unsafe` proves the general invariant-
+extension criterion and this explicit collision.
+
+**Extraspecial spin packet with private letters.**  Also blocked in its direct
+form.  Every noncentral Pauli word `p` has `[p,x]=J`; normal toric
+groupification centralizes each player clause word and therefore kills `J`.
+Wrapping `p` as `t^(-1)pt` only conjugates the commutator witness.  See
+`extraspecial-spin-predicate-centralization-kills-phase`.  A more elaborate
+private-letter cycle remains admissible only if every clause word avoids
+normally generating `J` through its commutators, a condition which must be
+checked before state-vector completeness.
+
+**Infinite malnormal character face.**  This does not survive the two-player
+product geometry.  `two-player-product-has-no-proper-nontrivial-malnormal-subgroup`
+proves that every nontrivial malnormal subgroup of `G_A x G_B` is the whole
+product.  Hence a Cohen--Lyndon/free-normal-closure root cannot provide the
+needed infinite-index clause face.  Any surviving infinite subgroup must be
+highly non-malnormal and meet the full relative-FD face criterion above.
+
+**Raw GNS projective kernel / Hahn--Banach.**  The projective kernel of a
+tracial non-CE state is automatically normal and its scalar character is
+phase-safe, but it does not inherit the finite-dimensional gap.  Its character
+face is the whole state space of a twisted quotient and may contain unrelated
+finite-dimensional representations.  Locally, group-word eigenvalue equations
+see only the affine hull of a Boolean answer support, whereas the losing
+projection sees the nonlinear support itself.  This exact obstruction is
+proved in `non-ce-trace-does-not-promote-to-subgroup-character-gap`.
