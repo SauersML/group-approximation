@@ -6,6 +6,7 @@ title: A displayed finitely presented SL_3(Z) HNN group has a concrete nontrivia
 distinct_from:
   affine-leavitt-steinberg-mark-is-fd-invisible: that uses a properly infinite coefficient idempotent and Steinberg root groups; this is a two-relator arithmetic HNN extension whose exact collapse follows from profinite co-density.
   explicit-sl3-thin-codense-tau-pair: that establishes the subgroup data; this records the unconditional group-theoretic consequence for the HNN extension.
+  explicit-sl3-hnn-has-bohr-and-profinite-invisible-kernel: that identifies the entire finite-dimensional representation functor and compactifications; this isolates the marked-word consequence used downstream.
 ---
 
 Let `a,b,r in SL_3(Z)` be the displayed matrices of
@@ -38,4 +39,3 @@ commutes with `rho(C)`, hence it commutes with `rho(r)`, and therefore
 This exact theorem is unconditional.  The remaining hyperlinearity problem
 for `G_exp` is precisely whether the same collapse is robust under
 normalized-Hilbert--Schmidt approximate representations.
-

@@ -151,6 +151,20 @@ maps to one.  Britton's lemma says the word is nevertheless nontrivial.
 The open HS theorem is exactly the robust upgrade of this proposition from
 representations to normalized-HS almost representations.
 
+In fact the whole finite-dimensional representation theory is blind to the
+HNN kernel.  The natural noninjective quotient
+
+    q:G_exp -> SL_3(Z) x Z
+
+induces a bijection on `d`-dimensional unitary representations for every
+`d`: the preceding proof forces the stable letter to commute with the full
+lattice image, and factorization through `q` is unique.  The same argument
+for finite target groups shows that `q` induces an isomorphism on profinite
+completions; universality over compact unitary images gives an isomorphism on
+Bohr compactifications.  Thus `[t,r]` is a displayed element of a
+Bohr- and profinite-invisible kernel, not merely one accidentally invisible
+word.
+
 ## 5. Discussion: why the plain lattice, and what is open
 
 **Genuinely new.** Neither prior conditional route reaches `SL_n(Z)`:

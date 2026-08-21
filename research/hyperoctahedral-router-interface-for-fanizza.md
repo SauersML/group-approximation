@@ -54,6 +54,15 @@ action.  A final packet must either isolate its trivial type or cancel those
 multiplicity commutators.  The coordinate-gauge problem is no longer part of
 the frontier.
 
+`arbitrary-second-layer-multiplicity-cannot-cancel-a-nontrivial-lookup` shows
+that merely replacing `W_F` by a longer or more cleverly balanced word cannot
+finish the job.  If a word vanished for an arbitrary representation of the
+constant packet together with an arbitrary router multiplicity, its element
+in the free product `B_N*Z` would be trivial, and the same word could not
+evaluate to `z` in the finite truth packet.  The remaining move must therefore
+be genuine **type selection or multiplicity coupling**, not word-level
+cancellation.
+
 On the HALT side no trace preservation is needed: tensor the Fanizza GNS
 model with the natural packet, take `c` to be the selector-controlled
 translation, and `(HBT3)` makes every predicate relator exact.  For a

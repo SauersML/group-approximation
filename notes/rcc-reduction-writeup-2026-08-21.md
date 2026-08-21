@@ -265,3 +265,10 @@ coincide.  Thus `G_exp` is a displayed finitely presented non-MAP,
 non-residually-finite group.  Flexible HS stability of `SL_3(Z)`, or just the
 one-unitary robust relative-commutant transfer, upgrades this exact
 finite-dimensional invisibility to non-hyperlinearity.
+
+More precisely, the noninjective quotient
+`G_exp -> SL_3(Z) x Z` induces isomorphisms on both Bohr and profinite
+compactifications: every finite-dimensional unitary representation, and
+every finite quotient, factors uniquely through it.  This gives an
+unconditional Grothendieck/Bohr-invisible-kernel theorem even before the HS
+upgrade.
