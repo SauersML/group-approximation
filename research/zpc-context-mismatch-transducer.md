@@ -79,7 +79,12 @@ additional odd selector characters.
   contains every three-label activation once it contains the singletons.
   Thus the repair works only for source contexts whose accepted-behavior union
   is already affine, or after introducing genuinely selector--payload-coupled
-  noncommutative relations.
+  noncommutative relations.  For aggregation of the **full** answer this is a
+  complete dichotomy: `tailored-gap-is-lcs-or-has-a-nonaffine-edge` shows that
+  if every full edge relation is affine, the tailored gap was already the
+  desired LCS gap.  Projecting to unreadable behaviors can conceal the
+  nonaffinity, but then the aggregate has not reconstructed a compatible
+  readable answer.
 - **The remaining analytic estimate is elementary once labels align.**
   `priority-decoder-lipschitz-under-selector-gate-alignment` proves that the
   identity-completed decoded copies are dimension-free Lipschitz in the
