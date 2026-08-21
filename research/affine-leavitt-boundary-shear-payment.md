@@ -130,3 +130,14 @@ all-representations decoder `(ALD1)--(ALD2)`.
   packet algebra in canonical microstates.  Thus the returned source factor
   must be a matrix-coordinate multiplicity reservoir, not a fixed subgroup
   algebra named by more words.
+- **A finite multiplicity observable is now explicit.**
+  `weyl-commutant-superrank-detects-rectangular-return` averages conjugation
+  over the fixed Heisenberg packets.  On a nontrivial central phase the
+  normalized rank of this commutant projection is `p^(-2)` for the source
+  factor and `p^(-4)` for the two-child factor, independent of spectator
+  multiplicity, and it is computable from finitely many squared trace
+  moments.  Thus the scalar endpoint no longer depends on finding a good
+  standard-polynomial tuple.  The same-reservoir mixed loop must either
+  transport this projection (and pay the fixed gap) or explicitly leak into
+  a new multiplicity reservoir.  Proving that transport/leakage dichotomy
+  from the rank-five/six Steinberg words remains the open step.
