@@ -55,12 +55,12 @@ single point is load-bearing: the all-ones fixed character is visible to a
 single point lamp but is trivial on `m_0`.
 
 Finally apply `infinite-character-actor-kills-fd-mark` to obtain exact
-finite-dimensional invisibility.  Its `L^2(M^)` character-translation model
+finite-dimensional invisibility.  Its `L^2(L^)` character-translation model
 keeps `J=-I`, so the mark is algebraically nontrivial.
 
 This closes the **exact groupification and finite-presentation** half of the
 infinite actor route under two concrete actor hypotheses.  It does not close
 normalized-HS soundness: a microstate must still be rounded to one finite
-joint `M`-spectral PVM with actor covariance energy controlled by the fixed
+joint `L`-spectral PVM with actor covariance energy controlled by the fixed
 presentation defect.  That same-basis theorem is the remaining analytic
 gate.
