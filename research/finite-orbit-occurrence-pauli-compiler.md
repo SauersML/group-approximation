@@ -29,20 +29,27 @@ word representatives for every local test occurrence such that:
 The essential change from global naming is that two occurrences of the same
 logical observable need not first be proved equal as matrices.  Their direct
 consistency test is part of the game and itself has bounded orbit type.  The
-open combinatorial problem is to realize an unbounded robust Pauli/code test
-family with finitely many such orbits; high transitivity alone controls
-equality patterns but does not automatically encode the required linear-code
-incidences.
+linear-code incidence part is now closed by
+`finitely-presented-oligomorphic-linear-pauli-addresser`: after adjoining the
+finitary linear group, bounded vector/covector configurations have finitely
+many orbits classified by relation kernels and pairing matrices.  The open
+problem is narrower: prove dimension-independent HS consistency between the
+different orbit representatives of one occurrence.  The amenable Houghton
+version of that addresser is an exact hyperlinear countermodel to every proof
+which omits this quantitative gauge step.
 
 ## Attempts
 
 - **Global Thompson names.**  Exact Pauli cells exist, but comparing two names
   of one cell along a stabilizer word pays unbounded length and coherent small
   rotations realize the loss.
-- **Finite-orbit occurrence names.**  Bounded tuple equality patterns do give
-  finitely many local orbits, but a robust Pauli-basis game also needs an
-  unbounded family of linear-code incidences.  No current Thompson action
-  makes all of those incidences finitely many bounded-arity orbits.
+- **Linear oligomorphic repair.**  Acting first by the finitary linear group
+  makes all bounded linearity and symplectic-pairing predicates finite orbit
+  types, and the resulting semidirect Pauli tower is finitely presented.  This
+  solves the incidence enumeration, but not the normalized-HS section/gauge
+  coherence between different representatives.  Choosing an amenable
+  addresser makes the whole exact construction hyperlinear and proves that
+  this remaining distinction is load-bearing.
 - **Direct complete-table tests.**  These fall back to
   `finitely-presented-uniform-area-clifford-tape`, which is stronger than the
   occurrence target and retains the table-area obstruction.
