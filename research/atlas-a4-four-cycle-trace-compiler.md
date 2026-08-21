@@ -3,6 +3,10 @@ rg: 2
 id: atlas-a4-four-cycle-trace-compiler
 kind: claim
 title: Four scalar covariance traces and collision 19243 suffice for the A8 holonomy gap
+artifacts:
+  - experiments/atlas_a4_classical_two_holonomy_profile.py
+  - experiments/atlas_a8_four_cycle_raw_s3.py
+  - experiments/atlas-word-19243.json
 distinct_from:
   atlas-a4-normal-certificate-compiler: that stronger target constructs three operator-valued conjugacy transports; this target asks only for one averaged real-trace inequality plus one scalar collision readout.
   atlas-a4-alignment-moment-simplex-rounding: that rounds thirty-one kernel-word moments to a 40320-point classical simplex; this target keeps only the four transvection coboundary moments used by the final commutant Poincare inequality.
@@ -70,3 +74,73 @@ rounding for free.
   `Re tau(V_n(t))` and the collision defect.  Do not round the thirty pair-cube
   moments or a full finite alignment distribution unless a separating
   functional actually uses them.
+
+## Common-frame scalar audit
+
+The recently refuted `atlas-a4-componentwise-commutant-collapse` cannot be
+used here.  In fact `q_19243(U_n)->1` forces the common relative frame a fixed
+distance from the collision `S3` commutant.  Thus neither `(A4-TRACE-1)` nor
+`(A4-TRACE-2)` may be justified by first projecting `U_n` to a packet-component
+commutant.  The scalar traces must be read directly from the shifted
+centralizer-product realization of the same `U_n`.
+
+There is a finite exact obstruction to an even more tempting shortcut:
+`(A4-TRACE-1)` is not a packet-only inequality.  In the natural 15-point
+permutation representation, take the inner classical packet alignment
+
+```text
+g = 00000101010000000001000000000001.
+```
+
+Exact substitution into the thirty packet words gives zero packet residual.
+For the covariance cocycles of the four transvections, the exact squared-defect
+numerators (with common denominator `15`) are
+
+```text
+                 t01   t12   t23   t30
+15 ||V(t)-1||_2^2 24    24    16    24.               (A4-TRACE-SCREEN)
+```
+
+Because `Re tau(V)=1-||V-1||_2^2/2`, this position has
+
+```text
+3 Re tau(V(t23))
+ -Re tau(V(t01))-Re tau(V(t12))-Re tau(V(t30))
+ = (24+24+24-3*16)/(2*15)
+ =4/5>0.                                               (A4-TRACE-FAIL)
+```
+
+The collision squared-defect numerator at the same position is `16`, so it
+does not satisfy the asymptotic collision hypothesis.  Consequently
+`(A4-TRACE-FAIL)` does **not** refute the present joint claim.  It does prove
+that trace invariance alone cannot erase the collision from the leaf-transfer
+step: the thirty shifted packet constraints, even exactly, do not imply
+nonpositive average transfer.
+
+The minimal viable common-frame scalar inequality is therefore the joint
+estimate
+
+```text
+3 Re tau(V(b))-sum_(t in {t01,t12,t30}) Re tau(V(t))
+ <= C_joint (||q_19243(U)-1||_2+eta).                 (A4-TRACE-JOINT)
+```
+
+Together with `(A4-TRACE-2)`, `(A4-TRACE-JOINT)` is sufficient for every
+downstream asymptotic use of `(A4-TRACE-1)`, because both residuals tend to
+zero.  The explicit screen calibrates any pointwise branch-blind coefficient:
+at the displayed position it must satisfy
+
+```text
+C_joint >= (4/5)/sqrt(16/15)=sqrt(3/5).
+```
+
+Equivalently one may combine the hub readout and leaf transfer into the single
+Dirichlet estimate already named `atlas-a4-four-cycle-dirichlet-compiler`;
+no duplicate target is needed.  What remains missing here is a cyclic trace
+identity for `(A4-TRACE-JOINT)` which retains the fact that all thirty shifted
+factorizations use one common `U`.  The four rectangle invariants alone lose
+one independent component-root gauge and cannot supply that identity.
+
+Accordingly this claim remains open.  The exact scalar hole is now isolated:
+derive `(A4-TRACE-JOINT)` directly from common-`U` liftability and collision,
+without any component-centrality inference.
