@@ -337,6 +337,53 @@ theorem benignTF_ASub_thetaOp_of_evenOp
     (B : Set E) (h : BenignTF (ASub B)) : BenignTF (ASub (thetaOp B)) :=
   benignTF_ASub_thetaOp (hkappa B h)
 
+/-! ## 5.  `κ`, split into inputs shared with the other operations
+
+`evenOp_eq_inter` writes `κ B` as an agreement condition on the even
+coordinates intersected with the fixed set `oddZero`, and
+`benignTF_ASub_inter` splits the two.  The agreement half is the operation
+`ζ` and `π` are instances of.  The fixed half is the `B`-free statement
+below, and it is the `ζ`/`π` lane's "all coded sequences are benign" moved
+onto the even coordinates by the doubling --- so it costs that statement plus
+`TorsionFreeImageClosure` at `G = N = F₃`, and nothing new. -/
+
+theorem oddZero_eq_image : oddZero = dblSeq '' (Set.univ : Set E) := by
+  refine Set.ext fun f => ?_
+  constructor
+  · intro hf
+    refine ⟨thetaSeq f, Set.mem_univ _, Finsupp.ext fun i => ?_⟩
+    by_cases h : ∃ k : ℤ, i = 2 * k
+    · obtain ⟨k, rfl⟩ := h
+      rw [dblSeq_two_mul, thetaSeq_apply]
+    · push Not at h
+      rw [dblSeq_of_notMem_range _ _ h]
+      exact (hf i h).symm
+  · rintro ⟨g, _, rfl⟩ i hi
+    exact dblSeq_of_notMem_range g i hi
+
+/-- **The sequences vanishing on the odd coordinates carry a benign subgroup**,
+given that all coded sequences do. -/
+theorem benignTF_ASub_oddZero (himg : TorsionFreeImageClosure)
+    (hall : BenignTF (ASub (Set.univ : Set E))) : BenignTF (ASub oddZero) := by
+  letI : Group.FG F₃ := ProductFinitePresentation.fg_of_isFinitelyPresented F₃
+  rw [oddZero_eq_image, ASub_dblSeq_image]
+  exact himg F₃ F₃ IsPowerTorsionFree.of_isMulTorsionFree _ dblAut dblAut_injective hall
+
+/-- **Higman's operation `θ`, from three inputs, none of which is about the
+doubling, the sort or the coding.**
+
+The first two are shared with `ρ` and `τ` and with the `ζ`/`π` lane; the third
+is the agreement operation those two lanes are both instances of, taken at the
+even coordinates. -/
+theorem benignTF_ASub_thetaOp_of_inputs (himg : TorsionFreeImageClosure)
+    (hall : BenignTF (ASub (Set.univ : Set E)))
+    (hagree : ∀ B : Set E, BenignTF (ASub B) →
+      BenignTF (ASub {f | ∃ g ∈ B, ∀ i : ℤ, (∃ k : ℤ, i = 2 * k) → f i = g i}))
+    (B : Set E) (h : BenignTF (ASub B)) : BenignTF (ASub (thetaOp B)) := by
+  refine benignTF_ASub_thetaOp ?_
+  rw [evenOp_eq_inter, ASub_inter]
+  exact BenignTF.inf (hagree B h) (benignTF_ASub_oddZero himg hall)
+
 end Seq
 end Higman
 end GroupApproximation

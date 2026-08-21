@@ -206,13 +206,14 @@ theorem rowElt_zero : rowElt 0 = b := by
 theorem bElt_image_zetaOp_Zset :
     bElt '' (zetaOp Zset) = (Subgroup.closure ({b} : Set F₃) : Set F₃) := by
   refine Set.ext fun x => ?_
-  rw [zetaOp_Zset_eq]
+  rw [zetaOp_Zset]
   constructor
   · rintro ⟨f, hf, rfl⟩
+    have hf' : ∀ i : ℤ, i ≠ 0 → f i = 0 := hf
     have hsupp : ∀ i ∈ f.support, i ∈ [(0 : ℤ)] := by
       intro i hi
       by_contra hcon
-      exact Finsupp.mem_support_iff.mp hi (hf i (by simpa using hcon))
+      exact Finsupp.mem_support_iff.mp hi (hf' i (by simpa using hcon))
     have hcode : elt f = FreeGroup.of (0 : ℤ) ^ f 0 := by
       rw [Split.elt_eq_eltOn (by simp) (by simp) hsupp]
       rw [Split.eltOn_cons, Split.eltOn_nil, mul_one]
@@ -223,7 +224,8 @@ theorem bElt_image_zetaOp_Zset :
     rw [SetLike.mem_coe, Subgroup.mem_closure_singleton] at hx
     obtain ⟨n, rfl⟩ := hx
     refine ⟨Finsupp.single (0 : ℤ) n, ?_, ?_⟩
-    · intro i hi
+    · show ∀ i : ℤ, i ≠ 0 → (Finsupp.single (0 : ℤ) n) i = 0
+      intro i hi
       rw [Finsupp.single_apply, if_neg (Ne.symm hi)]
     · have hsupp : ∀ i ∈ (Finsupp.single (0 : ℤ) n).support, i ∈ [(0 : ℤ)] := by
         intro i hi
@@ -278,21 +280,14 @@ theorem benignTF_ASub_zetaOp_Zset : BenignTF (ASub (zetaOp Zset)) := by
   exact Coord.benignTF_Aset_mul hS hbK hA hU
 
 /-- **Every `1`-block is supported in `{0}`, so `ω₁` imposes nothing.** -/
-theorem omegaOp_one_zetaOp_Zset : omegaOp 1 (zetaOp Zset) = (Set.univ : Set E) := by
-  refine Set.eq_univ_of_forall fun f => ?_
-  intro i
-  rw [zetaOp_Zset_eq]
-  intro j hj
-  rw [blockAt_apply, if_neg]
-  rw [Finset.mem_Ico]
-  push Not
-  intro hj0
-  omega
+/-- **The third `Agree` input follows from the `ω` input.**
 
-/-- **The third `Agree` input follows from the `ω` input.** -/
+The two set identities are `Higman.GeneratedBasic`'s: `Seq.omegaOp_one_atZero`
+(every `1`-block lies in `atZero`, so `ω₁` imposes no condition) and
+`Seq.zetaOp_Zset` (`atZero` is `ζ Z`). -/
 theorem benignTF_ASub_univ (k : OmegaInput) :
     BenignTF (ASub (Set.univ : Set E)) := by
-  rw [← omegaOp_one_zetaOp_Zset]
+  rw [← omegaOp_one_atZero, ← zetaOp_Zset]
   exact k.omega 1 one_pos (zetaOp Zset) zero_mem_zetaOp_Zset benignTF_ASub_zetaOp_Zset
 
 /-- The `Agree` inputs, assembled from two of them and the `ω` input. -/
