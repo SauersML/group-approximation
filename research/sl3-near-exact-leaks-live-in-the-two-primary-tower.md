@@ -584,6 +584,31 @@ refutation, and this claim makes the reduction precise.
   transport is impossible), and upper-bound the cancellation range.
   Both are concrete; the frontier trace (v7) quantifies them
   together.
+- **Rigorous floor ledger at the control dictionary (2026-08-21,
+  `experiments/sl3-bmatrix.json`,
+  `experiments/sl3-rigorous-floor.json`).**  Exact numbers: the
+  native 4-phase quadratic form `B` has continuous minimum
+  `min_t |t* B t| = 0.2407` (grid + polish; matches the hand
+  max-cut/XY analysis: `maxcut ~ 0.194` at the split
+  `{84a,112a}|{84b,112b}`-pattern), the JOINT shallow coupling is
+  `0.1014` (aggregated nuclear norms — the independent-sup value
+  `0.137` was beatable), and the `mtilde >= 2` sector still carries
+  the crude Cauchy-Schwarz `0.2344`, leaving the proved bound at
+  `-0.095` against a measured floor of `+0.142`.  The remaining gap
+  is pure bookkeeping: the three parts draw on ONE unitarity budget
+  (the shallow mass `120/512` enters both non-native parts, and the
+  block-diagonal sector mass of `V* K V` is genuinely below its
+  cap), so the separated sups over-count; the next tightening is the
+  aggregated nuclear bound over the joint coefficient operator.
+  Assessment: with `c* = 0.381` proved positive as a sum of squares,
+  the native minimum `0.2407` exact, and three independent
+  optimizers stalling at `0.14-0.17`, the fixed-`V` floor is
+  established beyond reasonable doubt and NEARLY proved; but since
+  this vertex provably cannot host the enemy, the proof-completion
+  is not goal-critical — the goal-critical target remains the
+  uniform two-level version, for which tonight's derived structures
+  (layer nesting, native freshness, conductor mismatch, sum-of-
+  squares core) are the transferable machinery.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
