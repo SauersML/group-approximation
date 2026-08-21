@@ -204,6 +204,14 @@ phase-safe embedding of the full marked selector packet.  Therefore the
 frame lower bound itself must be matrix-only or canonical-trace-only; the
 obvious exact finite Weyl tight-frame realization cannot close `(CPS9)`.
 
+The obstruction already appears in the smallest possible concrete packet.
+`two-qubit-pauli-frame-covers-common-d8-source` splits the target of one D8
+swap by a transverse Pauli, obtaining a two-atom frame with exact bound one;
+one four-letter D8 Gram word measures the selector-mixing residual exactly.
+Imposing that word forces the forbidden source atom to vanish.  Thus even the
+minimal order-thirty-two Pauli frame is useful only as a residual wordizer,
+not as the universal lower-bound certificate required by `(CPS9)`.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
