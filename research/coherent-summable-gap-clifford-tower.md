@@ -91,4 +91,4 @@ actuator and Fanizza first-hit accounting should be combined.
   relative CAR cells if its self-similar central cocycle exists. The sign twist
   is mandatory: `untwisted-sign-replication-flips-minus` rules out copying a
   negative sign by the plain product of child signs. Quantitative coherence is
-  then `subtree-trace-independence-certificate`.
+  then a still-missing sibling trace-independence certificate.

@@ -1,5 +1,54 @@
 # Torsion-free non-MF: full Lean formalization plan (2026-08-21)
 
+## EXECUTION STATE v2 (evening, main @ b39ba97a) — supersedes the
+## workstream statuses below; the architecture sections remain valid.
+
+CLOSED TODAY, on main, axiom-clean: **W2 entirely** (Γ(3) certified
+countable + torsion-free + f.p. + Kazhdan, hypothesis-free;
+SL₃(ℤ) (T) and f.p. both proved — the P13 descent had already closed
+completeness); the periodic-overlap library with the two-occurrence
+dichotomy and symmetrization closure; the factor-embedding obstruction
+(machine-checked); the slimmed source interface, degeneracy theorem,
+Minkowski, parametric router; four documentation corrections at source.
+
+THE COMPLETE REMAINING GAP LIST for the headline theorem:
+  A. `greendlingerConclusion_of_metric` — the n ≥ 3 count.  THE deep
+     math.  Sub-split: (α)-case is dischargeable NOW from the
+     orientation lemma + piece/coincidence lemmas (no verdict needed);
+     (β)-case (conjugator overrun, i_c > 0) awaits either a refutation
+     or the spectator-reduction argument (coordinator's 4a).
+  B. `isPowerTorsionFree_of_metricSmallCancellation` — the arc-inside-
+     one-period case, routed through the landed dichotomy.
+  C. W6 base: six operation closures + HigmanTheoremThree +
+     TransportSectionFive + BridgeRecursive; then W6b (peripheral
+     variant, coordinator designs) and W6c (pattern assembly).
+  D. W3 instantiation: padded presentations + the exponent-code family
+     of notes/W3_AVATAR_WORD_DESIGN_2026-08-21.md + a finite-family
+     C'(1/6) decision toolkit (engineering, gate-independent).
+  E. Assembly: BespokeRouterGateAssembly (restructure in flight) →
+     discharge `bespoke_routing_exists` → endpoint lands sorry-free.
+  F. W5 gates: Audit.lean wave, cairn FRONTIER regen, manuscript
+     wiring, remote-build root-refresh guard (ops).
+
+WAVE-2 FLEET (assignments of record):
+  w1b-relative   → A(α): orientation lemma + CascadeLanding (α)-case
+  coordinator    → A(β) mathematics; W6b design
+  adversary-2    → bounded exhaustive (β)-search, interim-output duty
+  w1-finewilf    → B (they own the dichotomy)
+  w6a-closures-1/2, w2d → C (closures; TheoremThree)
+  w0-interface   → C: BridgeRecursive (bookkeeping)
+  w2a-certificate→ D (decision toolkit + padded presentations)
+  w4-assembly    → E custody (verify + land when the chain closes)
+  w2b-minkowski  → Hilbert-hotel cover presentation (parallel track)
+  w3-router      → finish the path restore + gate assembly file
+
+Protocol addenda now binding: transitive-closure-clean root imports;
+Audit.lean is the gate of record (sorryAx spreads silently); pristine-
+origin snapshot verification for every landing; private olean root
+must mirror the whole tree, listed FIRST in LEAN_PATH; working-tree
+root synced to origin after every plumbing landing; no literal scan
+token in prose; zero local compute.
+
 GOAL (user-set, session hook): an unconditional, assumption-free,
 zero-laundering Lean proof that a torsion-free finitely presented non-MF
 group exists.  Zero laundering means all of: `literatureInputNames = []`;
@@ -128,9 +177,16 @@ W1 (critical path, math-first): `GreendlingerGate`, n ≥ 3.
   (`MetricSmallCancellation → GreendlingerLengthBound ∧
   TorsionIntoFactors`), which is mechanical re-plumbing over syllables
   IF the free case closes by the certificate method.
-  Caveat to respect: in-repo pieces are whole-syllable (stronger than
-  classical fragments) — sufficiency unaffected; relator DESIGN in W3
-  must satisfy the stronger condition.
+  Fragment caveat, CORRECTED 2026-08-21 (the first version had the
+  direction backwards; two independent witnesses confirmed): in-repo
+  whole-syllable pieces are FEWER than classical fragment pieces, so
+  whole-syllable C'(λ) is a WEAKER hypothesis — it yields only classical
+  C'(λ + 1/|r|), and no relator length rescues λ = 1/6.  The relative
+  lane therefore carries the explicit FragmentSlack condition
+  (λ·wlen r + 1 ≤ (1/6)·wlen r; e.g. C'(1/7) at ≥ 42 syllables) — see
+  GreendlingerRelativeTransfer.lean.  The FREE-GROUP lane is unaffected
+  (no fragments in a free-group alphabet; C'(1/6) honest), which is one
+  more reason the avatar router presents over a free group.
 
 W2: partner `B` — torsion-free, f.p., (T), unconditional.
   Chosen route: B = Γ(3) = ker(SL₃(ℤ) → SL₃(ℤ/3)).
@@ -146,17 +202,31 @@ W2: partner `B` — torsion-free, f.p., (T), unconditional.
      3-adic-valuation proof; Lean-tractable now.
   c. (T) for Γ(3): finite-index permanence — already PROVED.
   d. f.p. for Γ(3): the ONE research-grade atom, two halves:
-     (i) f.p. of SL₃(ℤ) with an explicit presentation — route
-         `St₃(ℤ)/⟨{−1,−1}⟩ ≅ SL₃(ℤ)`, i.e. **K₂(3,ℤ) = ⟨{−1,−1}⟩ ≅ ℤ/2**
-         (van der Kallen-style symbol calculus; self-contained algebra;
-         Milnor §10 already source-verified in-repo as a checklist).
-         NOTE: this same atom is the flagged decisive blocker of the
-         sofic-side audit (CRW completeness) — closing it serves both
-         manuscripts.  CRW-vs-Steinberg is Tietze bookkeeping after.
-     (ii) f.p. descends to finite index: Reidemeister–Schreier.
-         Mathlib has Schreier f.g.; the f.p. version is new but
-         hard-but-standard (`LatticeRouteRemainder` reduced our need to
-         Schreier's index formula).
+     (i) f.p. of SL₃(ℤ) — RE-ATTRIBUTED 2026-08-21 after source
+         verification: **Milnor AM-72 §10, Thm 10.1 + Cor 10.3** (via
+         Silvester's Lemma 10.6 seven-case descent and Lemma 10.7;
+         Nielsen–Magnus lineage).  NOT van der Kallen — he computes
+         H₂(SL₃ℤ) = ℤ/2 ⊕ ℤ/2, a strictly larger, different invariant;
+         conflating them would be an error.  Citation-hygiene note: old
+         literature (Steinberg's Yale notes; Soulé 2.7; Bekka–de la
+         Harpe Ex. IV) wrongly identifies St₃ℤ with the universal
+         central extension — see Bárcenas–Velásquez arXiv:1311.5415
+         Rmk 5.3.  IN REPO TERMS the atom is `Function.Injective toSL3`
+         on the EXISTING P13 presentation (which IS Milnor's Cor 10.3:
+         12 Steinberg relators + the fourth-power relator
+         (e₁₂e₂₁⁻¹e₁₂)⁴); surjectivity is already proved, and
+         `P13ParabolicKernel` (proved) plus the repo's Euclid-measure
+         organization (see memory milnor-s10-crosscheck) cover part of
+         the endgame.  This same atom is the sofic-side completeness
+         blocker — closing it serves both manuscripts.
+     (ii) f.p. descends to finite index — DOWNGRADED to ~2 lemmas:
+         Mathlib now has Nielsen–Schreier + Schreier +
+         IsFinitelyPresented with surjection/iso closure; missing only
+         (A) f.g. free ⟹ finitely many Generators, and (B) the
+         Hartung-style finite-transversal relator decomposition giving
+         IsFinitelyNormallyGenerated (the Schreier condition is needed
+         only for the free basis, never for the redundancy step; τ need
+         not be formalized).
   Source-verification duty before any Lean work on (d)(i): pin the
   exact unstable statement and proof line in van der Kallen / Milnor
   §10 / literature, per the repo's quarantine doctrine (paper cites,

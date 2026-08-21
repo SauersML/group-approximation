@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.SmallCancellationRouter
 import GroupApproximation.Sofic.ConcreteCompressionSource
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.GroupTheory.HNNBrittonCyclic
+import GroupApproximation.Sofic.ExplicitSuitableDefect
 
 /-!
 # The slimmed defect source: what the non-MF endpoint actually consumes
@@ -192,12 +193,19 @@ def FournierFacioDefectData.toBareDefectSourceData
     (D : FournierFacioDefectData P E) :
     D.toBareDefectSourceData.s = D.s := rfl
 
-/-- **The concrete source interface upgrades by supplying `(T)` alone.**
-`ConcreteCompressionSource.CompressionSourceData` already carries every
-field of the slimmed datum except property `(T)` of the base, so a
-Kazhdan base turns any concrete compression source into a slimmed defect
-source.  This is the whole remaining distance between the two
-interfaces. -/
+/-- **A concrete source upgrades exactly when its base is Kazhdan.**
+`ConcreteCompressionSource.CompressionSourceData` carries every field of
+the slimmed datum except property `(T)` of the base, so supplying `(T)`
+is the only step between the two interfaces.
+
+Read that as a statement about the interfaces, not as a to-do item on the
+source we actually have.  For `ConcreteCompressionSource.integerSource`
+the missing field is not merely unproved, it is unobtainable: the base is
+`Multiplicative ℤ`, and `isEmpty_bareDefectSourceData_multiplicative_int`
+below rules out every slimmed source over it.  So what remains is not a
+field to fill in on the existing skeleton but a genuinely new Kazhdan
+base carrying a proper self-compression, with the concrete affine-HNN
+construction re-run over it. -/
 def ConcreteCompressionSource.CompressionSourceData.toBareDefectSourceData
     {P : Type} {E : Type u} [Group P] [Group E]
     (d : ConcreteCompressionSource.CompressionSourceData P E)
@@ -611,6 +619,57 @@ theorem exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperator
     exact R.quotient_not_isCDEOperatorMF f hf
 
 end BareFullMFRadicalEndpoint
+
+/-! ## What the slimmed source still costs
+
+The two interfaces now differ by exactly one field, and it is the one that
+cannot go.  `toCompressionSourceData_toBareDefectSourceData` says so as a
+`rfl`: forgetting property `(T)` and putting it back is the identity.
+
+The two theorems after it transport the existing source constraints onto
+the slimmed datum, so the irreducible obligation is visible in one place:
+the base must be an **infinite** property-`(T)` group carrying a
+**strictly proper** self-compression.  That is what a source construction
+has to deliver, and no part of it is removed by the slimming. -/
+
+namespace BareDefectSourceData
+
+variable {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+
+/-- Forgetting property `(T)` of the base lands on the concrete
+compression source interface. -/
+def toCompressionSourceData : ConcreteCompressionSource.CompressionSourceData P E where
+  iota := D.iota
+  u := D.u
+  s := D.s
+  compresses := D.compresses
+  commutesAfterCompression := D.commutesAfterCompression
+  witness := D.witness
+  witness_commutator_ne_one := D.witness_commutator_ne_one
+
+/-- **The two interfaces differ by exactly the `(T)` field.**  Forgetting it
+and supplying it again is the identity, so nothing else was slimmed away
+and nothing else can be. -/
+@[simp] theorem toCompressionSourceData_toBareDefectSourceData :
+    D.toCompressionSourceData.toBareDefectSourceData D.kazhdan = D := rfl
+
+include D in
+/-- **The base of a slimmed source is infinite.**  Transported from
+`ConcreteCompressionSource.CompressionSourceData.infinite_source`: the
+compression is injective and maps the source copy into itself, so a finite
+base would make it onto, which the marked commutator forbids. -/
+theorem infinite_source : Infinite P :=
+  D.toCompressionSourceData.infinite_source
+
+/-- **The compression is strictly proper.**  So the base is an infinite
+property-`(T)` group admitting a proper self-embedding — the irreducible
+demand the slimming does not touch. -/
+theorem not_conjugation_surjective :
+    ¬ ∀ p : P, ∃ q : P, D.u * D.iota q * D.u⁻¹ = D.iota p :=
+  D.toCompressionSourceData.not_conjugation_surjective
+
+end BareDefectSourceData
 
 /-! ## Why the integer source cannot be upgraded
 

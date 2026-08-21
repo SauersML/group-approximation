@@ -128,16 +128,40 @@ no relator a proper power, metric C'(1/6) ⟹ the quotient is
 `IsPowerTorsionFree`.  Classical proof to formalize (after the gate):
 if `g^k = 1`, `g ≠ 1`, take `w` cyclically-reduced conjugate
 representative of `g`; then `w^k ∈ N` and Greendlinger applies to
-`w^k`; the >½ arc in a power of `w` overlapping two periods forces a
-relator to share more than half with a PERIODIC word, and C'(1/6) plus
-no-proper-powers turns the induced overlap of the relator with its own
-rotate into a piece contradiction; the residual case (arc inside one
-period) descends to `|w| < |arc|`-type shrinking.  Statement is being
-scaffolded by w1b as `isPowerTorsionFree_of_metricSmallCancellation`;
-the periodic-overlap lemma ("a word sharing more than half of itself
-with its own nontrivial rotation is a proper power" — Fine–Wilf shape)
-is the one genuinely new sub-lemma; Mathlib's `List.rotate` API plus
-Fine–Wilf-style period arithmetic should carry it.
+`w^k`.  **CORRECTED 2026-08-21 (the first version of this paragraph
+pointed at a REFUTED sub-lemma — the fourth documentation error in this
+lane's history, machine-checked this time):** "a word sharing more than
+half of itself with its own nontrivial rotation is a proper power" is
+FALSE — `PeriodicOverlap.not_isProperPower_of_two_mul_length_le` has
+the witness `0 1 0 0 1 0 0 1`, which overlaps a rotation of itself in
+three quarters of its length and is not a proper power; the sharp true
+hypothesis is `|w| ≤ |p| + gcd(k, |w|)`, which a Greendlinger arc never
+supplies.  Fine–Wilf is the wrong tool here, not merely unproved.  The
+correct route is the TWO-OCCURRENCE DICHOTOMY: the arc exhibits a
+common prefix of two rotations of one relator; either the rotations are
+distinct — then the prefix is a piece and C'(1/6) bounds it — or they
+are equal, and `isProperPower_of_rotate_eq_rotate` fires with no
+overlap-length hypothesis at all, which is exactly where the
+`NoProperPower` hypothesis is spent.  The consuming statement
+(`isPowerTorsionFree_of_metricSmallCancellation`, w1b) carries this
+warning in its docstring; `Sofic/PeriodicOverlap.lean` (landed on main)
+supplies the dichotomy lemmas, the rotate/invRev closure of
+non-proper-powers, and the refutation itself.
+
+SECOND CORRECTION (same evening, fifth error in the lane): even the
+dichotomy sketch above was incomplete — in the arc-spans-two-periods
+branch with DISTINCT rotations, bounding the overhang piece bounds m,
+not |u|, and the resulting length system is satisfiable (machine-
+verified, 7592 solutions; window 2n ≤ |r| < 3n).  The full descent is
+finewilf's L0–L3 decomposition: |u| ≤ n closes by Dehn descent; equal
+rotations close by the proper-power lemma; |r| < 2n closes by the
+cyclic-conjugate descent; and the residual window is ARITHMETICALLY
+EMPTY when the gate is consumed in sharp form |u| > (1−3λ)|r| at
+λ ≤ 1/8 (then n > (1−4λ)|r| ≥ |r|/2).  Consequence for the program:
+the avatar family is designed at C'(1/8), the gate file carries a
+sharp-form leaf from which the ½-form is derived, and the torsion
+theorem is unconditional given the sharp gate — no second van-Kampen
+atom exists on this path.
 
 ## 6. Division of labor
 
