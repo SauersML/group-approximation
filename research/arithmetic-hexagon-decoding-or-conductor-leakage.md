@@ -105,6 +105,13 @@ the fixed-depth nonhyperlinearity criterion.
   must use a mixed root outside each directional parahoric and charge the
   affine tail `(FAC10)` to conductor exit.  Raw or corrector hexagon closure
   alone is insufficient.
+- **The actual parahoric atlas kills every abelian flat gauge.**  The toy
+  affine escape uses substitute vector stabilizers.  On the true `42`-point
+  atlas, the `C`-orbit of the signed triangle relation is an integral
+  unimodular basis; hence every covariant commuting corrector collapses with
+  a dimension-independent HS modulus.  See
+  `actual-parahoric-triangle-kills-abelian-correctors`.  The remaining mixed
+  tail is therefore genuinely nonabelian, not another conductor torus.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
