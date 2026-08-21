@@ -158,3 +158,12 @@ determinant, index, or power-trace test can remove it. The surviving attack
 must pin this **mixed** selector moment by finite multiplicity or make the
 multiplicity twist recur contractively; universal algebraic frames are ruled
 out by `algebraic-selector-mixing-frame-collapses-forbidden-sector`.
+
+The first error-spreading version of this endpoint is now exact:
+`cyclic-coarse-fine-selector-rows-spread-carrier-error` allows a different
+carrier mass and an arbitrary multiplicity-twisted unitary at every vertex,
+yet charges one quarter of the **total** carrier mass after a cyclic return.
+Thus local defects cannot be hidden by moving them through ever larger or
+unrelated reservoirs.  The only remaining gate is matrix-only authentication
+of the mixed selector rows themselves; neither common-reservoir alignment nor
+twist cancellation remains necessary once a cyclic decoder supplies them.

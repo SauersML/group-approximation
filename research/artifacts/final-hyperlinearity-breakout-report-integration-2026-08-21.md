@@ -218,3 +218,20 @@ finite-dimensional asymptotic models with vanishing local action/covariance
 defect while the killed mark stays at distance `sqrt(2)`. A positive Nielsen
 route must therefore use the specific nonsofic/Kazhdan geometry of its
 compressor, not compactness alone.
+
+The same-reservoir hypothesis can now be removed altogether at the analytic
+endpoint.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` proves that
+for arbitrary carrier masses, arbitrary unitaries (including independent
+multiplicity twists), coarse halves `e_i`, and fine quarters `f_i`,
+
+```text
+sum_i ||U_i e_i U_i^*-f_(i+1)||_2^2
+  >= (1/4) sum_i tau(P_i).
+```
+
+The signed trace deficits telescope around the cycle before absolute values
+are taken.  This is the desired error-delocalization mechanism: moving the
+defect into the next reservoir cannot dilute it after one full return.  The
+properly infinite Leavitt model realizes every row exactly, so completeness
+survives.  What remains is solely matrix-only authentication of the selector
+reflections; the cycle no longer needs a common carrier or gauge alignment.
