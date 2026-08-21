@@ -131,14 +131,26 @@ which is fixed by `W_game`.  Thus `(PAZ10)` vanishes on the exact witness,
 and the native mark on the multiplicity factor remains nontrivial.  No
 global identity `W_game=I` is imposed.
 
-The exact finite packet/wreath realization still has to enforce the intended
-controlled-reflection action `(PAZ9)` in the selected spin sector.  Once that
-finite algebraic construction is supplied, source mass is no longer the
-analytic problem.  The only remaining matrix-only interface is the
-state-local mixed moment `(PAZ12)`.
+The exact finite packet/wreath audit is now in
+`controlled-reflection-cell-has-free-orientation`.  The intended action and
+the perfect-witness extension exist, but selection by `J_ctl=-1` alone does
+not force `(PAZ9)`: every controller has a free multiplicity involution in
+front of its acceptance projection.  An orientation Hecke moment is needed
+to select the intended block.  Conditional on those moments, source mass is
+no longer the analytic problem and `(PAZ12)` is the sole return interface.
 
 Finite wreath naming alone does not prove `(PAZ12)`: it names `W_game`, while
 `eta_0(Q)` couples that word to the original capacity source `Q`.  The D8
 decoupling audit therefore survives only at the **return** layer, not at the
-source-norm layer.  This is a strict improvement over the arbitrary `PUQ`
-formulation.
+source-norm layer.  Before reaching that return layer, the finite controller
+must additionally pay or eliminate the free orientation `(COR6)`; this is
+an algebraic selected-type obstruction, distinct from source norm.
+
+Equivalently, direct polarization gives
+
+```text
+2 eta_0(Q)=||(W_game-I)P_0Q||_2^2.
+```
+
+Thus no expanded verifier row remains.  The final matrix-only interface is
+one capacity-gated block-unitary corner norm.

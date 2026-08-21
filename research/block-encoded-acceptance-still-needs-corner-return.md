@@ -77,6 +77,14 @@ their product `W_game` have an exact ordinary group-word realization in the
 intended imprimitivity/two-copy representation.  The ancillary dimension
 `2^m` is fixed by the one static game.
 
+This sentence concerns the **intended** representation.  It is not a
+universal marked-spin statement.  As proved in
+`controlled-reflection-cell-has-free-orientation`, the minimal wreath cell
+allows an extra multiplicity involution `u_j` in front of each `Q_j`, and the
+character twist `c_j->-c_j` preserves the Pauli sign and every control
+relation.  A Hecke orientation selection is therefore required before an
+arbitrary marked packet model satisfies `(BAE5)`.
+
 For a Gram vector `G`, write
 
 ```text
