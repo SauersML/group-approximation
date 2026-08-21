@@ -109,6 +109,12 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   `fixed-tensor-fusion-types-have-no-spectral-gap` proves that every finite
   family of normalized fusion operators on an infinite compact type space
   has remote finitely supported almost-invariant Peter--Weyl vectors.
+  Replacing fusion by automorphisms still fails over any residually finite
+  packet: `rf-packets-have-finite-marked-automorphism-orbits` finds a finite
+  characteristic quotient, invariant under the whole actor, which retains
+  every prescribed nontrivial mark.  Thus the remaining recurrence must use
+  a finite-residual mark, a genuinely proper endomorphism, or a matrix-only
+  proper corner.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite

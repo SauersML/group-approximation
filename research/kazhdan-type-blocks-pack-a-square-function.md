@@ -82,3 +82,9 @@ That transformation cannot be ordinary tensoring by finitely many fixed
 packets: `fixed-tensor-fusion-types-have-no-spectral-gap` constructs remote
 finite Peter--Weyl vectors which are almost invariant under every such fusion
 operator.  The actuator must be genuinely non-fusion or matrix-coordinate.
+Nor can one simply exactify a residually finite packet and let a nonamenable
+automorphism group act on its types.  By
+`rf-packets-have-finite-marked-automorphism-orbits`, every nontrivial mark in
+such a packet survives in one finite characteristic quotient, hence on one
+finite actor-invariant type reservoir.  A viable automorphism recurrence
+must begin with a mark already in the packet's finite residual.
