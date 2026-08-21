@@ -36,8 +36,10 @@ trace-blind.
    does not identify it with `lambda_Gamma`.
 
 3. **Finite-support marked corners.**  More generally, let `H<=Gamma` and let
-   `0!=q in C[Gamma]` be a projection commuting with `H`.  The natural corner
-   representation `h |-> qh` has canonical corner character
+   `0!=q in C[Gamma]` be a projection.  If every compression `qhq` is unitary
+   in the corner `qL(Gamma)q`, then necessarily `hqh*=q` for every `h in H`;
+   thus `q` commutes with `H`.  The natural corner representation `h |-> qh`
+   has canonical corner character
 
    ```text
    chi_q(h)=tau_Gamma(qh)/tau_Gamma(q).
@@ -60,4 +62,3 @@ The honest escapes are exactly the graph's existing hard interfaces: a
 unital algebraic map of a no-CE-trace algebra into a canonical group corner,
 a unique-trace corner quotient, or a new group/action whose twisted regular
 sector is independently proved non-CE.
-

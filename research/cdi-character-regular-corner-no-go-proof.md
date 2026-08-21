@@ -34,7 +34,18 @@ Thus canonical restriction and multiplicity compression do not change
 replaced these regular orbit blocks; calling it induced supplies no
 identification with the canonical regular representation.
 
-For the algebraic corner, write `q=sum_(g in F) a_g g` with `F` finite.  Then
+First note that unitarity forces the commutation hypothesis.  If `qhq` is a
+unitary of `qL(Gamma)q`, then
+
+```text
+q (hqh*) q=q.
+```
+
+For the projections `q` and `p=hqh*`, the equality `qpq=q` gives `q<=p`.
+The finite canonical trace gives `tau(q)=tau(p)`, so faithfulness forces
+`q=p`.  Applying this to every `h` gives `[q,H]=0`.
+
+Now write `q=sum_(g in F) a_g g` with `F` finite.  Then
 
 ```text
 tau_Gamma(qh)=a_(h^-1).                                (CDI-R2)
@@ -54,4 +65,3 @@ factor and all canonical positive corners are CE.  A Clifford central cut
 has coefficient formula `(CDI-R1)`; it changes the multiplier, not the
 underlying regular trace.  Hence non-CE of `pi_chi(H)''` does not pass without
 an additional algebraic map or recoverability theorem.
-
