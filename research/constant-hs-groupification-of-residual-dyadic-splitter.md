@@ -66,6 +66,14 @@ that model from arbitrarily large matrices.
   soundness.  The remaining bridge is to make its local checks act as the
   explicit Schur flip automorphisms while preserving perfect diffuse
   completeness.
+- There is a second, non-PCP packing backend once a noncommutative scale packet
+  can be decoded exactly.  `kazhdan-type-blocks-pack-a-square-function` shows
+  that all forbidden source/target type blocks of one router are HS-orthogonal
+  and their complete, arbitrarily layered square function is bounded by one
+  finite Kazhdan covariance energy.  This removes the depth union bound.  The
+  unresolved actuator is then a branching transformation whose graph on
+  finite-dimensional types has a uniform non-Folner boundary; coherent
+  transport or type resolution alone does not provide that boundary.
 - `commuting-schur-replicas-force-exponential-dimension` proves that a
   constant forbidden-mass gap across `N` commuting replicas already yields
   dimension at least `2^(beta_B N/C)`, even though different replicas may

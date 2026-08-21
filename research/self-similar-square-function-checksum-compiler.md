@@ -97,10 +97,15 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   generator packet controls the total transport among **all** inequivalent
   finite-dimensional isotypic components, with no dimension or type-count
   bound.  A property-(T) Toeplitz tail can therefore supply infinite type
-  resolution once its action has been decoded exactly.  It still does not
-  make the first-hit scale domains orthogonal or prove `(SSC3)`; the surviving
-  construction problem is now a Kazhdan-resolved carrier return, rather than
-  an infinite checksum library.
+  resolution once its action has been decoded exactly.  More precisely,
+  `kazhdan-type-blocks-pack-a-square-function` partitions the pairwise
+  orthogonal off-isotypic blocks of one router into arbitrary first-hit scale
+  layers and bounds their complete square function by the same finite
+  covariance energy.  Thus exact Kazhdan packet decoding solves the
+  orthogonal packing clause `(SSC4)` with no depth union bound.  It still does
+  not prove `(SSC3)`: the surviving construction problem is a genuinely
+  non-Folner type-transition recurrence, rather than an infinite checksum
+  library.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
