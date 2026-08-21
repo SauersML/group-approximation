@@ -34,14 +34,17 @@ asymptotically scalar.  That is already fatal to a regular microstate,
 because a scalar unitary commutator has trace modulus `1` while the
 regular trace of the nontrivial commutator word is `0`.
 
-**Exact case is already a theorem.**  For an exact finite-dimensional
-`rho`: `e(U, rho(c)) = 0` for all `c in S` means `Ad(U)` commutes with
-`Ad(rho(c))`, hence with `Ad` of the closed group generated; by
-co-density at odd congruence levels
-(`sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`) the image of
-`Lambda` IS the image of `Gamma`, so `e(U, rho(h)) = 0`.  `(PRT1)` is
-the robust form of this exact identity — precisely parallel to the
-collapse lane, but with phases already quotiented out.
+**Exact case: now a QUANTITATIVE theorem on both pairs.**  For exact
+finite-dimensional `rho` the inequality `(PRT1)` holds with zero
+defect term and explicit dimension-free constants:
+`sl2-exact-projective-transfer-via-doubled-squeeze` proves
+`e(U, rho(h)) <= (4/kappa^2) E_C(U)` for the SL_2 pair at
+`(tau)`-only strength (the Ad-doubling squeeze — phases cancel inside
+`Ad`, no perfectness needed), and
+`exact-projective-codensity-has-a-uniform-trace-square-gap` covers the
+perfect/(T) pairs for `n >= 3`.  What remains open in this claim is
+exactly the APPROXIMATE-representation form: the passage from the
+exact variety to `delta`-representations, i.e. the outlier sector.
 
 ## Attempts
 
