@@ -88,3 +88,12 @@ corona cocycle.  Vanishing would turn the property-`(T)` wreath-like group
 into `F_3 wr B`, contradicting finite abelianization.  Hence the source's
 operator-valued tails cannot all be made finite tensor implementers by
 changing lifts.
+
+Gate `(G2)` admits one genuine weakening.
+`torsion-dense-schur-multiplier-compiles-twisted-nonce` shows that the
+original class need not itself be torsion: it is enough that it annihilate
+the finite residual of `H_2(K,Z)`.  Torsion classes are then dense at it, and
+closure of CE twisted microstates forces one nearby torsion twist to remain
+non-CE.  The CDI source does not establish this Schur-multiplier separation
+for its scalar-kernel quotient; see
+`cdi-torsionization-needs-schur-multiplier-separation`.
