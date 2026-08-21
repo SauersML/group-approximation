@@ -171,6 +171,29 @@ without enumerating them.  The signed-character parallelogram theorem is an
 example of the latter only in its bounded-dimensional character-code regime;
 it does not turn the positive-rate Tanner ambient code into an operator LTC.
 
+The full class-two obstruction is now closed once that low-rate simplex
+collapse has happened.  `radial-parallelograms-kill-simplex-class-two` uses
+the degree-four orbit
+
+```text
+{x,alpha x,gamma x,(1+alpha+gamma)x}
+```
+
+over `F_(2^n)`.  The radial pair `{x,alpha x}` alone spans the entire
+`Lambda^2(F_2 direct-sum F_(2^n))`, and every nonzero alternating form is
+seen on at least one quarter of the orbit.  Hence the maximal class-two
+quotient is abelian and the whole central class-two part has a linear
+same-dimension HS rounding bound.  Since `gamma_2=gamma_3`, every nilpotent
+quotient is already abelian; there is no tower of higher nilpotent
+obstructions after this overlay.
+
+What remains is narrower and genuinely nonnilpotent.  An arbitrary exact
+local-PVM representation could still carry a commutator core `D` satisfying
+`D=[D,Gamma]`, invisible to all nilpotent quotients, and the approximate
+problem must first isolate or exclude such a core.  Thus the next theorem is
+not another exterior-power estimate: it is a stability/exclusion theorem for
+the nonnilpotent contextual quotient of this explicit radial presentation.
+
 There is also no general group-theoretic shortcut from the now-controlled
 exterior square to all operator layers.  Theorem 3.1 of Slofstra's
 [solution-group embedding theorem](https://arxiv.org/abs/1606.03140) (take
