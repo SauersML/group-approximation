@@ -257,6 +257,15 @@ never activates.
   Iwahori route meet at the same edge, now carrying two inputs the
   edge lacked before -- odd-tower local rigidity and the syzygy
   collapse of the two swap holonomies to one.
+- **Lemma (b) is now a self-contained node
+  (`solenoid-absorption-cascade-converges`).**  The single-holonomy
+  torsor absorption is factored out as a convergence inequality on the
+  `x4` odometer with no `SL_2` content: peel the off-diagonal via the
+  gap-bounded submersion `Ad(M)-1`, descend the diagonal residual to
+  the next fourth-root level, and ask only that
+  `sum_k ||H_off^(k)||_2 / gamma_k -> 0` dimension-free.  This route's
+  entire remaining analytic content is that one inequality plus the
+  established rigidity and the syzygy collapse.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
