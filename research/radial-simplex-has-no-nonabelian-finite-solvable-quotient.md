@@ -64,4 +64,7 @@ nonabelian finite simple group and the quotient by it is elementary abelian
 `radial-simplex-excludes-partitioned-involution-targets` now also rules out
 simple quotients `PSL_2(2^r)`, including the smallest candidate `A5`.  Any
 remaining semisimple core must have genuinely interacting involution
-carriers.
+carriers.  The first such extension is isolated exactly by
+`radial-a5-socle-extension-is-a-v4-coset-atlas`: for the factor-swap group
+`A5^2 semidirect C2`, the unresolved question is a concrete `V4`-coset
+holonomy problem on the radial context hypergraph.
