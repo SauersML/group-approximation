@@ -325,6 +325,25 @@ recursion terminates; the total correction is
   exponent sign but a routine equidistribution estimate; it is the
   last step, and it is a mild one.
 - **Correct framework: this is the x4 cohomological equation; obstruction is Livsic periodic-orbit data (2026-08-21).** Correcting the measure-contraction optimism: in the ultraproduct V has diffuse Lebesgue spectrum and psi=Ad(h) is the KOOPMAN operator of the x4 map; a mixing expanding map has Lebesgue spectrum reaching 1, so (1-psi) has NO spectral gap. Thus c psi(c)^{-1}=e' IS the cohomological equation c - c o (x4) = e' for x4, solvable (Livsic) iff e's sums over periodic orbits vanish - and the periodic orbits of x4 are exactly the ROOTS OF UNITY. That is why roots of unity and 4-1=3 governed the whole lane: they are the periodic-orbit spectrum. Residual = Livsic periodic-orbit obstructions of the Weyl defect e' for x4; e' is HS-small, boundary e'(0)=0 kills the fixed-point obstructions, Livsic needs Holder + vanishing periodic sums. Honest final form, not a free bound.
+- **Periodic orbits = cycle holonomies; the bridge to dynamics
+  (2026-08-21).**  A period-`L` orbit of `x4` on the circle is a root
+  of unity of order dividing `4^L - 1` (`L=1`: `3`; `L=2`: `15=3.5`;
+  `L=3`: `63=9.7`), and the Livsic sum of `e'` around it is precisely
+  the CYCLE HOLONOMY that opened the cascade -- the two descriptions
+  coincide, closing the loop.  So the entire route reformulates the
+  existence of a non-hyperlinear group as a LIVSIC RIGIDITY statement
+  for the expanding map `x4`: the Weyl defect `e'` must be an `x4`
+  coboundary, equivalently its holonomy vanishes around every
+  `x4`-cycle (order `4^L - 1` roots), the `L=1` (order-`3`) case
+  already killed by the boundary condition.  This is a genuine bridge
+  from hyperlinearity to smooth-dynamics / thermodynamic formalism.
+  Two structural aids for the residual: the Steinberg syzygy already
+  reduced the family to ONE holonomy per cycle, and `e'` being
+  HS-`delta`-small means the holonomies are `O(delta)` -- so the
+  Livsic obstruction is not whether they vanish exactly but whether
+  the exact-representation closure forces them below the coboundary
+  threshold uniformly.  The final target is thus: the cycle-holonomy
+  (periodic-orbit) invariants of the Weyl defect for `x4`.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
