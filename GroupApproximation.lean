@@ -1448,6 +1448,8 @@ import GroupApproximation.Sofic.BareDefectSource
 import GroupApproximation.Algebra.CongruenceTorsionFree
 import GroupApproximation.Kazhdan.SL3Certificate
 import GroupApproximation.Sofic.BespokeRouterConstruction
+import GroupApproximation.Algebra.SteinbergSL3
+import GroupApproximation.Algebra.FinitePresentationFiniteIndex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
