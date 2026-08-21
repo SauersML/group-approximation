@@ -47,6 +47,23 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **The quantitative wall collapses to the universal qualitative wall.**
+  `projective-transfer-linear-bound-equals-no-ultraproduct-leak` proves a
+  stronger compactness statement than the previously recorded tensor
+  observation.  If no linear bound
+  `e_h<=L(q_C+delta)` exists, choose a violation
+  `e_n>n(q_n+delta_n)` and take `ceil(1/e_n)` diagonal tensor copies.
+  Relator defect and total `C`-energy become `O(1/n)`, while target energy is
+  at least `1-exp(-1)`.  Hence exclusion of a qualitative projective leak in
+  every matrix ultraproduct automatically gives `(PTS1)` with the linear
+  modulus `eta(delta)=L delta`; there is no separate Lojasiewicz-rate
+  problem.  Combined with perfectness, this identifies the present claim
+  with **universal** relative-commutant collapse.  It also exposes an
+  overstrength in the current route: `(PTS1)` ranges over arbitrary
+  approximate assignments, while the HNN contradiction consumes only the
+  regular-trace microstate class.  A regular-trace-restricted transfer theorem
+  would suffice for the goal and need not settle arbitrary trace profiles.
+
 - **Diagonal tensor powers are an exact projective error amplifier.**  Put
   `E(W)=1-|tr(W)|^2`.  Normalized traces multiply, so for every unitary `W`
   and integer `k>=1`,
