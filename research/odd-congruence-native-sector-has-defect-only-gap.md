@@ -45,9 +45,10 @@ this becomes
 ```
 
 Thus a failure of the full defect-only native inequality cannot live on the
-odd-congruence exact face.  It must use either an exact two-primary or
-scale-spread lattice profile, or a lattice assignment at uniform positive
-distance from every genuine representation.
+odd-congruence exact face.  It must use either an exact congruence profile
+with a nontrivial two-primary component (including the scale-spread weight
+escape), or a lattice assignment at uniform positive distance from every
+genuine representation.
 
 ## Determinant and parity audit
 
