@@ -87,7 +87,7 @@ theorem omegaOp_one_atZero : omegaOp 1 atZero = (Set.univ : Set E) := by
 
 theorem higmanGenerated_univ : HigmanGenerated (Set.univ : Set E) := by
   rw [← omegaOp_one_atZero]
-  exact HigmanGenerated.omega 1 higmanGenerated_atZero
+  exact HigmanGenerated.omega 1 one_pos higmanGenerated_atZero
 
 /-- `Z` and `S` are disjoint: a member of `S` reads `a` at index `0` and `a + 1`
 at index `1`, and the zero sequence forces both to vanish. -/
