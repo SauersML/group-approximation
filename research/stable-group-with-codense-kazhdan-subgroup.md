@@ -51,6 +51,17 @@ quotients).
   stability of the host means every approximate representation is near
   the trivial one, which is already a strong form of nonhyperlinearity of
   the host itself; the lamplighter adds nothing for simple hosts.
+- **Weakening to microstate stability does not help for residually finite
+  hosts.**  The theorem only needs exact representations near the
+  restrictions to `G` of canonical-trace microstates of the lamplighter,
+  i.e. near approximate representations of `G` whose traces tend to the
+  canonical trace.  But if `G` is residually finite and not HS-stable,
+  tensoring a far-from-exact approximate representation `sigma_n` with a
+  finite-quotient representation `rho_N` whose character tends to zero
+  gives `rho_N (x) sigma_n`: defect and traces tend to zero while the
+  restriction to the kernel of `rho_N` is `1 (x) sigma_n`, so for `N`
+  growing slowly these stay far from exact.  Canonical-trace stability of
+  a residually finite host is therefore genuine stability.
 - **Consistency forcing.**  Stable and hyperlinear forces residually
   finite, so a host that is not already the witness is residually finite
   with a profinitely dense, finite-dimensionally co-dense, infinite-index
