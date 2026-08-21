@@ -23,7 +23,8 @@ bounds were already retained by the first-block reduction.
 
 Passing to the tracial matrix ultraproduct turns the vanishing edge errors
 into equalities.  The two exact vertex representations become `(X^2,Y)` and
-`(X,Y^2)`, while `P` commutes with `X^2,Y` but not `X`.  For `V=2P-1`,
+`(X,Y^2)` and the central edge generator gives
+`Z(X^2,Y)=Z(X,Y^2)`, while `P` commutes with `X^2,Y` but not `X`.  For `V=2P-1`,
 `V` commutes with `X^2` and `Y^2`; hence `(VXV,Y^2)` is the conjugate of the
 second modular representation by `V` and `(VXV)^2=X^2`.  This proves the
 claimed square-root normal form.

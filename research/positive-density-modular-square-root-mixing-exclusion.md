@@ -10,7 +10,14 @@ distinct_from:
 
 OPEN.  Let `M=prod_omega M_(d_n)` be a tracial matrix ultraproduct.  Suppose
 `X,Y in U(M)` satisfy the exact modular relations both for `(X^2,Y)` and for
-`(X,Y^2)`.  Prove that every projection `P in M` satisfying
+`(X,Y^2)`, **with their central words matched**:
+
+```text
+Z(X^2,Y)=Z(X,Y^2),
+Z(U,V)=(U V^(-1) U)^2.                               (MSX0)
+```
+
+Prove that every projection `P in M` satisfying
 
 ```text
 [P,X^2]=[P,Y]=0                                      (MSX1)
@@ -53,7 +60,16 @@ vanish in every tracial matrix ultraproduct.
 - **Finite-type matching.**  Works on every fixed finite library of modular
   irreducibles, but does not control high-dimensional irreducible mass; that
   is the known unbounded Iwahori matching frontier.
-- **Next attack.**  Insert the two braid/central modular relations for
-  `(X^2,Y)` and `(X,Y^2)` into the odd/even decomposition `(MSX3)`.  The
-  target is a dimension-free quadratic inequality bounding `||A||_2` by the
-  two modular-relation defects.  No such inequality is currently proved.
+- **Modular-polynomial attack is dead.**
+  `iwahori-square-root-odd-mode-is-amalgam-bending` proves that conjugating
+  the second vertex by any first-vertex commutant unitary preserves both
+  modular relation sets, both edge equations, and the matched central word
+  exactly.  Hence no quadratic inequality can bound `||A||_2` using only
+  those relator defects: its right side vanishes on every bend.  A successful
+  estimate must use finite matrix coordinates, vertex liftability, and in the
+  HNN route the canonical character.
+- **Central-word audit.**  The equality `(MSX0)` is essential to the actual
+  Iwahori amalgam and was missing from the first shorthand formulation.
+  Adding it does not by itself kill the odd mode, because that common central
+  involution commutes with both vertices; it prevents testing a strictly
+  larger, irrelevant missing-centre amalgam.

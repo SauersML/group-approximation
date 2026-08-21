@@ -35,7 +35,8 @@ unitaries `X,Y` and a nontrivial projection `P` such that
 
 ```text
 (X^2,Y) and (X,Y^2) are exact SL_2(Z) representations, (SRM5)
-[P,X^2]=[P,Y]=0, but [P,X]!=0.                         (SRM6)
+Z(X^2,Y)=Z(X,Y^2),                                    (SRM6)
+[P,X^2]=[P,Y]=0, but [P,X]!=0.                         (SRM7)
 ```
 
 If `V=2P-1`, then `X'=VXV` is a second square root of `X^2`, and

@@ -716,3 +716,22 @@ macroscopic.  In the matrix ultraproduct the two exact modular vertices are
 `(X^2,Y)` and `(X,Y^2)`.  The frontier is therefore the finite-matricial
 exclusion `positive-density-modular-square-root-mixing-exclusion`, not a
 general Iwahori intertwiner repair.
+
+The square-root mode is not constrained by another hidden modular word.
+`iwahori-square-root-odd-mode-is-amalgam-bending` shows that conjugating the
+second vertex by any first-vertex commutant unitary preserves the entire
+Iwahori amalgam presentation, including the central edge word.  The odd mode
+is exactly this bending coordinate.  Hence the next theorem must be
+matrix-coordinate: canonical, vertex-liftable matrix ultraproduct embeddings
+must not admit macroscopic bending.  A universal finite-von-Neumann-algebra
+argument would incorrectly kill the stable letter in the left regular
+representation of the HNN candidate.
+
+Canonical trace conditioning does not shrink this final obstruction.  Since
+`SL_2(Z[1/2])` is residually finite, tensor any failed transfer sequence with
+the left regular representations of finite quotients separating larger and
+larger word balls.  All edge defects, commutator norms and block densities
+are unchanged, while every fixed nonidentity amalgam word acquires trace
+zero.  Hence `canonical-iwahori-transfer-is-equivalent-to-full-transfer`:
+the regular-character endpoint is exactly the full transfer problem in
+camouflage, not a simpler character-rigid subcase.
