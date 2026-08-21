@@ -42,6 +42,15 @@ fixed-density projection in both trace-independent child algebras.  Then
 `tensor-independent-child-carrier-gap` supplies an immediate dimension-free
 energy floor.  Producing unrelated carriers on the two sides is insufficient.
 
+For the specific exact Pauli atlas there is an even weaker, non-generic
+alternative.  Its two *distinct* canonical quarter carriers already have D8
+holonomy `1/2`.  Therefore it is enough to recover the first in one child
+algebra and the second in the commuting transverse child algebra;
+`separate-d8-carriers-cannot-recover-in-commuting-descendants` then gives a
+fixed floor.  Arbitrary unrelated carriers remain insufficient—the point is
+that these two carriers and their joint canonical moments are fixed in
+advance by the packet.
+
 Pure tracial-von-Neumann reasoning cannot prove this statement, because the
 left regular representation sees the nontrivial marked word.  The proof must
 use finite matrix coordinates: multiplicity, finite-label recovery, or an

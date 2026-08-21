@@ -9,6 +9,7 @@ distinct_from:
   pauli-block-tail-or-flat-rigidity-dichotomy: that splits on the singular-value distribution of the sixteen raw-to-comb blocks and its flat branch ends in the constant-block contraction gap; this splits on what happens to an overlap that already exists and its second branch ends in the tensor-independence gap.
   same-orbit-closure: that asks for closure of a rectangular escape under a common orbit, in the whole-map formalism; this asks the mixed relations to force one of two positive-energy alternatives on a specific compulsory overlap.
   multiplicity-return-transducer: that asks for a returning multiplicity wire at fixed packet scale in the Schur-Clifford lane; this asks for a dichotomy on the raw/comb overlap and consumes no predicate compiler.
+  separate-d8-carriers-cannot-recover-in-commuting-descendants: that proves the analytic floor once the two distinct native quarter carriers are separately recovered in commuting descendants; this must still obtain one of the required recovery patterns from the mixed rank-five words.
 ---
 
 Let `Q` be the transported coefficient corner of the fixed raw/comb Pauli
@@ -47,6 +48,22 @@ In case `(HOL)`, `fixed-holonomy-on-overlap-pays-relator-energy` gives
 `tensor-independent-child-carrier-gap` gives
 `dist_2(F,A)^2 + dist_2(F,B)^2 >= tau(F)(1-tau(F))`, so `kappa` cannot be small.
 Either way a fixed positive energy is paid.
+
+There is now a third, strictly weaker analytic endpoint.  Let `F` be the
+canonical common transported quarter corner and let `G` be the distinct
+comb-transported branch-transfer quarter carrier.  If the mixed words recover
+`F` in the raw descendant algebra and `G` in the comb descendant algebra,
+while those descendants commute, then
+`separate-d8-carriers-cannot-recover-in-commuting-descendants` gives
+
+```text
+dist_2(F,A_raw)+dist_2(G,A_comb) >= 1/(8 sqrt(2)).
+```
+
+Thus this **separate native-carrier recovery** also pays a fixed floor.  It
+does not require the same projection to belong to both descendants, and it
+does not require the Hecke reflections to be promoted to ordinary group
+words.
 
 ## Attempts
 
@@ -102,6 +119,12 @@ Either way a fixed positive energy is paid.
   new analytic estimate is needed after the reflections become words.  The
   remaining holonomy interface is precisely
   `balanced-router-pauli-holonomy-interface`.
+- **Ordinary-word exposure is optional.**
+  The separate-carrier recovery theorem shows that the same canonical D8
+  moment floor can be consumed before groupifying the reflections.  It is
+  enough that fixed-packet decoding locate `F` and `G` in their respective
+  commuting descendants.  This is now the weakest known holonomy closure
+  target for the atlas.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using
