@@ -308,3 +308,11 @@ It is a **capacity-gated coherent-frame/corner relation before that
 commutator**, forcing one decoded graph projection to be positive-density in
 matrices while remaining `W_game`-invariant in the exact HALT witness.  This
 is the common-source Gram-word cell in its correctly typed form.
+
+The direct finite-packet repair is ruled out in
+`fixed-packet-orbits-cannot-amplify-a-gram-line`: a finite gauge orbit of one
+Gram vector still has vanishing normalized rank, and even the complete fixed
+space of any fixed finite menu of packet-twisted returns can have density
+`O(1/d)`.  The surviving minimal target is therefore a capacity-gated
+ordinary-word realization of the Hecke corner `q(W_game-I)=0`, not another
+finite orbit amplification.
