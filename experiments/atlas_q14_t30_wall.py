@@ -19,8 +19,6 @@ with q14 still has exact classical alignments, so q14 cannot replace collision
 19243 as the packet escape-killer.
 """
 
-from __future__ import annotations
-
 import json
 
 import numpy as np

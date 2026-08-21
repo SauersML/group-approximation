@@ -1,0 +1,26 @@
+{
+  "ambient_group_order": 20160,
+  "compressed_factorization": "t30 = (h6_2 k_0)^-1 z b (h6_2 k_0)",
+  "covariance_bridge": "||[U,rho(t30)]||_2 <= ||[U,rho(p_left)]||_2 + ||[U,rho(z)]||_2 + ||[U,rho(p_right)]||_2",
+  "factorization": "t30 = p_left z p_right",
+  "nontrivial_double_coset_order": 18816,
+  "p_left_hex": "00000100010001000001010000000001",
+  "p_left_word": [
+    "k_0^-1",
+    "h6_2^-1"
+  ],
+  "p_right_hex": "01010000010001000100000100000001",
+  "p_right_word": [
+    "b",
+    "h6_2",
+    "k_0"
+  ],
+  "parabolic_conjugate_intersection_order": 96,
+  "parabolic_order": 1344,
+  "parabolic_word_length_sum": 5,
+  "root_energy_bound": "x30^2 <= 3 weighted_coordinate_energy",
+  "t30_hex": "01000000000100000000010001000001",
+  "weighted_coordinate_energy": "2 delta(h6_2)^2 + 2 delta(k_0)^2 + delta(z)^2 + delta(b)^2",
+  "z_hex": "01000000000100000000010100000100",
+  "z_order": 3
+}

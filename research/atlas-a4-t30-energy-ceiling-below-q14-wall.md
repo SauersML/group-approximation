@@ -58,6 +58,12 @@ proved.
   `K_(2,4)` rectangle holonomies.  A dimension-free inequality need only
   control the `t30` covariance through these four multiplicity unitaries and
   the 19243 residual.
+- **Use the exact parabolic--C3 bridge.**
+  `atlas-t30-is-one-parabolic-c3-bridge` proves
+  `t30=(h6_2 k_0)^-1 z b(h6_2 k_0)` and hence
+  `x30^2<=3E_PC3`.  The remaining upper estimate may therefore be attacked as
+  the four-coordinate weighted ceiling
+  `atlas-a4-parabolic-c3-bridge-energy-ceiling`, with threshold `1/6`.
 - **A non-strict estimate is insufficient.**  The q14 wall is exactly `1/2`;
   the upper estimate must retain a positive strict margin after passage to a
   microstate subsequence.
