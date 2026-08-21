@@ -127,3 +127,11 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   `sl2-half-stability-excludes-hnn-hyperlinearity` they would also have to
   admit, to refute through the HNN group, an almost-centralizer of
   `SL_2(Z)` that is not an almost-centralizer of `SL_2(Z[1/2])`.
+- **Deep-rank sibling (2026-08-21).**  This question is DV's Question
+  1.4 (arXiv:2506.20843v2); its higher-rank lattice analogue is
+  `sl3z-regular-microstates-are-congruence-correctable`, which the
+  Weyl-sector route consumes at any `n >= 3` WITHOUT the central
+  extension that forces DV to `SL_2` (infinite `pi_1`): the rank-two
+  Weyl evaluation of `odd-congruence-lambda-exact-sector-collapses`
+  replaces the extension mechanism.  Progress on either instance
+  transfers its techniques, not its statement, to the other.

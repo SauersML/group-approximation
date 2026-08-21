@@ -30,14 +30,39 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
 
 ## Attempts
 
-- **What is known on each side.**  Hyperfinite HS-stability of
-  `SL_3(Z)` is in-graph (`character-rigidity-equals-hyperfinite-hs-
-  stability`, via Peterson/Bekka character rigidity): sequences with
-  amenable ultraproduct trace ARE correctable.  The regular trace
-  generates the non-amenable `L(SL_3(Z))`, so this claim is exactly
-  the non-hyperfinite complement -- the same frontier as the
-  Dogon--Vigdorovich Iwahori program, now needed only for the
-  lattice and only at congruence targets.
+- **What is known on each side (source-verified against
+  Dogon--Vigdorovich arXiv:2506.20843v2, 2026-08-21).**  (i) DV's
+  default "Hilbert--Schmidt stable" (their Definition 1.2, after
+  [BL20]) IS the flexible version this claim allows -- corner padding
+  `D_n >= d_n` built in.  (ii) Their Theorem 1.6: for irreducible
+  lattices with (T;FD) in center-free semisimple groups of real rank
+  at least 2, hyperfinite HS-stability, character rigidity,
+  (T;FD)_rob and finite-dimensional approximability of characters
+  are all equivalent; since character rigidity is KNOWN for
+  non-uniform higher-rank lattices (their citations [DGG+25, PT16]),
+  `SL_n(Z)` for `n >= 3` is UNCONDITIONALLY hyperfinitely HS-stable:
+  sequences with amenable ultraproduct trace are correctable, and
+  "character rigidity is witnessed on a finitary level."  This claim
+  is exactly the non-amenable complement (the regular trace generates
+  `L(SL_n(Z))`).  (iii) This claim is the higher-rank lattice
+  analogue of DV's Question 1.4 (the Iwahori question: are
+  representations of `SL_2(Z)` almost factoring through odd
+  congruence quotients close to congruence representations?).  The
+  structural difference is decisive: DV's route to the goal
+  (Theorem 1.3 + Corollary 1.5) consumes such a statement at `SL_2`
+  ONLY, because it needs a central `Z`-extension with infinite
+  `pi_1(G(R))`; the Weyl-sector route
+  (`sl3-collapse-from-congruence-correctability`) consumes the same
+  species of statement at any `n >= 3` with NO central extension --
+  the rank-two Weyl evaluation replaces the extension mechanism
+  entirely.  (iv) The known instability results for (T) groups cited
+  by DV ([ISW20], [Dog23]) proceed through central-extension
+  deformations, i.e. through unbounded 2-cocycles; in the stable
+  range `H_2(SL_n(Z))` is the finite `K_2(Z) = Z/2`, so no published
+  obstruction applies to the regular-sector correctability of the
+  lattice itself: the hole is genuinely open in BOTH directions,
+  exactly like DV's Question 1.4, of which it is the deep-rank
+  sibling.
 - **Why the correction may exist here when full stability might
   fail.**  The known instability mechanisms for higher-rank groups
   are scalar-2-cocycle/central-extension obstructions (Deligne type,
