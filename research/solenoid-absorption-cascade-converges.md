@@ -62,6 +62,7 @@ recursion terminates; the total correction is
   system (the `x4` odometer on the dyadic solenoid) with NO group
   theory left -- the cleanest possible form of the residual analytic
   content.
+- **Snag + fix (2026-08-21).** Naive peel does not converge: the diagonal residual descends at fixed size delta while 1/gamma_k grows. Fix: alternate off-diagonal conjugation with absorbing the diagonal into the exact base-torus reparametrization (free); only the reduced cycle-cocycle (dim = tower cycles - 1) descends, and lemma (b) is its contraction under alternating absorption.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
