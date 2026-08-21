@@ -4,7 +4,7 @@ id: three-chart-affine-clifford-return-incidence
 kind: claim
 title: Three affine Clifford reset cells have one word-level common endpoint marginal
 distinct_from:
-  affine-selector-clifford-proves-derived-reset-bridge: that proves the corrected full-character restriction equality for one reset edge; this must couple all three comparison charts so forbidden mass cannot hide in independent multiplicity rotations.
+  derived-lifted-gauge-reset-spin-bridge: that proves the corrected full-character restriction equality for one reset edge; this must couple all three comparison charts so forbidden mass cannot hide in independent multiplicity rotations.
   s3-radical-charts-give-linear-local-hs-payment: that proves payment conditional on three supplied comparison laws with shared endpoint marginals; this must construct those laws as ordinary words in one finite presentation.
   finite-graph-of-groups-representation-types-are-integer-flows: that controls irreducible type counts; the endpoint events here live inside a merged type's multiplicity commutant and are invisible to those counts.
 ---
