@@ -62,6 +62,36 @@ matrix dimension or on `t`.  Thus the constant-sound terminal half of
 downstream use, a self-indexed compiler may return one additive commutator
 residual instead of authenticating `YX` and `XY` separately.
 
+This reduction is sharp when the decoded matrices are not required to have
+uniform operator norm.  For every `C in M_d(C)`,
+
+```text
+inf_(X,Y in M_d(C)) ||C-[Y,X]||_2=|tr_d(C)|.          (ACJ5)
+```
+
+The lower bound follows by taking trace.  For the reverse bound write
+`C=tr_d(C)I+C_0`, where `tr(C_0)=0`.  Every complex trace-zero matrix is one
+additive commutator.  Here is a short proof.  Inductively choose an
+orthonormal basis in which `C_0` has zero diagonal: zero belongs to the
+numerical range because it belongs to the convex hull of the eigenvalues,
+and after choosing a unit vector with zero diagonal entry, the compression
+to its orthogonal complement again has trace zero.  In that basis choose a
+diagonal matrix `D=diag(d_1,...,d_d)` with pairwise distinct entries and put
+
+```text
+Z_ij=(C_0)_ij/(d_i-d_j)  for i!=j,       Z_ii=0.
+```
+
+Then `[D,Z]=C_0`.  Taking this commutator in the infimum leaves precisely
+`tr_d(C)I`, whose normalized HS norm is `|tr_d(C)|`.
+
+Applied to `C=P-A_t`, `(ACJ5)` says that the best possible commutator
+residual is exactly the scalar mismatch that the Fanizza endpoint must
+force.  Thus a compiler for `(ACJ3)` is neither hiding a stronger rank
+theorem nor paying for a multiplication table: semantically it is a robust
+trace-zero certificate.  Uniform norm bounds on the decoded `X,Y` would be
+an additional, genuinely stronger demand and are not asserted here.
+
 ## Coefficient-level Steinberg compression
 
 The smaller target has a constant-size algebraic wordization.  In any
@@ -70,14 +100,14 @@ commutator convention `[g,h]=ghg^(-1)h^(-1)`.  The Steinberg relation gives
 
 ```text
 [e_12(Y),e_23(X)] [e_12(X),e_23(Y)]^(-1)
-   =e_13(YX-XY)=e_13([Y,X]).                          (ACJ5)
+   =e_13(YX-XY)=e_13([Y,X]).                          (ACJ6)
 ```
 
 Therefore `(ACJ3)` is one root-coefficient comparison with
 `e_13(P-A_t)`.  In the standard `3 by 3` matrix realization,
 
 ```text
-||e_13(C)-e_13(D)||_(2,tr_3)=||C-D||_2/sqrt(3),       (ACJ6)
+||e_13(C)-e_13(D)||_(2,tr_3)=||C-D||_2/sqrt(3),       (ACJ7)
 ```
 
 so this compression has a dimension- and runtime-independent constant.  It
@@ -86,7 +116,7 @@ even require two separately authenticated output coefficients.
 
 ## Exact boundary
 
-Equations `(ACJ5)--(ACJ6)` are a coefficient-level reduction, not a missing
+Equations `(ACJ6)--(ACJ7)` are a coefficient-level reduction, not a missing
 normalized-HS coefficient decoder for an abstract unitary representation of
 a Steinberg group.  That decoder remains the load-bearing groupification
 step.  Nor may `(ACJ3)` be imposed as a fixed identity valid in every finite

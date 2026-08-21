@@ -19,7 +19,13 @@ has Hilbert--Schmidt norm one and `tr([Y_t,X_t])=0`, hence
 The accelerated heat estimate gives
 `0<=tr(A_t)<=C_m/(4t^2)`, proving `(ACJ4)`.
 
-Finally the two standard Steinberg commutator identities in `(ACJ5)` and
+For the sharp converse `(ACJ5)`, subtract the scalar part of the target.
+The zero-diagonal basis induction and the explicit diagonal commutator
+given in the claim show that the remaining traceless matrix is one
+commutator.  Orthogonality of the scalar and traceless subspaces gives the
+claimed exact distance.
+
+Finally the two standard Steinberg commutator identities in `(ACJ6)` and
 root-subgroup additivity give `e_13(YX-XY)`.  In a standard `3 by 3`
 realization its only nonzero difference block is the `(1,3)` coefficient;
-normalizing the block trace proves `(ACJ6)`.
+normalizing the block trace proves `(ACJ7)`.
