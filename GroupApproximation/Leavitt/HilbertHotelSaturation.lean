@@ -370,6 +370,40 @@ theorem cornerEmbedding_elementaryUnit (i j : Fin 4) (h : i ≠ j) (a : R) :
       = elementaryUnit (corner i) (corner j) (corner_ne h) a :=
   cornerUnits_elementaryUnit i j h a
 
+/-- No corner index reaches the second block. -/
+theorem corner_ne_of_four_le (i : Fin 4) (k : Fin 16) (hk : 4 ≤ k.val) :
+    corner i ≠ k := by
+  intro h
+  have h2 : (corner i).val = k.val := congrArg Fin.val h
+  have h3 : (corner i).val = i.val := rfl
+  have hi := i.isLt
+  omega
+
+/-- **The mark centralizes the corner.**  `e₄₅(1)` lives in the second block, whose
+indices are disjoint from the corner's, so it commutes with the whole corner copy
+of the rank-four elementary group.  This is the `[c, ι(Λ)] = 1` clause of the
+compression datum. -/
+theorem cornerUnits_commute_mark (h45 : (4 : Fin 16) ≠ 5)
+    (g : (Matrix (Fin 4) (Fin 4) R)ˣ) (hg : g ∈ elementaryGroup (Fin 4) R) :
+    Commute (cornerUnits g) (elementaryUnit (4 : Fin 16) 5 h45 1) := by
+  rw [elementaryGroup] at hg
+  induction hg using Subgroup.closure_induction with
+  | mem x hx =>
+      obtain ⟨i, j, hij, a, rfl⟩ := hx
+      rw [cornerUnits_elementaryUnit]
+      exact elementaryUnit_commute (corner_ne hij) h45
+        (corner_ne_of_four_le j 4 (by decide))
+        ((corner_ne_of_four_le i 5 (by decide)).symm) a 1
+  | one =>
+      rw [map_one]
+      exact Commute.one_left _
+  | mul x y _ _ hx hy =>
+      rw [map_mul]
+      exact hx.mul_left hy
+  | inv x _ hx =>
+      rw [map_inv]
+      exact hx.inv_left
+
 end CornerEmbedding
 
 /-! ### The defect and its nontriviality -/
@@ -450,7 +484,22 @@ distinct indices, the elementary commutator relation, and fullness
 `r₁ q s₁ = 1`, so it holds in `EL_ι(R)` for every finite index type: the defect
 `e_{xy}(q)` together with `e_{dx}(a r₁)` and `e_{yz}(s₁)` produces `e_{dz}(a)`
 for an arbitrary coefficient.  Instantiating at `ι = Fin 16` with
-`d, x, y, z = 3, 0, 2, 1` recovers `saturation_chain`. -/
+`d, x, y, z = 3, 0, 2, 1` recovers `saturation_chain`.
+
+This is the *constructive* route to saturation in the model, and it is kept
+deliberately even though the shortest path does not use it.  The short path
+pushes `BinaryLeavittSteinberg.normalClosure_root_eq_top` (rank `≥ 5`, any root,
+any nonzero coefficient) forward along the Steinberg-to-elementary projection;
+that is quicker but puts `St_n(R)` and `projection_surjective` on the critical
+path.  The chain above proves the same normal-generation statement directly
+inside `EL_ι(R)`, with explicit words, so it is what replaces the Steinberg
+detour if that dependency is ever unwanted.
+
+A caution on how far either statement reaches: both are theorems about the
+*model*.  Along a surjection `G ↠ M` a normal closure only pushes forward, so
+`⟪d̄⟫ = M` gives `⟪d⟫ · ker = G`, not `⟪d⟫ = G`.  In a cover presentation the
+saturation must still be imposed as relators; what the model supplies is their
+consistency, and the existence of the words they name. -/
 theorem saturation_chain_generic {ι : Type*} [Fintype ι] [DecidableEq ι] (a : R)
     (d x y z : ι) (hdx : d ≠ x) (hxy : x ≠ y) (hdy : d ≠ y) (hyz : y ≠ z)
     (hdz : d ≠ z) :
