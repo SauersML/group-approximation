@@ -157,6 +157,30 @@ recursion terminates; the total correction is
   a coboundary after all.  Possibility (a) is the likely one and is a
   finite-subgroup-stability statement, the cleanest the far sector has
   reduced to; it is the next thing to write.
+- **The E_3 obstruction is a spectral-mass quantity the regular trace
+  fights (2026-08-21).**  Finite-subgroup stability does NOT apply
+  directly: `u` is unipotent, so its order-`3` action on the cube-root
+  eigenspace `E_3` is an approximation artifact, not a genuine finite
+  subgroup.  The right lever is the trace.  For the regular trace of
+  `SL_2(Z[1/2])`, `tau(u^k) = 0` for all `k != 0`, so the spectral
+  measure of `pi(u)` tends to LEBESGUE on the circle -- which has NO
+  atoms.  The cube-root positions (and each fixed `3`-primary root)
+  therefore carry vanishing spectral mass, so `e'`'s component on
+  `E_3` contributes `<= sqrt(dim E_3 / d)` to normalized HS, which
+  tends to `0` provided the `3`-primary eigenspace is a vanishing
+  dimension fraction.  So the obstruction is real only if the exact
+  `LV` base order `N` has a `3`-primary part `3^(v_3(N))` that is a
+  non-vanishing fraction of `N`.  The genuine remaining question is
+  thus purely arithmetic-analytic: does `LV`-exactification of the
+  Lebesgue-spectrum unipotent keep `3^(v_3(N)) = o(N)` (equivalently
+  keep the `3`-adic valuation of the order sub-logarithmic)?  The
+  trace pushes toward yes (no atoms means no concentration on the
+  sparse `3`-primary roots), but the `LV` rounding could in principle
+  pile refinement onto the `3`-primary tower.  This is the honest
+  bottom of the cascade: a competition between the atomless limiting
+  spectrum and the `3`-adic valuation of the rounded order -- the
+  first fully arithmetic form the residual has taken, and the exact
+  statement to settle next.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
