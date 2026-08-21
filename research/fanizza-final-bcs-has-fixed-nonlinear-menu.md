@@ -38,3 +38,10 @@ flattening gadgets, but not this nonlinear menu.  In particular the current
 groupification target is finite and runtime-independent, but it is not
 correct to describe the Fanizza BCS as consisting only of binary
 support-containment primitives.
+
+For the **native prescribed-word groupification**, the menu simplifies
+further.  The last three C18 observables obey the native multiplicative Pauli
+relation, so their parity guard is identically active and C18 is equivalent
+to the three-bit recurrence `pq=0`, `p+q=r`.  This semantic reduction is not
+available to an abstract flattened BCS compiler that has forgotten the
+prescribed words; see `pauli-guard-collapses-c18-to-three-bit-recurrence`.

@@ -121,3 +121,45 @@ paired same-reservoir boundary payment
    => fixed-depth canonical mark estimates
    => Gamma_A is nonhyperlinear.
 ```
+
+## Integrated proof package from the complete investigation dossier
+
+The full construction audit is distributed through the following Cairn
+nodes rather than duplicated as one monolithic manuscript:
+
+- `affine-active-corner-has-faithful-binary-leavitt-envelope` proves the
+  faithful one-to-two active coefficient algebra;
+- `affine-leavitt-steinberg-mark-is-fd-invisible` and
+  `affine-leavitt-steinberg-fd-collapse-proof` establish the explicit
+  finitely presented property-(T) Steinberg group, its nontrivial mark, and
+  exact finite-dimensional mark collapse;
+- `approximate-relative-leavitt-cell-kills-active-trace` proves the
+  dimension-free cyclic-trace endpoint;
+- `fixed-depth-canonical-mark-estimates-rule-out-hyperlinearity` records the
+  decisive quantifier gain: `C_N` may grow arbitrarily because the
+  microstate limit precedes `N -> infinity`;
+- `steinberg-root-shear-plancherel-covariance` gives the fixed-window Fourier
+  transport, while `rectangular-escape` proves why closing that window loses
+  the expanding boundary;
+- `bistochastic-diagonal-return-forces-aligned-permutation` proves that once
+  the source and target are square, near-bijection is automatic with
+  dimension-free constants `2` and `5`;
+- `tensor-independent-child-carrier-gap` gives the alternate same-carrier
+  certificate against transverse tensor descendants; and
+- `paired-same-reservoir-boundary-lemma` is the single remaining
+  matrix-coordinate bridge.
+
+The preferred live target is therefore not the stronger uniform coefficient
+decoder.  It is the fixed-depth estimate
+
+```text
+||w_A(U)-I||_2^2
+ <= 2^-N + C_N(def(U)+sep_(F_N)(U)),
+```
+
+obtained by charging every rectangular label enlargement as leakage from the
+same finite multiplicity reservoir.  This statement explicitly survives the
+ten-item falsification checklist in the dossier: it uses matrix coordinates,
+not a universal tracial identity; measures density rather than dimension;
+and cannot be satisfied by the exact rectangular countermodel without a
+visible boundary term.

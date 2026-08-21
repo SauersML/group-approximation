@@ -43,3 +43,24 @@ one compressed affine character.
 This is the smallest current C18 interface.  It replaces the size-11/10
 oriented packets and the size-9/10 child-oriented packets without changing
 the scalar active/exit ledger or the source-cut certificate.
+
+## Native Pauli specialization
+
+This three-gate interface is needed only when the final six C18 selector
+coordinates are treated independently.  In the native machine algebra,
+
+```text
+X_tilde Z_tilde X_tilde Z_tilde=J,   J^2=1
+```
+
+forces `h=1` exactly.  Hence `(FCR1)` reduces to
+
+```text
+p(1-r)+q(1-r)+p q r,                                (FCR4)
+```
+
+and, more strongly, the entire six-bit C18 predicate is equivalent to the
+three-bit projection recurrence `pq=0`, `p+q=r`.  No last-triple selector
+packet is required on the live native groupification lane.  The present
+factorization remains useful for the fully flattened BCS interface and for
+quantitative comparison when the Pauli relators have not yet been imposed.

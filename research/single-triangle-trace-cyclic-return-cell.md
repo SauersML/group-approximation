@@ -2,11 +2,18 @@
 rg: 2
 id: single-triangle-trace-cyclic-return-cell
 kind: claim
-title: Charge the unique native triangle holonomy by one finite-dimensional trace-cyclic return
+title: Dead target - Fanizza has no native triangle after the Pauli guard is used
 distinct_from:
   s3-active-packet-proper-corner-return: that places a three-atom allowed S3 sum into the recurrent carrier; this acts only on the one native Fanizza triangle chord after all tree incidences are normalized.
   schur-reynolds-one-overlap-actuator: that asks for one adjoint Reynolds overlap for every forbidden Schur packet; this asks for the fixed D8 holonomy projection of a single source-specific cycle.
 ---
+
+DEAD FOR THE NATIVE FANIZZA SOURCE.  The relation
+`X_tilde Z_tilde X_tilde Z_tilde=J` with `J^2=1` forces the last C18 triple
+into its even-parity half, so the `Z_tilde` chord disappears.  There is no
+native triangle holonomy to charge.  Trace-cyclic return cells remain a
+valid general design pattern, but the shortest Fanizza route is now the
+join-tree prescribed-word realization.
 
 OPEN.  Construct one finitely presented ordinary-group cell attached to the
 last chord of the native Fanizza context triangle such that:

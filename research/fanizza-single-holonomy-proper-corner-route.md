@@ -2,7 +2,7 @@
 rg: 2
 id: fanizza-single-holonomy-proper-corner-route
 kind: route
-title: Attach one proper-corner return to the unique native Fanizza holonomy
+title: Dead route - the prescribed Pauli guard removes the apparent native holonomy
 target: non-hyperlinear-group
 requires:
   - fanizza-native-additive-incidence-is-one-triangle
@@ -12,6 +12,16 @@ requires:
   - group-algebra-mark-reverse-kleene-collapse
   - single-triangle-trace-cyclic-return-cell
 ---
+
+DEAD.  This route treated the last C18 triple as an independent selector
+packet.  In the native presentation its product is identically one, so C18
+reduces to the first-triple projection recurrence and the triangle chord is
+absent.  See `pauli-guard-collapses-c18-to-three-bit-recurrence` and the live
+replacement `fanizza-native-join-tree-groupification-route`.
+
+The discussion below is retained as a warning: it would be relevant to a
+different source with a genuine unicyclic prescribed-word atlas, but it is
+not a load-bearing Fanizza route.
 
 Keep every native involution, group, conjugacy, and commutation equation
 multiplicative.  Gauge-double the four remaining Boolean contexts.  Normalize
