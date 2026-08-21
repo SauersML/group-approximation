@@ -69,3 +69,11 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
   `V`, every pairwise commutator loses the multiplicity factor.  The missing
   construction is to force this common factor using ordinary group relations
   without equating the distinct packet actions.
+- **Balanced hyperoctahedral lookup.**
+  `hyperoctahedral-balanced-word-truth-table` proves that one controlled
+  translation and balanced conjugates by signed-permutation constants realize
+  an arbitrary truth table while cancelling the router's external factor.
+  This removes the need for two independent controlled gates.  The remaining
+  obstruction is narrower: Pauli covariance does not force the larger
+  hyperoctahedral constants to have trivial external multiplicity action.
+  `hyperoctahedral-router-interface-for-fanizza` records exactly that return.
