@@ -42,6 +42,13 @@ part of the remaining hole.
 - The local Schur theorem already supplies the density `c q^2`; the missing
   statement is an ordinary-word coefficient covariance that embeds its
   canonical three-generator Reynolds core into the compressor commutant.
+- The covariance cannot be ordinary conjugacy of the whole nested packet.
+  `nested-packet-reynolds-defect-is-orthogonal-to-old-commutant` shows that
+  whenever `A<B` is transported with the full `B` subgroup into the old
+  group, the transported range `R_A-R_B` is exactly orthogonal to the old
+  commutant (and lies above the old adjoint Kazhdan gap).  Thus a live cell
+  must transport only a partial/compressed coefficient or force the scalar
+  overlap moment without conjugating the full packet table.
 - A finite controlled-phase overgroup cannot impose that covariance on every
   selector sector.  The live implementation must use the one-sided Toeplitz
   coefficient action or a projective two-cell.
