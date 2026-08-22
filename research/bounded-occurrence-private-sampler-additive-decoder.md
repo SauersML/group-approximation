@@ -73,3 +73,12 @@ port, permutation concentration preserves the generator-column Weyl gap,
 and a second degree-one matching kills the whole exterior square.  Thus the
 only missing part of the present decoder is same-Hilbert exclusion or
 stability of the remaining nonnilpotent contextual local-PVM quotient.
+
+The exact part is now stronger:
+`quadratic-repetition-supports-complete-commutation-overlay` uses the available
+copies to test every base-coordinate pair at bounded occurrence, so every
+zero-defect representation is already abelian and has one scalar-code PVM.
+There is no exact nonnilpotent survivor.  Quantitative rounding remains open,
+and `sparse-clifford-cycles-refute-average-commutator-rounding` proves that
+average pair commutator energy alone is insufficient; the replicated LDPC
+parity constraints must enter the estimate.

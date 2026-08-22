@@ -46,3 +46,19 @@ equality checks, and the exterior-square matching round on the same Hilbert
 space to the scalar kernel.  The overlay eliminates every central class-two
 escape, but existing results do not exclude a genuinely nonnilpotent
 contextual quotient or provide a uniform HS correction for it.
+
+At zero defect the nonnilpotent issue can be removed completely.
+`quadratic-repetition-supports-complete-commutation-overlay` assigns one
+repeated copy to every pair of base coordinates, with bounded degree and
+quadratic total size.  Exact equality then makes the whole coordinate family
+commute, so every exact representation is a scalar-kernel PVM.  The remaining
+problem is purely quantitative: turn small replicated code/equality/pair
+defect into a nearby exact PVM with a uniform same-Hilbert modulus.
+
+One cannot discard the code structure and invoke a generic average-
+commutator theorem.  `sparse-clifford-cycles-refute-average-commutator-rounding`
+has complete-pair energy `8/L` but constant distance from every commuting
+tuple.  The desired estimate must use the LDPC parity contexts together with
+the complete overlay.  Word placement of that overlay remains a separate
+compatibility gate because its logical all-pairs incidence creates contours
+through distinct basins.
