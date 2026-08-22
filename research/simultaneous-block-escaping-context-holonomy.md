@@ -50,3 +50,14 @@ all of its marginals have to arise from the same atom partition `(BCH1)`.
   running-intersection property makes the construction triangular.  Hence
   only non-tree chords remain; `signed-hecke-cycle-only-route` isolates the
   first one as `first-cycle-signed-hecke-chord`.
+- **Every finite family of escape cells on one context is now classified for
+  fixed targets.** `finite-chord-context-is-joint-table-plus-collision` shows
+  that the proposed target signs must commute and that their complete joint
+  rank table must match inside every previously frozen fiber.  Matching the
+  one-sign tables separately is insufficient.  When the joint table matches,
+  one common context unitary installs all signs; a finite-support free-phase
+  escape exists exactly when the enlarged frozen tuple still has two distinct
+  assignments in one joint fiber.  The local higher-valence problem therefore
+  collapses to a finite joint table.  What remains is global: choose compatible
+  target tuples around every cycle, or escape a collision-free context by a
+  non-conjugation additive operation.

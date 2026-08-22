@@ -7,6 +7,7 @@ target: signed-hecke-block-escaping-cycle-holonomy
 requires:
   - one-binary-marginal-block-escape
   - feasible-chord-collision-has-free-phase-block-escape
+  - finite-chord-context-is-joint-table-plus-collision
   - simultaneous-block-escaping-context-holonomy
 ---
 
