@@ -159,6 +159,15 @@ least one non-root assignment projection must survive.
   path words to differ by at most the central involution.  The remaining
   wordization must therefore be genuinely nonnormalizing/type-specific; a
   literal `G times G` base does not provide it.
+- **The established q14 wall cannot charge the surviving common block.**
+  `q14-literal-holonomy-charger-collapses-atlas-source` tests the direct
+  synthesis.  If the q14 common frame is named by `u`, the second aligned
+  transvection is `u t30 u^(-1)`.  Making the common D16 multiplicity word
+  commute with `t30` turns q14 into `(t23 t30)^2=t20`; hence the quotient
+  kills the simple A8 chart whose regular carrier is required by the wall.
+  Without naming `u`, the frame remains analytic and tensor-separates from
+  D16.  The D16 packet itself retracts and survives in both cases, but q14
+  supplies no external multiplicity payment.
 - **The phase-rotated companion gives aggregate payment but kills
   completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
   `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
