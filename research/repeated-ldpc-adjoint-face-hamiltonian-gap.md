@@ -9,8 +9,8 @@ distinct_from:
   sequential-pinchings-have-sharp-linear-disturbance-loss: that refutes ungapped coordinate-by-coordinate pinching; this is the parity-aware gap that would repair it.
 ---
 
-OPEN.  For the bounded-width face PVMs of the repeated good-LDPC occurrence
-system, prove `(GFP3)` from
+For the bounded-width face PVMs of the repeated good-LDPC occurrence system,
+the selected pairwise-redundant-check augmentation proves `(GFP3)` from
 `gapped-face-pinchings-give-same-hilbert-code-pvm-rounding` with one universal
 `gamma>0`, uniformly over all tracial matrix representations satisfying the
 local face relations.
@@ -58,3 +58,12 @@ cannot prove this claim.  A selected family must additionally exclude all
 such dihedral sectors by an operator-visible indecomposability hypothesis,
 or the decoder must bypass `(GFP3)` with a weaker (for example square-root)
 correction argument.
+
+The selected construction takes the first option.
+`quadratic-redundant-check-overlay-gives-uniform-face-gap` adds every pairwise
+sum of original checks.  These bounded-width redundant faces abelianize the
+exact face group, connect every codeword support, and transfer the ordinary
+code-distance conjugation gap to the average whole-face Hamiltonian with a
+uniform constant.  This closes the adjoint-gap node for the augmented
+sampler; `repeated-ldpc-shared-face-marginal-synchronization` remains the
+separate approximate exactification gate.

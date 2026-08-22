@@ -103,9 +103,11 @@ has a uniform gap above the common commutant, after
 shared face marginals.  Conditional expectation then
 sends each coordinate into the **center** of that commutant, so spectral-sign
 rounding really yields one commuting tuple; classical LTC decoding finishes
-the code support.  The remaining claim is
-`repeated-ldpc-adjoint-face-hamiltonian-gap`, together with that face-
-synchronization step.  Ordinary LTC and unique-neighbor
-expansion do not state this operator/multiplicity-sector gap, so it must be
-proved from the low-rate complete-overlay system rather than assumed from
-the classical Tanner graph.
+the code support.  The adjoint-gap side is now supplied by
+`quadratic-redundant-check-overlay-gives-uniform-face-gap`: quadratic
+repetition permits all pairwise sums of original parity checks as bounded
+faces, and these faces abelianize the exact face group with a uniform
+code-distance gap.  The remaining claim is therefore precisely
+`repeated-ldpc-shared-face-marginal-synchronization`.  Ordinary LTC and
+unique-neighbor expansion still do not exactify the approximate shared face
+tables; that stability step must use the augmented redundant-check system.

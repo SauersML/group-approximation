@@ -55,3 +55,14 @@ exact additive `F_2^r` actions by Fourier transform, and the good codes only
 globalize sampled mixed Weyl energy.  Compiling those PVMs into the repeated
 coordinates recreates the same approximate parity/commutation rounding
 problem.
+
+The construction may be selected with the pairwise redundant-check overlay
+of `quadratic-redundant-check-overlay-gives-uniform-face-gap`.  Every sum of
+two original bounded parity checks is added as one bounded face.  There are
+`Theta(L^2)` such faces and only `O(L)` new occurrences per logical
+coordinate, so the existing `R=Theta(L)` repetition absorbs them at bounded
+degree.  This leaves the scalar code and both private matchings unchanged,
+connects every nonzero codeword support, and supplies the uniform adjoint
+face-Hamiltonian gap.  The remaining operator gate is synchronization of
+the approximate repeated face marginals, not selection of a suitable scalar
+LDPC family or exclusion of the dihedral soft mode.
