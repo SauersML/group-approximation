@@ -2,28 +2,37 @@
 rg: 2
 id: hard-tail-soft-anchor-multiscale-centralization
 kind: route
-title: Dead — hard-repair scalar tails and iterate quadratic random anchoring on the low core
+title: Select summable Y-squared cuts, hard-repair their high blocks, and contract the soft core
 target: multiplicity-space-centralization-after-code-block-pinching
 requires:
   - all-dual-unique-neighbors-contract-operator-tails
   - one-anchor-grading-makes-parity-damage-quadratic
+  - hard-soft-exponent-conflict-is-a-norm-mismatch
+  - y-square-coarea-has-a-compatible-hard-soft-window
+  - central-adaptive-peeling-or-noncentral-stopping
+  - random-code-anchor-pinchings-contract-exact-transverse-energy
+  - dense-complete-pair-remainders-are-cb-quadratic
+  - block-adaptive-sparse-reset-is-cheap
 ---
 
-**Dead with the present scalar inputs.**  The proposal chooses thresholds,
-replaces every coordinate in `U_t`, applies the exact one-anchor pinching and
-sign correction to the complement, and iterates the all-local-dual tail
-recurrence to successively smaller residual scales.
+The former exponent obstruction was a norm mismatch.
+`hard-soft-exponent-conflict-is-a-norm-mismatch` restores the abstract
+amplitude recurrence, and
+`y-square-coarea-has-a-compatible-hard-soft-window` verifies it for the
+actual local spectral variable `R=Y^2`: one can simultaneously make the
+high-block trace, reducing boundary, and soft nonlinear coefficient tend
+to zero.
 
-`hard-soft-thresholds-cannot-enter-anchor-contraction` proves that the two
-required regimes are disjoint.  Cheap hard repair needs `t>>sqrt(E)`, while
-making the optimistic quadratic remainder perturbative relative to the
-linear contraction needs `t<<sqrt(E)`.  Moreover `(AUT2)` raises rather than
-lowers thresholds and is vacuous on the diffuse RMS profile.
+Use `central-adaptive-peeling-or-noncentral-stopping` to select these local
+cuts with disjoint physical mass or geometric decay, preventing repeated
+charges to one commutator row.  Reset the high blocks and retain the
+operator-small complements.  On those complements the exact anchor gap
+supplies the linear contraction and
+`one-anchor-grading-makes-parity-damage-quadratic` makes bounded-face and
+sign remainders a vanishing multiple of residual amplitude.  Iterate at
+geometrically decreasing energies; the compatible window makes the reset
+and boundary costs summable.  The limiting tuple refines the zero-adjoint
+multiplicity blocks and proves the target.
 
-The route could be revived only by strengthening the scalar tail statement
-to the operator-valued sparse fourth-moment/stopping estimate in
-`sparse-anchor-odd-fourth-moment-is-the-renormalization-gate`, or by finding
-a one-shot terminal exactification theorem that consumes an absolute
-`o(1)` residual without iteration.  Neither follows from threshold
-scheduling itself.
-
+Thus the route is live but conditional on the named noncommutative stopping
+claim.  Threshold exponents are no longer an obstruction.
