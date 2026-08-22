@@ -106,6 +106,17 @@ separately that its branching conjugators create every cross-corner while
 preserving the same center; neither property follows from the
 Leavitt/Morita chart.
 
+There is one exact stronger partial construction.
+`dual-prefix-growth-needs-two-morita-branches` applies right multiplication
+by `t_i` on one Heisenberg root and left multiplication by `s_i` on the
+adjacent root.  The two branch monomorphisms share the center and their
+iterates give the complete dual-prefix packet; conjugating the packet may
+replace `J` by an equal-trace level sign `J_n`.  But the Heisenberg base is
+infinitely generated, and the root-dependent branch maps do not extend to
+one ring-induced endomorphism of the finitely presented Steinberg ambient.
+Thus moving signs solve the carrier-density objection, while finite
+presentation of the two Morita branches becomes the exact remaining gate.
+
 There is also a finite-presentation caveat.  Entrywise injectivity is clear
 for `EL_n(B)`.  The repository's unconditional finite-presentation theorem
 is for `St_n(B)`, and injectivity of the induced Steinberg endomorphism is
