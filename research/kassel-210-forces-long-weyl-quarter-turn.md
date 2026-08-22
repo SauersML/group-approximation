@@ -30,3 +30,6 @@ The bounded derivation also yields dimension-free normalized-HS commutator
 estimates from the corresponding relator defects. It does not yet centralize
 `x_beta` or `x_(-beta)`.
 
+The latter pair is closed exactly by
+`kassel-rank-one-braid-closes-central-mark`, the braid form of Kassel
+Lemma 2.2.

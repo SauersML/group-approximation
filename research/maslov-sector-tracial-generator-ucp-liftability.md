@@ -127,3 +127,11 @@ Nevertheless it closes the Maslov sector by
   fourth power centralizes those three roots, with a bounded-word HS
   perturbation estimate. The uncontrolled directions are now precisely
   `x_beta` and `x_(-beta)`.
+- **The last centralizer interface is the rank-one braid.**
+  `kassel-rank-one-braid-closes-central-mark` rewrites Kassel Lemma 2.2 as
+  `bB^(-1)b=B^(-1)bB^(-1)`. Its defect controls the commutators of `w^4`
+  with `b,B` by a dimension-free factor four. Together with the quarter-turn
+  and symmetric negative-root identities, this makes the marked word
+  approximately central on all generators. But the Maslov sector already
+  has exact scalar centrality, so Deligne finite-dimensional invisibility
+  still needs the present ucp/stability input to yield a defect floor.
