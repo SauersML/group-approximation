@@ -51,3 +51,18 @@ required.
   matrix blocks and no affine Fourier-binary law.  What is missing is a direct
   `SL_3(Z)`-invariant regular group basis for an amenable factor whose crossed
   product contains `N`, not another change-of-actor construction.
+- **Every group basis has a permutation-spectrum gate.**
+  `group-basis-actions-have-permutation-koopman-spectrum` proves that an
+  action induced by `SL_3(Z) -> Aut(K)` permutes the canonical orthonormal
+  basis `(u_k)_(k in K)` of `L^2(L(K))`.  Hence any base-equivariant
+  embedding into `L(K)` forces the source Koopman representation to be a
+  subrepresentation of a countable permutation representation.  This is not
+  automatic: irrational rotations already fail it for a cyclic actor.  It
+  also survives non-Cartan embeddings and the proposed finitary-symmetric
+  and CAR/Clifford bases.  Abstract trace realization is not the issue --
+  every standard probability algebra embeds with its exact trace into
+  `L(S_fin(N)) ~= R` -- but that embedding cannot generally be made
+  equivariant by group automorphisms.  The fixed CDI/Manzoor action has not
+  been shown either to pass or fail this Koopman gate, so the direct
+  `SL_3(Z)` branch remains open but now has a source-side falsification test
+  before any group-basis construction is attempted.
