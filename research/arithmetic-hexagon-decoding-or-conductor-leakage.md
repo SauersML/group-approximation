@@ -188,6 +188,33 @@ the fixed-depth nonhyperlinearity criterion.
   pay the fixed gap `2/21` only after a second raw path identified those two
   carriers.  The remaining incidence must therefore be a same-atom return,
   not another one-way root-scaling edge.
+- **No integral root/Weyl word supplies that return.**  Ordered pairs of
+  `D`-cosets retain their `D backslash C/D` orbital type under every diagonal
+  `C`-word.  The preceding source pair has type `D x_12(1)D`, while its
+  rectangular target has type `D x_13(2)D`; modulo two the latter lies in
+  `Dbar` and the former in the disjoint cell
+  `Dbar x_12(1) Dbar`.  The shortest A2 commutator path is
+  `[x_12(1),x_23(2)]=x_13(2)`, but its two section words differ by
+  `x_23(2) in D`.  Their endpoint projections agree, while their internal
+  relative holonomy is the canonically trace-zero corner unitary
+  `P x_23(2)P`.  The two-path Gram identity would charge normalized leakage
+  `1/2` if a raw unitary compression were forced to equal their average;
+  the section word alone does not impose that linear incidence.  See
+  `first-root-parahoric-target-has-a-distinct-double-coset-type`.  The next
+  incidence must either authenticate this two-path average on the same
+  corner or contain a second denominator/cross-chart type change; no bounded
+  collection of diagonal integral root triangles returns the target pair.
+- **The native row does not already authenticate the two-path average.**
+  Its trace-zero holonomy would give normalized source leakage `1/2` for the
+  contraction `K=(A+B)/2`.  But after multiplying by one path, realizing
+  `K` as the compression of a group word would require
+  `P g P=(P+dP)/2`.  The left side has support in one lamp double coset
+  `<c>g<c>`, while the right side has nonzero coefficients in the two
+  distinct cosets `<c>` and `d<c>`.  See
+  `native-a2-two-path-average-is-not-an-ordinary-word-compression`.  Thus the
+  exact surviving scalar is known, but exposing it requires a noncentral
+  additive two-path wordization plus control of the complementary Julia
+  leakage; another monomial arithmetic section word cannot do it.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from

@@ -109,3 +109,12 @@ and therefore identify `Q` with `R` (or charge their mismatch as first-exit
 mass).  Pure root scaling, even on the literal forty-two branches, does not
 supply that return.
 
+Nor can one append an integral root or Weyl word to obtain the return.
+`first-root-parahoric-target-has-a-distinct-double-coset-type` shows that the
+source pair has orbital type `D x_12(1)D`, whereas the target pair has type
+`D x_13(2)D`; reduction modulo two separates these double cosets.  The
+shortest A2 commutator reaches the target in two edges and leaves the
+explicit internal holonomy `x_23(2)`.  It is canonically trace-separated,
+but charging it still requires a same-corner compression-to-average
+identity.  A literal return of the target pair requires another
+denominator/cross-chart edge.
