@@ -9,7 +9,16 @@ distinct_from:
   arithmetic-hexagon-decoding-or-conductor-leakage: that asks to decode an A2 carrier from arbitrary root microstates; this starts after an oscillator band and its parahoric transports have been decoded and controls only their multiplicity factors.
 ---
 
-OPEN.  On every deep odd-conductor oscillator band in a finite
+REFUTED by `p3-full-parahoric-interlock-enforces-inverse-mackey-cocycle`.
+On an invariant oscillator type, an honest full parahoric representation
+factors its little-group transports as `W_g tensor V_g`.  If the oscillator
+intertwiners have Mackey cocycle `alpha`, exact multiplication forces the
+multiplicity transports to have cocycle `alpha^(-1)`.  A twisted regular
+representation supplies this multiplicity gauge in finite dimension.  Thus
+the full interlock enforces cancellation rather than forcing the
+multiplicity quotient to `+1`.
+
+The proposed assertion was: on every deep odd-conductor oscillator band in a finite
 `SL_3(Z/3^a)` packet, the two coweight routes around the native `A_2`
 parahoric hexagon have scalar oscillator quotient `-1`.  The remaining
 multiplicity operators are constrained by the Weyl and opposite-root
@@ -50,3 +59,9 @@ multiplicity coordinate.
   a common commutative/scalar algebra with a dimension-independent gap.
   No such multiplicity action is identified in the current dictionary, so
   the attack is deferred at exactly this representation-theoretic datum.
+- **Full Clifford calculation.**  This datum decides the question in the
+  opposite direction.  Schur factorization plus the group multiplication
+  table gives `V_gV_h=alpha(g,h)^(-1)V_(gh)` exactly, and the finite twisted
+  regular representation realizes it.  No single-packet relation can force
+  the multiplicity cocycle to be trivial without contradicting the existence
+  of the honest Clifford extension itself.

@@ -115,8 +115,13 @@ But `p3-minus-flux-is-cancelled-by-pauli-multiplicity` exhibits the exact
 finite escape left by the current dictionary: tensor the two oscillator
 transports with Pauli `X,Z`, whose second minus sign cancels the metaplectic
 minus sign.  This preserves all Heisenberg covariance at zero defect.
-Therefore the narrow joint multi-root target is
-`p3-parahoric-interlock-forbids-pauli-multiplicity-gauge`.  Even after that
-exact-face statement is proved, applying it to the present outlier sector
-still requires an approximate arithmetic-hexagon/band decoder; no such
-decoder follows from the scalar root relations alone.
+The proposed narrow target
+`p3-parahoric-interlock-forbids-pauli-multiplicity-gauge` is now refuted by
+`p3-full-parahoric-interlock-enforces-inverse-mackey-cocycle`: the full
+finite parahoric relations force the multiplicity factor to carry the
+inverse oscillator cocycle, and the twisted regular multiplicity realizes
+it exactly.  A viable replacement needs incompatible packet cocycles on one
+authenticated reservoir, a multiplicity capacity bound, or unbounded
+cocycle rank.  Applying even such a replacement to the outlier sector still
+requires an approximate arithmetic-hexagon/band decoder; no such decoder
+follows from the scalar root relations alone.

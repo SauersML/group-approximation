@@ -28,17 +28,18 @@ one-step shift invariance alone puts asymptotic mass `1/2` on odd conductor
 depth.  Hence an authenticated alternating `p=3` holonomy would already
 close the spread profile by the elementary bound `(PBF3)`.
 
-However `p3-minus-flux-is-cancelled-by-pauli-multiplicity` gives an exact
-finite-dimensional countermodel to the BARE flux inference.  If oscillator
-transports satisfy `AB=-BA`, then on multiplicity two the transports
-`A tensor X` and `B tensor Z` commute exactly.  All Heisenberg covariance
-relations survive.  Thus Stone--von Neumann uniqueness up to multiplicity
-unitary and the scalar Gauss computation do not obstruct a finite packet.
-The exact remaining dictionary hypothesis is now
-`p3-parahoric-interlock-forbids-pauli-multiplicity-gauge`: a Weyl or
-opposite-root relation must force the multiplicity loop to be trivial.
-Until that is proved, Steps 4--5 below are not valid for general
-multiplicity packets.
+Moreover `p3-minus-flux-is-cancelled-by-pauli-multiplicity` gives an exact
+finite-dimensional countermodel to the bare flux inference, and
+`p3-full-parahoric-interlock-enforces-inverse-mackey-cocycle` shows that the
+full finite parahoric table does not repair it.  Clifford factorization makes
+the multiplicity transports carry the inverse oscillator cocycle; the finite
+twisted regular representation realizes that cancellation exactly.  Hence
+Stone--von Neumann uniqueness, the scalar Gauss computation, and all
+single-packet Weyl/opposite-root multiplication relations do not obstruct a
+finite packet.  Steps 4--5 below are invalid for general multiplicity
+packets.  The remaining flux route would need a capacity bound, incompatible
+cocycles on one authenticated reservoir, or cocycle rank growing beyond the
+model.
 
 Assembly of the proof, every piece prime-generic or computed here:
 
@@ -53,7 +54,7 @@ Assembly of the proof, every piece prime-generic or computed here:
    carrying equal asymptotic mass on the deep oscillator bands,
    which have density one among deep constituents (orbit-method
    genericity for the congruence duals).
-4. On oscillator bands the canonical transport is pinned by
+4. **Invalid at unrestricted multiplicity.** On oscillator bands the canonical transport is pinned by
    Stone--von Neumann uniqueness to the finite Weil intertwiner, and
    its composition flux for the pair `(h, h')` equals the Hilbert
    symbol `(p, p)_p` by the Weil--Rao index identity together with
@@ -62,7 +63,7 @@ Assembly of the proof, every piece prime-generic or computed here:
    off-diagonal Cartan entry: `<h, h'> = (p,p)^(+-1) = (p,p)_p`,
    convention-proof since the symbol is `+-1`-valued.
    `(p, p)_p = (-1 | p) = -1` for `p = 3 (mod 4)`.
-5. A nontrivial flux band cannot carry conjugator mass (the
+5. **Invalid at unrestricted multiplicity.** A nontrivial flux band cannot carry conjugator mass (the
    transports cannot be made consistent on it), so the flat
    profile — which must place its share of mass there — admits no
    conjugator: the flat tower dies, and with it the last
