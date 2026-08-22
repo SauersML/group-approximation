@@ -378,3 +378,15 @@ weakening consumed by the HNN marked word.
   necessarily joint: couple the projective witness `U` to the raw
   compression modulus/phase, since exact transfer shows the polar tuple by
   itself has no leak.
+
+- **The joint gate is one complement-unitary extension problem.**
+  `projective-transfer-reduces-to-complement-unitary-extension` gives an
+  explicit sufficient inequality.  When the target compression has least
+  singular value `sigma`, the corner target energy is at most
+  `(8K/sigma^2)` times the scaled infimum, over complement unitaries `Z`, of
+  the ambient lattice projective energy of `U direct_sum Z`.  This quantity
+  sees exactly what all scalar modulus/relator calibrations omit: whether the
+  same `Z` transports `U` coherently across every incoming and outgoing
+  compression boundary.  Constructing that `Z` from finite arithmetic
+  incidence, or building a canonical enemy for which its cost stays
+  positive, is now the exact polar-compression terminal.
