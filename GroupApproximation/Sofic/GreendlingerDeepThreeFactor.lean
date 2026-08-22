@@ -158,7 +158,7 @@ theorem greendlingerAt_of_landing_drop {R : Set (List (α × Bool))}
         = c₃.drop N ++ (t₃ ++ FreeGroup.invRev c₃).drop 0 := by
       rw [hP, drop_append_of_le N c₃ _ hgt.le, List.drop_zero]
     rw [hdrop]
-    refine ((greendlingerAt_of_landing_intrusion (i := 0) ht₃
+    refine ((greendlingerAt_of_landing_intrusion (i := 0) (d := d) ht₃
       (by omega)).append_left (c₃.drop N)).mono ?_
     omega
 
@@ -179,6 +179,50 @@ theorem greendlingerAt_of_piece_intrusion {R : Set (List (α × Bool))}
     (hd : 3 * d < t₃.length) :
     GreendlingerAt R d ((palindrome c₃ t₃).drop N) :=
   greendlingerAt_of_landing_drop ht₃ (by omega)
+
+/-! ## 1b.  The arc the landing factor supplies unconditionally -/
+
+/-- **The arc at the start of the survivor.**  Read at the position where the
+landing rotation's surviving stretch begins — `|c₃| − N`, which is `0` once the
+block has reached into the rotation — the arc costs only `2i < |t₃|`, with no
+claim on the offset at all.
+
+This is the weakened conclusion the located-offset invariant should be built
+around.  The strong form `GreendlingerAt R d B'` measures the position against
+the *head* rotation through `d`, and the head rotation may be arbitrarily longer
+than `t₃`; this form measures it against the landing factor's own geometry, and
+so is available whatever the two rotations' lengths are. -/
+theorem greendlingerAt_of_landing_start {R : Set (List (α × Bool))}
+    {c₃ t₃ : List (α × Bool)} {N : ℕ}
+    (ht₃ : t₃ ∈ symmetrization R)
+    (hi : 2 * (N - c₃.length) < t₃.length) :
+    GreendlingerAt R (c₃.length - N) ((palindrome c₃ t₃).drop N) := by
+  have hP : palindrome c₃ t₃ = c₃ ++ (t₃ ++ FreeGroup.invRev c₃) := by
+    unfold palindrome
+    rw [List.append_assoc]
+  rcases le_or_gt c₃.length N with hle | hgt
+  · have hz : c₃.length - N = 0 := by omega
+    rw [hz]
+    exact greendlingerAt_of_landing_drop (d := 0) ht₃ (by omega)
+  · have hdrop : (palindrome c₃ t₃).drop N
+        = c₃.drop N ++ (t₃ ++ FreeGroup.invRev c₃).drop 0 := by
+      rw [hP, drop_append_of_le N c₃ _ hgt.le, List.drop_zero]
+    rw [hdrop]
+    refine ((greendlingerAt_of_landing_intrusion (i := 0) (d := 0) ht₃
+      (by omega)).append_left (c₃.drop N)).mono ?_
+    rw [List.length_drop]
+    omega
+
+/-- **... and the piece bound alone pays for it.**  An intrusion under a sixth
+of the landing rotation is under a half of it, so the weakened conclusion needs
+nothing beyond what `C'(1/6)` already gives — no ratio between the two
+rotations, no bound on the overrun depth, and no swallow bound. -/
+theorem greendlingerAt_of_landing_start_of_piece {R : Set (List (α × Bool))}
+    {c₃ t₃ : List (α × Bool)} {N : ℕ}
+    (ht₃ : t₃ ∈ symmetrization R)
+    (hpiece : 6 * (N - c₃.length) < t₃.length) :
+    GreendlingerAt R (c₃.length - N) ((palindrome c₃ t₃).drop N) :=
+  greendlingerAt_of_landing_start ht₃ (by omega)
 
 /-! ## 2.  What the overrun leaves at three factors -/
 

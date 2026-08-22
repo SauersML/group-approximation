@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
+import GroupApproximation.Sofic.GreendlingerCombinatorics
 
 /-!
 # The avatar exponent code, verified: `C'(1/8)`, no block powers, protected ball
@@ -34,12 +35,19 @@ The sibling supplies that bundle; everything downstream of it is proved.
 
 * **(b) Piece pinning → `C'(1/8)`.**  `length_le_of_runs_bounded` is the
   counting half: in a word whose `y₂`-runs are bounded by `A`, a window carrying
-  at most one `y₁`-letter is at most `2·A + 1` long.  So a window of length
-  `2·A + 2` spans a complete `y₂`-run, whose exponent pins its position — that is
-  the `pinned` field — and a piece cannot do that, because it prefixes two
+  at most `k` `y₁`-letters is at most `k·(A + 1) + A` long.  So a window of
+  length `3·A + 3` spans two consecutive complete `y₂`-runs, at least one of
+  which is a code run rather than a junction residue
+  (`code_ne_mul_stride`), and its exponent pins the position — that is the
+  `pinned` field — while a piece cannot do that, because it prefixes two
   *different* symmetrized relators.  `metric_eighth` turns the resulting piece
   ceiling and the relator floor into `MetricSmallCancellation R (1/8)` by one
   inequality.
+
+  The threshold is *three* separators, not the design note's two: a window
+  spanning one complete run pins nothing when that run is a junction residue,
+  since a residue records only a difference of avatar indices.  Two consecutive
+  runs always meet a code run, because a junction leaves at most one residue.
 
 * **(c) No block powers.**  `not_isProperPower_of_unique_mark` is the general
   fact: if some property of the cyclic word holds at exactly one cyclic position,
@@ -101,8 +109,9 @@ def isGenOne (c : Fin 2 × Bool) : Bool := decide (c.1 = 0)
 
 The one combinatorial input the piece bound needs.  In a word all of whose
 separator-free stretches are at most `A` long, the length is controlled by the
-number of separators; in particular a window carrying at most one separator is
-at most `2·A + 1` long, so any longer window spans a complete run. -/
+number of separators; a window carrying at most `k` separators is at most
+`k·(A + 1) + A` long, so any longer window spans more than `k − 1` complete
+runs. -/
 
 /-- The counting induction, carrying the length `k` of the separator-free
 stretch already consumed to the left of the window.  The accumulator is what
@@ -174,29 +183,33 @@ theorem length_le_of_runs_bounded {β : Type*} (q : β → Bool) (A : ℕ) (w : 
       omega)
   simpa using h
 
-/-- **A window with at most one separator is short.**  This is the shape the
-piece bound consumes: it says that a window of length `2·A + 2` must carry two
-separators, hence must span a complete run. -/
-theorem length_le_of_countP_le_one {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
-    (hcount : w.countP q ≤ 1)
+/-- **A window with at most `k` separators is short.**  A window carrying `k`
+separators meets at most `k + 1` runs, so it is at most `k·(A + 1) + A` long. -/
+theorem length_le_of_countP_le {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
+    {k : ℕ} (hcount : w.countP q ≤ k)
     (hruns : ∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A) :
-    w.length ≤ 2 * A + 1 := by
+    w.length ≤ k * (A + 1) + A := by
   have h := length_le_of_runs_bounded q A w hruns
-  have h2 : w.countP q * (A + 1) ≤ 1 * (A + 1) :=
+  have h2 : w.countP q * (A + 1) ≤ k * (A + 1) :=
     Nat.mul_le_mul hcount (Nat.le_refl (A + 1))
   obtain ⟨P, hP⟩ : ∃ P, w.countP q * (A + 1) = P := ⟨_, rfl⟩
+  obtain ⟨Q, hQ⟩ : ∃ Q, k * (A + 1) = Q := ⟨_, rfl⟩
   rw [hP] at h h2
-  rw [one_mul] at h2
-  clear hP
+  rw [hQ] at h2 ⊢
+  clear hP hQ
   omega
 
-/-- **A long window spans a complete run**, in the counted form. -/
-theorem two_le_countP_of_length {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
+/-- **A long window carries many separators.**  The contrapositive of
+`length_le_of_countP_le`, and the shape the piece bound consumes: a window
+longer than `k·(A + 1) + A` meets more than `k` separators, hence spans more
+than `k − 1` complete runs. -/
+theorem lt_countP_of_length {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
+    {k : ℕ}
     (hruns : ∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A)
-    (hlen : 2 * A + 2 ≤ w.length) : 2 ≤ w.countP q := by
+    (hlen : k * (A + 1) + A < w.length) : k < w.countP q := by
   by_contra hcon
-  have hle : w.countP q ≤ 1 := by omega
-  have h := length_le_of_countP_le_one q A hle hruns
+  have hle : w.countP q ≤ k := by omega
+  have h := length_le_of_countP_le q A hle hruns
   omega
 
 /-! ## 2.  Junction control (design property (a))
@@ -277,6 +290,34 @@ theorem junction_residue {K V x x' : ℕ} (hK : 0 < K) (hx : x ≤ V) (hlt : x' 
   rw [hC] at h2 ⊢
   clear hA hB hC
   omega
+
+/-- **A junction residue is never a code exponent.**  A junction leaves a run of
+length `K·|x − x'|`, a multiple of the stride; a code run has length `K·ν + j`
+with `1 ≤ j ≤ L < K`, which is never a multiple of the stride.  So the two kinds
+of run live in different residue classes mod `K` and a normalization pass cannot
+disguise one as the other.
+
+This is what forces the piece threshold to be *three* separators rather than
+two.  A window spanning a single complete run pins nothing if that run happens
+to be a junction residue — `K·3` is left by the pair `(5,2)` and by `(7,4)`
+alike — whereas a window spanning two consecutive complete runs meets at most
+one residue, since each junction leaves at most one, and so always meets a code
+run. -/
+theorem code_ne_mul_stride {K L a ν j : ℕ} (hLK : L < K)
+    (hj : 1 ≤ j) (hjL : j ≤ L) : K * a ≠ K * ν + j := by
+  intro h
+  obtain ⟨X, hX⟩ : ∃ X, K * a = X := ⟨_, rfl⟩
+  obtain ⟨Y, hY⟩ : ∃ Y, K * ν = Y := ⟨_, rfl⟩
+  rcases Nat.lt_or_ge ν a with hlt | hge
+  · have h1 : K * (ν + 1) ≤ K * a := Nat.mul_le_mul (Nat.le_refl K) (by omega)
+    rw [mul_add, mul_one] at h1
+    rw [hX, hY] at h1 h
+    clear hX hY
+    omega
+  · have h2 : K * a ≤ K * ν := Nat.mul_le_mul (Nat.le_refl K) hge
+    rw [hX, hY] at h2 h
+    clear hX hY
+    omega
 
 /-! ## 3.  A unique cyclic mark forbids block powers (design property (c))
 
@@ -406,11 +447,21 @@ structure AvatarMetricData where
   words per relator. -/
   runs_short : ∀ w ∈ symmetrization relators, ∀ u : List (Fin 2 × Bool),
     u <:+: w → (∀ c ∈ u, isGenOne c = false) → u.length ≤ maxExponent
-  /-- **Piece pinning.**  A window carrying two `y₁`-letters spans a complete
-  `y₂`-run; by `code_injective` that run's exponent occurs at exactly one place
-  in the whole system, so the window pins its position and cannot prefix two
-  different symmetrized relators. -/
-  pinned : ∀ p : List (Fin 2 × Bool), 2 ≤ p.countP isGenOne →
+  /-- **Piece pinning.**  A window carrying three `y₁`-letters spans two
+  consecutive complete `y₂`-runs, at least one of which is a code run
+  (`code_ne_mul_stride`: each junction leaves at most one residue run, and a
+  residue is never a code exponent).  By `code_injective` that run's exponent
+  names its avatar and block, so the window is pinned to one place in the
+  system and cannot prefix two different symmetrized relators.
+
+  **This is the field with real content, and it is a condition on the family,
+  not a consequence of the code.**  Pinning the block does not by itself pin the
+  *relator*: two distinct relators may legitimately contain the same avatar, and
+  if they share a long run of avatars — the same padding tail, say — they share a
+  long piece and this fails. The family must therefore be built so that no two
+  distinct symmetrized relators agree across two consecutive blocks, which for
+  the padding step means a per-relator padding rather than a common one. -/
+  pinned : ∀ p : List (Fin 2 × Bool), 3 ≤ p.countP isGenOne →
     ∀ w₁ ∈ symmetrization relators, ∀ w₂ ∈ symmetrization relators,
       p <+: w₁ → p <+: w₂ → w₁ = w₂
   /-- **The unique cyclic mark.**  Each relator has a cyclic position whose
@@ -419,10 +470,19 @@ structure AvatarMetricData where
   uniqueMark : ∀ r ∈ relators, ∃ e p : ℕ, p < r.length ∧
     leadCode (r.rotate p) = some e ∧
     ∀ q, q < r.length → leadCode (r.rotate q) = some e → q = p
-  /-- The metric margin: eight piece ceilings fit inside one relator floor.  For
-  the note's constants `L = 16·(V + 1)`, `K = 2·L` and a padding floor of thirty
-  this holds with room to spare. -/
-  metric_margin : 8 * (2 * maxExponent + 2) ≤ relatorFloor
+  /-- The metric margin: eight piece ceilings fit inside one relator floor.
+
+  It is satisfiable at the note's constants, with room.  Writing `P = V + 1`,
+  `L = 16·P` and `K = 2·L = 32·P`, an avatar is at least `128·P² + 24·P` long
+  while a junction costs at most `2·A_max + 2 = 64·P² − 96·P + 2`, so a relator
+  rewritten from `n` avatar letters is at least `n·(64·P² + 120·P − 2)` long
+  against a requirement of `8·(3·A_max + 3) = 768·P² − 1152·P + 24`.  Twelve
+  letters suffice for every `P ≥ 1`, so the note's padding floor of thirty
+  clears it.  The junction cost is the per-junction bound of `junction_residue`,
+  which is what a normalization pass removes when the source relator is itself a
+  reduced word; a source relator with a cancelling adjacency would cascade and is
+  excluded by that reducedness, not by this arithmetic. -/
+  metric_margin : 8 * (3 * maxExponent + 3) ≤ relatorFloor
   /-- The protected-ball margin, which is §1's reason for padding at all. -/
   protected_margin : 2 * protectedLength ≤ relatorFloor
 
@@ -437,40 +497,40 @@ theorem floor_le_length {w : List (Fin 2 × Bool)}
   rw [hlen]
   exact C.relators_long r hr
 
-/-- The metric margin alone forces a floor of sixteen, which is all the
+/-- The metric margin alone forces a positive floor, which is all the
 nonemptiness arguments below need. -/
-theorem sixteen_le_floor : 16 ≤ C.relatorFloor := by
+theorem zero_lt_floor : 0 < C.relatorFloor := by
   have h := C.metric_margin
   omega
 
 /-- Relators are nonempty — derived, not assumed. -/
 theorem relator_ne_nil {r : List (Fin 2 × Bool)} (hr : r ∈ C.relators) : r ≠ [] := by
   have h1 := C.relators_long r hr
-  have h2 := C.sixteen_le_floor
+  have h2 := C.zero_lt_floor
   have h3 : 0 < r.length := by omega
   exact List.length_pos_iff.mp h3
 
 /-! ### (b)  Piece pinning gives the piece ceiling and `C'(1/8)` -/
 
-/-- **Pieces are shorter than `2·A_max + 2`.**  A piece prefixes two *different*
-symmetrized relators; were it that long it would carry two `y₁`-letters, hence
-span a complete run, hence pin the two relators to be equal. -/
+/-- **Pieces are shorter than `3·A_max + 3`.**  A piece prefixes two *different*
+symmetrized relators; were it that long it would carry three `y₁`-letters, hence
+span two consecutive complete runs, hence pin the two relators to be equal. -/
 theorem piece_length_lt {p : List (Fin 2 × Bool)}
     (hp : IsPiece (symmetrization C.relators) p) :
-    p.length < 2 * C.maxExponent + 2 := by
+    p.length < 3 * C.maxExponent + 3 := by
   obtain ⟨w₁, hw₁, w₂, hw₂, hne, hp₁, hp₂⟩ := hp
   by_contra hcon
-  have hlen : 2 * C.maxExponent + 2 ≤ p.length := by omega
-  have hcount : 2 ≤ p.countP isGenOne :=
-    two_le_countP_of_length isGenOne C.maxExponent
+  have hlen : 2 * (C.maxExponent + 1) + C.maxExponent < p.length := by omega
+  have hcount : 2 < p.countP isGenOne :=
+    lt_countP_of_length isGenOne C.maxExponent
       (fun u hu hfree => C.runs_short w₁ hw₁ u (hu.trans hp₁.isInfix) hfree) hlen
-  exact hne (C.pinned p hcount w₁ hw₁ w₂ hw₂ hp₁ hp₂)
+  exact hne (C.pinned p (by omega) w₁ hw₁ w₂ hw₂ hp₁ hp₂)
 
 /-- **The family is `C'(1/8)`.**  The piece ceiling against the relator floor,
 with the margin clearing the denominator once. -/
 theorem metric_eighth : MetricSmallCancellation C.relators (1 / 8) := by
   intro p hp w hw _
-  have h1 : p.length < 2 * C.maxExponent + 2 := C.piece_length_lt hp
+  have h1 : p.length < 3 * C.maxExponent + 3 := C.piece_length_lt hp
   have h2 : C.relatorFloor ≤ w.length := C.floor_le_length hw
   have h3 := C.metric_margin
   have hnat : 8 * p.length < w.length := by omega
@@ -573,6 +633,21 @@ theorem isCyclicallyReduced_of_forall_positive {α : Type*} {w : List (α × Boo
   have hred : FreeGroup.IsReduced (w ++ w) := isReduced_of_forall_positive happ
   exact ⟨(List.isChain_append.mp hred).1, (List.isChain_append.mp hred).2.2⟩
 
+/-- **A positive word is its own reduced form.**  `toWord ∘ mk` is the identity
+on reduced words, and a letter-positive word is reduced.
+
+This is the half of "normalizing a positive word changes nothing" that does not
+touch the cyclic layer.  It matters because a family whose members are *defined*
+as a normalization has opaque lengths and opaque letters: a length bound proved
+about `w` says nothing about `normalize w` until the two are known equal, and
+`relatorFloor` and `runs_short` are both length-and-letter statements.  A
+positive family should therefore either drop the normalization or prove it
+inert; this lemma reduces the second option to the cyclic step alone. -/
+theorem toWord_mk_of_forall_positive {α : Type*} [DecidableEq α]
+    {w : List (α × Bool)} (h : ∀ c ∈ w, c.2 = true) :
+    (FreeGroup.mk w).toWord = w := by
+  rw [FreeGroup.toWord_mk, (isReduced_of_forall_positive h).reduce_eq]
+
 /-- **The design's cyclic-reducedness field, for a positive family.**  This is
 `RouterRelatorDesign.relators_cyclicallyReduced` outright, with no normalization
 pass and no hypothesis beyond the presentational one.
@@ -596,6 +671,48 @@ theorem forall_positive_flatten {α : Type*} {ls : List (List (α × Bool))}
   intro c hc
   obtain ⟨u, hu, hcu⟩ := List.mem_flatten.mp hc
   exact h u hu c hcu
+
+/-- **Cyclic reduction fixes a cyclically reduced word.**  Mathlib gives the
+conjugating decomposition `conjugator L ++ reduceCyclically L ++ invRev
+(conjugator L) = L` but not, as far as this development uses it, the fixed-point
+statement.  It follows from the decomposition alone: a nonempty conjugator would
+put a letter at the head of `L` and its formal inverse at the tail, which is
+precisely what cyclic reducedness forbids, so the conjugator is empty and the
+decomposition collapses.
+
+This is the keystone for any family whose members are *defined* as a
+normalization.  Together with `toWord_mk_of_forall_positive` it says that
+normalizing a letter-positive word returns it unchanged, so length and letter
+statements proved before the normalization survive it — without which a relator
+floor and a run ceiling proved about the raw rewrite say nothing about the family
+actually stored. -/
+theorem reduceCyclically_eq_self {α : Type*} [DecidableEq α]
+    {L : List (α × Bool)} (h : FreeGroup.IsCyclicallyReduced L) :
+    FreeGroup.reduceCyclically L = L := by
+  have hc := FreeGroup.reduceCyclically.conj_conjugator_reduceCyclically L
+  rcases eq_or_ne (FreeGroup.reduceCyclically.conjugator L) [] with hnil | hne
+  · rw [hnil] at hc
+    simpa using hc
+  exfalso
+  obtain ⟨a, ha⟩ : ∃ a, (FreeGroup.reduceCyclically.conjugator L).head? = some a := by
+    cases hcc : FreeGroup.reduceCyclically.conjugator L with
+    | nil => exact absurd hcc hne
+    | cons x t => exact ⟨x, by rw [hcc]; rfl⟩
+  have hinvne : FreeGroup.invRev (FreeGroup.reduceCyclically.conjugator L) ≠ [] := by
+    intro hz
+    apply hne
+    have h2 := congrArg FreeGroup.invRev hz
+    rwa [FreeGroup.invRev_invRev, invRev_nil] at h2
+  have hLhead : L.head? = some a := by
+    rw [← hc, List.head?_append, List.head?_append, ha, Option.some_or, Option.some_or]
+  have hLlast : L.getLast? = some (invLetter a) := by
+    rw [← hc, List.getLast?_append_of_ne_nil _ hinvne, getLast?_invRev, ha]
+    rfl
+  have hstep := h.2 (invLetter a) (Option.mem_def.mpr hLlast) a
+    (Option.mem_def.mpr hLhead)
+  have hsnd := hstep rfl
+  rcases a with ⟨x, b⟩
+  cases b <;> simp [invLetter] at hsnd
 
 /-! ## 7.  Threading into the router
 

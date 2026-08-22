@@ -1095,5 +1095,63 @@ theorem meet_length_split {c c' y v E M : ℕ} (hM : M = E + c)
     (hc' : c' = c + y) (hE : E = y + v) : M = c' + v := by
   omega
 
+/-! ## 12.  Audit: `MaximalJunctionSharp` is vacuous
+
+`GreendlingerMaxConjugator`'s route was the other place in the lane where a
+conjugator overhang gets beaten, and its header describes the mechanism the
+(β) regime needs: at a factor whose conjugator is at least as long as its
+neighbour's, the hug is zero and both losses are pieces outright.  Chasing
+`not_overrun_into_conjugator` for that mechanism turns up something else, which
+is recorded here because it changes what that route is worth.
+
+**`MaximalJunctionSharp` assumes its own content.**  Its intent — the docstring
+says it plainly — is that the destroyed part of the rotation *is* a piece.  Its
+statement takes `IsPiece (symmetrization R) (t.take x)` as a **hypothesis** and
+asserts only the numeric consequence `x < λ·|t|`, which the metric condition
+gives for any piece whatever.  `maximalJunctionSharp_of_metric` below proves the
+predicate outright from `hmetric`, `0 < λ`, `λ ≤ 1/6` and nonemptiness, with the
+four arguments the intent turns on — the two conjugators `c`, `c'`, the
+neighbouring rotation `t'` and the domination `|c'| ≤ |c|` — never used.
+
+So `greendlingerAtSharp_of_maximalJunctionSharp` is not conditional on anything:
+it is `greendlingerAtSharp_of_two_pieces`, which is what it is defined to be.
+Discharging `MaximalJunctionSharp` closes nothing, and a route whose remaining
+hypothesis is that predicate is already unconditional and already short of the
+gate.  The load-bearing statement on that route is the word-level one the
+predicate skips: *that the destroyed part is `t.take x` for a piece*. -/
+
+/-- **The junction predicate follows from the metric condition alone.**  Both
+branches are immediate: a piece is under `λ` of every relator it prefixes, and
+the `x = 0` branch is `0 < λ·|t|`.
+
+The `x > |t|` corner is not an exception — there `t.take x` is `t` itself, so
+the piece hypothesis would make a relator shorter than `λ` of itself, which
+`λ ≤ 1/6` forbids; the branch is discharged by contradiction rather than by a
+bound.
+
+Stated as an audit result, not as a step: nothing in this file consumes it. -/
+theorem maximalJunctionSharp_of_metric {R : Set (List (α × Bool))} {lam : ℚ}
+    (hRne : ∀ r ∈ R, r ≠ []) (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hmetric : MetricSmallCancellation R lam) :
+    MaximalJunctionSharp R lam := by
+  intro _c t _c' _t' x ht _ht' _hle hp
+  have htpos : 0 < t.length :=
+    List.length_pos_iff.mpr (ne_nil_of_mem_symmetrization hRne ht)
+  have htq : (0 : ℚ) < (t.length : ℚ) := by exact_mod_cast htpos
+  rcases hp with hpiece | hx0
+  · have h := hmetric (t.take x) hpiece t ht (List.take_prefix x t)
+    rw [List.length_take] at h
+    rcases le_or_gt x t.length with hle | hgt
+    · have hmin : min x t.length = x := by omega
+      rwa [hmin] at h
+    · exfalso
+      have hmin : min x t.length = t.length := by omega
+      rw [hmin] at h
+      have hb : lam * (t.length : ℚ) ≤ 1 / 6 * (t.length : ℚ) :=
+        mul_le_mul_of_nonneg_right hlam (le_of_lt htq)
+      linarith
+  · rw [hx0, Nat.cast_zero]
+    exact mul_pos hlam0 htq
+
 end SmallCancellationRouter
 end GroupApproximation

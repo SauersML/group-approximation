@@ -262,7 +262,7 @@ theorem blockAt_unshift_tailFrom_mem {m : ℕ} {B : Set E} (h0 : (0 : E) ∈ B)
     {l : E} (hl : ∀ i : ℤ, blockAt m i l ∈ B) (i : ℤ) :
     blockAt m i (unshift m (tailFrom m l)) ∈ B := by
   rw [blockAt_unshift]
-  rcases le_or_lt (i + 1) 0 with h | h
+  by_cases h : i + 1 ≤ 0
   · rw [blockAt_tailFrom_of_nonpos h l]
     exact h0
   · rw [blockAt_tailFrom_of_pos (show (1 : ℤ) ≤ i + 1 by omega) l]
@@ -574,9 +574,9 @@ theorem benignTF_W_of_gen {m : ℕ} (T : Tower m) {B : Set E}
   letI : Group.IsFinitelyPresented T.G := hfp
   letI : Group.FG T.G :=
     ProductFinitePresentation.fg_of_isFinitelyPresented T.G
-  have hfin : ((Subgroup.closure ({T.emb a, T.stable} : Set T.G))).FG :=
-    (Subgroup.fg_iff _).mpr
-      ⟨{T.emb a, T.stable}, rfl, Set.finite_insert _ (Set.finite_singleton _)⟩
+  have hfin : (Subgroup.closure ({T.emb a, T.stable} : Set T.G)).FG := by
+    refine (Subgroup.fg_iff _).mpr ⟨{T.emb a, T.stable}, rfl, ?_⟩
+    exact (Set.finite_singleton _).insert _
   have hW : W T B = Subgroup.closure ({T.emb a, T.stable} : Set T.G)
       ⊔ Subgroup.closure (T.gen '' (B ∩ blockSet m)) := by
     unfold W

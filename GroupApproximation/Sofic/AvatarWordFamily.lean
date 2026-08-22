@@ -168,8 +168,10 @@ theorem length_avatarSubstLetter (A : α → List (Fin 2 × Bool)) (x : α × Bo
     (avatarSubstLetter A x).length = (A x.1).length := by
   obtain ⟨i, b⟩ := x
   cases b
-  · exact FreeGroup.invRev_length
-  · rfl
+  · show (FreeGroup.invRev (A i)).length = (A i).length
+    exact FreeGroup.invRev_length
+  · show (A i).length = (A i).length
+    rfl
 
 /-- One letter's rewrite spells the corresponding value of the assignment. -/
 theorem mk_avatarSubstLetter (A : α → List (Fin 2 × Bool)) (x : α × Bool) :
@@ -202,8 +204,9 @@ theorem mk_avatarSubst (A : α → List (Fin 2 × Bool)) (w : List (α × Bool))
   | cons x w ih =>
       have hsplit : FreeGroup.mk (x :: w) = FreeGroup.mk [x] * FreeGroup.mk w :=
         FreeGroup.mul_mk.symm
-      rw [avatarSubst_cons, ← FreeGroup.mul_mk, ih, hsplit, map_mul,
-        mk_avatarSubstLetter]
+      rw [avatarSubst_cons, ← FreeGroup.mul_mk]
+      rw [ih, mk_avatarSubstLetter]
+      rw [hsplit, map_mul]
 
 /-- The same, phrased against an assignment presented as free-group elements —
 the shape `RouterRelatorDesign.W` and `RouterRelatorDesign.U` take. -/
@@ -378,13 +381,15 @@ them, and `FreeGroup.mk_toWord` says nothing is lost. -/
 theorem nonempty_wordPresentation (G : Type) [Group G]
     [h : Group.IsFinitelyPresented G] : Nonempty (WordPresentation G) := by
   obtain ⟨m, φ, hφ, S, hSfin, hS⟩ := h.out
-  refine ⟨{ card := m, hom := φ, hom_surjective := hφ,
-    rel := FreeGroup.toWord '' S, rel_finite := hSfin.image _, ker_le := ?_ }⟩
+  refine ⟨⟨m, φ, hφ, FreeGroup.toWord '' S,
+    hSfin.image FreeGroup.toWord, ?_⟩⟩
   have himg : FreeGroup.mk '' (FreeGroup.toWord '' S) = S := by
-    rw [Set.image_image]
-    have hid : (fun x : FreeGroup (Fin m) => FreeGroup.mk (FreeGroup.toWord x)) = id :=
-      funext fun _ => FreeGroup.mk_toWord
-    rw [hid, Set.image_id]
+    ext g
+    constructor
+    · rintro ⟨w, ⟨y, hy, rfl⟩, rfl⟩
+      rwa [FreeGroup.mk_toWord]
+    · intro hg
+      exact ⟨FreeGroup.toWord g, ⟨g, hg, rfl⟩, FreeGroup.mk_toWord⟩
   intro x hx
   show x ∈ Subgroup.normalClosure (FreeGroup.mk '' (FreeGroup.toWord '' S))
   rw [himg, hS]
@@ -598,9 +603,9 @@ theorem codeExponent_inj {L K ν j ν' j' : ℕ} (hK : L < K) (hj : j < L)
     intro a b c d hc hab
     have hab' : a + 1 ≤ b := hab
     have h1 : K * (a + 1) ≤ K * b := Nat.mul_le_mul (le_refl K) hab'
-    have h2 : K * a + K ≤ K * b := by
-      rw [Nat.mul_add, Nat.mul_one] at h1
-      exact h1
+    have h2 : K * a + K ≤ K * b :=
+      calc K * a + K = K * (a + 1) := by ring
+        _ ≤ K * b := h1
     unfold codeExponent
     omega
   rcases lt_trichotomy ν ν' with hlt | heq | hgt
@@ -690,22 +695,38 @@ the same kind as §2's padding — and none of them constrains the group.
    each generator `x` with the positive relator `x·x̄`, then rewrite every `x⁻¹`
    as `x̄`.  This doubles the generator count, which the code constants absorb.
 
-2. *Long relators, padded without powers.*  The metric and ball margins want a
-   relator-length floor, and under the positivity convention §2's `w·Λ⁻¹`
-   padding is unavailable.  Pad instead by appending the positive trivial words
-   `x₁x̄₁·x₂x̄₂·…`, using **distinct** pairs: padding with `(x·x̄)^k` would make
-   the rewritten relator a proper power and destroy the no-proper-power field
-   outright, since a rewrite of a power is a power.
+2. *Long relators, padded **per relator**, and never by a power.*  The metric
+   and ball margins want a relator-length floor, and under the positivity
+   convention §2's `w·Λ⁻¹` padding is unavailable.  Pad instead by appending
+   positive trivial words `x₁x̄₁·x₂x̄₂·…`.  Two traps, both fatal:
+
+   * **Padding every relator with the same tail `Λ` makes `C'(1/8)` false.**
+     `ρ₁·Λ` and `ρ₂·Λ` rewrite to words sharing the suffix `avatarSubst Λ`, and
+     symmetrization contains all rotations, so some rotation makes that shared
+     suffix a common *prefix* — a piece of length `|Λ|·(avatar length)`.  With
+     `Λ` carrying most of a padded relator that piece is a constant fraction of
+     `|r|`, and padding *harder* makes it worse.  The design note's §1, read
+     literally, therefore defeats its own §2.  Give each relator its own tail,
+     over a fresh generator pair no other relator uses.
+
+   * Padding with `(x·x̄)^k` makes the rewritten relator a proper power — a
+     rewrite of a power is a power — and destroys the no-proper-power field.
+     Use **distinct** pairs.
 
 3. *One avatar per relator occurring exactly once*, which is what
    `AvatarMetricCheck.AvatarMetricData.uniqueMark` reads.  An avatar occurring
    twice in a relator repeats all `L` of its exponents, leaving no exponent
-   unique in that relator; giving each relator a padding generator absent from
-   the rest of it is the cheap fix, and `V` has slack by design. -/
+   unique in that relator.  The per-relator padding of (2) already supplies
+   this: one fresh generator pair per relator does both jobs, and `V` has slack
+   by design. -/
 structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   /-- A word presentation of the source. -/
   pres : WordPresentation E
-  /-- **The positivity convention**: every relator is a positive word. -/
+  /-- **The positivity convention**: every relator is a positive word.  This
+  buys two things, not one: the rewrite is cyclically reduced, and — since a
+  positive word is in particular *reduced* — the rewrite's `y₂`-runs stay at
+  the honest `A_max`, with no cancellation cascading past a junction to merge
+  two runs.  Both are what `AvatarMetricCheck` reads off the family. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
   /-- The first designated defect element, as a word. -/
   basisOneWord : List (Fin pres.card × Bool)
@@ -934,9 +955,12 @@ def relators : Set (List (Fin 2 × Bool)) :=
 
 /-- **The family is finite**, by construction: two images of finite relator
 sets and two ranges over `Fin 2`. -/
-theorem relators_finite : D.relators.Finite :=
-  ((D.srcPres.rel_finite.image _).union (D.parPres.rel_finite.image _)).union
-    ((Set.finite_range _).union (Set.finite_range _))
+theorem relators_finite : D.relators.Finite := by
+  refine Set.Finite.union (Set.Finite.union ?_ ?_) (Set.Finite.union ?_ ?_)
+  · exact D.srcPres.rel_finite.image (avatarSubst D.srcAvatarWord)
+  · exact D.parPres.rel_finite.image (avatarSubst D.parAvatarWord)
+  · exact Set.finite_range D.defectTieWord
+  · exact Set.finite_range D.partnerTieWord
 
 /-- A rewritten source relator is in the family. -/
 theorem mem_relators_src {r : List (Fin D.srcPres.card × Bool)}

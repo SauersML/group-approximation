@@ -1459,6 +1459,7 @@ import GroupApproximation.Sofic.GreendlingerDeepVacuitySharp
 import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
 import GroupApproximation.Sofic.GreendlingerSharpResidualWiring
+import GroupApproximation.Sofic.GreendlingerSharpResidualWiring2
 import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 import GroupApproximation.Sofic.GreendlingerLandingProd
 import GroupApproximation.Sofic.AvatarWordFamily
@@ -1487,6 +1488,9 @@ import GroupApproximation.Higman.ClosuresAssembly
 import GroupApproximation.Higman.AmalgamTorsionDischarge
 import GroupApproximation.Higman.TheoremThreeAssembly
 import GroupApproximation.Higman.EnumeratedRange
+import GroupApproximation.Higman.EnumeratedRangeTrace
+import GroupApproximation.Higman.TransportFive
+import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.RowDeletionBenign

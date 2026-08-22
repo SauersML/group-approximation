@@ -3,12 +3,12 @@ import GroupApproximation.Higman.ClosuresAssembly
 /-!
 # Higman's base case `S`
 
-`Higman.BaseCases` proves the first of Higman's two base cases, `Z = {0}`.
-This file proves the second,
+`Higman.BaseCases` proves the first of Higman's two base cases, `Z = {0}`, and
+records that the second,
 
     S = {(n, n+1) : n ∈ ℤ} ,
 
-which is `Seq.Sset`, and it turns out to cost nothing beyond the group
+is not immediate.  This file proves it, and it costs nothing beyond the group
 `Higman.FlipGroup` already builds for the operation `ρ`.
 
 ## The one line the base case rests on
@@ -27,7 +27,8 @@ and therefore
 So the index family of `S` is the orbit of a **two-sided translation** of the
 index set `K`: multiply on the left by `r₀` and on the right by `r₁`.  Nothing
 about `S` is sensitive to the order of the coding, and no machine is
-simulated.
+simulated.  This is what makes `S` cheap and what makes it useless as a
+template: `τ`'s index map is neither a translation nor an inversion.
 
 ## Why that is free
 
@@ -45,7 +46,7 @@ element `a ^ w` of the normal closure of `a` are realized by conjugation:
   flip needed, and the left copy is what is used here.
 
 So the whole group of two-sided translations `w ↦ u w v` is realized inside
-`G₂`, and
+`G₂` (`conj_f0_conj`), and
 
     succShift = f0 r₀ · (emb r₁)⁻¹
 
@@ -54,12 +55,13 @@ was built for `ρ`; it pays for `S` as well, at no extra cost.
 
 The rest is Higman's collecting process, transcribed from
 `Higman.Row.comap_Lsub`: the subgroup `L = ⟨a_{(0,1)}, s⟩` is two-generated,
-every element of it is a member of `A_S` times a power of `s`, and a
-stable-letter grading kills `F₃` while counting `s`.  The grading is the one
-new gadget: `G₂` is an HNN extension of `G₁` along the copy of `F₃`, on which
-the first stage's grading `HNNTorsionFree.lengthHom psiBTop` is constant, so
-that grading lifts to `G₂` with stable letter `1`.  It counts `β`, and
-`succShift` contains exactly one `β` because `r₀ = b` and `f0 b = β`.
+every element of it is a member of `A_S` times a power of `s`
+(`LSubS_le_normalSubS`), and a stable-letter grading kills `F₃` while counting
+`s`.  The grading is the one new gadget: `G₂` is an HNN extension of `G₁`
+along the copy of `F₃`, on which the first stage's grading
+`HNNTorsionFree.lengthHom psiBTop` is constant, so that grading lifts to `G₂`
+with stable letter `1`.  It counts `β`, and `succShift` contains exactly one
+`β` because `r₀ = b` and `f0 b = β`.
 
 ## Relation to the sources
 
@@ -67,8 +69,7 @@ Both Higman and Mikaelian prove this base case on the `d`-side, inside
 `⟨a, d, e⟩`, where the apparatus of their Section 4 is available.  The route
 here is `F₃`-native and uses no apparatus; it works because `S`'s index family
 is a translation orbit, which is special to `S` and does **not** generalize to
-the other operations --- in particular not to `τ`, whose index map is neither a
-translation nor an inversion.  The costing behind this route is
+the other operations.  The costing behind the route is
 `notes/W6_TAU_BASE_S_PRICING_2026-08-22.md`.  `Higman.BaseCases`' own docstring
 predicted a "two-stable-letter extension whose base is `F₃`"; `G₂` is one, and
 it was already built.
@@ -89,21 +90,29 @@ open GroupApproximation.Higman.Flip
 
 theorem mem_Sset_iff {f : E} : f ∈ Sset ↔ ∃ n : ℤ, succSeq n = f := Set.mem_range
 
-theorem succSeq_apply_zero (n : ℤ) : succSeq n 0 = n := by
+/-- The coordinates of the `n`-th sequence of `S`, read off the two
+singletons it is built from. -/
+theorem succSeq_apply (n i : ℤ) :
+    succSeq n i
+      = (if (0 : ℤ) = i then n else 0) + (if (1 : ℤ) = i then n + 1 else 0) := by
+  have hs0 : (Finsupp.single (0 : ℤ) n) i = if (0 : ℤ) = i then n else 0 :=
+    Finsupp.single_apply
+  have hs1 : (Finsupp.single (1 : ℤ) (n + 1)) i = if (1 : ℤ) = i then n + 1 else 0 :=
+    Finsupp.single_apply
   unfold succSeq
-  rw [Finsupp.add_apply, Finsupp.single_eq_same,
-    Finsupp.single_eq_of_ne (by omega : (1 : ℤ) ≠ 0), add_zero]
+  rw [Finsupp.add_apply, hs0, hs1]
+
+theorem succSeq_apply_zero (n : ℤ) : succSeq n 0 = n := by
+  rw [succSeq_apply, if_pos (rfl : (0 : ℤ) = 0),
+    if_neg (by omega : ¬ (1 : ℤ) = (0 : ℤ)), add_zero]
 
 theorem succSeq_apply_one (n : ℤ) : succSeq n 1 = n + 1 := by
-  unfold succSeq
-  rw [Finsupp.add_apply, Finsupp.single_eq_of_ne (by omega : (0 : ℤ) ≠ 1),
-    Finsupp.single_eq_same, zero_add]
+  rw [succSeq_apply, if_neg (by omega : ¬ (0 : ℤ) = (1 : ℤ)),
+    if_pos (rfl : (1 : ℤ) = 1), zero_add]
 
 theorem succSeq_apply_of_ne (n : ℤ) {i : ℤ} (h0 : i ≠ 0) (h1 : i ≠ 1) :
     succSeq n i = 0 := by
-  unfold succSeq
-  rw [Finsupp.add_apply, Finsupp.single_eq_of_ne (Ne.symm h0),
-    Finsupp.single_eq_of_ne (Ne.symm h1), add_zero]
+  rw [succSeq_apply, if_neg (Ne.symm h0), if_neg (Ne.symm h1), add_zero]
 
 theorem lowPart_succSeq (n : ℤ) : lowPart (succSeq n) = 0 := by
   refine Finsupp.ext fun i => ?_
@@ -128,11 +137,7 @@ The sequence is supported inside the window `[0, 2)`, so `Seq.elt_window`
 collapses to its two window coordinates. -/
 theorem elt_succSeq (n : ℤ) :
     elt (succSeq n) = FreeGroup.of (0 : ℤ) ^ n * FreeGroup.of (1 : ℤ) ^ (n + 1) := by
-  have hzero : elt (0 : E) = 1 := by
-    have h : elt (Finsupp.single (0 : ℤ) (0 : ℤ)) = 1 := by
-      rw [Split.elt_single, zpow_zero]
-    rwa [Finsupp.single_zero] at h
-  rw [elt_window (succSeq n), lowPart_succSeq, highPart_succSeq, hzero,
+  rw [elt_window (succSeq n), lowPart_succSeq, highPart_succSeq, elt_zero,
     succSeq_apply_zero, succSeq_apply_one, one_mul, mul_one]
 
 /-- **The conjugator of the `n`-th sequence of `S`.** -/
@@ -146,9 +151,9 @@ the orbit of a two-sided translation: left by `r₀`, right by `r₁`. -/
 theorem shift_bElt_succSeq (n : ℤ) :
     rowElt 0 * (bElt (succSeq n) * rowElt 1) = bElt (succSeq (n + 1)) := by
   have hx : rowElt 0 ^ (n + 1) = rowElt 0 * rowElt 0 ^ n := by
-    rw [add_comm, zpow_one_add]
-  have hy : rowElt 1 ^ (n + 1 + 1) = rowElt 1 ^ (n + 1) * rowElt 1 :=
-    zpow_add_one _ _
+    rw [add_comm n 1, zpow_add, zpow_one]
+  have hy : rowElt 1 ^ (n + 1 + 1) = rowElt 1 ^ (n + 1) * rowElt 1 := by
+    rw [zpow_add, zpow_one]
   rw [bElt_succSeq, bElt_succSeq, hx, hy]
   group
 
