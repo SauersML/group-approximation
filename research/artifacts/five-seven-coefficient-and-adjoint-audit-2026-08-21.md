@@ -96,8 +96,28 @@ base triple compresses to zero and the doubled cell to one nonzero `F_4`
 coefficient times a quotient monomial.  Its corner component is therefore
 invertible, so this subcase cannot witness one-sided failure.  The only
 normalizer survivor has one base term and two doubled cells: it compresses
-to exactly three crossed-product monomials.  A seven-term partner compresses
-to at most four monomials.  Thus the normalizer half of `(5,7)` is exactly a
-`3`-by-at-most-`4` one-sided inverse problem over this single `F_4` crossed
-product.  Passing to `F_16` is neither needed nor justified.
+to exactly three crossed-product monomials.  A seven-term partner with three
+base terms compresses to a binomial.  After one monomial normalization that
+binomial belongs to the corner over one cyclic quotient subgroup, hence to
+an amenable finite-by-cyclic corner; coset projection and direct finiteness
+there exclude a proper one-sided inverse.  The partner therefore has one
+base term and three doubled cells, and compresses to exactly four monomials.
+Thus the normalizer half is exactly one `3`-by-`4` problem over this fixed
+`F_4` crossed product.  Passing to `F_16` is neither needed nor justified.
 
+For a rectangle factor, a partner wholly supported in `N` is impossible:
+`h_0 beta` remains in `F_2[N]`, whereas every term of
+`(1+r)x(1+s)beta` remains outside `N`.  Equality to the identity would force
+`h_0 beta=1`.  The rectangle branch therefore retains only
+
+```text
+m=3:  one 4-cycle;
+m=1:  one 6-cycle, or one 4-cycle plus one doubled normalizer cell.
+```
+
+The remaining `m=3` four-cycle compresses, after removing its two edge
+coefficients, to a literal `e[u]e`.  A left inverse for that literal is an
+injectivity statement for the incidence operator between the `H`- and
+`uHu^-1`-coset systems.  Relations create cycles in that graph, and nothing
+in the coefficient equations turns injectivity into surjectivity.  This is
+the irreducible obstruction left by the symbolic reduction.

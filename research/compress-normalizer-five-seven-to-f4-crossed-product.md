@@ -17,6 +17,8 @@ elements sum to `z` and compress to zero; two selected elements in any other
 normalizer cell compress to a nonzero `F_4` coefficient times its quotient
 monomial.  Therefore the three-base-term rank-five type becomes one
 invertible monomial and dies.  The one-base-term type becomes three
-monomials, while the five possible rank-seven incidence types become at
-most four.  The quotient and section cocycle remain fixed, so this is not a
-field-extension induction.
+monomials.  The three-base-term partner becomes a binomial and, after one
+monomial normalization, lies in the corner over a finite-by-cyclic subgroup.
+Coset projection and direct finiteness there exclude it.  Thus the surviving
+partner has exactly four monomials.  The quotient and section cocycle remain
+fixed, so this is not a field-extension induction.
