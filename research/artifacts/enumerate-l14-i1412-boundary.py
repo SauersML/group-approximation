@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Push the inverse I1;412 minimum-block carrier screen through cyclic boundary DP.
 
-The cyclic rotations cover conjugate one-copy boundaries for the screened
-carrier states.  The upstream global-minimum-block restriction means this is
-not, by itself, a global fence.
+The cyclic rotations cover conjugate one-copy boundaries.  The upstream
+carrier states are exhaustive by the exact all-maximal counts (jobs 16679815
+and 16679829), and this stage itself uses all maximal forests.
 """
 
 import importlib.util
