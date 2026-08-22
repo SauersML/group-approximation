@@ -4,9 +4,7 @@ id: leavitt-d4-latin-triangle-reduction-proof
 kind: route
 title: Solve all carrier matches and retain the cyclic Latin boundary
 target: leavitt-d4-latin-triangle-reduction
-requires:
-  - leavitt-d4-direct-flux-fence
-  - leavitt-repeated-long-corner-template-kills-omega
+requires: []
 ---
 
 For each post-pivot residual write
@@ -80,3 +78,7 @@ The attached exact script implements `(1)`--`(2)` in the faithful twenty-leaf
 Bergman chart.  The twelve-element calibration tested 20,736 quadruples and
 had no projection survivor.  The four-parameter reduction itself is exact
 and unrestricted.
+
+The two former route dependencies were search-history constraints, not
+logical inputs.  Every carrier substitution and elimination used here is
+displayed above, so this route is a direct proof commitment.

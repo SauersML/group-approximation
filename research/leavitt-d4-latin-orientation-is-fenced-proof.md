@@ -21,11 +21,12 @@ Then `xwzy=1`.  Direct substitution into `E3,E2,E1` gives successively
 x=w^2z,
 z w z^-1=w^-3,
 y=z^-2w,
-z^4=w^12.                                                   (1)
+z^4=w^-4.                                                   (1)
 ```
 
-Conjugating `w` by `z^4` gives `w^80=1`.  Since `z^4=w^12` commutes with
-`z`, `(1)` also gives `w^48=1`; hence `w^16=1`.  Finally
+Conjugating `w` by `z^4` gives `w^80=1`.  Since `z^4=w^-4` commutes with
+`z`, conjugating `w^-4` by `z` gives both `w^-4` and `w^12`; hence
+`w^16=1` directly.  Finally
 
 ```text
 E0=x^2 w x w z=w^8.                                         (2)
