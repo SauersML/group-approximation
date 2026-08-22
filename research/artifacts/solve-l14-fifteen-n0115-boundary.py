@@ -36,10 +36,33 @@ def state_relations(state):
     return residual + tuple(definitions)
 
 
+def close_prefer_q(relations, images):
+    """Eliminate the once-occurring formal target before generic Tietze moves."""
+    relations = list(relations)
+    images = list(images)
+    for relation_index, relation in enumerate(relations):
+        positions = [index for index, letter in enumerate(relation)
+                     if abs(letter) == Q]
+        if len(positions) != 1:
+            continue
+        position = positions[0]
+        letter = relation[position]
+        left, right = relation[:position], relation[position + 1:]
+        replacement = (ALG.inverse(left) + ALG.inverse(right)
+                       if letter > 0 else right + left)
+        replacement = ALG.reduce_word(replacement)
+        relations.pop(relation_index)
+        relations = [ALG.substitute(word, Q, replacement)
+                     for word in relations]
+        images = [ALG.substitute(word, Q, replacement) for word in images]
+        break
+    return S.P.close_tietze(tuple(relations), tuple(images))
+
+
 @lru_cache(maxsize=None)
 def combine(left, right):
-    return S.P.close_tietze(state_relations(left) + state_relations(right),
-                            IDENTITY)
+    return close_prefer_q(state_relations(left) + state_relations(right),
+                          IDENTITY)
 
 
 EMPTY = ((), IDENTITY)
@@ -47,7 +70,7 @@ EMPTY = ((), IDENTITY)
 
 @lru_cache(maxsize=None)
 def relation_state(relation):
-    return S.P.close_tietze((relation,), IDENTITY)
+    return close_prefer_q((relation,), IDENTITY)
 
 
 @lru_cache(maxsize=None)
