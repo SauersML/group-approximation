@@ -82,3 +82,11 @@ finite list by an atomic quadrature while retaining the nonfolded value
 `43/168`.  A conductor-dependent trace-`1/42` source must therefore use an
 unbounded spectral filtration together with a new uniform section-defect
 estimate; neither one fixed polynomial nor its finite moment table suffices.
+
+Growth of the polynomial depth is not itself that estimate.
+`single-denominator-borel-cuts-have-a-rohlin-escape` shows that any one
+aperiodic denominator automorphism of a diffuse invariant conductor algebra
+has trace-`1/42` Rohlin cuts with vanishing covariance defect.  Polynomial
+approximants may be chosen along a diagonal slow enough to absorb arbitrary
+finite propagation constants.  The surviving obstruction must deny such an
+invariant algebra or use a jointly gapped family of denominator charts.

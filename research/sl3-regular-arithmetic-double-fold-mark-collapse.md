@@ -153,3 +153,12 @@ one.  The only spherical trace-`1/42` projections are discontinuous Borel
 cuts requiring unbounded depth; finite moment tables again admit atomic
 quadrature.  The surviving rank source therefore needs an unbounded
 conductor filtration with presentation-uniform section control.
+
+One denominator action cannot provide that control by itself.
+`single-denominator-borel-cuts-have-a-rohlin-escape` constructs
+trace-`1/42` Rohlin cuts with vanishing covariance defect for every diffuse
+abelian algebra preserved by one aperiodic denominator automorphism, and a
+diagonal staircase absorbs arbitrary finite polynomial propagation costs.
+Thus the remaining arithmetic input must prove that the spherical/conductor
+cut is not an ordinary same-carrier invariant algebra, or invoke several
+Weyl-conjugate denominator actions with a genuine joint gap.
