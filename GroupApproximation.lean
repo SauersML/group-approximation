@@ -1393,6 +1393,7 @@ import GroupApproximation.Analysis.CStarHilbertModuleNorm
 import GroupApproximation.Analysis.CStarAdjointable
 import GroupApproximation.Analysis.CStarAdjointableNorm
 import GroupApproximation.Analysis.CStarPositiveOrder
+import GroupApproximation.Analysis.PairSumIncidence
 import GroupApproximation.Analysis.CStarUnitary
 import GroupApproximation.Analysis.CStarFiniteRank
 import GroupApproximation.Analysis.CStarCompactOperators
@@ -1473,6 +1474,7 @@ import GroupApproximation.Sofic.AvatarRunBound
 import GroupApproximation.Sofic.SourceFromUniversalKazhdan
 import GroupApproximation.Sofic.RelativeRouterEnvelope
 import GroupApproximation.Sofic.OsinWeightedMetric
+import GroupApproximation.Sofic.OsinWeightedDefectNoGo
 import GroupApproximation.Sofic.TorsionFreeAssembly
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.TorsionDescent
@@ -1530,6 +1532,7 @@ import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
 import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
+import GroupApproximation.Sofic.LiteralTorsionFreeRouterSourceNoGo
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerReducedness

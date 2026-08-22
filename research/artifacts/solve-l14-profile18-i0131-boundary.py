@@ -39,6 +39,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--carrier-start", type=int)
     parser.add_argument("--carrier-end", type=int)
+    parser.add_argument("--rotation-start", type=int)
+    parser.add_argument("--rotation-end", type=int)
+    parser.add_argument("--target-start", type=int)
+    parser.add_argument("--target-end", type=int)
     parser.add_argument("--trace-words", action="store_true")
     args = parser.parse_args()
     results, augmented_words = set(), set()
@@ -57,7 +61,17 @@ def main():
             print(f"TRACE carrier={index} rotations={len(cuts)} "
                   f"syllables={len(transformed)}", flush=True)
         for rotation_index, rotation in enumerate(cuts):
+            if (args.rotation_start is not None
+                    and rotation_index < args.rotation_start):
+                continue
+            if (args.rotation_end is not None
+                    and rotation_index > args.rotation_end):
+                continue
             for target in range(4):
+                if args.target_start is not None and target < args.target_start:
+                    continue
+                if args.target_end is not None and target > args.target_end:
+                    continue
                 augmented = B.normalize_fp(rotation + ((target, (-B.Q,)),))
                 augmented_words.add(augmented)
                 choices = B.maximal_states_relative(augmented, base)

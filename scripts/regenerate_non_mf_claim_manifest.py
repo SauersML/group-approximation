@@ -35,10 +35,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/KazhdanTransportAnyUniverse",
         "GroupApproximation.KazhdanAsymptoticCommutant."
         "manuscriptKazhdanTransport_anyUniverse"),
-    "cor:kazhdan-transport-subgroup": (
-        "Sofic/KazhdanTransportAnyUniverse",
-        "GroupApproximation.KazhdanAsymptoticCommutant."
-        "manuscriptKazhdanTransport_anyUniverse"),
     "cor:generaltransport": (
         "Sofic/DefectActionAnyUniverse",
         "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse"),
@@ -185,10 +181,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/LiteralSignFreeQuotient",
         "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
     ),
-    "thm:signfree": (
-        "Sofic/LiteralSignFreeQuotient",
-        "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
-    ),
     "thm:transport-variants": (
         "Sofic/TransportVariantsAnyUniverse",
         "GroupApproximation.TransportVariantsAnyUniverse."
@@ -236,15 +228,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "prop:horn": (
         "Sofic/LiteralUniversalHorn",
         "GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn"),
-    "lem:permanence": (
-        "Sofic/OperatorMFPositiveControls",
-        "GroupApproximation.IsOperatorMF.subgroup"),
-    "lem:permanence": (
-        "Sofic/OperatorMFPositiveControls",
-        "GroupApproximation.isOperatorMF_of_residuallyFinite"),
-    "lem:permanence": (
-        "Sofic/LocallyFiniteMF",
-        "GroupApproximation.isOperatorMF_of_locallyFinite"),
     "lem:faithfultrace": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness"),
@@ -255,6 +238,31 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "LITERATURE",
         "Fournier-Facio, Section 2; Hull, Theorem 7.1; Osin, Lemma 7.1"),
 }
+
+
+# These claims are exact specializations of the named, more general Lean
+# propositions.  They deliberately remain reader-facing subgroup statements;
+# the manifest records the reduction instead of pretending the binders are
+# literally identical.
+SPECIALIZATION_IDENTITIES: dict[str, str] = {
+    "thm:kazhdan-transport": (
+        "The named declaration proves the complete printed proposition after "
+        "specializing its source group to L and its homomorphism to the "
+        "inclusion L → H."),
+    "thm:sign-criterion": (
+        "The named declaration proves the complete printed proposition after "
+        "specializing its source group to L and its homomorphism to the "
+        "inclusion L → H."),
+    "thm:transport-variants": (
+        "The named declaration proves the complete printed proposition after "
+        "specializing its source group to L and its homomorphism to the "
+        "inclusion L → H."),
+}
+
+
+# No single declaration states these enumerated claims as one conjunction;
+# their margin declarations cover the printed clauses collectively.
+COLLECTIVE_CLAIMS = {"lem:permanence", "cor:undecidable"}
 
 
 # Dependencies are part of the paper's statement-level proof graph.  They are
@@ -280,7 +288,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:trace": ["thm:A", "def:E", "thm:Esofic", "lem:mftrace-group"],
     "prop:mf-equivalences": ["lem:unitarycorona", "lem:tensor-amplification"],
     "lem:tensor-amplification": [],
-    "cor:kazhdan-transport-subgroup": ["thm:kazhdan-transport"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
@@ -361,15 +368,38 @@ def generate(tex: Path) -> dict:
             raise SystemExit(
                 f"{claim.claim_id}: the independently mapped declaration is "
                 "not among the printed margin declarations")
+        if claim.claim_id in SPECIALIZATION_IDENTITIES:
+            object_identity = SPECIALIZATION_IDENTITIES[claim.claim_id]
+        elif claim.claim_id in COLLECTIVE_CLAIMS:
+            object_identity = (
+                "The margin declarations collectively cover every printed "
+                "clause, with the same literal objects in each clause.")
+        else:
+            object_identity = (
+                "The printed environment and the named declaration use the same "
+                "literal objects and outer proposition.")
+
+        def coverage(pm: str, pd: str) -> str:
+            if claim.claim_id in SPECIALIZATION_IDENTITIES:
+                if (pm, pd) == (module, declaration):
+                    return (
+                        "the complete printed proposition by the inclusion "
+                        "specialization recorded above")
+                return "a printed conclusion of the proposition"
+            if claim.claim_id in COLLECTIVE_CLAIMS:
+                return "one printed clause; the listed declarations are collective"
+            return (
+                "the complete printed proposition"
+                if (pm, pd) == (module, declaration)
+                else "a printed conclusion of the proposition")
+
         entries.append({
             "id": claim.claim_id,
             "environment": claim.environment,
             "title": claim.title,
             "statement_sha256": claim.statement_sha256,
             "status": "exact",
-            "object_identity": (
-                "The printed environment and the named declaration use the same "
-                "literal objects and outer proposition."),
+            "object_identity": object_identity,
             "dependencies": DEPENDENCIES.get(claim.claim_id, []),
             "extra_assumptions": [],
             "external_inputs": [],
@@ -378,10 +408,7 @@ def generate(tex: Path) -> dict:
                 "role": "exact",
                 "module": pm,
                 "declaration": pd,
-                "covers": (
-                    "the complete printed proposition"
-                    if (pm, pd) == (module, declaration)
-                    else "a printed conclusion of the proposition"),
+                "covers": coverage(pm, pd),
             } for _r, pm, pd in claim.badges],
         })
     return {
@@ -389,9 +416,9 @@ def generate(tex: Path) -> dict:
         "manuscript": tex.name,
         "status_policy": (
             "Every numbered theorem-like environment is exact. Each carries "
-            "exact-role margin declarations, one of which is the "
-            "independently mapped wrapper with the same literal objects and "
-            "outer proposition."),
+            "exact-role margin declarations. The manifest records explicitly "
+            "whether coverage is literal, collective across clauses, or an "
+            "inclusion specialization of a more general proposition."),
         "claims": entries,
     }
 

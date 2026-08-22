@@ -69,6 +69,37 @@ namespace SmallCancellationRouter
 
 variable {α : Type*}
 
+/-! ## 0.  The balanced-family invariant -/
+
+/-- Every relator in the symmetrized family is at most twice every other one.
+
+This is the precise extra geometry used by the balanced positive presentation:
+the presentation pads its finitely many relators to lengths differing by at
+most one, and symmetrization preserves length.  Stating the invariant on the
+symmetrization avoids repeatedly transporting membership and length through a
+rotation or formal inverse at the cancellation sites below. -/
+def RelatorLengthRatioTwo (R : Set (List (α × Bool))) : Prop :=
+  ∀ r ∈ symmetrization R, ∀ s ∈ symmetrization R,
+    r.length ≤ 2 * s.length
+
+theorem RelatorLengthRatioTwo.apply {R : Set (List (α × Bool))}
+    (h : RelatorLengthRatioTwo R) {r s : List (α × Bool)}
+    (hr : r ∈ symmetrization R) (hs : s ∈ symmetrization R) :
+    r.length ≤ 2 * s.length :=
+  h r hr s hs
+
+/-- It is enough to balance the finite base family.  Rotation and formal
+inversion, the two operations used by `symmetrization`, preserve word length.
+-/
+theorem relatorLengthRatioTwo_of_base {R : Set (List (α × Bool))}
+    (h : ∀ r ∈ R, ∀ s ∈ R, r.length ≤ 2 * s.length) :
+    RelatorLengthRatioTwo R := by
+  intro r hr s hs
+  obtain ⟨r₀, hr₀, hlenr⟩ := length_eq_of_mem_symmetrization hr
+  obtain ⟨s₀, hs₀, hlens⟩ := length_eq_of_mem_symmetrization hs
+  rw [hlenr, hlens]
+  exact h r₀ hr₀ s₀ hs₀
+
 /-! ## 1.  The overrun depth is bounded by the offset -/
 
 /-- **The depth is the head's own deficiency.**  With the block written as
@@ -106,6 +137,31 @@ theorem two_mul_lt_of_relator_ratio {t t₃ : List (α × Bool)} {i j d : ℕ}
     2 * (i + d) < t₃.length := by
   omega
 
+/-- **The sharp three-factor count, from the same length ratio.**
+
+The intrusion consumes less than `λ|t₃|`.  The transported depth is at most
+the old offset, hence less than `λ|t|`, and the balanced-family comparison
+turns the latter into at most `2λ|t₃|`.  Together they fit strictly inside
+the sharp conclusion's full `3λ|t₃|` allowance. -/
+theorem cast_add_lt_three_mul_of_relator_ratio
+    {lam : ℚ} {t t₃ : List (α × Bool)} {i j d : ℕ}
+    (hi : (i : ℚ) < lam * (t₃.length : ℚ))
+    (hj : (j : ℚ) < lam * (t.length : ℚ))
+    (hd : d ≤ j) (hlam0 : 0 ≤ lam)
+    (hratio : t.length ≤ 2 * t₃.length) :
+    (i : ℚ) + (d : ℚ) < 3 * lam * (t₃.length : ℚ) := by
+  have hdq : (d : ℚ) ≤ (j : ℚ) := by exact_mod_cast hd
+  have hratioq : (t.length : ℚ) ≤ 2 * (t₃.length : ℚ) := by
+    exact_mod_cast hratio
+  have hj' : (d : ℚ) < 2 * lam * (t₃.length : ℚ) := by
+    calc
+      (d : ℚ) ≤ (j : ℚ) := hdq
+      _ < lam * (t.length : ℚ) := hj
+      _ ≤ lam * (2 * (t₃.length : ℚ)) :=
+        mul_le_mul_of_nonneg_left hratioq hlam0
+      _ = 2 * lam * (t₃.length : ℚ) := by ring
+  linarith
+
 /-- **The three-factor overrun, closed under the ratio.**  Everything the
 configuration supplies is here — the block's orientation, the offset bound, the
 piece bound on the intrusion — plus the one comparison the count cannot do
@@ -126,6 +182,42 @@ theorem greendlingerAt_of_landing_ratio {R : Set (List (α × Bool))}
   refine greendlingerAt_of_landing_drop ht₃ ?_
   have hd := deep_depth_le_offset (j := j) hM hEt
   exact two_mul_lt_of_relator_ratio hpiece hj hd hratio
+
+/-- **The sharp landing arc, closed by the balanced-family ratio.**  This is
+the sharp twin of `greendlingerAt_of_landing_ratio`.  The bound above supplies
+the `3·λ` budget, while `λ ≤ 1/6` makes that budget at most half a relator and
+therefore also supplies the list-theoretic fit required by the arc constructor.
+-/
+theorem greendlingerAtSharp_of_landing_ratio {R : Set (List (α × Bool))}
+    {lam : ℚ} {c t c₃ t₃ M E Z : List (α × Bool)} {N j : ℕ}
+    (hlam0 : 0 ≤ lam) (hlam : lam ≤ 1 / 6)
+    (ht₃ : t₃ ∈ symmetrization R)
+    (hM : M = E ++ FreeGroup.invRev c) (hEt : E <:+ t)
+    (hj : (j : ℚ) < lam * (t.length : ℚ))
+    (hpiece : ((N - c₃.length : ℕ) : ℚ) < lam * (t₃.length : ℚ))
+    (hratio : t.length ≤ 2 * t₃.length) :
+    GreendlingerAtSharp R lam (M.length + j - (c.length + t.length))
+      ((t₃ ++ Z).drop (N - c₃.length)) := by
+  let i := N - c₃.length
+  let d := M.length + j - (c.length + t.length)
+  have hd : d ≤ j := by
+    dsimp [d]
+    exact deep_depth_le_offset (j := j) hM hEt
+  have hbound : (i : ℚ) + (d : ℚ) <
+      3 * lam * (t₃.length : ℚ) :=
+    cast_add_lt_three_mul_of_relator_ratio (by simpa [i] using hpiece) hj hd
+      hlam0 hratio
+  have ht₃q : (0 : ℚ) ≤ (t₃.length : ℚ) := by positivity
+  have hhalf : (3 * lam) * (t₃.length : ℚ)
+      ≤ (t₃.length : ℚ) := by
+    have hcoef : 3 * lam ≤ 1 := by linarith
+    exact mul_le_mul_of_nonneg_right hcoef ht₃q
+  have hfitq : ((i + d : ℕ) : ℚ) < (t₃.length : ℚ) := by
+    rw [Nat.cast_add]
+    exact lt_of_lt_of_le hbound (by simpa [mul_assoc] using hhalf)
+  have hfit : i + d ≤ t₃.length := by
+    exact_mod_cast (le_of_lt hfitq)
+  exact greendlingerAtSharp_of_landing_intrusion ht₃ hfit hbound
 
 /-! ## 3.  The coincidence in the overrun orientation -/
 

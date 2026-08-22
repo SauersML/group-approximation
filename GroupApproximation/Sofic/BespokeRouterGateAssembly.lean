@@ -78,6 +78,41 @@ namespace RouterRelatorDesign
 variable {E : Type} [Group E] {N : Subgroup E} {s : E} {B : Type} [Group B]
     (D : RouterRelatorDesign E N s B)
 
+/-- **Direct concrete consumption.**  A router design does not need the
+universally quantified `SharpGreendlingerGate`: it is enough to prove the
+sharp conclusion for this design's own relator family.  This is the endpoint
+used by the literal construction, so no global small-cancellation theorem is
+left as a caller premise. -/
+theorem routerConclusions_of_sharp
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp D.relators lam)
+    (hmetric : MetricSmallCancellation D.relators lam) :
+    D.RouterConclusions := by
+  constructor
+  · exact injOn_mk'_of_greendlinger
+      (GreendlingerFreeGate.greendlingerConclusion_of_sharp (by linarith) hsharp)
+      ({1, FreeGroup.lift D.W D.protectedWord} : Set RouterFree)
+      D.protectedBall_short
+  · exact TorsionDescent.isPowerTorsionFree_of_sharp hlam8 hsharp hmetric
+      D.relators_noProperPower
+
+/-- The routed quotient from a sharp conclusion proved specifically for this
+finite design. -/
+noncomputable def routerData_of_sharp [N.Normal]
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp D.relators lam)
+    (hmetric : MetricSmallCancellation D.relators lam) :
+    RoutingLemmaData E N s B :=
+  D.routerData (D.routerConclusions_of_sharp hlam8 hsharp hmetric)
+
+/-- Existential wrapper for the concrete sharp-consumption path. -/
+theorem nonempty_routingLemmaData_of_sharp [N.Normal]
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp D.relators lam)
+    (hmetric : MetricSmallCancellation D.relators lam) :
+    Nonempty (RoutingLemmaData E N s B) :=
+  ⟨D.routerData_of_sharp hlam8 hsharp hmetric⟩
+
 /-- The router's word-level no-proper-power condition is the gate file's, on
 the nose: both unfold to `∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r`. -/
 theorem noProperPower_eq_gate :

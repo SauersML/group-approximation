@@ -35,7 +35,7 @@ p_i=e_(H_i),       q_i=e_(K_i),
 Delta_i(rho)=max(0,tr_rho(z_i p_i)-tr_rho(z_i q_i)).   (TCH2)
 ```
 
-If a neighborhood of that type has `Delta_i>=eta_i>0`, then every extension
+If a neighborhood of that type had `Delta_i>=eta_i>0`, then every extension
 through the `i`th HNN cell which preserves `z_i` pays, after exactification of
 the fixed finite tables,
 
@@ -45,13 +45,16 @@ the fixed finite tables,
 ```
 
 with one additional fixed packet-covariance term controlling `[U_i,z_i]`.
-Consequently a computably enumerable family of such **filtered** pairs which
-gives one positive robust gap on every marked canonical CE extension type is
-already a common-complete approximation-specific nemesis compiler.  The
-remaining problem is solely the **payload-coupled Hecke separator theorem**:
-manufacture `(z_i,K_i,H_i)` from the actual extension type.  Common HALT
-completeness does not constrain the different pairs, but authentication and
-preservation of each `z_i` are mandatory.
+However `canonical-types-extend-every-finite-bass-serre-actor` shows that this
+hypothesis cannot occur when authentication and preservation of `z_i` are
+implemented only by enlarging the finite edge subgroup.  Every canonical base
+type extends that enlarged graph-of-groups cell too.  Thus automatic common
+completeness here comes with automatic canonical extendability: the family is
+not a nemesis library.
 
 Without `z_i`, the proposal is impossible rather than merely incomplete:
 `tau_can(e_H)=1/|H|<=1/|K|=tau_can(e_K)` for every canonical representation.
+With `z_i`, a positive gap requires an additional payload-sensitive two-cell
+which is not finite Bass--Serre covariance.  At that point common completeness
+is no longer supplied by this claim and the missing object is exactly the
+selected proper-corner/nontransport gate.

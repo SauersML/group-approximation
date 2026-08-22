@@ -3,6 +3,7 @@ rg: 2
 id: finitely-presented-uniform-area-clifford-tape
 kind: claim
 title: Build a finitely presented common-sign Clifford tape with uniformly bounded table area
+refuted_by: uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark
 distinct_from:
   thompson-clifford-central-product-tape: that supplies a finitely presented exact tape with a common nontrivial sign; this asks for the missing uniform area bound for every finite packet multiplication table.
   adaptive-all-pairs-schur-replica-table-compiler: that activates one rank chosen by a halting computation; this asks one fixed group to contain all ranks simultaneously and uses no self-reference.
@@ -10,7 +11,15 @@ artifacts:
   - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
-OPEN.  Construct a finite presentation `Gamma=<S|R>`, a nontrivial word `j`,
+**REFUTED.**  The requested object cannot exist by
+`uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark`.
+Two multiplication-table cells, for `(J,g)` and `(g,J)`, give a uniformly
+bounded filling of `[j,sigma_N(g)]`.  Because preservation of the nontrivial
+extraspecial center makes every table map injective, growing ranks supply
+infinitely many centralizer cosets, contradicting properness of finite-mark
+centralizer commutator area.
+
+The former target was to construct a finite presentation `Gamma=<S|R>`, a nontrivial word `j`,
 and representatives `sigma_N:E_N->F(S)` for every finite extraspecial Pauli
 group such that `sigma_N(J)=j` and the multiplication discrepancies satisfy
 the uniform area bound `(BAC2)`.
@@ -22,8 +31,9 @@ small rotations show that this loss cannot simply be discarded.  A solution
 must either choose canonical addresses whose table identities are literal
 conjugates of bounded prototypes, or add a bounded-area coherence mechanism.
 
-By `uniform-bounded-area-clifford-tables-force-mark-collapse`, this one claim
-would itself exhibit a finitely presented nonhyperlinear group.
+The implication in `uniform-bounded-area-clifford-tables-force-mark-collapse`
+remains formally correct, but its premise is impossible and hence cannot be
+used to exhibit a group.
 
 ## Attempts
 

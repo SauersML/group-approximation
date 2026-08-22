@@ -43,6 +43,12 @@ single head whose normalized canonical mass does not fall as `N` grows.
   does not itself select that orientation or identify it with the
   capacity-gated game source.  Those identifications are part of this claim,
   not consequences of block encoding.
+- Finite-cocycle SELECT does synchronize its coordinate orientations to one
+  common gauge, but it cannot serve as the tail.  The exact `C_2` character
+  specialization in `finite-cocycle-select-has-an-exact-power-return` has
+  `qCq=0` and `qC^2q=q`, so coherence already fails at the second power.
+  Any escape must add a game-dependent nonperiodic exit relation which
+  excludes that exact specialization while preserving the perfect carrier.
 - A fresh finite packet at every level gives the same dilution after the
   canonical trace sums the level types.
 - Identifying all level heads restores positive density but lets the defect
