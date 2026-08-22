@@ -55,6 +55,13 @@ and both vertex groups embed.  Indeed `H` is finite, hence hyperlinear, so
 Kervaire--Laudenbach holds over `H` and the natural map `H->P_H` is injective.
 Bass--Serre normal form applied to `(TAK3)` then embeds `G` in `P_G`.
 
+There is also a stronger coefficient-independent reason this candidate could
+never work: its variable length is three, so
+`length-four-kl-fence-for-leavitt-equations` injects `G` directly.  The
+finite-core pushout remains useful because it identifies the quotient's exact
+Bass--Serre structure and explains why failure persists despite the absence
+of a solution inside `H`.
+
 Thus `w` does not normally generate `N_1=G*<t>`.  The obstruction is not a
 cyclic root fold and not visible by substituting an element of the coefficient
 core itself: it is the exact finite-core pushout.  More generally, no
@@ -63,4 +70,3 @@ Kervaire--Laudenbach) subgroup can work.  A viable Leavitt candidate must use
 a finite coefficient set generating a subgroup for which nonsingular
 coefficient injectivity is itself unresolved—in particular, the constant
 root packets and finite prefix-transposition packets are excluded.
-
