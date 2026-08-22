@@ -8,6 +8,7 @@ requires:
   - bespoke-extension-nemesis-library-defeats-diagonal-schedules
   - finite-nemesis-subcover-has-a-uniform-existential-residual-gap
   - finite-static-nemesis-core-needs-canonical-base-embedding
+  - one-complete-base-type-simultaneously-realizes-disjoint-gadgets
   - exact-code-prefixes-have-matrix-ultraproduct-model
   - maximally-entangled-vectorization-is-hs-isometry
   - non-ce-bcs-has-robust-approximate-energy-gap
@@ -24,7 +25,9 @@ Interpret every finite QCA light cone as an existential extension gadget.
 The first two requirements compactify an exhaustive countable library to a
 finite family with one residual gap.  The third supplies the missing passage
 from that family to canonical microstates of one final finite extension.  The
-fourth proves the converse capacity-prefix firewall.  Vectorization identifies
+fourth shows that separate gadget extensions automatically coexist only when
+they lie over one complete base type.  The fifth proves the converse
+capacity-prefix firewall.  Vectorization identifies
 the finite-matrix norm with tracial verifier energy; the BCS gap and central
 sign decoder give the corrected finite endpoint.  The affine and
 relative-commutant requirements record why group syntax and transporter

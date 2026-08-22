@@ -42,6 +42,12 @@ presented nonhyperlinear group after effective Higman embedding.
 - Common HALT completeness is load-bearing.  Independently tailored gadgets
   that require mutually incompatible infinite completions cannot all be put
   in one final group.
+- `one-complete-base-type-simultaneously-realizes-disjoint-gadgets` sharpens
+  this quantifier: for gadgets with disjoint auxiliaries, it suffices to find
+  one marked complete base type on which every optimized existential residual
+  is zero.  Saturation then supplies the simultaneous completion.  Separate
+  marked models whose base tuples have different complete types do not meet
+  this condition.
 - `common-completion-amalgamates-compatible-bespoke-gadgets` discharges this
   coexistence issue when the local models agree on successive
   finite-dimensional packet wires (or already share one Fock assignment).

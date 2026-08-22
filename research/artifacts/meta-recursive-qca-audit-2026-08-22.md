@@ -44,6 +44,13 @@ parallel branch.  Its rigorous content maps as follows.
    reducing carrier and exact actor/commutant correction.  Flexible dimension
    alone does not return exact upstairs relations to a downstairs corner, and
    sharp two-transitivity controls pairs but not general QCA triple patterns.
+8. There is no additional simultaneous-extension obstruction after fixing one
+   complete base type.  If every disjoint finite gadget has existential
+   residual zero on that same type, countable saturation realizes all gadgets
+   together; for a matricial type, an ultrapower remains a matrix ultraproduct
+   after flattening.  The invalid quantifier is instead `for every gadget
+   there exists some marked base model`: the base types may differ.  This
+   correction does not imply canonical base embedding.
 
 ## Net conclusion
 
@@ -54,4 +61,3 @@ finite prefix only exceeds a larger finite capacity, diagonalization builds an
 ultraproduct model.  The remaining live construction is finite: transduce a
 fixed non-CE BCS forbidden-projection energy into ordinary group-word energy
 on one common positive-density central-sign carrier.
-
