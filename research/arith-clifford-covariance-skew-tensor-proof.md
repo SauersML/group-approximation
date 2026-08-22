@@ -6,7 +6,6 @@ title: Conjugate-double the Clifford normalizer labels and skew-tensor the arith
 target: arith-clifford-covariance-preserves-projective-energy
 requires:
   - finite-projective-sector-groupoids-have-conjugate-absorbers
-  - projective-trace-square-transfer-for-sl3-pair
   - spherical-quadrature-tensors-through-clifford-folner-windows
 ---
 
