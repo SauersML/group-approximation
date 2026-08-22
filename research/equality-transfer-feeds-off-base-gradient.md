@@ -11,6 +11,7 @@ requires:
   - shared-pinching-low-band-is-gauge-or-cheap
   - sparse-face-row-square-survives-intrinsic-green-step
   - parity-charged-green-edge-curl-coercivity
+  - parity-charge-or-green-divergence-has-strict-descent
   - intrinsic-finite-green-commutator-step-has-the-correct-tangent
 ---
 
@@ -24,8 +25,11 @@ transverse contraction; the dense nonlinear remainder is cb-quadratic and
 involution forcing is carried to terminal sign.  This yields `(ORG1)` once
 the sparse face/equality theorem preserves the row-square hypothesis.
 
-The sparse theorem is now established by fixed-width Loewner
-exactification.  Thus this route's only unresolved mathematical input is
-the first-order dense low-sector curl/coercivity estimate inside
-`off-base-row-gradient-coercivity`; equality transfer, its low band, and
-sparse re-exactification are complete.
+The sparse theorem is established by fixed-width Loewner exactification,
+and `(PCG2)` charges the entire edge field to sparse/equality syndrome.
+But this is not yet strict descent: the charge inequality has the wrong
+direction to lower-bound the Green divergence, while Loewner
+re-exactification bounds movement cost but does not contract the equality
+charge.  The remaining input is exactly
+`parity-charge-or-green-divergence-has-strict-descent`; equality transfer,
+its low band, and bounded-cost sparse re-exactification are complete.

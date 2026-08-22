@@ -40,6 +40,24 @@ distance into complete-pair commutator energy.  Finally
 `R_ij=[Q_i,Q_j]^*[Q_i,Q_j]/4`.  Normalized summation proves `(PCG2)`, and
 `(PCG1)` follows because `E_div` is nonnegative.
 
+This is a charge inequality, not by itself gradient coercivity.  Its
+direction is load-bearing: `(PCG2)` says that a large edge field must pay
+sparse syndrome, but gives no lower bound on `E_div`.  The numerical
+configuration
+
+```text
+ E_div=0,       E_edge=E_parity+E_equality>0             (PCG3)
+```
+
+is fully consistent with `(PCG1)--(PCG2)`.  Therefore these inequalities
+cannot alone imply strict decrease under the intrinsic Green step.  One
+additionally needs a joint descent theorem: either the parity/equality
+charge is absorbably smaller than edge energy, forcing divergence
+coercivity, or a sparse/equality correction decreases that charge by a
+fixed fraction without recreating comparable edge energy.
+`parity-charge-or-green-divergence-has-strict-descent` records this missing
+alternative.
+
 ## Attempts
 
 The ordinary complete-graph Hodge identity alone writes edge energy as
