@@ -39,6 +39,14 @@ part of the remaining hole.
 - Declaring both packet subgroups to commute with the two Kazhdan copies is
   false: the packet may live on an independent tensor factor and retain its
   full Reynolds gap at zero covariance cost.
+- Canonical scalar trace does not repair that tensor escape.
+  `canonical-packet-traces-do-not-place-old-commutant-density` uses regular
+  residual quotients of the old group tensored with the packet regular
+  representation.  The whole product trace is canonical, forbidden packet
+  mass and local Reynolds density stay constant, but the old low-commutator
+  density is exactly `1/|Q_n|`.  Thus `(PCD1)` cannot follow directly from
+  canonical word moments plus Schur identities; the added coefficient cell
+  must visibly fail in this canonical dilution model.
 - The local Schur theorem already supplies the density `c q^2`; the missing
   statement is an ordinary-word coefficient covariance that embeds its
   canonical three-generator Reynolds core into the compressor commutant.
