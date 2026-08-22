@@ -1,0 +1,49 @@
+---
+rg: 2
+id: cmps-rstar-lift-has-line-hitting-empty-links
+kind: claim
+title: The two-oracular R-star lift hits every Fano line by an empty neighborhood link
+distinct_from:
+  cmps-two-oracular-rstar-lift-has-commuting-context-stars: that supplies the joint neighborhood PVM needed to use empty-link pruning; it does not make any neighborhood link empty.
+  culf-mastel-rstar-halt-model-has-fano-cap-support: that is the resulting operator-support conclusion; this is the finite incidence certificate that would imply it for the chosen CMPS lift.
+  fano-pruning-is-line-hitting-empty-link: that proves the abstract sufficient condition; this asks whether the concrete fixed-language hard family satisfies it.
+---
+
+OPEN.  For the fixed-language `R_*` family and chosen perfect completeness
+model constructed in
+`cmps-two-oracular-rstar-lift-has-commuting-context-stars`, prove that every
+target context `c` and every translated Fano line `L` in its seven honest
+assignments contain some `a in L` with
+
+```text
+Link(c,a)=empty.
+```
+
+Here `Link(c,a)` consists of jointly overlap-consistent assignments to all
+contexts in one incident variable star, as defined in
+`fano-pruning-is-line-hitting-empty-link`.  The radius-two commutation theorem
+ensures that these neighboring context PVMs have a joint refinement, but it
+does not establish this combinatorial emptiness.
+
+The certificate is finite for every compiled instance: seven line-hitting
+obligations per `R_*` context.  It must be proved for the actual CMPS/CM
+reduction geometry, not inferred from 2-oracularizability alone.
+
+`distance-two-oracularity-does-not-force-fano-pruning` gives a classical
+full-support counterexample to the generic implication, so any proof here
+must use additional structure of the hard instances or modify the reduction
+while preserving its perfect-gap orientation.
+
+## Attempts
+
+- The direct argument from radius-two commutation fails: the repeated-clause
+  classical model has globally commuting algebras and nevertheless gives a
+  compatible neighborhood tuple for every honest atom.
+- Applying the standard contextwise pp reduction with arbitrary witness
+  sections also fails generically.  On a full nonaffine source support,
+  cap-valued occurrence ranges would contradict
+  `fano-cap-witness-sections-force-source-affine-safety`.
+- The remaining attack is source-specific: inspect the CMPS hard-instance
+  incidence geometry and its selected completeness model for forced empty
+  links, or design a reduction that adds such links while retaining the
+  perfect strategy and constant NO gap.
