@@ -126,6 +126,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--profile", help="restrict to one +- sign representative")
 parser.add_argument("--show-rank", type=int,
                     help="print every embedding with this constraint rank")
+parser.add_argument("--balanced-only", action="store_true",
+                    help="discard systems with same-sign carrier occurrences")
 args = parser.parse_args()
 
 global_best, winners = 100, []
@@ -144,8 +146,16 @@ for representative in sorted(profiles):
     faces = tuple(sorted(faces, key=len))
     choices = tuple(embeddings(TARGETS[index], len(face))
                     for index, face in enumerate(faces))
-    counts, local_best, local_winners = Counter(), 100, []
+    counts, balanced_counts, local_best, local_winners = Counter(), Counter(), 100, []
     for selected in product(*choices):
+        carrier_sums = {name: 0 for name in (0, 2, 4)}
+        for grouping in selected:
+            for _, (name, sign) in grouping:
+                if name in carrier_sums:
+                    carrier_sums[name] += sign
+        balanced = all(value == 0 for value in carrier_sums.values())
+        if args.balanced_only and not balanced:
+            continue
         rows = []
         for face, grouping in zip(faces, selected):
             for indices, target in grouping:
@@ -170,6 +180,8 @@ for representative in sorted(profiles):
             rows.append(row)
         constraint = rank(rows) - rank([row[12:] for row in rows])
         counts[constraint] += 1
+        if balanced:
+            balanced_counts[constraint] += 1
         if args.show_rank == constraint:
             print("RANK_WIN", text_profile, constraint, selected, flush=True)
         if constraint < local_best:
@@ -182,8 +194,9 @@ for representative in sorted(profiles):
         elif constraint == global_best:
             winners.append((representative, selected))
     print("profile", "".join("+" if sign > 0 else "-"
-                              for sign in representative),
+          for sign in representative),
           "valences", tuple(map(len, data)), "rank_counts", dict(counts),
+          "balanced_rank_counts", dict(balanced_counts),
           "best", local_best, flush=True)
     for selected in local_winners:
         print("LOCAL_WIN", text_profile, selected, flush=True)
