@@ -115,6 +115,19 @@ relations but is not known to be matricial.  The residual is exactly their
 intersection: use several native denominator/Weyl relations on the same
 matrix carrier, or correct the inner-adjoint lattice tuple.
 
+Merely adding a second Weyl-conjugate overlap still does not cross that
+intersection.  `weyl-overlap-coboundaries-have-joint-bernoulli-matrix-models`
+places any finite Weyl orbit of overlap coboundaries on one canonical matrix
+carrier, with one common `Lambda`-central block swap, exact Weyl covariance,
+and the complete independent-Bernoulli mixed moment table.  Thus no
+two-overlap Gram or trace-square identity exists.  The model first fails at
+a multiplication law among denominator lifts; the affine triangle and
+chamber-clock countermodels already fence the triangle and local Heisenberg
+versions.  The smallest live packet must simultaneously use the globally
+shared arithmetic root across adjacent chambers and its dyadic depth
+transport, exactly the shared-root seam in
+`heisenberg-chamber-clocks-escape-until-root-gluing`.
+
 - `one-root-p3-denominator-fragment-has-finite-regular-leaks` uses
   separating finite quotients of
 
