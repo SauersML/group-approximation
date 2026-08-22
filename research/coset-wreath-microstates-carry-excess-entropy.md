@@ -51,6 +51,18 @@ precision.
   by conjugations fixing `pi(Gamma)` approximately.  The quantitative
   question — does a positive-dimension quotient survive — is precisely
   the hole.
+- **Exact finite congruence-wreath torsors are entirely gauge/subquadratic.**
+  `finite-congruence-wreath-lamp-torsors-are-subquadratic-gauge` performs the
+  quotient that the raw commutant count omits.  Uniform Bernoulli lamp
+  moments make the joint eigenspace choices one homogeneous `U(d)` orbit.
+  The finite actor table reduces the residual block gauges to discrete
+  irreducible multiplicities, and the full mixed regular character pins the
+  representation to a multiple of the finite wreath regular representation.
+  Even for growing exact packets, the number of representation classes is at
+  most `exp(d log(d+1))=exp(o(d^2))`.  Hence fixed/growing exact congruence
+  packet models cannot prove `(EX1)` by commutant dimension.  A witness must
+  retain approximate relative moduli which are not correctable to the finite
+  wreath table and are not one global-conjugacy orbit.
 - **Freeness inside is not enough (calibration).**  `h` is not monotone
   under subalgebras: `L(F_2) subset L(F_2) tensor R` with
   `h(ambient) = 0`.  So free subgroups of `Gamma`, or the Bass–Serre

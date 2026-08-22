@@ -187,6 +187,14 @@ essentially unique modulo conjugation and lower-order corrections.
    entropy gap separates the wreath from its base; the excess-entropy
    hole must be genuinely finer (relative/local entropy of the lamp
    torsor given the base), not a global count.
+4. **The exact congruence lamp torsor does not supply that relative count.**
+   The joint lamp eigenbases form a macroscopic homogeneous space before
+   quotienting, but it is one global-conjugacy orbit.  After the finite actor
+   table is imposed, only discrete finite-group multiplicities remain; the
+   mixed regular character selects the regular representation.  The exact
+   count and the `exp(O(d log d))` ceiling for growing packets are recorded in
+   `finite-congruence-wreath-lamp-torsors-are-subquadratic-gauge`.  Thus the
+   new route must find genuinely approximate, noncorrectable relative moduli.
 
 ## Trust surface
 
