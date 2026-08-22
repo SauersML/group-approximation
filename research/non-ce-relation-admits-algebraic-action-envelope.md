@@ -262,3 +262,18 @@ non-hyperlinear group `hat K rtimes Lambda`.
   cylinder data; the published existential separation alone cannot supply a
   violating cylinder.  The sharpened test is whether every such Fourier
   moment has modulus zero or one.
+- **ZPC does not force the sharpened test, and passing it is not trace
+  promotion (2026-08-21).**
+  `zpc-does-not-force-affine-haar-membership-law` gives a perfect six-point
+  ZPC permutation strategy whose single membership-bit Fourier moment is
+  `1/3`; hence neither Z alignment, edge commutation, nor perfect acceptance
+  implies affine Haar.  More fundamentally,
+  `affine-haar-membership-does-not-promote-irs-trace` takes a Dirac normal
+  subgroup IRS: its membership law is an affine-Haar singleton, but the name
+  action crossed product is `L(Gamma)` while the IRS GNS algebra is
+  `L(Gamma/N)`, and the canonical actor traces disagree on every
+  `n in N\{e}`.  Thus even a successful cylinder audit would not by itself
+  retain the non-CE algebra.  The exact surviving target is a nonlinear
+  equivariant factor whose crossed-product pullback retains the non-CE
+  relation/GNS algebra and its normalizers, as in `(HSD1)`, or a genuinely
+  non-Cartan embedding.  Joint membership moments alone are insufficient.
