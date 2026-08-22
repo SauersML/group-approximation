@@ -6,7 +6,6 @@ title: The degree-four shared-carrier triangle reduces to one Latin boundary
 artifacts:
   - research/leavitt-d4-latin-triangle-reduction-proof.md
   - research/artifacts/search-degree4-latin-triangle-boundary.py
-  - research/artifacts/search-degree4-latin-projection-solved.py
 distinct_from:
   leavitt-d4-direct-flux-fence: that forbids making two residuals coefficient identities; this retains carrier variables in all three residuals and eliminates them only around a triangle.
 ---
@@ -25,6 +24,6 @@ coefficient units `a,b,c,d`; `H` and the three `Bi` are the four cyclic Latin
 rows displayed in the proof.
 
 Thus a choice with `F=h_j` for nonidentity `h` in one coefficient copy would
-be an explicit Kervaire--Laudenbach counterexample and hence close the
-non-hyperlinear-group goal.  Unlike the direct carrier design, this family
-passes the copy-retraction rank filter before coefficient specialization.
+be an explicit Kervaire--Laudenbach counterexample.  Unlike the direct carrier
+design, this family passes the first copy-retraction rank filter; the sharper
+metacyclic and full-word obstruction is recorded separately.

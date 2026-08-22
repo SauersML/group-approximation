@@ -76,7 +76,7 @@ d=c a^-1 c b^-1 c.                                      (3)
 
 Hence the coefficient search is intrinsically three-parameter: check
 `E2=E3=1`, `E0=h`, and finally the full free-product equality `F=h_0`.
-The attached exact scripts implement `(1)`--`(3)` in the faithful twenty-leaf
+The attached exact script implements `(1)`--`(2)` in the faithful twenty-leaf
 Bergman chart.  The twelve-element calibration tested 20,736 quadruples and
-had no projection survivor.  The larger MSI run is explicitly a bounded
-screen; the four-parameter reduction itself is exact and unrestricted.
+had no projection survivor.  The four-parameter reduction itself is exact
+and unrestricted.
