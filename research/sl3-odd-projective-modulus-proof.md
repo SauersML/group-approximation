@@ -23,4 +23,3 @@ makes `U` commute with all of `pi(Gamma)`, contradicting positive energy at
 If no uniform modulus `(OCP3)` existed, choose for each `j` data with total
 input at most `1/j` and output bounded below by a fixed epsilon after passing
 to a subsequence.  The same ultraproduct contradiction proves the modulus.
-
