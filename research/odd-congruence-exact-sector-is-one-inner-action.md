@@ -82,7 +82,7 @@ coprime to `p`.  Then:
   lambda(w) W lambda(w)^(-1) = V' W^(-1) V'^(-1),          (OI2)
   ```
 
-  and the three-term Weyl-orbit relation `h = h' h''^(-1)` couples the
+  and the three-term Weyl-orbit relation `h = h' h''` (equivalently `h h''^(-1) = h'`; the earlier `h = h' h''^(-1)` was a misprint, since `h' h''^(-1) = diag(1/p, p^2, 1/p)`) couples the
   correctors of the conjugate diagonals likewise.  Consequence: a
   corrector of pure right-translation type on a regular level (the
   "group-like/abelian" ansatz `W = rho(g)`) must define an

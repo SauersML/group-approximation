@@ -72,3 +72,30 @@ common potential `x` in `(UIR)`.
   says nothing about pairs built from non-congruence representations of
   `SL_2(Z)`, where no Hecke structure exists; that far sector is the
   `iwahori-outlier-repair` lane.
+- **Justification repairs from the 2026-08-21 audit (claim stands).**
+  (a) The kernel statement `H^1(SL_2(Z[1/2]), Ad rho) = 0` is load-bearing
+  (a nonzero class restricted to the two vertices would have zero defect
+  without being a common coboundary, making `(UIR)` false), and it is TRUE
+  for congruence `rho`, but NOT "by property (T;FD)": `SL_2(Z[1/2])` lacks
+  (T).  Correct derivation: `Ad rho` factors through a finite congruence
+  quotient `Q = Gamma / N`, `H^1(Q, M) = 0` in characteristic zero, so
+  `H^1(Gamma, M) = Hom(N^ab (x) C, M)^Q = 0` because every finite-index
+  subgroup of `SL_2(Z[1/2])` has finite abelianization (Serre's congruence
+  subgroup property for `SL_2` of rings with infinitely many units, as
+  cited in `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`).  (b) The
+  cuspidal constant `3 - 2 sqrt 2` rests on `|| T_2 || = max |eigenvalue|`,
+  i.e. on NORMALITY of `T_2` in the cellular Hodge inner product; the
+  cellular node imports commutativity and `*`-closedness of the level-`Gamma(m)`
+  double-coset algebra with diamond operators (`T_2^* = <2>^(-1) T_2`) in one
+  uncited sentence -- the reference is Shimura's commutative Hecke algebra
+  for `Gamma(m)` with `2` prime to `m`.  (The Petersson sibling
+  `iwahori-cuspidal-hecke-angle-proof` says "selfadjoint", which is false
+  at full level; only normality holds and only normality is needed.)  (c)
+  The triangular assembly in `infinitesimal-rigidity-from-three-parts` is a
+  five-sentence sketch without constant chaining; it closes (Eisenstein
+  residue gap `>= 1` plus uniformly bounded Eisenstein lift, then the
+  cellular Deligne gap on the cuspidal remainder), and the identification
+  of the level-`Gamma(m)` residue model with the one-parabolic `M^u` model
+  of the triple-angle node is a Shapiro isomorphism whose norm constant is
+  silently taken to be `1`.  None of (a)-(c) is a mechanism gap.
+

@@ -38,8 +38,9 @@ sigma_m(h lambda h^(-1) mod n_m)`, so in the ultraproduct
 `lambda in Lambda_-`: `W in pi(Lambda_-)' cap M`.  For
 `k in pi(Lambda)' cap M`, part 1 gives `[k, V'] = 0` (the commutant
 of `pi(Lambda)` in `M` is the ultraproduct of the levelwise
-commutants, on which conjugation by `V'_m` is trivial; equivalently
-`V' in pi(Lambda)''`), so
+commutants, on which conjugation by `V'_m` is trivial -- note this does
+NOT mean `V' in pi(Lambda)''`, see
+`congruence-slot-escapes-ultraproduct-lambda-algebra`), so
 
 ```text
 k V = k V' W = V' k W,   V k = V' W k,

@@ -44,3 +44,21 @@ distance, so distinct strata approach each other as `d` grows.  A complete
 near-sector theorem must reconcile these small-rank stratum changes while
 remaining in the same matrix dimension (or explicitly account for flexible
 padding).  The far outlier sector remains separate as well.
+
+## Attempts
+
+- **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The sentence "its
+  second derivative has a dimension-free bound `L`" in normalized
+  Hilbert--Schmidt norm is false:
+  `normalized-hs-taylor-remainder-is-not-dimension-free` (rank-one
+  anti-Hermitian `X` with eigenvalue `i pi` has
+  `|| X^2 ||_2 / || X ||_2^2 = sqrt d`), and it invalidates the route.  The
+  correct second-order bound is `|| F''[X,X] ||_2 <= L || X ||_op || X ||_2`,
+  so the Taylor step closes only under an operator-norm proximity
+  hypothesis `|| X ||_op <= sigma_0 / (2L)`; that version is true but is
+  not the HS-metric near sector that `iwahori-local-global-defect-question`
+  consumes.  The rank-one direction is a rotation of a single flag line
+  inside a fixed torsion-multiplicity stratum, so the stratum restriction
+  does not avoid it; the stratum-reconciliation issue recorded above is a
+  second, independent gap.  `(NR1)` in the HS metric is therefore OPEN.
+

@@ -362,3 +362,39 @@ compilers, which feed CORE B via LCS perfect completeness).  This pass's
 gain is specifically that the arithmetic RCC/RE and flexible-stability
 routes are now proven to meet at CORE A --- one rank-one problem, not two
 rank-dependent ones.
+
+**Audit corrections to the frontier map and the four-core capstone
+(2026-08-21, late).**  Three adversarial audits of the shortest paths
+changed the following statements above.  (1) *Coprime face.*
+`sl3-re-lambda-exact-coprime-face-is-unfaithful` is OPEN again: its step
+`pi(h) in pi(Lambda)''` confuses the coordinatewise subgroup algebra with
+the ultraproduct one (`congruence-slot-escapes-ultraproduct-lambda-algebra`);
+the proved form needs the rate `eps_k log n_k -> 0`, so the `(RC3)`/RE
+residual on the `Lambda`-exact face includes slow-rate coprime witnesses.
+The sector collapse `odd-congruence-lambda-exact-sector-collapses` itself
+stands.  (2) *Iwahori near sector.*  `iwahori-newton-closes-near-sector` is
+OPEN again: the Newton step used a dimension-free second-derivative bound in
+normalized HS, which does not exist
+(`normalized-hs-taylor-remainder-is-not-dimension-free`); only an
+operator-norm-proximity version holds.  The first-order theorem
+`iwahori-uniform-infinitesimal-rigidity` stands, with its kernel statement
+rewired from "(T;FD)" (which `SL_2(Z[1/2])` lacks) to Serre's CSP/FAb.  So
+CORE A currently has NEITHER sector closed -- near (HS metric) nor far.
+(3) *A fifth core.*  The type (i)/(ii) partition and the capstone
+`CORE A or B or C or D` omit the Pestov lane: `hyperlinear-implies-sofic`
+(Pestov Question 3.4, affirmative side) routes here by
+`non-hyperlinear-from-hyperlinear-implies-sofic` through the nonsofic
+Leavitt unit group, with twelve live holes across six sub-routes
+(bounded-width compiler, cpsd face collapse, de Finetti rounding,
+Markovization, traffic lifts, orbital rounding).  It is neither an
+MIP*=RE transfer nor a by-hand non-CE factor, and it is independent of
+A-D.  Likewise the Kun--Thom rigidity lane (`kt-centralizer-normalization-hs`
+family), the Kervaire--Laudenbach lane, and the algebraic/Pontryagin
+envelope lane (which reaches a group factor by duality and needs neither
+embedding universality nor Paddock--Slofstra 5.8) are live and not
+subsumed by the four named cores.  Honest count: the program is
+`CORE A or B or C or D or E(Pestov)` plus three smaller independent lanes.
+(4) *Tool note.*  `bin/cairn frontier` lists
+`atlas-a4-rank-three-core-commutant-collapse` as an open goal-path hole
+although the compiled graph and `cairn why` report it REFUTED; the
+frontier view over-counts by one.

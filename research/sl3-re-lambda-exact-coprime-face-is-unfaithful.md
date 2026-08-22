@@ -67,3 +67,40 @@ residual enemy sector of the collapse `(RC3)`: non-regular-type `p`-primary
 host-only weakest target and the RCC face are then one problem.  For the
 `p = 3` pair the coprime-to-3 face includes every `2`-power level, so this
 theorem closes strictly more of the `RE/C` question there.
+
+## Attempts
+
+- **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The step `(RECF1)`
+  `pi(h) = V' in pi(Lambda)''` is false: `V'` is a limit of image elements
+  `[sigma_m(mu_m)]` with VARYING `mu_m`, which lie in
+  `prod_U sigma_m(Lambda)''`, not in `pi(Lambda)''`.
+  `congruence-slot-escapes-ultraproduct-lambda-algebra` exhibits the
+  counterexample inside these hypotheses (regular representations of
+  `SL_3(Z/n_m)`, coprime levels: `W = 1` on the nose, `pi_m(h)` in every
+  coordinate subgroup algebra, yet `E_(pi(Lambda)'')(pi(h)) = 0`), and
+  invalidates the route.  The sector collapse
+  `odd-congruence-lambda-exact-sector-collapses` is unaffected -- it is a
+  statement about commutants, where the coordinatewise/ultraproduct
+  distinction does no harm.
+- **What survives: the logarithmic-rate theorem.**  Put
+  `delta_k(u) = || u - E_(B_k)(u) ||_2` and `eps_k = max_(s in S) delta_k(pi_k(s))`
+  for a fixed finite generating set `S` of `Lambda`.  Since `|| E_(B_k) ||_op <= 1`,
+  `delta_k(uv) <= || (u - E u) v ||_2 + || (E u)(v - E v) ||_2 <= delta_k(u) + delta_k(v)`,
+  so `delta_k(pi_k(mu)) <= |mu|_S eps_k` for every word `mu`.  `SL_3(Z)` has
+  property `(tau)`, so its congruence quotients are expanders and the slot
+  `lambda_(h,k)` can be chosen with `|lambda_(h,k)|_S = O(log n_k)`.  With
+  `W = 1`, `pi_k(h) = pi_k(lambda_(h,k))` up to `o(1)`, hence
+  `|| E_(B_k)(pi_k(h)) ||_2 >= 1 - o(1) - O(eps_k log n_k)`.  THEREFORE: no
+  `RE/C` witness of the `SL_3` pair is `Lambda`-exact of coprime type with
+  `eps_k log n_k -> 0`.  Nothing in Gao's definition constrains the rates,
+  so a witness with `eps_k -> 0` slower than `1 / log n_k` is the surviving
+  enemy shape on this face: huge `pi_k(Lambda)''` with slow near-containment.
+  This conditional statement is a theorem by the above; it has not yet been
+  promoted to its own claim.
+- **Scope caveat.**  The witness format used here (matrix coordinates,
+  `B_k subset M_(d_k)`) is the sufficient form `(CF1)` of
+  `relatively-embeddable-pair-makes-the-hnn-group-hyperlinear`; Gao's
+  Definition 1.1 allows QWEP coordinates with HYPERFINITE `B_k`.  Even a
+  repaired theorem closes the coprime face only among matrix-form
+  witnesses.
+
