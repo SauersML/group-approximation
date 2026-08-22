@@ -47,10 +47,16 @@ unspecified element to kill.
    to stop repeating first-homology tests on them: a finite list of relators
    in a chart presentation is not a relative relator, and the atlas source's
    own kernel `R/[R, R]` bears on one-relator compression of that source, not
-   on `N_m`.  The next computation worth running is a nonabelian one — a
-   finite quotient of `N_m`, or a Peiffer/crossed-module quotient, in which a
-   candidate word's normal closure can be seen to be proper or not.
-4. **Reality check, recorded because this claim reads more tractable than it
+   on `N_m`.
+4. **Search a finite nonabelian or solvable quotient of `N_m`.**  *Impossible*
+   by `leavitt-degree-kernel-quotient-tests-are-procyclic`: the Leavitt unit
+   group is perfect and has no finite quotients, so every finite or solvable
+   image of `N_m` kills all coefficient free factors and is cyclic; every
+   degree-`m` candidate maps to its generator.  If a candidate fails to
+   normally generate, the quotient by its ambient normal closure is necessarily
+   infinite, perfect, and has no finite quotients.  A Peiffer/crossed-module
+   test must therefore retain a genuinely nonsolvable coefficient image.
+5. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
    The honest reading — inherited from
