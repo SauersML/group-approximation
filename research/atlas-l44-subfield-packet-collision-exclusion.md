@@ -5,44 +5,38 @@ kind: claim
 title: The augmented Atlas packet excludes the L4(4) subfield A8 equality case
 artifacts:
   - experiments/atlas_a4_l44_fan_escape.py
+  - experiments/atlas_a4_l44_bitpacked_screen.py
+  - experiments/atlas-a4-l44-bitpacked-screen.json
 distinct_from:
   atlas-l44-local-packet-fans-do-not-force-subfield-support: that proves the local fan and H6-only shortcuts fail; this asks for the common-frame coupling of both packet components and collision.
 ---
 
-For the standard subfield chart `A=GL4(2)<L4(4)`, classify the marked
-conjugate charts `B` which satisfy all twelve distinct packet edges.  Prove
-that collision `19243` (or q14) excludes every packet survivor that generates
-`L4(4)`.
+For the standard subfield chart `A=GL4(2)<L4(4)`, no marked conjugate chart
+`B` satisfies all twelve distinct packet edges together with collision
+`19243`.  This holds for both relative marking parities: an inner marking and
+the graph-outer marking `g -> (g^-1)^T`.
 
-The exact local reduction is now small at its first stage: an `H6` generator
-pair has only `1262` ordered packet-compatible images.  What remains is to
-couple each such pair to the `H18` component through the same ambient
-conjugator-centralizer fiber.  A capped direct implementation did not finish,
-so no full-packet survivor count is asserted here.
+In either parity there are `1262` ordered `H6` rectangle pairs, and,
+surprisingly, every one has an invertible common intertwiner.  Their
+projective `H6` centralizer fibers have size `180`, hence give `227160`
+structured common-frame candidates.  The `H18` edges leave `2754` full-packet
+survivors (`30` projectively binary frames and `2724` extension frames).
+Collision `19243` kills all of them; before imposing it, its values have exact
+order histogram
 
-## Attempts
+```text
+order 2: 1863,    order 4: 891.                       (L44S1)
+```
+
+The q14 relation alone leaves `729` survivors in inner parity and `486` in
+graph parity, but none also satisfies collision `19243`.
+
+## Earlier failed reductions
 
 - One-vertex support recognition fails exactly: the two fan fibers have `336`
   and `150` points, with nonsubfield points in both.
-- Coupling the full `H6` rectangle leaves `1262` ordered pairs.  Iterating its
-  common-conjugator centralizer fibers against `H18` did not finish within the
-  strict two-minute development cap.  The next attack should quotient those
-  fibers by the centralizer action before replay, not extend the raw loop.
-- `atlas-l44-h6-has-thirty-frobenius-frames` supplies that quotient exactly:
-  each liftable pair has thirty candidate subfield forms and six internal
-  labelings, while a compatible `H18` placement determines the common lift
-  uniquely up to scalar.  The remaining screen must first discard
-  non-liftable rectangle pairs, then test this `30 x 6` factored fiber.
 - The first proposed prefilter is provably blind:
   `atlas-l44-h6-spectrum-is-blind-on-all-rectangle-pairs` shows all `1262`
-  pairs have the source order-three characteristic polynomial.  The remaining
-  liftability test must retain simultaneous nonsemisimple `S3` data; scalar
-  spectral invariants cannot shrink the pair list.
-- The thirty-form loop is unnecessary once a candidate `H18` placement is
-  present. `atlas-l44-frobenius-intertwiner-prunes-frames` tests the common
-  `F2` form by the linear space
-  `Hom_<H6,H18>(V^(2),V)`. On an absolutely irreducible join this space is
-  either zero or one-dimensional; a nonzero intertwiner automatically has
-  Frobenius norm one and supplies the unique projective binary frame. The
-  remaining finite screen should therefore solve this 16-variable linear
-  system before replaying packet and collision words.
+  pairs have the source order-three characteristic polynomial.  The exact
+  screen therefore retains simultaneous nonsemisimple `S3` data instead of a
+  scalar spectral shortcut.
