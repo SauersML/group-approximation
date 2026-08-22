@@ -31,6 +31,15 @@ double.  Since `w!=1` by amalgam normal form, canonical regularity also
 requires `tr(sigma_n(w))->0`, contradicting `(RDF1)`; so the claim forbids
 those microstates.
 
+For non-hyperlinearity, global trace-modulus collapse is stronger than
+necessary.  The separate terminal
+`sl3-positive-density-projective-fold-sector` asks only for a fixed positive
+fraction of right singular directions on which the two `h` matrices agree
+up to a model-dependent scalar.  A phase-twisted finite Fejer kernel already
+contradicts the canonical moments of the infinite-order fold word on that
+carrier.  This does not prove `(RDF1)`, but gives a strictly weaker live
+arithmetic route to the root goal.
+
 ## Exact boundary and remaining gap
 
 `sl3-arithmetic-double-finite-representations-fold` proves the zero-defect

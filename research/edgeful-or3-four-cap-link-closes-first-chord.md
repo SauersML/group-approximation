@@ -8,6 +8,7 @@ requires:
   - edgeful-or3-four-cap-walsh-packet
   - four-cap-common-phase-forces-trivial-mark
   - four-cap-two-chart-mixer-has-finite-clifford-evaluator
+  - four-cap-three-actuator-hs-packet-blocker
   - edgeful-or3-coefficient-link-compiler
   - overlap-subdivision-preserves-coherent-piece-obstruction
 ---
@@ -35,6 +36,15 @@ nontrivial central sign, and no packet retraction, yet evaluates the whole
 cell in sixteen Clifford dimensions while remaining faithful on the packet.
 The required link must therefore escape every packet-preserving finite
 evaluation, not merely charge one selector commutator by `J`.
+
+The exact version of that escape is now available:
+`four-cap-three-actuator-destroys-all-fd-packet-evaluations` amalgamates the
+cross-chart D8 seed with the affine-Leavitt active root and preserves the
+packet by normal forms while killing `J` in every finite-dimensional
+representation.  Its normalized-HS use is exactly
+`four-cap-three-actuator-hs-packet-blocker`, whose only analytic hole is the
+existing affine-Leavitt root-to-coefficient decoder.  Thus this route no
+longer treats exact packet-retraction destruction as the missing theorem.
 
 The subdivision audit rules out treating macro girth as a substitute for
 the required cap-sector/link certificate.
