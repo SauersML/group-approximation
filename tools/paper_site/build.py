@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Assemble the self-contained web edition of non_mf_groups_exist.tex.
+"""Assemble a self-contained web edition of the paper or its notes.
 
 The page embeds the raw TeX and the claims manifest verbatim; a client-side
 renderer (parser.js + ui.js) typesets them with an inlined KaTeX, so the
 manuscript stays the single source of truth and the site follows every tex
 push with no separate content pipeline.  Stdlib only; no toolchain.
 
-    python3 tools/paper_site/build.py --out .cairn/site/paper/index.html
+    python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html
 """
 import argparse
 import base64
@@ -18,6 +18,29 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
+
+EDITIONS = {
+    'paper': {
+        'source': 'non_mf_groups_exist.tex',
+        'title': 'A non-MF group',
+        'tab': 'Paper',
+        'links': (
+            '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>\n'
+            '<a href="../notes/">Read the supplementary notes</a>\n'
+            '<a href="../non_mf_group_notes.pdf">Download the notes (PDF)</a>'
+        ),
+    },
+    'notes': {
+        'source': 'non_mf_group_notes.tex',
+        'title': 'Non-MF group notes',
+        'tab': 'Notes',
+        'links': (
+            '<a href="../paper/">Read the main paper</a>\n'
+            '<a href="../non_mf_group_notes.pdf">Download the notes (PDF)</a>\n'
+            '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>'
+        ),
+    },
+}
 
 
 def read(p):
@@ -387,10 +410,12 @@ def parse_census():
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument('--edition', required=True, choices=sorted(EDITIONS))
     ap.add_argument('--out', default=str(HERE / 'index.html'))
     ap.add_argument('--build-id', default=os.environ.get('GITHUB_SHA', 'dev'))
     args = ap.parse_args()
 
+    edition = EDITIONS[args.edition]
     katex_css = read(HERE / 'katex' / 'katex.min.css')
     katex_js = read(HERE / 'katex' / 'katex.min.js')
     site_css = read(HERE / 'styles.css')
@@ -401,8 +426,19 @@ def main():
     freshness_js = read(HERE / 'freshness.js').replace(
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
-    tex = strip_tex_comments(read(REPO / 'non_mf_groups_exist.tex'))
-    claims = read(REPO / 'metadata' / 'NON_MF_NUMBERED_CLAIMS.json')
+    tex = strip_tex_comments(read(REPO / edition['source']))
+    external_paper_tex = (
+        strip_tex_comments(read(REPO / 'non_mf_groups_exist.tex'))
+        if args.edition == 'notes' else ''
+    )
+    claims_data = json.loads(
+        read(REPO / 'metadata' / 'NON_MF_NUMBERED_CLAIMS.json')
+    )
+    labels = set(re.findall(r'\\label\{([^}]*)\}', tex))
+    claims_data['manuscript'] = edition['source']
+    claims_data['claims'] = [
+        claim for claim in claims_data['claims'] if claim['id'] in labels
+    ]
 
     # inline the woff2 fonts into the KaTeX css; drop the woff/ttf fallbacks
     def font_uri(m):
@@ -416,7 +452,7 @@ def main():
         sys.exit(f'unresolved font urls remain: {leftovers[:4]}')
 
     wanted = []
-    for c in json.loads(claims)['claims']:
+    for c in claims_data['claims']:
         for l in c.get('lean', []):
             wanted.append((l['module'], l['declaration']))
     # declarations cited only by in-tex \leanverified markers
@@ -455,7 +491,8 @@ def main():
             lean_sigs[key] = {'sig': sig, 'line': line}
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
-        'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'
+        'window.EXTERNAL_PAPER_TEX = ' + json.dumps(external_paper_tex).replace('</', '<\\/') + ';\n'
+        'window.CLAIMS = ' + json.dumps(claims_data).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
         'window.STEPS = ' + json.dumps(parse_steps()).replace('</', '<\\/') + ';\n'
@@ -473,6 +510,9 @@ def main():
 
 
     out = template
+    out = out.replace('__DOCUMENT_TITLE__', edition['title'])
+    out = out.replace('__DOCUMENT_TAB__', edition['tab'])
+    out = out.replace('__DOCUMENT_LINKS__', edition['links'])
     for name, payload in [
         ('FRESHNESS_JS', freshness_js), ('KATEX_CSS', katex_css),
         ('SITE_CSS', site_css), ('POLISH_CSS', polish_css),

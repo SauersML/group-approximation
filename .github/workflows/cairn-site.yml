@@ -18,6 +18,9 @@ on:
       - 'tools/cairn.py'
       - 'bin/cairn'
       - 'non_mf_groups_exist.tex'
+      - 'non_mf_groups_exist.pdf'
+      - 'non_mf_group_notes.tex'
+      - 'non_mf_group_notes.pdf'
       - 'metadata/NON_MF_NUMBERED_CLAIMS.json'
       - 'tools/paper_site/**'
       # the paper edition embeds Lean sources, so Lean-only pushes must
@@ -109,8 +112,13 @@ jobs:
       # warning annotation on the run.
       - name: Build the paper edition
         run: |
-          if node tools/paper_site/test_inline.js && python3 tools/paper_site/build.py --out .cairn/site/paper/index.html; then
-            echo "paper edition built"
+          if node tools/paper_site/test_inline.js \
+            && node tools/paper_site/test_editions.js \
+            && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html \
+            && python3 tools/paper_site/build.py --edition notes --out .cairn/site/notes/index.html; then
+            echo "paper and notes editions built"
+            install -m 0644 non_mf_groups_exist.pdf .cairn/site/non_mf_groups_exist.pdf
+            install -m 0644 non_mf_group_notes.pdf .cairn/site/non_mf_group_notes.pdf
             # Cross-link: a "paper" entry in the graph header.  This edits the
             # generated page only -- bin/cairn and tools/cairn.py stay untouched.
             sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><span class="stats">|' .cairn/site/index.html

@@ -73,7 +73,7 @@ function stripComments(tex) {
 /* ---------- document extraction ---------- */
 
 function extractDocument(tex) {
-  const bodyStart = tex.indexOf('\\section{Introduction}');
+  const bodyStart = tex.indexOf('\\section{');
   const bibStart = tex.indexOf('\\begin{thebibliography}');
   const bibEnd = tex.indexOf('\\end{thebibliography}');
   const absStart = tex.indexOf('\\begin{abstract}');

@@ -154,6 +154,12 @@ h1.paper-title {
   margin-bottom: 6px;
 }
 .abstract p { margin: 0 0 0.9em; font-size: 0.95em; }
+.paper-downloads {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  margin-top: 18px;
+  font-size: 0.9em;
+}
+.paper-downloads a { font-weight: 600; }
 
 /* ============ sections & prose ============ */
 .content p { margin: 0 0 1.05em; text-align: justify; hyphens: auto; }
@@ -551,4 +557,3 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
   border-radius: 2px;
   scroll-margin-top: 90px;
 }
-

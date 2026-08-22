@@ -311,7 +311,8 @@ function xrefHtml(label, mode) {
   }
   let text = rec.num == null ? '?' : String(rec.num);
   if (mode === 'eq' || rec.kind === 'eq') text = '(' + text + ')';
-  return '<a class="xref" href="#' + rec.anchor + '" data-label="' + escHtml(label) + '">' + escHtml(text) + '</a>';
+  const href = rec.href || ('#' + rec.anchor);
+  return '<a class="xref" href="' + escHtml(href) + '" data-label="' + escHtml(label) + '">' + escHtml(text) + '</a>';
 }
 
 /* ---------- block rendering ---------- */
@@ -1320,6 +1321,17 @@ function setupLeanPanels(root) {
 function init() {
   const t0 = performance.now();
   document.body.dataset.view = 'paper';
+  if (window.EXTERNAL_PAPER_TEX) {
+    parsePaper(window.EXTERNAL_PAPER_TEX);
+    const external = {};
+    for (const [label, rec] of Object.entries(LABELS)) {
+      external['paper-' + label] = Object.assign({}, rec, {
+        href: '../paper/#' + rec.anchor,
+      });
+      delete LABELS[label];
+    }
+    Object.assign(LABELS, external);
+  }
   const parsed = parsePaper(PAPER_TEX);
   BIB = parsed.bib;
 
