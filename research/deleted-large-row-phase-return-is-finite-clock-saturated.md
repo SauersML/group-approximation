@@ -66,3 +66,29 @@ inside one spectral atom of that finite clock, at no more than the
 corresponding canonical character mass.  Exceeding that mass requires an
 additional matrix-only replication or a noncommuting/wandering factor, which
 is not supplied by the deleted-row gap.
+
+## Audit of the non-RU BCS input
+
+There is an earlier, independent qualification.  The finite-dimensional game
+gap has the form
+
+```text
+E_predicate+E_consistency >= lambda.                  (DLR7)
+```
+
+It forces positive **total consistency** energy only after all predicate
+energies have been made `o(1)` on the same Gram carrier.  Perfect
+standard-form completeness proves this for the intended infinite tracial
+model, not for arbitrary finite microstates.  For the nonlinear Fanizza
+contexts, `central-word-state-face-compiler` records exact finite forbidden
+selector sectors `(CWA9)` which satisfy the central phase clause.  Those
+sectors can pay `(DLR7)` entirely through predicate energy.  Thus the current
+central predicate-phase packet does not yet supply the premise needed to
+pigeonhole a large consistency row; doing so is its whole-face soundness
+hole.
+
+Even granting predicate exactification, `(DLR5)--(DLR6)` show that the
+resulting positive consistency mass only fills a canonical finite-clock atom.
+Hence the proposed reversal faces two separate gates: whole-face predicate
+soundness before the row is obtained, and finite-clock saturation after it
+is obtained.

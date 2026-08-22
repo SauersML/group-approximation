@@ -55,3 +55,6 @@ the resulting return word conjugate to `Jcb`, hence an involution.  The
 large mismatch carrier lies inside its ordinary canonical fixed atom and
 cannot beat the sharp finite-clock Fejer threshold.  Thus the lower bound is
 genuine carrier mass, but not wandering or excess finite-clock mass.
+For the nonlinear Fanizza source there is also no unconditional lower bound
+on the **consistency** subtotal: until the whole-face predicate compiler is
+proved, the finite game gap may be paid by forbidden-answer energy instead.
