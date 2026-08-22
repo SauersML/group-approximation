@@ -92,3 +92,31 @@ The other proposed scalar shortcut is closed universally:
 `B^2(Gamma,T)` is pointwise closed for every discrete group.  Hence a fixed
 metaplectic class cannot supply the pointwise-trivial sequence in ISW
 Theorem A merely by changing representatives.
+
+## Theorem A surface closed uniformly (2026-08-21)
+
+The scalar refutation route is now DEAD for every subgroup at once.
+`sp4-fd-projective-multiplier-is-finite` proves that the subgroup of
+`H^2(Sp_4(Z),T)` realizable by finite-dimensional projective unitary
+representations is finite (Deligne via Stover arXiv:2407.07680 Thm 1.5,
+plus rank one of `H_2` via Igusa/Hain arXiv:math/0203057, plus Bender's
+finite presentation), and `isw-theorem-a-has-no-data-on-sp4-lattice`
+concludes that no sequence satisfying the three hypotheses of ISW
+Theorem A exists on `Sp_4(Z)` for ANY subgroup `Lambda` — Siegel pair,
+Klingen pair, Klingen center (`klingen-center-kills-isw-condition-one`:
+`H^2(Z,T) = 0`), or `Lambda = Gamma` itself.  Relative property (T) was
+never the bottleneck: `Sp_4(Z)` is Kazhdan, so every sub-pair has it.
+The sub-pair EXTENSION question (do NPS/theta classes of the Klingen or
+Siegel pair extend to fd-realizable `Sp_4(Z)`-classes tending to the
+trivial class?) is answered NO wholesale, and
+`isw-corollary-b-uses-only-the-standard-area-cocycle` verifies at the
+source that Corollary B's engine (the invariant area form of the
+standard module) has no Siegel analogue.  The ONLY remaining published
+refutation mechanism is ISW's operator-valued Theorem C: a p.m.p.
+action with cocycles in `Z^2(Gamma, L^0(X,T))`, `||c_n - 1||_2 -> 0`,
+non-coboundary restrictions, and — for LLP rather than LP —
+`R^omega`-embeddability of every twisted crossed product
+`L^infty(X) x| Gamma`.  No such data exists for `Sp_4(Z)` in the
+recorded literature; note their Remark 1.1 (LP would force
+`H^2(Gamma, L^0(X,T))` countable for every ergodic p.m.p. action)
+marks the same frontier from the other side.
