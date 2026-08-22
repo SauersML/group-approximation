@@ -66,3 +66,17 @@ required.
   been shown either to pass or fail this Koopman gate, so the direct
   `SL_3(Z)` branch remains open but now has a source-side falsification test
   before any group-basis construction is attempted.
+- **The published source cannot yet be run through that test.**
+  `manzoor-cdi-source-has-no-determined-koopman-gate` audits the primary
+  construction.  Every stabilizer realization contains the conjugation
+  Koopman representation on `L^2(Sub(Gamma),mu)` through pullback by the
+  stabilizer map, and the standard labeled-Schreier realization is a measured
+  direct integral of finite-pattern Bernoulli chaoses over `mu`.  But
+  Manzoor's computability separation chooses an unnamed game, an unnamed IRS
+  strategy and an unspecified extreme IRS; its one-word character values do
+  not determine the joint conjugation-cylinder coefficients of that Koopman
+  representation.  CDI Theorem D then supplies an existential relation
+  embedding, not a named `SL_3(Z)` action.  Thus the fixed source is not known
+  to pass or fail the gate: a named IRS with joint cylinder law, or a direct
+  non-CE action with explicit actor and Koopman decomposition, is genuinely
+  new required input.
