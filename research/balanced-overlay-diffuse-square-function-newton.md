@@ -50,8 +50,10 @@ and simultaneous terminal-sign bounds charged by the conventional squared
 involution residual.  Hence common-character rotation is harmless after
 quotienting the simultaneous-conjugation kernel and signing once: it returns
 to the exact character tuple at quartic cost.  What this does not provide is
-the tangent operator row/column inverse.  The remaining gate is still the
-code-Riesz cb estimate below and its perturbation away from an exact base.
+the missing pre-basin exact character decomposition.  The finite-time
+covariant-divergence step below now supplies the exact-base cb contraction;
+the remaining gate is its nonlinear use before that base exists together
+with sparse parity/equality re-exactification.
 
 The positive part is now explicit:
 `code-laplacian-has-uniform-cp-green-approximants` supplies dimension-free
