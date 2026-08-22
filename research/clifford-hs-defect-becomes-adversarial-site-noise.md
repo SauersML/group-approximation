@@ -60,3 +60,13 @@ must also control coherent errors, not only Pauli errors supplied in advance.
   The claim must therefore either make the computation payload gauge-covariant
   or add transverse incidence that kills the codeword-shear kernel; Tanner
   expansion and parity repetition alone cannot prove it.
+- The obstruction persists at the exact boundary of arbitrary finite
+  stabilizer/CSS gadgets.  `stabilizer-checks-either-have-logical-shears-or-erase-payload`
+  identifies the logical algebra with the symplectic quotient `R^perp/R`.
+  If it is nonzero, an anticommuting logical pair gives a quarter-turn which
+  fixes every check while moving a logical payload by HS distance `sqrt(2)`.
+  If it vanishes, the intrinsic code carrier is one-dimensional; any residual
+  multiplicity payload is wholly unauthenticated by the checks.  Thus neither
+  code distance nor stronger linear local testability crosses the gate.  The
+  new ingredient must be payload-coupled incidence, most naturally a
+  gauge-covariant nonlinear verifier.
