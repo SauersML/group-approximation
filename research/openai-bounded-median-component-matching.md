@@ -46,7 +46,13 @@ Then `0 < f < 1` with median `1/2` on every `A`, and:
 **Consequence.** A transported component `p_i(C)` and the `Gamma`-component
 `D` it almost lies in have approximately the same size, so `p_i(C)` occupies
 more than half of `D`.  Distinct transported components are disjoint, so they
-cannot select the same target: the matching is injective.
+cannot select the same target: the matching is injective ON THE RETAINED
+components -- those with small leakage `L(P) <= eta_n |P|` that possess a
+nonexceptional witness `z` with `z, tau z` in the same ambient component, so
+that the size comparison (normalized by that component's median) applies --
+and the source shows the non-retained components carry only `o(N)`
+vertices.  (Qualifier added after the 2026-08-21 audit; the unqualified
+sentence is false for non-retained components.)
 
 ## The principle, stated once
 

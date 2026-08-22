@@ -82,8 +82,15 @@ only to obtain the expanding approximation assumed in the proposition."
 The revision moved the passage from soficity to a *single* expanding
 approximation out of Proposition 2.3 and into the consequences of Theorem 2.1.
 Read that as the repair of the delicate step, and cite the current version.
-Neither version changes the Leavitt application; `official/counterexample.tex`
-in this repository is the current one.
+Neither version changes the Leavitt application.  CORRECTION (2026-08-21
+audit of the pin): `c1168433:official/counterexample.tex` is the ORIGINAL
+version, not the current one -- it carries the original title and page
+numbering, its Proposition 2.3 asks property (T) of both `Gamma` and `G`,
+and `22863aed:official/README.md` says the current PDF retitles the
+chapter.  The transcriptions in this region are therefore of the original;
+the Leavitt application satisfies the original's stronger hypothesis, so
+nothing mathematical changes, but a reader who wants the current wording
+must go to the current PDF.
 
 ## The sentence this program cares about
 

@@ -2,7 +2,7 @@
 rg: 2
 id: openai-expander-matching-criterion
 kind: claim
-title: The expander-matching criterion - a compressed Kazhdan pair with a commuting factor forces that factor to be LEF
+title: The expander-matching criterion - if the ambient group is sofic, a compressed Kazhdan pair with a commuting factor forces that factor to be LEF
 distinct_from:
   one-sided-compression-nonsofic-criterion: That is this development's own formalized bridge, stated on a `CompressionSetup` and concluding nonsoficity of the ambient group from a non-LEF witness; this is the chapter's Proposition 2.3, stated on a subgroup triple and concluding LEF of the commuting factor. They are the same mechanism discovered twice, and neither is derived from the other here.
   kun-expander-decomposition-formalized: That is the first input, which produces a union of expanders from property (T) and concludes nothing about any group; this is the criterion built on top of it, and its content is the passage from many components to one.
