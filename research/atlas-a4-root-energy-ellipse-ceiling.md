@@ -6,6 +6,7 @@ title: One ellipsoidal scalar in square-root four-cycle energies beats the 19243
 distinct_from:
   atlas-a4-joint-weighted-cycle-ceiling: that target leaves five positive weights existentially quantified; this target analytically eliminates all of them and retains only one nonlinear scalar of the four trace deficits.
   atlas-a4-anisotropic-four-cycle-ceiling: that target uses a fixed diagonal Cauchy budget; this target uses the exact triangle envelope and the optimized weighted S3 exchange rate.
+  atlas-a4-root-ellipse-exact-tracial-escape: that gives an exact finite-factor zero of all packet/collision residuals with ellipse value 73; the present claim can therefore only be a matrix-specific trace-exclusion statement.
 ---
 
 Let `U_n` be a normalized exact-regular A4 context-network sequence in the
@@ -187,3 +188,10 @@ ellipse ceiling itself still requires the unresolved joint-gap theorem.
 - **Return the escaping point.**  Failure of a finite SOS relaxation should
   output an approximate point `(S,x12)` outside the ellipse together with the
   multiplicity mode realizing it; that is a targeted new packet-search input.
+- **Universal tracial optimization is already refuted at value seventy-three.**
+  `atlas-a4-root-ellipse-exact-tracial-escape` constructs an exact finite-factor
+  common-frame solution of all thirty packet relations and `q_19243=1` with
+  `(x01,x12,x23,x30)=(1,1,1,1)`, hence `F=73`.  Therefore an SDP/SOS search is
+  relevant only if its axioms encode matrix embeddability rather than merely
+  positivity and the exact trace relations.  Any relaxation valid for all
+  finite tracial von Neumann algebras must admit this escaping point.
