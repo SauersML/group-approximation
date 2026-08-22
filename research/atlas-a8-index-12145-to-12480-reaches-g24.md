@@ -9,6 +9,7 @@ artifacts:
 distinct_from:
   atlas-a8-index-11881-to-12144-reaches-m24: that crosses the preceding A12-to-M24 interval; this crosses the next complete simple-order interval.
   atlas-g24-contains-no-a8: that removes the arithmetic endpoint using maximal subgroups; this only identifies it by order.
+  atlas-a8-index-44551-to-48960-reaches-l44: that reaches the later genuine subfield L4(4) endpoint; this identifies the earlier empty G2(4) endpoint.
 ---
 
 Let `S` be finite nonabelian simple and suppose `|A8|` divides `|S|`.  If
@@ -31,4 +32,3 @@ There is no intervening simple-group order after `M24`; the next row is
 
 The interval and factorization agree with the GAP Character Table Library
 [*Simple Groups by Group Order*](https://www.math.rwth-aachen.de/homes/Thomas.Breuer/ctbllib/ctbltoc/views/simplebyorder.html).
-
