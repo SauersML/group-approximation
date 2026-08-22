@@ -16,3 +16,6 @@ There is an explicit homomorphism from the group defined by Kassel relations
 3-cycle `(0 3 4)`. The cycle is moved by every root generator, so its omega
 eigenspace is not invariant. The explicit tuple is in the artifact.
 
+`kassel-210-is-first-s5-order-three-seam` shows that (2.10) is the first
+subsequent failed relation, and that covariantizing over the 20-element
+conjugacy orbit cannot make the mark scalar without killing it.

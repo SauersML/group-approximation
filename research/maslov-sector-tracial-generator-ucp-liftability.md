@@ -114,3 +114,9 @@ Nevertheless it closes the Maslov sector by
   exceptional finite triple extension only swaps the two nontrivial sectors
   under root transvections. The remaining issue is promotion from
   noncentral order three to one invariant scalar sector.
+- **The `S5` orbit route stops first at (2.10).**
+  `kassel-210-is-first-s5-order-three-seam` computes the next failure and
+  proves that any honest `S5` representation making the marked 3-cycle
+  scalar kills all of `A5`, hence kills the mark. An exact degree-five
+  enumeration finds no order-three survivor through (2.10). This is a sharp
+  finite-model seam, but not yet a dimension-independent matrix gap.
