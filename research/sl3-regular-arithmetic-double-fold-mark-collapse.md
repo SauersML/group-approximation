@@ -162,3 +162,28 @@ diagonal staircase absorbs arbitrary finite polynomial propagation costs.
 Thus the remaining arithmetic input must prove that the spherical/conductor
 cut is not an ordinary same-carrier invariant algebra, or invoke several
 Weyl-conjugate denominator actions with a genuine joint gap.
+
+The literal factor swap gives a useful minimal reformulation but no hidden
+character proof.  `arithmetic-double-swap-extension-is-binary-coset-wreath`
+identifies
+
+```text
+(A *_C A) rtimes C_2
+  = A *_C (C x C_2)
+  = ( *_(A/C) C_2 ) rtimes A.
+```
+
+Canonical microstates pass both ways by an explicit two-block
+symmetrization, the fold mark becomes the real-trace commutator `[h,s]`, and
+every exact finite-dimensional representation centralizes `s` against all
+of `A`.  Thus this removes the target phase and exposes one balanced
+involution, but excluding its canonical microstates is exactly the original
+problem rather than a consequence of finite-extension character theory.
+
+Nor do finite joint moments of this involution and its conjugates help.
+`finite-swap-conjugate-moments-do-not-fold-arithmetic-double` proves that
+every finite such word/projection moment table has an exact finite regular
+model, using residual finiteness of a finite free product of binary lamps.
+The genuinely missing datum is therefore the joint approximate extension by
+the arithmetic actor, not another canonical block-swap character
+decomposition.
