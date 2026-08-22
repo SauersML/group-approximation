@@ -1,0 +1,38 @@
+---
+rg: 2
+id: proper-corner-charged-section
+kind: claim
+title: Expose Schur phase through a one-sided charged section into a proper corner
+distinct_from:
+  central-square-orients-transverse-ledger: that supplies the orientation clause after a charged lift exists; this asks for the only carrier geometry not ruled out by gauge neutrality and Morita cancellation.
+  atlas-rectangular-wedderburn-isometry-certificate: that permits finite-dimensional coordinate selection but forbids a universal algebraic rectangular isometry; this asks for a group-word compressed section whose finite and properly infinite models behave differently.
+---
+
+# Expose Schur phase through a one-sided charged section into a proper corner
+
+Construct packet projections `p<q`, a group word `t`, and a raw charged return
+`W` on `p` such that finite-matrix correction yields
+
+```text
+v=qtp,       v^*v approximately p,       vv^* approximately r<q,
+```
+
+with `q-r` of fixed positive normalized trace, while the exact properly
+infinite marked model realizes the required one-sided equivalence and keeps
+`J` nontrivial. The charged square clause on the source must orient the
+transverse ledger without extending `v` to a unitary equivalence of the full
+`q` carrier.
+
+This is the only raw-lift geometry left by
+`projective-gauge-charge-forces-morita-or-corner`. Equal full carriers give
+Morita matrix units; neutral same-carrier expressions remain phase-blind.
+
+## Attempts
+
+- A reverse full Schur edge exposes the phase but generates the full branch
+  `M_2`, by `two-chart-square-lift-recreates-schur-m2`.
+- A projective Atlas rectangle is either flat on the canonical common-`U`
+  lift or depends on an independent factor gauge.
+- A universal exact rectangular isometry contradicts finite-factor trace
+  monotonicity. The viable statement must emerge only after finite-matrix HS
+  correction or from a genuinely nonunital/properly infinite corner packet.

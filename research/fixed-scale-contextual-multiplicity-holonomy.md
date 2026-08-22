@@ -130,3 +130,10 @@ floor.
   so it does not recreate the branch-flip `M_2`.  The open task is now the
   group-word realization of that raw lift on the same contextual carrier;
   PGL Atlas data alone cannot state the clause.
+- **Gauge charge localizes the only remaining carrier.** Any algebraic
+  observable descending from `[W]` has total phase charge zero. Adding a
+  charged full intertwiner between the two equal Schur carriers supplies a
+  raw lift but also their full Morita `M_2`. Therefore the surviving
+  fixed-scale return must be a one-sided charged compression into a proper
+  larger corner; another equal chart or a higher-degree projective moment
+  cannot work.

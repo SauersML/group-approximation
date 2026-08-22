@@ -80,3 +80,10 @@ Schur children does make its two-edge loop a raw holonomy, but the letter
 itself supplies matrix units between the child projections and consumes the
 factor-two surplus. An auxiliary chart swap avoids that cancellation only by
 ceasing to represent the child-relative holonomy.
+
+More generally, `projective-gauge-charge-forces-morita-or-corner` closes
+every algebraic equal-full-carrier exposure: projective observables have
+gauge charge zero, while an added full charged intertwiner generates the
+same Morita `M_2`. The remaining compatible input for `(CSO1)` is a one-sided
+charged section supported in a proper larger corner (or a central lift with
+new positive-mass structure, not one recovered from the Atlas frame).
