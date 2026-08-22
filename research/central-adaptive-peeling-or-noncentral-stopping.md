@@ -44,6 +44,15 @@ controlled by `q_i+q_a`; coarea produces a reducing correction of cost
 `R_(a,i)<=2t`.  The remaining theorem is a selection/summability statement
 for these cuts, not a missing one-spike estimate.
 
+The local decision is now quantitative as well.
+`single-spike-split-or-charge-has-fourth-root-modulus` chooses the
+`R=Y^2` threshold at `t=(q_i+q_a)^(1/2)`.  If the actual projection boundary
+is at most `(q_i+q_a)^(1/4)` times its trace, block diagonalization costs
+that small relative amount; otherwise the whole spike projection has trace
+`O((q_i+q_a)^(1/4))`.  The retained odd operator norm has the same
+fourth-root modulus.  Thus only repeated-cut overlap remains: select these
+local split-or-charge decisions without charging one pair row many times.
+
 Parity supplies the correct one-cut charge.
 `localized-loewner-pays-spike-or-boundary` tests max-fractional Loewner
 order on `Q_ap`: either a high odd-square cut has boundary at least

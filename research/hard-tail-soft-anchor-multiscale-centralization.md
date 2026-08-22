@@ -14,6 +14,7 @@ requires:
   - dense-complete-pair-remainders-are-cb-quadratic
   - block-adaptive-sparse-reset-is-cheap
   - central-weighted-erasure-ledger-recovers-reset-density
+  - single-spike-split-or-charge-has-fourth-root-modulus
 ---
 
 The former exponent obstruction was a norm mismatch.
