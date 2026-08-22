@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: opposite-sign-stabilizer-double-coset-collapses-coinvariant-pairing
+id: opposite-sign-double-coset-collapses-pairing
 kind: claim
 title: An opposite-sign stabilizer double coset collapses the coinvariant pairing certificate
 distinct_from:

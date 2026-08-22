@@ -3,7 +3,7 @@ rg: 2
 id: finitely-presented-uniform-area-clifford-tape
 kind: claim
 title: Build a finitely presented common-sign Clifford tape with uniformly bounded table area
-refuted_by: uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark
+refuted_by: fixed-mark-forbids-uniform-clifford-table-area
 distinct_from:
   thompson-clifford-central-product-tape: that supplies a finitely presented exact tape with a common nontrivial sign; this asks for the missing uniform area bound for every finite packet multiplication table.
   adaptive-all-pairs-schur-replica-table-compiler: that activates one rank chosen by a halting computation; this asks one fixed group to contain all ranks simultaneously and uses no self-reference.
@@ -12,7 +12,7 @@ artifacts:
 ---
 
 **REFUTED.**  The requested object cannot exist by
-`uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark`.
+`fixed-mark-forbids-uniform-clifford-table-area`.
 Two multiplication-table cells, for `(J,g)` and `(g,J)`, give a uniformly
 bounded filling of `[j,sigma_N(g)]`.  Because preservation of the nontrivial
 extraspecial center makes every table map injective, growing ranks supply

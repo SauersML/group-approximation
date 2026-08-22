@@ -3,7 +3,7 @@ rg: 2
 id: uniform-clifford-table-area-impossibility-proof
 kind: route
 title: Turn two table cells into a forbidden bounded centralizer commutator
-target: uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark
+target: fixed-mark-forbids-uniform-clifford-table-area
 requires:
   - finite-mark-centralizer-commutator-area-is-proper
 ---
@@ -55,4 +55,3 @@ But `finite-mark-centralizer-commutator-area-is-proper` says that commutator
 area with a fixed nontrivial finite-order word is proper on every section of
 `C_Gamma(b)/<b>`.  The displayed family contradicts that theorem.  Thus the
 data in `(UCT1)` cannot exist.
-

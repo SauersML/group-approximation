@@ -3,7 +3,7 @@ rg: 2
 id: opposite-sign-stabilizer-double-coset-proof
 kind: route
 title: Move both tensor factors by the fatal holonomy
-target: opposite-sign-stabilizer-double-coset-collapses-coinvariant-pairing
+target: opposite-sign-double-coset-collapses-pairing
 requires: []
 ---
 

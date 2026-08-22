@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark
+id: fixed-mark-forbids-uniform-clifford-table-area
 kind: claim
 title: A fixed nontrivial finite mark forbids uniformly bounded Clifford multiplication-table area
 distinct_from:
@@ -47,4 +47,3 @@ cosets in the centralizer of the nontrivial order-two element represented by
 The obstruction is purely algebraic and presentation-independent.  No
 choice of canonical addresses, self-similar actor, or longer representative
 words can make a fixed-mark full Clifford table have uniform filling area.
-

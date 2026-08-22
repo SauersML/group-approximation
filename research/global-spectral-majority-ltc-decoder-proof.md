@@ -3,7 +3,7 @@ rg: 2
 id: global-spectral-majority-ltc-decoder-proof
 kind: route
 title: Decode cloud majorities pointwise on the common spectrum and paste the code characters
-target: globally-commuting-balanced-occurrences-have-linear-character-decoder
+target: balanced-occurrences-have-linear-character-decoder
 requires: []
 ---
 

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: globally-commuting-balanced-occurrences-have-linear-character-decoder
+id: balanced-occurrences-have-linear-character-decoder
 kind: claim
 title: Globally commuting balanced occurrences admit a linear same-Hilbert character decoder
 distinct_from:
