@@ -88,3 +88,13 @@ not force an abstract quadrature onto it.  The surviving content is exactly
 that the quadrature must extend to one approximately multiplicative regular
 matrix assignment of the full double; exact extension is where finite
 co-density folds.
+
+Nor does adjoining every bounded-depth dyadic Clifford type create the
+missing extension by itself.  The exact tensor escape in
+`spherical-quadrature-tensors-through-clifford-folner-windows` combines each
+finite spherical quadrature with a conjugate-doubled coweight Folner box.
+Every fixed local Clifford cycle and every cross-commutation relation then
+has vanishing defect, while the Hecke average converges to `43/168`.  The
+remaining gate is therefore a non-tensorial same-carrier arithmetic word (or
+an additive multi-path interference cell), not another finite list of
+separate spherical and Clifford tests.

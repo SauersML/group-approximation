@@ -74,3 +74,10 @@ thirty-six coadjoint orbits, and
 nontrivial diagonal type with a loop in every denominator direction.  Thus
 there is no forbidden cycle at the orbit-label level; any finite local
 obstruction must use stabilizer-cocycle or multiplicity data.
+
+Even combining these types with canonical spherical block-swap moments does
+not create a gap when the coupling is only commutation.
+`spherical-quadrature-tensors-through-clifford-folner-windows` tensors the
+atomic spherical quadrature with conjugate-doubled Folner boxes in this graph.
+Thus a successful extension argument must impose a genuinely mixed
+same-carrier arithmetic incidence.
