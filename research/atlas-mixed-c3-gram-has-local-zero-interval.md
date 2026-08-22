@@ -3,6 +3,9 @@ rg: 2
 id: atlas-mixed-c3-gram-has-local-zero-interval
 kind: claim
 title: The gauge-invariant mixed C3 Gram leakage has a collision-zero interval on the regular local profile
+artifacts:
+  - experiments/atlas_a4_common_u_theta_slice.py
+  - research/artifacts/atlas-a4-common-u-theta-slice-2026-08-21.json
 distinct_from:
   atlas-common-u-c3-compression-is-two-covariance-residuals: that expands the leakage as an exact sum of squares; this places it on the twelve-double-coset quotient and computes its collision-zero local range.
   atlas-19243-common-u-regular-local-hub-gram-escape: that varies the hub first and second moments; this varies the cross-component C3 compression which survived the rectangle-gauge audit.
@@ -97,3 +100,26 @@ common-frame compression is precisely proving `I_k subseteq {0}` for every
 `k`; a positive element of any `I_k` is an exact matrix counterexample.  The
 interval `(MCG8)` proves that such a conclusion must use the full simultaneous
 double-coset lift, not collision or representation profiles.
+
+## Bounded `k=1` canonical-lift probe
+
+The accompanying implicit regular-`A8` experiment tests one reproducible lift
+of the local family without materializing a `20160`-square matrix.  It pairs
+the two regular involution matchings cyclewise relative to the fixed packet
+alignment and repeats the six-dimensional line rotation over the `3360`
+left-`K` cosets.  The lift has the exact formula
+
+```text
+||U_theta-U_0||_2^2=(2/3)(1-cos(theta)),               (MCG10)
+```
+
+and satisfies collision 19243 identically.  Twelve fixed Rademacher probes
+gave packet RMS defects `1.2518, 1.2537, 1.2822, 1.3358` at
+`theta=0,0.1,0.4,pi/4`, respectively.  Thus this canonical slice is already
+far from the packet locus at its zero-angle endpoint and supplies no
+positive-`Lambda` candidate.
+
+This is deliberately only numerical evidence about one section of the
+conjugator fiber.  The collision family fixes `U^*rho(b_0)U`, not `U`; the
+large commutant of `rho(b_0)` leaves many other lifts.  Therefore the probe is
+neither a lower bound for `(CUL3)` nor evidence that `I_1 subseteq {0}`.
