@@ -62,3 +62,12 @@ Nevertheless it closes the Maslov sector by
   available only after one has lifted positivity across those nonlinear
   relations.  Supplying such a global positive kernel is the present ucp
   lifting claim itself, not a consequence of chordal abelian lifting.
+- **Two rank-one charts still do not suffice.**  Replacing the commuting-root
+  triangles by the two long-root `SL2(Z)` covers does not repair the route.
+  `long-root-central-product-has-exact-maslov-models` constructs exact
+  finite-dimensional representations of their central product in both
+  nontrivial central sectors.  Hence even perfect factorwise rounding,
+  cyclic-overlap matching, and cross-commutation leave `z` nontrivial at
+  zero defect.  The missing positive kernel must already encode mixed
+  noncommuting `C2` Chevalley relations; producing it remains this global ucp
+  lifting problem.
