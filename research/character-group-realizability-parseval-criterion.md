@@ -32,7 +32,9 @@ moves the cyclic vector inside the `Lambda`-regular copy.  When it holds,
 
 **Closure properties.**  The set `R(W)` of group-realisable characters of
 `W` contains every character with hyperfinite GNS algebra (in particular
-every finite-dimensional character and `delta_e`), and is closed under
+every finite-dimensional character) and the regular character `delta_e`
+(trivially, with `Lambda = W`; its GNS algebra `L(W)` is hyperfinite only
+for amenable `W`), and is closed under
 convex combinations, pointwise products, pullback along homomorphisms
 `W' -> W`, and induction from finite-index subgroups.  It is NOT known to
 be weak*-closed.

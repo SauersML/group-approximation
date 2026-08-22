@@ -18,17 +18,25 @@ embeddable.  Then:
 2. in particular `R` is not the orbit relation of an essentially free
    p.m.p. action of a free group, nor the restriction of such a relation
    to a positive-measure subset, nor a subrelation of one;
-3. the orbit relation `R_mu` of the conjugation action of a nonabelian
-   free group on the non-co-hyperlinear IRS `(Sub(F), mu)` of
-   `non-cohyperlinear-irs-exists`, and the property-(T) relation of
+3. the orbit relation `R_mu` of a p.m.p. action of the nonabelian free
+   group whose stabiliser IRS is the non-co-hyperlinear `mu` on `Sub(F)` of
+   `non-cohyperlinear-irs-exists` (the Abert--Glasner--Virag
+   stabiliser-realising action, as in Manzoor's `R_alpha` with
+   `H = Stab(alpha)`; NOT the conjugation action on `Sub(F)`, whose
+   stabilisers are normalisers `N_F(H)` rather than `H` -- corrected
+   2026-08-21), and the property-(T) relation of
    `non-ce-property-t-equivalence-relation-exists`, are non-treeable
    (for the latter property (T) already forbids treeability).
 
 Consequences for the envelope lane.  Whenever `L(R_mu)` is embedded in a
 crossed product `L^infinity(Y) rtimes Lambda` by a free p.m.p. action,
 the orbit relation of `Lambda` on `Y` is itself non-CE hence
-non-treeable: the acting group of any envelope is a non-hyperlinear
-group whose action is not a free-group action — free actions of free
+non-treeable: the envelope action of `Lambda` on `Y` is not a sofic action
+in the Elek--Lippner sense and in particular not a free-group action
+(an earlier version said "the acting group is a non-hyperlinear group";
+that inference is BACKWARDS -- Connes embeddability passes down to
+subalgebras, so non-CE of `L(R_Lambda)` says nothing about `L(Lambda)`;
+corrected 2026-08-21) — free actions of free
 groups, Bernoulli shifts of free groups, and every treeable graphing are
 excluded at the level of orbit equivalence, independently of the
 compact-abelian structure sought by

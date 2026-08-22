@@ -42,8 +42,11 @@ uniqueness theorem identifies `v(W)''` with `Q_tau`.
 with separable predual embeds unitally and trace-preservingly into the
 hyperfinite II_1 factor `R`, and `R = L(S_infinity)` (Connes; `S_infinity`
 the finitary symmetric group is ICC and amenable).  *Convex combination*
-`t tau_1 + (1-t) tau_2` with hosts `Lambda_1, Lambda_2`: the GNS algebra is
-`Q_1 (+) Q_2` with weights `(t, 1-t)`; choose a projection `p in L(Z)`
+`t tau_1 + (1-t) tau_2` with hosts `Lambda_1, Lambda_2`: the GNS algebra is a
+unital subalgebra of `Q_1 (+) Q_2` (the weak closure of the diagonal
+`w -> (pi_1(w), pi_2(w))`, which is proper when e.g. `tau_1 = tau_2`)
+carrying the trace `t tau_1 + (1-t) tau_2`; it suffices to embed
+`Q_1 (+) Q_2` with that trace, so choose a projection `p in L(Z)`
 of trace `t` and map `x_1 (+) x_2 -> p x_1 + (1-p) x_2` into
 `L(Z) (x) L(Lambda_1 x Lambda_2) = L(Z x Lambda_1 x Lambda_2)`.
 *Pointwise product* `tau_1 tau_2`: `w -> pi_1(w) (x) pi_2(w)` lands in

@@ -62,5 +62,12 @@ Haagerup property and a property-(T) relation does not.
 **Consequences.**  If `L(R_mu) subset L^infinity(Y) rtimes Lambda` for an
 essentially free p.m.p. action, then `L^infinity(Y) rtimes Lambda = L(R_Lambda)`
 is non-CE, so `R_Lambda` is non-treeable by (1); in particular `Lambda` is
-not acting as a free group does, and `Lambda` itself is non-hyperlinear
-because `L(Lambda) subset L(R_Lambda)`.
+not acting as a free group does, and the action is not a sofic action
+(Elek--Lippner, *Sofic equivalence relations*, JFA 258 (2010): sofic
+relations -- including treeable relations, profinite actions and
+Bernoulli shifts of sofic groups -- have Connes-embeddable von Neumann
+algebras; item (1) above is a reproof of the treeable case via
+Brown--Dykema--Jung).  An earlier version concluded "`Lambda` itself is
+non-hyperlinear because `L(Lambda) subset L(R_Lambda)`"; that is
+backwards (CE passes to subalgebras, not up from them) and is withdrawn
+(2026-08-21 audit).
