@@ -1503,6 +1503,7 @@ import GroupApproximation.Higman.EnumeratedRangeProjection
 import GroupApproximation.Higman.EnumeratedRangeVerify
 import GroupApproximation.Higman.HigmanCodingDictionary
 import GroupApproximation.Higman.HigmanAtoms
+import GroupApproximation.Higman.HigmanVariableCalculus
 import GroupApproximation.Higman.TransportFive
 import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.BridgeEffectivity

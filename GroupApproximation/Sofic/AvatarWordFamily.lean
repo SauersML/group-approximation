@@ -211,8 +211,9 @@ theorem mk_avatarSubst (A : α → List (Fin 2 × Bool)) (w : List (α × Bool))
         FreeGroup.one_eq_mk.symm
       rw [h1, h2, map_one]
   | cons x w ih =>
-      have hsplit : FreeGroup.mk (x :: w) = FreeGroup.mk [x] * FreeGroup.mk w :=
-        FreeGroup.mul_mk.symm
+      have hsplit : FreeGroup.mk (x :: w) = FreeGroup.mk [x] * FreeGroup.mk w := by
+        show FreeGroup.mk ([x] ++ w) = FreeGroup.mk [x] * FreeGroup.mk w
+        exact FreeGroup.mul_mk.symm
       rw [avatarSubst_cons, ← FreeGroup.mul_mk]
       rw [ih, mk_avatarSubstLetter]
       rw [hsplit, map_mul]
@@ -262,7 +263,7 @@ theorem length_avatarSubst_eq (A : α → List (Fin 2 × Bool)) (S : ℕ)
     (hA : ∀ k, (A k).length = S) (w : List (α × Bool)) :
     (avatarSubst A w).length = w.length * S := by
   induction w with
-  | nil => simp
+  | nil => simp [avatarSubst_nil]
   | cons x w ih =>
       rw [avatarSubst_cons, List.length_append, List.length_cons, add_mul,
         one_mul, length_avatarSubstLetter, hA]
@@ -1392,11 +1393,15 @@ relators are not positive on the nose and the positivity convention has to be
 established for it — by the same `x̄` Tietze move `SourceData` documents. -/
 noncomputable def gamma3PartnerData
     (hpos : ∀ r ∈ gamma3WordPresentation.rel, ∀ c ∈ r, c.2 = true)
+    (hpriv : ∀ r ∈ gamma3WordPresentation.rel,
+      ∃ i : Fin gamma3WordPresentation.card, r.count (i, true) = 1 ∧
+        ∀ r' ∈ gamma3WordPresentation.rel, r' ≠ r → (i, true) ∉ r')
     (tie : Fin 2 → List (Fin gamma3WordPresentation.card × Bool))
     (htie : ∀ i, ∀ c ∈ tie i, c.2 = true) :
     PartnerData CongruenceSubgroup.gamma3Partner.B where
   pres := gamma3WordPresentation
   rel_positive := hpos
+  privateGen := hpriv
   tiePartnerWord := tie
   tiePartnerWord_positive := htie
 
