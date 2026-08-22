@@ -1,0 +1,112 @@
+# Fast publication path for the companion notes.  The notes use xr-hyper to
+# reference the main paper, so the pinned TeX job first compiles the main aux
+# file and then the notes.  Undefined cross-document references prevent
+# publication.
+name: Draft non-MF group notes PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'non_mf_group_notes.tex'
+      - '.github/workflows/draft-non-mf-notes-pdf.yml'
+      - 'scripts/publish_pdf_commit.py'
+  schedule:
+    - cron: '11,26,41,56 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: draft-non-mf-notes-pdf
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  TEX_FILE: non_mf_group_notes.tex
+  PDF_FILE: non_mf_group_notes.pdf
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
+
+jobs:
+  draft:
+    name: Compile and publish the notes PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Decide whether the PDF is stale
+        id: gate
+        run: |
+          set -euo pipefail
+          tex_commit="$(git rev-list -1 HEAD -- "$TEX_FILE")"
+          pdf_commit="$(git rev-list -1 HEAD -- "$PDF_FILE" || true)"
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          elif [ -n "$pdf_commit" ] && \
+               git merge-base --is-ancestor "$tex_commit" "$pdf_commit"; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install PDF tools
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          retry='-o Acquire::Retries=5 -o Acquire::http::Timeout=30'
+          sudo apt-get $retry update
+          sudo apt-get $retry install --yes --no-install-recommends qpdf
+          docker pull "$TEXLIVE_IMAGE"
+
+      - name: Compile the main aux and notes in pinned TeX Live
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          mkdir -p build
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" sh -lc '
+              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+                -halt-on-error -file-line-error non_mf_groups_exist.tex &&
+              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+                -halt-on-error -file-line-error non_mf_group_notes.tex
+            '
+
+      - name: Refuse unresolved references
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          log_file="build/${TEX_FILE%.tex}.log"
+          test -s "$log_file"
+          if grep -Eq \
+            'LaTeX Warning: (Citation .* undefined|Reference .* undefined|There were undefined references|Label\(s\) may have changed)|Rerun to get cross-references right' \
+            "$log_file"; then
+            echo "Unresolved references or citations; keeping the previous notes PDF." >&2
+            exit 1
+          fi
+
+      - name: Normalize the PDF
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          qpdf --linearize --object-streams=disable --force-version=2.0 \
+            --deterministic-id "build/${TEX_FILE%.tex}.pdf" "${PDF_FILE}.tmp"
+          mv -- "${PDF_FILE}.tmp" "$PDF_FILE"
+          qpdf --check "$PDF_FILE"
+
+      - name: Commit and push the notes PDF
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 scripts/publish_pdf_commit.py self-test
+          python3 scripts/publish_pdf_commit.py publish-draft \
+            --source-sha "$(git rev-parse HEAD)" \
+            --source-file "$TEX_FILE" \
+            --pdf "$PDF_FILE" \
+            --message "build: update non-MF group notes PDF (draft; unattested)"
