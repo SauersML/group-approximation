@@ -226,7 +226,7 @@ theorem IsLoxodromic.isEscaping {g : G} {x : X}
   have hlin : A + B < l * (n : ℝ) := by
     rw [div_lt_iff₀ hl] at hdiv
     linarith
-  exact lt_of_lt_of_le (by linarith) (hle n)
+  exact le_of_lt (lt_of_lt_of_le (by linarith) (hle n))
 
 /-- **Two-axis ping-pong from the two cross-backtracking bounds.**
 
@@ -863,9 +863,8 @@ theorem not_isLoxodromic_of_compression (hiso : IsIsometricAction G X)
 The first component of the machinery that would decide suitability outright.
 `stableTranslation` is the infimum of `d(x, gⁿ x) / n` over positive `n` --- the
 Fekete limit of the same sequence, but taken as an infimum so that no
-subadditivity argument is needed for the two facts that matter: it bounds the
-orbit from below, and it is positive exactly when the element is genuinely
-loxodromic.
+subadditivity argument is needed for the two facts that matter here: it bounds
+the orbit from below, and positivity implies genuine loxodromy.
 
 Together with `not_isLoxodromic_of_compression` this reads: a compressed
 element has translation length zero. -/
@@ -1151,10 +1150,10 @@ theorem stableTranslation_pow (hiso : IsIsometricAction G X) (g : G) (x : X)
 /-! ### The quasi-axis
 
 The Morse lemma is a statement *about* quasi-geodesics, so the first thing it
-needs is one.  For a strongly loxodromic element the orbit map `k ↦ gᵏ x` is a
-quasi-isometric embedding of the integers, and both of its bounds are already
-proved: the upper one is `dist_pow_le`, the lower one is `mul_le_dist_pow`.  All
-that is missing is the passage from `ℕ` to `ℤ`, which `dist_zpow_neg` supplies.
+needs is one.  For a loxodromic element the orbit map `k ↦ gᵏ x` is a
+quasi-isometric embedding of the integers.  Its lower bound comes directly
+from `IsLoxodromic`, including its additive error, and its upper bound is
+`dist_pow_le`.  Passing from `ℕ` to `ℤ` uses `dist_zpow_neg`.
 
 So the quasi-axis exists as soon as the translation length is positive.  What
 the Morse lemma would add is that *every* quasi-geodesic with the same endpoints
@@ -1200,12 +1199,33 @@ theorem dist_zpow_orbit (hiso : IsIsometricAction G X) (g : G) (x : X)
   rw [he] at h
   exact h
 
+/-- Genuine loxodromy gives the full two-sided quasi-isometric orbit estimate
+on the integers, with the same additive error as in the definition.  This is
+the precise orbit input required by a Morse-stability theorem. -/
+theorem orbit_quasiIsometricEmbedding_of_isLoxodromic
+    (hiso : IsIsometricAction G X) {g : G} {x : X}
+    (hg : IsLoxodromic g x) :
+    ∃ l : ℝ, 0 < l ∧ ∃ B : ℝ, 0 ≤ B ∧ ∀ m n : ℤ,
+      l * |((n - m : ℤ) : ℝ)| - B ≤
+          dist ((g ^ m) • x) ((g ^ n) • x) ∧
+        dist ((g ^ m) • x) ((g ^ n) • x) ≤
+          |((n - m : ℤ) : ℝ)| * dist x (g • x) := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := hg
+  refine ⟨l, hl, B, hB, fun m n => ?_⟩
+  rw [dist_zpow_orbit hiso]
+  constructor
+  · rw [dist_zpow_natAbs hiso]
+    have hcast : (((n - m).natAbs : ℕ) : ℝ) = |((n - m : ℤ) : ℝ)| := by
+      rw [← Int.cast_natCast, Int.natCast_natAbs, Int.cast_abs]
+    simpa only [hcast] using hlin (n - m).natAbs
+  · exact dist_zpow_le hiso g x (n - m)
+
 /-- **The quasi-axis.**  The orbit map of a group element is a
 quasi-isometric embedding of the integers, with lower constant its translation
 length and upper constant its displacement.  When the translation length is
-positive --- that is, when the element is genuinely loxodromic --- both bounds
-are effective, and the orbit is the quasi-geodesic the Morse lemma speaks
-about. -/
+positive both bounds are effective.  For the more general additive-error
+definition of loxodromy, use
+`orbit_quasiIsometricEmbedding_of_isLoxodromic` above. -/
 theorem orbit_quasiIsometricEmbedding (hiso : IsIsometricAction G X) (g : G)
     (x : X) (m n : ℤ) :
     stableTranslation g x * |((n - m : ℤ) : ℝ)|
@@ -1449,7 +1469,7 @@ theorem exists_pow_mul_progress (hiso : IsIsometricAction G X)
   have hlower := dist_pow_mul_lower hiso g c x N
   linarith
 
-/-- **Bounded backtracking makes an element strongly loxodromic.**
+/-- **Bounded backtracking makes an element genuinely loxodromic.**
 
 Let `D = d(x, p x)`.  At the `n`-th orbit point, the Gromov product
 

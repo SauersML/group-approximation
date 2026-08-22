@@ -83,6 +83,22 @@ def baseRight : Vertex G :=
 def IsOrientedEdge (v w : Vertex G) : Prop :=
   ∃ g : Ambient G, v = g • baseLeft G ∧ w = g • baseRight G
 
+/-- An oriented edge always goes from the left color to the right color. -/
+theorem isOrientedEdge_colors {v w : Vertex G}
+    (h : IsOrientedEdge G v w) :
+    (∃ x, v = Sum.inl x) ∧ ∃ y, w = Sum.inr y := by
+  obtain ⟨g, rfl, rfl⟩ := h
+  exact ⟨⟨_, rfl⟩, ⟨_, rfl⟩⟩
+
+/-- The two orientations cannot occur simultaneously. -/
+theorem not_isOrientedEdge_reverse {v w : Vertex G}
+    (h : IsOrientedEdge G v w) : ¬ IsOrientedEdge G w v := by
+  intro hr
+  obtain ⟨⟨x, hv⟩, -⟩ := isOrientedEdge_colors G h
+  obtain ⟨-, ⟨y, hv'⟩⟩ := isOrientedEdge_colors G hr
+  rw [hv] at hv'
+  exact Sum.noConfusion hv'
+
 /-- The (undirected) Bass--Serre coset graph. -/
 def graph : SimpleGraph (Vertex G) where
   Adj v w := IsOrientedEdge G v w ∨ IsOrientedEdge G w v
@@ -226,6 +242,75 @@ theorem smul_baseEdge_eq_iff (g : Ambient G) :
     simpa using hg
   · rintro rfl
     exact one_smul _ _
+
+/-- The group element labeling an oriented edge is unique. -/
+theorem orientedEdge_label_unique {v w : Vertex G} {g h : Ambient G}
+    (hg : v = g • baseLeft G ∧ w = g • baseRight G)
+    (hh : v = h • baseLeft G ∧ w = h • baseRight G) : g = h := by
+  have hedge : g • baseEdge G = h • baseEdge G := by
+    apply Prod.ext
+    · exact hg.1.symm.trans hh.1
+    · exact hg.2.symm.trans hh.2
+  have hfix : (h⁻¹ * g) • baseEdge G = baseEdge G := by
+    calc
+      (h⁻¹ * g) • baseEdge G = h⁻¹ • (g • baseEdge G) := by
+        simp [mul_smul]
+      _ = h⁻¹ • (h • baseEdge G) := by rw [hedge]
+      _ = baseEdge G := inv_smul_smul h _
+  have hone : h⁻¹ * g = 1 := (smul_baseEdge_eq_iff G _).mp hfix
+  exact inv_mul_eq_one.mp hone
+
+/-- Each oriented edge has a unique label. -/
+theorem existsUnique_orientedEdge_label {v w : Vertex G}
+    (h : IsOrientedEdge G v w) :
+    ∃! g : Ambient G,
+      v = g • baseLeft G ∧ w = g • baseRight G := by
+  obtain ⟨g, hg⟩ := h
+  exact ⟨g, hg, fun y hy ↦ orientedEdge_label_unique G hy hg⟩
+
+/-- The canonical label of an undirected edge.  Its orientation is recovered
+from the colors of its endpoints. -/
+noncomputable def edgeLabel {v w : Vertex G} (h : (graph G).Adj v w) :
+    Ambient G := by
+  classical
+  change IsOrientedEdge G v w ∨ IsOrientedEdge G w v at h
+  exact if ho : IsOrientedEdge G v w then
+    Classical.choose ho
+  else
+    Classical.choose (h.resolve_left ho)
+
+/-- The edge label realizes one of the two possible endpoint orientations. -/
+theorem edgeLabel_spec {v w : Vertex G} (h : (graph G).Adj v w) :
+    (v = edgeLabel G h • baseLeft G ∧
+        w = edgeLabel G h • baseRight G) ∨
+      (w = edgeLabel G h • baseLeft G ∧
+        v = edgeLabel G h • baseRight G) := by
+  classical
+  change IsOrientedEdge G v w ∨ IsOrientedEdge G w v at h
+  rw [edgeLabel]
+  split_ifs with ho
+  · exact Or.inl (Classical.choose_spec ho)
+  · exact Or.inr (Classical.choose_spec (h.resolve_left ho))
+
+/-- Equality at a left-colored endpoint says that the quotient of the two
+incident edge labels lies in the left factor. -/
+theorem inv_mul_mem_leftFactor_of_smul_baseLeft_eq {g h : Ambient G}
+    (heq : g • baseLeft G = h • baseLeft G) :
+    g⁻¹ * h ∈ leftFactor G := by
+  change (g : Ambient G ⧸ leftFactor G) = h at heq
+  exact QuotientGroup.eq.mp heq
+
+/-- The analogous transition statement at a right-colored endpoint. -/
+theorem inv_mul_mem_rightFactor_of_smul_baseRight_eq {g h : Ambient G}
+    (heq : g • baseRight G = h • baseRight G) :
+    g⁻¹ * h ∈ rightFactor G := by
+  change (g : Ambient G ⧸ rightFactor G) = h at heq
+  exact QuotientGroup.eq.mp heq
+
+/-- Distinct incident edge labels give a nonidentity transition syllable. -/
+theorem inv_mul_ne_one_of_ne {g h : Ambient G} (hne : g ≠ h) :
+    g⁻¹ * h ≠ 1 := by
+  simpa [inv_mul_eq_one] using hne
 
 /-- **The base edge has trivial pointwise stabilizer.**  In particular it is
 finite, which is the algebraic core of the WPD segment argument for the

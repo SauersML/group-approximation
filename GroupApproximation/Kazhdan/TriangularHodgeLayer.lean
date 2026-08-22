@@ -79,25 +79,27 @@ def inverseSigned (u : SignedGenerator (Generator := Generator)) :
     SignedGenerator (Generator := Generator) :=
   (u.1, !u.2)
 
-/-- Exact multiplicity of the undirected presentation-link edge `{u,v}`.
-A cyclic pair `a b` in a triangular relator contributes the link edge
-`{a,b⁻¹}` in both orientations. -/
-def adjacencyCount
+/-- Exact multiplicity of directed cyclic corners from `u` to `v`. -/
+def directedAdjacencyCount
     (T : TriangleIndex → Triangle (Generator := Generator))
     (u v : SignedGenerator (Generator := Generator)) : ℕ :=
   ((Finset.univ : Finset (TriangleIndex × Fin 3)).filter fun p ↦
-    (T p.1 p.2 = u ∧ inverseSigned (T p.1 (nextCorner p.2)) = v) ∨
-    (T p.1 p.2 = v ∧ inverseSigned (T p.1 (nextCorner p.2)) = u)).card
+    T p.1 p.2 = u ∧ inverseSigned (T p.1 (nextCorner p.2)) = v).card
+
+/-- Exact multiplicity of the undirected presentation-link edge `{u,v}`.
+A cyclic pair `a b` contributes once from `a` to `b⁻¹` and once in the
+transpose entry.  Writing this as a sum, rather than the cardinality of a
+disjunction, is essential: a loop or coincident pair contributes twice. -/
+def adjacencyCount
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (u v : SignedGenerator (Generator := Generator)) : ℕ :=
+  directedAdjacencyCount T u v + directedAdjacencyCount T v u
 
 theorem adjacencyCount_comm
     (T : TriangleIndex → Triangle (Generator := Generator))
     (u v : SignedGenerator (Generator := Generator)) :
     adjacencyCount T u v = adjacencyCount T v u := by
-  unfold adjacencyCount
-  apply congrArg Finset.card
-  ext p
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-  tauto
+  simp [adjacencyCount, add_comm]
 
 /-- Out-degree, with multiplicities, in the directed link. -/
 def degree
@@ -142,6 +144,63 @@ theorem rationalLinkLaplacian_row_sum
     ∑ v, rationalLinkLaplacian T u v = 0 := by
   rw [← Int.cast_sum, linkLaplacian_row_sum]
   simp
+
+/-! ## Pulling signed-link coordinates back to generator coordinates -/
+
+/-- Coefficient of a generator coordinate in the signed-link coordinate.
+For an inverse letter it is `1`; for a positive letter it is `-s⁻¹`.
+This is the orientation convention for which a link edge coming from two
+successive letters has exactly the corresponding Fox cross term. -/
+noncomputable def orientedCoefficient
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (u : SignedGenerator (Generator := Generator)) (i : Generator) :
+    RatGroupRing (Presented T) :=
+  if u.1 = i then
+    if u.2 then -MonoidAlgebra.single (generator T i)⁻¹ 1 else 1
+  else 0
+
+/-- The two orientations above one generator add to minus the adjoint of its
+group-ring coboundary.  This is the exact degree-zero term in the Garland
+pullback, with no represented-operator or analytic premise. -/
+theorem orientedCoefficient_pair_sum
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (g i : Generator) :
+    orientedCoefficient T (g, false) i +
+        orientedCoefficient T (g, true) i =
+      if g = i then
+        -adjoint (generatorCoboundary (generator T) i)
+      else 0 := by
+  by_cases h : g = i
+  · subst g
+    simp [orientedCoefficient, generatorCoboundary, sub_eq_add_neg, add_comm]
+  · simp [orientedCoefficient, h]
+
+/-- Summing all signed-link coordinates gives minus the adjoint generator
+coboundary. -/
+theorem sum_orientedCoefficient
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i : Generator) :
+    ∑ u : SignedGenerator (Generator := Generator), orientedCoefficient T u i =
+      -adjoint (generatorCoboundary (generator T) i) := by
+  classical
+  rw [Fintype.sum_prod_type]
+  simp_rw [Fintype.sum_bool, orientedCoefficient_pair_sum, add_comm]
+  rw [Finset.sum_ite_eq' Finset.univ i]
+  simp
+
+/-- The two orientations pull back the identity matrix to twice the identity.
+This is the second exact normalization used by the `2 * gap - 1` estimate. -/
+theorem sum_adjoint_orientedCoefficient_mul
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i k : Generator) :
+    (∑ u : SignedGenerator (Generator := Generator),
+      adjoint (orientedCoefficient T u i) * orientedCoefficient T u k) =
+      if i = k then MonoidAlgebra.single 1 2 else 0 := by
+  classical
+  rw [Fintype.sum_prod_type]
+  simp only [Fintype.sum_bool]
+  by_cases h : i = k
+  · subst k
+    simp [orientedCoefficient]
+  · simp [orientedCoefficient, h, h.symm]
 
 /-! ## Exact rational spectral-certificate tables -/
 
