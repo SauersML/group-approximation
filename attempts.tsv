@@ -115,3 +115,4 @@
 32600114367	2026-08-22T21:37:46Z	GroupApproximation/Analysis/StrictCompressionFromPrinted.lean	manuscriptMaximalCStarRemarkFromPrintedHypotheses
 32601147018	2026-08-22T21:59:35Z	GroupApproximation/Analysis/VectorOmegaKazhdanGap.lean	manuscriptKazhdanSpectralGap_hOmega
 32603086618	2026-08-22T22:40:56Z	GroupApproximation/Sofic/BespokeRouterConstruction.lean	injOn_pair
+32604016123	2026-08-22T23:00:50Z	GroupApproximation/Sofic/ContainsSquareWitness.lean	witness_construction_hypotheses
