@@ -53,6 +53,13 @@ amplifier remains.
   Britton word which the present route needs to remain infinite.  Therefore
   the established two-letter cell cannot simply be reused: it proves the
   row by declaring the marked word equal to one.
+- **Deleting that relator reverses the useful inequality.**  If all other
+  rows of a finite-gap BCS are small on one positive-mass Gram operator,
+  `deleting-one-gap-row-has-the-wrong-orientation` gives a fixed *lower*
+  bound on the deleted private/shared row.  The game gap cannot semantically
+  recover `(FHC1)`; it makes its defect macroscopic.  Any separate theorem
+  forcing the deleted row small would already contradict the gap and close
+  the matrix-microstate problem directly.
 - **Spectral intersection has exactly zero guaranteed mass.**  When `a=b`
   is a Fanizza involution, canonical exactification gives two sign spaces of
   density `1/2`.  By
@@ -64,4 +71,3 @@ amplifier remains.
   is *not* a relator.  This is strictly smaller than global leakage
   localization `(NCL13)`, but it cannot be a universal tracial block
   identity or a fixed finite-packet covariance table.
-
