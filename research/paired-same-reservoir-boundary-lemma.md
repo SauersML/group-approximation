@@ -258,6 +258,16 @@ made universal identities in the group algebra.
 
 ## Attempts
 
+- **The D16 sibling-path charger is collapse-or-zero.**
+  `d16-charge-of-two-leavitt-branches-is-collapse-or-zero` computes the two
+  native coarse-to-fine partial swaps `J_0,J_1`.  Feeding the forward swaps
+  into the two D16 blocks makes the transverse relator identify the two
+  orthogonal fine children and destroys exact Leavitt completeness.  Closing
+  each branch back to the coarse source first gives holonomies
+  `y_i x_i=e`, so both D16 blocks are the identity and the charger sees zero,
+  including in the rectangular model.  The missing datum is the crossed
+  Gram/support coefficient, not a difference of two source holonomies.
+
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
   `V direct_sum V` satisfy every four pairing identity while shrinking
   multiplicity; this is `rectangular-escape`.

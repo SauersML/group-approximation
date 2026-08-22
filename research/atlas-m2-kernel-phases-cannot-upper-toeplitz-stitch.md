@@ -42,4 +42,8 @@ block-Toeplitz coupling cannot localize the joint incompatibility to an
 This is deliberately a phase-stitching theorem, not the amplified Atlas gap.
 A cyclic/non-flag-preserving gauge has no diagonal quotient on which to read
 `(UTS1)`, and a genuinely new bulk phase need not be assembled from A/B
-blocks.  Those are the only surviving Følner escape formats after `(UTS3)`.
+blocks.  The cyclic case is now reduced by
+`atlas-block-circulant-joint-escape-promotes-to-exact-mode`: fixed-block
+circulant `o(N)`-rank defects already produce an exact finite-extension mode.
+Thus only a genuinely new bulk phase or a non-circulant, non-flag-preserving
+width-growing construction remains outside the two stitching theorems.
