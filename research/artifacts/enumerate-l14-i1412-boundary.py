@@ -193,6 +193,8 @@ def main():
     print(f"unresolved_q_images={len(unresolved)}")
     for state in sorted(free_nontrivial)[:100]:
         print("FREE", state)
+    for state in sorted(power_killed):
+        print("POWER", state)
     for state in sorted(nontrivial)[:100]:
         print("NONTRIVIAL", state)
 

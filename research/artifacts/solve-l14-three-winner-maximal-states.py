@@ -101,20 +101,26 @@ def maximal_states(word):
     return states, visit.cache_info().currsize
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("equation", choices=("eq0", "eq4", "both", "boundary"))
-    args = parser.parse_args()
-    if args.equation == "both":
-        eq0_states, eq0_intervals = maximal_states(C.EQ0)
-        eq4_states, eq4_intervals = maximal_states(C.EQ4)
-        states = tuple(sorted({combine(left, right)
-                               for left in eq0_states for right in eq4_states}))
+def combined_carrier_states(report=False):
+    eq0_states, eq0_intervals = maximal_states(C.EQ0)
+    eq4_states, eq4_intervals = maximal_states(C.EQ4)
+    states = tuple(sorted({combine(left, right)
+                           for left in eq0_states for right in eq4_states}))
+    if report:
         print(f"eq0_states={len(eq0_states)}")
         print(f"eq4_states={len(eq4_states)}")
         print(f"cached_intervals={eq0_intervals + eq4_intervals}")
         print(f"combined_coordinate_states={len(states)}")
         print(f"abstract_presentations={len(set(residual for residual, _ in states))}")
+    return states
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("equation", choices=("eq0", "eq4", "both", "boundary"))
+    args = parser.parse_args()
+    if args.equation == "both":
+        states = combined_carrier_states(report=True)
         for state in states[:100]:
             print(state)
         return
