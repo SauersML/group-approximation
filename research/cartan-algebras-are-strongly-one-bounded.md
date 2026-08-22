@@ -37,7 +37,19 @@ Literature import, statement level, refereed:
   (Voiculescu, GAFA 1996).
 
 Trust surface: both papers are refereed and over eight years old; only
-the displayed statements are consumed, no internal arguments.  The
+the displayed statements are consumed, no internal arguments.
+Source-verified 2026-08-22 from the arXiv PDF of 1505.06682, pages
+10-16: Property 1 (monotonicity in both arguments), Property 3 (joins
+over diffuse intersections), Property 6 (delta_0 > 1 forces
+h = infinity), Proposition 3.2 (one-sided quasinormalizer and
+wq-normalizer lie in the singular subspace), and the Section 3 goal
+statement ("if N has 1-bounded entropy at most zero and N is regular
+in M in a very weak sense, then M has 1-bounded entropy at most
+zero") — precisely the two uses this graph makes (Cartan;
+quasi-normalizing generation over a strongly 1-bounded base).  Also
+noted from the definitions: coverings are counted relative to a pinned
+microstate sequence of one diffuse element, which is how conjugation-
+orbit directions are normalized away.  The
 quantitative content used downstream: microstate spaces of a generating
 tuple of `M`, modulo unitary conjugation, admit epsilon-nets of
 cardinality `exp(o(d^2) log(1/epsilon))` — no macroscopic parameter

@@ -30,13 +30,18 @@ mathematical content is of a genuinely different species from every
 other open hole of the program — a LOWER bound on microstate counting
 (construct many models) instead of an exclusion (kill one model).
 
-What a witness must produce: for each large `d` in a sequence, an
-almost-representation `pi_d` of `Gamma` with regular-ish trace, an
-equivariant commuting lamp family realizing the Bernoulli moments, AND
-a `c d^2`-parameter deformation of the pair that (a) stays a microstate
-for the WHOLE group (all mixed lamp-group moments), (b) survives the
-quotient by unitary conjugation (no absorption), at a fixed positive
-precision.
+What a witness must produce (ANCHORED FORM, matching Hayes'
+definition, source-verified 2026-08-22: coverings are counted relative
+to a pinned microstate sequence of one diffuse element): for each
+large `d` in a sequence, an almost-representation `pi_d` of `Gamma`
+with regular-ish trace, an equivariant commuting lamp family realizing
+the Bernoulli moments, AND — with the microstate of one fixed diffuse
+element (say a fixed self-adjoint generator of the lamp algebra)
+PINNED — at least `exp(c d^2)` completions that are pairwise
+`epsilon`-separated at some fixed `epsilon > 0`, surviving every
+window/tolerance tightening along the `d`-sequence.  Pinning one
+diffuse coordinate is what quotients out the global conjugation orbit,
+so this is exactly the fiber count of the fibration form below.
 
 ## Attempts
 
