@@ -44,6 +44,42 @@ def inverse(word):
                  for copy, coefficient in reversed(word))
 
 
+def cyclic_reduce(word):
+    word = list(EQ3.reduce_word(word))
+    while len(word) > 1 and word[0] == -word[-1]:
+        word = word[1:-1]
+    return tuple(word)
+
+
+def cyclic_key(word):
+    word = cyclic_reduce(word)
+    if not word:
+        return ()
+    variants = []
+    for candidate in (word, EQ3.inverse(word)):
+        variants.extend(candidate[offset:] + candidate[:offset]
+                        for offset in range(len(candidate)))
+    return min(variants)
+
+
+def cyclic_free_product_forms(word):
+    """All normalized syllable rotations, hence all cyclic conjugacy cuts."""
+    pending = [tuple(word)]
+    seen = set()
+    identity = PAIRS.initial_images()
+    while pending:
+        candidate = pending.pop()
+        candidate = PAIRS.transformed_free_product(
+            tuple(copy for copy, _ in candidate),
+            tuple(coefficient for _, coefficient in candidate), identity)
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        for offset in range(1, len(candidate)):
+            pending.append(candidate[offset:] + candidate[:offset])
+    return tuple(sorted(seen))
+
+
 H = (
     syllable(0, ("g11", 1)),
     syllable(1, ("g12", 1)),
@@ -92,28 +128,36 @@ def main():
         word = PAIRS.transformed_free_product(
             tuple(copy for copy, _ in K), tuple(coefficient for _, coefficient in K),
             images)
-        for target in range(4):
-            augmented = PAIRS.transformed_free_product(
-                tuple(copy for copy, _ in word) + (target,),
-                tuple(coefficient for _, coefficient in word) + ((-Q,),),
-                PAIRS.initial_images() + ((Q,),))
-            colors = tuple(copy for copy, _ in augmented)
-            coefficients = tuple(coefficient for _, coefficient in augmented)
-            _, boundary_schemes = PAIRS.schemes(colors)
-            counts[target] = counts.get(target, 0) + len(boundary_schemes)
-            for scheme in boundary_schemes:
-                relations = residual + PAIRS.block_relations(scheme, coefficients)
-                state = PAIRS.close_tietze(relations, images + ((Q,),))
-                q_image = state[1][-1]
-                results.add((target, state[0], q_image, state[1][:-1]))
+        rotations = cyclic_free_product_forms(word)
+        for rotation in rotations:
+            for target in range(4):
+                augmented = PAIRS.transformed_free_product(
+                    tuple(copy for copy, _ in rotation) + (target,),
+                    tuple(coefficient for _, coefficient in rotation) + ((-Q,),),
+                    PAIRS.initial_images() + ((Q,),))
+                colors = tuple(copy for copy, _ in augmented)
+                coefficients = tuple(coefficient for _, coefficient in augmented)
+                _, boundary_schemes = PAIRS.schemes(colors)
+                counts[target] = counts.get(target, 0) + len(boundary_schemes)
+                for scheme in boundary_schemes:
+                    relations = residual + PAIRS.block_relations(scheme, coefficients)
+                    state = PAIRS.close_tietze(relations, images + ((Q,),))
+                    q_image = state[1][-1]
+                    results.add((target, state[0], q_image, state[1][:-1]))
         if carrier_index % 5 == 0:
             print(f"carrier={carrier_index} boundary_states={len(results)}", flush=True)
     print(f"boundary_schemes_by_target={counts}")
     print(f"boundary_states={len(results)}")
     nontrivial = [state for state in results if state[2]]
     free_nontrivial = [state for state in nontrivial if not state[1]]
+    directly_killed = [state for state in nontrivial
+                       if cyclic_key(state[2]) in
+                       {cyclic_key(relation) for relation in state[1]}]
+    unresolved = [state for state in nontrivial if state not in directly_killed]
     print(f"nontrivial_q_images={len(nontrivial)}")
     print(f"free_nontrivial_q_images={len(free_nontrivial)}")
+    print(f"cyclic_relator_killed_q_images={len(directly_killed)}")
+    print(f"unresolved_q_images={len(unresolved)}")
     for state in sorted(free_nontrivial)[:100]:
         print("FREE", state)
     for state in sorted(nontrivial)[:100]:
