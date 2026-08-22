@@ -69,6 +69,15 @@ additional odd selector characters.
   a multi-active odd sector.  The missing check must therefore be
   selector-payload coupled; ordinary equality rows on the unconditioned gates
   are insufficient.
+- **A commuting parity-only coupling is pp-impossible.**
+  `selector-gated-equality-is-not-affine-pp-definable` shows that the scalar
+  relation “if this selector is active, these payloads agree” is not the
+  projection of any affine parity system.  It also gives three canonical
+  singleton priority configurations whose ternary XOR has mismatched decoded
+  outputs.  Thus arbitrary hidden LCS parity bits cannot implement the
+  missing coupling while preserving the full singleton menu.  This does not
+  rule out a genuinely projective central-sign gadget with no relevant scalar
+  sector, which is now the precise remaining algebraic escape.
 - **Odd-XOR aggregation has a scalar ternary-closure obstruction.**
   `affine-nested-odd-xor-selectors-force-affine-behavior` shows that replacing
   the priority decoder by the product of all active payloads does make the
