@@ -3,10 +3,21 @@ rg: 2
 id: atlas-a4-rank-three-core-commutant-collapse
 kind: claim
 title: The fourteen-word A4 core plus collision 19243 forces the relative chart frame into the GL3(2) commutant
+refuted_by: atlas-14-core-q19243-gl5-countermodel
 distinct_from:
   atlas-a4-componentwise-commutant-collapse: that asks for simultaneous closeness to both full packet-component commutants, including the central C3 sector; this target throws away all sixteen central-C3 pair-cubes and asks only for the rank-three GL3(2) commutant already sufficient for the raw S3 contradiction.
   atlas-a4-relative-packet-commutator-collapse: that asks for commutation with all ten packet letters and therefore the full A8 commutant; this target only asks for the standard rank-three subgroup H.
 ---
+
+**REFUTED.**  `atlas-14-core-q19243-gl5-countermodel` gives a single exact
+relative frame in `Reg(GL_5(F2))` between two margins equal to
+`496 Reg(A8)`.  It satisfies all fourteen retained pair-cubes and
+`q_19243=1`, but remains normalized-HS distance at least `1/sqrt(2)` from the
+rank-three commutant.  Repeating this block gives an amplified zero-defect
+sequence.  The discarded sixteen central-`C3` contexts are therefore
+essential outside the classical automorphism sector.
+
+The original false target and its attack log are retained below.
 
 Let `sigma_n` satisfy the exact-regular normalized A4 context-network hypotheses
 of `atlas-a4-holonomy-coherence-gap`, and let

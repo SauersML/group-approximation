@@ -21,6 +21,7 @@ Expected result:
 All arithmetic is exact over F2.
 """
 
+import argparse
 import collections
 import json
 import os
@@ -28,6 +29,7 @@ import os
 import numpy as np
 
 from atlas_a4_packet_generation import matrix_order, select_packet, x_lengths
+from atlas_a4_rank_three_core import H18_LABEL_HEX, packet_edge
 from atlas_boundary_inner_alignment import enumerate_gl4
 from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kernel_words
 from atlas_triangle_19243_packet import decode_word
@@ -110,7 +112,7 @@ def order5(matrix, bound=64):
 
 
 def nonzero_fixed_points(matrix):
-    """Fixed points in the 31-point permutation action on F2^5 \ {0}."""
+    """Fixed points in the 31-point permutation action on nonzero F2^5."""
     return sum(
         np.array_equal((matrix @ bits5(value)) & 1, bits5(value))
         for value in range(1, 32)
@@ -205,9 +207,41 @@ def intersection_size(h, h_inverse, H, H_keys):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--core",
+        action="store_true",
+        help="retain only the fourteen rank-three packet relators",
+    )
+    parser.add_argument(
+        "--first-collision-survivor",
+        action="store_true",
+        help="stop after the first exact packet position with q_19243=1",
+    )
+    args = parser.parse_args()
+
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
-    packet = select_packet(words, x_lengths())
+    full_packet = select_packet(words, x_lengths())
+    packet = full_packet
+    if args.core:
+        h18_for_core = subgroup(tuple(
+            tuple(tuple(int(bit) for bit in row) for row in np.frombuffer(
+                bytes.fromhex(value), dtype=np.uint8
+            ).reshape(4, 4))
+            for value in H18_LABEL_HEX
+        ))
+        central_order_three = {
+            bytes(np.asarray(value, dtype=np.uint8).reshape(-1))
+            for value in center(h18_for_core)
+            if value != I4_TUPLE
+        }
+        packet = [
+            entry for entry in packet
+            if matrix_key(packet_edge(entry[1])[2]) not in central_order_three
+        ]
+        if len(packet) != 14:
+            raise AssertionError(f"expected 14 core words, got {len(packet)}")
 
     here = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as handle:
@@ -264,8 +298,11 @@ def main():
     for index, first, first_order, second, second_order in relation_data:
         key = (matrix_key(first), matrix_key(second), first_order, second_order)
         unique_relations.setdefault(key, []).append(index)
-    if len(unique_relations) != 16:
-        raise AssertionError("expected 16 distinct ordered pair constraints")
+    expected_distinct_relations = 8 if args.core else 16
+    if len(unique_relations) != expected_distinct_relations:
+        raise AssertionError(
+            f"expected {expected_distinct_relations} distinct ordered pair constraints"
+        )
 
     relation_specs = []
     for (first_key, second_key, first_order, second_order), indices in unique_relations.items():
@@ -309,11 +346,71 @@ def main():
             coset_solution_counts[len(positions)] += 1
         for position in positions:
             relative = mul5(representative, H[int(position)])
+            if args.first_collision_survivor and np.array_equal(
+                collision_value(collision, relative), I5
+            ):
+                relative_inverse = inv5(relative)
+                core_checks = [
+                    np.array_equal(
+                        mul5(
+                            mul5(collision_value(word, relative), collision_value(word, relative)),
+                            collision_value(word, relative),
+                        ),
+                        I5,
+                    )
+                    for _index, word in packet
+                ]
+                full_checks = [
+                    np.array_equal(
+                        mul5(
+                            mul5(collision_value(word, relative), collision_value(word, relative)),
+                            collision_value(word, relative),
+                        ),
+                        I5,
+                    )
+                    for _index, word in full_packet
+                ]
+                rank_three_labels = [
+                    (f"H6[{label_index}]", np.asarray(label, dtype=np.uint8))
+                    for label_index, label in enumerate(H6_LABELS)
+                ] + [
+                    (f"Q_SECOND[{label_index}]", np.asarray(label, dtype=np.uint8))
+                    for label_index, label in enumerate(Q_SECOND)
+                ]
+                moved_rank_three = []
+                for label_name, label in rank_three_labels:
+                    image = embed4(label)
+                    cocycle = mul5(
+                        mul5(mul5(relative, image), relative_inverse),
+                        inv5(image),
+                    )
+                    if not np.array_equal(cocycle, I5):
+                        moved_rank_three.append({
+                            "label": label_name,
+                            "cocycle_hex": key5(cocycle).hex(),
+                            "cocycle_order": order5(cocycle),
+                        })
+                print(json.dumps({
+                    "core": args.core,
+                    "collision_19243_identity_survivor": key5(relative).hex(),
+                    "collision_19243_value_hex": key5(I5).hex(),
+                    "coset_index": coset_index,
+                    "chart_intersection_order": intersection_size(
+                        relative, relative_inverse, H, H_keys
+                    ),
+                    "core_relations_satisfied": sum(core_checks),
+                    "core_relations_total": len(core_checks),
+                    "full_packet_relations_satisfied": sum(full_checks),
+                    "full_packet_relations_total": len(full_checks),
+                    "internal_alignment_index": int(position),
+                    "moved_rank_three_generators": moved_rank_three,
+                }, indent=2, sort_keys=True))
+                return
             solutions.append((coset_index, int(position), relative))
 
-    if len(solutions) != 202:
+    if not args.core and len(solutions) != 202:
         raise AssertionError(f"expected 202 packet solutions, got {len(solutions)}")
-    if len({key5(relative) for _, _, relative in solutions}) != 202:
+    if len({key5(relative) for _, _, relative in solutions}) != len(solutions):
         raise AssertionError("duplicate packet solutions")
 
     intersection_histogram = collections.Counter()
@@ -373,27 +470,28 @@ def main():
     }
     expected_cosets = {3: 6, 4: 2, 5: 4, 7: 6, 8: 1, 14: 3, 17: 2, 30: 1}
 
-    if dict(intersection_histogram) != expected_intersections:
-        raise AssertionError(intersection_histogram)
-    if dict(collision_order_histogram) != expected_collision_orders:
-        raise AssertionError(collision_order_histogram)
-    if dict(joint_histogram) != expected_joint:
-        raise AssertionError(joint_histogram)
-    if collision_survivors != 0:
-        raise AssertionError("collision 19243 survived the GL5 screen")
-    if dict(coset_solution_counts) != expected_cosets:
-        raise AssertionError(coset_solution_counts)
-    if any(
-        energy > 5 * defect
-        for energy, defect in joint_two_holonomy_collision_histogram
-    ):
-        raise AssertionError("the sharp rank-five E_2HOL <= 5 ||q-1||_2^2 wall failed")
+    if not args.core:
+        if dict(intersection_histogram) != expected_intersections:
+            raise AssertionError(intersection_histogram)
+        if dict(collision_order_histogram) != expected_collision_orders:
+            raise AssertionError(collision_order_histogram)
+        if dict(joint_histogram) != expected_joint:
+            raise AssertionError(joint_histogram)
+        if collision_survivors != 0:
+            raise AssertionError("collision 19243 survived the GL5 screen")
+        if dict(coset_solution_counts) != expected_cosets:
+            raise AssertionError(coset_solution_counts)
+        if any(
+            energy > 5 * defect
+            for energy, defect in joint_two_holonomy_collision_histogram
+        ):
+            raise AssertionError("the sharp rank-five E_2HOL <= 5 ||q-1||_2^2 wall failed")
     sharp_readout_count = sum(
         count
         for (energy, defect), count in joint_two_holonomy_collision_histogram.items()
         if energy == 5 * defect
     )
-    if sharp_readout_count != 96:
+    if not args.core and sharp_readout_count != 96:
         raise AssertionError(f"sharp readout count changed: {sharp_readout_count}")
 
     output = {
@@ -402,12 +500,14 @@ def main():
         "chart_group": "GL4(F2)=A8",
         "chart_order": 20160,
         "cosets_tested": 496,
-        "packet_relations": 30,
-        "distinct_ordered_pair_constraints": 16,
+        "packet_relations": len(packet),
+        "distinct_ordered_pair_constraints": expected_distinct_relations,
         "packet_exact_relative_positions": 202,
-        "packet_exact_relative_positions_hex": [
-            key5(relative).hex() for _, _, relative in solutions
-        ],
+        "packet_exact_relative_positions_hex": (
+            [] if args.core else [
+                key5(relative).hex() for _, _, relative in solutions
+            ]
+        ),
         "packet_solution_cosets": sum(coset_solution_counts.values()),
         "solutions_per_nonempty_coset_histogram": dict(sorted(coset_solution_counts.items())),
         "chart_intersection_size_histogram": dict(sorted(intersection_histogram.items())),
