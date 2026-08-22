@@ -76,3 +76,12 @@ part of the remaining hole.
   positive forbidden Schur mass must force positive `p_<=K` trace.  This is
   a useful falsification target for any proposed coefficient word, but it
   also confirms that `(PCD1)` already contains the trace-promotion step.
+- There is no exact algebraic shortcut to that scalar promotion.
+  `regular-trace-forbids-universal-bounded-type-placement` shows that every
+  nonzero finite packet projection has positive regular trace, whereas the
+  bounded-type Kazhdan projection vanishes in the same regular
+  representation.  Thus no ordinary covariance relation can universally
+  place the packet carrier under `p_<=K` while both subgroups embed.  The
+  remaining theorem must be matrix-only and fail on the regular
+  representation--which is precisely the sought nonhyperlinearity, not an
+  algebraic coefficient-placement lemma.
