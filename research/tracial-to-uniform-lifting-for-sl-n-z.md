@@ -192,3 +192,18 @@ trace).
   `[x_(in), x_(nj)] = x_(ij)` repeat the same shape.  Amenable
   HS-stability exactifies `V` alone and the projection exactifies the
   commutant alone; the open content is doing both at once.
+- **The column residue is FENCED for arbitrary column data (2026-08-21,
+  later).**  `exact-levi-affine-relative-stability-fails`: the
+  Schroedinger--Weil block `(W_p, X, Z)` of the Ioana--Spaas--Wiersma family
+  is an asymptotic representation of `Z^2 x| SL_2(Z)` with operator-norm
+  defect `O(1/p)`, EXACT on the Levi, and every genuine representation
+  whose Levi restriction is `W_p (+) sigma` with `dim sigma < (p-3)/2` has
+  trivial column on the `W_p` block (Mackey orbit count: a nontrivial
+  `SL_2(Z)`-orbit of torsion characters carrying `W^(+-)` needs dimension
+  `>= 3(p-1)/2`).  So the exact-Levi relative stability of the affine group
+  is false with gap `sqrt 2`, in every norm, and the column step of any
+  Steinberg induction must consume the ambient `SL_N(Z)` relations (opposite
+  column/row, Heisenberg commutators) or ambient property (T); the affine
+  subgroup's own almost-representation is not enough.  Whether an
+  almost-representation of `SL_N(Z)` can restrict to `(W_p, X, Z)` on an
+  affine subgroup is not decided here.
