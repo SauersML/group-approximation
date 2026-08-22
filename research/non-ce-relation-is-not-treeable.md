@@ -6,6 +6,7 @@ title: A probability-measure-preserving relation with non-Connes-embeddable von 
 distinct_from:
   non-ce-property-t-equivalence-relation-exists: that produces a non-CE relation factor with property (T); this is a structural consequence for every non-CE relation factor, including the IRS relation itself before any property-(T) envelope, phrased as an orbit-equivalence invariant.
   non-cohyperlinear-irs-exists: that is the existence of the IRS; this records what its orbit relation cannot be, and hence which acting groups an algebraic envelope can never use.
+  free-actor-extensions-cannot-host-nonce-relation: that fences crossed products by actions of the free actor F (and its free, diagonal, coinduced extensions) as Connes embeddable; this is the orbit-equivalence invariant behind it, ruling out every treeing of the relation by any partial isomorphisms whatsoever, not only graphings by a free-group action.
 ---
 
 Let `R` be a countable probability-measure-preserving Borel equivalence
@@ -31,7 +32,9 @@ group whose action is not a free-group action — free actions of free
 groups, Bernoulli shifts of free groups, and every treeable graphing are
 excluded at the level of orbit equivalence, independently of the
 compact-abelian structure sought by
-`non-ce-relation-admits-algebraic-action-envelope`.  The mechanism is
+`non-ce-relation-admits-algebraic-action-envelope`.  The peers' fence
+`free-actor-extensions-cannot-host-nonce-relation` is the special case of
+graphings by the free actor; the present statement covers every treeing.  The mechanism is
 the `L^infinity`-amalgamated free product decomposition of the von
 Neumann algebra of a treeable relation, which Brown--Dykema--Jung
 permanence makes Connes embeddable.
