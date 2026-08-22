@@ -7,14 +7,15 @@ infinite-word module.  The output lists the residual syllable words requiring
 hand root reduction.
 """
 
-from itertools import product
 from functools import lru_cache
 from collections import Counter
+import sys
 
 N = 20
 INVOLUTIONS = {"h0", "h2", "k0", "k1"}
-ALPHABET = (("h0", 1), ("h2", 1), ("k0", 1), ("k1", 1),
-            ("h1", 1), ("h1", -1), ("k2", 1), ("k2", -1))
+ALPHABET = tuple(sorted((("h0", 1), ("h2", 1), ("k0", 1), ("k1", 1),
+                         ("h1", 1), ("h1", -1),
+                         ("k2", 1), ("k2", -1))))
 
 
 def inverse(letter):
@@ -176,8 +177,27 @@ def witnessed_nonidentity(tokens):
     return any(evaluate(tokens, test) != test for test in TESTS)
 
 
+def necklaces(length, alphabet_size):
+    """Rotation-minimal necklaces (Fredricksen--Kessler--Maiorana)."""
+    a = [0] * (length + 1)
+
+    def generate(t, period):
+        if t > length:
+            if length % period == 0:
+                yield tuple(a[1:])
+            return
+        a[t] = a[t - period]
+        yield from generate(t + 1, period)
+        for value in range(a[t - period] + 1, alphabet_size):
+            a[t] = value
+            yield from generate(t + 1, t)
+
+    yield from generate(1, 1)
+
+
 def words(length):
-    for word in product(ALPHABET, repeat=length):
+    for indices in necklaces(length, len(ALPHABET)):
+        word = tuple(ALPHABET[i] for i in indices)
         if any(word[(i + 1) % length] == inverse(word[i])
                for i in range(length)):
             continue
@@ -186,7 +206,8 @@ def words(length):
         yield word
 
 
-for length in (5, 7):
+lengths = tuple(map(int, sys.argv[1:])) or (5, 7)
+for length in lengths:
     total = 0
     survivors = []
     unknown_blocks = Counter()
