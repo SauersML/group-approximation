@@ -107,3 +107,15 @@ established or refuted.
   transport solves the local noncommuting placement and phase routing, but
   supplies no matrix soundness; a further payload relation must exclude this
   exact Clifford sector.
+- Gauge-balancing and attaching that cell at every incidence still retains
+  every bad assignment.  `balanced-fourier-routers-retain-every-assignment-sector`
+  gives the exact global audit.  The tracial GNS model extends after one
+  qubit per router by `A=p_-+p_+Z`, `B=p_-+p_+X`, so completeness is perfect.
+  But the marked router algebra is `C directSum M_2(C)`: selector value `-1`
+  chooses the scalar summand and selector value `+1` chooses the Pauli
+  summand.  Combining these choices with the marked companion packet sector
+  at each context extends **every** global Boolean valuation, including a
+  violating one, to an exact finite-dimensional marked representation.
+  Hence the naive global Fourier attachment fails soundness at defect zero.
+  The missing relation must couple the BCS payload directly to, and exclude,
+  these two summands rather than merely balance or transport them.
