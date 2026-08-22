@@ -3,7 +3,7 @@ rg: 2
 id: fixed-semisimple-trace-chart-multiplicity-proof
 kind: route
 title: Compute every reflected rank from irreducible multiplicities
-target: fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness
+target: semisimple-trace-charts-cannot-authenticate-proper-fullness
 requires: []
 artifacts:
   - research/artifacts/fanizza-finite-chart-trace-reflection-criterion-2026-08-21.md

@@ -7,7 +7,7 @@ distinct_from:
   atlas-a4-context-types-live-in-fixed-rational-polytope: that classifies the unrestricted exact A4 type profiles; this proves that finite homogeneous congruence and divisibility refinements do not shrink their normalized closure.
   fixed-packet-hall-atlas-has-no-julia-cutoff-gap: that treats linear capacities and Hall matchings for a cutoff selector; this treats arbitrary finite-index multiplicity lattices and finitely generated affine semigroups before any particular inequality is chosen.
   fixed-depth-rank-mesh-has-zero-hs-density: that estimates one integral numerator through finitely many contractions; this gives the exact projectivized-semigroup closure and characterizes when any continuous profile cost can have a positive gap.
-  fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness: that classifies when one fixed semisimple projection has representation-independent trace; this removes finite congruence residues and treats the normalized closure of the whole packet-flow semigroup.
+  semisimple-trace-charts-cannot-authenticate-proper-fullness: that classifies when one fixed semisimple projection has representation-independent trace; this removes finite congruence residues and treats the normalized closure of the whole packet-flow semigroup.
 ---
 
 Let `P_A4` be the fixed rational multiplicity polytope of the exactified A4

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness
+id: semisimple-trace-charts-cannot-authenticate-proper-fullness
 kind: claim
 title: Fixed semisimple trace charts cannot authenticate proper source fullness only in matrices
 artifacts:
