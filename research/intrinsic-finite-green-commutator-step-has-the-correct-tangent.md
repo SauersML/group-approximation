@@ -70,11 +70,17 @@ square-function hypothesis.  Equation `(IFG6)` is a derivative statement
 at the exact code locus.  Away from that locus the missing terms are now
 precise:
 
-1. a Polyak--Lojasiewicz/coercivity estimate comparing the intrinsic
-   correction row `g` with complete-pair energy without first naming code
-   characters;
+1. a Polyak--Lojasiewicz/coercivity estimate on the retained low-`K_a`
+   sector comparing the intrinsic correction row `g` with complete-pair
+   energy without first naming code characters;
 2. control of the first-order damage caused by the coordinate-dependent
    conjugators `k_i` in the sparse parity and equality layers.
 
 The complete-pair nonlinear remainder itself and the involution forcing are
 not additional gates.
+
+The low-`K_a` qualification is necessary:
+`clifford-packets-are-stationary-for-intrinsic-green-step` shows that a
+pairwise anticommuting Clifford packet has maximal pair energy but zero
+intrinsic correction.  Its anchor square function is instead
+`(1-1/L)I`, so the regularized aggregate cut removes it completely.
