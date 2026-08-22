@@ -19,3 +19,9 @@ that cut supplies the final repair estimate.  The Laurent formula
 `4R=2-(Q_aQ_i)^2-(Q_aQ_i)^(-2)` shows that the cut already commutes with
 the anchor and reset site; leave those two generators fixed so the
 complementary operator bound persists.
+
+For `(OSC7)`, write the same coarea integral in an eigenbasis of `R`.  Only
+eigenvalue intervals with maximum endpoint above `t` contribute.  Bound
+each intersection length by that endpoint, split according to the larger
+endpoint, and use the unit row and column sums of the unistochastic matrix
+`(|q_(uv)|^2)`.

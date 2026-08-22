@@ -206,3 +206,13 @@ contraction by the coefficient `Ct`; it need not be `o(E)`.  Fixed small
 `t`, or `t=E^alpha` for `0<alpha<1/2`, is compatible with hard reset cost
 `E/t^2->0`.  Thus only the reducing-cut summability problem remains, not an
 incompatible threshold scale.
+
+The one-cut parity charge is also exact.
+`localized-loewner-pays-spike-or-boundary` localizes max-fractional
+Loewner order to a spectral cut `p` of `Y_(a,i)^2`: either its boundary
+Dirichlet energy is at least `kappa s tau(p)`, or the full anchor row on `p`
+is at least `(kappa/4)s tau(p)`.  The latter sums on disjoint reducing
+blocks without losing `L`.  The coarea construction has a complementary
+`L_1` high-tail bound `(OSC7)`, charging a selected boundary linearly to
+`tau(Y^2 1_(Y^2>=t))`.  A greedy ordering must still prevent reuse of that
+high-tail mass in successive boundary-heavy cuts.

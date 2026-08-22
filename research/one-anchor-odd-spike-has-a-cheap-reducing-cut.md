@@ -62,6 +62,24 @@ and applying Cauchy--Schwarz gives covariance at most `2(q_i+q_a)`.
 Spectral coarea on `[t,2t]` proves `(OSC3)`, Markov proves `(OSC2)`, and
 cosine--sine block diagonalization proves `(OSC4)`.
 
+There is also a high-tail version, possibly at a different threshold
+`s_tail in [t,2t]`:
+
+```text
+ (1/L)sum_l ||[1_[s_tail,1](R_(a,i)),Q_l]||_2^2
+ <=2 tau(R_(a,i)1_[t,1](R_(a,i)))/t.                  (OSC7)
+```
+
+To see this, diagonalize `R`.  The coarea integral is the sum of lengths
+with which `[t,2t]` intersects the intervals between pairs of eigenvalues,
+weighted by matrix coefficients of `Q_l`.  A contributing interval has a
+maximum endpoint above `t`.  Bound its intersection length by that maximum,
+assign according to which endpoint is larger, and use the unit row and
+column sums of `(|q_(uv)|^2)`.  The integral is at most twice the high
+spectral first moment.  Averaging over `l` and dividing by `t` proves
+`(OSC7)`.  This replaces the square-root covariance charge by a quantity
+linear in removable high spectral mass.
+
 For exact commutation, put `U=Q_aQ_i`.  Direct expansion gives
 
 ```text

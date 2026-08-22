@@ -44,6 +44,15 @@ controlled by `q_i+q_a`; coarea produces a reducing correction of cost
 `R_(a,i)<=2t`.  The remaining theorem is a selection/summability statement
 for these cuts, not a missing one-spike estimate.
 
+Parity supplies the correct one-cut charge.
+`localized-loewner-pays-spike-or-boundary` tests max-fractional Loewner
+order on `Q_ap`: either a high odd-square cut has boundary at least
+`kappa s tau(p)`, or the full anchor row on that block pays at least
+`(kappa/4)s tau(p)`.  The row-paid alternative sums over disjoint reducing
+cuts without losing `L`.  In addition, `(OSC7)` bounds a coarea-selected
+boundary linearly by the high spectral first moment.  The remaining task is
+to order boundary-heavy cuts so that this high-tail mass is not reused.
+
 ## Attempts
 
 For every vector state, the Loewner shortened-core inequalities give a
