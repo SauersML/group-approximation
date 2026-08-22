@@ -216,3 +216,13 @@ blocks without losing `L`.  The coarea construction has a complementary
 `L_1` high-tail bound `(OSC7)`, charging a selected boundary linearly to
 `tau(Y^2 1_(Y^2>=t))`.  A greedy ordering must still prevent reuse of that
 high-tail mass in successive boundary-heavy cuts.
+
+Global cosine--sine correction is not required for each greedy cut.
+`spectral-cut-anchor-reset-pays-boundary-in-one-row` resets only the anchor
+on a spectral projection which already commutes with it.  The averaged
+generator and parity costs are `O(tau(p)/L)`, while failure of the cut to
+reduce the other generators enters only the anchor's complete-pair row at
+cost `D(p)/L`.  Thus all static length factors have been removed.  The
+remaining dynamic question is whether successive nonreducing resets can
+recycle the same boundary energy instead of decreasing the high-tail
+ledger.
