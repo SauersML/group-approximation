@@ -2,7 +2,7 @@
 rg: 2
 id: degree-four-kl-inner-retractions-fail-proof
 kind: route
-title: Solve the first orbit cell and reject every cycle-inner image on an exact moved vector
+title: Reject every cycle and coordinate-packet inner image on an exact moved vector
 target: degree-four-kl-inner-retractions-fail
 requires:
   - degree-four-kl-source-face-retraction
@@ -13,10 +13,11 @@ Use the four relators `(DG2)` in
 `G_0`.  For each `i=1,2,3`, choose
 
 ```text
-phi_i=1       or       phi_i=Ad(p^k),  0 <= k < 20.   (IR1)
+phi_i=1,  phi_i=Ad(p^k),  or
+phi_i=Ad(p^k q p^(-k)),       0 <= k < 20.             (IR1)
 ```
 
-There are `21^3=9261` triples.  The equation `R0=1` is linear in its final
+There are `41^3=68921` triples.  The equation `R0=1` is linear in its final
 `z`, so it uniquely sets
 
 ```text
@@ -45,8 +46,8 @@ The run was performed remotely through the permitted MSI wrapper:
 The exact output was
 
 ```text
-cases=9261
-rejected_by_R1_R2_R3=(9261, 0, 0)
+cases=68921
+rejected_by_R1_R2_R3=(68921, 0, 0)
 witness_screen_survivors=0
 ```
 

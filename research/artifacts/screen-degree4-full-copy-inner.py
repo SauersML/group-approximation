@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Exact moved-vector screen for full-copy retractions of the degree-4 KL word.
 
-Copy zero is fixed.  Each of copies 1,2,3 is either killed or mapped by
-Ad(p^k), 0 <= k < 20.  R0 uniquely determines z.  A reported rejection is
-exact: one standard-module basis vector with an opaque tail is moved by one
-of R1,R2,R3.  The screen is not a finite-dimensional truncation.
+Copy zero is fixed.  Each of copies 1,2,3 is either killed or mapped by an
+inner automorphism whose conjugator is `p^k` or the coordinate packet
+`p^k q p^-k`, `0 <= k < 20`.  R0 uniquely determines z.  A reported
+rejection is exact: one standard-module basis vector with an opaque tail is
+moved by one of R1,R2,R3.  The screen is not a finite-dimensional truncation.
 """
 
 from itertools import product
@@ -78,10 +79,10 @@ D = P + P + C + inverse(P) + inverse(P)
 def image(word, choice):
     if choice is None:
         return ()
-    if choice == 0:
-        return word
-    shift = (("p", choice),)
-    return shift + word + inverse(shift)
+    family, k = choice
+    shift = (("p", k),)
+    conjugator = shift if family == "p" else shift + Q + inverse(shift)
+    return conjugator + word + inverse(conjugator)
 
 
 def moved(word):
@@ -99,11 +100,13 @@ def moved(word):
     return None
 
 
-choices = (None,) + tuple(range(20))
+identity = ("p", 0)
+choices = ((None,) + tuple(("p", k) for k in range(20))
+           + tuple(("q", k) for k in range(20)))
 survivors = []
 rejected = [0, 0, 0]
 for c1, c2, c3 in product(choices, repeat=3):
-    cs = (0, c1, c2, c3)
+    cs = (identity, c1, c2, c3)
     z = inverse(
         image(R, cs[0]) + image(E, cs[1]) + image(A, cs[2])
         + image(C, cs[1]) + image(B, cs[3]) + image(D, cs[2])
