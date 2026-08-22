@@ -1,0 +1,7 @@
+{
+  "A8": {"epimorphism_classes": 0, "target_order": 20160, "wall_seconds": 5.3},
+  "A9": {"epimorphism_classes": 0, "target_order": 181440, "wall_seconds": 11.9},
+  "A10": {"epimorphism_classes": 0, "target_order": 1814400, "wall_seconds": 67.0},
+  "faithful_vertex_order_target": [60, 36, 24, 144],
+  "method": "exact GAP GQuotients on MSI"
+}
