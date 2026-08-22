@@ -33,6 +33,18 @@ can destroy joint commutation and parity, while re-correcting the face can
 move its marginal again.  This is the finite-overlap agreement step needed
 before the adjoint face-Hamiltonian gap can be applied.
 
+The natural damp-then-return implementation is now excluded, not merely
+unproved.  `damped-cloud-face-return-has-an-exact-scalar-fixed-sheet` uses a
+balanced length-three original-plus-pair-sum packet whose exact scalar face
+characters have zero cloud means.  Every nonterminal damped average retains
+the old occurrence signs, so the sign-first Loewner face return restores the
+inconsistent tuple exactly; its positive equality cross term cancels the
+whole cloud-energy gain.  Direct-sum weighting puts this fixed sheet at
+arbitrarily small normalized defect.  Therefore local face exactification
+and equality damping need a genuinely coordinated global character choice;
+their separate uniform cost bounds cannot be composed into the required
+rounding modulus.
+
 `shared-face-synchronization-is-uniform-lcs-hs-stability` identifies this
 step exactly with uniform same-dimension HS stability of the growing
 homogeneous LCS colimits in their redundant occurrence presentations.  In
