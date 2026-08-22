@@ -16,10 +16,11 @@ ESTABLISHED.  Let `S_1,...,S_L` be commuting reflections and let
  S_ih_iS_i=-h_i.
 ```
 
-Write the linearized complete-pair residual
+Write the raw linearized commutator and its standard tangent trivialization
 
 ```text
- b_ij=[h_i,S_j]+[S_i,h_j].                              (TCB1)
+ r_ij=[h_i,S_j]+[S_i,h_j],
+ b_ij=-(1/2)S_iS_jr_ij.                                (TCB1)
 ```
 
 Differentiating the exact reflection identity
@@ -28,7 +29,8 @@ Differentiating the exact reflection identity
  Q_j[Q_i,Q_j]Q_j=-[Q_i,Q_j]
 ```
 
-at the commuting tuple gives the covariance
+at the commuting tuple gives `S_jr_ijS_j=-r_ij`.  Since the `S_i`
+commute, the trivialized residual has the same covariance:
 
 ```text
  S_jb_ijS_j=-b_ij.                                     (TCB2)
@@ -83,17 +85,19 @@ Newton needs such a fixed contraction, not the endpoint limit `K->infinity`.
 Thus `(CRM3)` for arbitrary arrays is unnecessary for the exact-base
 linear step.
 
-The covariance survives the contraction-valued extension with a controlled
-forcing error.  For selfadjoint contractions `X_i,X_j`, put
+The raw covariance survives the contraction-valued extension with a
+controlled forcing error.  For selfadjoint contractions `X_i,X_j`, put
 `R_ij=[X_i,X_j]` and `E_j=I-X_j^2`.  Direct expansion gives
 
 ```text
  X_jR_ijX_j+R_ij=E_jX_iX_j-X_jX_iE_j,                 (TCB7)
 ```
 
-so its `L_2` norm is at most `2||E_j||_2`.  Therefore the positive
-involution residual created by aggregate block compression is exactly the
-vanishing normal-forcing term in this finite-time tangent inverse.
+so its `L_2` norm is at most `2||E_j||_2`.  Multiplication by the bounded
+tangent-normalization factors changes only the numerical constant.
+Therefore the positive involution residual created by aggregate block
+compression is exactly the vanishing normal-forcing term in this
+finite-time tangent inverse.
 
 This closes the exact-base linear cb gate.  The remaining nonlinear basin
 problem is to implement the finite-time correction before an exact code

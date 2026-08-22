@@ -11,8 +11,12 @@ requires:
 ---
 
 For reflection tuples the displayed conjugation identity is exact.  Its
-derivative at a commuting tuple proves `(TCB2)`, so the support-coordinate
-Schur mask in `(CRM2)` is redundant on the tangent commutator range.  Apply
+derivative at a commuting tuple proves endpoint oddness for the raw
+commutator residual.  Left multiplication by `-S_iS_j/2` is the standard
+unitary tangent trivialization (up to the harmless factor `1/2`) and
+commutes with `Ad(S_j)`, proving `(TCB2)` for the `b_ij` used in `(CRM1)`.
+Thus the support-coordinate Schur mask in `(CRM2)` is redundant on the
+tangent commutator range.  Apply
 the operator Cauchy--Schwarz/Jensen inequality to the normalized sum in
 `(TCB3)` to obtain `(TCB4)` simultaneously for rows, columns, and matrix
 amplifications.
