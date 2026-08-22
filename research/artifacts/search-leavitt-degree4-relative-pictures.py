@@ -241,13 +241,16 @@ def connected(vertex_count, pairs):
     return len(reached) == vertex_count
 
 
-def census(area, stop_on_hit=False):
+def census(area, stop_on_hit=False, shard=0, shards=1):
     planar = 0
     exact_disks = 0
     one_copy_disks = 0
     one_copy_units = set()
     type_multisets = 0
-    for choices in combinations_with_replacement(range(len(VERTEX_TYPES)), area):
+    for choice_index, choices in enumerate(combinations_with_replacement(
+            range(len(VERTEX_TYPES)), area)):
+        if choice_index % shards != shard:
+            continue
         vertices = [VERTEX_TYPES[choice] for choice in choices]
         halves = [(v, leg) for v, vertex_data in enumerate(vertices)
                   for leg in range(len(vertex_data[2]))]
@@ -332,14 +335,19 @@ def census(area, stop_on_hit=False):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--min-area", type=int, default=2)
     parser.add_argument("--max-area", type=int, default=4)
     parser.add_argument("--stop-on-hit", action="store_true")
+    parser.add_argument("--shard", type=int, default=0)
+    parser.add_argument("--shards", type=int, default=1)
     args = parser.parse_args()
-    for area in range(2, args.max_area + 1):
-        result = census(area, args.stop_on_hit)
+    assert 0 <= args.shard < args.shards
+    for area in range(args.min_area, args.max_area + 1):
+        result = census(area, args.stop_on_hit, args.shard, args.shards)
         print(f"area={area} type_multisets={result[0]} planar={result[1]} "
               f"exact_target_disks={result[2]} one_copy_disks={result[3]} "
-              f"one_copy_units={result[4]}", flush=True)
+              f"one_copy_units={result[4]} shard={args.shard}/{args.shards}",
+              flush=True)
         if result[2] and args.stop_on_hit:
             break
 
