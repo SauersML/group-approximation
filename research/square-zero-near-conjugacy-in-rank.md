@@ -34,21 +34,46 @@ Then `codim K<=2e`.  On `K`, the two maps agree.  Moreover `K` is invariant
 under both: if `v in K`, then `Av=Bv` lies in `ker(A-B)`, and its image under
 either square-zero map is zero.
 
-Use Jordan chains of length at most two.  From a common invariant subspace of
-codimension `c`, delete every common chain which either lacks a predecessor
-inside the subspace or is hit by a predecessor outside it, for either of the
-two ambient maps.  Row reduction in the image/kernel flag
+Write `c=codim K<=2e` and `r=rank A=rank B`.  Since the two maps agree on
+`K`, put
 
 ```text
-im A <= ker A,       im B <= ker B                     (SZC4)
+L=A(K)=B(K).
 ```
 
-shows that at most `c` terminal directions and their at most one chain
-predecessor are deleted for each map.  Thus `K` contains a common submodule
-`H` which is a direct summand for both `A` and `B`, on which they agree, and
+The loss of image rank through a codimension-`c` subspace is at most `c`, so
+`dim L>=r-c`.  Choose common length-two chains in `K` whose terminal vectors
+form a basis of `L`.
+
+The rank bound also gives
 
 ```text
-codim H<=4c<=8e.                                      (SZC5)
+dim(im A+im B)<=r+e.                                  (SZC4)
+```
+
+Indeed, modulo `im A`, every vector `Bv` is represented by `(B-A)v`.
+Meanwhile
+
+```text
+dim(K intersect ker A)>=n-r-c;
+```
+
+on `K`, the kernels of `A` and `B` coincide.  Therefore this common kernel
+contains a subspace `T` disjoint from `im A+im B` of dimension at least
+
+```text
+(n-r-c)-(r+e)=n-2r-c-e.
+```
+
+Use `T` as common length-one chains.  The common module `H` formed by these
+length-two and length-one chains is a direct summand for both maps: extend
+the chosen basis of `L` inside each image, then extend `T` inside each kernel
+modulo that image.  Its codimension satisfies
+
+```text
+codim H
+ <= n-[2(r-c)+(n-2r-c-e)]
+ =3c+e <=4c<=8e.                                     (SZC5)
 ```
 
 The complements have the same numbers of length-two and length-one Jordan
