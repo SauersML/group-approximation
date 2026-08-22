@@ -10,10 +10,42 @@ G:=free/[
 ];;
 gg:=GeneratorsOfGroup(G);;
 
+MatrixFromCoordinates:=function(coordinates,basis)
+  local result,i;
+  result:=Zero(basis[1]);
+  for i in [1..Length(basis)] do
+    result:=result+coordinates[i]*basis[i];
+  od;
+  return ImmutableMatrix(GF(2),result);
+end;;
+
+LinearCentralizerElements:=function(generators)
+  local n,matrixBasis,i,j,matrix,rows,nullBasis,space,elements;
+  n:=Length(generators[1]);
+  matrixBasis:=[];
+  for i in [1..n] do
+    for j in [1..n] do
+      matrix:=NullMat(n,n,GF(2));
+      matrix[i][j]:=One(GF(2));
+      Add(matrixBasis,ImmutableMatrix(GF(2),matrix));
+    od;
+  od;
+  rows:=List(matrixBasis,m->Flat(List(generators,g->m*g-g*m)));
+  nullBasis:=NullspaceMat(rows);
+  if not ForAll(nullBasis,v->Length(v)=n*n) then
+    Error("linear-centralizer nullspace orientation failed");
+  fi;
+  space:=VectorSpace(GF(2),nullBasis);
+  elements:=List(Elements(space),v->MatrixFromCoordinates(v,matrixBasis));
+  return Filtered(elements,m->RankMat(m)=n);
+end;;
+
 DescribeMarkedGroup:=function(images)
   local Q,normals,N,quot,hom,A,B,pcgs,basis,actionMatrices,g,matrix,row,
         conjugate,complements,K,k,affineVectors,affine,edgeData,classes,
-        quotientA,quotientB,aInvolutions,bInvolutions,pairs,pair,mismatch;
+        quotientA,quotientB,aInvolutions,bInvolutions,pairs,pair,mismatch,
+        matrixGenerators,linearCentralizer,linearCandidates,
+        cmatrix,tmatrix,smatrix,collisionWord;
   Q:=Group(images);
   normals:=NormalSubgroups(Q);
   Print("structure=",StructureDescription(Q)," derived_order=",
@@ -73,6 +105,26 @@ DescribeMarkedGroup:=function(images)
     Add(actionMatrices,matrix);
   od;
   Print("conjugation_matrices_[r,y,u,b]=",actionMatrices,"\n");
+  matrixGenerators:=List(actionMatrices,
+      matrix->ImmutableMatrix(GF(2),matrix));
+  linearCentralizer:=LinearCentralizerElements(
+      [matrixGenerators[1],matrixGenerators[3]]);
+  tmatrix:=matrixGenerators[2]^-1;
+  smatrix:=matrixGenerators[4]*matrixGenerators[2];
+  linearCandidates:=[];
+  for cmatrix in linearCentralizer do
+    if Order(cmatrix)=2 then
+      collisionWord:=tmatrix*cmatrix*smatrix*cmatrix*tmatrix^-1*cmatrix*
+                     smatrix*tmatrix*cmatrix;
+      if IsOne((cmatrix*tmatrix)^3) and IsOne(collisionWord) then
+        Add(linearCandidates,cmatrix);
+      fi;
+    fi;
+  od;
+  Print("linear_pointwise_A_centralizer_[order,order_histogram]=",
+        [Length(linearCentralizer),Collected(List(linearCentralizer,Order))],
+        "\n");
+  Print("nontrivial_linear_collision_count=",Length(linearCandidates),"\n");
 
   classes:=ConjugacyClasses(Q);
   Print("module_conjugacy_orbits=",Collected(List(

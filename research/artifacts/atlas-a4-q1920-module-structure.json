@@ -30,6 +30,11 @@
     "lift_mismatch_conjugacy_orbit_order": 15,
     "lift_mismatch_normal_closure_order": 32
   },
+  "linear_collision_profile": {
+    "pointwise_A_linear_centralizer_order": 6,
+    "pointwise_A_linear_centralizer_order_histogram": {"1": 1, "2": 3, "3": 2},
+    "nontrivial_linear_collision_involution_count": 0
+  },
   "marking_affine_vectors_in_gap_pcgs_basis": [
     [[0, 0, 0, 0, 0], [1, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 1, 1, 0, 1]],
     [[0, 0, 0, 1, 0], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1], [1, 0, 0, 0, 1]]
