@@ -173,6 +173,27 @@ weakening consumed by the HNN marked word.
   microstates; merely saying "regular on `A`" does not weaken the universal
   analytic wall.
 
+- **The adjacent-vertex double removes the remaining quantifier
+  overstrength.**  Inside the HNN group, the two adjacent vertex stabilizers
+  generate
+
+  ```text
+  D=A *_C A = <A,tAt^(-1)>,
+  ```
+
+  by `sl3-arithmetic-double-embeds-in-centralizer-hnn`.  A full HNN-regular
+  microstate restricts to a canonical-character microstate of this double.
+  Apply `(PTS1)` to the block diagonal of its two vertex assignments and the
+  block-swap unitary: subgroup energy and presentation defect vanish, so the
+  fold-kernel mark `i_0(h)i_1(h)^(-1)` collapses.  Thus the strictly smaller
+  terminal `sl3-regular-arithmetic-double-fold-mark-collapse` suffices for
+  the goal and is the exact trace-profile class actually consumed.  Its
+  zero-defect boundary is complete:
+  `sl3-arithmetic-double-finite-representations-fold` proves that every exact
+  finite-dimensional representation folds the entire double.  The only
+  residue is promoting this block-swap theorem on canonical double
+  microstates, not proving `(PTS1)` for arbitrary assignments.
+
 - **Diagonal tensor powers are an exact projective error amplifier.**  Put
   `E(W)=1-|tr(W)|^2`.  Normalized traces multiply, so for every unitary `W`
   and integer `k>=1`,

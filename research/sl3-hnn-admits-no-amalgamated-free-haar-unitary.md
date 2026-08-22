@@ -77,3 +77,15 @@ Nothing weaker than this statement makes `G_3` the witness.
   shortcut in either direction.  To use it one would have to upgrade its
   embedding to the canonical trace on the nonamenable amalgam, precisely
   the trace-sensitive problem this target already expresses.
+- **A smaller adjacent-vertex double is enough for a negative result.**
+  `sl3-arithmetic-double-embeds-in-centralizer-hnn` identifies
+  `<A,tAt^(-1)>` with `D=A*_C A`.  Therefore it suffices to show that this
+  subgroup is non-hyperlinear.  The exact finite-dimensional boundary is
+  unusually rigid: `sl3-arithmetic-double-finite-representations-fold`
+  proves by a block-swap/co-density argument that every exact matrix
+  representation of `D` factors through the fold `D->A`.  The open
+  `sl3-regular-arithmetic-double-fold-mark-collapse` asks only to promote
+  that fact for one fold-kernel word along full canonical-character
+  microstates of `D`.  This discards the stable letter's Haar moments and
+  all higher amalgamated-free conditions, and is therefore a narrower
+  sufficient target than the present exact-equivalence formulation.
