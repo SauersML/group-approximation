@@ -119,7 +119,19 @@ new and is the whole point.
   rank-one problem) or exploit that on the corank-2 stratum the `SL_2`
   factor is coupled to the `GL_(N-2)` block and the unipotent radical in a
   way the isolated `SL_2` lane is not.  This explains structurally why
-  raising the rank has not closed the stability input.
+  raising the rank has not closed the stability input.  The concrete
+  hopeful form of the coupling exploit: the stratum's contribution to
+  degree-2 cohomology is `(+)_(i+j=2) H^i(Levi, H^j(U_P, V))`, and
+  `H^j(U_P, V)` decomposes (Kostant, in the algebraic case; the
+  Vogan--Zuckerman `(g,K)`-analogue for the unitary Ad-module) into Levi
+  representations indexed by length-`j` Weyl elements; if for `j <= 2` NONE
+  of those Levi pieces contains an `SL_2`-Levi-fixed vector, the corank-2
+  stratum contributes nothing in degree 2 and the `SL_2` obstruction is
+  killed by the coupling, so high rank WOULD close the op-norm upgrade.
+  That vanishing is a finite Weyl-weight computation for each `N` --- the
+  sharpest concrete next step on this horn, and the point where it would
+  either close or expose a genuine `SL_2`-Levi cohomology class as the
+  irreducible obstruction.
 - **Falsification gate.**  An Ad-module 2-cocycle of `SL_N(Z)` with
   `|| c ||_op <= 2`, 2-norm primitive, but no operator-bounded
   primitive would refute this claim; by the route it would have to
