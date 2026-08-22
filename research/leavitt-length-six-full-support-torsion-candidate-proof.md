@@ -88,3 +88,39 @@ Finally, viewed in `(G_0*G_1)*<z>`, each of `(L6.2)` and `(L6.3)` contains
 three occurrences of `z`, with signs `++-`.  Howie's universal length-three
 equation theorem injects `G_0*G_1` into either one-relator quotient.  The
 two-relator interaction is therefore load-bearing.
+
+## The obvious retractions fail
+
+First kill `G_1` and ask for a map of `(L6.4)` back to `G_0` which fixes
+`G_0`.  Then `(L6.3)` becomes
+
+```text
+z b_0 z d_0 z^(-1)=1,
+```
+
+and cancellation forces `z=b_0^(-1)d_0^(-1)=b_0p^(-1)`.  The other relator
+becomes
+
+```text
+F=a_0 z c_0 z e_0 z^(-1)
+ =a b p^(-1)c b p^(-1)e p b.                         (L6.5)
+```
+
+This is not the identity.  With the convention `p epsilon_j=epsilon_(j+1)`,
+direct matrix multiplication leaves, for example, an off-diagonal constant
+entry `F_(3,4)=1`.  The artifact verifies the same entry in the faithful
+infinite-word representation.  Hence no retraction can fix `G_0` while
+killing `G_1`.
+
+For the most obvious diagonal maps, send `G_1` to `G_0` either by
+`Ad(p^k)`, or by `Ad(p^k)` after the automorphism
+`g |-> (g^*)^(-1)`, where the Leavitt anti-involution swaps `s_i,t_i` and
+matrix adjunction swaps roots 12 and 21.  If `z` is a constant permutation, the
+permutation skeleton of `(L6.3)` forces `z=p^(-1)`.  The skeleton of `(L6.2)`
+then forces the image of `p_1` to be `p`; in the inner case this restricts to
+`Ad(p^k)`, and the duality already fixes `p`.  The
+artifact evaluates all 40 cases on the faithful infinite-word module and
+finds a nonfixed basis vector in every case.  Thus none is a retraction.
+
+These failures are only a fence around the easiest embeddings.  They neither
+prove that `(L6.4)` is trivial nor exhibit a coefficient kernel.

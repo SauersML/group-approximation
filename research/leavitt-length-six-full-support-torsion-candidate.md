@@ -9,6 +9,7 @@ distinct_from:
   leavitt-degree-kernel-normally-generated-by-one-word: That asks for a word which actually normally generates the degree kernel; this identifies the first explicit word surviving all current preliminary fences but does not assert the still-open normal-generation conclusion.
 artifacts:
   - research/leavitt-length-six-full-support-torsion-candidate-proof.md
+  - research/artifacts/verify-leavitt-length-six-diagonal-retractions.py
 ---
 
 Let
@@ -62,6 +63,19 @@ Each relator separately is a length-three unimodular equation in `z` over
 `G_0*G_1`, so Howie's theorem embeds `G_0*G_1` after imposing either one
 alone.  Any collapse must genuinely use the interaction of the two
 `tau`-paired relators; no one-relator normal-form attack can prove it.
+
+Two natural retractions do **not** fence `(L6.4)`:
+
+* killing `G_1` makes `(L6.3)` force `z=b_0^(-1)d_0^(-1)=b_0p^(-1)`;
+  substituting this in `(L6.2)` leaves a nonidentity matrix `F`;
+* identifying `G_1` with `G_0` by a coordinate-cycle inner automorphism, or
+  by the prefix duality `s_i<->t_i` followed by coordinate conjugacy, and
+  taking `z` to a constant cycle power gives no solution.  The artifact checks
+  the finite family exactly in the faithful infinite-word model of `R`.
+
+Both relators have the same `z`-height interval `[0,2]`, so they are not a
+staggered pair in Howie's sense.  The standard staggered-presentation
+embedding theorem therefore supplies no conclusion either.
 
 Thus `(L6.1)` is the first literal full-support Leavitt KL candidate left by
 the established small-length theory.  The remaining question is exact and is

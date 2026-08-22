@@ -98,6 +98,9 @@ unspecified element to kill.
    `a_1 z b_0 c_1 z d_0 e_1 z^(-1)`.  Each relator alone preserves
    `G_0*G_1` by the universal length-three theorem.  The next concrete task
    is to decide whether this explicit pair jointly normally generates `N_2`.
+   The one-copy-killing and obvious twisted-diagonal retractions fail by the
+   checked computations in that node, and the pair is not staggered because
+   both relators occupy the same height interval `[0,2]`.
 10. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
