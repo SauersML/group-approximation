@@ -115,3 +115,10 @@ factors exist, `partial-isometry-translate-cancel-charges-first-exit` gives
 the required dimension-free payment; without them, `(AWF3)--(AWF7)` is a
 joint Folner escape.
 
+The first literal support-incidence candidate has now been tested.
+`first-root-parahoric-incidence-has-a-two-to-four-morita-lift` computes the
+word `h x_12(1) h^(-1)=x_12(2)` on the actual forty-two branches.  It gives a
+fixed gap if source and target are identified, but natively admits an exact
+rank-two partial intertwiner from a two-cycle to one parity pair of a
+four-cycle.  Thus one root-scaling edge authenticates only typed rectangular
+source and range, not the stationary support required here.

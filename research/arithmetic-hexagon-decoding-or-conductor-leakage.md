@@ -178,6 +178,16 @@ the fixed-depth nonhyperlinearity criterion.
   input in `(AHD1)` is exactly raw denominator-section source/range
   authentication, after which the established partial-isometry cancellation
   charges only first-exit mass.
+- **The first literal root-parahoric edge is still rectangular.**  For
+  `u=x_12(1)`, the relation `huh^(-1)=u^2` acts on the actual forty-two-point
+  shell with a base two-cycle and a native four-cycle.  The `u`-flip on the
+  two-cycle is exactly intertwined with the `u^2`-flip on one parity pair of
+  the four-cycle.  Hence the compressed relation has an exact rank-two
+  Morita lift with different source and range; see
+  `first-root-parahoric-incidence-has-a-two-to-four-morita-lift`.  It would
+  pay the fixed gap `2/21` only after a second raw path identified those two
+  carriers.  The remaining incidence must therefore be a same-atom return,
+  not another one-way root-scaling edge.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from
