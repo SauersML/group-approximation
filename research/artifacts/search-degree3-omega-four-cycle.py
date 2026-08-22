@@ -21,6 +21,15 @@ SPEC = importlib.util.spec_from_file_location("degree4_pictures", SOURCE)
 P = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(P)
 
+# Compound order-mismatch gates: u=ab has order two because [a,b]=1,
+# whereas v=cd has order four and v^2=[c,d]=h.
+P.UNITS["u"] = P.mul(P.A, P.B)
+P.INVERSES["u"] = P.UNITS["u"]
+P.UNITS["v"] = P.mul(P.C, P.D)
+P.INVERSES["v"] = P.mul(P.D, P.C)
+assert P.mul(P.UNITS["u"], P.UNITS["u"]) == P.ONE
+assert P.mul(P.UNITS["v"], P.UNITS["v"]) == P.TARGET
+
 DEFAULT_PACKET = ("r", "e", "a", "c", "b", "d", "p")
 
 
