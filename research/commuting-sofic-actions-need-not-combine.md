@@ -71,7 +71,8 @@ Two layers, and they are not the same strength.
   only the refereed GKP paper. It is as solid as that paper.
 - The *instance* additionally needs a sofic group with a nonsofic transitive
   action, i.e. `coordinate-action-not-sofic`, which rests on Kun–Thom
-  arXiv:2608.06222v1 — an unrefereed preprint eleven days old at the time of
+  arXiv:2608.06222 (v3 as of 2026-08-20; Theorems A/E hypotheses unchanged
+since v1) — an unrefereed preprint two weeks old at the time of
   writing, with the trust surface recorded in
   `research/artifacts/kun-thom-2608-06222-verified.md`. If Kun–Thom Theorem A
   or Theorem E falls, this claim falls with it and the transfer principle

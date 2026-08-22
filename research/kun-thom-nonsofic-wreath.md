@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 Kun--Thom, *Nonsofic wreath products of residually finite groups*,
-arXiv:2608.06222v1 (2026-08-06, 16 pp), prove unconditionally:
+arXiv:2608.06222 (v1 2026-08-06; v3 2026-08-20 with an updated Theorem A whose
+hypotheses are unchanged and whose conclusion also covers the group double,
+recorded in `kt-pair-group-double-is-nonsofic`; 16 pp), prove unconditionally:
 
 > **Theorem A.** Let `Gamma` be an infranormal but not normal subgroup of `G`,
 > and suppose that both `Gamma` and `G` have Kazhdan's property (T).  Then

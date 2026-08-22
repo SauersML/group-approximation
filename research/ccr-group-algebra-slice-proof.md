@@ -64,10 +64,17 @@ needed here.)
 of that map with elements `v, v'` yields a **binomial**
 `x^v − x^{v'} ∈ T`.  Apply (†) to a binomial: `β_B` maps it to
 `x^{Bv} − x^{Bv'}` monomial-by-monomial, while `c^{-1}(x^v − x^{v'})`
-must match it in `R`.  Supports are two-element sets, so either
-`c·x^{Bv} = x^v` (straight) or `c·x^{Bv} = −x^{v'}` (crossed), and in
-particular `c` is a single monomial `c = c₀x^u` (this DERIVES the
-unit form rather than assuming it).  For any class of size ≥ 3 with
+must match it in `R`.  That `c` is a UNIT -- `c = c₀x^u` with
+`c₀ ∈ 𝔽_q^×`, `u ∈ ℤ^d` -- does not follow from the binomial relation by
+itself (a many-term `f` times a binomial can telescope to two terms, e.g.
+`(∑_{k≤n} x^{kw})(x^v − x^{v'}) = x^{v'}(x^{(n+1)w} − 1)` in characteristic
+two; an earlier version claimed to derive monomiality from supports,
+which is invalid, corrected 2026-08-22).  It follows instead from
+invertibility: `w E_{ij} w^{-1} = c E_{ij}` with `w ∈ GL_r(R)` gives, after
+conjugating by `w^{-1}`, `E_{ij} = c · w^{-1} E_{ij} w`, whose `(i,j)` entry
+reads `1 = c · (w^{-1})_{ii} w_{jj}` with `(w^{-1})_{ii} w_{jj} ∈ R`; hence
+`c ∈ R^× = {c₀ x^u}`.  With `c` a monomial, the binomial relation then
+reads: either `c·x^{Bv} = x^v` (straight) or `c·x^{Bv} = −x^{v'}` (crossed).  For any class of size ≥ 3 with
 elements `v, v', v''`, a crossed matching between two of them would
 force two distinct class elements equal, so the straight matching
 `Bv = v − u` holds on every class of size ≥ 3 — i.e. on a cofinite

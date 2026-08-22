@@ -61,3 +61,13 @@ medians, no atomicity.
 special to collapsing chains: a chain separating `Γ` from `tΓt⁻¹`
 coordinatewise (if one exists for some non-congruence family of
 finite-dimensional representations) is outside its scope.
+
+**Reconciliation note (2026-08-22 audit).**  The bullet "any refutation of
+(CCR) must use representations with no genuine coordinate structure" is not
+proved by this node alone: it needs the hypothesis `pi_n(Gamma) subset
+pi_n(Lambda)` for EVERY finite-dimensional representation, which is the
+separate established claim `fd-invisibility-of-compression`.  With that
+citation the bullet stands, and the Fences paragraph's hypothetical
+"chain separating `Gamma` from `t Gamma t^(-1)` coordinatewise for some
+non-congruence family" is excluded by the same claim; read the Fence as
+superseded on that point.

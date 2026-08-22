@@ -28,8 +28,8 @@ factor modulo its centre, and for ANY tracial `M supseteq L(G)` the wall is
 confined to the orthocomplement: with `L^2(M) = L^2(L(G)) (+) K_M`,
 
 ```text
-(AC) for the embedding L(G) subset M
-  <=>  every Lambda-fixed vector of K_M is Gamma-fixed (indeed G-fixed).  (KTU2)
+(CCR)_M for the embedding L(G) subset M,  i.e.  L(Lambda)' cap M = L(Gamma)' cap M,
+  <=>  every Lambda-fixed vector of K_M is Gamma-fixed.                 (KTU2)
 ```
 
 This is the approximate companion of the exact slice: the exact slice says
@@ -37,3 +37,14 @@ no element of `L(G)` leaks, this says no central-sequence-type element of
 `L(G)` leaks either, so the matrix-ultraproduct question of
 `approximate-collapse-for-kt-compressor` is exactly about
 `Lambda`-central elements of `M` orthogonal to `L(G)`.
+
+**Restatement note (2026-08-22 audit).**  `(KTU2)` formerly used the symbol
+`(AC)`, which in `approximate-collapse-for-kt-compressor` names a
+different, OPEN statement (a `dist_2`-limit condition quantified over all
+trace-faithful matrix-ultraproduct representations); the equivalence here
+is for ONE fixed embedding `L(G) subset M`, is essentially a localization
+(the `Lambda`-fixed vectors of `L^2(M)` are `L^2(L(Lambda)' cap M)`), and
+does not assert `G`-fixedness on `K_M`, which is proved only on the
+`L^2(L(G))` summand.  Also, `L(G)` is a finite direct sum of full II_1
+factors when `Z(G) = {lambda I : lambda^r = 1}` is nontrivial, not "a
+full factor modulo its centre".  `(KTU1)` is unaffected.

@@ -6,6 +6,7 @@ title: Soficity of the coordinate action would make W sofic
 target: coordinate-action-not-sofic
 requires:
   - kun-thom-nonsofic-wreath
+  - gkp-wreath-permanence-theorem
 artifacts:
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
@@ -13,7 +14,9 @@ artifacts:
 # Soficity of the coordinate action would make W sofic
 
 A two-line contradiction between two theorems that were both read verbatim in
-their authors' own source on 2026-08-14. `requires: []` is a proof commitment.
+their authors' own source on 2026-08-14; both are now carried by the two
+required citation nodes (`kun-thom-nonsofic-wreath`, `gkp-wreath-permanence-theorem`),
+so the trust surface is visible to `cairn`.
 
 ## Inputs, verbatim
 
@@ -23,7 +26,8 @@ applications*, arXiv:2401.04945 (*Res. Math. Sci.* 2025), Theorem A = 3.6:
 > Let G, H be sofic groups, α: H ↷ X be a sofic action. Then the generalized
 > wreath product G ≀_α H is sofic.
 
-Kun–Thom, arXiv:2608.06222v1, Theorem A:
+Kun–Thom, arXiv:2608.06222 (v1; unchanged hypotheses in v3, whose Theorem A
+adds that the group double is nonsofic, see `kt-pair-group-double-is-nonsofic`), Theorem A:
 
 > Let Γ be an infranormal but not normal subgroup of G, and suppose that both
 > Γ and G have Kazhdan's property (T). Then (ℤ/2ℤ)≀_{G/Γ}G is not sofic.
