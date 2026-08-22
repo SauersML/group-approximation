@@ -96,6 +96,21 @@ nonidentity amalgam traces to zero.  Any proof must therefore control the
 matrix-coordinate bending/multiplicity geometry, not classify the limiting
 character.
 
+`iwahori-projection-overlap-is-a-spherical-coefficient` compresses that
+geometry to one scalar.  For `t_n=tr(p_n)` and a fixed second-vertex unitary
+`U_n`, transfer is exactly
+
+```text
+tr(p_n U_n p_n U_n^*) -> t_n.
+```
+
+Equivalently the normalized centered-projection spherical coefficient tends
+to one.  `canonical-trace-square-is-blind-to-iwahori-overlap` shows why the
+canonical character cannot force this: it controls the average trace over
+all `d_n^2` adjoint directions, while the obstruction is one selected odd
+direction.  The exact remaining scalar terminal is
+`canonical-iwahori-one-hecke-overlap-saturates`.
+
 ## Full-HNN conditioning does not bypass the action fork
 
 One might try to exploit the extra hypothesis actually present in the HNN
