@@ -42,6 +42,11 @@ noncohomologous packet classes on one authenticated reservoir, or cocycle rank
 growing beyond the model.  Two native Weyl/opposite-root charts do not supply
 the second option: `two-native-p3-weyl-charts-have-the-same-mackey-class`
 computes equal restricted classes, canceled by one twisted-regular gauge.
+Nor does a fixed three- or six-chart cycle repair it:
+`finite-native-p3-atlas-has-a-global-inverse-groupoid-gauge` constructs one
+inverse twisted-regular groupoid functor canceling all native transition
+loops exactly.  Only a capacity-growing or non-groupoid global incidence can
+revive the flux route.
 
 Assembly of the proof, every piece prime-generic or computed here:
 

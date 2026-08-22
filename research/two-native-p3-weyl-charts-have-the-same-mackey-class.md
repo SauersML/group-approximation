@@ -61,3 +61,10 @@ pair.  Therefore a surviving common-reservoir obstruction needs a
 non-Weyl-related packet class, a third/global loop not reducible to pairwise
 overlaps, or a separate capacity bound.  Merely taking two native parahoric
 charts does not supply it.
+
+The apparent finite higher-chart survivor is also closed by
+`finite-native-p3-atlas-has-a-global-inverse-groupoid-gauge`.  All native
+transition intertwiners form one projective functor on a finite groupoid;
+its inverse twisted-regular functor cancels pair, triple, and higher
+composition simultaneously.  A genuinely global obstruction must therefore
+escape every fixed finite native groupoid, not merely add a third chart.
