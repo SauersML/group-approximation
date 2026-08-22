@@ -55,3 +55,10 @@ possibilities are an obstruction whose projective rank grows with the depth
 window, an unbounded-history incompatibility, or an additive multi-path
 interference not described by a projective groupoid.
 
+There is no rescue from making the finite window or its cocycle rank grow.
+`regular-dyadic-windows-have-unlimited-conjugate-mackey-capacity` uses
+`lambda_Q tensor conjugate(lambda_Q) ~= |Q| lambda_Q` to place each
+conjugate absorber inside an amplified regular congruence block, preserving
+both canonical character and conductor.  The remaining issue is not
+multiplicity capacity but whether the required cross-depth arrows occupy
+one literal arithmetic carrier.
