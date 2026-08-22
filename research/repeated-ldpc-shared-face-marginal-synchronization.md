@@ -85,3 +85,14 @@ block dimension.  Thus neither a fixed finite packet nor any central mixture
 of bounded nonabelian blocks can witness failure.  A remaining countermodel
 must carry positive trace in irreducible dimensions tending to infinity;
 controlling that unbounded-type mass is still open.
+
+The scalar fixed sheet also admits an explicit coordinated repair, rather
+than only the bounded-type compactness argument.
+`globally-commuting-balanced-occurrences-have-linear-character-decoder`
+diagonalizes the entire abelian occurrence algebra once, takes cloud
+majorities on every common spectral atom, and applies the classical LTC
+decoder there.  It gives a linear same-Hilbert modulus, uniformly over
+arbitrary direct sums and nonatomic scalar mixtures.  Hence the fixed-sheet
+no-go diagnoses the locality of the return map: it does not leave a scalar
+or centrally mixed obstruction to synchronization.  The unresolved sector
+must fail to supply one common abelian spectral space.
