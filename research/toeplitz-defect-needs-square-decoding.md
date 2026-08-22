@@ -68,6 +68,16 @@ no square decoder            => the established coefficient/Steinberg
                                 identities admit the rectangular escape.  (TDT4)
 ```
 
+This escape survives the strongest obvious finite local authentication.
+`finite-weyl-root-moments-do-not-authenticate-toeplitz-square` tensors exact
+Weyl packets onto the typed source and target, realizes every finite pasted
+root-conjugacy diagram by rectangular block maps, and supplies canonical
+local moments by regular representations.  If one instead adds a literal
+untyped return, its unequal packet traces give a fixed HS floor already in
+the canonical regular witness.  Thus finite Weyl/root symmetries and their
+canonical moments either retain the rectangular escape or collapse
+completeness; they do not provide a finite-matrix-only square selector.
+
 This does not construct a counterrepresentation of the full Toeplitz group:
 doing so with the canonical root mark alive would solve the open endpoint in
 the opposite direction.  It proves that PCD has no shorter deduction from
