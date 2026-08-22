@@ -177,3 +177,12 @@ trace is required.
   the all-traces-non-CE property but can lose finite presentation.  Thus replacing
   `(SHA2)` by a general algebra-embedding theorem adds a new tracial-radical
   problem and gives no stronger conclusion.
+- **Finite presentation of the host can be postponed.**
+  `effective-corner-host-higman-promotion` combines finite-support
+  localization with the effective Higman theorem.  It is enough to build the
+  atlas by effective finite group-ring expressions in a recursively
+  presented group.  Their support subgroup is finitely generated,
+  recursively presented, and already nonhyperlinear, so it embeds in an
+  explicit finitely presented nonhyperlinear group.  This removes finite
+  presentation from the chord-construction burden, but does not remove the
+  chord: its finite support must still carry the obstruction.
