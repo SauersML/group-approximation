@@ -78,9 +78,10 @@ satisfy both pointwise statements and admit no usable diagonal.  The
 original microstate defect tending to zero cannot remove the fixed
 preconditioning error `alpha_j`.
 
-This bypass proves the qualitative flexible endpoint, not the sharper
-quadratic padding estimate `(FBR2)` in
-`bs14-flexible-cross-packet-boundary-reconciliation`.
+Under the compatibility hypotheses `(FLB6)`, this bypass would prove the
+qualitative flexible endpoint, not the sharper quadratic padding estimate
+`(FBR2)` in `bs14-flexible-cross-packet-boundary-reconciliation`.  Without
+`(FLB6)`, no endpoint follows from the pointwise fixed-level statements.
 
 Therefore the fixed-period strategy has isolated, but not removed, the
 uniformity problem.  It needs either a lower bound on the fixed-level basin
