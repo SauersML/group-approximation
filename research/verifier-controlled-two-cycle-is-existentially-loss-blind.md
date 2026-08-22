@@ -60,8 +60,32 @@ beta tau(L) <= C Def_relations^2                           (VTL6)
 
 for any `beta>0`.
 
+Canonical finite-profile constraints do not remove this completion.  On the
+negative `R`-sector, order the flag lines as `Z=-1,+1`.  For **any** unitary
+`A` on that multiplicity space one may replace the negative-sector block of
+`w` by
+
+```text
+w_-=[[0,A],[1,0]].                                      (VTL7)
+```
+
+It still conjugates `Z` to `-Z` and has zero source compression, but
+
+```text
+w_-^2=diag(A,A).                                        (VTL8)
+```
+
+Thus the return holonomy is arbitrary.  After amplifying the verifier
+representation, choose `A` to be a cyclic shift of order greater than any
+prescribed `N`.  Then its normalized traces vanish through power `N`, while
+all two-cycle relations and the losing zero compression remain exact.  The
+cell can therefore mimic every fixed wandering-moment window rather than
+forcing a positive-density Dirichlet return.
+
 The exact remaining gate is therefore not `k=1` localization.  It is a
 **noncompletable payment cell**: an ordinary-word relation whose optimized
 finite-dimensional defect is bounded below by the losing mass, while the
 common perfect infinite verifier still has one exact marked completion.
-
+In particular, canonical moment separation of the prospective wandering word
+cannot merely be appended to the controlled two-cycle: its free holonomy
+absorbs every fixed such test.

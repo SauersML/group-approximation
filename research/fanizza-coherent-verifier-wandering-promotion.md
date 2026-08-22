@@ -229,3 +229,18 @@ the relative verifier block must be inferred only on a model-dependent
 positive carrier (or by a genuinely finite-dimensional inequality).  If it
 is imposed by the literal binary SELECT conjugacy relation, the proposed
 wandering word reduces algebraically before any HS estimate is used.
+
+## Verifier-controlled two-cycle audit
+
+Feeding the already aggregated verifier reflection directly into the marked
+two-cycle does reduce the whole losing projection to one payload, but it does
+not supply the wandering return.  The stronger form of
+`verifier-controlled-two-cycle-is-existentially-loss-blind` shows that the
+two-cycle return holonomy is an arbitrary multiplicity unitary `A`.  Taking
+`A` to be a sufficiently long cyclic shift keeps the zero compression exact
+and makes every prescribed finite window of return moments vanish.  Hence
+neither coherent clock aggregation nor canonical finite-profile tests turn
+the two-cycle into `(FCW1)` or its unnamed fixed-carrier weakening.  A viable
+promotion must couple the verifier loss to the holonomy itself with a
+dimension-independent matrix-only inequality; a relation which only exchanges
+the two flag atoms leaves precisely that variable unconstrained.

@@ -38,3 +38,16 @@ letters by `(VTL4)` then makes the new-cell defects zero relative to `R`, and
 the fixed word substitutions change them by only the rounding error.  This
 also rules out robust payment by the same cell.
 
+For the finite-profile strengthening, use flag order `Z=-1,+1`.  The block
+in `(VTL7)` is unitary and a direct multiplication gives
+
+```text
+w_- Z w_-^*=-Z,                 w_-^2=diag(A,A).
+```
+
+Its upper-left compression is zero.  On the positive `R`-sector take `w=1`,
+so the direct sum still satisfies `(VTL2)`.  If `A` is the regular cyclic
+shift of order `n>N`, then `tr(A^k)=0` for `1<=|k|<=N`.  Tensor amplification
+allows this choice without changing normalized verifier energies or losing
+mass.  Therefore no fixed finite list of return moments upgrades the
+two-cycle relations to a localized return estimate.
