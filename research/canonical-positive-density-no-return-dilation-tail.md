@@ -52,3 +52,9 @@ single head whose normalized canonical mass does not fall as `N` grows.
   one.  The required no-return law must therefore be a finite-matrix-only
   consequence of a self-similar or multiplicity-rigid relation, not a literal
   orthogonal-shift presentation.
+- Pre-enumerating all finite orthogonal tails does not evade this obstruction.
+  By `existential-fock-library-has-zero-carrier-or-regular-firewall`, a freely
+  chosen carrier has the zero existential extension, one authenticated common
+  carrier contradicts regular trace, and separate depth carriers have
+  vanishing canonical mass unless an additional tight checksum returns them
+  to `q`.
