@@ -57,3 +57,10 @@ hole `no-exact-quasi-regular-leak` for the SL3 pair (or a stronger relative
 embeddability/action-soficity obstruction).  It does not reduce to ordinary
 property (T), and it does not secretly require full HS stability of `A`.
 
+There is nevertheless one dimension-free consequence.
+`sl3-double-quasiregular-tensor-is-a-uniform-outlier` proves that the tensor
+assignment `rho_n` cannot approach ANY exact finite-dimensional
+representation.  Indeed such a correction, followed by the Kazhdan
+projection and finite-dimensional co-density, would make `Omega_n` ambient
+invariant and contradict `(TQR1)` at `h notin C`.  Thus the tensor witness
+localizes the enemy but supplies no corrected anchor.

@@ -41,3 +41,29 @@ must therefore be native to normalized HS, or supply a global
 replica-homogeneous correction inequality rather than invoke qualitative
 Frobenius stability.
 
+## Exact simultaneous-outlier boundary
+
+The canonical character supplies the diagonal tensor assignment
+
+```text
+rho_n(a)=pi_(n,0)(a) tensor conjugate(pi_(n,1)(a))
+```
+
+with maximally-entangled coefficient converging exactly to `1_C(a)`.
+`sl3-double-quasiregular-tensor-is-a-uniform-outlier` proves that this tensor
+assignment is itself uniformly far from every exact finite-dimensional
+representation of `A`: correcting it would turn the quasi-regular base
+vector into an `A`-fixed vector by property (T) and finite-dimensional
+co-density.  Thus tensoring the two bad vertices does not manufacture the
+missing correctable object.  A positive proof of `(CDV1)` must recover one
+FACTOR from matrix-coordinate information not visible in the pointed tensor
+representation alone.
+
+There is also an exact conditional countermodel implication.
+`sofic-sl3-vertex-action-produces-two-outlier-double-models` proves that if
+the action of `A` on its `2`-adic building vertices `A/C` is sofic, its
+canonical permutation microstates give double models satisfying `(SOM1)`:
+BOTH vertices stay uniformly far from exact representations.  Hence the
+present claim would prove that named action nonsofic.  Determining that
+action's soficity is not auxiliary bookkeeping; it decides whether the
+minimal correction terminal is true.
