@@ -58,6 +58,15 @@ trace is required.
 - Ordinary free products or Bass--Serre amalgams preserve independent context
   choices and therefore do not force `(BPA3)`. A successful construction
   needs nontrivial finite holonomy among the context partitions.
+- Allowing an arbitrary finite linear combination instead of one Hecke
+  literal does not create a new individual packet capacity.
+  `bass-serre-algebraic-projections-are-stably-vertex-induced` proves that
+  every matrix projection over the group algebra of a finite graph of finite
+  groups is stably Murray--von Neumann equivalent to a finite direct sum of
+  vertex-group projections.  This does not rule out the atlas: individual
+  stable equivalences need not be simultaneously compatible.  It localizes
+  the only possible escape to relative placement/holonomy of the induced
+  packets rather than the projective class of any one context atom.
 - **Literal local contexts are completely solved, but finite Bass--Serre
   compatibility is impossible.**
   `common-corner-literal-contexts-stop-at-bass-serre` tensors all selected
