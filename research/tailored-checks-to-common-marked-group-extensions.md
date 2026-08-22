@@ -91,3 +91,13 @@ representation has the same `q`, admits the controlled words in `(TCG1)`,
 and turns `qWq=0` into an ordinary extension condition without constraining
 the unused complement.  This is the exact controlled-`U`/corner-equality
 gate; LCU itself does not solve it.
+
+A tempting repair is to allow one common unknown left orientation and seek
+one word with blocks `Aw_j`: the prepared compression would be
+`A(P/M)`, so its zero set and HS norm are correct.  However
+`transitive-control-normalizer-forces-projectively-equal-payloads` proves
+that covariance of a finite irreducible control packet forces all `w_j` to
+be projectively equal.  Enlarging the normalized packet by the payload
+ratios admits the intended wreath-product module but loses the
+representation-wide shared-`A` conclusion.  Hence this repair returns to
+the same selected induced-type gate rather than closing it.
