@@ -36,6 +36,14 @@ only on `N`.
   non-CE factor.  The native global BCS generators still force affine
   context support.  No current MIP-star/BCS construction supplies the
   missing diffuse finite-index projective core.
+- The primary-source audit
+  `primary-nonce-sources-miss-finite-index-core` finds no hidden instance of
+  that weaker target.  MIP-star and BCS give correlation/star-algebra data;
+  the IRS construction gives only inclusions into relation factors; and the
+  CDI endpoint is a crossed product by an infinite group with an
+  operator-valued cocycle and infinite-index native cores.  Any positive
+  result therefore needs a new subfactor extraction theorem, not a rereading
+  of the published decompositions.
 - Merely use computability of the BCS character and centralize its scalar GNS
   kernel.  `computable-projective-kernel-has-reversed-enumerability` proves
   that computable coefficients enumerate the **complement** of that kernel;
