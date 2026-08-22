@@ -32,6 +32,20 @@ finite-support PVM.  Then
 
 ## Attempts
 
+- **Use high transitivity to transport finitely many commutator rows.**
+  `steinberg-actor-preserves-right-ratio-orbitals` gives an exact obstruction.
+  The actor action is right-`AR`-linear, so the stabilizer of
+  `v=(A,0,0,0,0)` fixes the whole right line `v(AR)` pointwise.  Every actor
+  pair orbital therefore meets `{(v,vb):b in AR}` at most once (at most
+  twice after forgetting order).  There are infinitely many such orbitals.
+  For any finite family of prototype commutator rows, the graph product on
+  the active vectors with precisely their actor-translated edges gives an
+  exact semidirect-product model in which an unchecked pair remains
+  noncommuting.  Thus neither rank-five elementary transitivity nor property
+  `(T)` supplies the multiplication decoder.  The graph-product escape omits
+  the additive and mixed Steinberg triangles, so those moving nonlinear
+  loops are now the only possible source of uniform exposure.
+
 - **Close one finite root Fourier window.**  It turns the coefficient shears
   into permutations of Plancherel atoms and erases the expanding boundary.
 - **Increase the window depth.**  Word/area constants grow with the remote
