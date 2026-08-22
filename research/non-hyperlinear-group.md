@@ -246,3 +246,17 @@ subgroup-side version only confines enemies to the `Lambda`-exact face
 (`kazhdan-subgroup-weak-ucp-exactifies-microstates`), and Kac--Moody
 building completions lack Howe--Moore, so the arithmetic Hecke far-defect
 lane does not transfer to those pairs.
+
+Later the same day the lifting square closed into a lattice of routes.
+`twin-lattices-exclude-known-llp-fences` proves that twin building
+lattices contain no known LLP-failure group (flat-torus rigidity for the
+cohomological fences, property A for the expander fences), confining the
+live candidacy to compact hyperbolic Kac--Moody types with no published
+mechanism pointing either way; and `non-hyperlinear-from-e3-fibre-llp`
+routes the goal through the Deligne triple cover, whose full algebra is
+the direct sum of three mod-three fibres
+(`sp4-mod3-twisted-fibres-have-llp` is the twisted-fibre hole, the
+sharpest live instance of Fournier-Facio--Willett Question 1.12), so the
+lifting lane and the Deligne Maslov lane
+(`deligne-sector-gap-is-exactly-nonhyperlinearity`) now certify each
+other's endpoint.
