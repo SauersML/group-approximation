@@ -41,23 +41,21 @@ def combine(left, right):
     return S.P.close_tietze(state_relations(left) + state_relations(right), IDENTITY)
 
 
-EMPTY = ((), IDENTITY)
-
-
 @lru_cache(maxsize=None)
 def relation_state(relation):
     return S.P.close_tietze((relation,), IDENTITY)
 
 
 @lru_cache(maxsize=None)
-def maximal_states(word):
+def maximal_states_relative(word, base):
+    """All forest states, canonicalized modulo a fixed carrier state."""
     colors = tuple(copy for copy, _ in word)
     coefficients = tuple(coefficient for _, coefficient in word)
 
     @lru_cache(maxsize=None)
     def visit(left, right, forbidden):
         if left >= right:
-            return (EMPTY,)
+            return (base,)
         color = colors[left]
         if forbidden & (1 << color):
             return ()
@@ -69,7 +67,7 @@ def maximal_states(word):
                 block = (left,) + tail
                 block_word = ALG.reduce_word(sum(
                     (coefficients[index] for index in block), ()))
-                states = {relation_state(block_word)}
+                states = {combine(base, relation_state(block_word))}
                 previous, valid = left, True
                 for bound in tail:
                     choices = visit(previous + 1, bound, 1 << color)
@@ -191,14 +189,13 @@ def main():
                 augmented = normalize_fp(rotation + ((target, (-Q,)),))
                 augmented_words.add(augmented)
                 started = monotonic()
-                boundary_choices = maximal_states(augmented)
+                boundary_choices = maximal_states_relative(augmented, base)
                 if args.trace_words:
                     print(f"TRACE carrier={index} rotation={rotation_index} "
                           f"target={target} syllables={len(augmented)} "
                           f"forest_states={len(boundary_choices)} "
                           f"seconds={monotonic() - started:.3f}", flush=True)
-                for boundary in boundary_choices:
-                    final = combine(base, boundary)
+                for final in boundary_choices:
                     results.add((target, final[0], final[1][-1], final[1][:-1]))
         if index % 25 == 0 or args.carrier_index is not None:
             print(f"carrier={index} words={len(augmented_words)} states={len(results)}",
