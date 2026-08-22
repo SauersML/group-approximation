@@ -76,13 +76,18 @@ common potential `x` in `(UIR)`.
   (a) The kernel statement `H^1(SL_2(Z[1/2]), Ad rho) = 0` is load-bearing
   (a nonzero class restricted to the two vertices would have zero defect
   without being a common coboundary, making `(UIR)` false), and it is TRUE
-  for congruence `rho`, but NOT "by property (T;FD)": `SL_2(Z[1/2])` lacks
-  (T).  Correct derivation: `Ad rho` factors through a finite congruence
-  quotient `Q = Gamma / N`, `H^1(Q, M) = 0` in characteristic zero, so
-  `H^1(Gamma, M) = Hom(N^ab (x) C, M)^Q = 0` because every finite-index
-  subgroup of `SL_2(Z[1/2])` has finite abelianization (Serre's congruence
-  subgroup property for `SL_2` of rings with infinitely many units, as
-  cited in `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`).  (b) The
+  for congruence `rho`, and "(T;FD)" is a valid but compressed reason:
+  `SL_2(Z[1/2])` lacks (T) but HAS (T;FD) (Lubotzky--Zimmer: its
+  finite-dimensional unitary representations have finite congruence image
+  by superrigidity and Serre's congruence subgroup property, and Selberg's
+  `(tau)` isolates the trivial one), and (T;FD) forces every finite-index
+  subgroup `N` to have finite abelianization (an infinite abelianization
+  would induce finite-dimensional representations with almost-invariant
+  but no invariant vectors).  Hence, with `Ad rho` factoring through a
+  finite congruence quotient `Q = Gamma / N`, `H^1(Q, M) = 0` in
+  characteristic zero and `H^1(Gamma, M) = Hom(N^ab (x) C, M)^Q = 0`.
+  What must NOT be read into "(T;FD)" is the Delorme--Guichardet
+  mechanism of genuine (T); the vanishing is the CSP/FAb chain.  (b) The
   cuspidal constant `3 - 2 sqrt 2` rests on `|| T_2 || = max |eigenvalue|`,
   i.e. on NORMALITY of `T_2` in the cellular Hodge inner product; the
   cellular node imports commutativity and `*`-closedness of the level-`Gamma(m)`

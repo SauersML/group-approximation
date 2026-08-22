@@ -377,8 +377,9 @@ OPEN again: the Newton step used a dimension-free second-derivative bound in
 normalized HS, which does not exist
 (`normalized-hs-taylor-remainder-is-not-dimension-free`); only an
 operator-norm-proximity version holds.  The first-order theorem
-`iwahori-uniform-infinitesimal-rigidity` stands, with its kernel statement
-rewired from "(T;FD)" (which `SL_2(Z[1/2])` lacks) to Serre's CSP/FAb.  So
+`iwahori-uniform-infinitesimal-rigidity` stands, with its kernel statement's
+"(T;FD)" justification unpacked (`SL_2(Z[1/2])` has (T;FD) though not (T);
+CSP + Selberg give (T;FD), (T;FD) gives FAb, FAb gives `H^1 = 0`).  So
 CORE A currently has NEITHER sector closed -- near (HS metric) nor far.
 (3) *A fifth core.*  The type (i)/(ii) partition and the capstone
 `CORE A or B or C or D` omit the Pestov lane: `hyperlinear-implies-sofic`
