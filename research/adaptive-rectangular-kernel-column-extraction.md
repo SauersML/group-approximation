@@ -25,6 +25,13 @@ for some `alpha>0`.  Then there is a contraction `X in M_d(C)` such that
 ||(V-1)X||_(2,d)<=sqrt(2/alpha) epsilon.               (ARK2)
 ```
 
+There is also an orthogonal projection `Q in M_d(C)` with
+
+```text
+tr_d(Q)>=alpha/(4-alpha)>=alpha/4,
+||(V-1)Q||_(2,d)<=2sqrt(2) epsilon/alpha.              (ARK2')
+```
+
 The constants do not depend on `p`, `q`, or `d`.  In particular, if
 `P=1_(ker A)` for an arbitrary model-dependent map
 
@@ -75,6 +82,25 @@ Hence some `i in G` has `m_i>=alpha/2`.  Take
 ```
 
 which proves `(ARK2)`.
+
+For the projection form, take
+`Q=1_[sqrt(alpha)/2,1](X)`.  Since `0<=X<=1` and
+`tr(X^2)>=alpha/2`,
+
+```text
+alpha/2<=tr(X^2)
+ <=alpha/4+(1-alpha/4)tr(Q),
+```
+
+which gives the mass bound in `(ARK2')`.  Moreover
+`X^2>=(alpha/4)Q`.  Positivity after applying `D=V-1` gives
+
+```text
+||DX||_2^2=tr(DX^2D^*)
+ >=(alpha/4)tr(DQD^*)=(alpha/4)||DQ||_2^2.
+```
+
+Combining this with `(ARK2)` proves the return estimate in `(ARK2')`.
 
 ## Sharp dilution calibration
 

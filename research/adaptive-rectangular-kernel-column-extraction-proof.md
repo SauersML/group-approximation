@@ -15,4 +15,6 @@ inequality discards fewer than an `alpha/2` fraction, so the surviving blocks
 still have average mass at least `alpha/2`.  The square root of one surviving
 diagonal block is the required original-model contraction.  Cyclic shifts
 with their one-dimensional fixed space give the vanishing-density
-calibration.
+calibration.  Thresholding that positive contraction at `sqrt(alpha)/2`
+retains trace at least `alpha/(4-alpha)`; the operator inequality
+`X^2>=(alpha/4)Q` transfers the return estimate to this actual projection.
