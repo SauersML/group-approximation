@@ -94,3 +94,4 @@
 32566525966	2026-08-22T10:02:15Z	GroupApproximation/Criterion/TensorInvariantRigidity.lean	manuscriptTensorInvariantRigidity
 32568303624	2026-08-22T10:42:49Z	GroupApproximation/Endpoint/MainResults.lean	binaryLeavitt_finiteField_profile
 32569111524	2026-08-22T11:00:55Z	GroupApproximation/Endpoint/Public.lean	for
+32570739041	2026-08-22T11:36:59Z	GroupApproximation/Endpoint/QuotientNonclosure.lean	exists_residuallyFinite_group_with_nonsofic_quotient
