@@ -93,3 +93,15 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   the Cartan only in the scalars.  Thus this entire partial-isometry-support
   route is fenced; the open hole now genuinely requires non-Cartan group-
   algebra elements or a finite projective central sector.
+- **The bare noncentral involution Hecke corner has no literal projections.**
+  `involution-hecke-corner-has-no-proper-literal-projections` fixes an
+  arbitrary group involution `h`, puts `q=(1+h)/2`, and proves from the
+  canonical identity coefficient that `qgq`, for a literal group element
+  `g`, can be a projection only when it is `0` or `q`.  Thus the D8/Halmos
+  matrix dilation does not live in the full regular Hecke corner: it lives in
+  a selected irreducible D8 sector.  A shared bare `q` would scalarize every
+  BCS variable and yield a classical assignment, independently of any
+  amalgam or HNN relations.  Recovering the local Halmos block canonically
+  requires an additional finite-type central projection `z_rho`; that moves
+  the construction back to the signed-Hecke atlas and its unresolved
+  block-escaping cycle holonomy.
