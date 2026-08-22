@@ -112,3 +112,4 @@
 32595280425	2026-08-22T19:58:38Z	GroupApproximation/Analysis/PrintedFiniteDimensionalUses.lean	manuscriptFiniteDimensionalityNotReplaceable
 32597423697	2026-08-22T20:42:14Z	GroupApproximation/Analysis/PrintedFiniteException.lean	manuscriptFiniteExceptionPatch
 32598355237	2026-08-22T21:01:30Z	GroupApproximation/Analysis/ProperIsometryStrictOrder.lean	manuscriptProperIsometryStrictOrder
+32600114367	2026-08-22T21:37:46Z	GroupApproximation/Analysis/StrictCompressionFromPrinted.lean	manuscriptMaximalCStarRemarkFromPrintedHypotheses
