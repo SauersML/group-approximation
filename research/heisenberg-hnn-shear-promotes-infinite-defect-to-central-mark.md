@@ -43,4 +43,4 @@ its survival and torsion-freeness are automatic consequences of the HNN
 normal form rather than a lamp-orbit model.
 
 The full proof is given by
-`heisenberg-hnn-shear-promotes-infinite-defect-to-central-mark-proof`.
+`heisenberg-hnn-shear-central-mark-proof`.

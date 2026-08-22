@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: heisenberg-hnn-shear-promotes-infinite-defect-to-central-mark-proof
+id: heisenberg-hnn-shear-central-mark-proof
 kind: route
 title: Embed the defect plane and apply the HNN torsion theorem
 target: heisenberg-hnn-shear-promotes-infinite-defect-to-central-mark
