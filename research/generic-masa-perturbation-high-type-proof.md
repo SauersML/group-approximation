@@ -40,6 +40,13 @@ value by at most `||Q_(i_0)-D_(i_0)||_2`; a commutator changes by at most
 twice this amount.  All presentation widths are fixed, so choosing
 `U_n->I` proves `(HTD1)`.
 
+Likewise, every fixed-face residual or pinching disturbance used in the
+balanced presentation is a fixed Lipschitz expression in its bounded tuple.
+It vanishes at `(D_i)` and is therefore
+`O(||Q_(i_0)-D_(i_0)||_2)` after perturbation.  Its squared energy is
+`O(||U_n-I||^2)`, and bounded face incidence preserves this estimate after
+averaging.
+
 Finally, `M_(D+1)` does not satisfy the standard identity `s_(2D)`.
 Choose one violating contraction tuple there and tensor it with identity
 matrices.  Both operator norms and normalized-HS norm of the polynomial are

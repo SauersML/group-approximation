@@ -46,6 +46,13 @@ identity approximately.  For every fixed `D`, along dimensions divisible
 by `D+1`, `M_(d_n)` contains tensor amplifications of contractions on which
 the standard polynomial `s_(2D)` has a fixed positive normalized-HS norm.
 
+The same example rules out a high-type charge obtained from a bounded sum of
+finite-face pinching energies.  Every local tuple is `O(||U_n-I||)` from its
+exact diagonal face, so its pinching disturbance is `O(||U_n-I||^2)` with a
+constant depending only on the fixed face width, while the high-type trace
+remains one.  This does not refute a pinching spectral gap controlling
+metric distance to the exact variety; that distance really does vanish.
+
 This does not refute synchronization or basin capture: the tuple is as close
 to the original exact diagonal code tuple as the perturbation size.  It
 proves that high-type mass is the wrong outlier statistic.  Any successful
