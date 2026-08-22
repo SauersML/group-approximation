@@ -70,5 +70,61 @@ image = evaluate(residual, test)
 assert image != test
 assert any(coordinate == 19 for coordinate, _ in image)
 
-print("PASS: t=1 is not a solution and both copy-killing retractions fail")
+COEFFICIENTS = {"a": A, "q": C, "p": P, "e": E}
+STAR = {"a": "c", "b": "e", "c": "a", "e": "b"}
 
+
+def mapped_coefficient(name, copy, model, shift):
+    factors = COEFFICIENTS[name]
+    if copy == 0:
+        return factors
+    result = []
+    for factor in factors:
+        if factor[0] == "p":
+            result.append(factor)  # (p*)^-1=p, and p commutes with its powers.
+            continue
+        _, letter, i, j = factor
+        if model == "inner":
+            result.append(("r", letter, (i + shift) % N, (j + shift) % N))
+        else:
+            result.append(("r", STAR[letter], (j + shift) % N,
+                           (i + shift) % N))
+    return tuple(result)
+
+
+R0 = (("g", "a", 0), ("z", 1), ("g", "q", 0), ("g", "p", 1),
+      ("z", 1), ("g", "e", 0), ("z", -1))
+R1 = (("g", "a", 1), ("z", 1), ("g", "q", 1), ("z", 1),
+      ("g", "p", 0), ("g", "e", 1), ("z", -1))
+
+
+def expand_relation(relation, model, shift, z_power):
+    result = []
+    for factor in relation:
+        if factor[0] == "z":
+            result.append(("p", factor[1] * z_power))
+        else:
+            _, name, copy = factor
+            result.extend(mapped_coefficient(name, copy, model, shift))
+    return tuple(result)
+
+
+tests = [
+    {(coordinate, normalize(prefix, tail))}
+    for coordinate in range(N)
+    for tail in "01"
+    for prefix in ("", "01", "10", "001", "110")
+]
+for model in ("inner", "prefix_dual"):
+    solutions = []
+    for shift in range(N):
+        for z_power in range(N):
+            r0 = expand_relation(R0, model, shift, z_power)
+            r1 = expand_relation(R1, model, shift, z_power)
+            if all(evaluate(r0, test) == test and evaluate(r1, test) == test
+                   for test in tests):
+                solutions.append((shift, z_power))
+    assert not solutions, (model, solutions)
+
+print("PASS: t=1 and copy-killing retractions fail")
+print("PASS: no cycle-inner or prefix-dual diagonal retraction with z=p^l")

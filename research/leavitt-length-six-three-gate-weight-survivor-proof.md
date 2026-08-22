@@ -98,7 +98,12 @@ F=a p^(-1) q p^(-1) e p.                           (L6G.5)
 
 The artifact evaluates `(L6G.5)` exactly and finds a basis vector whose
 coordinate moves from `1` to `20`.  Therefore neither one-copy-killing map is
-a retraction.  This does not decide injectivity of the paired quotient; it
-places `(L6G.4)` beyond the two screens which completely settled the previous
-candidate.
+a retraction.
 
+The artifact also checks the two natural diagonal families.  It identifies
+`G_1` with `G_0` either by `Ad(p^j)`, or by `Ad(p^j)` after the prefix duality
+`g |-> (g^*)^(-1)`, and tests `z=p^l`, for all `j,l mod 20`.  Exact
+eventually-constant infinite-word witnesses reject both relators jointly in
+every one of the 800 cases.  This finite check does not decide injectivity of
+the paired quotient; it places `(L6G.4)` beyond the same elementary diagonal
+screen used on the preceding candidate.

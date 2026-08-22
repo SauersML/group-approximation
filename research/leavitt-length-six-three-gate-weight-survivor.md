@@ -34,7 +34,8 @@ weight argument which proves injectivity for the previous candidate cannot
 fence `(L6G.1)`.
 
 The specialization `t=1` is not a solution, and neither retraction obtained
-by killing one coefficient copy exists.  Whether the paired relators have a
+by killing one coefficient copy exists.  Nor is there a diagonal retraction
+which identifies the copies by a coordinate-cycle inner automorphism or the
+prefix duality, with `z` a power of `p`.  Whether the paired relators have a
 coefficient kernel remains open; this claim is an explicit survivor of the
 length-six weight and elementary-retraction screens, not a KL violation.
-
