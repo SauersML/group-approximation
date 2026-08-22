@@ -64,6 +64,16 @@ for the canonical-profile reverse-Kleene route.
 - **Finite Pauli rank is not that comparison.**
   `depthwise-pauli-packets-have-canonical-regular-escape` gives an exact
   canonical left-regular countermodel at every fixed packet rank.
+- **Canonical moments linearize one depth but cannot close all depths.**
+  `canonical-moments-linearize-fixed-depth-fanizza-return` expands
+  `P_m^*P_m-A_(m,t)` in the group basis and pays every nonidentity term with
+  the finite trace window.  However the tempting compiler which proves the
+  corresponding regular-trace inequality for every `t` is refuted by
+  `computable-regular-trace-fanizza-return-would-decide-halting`: it would
+  make the mark literally zero in the NONHALT group algebra, an r.e.
+  condition, while preserving it on HALT instances.  Thus cyclic/Julia/
+  wandering constructions are useful only if their return is genuinely
+  finite-matrix and fails in the regular representation.
 - **A natural `2 by 2` Julia/Schur cell is not that comparison either.**
   `two-by-two-julia-schur-cell-cannot-return-the-fanizza-mark` shows that
   Julia and ordinary Schur calculus are regular-tracially functorial.  The
