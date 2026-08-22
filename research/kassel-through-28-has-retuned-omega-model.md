@@ -26,3 +26,7 @@ the marked word.
 The next sequential relation (2.9) has defect exactly one on this packet;
 whether it can be absorbed by another retuning remains separate.
 
+`kassel-29-defeats-scalar-and-single-clock-retunings` shows that neither
+tensoring/conjugating this packet nor freeing the middle root by one cyclic
+Weyl clock can absorb (2.9).  A noncyclic middle-root packet or non-scalar
+`x_(-beta)` remains possible.

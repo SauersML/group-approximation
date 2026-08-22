@@ -98,3 +98,11 @@ Nevertheless it closes the Maslov sector by
   gauges `nu^(-1)ZX` back to `X`.  All of (2.4)--(2.8) and (2.12) then hold
   exactly with `w_beta^4=omega I_24`.  The next face charging this packet is
   (2.9), whose defect is one; universality is again unproved.
+- **The first (2.9) retunings are fenced, but not universally.**
+  `kassel-29-defeats-scalar-and-single-clock-retunings` identifies the
+  omitted-relator anomaly `Delta_9` with
+  `w_beta^4=Delta_9^(-2)` throughout the tensor category of the retuned
+  packet.  Keeping the scalar negative long root kills the mark immediately,
+  while a single cyclic Weyl middle-root clock forces `3r=-1` modulo a
+  multiple of three.  Noncyclic packets and non-scalar negative-long-root
+  models remain outside this fence.
