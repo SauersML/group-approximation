@@ -4,6 +4,8 @@ id: leavitt-d3-length11-five-five-holonomy-template-proof
 kind: route
 title: Cancel four pivot copies locally and retain the four holonomy arcs
 target: leavitt-d3-length11-five-five-holonomy-template
+artifacts:
+  - research/artifacts/leavitt-d3-length11-repeated-slot-census-2026-08-22.md
 requires:
   - leavitt-minimal-cycle-is-hnn-holonomy
   - leavitt-d3-length9-compound-holonomy-is-absent
@@ -69,3 +71,8 @@ remaining realization problem is narrower: assign eleven actual compound
 coefficient slots so that the ten corner equalities `(F52)` hold in the free
 product of the three Leavitt coefficient copies.  No packet enumeration is
 part of this theorem.
+
+The relaxed repeated-slot census in the attached artifact excludes
+11,943,936 assignments over the twelve-element short Leavitt library,
+including both identity-source branches.  It is recorded only as a finite
+fence: arbitrary long coefficient units remain outside that library.
