@@ -74,3 +74,11 @@ No current Iwahori or character-rigidity theorem proves this.  If supplied,
 `(TNB5)` corrects the low part and the sublinear high carrier can be handled
 flexibly.  Without it, active/passive spectral thresholding is a ledger, not
 a reverse construction.
+
+The tempting order-three spectral shortcut is now closed precisely by
+`bs14-cubic-rounding-leaves-relative-core-basin`: writing
+`A=XS^2`, `B=XRS`, each cubic rounds in operator norm with constant `1/2`,
+but the independently rounded pair no longer has relative product
+`S^(-2)RS` and need not recover one common dihedral involution.  Hence the
+coordinate-basin hypothesis is relative BS-core stability, not ordinary
+torsion spectral stability.

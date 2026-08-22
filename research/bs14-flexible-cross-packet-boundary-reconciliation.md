@@ -324,6 +324,17 @@ compressed Weil packets.
   global operator-norm coordinate-basin result; no tangent sequence defeats
   it, because the exact-point derivative gap is already uniform.
 
+- **Rounding the two cubic spectra leaves the same relative basin.**
+  `bs14-cubic-rounding-leaves-relative-core-basin` sets
+  `A=XS^2`, `B=XRS`, and `C=S^(-2)RS`, so `B=AC`.  Each almost
+  order-three unitary rounds in operator norm to an exact one with constant
+  `1/2`, and the rounded relative product stays within the cubic defect of
+  `C`.  But independent rounding neither preserves `B=AC` nor makes
+  `A S^(-2)` a common involution inverting `R`.  Thus there is no standalone
+  cubic Bott obstruction, but also no compactness proof from the three
+  spectral labels: the missing theorem is relative operator-norm basin
+  entry uniformly over the exact periodic BS cores.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
