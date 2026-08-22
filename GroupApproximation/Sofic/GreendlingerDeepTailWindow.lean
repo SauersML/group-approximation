@@ -156,12 +156,20 @@ letters gone from the front — the incoming block — and `k` from the back —
 landing factor's own block — still carries an arc, wherever the surviving window
 sits.
 
-This is the form the drop-shaped invariant wants: no offset appears, so nothing
-here is denominated in the head rotation's units and no ratio between the two
-rotations is needed.  The two hypotheses are the only content, and each is a
-piece bound: the front one is
+No offset appears, so nothing here is denominated in the head rotation's units
+and no ratio between the two rotations is needed.  The two hypotheses are the
+only content, and each is a piece bound: the front one is
 `GreendlingerDeepOverrunCount.six_mul_intrusion_lt_of_forward`, the back one is
-the landing factor's own overlap bound. -/
+the landing factor's own overlap bound.
+
+**The two are not equally available.**  The back bound `6k < |t₃|` unfolds to
+`6|E₃| < |t₃|` for the landing factor's own eaten stretch, which says that
+factor is not itself deep — not a theorem, and the exact negation of the deep
+regime one level down.  So this producer discharges the arc at a **shallow**
+landing factor.  Where the landing factor is deep, the arc has to come from
+further down, which is what `GreendlingerDeepInvariant`'s recursive descent
+arranges; there only the front bound is read.  Use this where the back bound is
+in hand, and do not build a deep branch on it. -/
 theorem greendlingerAt_of_two_piece_window {R : Set (List (α × Bool))}
     {t₃ w A C : List (α × Bool)} {i k n : ℕ}
     (ht₃ : t₃ ∈ symmetrization R)

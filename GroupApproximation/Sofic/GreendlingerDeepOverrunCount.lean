@@ -295,12 +295,28 @@ theorem eq_rotate_invRev_of_invRev_eq_rotate {t₃ t₄ : List (α × Bool)} {k 
 /-- **The landing factor's own block eats only a piece of its rotation**, in the
 orientation where its conjugator overhangs the next factor's effective one.
 
-This is the second of the two bounds the window needs.  It is the same
-piece-or-coincidence argument as the head's, read one junction down with the
-landing factor in the head's place: `GreendlingerDeepestMatch.six_mul_intrusion_lt`
-turns the intrusion into the bound once the two relators are distinct, and
+It is the same piece-or-coincidence argument as the head's, read one junction
+down with the landing factor in the head's place:
+`GreendlingerDeepestMatch.six_mul_intrusion_lt` turns the intrusion into the
+bound once the two relators are distinct, and
 `GreendlingerCoincidence.invRev_ne_rotate_of_minimal` supplies distinctness for
-an arbitrary block `e₁` of factors in between. -/
+an arbitrary block `e₁` of factors in between.
+
+**Scope, stated because the hypothesis hides it.**  With
+`palindrome c₃ t₃ = P₃ ++ M₃` the back loss is `|M₃| − |c₃|`, so `E₃` is the
+landing factor's *own* eaten stretch and `6|E₃| < |t₃|` says exactly that the
+landing factor is not itself deep — the negation, at that factor, of
+`five_mul_lt_six_mul_eaten`.  That is not a theorem, and this lemma does not
+claim it: what it assumes is `hintr`, that the stretch lands in the next
+factor's relator territory, which is precisely what fails when the landing
+factor's own block overruns.  So this closes the back side at a **shallow**
+landing factor and says nothing at a deep one.
+
+A route that needs the back bound unconditionally is therefore mis-shaped.  The
+one that does not is `GreendlingerDeepInvariant`'s: it recurses inside the
+descent, so a deep landing factor is handed to its own stage and the rotation
+eaten from behind is simply not the one that pays.  Only the front bound,
+`six_mul_intrusion_lt_of_forward`, is load-bearing there. -/
 theorem six_mul_back_lt_of_backward [DecidableEq α]
     {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
     {c₃ t₃ c₄ t₄ dw q E₃ : List (α × Bool)}
@@ -324,7 +340,9 @@ that lemma refutes `t₄ = (invRev t₃).rotate |y|`, and `hindex` is the geomet
 identification `|y| = |t₄| − k` between them.
 
 `hindex` is the one field a caller must supply from the cascade's own
-bookkeeping; everything else is the same data the backward version takes. -/
+bookkeeping; everything else is the same data the backward version takes, and
+the scope note there applies verbatim: `hintr` fails at a deep landing factor,
+so this too closes the back side only at a shallow one. -/
 theorem six_mul_back_lt_of_forward [DecidableEq α]
     {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
     {c₃ t₃ c₄ t₄ dw y E₃ : List (α × Bool)} {k : ℕ}
@@ -396,6 +414,56 @@ theorem mk_effectiveConjugator_of_cascade [DecidableEq α]
     rw [FreeGroup.mul_mk, List.take_append_drop]
   rw [← FreeGroup.mul_mk, ← hkey, hc₃]
   group
+
+/-- **The effective conjugator extends the head conjugator.**  The positional
+half of the same fact: the word `A ++ c₃.drop N` that
+`mk_effectiveConjugator_of_cascade` names does begin with `c`, and what follows
+lies inside the eaten stretch.
+
+This is the containment the coincidence lemmas need, in the orientation the
+overrun produces — and it is why that orientation arises at all: the block's
+matching prefix opens with the whole head conjugator, so anything read against
+it past position `|c|` is head-relator material.
+
+Everything is one decomposition.  The cascade puts `A ++ c₃.drop N` at the front
+of the tail word; the block puts `c ++ invRev E` there too; the shorter of the
+two is a prefix of the longer, and `hhigh` says which.  `hlow` says the landing
+factor's relator territory does not begin before the head conjugator ends, which
+is what makes `y` nonempty material rather than a truncation of `c`.
+
+`hc₃V` — that the landing sub-expression's word opens with its own conjugator —
+is the same input `mk_effectiveConjugator_of_cascade` takes as `hV`, in the
+stronger form the positional argument needs. -/
+theorem exists_forward_containment
+    {W A c₃ V Z M E c : List (α × Bool)} {N : ℕ}
+    (hcasc : W = A ++ V.drop N)
+    (hc₃V : V = c₃ ++ Z) (hN : N ≤ c₃.length)
+    (hM : FreeGroup.invRev M = c ++ FreeGroup.invRev E)
+    (hMW : FreeGroup.invRev M <+: W)
+    (hlow : c.length ≤ A.length + (c₃.length - N))
+    (hhigh : A.length + (c₃.length - N) ≤ M.length) :
+    ∃ y : List (α × Bool), A ++ c₃.drop N = c ++ y ∧
+      y <+: FreeGroup.invRev E := by
+  have hdrop : V.drop N = c₃.drop N ++ Z := by
+    rw [hc₃V, drop_append_of_le N c₃ Z hN]
+  have hlen : (A ++ c₃.drop N).length = A.length + (c₃.length - N) := by
+    rw [List.length_append, List.length_drop]
+  have hpre : A ++ c₃.drop N <+: W := by
+    refine ⟨Z, ?_⟩
+    rw [hcasc, hdrop, List.append_assoc]
+  have hsub : A ++ c₃.drop N <+: c ++ FreeGroup.invRev E := by
+    rw [← hM]
+    refine List.prefix_of_prefix_length_le hpre hMW ?_
+    rw [hlen, FreeGroup.invRev_length]
+    omega
+  obtain ⟨y, hy⟩ :=
+    List.prefix_of_prefix_length_le
+      (show c <+: c ++ FreeGroup.invRev E from ⟨FreeGroup.invRev E, rfl⟩)
+      hsub (by rw [hlen]; omega)
+  refine ⟨y, hy.symm, ?_⟩
+  refine (List.prefix_append_right_inj c).mp ?_
+  rw [hy]
+  exact hsub
 
 end SmallCancellationRouter
 end GroupApproximation
