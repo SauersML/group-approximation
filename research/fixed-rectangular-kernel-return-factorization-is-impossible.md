@@ -93,3 +93,10 @@ Fixed signed-Hecke blocks, fixed semisimple packets, and a bounded menu of
 rectangular Fourier corners remain on the tracial side of the firewall.  A
 successful finite-packet Hilbert hotel must activate an unbounded family or
 make its coefficient choice depend on the finite multiplicity coordinates.
+
+The same conclusion holds for a bounded family of pencils.  Direct-sum all
+source and target modules and all return factorizations.  Whenever the total
+rectangular excess is positive, the direct sum has `p>q` and reduces to
+`(FRK1)`.  Consequently distributing a fixed positive deficiency among
+finitely many packet types or signed-Hecke corners does not help; only an
+unbounded/dimension-activated menu can avoid this direct-sum reduction.
