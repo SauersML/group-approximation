@@ -232,6 +232,24 @@ least one non-root assignment projection must survive.
   `C(4)-T(4)` approach must use a non-Givens multi-plane cancellation, an
   aggregate equality rather than term pairing, or a source with
   Hamming-distance-one assignment pairs.
+- **Disjoint multi-plane rotation does not evade the parity obstruction.**
+  `disjoint-givens-planes-cannot-cancel-parity-terms` shows that every plane
+  occupies its own matrix unit and carries its own independent phase word.
+  In a constant-parity relation its two assignments differ in at least two
+  coordinates, so that plane's full term remains recurrent in at least two
+  marginals.  Cancellation would require genuinely overlapping rotations or
+  deliberate support-word identifications, not a direct sum of private
+  escape cells.
+- **A different one-ghost coordinate model removes the local recurrence.**
+  `edgeful-one-ghost-fano-relation` deletes `1000` from
+  `x_1+x_2=1`.  It is NP-hard and has exactly the same translated Fano-plane
+  cap criterion, but it contains honest Hamming-distance-one edges.
+  `edgeful-one-ghost-escape-avoids-term-recurrence` uses such an edge so the
+  Hadamard/free-phase coefficient occurs in exactly one logical marginal
+  while the other three remain fixed.  This escapes the preceding two-piece
+  `C(4)` firewall locally.  It sacrifices the non-TVF one-row commutativity
+  gadget and does not yet prove the remaining coefficient-link or cap-model
+  assertions.
 - **An infinite recursive tail is finitely compact for this target.**
   `finite-bcs-corner-diagram-is-finitely-witnessed` allows an arbitrary
   recursively presented ambient group and infinitely many auxiliary
