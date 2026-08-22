@@ -108,3 +108,10 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   graph cycle.  Selective equality only on the rank-one corner is not a group
   relator.  Thus the remaining multi-path target needs transverse source
   partitions producing a genuine sum of return words.
+- **Use transverse X/Z rank-one partitions.**  This finally produces a
+  genuine two-return sum: `p_0BAp_0=(W-W^*)U/2`.  However its exact deficit is
+  `U^*((W+W^*)/2)^2U`.  Corner unitarity forces `W^*=-W`, making the transverse
+  swap a single off-diagonal transport in the original basis.  One
+  transverse cell therefore collapses under the obvious locking relation;
+  a survivor needs multiple transverse deficits or a weaker positive-trace
+  polynomial.

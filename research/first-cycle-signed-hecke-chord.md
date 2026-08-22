@@ -115,6 +115,14 @@ least one non-root assignment projection must survive.
   algebraic corner term-pairing operation.  The next genuinely new finite
   cell must use transverse noncommuting source partitions so multiplication
   leaves a sum of at least two return paths.
+- **One transverse `D_8` pair gives a sum, but unitarity collapses it.**  For
+  Z- and X-basis additive swaps with multiplicity gauges `U,W`, the first
+  two-return corner is `C=(W-W^*)U/2` and
+  `1-C^*C=U^*((W+W^*)/2)^2U`.  Making `C` a corner unitary forces
+  `W^*=-W`, at which point the X swap becomes one off-diagonal Z transport
+  and the two paths coalesce.  The live transverse chord must therefore use
+  a weaker positive-defect polynomial or couple several transverse sums;
+  exact unitarity of one sum returns to the groupoid fence.
 - **Pair opposite group-ring terms with new relators: circular.**  A single
   additive marginal equality can be forced by pairing its finite positive
   and negative support terms.  But
