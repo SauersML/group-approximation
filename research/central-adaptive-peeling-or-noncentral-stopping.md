@@ -84,6 +84,17 @@ cost is linear in `q_i+q_a`, and the same commutator row can be charged
 `Theta(L)` times.  A stopping rule must select disjoint physical mass or
 prove geometric decay before the next cut.
 
+`standard-nc-stopping-theorems-miss-overlap-ledger` audits the three standard
+imports at precisely this point.  Cuculescu/Gundy stopping requires one
+martingale in one filtration and yields no product-form physical cut after
+diagonal amplification; normalized-HS almost-commuting rounding assumes all
+pairwise commutators for a fixed-size tuple; and Frieze--Kannan weak
+regularity produces scalar rectangles in cut norm, not reducing physical
+projections.  Thus none supplies the missing no-reuse ledger from the current
+hypotheses.  A viable theorem must instead preserve the localized parity
+charge while producing nested/disjoint cuts or geometric decay of one common
+high-tail potential.
+
 One need not pay global block-diagonalization at every cut.
 `spectral-cut-anchor-reset-pays-boundary-in-one-row` uses the fact that a
 spectral cut of `Y_(a,i)^2` already commutes with the anchor.  Resetting only
