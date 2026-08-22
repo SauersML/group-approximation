@@ -81,8 +81,12 @@ the hard matrix-coordinate content.
   `PSL_2(Z[1/2])` on its vertex orbit `A/C` is sofic, then the binary coset
   wreath product is sofic and `(CB1)` is Connes embeddable.  This refutes
   Iwahori relative-commutant transfer and therefore flexible Iwahori
-  stability.  This implication is one-sided: proving the action nonsofic does
-  not prove the crossed product non-CE or produce a nonhyperlinear group.
+  stability.  In addition,
+  `psl2-bruhat-tits-action-soficity-forces-p-instability` proves that the
+  same hypothesis forces flexible **permutation** instability of the acting
+  group: the action charts themselves are uniformly far from every exact
+  finite action.  This implication is one-sided: proving the action nonsofic
+  does not prove the crossed product non-CE or produce a nonhyperlinear group.
 - **The p = 3 dichotomy (2026-08-21).**  For the pair
   `SL_3(Z) < SL_3(Z[1/3])` the Lambda-exact face of the collapse is
   closed and subgroup-exact outliers do not exist, so Connes

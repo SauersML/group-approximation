@@ -116,6 +116,25 @@ is not settled by the standard easy criteria: `C` is nonamenable, co-density
 collapses the finite-quotient coset actions, and tree balls have boundary of
 positive density.
 
+The sharper permutation consequence is now proved in
+`psl2-bruhat-tits-action-soficity-forces-p-instability`: if this vertex action
+is sofic, its orbit charts yield approximate permutation representations of
+`PSL_2(Z[1/2])` which are uniformly far from every genuine finite action.
+Selberg expansion projects the base-coset one-hot label to the
+`PSL_2(Z)`-fixed space, while congruence co-density makes that the full
+`PSL_2(Z[1/2])`-fixed space; chart injectivity gives the contradiction.  Thus
+the exact fork is now
+
+```text
+tree action sofic  =>  flexible permutation instability,
+flexible permutation stability  =>  tree action nonsofic.
+```
+
+Neither side is currently supplied by the general action theorems.  The
+amenable-stabilizer theorem for sofic graph actions does not apply because
+`PSL_2(Z)` is nonamenable, and the ascending-HNN telescope theorem does not
+apply to the two-vertex Iwahori amalgam.
+
 This is **not a two-sided dichotomy**.  A proof that the action is nonsofic
 does not prove flexible stability of `A`, Connes nonembeddability of `L(W)`,
 or nonhyperlinearity of `W`.  It only closes the proposed sofic-action
