@@ -7,6 +7,7 @@ not, by itself, a global fence.
 """
 
 import importlib.util
+from math import gcd
 from pathlib import Path
 
 
@@ -21,6 +22,7 @@ def load(name, filename):
 
 
 PAIRS = load("i1412_pairs", "enumerate-l14-i1412-carrier-pairs.py")
+FORESTS = load("maximal_nc_forests", "enumerate-maximal-noncrossing-forests.py")
 EQ3 = PAIRS.EQ3
 Q = 13
 
@@ -65,6 +67,27 @@ def cyclic_key(word):
         variants.extend(candidate[offset:] + candidate[:offset]
                         for offset in range(len(candidate)))
     return min(variants)
+
+
+def pure_power(word):
+    word = cyclic_reduce(word)
+    if not word or any(abs(letter) != abs(word[0]) for letter in word):
+        return None
+    exponent = sum(1 if letter > 0 else -1 for letter in word)
+    return abs(word[0]), exponent
+
+
+def killed_by_power_relators(q_image, residual):
+    target = pure_power(q_image)
+    if target is None:
+        return False
+    generator, exponent = target
+    modulus = 0
+    for relation in residual:
+        power = pure_power(relation)
+        if power is not None and power[0] == generator:
+            modulus = gcd(modulus, abs(power[1]))
+    return modulus != 0 and exponent % modulus == 0
 
 
 def cyclic_free_product_forms(word):
@@ -142,7 +165,7 @@ def main():
                     PAIRS.initial_images() + ((Q,),))
                 colors = tuple(copy for copy, _ in augmented)
                 coefficients = tuple(coefficient for _, coefficient in augmented)
-                _, boundary_schemes = PAIRS.schemes(colors)
+                boundary_schemes, _ = FORESTS.maximal_forests(colors)
                 counts[target] = counts.get(target, 0) + len(boundary_schemes)
                 for scheme in boundary_schemes:
                     relations = residual + PAIRS.block_relations(scheme, coefficients)
@@ -158,10 +181,15 @@ def main():
     directly_killed = [state for state in nontrivial
                        if cyclic_key(state[2]) in
                        {cyclic_key(relation) for relation in state[1]}]
-    unresolved = [state for state in nontrivial if state not in directly_killed]
+    power_killed = [state for state in nontrivial
+                    if state not in directly_killed
+                    and killed_by_power_relators(state[2], state[1])]
+    unresolved = [state for state in nontrivial
+                  if state not in directly_killed and state not in power_killed]
     print(f"nontrivial_q_images={len(nontrivial)}")
     print(f"free_nontrivial_q_images={len(free_nontrivial)}")
     print(f"cyclic_relator_killed_q_images={len(directly_killed)}")
+    print(f"power_relator_killed_q_images={len(power_killed)}")
     print(f"unresolved_q_images={len(unresolved)}")
     for state in sorted(free_nontrivial)[:100]:
         print("FREE", state)
