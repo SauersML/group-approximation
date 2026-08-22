@@ -11,7 +11,8 @@ distinct_from:
 
 ESTABLISHED.  For the repeated occurrence presentation built from a positive-distance
 binary code, equality expanders, and the explicit complete logical-pair
-overlay of `quadratic-repetition-supports-complete-commutation-overlay`,
+overlay of `quadratic-repetition-supports-complete-commutation-overlay`, with
+the original parity layer repeated to constant density,
 the derivative of the full occurrence-relator map has a dimension-independent
 gap transverse to the exact representation variety.
 

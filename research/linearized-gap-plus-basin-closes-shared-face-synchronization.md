@@ -2,14 +2,15 @@
 rg: 2
 id: linearized-gap-plus-basin-closes-shared-face-synchronization
 kind: route
-title: Enter the mixed-norm tube and use the complete-overlay Jacobian gap
+title: Balance the parity layer, enter the mixed-norm tube, and use the complete-overlay Jacobian gap
 target: repeated-ldpc-shared-face-marginal-synchronization
 requires:
   - quadratic-overlay-has-uniform-linearized-synchronization-gap
   - complete-pair-overlay-uniform-hs-basin-capture
 ---
 
-First use basin capture to pay for the sparse high-operator-norm sector and
+Use the parity-balanced quadratic occurrence presentation.  First use basin
+capture to pay for the sparse high-operator-norm sector and
 place the remaining occurrence tuple in the uniform operator-norm Newton
 tube of an exact shared representation.  Equation `(QLS1)` supplies a
 dimension-independent inverse transverse to simultaneous conjugation and
