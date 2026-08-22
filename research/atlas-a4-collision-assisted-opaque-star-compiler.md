@@ -310,6 +310,16 @@ only has to transport its covariance block.
   undirected slogan that the packet merely sees the central `C3`.  Its first
   indispensable input is the forward directed central block; the reverse
   block plus the full rank-three core remains insufficient.
+- **A single forward representative already empties the standard GL6
+  fiber.**  `atlas-one-forward-c3-has-no-standard-gl6-completion` performs an
+  exact Boolean classification of every relative `R in GL_6(F2)` between
+  standard `A8` charts with two trivial padding coordinates.  The fourteen
+  core equations, collision, and one fixed forward central triangle are
+  inconsistent.  Together with
+  `a4-triangle-propagates-inverse-c3-edge`, one triangle also supplies its
+  inverse-`C3` partner.  This is strong finite-module evidence for the
+  forward block, but it is not yet the required arbitrary-multiplicity
+  complex HS estimate.
 - **The mixed compression descends, but collision leaves a zero interval.**
   `atlas-mixed-c3-gram-has-local-zero-interval` expresses the leakage directly
   through any product `U=X_eRY_e`, proving invariance under all twelve edge

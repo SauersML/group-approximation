@@ -28,6 +28,11 @@ interchange of the two `Z` labels and the two `B` labels is transitive on each
 copy, so one equation from `D_12` and one from `D_21` are the two minimal
 directed label-orbit representatives.  Chart direction cannot be quotiented
 out after collision `19243` is fixed: its finite behavior is asymmetric.
+This is a combinatorial orbit statement, not a claim that one relation
+implies the other three.  `a4-triangle-propagates-inverse-c3-edge` shows that
+one edge automatically gives the edge with `zeta` inverted, so each directed
+block needs at most two algebraic representatives, one for each `beta`.
+Propagation between `b_0` and `b_1` remains additional content.
 
 Indeed, exhaust all `9,999,360` relative matrices in `GL_5(F2)` between the
 two standard `GL_4(F2)` charts.  Exactly 216 matrices satisfy the fourteen
