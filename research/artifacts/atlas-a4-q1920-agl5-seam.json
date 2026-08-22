@@ -1,0 +1,15 @@
+{
+  "method": "For each marked Q1920, choose an A-containing A5 complement, realize Q on the 32 cosets of that complement, identify its regular characteristic module V, compute N_Sym(32)(V)=AGL5(2), and exhaust the pointwise-A centralizer against the literal collision words.",
+  "marking_count": 2,
+  "common_profile": {
+    "A5_complement_count": 64,
+    "A_containing_complement_count": 2,
+    "regular_module_order": 32,
+    "affine_normalizer_order": 319979520,
+    "pointwise_A_centralizer_order": 12,
+    "pointwise_A_centralizer_order_histogram": {"1": 1, "2": 7, "3": 2, "6": 2},
+    "nontrivial_collision_involution_count": 0,
+    "faithful_seam_S3_pair_count": 0
+  },
+  "scope": "This excludes completions inside Hol(V)=AGL5(2). Abstractly it excludes finite completions in which V is normal and self-centralizing. A completion may evade by moving V or by having C_L(V) strictly larger than V."
+}
