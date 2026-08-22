@@ -249,6 +249,22 @@ weakening consumed by the HNN marked word.
   calculation is the modulus-square/projective analogue restricted to the
   nonlinear inner orbit `{Ad(U)}`.  Property (T) controls the surrounding
   Hilbert space but not, by itself, this fixed set.
+- **The scalarized source Hecke tower leaves even the first coefficient
+  completely free.**  `source-hecke-data-leave-projective-square-free`
+  identifies the smallest mixed scalar
+
+  ```text
+  phi_T(h)=|tau(T^*rho(h)T rho(h)^*)|^2.
+  ```
+
+  A central tensor Haar unitary gives value `1`, the HNN stable letter gives
+  value `0`, and weighted direct sums give every value in `[0,1]`, while the
+  embedded source inclusion, its scalar conditional expectations, its
+  entire bifinite Hecke tower, and the `C`-central Haar marginal of `T` are
+  unchanged.  Therefore coefficient elimination and source Hecke
+  orthogonality cannot imply `(PTS1)`.  A proof must use matrix-coordinate
+  embeddability of the joint extension `(rho(A),T)`; there is no smaller
+  source-intrinsic positive-definite scalar waiting to be extracted.
 - **Finite test.** On congruence quotients minimize the ratio of the left side
   of `(PTS1)` to its `C`-energy.  The exact theorem bounds this ratio uniformly
   in the quotient level; computation is now only a calibration of the proven
