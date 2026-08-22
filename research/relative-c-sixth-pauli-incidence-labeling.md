@@ -80,3 +80,12 @@ to make the peripheral segment products unique.
 dichotomy: vanishing port density loses the uniform Poincare decoder, while
 positive port density forces a repeated bounded peripheral turn.  A sparse
 replacement would need a genuinely new port-weighted agreement theorem.
+
+Nor does a constant-size private subdivision of every pair edge evade the
+obstruction.  By
+`constant-private-pauli-gadgets-fail-incidence-separation`, finitely many
+private Magic-Square/Heisenberg templates yield a monochromatic logical
+rectangle.  The repeated terminal word is a forbidden relative piece; if the
+template is absorbed into the base, it reduces to the original one-syllable
+finite-offset obstruction.  Consequently "private" internal vertices are
+not occurrence-distinguishing labels for graphical small cancellation.

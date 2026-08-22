@@ -48,3 +48,11 @@ table always has rectangles with one equality-edge gap and another gap of
 growing diameter; an interval with only two pair edges then covers a fraction
 tending to one.  Thus no relabeling of independent equality expanders can
 establish `(BG2)`.
+
+Bounded private sign cells do not alter this conclusion.  The ordinary part
+of `constant-private-pauli-gadgets-fail-incidence-separation` shows that a
+Magic-Square, Heisenberg, or central-square subdivision adds only `O(1)` to
+the four corners of the short-gap/diameter-gap rectangle.  Its bad interval
+still occupies `1-O(1/L)` of the contour.  Hence the surviving
+non-equality synchronizing code must change the large-scale mixed incidence,
+not merely replace each pair edge by a robust constant-size test.

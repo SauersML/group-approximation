@@ -135,3 +135,16 @@ stabilizer, whose commutator fillings are unbounded.  Actual Cayley addresses
 in the present bounded-neighbor route avoid precisely that section cocycle;
 this is why `(CCP1)`, rather than oligomorphic transitivity, remains the
 correct placement target.
+
+A private bounded sign gadget also does not provide the missing
+pre-replacement.  `constant-private-pauli-gadgets-fail-incidence-separation`
+applies even when every degree-reduced pair occurrence receives its own
+Magic-Square, Heisenberg, or central-square cell and the cell robustly decodes
+the desired sign on the same Hilbert space.  Finitely many labeled templates
+color the complete logical pair table; a monochromatic `K_(2,2)` repeats one
+whole terminal word on a contour of length at most `4 ell+4`, violating
+relative `Gr'(1/6)`.  Absorbing the bounded cell into the base contracts it
+back to the already excluded one-syllable case, while bounded subdivision
+does not repair the ordinary short-gap/long-gap imbalance.  Thus the remaining
+replacement must be occurrence-distinguishing at unbounded combinatorial
+scale or must sparsify the logical dimension witness itself.
