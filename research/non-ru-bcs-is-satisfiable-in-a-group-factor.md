@@ -132,7 +132,7 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   signed-Hecke atlas still requires a separate compatibility obstruction.
 - **The 2026 solution of Kadison's unitary-basis problem does not supply a
   group basis.**
-  `every-separable-diffuse-finite-algebra-has-an-orthonormal-symmetry-basis`
+  `separable-finite-algebras-have-symmetry-bases`
   applies to the non-CE BCS factor and gives a countable complete
   orthonormal basis of self-adjoint unitaries.  However
   `projectively-closed-symmetry-bases-are-hyperfinite` proves that if this

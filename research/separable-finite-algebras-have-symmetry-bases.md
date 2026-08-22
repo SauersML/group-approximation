@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: every-separable-diffuse-finite-algebra-has-an-orthonormal-symmetry-basis
+id: separable-finite-algebras-have-symmetry-bases
 kind: claim
 title: Every separable diffuse finite von Neumann algebra has an orthonormal basis of symmetries
 distinct_from:

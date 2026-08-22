@@ -3,8 +3,6 @@ rg: 2
 id: projectively-closed-symmetry-bases-are-hyperfinite
 kind: claim
 title: A projectively multiplicatively closed orthonormal symmetry basis forces hyperfiniteness
-requires:
-  - every-separable-diffuse-finite-algebra-has-an-orthonormal-symmetry-basis
 distinct_from:
   finite-normal-type-corner-is-twisted-group-algebra: that computes a selected finite-normal representation corner; this starts with an arbitrary factor basis and shows that the strongest possible group-like multiplication law would make the whole factor amenable.
   twisted-factor-existence-is-equivalent-to-nonhyperlinearity: that permits arbitrary nonamenable index groups and asks whether one twisted factor is non-CE; this proves that the self-adjoint basis supplied by the Kadison theorem can only yield an elementary-abelian projective index group.
