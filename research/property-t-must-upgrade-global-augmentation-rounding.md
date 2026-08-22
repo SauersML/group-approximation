@@ -39,4 +39,9 @@ theorem has a modulus depending on the family size and does not supply this.
   Ordinary `(T)` controls almost invariant vectors in actor
   representations; it does not directly make an unbounded family of almost
   commuting involutions jointly diagonal.
-
+- **Form the obvious relative-Kazhdan Hilbert--Schmidt bimodule.**
+  `relative-kazhdan-bimodule-requires-whole-module-covariance` shows that its
+  semidirect-product relators are precisely the full family of covariance
+  identities one is trying to prove.  Before global covariance it is only a
+  free-product representation, so the relative Kazhdan projection cannot
+  yet be applied.

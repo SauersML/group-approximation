@@ -143,3 +143,16 @@ do not provide either mechanism.
   unequal canonical-trace packet projections and collapse the marked sector
   in the regular representation.  Hence local non-diagonality is not enough:
   the return must remain genuinely finite-matrix-only.
+- **Apply relative property `(T)` to the left-right covariance bimodule.**
+  `relative-kazhdan-bimodule-requires-whole-module-covariance` computes its
+  mixed semidirect relators.  Their supremum is exactly the missing
+  whole-module covariance defect, so the bimodule descends to the
+  semidirect product only after the desired conclusion.  Relative `(T)` can
+  finish a corrected bimodule but cannot create it from finite seed tests.
+- **Replace diagonal probes by finite mixed words around the transporter.**
+  `finite-covariance-mixed-words-remain-character-blind` shows that two
+  characters agreeing on the tested module elements make the entire tested
+  diagonal algebra scalar on their carrier.  A block exchange then leaves
+  every conjugation-balanced mixed word unchanged while its fine transport
+  energy is `2`.  Additional actor relations must independently
+  authenticate the exchanged domains.
