@@ -53,6 +53,14 @@ formal consequence of the full canonical character; proving `(RDF2)` must
 show that one branch of this dichotomy is incompatible with vanishing
 presentation defect.
 
+The optimized complement can be removed from this formulation.
+`complement-energy-is-bounded-by-polar-modulus-and-boundary` proves that on
+the nondegenerate branch, the canonical complement floor forces a fixed
+amount of either `C`-compression modulus mismatch under the factor swap or
+raw `C`-boundary leakage.  The shortest remaining estimate is therefore a
+full-double mixed-word bound charging these two quantities to presentation
+defect; polar relators and singular values separately do not supply it.
+
 The joint near-exact sector is also complete.
 `sl3-arithmetic-double-near-exact-vertices-fold-projectively` proves
 `(RDF1)` whenever BOTH full vertex assignments approach exact

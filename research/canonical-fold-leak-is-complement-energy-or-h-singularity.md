@@ -80,3 +80,11 @@ This remains a reduction rather than a proof of fold collapse.  Arbitrary
 canonical double microstates need not come from polar compressions of exact
 ambient `A`-representations, and no current estimate charges `(CFL4)` to
 their relator energy.
+
+There is now an explicit raw form of the missing charge.
+`complement-energy-is-bounded-by-polar-modulus-and-boundary` tests the
+complement infimum with the identity and proves that `(CFL4)` forces a fixed
+amount of either lattice-compression modulus mismatch under the block swap or
+lattice boundary leakage.  Thus the complement variable itself can be
+eliminated from the terminal; what remains is to control those two raw
+matrix-coordinate quantities by full-double relator energy.
