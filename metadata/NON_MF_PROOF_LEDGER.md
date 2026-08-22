@@ -7,8 +7,8 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the post-expert-review revision of 2026-08-22 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `b98dd74fd002eef9f4b4de92938f0adbcf595b67` |
-| sha256 of the file | `d4dbaf3a6ce9405c4d3a97bbf17bb4f61e4a3a58312bd7cb25fa4a66d22c1abc` |
+| `git hash-object non_mf_groups_exist.tex` | `a1e8564d9332187bc8debcfbd1b1891f20a809ae` |
+| sha256 of the file | `4f87bab8b91e4495f0f5e7bbc7c4d406ebd5f032948461c887987ccc1cfb93e6` |
 | `wc -l` | 4319 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below

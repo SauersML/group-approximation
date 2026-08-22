@@ -109,7 +109,7 @@ jobs:
       # warning annotation on the run.
       - name: Build the paper edition
         run: |
-          if python3 tools/paper_site/build.py --out .cairn/site/paper/index.html; then
+          if node tools/paper_site/test_inline.js && python3 tools/paper_site/build.py --out .cairn/site/paper/index.html; then
             echo "paper edition built"
             # Cross-link: a "paper" entry in the graph header.  This edits the
             # generated page only -- bin/cairn and tools/cairn.py stay untouched.

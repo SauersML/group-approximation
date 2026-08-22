@@ -67,6 +67,36 @@ function typographize(s) {
     .replace(/~/g, ' ');
 }
 
+const TEXT_ACCENTS = {
+  "'": '\u0301', '`': '\u0300', '^': '\u0302', '"': '\u0308',
+  '~': '\u0303', '=': '\u0304', '.': '\u0307',
+  'u': '\u0306', 'v': '\u030c', 'H': '\u030b', 'c': '\u0327',
+  'k': '\u0328', 'r': '\u030a', 'b': '\u0331', 'd': '\u0323',
+  't': '\u0361',
+};
+
+function takeTextAccent(src, at, cmd) {
+  const mark = TEXT_ACCENTS[cmd];
+  if (!mark) return null;
+  const group = grabGroup(src, at);
+  let base, next;
+  if (group) {
+    base = group.content;
+    next = group.next;
+  } else {
+    base = src[at] || '';
+    next = at + (base ? 1 : 0);
+  }
+  // TeX uses dotless letters beneath accents; Unicode precomposed letters use
+  // the ordinary base character.  Accent the first character, except for the
+  // tie command, whose combining mark naturally spans the following one too.
+  if (base === '\\i') base = 'i';
+  if (base === '\\j') base = 'j';
+  const chars = Array.from(base);
+  if (!chars.length) return { text: '', next };
+  return { text: (chars[0] + mark + chars.slice(1).join('')).normalize('NFC'), next };
+}
+
 
 function glueAfterMath(src, i, mathHtml) {
   // punctuation or a -suffix straight after math must not wrap to the next line
@@ -125,6 +155,8 @@ function renderInline(src, ctx) {
     if (!m) {
       // escaped single char
       const ch = src[i + 1] || '';
+      const accent = takeTextAccent(src, i + 2, ch);
+      if (accent) { plain += accent.text; i = accent.next; continue; }
       if (ch === '(') {                              // \( ... \) inline math
         flush();
         const j = src.indexOf('\\)', i + 2);
@@ -242,6 +274,12 @@ function renderInline(src, ctx) {
       case 'ae': { plain += 'æ'; break; }
       case 'aa': { plain += 'å'; break; }
       case 'ss': { plain += 'ß'; break; }
+      case 'u': case 'v': case 'H': case 'c': case 'k': case 'r':
+      case 'b': case 'd': case 't': {
+        const accent = takeTextAccent(src, i, cmd);
+        if (accent) { plain += accent.text; i = accent.next; }
+        break;
+      }
       case '@': break;
       case 'colon': { plain += ': '; break; }
       case 'noindent': case 'centering': case 'raggedright': case 'ignorespaces': case 'relax':
@@ -1504,11 +1542,15 @@ function setupGraphInteractions() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => setTimeout(() => {
-  try { init(); } catch (e) {
-    console.error('[paper] init failed:', e);
-    const el = document.getElementById('typesetting-note');
-    if (el) el.textContent = 'Rendering failed — see the console: ' + e.message;
-    throw e;
-  }
-}, 30));
+if (typeof module !== 'undefined' && module.exports) module.exports = { renderInline };
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', () => setTimeout(() => {
+    try { init(); } catch (e) {
+      console.error('[paper] init failed:', e);
+      const el = document.getElementById('typesetting-note');
+      if (el) el.textContent = 'Rendering failed — see the console: ' + e.message;
+      throw e;
+    }
+  }, 30));
+}

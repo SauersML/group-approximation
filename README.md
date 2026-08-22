@@ -29,7 +29,7 @@ axiom audit, signature pinning, and fresh-kernel replay all pass for one
 commit. Separate release workflows build and attest the PDFs from an exact
 prover-certified source revision.
 
-## Non-MF groups exist: a concrete finitely presented counterexample
+## A non-MF group
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
