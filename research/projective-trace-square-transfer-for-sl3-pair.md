@@ -238,6 +238,34 @@ weakening consumed by the HNN marked word.
   Thus projective centralizers and finite congruence quotients are no longer a
   falsification gate.  What remains is entirely the uniform-outlier sector of
   approximate ambient representations.
+
+- **The target scalar phase is now removed by one bounded rank-one
+  identity.**  In the `(1,3)` `SL_2` block, write
+
+  ```text
+  h=x(2)y(-1/2)x(2)w(-1),
+  y(-1/2)=h y(-2)h^(-1).
+  ```
+
+  If `W=[U,rho(h)]`, conjugating this decomposition by `U` gives, up to
+  fixed presentation and lattice-commutator errors,
+
+  ```text
+  W=x(2)[W,rho(y(-1/2))]x(2)^(-1).
+  ```
+
+  Therefore
+
+  ```text
+  ||W-I||_2
+   <=2 sqrt(2(1-|tr(W)|^2))+K(sqrt(q)+delta).
+  ```
+
+  See `sl3-rank-one-denominator-self-commutator-removes-target-phase`.
+  This is a finite-dimensional, dimension-free upgrade, stronger than
+  killing the limiting phase character by ambient perfectness.  It proves
+  that the target phase is not a residual issue, but it does not supply the
+  missing inequality forcing the trace-square energy itself to vanish.
 - **Coset-Bernoulli firewall.** If the generalized coset Bernoulli crossed
   product of `coset-bernoulli-ce-refutes-relative-commutant-collapse` is
   Connes embeddable, its base-coordinate unitary produces an exact
