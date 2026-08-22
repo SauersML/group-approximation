@@ -105,3 +105,16 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   requires an additional finite-type central projection `z_rho`; that moves
   the construction back to the signed-Hecke atlas and its unresolved
   block-escaping cycle holonomy.
+- **Every finite-subgroup single literal is trapped in its packet.**
+  `finite-subgroup-hecke-literals-cannot-block-escape` generalizes the trace
+  calculation to every projection `q in C[H]`, `H` finite.  If `qgq` is a
+  nonzero projection, its canonical trace forces `g in H`, so it lies in the
+  finite-dimensional corner `qC[H]q`.  Subgroup averages and minimal matrix-
+  coefficient projections give only `0` or `q`.  A nonminimal dimension-two
+  corner can give a proper literal (an explicit augmentation-zero
+  `C_2 times S_3` packet proves sharpness), but any whole BCS tuple of such
+  literals remains finite dimensional.  For arbitrary noncentral finite-
+  support `q`, a nonzero literal forces `g^(-1)` to occur with positive
+  coefficient in `supp(q)`; unlike the central case, no theorem forces that
+  support into a finite normal subgroup.  Thus the finite-normal twisted-
+  sector fence and this finite-packet literal fence are complementary.

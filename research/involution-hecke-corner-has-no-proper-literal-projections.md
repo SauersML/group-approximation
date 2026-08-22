@@ -71,21 +71,25 @@ corner `(1+h)/2`.  In the canonical regular algebra, `(IHC4)` says that
 self-adjoint Hecke operator in the generic D8 packet, hence cannot be a
 projection.
 
-To retain the matrix Halmos block inside a canonical group corner one must
-first multiply by a finite-type central idempotent `z_rho` selecting the
-desired irreducible sector and use
+To retain a matrix block inside a canonical group corner one must first cut
+the regular packet by finite-type Fourier projections and use
 
 ```text
-Q=q z_rho,       Q g Q.
+Q=q z,       Q g Q.
 ```
 
-For a nontrivial higher-dimensional type, `epsilon(z_rho)=0`, so this also
-removes the independent augmentation obstruction.  This is exactly the
-existing signed-Hecke finite-type lane; sharing its noncentral subprojection
-`Q` across cyclic contexts is the recorded block-escaping holonomy problem,
-not a consequence of the bare D8/Halmos dilation.
+For D8 itself, the displayed Halmos representation uses both a one-dimensional
+`g=+1` sector and the two-dimensional zero-compression sector.  Selecting the
+former retains a scalar character, while selecting only the nontrivial
+two-dimensional sector leaves compression zero.  Thus D8 alone does not give
+a proper character-free literal projection.  A larger finite packet and a
+nonminimal Fourier projection can do so; the sharp first example and its
+limitations are `finite-subgroup-hecke-literals-cannot-block-escape`.  This
+is exactly the existing signed-Hecke finite-type lane.  Sharing its
+noncentral finite-type corner across cyclic contexts is the recorded
+block-escaping holonomy problem, not a consequence of the bare D8/Halmos
+dilation.
 
 The minus corner `(1-h)/2` does not provide a literal-projection escape:
 the same trace computation is zero away from `g=e,h`, while `g=e` gives the
 corner unit and `g=h` gives its negative rather than a projection.
-
