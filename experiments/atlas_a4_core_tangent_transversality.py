@@ -16,7 +16,6 @@ projections.  External multiplicity does not change either result.
 from collections import deque
 
 import numpy as np
-from scipy.sparse.linalg import LinearOperator, eigsh
 
 from atlas_a4_packet_generation import matrix_order, select_packet, x_lengths
 from atlas_a4_rank_three_core import H18_LABEL_HEX, matrix
@@ -150,33 +149,73 @@ def main():
 
     dimension = len(group)
 
-    def apply_laplacian(vector):
+    def apply_projection(vector, edge_operator):
+        blocks, local_projection = edge_operator
         output = np.zeros_like(vector)
-        for blocks, local_projection in edge_operators:
-            block_values = vector[blocks]
-            projected = block_values @ local_projection.T
-            output[blocks] += block_values - projected
+        if vector.ndim == 1:
+            output[blocks] = vector[blocks] @ local_projection.T
+        else:
+            block_values = vector[blocks, :]
+            output[blocks, :] = np.einsum(
+                "ij,bjk->bik", local_projection, block_values
+            )
         return output
 
-    laplacian = LinearOperator(
-        (dimension, dimension), matvec=apply_laplacian, dtype=np.float64
-    )
-    eigenvalues = eigsh(
-        laplacian, k=20, which="SM", tol=1e-11, maxiter=20000,
-        return_eigenvectors=False,
-    )
-    eigenvalues.sort()
-    zero_count = int(np.sum(np.abs(eigenvalues) < 1e-9))
-    positive = eigenvalues[eigenvalues >= 1e-9]
+    def apply_laplacian(vector):
+        output = np.zeros_like(vector)
+        for edge_operator in edge_operators:
+            output += vector - apply_projection(vector, edge_operator)
+        return output
+
+    # Alternating projections expose the dimension of the common fixed space.
+    rng = np.random.default_rng(19243)
+    samples = rng.normal(size=(dimension, 24))
+    initial_norm = np.linalg.norm(samples)
+    for _sweep in range(160):
+        for edge_operator in edge_operators:
+            samples = apply_projection(samples, edge_operator)
+    singular_values = np.linalg.svd(samples / initial_norm, compute_uv=False)
+
+    # A fully reorthogonalized scalar Lanczos calibration gives the bottom of
+    # the tangent Laplacian spectrum without forming a 20160-square matrix.
+    lanczos_steps = 220
+    vector = rng.normal(size=dimension)
+    vector /= np.linalg.norm(vector)
+    basis = np.zeros((dimension, lanczos_steps), dtype=np.float64)
+    alphas = np.zeros(lanczos_steps, dtype=np.float64)
+    betas = np.zeros(lanczos_steps - 1, dtype=np.float64)
+    previous = np.zeros(dimension, dtype=np.float64)
+    completed = lanczos_steps
+    for step in range(lanczos_steps):
+        basis[:, step] = vector
+        target = apply_laplacian(vector)
+        if step:
+            target -= betas[step - 1] * previous
+        alphas[step] = np.dot(vector, target)
+        target -= alphas[step] * vector
+        # Two passes keep the small Ritz values reliable.
+        for _pass in range(2):
+            target -= basis[:, : step + 1] @ (basis[:, : step + 1].T @ target)
+        if step == lanczos_steps - 1:
+            break
+        betas[step] = np.linalg.norm(target)
+        if betas[step] < 1e-13:
+            completed = step + 1
+            break
+        previous, vector = vector, target / betas[step]
+    tridiagonal = np.diag(alphas[:completed])
+    if completed > 1:
+        off_diagonal = betas[: completed - 1]
+        tridiagonal += np.diag(off_diagonal, 1) + np.diag(off_diagonal, -1)
+    eigenvalues = np.linalg.eigvalsh(tridiagonal)
     print("distinct translated core pairs:", len(pairs))
     print("generated translated tangent group order:", len(group))
     print("edge local subgroup orders:", sorted(local_group_orders))
     print("edge tangent-sum dimensions:", sorted(sum_dimensions))
-    print("common tangent dimension:", zero_count)
-    print("smallest 20 eigenvalues:")
+    print("alternating-projection singular values:")
+    print(" ".join(f"{value:.15g}" for value in singular_values[:12]))
+    print("smallest 20 Lanczos Ritz values:")
     print(" ".join(f"{value:.15g}" for value in eigenvalues[:20]))
-    if positive.size:
-        print("smallest positive tangent Laplacian eigenvalue:", f"{positive[0]:.15g}")
 
 
 if __name__ == "__main__":
