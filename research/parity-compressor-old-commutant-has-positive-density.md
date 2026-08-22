@@ -53,3 +53,9 @@ part of the remaining hole.
   coefficients still decouples asymptotically.  The one-sided Toeplitz cell
   must use non-surjectivity in an essential way; its induced finite head
   action cannot be the missing estimate.
+- `commutant-density-forces-bounded-type-mass` identifies the exact burden
+  of `(PCD1)`: a lower bound `c_0q^2` on the old adjoint commutant forces
+  linear-in-`q` Hilbert mass in old-`Lambda` irreducibles of degree
+  `O(1/q)`.  Thus the missing cell is quantitatively a bounded-type compiler,
+  not merely a way to make the local Reynolds projection invariant.  Any
+  proposed Toeplitz covariance must exhibit this conversion explicitly.
