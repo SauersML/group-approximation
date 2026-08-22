@@ -148,3 +148,15 @@ back to the already excluded one-syllable case, while bounded subdivision
 does not repair the ordinary short-gap/long-gap imbalance.  Thus the remaining
 replacement must be occurrence-distinguishing at unbounded combinatorial
 scale or must sparsify the logical dimension witness itself.
+
+The latter alternative has now been reduced sharply by
+`sparse-generator-column-sampling-has-bilinear-kernel`.  A bounded-degree
+sampler of the de la Salle generator-column cross table always misses a
+nonzero bilinear form.  Twisting the Weyl commutator by that form passes every
+sampled edge exactly while retaining a constant full-table defect, so
+ordinary graph expansion cannot recover the dense Pauli test.  The remaining
+sparse target is an explicit bounded-incidence family with growing affine
+minimum completion rank `(SGB6)` and a robust normalized-HS version; it must
+force dimension directly rather than transfer to the full Weyl table.
+This exact new gate is
+`bounded-incidence-generator-column-minrank-witness`.

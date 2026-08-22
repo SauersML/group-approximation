@@ -95,3 +95,12 @@ full generator-column family gives the optimal Pauli-word adjoint anchor.
 payload does not need such an anchor at all: every computation PVM is carried
 through the same extraction isometry.  On that route the sole surviving gate
 is bounded-area group-word realization of the sampled dense columns.
+
+The complete product of the two column measures is essential to the stated
+Poincare transfer.  `sparse-generator-column-sampling-has-bilinear-kernel`
+shows that every sub-sampler with fewer than `n^2` pairs misses a nonzero
+bilinear twist.  The corresponding exact Weyl packet has zero sampled defect
+but full-product defect at least `1/(cc')`.  Hence an expander or high-girth
+bipartite graph cannot simply replace the complete product in `(GCP1)`.
+Sparse dimension soundness, if available, must instead prove growing affine
+minimum completion rank for the sampled signs.
