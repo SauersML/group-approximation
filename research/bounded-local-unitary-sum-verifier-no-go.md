@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: bounded-local-group-relators-cannot-test-continuous-normalized-unitary-sum
+id: bounded-local-unitary-sum-verifier-no-go
 kind: claim
 title: Bounded-local group relators cannot test the continuous normalized unitary sum with constant soundness
 distinct_from:
@@ -66,4 +66,3 @@ only on the particular noncommutative Fock boundary and not on every scalar
 unitary solution of `(BLU3)`.  Such a surviving verifier must exploit that
 source-specific Gram/incidence structure, or first impose a discrete alphabet
 with a dimension-independent quantization gap.
-

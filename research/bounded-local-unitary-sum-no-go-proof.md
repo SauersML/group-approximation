@@ -3,7 +3,7 @@ rg: 2
 id: bounded-local-unitary-sum-no-go-proof
 kind: route
 title: Reuse a proof across two close scalar phase boundaries and telescope every local word
-target: bounded-local-group-relators-cannot-test-continuous-normalized-unitary-sum
+target: bounded-local-unitary-sum-verifier-no-go
 requires:
   - rooted-normalized-sum-linear-pcpp-needs-sqrt-n-norm
 ---
@@ -19,4 +19,3 @@ letter distances.  Cauchy--Schwarz with at most `q` boundary occurrences gives
 `(BLU2)` to obtain `(BLU6)`.  Since the normalized sums of the two phase
 vectors are one and zero, respectively, `(BLU6)` contradicts every fixed
 positive soundness gap.
-

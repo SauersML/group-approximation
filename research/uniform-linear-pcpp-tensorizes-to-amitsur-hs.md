@@ -132,7 +132,7 @@ The same claim also gives a scalar-unitary witness on every square
 sums one and zero but normalized leaf distance `O(N^(-1/2))`.  Therefore
 imposing unit modulus on every leaf does not save the linear checker.
 
-`bounded-local-group-relators-cannot-test-continuous-normalized-unitary-sum`
+`bounded-local-unitary-sum-verifier-no-go`
 extends this obstruction from linear maps to arbitrary bounded-local,
 bounded-weighted-occurrence group-word verifiers by direct word telescoping.
 Hence a generic continuous normalized-sum PCP cannot be rescued merely by
