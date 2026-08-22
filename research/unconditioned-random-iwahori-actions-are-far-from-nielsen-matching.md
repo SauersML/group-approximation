@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: unconditioned-random-iwahori-actions-are-far-from-nielsen-matching
+id: random-iwahori-actions-resist-nielsen-matching
 kind: claim
 title: Independent random Iwahori actions stay a constant distance from every Nielsen matching
 artifacts:
@@ -32,4 +32,3 @@ independent Nielsen-twisted one do not provide the edge near-conjugacy in
 the dyadic random-lift program.  A successful dessin construction must
 correlate the two restrictions before randomizing their modular orbit
 incidence; generic edge actions are exponentially too far apart.
-

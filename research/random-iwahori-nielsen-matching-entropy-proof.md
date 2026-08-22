@@ -3,7 +3,7 @@ rg: 2
 id: random-iwahori-nielsen-matching-entropy-proof
 kind: route
 title: Union-bound the Hamming balls around all relabellings of a random Iwahori action
-target: unconditioned-random-iwahori-actions-are-far-from-nielsen-matching
+target: random-iwahori-actions-resist-nielsen-matching
 requires: []
 ---
 
@@ -57,4 +57,3 @@ No modular extension condition was used.  Indeed, restrictions of
 `Hom(Z*C_2,Sym(n))`; conditioning on that rare locus can destroy the
 independence in `(RIN4)`.  The theorem therefore eliminates generic random
 edge matching, not correlated random modular dessins.
-
