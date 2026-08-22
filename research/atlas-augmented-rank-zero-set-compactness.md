@@ -93,3 +93,14 @@ lane.
   characteristic-two counterexample to `(ARC1)`; it proves that any proof of
   `(ARC1)` must exploit special Atlas structure rather than ultraproduct
   exactness plus a finite relation list.
+- **The binary residual is wandering defect propagation.**
+  `atlas-defect-orbit-span-quotient-dichotomy` takes the images of the
+  augmented residual matrices and closes them under the two exact repeated
+  natural `A8` chart actions.  If that orbit-span is proper, its quotient is
+  automatically an exact finite augmented model with faithful repeated
+  charts.  Hence any counterexample to `(ARC1)` with no finite escape must
+  spread an `o(m)` defect seed onto the entire carrier through alternating
+  chart words of unbounded depth.  It is enough to prove a dimension-free
+  orbit-span bound or saturation depth for this specific thirteen-relation
+  system.  This is the precise binary error-delocalization statement left
+  after the mixed-rank-pencil and literature fences.
