@@ -67,6 +67,17 @@ trace is required.
   stable equivalences need not be simultaneously compatible.  It localizes
   the only possible escape to relative placement/holonomy of the induced
   packets rather than the projective class of any one context atom.
+- The first simultaneous exception has only a finite-packet relative index.
+  `nand-triangle-relative-k1-is-a-finite-packet-index` computes the minimal
+  S4 NAND cell after stable packet straightening.  For atom algebra `C^3`
+  inside separator commutant `M_2(C) directSum C`, the determinant `K_1` map
+  `(a,b,c) |-> (ab,c)` is surjective, while the six-term relative group is
+  the single atom-difference lattice `Z(1,-1,0)`.  The sheet swap represents
+  that oriented difference; the returned central minus has zero relative
+  boundary.  Both occur in an exact three-dimensional signed-permutation
+  model.  Any successful atlas must therefore couple several such indices
+  through a genuinely global relative-position relation; one odd NAND phase
+  cell cannot be the nonmatricial obstruction.
 - **Literal local contexts are completely solved, but finite Bass--Serre
   compatibility is impossible.**
   `common-corner-literal-contexts-stop-at-bass-serre` tensors all selected
