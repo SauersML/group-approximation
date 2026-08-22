@@ -97,3 +97,4 @@
 32570739041	2026-08-22T11:36:59Z	GroupApproximation/Endpoint/QuotientNonclosure.lean	exists_residuallyFinite_group_with_nonsofic_quotient
 32571752398	2026-08-22T11:59:47Z	GroupApproximation/Endpoint/SimultaneousStability.lean	simultaneousStabilitySeed_not_isMixedApproximable
 32574624728	2026-08-22T13:02:51Z	GroupApproximation/Endpoint/StructuralProfile.lean	rankFour_exists_third_index
+32576684394	2026-08-22T13:45:43Z	GroupApproximation/Analysis/FiniteBlockCoronaHilbert.lean	manuscript_blockFamily_finite
