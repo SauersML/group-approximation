@@ -123,6 +123,15 @@ least one non-root assignment projection must survive.
   and the two paths coalesce.  The live transverse chord must therefore use
   a weaker positive-defect polynomial or couple several transverse sums;
   exact unitarity of one sum returns to the groupoid fence.
+- **The phase-rotated companion gives aggregate payment but kills
+  completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
+  `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
+  Requiring both returns to be exact unitaries therefore annihilates every
+  nonzero marked model.  If a selector chooses one return, the direct sum
+  `W=i` on one sector and `W=1` on the other chooses the good branch
+  everywhere.  The remaining chord must pin that selector by external
+  incidence or derive the common carrier only after finite-matrix
+  correction; the local two-cell algebra alone cannot orient the payment.
 - **Pair opposite group-ring terms with new relators: circular.**  A single
   additive marginal equality can be forced by pairing its finite positive
   and negative support terms.  But

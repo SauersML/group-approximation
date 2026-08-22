@@ -77,3 +77,11 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   representation carries the remaining `1/3` at zero relator defect.  A
   relation that genuinely discards that third is the missing one-sided
   payment, not a consequence of the larger arity.
+- **Use complementary transverse Pauli returns.**  This gives the exact
+  aggregate identity `D_T+D_S=1`, hence a dimension-independent total HS
+  floor.  But demanding both exact returns destroys the marked model, while
+  a commuting branch selector can take `W=i` on the T-good sector and `W=1`
+  on the S-good sector and continue at zero selected defect.  Thus the
+  transverse pair does not by itself provide the oriented exit in `(BHP2)`.
+  It becomes useful only if collision 19243 or another external incidence
+  pins the branch selector independently of the holonomy spectrum.

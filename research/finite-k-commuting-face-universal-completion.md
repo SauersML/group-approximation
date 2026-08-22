@@ -115,3 +115,10 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   transverse cell therefore collapses under the obvious locking relation;
   a survivor needs multiple transverse deficits or a weaker positive-trace
   polynomial.
+- **Add the complementary transverse return.**  The two positive deficits
+  satisfy the exact common-carrier identity `D_T+D_S=1`, so their total
+  squared HS energy is at least `1/2`.  This is genuine analytic payment, but
+  imposing both exact returns kills completeness.  A branch selector admits
+  the stationary split `W=i` on one sector and `W=1` on the other.  Hence the
+  finite packet still needs an external selector-pinning/common-corner
+  incidence; local complementary branches cannot orient their own payment.
