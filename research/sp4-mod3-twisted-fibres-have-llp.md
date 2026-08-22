@@ -49,4 +49,14 @@ untwisted fibre.
   three twisted von Neumann fibres; if the alpha-fibre were shown non-CE
   the goal would close by a different mouth (the trace route), so BOTH
   the C*-lifting and the von Neumann embedding questions for `(TF3)` are
-  goal-relevant and unrecorded.
+  goal-relevant and unrecorded.  The embedding side carries a second
+  famous stake: the twisted von Neumann fibre inherits property (T) from
+  the Kazhdan group (Connes--Jones through the alpha-regular
+  representation), and no property (T) von Neumann algebra is currently
+  known to fail Connes embeddability; so a non-CE fibre would settle
+  that open problem and the goal at once, while CE fibres for all three
+  characters are exactly hyperlinearity of `E_3`
+  (`deligne-sector-gap-is-exactly-nonhyperlinearity`).  The peers'
+  `maslov-bounded-block-sector-gap` already fences the would-be
+  hyperlinear models of the twisted sectors to decompositions in which
+  asymptotically all block dimensions are unbounded.
