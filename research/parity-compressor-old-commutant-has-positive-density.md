@@ -45,3 +45,11 @@ part of the remaining hole.
 - A finite controlled-phase overgroup cannot impose that covariance on every
   selector sector.  The live implementation must use the one-sided Toeplitz
   coefficient action or a projective two-cell.
+- Even genuine finite automorphism covariance is insufficient.
+  `finite-normalizer-covariance-density-no-go`
+  takes regular semidirect quotients: the packet keeps constant Hilbert mass
+  and constant Reynolds density while the old low-commutator density is
+  exactly `1/|Q_n|`.  Thus a normalizer packet acting on all named
+  coefficients still decouples asymptotically.  The one-sided Toeplitz cell
+  must use non-surjectivity in an essential way; its induced finite head
+  action cannot be the missing estimate.
