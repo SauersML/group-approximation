@@ -16,7 +16,9 @@ H=<S>
 
 is a finitely generated normal FC-subgroup of `Gamma`: it is normal because
 `S` is conjugation invariant, and each of its finitely many generators has
-finite conjugacy class.
+finite conjugacy class.  Here we use that the FC-center is a subgroup: the
+conjugacy class of a product (or inverse) is contained in the product (or
+inverse) of the corresponding finite conjugacy classes.
 
 For a finitely generated FC-group `H`, its torsion radical `K` is finite and
 characteristic, and
@@ -25,9 +27,13 @@ characteristic, and
 H/K ~= Z^r.                                            (1)
 ```
 
-Indeed the center has finite index in `H`; the commutator subgroup is
-finite, the torsion subgroup is finite, and the torsion-free quotient is
-finitely generated abelian.  Since `H` is normal in `Gamma` and `K` is
+Indeed the center has finite index in `H`, so Schur's theorem makes the
+commutator subgroup `H'` finite.  The image of every torsion element in the
+finitely generated abelian group `H_ab` lies in its finite torsion subgroup,
+and each fibre over that subgroup has at most `|H'|` elements.  Hence the
+torsion set `K` is finite.  In an FC-group it is a characteristic subgroup;
+it contains `H'`, and the quotient is finitely generated, abelian and
+torsion-free, proving (1).  Since `H` is normal in `Gamma` and `K` is
 characteristic in `H`, `K` is finite normal in `Gamma`.
 
 ## 2. Central idempotents have no nonzero Laurent degree
@@ -52,11 +58,21 @@ z_rho C[H_rho] z_rho
 ```
 
 Here `H_rho/K` is a finite-index subgroup of `H/K`, hence a free abelian
-lattice.  Since `H` is FC, all commutators lie in the finite group `K`; the
-commutation bicharacter of `omega` consequently has finite image.  The
-center of the twisted Laurent algebra in (3) is the Laurent group algebra
-of the radical sublattice of that bicharacter.  It is an integral domain,
-so its only idempotents are `0` and `1`.
+lattice `A`.  Let
+
+```text
+b(x,y)=omega(x,y) omega(y,x)^(-1),
+R={x in A : b(x,y)=1 for every y in A}.
+```
+
+Coefficient comparison against every twisted monomial shows that a central
+element is supported exactly on `R`; hence
+`Z(C_omega[A])=C_(omega|R)[R]`.  On `R` the cocycle is symmetric.  A
+symmetric scalar cocycle on a free abelian group is a coboundary, so this
+center is an ordinary Laurent group algebra after rescaling its monomial
+basis.  It is an integral domain and its only idempotents are `0` and `1`.
+(The FC hypothesis also makes the commutation bicharacter finite-valued,
+but that stronger fact is not needed for this idempotent argument.)
 
 Thus a central idempotent on the orbit block (2) is either zero or the
 whole orbit identity `e_O`.  Applying this to every orbit shows
@@ -91,6 +107,15 @@ where `omega_rho` can be chosen finite-valued.  Distinct cosets and
 distinct finite-group matrix coefficients are orthogonal for the canonical
 group trace, so (5)--(6) also identify the normalized corner trace with
 the normalized matrix trace tensor the twisted regular trace.
+
+For completeness, finite phase follows directly from the intertwiner
+factor set.  If `T_xT_y=alpha(x,y)rho(k(x,y))T_(xy)`, determinants show that
+`alpha(x,y)^d` differs from a scalar coboundary by the finite-valued term
+`det rho(k(x,y))^(-1)`.  Thus the cohomology class of `alpha` is torsion and
+has a root-of-unity-valued representative.  The passage to full universal
+completions loses no representations: a representation of a central
+algebraic corner extends to the ambient algebra by `a |-> pi(e_O a)` (and
+similarly for `z_rho`).
 
 Summing over the selected orbits proves the announced finite direct-sum
 decomposition.

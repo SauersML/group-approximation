@@ -77,3 +77,19 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   `cdi-property-t-envelope-has-nonabelian-base`) whether every separable
   tracial von Neumann algebra embeds into some `L(Lambda)`; a positive
   answer for the single algebra `A(B_*)''_tau` is all this hole needs.
+- **Context inverse-semigroup globalization is impossible.**
+  `inverse-semigroup-globalization-cannot-groupify-nonru-bcs` proves the
+  local obstruction before any dilation: if all context atoms are source or
+  range projections in one inverse semigroup of partial isometries, they are
+  commuting idempotents.  Shared-variable sums then make all BCS projections
+  commute globally and yield a classical assignment, contradicting the
+  defining non-`R^U` property.  Separate context inverse semigroups therefore
+  fail on the first noncommuting cross-context atom product.  Passing to a
+  group collapses every idempotent to `1`; passing to groupoid bisections puts
+  them in a common Cartan and has the same problem.  Full-group globalization
+  has an additional exact dichotomy: isotropy gives
+  `tau(u_g)=mu(Fix(g))` instead of the regular trace, while essential freeness
+  restores the regular trace but makes the generated group algebra intersect
+  the Cartan only in the scalars.  Thus this entire partial-isometry-support
+  route is fenced; the open hole now genuinely requires non-Cartan group-
+  algebra elements or a finite projective central sector.
