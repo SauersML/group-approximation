@@ -116,3 +116,31 @@ iterating two-PVM orthogonalization cannot replace the missing parity-aware
 row/column coercivity.  A successful Newton argument must use the balanced
 parity layer to exclude or correct those low-weight adjoint modes before it
 invokes the orthogonalization theorem.
+
+There is now a complete terminal theorem once a commuting reference enters
+the basin.  `code-distance-upgrades-pair-energy-to-full-pinching` first
+decodes any commuting reference atomwise to the code, then uses relative
+code distance to force every nonzero adjoint Fourier character to have
+weight `Omega(L)`.  De la Salle consequently rounds any further reflection
+against that code PVM with a length-independent constant.  Thus the
+low-weight Fourier obstruction belongs entirely to **basin capture**: the
+all-local-dual tail inequalities may peel its sparse coordinate support,
+but the still-missing diffuse estimate must construct one commuting
+reference on the shortened core.  Once it does, neither an endpoint cb
+orthogonalization estimate nor a new many-outcome PVM theorem is required.
+
+Random coordinate anchoring gives a complementary exact-base realization
+of the desired gap.  `random-code-anchor-pinchings-contract-exact-transverse-energy`
+shows that one uniformly random coordinate pinching contracts every
+off-diagonal code-character block by `1-delta`, and that pinching followed
+by reflection sign-rounding costs at most one half of the selected anchor's
+commutator energy.  Iterated anchors preserve all earlier commutants.  The
+remaining obstruction is exactly basin entry, not the anchor calculation:
+`random-anchor-contraction-does-not-yet-enter-the-diffuse-basin` records
+that the code-character blocks used in the proof do not exist before
+synchronization, while local parity re-exactification either splits shared
+coordinates or becomes the original global rounding problem.  A successful
+version must prove expected contraction of the **full** balanced energy
+directly from the diffuse square function, with an equality-compatible
+global correction; ordinary triangle bounds supply boundedness but no
+strict contraction.
