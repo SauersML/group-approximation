@@ -125,6 +125,20 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   route — direct Theorem A and subgroup permanence alike — is therefore
   provably unavailable at the simple Kazhdan Kac--Moody lattices; the
   hole is open there with no published mechanism pointing either way.
+- **NEW SHARPEST CANDIDATES (2026-08-22): the Titz--Witzel simple CAT(0)
+  Kazhdan lattices** (`titz-witzel-simple-kazhdan-cat0-lattices-exist`,
+  arXiv:2509.05054v2, source-verified).  Torsion-free, finitely
+  presented (15 generators / 24 short relations at `q = 2`), simple,
+  uniform on single exotic `C~_2`-buildings.  Sharper than the
+  Kac--Moody candidates on every differing axis: the LP question is
+  DECIDED (fails, `titz-witzel-lattices-fail-lp`, via the free cocompact
+  action and ISW Corollary D), so a positive LLP answer here closes the
+  goal AND separates LLP from LP; torsion-freeness closes even the
+  char-p residual risk that the Kac--Moody bullet leaves open; and the
+  dichotomy is `titz-witzel-lattice-is-non-hyperlinear-or-llp-failure`.
+  The Kac--Moody candidates remain the non-uniform/no-cocompact-model
+  counterpoint (their LP fork `compact-hyperbolic-km-lattices-fail-lp`
+  stays open).
 - **Thom's groups are on the wrong side.**  Thom's hyperlinear Kazhdan
   groups without the factorization property (Groups Geom. Dyn. 4 (2010))
   are non-RF Kazhdan and hyperlinear, hence by the theorem their full

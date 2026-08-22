@@ -101,3 +101,19 @@ Cor E, Ex 1.3, Rmk 1.2); Fournier-Facio--Willett arXiv:2603.18456v2
 3.39); Caprace--Remy arXiv:math/0607664 (simplicity theorem, simple
 Kazhdan group corollary, Howe--Moore caution); Alekseev--Thom
 arXiv:2608.05362 (statement level, OP 6.2 via the peers' node).
+
+## Post-scriptum (2026-08-22, strike round)
+
+The strike round replaced the candidate ordering: the Titz--Witzel
+simple CAT(0) Kazhdan lattices (arXiv:2509.05054v2) are now the sharpest
+members of the non-RF hole's class — torsion-free, uniform, explicit,
+with LP failure PROVED (`titz-witzel-lattices-fail-lp`) and every known
+LLP-refutation route closed.  The Sp_4 corner is reduced to
+Connes-embeddability of the theta-twisted Bernoulli crossed products
+(`sp4-isw-theorem-c-embeddable-twist-data-exists`), with the whole ISW
+Theorem A surface proved empty (`isw-theorem-a-has-no-data-on-sp4-lattice`).
+The triangle corner has its normal form
+(`triangle-colimit-llp-reduces-to-relator-local-splitting`) and the
+Kac--Moody LP fork (`compact-hyperbolic-km-lattices-fail-lp`) whose
+refutation branch is the shortest program-closing conditional recorded.
+
