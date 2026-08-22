@@ -152,6 +152,24 @@ algebraic commutation problem.
   corner. The single head swap from
   `toeplitz-tail-plus-one-swap-generates` is the candidate bounded word which
   implements this transfer.
+- The stationary congruence branch now has a sharp coefficient-level split.
+  `positive-toeplitz-head-is-square-defect-or-rectangular-escape` proves that
+  on one square reservoir
+
+  ```text
+  tau(P_f)<=||YX-1||_2+||P_f-(1-XY)||_2.
+  ```
+
+  Hence positive forbidden-head mass immediately excludes the congruence
+  collapse and pays a named Toeplitz defect **if** the source and returned
+  tail are the same matrix reservoir.  Conversely, coordinate inclusion
+  `E->E direct_sum H` and projection back realize both equations exactly
+  with `P_f` equal to the positive `H` corner.  Thus an unpaid positive head
+  is exactly a rectangular reservoir escape.  The remaining dichotomy is
+  not a scalar or bounded-type estimate: the group-word/Fourier decoder must
+  authenticate the same reservoir or charge its change.  Bare transport
+  cannot do this, while a successful authentication makes trace cyclicity
+  finish the payment with constant one.
 - Repeat the shifted packet head without changing its child: this now has an
   exact rank-two ceiling.  It preserves forbidden mass perfectly but produces
   only one Pauli capacity bit, irrespective of depth.
