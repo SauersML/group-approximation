@@ -94,3 +94,10 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   escape.  The minimal remaining operation is an additive multi-path block
   in which one corner entry coherently sums several sector paths, not a
   normalizer bisection.
+- **Use the minimal additive two-path corner cell.**  The explicit `D_8` HNN
+  cell `V=t p_0+t^(-1)p_1` is a genuine nonnormal corner involution, but its
+  multiplicity matrix is only `[[0,U^*],[U,0]]`; a block gauge removes `U`.
+  Moreover a single compression `q w q` can be corner-unitary only when `w`
+  normalizes `q`.  Hence the remaining construction needs multiple additive
+  cells with a shared-block holonomy polynomial, not one stable word or one
+  rank-one swap.

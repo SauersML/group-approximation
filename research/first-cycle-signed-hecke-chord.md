@@ -97,6 +97,14 @@ least one non-root assignment projection must survive.
   the desired chord cannot be one sector bisection or a longer finite path;
   one block entry must be a coherent sum of multiple paths, the genuinely
   additive corner unitary already demanded here.
+- **The smallest additive two-path cell is still gauge-free.**  In the
+  two-dimensional `D_8` type, an order-three HNN automorphism of a Klein
+  subgroup carries one rank-one type projection to its complement.  The
+  element `V=t p_0+t^(-1)p_1` is an exact nonnormal corner involution, but on
+  multiplicities it is `[[0,U^*],[U,0]]` and a block-diagonal gauge removes
+  `U`.  Thus two paths are necessary but one isolated two-path cell does not
+  close the chord.  The next target is a shared-block loop of at least two
+  additive cells whose relative gauge is read by another corner polynomial.
 - **Pair opposite group-ring terms with new relators: circular.**  A single
   additive marginal equality can be forced by pairing its finite positive
   and negative support terms.  But
