@@ -50,3 +50,11 @@ transfer problem into a state-existence problem on
 `C^*(W) (x)_max C^*(Lambda)` with one non-convex constraint `(PGR3)`; the
 weakest sufficient form for the programme is
 `non-ru-bcs-is-satisfiable-in-a-group-factor`.
+
+There are two further exact permanence statements at the algebra level.
+By `group-realizability-reflects-free-bernoulli-envelopes`, adjoining a free
+group-factor leg or forming an untwisted Bernoulli crossed product preserves
+**and reflects** group realizability.  In Parseval language, these operations
+can transport an already existing joint state but cannot manufacture one:
+restriction to the payload leg or to one Bernoulli coordinate recovers a
+Parseval witness for the original character algebra.

@@ -71,6 +71,27 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   therefore needs a construction outside that list; the algebraic
   compact-abelian envelope (Pontryagin duality) is the one such
   construction currently on the table, and it is the peers' locked lane.
+- **Free and Bernoulli envelopes are exact equivalences, not constructions.**
+  `group-realizability-reflects-free-bernoulli-envelopes` proves that for
+  every tracial GNS algebra `Q_tau`, both
+
+  ```text
+  Q_tau * L(Gamma),
+  Q_tau^(tensor I) rtimes_shift Gamma
+  ```
+
+  embed in some group factor if and only if `Q_tau` itself does.  The forward
+  compilers are respectively `L(Lambda*Gamma)` and the restricted-wreath
+  group factor `L(Lambda^(I) rtimes Gamma)`; the reverse implication is
+  restriction to the payload leg or one tensor coordinate.  Hence retaining
+  the whole payload under free labels avoids the trace-erasure problem but
+  is completely circular, while an ordinary Bernoulli crossed product does
+  not algebraize the payload.  A twisted/non-Bernoulli CDI envelope still
+  contains the input, so a group-factor realization of that envelope would
+  already solve this target; CDI supplies no independent shortcut.  This
+  reflection remains true for embeddings into positive group-factor corners,
+  even though the forward free/wreath compiler is stated only for unital
+  group-factor embeddings.
 - **Embedding universality of group factors is open in the literature.**
   Chifan--Drimbe--Ioana's universality theorem for property-(T) factors
   leaves open (their Remark 1.1, as recorded in
