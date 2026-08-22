@@ -128,3 +128,13 @@ about ONE explicit operator.
   so at the wired pair `(3, 2)` the average runs over `42` words and
   the enemy value is exactly `43/168`.  Any candidate refuting
   construction should be tested against that number first.
+- **Finite spherical moments cannot prove the equality.**
+  `finite-spherical-moments-do-not-fold-regular-double` applies joint
+  spectral calculus and Caratheodory to the commutative spherical Hecke
+  algebra.  Every finite family of quasi-regular Plancherel moments,
+  including `||S(k)||_2^2=43/168`, has finite atomic diagonal quadratures.
+  Hence `(SH1)` cannot follow from abstract spherical character
+  decomposition or moment positivity.  Its load-bearing hypothesis is that
+  the Hecke atoms arise jointly from an approximately multiplicative regular
+  matrix model of `Gamma`; exact finite-dimensional extension is precisely
+  what co-density collapses.

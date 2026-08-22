@@ -77,3 +77,14 @@ operator-norm corona embedding under an MF hypothesis, but does not preserve
 the canonical trace on the nonamenable amalgam.  Thus this terminal respects
 the trace firewall in `sl3-hnn-sits-in-shulman-symmetric-double` rather than
 reintroducing the invalid MF-to-hyperlinear implication.
+
+The canonical block-swap character decomposition also stops short.
+`finite-spherical-moments-do-not-fold-regular-double` identifies its
+restriction to the commutative `2`-adic spherical Hecke algebra with the
+quasi-regular Plancherel state.  Every finite family of those moments has
+finite atomic diagonal quadratures, including the nonfolded one-average
+value `43/168`.  Property (T) isolates the trivial spherical point but does
+not force an abstract quadrature onto it.  The surviving content is exactly
+that the quadrature must extend to one approximately multiplicative regular
+matrix assignment of the full double; exact extension is where finite
+co-density folds.
