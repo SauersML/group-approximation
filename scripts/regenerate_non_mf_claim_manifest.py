@@ -83,12 +83,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:scaling-family": (
         "Sofic/ScalingFamilyEndpoint",
         "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily"),
-    # Renamed 2026-08-16 away from letter-shaped labels: `mainthm` numbers by
-    # position, so `thm:D` printed as Theorem C and `thm:E` as Theorem D, while
-    # `thm:B` and `thm:C` were not lettered theorems at all.  The manuscript
-    # keeps the old spellings as second labels on the same environments, so
-    # in-flight `\ref`s still resolve; these keys follow the FIRST label, which
-    # is what `read_printed_claims` reads.
+    # Renamed 2026-08-16 away from letter-shaped labels because `mainthm`
+    # letters depend on position.  These stable keys name the mathematical
+    # content and are the labels read by `read_printed_claims`.
     "thm:exactfd": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),

@@ -140,16 +140,9 @@ def statement_digest(block: str, env: str) -> str:
 def environment_digests(source: str) -> dict[str, str]:
     """Map *every* label of every labelled environment to its digest.
 
-    Not only the first.  An environment may carry several labels -- the
-    manuscript keeps `\\label{thm:B}` beside `\\label{thm:exactfd}` as a legacy
-    alias so that references written before a rename still resolve -- and a
-    ledger anchor keyed on the second one used to fall off the map entirely.
-    The symptom was misleading and unfixable at once: `check_anchors` reported
-    "is not inside a labelled environment" about a label that plainly was, and
-    `repin` looked the same label up in the same map, found nothing, and
-    silently skipped the row, so `--repin-digests` reported success while
-    leaving the anchor broken.  All labels of one environment share its digest,
-    which is what the aliasing means.
+    Not only the first.  An environment can carry several semantic labels, and
+    a ledger anchor keyed on a later label must resolve to the same statement.
+    All labels of one environment therefore share its digest.
     """
     digests: dict[str, str] = {}
     cursor = 0

@@ -10,10 +10,12 @@ It does not assert that the output exists.
 
 Unlike `OrderPreservingRoutingData`, the interface below does not strengthen
 Hull's finite-order conclusion to equality of the order of every source
-element with the order of its image. It records the published conclusion used
-for torsion-freeness: every finite-order element of the quotient lifts to an
-element of the same order. Survival is supplied separately by injectivity on
-the explicitly protected pair `{1, s}`.
+element with the order of its image.  The concrete constructor uses the
+published conclusion in its authentic domain: every finite-order element
+lifts, with the same order, through the common quotient from the whole free
+product and then through the final Hull quotient. Survival of the marked
+element is supplied separately by injectivity on the compression factor's
+explicitly protected pair `{1, s}`.
 
 The single normal-generation field says that the compression defect maps onto
 the quotient. From it Lean derives surjectivity of the ambient quotient map.
@@ -32,21 +34,20 @@ universe u
 
 Every field is a direct construction fact rather than an endpoint conclusion:
 
-* the compression ambient group is torsion-free;
 * Hull adjoins finitely many relators, so the quotient is finitely presented;
 * the target is Kazhdan, derived by `ofCommonQuotientAndHull` from the
   auxiliary factor;
+* the target is torsion-free, derived by `ofCommonQuotientAndHull` from
+  finite-order lifting along the whole free-product route;
 * the compression defect maps onto the quotient;
-* finite-order elements lift with their order preserved through each stage;
-  and
 * each stage is injective on the protected pair or its image.
 
-Target torsion-freeness, target nontriviality, quotient-map surjectivity,
-saturation of the descended compression core, and non-MF are not fields. The
-abstract boundary stores target property `(T)` explicitly; the authentic
-`ofCommonQuotientAndHull` constructor
-derives it from the auxiliary Kazhdan factor rather than assuming it as an
-independent target fact. -/
+Target nontriviality, quotient-map surjectivity, saturation of the descended
+compression core, and non-MF are not fields. The abstract boundary stores the
+two target properties actually consumed by the endpoint.  The authentic
+`ofCommonQuotientAndHull` constructor derives them from the auxiliary Kazhdan
+factor and the torsion-free free-product source rather than assuming them as
+independent target facts. -/
 structure BareDefectHullQuotientData
     {P : Type} {E : Type u} [Group P] [Group E]
     (D : BareDefectSourceData P E) where
@@ -57,18 +58,15 @@ structure BareDefectHullQuotientData
   quotient : E →* Quotient
   /-- Only finitely many relators are adjoined. -/
   [finitelyPresented : Group.IsFinitelyPresented Quotient]
-  /-- Torsion-freeness of the constructed ambient group. -/
-  sourceTorsionFree : IsPowerTorsionFree E
+  /-- Torsion-freeness of the final target, derived by the concrete constructor
+  from the whole free-product source and the two finite-order lifting stages. -/
+  targetTorsionFree : IsPowerTorsionFree Quotient
   /-- Property `(T)` of the target. In `ofCommonQuotientAndHull` this is
   derived from the auxiliary Kazhdan factor and its surjection, not from the
   ambient group. -/
   targetKazhdan : HasKazhdanPropertyT.{0, 0} Quotient
   /-- Hull's direct saturation conclusion for the compression defect. -/
   defectNormal_maps_top : D.core.defectNormal.map quotient = ⊤
-  /-- Hull's finite-order clause: a finite-order quotient element has a lift
-  of exactly the same order. -/
-  finiteOrder_lifts : ∀ (y : Quotient) (n : ℕ), 0 < n → orderOf y = n →
-    ∃ x : E, orderOf x = n ∧ quotient x = y
   /-- Injectivity on the deliberately protected pair `{1, s}`. -/
   protected_injective : Set.InjOn quotient ({1, D.s} : Set E)
 
@@ -87,26 +85,33 @@ local instance hullQuotientFinitelyPresented :
 /-- Build the endpoint datum directly from the authentic common-quotient maps
 and the subsequent Hull quotient.
 
-The auxiliary-factor map `first : A → M` is onto. No separate surjectivity
+The auxiliary-factor map `first : A → M` is onto.  The map `source : F → M`
+comes from the whole torsion-free free product used in the common quotient;
+its finite-order lifting clause, followed by the corresponding clause for
+`finish`, proves that `Q` is torsion-free.  This route deliberately does not
+try to lift torsion through `second : E → M`: the compression source `E` is
+only one factor of `F`.
+
+No separate surjectivity
 assumption on `second : E → M` is needed at this endpoint: Hull's direct
 saturation conclusion already says that the image under `finish` of the
 mapped compression defect is all of `Q`, and therefore implies
 surjectivity of the final source composite. `Subgroup.map_map` turns that
 statement into saturation under the composite map from `E`. Property `(T)`
 descends along the surjective composite from the auxiliary Kazhdan factor
-`A`. Finite-order lifting and protected-set injectivity are supplied one Hull
-stage at a time and composed here, rather than accepted as facts about the
-final composite. -/
+`A`. Protected-set injectivity is supplied one Hull stage at a time and
+composed here. -/
 def ofCommonQuotientAndHull
-    {A M : Type*} {Q : Type} [Group A] [Group M] [hQ : Group Q]
+    {A F M : Type*} {Q : Type} [Group A] [Group F] [Group M] [hQ : Group Q]
     [hQfp : Group.IsFinitelyPresented Q]
-    (first : A →* M) (second : E →* M) (finish : M →* Q)
+    (first : A →* M) (source : F →* M) (second : E →* M)
+    (finish : M →* Q)
     (hfirst : Function.Surjective first)
-    (hEtor : IsPowerTorsionFree E)
+    (hFtor : IsPowerTorsionFree F)
     (hAT : HasKazhdanPropertyT.{0, 0} A)
     (hsaturation : (D.core.defectNormal.map second).map finish = ⊤)
-    (horderSecond : ∀ (y : M) (n : ℕ), 0 < n → orderOf y = n →
-      ∃ x : E, orderOf x = n ∧ second x = y)
+    (horderSource : ∀ (y : M) (n : ℕ), 0 < n → orderOf y = n →
+      ∃ x : F, orderOf x = n ∧ source x = y)
     (horderFinish : ∀ (z : Q) (n : ℕ), 0 < n → orderOf z = n →
       ∃ y : M, orderOf y = n ∧ finish y = z)
     (hprotectedSecond : Set.InjOn second ({1, D.s} : Set E))
@@ -127,15 +132,15 @@ def ofCommonQuotientAndHull
     groupQuotient := hQ
     quotient := finish.comp second
     finitelyPresented := hQfp
-    sourceTorsionFree := hEtor
+    targetTorsionFree :=
+      isPowerTorsionFree_of_orderReflecting hFtor (finish.comp source)
+        (HullPrescribedSaturation.finiteOrder_lifts_comp source finish
+          horderSource horderFinish)
     targetKazhdan :=
       HasKazhdanPropertyT.of_surjective (finish.comp first) hfirstFinal hAT
     defectNormal_maps_top := by
       rw [← Subgroup.map_map]
       exact hsaturation
-    finiteOrder_lifts :=
-      HullPrescribedSaturation.finiteOrder_lifts_comp second finish
-        horderSecond horderFinish
     protected_injective :=
       HullPrescribedSaturation.injOn_comp second finish ({1, D.s} : Set E)
         hprotectedSecond hprotectedFinish }
@@ -155,11 +160,10 @@ the auxiliary Kazhdan factor. -/
 theorem quotient_kazhdan : HasKazhdanPropertyT.{0, 0} H.Quotient :=
   H.targetKazhdan
 
-/-- Hull's finite-order lifting clause, rather than a globally
-order-preserving map, is enough to preserve torsion-freeness. -/
+/-- Torsion-freeness of the target, derived by the concrete constructor from
+the whole torsion-free free-product source. -/
 theorem quotient_torsionFree : IsPowerTorsionFree H.Quotient :=
-  isPowerTorsionFree_of_orderReflecting H.sourceTorsionFree H.quotient
-    H.finiteOrder_lifts
+  H.targetTorsionFree
 
 /-- The protected element survives. This is deliberately derived from the
 geometric injectivity conclusion and is not an existence-sounding field. -/

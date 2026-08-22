@@ -34,13 +34,13 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newif\ifanonymous
 \anonymoustrue
-% The author line is kept out of this file: for a public build, set
-% \anonymousfalse above and supply `coderepo.tex` defining \paperauthorname.
+% Public author metadata is kept out of the anonymous source archive.  For a
+% public build, set \anonymousfalse above; coderepo.tex then supplies the
+% author name and is required to be present.
 \ifanonymous
   \newcommand{\paperauthor}{Anonymous}
 \else
-  \IfFileExists{coderepo.tex}{\input{coderepo.tex}}{}
-  \providecommand{\paperauthorname}{Anonymous}
+  \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
 \hypersetup{
@@ -51,10 +51,11 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
-% Hidden link from a numbered statement to an accompanying Lean~4
-% declaration whose proposition checks the stated claim.  This record does
-% not assert that the surrounding prose proof is a line-by-line transcription;
-% route-level correspondence is tracked separately by the audit metadata.
+% Machine-readable source metadata attaching a numbered statement to an
+% accompanying Lean~4 declaration.  The macro is intentionally invisible in
+% the PDF; the web edition and audit scripts consume its two arguments.  This
+% record does not assert that the surrounding prose proof is a line-by-line
+% transcription; route-level correspondence is tracked separately.
 \newcommand{\leanverified}[2]{\ignorespaces}
 % \leanstep{ID}: positional audit metadata, not typeset.  ID names a step
 % row of metadata/NON_MF_PROOF_LEDGER.md; the marker sits directly after
@@ -81,20 +82,15 @@
 
 \theoremstyle{plain}
 % The headline results are lettered by the mainthm counter, in order of
-% appearance.  The label names are historical and do NOT track the
-% printed letters.  Verified against the .aux of a full build:
+% appearance.  Verified against the .aux of a full build:
 %
 %     thm:A       -> Theorem A          thm:signfree -> Theorem B
 %     thm:reduced -> Theorem C          thm:Esofic   -> Theorem D
 %     thm:trace   -> Theorem E          thm:exactfd  -> an ordinary theorem
 %     thm:cyclic  -> an ordinary supplementary theorem
 %
-% so thm:B and thm:C are ordinary section-numbered theorems, not
-% letters.  Every cross-reference goes through \ref, so the printed text
-% is consistent and only a reader of the source can be misled.  The
-% names are load-bearing elsewhere -- CLAIM_TARGETS in
-% scripts/regenerate_non_mf_claim_manifest.py, the proof ledger and the
-% Cairn nodes all key off them -- so they are deliberately not renamed.
+% Labels name mathematical content rather than printed letters; the obsolete
+% letter-shaped aliases thm:B, thm:C, thm:D and thm:E are not retained.
 % If you add a mainthm, re-derive this table from the .aux rather than
 % guessing: it has gone stale once already.
 \newtheorem{mainthm}{Theorem}
@@ -138,7 +134,7 @@ A countable discrete group is MF if it embeds in the unitary group of a
 norm matrix corona
 $\mathcal Q=\prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)$.
 We prove that non-MF groups exist, resolving in the negative the
-longstanding question of whether every countable group is MF.  Our principal example is an
+longstanding question of whether every countable group is MF\@.  Our principal example is an
 explicit finitely presented sofic group.
 
 At the final obstruction step, we adapt the operator--Hilbert--Schmidt
@@ -158,7 +154,7 @@ non-MF group is equivalent to the existence of a finitely generated one
 and to the existence of a finitely presented one.  Further
 consequences include a separable exact
 stably finite reduced group $C^*$-algebra that is not MF and a hyperlinear
-trace that is not MF.
+trace that is not MF\@.
 
 \end{abstract}
 
@@ -199,8 +195,9 @@ generated one and to the existence of a finitely presented one
 
 Residually finite and LEF groups are MF \cite{CDE}.  Amenable groups are
 MF because their reduced group $C^*$-algebras embed into the universal UHF
-algebra \cite[Theorem~B]{SchafhauserAF}, using the quasidiagonality of nuclear
-$C^*$-algebras \cite{TWW}.
+algebra \cite[Theorem~B]{SchafhauserAF}.  The underlying quasidiagonality
+input is the Tikuisis--White--Winter theorem, in particular their proof of
+Rosenberg's conjecture \cite{TWW}.
 
 Several nearby notions are stronger.
 Schafhauser's group models additionally approximate the left regular
@@ -339,7 +336,7 @@ hence LEF, but is infinite simple and therefore not residually finite.  Abels'
 finitely presented group is MF but
 not residually finite \cite[Section~2.14 and Corollary~2.18]{CDE}; since a
 finitely presented LEF group is residually finite
-\cite[Remark~2.11]{CDE}, it is not LEF.  Finally,
+\cite[Remark~2.11]{CDE}, it is not LEF\@.  Finally,
 the group $E$ below is sofic but not LEF
 (Theorems~\ref{thm:A} and~\ref{thm:Esofic}).  The
 reverse of the bottom arrow,
@@ -358,9 +355,7 @@ separable $C^*$-algebra was known not to be MF \cite{BK,CDE}.  Their
 natural candidate was $\Cred(F_2)$, which Haagerup and
 Thorbj{\o}rnsen later proved to be MF \cite{HT}.  The negative solution of the Connes embedding
 problem subsequently implied the existence of abstract stably finite
-non-MF algebras \cite{MIPRE,FGH}.  To our knowledge no countable group
-was known whose reduced or maximal group $C^*$-algebra fails to be MF
-\cite{Shulman}.  The maximal-algebra obstruction applies to every countable
+non-MF algebras \cite{MIPRE,FGH}.  The maximal-algebra obstruction applies to every countable
 group with a property-\textup{(T)} subgroup properly conjugated into itself.
 The corresponding Kazhdan projection is strictly dominated by its conjugate,
 so the maximal group algebra contains a proper isometry and is not stably
@@ -434,11 +429,13 @@ framework is that of Carri\'on--Dadarlat--Eckhardt, who also give,
 through Abels' group, an amenable MF group that is not residually
 finite \cite[Section~2.14 and Corollary~2.18]{CDE}.
 
-An MF embedding of a group $C^*$-algebra restricts to an MF embedding of
-the underlying group.  The converse is open.  An injective homomorphism
-$E\to\U(\mathcal Q)$ need not extend to a $C^*$-algebra embedding
-$\Cred(E)\hookrightarrow\mathcal Q$.  Theorem~\ref{thm:A} rules out both
-embeddings for $E$.
+If $e\colon A\to\mathcal Q$ is an MF embedding of a unital group
+$C^*$-algebra and $p=e(1)$, then
+$g\mapsto e(u_g)+(1-p)$ is an MF embedding of the underlying group.
+The converse is open: an injective homomorphism
+$G\to\U(\mathcal Q)$ is not known in general to induce a $C^*$-algebra
+embedding $\Cred(G)\hookrightarrow\mathcal Q$.  Theorem~\ref{thm:A}
+rules out both embeddings for $E$.
 
 \section{Matrix quotients}\label{sec:prelim}
 
@@ -650,7 +647,7 @@ $\U(\mathcal Q((r_n)))$.
 For each $k\ge1$, the MF groups form a closed subset of the space of
 $k$-marked groups.  Equivalently, every non-MF $k$-marked group has a
 finite-radius obstruction: all marked groups agreeing with it on a
-sufficiently large word ball are non-MF.
+sufficiently large word ball are non-MF\@.
 \leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
 \leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
 \leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
@@ -670,14 +667,14 @@ of these words gives the finite-radius formulation.
 The class of countable MF groups is closed under directed colimits.
 
 \begin{proof}
-Let $G=\varinjlim_iG_i$ with every $G_i$ MF.  Given finite
+Let $G=\varinjlim_iG_i$ with every $G_i$ MF\@.  Given finite
 $F\subseteq G$ and $\varepsilon>0$, choose a stage containing lifts of
 all elements and products occurring in the local conditions on $F$, and
 then a later stage at which every equality and inequality among those
 finitely many elements has stabilized to its truth value in $G$.
 Composing a constant-$1$ local model at that stage with the lifts gives
 one with the prescribed data on $F$.
-Proposition~\ref{prop:mf-equivalences} gives that $G$ is MF.
+Proposition~\ref{prop:mf-equivalences} gives that $G$ is MF\@.
 \end{proof}
 
 The amplification step plays the role that rank amplification plays in
@@ -1088,7 +1085,7 @@ property~\textup{(T)}, let $t,c\in H$, and suppose
 Put $\hat c=tct^{-1}$ and $u=[\hat c,a]$ for some $a\in L$.
 If $w:=u^2$ is a nontrivial central involution of $H$, then every
 homomorphism $H\to\U(\mathcal Q)$ maps
-$w$ to the identity, and $H$ is not MF.
+$w$ to the identity, and $H$ is not MF\@.
 \leanverified{Sofic/ManuscriptSubgroupSpecializations}{GroupApproximation.ManuscriptExactWrappers.manuscriptCentralSignCriterionSubgroup}
 \end{theorem}
 
@@ -1143,7 +1140,7 @@ normalized Hilbert--Schmidt norm.  Hence $\hsnorm{W_{u,n}^2+1}\to0$
 and $\hsnorm{W_{u,n}^2-1}\to0$.  The triangle inequality would then
 give $\hsnorm{2\cdot1}\to0$, contradicting $\hsnorm{2\cdot1}=2$.
 Thus $\Theta(w)=1$.  Since $w\ne1$, every homomorphism
-$H\to\U(\mathcal Q)$ has nontrivial kernel, so $H$ is not MF.
+$H\to\U(\mathcal Q)$ has nontrivial kernel, so $H$ is not MF\@.
 \end{proof}
 
 Theorem~\ref{thm:criterion} replaces $\{1,w\}$ by any finite normal
@@ -1179,7 +1176,7 @@ The group $E(\Gamma,\alpha,a)$ is finitely presented,
 the canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
 nontrivial central involution.  Every homomorphism
 $E(\Gamma,\alpha,a)\to\U(\mathcal Q)$ maps $w$ to $1$, so
-$E(\Gamma,\alpha,a)$ is not MF.
+$E(\Gamma,\alpha,a)$ is not MF\@.
 \leanverified{Sofic/KazhdanCliffordConstruction}{GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction}
 \end{theorem}
 
@@ -2410,8 +2407,8 @@ homomorphism also maps $w$ to the identity.
 Fritz's marked $\mathrm{BS}(2,3)$ example is the context for this
 comparison \cite{Fritz,SlofstraVidick}.
 
-% Not the lettered Theorem C: an ordinary numbered theorem.  Cite
-% \ref{thm:cyclic}; `thm:C` is a legacy alias.  See the note at thm:exactfd.
+% This is an ordinary numbered theorem, not a headline result; cite it by its
+% content label \ref{thm:cyclic}.
 \begin{theorem}[the cyclic comparison]\label{thm:cyclic}
 Define the presentation
 \[
@@ -2584,8 +2581,8 @@ integers, in accordance with the convention fixed after
 If $G_1/N$ is MF, compose $G_1\to G_1/N$ with an injective homomorphism
 $G_1/N\to\U(\mathcal Q)$.  The resulting homomorphism has kernel $N$,
 so $\operatorname{Res}_{\mathrm{MF}}(G_1)\le N$.  Thus the MF residual
-is contained in every normal subgroup whose quotient is MF.
-Proposition~\ref{prop:univquot} shows that its own quotient is MF.
+is contained in every normal subgroup whose quotient is MF\@.
+Proposition~\ref{prop:univquot} shows that its own quotient is MF\@.
 It is the operator-norm analogue of the invisible subgroups
 of \cite[Definitions~2.5--2.7]{SlofstraCorrelations} and of the
 metric-ultraproduct approximation framework of \cite{NST}.
@@ -2599,7 +2596,7 @@ groups,
 \]
 In particular, if
 $\varphi\colon E\to G_2$ satisfies $\varphi(w)\neq1$, then $G_2$ is
-not MF.
+not MF\@.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability}
 \end{lemma}
 
@@ -2618,7 +2615,7 @@ Let $G_1$ be a countable group and
 $R=\operatorname{Res}_{\mathrm{MF}}(G_1)$.
 \begin{enumerate}
 \item $R$ is the kernel of a single homomorphism $G_1\to\U(\mathcal Q)$.
-\item $G_1/R$ is MF.
+\item $G_1/R$ is MF\@.
 \item Every homomorphism from $G_1$ to an MF group factors through
 $G_1/R$.
 \end{enumerate}
@@ -2655,7 +2652,7 @@ Lemma~\ref{lem:unitarycorona}, is a
 faithful homomorphism $Q\to\U(\mathcal Q)$.  This proves (2), and composing with
 $G_1\twoheadrightarrow Q$ proves (1).  Finally, if $G_1$ is MF then an
 injective homomorphism to $\U(\mathcal Q)$ gives $R=\{1\}$; if $R=\{1\}$ then
-(2) says $G_1$ is MF.
+(2) says $G_1$ is MF\@.
 \end{proof}
 
 \begin{corollary}[exact residual from a candidate quotient]\label{cor:exactradical}
@@ -2725,9 +2722,9 @@ of \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 \begin{lemma}[permanence]\label{lem:permanence}
 Let all groups be countable.
 \begin{enumerate}
-\item Every subgroup of an MF group is MF.
-\item Every residually finite group is MF.
-\item Every locally finite group is MF.
+\item Every subgroup of an MF group is MF\@.
+\item Every residually finite group is MF\@.
+\item Every locally finite group is MF\@.
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
 \leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
@@ -2757,7 +2754,7 @@ It separates as in (2).
 \begin{corollary}[quotients]\label{cor:quotclosure}
 MF groups are not closed under quotients: the free group
 \(F_8\) is MF, and the explicit group \(E\) is its quotient
-but is not MF.
+but is not MF\@.
 \leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
 \end{corollary}
 
@@ -2911,14 +2908,13 @@ gives $\Delta_{s\gamma s^{-1}}=0$, hence
 $\pi(s\gamma s^{-1})y=y$ for every $\gamma\in L$.
 
 Normalize the Hilbert--Schmidt norms by $k_n=\operatorname{rank}Q_n$
-rather than by $d_n$ and apply
-Theorem~\ref{thm:transport-variants} with that weight.  In its proof,
-$P$ is the projection onto
-$\operatorname{Fix}\pi(L)$ and the conjugate
+rather than by $d_n$ and repeat, with this weight, the fixed-space
+comparison in the proof of Theorem~\ref{thm:transport-variants}.  The
+projection $P$ onto $\operatorname{Fix}\pi(L)$ and its conjugate
 $Q=\pi(s)P\pi(s)^{*}$ onto
-$\operatorname{Fix}\pi(sLs^{-1})$, with $P\le Q$ and $P\sim Q$ in
-the same finite norm ultraproduct.  Lemma~\ref{lem:finitecompare}
-therefore gives $P=Q$.  Hence $\pi(g)y=y$ and
+$\operatorname{Fix}\pi(sLs^{-1})$ lie in the same finite norm
+ultraproduct, with $P\le Q$ and $P\sim Q$.
+Lemma~\ref{lem:finitecompare} therefore gives $P=Q$.  Hence $\pi(g)y=y$ and
 $\beta(g)=0$ for every $g\in L$, contradicting the previous paragraph.
 Therefore $\Delta_g=0$ for every $g\in L$ in the original corona; equivalently,
 $p$ commutes with $\Theta(g)$ for every $g\in L$.
@@ -3004,7 +3000,7 @@ $\Theta(k)=\sum_j e^{2\pi ij/m}p_j$, then shows that $\Theta(k)$ also
 commutes with $\Theta(L)$.  The normal closure of all such commutators,
 over all finite-order witnesses for $(L,s)$, lies in
 $\operatorname{Res}_{\mathrm{MF}}(H)$, with equality whenever the
-corresponding quotient of $H$ is MF.
+corresponding quotient of $H$ is MF\@.
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan}
@@ -3056,7 +3052,7 @@ distinct points does not lie in $\langle\zeta\rangle$.  Hence
 $[\iota(v_1),\hat c]\notin\langle w\rangle$, and its image in
 $E/\langle w\rangle$ is nontrivial.  This image lies in the MF
 residual, so Proposition~\ref{prop:univquot} implies that the quotient
-is non-MF.
+is non-MF\@.
 Corollary~\ref{cor:pullback} identifies
 $\operatorname{Res}_{\mathrm{MF}}(E)$ with the $q$-preimage of
 $\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
@@ -3096,7 +3092,7 @@ $u=[d,v_1]$, and $D=\langle\!\langle u\rangle\!\rangle_E$.  Then
  \qquad
  E/D\cong \Sigma*_{\mathcal B}(\mathcal B\times C_2),
 \]
-and $E/D$ is MF.  Moreover, if $q\colon E\to E/\langle w\rangle$ and
+and $E/D$ is MF\@.  Moreover, if $q\colon E\to E/\langle w\rangle$ and
 $D_{\mathrm{coll}}$ is the collapse defect used in the proof of
 Theorem~\ref{thm:signfree}, then
 \[
@@ -3139,20 +3135,20 @@ separable because it is generated by the countable family of group unitaries;
 it is MF and
 $\tau(g)=0$ for every $g\ne1$.  Put $C=C^*(\mathcal B)\subseteq A$.
 Shulman's symmetric amalgam theorem \cite[Theorem~10]{Shulman} makes
-the full unital amalgam $A*_{C}A$ MF.  The canonical homomorphism
+the full unital amalgam $A*_{C}A$ MF\@.  The canonical homomorphism
 $G_0*_{\mathcal B}G_0\to\U(A*_{C}A)$ is injective.  Indeed, in the GNS von
 Neumann algebra of $(A,\tau)$, the trace-preserving conditional expectation
 onto $C''$ sends every group unitary outside $\mathcal B$ to zero.  The
 reduced amalgam trace therefore vanishes on every nontrivial Bass--Serre
 reduced word.  Hence
-$G_0*_{\mathcal B}G_0$ is MF.  Normal forms for amalgamated free products give
+$G_0*_{\mathcal B}G_0$ is MF\@.  Normal forms for amalgamated free products give
 an embedding
 \[
  \Sigma*_{\mathcal B}(\mathcal B\times C_2)
  \hookrightarrow G_0*_{\mathcal B}G_0,
 \]
 using the first vertex group for $\Sigma$ and the second for
-$\mathcal B\times C_2$.  Subgroups of MF groups are MF, so $E/D$ is MF.
+$\mathcal B\times C_2$.  Subgroups of MF groups are MF, so $E/D$ is MF\@.
 Corollary~\ref{cor:exactradical} now gives
 $\operatorname{Res}_{\mathrm{MF}}(E)=D$.  Applying
 Corollary~\ref{cor:pullback} first to $\langle w\rangle\le D$ and then to
@@ -3257,7 +3253,7 @@ $\Cl(X)\rtimes T$.  Every finite subset of the kernel lies in
 $L\rtimes\bar\Gamma_n$ for some finite invariant subgroup
 $L\le\Cl(X)$ and some level $\bar\Gamma_n$.  This semidirect product is
 residually finite because the action on $L$ factors through a finite
-quotient.  The kernel is therefore LEF and hence MF.  Thus $W$ is a non-MF
+quotient.  The kernel is therefore LEF and hence MF\@.  Thus $W$ is a non-MF
 extension of an LEF group by $\Z$.  It is nevertheless sofic by the
 Elek--Szab\'o amenable-extension theorem \cite{ElekSzabo}.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
@@ -3607,7 +3603,7 @@ is \cite{NybergBrodda}.  Apply $\Delta$ to the free product of the
 input presentation with a fixed presentation of $E$ and to the input
 word.  The resulting presentation code is computable from the pair and
 presents an MF group exactly when the input word is trivial.  In the
-trivial case the output group is free and hence MF.  In the nontrivial
+trivial case the output group is free and hence MF\@.  In the nontrivial
 case the free product, and therefore $E$, embeds in the output group.
 The output group is then non-MF by Lemma~\ref{lem:permanence}(1).  Composing a
 decision procedure for MF recognition with this map would therefore
@@ -3780,7 +3776,7 @@ $\mathfrak D(G,L)$ is normal, $\mathfrak D(G,L)=G$.
 Applying Corollary~\ref{cor:intrinsic-nk} with $K=G$ shows that every
 homomorphism $G\to\U(\mathcal Q)$ is trivial.  The embedded copy of $S'$
 makes $G$ nontrivial, so no such homomorphism is injective and $G$ is not
-MF.
+MF\@.
 
 The normal-Kazhdan criterion is essential here because a torsion-free group
 has no nontrivial finite subgroup.
@@ -3937,6 +3933,7 @@ experiments were used to test and discard preliminary approaches; the proofs
 in this paper do not depend on those computations.
 
 \begin{thebibliography}{GKEMP}
+\frenchspacing
 
 \bibitem[Ad]{Adian55}
 S.~I.~Adian,

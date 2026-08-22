@@ -21,8 +21,10 @@ the theorems that follow are theorems about that body rather than about a name.
 * `IsAcylindrical` --- Osin's condition: for every `ε` there are `R` and `N` such
   that any two points at distance at least `R` are moved by at most `ε` by at
   most `N` group elements.
-* `IsLoxodromic g x` --- the orbit of `x` under the powers of `g` escapes every
-  bounded set.
+* `IsEscaping g x` --- the orbit of `x` under positive powers of `g` escapes
+  every bounded set.
+* `IsLoxodromic g x` --- that orbit has a positive linear lower bound, up to
+  an additive constant.
 * `Independent g h x` --- the Gromov products of the two power-orbits stay
   bounded: the two axes have disjoint endpoints.
 * `ActsNonElementarily S x` --- `S` contains two independent loxodromics.  This
@@ -190,6 +192,191 @@ theorem chain_progress_step {δ C L : ℝ} (hδ : IsHyperbolicSpace δ X)
     have hnext := gromovProduct_le_add_delta_of_lt hδ hfar
     linarith
 
+/-- The weak escape property: the positive power orbit eventually leaves every
+bounded set.  This is strictly weaker than genuine loxodromy and is retained
+under an explicit name only for lemmas that use no quantitative geometry. -/
+def IsEscaping (g : G) (x : X) : Prop :=
+  Filter.Tendsto (fun n : ℕ => dist x ((g ^ n) • x)) Filter.atTop Filter.atTop
+
+/-- `g` and `h` are independent at `x` when the Gromov products of their power
+orbits stay bounded. -/
+def Independent (g h : G) (x : X) : Prop :=
+  ∃ C : ℝ, ∀ n m : ℤ, gromovProduct ((g ^ n) • x) ((h ^ m) • x) x ≤ C
+
+/-- Genuine loxodromy: the orbit map has a positive linear lower bound, up to
+an additive constant.  Together with `dist_pow_le`, this is precisely a
+quasi-isometric embedding of the nonnegative integers.  The additive constant
+makes the notion transparently invariant under basepoint changes and
+conjugation, as required by Morse stability. -/
+def IsLoxodromic (g : G) (x : X) : Prop :=
+  ∃ l : ℝ, 0 < l ∧ ∃ B : ℝ, 0 ≤ B ∧
+    ∀ n : ℕ, l * n - B ≤ dist x ((g ^ n) • x)
+
+/-- Genuine loxodromy implies weak escape. -/
+theorem IsLoxodromic.isEscaping {g : G} {x : X}
+    (h : IsLoxodromic g x) : IsEscaping g x := by
+  obtain ⟨l, hl, B, _hB, hle⟩ := h
+  rw [IsEscaping, Filter.tendsto_atTop]
+  intro A
+  obtain ⟨N, hN⟩ := exists_nat_gt ((A + B) / l)
+  rw [Filter.eventually_atTop]
+  refine ⟨N, fun n hn => ?_⟩
+  have hcast : (N : ℝ) ≤ n := by exact_mod_cast hn
+  have hdiv : (A + B) / l < (n : ℝ) := lt_of_lt_of_le hN hcast
+  have hlin : A + B < l * (n : ℝ) := by
+    rw [div_lt_iff₀ hl] at hdiv
+    linarith
+  exact lt_of_lt_of_le (by linarith) (hle n)
+
+/-- **Two-axis ping-pong from the two cross-backtracking bounds.**
+
+Let `p = A B`.  The orbit path is refined by the intermediate vertices
+`pᵏ A x`.  Its two kinds of local turns are isometric translates of exactly
+
+* `(A⁻¹x | Bx)_x`, and
+* `(B⁻¹x | Ax)_x`.
+
+If both are bounded by `C` and both syllables have length at least
+`L > 2(C+δ)`, `chain_progress_step` applied twice per power gives
+`d(x,pᵏx) ≥ 2k(L-2(C+δ))`. -/
+theorem isLoxodromic_mul_of_cross_backtracking {δ C L : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hiso : IsIsometricAction G X)
+    {A B : G} {x : X} (hCδ : 0 ≤ C + δ)
+    (hgap : 2 * (C + δ) < L)
+    (hA : L ≤ dist x (A • x)) (hB : L ≤ dist x (B • x))
+    (hAB : gromovProduct (A⁻¹ • x) (B • x) x ≤ C)
+    (hBA : gromovProduct (B⁻¹ • x) (A • x) x ≤ C) :
+    IsLoxodromic (A * B) x := by
+  let p : G := A * B
+  let q : ℝ := L - 2 * (C + δ)
+  have hq : 0 < q := by dsimp [q]; linarith
+  have hodd : ∀ k : ℕ,
+      gromovProduct ((p ^ k) • x) ((p ^ (k + 1)) • x)
+        ((p ^ k * A) • x) ≤ C := by
+    intro k
+    let t : G := (p ^ k * A)⁻¹
+    have ht0 : t * p ^ k = A⁻¹ := by
+      dsimp [t]
+      group
+    have ht1 : t * p ^ (k + 1) = B := by
+      dsimp [t, p]
+      rw [pow_succ]
+      group
+    have htbase : t * (p ^ k * A) = 1 := by
+      dsimp [t]
+      group
+    have h := gromovProduct_smul hiso t ((p ^ k) • x)
+      ((p ^ (k + 1)) • x) ((p ^ k * A) • x)
+    rw [← mul_smul, ht0, ← mul_smul, ht1, ← mul_smul, htbase, one_smul] at h
+    rw [← h]
+    exact hAB
+  have heven : ∀ k : ℕ,
+      gromovProduct ((p ^ k * A) • x) ((p ^ (k + 1) * A) • x)
+        ((p ^ (k + 1)) • x) ≤ C := by
+    intro k
+    let t : G := (p ^ (k + 1))⁻¹
+    have ht0 : t * (p ^ k * A) = B⁻¹ := by
+      dsimp [t, p]
+      rw [pow_succ]
+      group
+    have ht1 : t * (p ^ (k + 1) * A) = A := by
+      dsimp [t]
+      group
+    have htbase : t * p ^ (k + 1) = 1 := by
+      dsimp [t]
+      group
+    have h := gromovProduct_smul hiso t ((p ^ k * A) • x)
+      ((p ^ (k + 1) * A) • x) ((p ^ (k + 1)) • x)
+    rw [← mul_smul, ht0, ← mul_smul, ht1, ← mul_smul, htbase, one_smul] at h
+    rw [← h]
+    exact hBA
+  have hind : ∀ k : ℕ,
+      q * (2 * k) ≤ dist x ((p ^ k) • x) ∧
+        gromovProduct x ((p ^ k * A) • x) ((p ^ k) • x) ≤ C + δ := by
+    intro k
+    induction k with
+    | zero =>
+        constructor
+        · simp
+        · have hz : gromovProduct x (A • x) x = 0 := by
+            unfold gromovProduct
+            rw [dist_self, dist_comm (A • x) x]
+            ring
+          simpa [p] using le_trans (le_of_eq hz) hCδ
+    | succ k ih =>
+        have hedgeA : L ≤ dist ((p ^ k) • x) ((p ^ k * A) • x) := by
+          have h := hiso (p ^ k) x (A • x)
+          rw [← mul_smul] at h
+          rw [h]
+          exact hA
+        have hedgeB :
+            L ≤ dist ((p ^ k * A) • x) ((p ^ (k + 1)) • x) := by
+          have h := hiso (p ^ k * A) x (B • x)
+          have hpnext : (p ^ k * A) * B = p ^ (k + 1) := by
+            dsimp [p]
+            rw [pow_succ]
+          rw [← mul_smul, hpnext] at h
+          rw [h]
+          exact hB
+        have hstepA := chain_progress_step hδ hgap ih.2 hedgeA (hodd k)
+        have hstepB := chain_progress_step hδ hgap hstepA.2 hedgeB (heven k)
+        constructor
+        · have hprev := ih.1
+          have hprogA := hstepA.1
+          have hprogB := hstepB.1
+          dsimp [q] at hprev hprogA hprogB ⊢
+          push_cast
+          linarith
+        · simpa only [Nat.succ_eq_add_one] using hstepB.2
+  refine ⟨2 * q, by positivity, 0, le_rfl, ?_⟩
+  intro k
+  have hk := (hind k).1
+  push_cast at hk ⊢
+  nlinarith
+
+/-- **The independent-axes branch.**  Two independent loxodromics have a
+loxodromic product of sufficiently large equal powers.
+
+Independence supplies both cross-backtracking bounds uniformly for all integer
+powers.  Loxodromy makes the two syllable lengths exceed the fixed threshold
+`2(C+δ)+1`; the preceding two-axis ping-pong theorem then applies. -/
+theorem exists_isLoxodromic_mul_pow_of_independent {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hiso : IsIsometricAction G X) {a b : G} {x : X}
+    (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
+    (hind : Independent a b x) :
+    ∃ N : ℕ, IsLoxodromic ((a ^ N) * (b ^ N)) x := by
+  obtain ⟨C₀, hC₀⟩ := hind
+  let C : ℝ := max C₀ 0
+  let L : ℝ := 2 * (C + δ) + 1
+  have hC₀C : C₀ ≤ C := le_max_left _ _
+  have hC0 : 0 ≤ C := le_max_right _ _
+  have hCδ : 0 ≤ C + δ := add_nonneg hC0 hδ0
+  have hgap : 2 * (C + δ) < L := by dsimp [L]; linarith
+  have hea := ha.isEscaping.eventually_ge_atTop L
+  have heb := hb.isEscaping.eventually_ge_atTop L
+  rw [Filter.eventually_atTop] at hea heb
+  obtain ⟨Na, hNa⟩ := hea
+  obtain ⟨Nb, hNb⟩ := heb
+  let N : ℕ := max Na Nb
+  have hAN : L ≤ dist x ((a ^ N) • x) := hNa N (le_max_left _ _)
+  have hBN : L ≤ dist x ((b ^ N) • x) := hNb N (le_max_right _ _)
+  have hAB :
+      gromovProduct ((a ^ N)⁻¹ • x) ((b ^ N) • x) x ≤ C := by
+    have h := hC₀ (-(N : ℤ)) (N : ℤ)
+    simpa only [zpow_neg, zpow_natCast] using le_trans h hC₀C
+  have hBA :
+      gromovProduct ((b ^ N)⁻¹ • x) ((a ^ N) • x) x ≤ C := by
+    have h := hC₀ (N : ℤ) (-(N : ℤ))
+    have h' :
+        gromovProduct ((b ^ (-(N : ℤ))) • x) ((a ^ (N : ℤ)) • x) x ≤ C := by
+      rw [gromovProduct_comm]
+      exact le_trans h hC₀C
+    simpa only [zpow_neg, zpow_natCast] using h'
+  refine ⟨N, ?_⟩
+  exact isLoxodromic_mul_of_cross_backtracking
+    hδ hiso hCδ hgap hAN hBN hAB hBA
+
 /-! ## Acylindricity -/
 
 /-- Osin's acylindricity condition for a group action on a metric space. -/
@@ -200,16 +387,6 @@ def IsAcylindrical (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
       {g : G | dist x (g • x) ≤ ε ∧ dist y (g • y) ≤ ε}.ncard ≤ N
 
 /-! ## Loxodromics, independence, non-elementarity -/
-
-/-- `g` is loxodromic at `x` when its power orbit escapes every bounded set. -/
-def IsLoxodromic (g : G) (x : X) : Prop :=
-  Filter.Tendsto (fun n : ℕ => dist x ((g ^ n) • x)) Filter.atTop Filter.atTop
-
-/-- `g` and `h` are independent at `x` when the Gromov products of their power
-orbits stay bounded: their axes do not share an endpoint.  Powers range over
-`ℤ`, which is what makes `g` and `g⁻¹` correctly dependent. -/
-def Independent (g h : G) (x : X) : Prop :=
-  ∃ C : ℝ, ∀ n m : ℤ, gromovProduct ((g ^ n) • x) ((h ^ m) • x) x ≤ C
 
 /-- `S` acts non-elementarily at `x` when it contains two independent
 loxodromics. -/
@@ -297,7 +474,7 @@ theorem not_isOfFinOrder_of_isLoxodromic {g : G} {x : X}
     (hg : IsLoxodromic g x) : ¬ IsOfFinOrder g := by
   intro hfin
   obtain ⟨k, hk, hgk⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
-  have hev := hg.eventually_ge_atTop (1 : ℝ)
+  have hev := hg.isEscaping.eventually_ge_atTop (1 : ℝ)
   rw [Filter.eventually_atTop] at hev
   obtain ⟨M, hM⟩ := hev
   have hle : M ≤ k * M := Nat.le_mul_of_pos_left M hk
@@ -323,7 +500,7 @@ theorem notMem_zpowers_of_independent {g h : G} {x : X}
     h ∉ Subgroup.zpowers g := by
   rintro ⟨j, rfl⟩
   obtain ⟨C, hC⟩ := hind
-  have hev := hh.eventually_ge_atTop (C + 1)
+  have hev := hh.isEscaping.eventually_ge_atTop (C + 1)
   rw [Filter.eventually_atTop] at hev
   obtain ⟨N, hN⟩ := hev
   have hkey := hC (j * (N : ℤ)) (N : ℤ)
@@ -392,7 +569,7 @@ theorem not_actsNonElementarily_of_bounded {x : X} {S : Subgroup G}
     ¬ ActsNonElementarily S x := by
   rintro ⟨g, -, -, -, hg, -, -⟩
   obtain ⟨C, hC⟩ := hbdd
-  have hev := hg.eventually_ge_atTop (C + 1)
+  have hev := hg.isEscaping.eventually_ge_atTop (C + 1)
   rw [Filter.eventually_atTop] at hev
   obtain ⟨N, hN⟩ := hev
   have h1 := hN N le_rfl
@@ -420,7 +597,7 @@ theorem exists_far_apart {g h : G} {x : X} (hg : IsLoxodromic g x)
     (hind : Independent g h x) (R : ℝ) :
     ∃ n : ℕ, R ≤ dist ((g ^ n) • x) ((h ^ n) • x) := by
   obtain ⟨C, hC⟩ := hind
-  have hev := hg.eventually_ge_atTop (R + 2 * C)
+  have hev := hg.isEscaping.eventually_ge_atTop (R + 2 * C)
   rw [Filter.eventually_atTop] at hev
   obtain ⟨N, hN⟩ := hev
   refine ⟨N, ?_⟩
@@ -545,10 +722,10 @@ theorem not_isSuitable_of_centralizing {δ : ℝ} {S : Subgroup G} {x : X}
 
 /-! ## The compression relation forbids genuine loxodromy
 
-`IsLoxodromic` above asks only that the power orbit escape every bounded set,
-which is the weakest reading.  The quantitative form --- the orbit map bounded
-below by a linear function --- is the one the literature means, and it is the
-one a compression relation destroys.
+`IsEscaping` above asks only that the power orbit escape every bounded set.
+`IsLoxodromic` is the quantitative form needed by the geometry: the orbit map
+is bounded below by a positive linear function up to additive error.  A
+compression relation destroys this stronger property.
 
 A compression `t p t⁻¹ = p ^ k` with `2 ≤ k` makes the orbit of `p` grow at most
 *linearly in `j`* along the exponentially sparse subsequence `k ^ j`, because
@@ -560,18 +737,6 @@ This is the first step of the route that would refute suitability for a
 compression pattern outright: it settles the compressed direction, where the
 Baumslag--Solitar relation lives.  It does not settle the defect, whose elements
 are not powers of `p`. -/
-
-/-- The quantitative form of loxodromy: the orbit map is bounded below by a
-linear function.  This is what "loxodromic" means in the literature, and it
-implies `IsLoxodromic`. -/
-def IsStronglyLoxodromic (g : G) (x : X) : Prop :=
-  ∃ l : ℝ, 0 < l ∧ ∀ n : ℕ, l * n ≤ dist x ((g ^ n) • x)
-
-theorem isLoxodromic_of_isStronglyLoxodromic {g : G} {x : X}
-    (h : IsStronglyLoxodromic g x) : IsLoxodromic g x := by
-  obtain ⟨l, hl, hle⟩ := h
-  exact Filter.tendsto_atTop_mono hle
-    (Filter.Tendsto.const_mul_atTop hl tendsto_natCast_atTop_atTop)
 
 /-- Displacement is subadditive along powers. -/
 theorem dist_pow_le (hiso : IsIsometricAction G X) (t : G) (x : X) :
@@ -642,18 +807,20 @@ theorem conj_pow_eq {t p : G} {k : ℕ} (h : t * p * t⁻¹ = p ^ k) :
 along the exponentially sparse subsequence `k ^ j`, so no linear lower bound can
 survive.  Every compression datum whose source copy is cyclic carries exactly
 such a relation, by `CompressionSourceData.not_conjugation_surjective`. -/
-theorem not_isStronglyLoxodromic_of_compression (hiso : IsIsometricAction G X)
+theorem not_isLoxodromic_of_compression (hiso : IsIsometricAction G X)
     {t p : G} {k : ℕ} (hk : 2 ≤ k) (h : t * p * t⁻¹ = p ^ k) (x : X) :
-    ¬ IsStronglyLoxodromic p x := by
-  rintro ⟨l, hl, hle⟩
+    ¬ IsLoxodromic p x := by
+  rintro ⟨l, hl, B, hB, hle⟩
   set D := dist x (t • x) with hD
   set E := dist x (p • x) with hE
   have hD0 : (0:ℝ) ≤ D := dist_nonneg
   have hE0 : (0:ℝ) ≤ E := dist_nonneg
-  obtain ⟨j, hj⟩ := exists_nat_gt (max ((4 * D + E) / l) 1)
+  obtain ⟨j, hj⟩ := exists_nat_gt (max ((4 * D + E + B + 1) / l) 1)
   have hjr : (1:ℝ) < (j : ℝ) := lt_of_le_of_lt (le_max_right _ _) hj
-  have hjd : (4 * D + E) / l < (j : ℝ) := lt_of_le_of_lt (le_max_left _ _) hj
-  have hlj : 4 * D + E < (j : ℝ) * l := (div_lt_iff₀ hl).mp hjd
+  have hjd : (4 * D + E + B + 1) / l < (j : ℝ) :=
+    lt_of_le_of_lt (le_max_left _ _) hj
+  have hlj : 4 * D + E + B + 1 < (j : ℝ) * l :=
+    (div_lt_iff₀ hl).mp hjd
   -- the orbit is small along the sparse subsequence
   have hbig := hle (k ^ (2 * j))
   rw [← conj_pow_eq h (2 * j)] at hbig
@@ -684,10 +851,11 @@ theorem not_isStronglyLoxodromic_of_compression (hiso : IsIsometricAction G X)
     exact_mod_cast hpow
   have hgrow : l * ((j : ℝ)) ^ 2 < l * ((k ^ (2 * j) : ℕ) : ℝ) :=
     mul_lt_mul_of_pos_left hcast hl
-  have hquad : 4 * (j : ℝ) * D + E < l * ((j : ℝ)) ^ 2 := by
-    have hstep : (4 * D + E) * (j : ℝ) < ((j : ℝ) * l) * (j : ℝ) :=
+  have hquad : 4 * (j : ℝ) * D + E + B < l * ((j : ℝ)) ^ 2 := by
+    have hstep : (4 * D + E + B + 1) * (j : ℝ) <
+        ((j : ℝ) * l) * (j : ℝ) :=
       mul_lt_mul_of_pos_right hlj (by linarith)
-    nlinarith [hstep, hE0, hjr]
+    nlinarith [hstep, hD0, hE0, hB, hjr]
   linarith
 
 /-! ## Translation length
@@ -699,7 +867,7 @@ subadditivity argument is needed for the two facts that matter: it bounds the
 orbit from below, and it is positive exactly when the element is genuinely
 loxodromic.
 
-Together with `not_isStronglyLoxodromic_of_compression` this reads: a compressed
+Together with `not_isLoxodromic_of_compression` this reads: a compressed
 element has translation length zero. -/
 
 /-- The stable translation length of `g` at `x`. -/
@@ -739,7 +907,7 @@ theorem mul_le_dist_pow (g : G) (x : X) (n : ℕ) :
 
 /-- **Genuine loxodromy is positive translation length.** -/
 theorem isStronglyLoxodromic_iff_pos (g : G) (x : X) :
-    IsStronglyLoxodromic g x ↔ 0 < stableTranslation g x := by
+    IsLoxodromic g x ↔ 0 < stableTranslation g x := by
   constructor
   · rintro ⟨l, hl, hle⟩
     refine lt_of_lt_of_le hl (le_csInf (stableTranslation_set_nonempty g x) ?_)
@@ -778,6 +946,43 @@ theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
     (-(2 * dist x y)) h
   simpa [sub_eq_add_neg] using hadd
 
+/-- Loxodromy is invariant under inversion. -/
+theorem isLoxodromic_inv (hiso : IsIsometricAction G X) {g : G} {x : X}
+    (hg : IsLoxodromic g x) : IsLoxodromic g⁻¹ x := by
+  have hdist : ∀ n : ℕ,
+      dist x (((g⁻¹) ^ n) • x) = dist x ((g ^ n) • x) := by
+    intro n
+    have h := dist_zpow_neg (g := g) (x := x) hiso (n : ℤ)
+    simpa only [zpow_neg, zpow_natCast, inv_pow] using h
+  simpa only [IsLoxodromic, hdist] using hg
+
+/-- Every positive power of a loxodromic element is loxodromic. -/
+theorem isLoxodromic_pow {g : G} {x : X} (hg : IsLoxodromic g x)
+    {k : ℕ} (hk : 0 < k) :
+    IsLoxodromic (g ^ k) x := by
+  have hmul : Filter.Tendsto (fun n : ℕ => k * n) Filter.atTop Filter.atTop :=
+    Filter.tendsto_atTop_mono (fun n => Nat.le_mul_of_pos_left n hk)
+      Filter.tendsto_id
+  have h := hg.comp hmul
+  simpa only [IsLoxodromic, pow_mul] using h
+
+/-- Every nonzero integer power of a loxodromic element is loxodromic. -/
+theorem isLoxodromic_zpow (hiso : IsIsometricAction G X) {g : G} {x : X}
+    (hg : IsLoxodromic g x) {k : ℤ} (hk : k ≠ 0) :
+    IsLoxodromic (g ^ k) x := by
+  cases k with
+  | ofNat n =>
+      have hn : 0 < n := Nat.pos_of_ne_zero (by
+        intro hn
+        apply hk
+        simp [hn])
+      simpa only [zpow_natCast] using isLoxodromic_pow hg hn
+  | negSucc n =>
+      have hp : IsLoxodromic (g ^ (n + 1)) x :=
+        isLoxodromic_pow hg (Nat.succ_pos n)
+      have hi := isLoxodromic_inv hiso hp
+      simpa only [zpow_negSucc] using hi
+
 /-- Loxodromy is invariant under conjugation.  The orbit of `a * g * a⁻¹`
 based at `x` is isometric to the orbit of `g` based at `a⁻¹ • x`; basepoint
 independence supplies loxodromy at that latter point. -/
@@ -813,6 +1018,37 @@ theorem actsNonElementarily_of_normal_conjugate {S : Subgroup G} [S.Normal]
     ActsNonElementarily S x := by
   refine ⟨g, hgS, a * g * a⁻¹, ?_, hg, isLoxodromic_conj hiso hg, hind⟩
   exact (inferInstance : S.Normal).conj_mem g hgS a
+
+/-- **Independent conjugate axes give a loxodromic commutator in a normal
+subgroup.**
+
+If `c ∈ S` and the axes of `g` and `c g⁻¹ c⁻¹` are independent, the
+independent-axes ping-pong theorem produces a loxodromic
+
+`gᴺ (c g⁻¹ c⁻¹)ᴺ = gᴺ c g⁻ᴺ c⁻¹`.
+
+The latter is a commutator and lies in the normal subgroup `S`.  This is the
+complete independent branch of the normal-subgroup loxodromic-extraction
+argument. -/
+theorem exists_loxodromic_commutator_of_independent_conjugate
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hiso : IsIsometricAction G X) {S : Subgroup G} [S.Normal]
+    {g c : G} {x : X} (hcS : c ∈ S) (hg : IsLoxodromic g x)
+    (hind : Independent g (c * g⁻¹ * c⁻¹) x) :
+    ∃ N : ℕ, g ^ N * c * (g ^ N)⁻¹ * c⁻¹ ∈ S ∧
+      IsLoxodromic (g ^ N * c * (g ^ N)⁻¹ * c⁻¹) x := by
+  have hginv : IsLoxodromic g⁻¹ x := isLoxodromic_inv hiso hg
+  have hb : IsLoxodromic (c * g⁻¹ * c⁻¹) x :=
+    isLoxodromic_conj hiso hginv
+  obtain ⟨N, hN⟩ := exists_isLoxodromic_mul_pow_of_independent
+    hδ hδ0 hiso hg hb hind
+  have hpow : (c * g⁻¹ * c⁻¹) ^ N = c * (g ^ N)⁻¹ * c⁻¹ := by
+    rw [conj_pow, inv_pow]
+  refine ⟨N, ?_, ?_⟩
+  · exact S.mul_mem ((inferInstance : S.Normal).conj_mem c hcS (g ^ N))
+      (S.inv_mem hcS)
+  · rw [← hpow]
+    exact hN
 
 /-! ### The translation length is a limit, and a seminorm on a centralizer
 
@@ -1069,7 +1305,7 @@ theorem isStronglyLoxodromic_of_local_backtracking {δ C : ℝ}
     {p : G} {x : X} (hCδ : 0 ≤ C + δ)
     (hgap : 2 * (C + δ) < dist x (p • x))
     (hturn : gromovProduct x ((p ^ 2) • x) (p • x) ≤ C) :
-    IsStronglyLoxodromic p x := by
+    IsLoxodromic p x := by
   let y : ℕ → X := fun n => (p ^ n) • x
   have hedge : ∀ n : ℕ,
       dist x (p • x) ≤ dist (y n) (y (n + 1)) := by
@@ -1218,7 +1454,8 @@ Gromov-product estimate remains. -/
 theorem exists_pow_mul_progress (hiso : IsIsometricAction G X)
     {g : G} (c : G) {x : X} (hg : IsLoxodromic g x) (A : ℝ) :
     ∃ n : ℕ, 2 * A < dist x (((g ^ n) * c) • x) := by
-  have hev := hg.eventually_ge_atTop (2 * A + dist x (c • x) + 1)
+  have hev := hg.isEscaping.eventually_ge_atTop
+    (2 * A + dist x (c • x) + 1)
   rw [Filter.eventually_atTop] at hev
   obtain ⟨N, hN⟩ := hev
   refine ⟨N, ?_⟩
@@ -1438,7 +1675,7 @@ theorem finite_centralizer_ball (hiso : IsIsometricAction G X)
     {ε : ℝ} (hε : 0 < ε) :
     {k : G | Commute k g ∧ dist x (k • x) ≤ ε}.Finite := by
   obtain ⟨R, N₀, hRN⟩ := hacy ε hε
-  have hev := hg.eventually_ge_atTop R
+  have hev := hg.isEscaping.eventually_ge_atTop R
   rw [Filter.eventually_atTop] at hev
   obtain ⟨M, hM⟩ := hev
   have hfar : R ≤ dist ((g ^ (-(M : ℤ))) • x) ((g ^ ((M : ℤ))) • x) := by
@@ -1492,6 +1729,50 @@ theorem isLoxodromic_of_commutes_of_not_isOfFinOrder
   by_contra hnot
   apply hn
   exact ⟨hcg.pow_left n, le_trans (le_of_not_ge hnot) (le_of_lt hBε)⟩
+
+/-- **The concrete shared-elementary-axis branch.**
+
+No elementary-closure predicate is used.  The input is the power relation that
+such a shared axis must eventually provide:
+
+`c gᵐ c⁻¹ = gⁿ`, with `m ≠ 0`.
+
+If `m = n`, then `c` centralizes the loxodromic element `gᵐ`; torsion-freeness
+and acylindricity make `c` loxodromic.  If `m ≠ n`, the commutator relation puts
+the nonzero loxodromic power `gⁿ⁻ᵐ` in the normal subgroup. -/
+theorem exists_loxodromic_mem_of_conj_zpow_eq_zpow
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    (htf : IsPowerTorsionFree G) {S : Subgroup G} [S.Normal]
+    {g c : G} {x : X} (hcS : c ∈ S) (hncomm : ¬ Commute c g)
+    (hg : IsLoxodromic g x) {m n : ℤ} (hm : m ≠ 0)
+    (hpower : c * g ^ m * c⁻¹ = g ^ n) :
+    ∃ q ∈ S, IsLoxodromic q x := by
+  by_cases hmn : m = n
+  · subst n
+    have hgm : IsLoxodromic (g ^ m) x := isLoxodromic_zpow hiso hg hm
+    have hcomm : Commute c (g ^ m) := by
+      show c * g ^ m = g ^ m * c
+      calc
+        c * g ^ m = (c * g ^ m * c⁻¹) * c := by group
+        _ = g ^ m * c := by rw [hpower]
+    have hc1 : c ≠ 1 := by
+      intro hc
+      apply hncomm
+      simpa [hc] using (Commute.one_left g)
+    exact ⟨c, hcS, isLoxodromic_of_commutes_of_not_isOfFinOrder
+      hiso hacy hgm hcomm (htf.not_isOfFinOrder hc1)⟩
+  · have hdiff : n - m ≠ 0 := sub_ne_zero.mpr (Ne.symm hmn)
+    have hmemComm : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S := by
+      have hconj : g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S :=
+        (inferInstance : S.Normal).conj_mem c⁻¹ (S.inv_mem hcS) (g ^ m)
+      exact S.mul_mem hcS hconj
+    have heq : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ = g ^ (n - m) := by
+      rw [hpower, ← zpow_neg, ← zpow_add]
+      congr 1
+      ring
+    have hmem : g ^ (n - m) ∈ S := by rwa [heq] at hmemComm
+    exact ⟨g ^ (n - m), hmem,
+      isLoxodromic_zpow hiso hg hdiff⟩
 
 /-- **The first concrete dichotomy in Osin's s-normal argument.**
 
@@ -1744,6 +2025,60 @@ theorem dist_le_four_delta_of_le_gromovProduct {δ : ℝ}
   simp only [gromovProduct, dist_comm (f t) x, dist_comm (h t) x, hdx,
     hdz] at huv
   linarith
+
+/-- **Non-independent power orbits have arbitrarily long fellow-travelling
+geodesic prefixes.**
+
+This is the first geometric half of the common-power theorem.  Negating the
+definition of `Independent` produces power endpoints with arbitrarily large
+Gromov product.  Geodesics from the common basepoint to those endpoints then
+remain `4δ`-close for any prescribed initial length `T`.
+
+No boundary or elementary-closure notion occurs in the statement. -/
+theorem exists_long_fellow_geodesics_of_not_independent {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    {g h : G} {x : X} (hnind : ¬ Independent g h x) (T : ℝ) (hT : 0 < T) :
+    ∃ (n m : ℤ) (f q : ℝ → X),
+      n ≠ 0 ∧ m ≠ 0 ∧
+      IsGeodesicSegment f 0 (dist x ((g ^ n) • x)) ∧
+      f 0 = x ∧ f (dist x ((g ^ n) • x)) = (g ^ n) • x ∧
+      IsGeodesicSegment q 0 (dist x ((h ^ m) • x)) ∧
+      q 0 = x ∧ q (dist x ((h ^ m) • x)) = (h ^ m) • x ∧
+      T ≤ dist x ((g ^ n) • x) ∧ T ≤ dist x ((h ^ m) • x) ∧
+      ∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ := by
+  have hex : ∃ n m : ℤ,
+      T < gromovProduct ((g ^ n) • x) ((h ^ m) • x) x := by
+    by_contra hnone
+    apply hnind
+    refine ⟨T, ?_⟩
+    simpa only [not_exists, not_lt] using hnone
+  obtain ⟨n, m, hprod⟩ := hex
+  obtain ⟨f, hf, hf0, hf1⟩ := hgeo x ((g ^ n) • x)
+  obtain ⟨q, hq, hq0, hq1⟩ := hgeo x ((h ^ m) • x)
+  have hleft : T ≤ dist x ((g ^ n) • x) := by
+    have hb := gromovProduct_le_right ((h ^ m) • x) ((g ^ n) • x) x
+    rw [gromovProduct_comm] at hb
+    rw [dist_comm ((g ^ n) • x) x] at hb
+    exact le_trans (le_of_lt hprod) hb
+  have hright : T ≤ dist x ((h ^ m) • x) := by
+    have hb := gromovProduct_le_right ((g ^ n) • x) ((h ^ m) • x) x
+    rw [dist_comm ((h ^ m) • x) x] at hb
+    exact le_trans (le_of_lt hprod) hb
+  have hn0 : n ≠ 0 := by
+    intro hn
+    subst n
+    simp at hleft
+    linarith
+  have hm0 : m ≠ 0 := by
+    intro hm
+    subst m
+    simp at hright
+    linarith
+  refine ⟨n, m, f, q, hn0, hm0, hf, hf0, hf1, hq, hq0, hq1,
+    hleft, hright, ?_⟩
+  intro t ht0 htT
+  exact dist_le_four_delta_of_le_gromovProduct hδ hδ0 hf hf0 hf1 hq hq0 hq1
+    ht0 (le_trans htT hleft) (le_trans htT hright) (le_trans htT (le_of_lt hprod))
 
 /-! ### Towards Osin's Lemma 3.6
 

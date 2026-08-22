@@ -127,7 +127,7 @@
       "id": "thm:markedclosed",
       "environment": "theorem",
       "title": "the MF locus is closed",
-      "statement_sha256": "9ff462f2d12281b72bc52b6c363208fd250578d711269b11ae3b7ae0af00c991",
+      "statement_sha256": "28fac97c4cd092bf99386ebce5706bc705ba0af963c19675dcb2ca14c077b527",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -281,7 +281,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central involution obstruction",
-      "statement_sha256": "61641d88f681e4b719c2d2d5bbe343c2882b8b8e8f03be2f8b5b09f705d8c399",
+      "statement_sha256": "8094b24bda7ec03f6f620acad8b198bdd18aabd624e6129a5881a90d532c2a5b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -303,7 +303,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "the basic construction",
-      "statement_sha256": "4ffebf8d1a5cea963a007ec34af50ff78c7debe7b28629ab75768653d0a7592b",
+      "statement_sha256": "afc58d4e7ad0f434fa306673ae1a876b8a9d065d6b737775943834e335fdbb66",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -944,7 +944,7 @@
       "id": "lem:portable",
       "environment": "lemma",
       "title": "functoriality",
-      "statement_sha256": "ad40116ce5cb86ddd0cd51e421027aed013c61ddb364fb551bbc42ad87950201",
+      "statement_sha256": "f83c0defa813a83af01633e18350a86186cfa872120e97d92c994d49328db730",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -967,7 +967,7 @@
       "id": "prop:univquot",
       "environment": "proposition",
       "title": "the universal MF quotient",
-      "statement_sha256": "bf0e863dc76ab01dc9792449a9ad0e6fd1c7a4731b1046341687339a7cfc192b",
+      "statement_sha256": "7cdece4e369941cbecf2c7169fde20b9c0e3786c4fca0cbe6a3e7b83b9f209a3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1058,7 +1058,7 @@
       "id": "lem:permanence",
       "environment": "lemma",
       "title": "permanence",
-      "statement_sha256": "5ec86a47bd0ca09d4184182146d40fd1f21ca3ab44ebddcb3c0b30e1f824a81f",
+      "statement_sha256": "7ecfd4d8df6e4e6b4b0fc5ab3de4cbac4d52e32ab0835f66b9f91bbab8648cc5",
       "status": "exact",
       "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [],
@@ -1090,7 +1090,7 @@
       "id": "cor:quotclosure",
       "environment": "corollary",
       "title": "quotients",
-      "statement_sha256": "0945a411d7c96988e8015b5f6f078223103f8209772b56379cf73529539e9f86",
+      "statement_sha256": "4abefb3ae013985860757458d23155a7081afbb68e1b19ca596c93673d6414af",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1202,7 +1202,7 @@
       "id": "thm:exact-mf-residual",
       "environment": "theorem",
       "title": "the exact MF residual",
-      "statement_sha256": "f30bd75a8679b824961597cb1434dc580ee2c48023a9fe21423ec53ea6be9d68",
+      "statement_sha256": "97e3e895c912f5e5c512ce1b41b5201b36da50912b0b2dcc8080ae5271aa6620",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
       "dependencies": [

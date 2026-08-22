@@ -28,13 +28,14 @@ d133c390b18b	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptThe
 c2bb32dbe2b2	attribution		Blackadar-Kirchberg's remark, credited
 02593a8616f2	attribution		Haagerup-Thorbjornsen, credited
 858f14cf409d	attribution		the negative solution of CEP, credited
-5525627668b9	attribution		a statement about what was known, credited to Shulman
 18316a7a12b5	definition	GroupApproximation.manuscriptMFTraceGroupBridge GroupApproximation.manuscriptTraceSeparation	the tracial hierarchy the sentence announces, and the theorem that separates two of its classes
 690c161e7175	attribution		Brown, Rainone-Schafhauser, credited
 0d2dbb9e7a1f	definition	GroupApproximation.manuscriptMFTraceGroupBridge	Shulman's formulation of the two trace classes, which is the one the bridge lemma formalizes
 7c1f94019098	attribution		Shulman on cones, credited
 8fa2e51810bb	attribution		the CEP traces, credited
 2def611c7ac2	formalized	GroupApproximation.manuscriptTraceSeparation	the trace separation
+e3e74e1ca049	formalized	GroupApproximation.nonUnitalStarAlgHomUnitaryMap GroupApproximation.nonUnitalStarAlgHomUnitaryMap_injective	the complementary-corner correction for a nonunital algebra embedding
+b7428f424dab	ledger	INT.28	for E both the group and reduced group C-star embeddings are ruled out
 a9ff236863a2	attribution		says what those results are about
 9fed9cfb8a4e	definition	GroupApproximation.NormMatrixCStarCorona	lead-in to the display defining the corona, which is the formal type
 4f3a5fcca238	definition	GroupApproximation.NormMatrixCStarCorona	the corona algebra, as the formal type defines it
@@ -323,7 +324,7 @@ bde865d19fb3	structural	-	introduces the joint proof of the first two universal-
 306e3c67b281	ledger	RA.12	block maxima preserve all prior separations
 2ab5c848027f	ledger	RA.12	the diagonal asymptotic representation gives a faithful corona homomorphism
 0044e5677b1a	ledger	RA.06 RA.07	faithful quotient representation proves the kernel and MF clauses
-d54fef2ab412	ledger	RA.09	the residual-triviality characterization of MF
+aec4d44a5ad8	ledger	RA.09	the residual-triviality characterization of MF
 9957f21f1199	ledger	WI.12	the Clifford semidirect-product witness target
 6a0c67b5c6ad	ledger	WI.12	lead-in to the generator assignment
 f3738b878e7a	ledger	WI.13	base and stable-letter relation checks
@@ -510,8 +511,8 @@ ac0c9698dbf8	ledger	CO.21	orthogonal decomposition of the join
 308b826aeb47	ledger	CO.21	nonzero cocycle conclusion
 da58a6475741	structural	-	heading for the property-T coboundary contradiction
 33f0674ce347	ledger	CO.21b	the primitive is fixed by the compressed subgroup
-cc205a14dd6e	ledger	CO.21b	transport at the intrinsic rank weight
-2262cdef2582	ledger	CO.21b	the two fixed-space projections in weighted transport
+d0e1aeb5cc6f	ledger	CO.21b	repeats the fixed-space comparison at the intrinsic rank weight rather than invoking the sequence theorem without a sequence
+bd393ac55235	ledger	CO.21b	the two fixed-space projections lie in the same weighted finite norm ultraproduct
 5bdf65fbdbfc	ledger	CO.21b	finiteness equates the fixed-space projections
 438f08f410f8	ledger	CO.21b	the primitive is fully fixed, contradicting cocycle nontriviality
 e92847bd13c5	ledger	CO.18 CO.21b	the original orbit projection commutes with the whole Kazhdan subgroup
@@ -528,7 +529,7 @@ e383d9696514	ledger	FN.12	the sign acts asymptotically as minus one on the negat
 6f1809af142b	ledger	CS.04	the same element converges to both plus and minus the identity
 e40a8557026c	ledger	CS.04	the triangle-inequality contradiction
 8ca6854a5294	ledger	CS.04	every corona representation kills the sign
-c010a6d4286a	ledger	CS.00 CS.05	nontriviality of the sign rules out an injective corona representation
+b9dcf0c66b7c	ledger	CS.00 CS.05	nontriviality of the sign rules out an injective corona representation
 2989630535d3	ledger	PA.16	quotient, displaced lamp, and quotient base notation for the sign-free collapse
 3abe66876fe6	ledger	PA.16	the quotient lamp is involutive and centralized by the compressed base
 980b921833d4	ledger	PA.16	clarification of which conjugate base centralizes the displaced lamp
@@ -578,7 +579,8 @@ cad5a22c197c	ledger	INT.30	summary of the three failed reverse arrows
 22155701c90b	ledger	GP.08	the generator layout of the displayed presentation
 c69ab6050077	ledger	GP.08 GP.09	the six-generator thirty-two-relator Tietze presentation
 c20c97a57850	ledger	INT.09 INT.10	residually finite and LEF groups are MF
-f58919f0f5e6	ledger	INT.11	amenable groups are MF; the ledger marks the cited literature input
+6eacac004786	ledger	INT.11	amenable groups are MF via the cited Schafhauser embedding theorem
+da52694b6ea2	attribution	-	the precise TWW input is their quasidiagonality theorem and Rosenberg-conjecture consequence
 2936839ff2b0	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the Hilbert--Schmidt conjugation representation in the transport theorem
 75f92d1fd950	formalized	GroupApproximation.AdjointMatrix.l2_opNorm_conjDouble_sub_le_two	operator norm controls the adjoint multiplicative defect
 f3d56dabbe0a	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the one-sided projection inequality
@@ -626,8 +628,8 @@ b232b79afdb1	ledger	PM.04	operator-norm separation of distinct permutation matri
 7ba88995150e	ledger	CO.21	the conjugation representation in the rank-normalized Hilbertization
 62d2253868b1	ledger	CO.21	inner action on the invariant rank-normalized subspace
 bb0656ff4c0d	ledger	SF.10	the surviving product of two distinct Clifford generators
-23b0fa9dae97	ledger	SF.10 SF.11	nontrivial residual element and non-MF quotient
-7c536d23eb4b	ledger	ER.03	the quotient E/D is MF
+2b85737a9b80	ledger	SF.10 SF.11	nontrivial residual element and non-MF quotient
+f44f39558c20	ledger	ER.03	the quotient E/D is MF
 40e04965568c	ledger	ER.04	the corresponding residual identities in the sign quotient
 8870c25baa40	ledger	ER.01	commutation used in the parity-orbit calculation
 009dda6ec73e	ledger	ER.01	dependence only on translation parity
@@ -642,10 +644,10 @@ d5ca5998ab6b	ledger	ER.03	the common subalgebra
 ba23514b5f28	ledger	ER.03	injectivity of the group homomorphism into the amalgamated algebra
 a443500b2089	ledger	ER.03	conditional expectation calculation
 e4f5a8718ebf	ledger	ER.03	faithfulness on Bass--Serre reduced words
-054f13386d7a	ledger	ER.03	MF of the symmetric double
+d5b00c20c5d5	ledger	ER.03	MF of the symmetric double
 238275e78bd3	ledger	ER.02	normal-form embedding into the symmetric double
 671ae4c86458	ledger	ER.02	the two vertex-group embeddings
-0f6f04ee992c	ledger	ER.03	subgroup permanence gives MF of E/D
+054ebe55677a	ledger	ER.03	subgroup permanence gives MF of E/D
 9e58aea416ff	ledger	ER.04	exact MF residual of E
 36bd4bf7f1df	ledger	ER.04	residual identities in the two quotients
 cbe0081b5a1b	ledger	RE.09	the amplified trace and its trace property
@@ -655,7 +657,7 @@ dbf9469c2af1	ledger	RE.09	faithfulness forces every matrix entry to vanish
 8fdcbca527c8	ledger	SO.14	the quotient onto the integers and its kernel
 ea18f41cb7a1	ledger	SO.14	finite subsets of the kernel lie in finite-stage semidirect products
 cbd090f839b5	ledger	SO.14	residual finiteness of the finite-stage semidirect product
-1834eeb5b3d0	ledger	SO.14	the kernel is LEF and MF
+ae1d17da659b	ledger	SO.14	the kernel is LEF and MF
 6f7639307a9d	ledger	SO.14	the resulting non-MF extension
 68bd3459c601	ledger	SO.14b SO.15	soficity from the amenable-extension theorem
 c1f9da5ebe70	ledger	BN.05 GP.10	linear part of the block action
@@ -666,7 +668,7 @@ d20f08127d77	ledger	BN.05	transitivity conclusion
 21d6cadac402	ledger	HO.04	the nonempty clopen cylinder
 c3a36ff75797	ledger	HO.05	finite word conditions and nonemptiness
 0c83aea1f8aa	ledger	HO.04 HO.05	exclusion of every MF point
-404dacf85d56	ledger	UN.02b	effective Adian--Rabin reduction and trivial-word branch
+8c2f6b13f7d7	ledger	UN.02b	effective Adian--Rabin reduction and trivial-word branch
 15cbe8d29474	ledger	UN.02b	nontrivial-word embedding branch
 9f231d07cac6	ledger	UN.02b	non-MF conclusion in the nontrivial branch
 9d6783978466	ledger	TF.04	torsion-free finitely presented non-MF existence
@@ -692,13 +694,13 @@ aada972c62a3	provenance	-	authorial checking and revision
 e7a5ac2e4799	ledger	PRE.16	re-reviewed after the manuscript revision
 02c13d1a2175	ledger	INT.17	re-reviewed after the manuscript revision
 b9296e81f500	ledger	INT.03	re-reviewed after the manuscript revision
-7386e18e484c	ledger	INT.02 INT.17 SO.16	exactness of Cred(E) is SO.16, graded MISMATCH; the abstract clause carries that row
+2bc9162b26c3	ledger	INT.02 INT.17 SO.16	exactness of Cred(E) is SO.16, graded MISMATCH; the abstract clause carries that row
 ed2a6dce24e3	attribution	-	re-reviewed after the manuscript revision
 02c82253eca2	attribution	-	re-reviewed after the manuscript revision
 aa866f9859dc	attribution	-	re-reviewed after the manuscript revision
 202f1226191b	ledger	TF.04	re-reviewed after the manuscript revision
 143776191ec1	ledger	INT.03	re-reviewed after the manuscript revision
-e4a1585e15dc	attribution	-	re-reviewed after the manuscript revision
+43b1d3e53907	attribution	-	Abels' example and the cited LEF implication, re-reviewed after the typography correction
 1c79c1b0d45a	attribution	-	re-reviewed after the manuscript revision
 ce4bc517ef28	attribution	-	re-reviewed after the manuscript revision
 46458125ba2e	ledger	AE.06	re-reviewed after the manuscript revision
@@ -725,9 +727,9 @@ f1e1436bdae2	ledger	ML.06	re-reviewed after the manuscript revision
 8be1a9a2b5f3	ledger	ML.06	re-reviewed after the manuscript revision
 44cd7723d43e	ledger	ML.06	re-reviewed after the manuscript revision
 19a875abb319	ledger	AE.11	re-reviewed after the manuscript revision
-2e60882463ff	ledger	AE.11	re-reviewed after the manuscript revision
+f5a6d2f7709c	ledger	AE.11	the directed-colimit proof setup, re-reviewed after the typography correction
 bbb5426065f2	ledger	AE.11	re-reviewed after the manuscript revision
-474c10aaf074	ledger	AE.11	re-reviewed after the manuscript revision
+62c35467d4a5	ledger	AE.11	the directed-colimit conclusion, re-reviewed after the typography correction
 b8be8c878ebb	ledger	AE.12	re-reviewed after the manuscript revision
 e86d73190cb8	ledger	AE.12	re-reviewed after the manuscript revision
 55338d7dc927	ledger	AE.12	re-reviewed after the manuscript revision
@@ -769,7 +771,7 @@ e157c76e6812	ledger	PA.16	re-reviewed after the manuscript revision
 ee4eeb88913b	ledger	ER.01	re-reviewed after the manuscript revision
 63932a89f6a4	ledger	ER.04	re-reviewed after the manuscript revision
 81aa811ce152	ledger	ER.03	re-reviewed after the manuscript revision
-81a9022e39d6	ledger	ER.03	re-reviewed after the manuscript revision
+ac2e39cfce46	ledger	ER.03	the symmetric group double is MF, re-reviewed after the typography correction
 7d66a37dbb6a	ledger	ER.04	re-reviewed after the manuscript revision
 601b576c40be	ledger	BN.01	re-reviewed after the manuscript revision
 fa7017f7b86e	ledger	BN.04	re-reviewed after the manuscript revision
@@ -788,7 +790,7 @@ cf54a6685ff6	ledger	TF.05	re-reviewed after the manuscript revision
 24a55c023f78	ledger	TF.05	re-reviewed after the manuscript revision
 3aa6d538cfbc	ledger	TF.05	re-reviewed after the manuscript revision
 773942495e72	ledger	TF.03 TF.05	re-reviewed after the manuscript revision
-592e9b61f652	ledger	TF.04	re-reviewed after the manuscript revision
+35f0ee60021e	ledger	TF.04	the torsion-free black-hole conclusion, re-reviewed after the typography correction
 03d8a577dffa	attribution	-	re-reviewed after the manuscript revision
 0349eec1e531	ledger	TF.02 TF.03	parameters and quotient supplied by the second Hull application
 
@@ -824,7 +826,7 @@ a3dad68882b3	structural	-	lead-in to the displayed exact residual identities
 
 # Assignments for the 2026-08-22 reader-visible wave: verified citations,
 # the Theorem D restructure, and the transport-conjugator rename.
-71cc3302a6ad	ledger	INT.01	the headline resolution sentence
+671cb97c39c8	ledger	INT.01	the headline resolution sentence; TeX sentence spacing rechecked
 f32695e7bd4c	ledger	INT.33	sofic but not LEF, now citing both theorems
 148351a0270b	attribution	-	credits the standard corona-lifting material
 47671f5f5c11	attribution	-	credits the standard finite C*-algebra facts

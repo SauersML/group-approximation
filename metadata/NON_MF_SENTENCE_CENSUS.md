@@ -6,17 +6,17 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 751 |
-| `formalized` | 267 |
+| `ledger` | 749 |
+| `formalized` | 268 |
 | `attribution` | 50 |
 | `definition` | 43 |
 | `structural` | 25 |
 | `provenance` | 6 |
 | `open` | 1 |
 | `partial` | 1 |
-| **total** | **1144** |
+| **total** | **1143** |
 
-Carrying a declaration or a ledger row: **1062/1144** (92.8%).
+Carrying a declaration or a ledger row: **1061/1143** (92.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -24,9 +24,9 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`open`**, line 1723 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`open`**, line 1720 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 1802 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 1799 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
@@ -34,10 +34,10 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 10 | 0 |
-| Introduction | 16 | 0 |
+| Introduction | 17 | 0 |
 | The result | 7 | 0 |
 | Outline of the proof | 37 | 0 |
-| Relation to prior work | 35 | 0 |
+| Relation to prior work | 33 | 0 |
 | Matrix quotients | 89 | 0 |
 | One-sided conjugation in matrix models | 23 | 0 |
 | The exact case | 17 | 0 |

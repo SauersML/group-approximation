@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the post-expert-review revision of 2026-08-22 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `dc32497afd932471a2d9c7bdb37f0099e31a7da3` |
-| sha256 of the file | `6fd510e26821d63b5da9fed19da30c25d621db92236930a3394a2db8e5fda9e5` |
-| `wc -l` | 4324 |
+| `git hash-object non_mf_groups_exist.tex` | `cae7ae7f440d1696c4d89270aebef2f110d4b9f8` |
+| sha256 of the file | `78f7f8e7872886c37a76e12548c674315364fa34b1e3f7f2c4eb9fd029bc2065` |
+| `wc -l` | 4321 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -850,13 +850,13 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | def:pattern | env | def:pattern | f4d4c613233e22c9 |
 | def:invisible | env | def:invisible | a9bfafac2d6d94fc |
 | thm:criterion | env | thm:criterion | 4153ff9fb688e0de |
-| thm:sign-criterion | env | thm:sign-criterion | 61641d88f681e4b7 |
+| thm:sign-criterion | env | thm:sign-criterion | 8094b24bda7ec03f |
 | cor:generaltransport | env | cor:generaltransport | 2cd351da03fb75b0 |
 | thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
 | thm:normal-kazhdan | env | thm:normal-kazhdan | 0dcfb82167b7e591 |
 | thm:abstract-nk | env | thm:abstract-nk | 45b50a521fff6393 |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
-| thm:kazhdan-clifford | env | thm:kazhdan-clifford | 4ffebf8d1a5cea96 |
+| thm:kazhdan-clifford | env | thm:kazhdan-clifford | afc58d4e7ad0f434 |
 | rem:ff-realization | env | rem:ff-realization | 90170aeb322478cf |
 | thm:A | env | thm:A | 42d22224247189d9 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
@@ -877,22 +877,22 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | lem:square | env | lem:square | fee8f829203ad9be |
 | thm:cyclic | env | thm:cyclic | 2bfd53c90eb9489c |
 | def:radical | env | def:radical | e74535968f545020 |
-| lem:portable | env | lem:portable | ad40116ce5cb86dd |
-| prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
+| lem:portable | env | lem:portable | f83c0defa813a83a |
+| prop:univquot | env | prop:univquot | 7cdece4e369941cb |
 | cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
 | cor:pullback | env | cor:pullback | a198d2414f61bde0 |
 | cor:nofaithful | env | cor:nofaithful | c7cc4db7be975a5e |
-| lem:permanence | env | lem:permanence | 5ec86a47bd0ca09d |
-| cor:quotclosure | env | cor:quotclosure | 0945a411d7c96988 |
+| lem:permanence | env | lem:permanence | 7ecfd4d8df6e4e6b |
+| cor:quotclosure | env | cor:quotclosure | 4abefb3ae0139858 |
 | def:invwitness | env | def:invwitness | 19f64aedeec57699 |
 | thm:collapse | env | thm:collapse | 978ac3e37662c007 |
 | thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
-| rem:torsion-collapse | env | rem:torsion-collapse | f1525d60c9480bb6 |
+| rem:torsion-collapse | env | rem:torsion-collapse | 15eb47e0c95f1806 |
 | cor:collapsequot | env | cor:collapsequot | aacd98ae2be82cbc |
 | thm:reduced | env | thm:reduced | 942e85e1ef739f83 |
 | lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
 | thm:Esofic | env | thm:Esofic | 883dcd02d25bf9aa |
-| thm:markedclosed | env | thm:markedclosed | 9ff462f2d12281b7 |
+| thm:markedclosed | env | thm:markedclosed | 28fac97c4cd092bf |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | p:cylinder | prose | `form a nonempty clopen set` | - |
 | cor:undecidable | env | cor:undecidable | 465508722f012ed4 |
@@ -913,7 +913,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-slofstra-quotients | prose | `elements sent to the identity by every exact` | - |
 | p:intro-dglt | prose | `The case $p=2$ was settled by` | - |
 | p:intro-cde | prose | `Carri\'on--Dadarlat--Eckhardt, who also give` | - |
-| p:intro-final | prose | `An MF embedding of a group $C^*$-algebra restricts` | - |
+| p:intro-final | prose | `If $e\colon A\to\mathcal Q$ is an MF embedding` | - |
 | p:prelim-complement | prose | `is an injective homomorphism $\U(A)\to\U(\mathcal Q)$` | - |
 | p:prelim-notation | prose | `We repeatedly use the inequalities` | - |
 | p:prelim-dim-convention | prose | `nothing changes if the dimensions are required to be strictly increasing` | - |
@@ -962,7 +962,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:limits-dilution | prose | `Adding an identity block leaves operator-norm multiplicative defects` | - |
 | p:limits-alekseev | prose | `Their question concerns Hamming and tracial models` | - |
 | p:limits-trace | prose | `Stable finiteness and faithful traces on the coordinate algebras` | - |
-| thm:exact-mf-residual | env | thm:exact-mf-residual | f30bd75a8679b824 |
+| thm:exact-mf-residual | env | thm:exact-mf-residual | 97e3e895c912f5e5 |
 | p:torsion-free-consequence | prose | `There exists a torsion-free finitely presented non-MF group.` | - |
 | p:limits-models | prose | `which permutation and Hilbert--Schmidt models do not supply` | - |
 | p:q3 | prose | `Does MF imply hyperlinearity?` | - |
@@ -1015,7 +1015,7 @@ everywhere: the TeX is the specification and does not move).
 | INT.25 | p:intro-slofstra-quotients | MOVED to notes/NON_MF_META_CLAIMS.md — Slofstra's invisible-element quotients precede the MF-residual language | - | MISSING | MISSING | - | literature-input | SlofstraCorrelations, Fritz | NO | TOMBSTONE 2026-08-17: historical, not a step.  The same attribution is repeated at `def:radical`, where the `RA.*` rows sit.  See `notes/NON_MF_META_CLAIMS.md` |
 | INT.26 | p:intro-dglt | MOVED to notes/NON_MF_META_CLAIMS.md — BDL's operator-to-Hilbert--Schmidt compression architecture, its DGLT rounding input, the earlier Slofstra/Slofstra--Vidick negative-corner normalization, and BDL's character-isotypic corner | - | MISSING | MISSING | - | literature-input | DGLT, BDL, SlofstraCorrelations, SlofstraVidick, GR, Gl19 | NO | TOMBSTONE 2026-08-17; attribution refined 2026-08-22: historical, not a step — the implementation used here is re-proved in `sec:sign` rather than quoted and the `CN.*` rows grade that proof.  See `notes/NON_MF_META_CLAIMS.md` |
 | INT.27 | p:intro-cde | MOVED to notes/NON_MF_META_CLAIMS.md — CDE provide the group-MF framework, and an amenable MF group that is not residually finite | - | MISSING | MISSING | - | literature-input | CDE | NO | TOMBSTONE 2026-08-17: historical, not a step.  The CDE *definition* is load-bearing and stays graded EXACT at INT.18 and PRE.16; only the attribution and the Abels'-group example moved.  See `notes/NON_MF_META_CLAIMS.md` |
-| INT.28 | p:intro-final | failure of MF for the group algebra does not by itself prevent a corona embedding; for E the element w dies in every corona representation | `LiteralNonMFEndpoint.literal_mark_mem_manuscriptCoronaMFResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| INT.28 | p:intro-final | a nonunital MF algebra embedding yields a group embedding after adjoining the complementary corner; the converse is open; for E both the group and reduced group C-star embeddings fail | `nonUnitalStarAlgHomUnitaryMap`; `nonUnitalStarAlgHomUnitaryMap_injective`; `LiteralNonMFEndpoint.literal_not_isOperatorMF`; `LiteralNonMFEndpoint.literal_reducedGroupCStar_not_hasMFEmbedding` | EXACT | EXACT | literal | unconditional | - | NO | the displayed correction is $u\mapsto e(u)+(1-e(1))$, so the image is unitary in the ambient corona rather than merely in the corner $e(1)\mathcal Qe(1)$ |
 | INT.30 | p:intro-converses | the reverse arrows LEF$\Rightarrow$RF, MF$\Rightarrow$LEF, and sofic$\Rightarrow$LEF fail | - | MISSING | MISSING | - | literature-input | CDE | NO | The next three rows give counterexamples to precisely these three implications; the hyperlinear-to-sofic reverse arrow is separately recorded as open. |
 | INT.31 | p:intro-converses | the finitary alternating group is LEF but not residually finite | - | MISSING | MISSING | - | unconditional | - | NO | Standard group-theoretic example; not formalized in Lean. |
 | INT.32 | p:intro-converses | Abels' finitely presented group is MF but not LEF | - | MISSING | MISSING | - | literature-input | CDE | NO | CDE proves MF and non-residual-finiteness; finite presentation plus LEF would imply residual finiteness. |
