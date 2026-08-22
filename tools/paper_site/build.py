@@ -22,6 +22,9 @@ REPO = HERE.parent.parent
 EDITIONS = {
     'paper': {
         'source': 'non_mf_groups_exist.tex',
+        'claims': 'metadata/NON_MF_NUMBERED_CLAIMS.json',
+        'ledger': 'metadata/NON_MF_PROOF_LEDGER.md',
+        'census': 'metadata/NON_MF_SENTENCE_CENSUS.tsv',
         'title': 'A non-MF group',
         'tab': 'Paper',
         'links': (
@@ -32,6 +35,9 @@ EDITIONS = {
     },
     'notes': {
         'source': 'non_mf_group_notes.tex',
+        'claims': 'metadata/NON_MF_NOTES_NUMBERED_CLAIMS.json',
+        'ledger': 'metadata/NON_MF_NOTES_PROOF_LEDGER.md',
+        'census': 'metadata/NON_MF_NOTES_SENTENCE_CENSUS.tsv',
         'title': 'Non-MF group notes',
         'tab': 'Notes',
         'links': (
@@ -222,12 +228,12 @@ def strip_tex_comments(tex):
     return '\n'.join(out)
 
 
-def parse_steps():
-    """Step rows of metadata/NON_MF_PROOF_LEDGER.md, grouped by anchor.
+def parse_steps(path):
+    """Step rows of an edition's proof ledger, grouped by anchor.
 
     Hand-authored, pin-enforced in CI; each row grades one printed step's
     statement and proof route against the Lean development."""
-    path = REPO / 'metadata' / 'NON_MF_PROOF_LEDGER.md'
+    path = REPO / path
     if not path.exists():
         return {}
     txt = path.read_text(encoding='utf-8')
@@ -326,20 +332,20 @@ def js_hash(text):
     return format(h, "08x")
 
 
-def parse_census():
-    """metadata/NON_MF_SENTENCE_CENSUS.tsv, re-keyed for the page.
+def parse_census(census_path, ledger_path):
+    """An edition's sentence census, re-keyed for the page.
 
     The census grades every sentence of the manuscript.  Its own key is a
     sha256 prefix; the page recomputes a key from the sentence it is about to
     typeset, so both sides key on the same normalized text under a hash the
     page can afford."""
-    path = REPO / 'metadata' / 'NON_MF_SENTENCE_CENSUS.tsv'
+    path = REPO / census_path
     if not path.exists():
         return {}
     # every row, tombstones included: a sentence pointing only at tombstoned
     # rows is crediting work, not asserting something the development proves
     grades = {}
-    led = REPO / 'metadata' / 'NON_MF_PROOF_LEDGER.md'
+    led = REPO / ledger_path
     if led.exists():
         block = re.search(r'<!-- LEDGER-STEPS -->(.*?)<!-- END-LEDGER-STEPS -->',
                           led.read_text(encoding='utf-8'), re.S)
@@ -431,9 +437,7 @@ def main():
         strip_tex_comments(read(REPO / 'non_mf_groups_exist.tex'))
         if args.edition == 'notes' else ''
     )
-    claims_data = json.loads(
-        read(REPO / 'metadata' / 'NON_MF_NUMBERED_CLAIMS.json')
-    )
+    claims_data = json.loads(read(REPO / edition['claims']))
     labels = set(re.findall(r'\\label\{([^}]*)\}', tex))
     claims_data['manuscript'] = edition['source']
     claims_data['claims'] = [
@@ -495,8 +499,9 @@ def main():
         'window.CLAIMS = ' + json.dumps(claims_data).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
-        'window.STEPS = ' + json.dumps(parse_steps()).replace('</', '<\\/') + ';\n'
-        'window.SENTENCES = ' + json.dumps(parse_census()).replace('</', '<\\/') + ';\n'
+        'window.STEPS = ' + json.dumps(parse_steps(edition['ledger'])).replace('</', '<\\/') + ';\n'
+        'window.SENTENCES = ' + json.dumps(parse_census(
+            edition['census'], edition['ledger'])).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [

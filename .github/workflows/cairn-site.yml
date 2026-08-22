@@ -22,6 +22,11 @@ on:
       - 'non_mf_group_notes.tex'
       - 'non_mf_group_notes.pdf'
       - 'metadata/NON_MF_NUMBERED_CLAIMS.json'
+      - 'metadata/NON_MF_NOTES_NUMBERED_CLAIMS.json'
+      - 'metadata/NON_MF_PROOF_LEDGER.md'
+      - 'metadata/NON_MF_NOTES_PROOF_LEDGER.md'
+      - 'metadata/NON_MF_SENTENCE_CENSUS.tsv'
+      - 'metadata/NON_MF_NOTES_SENTENCE_CENSUS.tsv'
       - 'tools/paper_site/**'
       # the paper edition embeds Lean sources, so Lean-only pushes must
       # republish it too
@@ -121,7 +126,7 @@ jobs:
             install -m 0644 non_mf_group_notes.pdf .cairn/site/non_mf_group_notes.pdf
             # Cross-link: a "paper" entry in the graph header.  This edits the
             # generated page only -- bin/cairn and tools/cairn.py stay untouched.
-            sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><span class="stats">|' .cairn/site/index.html
+            sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><a href="notes/">notes</a><span class="stats">|' .cairn/site/index.html
           else
             echo "::warning::paper edition build failed; publishing without /paper"
           fi

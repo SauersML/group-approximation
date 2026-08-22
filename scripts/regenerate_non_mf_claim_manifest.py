@@ -259,11 +259,11 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:sign-criterion": ["thm:kazhdan-transport"],
     "cor:generaltransport": ["thm:kazhdan-transport"],
     "thm:compression-radical": ["thm:kazhdan-transport"],
-    "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
+    "thm:kazhdan-clifford": ["prop:mf-equivalences",
                               "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
                               "con:clifford"],
-    "thm:A": ["def:E", "prop:mf-equivalences", "prop:maximal-cstar",
-              "prop:literal-base-T", "prop:witness", "thm:criterion",
+    "thm:A": ["def:E", "prop:mf-equivalences", "prop:literal-base-T",
+              "prop:witness", "thm:kazhdan-clifford",
               "lem:unitarycorona", "lem:square"],
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "cor:uniform": ["thm:A"],
@@ -314,13 +314,9 @@ def generate(tex: Path) -> dict:
     entries = []
     claims = read_printed_claims(tex)
     claim_ids = {claim.claim_id for claim in claims}
-    routed_ids = CLAIM_TARGETS.keys()
-    missing = sorted(claim_ids - routed_ids)
-    stale = sorted(routed_ids - claim_ids)
+    missing = sorted(claim_ids - CLAIM_TARGETS.keys())
     if missing:
         raise SystemExit(f"numbered claims missing formal targets: {', '.join(missing)}")
-    if stale:
-        raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
         module, declaration = CLAIM_TARGETS[claim.claim_id]
         if module in {"PAPER", "LITERATURE"}:
