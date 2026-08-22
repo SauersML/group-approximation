@@ -149,9 +149,13 @@ def require_publication_only_descendants(
     )
 
 
-def tracked_blob_entry(root: Path, revision: str, path: str) -> tuple[str, str]:
+def tracked_blob_entry(
+    root: Path, revision: str, path: str, *, allow_missing: bool = False
+) -> tuple[str, str] | None:
     raw = git(root, "ls-tree", "-z", revision, "--", path).stdout
     records = [record for record in raw.split("\0") if record]
+    if not records and allow_missing:
+        return None
     if len(records) != 1:
         raise RuntimeError(
             f"expected exactly one tracked {path} entry at {revision}, "
@@ -247,7 +251,8 @@ def build_commit(
     blob: str,
     message: str,
 ) -> str | None:
-    mode, old_blob = tracked_blob_entry(root, parent, path)
+    entry = tracked_blob_entry(root, parent, path, allow_missing=True)
+    mode, old_blob = entry if entry is not None else ("100644", None)
     if old_blob == blob:
         return None
 
@@ -340,8 +345,10 @@ def publish_pdf_with_guard(
 
     current_main = fetch_main(root)
     guard(root, source, current_main)
-    _, current_blob = tracked_blob_entry(root, current_main, pdf)
-    if current_blob == blob:
+    current_entry = tracked_blob_entry(
+        root, current_main, pdf, allow_missing=True
+    )
+    if current_entry is not None and current_entry[1] == blob:
         print(f"{pdf} was published concurrently at {current_main}")
         return Outcome.CURRENT, current_main
     raise RuntimeError(
@@ -422,6 +429,9 @@ def self_test() -> None:
         (test_root / "non_mf_groups_exist.tex").write_text(
             "manuscript-v1\n", encoding="utf-8"
         )
+        (test_root / "non_mf_group_notes.tex").write_text(
+            "notes-v1\n", encoding="utf-8"
+        )
         (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v1\n")
         (test_root / "README.md").write_text("readme-v1\n", encoding="utf-8")
         git(
@@ -429,6 +439,7 @@ def self_test() -> None:
             "add",
             "--",
             "proof.txt",
+            "non_mf_group_notes.tex",
             "non_mf_groups_exist.tex",
             "non_mf_groups_exist.pdf",
             "README.md",
@@ -442,6 +453,22 @@ def self_test() -> None:
         git(test_root, "commit", "-m", "publish sibling file")
         sibling = resolve(test_root, "HEAD")
         git(test_root, "push", REMOTE, "HEAD:refs/heads/main")
+
+        (test_root / "non_mf_group_notes.pdf").write_bytes(b"notes-v1\n")
+        outcome, notes_published = publish_draft_pdf(
+            test_root,
+            source_ref=certified,
+            source_file="non_mf_group_notes.tex",
+            pdf="non_mf_group_notes.pdf",
+            message="publish initially untracked notes PDF",
+        )
+        assert outcome is Outcome.PUBLISHED
+        assert resolve(test_root, f"{notes_published}^") == sibling
+        assert (
+            blob_contents(test_root, notes_published, "non_mf_group_notes.pdf")
+            == b"notes-v1\n"
+        )
+        sibling = notes_published
 
         (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v2\n")
         outcome, published = publish_pdf(
@@ -497,20 +524,33 @@ def self_test() -> None:
             raise RuntimeError("publisher crossed a verification-relevant commit")
         assert remote_main(test_root) == proof_commit
 
+        (test_root / "non_mf_groups_exist.tex").write_text(
+            "manuscript-v2\n", encoding="utf-8"
+        )
+        manuscript_blob = hash_worktree_file(test_root, "non_mf_groups_exist.tex")
+        draft_source = build_commit(
+            test_root,
+            parent=proof_commit,
+            path="non_mf_groups_exist.tex",
+            blob=manuscript_blob,
+            message="fresh draft source",
+        )
+        assert draft_source is not None
+        git(test_root, "push", REMOTE, f"{draft_source}:refs/heads/main")
         (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-draft\n")
         outcome, draft = publish_draft_pdf(
             test_root,
-            source_ref=published,
+            source_ref=draft_source,
             source_file="non_mf_groups_exist.tex",
             pdf="non_mf_groups_exist.pdf",
             message="publish current draft",
         )
         assert outcome is Outcome.PUBLISHED
-        assert resolve(test_root, f"{draft}^") == proof_commit
+        assert resolve(test_root, f"{draft}^") == draft_source
         assert remote_main(test_root) == draft
 
         (test_root / "non_mf_groups_exist.tex").write_text(
-            "manuscript-v2\n", encoding="utf-8"
+            "manuscript-v3\n", encoding="utf-8"
         )
         manuscript_blob = hash_worktree_file(test_root, "non_mf_groups_exist.tex")
         manuscript_commit = build_commit(
@@ -538,7 +578,7 @@ def self_test() -> None:
         assert remote_main(test_root) == manuscript_commit
 
         (test_root / "non_mf_groups_exist.tex").write_text(
-            "manuscript-v3\n", encoding="utf-8"
+            "manuscript-v4\n", encoding="utf-8"
         )
         v3_blob = hash_worktree_file(test_root, "non_mf_groups_exist.tex")
         v3_commit = build_commit(
@@ -567,7 +607,8 @@ def self_test() -> None:
         )
 
     print(
-        "self-test: temporary-index publication preserved the sibling PDF, "
+        "self-test: initial PDF publication and temporary-index replacement "
+        "preserved sibling files, "
         "was idempotent, kept attested and draft guards distinct, refused "
         "genuinely stale drafts, and published a fresher draft under a "
         "moving source"
@@ -615,6 +656,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             raise AssertionError(f"unhandled command: {args.command}")
     except PublicationDeferred as error:
+        if args.command == "self-test":
+            print(f"error: self-test publication deferred: {error}", file=sys.stderr)
+            return 2
         print(f"publication deferred: {error}")
     except (OSError, RuntimeError, AssertionError) as error:
         print(f"error: {error}", file=sys.stderr)

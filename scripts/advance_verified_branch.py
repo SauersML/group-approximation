@@ -41,6 +41,7 @@ PUBLICATION_ONLY_FILES = frozenset(
         "docbuild/lake-manifest.json",
         "docbuild/lakefile.toml",
         "docbuild/lean-toolchain",
+        "non_mf_group_notes.pdf",
         "non_mf_groups_exist.pdf",
         "references/README.md",
     }
@@ -283,6 +284,7 @@ def self_test() -> int:
     executable_a: TreeEntry = ("100755", "blob", "a" * 40)
 
     assert is_publication_only("README.md")
+    assert is_publication_only("non_mf_group_notes.pdf")
     assert is_publication_only("notes/NOTEPAD.md")
     assert not is_publication_only("metadata/CLAIM_SIGNATURES.md")
     assert not is_publication_only("references/counterexample.tex")
