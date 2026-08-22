@@ -206,8 +206,17 @@ new nested case, not a false statement.
 4c. If both stall: the max-conjugator frame needs its junction-reading
 written (labelled Dyck tree `exists_dtree_of_dyck_map` + chunk
 decomposition + `conjEval_block_ne_one`), producing the `IsPiece`
-premise of `MaximalJunction`, PLUS a new assembly theorem — the most
-work, kept as reserve.
+premise that `MaximalJunction` merely assumes, PLUS a new assembly
+theorem — the most work, kept as reserve.
+
+**Amended 2026-08-22.**  `MaximalJunction` itself is DEMOTED as vacuous:
+it takes that `IsPiece` premise as a hypothesis and concludes only what
+`C'(1/6)` already gives, so it is not a target to discharge and no badge
+may be claimed for closing it.  The budget above is nevertheless right
+about the *work* — producing the premise from the junction configuration
+is the whole content, and no statement of it exists anywhere in the
+tree.  Read `maximal-junction-predicates-assume-their-own-content`
+before spending this reserve.
 
 ## 5. The torsion companion (new leaf, needed by the avatar router)
 

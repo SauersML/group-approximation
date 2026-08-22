@@ -182,9 +182,17 @@ against `hug ≤ T_{m-1}/2 = 6T_{m-1}/12` — the same five-twelfths-against-six
 crossing that has blocked every earlier route, now confined to a single junction
 adjacent to the maximiser rather than to the whole chain.
 
-This is `MaximalJunction` in `Sofic/GreendlingerMaxConjugator`.  It is strictly
-weaker than `CascadeLanding` and much weaker than `LeadingConfinement`: it asks
-what one block is matched *against* at one junction, not where any block stops.
+This is what `MaximalJunction` in `Sofic/GreendlingerMaxConjugator` was meant
+to say, and does not.  **DEMOTED 2026-08-22: the predicate is vacuous.**  It
+takes the piece-ness as a *hypothesis* and concludes only the numeric bound
+that `C'(1/6)` already gives for any piece, so discharging it closes nothing;
+see the demotion section in the Lean file and the research node
+`maximal-junction-predicates-assume-their-own-content`.
+
+The content described just above — what one block is matched *against* at one
+junction, rather than where any block stops — remains the right target, is
+strictly weaker than `CascadeLanding` and much weaker than
+`LeadingConfinement`, and is stated nowhere in the tree.
 
 The obvious next moves, in order:
 1. Formalise the non-crossing matching (it is the nesting of

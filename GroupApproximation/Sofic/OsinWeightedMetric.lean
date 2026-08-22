@@ -115,9 +115,16 @@ own relation `x ^ n = 1`, so torsion-freeness of the factor finishes in one
 rewrite.
 
 This replaces the route through `isPowerTorsionFree_of_torsionIntoFactors`, which
-needs the factors to stay embedded in a quotient; here there is no quotient. -/
+needs the factors to stay embedded in a quotient; here there is no quotient.
+
+`classical` supplies the decidable-equality instances that
+`FreeProductCyclic.torsion_conj_into_factor` needs for its normal forms.  They
+are kept out of the *statement* deliberately: torsion-freeness of a free product
+is not a decidability question, and every caller here — the weighted lane — works
+over a two-factor family carrying no such instance. -/
 theorem isPowerTorsionFree_coprodI (hfree : ∀ i, IsPowerTorsionFree (G i)) :
     IsPowerTorsionFree (CoprodI G) := by
+  classical
   intro g n hn hg
   rcases FreeProductCyclic.torsion_conj_into_factor hn hg with h | ⟨i, x, c, hxn, rfl⟩
   · exact h
@@ -371,7 +378,7 @@ theorem torsionLifts_of_torsionIntoFactors {K : Subgroup (CoprodI G)} [K.Normal]
       apply hinj i
       rw [map_pow, h2, map_one]
     refine ⟨c₀ * CoprodI.of x * c₀⁻¹, ?_, n, hn, ?_⟩
-    · rw [map_mul, map_inv, map_mul]
+    · simp only [map_mul, map_inv, factorMap_apply]
     · rw [FreeProductCyclic.conj_pow_eq, ← map_pow, h5, map_one, mul_one,
         mul_inv_cancel]
 

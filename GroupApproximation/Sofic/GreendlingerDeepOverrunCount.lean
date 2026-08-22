@@ -365,10 +365,9 @@ theorem six_mul_back_lt_of_forward [DecidableEq α]
 /-! ## 7.  The effective conjugator is a word the cascade already names -/
 
 /-- **The effective conjugator, computed.**  Along a cascade step
-`W = A ++ V.drop N` into the landing factor's own word `V`, the element
-`conjEval e₁ * mk c₃` — the conjugator the landing factor presents to the head,
-with everything between them folded in — is spelled by the concrete word
-`A ++ c₃.drop N`.
+`W = A ++ V.drop N` into the landing factor's own word `V`, the element the
+landing factor presents to the head — everything between them folded in, times
+the landing conjugator — is spelled by the concrete word `A ++ c₃.drop N`.
 
 `GreendlingerCoincidence.exists_effectiveConjugator` produces *some* word for
 that element, by taking a reduced word; it is of no use to the coincidence
@@ -377,43 +376,48 @@ lemmas, which need the word to begin with the head conjugator.  This produces a
 the drop leaves of `c₃` — and that is the word the block is actually read
 against, so it is the one whose prefix can be compared with `c`.
 
-The proof is three cancellations and no combinatorics.  Writing `V` for the
-landing sub-expression's word: the cascade says `mk W = mk A * mk (V.drop N)`,
-`conjEval_append` says `mk W = conjEval e₁ * mk V`, and splitting `V` at `N`
-lets `mk (V.drop N)` be cancelled from both, leaving
-`conjEval e₁ * mk (c₃.take N) = mk A`.  Multiplying by `mk (c₃.drop N)`
-reassembles `c₃`.
+The proof is three cancellations and no combinatorics: the cascade gives
+`mk W = mk A * mk (V.drop N)`, the hypothesis `hPQ` gives `mk W = P * Q`, and
+splitting `V` at `N` lets `mk (V.drop N)` be cancelled from both, leaving
+`mk A = P * mk (c₃.take N)`.  Multiplying by `mk (c₃.drop N)` reassembles `c₃`.
 
-`hV` is the one input from outside: that the landing sub-expression's word opens
-with `c₃`, up to the depth the drop reaches.  It is the leading-cancellation
-decomposition of that sub-expression, read at `N`. -/
-theorem mk_effectiveConjugator_of_cascade [DecidableEq α]
-    {c₃ t₃ A : List (α × Bool)} {N : ℕ}
-    {e₁ f : List (FreeGroup α × List (α × Bool))}
-    (hcasc : (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f))).toWord
-      = A ++ (conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N)
-    (hV : (conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.take N
-      = c₃.take N) :
-    FreeGroup.mk (A ++ c₃.drop N) = conjEval e₁ * FreeGroup.mk c₃ := by
-  have hsplitV : conjEval ((FreeGroup.mk c₃, t₃) :: f)
-      = FreeGroup.mk (c₃.take N) * FreeGroup.mk
-        ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N) := by
-    rw [← hV, FreeGroup.mul_mk, List.take_append_drop, FreeGroup.mk_toWord]
-  have hW : conjEval e₁ * conjEval ((FreeGroup.mk c₃, t₃) :: f)
-      = FreeGroup.mk A * FreeGroup.mk
-        ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N) := by
-    rw [← conjEval_append, FreeGroup.mul_mk, ← hcasc, FreeGroup.mk_toWord]
-  rw [hsplitV] at hW
-  have hkey : conjEval e₁ * FreeGroup.mk (c₃.take N) = FreeGroup.mk A := by
-    refine mul_right_cancel (b := FreeGroup.mk
-      ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N)) ?_
-    rw [mul_assoc]
-    exact hW
+Stated over a bare word `V` and bare elements `P`, `Q` rather than over
+`conjEval` and `toWord`: the content is group cancellation and none of it reads
+the expression, so the cascade plumbing stays at the call site.  There, take
+`V := Q.toWord` and `W := (conjEval (e₁ ++ ((mk c₃, t₃) :: f))).toWord` with
+`P := conjEval e₁` and `Q := conjEval ((mk c₃, t₃) :: f)`; `hQ` is then
+`FreeGroup.mk_toWord` and `hPQ` is `mk_toWord` followed by
+`GreendlingerWeight.conjEval_append`.
+
+`hW` at that instantiation is `GreendlingerAlphaPlumb.exists_cascade_split`,
+which is `GreendlingerCascade.exists_cascade` read at `k = |e₁|` and carries no
+side conditions.  It is **not**
+`GreendlingerDeepInduction.exists_postJunction_drop`, which collapses the
+intermediate factors and so splits at a different place; that one is for turning
+the deep regime's overrun from a hypothesis into a theorem, not for this.
+
+`hVc` is the one input from outside: that the landing sub-expression's word
+opens with `c₃`, up to the depth the drop reaches.  It is the
+leading-cancellation decomposition of that sub-expression, read at `N`. -/
+theorem mk_effectiveConjugator_of_split {A c₃ V W : List (α × Bool)} {N : ℕ}
+    {P Q : FreeGroup α}
+    (hW : W = A ++ V.drop N)
+    (hVc : V.take N = c₃.take N)
+    (hQ : FreeGroup.mk V = Q)
+    (hPQ : FreeGroup.mk W = P * Q) :
+    FreeGroup.mk (A ++ c₃.drop N) = P * FreeGroup.mk c₃ := by
+  have hsplitV : Q = FreeGroup.mk (c₃.take N) * FreeGroup.mk (V.drop N) := by
+    rw [← hQ, ← hVc, FreeGroup.mul_mk, List.take_append_drop]
+  have hWsplit : FreeGroup.mk W
+      = FreeGroup.mk A * FreeGroup.mk (V.drop N) := by
+    rw [hW, FreeGroup.mul_mk]
+  have hkey : FreeGroup.mk A = P * FreeGroup.mk (c₃.take N) := by
+    refine mul_right_cancel (b := FreeGroup.mk (V.drop N)) ?_
+    rw [← hWsplit, hPQ, hsplitV, mul_assoc]
   have hc₃ : FreeGroup.mk c₃
       = FreeGroup.mk (c₃.take N) * FreeGroup.mk (c₃.drop N) := by
     rw [FreeGroup.mul_mk, List.take_append_drop]
-  rw [← FreeGroup.mul_mk, ← hkey, hc₃]
-  group
+  rw [← FreeGroup.mul_mk, hkey, hc₃, mul_assoc]
 
 /-- **The effective conjugator extends the head conjugator.**  The positional
 half of the same fact: the word `A ++ c₃.drop N` that
@@ -464,6 +468,58 @@ theorem exists_forward_containment
   refine (List.prefix_append_right_inj c).mp ?_
   rw [hy]
   exact hsub
+
+/-- **The alignment, from the same decomposition.**  The block covers the
+effective conjugator and then `i` letters of the landing rotation, so those
+letters are read against the head rotation `y` letters in — which is exactly
+`halign`, the last field `six_mul_intrusion_lt_of_forward` needs.
+
+Nothing new is set up: this is `exists_forward_containment` with the prefix
+taken `i` letters further, and the rotation appears only through
+`GreendlingerOverlap.prefix_rotate_of_append_prefix`, which turns a prefix
+beginning `|y|` letters into a word into a prefix of that word's rotation by
+`|y|`.  So the alignment is not an extra geometric fact — it is the containment
+read one step longer, which is why `hhigh` is the same bound with `i` added.
+
+`hZ` says the landing sub-expression's word carries `i` letters of `t₃` after
+its conjugator; that is the surviving stretch, and it is what the piece bound
+will then cap. -/
+theorem exists_forward_alignment
+    {W A c₃ V Z M E c t t₃ : List (α × Bool)} {N i : ℕ}
+    (hcasc : W = A ++ V.drop N)
+    (hc₃V : V = c₃ ++ Z) (hN : N ≤ c₃.length)
+    (hZ : t₃.take i <+: Z)
+    (hM : FreeGroup.invRev M = c ++ FreeGroup.invRev E)
+    (hEsuf : E <:+ t)
+    (hMW : FreeGroup.invRev M <+: W)
+    (hlow : c.length ≤ A.length + (c₃.length - N))
+    (hhigh : A.length + (c₃.length - N) + i ≤ M.length) :
+    ∃ y : List (α × Bool), A ++ c₃.drop N = c ++ y ∧
+      t₃.take i <+: (FreeGroup.invRev t).rotate y.length := by
+  obtain ⟨y, hy, -⟩ :=
+    exists_forward_containment hcasc hc₃V hN hM hMW hlow (by omega)
+  refine ⟨y, hy, ?_⟩
+  obtain ⟨Z', hZ'⟩ := hZ
+  have hdrop : V.drop N = c₃.drop N ++ Z := by
+    rw [hc₃V, drop_append_of_le N c₃ Z hN]
+  have hlen : (A ++ c₃.drop N).length = A.length + (c₃.length - N) := by
+    rw [List.length_append, List.length_drop]
+  have hpre : (A ++ c₃.drop N) ++ t₃.take i <+: W := by
+    refine ⟨Z', ?_⟩
+    rw [hcasc, hdrop, ← hZ']
+    simp only [List.append_assoc]
+  have hsub : (A ++ c₃.drop N) ++ t₃.take i <+: c ++ FreeGroup.invRev E := by
+    rw [← hM]
+    refine List.prefix_of_prefix_length_le hpre hMW ?_
+    rw [List.length_append, hlen, List.length_take, FreeGroup.invRev_length]
+    omega
+  rw [hy] at hsub
+  have hyt : y ++ t₃.take i <+: FreeGroup.invRev E := by
+    refine (List.prefix_append_right_inj c).mp ?_
+    rw [← List.append_assoc]
+    exact hsub
+  exact prefix_rotate_of_append_prefix
+    (hyt.trans (invRev_prefix_of_suffix hEsuf))
 
 end SmallCancellationRouter
 end GroupApproximation

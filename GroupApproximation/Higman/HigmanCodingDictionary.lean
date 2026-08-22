@@ -220,6 +220,53 @@ theorem coordSeq_snoc (n : ℕ) (v : Fin n → ℤ) (y : ℤ) :
   · exact Finset.sum_congr rfl fun i _ => by simp
   · simp
 
+/-- **Adding at one slot.**  This is `coordSeq_snoc` for an index that is *not*
+the last one: it says what tuple `coordSeq n v + Finsupp.single ((k : ℕ) : ℤ) c`
+is.  `Seq.existsAt` in `Higman.HigmanVariableCalculus` projects away an interior
+coordinate and leaves a zero hole at `k` rather than compacting the window, so
+its characterization `∃ y, f + Finsupp.single (k : ℤ) y ∈ R` lifts to the tuple
+carrier through this and not through `coordSeq_snoc`. -/
+theorem coordSeq_add_single (n : ℕ) (v : Fin n → ℤ) (k : Fin n) (c : ℤ) :
+    coordSeq n (fun i => v i + (if i = k then c else 0))
+      = coordSeq n v + Finsupp.single ((k : ℕ) : ℤ) c := by
+  refine Finsupp.ext fun j => ?_
+  rw [Finsupp.add_apply, coordSeq_apply, coordSeq_apply, Finsupp.single_apply]
+  have hsplit : ∀ i : Fin n,
+      (if ((i : ℕ) : ℤ) = j then v i + (if i = k then c else 0) else 0)
+        = (if ((i : ℕ) : ℤ) = j then v i else 0)
+          + (if ((i : ℕ) : ℤ) = j then (if i = k then c else 0) else 0) := by
+    intro i
+    by_cases hij : ((i : ℕ) : ℤ) = j
+    · rw [if_pos hij, if_pos hij, if_pos hij]
+    · rw [if_neg hij, if_neg hij, if_neg hij, add_zero]
+  have hk : (∑ i : Fin n, if ((i : ℕ) : ℤ) = j then (if i = k then c else 0) else 0)
+      = (if ((k : ℕ) : ℤ) = j then c else 0) := by
+    have hkk : (if (k : Fin n) = k then c else 0) = c := if_pos rfl
+    refine (Finset.sum_eq_single k ?_ ?_).trans ?_
+    · intro i _ hi
+      rw [if_neg hi]
+      simp
+    · intro hmem
+      exact absurd (Finset.mem_univ k) hmem
+    · rw [hkk]
+  rw [Finset.sum_congr rfl fun i _ => hsplit i, Finset.sum_add_distrib, hk]
+
+/-- **Updating one coordinate.**  The packaged form of `coordSeq_add_single`,
+hypothesis-free, so that it serves a genuine coordinate update and not only a
+quantifier.  At the point of use in `Seq.existsAt` the correction term costs
+nothing: that quantifier pins coordinate `k` to zero, so `v k = 0` and
+`y - v k` collapses to `y`. -/
+theorem coordSeq_update (n : ℕ) (v : Fin n → ℤ) (k : Fin n) (y : ℤ) :
+    coordSeq n (Function.update v k y)
+      = coordSeq n v + Finsupp.single ((k : ℕ) : ℤ) (y - v k) := by
+  have hfun : Function.update v k y = fun i => v i + (if i = k then y - v k else 0) := by
+    funext i
+    by_cases hi : i = k
+    · rw [hi, Function.update_self, if_pos rfl]
+      ring
+    · rw [Function.update_of_ne hi, if_neg hi, add_zero]
+  rw [hfun, coordSeq_add_single]
+
 theorem coordSeq_mem_windowSupport (n : ℕ) (v : Fin n → ℤ) :
     coordSeq n v ∈ windowSupport n := by
   rw [mem_windowSupport_iff]
