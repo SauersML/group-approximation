@@ -1,36 +1,8 @@
-# Group Approximation and Rigidity
+# Group Approximation
 
-> **Verified state:** the remote `verified` branch is automatically
-> fast-forwarded after every complete Lean Prover CI success on `main`.
->
-> That branch is the exact repository state most recently certified by
-> the full Lean Prover CI gate -- `lake build` with warnings as errors, the
-> source and compiled-environment scans, the non-MF counterpart contract,
-> the kernel-level axiom audit, signature pinning, and the fresh-kernel
-> `leanchecker` replay. The repository's Actions history records the most
-> recent successful run.
-> To inspect that state:
->
-> ```text
-> git fetch origin verified
-> git checkout --detach origin/verified
-> ```
-
-A research library for finite models of groups and the rigidity,
-operator-algebraic, combinatorial, and ring-theoretic structures that govern
-them. The root module is `GroupApproximation.lean`; it imports the formal
-library as a whole, while the subject directories provide smaller reading
-paths.
-
-The `verified` branch described above records the last completed public proof
-audit. The paragraphs below describe the current source revision; publication
-of a new verified pin is blocked until the exact claim manifest, full build,
-axiom audit, signature pinning, and fresh-kernel replay all pass for one
-commit. Separate release workflows build and attest the PDFs from an exact
-prover-certified source revision.
+The remote `verified` branch is automatically fast-forwarded after every complete Lean Prover CI success on `main`. Use that for the most recent correct Lean code.
 
 ## A non-MF group
-
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
 embeddable as a group into the unitary group of an operator-norm matrix
@@ -39,6 +11,14 @@ corona
 ```text
 ∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
 ```
+
+The main article is available as
+[`non_mf_groups_exist.pdf`](non_mf_groups_exist.pdf) and as a navigable
+[web edition](https://sauersml.github.io/group-approximation/paper/).
+Further results and variants are collected separately in
+[`non_mf_group_notes.tex`](non_mf_group_notes.tex), with a
+[`PDF`](non_mf_group_notes.pdf) and a dedicated
+[notes web edition](https://sauersml.github.io/group-approximation/notes/).
 
 Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
 the release and draft workflows both compile inside the same digest-pinned
