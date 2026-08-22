@@ -183,6 +183,27 @@ rank.  The missing two-cell must become non-automorphic after compression:
 it must compare unequal carriers or realize a one-sided return, not merely
 flip the phase of a guarded word.
 
+The one-sided scalar endpoint itself can now be reduced further.
+`fanizza-compressed-unitary-has-guarded-rank-floor` proves that for
+
+```text
+F=E-H,       X=FUE,
+```
+
+one automatically has `||X^*X-E||_2^2>=tr(H)` in every finite matrix
+algebra.  Thus a single source-fullness estimate for one compressed ambient
+unitary is enough; the reverse product and the full two-return ledger are
+not semantically necessary.  The corresponding narrower decoder is
+`fanizza-matrix-coordinate-source-full-compression`.
+
+This does not permit a fixed Toeplitz relation.  If source fullness were a
+fixed group-algebra identity or a tracially functorial consequence of the
+relators, the canonical group trace would force `tr(E)=tr(E-H)` and kill
+the regular D8 mark.  The remaining operation is exactly matrix-coordinate
+authentication of the source Gram on the selected guarded multiplicity
+cut; infinite multiplicity may then realize the same compression as a
+proper Hilbert-hotel isometry.
+
 Finally, `functorial-packet-return-firewall`
 extends the regular firewall beyond literal block words.  Fixed finite-group
 averaging, spectral exactification, polar decomposition, support cuts, and
