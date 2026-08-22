@@ -32,26 +32,37 @@ Here `C_X,C_Z` are the two conditional-equality constraints, `C_D` is
 conjugacy monomials in `(FNI1)` are treated as the indicated words, rather
 than as additional independent contexts.
 
-The context-intersection graph has the following nonempty shared-variable
-edges:
+The shared native Boolean variables are `O_Q` (in `C_X`, `C_Z`, `C_D`),
+`O_P` (in `C_D`, `C_R`) and `Z_tilde` (in `C_Z`, `C_R`); every other
+variable lives in one context.  So the full context-intersection graph has
+five edges, `C_X -- C_Z : O_Q` included.  A carrying graph for running
+intersection must contain `C_D -- C_R` and `C_Z -- C_R` (the two-context
+variables) together with a spanning tree of `{C_X, C_Z, C_D}` for `O_Q`:
+four edges on four vertices.  Hence **no join tree exists**, and every
+minimal carrying graph is unicyclic.  We fix the carrying graph
 
 ```text
 C_X -- C_D : O_Q,
 C_Z -- C_D : O_Q,
 C_D -- C_R : O_P,
-C_Z -- C_R : Z_tilde.                                 (FNI2)
+C_Z -- C_R : Z_tilde,                                 (FNI2)
 ```
 
-There are no other shared native Boolean variables.  Hence `C_X` is a leaf
-and the entire failure of running intersection is the one triangle
+in which `C_X` is a leaf attached to `C_D` and the entire failure of running
+intersection is the one triangle
 
 ```text
 C_Z --(O_Q)-- C_D --(O_P)-- C_R --(Z_tilde)-- C_Z.    (FNI3)
 ```
 
-Indeed, deleting either of the last three edges gives a join tree.  Conversely
-no join tree exists: connectedness of the contexts containing each of the
-three variables in `(FNI3)` forces all three triangle edges.
+(Attaching `C_X` to `C_Z` instead gives the same triangle; the third
+spanning tree `C_Z -- C_X -- C_D` gives a four-cycle through `C_X`.  Every
+downstream use is stated for the fixed choice `(FNI2)` and needs only that
+the carrying graph is unicyclic.)  Deleting any one of the three triangle
+edges from `(FNI2)` leaves a tree on which running intersection fails for
+the corresponding separator variable.  (Corrected 2026-08-22: an earlier
+version omitted the `C_X -- C_Z` intersection and called `(FNI2)` the full
+intersection graph.)
 
 Thus groupifying the native Fanizza signal does not require solving the full
 cyclic BCS atlas problem.  After ordinary equations remain multiplicative,

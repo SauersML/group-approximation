@@ -58,7 +58,8 @@ globalization obstruction.  It removes the **uniform-in-depth** and
 problem.
 
 For this bounded problem the source cell is completely explicit.  In the
-Mehta--Slofstra--Zhao presentation its only nonlinear gate is
+Mehta--Slofstra--Zhao presentation its only nonlinear gate is relation (R6)
+(`msz-guarded-projection-recurrence-is-relation-r6`),
 
 ```text
 (P+X_tilde P X_tilde-U P U^*)

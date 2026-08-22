@@ -59,3 +59,16 @@ A_(c,x) -> J A_(c,x),  B_(c,x) -> J B_(c,x),            (GDB4)
 and the invariant logical word is still `A_(c,x)B_(c,x)=X_x`. Hence a Weyl reset may
 translate the nonzero selector direction `(1,1)` while leaving every original
 BCS word and the native Fanizza signal unchanged.
+
+**Incidence after doubling.**  The shares are private to one incidence, so
+the lifted contexts of `G(B)` share no variable directly; a variable `x`
+occurring in `k` contexts now occurs in the `k` definition contexts
+`{X_x, A_(c,x), B_(c,x)}`, each joined to its lifted context `c` by the
+share pair.  A minimal carrying graph for `G(B)` is therefore obtained from
+one for `B` by subdividing: the spanning tree on the `k` contexts of `x` is
+replaced by a spanning tree on the `k` definition contexts plus `k` pendant
+share edges.  Its first Betti number is unchanged, so a unicyclic native
+incidence (`fanizza-native-additive-incidence-is-one-triangle`) stays
+unicyclic after gauge doubling; this is what
+`fanizza-single-holonomy-proper-corner-route` uses when it normalizes the
+leaf and two triangle edges by the spanning-tree theorem after doubling.

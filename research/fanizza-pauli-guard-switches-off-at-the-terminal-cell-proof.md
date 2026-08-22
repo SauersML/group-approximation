@@ -6,6 +6,7 @@ title: Evaluate the addressed Clifford commutator schedule in the exact HALT blo
 target: fanizza-pauli-guard-switches-off-at-the-terminal-cell
 requires:
   - msz-clifford-machine-skeleton-has-polynomial-fillings
+  - msz-guarded-projection-recurrence-is-relation-r6
 ---
 
 At halting time `n`, the exact completeness representation is block diagonal

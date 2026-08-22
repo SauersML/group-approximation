@@ -19,7 +19,8 @@ X_tilde Z_tilde X_tilde Z_tilde=J                    (FTG1)
 
 is not a defining relation of the Fanizza--Kroell--Mehta--Paddock--Rochette--
 Slofstra--Zhao algebra.  The defining nonlinear relation is the guarded
-product
+product (relation (R6) of Mehta--Slofstra--Zhao, retained as `(R~6)` by
+Fanizza et al.; `msz-guarded-projection-recurrence-is-relation-r6`)
 
 ```text
 (P+X_tilde P X_tilde-U P U^*)
@@ -56,7 +57,15 @@ HALT construction,
 ```
 
 because the canonical group trace has `tau(J)=0`.  Only positivity is needed;
-the displayed value also makes the failure quantitative.
+the displayed value also makes the failure quantitative.  (Checked against
+the source 2026-08-22: in the Lemma 4.10 / Proposition 5.13 model `pi` is
+the GNS representation of the canonical trace of `C H_L`, on which `J` is
+not scalar, the cells `H_0 (x) E_(i,i)` all carry mass `1/(n+1)`, and the
+marked projections `P_i <= (1-J)/2` occupy the `J = -1` corner; the
+terminal block `pi(1-J) (x) E_(n,n)` therefore has squared normalized HS
+norm `tau(2 - 2J)/(n+1) = 2/(n+1)`.  Restricted to the `J = -1` corner
+alone the same block would contribute `4` per unit of mass; that corner
+restriction is not the model used here.)
 
 This is not an accidental defect of the model.  At the terminal cell the
 second factor of `(FTG2)` becomes

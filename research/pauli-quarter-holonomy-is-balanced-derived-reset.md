@@ -44,8 +44,11 @@ tau(H(1+R_0)/2)=tau(H(1+R_1)/2)=1/16
 
 This is the local shape required of a reset:
 
-- the new sign `K` is literally a commutator and hence lies in the derived
-  subgroup, fixing the abelianization defect of the bare semidirect reset;
+- the new sign `K` is literally a commutator of the two reflections and
+  hence lies in the derived subgroup of the reflection group `<R_0, R_1>`
+  inside the unit group of `Q[Gamma]` -- not of `Gamma` itself, since the
+  reflections are Hecke polynomials rather than group words -- fixing the
+  abelianization defect of the bare semidirect reset at that level;
 - the new selector pair is transverse and balanced;
 - no independent tensor qubit is added—the Pauli pair is cut out of the
   already existing overlap; and

@@ -2,7 +2,7 @@
 rg: 2
 id: tail-wordized-child-surplus-collision-supplies-rct7
 kind: claim
-title: One tail-wordized child-surplus collision supplies the strict recursive exposure
+title: Given the Schur-surplus bounds and a wordized child reflection, one child-surplus collision supplies the strict recursive exposure
 distinct_from:
   recursive-clifford-tail-supplies-anchor-but-not-contraction: that constructs the same-gauge identity-outer tail and leaves the strict payload exposure as RCT7; this supplies RCT7 from Schur violation surplus and one returned projection collision.
   schur-violation-density-gives-contraction: that derives contraction after an abstract next-carrier inequality; this derives that inequality from one ordinary reflection conjugacy and proves exact HNN completeness.
@@ -14,7 +14,11 @@ distinct_from:
 corrected Schur child-center reflection into an ordinary word.  One HNN
 conjugacy from that word to the next baseline-carrier reflection then converts
 the finite-dimensional forbidden BCS mass directly into the strict factor
-`lambda<1` required by `(RCT7)`.
+`lambda<1` required by `(RCT7)`.  The cell is conditional on the hypotheses
+`(TSC2)`, `(TSC3)` and the wordization `(TSC7)`: `(TSC7)` is exactly what
+`aggregate-child-wordization-three-route-no-go` shows to be unavailable by
+the three catalogued routes, and the satisfiability of `(TSC3)` at many
+contexts (with `v_n` a sum over contexts and `c_n <= 1`) is not argued here.
 
 ## The matrix collision lemma
 

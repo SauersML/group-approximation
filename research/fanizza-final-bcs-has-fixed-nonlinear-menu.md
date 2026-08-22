@@ -14,8 +14,8 @@ flattening constraints are linear.  Apart from the fixed linear BCS `B_H`,
 the only nonlinear truth-table shapes in the final BCS are:
 
 ```text
-C13/C14: (a AND q) != (b AND q)             (arity 3; 2 bad atoms),
-C17:     d != (p AND q)                     (arity 3; 4 bad atoms),
+C13/C14: (a AND q) = (b AND q)              (arity 3; 2 bad atoms),
+C17:     d = (p AND q)                      (arity 3; 4 bad atoms),
 C18:     A123(first triple) AND A456(last triple)
                                                     (arity 6; 20 bad atoms),
 ```
@@ -27,7 +27,12 @@ A123={100,010,001,110,111},
 A456={000,011,101,110}.                               (FNM1)
 ```
 
-The second factor in `(FNM1)` is even parity.  The other displayed contexts
+The second factor in `(FNM1)` is even parity.  (Display corrected
+2026-08-22: the two predicates are the *equalities* named in the citation
+route, and the bad-atom counts `2` and `4` are theirs; the inequality
+`(a AND q) != (b AND q)` printed earlier has six bad atoms, and every
+downstream use -- "choose the compared signs equal when `O_Q = -1`",
+"`O_D` is the conjunction of `O_P, O_Q`" -- already followed the equalities.)  The other displayed contexts
 `C1--C12,C15,C16` are equality, commutation-only, or linear constraints.
 Theorem 5.5 flattens every nested conjugacy relation by adjoining copies of a
 single 31-constraint linear BCS gadget; it preserves the original three

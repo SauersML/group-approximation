@@ -100,7 +100,14 @@ It commutes with the central type projection and has normalized trace
 such reducing projection has the form `I_(V_lambda) tensor P_0`, whose range
 cannot lie in `Cv tensor C^m` unless `P_0=0`.
 
-Therefore GTC5 itself is solved.  The exact surviving issue is GTC4:
+Therefore `(GTC5)` is solved **for the marked forbidden mass**
+`E_forbid^mark` of `(FWC4)`: it holds with `alpha = 1` whenever the
+`E_forbid` of `global-marked-type-cycle-selector-decoder` -- the forbidden
+mass of the original shared BCS tuple, before its context occurrences are
+separated -- is concentrated on the marked type menu, and in general only
+with `alpha = E_forbid^mark / E_forbid`.  That concentration is a separate
+input which this node does not prove (qualifier restored 2026-08-22).  The
+other surviving issue is GTC4:
 authenticate transports on these noncanonical forbidden-weighted subspaces,
 or prove the extra packet covariance `(FWC7)` with a finite-matrix modulus.
 Replacing the analytic carriers by packet-reducing ones silently reintroduces

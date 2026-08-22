@@ -7,11 +7,13 @@ target: fanizza-native-additive-incidence-is-one-triangle
 requires: []
 ---
 
-The context list `(FNI1)` has exactly the four shared-variable edges in
-`(FNI2)`.  The `C_X` vertex is a leaf; the remaining three edges form the
-triangle `(FNI3)`, and deleting any one gives a join tree.  Connectedness for
-the three shared variables forces all three edges, so this is the unique
-running-intersection obstruction.
+The shared variables of `(FNI1)` are `O_Q` (three contexts) and `O_P`,
+`Z_tilde` (two contexts each); the context-intersection graph has five
+edges, including `C_X -- C_Z : O_Q`.  A running-intersection carrying graph
+needs the two forced edges `C_D -- C_R`, `C_Z -- C_R` and a spanning tree of
+the three `O_Q`-contexts, i.e. four edges on four vertices, so no join tree
+exists and every minimal carrying graph is unicyclic.  The fixed choice
+`(FNI2)` makes `C_X` a leaf and its unique cycle the triangle `(FNI3)`.
 
 It is flat.  For every prescribed separator triple
 `(O_Q,O_P,Z_tilde)`, satisfy `C_X,C_Z` by choosing the conditional comparison
