@@ -28,7 +28,8 @@
     "lift_mismatch_order": 2,
     "lift_mismatch_is_central": false,
     "lift_mismatch_conjugacy_orbit_order": 15,
-    "lift_mismatch_normal_closure_order": 32
+    "lift_mismatch_normal_closure_order": 32,
+    "lift_mismatch_A_span_order": 8
   },
   "linear_collision_profile": {
     "pointwise_A_linear_centralizer_order": 6,

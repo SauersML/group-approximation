@@ -88,6 +88,8 @@ DescribeMarkedGroup:=function(images)
         [pairs[1][1],pairs[1][2],Order(mismatch),mismatch in Center(Q),
          Size(ConjugacyClass(Q,mismatch)),Size(NormalClosure(Q,Group(mismatch)))],
         "\n");
+  Print("radial_mismatch_A_span_order=",
+        Size(NormalClosure(A,Group(mismatch))),"\n");
   Print("radial_join_order=",
         Size(Group(Concatenation(GeneratorsOfGroup(A),GeneratorsOfGroup(B)))),
         "\n");
