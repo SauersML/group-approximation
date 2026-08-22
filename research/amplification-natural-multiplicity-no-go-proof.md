@@ -15,3 +15,14 @@ matrix operations all commute with `U -> U tensor I_l`, proving `(ANW2)`.
 Polynomial identities are unchanged by tensoring a represented algebra with
 the identity, whereas Schur multiplicity is multiplied by `l`.  This proves
 the claimed separation between PI degree and raw multiplicity.
+
+For the normalized-statistic strengthening, use
+`v(U tensor I_l)=v(U) tensor I_l`.  Normalized trace averages the `l`
+identical blocks, while
+
+```text
+||(A tensor I_l)||_(2,dl)^2
+ =(1/(dl)) l Tr_d(A^*A)=||A||_(2,d)^2.
+```
+
+This proves `(ANW3)--(ANW4)` and the dimension-introspection corollary.

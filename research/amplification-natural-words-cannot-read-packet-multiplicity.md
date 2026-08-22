@@ -28,6 +28,24 @@ Consequently the generated algebra changes from `A_U` to
 same PI degree.  Meanwhile the anonymous packet multiplicity in `(ANW1)`
 changes from `k` to `kl`.
 
+The obstruction also applies before packet compression to the complete
+finite normalized word-statistic transcript.  For every pair of group words
+`v,z`, direct-sum (equivalently spectator-tensor) amplification gives
+
+```text
+tr_(ld)(v(U tensor I_l))=tr_d(v(U)),                  (ANW3)
+||v(U tensor I_l)-z(U tensor I_l)||_(2,ld)
+ =||v(U)-z(U)||_(2,d).                                (ANW4)
+```
+
+Indeed word evaluation commutes with amplification and the factor `l` in
+the unnormalized trace cancels the dimension normalization.  Thus no finite
+decision rule built from normalized group-word traces and HS defects can
+distinguish dimension `d` from a multiple `ld`.  A Turing machine may read a
+matrix encoding in an external search, but an ordinary group presentation
+cannot make its represented tuple report that external encoding through
+these amplification-invariant statistics.
+
 Thus no Amitsur--Levitzki test on finitely many authenticated word matrices
 can report the raw multiplicity `k`.  It reports at most the largest simple
 degree of the algebra those words actually generate.  In particular the
@@ -48,3 +66,10 @@ surviving trigger must first force a word-generated algebra whose simple PI
 degree grows, or supply a nonlocal coordinate/irreducibility test which
 authenticates the full multiplicity algebra.  That additional step must also
 survive spectator amplification.
+
+This still permits proof-theoretic self-reference.  Reverse Kleene may let a
+compiler react to proofs about its own marked word.  What `(ANW3)--(ANW4)`
+forbid is the stronger fantasy that one finite approximation can intrinsically
+read its raw matrix dimension and request a larger challenge.  For the
+depthwise criterion, every fixed-depth estimate must already be uniform over
+all spectator multiplicities.
