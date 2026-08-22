@@ -39,3 +39,12 @@ For `(MZC6)`, the same calculation with defect gives
 
 Multiplication by `q` and unitary invariance then give
 `||qwq||_2<=delta/2`.
+
+Finally, expanding `(MZC2)` gives
+
+```text
+tau(q)=1/4(1-tau(y)-tau(z)+tau(yz)).
+```
+
+Canonical trace separation of the three fixed nonidentity words proves
+`(MZC7)`.

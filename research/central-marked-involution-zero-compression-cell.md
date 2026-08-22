@@ -70,6 +70,19 @@ then
 Fixed-packet rounding gives the same conclusion with a universal additive
 multiple of the involution and commutator defects.
 
+The selected source is automatically visible at fixed canonical density.
+If `y,z,yz` are nonidentity in the presented group, canonical-trace
+microstates have
+
+```text
+tau(q)=1/4(1-tau(y)-tau(z)+tau(yz)) ->1/4.             (MZC7)
+```
+
+Thus this single source does not require a separate finite-packet
+saturation theorem.  Exact nontriviality can be certified in the intended
+zero-compression witness whenever `Q` is nonzero: then `Q'=WQW` and
+`Q+Q'` are nonzero, so `z`, `yz=1-2Q'`, and `y` all act nontrivially.
+
 ## Exact boundary
 
 This is a genuine selected-corner transducer, but it is not yet a general
@@ -83,7 +96,7 @@ the marked source to lie in a two-cycle of `w`; for a general unitary,
 
 ```text
 compile the losing check as the selected compression of one involution word.
-                                                               (MZC7)
+                                                               (MZC8)
 ```
 
 No finite Bass--Serre extension or packet-type selection is used in
