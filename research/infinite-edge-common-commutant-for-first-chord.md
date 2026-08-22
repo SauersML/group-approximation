@@ -124,6 +124,14 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   HNN is an automorphism mapping torus.  Therefore the live proper edge must
   exploit separator-block sparsity or a genuinely multi-piece coupling; a
   generic endpoint regauge makes the literalization problem strictly worse.
+- **Literalizing a sparse marginal with independent free phases:** also
+  fenced.  `sparse-free-phase-support-is-a-free-factor` computes the exact
+  phase support from the off-diagonal coefficient graph: with `c` connected
+  components it is a free factor of rank `D-c`.  Sparsity can make the edge
+  proper and nonamenable, but a termwise single-letter transport is exactly
+  a free-factor phase-graph HNN and remains residually finite.  A useful
+  sparse return must use nonprimitive phase labels, multi-piece coupling, or
+  non-HNN transport rather than only a sparse zero pattern.
 - **Live attack:** couple finitely generated nonamenable proper infinite
   support subgroups asymmetrically so that `(IEC2)--(IEC3)` hold while the
   height kernel is not the path graph product above.  The transport must fix

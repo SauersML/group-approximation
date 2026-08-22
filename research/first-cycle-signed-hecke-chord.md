@@ -80,3 +80,12 @@ least one non-root assignment projection must survive.
   marginals therefore forces a whole-base automorphism HNN, which is
   hyperlinear.  A live infinite-edge chord must be separator-block sparse,
   genuinely multi-piece/non-graphical, or non-HNN.
+- **A standard sparse regauge only exposes a free factor.**
+  `sparse-free-phase-support-is-a-free-factor` associates to the chord matrix
+  its off-diagonal support graph and proves that the independent-phase
+  difference subgroup is a free factor of rank `D-c`, where `c` is the
+  number of graph components.  It may be proper and nonamenable, but a
+  single termwise HNN between two such supports is residually finite by
+  `free-factor-phase-graph-hnn-is-residually-finite`.  Thus sparsity remains
+  live only when combined with nonprimitive labels, coupled pieces, or a
+  non-HNN operation.
