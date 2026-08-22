@@ -42,3 +42,10 @@ Morita matrix units; neutral same-carrier expressions remain phase-blind.
   unitary, the source corner reduces the loop and the complementary child is
   an unpaid spectator. The missing ingredient is therefore a matrix-only
   positive Gram/support correction, not another ordinary square relation.
+- Making the return involutive does turn the cross term into the positive
+  Gram `L=p-(php)^2`, but
+  `involutive-compression-gram-ledger-has-unit-loss` proves the resulting
+  recurrence coefficient is sharply one. The regular stationary ray has
+  equal positive branch mass and `L=0`. Any viable correction must add a
+  mixed support test correlating that complement with `L`; positivity alone
+  is insufficient.

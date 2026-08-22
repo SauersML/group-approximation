@@ -107,3 +107,10 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   other child is an unpaid direct-sum spectator; otherwise the cross term
   prevents `h^2=J` from implying the required corner square. This sharp
   dichotomy is `toeplitz-child-section-loses-square-or-exit`.
+- **Make the closed return involutive so the cross term is positive.** This
+  yields the exact leakage Gram `L=p-(php)^2`. It still does not charge the
+  complementary child: on the stationary regular multiplicity ray the
+  selected return is the identity, `L=0`, and the binary `1/2` split is
+  exactly canceled by the factor-two full-input return. Consequently the
+  best recurrence coefficient is `c=1`, as proved by
+  `involutive-compression-gram-ledger-has-unit-loss`.
