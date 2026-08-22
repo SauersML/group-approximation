@@ -112,7 +112,7 @@ must make the spectator gauge itself word-visible.
 ## Consequence for the Fanizza Gram
 
 The quantization gap in
-`fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness` applies
+`semisimple-trace-charts-cannot-authenticate-proper-fullness` applies
 only after the deficiency
 
 ```text

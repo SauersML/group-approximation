@@ -53,4 +53,4 @@ interface needed by `uniform-relative-clifford-tape-cell`:
 arbitrary representations may twist the normalizer words on the spin
 multiplicity.  The twist-free consequence retained from the same head is the
 polynomial coordinate-Pauli interface in
-`toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`.
+`toeplitz-coordinate-paulis-localize-cells-and-grams`.

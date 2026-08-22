@@ -32,7 +32,7 @@ sectors which do not activate the rank jump pay group-relator energy.
   gives an exact correlated spin--multiplicity invariant for the Clifford
   normalizer words and invalidates
   `toeplitz-expander-rounds-relative-clifford-cell`.  The correct replacement
-  is `toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`:
+  is `toeplitz-coordinate-paulis-localize-cells-and-grams`:
   honest coordinate Pauli checks give `sqrt(n)` spectral loss and polynomial
   word/derivation cost.  That weaker conclusion is sufficient for the
   geometrically weighted sequential ledger, but it does not establish this

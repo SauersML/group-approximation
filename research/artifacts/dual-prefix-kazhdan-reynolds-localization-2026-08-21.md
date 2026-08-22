@@ -94,7 +94,7 @@ when accompanied by one uniformly gapped transitive actor packet.
 For a decoded Gram deficiency `T=q=E-X^*X`, `(KPR9)` places `q` near the
 commutant of the multiplicity Pauli algebra, namely the fixed Fanizza label
 factor.  The rank-quantization gap from
-`fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness` can then
+`semisimple-trace-charts-cannot-authenticate-proper-fullness` can then
 apply after the usual projection exactification.
 
 ## What the dual-prefix tower supplies and what it does not

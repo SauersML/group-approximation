@@ -63,7 +63,7 @@ alone controls algebraic multiplication, not the complex adjoint Gram.
 
 There is now also a sharp fence on the first alternative when the proposed
 chart is fixed and semisimple.
-`fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness` computes
+`semisimple-trace-charts-cannot-authenticate-proper-fullness` computes
 the reflected trace of a projection in
 `A=direct_sum_j M_(d_j)(C)` from the irreducible multiplicities.  A rank is
 independent of multiplicity exactly when its relative rank is the same in
