@@ -265,3 +265,13 @@ nonhyperlinear `H` imports the desired conclusion instead of deriving it.
 Thus the live escape is narrower still: the multiplicity action must be
 non-tensorially entangled with the BCS payload, or the authenticated carrier
 must depend on that action.
+
+The bare two-holonomy commutator does not achieve this entanglement.
+`two-holonomy-weyl-controller-has-vanishing-boundary-defect` realizes any
+fixed scalar Weyl phase by a clock and cyclic shift with normalized defect at
+most `2/sqrt(d)`, supported on one clock line.  Root-of-unity phases even have
+exact arbitrarily large models.  Selecting the phase-defect line makes the
+carrier density `1/d`, while leaving it unselected makes its energy vanish.
+An independent expander wrapper is covered by the tensor-separated firewall.
+Thus an `A,B`-dependent carrier must be extensive for a reason tied to the
+BCS payload itself; the spectral boundary of a fixed commutator is too thin.
