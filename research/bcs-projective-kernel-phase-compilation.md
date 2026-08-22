@@ -61,6 +61,25 @@ stability, or non-Connes-embeddability alone.  No such coupled presentation or
 decoder is presently specified, so the claim remains open rather than
 established or refuted.
 
+The exact sufficient quantitative target is now normalized in
+`central-sign-bcs-energy-decoder-implies-nonhyperlinear`.  After rounding the
+central sign to a reducing negative projection `Q_U`, it is enough to decode
+corner unitaries `Z_x(U)` and prove, in the ambient normalized trace,
+
+```text
+kappa sum_(P in R_B) ||P(Z(U))Q_U||_2^2
+ <= C Def_R(U)^2+eta(Def_R(U)),        eta(t)->0.       (PKP2)
+```
+
+The robust BCS gap then lower-bounds the left energy before multiplication by
+`kappa` by `beta_B tau(Q_U)`.  Mark separation supplies positive `tau(Q_U)`
+(canonical microstates give `tau(Q_U)->1/2`).  Thus `(PKP2)` is already the
+complete terminal soundness theorem, not merely a local rounding estimate.
+Its statement must include spectral rounding of `J`, exact reduction of the
+corner letters, and the perturbation cost of evaluating the fixed BCS
+polynomials; using raw `(I-J(U))/2` as if it were an exact projection is not
+valid.
+
 ## Attempts
 
 - Insert the unitriangular phase word into the fixed Fanizza predicate menu and
