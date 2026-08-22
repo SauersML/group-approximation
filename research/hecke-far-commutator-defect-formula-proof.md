@@ -57,7 +57,10 @@ is `E(k)` and `||xi_0||^2 = ||E(k)||_2^2`.  This proves `(HFD3)`, and
 
 **Consequences.**  If `||E(k)||_2 = 1` then `E(k) = k` since `k` is a
 unit vector, so `k in pi(Gamma)' cap M`.  If `E(k) = 0` the far defect
-tends to `2`, i.e. `<xi_gamma, k> -> 0`.  The claimed enemy profile is
-the coefficient function of the `K`-fixed cyclic vector of
-`L^2(G/K)`, which is tempered, with the standard Harish-Chandra `Xi`
-spherical decay.
+tends to `2`, i.e. `<xi_gamma, k> -> 0`.  (Corrected 2026-08-21: the
+coefficient function of the `K`-fixed vector `delta_(eK)` of `L^2(G/K)`
+is the indicator `1_K`, since `K` is open and `G/K` discrete -- NOT the
+Harish-Chandra `Xi` profile; and the canonical enemy really has
+`psi_k = 1_Lambda` exactly.  In the general case `0 < s < 1` temperedness
+of the `c_0` component is not forced either: `PSL_n(Q_p)`, `n >= 3`, has
+spherical complementary series, which property (T) does not exclude.)

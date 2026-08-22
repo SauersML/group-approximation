@@ -129,16 +129,17 @@ the finite-dimensionality of the microstates, not tracial abstraction.
   `(NSL1)` is false.  Conversely a leak refutes `(RCC)` directly.  So
   this claim is a reformulation of the collapse, not a weakening — its
   value is the new attack surface, not logical progress by itself.
-- **The enemy has a forced decay profile.**  In the quasi-regular
-  scenario (`psi_k -> 0` far out, `E(k) = 0`), the leak is the
-  `K`-spherical vector of `L^2(G/K)`, which is tempered: the far
-  coefficients must follow the Harish--Chandra `Xi` decay in the
-  double-coset length.  A finite-level transfer would say: the matrices
-  `K_n` realizing `k` have `Ad pi_n(gamma)`-coefficients tracking a
-  spherical function of a group that `pi_n` does not see.  Matching
-  this against the HS-Dehn far-sector length control
-  (`research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md`)
-  is the quantitative attack.
+- **The enemy has NO forced decay profile (corrected 2026-08-21 audit).**
+  An earlier bullet asserted that in the quasi-regular scenario the leak
+  follows the Harish-Chandra `Xi` decay.  False on both counts: the
+  coefficient of the `K`-fixed vector of `L^2(G/K)` is the indicator
+  `1_K` (`K` open, `G/K` discrete), and the canonical enemy indeed has
+  `psi_k = 1_Lambda` exactly -- far FASTER than `Xi`; and for `0 < s < 1`
+  the `c_0` spherical component need not be tempered, since
+  `PSL_n(Q_p)` (`n >= 3`) has spherical complementary series that
+  property (T) does not exclude.  Any quantitative attack that extracts a
+  contradiction from `Xi`-rate decay is therefore aimed at the wrong
+  object; the honest far-sector datum is only `c_0`-ness.
 - **Hecke operators contract the leak for `n >= 3` — now a theorem.**
   The contraction sketched here is established as
   `hecke-averaging-realizes-commutant-expectation`: the lazy average

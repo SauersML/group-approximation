@@ -12,8 +12,11 @@ Throughout, `E_(L(Gamma)) : N -> L(Gamma)` is the trace-preserving
 conditional expectation (it exists for any von Neumann subalgebra of
 a finite algebra), and we use the relative-icc fact recorded in
 `relative-commutant-collapse-for-sl2-pair`: every nontrivial element
-of `Gamma = SL_n(Z[1/p])` has finite centralizer in
-`Lambda = SL_n(Z)`, hence infinite `Lambda`-conjugacy class, so an
+of `Gamma = SL_n(Z[1/p])` (non-central, automatic for `n` odd) has
+INFINITE-INDEX centralizer in `Lambda = SL_n(Z)` (Borel density,
+`arithmetic-pair-ultrapower-no-leak-proof` Step 2; the earlier "finite
+centralizer" was false, corrected 2026-08-21), hence infinite
+`Lambda`-conjugacy class, so an
 element of `L(Gamma)` commuting with `pi(Lambda)` has Fourier
 coefficients constant on infinite classes and `l^2`-summable, forcing
 

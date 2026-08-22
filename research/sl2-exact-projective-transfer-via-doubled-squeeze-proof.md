@@ -17,18 +17,24 @@ the normalized Hilbert--Schmidt norm of `M_(d^2)`,
 || Ad(W) - I ||_2^2 = 2 - 2 |tr_d(W)|^2,
 ```
 
-and since `Ad` is multiplicative with scalar kernel,
-`[Ad U, Ad V] = Ad([U,V])`, so
+and since `Ad` is multiplicative with scalar kernel, the CONJUGATION
+DISPLACEMENT of `Ad U` by `Ad V` is
 
 ```text
-|| [Ad U, Ad V] ||_"comm"^2 := || Ad U Ad V - Ad V Ad U ||_2^2
-  = || Ad([U,V]) - I ||_2^2 = 2 e(U, V).                       (DSQ2)
+|| Ad V (Ad U) (Ad V)^* - Ad U ||_2^2 = || Ad([V,U]) - I ||_2^2
+  = 2 - 2 |tr_d([V,U])|^2 = 2 e(U, V),                        (DSQ2)
 ```
+
+using `[V,U] = [U,V]^*` so the trace moduli agree.  (An earlier version
+wrote the ADDITIVE commutator `|| Ad U Ad V - Ad V Ad U ||_2^2` here; that
+quantity equals `2 e(U^(-1), V^(-1))`, not `2 e(U,V)`, and is not what
+Steps 2-3 use -- they use the displacement, as stated there.  Corrected
+after the 2026-08-21 audit.)
 
 **Step 2 (squeeze on the doubled space).**  Put `sigma = Ad circ rho`,
 a finite-dimensional unitary representation of `Gamma` on `M_d`, i.e.
 after choosing a basis a representation into `U(d^2)`; it factors
-through the same odd congruence quotient `Q` as `rho`.  Apply part 3 of
+through the same congruence quotient `Q` (of level prime to `p`) as `rho`.  Apply part 3 of
 `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair` — the uniform `(tau)`
 conjugation gap, valid for EVERY finite-dimensional representation of
 `Gamma` and every vector of the matrix space — to the representation
@@ -44,7 +50,7 @@ using `(DSQ2)` for each generator (the conjugation displacement of
 `Ad U` by `sigma(c)` IS the commutator norm).
 
 **Step 3 (transfer through the common image).**  `rho`, hence `sigma`,
-factors through `Q = SL_2(Z/m)` with `m` odd, where the images of
+factors through `Q = SL_2(Z/m)` with `gcd(m, p) = 1` (odd exactly when `p = 2`), where the images of
 `Lambda` and of `Gamma` COINCIDE (co-density, part 2 of the same
 node).  Therefore `sigma(Lambda)' = sigma(Gamma)'`, and every element
 of it commutes with `sigma(h)`.  Writing `P` for the nearest point of

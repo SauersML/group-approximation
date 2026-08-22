@@ -60,5 +60,7 @@ assertion `s = 1` for every unitary of `pi(Lambda)' cap M` in a matrix
 ultraproduct.  The enemy scenario is precisely a spherical positive
 definite function `psi = s + (1-s) phi` with `phi` a `c_0` spherical
 coefficient of `G`; in the quasi-regular case (`psi = 1` on `Lambda`,
-`0` far away in the limit) the decay of `phi` follows the
-Harish-Chandra `Xi`-profile of `L^2(G/K)`.
+`0` far away in the limit) the coefficient is the indicator `1_K` of
+the open subgroup `K` (corrected 2026-08-21; it is not the Harish-Chandra
+`Xi`-profile, and for `0 < s < 1` the `c_0` component need not be
+tempered, since `PSL_n(Q_p)` has spherical complementary series).

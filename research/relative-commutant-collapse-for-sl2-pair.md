@@ -42,8 +42,11 @@ this produces an explicit non-hyperlinear group.
 - **Relatively-icc form (2026-08-21).**  For group von Neumann algebras,
   `L(H)' cap L(G) = C` when the subgroup `H` is relatively icc in `G` (every
   `g != e` has infinite `H`-conjugacy class); `SL_n(Z)` is relatively icc in
-  `SL_n(Z[1/p])` (a non-central `g` has finite `SL_n(Z)`-centralizer, so
-  infinite conjugacy class).  Hence `A' cap B = C`, i.e. `L(SL_n(Z))` is an
+  `SL_n(Z[1/p])` (a non-central `g` has INFINITE-INDEX `SL_n(Z)`-centralizer
+  -- its centralizer is the `Z`-points of a proper Zariski-closed subgroup
+  and `SL_n(Z)` is Borel dense, see `arithmetic-pair-ultrapower-no-leak-proof`
+  Step 2 -- so infinite conjugacy class; the earlier "finite centralizer"
+  was false, e.g. `e_12(1)` centralizes `e_12(Z)`; corrected 2026-08-21).  Hence `A' cap B = C`, i.e. `L(SL_n(Z))` is an
   IRREDUCIBLE subfactor of `L(SL_n(Z[1/p]))`.  So `(RCC)`
   `A' cap M = B' cap M` is exactly a **commutant-absorption**: the relative
   commutant of the (T) subalgebra `A`, on passing from `B` to the ambient

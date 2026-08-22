@@ -11,8 +11,8 @@ distinct_from:
 
 Let `Gamma = SL_2(Z[1/p])`, `Lambda = SL_2(Z)` with generating set `S`,
 `h in Gamma \ Lambda`, and let `rho : Gamma -> U(d)` be ANY exact
-finite-dimensional unitary representation (necessarily of odd
-congruence level).  Then for every `U in U(d)`, with
+finite-dimensional unitary representation (necessarily of congruence
+level prime to `p`; odd when `p = 2`).  Then for every `U in U(d)`, with
 `e(U,V) = 1 - |tr_d([U,V])|^2`,
 
 ```text

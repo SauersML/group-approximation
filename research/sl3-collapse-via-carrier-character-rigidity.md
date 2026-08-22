@@ -13,8 +13,9 @@ Instantiate `rcc-carrier-character-face-compression` at
 `(Gamma, Lambda) = (SL_3(Z[1/2]), SL_3(Z))`.  The hypotheses hold:
 `Z(Gamma)` is trivial (a scalar `zeta I in SL_3` needs `zeta^3 = 1`
 with `zeta in Z[1/2]`, so `zeta = 1`), `Gamma` is ICC (a nontrivial
-element has finite `Lambda`-centralizer by the relative-icc computation
-recorded in `relative-commutant-collapse-for-sl2-pair`, hence infinite
+element has infinite-index `Lambda`-centralizer by Borel density
+(`arithmetic-pair-ultrapower-no-leak-proof` Step 2; the "finite
+centralizer" phrasing formerly cited was false), hence infinite
 conjugacy class), `Lambda` is proper, and `Gamma` is finitely
 generated linear, hence residually finite (Malcev) and hyperlinear.
 

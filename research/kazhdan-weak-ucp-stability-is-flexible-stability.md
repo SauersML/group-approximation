@@ -61,11 +61,13 @@ residually finite".
 **Remark on Dogon's Theorem 1.6.**  Every group to which Dogon's
 Theorems 1.3/1.6 and Corollaries 1.8--1.9 apply has property (T)
 (`Sp_(2g)(Z)`, Gromov random groups at density in `(1/3, 1/2)`, infinitely
-presented Kazhdan groups), so by this lemma the "more generally, weak
-ucp-stability" strengthening of Theorem 1.3 to Theorem 1.6 is, on
-hyperlinear approximations, the same hypothesis; the genuine extra
-generality of weak ucp-stability is confined to non-Kazhdan groups, where
-Theorem 1.6 does not apply.
+presented Kazhdan groups), so -- PROVIDED Dogon's Definitions 1.2 and 1.5
+quantify over the same class of approximations, which is transcribed
+rather than quoted verbatim in this graph -- the "more generally, weak
+ucp-stability" strengthening of Theorem 1.3 to Theorem 1.6 would be, on
+hyperlinear approximations, the same hypothesis, with the genuine extra
+generality confined to non-Kazhdan groups.  This remark is editorial, not
+part of the theorem (2026-08-21 audit).
 
 **Literature cousin.**  Fournier-Facio--Willett arXiv:2603.18456v2,
 Theorem 1.1: if `C^*(Gamma)` has the LLP and is RFD then every asymptotic
