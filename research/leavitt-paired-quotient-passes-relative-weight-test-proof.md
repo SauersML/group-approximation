@@ -49,6 +49,12 @@ h_2=e_0,       k_0=a_1,       h_2^2=k_0^2=1.
 Their double traversals are admissible cycles of weight two, so this weight
 choice is sharp.
 
+The same census shows that no member of the symmetrized relator family is a
+second full copy of another member: distinct cyclic conjugates overlap in at
+most three of the six alternating syllables.  Thus the relative presentation
+is orientable, as required in the original Bogley--Pride formulation of the
+weight test.
+
 ## All zero-weight paths are Nielsen reduced
 
 The four zero-weight labels have the following free-product normal forms:
