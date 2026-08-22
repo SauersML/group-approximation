@@ -44,6 +44,16 @@ chosen representation.
 - **Coordinate-permutation normalizers: dead.**  They keep every conjugated
   context algebra inside `qC[K_D]q`; the root-block obstruction then produces
   a forbidden finite-dimensional BCS trace.
+- **Arbitrary finite sheet-transport networks are equally dead.**
+  `finite-sheet-transport-networks-are-exactly-matricial` realizes every
+  rank-balanced local coordinate system, edge bijection and cycle monodromy
+  inside one finite roots-of-unity monomial group.  Its atom coinvariant
+  lattice is free on the finite monodromy orbits.  Retaining a nontrivial
+  return gives only covariance of distinct context copies; coherifying all
+  copies gives the forbidden finite-dimensional BCS tuple.  Hence adding
+  packets or permutation cycles cannot implement `(BCH2)`: the escape must
+  use a relation on noncommutative block positions that is not semantics of
+  a finite sheet bijection.
 - **Ordinary Bass--Serre chord: insufficient.**  A stable letter can conjugate
   one balanced sign to the other, but `(BCH2)` asks that the two corner
   elements be equal.  Conjugacy alone leaves precisely the cycle holonomy.

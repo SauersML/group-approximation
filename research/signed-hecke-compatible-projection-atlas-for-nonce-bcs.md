@@ -87,6 +87,16 @@ trace is required.
   trivial.  Explicit signed-permutation models exist in dimensions three
   and six respectively.  Thus neither torsion nor a new central class begins
   at the two-cycle level.
+- In fact the entire pure sheet-transport program is matricial.
+  `finite-sheet-transport-networks-are-exactly-matricial` puts every finite
+  rank-balanced coordinate set on one `D`-point basis and realizes every
+  edge bijection and every cycle return in `(C_2)^D semidirect S_D`.  The
+  monodromy coinvariant lattice is free on its finite orbits, so adding more
+  cycles creates neither torsion nor a nonmatricial phase.  Retaining this
+  monodromy gives only covariance between context copies, not the literal
+  marginal equality `(BPA3)`; coherifying it would give the forbidden finite-
+  dimensional BCS model.  The live block-escaping target must therefore use
+  a genuinely nontransport relation, not a larger finite permutation atlas.
 - **Literal local contexts are completely solved, but finite Bass--Serre
   compatibility is impossible.**
   `common-corner-literal-contexts-stop-at-bass-serre` tensors all selected
