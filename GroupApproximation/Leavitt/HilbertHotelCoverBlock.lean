@@ -735,7 +735,7 @@ theorem mem_defectClosure (C : CoverInputs) (B : CoverBlockResiduals)
 
 theorem defectClosure_eq_top (C : CoverInputs) (B : CoverBlockResiduals) :
     Subgroup.normalClosure ({blockDefect C B} : Set (CoverGroup₂ C B)) = ⊤ :=
-  Subgroup.eq_top_iff'.mpr (mem_defectClosure C B)
+  (Subgroup.eq_top_iff' _).mpr (mem_defectClosure C B)
 
 /-- **The defect is everything.**  This is the hypothesis the normal-Kazhdan
 criterion consumes at `K = ⊤`. -/
@@ -974,7 +974,7 @@ noncomputable def coverBlockResiduals : CoverBlockResiduals where
     exact h
 
 /-- The chosen cover inputs; discharged in `ConjProductClosure`. -/
-noncomputable def blockCoverInputs : CoverInputs :=
+theorem blockCoverInputs : CoverInputs :=
   Classical.choice Cover.coverInputs_nonempty
 
 /-- **The finitely presented Hilbert-hotel group.**  The two-block cover at

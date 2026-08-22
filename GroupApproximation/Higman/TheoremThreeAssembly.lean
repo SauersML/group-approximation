@@ -519,7 +519,7 @@ theorem higmanGenerated_of_REset (h : EnumeratedRangeGenerated) (B : Set Seq.E)
     exact h.range c hc
 
 /-- **Higman's Section 2, from its last step.** -/
-def higmanTheoremThree_of_enumeratedRange (h : EnumeratedRangeGenerated) :
+theorem higmanTheoremThree_of_enumeratedRange (h : EnumeratedRangeGenerated) :
     HigmanTheoremThree where
   generated := higmanGenerated_of_REset h
 
