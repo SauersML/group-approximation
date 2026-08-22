@@ -80,11 +80,13 @@ unspecified element to kill.
    the wrong coefficient source; the coefficients must generate a subgroup
    outside every class where KL is already known.
 8. **Impose the universal low-length fence before searching.**  By
-   `length-four-kl-fence-for-leavitt-equations`, every nonsingular word of
-   variable length at most four preserves the coefficient group, even when
-   its coefficients generate all of `G`.  The first unresolved full-support
-   shapes occur at length five and, after symmetries, have sign type `++++-`
-   or `+++--`.  No shorter self-similar coefficient packet can work.
+   `length-five-kl-fence-for-leavitt-equations`, every nonsingular word of
+   variable length at most five preserves the coefficient group, even when
+   its coefficients generate all of `G`.  In particular both length-five
+   types `++++-` and `+++--` are settled universally by Evangelidou.  The
+   first unresolved full-support shapes occur at length six and, after
+   symmetries, have sign type `+++++-` or `++++--`.  No shorter self-similar
+   coefficient packet can work.
 9. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.

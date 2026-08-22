@@ -57,7 +57,7 @@ Bass--Serre normal form applied to `(TAK3)` then embeds `G` in `P_G`.
 
 There is also a stronger coefficient-independent reason this candidate could
 never work: its variable length is three, so
-`length-four-kl-fence-for-leavitt-equations` injects `G` directly.  The
+`length-five-kl-fence-for-leavitt-equations` injects `G` directly.  The
 finite-core pushout remains useful because it identifies the quotient's exact
 Bass--Serre structure and explains why failure persists despite the absence
 of a solution inside `H`.
