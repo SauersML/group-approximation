@@ -52,3 +52,13 @@ section word-defect term.  The open majority-carrier statement is therefore
 reduced to constructing those equal-rank joint atoms with the advertised
 leakage ledger; no additional spectral or support-transfer inequality
 remains.
+
+The equal-rank hypothesis can itself be discharged at fixed cost.
+`finite-tree-first-exits-extract-an-equal-rank-global-pvm` uses the `251`
+edge spanning tree consisting of one root-chart label tree and all five
+denominator stars.  It trims rank imbalance, intersects every pulled-back
+polar source, and propagates one common root projection to all `252` atoms.
+The lost trace is bounded by a constant times lattice covariance plus
+denominator first-exit energy.  Hence a positive initial six-chart mass
+remains positive asymptotically; the only unresolved construction is the
+six separate decoded chart PVMs themselves.

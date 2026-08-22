@@ -480,3 +480,14 @@ the fixed-depth nonhyperlinearity criterion.
   remaining construction problem is now sharper: produce equal-rank joint
   atoms whose section leakage is the existing first-exit mass and whose
   `d_i`-relabeling is paid by the decoded full-PVM lattice covariance.
+- **A finite spanning-tree core makes all decoded atom ranks coherent.**
+  On the `6*42` chart-label vertices, take `41` lattice-label edges in one
+  root chart and all `5*42` denominator star edges.  Two-sided leakage first
+  balances ranks; intersecting the pulled-back polar source projections and
+  propagating that intersection produces equal-rank subatoms in every chart
+  while losing at most a fixed multiple of the total two edge energies; see
+  `finite-tree-first-exits-extract-an-equal-rank-global-pvm`.  Non-tree
+  lattice covariance remains controlled after trimming.  Therefore neither
+  rank balancing nor common-source synchronization is still open.  The sole
+  preceding input is construction of the six separate decoded chart PVMs
+  with their root-chart covariance and denominator first exits controlled.
