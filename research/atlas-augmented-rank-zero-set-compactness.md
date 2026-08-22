@@ -104,3 +104,12 @@ lane.
   orbit-span bound or saturation depth for this specific thirteen-relation
   system.  This is the precise binary error-delocalization statement left
   after the mixed-rank-pencil and literature fences.
+- **Fixed-block companion/shift wandering is still cyclic.**
+  `atlas-low-rank-cyclic-perturbations-promote` proves that Laurent residuals
+  change by at most a fixed word-length multiple of `rank(T-S)`, including
+  inverse letters.  Hence any companion or finite-section gauge differing
+  from an invertible fixed-block cyclic closure in `o(m)` rank falls under
+  the existing cyclic primary-mode theorem and produces an exact finite
+  zero.  A symbolic wandering construction must therefore use growing block
+  width, a singular cyclic closure, or stay a positive normalized-rank
+  distance from every fixed-block circulant.
