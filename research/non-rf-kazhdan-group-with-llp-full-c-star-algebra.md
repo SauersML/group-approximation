@@ -76,6 +76,24 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   whether a straight `SL_3(Z)` sits inside depends on whether the
   `K_2`-double-cover class dies on a congruence subgroup — unrecorded;
   at `g = 2` the same Klingen/Siegel audit as downstairs applies.  The
+  extension also has its own C*-structure: by Packer--Raeburn as recorded
+  in Fournier-Facio--Willett Prop. 3.35 / Cor. 3.36 (read at source),
+  `C^*(Gamma~_4)` fibres over the dual circle with fibres the twisted
+  algebras `C^*(Sp_4(Z); c_theta)`, and LLP of ALL fibres implies LLP of
+  `C^*(Gamma~_4)`.  The `theta = 0` fibre is
+  `sp2g-z-full-c-star-algebra-has-llp` itself, so that sufficient
+  condition is formally stronger than the downstairs hole; its virtue is
+  that for `theta notin {0, pi}` the twisted fibres have NO
+  finite-dimensional representations at all (Deligne invisibility), so
+  the only known LLP-refutation mechanism (Ioana--Spaas--Wiersma Theorem
+  A, which consumes exact finite-dimensional projective representations)
+  is vacuous on the twisted circle — no obstruction landscape exists
+  there in either direction.  And Fournier-Facio--Willett Question 1.12
+  (does LLP of `C^*(Lambda)` pass to twisted algebras `C^*(Lambda;
+  sigma)`?), if answered positively, collapses the two candidates into
+  one: LLP of `C^*(Sp_4(Z))` would then reach the goal by two independent
+  mechanisms (Dogon's Corollary 1.9 downstairs, and this hole's
+  non-RF corner upstairs).  The
   constant-class Ioana--Spaas--Wiersma attack is refuted outright
   (`sp4-metaplectic-class-pointwise-coboundary-limit`, compactness of the
   coboundaries), and upstairs the pulled-back metaplectic classes are
