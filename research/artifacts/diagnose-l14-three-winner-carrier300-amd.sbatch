@@ -2,7 +2,7 @@
 #SBATCH --job-name=d4-three-c300-amd
 #SBATCH --partition=amdsmall
 #SBATCH --time=02:00:00
-#SBATCH --mem=32G
+#SBATCH --mem=8G
 #SBATCH --cpus-per-task=1
 #SBATCH --output=/projects/standard/hsiehph/sauer354/nonsofic_existence/msi-d4-three-c300-amd-%j.out
 
