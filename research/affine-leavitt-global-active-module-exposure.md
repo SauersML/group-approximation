@@ -32,6 +32,27 @@ finite-support PVM.  Then
 
 ## Attempts
 
+- **Add the same-root actor table and the full mixed multiplication
+  triangles to the right-ratio model.**  This closes algebraically.
+  `mixed-steinberg-triangles-transfer-actor-additivity` applies
+  `[xy,c]=x[y,c]x^{-1}[x,c]` to
+
+  ```text
+  X(a)=x_ij(a),  C=x_j6(A),  Y(a)=x_i6(a).
+  ```
+
+  Uniform defects `epsilon` for actor-root addition, the mixed triangle and
+  its centralizing row give active-root addition defect at most
+  `6 epsilon`.  After the ten cross-coordinate swaps, the ordered
+  five-coordinate section has whole-module defect at most
+  `30 epsilon+10 eta`.  Hence no exact nonlinear partial graph-product model
+  can retain a missing pair while satisfying all those rows.  The result is
+  not yet a decoder from the finite presentation: its premise is the uniform
+  all-coefficient additive table of the actor root itself.  Finite relators
+  give this only pointwise with address-dependent area.  Mixed triangles
+  therefore move the same uniform-exposure problem from the active column
+  into an actor root at constant loss; they do not terminate it.
+
 - **Use high transitivity to transport finitely many commutator rows.**
   `steinberg-actor-preserves-right-ratio-orbitals` gives an exact obstruction.
   The actor action is right-`AR`-linear, so the stabilizer of
