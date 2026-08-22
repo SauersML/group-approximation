@@ -91,6 +91,8 @@ or genuinely nonstationary coefficient data.
   that its alternating saturation depth is at least
   `log_16(1/(13 epsilon))` when every normalized residual rank is at most
   `epsilon`.  Generic coefficient algebras can have one-dimensional cyclic
-  seeds, so the repeated-natural chart type alone cannot close the claim;
+  seeds.  In fact the cited reduction gives an explicit binary unipotent
+  chart change whose coefficient algebra is `M_m(F2)`, so the
+  repeated-natural chart type alone cannot close the claim;
   the remaining input must use the thirteen explicit residual formulas to
   force a proper `C_T`-invariant subspace.

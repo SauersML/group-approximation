@@ -48,6 +48,28 @@ when
 C_T U_D=k^m.                                         (MCC5)
 ```
 
+This cyclicity can occur for a one-dimensional seed even over `F2` and with
+the repeated-natural chart type exact.  For `m>=2`, let
+
+```text
+X=sum_(i=1)^(m-1) E_(i,i+1),       Y=E_(m,1),
+T=1+E_(12) tensor X+E_(13) tensor Y.                 (MCC5a)
+```
+
+The added square-zero matrix has square zero, so `T^(-1)=T` in
+characteristic two.  Because diagonal inverse blocks are identities,
+`C_T` contains `X` and `Y`; and
+
+```text
+X^a Y X^b=E_(m-a,b+1)       (0<=a,b<=m-1).           (MCC5b)
+```
+
+Hence `C_T=M_m(F2)`, and every nonzero one-dimensional `U_D` is cyclic.
+This is a growing-width chart-pair counterexample to any proposed
+nonwandering theorem that uses only the two chart isomorphism types.  It is
+not a counterexample to the Atlas claim, because no smallness of the
+thirteen particular residuals is asserted.
+
 Moreover
 
 ```text
