@@ -96,6 +96,46 @@ def substitute(word, z_value):
     return reduce_letters(tuple(factors))
 
 
+def substituted_parity(word, z_value):
+    parity = set()
+
+    def toggle(key):
+        if key in parity:
+            parity.remove(key)
+        else:
+            parity.add(key)
+
+    z_parity = set()
+    for copy, name, _ in z_value:
+        key = (copy, name)
+        if key in z_parity:
+            z_parity.remove(key)
+        else:
+            z_parity.add(key)
+    for token in word:
+        if token[0] == "z":
+            for key in z_parity:
+                toggle(key)
+        else:
+            toggle(token[1:3])
+    return frozenset(parity)
+
+
+def complementary_transport_parities(left, right):
+    if len(left) != 2 or len(right) != 2:
+        return False
+    left_source = [key for key in left if key[1] in ("a", "b")]
+    right_source = [key for key in right if key[1] in ("a", "b")]
+    left_target = [key for key in left if key[1] in ("c", "d")]
+    right_target = [key for key in right if key[1] in ("c", "d")]
+    return (len(left_source) == len(right_source) == 1 and
+            len(left_target) == len(right_target) == 1 and
+            {left_source[0][1], right_source[0][1]} == {"a", "b"} and
+            {left_target[0][1], right_target[0][1]} == {"c", "d"} and
+            left_source[0][0] == right_source[0][0] and
+            left_target[0][0] == right_target[0][0])
+
+
 def transports(word):
     """Return (source,target,U) witnesses for A U C U^-1 rotations."""
     parity = set()
@@ -183,6 +223,10 @@ for sign_index, negative in enumerate(combinations(range(13), 5)):
                               for start in range(3))
                 z_value = unary_value(words[pivot])
                 assert z_value is not None
+                parities = tuple(substituted_parity(words[index], z_value)
+                                 for index in residual)
+                if not complementary_transport_parities(*parities):
+                    continue
                 relations = tuple(substitute(words[index], z_value)
                                   for index in residual)
                 first = transports(relations[0])
