@@ -17,3 +17,11 @@ image under `D_N` of the deleted leaf vector; its boundary norm is
 zero.  The definition of operator norm therefore gives
 `kappa_N<=||D_N||/sqrt(N)`, which is `(RNS6)`.
 
+For the unitary-domain strengthening take `N=k^2`.  The `k` leaves equal to
+one contribute `k`, and the equal populations of `i,-i` cancel, proving
+`(RNS7)`.  After the stated opposite rotations, both imaginary populations
+still cancel and every rotated leaf contributes real part
+`-sin(epsilon)=-1/(k-1)`.  Since `N-k=k(k-1)`, this cancels the contribution
+`k` exactly and proves `(RNS8)`.  The chord bound
+`|exp(i epsilon)-1|=2 sin(epsilon/2)<=2 sin(epsilon)` gives `(RNS9)`.
+Reusing the same exact proof and applying rooted soundness yields `(RNS10)`.

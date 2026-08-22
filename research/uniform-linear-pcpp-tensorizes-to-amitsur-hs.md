@@ -127,6 +127,11 @@ PCP layer must use nonlinear quantization/gap amplification or expose a
 delocalized terminal observable by a group word; auxiliary linear proof
 coordinates alone cannot repair the normalization geometry.
 
+The same claim also gives a scalar-unitary witness on every square
+`N=k^2`: a valid phase vector and an invalid phase vector have normalized
+sums one and zero but normalized leaf distance `O(N^(-1/2))`.  Therefore
+imposing unit modulus on every leaf does not save the linear checker.
+
 Even after that scalar object is built, the rows of `D_N` are additive
 operator equations, not ordinary group relators.  Finite signed-permutation
 packets may supply local control sectors, but they do not wordize the linear
