@@ -51,7 +51,15 @@ Ioana--Spaas--Wiersma mechanism at infinite simple groups (recorded in
 method decides the LLP for the simple Kazhdan Kac--Moody lattices in
 either direction — the candidate survives everything published.
 
-**Scope remarks.**  (i) The theorem is geometric: it needs neither
+**Scope remarks.**  (0) One factor may be a point: the theorem covers
+proper cellular actions on a SINGLE locally finite polyhedral complex
+with finitely many shapes, hence all lattices in automorphism groups of
+one building — e.g. the Cartwright--Mantero--Steger--Zappa exotic
+`A~_2` lattices (property (T), triangles of finite groups); should any
+of these be shown non-residually-finite, they would join the Kac--Moody
+lattices as candidates for
+`non-rf-kazhdan-group-with-llp-full-c-star-algebra` with the same fences
+excluded.    (i) The theorem is geometric: it needs neither
 simplicity nor property (T) of `Lambda`, only the proper cellular action;
 it applies to all twin building lattices, affine (`SL_n(F_q[t, t^-1])`)
 included.  For the affine ones `C^*(Lambda)` may still fail LLP through
