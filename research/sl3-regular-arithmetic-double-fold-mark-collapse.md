@@ -98,3 +98,12 @@ has vanishing defect, while the Hecke average converges to `43/168`.  The
 remaining gate is therefore a non-tensorial same-carrier arithmetic word (or
 an additive multi-path interference cell), not another finite list of
 separate spherical and Clifford tests.
+
+The same fence survives the first apparently mixed construction.
+`central-hecke-controlled-multipaths-remain-sectorwise` proves that an
+additive elementary/Hecke operator `sum_a p_a V_a`, controlled by the atoms
+of one spherical chart, is only an orthogonal direct sum: every word and
+every normalized-Hilbert--Schmidt defect decomposes sectorwise.  The minimal
+unfenced relation must therefore authenticate a noncommuting second chart or
+put two elementary-matrix paths into one common block so that their cross
+term is visible.

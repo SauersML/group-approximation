@@ -72,3 +72,10 @@ a genuinely non-tensorial incidence: one group word must identify a spherical
 atom with a Clifford path on the same carrier, or an additive multi-path
 relation must make different Clifford histories interfere.  Merely placing
 both finite test families in the same matrix algebra leaves the tensor escape.
+
+Allowing one central spherical selector chart to choose among several
+elementary/Clifford paths still does not help.
+`central-hecke-controlled-multipaths-remain-sectorwise` expands every such
+additive operator over the orthogonal selector atoms, so all Hilbert--Schmidt
+payments remain sectorwise.  The first unfenced incidence must use a second
+noncommuting authenticated chart or force two paths into the same block.
