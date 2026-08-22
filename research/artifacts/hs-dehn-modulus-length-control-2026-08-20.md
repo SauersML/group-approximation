@@ -418,26 +418,42 @@ constraint family rather than along one derivation.
 ## 8. The RE orientation and the odd-subset fence
 
 **Proposition 8.1.**  If a computable family of LCS games has `(RE1)`
-halting `=>` a finite-dimensional representation with `J = -I`, and
-`(RE2)` nonhalting `=>` `omega_q <= 1 - delta`, then some nonhalting
-machine has `J != 1` (else halting would be co-r.e.), and that solution
-group is nonhyperlinear by the perfect-LCS-gap lemma.  No recursion
-theorem, no matrix search.  Taller--Vidick have `(RE2)` with `1/72` and
-only `1 - epsilon` on the `(RE1)` side.
+halting `=> J != 1` in the solution group (equivalently perfect commuting
+value), and
+`(RE2)` nonhalting `=>` `omega_q < 1`, then one can effectively
+name a nonhalting machine with `J != 1`, and its solution group is
+nonhyperlinear by the perfect-LCS-gap lemma.  For index `e`, enumerate formal
+consequences of the presentation output for `M_e` and halt when a proof of
+`J_e=1` appears.  The effective recursion theorem gives `e_*` running this
+search on its own presentation.  It cannot halt, because `(RE1)` contradicts
+the stopping proof;
+and it cannot have `J_(e_*)=1`, because proof enumeration would then halt.
+This fixed point searches no matrices and crosses no unknown quantitative
+threshold.  Taller--Vidick have `(RE2)` with `1/72` and only `1 - epsilon`
+on the `(RE1)` side.
 
-**Proposition 8.2 (odd-subset cheats).**  Let an LCS have variables
+**Proposition 8.2 (odd-subset cheats, under local extendability).**  Let an LCS have variables
 `a_(C,phi)` indexed by `+-1`-functions of the assignments of contexts of a
 constraint system, honest value `phi(x)`.  Any linear constraint satisfied
 by all honest encodings of all consistent assignment tuples is satisfied by
 every assignment `a_(C,phi) = prod_(s in T_C) phi(s)` with `|T_C|` odd and
-mod-2-consistent marginals.  Proof: group the constraint by context; honest
-satisfaction on all consistent tuples makes each context factor constant on
-shared-variable fibres; odd products of constants are the constant.
-Within one context, the exact solutions of the long-code linear relations
-with `a_(-1) = J` are precisely the odd characters.
+mod-2-consistent marginals, PROVIDED every local assignment appearing in a
+constraint extends to a locally consistent tuple over that constraint and
+the grouped factorization is a product over the tested overlaps.  Under
+those hypotheses, grouping by context makes each factor constant on the
+relevant shared-variable fibres, and odd products preserve the constant.
+Within one context, without any extendability hypothesis, the exact
+solutions of the long-code linear relations with `a_(-1) = J` are precisely
+the odd characters.
 
-So a noise-free perfect-completeness LCS compiler is sound iff the
-odd-subset relaxation of its source is sound.  Classically that relaxation
+The unconditional global statement formerly recorded here is false.
+`odd-subset-relaxation-needs-local-extendability` gives three contexts and a
+nonextendable local assignment on which a mod-2-marginal-consistent odd
+subset violates an honestly satisfied linear constraint.
+
+Thus, for locally extendable sources in this encoding, a noise-free
+perfect-completeness LCS compiler is sound only if the odd-subset relaxation
+of its source is sound.  Classically that relaxation
 is a linear system over `F_2` (the reason 3-XOR needs noise); the
 Taller--Vidick mask is its quantum shadow.  The precise job for a
 self-similar source: make the relaxation an instance of the family.

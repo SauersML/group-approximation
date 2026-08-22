@@ -60,3 +60,13 @@ face exactification has bounded cost, but no proved sign on its first-order
 change of equality energy.  The remaining gate is a return map to the
 exact-face sheet whose equality increase is strictly smaller than the gain
 in `(DCA3)`, or a two-step Lyapunov cross term proving the same fact.
+
+The standard local return is now ruled out sharply.
+`damped-cloud-face-return-has-an-exact-scalar-fixed-sheet` shows that on
+every inconsistent scalar exact-face tuple, damping by `t<1/2` preserves all
+occurrence signs and the explicit sign-first Loewner exactifier returns the
+old tuple verbatim.  Its positive equality cross term is exactly the missing
+`2t(1-t)E_eq`, so together with the quadratic return term it cancels all of
+the gain in `(DCA2)`.  A successful return must therefore coordinate its
+face-character choices globally; improving only the local correction
+constant cannot prove strict descent.

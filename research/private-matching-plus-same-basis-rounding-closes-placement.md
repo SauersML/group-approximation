@@ -8,6 +8,7 @@ requires:
   - private-random-weyl-sampler-forces-growing-matrix-dimension
   - private-matching-free-product-separates-pauli-signs
   - private-weyl-samplers-admit-recursive-selection
+  - cayley-module-bilinear-certificate-protects-pauli-mark
   - same-basis-rounding-interface-for-sparse-weyl-sampler
   - sign-safe-unbounded-multibasin-placement
 ---
@@ -21,6 +22,15 @@ can nevertheless close a contour through several same-basis basins, so the
 sign-safe multi-basin input is required in addition to the analytic decoder.
 `random-private-matching-eliminates-fixed-multibasin-contours` removes every
 fixed-radius family of such contours while retaining the sampler gap; the
-listed placement hypothesis is only the residual unbounded holonomy/piece
-condition.  The recursive-selection input makes the finite vector/sign lists
-effective, so no nonconstructive choice remains in the presentation data.
+listed placement hypothesis is only the residual exact invariant-pairing
+extension across all same-basis relation orbits.  The recursive-selection
+input makes the finite vector/sign lists effective, so no nonconstructive
+choice remains in the presentation data.
+
+The residual placement input now has an exact algebraic formulation.
+`cayley-module-bilinear-certificate-protects-pauli-mark` shows that it is
+enough to realize the same-basis faces as finite-orbit relation submodules
+`R_X,R_Z` over one address group and separate the prescribed mixed prototype
+tensors in `(M_X tensor M_Z)_A`.  Once that coinvariant separation is proved,
+the explicit translation/phase model excludes all long contour collapses at
+once; no separate relative small-cancellation estimate is needed.

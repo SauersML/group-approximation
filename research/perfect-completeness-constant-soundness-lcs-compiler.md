@@ -2,31 +2,31 @@
 rg: 2
 id: perfect-completeness-constant-soundness-lcs-compiler
 kind: claim
-title: A computable LCS family with exact finite-dimensional completeness on halting inputs and constant soundness on nonhalting inputs
+title: A computable LCS family with perfect commuting completeness on halting inputs and strict matrix soundness on nonhalting inputs
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
   - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
   taller-vidick-lcs-re-hardness: that theorem has completeness `1 - epsilon` and its decoder needs the noise; this asks for `epsilon = 0`, which the paper explicitly does not prove.
-  hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for an exact finite-dimensional side on halting inputs and matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.
-  bcs-to-lcs-exact-support-gap: that asks for an exact LCS sub-menu of one fixed tracial BCS with approximate soundness; this asks for the machine-indexed family with exact finite-dimensional completeness.
+  hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for perfect commuting completeness on halting inputs and strict matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.
+  bcs-to-lcs-exact-support-gap: that asks for an exact LCS sub-menu of one fixed tracial BCS with approximate soundness; this asks for a machine-indexed family whose halting-side solution-group mark is nontrivial.
 ---
 
 Construct a computable map `M -> L_M` from Turing machines to finite
 binary linear constraint systems, with solution groups `Gamma_M` and
-central involutions `J_M`, and a constant `delta > 0`, such that
+central involutions `J_M`, such that
 
 ```text
-M halts          =>  Gamma_M has a finite-dimensional representation
-                     with J_M = -I  (a perfect finite-dimensional LCS
-                     strategy),                                        (PC1)
-M does not halt  =>  omega_q(L_M) <= 1 - delta.                        (PC2)
+M halts          =>  J_M != 1 in Gamma_M
+                     (equivalently omega^co(L_M)=1),                    (PC1)
+M does not halt  =>  omega_q(L_M) < 1.                                 (PC2)
 ```
 
-By `re-oriented-lcs-compiler-gives-nonhyperlinear-group` this yields an
-nonhyperlinear solution group `Gamma_M` for some nonhalting `M` (existence
-only; the co-r.e. argument does not identify `M`).  Taller--Vidick prove `(PC2)` with
-`delta = 1/72` and a version of `(PC1)` with value `1 - epsilon` only.
+By `re-oriented-lcs-compiler-gives-nonhyperlinear-group` this effectively
+yields an explicit nonhyperlinear solution group `Gamma_(M_*)` for a
+proof-search fixed-point machine `M_*`.  Taller--Vidick prove the stronger
+uniform `(PC2)` bound `omega_q<=71/72` and a version of `(PC1)` with value
+`1 - epsilon` only.
 
 ## Attempts
 
@@ -97,7 +97,7 @@ only; the co-r.e. argument does not identify `M`).  Taller--Vidick prove `(PC2)`
   RE-hard tilted-XOR games, but their inherited completeness is
   `3/4-epsilon`, not one.  Culf, arXiv:2603.14746, rounds almost-perfect
   projection strategies to approximately tracial strategies; it does not
-  create an exact finite-dimensional LCS solution.  Neither result supplies
+  create a perfect commuting LCS solution.  Neither result supplies
   `(PC1)`, and Taller--Vidick v2 still explicitly identifies `epsilon=0` as
   the nonhyperlinear-group threshold.
 
