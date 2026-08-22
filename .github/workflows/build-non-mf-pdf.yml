@@ -166,21 +166,19 @@ jobs:
             build/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex "$TEX_FILE" \
+            --decls metadata/NON_MF_PAPER_CLAIM_DECLS.txt \
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
-            --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
+            --signature-roster metadata/NON_MF_PAPER_CLAIM_DECLS.txt
 
       # The step above certifies that every cited declaration is SOURCE-CLOSED:
       # its printed header ends at the colon.  That is a fact about where the
@@ -236,6 +234,7 @@ jobs:
           python3 scripts/check_manuscript_claims.py --self-test
           python3 scripts/check_manuscript_claims.py \
             --tex "$TEX_FILE" \
+            --companion-tex non_mf_group_notes.tex \
             --strict
 
       # The ledger grades claims and the manifest reads numbered environments,

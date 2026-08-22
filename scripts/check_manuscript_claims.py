@@ -26,6 +26,9 @@ defect four times over, twice load-bearing:
 
 ## What this script checks
 
+The manuscript may be split into a paper and companion notes.  Pass each
+companion with `--companion-tex`; label and quotation checks use their union.
+
 Two passes, both zero-judgement, both under `--strict`:
 
 1. **Dangling manuscript references.**  Every `\\label{...}`, `\\ref{...}` and
@@ -340,6 +343,9 @@ def self_test() -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
+    parser.add_argument(
+        "--companion-tex", type=Path, action="append", default=[],
+        help="add labels and prose from a companion TeX edition")
     parser.add_argument("--lean", type=Path, default=DEFAULT_LEAN)
     parser.add_argument("--strict", action="store_true",
                         help="exit nonzero on any pass-1 or pass-2 problem")
@@ -352,7 +358,8 @@ def main() -> int:
     if args.self_test:
         return self_test()
 
-    tex = args.tex.read_text(encoding="utf-8")
+    tex_paths = [args.tex, *args.companion_tex]
+    tex = "\n".join(path.read_text(encoding="utf-8") for path in tex_paths)
     labels = tex_labels(tex)
     files = lean_files(args.lean)
 

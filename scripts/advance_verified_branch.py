@@ -57,6 +57,8 @@ VERIFICATION_DOC_FILES = frozenset(
         "metadata/CLAIM_SIGNATURES.md",
         "metadata/NON_MF_CLAIM_DECLS.txt",
         "metadata/NON_MF_CLAIM_SIGNATURES.md",
+        "metadata/NON_MF_PAPER_CLAIM_DECLS.txt",
+        "metadata/NON_MF_NOTES_CLAIM_DECLS.txt",
         "metadata/NON_MF_NUMBERED_CLAIMS.json",
     }
 )

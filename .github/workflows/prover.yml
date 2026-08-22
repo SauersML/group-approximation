@@ -34,6 +34,8 @@ on:
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
+      - 'metadata/NON_MF_PAPER_CLAIM_DECLS.txt'
+      - 'metadata/NON_MF_NOTES_CLAIM_DECLS.txt'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -52,6 +54,8 @@ on:
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
+      - 'metadata/NON_MF_PAPER_CLAIM_DECLS.txt'
+      - 'metadata/NON_MF_NOTES_CLAIM_DECLS.txt'
   workflow_dispatch:
 
 concurrency:
@@ -327,7 +331,10 @@ jobs:
               scripts .github bin \
               metadata/CLAIM_DECLS.txt metadata/CLAIM_MAP.md \
               metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_DECLS.txt \
-              metadata/NON_MF_CLAIM_SIGNATURES.md 2>/dev/null; then
+              metadata/NON_MF_CLAIM_SIGNATURES.md \
+              metadata/NON_MF_PAPER_CLAIM_DECLS.txt \
+              metadata/NON_MF_NOTES_CLAIM_DECLS.txt \
+              2>/dev/null; then
             echo "lean=false" >> "$GITHUB_OUTPUT"
             echo "Lean-relevant tree identical to verified; publication lane."
           else
@@ -626,21 +633,19 @@ jobs:
             /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
+            --decls metadata/NON_MF_PAPER_CLAIM_DECLS.txt \
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
-            --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
+            --signature-roster metadata/NON_MF_PAPER_CLAIM_DECLS.txt
 
       # The contract above certifies that every badge resolves and that every
       # cited declaration is SOURCE-CLOSED: its printed header ends at the
@@ -767,7 +772,8 @@ jobs:
           else
             lake env lean scripts/Signatures.lean
             git diff --exit-code \
-              metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_SIGNATURES.md \
+              metadata/CLAIM_SIGNATURES.md \
+              metadata/NON_MF_CLAIM_SIGNATURES.md \
               || { echo "::error::a claim signature snapshot is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
           fi
 
@@ -1123,18 +1129,16 @@ jobs:
             /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
+            --decls metadata/NON_MF_PAPER_CLAIM_DECLS.txt \
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
-            --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
+            --signature-roster metadata/NON_MF_PAPER_CLAIM_DECLS.txt

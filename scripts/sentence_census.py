@@ -348,7 +348,7 @@ LEDGER = os.path.join(ROOT, "metadata", "NON_MF_PROOF_LEDGER.md")
 ROW_ID = re.compile(r"^[A-Z]{2,4}\.\d+[a-z]?$")
 
 
-def load_ledger() -> tuple[dict[str, list[str]], list[tuple[str, str]]]:
+def load_ledger(path: str = LEDGER) -> tuple[dict[str, list[str]], list[tuple[str, str]]]:
     """Rows by anchor and the prose probes.
 
     The ledger is the existing claim-level grading and the census does not
@@ -358,9 +358,9 @@ def load_ledger() -> tuple[dict[str, list[str]], list[tuple[str, str]]]:
     """
     rows: dict[str, list[str]] = {}
     probes: list[tuple[str, str]] = []
-    if not os.path.exists(LEDGER):
+    if not os.path.exists(path):
         return rows, probes
-    with open(LEDGER, encoding="utf-8") as fh:
+    with open(path, encoding="utf-8") as fh:
         for line in fh:
             if not line.startswith("|"):
                 continue
@@ -671,12 +671,17 @@ def main() -> int:
                     help="check that every named declaration exists")
     ap.add_argument("--verify-unconditional", action="store_true",
                     help="check that no named declaration is conditional")
+    ap.add_argument("--tex", default=TEX)
+    ap.add_argument("--map", dest="map_path", default=MAP)
+    ap.add_argument("--ledger", default=LEDGER)
+    ap.add_argument("--out", default=OUT)
+    ap.add_argument("--out-md", default=OUT_MD)
     args = ap.parse_args()
 
-    rows, probes = load_ledger()
-    records = extract(TEX)
-    attach_anchors(records, TEX, probes)
-    overlay = load_map(MAP)
+    rows, probes = load_ledger(args.ledger)
+    records = extract(args.tex)
+    attach_anchors(records, args.tex, probes)
+    overlay = load_map(args.map_path)
     records = join(records, overlay, rows)
 
     record_keys = {r["key"] for r in records}
@@ -726,8 +731,8 @@ def main() -> int:
         return 0
 
     if not args.summary:
-        write_tsv(records, OUT)
-        write_md(records, OUT_MD)
+        write_tsv(records, args.out)
+        write_md(records, args.out_md)
 
     c = counts(records)
     total = len(records)

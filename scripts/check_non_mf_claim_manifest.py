@@ -192,7 +192,8 @@ def manifest_declarations(manifest_path: Path) -> set[str]:
     }
 
 
-def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
+def validate(repo: Path, tex: Path, manifest_path: Path,
+             dependency_manifests: tuple[Path, ...] = ()) -> list[str]:
     problems: list[str] = []
     try:
         printed = read_printed_claims(tex)
@@ -208,6 +209,18 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
     entries = payload.get("claims")
     if not isinstance(entries, list):
         return ["manifest field `claims` must be a list"]
+
+    external_dependency_ids: set[str] = set()
+    for dependency_manifest in dependency_manifests:
+        try:
+            dependency_payload = json.loads(
+                dependency_manifest.read_text(encoding="utf-8"))
+            external_dependency_ids.update(
+                entry["id"] for entry in dependency_payload.get("claims", [])
+                if isinstance(entry, dict) and isinstance(entry.get("id"), str))
+        except (OSError, json.JSONDecodeError) as error:
+            problems.append(
+                f"cannot read dependency manifest {dependency_manifest}: {error}")
 
     printed_by_id = {claim.claim_id: claim for claim in printed}
     if len(printed_by_id) != len(printed):
@@ -297,7 +310,8 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
                     isinstance(item, str) and item for item in value):
                 problems.append(f"{prefix}: `{field}` must be a list of nonempty strings")
         for dependency in entry.get("dependencies", []):
-            if dependency not in printed_by_id:
+            if (dependency not in printed_by_id
+                    and dependency not in external_dependency_ids):
                 problems.append(
                     f"{prefix}: dependency `{dependency}` is not a numbered claim id"
                 )
@@ -511,13 +525,20 @@ def main() -> int:
     parser.add_argument("--repo", type=Path, default=REPO)
     parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
+    parser.add_argument(
+        "--dependency-manifest", type=Path, action="append", default=[],
+        help="allow dependencies on claims printed in a companion edition")
     parser.add_argument("--signature-roster", type=Path,
                         help="require every manifest declaration in this signature roster")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
         return self_test()
-    problems = validate(args.repo, args.tex, args.manifest)
+    dependency_manifests = tuple(
+        path if path.is_absolute() else args.repo / path
+        for path in args.dependency_manifest)
+    problems = validate(
+        args.repo, args.tex, args.manifest, dependency_manifests)
     if args.signature_roster is not None:
         roster_path = (args.signature_roster if args.signature_roster.is_absolute()
                        else args.repo / args.signature_roster)

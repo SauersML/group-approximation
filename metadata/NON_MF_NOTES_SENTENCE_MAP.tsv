@@ -1,0 +1,538 @@
+# Sentence assignments for the non-MF manuscript.
+#
+# key<TAB>status<TAB>decls<TAB>note.  The key is the first twelve hex digits of
+# the sha256 of the normalized sentence, printed by scripts/sentence_census.py.
+# Edit this file, never metadata/NON_MF_SENTENCE_CENSUS.tsv, which is its join
+# with the extraction.  A sentence whose wording changes loses its key and
+# reappears as unassigned; that is the intended behaviour, because a reworded
+# sentence is a sentence whose assignment has to be re-checked.
+#
+# Sentences carrying a printed \leanverified or \leanstep badge, and sentences
+# sitting under an anchor with exactly one proof-ledger row, are assigned by
+# the script and are deliberately absent here.  Every sentence at a multi-row
+# anchor is listed explicitly below; the checker accepts neither similarity
+# guesses nor a whole-anchor fallback.
+
+# Explicit sentence-to-row assignments at multi-row anchors.  Unlike the
+# forced single-row inheritance, each relation below was checked against the
+# printed sentence and the claim text of the named proof-ledger row.
+
+# Assignments rechecked after the 2026-08-20 prose and structure revision.
+
+# Assignments for the 2026-08-22 sentence-level writing pass; each row was
+# checked against the printed sentence and the named ledger rows or declarations.
+
+# Assignments for the 2026-08-22 attribution and exact-residual theorem pass.
+
+# Assignments for the 2026-08-22 reader-visible wave: verified citations,
+# the Theorem D restructure, and the transport-conjugator rename.
+002878047076	ledger	KC.21	the universal torsion-free Kazhdan host literature input; explicitly MISSING
+0044e5677b1a	ledger	RA.06 RA.07	faithful quotient representation proves the kernel and MF clauses
+00499840a5a1	ledger	BN.05 GP.10	the eight parity classes in a block
+008a7c7d470d	ledger	ID.04 ID.08	the subgroup closure yielding the general transport conclusion
+009ae887b86d	ledger	BN.01 BN.03	the edge commutator relation under the reverse map
+009dda6ec73e	ledger	ER.01	dependence only on translation parity
+00b431b29e6a	ledger	CO.19	the fixer subgroup makes the join nonzero
+00ffb94a6371	ledger	CO.19	finite symmetric generators for the projection orbit
+012026bbfd58	ledger	NK.04 NK.15	invisibility descends to the image while the Kazhdan subgroup stays normal and nontrivial
+015cb9eff50f	formalized	GroupApproximation.IsOperatorMF.subgroup GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	MF is a Markov property: the trivial group is MF and E embeds in no MF group
+01709dae2eac	ledger	ER.03	the symmetric-double vertex group
+01e6b63e2284	ledger	CY.10	the flip/sign/dilation matrices used in the explicit models
+0263d0e7f126	ledger	RA.05	the distinguished word belongs to the source residual
+0281f78071d1	ledger	CO.19	cubic identity and squared-difference projections
+02e0194a0f49	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	the corner here is an arbitrary projection with commuting orbit
+03084956318a	ledger	NK.07	asymptotic invariance of the relabelled corners
+0349eec1e531	ledger	TF.02 TF.03	parameters and quotient supplied by the second Hull application
+0354983bc66a	definition	GroupApproximation.manuscriptMFTraceGroupBridge	what the definition does not require of the approximating maps
+03a7d443d037	ledger	CO.14c	the projection-rank specialization of the weighted transport normalization
+04256b53815c	ledger	TF.01	re-reviewed after the manuscript revision
+054ebe55677a	ledger	ER.03	subgroup permanence gives MF of E/D
+06739a13bfdd	ledger	BN.01 BN.03	involutivity and central order-two sign under the reverse map
+06a3cc272cf8	ledger	RE.09	faithfulness of the amplified trace
+071afc7f934b	ledger	TF.05	re-reviewed after the manuscript revision
+072e5937267e	ledger	NK.05	the induced unitary representation
+07404f73d0ed	formalized	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse	the finite-normal case of the corner, with the central involution as its instance
+07fcd3ff1079	ledger	MC.07	Kazhdan-projection domination
+0884f6f39f0a	ledger	FN.13	universal two-norm triviality inside the corner model
+08a08133a6a2	ledger	PM.04	the resulting exact finite-dimensional representation
+08f322422345	attribution	-	compares the MF residual with Slofstra's kernels and the metric-ultraproduct framework
+08fa8419b1dd	ledger	MC.04	the projection and partial-isometry setup
+09355364bebb	formalized	GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the base of that presentation is the classical one
+0a34def36309	ledger	CO.21	orthogonal telescoping factors
+0a5a03ea191e	ledger	CO.19	the product formula is the join of the generator projections
+0bbfdf7bd259	ledger	CO.21	generator differences belong to the corner ideal
+0c83aea1f8aa	ledger	HO.04 HO.05	exclusion of every MF point
+0c84c09c0672	ledger	CY.10	the Clifford sign computation
+0c8a3cb0caf0	ledger	BN.01	respect for all lamp-factor defining relations
+0d72d16e1fa7	structural	-	forward pointer to the exact-residual section
+0eba6a93e8b6	ledger	CY.12	MF follows from the cited amenable-group theorem
+0ebe6a04a794	ledger	UN.03b	the complement cannot also be recursively enumerable
+0ecfa3d2932f	ledger	RA.11	enumeration of detectors and choice of unitary lifts
+0f1b4ebf7943	ledger	BN.01 BN.03	the reverse map on the sign and site lamps
+10f25cacce2c	ledger	TF.05	re-reviewed after the manuscript revision
+11a9377efed1	formalized	GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis	the transport theorem fails over stably finite tracial coordinates
+12060f74f59a	ledger	NK.07	nonzero projection coordinates after relabelling
+12308242c555	ledger	MC.05	a nonunitary isometry obstructs stable finiteness
+12acfd2c3f76	formalized	HasKazhdanPropertyT.of_surjective	property (T) passes to the image subgroup
+130a1a2c78af	ledger	MC.08b	the literal base and stable letter give the strict-compression pair
+1486d89aba31	ledger	FN.12	vanishing finite average on the complementary corner
+15cbe8d29474	ledger	UN.02b	nontrivial-word embedding branch
+16f4f3800d26	ledger	BN.01 BN.03	independence of the site-lamp representative
+170e23eebf24	ledger	TR.04	the trace of a permutation unitary is its fixed-point proportion
+1764ef38e9df	ledger	NK.08	the corner spectral inequality and its coordinate positive-part form
+179717ef4e69	ledger	UN.02b	provenance and effective-output form of the construction
+17c2071bbac4	ledger	MC.07	the maximal-algebra Kazhdan spectral projection
+1a23239bbe31	ledger	NK.08	intrinsic normalized trace on each corner
+1e559b504afb	structural	-	introduces the display that follows
+1e5cfb63a8fd	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse	the intrinsic defect subgroup replacing the conjugation defect
+1f0bf6ab6aad	open	-	records the current open MF status of the two reduced group algebras and attributes the PMF comparison
+1ffe66c14b9a	ledger	CY.10	the finite-site unitary models detect the Clifford sign
+2021b4b1c688	ledger	MC.08	quasi-regular witness to strictness
+20b3a17c7472	ledger	CO.20	lead-in to coordinate restriction
+20bc0a5ca812	ledger	CO.21b	finiteness equates the fixed-space projections
+210d74e2758b	ledger	CY.13	the marked word lies outside the MF residual
+2139533a9a74	ledger	TA.06	definition of the integer scaling family and its base member
+21a4183e6936	ledger	LI.18	Question 4 itself
+21b21313131c	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the two consequences drawn from it
+21d6cadac402	ledger	HO.04	the nonempty clopen cylinder
+22912cf09d79	ledger	NK.05	choice of ultrafilter for the Kazhdan-corner proof
+22e69d723461	ledger	TR.05	lead-in to the tracial ultraproduct
+238275e78bd3	ledger	ER.02	normal-form embedding into the symmetric double
+2471490ba475	formalized	GroupApproximation.AdjointMatrix.l2_opNorm_conjDouble_sub_le_two GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar	operator-norm control suffices for the adjoint action, while Hilbert--Schmidt closeness alone does not supply it
+24a55c023f78	ledger	TF.05	re-reviewed after the manuscript revision
+25b2d34675b3	ledger	CY.10	monomial and two-monomial form of the generators
+26352b2b61bd	ledger	BN.01 BN.03	the quotient onto the full Clifford-lamp model
+276325f2262c	ledger	CY.10	re-reviewed after the manuscript revision
+27a864840c89	ledger	ER.02	commutation in the quotient by D
+27dad88f44ee	ledger	NK.03 NK.04	contradiction setup with a nontrivial image of the normal Kazhdan subgroup
+28be7a3742aa	ledger	FN.05	full-sequence convergence gives universal ultrafilter triviality
+29114900bb0a	formalized	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	adjacent sites share a block, by the coset computation
+297edc8aef5c	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	w dies in every homomorphism to a finite group; Deligne type is BDL terminology for that
+2989630535d3	ledger	PA.16	quotient, displaced lamp, and quotient base notation for the sign-free collapse
+2a3cbe47d29f	ledger	RA.10	each nonidentity quotient element has a detecting corona representation
+2a89d7a813db	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage	adjacency in the graph is exactly distinctness within a block
+2b0e5612183e	ledger	ER.02	lead-in to the quotient presentation
+2b85737a9b80	ledger	SF.10 SF.11	nontrivial residual element and non-MF quotient
+2b9569d71d46	ledger	CO.20	spectral separation of an approximate projection
+2bb6efc54933	ledger	PA.16	the first two involutive-witness conditions
+2bf65bc8a161	structural	-	lead-in to the open-questions list
+2c78300d53c3	ledger	CO.20	self-adjoint lift for the rank-normalized construction
+2df0df601dc3	ledger	NK.02	universal two-norm triviality of the conjugation defect subgroup
+2e1f5398f8df	ledger	CO.21	the exact one-cocycle conclusion
+2e4175a01108	formalized	GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable	Adian--Rabin applied to that Markov property
+2ea2e3c52fc6	ledger	CO.20	the rank-normalized coordinate Hilbert spaces
+2ec967822e1c	ledger	HO.02 HO.03	the canonical tuple witnesses failure of the Horn implication outside MF groups
+2f413a2773c8	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage GroupApproximation.LiteralVerticalBridge.verticalEquiv	surjectivity of E -> W, from the site-lamp image and transitivity
+2f6b14b17a1a	ledger	RA.04 RA.05	the surviving residual element obstructs an MF embedding
+2fc5a602326e	ledger	NK.07	normality makes both corner projections commute with the image
+30524003f587	ledger	RA.25	the corrected injective unitary homomorphism
+306e3c67b281	ledger	RA.12	block maxima preserve all prior separations
+308b826aeb47	ledger	CO.21	nonzero cocycle conclusion
+309fd94a17aa	ledger	NK.08	the relabelled spectral inequality
+31ce1fc202a6	ledger	CY.04	redundancy of the marked-word square relation
+32516b450224	ledger	KC.21	the contained square of the universal host; explicitly MISSING
+32df07b39328	ledger	RE.05	nonamenability contradicts the printed CPAP reading of nuclearity
+339a980c5d28	ledger	NK.07	projection and Kazhdan-average coordinate lifts
+33f0674ce347	ledger	CO.21b	the primitive is fixed by the compressed subgroup
+35f0ee60021e	ledger	TF.04	the torsion-free black-hole conclusion, re-reviewed after the typography correction
+3612f697011c	ledger	NK.07	enumeration for the diagonal subsequence
+36bd4bf7f1df	ledger	ER.04	residual identities in the two quotients
+36ccdc142656	ledger	CO.19	pairwise commutation of the orbit-difference projections
+36ffe6838ff6	ledger	ID.09 ID.12	the finite-normal averaging corner contradicts a detected intrinsic defect
+38b9c1979cfe	ledger	NK.07 NK.08	choice and relabelling of the diagonal subsequence
+38ce877ac55d	ledger	PA.16	the Clifford witness image of the root commutator and sign subgroup
+391b89778dc8	ledger	CO.20	finite-sum description rather than norm closure
+39f7ea5509cd	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the conjugation datum in E and the element u with u^2 = w
+3a8e7b9fc8b0	ledger	MC.04	orthogonality of the projection corners
+3aa6d538cfbc	ledger	TF.05	re-reviewed after the manuscript revision
+3bc32caacbe2	ledger	TV.04	lead-in to the weighted coordinate inner product
+3be841907e55	ledger	ID.10 ID.11	the normal universal two-norm kernel for a coordinate model
+3c587464609e	formalized	GroupApproximation.SimpleSoficEnvelopeUnconditional.exists_countable_simple_sofic_envelope	the cited envelope theorem is proved in-repo unconditionally; the citation is credit
+3cb361d665dd	ledger	BN.01	lamp-square and base-commutation relations for the forward map
+3d23663db5b0	ledger	TR.04 TR.05	asymptotic freeness gives the canonical trace values
+3dd6ec58728b	ledger	MC.04	the complemented isometry definition
+3deb282e8280	formalized	GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope	a nontrivial normal subgroup of a simple group is everything
+3f59f74c245d	ledger	TR.04	soficity of the literal group
+3f9969115e84	ledger	MC.08b	the maximal algebra is not stably finite and has no faithful trace
+4083bab6425b	ledger	NK.00 NK.02	the abstract normal-Kazhdan theorem supplies the conclusion
+40e04965568c	ledger	ER.04	the corresponding residual identities in the sign quotient
+410385b75561	ledger	CD.03	the finitely presented conjugation datum and its immediate commutation consequences
+4133bc3c651d	structural	-	introduces the display that follows
+4145a428584b	ledger	TV.01 TV.05	finiteness gives equality and both transport directions
+41cb9116bbd3	ledger	CY.10	the explicit doubling-defect computation
+42492976ec07	ledger	NK.07	polar-corrected corner asymptotic representation
+425c2882b6d1	ledger	ER.03	residual finiteness of the linear group
+438f08f410f8	ledger	CO.21b	the primitive is fully fixed, contradicting cocycle nontriviality
+4420949f472e	ledger	FN.10	nonzero complements on an infinite retained subsequence
+460a92c3c90b	ledger	TR.04	permutation unitaries from a sofic approximation
+4782486422dc	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse	the subgroup statement follows by specializing the source homomorphism to the inclusion L → H; this assignment avoids treating the wrapper's names for the printed hypotheses as new assumptions
+48b67bc5a76c	ledger	LI.02	arbitrary Hilbert--Schmidt dilution by sufficiently large padding
+48c08ba55ff1	ledger	TR.03	the support projection for complement correction
+49ca941ac32b	ledger	TF.03	re-reviewed after the manuscript revision
+49d9dd5305ed	ledger	RE.09	the trace-zero complementary projection forces an isometry to be unitary
+4a4e56290506	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient	the universal-quotient form of the same statement
+4acc2a220489	ledger	BN.06	re-reviewed after the manuscript revision
+4ad665cfa7ae	ledger	PM.05	definition of the total local model in the following display
+4b99672f8cb4	ledger	TF.05	re-reviewed after the manuscript revision
+4ba211ac104f	ledger	RA.15	factorization through the quotient proves reverse containment
+4bfc46b41ee8	ledger	BN.04	setup of a finite site set for the finite-orbit argument
+4ca3fb277c3a	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability	a homomorphism to an MF group kills the residual
+4cf230cdb8e4	formalized	GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel	deleting c and the (C),(W) families leaves the ascending HNN extension
+4da22581672f	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel	the action factors through the reduction of the linear part
+4f8abfaf595f	ledger	ID.11	universal two-norm triviality of the intrinsic defect subgroup
+4fe39d0d89c6	formalized	GroupApproximation.isOperatorMF_of_residuallyFinite	Sigma is residually finite
+509a1fea46d7	ledger	HO.03	the relator tuple induces the marked homomorphism
+50beadd6a2f4	ledger	UN.07 UN.08	the continuum-sized pairwise-nonisomorphic transversal
+518865b0c32e	definition	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	names the blocks and records their size
+51ca0da2552c	definition	GroupApproximation.LiteralVerticalBridge.verticalEquiv	names Sigma, its site set, base point, shift and level-zero base
+5227eba26ca1	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical	defines the MF residual
+528c8cb9abfc	ledger	NK.05	the Hilbert and operator ultraproducts
+53efb9010d8d	attribution	-	records BDL's proposal; the mathematics is the sentence before it
+54a6c1665905	ledger	CY.03 CY.06	failure of LEF and residual finiteness
+54ba989e3ab4	ledger	LI.02	identity padding preserves operator norm and reduces normalized Hilbert--Schmidt distance
+54f80b534826	ledger	RA.08	every homomorphism to an MF group kills the residual and factors
+568cfd9974e7	definition	GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one	fixes the notation and records w = u^2, which is the squaring identity
+587b0bf9d271	ledger	CO.19	nonzero join conclusion
+58e2f35cc623	ledger	RE.08	totality of the group basis gives faithfulness
+5a0ccb7e2ddf	ledger	CO.21	vanishing on generators would force Lambda of the join to vanish
+5a4784fc5afb	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse	the normal property-(T) case of the corner
+5a4a6c545946	ledger	NK.03	the countable image is MF
+5a98d87678ea	ledger	FD.10	the bidirectional commutant preservers form a subgroup
+5b4334d08268	ledger	TR.02	bounded-product construction of the corona homomorphism
+5bec2b3704f5	ledger	CY.10	vanishing order of both defects
+5bf99c849152	ledger	MC.07 MC.08 MC.08b	the general strict-Kazhdan-compression source of the maximal-algebra contrast
+5cabe757b953	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF	hyperlinearity from soficity
+5d1983d0366b	ledger	CY.08	all relations and lead-in to the marked-word image
+5d23632856e7	ledger	TA.09	uniformity of the Kazhdan and central-sign argument in the scale
+601b576c40be	ledger	BN.01	re-reviewed after the manuscript revision
+60875561500a	ledger	TR.03	injectivity subgoal
+60ae82864a5e	ledger	UN.02b	the effective Adian--Rabin map
+61a9675413dc	ledger	LI.17	Question 3 itself
+625ccdefb004	attribution	-	states Alekseev--Thom's open problem; asserts nothing of its own
+626936f5773d	ledger	PA.16	pairwise commutation of the quotient orbit
+628d39bbb8d1	ledger	RA.11	separation requirement in the same coordinate choice
+62d2253868b1	ledger	CO.21	inner action on the invariant rank-normalized subspace
+630deb5b2288	ledger	PA.16	all nonzero parity commutators are conjugates of the sign
+6347e5a7a2bb	ledger	PA.16	pullback of the quotient residual puts the root commutator in the original residual
+63783be40233	ledger	RE.09	diagonal entries of x-star-x
+63932a89f6a4	ledger	ER.04	re-reviewed after the manuscript revision
+63fd68b32197	ledger	TV.04	the zero-weight coordinate in the weighted transport proof
+64216c4d3be0	ledger	ER.04	2-norm triviality alone does not give the corona statement
+6457a3bee04c	formalized	GroupApproximation.isOperatorMF_of_locallyFinite	a locally finite group is MF
+64689842512b	definition	GroupApproximation.manuscriptMFTraceGroupBridge	the MF-trace convention used in the paper
+64e2a927c87f	ledger	RA.11	coordinate choice in the diagonal construction
+656b8d7a6e12	ledger	UN.02b	decision-procedure contradiction
+66e0ec9d3f98	ledger	CY.01 CY.08	nontriviality of the marked word
+671ae4c86458	ledger	ER.02	the two vertex-group embeddings
+683951f88aa6	ledger	UN.03b	finite certificates make the word problem recursively enumerable
+6847ebf2c7be	ledger	CO.20	definition of the Hilbert-space map Lambda
+68bd3459c601	ledger	SO.14b SO.15	soficity from the amenable-extension theorem
+68f079441fde	ledger	ID.06	inverse transport from equality of fixed projections
+690031986354	ledger	NK.03	operator-norm separation alone gives no ambient normalized two-norm bound
+69e2292704e8	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart_anyUniverse	names the compression semigroup and the group it generates
+6b1bd9e3b7be	ledger	CO.21	contradiction setup for nonzero cocycle
+6b73f5940ae3	ledger	RE.08	right-translation setup
+6c9675703f00	ledger	PM.01	subgroup permanence by restriction
+6d4f01a97ec1	attribution	-	adopts Shulman's terminology; asserts nothing
+6df7888cf9ac	ledger	BN.01	the forward map on presentation generators
+6f4d608fbaaa	attribution	-	records that the separation is consistent with Mal'cev's theorem
+6f7639307a9d	ledger	SO.14	the resulting non-MF extension
+6f99d07658c8	definition	GroupApproximation.manuscriptMFTraceGroupBridge	the two trace notions, defined by the same models under two norms
+701b7b24c2fd	ledger	TF.01	first common-quotient construction from Fournier-Facio and Hull
+711b39f75cd1	ledger	FN.15	operator-norm vanishing contradicts Hilbert--Schmidt convergence to the identity average
+71fe5f7f92df	ledger	RA.11	block sum at each diagonal stage
+72149febee63	ledger	NK.07 NK.08	lead-in to the finite-intersection constraint set
+7264c0eb1b9c	ledger	CY.02 CY.09	restriction to the generated subgroup gives the surjective realized quotient
+7397077899db	ledger	CY.03 CY.06	exact local embeddings inherit the finite-image equations
+7498fd9293a3	formalized	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	the bijection identifying the block of the base point with the coset space
+751347bba73b	ledger	UN.06	the finitely presented product family containing the obstruction group
+751fddcd1b8a	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the corner in thm:sign-criterion is the negative spectral corner
+75a52a7c9160	ledger	ID.10	intrinsic transport preserves the asymptotic commutant
+75d701d31e45	ledger	TR.06	an MF trace would imply group MF and contradict Theorem A
+7610b04e8816	ledger	MC.04	the first displayed partial-isometry identities
+763c14896651	ledger	NK.08	polar correction preserves the averaged trace bound
+7654d5764697	structural	-	introduces the following intrinsic normal-Kazhdan theorem from universal two-norm triviality
+76e261187d12	ledger	CY.10	finite cyclic coordinate setup for the explicit models
+772e2b3d8895	ledger	MC.08	strictness of the domination
+773942495e72	ledger	TF.03 TF.05	re-reviewed after the manuscript revision
+77558d802317	ledger	CY.08	Clifford attachment and root-lamp image
+775c68ac3b9b	ledger	ID.03	intrinsic dependence only on the pair of groups
+78305e3488c3	ledger	TF.03	re-reviewed after the manuscript revision
+79197855d027	ledger	NK.07 NK.08	subsequence passage from ultrafilter to ordinary convergence
+79a5c05a6b48	ledger	LI.07	why the finite-normal criterion cannot prove the torsion-free case
+79ed00033cd1	ledger	CO.21b	re-reviewed after the manuscript revision
+79f99459b257	ledger	BN.05 GP.10	image of the doubling endomorphism
+7a0521816a15	ledger	TF.02	normal subgroup used as Hull's suitable subgroup
+7a49c6ab7f26	ledger	PA.16	the projection-collapse theorem used in the sign-free quotient
+7b86bd924a7f	ledger	CO.20	coordinate representative and rank bound
+7ba88995150e	ledger	CO.21	the conjugation representation in the rank-normalized Hilbertization
+7d66a37dbb6a	ledger	ER.04	re-reviewed after the manuscript revision
+7dc040d3f5a9	ledger	FN.01	normality of the two-norm kernel
+7dc18156b21c	ledger	FD.11	conjugated centralizer elements remain in the commutant
+7e82e7de46de	ledger	FN.07	asymptotic self-adjointness and idempotence of the average
+80b16ed8f5f8	ledger	TF.03	the image of N is the quotient group
+8195ebf3d78b	partial	GroupApproximation.ShulmanTrace.isHyperlinearTrace_of_isMFTrace	the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
+81a32f39b9fe	ledger	NK.05 NK.06	the spectral projection in the norm ultraproduct and its fixed-space range
+81aa811ce152	ledger	ER.03	re-reviewed after the manuscript revision
+81f8c51e83ee	ledger	CY.03 CY.06	finite prefix test set for exact local embeddings
+827c1d1dbad7	ledger	PA.16	pairwise commutation in the sign quotient kills the root commutator
+8290de04455a	ledger	RA.05	composition proves residual functoriality
+835bad24305c	ledger	FN.08	continuous-functional-calculus rounding to central projections
+838e8f0a22db	ledger	RA.15	forward containment by residual functoriality
+8417281f13db	ledger	RE.08	left-regular realization for faithfulness of the canonical trace
+84698413297f	ledger	RE.02	stable finiteness here comes from the faithful canonical trace
+849944c8502f	ledger	ID.11	all intrinsic-defect generators belong to the normal two-norm kernel
+84a0b270eae7	attribution	-	names Fritz's example as the context for the comparison
+8605e2157fd9	ledger	TR.03	the corrected group homomorphism
+865bcdff04ad	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	presents the graph Clifford group
+8704e3707324	ledger	CO.04	setup with a collapse witness and arbitrary corona homomorphism
+870bffafb98a	ledger	LI.17	why operator-norm MF does not directly supply a hyperlinear model
+87c4c2bc80f7	ledger	UN.06	distinct abelianization ranks distinguish the product family
+8870c25baa40	ledger	ER.01	commutation used in the parity-orbit calculation
+88b935bfb137	ledger	RA.10 RA.11	existence of a coordinate satisfying both requirements
+88faadd511f4	ledger	CO.20	independence of the coordinate class from the ideal decomposition
+8927f2f7962a	ledger	RE.08	zero trace norm propagates from the identity vector to every basis vector
+897ac1c43a2e	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	names the canonical unitaries
+8a95345c1573	formalized	GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF	the six generators of E, whose images generate W
+8b3f3a96901d	ledger	MC.08b	application of the proper-isometry consequence
+8c2f6b13f7d7	ledger	UN.02b	effective Adian--Rabin reduction and trivial-word branch
+8ce8838e49d3	ledger	UN.08	countability of each isomorphism fibre
+8d6278fa32a3	ledger	ES.06	the stable-letter exponent kernel
+8dabad2c796e	ledger	CO.20	boundedness in the normalized Hilbert spaces
+8dcf3c3be5b5	ledger	PM.07	the free-group epimorphism on generators
+8e242437aa00	ledger	NK.05	the Kazhdan average and spectral-gap constant
+8e35d2c90663	formalized	GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive	transitivity on the nontrivial cosets
+8e5527321815	ledger	CO.20	conclusion that the coordinate projections lift the join
+8f3749d6c8a0	ledger	UN.02b	the nontrivial-word embedding branch
+8fdcbca527c8	ledger	SO.14	the quotient onto the integers and its kernel
+90bd3a4f03c2	ledger	NK.00	the finite-normal criterion is the finite property-T case
+90da85fee40f	structural	-	a parenthetical warning about where products of representatives are taken
+911914165da9	ledger	NK.09	one generator has a uniform Hilbert--Schmidt separation
+91694d8313b4	ledger	ES.06	finite subsets of the kernel embed in residually finite groups
+916b8f39ce5a	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD	the algebra of a non-MF group is not MF, by the complement correction used for thm:A
+91753abe96bb	ledger	LI.04	the same intrinsic-rank normalization in the projection-collapse arguments
+91bb5e2e2d96	ledger	FD.10	all one-sided conjugators generate a subgroup of preservers
+929914a0140c	ledger	UN.02b	the trivial-word branch of the reduction
+929f3436e88a	structural	-	transition to the exact finite-dimensional comparison
+929fb678b963	ledger	MC.08	fixed-space projections are distinct
+938c72bdc907	ledger	TF.03	re-reviewed after the manuscript revision
+93958cc21185	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the conjugation-defect containment from the transport theorem
+93c741ad8f34	ledger	NK.06	the complementary projection
+93db51467b5a	ledger	FN.01	asymptotic-representation setup and definition of the two-norm kernel
+954ba8460c2b	ledger	RA.10	definition of the universal residual quotient for the diagonal argument
+9681cd433d7f	attribution	-	Schafhauser's stronger MF convention
+9708725f7429	ledger	FD.12 FD.13	the linear nonembedding conclusion from the surviving word
+974a1d479532	ledger	PM.06 PM.07	MF source and non-MF quotient conclusion
+9788b975fc02	ledger	TV.04 TV.05	bounded weighted vector and unchanged adjoint operator norm
+9795db38dab1	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	thm:exactfd at H = E
+97d3c5cbc4a9	ledger	CO.20	zero propagation under two-sided multiplication
+980b921833d4	ledger	PA.16	clarification of which conjugate base centralizes the displaced lamp
+98806968e48e	ledger	PM.05	exact multiplicativity on the test set
+98918d3e060e	structural	-	introduces the display that follows
+98e48e94853a	definition	GroupApproximation.AdianRabinVariantTransform.correct	fixes the coding of finite presentations
+99273c68ca10	ledger	CO.20	Frobenius norm versus rank and operator norm
+99bc4d3efe6d	ledger	CY.10 CY.12	amenability of the realized Clifford quotient
+9aa30e2b88c6	ledger	ES.05	the extension is LEF only at the kernel
+9c01cdbdedb9	formalized	GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	W is finitely generated and not MF
+9c08efda721e	ledger	CO.20	the nonzero-coordinate index set
+9c0fb1ca3fcc	ledger	FN.06	coordinate averaging-corner setup from a nontrivial finite-normal image
+9c25013d0484	ledger	NK.07	the symmetry check for the average lift
+9c60c4499c18	ledger	UN.02	undecidability of the word problem
+9c9ef4f5db4f	ledger	FN.07	asymptotic centrality from normality
+9d6783978466	ledger	TF.04	torsion-free finitely presented non-MF existence
+9e0c5e429c8e	ledger	RA.25	Theorem A kills the distinguished word after correction
+9e3192d3ba7f	ledger	PM.05	regular representation of the finite subgroup
+9e58aea416ff	ledger	ER.04	exact MF residual of E
+9f01c0abca7c	ledger	CO.19	the projection differences and contradiction hypothesis
+9f231d07cac6	ledger	UN.02b	non-MF conclusion in the nontrivial branch
+a04f1eab26f8	ledger	CY.10	the lamp relator has the same defect
+a0ce50d3b77c	ledger	TA.08	nonintegral inverse translate and surviving Clifford sign
+a0d45d743b81	ledger	CO.20	linearity of Lambda
+a177295e35cc	ledger	PA.16	reduction of arbitrary orbit commutators to the parity calculation
+a1a7155ca824	ledger	FN.04	the root commutators and their normal closure lie in the two-norm kernel
+a21b0cd01a6e	ledger	PA.16	the distinguished sign is the first nonzero parity commutator
+a35bb361a3f9	ledger	RE.04 RE.05b	the embedded infinite Kazhdan base makes the group nonamenable
+a3dad68882b3	structural	-	lead-in to the displayed exact residual identities
+a443500b2089	ledger	ER.03	conditional expectation calculation
+a4dcc8124e97	ledger	TR.06	separability of the maximal algebra from countability
+a5687bd1be42	formalized	GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration	the congruence reduction is compatible with the dilation and extends over the limit
+a6847e97b737	ledger	TA.06	the scaled distinguished word notation
+a7ca9b1f6391	ledger	MC.04	the resulting proper isometry
+a81d7dc1d6cf	ledger	TF.05	re-reviewed after the manuscript revision
+a8ff162be85c	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse GroupApproximation.ScaledKazhdanTransport.scaled_transport_both	the transport theorem with an arbitrary weight in place of the dimension
+aa8b34d10f9a	ledger	CY.03 CY.06	finite-dimensional commutant argument kills the marked word
+ac0c9698dbf8	ledger	CO.21	orthogonal decomposition of the join
+ac10c15943c7	structural	-	introduces the display that follows
+ac2e39cfce46	ledger	ER.03	the symmetric group double is MF, re-reviewed after the typography correction
+ace6f323e9a3	ledger	BN.01 BN.03	the marked-word relation maps to the central sign
+acea87e3135e	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic	E is sofic, so it embeds
+ad352f09a848	ledger	CO.21	unitary coordinate lifts for the conjugation representation
+ada061b9ddc1	ledger	LI.19	the open building-block question
+ae1d17da659b	ledger	SO.14	the kernel is LEF and MF
+aec4d44a5ad8	ledger	RA.09	the residual-triviality characterization of MF
+aef5f6cb59e2	ledger	CY.10	the displayed marked-word matrix calculation
+af92f8a7759b	ledger	CY.03 CY.06	finite images collapse the cyclic marked word
+b10e2651aa3d	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	the residual travels along the quotient and w goes to a nontrivial sign
+b163e377638d	ledger	UN.02	undecidability of MF recognition
+b17ad368dba1	ledger	RE.08	commutation of right and left translations
+b232b79afdb1	ledger	PM.04	operator-norm separation of distinct permutation matrices
+b346b9f26d4e	formalized	GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap	the spectral projection of a Kazhdan average, standing where the finite averaging operator stood
+b3acb810e6b8	formalized	HasKazhdanPropertyT.of_surjective	property (T) passes to the image subgroup
+b3d0fcdf169c	ledger	SO.11	failure of MF permanence under extensions
+b4731a2b1664	ledger	BN.01	the reverse semidirect-product homomorphism
+b4a9527d6456	ledger	ID.05	forward transport for a one-sided conjugator
+b5b252370d36	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel	names the orbital graph; distinctness of its generating pair is the linear model
+b5bfa568f705	formalized	GroupApproximation.isOperatorMF_of_residuallyFinite GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	Sigma is MF while W is not
+b5fca0f908aa	structural	-	heading for the universal two-norm-triviality part of the criterion proof
+b656cca32c46	ledger	NK.03	separating asymptotic models for the MF image
+b70cb3892c8f	ledger	SO.16	exactness of the reduced algebra; this row is explicitly graded MISMATCH
+b7254a37e261	ledger	PA.16	parity invariance of the displaced-lamp orbit
+b826eb00b40f	ledger	RA.25	setup of the complement-corrected embedding argument
+b82e8b817e20	ledger	CY.04	the equivalent six-relator presentation
+b881ddc1d4f8	ledger	TA.07	its conjugation action on the generators
+b9449109a801	ledger	CO.20	relabelling gives positive normalizing ranks
+b96e138b3f8f	ledger	CO.04	projection collapse kills all root commutators
+ba1b4fd8a459	attribution	-	credits Fournier-Facio for the replacement construction
+ba23514b5f28	ledger	ER.03	injectivity of the group homomorphism into the amalgamated algebra
+badd2e4c60c0	ledger	PM.02 PM.04	conclusion that residually finite groups are MF
+baeea4dd8faa	ledger	CY.10	corona assembly detects the sign with an MF image
+bb0656ff4c0d	ledger	SF.10	the surviving product of two distinct Clifford generators
+bb148da2bd31	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	restates prop:univquot and thm:A
+bb3cb13e69b9	ledger	FN.03	one-sided Kazhdan transport puts the displaced lamp in the commutant
+bc17f93647b3	ledger	PM.04	finite quotient and regular representation
+bd393ac55235	ledger	CO.21b	the two fixed-space projections lie in the same weighted finite norm ultraproduct
+bde865d19fb3	structural	-	introduces the joint proof of the first two universal-quotient clauses
+be2debbb5e8e	ledger	FN.11	polar-corrected corner asymptotic representation
+be5b22785905	ledger	CY.10	five defining relators hold exactly in the model
+bed9ddb7cd20	ledger	RA.04 RA.05	the nontrivial image belongs to the target residual
+beddeafccc01	ledger	CO.04	normality of the kernel kills the generated collapse subgroup
+bf403dc259f4	ledger	TA.07	the scaled affine dilation
+bf5bffb73991	ledger	TR.02	operator-norm defects descend to a star homomorphism
+c108400879ce	ledger	UN.06 UN.07	the infinite finitely presented and continuum finitely generated multiplicity conclusions
+c16191d5d93c	ledger	TR.05	maximal universal property extends the group model to a trace-preserving star-homomorphism
+c16b8d7f50bc	ledger	UN.03b	preimage argument for non-MF presentation codes
+c1ad2a62657e	formalized	GroupApproximation.CliffordAlgebraLamp.isLocallyFiniteGroup_lampGroup GroupApproximation.CliffordLampGraph.not_isLocallyFiniteGroup_lampFactor_of_two_blocks GroupApproximation.CliffordLampGraph.exists_nonabelian_free_subgroup_of_three_blocks	local finiteness of the full Clifford group, non-local-finiteness of the graph lamp factor, and its nonabelian free subgroup
+c1cac47698f1	ledger	PA.16	re-reviewed after the manuscript revision
+c1f1378401e9	ledger	CY.07	affine realization and coset action for nontriviality
+c1f9da5ebe70	ledger	BN.05 GP.10	linear part of the block action
+c1fdf269d4f0	ledger	CY.07	fixed base point and two distinct displaced points
+c333c905c075	ledger	PA.16	the quotient lamp is involutive and centralized by the compressed base
+c3935718c967	ledger	FN.14	the displayed convergence uses each block's own normalized trace
+c3a36ff75797	ledger	HO.05	finite word conditions and nonemptiness
+c3c0de839575	ledger	ER.01	transitivity identifies every nontrivial commutator with a conjugate of u
+c4e26bee137c	formalized	GroupApproximation.LiteralVerticalBridge.verticalEquiv GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the identification of Sigma inside GL_4(Q), with the levels as conjugates of the base
+c562c9605325	ledger	TR.01 TR.03	injective corona representation gives group MF
+c5900819d0e8	attribution	-	related frameworks, now including the sofic-action one
+c59ff367379f	ledger	RA.12	the diagonal asymptotic representation gives a faithful corona homomorphism
+c66d29a55454	ledger	BN.06	re-reviewed after the manuscript revision
+c69c416ebbd3	ledger	UN.02	definition of the word-problem predicate
+c6a33f304366	ledger	FN.00 FN.16	conclusion for every actual matrix-corona homomorphism
+c6e7a2f0145e	ledger	ER.03	finite-quotient model and trace
+c700ba54ac04	ledger	CY.10	the MF image that separates the cyclic distinguished word
+c77d0aae979d	ledger	PM.05	operator-norm separation by permutation matrices
+c7ad18e44edb	formalized	GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the Clifford quotient is infinite because it does not kill w
+c9f74b6a0610	ledger	FD.01 FD.11	all intrinsic-defect generators and their normal closure lie in the kernel
+ca2ea7142a2c	formalized	GroupApproximation.isOperatorMF_of_locallyFinite GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	MF is not closed under extensions: locally finite kernel, MF quotient, non-MF middle
+cb575f207766	ledger	UN.02b	application to the free product with the fixed obstruction group
+cbd090f839b5	ledger	SO.14	residual finiteness of the finite-stage semidirect product
+cbe0081b5a1b	ledger	RE.09	the amplified trace and its trace property
+cc748b00eb9a	ledger	TF.02	trivial finite radical and suitability
+cc802ebfd380	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptFiniteLevelSiteOrbit	the Clifford group is locally finite: a finitely generated subgroup meets finitely many sites
+cd67db7132c6	ledger	FD.13	application of the finite-dimensional obstruction
+cd81e811124f	ledger	SO.11	lead-in to the exact extension sequence
+cdd0972d99b3	ledger	RE.08	the canonical vector-state trace
+cf54a6685ff6	ledger	TF.05	re-reviewed after the manuscript revision
+cfde4078e60f	ledger	CO.20	continuous cutoff function
+d09019098543	ledger	TV.04	unitarity of conjugation in every weighted inner product
+d0e1aeb5cc6f	ledger	CO.21b	repeats the fixed-space comparison at the intrinsic rank weight rather than invoking the sequence theorem without a sequence
+d13612d7b66e	ledger	ES.06	the kernel is LEF
+d1530ee0ce42	ledger	MC.06	a faithful trace contradicts the nonzero defect projection
+d20f08127d77	ledger	BN.05	transitivity conclusion
+d2ec93867111	formalized	GroupApproximation.hasKazhdanPropertyT_of_finite	a finite group has property (T); its averaging operator is the fixed-space projection
+d33c344e7a3f	ledger	TR.05	the induced ultraproduct trace
+d4fac91b7736	ledger	SO.17	existence statement for the simple sofic envelope with full MF residual
+d57c0ca19203	ledger	CO.20	restriction of the homomorphism and all derived objects
+d59e5c729e8f	ledger	ES.01 ES.06 SO.15	the amenable-quotient extension proves soficity of the literal group
+d5b00c20c5d5	ledger	ER.03	MF of the symmetric double
+d5ca5998ab6b	ledger	ER.03	the common subalgebra
+d62352aaa098	ledger	CO.21	definition of the cocycle
+d6e818144276	ledger	RA.15	setup for the reverse containment
+d93be29868fd	ledger	LI.04	corner normalization makes the obstruction independent of ambient rank ratio
+d944b9301af3	ledger	PM.07	surjectivity of the presentation map
+d9c8b24b7de1	ledger	FD.10	commutant setup for the intrinsic theorem
+d9d88eed453c	ledger	CO.04	the involution gives the displayed projection
+da58a6475741	structural	-	heading for the property-T coboundary contradiction
+dabab7ee3e5a	ledger	CO.20	the algebraic corner-supported ideal
+dac22c93b33f	ledger	LI.17	the convention under which Question 3 is asked
+dac39e8feaf8	ledger	PA.16	the collapse theorem puts the root commutator in the quotient MF residual
+dbef91f4ac7d	ledger	CO.20	inner invariance of the ideal
+dbf9469c2af1	ledger	RE.09	faithfulness forces every matrix entry to vanish
+dc09ab77fd66	ledger	NK.13	universal invisibility contradicts the positive lower bound
+dc55666bf0a7	ledger	BN.01	the two generatorwise inverse identities
+dc6939a81676	ledger	RE.03	the first clause is historical attribution; the second identifies the explicit reduced-algebra example
+dc8cb91ffb91	ledger	CY.05	one-sided cyclic compression and base commutation
+dd912e15a27d	ledger	PM.03 PM.05	finite test set lies in a finite subgroup
+dec676b757f6	ledger	CY.12b	the cyclic model proves sharpness of the Kazhdan hypothesis
+df666f7ab8e4	ledger	HO.03	residual functoriality kills the marked word in every MF target
+e1059883d4ac	ledger	NK.08	trace of the corner spectral inequality
+e14e7a48a35b	ledger	TF.02	s-normality and Osin non-elementarity
+e157c76e6812	ledger	PA.16	re-reviewed after the manuscript revision
+e211d3aaaf81	ledger	RA.25	nontriviality of the word rules out injectivity
+e22da71ecf99	ledger	CO.04	the two commutation hypotheses for projection collapse
+e2e35aadbdf4	ledger	FD.14 FD.15	faithfulness returns the conclusion to the finite target
+e40fae7ab4d1	ledger	UN.07	non-MF permanence for every continuum-family product
+e4f5a8718ebf	ledger	ER.03	faithfulness on Bass--Serre reduced words
+e514ba081247	ledger	KC.23	torsion in the Clifford construction over a torsion-free base
+e52d083a03a6	ledger	TR.03	trace separation proves injectivity
+e67a4ba57427	ledger	BN.01	construction of the forward homomorphism
+e764ba260862	ledger	CY.10	re-reviewed after the manuscript revision
+e7a15888e24e	ledger	CY.10	the two remaining approximate relators
+e86743cbafaf	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability	functoriality of the MF residual carries w across
+e879e30a95dc	formalized	GroupApproximation.LiteralVerticalBridge.verticalEquiv	the levels form an ascending chain with union T
+e92847bd13c5	ledger	CO.18 CO.21b	the original orbit projection commutes with the whole Kazhdan subgroup
+ea18f41cb7a1	ledger	SO.14	finite subsets of the kernel lie in finite-stage semidirect products
+ea6b0c2a97e7	ledger	UN.02b	the decision-problem contradiction
+ea6c1110518e	ledger	NK.09	finite-pigeonhole subsequence fixes the generator
+eb25ac600b0e	ledger	FN.14	finite uniformity of the null sequences
+ed3438140fa4	ledger	NK.07 NK.08	the constraint set belongs to the ultrafilter and is infinite
+ed7b7af6de0e	ledger	CO.20	functional-calculus projection lift
+ee4eeb88913b	ledger	ER.01	re-reviewed after the manuscript revision
+ee6daffbb968	ledger	FN.02	the centralizing lamp lies in the asymptotic commutant
+ef239535b8c8	ledger	RE.03	the faithful-trace and stable-finiteness contrast for the reduced algebra
+f03b9cf7409e	ledger	UN.03	recursive-enumerability conclusions
+f063503877d3	ledger	PA.16	the resulting sign-free quotient remains non-MF
+f0a5373427e5	ledger	TV.05	the ultraproduct transport proof applies verbatim at the weight
+f4266b44678a	ledger	CO.20	infinitude of the nonzero-coordinate set
+f44f39558c20	ledger	ER.03	the quotient E/D is MF
+f5779ba904de	ledger	TR.05	lead-in to the sofic group homomorphism into the tracial ultraproduct
+f5ef11783048	ledger	ER.02	Tietze substitutions in the quotient presentation
+f632df00bb03	ledger	CO.21	lead-in to the exact difference cocycle identity
+f65cd367e164	ledger	ER.01 ER.02 ER.03 ER.04	notation and scope of the exact-residual theorem
+f7671139db18	ledger	CO.20	identities and norm-one nonzero join survive restriction
+f77284a90cb4	ledger	PA.16	centrality puts all parity commutators in the sign subgroup
+f7bdfa14c909	ledger	FD.14 FD.15	faithful regular representation reduction for finite targets
+fa36c4e4f0f6	ledger	UN.02 UN.03	lead-in to the three computability conclusions
+fa6ab4918a9c	ledger	BN.04	commensurability and orbit--stabilizer give finite level orbits
+fa7017f7b86e	ledger	BN.04	re-reviewed after the manuscript revision
+fab45d4a7490	ledger	NK.13	the separated generator belongs to the universally invisible subgroup
+fb2d2db23da4	ledger	CO.21	inner invariance puts every orbit difference in the ideal
+fbe063aa0648	ledger	PA.16	property T and one-sided compression pass to the quotient base
+fc7bbc6450e9	ledger	RE.01	every MF algebra is stably finite
+fcb731851c81	ledger	SO.11	failure of MF permanence under extensions and quotients
+fcc2c5072efd	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF	non-LEF and non-residual-finiteness from non-MF
+fcd3b40cd949	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	the supremum defining the maximal norm, and why it is finite
+fcef402c0d92	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse	the two printed transported conclusions, under the same inclusion specialization
+fcf82ebde266	ledger	NK.06	operator-norm separation makes the complement nonzero
+fd2c9c9299ab	ledger	BN.05	explicit orbit of the nonzero parity classes
+fd3ae55b4fdb	ledger	MC.04	vanishing cross terms
+fd8f0ada3224	ledger	BN.06	re-reviewed after the manuscript revision
+fdb41656c614	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the complete graph gives Cl(X), and the extra relations give the surjection
+ff576296c9a7	ledger	BN.01	base and stable-letter relations for the forward map
+ff974a717569	ledger	KC.22	the self-embedding data obtained from the universal torsion-free Kazhdan group
+484fb42ed361	structural		states the scope of the companion notes
+22ed4f689d1d	structural		lists the subjects collected in the notes
+b511ec399ba0	structural		delimits the notes from the main paper
+7d031748f2c6	definition	GroupApproximation.FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing	names the complementary projections in the finite-normal proof
+73a5f5b59101	structural		introduces the displayed complementary-corner correction
+6568d0800791	structural		introduces the displacement notation displayed next
+6b2d7c47aa57	formalized	GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable	the fixed Boone group used for the undecidability reduction
