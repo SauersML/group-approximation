@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=d4-three-boundary
-#SBATCH --partition=amdsmall
+#SBATCH --partition=agsmall
 #SBATCH --time=08:00:00
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=1
