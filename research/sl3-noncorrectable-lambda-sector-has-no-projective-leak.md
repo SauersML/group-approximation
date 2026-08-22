@@ -133,6 +133,12 @@ Nor does growing conductor depth itself exhaust multiplicity:
 canonical regular parahoric band already contains its full inverse twisted
 gauge, and the depth mixture is an orthogonal direct sum.  One would first
 need a decoder forcing multiple depths onto the same multiplicity reservoir.
+Even a decoded adjacent denominator normalizer does not by itself do so:
+`denominator-transport-only-conjugates-p3-multiplicity-reservoirs` shows it
+only transports the multiplicity algebra by an arbitrary inner gauge, which
+is removable along the depth tree and dilutable on Folner boxes.  The decoder
+must expose a mixed-root matrix coordinate that fixes this gauge, not merely
+an isotypic intertwiner.
 Applying even a surviving replacement to the outlier sector still
 requires an approximate arithmetic-hexagon/band decoder; no such decoder
 follows from the scalar root relations alone.

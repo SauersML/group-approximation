@@ -66,3 +66,10 @@ their projective ranks add while the available dimension does not.  Depth
 weights, parity balance, regular character, and separate finite-parahoric
 tables provide only orthogonal direct-sum incidence and cannot imply that
 common-reservoir condition.
+
+A single denominator transporter does not supply that authentication.  The
+full-matrix normalizer calculation in
+`denominator-transport-only-conjugates-p3-multiplicity-reservoirs` factors it
+as the prescribed packet operator tensored with an arbitrary multiplicity
+unitary.  Along the depth tree this unitary is pure gauge; on finite boxes
+only a vanishing Folner boundary remains.

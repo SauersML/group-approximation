@@ -52,6 +52,13 @@ The naive depth-capacity version also fails on the canonical regular blocks:
 copies of the full inverse twisted-regular module inside every oscillator
 band.  Folner/parity depth mass is a direct sum of already cancellable bands;
 it does not make their cocycle ranks act on one reservoir.
+A fixed denominator/Weyl transition also fails to make the reservoir
+stationary.  By
+`denominator-transport-only-conjugates-p3-multiplicity-reservoirs`, every
+matched transition is `W_a tensor V_a` with arbitrary `V_a`; the gauges can
+be removed along the depth tree and recycled on growing Folner boxes with
+word-square defect `O(1/N)`.  The remaining input must be a raw mixed-root
+incidence which is not merely packet normalization or depth transport.
 
 Assembly of the proof, every piece prime-generic or computed here:
 
