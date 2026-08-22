@@ -241,7 +241,7 @@
       "title": "one-sided conjugation preserves asymptotic commutants",
       "statement_sha256": "2a1d4bc0a7b826678a9fb23945b163e259c821f3b37720ff8237434b6932316a",
       "status": "exact",
-      "object_identity": "The named declaration proves the complete printed proposition after specializing its source group to L and its homomorphism to the inclusion L → H.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -249,15 +249,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/KazhdanTransportAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse",
-          "covers": "the complete printed proposition by the inclusion specialization recorded above"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptKazhdanTransport",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport",
-          "covers": "a printed conclusion of the proposition"
+          "module": "Sofic/ManuscriptSubgroupSpecializations",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptKazhdanTransportSubgroup",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -289,7 +283,7 @@
       "title": "central involution obstruction",
       "statement_sha256": "61641d88f681e4b719c2d2d5bbe343c2882b8b8e8f03be2f8b5b09f705d8c399",
       "status": "exact",
-      "object_identity": "The named declaration proves the complete printed proposition after specializing its source group to L and its homomorphism to the inclusion L → H.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:kazhdan-transport"
       ],
@@ -299,9 +293,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/CentralSignAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse",
-          "covers": "the complete printed proposition by the inclusion specialization recorded above"
+          "module": "Sofic/ManuscriptSubgroupSpecializations",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCentralSignCriterionSubgroup",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -644,7 +638,7 @@
       "title": "one-sided conjugation at an arbitrary weight",
       "statement_sha256": "eb7818a86444e3abcf1249c5588fdbc5d4a84fa4708d9935946b9564c4eeb70f",
       "status": "exact",
-      "object_identity": "The named declaration proves the complete printed proposition after specializing its source group to L and its homomorphism to the inclusion L → H.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -652,15 +646,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse",
-          "covers": "the complete printed proposition by the inclusion specialization recorded above"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/ScaledKazhdanTransport",
-          "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-          "covers": "a printed conclusion of the proposition"
+          "module": "Sofic/ManuscriptSubgroupSpecializations",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptWeightedTransportSubgroup",
+          "covers": "the complete printed proposition"
         }
       ]
     },
