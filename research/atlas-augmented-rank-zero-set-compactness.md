@@ -62,3 +62,10 @@ lane.
   stable letters and the hyperbolic collision word.  Residual finiteness of
   the carrier does not descend through this multiple filling, and the
   collision misses the available relative small-cancellation threshold.
+- **The two observed phases are separated but path-connected.**
+  `atlas-m2-kernel-phases-have-rank-path-barrier` gives normalized rank
+  separation `1/32` from each pure amplified phase to the opposite zero
+  stratum, yet also connects those phases inside the packet-zero locus by
+  rank-eight steps.  The canonical path pays a linear joint residual.  The
+  unresolved invariant is the full-stratum density statement
+  `atlas-full-kernel-strata-rank-separation`, not topological disconnectedness.
