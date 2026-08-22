@@ -47,6 +47,25 @@ commutator estimate
  <= (1/(kappa L)) sum_k ||Q_kQ_j-Q_jQ_k||_2^2.            (APL5)
 ```
 
+This row estimate self-improves, by symmetry, to a uniform bound from the
+complete-pair average.  If
+
+```text
+E_com=(1/L^2)sum_(a,b)||Q_aQ_b-Q_bQ_a||_2^2,
+```
+
+then
+
+```text
+max_(i,j)||Q_iQ_j-Q_jQ_i||_2^2 <= E_com/kappa^2.          (APL6)
+```
+
+Indeed, one application of `(APL5)` makes the sum of row `i` at least
+`kappa L` times its `(i,j)` entry.  For each entry in that row, a second
+application makes the corresponding full row sum at least `kappa L` times
+that entry.  Summing gives total matrix mass at least `kappa^2 L^2` times
+the original entry.
+
 Thus exact parity forbids the proposed spectral-partner reservoir: a large
 commutator in one pair cannot be paid by mutually incompatible partners on
 tiny character pieces without making the whole commutator row large.  This
@@ -56,4 +75,3 @@ small in normalized Hilbert--Schmidt norm while its order-one operator-norm
 spectral cuts move with the pair.  Controlling a common approximately
 reducing cut for those diffuse noncentral remainders is still exactly
 `complete-pair-overlay-uniform-hs-basin-capture`.
-

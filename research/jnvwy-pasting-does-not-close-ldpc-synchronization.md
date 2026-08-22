@@ -19,6 +19,14 @@ It nevertheless does not establish
 `repeated-ldpc-shared-face-marginal-synchronization`, for three quantitative
 reasons.
 
+Before making this comparison, the repeated overlay must be balanced.
+`unbalanced-pair-sum-overlay-has-scalar-syndrome-escape` gives a scalar all-one-syndrome
+escape when the `M` original checks are diluted among `Theta(M^2)` pair-sum
+checks.  JNVWY's augmented test does not make this weighting mistake: its
+line-consistency component retains fixed sampling weight alongside its
+commutation component.  Repeating every original LDPC face `M` times repairs
+the scalar escape, but does not change any of the three obstructions below.
+
 1.  The theorem is for the augmented axis-line test of an interpolable
     tensor code `C^(tensor m)`, not for arbitrary bounded-width LDPC parity
     faces or their pairwise sums.  Its hypotheses include a point

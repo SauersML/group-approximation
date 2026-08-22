@@ -34,9 +34,24 @@ for every `v`.  This is equivalent to the positive-operator inequality
 ```text
 ||Q_iQ_j-Q_jQ_i||_2^2
  =||(I-Ad(Q_i))Q_j||_2^2
- =4 <Q_j,P_i Q_j>,                                       (APL6)
+ =4 <Q_j,P_i Q_j>,                                       (APL7)
 ```
 
 so evaluating `(APL4)` at `v=Q_j` proves `(APL5)` without any centrality,
 irreducibility, or simultaneous spectral-decomposition assumption.
 
+For completeness, write `x_(i,j)=||[Q_i,Q_j]||_2^2`.  From `(APL5)` and
+symmetry, for fixed `i,j`,
+
+```text
+sum_k x_(i,k) >= kappa L x_(i,j),
+sum_l x_(k,l) >= kappa L x_(i,k)  for every k.
+```
+
+Summing the second inequalities over `k` and using the first gives
+
+```text
+sum_(k,l)x_(k,l) >= kappa^2 L^2 x_(i,j),                 (APL8)
+```
+
+which is `(APL6)`.

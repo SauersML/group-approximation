@@ -9,11 +9,22 @@ distinct_from:
   averaged-commutators-do-not-give-abelian-table: that refutes the tempting reduction from averaged shared-coordinate commutators to a full approximate table; this claim can only survive by using the redundant parity faces inside the rounding step.
 ---
 
-OPEN.  From small average fixed-face PVM defect and bounded-degree equality-
-expander defect in the repeated LDPC occurrence system, produce exact local
+OPEN.  Use the **balanced** repeated LDPC occurrence system: every original
+parity face is repeated `Theta(M)` times before it is mixed with the
+`Theta(M^2)` pair-sum faces.  From small average fixed-face PVM defect and
+bounded-degree equality-expander defect, produce exact local
 codeword PVMs on the same Hilbert space whose copies of each logical binary
 coordinate are literally one shared reflection, with total squared movement
 bounded by a dimension- and length-independent modulus.
+
+The balancing is load-bearing even classically.
+`unbalanced-pair-sum-overlay-has-scalar-syndrome-escape` shows that an unbalanced overlay
+with one copy of each original face forgets the all-one syndrome: all pair
+sums pass, the original defect has density `O(1/M)`, yet bounded column
+degree keeps the tuple a constant distance from every exact code
+representation.  Repeating originals `M` times removes this escape while
+using only `O(M)` occurrences per logical coordinate, so the existing
+quadratic repetition absorbs it at bounded physical degree.
 
 Correcting each bounded face separately is uniform, and synchronizing bare
 reflections on an equality expander is uniform in average.  Doing both at
