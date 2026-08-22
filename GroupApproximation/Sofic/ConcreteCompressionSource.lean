@@ -26,9 +26,16 @@ explicit two-relator-flavoured source.
 
 The base of the integer instance is torsion-free, and the extension is
 torsion-free by the standard HNN torsion theorem (finite-order elements
-are conjugate into the base); that theorem is not yet formalized, and is
-the only missing step between `integerSource` and a fully torsion-free
-certified source.  Property (T) is deliberately absent: in the routing
+are conjugate into the base).  That theorem **is** formalized, as
+`HNNBritton.isPowerTorsionFree_hnn`, and it has been cashed at this very
+group: `HNNBritton.isPowerTorsionFree_integerSourceGroup`, recorded in
+`Sofic/BareDefectSource.lean` as
+`BareDefectSourceData.integerSourceGroup_isPowerTorsionFree`.  So nothing
+is missing between `integerSource` and a torsion-free certified source.
+What keeps this source out of the endpoint is a different obstruction
+entirely, recorded in that same file: the slimmed datum keeps property
+`(T)` of the base, and this base is `ℤ`.  Property (T) is deliberately
+absent here: in the routing
 architecture the routed quotient receives (T) from the common-quotient
 partner, and saturation makes the normal-Kazhdan hypothesis hold with
 the whole quotient as the normal subgroup, so the source itself never

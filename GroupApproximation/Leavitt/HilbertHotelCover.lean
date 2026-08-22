@@ -290,8 +290,17 @@ and so that discharging one is a local edit.  All of them are downstream of
 structure CoverResiduals where
   /-- Every imposed relator dies in the model, so the covering map factors
   through the cover group.  Three families: the transported cover relators,
-  the compression family (by `Tunit_conj_corner`), and the saturation family
-  (by `freeToModel_defectExpansion`). -/
+  the compression family, and the saturation family (by
+  `freeToModel_defectExpansion`).
+
+  The compression family costs nothing: `alphaModel` is *defined* as
+  conjugation by `tauModel`, so `compressionRelator i` is
+  `τ xᵢ τ⁻¹ · (τ xᵢ τ⁻¹)⁻¹` once pushed through `freeToModel`, and it
+  vanishes formally rather than by any fact about the block layer.
+  `Tunit_conj_corner` is not what kills it; it is what the
+  `tau_compresses` clause below cashes, where the point is not that
+  conjugation by `τ` is a map but that it carries the *corner image* back
+  into itself. -/
   relator_vanishes : ∀ r ∈ (relators C : Set (FreeGroup (Fin generatorCount))),
     freeToModel r = 1
   /-- A formal product of conjugates of the defect lands in the normal closure

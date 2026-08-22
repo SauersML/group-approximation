@@ -108,7 +108,7 @@ decomposes into three separately tracked obligations —
 * a relator design over it, from `Sofic/BespokeRouterConstruction.lean`:
   the explicit words and their piece ledger;
 * that design's word-level conclusions, which
-  `GreendlingerFreeGate.router_conclusions_of_metric` delivers.
+  `GreendlingerFreeGate.router_conclusions_of_sharpGate` delivers.
 
 `nonempty_routingLemmaData_of_design` below states the composition of the
 first two, so that the shape of the remaining work is machine-checked
@@ -126,13 +126,13 @@ follows by applying this lemma.
 
 `RouterConclusions` is taken as a hypothesis rather than called, and that
 is a deliberate containment choice.  It is what
-`GreendlingerFreeGate.router_conclusions_of_metric` delivers, via
+`GreendlingerFreeGate.router_conclusions_of_sharpGate` delivers, via
 `Sofic/BespokeRouterGateAssembly.lean`; that gate is still incomplete, and
 a declaration which merely calls an incomplete constant inherits the
 incompleteness axiom without Lean warning at the call site, so only the
 kernel audit would see it.  Keeping it a hypothesis is what keeps this
 file, and the root import closure it joins, clean.  When the gate closes,
-this becomes a call to `RouterRelatorDesign.routerDataOfDesign` and the
+this becomes a call to `RouterRelatorDesign.routerData` and the
 hypothesis disappears. -/
 theorem nonempty_routingLemmaData_of_design
     {P : Type} {E : Type} [Group P] [Group E]

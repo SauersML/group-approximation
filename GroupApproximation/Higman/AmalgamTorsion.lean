@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.AmalgamPushout
 import GroupApproximation.Algebra.GroupTorsionFree
+import GroupApproximation.Algebra.PushoutITorsionFree
 
 /-!
 # Torsion in an amalgamated free product
@@ -20,7 +21,7 @@ which is the whole cost of `Seq.TorsionFreeImageClosure`, and is what
 
 The classical argument is: an element of finite order is conjugate into a
 factor, and a factor is torsion-free by hypothesis.  Both halves of the
-*consequence* are proved here, and only the reduction itself is left.
+*consequence* are proved here.
 
 * `eq_one_of_pow_eq_one_of` --- a factor has no torsion.
 * `pow_ne_one_of_cyclicallyReduced` --- an element whose word is *cyclically*
@@ -33,16 +34,30 @@ factor, and a factor is torsion-free by hypothesis.  Both halves of the
   in the base, so in particular it is not `1`.
 * `reduced_toWord` --- every normal word is reduced, which is what connects
   the above to `NormalWord.equiv`.
-* `isPowerTorsionFree_pushoutI` --- the theorem, from `CyclicReduction`.
+* `exists_word_or_factor` --- the head base element of a normal word absorbs
+  into the first letter, so every element is a factor element or the product
+  of a nonempty reduced word.
+* `isPowerTorsionFree_pushoutI` --- the theorem.
 
-## What is left
+## History
 
-`CyclicReduction`: every element is conjugate either into a factor or to the
-product of a cyclically reduced word.  This is the induction on word length
-that shortens a word whose two ends lie in the *same* summand by conjugating
-by its first letter --- the amalgam analogue of
-`Algebra.CoprodICyclicReduction`, whose free-product version is proved in this
-repository by the same move.  **Nothing inhabits it.**
+Until 2026-08-22 the missing step stood here as two gated inputs nothing
+inhabited, `CyclicReduction` and `CyclicReductionOfReduced` --- that *every*
+element is conjugate into a factor or to a cyclically reduced word --- and the
+theorem was stated from the first.  `Algebra.PushoutITorsionFree` closed the
+theorem unconditionally instead, by running the induction over
+`Monoid.PushoutI.NormalWord` directly, so both gates were deleted on that date
+rather than proved and `isPowerTorsionFree_pushoutI` now delegates to it; its
+`CyclicReduction` argument became `[Nonempty ι]`, which is also what lets the
+base group go unhypothesised.
+
+Worth recording so no later wave re-attempts them: the gates were never
+reachable from this material.  The `Algebra` induction only ever needs to *rule
+out* a cyclically reduced word, which the finite-order hypothesis does; the
+universal form has to *produce* one, and its hard case --- a merged letter
+landing in the base, after which the base element is pushed leftwards through
+the word --- rewrites every letter it passes in an amalgam, unlike in a free
+product.
 -/
 
 namespace GroupApproximation
@@ -201,17 +216,7 @@ theorem pow_ne_one_of_cyclicallyReduced (hφ : ∀ i, Function.Injective (φ i))
   have hnil : powList w.toList n = [] := congrArg Word.toList hempty
   exact powList_ne_nil hw.ne_nil hn hnil
 
-/-! ## 4.  The theorem, from cyclic reduction -/
-
-/-- **Input: cyclic reduction.**  Every element of an amalgam is conjugate
-either into a factor or to the product of a cyclically reduced word.
-
-**Nothing inhabits this.** -/
-def CyclicReduction (φ : ∀ i, H →* G i) : Prop :=
-  ∀ x : PushoutI φ,
-    (∃ (c : PushoutI φ) (i : ι) (g : G i), x = c * of i g * c⁻¹) ∨
-    (∃ (c : PushoutI φ) (w : Word G), CyclicallyReduced φ w ∧
-      x = c * ofCoprodI w.prod * c⁻¹)
+/-! ## 4.  The theorem -/
 
 theorem pow_eq_one_of_conj {c y : PushoutI φ} {n : ℕ}
     (h : (c * y * c⁻¹) ^ n = 1) : y ^ n = 1 := by
@@ -221,30 +226,31 @@ theorem pow_eq_one_of_conj {c y : PushoutI φ} {n : ℕ}
   refine (MulAut.conj c).injective ?_
   rw [h1, map_one]
 
-/-- **An amalgamated free product of torsion-free groups is torsion-free**,
-given cyclic reduction. -/
-theorem isPowerTorsionFree_pushoutI (hφ : ∀ i, Function.Injective (φ i))
-    (htf : ∀ i, IsPowerTorsionFree (G i)) (hcr : CyclicReduction φ) :
-    IsPowerTorsionFree (PushoutI φ) := by
-  intro x n hn hxn
-  rcases hcr x with ⟨c, i, g, rfl⟩ | ⟨c, w, hw, rfl⟩
-  · rw [eq_one_of_pow_eq_one_of hφ htf i g n hn (pow_eq_one_of_conj hxn)]
-    group
-  · exact absurd (pow_eq_one_of_conj hxn)
-      (pow_ne_one_of_cyclicallyReduced hφ hw hn)
+/-- **An amalgamated free product of torsion-free groups is torsion-free.**
+
+The base group needs no hypothesis of its own: it embeds in a factor, which is
+what `[Nonempty ι]` is buying.  See this file's header for what stood here
+before, and why the reduction it was gated on was deleted rather than
+proved. -/
+theorem isPowerTorsionFree_pushoutI [Nonempty ι]
+    (hφ : ∀ i, Function.Injective (φ i))
+    (htf : ∀ i, IsPowerTorsionFree (G i)) :
+    IsPowerTorsionFree (PushoutI φ) :=
+  PushoutITorsionFree.isPowerTorsionFree_pushoutI_of_nonempty hφ htf
 
 /-! ## 5.  Every element is a factor element or a reduced word
 
-This is the half of `CyclicReduction` that is specific to the *amalgam*: a
-normal word carries a base element at its head, and that element has to be
-absorbed before any free-product-style surgery can start.  It absorbs into the
-first letter, and the merged letter still avoids the base --- because the base
-image is a subgroup, so if `φ i h * g` were in it then `g` would be.
+This is the step that is specific to the *amalgam*: a normal word carries a
+base element at its head, and that element has to be absorbed before any
+free-product-style surgery can start.  It absorbs into the first letter, and
+the merged letter still avoids the base --- because the base image is a
+subgroup, so if `φ i h * g` were in it then `g` would be.
 
-After this, what `CyclicReduction` still asks for is the induction on
-*reduced words alone*, with no base element in sight; that is
-`CyclicReductionOfReduced`, and it is the exact analogue of the move in
-`Algebra.CoprodICyclicReduction`. -/
+The induction that used to follow this, on reduced words alone, is the one
+`Algebra.PushoutITorsionFree` now runs over `NormalWord` instead; see the
+header.  What is left here is the normal form itself, which is worth keeping on
+its own: it is the statement that the base element of an amalgam's normal word
+can always be absorbed, and nothing in the `Algebra` route exposes it. -/
 
 section Absorb
 
@@ -321,24 +327,6 @@ theorem exists_word_or_factor [Nonempty ι] (hφ : ∀ i, Function.Injective (φ
       · rw [hbdef]
         show base φ w.head * ofCoprodI (CoprodI.of a.2) = of a.1 (φ a.1 w.head * a.2)
         rw [ofCoprodI_of, map_mul, ← of_apply_eq_base]
-
-/-- **Input, on reduced words alone.**  This is what is left of
-`CyclicReduction` once the head base element is absorbed. -/
-def CyclicReductionOfReduced (φ : ∀ i, H →* G i) : Prop :=
-  ∀ w : Word G, Reduced φ w → w.toList ≠ [] →
-    (∃ (c : PushoutI φ) (i : ι) (g : G i),
-      (ofCoprodI w.prod : PushoutI φ) = c * of i g * c⁻¹) ∨
-    (∃ (c : PushoutI φ) (v : Word G), CyclicallyReduced φ v ∧
-      (ofCoprodI w.prod : PushoutI φ) = c * ofCoprodI v.prod * c⁻¹)
-
-theorem cyclicReduction_of_reduced [Nonempty ι] (hφ : ∀ i, Function.Injective (φ i))
-    (h : CyclicReductionOfReduced φ) : CyclicReduction φ := by
-  intro x
-  rcases exists_word_or_factor hφ x with ⟨i, g, rfl⟩ | ⟨w, hred, hne, rfl⟩
-  · exact Or.inl ⟨1, i, g, by group⟩
-  · rcases h w hred hne with ⟨c, i, g, hc⟩ | ⟨c, v, hv, hc⟩
-    · exact Or.inl ⟨c, i, g, hc⟩
-    · exact Or.inr ⟨c, v, hv, hc⟩
 
 end Absorb
 

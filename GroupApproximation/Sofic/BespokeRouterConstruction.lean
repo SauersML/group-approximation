@@ -60,9 +60,10 @@ family discharges.
 pair, and torsion-freeness of the routed quotient — is taken as an explicit
 hypothesis by `torsionFree`, `protected_injOn` and `routerData`, and by nothing
 else.  It is exactly the conclusion of
-`GreendlingerFreeGate.router_conclusions_of_metric` at this design's data, and
-`Sofic.BespokeRouterGateConsumption` discharges it from that theorem in one
-line; the discharge lives in that separate module, and not here, because the
+`GreendlingerFreeGate.router_conclusions_of_sharpGate` at this design's data,
+and `Sofic/BespokeRouterGateAssembly.lean` discharges it from that theorem in
+one line, as `RouterRelatorDesign.routerConclusions_of_sharpGate`; the
+discharge lives in that separate module, and not here, because the
 gate file still carries two open classical leaves and **this module is
 root-imported, so its whole transitive closure has to stay clean**.  Note that
 nothing warns you at the call site: a declaration built from an open leaf
@@ -458,10 +459,10 @@ presentation map on the protected pair, and torsion-freeness of the routed
 quotient.
 
 This is verbatim the conclusion of
-`GreendlingerFreeGate.router_conclusions_of_metric` at this design's data, and
-the design's own fields are verbatim its hypothesis list, so the two fit with
-no adapter — `Sofic.BespokeRouterGateConsumption` does the fitting.  It is a
-hypothesis here rather than a call there because this module is root-imported
+`GreendlingerFreeGate.router_conclusions_of_sharpGate` at this design's data,
+and the design's own fields are verbatim its hypothesis list, so the two fit
+with no adapter — `Sofic/BespokeRouterGateAssembly.lean` does the fitting.  It
+is a hypothesis here rather than a call there because this module is root-imported
 and the gate file still has open leaves; importing it would put those leaves
 into the root's transitive closure and redden the shared build. -/
 def RouterConclusions : Prop :=

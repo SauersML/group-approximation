@@ -1,0 +1,554 @@
+import GroupApproximation.Sofic.BespokeRouterGateAssembly
+
+/-!
+# The avatar exponent code, verified: `C'(1/8)`, no block powers, protected ball
+
+`notes/W3_AVATAR_WORD_DESIGN_2026-08-21.md` designs the router's relator family
+as an *exponent code* over the two-letter avatar alphabet: with `L` blocks,
+stride `K` and `V` avatar-carrying generators,
+
+    W_ν  :=  ∏_{j=1}^{L}  y₁ · y₂^(K·ν + j),
+
+positive words whose `y₂`-exponents are globally distinct.  The note lists four
+properties the family must have, and names the Lean discharge of each.  This
+module is that discharge, stated over the word layer of
+`Sofic.SmallCancellationRouter` (`symmetrization`, `IsPiece`,
+`MetricSmallCancellation`) and threaded into the router's two consumption
+points.
+
+## What is proved, and against what
+
+The explicit family lives in a sibling module.  Nothing here depends on it:
+every theorem is stated against `AvatarMetricData`, a bundle of the *checkable*
+facts an exponent-code family has — a length floor, a `y₂`-run ceiling, the
+pinning property, one unique cyclic mark per relator, and two numeric margins.
+The sibling supplies that bundle; everything downstream of it is proved.
+
+* **(a) Junction control.**  `code_injective`: the code `(ν, j) ↦ K·ν + j` is
+  injective as soon as `L ≤ K`, so no two positions of the system carry the same
+  exponent.  `junction_residue`: at a junction `W_x^{±} W_{x'}^{∓}` the two
+  `y₂`-runs that meet cancel down to a run of exponent `K·|x − x'|`, which is
+  *nonzero* whenever the avatars differ — the junction never eats past the run,
+  so one normalization pass leaves a cyclically reduced word — and at most `K·V`,
+  so junction runs are code-sized and the run ceiling survives rewriting.
+
+* **(b) Piece pinning → `C'(1/8)`.**  `length_le_of_runs_bounded` is the
+  counting half: in a word whose `y₂`-runs are bounded by `A`, a window carrying
+  at most one `y₁`-letter is at most `2·A + 1` long.  So a window of length
+  `2·A + 2` spans a complete `y₂`-run, whose exponent pins its position — that is
+  the `pinned` field — and a piece cannot do that, because it prefixes two
+  *different* symmetrized relators.  `metric_eighth` turns the resulting piece
+  ceiling and the relator floor into `MetricSmallCancellation R (1/8)` by one
+  inequality.
+
+* **(c) No block powers.**  `not_isProperPower_of_unique_mark` is the general
+  fact: if some property of the cyclic word holds at exactly one cyclic position,
+  the word is not a block power.  A rotation fixing the word would translate that
+  position onto another one, and the exponent sequence being strictly increasing
+  along the blocks is exactly what makes a position's exponent unique.  The
+  design note's shortcut — "the arc exceeds half" — is *refuted* by
+  `PeriodicOverlap.not_isProperPower_of_two_mul_length_le`, so the translation
+  argument is used and the Fine–Wilf strand is not.
+
+* **(d) Protected ball.**  `protectedBall_of_word`: §1's padding floor gives
+  `2·|W_d| ≤ min |r|` directly, because symmetrization preserves length
+  (`length_eq_of_mem_symmetrization`).
+
+## The threading, which only runs one way
+
+`metric_sixth` fills `RouterRelatorDesign.metric` by
+`BespokeRouter.metricSmallCancellation_mono`, and the *same* `C'(1/8)` proof is
+what `routerConclusions_of_check` hands to
+`RouterRelatorDesign.routerConclusions_of_sharpGate`.  Monotonicity runs
+`C'(1/8) → C'(1/6)` and never back, so the landed `1/6` field can never supply
+the gate call: both consumers are fed from `metric_eighth`.
+
+## Decidability, and why it is not spent here
+
+Every field of `AvatarMetricData` reduces to a finite check on an explicit
+family — `uniqueMark` and `runs_short` range over the finitely many rotations and
+windows of finitely many relators, `pinned` over their finitely many common
+prefixes, and `leadCode` is by design a computable reading.  They are
+nevertheless *stated*, not computed: the relators of this family are thousands of
+letters long, and a kernel-level `decide` over normal forms of words that size is
+the repository's standard timeout.  The arithmetic above is deliberately
+inequality-only for the same reason, and `runs_short_of_doubled` exists so that
+the run check is two explicit words per relator rather than a quantifier over
+rotations.
+-/
+
+namespace GroupApproximation
+namespace AvatarMetricCheck
+
+open SmallCancellationRouter
+
+/-! ## 0.  The avatar alphabet
+
+Two generators, `Fin 2`.  Index `0` is `y₁`, the block separator; index `1` is
+`y₂`, whose runs carry the exponent code. -/
+
+/-- The positive `y₁`-letter: the separator that begins each code block. -/
+def genOne : Fin 2 × Bool := (0, true)
+
+/-- The positive `y₂`-letter: the letter whose runs carry the exponents. -/
+def genTwo : Fin 2 × Bool := (1, true)
+
+/-- Whether a letter is a `y₁`-letter, of either sign.  Its complement — the
+`y₂`-letters — is what a *run* is made of. -/
+def isGenOne (c : Fin 2 × Bool) : Bool := decide (c.1 = 0)
+
+/-! ## 1.  Counting: how far a window runs without meeting a separator
+
+The one combinatorial input the piece bound needs.  In a word all of whose
+separator-free stretches are at most `A` long, the length is controlled by the
+number of separators; in particular a window carrying at most one separator is
+at most `2·A + 1` long, so any longer window spans a complete run. -/
+
+/-- The counting induction, carrying the length `k` of the separator-free
+stretch already consumed to the left of the window.  The accumulator is what
+makes the induction go through: without it the step that keeps a separator-free
+head has no budget to charge the head to. -/
+private theorem length_add_le_aux {β : Type*} (q : β → Bool) (A : ℕ) :
+    ∀ w : List β,
+      (∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A) →
+      ∀ k : ℕ,
+        (∀ u : List β, u <+: w → (∀ x ∈ u, q x = false) → u.length + k ≤ A) →
+        w.length + k ≤ w.countP q * (A + 1) + A := by
+  intro w
+  induction w with
+  | nil =>
+      intro _ k hpre
+      have h0 := hpre [] List.nil_prefix (by simp)
+      simpa using h0
+  | cons x t ih =>
+      intro hinf k hpre
+      have htail : t <:+: x :: t := (List.suffix_cons x t).isInfix
+      have hinf' : ∀ u : List β, u <:+: t → (∀ y ∈ u, q y = false) → u.length ≤ A :=
+        fun u hu hfree => hinf u (hu.trans htail) hfree
+      obtain ⟨c, hc⟩ : ∃ c, t.countP q = c := ⟨_, rfl⟩
+      obtain ⟨P, hP⟩ : ∃ P, c * (A + 1) = P := ⟨_, rfl⟩
+      by_cases hqx : q x = true
+      · have hcount : (x :: t).countP q = c + 1 := by
+          simp [List.countP_cons, hqx, hc]
+        have hk : k ≤ A := by
+          have h0 := hpre [] List.nil_prefix (by simp)
+          simpa using h0
+        have hIH := ih hinf' 0 (fun u hu hfree => by
+          have h1 := hinf' u hu.isInfix hfree
+          omega)
+        rw [hc, hP] at hIH
+        have hexp : (c + 1) * (A + 1) = P + (A + 1) := by
+          rw [← hP]; ring
+        rw [hcount, hexp]
+        simp only [List.length_cons]
+        clear hexp hP hc
+        omega
+      · have hqx' : q x = false := by simpa using hqx
+        have hcount : (x :: t).countP q = c := by
+          simp [List.countP_cons, hqx', hc]
+        have hIH := ih hinf' (k + 1) (fun u hu hfree => by
+          have hpc : x :: u <+: x :: t := by
+            obtain ⟨e, he⟩ := hu
+            exact ⟨e, by rw [← he]; simp⟩
+          have h1 := hpre (x :: u) hpc (by
+            intro y hy
+            rcases List.mem_cons.mp hy with rfl | hy'
+            · exact hqx'
+            · exact hfree y hy')
+          simp only [List.length_cons] at h1
+          omega)
+        rw [hc, hP] at hIH
+        rw [hcount, hP]
+        simp only [List.length_cons]
+        clear hP hc
+        omega
+
+/-- **The block count controls the length.**  If every separator-free stretch of
+`w` is at most `A` long, then `w` is at most `(#separators)·(A + 1) + A` long. -/
+theorem length_le_of_runs_bounded {β : Type*} (q : β → Bool) (A : ℕ) (w : List β)
+    (hruns : ∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A) :
+    w.length ≤ w.countP q * (A + 1) + A := by
+  have h := length_add_le_aux q A w hruns 0
+    (fun u hu hfree => by
+      have h1 := hruns u hu.isInfix hfree
+      omega)
+  simpa using h
+
+/-- **A window with at most one separator is short.**  This is the shape the
+piece bound consumes: it says that a window of length `2·A + 2` must carry two
+separators, hence must span a complete run. -/
+theorem length_le_of_countP_le_one {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
+    (hcount : w.countP q ≤ 1)
+    (hruns : ∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A) :
+    w.length ≤ 2 * A + 1 := by
+  have h := length_le_of_runs_bounded q A w hruns
+  have h2 : w.countP q * (A + 1) ≤ 1 * (A + 1) :=
+    Nat.mul_le_mul hcount (Nat.le_refl (A + 1))
+  obtain ⟨P, hP⟩ : ∃ P, w.countP q * (A + 1) = P := ⟨_, rfl⟩
+  rw [hP] at h h2
+  rw [one_mul] at h2
+  clear hP
+  omega
+
+/-- **A long window spans a complete run**, in the counted form. -/
+theorem two_le_countP_of_length {β : Type*} (q : β → Bool) (A : ℕ) {w : List β}
+    (hruns : ∀ u : List β, u <:+: w → (∀ x ∈ u, q x = false) → u.length ≤ A)
+    (hlen : 2 * A + 2 ≤ w.length) : 2 ≤ w.countP q := by
+  by_contra hcon
+  have hle : w.countP q ≤ 1 := by omega
+  have h := length_le_of_countP_le_one q A hle hruns
+  omega
+
+/-! ## 2.  Junction control (design property (a))
+
+Two arithmetic facts about the code `(ν, j) ↦ K·ν + j`, `1 ≤ j ≤ L ≤ K`.  The
+first says the code is injective, so no exponent is ambiguous anywhere in the
+system; the second says a junction leaves a nonzero, code-sized run behind. -/
+
+/-- The stride step: crossing one avatar index costs at least a full block
+range. -/
+theorem mul_add_le_mul_of_lt {K L a b : ℕ} (hKL : L ≤ K) (hab : a < b) :
+    K * a + L ≤ K * b := by
+  have h0 : K * (a + 1) ≤ K * b := Nat.mul_le_mul (Nat.le_refl K) (by omega)
+  rw [mul_add, mul_one] at h0
+  exact le_trans (Nat.add_le_add (Nat.le_refl (K * a)) hKL) h0
+
+/-- **The exponent code is injective.**  With blocks indexed by `1 ≤ j ≤ L` and
+a stride `K` at least as large as `L`, the exponent `K·ν + j` determines both the
+avatar `ν` and the block `j`.  This is the note's "globally distinct
+`y₂`-exponents", and it is what makes a single run pin a position. -/
+theorem code_injective {K L ν ν' j j' : ℕ} (hKL : L ≤ K)
+    (hj : 1 ≤ j) (hjL : j ≤ L) (hj' : 1 ≤ j') (hj'L : j' ≤ L)
+    (h : K * ν + j = K * ν' + j') : ν = ν' ∧ j = j' := by
+  have hνν : ν = ν' := by
+    rcases Nat.lt_trichotomy ν ν' with hlt | heq | hgt
+    · exfalso
+      have hle := mul_add_le_mul_of_lt hKL hlt
+      obtain ⟨A, hA⟩ : ∃ A, K * ν = A := ⟨_, rfl⟩
+      obtain ⟨Bv, hB⟩ : ∃ Bv, K * ν' = Bv := ⟨_, rfl⟩
+      rw [hA, hB] at hle
+      rw [hA, hB] at h
+      clear hA hB
+      omega
+    · exact heq
+    · exfalso
+      have hle := mul_add_le_mul_of_lt hKL hgt
+      obtain ⟨A, hA⟩ : ∃ A, K * ν = A := ⟨_, rfl⟩
+      obtain ⟨Bv, hB⟩ : ∃ Bv, K * ν' = Bv := ⟨_, rfl⟩
+      rw [hA, hB] at hle
+      rw [hA, hB] at h
+      clear hA hB
+      omega
+  refine ⟨hνν, ?_⟩
+  rw [hνν] at h
+  exact Nat.add_left_cancel h
+
+/-- **Junction control.**  At a junction between avatars `x' < x ≤ V` the two
+`y₂`-runs that meet cancel against one another and leave a single run of
+exponent `K·x − K·x'`.  That residue is *positive*, so the cancellation stops
+inside the run: the junction never eats through to the neighbouring `y₁`, and one
+normalization pass therefore returns a cyclically reduced word of the nominal
+shape.  It is also at most `K·V`, so a junction run is no longer than a code run
+and the run ceiling of the rewritten relator is the code's own. -/
+theorem junction_residue {K V x x' : ℕ} (hK : 0 < K) (hx : x ≤ V) (hlt : x' < x) :
+    0 < K * x - K * x' ∧ K * x - K * x' ≤ K * V := by
+  have h1 : K * x' + K ≤ K * x := by
+    have h0 : K * (x' + 1) ≤ K * x := Nat.mul_le_mul (Nat.le_refl K) (by omega)
+    rwa [mul_add, mul_one] at h0
+  have h2 : K * x ≤ K * V := Nat.mul_le_mul (Nat.le_refl K) hx
+  obtain ⟨A, hA⟩ : ∃ A, K * x = A := ⟨_, rfl⟩
+  obtain ⟨Bv, hB⟩ : ∃ Bv, K * x' = Bv := ⟨_, rfl⟩
+  obtain ⟨Cv, hC⟩ : ∃ Cv, K * V = Cv := ⟨_, rfl⟩
+  rw [hA] at h1 h2 ⊢
+  rw [hB] at h1 ⊢
+  rw [hC] at h2 ⊢
+  clear hA hB hC
+  omega
+
+/-! ## 3.  A unique cyclic mark forbids block powers (design property (c))
+
+The exponent sequence of an avatar word is strictly increasing along its blocks,
+so every exponent occurs at exactly one cyclic position of the relator.  A
+nontrivial rotation fixing the word would translate that position onto a
+different one carrying the same exponent — and there is none.
+
+This is the whole of (c).  Note that the design note's alternative shortcut, that
+an overlap exceeding half the word forces a block power, is **false**:
+`PeriodicOverlap.not_isProperPower_of_two_mul_length_le` refutes it by machine
+check, and no constant fraction of the length can replace it.  The translation
+argument below has no length hypothesis at all. -/
+
+/-- The length of the positive `y₂`-run at the front of a word. -/
+def leadRun (w : List (Fin 2 × Bool)) : ℕ :=
+  (w.takeWhile (fun c => decide (c = genTwo))).length
+
+/-- **The exponent read at a cyclic position.**  A word that begins with a
+positive `y₁` reports the exponent of the block it opens; any other word reports
+nothing.  Reading this at every rotation of a relator enumerates exactly the
+relator's blocks, so `leadCode` is the concrete form of the code the design
+assigns. -/
+def leadCode (w : List (Fin 2 × Bool)) : Option ℕ :=
+  match w with
+  | [] => none
+  | c :: t => if c = genOne then some (leadRun t) else none
+
+/-- **A uniquely marked cyclic position forbids a block power.**  If a property
+of the cyclic word holds at exactly one of its cyclic positions, no nontrivial
+rotation can fix the word, so the word is not a block power.
+
+The proof is the translation argument: a rotation by `d` fixing `w` carries the
+marked position `p` to `(p + d) mod n`, which is marked as well, hence equal to
+`p`, hence `d` is a multiple of `n` — and `0 < d < n`. -/
+theorem not_isProperPower_of_unique_mark {β : Type*} {w : List β} (hw : w ≠ [])
+    (f : List β → Prop) {p : ℕ} (hp : p < w.length) (hfp : f (w.rotate p))
+    (huniq : ∀ q, q < w.length → f (w.rotate q) → q = p) :
+    ¬ PeriodicOverlap.IsProperPower w := by
+  intro hpp
+  obtain ⟨d, hd0, hdlt, hrot⟩ :=
+    (PeriodicOverlap.isProperPower_iff_exists_rotate hw).mp hpp
+  have hn : 0 < w.length := List.length_pos_iff.mpr hw
+  have hmod : (p + d) % w.length < w.length := Nat.mod_lt _ hn
+  have hval : w.rotate ((p + d) % w.length) = w.rotate p := by
+    rw [List.rotate_mod]
+    calc w.rotate (p + d) = w.rotate (d + p) := by rw [Nat.add_comm p d]
+      _ = (w.rotate d).rotate p := (List.rotate_rotate w d p).symm
+      _ = w.rotate p := by rw [hrot]
+  have heq : (p + d) % w.length = p := huniq _ hmod (by rw [hval]; exact hfp)
+  rcases Nat.lt_or_ge (p + d) w.length with hlt | hge
+  · rw [Nat.mod_eq_of_lt hlt] at heq
+    omega
+  · have hsub : p + d - w.length < w.length := by omega
+    rw [Nat.mod_eq_sub_mod hge, Nat.mod_eq_of_lt hsub] at heq
+    omega
+
+/-! ## 4.  Symmetrization preserves length
+
+Both the piece bound and the protected ball are stated against the symmetrized
+family, while the family's own length floor is stated on its relators.  Rotation
+and formal inversion are length-preserving, so the two floors agree. -/
+
+/-- Every member of the symmetrization has the length of a relator. -/
+theorem length_eq_of_mem_symmetrization {α : Type*} {R : Set (List (α × Bool))}
+    {w : List (α × Bool)} (hw : w ∈ symmetrization R) :
+    ∃ r ∈ R, w.length = r.length := by
+  obtain ⟨r, hr, n, h | h⟩ := hw
+  · exact ⟨r, hr, by rw [h, List.length_rotate]⟩
+  · exact ⟨r, hr, by rw [h, List.length_rotate, FreeGroup.invRev_length]⟩
+
+/-- **A rotation is a window of the doubled word.**  Read the other way: to
+bound the runs of every rotation of `w` it is enough to bound the runs of
+`w ++ w`, which is a statement about one explicit word. -/
+theorem rotate_infix_append_self {β : Type*} (w : List β) (n : ℕ) :
+    w.rotate n <:+: w ++ w := by
+  rcases eq_or_ne w [] with rfl | hw
+  · simp
+  have hpos : 0 < w.length := List.length_pos_iff.mpr hw
+  have hk : n % w.length ≤ w.length := (Nat.mod_lt _ hpos).le
+  have hrot : w.rotate n = w.drop (n % w.length) ++ w.take (n % w.length) := by
+    rw [← List.rotate_mod, List.rotate_eq_drop_append_take hk]
+  refine ⟨w.take (n % w.length), w.drop (n % w.length), ?_⟩
+  have h1 : w.take (n % w.length) ++ w.drop (n % w.length) = w :=
+    List.take_append_drop _ _
+  rw [hrot]
+  calc w.take (n % w.length) ++ (w.drop (n % w.length) ++ w.take (n % w.length))
+          ++ w.drop (n % w.length)
+      = (w.take (n % w.length) ++ w.drop (n % w.length)) ++
+          (w.take (n % w.length) ++ w.drop (n % w.length)) := by simp
+    _ = w ++ w := by rw [h1]
+
+/-- **The run ceiling, transported to the symmetrization.**  A run bound checked
+on the doubled relator and on the doubled inverted relator — two explicit words
+per relator — gives the bound on every symmetrized member.  This is offered so
+that the family's own check never has to quantify over rotations. -/
+theorem runs_short_of_doubled {A : ℕ} {R : Set (List (Fin 2 × Bool))}
+    (h : ∀ r ∈ R, ∀ u : List (Fin 2 × Bool),
+      (u <:+: (r ++ r) ∨ u <:+: (FreeGroup.invRev r ++ FreeGroup.invRev r)) →
+      (∀ c ∈ u, isGenOne c = false) → u.length ≤ A) :
+    ∀ w ∈ symmetrization R, ∀ u : List (Fin 2 × Bool), u <:+: w →
+      (∀ c ∈ u, isGenOne c = false) → u.length ≤ A := by
+  rintro w ⟨r, hr, n, rfl | rfl⟩ u hu hfree
+  · exact h r hr u (Or.inl (hu.trans (rotate_infix_append_self r n))) hfree
+  · exact h r hr u (Or.inr (hu.trans (rotate_infix_append_self _ n))) hfree
+
+/-! ## 5.  The checkable bundle
+
+Everything an exponent-code family owes, in the form a finite explicit family
+can be inspected for.  The design parameters `L`, `K`, `V` and the padding floor
+enter only through the three numbers `maxExponent`, `relatorFloor` and
+`protectedLength` and the two margins between them, so the results below are
+generic in the design and survive any retuning of the constants. -/
+
+/-- **The avatar family's verification data.**  `maxExponent` is `A_max = K·V + L`
+of the design note, `relatorFloor` is the §1 padding floor read on the rewritten
+relators, and `protectedLength` bounds the protected target word. -/
+structure AvatarMetricData where
+  /-- The relator family, as letter lists over the two-generator alphabet. -/
+  relators : Set (List (Fin 2 × Bool))
+  /-- `A_max`: the ceiling on the `y₂`-runs the code and its junctions produce. -/
+  maxExponent : ℕ
+  /-- The common length floor of the family, from §1's padding step. -/
+  relatorFloor : ℕ
+  /-- A ceiling for the length of the protected target word. -/
+  protectedLength : ℕ
+  /-- Every relator meets the floor. -/
+  relators_long : ∀ r ∈ relators, relatorFloor ≤ r.length
+  /-- **The run ceiling.**  No `y₂`-run of a symmetrized relator exceeds the top
+  exponent — for code runs because the code stops at `A_max`, for junction runs
+  by `junction_residue`.  `runs_short_of_doubled` reduces this to two explicit
+  words per relator. -/
+  runs_short : ∀ w ∈ symmetrization relators, ∀ u : List (Fin 2 × Bool),
+    u <:+: w → (∀ c ∈ u, isGenOne c = false) → u.length ≤ maxExponent
+  /-- **Piece pinning.**  A window carrying two `y₁`-letters spans a complete
+  `y₂`-run; by `code_injective` that run's exponent occurs at exactly one place
+  in the whole system, so the window pins its position and cannot prefix two
+  different symmetrized relators. -/
+  pinned : ∀ p : List (Fin 2 × Bool), 2 ≤ p.countP isGenOne →
+    ∀ w₁ ∈ symmetrization relators, ∀ w₂ ∈ symmetrization relators,
+      p <+: w₁ → p <+: w₂ → w₁ = w₂
+  /-- **The unique cyclic mark.**  Each relator has a cyclic position whose
+  exponent is read nowhere else in that relator — the strictly increasing
+  exponent sequence, localized to one relator. -/
+  uniqueMark : ∀ r ∈ relators, ∃ e p : ℕ, p < r.length ∧
+    leadCode (r.rotate p) = some e ∧
+    ∀ q, q < r.length → leadCode (r.rotate q) = some e → q = p
+  /-- The metric margin: eight piece ceilings fit inside one relator floor.  For
+  the note's constants `L = 16·(V + 1)`, `K = 2·L` and a padding floor of thirty
+  this holds with room to spare. -/
+  metric_margin : 8 * (2 * maxExponent + 2) ≤ relatorFloor
+  /-- The protected-ball margin, which is §1's reason for padding at all. -/
+  protected_margin : 2 * protectedLength ≤ relatorFloor
+
+namespace AvatarMetricData
+
+variable (C : AvatarMetricData)
+
+/-- The floor holds on the symmetrization too. -/
+theorem floor_le_length {w : List (Fin 2 × Bool)}
+    (hw : w ∈ symmetrization C.relators) : C.relatorFloor ≤ w.length := by
+  obtain ⟨r, hr, hlen⟩ := length_eq_of_mem_symmetrization hw
+  rw [hlen]
+  exact C.relators_long r hr
+
+/-- The metric margin alone forces a floor of sixteen, which is all the
+nonemptiness arguments below need. -/
+theorem sixteen_le_floor : 16 ≤ C.relatorFloor := by
+  have h := C.metric_margin
+  omega
+
+/-- Relators are nonempty — derived, not assumed. -/
+theorem relator_ne_nil {r : List (Fin 2 × Bool)} (hr : r ∈ C.relators) : r ≠ [] := by
+  have h1 := C.relators_long r hr
+  have h2 := C.sixteen_le_floor
+  have h3 : 0 < r.length := by omega
+  exact List.length_pos_iff.mp h3
+
+/-! ### (b)  Piece pinning gives the piece ceiling and `C'(1/8)` -/
+
+/-- **Pieces are shorter than `2·A_max + 2`.**  A piece prefixes two *different*
+symmetrized relators; were it that long it would carry two `y₁`-letters, hence
+span a complete run, hence pin the two relators to be equal. -/
+theorem piece_length_lt {p : List (Fin 2 × Bool)}
+    (hp : IsPiece (symmetrization C.relators) p) :
+    p.length < 2 * C.maxExponent + 2 := by
+  obtain ⟨w₁, hw₁, w₂, hw₂, hne, hp₁, hp₂⟩ := hp
+  by_contra hcon
+  have hlen : 2 * C.maxExponent + 2 ≤ p.length := by omega
+  have hcount : 2 ≤ p.countP isGenOne :=
+    two_le_countP_of_length isGenOne C.maxExponent
+      (fun u hu hfree => C.runs_short w₁ hw₁ u (hu.trans hp₁.isInfix) hfree) hlen
+  exact hne (C.pinned p hcount w₁ hw₁ w₂ hw₂ hp₁ hp₂)
+
+/-- **The family is `C'(1/8)`.**  The piece ceiling against the relator floor,
+with the margin clearing the denominator once. -/
+theorem metric_eighth : MetricSmallCancellation C.relators (1 / 8) := by
+  intro p hp w hw _
+  have h1 : p.length < 2 * C.maxExponent + 2 := C.piece_length_lt hp
+  have h2 : C.relatorFloor ≤ w.length := C.floor_le_length hw
+  have h3 := C.metric_margin
+  have hnat : 8 * p.length < w.length := by omega
+  have hq : (8 : ℚ) * (p.length : ℚ) < (w.length : ℚ) := by exact_mod_cast hnat
+  linarith
+
+/-- **The landed `metric` field.**  Monotonicity in the constant, spent in the
+only direction it runs.  The `C'(1/8)` proof above is what the gate call gets;
+this weaker reading is what the structure field stores. -/
+theorem metric_sixth : MetricSmallCancellation C.relators (1 / 6) :=
+  BespokeRouter.metricSmallCancellation_mono
+    (show (1 : ℚ) / 8 ≤ 1 / 6 by norm_num) C.metric_eighth
+
+/-! ### (c)  No relator is a block power -/
+
+/-- **No relator is a block power**, in the router's shape. -/
+theorem noProperPower : BespokeRouter.NoProperPower C.relators := by
+  intro r hr
+  obtain ⟨e, p, hp, hcode, huniq⟩ := C.uniqueMark r hr
+  exact not_isProperPower_of_unique_mark (C.relator_ne_nil hr)
+    (fun z => leadCode z = some e) hp hcode huniq
+
+/-- The same, in the gate file's shape.  The two predicates are definitionally
+equal — `BespokeRouter.RouterRelatorDesign.noProperPower_eq_gate` records that —
+so no adapter is involved. -/
+theorem noProperPower_gate : GreendlingerFreeGate.NoProperPower C.relators :=
+  C.noProperPower
+
+/-! ### (d)  The protected ball -/
+
+/-- **The protected ball condition.**  Twice the protected element's reduced
+length fits inside every symmetrized relator, by the padding floor. -/
+theorem protectedBall {g : FreeGroup (Fin 2)}
+    (hg : FreeGroup.norm g ≤ C.protectedLength)
+    {r : List (Fin 2 × Bool)} (hr : r ∈ symmetrization C.relators) :
+    2 * FreeGroup.norm g ≤ r.length := by
+  have h1 := C.floor_le_length hr
+  have h2 := C.protected_margin
+  omega
+
+/-- The same, in the shape the design's `protectedBall` field is stated in. -/
+theorem protectedBall_field {g : FreeGroup (Fin 2)}
+    (hg : FreeGroup.norm g ≤ C.protectedLength) :
+    ∀ r ∈ symmetrization C.relators, 2 * FreeGroup.norm g ≤ r.length :=
+  fun _ hr => C.protectedBall hg hr
+
+/-- **The protected ball from a word bound.**  In practice the protected target
+word is written down, so its *word* length is what is known; the reduced length
+never exceeds it. -/
+theorem protectedBall_of_word {P : List (Fin 2 × Bool)}
+    (hP : P.length ≤ C.protectedLength) :
+    ∀ r ∈ symmetrization C.relators,
+      2 * FreeGroup.norm (FreeGroup.mk P) ≤ r.length :=
+  C.protectedBall_field (le_trans FreeGroup.norm_mk_le hP)
+
+end AvatarMetricData
+
+/-! ## 6.  Threading into the router
+
+Two consumers, one proof.  `RouterRelatorDesign.metric` stores `C'(1/6)`, which
+`metric_sixth` supplies; `routerConclusions_of_sharpGate` needs a constant at
+most `1/8`, which `metric_eighth` supplies.  The reverse — reading `1/8` off the
+stored `1/6` — is not available and is not attempted. -/
+
+/-- **Both word-combinatorial fields of the router interface**, from the check
+bundle and the one open gate.  The design's relator family is the checked one;
+everything else about the design is untouched. -/
+theorem routerConclusions_of_check {E : Type} [Group E] {N : Subgroup E} {s : E}
+    {B : Type} [Group B] (D : BespokeRouter.RouterRelatorDesign E N s B)
+    (C : AvatarMetricData) (hrel : D.relators = C.relators)
+    (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2)) :
+    D.RouterConclusions :=
+  D.routerConclusions_of_sharpGate hgate (le_refl ((1 : ℚ) / 8))
+    (by rw [hrel]; exact C.metric_eighth)
+
+/-- **The endpoint's hypothesis, discharged at the checked family.**  Whoever
+exhibits a design whose relators pass the check has produced the frozen router
+output, modulo the gate and nothing else. -/
+theorem nonempty_routingLemmaData_of_check {E : Type} [Group E] {N : Subgroup E}
+    [N.Normal] {s : E} {B : Type} [Group B]
+    (D : BespokeRouter.RouterRelatorDesign E N s B)
+    (C : AvatarMetricData) (hrel : D.relators = C.relators)
+    (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2)) :
+    Nonempty (SmallCancellationRouter.RoutingLemmaData E N s B) :=
+  D.nonempty_routingLemmaData_of_sharpGate hgate (le_refl ((1 : ℚ) / 8))
+    (by rw [hrel]; exact C.metric_eighth)
+
+end AvatarMetricCheck
+end GroupApproximation

@@ -618,7 +618,14 @@ def headlineTheorems : List Name :=
    ``WordProblemRE.rePred_wordProblemPred,
    ``WordProblemRE.not_rePred_compl_wordProblemPred,
    ``WordProblemRE.operatorMF_negative_side_not_re,
-   ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis]
+   ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis,
+   -- The two analytic engines' own summits.  Both were already inside the
+   -- namespace sweep and the nanoda closure via their consumers; these rows
+   -- add the per-theorem log line that states what each engine itself rests
+   -- on, rather than what its consumer rests on.
+   ``QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect,
+   ``InvolutionCollapseEndpoint.no_marked_model,
+   ``InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual]
 
 /-- Advertised closed endpoints.  A declaration on this list must have an
 empty outer telescope.  Universally quantified mathematics belongs inside a
@@ -652,7 +659,12 @@ def zeroInputEndpoints : List Name :=
    ``LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace,
    ``LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace,
    ``GroupApproximation.manuscriptMFTraceGroupBridge,
-   ``ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic]
+   ``ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic,
+   -- The two closed involutive-collapse witnesses.  The second is the
+   -- strongest statement of its kind in the tree: an explicit sofic group
+   -- that is not MF.
+   ``CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF,
+   ``CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool

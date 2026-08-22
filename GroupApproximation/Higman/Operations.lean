@@ -22,11 +22,17 @@ This file:
 * proves the induction: the base cases plus the closures give benignness for
   every `HigmanGenerated` set.
 
-So what `REBenignTF` still owes is exactly: the six remaining operation
-closures, the base case `S`, Higman's Section 2, and the transport of his
-Section 5.  Each is a separate, classical, independently attackable statement,
-and `benignTF_of_higmanGenerated` below is the proof that nothing else is
-needed to combine them.
+So what `REBenignTF` still owes is exactly: the remaining operation closures,
+the base case `S`, Higman's Section 2, and the transport of his Section 5.
+Each is a separate, classical, independently attackable statement, and
+`benignTF_of_higmanGenerated` below is the proof that nothing else is needed to
+combine them.
+
+The count of remaining closures has since dropped from six to five: `ρ` is
+proved, by `Higman.FlipGroup` over `Higman.TorsionFreeImageClosure`, and
+`Higman.ClosuresAssembly` fills the field.  This file is left stated at
+Higman's own list, so `OperationClosures` below still carries `rho`; the
+smaller input list is `ClosuresAssembly.operationClosures_of_inputs`.
 -/
 
 namespace GroupApproximation
@@ -102,21 +108,33 @@ end Seq
 
 /-! ## 4.  What is still owed at the level of operations -/
 
-/-- **Input: the six operation closures Higman's Section 4 still owes, and the
-base case `S`.**
+/-- **Input: the operation closures Higman's Section 4 still owes, and the base
+case `S`.**
 
-The other three closures are proved: `ι` and `υ` are lattice identities
-(`Seq.ASub_inter`, `Seq.ASub_union` with `BenignTF.inf`, `BenignTF.sup`), and
-`σ` is an automorphism of `F₃` (`Seq.ASub_sigmaOp`).  Each field below is one
-of Higman's constructions, and each is an HNN extension or a join of the kind
-this repository already builds --- which is why the torsion clause is not a
-separate obligation.
+Three of the nine closures are proved right here: `ι` and `υ` are lattice
+identities (`Seq.ASub_inter`, `Seq.ASub_union` with `BenignTF.inf`,
+`BenignTF.sup`), and `σ` is an automorphism of `F₃` (`Seq.ASub_sigmaOp`).  Each
+field below is one of Higman's remaining constructions, and each is an HNN
+extension or a join of the kind this repository already builds --- which is why
+the torsion clause is not a separate obligation.
 
-**Nothing inhabits this structure.** -/
+**The field count is not the cost.**  Since this structure was written, `ρ` has
+been proved: `Higman.FlipGroup` reduces it to `Seq.TorsionFreeImageClosure` and
+`Higman.TorsionFreeImageClosure` proves that, so
+`Higman.ClosuresAssembly.operationClosures_rho` fills the `rho` field outright.
+The same file's `operationClosures_of_inputs` builds the whole structure from
+what is genuinely still open, which is six things and not seven: the base case
+`S`, the `τ` closure, `Omega.OmegaInput`, and three benign rows.  Read that
+constructor, not this field list, for the current boundary.
+
+**Nothing inhabits this structure**, and nothing will until those six are
+supplied. -/
 structure OperationClosures where
   /-- Higman's base case `S`. -/
   base : BenignTF (Seq.ASub Seq.Sset)
-  /-- Closure under `ρ`. -/
+  /-- Closure under `ρ`.  **Proved**, in
+  `Higman.ClosuresAssembly.operationClosures_rho`; it stays a field only so
+  that this structure keeps Higman's own list intact. -/
   rho : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.rhoOp B))
   /-- Closure under `τ`. -/
   tau : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.tauOp B))
