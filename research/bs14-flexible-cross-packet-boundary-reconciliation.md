@@ -233,6 +233,17 @@ compressed Weil packets.
   either change rounded packet types at energy-controlled cost or exhibit a
   native support-enlarging cell which cancels every torsion charge.
 
+- **Long return phases admit an explicit support-enlarging reset.**
+  `bs14-long-packet-monodromy-reset-creates-fixed-sources` replaces the
+  monodromy `V` of a length-`m` packet by one, distributing `V^(-1/m)` over
+  its cyclic edges.  The BS covariance stays exact and the packet-normalized
+  displacement is at most `pi/m`; the reset creates
+  `dim(V)` fixed-source lines.  Thus the `v!=1` tail is not an intrinsic
+  obstruction.  The unresolved finite part is to localize short active
+  residual mass packetwise and compute the **native** joint-cell support.
+  The determinant-two parity support above was an abstract incidence
+  witness, so it does not itself name a native odd-charge cell.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

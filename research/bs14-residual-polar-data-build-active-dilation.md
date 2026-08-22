@@ -89,3 +89,12 @@ tuple.
   integralizes it.  The remaining statement must authenticate
   support-enlarging cells (or perturb the rounded margins); a bounded
   saturation exponent alone is logically insufficient.
+- `bs14-long-packet-monodromy-reset-creates-fixed-sources` supplies one exact
+  support-enlarging operation.  On a length-`m` packet, distribute the
+  inverse `m`th root of its return monodromy over all cyclic edges.  This
+  keeps the BS relation exact, changes `R` by at most `pi/m` in packet-
+  normalized HS norm, and turns the whole multiplicity space into
+  `R`-fixed sources.  Hence all orbit lengths at least `M` can be reset at
+  global cost `pi/M`.  What remains is short-packet localization and the
+  rebuilding of one exact `X`; changing `R` alone only perturbs, rather than
+  solves, the inversion and second cubic equations.
