@@ -795,9 +795,10 @@ theorem greendlingerAt_of_landing_survivor {R : Set (List (α × Bool))}
       = t₃.length - (D - c₃.length)
         - (c₃.length + t₃.length - P₃.length) := by omega
   rw [hlen]
-  exact greendlingerAt_of_two_piece_window (A := []) (C := B₃)
-    (i := D - c₃.length) (k := c₃.length + t₃.length - P₃.length) ht₃ rfl
+  refine greendlingerAt_of_two_piece_window (A := []) (C := B₃)
+    (i := D - c₃.length) (k := c₃.length + t₃.length - P₃.length) ht₃ ?_
     (Nat.zero_le _) hfront hback
+  rw [List.nil_append]
 
 end SmallCancellationRouter
 end GroupApproximation

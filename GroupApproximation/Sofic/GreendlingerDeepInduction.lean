@@ -661,7 +661,8 @@ theorem LocatedSplit.drop_of_le {n N : ℕ} {w u : List (α × Bool)}
     (h : LocatedSplit n w u) (hN : N ≤ n) : LocatedSplit 0 (w.drop N) u := by
   obtain ⟨A, C, hw, hlen⟩ := h
   refine ⟨A.drop N, C, ?_, Nat.zero_le _⟩
-  rw [hw, drop_append_of_le N A (u ++ C) (by omega)]
+  rw [hw, List.append_assoc, drop_append_of_le N A (u ++ C) (by omega)]
+  simp only [List.append_assoc]
 
 /-- **An arc in a suffix is an arc.**  What a stage reads off its tail is an arc
 in a suffix of its own word, and the unlocated form is inherited upwards along
