@@ -44,3 +44,12 @@ face-to-shared occurrence movement controls the complete averaged logical
 commutator energy with a uniform constant.  What is missing is exactly the
 upgrade from that generator statistic, together with parity, to an exact
 shared code representation.
+
+Published quantum tensor-code pasting does not supply this upgrade as a
+black box.  `jnvwy-pasting-does-not-close-ldpc-synchronization` verifies that
+JNVWY constructs its global codeword PVM in the same tracial algebra, but its
+error is polynomial in the tensor/interpolation parameters and its test
+assumes one point measurement across growing line and subcube incidence.
+Bounded-degree occurrence splitting therefore recreates the present gate;
+for binary tensor codes, unbounded message dimension forces either a growing
+line-answer packet or growing tensor dimension and robustness loss.
