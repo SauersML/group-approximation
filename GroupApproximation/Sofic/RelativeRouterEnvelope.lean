@@ -244,7 +244,12 @@ theorem fragmentSlack : FragmentSlack D.relators (1 / 7) :=
 
 /-! ### The factors, and the ambient free product -/
 
-/-- Both factors are torsion-free, transported from `U` and `B`. -/
+include D in
+/-- Both factors are torsion-free, transported from `U` and `B`.
+
+`include D` because the *statement* does not mention the design — only the proof
+does — and a section variable that the statement does not use is not in scope in
+the body. -/
 theorem factors_torsionFree (hU : IsPowerTorsionFree U) (hB : IsPowerTorsionFree B) :
     ∀ b, IsPowerTorsionFree (G b) := by
   intro b
@@ -254,6 +259,7 @@ theorem factors_torsionFree (hU : IsPowerTorsionFree U) (hB : IsPowerTorsionFree
   · exact IsPowerTorsionFree.comap hB D.partnerEquiv.symm.toMonoidHom
       D.partnerEquiv.symm.injective
 
+include D in
 /-- Both factors are finitely presented, transported from `U` and `B`. -/
 theorem factors_finitelyPresented [Group.IsFinitelyPresented U]
     [Group.IsFinitelyPresented B] : ∀ b, Group.IsFinitelyPresented (G b) := by
@@ -262,6 +268,7 @@ theorem factors_finitelyPresented [Group.IsFinitelyPresented U]
   · exact Group.IsFinitelyPresented.equiv D.sourceEquiv
   · exact Group.IsFinitelyPresented.equiv D.partnerEquiv
 
+include D in
 /-- **The ambient free product is finitely presented**: two finitely presented
 factors over a two-element index, which is
 `FreeProductRouterObstruction.isFinitelyPresented_coprodI_bool` — the indexed
@@ -397,8 +404,12 @@ section Tie
 
 variable {G : Bool → Type} [∀ b, Group (G b)] [∀ b, DecidableEq (G b)]
 
+omit [∀ b, DecidableEq (G b)] in
 /-- A relator subgroup member of the shape `a · b⁻¹` identifies `a` with `b` in
-the quotient.  This is the only way a tie is ever used. -/
+the quotient.  This is the only way a tie is ever used.
+
+The decidable-equality instances are omitted because `relatorSubgroup` does not
+consume them; only the syllable-length lemmas below do. -/
 theorem mk_eq_mk_of_tie {R : Set (Word G)} {a c : CoprodI G}
     (h : a * c⁻¹ ∈ relatorSubgroup R) :
     QuotientGroup.mk' (relatorSubgroup R) a

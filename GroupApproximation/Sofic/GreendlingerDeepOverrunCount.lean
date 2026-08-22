@@ -344,5 +344,58 @@ theorem six_mul_back_lt_of_forward [DecidableEq α]
   rw [hindex]
   exact eq_rotate_invRev_of_invRev_eq_rotate hk hcon
 
+/-! ## 7.  The effective conjugator is a word the cascade already names -/
+
+/-- **The effective conjugator, computed.**  Along a cascade step
+`W = A ++ V.drop N` into the landing factor's own word `V`, the element
+`conjEval e₁ * mk c₃` — the conjugator the landing factor presents to the head,
+with everything between them folded in — is spelled by the concrete word
+`A ++ c₃.drop N`.
+
+`GreendlingerCoincidence.exists_effectiveConjugator` produces *some* word for
+that element, by taking a reduced word; it is of no use to the coincidence
+lemmas, which need the word to begin with the head conjugator.  This produces a
+*named* word instead, built from the surviving block `A` of the cascade and what
+the drop leaves of `c₃` — and that is the word the block is actually read
+against, so it is the one whose prefix can be compared with `c`.
+
+The proof is three cancellations and no combinatorics.  Writing `V` for the
+landing sub-expression's word: the cascade says `mk W = mk A * mk (V.drop N)`,
+`conjEval_append` says `mk W = conjEval e₁ * mk V`, and splitting `V` at `N`
+lets `mk (V.drop N)` be cancelled from both, leaving
+`conjEval e₁ * mk (c₃.take N) = mk A`.  Multiplying by `mk (c₃.drop N)`
+reassembles `c₃`.
+
+`hV` is the one input from outside: that the landing sub-expression's word opens
+with `c₃`, up to the depth the drop reaches.  It is the leading-cancellation
+decomposition of that sub-expression, read at `N`. -/
+theorem mk_effectiveConjugator_of_cascade [DecidableEq α]
+    {c₃ t₃ A : List (α × Bool)} {N : ℕ}
+    {e₁ f : List (FreeGroup α × List (α × Bool))}
+    (hcasc : (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f))).toWord
+      = A ++ (conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N)
+    (hV : (conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.take N
+      = c₃.take N) :
+    FreeGroup.mk (A ++ c₃.drop N) = conjEval e₁ * FreeGroup.mk c₃ := by
+  have hsplitV : conjEval ((FreeGroup.mk c₃, t₃) :: f)
+      = FreeGroup.mk (c₃.take N) * FreeGroup.mk
+        ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N) := by
+    rw [← hV, FreeGroup.mul_mk, List.take_append_drop, FreeGroup.mk_toWord]
+  have hW : conjEval e₁ * conjEval ((FreeGroup.mk c₃, t₃) :: f)
+      = FreeGroup.mk A * FreeGroup.mk
+        ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N) := by
+    rw [← conjEval_append, FreeGroup.mul_mk, ← hcasc, FreeGroup.mk_toWord]
+  rw [hsplitV] at hW
+  have hkey : conjEval e₁ * FreeGroup.mk (c₃.take N) = FreeGroup.mk A := by
+    refine mul_right_cancel (b := FreeGroup.mk
+      ((conjEval ((FreeGroup.mk c₃, t₃) :: f)).toWord.drop N)) ?_
+    rw [mul_assoc]
+    exact hW
+  have hc₃ : FreeGroup.mk c₃
+      = FreeGroup.mk (c₃.take N) * FreeGroup.mk (c₃.drop N) := by
+    rw [FreeGroup.mul_mk, List.take_append_drop]
+  rw [← FreeGroup.mul_mk, ← hkey, hc₃]
+  group
+
 end SmallCancellationRouter
 end GroupApproximation

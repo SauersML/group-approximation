@@ -1,104 +1,106 @@
+import GroupApproximation.Higman.ClosuresAssembly
 import GroupApproximation.Higman.GeneratedValue
-import GroupApproximation.Higman.OperationClosureRho
 
 /-!
-# Route C: `τ` is droppable, and here is the replacement
+# Route C: the `τ`-free chain
 
 `Higman.SwapCarrierWitness` proves that every construction mechanism this
-repository has for a coded family is excluded for `τ`.  This file takes the
-other exit: it shows that the live chain does not need `τ` at all.
+repository has for a coded family is excluded for `τ`.  Route C takes the other
+exit, and this file is its landing.
 
-`OperationClosures.tau` is spent in exactly one place ---
-`Seq.benignTF_of_higmanGenerated`, on the `tau` constructor --- so `τ` is spent
-exactly when a `HigmanGenerated` derivation uses that constructor.  There are
-four such uses in the repository.  Three are in `Higman.GeneratedValue`, and
-this file removes them; the fourth is the base case of
-`HigmanVariableCalculus.higmanGenerated_swapAt`, in a module no module imports
-and whose `swapAt` has no consumer anywhere.
+`OperationClosures.tau` is consumed in exactly one place ---
+`Higman.benignTF_of_higmanGenerated`, on the `tau` constructor --- so `τ` is
+spent exactly when a `HigmanGenerated` derivation uses that constructor.  A
+repository-wide grep found four such uses.  Three were in
+`Higman.GeneratedValue` and have been rewritten in place, on `σ` and the
+down-shift `ρ σ ρ`, with every statement unchanged; the fourth is the base case
+of `HigmanVariableCalculus.higmanGenerated_swapAt`, in a module no module
+imports and whose `swapAt` has no consumer anywhere.
 
-## The replacement, in one line
+This file supplies the two things that turns into.
 
-`pinZero c = {f | f 0 = c}` and `pinOne c = {f | f 1 = c}` are *pins*: one
-coordinate fixed, all others free.  `σ` is induced by a **bijection** of the
-index set, so it carries the pin at `0` to the pin at `1`:
+## 1.  The `τ`-free fragment, and the record it needs
 
-    σ (pinZero c) = pinOne c        (`sigmaOp_pinZero`)
+`Seq.HigmanGeneratedTF` is `Seq.HigmanGenerated` **without the `tau`
+constructor**, `OperationClosuresTF` is `OperationClosures` **without the `tau`
+field**, and `benignTF_of_higmanGeneratedTF` is the induction joining them.
+`operationClosures_of_inputs_tauFree` builds the record from **five** leaves
+rather than six: `ρ` is proved (`operationClosures_rho`), and `τ` is gone.
 
-and `higmanGenerated_pinOne'` is the resulting `τ`-free proof, replacing
-`Seq.higmanGenerated_pinOne`.  The remaining `GeneratedValue` site --- the
-`succ` step of `higmanGenerated_singleZero`, which uses `τ` only to move the
-value at coordinate `1` down to coordinate `0` so that `θ` can read it --- is
-served by the **down-shift**, which is `ρ σ ρ` and is built here as `downOf`.
+`HigmanGeneratedTF.toHigmanGenerated` is the forgetful map, so nothing is lost:
+a `τ`-free derivation is a derivation.
 
-So what those three sites need is a bijection of the index set carrying
-coordinate `1` to coordinate `0`, and the infinite dihedral group `⟨σ, ρ⟩`
-supplies one.  The transposition is simply the wrong tool; it was chosen
-because its name matches the intent.
+## 2.  What is still owed, and by whom
 
-## The limit of derivability
+The chain closes on the `τ`-free record exactly when Higman's Section 2 is
+proved in the `τ`-free form,
 
-Section 3 records how far `τ` is derivable from the rest, which is the sharp
-answer to the other half of route C.  On a set whose two window coordinates are
-pinned, `τ` is a composite of `ι`, coordinate-freeing, and the pins
-(`tauOp_windowClass`), with no `τ` anywhere.  The general case is the union of
-these over `(c, c') ∈ ℤ × ℤ`, and the operation list has only the *binary*
-union, so the derivation does not close.  That gap --- uniformity in the window
-values --- is the whole of what is unresolved, and
-`notes/W6_TAU_ROUTE_C_2026-08-22.md` explains why the obvious repair routes back
-through the transposition calculus.
+    HigmanTheoremThreeTF : ∀ B, REset B → Seq.HigmanGeneratedTF B ,
+
+which is the strengthening of `HigmanTheoremThree` that
+`reBenignTF_of_inputs_tauFree` consumes.  That is a requirement on the trace
+lane, not a theorem this file can prove: it says every relation of the trace
+machine must be *built in the variable order it is consumed in*, so that no
+coordinate permutation is ever needed.  `Higman.HigmanAtoms` already builds its
+relational layer that way --- `freeAt c`, `succRel d`, `diffSet`, `eqRel a b`
+are each constructed at an arbitrary index by `σ`-conjugation from an index-`0`
+case, so the index is a parameter rather than something to permute afterwards.
+
+## 3.  How far `τ` is derivable, for the record
+
+Section 3 below records the sharp answer to the other half of route C.  On a set
+whose two window coordinates are pinned, `τ` is a composite of `ι`,
+coordinate-freeing and the pins, with no `τ` anywhere
+(`Seq.tauOp_windowClass`).  The general `τ` is the union of these over
+`(c, c') ∈ ℤ × ℤ`, and the operation list has only the *binary* union, so the
+derivation does not close.  That gap --- uniformity in the window values --- is
+the whole of what is unresolved; `notes/W6_TAU_ROUTE_C_2026-08-22.md` explains
+why the obvious repair routes back through the transposition calculus.
 -/
 
 namespace GroupApproximation
 namespace Higman
 namespace Seq
 
-/-! ## 1.  The down-shift is `ρ σ ρ` -/
+/-! ## 1.  The `τ`-free fragment -/
 
-/-- The down-shift of a sequence, built from the two operations that are
-induced by index bijections.  `ρ` reverses, `σ` shifts up, `ρ` reverses back. -/
-noncomputable def downOf (f : E) : E := rhoSeq (shiftSeq (rhoSeq f))
+/-- **`Seq.HigmanGenerated` without the transposition.**  Every constructor of
+the original except `tau`. -/
+inductive HigmanGeneratedTF : Set E → Prop
+  | zero : HigmanGeneratedTF Zset
+  | succ : HigmanGeneratedTF Sset
+  | inter {B B' : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF B' →
+      HigmanGeneratedTF (B ∩ B')
+  | union {B B' : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF B' →
+      HigmanGeneratedTF (B ∪ B')
+  | rho {B : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF (rhoOp B)
+  | sigma {B : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF (sigmaOp B)
+  | theta {B : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF (thetaOp B)
+  | zeta {B : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF (zetaOp B)
+  | pi {B : Set E} : HigmanGeneratedTF B → HigmanGeneratedTF (piOp B)
+  | omega {B : Set E} (m : ℕ) (hm : 0 < m) :
+      HigmanGeneratedTF B → HigmanGeneratedTF (omegaOp m B)
 
-@[simp] theorem downOf_apply (f : E) (i : ℤ) : downOf f i = f (i + 1) := by
-  unfold downOf
-  rw [rhoSeq_apply, shiftSeq_apply, rhoSeq_apply]
-  congr 1
-  ring
+/-- **A `τ`-free derivation is a derivation.**  Nothing is lost by working in
+the fragment. -/
+theorem HigmanGeneratedTF.toHigmanGenerated {B : Set E}
+    (h : HigmanGeneratedTF B) : HigmanGenerated B := by
+  induction h with
+  | zero => exact HigmanGenerated.zero
+  | succ => exact HigmanGenerated.succ
+  | inter _ _ ih ih' => exact HigmanGenerated.inter ih ih'
+  | union _ _ ih ih' => exact HigmanGenerated.union ih ih'
+  | rho _ ih => exact HigmanGenerated.rho ih
+  | sigma _ ih => exact HigmanGenerated.sigma ih
+  | theta _ ih => exact HigmanGenerated.theta ih
+  | zeta _ ih => exact HigmanGenerated.zeta ih
+  | pi _ ih => exact HigmanGenerated.pi ih
+  | omega m hm _ ih => exact HigmanGenerated.omega m hm ih
 
-/-- **The down-shift undoes the shift**, so `σ` acts on sets by a bijection. -/
-theorem shiftSeq_downOf (f : E) : shiftSeq (downOf f) = f := by
-  refine Finsupp.ext fun i => ?_
-  rw [shiftSeq_apply, downOf_apply]
-  congr 1
-  ring
+/-! ## 3.  How far `τ` is derivable
 
-/-! ## 2.  `σ` carries the pin at `0` to the pin at `1` -/
-
-/-- **The replacement identity.**  `Seq.pinOne` is `σ` of `Seq.pinZero`, not `τ`
-of it.  Both operations move the pinned coordinate from `0` to `1`; only one of
-them costs an open leaf. -/
-theorem sigmaOp_pinZero (c : ℤ) : sigmaOp (pinZero c) = pinOne c := by
-  ext f
-  constructor
-  · rintro ⟨g, hg, rfl⟩
-    have hg0 : g 0 = c := hg
-    show shiftSeq g 1 = c
-    rw [shiftSeq_apply, show (1 : ℤ) - 1 = 0 from by ring]
-    exact hg0
-  · intro hf
-    have hf1 : f 1 = c := hf
-    refine ⟨downOf f, ?_, shiftSeq_downOf f⟩
-    show downOf f 0 = c
-    rw [downOf_apply, show (0 : ℤ) + 1 = 1 from by ring]
-    exact hf1
-
-/-- **The pin at coordinate `1` is generated, without `τ`.**  This replaces
-`Seq.higmanGenerated_pinOne`, which is one of the three live consumers of the
-`tau` constructor. -/
-theorem higmanGenerated_pinOne' (c : ℤ) : HigmanGenerated (pinOne c) := by
-  rw [← sigmaOp_pinZero c]
-  exact HigmanGenerated.sigma (higmanGenerated_pinZero' c)
-
-/-! ## 3.  How far `τ` is derivable from the rest -/
+Placed here rather than in the fragment above because it is a fact about
+Higman's operation list, not about our chain. -/
 
 /-- A set with both window coordinates freed.  This is
 `HigmanAtoms.freeAt 1 ∘ HigmanAtoms.freeAt 0`, and
@@ -111,9 +113,9 @@ def freeWindow (B : Set E) : Set E :=
 
 If both window coordinates of `B` are pinned, transposing them is the same as
 freeing them and re-pinning them the other way round --- an intersection of a
-coordinate-freeing with two pins, and no transposition anywhere.  The reason it
-works is that on `B ∩ pinZero c ∩ pinOne c'` the window of the witness `g` is
-determined, so re-pinning cannot pick up a different `g`.
+coordinate-freeing with two pins, and no transposition anywhere.  It works
+because on `B ∩ pinZero c ∩ pinOne c'` the window of the witness is determined,
+so re-pinning cannot pick up a different witness.
 
 The general `τ` is the union of these over all `(c, c') ∈ ℤ × ℤ`, and the
 operation list has only the binary union.  That is exactly where derivability
@@ -139,5 +141,81 @@ theorem tauOp_windowClass (B : Set E) (c c' : ℤ) :
     exact ⟨g, hg, by rw [hf0', hg1], by rw [hf1', hg0], hrest⟩
 
 end Seq
+
+/-! ## 2.  The `τ`-free record, and the induction -/
+
+/-- **`OperationClosures` without the `tau` field.**
+
+`ρ` is not a field either: it is proved, by `operationClosures_rho`.  What is
+left is the base case `S` and four closures, and
+`benignTF_of_higmanGeneratedTF` is the proof that they suffice for every
+`τ`-free derivation. -/
+structure OperationClosuresTF where
+  /-- Higman's base case `S`. -/
+  base : BenignTF (Seq.ASub Seq.Sset)
+  /-- Closure under `θ`. -/
+  theta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.thetaOp B))
+  /-- Closure under `ζ`. -/
+  zeta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.zetaOp B))
+  /-- Closure under `π`. -/
+  pi : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.piOp B))
+  /-- Closure under `ωₘ`, for positive `m`. -/
+  omega : ∀ (m : ℕ), 0 < m → ∀ (B : Set Seq.E), BenignTF (Seq.ASub B) →
+    BenignTF (Seq.ASub (Seq.omegaOp m B))
+
+/-- **The induction, without `τ`.**  Every `τ`-free derivation gives a benign
+subgroup with a torsion-free witness, from five leaves rather than seven. -/
+theorem benignTF_of_higmanGeneratedTF (h : OperationClosuresTF) {B : Set Seq.E}
+    (hB : Seq.HigmanGeneratedTF B) : BenignTF (Seq.ASub B) := by
+  induction hB with
+  | zero => exact Seq.benignTF_ASub_Zset
+  | succ => exact h.base
+  | inter _ _ ih ih' => exact benignTF_ASub_inter ih ih'
+  | union _ _ ih ih' => exact benignTF_ASub_union ih ih'
+  | rho _ ih => exact operationClosures_rho _ ih
+  | sigma _ ih => exact benignTF_ASub_sigmaOp ih
+  | theta _ ih => exact h.theta _ ih
+  | zeta _ ih => exact h.zeta _ ih
+  | pi _ ih => exact h.pi _ ih
+  | omega m hm _ ih => exact h.omega m hm _ ih
+
+/-- **The `τ`-free record from five inputs.**
+
+The `τ`-free analogue of `Higman.operationClosures_of_inputs`, which takes six.
+`k` is the `ω` residue, `hbase` is Higman's base case `S`, and the three rows
+are the ones `Higman.OmegaClosure` and `Higman.OperationClosureTheta` consume.
+`ρ` is discharged inside, and `τ` does not appear. -/
+theorem operationClosures_of_inputs_tauFree (k : Omega.OmegaInput)
+    (hbase : BenignTF (Seq.ASub Seq.Sset))
+    (hhalf : BenignTF (Agree.rowSub Agree.piV))
+    (hzetaRow : BenignTF (Agree.rowSub Agree.zetaV))
+    (hevenRow : BenignTF (Agree.rowSub (MonoidHom.ker (Split.killOn Seq.evenIdx)))) :
+    OperationClosuresTF :=
+  have hzpo := Omega.zeta_pi_omega_closures hhalf hzetaRow k
+  { base := hbase
+    theta := Seq.benignTF_ASub_thetaOp_of_lanes hevenRow k
+    zeta := hzpo.1
+    pi := hzpo.2.1
+    omega := hzpo.2.2 }
+
+/-- **Higman's Section 2 in the `τ`-free form.**
+
+This is the requirement route C puts on the trace lane, and the only thing
+standing between `OperationClosuresTF` and the chain: every recursively
+enumerable set must be reachable by a derivation that never permutes
+coordinates.
+
+**Nothing inhabits this.** -/
+def HigmanTheoremThreeTF : Prop :=
+  ∀ B : Set Seq.E, REset B → Seq.HigmanGeneratedTF B
+
+/-- **Higman's Theorem 4, with `τ` off the critical path.**  Every recursively
+enumerable set has a benign subgroup with a torsion-free witness, from the
+`τ`-free record and the `τ`-free Section 2. -/
+theorem benignTF_ASub_of_re_tauFree (h₁ : OperationClosuresTF)
+    (h₂ : HigmanTheoremThreeTF) (B : Set Seq.E) (hB : REset B) :
+    BenignTF (Seq.ASub B) :=
+  benignTF_of_higmanGeneratedTF h₁ (h₂ B hB)
+
 end Higman
 end GroupApproximation
