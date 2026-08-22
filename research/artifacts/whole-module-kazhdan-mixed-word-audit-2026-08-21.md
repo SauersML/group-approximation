@@ -46,3 +46,24 @@ This is strictly narrower than the pre-existing finite spectral-probe and
 virtually-free residual fences: it identifies the exact semidirect relator
 where the Kazhdan bimodule fails and extends the marginal blindness to
 finite conjugation-balanced noncommutative words.
+
+## Positive conditional theorem
+
+The Kazhdan idea does become exact after one sharply defined correction.
+If a genuine representation `Theta_s` of `M rtimes A` on `L^2(M_d)` keeps
+the prescribed module action
+
+```text
+Theta_s(m)X=rho(s m)Xrho(m)^*,
+```
+
+then relative property `(T)` projects `pi(s)` to the `M`-fixed subspace.
+If its displacement on a finite relative Kazhdan set is at most `epsilon`,
+the full covariance supremum is at most `2 epsilon/kappa`.  The
+whole-module averaging identity then gives the fine transport energy.
+
+Thus the positive route no longer asks property `(T)` to perform an
+undefined operation.  Its exact missing theorem is
+`lamp-coupled-relative-bimodule-correction`: correct the free-product action
+to a semidirect-product representation while preserving its already exact
+`M` restriction and the finite Kazhdan-set displacement.
