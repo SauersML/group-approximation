@@ -86,6 +86,10 @@ for tail in product(library, repeat=5):
         projections.append(value)
     nontrivial = [(copy, value) for copy, value in enumerate(projections)
                   if value != P.ONE]
+    if tested % 1000 == 0:
+        # The faithful product cache otherwise retains every search-specific
+        # Bergman unit and grows linearly through a shard.
+        P.mul.cache_clear()
     if len(nontrivial) != 1:
         continue
     projection_survivors += 1
