@@ -37,3 +37,12 @@ sectors which do not activate the rank jump pay group-relator energy.
   word/derivation cost.  That weaker conclusion is sufficient for the
   geometrically weighted sequential ledger, but it does not establish this
   depth-independent target.
+- **Four-orbit linear actor.**
+  `toeplitz-transitive-pauli-actor-repairs-relative-cell` improves the
+  coordinate `sqrt(n)` square-function step to four prototype Weyl words.
+  It exactifies the honest finite semidirect product
+  `P_n semidirect SL_n(2)`, whose linear actor has four nonzero Weyl orbits
+  and a uniform Cayley gap.  This repairs the normalizer multiplicity twist,
+  but its multiplication-table derivations still cost `poly(n)`, so it gives
+  the polynomial sequential interface rather than the literal
+  depth-independent statement here.

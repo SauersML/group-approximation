@@ -37,6 +37,17 @@ constant independent of the existing Clifford rank.
   implemented by Clifford/metaplectic unitaries and has the classical
   Margulis spectrum, but the cited construction is for odd phase-space
   dimension and does not directly provide the binary nested tower here.
+- **Automatic mother-group test.**
+  `automatic-mother-expanders-do-not-normalize-leavitt-prefix-heads` proves
+  that the cyclic odometer `P_n` and the Thue--Morse diagonal `D_n` generate
+  every binary matrix algebra.  Hence the fixed Kazhdan generators of
+  `EL_3(F_2<x,y>)` do give uniform transitive expanders on the separate
+  finite natural modules.  The direct self-similar compiler nevertheless
+  fails exactly on off-diagonal prefix roots: the odometer's unequal
+  sections leave a tail multiplier.  Any inner normalizers compatible with
+  all nested full matrix heads factor into one-qubit tensor products and
+  cannot be transitive.  The missing operation is therefore a uniform
+  state-decoupling relation, not another finite-level expander.
 - `relative-t-heisenberg-adjoint-quantum-expansion` removes the need to
   internalize a quantum zig-zag circuit. A fixed relative Kazhdan set in a
   Jacobi-type group is automatically a constant-degree quantum expander in
