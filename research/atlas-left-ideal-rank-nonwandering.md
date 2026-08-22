@@ -185,3 +185,19 @@ or genuinely nonstationary coefficient data.
   or collision: any compactness proof must use those thirteen formulas to
   rule out precisely these growing-width outer-product frames; q14 and
   abstract coefficient cyclicity cannot do so.
+
+- **On the square-root frame the remaining problem is an explicit
+  two-matrix rank system.**
+  `atlas-square-root-bridge-two-matrix-rank-reduction` defines, for each of
+  the twelve packet cubes and collision, a fixed polynomial
+  `P_w(X,Y)` by evaluating the unipotent chart
+  `I+E13 tensor X+E14 tensor Y`.  After amplification by `I_k`, its residual
+  rank is exactly `k rank P_w`.  Adding the cyclic rank-one `E24` bridge
+  changes the rank of word `w` by at most twice its number of second-chart
+  syllables.  Consequently, generating pairs `X_s,Y_s in M_s(F2)` with all
+  thirteen `rank P_w=o(s)` compile at `k=s` to q14-exact, full-coefficient
+  microstates on dimension `4s^2`.  If one bridged residual remains nonzero,
+  its image is cyclic and gives `(LRN3)`.  The surviving positive target is
+  therefore a rank-density theorem for these thirteen explicit two-matrix
+  polynomials, modulo exact augmented zeros; this is the first place the
+  packet and collision formulas enter the growing-width sector.
