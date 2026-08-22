@@ -82,3 +82,10 @@ but the independently rounded pair no longer has relative product
 `S^(-2)RS` and need not recover one common dihedral involution.  Hence the
 coordinate-basin hypothesis is relative BS-core stability, not ordinary
 torsion spectral stability.
+
+`bs14-hs-stability-does-not-supply-relative-op-basin` rules out the next
+formal shortcut.  The rounded relative product is an operator-norm
+approximate BS implementer, but the established solenoid theorem repairs it
+only in normalized HS.  Exact BS cores can be `o(1)` apart in normalized HS
+and `sqrt(3)` apart in operator norm on one scalar packet, so that correction
+does not enter the mixed-norm Newton tube.

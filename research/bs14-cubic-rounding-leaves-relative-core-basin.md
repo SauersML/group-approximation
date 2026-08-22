@@ -103,3 +103,13 @@ The exact global survivor is therefore:
 No semiprojectivity theorem currently represented in Cairn establishes
 this **relative** statement.  Invoking stability of `z^3=1`, or compactness
 of fixed-dimensional conjugacy classes, stops at `(CSR3)`.
+
+The immediate attempt to absorb `Chat=Ahat^*Bhat` into the core is audited
+in `bs14-hs-stability-does-not-supply-relative-op-basin`.  It gives an
+operator-norm approximate BS pair `(Chat,S)` with defect at most `2 eta`,
+but the known BS theorem is normalized-HS stability.  Those topologies are
+separated even by exact cores differing on one scalar packet, and
+operator-norm stability of `BS(1,4)` remains open in the cited primary
+literature.  Moreover separate core correction does not preserve the common
+involution, so even a positive answer to that open BS question would still
+need a joint or contractive relative step.
