@@ -56,6 +56,19 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
 - **Use both branches only.**  Iterating `(BST8)` gives `2^n` equal-scale
   descendants, but matrices may grow exponentially and realize stationary
   regular flow.  Binary branching without a paid exit is not a contradiction.
+- **Canonical packet type weights do not authenticate the return
+  reservoir.**  `binary-schur-canonical-weights-have-half-reservoir-escape`
+  realizes the parent `M_(2D)` type with multiplicity `m` and the two target
+  types with multiplicities `(m/2,m/2)` on the same Hilbert space.  Along
+  `phi(a)=(a,a)` every old-packet word has exactly the same normalized
+  character moment, while both child-center weights are the canonical
+  `1/2`.  Either child nevertheless returns by an exact rectangular
+  inclusion/projection and leaves the other half unpaid.  Hence pre-reset
+  canonical traces and the complete finite packet type vector see the
+  stationary escape as a perfectly valid model.  The missing return cell
+  must authenticate a multiplicity coordinate across the branch (a
+  source-full Gram/support scalar or phase-sensitive incidence), not merely
+  recover the canonical type ray more accurately.
 - **Conjugate a child directly back to the parent.**  This would identify
   unequal finite-packet type vectors and is blocked by
   `hnn-conjugacy-cannot-return-schur-morita-multiplicity`.  The return must
