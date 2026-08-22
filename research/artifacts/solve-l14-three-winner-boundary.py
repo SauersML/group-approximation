@@ -288,6 +288,21 @@ def involution_substitution_killed(q_image, residual):
     return False
 
 
+def relator_difference_killed(q_image, residual):
+    """Detect q as a conjugate of the difference of two relators.
+
+    If r=s=1 then r s^-1=1.  This one normal-closure step catches residuals
+    whose longer relator differs from a shorter one by the target word.
+    """
+    q_key = cyclic_key(q_image)
+    for first in residual:
+        for second in residual:
+            difference = ALG.reduce_word(first + ALG.inverse(second))
+            if difference and cyclic_key(difference) == q_key:
+                return True
+    return False
+
+
 ENCODED_K = tuple((copy, S.encode(coefficient)) for copy, coefficient in C.K)
 
 
@@ -341,6 +356,7 @@ def main():
               if state not in direct and power_killed(state[2], state[1])]
     saturated = []
     involution_killed = []
+    difference_killed = []
     saturation_images = {}
     for state in nonempty:
         if state in direct or state in powers:
@@ -354,9 +370,12 @@ def main():
             saturated.append(state)
         elif involution_substitution_killed(reduced_q, reduced_residual):
             involution_killed.append(state)
+        elif relator_difference_killed(reduced_q, reduced_residual):
+            difference_killed.append(state)
     unresolved = [state for state in nonempty
                   if state not in direct and state not in powers
-                  and state not in saturated and state not in involution_killed]
+                  and state not in saturated and state not in involution_killed
+                  and state not in difference_killed]
     print(f"distinct_augmented_words={len(augmented_words)}")
     print(f"boundary_states={len(results)}")
     print(f"nonempty_q={len(nonempty)}")
@@ -365,6 +384,7 @@ def main():
     print(f"power_killed_q={len(powers)}")
     print(f"saturation_killed_q={len(saturated)}")
     print(f"involution_killed_q={len(involution_killed)}")
+    print(f"relator_difference_killed_q={len(difference_killed)}")
     print(f"unresolved_q={len(unresolved)}")
     for state in sorted(free)[:100]:
         print("FREE", state)
