@@ -43,6 +43,16 @@ almost representation of D + canonical character
     => their relative h-word has trace modulus near one.       (RDF2)
 ```
 
+There is a quantitative fence on the exact-dilation version of the remaining
+complement gate.  By
+`canonical-fold-leak-is-complement-energy-or-h-singularity`, the canonical
+block-swap moment forces either failure of a fixed lower singular bound for the compressed
+`h`-operator or a dimension-free positive lower bound on the best scaled
+complement-extension energy.  Hence complement synchronization is not a
+formal consequence of the full canonical character; proving `(RDF2)` must
+show that one branch of this dichotomy is incompatible with vanishing
+presentation defect.
+
 The joint near-exact sector is also complete.
 `sl3-arithmetic-double-near-exact-vertices-fold-projectively` proves
 `(RDF1)` whenever BOTH full vertex assignments approach exact

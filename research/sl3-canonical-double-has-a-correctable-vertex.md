@@ -41,6 +41,16 @@ must therefore be native to normalized HS, or supply a global
 replica-homogeneous correction inequality rather than invoke qualitative
 Frobenius stability.
 
+The full canonical mixed moment gives a sharp complement-synchronization
+dichotomy, but not the desired correction.
+`canonical-fold-leak-is-complement-energy-or-h-singularity` proves that in
+every exact-ambient polar realization of the block-swap witness, either the
+compressed fold generator `h` loses every fixed lower singular bound or **every**
+complement unitary pays a fixed scaled projective `C`-energy.  Thus
+canonicality cannot be used to choose the complement for free; a positive
+proof must charge that complement floor (or its singular alternative) to the
+original normalized-HS defect through joint boundary incidence.
+
 There is now one unconditional correction sector beyond the previously
 recorded near-exact cases.  By `subgroup-exact-outliers-do-not-exist`, if
 either vertex restriction is near exact on any one fixed finite-index subgroup
