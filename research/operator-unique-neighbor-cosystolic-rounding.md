@@ -82,3 +82,18 @@ original tuple because any PVM output has commuting marginals.  Therefore
 the LDPC parity/fundamental-cone structure must be used inside a spectral-
 mixture alignment or correction step before sequential measurement; generic
 random ordering necessarily pays the forbidden factor `L`.
+
+A parity-aware alternating-projection route is now reduced to one explicit
+spectral hypothesis.  `gapped-face-pinchings-give-same-hilbert-code-pvm-rounding`
+proves the desired correction if the average whole-face pinching Hamiltonian
+has a uniform gap above the common commutant, after
+`repeated-ldpc-shared-face-marginal-synchronization` has produced literal
+shared face marginals.  Conditional expectation then
+sends each coordinate into the **center** of that commutant, so spectral-sign
+rounding really yields one commuting tuple; classical LTC decoding finishes
+the code support.  The remaining claim is
+`repeated-ldpc-adjoint-face-hamiltonian-gap`, together with that face-
+synchronization step.  Ordinary LTC and unique-neighbor
+expansion do not state this operator/multiplicity-sector gap, so it must be
+proved from the low-rate complete-overlay system rather than assumed from
+the classical Tanner graph.
