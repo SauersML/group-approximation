@@ -61,6 +61,20 @@ canonical microstates provide exactly the hypothesis of `(UFS3)`.  Infinite
 order is sufficient but not necessary: a torsion word of order greater than
 `1/alpha` also works by choosing `N` above `1/alpha` and at most that order.
 
+The same conclusion holds for a fixed finite menu `u_1,...,u_r`, provided
+the same `alpha,N` work and
+
+```text
+u_i^k!=1                 (1<=i<=r, 1<=k<N).           (UFS6)
+```
+
+It is enough that every accurate microstate supply `(UFS1)` for **some**
+menu entry, which may depend on the microstate.  Along any hypothetical
+microstate sequence, one menu index occurs infinitely often; restricting to
+that subsequence reduces to the one-word theorem.  Thus finite clause or row
+pigeonholing costs no carrier alignment and no density factor beyond the
+minimum density already guaranteed for the selected entry.
+
 This removes a load-bearing-looking requirement from localized-return
 constructions.  A boundary, groupoid, Toeplitz, or finite-coordinate decoder
 does **not** have to identify its returned subspace with a fixed

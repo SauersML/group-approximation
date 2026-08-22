@@ -44,3 +44,7 @@ nonidentity words `u^k`, `0<|k|<N`, have canonical trace zero.  Thus their
 profile errors give `eta->0`.  The assumed contractions give
 `epsilon->0` and `||X||_2^2>=alpha-o(1)`.  The lower bound tends to `N alpha>1`
 while the upper bound tends to `1`, a contradiction.
+
+For a fixed finite menu, choose an index occurring infinitely often among
+the model-dependent successful entries and pass to that subsequence.  The
+same `alpha,N` and the corresponding inequalities above are unchanged.
