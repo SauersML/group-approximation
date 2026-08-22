@@ -71,3 +71,12 @@ one flag qubit, but the same controlled swap exactly completes the cell at
 every losing mass.  Thus `k=1` localization is solved conditionally; the
 remaining transducer must be noncompletable in finite dimensions rather than
 merely expose the losing carrier.
+
+Nor can an infinite actor make the exact predicate reflection into one
+universally scalar word.  `universal-central-selector-word-is-affine-for-any-actor`
+uses the faithful regular trace to show that any word with prescribed scalar
+values on every central marked selector atom lies in the elementary-abelian
+selector subgroup and hence has affine phase.  Thus the nonlinear payment
+cell must retain a non-scalar operator coordinate and use a matrix-only
+estimate; moving from a finite packet to an infinite actor does not by itself
+wordize the forbidden projection.
