@@ -6,9 +6,10 @@ The quotient is
     (A8 * A8) / << thirty shortest A4 pair-cubes, q_19243 >>.
 
 If it has order 20160, the known aligned map onto A8 identifies it with A8.
-The exporter also tests four aligned bridge generators, so a run can still
-produce useful normal-closure certificates when a full size computation is
-too expensive.
+The exporter also tests four aligned bridge generators.  With ``--low-index``
+it asks GAP for every transitive coset action through a specified degree and
+reports the image orders of both marked A8 factors without first computing
+the usually harder order of the whole quotient.
 """
 
 import argparse
@@ -50,6 +51,12 @@ def embedded_word(word):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--skip-size", action="store_true")
+    parser.add_argument(
+        "--low-index",
+        type=int,
+        default=0,
+        help="enumerate subgroups through this index and report finite actions",
+    )
     parser.add_argument(
         "--core",
         action="store_true",
@@ -126,8 +133,26 @@ def main():
     print('Print("simplified_relators ",Length(RelatorsOfFpGroup(Q)),"\\n");')
     print("K1:=Image(simp,Image(nat,Image(e1,F)));;")
     print("K2:=Image(simp,Image(nat,Image(e2,F)));;")
-    print('Print("first_factor_size ",Size(K1),"\\n");')
-    print('Print("second_factor_size ",Size(K2),"\\n");')
+    if not args.low_index:
+        print('Print("first_factor_size ",Size(K1),"\\n");')
+        print('Print("second_factor_size ",Size(K2),"\\n");')
+
+    if args.low_index:
+        print("lowIndexSubgroups:=LowIndexSubgroupsFpGroup(Q,%d);;" % args.low_index)
+        print('Print("low_index_bound %d\\n");' % args.low_index)
+        print('Print("low_index_subgroups ",Length(lowIndexSubgroups),"\\n");')
+        print("for lowIndexSubgroup in lowIndexSubgroups do")
+        print("  lowIndexCosets:=RightCosets(Q,lowIndexSubgroup);;")
+        print("  lowIndexAction:=ActionHomomorphism(Q,lowIndexCosets,OnRight);;")
+        print("  lowIndexImage:=Image(lowIndexAction);;")
+        print("  lowIndexK1:=Image(lowIndexAction,K1);;")
+        print("  lowIndexK2:=Image(lowIndexAction,K2);;")
+        print("  if Size(lowIndexImage)>1 then")
+        print('    Print("NONTRIVIAL_LOW_INDEX degree=",Length(lowIndexCosets),')
+        print('          " image_order=",Size(lowIndexImage),')
+        print('          " K1=",Size(lowIndexK1)," K2=",Size(lowIndexK2),"\\n");')
+        print("  fi;")
+        print("od;")
 
     alignment = matrix_from_key(bytes.fromhex(INNER_ALIGNMENT_HEX))
     alignment_inverse = gf2_inv(alignment)

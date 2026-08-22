@@ -56,3 +56,12 @@ sixty-second signal probe reached GAP's automatic coset-table enlargement and
 was terminated; it produced neither an order nor factor-image sizes.  This
 supersedes the obsolete binary diagnosis for future runs, but it does not
 change the mathematical status of the quotient.
+
+The exporter additionally accepts `--low-index N` and reports every
+nontrivial transitive coset action through degree `N`, including the image
+orders of both marked `A8` factors.  On 2026-08-22 the exact **full
+thirty-word** presentation was run on MSI with `N=12` and a hard 180-second
+cap.  GAP entered low-index coset enumeration and enlarged its coset table
+twice, but the cap expired before it returned a subgroup list.  This is an
+inconclusive bounded run, not a zero-subgroup census and not evidence that the
+quotient has no finite images.
