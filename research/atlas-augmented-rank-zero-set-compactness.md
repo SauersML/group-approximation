@@ -141,3 +141,11 @@ lane.
   statement directly into `(ARC1)`.  A countermodel is precisely a sequence
   with a vanishing-rank named seed but `I E=E`; the fixed-width theorems force
   any such sequence to use growing state width or nonstationary data.
+- **Ordinary Bass--Serre Folner truncations miss the marked face.**
+  `atlas-edge-folner-modules-miss-natural-type` gives a fixed modular rank
+  obstruction: a transvection has normalized `rank(t-I)=1/2` on the free
+  chart orbits forming the bulk of an edge-induced graph module, but value
+  `1/4` on every repeated natural chart.  Boundary changes of `o(m)` rank do
+  not close that gap.  Hence the infinite chart-coset graph does not itself
+  supply a countermodel; one needs positive-density nonfree chart cells whose
+  relation errors cancel by a mechanism beyond ordinary Folner compression.

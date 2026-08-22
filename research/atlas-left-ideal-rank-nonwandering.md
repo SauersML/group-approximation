@@ -73,3 +73,10 @@ or genuinely nonstationary coefficient data.
   exact binary-Leavitt image, where both chart copies remain faithful.
   Any positive certificate must use finite-module rank selection rather than
   ordinary ideal membership.
+- **Bass--Serre Folner compression has the wrong modular chart type.**
+  `atlas-edge-folner-modules-miss-natural-type` compares one transvection:
+  its normalized `rank(t-I)` is `1/2` on every free/regular edge-orbit module
+  but `1/4` on `V^m`.  A vanishing-density boundary cannot pay this fixed
+  gap.  Thus truncating the infinite chart-coset graph does not construct
+  `(LRN3)`; a negative model needs positive-density nonfree chart cells and
+  a new mechanism keeping all thirteen residual images small there.
