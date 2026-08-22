@@ -1,0 +1,30 @@
+---
+rg: 2
+id: finite-support-one-sided-stabilizers-are-torsion
+kind: claim
+title: A group element stabilizing a nonzero finite-support group-algebra element is torsion
+distinct_from:
+  finite-support-corner-localizes-obstruction: that localizes a completed non-CE corner to its support subgroup; this classifies one-sided equality of literal group elements on a single finite-support mask.
+  common-corner-literal-contexts-stop-at-bass-serre: that proves a compressed group unitary stabilizes a projection and excludes a whole hyperlinear gluing class; this is the elementary support-level stabilizer calculation with no BCS assumption.
+---
+
+Let
+
+```text
+0!=q=sum_(h in S)c_h h in C[Gamma]                    (FSS1)
+```
+
+have finite support.  If `gq=q`, then left multiplication by `g` permutes
+`S` and preserves its coefficients along every cycle.  In particular `g`
+has finite order.  Hence in a torsion-free group `gq=q` forces `g=1`.
+
+More generally,
+
+```text
+aq=bq  implies  b^(-1)a in Stab_Gamma(q).             (FSS2)
+```
+
+Thus many distinct literal words cannot imitate unrelated marginal matrices
+on one finite-support right ideal unless the necessary differences lie in a
+finite stabilizer.  Rowwise Hecke interpolation must use multi-piece
+group-algebra elements rather than literal one-sided stabilizers.

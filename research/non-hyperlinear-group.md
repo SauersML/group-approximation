@@ -57,6 +57,20 @@ twisted self-similar Clifford, projective phase, matricial separator, and
 quantum-index routes are compared in
 `research/artifacts/trace-promotion-renormalization-program-2026-08-20.md`.
 
+A new finite endpoint removes the common-carrier requirement from the BCS
+lane.  `independent-row-masks-transfer-bcs-gap-to-ambient-identity` shows
+that exact predicate and consistency rows may use unrelated masks: their
+weighted canonical codimensions only have to total less than the fixed game
+gap.  `finite-row-mask-group-algebra-certificate-forces-nonhyperlinear`
+then turns any such finite ordinary-group-algebra certificate into a
+dimension-free canonical normalized-HS obstruction.  The local storage and
+density ledger are exact via the almost-full simple block in
+`affine-frobenius-group-has-almost-full-simple-block`; the sole construction
+gate is `affine-frobenius-hecke-crt-shared-involution-interpolation`, which
+must produce one global involution per variable on several fixed,
+noncommuting large right ideals.  This is a conditional reduction, not yet
+an unconditional nonhyperlinear group.
+
 The breakout portfolio of 2026-08-21 is recorded in
 `research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md`. Its
 three main orthogonal moves are: weaken arithmetic RCC to the projective

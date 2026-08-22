@@ -50,3 +50,12 @@ supports of `q` and of every atlas projection stay in their hyperlinear
 subgroup.  To evade this statement one must put an actually load-bearing
 nonhyperlinear relation into the finite support of the overlap equations;
 ambient decoration cannot supply it.
+
+This support-localization theorem should not be confused with
+`finite-support-one-sided-stabilizers-are-torsion`.  The latter is an
+elementary obstruction to equations of the form `aq=bq` with literal group
+elements: the quotient `b^(-1)a` must permute the finite support of `q` and is
+therefore torsion.  Together they say that a rowwise Hecke-CRT construction
+must put genuinely multi-piece, load-bearing group-algebra coefficients into
+the overlap equations; neither ambient decoration nor literal translations
+can supply the missing interpolation.

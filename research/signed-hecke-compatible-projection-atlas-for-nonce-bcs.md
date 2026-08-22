@@ -31,7 +31,21 @@ group-ring expression. Piecewise transport as in `(PGT1)--(PGT4)` is allowed;
 no uniqueness of trace, quotient map, asymptotic decoder, or prescribed BCS
 trace is required.
 
+There is now a strictly weaker alternative endpoint.
+`rowwise-hecke-crt-certificate-for-nonce-bcs` does not require `(BPA3)` in one
+common corner or a homomorphism of the whole BCS algebra.  It asks only that
+each predicate and consistency equality hold on its own high-mass right-ideal
+mask.  The context PVMs and the shared-variable involutions themselves remain
+global, so the rowwise freedom cannot be used to change the BCS semantics.
+
 ## Attempts
+
+- **Independent masks weaken the endpoint without weakening the game gap.**
+  `independent-row-masks-transfer-bcs-gap-to-ambient-identity` bounds the
+  unconditional `G=I` BCS energy from separately masked rows.  Therefore the
+  exact weighted deficit condition `D_row<Delta` already forces a canonical
+  matrix obstruction.  The resulting Hecke-CRT route is not a solution of
+  this stronger common-corner claim; it is a separate path around it.
 
 - The trivial finite-subgroup average is impossible by
   `augmentation-one-corner-retains-a-character`.

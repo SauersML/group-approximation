@@ -155,3 +155,11 @@ The argument is deliberately matrix-only.  A perfect commuting strategy
 may exist in an infinite tracial algebra even though the finite game has
 gap `Delta`; thus this criterion does not incorrectly reject the intended
 non-Connes-embeddable exact witness.
+
+There is a separate, strictly rowwise alternative when no useful meet can be
+authenticated.  `independent-row-masks-transfer-bcs-gap-to-ambient-identity`
+tests the same global context PVMs and Bob involutions against `G=I`, allows a
+different projection for every predicate and consistency row, and pays their
+weighted codimensions directly.  Exact rows are then impossible as soon as
+that weighted deficit is below `Delta`.  This does not improve `(HD5)` for a
+known common meet; it bypasses the meet construction altogether.

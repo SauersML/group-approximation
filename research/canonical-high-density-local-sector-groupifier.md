@@ -50,6 +50,15 @@ once.  However equal local Plancherel masses do not imply `(CHD3)`:
 `plancherel-marginals-do-not-control-sector-meet` realizes both the shared
 and disjoint extremes inside one finite abelian regular packet.
 
+The rowwise Hecke-CRT target is a genuinely weaker bypass of this claim.
+`independent-row-masks-transfer-bcs-gap-to-ambient-identity` permits private
+predicate and incidence masks and never forms their meet; its exact threshold
+is the weighted row deficit `D_row<Delta`.  Consequently
+`rowwise-hecke-crt-certificate-for-nonce-bcs` does not need `(CHD1)` or
+`(CHD3)`.  It still needs one global context PVM and one global involution per
+shared variable, so it does not license incidencewise replacement of the
+logical observables.
+
 ## Attempts
 
 The common irreducible selected-type atlas does not meet `(CHD1)`: a central
@@ -92,3 +101,14 @@ The route `high-density-via-standard-reflection-corner` leaves only
 `standard-reflection-sector-bcs-groupifier`: enforce the BCS and overlap rows
 on this noncentral common complement by a block-escaping algebraic corner
 construction.
+
+For the rowwise bypass, `affine-frobenius-group-has-almost-full-simple-block`
+gives a stronger absolute-density packet: one primitive block has canonical
+mass `1-1/p` and is the full algebra `M_(p-1)(C)`.  Hence
+`affine-frobenius-packets-solve-local-row-mask-storage` realizes every
+rational local context profile with arbitrarily small predicate deficit.
+This does not solve the claim above or the shared-variable problem.  The
+remaining operation is exactly
+`affine-frobenius-hecke-crt-shared-involution-interpolation`: one global
+group-algebra involution must agree with several fixed context marginals on
+different large noncommuting right ideals.
