@@ -65,3 +65,12 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   `K x Gamma_H`, and the contextual multiplicity model survives.  A remaining
   packet construction must use genuinely outer/projective or multi-variable
   coupling, not an inner Pauli label field.
+- **Use outer Clifford-normalizer labels.**  A fixed projective cocycle still
+  does not help.  If `C_alpha C_beta=c(alpha,beta)C_(alpha beta)`, the
+  multiplicity space can carry `conjugate(C_alpha)`, whose cocycle is inverse.
+  Then `C_alpha tensor conjugate(C_alpha)` is an honest 16-dimensional label
+  action, and tensoring any contextual code model gives an exact normalizing
+  representation.  Outer labels pulled back from a locally satisfied finite
+  automorphism system therefore reduce to affine phase shifts with a fixed
+  absorber.  Only genuinely multi-occurrence coupling not factored through a
+  finite local label solution remains.

@@ -64,3 +64,12 @@ is an inner gauge twist: `y_i=k_i^{-1}r_i` centralizes K, and the K-valued
 local solution cancels from every face.  The universal group is exactly the
 same `K x Gamma_H` in skewed generators.  Thus only outer/projective or
 genuinely multi-variable packet coupling could improve the face gap.
+
+Outer Clifford labels also fail when they form a finite local automorphism
+solution.  Their Schur intertwiners carry a finite projective cocycle, but the
+conjugate Clifford packet carries the inverse cocycle.  The tensor product is
+an honest fixed 16-dimensional action, which can be further tensored with
+every contextual code representation.  Thus neither inner nor outer
+single-occurrence labels remove the multiplicity escape; a surviving packet
+mechanism must impose relations coupling several occurrences beyond a finite
+label pullback.
