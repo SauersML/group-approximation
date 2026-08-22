@@ -12,10 +12,6 @@ P = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(P)
 
 
-def inverse(unit):
-    return P.canon({(right, left) for left, right in unit})
-
-
 def reduce_word(word):
     stack = []
     for copy, unit in word:
@@ -29,10 +25,6 @@ def reduce_word(word):
     return tuple(stack)
 
 
-def inverse_word(word):
-    return tuple((copy, inverse(unit)) for copy, unit in reversed(word))
-
-
 def multiply_words(*words):
     return reduce_word(sum(words, ()))
 
@@ -44,11 +36,19 @@ def multiply(*units):
     return result
 
 
-u, v = multiply(P.A, P.B), multiply(P.C, P.D)
-library = (("1", P.ONE), ("h", P.TARGET), ("u", u), ("v", v),
-           ("v-", inverse(v)), ("a", P.A), ("b", P.B),
-           ("c", P.C), ("d", P.D), ("r", P.R), ("p", P.P),
-           ("e", P.E))
+u, u_inverse = multiply(P.A, P.B), multiply(P.B, P.A)
+v, v_inverse = multiply(P.C, P.D), multiply(P.D, P.C)
+# Entries carry their algebraic group inverse.  The Bergman chart is a ring
+# chart, not a unitary *-representation: transposing partial-bijection terms
+# is NOT group inversion for elementary matrices.
+library = (("1", P.ONE, P.ONE),
+           ("h", P.TARGET, P.TARGET_INV),
+           ("u", u, u_inverse), ("v", v, v_inverse),
+           ("v-", v_inverse, v),
+           ("a", P.A, P.A), ("b", P.B, P.B),
+           ("c", P.C, P.C), ("d", P.D, P.D),
+           ("r", P.R, P.RINV), ("p", P.P, P.PINV),
+           ("e", P.E, P.E))
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--shard", type=int, choices=range(len(library)),
@@ -60,15 +60,19 @@ for tail in product(library, repeat=5):
     assignment = (library[args.shard],) + tail
     names = tuple(entry[0] for entry in assignment)
     x, r, y, a, b, c = (entry[1] for entry in assignment)
-    q = multiply(inverse(x), inverse(y))
+    x_inverse, r_inverse, y_inverse, a_inverse, b_inverse, c_inverse = (
+        entry[2] for entry in assignment)
+    q = multiply(x_inverse, y_inverse)
+    q_inverse = multiply(y, x)
     h_word = ((0, b), (1, c), (2, q), (3, a))
-    h_inverse = inverse_word(h_word)
-    b0 = ((0, a), (1, b), (2, c), (3, inverse(x)))
+    h_inverse = ((3, a_inverse), (2, q_inverse),
+                 (1, c_inverse), (0, b_inverse))
+    b0 = ((0, a), (1, b), (2, c), (3, x_inverse))
     b1 = ((0, q), (1, a), (2, b), (3, c))
-    e1_inverse = ((3, inverse(y)),)
-    e5_inverse = ((0, inverse(multiply(c, r))),)
-    e4_inverse = ((3, inverse(b)), (2, inverse(a)),
-                  (1, inverse(q)), (0, r))
+    e1_inverse = ((3, y_inverse),)
+    e5_inverse = ((0, multiply(r_inverse, c_inverse)),)
+    e4_inverse = ((3, b_inverse), (2, a_inverse),
+                  (1, q_inverse), (0, r))
     boundary = multiply_words(h_inverse, b0, h_inverse, b1,
                               e1_inverse, h_inverse, e5_inverse,
                               h_word, e4_inverse, h_word)
@@ -93,4 +97,3 @@ for tail in product(library, repeat=5):
 
 print("shard", args.shard, "x", library[args.shard][0], "tested", tested,
       "projection_survivors", projection_survivors, "hits 0", flush=True)
-
