@@ -132,3 +132,16 @@ coordinate-constant, destroying block escape; a nonconstant tuple has a
 source deficit.  In the Steinberg model, the gap remains `(OHR6)`.  Thus the
 open content is precisely finite-dimensional `L^2` authentication on the
 same capacity reservoir, not missing group syntax.
+
+## Native R6 guard audit
+
+`r6-guard-is-visible-but-guarded-source-is-not-a-word` shows that the native
+guard `G=(1+J X_tilde Z_tilde X_tilde Z_tilde)/2` is already a projection
+of one literal word.  The useful source moment is nevertheless the guarded
+overlap `G P X_tilde P X_tilde`.  Its reflection has a seven-positive,
+one-negative truth table on the three commuting guard/child bits and cannot
+be an ordinary word.  The regular representation of `C2 times S4` satisfies
+the guarded multiplicative reflection skeleton exactly while this overlap
+has trace `1/8`; tensoring any fixed D16 packet preserves it.  Thus R6 names
+the selector but does not close the source-Gram wordization or exclude the
+stationary wrong-sector model.
