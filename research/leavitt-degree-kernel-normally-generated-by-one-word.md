@@ -71,7 +71,15 @@ unspecified element to kill.
    is `G *_(C_4) G`.  A viable word must avoid reduction to a single root
    adjunction, so at least three blocks or an asymmetric sign pattern is the
    next honest search space.
-7. **Reality check, recorded because this claim reads more tractable than it
+7. **Use the minimal asymmetric three-block root cycle.**  The word
+   `x_12(1) t x_23(1) t x_31(1) t^(-1)` has depth pattern `(0,1,2)` and no
+   solution inside `GL_3(F_2)`, but all its coefficients lie in that finite
+   subgroup.  By `three-root-asymmetric-kl-word-has-finite-core-pushout`, the
+   full quotient is the amalgam `G *_(GL_3(F_2)) P_H` and still embeds `G`.
+   Constant root packets and finite prefix packets are therefore categorically
+   the wrong coefficient source; the coefficients must generate a subgroup
+   outside every class where KL is already known.
+8. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
    The honest reading — inherited from
