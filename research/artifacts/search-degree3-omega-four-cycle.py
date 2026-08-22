@@ -141,45 +141,62 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--shard", type=int, default=0)
 parser.add_argument("--shards", type=int, default=1)
 parser.add_argument("--packet", default=",".join(DEFAULT_PACKET))
+parser.add_argument("--length", type=int, default=7, choices=(7, 9))
 args = parser.parse_args()
 assert 0 <= args.shard < args.shards
 packet = tuple(args.packet.split(","))
-assert len(packet) == 7 and all(name in P.UNITS for name in packet)
+assert len(packet) == args.length and all(name in P.UNITS for name in packet)
 
 topologies = []
-for negative in combinations(range(7), 2):
-    signs = tuple(-1 if index in negative else 1 for index in range(7))
+negative_count = (args.length - 3) // 2
+desired_valences = [1, 3, 3] if args.length == 7 else [1, 1, 7]
+for negative in combinations(range(args.length), negative_count):
+    signs = tuple(-1 if index in negative else 1
+                  for index in range(args.length))
     sample = tuple(orbit_word(packet, signs, start) for start in range(3))
     valences = tuple(sum(token[0] == "z" for token in word)
                      for word in sample)
-    if sorted(valences) == [1, 3, 3]:
+    if sorted(valences) == desired_valences:
         topologies.append((negative, signs, valences))
 
-assert len(topologies) == 14
+assert len(topologies) == (14 if args.length == 7 else 9)
 tested = 0
 for topology_index, (negative, signs, valences) in enumerate(topologies):
     if topology_index % args.shards != args.shard:
         continue
-    pivot = valences.index(1)
-    residual = tuple(index for index in range(3) if index != pivot)
+    unary = tuple(index for index, value in enumerate(valences) if value == 1)
     layouts = (permutations(packet) if len(set(packet)) == len(packet)
                else multiset_permutations(packet))
     for slots in layouts:
         tested += 1
         words = tuple(orbit_word(slots, signs, start) for start in range(3))
-        z_value = unary_value(words[pivot])
-        assert z_value is not None
-        relations = tuple(substitute(words[index], z_value)
-                          for index in residual)
-        difference = cyclic_reduce(reduce_units(
-            relations[1] + inverse_normal_form(relations[0])))
-        if (len(difference) == 1 and
-                difference[0][1] in (P.TARGET, P.TARGET_INV)):
-            print("HIT", "negative", negative, "signs", signs,
-                  "slots", slots, "pivot", pivot, "residual", residual,
-                  "z_value", z_value, "relations", relations,
-                  "difference_copy", difference[0][0], flush=True)
-            raise SystemExit(42)
+        for pivot in unary:
+            z_value = unary_value(words[pivot])
+            assert z_value is not None
+            residual = tuple(index for index in range(3) if index != pivot)
+            relations = tuple(substitute(words[index], z_value)
+                              for index in residual)
+            if args.length == 7:
+                difference = cyclic_reduce(reduce_units(
+                    relations[1] + inverse_normal_form(relations[0])))
+                hit = (len(difference) == 1 and
+                       difference[0][1] in (P.TARGET, P.TARGET_INV))
+                difference_copy = difference[0][0] if hit else None
+            else:
+                other_unary = next(index for index in unary if index != pivot)
+                other_position = residual.index(other_unary)
+                target_position = 1 - other_position
+                target = cyclic_reduce(relations[target_position])
+                hit = (not relations[other_position] and len(target) == 1 and
+                       target[0][1] in (P.TARGET, P.TARGET_INV))
+                difference_copy = target[0][0] if hit else None
+            if hit:
+                print("HIT", "negative", negative, "signs", signs,
+                      "slots", slots, "pivot", pivot,
+                      "residual", residual, "z_value", z_value,
+                      "relations", relations,
+                      "difference_copy", difference_copy, flush=True)
+                raise SystemExit(42)
 
 print("topologies", len(topologies))
 print("tested", tested)
