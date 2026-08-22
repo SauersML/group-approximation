@@ -100,3 +100,10 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   HS loss is exactly one half of the square-clause defect.  This avoids the
   branch-flip Morita cancellation.  The remaining construction gate is raw-
   lift exposure: the current Atlas interface names only `[W] in PGL`.
+- **Compress the Toeplitz stable letter from one child into the full head.**
+  This gives an exact rectangular section, but it does not wordize the
+  phase-payment cell. For a closed unitary word `h` and source cut `p`,
+  `ph^2p=(php)^2+ph(1-p)hp`. If `php` is unitary, `p` reduces `h` and the
+  other child is an unpaid direct-sum spectator; otherwise the cross term
+  prevents `h^2=J` from implying the required corner square. This sharp
+  dichotomy is `toeplitz-child-section-loses-square-or-exit`.

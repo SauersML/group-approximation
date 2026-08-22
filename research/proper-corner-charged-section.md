@@ -36,3 +36,9 @@ Morita matrix units; neutral same-carrier expressions remain phase-blind.
 - A universal exact rectangular isometry contradicts finite-factor trace
   monotonicity. The viable statement must emerge only after finite-matrix HS
   correction or from a genuinely nonunital/properly infinite corner packet.
+- The direct binary Toeplitz section is now ruled out by
+  `toeplitz-child-section-loses-square-or-exit`. A nonreducing closed loop has
+  an uncontrolled cross term in its compressed square; if its compression is
+  unitary, the source corner reduces the loop and the complementary child is
+  an unpaid spectator. The missing ingredient is therefore a matrix-only
+  positive Gram/support correction, not another ordinary square relation.
