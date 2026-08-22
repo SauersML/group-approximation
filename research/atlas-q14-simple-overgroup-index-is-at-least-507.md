@@ -21,3 +21,5 @@ exact `M23` double-coset screen shows more strongly that the packet already
 forces those two chart subgroups to coincide, contrary to generation of
 `M23`.
 
+The next CFSG order interval is closed by
+`atlas-q14-simple-overgroup-index-is-at-least-991`.
