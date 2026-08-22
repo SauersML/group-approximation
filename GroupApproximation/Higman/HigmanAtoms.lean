@@ -37,6 +37,32 @@ variables `f 0, …, f (n-1)`, read as a subset of `Seq.windowSupport n`, and th
 five atoms above are transported to it, together with `∧`, `∨`, and their
 finite forms over a `Finset` of indices.
 
+The position level is the load-bearing one, and it is the level the rest of the
+fan-out asks this module for: the arity wrapper is
+`Seq.restrictArity` of `Higman/HigmanVariableCalculus.lean` and the tuple
+carrier is `Seq.windowCoords` of `Higman/HigmanCodingDictionary.lean`, which
+needs it `Primcodable`.  `Seq.winVars` here is that same function --- both are
+`fun k => f (k.val : ℤ)`, so they are definitionally equal --- kept only so that
+this module stands alone while none of the three files has been compiled.  Once
+they have, `winVars` should be collapsed into `windowCoords` and `winRel n P`
+read as `restrictArity n {f | P (windowCoords n f)}`, which it equals up to
+`Set.inter_comm`; `winRel_subset` is already definitionally the `IsArity n` of
+that module.
+
+## Canonical variable order, and the absence of `τ`
+
+The atoms below are built **at** their index and never permuted into place: the
+relation is parameterized by the index, proved at index `0`, and moved by `σ`
+and `σ⁻¹` (`succRel_zero_eq` with `sigmaOp_succRel` / `sigmaInvOp_succRel`;
+`freeCoord` from `ζ` the same way).  No transposition of coordinates occurs
+anywhere in this file, and `HigmanGenerated.tau` is not used, directly or
+through anything this module imports --- the import closure runs through
+`AgreeClosure`, `GeneratedEnumeration`, `GeneratedTransition`, `GeneratedValue`,
+`OperationClosureTheta` and `FinalReduction`, and none of them names it.  So
+every atom here survives the removal of `τ` from the chain.  In particular
+`higmanGenerated_pinAt`, which `winRel_eqConst` rests on, is `τ`-free: the
+`GeneratedValue` induction runs on `σ` and the down-shift `ρσρ`.
+
 `winRel` is the shape the trace construction wants for its relation `A` between
 adjacent blocks: `transitionSet k A` is `{f | ∀ r, windowAt (2k) (k r) f ∈ A}`,
 and `windowAt` is supported in `[0, 2k)`, so `A` is only ever tested on
