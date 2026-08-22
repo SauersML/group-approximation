@@ -3,11 +3,17 @@ rg: 2
 id: atlas-a4-root-energy-ellipse-ceiling
 kind: claim
 title: One ellipsoidal scalar in square-root four-cycle energies beats the 19243 wall
+refuted_by: atlas-m2-escape-kills-collision-only-scalars
 distinct_from:
   atlas-a4-joint-weighted-cycle-ceiling: that target leaves five positive weights existentially quantified; this target analytically eliminates all of them and retains only one nonlinear scalar of the four trace deficits.
   atlas-a4-anisotropic-four-cycle-ceiling: that target uses a fixed diagonal Cauchy budget; this target uses the exact triangle envelope and the optimized weighted S3 exchange rate.
   atlas-a4-root-ellipse-exact-tracial-escape: that gives an exact finite-factor zero of all packet/collision residuals with ellipse value 73; the present claim can therefore only be a matrix-specific trace-exclusion statement.
 ---
+
+**Refuted.**  On the exact multiplicity-two regular packet/collision witness,
+`x_23=1`, hence `S>=2` and the ellipse functional is at least `4`, not less
+than `3/128`.  This is a finite-dimensional countermodel, stronger than the
+previous universal-tracial fence.
 
 Let `U_n` be a normalized exact-regular A4 context-network sequence in the
 fixed reference-aligned coordinates.  In addition to the thirty vanishing A4

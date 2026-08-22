@@ -51,3 +51,12 @@ must also control coherent errors, not only Pauli errors supplied in advance.
   columns of a dimension-`n`, length-`Theta(n)` code repairs global Pauli
   rigidity with logarithmic sampling, but only up to a global isometry; pinning
   that isometry to the named tape sites is still precisely the present claim.
+- Classical expander parity checks cannot supply that pinning by themselves.
+  `expander-parity-checks-have-dense-clifford-shears` constructs, from every
+  nonzero codeword `v`, a zero-defect Clifford shear which fixes all check
+  words and the entire transverse `Z` chart pointwise but moves every named
+  `X` site in `supp(v)` by normalized-HS distance `sqrt(2)`.  For a
+  positive-distance code this is a linear-size invisible named-site error.
+  The claim must therefore either make the computation payload gauge-covariant
+  or add transverse incidence that kills the codeword-shear kernel; Tanner
+  expansion and parity repetition alone cannot prove it.

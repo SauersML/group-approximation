@@ -3,6 +3,7 @@ rg: 2
 id: atlas-a4-four-cycle-trace-compiler
 kind: claim
 title: Four scalar covariance traces and collision 19243 suffice for the A8 holonomy gap
+refuted_by: atlas-m2-escape-kills-collision-only-scalars
 artifacts:
   - experiments/atlas_a4_classical_two_holonomy_profile.py
   - experiments/atlas_a8_four_cycle_raw_s3.py
@@ -11,6 +12,11 @@ distinct_from:
   atlas-a4-collision-assisted-opaque-star-compiler: that stronger target constructs three operator-valued conjugacy transports; this target asks only for one averaged real-trace inequality plus one scalar collision readout.
   atlas-a4-alignment-moment-simplex-rounding: that rounds thirty-one kernel-word moments to a 40320-point classical simplex; this target keeps only the four transvection coboundary moments used by the final commutant Poincare inequality.
 ---
+
+**Refuted.**  The exact multiplicity-two regular witness has zero packet and
+collision defects but `Re tau(V(t23))=0`.  Thus `(A4-TRACE-2)` reads `1<=0`.
+The witness violates q14, so this refutation does not decide the augmented
+matrix-only lane.
 
 Use the minimal four-transvection cycle
 

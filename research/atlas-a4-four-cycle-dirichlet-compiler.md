@@ -3,6 +3,7 @@ rg: 2
 id: atlas-a4-four-cycle-dirichlet-compiler
 kind: claim
 title: One scalar four-transvection Dirichlet energy is enough to compile the A4 atlas
+refuted_by: atlas-m2-escape-kills-collision-only-scalars
 artifacts:
   - experiments/atlas_a4_classical_two_holonomy_profile.py
   - experiments/atlas_a8_four_cycle_raw_s3.py
@@ -11,6 +12,10 @@ distinct_from:
   atlas-a4-four-cycle-trace-compiler: that stronger target transfers the collision trace separately to three leaf traces; this target asks only for the final sum of four trace deficits.
   atlas-a4-relative-packet-commutator-collapse: that stronger target controls ten packet-letter commutators; this target controls only the minimal four-transvection generating cycle.
 ---
+
+**Refuted.**  The exact multiplicity-two regular witness has zero packet and
+collision residual but its `t23` Dirichlet summand is one, so `(A4-DIR)` is
+false for every finite constant.
 
 For the normalized exact-regular A4 context network, let
 

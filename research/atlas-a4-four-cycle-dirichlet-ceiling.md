@@ -3,10 +3,15 @@ rg: 2
 id: atlas-a4-four-cycle-dirichlet-ceiling
 kind: claim
 title: The exact A4 network keeps the minimal four-cycle Dirichlet energy below one over 1536
+refuted_by: atlas-m2-escape-kills-collision-only-scalars
 distinct_from:
   atlas-a4-four-cycle-dirichlet-compiler: that stronger target makes the four-cycle energy vanish at a rate controlled by packet and collision defect; this target asks only for one fixed numerical ceiling along the normalized necessity sequence.
   atlas-a4-holonomy-coherence-gap: that target bounds the two raw S3 covariance directions; this target bounds the four minimal A8 cycle directions before the exact finite transfer to the raw S3 detector.
 ---
+
+**Refuted.**  The constant sequence given by the exact multiplicity-two
+regular witness has packet and collision defect zero and four-cycle energy at
+least one because its `t23` opcode has regular trace zero.
 
 For a normalized exact-regular A4 context-network sequence, put
 
