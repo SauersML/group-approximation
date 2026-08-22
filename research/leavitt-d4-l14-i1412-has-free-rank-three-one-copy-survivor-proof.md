@@ -83,6 +83,7 @@ The first `H^-1H` cancels.  After deleting `E5` and `E3`, the middle
 K=A0^-1=(Q P^-1)_3.                                  (I14-5)
 ```
 
-Since `P,Q,R` freely generate the coefficient quotient, `(I14-5)` is
-nontrivial and is supported in precisely one coefficient copy.
+Since `P,Q,R` freely generate the quotient of the third carrier equation,
+`(I14-5)` is nontrivial and is supported in precisely one coefficient copy.
+This proof does not impose the first inverse carrier equation.
 
