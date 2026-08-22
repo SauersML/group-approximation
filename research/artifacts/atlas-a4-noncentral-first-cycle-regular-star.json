@@ -1,0 +1,13 @@
+{
+  "A4_overlap_order": 12,
+  "A4_regular_multiplicity": 24,
+  "Q_core_order": 96,
+  "Q_regular_copies": 3,
+  "V4_overlap_order": 4,
+  "V4_regular_multiplicity": 72,
+  "ambient_permutation_degree": 288,
+  "collision_S4_vertex_order": 24,
+  "collision_packet_regular_copies": 12,
+  "first_packet_regular_copies": 8,
+  "first_packet_vertex_order": 36
+}
