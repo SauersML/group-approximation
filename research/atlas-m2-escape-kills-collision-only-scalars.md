@@ -47,4 +47,3 @@ tracial factor point with `x_30^2=1`.  Consequently q14 cannot rescue any
 **universal tracial** Gram/SOS upper ceiling; the only surviving possibility
 is a genuinely matrix/Connes-embedding-sensitive positive residual gap for
 the augmented system.
-

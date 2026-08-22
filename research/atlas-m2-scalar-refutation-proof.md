@@ -21,4 +21,3 @@ The recorded q14 value of the witness is nonidentity, which proves the scope
 qualification.  The augmented finite-factor claim supplies the separate
 q14-exact point with `x_30^2=1`, proving the universal-tracial fence without
 asserting a finite-dimensional augmented escape.
-
