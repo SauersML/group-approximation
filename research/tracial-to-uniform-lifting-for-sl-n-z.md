@@ -152,3 +152,43 @@ trace).
   entirely different lift) -- and a disproof would likely come from
   exhibiting an almost-representation whose column data admits no
   internal invariant completion.
+- **Correction to the Reiter paragraph: exact internal commutant
+  elements DO exist; the residual is joint exactness (2026-08-21).**
+  The obstruction above is misattributed.  At every finite level the
+  trace-preserving conditional expectation `E_m : M_(d_m) -> rho_m(H)'`
+  onto the (finite-dimensional) commutant of a genuine representation
+  `rho_m` of a Kazhdan group `H` is the orthogonal projection onto the
+  `Ad rho_m(H)`-invariant vectors of `L^2(M_(d_m))`; it is ucp, so
+  `|| E_m(u) ||_op <= 1`, and `E_m(u)` commutes with `rho_m(H)` EXACTLY.
+  Property (T) gives
+  `|| u - E_m(u) ||_2 <= kappa^(-1) max_s || [u, rho_m(s)] ||_2`, and
+  polar-correcting inside the finite von Neumann algebra `rho_m(H)'`
+  (partial isometries extend to unitaries there) yields a unitary
+  `u'_m in rho_m(H)'` with
+  `|| u - u'_m ||_2 <= 3 kappa^(-1) max_s || [u, rho_m(s)] ||_2`
+  (`|| E(u)^* E(u) - 1 ||_2 <= 2 || E(u) - u ||_2` by
+  `|| ab ||_2 <= || a ||_op || b ||_2`).  The internal sequence `(u'_m)`
+  is an element of the operator-norm ultraproduct `A`, exactly
+  `H`-central at every level: this is the same average-then-polar
+  mechanism as `kazhdan-subgroup-weak-ucp-exactification-proof`.  That
+  group averages `Ad rho(mu^n)(u)` converge to `E(u)` only in the Hilbert
+  norm of `L^2(M_d)` is irrelevant -- the limit exists levelwise, and no
+  limit is taken inside `A`.  What the column step really needs, and what
+  no projection supplies, is the JOINT exactness of the remaining
+  Steinberg relations with the commutant membership: for the column
+  `V = Z^(n-1)` with Levi `L = SL_(n-1)(Z)` acting by a genuine `rho`,
+  put `u_1 in rho(Stab_L(e_1))'` (exact, by the above) and
+  `u_x := rho(gamma) u_1 rho(gamma)^(-1)` for `x = gamma e_1` (well
+  defined on primitive vectors precisely because of that exactness); the
+  column is an exact `rho`-equivariant representation iff, in addition,
+  `[u_(e_1), u_(e_2)] = 1` and `u_(e_1) u_(e_2) = u_(e_1 + e_2)` hold
+  EXACTLY in operator norm.  Each is an exact relation among
+  `rho`-conjugates of the single unitary `u_1`; projecting onto one
+  commutant destroys the others.  So the honest residue of the column
+  step is relative flexible HS-stability of the affine group
+  `Z^(n-1) rtimes SL_(n-1)(Z)` with the Levi held exact -- one unitary
+  and finitely many exact relations, not the production of invariant
+  elements -- and the row step and the column-row Steinberg commutators
+  `[x_(in), x_(nj)] = x_(ij)` repeat the same shape.  Amenable
+  HS-stability exactifies `V` alone and the projection exactifies the
+  commutant alone; the open content is doing both at once.
