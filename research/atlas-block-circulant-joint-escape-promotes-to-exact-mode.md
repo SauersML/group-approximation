@@ -34,4 +34,3 @@ In the absence of an exact finite quotient, every fixed-block circulant
 sequence has a linear rank defect in at least one displayed relator.  The
 statement allows arbitrary circulant bandwidth and also covers even cycle
 lengths; characteristic-two Jordan modes do not evade `(BCJ1)`.
-

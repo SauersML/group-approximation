@@ -42,4 +42,3 @@ indices.  Thus in either case a common exact invertible mode exists.
 Its entries are algebraic over a finite field, hence belong to some finite
 extension `F_(2^f)`.  Restrict scalars to `F2` and apply the exact-matrix
 zero-set/finite-quotient theorem.  This proves `(BCJ1)`.
-
