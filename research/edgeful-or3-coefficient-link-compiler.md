@@ -137,18 +137,29 @@ that certificate.
   retraction is not the endpoint: the link must destroy every
   packet-preserving finite evaluation.  A single projective two-chart mixer
   does not do so.
-- **Graft an affine-Leavitt third actuator onto the marked D8 cell.**
+- **Graft a Thompson-simple third actuator onto the marked D8 cell.**
   `four-cap-three-actuator-destroys-all-fd-packet-evaluations` closes the
   exact algebraic gate.  The amalgam embeds the complete packet and keeps
   `J` central and nontrivial, but every finite-dimensional representation
   kills `J`; no packet-preserving finite evaluator survives.  This does not
-  finish the HS compiler.  The fixed D8 relation transfers a robust collapse
-  of the active Steinberg root to `J` with constant cost, so the precise
-  remaining dependency is
-  `affine-leavitt-steinberg-hs-coefficient-decoder`, packaged here as
-  `four-cap-three-actuator-hs-packet-blocker`.  Importing the exact actuator
-  without that decoder would repeat exact finite-dimensional invisibility,
-  not prove a normalized-HS obstruction.
+  finish the HS compiler.  It would require a dimension-independent collapse
+  theorem for the chosen Thompson involution in approximate representations,
+  which is not known and is not supplied by the unrelated affine-Leavitt
+  coefficient decoder.  Importing the exact actuator therefore repeats exact
+  finite-dimensional invisibility rather than proving a normalized-HS
+  obstruction.
+- **Use the affine-Leavitt root at its native odd order.**
+  `odd-root-cannot-drive-central-d8-actuator` forbids identifying that root
+  with the binary sign, but
+  `affine-leavitt-p-heisenberg-graft-kills-fd-four-cap-corner` supplies the
+  order-correct construction: tensor the packet corner with one nontrivial
+  character projection of a central `C_p` Heisenberg sign.  The packet and
+  binary `J` remain nonzero, while every finite-dimensional representation
+  kills the odd selector.  Its HS transfer is exact and dimension-free once
+  the active root collapses, with constant `(p-1)/2`; the corresponding live
+  route is `edgeful-or3-four-cap-p-heisenberg-graft-closes-first-chord` and
+  still waits on the affine-Leavitt coefficient decoder as well as this
+  coefficient-link claim itself.
 
 The attack is not deferred: the finite slot-frame and packet-term matching
 problem in the preceding paragraph is the next explicit computation.
@@ -183,3 +194,26 @@ would force the residual algebraic carrier to vanish in the faithful regular
 trace.  Hence the remaining coefficient-link step must provide a genuinely
 finite-matrix/canonical-type alignment estimate.  A fixed exact Morita
 identity cannot promote the local dihedral rows by itself.
+
+There is nevertheless a canonical-matrix geometric gain.
+`sequential-overlap-polar-aligns-carriers-not-contexts` thresholds one
+positive Fano profile product and obtains partial isometries with one common
+positive-density source and ranges in every selected cap carrier.  The
+construction is dimension-free and does not require a nonzero meet.
+
+Its exact two-context example shows that the polar ranges can be maximally
+nonreducing, but the strengthened POVM decoder makes this harmless.  The
+unresolved matrix-only estimate is now strictly smaller: pay the raw prefix
+covariances in `(SPA12)`.  The polar covariance lemma then transfers them to
+one positive-density common-source game strategy with a fixed constant.
+
+There is no exact-completeness shortcut obtained by simply adjoining those
+covariances as global relations.  On a full-support perfect factor model,
+cap-contained ranges over one common source and exact covariance with every
+shared variable are forbidden by
+`full-support-factor-forbids-cap-ranged-common-source-covariance`.  Separate
+isotypic transporters avoid that theorem only by retaining independent
+sources and finite sheet holonomy, which does not feed the common-source
+decoder.  The coefficient link must therefore create a finite-matrix-only
+payment or use a different cap-supported exact trace, not sharpen the Naimark
+labels into globally covariant cap projections.

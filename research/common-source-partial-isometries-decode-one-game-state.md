@@ -12,7 +12,9 @@ distinct_from:
 For a BCS game of value at most `theta<1`, context-dependent partial
 isometries `S_c` may have different ranges, provided they share one initial
 projection `Q`.  Pulling every context PVM back through `S_c` gives one legal
-strategy on `Q`, and its total forbidden/consistency energy satisfies
+POVM strategy on `Q`; compressing Bob's binary PVMs gives legal binary
+POVMs.  Neither the range projections `S_cS_c^*` nor `Q` need reduce the
+original measurements.  The total forbidden/consistency energy satisfies
 
 ```text
 E_Q >= (1-theta) tau(Q).
@@ -20,3 +22,14 @@ E_Q >= (1-theta) tau(Q).
 
 The common source, not a common range or common swap, is the load-bearing
 datum.
+
+Explicitly, the Alice effects are `S_c^*P_(c,a)S_c` and Bob's effects are
+`Q(I+-B_x)Q/2`.  Tracial cyclicity identifies their disagreement loss
+exactly with
+
+```text
+||A_(c,x)S_c-S_cB_x||_2^2/(4tau(Q)).
+```
+
+Thus projectivizing the compressed measurements is unnecessary and would
+introduce a false range-reduction/source-invariance requirement.

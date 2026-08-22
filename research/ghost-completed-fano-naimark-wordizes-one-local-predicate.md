@@ -107,3 +107,11 @@ In particular, the construction does not close
 wordization is available without sharp cap profiles.  What remains is the
 matrix-only promotion of all these locally selected types to one common
 cross-context source.
+
+`sequential-overlap-polar-aligns-carriers-not-contexts` supplies the common
+source analytically: a positive sequential profile yields one
+positive-density source and polar ranges inside every selected context
+carrier.  Nonreduction of those ranges is harmless because the pullbacks are
+legal POVMs.  By `polar-correction-preserves-povm-covariance`, the only
+remaining alignment datum is ordinary-word payment of the raw prefix rows
+`A_(c,x)Y_c-Y_cB_x`; polar correction loses only a fixed constant.
