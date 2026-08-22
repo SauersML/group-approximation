@@ -97,14 +97,27 @@ def substitute(word, z_value):
 
 def transports(word):
     """Return (source,target,U) witnesses for A U C U^-1 rotations."""
+    parity = set()
+    for copy, name, _ in word:
+        key = (copy, name)
+        if key in parity:
+            parity.remove(key)
+        else:
+            parity.add(key)
+    if (len(parity) != 2 or
+            sum(name in ("a", "b") for _, name in parity) != 1 or
+            sum(name in ("c", "d") for _, name in parity) != 1):
+        return ()
+    source_key = next(key for key in parity if key[1] in ("a", "b"))
+    target_key = next(key for key in parity if key[1] in ("c", "d"))
     out = []
     for source_index, source in enumerate(word):
-        if source[1] not in ("a", "b"):
+        if source[:2] != source_key:
             continue
         rotated = word[source_index:] + word[:source_index]
         for target_index in range(1, len(rotated)):
             target = rotated[target_index]
-            if target[1] not in ("c", "d"):
+            if target[:2] != target_key:
                 continue
             carrier = rotated[1:target_index]
             if rotated[target_index + 1:] != inverse(carrier):
