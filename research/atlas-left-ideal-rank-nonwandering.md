@@ -170,3 +170,18 @@ or genuinely nonstationary coefficient data.
   rank, cannot supply `(LRN3)`.  A countermodel must move linearly far from
   every fixed-width amplified coefficient phase, not merely connect its
   multiplicity copies on a low-rank set.
+
+- **The width dependence is sharp already on the q14 locus.**
+  `atlas-q14-growing-width-rank-one-bridge-is-sharp` takes a multiplicity
+  space `M=F2^s tensor F2^k` with `k<=s`.  Two shift/wrap blocks generate
+  `M_s tensor I_k`, and one rank-one outer-product block has `s` left and
+  right multiplicity coordinates spanning `F2^k` and its dual.  Sandwiching
+  that block by `M_s` generates all of `M_(sk)`.  The three chart positions
+  are pairwise square-zero and lie in the marked-transvection centralizer,
+  so the chart is invertible and q14 is exact.  At `s=k=sqrt(m)`, a rank-one
+  bridge therefore makes a one-dimensional seed cyclic.  Together with the
+  preceding bound, this pins the transition at square-root phase width up
+  to constants.  The construction does not control the twelve packet cubes
+  or collision: any compactness proof must use those thirteen formulas to
+  rule out precisely these growing-width outer-product frames; q14 and
+  abstract coefficient cyclicity cannot do so.
