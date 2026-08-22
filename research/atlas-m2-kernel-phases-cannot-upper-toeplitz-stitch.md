@@ -46,4 +46,9 @@ blocks.  The cyclic case is now reduced by
 `atlas-block-circulant-joint-escape-promotes-to-exact-mode`: fixed-block
 circulant `o(N)`-rank defects already produce an exact finite-extension mode.
 Thus only a genuinely new bulk phase or a non-circulant, non-flag-preserving
-width-growing construction remains outside the two stitching theorems.
+width-growing construction remains outside the two stitching theorems.  The
+latter is not a smaller class in normalized rank: by
+`sublinear-bandwidth-is-vacuous-under-rank-amplification`, every unrestricted
+rank microstate has a sublinear-bandwidth amplification.  Its exact residual
+is therefore `atlas-augmented-rank-zero-set-compactness`, not another
+Toeplitz estimate.
