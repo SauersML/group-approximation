@@ -59,6 +59,13 @@ the supercritical Clifford contradiction.
   vanishing trace while the carrier stays macroscopic.  Orthogonality gives
   only the mass-weighted estimate of
   `orthogonal-checksum-controls-only-mass-weighted-syndromes`.
+- **Word-defined raw-size selectors are impossible before tightness is even
+  considered.**
+  `amplification-natural-block-size-selectors-cannot-be-tight` amplifies one
+  exact multiplicity-`k` packet to multiplicity `kl`.  Every static word or
+  functional-calculus selector is tensored by the identity, so the old
+  `k`-selector and the required `kl`-selector would both be the full carrier,
+  contradicting orthogonality.
 - **Depthwise Kleene does not repair the trace escape.**  It permits the
   estimate constant for selector `k` to grow arbitrarily, but the order of
   limits still fixes `k` before the matrix index.  A type that moves to
