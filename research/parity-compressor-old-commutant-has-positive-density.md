@@ -54,6 +54,11 @@ part of the remaining hole.
   acting by automorphisms on the packet prevents asymptotic decoupling.  The
   one-sided Toeplitz cell must use non-surjectivity in an essential way; its
   induced finite head action cannot be the missing estimate.
+- The same regular-quotient proof absorbs every fixed finite-order projective
+  normalizer table into its finite central extension.  Thus a projective
+  two-cell is live only if its phase is tied to the genuinely one-sided
+  coefficient transport; a standalone projective packet still has old
+  density `1/|Q_n|`.
 - `commutant-density-forces-bounded-type-mass` identifies the exact burden
   of `(PCD1)`: a lower bound `c_0q^2` on the old adjoint commutant forces
   linear-in-`q` Hilbert mass in old-`Lambda` irreducibles of degree

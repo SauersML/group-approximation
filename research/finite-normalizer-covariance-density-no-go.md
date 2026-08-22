@@ -84,3 +84,14 @@ constant local Schur density but only `1/|Q_n|` old commutant density.  A
 fixed finite packet can evade the obstruction only through a relation that
 is not an automorphism crossed product, such as a genuinely non-surjective
 coefficient transport.
+
+The same conclusion covers finite projective covariance.  If the packet
+implementers satisfy a fixed finite-order scalar `2`-cocycle, replace the
+packet by the corresponding finite central extension `C_tilde`.  The
+projective action is an ordinary action of `C_tilde`, and the regular models
+above become `Q_n semidirect C_tilde`.  Their old density is still
+`1/|Q_n|`; only the fixed packet constants in `(FAC3)--(FAC4)` change.
+Therefore a standalone finite projective two-cell is not an exit either.  A
+live projective cell must couple its phase to the non-surjective old
+coefficient transport, rather than merely twisting a finite normalizer
+table.

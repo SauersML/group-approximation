@@ -82,3 +82,11 @@ lambda_(B semidirect Q') restricted to B  = |Q'| lambda_B.
 The old commutant density is again `1/|Q'|`, while every packet projection
 mass and packet Reynolds density is independent of `Q'`.  This proves the
 second normalizer direction.
+
+Finally, a finite-order projective action with multiplier in a finite cyclic
+group is precisely a linear action of its finite central extension.  Apply
+the first calculation with that extension in place of `C` (the central
+kernel acts trivially on `Gamma`).  Intersecting quotient kernels over the
+extension is the same finite-index construction, and the restriction to the
+old group is `|C_tilde|` regular copies.  Hence the normalized old commutant
+density remains exactly `1/|Q|`.
