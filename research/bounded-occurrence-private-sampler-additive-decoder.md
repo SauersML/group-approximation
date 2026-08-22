@@ -90,3 +90,16 @@ PVMs already are exact additive actions; the code columns provide only the
 mixed spectral-gap sampler.  A bounded-occurrence group encoding of the PVM
 is perfect-complete at zero defect, but its approximate synchronization is
 exactly the present decoder claim.
+
+The new prefix/approximate-rank sanity gate is nonvacuous for this exact
+sampler.  `repeated-ldpc-weyl-kernel-has-growing-approximate-rank` proves
+that the full cross-pairing table of the repeated coordinate lists remains
+of rank at least `log_2(r)-1` after any sufficiently small fixed fraction of
+arbitrary entry changes.  Consequently every deterministic prefix-stopping
+procedure computing the full pairing table has expected depth
+`Omega(log log r)` (and second moment `Omega((log log r)^2)`).  Thus a
+bounded expected-prefix or classical early-stopping justification of the
+sampler's global rank is impossible.  This does not refute a
+quantum/operator same-basis decoder, which need not evaluate untested cross
+signs: it certifies that the combined argument must use the global LDPC
+geometry rather than hiding the rank in rare deep label cells.
