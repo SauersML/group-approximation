@@ -170,10 +170,14 @@ def main():
     # Alternating projections expose the dimension of the common fixed space.
     rng = np.random.default_rng(19243)
     samples = rng.normal(size=(dimension, 24))
+    samples -= np.mean(samples, axis=0, keepdims=True)
     initial_norm = np.linalg.norm(samples)
-    for _sweep in range(160):
+    decay = []
+    for sweep in range(800):
         for edge_operator in edge_operators:
             samples = apply_projection(samples, edge_operator)
+        if sweep + 1 in (50, 200, 800):
+            decay.append((sweep + 1, np.linalg.norm(samples) / initial_norm))
     singular_values = np.linalg.svd(samples / initial_norm, compute_uv=False)
 
     # A fully reorthogonalized scalar Lanczos calibration gives the bottom of
@@ -214,6 +218,8 @@ def main():
     print("edge tangent-sum dimensions:", sorted(sum_dimensions))
     print("alternating-projection singular values:")
     print(" ".join(f"{value:.15g}" for value in singular_values[:12]))
+    print("constant-orthogonal alternating-projection norm ratios:")
+    print(" ".join(f"{sweep}:{ratio:.15g}" for sweep, ratio in decay))
     print("smallest 20 Lanczos Ritz values:")
     print(" ".join(f"{value:.15g}" for value in eigenvalues[:20]))
 
