@@ -149,7 +149,21 @@ new and is the whole point.
   which is rank-one and not gap-controlled.  The two horns are genuinely
   linked, not apparently: op-norm control on the `(2,N-2)` cusp REQUIRES
   the isolated `SL_2` rank-one input, so this horn does not close ahead of
-  the `SL_2` Iwahori lane.  (Caveat: this is the finite-dimensional adjoint
+  the `SL_2` Iwahori lane.
+
+  **This holds for EVERY `N >= 4`, not just `N = 4`.**
+  `theta+rho = ((N+1)/2, (N-3)/2, (N-5)/2, ..., -(N-3)/2, -(N+1)/2)`.  The
+  `W^P` element `pos = ((N-3)/2, (N-5)/2, (N+1)/2, r_4, ..., r_N)`, where
+  `r_4 > ... > r_N` are the remaining values in decreasing order, satisfies
+  `pos_1 > pos_2` and `pos_3 > ... > pos_N` (so it is in `W^P`); its only
+  inversions are `(1,3)` and `(2,3)` (the largest value `(N+1)/2` sits at
+  position 3, above the two second-largest values at 1,2, and nothing else
+  is out of order), so its length is exactly `2`; and
+  `pos_1 - pos_2 = 1`, giving `<mu, alpha_1^\vee> = 0` --- a degree-2
+  Kostant piece fixed by the `GL_2`-block `SL_2`.  (At `N = 4` this is the
+  `(1/2,-1/2,5/2,-5/2)` class above.)  So the `SL_2`-cusp obstruction is
+  present in `H^2(U_P, ad)` for the `(2,N-2)` parabolic at every rank; high
+  rank never removes it through this face.  (Caveat: this is the finite-dimensional adjoint
   module; the stability module is the unitary `L^2(M) - inv`, where the
   Vogan--Zuckerman analogue could in principle differ, but the adjoint is
   the natural probe and it already exhibits the fixed classes.)  Next: the
