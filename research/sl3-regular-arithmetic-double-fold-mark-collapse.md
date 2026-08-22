@@ -47,10 +47,25 @@ The joint near-exact sector is also complete.
 `sl3-arithmetic-double-near-exact-vertices-fold-projectively` proves
 `(RDF1)` whenever BOTH full vertex assignments approach exact
 finite-dimensional representations, with a dimension-free estimate.  Hence
-every enemy keeps at least one whole `A` vertex uniformly outside the exact
-representation variety.  This is stronger localization than saying only
-that the lattice restriction is an outlier, but it does not control the
-remaining one-vertex-outlier sector.
+every enemy initially had to keep at least one whole `A` vertex uniformly
+outside the exact representation variety.
+
+The subsequent anchor theorem
+`sl3-double-one-near-vertex-forces-joint-near-exactness` closes the mixed
+sector too: if either vertex is near exact, the amalgamating relations,
+relative property (T), and the Bezout exponent-sum argument correct the other
+vertex to the same representation.  Therefore every surviving enemy has
+BOTH full `A` vertices uniformly far from every exact finite-dimensional
+representation along a subsequence.  The minimal remaining correction
+terminal is `sl3-canonical-double-has-a-correctable-vertex`.
+
+Canonical character does not make the known unnormalized Frobenius tools
+applicable.  `sl3-canonical-double-replication-escapes-every-frobenius-basin`
+preserves the full canonical character and every normalized defect while
+scaling unnormalized Frobenius defects above any prescribed threshold.  Thus
+2-Kazhdan/Frobenius stability can enter only through a global
+replica-homogeneous correction inequality, not by a trace-conditioned change
+of normalization.
 
 This is strictly narrower than `projective-trace-square-transfer-for-sl3-pair`.
 That universal claim would apply to the block diagonal of the two vertex
