@@ -347,3 +347,20 @@ stabilizer.  The Mihailova `P` is infinite, so its compact action lies at the
 opposite extreme from homoclinic density.  The residual-finiteness failure
 and trivial homoclinic group are simultaneous, independent obstructions to
 both exact finite Schreier models and Hayes' dense-homoclinic model measures.
+
+Finite truth tables also admit a tempting direct linearization: put the
+states `q` into the basis vectors `e_q` of `F_p^Q`, and let every reversible
+truth-table transition act by its permutation matrix.  The exact outcome is
+now fenced by `finite-one-hot-algebraic-corners-reduce-to-stabilizers`.  The
+positive one-hot corner is a finite direct sum of matrix algebras over the
+group factors of the actor's point stabilizers.  Therefore, if that corner
+contained the no-CE relation algebra, one stabilizer would already be
+nonhyperlinear.  The noncommutative context-cycle holonomy has not been
+linearized away; it has been moved verbatim into isotropy.  Repeating the
+construction with independent registers over infinitely many translates
+does not evade the conclusion: the infinite one-hot locus has Haar measure
+zero, so its selector is the zero projection.  A viable algebraic envelope
+must consequently correlate the infinite translate registers by genuine
+linear subgroup relations while retaining nonlinear context holonomy; the
+naive one-hot/Fourier construction has no intermediate positive-density
+regime.
