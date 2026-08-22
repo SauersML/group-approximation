@@ -74,3 +74,9 @@ the previously decoded crossed overlap is to be the paid complement `E`,
 that identification is also part of this support incidence; it is not forced
 merely by the coefficient `x`.
 
+Passing to odd characteristic makes the two support reflections literal
+Steinberg words but does not supply this last identification.
+`odd-leavitt-reflections-retain-stationary-xor-overlap` gives an exact `S_4`
+regular model in which the reflection refinement and connector conjugacy are
+exact, every reflection has trace zero, and the two alleged child cuts still
+overlap with trace `1/4`.  Literal reflections encode XOR, not inclusion.

@@ -39,6 +39,14 @@ Morita matrix units; neutral same-carrier expressions remain phase-blind.
   the connector exactly.  What remains is not the connector or its Gram
   estimate: it is making the fine support reflection `1-2f_0` an ordinary
   same-carrier word without the arbitrary Clifford multiplicity twist.
+- Odd characteristic makes that fine reflection a literal finite Steinberg
+  word, but `odd-leavitt-reflections-retain-stationary-xor-overlap` shows why
+  this is not yet the desired support correction.  The refinement relation
+  becomes XOR; an exact `S_4` regular sector has all reflection traces zero,
+  connector defect zero, and child overlap `1/4`.  Finite crossed-Pauli
+  covariance is restored by orbit-inducing the private Clifford gauges.
+  What is missing is a word which detects intersection/orthogonal union, not
+  merely another reflection transport.
 - A reverse full Schur edge exposes the phase but generates the full branch
   `M_2`, by `two-chart-square-lift-recreates-schur-m2`.
 - A projective Atlas rectangle is either flat on the canonical common-`U`
