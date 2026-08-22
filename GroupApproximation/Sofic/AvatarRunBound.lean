@@ -450,5 +450,66 @@ theorem runBounded_replicate_blockFlatten_double (A t : ℕ) {es : List ℕ}
   · have := hes e h
     omega
 
+/-! ## 10.  Toward `uniqueMark`: rotation acts on the exponent list
+
+`AvatarMetricData.uniqueMark` asks for an exponent read at exactly one cyclic
+position, and its only consumer is `noProperPower`.  The route from the family's
+`privateGen` field runs through the exponent list rather than through positions:
+
+* the private generator occurs once in its source relator, so its avatar occurs
+  once in the rewrite, so each of that avatar's exponents occurs **once** in the
+  rewrite's exponent list;
+* an exponent list with an element of count one is not a block power
+  (`not_isProperPower_of_count_eq_one`);
+* and rotation of the *word* by one block is rotation of the *list* by one entry
+  (`blockFlatten_rotate_block`), which is what carries the second fact to the
+  first.
+
+The two ends are below.  What is not yet written is the middle: that a rotation
+fixing `blockFlatten es` must carry block starts to block starts, hence is a
+whole number of blocks, hence induces a rotation of `es`.  That step is genuinely
+positional — it needs "the `y₁`-letters of `blockFlatten es` sit exactly at block
+starts" — and it is the one place this file still owes work. -/
+
+/-- **Rotating by one block rotates the exponent list.**  `List.rotate_append_length_eq`
+does the work: a block word's length is its exponent plus one, and rotating a
+concatenation by the length of its first part swaps the parts. -/
+theorem blockFlatten_rotate_block (e : ℕ) (es : List ℕ) :
+    (blockFlatten (e :: es)).rotate (e + 1) = blockFlatten (es ++ [e]) := by
+  rw [blockFlatten_cons, blockFlatten_append]
+  have hlen : (blockWord e).length = e + 1 := length_blockWord e
+  rw [← hlen, List.rotate_append_length_eq]
+  simp [blockFlatten]
+
+/-- The count of a value in a block power is a multiple of its count in the
+block. -/
+theorem count_flatten_replicate (e : ℕ) (u : List ℕ) :
+    ∀ m : ℕ, ((List.replicate m u).flatten).count e = m * u.count e := by
+  intro m
+  induction m with
+  | zero => simp
+  | succ m ih =>
+      rw [List.replicate_succ, List.flatten_cons, List.count_append, ih,
+        add_mul, one_mul]
+      exact Nat.add_comm _ _
+
+/-- **An exponent list with a unique entry is not a block power.**  This is the
+form `privateGen` delivers: the private generator's avatar contributes exponents
+that occur exactly once in the relator's exponent list. -/
+theorem not_isProperPower_of_count_eq_one {es : List ℕ} {e : ℕ}
+    (h : es.count e = 1) : ¬ PeriodicOverlap.IsProperPower es := by
+  rintro ⟨u, m, hm, rfl⟩
+  rw [count_flatten_replicate e u m] at h
+  obtain ⟨c, hc⟩ : ∃ c, u.count e = c := ⟨_, rfl⟩
+  rw [hc] at h
+  clear hc
+  rcases Nat.eq_zero_or_pos c with rfl | hcpos
+  · omega
+  · have h2 : 2 * 1 ≤ m * c := Nat.mul_le_mul hm hcpos
+    obtain ⟨P, hP⟩ : ∃ P, m * c = P := ⟨_, rfl⟩
+    rw [hP] at h h2
+    clear hP
+    omega
+
 end AvatarRunBound
 end GroupApproximation
