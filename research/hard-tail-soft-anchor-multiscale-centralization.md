@@ -13,6 +13,7 @@ requires:
   - random-code-anchor-pinchings-contract-exact-transverse-energy
   - dense-complete-pair-remainders-are-cb-quadratic
   - block-adaptive-sparse-reset-is-cheap
+  - central-weighted-erasure-ledger-recovers-reset-density
 ---
 
 The former exponent obstruction was a norm mismatch.

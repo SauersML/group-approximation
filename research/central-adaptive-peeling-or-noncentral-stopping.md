@@ -19,7 +19,12 @@ operators `Y_(a,i)^2`, construct either:
    square function, after whose removal the same little-o bound holds.
 
 The central branch is terminal by
-`block-adaptive-sparse-reset-is-cheap`.  On the complement, combine the
+`block-adaptive-sparse-reset-is-cheap`.  Its weighted counting input is now
+explicit: `central-weighted-erasure-ledger-recovers-reset-density` cleans
+every block in range, resets exceptional blocks in full, and bounds the
+trace-weighted coordinate density by `C E_par/rho^2`.  Thus the central
+branch loses no factor of `L`; only construction of the reducing
+decomposition remains.  On the complement, combine the
 little-o two-odd-factor estimate with
 `one-anchor-grading-makes-parity-damage-quadratic`.
 
