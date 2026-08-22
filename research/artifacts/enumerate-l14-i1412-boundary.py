@@ -69,23 +69,28 @@ def cyclic_key(word):
     return min(variants)
 
 
-def pure_power(word):
-    word = cyclic_reduce(word)
-    if not word or any(abs(letter) != abs(word[0]) for letter in word):
+def primitive_power(word):
+    word = cyclic_key(word)
+    if not word:
         return None
-    exponent = sum(1 if letter > 0 else -1 for letter in word)
-    return abs(word[0]), exponent
+    for period in range(1, len(word) + 1):
+        if len(word) % period == 0:
+            root = word[:period]
+            exponent = len(word) // period
+            if root * exponent == word:
+                return root, exponent
+    raise AssertionError("finite word has no primitive period")
 
 
 def killed_by_power_relators(q_image, residual):
-    target = pure_power(q_image)
+    target = primitive_power(q_image)
     if target is None:
         return False
-    generator, exponent = target
+    root, exponent = target
     modulus = 0
     for relation in residual:
-        power = pure_power(relation)
-        if power is not None and power[0] == generator:
+        power = primitive_power(relation)
+        if power is not None and power[0] == root:
             modulus = gcd(modulus, abs(power[1]))
     return modulus != 0 and exponent % modulus == 0
 
