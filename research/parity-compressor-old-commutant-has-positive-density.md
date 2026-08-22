@@ -131,3 +131,18 @@ part of the remaining hole.
   non-surjectivity plus transport cannot by itself prove `(PCD1)`; the live
   matrix-only statement must quantitatively use positive forbidden-head
   mass to exclude precisely this congruence collapse.
+- The bounded-type formulation does provide a sharp one-coefficient
+  separator.  `one-bounded-type-coefficient-separates-unbounded-exits`
+  chooses one finite `a in C[Lambda]` approximating `p_<=K` and proves
+
+  ```text
+  tr(p_<=K) >= tr(z)-(||z(1-a)||_2+epsilon sqrt(tr(z)))^2.
+  ```
+
+  Thus a positive head plus small `z(1-a)` residual excludes every
+  unbounded congruence stationary exit.  But the regular representation has
+  the same positive residual floor, because it kills `p_<=K` while retaining
+  `z`.  The remaining hole is now exact: pay this coefficient residual by
+  ordinary presentation-word energy without imposing it as an exact regular
+  relation.  Merely naming the coefficient would assume the matrix-only
+  instability the route is meant to prove.
