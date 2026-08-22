@@ -59,3 +59,20 @@ coupling.
 This does not refute the open claim, which explicitly asks for such an
 additional coefficient-covariance cell.  It rules out a direct proof from
 canonical trace and Schur identities alone.
+
+The same dilution applies to the actual Toeplitz old group without assuming
+residual finiteness, conditionally on the microstates whose exclusion is the
+goal.  If `phi_n` is any canonical microstate sequence of an infinite
+property-`(T)` group `Lambda`, replace it by
+
+```text
+phi_n tensor lambda_B.                                  (CPT5)
+```
+
+This is canonical for `Lambda x B`, has the same fixed packet masses and
+Reynolds densities, and its old adjoint Laplacian is the Laplacian for
+`phi_n` tensored with the identity on `End(ell^2(B))`.  Normalization cancels
+that fixed multiplicity.  Canonical commutant-density vanishing therefore
+makes its old low-spectral density tend to zero.  Thus even under
+hypothetical canonical Toeplitz microstates, the local packet data stay
+completely decoupled until an added coefficient relation rules out `(CPT5)`.

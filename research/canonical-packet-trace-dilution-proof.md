@@ -29,3 +29,10 @@ endomorphisms.  Dividing
 by `(|Q_n||B|)^2` proves `(CPT4)`.  Property `(T)` identifies the fixed
 subgap spectral projection with the exact commutant in these exact
 representations.
+
+For `(CPT5)`, the adjoint representation of `Lambda` acts trivially on the
+fixed factor `End(ell^2(B))`.  Hence every spectral projection of the old
+adjoint Laplacian is the corresponding base spectral projection tensored
+with the identity of rank `|B|^2`.  Both its rank and the ambient adjoint
+dimension acquire this factor, so normalized spectral density is unchanged.
+Apply canonical low-density vanishing to the base sequence.
