@@ -32,6 +32,15 @@ Thus the published stable examples checked here live on the residually finite
 side, while the published non-residually-finite examples have only the weaker
 local stability which cannot exactify a canonical microstate sequence.
 
+There is no finite-presentation loophole in that last sentence.
+Fournier-Facio--Gerasimova--Spaas, arXiv:2307.13155v2, Lemma 3.11, prove
+that local and global stability coincide for finitely presented groups, for
+arbitrary metric targets and also in the flexible variants.  Consequently
+their non-RF locally HS-stable but non-HS-stable examples are automatically
+not finitely presented.  Conversely, any finitely presented non-RF locally
+HS-stable example would already be nonhyperlinear by
+`finitely-presented-local-hs-stable-non-rf-is-nonhyperlinear`.
+
 ## 2. Perfect commuting versus matrix game gaps
 
 - Lin, arXiv:2510.07162v1, Theorem 6.15 and its proof paragraph, gives finite
@@ -95,4 +104,3 @@ Lin static synchronous gap
 No checked primary source discharges the bold hypothesis in either of the
 first two lines, and the Slofstra--Vidick example rules out discharging the
 first merely from exact finite-dimensional invisibility.
-

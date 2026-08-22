@@ -44,3 +44,11 @@ stability.
 - Exact invisibility cannot fill the analytic gap:
   `exact-fd-invisibility-has-no-general-hs-robustification` gives a finitely
   presented sofic counterexample.
+- Local stability does not enlarge the finitely presented search.
+  `finitely-presented-local-hs-stable-non-rf-is-nonhyperlinear` imports
+  Fournier-Facio--Gerasimova--Spaas Lemma 3.11: local and global HS stability
+  coincide for finitely presented groups, including flexible variants.
+  Hence their non-RF locally stable but globally unstable examples are
+  necessarily infinitely presented.  Finding a finite presentation with
+  the same local property would already solve this node rather than provide
+  an intermediate theorem.
