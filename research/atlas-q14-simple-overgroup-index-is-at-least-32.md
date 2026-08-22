@@ -46,3 +46,8 @@ The tempting global closure `S=(AB)^k` is fenced by
 completion has an infinite locally finite chart-coset graph.  Any upper bound
 on `|S|` must therefore invoke a specifically finite-simple diameter theorem,
 not merely rewrite the packet and collision relators.
+
+The first natural overgroup family is completely removed by
+`atlas-natural-a8-supports-collapse-before-collision`: in any
+`A_n`, the packet forces two natural support `A8` copies to have the same
+eight-point support, after which collision excludes their relative marking.
