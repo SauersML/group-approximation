@@ -31,9 +31,12 @@ mod-three Deligne/Meyer--Maslov multiplier such that:
   meant to erase commuting charts, not to claim the whole symplectic group is
   a chordal graph product.
 - **Holonomy payment.** Once all chart relations are exact, the remaining
-  variables should live in overlap commutants.  Seek a finite-dimensional
-  Poincare/Dirichlet inequality on the overlap graph converting the order-three
-  holonomy into HS energy.
+  variables should live in overlap commutants.  The analytic payment is now
+  established by `positive-cycle-near-unitary-edges-force-trivial-holonomy`:
+  a positive block cycle whose edges are near unitaries forces their product
+  near the identity, with a dimension-free bound.  What remains is to
+  synchronize the chordal lifts into that single positive cycle kernel and
+  identify its edge product with the order-three Maslov scalar.
 - **Falsification.** If a coboundary gauge moves the entire mod-three cocycle
   into chordal charts, or if the overlap commutants admit stationary phase
   flow with vanishing energy, this compiler does not prove the desired gap.
