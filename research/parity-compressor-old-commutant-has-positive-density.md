@@ -85,3 +85,13 @@ part of the remaining hole.
   remaining theorem must be matrix-only and fail on the regular
   representation--which is precisely the sought nonhyperlinearity, not an
   algebraic coefficient-placement lemma.
+- The proper Toeplitz transport itself has exact unbounded-type stationary
+  exits.  `toeplitz-self-embedding-fixes-unbounded-congruence-types` sends
+  `T` onto growing finite fields, where `sigma` becomes the identity, and
+  uses the irreducible projective augmentation type of `SL_r(F_q)`.  These
+  representations extend across the ascending HNN with stable letter one,
+  have `p_<=K` mass zero for every fixed `K`, and have old adjoint commutant
+  density tending to zero.  They also kill the Toeplitz head defect.  Thus
+  non-surjectivity plus transport cannot by itself prove `(PCD1)`; the live
+  matrix-only statement must quantitatively use positive forbidden-head
+  mass to exclude precisely this congruence collapse.
