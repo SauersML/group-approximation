@@ -121,19 +121,21 @@ def block_relations(scheme, syllables):
                  for block in scheme)
 
 
-def main():
+def carrier_states(report=False):
     _, eq3_schemes = schemes(EQ3.COLORS)
     eq3_states = set()
     for scheme in eq3_schemes:
         relations = block_relations(scheme, EQ3.S)
         eq3_states.add(close_tietze(relations, initial_images()))
-    print(f"eq3_substitution_states={len(eq3_states)}", flush=True)
+    if report:
+        print(f"eq3_substitution_states={len(eq3_states)}", flush=True)
 
     transformed_inputs = {}
     for residual, images in eq3_states:
         word = transformed_free_product(EQ1.COLORS, EQ1.S, images)
         transformed_inputs.setdefault((residual, word), images)
-    print(f"distinct_transformed_eq1_inputs={len(transformed_inputs)}", flush=True)
+    if report:
+        print(f"distinct_transformed_eq1_inputs={len(transformed_inputs)}", flush=True)
 
     combined = set()
     scheme_total = 0
@@ -146,11 +148,17 @@ def main():
         for scheme in eq1_schemes:
             relations = residual + block_relations(scheme, syllables)
             combined.add(close_tietze(relations, images))
-        if input_index % 100 == 0:
+        if report and input_index % 100 == 0:
             print(f"processed={input_index} combined={len(combined)}", flush=True)
-    print(f"transformed_eq1_schemes={scheme_total}")
-    print(f"combined_substitution_states={len(combined)}")
-    print(f"combined_abstract_presentations={len(set(r for r, _ in combined))}")
+    if report:
+        print(f"transformed_eq1_schemes={scheme_total}")
+        print(f"combined_substitution_states={len(combined)}")
+        print(f"combined_abstract_presentations={len(set(r for r, _ in combined))}")
+    return combined
+
+
+def main():
+    combined = carrier_states(report=True)
     for residual, images in sorted(combined)[:20]:
         print((residual, images))
 
