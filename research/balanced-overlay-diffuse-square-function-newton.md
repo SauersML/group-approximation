@@ -53,3 +53,13 @@ parity-face projection and equality-cloud alignment with the dense step and
 show that these local corrections preserve (or contract back into) the
 global row basin.  A coordinatewise Taylor bound would reintroduce the
 forbidden sparse high-operator-norm loss.
+
+The random-prefix martingale realization has also been audited.
+`code-riesz-inverse-is-averaged-first-split` proves the exact formula for
+every code-character subset, while
+`junge-riesz-bmo-does-not-close-code-newton` records that fixed-permutation
+BMO loses `sqrt(L)` and row-valued John--Nirenberg produces a projection in
+`M_L tensor M_d` rather than one common physical cut.  The precise
+martingale target is therefore a permutation-averaged BMO estimate followed
+by an exponential tail bound for the physical coordinate square function
+(or a product-cut theorem for the amplified Cuculescu projection).
