@@ -58,6 +58,11 @@ presentation coordinates.
   finite subgroups cannot alone separate the multiplier: scaled projective
   regular representations give an exactly compatible local multiplicity ray
   on every finite atlas.
+- **Bounded-block gap.** `maslov-bounded-block-sector-gap` proves a genuine
+  normalized-HS floor on every fixed block-size stratum.  Thus any sequence
+  falsifying this claim must put asymptotically all dimension into common
+  irreducible blocks whose sizes escape every fixed bound; scalar phase
+  mixtures and bounded packet induction cannot be countermodels.
 - **No tracial-positivity shortcut.** The twisted left-regular representation
   exists in infinite dimension, so a moment/SOS certificate valid in every
   tracial von Neumann algebra cannot exclude `alpha`.  Any separator must use
