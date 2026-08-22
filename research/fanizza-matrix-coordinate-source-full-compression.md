@@ -44,3 +44,19 @@ canonical regular trace would kill `H`.  The open step is therefore not
 another block identity or second cyclic product; it is a finite-coordinate
 decoder authenticating source fullness for the selected C18 multiplicity
 cut while preserving the one-sided infinite completion.
+
+The smallest root/selector backend is now sharply fenced.
+`local-steinberg-heisenberg-packets-are-coefficient-rank-blind` takes
+idempotents `e_r in M_n(F_2)` of every nonzero rank.  The roots
+`x_12(e_r),x_23(e_r),x_13(e_r)` always form the same D8 packet, and the
+ambient regular representation restricts to the same regular D8
+multiplicity profile.  Same-root additivity, the idempotency multiplication
+triangle, and every fixed abstract selector-automorphism table internal to
+the packet are identical while `r/n` ranges from `1/n` to `1`.  Thus mixed
+Steinberg additivity plus one finite Heisenberg packet cannot authenticate
+`(OCR8)`.
+
+The surviving coefficient route must expose a larger rank/Morita chart and
+prove characteristic-zero same-reservoir trace reflection, or activate an
+extensive matrix-dependent family of coefficient atoms.  Root additivity
+alone controls algebraic multiplication, not the complex adjoint Gram.
