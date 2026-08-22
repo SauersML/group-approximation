@@ -100,6 +100,26 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   coboundaries anyway (the extension is the point of `Gamma~_4`), so no
   recorded refutation mechanism reaches this candidate — one more sense
   in which the extension is the softer target.
+- **The refutation mechanism is vacuous for simple candidates.**  Every
+  finite-dimensional projective unitary representation of an infinite
+  simple group has scalar image: the image in `PU(d)` is a quotient of a
+  simple group, so trivial or faithful, and a faithful one would make the
+  group finitely generated linear, hence residually finite (Malcev) —
+  impossible for an infinite simple group.  A scalar-valued projective
+  representation realizes only coboundary cocycles, so condition (3) of
+  Ioana--Spaas--Wiersma Theorem A can never hold with a nontrivial class:
+  the only known direct LLP-refutation method for group C*-algebras is
+  vacuous at every infinite simple group.  (Consistently, for
+  Connes-embeddable groups LLP implies the factorization property
+  (Ozawa, as quoted by Ioana--Spaas--Wiersma p. 2), which with (T) and
+  Kirchberg forces residual finiteness — the same dichotomy as
+  `llp-non-rf-kazhdan-group-is-non-hyperlinear` seen from the C*-side.)
+  For the Kac--Moody candidates the one LIVE refutation risk is therefore
+  a fenced SUBGROUP: whether `Lambda_(2,4,6)(q)` contains a standard
+  relative-(T) pair `Z^2 rtimes F_2` is not recorded — its `Z^2`
+  subgroups arise from commuting hyperbolic pairs acting on the two
+  building factors, and the normalizer structure of the corresponding
+  flats decides the question.
 - **Thom's groups are on the wrong side.**  Thom's hyperlinear Kazhdan
   groups without the factorization property (Groups Geom. Dyn. 4 (2010))
   are non-RF Kazhdan and hyperlinear, hence by the theorem their full
