@@ -3,7 +3,8 @@
 
 AnalyzeColimit:=function(marked)
   local Q,iso,fpQ,qgens,free,r,y,u,b,z,c,t,s,q,qRelations,
-        seamRelations,P,images,ir,iy,iu,ib,iz,ic,it,is;
+        seamRelations,P,images,ir,iy,iu,ib,iz,ic,it,is,sub,cosets,
+        action,actionImages,histogram,orders;
   Q:=Group(marked);
   iso:=IsomorphismFpGroupByGenerators(Q,marked);
   fpQ:=Image(iso);
@@ -24,6 +25,27 @@ AnalyzeColimit:=function(marked)
   images:=GeneratorsOfGroup(P);
   ir:=images[1]; iy:=images[2]; iu:=images[3]; ib:=images[4];
   iz:=images[5]; ic:=images[6]; it:=iy^-1; is:=ib*iy;
+  if IsBound(LOW_INDEX) then
+    histogram:=[];
+    for sub in LowIndexSubgroupsFpGroup(P,LOW_INDEX) do
+      cosets:=RightCosets(P,sub);
+      action:=ActionHomomorphism(P,cosets,OnRight);
+      actionImages:=List(images,g->Image(action,g));
+      ir:=actionImages[1]; iy:=actionImages[2]; iu:=actionImages[3];
+      ib:=actionImages[4]; iz:=actionImages[5]; ic:=actionImages[6];
+      it:=iy^-1; is:=ib*iy;
+      orders:=[Length(cosets),Size(Group([ir,iy,iu,ib])),
+               Size(Group([ir,iz,ic,iu])),Size(Group([it,is,ic])),
+               Order(iz),Order(ic)];
+      Add(histogram,orders);
+    od;
+    Print("low_index_fields=[degree,Q_image,F_image,J_image,z_order,c_order]\n");
+    Print("low_index_histogram=",Collected(histogram),"\n");
+    return [Length(qRelations),-1];
+  fi;
+  if IsBound(INDEX_ONLY) and INDEX_ONLY then
+    return [Length(qRelations),Index(P,Group([ir,iy,iu,ib]))];
+  fi;
   return [Length(qRelations),Size(P),
           Size(Group([ir,iy,iu,ib])),Size(Group([ir,iz,ic,iu])),
           Size(Group([it,is,ic])),Order(iz),Order(ic)];
