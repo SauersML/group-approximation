@@ -195,6 +195,14 @@ essentially unique modulo conjugation and lower-order corrections.
    count and the `exp(O(d log d))` ceiling for growing packets are recorded in
    `finite-congruence-wreath-lamp-torsors-are-subquadratic-gauge`.  Thus the
    new route must find genuinely approximate, noncorrectable relative moduli.
+5. **Even the relative tangent space is pure gauge.**  For a finite wreath
+   packet `H=A rtimes Q`, averaging gives
+   `H^1(H,u(d)_Ad rho)=0`.  Cocycles vanishing on the actor `Q` are generated
+   by elements of `rho(Q)'`, so actor-fixing conjugacies kill the entire
+   fiber tangent.  At a regular packet the raw tangent has dimension
+   `d^2(1-|H|^(-1))`, but all of it is orbit tangent.  The exact computation
+   and uniform approximate linear contraction are
+   `finite-wreath-relative-tangent-moduli-vanish`.
 
 ## Trust surface
 

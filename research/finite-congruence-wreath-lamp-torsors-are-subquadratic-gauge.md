@@ -76,3 +76,10 @@ defect is not uniformly correctable to the growing finite wreath table, or
 retain relative lamp/base moduli that cannot be absorbed by one global
 conjugation.  Counting a congruence commutant or a lamp eigenbasis before the
 global quotient cannot prove positive 1-bounded entropy.
+
+The local version is even sharper.  By
+`finite-wreath-relative-tangent-moduli-vanish`, the full linearized wreath
+kernel at a regular packet has dimension `d^2(1-|H|^(-1))`, but it is exactly
+the global-conjugacy tangent.  If the actor is fixed, every relative cocycle
+is conjugation by an element of the actor commutant.  The quotient tangent is
+zero, with the dimension-free approximate bound `(FWT8)`.
