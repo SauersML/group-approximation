@@ -412,6 +412,20 @@ supplies such a coupling.
   uniformly abelianize the graph-product kernel in normalized HS norm, then
   apply the already established relative-Kazhdan correction.
 
+- **Expansion cannot abelianize the partial graph product.**  For every
+  residually finite actor, including the arithmetic property-`(T)` actors,
+  `finite-graph-product-amplifications-block-hs-collapse`
+  maps a missing edge to a missing edge in a finite actor quotient.  Residual
+  finiteness of the resulting finite graph product then gives arbitrarily
+  large exact unitary models in which all checked relations have zero defect
+  but the missing commutator has normalized-HS distance `sqrt(2)` from the
+  identity.  This remains true along expanding Cayley quotients.  Hence the
+  word ``uniformly'' in the preceding bullet cannot be discharged by a
+  spectral or one-dimensional cosystolic estimate on the checked edge graph.
+  A positive presentation must introduce a new controller/2-cell relation
+  which is not valid in the graph-product escape; only after that extra gate
+  kills the missing commutators can relative Kazhdan correction begin.
+
 - **Choose one word for every module element.**  A multiplication identity
   between remote words has van Kampen area depending on their addresses, so
   the direct estimate is `A_(m,n) delta`, not one uniform modulus.  Equation

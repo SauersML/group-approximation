@@ -62,3 +62,14 @@ property `(T)` supplies the subsequent whole-module covariance estimate; it
 does not turn the bounded-degree linear chain map into a multiplicative
 module decoder.
 
+For residually finite `A`, even the proposed analytic abelianization of this
+concrete kernel is impossible from the graph relations alone.
+`finite-graph-product-amplifications-block-hs-collapse`
+separates every missing commutator in a finite actor quotient and then in an
+arbitrarily amplified finite-dimensional exact representation, where its
+normalized-HS distance from the identity is `sqrt(2)`.  This also applies
+when `A` has property `(T)` and the finite quotient Cayley graphs are
+expanders.  Thus the residual is narrower than generic ``HS abelianization'':
+one must add a genuinely new controller relation which is not already valid
+in the partial graph product and whose finite-dimensional consequences kill
+all missing edges.
