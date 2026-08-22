@@ -122,19 +122,40 @@ new and is the whole point.
   rank-one problem) or exploit that on the `(2,N-2)` stratum the `SL_2`
   factor is coupled to the `GL_(N-2)` block and the unipotent radical in a
   way the isolated `SL_2` lane is not.  This explains structurally why
-  raising the rank has not closed the stability input.  The concrete
-  hopeful form of the coupling exploit: the stratum's contribution to
-  degree-2 cohomology is `(+)_(i+j=2) H^i(Levi, H^j(U_P, V))`, and
-  `H^j(U_P, V)` decomposes (Kostant, in the algebraic case; the
-  Vogan--Zuckerman `(g,K)`-analogue for the unitary Ad-module) into Levi
-  representations indexed by length-`j` Weyl elements; if for `j <= 2` NONE
-  of those Levi pieces contains an `SL_2`-Levi-fixed vector, the boundary
-  face contributes nothing in degree 2 and the `SL_2` obstruction is
-  killed by the coupling, so high rank WOULD close the op-norm upgrade.
-  That vanishing is a finite Weyl-weight computation for each `N` --- the
-  sharpest concrete next step on this horn, and the point where it would
-  either close or expose a genuine `SL_2`-Levi cohomology class as the
-  irreducible obstruction.
+  raising the rank has not closed the stability input.  The coupling
+  exploit one hopes for: the stratum's contribution to degree-2 cohomology
+  is `(+)_(i+j=2) H^i(Levi, H^j(U_P, V))`, and `H^j(U_P, V)` decomposes
+  (Kostant, algebraic case; Vogan--Zuckerman `(g,K)`-analogue for the
+  unitary Ad-module) into Levi representations `F_(mu_w)`,
+  `mu_w = w(lambda+rho)-rho`, over `w in W^P` of length `j`; if for
+  `j <= 2` NO piece had an `SL_2`-Levi-fixed vector the face would
+  contribute nothing there and high rank would close the upgrade.
+
+  **This hope is FALSE for the adjoint probe (computed 2026-08-21).**  For
+  `N = 4`, `P` the `(2,2)` maximal parabolic, `V = ad` (`lambda = theta`,
+  `theta+rho = (5/2,1/2,-1/2,-5/2)`), `W^P` is the six rearrangements with
+  `pos_1 > pos_2` and `pos_3 > pos_4`; an `SL_2`-Levi-fixed vector in
+  `F_(mu_w)` occurs iff `(pos_1-pos_2) = 1` (first `SL_2`) or
+  `(pos_3-pos_4) = 1` (second).  By length:
+  `j=0: (5/2,1/2,-1/2,-5/2)`, gaps `(2,2)`, none;
+  `j=1: (5/2,-1/2,1/2,-5/2)`, gaps `(3,3)`, none;
+  `j=2: (5/2,-5/2,1/2,-1/2)`, gap `pos_3-pos_4 = 1` -> `mu = (1,-3,1,1)`,
+  fixed by the SECOND `SL_2`; and `(1/2,-1/2,5/2,-5/2)`, gap
+  `pos_1-pos_2 = 1` -> `mu = (-1,-1,3,-1)`, fixed by the FIRST `SL_2`.
+  So `H^2(U_P, ad)` carries exactly two `SL_2`-Levi-fixed classes, one per
+  factor.  Hence the coupling does NOT remove the obstruction: those are
+  precisely the boundary directions on which the primitive's op-norm is
+  governed by `H^*(SL_2(Z[1/p]), .)` with the `SL_2`-Levi acting trivially,
+  which is rank-one and not gap-controlled.  The two horns are genuinely
+  linked, not apparently: op-norm control on the `(2,N-2)` cusp REQUIRES
+  the isolated `SL_2` rank-one input, so this horn does not close ahead of
+  the `SL_2` Iwahori lane.  (Caveat: this is the finite-dimensional adjoint
+  module; the stability module is the unitary `L^2(M) - inv`, where the
+  Vogan--Zuckerman analogue could in principle differ, but the adjoint is
+  the natural probe and it already exhibits the fixed classes.)  Next: the
+  same computation for the unitary Ad-module via `(g,K)`-cohomology, and
+  whether the two fixed classes survive to `H^2` of the total Borel--Serre
+  complex or are killed against the interior.
 - **Falsification gate.**  An Ad-module 2-cocycle of `SL_N(Z)` with
   `|| c ||_op <= 2`, 2-norm primitive, but no operator-bounded
   primitive would refute this claim; by the route it would have to
