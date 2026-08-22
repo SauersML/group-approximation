@@ -6,6 +6,7 @@ title: The ordinary BCS commuting square collapses the candidate Britton commuta
 distinct_from:
   two-reflection-pressure-does-not-force-localized-commutation: that gives a matrix countermodel to obtaining localized commutation from disagreement pressure alone; this identifies the separate syntactic collapse when BCS context commutation and an anchor row are used to obtain it.
   twisted-disagreement-return-factors-through-localized-commutator: that proves localized cross-commutation is sufficient; this audits the most direct private/shared BCS source and shows why making its inputs relators kills the target word.
+  fd-invisible-anchor-does-not-localize-bcs-consistency: that tests the intermediate idea of identifying the missing anchor defect with a word killed in every exact finite-dimensional representation, and shows that even positive-density localized collapse still requires new normalized-HS input.
 ---
 
 Let `a,a_0,b_0,t` be group words and put
@@ -66,3 +67,11 @@ the two inputs in `(BCS4)` must be inferred with `o(1)` defect without being
 an abstract group consequence.  Once that is available, the direct Britton
 commutator is already terminal; forbidden-mass disagreement and the central
 sign add no further leverage.
+
+Exact finite-dimensional invisibility does not provide the omitted input.
+`fd-invisible-anchor-does-not-localize-bcs-consistency` tensors a central
+invisible involution with an exact two-point packet and obtains a fixed
+central reducing carrier of trace `1/2` on which the anchor defect remains
+of squared normalized-HS norm `1` in canonical sofic microstates.  Thus even
+the localized version of the anchor row is not a formal consequence of its
+holding in every honest matrix representation.
