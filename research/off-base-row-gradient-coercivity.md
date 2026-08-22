@@ -106,3 +106,16 @@ at fixed time without individual adjoint-action stability or literal
 sharing.  The remaining part of `(ORG1)` is the sparse parity/equality
 energy created by the coordinate-dependent intrinsic conjugators, together
 with the high equality sector assigned to quarantine.
+
+That sparse part is now closed.
+`fixed-parity-faces-exactify-with-loewner-row-square-control` gives an
+explicit sequential pinch/sign/parity construction whose correction square
+is Loewner-dominated by a fixed symmetrization of the raw local residual
+square.  `sparse-face-row-square-survives-intrinsic-green-step` applies it
+after a damped intrinsic step and pays only `O(sigma^2 b)`.  Normalized
+equality transfer preserves the face gap, while
+`shared-pinching-low-band-is-gauge-or-cheap` leaves the low band as a
+vanishing energy floor rather than making a nonphysical cut.  Therefore the
+sole remaining term in `(ORG1)` is the first-order dense low-sector
+curl/coercivity inequality.  All sparse, equality, involution, and endpoint
+cb terms have dimension-free ledgers.

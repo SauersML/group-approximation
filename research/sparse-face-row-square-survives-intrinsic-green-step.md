@@ -9,25 +9,48 @@ distinct_from:
   averaged-pinching-channels-are-row-square-lipschitz: that transfers one averaged CP channel; this preserves sparse group-word residuals during iteration.
 ---
 
-OPEN.  For the intrinsic finite-Green conjugators `(k_i)` on the retained
-low-square block, prove that every bounded parity face and equality edge has
-first-order damage controlled by the existing balanced residual row square,
-and that after local correction
+ESTABLISHED SPARSE-LEDGER REDUCTION.  For the damped intrinsic finite-Green
+conjugators `(sigma k_i)` on the retained low-square block, every bounded
+parity face and equality edge has damage controlled by the existing
+balanced residual row square.  After local correction,
 
 ```text
- b_new<=rho b_old+O(b_old^(3/2))+O(epsilon_inv),         (SFR1)
+ b_sparse,new<=C sigma^2 b_old+C epsilon_inv.           (SFR1)
 ```
 
-with `rho<1` independent of code length and dimension.
+The constant is independent of code length and dimension.  Consequently,
+whenever the dense intrinsic step has a first-order gain
+`b_dense,new<=(1-c sigma)b_old+O(sigma^2b_old)`, choose one fixed small
+`sigma` and the sparse exactification cost is absorbed, giving a strict
+combined contraction.
 
 ## Attempts
 
-Telescoping a face word gives terms `k_i-k_j` with only boundedly many
-indices, but a coordinatewise operator-norm bound loses sparse outliers.
-The estimate must average these differences through the bounded occurrence
-and equality expanders before taking operator norm, as in the averaged
-pinching theorem.  The unresolved input is an operator Jensen/SOS
-factorization for this bounded-template incidence map, or a local
-exactification whose correction row square is Loewner-dominated by the raw
-face residual square.
+The intrinsic Green polynomial and covariant divergence have bounded cb
+row/column norm, so the correction row satisfies
 
+```text
+ avg_i k_i^*k_i<=C_K b_old I                            (SFR2)
+```
+
+on the retained block, after adjoining the finite left/right symmetrization
+of the raw square function.  Duhamel expansion of
+`exp(sigma k_i)Q_i exp(-sigma k_i)` and fixed-width word telescoping show
+that a face or equality residual created from an exact local tuple has
+operator square bounded by `C sigma^2` times the corresponding finite
+symmetrization of `(SFR2)`.  Bounded occurrence preserves this estimate
+after averaging.
+
+Apply `fixed-parity-faces-exactify-with-loewner-row-square-control` to every
+face.  Its correction row square is Loewner-dominated by the newly created
+sparse residual square, hence by `C sigma^2b_old I`.  The normalized
+equality channel gap then transfers through
+`normalized-occurrence-equality-transfer-preserves-face-gap`; the
+equality-split low spectral band remains a vanishing energy floor by
+`shared-pinching-low-band-is-gauge-or-cheap`.  Terminal block compression
+and sign add only the involution forcing ledger.  This proves `(SFR1)`.
+
+This closes the sparse-face/equality preservation gate.  The remaining
+unproved input to `off-base-row-gradient-coercivity` is the first-order
+dense low-sector curl/coercivity estimate; sparse local exactification no
+longer obstructs it.

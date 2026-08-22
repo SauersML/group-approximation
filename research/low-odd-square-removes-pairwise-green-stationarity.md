@@ -36,12 +36,14 @@ opposite endpoint `R=I`, where `(LOS2)` vanishes.
 
 For a whole tuple, if every retained compressed pair satisfies
 `R_(a,i)<=sI`, summing `(LOS3)` gives a uniform edge-level descent signal.
-The remaining coercivity problem is solely whether the oriented edge
-signals `omega_(a,i)` cancel in the normalized divergences `c_a`.  At an
-exact code tuple the complete-graph/code gap prevents that cancellation;
-away from it, the failure of the edge field to be a code coboundary is a
-quadratic triangle/curl term.  Hence the final low-sector PL target is a
-nonlinear curl estimate, not a local spectral or endpoint-Riesz estimate.
+The remaining coercivity problem is whether the oriented edge signals
+`omega_(a,i)` cancel in the normalized divergences `c_a`.
+`ordinary-green-triangle-curl-has-a-linear-code-tangent` shows that the
+ordinary triangle curl need not be quadratic even here.  Its linear part
+must be charged by the balanced parity/equality syndrome (or treated in the
+support-weighted code complex).  Hence the final low-sector PL target is a
+parity-charged curl estimate, not a local spectral or endpoint-Riesz
+estimate.
 
 The regularized aggregate cut gives only an averaged operator bound and can
 leave individual high `R_(a,i)` spikes.  Those are precisely the residual
