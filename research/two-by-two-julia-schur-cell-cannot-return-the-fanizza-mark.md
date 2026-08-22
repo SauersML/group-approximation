@@ -24,6 +24,25 @@ Therefore it cannot compare a fixed positive regular carrier `P` with
 consequence of the group relations, it would hold in the regular finite von
 Neumann algebra at every depth and force `tr(P)=0`.
 
+The square Schur-complement calculation already displays the missing
+scalar.  For
+
+```text
+ M=[I Y;X I],
+```
+
+the two unit-pivot complements are `I-YX` and `I-XY`.  In every finite
+tracial algebra
+
+```text
+ tr(I-YX)=tr(I-XY).                                    (TJS1')
+```
+
+Changing pivot orientation therefore creates no trace deficit.  A deficit
+requires genuinely rectangular maps between unequal-trace carriers, which
+is precisely the proper-corner datum forbidden by the regular firewall,
+not something supplied by a square `2 by 2` linearization.
+
 Nor does replacing Julia compression by the standard opposite-root
 `2 by 2` elementary commutator isolate the additive trace-zero certificate
 of `one-additive-commutator-suffices-for-julia-return`.  Over an arbitrary

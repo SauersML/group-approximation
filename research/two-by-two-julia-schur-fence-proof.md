@@ -16,6 +16,11 @@ tracial multiplicity algebra and commute with trace-preserving
 homomorphisms, so the fixed-packet Julia firewall applies verbatim.  A
 finite-matrix-only loss cannot arise from them.
 
+For the square block `M=[I Y;X I]`, Gaussian elimination about either unit
+pivot gives `I-XY` and `I-YX`.  Their traces agree by cyclicity.  Hence an
+ordinary square Schur complement cannot manufacture source--range trace
+imbalance; one must first authenticate unequal carrier projections.
+
 For the group-word alternative, multiply
 
 ```text
