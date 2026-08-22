@@ -81,3 +81,17 @@ The packet relations do not distinguish that coordinate from the amplified
 multiplicity commutant.  The surviving terminal is therefore
 **algebra-factor localization of the Gram deficiency**, or else a growing
 matrix-coordinate family / genuinely finite-only non-semisimple law.
+
+The most economical proposed localization by a second fixed packet is now
+ruled out exactly.  In
+`two-fixed-packet-reynolds-actions-leave-a-gram-spectator`, two transverse
+D8/selector packets may generate the whole fixed label factor
+`M_4(C) tensor I_N`, but every projection `I_4 tensor Q_N` is fixed by all
+their Reynolds tests and has arbitrary trace.  Packet averaging lands in a
+commutant, not a bicommutant.  A second fixed semisimple packet cannot equal
+the full `I_4 tensor M_N` multiplicity algebra at unbounded `N`.
+
+Thus the localization gate specifically requires a **scalable** transverse
+algebra, or one mixed word which changes under every non-scalar spectator
+gauge.  A second bounded C18/D8 packet, even noncommuting and sharing the
+same selected carrier, does not suffice.

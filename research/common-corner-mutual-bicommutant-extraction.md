@@ -79,6 +79,13 @@ second word-generated algebra and cannot exchange roles with the label factor.
   second algebra must be scalable (for example a word-generated matrix tape),
   or an independent argument must kill the residual spectator.  This is a
   load-bearing compiler requirement, not bookkeeping.
+  `two-fixed-packet-reynolds-actions-leave-a-gram-spectator` gives the exact
+  countermodel: after common amplification, every `I_label tensor Q` is
+  fixed by both packet Reynolds maps, even when the two packets jointly
+  generate the full fixed label factor.  It also records the directionality
+  obstruction: packet Reynolds averaging lands in the packet commutant,
+  whereas extraction of the label algebra requires averaging over the full
+  scalable commutant.
 - **Rectangular firewall.** Add the proposed second packet to the exact
   `rectangular-escape`.  If the joint words still admit a larger tensor
   decomposition with an unused spectator factor, `(CCMB1)` is false for that
