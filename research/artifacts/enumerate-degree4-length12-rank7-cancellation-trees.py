@@ -92,7 +92,23 @@ for position, (copy, coefficient) in enumerate(SYLLABLES):
                 following.add((stack[:-1], equations))
         else:
             following.add((stack + ((copy, coefficient),), equations))
-    states = following
+    remaining = len(SYLLABLES) - position - 1
+    # A future syllable can remove at most one stack entry.  Also discard an
+    # equation superset at the identical symbolic stack: it can never enable a
+    # continuation that its weaker subset cannot already enable.
+    by_stack = {}
+    for stack, equations in following:
+        if len(stack) > remaining + 1:
+            continue
+        by_stack.setdefault(stack, []).append(equations)
+    states = set()
+    for stack, families in by_stack.items():
+        minimal = []
+        for equations in sorted(set(families), key=len):
+            if any(old <= equations for old in minimal):
+                continue
+            minimal.append(equations)
+        states.update((stack, equations) for equations in minimal)
     print("position", position + 1, "states", len(states), flush=True)
 
 solutions = []
