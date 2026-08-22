@@ -225,6 +225,10 @@ def main():
     print(f"unresolved_q={len(unresolved)}")
     for state in sorted(free)[:100]:
         print("FREE", state)
+    for state in sorted(direct)[:100]:
+        print("DIRECT", state)
+    for state in sorted(powers)[:100]:
+        print("POWER", state)
     for state in sorted(unresolved)[:100]:
         print("UNRESOLVED", state)
 
