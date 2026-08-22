@@ -12,6 +12,10 @@ This script reports the traps recorded in the authoring notes:
      artifact (stale references after renames).
   F. OPEN claims that an ESTABLISHED claim's `distinct_from` text calls its
      negation, with no `refuted_by:` recorded (unrecorded refutations).
+  G. Single-prerequisite routes whose prerequisite STATEMENT (title+body,
+     cairn.py's own TF-IDF geometry) is highly similar to the target's and
+     not answered by `distinct_from` on either side: the "restatement
+     dressed as reduction" trap.  `cairn check` compares titles only.
 Run `bin/cairn check` first so the cache is fresh.  Read-only.
 """
 import collections, glob, json, os, re, sys
@@ -82,6 +86,34 @@ show('B. complete routes whose opening says dead/refuted', B)
 show('C. invalidates: on non-established claims (inert kills)', C)
 show('D. open claims without ## Attempts', D, 15)
 show('F. open claims called "negation" by an established claim, no refuted_by', F)
+
+# G. restatement-shaped single-prerequisite routes, scored on statements.
+# cairn.py guards its CLI behind __main__, so importing it is side-effect free.
+G = []
+try:
+    sys.path.insert(0, os.path.join(root, 'tools'))
+    import cairn as _cairn
+    _graph, _ = _cairn.compile_graph()
+    _vecs = _cairn.semantic_vectors(_graph.claims)
+    G_THRESHOLD = 0.14  # calibrated 2026-08-21: max over 431 single-prereq routes was 0.26, median 0.05
+    for rid, r in _graph.routes.items():
+        reqs = r.get_list('requires')
+        tgt = r.meta.get('target')
+        if len(reqs) != 1 or reqs[0] not in _graph.claims or tgt not in _graph.claims:
+            continue
+        a, b = _graph.claims[reqs[0]], _graph.claims[tgt]
+        answered = (tgt in (a.meta.get('distinct_from') or {})
+                    or reqs[0] in (b.meta.get('distinct_from') or {}))
+        opposite = _cairn._negated(a.title + ' ' + a.id) != _cairn._negated(b.title + ' ' + b.id)
+        if answered or opposite:
+            continue
+        sc = _cairn.cosine(_vecs.get(a.id, {}), _vecs.get(b.id, {}))
+        if sc >= G_THRESHOLD:
+            G.append((round(sc, 2), rid, reqs[0], tgt, nodes.get(rid, {}).get('status', '')))
+    G.sort(reverse=True)
+except Exception as ex:  # keep the other checks usable if cairn.py moves
+    G = [('ERROR', repr(ex))]
+show('G. single-prereq routes whose prerequisite statement ~ target statement (cosine>=0.14, unanswered; awareness, not error)', G, 40)
 print(f'\n== E. dangling id-like tokens: {len(E)} distinct, {sum(E.values())} mentions')
 for tok, c in E.most_common(25):
     print(f'   {c:3d}  {tok}   e.g. {sorted(Eex[tok])[0]}')
