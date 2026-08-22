@@ -1,9 +1,10 @@
 ---
 rg: 2
 id: translation-reset-compressed-gram-spectator-proof
-kind: proof_route
+kind: route
+title: Compress the Gram spectator along the translation reset
 target: translation-reset-leaves-a-compressed-gram-spectator
-uses:
+requires:
   - symmetrized-reset-collapses-schur-flow-to-one-ray
   - fanizza-compressed-unitary-has-guarded-rank-floor
   - diagonal-difference-shift-propagates-pauli-incidence
