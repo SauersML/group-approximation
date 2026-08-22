@@ -257,3 +257,11 @@ instead change under the twelve independent right gauges.  Therefore a dual
 search over four free holonomy matrices is not a relaxation of the exact
 common-frame problem in a sound direction.  The scalar Dirichlet target must
 be linked directly to a mixed projection-Gram function of `U`.
+
+`atlas-mixed-c3-gram-has-local-zero-interval` supplies exactly that function
+and its first feasibility audit.  It is gauge-invariant on the twelve-product
+quotient and lies in `[0,1/6]`, but on the collision-zero regular local profile
+it sweeps a nondegenerate interval containing zero.  Therefore a positive
+lower bound cannot be the compiler mechanism.  The needed statement is the
+opposite exact lift assertion: all full twelve-product matrix solutions must
+land at its zero endpoint.

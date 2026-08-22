@@ -91,3 +91,12 @@ product `X_eRY_e=U` makes every cycle identically flat; labelling it by one
 factor makes its holonomy depend on the independent gauge `(CUL4)`.  Thus the
 next invariant must be a genuinely mixed common-`U` Gram coordinate rather
 than a rectangle word.
+
+That first mixed coordinate is now explicit on the quotient.
+`atlas-mixed-c3-gram-has-local-zero-interval` substitutes any common product
+`U=X_eRY_e` into
+`Lambda(U)=||E_K^-U^*rho(b_0)UE_K^+-P_6(.-)P_6||_2^2` and proves invariance
+under all twelve gauges.  Collision plus the regular local profiles leaves a
+whole interval of values including zero.  Hence the remaining all-`k`
+question is exactly whether the simultaneous twelve-product equations cut
+that interval down to `{0}`.
