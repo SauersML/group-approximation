@@ -43,3 +43,9 @@ by `h`); there is no third possibility.  The hyperlinear side of the
 dichotomy is the Hayes--Sale-type soficity question for permutational
 wreath products with a NON-amenable (Kazhdan) stabilizer, where the
 known sofic-stabilizer theorems do not apply.
+
+**Note (2026-08-21 audit).**  `subgroup-exact-outliers-do-not-exist` is
+OPEN again (its route's exact-equivalence lemma is false; see
+`close-normalized-characters-do-not-force-equivalence`); any statement
+here that relies on it -- in particular that outlier microstates must be
+non-exact on every finite-index subgroup -- is conditional on that claim.

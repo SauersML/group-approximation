@@ -40,3 +40,9 @@ outlier complement of `subgroup-exact-outliers-do-not-exist`.  Through
 windows are realized by genuine representations the wall is already a
 finite-dimensional nested-centralizer demand `lim_omega
 [tilde A_n : A_n] > 1` with no further hypothesis.
+
+**Note (2026-08-21 audit).**  `subgroup-exact-outliers-do-not-exist` is
+OPEN again (its route's exact-equivalence lemma is false; see
+`close-normalized-characters-do-not-force-equivalence`); any statement
+here that relies on it -- in particular that outlier microstates must be
+non-exact on every finite-index subgroup -- is conditional on that claim.

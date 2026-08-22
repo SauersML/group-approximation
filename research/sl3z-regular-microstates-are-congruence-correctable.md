@@ -138,3 +138,9 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
   words, so an `eta`-correction gives `(RC3)` up to `C eta` and the
   ultraproduct closes the gap.  This is a much lighter demand than
   the dimension-free moduli the transfer inequalities require.
+
+**Note (2026-08-21 audit).**  `subgroup-exact-outliers-do-not-exist` is
+OPEN again (its route's exact-equivalence lemma is false; see
+`close-normalized-characters-do-not-force-equivalence`); any statement
+here that relies on it -- in particular that outlier microstates must be
+non-exact on every finite-index subgroup -- is conditional on that claim.

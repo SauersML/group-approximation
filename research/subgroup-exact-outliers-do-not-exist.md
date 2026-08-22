@@ -58,3 +58,29 @@ the stated finite adjustments.
   and their exclusion — the remaining step — is now a statement
   purely about uniformly-non-exact approximate representation
   theory, with every exactness loophole closed.
+
+- **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The route's Step 2
+  lemma ("representations at distance `o(1)` in normalized character are
+  equivalent for large `m`") is false -- `close-normalized-characters-do-not-force-equivalence`
+  gives the counterexample `pi_0 (+) tau_m` with one small non-invariant
+  constituent -- and it invalidates `subgroup-exact-outliers-route`.  The
+  (T)-estimate yields only a partial-isometry intertwiner with `o(d)`
+  co-support; Step 3 never shows that the cut corners can be made
+  simultaneously invariant under the `n` coset conjugators (their products
+  satisfy `u_i u_j = c(i,j) u_(ij)` only up to `O(eta_m)`, so they do not
+  act as a finite group on projections of the commutant); Step 4 cites a
+  nonexistent vanishing theorem for `U(C_m)`-valued cocycles and gives no
+  norm control on the trivialization.  The THEOREM is still expected to be
+  true (no counterexample is known; the audit's own counterexample to the
+  lemma is `O(sqrt(eps_m))`-close to a genuine representation).  The
+  correct proof shape is: partial intertwiners from (T); a simultaneous
+  invariant corner or a flexible padding argument; then a Kazhdan-style
+  averaging-plus-polar trivialization of the NEAR-IDENTITY `U(C_m)`-cocycle
+  over the finite group `Lambda / Lambda_0` (a `T`-valued cocycle near `1`
+  lifts to `R`, and `H^2(F, R) = 0`), with an explicit `O(eta^(1/2))` loss.
+  Consequence caveat even after repair: the output is a PROJECTIVE
+  representation; the "everywhere-inexact outliers" corollary needs the
+  (RC3) machinery to be insensitive to a finite central twist, which is not
+  argued here.  All downstream sentences that describe the outlier habitat
+  as "non-exact on every finite-index subgroup" are conditional on this
+  claim.

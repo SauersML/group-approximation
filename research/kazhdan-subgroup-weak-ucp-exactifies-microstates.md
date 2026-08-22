@@ -96,3 +96,9 @@ not reach it.  The second step (the letter) runs in `B(V_n)`, finite
 dimensional, where (T;FD) would suffice.  So the theorem covers
 `C = SL_n(Z)` (`n >= 3`) and Kazhdan lattices in general, but not
 `C = SL_2(Z)` of the Dogon--Vigdorovich pair.
+
+**Note (2026-08-21 audit).**  `subgroup-exact-outliers-do-not-exist` is
+OPEN again (its route's exact-equivalence lemma is false; see
+`close-normalized-characters-do-not-force-equivalence`); any statement
+here that relies on it -- in particular that outlier microstates must be
+non-exact on every finite-index subgroup -- is conditional on that claim.

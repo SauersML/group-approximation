@@ -15,9 +15,10 @@ e_23(2))`, two 6-tuples in `Lambda = SL_3(Z)`, and let
 `Lambda_0 = <A>` (which contains a relative elementary congruence
 subgroup, hence has finite index in `SL_3(Z)`, hence property (T)
 with a Kazhdan pair `(A, epsilon_0)`).  Fix any 2-power congruence
-tower of genuine representations `sigma_m` of `Lambda` (regular type
-or not) and the tracial ultraproduct `M` of the corresponding matrix
-algebras.  Then:
+tower of genuine representations `sigma_m` of `Lambda` whose limit
+trace is the regular trace (the standing `(RC3)` hypothesis; without it
+item 1 fails, see the Attempts) and the tracial ultraproduct `M` of the
+corresponding matrix algebras.  Then:
 
 1. **Moment equality.**  For every word `w`, `w(B) = h w(A) h^(-1)`
    exactly over `Z[1/2]`, so for every fixed `w` and all
@@ -37,14 +38,24 @@ algebras.  Then:
    ```
 
    with `delta_0` depending only on the Kazhdan constant of
-   `Lambda_0`.  There is no asymptotic middle regime: an enemy of
-   the 2-power `Lambda`-exact sector requires the FIRST branch,
-   since its corrector satisfies the six intertwinings exactly in
-   the ultraproduct.
+   `Lambda_0`.  PROVED FORM (2026-08-21 audit): a unitary with defect
+   `eta < epsilon_0 / 2` yields a partial-isometry intertwiner of
+   co-support at most `(eta/epsilon_0)^2`, and along the tower class a
+   diagonal argument yields an exact unitary conjugator in a reindexed
+   ultraproduct; the exclusion of a middle regime for ONE FIXED `M`
+   (a maximal partial intertwiner whose complementary corners are
+   disjoint, with minimal defect in `[epsilon_0 sqrt s, 2 sqrt s]`) is
+   not written -- see the Attempts for the tiling-plus-saturation
+   repair.  An enemy of the 2-power `Lambda`-exact sector requires the
+   FIRST branch, since its corrector satisfies the six intertwinings
+   exactly in the ultraproduct.
 
 3. **What remains on the conjugacy branch.**  If a conjugator
    `V_infty` exists, the set of all of them is the torsor
-   `V_infty U(C)`, `C = pi(B-side)(Lambda_0)' cap M`, and the
+   `V_infty U(C_A) = U(C_B) V_infty`, `C_A = pi(A-side)(Lambda_0)' cap M`
+   and `C_B = pi(B-side)(Lambda_0)' cap M` (identified by `Ad V_infty`;
+   an earlier version printed `V_infty U(C_B)`, which is the wrong side:
+   `V_infty^* V'` intertwines `pi(A)` with itself), and the
    remaining enemy constraints -- the Weyl inversion, the three-term
    interlock, commutation of the Weyl orbit, the Haar tower and
    mixed-trace regularity -- become equations ON THE TORSOR: their
@@ -157,3 +168,21 @@ algebras.  Then:
   a fully solvable selection would instead be evidence toward
   hyperlinearity of the carrier, making this dichotomy a genuine
   two-sided instrument.
+
+- **Audit notes (2026-08-21).**  (i) Item 1 needs the regular limit
+  trace: for the inflation of the regular representation of `SL_3(F_2)`
+  along a 2-power tower, `tr sigma_m(e_21(2)) = 1` while
+  `tr sigma_m(e_21(1)) = 0`, so the moments of `pi(A)` and `pi(B)` differ;
+  the hypothesis was added above.  (ii) The route's Part 2 proves the
+  class-level dichotomy; the fixed-`M` statement needs: if the commutants
+  `C_A`, `C_B` are diffuse (true for regular-type towers, where the
+  multiplicity algebras grow), a maximal partial intertwiner `u` can be
+  enlarged by tiling conjugates `u v`, `w u` (`v in U(C_B)`, `w in U(C_A)`)
+  unless its co-support is zero, and countable saturation of the tracial
+  ultraproduct then realizes an exact unitary conjugator in `M` itself.
+  Neither ingredient is written; until it is, item 2 is established only
+  in the proved form stated.  (iii) The consolidation bullet on bounded
+  gauges below is not certified by the route; the bounded `2`-part clause
+  of `lambda-exact-face-of-the-collapse-closes` now cites the mixed-level
+  extension of `depth-shifted-regular-overlap-is-exactly-one-sixteenth`
+  instead.

@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 Let `Lambda_0=<A>` and `B=hAh^(-1)` be the tuples in
-`two-power-sector-conjugator-dichotomy`.  At level `2^a`, `a>=3`, put
+`two-power-sector-conjugator-dichotomy`.  At level `2^a`, `a>=2` (the audit of 2026-08-21 checked `a = 2` as well; at `a = 1` the packet has order `8`), put
 
 ```text
 K_A(a)={gamma in Lambda_0: gamma=1 mod 2^a},

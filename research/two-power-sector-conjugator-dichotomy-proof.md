@@ -56,7 +56,7 @@ support projections have trace at least `1 - (eta/epsilon_0)^2`
 So: EITHER every unitary of `M` has defect `>= delta_0 :=
 epsilon_0/2`, OR there are exact partial intertwiners with
 co-supports of arbitrarily small trace (as witnesses with smaller
-`eta` are fed in); in the second case a diagonal argument across
+`eta` are fed in) [AUDIT 2026-08-21: no mechanism supplies smaller witnesses for a fixed `M`; this proves only the class-level statement -- see the claim's Attempts for the tiling-plus-saturation repair]; in the second case a diagonal argument across
 the tower class (reindexing the ultraproduct, as usual in this
 lane) produces an exact UNITARY conjugator in an ultraproduct of
 the same 2-power class.  At the level of the sector question --
@@ -70,7 +70,7 @@ branch.
 then any other conjugator `V'` gives `V_infty^* V' in
 pi(B)(Lambda_0)' cap M =: C`, and conversely `V_infty u` conjugates
 for every unitary `u in C`: the conjugators form the torsor
-`V_infty U(C)`.  Substituting `V = V_infty u` into the remaining
+`V_infty U(C_A)` with `C_A = pi(A)(Lambda_0)' cap M` (NOT `U(C)` on the right with the B-side commutant, as first printed: `V_infty^* V'` commutes with `pi(A)`).  Substituting `V = V_infty u` into the remaining
 enemy constraints (Weyl inversion `pi(w_13) V pi(w_13)^(-1) =
 V^(-1)`, the three-term relation, commutation of the Weyl orbit,
 `tr(V^j) -> 0`, mixed-word regularity) produces equations in `u`
