@@ -42,6 +42,18 @@ Nevertheless it closes the Maslov sector by
   `sp4-mod3-twisted-fibres-have-llp` is a stronger open problem.  A successful
   attack should use only the finite presentation and tracial 2-norm, avoiding
   arbitrary quotient algebras.
+- **Generic finite complete-order models are already LLP-strength.**  The
+  canonical generator system contains enough unitaries in `A_alpha`.
+  `maslov-generator-complete-order-model-is-llp-strength` proves that LP of
+  this one finite system forces LLP of the full twisted fibre.  Hence a
+  null-quotient or ucp-retract model built from chordal/coproduct LP systems
+  does not exploit the tracial restriction; it solves the stronger LLP hole.
+  The direct rank-one root coproduct and every character-compatible chordal
+  clique-tree model are not even completely order isomorphic to the Maslov
+  system: their C-star envelopes have characters, while the nontrivial
+  Deligne fibre has none.  A surviving finite quotient must therefore use a
+  genuinely non-null positive kernel and a proof specialized to tracial
+  homomorphisms.
 - Property (T) alone cannot correct arbitrary Choi/linear lifts to ucp lifts:
   `property-t-alone-cannot-correct-tracial-choi-lifts` applies such a
   hypothetical correction to Thom's hyperlinear Kazhdan group without the
