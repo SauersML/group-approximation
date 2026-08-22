@@ -1,0 +1,25 @@
+{
+  "method": "Use v_2(|GL4(3)|)=9 to bound a normal 2-kernel over A5 by 2^7. Enumerate the complete GAP PerfectGroups library at orders 60*2^a, 0<=a<=7; retain groups whose Fitting subgroup is the full 2-kernel, whose quotient is A5, and which contain an A5 complement; then compute every irreducible four-dimensional F3 representation and its image order.",
+  "GL4_3_order": 24261120,
+  "GL4_3_2_part": 512,
+  "split_perfect_candidate_count": 9,
+  "profiles_as_order_id_radical_order_complement_classes_four_dimensional_modules_faithful_four_dimensional_modules_image_orders": [
+    [60, 1, 1, 1, 1, 1, [60]],
+    [960, 1, 16, 4, 1, 0, [60]],
+    [960, 2, 16, 1, 1, 0, [60]],
+    [1920, 1, 32, 4, 1, 0, [60]],
+    [1920, 7, 32, 1, 1, 0, [60]],
+    [3840, 1, 64, 2, 1, 0, [60]],
+    [3840, 2, 64, 2, 1, 0, [60]],
+    [3840, 3, 64, 4, 1, 0, [60]],
+    [7680, 1, 128, 2, 1, 0, [60]]
+  ],
+  "faithful_nontrivial_2_kernel_count": 0,
+  "nearby_nonsplit_order_1920_exception": {
+    "perfect_group_identifier": 6,
+    "radical_order": 32,
+    "A5_complement_classes": 0,
+    "four_dimensional_representation_image_orders": [1920, 60]
+  },
+  "scope": "This is exhaustive for perfect split extensions R:A5 with R a 2-group that act on F3^4. It does not classify action groups with odd-order radical layers above the four-dimensional chief factor."
+}
