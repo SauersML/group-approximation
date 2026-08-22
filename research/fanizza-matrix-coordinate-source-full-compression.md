@@ -134,3 +134,21 @@ distinct.  Hence the decoded Gram is polynomially close to the old-spin
 commutant.  This is localization, not source fullness: the remaining step
 must still turn that commutant-valued Gram deficiency into a
 positive-density one-sided rank payment.
+
+The full translation reset does not supply that last turn.
+`translation-reset-leaves-a-compressed-gram-spectator` amplifies its unique
+label type ray by `C^N`, chooses a non-scalar residual projection `Q`, and
+constructs a chord for which
+
+```text
+q=E-X^*X=E_0 tensor Q,
+tr(q)=tr(H)=1/8.
+```
+
+Every reset/type-vector relation and every diagonal-difference addressed
+Pauli incidence is exact, while `q` lies outside the finite label algebra
+and saturates the guarded rank floor.  Thus the gap `gamma_A` cannot be
+invoked from these inputs.  The remaining decoder must contain a genuinely
+mixed chord--reset word which detects the scalar multiplicity coordinate;
+another local type-vector or Reynolds constraint cannot authenticate source
+fullness.

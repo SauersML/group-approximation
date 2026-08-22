@@ -84,6 +84,17 @@ with the recurse branch acting on the sole `m`-dimensional multiplicity space
 capable of erasing it. This wall is structural rather than predicate-sensitive;
 the return must additionally couple its orientation to the surplus `2K_1n`.
 
+That scalar multiplicity channel already carries a sharp one-sided Gram
+escape.  `translation-reset-leaves-a-compressed-gram-spectator` constructs,
+on an exact amplification of the reset ray, a chord with
+`E-X^*X=E_0 tensor Q` and `tr(E-X^*X)=tr(H)=1/8`.  All addressed old-spin
+Pauli incidences remain exact.  Hence neither the reset nor coordinate
+localization forces the Gram into the finite label algebra.  Any proposed
+version of clause 3 through the compressed-Gram route must include one mixed
+chord--reset relation which acts nontrivially on the scalar multiplicity
+factor; type-vector balance and the fixed Reynolds wall alone leave this
+zero-defect spectator.
+
 There is a cleaner predicate-sensitive observable than the bare Reynolds
 rank. By `schur-predicate-is-character-density-difference`, every local
 forbidden projection satisfies
