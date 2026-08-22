@@ -45,3 +45,16 @@ gap as at least `4 delta`.  The missing estimate is a near-abelian bootstrap
 from **small** complete-overlay energy to that exact gapped sector.  Invoking
 the abelian gap only after exactifying all pair faces is circular, since that
 exactification already supplies the global commuting PVM.
+
+There is also a sharp necessary combinatorial fence on this route.
+`tanner-separated-codewords-create-dihedral-soft-mode` shows that two
+nonzero codewords whose disjoint supports never meet one common parity face
+give an exact `D_infinity` quotient.  Its two generating reflections can be
+represented at arbitrarily small angle in `M_2`; all parity faces remain
+exact while the adjoint gap tends to zero.  Direct sums of two good LDPC
+codes retain the standard scalar distance, stopping, degree, and LTC
+parameters and have precisely this obstruction.  Thus those scalar inputs
+cannot prove this claim.  A selected family must additionally exclude all
+such dihedral sectors by an operator-visible indecomposability hypothesis,
+or the decoder must bypass `(GFP3)` with a weaker (for example square-root)
+correction argument.

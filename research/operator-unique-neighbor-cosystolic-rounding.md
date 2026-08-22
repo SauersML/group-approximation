@@ -64,6 +64,18 @@ complete-pair energy but stays a constant distance from all commuting
 tuples.  Thus the exact new analytic target is an operator-valued LTC plus
 kernel-killing bootstrap, not generic almost-commuting stability.
 
+The desired decoder is strictly weaker than a uniform quadratic adjoint
+gap.  `tanner-separated-codewords-create-dihedral-soft-mode` gives exact
+parity representations in which the face-Hamiltonian gap vanishes through
+two nearby reflections generating `D_infinity`.  Their complete-pair energy
+is `O(theta^2)`, but they are made commuting by an `O(theta)` correction.
+Thus this soft mode is compatible with a decoder having
+`omega(epsilon)=O(sqrt(epsilon))`; it refutes only attempts to derive the
+decoder from classical LDPC parameters via a uniform `(GFP3)`.  Either the
+selected code must exclude the separated-codeword quotient, or the proof
+must explicitly correct such amenable soft sectors before applying a gap on
+the remaining representation.
+
 There is no additional exact atlas-agreement obstruction hidden in the face
 PVMs.  `binary-face-pvm-is-determined-by-coordinate-reflections` reconstructs
 each bounded binary face from its coordinate marginals, and
