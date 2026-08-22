@@ -95,5 +95,7 @@ That lower bound is now established on the infinite progression
 `even-weil-second-cubic-has-a-rank-six-determinant-gap`.  The second cubic
 alone has determinant `-1` and residual rank at most six, hence norm at
 least `2/sqrt(6d)`.  Thus the quadratic padding calibration is rigorous on
-this subsequence; the caveat remains only for primes `p=1 mod 8` and for
-arbitrary packet mixtures.
+this subsequence.  `deleted-fixed-line-first-cubic-has-explicit-positive-spectrum`
+supplies the determinant-neutral `p=1 mod 8` charge.  The remaining caveat is
+no longer a prime residue class, but arbitrary packet mixtures not presented
+in an authenticated orthogonal block decomposition.

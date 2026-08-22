@@ -53,29 +53,38 @@ compressed Weil packets.
 
 ## Attempts
 
-- **The canonical `p=5 mod 8` blocks obey the exact ledger.**  On one
-  compressed even-Weil block,
+- **Every canonical compressed even-Weil block obeys the exact ledger.**  If
+  `p=5 mod 8`,
   `even-weil-second-cubic-has-a-rank-six-determinant-gap` proves
 
   ```text
   ||(X R S)^3-1||_F^2 >= 2/3,
   ```
 
-  while one restored fixed line gives an exact extension.  On an orthogonal
-  sum of `K` such blocks, Frobenius squares add, so `E>=2K/3`; the evident
+  If `p=1 mod 8`, the determinant is neutral, but
+  `deleted-fixed-line-first-cubic-has-explicit-positive-spectrum` computes
+  the first cubic exactly and gives Frobenius square at least `144/125`.
+  One restored fixed line gives an exact extension in either case.  On an
+  orthogonal sum of `K` heterogeneous canonical blocks, the **sum** of the
+  two cubic Frobenius squares is therefore at least `2K/3`; the evident
   `K`-line completion satisfies `K<=3E/2`.  Thus `(FBR2)` is proved, with
   the sharp quadratic normalization, for this authenticated block-diagonal
   family.
 
-- **Heterogeneous primes are not covered by determinant multiplication.**
-  For `p=1 mod 8` the second compressed cubic has determinant `+1`, so the
-  rank-six determinant certificate is silent.  Even among
+- **Heterogeneous primes are not covered by determinant multiplication, but
+  their canonical orthogonal sums are covered by positive cubic energy.**
+  For `p=1 mod 8` the second compressed cubic has determinant `+1`; its
+  deleted mode instead appears as a conjugate rank-two eigenvalue pair in
+  the first cubic.  Even among
   `p=5 mod 8` blocks, multiplying determinants globally retains only the
   parity of the number of missing lines; opposite phase defects can cancel
   while Frobenius energy remains positive.  Therefore a scalar determinant
   or Fredholm index cannot prove `(FBR2)` for arbitrary mixtures.  The
   required charge must be positive and matrix-valued (or be recovered after
-  an authenticated packet decomposition).
+  an authenticated packet decomposition).  Squared Frobenius energy gives
+  exactly such a noncancelling charge once the canonical blocks are known;
+  the open issue is to authenticate an analogous boundary decomposition for
+  an arbitrary common `X` which mixes scalar packets.
 
 - **Cross-packet coupling is essential.**  The full even-Weil involution
   couples the deleted fixed line to the primitive nonzero BS packet.  The
@@ -95,6 +104,25 @@ compressed Weil packets.
   spectral threshold on the cubic residual controls only its large singular
   directions and does not recover low-amplitude boundary spread over many
   packets.
+
+- **A block-free positive charge exists once the boundary corner is
+  exposed.**
+  `positive-fixed-corner-cubic-energy-charges-deleted-rank` treats an
+  arbitrary finite-rank reservoir `Q` fixed pointwise by the first parabolic
+  word.  It allows the ambient involution to mix every deleted direction and
+  proves the exact identity
+
+  ```text
+  ||first cubic residual||_F^2=Tr_Q f(QXQ)
+  ```
+
+  with `f(t)>0` on every compact subinterval of `[0,1)`.  Thus neither
+  determinant cancellation nor heterogeneous mixing can recycle a positive
+  corner whose compression stays uniformly below one.  The logical
+  direction is load-bearing: the theorem starts with an exact dilation and
+  its corner `Q`, whereas `(FBR2)` starts only with the compressed
+  near-solution.  The remaining gate is therefore a reverse boundary
+  dilation/authentication theorem, not another scalar index.
 
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:

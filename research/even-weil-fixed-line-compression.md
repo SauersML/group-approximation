@@ -106,9 +106,10 @@ dimension.
 Same-dimensional metric repair is uniformly impossible, while one-dimensional
 flexible repair is explicit.  The proved cubic-defect estimate is
 `O(d^(-1/2))`, while the evident arithmetic repair restores one dimension.
-A matching `Omega(d^(-1/2))` lower bound for one of the two cubic words has
-not been computed, so this alone does not identify the padding density with
-the squared observed defect.  This does not refute the flexible
+A matching `Omega(d^(-1/2))` lower bound does not follow from the compression
+upper estimate alone.  It is supplied below by two complementary spectral
+calculations, identifying the padding density with the squared observed
+defect on this family.  This does not refute the flexible
 Dogon--Vigdorovich target: their generalized metric
 allows the full `(p+1)/2`-dimensional Weil representation, which is
 `O(p^(-1/2))` from the compressed tuple.  Any proposed positive-density
@@ -120,3 +121,11 @@ residual has rank at most six and determinant `-1`, so its normalized-HS norm
 is at least `2/sqrt(6d)`.  Thus the `Theta(d^(-1/2))` defect and quadratic
 one-line padding calibration are valid on that infinite subsequence.  The
 same determinant argument is neutral for `p=1 mod 8`.
+
+The determinant-neutral progression is covered by a different cubic.
+`deleted-fixed-line-first-cubic-has-explicit-positive-spectrum` computes
+the first compressed cubic exactly for `p=1 mod 8`: its residual has a
+conjugate rank-two spectrum and unnormalized Frobenius square at least
+`144/125`.  Hence every prime `p=1 mod 4` in this construction has constant
+unnormalized two-cubic energy, although the witnessing cubic and spectral
+charge differ between the two residue classes modulo eight.

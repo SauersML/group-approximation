@@ -46,8 +46,9 @@ The sharp quantitative version of the missing global step is isolated as
 Frobenius energy of the two cubic residuals should pay the rank of one
 globally balanced added multiplicity vector.  This explicitly permits
 off-diagonal coupling between heterogeneous packets and records the desired
-quadratic padding law without pretending that the current determinant
-certificate handles `p=1 mod 8` or arbitrary phase mixtures.
+quadratic padding law.  The determinant-neutral `p=1 mod 8` canonical blocks
+are now charged by the explicit first-cubic spectrum, but arbitrary phase
+mixtures remain outside the authenticated calculation.
 
 ## Attempts
 
@@ -87,8 +88,10 @@ certificate handles `p=1 mod 8` or arbitrary phase mixtures.
   proves that the second cubic has determinant `-1`, rank at most six away
   from the identity, and normalized-HS defect at least `2/sqrt(6d)`.  Hence
   one-dimensional padding is genuinely quadratic in defect there.  The
-  `p=1 mod 8` determinant-neutral packets and general cross-packet mixtures
-  remain outside that lower bound.
+  determinant-neutral `p=1 mod 8` packets are now covered by
+  `deleted-fixed-line-first-cubic-has-explicit-positive-spectrum`, which
+  gives a uniform first-cubic Frobenius charge.  Only general cross-packet
+  mixtures remain outside the blockwise lower bound.
 - **Primitive prime packets are now classified exactly.**
   `prime-bs14-packet-extension-classification` proves that a scalar packet
   extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,

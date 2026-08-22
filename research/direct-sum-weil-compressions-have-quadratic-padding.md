@@ -40,24 +40,33 @@ missing_dimension_density = K/(D+K),
 presentation_defect(Phi)^2 = O(K/D).                     (DSW4)
 ```
 
-The displayed estimates do **not** imply
+The displayed upper estimates by themselves do **not** imply
 `missing_dimension_density=O(presentation_defect(Phi)^2)`: that direction
 requires a matching lower bound on at least one compressed cubic residual.
-The rank-one excursion proves support and an upper bound, but the current
-calculation does not rule out cancellation in those particular words.
+The rank-one excursion alone proves support and an upper bound, but does not
+rule out cancellation in those particular words.  The next two spectral
+inputs supply the needed lower bounds.
 
-There is now a sharp positive subfamily.  If every `p_j=5 mod 8`,
+There is now a sharp positive estimate for every such prime.  If
+`p_j=5 mod 8`,
 `even-weil-second-cubic-has-a-rank-six-determinant-gap` gives unnormalized
-Frobenius square at least `2/3` for the second cubic on each block.  Direct
-sums preserve that block diagonal word, so
+Frobenius square at least `2/3` for the second cubic.  If `p_j=1 mod 8`,
+`deleted-fixed-line-first-cubic-has-explicit-positive-spectrum` gives
+unnormalized Frobenius square at least `144/125` for the first cubic.  Since
+the energy is the **sum** of the two squared cubic residuals and direct sums
+preserve both block diagonal words,
 
 ```text
-||(X R S)^3-1||_2^2 >= (2/3)K/D.                      (DSW5)
+||((X S^2)^3-1)||_F^2+||((X R S)^3-1)||_F^2
+  >= (2/3)K.                                          (DSW5)
 ```
 
-Together with `(DSW2)`, the observed presentation defect is
-`Theta(sqrt(K/D))` on this restricted family, and the evident `K`-line
-arithmetic completion has genuinely quadratic relative padding.
+Together with `(DSW2)`, the root-sum-square presentation defect is
+`Theta(sqrt(K/D))` for arbitrary heterogeneous sums of the canonical
+compressed blocks, and the evident `K`-line arithmetic completion has
+genuinely quadratic relative padding.  This is an existence ledger for that
+completion; it does not prove that no smaller enlargement can couple
+different blocks globally.
 
 ## Proof
 
@@ -72,9 +81,10 @@ an exact representation, its dimension is `D+K`, and the difference from the
 zero-padded `Phi` again has unnormalized Frobenius square `O(K)` on every
 fixed generator.  Normalizing by `D+K` proves `(DSW3)`.
 
-This is an upper-ledger theorem, not the converse reconciliation theorem or
-a sharp defect-to-padding law.  It does show that `K=o(D)` makes the
-presentation defect vanish and that restoring the deleted arithmetic lines
-costs exactly `K` dimensions.  Proving that every flexible repair must pay a
-quantity comparable to the squared observed defect requires the missing
-cubic lower bound and a minimal-padding argument.
+This is a canonical-family ledger, not the converse reconciliation theorem.
+It shows that `K=o(D)` makes the presentation defect vanish, that restoring
+the deleted arithmetic lines costs exactly `K` dimensions, and that this
+chosen padding is bounded by the observed two-cubic energy.  Proving that
+every flexible repair must pay comparable padding, or that arbitrary
+cross-packet near-solutions admit this ledger, requires a separate global
+multiplicity argument.
