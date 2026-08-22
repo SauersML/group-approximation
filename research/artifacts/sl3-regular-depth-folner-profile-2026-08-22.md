@@ -22,4 +22,3 @@ branching multiplicity supplies a one-dimensional weighted-shift gap.  The
 remaining arithmetic question is joint: can the denominator generator
 coherently intertwine all parahoric branch labels and mixed-root packets on
 such a spread profile?  A depth-marginal inequality cannot decide it.
-

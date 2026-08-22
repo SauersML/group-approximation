@@ -93,4 +93,3 @@ by the denominator relations.  A successful contraction must therefore use
 their branch labels, mixed-root compatibility, or the global building PVM;
 the exact depth distribution and its genuine branching dimensions are
 insufficient.
-

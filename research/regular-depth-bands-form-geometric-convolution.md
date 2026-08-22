@@ -30,4 +30,3 @@ Finally, a nonidentity integral matrix cannot be congruent to the identity
 modulo `p^a` for arbitrarily large `a`.  Thus sufficiently deep regular
 quotient blocks have trace zero on any prescribed finite set of nonidentity
 lattice elements, proving the canonical-character assertion.
-
