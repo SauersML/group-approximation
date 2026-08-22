@@ -28,3 +28,7 @@ force the impossible congruence `3r=-1 mod N` at every clock order divisible
 by three.  A surviving retuning must therefore use a noncyclic middle-root
 packet or a genuinely non-scalar negative-long-root generator.
 
+Scalarity is essential: `kassel-through-29-has-noncentral-order-three-model`
+satisfies all seven relations in `S5` with `w_beta^4` of order three, but
+noncentral. The exceptional-cover repair is fenced by
+`exceptional-3s6-cannot-carry-one-rootwise-omega-sector`.

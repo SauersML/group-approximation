@@ -106,3 +106,11 @@ Nevertheless it closes the Maslov sector by
   while a single cyclic Weyl middle-root clock forces `3r=-1` modulo a
   multiple of three.  Noncyclic packets and non-scalar negative-long-root
   models remain outside this fence.
+- **Through (2.9), order three survives but scalarity does not.**
+  `kassel-through-29-has-noncentral-order-three-model` gives an exact `S5`
+  tuple with `w_beta^4` a 3-cycle, so no ordinary group identity on these
+  relations kills the mark. Its eigenspaces are not invariant, and
+  `exceptional-3s6-cannot-carry-one-rootwise-omega-sector` shows that the
+  exceptional finite triple extension only swaps the two nontrivial sectors
+  under root transvections. The remaining issue is promotion from
+  noncentral order three to one invariant scalar sector.
