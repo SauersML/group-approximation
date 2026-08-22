@@ -117,96 +117,26 @@ classification claim.
 
 ## The Lean formalization
 
-The conceptual headline is now
-`KazhdanCliffordConstruction.kazhdanCliffordConstruction`: every finitely
-presented property-(T) group with a proper injective endomorphism yields a
-finitely presented non-MF extension.  The same theorem constructs the HNN--
-Clifford representation, proves the base embeds, derives the marked sign's
-square relation from centrality instead of imposing it, proves the sign is
-nontrivial, and proves that every genuine norm-matrix C*-corona homomorphism
-kills it.
+The Lean code is organized as a reusable library, not as a proof script for
+one result.  Definitions and theorems are stated at their natural level of
+generality; concrete presentations and finite certificates are downstream
+instances of those interfaces.  Import [`GroupApproximation.lean`](GroupApproximation.lean)
+for the whole library, or import a narrower module for a smaller dependency
+closure.
 
-The literal theorem is definitionally the same eight-generator presentation
-and marked word as the manuscript. The affine--Clifford nontriviality witness,
-canonical P13 tables and relator replays, the rotation quotient, the intrinsic
-property-(T) bridge, Kazhdan transport, and the negative-corner obstruction are
-joined by the zero-input declarations
-`LiteralNonMFEndpoint.manuscriptTheoremA` and
-`LiteralNonMFEndpoint.manuscriptTheoremD` in
-`Sofic/LiteralNonMFEndpoint.lean`; the quantitative modules remain their
-backend.
-A revision is described as formally complete only after the headline theorem,
-all exact wrappers, the signature roster, source scan, kernel audit, and fresh
-replay pass at one commit.
+| Area | Main directories | Reusable contents |
+| --- | --- | --- |
+| Group constructions | `Algebra/`, `GroupTheory/`, `Higman/`, `Covers/`, `Monsters/` | Presentations, normal forms, free products, HNN extensions, quotients, embeddings, and torsion arguments |
+| Finite approximation | `Sofic/`, `Criterion/`, `Stability/`, `Domination/`, `Matching/` | MF, sofic, and hyperlinear interfaces; finite models; residuals; ultraproducts and matrix coronas; permanence and obstruction principles |
+| Rigidity | `PropertyT/`, `Kazhdan/`, `PropertyTT/` | Fixed-point formulations, relative property (T), Kazhdan and Hodge certificates, spectral gaps, and property (TT)/T |
+| Analysis and operator algebra | `Analysis/`, `KOne/`, `Leavitt/`, `Steinberg/` | Matrix estimates, projections, traces, C*-algebra constructions, K-theory interfaces, and noncommutative ring models |
+| Combinatorial and quantum groups | `Kun/`, `KunThom/`, `Quantum/` | Graph and permutation constructions, approximation mechanisms, and quantum-group infrastructure |
+| Verification and public API | `Endpoint/`, `Meta/`, `Computability/`, `Manuscript/` | Stable exports, exact finite-certificate replay, computability wrappers, statement matching, and axiom audits |
 
-The public CDE predicate and MF radical quantify literally over genuine
-C*-coronas with natural matrix dimensions. Coordinate reindexing and polar
-correction prove their equivalence to the internal unitary-sequence models.
-For countable groups, the quotient by the radical is MF, is represented
-faithfully in one corona, and has the expected universal factorization
-property.
-
-The internal definition permits any positive dimension sequence. The
-Carrión--Dadarlat--Eckhardt convention requiring strictly increasing
-dimensions is proved equivalent by a faithful cumulative block-diagonal
-corona embedding; see `Sofic/OperatorMFIncreasingDimensions.lean`.
-
-Reading path, front door first:
-
-| Module | Role |
-| --- | --- |
-| `Sofic/KazhdanCliffordConstruction.lean` | General finitely presented Kazhdan self-embedding construction, HNN--Clifford witness, universal corona kernel, and non-MF endpoint |
-| `Sofic/LiteralNonMFEndpoint.lean` | Hypothesis-free proof spine: `w = u²`, Kazhdan transport, the negative-corner contradiction, Clifford detection, and Theorems A and D |
-| `Sofic/KazhdanAsymptoticCommutant.lean` | Transport of every bounded asymptotic-commutant sequence by every one-sided compressor and by the generated compression group |
-| `Sofic/IntrinsicCompressionMFRadical.lean` | Intrinsic compression--centralizer defect and its finite-normal MF-radical theorem |
-| `Sofic/ManuscriptKazhdanTransport.lean` | Natural-matrix-coordinate wrappers matching the two new manuscript theorems exactly |
-| `Sofic/LiteralP13HodgeCertificate.lean` | Canonical rational P13 Hodge certificate assembled from exact residual blocks |
-| `Sofic/LiteralBaseP13RotationQuotient.lean`, `Sofic/LiteralBaseP13PropertyTBridge.lean` | P13-to-rotation quotient and intrinsic literal-base bridge |
-| `Sofic/ManuscriptExactWrappers.lean` | Shared exact outer-proposition wrappers for the generic retained claims |
-| `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
-| `Sofic/CDEOperatorMF.lean`, `Sofic/ActualCoronaMFRadical.lean` | Literal natural-dimension CDE predicate and genuine-corona radical |
-| `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
-| `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
-| `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
-| `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
-| `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
-| `Sofic/AdjointMatrix.lean`, `Sofic/ProjectionRankFlip.lean`, `Sofic/SpectralCapture.lean` | Finite-dimensional operator lemmas |
-| `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
-| `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
-| `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and universal MF quotient |
-| `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
-| `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
-| `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
-| `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
-| `Sofic/OperatorMFPositiveControls.lean`, `Sofic/LiteralMFQuotientControls.lean` | Positive permanence results and exact `F₈ ↠ E` quotient nonclosure |
-| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
-| `Analysis/MaximalGroupCStar.lean`, `Analysis/ReducedGroupCStarMFObstruction.lean` | Concrete universe-relative maximal and reduced group C*-algebra consequences |
-
-At a completed formal checkpoint, the headline declarations must be included
-in the kernel audit roster with axiom closure restricted to `propext`,
-`Classical.choice`, and `Quot.sound`; no literature theorem is introduced as a
-Lean axiom.
-
-**What the verification does and does not claim.** Two different statements
-are checked by two different artefacts, and they are not interchangeable.
-Every numbered claim of the manuscript has a Lean declaration whose
-proposition is that claim: `scripts/check_non_mf_claim_manifest.py`,
-`check_non_mf_refs.py` and `check_non_mf_zero_input.py` gate that, and the tree
-contains no `sorry` and no project axiom. The *prose proofs* are a separate
-question, tracked step by step in
-[`metadata/NON_MF_PROOF_LEDGER.md`](metadata/NON_MF_PROOF_LEDGER.md); at the
-current revision that ledger grades 437 steps.  In the statement column, 404
-are `EXACT`, three are `MISMATCH`, and 30 are `MISSING`; in the proof column,
-404 are `EXACT`, one is a `MISMATCH`, and 32 are `MISSING`.
-Thus "every numbered result has a checked formal counterpart" is accurate
-while "the manuscript proof has been formalized line by line" is not.  In
-particular, the quotient-presentation and Shulman-amalgam argument computing
-`Res_MF(E)`, and the Fournier-Facio--Hull--Osin small-cancellation input for
-the torsion-free example, are paper-level mathematics rather than Lean
-theorems. The ledger is also a *correspondence* audit, by its own stated policy: it
-asks whether Lean says what the manuscript says, and classifies every
-discrepancy as a Lean-side or matching issue. It is not an adversarial referee
-of the mathematics, and no claim here should be read as one.
+The `Literal*` modules provide fully specified examples and machine-checkable
+certificate data.  They are kept separate from the generic layers so that
+other projects can reuse the definitions, permanence theorems, and proof
+machinery without importing a particular presentation.
 
 ## Property (TT)/T and the binary Leavitt algebra
 
