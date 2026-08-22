@@ -67,3 +67,12 @@ bounded-complexity theorem target and a finite coefficient search problem.
   negative separator. `matricial-radius-nine-dual-extraction` is the corrected
   campaign: numerics may discover coefficients, but replay must contain a
   genuinely matrix-specific invariant-theory or exterior-power step.
+- **The exact finite-radius dual object is now fixed.**
+  By `radius-nine-separator-is-closed-matricial-moment-gap`, after adjoining
+  the total relator-energy coordinate the all-size matricial radius-nine
+  moment set has compact convex closure.  This claim is equivalent to the
+  canonical point missing that closure.  If it misses, a rational separator
+  with `C>0` follows automatically; if it belongs, there is a truncated
+  matrix-microstate sequence and no radius-nine separator exists.  Thus the
+  remaining issue is an all-size moment-body membership theorem, not numerical
+  dual extraction or rational reconstruction.

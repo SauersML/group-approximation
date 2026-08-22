@@ -36,3 +36,12 @@ implementation has accidentally reverted to the forbidden tracial NPA cone.
   identities, exterior powers, and Schur-complement inequalities.
 - Standard tracial moment matrices are excluded. If canonical atlas moments
   remain feasible in the implemented cone, that run is diagnostic only.
+- **Closed-body duality removes rational reconstruction as a separate hole.**
+  `radius-nine-separator-is-closed-matricial-moment-gap` proves that the union
+  over all matrix sizes, after adjoining the single relator-energy coordinate
+  and taking closure, is a compact convex body.  The requested rational dual
+  exists if and only if the canonical radius-nine point lies outside this
+  body; strict separation can always be rationalized while keeping a positive
+  defect coefficient.  Hence a finite-size SDP is useful only if accompanied
+  by a rigorous all-size outer bound on that body.  Sampling or a dimension
+  cap alone separates from an inner approximation and is not a certificate.
