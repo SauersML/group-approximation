@@ -59,6 +59,12 @@ contradiction.
 - A dimension tape may choose the first failed finite-capacity instruction,
   but one missing row has relative excess `1/p(U)` and is invisible by the
   calibration above.  It must drive a constant-rate replication or code.
+- Balanced self-similar copying does not perform that replication.
+  `balanced-direct-sums-preserve-rectangular-excess`
+  proves that binary Leavitt/Toeplitz direct sums preserve `1/p(U)` exactly
+  and preserve normalized return error.  Selecting only the bad descendants
+  presupposes an authenticated bad-summand decoder; generating fresh bad rows
+  at positive rate is the missing code actuator itself.
 - The required advance is therefore exactly a runtime-independent local
   compiler from one dimension-triggered failure to an extensive family of
   returned rows.  Existing adaptive tape/PCP frontiers provide the right
