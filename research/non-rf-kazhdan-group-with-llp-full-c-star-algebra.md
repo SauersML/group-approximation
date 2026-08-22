@@ -3,6 +3,8 @@ rg: 2
 id: non-rf-kazhdan-group-with-llp-full-c-star-algebra
 kind: claim
 title: Some non-residually-finite Kazhdan group has a full C*-algebra with the local lifting property
+artifacts:
+  - research/artifacts/lifting-program-2026-08-21.md
 distinct_from:
   sl3-z-weakly-ucp-stable: that asks for stability of a residually finite lattice, to be consumed through an HNN extension; this asks for a LIFTING property of the full C*-algebra of a non-residually-finite Kazhdan group, consumed directly with no auxiliary construction.
   no-published-unconditional-codense-stable-host: that records that no published stable host with a co-dense Kazhdan subgroup exists; this is a different hypothesis type (LLP) on a different class (non-RF Kazhdan groups) and needs no subgroup structure at all.

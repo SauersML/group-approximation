@@ -3,6 +3,8 @@ rg: 2
 id: sp2g-z-full-c-star-algebra-has-llp
 kind: claim
 title: The full C*-algebra of some symplectic lattice Sp_2g(Z) has the local lifting property
+artifacts:
+  - research/artifacts/lifting-program-2026-08-21.md
 distinct_from:
   non-rf-kazhdan-group-with-llp-full-c-star-algebra: that asks for LLP for a NON-residually-finite Kazhdan group, whose existence is itself part of the question; this asks it for the concrete residually finite lattices Sp_2g(Z), where the group is classical and only the lifting property is unknown.
   sl3-z-weakly-ucp-stable: that is a stability hypothesis for SL_3(Z), attacked as a rigidity statement about almost-representations; this is a lifting hypothesis for Sp_2g(Z), attacked (either way) by C*-tensor methods, and it IMPLIES the corresponding weak ucp-stability of Sp_2g(Z) by llp-implies-weak-ucp-stability.

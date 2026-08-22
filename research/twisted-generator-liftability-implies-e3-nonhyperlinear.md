@@ -3,6 +3,8 @@ rg: 2
 id: twisted-generator-liftability-implies-e3-nonhyperlinear
 kind: claim
 title: Twisted-generator ucp liftability forces the alpha-fibre to have no matricial model, hence the Deligne cover is non-hyperlinear
+artifacts:
+  - research/artifacts/lifting-program-2026-08-21.md
 distinct_from:
   maslov-sector-tracial-generator-ucp-liftability: that is the open liftability assertion TGL1; this proves TGL1 is not a weak stepping stone but goal-hard — it is equivalent to the alpha-fibre having no tracial matricial model at all, and implies non-hyperlinearity of the Deligne cover.
   deligne-sector-gap-is-exactly-nonhyperlinearity: that identifies the Maslov defect gap and the one-word collapse with non-hyperlinearity of the cover; this adds the LIFTING assertion to the same equivalence cluster through Stinespring dilation and the Kazhdan corner lemma.
