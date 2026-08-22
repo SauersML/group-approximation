@@ -74,3 +74,14 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   automorphism system therefore reduce to affine phase shifts with a fixed
   absorber.  Only genuinely multi-occurrence coupling not factored through a
   finite local label solution remains.
+- **General projective labels and higher-arity normalizer words.**  The
+  conjugate-absorber argument is packet-independent: `C_g tensor
+  conjugate(C_g)` turns every locally satisfied projective label pullback into
+  an honest stationary action.  More generally, Schur factorization makes
+  every ordinary word in normalizers of one irreducible packet equal to one
+  fixed packet matrix tensored with one multiplicity word.  Exact
+  satisfiability forces the packet matrix to be scalar, so arbitrary arity
+  adds only affine phase equations on multiplicity.  The entire
+  single-occurrence finite-packet lane is closed; a survivor must move between
+  inequivalent sectors/corners, cease normalizing one common packet, or use a
+  non-group-word compression relation.

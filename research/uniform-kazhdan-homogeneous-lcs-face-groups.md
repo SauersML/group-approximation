@@ -73,3 +73,11 @@ every contextual code representation.  Thus neither inner nor outer
 single-occurrence labels remove the multiplicity escape; a surviving packet
 mechanism must impose relations coupling several occurrences beyond a finite
 label pullback.
+
+The packet-independent normalizer theorem sharpens that last sentence:
+higher arity alone is not enough.  Every ordinary word in normalizers of one
+irreducible finite packet factors into a fixed packet matrix and a
+multiplicity word; exactness makes the packet factor scalar.  Thus the whole
+normalizer lane reduces to scalar affine LCS relations on multiplicity.  A
+genuine escape must move between packet sectors/corners or leave ordinary
+unitary group-word relations.
