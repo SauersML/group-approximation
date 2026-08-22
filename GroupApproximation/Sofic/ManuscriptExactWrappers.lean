@@ -70,8 +70,8 @@ theorem manuscriptTensorAmplification :
       ∀ (δ : ℝ), 0 < δ → δ ≤ ‖A - B‖ →
       ∀ (N : ℕ), 8 < (N : ℝ) * δ ^ 2 →
       ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧
-        1 ≤ ‖OperatorNormAmplification.opTensorPow A p -
-          OperatorNormAmplification.opTensorPow B p‖ := by
+        1 ≤ ‖opTensorPow A p -
+          opTensorPow B p‖ := by
   intro Y _ _ hY A B hA hB δ hδ hsep N hN
   obtain ⟨p, hp1, hpN, hp⟩ :=
     OperatorNormAmplification.exists_tensorPower_pair_far
