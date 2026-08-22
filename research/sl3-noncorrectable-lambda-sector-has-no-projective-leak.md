@@ -128,6 +128,11 @@ reservoir, a multiplicity capacity bound, or unbounded cocycle rank.  A fixed
 higher-chart native loop is insufficient:
 `finite-native-p3-atlas-has-a-global-inverse-groupoid-gauge` cancels the full
 finite transition groupoid exactly, with no triple associator left over.
+Nor does growing conductor depth itself exhaust multiplicity:
+`regular-p3-parahoric-bands-have-twisted-gauge-surplus` shows that every
+canonical regular parahoric band already contains its full inverse twisted
+gauge, and the depth mixture is an orthogonal direct sum.  One would first
+need a decoder forcing multiple depths onto the same multiplicity reservoir.
 Applying even a surviving replacement to the outlier sector still
 requires an approximate arithmetic-hexagon/band decoder; no such decoder
 follows from the scalar root relations alone.

@@ -67,3 +67,11 @@ same-model multiplicity ceiling below the twisted-regular dimension, activate
 projective commutator rank growing with the model, or impose a global
 identification that is not a functor of the native chart groupoid.  Adding
 more native charts at one fixed finite level does not suffice.
+
+For the canonical regular congruence sectors, even the first two formulations
+do not follow from conductor depth.  By
+`regular-p3-parahoric-bands-have-twisted-gauge-surplus`, every regular
+parahoric type block already contains `dim(pi)` copies of its complete
+inverse twisted-regular gauge.  Different depths are orthogonal direct-sum
+bands, so their capacity costs add rather than tensor.  A supercritical route
+must first authenticate one shared multiplicity reservoir across depths.

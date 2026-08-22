@@ -47,6 +47,11 @@ Nor does a fixed three- or six-chart cycle repair it:
 inverse twisted-regular groupoid functor canceling all native transition
 loops exactly.  Only a capacity-growing or non-groupoid global incidence can
 revive the flux route.
+The naive depth-capacity version also fails on the canonical regular blocks:
+`regular-p3-parahoric-bands-have-twisted-gauge-surplus` computes `dim(pi)`
+copies of the full inverse twisted-regular module inside every oscillator
+band.  Folner/parity depth mass is a direct sum of already cancellable bands;
+it does not make their cocycle ranks act on one reservoir.
 
 Assembly of the proof, every piece prime-generic or computed here:
 
