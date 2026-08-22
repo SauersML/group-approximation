@@ -169,3 +169,20 @@ Accordingly the remaining mixed chord--reset constraint cannot be a fixed
 label normalizer/covariance table.  It must distinguish finite from properly
 infinite multiplicity while remaining non-functorial in the exact infinite
 marked representation.
+
+Covariance only modulo a Toeplitz range corner has the opposite failure.
+`toeplitz-range-commutator-has-a-balanced-mirror-exit` shows that the natural
+word `[R_E,T R_E T^*]=1` is compatible with the proper infinite inclusion,
+but in finite matrices it admits the exact decomposition
+
+```text
+E=F+H,             TET^*=F+C,             tr(C)=tr(H).
+```
+
+The chord fixes `F` and swaps `H,C`, so its compressed Gram deficiency is
+exactly `H` while the word defect is zero.  Trace cyclicity balances the two
+asymmetric cells rather than charging them.  Every word in the two range
+reflections has the same four-character blindness.  The remaining
+compressed-covariance target is therefore the oriented support block
+`(1-F)TE=0`, or a matrix-only payment for its mirror exit; the reflection
+normalizer word does not express it.

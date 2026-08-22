@@ -106,6 +106,16 @@ finite rank deficit; weaker covariance leaves the Gram unauthenticated.
 The clause-3 payment must therefore be genuinely finite-multiplicity
 sensitive rather than a fixed chart normalizer.
 
+Weakening to Toeplitz range covariance preserves completeness but not
+soundness.  `toeplitz-range-commutator-has-a-balanced-mirror-exit` takes
+`E=F+H` and an exact finite conjugate `TET^*=F+C` with
+`tr(C)=tr(H)>0`.  The source/range reflections commute exactly and all
+old-spin incidences can remain exact, while `C` is the scalar-ray mirror
+exit.  Finite trace only balances `H` and `C`.  Hence a range-reflection
+commutator cannot provide clause 3; one must wordize or otherwise pay the
+oriented block `(1-F)TE`, which is precisely the additive corner datum lost
+by the ordinary word.
+
 There is a cleaner predicate-sensitive observable than the bare Reynolds
 rank. By `schur-predicate-is-character-density-difference`, every local
 forbidden projection satisfies
