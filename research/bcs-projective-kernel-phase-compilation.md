@@ -133,3 +133,16 @@ established or refuted.
   embeds.  Thus the first sound gate must leave fixed finite/RF groupification
   and use an infinite state-dependent, trace-corner, or approximation-rigid
   mechanism.
+- Merely replacing the finite gate by an infinite non-residually-finite
+  central extension is also insufficient for exact predicate pruning.
+  `central-selector-spectra-cannot-prune-a-nonlinear-predicate` gives two
+  universal obstructions.  First, the marked regular corner
+  `q_-L(Gamma)`, `q_-=(1-J)/2`, assigns mass `2/|D|` to every selector
+  character with `J=-1`, so no forbidden atom is absent from all tracial
+  representations.  Second, when the selector subgroup is central, the set
+  of its characters realized in finite-dimensional representations is a
+  subgroup under tensor product and duality; its `J=-1` slice is empty or an
+  affine coset.  Deligne-type invisibility can therefore select only an
+  affine slice, not NAND or a general nonlinear predicate truth set.  The
+  remaining infinite route must be a matrix-approximation/stability gap that
+  tolerates the bad regular trace, not an exact central-character gate.
