@@ -60,3 +60,49 @@ pre-character nonlinear estimate may be replaced by an equality-compatible
 local-exactification/sharing theorem, but neither exact oddness nor the
 dense cb remainder alone transports the face gap across approximate
 equality.
+
+Even exact sharing is not by itself a nonlinear basin certificate.
+`parity-exact-double-pauli-is-stationary-for-intrinsic-green-step` uses the
+distance-`1/2` code `(a,a,b,b)` and the literally shared tuple `(A,A,B,B)`.
+Both covered parity faces and all equality data are exact, but every
+intrinsic divergence is the scalar `I/2`; hence every finite-Green skew
+conjugator vanishes while complete-pair energy equals `2`.  This does not
+contradict the pre-character CP gap, which is a channel/linearization result
+at the commuting locus.  The packet has anchor square function `I/2` and is
+removed by the aggregate cut.  Therefore the still-valid target must use
+the retained low-anchor-square-function hypothesis quantitatively in
+addition to local exactification and sharing.
+
+There is a positive equality-transfer theorem at the averaged-channel
+level.  `row-square-equality-variance-transfers-averaged-pinching-gap` takes
+the actual unequal occurrence weights, forms their shared contractions and
+signs, and proves that weighted Loewner variance `<=epsilon I` changes the
+whole averaged pinching channel by at most `sqrt(2epsilon)` in
+`L_2->L_2` norm.  Thus the face Hamiltonian gap survives outside a low
+spectral band of that width.  Exact commutant coercivity need not survive:
+old zero modes may split into the low band.  The remaining operation can
+therefore be narrowed to resetting/gauging this equality-created low band,
+not controlling every occurrence adjoint action separately.
+
+Even exact sharing is not by itself a nonlinear basin certificate.
+`parity-exact-double-pauli-is-stationary-for-intrinsic-green-step` uses the
+distance-`1/2` code `(a,a,b,b)` and the literally shared tuple `(A,A,B,B)`.
+Both covered parity faces and all equality data are exact, but every
+intrinsic divergence is the scalar `I/2`; hence every finite-Green skew
+conjugator vanishes while complete-pair energy equals `2`.  This does not
+contradict the pre-character CP gap, which is a channel/linearization result
+at the commuting locus.  The packet has anchor square function `I/2` and is
+removed by the aggregate cut.  Therefore the still-valid target must use
+the retained low-anchor-square-function hypothesis quantitatively in
+addition to local exactification and sharing; those latter hypotheses alone
+do not imply `(ORG1)`.
+
+The averaged equality channel is nevertheless stable on the common low
+square-function block.
+`averaged-pinching-channels-are-row-square-lipschitz` gives
+`||A_Q^K-A_S^K||_(2->2)<=K sqrt(||H||_infinity)` for shared and locally
+exact occurrence channels.  Thus the exact face-Hamiltonian gap transfers
+at fixed time without individual adjoint-action stability or literal
+sharing.  The remaining part of `(ORG1)` is the sparse parity/equality
+energy created by the coordinate-dependent intrinsic conjugators, together
+with the high equality sector assigned to quarantine.

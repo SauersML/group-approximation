@@ -310,3 +310,43 @@ remainder has the established cb quadratic bound.  Thus the exact residual
 is narrowed to a base-free coercivity inequality for this intrinsic step
 and the first-order sparse parity/equality damage from its unequal
 coordinate conjugators.
+
+The strongest locally exact phase still has a sharp nonlinear boundary.
+`parity-exact-double-pauli-is-stationary-for-intrinsic-green-step` shows
+that `(A,A,B,B)` has exact covered parity for the distance-`1/2` code
+`(a,a,b,b)`, literal equality sharing, and zero intrinsic finite-Green
+correction despite pair energy `2`.  Its anchor square function is exactly
+`I/2`, so the regularized cut removes it.  Hence restricted coercivity must
+combine exact shared faces with the retained low-anchor-square-function
+condition; neither ingredient can be omitted.
+
+Equality transfer itself now works after a genuine common row-square cut.
+`row-square-equality-variance-transfers-averaged-pinching-gap` allows
+arbitrary unequal occurrence weights and proves that Loewner variance
+`<=epsilon I` moves the averaged occurrence pinching channel by at most
+`sqrt(2epsilon)` in `L_2->L_2` norm after signing the shared averages.
+The local Hamiltonian gap therefore transfers outside an
+`O(sqrt(epsilon))` low spectral band.  The sharp residue is no longer an
+operator discontinuity for the averaged channel; it is the possible
+splitting of the old commutant into this low band, which still needs a
+sparse-corner reset or an admissible approximate gauge.
+
+The strongest locally exact phase still has a sharp nonlinear boundary.
+`parity-exact-double-pauli-is-stationary-for-intrinsic-green-step` shows
+that `(A,A,B,B)` has exact covered parity for the distance-`1/2` code
+`(a,a,b,b)`, literal equality sharing, and zero intrinsic finite-Green
+correction despite pair energy `2`.  Its anchor square function is exactly
+`I/2`, so the regularized cut removes it.  Hence the viable restricted
+coercivity theorem must combine exact shared faces with the retained
+**low-anchor-square-function** condition; neither ingredient can be omitted.
+
+The equality channel also transfers across the retained common cut.
+`averaged-pinching-channels-are-row-square-lipschitz` shows that if local
+exact face marginals `S_r` and shared representatives `Q_r` have common
+operator displacement square function `H`, then their normalized pinching
+channels differ on `L_2` by at most `sqrt(||H||)`, and their fixed-time
+powers by at most `K sqrt(||H||)`.  Hence the local face-Hamiltonian CP gap
+survives before literal synchronization on the equality-low block.  The
+remaining sparse gate is purely energetic: control parity/equality word
+damage from unequal intrinsic conjugators and quarantine the high equality
+sector.
