@@ -1455,6 +1455,9 @@ import GroupApproximation.Sofic.GreendlingerDeepArc
 import GroupApproximation.Sofic.GreendlingerDeepVacuity
 import GroupApproximation.Sofic.GreendlingerPieceOverlapProof
 import GroupApproximation.Sofic.GreendlingerSharpTwins
+import GroupApproximation.Sofic.GreendlingerDeepVacuitySharp
+import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
+import GroupApproximation.Sofic.GreendlingerRelativeTransfer
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
@@ -1476,6 +1479,8 @@ import GroupApproximation.Higman.ClosuresAssembly
 import GroupApproximation.Higman.AmalgamTorsionDischarge
 import GroupApproximation.Higman.TheoremThreeAssembly
 import GroupApproximation.Higman.OmegaTower
+import GroupApproximation.Higman.OmegaTowerStages
+import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup

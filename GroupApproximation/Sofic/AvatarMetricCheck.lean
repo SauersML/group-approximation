@@ -528,7 +528,76 @@ theorem protectedBall_of_word {P : List (Fin 2 × Bool)}
 
 end AvatarMetricData
 
-/-! ## 6.  Threading into the router
+/-! ## 6.  Positive words need no normalization pass
+
+The design note's §2(a) asks for "one normalization pass" because a junction
+`W_x^{+} W_{x'}^{-}` or `W_x^{-} W_{x'}^{+}` cancels.  Those are the only two
+junction types that do, and both arise from a *sign change* in the source
+relator: writing `f` for the first generator of every avatar and `l` for the
+last, the four seams are `(l,+)(f,+)`, `(l,+)(l,-)`, `(f,-)(f,+)` and
+`(f,-)(l,-)`, of which the middle two collide for **every** choice of `f` and
+`l` — no reshaping of the avatar avoids them, since `W · W⁻¹` cancels whatever
+`W` is.
+
+So the pass is unavoidable *given sign changes*, and avoidable entirely without
+them: a word all of whose letters are positive is cyclically reduced outright,
+because reducedness is the chain condition `a.1 = b.1 → a.2 = b.2` and a
+positive pair satisfies the conclusion without ever testing the hypothesis.
+Every finitely presented group has a finite presentation whose relators are all
+positive words — adjoin a generator `x̄` for each `x` with the (positive) relator
+`x·x̄`, and rewrite each `x⁻¹` as `x̄` — so this is a presentational choice, of
+exactly the kind §1's padding step already is.
+
+These lemmas are stated for an arbitrary alphabet because they are facts about
+signs, not about the avatar code. -/
+
+/-- **A letter-positive word is reduced.**  Reducedness is
+`List.IsChain (fun a b => a.1 = b.1 → a.2 = b.2)`; when every letter carries the
+sign `true` the conclusion holds outright, so the hypothesis is never tested. -/
+theorem isReduced_of_forall_positive {α : Type*} {w : List (α × Bool)}
+    (h : ∀ c ∈ w, c.2 = true) : FreeGroup.IsReduced w := by
+  refine List.isChain_iff_getElem.mpr ?_
+  intro i hi _
+  have h1 : w[i] ∈ w := List.getElem_mem (by omega)
+  have h2 : w[i + 1] ∈ w := List.getElem_mem hi
+  rw [h _ h1, h _ h2]
+
+/-- **A letter-positive word is cyclically reduced.**  The wrap seam is tested by
+the same condition, and `List.isChain_append` reads both components off the
+reducedness of `w ++ w` — which is again a letter-positive word. -/
+theorem isCyclicallyReduced_of_forall_positive {α : Type*} {w : List (α × Bool)}
+    (h : ∀ c ∈ w, c.2 = true) : FreeGroup.IsCyclicallyReduced w := by
+  have happ : ∀ c ∈ w ++ w, c.2 = true := by
+    intro c hc
+    rcases List.mem_append.mp hc with hc' | hc' <;> exact h c hc'
+  have hred : FreeGroup.IsReduced (w ++ w) := isReduced_of_forall_positive happ
+  exact ⟨(List.isChain_append.mp hred).1, (List.isChain_append.mp hred).2.2⟩
+
+/-- **The design's cyclic-reducedness field, for a positive family.**  This is
+`RouterRelatorDesign.relators_cyclicallyReduced` outright, with no normalization
+pass and no hypothesis beyond the presentational one.
+
+It applies to the rewrites of the padded source and partner relators.  The four
+tying relators are *not* positive — each is one generator letter against the
+formal inverse of a rewrite — so their two seams are checked separately, by the
+sign rule the family module records at `defectTieWord`. -/
+theorem relators_cyclicallyReduced_of_positive {R : Set (List (Fin 2 × Bool))}
+    (h : ∀ r ∈ R, ∀ c ∈ r, c.2 = true) :
+    ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r :=
+  fun r hr => isCyclicallyReduced_of_forall_positive (h r hr)
+
+/-- **A positive rewrite of a positive word.**  Concatenating positive blocks
+keeps every letter positive, which is the hypothesis the two lemmas above want;
+stated on `List.flatten` so that it matches an avatar substitution's shape
+without naming it. -/
+theorem forall_positive_flatten {α : Type*} {ls : List (List (α × Bool))}
+    (h : ∀ u ∈ ls, ∀ c ∈ u, c.2 = true) :
+    ∀ c ∈ ls.flatten, c.2 = true := by
+  intro c hc
+  obtain ⟨u, hu, hcu⟩ := List.mem_flatten.mp hc
+  exact h u hu c hcu
+
+/-! ## 7.  Threading into the router
 
 Two consumers, one proof.  `RouterRelatorDesign.metric` stores `C'(1/6)`, which
 `metric_sixth` supplies; `routerConclusions_of_sharpGate` needs a constant at

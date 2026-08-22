@@ -829,14 +829,18 @@ Two things a gate could have been asked for are proved instead of assumed.
 * **Nondegeneracy.**  `exists_two_distinct_symmetrization` supplies the two
   distinct symmetrized relators that `ne_nil_of_metric_lam` and
   `lam_pos_of_metric` consume, so `∀ r ∈ R, r ≠ []` and `0 < lam` are both
-  derived from the metric condition rather than named.
+  derived from the metric condition rather than named.  Both are then *handed
+  to* `hland`, which is why the residual family may assume them: the deep-side
+  reduction needs `∀ r ∈ R, r ≠ []` (through `swallow_bound_of_minimal` and
+  `not_absorb_of_minimal`), and the assembly has already paid for it.
 * **The degenerate branch**, where every relator is empty: the normal closure is
   then trivial and no nonempty reduced word lies in it, so the conclusion holds
   with nothing to produce.  Naming that branch as a hypothesis would have made
   the bundle unsatisfiable, which is the one shape a gate must not have. -/
 theorem sharpGreendlingerGate_of_cascadeLandingSharp [DecidableEq α]
     (hland : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → CascadeLandingSharp R lam) :
     GreendlingerFreeGate.SharpGreendlingerGate α := by
   intro R lam hcyc hlam hmetric
@@ -848,7 +852,7 @@ theorem sharpGreendlingerGate_of_cascadeLandingSharp [DecidableEq α]
     have hRne : ∀ q ∈ R, q ≠ [] := fun q hq =>
       ne_nil_of_metric_lam hmetric hs₁ hs₂ hne (subset_symmetrization R hq)
     exact greendlingerConclusionSharp_of_cascadeLandingSharp hcyc hRne hlam0 hlam
-      (hland R lam hcyc hlam0 hlam hmetric)
+      (hland R lam hcyc hRne hlam0 hlam hmetric)
   · intro w hw hwne hmem
     exfalso
     push Not at hex
@@ -871,7 +875,8 @@ theorem sharpGreendlingerGate_of_cascadeLandingSharp [DecidableEq α]
 construction in this repository consumes. -/
 theorem sharpGreendlingerGate_fin_two_of_cascadeLandingSharp
     (hland : ∀ (R : Set (List (Fin 2 × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → CascadeLandingSharp R lam) :
     GreendlingerFreeGate.SharpGreendlingerGate (Fin 2) :=
   sharpGreendlingerGate_of_cascadeLandingSharp hland
@@ -883,7 +888,8 @@ exists to make possible: the sharp gate feeds
 that the half form leaves open is empty at `λ ≤ 1/8`. -/
 theorem torsionFree_of_cascadeLandingSharp [DecidableEq α]
     (hland : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → CascadeLandingSharp R lam)
     {R : Set (List (α × Bool))} {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
     (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
@@ -902,7 +908,8 @@ word-combinatorial fields of `RoutingLemmaData`, from the same gate.  When
 downstream moves. -/
 theorem router_conclusions_of_cascadeLandingSharp [DecidableEq α]
     (hland : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → CascadeLandingSharp R lam)
     {R : Set (List (α × Bool))} {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
     (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
@@ -1161,17 +1168,21 @@ theorem is the adapter, and the three end-state theorems above are used as they
 stand. -/
 theorem cascadeLandingSharp_family_of_deepArcSharp_of_betaSharp [DecidableEq α]
     (hdeep : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → DeepArcSourceSharp R lam)
     (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → LandingProductionBetaSharp R lam) :
     ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → CascadeLandingSharp R lam :=
-  fun R lam hcyc hlam0 hlam hmetric =>
+  fun R lam hcyc hRne hlam0 hlam hmetric =>
     cascadeLandingSharp_of_deepArcSharp_of_betaSharp hmetric
-      (hdeep R lam hcyc hlam0 hlam hmetric) (hbeta R lam hcyc hlam0 hlam hmetric)
+      (hdeep R lam hcyc hRne hlam0 hlam hmetric)
+      (hbeta R lam hcyc hRne hlam0 hlam hmetric)
 
 /-- **The sharp gate over the live residuals.**  `SharpGreendlingerGate α` from
 the deep arc and the (β) landing and nothing else --- these being the `λ`-twins
@@ -1186,10 +1197,12 @@ becomes a theorem, and `GreendlingerFreeGate.torsionFree_of_sharpGate` and
 further work. -/
 theorem sharpGreendlingerGate_of_deepArcSharp_of_betaSharp [DecidableEq α]
     (hdeep : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → DeepArcSourceSharp R lam)
     (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → LandingProductionBetaSharp R lam) :
     GreendlingerFreeGate.SharpGreendlingerGate α :=
   sharpGreendlingerGate_of_cascadeLandingSharp
@@ -1198,10 +1211,12 @@ theorem sharpGreendlingerGate_of_deepArcSharp_of_betaSharp [DecidableEq α]
 /-- The same, on the router's own alphabet. -/
 theorem sharpGreendlingerGate_fin_two_of_deepArcSharp_of_betaSharp
     (hdeep : ∀ (R : Set (List (Fin 2 × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → DeepArcSourceSharp R lam)
     (hbeta : ∀ (R : Set (List (Fin 2 × Bool))) (lam : ℚ),
-      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → 0 < lam → lam ≤ 1 / 6 →
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
       MetricSmallCancellation R lam → LandingProductionBetaSharp R lam) :
     GreendlingerFreeGate.SharpGreendlingerGate (Fin 2) :=
   sharpGreendlingerGate_of_deepArcSharp_of_betaSharp hdeep hbeta
