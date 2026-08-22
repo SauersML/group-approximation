@@ -199,10 +199,12 @@ theorem rhoOp_singleton (g : E) : rhoOp ({g} : Set E) = {reflect g} := by
   ext f
   constructor
   · rintro ⟨h, hh, hf⟩
+    -- `subst` here would eliminate `g`, the binder of this theorem, rather than
+    -- the locally introduced `h`; rewrite pointwise instead.
     have hhg : h = g := hh
-    subst hhg
     show f = reflect g
-    exact Finsupp.ext fun i => by rw [hf i, reflect_apply]
+    refine Finsupp.ext fun i => ?_
+    rw [hf i, hhg, reflect_apply]
   · intro hf
     have hf' : f = reflect g := hf
     exact ⟨g, rfl, fun i => by rw [hf', reflect_apply]⟩
