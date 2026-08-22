@@ -4,6 +4,7 @@ id: atlas-a8-index-33-to-89-sp6-classification-proof
 kind: route
 title: Filter the small-simple order table and inspect the Sp6(2) maximal subgroups
 target: atlas-a8-index-33-to-89-is-orthogonal-sp6
+requires: []
 ---
 
 Because `A ~= A8`, Lagrange gives `20160 | |S|`.  The complete finite-simple
