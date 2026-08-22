@@ -30,13 +30,21 @@ has dimension at most
 The same conclusion holds with the two sides reversed.  Consequently a
 unitary parahoric intertwiner whose defect tends to zero on a sequence of
 positive-conductor congruence representations cannot route asymptotically
-all of an exact-conductor band to the same conductor.  At least one eighth
-of that band must exit to another conductor (or pay a uniform Kazhdan
-intertwining defect).
+all of an exact-conductor band to the same conductor.  More precisely, if
+`kappa_0` is a Kazhdan constant for the fixed generators of `Lambda_0`, then
+every unitary between two equal-dimensional exact-conductor-`a` modules
+satisfies
+
+```text
+max_s ||theta(beta_a(s))V-V pi(alpha_a(s))||_2
+ >= kappa_0/sqrt(8).                                    (DCL2)
+```
+
+At least one eighth of the band must exit to another conductor or pay this
+uniform intertwining defect.
 
 Thus the unbounded dyadic enemy is forced into genuinely cross-conductor
 transport.  Same-level multiplicities, however large, cannot realize it.
 This does not close the branch: triangular mixtures over unboundedly many
 conductors can route the lost mass into neighboring bands, as in
 `regular-congruence-depth-mixtures-remain-folner`.
-

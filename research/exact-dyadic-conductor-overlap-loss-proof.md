@@ -57,3 +57,14 @@ Finally, any common constituent of `pi o alpha_a` and
 `alpha_a(K_B(a))`, hence by `X_13`.  Its dimension is at most `f`, and
 `(DCL5)` proves `(DCL1)`.
 
+For the quantitative statement, let `Lambda_0` act on the normalized
+Hilbert space of intertwiners by
+
+```text
+T |-> theta(beta_a(s)) T pi(alpha_a(s))^*.
+```
+
+Its invariant subspace consists of the exact intertwiners and is supported
+on the maximal common subrepresentation, of normalized dimension at most
+`7/8`.  The distance from a unitary `V` to that subspace is therefore at
+least `1/sqrt(8)`.  The Kazhdan inequality for `Lambda_0` gives `(DCL2)`.
