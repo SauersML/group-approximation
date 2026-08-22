@@ -55,6 +55,28 @@ that finite list by finitely many bounded Fourier series, heat filters,
 resolvents, or other diagonal operator-space checks cannot create the
 infinite-resolution energy interface.
 
+The negative conclusion also survives a fixed finite-dimensional
+operator-space packet.  Fix `k,q` and bounded matrix features
+
+```text
+F_j:Omega -> M_k(C).                                    (BSP7)
+```
+
+Put one copy of `C^k` over each of two selected atoms and let `C` exchange
+the two whole blocks without rotating their internal coordinates.  Then the
+fine atom-transport energy is again `2`, whereas the total packet defect is
+
+```text
+sum_j ||F_j(chi_0)-F_j(chi_1)||_(2,k)^2.                (BSP8)
+```
+
+The bounded image lies in the finite-dimensional space `M_k(C)^q`, hence
+has arbitrarily close distinct points when `Omega` is infinite.  Thus a
+finitely presented packet of fixed matrix size cannot evade `(BSP6)` by
+replacing scalar Fourier features with matrix-valued ones.  The label
+matrix size itself must grow, or the packet must authenticate genuinely
+non-diagonal domains which are not functions of the character atom.
+
 ## Consequence for the affine--Leavitt route
 
 After an active-module PVM has been decoded, every fixed bounded operator
@@ -67,7 +89,8 @@ packages infinitely many module coefficients.
 Leavitt self-similarity therefore has only two genuinely different uses:
 
 1. if its branch operators are used merely to synthesize finitely many
-   bounded **diagonal** probes, `(BSP6)` gives the same two-atom escape;
+   bounded **diagonal** probes, including fixed-size matrix-valued probes,
+   `(BSP6)--(BSP8)` give the same two-atom escape;
 2. if they authenticate orthogonal non-diagonal domains on one common
    positive carrier, then they have crossed into a proper Leavitt/Cuntz
    corner, and `approximate-relative-leavitt-cell-kills-active-trace`

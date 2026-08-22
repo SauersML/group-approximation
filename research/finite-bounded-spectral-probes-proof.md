@@ -64,3 +64,18 @@ subset cannot have positive minimum pairwise distance: for every
 `epsilon>0` it contains distinct points at squared distance below
 `epsilon`.  Equations `(5)--(6)` then prove `(BSP6)` and rule out every
 finite coercivity constant.
+
+For the matrix-valued extension, use
+
+```text
+H=(C^k) direct_sum (C^k),
+P_0=Q_(sigma chi_0)=projection onto the first block,
+P_1=Q_(sigma chi_1)=projection onto the second block,
+```
+
+and let `C` exchange the two blocks by the identity map on `C^k`.  Formula
+`(5)` is unchanged.  Direct block calculation gives `(BSP8)` with normalized
+matrix Hilbert--Schmidt norms.  A uniformly operator-norm-bounded subset of
+`M_k(C)^q` is bounded, hence totally bounded, for the finite-dimensional
+Hilbert--Schmidt metric.  Close distinct feature tuples therefore give the
+same full-energy/arbitrarily-small-defect countermodels.
