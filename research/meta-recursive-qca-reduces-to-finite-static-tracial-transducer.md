@@ -63,3 +63,11 @@ involution parity equations.  Exact relative-commutant rounding can remove
 transporter ambiguity for corrected coset fields, but does not provide the
 rounding, the carrier density, or the nonlinear energy payment.
 
+Even granting an exact ordinary-word verifier reflection does not let the
+marked two-cycle cell make this payment.  By
+`verifier-controlled-two-cycle-is-existentially-loss-blind`, its negative
+spectral projection becomes a single zero-compression payload after adjoining
+one flag qubit, but the same controlled swap exactly completes the cell at
+every losing mass.  Thus `k=1` localization is solved conditionally; the
+remaining transducer must be noncompletable in finite dimensions rather than
+merely expose the losing carrier.
