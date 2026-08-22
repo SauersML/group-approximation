@@ -75,6 +75,13 @@ provably stationary by `reset-ray-hnn-return-is-stationary`.
   actuator cannot be driven only by the bare post-reset `q`-MASA vector. It
   must cross the one-sided corner before sector averaging, or carry the
   explicit predicate-density element in addition to `K_f`.
+- **Even before averaging, the bare `q`-MASA cannot carry `P_f`.**
+  `q-masa-expectation-erases-predicate-shape` proves
+  `C[D_f] intersect C[K_f]=C[J]` and computes the `K_f` expectation of
+  `P_f` as `(K_1/2^k)p_-`. Hence the corrected proper-corner composition has
+  a forced order: attach the Toeplitz defect to the full packet density
+  first, and only then reset/forget the old selector chart. A `K_f`-only
+  proper-corner return has already discarded the contextual predicate data.
 - **Proper-corner route.**  `reset-schur-atlas-via-toeplitz-proper-corner`
   now records the corrected composition.  Its only genuinely new analytic
   input is `toeplitz-tail-retains-contextual-schur-density`: the tail must

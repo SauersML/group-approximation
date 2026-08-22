@@ -29,6 +29,14 @@ The cell must be one-sided.  It may transport the child vector before a
 balancing flip is adjoined, but its returned packet cannot contain the flip
 which exchanges the two supports.
 
+The predicate-density proper corner must also be installed before reducing
+the interface to `K_f`.  By
+`q-masa-expectation-erases-predicate-shape`, `P_f` is not in `C[K_f]`, and
+its canonical `K_f` expectation is only the scalar Hamming density of `f`.
+Thus a viable one-sided cell must retain `P_f=2D(Z_C-Z_B)` as an additional
+packet coefficient, rather than asking the complete `K_f` character vector
+to reconstruct it.
+
 ## Attempts
 
 - **Ordinary HNN identification. Dead.**  It preserves each `K_f` character
@@ -40,6 +48,14 @@ which exchanges the two supports.
   multiplicities no longer remember which sectors are forbidden. Therefore
   this bridge must act before full sector averaging or transport an extra
   predicate-density observable outside the bare `q`-MASA table.
+- **Factor the pre-reset predicate density through `K_f`. Dead.**
+  `q-masa-expectation-erases-predicate-shape` gives the exact obstruction:
+  `C[D_f] intersect C[K_f]=C[J]` and
+  `E_(K_f)(P_f)=(K_1/2^k)p_-`. The existing relation `1-xy=P_f` is therefore
+  the correct algebraic proper-corner attachment, but it must be imposed at
+  the full packet before the selector-forgetting endpoint. The unresolved
+  part is its normalized-HS ordinary-group realization, not another finite
+  `K_f` incidence table.
 - **Direct product or selector amalgam. Dead.**  Commuting the fresh packet
   only with `K_f` does avoid selector globalization, but
   `q-masa-selector-bridge-is-scale-conservation` shows that its apparent
