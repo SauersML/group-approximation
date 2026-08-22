@@ -2,8 +2,9 @@
 # The source simple factor contains Q1920 or Q1920/Z, as well as the injected
 # S3 x S3 vertex, so its order is divisible by lcm(960,36)=2880.
 
+if not IsBound(ORDER_BOUND) then ORDER_BOUND:=1000000; fi;
 targets:=Filtered(
-  AllSmallNonabelianSimpleGroups([1..999999]),
+  AllSmallNonabelianSimpleGroups([1..ORDER_BOUND-1]),
   group->Size(group) mod 2880=0
 );;
 
