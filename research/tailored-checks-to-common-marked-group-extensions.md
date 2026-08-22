@@ -175,3 +175,13 @@ transporters, turn the residual cycle relative position into the selected
 zero corner without forcing global finite-sheet coherence.  This is the
 same block-escaping signed-Hecke chord, now needed for only one of finitely
 many verifier types rather than for one globally oriented circuit.
+
+Two natural readouts do not yet provide that chord.
+`existential-cycle-gauge-absorbs-square-and-reynolds-readouts` proves that an
+auxiliary chord transporter can set its return to any unitary in the shared
+marginal commutant.  Hence `W^2=J` merely chooses a square-root gauge, while
+the marginal adjoint Reynolds projection is fixed by every such gauge.  A
+central square becomes useful only for a raw lift already fixed by the base;
+a Reynolds comparison becomes useful only after it includes a larger
+context algebra and is therefore already nontransport.  The surviving
+phase-sensitive option is the one-sided charged proper-corner section.
