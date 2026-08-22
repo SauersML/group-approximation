@@ -276,5 +276,73 @@ theorem six_mul_intrusion_lt_of_forward [DecidableEq α]
   rw [List.length_take]
   omega
 
+/-! ## 6.  The back-side loss, at the landing factor's own junction -/
+
+/-- **Rotating back.**  A rotation by `k` is undone by a rotation by `|l| − k`.
+
+The two coincidence lemmas name the same identification at complementary
+offsets — `GreendlingerOverlap.mk_palindrome_mul_eq_one_of_coincidence` reads it
+as `invRev t = t'.rotate q`, its primed twin as `t' = (invRev t).rotate y` — and
+this is the conversion between them.  The rigidity core produces the first form;
+the forward containment refutes the second. -/
+theorem eq_rotate_invRev_of_invRev_eq_rotate {t₃ t₄ : List (α × Bool)} {k : ℕ}
+    (hk : k ≤ t₄.length) (h : FreeGroup.invRev t₃ = t₄.rotate k) :
+    t₄ = (FreeGroup.invRev t₃).rotate (t₄.length - k) := by
+  rw [h, List.rotate_rotate,
+    show k + (t₄.length - k) = t₄.length from by omega]
+  exact (List.rotate_length t₄).symm
+
+/-- **The landing factor's own block eats only a piece of its rotation**, in the
+orientation where its conjugator overhangs the next factor's effective one.
+
+This is the second of the two bounds the window needs.  It is the same
+piece-or-coincidence argument as the head's, read one junction down with the
+landing factor in the head's place: `GreendlingerDeepestMatch.six_mul_intrusion_lt`
+turns the intrusion into the bound once the two relators are distinct, and
+`GreendlingerCoincidence.invRev_ne_rotate_of_minimal` supplies distinctness for
+an arbitrary block `e₁` of factors in between. -/
+theorem six_mul_back_lt_of_backward [DecidableEq α]
+    {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
+    {c₃ t₃ c₄ t₄ dw q E₃ : List (α × Bool)}
+    {e₁ f : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c₃, t₃) :: (e₁ ++ ((FreeGroup.mk c₄, t₄) :: f))) g)
+    (ht₃ : t₃ ∈ symmetrization R) (ht₄ : t₄ ∈ symmetrization R)
+    (hE : E₃ <:+ t₃)
+    (hd : FreeGroup.mk dw = conjEval e₁ * FreeGroup.mk c₄)
+    (hcq : c₃ = dw ++ q) (hq : q <+: t₄)
+    (hintr : FreeGroup.invRev E₃ <+: t₄.rotate q.length) :
+    6 * E₃.length < t₃.length :=
+  (six_mul_intrusion_lt hmetric ht₃ ht₄ hE hintr
+    (invRev_ne_rotate_of_minimal hmin hd hcq hq)).1
+
+/-- **The same bound, in the overrun orientation.**  Where the next factor's
+effective conjugator extends the landing factor's own, distinctness comes from
+`ne_rotate_invRev_of_minimal_forward` instead, and the two rotation offsets have
+to be matched up: the rigidity core hands back `invRev t₃ = t₄.rotate k` while
+that lemma refutes `t₄ = (invRev t₃).rotate |y|`, and `hindex` is the geometric
+identification `|y| = |t₄| − k` between them.
+
+`hindex` is the one field a caller must supply from the cascade's own
+bookkeeping; everything else is the same data the backward version takes. -/
+theorem six_mul_back_lt_of_forward [DecidableEq α]
+    {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
+    {c₃ t₃ c₄ t₄ dw y E₃ : List (α × Bool)} {k : ℕ}
+    {e₁ f : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c₃, t₃) :: (e₁ ++ ((FreeGroup.mk c₄, t₄) :: f))) g)
+    (ht₃ : t₃ ∈ symmetrization R) (ht₄ : t₄ ∈ symmetrization R)
+    (hE : E₃ <:+ t₃)
+    (hd : FreeGroup.mk dw = conjEval e₁ * FreeGroup.mk c₄)
+    (hcy : dw = c₃ ++ y) (hy : y <+: FreeGroup.invRev t₃)
+    (hk : k ≤ t₄.length) (hindex : y.length = t₄.length - k)
+    (hintr : FreeGroup.invRev E₃ <+: t₄.rotate k) :
+    6 * E₃.length < t₃.length := by
+  refine (six_mul_intrusion_lt hmetric ht₃ ht₄ hE hintr ?_).1
+  intro hcon
+  refine ne_rotate_invRev_of_minimal_forward hmin hd hcy hy ?_
+  rw [hindex]
+  exact eq_rotate_invRev_of_invRev_eq_rotate hk hcon
+
 end SmallCancellationRouter
 end GroupApproximation
