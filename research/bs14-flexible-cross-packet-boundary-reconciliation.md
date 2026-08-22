@@ -266,6 +266,17 @@ compressed Weil packets.
   polar data.  That extraction is the far-sector content of `(FBR2)`, not a
   consequence of exact congruence classification.
 
+- **Bounded moments cannot name the moving level.**
+  `bs14-bounded-moments-cannot-extract-congruence-level` uses amplified
+  regular representations of two deep prime quotients.  They can be made
+  equal-dimensional and have identical normalized values on every fixed
+  finite family of word or finite-support Hecke moments, while their
+  congruence kernels differ and all cubic residuals are exactly zero.
+  Level-dependent central idempotents detect the level only after it is
+  known.  Hence a positive atom-authentication theorem must be
+  level-agnostic, conductor-growing, or directly geometric rather than a
+  fixed scalar moment separator.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

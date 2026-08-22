@@ -69,3 +69,10 @@ semigroup resolves the endpoint.  The required object is a
 compression boundary**.  The even-Weil family shows why that decomposition
 must allow one atom to cross all chosen packet-length thresholds.
 
+There is also no fixed finite moment fingerprint for the moving level.
+`bs14-bounded-moments-cannot-extract-congruence-level` compares
+equal-dimensional amplifications of regular representations at two deep
+prime levels.  Every prescribed finite family of word and finite-support
+Hecke moments agrees exactly, and both cubic residual polar data vanish.
+Thus the required decoder must be level-agnostic or have complexity growing
+with the candidate conductor; finite scalar moments cannot name the atom.

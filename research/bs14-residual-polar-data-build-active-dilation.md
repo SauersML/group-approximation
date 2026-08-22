@@ -116,3 +116,11 @@ tuple.
   congruence atom has already been identified.  The remaining polar-data
   theorem is precisely a moving-level congruence-atom authentication with
   energy-controlled compression boundary.
+- `bs14-bounded-moments-cannot-extract-congruence-level` rules out the
+  simplest authentication interface.  Deep regular congruence
+  representations at distinct prime levels, amplified to the same
+  dimension, agree exactly on every fixed finite family of normalized word
+  or finite-support Hecke moments; their cubic residual polar data are both
+  zero.  The active dilation must therefore recover a compatible endpoint
+  without a fixed scalar level fingerprint, or use a conductor-dependent
+  hierarchy whose complexity grows with the model.
