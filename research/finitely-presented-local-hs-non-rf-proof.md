@@ -1,9 +1,10 @@
 ---
 rg: 2
 id: finitely-presented-local-hs-non-rf-proof
-kind: proof_route
+kind: route
+title: Derive the finitely presented local-HS non-RF statement from its recorded inputs
 target: finitely-presented-local-hs-stable-non-rf-is-nonhyperlinear
-uses:
+requires:
   - hyperlinear-hs-stable-is-residually-finite
   - hs-stability-plus-fd-residual-forces-nonhyperlinearity
 ---
