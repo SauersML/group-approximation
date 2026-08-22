@@ -92,3 +92,9 @@ Nevertheless it closes the Maslov sector by
   clock/permutation coupling mechanism in one exact local model.  Promoting
   it from that packet to every nontrivial marked tuple remains the global
   positive-kernel/lifting step.
+- **The (2.7)--(2.8) collision retunes away.**
+  `kassel-through-28-has-retuned-omega-model` replaces the four-point packet
+  by permutations admitting a conjugator in the `x_alpha` commutant and
+  gauges `nu^(-1)ZX` back to `X`.  All of (2.4)--(2.8) and (2.12) then hold
+  exactly with `w_beta^4=omega I_24`.  The next face charging this packet is
+  (2.9), whose defect is one; universality is again unproved.

@@ -33,3 +33,7 @@ exact omega model of the six-relator presentation.
 The explicit extensions and inequality are proved in
 `research/artifacts/kassel-27-28-clock-permutation-collision-2026-08-21.md`.
 
+This packet-specific collision cannot be promoted without new rigidity:
+`kassel-through-28-has-retuned-omega-model` changes the four-point
+permutations and solves both faces exactly in another 24-dimensional omega
+packet.
