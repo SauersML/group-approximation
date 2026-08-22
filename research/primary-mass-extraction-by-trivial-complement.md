@@ -37,4 +37,3 @@ at most `s_epsilon`, `(PMG2)` would contradict
 `eta_odd(s_epsilon)<epsilon`.  Rearranging gives `(PMG3)`, and taking a
 liminf gives `(PMG4)`.  No invariance of the two conductor summands under the
 approximate denominator generator is assumed or needed.
-

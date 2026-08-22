@@ -74,4 +74,3 @@ fixed positive fraction of its dimension in irreducibles of positive
 `p`-conductor.  This does not bound the conductor depth or prevent that mass
 from spreading over an unbounded Folner profile; those are the remaining
 contraction/coherence questions.
-

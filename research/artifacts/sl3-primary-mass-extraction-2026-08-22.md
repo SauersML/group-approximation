@@ -29,4 +29,3 @@ summands.  It does not force bounded depth: the positive primary mass may
 still spread across an unbounded conductor Folner profile.  The next genuine
 problem is therefore contraction or non-Folner coherence of that positive
 mass, not merely proving that some primary component is present.
-
