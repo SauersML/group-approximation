@@ -13,6 +13,14 @@ nonidentity images in one face are copies of only `s` or only `t`.
 They therefore commute, and their product is the identity.  This proves the
 surjection `(DSM3)`; it is onto because both supports are nonempty.
 
+For the stated equivalence, `(DSM1)`--`(DSM2)` make the support incidence
+of `c+d` the disjoint union of the nonempty `c` and `d` parts.  Conversely,
+let one codeword `ell` have a disconnected support component `S`.  No face
+meeting `S` meets the complementary support component.  Since every face
+meets `supp(ell)` evenly, every face meets `S` evenly as well.  Hence the
+indicator of `S` is itself a codeword, as is `ell+1_S`; these are a pair
+satisfying `(DSM1)`--`(DSM2)`.
+
 For `0<theta<pi/2`, the two balanced reflections `S,T_theta` have no common
 eigenline, so the algebra they generate is `M_2` and its commutant is the
 scalars.  With normalized trace, `tr(S)=0` and `||S||_2=1`, hence

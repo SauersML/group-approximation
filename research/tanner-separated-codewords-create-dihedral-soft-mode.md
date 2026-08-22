@@ -24,6 +24,12 @@ T_a intersect supp(c) != empty
   implies T_a intersect supp(d)=empty.                    (DSM2)
 ```
 
+Equivalently, some nonzero codeword has disconnected support in the Tanner
+incidence hypergraph (faces are joined through coordinates in that
+codeword's support).  Thus exclusion of this soft mode is the concrete
+combinatorial requirement that **every nonzero codeword have connected
+Tanner support**.
+
 Then the homogeneous face group surjects onto the infinite dihedral group
 
 ```text
