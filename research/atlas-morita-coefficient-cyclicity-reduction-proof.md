@@ -32,4 +32,5 @@ The displayed products `X^aYX^b` run through every matrix unit, proving
 Finally each chart saturation multiplies dimension by at most `q^2` by the
 coordinate-span calculation, including after conjugating coordinates by
 `T`.  Iteration gives `(MCC7)--(MCC8)`, and rank subadditivity over the
-thirteen residual images gives `(MCC9)`.
+fourteen literal residual images gives `(MCC9)`.  The count is certified by
+`atlas-literal-augmented-residual-count-is-fourteen`.

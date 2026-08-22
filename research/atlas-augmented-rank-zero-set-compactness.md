@@ -135,7 +135,7 @@ lane.
   control the wandering space.
 - **Exact remaining module statement.**
   `atlas-left-ideal-rank-nonwandering` asks whether, on modules restricting
-  to `V^m` on both charts, low normalized rank of the thirteen named ideal
+  to `V^m` on both charts, low normalized rank of the fourteen literal named ideal
   generators forces the full ideal image `I E` to have sub-full (ideally
   vanishing) normalized dimension.  The quotient dichotomy turns that
   statement directly into `(ARC1)`.  A countermodel is precisely a sequence

@@ -82,5 +82,6 @@ the two finite chart actions spreads an `o(dim E)` space onto all of `E`, and
 the saturation depth must diverge.  Finite mixed-intersection pencils inspect
 only finitely many fixed subspaces/word depths and cannot alone exclude this
 scenario.  The binary-specific remaining target is precisely to rule out
-this wandering propagation using the thirteen Atlas relations.
-
+this wandering propagation using the fourteen literal two-chart Atlas
+relations.  The count thirteen belongs to the virtually-free filling model,
+where q14 is already a carrier relation.

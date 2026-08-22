@@ -4,7 +4,7 @@ id: atlas-morita-coefficient-cyclicity-reduction
 kind: claim
 title: Atlas defect wandering is exactly multiplicity-space coefficient cyclicity
 distinct_from:
-  atlas-left-ideal-rank-nonwandering: that asks whether the thirteen residual images can fill a repeated-natural module; this gives an exact Morita reduction of that question but does not bound the resulting coefficient orbit.
+  atlas-left-ideal-rank-nonwandering: that asks whether the fourteen literal two-chart residual images can fill a repeated-natural module; this gives an exact Morita reduction of that question but does not bound the resulting coefficient orbit.
   atlas-defect-orbit-span-quotient-dichotomy: that takes the full orbit-span and obtains an exact quotient when it is proper; this identifies that orbit-span explicitly on the chart multiplicity space.
   atlas-edge-folner-modules-miss-natural-type: that excludes free Bass--Serre cell modules using one transvection rank; this applies to every pair of repeated-natural charts with no cell decomposition assumption.
 ---
@@ -68,7 +68,7 @@ Hence `C_T=M_m(F2)`, and every nonzero one-dimensional `U_D` is cyclic.
 This is a growing-width chart-pair counterexample to any proposed
 nonwandering theorem that uses only the two chart isomorphism types.  It is
 not a counterexample to the Atlas claim, because no smallness of the
-thirteen particular residuals is asserted.
+fourteen particular literal residuals is asserted.
 
 Moreover
 
@@ -90,12 +90,12 @@ Thus, if `D` generates `E`, its saturation depth is at least
 ceil(log_(q^2)(dim(E)/dim(D))).                       (MCC8)
 ```
 
-For the Atlas lane `q=4`.  If the thirteen named residuals have maximum
-normalized rank `epsilon`, then `dim(D)<=13 epsilon dim(E)`, so any
+For the Atlas lane `q=4`.  If the fourteen literal two-chart residuals have
+maximum normalized rank `epsilon`, then `dim(D)<=14 epsilon dim(E)`, so any
 countermodel with `I E=E` has alternating saturation depth at least
 
 ```text
-log_16(1/(13 epsilon)).                               (MCC9)
+log_16(1/(14 epsilon)).                               (MCC9)
 ```
 
 ### Proof
@@ -117,14 +117,14 @@ all generators in `(MCC2)`, equivalently under `C_T`.  The smallest common
 
 One saturation by either chart can enlarge dimension by at most `q^2`, by
 the same coordinate argument after changing basis by `T`.  Iteration proves
-`(MCC7)` and `(MCC8)`.  Finally the sum of thirteen residual images has
+`(MCC7)` and `(MCC8)`.  Finally the sum of fourteen residual images has
 dimension at most the sum of their ranks, which gives `(MCC9)`.
 
 ### Consequence for the open Atlas claim
 
 The surviving statement `atlas-left-ideal-rank-nonwandering` is precisely
 the following relation-specific assertion: for every Atlas chart-change
-matrix `T`, the multiplicity-coordinate seed `U_D` cut out by the thirteen
+matrix `T`, the multiplicity-coordinate seed `U_D` cut out by the fourteen
 residuals cannot be a vanishing-dimensional cyclic subspace for `C_T`.
 Generic pairs of matrix algebras do have tiny cyclic seeds, so no argument
 using only the two repeated-natural chart types can prove this.  A positive
