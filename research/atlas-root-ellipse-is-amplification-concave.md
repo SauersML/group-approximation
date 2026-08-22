@@ -45,11 +45,12 @@ F>=1.                                                  (ROOT-CONC-3)
 
 The scalar constant one is sharp on the admissible binary energy patterns:
 `e_12=1` and the other three coordinates zero gives `F=1`.  This is a
-sharpness statement for the two-variable ellipse optimization, not a claim
-that this pattern is realized by a quotient of `Gamma_A4`.
+sharpness statement for the two-variable ellipse optimization.  By
+`atlas-e12-binary-extremal-is-a-finite-residual-test`, realization by a group
+quotient is exactly the finite-residual question for the omitted bridge
+`w_12` in the three-bridge quotient `Q_12`; that question remains undecided.
 
 Thus amplification cannot hide a finite-quotient countermodel to the proposed
 `3/128` ceiling.  Any successful ceiling proof must exclude every nontrivial
 finite quotient block before taking direct sums; convex dilution supplies no
 escape from that requirement.
-

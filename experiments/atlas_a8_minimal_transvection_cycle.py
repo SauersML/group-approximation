@@ -88,11 +88,27 @@ def main():
         found[target_name] = best
     assert found == EXPECTED
 
+    # The three bridges identified by the binary e12-only extremal pattern do
+    # not already generate the omitted root inside one A8 chart.
+    retained = (G["t01"], G["t23"], G["t30"])
+    retained_group = {I4}
+    retained_todo = deque([I4])
+    while retained_todo:
+        old = retained_todo.popleft()
+        for generator in retained:
+            new = mul(old, generator)
+            if new not in retained_group:
+                retained_group.add(new)
+                retained_todo.append(new)
+    assert len(retained_group) == 64
+    assert G["t12"] not in retained_group
+
     for target_name, word in EXPECTED.items():
         a = eval_word(word)
         assert mul(mul(a, B), inv(a)) == G[target_name]
 
     print("t01,t12,t23,t30 generate GL(4,2)=A8, order 20160")
+    print("t01,t23,t30 generate a subgroup of order 64 which excludes t12")
     print("directed Cayley diameter: 17")
     for target, word in EXPECTED.items():
         print(

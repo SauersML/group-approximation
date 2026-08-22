@@ -55,6 +55,14 @@ def main():
         action="store_true",
         help="use only the fourteen rank-three packet relators",
     )
+    parser.add_argument(
+        "--identify-cycle-except",
+        choices=("t01", "t12", "t23", "t30"),
+        help=(
+            "also identify the two chart copies of the other three directed-cycle "
+            "transvections, and test whether the omitted bridge survives"
+        ),
+    )
     args = parser.parse_args()
 
     states, _ = enumerate_ball(5)
@@ -80,7 +88,22 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as stream:
         collision = decode_word(json.load(stream)[0]["word"])
-    relators = packet + [collision]
+    cycle = {}
+    for name, row, column in (
+        ("t01", 0, 1),
+        ("t12", 1, 2),
+        ("t23", 2, 3),
+        ("t30", 3, 0),
+    ):
+        value = I4.copy()
+        value[row, column] ^= 1
+        cycle[name] = value
+
+    identified = []
+    if args.identify_cycle_except:
+        identified = [name for name in cycle if name != args.identify_cycle_except]
+    bridge_relators = [[(2, cycle[name]), (1, cycle[name])] for name in identified]
+    relators = packet + [collision] + bridge_relators
 
     generators = [word[0][1] for _, word in factor_generators()[:6]]
     print("G:=Group([%s]);;" % ",".join(gap_perm(generator) for generator in generators))
@@ -98,6 +121,7 @@ def main():
     print("simp:=IsomorphismSimplifiedFpGroup(raw);; Q:=Image(simp);;")
     print('Print("packet_relators %d\\n");' % len(packet))
     print('Print("collision_relators 1\\n");')
+    print('Print("identified_cycle_bridges %d\\n");' % len(bridge_relators))
     print('Print("simplified_generators ",Length(GeneratorsOfGroup(Q)),"\\n");')
     print('Print("simplified_relators ",Length(RelatorsOfFpGroup(Q)),"\\n");')
     print("K1:=Image(simp,Image(nat,Image(e1,F)));;")
@@ -116,6 +140,14 @@ def main():
     print("bridges:=[%s];;" % ",".join(bridges))
     print("bridgeImages:=List(bridges,b->Image(simp,Image(nat,b)));;")
     print('Print("bridge_trivial ",List(bridgeImages,IsOne),"\\n");')
+    if args.identify_cycle_except:
+        omitted = "i2(%s)*i1(%s)^-1" % (
+            gap_perm(cycle[args.identify_cycle_except]),
+            gap_perm(cycle[args.identify_cycle_except]),
+        )
+        print("omittedBridge:=%s;;" % omitted)
+        print("omittedImage:=Image(simp,Image(nat,omittedBridge));;")
+        print('Print("omitted_bridge_trivial ",IsOne(omittedImage),"\\n");')
     if not args.skip_size:
         print('Print("quotient_size ",Size(Q),"\\n");')
     print("QUIT;")
