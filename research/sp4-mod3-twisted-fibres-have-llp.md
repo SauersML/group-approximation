@@ -2,21 +2,24 @@
 rg: 2
 id: sp4-mod3-twisted-fibres-have-llp
 kind: claim
-title: The two nontrivial mod-three twisted group C*-algebras of the symplectic lattice have the local lifting property
+title: The nontrivial mod-three twisted group C-star fibre of the symplectic lattice has the local lifting property
 distinct_from:
   sp2g-z-full-c-star-algebra-has-llp: that is the untwisted fibre (the full group C*-algebra of Sp_4(Z)); this concerns the alpha- and alpha^2-twisted fibres of the Deligne triple cover, which have no finite-dimensional representations at all, so the RFD and Ioana--Spaas--Wiersma tool kits have no purchase on them in either direction.
   sp4-metaplectic-class-pointwise-coboundary-limit: that settled a cocycle-rigidity question about the mod-two metaplectic class; this is a lifting question about the mod-three twisted algebras, with no cocycle approximation involved.
 ---
 
-OPEN CLAIM.  Let `alpha` be the multiplier of a section of Deligne's
-triple cover `1 -> Z/3 -> E_3 -> Sp_4(Z) -> 1`.  Then the twisted group
-C*-algebras
+OPEN CLAIM.  Let `alpha` be the `mu_3`-valued multiplier of a section of
+Deligne's triple cover `1 -> Z/3 -> E_3 -> Sp_4(Z) -> 1`.  Then the twisted
+group C-star algebra
 
 ```text
-C^*(Sp_4(Z); alpha)   and   C^*(Sp_4(Z); alpha^2)                  (TF3)
+C^*(Sp_4(Z); alpha)                                             (TF3)
 ```
 
-have Kirchberg's local lifting property.
+has Kirchberg's local lifting property.  By
+`twisted-c-star-opposite-inverts-cocycle`, the `alpha^2` fibre is its opposite
+and has LLP exactly when `(TF3)` does.  Thus only one twisted lifting question
+remains, not two independent ones.
 
 **Why it matters.**  `C^*(E_3)` decomposes as the finite direct sum of
 its three central-character fibres `C^*(Sp_4(Z); alpha^j)`, `j = 0,1,2`
@@ -35,8 +38,8 @@ untwisted fibre.
 
 ## Attempts
 
-- **No tool reaches these algebras in either direction.**  The twisted
-  fibres have NO nonzero finite-dimensional representations
+- **No tool reaches this algebra in either direction.**  The twisted
+  fibre has NO nonzero finite-dimensional representations
   (`deligne-triple-cover-fd-central-invisibility`), so they are as far
   from RFD as possible, the Ioana--Spaas--Wiersma finite-dimensional
   realizability mechanism is vacuous, and the
