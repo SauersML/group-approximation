@@ -33,6 +33,15 @@ canonical base-profile preservation in the finite extension,
 and ordinary-word payment of the failed existential residual.       (MQC1)
 ```
 
+The simultaneous-completion quantifier can now be stated sharply.
+`one-complete-base-type-simultaneously-realizes-disjoint-gadgets` proves that
+if one marked **complete base type** separately extends every gadget, then
+disjoint auxiliary variables and countable saturation produce one
+simultaneous exact extension automatically.  Merely giving each gadget some
+marked completion is insufficient: those completions may have different
+complete base types.  Neither form implies canonical base-profile
+preservation.
+
 Base-profile preservation follows, for example, from injectivity of the base
 group into the final extension.  One exact completion with a nonzero mark does
 not imply it.  If the base is merely recursively presented, selecting finitely
@@ -75,7 +84,7 @@ merely expose the losing carrier.
 Nor can an infinite actor make the exact predicate reflection into one
 universally scalar word.  `universal-central-selector-word-is-affine-for-any-actor`
 uses the faithful regular trace to show that any word with prescribed scalar
-values on every central marked selector atom lies in the elementary-abelian
+values on every marked atom of a commuting context lies in its elementary-abelian
 selector subgroup and hence has affine phase.  Thus the nonlinear payment
 cell must retain a non-scalar operator coordinate and use a matrix-only
 estimate; moving from a finite packet to an infinite actor does not by itself

@@ -2,9 +2,9 @@
 rg: 2
 id: universal-central-selector-word-is-affine-for-any-actor
 kind: claim
-title: An arbitrary infinite actor cannot make one universal central-selector word nonlinear
+title: An arbitrary infinite actor cannot make one universal commuting-context word nonlinear
 distinct_from:
-  sectorwise-scalar-finite-group-words-are-selector-affine: that proves the conclusion for a finite ambient group using semisimple irreducible sectors; this uses the faithful regular finite trace and allows an arbitrary infinite ambient actor.
+  sectorwise-scalar-finite-group-words-are-selector-affine: that proves the conclusion for a finite ambient group with central selectors using semisimple irreducible sectors; this uses the faithful regular finite trace, allows an arbitrary infinite actor, and does not require the context subgroup to be central.
   central-selector-spectra-cannot-prune-a-nonlinear-predicate: that proves every marked selector character occurs and classifies exact finite-dimensional central characters; this proves that a word scalarized on those atoms must itself be a selector word.
   affine-auxiliary-control-flow-barrier: that treats existential systems of parity equations; this permits arbitrary noncommuting auxiliary group letters but assumes their universal identities scalarize one word on the central selector atoms.
 ---
@@ -13,7 +13,7 @@ distinct_from:
 amenability, or residual hypothesis.  Let
 
 ```text
-D=<J,z_1,...,z_k> isomorphic to (C_2)^(k+1) <= Z(Gamma)              (UCS1)
+D=<J,z_1,...,z_k> isomorphic to (C_2)^(k+1) <= Gamma                 (UCS1)
 ```
 
 and let `w in Gamma`.  For each character `chi` with `chi(J)=-1`, write
@@ -38,7 +38,8 @@ w in D.                                                            (UCS4)
 Consequently `epsilon(chi)` is an affine Boolean phase in the selector bits.
 No infinite actor, HNN extension, property-(T) packet, or self-similar group
 can turn a **universally scalar** ordinary word into NAND or a general BCS
-predicate while retaining the central elementary-abelian selector subgroup.
+predicate on a commuting context.  Only commutativity inside `D` is used;
+the selectors need not be central in `Gamma`.
 
 The same conclusion holds if `(UCS3)` is asserted in every finite tracial
 representation: the regular representation is one such representation.
@@ -46,9 +47,8 @@ representation: the regular representation is one such representation.
 ## Consequence for the payment cell
 
 An exact compiler cannot replace `1-2L_f` by one ordinary word which equals
-`(-1)^(f(x))` on all central selector atoms unless `f` is affine.  Therefore
+`(-1)^(f(x))` on all joint context atoms unless `f` is affine.  Therefore
 the missing BCS payment must retain a non-scalar corner/operator coordinate
 and obtain its loss estimate from a genuinely finite-matrix inference.  Merely
 enlarging the actor beyond the finite signed-Hecke packets does not evade the
 affine barrier.
-
