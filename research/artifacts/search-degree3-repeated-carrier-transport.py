@@ -2,8 +2,9 @@
 """Search a symbolic repeated-carrier degree-three transport compiler.
 
 At length thirteen and exponent three, retain the (1,5,7) orbit topology.
-Place the four involutory gates a,b,c,d at four cyclic sign changes and put
-one repeated formal carrier x in every other coefficient slot.  After solving
+Place the four involutory gates a,b,c,d at four cyclic sign changes.  Every
+other slot gets one of two formal carriers x,y according to an affine Boolean
+function of its cyclic index, adjacent signs, and height residue.  After solving
 the unary orbit, recognize the two ordered residual relators exactly as
 
     A U C U^-1,      B U D U^-1
@@ -127,6 +128,22 @@ def transports(word):
     return tuple(out)
 
 
+def carrier_slots(signs, code):
+    """One of the 32 linear two-carrier patterns from local path features."""
+    height = 0
+    slots = []
+    for index, sign in enumerate(signs):
+        # A global x<->y swap is immaterial, so fix the affine constant to zero
+        # and enumerate the 32 genuinely different linear patterns.
+        features = (index % 2, sign == -1, signs[index - 1] == -1,
+                    height % 3 == 1, height % 3 == 2)
+        bit = sum(((code >> offset) & 1) * value
+                  for offset, value in enumerate(features)) % 2
+        slots.append("y" if bit else "x")
+        height += sign
+    return tuple(slots)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--shard", type=int, default=0)
 parser.add_argument("--shards", type=int, default=1)
@@ -153,32 +170,37 @@ for sign_index, negative in enumerate(combinations(range(13), 5)):
                     if signs[index - 1] != signs[index])
     if len(changes) < 4:
         continue
-    for gate_positions in combinations(changes, 4):
-        for gate_order in permutations(GATES):
-            slots = ["x"] * 13
-            for position, gate in zip(gate_positions, gate_order):
-                slots[position] = gate
-            slots = tuple(slots)
-            tested += 1
-            words = tuple(orbit_word(slots, signs, start)
-                          for start in range(3))
-            z_value = unary_value(words[pivot])
-            assert z_value is not None
-            relations = tuple(substitute(words[index], z_value)
-                              for index in residual)
-            first = transports(relations[0])
-            second = transports(relations[1])
-            for left in first:
-                for right in second:
-                    complementary = ({left[0], right[0]} == {"a", "b"} and
-                                     {left[1], right[1]} == {"c", "d"})
-                    if complementary and left[2:] == right[2:]:
-                        print("HIT", "negative", negative, "signs", signs,
-                              "slots", slots, "pivot", pivot,
-                              "residual", residual, "z_value", z_value,
-                              "relations", relations,
-                              "transports", (left, right), flush=True)
-                        raise SystemExit(42)
+    for carrier_code in range(32):
+        base_slots = carrier_slots(signs, carrier_code)
+        for gate_positions in combinations(changes, 4):
+            for gate_order in permutations(GATES):
+                slots = list(base_slots)
+                for position, gate in zip(gate_positions, gate_order):
+                    slots[position] = gate
+                slots = tuple(slots)
+                tested += 1
+                words = tuple(orbit_word(slots, signs, start)
+                              for start in range(3))
+                z_value = unary_value(words[pivot])
+                assert z_value is not None
+                relations = tuple(substitute(words[index], z_value)
+                                  for index in residual)
+                first = transports(relations[0])
+                second = transports(relations[1])
+                for left in first:
+                    for right in second:
+                        complementary = (
+                            {left[0], right[0]} == {"a", "b"} and
+                            {left[1], right[1]} == {"c", "d"})
+                        if complementary and left[2:] == right[2:]:
+                            print("HIT", "negative", negative,
+                                  "signs", signs, "slots", slots,
+                                  "carrier_code", carrier_code,
+                                  "pivot", pivot, "residual", residual,
+                                  "z_value", z_value,
+                                  "relations", relations,
+                                  "transports", (left, right), flush=True)
+                            raise SystemExit(42)
 
 print("topologies", topologies)
 print("tested", tested)
