@@ -168,6 +168,17 @@ monodromy by coherent coordinate identifications would instead manufacture
 a forbidden finite-dimensional perfect strategy by
 `coherent-balanced-context-permutations-would-give-a-ce-trace`.
 
+Two natural readouts are now excluded more sharply by
+`cycle-holonomy-is-square-gauge-and-reynolds-invisible`.  A phase clause
+`V^2=J` on a freshly existential chord only chooses a point of its full
+commutant torsor and is satisfiable in every matrix multiplicity.  An adjoint
+Reynolds comparison is identically fixed by that commutant and has zero cycle
+defect.  Moving the transporter names into the common base makes the phase
+observable, but then incompatible bespoke phase clauses cannot share the
+perfect completion.  The readout must therefore tie the chord to a
+payload-sensitive coefficient or proper corner, not merely to its packet
+covariance or Reynolds projection.
+
 Thus the finite-type scheme closes all analytic gauge bookkeeping and makes
 transporter nonexistence adversarially useful.  Its smallest remaining cell
 is a **typewise nontransport holonomy readout**: on types admitting the
