@@ -23,7 +23,9 @@ Orient the fifteen edges.  At each vertex retain only the `++-` or `+--`
 patterns of an oriented relator; this leaves `3126` global orientations.
 The minority position fixes the relator occurrence index.  Assign the two
 relator colors at ten vertices, reject an edge joining inverse occurrences
-of the same relator, and reduce all seven region words in `Q`.  Neither
-choice of outer decagon ever leaves five trivial digons plus one trivial
-inner decagon and a nontrivial outer word.  Thus the solution count is zero.
-
+of the same relator, and reduce all seven region words in `Q`.  The original
+decagon-first audit checked the two choices of outer decagon.  The completed
+all-face audit allows each of the five digons to be outer as well: in every
+case a candidate would have exactly six trivial labels and one nontrivial
+label.  No coloring has that pattern.  Thus the solution count is zero for
+all seven choices of outer face.
