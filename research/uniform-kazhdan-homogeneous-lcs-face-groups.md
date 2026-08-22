@@ -41,3 +41,11 @@ distance alone misses K-twisted cancellations.  The presentation gate is
 `finite-k-commuting-face-universal-completion`.  In particular
 `s3-cannot-be-a-homogeneous-parity-face-factor` rules out `K=S_3`: its
 commuting involution faces retain a free-product quotient.
+
+There is now a sharp algebraic split.  Homogeneous Magic-Square faces do
+present a fixed extraspecial packet, so finite-packet realization is
+possible.  But bounded-occurrence positive-rate faces cannot have universal
+group exactly `K x (C_2)^r`: the mod-two `H_2` presentation bound requires
+quadratically many relators.  A positive construction must obtain the
+logical sector through a non-direct extension or global actor, rather than
+an exact face-presented direct product.

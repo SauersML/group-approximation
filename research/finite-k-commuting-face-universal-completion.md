@@ -38,3 +38,12 @@ a finite **abelian-subgroup amalgam with finite universal completion**.
   nontrivial K sectors.  The exact replacement is the finite twisted-
   intertwiner condition of
   `fixed-k-code-product-gap-is-a-twisted-intertwiner-test`.
+- **Use a homogeneous Magic-Square packet.**  This succeeds for the fixed
+  factor: its universal face group is the extraspecial two-qubit Pauli group
+  of order `32`.  However, the literal positive-rate direct product still
+  fails.  The mod-two second-homology presentation bound requires
+  `Omega(r^2)` relators for `K x (C_2)^r`, whereas bounded-width,
+  bounded-occurrence faces provide only `O(r)`.  Only a controlled non-direct
+  extension or a finite global actor remains open at positive rate.  This
+  does not refute the existing private sampler's deliberately low-rate
+  `Theta(r^2)` occurrence presentation.
