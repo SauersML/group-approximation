@@ -254,6 +254,28 @@ one of the following equivalent matrix-coordinate inputs:
 Further typed Steinberg triangles or Clifford covariance relations cannot
 provide this input: both admit the exact arbitrary-`V` models above.
 
+The remaining finite-dimensional PI option has now been audited exactly in
+`controlled-fine-reflection-superrank-orientation-law`.  On the marked
+two-qubit packet, adjoining the twisted fine reflection
+`t=R_f tensor V` never changes the PI ideal: it is always `Id(M_4)`, whether
+`V=1`, `V=-1`, or both signs occur.  Adjoint commutant superrank is sharper,
+but obeys the exact law
+
+```text
+c_P-c_(<P,t>)=(1-mu^2)/32,
+mu=tr(t(R_f tensor 1)).                                 (PSR13a)
+```
+
+It detects mixed orientations but not the two literal signs.  Worse for
+literal selector authentication, canonical group trace makes `mu=0`, hence
+selects the balanced mixture and the fixed drop `1/32`, rather than
+`R_f tensor 1`.  This is a useful matrix-only endpoint if a mixed Whitehead
+return identifies the two adjoint Reynolds ranges: the rank gap must then
+pay ordinary HS holonomy energy.  It does not itself supply that return.
+Thus neither a standard-polynomial comparison nor bare superrank closes the
+selector seam; the surviving PI route is precisely a same-reservoir
+Reynolds-return theorem.
+
 There is one useful relaxation if several returned prefix cells can be linked
 cyclically.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` permits a
 different selected carrier `P_i` at every cell and proves

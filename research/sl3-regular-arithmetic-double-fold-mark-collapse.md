@@ -70,6 +70,17 @@ raw `C`-boundary leakage.  The shortest remaining estimate is therefore a
 full-double mixed-word bound charging these two quantities to presentation
 defect; polar relators and singular values separately do not supply it.
 
+Nor can the complement be recovered by adjoining an arbitrary fixed finite
+SL3 coefficient incidence.  The canonical exact construction in
+`finite-flat-window-does-not-force-complement-lift` makes
+every coefficient in such a window a flat nondegenerate compression with
+the expected exact polar factor, while an omitted coefficient gives a
+uniform complement-energy floor.  That construction is not a double
+microstate because the omitted raw polar is not the corresponding product
+of the named polar generators.  It therefore identifies full-double
+multiplicativity across unbounded compressed coefficients—not another
+finite shell packet—as the indispensable extra input.
+
 The joint near-exact sector is also complete.
 `sl3-arithmetic-double-near-exact-vertices-fold-projectively` proves
 `(RDF1)` whenever BOTH full vertex assignments approach exact

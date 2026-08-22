@@ -47,3 +47,14 @@ form, small `(CUE2)` simultaneously asks `Z` to intertwine the outgoing and
 incoming leakage operators and to centralize the complement-complement
 blocks.  That boundary synchronization is the remaining arithmetic content.
 
+There is now a sharp finite-incidence firewall.
+`finite-flat-window-does-not-force-complement-lift` proves
+that an exact complement exists precisely when `U` preserves the entire
+compressed positive-definite kernel `Ppi(g)P`, and constructs canonical
+exact SL3 models in which every member of any prescribed finite coefficient
+window is the uniformly invertible scalar compression `t rho(g)` while no
+complement lift exists.  Thus `Z` cannot be constructed from a larger but
+still fixed flat list of shell/coefficient values alone.  A positive theorem
+for the arithmetic double must use full-double multiplicativity to promote
+the named polar words to the whole compressed kernel (or bypass this
+compression model).
