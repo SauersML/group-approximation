@@ -317,12 +317,34 @@ carrier is two-generated and the automorphism is inner; for `τ` the index famil
 is all of `E` and the automorphism is a basis permutation with no translation
 behind it.
 
-**Price:** if the `A_E` carrier from `Omega.benignTF_ASub_univ` happens to admit
-the automorphism, `τ` costs one lemma.  If not, it costs a bespoke benign
-witness for `A_E` built to carry it — which is a construction of the same order
-as `Higman.RowSubgroup` or `Higman.FlipGroup`, i.e. **hundreds of lines, not
-thousands**, and an order cheaper than route A.  *This is the first thing to
-try, and it did not exist before this pass.*
+**Price — RETRACTED, 2026-08-22, by `Higman/SwapCarrierWitness.lean`.**  The
+estimate first written here was "hundreds of lines, not thousands, an order
+cheaper than route A", on the model of `Higman.RowSubgroup` plus a second
+stable letter.  That is wrong, and the wrongness is a theorem, not a doubt:
+
+> `Seq.not_tau_twoSided` — there is **no** pair `u, v` with
+> `u · b_f · v = b_{τ f}` for every `f`.
+
+A `Row.Lsub`-style stable letter acts on the coded conjugates by a two-sided
+translation of the index, `a^w ↦ a^{u w v}`; that is exactly the group of index
+maps `Higman.FlipGroup`'s `G₂` realizes, and it is what paid for `ρ` and for
+base `S`.  It provably cannot pay for `τ`.  With
+`Seq.not_tau_of_endomorphism` (no endomorphism of `F₃`) and the design
+constraint on `Seq.WindowApparatus` (no automorphism preserving `emb F₃`),
+**every mechanism this repository has ever used for a coded family is now
+excluded for `τ`.**
+
+The one-sentence diagnosis, from the end-translation calculus in §1 of that
+file: appending a row above the support of `f` is right multiplication and
+below it is left multiplication, so base `S` — whose family moves both ends by
+a fixed amount — is a translation orbit and is free; `τ` moves the **middle**,
+and the middle is not a translation.
+
+So route D **relocates** the apparatus rather than avoiding it, and carries no
+discount over route A.  What survives of it is the sharpest statement of the
+residual: `Seq.WindowSwapper`, the element form (what an HNN stable letter
+gives) with the centralizer slack that `not_tau_twoSided` shows is *necessary*,
+proved to yield `Seq.SwapWitness` and hence `τ`.
 
 ### 2.9  Recommendation
 

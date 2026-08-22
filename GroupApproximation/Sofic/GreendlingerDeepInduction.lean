@@ -85,6 +85,49 @@ it does, since then the swapped conjugator is the shorter one.  This is the
 quantitative form of `GreendlingerDeepVacuity`'s remark that a reroute moves one
 factor past its neighbour and no further; there is no free distance-two pin.
 
+## The located invariant, redesigned
+
+Sections 7 to 10 replace the invariant the descent runs on, because the old one
+is not provable in the deep regime and the reason is bookkeeping rather than
+geometry.
+
+`GreendlingerCascade`'s descent carries "the arc begins at position `|c| + j`",
+and in the deep branch that forces an arc at depth `|M| + j − (|c| + |t|)`
+inside the tail survivor — a depth measured against the **head** rotation.  The
+factor the block lands in has its own rotation, which may be arbitrarily
+shorter, and every arc it can supply is bounded by that one.  Demand and supply
+are denominated in different units, and no argument about the landing factor can
+meet the demand.
+
+The repair is to stop measuring against the head.  What the induction needs of a
+stage is only that the arc **survives the block coming from above**, and that
+block is described by `LandsIn` in the stage's own terms: it stops at most
+`|c| + i` letters in, with `i` under a sixth of the stage's rotation.  So the
+invariant becomes
+
+    for every `N ≤ |c| + i` with `6i < |t|`, the word with `N` letters dropped
+    carries an arc,
+
+with no claim about where.  `CascadeLandingDrop` is `CascadeLanding` restated
+against it, and `greendlingerAt_drop_of_cascadeLandingDrop` is the descent —
+the old induction with the position arithmetic deleted: no
+`greendlingerAt_inherit`, no offset carried across a stage, and two suffix
+inclusions in their place.  At the top `N = 0`, so the gate reads exactly as
+before; that is `greendlingerConclusion_of_cascadeLandingDrop` and its twin.
+
+Three things make the weakening free rather than merely convenient.
+`cascadeLandingDrop_of_cascadeLanding` shows the old hypothesis implies the new
+one, so nothing already proved is lost.  The **landing disjunct is unchanged**,
+block parameter included — in the regime it owns the head survivor is at least
+`|c| + i` long, so the incoming block never reaches past it and the tail sees
+the head's own block again; `GreendlingerBetaBranch.LandingProduction` and the
+conjugator-absorbed plumbing proved against it are inherited whole.  And the
+deep disjunct, `DeepArcDrop`, is discharged by an arc read at the landing
+rotation's own survivor: `greendlingerAt_drop_of_landing_palindrome` produces
+one from `GreendlingerDeepThreeFactor.greendlingerAt_of_landing_start_of_piece`
+as soon as the total intrusion into that rotation is a piece — no ratio between
+the two rotations, no swallow bound, and no bound on the overrun depth.
+
 Unconditional throughout: no piece bound is read anywhere in this file.
 -/
 
@@ -603,6 +646,462 @@ theorem hug_le_of_minimal_reroute_two [DecidableEq α]
     rw [List.length_append, FreeGroup.invRev_length] at hb
     exact hb
   omega
+
+/-! ## 7.  The structural layer: an arc that survives a drop
+
+The descent's invariant is about to change from "the arc begins at position
+`|c| + j`" to "the arc lies in what survives the incoming block".  Three moves
+are all it needs, and none of them reads the arc bound, so they are proved once
+on `GreendlingerSharpTwins.LocatedSplit` and instantiated at both constants. -/
+
+/-- **An arc located past a drop survives it.**  Position `n` in the word
+becomes position `0` in the word with `N ≤ n` letters removed: the arc is still
+there, and where it now sits is no longer of interest. -/
+theorem LocatedSplit.drop_of_le {n N : ℕ} {w u : List (α × Bool)}
+    (h : LocatedSplit n w u) (hN : N ≤ n) : LocatedSplit 0 (w.drop N) u := by
+  obtain ⟨A, C, hw, hlen⟩ := h
+  refine ⟨A.drop N, C, ?_, Nat.zero_le _⟩
+  rw [hw, drop_append_of_le N A (u ++ C) (by omega)]
+
+/-- **An arc in a suffix is an arc.**  What a stage reads off its tail is an arc
+in a suffix of its own word, and the unlocated form is inherited upwards along
+suffixes with nothing to pay. -/
+theorem LocatedSplit.of_suffix {v v' u : List (α × Bool)}
+    (h : LocatedSplit 0 v u) (hsuf : v <:+ v') : LocatedSplit 0 v' u := by
+  obtain ⟨A, C, hv, -⟩ := h
+  obtain ⟨Z, hZ⟩ := hsuf
+  refine ⟨Z ++ A, C, ?_, Nat.zero_le _⟩
+  rw [← hZ, hv]
+  simp only [List.append_assoc]
+
+/-- **What survives a drop, in the second block.**  Whatever the drop takes off
+an append, what is left of the second block is a suffix of what is left of the
+whole — and when the drop passes the first block entirely the two agree.
+
+This is the one piece of list arithmetic the new invariant runs on: it converts
+"the incoming block ate `N` letters of `P' ++ B'`" into "the arc need only lie
+in `B'` with `N − |P'|` letters removed". -/
+theorem drop_suffix_append (X Y : List (α × Bool)) (N : ℕ) :
+    Y.drop (N - X.length) <:+ (X ++ Y).drop N := by
+  rcases le_or_gt N X.length with hle | hgt
+  · have hz : N - X.length = 0 := by omega
+    rw [hz, List.drop_zero, drop_append_of_le N X Y hle]
+    exact ⟨X.drop N, rfl⟩
+  · rw [drop_append_of_ge X N Y hgt.le]
+
+/-- The half-form instance of `LocatedSplit.drop_of_le`. -/
+theorem GreendlingerAt.drop_of_le {R : Set (List (α × Bool))} {n N : ℕ}
+    {w : List (α × Bool)} (h : GreendlingerAt R n w) (hN : N ≤ n) :
+    GreendlingerAt R 0 (w.drop N) := by
+  obtain ⟨s, hs, u, hsplit, hpre, hlt⟩ := h.locatedSplit
+  exact greendlingerAt_of_locatedSplit hs (hsplit.drop_of_le hN) hpre hlt
+
+/-- The half-form instance of `LocatedSplit.of_suffix`. -/
+theorem GreendlingerAt.of_suffix {R : Set (List (α × Bool))}
+    {v v' : List (α × Bool)} (h : GreendlingerAt R 0 v) (hsuf : v <:+ v') :
+    GreendlingerAt R 0 v' := by
+  obtain ⟨s, hs, u, hsplit, hpre, hlt⟩ := h.locatedSplit
+  exact greendlingerAt_of_locatedSplit hs (hsplit.of_suffix hsuf) hpre hlt
+
+/-- The sharp instance of `LocatedSplit.drop_of_le`. -/
+theorem GreendlingerAtSharp.drop_of_le {R : Set (List (α × Bool))} {lam : ℚ}
+    {n N : ℕ} {w : List (α × Bool)} (h : GreendlingerAtSharp R lam n w)
+    (hN : N ≤ n) : GreendlingerAtSharp R lam 0 (w.drop N) := by
+  obtain ⟨s, hs, u, hsplit, hpre, hlt⟩ := h.locatedSplit
+  exact greendlingerAtSharp_of_locatedSplit hs (hsplit.drop_of_le hN) hpre hlt
+
+/-- The sharp instance of `LocatedSplit.of_suffix`. -/
+theorem GreendlingerAtSharp.of_suffix {R : Set (List (α × Bool))} {lam : ℚ}
+    {v v' : List (α × Bool)} (h : GreendlingerAtSharp R lam 0 v)
+    (hsuf : v <:+ v') : GreendlingerAtSharp R lam 0 v' := by
+  obtain ⟨s, hs, u, hsplit, hpre, hlt⟩ := h.locatedSplit
+  exact greendlingerAtSharp_of_locatedSplit hs (hsplit.of_suffix hsuf) hpre hlt
+
+/-! ## 8.  The invariant, weakened, and the descent it carries -/
+
+/-- **`CascadeLanding`, with the offset replaced by the incoming block.**
+
+The head of a minimal expression is met by a block of `N` letters from the
+factor above — `N ≤ |c| + i` with `i` under a sixth of the head rotation, which
+is exactly what `LandsIn` guarantees of the block it hands on.  Either what
+survives that block already carries an arc, or the block stops in a later factor
+and `LandsIn` names it.
+
+Two things changed from `GreendlingerCascade.CascadeLanding`, and only the first
+is a weakening.  The first disjunct no longer says *where* the arc is, only that
+it survives: it is asked for in `(P' ++ B').drop N` rather than at position
+`|c| + j` of `P' ++ B'`.  The second disjunct is **unchanged**, block parameter
+included, so `GreendlingerBetaBranch.LandingProduction` and everything proved
+against it — the conjugator-absorbed plumbing of `Sofic.GreendlingerAlphaPlumb`
+and its sharp twin — carry over verbatim.
+
+That the landing disjunct needs no change is the whole reason this weakening is
+free: in the regime it owns, `|M| + i ≤ |c| + |t|`, the head survivor `P'` is at
+least `|c| + i` long, so the incoming block never reaches past it and the
+composite block the tail sees is the head's own `M` again. -/
+def CascadeLandingDrop [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → 6 * i < t.length → N ≤ c.length + i →
+    GreendlingerAt R 0 ((P' ++ B').drop N) ∨
+      (M.length + i ≤ c.length + t.length ∧
+        LandsIn R M.length (conjEval e).toWord e.length)
+
+/-- **The old hypothesis implies the new one.**  A located arc at `|c| + i`
+survives a drop of `N ≤ |c| + i`, and the landing disjunct is the same
+statement.  So nothing proved against `CascadeLanding` is lost by moving to the
+weaker invariant, and the deep branch is the only place the two differ. -/
+theorem cascadeLandingDrop_of_cascadeLanding [DecidableEq α]
+    {R : Set (List (α × Bool))} (h : CascadeLanding R) :
+    CascadeLandingDrop R := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+  rcases h c t e g P' M B' i hmin ht hredp heq htail hlow hi with hdone | hlands
+  · exact Or.inl (hdone.drop_of_le hN)
+  · exact Or.inr hlands
+
+/-- **The descent, on the weakened invariant.**
+
+The word of a minimal expression, with the block from above removed, carries an
+arc.  The induction is the one of
+`GreendlingerCascade.greendlingerAt_of_cascadeLanding` with the position
+bookkeeping deleted: there is no `greendlingerAt_inherit` step and no offset
+arithmetic across a stage, because the arc is never located against the head
+rotation in the first place.  What replaces both is two suffix inclusions —
+`B'` survives the incoming drop because the head survivor absorbs it, and the
+landing factor's word survives the head's own block because `LandsIn`'s fit
+inequality says so.
+
+This is what the deep regime could not supply in the old form: an arc positioned
+against the *head* rotation is unavailable once the block lands in a factor
+whose rotation is shorter, and nothing in this statement asks for one. -/
+theorem greendlingerAt_drop_of_cascadeLandingDrop [DecidableEq α]
+    {R : Set (List (α × Bool))} (hland : CascadeLandingDrop R) :
+    ∀ (n : ℕ) (e : List (FreeGroup α × List (α × Bool)))
+      (c t w : List (α × Bool)) (N i : ℕ),
+      e.length ≤ n →
+      FreeGroup.IsReduced w → t ∈ symmetrization R →
+      FreeGroup.IsReduced (palindrome c t) →
+      IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) (FreeGroup.mk w) →
+      6 * i < t.length → N ≤ c.length + i →
+      GreendlingerAt R 0 (w.drop N) := by
+  intro n
+  induction n with
+  | zero =>
+      intro e c t w N i hlen hw ht hredp hmin hi hN
+      cases e with
+      | cons x e' =>
+          simp only [List.length_cons] at hlen
+          exact absurd hlen (by omega)
+      | nil =>
+          obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
+            exists_leading_cancellation hw hredp hmin.2.1
+          have hnil : FreeGroup.invRev M ++ B' = [] := by
+            rw [← hgw, conjEval_nil]
+            exact FreeGroup.toWord_eq_nil_iff.mpr rfl
+          have hz := congrArg List.length hnil
+          rw [List.length_append, FreeGroup.invRev_length,
+            List.length_nil] at hz
+          rw [hwe]
+          exact (greendlingerAt_of_short_cancellation ht heq (by omega)
+            hi).drop_of_le hN
+  | succ n ih =>
+      intro e c t w N i hlen hw ht hredp hmin hi hN
+      obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
+        exists_leading_cancellation hw hredp hmin.2.1
+      have hcl : (FreeGroup.invRev c).length = c.length := FreeGroup.invRev_length
+      rw [hwe]
+      rcases le_or_gt M.length (FreeGroup.invRev c).length with hshort | hlong
+      · exact (greendlingerAt_of_short_cancellation ht heq hshort
+          hi).drop_of_le hN
+      · rcases hland c t e (FreeGroup.mk w) P' M B' N i hmin ht hredp heq hgw
+            (by omega) hi hN with hdone | ⟨hhigh, hlands⟩
+        · exact hdone
+        · obtain ⟨c', t', f, A, N', i', hf, hV, ht', hredp', hminf, hi', hN',
+            hMb⟩ := hlands
+          have hlenP : P'.length + M.length = c.length + t.length + c.length := by
+            have hb := congrArg List.length heq
+            rw [List.length_append, length_palindrome] at hb
+            exact hb.symm
+          have hIH := ih f c' t'
+            (conjEval ((FreeGroup.mk c', t') :: f)).toWord
+            (N' + (M.length - A.length)) i'
+            (by omega) FreeGroup.isReduced_toWord ht' hredp'
+            (by rw [FreeGroup.mk_toWord]; exact hminf) hi' (by omega)
+          have hB' : B' = (conjEval e).toWord.drop M.length := by
+            rw [hgw, drop_append_of_ge (FreeGroup.invRev M) M.length B'
+              (le_of_eq FreeGroup.invRev_length), FreeGroup.invRev_length,
+              Nat.sub_self, List.drop_zero]
+          have hsuf₁ : (conjEval ((FreeGroup.mk c', t') :: f)).toWord.drop
+              (N' + (M.length - A.length)) <:+ B' := by
+            rw [hB', hV, drop_add N' (M.length - A.length)
+              (conjEval ((FreeGroup.mk c', t') :: f)).toWord]
+            exact drop_suffix_append A _ M.length
+          have hsuf₂ : B' <:+ (P' ++ B').drop N := by
+            have hb := drop_suffix_append P' B' N
+            rwa [show N - P'.length = 0 from by omega, List.drop_zero] at hb
+          exact hIH.of_suffix (hsuf₁.trans hsuf₂)
+
+/-- **The Greendlinger conclusion, from the weakened invariant.**  At the top of
+the descent the incoming block is empty, so the arc is asked for in the whole
+word and the offset that the deep regime could not pay never arises. -/
+theorem greendlinger_of_cascadeLandingDrop [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hland : CascadeLandingDrop R)
+    {w : List (α × Bool)} (hw : FreeGroup.IsReduced w) (hwne : w ≠ [])
+    {e : List (FreeGroup α × List (α × Bool))}
+    (hmin : IsMinimalConjExpr R e (FreeGroup.mk w)) :
+    ∃ s ∈ symmetrization R, ∃ u : List (α × Bool),
+      u <:+: w ∧ u <+: s ∧ s.length < 2 * u.length := by
+  cases e with
+  | nil =>
+      exfalso
+      have hb := hmin.2.1
+      rw [conjEval_nil] at hb
+      have h1 : FreeGroup.mk w = FreeGroup.mk ([] : List (α × Bool)) := by
+        rw [← FreeGroup.one_eq_mk]
+        exact hb.symm
+      have h2 := FreeGroup.reduce.sound h1
+      rw [hw.reduce_eq, FreeGroup.IsReduced.nil.reduce_eq] at h2
+      exact hwne h2
+  | cons x e'' =>
+      obtain ⟨x₁, s₁⟩ := x
+      obtain ⟨c, t, ht, hredp, hmin'⟩ := exists_palindromic_head hR hRne hmin
+      have htpos : 0 < t.length :=
+        List.length_pos_iff.mpr (ne_nil_of_mem_symmetrization hRne ht)
+      have harc := greendlingerAt_drop_of_cascadeLandingDrop hland e''.length e''
+        c t w 0 0 le_rfl hw ht hredp hmin' (by omega) (by omega)
+      rw [List.drop_zero] at harc
+      exact greendlinger_of_greendlingerAt harc
+
+/-- **The gate, from the weakened invariant.** -/
+theorem greendlingerConclusion_of_cascadeLandingDrop [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hland : CascadeLandingDrop R) : GreendlingerConclusion R := by
+  intro w hw hwne hmem
+  obtain ⟨n, hcount⟩ := (mem_normalClosure_iff R (FreeGroup.mk w)).mp hmem
+  obtain ⟨e₀, hv₀, -, he₀⟩ :=
+    (isConjProduct_iff_exists_conjExpr n (FreeGroup.mk w)).mp hcount
+  obtain ⟨e, hmin⟩ := exists_isMinimalConjExpr ⟨e₀, hv₀, he₀⟩
+  exact greendlinger_of_cascadeLandingDrop hR hRne hland hw hwne hmin
+
+/-! ## 9.  The same, at the sharp constant -/
+
+/-- **The weakened invariant at the sharp constant.**  The `λ`-twin of
+`CascadeLandingDrop`: only the offset hypothesis and the arc form move, and the
+landing disjunct is `GreendlingerSharpTwins.LandsInSharp` with its block
+parameter untouched. -/
+def CascadeLandingDropSharp [DecidableEq α] (R : Set (List (α × Bool)))
+    (lam : ℚ) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → (i : ℚ) < lam * (t.length : ℚ) →
+    N ≤ c.length + i →
+    GreendlingerAtSharp R lam 0 ((P' ++ B').drop N) ∨
+      (M.length + i ≤ c.length + t.length ∧
+        LandsInSharp R lam M.length (conjEval e).toWord e.length)
+
+/-- The sharp old-implies-new bridge. -/
+theorem cascadeLandingDropSharp_of_cascadeLandingSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ} (h : CascadeLandingSharp R lam) :
+    CascadeLandingDropSharp R lam := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+  rcases h c t e g P' M B' i hmin ht hredp heq htail hlow hi with hdone | hlands
+  · exact Or.inl (hdone.drop_of_le hN)
+  · exact Or.inr hlands
+
+/-- **The descent at the sharp constant.**  The half-form induction with the two
+`λ`-carrying fields moved; the structural layer is the shared one, so nothing in
+the transport is restated. -/
+theorem greendlingerAtSharp_drop_of_cascadeLandingDropSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ} (hlam : lam ≤ 1 / 6)
+    (hland : CascadeLandingDropSharp R lam) :
+    ∀ (n : ℕ) (e : List (FreeGroup α × List (α × Bool)))
+      (c t w : List (α × Bool)) (N i : ℕ),
+      e.length ≤ n →
+      FreeGroup.IsReduced w → t ∈ symmetrization R →
+      FreeGroup.IsReduced (palindrome c t) →
+      IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) (FreeGroup.mk w) →
+      (i : ℚ) < lam * (t.length : ℚ) → N ≤ c.length + i →
+      GreendlingerAtSharp R lam 0 (w.drop N) := by
+  intro n
+  induction n with
+  | zero =>
+      intro e c t w N i hlen hw ht hredp hmin hi hN
+      cases e with
+      | cons x e' =>
+          simp only [List.length_cons] at hlen
+          exact absurd hlen (by omega)
+      | nil =>
+          obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
+            exists_leading_cancellation hw hredp hmin.2.1
+          have hnil : FreeGroup.invRev M ++ B' = [] := by
+            rw [← hgw, conjEval_nil]
+            exact FreeGroup.toWord_eq_nil_iff.mpr rfl
+          have hz := congrArg List.length hnil
+          rw [List.length_append, FreeGroup.invRev_length,
+            List.length_nil] at hz
+          rw [hwe]
+          exact (greendlingerAtSharp_of_short_cancellation hlam ht heq
+            (by omega) hi).drop_of_le hN
+  | succ n ih =>
+      intro e c t w N i hlen hw ht hredp hmin hi hN
+      obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
+        exists_leading_cancellation hw hredp hmin.2.1
+      have hcl : (FreeGroup.invRev c).length = c.length := FreeGroup.invRev_length
+      rw [hwe]
+      rcases le_or_gt M.length (FreeGroup.invRev c).length with hshort | hlong
+      · exact (greendlingerAtSharp_of_short_cancellation hlam ht heq hshort
+          hi).drop_of_le hN
+      · rcases hland c t e (FreeGroup.mk w) P' M B' N i hmin ht hredp heq hgw
+            (by omega) hi hN with hdone | ⟨hhigh, hlands⟩
+        · exact hdone
+        · obtain ⟨c', t', f, A, N', i', hf, hV, ht', hredp', hminf, hi', hN',
+            hMb⟩ := hlands
+          have hlenP : P'.length + M.length = c.length + t.length + c.length := by
+            have hb := congrArg List.length heq
+            rw [List.length_append, length_palindrome] at hb
+            exact hb.symm
+          have hIH := ih f c' t'
+            (conjEval ((FreeGroup.mk c', t') :: f)).toWord
+            (N' + (M.length - A.length)) i'
+            (by omega) FreeGroup.isReduced_toWord ht' hredp'
+            (by rw [FreeGroup.mk_toWord]; exact hminf) hi' (by omega)
+          have hB' : B' = (conjEval e).toWord.drop M.length := by
+            rw [hgw, drop_append_of_ge (FreeGroup.invRev M) M.length B'
+              (le_of_eq FreeGroup.invRev_length), FreeGroup.invRev_length,
+              Nat.sub_self, List.drop_zero]
+          have hsuf₁ : (conjEval ((FreeGroup.mk c', t') :: f)).toWord.drop
+              (N' + (M.length - A.length)) <:+ B' := by
+            rw [hB', hV, drop_add N' (M.length - A.length)
+              (conjEval ((FreeGroup.mk c', t') :: f)).toWord]
+            exact drop_suffix_append A _ M.length
+          have hsuf₂ : B' <:+ (P' ++ B').drop N := by
+            have hb := drop_suffix_append P' B' N
+            rwa [show N - P'.length = 0 from by omega, List.drop_zero] at hb
+          exact hIH.of_suffix (hsuf₁.trans hsuf₂)
+
+/-- **The sharp conclusion, from the weakened invariant.** -/
+theorem greendlingerSharp_of_cascadeLandingDropSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hland : CascadeLandingDropSharp R lam)
+    {w : List (α × Bool)} (hw : FreeGroup.IsReduced w) (hwne : w ≠ [])
+    {e : List (FreeGroup α × List (α × Bool))}
+    (hmin : IsMinimalConjExpr R e (FreeGroup.mk w)) :
+    ∃ s ∈ symmetrization R, ∃ u : List (α × Bool),
+      u <:+: w ∧ u <+: s ∧ (1 - 3 * lam) * (s.length : ℚ) < (u.length : ℚ) := by
+  cases e with
+  | nil =>
+      exfalso
+      have hb := hmin.2.1
+      rw [conjEval_nil] at hb
+      have h1 : FreeGroup.mk w = FreeGroup.mk ([] : List (α × Bool)) := by
+        rw [← FreeGroup.one_eq_mk]
+        exact hb.symm
+      have h2 := FreeGroup.reduce.sound h1
+      rw [hw.reduce_eq, FreeGroup.IsReduced.nil.reduce_eq] at h2
+      exact hwne h2
+  | cons x e'' =>
+      obtain ⟨x₁, s₁⟩ := x
+      obtain ⟨c, t, ht, hredp, hmin'⟩ := exists_palindromic_head hR hRne hmin
+      have htpos : 0 < t.length :=
+        List.length_pos_iff.mpr (ne_nil_of_mem_symmetrization hRne ht)
+      have hjq : ((0 : ℕ) : ℚ) < lam * (t.length : ℚ) := by
+        have htq : (0 : ℚ) < (t.length : ℚ) := by exact_mod_cast htpos
+        simpa using mul_pos hlam0 htq
+      have harc := greendlingerAtSharp_drop_of_cascadeLandingDropSharp hlam hland
+        e''.length e'' c t w 0 0 le_rfl hw ht hredp hmin' hjq (by omega)
+      rw [List.drop_zero] at harc
+      exact greendlingerSharp_of_greendlingerAtSharp harc
+
+/-- **The sharp gate, from the weakened invariant.** -/
+theorem greendlingerConclusionSharp_of_cascadeLandingDropSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hland : CascadeLandingDropSharp R lam) :
+    GreendlingerConclusionSharp R lam := by
+  intro w hw hwne hmem
+  obtain ⟨n, hcount⟩ := (mem_normalClosure_iff R (FreeGroup.mk w)).mp hmem
+  obtain ⟨e₀, hv₀, -, he₀⟩ :=
+    (isConjProduct_iff_exists_conjExpr n (FreeGroup.mk w)).mp hcount
+  obtain ⟨e, hmin⟩ := exists_isMinimalConjExpr ⟨e₀, hv₀, he₀⟩
+  exact greendlingerSharp_of_cascadeLandingDropSharp hR hRne hlam0 hlam hland hw
+    hwne hmin
+
+/-! ## 10.  The deep branch, in the shape the weakened invariant asks for -/
+
+/-- **The deep obligation, weakened.**  In the regime where the head's block
+overruns its own palindrome, what survives the incoming block carries an arc —
+and the incoming block is read where it lands, `N − |P'|` letters into the tail
+survivor, rather than as an offset against the head rotation.
+
+Nothing here mentions the head's geometry beyond the regime hypotheses.  That is
+the point of the redesign: the arc a landing factor supplies is bounded by *its*
+rotation, and `GreendlingerDeepThreeFactor.greendlingerAt_of_landing_start`
+produces one at the start of that rotation's survivor from the piece bound
+alone. -/
+def DeepArcDrop [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → 6 * i < t.length → N ≤ c.length + i →
+    c.length + t.length < M.length + i →
+    GreendlingerAt R 0 (B'.drop (N - P'.length))
+
+/-- **The weakened invariant, from the deep branch and the landing branch.**
+One inequality decides which is called, exactly as in
+`GreendlingerBetaBranch.cascadeLanding_of_deepArc_of_landing` — and the landing
+branch is that file's `LandingProduction`, unchanged, so the conjugator-absorbed
+plumbing already proved against it is inherited whole. -/
+theorem cascadeLandingDrop_of_deepArcDrop_of_landing [DecidableEq α]
+    {R : Set (List (α × Bool))} (hdeep : DeepArcDrop R)
+    (hland : LandingProduction R) : CascadeLandingDrop R := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+  rcases le_or_gt (M.length + i) (c.length + t.length) with hle | hgt
+  · exact Or.inr ⟨hle,
+      hland c t e g P' M B' i hmin ht hredp heq htail hlow hi hle⟩
+  · exact Or.inl ((hdeep c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+      hgt).of_suffix (drop_suffix_append P' B' N))
+
+/-- **The landing factor pays for the weakened arc out of the piece bound
+alone.**  When the tail survivor is a suffix of a palindrome — which
+`exists_overrun_landing_drop` and
+`GreendlingerDeepThreeFactor.exists_three_factor_landing_drop` are what supply —
+any further drop `k` composes with the one already taken, and
+`greendlingerAt_of_landing_start_of_piece` produces the arc as soon as the
+**total** intrusion into that rotation is a piece.
+
+No ratio between the two rotations, no swallow bound, and no bound on the
+overrun depth: this is the discharge the old located form could not have,
+because there the arc had to be positioned against a rotation it knows nothing
+about. -/
+theorem greendlingerAt_drop_of_landing_palindrome {R : Set (List (α × Bool))}
+    {c₃ t₃ B' : List (α × Bool)} {N₃ k : ℕ}
+    (ht₃ : t₃ ∈ symmetrization R)
+    (hB' : B' = (palindrome c₃ t₃).drop N₃)
+    (hpiece : 6 * (N₃ + k - c₃.length) < t₃.length) :
+    GreendlingerAt R 0 (B'.drop k) := by
+  rw [hB', ← drop_add N₃ k (palindrome c₃ t₃)]
+  exact (greendlingerAt_of_landing_start_of_piece ht₃ hpiece).mono
+    (Nat.zero_le _)
 
 end SmallCancellationRouter
 end GroupApproximation
