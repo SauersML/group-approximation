@@ -89,6 +89,14 @@ least one non-root assignment projection must survive.
   `free-factor-phase-graph-hnn-is-residually-finite`.  Thus sparsity remains
   live only when combined with nonprimitive labels, coupled pieces, or a
   non-HNN operation.
+- **Pure transport between finitely many packet types is still matricial.**
+  `finite-projective-sector-groupoids-have-conjugate-absorbers` identifies
+  all type-changing intertwiners with a finite projective groupoid and
+  cancels its cocycle by tensoring each arrow with its conjugate.  This covers
+  arbitrary finite return holonomy and two inequivalent sectors.  Therefore
+  the desired chord cannot be one sector bisection or a longer finite path;
+  one block entry must be a coherent sum of multiple paths, the genuinely
+  additive corner unitary already demanded here.
 - **Pair opposite group-ring terms with new relators: circular.**  A single
   additive marginal equality can be forced by pairing its finite positive
   and negative support terms.  But

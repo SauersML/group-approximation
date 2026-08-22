@@ -81,3 +81,10 @@ multiplicity word; exactness makes the packet factor scalar.  Thus the whole
 normalizer lane reduces to scalar affine LCS relations on multiplicity.  A
 genuine escape must move between packet sectors/corners or leave ordinary
 unitary group-word relations.
+
+Pure motion between finitely many sectors is now excluded as well.  The
+sector intertwiners form a finite projective groupoid, and the conjugate-arrow
+double is an honest stationary action.  Thus sector bisections and return
+loops still tensor with every contextual model.  Only a coherent additive
+multi-path corner entry, rather than one normalizer arrow per block, escapes
+the finite-packet absorber theorem.

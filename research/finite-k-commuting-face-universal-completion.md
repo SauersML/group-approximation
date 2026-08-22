@@ -85,3 +85,12 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   single-occurrence finite-packet lane is closed; a survivor must move between
   inequivalent sectors/corners, cease normalizing one common packet, or use a
   non-group-word compression relation.
+- **Move between two inequivalent finite packet sectors.**  Pure sector
+  transport still fails.  The finite K-type intertwiners form a projective
+  groupoid; tensoring every arrow with its conjugate cancels the cocycle and
+  gives an honest stationary bisection action.  Corner returns are fixed
+  finite loop matrices tensored with the old multiplicity word, so every
+  locally satisfied transport network admits the same contextual tensor
+  escape.  The minimal remaining operation is an additive multi-path block
+  in which one corner entry coherently sums several sector paths, not a
+  normalizer bisection.
