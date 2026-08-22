@@ -71,3 +71,19 @@ amplifier remains.
   is *not* a relator.  This is strictly smaller than global leakage
   localization `(NCL13)`, but it cannot be a universal tracial block
   identity or a fixed finite-packet covariance table.
+- **The row is analytically minimal but not logically weaker than the
+  conclusion.**  `heterogeneous-britton-row-has-regular-energy-floor` gives
+  the exact canonical value
+
+  ```text
+  ||a t p-t p b||_(2,L(Gamma))^2=2 tau_Gamma(p)>0.
+  ```
+
+  Therefore `(FHC1)` fails along every canonical microstate sequence if one
+  exists.  Any redundant-check or decoded-row mechanism proving `(FHC1)`
+  must already be a finite-matrix-only theorem which excludes canonical
+  microstates; an ordinary tracial consequence of finitely many group
+  relators is impossible because the regular representation is an exact
+  countermodel.  Thus the node packages the whole remaining
+  non-hyperlinearity compiler into one row, but does not provide a strictly
+  easier intermediate soundness statement.
