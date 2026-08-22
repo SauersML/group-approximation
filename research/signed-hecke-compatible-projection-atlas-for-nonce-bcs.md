@@ -61,6 +61,16 @@ trace is required.
   coarse marginal (already a three-of-eight atom union is impossible).  A
   successful Heisenberg refinement still needs the non-scalar group-algebra
   projection transport requested by `(SHA1)--(SHA2)`.
+- **One literal word cannot selectively transport the first Boolean-sum
+  witness.**  `three-of-eight-transport-forces-chart-conjugacy` uses the fact
+  that every Fourier coefficient of a three-atom sum is a nonzero sum of
+  three signs.  In any ambient group, even infinite and non-residually-finite,
+  a group element conjugating one such projection to another must conjugate
+  the complete rank-three context subgroups and hence affinely permute all
+  eight atoms.  This does identify the coarse projections, but only by the
+  already-matricial full sheet transport.  The live escape is therefore a
+  genuinely additive finite-support corner unitary whose cancellations move
+  the coarse marginal without normalizing the context algebra.
 - Single compressed group elements stay in the corner-unit stabilizer.
   `piecewise-group-transport-gives-corner-unitaries` proves that two or more
   group translates can repair domains and ranges exactly, but it does not

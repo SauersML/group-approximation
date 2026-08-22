@@ -64,5 +64,10 @@ generally the trace set `{2^(-r)}` is not dense in `[0,1]`.
 
 This is a fence only for the proposed literal-sharing language.  Boolean
 sums of stabilizer cuts, non-Pauli overgroups, or a separate group-algebra
-projection transport compiler are not ruled out; each is precisely extra
-non-scalar structure beyond shared group elements or subgroup data.
+projection transport compiler are not ruled out by this classification.
+For the smallest Boolean-sum witness, however,
+`three-of-eight-transport-forces-chart-conjugacy` proves that one literal
+group-word transporter can move the three-atom projection only by conjugating
+the whole context and affinely permuting all eight atoms.  Thus the remaining
+escape needs genuinely additive/piecewise group-algebra transport, not merely
+one more shared or conjugating group element.
