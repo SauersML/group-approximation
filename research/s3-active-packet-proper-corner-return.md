@@ -64,3 +64,13 @@ in clauses 1--3, not existence or completeness of a proper corner.
   the complementary marked exit vanishes in every representation.  The
   unresolved step is therefore a matrix-only localization/containment
   inference, not construction of the Halmos unitary.
+- Nor can that inference be obtained by taking a canonical spectral
+  projection or invoking one fixed polynomial identity after finite-packet
+  exactification.  `fixed-packet-spectral-correction-is-gap-or-regular-collapse`
+  proves the dichotomy: without a uniform threshold spectral-mass estimate
+  the cut has no dimension-independent HS modulus; a tracially functorial
+  estimate makes it finite-von-Neumann functional calculus and collapses in
+  the regular factor.  A fixed polynomial cannot distinguish the unbounded
+  multiplicity dimensions.  The remaining actuator must therefore use a
+  coercivity theorem which fails in the regular factor, or a growing,
+  extensive, genuinely global finite-coordinate operation.
