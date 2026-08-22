@@ -142,6 +142,17 @@ trace is required.
   which case they give covariance rather than `(BPA3)`.  Non-diagonal
   isotropy-corner elements return to the signed-Hecke chord, while a graph of
   finite isotropy groups is virtually free and is already excluded.
+- **Lin's static synchronous gap has the same atlas boundary.**
+  `lin-gap-wrappers-retain-oracular-atlas-holonomy` audits the properties
+  actually provided by arXiv:2510.07162, Theorem 6.15.  For a preserved
+  perfect oracular strategy, every sampled pair has the joint allowed-answer
+  PVM `P_x^a P_y^b`, whose marginals are the question PVMs.  This is exactly
+  the multi-answer version of `(BPA1)--(BPA3)`.  Conditional linearity and
+  balance concern sampling, while anchoring adds deterministic leaves and
+  repetition contains an anchored slice isomorphic to the old diagram.
+  Uniform answers and the external coordinate symmetry therefore solve no
+  cross-context equality.  A source-specific escape must use the full
+  Pauli-PCP incidence through a genuinely nontransport chord.
 - **Narrow live cell.**  The route
   `signed-hecke-balanced-holonomy-route` leaves only
   `signed-hecke-block-escaping-cycle-holonomy`: realize the residual chord

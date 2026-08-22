@@ -58,6 +58,16 @@ robust commutativity gadgets, but their `qa`/`qc` gadget-class separation is
 explicitly conditional on a nonhyperlinear group.  Thus neither theorem
 constructs the object requested here.
 
+The source-specific symmetry audit is now exact:
+`lin-gap-wrappers-retain-oracular-atlas-holonomy` shows that Theorem 6.15 is a
+promise-problem theorem, not one canonical answer-transitive game.  In its
+oracular completeness form, the joint projections on sampled pairs form the
+same compatible projection atlas as the BCS route.  Balance and conditional
+linearity concern the sampling distribution; anchoring adds deterministic
+leaves; parallel repetition retains an anchored copy of the prior incidence
+diagram.  None supplies an internal scalar phase or block-escaping overlap
+word.
+
 **Use synchrony to get normality for free.**  Dead.  For a synchronous game
 the perfect strategies are tracial states on the one-player synchronous
 algebra (Paddock--Slofstra, arXiv:2310.07901), and it is tempting to argue a
