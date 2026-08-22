@@ -33,3 +33,11 @@ so no full-packet survivor count is asserted here.
   labelings, while a compatible `H18` placement determines the common lift
   uniquely up to scalar.  The remaining screen must first discard
   non-liftable rectangle pairs, then test this `30 x 6` factored fiber.
+- The thirty-form loop is unnecessary once a candidate `H18` placement is
+  present. `atlas-l44-frobenius-intertwiner-prunes-frames` tests the common
+  `F2` form by the linear space
+  `Hom_<H6,H18>(V^(2),V)`. On an absolutely irreducible join this space is
+  either zero or one-dimensional; a nonzero intertwiner automatically has
+  Frobenius norm one and supplies the unique projective binary frame. The
+  remaining finite screen should therefore solve this 16-variable linear
+  system before replaying packet and collision words.
