@@ -51,3 +51,17 @@ representations (their Prop 3.4 and Thm 4.9), via a Connes-type lemma
 hypothesis is consumed as rigidity for almost representations, not as an
 approximation property of `Gamma` itself; a lane that only produces
 approximations of `Gamma` does not feed this theorem.
+
+**Transcription note (source re-checked 2026-08-21, arXiv HTML of v2).**
+In Dogon--Vigdorovich's convention "Hilbert--Schmidt stable" already means
+the FLEXIBLE notion: their Definition 1.2 reads "A group `Gamma` is
+Hilbert--Schmidt stable if for every asymptotic representation
+`pi_n : Gamma -> U(d_n)` there exists a sequence `D_n >= d_n` and a sequence
+of honest representations `rho_n : Gamma -> U(D_n)` such that
+`d_2(pi_n, rho_n) -> 0`; if `D_n` can be chosen to be `d_n` we say `Gamma`
+is strictly Hilbert--Schmidt stable."  So the hypothesis of the theorem
+above is flexible stability (which is what the abstract says for
+`SL_2(Z[1/p])`), and the strict notion is only the special case.  The
+theorem is numbered 1.3 in the current HTML rendering and carried the
+label `thm:main-non-hyperlinear` in the submitted source; the statement
+is identical.
