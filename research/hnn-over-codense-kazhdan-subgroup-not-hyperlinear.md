@@ -11,9 +11,17 @@ distinct_from:
   amenable-edge-hnn-preserves-hyperlinearity: that is the positive permanence theorem for HNN extensions over amenable associated subgroups; this is the negative statement for an associated subgroup that is Kazhdan and co-dense, conditional on stability of the base.
 ---
 
-**Data.**  `C <= A` finitely generated groups; `C` has Lubotzky--Zimmer
-property (T;FD) with Kazhdan constant `kappa` for a finite generating set
-`S_C`; the pair is finite-dimensionally co-dense
+**Data.**  `C <= A` finitely generated groups; `C` has a uniform
+conjugation gap `kappa > 0` for a finite generating set `S_C` on every
+finite-dimensional unitary representation `rho` of `A` -- i.e. a Kazhdan
+constant for `Ad rho|_C` on the orthocomplement of `rho(C)'` in
+`(M_d, <,>_HS)`, uniform in `rho` and `d` -- which is supplied either by
+Lubotzky--Zimmer property (T;FD) of `C` or by property `(tau)` of `C` with
+respect to a family of finite quotients through which all
+finite-dimensional representations of `A` factor (the "`(tau)` form"
+below; this is the form every instance in this graph uses, since the
+subgroups `SL_2(Z)` and the thin free `C < SL_3(Z)` have no (T;FD));
+the pair is finite-dimensionally co-dense
 (`two-transitive-infinite-action-is-finite-dimensionally-codense`):
 `pi^C = pi^A` for every finite-dimensional unitary representation `pi` of
 `A`; `a_1 in A \ C`.  Let

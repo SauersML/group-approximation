@@ -36,7 +36,13 @@ displayed in `(PL1)` and a finite set of relators of `G`), and suppose the
 unitary representation `rho` of `G`.  Then
 
 ```text
-||U(J) - I||_2 <= 2t + 8(t + 2eta)/kappa + 4|g_1| eta.             (PL2)
+||U(J) - I||_2 <= 2t + 8(t + 2 L_0 eta)/kappa + 4|g_1| eta,          (PL2)
+
+where L_0 = max_(s in S_0) |s|_G is the word length of the stabilizer
+generators in the generators of G (L_0 = 1 when S_0 is part of them; an
+earlier version omitted this factor), and every commutator below is the
+ADDITIVE commutator ab - ba, since the projected elements X', Z' are
+contractions rather than unitaries.
 ```
 
 **Corollary.**  If `G` is HS-stable in the same-dimension sense (any
@@ -50,16 +56,23 @@ representation), then `Gamma` is not hyperlinear.
 unitary representation `Ad rho|_(G_0)` on `(M_d, <,>_HS)`; it is the
 conditional expectation onto `rho(G_0)'`, hence contractive in operator
 norm.  For `s in S_0`, `||rho(s) k rho(s)^* - k||_2 <= ||U(s)kU(s)^* - k||_2 +
-2 eta <= t + 2eta`, so by (T;FD) `||k - Pk||_2 <= (t+2eta)/kappa`, and
+2 L_0 eta <= t + 2 L_0 eta` (the `eta`-closeness is on generators of `G`
+and `s` is a word of length `|s|_G <= L_0` in them), so by (T;FD)
+`||k - Pk||_2 <= (t + 2 L_0 eta)/kappa`, and
 likewise for `k'`.  Write `X' = Pk`, `Z' = Pk'`.  By co-density applied
 to `pi = Ad rho`, `X'` and `Z'` commute with all of `rho(G)`; in
 particular `rho(g_1) Z' rho(g_1)^(-1) = Z'`.  The relator
 `[X, g_1 Z g_1^(-1)] = 1` gives `||[k, U(g_1) k' U(g_1)^(-1)] - I||_2 <= t`;
 replacing `k, k', U(g_1)` by `X', Z', rho(g_1)` costs at most
-`4(t+2eta)/kappa + 4|g_1| eta` (commutators are Lipschitz on the
-operator-norm unit ball), so `||[X', Z'] - I||_2 <= t + 4(t+2eta)/kappa +
-4|g_1|eta`.  Finally `||U(J) - [k,k']||_2 <= t` and `||[k,k'] - [X',Z']||_2 <=
-4(t+2eta)/kappa`.  Add. ∎
+`4(t + 2 L_0 eta)/kappa + 4|g_1| eta` (the additive commutator `ab - ba`
+is Lipschitz on the operator-norm unit ball, and
+`rho(g_1) Z' rho(g_1)^(-1) = Z'`), so `||X'Z' - Z'X'||_2 <= t + 4(t + 2 L_0 eta)/kappa +
+4|g_1|eta`.  Finally the relator `[X,Z] = J` gives
+`||U(J) - k k' k^(-1) k'^(-1)||_2 <= t`, for unitaries
+`||k k' k^(-1) k'^(-1) - I||_2 = ||k k' - k' k||_2`, and
+`||(k k' - k' k) - (X'Z' - Z'X')||_2 <= 4(t + 2 L_0 eta)/kappa`.  Adding the
+four bounds gives `(PL2)`. ∎  (Constant corrected after the 2026-08-22
+audit; the corollary is unaffected since `L_0` is fixed.)
 
 *Proof of the corollary.*  If `Gamma` were hyperlinear, microstates for its
 canonical trace would give tuples with defect tending to zero on any

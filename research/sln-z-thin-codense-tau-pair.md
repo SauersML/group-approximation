@@ -42,7 +42,11 @@ subgroup) that surjects onto `SL_n(Z/m)` for every `m` (saturated), and:
    modulus, Salehi-Golsefidy--Varju, would not suffice; the arbitrary-modulus
    theorem is the needed input and it holds for `SL_n`.)
 
-So `(A, C)` satisfies every hypothesis of the HNN theorem, and `a_1 in A \ C`
+So `(A, C)` satisfies every hypothesis of the `(tau)`-FORM of the HNN
+theorem (NOT its printed (T;FD) form: `C` is free, surjects onto `Z`, and
+has no (T;FD); the proof consumes only the uniform gap of `Ad rho|_C` on
+the congruence family, which is exactly what Bourgain--Varju supplies), and
+`a_1 in A \ C`
 exists since `C` has infinite index; Britton gives `[t, a_1] != 1` in
 `G = <SL_n(Z), t | [t, C] = 1>`.
 

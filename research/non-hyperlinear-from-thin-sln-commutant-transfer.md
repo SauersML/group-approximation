@@ -36,8 +36,9 @@ By `thin-sln-robust-relative-commutant-transfer`,
 ```
 
 But `[t,r]` is a nonidentity group element, so canonical-trace microstates
-must have `tr([v,a(U)]) -> 0`, equivalently
-`||[v,a(U)]-1||_2 -> sqrt(2)`.  This contradicts `(NHT3)`.
+must have `tr([v,r(U)]) -> 0`, equivalently
+`||[v,r(U)]-1||_2 -> sqrt(2)` (the letter is `r`, the outsider; an
+earlier version printed `a`).  This contradicts `(NHT3)`.
 
 Thus `(NHT1)` is non-hyperlinear once the one-unitary transfer modulus is
 proved.  This route is strictly more targeted than
