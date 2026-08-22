@@ -28,13 +28,18 @@ Literature import, statement level, refereed:
   1180–1200 (arXiv:math/0510576): strong 1-boundedness is generator-
   independent, forces `delta_0 <= 1` for every generating tuple, and
   the example list explicitly includes II_1 factors with Cartan
-  subalgebras (and, more generally, with quasi-regular hyperfinite
-  subalgebras).
+  subalgebras.  (Audit 2026-08-22: "quasi-regular" appears nowhere in
+  Jung's paper; quasi-normalizing generation belongs to Hayes' singular
+  subspace, next bullet.)
 - B. Hayes, *1-bounded entropy and regularity problems in von Neumann
   algebras*, IMRN 2018, 57–137 (arXiv:1505.06682): defines `h`,
   proves its monotonicity under (wq-)normalizing generation — the form
-  quoted above — abstracting Voiculescu's absence-of-Cartan argument
-  (Voiculescu, GAFA 1996).
+  quoted above; his singular subspace contains Popa's quasinormalizer,
+  the Fang–Gao–Smith one-sided quasinormalizer, and the Galatan–Popa
+  wq-normalizer, so quasi-regular hyperfinite (or any diffuse
+  finite-`h`) subalgebras are covered — abstracting Voiculescu's
+  absence-of-Cartan argument (Voiculescu, GAFA 1996; Hayes Def. 2.2,
+  Property 1, Theorem 3.8, Prop. A.16).
 
 Trust surface: both papers are refereed and over eight years old; only
 the displayed statements are consumed, no internal arguments.
@@ -52,5 +57,7 @@ microstate sequence of one diffuse element, which is how conjugation-
 orbit directions are normalized away.  The
 quantitative content used downstream: microstate spaces of a generating
 tuple of `M`, modulo unitary conjugation, admit epsilon-nets of
-cardinality `exp(o(d^2) log(1/epsilon))` — no macroscopic parameter
-families of non-conjugate matrix models exist for such `M`.
+cardinality `exp(o(d^2))` for EVERY fixed `epsilon > 0` (Hayes Def.
+2.2 has no `log(1/epsilon)` normalization — that belongs to `delta_0`)
+— no macroscopic parameter families of pairwise `epsilon`-separated-
+modulo-conjugation matrix models exist for such `M`.

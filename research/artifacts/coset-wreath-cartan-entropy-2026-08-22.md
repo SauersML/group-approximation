@@ -75,16 +75,20 @@ through `x`, hence fixes `x`; the kernel of the tree action is the
 center `{+-1}`, so the action is essentially free modulo center.)
 
 **Step 3: measure of the fixed-point set.**  Fix `g != 1` and let
-`x_1, x_2, ...` be infinitely many cosets moved by `g` (Step 2).  Choose
-inductively infinitely many pairwise disjoint nontrivial
-`<g>`-orbits `O_1, ..., O_k, ...` in `I` (each moved point lies in a
-nontrivial orbit; discard the finitely many orbits already used).  A
-configuration fixed by `g` must be constant on each `O_j`; for an orbit
-of size `m >= 2` (infinite orbits: intersect with a finite window) the
-constancy event has probability `<= 1/2`, and the events for disjoint
-orbits are independent.  So `mu(Fix_X(g)) <= 2^(-k)` for every `k`,
-hence `= 0`.  A countable union over `g != 1` finishes: almost every
-stabilizer is trivial.  QED.
+`x_1, x_2, ...` be infinitely many cosets moved by `g` (Step 2).
+Dichotomy (audit repair 2026-08-22 — the moved set could be a union of
+finitely many INFINITE orbits, so infinitely many nontrivial orbits
+are not automatic): either the moved set meets infinitely many
+pairwise disjoint nontrivial `<g>`-orbits `O_1, ..., O_k, ...` — a
+configuration fixed by `g` is constant on each, an event of
+probability `2^(1-m) <= 1/2` for a size-`m` orbit, independent across
+disjoint orbits — or some orbit `{g^n x_0}` is infinite, and the
+disjoint coordinate-pairs `{g^(2n) x_0, g^(2n+1) x_0}`,
+`n = 0, ..., k`, give independent equality events of probability
+exactly `1/2` (a fixed configuration is constant along the orbit).
+Either way `mu(Fix_X(g)) <= 2^(-k)` for every `k`, hence `= 0`.  A
+countable union over `g != 1` finishes: almost every stabilizer is
+trivial.  QED.
 
 ## Theorem 2 (ergodicity, factoriality, Cartan)
 
@@ -137,13 +141,18 @@ generating tuple by 1.  QED.
 **Quantitative reading (the rigidity of the enemy).**  `h(L(W_3)) <= 0`
 says: for a fixed generating tuple of `W_3`, the space of its matricial
 microstates at precision epsilon in `M_d`, taken modulo unitary
-conjugation, admits epsilon-nets of cardinality
-`exp(o(d^2) . log(1/epsilon))` — there are NO macroscopic
-(`c . d^2`-parameter) families of pairwise non-conjugate models.  Every
-hyperlinear model of `W_3` — in particular every enemy configuration
-(almost-representation of `Gamma` + equivariant commuting lamp family
-`k_x in pi(Stab x)'` with Bernoulli mixed moments) — is, at every scale,
-essentially unique modulo conjugation and lower-order corrections.
+conjugation, admits epsilon-nets of cardinality `exp(o(d^2))` for
+EVERY fixed `epsilon > 0` (Hayes Def. 2.2 carries no `log(1/epsilon)`
+— that normalization belongs to `delta_0`); there are NO macroscopic
+(`c . d^2`-parameter) families of pairwise epsilon-separated-modulo-
+conjugation models.  Every hyperlinear model of `W_3` — in particular
+every enemy configuration (almost-representation of `Gamma` +
+equivariant commuting lamp family `k_x in pi(Stab x)'` with Bernoulli
+mixed moments) — is entropy-starved: at each precision the models fall
+into `exp(o(d^2))` conjugation classes, subexponentially many, though
+not "essentially unique" (Atkinson–Kunnawalkam Elayavalli
+non-separability of embedding spaces of non-amenable CE algebras rules
+that reading out; audit correction 2026-08-22).
 
 ## Consequences and the new attack surface
 

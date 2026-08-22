@@ -17,10 +17,12 @@ Claim (OPEN): if `W_3` — the coset Bernoulli wreath over
 h(L(W_3)) > 0,                                                   (EX1)
 ```
 
-i.e. some (equivalently, by Jung generator-independence, every)
-generating tuple of `L(W_3)` admits, at some precision epsilon and
-scale `d -> infinity`, at least `exp(c d^2 log(1/epsilon))` pairwise
-non-conjugate microstates.
+i.e. some (equivalently, by Hayes' generator-independence of `h`,
+every) generating tuple of `L(W_3)` admits, at SOME fixed precision
+`epsilon > 0` and scale `d -> infinity` along a subsequence, at least
+`exp(c d^2)` microstates that are pairwise `epsilon`-SEPARATED MODULO
+UNITARY CONJUGATION (a packing bound; mere pairwise non-conjugacy
+gives no lower bound on `h`).
 
 Together with the THEOREM
 `coset-wreath-hyperlinearity-forces-strong-one-boundedness`

@@ -55,5 +55,10 @@ carrying the Bernoulli mixed moments — is a microstate of `W_3`.  So:
   `coset-wreath-microstates-carry-excess-entropy`.
 
 Same statement holds for the `SL_2(Z[1/2])` wreath after splitting the
-central `{+-1}` (both summands have lamp Cartans; direct sums of
-strongly 1-bounded algebras are strongly 1-bounded).
+central `{+-1}` (both summands have lamp Cartans) — though the cleaner
+route needs no splitting at all: `A = L^infinity(X)` is diffuse
+hyperfinite and `L(W) = W^*(N(A))` even though `A` is not maximal
+abelian there (`u_{-I}` commutes with it), and the imported Hayes
+bound needs only normalizing generation, so `h(L(W)) <= h(A) = 0`
+directly; alternatively Hayes' direct-sum Property 4
+(`h(⊕_j M_j) <= sum mu_j^2 h(M_j)`) covers the two-summand phrasing.

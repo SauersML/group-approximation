@@ -20,10 +20,17 @@ lattice vertices of `A` in directions 120 degrees apart span a Euclidean
 triangle containing `x`; apartments are convex, fixed sets of isometries
 are convex, so `x` is fixed; hence `Fix(g)` is the whole building and
 `g` lies in the kernel, which is `mu_3(Q_3) = 1` since `-3` has odd
-3-adic valuation.  (iii) Given infinitely many moved cosets, pick
-infinitely many disjoint nontrivial `<g>`-orbits; constancy on each is
-an independent event of probability at most `1/2`, so the fixed-point
-set of `g` in `{-1,1}^I` is null; countably many `g` finish.
+3-adic valuation.  (iii) Given infinitely many moved cosets, split by dichotomy (audit
+repair 2026-08-22: the moved set could consist of finitely many
+INFINITE orbits, e.g. translation-like `g`, so "infinitely many
+disjoint nontrivial orbits" is not automatic): either the moved set
+meets infinitely many nontrivial `<g>`-orbits — constancy on each is
+an independent event of probability at most `1/2` — or some orbit
+`{g^n x_0}` is infinite, and the disjoint pairs
+`{g^(2n) x_0, g^(2n+1) x_0}` give independent equality events of
+probability exactly `1/2` (a `g`-fixed configuration is constant along
+the orbit).  Either way `mu(Fix_X(g)) <= 2^(-k)` for every `k`, hence
+zero; countably many `g` finish.
 
 External inputs, statement level: Bruhat–Tits building of `SL_n(Q_p)`
 with convex apartments and kernel-equals-center; strong approximation
