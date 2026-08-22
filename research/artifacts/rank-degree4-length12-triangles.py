@@ -124,6 +124,8 @@ for negative in combinations(range(12), 4):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--profile", help="restrict to one +- sign representative")
+parser.add_argument("--show-rank", type=int,
+                    help="print every embedding with this constraint rank")
 args = parser.parse_args()
 
 global_best, winners = 100, []
@@ -168,6 +170,8 @@ for representative in sorted(profiles):
             rows.append(row)
         constraint = rank(rows) - rank([row[12:] for row in rows])
         counts[constraint] += 1
+        if args.show_rank == constraint:
+            print("RANK_WIN", text_profile, constraint, selected, flush=True)
         if constraint < local_best:
             local_best = constraint
             local_winners = [selected]
