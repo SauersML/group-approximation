@@ -1474,7 +1474,6 @@ import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 import GroupApproximation.Sofic.GreendlingerLandingProd
 import GroupApproximation.Sofic.LiteralAffineFreeProductSource
 import GroupApproximation.Kazhdan.TriangularHodgeLayer
-import GroupApproximation.Kazhdan.OctahedralTriangularTable
 import GroupApproximation.Sofic.OsinWeightedDefectNoGo
 import GroupApproximation.Sofic.OsinWeightedLeafNoGo
 import GroupApproximation.Sofic.TorsionDescent

@@ -905,31 +905,26 @@ theorem mul_le_dist_pow (g : G) (x : X) (n : ℕ) :
     rw [le_div_iff₀ hn'] at h
     exact h
 
-/-- **Genuine loxodromy is positive translation length.** -/
-theorem isStronglyLoxodromic_iff_pos (g : G) (x : X) :
-    IsLoxodromic g x ↔ 0 < stableTranslation g x := by
-  constructor
-  · rintro ⟨l, hl, hle⟩
-    refine lt_of_lt_of_le hl (le_csInf (stableTranslation_set_nonempty g x) ?_)
-    rintro r ⟨n, hn, rfl⟩
-    have hn' : (0:ℝ) < (n : ℝ) := by exact_mod_cast hn
-    rw [le_div_iff₀ hn']
-    exact hle n
-  · intro h
-    exact ⟨stableTranslation g x, h, mul_le_dist_pow g x⟩
+/-- Positive stable translation length gives genuine loxodromy.  The converse
+requires the subadditive-limit theorem below; it is deliberately not smuggled
+in through the definition of `stableTranslation`. -/
+theorem isLoxodromic_of_pos_stableTranslation (g : G) (x : X)
+    (h : 0 < stableTranslation g x) : IsLoxodromic g x :=
+  ⟨stableTranslation g x, h, 0, le_rfl, by simpa using mul_le_dist_pow g x⟩
 
 /-- **A compressed element has translation length zero.** -/
 theorem stableTranslation_eq_zero_of_compression (hiso : IsIsometricAction G X)
     {t p : G} {k : ℕ} (hk : 2 ≤ k) (h : t * p * t⁻¹ = p ^ k) (x : X) :
     stableTranslation p x = 0 := by
   by_contra hne
-  refine not_isStronglyLoxodromic_of_compression hiso hk h x ?_
-  refine (isStronglyLoxodromic_iff_pos p x).mpr ?_
-  exact lt_of_le_of_ne (stableTranslation_nonneg p x) (Ne.symm hne)
+  refine not_isLoxodromic_of_compression hiso hk h x ?_
+  exact isLoxodromic_of_pos_stableTranslation p x
+    (lt_of_le_of_ne (stableTranslation_nonneg p x) (Ne.symm hne))
 
 /-- Loxodromy does not depend on the basepoint. -/
 theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
     {x y : X} (h : IsLoxodromic g x) : IsLoxodromic g y := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := h
   have hbound : ∀ n : ℕ,
       dist x ((g ^ n) • x) - 2 * dist x y ≤ dist y ((g ^ n) • y) := by
     intro n
@@ -940,31 +935,32 @@ theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
     have h2 : dist ((g ^ n) • y) ((g ^ n) • x) = dist y x := hiso (g ^ n) y x
     rw [h2, dist_comm y x] at h1
     linarith
-  refine Filter.tendsto_atTop_mono hbound ?_
-  -- `sub` and `add (-c)` are the same function, but not the same term
-  have hadd := Filter.tendsto_atTop_add_const_right Filter.atTop
-    (-(2 * dist x y)) h
-  simpa [sub_eq_add_neg] using hadd
+  refine ⟨l, hl, B + 2 * dist x y, by positivity, ?_⟩
+  intro n
+  exact le_trans (by linarith [hlin n]) (hbound n)
 
 /-- Loxodromy is invariant under inversion. -/
 theorem isLoxodromic_inv (hiso : IsIsometricAction G X) {g : G} {x : X}
     (hg : IsLoxodromic g x) : IsLoxodromic g⁻¹ x := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := hg
   have hdist : ∀ n : ℕ,
       dist x (((g⁻¹) ^ n) • x) = dist x ((g ^ n) • x) := by
     intro n
     have h := dist_zpow_neg (g := g) (x := x) hiso (n : ℤ)
     simpa only [zpow_neg, zpow_natCast, inv_pow] using h
-  simpa only [IsLoxodromic, hdist] using hg
+  exact ⟨l, hl, B, hB, fun n => by rw [hdist]; exact hlin n⟩
 
 /-- Every positive power of a loxodromic element is loxodromic. -/
 theorem isLoxodromic_pow {g : G} {x : X} (hg : IsLoxodromic g x)
     {k : ℕ} (hk : 0 < k) :
     IsLoxodromic (g ^ k) x := by
-  have hmul : Filter.Tendsto (fun n : ℕ => k * n) Filter.atTop Filter.atTop :=
-    Filter.tendsto_atTop_mono (fun n => Nat.le_mul_of_pos_left n hk)
-      Filter.tendsto_id
-  have h := hg.comp hmul
-  simpa only [IsLoxodromic, pow_mul] using h
+  obtain ⟨l, hl, B, hB, hlin⟩ := hg
+  refine ⟨l * k, by positivity, B, hB, ?_⟩
+  intro n
+  rw [pow_mul]
+  have h := hlin (k * n)
+  push_cast at h ⊢
+  nlinarith
 
 /-- Every nonzero integer power of a loxodromic element is loxodromic. -/
 theorem isLoxodromic_zpow (hiso : IsIsometricAction G X) {g : G} {x : X}
@@ -1005,7 +1001,8 @@ theorem isLoxodromic_conj (hiso : IsIsometricAction G X) {g a : G} {x : X}
     rw [← mul_smul, ← mul_smul, mul_inv_cancel, one_smul] at h
     rw [hpow]
     exact h
-  simpa only [IsLoxodromic, hdist] using hgbase
+  obtain ⟨l, hl, B, hB, hlin⟩ := hgbase
+  exact ⟨l, hl, B, hB, fun n => by rw [hdist]; exact hlin n⟩
 
 /-- A normal subgroup acts non-elementarily as soon as one of its loxodromic
 elements has an independent conjugate.  Normality puts the conjugate back in
@@ -1300,7 +1297,7 @@ reduces the entire local-to-global problem to the single inequality
 `(x | p²x)_{p x} ≤ C`
 
 together with `2(C + δ) < d(x, p x)`. -/
-theorem isStronglyLoxodromic_of_local_backtracking {δ C : ℝ}
+theorem isLoxodromic_of_local_backtracking {δ C : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hiso : IsIsometricAction G X)
     {p : G} {x : X} (hCδ : 0 ≤ C + δ)
     (hgap : 2 * (C + δ) < dist x (p • x))
@@ -1324,20 +1321,9 @@ theorem isStronglyLoxodromic_of_local_backtracking {δ C : ℝ}
       gromovProduct x ((p ^ 2) • x) (p • x) at h
     exact h.trans_le hturn
   have hall := chain_backtracking_and_progress hδ hCδ hgap y hedge hlocal
-  refine ⟨dist x (p • x) - 2 * (C + δ), by linarith, ?_⟩
+  refine ⟨dist x (p • x) - 2 * (C + δ), by linarith, 0, le_rfl, ?_⟩
   intro n
   exact (hall n).1
-
-/-- The escape-to-infinity form of the one-turn criterion. -/
-theorem isLoxodromic_of_local_backtracking {δ C : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hiso : IsIsometricAction G X)
-    {p : G} {x : X} (hCδ : 0 ≤ C + δ)
-    (hgap : 2 * (C + δ) < dist x (p • x))
-    (hturn : gromovProduct x ((p ^ 2) • x) (p • x) ≤ C) :
-    IsLoxodromic p x :=
-  isLoxodromic_of_isStronglyLoxodromic
-    (isStronglyLoxodromic_of_local_backtracking
-      hδ hiso hCδ hgap hturn)
 
 /-- **The chain lemma.**  If every consecutive Gromov product along a chain is
 at least `c`, the endpoints' Gromov product is at least `c` less one `δ` per
@@ -1478,12 +1464,12 @@ at most `A` and `2A < D`, every step makes progress at least `D - 2A`, and
 This is the quantitative last step in a loxodromic-product argument.  For a
 candidate such as `p = g ^ m * c`, the remaining ping-pong task is now the
 concrete inequality `hback` rather than an unnamed local-to-global premise. -/
-theorem isStronglyLoxodromic_of_bounded_orbit_backtracking
+theorem isLoxodromic_of_bounded_orbit_backtracking
     (hiso : IsIsometricAction G X) {p : G} {x : X} {A : ℝ}
     (hprogress : 2 * A < dist x (p • x))
     (hback : ∀ n : ℕ,
       gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) ≤ A) :
-    IsStronglyLoxodromic p x := by
+    IsLoxodromic p x := by
   let l : ℝ := dist x (p • x) - 2 * A
   have hl : 0 < l := by
     dsimp [l]
@@ -1504,19 +1490,7 @@ theorem isStronglyLoxodromic_of_bounded_orbit_backtracking
         push_cast
         dsimp [l] at ih ⊢
         linarith
-  exact ⟨l, hl, hlower⟩
-
-/-- The bounded-backtracking criterion also gives loxodromy in the escape-to-
-infinity form used by `ActsNonElementarily`. -/
-theorem isLoxodromic_of_bounded_orbit_backtracking
-    (hiso : IsIsometricAction G X) {p : G} {x : X} {A : ℝ}
-    (hprogress : 2 * A < dist x (p • x))
-    (hback : ∀ n : ℕ,
-      gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) ≤ A) :
-    IsLoxodromic p x :=
-  isLoxodromic_of_isStronglyLoxodromic
-    (isStronglyLoxodromic_of_bounded_orbit_backtracking
-      hiso hprogress hback)
+  exact ⟨l, hl, 0, le_rfl, by simpa using hlower⟩
 
 /-- **The chain lemma by bisection.**  Splitting a chain in half rather than
 peeling one step at a time reduces the loss from one `δ` per step to one `δ` per
