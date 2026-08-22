@@ -409,6 +409,20 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
             affine-leavitt-steinberg-mark-is-fd-invisible [✓] A finitely presented affine-Leavitt Steinberg group has a nontrivial active word invisible in every exact matrix representation
         infinite-schreier-pvm-transport-kills-finite-mark [✓] Infinite Schreier expansion kills every finite-support marked PVM
           ├ infinite-schreier-pvm-gap-proof [✓] Apply the bottom spectral gap to square roots of spectral ranks
+  ├ approximation-specific-nemesis-kleene-route [OPEN] Pre-enumerate the bespoke library and apply canonical reverse Kleene
+    common-complete-approximation-specific-nemesis-compiler [OPEN] Compile a common-complete bespoke nemesis for every canonical extension type
+      ├ common-nemesis-via-tailored-check-groupification [OPEN] Use the finite tailored check library as the common-complete bespoke nemeses
+        tailored-gap-checks-form-common-complete-nemesis-library [✓] The checks of one perfect-gap tailored game are a finite common-complete strategy nemesis library
+          ├ tailored-common-nemesis-proof [✓] Read the individual losing projections of the perfect-gap tailored game
+            perfect-zpc-irs-quantum-gap-game [✓] A finite tailored game has a perfect ZPC-IRS strategy but quantum value below one half
+        tailored-checks-to-common-marked-group-extensions [OPEN] Translate the finite tailored-game check library to common marked ordinary group extensions
+      ├ common-nemesis-via-type-specific-hecke-separators [✗] Use payload-coupled subgroup pairs as the bespoke extension library
+          invalidated by established claim canonical-types-extend-every-finite-bass-serre-actor
+          required claim payload-coupled-hecke-separates-every-marked-ce-extension-type is refuted
+    bespoke-extension-nemesis-library-defeats-diagonal-schedules [✓] A pre-enumerated library of extension nemeses defeats every diagonal defect schedule
+      ├ bespoke-extension-nemesis-compactness-proof [✓] Compactify existential extension profiles and take a finite subcover
+    canonical-profile-kleene-higman [✓] Reverse Kleene needs only qualitative group-algebra collapse on canonical microstates
+      ├ canonical-profile-kleene-higman-proof [✓] Enumerate algebra-mark zero proofs, contradict canonical norm, and apply effective Higman
   ├ atlas-radius-nine-trace-separator-route [OPEN] Refute atlas hyperlinearity from a separator on its first mixed trace window
     atlas-steinberg-rank-five-translation [✓] An explicit usable relator list from the rank-five Steinberg presentation
       ├ atlas-steinberg-rank-five-translation-proof [✓] Assemble the dictionary, the induction, and central sufficiency into the usable list
@@ -2330,12 +2344,8 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
         gkp-wreath-permanence-theorem [✓] A generalized wreath product of sofic groups over a sofic action is sofic
           ├ gkp-theorem-3-6-citation [✓] Import Theorem 3.6 of Gao-Kunnawalkam Elayavalli-Patchell verbatim
     simple-lamp-hyperlinear-recovery-forces-action-sofic [OPEN] Hyperlinearity of the A5 generalized wreath forces soficity of its coordinate action
-  ├ nonhyperlinear-via-uniform-area-clifford-tape [OPEN] Apply the bounded-area Clifford collapse theorem to the common-sign tape
-    finitely-presented-uniform-area-clifford-tape [OPEN] Build a finitely presented common-sign Clifford tape with uniformly bounded table area
-    uniform-bounded-area-clifford-tables-force-mark-collapse [✓] Uniform bounded-area Clifford tables force linear collapse of a common mark
-      ├ uniform-bounded-area-clifford-collapse-proof [✓] Apply van Kampen telescoping and the all-pairs Clifford dimension floor
-        marked-clifford-table-exponential-dimension [✓] A marked all-pairs Clifford table has exponential ambient dimension
-          (…already shown)
+  ├ nonhyperlinear-via-uniform-area-clifford-tape [✗] Apply the bounded-area Clifford collapse theorem to the common-sign tape
+      required claim finitely-presented-uniform-area-clifford-tape is refuted
   ├ pauli-binary-membership-route [OPEN] Close nonhyperlinearity with one Pauli binary-membership estimate
     pauli-carrier-membership-decoder [OPEN] Decode the transported Pauli carrier inside the raw binary algebra
     pauli-binary-algebra-gap [✓] Fixed Pauli carrier has a dimension-free binary-algebra distance gap
@@ -3001,7 +3011,6 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **finite-window-decoder** [1 live route(s) need it; toward: non-hyperlinear-group] [Finite-window endomorphism decoder](finite-window-decoder.md) — ⚑ last missing for joint-outer-recovery → outer-pvm-synchronization — unclaimed
 - **finitely-presented-hs-stable-nontrivial-fd-residual** [1 live route(s) need it; toward: non-hyperlinear-group] [Exhibit a finitely presented uniformly HS-stable group with nontrivial finite-dimensional residual](finitely-presented-hs-stable-nontrivial-fd-residual.md) — ⚑ last missing for nonhyperlinear-via-hs-stable-fd-residual → non-hyperlinear-group — unclaimed
 - **finitely-presented-phase-pauli-polynomial-prefix-clock** [1 live route(s) need it; toward: non-hyperlinear-group] [One finite presentation realizes the phase-Pauli polynomial clock and preserves pulse prefixes](finitely-presented-phase-pauli-polynomial-prefix-clock.md) — ⚑ last missing for phase-pauli-clock-suppresses-e5-tail → packet-hard-transport-preserves-pulse-prefix — unclaimed
-- **finitely-presented-uniform-area-clifford-tape** [1 live route(s) need it; toward: non-hyperlinear-group] [Build a finitely presented common-sign Clifford tape with uniformly bounded table area](finitely-presented-uniform-area-clifford-tape.md) — ⚑ last missing for nonhyperlinear-via-uniform-area-clifford-tape → non-hyperlinear-group — unclaimed
 - **fixed-pi-degree-fingerprints-packet-label-factor** [1 live route(s) need it; toward: non-hyperlinear-group] [A fixed polynomial-identity degree fingerprints the packet label factor across the rectangular escape](fixed-pi-degree-fingerprints-packet-label-factor.md) — unclaimed
 - **full-packet-bicommutant-synchronization** [1 live route(s) need it; toward: non-hyperlinear-group] [Synchronize every raw-packet commutant symmetry with the transported carrier](full-packet-bicommutant-synchronization.md) — ⚑ last missing for full-packet-bicommutant-route → non-hyperlinear-group — unclaimed
 - **group-table-cpsd-cp-face-collapse** [1 live route(s) need it; toward: non-hyperlinear-group] [Classical and quantum conic descriptions of a group table have equal closures](group-table-cpsd-cp-face-collapse.md) — ⚑ last missing for hyperlinear-implies-sofic-via-cpsd-face-collapse → hyperlinear-implies-sofic — unclaimed
@@ -3083,6 +3092,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **spherical-short-holonomies-admit-local-gauge** [1 live route(s) need it; toward: non-hyperlinear-group] [Short spherical relation holonomies admit simultaneous geometrically local source-gauge trivialization](spherical-short-holonomies-admit-local-gauge.md) — ⚑ last missing for hyperlinear-to-sofic-via-local-holonomy-gauge → hyperlinear-implies-sofic — unclaimed
 - **stabilized-two-chart-reynolds-word-transport** [1 live route(s) need it; toward: non-hyperlinear-group] [A stabilized recursive packet tail exposes one uncompensated local Reynolds gap in finite matrices](stabilized-two-chart-reynolds-word-transport.md) — ⚑ last missing for two-chart-holonomy-from-stabilized-reynolds-transport → two-chart-jacobi-action-holonomy — unclaimed
 - **tagged-s3-survivor-installs-next-recurrent-carrier** [1 live route(s) need it; toward: non-hyperlinear-group] [Install the tagged S3 survivor as the next reducing recurrent carrier](tagged-s3-survivor-installs-next-recurrent-carrier.md) — ⚑ last missing for mixed-cnot-allowed-active-return-via-two-bit-tags → mixed-cnot-allowed-active-return — unclaimed
+- **tailored-checks-to-common-marked-group-extensions** [1 live route(s) need it; toward: non-hyperlinear-group] [Translate the finite tailored-game check library to common marked ordinary group extensions](tailored-checks-to-common-marked-group-extensions.md) — ⚑ last missing for common-nemesis-via-tailored-check-groupification → common-complete-approximation-specific-nemesis-compiler — unclaimed
 - **thompson-v-r5-coherent-alternating-packet** [1 live route(s) need it; toward: non-hyperlinear-group] [Synchronize the Bleak--Quick R5 swap complex into a uniform alternating packet](thompson-v-r5-coherent-alternating-packet.md) — ⚑ last missing for thompson-v-one-word-ceiling-from-r5-cap → thompson-v-one-word-strict-hs-ceiling — unclaimed
 - **thompson-v-r5-coherent-carmichael-family** [1 live route(s) need it; toward: non-hyperlinear-group] [Compile arbitrarily large Carmichael families from the Bleak--Quick R5 presentation](thompson-v-r5-coherent-carmichael-family.md) — ⚑ last missing for thompson-v-one-word-ceiling-from-r5-carmichael-family → thompson-v-one-word-strict-hs-ceiling — unclaimed
 - **three-book-hnn-antiphase-charges-every-cross-gram** [1 live route(s) need it; toward: non-hyperlinear-group] [A multiple-HNN book tag charges every overlap among the three equal-rank Fanizza exits](three-book-hnn-antiphase-charges-every-cross-gram.md) — unclaimed
@@ -3175,6 +3185,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - clifford-hs-defect-becomes-adversarial-site-noise [Convert growing Clifford-packet HS defect into bounded adversarial tensor-site weight](clifford-hs-defect-becomes-adversarial-site-noise.md)
 - coherent-sequential-schur-tape-payment [Compose the uniformly rounded Clifford cells and charge every inactive selector sector](coherent-sequential-schur-tape-payment.md)
 - colored-cayley-pauli-incidence-separation [Place degree-reduced Pauli incidence graphs in separated Cayley cosets](colored-cayley-pauli-incidence-separation.md)
+- common-complete-approximation-specific-nemesis-compiler [Compile a common-complete bespoke nemesis for every canonical extension type](common-complete-approximation-specific-nemesis-compiler.md)
 - common-self-map-law [Common self-map law for the paired label spaces](common-self-map-law.md)
 - commuting-conjugate-involution-transfer-for-sl3-pair [The native commuting-conjugate involution cannot retain an interior overlap in arithmetic matrix microstates](commuting-conjugate-involution-transfer-for-sl3-pair.md)
 - complete-pair-overlay-uniform-hs-basin-capture [Capture small-defect balanced-overlay tuples in a uniform mixed-norm Newton basin](complete-pair-overlay-uniform-hs-basin-capture.md)
