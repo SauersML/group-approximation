@@ -266,3 +266,14 @@ or genuinely nonstationary coefficient data.
   the independent enemy cannot be a single primary/field mode; it must use
   reducible moving spectra, genuinely noncommutative coefficients, or another
   nonstationary mechanism that avoids fixed Laurent functional calculus.
+
+- **All one-parameter commutative q14 bands promote or pay.**
+  `atlas-commutative-q14-bands-promote-or-pay` takes the Laurent gcd `g(t)`
+  of every packet and collision block entry on `T(C)=diag(C,I,I,I)`.  If
+  `g=1`, a finite Bezout identity gives a uniform rank gap.  If `g` is
+  nonconstant, vanishing residual ranks force `rank g(C)=o(m)`; rank
+  stability of the finite algebra `F2[t,t^-1]/(g)` corrects `C` to an exact
+  root, where all thirteen fillings vanish and the exact finite-quotient
+  escape follows.  Thus reducible spectra and Jordan blocks do not rescue a
+  single commutative parameter.  A surviving independent model must use
+  genuinely multivariable noncommutative or nonstationary coefficient data.
