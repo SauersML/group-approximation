@@ -20,3 +20,11 @@ leavitt-multiplicative-trace-floor on the canonical trace-`1/8` Pauli corner;
 the additive Leavitt relation and an unspecified nonzero corner are not
 needed.  The fixed density converts ambient microstate errors to normalized
 corner errors with no vanishing-rank escape.
+
+The concrete live decomposition is now
+`finite-window-decoder-from-s3-hard-packet`: localize to the exact raw `S3`
+packet, compile products into multiplicity-one channels, and ask whether the
+literal full hard/comb system has a nonzero minor decoding the two diagonal
+and one crossed pairing defects.  The exact finite transforms are established
+in `s3-hard-cell-three-channel-data-is-nondegenerate`; the actual relator-rank
+gate remains `atlas-hard-packet-s3-channel-decoder`.

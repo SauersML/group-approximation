@@ -29,3 +29,10 @@ relation-sensitive refinement of representation type.
 
 This generalizes the already-audited `S_4 -> S_3` balance: the failure of
 bare type counting is not special to that subgroup pair.
+
+This no-go does not apply to coupled multiplication channels.  The exact
+local distinction is recorded by
+`s3-hard-cell-three-channel-data-is-nondegenerate`: type incidence stays
+balanced while the recoupling, full restriction fingerprint, and moment
+overlap matrices are all invertible.  Whether the atlas relators expose those
+coordinates is the separate open claim `atlas-hard-packet-s3-channel-decoder`.
