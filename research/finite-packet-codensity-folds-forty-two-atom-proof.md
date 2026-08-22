@@ -12,10 +12,10 @@ requires:
 
 # Combine the rational finite-subgroup bound with arithmetic co-density
 
-The finite-rotation-group classification and the cyclotomic-degree argument
-give `|K|<=24` for finite `K<SL_3(Q)`.  A projection in the finite group
-algebra has integer rank in the regular representation, proving `(OFP2)` and
-the internal obstruction.
+A finite `K<SL_3(Q)` preserves a full lattice, so it is rationally conjugate
+into `SL_3(Z)`.  Tahara's classification gives `|K|<=24`.  A projection in
+the finite group algebra has integer rank in the regular representation,
+proving `(OFP2)` and the internal obstruction.
 
 For an external exact packet, the established arithmetic co-density theorem
 gives `(OFP4)`.  A base atom of an `A/C` system is `C`-fixed by definition,

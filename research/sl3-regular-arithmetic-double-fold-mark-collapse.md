@@ -144,3 +144,12 @@ whereas a moving atom no longer carries the raw section identities.  The
 rank-matched source must therefore be a genuinely approximate
 matrix-coordinate object or a non-finite packet, not an exact finite
 selector attached to the lamp.
+
+Nor can one replace the finite selector by a fixed spectral polynomial.
+`fixed-spherical-polynomials-have-no-42nd-projection` uses the
+connected tempered Satake spectrum to show that a fixed Hecke polynomial
+which becomes an idempotent in canonical regular moments has trace zero or
+one.  The only spherical trace-`1/42` projections are discontinuous Borel
+cuts requiring unbounded depth; finite moment tables again admit atomic
+quadrature.  The surviving rank source therefore needs an unbounded
+conductor filtration with presentation-uniform section control.

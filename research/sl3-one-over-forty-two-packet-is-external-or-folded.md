@@ -24,12 +24,13 @@ nonfolded arithmetic shell.
 ## No internal finite-subgroup character atom
 
 Every finite subgroup `K` of `A` has order at most `24`.  Indeed
-`A<SL_3(Q)`.  After averaging an inner product, `K` is a finite subgroup of
-`SO(3)`.  The classification of finite rotation groups gives cyclic groups,
-rotation-dihedral groups, `A_4`, `S_4`, and `A_5`.  A rational `3`-dimensional
-matrix cannot have order `5` (a primitive fifth root has cyclotomic degree
-`4`), so `A_5` is excluded; the same cyclotomic restriction bounds the cyclic
-and dihedral cases, while `|A_4|=12` and `|S_4|=24`.
+`A<SL_3(Q)`, and every finite rational matrix group preserves a full lattice:
+take the sum of the finitely many lattices `k Z^3`, clear denominators, and
+choose a lattice basis.  Thus `K` is rationally conjugate into `SL_3(Z)`.
+Tahara's classification of finite subgroups of `GL_3(Z)` proves directly
+that every finite subgroup of `SL_3(Z)` has order at most `24` (and every
+finite subgroup of `GL_3(Z)` has order at most `48`): [K. Tahara, *On the
+finite subgroups of GL(3,Z)*](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/99F7848C6566702A760E6B99B69F3948/S002776300001415Xa.pdf/on-the-finite-subgroups-of-gl-3-z.pdf).
 
 For every projection `q in C[K]`, its canonical trace is
 
@@ -95,3 +96,10 @@ other exact finite `A/C` system of imprimitivity cannot close the rank seam.
 The remaining source must be genuinely matrix-coordinate and approximate,
 or must come from a non-finite packet whose denominator orbit is not folded
 by `(OFP4)`.
+
+The first non-finite replacement is now fenced too.
+`fixed-spherical-polynomials-have-no-42nd-projection` proves
+that the reduced spherical spectrum is connected, so every fixed Hecke
+polynomial which is a projection in the regular model is constant.  A
+trace-`1/42` Borel cutoff exists only at unbounded spectral depth, where a
+new uniform section-defect estimate is required.
