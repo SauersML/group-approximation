@@ -60,3 +60,12 @@ stability.
   finite-dimensionally invisible mark, but has no upward local-HS-stability
   permanence theorem.  Establishing that permanence for one such wrapper
   would already close this claim.
+- `higman-host-restriction-stops-at-separating-partial-models` tests the
+  surviving nonsplit wrapper on the explicit Fibonacci full group.  Even an
+  undistorted Higman embedding with controlled relative Dehn function only
+  turns host defect into a partial source homomorphism.  Regularized LEF
+  models are already such partial homomorphisms and keep every fixed
+  nontrivial source word at HS distance `sqrt(2)`.  A multiplicative
+  quasi-retraction would be a forbidden genuine retract.  Thus any positive
+  wrapper theorem must use joint stable-letter relations to exclude extension
+  of these partial models; source restriction and area control cannot do it.
