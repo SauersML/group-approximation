@@ -155,7 +155,7 @@ theorem lam_pos_of_metric {R : Set (List (α × Bool))} {lam : ℚ}
     have hpos : 0 < r.length := List.length_pos_iff.mpr hrne
     exact_mod_cast hpos
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   nlinarith
 
 /-- **A nonempty cyclically reduced word is not its own formal inverse.**
@@ -851,7 +851,7 @@ theorem sharpGreendlingerGate_of_cascadeLandingSharp [DecidableEq α]
       (hland R lam hcyc hlam0 hlam hmetric)
   · intro w hw hwne hmem
     exfalso
-    push_neg at hex
+    push Not at hex
     have hsub : FreeGroup.mk '' R ⊆
         ((⊥ : Subgroup (FreeGroup α)) : Set (FreeGroup α)) := by
       rintro _ ⟨r, hr, rfl⟩

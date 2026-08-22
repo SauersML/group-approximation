@@ -129,7 +129,7 @@ private theorem length_add_le_aux {β : Type*} (q : β → Bool) (A : ℕ) :
       obtain ⟨P, hP⟩ : ∃ P, c * (A + 1) = P := ⟨_, rfl⟩
       by_cases hqx : q x = true
       · have hcount : (x :: t).countP q = c + 1 := by
-          simp [List.countP_cons, hqx, hc]
+          simp [hqx, hc]
         have hk : k ≤ A := by
           have h0 := hpre [] List.nil_prefix (by simp)
           simpa using h0
@@ -145,7 +145,7 @@ private theorem length_add_le_aux {β : Type*} (q : β → Bool) (A : ℕ) :
         omega
       · have hqx' : q x = false := by simpa using hqx
         have hcount : (x :: t).countP q = c := by
-          simp [List.countP_cons, hqx', hc]
+          simp [hqx', hc]
         have hIH := ih hinf' (k + 1) (fun u hu hfree => by
           have hpc : x :: u <+: x :: t := by
             obtain ⟨e, he⟩ := hu
@@ -242,6 +242,19 @@ theorem code_injective {K L ν ν' j j' : ℕ} (hKL : L ≤ K)
   refine ⟨hνν, ?_⟩
   rw [hνν] at h
   exact Nat.add_left_cancel h
+
+/-- **The exponent code, at the zero-based origin.**  The explicit family indexes
+its blocks by `j < L` and reads the exponent as `K·ν + (j + 1)`.  That is
+`code_injective` shifted by one, recorded here so neither file has to re-index at
+the seam; note the hypothesis is still `L ≤ K`, which `K = 2·L` satisfies with
+room. -/
+theorem code_injective_succ {K L ν ν' j j' : ℕ} (hKL : L ≤ K)
+    (hj : j < L) (hj' : j' < L)
+    (h : K * ν + (j + 1) = K * ν' + (j' + 1)) : ν = ν' ∧ j = j' := by
+  obtain ⟨hν, hjj⟩ :=
+    code_injective hKL (by omega : 1 ≤ j + 1) (by omega : j + 1 ≤ L)
+      (by omega : 1 ≤ j' + 1) (by omega : j' + 1 ≤ L) h
+  exact ⟨hν, by omega⟩
 
 /-- **Junction control.**  At a junction between avatars `x' < x ≤ V` the two
 `y₂`-runs that meet cancel against one another and leave a single run of
@@ -349,12 +362,7 @@ theorem rotate_infix_append_self {β : Type*} (w : List β) (n : ℕ) :
   refine ⟨w.take (n % w.length), w.drop (n % w.length), ?_⟩
   have h1 : w.take (n % w.length) ++ w.drop (n % w.length) = w :=
     List.take_append_drop _ _
-  rw [hrot]
-  calc w.take (n % w.length) ++ (w.drop (n % w.length) ++ w.take (n % w.length))
-          ++ w.drop (n % w.length)
-      = (w.take (n % w.length) ++ w.drop (n % w.length)) ++
-          (w.take (n % w.length) ++ w.drop (n % w.length)) := by simp
-    _ = w ++ w := by rw [h1]
+  rw [hrot, List.append_assoc, List.append_assoc, h1, ← List.append_assoc, h1]
 
 /-- **The run ceiling, transported to the symmetrization.**  A run bound checked
 on the doubled relator and on the doubled inverted relator — two explicit words
