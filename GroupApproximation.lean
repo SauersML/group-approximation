@@ -1499,6 +1499,7 @@ import GroupApproximation.Higman.EnumeratedRange
 import GroupApproximation.Higman.EnumeratedRangeTrace
 import GroupApproximation.Higman.EnumeratedRangeTraceCorrectness
 import GroupApproximation.Higman.EnumeratedRangeProjection
+import GroupApproximation.Higman.EnumeratedRangeVerify
 import GroupApproximation.Higman.TransportFive
 import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.BridgeEffectivity

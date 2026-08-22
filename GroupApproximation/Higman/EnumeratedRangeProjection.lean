@@ -40,6 +40,36 @@ division.
   else.
 
 `Seq.traceOf_mem_anchorSet` is the last of these observations, discharged.
+
+## The verification, clause by clause
+
+What remains of the constructive half is that `Seq.traceOf c r` satisfies
+`Seq.traceRel c` at every adjacent pair.  Writing `W` for the normalized window
+`Finset.Icc (loIdx c r) (hiIdx c r)` and splitting on `a := i ∈ W`,
+`b := i+1 ∈ W`, the eleven clauses close as follows.  Because `W` is an
+interval, `a ∧ ¬b` forces `i = hiIdx c r` and `¬a ∧ b` forces
+`i+1 = loIdx c r`, both by `omega` after `Finset.mem_Icc`.
+
+* clauses 1--2, `0 ≤ p` and `0 ≤ p'` --- `omega`, since the parameter is `r+1`
+  or `0` and `r` is a natural number;
+* clauses 3--4, the marker --- `split_ifs` then `omega`;
+* clauses 5--6, inactive blocks are zero --- the counter half is definitional
+  and the value half is `Seq.gseq_eq_zero_of_notMem`;
+* clauses 7--8, active blocks lie in their window and carry the right value ---
+  `Seq.parIdx_natCast_add_one`, then the two halves of the membership;
+* clause 9, the step --- both parameters are `r+1` and both counters are the
+  block index;
+* clauses 10--11, the window ends and starts --- the two interval facts above,
+  again after `Seq.parIdx_natCast_add_one`.
+
+**Clause 3 is the only one that consumes the normalization**, and it is worth
+saying where.  Its right side is `1` exactly when `i ∈ W` and `i = 0`, its left
+side is `1` exactly when `i = 0`; they agree only because `i = 0` implies
+`i ∈ W`, which is `loIdx c r ≤ 0 ≤ hiIdx c r` --- the clamping in `Seq.loIdx`
+and `Seq.hiIdx`.  Without the clamp clause 3 is false and the marker device
+fails with it, which is why the window is normalized to contain the index `0`
+rather than to be the support.  Clauses 10 and 11 are the only ones that use
+that `W` is an interval rather than an arbitrary finite set.
 -/
 
 namespace GroupApproximation

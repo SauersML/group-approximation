@@ -167,7 +167,6 @@ theorem windowAt_eight_apply (i : ℤ) (f : E) {j : ℤ} (hj0 : 0 ≤ j) (hj8 : 
     windowAt (2 * 4) (((4 : ℕ) : ℤ) * i) f j = f (4 * i + j) := by
   rw [windowAt_apply, if_pos (Finset.mem_Ico.mpr ⟨hj0, by omega⟩)]
   congr 1
-  omega
 
 theorem windowAt_eight_zero (f : E) (i : ℤ) :
     windowAt (2 * 4) (((4 : ℕ) : ℤ) * i) f 0 = trVal f i := by
@@ -226,6 +225,15 @@ supported in the window `[0, 8)`. -/
 def blockPairSet (P : ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → Prop) : Set E :=
   windowSupport 8 ∩ {w : E | P (w 0) (w 1) (w 2) (w 3) (w 4) (w 5) (w 6) (w 7)}
 
+/-- Membership in `blockPairSet`, with the predicate in applied form.  The
+set-builder binds its own variable, so a rewrite by the coordinate lemmas finds
+nothing until membership has been unfolded to this shape. -/
+theorem mem_blockPairSet_iff (P : ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → Prop) (w : E) :
+    w ∈ blockPairSet P ↔
+      w ∈ windowSupport 8 ∧
+        P (w 0) (w 1) (w 2) (w 3) (w 4) (w 5) (w 6) (w 7) :=
+  Iff.rfl
+
 /-- **The bridge.**  A transition condition in raw coordinates is a condition on
 the four tracks of adjacent blocks.  Nothing downstream of this has to mention a
 coordinate. -/
@@ -240,6 +248,7 @@ theorem mem_transitionSet_blockPairSet
           (trVal f (i + 1)) (trCnt f (i + 1)) (trPar f (i + 1))
           (trMrk f (i + 1))) := by
     intro i
+    rw [mem_blockPairSet_iff]
     constructor
     · rintro ⟨-, hP⟩
       rwa [windowAt_eight_zero, windowAt_eight_one, windowAt_eight_two,
@@ -267,6 +276,12 @@ theorem higmanGenerated_blockPairSet (h : BoundedWindowRE)
 /-- The index recovered from a parameter value: an active block carries `r + 1`,
 so that `0` is available to mean inactive. -/
 def parIdx (p : ℤ) : ℕ := (p - 1).toNat
+
+/-- The parameter track carries `r + 1`, so every clause that reads it back has
+to recover `r`.  Five of the eleven clauses of `traceRel` need this. -/
+theorem parIdx_natCast_add_one (r : ℕ) : parIdx ((r : ℤ) + 1) = r := by
+  unfold parIdx
+  omega
 
 /-- **The transition relation of a trace.**  Four cases: both blocks inactive,
 a window starting, a window stepping, a window ending.  The marker clause is a
