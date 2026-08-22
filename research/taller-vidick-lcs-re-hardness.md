@@ -44,3 +44,8 @@ The loss and soundness use the same random mask `mu`.  Honest loss occurs when
 `mu(phi)=-1`, whereas the soundness decoder uses the Fourier damping factor
 `(1-2 epsilon)^|beta|`.  Thus the published theorem is not a perfect LCS gap,
 but it is a uniform positive-density source of failed three-XOR checks.
+
+Arbitrary finite correlations in the mask do not repair this tradeoff:
+`perfect-correlated-masks-have-undamped-conditioned-spectrum` solves the
+perfect-completeness linear constraints and shows that they force every
+conditioned Fourier coefficient used by the decoder to equal one.

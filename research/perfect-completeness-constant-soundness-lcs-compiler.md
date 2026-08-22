@@ -35,6 +35,14 @@ explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
   consistent marginals, so the decoder has nothing to decode unless the
   odd-subset relaxation of the source is itself unsatisfiable.  The
   Fourier damping `(1-2epsilon)^|beta|` is what suppresses `|T| >= 3`.
+- **Correlate the mask while keeping perfect completeness.**  Dies by
+  `perfect-correlated-masks-have-undamped-conditioned-spectrum`.  The exact
+  completeness constraints are nonnegative linear equations and force the
+  mask law to be supported on functions equal to one on every honest atom.
+  All Fourier characters surviving the source conditioning are therefore
+  identically one.  If only a smaller honest support `S` is protected, the
+  best decoder constant is at most `1/|S|`, exactly the repeated source's
+  random-guessing floor.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
