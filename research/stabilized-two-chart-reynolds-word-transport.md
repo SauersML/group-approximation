@@ -60,3 +60,8 @@ trace-functorial regular-representation contradiction.
   closed upper/lower cycle.  A stabilized swindle must cancel this explicit
   extensive braid cocycle before the Reynolds telescoping in item 4 can even
   be formulated.
+- Duplicating the parabolics is not a substitute for that cancellation:
+  `braid-free-two-chart-actor-is-amenable` computes the separated actor as a
+  metabelian group and rules out relative `(T)` for its infinite Weyl tape.
+  The stabilized tail must retain mixed rank-one action while cancelling the
+  explicit braid defect.

@@ -45,3 +45,10 @@ finite syntax required by `jacobi-congruence-clifford-tower`.
   stabilized transport must either duplicate the two rank-one actors and
   never transport their braid, or explicitly cancel this extensive cocycle
   in the tail; boundary signs and projective phases cannot do so.
+- The first alternative does not retain the analytic engine.
+  `braid-free-two-chart-actor-is-amenable` shows that confining the two
+  additive parabolics to separate charts makes their actor
+  `(R^2) semidirect C_2`, hence amenable; adjoining the Heisenberg tape stays
+  amenable and the pair with the infinite tape cannot have relative `(T)`.
+  The only surviving exact target is therefore stabilized cancellation of
+  the extensive braid cocycle while retaining a mixed nonamenable actor.
