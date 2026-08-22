@@ -219,14 +219,16 @@ least one non-root assignment projection must survive.
   complex; its link condition must be proved for the term-pairing link, not
   inferred from the subdivided BCS incidence graph.
 - **For the `R_*` Hadamard cell, even `C(4)` fails.**
-  `rstar-hadamard-escape-violates-relative-c4` computes the off-diagonal
+  `rstar-hadamard-escape-violates-term-c4` computes the off-diagonal
   coefficient of every marginal after the explicit rank-two free-phase
   escape.  Since two distinct odd-parity assignments agreeing in the
   preserved coordinate differ in at least two other coordinates, the same
   full endpoint term recurs in two marginal equations.  In a genuine
   equality subdivision the first intermediate term recurs on its two
   adjacent segments.  The endpoint pairing relator is therefore a product
-  of two pieces, so neither relative nor ordinary `C(4)` holds.  A surviving
+  of two pieces, so ordinary graphical `C(4)` and every relative version
+  retaining the two term arcs fail.  Absorbing the entire relator into one
+  peripheral factor supplies no relative injectivity theorem.  A surviving
   `C(4)-T(4)` approach must use a non-Givens multi-plane cancellation, an
   aggregate equality rather than term pairing, or a source with
   Hamming-distance-one assignment pairs.

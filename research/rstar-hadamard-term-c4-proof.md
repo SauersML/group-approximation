@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: rstar-hadamard-relative-c4-proof
+id: rstar-hadamard-term-c4-proof
 kind: route
 title: Track one Hadamard off-diagonal term through two parity marginals and two equality segments
-target: rstar-hadamard-escape-violates-relative-c4
+target: rstar-hadamard-escape-violates-term-c4
 requires:
   - one-binary-marginal-block-escape
   - term-pairing-does-not-bypass-signed-hecke-holonomy

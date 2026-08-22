@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: rstar-hadamard-escape-violates-relative-c4
+id: rstar-hadamard-escape-violates-term-c4
 kind: claim
-title: An R-star Hadamard escape makes every subdivided endpoint pairing a two-piece relator
+title: An R-star Hadamard escape makes each separated subdivided endpoint pairing a two-piece relator
 distinct_from:
-  overlap-subdivision-preserves-coherent-piece-obstruction: that rules out C-prime one-sixth for every recurrent four-potential endpoint contour and leaves exotic C(4)-T(4) open; this uses the odd-parity geometry of R-star and the explicit rank-two escape to refute C(4) for that particular architecture.
+  overlap-subdivision-preserves-coherent-piece-obstruction: that rules out C-prime one-sixth for every recurrent four-potential endpoint contour and leaves exotic C(4)-T(4) open; this uses the odd-parity geometry of R-star and the explicit rank-two escape to refute C(4) for the separated term-pairing architecture.
   one-binary-marginal-block-escape: that constructs the rank-two Hadamard/free-phase escape while preserving one sign; this tracks the other R-star marginals and audits their coefficient relators.
 ---
 
@@ -67,7 +67,13 @@ relators (inverse orientation is allowed after symmetrization).  The word
 `v` is a piece because the same intermediate observable participates in
 the two adjacent segment equalities.  Disjoint consecutive alphabets ensure
 that the two arcs survive cyclic reduction.  Thus `(RHC5)` is a product of
-two pieces and violates relative or ordinary `C(4)`.
+two pieces and violates ordinary graphical `C(4)`, as well as any relative
+`C(4)` formulation in which the two paired full terms survive as distinct
+nonperipheral arcs (the standard separated-potential term presentation has
+this property).  If all potential and coefficient words are instead
+absorbed into one peripheral factor, the relator lies in that factor and no
+relative Freiheitssatz protects it; this is not an escape from the
+obstruction.
 
 The same conclusion holds without a length-two subdivision if the term at
 the other endpoint is itself recurrent as a full term.  A longer macro

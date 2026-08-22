@@ -30,3 +30,10 @@ claim is a density-normalized specialization of
 - Let a context transporter mix `e` and `q`: impossible for a complete
   context PVM with unit `q`, because equality of the transported and target
   partition sums forces `WqW^*=q`.
+- Use one literal group-word conjugator preserving `q` for each context:
+  `hyperoctahedral-corner-support-forces-packet-normalizer` shows
+  that `supp(q)` generates the full finite packet.  Any such conjugator must
+  therefore normalize `K_N`, so every transported context remains in the
+  original finite root corner and exact overlap closure gives a forbidden
+  finite-dimensional strategy.  The required return must be a genuinely
+  multi-piece algebraic corner unitary, not `qgq` for one group element `g`.
