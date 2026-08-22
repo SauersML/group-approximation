@@ -55,3 +55,12 @@ in clauses 1--3, not existence or completeness of a proper corner.
   multiplicity is legitimate for the exact marked witness, but a separate
   finite-matrix HS inequality must still be proved; no universal tracial
   corner inequality may be assumed.
+- Stabilizing a one-sided inverse by the Halmos matrix does not supply that
+  inequality compatibly with the mark.  The calculation in
+  `universal-block-return-violates-the-regular-firewall` gives a unitary `U`
+  and projections `R=UQU*<=Q`, and even the dimension-free estimate
+  `tr(Q(1-R)Q)<=delta_c+delta_i`.  If fixed ordinary group words make those
+  identities universal, the same calculation in `L(Gamma)` forces `Q=R`, so
+  the complementary marked exit vanishes in every representation.  The
+  unresolved step is therefore a matrix-only localization/containment
+  inference, not construction of the Halmos unitary.
