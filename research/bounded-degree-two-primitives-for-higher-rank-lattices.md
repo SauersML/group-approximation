@@ -100,6 +100,26 @@ new and is the whole point.
   matching problem rather than a spectral one.  This is the sharpest
   statement of what is left, and it is not addressed by the SOS programs
   (which certify the core gap, not the cusp gluing).
+- **The cusp gluing re-imports `SL_2`, so high rank does not by itself
+  finish it (2026-08-21).**  The rank induction one hopes for --- cusp
+  Levi factors are smaller `SL_k(Z[1/p])`, handle them by induction ---
+  does NOT bottom out above `SL_2`.  Degree-2 boundary cohomology sees the
+  Borel--Serre strata of corank `<= 2`; the corank-2 rational parabolic of
+  `SL_N` with a `GL_2` block has Levi `S(GL_2 x GL_(N-2))`, hence an
+  `SL_2(Z[1/p])` factor, for every `N >= 4` (at `N = 4`, TWO such factors).
+  `SL_2(Z[1/p])` is rank one, has the Haagerup property and no property
+  `(T)`, so its `H^1`/`H^2` with the restricted Ad-module are NOT gap-
+  controlled and the positive local-averaging upgrade is unavailable on
+  that stratum --- the exact rank-one difficulty of the `SL_2` Iwahori
+  lane (`iwahori-local-global-defect-question`) re-enters at the
+  codimension-2 cusp.  So the operator-norm degree-2 primitive for
+  `SL_N(Z[1/p])` is not independent of the `SL_2` case; the two horns of
+  the flexible-stability residual are LINKED through the cusp geometry, and
+  a proof must either control the `SL_2`-Levi primitive directly (the open
+  rank-one problem) or exploit that on the corank-2 stratum the `SL_2`
+  factor is coupled to the `GL_(N-2)` block and the unipotent radical in a
+  way the isolated `SL_2` lane is not.  This explains structurally why
+  raising the rank has not closed the stability input.
 - **Falsification gate.**  An Ad-module 2-cocycle of `SL_N(Z)` with
   `|| c ||_op <= 2`, 2-norm primitive, but no operator-bounded
   primitive would refute this claim; by the route it would have to
