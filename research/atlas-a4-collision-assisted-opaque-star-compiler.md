@@ -64,6 +64,24 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **The other component supplies a moving regular-A4 carrier.**
+  `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
+  asymmetric incidence
+
+  ```text
+  [b_0,K]=1,                 <C_6,b_0> ~= A4.
+  ```
+
+  Hence for the literal common frame `U`, the collision involution
+  `c(U)=U^*rho(b_0)U` comes with a canonical transported line carrier
+  `P_6(U)=U^*P_6U`; the regular-A4 `1` versus `1/3` compression gap applies
+  to that pair with constant `2/3` at every multiplicity.  The remaining
+  packet step is now precise: use the `H_6` rectangle equations to replace
+  the moving `P_6(U)` by the fixed `P_6` on
+  `E_K^-c(U)E_K^+`.  Ambient subgroup identities alone do not make this
+  replacement, so the result is a common-`U` reduction rather than a
+  collision-only hub proof.
+
 - **Even the full regular local collision cell has a common-`U` hub escape.**
   `atlas-19243-common-u-regular-local-hub-gram-escape` works on the literal
   `Reg(K x L)` cell, fixes the actual involution `b`, and rotates its

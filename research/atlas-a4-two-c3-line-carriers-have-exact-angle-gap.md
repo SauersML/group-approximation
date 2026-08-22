@@ -113,3 +113,12 @@ quantitatively.  Independent witnesses `U=X_jRY_j` cannot define `Z`; formula
 `(A4-C3-8)` shows exactly why retaining their shared literal `U` is essential.
 The proof of `(A4-C3-9)`, or an exact common-`U` matrix countermodel to it, is
 the remaining coupling problem.
+
+The fixed subgroup bridge is now explicit.  By
+`atlas-collision-involution-is-an-a4-bridge-to-h6`, the repeated collision
+involution and `C_6` generate a regular `A4`, so the `1` versus `1/3` line
+split canonically exposes the transported carrier `P_6(U)=U^*P_6U` with gap
+`2/3`.  This does not prove `(A4-C3-9)`: its left side uses the fixed `P_6`.
+It reduces the missing identity to transporting that moving regular-`A4`
+carrier to the fixed one on `Z(U)` using the literal common `H_6` rectangle
+equations.

@@ -111,6 +111,19 @@ def main():
     assert b not in h18
     assert all(commute(b, value) for value in k)
 
+    # The same collision involution which is invisible to the K line is a
+    # genuine A4 bridge to the other rank-three packet component.  Let C6 be
+    # the normal order-three subgroup of H6.  It is not normalized by b, and
+    # adjoining b produces A4 (rather than another dihedral cell).
+    c6 = {value for value in h6 if order(value) in (1, 3)}
+    assert len(c6) == 3
+    assert {mul(mul(b, value), b) for value in c6} != c6
+    a4_bridge = subgroup(tuple(c6) + (b,))
+    assert len(a4_bridge) == 12
+    assert Counter(order(value) for value in a4_bridge) == Counter({3: 8, 2: 3, 1: 1})
+    assert a4_bridge & h6 == c6
+    assert a4_bridge & k == {I4}
+
     nontrivial_z = [value for value in z if value != I4]
     assert len(nontrivial_z) == 2
     for value in nontrivial_z:
@@ -130,6 +143,7 @@ def main():
     print("q_19243 second syllables generate the S3 factor K of H18=S3xC3")
     print("the repeated first-chart involution centralizes K and inverts Z(H18)=C3")
     print("therefore <H18, b> = K x <Z(H18),b> = S3 x S3 (order 36)")
+    print("with the other component C6, <C6,b> = A4 and A4 intersect H6 = C6")
 
 
 if __name__ == "__main__":
