@@ -46,7 +46,7 @@ def add(library, name, unit):
 library = []
 for name, unit in (("1", P.ONE), ("a", P.A), ("b", P.B),
                    ("c", P.C), ("d", P.D), ("e", P.E),
-                   ("p", P.P), ("r", P.R)):
+                   ("q", P.Q), ("p", P.P), ("r", P.R)):
     add(library, name, unit)
     if name not in ("1", "a", "b", "c", "d", "e"):
         add(library, name + "-", inverse(unit))
