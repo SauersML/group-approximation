@@ -30,3 +30,9 @@ no-Fano-line support conclusion.
   theorem currently shows that a support-minimal perfect CE model of the
   Culf--Mastel instance cannot retain a forced Fano line.  This is the exact
   remaining possible canonical operation.
+- A constraintwise cap-range refinement of the classical NP reduction cannot
+  solve the problem on a full nonaffine source support:
+  `fano-cap-range-sections-cannot-encode-nonaffine-relations` would then turn
+  the pp-gadget into an affine definition of that source relation.  Thus a
+  positive result must use a proper support selected by the perfect trace or
+  genuinely global contextual correlations.
