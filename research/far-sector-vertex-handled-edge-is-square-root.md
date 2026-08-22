@@ -44,3 +44,11 @@ The convergence is evidence, not coincidence: every honest reduction of the
 relative-commutant collapse restricted to the amalgam -- lands on the same
 edge statement, which is why closing any one closes them all, and why it is
 genuinely the frontier.
+
+**Correction (2026-08-21 audit).**  The "established piece" above
+overstates: `iwahori-newton-closes-near-sector` is OPEN again (its Taylor
+step assumed a dimension-free second-derivative bound in normalized HS,
+refuted by `normalized-hs-taylor-remainder-is-not-dimension-free`), so only
+the FIRST-order near-edge statement (`iwahori-uniform-infinitesimal-rigidity`)
+is established; the nonlinear near sector holds only under operator-norm
+proximity.  The far-sector reduction recorded here is unaffected.

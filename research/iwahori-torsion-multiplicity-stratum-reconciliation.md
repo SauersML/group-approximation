@@ -54,3 +54,12 @@ spectral rank contributes at least `C^(-1)sqrt(r/d)` to the Iwahori defect.
   the correct square-root-rank scale. The unresolved step is realizing a
   matched overlap table by one common compatible block, rather than merely
   matching its row and column marginals.
+
+**Note (2026-08-21 audit).**  `iwahori-newton-closes-near-sector` no longer
+applies inside a stratum either: the rank-one direction that separates
+strata (`O(d^(-1/2))` in normalized HS, `Theta(1)` in operator norm) is also
+the direction on which the Newton step's second-derivative bound fails
+(`normalized-hs-taylor-remainder-is-not-dimension-free`).  So the
+reconciliation asked here and the within-stratum nonlinear bound are two
+faces of the same HS-versus-operator-norm gap, not a stratum bookkeeping
+problem on top of a solved tube theorem.
