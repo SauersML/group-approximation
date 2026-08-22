@@ -29,6 +29,13 @@ character-block Jacobian inverse to a tuple known only through this
 square-function bound; assuming the exact character decomposition here
 would be circular.
 
+The positive part is now explicit:
+`code-laplacian-has-uniform-cp-green-approximants` supplies dimension-free
+finite CP Green polynomials for the exact adjoint code Laplacian and the
+equality expanders.  The remaining inverse is the coordinate-gradient
+assembly below; an `L_2` Green tail cannot be promoted to cb convergence by
+itself.
+
 `complete-overlay-row-newton-is-a-code-riesz-multiplier` sharpens even the
 exact-base part: the characterwise inverse formulas assemble into a
 vector-valued code Riesz Schur multiplier.  The HS inverse is automatic, but

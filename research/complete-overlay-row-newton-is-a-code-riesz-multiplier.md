@@ -6,6 +6,7 @@ title: Complete-overlay row Newton is a vector-valued code Riesz multiplier prob
 distinct_from:
   quadratic-overlay-has-uniform-linearized-synchronization-gap: that bounds the inverse in normalized Hilbert--Schmidt norm by orthogonality of character blocks; this identifies the stronger completely bounded row norm required on the diffuse cut
   balanced-overlay-diffuse-square-function-newton: that is nonlinear and begins away from an exact base; this computes the exact-base linear operator whose cb or BMO control is its first missing input
+  code-laplacian-has-uniform-cp-green-approximants: that gives finite completely positive Green polynomials for the adjoint code Laplacian and equality clouds; this identifies the different coordinate-gradient inverse which those polynomials do not automatically supply
 ---
 
 At an exact code representation, the transverse inverse of the complete-pair
@@ -50,3 +51,11 @@ or a uniform noncommutative-BMO bound plus a John--Nirenberg truncation whose
 exceptional projection is summable in the Newton iteration.  Characterwise
 averaging alone cannot be quoted as `(CRM3)`; doing so silently replaces an
 `L_2` direct-sum estimate by an `L_infinity` Schur-multiplier estimate.
+
+`code-laplacian-has-uniform-cp-green-approximants` does give a genuine cb
+workaround for the adjoint Laplacian and for equality-cloud averaging: a
+fixed finite Green polynomial is completely positive and row-contractive.
+It does not invert the coordinate coboundary `(CRM1)`, nor does its `L_2`
+tail estimate imply cb convergence to the character expectation.  Thus the
+Riesz/gradient assembly issue recorded here is the residual exact-base
+linear question, not a denial of the CP Laplacian result.
