@@ -37,9 +37,11 @@ twisted regular representation realizes that cancellation exactly.  Hence
 Stone--von Neumann uniqueness, the scalar Gauss computation, and all
 single-packet Weyl/opposite-root multiplication relations do not obstruct a
 finite packet.  Steps 4--5 below are invalid for general multiplicity
-packets.  The remaining flux route would need a capacity bound, incompatible
-cocycles on one authenticated reservoir, or cocycle rank growing beyond the
-model.
+packets.  The remaining flux route would need a capacity bound, genuinely
+noncohomologous packet classes on one authenticated reservoir, or cocycle rank
+growing beyond the model.  Two native Weyl/opposite-root charts do not supply
+the second option: `two-native-p3-weyl-charts-have-the-same-mackey-class`
+computes equal restricted classes, canceled by one twisted-regular gauge.
 
 Assembly of the proof, every piece prime-generic or computed here:
 

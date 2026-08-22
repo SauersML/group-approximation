@@ -55,8 +55,8 @@ Clifford extension, for example:
 
 ```text
 (i)  a capacity bound excluding the required twisted multiplicity;
-(ii) two packet charts imposing incompatible cocycles on the SAME
-     authenticated multiplicity reservoir; or
+(ii) non-Weyl-related packet charts imposing genuinely distinct restricted
+     cohomology classes on the SAME authenticated multiplicity reservoir; or
 (iii) an unbounded family whose projective commutator rank outruns that
       reservoir.
 ```
@@ -65,3 +65,10 @@ At fixed finite level none of these follows from Weyl, opposite-root, or
 parahoric multiplication relations alone.  This is the p-primary
 specialization of the standard Clifford--Mackey factor-set identity, and it
 closes the proposed `+1` interlock route negatively.
+
+The apparent two-chart version is also fenced for the native arithmetic
+atlas.  By `two-native-p3-weyl-charts-have-the-same-mackey-class`, Weyl
+transport makes the two restricted cocycles cohomologous; opposite-root
+duality only inverts the order-two metaplectic class.  Thus one common
+twisted-regular reservoir cancels any native pair.  A class collision must
+come from non-Weyl packet data or a genuinely global loop.

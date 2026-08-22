@@ -120,8 +120,11 @@ The proposed narrow target
 `p3-full-parahoric-interlock-enforces-inverse-mackey-cocycle`: the full
 finite parahoric relations force the multiplicity factor to carry the
 inverse oscillator cocycle, and the twisted regular multiplicity realizes
-it exactly.  A viable replacement needs incompatible packet cocycles on one
-authenticated reservoir, a multiplicity capacity bound, or unbounded
-cocycle rank.  Applying even such a replacement to the outlier sector still
+it exactly.  Two native Weyl/opposite-root charts do not make those cocycles
+incompatible: `two-native-p3-weyl-charts-have-the-same-mackey-class` computes
+equal restricted classes and one common twisted-regular cancellation.  A
+viable replacement needs a non-Weyl packet class on the authenticated
+reservoir, a genuinely global higher-chart loop, a multiplicity capacity
+bound, or unbounded cocycle rank.  Applying even such a replacement to the outlier sector still
 requires an approximate arithmetic-hexagon/band decoder; no such decoder
 follows from the scalar root relations alone.
