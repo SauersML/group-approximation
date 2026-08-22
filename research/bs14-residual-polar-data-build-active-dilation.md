@@ -98,3 +98,11 @@ tuple.
   global cost `pi/M`.  What remains is short-packet localization and the
   rebuilding of one exact `X`; changing `R` alone only perturbs, rather than
   solves, the inversion and second cubic equations.
+- A short/long staircase cannot compute and repair the `m<=M` native cell
+  semigroup in isolation.  `bs14-native-cells-cross-every-length-cutoff`
+  uses full even-Weil tuples with `ord_p(4)>M`: their monodromy-one BS core
+  is a trivial length-one packet plus long packets, and the exact `X`
+  necessarily couples the two with squared norm `1-1/p`.  Therefore the
+  actual native support contains cross-threshold cells for every cutoff.
+  One must authenticate the global cell first and only then charge its
+  rank-one short source; separate fixed-level repair does not build `X`.

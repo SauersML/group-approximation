@@ -244,6 +244,16 @@ compressed Weil packets.
   The determinant-two parity support above was an abstract incidence
   witness, so it does not itself name a native odd-charge cell.
 
+- **Native cells cross every short/long cutoff.**
+  `bs14-native-cells-cross-every-length-cutoff` extracts this from the exact
+  even-Weil family.  For arbitrarily large `m=ord_p(4)`, an exact cell joins
+  the trivial length-one packet to monodromy-one packets of length `m`, and
+  its off-diagonal coupling has squared norm `1-1/p`.  The long-phase reset
+  therefore does not reduce the remaining support to a product of finite
+  short-level semigroups and an independent tail.  A qualitative staircase
+  must preserve these cross-threshold cells; otherwise it deletes the very
+  rank-one completion that repairs the canonical enemy.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
