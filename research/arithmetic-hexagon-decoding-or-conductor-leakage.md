@@ -227,6 +227,17 @@ the fixed-depth nonhyperlinearity criterion.
   affine-Weyl Folner model.  Thus this loop identifies the root packet type,
   not the raw atom; its product word remains inside the amenable conductor
   action and gives no fixed payment.
+- **Amenable holonomy classifies root-type loops, not parahoric returns.**
+  Any loop returning one exact root subgroup has relative word in its
+  normalizer.  For `x_12(*)`, that normalizer preserves the image line and
+  kernel plane of `E_12`, hence lies in a solvable Borel and is amenable.
+  But the weaker parahoric statement is false already for the shortest A2
+  section loop: its holonomy `x_23(2) in D` does not normalize `x_12(*)`, and
+  `D` is finite-index nonamenable in `SL_3(Z)`.  See
+  `root-type-loops-are-solvable-but-parahoric-loops-are-not`.  This does not
+  close the decoder: the base projection commutes with `D`, so the
+  nonamenable holonomy is an internal corner unitary until two paths are
+  forced to interfere on the identical carrier.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from

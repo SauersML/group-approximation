@@ -61,7 +61,7 @@ includes every one-root or Weyl-conjugate-root candidate and every bounded
 product of such integral words.  The obstruction is a finite typed-graph
 obstruction, not a failure to search a sufficiently long word.
 
-# The shortest A2 path closes with trivial parahoric holonomy
+# The shortest A2 path exposes a nontrivial parahoric holonomy
 
 The target type does have a shortest path of length two in the `u`-edge
 Hecke graph.  Put
@@ -148,3 +148,10 @@ must either authenticate the average of these two target paths on a full
 corner, or use a second denominator edge which changes the double-coset type
 and returns to the identical source atom.  More diagonal relations internal
 to `C` cannot perform the latter.
+
+This example also gives the sharp structural boundary for typed-loop
+classification.  `root-type-loops-are-solvable-but-parahoric-loops-are-not`
+proves that exact root-type holonomies always lie in a solvable Borel, but
+the present `d=x_23(2)` is already a length-two parahoric holonomy outside
+that root normalizer.  It remains uncharged because it acts internally on
+the `D`-central carrier, not because its ambient stabilizer is amenable.
