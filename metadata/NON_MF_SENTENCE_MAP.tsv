@@ -558,6 +558,8 @@ a535b682829e	structural	-	visual supplementary-material heading
 e8140a2cbbc8	structural	-	TeX table-of-contents entry for the supplementary divider
 1d6634277bd2	structural	-	TeX section-number formatting commands
 3bc32caacbe2	ledger	TV.04	lead-in to the weighted coordinate inner product
+30a10cc35319	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse	the subgroup statement follows by specializing the source homomorphism to the inclusion L → H; this assignment avoids treating the wrapper's names for the printed hypotheses as new assumptions
+fcef402c0d92	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse	the two printed transported conclusions, under the same inclusion specialization
 d09019098543	ledger	TV.04	unitarity of conjugation in every weighted inner product
 9788b975fc02	ledger	TV.04 TV.05	bounded weighted vector and unchanged adjoint operator norm
 4b862465d1e1	ledger	TV.05	the ultraproduct transport proof applies verbatim at the weight
