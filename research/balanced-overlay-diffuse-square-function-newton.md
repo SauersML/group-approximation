@@ -298,3 +298,15 @@ strict dimension-free linear contraction.  The remaining analytic gate is
 now genuinely nonlinear and pre-basin: implement this finite-time
 correction without an exact character decomposition while alternating the
 sparse parity/equality layers.
+
+The finite-time correction itself is now intrinsic.
+`intrinsic-finite-green-commutator-step-has-the-correct-tangent` uses the
+current square-commutator words
+`beta_ij=(I-(Q_iQ_j)^2)/2`, the current ucp pinching average, and a finite
+Green polynomial to build coordinatewise skew conjugators.  It preserves
+reflections exactly and its derivative at every exact code tuple contracts
+the transverse tangent quotient by `(1-delta)^K`; the dense nonlinear
+remainder has the established cb quadratic bound.  Thus the exact residual
+is narrowed to a base-free coercivity inequality for this intrinsic step
+and the first-order sparse parity/equality damage from its unequal
+coordinate conjugators.

@@ -179,6 +179,14 @@ convergence.  The remaining stopping issue is nonlinear implementation
 before exact code characters exist, not an endpoint Riesz or involution
 exactification problem.
 
+`intrinsic-finite-green-commutator-step-has-the-correct-tangent` removes
+the definability part of that issue: the finite-Green conjugation map is a
+word-level operation on the current tuple and has the correct strict
+derivative at every exact code point.  What remains is precisely to prove
+base-free coercivity of its correction row from balanced energy and to pay
+the sparse parity/equality first-order terms; its dense pair remainder is
+already quadratic with dimension-free constants.
+
 The commutator boundary itself also has an exact monotone ledger.
 `anchor-reset-row-sign-trace-is-sharp-lyapunov` proves that the anchor's
 averaged commutator-row energy plus `8tau((1-A)/2)` is nonincreasing under
