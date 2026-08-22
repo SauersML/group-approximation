@@ -3,13 +3,14 @@ rg: 2
 id: cmps-rstar-lift-has-line-hitting-empty-links
 kind: claim
 title: The two-oracular R-star lift hits every Fano line by an empty neighborhood link
+refuted_by: star-surjective-nonaffine-context-blocks-fano-empty-link-lift
 distinct_from:
   cmps-two-oracular-rstar-lift-has-commuting-context-stars: that supplies the joint neighborhood PVM needed to use empty-link pruning; it does not make any neighborhood link empty.
   culf-mastel-rstar-halt-model-has-fano-cap-support: that is the resulting operator-support conclusion; this is the finite incidence certificate that would imply it for the chosen CMPS lift.
   fano-pruning-is-line-hitting-empty-link: that proves the abstract sufficient condition; this asks whether the concrete fixed-language hard family satisfies it.
 ---
 
-OPEN.  For the fixed-language `R_*` family and chosen perfect completeness
+**REFUTED.**  The former target was: for the fixed-language `R_*` family and chosen perfect completeness
 model constructed in
 `cmps-two-oracular-rstar-lift-has-commuting-context-stars`, prove that every
 target context `c` and every translated Fano line `L` in its seven honest
@@ -47,3 +48,14 @@ while preserving its perfect-gap orientation.
   incidence geometry and its selected completeness model for forced empty
   links, or design a reduction that adds such links while retaining the
   perfect strategy and constant NO gap.
+
+The source-specific inspection now refutes the target.  A copied original
+3SAT clause in CMPS Lemma 20 is star-surjective: every one of its seven local
+satisfying assignments extends through the duplicate and equality-clause
+neighborhood.  After the contextwise Culf--Mastel pp lift, any section of
+these seven assignments therefore lands inside the nonempty-link set of
+every target occurrence.  If every Fano line were hit by an empty link, all
+of those occurrence ranges would be Fano caps, contradicting
+`fano-cap-range-sections-cannot-encode-nonaffine-relations` for the
+nonaffine seven-point 3SAT relation.  See
+`star-surjective-nonaffine-context-blocks-fano-empty-link-lift`.
