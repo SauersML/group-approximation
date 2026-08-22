@@ -3209,13 +3209,13 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-22 · nonhyperlinear-via-fixed-density-diagonal-retention [OPEN] Polarize an effectively self-retaining non-CE character to a canonical quotient
 - 2026-08-22 · leavitt-d4-l14-seven-syllable-splitter-proof [COMPLETE] Enumerate maximal noncrossing blocks of the alternating seven-syllable word
 - 2026-08-22 · leavitt-d4-l14-seven-syllable-splitter [ESTABLISHED] The length-fourteen alternating carrier has five maximal branches
-- 2026-08-22 · irs-intersection-retention-collapse-proof [COMPLETE] Intersect countably many IRS samples and pass measure domination to the Dirac limit
-- 2026-08-22 · irs-intersection-fixed-weight-retention-collapses [ESTABLISHED] Literal fixed-weight retention under independent IRS intersections forces a deterministic subgroup
 - 2026-08-22 · fixed-density-polarization-retention-is-terminal [ESTABLISHED] Fixed-density retention under character polarization already produces a canonical non-CE quotient
 - 2026-08-22 · fixed-density-polarization-domination-proof [COMPLETE] Pass retained character weight to the canonical limit and use central Radon--Nikodym theory
+- 2026-08-22 · nonhyperlinear-via-fixed-density-diagonal-retention [OPEN] Polarize an effectively self-retaining non-CE character to a canonical quotient
+- 2026-08-22 · irs-intersection-retention-collapse-proof [COMPLETE] Intersect countably many IRS samples and pass measure domination to the Dirac limit
+- 2026-08-22 · irs-intersection-fixed-weight-retention-collapses [ESTABLISHED] Literal fixed-weight retention under independent IRS intersections forces a deterministic subgroup
 - 2026-08-22 · effective-fixed-density-diagonal-retention-character [OPEN] An effective non-CE character has fixed-density self-retention along its polarizing tensor powers
 
 ## Active claims

@@ -81,3 +81,9 @@ Already the two-point set `{e,g}` forces
 
 The full family `(FPR6)` is stronger and is exactly what self-similar fusion
 or recursive-corner proposals must verify.
+
+The conclusion is sharp even for ordinary representation fusion.  For the
+normalized character `tau=chi_std/2` of the two-dimensional standard
+representation of `S_3`, `tau^n` converges to the canonical character, while
+the standard summand has trace weight tending to `2/3`.  It is precisely the
+`M_2` central Plancherel block of `L(S_3)`, as the theorem predicts.

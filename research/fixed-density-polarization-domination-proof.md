@@ -48,3 +48,17 @@ countable set `H_tau`.  Outside `H_tau`, scalar powers tend to zero.  This
 proves `(FPR5)`.  Finally `(FPR6)` is simply positivity of
 `tau^n-beta tau` evaluated on `(sum_i c_i u_{g_i})^*(sum_i c_i u_{g_i})`.
 The determinant of the resulting matrix for `{e,g}` gives `(FPR8)`.
+
+For the `S_3` sharpness check, the standard character has class values
+`(2,0,-1)`.  Its multiplicity in its `n`-th tensor power is
+
+```text
+m_n=<chi_std^n,chi_std>
+   =(2^n-(-1)^n)/3.
+```
+
+Hence its normalized trace weight is `2m_n/2^n`, which tends to `2/3` (and
+is at least `1/2` for `n>=2`).  Meanwhile the normalized character values
+off the identity are `0` and `(-1/2)^n`, so the tensor characters converge
+to the canonical character of `S_3`.  The retained GNS algebra is exactly
+the standard central block of its finite group von Neumann algebra.
