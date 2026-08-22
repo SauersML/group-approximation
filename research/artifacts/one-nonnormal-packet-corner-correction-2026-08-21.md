@@ -108,14 +108,29 @@ exactly when
 P_x B = Delta.                                        (3)
 ```
 
-If (3) holds, then `A_xB=e`, while
-`pi_e(BA_x)=s_0t_0!=1`, so it is already the required direct-finiteness
-witness.  Equation (3), with (1)--(2), is the finite one-nonnormal-packet
-target.  The recursive locally finite idempotents do not occur.
+If (3) held, then `A_xB=e`, while
+`pi_e(BA_x)=s_0t_0!=1`.  But (3) has **no solution**.  The fixed factor
+`B=e s~ e` is supported, together with `e`, in the virtually free group
+`K_s=(C_2 x C_2)*C_3`.  Any equation `CB=e` anywhere in the ambient corner
+projects its left inverse into `eF_2[K_s]e`; direct finiteness there makes
+`B` two-sided invertible.  Evaluation would make `s_0` a unit, impossible.
+This excludes every `x`, not merely short or normalizer-supported choices.
 
-The audit does not exhibit an `x` solving (3).  Moreover `x` cannot be kept
-inside any subgroup known to have directly finite `F_2` group algebra:
-support localization would then make the one-sided inverse two-sided and
-force `t_0` to be a unit.  Thus a successful `x` must genuinely engage the
-nonsofic part of the Leavitt unit group; finite packet algebra alone cannot
-choose it.
+The symmetric argument says that keeping `A=e t~e` fixed and correcting only
+`B` is also impossible.  Therefore both factors must leave their virtually
+free support groups.  With a second packet
+
+```text
+P_y=e[y]k[y^-1]e,
+```
+
+the minimal two-sided packet equation is
+
+```text
+A P_y + P_x B + P_x P_y = Delta.                       (4)
+```
+
+Indeed (4) is exactly `(A+P_x)(B+P_y)=e`.  Any solution gives a proper
+one-sided inverse because its reverse product still evaluates to
+`s_0t_0!=1`.  This two-parameter equation, rather than (3), is the first
+conjugated-packet target not ruled out by subgroup localization.
