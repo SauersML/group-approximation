@@ -19,4 +19,3 @@ estimate must prevent finite-fiber branch collisions, equivalently control
 the cross-chart Gram overlap well enough to construct one global building
 PVM.  Once that PVM exists, the already-established Schreier spectral gap
 supplies the fixed boundary inequality.
-

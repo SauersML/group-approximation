@@ -21,4 +21,3 @@ defect is therefore `O(ell/N)`.  Diagonalization over fixed word windows
 gives the asserted local matrix models.  Any identities imposed on the
 fiber permutations only shrink the class of cocycles and do not affect the
 boundary calculation.
-

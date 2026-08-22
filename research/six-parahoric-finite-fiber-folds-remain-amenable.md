@@ -69,4 +69,3 @@ the forty-two labels, and bounded local holonomy alone.  The remaining
 arithmetic datum is precisely global branch-history consistency; once that
 produces a single PVM, the established infinite-Schreier spectral gap gives
 the desired fixed payment.
-
