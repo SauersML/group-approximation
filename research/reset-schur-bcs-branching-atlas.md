@@ -66,6 +66,15 @@ provably stationary by `reset-ray-hnn-return-is-stationary`.
   `2K_1n`; consequently `(RSA3)` fails at zero error.  A proper corner or
   one-sided compressor must sit between the child chart and the next full
   packet.  Selector renewal is solved, but multiplicity return is not.
+- **Full reset followed by the flip-free `q`-MASA: loses the predicate
+  current.** Although the words `Q_x` separate the two child supports on a
+  fixed selector sector, `full-reset-makes-q-masa-negative-regular` computes
+  the aggregate endpoint after the translation-symmetrized full reset. Its
+  complete `K_f` character vector is a multiple of the negative regular
+  character, independent of the active set of `f`. Thus the proper-corner
+  actuator cannot be driven only by the bare post-reset `q`-MASA vector. It
+  must cross the one-sided corner before sector averaging, or carry the
+  explicit predicate-density element in addition to `K_f`.
 - **Proper-corner route.**  `reset-schur-atlas-via-toeplitz-proper-corner`
   now records the corrected composition.  Its only genuinely new analytic
   input is `toeplitz-tail-retains-contextual-schur-density`: the tail must

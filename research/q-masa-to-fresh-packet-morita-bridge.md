@@ -33,6 +33,13 @@ which exchanges the two supports.
 
 - **Ordinary HNN identification. Dead.**  It preserves each `K_f` character
   multiplicity and cannot perform the required matrix-scale conversion.
+- **Apply the full translation reset first. Dead.**
+  `full-reset-makes-q-masa-negative-regular` shows that the resulting
+  complete `K_f` character vector is exactly negative-regular. The local
+  words `Q_x` still separate branch supports, but their aggregate
+  multiplicities no longer remember which sectors are forbidden. Therefore
+  this bridge must act before full sector averaging or transport an extra
+  predicate-density observable outside the bare `q`-MASA table.
 - **Direct product or selector amalgam. Dead.**  Commuting the fresh packet
   only with `K_f` does avoid selector globalization, but
   `q-masa-selector-bridge-is-scale-conservation` shows that its apparent
