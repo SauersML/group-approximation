@@ -22,6 +22,29 @@ length-seven trivalent fence: one unary relation solves `z=t^3`, the second
 can in principle encode the source holonomy `u^2=1`, and the remaining orbit
 can carry the target `v^2=h`.
 
+However, the two unary corners already have incompatible free-product
+endpoints.  For the displayed representative, cyclically rotate each unary
+relator to put its unique positive `z` first.  Writing only coefficient-copy
+indices, their coefficient corners are
+
+```text
+H1: 0,1,0,1,0,1,0,1,2,
+H2: 0,1,2,1,2,1,2,1,2.                              (L9E)
+```
+
+Every adjacent pair in each line has different indices.  If all coefficient
+slots are nonidentity, both lines are therefore already reduced normal forms
+in `D0*D1*D2`, each of syllable length nine.  Equality of the two corners
+would require equality of their copy-index sequences, contradicted at the
+third syllable of `(L9E)`.  The other eight sign paths are cyclic rotations of
+this one, so the same mismatch proves the statement for all of them.
+
+After pivoting on one unary relation, the other unary relator is precisely
+`H2 H1^(-1)` up to inversion and cyclic conjugacy.  It can encode the source
+identity only if `H1=H2`.  Thus the copy-index mismatch is a global
+length-nine obstruction for arbitrary nonidentity compound slots, not a
+property special to the tested packet.
+
 The artifact defines the compound gates in the faithful Bergman chart by
 
 ```text
@@ -43,7 +66,8 @@ for one coefficient copy `i`.  These are precisely the two consequences
 needed by the sharp order-mismatch holonomy template; a hit would already be
 a complete coefficient collapse, not merely an incidence match.
 
-MSI job `16663449` completed all nine shards normally.  Each shard reports
+As an independent faithful replay, MSI job `16663449` completed all nine
+shards normally.  Each shard reports
 `tested 90720` and `hits 0`, for the exact aggregate 816,480.  The packet has
 full support: from `a,u` recover `b=au`, and from `c,v` recover `d=cv`, while
 `r,e,p,a,c` are retained explicitly.
