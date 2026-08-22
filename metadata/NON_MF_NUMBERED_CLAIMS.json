@@ -88,7 +88,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:unitarycorona"
+        "lem:unitarycorona",
+        "lem:tensor-amplification"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -99,6 +100,58 @@
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
           "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:tensor-amplification",
+      "environment": "lemma",
+      "title": "tensor amplification",
+      "statement_sha256": "0bcd5e6c6b4e59321ef54c0e7e3e4218fee352021bcec8cce456c8d6a1d60ea3",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTensorAmplification",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:markedclosed",
+      "environment": "theorem",
+      "title": "the MF locus is closed",
+      "statement_sha256": "9ff462f2d12281b72bc52b6c363208fd250578d711269b11ae3b7ae0af00c991",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/MarkedMFClosed",
+          "declaration": "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/MarkedMFClosed",
+          "declaration": "GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/MarkedMFClosed",
+          "declaration": "GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -209,6 +262,28 @@
       ]
     },
     {
+      "id": "cor:kazhdan-transport-subgroup",
+      "environment": "corollary",
+      "title": "subgroup form",
+      "statement_sha256": "2f03fd942cc763a18cbb10475a9f70b7862a55b2f2e136f3f6f9e915e3415e8a",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:kazhdan-transport"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/KazhdanTransportAnyUniverse",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "lem:corner",
       "environment": "lemma",
       "title": "compression to an asymptotically central corner",
@@ -255,8 +330,8 @@
     {
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
-      "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "c2057ac40dd54608cc73b8eab431ca6b8b3afe4442bc8aeceed37c19e413f0fb",
+      "title": "the basic construction",
+      "statement_sha256": "4ffebf8d1a5cea963a007ec34af50ff78c7debe7b28629ab75768653d0a7592b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1273,38 +1348,6 @@
       ]
     },
     {
-      "id": "thm:markedclosed",
-      "environment": "theorem",
-      "title": "the MF locus is closed",
-      "statement_sha256": "b1dc2e411d332f29882dae3f482554cd1b2bf90d85d42885271c1d4609c20643",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
       "id": "prop:horn",
       "environment": "proposition",
       "title": "finite quasi-identity",
@@ -1376,6 +1419,23 @@
           "covers": "a printed conclusion of the proposition"
         }
       ]
+    },
+    {
+      "id": "thm:torsionfree",
+      "environment": "theorem",
+      "title": "a torsion-free example",
+      "statement_sha256": "9d6783978466356410cd7486b17c219ee16d51584be541adaa1c8c03975f7bd5",
+      "status": "literature-input",
+      "object_identity": "The printed environment consumes the stated literature input; its machine-checked inputs are badged in the surrounding discussion.",
+      "dependencies": [
+        "cor:intrinsic-nk"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Fournier-Facio, Section 2; Hull, Theorem 7.1; Osin, Lemma 7.1"
+      ],
+      "coverage_gap": "The literature input itself is not formalized.",
+      "lean": []
     },
     {
       "id": "prop:maximal-cstar",

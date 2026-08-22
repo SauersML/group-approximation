@@ -6,17 +6,17 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 715 |
-| `formalized` | 274 |
-| `definition` | 45 |
-| `attribution` | 31 |
-| `structural` | 21 |
+| `ledger` | 750 |
+| `formalized` | 266 |
+| `attribution` | 47 |
+| `definition` | 43 |
+| `structural` | 24 |
 | `provenance` | 6 |
-| `partial` | 2 |
 | `open` | 1 |
-| **total** | **1095** |
+| `partial` | 1 |
+| **total** | **1138** |
 
-Carrying a declaration or a ledger row: **1036/1095** (94.6%).
+Carrying a declaration or a ledger row: **1060/1138** (93.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -24,55 +24,52 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 160 --- Its reduced $C^*$-algebra $\Cred(E)$ is separable, exact and stably finite but not MF, and the canonical trace on $\Cmax(E)$ is hyperlinear but not MF, which answers a question of Shulman negatively.
-  * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
-* **`open`**, line 1519 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`open`**, line 1726 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 1596 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 1803 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 12 | 0 |
-| Introduction | 10 | 0 |
-| The result | 5 | 0 |
-| Outline of the proof | 33 | 0 |
+| (front matter) | 9 | 0 |
+| Introduction | 16 | 0 |
+| The result | 7 | 0 |
+| Outline of the proof | 37 | 0 |
 | Relation to prior work | 35 | 0 |
-| Matrix quotients | 41 | 0 |
+| Matrix quotients | 88 | 0 |
 | One-sided conjugation in matrix models | 22 | 0 |
-| The exact case | 52 | 0 |
-| The central involution obstruction | 44 | 0 |
-| The Kazhdan--Clifford construction | 32 | 0 |
-| A finitely presented non-MF group | 47 | 0 |
+| The exact case | 17 | 0 |
+| The asymptotic case | 43 | 0 |
+| The central involution obstruction | 48 | 0 |
+| The basic non-MF construction | 27 | 0 |
+| The explicit affine example | 49 | 0 |
 | The base and a smaller presentation | 7 | 0 |
 | Property~\textup{(T) | 7 | 0 |
-| Nontriviality of \texorpdfstring{$w$ | 32 | 0 |
+| An auxiliary Clifford witness | 34 | 0 |
 | Consequences of the example | 3 | 0 |
-| The quotient by the central involution | 5 | 0 |
+| The quotient by the central involution | 6 | 0 |
 | A stably finite non-MF group algebra | 14 | 0 |
 | A sofic example | 8 | 0 |
 | A hyperlinear non-MF trace | 33 | 0 |
-| The MF equivalences | 30 | 0 |
 | Weighted asymptotic-commutant invariance | 10 | 0 |
 | Obstructions from a one-sided conjugation datum | 41 | 0 |
 | An intrinsic form | 19 | 0 |
 | The normal-Kazhdan form of the obstruction | 47 | 0 |
 | The finite-dimensional obstruction | 18 | 0 |
-| The cyclic comparison | 47 | 0 |
+| The cyclic comparison | 48 | 0 |
 | The MF residual | 48 | 0 |
 | Permanence and its failure | 18 | 0 |
 | Commuting orbits and the MF residual | 103 | 0 |
-| The exact residual of $E$ | 26 | 0 |
+| The exact residual of $E$ | 29 | 0 |
 | The reduced group algebra of \texorpdfstring{$E$ | 14 | 0 |
 | The Clifford quotient and permanence | 28 | 0 |
-| Soficity of $E$ | 71 | 0 |
-| Marked-limit closure | 9 | 0 |
+| Soficity of $E$ | 75 | 0 |
 | A finite universal Horn obstruction | 10 | 0 |
 | Undecidability of MF recognition | 29 | 0 |
 | Limitations of the operator-norm method | 21 | 0 |
-| A torsion-free finitely presented non-MF group | 20 | 0 |
+| A torsion-free finitely presented non-MF group | 26 | 0 |
 | Open questions | 9 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 25 | 0 |
 | Acknowledgements | 4 | 0 |
