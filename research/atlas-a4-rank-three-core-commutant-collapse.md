@@ -127,3 +127,13 @@ commutant, or the full `A8` commutant is required.
   the reference packet alignment is not collision-zero, this does not refute
   the nonlinear joint estimate; it says collision must remove this exact
   `S3` flat through a genuinely nonlinear common-`U` coupling.
+- **Collision cannot be linearized at the reference packet point.**
+  `atlas-collision-order-zero-wall-on-s3-flat` observes
+  that the exact reference alignment already has collision defect `sqrt(2)`.
+  Since the collision word is `8`-Lipschitz in the relative unitary,
+  `exp(epsilon T)R` has defect at least
+  `sqrt(2)-8|epsilon|||T||_2` for every common tangent direction `T`.
+  Hence there is no collision-zero analytic curve through `R`; its first
+  nonzero expansion term is order zero, so a Hessian/quartic coercivity test
+  there cannot decide the joint zero fiber.  The remaining problem is global
+  nonlinear geometry, or linearization at an actual joint ultralimit zero.
