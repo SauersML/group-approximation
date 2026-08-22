@@ -250,6 +250,27 @@ least one non-root assignment projection must survive.
   `C(4)` firewall locally.  It sacrifices the non-TVF one-row commutativity
   gadget and does not yet prove the remaining coefficient-link or cap-model
   assertions.
+- **The edgeful OR3 packet reduces the survivor to root-slot holonomy.**
+  `edgeful-or3-balanced-private-plane-packet` gives one fixed ten-coordinate,
+  full-support, `5+5`-balanced clause packet with three disjoint private
+  planes, one per logical literal.  Since every context PVM is a conjugate
+  `(W U Y_a U^* W^*)_a`, star and idempotence are automatic and add no link
+  relators.  `edgeful-or3-coefficient-link-compiler` is the resulting live
+  route: align the root-diagonal slot skeletons and make every off-diagonal
+  support family reduce to one equation with an occurrence-private Tietze
+  pivot.  The off-diagonal `C(4)` collision is solved; the precise remaining
+  issue is finite slot-frame holonomy and consistency of the several finite
+  group support terms of one matrix unit.
+- **A retractive Hecke host evaluates the entire OR3 square complex back to
+  finite matrices.**  `packet-retraction-evaluates-hecke-collision-atlas`
+  applies the packet retraction entrywise under the primitive Morita normal
+  form.  Every `U(M_2(H))` collision transporter and every finite
+  square-complex return equation then becomes an ordinary finite matrix
+  equation.  Closing all `R_edge` chords would evaluate to a forbidden finite
+  perfect strategy.  Hence even a valid coefficient-link `C(4)-T(4)`
+  presentation is useful only if it embeds the packet without admitting any
+  retraction onto it.  The familiar free-phase or fresh-letter-to-identity
+  relative constructions are excluded.
 - **An infinite recursive tail is finitely compact for this target.**
   `finite-bcs-corner-diagram-is-finitely-witnessed` allows an arbitrary
   recursively presented ambient group and infinitely many auxiliary

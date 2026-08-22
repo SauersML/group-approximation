@@ -35,3 +35,11 @@ product of two pieces.
 This is only a local escape from that obstruction.  It does not verify the
 remaining coefficient-link `C(4)-T(4)` conditions, select Fano-cap supports
 in the perfect-gap family, or solve simultaneous return holonomy.
+
+There is now an additional global constraint on that open coefficient-link
+route.  By `packet-retraction-evaluates-hecke-collision-atlas`, any finite
+system of rank-two Hecke-block equations in an ambient group retracting onto
+the finite packet evaluates to an ordinary finite-dimensional atlas.  Thus a
+successful `C(4)-T(4)` host must protect the packet by relative injectivity
+while simultaneously destroying the usual fresh-phase-to-identity
+retraction; free phases plus retractive contours cannot close the chord.
