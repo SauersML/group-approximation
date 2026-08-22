@@ -87,6 +87,20 @@ stability does not supply it.
 
 ## Attempts
 
+- **Not load-bearing for the stability route (2026-08-21).**  The route
+  `hs-stability-from-ulam-stability-and-lifting` consumes only
+  `tracial-to-uniform-lifting-for-sl-n-z`; this claim was listed there as a
+  second requirement and has been removed.  Reason: the defect
+  `phi(g) phi(h) phi(gh)^(-1) - 1` of a bounded set-theoretic lift is an
+  additive 2-cocycle only modulo `I . I`, and `I . I = I` for a closed ideal
+  of a `C^*`-algebra (approximate units), so no additive bounded class in
+  `H^2_b(Gamma, I)` is ever the obstruction.  Conversely, for the one additive
+  object that does arise -- `c = delta y` with `y` a bounded `A`-valued
+  1-cochain -- the unwinding paragraph above already produces an `I`-valued
+  primitive from `H^1_b(Gamma, A/I) = 0` alone, without `(ALO-GAP)`.  The
+  claim is therefore a first-order heuristic and an honest open question about
+  nonseparable coefficient modules, not a lemma on the path to the goal.
+
 - **What this does and does not give.**  It kills the
   obstruction to lifting TO FIRST ORDER: the corrected generator
   lifts `(1 + y'(s)) u_s` satisfy the relators up to the quadratic

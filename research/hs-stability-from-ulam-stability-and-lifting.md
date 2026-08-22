@@ -6,7 +6,6 @@ title: Ulam stability plus tracial-to-uniform lifting gives flexible Hilbert-Sch
 target: sln-z-flexibly-hs-stable
 requires:
   - tracial-to-uniform-lifting-for-sl-n-z
-  - abelian-lifting-obstruction-vanishes-for-sl-n-z
 ---
 
 Let `sigma_m : SL_N(Z) -> U(d_m)` have normalized-HS defect
@@ -20,10 +19,13 @@ ultraproduct, there are corner projections `Q_m` with
 OPERATOR-norm defect `eta_m -> 0` and `|| sigma'_m(s) - Q_m
 sigma_m(s) Q_m ||_2 -> 0` on generators.
 
-The established abelian obstruction theorem verifies that the associated
-bounded `I`-valued degree-two class vanishes.  It is recorded as a required
-input here because it removes the linear obstruction; the open lifting claim
-is precisely the remaining nonabelian integration step.
+Only the lifting claim is consumed.  The linearized shadow
+`abelian-lifting-obstruction-vanishes-for-sl-n-z` (vanishing of
+`H^2_b(Gamma, I)`) is NOT an input: the defect of a set-theoretic lift is a
+nonabelian `U(A) cap (1 + I)`-valued cocycle, additive only modulo `I . I = I`,
+so the additive class is never the object to be killed, and the route is
+valid from the lifting claim alone.  The abelian node stays as the recorded
+first-order heuristic (and its own open `(ALO-GAP)` audit), off this route.
 
 **Step 2 (Ulam stability).**  Burger--Ozawa--Thom (`SL_n(Z)`,
 `n >= 3`): there are exact representations `rho_m` on `Q_m H_m` with
