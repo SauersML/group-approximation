@@ -51,6 +51,34 @@ group in this lane, hyperlinear.
   faithfulness becomes a statement about finite-level isotypic blocks.
   (For `n = 2` the subgroup lacks full (T) and this confinement is not
   available.)
+- **On the `Lambda`-exact face the one-unitary system is explicit, and
+  perfectness kills its scalar part (`n = 3`).**  Take `pi_k|_C = rho_k`
+  exact, factoring through `Q = SL_3(Z/m_k)`, and `H = pi_k(h)`.  The
+  element `h-bar = diag(2, 1, 1/2) mod m_k` lies in `Q`, so
+  `H_0 = rho_k(h-bar) in rho_k(C) subset B_k` intertwines
+  `rho_k(C_0) -> rho_k(C_1)` exactly; `X = H_0^* H` almost commutes with the
+  genuine finite image `rho_k(C_0)`, and property (T) of `C_0` (finite
+  index in `SL_3(Z)`) puts `X` within `O(defect)` of a unitary
+  `X' in rho_k(C_0)' = (lambda(Q_0) (x) 1)'`.  Since `B_k` is a
+  `B_k`-bimodule and `H_0 in B_k`, `E_(B_k)(H) = H_0 E_(B_k)(X')`, so
+  faithfulness at `h` is exactly `E_(B_k)(X') -> 0` with `X'` in the
+  `C_0`-isotypic commutant.  If `X' = 1 (x) Y` (scalar on each isotypic
+  block, `Y` in the multiplicity algebra), every relator `r` of a finite
+  presentation of `A` evaluates to `lambda(r-bar) (x) Y^(e(r)) = 1 (x) Y^(e(r))`,
+  `e(r)` the `h`-exponent sum; `SL_3(Z[1/2])` is perfect, so the `e(r)`
+  have gcd `1`, and approximate satisfaction of finitely many relators
+  forces `Y ~ 1` (Bezout), hence `H ~ H_0 in B_k`: unfaithful.  (Exactly:
+  no homomorphism `A -> Q x Z/e` has nontrivial second factor.)  What
+  survives is the non-scalar part `X' = (+)_sigma X'_sigma` over the
+  `Q_0`-isotypic blocks, nearly orthogonal to `lambda(Q) (x) 1`, with the
+  relators of `A` approximately satisfied while the `C`-part is frozen at
+  `rho_k`; conjugation by `lambda(q)`, `q notin Q_0`, moves the blocks
+  between the `Q_0`- and `qQ_0q^-1`-isotypic decompositions.  Exact
+  solutions of this system are unfaithful (they are congruence
+  representations of `A` by the congruence subgroup property), so the
+  `n = 3` hole on the exact face is the STABILITY of this one-unitary
+  system: approximate solutions near exact ones.  This is the finite-level
+  bookkeeping the previous bullet names, stated as a single equation.
 
 - **Congruence models fail `(CF1)` maximally.**  Co-density puts
   `pi_k(a)` inside `W^*(pi_k(C))` for every `a`, so `||E(pi_k(a))||_2 = 1`.
