@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/rank-degree4-length12-triangles.py
   - research/artifacts/rank-l14-profile-27.sbatch
+  - research/artifacts/compile-l14-profile27.py
   - research/leavitt-d4-l14-twenty-seven-winner-profile-proof.md
 ---
 

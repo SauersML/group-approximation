@@ -28,6 +28,6 @@ N(0;131): 9
 
 All systems counted are carrier-balanced.  Cyclic rotation of each target
 face is quotiented exactly as in the preceding length-fourteen censuses;
-global inversion is not used.  This node records only the exact census.  The
-three raw carrier systems still require literal compilation and independent
-boundary analysis.
+global inversion is not used.  The compiler reconstructs the four corner
+orbits directly from the sign word and stores one emitted representative of
+each class.  Independent boundary analysis remains open.
