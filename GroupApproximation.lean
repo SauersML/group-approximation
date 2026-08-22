@@ -1458,6 +1458,7 @@ import GroupApproximation.Sofic.GreendlingerSharpTwins
 import GroupApproximation.Sofic.GreendlingerDeepVacuitySharp
 import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
+import GroupApproximation.Sofic.GreendlingerSharpResidualWiring
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
@@ -1469,6 +1470,7 @@ import GroupApproximation.Leavitt.HilbertHotelCover
 import GroupApproximation.Leavitt.ConjProductClosure
 import GroupApproximation.Leavitt.HilbertHotelCoverDischarges
 import GroupApproximation.Leavitt.HilbertHotelModelNonMF
+import GroupApproximation.Leavitt.HilbertHotelCoverBlock
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure
@@ -1478,6 +1480,7 @@ import GroupApproximation.Higman.TorsionFreeImageClosure
 import GroupApproximation.Higman.ClosuresAssembly
 import GroupApproximation.Higman.AmalgamTorsionDischarge
 import GroupApproximation.Higman.TheoremThreeAssembly
+import GroupApproximation.Higman.EnumeratedRange
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.RowDeletionBenign

@@ -1221,5 +1221,193 @@ theorem sharpGreendlingerGate_fin_two_of_deepArcSharp_of_betaSharp
     GreendlingerFreeGate.SharpGreendlingerGate (Fin 2) :=
   sharpGreendlingerGate_of_deepArcSharp_of_betaSharp hdeep hbeta
 
+/-! ## 10.  The disjunctive landing obligation
+
+`cascadeLandingSharp_of_deepArcSharp_of_landingSharp` commits to the *right*
+disjunct of `CascadeLandingSharp` before it calls the landing hypothesis, which
+throws the left one away: the located conclusion from the **head** factor is
+unavailable to a landing prover, even though `CascadeLandingSharp` would have
+accepted it.  That is not a cosmetic loss.
+
+`Sofic.GreendlingerLandingProd` records where it bites.  At the adjacent factor
+the intrusion is `|q| + |E|` --- the head conjugator's overhang past the landing
+conjugator, plus the relator segment it eats --- and the (α) site is unavailable
+exactly when `q ≠ []`, so the residual regime *is* the nonempty-overhang regime.
+There the minimality move gives `2|q| ≤ |t'|` and the metric condition gives
+`|E| < λ·|t'|`, so together only `|q| + |E| < (1/2 + λ)·|t'|`, where the offset
+field of `LandsInSharp` needs `|q| + |E| < λ·|t'|`.  The whole shortfall is the
+overhang; `q` is a conjugator segment and no piece bound controls a conjugator
+segment; and sharpening `λ` makes the ratio `(1/2 + λ)/λ` worse, not better.  At
+a one-factor tail this is an outright falsification handle
+(`ne_nil_of_landingProductionBetaSharp`), so `LandingProductionBetaSharp` as
+stated is not merely hard --- it is very likely false.
+
+But in exactly that configuration the head factor keeps enough.  The block stops
+past the adjacent conjugator, so what survives of `t` stands at position `|c|`
+and exceeds `(1 − λ)|t|`, which `greendlingerAtSharp_of_bounded_cancellation`
+accepts.  So the repair is not to weaken the landing site: it is to stop
+discarding the disjunct that configuration lands in.
+
+The primed predicates below are the unprimed ones with the conclusion widened to
+`CascadeLandingSharp`'s own disjunction, and the primed assembly passes that
+disjunction through instead of pre-committing.  Nothing else moves --- the
+hypothesis lists are identical and the `λ`-free (α) plumbing is consumed exactly
+as before --- and `landingProductionSharp'_of_landingProductionSharp` says the
+unprimed form still discharges the primed one, so a prover who *can* produce a
+landing site outright loses nothing by the change.
+-/
+
+/-- **The landing obligation, disjunctive.**  `LandingProductionSharp` with the
+conclusion widened to the disjunction `CascadeLandingSharp` actually states: the
+landing prover may answer with the head factor's located subword instead of a
+landing site. -/
+def LandingProductionSharp' [DecidableEq α] (R : Set (List (α × Bool)))
+    (lam : ℚ) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (j : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → (j : ℚ) < lam * (t.length : ℚ) →
+    M.length + j ≤ c.length + t.length →
+    GreendlingerAtSharp R lam (c.length + j) (P' ++ B') ∨
+      LandsInSharp R lam M.length (conjEval e).toWord e.length
+
+/-- **The landing obligation, (β) only, disjunctive.**  The residual the lane
+should actually be proving: same hypothesis list as
+`LandingProductionBetaSharp`, same orientation package, same exclusion of the
+conjugator-absorbed regime, and the conclusion the assembly can genuinely
+use. -/
+def LandingProductionBetaSharp' [DecidableEq α] (R : Set (List (α × Bool)))
+    (lam : ℚ) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' E : List (α × Bool)) (j : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → (j : ℚ) < lam * (t.length : ℚ) →
+    M.length + j ≤ c.length + t.length →
+    M = E ++ FreeGroup.invRev c →
+    FreeGroup.invRev M = c ++ FreeGroup.invRev E →
+    E <:+ t → 0 < E.length →
+    ¬ConjugatorAbsorbedSite c E M e →
+    GreendlingerAtSharp R lam (c.length + j) (P' ++ B') ∨
+      LandsInSharp R lam M.length (conjEval e).toWord e.length
+
+/-- The unprimed obligation discharges the primed one: a landing site is one of
+the two answers.  Kept so that the change costs no existing work --- anything
+proved against `LandingProductionSharp` still feeds the new assembly. -/
+theorem landingProductionSharp'_of_landingProductionSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ} (h : LandingProductionSharp R lam) :
+    LandingProductionSharp' R lam :=
+  fun c t e g P' M B' j hmin ht hredp heq htail hlow hj hle =>
+    Or.inr (h c t e g P' M B' j hmin ht hredp heq htail hlow hj hle)
+
+/-- The same, on the (β) side. -/
+theorem landingProductionBetaSharp'_of_landingProductionBetaSharp
+    [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
+    (h : LandingProductionBetaSharp R lam) : LandingProductionBetaSharp' R lam :=
+  fun c t e g P' M B' E j hmin ht hredp heq htail hlow hj hle hM hMinv hEt
+    hEpos hsite =>
+    Or.inr (h c t e g P' M B' E j hmin ht hredp heq htail hlow hj hle hM hMinv
+      hEt hEpos hsite)
+
+/-- **The landing production with case (α) discharged, disjunctive.**  The
+`λ`-free plumbing of `Sofic.GreendlingerAlphaPlumb` is consumed exactly as in
+`landingProductionSharp_of_betaSharp`; the (α) branch answers with a landing
+site, and the (β) branch passes the residual's disjunction through. -/
+theorem landingProductionSharp'_of_betaSharp' [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hmetric : MetricSmallCancellation R lam)
+    (hbeta : LandingProductionBetaSharp' R lam) :
+    LandingProductionSharp' R lam := by
+  intro c t e g P' M B' j hmin ht hredp heq htail hlow hj hle
+  obtain ⟨E, hM, hMinv, hEt, -, hEpos⟩ :=
+    eaten_prefix_orientation heq hlow (by omega)
+  by_cases hsite : ConjugatorAbsorbedSite c E M e
+  · exact Or.inr (landsInSharp_of_conjugatorAbsorbedSite hmetric hmin ht hEt
+      hsite)
+  · exact hbeta c t e g P' M B' E j hmin ht hredp heq htail hlow hj hle hM hMinv
+      hEt hEpos hsite
+
+/-- **`CascadeLandingSharp` from the two obligations, without pre-committing.**
+The repair: the regime inequality still decides which obligation is called, but
+in the landing regime the answer is relayed to whichever disjunct it came back
+in.  This is the only theorem in the chain that had to change. -/
+theorem cascadeLandingSharp_of_deepArcSharp_of_landingSharp' [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hdeep : DeepArcSourceSharp R lam) (hland : LandingProductionSharp' R lam) :
+    CascadeLandingSharp R lam := by
+  intro c t e g P' M B' j hmin ht hredp heq htail hlow hj
+  rcases le_or_gt (M.length + j) (c.length + t.length) with hle | hgt
+  · rcases hland c t e g P' M B' j hmin ht hredp heq htail hlow hj hle with
+      harc | hlands
+    · exact Or.inl harc
+    · exact Or.inr ⟨hle, hlands⟩
+  · exact Or.inl (hdeep c t e g P' M B' j hmin ht hredp heq htail hlow hj hgt)
+
+/-- **`CascadeLandingSharp` over the disjunctive (β)-side residual.** -/
+theorem cascadeLandingSharp_of_deepArcSharp_of_betaSharp' [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hmetric : MetricSmallCancellation R lam)
+    (hdeep : DeepArcSourceSharp R lam)
+    (hbeta : LandingProductionBetaSharp' R lam) :
+    CascadeLandingSharp R lam :=
+  cascadeLandingSharp_of_deepArcSharp_of_landingSharp' hdeep
+    (landingProductionSharp'_of_betaSharp' hmetric hbeta)
+
+/-- **The sharp conclusion over the disjunctive (β)-side residual.** -/
+theorem greendlingerConclusionSharp_of_deepArcSharp_of_betaSharp'
+    [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hmetric : MetricSmallCancellation R lam)
+    (hdeep : DeepArcSourceSharp R lam)
+    (hbeta : LandingProductionBetaSharp' R lam) :
+    GreendlingerConclusionSharp R lam :=
+  greendlingerConclusionSharp_of_cascadeLandingSharp hR hRne hlam0 hlam
+    (cascadeLandingSharp_of_deepArcSharp_of_betaSharp' hmetric hdeep hbeta)
+
+/-- **The residual bundle over the disjunctive landing obligation**, in the
+shape `sharpGreendlingerGate_of_cascadeLandingSharp` consumes.  The primed
+analogue of `cascadeLandingSharp_family_of_deepArcSharp_of_betaSharp`, and the
+one the lane should now aim at. -/
+theorem cascadeLandingSharp_family_of_deepArcSharp_of_betaSharp'
+    [DecidableEq α]
+    (hdeep : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → DeepArcSourceSharp R lam)
+    (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → LandingProductionBetaSharp' R lam) :
+    ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → CascadeLandingSharp R lam :=
+  fun R lam hcyc hRne hlam0 hlam hmetric =>
+    cascadeLandingSharp_of_deepArcSharp_of_betaSharp' hmetric
+      (hdeep R lam hcyc hRne hlam0 hlam hmetric)
+      (hbeta R lam hcyc hRne hlam0 hlam hmetric)
+
+/-- **The sharp gate over the disjunctive (β)-side residual.** -/
+theorem sharpGreendlingerGate_of_deepArcSharp_of_betaSharp' [DecidableEq α]
+    (hdeep : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → DeepArcSourceSharp R lam)
+    (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → LandingProductionBetaSharp' R lam) :
+    GreendlingerFreeGate.SharpGreendlingerGate α :=
+  sharpGreendlingerGate_of_cascadeLandingSharp
+    (cascadeLandingSharp_family_of_deepArcSharp_of_betaSharp' hdeep hbeta)
+
 end SmallCancellationRouter
 end GroupApproximation
