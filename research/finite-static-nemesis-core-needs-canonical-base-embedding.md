@@ -58,6 +58,13 @@ The second term ensures nontriviality of the mark; it does not imply the
 third.  Britton embeddings, amalgam normal forms, or an explicit trace-profile
 theorem can provide the third, but arbitrary auxiliary relators cannot.
 
+The base must also already be finitely presented, or be passed through a
+separate faithful finite-presentation compiler.  A finite subcover chooses
+only finitely many **extension gadgets**; it does not choose finitely many base
+relators defining the same canonical type space.  Truncating a recursively
+presented base enlarges its type space and can introduce separated canonical
+types which the original subcover never attacked.
+
 ## Capacity-prefix fence
 
 A finite capacity prefix does not provide `(FSC2)` for free.  If its exact
@@ -74,4 +81,3 @@ finite matrices only adds a fixed-prefix error term and does not change the
 zero-defect regular obstruction.  Distinct depth carriers avoid collapse only
 by letting their canonical masses tend to zero, exactly the existing
 capacity-prefix firewall.
-

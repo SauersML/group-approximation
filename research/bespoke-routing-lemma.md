@@ -5,7 +5,7 @@ kind: claim
 title: A minimal small-cancellation routing lemma suffices for DefectRoutingData
 artifacts:
   - GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean
-  - GroupApproximation/Sofic/FullMFRadicalEndpoint.lean
+  - 999c6320c:GroupApproximation/Sofic/FullMFRadicalEndpoint.lean
 ---
 
 There is a relative/free-product small-cancellation theorem, provable by

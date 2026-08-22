@@ -114,6 +114,17 @@ payload-compatible auxiliary `s` which fixes the selected small atom.  A
 full finite-packet normalizer is too strong and reintroduces the established
 multiplicity-orientation obstruction.
 
+For affine Fourier payloads, the SELECT side can now be made substantially
+smaller and representation-rigid.  `extraspecial-common-gauge-fourier-controller`
+uses only the rank-`k` Pauli packet: Stone--von Neumann uniqueness and the
+relations `[C,Z_i]=1`, `[C,X_i]=W_i` force one common right gauge, while the
+compression to the uniform `X`-fixed atom is exactly the trivial-character
+projection of the payload `F_2^k` representation.  This removes the full
+coordinate-lamp wreath packet and its unwanted spin sectors.  It does not
+finish the claim: for `k>1` the uniform source is a joint Pauli atom rather
+than one spectral half, so ordinary-word enforcement of its zero compression
+is still precisely the authenticated selected-atom stabilizer gate.
+
 There is now one exact positive reduction inside that gate.
 `finite-cocycle-select-forces-one-common-lcu-gauge` groupifies SELECT for a
 uniform finite-group/cocycle word list and forces every coordinate
