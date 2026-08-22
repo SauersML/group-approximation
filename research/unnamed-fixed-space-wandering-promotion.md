@@ -59,3 +59,10 @@ one boundary representation still does not supply `(UFW1)`.
   infinite order independently.  The live route
   `fanizza-heterogeneous-row-closes-unnamed-return` therefore reduces this
   target to one private/shared compressed row.
+- **A high finite-order clock needs excess fixed mass.**  The finite-order
+  strengthening of the Fejer endpoint does not make a bare clock a carrier.
+  `finite-clock-fejer-threshold-is-sharp` shows that an order-`M` canonical
+  clock has maximal approximate fixed mass `1/M+o(1)`, while the largest
+  permitted Fejer order is `M`; their product is exactly one.  Any clock
+  variant must therefore force mass strictly above its canonical trivial
+  character, which is itself a matrix-only promotion problem.
