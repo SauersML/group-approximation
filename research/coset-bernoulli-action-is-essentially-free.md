@@ -29,9 +29,20 @@ convex in the building — acts trivially, and the kernel of the building
 action is `mu_3(Q_3) = 1`.  Independence of disjoint orbit-constancy
 events then kills the measure of `Fix_X(g)`.
 
-The same argument on the `(p+1)`-regular tree gives the `SL_2(Z[1/p])`
-statement modulo the center `{+-1}` (which acts trivially on `I`): the
-`PSL_2` coset Bernoulli action is essentially free.
+**Scope: every prime.**  The argument is uniform in `p` for
+`(SL_3(Z[1/p]), SL_3(Z))`: the building of `SL_3(Q_p)` and strong
+approximation work verbatim, and the endgame needs only
+`Gamma cap Z(SL_3(Q_p)) = mu_3(Q) = 1` — the element produced by the
+convexity argument lies in `Gamma <= SL_3(Q)`, so even for
+`p = 1 mod 3` (where `mu_3(Q_p)` is nontrivial) the fixed-cofinitely
+element is trivial.  In particular the p = 2 wreath — the home of the
+constructive flat-tower probes — carries the identical freeness,
+Cartan, and entropy-ceiling package, so the moduli-flip discipline of
+`coset-wreath-hyperlinearity-forces-strong-one-boundedness` binds those
+probes too.  The same argument on the `(p+1)`-regular tree gives the
+`SL_2(Z[1/p])` statement modulo the center `{+-1}` (which acts
+trivially on `I`): the `PSL_2` coset Bernoulli action is essentially
+free.
 
 This is the freeness input that makes the lamp algebra
 `L^infinity(X)` a Cartan masa in `L(W_3)`
