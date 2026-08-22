@@ -209,3 +209,13 @@ least one non-root assignment projection must survive.
   cannot close the first chord only in the limit.  Some finite stage must
   already contain the load-bearing coherent holonomy while preserving the
   packet corner.
+- **A feasible chord with a residual assignment collision is solved.**
+  `feasible-chord-collision-has-free-phase-block-escape` first solves the
+  exact finite relative-commutant integer system, then applies one Hadamard
+  rotation inside a joint frozen-sign fiber and independent free phases.  It
+  preserves every old separator and the new common chord sign while moving
+  two genuine assignment atoms outside the finite root block.  The exact
+  remaining first-chord cases are therefore: the integer system is
+  infeasible, the frozen signs plus chord already separate every endpoint
+  assignment, or several individually feasible cells cannot be realized by
+  one context partition.

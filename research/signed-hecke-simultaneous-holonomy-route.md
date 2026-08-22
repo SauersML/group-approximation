@@ -6,11 +6,16 @@ title: Compose the explicit one-marginal escape cells into the balanced cycle at
 target: signed-hecke-block-escaping-cycle-holonomy
 requires:
   - one-binary-marginal-block-escape
+  - feasible-chord-collision-has-free-phase-block-escape
   - simultaneous-block-escaping-context-holonomy
 ---
 
 Apply the simultaneous construction to the rationally balanced context
 packets.  Its common context unitaries are the `V_c` in `(BCH1)`, and the
 preserved marginals are exactly `(BCH2)`.  The retained non-root atom meets
-the escape requirement.  Thus the two clauses establish the full balanced
+the escape requirement.  The second established input closes every
+intermediate chord whose conditional-rank table is feasible and whose frozen
+fiber retains a genuine assignment collision; the open simultaneous input is
+therefore needed only for the residual collision-free/infeasible cells and
+their common-context compatibility.  Thus the clauses establish the full balanced
 cycle-holonomy claim.
