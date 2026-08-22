@@ -125,3 +125,13 @@ chart fullness and covariance equations remain exact.  The presentation must
 make two native arithmetic return paths occur coherently in one block and
 control their relative trace; simply authenticating the paths separately
 leaves the loop gauge free.
+
+For the literal simple-Weyl denominator rectangle, the ambient section words
+do compare the paths.  `sl3-raw-weyl-rectangle-pins-only-equal-rank-corners`
+proves that their relative loop is exactly trivial and gives the sharp
+source-Gram identity transferring this to any equal-rank decoded corner.
+The transfer fails for the current shell atom for a concrete reason: its
+trace is `1/42`, while the available raw lamp and positive two-lamp atoms
+have traces `1/2` and `1/4`.  The remaining gate is therefore a rank-matched
+joint-atom decoder or a non-pointwise authentication map, not another loop
+identity.

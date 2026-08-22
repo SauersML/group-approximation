@@ -99,3 +99,11 @@ candidate source of such control is a raw denominator-section identity or a
 mixed-root relation that ties the multiplicity gauges of two distinct
 triangles.  Those native identities are not asserted by this abstract
 countermodel.
+
+The first native section rectangle now has an exact dichotomy.
+`sl3-raw-weyl-rectangle-pins-only-equal-rank-corners` shows that the literal
+`s_12` and `s_23` denominator paths have trivial relative loop before
+decoding, and that equal-rank source fullness transfers this pinning with an
+exact Gram formula.  The present 42-shell atom has the wrong rank for that
+interface, so the abstract multiplicity escape remains available on the
+decoded carrier.
