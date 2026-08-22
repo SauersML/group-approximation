@@ -60,3 +60,10 @@ while q14 removes them, the joint emptiness cannot be promoted from the
 scalar/F4 result; nor does a degree-two PI explain it without an additional
 identity.  Direct sums of `(M2E1)` give collision escapes at every even
 multiplicity, but continue to violate q14 blockwise.
+
+The two pure fibers also cannot be glued by an upper-Toeplitz domain wall.
+`atlas-m2-kernel-phases-cannot-upper-toeplitz-stitch` shows that Laurent-word
+evaluation retains their diagonal rank defects on every flag quotient.  A
+possible Følner escape must therefore use a cyclic/non-flag-preserving gauge
+or a genuinely new bulk phase, not an upper-triangular mixture of the two
+observed zero fibers.
