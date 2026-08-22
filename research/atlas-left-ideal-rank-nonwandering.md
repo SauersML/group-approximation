@@ -103,3 +103,14 @@ or genuinely nonstationary coefficient data.
   collision.  The familiar count thirteen applies only after q14 is absorbed
   exactly into the virtually-free carrier.  Since `(LRN1)` starts from an
   arbitrary `A8*A8` module, its rank sum has fourteen terms.
+
+- **q14 has a linear rank correction, but not yet a chart correction.**
+  `atlas-q14-rank-centralizer-projection` writes the two marked
+  transvections as `1+N,1+M`.  The q14 residual rank is exactly
+  `rank(NM-MN)`, and changing at most four times that rank replaces `M` by
+  an element of the centralizer of `N`; its remaining square-zero defect is
+  at most eight times the q14 defect.  This does not preserve the Jordan
+  type of `M` or extend the corrected involution to the full second `A8`
+  chart.  Hence passing rigorously to the thirteen-filling carrier requires
+  a relative `V4` rank-correction theorem, not merely the linear commutator
+  projection.
