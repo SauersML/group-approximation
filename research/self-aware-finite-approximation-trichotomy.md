@@ -28,7 +28,12 @@ amplification multiplies dimension and anonymous multiplicity while leaving
 every authenticated word, normalized trace and HS defect unchanged.
 Amitsur--Levitzki detects only the PI degree of the algebra actually generated
 by authenticated letters; scalar/reducible sectors need not expose the full
-ambient matrix algebra.
+ambient matrix algebra.  Allowing an adaptive-looking coherent query circuit
+does not enlarge this access: by
+`coherent-word-oracles-cannot-branch-on-their-own-tracial-profile`, word
+evaluation, fixed controls and gapped functional calculus remain blockwise.
+Trace, measurement feedback and an independent tensor copy are not internal
+group-word primitives.
 
 Branch `(C)` is valid by threshold-free and depthwise reverse Kleene.  It
 avoids numerical crossing moduli because it enumerates proofs, not rational
@@ -40,4 +45,3 @@ Thus self-reference is a scheduler, not an HS amplifier.  It cannot turn an
 arbitrary diagonal defect schedule into a collapse theorem, reveal
 amplification-invisible dimension, or make a pre-challenge tuple approximate
 its post-challenge group.
-
