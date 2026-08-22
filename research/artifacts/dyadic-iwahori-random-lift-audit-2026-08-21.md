@@ -14,6 +14,19 @@ cycles can make square-root cycle data asymptotically flexible.  The audit
 therefore isolates the next finite target rather than extrapolating the
 `2/3` bound beyond its scope.
 
+In fact the parabolic defect can be erased **exactly**.  Tensor the
+three-sheet transposition with an odd `m`-cycle and take two copies.  Per
+copy this gives one `m`-cycle and one `2m`-cycle.  Across two copies the even
+cycles occur in pairs, so the permutation is a square: odd cycles have
+individual square roots and each pair of `2m`-cycles is the square of one
+`4m`-cycle.  Odd congruence regular actions supply the internal odd cycles
+inside exact first-vertex actions.
+
+Therefore a scalar or cycle-type argument about `T` alone cannot settle the
+fork.  The genuinely coupled problem is to extend a chosen root to the
+second modular pair, match the Iwahori involution, and keep alternating
+normal forms separated.
+
 ## Amplified finite target
 
 Write

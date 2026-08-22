@@ -42,3 +42,9 @@ use internal parabolic cycles and a coupling not trapped by that finite
 permutation character.  Hamming agreement of the two edge generators makes
 every fixed normal-form reduction valid off `O_W(epsilon)|Omega|` points by
 a union bound.
+
+The single parabolic equation is not itself the remaining obstruction:
+`doubled-odd-amplification-erases-iwahori-parabolic-defect` constructs exact
+square roots after a two-copy odd-cycle amplification.  The hole is the
+simultaneous extension of such a root to the second `C_2*C_3` vertex, the
+second edge generator, and the normal-form separation condition.
