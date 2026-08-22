@@ -445,3 +445,15 @@ the fixed-depth nonhyperlinearity criterion.
   add.  The unresolved content is exactly the matrix-only support statement
   that the rectangular chamber pieces belong to one carrier; without it the
   regular-HNN/Bernoulli lamp remains a firewall.
+- **The canonical Jones carrier authenticates fixed depth but its atom
+  vanishes with depth.**  Intersecting all six depth-`N` Weyl parahorics
+  forces every off-diagonal entry to be divisible by `2^(2N)`.  The Jones
+  projection onto this common subgroup therefore has trace at most
+  `2^(-2N)`; see
+  `closed-weyl-iwahori-jones-carrier-has-vanishing-depth-mass`.  Its coset
+  conjugates do give an exact common PVM at every fixed depth, so the basic
+  construction correctly identifies the desired support object.  But no
+  single positive-mass spectral atom survives all depths.  Restoring total
+  mass requires the entire coset PVM, returning exactly to the open
+  coordinatewise covariance/Gram estimate rather than bypassing it with one
+  Iwahori projection.

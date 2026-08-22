@@ -98,3 +98,11 @@ not supplied as a common-carrier corrector satisfying the ordered triangle;
 extracting such a supported corrector is precisely the open matrix-only
 step.  Thus `(CAD7)` is a coercive endpoint after authentication, not a
 tracial identity that can be applied to an unauthenticated lamp.
+
+The most canonical attempted authentication also has an exact limitation.
+The Jones projection for the intersection of the six depth-`N` parahorics
+does place every Weyl chart on one common Fourier atom, but that atom has
+trace at most `2^(-2N)`; see
+`closed-weyl-iwahori-jones-carrier-has-vanishing-depth-mass`.  The saturated
+actor therefore forces one to lift the full growing coset PVM, not select a
+single depth-independent Iwahori atom.
