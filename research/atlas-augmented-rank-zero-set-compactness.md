@@ -113,3 +113,14 @@ lane.
   zero.  A symbolic wandering construction must therefore use growing block
   width, a singular cyclic closure, or stay a positive normalized-rank
   distance from every fixed-block circulant.
+- **A singular cyclic closure does not rescue a fixed formal symbol.**
+  `atlas-fixed-formal-toeplitz-microstates-promote` treats multiplication by
+  one `B(z) in GL_b(F2[[z]])` on the truncations modulo `z^N`.  Evaluation of
+  every Laurent relation is still a ring homomorphism, including the global
+  triangular inverse.  Any nonzero formal residual has rank at least `N-O(1)`,
+  so sublinear residuals make the formal symbol an exact solution.  Zariski's
+  lemma then produces an exact point over a finite extension of `F2`.
+  Consequently a symbolic wandering construction must have growing
+  block/state width or genuinely nonstationary coefficients; neither an
+  invertible nor a singular fixed-width companion symbol can evade finite
+  specialization.
