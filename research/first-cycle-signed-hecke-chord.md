@@ -147,6 +147,18 @@ least one non-root assignment projection must survive.
   desired path holonomies.  Existing piecewise transport gives an algebraic
   corner sum, and controlled predication assumes rather than manufactures
   such a controlled word.
+- **A wreath or semidirect product cannot manufacture the diagonal word.**
+  `hadamard-does-not-semidir-independent-selector-blocks` proves the exact
+  obstruction.  Hadamard conjugation sends `diag(A,B)` to the
+  average/difference matrix and returns to the selector centralizer only
+  when `A=B`.  Thus an HNN/semidirect action normalizing the selector-central
+  subgroup identifies the branches before they are tested.  If the two base
+  factors are instead adjoined freely, arbitrary representations do not
+  localize them to opposite selector lines.  In the central-selector case,
+  the universal corner equations for one group element force the two desired
+  path words to differ by at most the central involution.  The remaining
+  wordization must therefore be genuinely nonnormalizing/type-specific; a
+  literal `G times G` base does not provide it.
 - **The phase-rotated companion gives aggregate payment but kills
   completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
   `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
