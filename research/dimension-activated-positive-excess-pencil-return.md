@@ -72,6 +72,14 @@ contradiction.
   word can shrink to `beta^k`.  A Koszul or tensor-complex repair must name a
   first bad factor on each kernel summand, which is again the missing
   authenticated selector.
+- Biased finite-state branching is combinatorially sufficient **after** such
+  a selector exists.  The Perron calculation in
+  `perron-frobenius-branching-carrier-collapse` lets a supercritical bad-state
+  component outrun stationary good states.  Its hypotheses already require
+  partial isometries with authenticated initial carriers and orthogonal target
+  ranges; the leakage of those placements is exactly what pays the
+  conclusion.  Therefore Perron growth is a valid backend, but not a way to
+  obtain the finite-only bad-state selector from the dimension trigger.
 - The required advance is therefore exactly a runtime-independent local
   compiler from one dimension-triggered failure to an extensive family of
   returned rows.  Existing adaptive tape/PCP frontiers provide the right
