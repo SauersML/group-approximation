@@ -1,0 +1,14 @@
+{
+  "method": "For each marked Q1920 class, construct the faithful six-dimensional irreducible F3 module with nonzero fixed space for the first radial S3. Enumerate the exact A-centralizer, retain involutions, impose (ct)^3 and the collision word, and test whether the c-minus eigenspace meets the A-fixed space.",
+  "marking_count": 2,
+  "common_profile": {
+    "A_centralizer_order": 3888,
+    "involution_count_including_identity": 110,
+    "triangle_solution_count": 1,
+    "collision_solution_count": 1,
+    "nonidentity_collision_solution_count": 0,
+    "signal_solution_count": 0
+  },
+  "consequence": "Only the identity A-central involution satisfies the triangle and collision relations, so no nonzero A-fixed vector can be inverted. The six-dimensional F3 chief-factor escape is impossible.",
+  "scope": "This exhausts the faithful six-dimensional irreducible modules for both markings. It does not cover dimensions 10, 15, or 24."
+}

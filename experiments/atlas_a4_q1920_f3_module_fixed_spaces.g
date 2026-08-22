@@ -22,6 +22,20 @@ FixedDimension:=function(source,moduleData,module,subgroup)
   return Length(BaseFixedSpace(images));
 end;
 
+IndecomposableDimensions:=function(source,moduleData,module,subgroup)
+  local matrixGroup,representation,images,generator,restricted,decomposition;
+  matrixGroup:=Group(module.generators);
+  representation:=GroupHomomorphismByImages(
+      source,matrixGroup,moduleData[1],module.generators);
+  images:=[];
+  for generator in GeneratorsOfGroup(subgroup) do
+    Add(images,Image(representation,generator));
+  od;
+  restricted:=GModuleByMats(images,GF(3));
+  decomposition:=MTX.Indecomposition(restricted);
+  return List(decomposition,pair->pair[2].dimension);
+end;
+
 count:=0;;
 for sub in LowIndexSubgroupsFpGroup(universal,MAX_INDEX) do
   cosets:=RightCosets(universal,sub);;
@@ -46,10 +60,12 @@ for sub in LowIndexSubgroupsFpGroup(universal,MAX_INDEX) do
                     Size(Group(module.generators)),
                     module.IsAbsolutelyIrreducible,
                     FixedDimension(Q,moduleData,module,A),
-                    FixedDimension(Q,moduleData,module,B)]);
+                    FixedDimension(Q,moduleData,module,B),
+                    IndecomposableDimensions(Q,moduleData,module,A)]);
     od;
     Print("marking_",count,
-          "_[dimension,image,absolute,Afix,Bfix]=",profiles,"\n");
+          "_[dimension,image,absolute,Afix,Bfix,A_indecomposables]=",
+          profiles,"\n");
   fi;
 od;
 Print("marking_count=",count,"\n");
