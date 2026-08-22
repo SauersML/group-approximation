@@ -38,3 +38,10 @@ for the homogeneous LCS face groups would close this node.  This does not
 help exactify approximate face tables: the Kazhdan inequality applies only
 after `repeated-ldpc-shared-face-marginal-synchronization` has produced an
 exact group representation.
+
+The all-pairs group itself is not the mystery:
+`complete-overlay-code-group-has-uniform-conjugation-gap` computes its exact
+gap as at least `4 delta`.  The missing estimate is a near-abelian bootstrap
+from **small** complete-overlay energy to that exact gapped sector.  Invoking
+the abelian gap only after exactifying all pair faces is circular, since that
+exactification already supplies the global commuting PVM.
