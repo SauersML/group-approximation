@@ -46,6 +46,17 @@ from atlas_two_chart_search import (
 
 
 INNER_ALIGNMENT_HEX = "00000100000100000100000000000001"
+BYTE_POPCOUNT = np.asarray([
+    bin(value).count("1") for value in range(256)
+], dtype=np.uint8)
+
+
+def population_count(row):
+    byte_width = max(1, (row.bit_length() + 7) // 8)
+    packed = row.to_bytes(byte_width, byteorder="little")
+    return int(BYTE_POPCOUNT[
+        np.frombuffer(packed, dtype=np.uint8)
+    ].sum())
 
 
 def enumerate_gl4():
@@ -94,7 +105,7 @@ class LeftTranslations:
         self.byte_width = (dimension + 7) // 8
 
     def all_images(self, row):
-        if row.bit_count() <= 256:
+        if population_count(row) <= 256:
             images = [0] * len(self.permutations)
             remaining = row
             while remaining:
@@ -328,7 +339,7 @@ def main():
         ),
         "raw_bockstein_values": len(bockstein_values),
         "bridge_remainder_weights": [
-            value.bit_count() for value in bridge_remainders
+            population_count(value) for value in bridge_remainders
         ],
         "bridge_a8_span_dimension_in_mod2_cokernel": len(bridge_basis),
         "bridge_span_is_entire_extra_sector": (
