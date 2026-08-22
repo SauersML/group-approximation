@@ -134,6 +134,19 @@ least one non-root assignment projection must survive.
   sufficient only after another relation forces the arithmetic word to
   preserve the selected corner (or pays its leakage); compression equality
   alone has an exact finite-dimensional escape.
+- **A Hadamard selector commutator charges that leakage by one word.**
+  `hadamard-selector-commutator-charges-two-path-leakage` uses the fixed
+  two-dimensional `D_16` packet.  If one ordinary return `d` centralizes its
+  `Z` selector and has blocks `A,B`, then the word `Y=H d H` has selected
+  block `(A+B)/2` and complementary block `(A-B)/2`.  The single added
+  relator `[Y,Z]=1` has squared HS defect exactly
+  `||A-B||_2^2=||1-A^*B||_2^2`; it therefore supplies the missing positive
+  leakage payment, while `d->1` retracts onto the packet and preserves every
+  non-root packet projection.  The new minimal gate is purely syntactic:
+  construct a selector-central **group word** `d` whose two blocks are the
+  desired path holonomies.  Existing piecewise transport gives an algebraic
+  corner sum, and controlled predication assumes rather than manufactures
+  such a controlled word.
 - **The phase-rotated companion gives aggregate payment but kills
   completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
   `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
