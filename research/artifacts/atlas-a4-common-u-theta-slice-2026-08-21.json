@@ -1,7 +1,7 @@
 {
-  "status": "numerical_slice_not_proof",
+  "status": "exact_block_procrustes_reduction_plus_numerical_packet_signal",
   "ambient_representation": "Reg(A8), dimension 20160, k=1",
-  "construction": "collision S3 six-dimensional line rotation repeated over 3360 left K-cosets; canonical involution-pair lift chosen cyclewise nearest the fixed packet alignment",
+  "construction": "collision S3 six-dimensional line rotation repeated over 3360 left K-cosets; optimize the repeated U(3)xU(3) centralizer block by the exact two-block polar formula",
   "trace_estimator": {
     "kind": "real Rademacher Hutchinson",
     "probes": 12,
@@ -11,36 +11,36 @@
     {
       "theta": 0.0,
       "q_defect_estimate": 0.0,
-      "packet_rms_defect_estimate": 1.2517844405944203,
-      "packet_max_defect_estimate": 1.3801430989375607,
-      "canonical_lift_distance_squared": 0.0
+      "packet_rms_defect_estimate": 1.390574071491359,
+      "packet_max_defect_estimate": 1.413295963941853,
+      "procrustes_reference_distance_squared": 1.4290674210582712
     },
     {
       "theta": 0.1,
       "q_defect_estimate": 0.0,
-      "packet_rms_defect_estimate": 1.2537445496516855,
-      "packet_max_defect_estimate": 1.3796974986074746,
-      "canonical_lift_distance_squared": 0.0033305564813161195
+      "packet_rms_defect_estimate": 1.3911500629930376,
+      "packet_max_defect_estimate": 1.413874350747913,
+      "procrustes_reference_distance_squared": 1.428874785151906
     },
     {
       "theta": 0.4,
       "q_defect_estimate": 0.0,
-      "packet_rms_defect_estimate": 1.2821740767958638,
-      "packet_max_defect_estimate": 1.3872158644635724,
-      "canonical_lift_distance_squared": 0.0526260039980766
+      "packet_rms_defect_estimate": 1.3972331469174912,
+      "packet_max_defect_estimate": 1.4162581914871117,
+      "procrustes_reference_distance_squared": 1.4335259980270414
     },
     {
       "theta": 0.7853981633974483,
       "q_defect_estimate": 0.0,
-      "packet_rms_defect_estimate": 1.3357812318354108,
-      "packet_max_defect_estimate": 1.4133251562384772,
-      "canonical_lift_distance_squared": 0.19526214587563495
+      "packet_rms_defect_estimate": 1.4043879650856206,
+      "packet_max_defect_estimate": 1.4165426315148817,
+      "procrustes_reference_distance_squared": 1.4522709661676623
     }
   ],
   "exact_checks": [
-    "the canonical permutation lift conjugates the fixed regular involution to the theta=0 block involution",
-    "the repeated line rotation has squared normalized distance (2/3)(1-cos(theta)) from theta=0",
-    "the relative S3 collision identity holds for the whole theta family"
+    "the canonical permutation lift conjugates the fixed regular involution to the block-local theta=0 involution",
+    "the repeated U(3)xU(3) block commutes with that involution, so the relative S3 collision identity holds for the whole optimized family",
+    "nearest-reference projection reduces exactly to nuclear norms of two 3x3 compressed diagonal-block averages"
   ],
-  "interpretation": "This canonical lift is far from the packet locus already at theta=0 and provides no positive-Lambda common-U candidate. Conjugator freedom remains enormous, so the result is not a zero-only theorem for the twelve-double-coset system."
+  "interpretation": "The optimized repeated-block lift is far from the packet locus and provides no positive-Lambda common-U candidate. The full U(10080)xU(10080) conjugator freedom remains enormous, so the result is not a zero-only theorem for the twelve-double-coset system."
 }

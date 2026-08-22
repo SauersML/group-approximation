@@ -103,23 +103,32 @@ double-coset lift, not collision or representation profiles.
 
 ## Bounded `k=1` canonical-lift probe
 
-The accompanying implicit regular-`A8` experiment tests one reproducible lift
-of the local family without materializing a `20160`-square matrix.  It pairs
-the two regular involution matchings cyclewise relative to the fixed packet
-alignment and repeats the six-dimensional line rotation over the `3360`
-left-`K` cosets.  The lift has the exact formula
+The accompanying implicit regular-`A8` experiment starts from one reproducible
+lift of the local family without materializing a `20160`-square matrix.  It
+pairs the two regular involution matchings cyclewise relative to the fixed
+packet alignment and repeats the six-dimensional line rotation over the
+`3360` left-`K` cosets.  Before the centralizer optimization, that lift has the
+exact formula
 
 ```text
 ||U_theta-U_0||_2^2=(2/3)(1-cos(theta)),               (MCG10)
 ```
 
-and satisfies collision 19243 identically.  Twelve fixed Rademacher probes
-gave packet RMS defects `1.2518, 1.2537, 1.2822, 1.3358` at
-`theta=0,0.1,0.4,pi/4`, respectively.  Thus this canonical slice is already
-far from the packet locus at its zero-angle endpoint and supplies no
-positive-`Lambda` candidate.
+and satisfies collision 19243 identically.  The current experiment enlarges
+this to the repeated `U(3) x U(3)` centralizer subfiber and chooses its exact
+nearest-reference Procrustes point.  Twelve fixed Rademacher probes gave
+packet RMS defects `1.3906, 1.3912, 1.3972, 1.4044` at
+`theta=0,0.1,0.4,pi/4`, respectively.  Thus that optimized repeated-block
+slice is still far from the packet locus and supplies no positive-`Lambda`
+candidate.
 
 This is deliberately only numerical evidence about one section of the
 conjugator fiber.  The collision family fixes `U^*rho(b_0)U`, not `U`; the
 large commutant of `rho(b_0)` leaves many other lifts.  Therefore the probe is
 neither a lower bound for `(CUL3)` nor evidence that `I_1 subseteq {0}`.
+
+`atlas-repeated-collision-fiber-is-two-block-procrustes` now enlarges that
+single section to the block-repeated `U(3) x U(3)` collision subfiber and
+solves its nearest-reference projection exactly by two `3 x 3` polar
+decompositions.  The optimized slice remains numerically far from the packet,
+but the unrestricted `U(10080) x U(10080)` conjugator fiber is untouched.

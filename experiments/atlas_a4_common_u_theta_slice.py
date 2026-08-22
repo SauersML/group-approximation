@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Fast implicit regular-A8 probe of one canonical collision-theta lift.
+"""Fast implicit regular-A8 probe of collision-theta lifts.
 
 This is a numerical slice, not a feasibility certificate.  Matrices of size
 20160 are never materialized: left regular permutations, one permutation
-conjugator, and the repeated six-dimensional S3 line rotation are applied to
-probe vectors.
+conjugator, and repeated six-dimensional blocks are applied to probe vectors.
+For each theta the script also solves exactly the block-repeated Procrustes
+problem over the U(3) x U(3) centralizer of the local collision involution.
 """
 
 import json
@@ -94,9 +95,6 @@ def main():
     def left_perm(g):
         return np.asarray([index[matrix_key(gf2_mul(g, h))] for h in elements])
 
-    def right_perm(g):
-        return np.asarray([index[matrix_key(gf2_mul(h, g))] for h in elements])
-
     reference = np.frombuffer(bytes.fromhex(REFERENCE_HEX), dtype=np.uint8).reshape(4, 4)
     p_reference = left_perm(reference)
     b = np.asarray(gf2_matrix(FIRST_INVOLUTION_HEX), dtype=np.uint8)
@@ -118,7 +116,30 @@ def main():
     for value in k_group:
         sign[matrix_key(value)] = 1.0 if matrix_key(value) in rotations else -1.0
 
-    p_c0 = right_perm(s)
+    # Choose explicit Reg(K) copies on the left K-cosets.  The local right-s
+    # action below commutes with left K while staying inside each chosen copy.
+    unseen = set(range(n))
+    blocks = []
+    while unseen:
+        h_index = min(unseen)
+        h = elements[h_index]
+        block = np.asarray([index[matrix_key(gf2_mul(k, h))] for k in k_group])
+        if len(set(block.tolist())) != 6:
+            raise AssertionError("K orbit is not regular")
+        unseen.difference_update(block.tolist())
+        signs = np.asarray([sign[matrix_key(k)] for k in k_group])
+        blocks.append((block, signs))
+    assert len(blocks) == 3360
+    block_indices = np.stack([block for block, _signs in blocks])
+    block_signs = np.stack([signs for _block, signs in blocks])
+
+    local_index = {matrix_key(k): i for i, k in enumerate(k_group)}
+    local_s_perm = np.asarray([
+        local_index[matrix_key(gf2_mul(k, s))] for k in k_group
+    ])
+    p_c0 = np.empty(n, dtype=np.int64)
+    for block in block_indices:
+        p_c0[block] = block[local_s_perm]
     # The raw second chart includes the fixed collision alignment A.  Choose
     # the line-sector conjugator near R A^(-1), so its raw product is near R.
     p_base = p_reference[p_alignment_inv]
@@ -135,21 +156,58 @@ def main():
         raise AssertionError((int(np.count_nonzero(conjugated != p_c0)),
                               conjugated[:12].tolist(), p_c0[:12].tolist()))
 
-    # Left K-cosets and their normalized trivial/sign line vectors.
-    unseen = set(range(n))
-    blocks = []
-    while unseen:
-        h_index = min(unseen)
-        h = elements[h_index]
-        block = np.asarray([index[matrix_key(gf2_mul(k, h))] for k in k_group])
-        if len(set(block.tolist())) != 6:
-            raise AssertionError("K orbit is not regular")
-        unseen.difference_update(block.tolist())
-        signs = np.asarray([sign[matrix_key(k)] for k in k_group])
-        blocks.append((block, signs))
-    assert len(blocks) == 3360
-    block_indices = np.stack([block for block, _signs in blocks])
-    block_signs = np.stack([signs for _block, signs in blocks])
+    b0_local = np.zeros((6, 6), dtype=np.complex128)
+    b0_local[local_s_perm, np.arange(6)] = 1.0
+    eigenvalues, eigenvectors = np.linalg.eigh(b0_local)
+    qminus = eigenvectors[:, eigenvalues < 0]
+    qplus = eigenvectors[:, eigenvalues > 0]
+    assert qminus.shape == qplus.shape == (6, 3)
+
+    trivial = np.ones(6) / np.sqrt(6.0)
+    sign_line = block_signs[0] / np.sqrt(6.0)
+
+    def local_t(theta):
+        cosine = np.cos(theta)
+        sine = np.sin(theta)
+        return (
+            np.eye(6)
+            + (cosine - 1.0) * (
+                np.outer(trivial, trivial) + np.outer(sign_line, sign_line)
+            )
+            + sine * (
+                np.outer(sign_line, trivial) - np.outer(trivial, sign_line)
+            )
+        )
+
+    q_inverse = np.argsort(q)
+
+    def procrustes_c(theta):
+        """Closest repeated B0-centralizing block to q^(-1) T_theta^*."""
+        tstar = local_t(theta).conj().T
+        average = np.zeros((6, 6), dtype=np.complex128)
+        local_positions = [
+            {int(value): row for row, value in enumerate(block)}
+            for block in block_indices
+        ]
+        for block, positions in zip(block_indices, local_positions):
+            for middle in range(6):
+                output = int(q_inverse[int(block[middle])])
+                row = positions.get(output)
+                if row is not None:
+                    average[row, :] += tstar[middle, :]
+        average /= len(block_indices)
+
+        central = np.zeros((6, 6), dtype=np.complex128)
+        nuclear_sum = 0.0
+        for carrier in (qminus, qplus):
+            compressed = carrier.conj().T @ average @ carrier
+            left, singular, right_h = np.linalg.svd(compressed)
+            polar = left @ right_h
+            central += carrier @ polar @ carrier.conj().T
+            nuclear_sum += float(singular.sum())
+        assert np.linalg.norm(central.conj().T @ central - np.eye(6)) < 1e-10
+        distance2 = 2.0 - nuclear_sum / 3.0
+        return central, distance2
 
     def apply_t(vector, theta, adjoint=False):
         cosine = np.cos(theta)
@@ -167,13 +225,21 @@ def main():
 
     p_u0_inv = np.argsort(p_u0)
 
-    def apply_u(vector, theta, adjoint=False):
+    def apply_c(vector, central, adjoint=False):
+        matrix = central.conj().T if adjoint else central
+        out = vector.copy()
+        out[block_indices] = vector[block_indices] @ matrix.T
+        return out
+
+    def apply_u(vector, theta, central, adjoint=False):
         if adjoint:
             out = perm_apply(p_u0_inv, vector)
+            out = apply_c(out, central, True)
             out = apply_t(out, theta, True)
             return perm_apply(p_alignment_inv, out)
         out = perm_apply(p_alignment, vector)
         out = apply_t(out, theta, False)
+        out = apply_c(out, central, False)
         return perm_apply(p_u0, out)
 
     states, _ = enumerate_ball(5)
@@ -189,21 +255,25 @@ def main():
 
     probes = rng.choice((-1.0, 1.0), size=(12, n)).astype(np.complex128)
 
-    def apply_word(vector, word, theta):
+    def apply_word(vector, word, theta, central):
         out = vector
         for factor, g in reversed(word):
             if factor == 1:
                 out = perm_apply(distinct[matrix_key(g)], out)
             else:
-                out = apply_u(out, theta, True)
+                out = apply_u(out, theta, central, True)
                 out = perm_apply(distinct[matrix_key(g)], out)
-                out = apply_u(out, theta, False)
+                out = apply_u(out, theta, central, False)
         return out
 
     for theta in (0.0, 0.1, 0.4, np.pi / 4):
+        central, reference_distance2 = procrustes_c(theta)
         traces = []
         for word in words:
-            estimates = [np.vdot(v, apply_word(v, word, theta)).real / n for v in probes]
+            estimates = [
+                np.vdot(v, apply_word(v, word, theta, central)).real / n
+                for v in probes
+            ]
             traces.append(float(np.mean(estimates)))
         defects2 = np.maximum(0.0, 2.0 - 2.0 * np.asarray(traces))
         packet2 = defects2[:-1]
@@ -213,6 +283,7 @@ def main():
             "packet_max_estimate": float(np.sqrt(packet2.max())),
             "q_defect_estimate": float(np.sqrt(defects2[-1])),
             "canonical_lift_distance2": float((2.0 / 3.0) * (1.0 - np.cos(theta))),
+            "procrustes_reference_distance2": reference_distance2,
             "probes": len(probes),
         }, sort_keys=True), flush=True)
 
