@@ -51,3 +51,8 @@ The first natural overgroup family is completely removed by
 `atlas-natural-a8-supports-collapse-before-collision`: in any
 `A_n`, the packet forces two natural support `A8` copies to have the same
 eight-point support, after which collision excludes their relative marking.
+
+The entire degree-thirty-two residue, including the affine and `S6`
+intersection profiles, is subsequently removed by
+`atlas-q14-simple-overgroup-index-is-at-least-33` using the finite-simple
+prime-power-index classification.
