@@ -89,3 +89,14 @@ least one non-root assignment projection must survive.
   `free-factor-phase-graph-hnn-is-residually-finite`.  Thus sparsity remains
   live only when combined with nonprimitive labels, coupled pieces, or a
   non-HNN operation.
+- **Pair opposite group-ring terms with new relators: circular.**  A single
+  additive marginal equality can be forced by pairing its finite positive
+  and negative support terms.  But
+  `term-pairing-does-not-bypass-signed-hecke-holonomy` shows that a genuine
+  tagged context projection has phase labels `h_i h_j^(-1)` satisfying the
+  triangle cocycle.  Independent long tags destroy self-adjointness or
+  idempotence; pairing those residuals reinstates the same cycle equations.
+  General word-pairing quotients need not preserve the finite subgroup
+  supporting `q` (even `xgx^(-1)=1` kills `g`).  Small cancellation is useful
+  only if one proves relative injectivity for this specific coherent cycle,
+  which is exactly the remaining chord theorem.
