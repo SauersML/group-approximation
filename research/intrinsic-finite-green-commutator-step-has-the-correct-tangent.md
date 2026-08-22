@@ -84,3 +84,8 @@ The low-`K_a` qualification is necessary:
 pairwise anticommuting Clifford packet has maximal pair energy but zero
 intrinsic correction.  Its anchor square function is instead
 `(1-1/L)I`, so the regularized aggregate cut removes it completely.
+On the complementary pointwise-soft sector,
+`low-odd-square-removes-pairwise-green-stationarity` proves the exact
+identity `omega^*omega=R(I-R)` and hence recovers a `(1-s)` fraction of
+every pair's commutator energy.  The unresolved PL estimate is therefore
+only the cancellation/curl estimate for the normalized edge divergence.
