@@ -93,3 +93,12 @@ bounded-complexity theorem target and a finite coefficient search problem.
   that calculus separates the canonical point.  Any successful matrix-only
   inequality must visibly use finite rank/multiplicity integrality or another
   operation unavailable in a diffuse finite algebra.
+- **Finite rank residues do not supply that missing ingredient.**
+  `atlas-fixed-packet-arithmetic-has-no-hs-gap` shows that finite homogeneous
+  congruences disappear exactly after common amplification, while normalized
+  points of any fixed packet multiplicity semigroup are dense in its real
+  tracial simplex.  Hence parity, determinant phases, divisibility, and fixed
+  integer-rank meshes cannot create positive HS separation.  A fixed packet
+  gap is possible only from a real representation-type incompatibility; a
+  genuinely matrix-only route must activate unbounded data or a global
+  coupling not determined by the A4 type vector.

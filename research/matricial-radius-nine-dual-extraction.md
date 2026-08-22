@@ -62,3 +62,14 @@ implementation has accidentally reverted to the forbidden tracial NPA cone.
   be negative at the canonical point.  The required outer bound must expose
   a genuinely matricial rank or multiplicity operation; packet symmetry and
   PSD Gram forms alone merely rebuild a richer tracial relaxation.
+- **Fixed packet rank arithmetic also washes out under amplification.**
+  `atlas-fixed-packet-arithmetic-has-no-hs-gap` proves that every finite
+  homogeneous congruence or divisibility condition on the A4 multiplicity
+  lattice is killed exactly by multiplying all multiplicities by the exponent
+  of its finite residue group.  More generally, normalized points of a fixed
+  finitely generated multiplicity semigroup are dense in the projectivized
+  real cone.  Even the quadratic commutant-rank density is continuous on this
+  simplex.  Therefore a positive gap from fixed packet ranks is already a
+  real representation-type incompatibility; it is not matrix-only
+  integrality.  The remaining branch must be dimension-activated or use data
+  outside the fixed type profile.
