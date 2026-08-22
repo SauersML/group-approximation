@@ -247,9 +247,12 @@ least one non-root assignment projection must survive.
   `edgeful-one-ghost-escape-avoids-term-recurrence` uses such an edge so the
   Hadamard/free-phase coefficient occurs in exactly one logical marginal
   while the other three remain fixed.  This escapes the preceding two-piece
-  `C(4)` firewall locally.  It sacrifices the non-TVF one-row commutativity
-  gadget and does not yet prove the remaining coefficient-link or cap-model
-  assertions.
+  `C(4)` firewall locally.  Although the physical pair `(1,2)` is TVF, the
+  projection to `(2,3)` is full: putting visible variables in slots `(2,3)`
+  and private variables in `(1,4)` gives the explicit commutativity gadget
+  `(EOF6)`.  Thus the edgeful replacement does not sacrifice the compiler's
+  commutativity interface.  It still does not prove the remaining
+  coefficient-link or cap-model assertions.
 - **The edgeful OR3 packet reduces the survivor to root-slot holonomy.**
   `edgeful-or3-balanced-private-plane-packet` gives one fixed ten-coordinate,
   full-support, `5+5`-balanced clause packet with three disjoint private
@@ -261,6 +264,27 @@ least one non-root assignment projection must survive.
   pivot.  The off-diagonal `C(4)` collision is solved; the precise remaining
   issue is finite slot-frame holonomy and consistency of the several finite
   group support terms of one matrix unit.
+- **Four affine Fourier caps remove the root diagonal, but expose semantic
+  parity repetitions.**  `edgeful-or3-four-cap-walsh-packet` writes OR3 as
+  the union of the caps with normals `110,101,011,111`, with multiplicities
+  `3,2,1` by Hamming weight.  Capwise Walsh transform makes every literal
+  marginal fixed-point-free monomial, so all root diagonals vanish.  The
+  exact remaining repetitions are `S_a=-S_b` on cap `110`, `S_a=-S_c` on
+  `101`, and `S_b=-S_c` on `011`; the `111` cap has three distinct
+  matchings.  These are equations of different logical marginals and cannot
+  be discarded as adjoint duplicates.  This alternative changes the open
+  gate from slot holonomy to authenticating compatible cap sectors and their
+  parity identities across contexts.
+- **A literal common phase cannot authenticate those four cap sectors.**
+  `four-cap-common-phase-forces-trivial-mark` writes the diagonal Hecke
+  coefficients as flat coboundaries and then globalizes the three
+  weight-two cap parities.  The resulting equations `AB=J`, `AC=J`, and
+  `BC=J` force `J=1`; the fourth parity forces `A=B=C=1`.  Keeping central
+  cap projections prevents that multiplication but leaves a sectorwise
+  controlled direct sum.  Hence the four-cap branch now has a sharper live
+  target: one cap selector must be noncentral relative to a second
+  authenticated chart, so that cross-cap terms survive without imposing the
+  global parity collapse.
 - **A retractive Hecke host evaluates the entire OR3 square complex back to
   finite matrices.**  `packet-retraction-evaluates-hecke-collision-atlas`
   applies the packet retraction entrywise under the primitive Morita normal

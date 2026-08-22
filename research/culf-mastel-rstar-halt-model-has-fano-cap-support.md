@@ -76,3 +76,20 @@ no-Fano-line support conclusion.
   survives a fixed-language `R_*` lift with jointly commuting incident
   context algebras.  This enables joint pruning, but does not itself exclude
   a full seven-point support or prove the affine-safety condition above.
+- The tempting universal empty-link strengthening is false for that actual
+  lift.  `star-surjective-nonaffine-context-blocks-fano-empty-link-lift`
+  applies to a copied proper 3SAT clause: every one of its seven satisfying
+  assignments extends through the whole CMPS star, and private-auxiliary
+  `R_*` lifting preserves those extensions.  If every descended occurrence
+  hit every Fano line by an empty link, the witness ranges would all be caps;
+  affinizing and projecting them would make the seven-point source relation
+  affine, a contradiction.  Radius-two commutation therefore supplies the
+  operator step of joint pruning but cannot supply its required line-hitting
+  combinatorics here.
+- `rstar-fano-caps-have-seven-maximal-parity-covers` reduces the conditional
+  branch menu to seven nonzero parity characters per context.  This makes the
+  downstream compiler smaller but does not select one character in the
+  HALT model.  Likewise
+  `fano-maximal-cap-overlap-has-positive-sequential-mass` gives a profile of
+  squared sequential mass at least `(4/7)^m`; such a product need not be a
+  common reducing corner, so the central-core firewall still applies.

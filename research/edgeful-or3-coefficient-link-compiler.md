@@ -8,34 +8,53 @@ distinct_from:
   relative-c-sixth-pauli-incidence-labeling: that seeks long relative C-prime one-sixth contours for a growing Pauli occurrence family; this is a fixed ten-coordinate clause packet and targets triangular or C(4)-T(4) coefficient relations.
 ---
 
-**OPEN.**  Start from a signed-3SAT BCS written with `R_edge` clauses and the
-ten-coordinate packet of
-`edgeful-or3-balanced-private-plane-packet`.  Construct a finite coherent
-coefficient presentation with these properties.
+**OPEN.**  Start from a signed-3SAT BCS written with `R_edge` clauses.  One
+input is the ten-coordinate packet of
+`edgeful-or3-balanced-private-plane-packet`.  The alternative input
+`edgeful-or3-four-cap-walsh-packet` is sixteen-dimensional and has no root
+diagonal at all.  Construct a finite coherent coefficient presentation with
+these properties.
 
-1. Every clause context uses `(OBP4)`.  Thus its predicate, star,
-   idempotence, and partition identities are exact before any overlap
-   relator is added.
-2. For every logical-variable occurrence, align the root-diagonal part of
-   its sparse marginal with one common variable skeleton without imposing a
-   new equality between nonidentical elements of the finite packet group.
-3. Pair the one private off-diagonal plane with the common variable plane.
-   After expanding its matrix unit in the finite packet group, all support
-   equations for that plane must be consequences of one equation
+1. Every clause context uses a conjugated assignment PVM: `(OBP4)` for the
+   ten-coordinate input, or the direct sum of four conjugated cap PVMs for
+   the Fourier input.  Thus predicate, star, idempotence, and partition
+   identities are exact before any overlap relator is added.
+2. In the ten-coordinate branch, align the root-diagonal part of every
+   sparse marginal with one common variable skeleton without imposing a new
+   equality between nonidentical elements of the finite packet group.  This
+   item is vacuous in the four-cap branch because `(OCW3)` has zero diagonal.
+3. In the ten-coordinate branch, pair the one private off-diagonal plane
+   with the common variable plane.  After expanding its matrix unit in the
+   finite packet group, all support equations for that plane must be
+   consequences of one equation
 
    ```text
    h_(c,r) h_(c,s)^(-1)=z_v                              (OCL1)
    ```
 
    up to already valid packet conjugacies.  One of `h_(c,r),h_(c,s)` must be
-   an occurrence-private pivot appearing in no other defining equation.
+   an occurrence-private pivot appearing in no other defining equation.  In
+   the four-cap branch, do the same for every nonrepeated matching, and give
+   a valid sectorwise derivation or a genuine link relation for each signed
+   repetition in `(OCW4)`.
 4. The pivots can then be Tietze-eliminated.  Equivalently, if a graphical
    presentation is retained, verify `C(4)-T(4)` on the actual coefficient
    link.  In either proof the finite packet embeds and its corner projection
    remains nonzero.
 5. At least one common phase `z_v` remains outside the finite root group, so
-   a genuine assignment projection in `(OBP4)` remains block-escaping after
-   all overlaps close.
+   a genuine assignment projection in the chosen context PVM remains
+   block-escaping after all overlaps close.
+
+For the four-cap input, the diagonal part of item 2 is automatic.  What
+replaces it is the exact cap-sector compatibility obligation.  On the
+`110`, `101`, and `011` caps,
+respectively, two logical marginals share one matching with opposite sign;
+on the `111` cap all three matchings are distinct.  The repeated equations
+on the first three caps may be omitted only if authenticated global target
+blocks satisfy those same signed parity identities.  Otherwise both
+equations must remain in the coefficient link and the shared endpoint is a
+piece.  Establishing central or coherent cap blocks simultaneously across
+clauses is still open and is not asserted by the local Fourier packet.
 
 The local link audit is already complete.  A private endpoint word occurs in
 only one shared marginal; choosing one equation per adjoint pair avoids the
@@ -80,6 +99,15 @@ that certificate.
   `overlap-subdivision-preserves-coherent-piece-obstruction` proves that it
   does not change this coefficient link.  It therefore cannot supply either
   the literal diagonal matching or the required `C(4)-T(4)` link condition.
+- **Kill the diagonal by Fourier-transforming four affine caps.**
+  `edgeful-or3-four-cap-walsh-packet` does remove the root-diagonal skeleton
+  completely.  It also proves that the only repeated matchings are the
+  signed parity pairs on caps `110`, `101`, and `011`.  Those repetitions are
+  between distinct logical marginals, not adjoint copies, so deleting one
+  equation would lose an overlap condition unless the same cap sector and
+  parity identity have already been authenticated on the global targets.
+  The surviving problem is cap-sector coherence rather than root-slot
+  matching.
 - **Keep a retraction by sending every private pivot and common phase to
   one.**  This makes packet survival immediate, but
   `packet-retraction-evaluates-hecke-collision-atlas` applies that retraction
@@ -89,6 +117,16 @@ that certificate.
   that retains the packet retraction.  A successful relative presentation
   must destroy that finite evaluation while proving packet injectivity by a
   genuine Freiheitssatz.
+- **Use one literal phase word across all four Fourier caps.**
+  `four-cap-common-phase-forces-trivial-mark` computes the exact obstruction.
+  Globalizing the cap parities gives `AB=J`, `AC=J`, and `BC=J`; the first
+  two imply `B=C`, and the third forces `J=1`.  Adding the `111` parity
+  `ABC=J` forces all three common marginals trivial.  Thus this does not
+  merely retain a finite evaluation: it destroys the intended marked
+  algebraic model universally.  Orthogonal central cap selectors avoid the
+  collapse, but then all word equations split sectorwise and contain no
+  cross-cap holonomy.  The surviving link must therefore mix cap sectors by
+  a selector noncentral relative to another authenticated chart.
 
 The attack is not deferred: the finite slot-frame and packet-term matching
 problem in the preceding paragraph is the next explicit computation.
