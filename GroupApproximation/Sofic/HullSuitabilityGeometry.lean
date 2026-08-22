@@ -169,6 +169,27 @@ theorem gromovProduct_le_add_delta_of_lt {δ : ℝ}
     lt_min hfar hac
   linarith
 
+/-- One step of the bounded-backtracking induction.  A previous global
+backtracking bound, one long edge, and one bounded local turn give both linear
+progress across the edge and the same global bound at the next vertex. -/
+theorem chain_progress_step {δ C L : ℝ} (hδ : IsHyperbolicSpace δ X)
+    (hgap : 2 * (C + δ) < L) {o p q r : X}
+    (hprevious : gromovProduct o q p ≤ C + δ)
+    (hedge : L ≤ dist p q) (hlocal : gromovProduct p r q ≤ C) :
+    dist o p + (L - 2 * (C + δ)) ≤ dist o q ∧
+      gromovProduct o r q ≤ C + δ := by
+  constructor
+  · unfold gromovProduct at hprevious
+    rw [dist_comm q p] at hprevious
+    linarith
+  · have hswap := gromovProduct_add_swap_base o p q
+    have hbehind : C + δ < gromovProduct o p q := by
+      linarith
+    have hfar : gromovProduct p r q + δ < gromovProduct o p q := by
+      linarith
+    have hnext := gromovProduct_le_add_delta_of_lt hδ hfar
+    linarith
+
 /-! ## Acylindricity -/
 
 /-- Osin's acylindricity condition for a group action on a metric space. -/
