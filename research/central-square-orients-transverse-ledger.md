@@ -73,3 +73,10 @@ restriction to the same payload corner is `W`. One must construct that lift
 and impose `(CSO1)` without making it act on unrelated sectors or collapsing
 the payload central sign. Conditional on such a raw-lift compiler, the local
 selector-pinning and branch-payment problem is solved exactly.
+
+The obvious reverse-edge compiler is excluded by
+`two-chart-square-lift-recreates-schur-m2`: a stable letter crossing the two
+Schur children does make its two-edge loop a raw holonomy, but the letter
+itself supplies matrix units between the child projections and consumes the
+factor-two surplus. An auxiliary chart swap avoids that cancellation only by
+ceasing to represent the child-relative holonomy.

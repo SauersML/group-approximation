@@ -42,3 +42,12 @@ is the paid exit in `(BHP2)`. This route remains open only with an additional
 odd, phase-sensitive lift of the return frame tied to the payload; adjoining
 the full branch-flip Pauli cell is not such a lift because it consumes the
 Schur surplus.
+
+Nor can one expose the phase by simply adding a reverse Schur edge. The
+closed two-edge word is indeed a raw return holonomy and can consistently
+satisfy a corrected central square relation, but either crossing stable
+letter already generates the full `M_2` between the child projections.
+`two-chart-square-lift-recreates-schur-m2` proves that this consumes the same
+surplus as the branch flip. Atlas rectangle loops are not a substitute: they
+are flat on the canonical common-`U` lift and gauge-dependent on factor-level
+lifts.
