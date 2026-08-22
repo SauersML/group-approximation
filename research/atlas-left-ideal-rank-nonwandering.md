@@ -277,3 +277,18 @@ or genuinely nonstationary coefficient data.
   escape follows.  Thus reducible spectra and Jordan blocks do not rescue a
   single commutative parameter.  A surviving independent model must use
   genuinely multivariable noncommutative or nonstationary coefficient data.
+
+- **Bounded PI degree does not collapse the remaining coefficient width.**
+  `atlas-bounded-pi-width-and-leavitt-fence`
+  gives q14-exact repeated-natural charts whose two-generated commutative
+  coefficient algebra is
+  `F2[x,y]/(x^h,y^h)`: its PI degree is one while both its dimension and
+  radical Loewy length diverge.  The triangular packet witness rejects this
+  particular family at normalized rank `1/4`, but Artin--Wedderburn alone
+  cannot generalize that rejection.  More decisively, the full augmented
+  presentation maps onto the binary Leavitt unit algebra, which contains
+  `M_(2^r)(F2)` for every `r`; hence the packet, collision, and q14 relations
+  imply no nonzero universal polynomial identity or central-simple degree
+  bound.  Any useful PI stratification must be a finite-matrix-specific
+  positive-density theorem that also controls growing centers and radicals,
+  not a formal identity consequence of the thirteen fillings.
