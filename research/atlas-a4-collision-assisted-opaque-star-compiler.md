@@ -299,3 +299,23 @@ only has to transport its covariance block.
   invariant.  The gauge-free `Z(U)` compression above is not optional: it is
   the first remaining coordinate that actually lives on the common-frame
   quotient.
+- **The omitted central sector has a directed finite asymmetry.**
+  `atlas-central-c3-directed-gl5-classification` splits its sixteen word
+  occurrences into two directed `K_(2,2)` blocks.  Among all 216 exact GL5
+  points satisfying the fourteen-word core and `q_19243=1`, none satisfies
+  even one constraint with the central label in chart one.  But 94 satisfy
+  all four distinct reverse constraints, yielding an exact common-frame model
+  satisfying 22 of the 30 packet words while every rank-three covariance
+  generator still moves.  Thus an opaque-star proof cannot invoke an
+  undirected slogan that the packet merely sees the central `C3`.  Its first
+  indispensable input is the forward directed central block; the reverse
+  block plus the full rank-three core remains insufficient.
+- **The mixed compression descends, but collision leaves a zero interval.**
+  `atlas-mixed-c3-gram-has-local-zero-interval` expresses the leakage directly
+  through any product `U=X_eRY_e`, proving invariance under all twelve edge
+  gauges.  On the exact regular local collision family it equals
+  `sin(2theta)^2 Lambda_*`, with
+  `((9-sqrt(17))/108)<=Lambda_*<=1/6`.  Thus collision and all local profile
+  data allow a full interval starting at zero.  The sole remaining content is
+  whether the other component's simultaneous double-coset equations force
+  the endpoint `Lambda=0`; no local spectral strengthening can do so.

@@ -218,12 +218,30 @@ def main():
         action="store_true",
         help="stop after the first exact packet position with q_19243=1",
     )
+    parser.add_argument(
+        "--central-mask",
+        type=lambda value: int(value, 0),
+        default=0,
+        help="with --core, add the indicated subset of eight distinct central-C3 constraints",
+    )
+    parser.add_argument(
+        "--list-central-constraints",
+        action="store_true",
+        help="print the canonical eight distinct central-C3 constraints and stop",
+    )
+    parser.add_argument(
+        "--central-singleton-survivors",
+        action="store_true",
+        help="find q=1 core positions surviving each one of the eight central constraints",
+    )
     args = parser.parse_args()
 
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
     full_packet = select_packet(words, x_lengths())
     packet = full_packet
+    selected_central_constraints = 0
+    ordered_central = []
     if args.core:
         h18_for_core = subgroup(tuple(
             tuple(tuple(int(bit) for bit in row) for row in np.frombuffer(
@@ -236,12 +254,52 @@ def main():
             for value in center(h18_for_core)
             if value != I4_TUPLE
         }
-        packet = [
+        core_packet = [
             entry for entry in packet
             if matrix_key(packet_edge(entry[1])[2]) not in central_order_three
         ]
-        if len(packet) != 14:
-            raise AssertionError(f"expected 14 core words, got {len(packet)}")
+        central_packet = [
+            entry for entry in packet
+            if matrix_key(packet_edge(entry[1])[2]) in central_order_three
+        ]
+        if len(core_packet) != 14 or len(central_packet) != 16:
+            raise AssertionError("the 14+16 packet decomposition changed")
+
+        central_relations = {}
+        for entry in central_packet:
+            by_factor = {factor: matrix for factor, matrix in entry[1]}
+            key = (matrix_key(by_factor[1]), matrix_key(by_factor[2]))
+            central_relations.setdefault(key, []).append(entry)
+        ordered_central = sorted(central_relations.items())
+        if len(ordered_central) != 8:
+            raise AssertionError("expected eight distinct central-C3 constraints")
+        if args.central_mask < 0 or args.central_mask >= (1 << len(ordered_central)):
+            raise ValueError("--central-mask must lie between 0 and 255")
+        if args.list_central_constraints:
+            print(json.dumps({
+                "central_constraint_orbit": [
+                    {
+                        "bit": bit,
+                        "first_hex": first.hex(),
+                        "occurrences": len(entries),
+                        "second_hex": second.hex(),
+                        "tree_indices": [entry[0] for entry in entries],
+                    }
+                    for bit, ((first, second), entries) in enumerate(ordered_central)
+                ],
+                "distinct_constraints": len(ordered_central),
+                "word_occurrences": len(central_packet),
+            }, indent=2, sort_keys=True))
+            return
+        selected_entries = [
+            entries[0]
+            for bit, (_key, entries) in enumerate(ordered_central)
+            if args.central_mask & (1 << bit)
+        ]
+        selected_central_constraints = len(selected_entries)
+        packet = core_packet + selected_entries
+    elif args.central_mask or args.list_central_constraints or args.central_singleton_survivors:
+        raise ValueError("central-constraint options require --core")
 
     here = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as handle:
@@ -298,7 +356,9 @@ def main():
     for index, first, first_order, second, second_order in relation_data:
         key = (matrix_key(first), matrix_key(second), first_order, second_order)
         unique_relations.setdefault(key, []).append(index)
-    expected_distinct_relations = 8 if args.core else 16
+    expected_distinct_relations = (
+        8 + selected_central_constraints if args.core else 16
+    )
     if len(unique_relations) != expected_distinct_relations:
         raise AssertionError(
             f"expected {expected_distinct_relations} distinct ordered pair constraints"
@@ -315,6 +375,8 @@ def main():
 
     solutions = []
     coset_solution_counts = collections.Counter()
+    singleton_survivors = {}
+    central_pattern_histogram = collections.Counter()
     for coset_index, (representative, representative_inverse) in enumerate(
         coset_representatives()
     ):
@@ -346,6 +408,30 @@ def main():
             coset_solution_counts[len(positions)] += 1
         for position in positions:
             relative = mul5(representative, H[int(position)])
+            if args.central_singleton_survivors:
+                if not np.array_equal(collision_value(collision, relative), I5):
+                    continue
+                satisfied_mask = 0
+                for bit, (_key, entries) in enumerate(ordered_central):
+                    value = collision_value(entries[0][1], relative)
+                    if np.array_equal(mul5(mul5(value, value), value), I5):
+                        satisfied_mask |= 1 << bit
+                        singleton_survivors.setdefault(bit, key5(relative).hex())
+                central_pattern_histogram[satisfied_mask] += 1
+                if len(singleton_survivors) == 8:
+                    print(json.dumps({
+                        "all_singletons_found": True,
+                        "central_pattern_histogram_before_stop": {
+                            hex(mask): count
+                            for mask, count in sorted(central_pattern_histogram.items())
+                        },
+                        "singleton_survivors": {
+                            str(bit): relative_hex
+                            for bit, relative_hex in sorted(singleton_survivors.items())
+                        },
+                    }, indent=2, sort_keys=True))
+                    return
+                continue
             if args.first_collision_survivor and np.array_equal(
                 collision_value(collision, relative), I5
             ):
@@ -407,6 +493,20 @@ def main():
                 }, indent=2, sort_keys=True))
                 return
             solutions.append((coset_index, int(position), relative))
+
+    if args.central_singleton_survivors:
+        print(json.dumps({
+            "all_singletons_found": len(singleton_survivors) == 8,
+            "central_pattern_histogram": {
+                hex(mask): count
+                for mask, count in sorted(central_pattern_histogram.items())
+            },
+            "singleton_survivors": {
+                str(bit): relative_hex
+                for bit, relative_hex in sorted(singleton_survivors.items())
+            },
+        }, indent=2, sort_keys=True))
+        return
 
     if not args.core and len(solutions) != 202:
         raise AssertionError(f"expected 202 packet solutions, got {len(solutions)}")
