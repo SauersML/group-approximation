@@ -84,6 +84,17 @@ and `(DPC6)` follows by evaluating `(DPC3)` on `(DPC5)`.
 
 ## What the exact chart does and does not provide
 
+The tempting ascending-HNN compression of this chart is ruled out in its
+canonical forms by `leavitt-hnn-shift-has-sign-or-checksum-dichotomy`.
+Single-corner compression recursively addresses a prefix but moves the
+common sign from `x_13(A)` to `x_13(s_it_i)`; forcing the sign fixed kills
+the complementary full corner and hence the sign itself.  The unital
+endomorphism `r |-> sum_i s_i r t_i` fixes the sign and gives uniform-area
+conjugates, but its iterates are only diagonal checksums.  The rectangular
+maps which name `s_u r t_v`, `u!=v`, are not ring homomorphisms.  Thus the
+full matrix chart cannot be compressed into one ordinary stable-letter
+orbit while retaining one nontrivial common sign.
+
 Applying adjacent Steinberg roots to the row words `t_u` and column words
 `s_v` turns `(DPC2)` into the common-sign Pauli tower already proved in
 `leavitt-prefixes-form-exponential-heisenberg-packet`.  On a nontrivial
