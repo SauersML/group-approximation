@@ -29,4 +29,3 @@ reverse product is one.  The same argument excludes support five using the
 
 Therefore `beta_K` has support seven.  Since `beta` itself has exactly seven
 support terms, no term lies outside `K`, proving the claim.
-
