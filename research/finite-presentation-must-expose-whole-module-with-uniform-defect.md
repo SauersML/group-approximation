@@ -393,6 +393,25 @@ supplies such a coupling.
 
 ## Attempts
 
+- **The Cayley boundary exposes coefficients but not products.**  For the
+  regular binary augmentation module,
+  `augmentation-boundary-expands-but-not-products` gives the most economical
+  bounded-degree candidate:
+
+  ```text
+  partial(g,s)=e_g+e_(gs).
+  ```
+
+  It is equivariant and onto, and its analytic transpose has a uniform
+  Kazhdan `ell^2` gap.  So linear module visibility is not the obstruction.
+  Nevertheless every finite collection of bounded-support parity/lamp words
+  and all actor translates has an exact invariant graph-product model in
+  which a remote lamp pair remains noncommuting.  The boundary map therefore
+  does not create the exact abelian representation needed to form the
+  relative-Kazhdan bimodule.  The residual gate is now sharply nonlinear:
+  uniformly abelianize the graph-product kernel in normalized HS norm, then
+  apply the already established relative-Kazhdan correction.
+
 - **Choose one word for every module element.**  A multiplication identity
   between remote words has van Kampen area depending on their addresses, so
   the direct estimate is `A_(m,n) delta`, not one uniform modulus.  Equation
