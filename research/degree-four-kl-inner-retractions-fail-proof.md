@@ -2,7 +2,7 @@
 rg: 2
 id: degree-four-kl-inner-retractions-fail-proof
 kind: route
-title: Reject every cycle and coordinate-packet inner image on an exact moved vector
+title: Reject canonical inner and proper prefix-corner images on exact moved vectors
 target: degree-four-kl-inner-retractions-fail
 requires:
   - degree-four-kl-source-face-retraction
@@ -14,10 +14,14 @@ Use the four relators `(DG2)` in
 
 ```text
 phi_i=1,  phi_i=Ad(p^k),  or
-phi_i=Ad(p^k q p^(-k)),       0 <= k < 20.             (IR1)
+phi_i=Ad(p^k q p^(-k)),  or
+phi_i=Ad(p^k) o iota_j,       j in {0,1}, 0 <= k < 20. (IR1)
 ```
 
-There are `41^3=68921` triples.  The equation `R0=1` is linear in its final
+Here `iota_j` acts as the given matrix on the prefix-`j` cylinder and as the
+identity on its complement.  It is the canonical proper self-embedding
+induced by the Leavitt corner `s_j R t_j`.  There are `81^3=531441` triples.
+The equation `R0=1` is linear in its final
 `z`, so it uniquely sets
 
 ```text
@@ -46,8 +50,8 @@ The run was performed remotely through the permitted MSI wrapper:
 The exact output was
 
 ```text
-cases=68921
-rejected_by_R1_R2_R3=(68921, 0, 0)
+cases=531441
+rejected_by_R1_R2_R3=(531441, 0, 0)
 witness_screen_survivors=0
 ```
 
