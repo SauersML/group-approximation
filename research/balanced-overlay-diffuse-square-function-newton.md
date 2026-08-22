@@ -94,3 +94,13 @@ original layer; if most syndromes are repaired, robust erasure cleaning
 rounds the remaining projective block.  Thus the unresolved high-type mass
 must be genuinely noncentral, not a diffuse central sum of matching Pauli
 packets.
+
+However, generated-algebra type itself cannot be used as the next coercive
+quantity.  `high-type-mass-is-discontinuous-at-exact-code-tuples` perturbs
+one reflection of an exact diagonal all-local-dual code tuple by an
+arbitrarily small generic conjugacy.  Every balanced relator then has
+vanishing maximum defect and the tuple remains inside the correct basin,
+but its generated algebra is the full `M_d`, with `d` arbitrary.  Hence no
+fixed standard-polynomial/subhomogeneity estimate can charge high-type mass.
+The remaining argument must be metric and generator-local; it cannot first
+truncate the entire generated algebra by irreducible dimension.
