@@ -37,3 +37,12 @@ claim is a density-normalized specialization of
   original finite root corner and exact overlap closure gives a forbidden
   finite-dimensional strategy.  The required return must be a genuinely
   multi-piece algebraic corner unitary, not `qgq` for one group element `g`.
+- Allow arbitrary finite-support multi-piece unitaries: this is the genuinely
+  surviving case, but `primitive-packet-corner-is-matrix-over-hecke-atom`
+  gives its exact normal form.  The common packet corner is a full matrix
+  algebra over one rank-one Hecke atom.  A unitary fixing already closed
+  marginals is block diagonal over that Hecke algebra on their joint sign
+  fibers; singleton fibers are immovable, and every possible escape lies in
+  a nonsingleton collision block.  Thus the open cycle equation has no
+  additional hidden normalizer freedom: it is precisely a coupled unitary
+  equation over those rank-one Hecke blocks.
