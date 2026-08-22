@@ -226,3 +226,16 @@ or genuinely nonstationary coefficient data.
   nonzero does not construct a countermodel, and the full-generation face
   cannot be encoded by one fixed polynomial because its Burnside witness
   length grows with `s`.
+
+- **The q14 triangular square-root frame is killed by one packet edge.**
+  `atlas-square-root-frame-has-unit-packet-residual` uses the explicit
+  `H18=S3 x C3` labels.  In the q14-adapted basis, one packet involution is
+  `b=I+E14`; an adjacent order-three label acts on the disjoint plane, so
+  `(ba)^3=b`.  The entire triangular frame, including its cyclic `E24`
+  rank-one bridge, commutes with `b`.  Therefore either orientation of this
+  packet edge evaluates to the same fixed residual `b-I`, of multiplicity
+  rank exactly `s`.  One scalar residual entry is the constant polynomial
+  `1`, so the two-matrix quotient `B` is zero with a length-one Bezout
+  certificate.  This decisively closes the square-root outer-product family:
+  a surviving growing-width enemy must leave this q14 triangular centralizer
+  slice, not merely choose more complicated positive-density `X,Y` inside it.

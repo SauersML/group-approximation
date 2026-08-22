@@ -84,3 +84,11 @@ word witness: Burnside spanning requires up to `s^2` independent words.
 Therefore a finite Bezout audit can prove an unconditional rank gap, but one
 cannot encode the surviving full-generation face by simply adjoining one
 fixed polynomial claimed to mean “`X,Y` generate `M_s`.”
+
+For the particular triangular frame used here, the certificate has now been
+found.  `atlas-square-root-frame-has-unit-packet-residual` identifies one
+`H18` packet edge whose residual is the fixed transvection `b-I`, independent
+of `X,Y`.  One scalar entry is exactly `1`, so `(BZR2)` holds with `L=1` and
+the quotient `(BZR1)` is zero.  Thus this entire square-root frame is closed;
+the general criterion remains useful for other genuinely nonstationary
+gauges.
