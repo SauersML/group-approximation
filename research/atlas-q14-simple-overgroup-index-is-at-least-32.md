@@ -40,3 +40,9 @@ The three intersection types are respectively the natural point stabilizer
 This is still a sieve, not nonexistence.  It shows that a finite escape cannot
 hide in any small almost-classical completion: its first possible coset action
 already has degree 32 and one of the two explicit profiles above.
+
+The tempting global closure `S=(AB)^k` is fenced by
+`atlas-augmented-relations-have-unbounded-chart-width`: the universal
+completion has an infinite locally finite chart-coset graph.  Any upper bound
+on `|S|` must therefore invoke a specifically finite-simple diameter theorem,
+not merely rewrite the packet and collision relators.
