@@ -36,3 +36,12 @@ This is a formulation, not an existence claim.  Its load-bearing content is
 the simultaneous combination of moving-depth rank authentication,
 `D`-section covariance, and noncentral two-path interference on one carrier.
 
+The most literal finite-congruence implementation is now ruled out.
+`parahoric-covariant-congruence-packets-pay-one-over-eighty-four`
+shows that every packet inside the left group algebra of the level-`2^n`
+image of `D` becomes central under exact section covariance (and uniformly
+close to central under approximate covariance).  If it retains trace-zero
+`x_23(2)` holonomy, its global Julia leakage tends to `1/84`; if leakage
+vanishes, the holonomy is erased.  Thus the source sought here must live in
+a genuinely larger relative-commutant/matrix-coordinate algebra, not merely
+in a moving finite Borel character packet.

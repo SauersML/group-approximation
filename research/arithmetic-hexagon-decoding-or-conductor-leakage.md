@@ -259,6 +259,18 @@ the fixed-depth nonhyperlinearity criterion.
   Borel/matrix-coordinate projection, noncentral relative to a second chart;
   this exact remaining target is
   `unbounded-noncentral-hecke-corner-wordizes-a2-average`.
+- **Moving finite Borel packets centralize or pay exactly `1/84`.**  In the
+  level-`2^n` image `F_n` of `D`, a projection in `C[F_n]` retaining every
+  `D` section correction lies in `Z(C[F_n])`; property `(T)` makes the same
+  statement uniform for approximate covariance.  Even granting trace
+  `1/42`, the A2 average has global Julia leakage
+  `tau(q)(1-Re tau_q(x_23(2)))/2`.  Retaining canonical trace-zero holonomy
+  makes this tend to `1/84`, while making it vanish forces the holonomy to
+  become the identity on the packet.  See
+  `parahoric-covariant-congruence-packets-pay-one-over-eighty-four`.
+  Hence the remaining unbounded source cannot lie in a moving left
+  congruence/Borel group algebra; it must occupy a larger relative
+  commutant and couple noncentrally to another chart.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from
