@@ -41,6 +41,14 @@ scalar-packet matching: repairing either cubic equation separately, or
 matching only the scalar spectrum of `S`, need not produce one common
 involution.
 
+The sharp quantitative version of the missing global step is isolated as
+`bs14-flexible-cross-packet-boundary-reconciliation`: the unnormalized
+Frobenius energy of the two cubic residuals should pay the rank of one
+globally balanced added multiplicity vector.  This explicitly permits
+off-diagonal coupling between heterogeneous packets and records the desired
+quadratic padding law without pretending that the current determinant
+certificate handles `p=1 mod 8` or arbitrary phase mixtures.
+
 ## Attempts
 
 - **Strict repair fails, and one-dimensional flexible repair is sharp.**
