@@ -36,3 +36,11 @@ while the ordered-word table has defect at least one.  Thus any successful
 proof must consume the redundant parity faces before constructing the
 abelian table; extracting only average pairwise commutation loses the needed
 information.
+
+The obstruction is not a density loss in the quadratic overlay.
+`pair-sum-faces-control-shared-commutator-energy` assigns every logical pair
+to an original or pair-sum face with bounded congestion, and proves that
+face-to-shared occurrence movement controls the complete averaged logical
+commutator energy with a uniform constant.  What is missing is exactly the
+upgrade from that generator statistic, together with parity, to an exact
+shared code representation.
