@@ -6,7 +6,7 @@ title: Traces of the p-solenoidal Heisenberg group are canonical exactly off the
 artifacts:
   - research/artifacts/noncommutative-solenoid-unique-trace-memo-2026-08-22.md
 distinct_from:
-  sl3-carrier-has-rank-two-solenoid-action: that constrains trace restrictions dynamically, as invariant measures of the diagonal Z^2-action on the joint three-root solenoid; this is a dynamics-free fiberwise operator-algebra classification over the single central solenoid, with an exact torsion criterion no invariance argument sees.
+  sl3-upper-unipotent-is-a-noncommutative-solenoid-field: that corrects the full SL3 carrier's spectral format and the diagonal transport between fibers; this is the fiberwise trace classification itself, with an exact torsion criterion.
   far-sector-is-solenoid-measure-rigidity: that is APPROXIMATE measure rigidity for one hyperbolic solenoid automorphism in the SL_2 far sector, where single-map rigidity fails; this is an EXACT trace classification whose rigidity comes from twisted-group-algebra symmetrizers, not from dynamics, and it is insensitive to the single-map obstruction.
   relative-t-heisenberg-adjoint-quantum-expansion: that turns finite irreducible Heisenberg quotients into quantum expanders via relative property (T); this classifies the infinite-level trace simplex of the discrete Z[1/p]-Heisenberg group itself.
 ---

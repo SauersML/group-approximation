@@ -5,7 +5,7 @@ kind: route
 title: Read the exact relations of the genuine representation and compute the corner depth shift
 target: two-adic-tower-format-of-surviving-lambda-exact-enemy
 requires:
-  - sl3-carrier-has-rank-two-solenoid-action
+  - sl3-upper-unipotent-is-a-noncommutative-solenoid-field
 ---
 
 All three parts are read off from `pi` being a genuine homomorphism
@@ -33,14 +33,15 @@ identities among diagonal and signed-permutation matrices of
 diag(1,2,1/2)`); `pi` transports them to the displayed unitary
 relations exactly.
 
-**Part 3.**  The commutation of the tuple is part 2; exact joint
-Haar spectral measures for the `D`-tuple and the unipotent tower are
-the regular-trace computations recorded in
-`sl3-carrier-has-rank-two-solenoid-action` (a character of `Z^2`,
-respectively of `Z[1/2]^3`, evaluates under the regular trace to
-`delta_e`, whose dual measure is Haar), and the expansion
-cross-relations are again `pi` applied to `h e_alpha(r) h^(-1) =
-e_alpha(2^(<alpha, mu_h>) r)` in `Gamma`.
+**Part 3.**  The commutation of the `D`-tuple is part 2, and its exact joint
+Haar spectral measure follows because the regular character of `Z^2`
+evaluates to `delta_e`.  The upper-unipotent group is NOT abelian: it is the
+Heisenberg group with `[e_12(x),e_23(y)]=e_13(xy)`.  Its forced regular
+restriction is therefore the noncommutative direct-integral datum recorded
+in `sl3-upper-unipotent-is-a-noncommutative-solenoid-field`: Haar central
+measure and the canonical trace on almost every noncommutative-solenoid
+fiber.  The expansion cross-relations are again `pi` applied to
+`h e_alpha(r) h^(-1) = e_alpha(2^(<alpha, mu_h>) r)` in `Gamma`.
 
 The format statement is the conjunction; the enemy direction
 (microstates produce this data) uses only that lifts of exact

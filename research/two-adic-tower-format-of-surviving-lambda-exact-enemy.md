@@ -6,7 +6,7 @@ title: The surviving Lambda-exact enemy is an S3-interlocked depth-shifting towe
 distinct_from:
   odd-congruence-lambda-exact-sector-collapses: that closes the odd-level sector by the Weyl evaluation; this gives the exact data format of what survives at 2-power levels, where the exact slot does not exist and the evaluation cannot run.
   bs14-unitary-representations-are-periodic-cycle-packets: that classifies finite-dimensional BS(1,4) representations as periodic solenoid cycle packets -- one shift direction, and the SL_2 enemy adds one involution; this is the higher-rank format: three S3-interlocked shift directions with a sharp depth-two corner shift, over SL_3 congruence towers.
-  sl3-carrier-has-rank-two-solenoid-action: that pins the Q-marginals of any trace (all Haar); this assembles the full finite-level data an enemy's 2-adic microstates must carry, marginals included.
+  sl3-upper-unipotent-is-a-noncommutative-solenoid-field: that pins the correct noncommutative Heisenberg-fiber format of the unipotent restriction; this assembles it with the finite-level depth shifts and Weyl interlock.
 ---
 
 Let `Gamma = SL_3(Z[1/2])`, `Lambda = SL_3(Z)`, `h = diag(2,1,1/2)`,
@@ -31,18 +31,21 @@ the data `(sigma_m, V_m)` satisfies, exactly in the ultraproduct:
    (`[h_x, h_y] = e` in `Gamma`) -- three interlocked shift
    directions carrying the coweight lattice, in contrast to the
    single shift plus involution of the `SL_2`/BS(1,4) picture.
-3. **Forced marginals.**  By
-   `sl3-carrier-has-rank-two-solenoid-action` and the regular trace:
-   the joint spectral measure of the commuting tuple
-   `(V, V_(h'))` on the 2-torus is exactly Haar, as is the joint
-   solenoid measure of the unipotent tower, and the two are coupled
-   by the exact expansion relations `V pi(e_alpha(r)) V^(-1) =
+3. **Forced marginals.**  The joint spectral measure of the commuting tuple
+   `(V, V_(h'))` on the 2-torus is exactly Haar.  The unipotent tower has
+   the canonical trace of the Heisenberg group: equivalently its central
+   solenoid measure is Haar and almost every central fiber carries the
+   canonical trace of the corresponding noncommutative solenoid
+   (`sl3-upper-unipotent-is-a-noncommutative-solenoid-field`).  These data
+   are coupled by the exact expansion relations
+   `V pi(e_alpha(r)) V^(-1) =
    pi(e_alpha(2^(<alpha, mu_h>) r))`.
 
 Consequently the surviving `Lambda`-exact enemy is precisely a
-regular-trace, `S_3`-interlocked, depth-shifting solenoidal tower
-system over `{SL_3(Z/2^a)}` -- every marginal forced, all freedom in
-the joint realization.  The named finite-level question this
+regular-trace, `S_3`-interlocked, depth-shifting noncommutative-solenoidal
+tower system over `{SL_3(Z/2^a)}` -- every trace restriction is forced,
+while the Heisenberg fiber multiplicities and joint realization retain the
+remaining freedom.  The named finite-level question this
 isolates: does the `S_3`-interlocked system of parts 1-2 admit
 asymptotic closure over towers of genuine `SL_3(Z/2^a)`
 representations with the regular trace profile?  A NO at any

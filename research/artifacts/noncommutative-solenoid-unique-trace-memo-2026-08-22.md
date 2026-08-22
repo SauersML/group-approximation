@@ -434,10 +434,12 @@ and the single hyperbolic solenoid map has many invariant measures,
 including finite-orbit measures ON TORSION POINTS (the `x p^2`-orbit of a
 torsion point is finite); so there is NO unique-invariant-trace theorem from
 the scaling alone, and both `h`-weights on the center are powers of `p`
-(rank one).  The honest scaling-rigidity route remains the recorded
-rank-two joint-solenoid EKL program
-(`sl3-carrier-has-rank-two-solenoid-action`); the present mechanism is
-complementary — fiberwise and dynamics-free.  At the degenerate fiber
+(rank one).  An earlier version then pointed to a rank-two joint-solenoid
+EKL program.  That pointer was wrong: the three positive root subgroups form
+the nonabelian Heisenberg group, so no joint three-solenoid SNAG measure
+exists.  The corrected global format is
+`sl3-upper-unipotent-is-a-noncommutative-solenoid-field`, a `D`-transported
+field of the noncommutative fibers classified here.  At the degenerate fiber
 `zeta = 1` the unique-invariant-state question is FALSE outright
 (`C(S_p^2)`, single map, recorded).
 
@@ -683,7 +685,7 @@ title: Traces of the p-solenoidal Heisenberg group are canonical exactly off the
 artifacts:
   - research/artifacts/noncommutative-solenoid-unique-trace-memo-2026-08-22.md
 distinct_from:
-  sl3-carrier-has-rank-two-solenoid-action: that constrains trace restrictions dynamically, as invariant measures of the diagonal Z^2-action on the joint three-root solenoid; this is a dynamics-free fiberwise operator-algebra classification over the single central solenoid, with an exact torsion criterion no invariance argument sees.
+  sl3-upper-unipotent-is-a-noncommutative-solenoid-field: that records the corrected D-transported field of noncommutative fibers for the full upper-unipotent carrier; this is the fiberwise trace classification itself, with an exact torsion criterion.
   far-sector-is-solenoid-measure-rigidity: that is APPROXIMATE measure rigidity for one hyperbolic solenoid automorphism in the SL_2 far sector, where single-map rigidity fails; this is an EXACT trace classification whose rigidity comes from twisted-group-algebra symmetrizers, not from dynamics, and it is insensitive to the single-map obstruction.
   relative-t-heisenberg-adjoint-quantum-expansion: that turns finite irreducible Heisenberg quotients into quantum expanders via relative property (T); this classifies the infinite-level trace simplex of the discrete Z[1/p]-Heisenberg group itself.
 ---
