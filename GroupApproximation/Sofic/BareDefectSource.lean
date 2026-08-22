@@ -154,6 +154,38 @@ theorem witness_commutator_mem_defectNormal :
   rw [← D.core_transported]
   exact D.core.defect_mem_defectNormal D.witness
 
+/-- **A base-surjective image cannot see the compression defect.**
+
+If `f ∘ ι` already maps the Kazhdan base onto a target group, then the
+image of the compressed base is onto as well: it is just the conjugate by
+`f(u)` of the image of the base.  Since `s` centralizes that compressed
+copy, `f(s)` centralizes the whole target.  Consequently every marked
+commutator, and hence its normal closure, lies in `ker f`.
+
+This is the elementary obstruction to adjoining a direct or diagonal
+property-`(T)` factor and hoping that factor lies in the defect: whenever
+the factor is already a quotient of the source copy, the defect has trivial
+projection to it. -/
+theorem core_defectNormal_le_ker_of_iota_surjective
+    {Q : Type*} [Group Q] (f : E →* Q)
+    (hsurj : Function.Surjective (f.comp D.iota)) :
+    D.core.defectNormal ≤ f.ker := by
+  rw [D.core_defectNormal_eq]
+  apply Subgroup.normalClosure_le_normal
+  rintro x ⟨p, rfl⟩
+  apply MonoidHom.mem_ker.mpr
+  rw [map_commutatorElement]
+  apply commutatorElement_eq_one_iff_commute.mpr
+  obtain ⟨q, hq⟩ := hsurj (f D.u⁻¹ * f (D.iota p) * f D.u)
+  have hcompressed :
+      f (D.u * D.iota q * D.u⁻¹) = f (D.iota p) := by
+    change f D.u * f (D.iota q) * (f D.u)⁻¹ = f (D.iota p)
+    change f (D.iota q) = _ at hq
+    rw [hq]
+    group
+  have hcomm := (D.commutesAfterCompression q).map f
+  rwa [hcompressed] at hcomm
+
 /-- The protected element is nontrivial.  This is the only consequence of
 the marked commutator that the non-MF chain uses, and it needs no simple
 subgroup: were `s` trivial its commutators would be too. -/

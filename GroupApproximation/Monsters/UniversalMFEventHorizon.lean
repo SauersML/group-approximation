@@ -55,6 +55,32 @@ theorem eventHorizonMark_ne_one : eventHorizonMark ≠ 1 := by
   apply chosenNonMFEmbedding_injective
   simpa [eventHorizonMark] using h
 
+/-- The event-horizon mark still has order two after it is embedded in the
+universal group.  This is the precise obstruction to obtaining a
+torsion-free event horizon merely by restricting the carrier or by passing
+to its universal torsion-free quotient. -/
+theorem eventHorizonMark_sq : eventHorizonMark ^ 2 = 1 := by
+  rw [eventHorizonMark, ← map_pow, ChosenMarkedPresentation.mark_sq, map_one]
+
+/-- Every homomorphism from the event horizon to a torsion-free group kills
+the event-horizon mark.  This statement uses only the proved order-two
+relation; no MF input is involved. -/
+theorem map_eventHorizonMark_eq_one_to_torsionFree
+    {T : Type*} [Group T] (hT : IsPowerTorsionFree T)
+    (f : UniversalMFEventHorizon →* T) :
+    f eventHorizonMark = 1 := by
+  apply hT (f eventHorizonMark) 2 (by decide)
+  rw [← map_pow, eventHorizonMark_sq, map_one]
+
+/-- In particular, the existing universal MF event horizon is not itself
+torsion-free. -/
+theorem universalMFEventHorizon_not_torsionFree :
+    ¬ IsPowerTorsionFree UniversalMFEventHorizon := by
+  intro htf
+  exact eventHorizonMark_ne_one
+    (map_eventHorizonMark_eq_one_to_torsionFree htf
+      (MonoidHom.id UniversalMFEventHorizon))
+
 /-- The fixed event-horizon mark is invisible in every operator-norm matrix
 ultraproduct. -/
 theorem eventHorizonMark_normMFInvisible :
