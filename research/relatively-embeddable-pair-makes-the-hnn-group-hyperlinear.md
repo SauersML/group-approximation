@@ -17,11 +17,36 @@ subalgebras `B_k subset A_k`, and a trace-preserving embedding
 `pi : N -> prod_omega A_k (x) N_1` with `pi(B) subset prod_omega B_k (x) N_1`
 forming a commuting square, i.e. `E_(prod B_k (x) N_1) o pi = pi o E_B`.
 
-**Theorem.**  If `L(C) subset L(A)` is `RE/N_1` for some Connes-embeddable
-`N_1`, then `G` is hyperlinear.  Consequently, by
-`hnn-hyperlinearity-is-amalgamated-free-haar-unitary`, some regular-trace
-matrix model of `L(A)` then carries a Haar unitary in `L(C)'` free from
-`L(A)` with amalgamation over `L(C)`.
+**Theorem.**  Put `D^+ = (A x Z) *_C A`, the amalgam of `A x Z` and `A`
+over `C`.  Then:
+
+1. `L(C) subset L(A)` is `RE/C` iff `D^+` is hyperlinear (Gao,
+   arXiv:2012.07940, Appendix Theorem 7.1 with `N_1 = C`: `N subset M` is
+   `RE/N_1` iff `(M (x) L^infinity(S^1)) *_N M` embeds in `(R (x) N_1)^omega`;
+   here `L^infinity(S^1) = L(Z)` and the group amalgam's factor is the
+   tracial amalgamated free product).
+2. `G` embeds in `D^+` (send `A` to the second copy and `t` to the
+   generator of `Z`, which centralises the first copy hence `C`), so
+   `D^+` hyperlinear implies `G` hyperlinear.
+3. If `L(C) subset L(A)` is `RE/N_1` for some Connes-embeddable `N_1`, then
+   `G` is hyperlinear (also directly: Gao's Theorem 1.1 plus a Folner
+   construction for the shift, see the proof route).  Consequently, by
+   `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`, some regular-trace
+   matrix model of `L(A)` carries a Haar unitary in `L(C)'` free from
+   `L(A)` with amalgamation over `L(C)`.
+
+Since `RE/C` implies `RE/N_1` for every `N_1` (tensor with `1_(N_1)`), the
+chain of targets for a pair is
+
+```text
+G non-hyperlinear  =>  not RE/N_1 for every CE N_1  =>  not RE/C  <=>  D^+ non-hyperlinear,
+```
+
+and `D^+ = (A x Z) *_C A` is itself an explicit finitely presented witness
+whenever `A` and `C` are finitely presented.  So the host-only statement
+"`L(C) subset L(A)` is not `RE/C`" is a STRICTLY WEAKER goal target than
+non-hyperlinearity of the HNN group, and it closes the goal through
+`non-hyperlinear-from-non-relative-embeddability`.
 
 **Microstate form (`N_1 = C`, `A_k = M_(d_k)`).**  Call a regular-trace
 microstate sequence `pi_k : A -> U(d_k)` **`C`-faithful** if there are
