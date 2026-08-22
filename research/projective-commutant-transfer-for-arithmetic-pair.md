@@ -338,6 +338,20 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   joint parahoric branch labels, mixed-root coherence, or the global
   building PVM; this construction does not supply those denominator
   intertwiners and is not a full countermodel.
+- **Even all six forty-two-branch charts remain amenable if histories can
+  fold through a finite fiber.**
+  `six-parahoric-finite-fiber-folds-remain-amenable` keeps every local label
+  from `native-sl3-edge-parahoric-has-index-forty-two`, not only the depth
+  marginal.  If the chart transitions act on `Z^2 times F` by the six
+  coweight translations and arbitrary permutations of a finite
+  multiplicity fiber, coweight boxes times the whole fiber have boundary
+  `O(1/N)` simultaneously for all `252` labelled moves.  Local inverse,
+  link, triangle, and Weyl-holonomy constraints on the fiber permutations
+  do not change the estimate.  Hence the fixed building gap becomes
+  available only after proving that branch histories cannot recycle in this
+  way and instead form distinct atoms of one global PVM.  This pins the next
+  non-marginal arithmetic gate to cross-chart Gram collision/deck-cocycle
+  faithfulness, not to another weighted conductor inequality.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
