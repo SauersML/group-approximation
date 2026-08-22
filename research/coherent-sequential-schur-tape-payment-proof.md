@@ -8,7 +8,7 @@ requires:
   - toeplitz-schur-bcs-shift-amalgam
   - schur-rank-output-is-not-a-scalar-selector
   - hnn-conjugacy-cannot-return-schur-morita-multiplicity
-  - toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially
+  - toeplitz-coordinate-paulis-localize-cells-and-grams
   - shared-overlap-controls-packet-multiplicity-vector
   - oriented-schur-restriction-mass-identity
   - oriented-schur-child-branching-identity

@@ -3,7 +3,7 @@ rg: 2
 id: toeplitz-coordinate-pauli-localization-proof
 kind: route
 title: Apply the coordinate Pauli expectation and commute the compressed Gram
-target: toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially
+target: toeplitz-coordinate-paulis-localize-cells-and-grams
 requires:
   - toeplitz-head-jacobi-words-give-uniform-expanders
   - pauli-generator-average-has-inverse-linear-gap

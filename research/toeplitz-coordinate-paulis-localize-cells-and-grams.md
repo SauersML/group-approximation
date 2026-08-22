@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially
+id: toeplitz-coordinate-paulis-localize-cells-and-grams
 kind: claim
 title: Toeplitz coordinate Paulis localize relative cells and Fanizza Grams with polynomial depth loss
 artifacts:
