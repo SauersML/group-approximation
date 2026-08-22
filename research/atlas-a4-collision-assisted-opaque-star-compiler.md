@@ -338,3 +338,13 @@ only has to transport its covariance block.
   expectation plus polar repair supplies no minimizer reduction.  Thus the
   exact two-`3 x 3` Procrustes calculation remains a restricted search slice,
   not an all-fiber theorem.
+- **q14 adds a wall, not a gauge fixing.**
+  `atlas-q14-adds-stratified-thirteenth-double-coset` writes the actual
+  packet-plus-19243-plus-q14 system as the twelve common products together
+  with one finite union of involution double cosets indexed by an intersection
+  dimension `m`.  All twelve right-regular witness gauges survive unchanged.
+  The gain is the sharp common-`U` coordinate
+  `x_30^2>=1/2` at q14 defect zero.  The quotient finite-factor escape also
+  survives after q14 is added, so the required opposing strict upper bound
+  remains genuinely matrix/CE-sensitive rather than an algebraic normal-form
+  consequence.

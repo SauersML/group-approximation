@@ -100,3 +100,15 @@ under all twelve gauges.  Collision plus the regular local profiles leaves a
 whole interval of values including zero.  Hence the remaining all-`k`
 question is exactly whether the simultaneous twelve-product equations cut
 that interval down to `{0}`.
+
+The stronger kernel menu has an equally explicit augmentation.
+`atlas-q14-adds-stratified-thirteenth-double-coset` proves that q14 adds the
+single condition
+
+```text
+W in disjointUnion_(m=0)^(D/2) C_(t23) S_m C_(t23),
+```
+
+to `(CUL3)`.  It does not reduce any of the twelve right-regular gauge fibers.
+Its gain is instead analytic: every exact augmented point has the
+gauge-invariant `t30` root energy at least `1/2`.
