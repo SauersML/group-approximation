@@ -125,3 +125,15 @@ constant-size Steinberg root-coefficient word and, because the target is a
 self-adjoint contraction, its factors may be chosen with operator norms at
 most one and two uniformly in dimension.  The sole surviving issue is the
 finite-coordinate decoding of that root comparison at an endogenous depth.
+
+## Depthwise relaxation after reverse Kleene
+
+For the reverse-Kleene application, an endogenous dimension-reported depth
+is no longer necessary.  `fanizza-depthwise-fixed-mark-return` isolates the
+strictly weaker target: adjoin a separately compiled return cell for every
+fixed heat depth `t` in a recursively enumerable presentation, allow its
+constant and proof area to grow arbitrarily with `t`, take the canonical
+microstate limit first, and only then send `t->infinity`.  The remaining
+matrix-only same-mark comparison is still substantive, but the
+Amitsur--Levitzki dimension tape and runtime-independent compiler are not
+part of this weaker route.
