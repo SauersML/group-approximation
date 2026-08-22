@@ -44,8 +44,12 @@ small perturbation of the exact skeleton.
 `bs14-long-cycles-admit-bounded-period-shadowing` proves that, for every
 period cap `K`, the skeleton can be replaced in the same dimension by an
 exact one whose fourth-power orbit lengths are at most `K`, at squared
-normalized-Hilbert--Schmidt cost `O(1/K)`.  On its commutative spectral
-coordinate algebra, `bounded-cycle-coboundary-inverse` then gives inverse
-norm at most `K/4`.  Consequently the generic long-cycle loss may be traded
-for a controlled skeleton perturbation; the surviving issue is transport of
-the arithmetic Weyl defect and its multiplicity/monodromy components.
+normalized-Hilbert--Schmidt cost `O(1/K)`.  The continuous packet returns
+can then be rounded by
+`bs14-monodromy-admits-root-of-unity-quantization`.  Together with
+`bounded-bs14-full-commutant-coboundary-inverse`, this gives inverse norm at
+most `KM/4` on the entire base commutant, including all off-diagonal
+multiplicity and monodromy directions.  Consequently both generic sources
+of near-unit adjoint spectrum may be traded for a controlled exact skeleton
+perturbation; the surviving analytic task is transporting the arithmetic
+Weyl defect through that perturbation and removing its fixed component.
