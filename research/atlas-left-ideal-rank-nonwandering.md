@@ -114,3 +114,14 @@ or genuinely nonstationary coefficient data.
   chart.  Hence passing rigorously to the thirteen-filling carrier requires
   a relative `V4` rank-correction theorem, not merely the linear commutator
   projection.
+
+- **The relative q14 chart correction is available flexibly.**
+  `atlas-q14-relative-chart-rank-correction` applies rank stability of the
+  four-dimensional algebra `F2[r,s]/(r^2,s^2,rs-sr)`, tunes the two
+  marginal Jordan ranks using `o(m)` auxiliary blocks, and uses
+  `square-zero-near-conjugacy-in-rank` to conjugate the two full `A8` charts
+  nearby.  Thus q14 may be made exact without losing any vanishing-rank
+  packet or collision residual.  The relation-specific endpoint can
+  legitimately be studied as the thirteen post-q14 residuals: twelve packet
+  cubes plus collision.  No analogous correction of those fillings follows
+  from the finite-algebra theorem.
