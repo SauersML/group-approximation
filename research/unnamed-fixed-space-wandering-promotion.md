@@ -52,3 +52,10 @@ one boundary representation still does not supply `(UFW1)`.
   kernel has density bounded below and on which `w^2-1` is small.  Unlike the
   named-carrier target, no synchronization of that kernel with a fixed packet
   atom is required.
+- **One heterogeneous HNN row is sufficient.**
+  `hnn-compressed-row-is-unnamed-fixed-carrier` proves that
+  `u=a t b^(-1)t^(-1)` fixes the moving carrier `tp` exactly to the extent
+  that `a t p` intertwines with `t p b`.  Britton normal form supplies
+  infinite order independently.  The live route
+  `fanizza-heterogeneous-row-closes-unnamed-return` therefore reduces this
+  target to one private/shared compressed row.

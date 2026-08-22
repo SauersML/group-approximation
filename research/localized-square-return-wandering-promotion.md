@@ -35,6 +35,15 @@ It retains the genuinely load-bearing requirement: a nonzero regular
 group-algebra element `(w^2-1)q` must be forced to zero only in canonical
 finite matrix semantics.
 
+The named element `q` is now known not to be load-bearing either.
+`unnamed-positive-density-fixed-space-is-terminal` replaces it by an
+arbitrary model-dependent contraction of fixed normalized Hilbert--Schmidt
+mass.  The strictly weaker live construction is
+`unnamed-fixed-space-wandering-promotion`.  In particular
+`hnn-compressed-row-is-unnamed-fixed-carrier` reduces the whole return to one
+heterogeneous rectangular row `a t p approximately t p b`; its moving range
+need never be identified with a regular or boundary projection.
+
 ## Attempts
 
 - **Finite Bass--Serre packets are dead.**  Residual finite quotients reproduce
@@ -91,3 +100,10 @@ finite matrix semantics.
   representations.  Its missing normalized-HS projective-commutant modulus
   would imply `(LSR1)` (with `q=1`) after the standard free-product
   phase-cancellation step.
+- **A soft HNN carrier avoids projection alignment but not matrix-only
+  forcing.**  For `u=a t b^(-1)t^(-1)`, multiplication by `tp` identifies
+  its fixed-carrier defect exactly with `||a t p-t p b||_2`.  This deletes
+  the reflection, cylinder, and named return from the target.  However the
+  existing dihedral row compiler makes the same word a defining relator,
+  while deleting it makes the finite-game gap force the row defect large.
+  The remaining gate is `fanizza-heterogeneous-compressed-row`.

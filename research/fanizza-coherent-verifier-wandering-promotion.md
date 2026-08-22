@@ -40,6 +40,24 @@ marked translates, and Cesaro amplification are not load-bearing after
 `(FCW1)` has been established.  The strictly weaker live construction is
 `localized-square-return-wandering-promotion`.
 
+There is now a further strict weakening which removes the named packet
+carrier itself.  `unnamed-positive-density-fixed-space-is-terminal` proves
+that an arbitrary model-dependent contraction `X_U` with fixed
+`||X_U||_2^2` mass and `||(u(U)-1)X_U||_2=o(1)` already contradicts finitely
+many canonical moments of one infinite-order word `u`.  No projection,
+polar correction, spectral threshold, or cross-model carrier coherence is
+needed.  The resulting minimal interface is
+`fanizza-heterogeneous-compressed-row`: across an HNN edge it asks only for
+
+```text
+||a t p-t p b||_2=o(1).
+```
+
+The identity in `hnn-compressed-row-is-unnamed-fixed-carrier` turns this
+into the soft fixed carrier for the Britton word `a t b^(-1)t^(-1)`.
+Thus `(FCW1)` is no longer the weakest live endpoint; it remains useful only
+if the coherent verifier can be wordized directly.
+
 The exact tension is now explicit: `w` must be infinite and wandering in the
 group regular normal form but look like the fixed reflection `V_m` after one
 finite-dimensional packet compression.  A finite-edge graph-of-groups cell
@@ -112,3 +130,15 @@ commutator a global relator forces every losing projection to vanish as an
 operator, while the recorded HALT theorem supplies only a positive-signal
 ground vector.  Hence the D16 cell reads the verifier Hamiltonian but does
 not perform the required support localization or wandering promotion.
+
+## One-row and deleted-relator audit
+
+The established two-letter dihedral swap has the correct analytic
+private/shared row, but obtains it by declaring the corresponding
+four-letter word to be a relator.  That makes the prospective Britton word
+identity in the abstract group.  Deleting the relator does not repair this:
+`deleting-one-gap-row-has-the-wrong-orientation` shows that the finite-game
+gap forces the omitted row defect to stay macroscopically large on every
+positive-mass Gram carrier when all retained rows are small.  The surviving
+one-row compiler must infer vanishing from a genuinely mixed matrix-only
+mechanism while keeping the four-letter word outside the relator closure.
