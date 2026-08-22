@@ -2,7 +2,7 @@
 rg: 2
 id: direct-sum-weil-compressions-have-quadratic-padding
 kind: claim
-title: Direct sums of even-Weil compressions have defect squared equal to missing-dimension density
+title: Direct sums of even-Weil compressions have a common rank-density upper ledger
 distinct_from:
   sl2-half-explicit-strict-flexible-separation: that treats one irreducible Weil block and proves strict separation; this gives the exact many-block defect/padding ledger without asserting strict separation for arbitrary mixtures.
   iwahori-torsion-multiplicity-stratum-reconciliation: that asks for a converse theorem for all near-solutions; this proves the target scaling on the canonical boundary family.
@@ -31,12 +31,20 @@ d_2(Phi,Pi) <= C' sqrt(K/(D+K)).                       (DSW3)
 ```
 
 Here `d_2` is the generalized flexible Hilbert--Schmidt metric used by
-Dogon--Vigdorovich.  Thus on this entire boundary family,
+Dogon--Vigdorovich.  Thus `K/D` simultaneously upper-bounds squared
+presentation defect and measures the evident repair's missing-dimension
+density:
 
 ```text
-missing_dimension_density = K/(D+K)
-                          = O(presentation_defect(Phi)^2).  (DSW4)
+missing_dimension_density = K/(D+K),
+presentation_defect(Phi)^2 = O(K/D).                     (DSW4)
 ```
+
+The displayed estimates do **not** imply
+`missing_dimension_density=O(presentation_defect(Phi)^2)`: that direction
+requires a matching lower bound on at least one compressed cubic residual.
+The rank-one excursion proves support and an upper bound, but the current
+calculation does not rule out cancellation in those particular words.
 
 ## Proof
 
@@ -51,8 +59,9 @@ an exact representation, its dimension is `D+K`, and the difference from the
 zero-padded `Phi` again has unnormalized Frobenius square `O(K)` on every
 fixed generator.  Normalizing by `D+K` proves `(DSW3)`.
 
-This is a calibration theorem, not the converse reconciliation theorem.  A
-valid general proof may use a weaker modulus, but it cannot demand a
-positive-density error from each nonextendable exact BS packet: `K=o(D)`
-makes the presentation defect vanish while requiring exactly `K` boundary
-dimensions in the evident arithmetic completion.
+This is an upper-ledger theorem, not the converse reconciliation theorem or
+a sharp defect-to-padding law.  It does show that `K=o(D)` makes the
+presentation defect vanish and that restoring the deleted arithmetic lines
+costs exactly `K` dimensions.  Proving that every flexible repair must pay a
+quantity comparable to the squared observed defect requires the missing
+cubic lower bound and a minimal-padding argument.

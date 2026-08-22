@@ -53,8 +53,7 @@ involution.
   distance from every exact same-dimensional representation: otherwise,
   after adjoining one trivial line, two exact equal-dimensional
   representations would violate the `(T;FD)` intertwiner gap.  Thus strict
-  stability fails but the flexible claim survives, and its sharp target must
-  permit `padding/d=O(epsilon^2)`.
+  stability fails but the flexible claim survives.
   The sharpened boundary calculation shows more: polar rounding leaves
   `X^2=1` and `XRX=R^(-1)` exactly.  The compressed operator has one deficient
   singular value `p^(-1/2)`, and correcting it preserves the dihedral
@@ -62,6 +61,19 @@ involution.
   cubic constraints.  A proof cannot charge the necessary padding to
   approximate inversion of `R`; it must recover the boundary rank from the
   simultaneous defects of `(XS^2)^3` and `(XRS)^3`.
+  The quantitative consequence is isolated as
+  `bs14-two-cubic-strict-repair-constants-diverge`: even with the BS core,
+  involution, and inversion relation exact, every level-`p` linear strict
+  repair constant is at least `c sqrt(p)` (and every Holder constant of
+  exponent `theta` is at least `c_theta p^(theta/2)`).  Thus no strict
+  orbitwise spectral-matching theorem can be uniform; the remaining claim is
+  necessarily the flexible cross-packet reconciliation statement.
+  A normalization caveat is load-bearing: the current rank-one compression
+  proof gives only an `O(p^(-1/2))` **upper** bound for the maximum cubic
+  defect.  Therefore the often-quoted `padding/d=O(defect^2)` sharpness does
+  not yet follow from this family.  It additionally requires a lower bound
+  `max(cubic defects)>=c p^(-1/2)`, i.e. an explicit statement that one cubic
+  word sees the deleted Weil boundary mode without cancellation.
 - **Primitive prime packets are now classified exactly.**
   `prime-bs14-packet-extension-classification` proves that a scalar packet
   extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,

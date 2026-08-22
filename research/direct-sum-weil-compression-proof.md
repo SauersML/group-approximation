@@ -14,3 +14,7 @@ squares, giving `O(K/D)` normalized squared defect.  Restoring the `K`
 deleted lines produces the exact sum of full Weil constituents; the
 zero-padded generalized-distance numerator is again `O(K)` and its
 normalization is `D+K`.
+
+Both estimates are upper bounds in terms of `K/D`.  No lower bound for the
+maximum of the two cubic residuals is proved here, so the route does not
+identify `K/D` with the squared observed presentation defect.

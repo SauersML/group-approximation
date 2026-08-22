@@ -104,10 +104,12 @@ dimension.
 ## Meaning for the open repair problem
 
 Same-dimensional metric repair is uniformly impossible, while one-dimensional
-flexible repair is explicit.  Hence the example fixes the necessary scale:
-defect `Theta(d^(-1/2))` can encode exactly one missing dimension, so a sharp
-reconciliation theorem should permit `padding/d = O(defect^2)`.  This does
-not refute the flexible Dogon--Vigdorovich target: their generalized metric
+flexible repair is explicit.  The proved cubic-defect estimate is
+`O(d^(-1/2))`, while the evident arithmetic repair restores one dimension.
+A matching `Omega(d^(-1/2))` lower bound for one of the two cubic words has
+not been computed, so this alone does not identify the padding density with
+the squared observed defect.  This does not refute the flexible
+Dogon--Vigdorovich target: their generalized metric
 allows the full `(p+1)/2`-dimensional Weil representation, which is
 `O(p^(-1/2))` from the compressed tuple.  Any proposed positive-density
 packet gap that forbids `(EWC4)` is false.

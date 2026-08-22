@@ -38,8 +38,10 @@ such that:
 
 Thus `PSL_2(Z[1/2])` is explicitly not **strictly** HS stable, while this
 sequence creates no obstruction at all to flexible HS stability.  The defect
-is a single deleted fixed line: normalized defect is `Theta(d^(-1/2))` and
-the necessary relative dimension change is exactly `1/d`.
+is a single deleted fixed line: normalized defect is `O(d^(-1/2))`, and
+restoring the canonical arithmetic completion changes relative dimension by
+exactly `1/d`.  No matching lower bound for the two cubic residuals is
+asserted here.
 
 This gives a concrete arithmetic witness for the general strict-instability
 phenomenon behind Becker--Lubotzky, but with the additional feature that the
