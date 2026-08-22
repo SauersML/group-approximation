@@ -72,3 +72,7 @@ row-square/HS exactify one selected controller orientation
   not choose the identity actor.
 - Directly postulating `(GAB2)` is the original additive signed-corner
   compiler, not an ordinary group-word relation.
+- `finite-cocycle-select-forces-one-common-lcu-gauge` is a genuine escape for
+  a transitive finite cocycle list: shift covariance synchronizes all actors
+  to one harmless right gauge.  Its cocycle law and its remaining
+  `1/|K|`-corner return explain why this does not orient arbitrary LCU lists.
