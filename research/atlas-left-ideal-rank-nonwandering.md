@@ -211,3 +211,18 @@ or genuinely nonstationary coefficient data.
   collision-small forces `rank[X Y]/s>=1/8` is refuted.  Any positive rank
   inequality must combine at least one packet polynomial with collision;
   collision alone supplies no density floor in these coordinates.
+
+- **The combined positive-density target is a concrete stably-finite
+  quotient test.**
+  `atlas-two-matrix-bezout-rank-gap-criterion` forms
+  `B=F2<x,y>/<entries of the thirteen P_w>`.  A finite identity
+  `1=sum a_j p_j b_j` immediately gives
+  `s<=sum_j rank p_j(X,Y)` and hence a uniform normalized-rank gap; no
+  coefficient-norm estimate is needed.  Conversely, any sequence making all
+  thirteen polynomial ranks `o(s)` yields a unital homomorphism from `B` to a
+  stably finite rank-metric matrix ultraproduct.  Thus a symbolic audit should
+  seek either an ordinary Bezout certificate or, more generally, prove that
+  `B` has no nonzero stably finite unital quotient.  Merely proving `B`
+  nonzero does not construct a countermodel, and the full-generation face
+  cannot be encoded by one fixed polynomial because its Burnside witness
+  length grows with `s`.
