@@ -355,3 +355,14 @@ weakening consumed by the HNN marked word.
   relators and carry the leak.  It proves sharply that exact ambient dilation
   cannot control the remaining branch without small leakage,
   singular-overlap, or additional arithmetic incidence.
+
+- **Every fixed polar enemy has macroscopic singular collapse.**
+  `fixed-projective-leak-forces-polar-singular-collapse` turns the aggregate
+  leakage fence into a spectral dichotomy.  If target projective energy stays
+  above `gamma` while lattice energy is at most `gamma/(2K)`, then for one
+  fixed presentation generator at least
+  `theta=gamma/(4K|S_A|)` of the retained corner has compressed singular
+  value at most `sqrt(1-theta)`.  Thus the only unresolved exact-dilation
+  branch is a genuinely information-losing polar block of positive mass.
+  Charging that block to arithmetic relator defect, or realizing it in a
+  canonical microstate countermodel, is the next precise gate.
