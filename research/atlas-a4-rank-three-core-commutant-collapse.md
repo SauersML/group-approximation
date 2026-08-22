@@ -78,3 +78,12 @@ commutant, or the full `A8` commutant is required.
   connection-Laplacian must contain an off-diagonal packet term coupling that
   line sector to the two standard copies.  A block-diagonal estimate internal
   to the collision `S3` has zero gap and cannot prove this claim.
+- **The cross-component line angle has now been computed exactly.**
+  `atlas-a4-two-c3-line-carriers-have-exact-angle-gap` proves that the
+  `C3`-fixed line spaces of `H_6` and `K` have largest nonconstant squared
+  cosine `1/2+sqrt(17)/18`, hence connection gap
+  `(9-sqrt(17))/18`.  The surviving task is no longer to prove an abstract
+  angle between the components.  It is the common-`U` compression identity:
+  extract the collision's dihedral angle as one vector in the `K` line space
+  and show an `H_6` packet residual controls its orthogonal complement to the
+  `H_6` line space.  Then the exact angle gap pays that mode quantitatively.

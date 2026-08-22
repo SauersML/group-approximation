@@ -232,3 +232,11 @@ only has to transport its covariance block.
   control the multiplicity holonomy.  The minimal positive estimate must use
   common-`U` packet coupling to transfer control from the standard blocks into
   this line sector.
+- **The finite connection coefficient for that transfer is positive and
+  exact.**  `atlas-a4-two-c3-line-carriers-have-exact-angle-gap` computes the
+  full principal-angle spectrum between the two packet `C3`-fixed spaces in
+  `Reg(GL3(2))`.  Off the common constant line the squared cosine is at most
+  `1/2+sqrt(17)/18`.  Hence the line-sector escape pays
+  `(9-sqrt(17))/18` as soon as the common-`U` equations expose the same defect
+  vector to both components.  What remains is precisely that compression
+  identity; separate rectangle gauges cannot supply it.
