@@ -22,6 +22,24 @@ Weil--Maslov loop remains open. The flux computation below is therefore a
 candidate terminal obstruction after those two seams are closed, not a
 completed closure theorem.
 
+There is now a sharper repair and a sharper obstruction.  Full flatness is
+unnecessary: `one-shift-folner-mass-is-depth-parity-balanced` proves that
+one-step shift invariance alone puts asymptotic mass `1/2` on odd conductor
+depth.  Hence an authenticated alternating `p=3` holonomy would already
+close the spread profile by the elementary bound `(PBF3)`.
+
+However `p3-minus-flux-is-cancelled-by-pauli-multiplicity` gives an exact
+finite-dimensional countermodel to the BARE flux inference.  If oscillator
+transports satisfy `AB=-BA`, then on multiplicity two the transports
+`A tensor X` and `B tensor Z` commute exactly.  All Heisenberg covariance
+relations survive.  Thus Stone--von Neumann uniqueness up to multiplicity
+unitary and the scalar Gauss computation do not obstruct a finite packet.
+The exact remaining dictionary hypothesis is now
+`p3-parahoric-interlock-forbids-pauli-multiplicity-gauge`: a Weyl or
+opposite-root relation must force the multiplicity loop to be trivial.
+Until that is proved, Steps 4--5 below are not valid for general
+multiplicity packets.
+
 Assembly of the proof, every piece prime-generic or computed here:
 
 1. Levels coprime to `p`: closed by the Weyl slot evaluation

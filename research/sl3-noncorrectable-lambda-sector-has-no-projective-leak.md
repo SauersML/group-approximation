@@ -106,3 +106,17 @@ finite-dimensional/embeddability-sensitive incidence among multiple roots.
 The known p-three exact-face flux proposal has that shape, but its flatness
 and transport-dictionary seams remain open; it cannot presently be imported
 into the uniformly noncorrectable sector.
+
+The flux audit has been sharpened further.  The invalid flatness step is not
+essential: `one-shift-folner-mass-is-depth-parity-balanced` shows that a
+single depth shift already forces half the mass onto odd levels, and an
+authenticated odd-level minus holonomy would kill that mass quantitatively.
+But `p3-minus-flux-is-cancelled-by-pauli-multiplicity` exhibits the exact
+finite escape left by the current dictionary: tensor the two oscillator
+transports with Pauli `X,Z`, whose second minus sign cancels the metaplectic
+minus sign.  This preserves all Heisenberg covariance at zero defect.
+Therefore the narrow joint multi-root target is
+`p3-parahoric-interlock-forbids-pauli-multiplicity-gauge`.  Even after that
+exact-face statement is proved, applying it to the present outlier sector
+still requires an approximate arithmetic-hexagon/band decoder; no such
+decoder follows from the scalar root relations alone.
