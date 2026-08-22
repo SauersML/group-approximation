@@ -229,6 +229,30 @@ weakening consumed by the HNN marked word.
   differ on `h`.  Thus exact character/factor rigidity cannot prove the
   transfer; finite-dimensional approximability must enter essentially.
 
+- **Character/Weil classification stops at the Schur-clock firewall.**
+  `schur-clock-router-has-maximal-projective-leak` gives an exact finite
+  calibration for the remaining dyadic-conductor strategy.  On any cyclic
+  family of equal-dimensional isotypic blocks, a router shifting the blocks
+  admits a block-scalar unitary `U` which commutes with the entire source
+  algebra but has
+
+  ```text
+  tr([U,V])=0.
+  ```
+
+  The construction preserves all block characters, conductor labels,
+  intertwiner ranks, and scalar Weil/Mackey cocycles.  Thus classifying the
+  finite congruence constituents and their projective arrow phases cannot
+  prove `(PTS1)`: those data permit zero source energy and maximal target
+  energy.  This is not an arithmetic countermodel, because exact co-density
+  forbids the required router cycle for a genuine representation of `A`.
+  It isolates the smallest representation-theoretic obstruction that a
+  proof must add: a non-Folner bound for the authenticated conductor
+  transport graph, or a literal same-multiplicity-reservoir constraint on
+  compositions of different arithmetic paths.  In particular a scalar
+  metaplectic/Weil flux computation alone cannot close the projective
+  transfer frontier.
+
 - **Exact models now pass with a uniform quantitative gap.**
   `exact-projective-codensity-has-a-uniform-trace-square-gap` proves `(PTS1)`
   with `eta(0)=0` and one dimension-independent `K` for every exact
