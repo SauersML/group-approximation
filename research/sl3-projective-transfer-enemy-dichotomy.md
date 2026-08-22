@@ -50,6 +50,14 @@ collapse theorem: the unbounded dyadic carrier and the uniformly
 noncorrectable inner-adjoint carrier are the two remaining matrix-coordinate
 problems.
 
+The dyadic alternative has one further unconditional restriction.
+`exact-dyadic-conductor-band-has-uniform-parahoric-overlap-loss` proves
+that a single exact-conductor band loses at least one eighth of its mass
+under the native depth shift, uniformly in conductor and multiplicity.
+Thus branch 2 must route mass between different conductors over an
+unbounded-width profile; it cannot hide inside large same-level
+multiplicities.
+
 There is a sharp proof firewall.  In the regular group factor of
 
 ```text
@@ -63,4 +71,3 @@ tracial positivity, root-relation, property-(T), Hecke, or finite SOS
 argument.  Any completion must use matricial embeddability: dyadic
 multiplicity/conductor geometry in branch 2, or regular inner-adjoint
 correction in branch 1.
-
