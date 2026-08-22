@@ -104,19 +104,22 @@ new and is the whole point.
   finish it (2026-08-21).**  The rank induction one hopes for --- cusp
   Levi factors are smaller `SL_k(Z[1/p])`, handle them by induction ---
   does NOT bottom out above `SL_2`.  Degree-2 boundary cohomology sees the
-  Borel--Serre strata of corank `<= 2`; the corank-2 rational parabolic of
-  `SL_N` with a `GL_2` block has Levi `S(GL_2 x GL_(N-2))`, hence an
-  `SL_2(Z[1/p])` factor, for every `N >= 4` (at `N = 4`, TWO such factors).
+  Borel--Serre strata of corank `<= 2` (parabolics with `<= 3` Levi
+  blocks); ALREADY the maximal (corank-1) rational parabolic with block
+  type `(2, N-2)` has Levi `S(GL_2 x GL_(N-2))`, hence an `SL_2(Z[1/p])`
+  factor, for every `N >= 4` (at `N = 4` the type `(2,2)` Levi has TWO
+  `SL_2` factors), and its codimension-1 boundary face contributes to
+  `H^2`.
   `SL_2(Z[1/p])` is rank one, has the Haagerup property and no property
   `(T)`, so its `H^1`/`H^2` with the restricted Ad-module are NOT gap-
   controlled and the positive local-averaging upgrade is unavailable on
   that stratum --- the exact rank-one difficulty of the `SL_2` Iwahori
   lane (`iwahori-local-global-defect-question`) re-enters at the
-  codimension-2 cusp.  So the operator-norm degree-2 primitive for
+  block-`(2,N-2)` cusp face.  So the operator-norm degree-2 primitive for
   `SL_N(Z[1/p])` is not independent of the `SL_2` case; the two horns of
   the flexible-stability residual are LINKED through the cusp geometry, and
   a proof must either control the `SL_2`-Levi primitive directly (the open
-  rank-one problem) or exploit that on the corank-2 stratum the `SL_2`
+  rank-one problem) or exploit that on the `(2,N-2)` stratum the `SL_2`
   factor is coupled to the `GL_(N-2)` block and the unipotent radical in a
   way the isolated `SL_2` lane is not.  This explains structurally why
   raising the rank has not closed the stability input.  The concrete
@@ -125,8 +128,8 @@ new and is the whole point.
   `H^j(U_P, V)` decomposes (Kostant, in the algebraic case; the
   Vogan--Zuckerman `(g,K)`-analogue for the unitary Ad-module) into Levi
   representations indexed by length-`j` Weyl elements; if for `j <= 2` NONE
-  of those Levi pieces contains an `SL_2`-Levi-fixed vector, the corank-2
-  stratum contributes nothing in degree 2 and the `SL_2` obstruction is
+  of those Levi pieces contains an `SL_2`-Levi-fixed vector, the boundary
+  face contributes nothing in degree 2 and the `SL_2` obstruction is
   killed by the coupling, so high rank WOULD close the op-norm upgrade.
   That vanishing is a finite Weyl-weight computation for each `N` --- the
   sharpest concrete next step on this horn, and the point where it would
