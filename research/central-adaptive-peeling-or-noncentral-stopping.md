@@ -112,7 +112,10 @@ positive odd-square cut has exactly half its trace in the current negative
 anchor sector.  Resetting deletes that half, so for each anchor
 `sum_n tau(p_(a,n))<=2tau(e_(a,-))`, even for overlapping physical cuts.
 Boundary leakage cannot recreate negative mass.  Together with the
-fourth-root small-mass alternative, one cut per anchor per geometric energy
-stage has summable averaged reset cost.  The residual scheduling question
-is coverage: does that rate make all retained odd parts operator-small
-before the next anchor contraction?
+fourth-root small-mass alternative, the reset COST is summable.  But
+`monotone-anchor-sign-budget-does-not-give-stagewise-coverage` shows that
+one cut per anchor per stage need not give coverage: `N` disjoint central
+zero-boundary spikes require `N` cuts while saturating the same sign budget.
+The residual scheduling theorem must therefore batch a weighted family of
+central cuts or use balanced parity to rule out that profile; monotonicity
+alone is insufficient.

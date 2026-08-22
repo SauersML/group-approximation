@@ -47,6 +47,10 @@ the anchor's negative-sign mass.
 
 For a balanced tuple, divide the reset ledger by `L`.  Together with the
 fourth-root small-mass alternative, one boundary-heavy cut per anchor per
-geometric energy stage has vanishing averaged cost.  The remaining issue is
-coverage: prove that this cutting rate makes all retained odd parts
-operator-small before the next contraction step.
+geometric energy stage has vanishing averaged cost.  This does NOT imply
+coverage.  `monotone-anchor-sign-budget-does-not-give-stagewise-coverage`
+puts `N` central, zero-boundary Pauli spikes under one anchor.  The sign
+budget is saturated exactly, but fewer than `N` resets leave an odd part of
+operator norm one.  Thus a terminal argument must batch a weighted family
+of cuts or invoke balanced parity to exclude the disjoint-spike profile;
+trace monotonicity alone controls cost, not coverage rate.
