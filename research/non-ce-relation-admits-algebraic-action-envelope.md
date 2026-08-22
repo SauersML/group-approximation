@@ -277,3 +277,16 @@ non-hyperlinear group `hat K rtimes Lambda`.
   equivariant factor whose crossed-product pullback retains the non-CE
   relation/GNS algebra and its normalizers, as in `(HSD1)`, or a genuinely
   non-Cartan embedding.  Joint membership moments alone are insufficient.
+- **Random coset lamps recover the IRS values exactly but do not promote the
+  trace.**  `random-coset-lamp-correlations-realize-every-irs-character`
+  forms `W_H=(directSum_(Gamma/H) C_2) semidirect Gamma` and observes
+  `tau(a_H g a_H g^(-1))=1_(g in H)`.  Direct integration over the IRS gives
+  `phi_mu(g)` exactly in a measurable field of wreath factors.  The returned
+  words are not multiplicative in `g`, while the honest actor unitaries retain
+  the regular trace, so no IRS GNS embedding follows.  Moreover
+  `finite-profinite-lamp-packets-cannot-carry-manzoor-trace` proves every
+  finite, countably mixed finite, or profinite version has a CE permutation
+  character.  Thus the lamp formula is the correct local moment identity,
+  but converting its random bundle into one group factor is exactly `(AAE1)`
+  or an equally strong non-Cartan group-factor envelope; packet limits cannot
+  perform that conversion.
