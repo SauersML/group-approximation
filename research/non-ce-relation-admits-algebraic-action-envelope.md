@@ -252,10 +252,13 @@ non-hyperlinear group `hat K rtimes Lambda`.
   chooses an unspecified above-gap IRS strategy, and the final ergodic step
   chooses an unspecified extreme IRS.  There is therefore no canonical
   "Manzoor IRS" cylinder oracle to test.  Literal equality with Haar measure
-  on a linear subshift of subgroup indicators is trivially impossible
-  (the identity-membership coordinate is constantly one, while a linear
-  subshift contains zero), but the substantive stabilizer-pushforward/factor
-  question remains open.  Running the proposed falsification test now first
-  requires `explicit-zpc-irs-gap-game-witness` or another named strategy with
-  joint cylinder data; the published existential separation alone cannot
-  supply a violating cylinder.
+  on a linear subshift of subgroup indicators is impossible because the
+  identity-membership coordinate is constantly one, but this formal obstacle
+  is no longer load-bearing: `affine-haar-process-fourier-modulus-compiler`
+  permits affine Haar laws and homogenizes that constant phase with one extra
+  scalar coordinate.  The substantive stabilizer-pushforward/factor question
+  remains open.  Running the proposed falsification test now first requires
+  `explicit-zpc-irs-gap-game-witness` or another named strategy with joint
+  cylinder data; the published existential separation alone cannot supply a
+  violating cylinder.  The sharpened test is whether every such Fourier
+  moment has modulus zero or one.

@@ -168,6 +168,16 @@ bits must be exactly balanced.  Thus countable recoding supplies no softer
 intermediate regime; satisfying all binary Fourier tests is already the full
 compiler theorem.
 
+The phase-free wording can be relaxed exactly.
+`affine-haar-process-fourier-modulus-compiler` proves that the name law is
+Haar on an invariant **affine** finite-field subshift if and only if every
+finite moment has modulus zero or one.  One extra fixed `F_p` coordinate
+homogenizes the affine coset, and its `t=1` action is a trace-`1/p` central
+corner of a genuine Haar algebraic crossed product.  Hence modulus-binary
+generating labels already suffice for the nonhyperlinear compiler.  In
+particular the constant identity-membership bit of an IRS is harmless affine
+phase data; only the nonlinear joint subgroup constraints remain.
+
 There is a canonical way to force the test, but it exposes the information
 loss rather than solving it.  `finite-field-convolution-haarizes-affine-support`
 proves that the `pn`-fold coordinatewise sum of independent copies of any
