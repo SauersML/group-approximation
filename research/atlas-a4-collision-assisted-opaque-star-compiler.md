@@ -101,6 +101,16 @@ only has to transport its covariance block.
   not from a bounded extrapolation.  This locates the first failed point-model
   edge, while leaving its regular-representation triangle completion open.
 
+- **That A10 triangle completion collapses universally.**
+  `atlas-a10-first-core-cycle-collapses` computes the preceding small
+  triangle colimit exactly.  It is only `S3`: the generators `r,t,u` die, so
+  the `J` vertex of order `288` and the new `A4` vertex cannot inject.  This
+  upgrades the natural-padding screen to a no-overgroup theorem for the A10
+  carrier.  The qualifier remains load-bearing: other faithful finite images
+  of the minimal forward-collision quotient need not have the same
+  `J=<F,t>` relations, so a global matrix obstruction still has to control
+  all carrier types.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence
