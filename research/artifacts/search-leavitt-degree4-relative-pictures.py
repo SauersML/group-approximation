@@ -11,6 +11,7 @@ are trivial, with the remaining region equal (up to a corner rotation) to
 """
 
 import argparse
+from collections import Counter
 from functools import lru_cache
 from itertools import combinations_with_replacement, permutations
 
@@ -133,30 +134,40 @@ def inverse_tokens(word):
     result = []
     for token in reversed(word):
         if token[0] == "z":
-            result.append(("z", -token[1]))
+            result.append(("z", -token[1], token[2]))
         else:
             result.append(("g", token[1], token[2], -token[3]))
     return tuple(result)
 
 
 def vertex(relator, orientation):
-    word = RELATORS[relator] if orientation == 1 else inverse_tokens(
-        RELATORS[relator])
+    occurrence = 0
+    marked = []
+    for token in RELATORS[relator]:
+        if token[0] == "z":
+            marked.append(("z", token[1], occurrence))
+            occurrence += 1
+        else:
+            marked.append(token)
+    marked = tuple(marked)
+    word = marked if orientation == 1 else inverse_tokens(marked)
     first = next(index for index, token in enumerate(word) if token[0] == "z")
     word = word[first:] + word[:first]
     signs = []
+    occurrences = []
     corners = []
     index = 0
     while index < len(word):
         assert word[index][0] == "z"
         signs.append(word[index][1])
+        occurrences.append(word[index][2])
         index += 1
         corner = []
         while index < len(word) and word[index][0] != "z":
             corner.append(word[index][1:])
             index += 1
         corners.append(tuple(corner))
-    return tuple(signs), tuple(corners)
+    return tuple(signs), tuple(corners), tuple(occurrences)
 
 
 VERTEX_TYPES = tuple((relator, orientation, *vertex(relator, orientation))
@@ -246,6 +257,10 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
     exact_disks = 0
     one_copy_disks = 0
     one_copy_units = set()
+    trivial_face_shapes = Counter()
+    one_residue_shapes = Counter()
+    two_residue_shapes = Counter()
+    one_residue_examples = []
     type_multisets = 0
     for choice_index, choices in enumerate(combinations_with_replacement(
             range(len(VERTEX_TYPES)), area)):
@@ -272,6 +287,12 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
 
         for targets in permutations(negative):
             pairs = tuple(zip(positive, targets))
+            if any(vertices[left[0]][0] == vertices[right[0]][0]
+                   and vertices[left[0]][1] == -vertices[right[0]][1]
+                   and vertices[left[0]][4][left[1]] ==
+                       vertices[right[0]][4][right[1]]
+                   for left, right in pairs):
+                continue
             if not connected(area, pairs):
                 continue
             alpha = [None] * len(halves)
@@ -297,7 +318,24 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
                 reduced = reduce_free_product(factors)
                 reduced_regions.append(reduced)
                 trivial.append(not reduced)
+                if not reduced:
+                    trivial_face_shapes[(len(region), len(factors))] += 1
                 targets_found.append(target_rotation(corners))
+            nontrivial_indices = [index for index, value in enumerate(trivial)
+                                  if not value]
+            if len(nontrivial_indices) == 1:
+                outer = nontrivial_indices[0]
+                reduced = reduced_regions[outer]
+                shape = tuple((copy, len(unit)) for copy, unit in reduced)
+                one_residue_shapes[(len(regions), shape)] += 1
+                if len(one_residue_examples) < 5:
+                    one_residue_examples.append((
+                        choices, [(v[0], v[1]) for v in vertices], pairs,
+                        regions, outer, region_corners[outer], shape))
+            elif len(nontrivial_indices) == 2:
+                shapes = tuple(sorted(len(reduced_regions[index])
+                                      for index in nontrivial_indices))
+                two_residue_shapes[(len(regions), shapes)] += 1
             for outer, reduced in enumerate(reduced_regions):
                 if (len(reduced) == 1 and all(
                         trivial[index] for index in range(len(regions))
@@ -328,9 +366,12 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
                     print("region_corners", region_corners, flush=True)
                     if stop_on_hit:
                         return (type_multisets, planar, exact_disks,
-                                one_copy_disks, len(one_copy_units))
+                                one_copy_disks, len(one_copy_units),
+                                trivial_face_shapes, one_residue_shapes,
+                                two_residue_shapes, one_residue_examples)
     return (type_multisets, planar, exact_disks, one_copy_disks,
-            len(one_copy_units))
+            len(one_copy_units), trivial_face_shapes, one_residue_shapes,
+            two_residue_shapes, one_residue_examples)
 
 
 def main():
@@ -348,6 +389,11 @@ def main():
               f"exact_target_disks={result[2]} one_copy_disks={result[3]} "
               f"one_copy_units={result[4]} shard={args.shard}/{args.shards}",
               flush=True)
+        print("trivial_face_shapes", result[5].most_common(20), flush=True)
+        print("one_residue_shapes", result[6].most_common(20), flush=True)
+        print("two_residue_shapes", result[7].most_common(20), flush=True)
+        for example in result[8]:
+            print("one_residue_example", example, flush=True)
         if result[2] and args.stop_on_hit:
             break
 

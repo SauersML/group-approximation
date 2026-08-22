@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: leavitt-degree-four-one-copy-picture-has-area-at-least-eight-proof
+id: leavitt-degree-four-one-copy-picture-area-at-least-eight-proof
 kind: route
 title: Test every area-six outer region for one exact Leavitt free-product syllable
 target: leavitt-degree-four-one-copy-picture-has-area-at-least-eight

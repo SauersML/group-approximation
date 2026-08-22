@@ -4,7 +4,7 @@ id: leavitt-degree-four-one-copy-picture-has-area-at-least-eight
 kind: claim
 title: Every revised degree-four coefficient-kernel picture has area at least eight
 artifacts:
-  - research/leavitt-degree-four-one-copy-picture-has-area-at-least-eight-proof.md
+  - research/leavitt-degree-four-one-copy-picture-area-at-least-eight-proof.md
   - research/artifacts/search-leavitt-degree4-relative-pictures.py
 distinct_from:
   leavitt-degree-four-target-picture-has-area-at-least-eight: that tests the intended distorted commutator; this proves the stronger assertion for every nonidentity boundary in every coefficient copy.

@@ -110,6 +110,7 @@ def corners(relator, orientation):
 
 checked = 0
 candidate_disks = 0
+needed_relations = set()
 
 # The counts of R1 vertices among the three vertices of each orientation are
 # complete orbit representatives for the S_3 x S_3 action: 4 x 4 cases.
@@ -132,19 +133,31 @@ for positive_r1_count in range(4):
                 continue
             checked += 1
 
-            trivial_regions = 0
+            labels = []
             for region in regions:
                 label = [
                     vertex_corners[alpha[half] // 3][alpha[half] % 3]
                     for half in region
                 ]
-                if not reduce_coefficient(label):
-                    trivial_regions += 1
+                labels.append(reduce_coefficient(label))
+            trivial_regions = sum(not label for label in labels)
             if trivial_regions >= 4:  # choose the fifth as the outer region
                 candidate_disks += 1
+            elif trivial_regions == 3:
+                # Either nontrivial region can be outer.  The other is exactly
+                # the additional coefficient identity needed to close this
+                # otherwise square-only six-cell picture.
+                needed_relations.update(label for label in labels if label)
 
 assert checked == 596856
 assert candidate_disks == 0
+minimum_needed_length = min(map(len, needed_relations))
+shortest_needed_relations = {
+    relation for relation in needed_relations
+    if len(relation) == minimum_needed_length
+}
+from collections import Counter
+print("DEBUG needed", len(needed_relations), Counter(map(len, needed_relations)))
+print("DEBUG shortest", minimum_needed_length, sorted(shortest_needed_relations))
 print("PASS: 16 cubic planar multigraph types and 596856 reduced colourings")
 print("      contain no six-cell universal three-gate boundary picture")
-
