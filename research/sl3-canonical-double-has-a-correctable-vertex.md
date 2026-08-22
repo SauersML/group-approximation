@@ -41,6 +41,15 @@ must therefore be native to normalized HS, or supply a global
 replica-homogeneous correction inequality rather than invoke qualitative
 Frobenius stability.
 
+There is now one unconditional correction sector beyond the previously
+recorded near-exact cases.  By `subgroup-exact-outliers-do-not-exist`, if
+either vertex restriction is exact on any one fixed finite-index subgroup
+of `SL_3(Z)`, induction of that exact restriction and property `(T)` flexibly
+correct the entire lattice tuple.  Therefore a simultaneous-outlier double
+microstate must keep both vertex restrictions inexact on every fixed
+finite-index subgroup.  This sharpens the habitat of the remaining enemy
+but does not produce the first correctable vertex.
+
 ## Exact simultaneous-outlier boundary
 
 The canonical character supplies the diagonal tensor assignment

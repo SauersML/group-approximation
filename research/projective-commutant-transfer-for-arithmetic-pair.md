@@ -306,6 +306,17 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   (including mixed levels), or to lattice tuples uniformly far from every
   exact representation.  For `p=2`, no purely odd correctable far sector
   remains; this does not yet bound the two-primary mass in a mixed level.
+- **Finite-index-exact outliers are excluded without a cocycle argument.**
+  `subgroup-exact-outliers-do-not-exist` gives a general induction proof: if
+  an almost representation of a property-`(T)` group is exact on one fixed
+  finite-index subgroup, its section isometry has an almost-invariant range
+  projection inside an exact induced representation.  Property `(T)` rounds
+  that projection in the induced commutant and yields a flexible exact
+  correction.  Applied to `SL_3(Z)`, this removes every outlier sequence
+  which becomes exact on any fixed finite-index subgroup.  Thus the
+  noncorrectable branch of a projective-transfer enemy must remain genuinely
+  inexact on every fixed finite-index subgroup; the everywhere-inexact branch
+  is not closed by this lemma.
 - **A fixed far gap forces positive denominator-primary mass.**
   `fixed-projective-gap-forces-primary-congruence-mass` closes the mass
   loophole left by the preceding item.  For any exact correction `sigma` of

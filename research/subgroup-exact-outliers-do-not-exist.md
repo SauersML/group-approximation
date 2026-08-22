@@ -2,85 +2,124 @@
 rg: 2
 id: subgroup-exact-outliers-do-not-exist
 kind: claim
-title: Almost-representations exact on a finite-index Kazhdan subgroup are correctable, so subgroup-exact outliers do not exist
+title: Finite-index-exact almost representations of a Kazhdan group are flexibly correctable
 distinct_from:
-  sl3z-regular-microstates-are-congruence-correctable: that is the full correctability hole (all regular microstates); this proves the special case where the microstates are EXACT on some finite-index subgroup, shrinking the outlier habitat to sequences non-exact on every finite-index subgroup uniformly.
-  two-power-sector-conjugator-dichotomy: that dichotomy concerns the h-twisted pair, where the depth shift makes kernels differ and finite-level equivalence fails; this exploits the opposite phenomenon — integral conjugation preserves congruence levels, so the coset-twisted pairs are exactly equivalent at every level and the conjugacy branch is realized.
-  lambda-exact-face-closes-at-p-three: that is a still-open proposed closure of the Lambda-exact face; this independently eliminates the subgroup-exact stratum of the outlier face.
+  kazhdan-subgroup-weak-ucp-exactifies-microstates: that starts from weak ucp stability and makes a subgroup restriction exact; this starts with an exact finite-index restriction and corrects the whole ambient tuple by induction.
+  close-normalized-characters-do-not-force-equivalence: that refutes correction by comparing normalized characters; the present proof never compares characters or irreducible multiplicities.
+  sl3z-regular-microstates-are-congruence-correctable: that asks to correct arbitrary regular microstates of SL3(Z); this removes only the sharply delimited sector already exact on one fixed finite-index subgroup.
 ---
 
-THEOREM.  Let `Lambda_1 <= Lambda = SL_3(Z)` be any finite-index
-subgroup (hence property (T) with Kazhdan pair `(F_1, eps_1)`), and
-let `sigma_m : Lambda -> U(d_m)` be HS-almost-multiplicative maps
-whose RESTRICTIONS to `Lambda_1` are genuine representations.  Then
-`sigma_m` is asymptotically HS-close to genuine PROJECTIVE
-representations of `Lambda` (with 2-cocycle in the finite group
-`H^2(Lambda / core, T)`-range, trivializable after passing to a
-finite central extension or a further finite-index restriction) —
-uniformly, with constants depending only on `(Lambda : Lambda_1)`
-and `eps_1`.  Consequently the uniform-outlier sector of the
-correctability hole contains NO sequence exact on any finite-index
-subgroup: outliers must be non-exact on EVERY finite-index subgroup
-of `SL_3(Z)`, uniformly along the sequence.
+Let `G` be a finitely presented property-`(T)` group and let `N<=G` have
+finite index.  Fix generators and relators for `G`.  Suppose
 
-MECHANISM (route).  Replace `Lambda_1` by its normal core
-`Lambda_0`.  For each coset representative `g_i`, the element
-`sigma_m(g_i)` almost-conjugates the genuine representation
-`sigma_m|_(Lambda_0)` to `sigma_m|_(Lambda_0) compose Ad(g_i)`.
-Because `g_i` is INTEGRAL, `Ad(g_i)` preserves every congruence
-kernel — no depth shift, the exact opposite of the `h`-twist — so
-the two representations are multiples of regular representations of
-the SAME finite quotient with the SAME multiplicities: exactly
-unitarily equivalent at every level.  The (T)-rigidity argument of
-the conjugator dichotomy (conjugacy branch, realized) upgrades the
-almost-conjugator `sigma_m(g_i)` to an exact conjugator `u_i` within
-`2 eta / eps_1`; the corrected family `{u_i}` multiplies according
-to the `Lambda_0`-cosets up to unitaries commuting with the exact
-`sigma_m(Lambda_0)` and small errors, giving a genuine projective
-representation after solving a finite cocycle problem over
-`Lambda / Lambda_0` with coefficients in the commutant — a finite
-group acting on a von Neumann algebra, where vanishing holds after
-the stated finite adjustments.
+```text
+sigma_j:S_G -> U(H_j)
+```
 
-## Attempts
+has presentation defect tending to zero, and that the evaluated words on
+`N` agree exactly with a genuine representation
 
-- **What this changes for the single remaining target.**  The
-  outlier enemy of `(RC3-p3)` now needs microstates that are
-  uniformly far from genuine representations of EVERY finite-index
-  subgroup simultaneously — "everywhere-inexact" sequences.  All
-  congruence structure, at all levels and all finite-index
-  localizations, is unusable by the enemy. This is a sharp habitat
-  description of the outlier sector, independent of the still-open
-  Lambda-exact spread sector.
-- **Two-sided note.**  Everywhere-inexact almost-representations of
-  higher-rank lattices are not known to exist; their construction
-  would itself be a major theorem (a strong negation of stability),
-  and their exclusion — the remaining step — is now a statement
-  purely about uniformly-non-exact approximate representation
-  theory, with every exactness loophole closed.
+```text
+pi_j:N -> U(H_j).
+```
 
-- **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The route's Step 2
-  lemma ("representations at distance `o(1)` in normalized character are
-  equivalent for large `m`") is false -- `close-normalized-characters-do-not-force-equivalence`
-  gives the counterexample `pi_0 (+) tau_m` with one small non-invariant
-  constituent -- and it invalidates `subgroup-exact-outliers-route`.  The
-  (T)-estimate yields only a partial-isometry intertwiner with `o(d)`
-  co-support; Step 3 never shows that the cut corners can be made
-  simultaneously invariant under the `n` coset conjugators (their products
-  satisfy `u_i u_j = c(i,j) u_(ij)` only up to `O(eta_m)`, so they do not
-  act as a finite group on projections of the commutant); Step 4 cites a
-  nonexistent vanishing theorem for `U(C_m)`-valued cocycles and gives no
-  norm control on the trivialization.  The THEOREM is still expected to be
-  true (no counterexample is known; the audit's own counterexample to the
-  lemma is `O(sqrt(eps_m))`-close to a genuine representation).  The
-  correct proof shape is: partial intertwiners from (T); a simultaneous
-  invariant corner or a flexible padding argument; then a Kazhdan-style
-  averaging-plus-polar trivialization of the NEAR-IDENTITY `U(C_m)`-cocycle
-  over the finite group `Lambda / Lambda_0` (a `T`-valued cocycle near `1`
-  lifts to `R`, and `H^2(F, R) = 0`), with an explicit `O(eta^(1/2))` loss.
-  Consequence caveat even after repair: the output is a PROJECTIVE
-  representation; the "everywhere-inexact outliers" corollary needs the
-  (RC3) machinery to be insensitive to a finite central twist, which is not
-  argued here.  All downstream sentences that describe the outlier habitat
-  as "non-exact on every finite-index subgroup" are conditional on this
-  claim.
+Then `sigma_j` is **flexibly Hilbert--Schmidt correctable**: there are exact
+finite-dimensional representations
+
+```text
+alpha_j:G -> U(K_j),       dim(K_j)/dim(H_j) -> 1,
+```
+
+and, after identifying subspaces of codimension `o(dim H_j)` and
+`o(dim K_j)`, the matrices `sigma_j(s)` and `alpha_j(s)` are at normalized
+Hilbert--Schmidt distance `o(1)` for every fixed generator `s`.
+
+In particular, for `G=SL_3(Z)`, an outlier microstate that stays a fixed
+normalized-HS distance from every genuine representation cannot be exact on
+any one fixed finite-index subgroup along a subsequence.  This is a habitat
+restriction on the outlier branch of
+`projective-commutant-transfer-for-arithmetic-pair`; it does not eliminate
+microstates which remain inexact on every finite-index subgroup.
+
+## Proof mechanism
+
+Replace `N` by its normal core; this only changes its finite index.  Put
+`m=[G:N]`, choose representatives `T` for `G/N`, and form the exact induced
+representation
+
+```text
+Pi_j=Ind_N^G(pi_j)  on  L_j = direct_sum_(t in T) H_j.       (SE1)
+```
+
+With the convention
+
+```text
+g t=t' n(g,t),       n(g,t) in N,
+```
+
+define the isometry
+
+```text
+W_j:H_j -> L_j,
+W_j xi=m^(-1/2) sum_(t in T) delta_t tensor sigma_j(t)^* xi. (SE2)
+```
+
+If `sigma_j` were exact, the identity
+
+```text
+sigma_j(t')^* sigma_j(g)
+ =pi_j(n(g,t)) sigma_j(t)^*                              (SE3)
+```
+
+would give `Pi_j(g)W_j=W_j sigma_j(g)`.  Only finitely many multiplication
+words occur in `(SE3)` for `g` in the fixed generator packet and `t in T`.
+Van Kampen telescoping therefore gives one presentation-dependent constant
+`C_0` such that
+
+```text
+max_(g in S_G)||Pi_j(g)W_j-W_j sigma_j(g)||_(2,H_j)
+ <= C_0 delta_j.                                         (SE4)
+```
+
+Let `P_j=W_jW_j^*`.  Projection telescoping turns `(SE4)` into
+
+```text
+max_(g in S_G)||Pi_j(g)P_jPi_j(g)^*-P_j||_(2,L_j)
+ <= C_1 delta_j.                                         (SE5)
+```
+
+Here all norms are normalized on their displayed spaces; `m` is fixed, so
+the change of normalization costs only a fixed factor.
+
+Apply a Kazhdan pair for `G` to the exact conjugation representation
+`Ad(Pi_j)` on the Hilbert--Schmidt space of `L_j`.  If `E_j` is the
+trace-preserving conditional expectation onto `Pi_j(G)'`, then
+
+```text
+||P_j-E_j(P_j)||_(2,L_j) <= C_2 delta_j.                 (SE6)
+```
+
+Since `E_j(P_j)` is a positive contraction, functional calculus at `1/2`
+gives a projection
+
+```text
+Q_j=1_[1/2,infinity)(E_j(P_j)) in Pi_j(G)'
+```
+
+with
+
+```text
+||P_j-Q_j||_(2,L_j) <= 2 C_2 delta_j.                    (SE7)
+```
+
+Thus `rank(Q_j)=dim(H_j)+o(dim H_j)`.  The range of `Q_j` carries the exact
+representation `alpha_j=Pi_j|_(Q_j L_j)`.  The standard two-projection
+polar-decomposition lemma supplies a partial isometry between `P_jL_j` and
+`Q_jL_j` after deleting their rank discrepancy, with complement of
+normalized dimension `o(1)` and with `L2` distance from the identity
+controlled by `||P_j-Q_j||_2`.  Transporting `(SE4)` across that partial
+isometry proves the asserted flexible generatorwise correction.
+
+The argument uses neither equivalence of close normalized characters nor a
+`U(C)`-valued cocycle vanishing theorem.  Those were exactly the two gaps in
+the invalidated earlier route.

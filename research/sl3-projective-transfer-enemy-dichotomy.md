@@ -50,6 +50,15 @@ collapse theorem: the unbounded dyadic carrier and the uniformly
 noncorrectable inner-adjoint carrier are the two remaining matrix-coordinate
 problems.
 
+The first branch has a further exact restriction.
+`subgroup-exact-outliers-do-not-exist` proves that an almost representation
+of a property-`(T)` group which is exact on one fixed finite-index subgroup
+is flexibly correctable, by inducing that subgroup representation and
+rounding the almost-invariant section range projection.  Hence an SL3
+inner-adjoint outlier cannot become exact on any fixed finite-index subgroup
+along a subsequence.  It must be an everywhere-inexact outlier.  This does
+not rule such outliers out.
+
 The dyadic alternative has one further unconditional restriction.
 `exact-dyadic-conductor-band-has-uniform-parahoric-overlap-loss` proves
 that a single exact-conductor band loses at least one eighth of its mass
