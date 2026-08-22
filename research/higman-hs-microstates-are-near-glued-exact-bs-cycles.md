@@ -72,3 +72,14 @@ that Higman's group is nonhyperlinear; constructing a noncollapsing seam
 cycle would give the requested explicit marked microstate escape.  Neither
 conclusion follows from the BS stability theorem itself.
 
+## Attempts
+
+`three-higman-bs-seams-vanish-fourth-is-product-holonomy` classifies the exact
+packets and tests the periodic-clock sector.  Optimal spectral transport
+makes any three consecutive seams tend to zero while all four conjugator
+occurrences stay at distance `sqrt(2)` from identity.  For four gauged copies
+of one packet, the complete remaining condition is that four approximate
+spectral matchers `P -> D` have ordered product one.  In the homogeneous
+choice it is the single residual term `||[H^4,P]||_2`.  Thus no proper
+subcycle uncertainty estimate can prove collapse; the fourfold matcher
+holonomy is the narrowed terminal.
