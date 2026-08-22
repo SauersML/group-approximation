@@ -760,5 +760,44 @@ theorem greendlingerConclusionSharp_of_lands_of_betaSharp [DecidableEq α]
   greendlingerConclusionSharp_of_lands hR hRne hlam0 hlam hmetric hdeep
     (landingProductionSharp_of_betaSharp hmetric hbeta)
 
+/-! ## 8.  The window route's last mile
+
+Composing §2's surgery with
+`GreendlingerDeepTailWindow.greendlingerAt_of_two_piece_window`: at a factor
+where the block stops, the arc costs exactly two piece bounds, one per end of
+the rotation.
+
+The two ends are not symmetric in provability, and it is worth being explicit
+about which is which.  The **front** bound is the incoming block's intrusion,
+which `GreendlingerDeepOverrunCount.six_mul_intrusion_lt_of_forward` supplies at
+any depth.  The **back** bound is the landing factor's own loss, and it says
+that factor is not *itself* deep — a statement that simply fails when it is.
+So this is the discharge at a factor where the block stops and the landing
+factor is shallow, and not a discharge of the deep branch in general; §§6-7 are
+what cover the case where the landing factor is deep, by recursing into its own
+deep branch rather than asking for an arc from its rotation. -/
+
+/-- **The arc from a landing factor's survivor, from the two piece bounds.**
+`P₃` is what the landing factor keeps of its palindrome, `D` is where the block
+from above stops inside it, and the two bounds are the intrusions at the two
+ends: `D − |c₃|` from the front and `|c₃| + |t₃| − |P₃|` from the back. -/
+theorem greendlingerAt_of_landing_survivor {R : Set (List (α × Bool))}
+    {c₃ t₃ P₃ M₃ B₃ : List (α × Bool)} {D : ℕ}
+    (ht₃ : t₃ ∈ symmetrization R)
+    (heq : palindrome c₃ t₃ = P₃ ++ M₃)
+    (hc : c₃.length ≤ D) (hD : D ≤ P₃.length)
+    (hP : P₃.length ≤ c₃.length + t₃.length)
+    (hfront : 6 * (D - c₃.length) < t₃.length)
+    (hback : 6 * (c₃.length + t₃.length - P₃.length) < t₃.length) :
+    GreendlingerAt R 0 ((P₃ ++ B₃).drop D) := by
+  rw [window_of_palindrome_survivor heq hc hD hP]
+  have hlen : P₃.length - D
+      = t₃.length - (D - c₃.length)
+        - (c₃.length + t₃.length - P₃.length) := by omega
+  rw [hlen]
+  exact greendlingerAt_of_two_piece_window (A := []) (C := B₃)
+    (i := D - c₃.length) (k := c₃.length + t₃.length - P₃.length) ht₃ rfl
+    (Nat.zero_le _) hfront hback
+
 end SmallCancellationRouter
 end GroupApproximation
