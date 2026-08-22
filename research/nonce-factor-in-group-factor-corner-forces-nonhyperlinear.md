@@ -11,7 +11,8 @@ distinct_from:
 
 **ESTABLISHED.**  Let `(M,tau_M)` be a finite tracial von Neumann algebra
 which is not Connes embeddable.  Let `G` be countable and let `0!=p in L(G)`
-be a projection.  If there is a normal injective unital, trace-preserving map
+be a projection.  If there is a normal injective unital, trace-preserving
+`*`-homomorphism
 
 ```text
 Phi:(M,tau_M) -> (pL(G)p, tau_G(p . p)/tau_G(p)),                   (NGC1)
