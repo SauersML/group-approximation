@@ -35,7 +35,17 @@ sixteen nonidentity blocks.  In particular `F!=(w^8)_0`.
 
 `research/artifacts/verify-degree4-metacyclic-retraction-leak.py` performs
 the calculation with faithful partial-bijection normal forms and asserts
-all displayed identities.  This is a countermodel to the inference from
-the four retractions to a one-copy boundary, not to the still-open search
-for another face orientation.
+all displayed identities.  It additionally enumerates the six cyclic/inverse
+orientations of each triangle face.  Eight of the 216 orientations link their
+three carriers for the displayed gauge, but none has a one-copy nonidentity
+coefficient boundary.  Finally it generates the complete 64-element packet
+`<w,z>` and exhausts every free-gauge choice `b=k`, with
 
+```text
+x=w^2z,  a=kx,  d=aw,  c=dz.
+```
+
+No gauge and no orientation produces a one-copy nonidentity boundary.  This
+is a countermodel to the inference from the four retractions and a complete
+fence for this order-sixteen metacyclic packet, not for coefficient units
+outside that packet.

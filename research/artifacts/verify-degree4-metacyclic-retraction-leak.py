@@ -39,6 +39,14 @@ def reduce_word(word):
     return tuple(stack)
 
 
+def inverse_word(word):
+    return tuple((copy, inverse(unit)) for copy, unit in reversed(word))
+
+
+def multiply_words(*words):
+    return reduce_word(sum(words, ()))
+
+
 def retract(word, copy):
     result = P.ONE
     for factor_copy, unit in word:
@@ -78,3 +86,96 @@ assert exponents == [8, 0, 0, 0]
 assert len(boundary) == 16
 assert boundary != ((0, power(w, 8)),)
 
+# Audit all six cyclic/inverse orientations on each of the three triangle
+# faces.  The residual factor triples are (H,H^-1 B_i,H^-1) for this family.
+h_word = ((0, b), (1, c), (2, d), (3, a))
+h_word_inverse = inverse_word(h_word)
+factor_triples = tuple((h_word, multiply_words(h_word_inverse, row),
+                        h_word_inverse) for row in (b0, b1, b2))
+canonical = (("P", 1), ("A", 1), ("Q", 1)), \
+            (("Q", -1), ("B", 1), ("R", 1)), \
+            (("R", -1), ("C", 1), ("P", -1))
+
+
+def orientations(tokens):
+    inverse_tokens = tuple((name, -exponent)
+                           for name, exponent in reversed(tokens))
+    return tuple(word[offset:] + word[:offset]
+                 for word in (tokens, inverse_tokens)
+                 for offset in range(3))
+
+
+orientation_sets = tuple(orientations(tokens) for tokens in canonical)
+linked, marked = 0, []
+from itertools import product
+for choices in product(range(6), repeat=3):
+    values = {}
+    for face, choice in enumerate(choices):
+        for token, factor in zip(orientation_sets[face][choice],
+                                 factor_triples[face]):
+            name, exponent = token
+            canonical_value = factor if exponent == 1 else inverse_word(factor)
+            values.setdefault(name, []).append(canonical_value)
+    if any(values[carrier][0] != values[carrier][1]
+           for carrier in ("P", "Q", "R")):
+        continue
+    linked += 1
+    coefficients = tuple(values[name][0] for name in ("A", "B", "C"))
+    mark = multiply_words(*coefficients)
+    if len(mark) == 1 and mark[0][1] != P.ONE:
+        marked.append((choices, mark[0][0], mark[0][1] == power(w, 8)))
+print("linked orientations", linked)
+print("one-copy nonidentity orientations", tuple(marked))
+assert not marked
+
+
+def scan_parameters(a_value, b_value, c_value, d_value):
+    h_value = ((0, b_value), (1, c_value),
+               (2, d_value), (3, a_value))
+    h_value_inverse = inverse_word(h_value)
+    rows = (((0, a_value), (1, b_value), (2, c_value), (3, d_value)),
+            ((0, d_value), (1, a_value), (2, b_value), (3, c_value)),
+            ((0, c_value), (1, d_value), (2, a_value), (3, b_value)))
+    triples = tuple((h_value, multiply_words(h_value_inverse, row),
+                     h_value_inverse) for row in rows)
+    found = []
+    for choices in product(range(6), repeat=3):
+        values = {}
+        for face, choice in enumerate(choices):
+            for token, factor in zip(orientation_sets[face][choice],
+                                     triples[face]):
+                name, exponent = token
+                canonical_value = (factor if exponent == 1
+                                   else inverse_word(factor))
+                values.setdefault(name, []).append(canonical_value)
+        if any(values[carrier][0] != values[carrier][1]
+               for carrier in ("P", "Q", "R")):
+            continue
+        mark = multiply_words(*(values[name][0] for name in ("A", "B", "C")))
+        if len(mark) == 1 and mark[0][1] != P.ONE:
+            found.append((choices, mark))
+    return found
+
+
+# Exhaust the free gauge b in the whole finite metacyclic packet <w,z>.
+packet = {P.ONE}
+frontier = [P.ONE]
+while frontier:
+    old = frontier.pop()
+    for generator in (w, z, inverse(w), inverse(z)):
+        new = P.mul(old, generator)
+        if new not in packet:
+            packet.add(new)
+            frontier.append(new)
+x = P.mul(power(w, 2), z)
+gauge_hits = []
+for gauge in packet:
+    a_gauge = P.mul(gauge, x)
+    b_gauge = gauge
+    d_gauge = P.mul(a_gauge, w)
+    c_gauge = P.mul(d_gauge, z)
+    gauge_hits.extend(scan_parameters(a_gauge, b_gauge, c_gauge, d_gauge))
+print("metacyclic gauge size", len(packet))
+print("metacyclic gauge one-copy hits", len(gauge_hits))
+assert len(packet) == 64
+assert not gauge_hits
