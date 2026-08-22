@@ -95,3 +95,15 @@ established or refuted.
   arXiv:2603.13564v2 proves operator-norm MF of a symmetric amalgam of an MF
   algebra, not MF-ness of every hyperlinear trace on a double of an
   Hilbert--Schmidt-stable algebra.
+- The smallest genuinely nontransport Fourier cell is still an exact finite
+  countermodel.  `shared-nand-fourier-commutator-is-separator-contaminated`
+  takes two full NAND contexts with one literally shared marginal `S` and
+  relates their private signs by a Hadamard transform on the separator-plus
+  block.  NAND forces both private signs to be `+1` on the separator-minus
+  atom, so their commutator cannot equal a bare `J=-1` without deleting that
+  atom.  The sharp equation is `[A,B]=JS`; multiplying by `S` returns the
+  central word `W=[A,B]S=J`.  This is realized exactly in dimension three by
+  a Pauli/Hadamard block and hence by a finite Clifford group.  Thus Fourier
+  transport solves the local noncommuting placement and phase routing, but
+  supplies no matrix soundness; a further payload relation must exclude this
+  exact Clifford sector.
