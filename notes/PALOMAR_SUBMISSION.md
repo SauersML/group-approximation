@@ -152,7 +152,7 @@ the definition-fidelity check, which is mandatory and scored.
 |---|---|
 | public GitHub repository | `SauersML/group-approximation`, public |
 | exactly one root licence file, SPDX-detectable, matching `project.license` | `LICENSE`, Apache-2.0 |
-| `lean-toolchain` naming a release at or above the registry minimum | `leanprover/lean4:v4.32.2` ≥ `v4.28.0` |
+| `lean-toolchain` naming a release at or above the registry minimum | `leanprover/lean4:v4.32.0` ≥ `v4.28.0` |
 | exactly one of `lakefile.toml` / `lakefile.lean`, at most 1 MiB | `lakefile.toml` |
 | committed `lake-manifest.json`; every Git package a public `https://github.com/…` URL at a full 40-character SHA | yes, 9 packages |
 | no Git submodules, no LFS | none |
