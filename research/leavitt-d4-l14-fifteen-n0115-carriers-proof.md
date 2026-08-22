@@ -44,3 +44,24 @@ involutions `g9g11,g10g12,g13g1g7,g8`.  This is only the projection
 compression: the three full free-product carrier words must still be imposed
 by the all-maximal forest/state-semiring calculation before classifying the
 boundary.
+
+In the compressed coordinates
+
+```text
+q=g9, r=g10, s=g13, t=g1, u=g2,
+A=g9g11, B=g10g12, C=g13g1g7, E=g8,
+```
+
+the middle carrier has colors `3,2,3,2,3` and exactly two maximal branches:
+
+```text
+I:  C=s and s^2=1;
+II: t=s^-1.
+```
+
+In either branch it vanishes identically.  Each of the two remaining
+carriers has twelve syllables.  The all-maximal state semiring gives `18` and
+`22` coordinate states, hence `83` combined states, in branch I; it gives
+`18` and `18`, hence `33` combined states, in branch II.  The exact cyclic
+boundary computation is submitted separately because the branch boundaries
+have 42 and 50 syllables.
