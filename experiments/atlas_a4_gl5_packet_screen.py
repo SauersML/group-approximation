@@ -230,6 +230,11 @@ def main():
         help="print the canonical eight distinct central-C3 constraints and stop",
     )
     parser.add_argument(
+        "--list-core-constraints",
+        action="store_true",
+        help="print the canonical eight distinct rank-three core constraints and stop",
+    )
+    parser.add_argument(
         "--central-singleton-survivors",
         action="store_true",
         help="find q=1 core positions surviving each one of the eight central constraints",
@@ -265,6 +270,27 @@ def main():
         if len(core_packet) != 14 or len(central_packet) != 16:
             raise AssertionError("the 14+16 packet decomposition changed")
 
+        if args.list_core_constraints:
+            core_relations = {}
+            for entry in core_packet:
+                by_factor = {factor: matrix for factor, matrix in entry[1]}
+                key = (matrix_key(by_factor[1]), matrix_key(by_factor[2]))
+                core_relations.setdefault(key, []).append(entry)
+            print(json.dumps({
+                "core_constraints": [
+                    {
+                        "first_hex": first.hex(),
+                        "occurrences": len(entries),
+                        "second_hex": second.hex(),
+                        "tree_indices": [entry[0] for entry in entries],
+                    }
+                    for (first, second), entries in sorted(core_relations.items())
+                ],
+                "distinct_constraints": len(core_relations),
+                "word_occurrences": len(core_packet),
+            }, indent=2, sort_keys=True))
+            return
+
         central_relations = {}
         for entry in central_packet:
             by_factor = {factor: matrix for factor, matrix in entry[1]}
@@ -298,7 +324,12 @@ def main():
         ]
         selected_central_constraints = len(selected_entries)
         packet = core_packet + selected_entries
-    elif args.central_mask or args.list_central_constraints or args.central_singleton_survivors:
+    elif (
+        args.central_mask
+        or args.list_central_constraints
+        or args.list_core_constraints
+        or args.central_singleton_survivors
+    ):
         raise ValueError("central-constraint options require --core")
 
     here = os.path.dirname(os.path.abspath(__file__))

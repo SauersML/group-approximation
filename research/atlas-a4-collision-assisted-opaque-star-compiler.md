@@ -320,6 +320,15 @@ only has to transport its covariance block.
   inverse-`C3` partner.  This is strong finite-module evidence for the
   forward block, but it is not yet the required arbitrary-multiplicity
   complex HS estimate.
+- **One forward fan and its adjacent core fan have an exact 144-state escape.**
+  `atlas-shared-forward-fan-is-2four-by-3two` identifies their universal
+  completion as `C2^4 semidirect C3^2`.  Because `20160=140*144`, amplified
+  regular representations of this group match the regular A8 cyclic margins
+  and both regular A4 context margins at every external multiplicity, while
+  the common relative frame remains noncentral.  Thus the forward edge cannot
+  pay any positive Gram energy through its shared involution locally.  A
+  valid matrix-only estimate must use collision and at least one additional
+  core edge which leaves this two-fan carrier.
 - **The mixed compression descends, but collision leaves a zero interval.**
   `atlas-mixed-c3-gram-has-local-zero-interval` expresses the leakage directly
   through any product `U=X_eRY_e`, proving invariance under all twelve edge
