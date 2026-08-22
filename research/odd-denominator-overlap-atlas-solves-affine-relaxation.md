@@ -60,3 +60,8 @@ witness must lie on an overlap face with a genuine mod-two denominator
 obstruction.  Mere rationalizability of the tracial marginals is therefore
 not enough to make the relaxation sound.
 
+**Note (2026-08-22 audit).**  `linear-encoding-lcs-admits-odd-subset-cheats`
+is OPEN again: its global statement fails for sources with non-extendable
+local assignments (`odd-subset-relaxation-needs-local-extendability`);
+any "encodings cannot create LCS hardness" / "dies by the odd-subset
+cheat" reasoning here holds only under local extendability of the source.

@@ -226,3 +226,9 @@ neither statement.
   conditioned value is below one. Driving the unconditioned value down while
   the exact subfamily remains perfectly satisfiable by a bad profile does not
   move this target.
+
+**Note (2026-08-22 audit).**  `linear-encoding-lcs-admits-odd-subset-cheats`
+is OPEN again: its global statement fails for sources with non-extendable
+local assignments (`odd-subset-relaxation-needs-local-extendability`);
+any "encodings cannot create LCS hardness" / "dies by the odd-subset
+cheat" reasoning here holds only under local extendability of the source.

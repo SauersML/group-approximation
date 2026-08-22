@@ -55,3 +55,8 @@ the endpoint.
 The proof and the exact linear/Fourier calculation are in
 `perfect-correlated-mask-fourier-no-go-proof`.
 
+**Note (2026-08-22 audit).**  `linear-encoding-lcs-admits-odd-subset-cheats`
+is OPEN again: its global statement fails for sources with non-extendable
+local assignments (`odd-subset-relaxation-needs-local-extendability`);
+any "encodings cannot create LCS hardness" / "dies by the odd-subset
+cheat" reasoning here holds only under local extendability of the source.

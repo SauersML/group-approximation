@@ -24,7 +24,8 @@ M does not halt  =>  omega_q(L_M) <= 1 - delta.                        (PC2)
 ```
 
 By `re-oriented-lcs-compiler-gives-nonhyperlinear-group` this yields an
-explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
+nonhyperlinear solution group `Gamma_M` for some nonhalting `M` (existence
+only; the co-r.e. argument does not identify `M`).  Taller--Vidick prove `(PC2)` with
 `delta = 1/72` and a version of `(PC1)` with value `1 - epsilon` only.
 
 ## Attempts
@@ -99,3 +100,9 @@ explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
   create an exact finite-dimensional LCS solution.  Neither result supplies
   `(PC1)`, and Taller--Vidick v2 still explicitly identifies `epsilon=0` as
   the nonhyperlinear-group threshold.
+
+**Note (2026-08-22 audit).**  `linear-encoding-lcs-admits-odd-subset-cheats`
+is OPEN again: its global statement fails for sources with non-extendable
+local assignments (`odd-subset-relaxation-needs-local-extendability`);
+any "encodings cannot create LCS hardness" / "dies by the odd-subset
+cheat" reasoning here holds only under local extendability of the source.

@@ -3,7 +3,8 @@
 
 Group:  Gamma = < a, t, k | t a t^-1 = a^2 ,  [k, a] = 1 >.
 Trivial words:  w_n = [k, t^n a t^-n]  (t^n a t^-n = a^(2^n) commutes with k),
-length 2n+4, area ~ 2^n.
+length 4n+4 (freely reduced), area 3*2^n - 2; the measured ratio tends to 2^(n-1)
+(the docstring formerly said length 2n+4 and predicted ratio ~ 2^n; corrected 2026-08-22).
 
 Model in dimension d = L+1 (basis e_0..e_L, indices mod L+1):
     a = diag(exp(i theta_x)),  theta_x = 2 pi 2^(-x),

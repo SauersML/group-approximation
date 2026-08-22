@@ -58,3 +58,18 @@ is still hard", which is a statement about the constraint system and is
 where a self-similar or self-reducing source could enter: a family whose
 odd-subset relaxation is again an instance of the family would make the
 relaxation's soundness follow from the family's.
+
+## Attempts
+
+- **DEMOTED TO OPEN (2026-08-22 adversarial audit).**  The global
+  statement is false as written: `odd-subset-relaxation-needs-local-extendability`
+  exhibits three contexts with a non-extendable local assignment on which
+  a consistent odd-subset assignment violates an honestly satisfied
+  constraint, and invalidates the route.  The within-context
+  classification by odd-support characters stands.  The repaired
+  statement needs LOCAL EXTENDABILITY (every `s in S_C` extends to a
+  locally consistent tuple over each constraint's contexts) and the
+  product-over-pairwise-overlaps form of the factorization; with the
+  global-solution form of extendability the statement is vacuous exactly
+  for unsatisfiable sources.  Consumers that read "encodings cannot create
+  LCS hardness" unconditionally are now conditional on that hypothesis.

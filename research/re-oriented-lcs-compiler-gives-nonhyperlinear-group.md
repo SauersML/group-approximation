@@ -20,7 +20,9 @@ M halts         =>  some finite-dimensional representation of Gamma_M
 M does not halt =>  omega_q(L_M) <= 1 - delta.                        (RE2)
 ```
 
-Then some `Gamma_M` is not hyperlinear.  Explicitly, there is a nonhalting
+Then some `Gamma_M` is not hyperlinear.  More precisely (the argument is
+non-effective -- it refutes a universal statement by undecidability and
+identifies no particular machine), there is a nonhalting
 `M` with `J_M != 1` in `Gamma_M`, and that `Gamma_M` is nonhyperlinear.
 
 *Proof.*  Suppose every nonhalting `M` had `J_M = 1` in `Gamma_M`.  By

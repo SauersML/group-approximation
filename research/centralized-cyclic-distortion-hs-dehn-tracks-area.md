@@ -24,8 +24,11 @@ exponentially distorted cyclic subgroup `<a>`.  For `n >= 1` the words
 w_n = [k, t^n a t^(-n)]                                          (CD1)
 ```
 
-are trivial (`t^n a t^(-n) = a^(2^n)` commutes with `k`), of length `2n+4`
-and area at most `2^(n+1)`.  Then for every `L > n`, in dimension `d = L+1`,
+are trivial (`t^n a t^(-n) = a^(2^n)` commutes with `k`), of length `4n+4`
+(the freely reduced word `k t^n a t^(-n) k^(-1) t^n a^(-1) t^(-n)`) and
+area `3 . 2^n - 2` (`2^n - 1` cells to expand `t^n a t^(-n)` to `a^(2^n)`,
+`2^n` cells of `[k,a] = 1`, `2^n - 1` to contract back; an earlier
+version printed length `2n+4` and area `<= 2^(n+1)`, both wrong).  Then for every `L > n`, in dimension `d = L+1`,
 there is a unitary tuple `U_L` with
 
 ```text
@@ -34,9 +37,13 @@ Def(U_L) = |1 - e^(2 pi i / 2^L)| / sqrt(L+1)  -> 0,
                                -> 2^(n-1)   (L -> infinity).            (CD2)
 ```
 
-Consequently the HS-Dehn modulus satisfies `2^(n-1) <= F_Gamma(2n+4) <=
-2^(n+1)`: it is the Dehn function up to a factor four, and the supremum is
-approached along tuples of defect tending to zero.  In the language of the
+Consequently `2^(n-1) <= sup_U ||w_n(U) - I||_2 / Def(U) <= 3 . 2^n - 2`
+for this word, hence `F_Gamma(4n+4) >= 2^(n-1)`: the HS-Dehn modulus of
+`Gamma` is exponential in the length, and the supremum for `w_n` is
+approached along tuples of defect tending to zero.  (An earlier version
+asserted a two-sided sandwich `F_Gamma(2n+4) <= 2^(n+1)`; that does not
+follow -- `F_Gamma` is a supremum over ALL trivial words of the given
+length, not only over `w_n` -- and is withdrawn, 2026-08-22 audit.)  In the language of the
 Kleene compiler: for any thresholds `delta, alpha`, the halting-style
 soundness `Def < delta => ||w_n - I||_2 <= alpha` fails for all
 `n >= log_2(alpha/delta) + O(1)`.  Runtime-dependence of the constants is
