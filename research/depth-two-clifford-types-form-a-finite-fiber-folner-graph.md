@@ -66,3 +66,11 @@ retain unbounded congruence/branch history, or prove that arithmetic word
 identifications decode the histories as distinct vertices of the
 nonamenable affine building.  This is a no-go for the bounded-depth
 EXPANSION strategy, not a construction of a full arithmetic leak.
+
+The finite fiber and its first local compatibility gate are now explicit.
+`sl3-depth-two-clifford-fiber-has-thirty-six-types` computes exactly
+thirty-six coadjoint orbits, and
+`nonzero-diagonal-clifford-type-closes-all-six-local-cycles` exhibits a
+nontrivial diagonal type with a loop in every denominator direction.  Thus
+there is no forbidden cycle at the orbit-label level; any finite local
+obstruction must use stabilizer-cocycle or multiplicity data.
