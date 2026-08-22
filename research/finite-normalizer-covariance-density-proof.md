@@ -8,6 +8,17 @@ requires:
   - property-t-laplacian-sos-certificate
 ---
 
+Start with any finite-index normal subgroup `N` of `Gamma`.  If `C` acts on
+`Gamma`, then
+
+```text
+N_C=intersection_(c in C) c(N)
+```
+
+is finite-index, normal and `C`-invariant.  Moreover `Gamma/N_C` surjects
+onto `Gamma/N`, so applying this operation to an unbounded quotient tower
+keeps its orders unbounded.
+
 Write `F=Q semidirect C`.  The left cosets of `Q` in `F` give an orthogonal
 decomposition
 
@@ -56,3 +67,18 @@ whose rank is `rank(R_A^C-R_B^C)|Q|^2`.  Dividing by
 `|F|^2=|C|^2|Q|^2` proves `(FAC4)`.  All covariance relations are exact
 because the representation factors through the genuine semidirect quotient
 `F`.
+
+For the reverse action `theta:Gamma->Aut(B)`, the diagonal image `Q'` in
+`Q times theta(Gamma)` projects onto `Q`, so `|Q'|>=|Q|`, and `theta`
+factors through `Q'`.  Therefore `B semidirect Q'` is a finite quotient of
+`B semidirect Gamma`.  Repeating the same coset calculation with the normal
+packet subgroup and the old complement gives
+
+```text
+lambda_(B semidirect Q') restricted to Q' = |B| lambda_(Q'),
+lambda_(B semidirect Q') restricted to B  = |Q'| lambda_B.
+```
+
+The old commutant density is again `1/|Q'|`, while every packet projection
+mass and packet Reynolds density is independent of `Q'`.  This proves the
+second normalizer direction.

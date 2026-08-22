@@ -9,10 +9,14 @@ distinct_from:
   residual-action-can-erase-local-reynolds-density: that is an abstract tensor-algebra calculation; here the erasing models are left-regular representations of exact finite semidirect quotients and their old low spectrum is computed.
 ---
 
-Let `Gamma=<S>` be an infinite property-`(T)` group with finite quotients
-`q_n:Gamma->Q_n`, `|Q_n|->infinity`.  Let a fixed finite group `C` act on
-`Gamma` by automorphisms, and suppose `ker(q_n)` is `C`-invariant, so the
-action descends to `Q_n`.  Put
+Let `Gamma=<S>` be an infinite property-`(T)` group with finite quotients of
+unbounded order.  There are two possible directions for
+automorphism covariance with a fixed finite packet.
+
+First, let a fixed finite group `C` act on `Gamma` by automorphisms.  After
+replacing the kernels of any unbounded quotient tower by their intersections
+over `C`, there are still unbounded finite quotients `q_n:Gamma->Q_n` on
+which the action descends.  Put
 
 ```text
 G=Gamma semidirect C,             F_n=Q_n semidirect C.       (FAC1)
@@ -58,3 +62,25 @@ coefficient cell must use covariance which does not descend to these regular
 semidirect quotients--in particular the proposed one-sided Toeplitz action
 must use its non-surjectivity, rather than merely the finite action induced
 on its head packet.
+
+The opposite normalizer direction fails identically.  Let `B` be a fixed
+finite packet and let `Gamma` act on `B` through
+`theta:Gamma->Aut(B)`.  Given any unbounded finite quotient `q_n`, replace it
+by the image of
+
+```text
+Gamma -> Q_n times theta(Gamma).                            (FAC5)
+```
+
+This is still an unbounded finite quotient and `theta` factors through it.
+Hence `B semidirect Q_n` is an exact finite quotient of
+`B semidirect Gamma`.  Its regular representation restricts to `|B|`
+copies of `lambda_(Q_n)` on the old group and `|Q_n|` copies of `lambda_B`
+on the packet.  Equations `(FAC2)--(FAC4)` hold with `C` replaced by `B`.
+
+Thus covariance in **either** finite-normalizer direction--the packet acting
+on old coefficients or the old group acting on packet coefficients--retains
+constant local Schur density but only `1/|Q_n|` old commutant density.  A
+fixed finite packet can evade the obstruction only through a relation that
+is not an automorphism crossed product, such as a genuinely non-surjective
+coefficient transport.
