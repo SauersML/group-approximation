@@ -169,6 +169,8 @@ ENCODED_K = tuple((copy, S.encode(coefficient)) for copy, coefficient in C.K)
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--carrier-index", type=int)
+    parser.add_argument("--carrier-start", type=int)
+    parser.add_argument("--carrier-end", type=int)
     parser.add_argument("--trace-words", action="store_true")
     args = parser.parse_args()
     carriers = S.combined_carrier_states(report=True)
@@ -176,6 +178,10 @@ def main():
     augmented_words = set()
     for index, (residual, images) in enumerate(carriers, 1):
         if args.carrier_index is not None and index != args.carrier_index:
+            continue
+        if args.carrier_start is not None and index < args.carrier_start:
+            continue
+        if args.carrier_end is not None and index > args.carrier_end:
             continue
         transformed = normalize_fp((copy, transform(coefficient, images))
                                    for copy, coefficient in ENCODED_K)
@@ -197,7 +203,8 @@ def main():
                           f"seconds={monotonic() - started:.3f}", flush=True)
                 for final in boundary_choices:
                     results.add((target, final[0], final[1][-1], final[1][:-1]))
-        if index % 25 == 0 or args.carrier_index is not None:
+        if (index % 25 == 0 or args.carrier_index is not None
+                or args.carrier_start is not None):
             print(f"carrier={index} words={len(augmented_words)} states={len(results)}",
                   flush=True)
     nonempty = [state for state in results if state[2]]
