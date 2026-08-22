@@ -224,6 +224,22 @@ non-hyperlinear group `hat K rtimes Lambda`.
   imported witness's correlations against these identities first; a
   clean violation on every algebraic re-realization would kill route
   (a) and redirect all effort to (b).
+- **Stacking finite Fourier-binary compilers is still barren (proved,
+  2026-08-21).**  One might try to evade the finite-partition obstruction by
+  adjoining countably many finite `SL_3(Z)`-invariant Haar-linear factors,
+  hoping that their union generates the source action and that the total
+  actor image becomes infinite.  This does not work.
+  `stacked-finite-haar-modules-are-residually-finite` proves that for every
+  residually finite actor `H` and every coordinatewise action on
+  `K=product_n K_n` with each `K_n` finite abelian, the dual semidirect
+  product `(direct_sum_n K_n-hat) rtimes H` is residually finite.  The proof
+  separates an actor element in a finite quotient of `H`, and separates a
+  dual lamp element on its finite invariant coordinate support.  Thus even a
+  GENERATING infinite family satisfying the Fourier-binary test is CE when
+  it is assembled as an independent product of finite invariant layers.
+  Any surviving native Haar-linear `SL_3(Z)` construction must introduce
+  nonsplit relations coupling arbitrarily late layers; its dual module cannot
+  be a direct sum of finite invariant submodules.
 - **The published Manzoor witness has no exposed cylinder law
   (source audit, 2026-08-21).**
   `manzoor-separation-does-not-specify-haar-cylinders` expands the exact game
