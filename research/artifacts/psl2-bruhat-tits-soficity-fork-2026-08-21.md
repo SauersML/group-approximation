@@ -73,6 +73,39 @@ Hilbert--Schmidt stability or nonhyperlinearity.  Soficity would refute
 flexible permutation stability and, by the already wired coset-Bernoulli
 argument, refute the proposed Hilbert--Schmidt relative-commutant collapse.
 
+## Upgrade: the fork controls the full HNN witness
+
+There is an exact group-level identification
+
+```text
+<A,t | [t,C]=1> ~= ( *_(x in A/C) Z_x ) rtimes A
+                 = Z wr^*_(A curvearrowright A/C) A.
+```
+
+Indeed, the free factor generator at `aC` maps to `ata^(-1)`; this is
+well-defined because `t` centralizes `C`, and the two universal maps are
+inverse.  Gao--Kunnawalkam Elayavalli--Patchell, Theorem 3.7, now implies
+
+```text
+A curvearrowright A/C sofic
+    => <A,t | [t,C]=1> sofic.
+```
+
+This is stronger than the earlier commuting-lamp Bernoulli firewall.  It
+retains all Britton/free-product moments of the stable letter.  Consequently
+the action-soficity question directly controls the proposed nonhyperlinear
+HNN group: proving that HNN nonhyperlinear would itself prove that the
+dyadic vertex action is nonsofic.
+
+It also gives the exact finite-coordinate enemy to any proposed
+"full-canonical HNN" strengthening of Iwahori transfer.  Sofic microstates
+of the HNN, followed by same-dimensional correction of its two
+`PSL_2(Z)` vertex restrictions, retain canonical full-HNN moments and yield
+a stable-letter centralizer of the first vertex but not the second.  The
+graph projection of that unitary has trace `1/2`, so the failure is already
+on two macroscopic blocks.  Thus neither canonical base trace nor canonical
+full-HNN trace bypasses the fork.
+
 ## Primary sources checked
 
 - David Gao, Srivatsav Kunnawalkam Elayavalli, Gregory Patchell,
@@ -84,4 +117,3 @@ argument, refute the proposed Hilbert--Schmidt relative-commutant collapse.
 - Alon Dogon and Itamar Vigdorovich, *Hyperlinearity, stability and
   asymptotic spectral gap of higher rank lattices*, arXiv:2506.20843v2,
   especially the Iwahori splitting and Question 1.4.
-

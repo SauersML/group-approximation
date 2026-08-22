@@ -95,3 +95,27 @@ lemma preserves the whole relative-commutant obstruction while forcing all
 nonidentity amalgam traces to zero.  Any proof must therefore control the
 matrix-coordinate bending/multiplicity geometry, not classify the limiting
 character.
+
+## Full-HNN conditioning does not bypass the action fork
+
+One might try to exploit the extra hypothesis actually present in the HNN
+contradiction: the bending unitary and the base tuple jointly have the
+canonical trace of the full group `<A,t | [t,C_+]=1>`.  This is genuinely
+stronger than `(CIP1)`: an ordinary Bernoulli lamp makes distinct conjugate
+lamps commute, whereas Britton normal form makes them free.
+
+Nevertheless `sl2-centralizer-hnn-is-free-coset-wreath` identifies this full
+HNN group with the free generalized wreath product
+
+```text
+Z wr^*_(A curvearrowright A/C_+) A.
+```
+
+Therefore `sofic-dyadic-action-produces-full-hnn-iwahori-countermodels`
+shows that soficity of the dyadic vertex action gives positive-density
+projection failures even with all full-HNN moments imposed.  Any successful
+proof through this HNN must, at minimum, exclude those free-wreath
+microstates; equivalently, it must prove a new nonsoficity theorem for the
+Bruhat--Tits vertex action.  Full canonical conditioning is a useful
+narrowing of the finite-coordinate target, but it is not a route around the
+tree-action soficity/P-instability fork.
