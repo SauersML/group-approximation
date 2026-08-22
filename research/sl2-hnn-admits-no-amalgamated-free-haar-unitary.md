@@ -6,6 +6,7 @@ title: No regular-trace matrix model of SL2(Z[1/2]) carries a Haar unitary in th
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forbids every subgroup-central unitary that is not ambient-central; this forbids only the ones with the amalgamated-free joint distribution an embedding of the HNN factor would supply, and is implied by the collapse.
   sl3-hnn-admits-no-amalgamated-free-haar-unitary: that is the rank-two pair, where property (T) of the subgroup makes the centraliser coordinatewise; this is the Dogon--Vigdorovich pair SL2(Z) in SL2(Z[1/2]), whose subgroup is only virtually free, so neither the interchange formula nor any spectral gap of the subgroup is available.
+  no-exact-quasi-regular-leak: that forbids every subgroup-central unitary whose commutator profile is exactly the quasi-regular indicator 1_C; an amalgamated-free unitary has that profile and satisfies strictly more (all alternating-word expectations vanish), so this hole is strictly weaker and is implied by it.
   sl2-half-stability-excludes-hnn-hyperlinearity: that is the dichotomy between non-hyperlinearity of the HNN group and failure of flexible stability; this names the operator-algebraic statement equivalent to the first horn.
 ---
 
