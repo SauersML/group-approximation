@@ -47,3 +47,12 @@ pair-holonomy, or random-sample-effectivity lemma should be added downstream.
   equality fibers and recreate short balanced contours.
 - **Separate local roundings.**  These do not produce the common PVM needed
   for `(SW2)` and leave a coupling escape.
+- **Metric-entropy sparsification of BLR itself.**  This cannot reuse the
+  entropy argument which sparsified Weyl energy after exact additivity.
+  `subexponential-blr-sampling-has-scalar-contextual-escape` proves that any
+  `m` scalar parity/BLR checks on `K` selected labels, even with arbitrary
+  auxiliary signs, leave an extendible table space of dimension at least
+  `K-m`.  If `m+n<K/8`, it contains a zero-defect table more than `1/4`-far
+  from every character restriction.  Exact-PVM metric entropy is therefore
+  unavailable until a separate structured tester or actor has already
+  confined the raw table.

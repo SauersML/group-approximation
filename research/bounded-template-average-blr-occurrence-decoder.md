@@ -75,6 +75,15 @@ group.
 No cited theorem simultaneously has all four properties of the minimal
 metapixel above.
 
+There is also no direct polynomial-sample metric-entropy shortcut.
+`subexponential-blr-sampling-has-scalar-contextual-escape` shows that any
+subexponential family of scalar BLR/parity checks, with arbitrary linear
+auxiliary proof bits, has an exact solution a constant distance from every
+additive character.  The obstruction is the entropy of the **unrestricted
+tested table**, not the entropy of the exact representation variety.  Hence
+the metric-entropy argument used after exact additivity for the private Weyl
+sampler cannot establish additivity itself.
+
 The most direct two-copy attempt is also false.  Testing a constant-size
 local codeword PVM at each vertex of an expander and checking endpoint
 agreement on the shared coordinate does not force one global commuting PVM.
