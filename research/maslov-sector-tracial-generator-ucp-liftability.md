@@ -135,3 +135,13 @@ Nevertheless it closes the Maslov sector by
   approximately central on all generators. But the Maslov sector already
   has exact scalar centrality, so Deligne finite-dimensional invisibility
   still needs the present ucp/stability input to yield a defect floor.
+- **Fixed root-word positivity stops at an affine/cone intersection.**
+  `fixed-chevalley-prefix-grams-give-only-tracial-positivity` linearizes the
+  quarter-turn and braid derivations on any fixed prefix atlas.  The resulting
+  Gram matrix is exactly positive and is `o(1)` in normalized HS distance
+  from the affine space imposing repeated root labels.  What is not implied
+  is a nearby matrix in the literal intersection of that affine space with
+  the positive cone, coherently at matrix levels growing with the coordinate
+  dimension.  Positive-part clipping breaks label consistency, and averaging
+  separately over cyclic root subgroups is circular: simultaneous invariance
+  under all of them is already the desired global positive-definite kernel.
