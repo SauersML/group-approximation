@@ -101,6 +101,12 @@ noncomputable def gromovProduct (x y w : X) : ℝ :=
   rw [dist_self]
   ring
 
+theorem gromovProduct_nonneg (y z w : X) : 0 ≤ gromovProduct y z w := by
+  have h := dist_triangle y w z
+  rw [dist_comm w z] at h
+  unfold gromovProduct
+  linarith
+
 theorem gromovProduct_comm (x y w : X) :
     gromovProduct x y w = gromovProduct y x w := by
   simp only [gromovProduct, dist_comm x y]
@@ -1297,6 +1303,81 @@ theorem isLoxodromic_iff_stableTranslation_pos
   ⟨stableTranslation_pos_of_isLoxodromic hiso,
     isLoxodromic_of_pos_stableTranslation g x⟩
 
+/-- A sufficiently large power of a loxodromic element has one-step
+displacement more than twice its single-turn backtracking (with the
+hyperbolicity allowance).  This follows from convergence of normalised
+displacements: `d(x,gᵏx)/k` and `d(x,g²ᵏx)/(2k)` have the same positive limit,
+so `d(x,g²ᵏx) - d(x,gᵏx)` grows linearly. -/
+theorem exists_power_local_backtracking_gap
+    (hiso : IsIsometricAction G X) {δ : ℝ} (hδ0 : 0 ≤ δ)
+    {g : G} {x : X} (hg : IsLoxodromic g x) :
+    ∃ k : ℕ, 0 < k ∧
+      2 * (gromovProduct x ((g ^ (2 * k)) • x) ((g ^ k) • x) + δ) <
+        dist x ((g ^ k) • x) := by
+  let τ : ℝ := stableTranslation g x
+  have hτ : 0 < τ := stableTranslation_pos_of_isLoxodromic hiso hg
+  have ht := tendsto_stableTranslation hiso g x
+  have hup : ∀ᶠ n : ℕ in Filter.atTop,
+      dist x ((g ^ n) • x) / n < 5 * τ / 4 :=
+    ht.eventually_lt_const (by dsimp [τ]; linarith)
+  have hlo : ∀ᶠ n : ℕ in Filter.atTop,
+      3 * τ / 4 < dist x ((g ^ n) • x) / n :=
+    ht.eventually_const_lt (by dsimp [τ]; linarith)
+  rw [Filter.eventually_atTop] at hup hlo
+  obtain ⟨Mu, hMu⟩ := hup
+  obtain ⟨Ml, hMl⟩ := hlo
+  obtain ⟨k, hklarge⟩ := exists_nat_gt
+    (max (max (Mu : ℝ) Ml) (max (8 * δ / τ) 0))
+  have hkMu : Mu ≤ k := by
+    have hkMuR : (Mu : ℝ) ≤ k := le_trans (le_max_left (Mu : ℝ) Ml)
+      (le_trans (le_max_left _ _) (le_of_lt hklarge))
+    exact_mod_cast hkMuR
+  have hkMl : Ml ≤ 2 * k := by
+    have hMlk : (Ml : ℝ) ≤ k :=
+      le_trans (le_max_right (Mu : ℝ) Ml)
+        (le_trans (le_max_left _ _) (le_of_lt hklarge))
+    have hk2k : (k : ℝ) ≤ 2 * k := by positivity
+    exact_mod_cast le_trans hMlk hk2k
+  have hk0 : 0 < k := by
+    have hkR : (0 : ℝ) < k :=
+      lt_of_le_of_lt (le_max_right (8 * δ / τ) 0)
+        (lt_of_le_of_lt (le_max_right _ _) hklarge)
+    exact_mod_cast hkR
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk0
+  have h2k0 : 0 < 2 * k := by positivity
+  have h2kR : (0 : ℝ) < ((2 * k : ℕ) : ℝ) := by exact_mod_cast h2k0
+  have hu := hMu k hkMu
+  have hl := hMl (2 * k) hkMl
+  rw [div_lt_iff₀ hkR] at hu
+  have h2kcast : ((2 * k : ℕ) : ℝ) = 2 * (k : ℝ) := by push_cast; ring
+  rw [div_lt_iff₀ h2kR, h2kcast] at hl
+  have hkδ : 8 * δ / τ < (k : ℝ) :=
+    lt_of_le_of_lt (le_max_left _ _) (lt_of_le_of_lt (le_max_right _ _) hklarge)
+  have hδgrow : 2 * δ < τ * (k : ℝ) / 4 := by
+    rw [div_lt_iff₀ hτ] at hkδ
+    nlinarith
+  have hgapdist :
+      dist x ((g ^ k) • x) + 2 * δ < dist x ((g ^ (2 * k)) • x) := by
+    nlinarith
+  have hturn : gromovProduct x ((g ^ (2 * k)) • x) ((g ^ k) • x) =
+      dist x ((g ^ k) • x) - dist x ((g ^ (2 * k)) • x) / 2 := by
+    have hstep : dist ((g ^ (2 * k)) • x) ((g ^ k) • x) =
+        dist x ((g ^ k) • x) := by
+      have hz := hiso (g ^ k) x ((g ^ k) • x)
+      have he : g ^ k * g ^ k = g ^ (2 * k) := by
+        rw [← pow_add]
+        congr 1
+        omega
+      rw [← mul_smul, he] at hz
+      rw [dist_comm ((g ^ (2 * k)) • x) ((g ^ k) • x)]
+      exact hz
+    unfold gromovProduct
+    rw [hstep]
+    ring
+  refine ⟨k, hk0, ?_⟩
+  rw [hturn]
+  linarith
+
 /-- **Translation length is subadditive on commuting elements.**  With
 `stableTranslation_nonneg` this makes it a seminorm on any abelian subgroup ---
 in particular on the common centralizer of two independent loxodromics, which is
@@ -2244,6 +2325,47 @@ theorem gromovProduct_dist_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ X)
       have h := gromovProduct_le_dist_of_mem_geodesic dist_nonneg hs hf w
       rwa [hA, hC] at h,
     exists_mem_geodesic_dist_le hδ hf hA hC w⟩
+
+/-- **Endpoint stability for a bounded-turn orbit.**  Under the strict local
+backtracking gap, the penultimate point of every finite orbit segment lies
+within `C + 3δ` of a geodesic joining the segment's endpoints. -/
+theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hiso : IsIsometricAction G X) (hgeo : IsGeodesicSpace X)
+    {p : G} {x : X} (hCδ : 0 ≤ C + δ)
+    (hgap : 2 * (C + δ) < dist x (p • x))
+    (hturn : gromovProduct x ((p ^ 2) • x) (p • x) ≤ C)
+    {N : ℕ} (hN : 0 < N) :
+    ∃ (f : ℝ → X) (s : ℝ),
+      IsGeodesicSegment f 0 (dist x ((p ^ N) • x)) ∧
+      f 0 = x ∧ f (dist x ((p ^ N) • x)) = (p ^ N) • x ∧
+      s ∈ Set.Icc (0 : ℝ) (dist x ((p ^ N) • x)) ∧
+      dist ((p ^ (N - 1)) • x) (f s) ≤ C + 3 * δ := by
+  let y : ℕ → X := fun n => (p ^ n) • x
+  have hedge : ∀ n : ℕ,
+      dist x (p • x) ≤ dist (y n) (y (n + 1)) := by
+    intro n
+    have h := hiso (p ^ n) x (p • x)
+    rw [← mul_smul, ← pow_succ] at h
+    exact le_of_eq h.symm
+  have hlocal : ∀ n : ℕ,
+      gromovProduct (y n) (y (n + 2)) (y (n + 1)) ≤ C := by
+    intro n
+    have h := gromovProduct_smul hiso (p ^ n) x ((p ^ 2) • x) (p • x)
+    have htwo : p ^ n * p ^ 2 = p ^ (n + 2) := by rw [← pow_add]
+    have hone : p ^ n * p = p ^ (n + 1) := by rw [← pow_succ]
+    rw [← mul_smul, htwo, ← mul_smul, hone] at h
+    exact h.trans_le hturn
+  have hall := chain_backtracking_and_progress hδ hCδ hgap y hedge hlocal
+  have hNm : N - 1 + 1 = N := Nat.sub_add_cancel hN
+  have hback := (hall (N - 1)).2
+  rw [hNm] at hback
+  obtain ⟨f, hf, hf0, hf1⟩ := hgeo x ((p ^ N) • x)
+  obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hf hf0 hf1
+    ((p ^ (N - 1)) • x)
+  refine ⟨f, s, hf, hf0, hf1, hs, ?_⟩
+  rw [dist_comm]
+  exact le_trans hnear (by linarith)
 
 /-! ### Fellow-travelling of geodesics
 
