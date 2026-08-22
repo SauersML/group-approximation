@@ -46,5 +46,11 @@ the loss allowed by `(SDL2)`, since it is later weighted by `2^(-n)`.
 
 The construction uses derived words rather than literal stable-letter
 conjugates. It therefore does not establish
-`self-similar-clifford-quantum-expander-tape` as stated, but it supplies the
-uniform analytic interface needed by `uniform-relative-clifford-tape-cell`.
+`self-similar-clifford-quantum-expander-tape` as stated.  Moreover the
+canonical spin-block gap does not by itself supply the representation-uniform
+interface needed by `uniform-relative-clifford-tape-cell`:
+`normalizer-multiplicity-twist-breaks-prefix-expander-rounding` shows that
+arbitrary representations may twist the normalizer words on the spin
+multiplicity.  The twist-free consequence retained from the same head is the
+polynomial coordinate-Pauli interface in
+`toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`.

@@ -27,10 +27,13 @@ sectors which do not activate the rank jump pay group-relator energy.
   implication once `self-similar-clifford-quantum-expander-tape` supplies the
   level-indexed expander words. The latter finite-presentation syntax is the
   only missing input for this one-step claim.
-- **Polynomial-word Toeplitz route.** Literal level conjugates are stronger
-  than `(SDL2)` needs. `toeplitz-head-jacobi-words-give-uniform-expanders`
-  embeds the same finite Jacobi expanders into one Toeplitz universal lattice
-  with polynomial word and derivation cost. The route
-  `toeplitz-expander-rounds-relative-clifford-cell` therefore supplies this
-  claim without solving the literal-conjugacy version of
-  `self-similar-clifford-quantum-expander-tape`.
+- **Polynomial-word Toeplitz route.** This does not prove the stated uniform
+  claim.  `normalizer-multiplicity-twist-breaks-prefix-expander-rounding`
+  gives an exact correlated spin--multiplicity invariant for the Clifford
+  normalizer words and invalidates
+  `toeplitz-expander-rounds-relative-clifford-cell`.  The correct replacement
+  is `toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`:
+  honest coordinate Pauli checks give `sqrt(n)` spectral loss and polynomial
+  word/derivation cost.  That weaker conclusion is sufficient for the
+  geometrically weighted sequential ledger, but it does not establish this
+  depth-independent target.

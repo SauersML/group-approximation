@@ -4,11 +4,11 @@ id: coherent-sequential-schur-tape-payment
 kind: claim
 title: Compose the uniformly rounded Clifford cells and charge every inactive selector sector
 distinct_from:
-  uniform-relative-clifford-tape-cell: that rounds one new cell conditional on an exact old prefix; this composes the cells and proves the scalar contraction recurrence.
+  uniform-relative-clifford-tape-cell: that asks for depth-independent rounding of one new cell conditional on an exact old prefix; this uses the sufficient polynomial-cost Toeplitz coordinate-Pauli replacement, composes the cells, and proves the scalar contraction recurrence.
   non-ce-bcs-has-robust-approximate-energy-gap: that converts marked contextuality into total forbidden-product mass; this routes that mass through the oriented tower restriction matrices.
 ---
 
-Uniform one-step relative exactification along the self-referential BCS tape
+Polynomial-cost one-step relative exactification along the self-referential BCS tape
 admits normalized marked multiplicities `a_n` such that:
 
 1. the base signal gives `(SDL1)`;

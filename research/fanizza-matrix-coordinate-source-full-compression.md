@@ -110,3 +110,20 @@ defect-versus-dimension schedules prevent choosing a supercritical packet.
 Thus the surviving one-word localization gate is specifically a
 **uniformly gapped transitive actor for the dual-prefix Weyl tower**, not a
 list of pointwise prefix commutators.
+
+The Toeplitz tape supplies a second, polynomial-cost localization interface
+which avoids actor exactification entirely.
+`toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`
+proves directly that, when `E,H` commute with the old coordinate Paulis,
+
+```text
+dist_2(E-X^*X,old-spin commutant)
+ <=sqrt(2n) RMS_i([U,P_i],[U,Q_i]).
+```
+
+This channel is immune to the Clifford multiplicity twist which invalidates
+the claimed uniform Toeplitz expander rounding.  Polynomial depth loss is
+accepted by the geometric tape ledger.  Its exact remaining incidence gate
+is to make the native Fanizza chord `U` satisfy those addressed coordinate
+commutators on the same selected C18 carrier; the Toeplitz head does not
+identify that word automatically.
