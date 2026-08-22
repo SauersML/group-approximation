@@ -94,6 +94,14 @@ Leavitt decoder.
   trace-cyclic corner or the external common-source swap star at level one,
   by `cuntz-first-hit-checksum-is-a-one-scale-corner`.  Its remaining gap is
   the existing matrix-only authentication of that first-level chart.
+- A finite family of bounded **diagonal** multiscale observables is not a
+  substitute for the orthogonal first-hit blocks.
+  `finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport`
+  proves an if-and-only-if block coercivity criterion and constructs a
+  two-atom swap with full fine energy and arbitrarily small probe defect.
+  Hence an infinite Fourier series or heat-filter checksum still needs
+  separately authenticated non-diagonal domains; bounded functional
+  calculus alone cannot supply `(SSC4)`.
 - Replacing scalar lamps by an infinite library of noncommuting packet labels
   does not by itself evade compactness.  By
   `noncommutative-checksum-misses-bounded-types`, any summable library of

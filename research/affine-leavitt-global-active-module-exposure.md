@@ -66,6 +66,16 @@ finite-support PVM.  Then
   placing that same target tuple back in the source factor.  Literal
   word-level confinement would also kill the regular representation and is
   therefore impossible.
+- **Replace all virtual module words by finitely many bounded spectral
+  probes.**
+  `finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport`
+  proves that arbitrary bounded diagonal probes have a dimension-independent
+  transport estimate exactly when their feature vectors are uniformly
+  separated.  No finite bounded family separates an infinite character set.
+  Leavitt self-similarity helps only if its branch words authenticate
+  genuinely non-diagonal orthogonal domains; on one common carrier that is
+  already the relative-Leavitt trace-collapse endpoint, while changing the
+  carrier restores `rectangular-escape`.
 
 Accordingly the character-orbit backend does not prove the old
 affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by
