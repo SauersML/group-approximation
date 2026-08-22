@@ -113,7 +113,7 @@ list of pointwise prefix commutators.
 
 The Toeplitz tape supplies a second, polynomial-cost localization interface
 which avoids actor exactification entirely.
-`toeplitz-coordinate-paulis-localize-relative-cells-and-grams-polynomially`
+`toeplitz-coordinate-paulis-localize-cells-and-grams`
 proves directly that, when `E,H` commute with the old coordinate Paulis,
 
 ```text
@@ -123,7 +123,14 @@ dist_2(E-X^*X,old-spin commutant)
 
 This channel is immune to the Clifford multiplicity twist which invalidates
 the claimed uniform Toeplitz expander rounding.  Polynomial depth loss is
-accepted by the geometric tape ledger.  Its exact remaining incidence gate
-is to make the native Fanizza chord `U` satisfy those addressed coordinate
-commutators on the same selected C18 carrier; the Toeplitz head does not
-identify that word automatically.
+accepted by the geometric tape ledger.
+
+The incidence gate is now closed by
+`diagonal-difference-shift-propagates-pauli-incidence`.  With
+`c=tU^(-1)`, the finite base relations `[U,a]=[c,z]=[z,a]=1` propagate to
+all addressed coordinate Paulis and shifted C18/reset words, while the
+tensor-product exact model keeps the native chord and Toeplitz shift
+distinct.  Hence the decoded Gram is polynomially close to the old-spin
+commutant.  This is localization, not source fullness: the remaining step
+must still turn that commutant-valued Gram deficiency into a
+positive-density one-sided rank payment.

@@ -76,6 +76,17 @@ mass is bounded by the Fanizza decomposition energy.
 This final combined placement-and-estimate is isolated as
 `toeplitz-schur-child-masa-recurrence`.
 
+The remaining same-carrier Pauli incidence is also now finite and exact.
+`diagonal-difference-shift-propagates-pauli-incidence` puts
+`c=tU^(-1)`, centralizes `U` on the finite Toeplitz Pauli seed menu, and
+adds only base cross-commutators with the finite C18/reset menu.  It derives
+all shifted selector--addressed-Pauli commutators and all commutators of the
+native chord `U` with addressed Paulis at polynomial cost.  Its tensor model
+keeps `t` and `U` distinct and preserves the marked BCS word.  Thus clause 4
+no longer lacks the coordinate localization syntax; the remaining content
+is still the positive-density one-sided child payment in
+`toeplitz-schur-child-masa-recurrence`.
+
 ## Attempts
 
 - Add one unrelated packet at every tape level: syntactically infinite and
@@ -102,3 +113,8 @@ This final combined placement-and-estimate is isolated as
 - Conjugate the output finite packet subgroup onto the next input packet:
   invalid. A stable letter gives unitary equivalence of the two restrictions,
   so their type multiplicities agree instead of acquiring the factor two.
+- Use `c=tU^(-1)` to propagate cross-incidence: successful for the finite
+  Pauli/selector word menus.  The relations `[U,a]=[c,z]=[z,a]=1` imply
+  `[U,t^iat^(-i)]=[U^jzU^(-j),t^iat^(-i)]=1` and preserve the tensor-product
+  marked model.  This localizes the Fanizza Gram but does not orient or pay
+  the two Schur children.

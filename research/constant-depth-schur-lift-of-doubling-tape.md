@@ -151,3 +151,15 @@ an ordinary group word enforcing the additive equality.
   on the negative regular summand and obtains an exact contradiction.  The
   needed strictness must come from joint ambient holonomy or contextual
   operator data absent from the finite restriction graph.
+- **Name every coordinate Pauli at fixed depth. Localization solved, current
+  still open.** `constant-depth-pauli-naming-does-not-create-schur-contraction`
+  observes that the presentation may add all finitely many commutators of
+  each Fanizza chord with its old-spin coordinate Paulis.  A properly
+  infinite residual factor gives an exact marked model, and fixed-packet
+  stability localizes every Gram without a shift.  But the transverse child
+  commutants of `schur-child-toeplitz-morita-wire` reconstruct the full
+  doubled multiplicity and do not select or charge one child.  Any strict
+  contraction inferred only from this fixed finite table is refuted by the
+  negative regular stationary summand.  The surviving bounded terminal is
+  an amplification-stable positive-density one-sided child payment in the
+  joint infinite ambient group.
