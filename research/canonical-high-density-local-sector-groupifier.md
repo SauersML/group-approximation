@@ -72,3 +72,13 @@ not achieve that separation: `literal-common-ghost-atom-classicalizes-contexts`
 shows that their full group-basis support forces the entire elementary
 abelian context subgroups to coincide.  The shared object must therefore be
 higher-rank or nonliteral.
+
+The literal higher-rank option is now classified by
+`common-higher-rank-context-projections-are-syndrome-cylinders`.  A common
+projection in two elementary-abelian context algebras lies in the algebra of
+their subgroup intersection, so its rejected assignments are a union of
+complete fibers of the shared parity syndrome.  This preserves private
+noncommuting extensions but cannot isolate the one ghost.  The remaining
+positive options are therefore a cylinder-predicate gap construction, or a
+genuinely nonliteral Hecke/Morita overlap whose actual meet is authenticated
+without literal equality in both context group algebras.
