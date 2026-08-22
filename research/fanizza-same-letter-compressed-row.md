@@ -51,9 +51,16 @@ amplifier remains.
   of `a` and `j`; the proposed wandering word is then identity in the group.
   Keeping `a` and `b` distinct gives consistency energy but not the
   same-letter HNN row `(FSC1)`.
+- **Spectral intersection has exactly zero guaranteed mass.**  The shared
+  Fanizza letters are involutions, so canonical exactification gives two sign
+  spaces of density `1/2`.  By
+  `canonical-spectral-derangement-kills-same-letter-row`, an exact transporter
+  may swap those halves, leaving both same-sign intersections zero and paying
+  a fixed row defect.  For an order-`m` letter every canonical atom has mass
+  `1/m`, and the same cyclic derangement works simultaneously on all atoms.
+  Hence neither a majority argument nor a multi-type union supplies the row.
 - **What remains.**  A successful cell must use the non-CE/matrix-only source
   to make one rectangular occurrence of the *same* base word intertwine
   across `t`, while the abstract HNN edge continues to identify only the
   finite packet subgroup.  This is strictly smaller than global leakage
   localization `(NCL13)` but cannot be a universal tracial block identity.
-
