@@ -44,10 +44,19 @@ while preserving its perfect-gap orientation.
   sections also fails generically.  On a full nonaffine source support,
   cap-valued occurrence ranges would contradict
   `fano-cap-witness-sections-force-source-affine-safety`.
+- Fresh-private sunflower checks are combinatorially powerless by
+  `rstar-sunflower-neighborhoods-have-full-links`: full one- and
+  two-coordinate projections let every center atom extend independently.
+  The CMPS equality construction is not entirely a sunflower, however.  Its
+  two implication clauses jointly enforce equality between each global
+  variable and a local copy.  Those paired clauses are the first concrete
+  place where an external star can actually make a neighborhood link empty.
 - The remaining attack is source-specific: inspect the CMPS hard-instance
   incidence geometry and its selected completeness model for forced empty
-  links, or design a reduction that adds such links while retaining the
-  perfect strategy and constant NO gap.
+  links--in particular, audit the paired implication/equality blocks--or
+  design a non-contextwise reduction with shared auxiliary state (or
+  effective three-coordinate overlaps) while retaining the perfect strategy
+  and constant NO gap.
 
 The source-specific inspection now refutes the target.  A copied original
 3SAT clause in CMPS Lemma 20 is star-surjective: every one of its seven local
