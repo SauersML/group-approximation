@@ -66,6 +66,18 @@ multiplicity gauge and cross-chart overlap free. The warning about applying
 Dye reconstruction to a bare abstract unitary-group embedding is retained in
 `notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md`.
 
+The narrower Heisenberg-pinned projection-lattice proposal now has an exact
+local classification.  By
+`heisenberg-subgroup-cuts-are-affine-stabilizer-flats`, a Pauli element exposes
+only a balanced half, and a subgroup-character cut exposes exactly an affine
+stabilizer flat of trace `2^(-r)`.  Equality of two such cuts forces the same
+isotropic subgroup and character by Pauli Fourier uniqueness.  Therefore
+literal common Pauli elements or subgroup data cannot name arbitrary coarse
+context projections, let alone a dense dyadic projection lattice.  The route
+can continue only by naming Boolean sums as group-algebra projections or by a
+non-Pauli transport compiler, both of which return to the signed-Hecke atlas
+gap rather than bypassing it.
+
 Finite scalar-bus/HNN couplings do not repair the forbidden-sector problem:
 `scalar-bus-packet-couplings-retain-all-global-assignments` constructs exact
 finite-dimensional models for every globally compatible Boolean assignment,

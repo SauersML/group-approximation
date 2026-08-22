@@ -51,6 +51,16 @@ trace is required.
   `K_D` type.  These edge matchings cannot be made globally coherent:
   `coherent-balanced-context-permutations-would-give-a-ce-trace` would turn
   such a gauge into a finite-dimensional BCS representation.
+- **Unique-spin Heisenberg packets do not make arbitrary marginals literal.**
+  `heisenberg-subgroup-cuts-are-affine-stabilizer-flats` classifies every
+  projection exposed by one Pauli spectral cut or one subgroup-character
+  condition in the `J=-1` spin block.  Such a projection is an affine
+  stabilizer flat of trace `2^(-r)`; Fourier uniqueness says that identifying
+  two such cuts identifies the same affine subgroup and character.  Thus a
+  common `J` and literal shared Pauli subgroup data cannot identify a general
+  coarse marginal (already a three-of-eight atom union is impossible).  A
+  successful Heisenberg refinement still needs the non-scalar group-algebra
+  projection transport requested by `(SHA1)--(SHA2)`.
 - Single compressed group elements stay in the corner-unit stabilizer.
   `piecewise-group-transport-gives-corner-unitaries` proves that two or more
   group translates can repair domains and ranges exactly, but it does not
