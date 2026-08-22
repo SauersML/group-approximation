@@ -1,0 +1,12 @@
+{
+  "12_Reg_right_restricted_overlap_copies": 72,
+  "Reg_left_restricted_overlap_copies": 72,
+  "ambient_permutation_degree": 576,
+  "collision_J_order": 12,
+  "common_C2_cubed_order": 8,
+  "first_packet_S3xS3_order": 36,
+  "forward_carrier_order": 144,
+  "left_group_order": 576,
+  "new_A4_edge_order": 12,
+  "right_group_order": 48
+}
