@@ -107,3 +107,12 @@ every normalized-Hilbert--Schmidt defect decomposes sectorwise.  The minimal
 unfenced relation must therefore authenticate a noncommuting second chart or
 put two elementary-matrix paths into one common block so that their cross
 term is visible.
+
+Even one such block does not suffice abstractly.
+`two-sl3-shell-charts-have-a-rotated-flip-escape` rotates the two coordinate
+shell PVMs into a genuinely noncommuting pair and constructs an exact full
+off-diagonal transporter between them, while their authentication deficit is
+still `(41/42)cos(t)^2`.  Thus the smallest surviving same-corner datum is a
+three-chart arithmetic triangle with two competing returns (a Bargmann or
+loop-holonomy term), unless the raw denominator section identities can pin
+the two-chart transporter directly.

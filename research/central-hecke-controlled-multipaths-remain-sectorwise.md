@@ -79,3 +79,10 @@ the same matrix block so that cross terms survive.  Equivalently, a useful
 mixed trace-square coefficient must contain an overlap `p_a V p_b` which
 cannot be diagonalized in one common spherical atomic algebra.  This is the
 precise first place where the tensor/Folner model no longer applies.
+
+That first place is necessary but not sufficient.  The explicit rotated-flip
+model in `two-sl3-shell-charts-have-a-rotated-flip-escape` has two genuinely
+noncommuting shell charts and an exact full matched transporter, yet retains
+the positive mismatch `(41/42)cos(t)^2`.  Two-chart data have only principal
+angles and transporter gauge.  The next candidate must close a three-chart
+loop and compare at least two returns on one corner.
