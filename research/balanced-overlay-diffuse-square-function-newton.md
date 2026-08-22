@@ -152,3 +152,24 @@ version must prove expected contraction of the **full** balanced energy
 directly from the diffuse square function, with an equality-compatible
 global correction; ordinary triangle bounds supply boundedness but no
 strict contraction.
+
+The one-anchor nonlinear algebra is now sharper than that coarse triangle
+audit.  `one-anchor-grading-makes-parity-damage-quadratic` decomposes every
+reflection into even and odd parts for the selected anchor.  Pinching a
+parity word kills all odd-cardinality terms, so its difference from the
+product of the pinched factors begins with **two** odd factors; the pair
+commutator has the exact analogous formula, and spectral sign-rounding is
+quadratic whenever the odd part is operator-small.  Thus random anchoring
+really has the Newton form “CP-contracted linear residual plus quadratic
+remainder,” without first naming a code-character PVM.
+
+The residual sparse estimate is isolated as
+`sparse-anchor-odd-fourth-moment-is-the-renormalization-gate`.  Dense
+complete-pair averaging controls the two-odd-factor terms, but a bounded
+face graph has only `Theta(L)` edges and comparison with the dense square
+loses a factor `L`.  The common cut bounds an averaged positive square
+function, not every anchor-coordinate odd part in operator norm.  Closing
+the random-anchor scheme therefore requires an operator-valued
+unique-neighbor/stopping estimate for the sparse fourth moments, or an
+equivalent equality-compatible global correction; this is now the exact
+place where the parity geometry must enter.
