@@ -41,6 +41,17 @@ Consequently
 Aff(S) subseteq R_*  iff  S+g is a Fano cap.                      (RFG4)
 ```
 
+In the coordinates of `(RFG1)`, the seven minimal bad triples are exactly
+
+```text
+{0001,0010,1011},  {0001,0100,1101},  {0001,0111,1110},
+{0010,0100,1110},  {0010,0111,1101},  {0100,0111,1011},
+{1011,1101,1110}.                                           (RFG4a)
+```
+
+Thus a proposed support certificate is finite: it must delete at least one
+atom from each triple in `(RFG4a)` in every context.
+
 This gives an exact local escape from the affine-predicate barrier: any
 perfect strategy whose support in every `R_*` context is a Fano cap remains
 perfect after replacing that support by its affine hull, and every solution
@@ -69,4 +80,6 @@ Claims that all twelve arity-three derived nonconstant hyperplanes are
 bijunctive and all fifty-six arity-four ones are NP-hard require the precise
 derivation convention and an explicit finite certificate table.  Those
 enumeration counts are not used in `(RFG1)--(RFG4)` and are not asserted
-here.
+here.  Accordingly `R_*` is called *one-ghost minimal* only in the literal
+sense that it deletes one point from its affine hull, not inclusion-minimal
+among NP-hard relations.

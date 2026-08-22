@@ -77,6 +77,45 @@ The Fano argument proves local soundness for a fixed cap profile, but not
 that uniform selection step.  Reversing the Kleene branches is neither
 necessary nor justified by the cited family.
 
+## Integration ledger for the supplied compiler note
+
+| Supplied result | Cairn node | Audited status |
+|---|---|---|
+| positive-noise Taller--Vidick support and reweighting | `taller-vidick-positive-noise-fixed-support-reweighting` | established, with the fixed-`u` and zero-noise caveats |
+| weighted proof-area estimate | same node; `weighted-relator-area-energy-bound` | established |
+| colouring and positive-one-in-three ghosts | this artifact | established finite source-selection no-gos only |
+| one-ghost `R_*` hardness | `rstar-fano-ghost-affine-hull-criterion`; `culf-mastel-rstar-fixed-language-gap-is-published` | established |
+| seven-line Fano criterion | `rstar-fano-ghost-affine-hull-criterion` | established with the explicit incidence list |
+| pairwise and joint pruning | `commuting-neighborhood-pruning-pays-atom-mass` | established; mutual neighbor commutation is load-bearing |
+| cap-profile affine compiler | `rstar-fano-cap-support-preserves-nonru-affine-relaxation` | established conditional theorem |
+| fixed-point conclusion | `perfect-lcs-via-rstar-fano-cap-profile`; `re-oriented-lcs-compiler-gives-nonhyperlinear-group` | valid conditional route |
+
+The fixed-point orientation is correct, but its compiler hypothesis contains
+the unresolved mathematical input.  A model-dependent support is not yet an
+effective branch.  Once at least one profile is known to retain a perfect
+HALT model, `finite-lcs-product-sign-is-exact-or` combines the finite profile
+list exactly.
+
+The later source audit sharpens that missing input.  By
+`fano-cap-witness-sections-force-source-affine-safety`, a cap-supported lift
+of an actual positive source support `S subseteq C` necessarily satisfies
+
+```text
+Aff_F2(S) subseteq C.
+```
+
+Changing pp-gadget witnesses cannot repair an affine-unsafe source support.
+Culf--Mastel supply perfectness, oracularity, constant answer size, and the
+fixed `R_*` gap, but not affine safety of the particular HALT support.  This
+is the live gate in `culf-mastel-rstar-halt-model-has-fano-cap-support`.
+
+An independent alternative is tracked by
+`canonical-high-density-local-sector-groupifier`.  A genuinely shared
+rejecting sector pays its codimension only once by
+`common-meet-local-sectors-pay-one-deficit`; equal marginal Plancherel weights
+do not authenticate that sharing, and literally identifying rank-one ghost
+atoms classicalizes the contexts.
+
 ## Source boundary -- corrected fixed-language audit
 
 The fixed-language step itself is already published.  Culf--Mastel Theorem

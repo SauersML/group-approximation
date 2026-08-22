@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.Coprod.Basic
 import Mathlib.GroupTheory.CoprodI
+import Mathlib.Algebra.Group.ULift
 
 /-!
 # Reduced normal forms for the binary free product `G ∗ ℤ`
@@ -8,7 +9,7 @@ Mathlib supplies reduced words for `Monoid.CoprodI`, but its separately
 implemented binary `Monoid.Coprod` has no normal-form API.  For the free
 product used by the Bass--Serre pivot, we bridge the two universal properties
 explicitly.  The right factor is universe-lifted so both indexed factors live
-in the universe of `G`.
+  in the universe of `G`.
 -/
 
 namespace GroupApproximation
@@ -33,8 +34,8 @@ factors. -/
 def toIndexed :
     Monoid.Coprod G (Multiplicative ℤ) →* CoprodI (factor G) :=
   Monoid.Coprod.lift
-    (CoprodI.of (i := false))
-    ((CoprodI.of (i := true)).comp
+    (CoprodI.of (M := factor G) (i := false))
+    ((CoprodI.of (M := factor G) (i := true)).comp
       MulEquiv.ulift.symm.toMonoidHom)
 
 /-- The inverse map, defined by the indexed universal property. -/
@@ -42,27 +43,30 @@ def fromIndexed :
     CoprodI (factor G) →* Monoid.Coprod G (Multiplicative ℤ) :=
   CoprodI.lift fun i ↦ by
     cases i with
-    | false => exact Monoid.Coprod.inl
+    | false =>
+        exact (Monoid.Coprod.inl : G →* Monoid.Coprod G (Multiplicative ℤ))
     | true =>
-        exact Monoid.Coprod.inr.comp MulEquiv.ulift.toMonoidHom
+        exact (Monoid.Coprod.inr : Multiplicative ℤ →*
+          Monoid.Coprod G (Multiplicative ℤ)).comp
+            MulEquiv.ulift.toMonoidHom
 
 @[simp] theorem toIndexed_inl (g : G) :
     toIndexed G (Monoid.Coprod.inl g) = CoprodI.of (i := false) g := by
-  simp [toIndexed]
+  simp [toIndexed] <;> rfl
 
 @[simp] theorem toIndexed_inr (z : Multiplicative ℤ) :
     toIndexed G (Monoid.Coprod.inr z) =
       CoprodI.of (i := true) (MulEquiv.ulift.symm z) := by
-  simp [toIndexed]
+  simp [toIndexed] <;> rfl
 
 @[simp] theorem fromIndexed_of_false (g : G) :
     fromIndexed G (CoprodI.of (i := false) g) = Monoid.Coprod.inl g := by
-  simp [fromIndexed]
+  simp [fromIndexed] <;> rfl
 
 @[simp] theorem fromIndexed_of_true (z : ULift.{u} (Multiplicative ℤ)) :
     fromIndexed G (CoprodI.of (i := true) z) =
       Monoid.Coprod.inr (MulEquiv.ulift z) := by
-  simp [fromIndexed]
+  simp [fromIndexed] <;> rfl
 
 theorem fromIndexed_comp_toIndexed :
     (fromIndexed G).comp (toIndexed G) = MonoidHom.id _ := by
@@ -102,8 +106,8 @@ indexed free product. -/
 theorem normalForm_prod (g : Monoid.Coprod G (Multiplicative ℤ)) :
     (normalForm G g).prod = toIndexed G g := by
   classical
-  simpa [normalForm] using
-    CoprodI.Word.equiv.symm_apply_apply (toIndexed G g)
+  change (CoprodI.Word.equiv (toIndexed G g)).prod = toIndexed G g
+  exact CoprodI.Word.equiv.symm_apply_apply (toIndexed G g)
 
 /-- **Uniqueness at the identity:** the reduced normal form is empty exactly
 for the identity element. -/
