@@ -106,3 +106,13 @@ tuple.
   actual native support contains cross-threshold cells for every cutoff.
   One must authenticate the global cell first and only then charge its
   rank-one short source; separate fixed-level repair does not build `X`.
+- `bs14-global-atoms-are-moving-congruence-restrictions` identifies the
+  exact global cells.  Every exact finite-dimensional endpoint factors
+  through an odd congruence quotient, so its BS restriction lies in the
+  directed union of the restriction monoids of the finite quotient
+  irreducibles.  This removes exact noncongruence representations from the
+  problem but does not provide an approximate decoder: the quotient level
+  moves, and existing uniform infinitesimal rigidity starts only after a
+  congruence atom has already been identified.  The remaining polar-data
+  theorem is precisely a moving-level congruence-atom authentication with
+  energy-controlled compression boundary.

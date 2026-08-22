@@ -254,6 +254,18 @@ compressed Weil packets.
   must preserve these cross-threshold cells; otherwise it deletes the very
   rank-one completion that repairs the canonical enemy.
 
+- **Exact global atoms are congruence restrictions, but their level moves.**
+  `bs14-global-atoms-are-moving-congruence-restrictions` uses finite-image
+  superrigidity/CSP to identify the exact extension monoid as the directed
+  union, over odd congruence levels, of restrictions of irreducible finite-
+  quotient representations.  This correctly treats a Weil restriction as
+  one atom rather than separate BS packets.  At a fixed level the monoid is
+  finite-type, and the established infinitesimal theorem repairs a tuple
+  already near its congruence stratum.  No current theorem extracts the
+  moving level and atom multiplicities from arbitrary two-cubic residual
+  polar data.  That extraction is the far-sector content of `(FBR2)`, not a
+  consequence of exact congruence classification.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
