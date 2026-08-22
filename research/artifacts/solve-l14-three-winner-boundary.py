@@ -191,6 +191,28 @@ def power_killed(q_image, residual):
     return modulus != 0 and exponent % modulus == 0
 
 
+def saturate_primitive_roots(q_image, residual):
+    """Iteratively adjoin roots whose relator exponents have gcd one."""
+    q_image, residual = tuple(q_image), tuple(residual)
+    while True:
+        moduli = {}
+        for relation in residual:
+            power = primitive_power(relation)
+            if power is None:
+                continue
+            root, exponent = power
+            moduli[root] = gcd(moduli.get(root, 0), exponent)
+        roots = tuple(root for root, modulus in sorted(moduli.items())
+                      if modulus == 1)
+        if not roots:
+            return q_image, residual
+        closed_residual, images = S.P.close_tietze(residual + roots, IDENTITY)
+        closed_q = transform(q_image, images)
+        if (closed_q, closed_residual) == (q_image, residual):
+            return q_image, residual
+        q_image, residual = closed_q, closed_residual
+
+
 ENCODED_K = tuple((copy, S.encode(coefficient)) for copy, coefficient in C.K)
 
 
@@ -242,19 +264,34 @@ def main():
               {cyclic_key(relation) for relation in state[1]}]
     powers = [state for state in nonempty
               if state not in direct and power_killed(state[2], state[1])]
+    saturated = []
+    saturation_images = {}
+    for state in nonempty:
+        if state in direct or state in powers:
+            continue
+        reduced_q, reduced_residual = saturate_primitive_roots(state[2], state[1])
+        saturation_images[state] = (reduced_q, reduced_residual)
+        if (not reduced_q
+                or cyclic_key(reduced_q) in
+                {cyclic_key(relation) for relation in reduced_residual}
+                or power_killed(reduced_q, reduced_residual)):
+            saturated.append(state)
     unresolved = [state for state in nonempty
-                  if state not in direct and state not in powers]
+                  if state not in direct and state not in powers
+                  and state not in saturated]
     print(f"distinct_augmented_words={len(augmented_words)}")
     print(f"boundary_states={len(results)}")
     print(f"nonempty_q={len(nonempty)}")
     print(f"free_nonempty_q={len(free)}")
     print(f"direct_killed_q={len(direct)}")
     print(f"power_killed_q={len(powers)}")
+    print(f"saturation_killed_q={len(saturated)}")
     print(f"unresolved_q={len(unresolved)}")
     for state in sorted(free)[:100]:
         print("FREE", state)
     for state in sorted(unresolved)[:100]:
         print("UNRESOLVED", state)
+        print("POST_SATURATION", saturation_images[state])
 
 
 if __name__ == "__main__":
