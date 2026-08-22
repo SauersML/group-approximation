@@ -69,3 +69,12 @@ stability.
   quasi-retraction would be a forbidden genuine retract.  Thus any positive
   wrapper theorem must use joint stable-letter relations to exclude extension
   of these partial models; source restriction and area control cannot do it.
+- `higman-hs-microstates-are-near-glued-exact-bs-cycles` tests the most
+  concrete finite Higman-cycle wrapper.  HS stability of each `BS(1,2)` edge
+  is quantitatively equivalent to replacing a Higman microstate by four exact
+  BS packets whose repeated-generator seams vanish.  Simultaneously repairing
+  those seams is exactly HS stability (and marked collapse) for Higman's
+  finite presentation, because all its exact finite-dimensional
+  representations are trivial.  Thus vertex stability does not furnish a
+  smaller joint compatibility lemma; the four-packet near-amalgamation is
+  the entire surviving problem.
