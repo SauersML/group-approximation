@@ -239,3 +239,17 @@ or genuinely nonstationary coefficient data.
   certificate.  This decisively closes the square-root outer-product family:
   a surviving growing-width enemy must leave this q14 triangular centralizer
   slice, not merely choose more complicated positive-density `X,Y` inside it.
+
+- **The independent q14 stratum still has unbounded band width.**
+  `atlas-q14-independent-stratum-has-unbounded-band-width` puts two marked
+  nilpotents on `U direct_sum W direct_sum Z` as `w mapsto w` and
+  `w mapsto Cw`, both landing in `U`.  For invertible `C` and `I+C`, the
+  three nontrivial V4 nilpotents all have rank `m`, while the pair is
+  classified on its active quotient by the similarity class of `C`.
+  Irreducible companion matrices give `F2[C]=F_(2^m)`, so even the strongest
+  constant-rank independent stratum has growing state width.  The equal
+  triangular unit-packet certificate cannot extend by a finite stratum
+  enumeration.  The next relation-specific target is now exact: evaluate the
+  twelve packet cubes and collision on these irreducible q14 bands and prove
+  a uniform rank payment, or construct a band sequence with sublinear
+  residuals.
