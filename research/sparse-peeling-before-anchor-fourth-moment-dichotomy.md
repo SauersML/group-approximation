@@ -3,13 +3,14 @@ rg: 2
 id: sparse-peeling-before-anchor-fourth-moment-dichotomy
 kind: claim
 title: Peel or cheaply repair sparse sites before applying anchor fourth-moment contraction
+refuted_by: translated-three-site-blocks-defeat-global-peeling
 distinct_from:
   all-dual-unique-neighbors-contract-operator-tails: that supplies a scalar tail recurrence down to a bad-row floor; this asks to turn its sparse output into a same-Hilbert repair and then prove the fourth-moment gain on the shortened diffuse core.
   sparse-anchor-odd-fourth-moment-is-the-renormalization-gate: that asserted a little-o estimate directly on the unpeeled common low block and is refuted by a three-site Pauli block.
   balanced-overlay-common-reducing-outlier-cut: that removes a physical Hilbert-space projection; this requires a coordinate-site peeling/repair, since the localized Pauli obstruction is full rank.
 ---
 
-OPEN.  Given balanced energy `E`, produce a coordinate set `U` and corrected
+**Refuted in its global-set formulation.**  Given balanced energy `E`, produce a coordinate set `U` and corrected
 reflections `(Q_i')` such that
 
 ```text
@@ -39,3 +40,10 @@ scalar tail control does not automatically put all anchor-dependent high
 spectral projections on one coordinate set.  A successful proof needs an
 operator-valued stopping/assignment lemma or a local repair map whose cost
 is bounded by the all-dual bad-row floor.
+
+The central mixture in `translated-three-site-blocks-defeat-global-peeling`
+makes the sparse location depend on the reducing block.  No `o(L)` global
+set captures a positive fraction of the spikes, although resetting three
+coordinates separately on each central block has total cost `O(1/L)`.
+Thus `(SPF1)` asks for too much coherence.  The corrected target is
+`central-adaptive-peeling-or-noncentral-stopping`.

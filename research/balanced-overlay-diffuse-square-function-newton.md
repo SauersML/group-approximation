@@ -172,10 +172,20 @@ energy are both `Theta(1/L^2)`, so their ratio does not vanish.  The block
 is full rank but supported on only three coordinates and is therefore
 cheaply repairable, not a far countermodel.
 
-The corrected gate is
-`sparse-peeling-before-anchor-fourth-moment-dichotomy`: first use all-dual
-tail contraction to assign sparse anchor-odd spikes to a small coordinate
-set and repair/shorten those sites at proportional cost; only then seek the
-little-o fourth-moment bound on the diffuse shortened core.  This precisely
-separates coordinate sparsity from the physical Hilbert-space outlier cut
-and identifies the required operator-valued stopping or local repair lemma.
+The first repaired gate,
+`sparse-peeling-before-anchor-fourth-moment-dichotomy`, still demanded too
+much coherence.  `translated-three-site-blocks-defeat-global-peeling`
+averages translated localized Pauli spikes over central summands.  No one
+`o(L)` coordinate set catches them, despite an `O(1/L)` correction which
+resets three coordinates separately on each summand.
+
+The valid positive half is
+`block-adaptive-sparse-reset-is-cheap`: any central measurable family of
+coordinate reset sets costs only its trace-weighted density in both
+generator displacement and induced balanced energy.  The exact remaining
+gate is now `central-adaptive-peeling-or-noncentral-stopping`.  Loewner
+layer-cake gives a sparse set in every vector state; one must paste those
+sets into central reducing blocks, or prove that their failure to paste
+creates a noncentral physical boundary charged by the common covariant
+square function.  This is strictly weaker than a global coordinate set and
+survives the translated-block counterexample.
