@@ -153,3 +153,35 @@ equation.  Across all 380 pairs the full residue sizes are `122`, `164`,
 counts, is the uniform obstruction for the whole family.  The next candidate
 must mix distinct gate types, not merely two coordinate copies of the KL
 gate.
+
+## One KL gate and one pure-chart KL root
+
+The other two coefficients in the original KL generator triple give the
+involutions
+
+```text
+a=x_12(s_0),        f=x_12(t_1),
+a_j=phat^j a phat^-j,       f_j=phat^j f phat^-j.
+```
+
+The verifier tests all 400 index pairs in each of the four ordered families
+
+```text
+q_i a_j,       q_i f_j,       a_j q_i,       f_j q_i,
+```
+
+with the reverse word used as the exact inverse.  This again avoids assuming
+that the fixed corner lifts share the coordinate-cycle symmetry.  For every
+one of the 1,600 words the same coefficient formula holds:
+
+```text
+epsilon_1(Delta)=1,
+(epsilon_1(A P_(x^-1)), epsilon_1(P_x B),
+ epsilon_1(P_x P_(x^-1)))=(0,0,0).                    (8)
+```
+
+Thus every distinct-type word in these four minimal families leaves the
+identity fiber odd.  The full residue sizes range over
+`122,156,164,202,220,222,224,234,236,238,242`; formula (8) is the uniform
+certificate.  A surviving short conjugator must therefore use a longer
+Steinberg interaction than one KL gate times one cyclic `s_0`- or `t_1`-root.

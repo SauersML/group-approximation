@@ -248,3 +248,53 @@ print("all ordered two-gate residue sizes:",
       sorted({size for _, _, size, _, _ in all_two_gate_results}))
 print("all ordered correction-bit triples:",
       sorted({bits for _, _, _, bits, _ in all_two_gate_results}))
+
+
+def cyclic_orbit(candidate):
+    orbit = []
+    for j in range(20):
+        pj = power(pcycle, j)
+        pinv = power(pcycle, (20 - j) % 20)
+        moved = mul(mul(pj, candidate), pinv)
+        assert mul(moved, moved) == ONE
+        orbit.append(moved)
+    return orbit
+
+
+a_candidates = cyclic_orbit(root(1, S0, 2))
+e_candidates = cyclic_orbit(root(1, T1, 2))
+
+
+def audit_distinct_type(label, left_family, right_family):
+    results = []
+    for i, left in enumerate(left_family):
+        for j, right in enumerate(right_family):
+            candidate = mul(left, right)
+            candidate_inverse = mul(right, left)
+            assert mul(candidate, candidate_inverse) == ONE
+            p_x = packet(candidate, candidate_inverse)
+            p_x_inverse = packet(candidate_inverse, candidate)
+            correction_bits = (
+                ONE in gr_mul(corner_a, p_x_inverse),
+                ONE in gr_mul(p_x, corner_b),
+                ONE in gr_mul(p_x, p_x_inverse),
+            )
+            residue = defect(candidate, candidate_inverse)
+            results.append(
+                (i, j, len(residue), correction_bits, ONE in residue)
+            )
+    print(label, "tested:", len(results))
+    print(label, "residue sizes:", sorted({row[2] for row in results}))
+    print(label, "correction-bit triples:", sorted({row[3] for row in results}))
+    print(label, "identity-odd count:", sum(row[4] for row in results))
+    assert all(row[3] == (False, False, False) for row in results)
+    assert all(row[4] for row in results)
+    return results
+
+
+distinct_type_results = {
+    "q*a": audit_distinct_type("q*a", [unit for _, unit in candidates], a_candidates),
+    "q*e": audit_distinct_type("q*e", [unit for _, unit in candidates], e_candidates),
+    "a*q": audit_distinct_type("a*q", a_candidates, [unit for _, unit in candidates]),
+    "e*q": audit_distinct_type("e*q", e_candidates, [unit for _, unit in candidates]),
+}
