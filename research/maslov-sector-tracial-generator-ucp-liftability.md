@@ -47,11 +47,18 @@ Nevertheless it closes the Maslov sector by
   hypothetical correction to Thom's hyperlinear Kazhdan group without the
   factorization property.  Any correction here must use the Deligne
   multiplier or symplectic arithmetic, not only a Kazhdan pair.
-- **Chordal positivity does lift.**  On any finite root chart whose partial
-  operator-matrix pattern is chordal,
+- **Chordal positivity lifts, but the root cycle is flat.**  On any finite
+  root chart whose partial operator-matrix pattern is chordal,
   `chordal-partial-positive-operator-matrices-lift` lifts clique-wise
-  positivity through the matrix-product quotient.  Hence the finite-operator-
-  system attack is not blocked on the chordal root charts.  The remaining
-  task is synchronization across their overlaps and positive completion
-  around the nonchordal `C2` Maslov cycle -- precisely the holonomy seam in
-  `c2-root-chart-maslov-holonomy-gap`.
+  positivity through the matrix-product quotient.  However
+  `c2-root-commuting-cycle-is-maslov-trivial` proves that the canonical map
+  from the **entire** nonchordal root graph product lifts through the Deligne
+  cover.  Thus its unique induced four-cycle cannot carry the missing scalar,
+  and `c2-root-chart-maslov-holonomy-gap` is refuted.
+- **The surviving support is noncommutative.**  Kassel's explicit `C2`
+  presentation locates the central generator at the rank-one Weyl word
+  `w_gamma^4`; comparing its two long-root realizations uses the
+  noncommuting Chevalley relations.  A positive prefix-cycle for that word is
+  available only after one has lifted positivity across those nonlinear
+  relations.  Supplying such a global positive kernel is the present ucp
+  lifting claim itself, not a consequence of chordal abelian lifting.
