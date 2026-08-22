@@ -70,3 +70,10 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   standard diagonal map only by a relative `PGL` holonomy.  The live route is
   therefore to charge that holonomy; `binary-schur-branch-payment-via-19243-holonomy`
   installs collision 19243 in exactly this slot.
+- **Replace the binary head by a ternary head and call the third branch an
+  exit.**  `arity-imbalanced-schur-heads-have-a-stationary-exit` proves that a
+  unital full-block map still returns every branch.  Relabelling one branch
+  gives the formal `2/3` rank split, but the finite packet's regular stationary
+  representation carries the remaining `1/3` at zero relator defect.  A
+  relation that genuinely discards that third is the missing one-sided
+  payment, not a consequence of the larger arity.
