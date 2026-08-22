@@ -68,6 +68,11 @@ commuting reference on the diffuse core.  The exact remaining inequality is:
 > and parity energy `o(1)`, without first assuming a global joint PVM.
 
 Once that inequality is available, `(CDP4)`--`(CDP5)` give a
-cardinality-free same-algebra terminal correction; no further PVM
-orthogonalization theorem is missing.
-
+cardinality-free same-algebra correction **into the commutant** of the
+decoded code PVM.  They do not centralize the multiplicity algebra inside
+one code atom.  In the extreme one-atom case `S_i=I`, both `E_par` and
+`D(R,S)` vanish for every reflection `R`, and the theorem correctly returns
+`R'=R`.  Thus a simultaneous application still needs one further
+multiplicity-space refinement showing that the balanced local parity and
+complete-pair energy force the corrected reflections to a common abelian
+code refinement.

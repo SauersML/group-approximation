@@ -117,8 +117,8 @@ row/column coercivity.  A successful Newton argument must use the balanced
 parity layer to exclude or correct those low-weight adjoint modes before it
 invokes the orthogonalization theorem.
 
-There is now a complete terminal theorem once a commuting reference enters
-the basin.  `code-distance-upgrades-pair-energy-to-full-pinching` first
+There is now a complete **transverse** theorem once a commuting reference
+enters the basin.  `code-distance-upgrades-pair-energy-to-full-pinching` first
 decodes any commuting reference atomwise to the code, then uses relative
 code distance to force every nonzero adjoint Fourier character to have
 weight `Omega(L)`.  De la Salle consequently rounds any further reflection
@@ -126,8 +126,16 @@ against that code PVM with a length-independent constant.  Thus the
 low-weight Fourier obstruction belongs entirely to **basin capture**: the
 all-local-dual tail inequalities may peel its sparse coordinate support,
 but the still-missing diffuse estimate must construct one commuting
-reference on the shortened core.  Once it does, neither an endpoint cb
-orthogonalization estimate nor a new many-outcome PVM theorem is required.
+reference on the shortened core.
+
+This does not yet give simultaneous terminal rounding.  The zero adjoint
+character is the full within-code-atom multiplicity algebra, and de la
+Salle's correction leaves that algebra untouched.  For example, when the
+reference has one atom (`S_i=I`), an arbitrary reflection already commutes
+with it at zero cost.  The remaining noncentral diffuse gate can therefore
+be stated precisely: balanced local parity plus complete-pair energy must
+centralize these multiplicity blocks, or refine them to one common abelian
+code PVM, without losing the transverse constant proved above.
 
 Random coordinate anchoring gives a complementary exact-base realization
 of the desired gap.  `random-code-anchor-pinchings-contract-exact-transverse-energy`
