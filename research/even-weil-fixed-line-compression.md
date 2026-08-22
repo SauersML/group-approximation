@@ -113,3 +113,10 @@ Dogon--Vigdorovich target: their generalized metric
 allows the full `(p+1)/2`-dimensional Weil representation, which is
 `O(p^(-1/2))` from the compressed tuple.  Any proposed positive-density
 packet gap that forbids `(EWC4)` is false.
+
+The missing lower estimate is now computed for `p=5 mod 8` in
+`even-weil-second-cubic-has-a-rank-six-determinant-gap`: the second cubic
+residual has rank at most six and determinant `-1`, so its normalized-HS norm
+is at least `2/sqrt(6d)`.  Thus the `Theta(d^(-1/2))` defect and quadratic
+one-line padding calibration are valid on that infinite subsequence.  The
+same determinant argument is neutral for `p=1 mod 8`.

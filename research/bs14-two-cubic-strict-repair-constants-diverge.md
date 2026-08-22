@@ -89,3 +89,11 @@ one cubic sees the boundary mode at constant unnormalized Frobenius scale.
 The only viable endpoint is a flexible global cross-packet reconciliation
 theorem; a strict orbitwise theorem is impossible regardless of that missing
 lower bound.
+
+That lower bound is now established on the infinite progression
+`p=5 mod 8` by
+`even-weil-second-cubic-has-a-rank-six-determinant-gap`.  The second cubic
+alone has determinant `-1` and residual rank at most six, hence norm at
+least `2/sqrt(6d)`.  Thus the quadratic padding calibration is rigorous on
+this subsequence; the caveat remains only for primes `p=1 mod 8` and for
+arbitrary packet mixtures.

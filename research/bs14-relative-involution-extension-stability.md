@@ -74,6 +74,13 @@ involution.
   not yet follow from this family.  It additionally requires a lower bound
   `max(cubic defects)>=c p^(-1/2)`, i.e. an explicit statement that one cubic
   word sees the deleted Weil boundary mode without cancellation.
+  This missing calculation is now positive on the infinite subsequence
+  `p=5 mod 8`: `even-weil-second-cubic-has-a-rank-six-determinant-gap`
+  proves that the second cubic has determinant `-1`, rank at most six away
+  from the identity, and normalized-HS defect at least `2/sqrt(6d)`.  Hence
+  one-dimensional padding is genuinely quadratic in defect there.  The
+  `p=1 mod 8` determinant-neutral packets and general cross-packet mixtures
+  remain outside that lower bound.
 - **Primitive prime packets are now classified exactly.**
   `prime-bs14-packet-extension-classification` proves that a scalar packet
   extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,

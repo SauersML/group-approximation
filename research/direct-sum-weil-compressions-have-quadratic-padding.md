@@ -46,6 +46,19 @@ requires a matching lower bound on at least one compressed cubic residual.
 The rank-one excursion proves support and an upper bound, but the current
 calculation does not rule out cancellation in those particular words.
 
+There is now a sharp positive subfamily.  If every `p_j=5 mod 8`,
+`even-weil-second-cubic-has-a-rank-six-determinant-gap` gives unnormalized
+Frobenius square at least `2/3` for the second cubic on each block.  Direct
+sums preserve that block diagonal word, so
+
+```text
+||(X R S)^3-1||_2^2 >= (2/3)K/D.                      (DSW5)
+```
+
+Together with `(DSW2)`, the observed presentation defect is
+`Theta(sqrt(K/D))` on this restricted family, and the evident `K`-line
+arithmetic completion has genuinely quadratic relative padding.
+
 ## Proof
 
 On each summand, every fixed relator error has unnormalized Frobenius norm

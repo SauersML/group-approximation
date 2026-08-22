@@ -43,6 +43,11 @@ restoring the canonical arithmetic completion changes relative dimension by
 exactly `1/d`.  No matching lower bound for the two cubic residuals is
 asserted here.
 
+For the subsequence `p=5 mod 8`, the lower bound is now proved by
+`even-weil-second-cubic-has-a-rank-six-determinant-gap`; on that subsequence
+the normalized defect is `Theta(d^(-1/2))` and the one-line flexible padding
+scale is genuinely quadratic.
+
 This gives a concrete arithmetic witness for the general strict-instability
 phenomenon behind Becker--Lubotzky, but with the additional feature that the
 entire amenable `BS(1,4)` skeleton remains exact.

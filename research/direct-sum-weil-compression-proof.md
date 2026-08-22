@@ -18,3 +18,8 @@ normalization is `D+K`.
 Both estimates are upper bounds in terms of `K/D`.  No lower bound for the
 maximum of the two cubic residuals is proved here, so the route does not
 identify `K/D` with the squared observed presentation defect.
+
+For the restricted progression `p_j=5 mod 8`, the determinant--rank theorem
+`even-weil-second-cubic-has-a-rank-six-determinant-gap` supplies the missing
+lower bound blockwise.  Frobenius squares of the block diagonal second cubic
+add, yielding `(2/3)K/D` after normalization.
