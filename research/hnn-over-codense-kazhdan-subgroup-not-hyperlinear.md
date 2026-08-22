@@ -55,7 +55,7 @@ Hence `g U(a_1) g^* - U(a_1)` is within `O(||g - Eg||_2 + |a_1| eta)` of
 in `(HC2)`. ∎
 
 *Proof of the corollary.*  If `G` were hyperlinear there would be tuples
-`U_n` with defect tending to zero and `tr U_n(w) -> 0` since `w != 1`.
+`U_n` with defect tending to zero and `tr U_n(w) -> 0` since `w != 1` (Radulescu's equivalence, `hyperlinear-iff-group-factor-embeds-in-hyperfinite-ultrapower`).
 Flexible stability of `A` gives exact representations on slightly larger
 spaces; padding `U_n` by the identity on the extra corner changes defect
 and traces by `o(1)`, and unitarity forces the off-corner part of the

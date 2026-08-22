@@ -11,7 +11,9 @@ artifacts:
 
 Finite order of the unitary image of a unipotent that is conjugate to its
 `p^2`-th power, the finite index of the normal closure of a unipotent power
-(Peterson--Thom after Bass--Milnor--Serre), Serre's congruence subgroup
+(Peterson--Thom after Bass--Milnor--Serre; now isolated as
+`sl2-s-arithmetic-noncentral-normal-subgroups-have-finite-index`, a
+Margulis-theorem import that is FALSE for `SL_2(Z)`), Serre's congruence subgroup
 property, reduction of `SL_2(Z)` modulo `m`, and Selberg's `3/16` theorem
 as property `(tau)` for the congruence quotients.  Section 12 of the
 artifact.
