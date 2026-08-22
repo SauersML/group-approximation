@@ -64,6 +64,23 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **The minimal forward-collision support is one explicit one-relator
+  quotient.**  `atlas-forward-collision-bass-serre-reduction`
+  identifies the pre-collision carrier as
+
+  ```text
+  G0=(C3 x S3) *_(C3^2) (C2^4 : C3^2) *_C2 S3
+  ```
+
+  and shows that all three regular vertex margins glue at every atlas
+  multiplicity.  Collision is a cyclically reduced length-six hyperbolic word
+  `t|c|s|c|t^-1|cbc`, not a translation in `C2^4`; hence a translation-normal-
+  closure shortcut cannot prove the hub estimate.  The exact remaining seam
+  is whether the three finite vertex groups inject in a finite quotient after
+  adjoining that relator, or whether the common involution dies.  The repeated
+  `c` also rules out strict relative `C'(1/6)`, so no vertex injection is being
+  smuggled in through a borderline small-cancellation claim.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence
