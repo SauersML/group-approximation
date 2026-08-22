@@ -29,6 +29,19 @@ character-block Jacobian inverse to a tuple known only through this
 square-function bound; assuming the exact character decomposition here
 would be circular.
 
+Adding the selfadjoint-contraction equations `X_i^2=I` does not make the
+physical cut boundary part of this transverse gap.
+`common-character-rotation-is-flat-for-involution-jacobian` rotates two
+exact code-character sectors by one common unitary and pinches back to the
+old character projection.  Boundary variance is `rho sin^2(2theta)`, while
+the involution and every bounded parity residual have squared energy only
+`O(theta^4)`; infinitesimally this is exactly the simultaneous-conjugation
+kernel of the balanced Jacobian.  The square-root loss is sharp.  However,
+for a selfadjoint contraction, sign functional calculus gives
+`||X-sign(X)||_2^2<=||I-X^2||_2^2`.  Thus the contraction phase should
+gauge away boundary motion and charge sign-rounding cost, rather than seek
+a linear Lyapunov for the pre-pinching boundary variance.
+
 The positive part is now explicit:
 `code-laplacian-has-uniform-cp-green-approximants` supplies dimension-free
 finite CP Green polynomials for the exact adjoint code Laplacian and the
