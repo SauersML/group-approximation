@@ -255,3 +255,13 @@ finite-support argument then collapses the source or the wandering word.
 Consequently a surviving controller must act noncommutatively on the
 multiplicity algebra, or choose a carrier depending on that algebra.  Adding
 more fixed packet words in the same tensor orientation cannot close `(FCW1)`.
+
+The first apparent escape also has a firewall.  By
+`tensor-separated-holonomy-controller-is-circular`, replacing the single
+`A` by a noncommuting holonomy group `H` does nothing if `H` is an independent
+multiplicity tensor factor: hyperlinear canonical microstates of `H` tensor
+with every losing verifier model and preserve its losing density.  Choosing a
+nonhyperlinear `H` imports the desired conclusion instead of deriving it.
+Thus the live escape is narrower still: the multiplicity action must be
+non-tensorially entangled with the BCS payload, or the authenticated carrier
+must depend on that action.
