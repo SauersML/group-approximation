@@ -59,6 +59,12 @@ matched transition is `W_a tensor V_a` with arbitrary `V_a`; the gauges can
 be removed along the depth tree and recycled on growing Folner boxes with
 word-square defect `O(1/N)`.  The remaining input must be a raw mixed-root
 incidence which is not merely packet normalization or depth transport.
+The first such-looking raw incidence also remains blind:
+`p3-denominator-steinberg-word-is-multiplicity-blind` shows that
+`[h x_12(1)h^(-1),x_23(1)]=x_13(3)` cancels the multiplicity gauge before
+the root commutator is evaluated.  The needed relation must expose a named
+same-object selector/global building coordinate, rather than another
+Chevalley triangle.
 
 Assembly of the proof, every piece prime-generic or computed here:
 

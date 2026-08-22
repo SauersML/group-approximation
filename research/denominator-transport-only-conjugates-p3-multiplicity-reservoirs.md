@@ -70,3 +70,11 @@ induction, and all native finite projective loops do **not** authenticate one
 stationary multiplicity algebra.  The surviving arithmetic input must couple
 the raw mixed-root coordinates to that algebra in a way that cannot be
 gauged along the amenable depth graph.
+
+The first raw mixed-root candidate does not provide that coupling.
+`p3-denominator-steinberg-word-is-multiplicity-blind` evaluates
+`[h x_12(1)h^(-1),x_23(1)]=x_13(3)` on the oscillator block: the
+multiplicity unitary cancels inside the conjugated root, so the relation is
+the packet Chevalley identity tensored with the identity.  A successful raw
+coordinate must name a same-object multiplicity selector or a global
+building PVM, not merely another root identity.

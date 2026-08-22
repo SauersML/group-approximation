@@ -269,6 +269,24 @@ the fixed-depth nonhyperlinearity criterion.
   hence this is not a countermodel to `(AHD2)`, but it rules out the entire
   pure-Steinberg route to the required conductor-to-multiplicity
   synchronization inequality.
+- **A denominator-conjugated Steinberg word is still gauge-covariant.**  At
+  `p=3`, the literal relation
+
+  ```text
+  [h x_12(1)h^(-1),x_23(1)]=x_13(3)
+  ```
+
+  looks stronger because it crosses adjacent conductor charts.  On an
+  oscillator isotypic block, however, `rho(h)=W_h tensor V` and every root
+  is `pi(x) tensor I`; the `V,V^*` cancel inside the conjugated root.  The
+  relation is exactly the oscillator Chevalley identity tensored with the
+  multiplicity identity.  A two-dimensional swap can move a half projection
+  by squared HS distance one while the word defect remains zero; the full
+  inverse twisted-regular groupoid gauge extends this to every finite native
+  transition table.  See
+  `p3-denominator-steinberg-word-is-multiplicity-blind`.  Thus inserting raw
+  denominator conjugations into pure Steinberg triangles still does not
+  create the same-object return isolated after `(AHD9)`.
 - **Bounded conductor width does pay uniformly.**  The converse estimate
   `bounded-conductor-width-pays-uniform-first-exit` shows that a multiplicity
   profile supported on at most `B` root-depth bands loses at least `1/B`
