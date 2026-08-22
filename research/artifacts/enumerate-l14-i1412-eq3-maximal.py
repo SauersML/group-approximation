@@ -8,6 +8,12 @@ from itertools import combinations, product
 COLORS = (3, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 1,
           2, 3, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1, 2, 3)
 
+# g1,g2,g4,...,g13 are numbered 1,...,12; g0=g3=1 already.
+S = ((-10,), (-9,), (-8,), (-7,), (-6,), (-5,), (-3, -2),
+     (-1, -12), (-11,), (-10, 3), (5,), (6,), (7,), (8,), (9,),
+     (10,), (10, -10), (-9,), (-8,), (-7,), (-6,), (-5,),
+     (-3, -2), (-1, -12), (-11,), (-10, 9), (10,), (10,), (11,))
+
 
 @lru_cache(maxsize=None)
 def maximal(lo, hi):
@@ -33,14 +39,68 @@ def maximal(lo, hi):
     return best, tuple(sorted(winners))
 
 
+def reduce_word(word):
+    out = []
+    for letter in word:
+        if out and out[-1] == -letter:
+            out.pop()
+        else:
+            out.append(letter)
+    return tuple(out)
+
+
+def inverse(word):
+    return tuple(-letter for letter in reversed(word))
+
+
+def substitute(word, generator, replacement):
+    out = ()
+    for letter in word:
+        if letter == generator:
+            out = reduce_word(out + replacement)
+        elif letter == -generator:
+            out = reduce_word(out + inverse(replacement))
+        else:
+            out = reduce_word(out + (letter,))
+    return out
+
+
+def tietze(relations):
+    relations = [reduce_word(relation) for relation in relations if relation]
+    while True:
+        step = None
+        for ri, relation in enumerate(relations):
+            for pos, letter in enumerate(relation):
+                generator = abs(letter)
+                if sum(abs(x) == generator for x in relation) == 1:
+                    left, right = relation[:pos], relation[pos + 1:]
+                    replacement = (inverse(left) + inverse(right)
+                                   if letter > 0 else right + left)
+                    step = ri, generator, reduce_word(replacement)
+                    break
+            if step:
+                break
+        if not step:
+            return tuple(sorted(set(relations)))
+        ri, generator, replacement = step
+        relations.pop(ri)
+        relations = [substitute(r, generator, replacement) for r in relations]
+        relations = [r for r in relations if r]
+
+
 def main():
     count, schemes = maximal(0, len(COLORS))
     print(f"minimum_blocks={count}")
     print(f"maximal_schemes={len(schemes)}")
+    presentations = set()
     for scheme in schemes:
-        print(scheme)
+        relations = [reduce_word(sum((S[index] for index in block), ()))
+                     for block in scheme]
+        presentations.add(tietze(relations))
+    print(f"tietze_presentations={len(presentations)}")
+    for presentation in sorted(presentations)[:100]:
+        print(presentation)
 
 
 if __name__ == "__main__":
     main()
-
