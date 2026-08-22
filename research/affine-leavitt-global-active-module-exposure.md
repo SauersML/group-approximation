@@ -68,7 +68,7 @@ finite-support PVM.  Then
   therefore impossible.
 - **Replace all virtual module words by finitely many bounded spectral
   probes.**
-  `finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport`
+  `finite-bounded-spectral-probe-obstruction`
   proves that arbitrary bounded diagonal probes have a dimension-independent
   transport estimate exactly when their feature vectors are uniformly
   separated.  No finite bounded family separates an infinite character set.

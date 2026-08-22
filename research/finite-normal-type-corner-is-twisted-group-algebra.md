@@ -1,9 +1,8 @@
 ---
 rg: 2
-id: finite-normal-invariant-type-corner-is-matrix-twisted-group-algebra
+id: finite-normal-type-corner-is-twisted-group-algebra
 kind: claim
 title: An invariant irreducible finite-normal-subgroup corner is a matrix algebra over a finite-phase twisted group algebra
-requires: []
 distinct_from:
   unique-trace-signed-corner-quotient-forces-nonhyperlinear: that promotes a quotient trace abstractly; this computes the complete algebra and canonical trace of the finite-normal signed corner before any quotient is chosen.
   twisted-factor-existence-is-equivalent-to-nonhyperlinearity: that is an existence equivalence for non-CE twisted factors; this is the Clifford decomposition showing that every invariant finite-type signed corner is already one such twisted algebra after removing a matrix factor.

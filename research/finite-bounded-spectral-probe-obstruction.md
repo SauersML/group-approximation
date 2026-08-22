@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport
+id: finite-bounded-spectral-probe-obstruction
 kind: claim
 title: Finite bounded diagonal probes cannot resolve an infinite character transport table
 distinct_from:
@@ -82,4 +82,3 @@ This theorem concerns the marginal source/target PVM calculation.  It does
 not rule out a joint non-diagonal word whose orthogonal blocks are themselves
 authenticated by additional mixed relations, nor does it replace the
 same-PVM actor-loop constraints.  Those are exactly the surviving gates.
-

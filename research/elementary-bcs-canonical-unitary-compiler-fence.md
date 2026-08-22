@@ -3,7 +3,6 @@ rg: 2
 id: elementary-bcs-canonical-unitary-compiler-fence
 kind: claim
 title: Canonical elementary matrices over a BCS algebra do not define a group C-star quotient, and abstract repair is the missing character theorem
-requires: []
 distinct_from:
   char-p-weyl-blocks-local-commutator-decoder: that studies abstract unitary root tables and their failure to recover coefficient traces; this rules out the canonical coefficient-matrix representation before any approximate decoder is considered.
   finite-normal-signed-bcs-quotient-collapses-to-twisted-factor: that analyzes trace promotion after a signed quotient exists; this shows why the elementary-ring construction does not supply that quotient.
@@ -41,4 +40,3 @@ the missing character/groupification theorem and is not supplied by the
 elementary coefficient construction.
 
 See `research/artifacts/finite-type-corner-clifford-collapse-2026-08-21.md`.
-

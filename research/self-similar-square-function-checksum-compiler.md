@@ -96,7 +96,7 @@ Leavitt decoder.
   the existing matrix-only authentication of that first-level chart.
 - A finite family of bounded **diagonal** multiscale observables is not a
   substitute for the orthogonal first-hit blocks.
-  `finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport`
+  `finite-bounded-spectral-probe-obstruction`
   proves an if-and-only-if block coercivity criterion and constructs a
   two-atom swap with full fine energy and arbitrarily small probe defect.
   Hence an infinite Fourier series or heat-filter checksum still needs

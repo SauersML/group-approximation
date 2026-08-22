@@ -118,7 +118,7 @@ do not provide either mechanism.
   theorem and require an unbounded family.
 - **Package infinitely many characters into finitely many bounded diagonal
   operators.**
-  `finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport`
+  `finite-bounded-spectral-probe-obstruction`
   gives the exact block criterion: such probes control fine transport if
   and only if their finite-dimensional bounded feature map is uniformly
   discrete.  An infinite character set never is.  Thus Fourier series,

@@ -3,9 +3,6 @@ rg: 2
 id: finite-normal-signed-bcs-quotient-collapses-to-twisted-factor
 kind: claim
 title: A unique-trace finite-normal signed BCS quotient has already produced a non-CE twisted group factor
-requires:
-  - finite-normal-invariant-type-corner-is-matrix-twisted-group-algebra
-  - unique-trace-signed-corner-quotient-forces-nonhyperlinear
 distinct_from:
   character-rigid-signed-bcs-quotient: that asks to construct the signed quotient; this proves that, for the proposed invariant finite-normal type, completing it already solves the existing twisted-factor gate and so is not a weaker groupification step.
   twisted-factor-existence-is-equivalent-to-nonhyperlinearity: that gives the global equivalence; this identifies the exact twisted factor hidden in the proposed signed corner.
@@ -20,7 +17,7 @@ A=z_rho C*(Gamma) z_rho
 has unique trace and admits a unital surjection `Phi:A->B`, where `B` has a
 non-Connes-embeddable trace `sigma`.  Put `Q=Gamma/K`.  Then, for the
 finite-valued Clifford cocycle `omega` from
-`finite-normal-invariant-type-corner-is-matrix-twisted-group-algebra`,
+`finite-normal-type-corner-is-twisted-group-algebra`,
 
 ```text
 pi_sigma(B)'' ~= M_(dim rho)(C) tensor L_omega(Q).        (FSQ1)

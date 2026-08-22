@@ -99,7 +99,7 @@ the BCS quotient without destroying that sector character classification.
 
 There is now a sharp fence on the finite-normal-subgroup version of this
 proposal.  By
-`finite-normal-invariant-type-corner-is-matrix-twisted-group-algebra`, the
+`finite-normal-type-corner-is-twisted-group-algebra`, the
 entire invariant `rho`-corner is already
 
 ```text

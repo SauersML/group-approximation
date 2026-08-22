@@ -3,7 +3,7 @@ rg: 2
 id: finite-bounded-spectral-probes-proof
 kind: route
 title: Block Parseval criterion for a finite family of diagonal transport probes
-target: finite-bounded-spectral-probes-cannot-resolve-infinite-character-transport
+target: finite-bounded-spectral-probe-obstruction
 requires: []
 ---
 
@@ -64,4 +64,3 @@ subset cannot have positive minimum pairwise distance: for every
 `epsilon>0` it contains distinct points at squared distance below
 `epsilon`.  Equations `(5)--(6)` then prove `(BSP6)` and rule out every
 finite coercivity constant.
-
