@@ -49,6 +49,16 @@ part of the remaining hole.
   commutant (and lies above the old adjoint Kazhdan gap).  Thus a live cell
   must transport only a partial/compressed coefficient or force the scalar
   overlap moment without conjugating the full packet table.
+- Compressing all the way to one minimal packet idempotent does not by
+  itself solve the problem.  In
+  `minimal-packet-corner-overlap-has-irreducible-spectator-dilution`, the
+  same exact packet table and the same carrier mass `q=1/n` have amplified
+  corner overlap `1/n^3` when the multiplicity is trivial, but only
+  `1/(n^3m^2)` when that multiplicity carries an irreducible old-group type
+  of dimension `m`.  A single coefficient line has adjoint density only
+  `1/(n^2m^2)` even before intersection.  Thus the partial-coefficient cell
+  must authenticate the whole multiplicity action; local Schur relations or
+  one favorable rank-one overlap cannot supply `(PCD1)`.
 - A finite controlled-phase overgroup cannot impose that covariance on every
   selector sector.  The live implementation must use the one-sided Toeplitz
   coefficient action or a projective two-cell.
