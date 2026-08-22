@@ -137,6 +137,40 @@ theorem greendlingerAtSharp_of_rotation_window {R : Set (List (α × Bool))}
     rw [List.length_rotate, hlen]
     exact hbound
 
+/-! ## 2b.  A window cut by two pieces is an arc -/
+
+/-- **Two pieces leave more than half.**  A rotation eaten by less than a sixth
+at each end keeps more than half of itself.
+
+This is `GreendlingerChunks.survivor_gt_of_two_pieces` in the form the window
+producer consumes, and it is the whole arithmetic of the two-sided count: the
+front intrusion and the back loss are each bounded by `C'(1/6)`, and a sixth
+plus a sixth is comfortably inside a half. -/
+theorem two_mul_lt_of_two_pieces {t₃ : List (α × Bool)} {i k : ℕ}
+    (hi : 6 * i < t₃.length) (hk : 6 * k < t₃.length) :
+    2 * (i + k) < t₃.length := by
+  omega
+
+/-- **The arc, from the two piece bounds alone.**  The landing rotation with `i`
+letters gone from the front — the incoming block — and `k` from the back — the
+landing factor's own block — still carries an arc, wherever the surviving window
+sits.
+
+This is the form the drop-shaped invariant wants: no offset appears, so nothing
+here is denominated in the head rotation's units and no ratio between the two
+rotations is needed.  The two hypotheses are the only content, and each is a
+piece bound: the front one is
+`GreendlingerDeepOverrunCount.six_mul_intrusion_lt_of_forward`, the back one is
+the landing factor's own overlap bound. -/
+theorem greendlingerAt_of_two_piece_window {R : Set (List (α × Bool))}
+    {t₃ w A C : List (α × Bool)} {i k n : ℕ}
+    (ht₃ : t₃ ∈ symmetrization R)
+    (hw : w = A ++ (t₃.drop i).take (t₃.length - i - k) ++ C)
+    (hn : n ≤ A.length)
+    (hi : 6 * i < t₃.length) (hk : 6 * k < t₃.length) :
+    GreendlingerAt R n w :=
+  greendlingerAt_of_rotation_window ht₃ hw hn (by omega) (by omega)
+
 /-! ## 3.  The residual, over an arbitrary tail -/
 
 /-- **The overrun exhibits a window of the landing rotation, late enough.**
@@ -145,8 +179,21 @@ Every field is quoted from `GreendlingerDeepInduction.DeepOverrunLanding`; only
 the conclusion changes, from "there is an arc" to "there is a window of `t₃`
 longer than half of it, beginning at or after the required offset".  That is a
 statement about where the two cancellations leave the landing rotation, with the
-relator bookkeeping already discharged by
-`greendlingerAt_of_rotation_window`. -/
+relator bookkeeping already discharged by `greendlingerAt_of_rotation_window`.
+
+**Superseded, and worth saying why.**  The conjunct
+`M.length + j − (c.length + t.length) ≤ A.length` is the head-denominated depth
+`d`, and `GreendlingerDeepOverrunCount.two_mul_lt_of_relator_ratio` shows that
+field is unpayable once `|t| > 2·|t₃|`: the offset is measured against the head
+rotation while the arc is cut from the landing one.  Removing the last-factor
+restriction, which is what this predicate did, did not touch that — the offset
+survives because `deepOverrunLanding_of_window` lands in `DeepOverrunLanding`,
+whose conclusion is still the located form.  The field can only be deleted below
+the invariant redesign, where the arc is read at position `0`; that is
+`GreendlingerDeepInvariant.DeepWindowDrop`, and
+`greendlingerAt_of_two_piece_window` above is what discharges it.  This
+predicate is kept because it is proved and because the old located route is
+still live, not because it is the one to aim at. -/
 def DeepOverrunWindow [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
   ∀ (c t c₂ t₂ c₃ t₃ M B' : List (α × Bool))
     (f : List (FreeGroup α × List (α × Bool))) (g : FreeGroup α) (j N : ℕ),

@@ -1500,6 +1500,7 @@ import GroupApproximation.Higman.EnumeratedRangeTrace
 import GroupApproximation.Higman.EnumeratedRangeTraceCorrectness
 import GroupApproximation.Higman.EnumeratedRangeProjection
 import GroupApproximation.Higman.TransportFive
+import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.OmegaTower
