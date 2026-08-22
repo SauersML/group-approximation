@@ -82,3 +82,12 @@ Thus a dimension-free incompatibility for all matrix `k` is precisely a
 matrix-only nonliftability theorem for this algebraic tower.  Universal
 tracial SOS, four-rectangle gauge fixing, and fixed-rank searches cannot
 decide it.
+
+The cycle-invariant audit is now exact.  By
+`atlas-four-rectangles-do-not-descend-to-common-u`, the incidence graph has
+the expected four degree-four fundamental cycles, but they do not define
+nontrivial functions on `(CUL5)`.  Labelling each edge by its canonical common
+product `X_eRY_e=U` makes every cycle identically flat; labelling it by one
+factor makes its holonomy depend on the independent gauge `(CUL4)`.  Thus the
+next invariant must be a genuinely mixed common-`U` Gram coordinate rather
+than a rectangle word.

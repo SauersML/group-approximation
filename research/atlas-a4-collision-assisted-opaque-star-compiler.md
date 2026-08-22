@@ -290,3 +290,12 @@ only has to transport its covariance block.
   `||Z(U)-P_6Z(U)P_6||_2`; the independent factorization witnesses never
   appear.  This is the smallest symbolic equation still missing before the
   continuous collision sector can be removed.
+- **Closed rectangle holonomies cannot replace that mixed compression.**
+  `atlas-four-rectangles-do-not-descend-to-common-u` classifies the four
+  degree-four cycles of `K_(2,2) disjoint_union K_(2,4)`.  On the canonical
+  common-product lift every edge equals `U`, so all four cycles are exactly
+  flat; on factor-level lifts their spectra vary with the independent
+  right-regular gauges.  Collision therefore cannot force a useful cycle
+  invariant.  The gauge-free `Z(U)` compression above is not optional: it is
+  the first remaining coordinate that actually lives on the common-frame
+  quotient.

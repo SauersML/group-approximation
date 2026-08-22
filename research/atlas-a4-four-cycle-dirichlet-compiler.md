@@ -248,3 +248,12 @@ particular the four graph rectangles cannot be substituted as free variables:
 they depend on a section of those right-gauge fibers.  The all-`k` matrix-only
 zero-set statement above is exactly nonliftability of this compact algebraic
 tower.
+
+The four incidence cycles themselves cannot provide that invariant.
+`atlas-four-rectangles-do-not-descend-to-common-u` computes their basis and
+shows that the common-product edge lift labels all twelve edges by the same
+`U`, making every rectangle holonomy exactly one.  Factor-level edge lifts
+instead change under the twelve independent right gauges.  Therefore a dual
+search over four free holonomy matrices is not a relaxation of the exact
+common-frame problem in a sound direction.  The scalar Dirichlet target must
+be linked directly to a mixed projection-Gram function of `U`.
