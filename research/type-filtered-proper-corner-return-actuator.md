@@ -86,3 +86,11 @@ canonical microstates still pay its full normalized mass.
   packet filter simultaneously.  The remaining gap is precisely the robust
   projective commutant transfer, which is already a terminal
   nonhyperlinearity interface.
+- **Correct a fixed finite packet and suppress the wrong selector block.**
+  `fixed-packet-correction-retains-multiplicity-gauge` gives an exact
+  stationary countermodel.  On one irreducible packet type every corrected
+  covariance actuator is `C_alpha tensor W`; balanced words cancel `W`, and
+  finite torsion clauses merely restrict it to a nontrivial root of unity.
+  Hadamard leakage charging synchronizes two selector blocks but still leaves
+  the common `W`.  Thus fixed-packet HS correction cannot create a one-sided
+  type-filtered actuator without an externally charged multiplicity relation.
