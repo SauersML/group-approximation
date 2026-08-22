@@ -117,6 +117,19 @@ V = R2AR2_EXPECTED
 OMEGA = A + V + A + inverse(V)
 assert_same_action(OMEGA, ())
 
+# A shortest clean target on which the same formal law is distorted.  Here
+# p^2 x_13(s0) p^-2=x_35(s0), and the Steinberg commutator is x_15(s0^2).
+TARGET_A = (root(0, 2, S0),)
+TARGET_CONJUGATE = P + P + TARGET_A + inverse(P) + inverse(P)
+TARGET_CONJUGATE_EXPECTED = (root(2, 4, S0),)
+assert_same_action(TARGET_CONJUGATE, TARGET_CONJUGATE_EXPECTED)
+TARGET_OMEGA = (TARGET_A + TARGET_CONJUGATE_EXPECTED
+                + inverse(TARGET_A) + inverse(TARGET_CONJUGATE_EXPECTED))
+TARGET_DEFECT = (root(0, 4, S0 + S0),)
+assert_same_action(TARGET_OMEGA, TARGET_DEFECT)
+target_test = {(4, "")}
+assert evaluate(TARGET_DEFECT, target_test) == {(4, ""), (0, "00")}
+
 
 def free_product_reduce(word):
     """Normal form in (<x> * C2(y) * C2(u)) * <s>."""
@@ -232,6 +245,7 @@ assert exponent_after_killing(OMEGA_IMAGE, "u") == 0
 
 print("PASS: exact cylinder-module audit proves the two conjugation formulas")
 print("PASS: [a,(qp)^2 a (qp)^-2]=1 in the Leavitt unit group")
+print("PASS: Omega(x_13(s0),p)=x_15(s0^2) is nonidentity")
 print("PASS: both Tietze substitutions satisfy their formal relators")
 print("PASS: the hidden relation has a nonempty 49-syllable Tietze image")
 print("PASS: killing that image alone retains the x, y, and u quotients")

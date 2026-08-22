@@ -49,8 +49,49 @@ to `1`; for the last, `B` also maps to `1`, so `R` maps to `[u,u]=1`.
 Each map is onto and is the identity on its named cyclic subgroup.  Hence
 `x`, `y`, and `u` all survive after the single face `(RG2)` is imposed.
 
+In the unfolded formal atlas, the literal collision contributes
+`n_c=k_0k_1` (the gates are commuting involutions there).  Quotienting by
+`psi(n_c)` simply identifies the two formal gates and gives the folded model
+used in `(RG2)`.  The folded Tietze map remains injective: a run of equal
+`k`-letters has normal form
+
+```text
+k^m=s u s^m u s^(-1)        (m != 0),                (RG4)
+```
+
+and every join with an `h`-letter exposes a nonidentity base syllable.  Hence
+`n_c` supplies no additional normal-closure growth after the fold.  The two
+known kernel relations `{n_c,Omega}` reduce exactly to the one-hidden-face
+quotient fenced by `(RG3)`.
+
+Nor does the actual corner list provide the relation `Omega` in the other
+copy.  It exposes
+
+```text
+a_1=u,      r_1=h_0h_1,
+x=q_1a_0,   h=a_0p_1,   k=p_0e_1q_0,                 (RG5)
+```
+
+but no corner word here isolates `a_0` or `r_0=q_0p_0`.  Producing
+`Omega(a_0,r_0)` therefore requires a genuinely new coefficient identity,
+not a copy shift of the proved face.
+
 The symbolic artifact verifies `(RG2)`, its nonempty 49-syllable normal form,
 and the three exponent specializations in `(RG3)`.  It does not assert that
 the whole coefficient factors survive after every relation in `N` is added.
 Thus one further independent kernel relation and a one-factor return are the
 minimum remaining algebraic requirements.
+
+A literal simultaneous transport would use two degree-zero HNN relations
+
+```text
+z^(-1)a_1z=A_0,       z^(-1)r_1z=B_0.                (RG6)
+```
+
+These would carry `Omega(a_1,r_1)=1` to `Omega(A_0,B_0)=1`.  They do not arise
+as the two lifted relators of a nonsingular one-variable equation by
+themselves: if the original exponent sum is `d`, every relator in its
+index-`d` Reidemeister--Schreier rewrite has stable-letter exponent `+1`,
+whereas each relation in `(RG6)` has exponent zero.  This degree observation
+only rules out the literal two-identification encoding; a further gate cell
+could still compile the same transport indirectly.

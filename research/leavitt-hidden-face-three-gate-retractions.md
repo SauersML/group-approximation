@@ -31,3 +31,10 @@ onto `<x>`, `C_2(y)`, and `C_2(u)`, retaining the named gate and killing the
 other base generators and the bridge `s`.  Therefore any successful picture
 must use at least one further actual corner relation and must return a
 nontrivial boundary to a single coefficient copy.
+
+The pair consisting of the literal collision `k_0k_1` and `Omega` gives no
+second transport: the first relation merely folds `k_0,k_1` to `u`, after
+which the quotient is exactly the one-hidden-face model above.  Moreover the
+current corners expose `a_1=u` and `r_1=h_0h_1`, but not `a_0` or `r_0`
+separately.  Thus a shifted copy of `Omega` is not a cheap corner relation of
+this candidate.
