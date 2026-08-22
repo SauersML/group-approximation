@@ -74,6 +74,32 @@ new and is the whole point.
   Kaluba--Mizerka--Nowak certified-SOS program (explicit degree-1
   gaps at `SL_3`, degree-2 inducing results) is the natural source of
   an explicit positive-coefficient or low-`kappa` certificate.
+- **Why the naive Garland route does not supply the positive-coefficient
+  formula (2026-08-21).**  Garland's method DOES give a positive,
+  `l^1`-norm-one, local-averaging expression for the harmonic projection
+  --- the missing ingredient named above --- because it writes the global
+  Laplacian gap as an average of LINK Laplacian gaps, and the links of the
+  `SL_N(Q_p)` Bruhat--Tits building are the spherical buildings of
+  `SL_N(F_p)`, whose degree-2 gaps are uniform and independent of the
+  coefficient module.  But it needs the group to act on the building with
+  a FINITE (cocompact) quotient, and `SL_N(Z)` does not act on the
+  `SL_N(Q_p)` building at all discretely (it is dense in the vertex
+  stabiliser `SL_N(Z_p)`).  The group that does act is `SL_N(Z[1/p])`, an
+  IRREDUCIBLE NON-UNIFORM lattice in `SL_N(R) x SL_N(Q_p)`; its action on
+  the building alone has non-compact quotient (the `R`-factor cusps), so
+  the local-to-global averaging degenerates exactly at the cusps.  Hence
+  the Garland route reduces the operator bound of this claim to a single
+  residual: operator-norm control of the degree-2 primitive on the
+  CUSP region of `SL_N(Z[1/p])`'s action on the building, where the finite
+  link-average is unavailable.  Inside any fixed horoball the stabiliser is
+  a (2-step nilpotent)-by-(Levi) group whose Ad-cohomology is controlled by
+  its abelian/unipotent part --- amenable, hence op-bounded primitives
+  exist there for free --- so the genuine obstruction is the GLUING of the
+  cusp primitives to the cocompact-core Garland primitive across the finitely
+  many cusp cross-sections, a reduction-theory (Borel--Serre) boundary
+  matching problem rather than a spectral one.  This is the sharpest
+  statement of what is left, and it is not addressed by the SOS programs
+  (which certify the core gap, not the cusp gluing).
 - **Falsification gate.**  An Ad-module 2-cocycle of `SL_N(Z)` with
   `|| c ||_op <= 2`, 2-norm primitive, but no operator-bounded
   primitive would refute this claim; by the route it would have to
