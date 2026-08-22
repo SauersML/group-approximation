@@ -182,6 +182,18 @@ Nevertheless it closes the Maslov sector by
   hypothetical `Theta` is already trace-preserving after the residual central
   cut.  The missing step is not trace selection but promotion from Connes
   embeddability of that fixed trace to an amenable/ucp lift.
+- **Even one diverging sequence of finite-order positive lifts is automatic.**
+  `maslov-central-regular-lifts-have-diverging-positive-order` applies the
+  universal finite-`k` lifting theorem and a diagonal selection in the
+  tracial quotient.  Every `Theta|S_alpha` has coordinate representatives
+  which are unital `k_n`-positive for some `k_n->_omega infinity` and whose
+  scalar traces converge to the central-regular trace.  Thus no fixed
+  amplification level, even combined with the exact trace classification,
+  can detect the obstruction.  Common amplification preserves all normalized
+  trace/HS data and the exact finite positivity order while making its ratio
+  to the matrix dimension arbitrarily small.  A surviving argument must be
+  genuinely arithmetic: either dimension-scale positivity or a direct
+  amplification-stable complete-positivity theorem.
 - **Strict Gram regularization has no generic normalized-HS error bound.**
   `strict-psd-regularization-has-no-uniform-hs-affine-error-bound` gives
   bounded diagonal `H_d >= I` at affine distance `2/sqrt(d)` but distance one

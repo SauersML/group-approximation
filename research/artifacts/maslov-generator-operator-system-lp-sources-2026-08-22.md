@@ -28,8 +28,12 @@ The operator-system inputs used in
      `S` has LP.  The present argument uses the stronger relation supplied by
      enough unitaries in the *specific* C-star envelope `A_alpha`, rather than
      confusing `C_u^*(S_alpha)` with `A_alpha`.
+   - Theorem 9.11: every finite-dimensional operator system has the
+     `k`-lifting property for each fixed finite `k`.  Applied to the quotient
+     of the bounded matrix product by its normalized-`2`-null ideal, this
+     gives the coordinate lifts diagonalized in
+     `maslov-diverging-positive-order-lift-proof`.
 
 The last distinction is load-bearing: LLP does not generally pass to C-star
 quotients.  The proof instead uses the tensor equality on `S_alpha` and the
 enough-unitaries extension directly inside `A_alpha`.
-
