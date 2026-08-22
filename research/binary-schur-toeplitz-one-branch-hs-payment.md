@@ -93,3 +93,10 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   phase-sensitive odd return word must be coupled to the payload without
   promoting the flip into the full Pauli algebra, which would cancel the
   surplus.
+- **The minimal phase-sensitive clause is now known.**  If one raw unitary
+  lift `W` of the Schur holonomy can be named on the payload carrier, the
+  ordinary relation `W^2=J` orients the transverse ledger exactly: `J=+1`
+  retains the S return and kills T, while `J=-1` retains T and kills S.  The
+  HS loss is exactly one half of the square-clause defect.  This avoids the
+  branch-flip Morita cancellation.  The remaining construction gate is raw-
+  lift exposure: the current Atlas interface names only `[W] in PGL`.

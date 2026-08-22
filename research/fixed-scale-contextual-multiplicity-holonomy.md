@@ -123,3 +123,10 @@ floor.
   invokes the established Morita cancellation of the surplus.  Thus the
   missing recurrent return must contain an odd phase-sensitive payload
   incidence, not only projective holonomy or a finite transverse packet.
+- **A square clause supplies the missing odd incidence once a lift is
+  exposed.**  For a named multiplicity holonomy representative, `W^2=J`
+  pins the good transverse return to the payload central sign and has a
+  dimension-free linear HS modulus.  It remains in the multiplicity algebra,
+  so it does not recreate the branch-flip `M_2`.  The open task is now the
+  group-word realization of that raw lift on the same contextual carrier;
+  PGL Atlas data alone cannot state the clause.

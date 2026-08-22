@@ -77,3 +77,10 @@ projective frame **without** adjoining the full branch-flip Pauli algebra,
 and couple that lift to the same payload carrier. This is strictly stronger
 than the present four-holonomy Atlas gap.
 
+The minimal required lift is now explicit:
+`central-square-orients-transverse-ledger` proves that a
+named representative with the ordinary relation `W^2=J` pins the branch to
+the payload central sign, with sharp dimension-free HS constants, and does
+not generate the branch-flip `M_2`.  Thus the remaining Atlas issue is exactly
+to expose one raw holonomy representative on the payload carrier rather than
+only its projective inner action.
