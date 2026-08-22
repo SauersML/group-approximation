@@ -6,7 +6,7 @@ title: Exact regular A4 packet coherence alone leaves an order-two/order-four op
 artifacts:
   - experiments/atlas_a4_opaque_star_regular_screen.py
 distinct_from:
-  atlas-a4-normal-certificate-compiler: that target may use the asymptotic collision-19243 hypothesis as well as the packet network; this gives an exact regular-margin countermodel when collision is omitted and therefore forces collision into any transport proof.
+  atlas-a4-collision-assisted-opaque-star-compiler: that target includes the collision-19243 residual in the transport estimate; this gives an exact regular-margin countermodel when collision is omitted and therefore proves that term is essential.
   atlas-a4-four-cycle-trace-compiler: that asks only for scalar trace transfer under the joint packet-and-collision hypotheses; this detects failure of operator conjugacy already at the second spectral moment under the packet alone.
 ---
 

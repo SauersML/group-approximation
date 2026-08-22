@@ -5,11 +5,11 @@ kind: route
 title: Forget the opaque conjugators and retain only their trace consequences
 target: atlas-a4-four-cycle-trace-compiler
 requires:
-  - atlas-a4-normal-certificate-compiler
+  - atlas-a4-collision-assisted-opaque-star-compiler
 ---
 
-Assume the three opaque transports from
-`atlas-a4-normal-certificate-compiler`.  Put `B=V_n(t23)` and
+Assume the three collision-assisted opaque transports from
+`atlas-a4-collision-assisted-opaque-star-compiler`.  Put `B=V_n(t23)` and
 `T_t=V_n(t)` for `t in {t01,t12,t30}`.
 
 For a leaf `t`, unitary invariance of trace and Cauchy--Schwarz give
@@ -18,11 +18,13 @@ For a leaf `t`, unitary invariance of trace and Cauchy--Schwarz give
 |Re tau_n(T_t)-Re tau_n(B)|
  = |Re tau_n(T_t)-Re tau_n(A_n(t) B A_n(t)^*)|
  <= ||T_t-A_n(t) B A_n(t)^*||_2
- <= C_star eta_n.
+ <= C_star (||sigma_n(q_19243)-1||_2+eta_n).
 ```
 
-Summing the three inequalities yields exactly `(A4-TRACE-1)` with
-`C_tr=3 C_star`.
+Summing the three inequalities yields the joint trace-transfer estimate from
+the common-frame scalar audit of `atlas-a4-four-cycle-trace-compiler`, with
+`C_joint=3 C_star`.  This is the corrected sufficient interface: the earlier
+packet-only `(A4-TRACE-1)` is false on exact regular packet alignments.
 
 The collision readout of the opaque-star compiler gives
 

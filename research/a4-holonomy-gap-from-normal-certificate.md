@@ -5,7 +5,7 @@ kind: route
 title: The minimal three-edge conjugacy star around 19243 forces complete chart-frame collapse
 target: atlas-a4-holonomy-coherence-gap
 requires:
-  - atlas-a4-normal-certificate-compiler
+  - atlas-a4-collision-assisted-opaque-star-compiler
   - unitary-star-conjugacy-hs-collapse
   - atlas-a8-four-cycle-commutant-gap
 ---
@@ -28,7 +28,7 @@ The compiler supplies three opaque transport unitaries `A_n(t)` with
 ```text
 max_(t in {t01,t12,t30})
  ||T_(n,t)-A_n(t)B_nA_n(t)^*||_2
- <= C_star eta_n,                                       (1)
+ <= C_star (||sigma_n(q_19243)-1||_2+eta_n),            (1)
 
 ||B_n-1||_2
  <= C_col (||sigma_n(q_19243)-1||_2+eta_n).             (2)
@@ -38,7 +38,7 @@ Apply `unitary-star-conjugacy-hs-collapse`:
 
 ```text
 max_(t in T)||V_n(t)-1||_2
- <= C_star eta_n
+ <= C_star (||sigma_n(q_19243)-1||_2+eta_n)
     + C_col (||sigma_n(q_19243)-1||_2+eta_n)
  -> 0.                                                   (3)
 ```

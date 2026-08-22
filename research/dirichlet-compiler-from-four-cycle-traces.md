@@ -13,14 +13,16 @@ Put `B_n=V_n(t23)` and let the other three `V_n(t)` be the leaves.  From
 
 ```text
 sum_(leaf t) (1-Re tau_n(V_n(t)))
- <= 3(1-Re tau_n(B_n)) + C_tr eta_n.
+ <= 3(1-Re tau_n(B_n))
+    + C_tr (||sigma_n(q_19243)-1||_2+eta_n).
 ```
 
 Adding the hub deficit gives
 
 ```text
 sum_(t in {t01,t12,t23,t30}) (1-Re tau_n(V_n(t)))
- <= 4(1-Re tau_n(B_n)) + C_tr eta_n.
+ <= 4(1-Re tau_n(B_n))
+    + C_tr (||sigma_n(q_19243)-1||_2+eta_n).
 ```
 
 Now `(A4-TRACE-2)` bounds the first term by

@@ -33,15 +33,17 @@ Rewrite `(A4-TRACE-1)` as
 
 ```text
 sum_(t in {t01,t12,t30}) Re tau_n(T_n(t))
- >= 3 Re tau_n(B_n)-C_tr eta_n.
+ >= 3 Re tau_n(B_n)
+    -C_tr (||sigma_n(q_19243)-1||_2+eta_n).
 ```
 
 Apply `unitary-trace-energy-transfer` with `m=3` and
-`eps=C_tr eta_n`.  It yields
+`eps=C_tr (||sigma_n(q_19243)-1||_2+eta_n)`.  It yields
 
 ```text
 sum_(t in {t01,t12,t30}) ||T_n(t)-1||_2^2
- <= 3||B_n-1||_2^2+2C_tr eta_n -> 0.                 (2)
+ <= 3||B_n-1||_2^2
+    +2C_tr (||sigma_n(q_19243)-1||_2+eta_n) -> 0.     (2)
 ```
 
 Together with `(1)`, all four covariance opcodes in

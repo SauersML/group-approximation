@@ -1,8 +1,8 @@
 ---
 rg: 2
-id: atlas-a4-normal-certificate-compiler
+id: atlas-a4-collision-assisted-opaque-star-compiler
 kind: claim
-title: Three opaque conjugacy transports and the 19243 readout suffice for the A8 chart frame
+title: Collision-assisted opaque conjugacy transports suffice for the A8 chart frame
 distinct_from:
   atlas-a4-full-packet-normal-generator-table-compiler: that stronger target constructs a 20160-state approximate multiplication table; this target asks only for three pairwise conjugacy transports around the collision opcode.
   atlas-a4-full-packet-normal-generator-holonomy-compiler: that stronger target rounds residual holonomy to an exact A8 representation; this target never constructs even an approximate representation.
@@ -41,7 +41,7 @@ and constants `C_star,C_col<infinity`, independent of `n`, such that
 ```text
 max_(t in {t01,t12,t30})
  ||V_n(t)-A_n(t)V_n(t23)A_n(t)^*||_2
- <= C_star eta_n,                                       (A4-STAR-1)
+ <= C_star (||sigma_n(q_19243)-1||_2 + eta_n),          (A4-STAR-1)
 
 ||V_n(t23)-1||_2
  <= C_col (||sigma_n(q_19243)-1||_2 + eta_n).           (A4-STAR-2)
@@ -64,8 +64,9 @@ only has to transport its covariance block.
 
 ## Attempts
 
-- **Packet-only opaque transport is spectrally false even on exact regular
-  margins.**  `atlas-a4-packet-alone-fails-opaque-star` evaluates the four
+- **The collision term is forced by an exact regular spectral obstruction.**
+  Packet-only opaque transport is false even on exact regular
+  margins.  `atlas-a4-packet-alone-fails-opaque-star` evaluates the four
   opcodes on all sixty exact classical packet alignments, now in `Reg(A8)`
   rather than the smaller fifteen-point diagnostic.  One exact inner packet
   network with every stable letter equal to one has opcode-order profile
@@ -78,17 +79,9 @@ only has to transport its covariance block.
   unitary orbit of the order-two hub, under every amplification.  Thus no
   tree-gauged packet-path telescoping estimate with right side `C eta` can
   prove `(A4-STAR-1)` on packet networks alone.  The ambient collision
-  hypothesis must be used essentially.  For a pointwise compiler interface,
-  the honest repair is to allow
-
-  ```text
-  C (eta_n+||sigma_n(q_19243)-1||_2)
-  ```
-
-  on the right of the transport estimate.  The current asymptotic statement
-  may still use collision through the restricted class of sequences, but the
-  collision cannot disappear from the proof as the displayed `C eta_n`
-  suggests.
+  hypothesis must be used essentially.  This is why `(A4-STAR-1)` includes
+  the collision residual.  The exact witness does not refute that joint
+  estimate: its collision defect is nonzero.
 
 - **Exact chart conjugacy does not transport relative opcodes.**  The
   established A8 normal certificates alone cannot prove `(A4-STAR-1)`.  Let
@@ -176,8 +169,9 @@ only has to transport its covariance block.
   Any proof of `(A4-STAR-2)` must be a genuinely finite-dimensional trace
   obstruction excluding `(A4-STAR-ESCAPE)` from matrix ultraproducts (which
   is precisely the packet-collision quotient fork), while `(A4-STAR-1)` still
-  separately requires relative-cocycle equivariance.  The exact certificates
-  can only propagate a hub estimate after those analytic inputs are supplied.
+  separately requires collision-assisted relative-cocycle equivariance.  The
+  exact certificates can only propagate a hub estimate after those analytic
+  inputs are supplied.
 
 - **Search three transports, not a group law.**  In the canonical
   qutrit/multiplicity splitting, seek packet paths carrying the `t23` covariance
@@ -190,7 +184,7 @@ only has to transport its covariance block.
 - **Tree-gauge first.**  After the `K_(2,2) disjoint_union K_(2,4)` gauge there
   are four rectangle holonomies.  Search for three bounded paths in this
   four-holonomy network whose endpoint conjugacy errors telescope to
-  `O(eta_n)`.
+  `O(eta_n+||sigma_n(q_19243)-1||_2)`.
 - **Collision readout separately.**  Track `q_19243` only far enough to prove
   `(A4-STAR-2)`.  The three transport proofs need not reconstruct the collision
   word or any A8 multiplication state.

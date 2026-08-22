@@ -8,7 +8,7 @@ artifacts:
   - experiments/atlas_a8_four_cycle_raw_s3.py
   - experiments/atlas-word-19243.json
 distinct_from:
-  atlas-a4-normal-certificate-compiler: that stronger target constructs three operator-valued conjugacy transports; this target asks only for one averaged real-trace inequality plus one scalar collision readout.
+  atlas-a4-collision-assisted-opaque-star-compiler: that stronger target constructs three operator-valued conjugacy transports; this target asks only for one averaged real-trace inequality plus one scalar collision readout.
   atlas-a4-alignment-moment-simplex-rounding: that rounds thirty-one kernel-word moments to a 40320-point classical simplex; this target keeps only the four transvection coboundary moments used by the final commutant Poincare inequality.
 ---
 
@@ -31,7 +31,7 @@ of the external multiplicity, such that
 ```text
 3 Re tau_n(V_n(b))
  - sum_(t in {t01,t12,t30}) Re tau_n(V_n(t))
- <= C_tr eta_n,                                         (A4-TRACE-1)
+ <= C_tr (||sigma_n(q_19243)-1||_2+eta_n),              (A4-TRACE-1)
 
 1-Re tau_n(V_n(b))
  <= C_col (||sigma_n(q_19243)-1||_2 + eta_n).           (A4-TRACE-2)
@@ -84,8 +84,8 @@ distance from the collision `S3` commutant.  Thus neither `(A4-TRACE-1)` nor
 commutant.  The scalar traces must be read directly from the shifted
 centralizer-product realization of the same `U_n`.
 
-There is a finite exact obstruction to an even more tempting shortcut:
-`(A4-TRACE-1)` is not a packet-only inequality.  In the natural 15-point
+There is a finite exact obstruction to omitting the collision term from
+`(A4-TRACE-1)`.  In the natural 15-point
 permutation representation, take the inner classical packet alignment
 
 ```text
@@ -117,17 +117,15 @@ that trace invariance alone cannot erase the collision from the leaf-transfer
 step: the thirty shifted packet constraints, even exactly, do not imply
 nonpositive average transfer.
 
-The minimal viable common-frame scalar inequality is therefore the joint
-estimate
+Thus `(A4-TRACE-1)` is deliberately the joint common-frame estimate
 
 ```text
 3 Re tau(V(b))-sum_(t in {t01,t12,t30}) Re tau(V(t))
  <= C_joint (||q_19243(U)-1||_2+eta).                 (A4-TRACE-JOINT)
 ```
 
-Together with `(A4-TRACE-2)`, `(A4-TRACE-JOINT)` is sufficient for every
-downstream asymptotic use of `(A4-TRACE-1)`, because both residuals tend to
-zero.  The explicit screen calibrates any pointwise branch-blind coefficient:
+Together with `(A4-TRACE-2)`, this is sufficient for every downstream use.
+The explicit screen calibrates any pointwise branch-blind coefficient:
 at the displayed position it must satisfy
 
 ```text
