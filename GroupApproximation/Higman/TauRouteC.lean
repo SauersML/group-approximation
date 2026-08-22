@@ -13,9 +13,9 @@ exit, and this file is its landing.
 spent exactly when a `HigmanGenerated` derivation uses that constructor.  A
 repository-wide grep found four such uses.  Three were in
 `Higman.GeneratedValue` and have been rewritten in place, on `σ` and the
-down-shift `ρ σ ρ`, with every statement unchanged; the fourth is the base case
-of `HigmanVariableCalculus.higmanGenerated_swapAt`, in a module no module
-imports and whose `swapAt` has no consumer anywhere.
+down-shift `ρ σ ρ`, with every statement unchanged; the fourth was the base
+case of a transposition calculus in `HigmanVariableCalculus`, since deleted
+outright, so the constructor now has no use anywhere in the repository.
 
 This file supplies the two things that turns into.
 
