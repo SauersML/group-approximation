@@ -1,14 +1,14 @@
 #!/bin/sh
-# The cairn CLI (github.com/SauersML/Cairn) — one dependency-free Python
-# file, committed at tools/cairn.py rather than pulled in as a submodule.
+# The Cairn 2.10.0 CLI (github.com/SauersML/Cairn, upstream commit e839700) —
+# one dependency-free implementation, committed at tools/cairn.py rather than
+# pulled in as a submodule. This launcher contains no Cairn logic.
 # A submodule is empty in every copy of this repo that is not a git clone
 # (a Download ZIP, a tarball, an uploaded sandbox) and needs a network to
 # fill; committing the file means every copy arrives able to read the
 # research graph, with no setup step.
 #
-# To upgrade it:
-#   curl -fsSLo tools/cairn.py \
-#     https://raw.githubusercontent.com/SauersML/Cairn/main/cairn.py
+# To upgrade it, replace tools/cairn.py with upstream cairn.py byte-for-byte
+# and update the version and commit above. Never patch the vendored copy alone.
 root="$(cd "$(dirname "$0")/.." && pwd)"
 # Pin the root to this repo so behavior stays cwd-independent, and name the
 # site after the project the graph is about rather than after the tool.

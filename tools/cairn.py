@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """cairn — a build system whose build targets are unknown facts.
 
-THE KERNEL (schema rg: 2) is two persistent objects and two source-owned
-relations:
+THE KERNEL (schema rg: 2) is two persistent objects and two relations:
 
   Claim   a mathematical proposition. Unresolved -> a hole/`sorry`;
           established -> a reusable theorem. NOT different object types:
@@ -11,9 +10,8 @@ relations:
           asserts the implication is valid; the body carries the argument.
           requires: [] asserts a COMPLETE DIRECT PROOF of the target.
   invalidates   an ESTABLISHED claim can invalidate routes (obstructions).
-  refuted_by    an ESTABLISHED claim makes another claim REFUTED. Every
-                route targeting or requiring that false claim is then
-                invalidated automatically.
+  refuted_by    an ESTABLISHED claim proves another claim false. The refuted
+                claim and every route targeting or requiring it are disabled.
   goal: true    marks a claim as a TOP-LEVEL HUMAN GOAL. Pure metadata —
                 no effect on compilation — but surfaced everywhere agents
                 look (graph.json, FRONTIER.md, context packets, the site).
@@ -31,7 +29,7 @@ THE TWO TIERS:
   notes/                 the prose corpus: derivations, audits, dead ends,
                          session logs. Searchable and citable via
                          `artifacts:`, but never compiled — prose cannot
-                         change research state, only a route and its Lean can.
+                         change research state, only a route and its proof.
 
 THE CLI is read-only over canonical files and deliberately small —
 twelve commands: check (compile+lint+dups, refreshes FRONTIER.md; alias:
@@ -40,10 +38,10 @@ state), frontier (holes grouped by the goals they serve, necessity
 first; --goal for one cone, --flat for the ungrouped list), why
 (derivation if established; decomposition + why-it-matters if open),
 context --budget (statement, derivation, routes, reusable claims, dead
-space in one bounded packet), search [--notes|--similar] (alias:
-relevant = search --similar), impact, lock/unlock (advisory TTL claims —
-identity-free: everyone is one team), site [--serve], telemetry, vendor
-(bootstrap, below). Claims are scheduler state, never committed into
+space in one bounded packet), search [--notes|--similar] — several
+queries sweep in one pass (alias: relevant = search --similar), impact,
+lock/unlock (advisory TTL claims — identity-free: everyone is one
+team), site [--serve], telemetry. Claims are scheduler state, never committed into
 mathematical history.
 
 INSTALLING INTO A PROJECT: copy this file into the repo and commit it.
@@ -65,12 +63,15 @@ claim in it, and `A <=> B` is the kernel's equivalence, never a cycle;
 `frontier` marks holes on EVERY live path to a goal with ★, prints the
 claim-path each hole unblocks, warns when a goal has no route-tree at
 all (that means route-finding, not lemma-proving), and annotates holes
-that resisted prior locked attempts.
+that resisted prior locked attempts; `search` takes SEVERAL queries at
+once because agents orient by probing concept after concept, and it
+answers with each hit's compiled status — the one thing a text search
+of the same files can never report.
 
 MOMENTUM (the tool's job is to make continuing the default, not a
 decision): `check` ends by printing what the change UNLOCKED — new
-establishments and refutations, routes now one prerequisite from complete,
-fresh invalidations, plan-cost movement at goals — because the person who just
+establishments, routes now one prerequisite from complete, fresh
+invalidations, plan-cost movement at goals — because the person who just
 placed a stone is the best-positioned to place the next one, and the
 moment after a green check is when their context is fully loaded.
 Naming a hole is not finishing it: a NEW open claim with no nonempty
@@ -120,7 +121,9 @@ import html
 import json
 import os
 import re
+import resource
 import shutil
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -224,8 +227,9 @@ def telemetry_path():
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 NON_NODE_FILES = {"README.md", "FRONTIER.md"}
 KINDS = ("claim", "route")
+CACHE_FORMAT = 2
 
-__version__ = "2.8.0"
+__version__ = "2.10.0"
 
 EXIT_OK, EXIT_DUP, EXIT_LEASE, EXIT_INVALID, EXIT_USAGE = 0, 2, 3, 4, 64
 
@@ -425,7 +429,26 @@ def load_nodes(errors, research_dir=RESEARCH_DIR, relroot=REPO):
     return nodes
 
 
+def existing_git_objects(repo, objects):
+    """Return object expressions resolved by one `git cat-file` process."""
+    wanted = list(dict.fromkeys(objects))
+    if not wanted:
+        return set()
+    proc = subprocess.run(
+        ["git", "-C", repo, "cat-file", "--batch-check"],
+        input="\n".join(wanted) + "\n", capture_output=True, text=True)
+    if proc.returncode != 0:
+        return set()
+    return {obj for obj, line in zip(wanted, proc.stdout.splitlines())
+            if not line.endswith(" missing") and len(line.split()) >= 3}
+
+
 def lint_nodes(nodes, errors, repo=REPO):
+    pinned = [p for node in nodes.values() for p in node.get_list("artifacts")
+              if isinstance(p, str) and ":" in p
+              and not os.path.exists(os.path.join(repo, p))]
+    existing_pins = existing_git_objects(repo, pinned)
+
     def ref(node, key, val, want_kind):
         if not isinstance(val, str) or not ID_RE.match(val):
             errors.append(("error", "ref", f"{node.relpath}: {key}: malformed id {val!r}"))
@@ -446,12 +469,10 @@ def lint_nodes(nodes, errors, repo=REPO):
                 continue
             if not os.path.exists(os.path.join(repo, p)):
                 # a <rev>:<path> entry pins a file that left the working tree
-                pinned = (":" in p and subprocess.run(
-                    ["git", "-C", repo, "cat-file", "-e", p],
-                    capture_output=True).returncode == 0)
-                if not pinned:
+                if p not in existing_pins:
                     errors.append(("error", "artifact", f"{node.relpath}: artifact not found: {p} "
                                    "(want a working-tree path or a <rev>:<path> pin)"))
+                    continue
         if node.kind == "claim":
             if node.meta.get("root") not in (None, True, False):
                 errors.append(("error", "flag", f"{node.relpath}: root must be true/false"))
@@ -495,8 +516,8 @@ def lint_nodes(nodes, errors, repo=REPO):
                 # way to answer once: distinct_from either way settles it
                 answered = (tgt in (a.meta.get("distinct_from") or {})
                             or reqs[0] in (b.meta.get("distinct_from") or {}))
-                opposite = (_negated(a.title + " " + a.id)
-                            != _negated(b.title + " " + b.id))
+                opposite = (_negation_signature(a.title + " " + a.id)
+                            != _negation_signature(b.title + " " + b.id))
                 if (t and u and not answered and not opposite and len(t & u) >= 3
                         and len(t & u) / len(t | u) >= DUP_LEXICAL):
                     errors.append(("warning", "restatement", f"{node.relpath}: prerequisite {reqs[0]} "
@@ -508,8 +529,8 @@ def lint_nodes(nodes, errors, repo=REPO):
 # ---------------------------------------------------------------------------
 # The compiler: Solved(Q) = OR_routes AND_requires, minus invalidated
 # routes. Invalidation and refutation activate only from ESTABLISHED claims;
-# a refuted target or premise invalidates its routes automatically. Iterated
-# to a mutually consistent fixpoint.
+# a refuted target or premise invalidates its routes automatically. Both are
+# iterated to one mutually consistent fixpoint.
 # ---------------------------------------------------------------------------
 
 class Graph:
@@ -526,42 +547,28 @@ class Graph:
 
     def _solve(self, forced=frozenset()):
         """Return (established, refuted, invalidated, provenance, stable)."""
-        inv_map = {}
-        for c in self.claims.values():
-            for r in c.get_list("invalidates"):
-                if r in self.routes:
-                    inv_map.setdefault(c.id, []).append(r)
         prev_inv, prev_ref, seen = set(), set(), []
         for _ in range(64):
-            # Refutation wins over an assumed/proved target.  A dependency
-            # cycle which alternately proves and refutes a claim is detected
-            # below as an unstratified graph rather than assigned both states.
             est, prov = set(forced) - prev_ref, {}
             changed = True
             while changed:
                 changed = False
-                for rid, r in self.routes.items():
-                    if rid in prev_inv:
+                for rid in self.routes:
+                    target = self.route_target[rid]
+                    if (rid in prev_inv or target not in self.claims
+                            or target in est or target in prev_ref):
                         continue
-                    tgt = r.meta.get("target")
-                    if tgt not in self.claims or tgt in est or tgt in prev_ref:
-                        continue
-                    reqs = [q for q in r.get_list("requires") if q in self.claims]
-                    if all(q in est for q in reqs):
-                        est.add(tgt)
-                        prov[tgt] = rid
+                    if all(q in est for q in self.route_requires[rid]):
+                        est.add(target)
+                        prov[target] = rid
                         changed = True
-            refuted = {cid for cid, c in self.claims.items()
-                       if any(refuter in est
-                              for refuter in c.get_list("refuted_by"))}
-            inv = {r for c, rs in inv_map.items() if c in est for r in rs}
-            # A route cannot prove a refuted target or consume a refuted
-            # premise.  This is derived state: authors name the mathematical
-            # refuter on the false claim, not every route which happens to use
-            # that claim.
-            inv.update(rid for rid, r in self.routes.items()
-                       if r.meta.get("target") in refuted
-                       or any(q in refuted for q in r.get_list("requires")))
+            refuted = {target for refuter in est
+                       for target in self.refutes_from.get(refuter, [])}
+            inv = {rid for claim in est
+                   for rid in self.invalidates_from.get(claim, [])}
+            inv.update(rid for claim in refuted
+                       for rid in (self.routes_into.get(claim, [])
+                                   + self.required_by.get(claim, [])))
             state = (frozenset(inv), frozenset(refuted))
             if inv == prev_inv and refuted == prev_ref:
                 return est, refuted, inv, prov, True
@@ -572,19 +579,32 @@ class Graph:
         return est, prev_ref, prev_inv, prov, False
 
     def compile(self):
+        self.route_target = {}
+        self.route_requires = {}
         for rid, r in self.routes.items():
             tgt = r.meta.get("target")
+            self.route_target[rid] = tgt
+            self.route_requires[rid] = [q for q in r.get_list("requires")
+                                        if q in self.claims]
             if isinstance(tgt, str) and tgt in self.claims:
                 self.routes_into.setdefault(tgt, []).append(rid)
-            for q in r.get_list("requires"):
-                if q in self.claims:
-                    self.required_by.setdefault(q, []).append(rid)
+            for q in self.route_requires[rid]:
+                self.required_by.setdefault(q, []).append(rid)
+        self.invalidates_from = {
+            cid: [rid for rid in claim.get_list("invalidates")
+                  if rid in self.routes]
+            for cid, claim in self.claims.items()}
+        self.refutes_from = {}
+        for target, claim in self.claims.items():
+            for refuter in claim.get_list("refuted_by"):
+                if refuter in self.claims:
+                    self.refutes_from.setdefault(refuter, []).append(target)
 
         est, refuted, inv, prov, stable = self._solve()
         if not stable:
             self.errors.append(("error", "stratification", "invalidation/refutation is not stratified: "
-                                "derived states oscillate; break the cycle between an obstruction or "
-                                "refuter claim and a route it depends on"))
+                                "derived states oscillate; break the cycle between an obstruction "
+                                "or refuter claim and a route it depends on"))
         self.established, self.refuted = est, refuted
         self.invalidated, self.provenance = inv, prov
 
@@ -601,7 +621,7 @@ class Graph:
         for cid, c in self.claims.items():
             if cid in refuted:
                 c.status = "REFUTED"
-                c.status_reasons = [f"refuted by established claim {q}"
+                c.status_reasons = [f"proved false by established claim {q}"
                                     for q in self.refuted_by.get(cid, [])]
             elif cid in est:
                 c.status = "ESTABLISHED"
@@ -623,6 +643,22 @@ class Graph:
                 reqs = [q for q in r.get_list("requires") if q in self.claims]
                 r.blocked_on = [q for q in reqs if q not in est]
                 r.status = "COMPLETE" if not r.blocked_on else "OPEN"
+
+        # Refutation must not silently win over a live proof. A route disabled
+        # only because its target is refuted is contradictory evidence, while
+        # a route already killed by an obstruction or a refuted premise is not.
+        for cid in sorted(refuted):
+            for rid in self.routes_into.get(cid, []):
+                r = self.routes[rid]
+                reqs = [q for q in r.get_list("requires") if q in self.claims]
+                if (not self.invalidated_by.get(rid)
+                        and not any(q in refuted for q in reqs)
+                        and all(q in est for q in reqs)):
+                    self.errors.append((
+                        "error", "contradiction",
+                        f"{self.claims[cid].relpath}: {cid} is proved false by "
+                        f"{', '.join(self.refuted_by.get(cid, []))}, but live route "
+                        f"{rid} also proves it"))
 
         # reachability from root claims through non-invalidated routes
         self.roots = [c for c, n in self.claims.items() if n.meta.get("root") is True]
@@ -701,6 +737,8 @@ class Graph:
     def _cycle_check(self):
         adj = {}
         for r in self.routes.values():
+            if r.status == "INVALIDATED":
+                continue
             tgt = r.meta.get("target")
             if tgt in self.claims:
                 for q in r.get_list("requires"):
@@ -719,18 +757,28 @@ class Graph:
         for c in self.claims:
             if color[c] == 0:
                 dfs(c, [c])
+
+        def live_unary(target, req):
+            return any(r.status != "INVALIDATED"
+                       and r.meta.get("target") == target
+                       and r.get_list("requires") == [req]
+                       for r in self.routes.values())
+
         seen = set()
         for path in cyc:
             ring = set(path)
-            # A <-> B is the kernel's equivalence: two routes, one each way.
-            # Documented, deliberate, and the whole point of having routes be
-            # objects — never a defect. Only longer rings are circular reasoning.
-            if len(ring) < 3 or frozenset(ring) in seen:
+            key = frozenset(ring)
+            if key in seen:
                 continue
-            seen.add(frozenset(ring))
-            self.errors.append(("warning", "cycle", f"dependency cycle through claims: {' -> '.join(path)}"))
+            seen.add(key)
+            if len(ring) == 2:
+                a, b = sorted(ring)
+                if live_unary(a, b) and live_unary(b, a):
+                    continue
+            self.errors.append(("warning", "cycle",
+                                f"dependency cycle through claims: {' -> '.join(path)}"))
 
-    def to_json(self):
+    def to_json(self, source_manifest=None):
         out = {"generated_by": "cairn build", "rg": 2, "nodes": {}, "derived": {}}
         for i, n in sorted(self.nodes.items()):
             out["nodes"][i] = {"kind": n.kind, "title": n.title, "path": n.relpath,
@@ -743,14 +791,97 @@ class Graph:
                           "internal_open": self.internal_open,
                           "claim_impact": self.claim_impact,
                           "provenance": self.provenance}
+        out["cache"] = {"format": CACHE_FORMAT, "cairn": __version__,
+                        "sources": source_manifest}
         return out
 
 
-def compile_graph(research_dir=RESEARCH_DIR, repo=REPO):
+def research_manifest(research_dir=RESEARCH_DIR):
+    """Cheap exact-enough source identity for cache invalidation."""
+    try:
+        entries = []
+        with os.scandir(research_dir) as scan:
+            for entry in scan:
+                if (not entry.name.endswith(".md")
+                        or entry.name in NON_NODE_FILES or not entry.is_file()):
+                    continue
+                st = entry.stat()
+                entries.append([entry.name, st.st_mtime_ns, st.st_size, st.st_ino])
+        return sorted(entries)
+    except OSError:
+        return None
+
+
+def read_graph_cache(research_dir=RESEARCH_DIR, repo=REPO):
+    if (os.path.abspath(research_dir) != os.path.abspath(RESEARCH_DIR)
+            or os.path.abspath(repo) != os.path.abspath(REPO)):
+        return None
+    path = os.path.join(CACHE_DIR, "nodes.sqlite3")
+    db = None
+    try:
+        db = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        metadata = dict(db.execute("SELECT key, value FROM cache_meta"))
+        cached_manifest = json.loads(metadata.get("sources", "null"))
+        if (int(metadata.get("format", 0)) != CACHE_FORMAT
+                or metadata.get("cairn") != __version__
+                or cached_manifest != research_manifest(research_dir)):
+            return None
+        nodes = {}
+        for nid, kind, relpath, meta_json, body in db.execute(
+                "SELECT id, kind, relpath, meta, body FROM nodes"):
+            meta = json.loads(meta_json)
+            if kind not in KINDS or not isinstance(meta, dict):
+                return None
+            nodes[nid] = Node(meta, body, os.path.join(repo, relpath), kind, repo)
+        cached_errors = [tuple(row) for row in db.execute(
+            "SELECT severity, rule, message FROM errors")]
+    except (OSError, sqlite3.Error, ValueError):
+        return None
+    finally:
+        if db is not None:
+            db.close()
+    graph = Graph(nodes, [], repo)
+    graph.errors[:] = cached_errors
+    graph.compile_errors = list(cached_errors)
+    graph.source_manifest = cached_manifest
+    graph.cache_hit = True
+    return graph, graph.errors
+
+
+def compile_graph(research_dir=RESEARCH_DIR, repo=REPO, use_cache=True):
+    started = time.perf_counter_ns()
+    if use_cache:
+        cached = read_graph_cache(research_dir, repo)
+        if cached is not None:
+            graph, _ = cached
+            TELEMETRY_EXTRA.update({
+                "cache_hit": True, "nodes": len(graph.nodes),
+                "claims": len(graph.claims), "routes": len(graph.routes),
+                "phases_ms": {"cache": round(
+                    (time.perf_counter_ns() - started) / 1_000_000, 2)}})
+            return cached
+    load_started = time.perf_counter_ns()
+    before = research_manifest(research_dir)
     errors = []
     nodes = load_nodes(errors, research_dir, repo)
+    load_ms = (time.perf_counter_ns() - load_started) / 1_000_000
+    lint_started = time.perf_counter_ns()
     lint_nodes(nodes, errors, repo)
-    return Graph(nodes, errors, repo), errors
+    lint_ms = (time.perf_counter_ns() - lint_started) / 1_000_000
+    solve_started = time.perf_counter_ns()
+    graph = Graph(nodes, errors, repo)
+    solve_ms = (time.perf_counter_ns() - solve_started) / 1_000_000
+    graph.compile_errors = list(errors)
+    after = research_manifest(research_dir)
+    graph.source_manifest = before if before == after else None
+    graph.cache_hit = False
+    TELEMETRY_EXTRA.update({
+        "cache_hit": False, "nodes": len(graph.nodes),
+        "claims": len(graph.claims), "routes": len(graph.routes),
+        "phases_ms": {"load": round(load_ms, 2), "lint": round(lint_ms, 2),
+                      "solve": round(solve_ms, 2), "total": round(
+                          (time.perf_counter_ns() - started) / 1_000_000, 2)}})
+    return graph, errors
 
 
 LINT_COUNTS = {}  # rule -> times fired this run, for telemetry
@@ -779,13 +910,13 @@ def report_errors(errors, fail_on_warning=False, brief=False):
 # Similarity / search — transparent token overlap, no magic
 # ---------------------------------------------------------------------------
 
-STOPWORDS = {"the", "and", "for", "with", "from", "into", "are", "not",
-             "its", "this", "that", "one", "two", "via", "under", "over"}
+TEXT_STOPWORDS = {"the", "and", "for", "with", "from", "into", "are",
+                  "its", "this", "that", "one", "two", "via", "under", "over"}
 
 
 def _tokens(text):
     return {w for w in re.findall(r"[a-z0-9]+", text.lower())
-            if len(w) > 2 and w not in STOPWORDS}
+            if (len(w) > 2 or w == "no") and w not in TEXT_STOPWORDS}
 
 
 def similar_nodes(text, nodes, kinds=None, limit=5, threshold=0.5, exclude=(),
@@ -805,22 +936,33 @@ def similar_nodes(text, nodes, kinds=None, limit=5, threshold=0.5, exclude=(),
     return sorted(out, key=lambda x: (-x[0], x[1].id))[:limit]
 
 
-def semantic_vectors(claims):
-    """TF-IDF vectors (unigrams + bigrams) over title+body, shared by the
-    site layout and the near-established hints so both see one geometry."""
+def semantic_vectors(claims, only_ids=None, titles_only=False):
+    """TF-IDF vectors over titles or complete claim text.
+
+    Validation and theorem-neighbor hints use full text. The site's invisible
+    layout links use titles: bodies make a large graph's transient vector
+    index much larger while mostly clustering shared proof vocabulary.
+    """
     import math
 
     def feats(text):
         words = [w for w in re.findall(r"[a-z0-9]+", text.lower())
-                 if len(w) > 2 and w not in STOPWORDS]
+                 if (len(w) > 2 or w == "no") and w not in TEXT_STOPWORDS]
         return set(words) | {a + "_" + b for a, b in zip(words, words[1:])}
 
-    docs = {cid: feats(c.title + " " + c.body) for cid, c in claims.items()}
+    selected = set(claims) if only_ids is None else set(only_ids)
+    def claim_text(claim):
+        return claim.title if titles_only else claim.title + " " + claim.body
+
+    docs = {cid: feats(claim_text(claims[cid]))
+            for cid in selected}
+    relevant = set().union(*docs.values()) if docs else set()
     df = {}
-    for toks in docs.values():
-        for t in toks:
+    for cid, claim in claims.items():
+        toks = docs[cid] if cid in docs else feats(claim_text(claim))
+        for t in toks & relevant:
             df[t] = df.get(t, 0) + 1
-    N = max(1, len(docs))
+    N = max(1, len(claims))
     # program-wide jargon carries no signal — but on a young graph a
     # proportional cutoff discards everything (in five claims, any word used
     # twice is "program-wide"), and two identical claims share every word by
@@ -829,8 +971,12 @@ def semantic_vectors(claims):
     # smoothed idf: log(N/df) is exactly 0 for a token every document has,
     # so an unsmoothed weighting gives two identical claims a zero vector
     # and a cosine of 0 — the one pair it most needs to score 1
-    return {cid: {t: math.log(1 + N / df[t]) for t in toks if df[t] <= cutoff}
-            for cid, toks in docs.items()}
+    vectors = {}
+    for cid in list(docs):
+        toks = docs.pop(cid)
+        vectors[cid] = {t: math.log(1 + N / df[t])
+                        for t in toks if df[t] <= cutoff}
+    return vectors
 
 
 def cosine(u, v):
@@ -843,16 +989,78 @@ def cosine(u, v):
     return num / (du * dv) if du and dv else 0.0
 
 
-NEGATIONS = {"not", "non", "never", "fails", "failure", "without", "false",
-             "counterexample", "refuted", "impossible", "obstruction"}
+def semantic_affinity(vecs, threshold=0.16, per_node=3,
+                      candidate_features=8, candidate_limit=32,
+                      candidate_posting=64):
+    """Bounded approximate neighbors for the site's invisible layout links.
+
+    Rare features nominate a small candidate pool, then the final weights use
+    exact cosine over the complete vectors. Common vocabulary is deliberately
+    ineligible to nominate a pair: it creates quadratic work and poor layout
+    signal, while still contributing to the score of a pair nominated by a
+    more discriminating feature.
+    """
+    import math
+    postings = {}
+    norms = {}
+    for cid, vector in vecs.items():
+        norms[cid] = math.sqrt(sum(weight * weight for weight in vector.values()))
+        for token in vector:
+            postings.setdefault(token, []).append(cid)
+    pairs = []
+    for cid, vector in vecs.items():
+        votes = {}
+        rare = sorted((token for token in vector
+                       if 1 < len(postings[token]) <= candidate_posting),
+                      key=lambda token: len(postings[token]))
+        for token in rare[:candidate_features]:
+            peers = postings[token]
+            weight = vector[token]
+            for other in peers:
+                if other > cid:
+                    votes[other] = votes.get(other, 0.0) + weight * vecs[other][token]
+        candidates = sorted(votes, key=lambda other: (votes[other], other),
+                            reverse=True)[:candidate_limit]
+        for other in candidates:
+            left, right = vector, vecs[other]
+            if len(right) < len(left):
+                left, right = right, left
+            dot = sum(weight * right.get(token, 0.0)
+                      for token, weight in left.items())
+            denom = norms[cid] * norms[other]
+            score = dot / denom if denom else 0.0
+            if score >= threshold:
+                pairs.append((score, cid, other))
+    pairs.sort(reverse=True)
+    counts, affinity = {}, []
+    for score, left, right in pairs:
+        if counts.get(left, 0) < per_node and counts.get(right, 0) < per_node:
+            affinity.append({"a": left, "b": right,
+                             "w": round(min(1.0, score), 2)})
+            counts[left] = counts.get(left, 0) + 1
+            counts[right] = counts.get(right, 0) + 1
+    return affinity
 
 
-def _negated(text):
-    """Does this claim's wording assert a negative? Token overlap cannot
-    see a negation — it is one short word inside a long shared phrase,
-    and it inverts the proposition. `X is MF` and `X is not MF` are the
-    two most similar strings in any graph and the least duplicate."""
-    return bool(NEGATIONS & set(re.findall(r"[a-z0-9]+", text.lower())))
+NEGATIONS = {"no", "not", "non", "never", "cannot", "neither", "nor",
+             "fails", "failure", "without", "false", "counterexample",
+             "refuted", "impossible", "obstruction"}
+
+
+def _negation_signature(text):
+    """Logical-negation markers, with multiplicity.
+
+    A boolean is not enough: ``non-hyperlinear`` and ``no non-hyperlinear``
+    both contain a negative-looking token, but the second adds a genuine
+    proposition-level negation. Duplicate/restatement checks must preserve
+    that difference rather than normalising it away.
+    """
+    norm = re.sub(r"n['’]t\b", " not", text.lower())
+    counts = {}
+    for tok in re.findall(r"[a-z0-9]+", norm):
+        if tok in NEGATIONS:
+            counts[tok] = counts.get(tok, 0) + 1
+    return tuple(sorted(counts.items()))
 
 
 # Both gates must fire. Calibrated against a 449-claim program: every
@@ -864,51 +1072,47 @@ DUP_LEXICAL, DUP_MEANING = 0.6, 0.25
 HINT_LIMIT = 10  # a wall of hints is read as one hint and then skipped
 
 
-def duplicate_score(a, b, ta, tb, vecs):
-    """How confusable are these two claims? None if not worth asking.
-
-    Wording alone flags whole families. An id is a slug of its own title,
-    so scoring `title + id` double-counts every shared word and lets a
-    family prefix (`literal-mark-quotient-*`) outscore the words that
-    actually differ; and dividing by the SHORTER token set gave a perfect
-    1.0 to any claim whose words were a subset of its sibling's. So:
-    symmetric overlap (Jaccard) on titles alone, then a TF-IDF gate over
-    title+body, where the vocabulary every node in the program shares is
-    discounted away. Sharing a subject is not being the same claim.
-    """
-    if not ta or not tb or len(ta & tb) < 2:
-        return None
-    if len(ta & tb) / len(ta | tb) < DUP_LEXICAL:
-        return None
-    # a negation is one short word inside a long shared phrase, and it
-    # inverts the proposition: `X is MF` and `X is not MF` are the most
-    # similar strings in the graph and the least duplicate
-    if _negated(a.title + " " + a.id) != _negated(b.title + " " + b.id):
-        return None
-    score = cosine(vecs.get(a.id, {}), vecs.get(b.id, {}))
-    return round(score, 2) if score >= DUP_MEANING else None
-
-
 def duplicate_findings(graph, only_ids=None, vecs=None):
     """(claim, candidate, score) triples not answered by distinct_from."""
-    if vecs is None:
-        vecs = semantic_vectors(graph.claims)
     toks = {cid: _tokens(c.title) for cid, c in graph.claims.items()}
-    out = []
+    postings = {}
+    for cid, words in toks.items():
+        for word in words:
+            postings.setdefault(word, []).append(cid)
+    candidates = []
     for cid, c in graph.claims.items():
         if only_ids is not None and cid not in only_ids:
             continue
         df = c.meta.get("distinct_from") or {}
-        for oid, cand in graph.claims.items():
-            if oid == cid:
+        overlap = {}
+        for word in toks[cid]:
+            for oid in postings[word]:
+                overlap[oid] = overlap.get(oid, 0) + 1
+        for oid in sorted(overlap):
+            if oid == cid or overlap[oid] < 2:
                 continue
+            cand = graph.claims[oid]
             if oid in df or cid in (cand.meta.get("distinct_from") or {}):
                 continue
             if oid < cid and (only_ids is None or oid in only_ids):
                 continue  # report each unordered pair once
-            score = duplicate_score(c, cand, toks[cid], toks[oid], vecs)
-            if score is not None:
-                out.append((cid, oid, score))
+            if len(toks[cid] & toks[oid]) / len(toks[cid] | toks[oid]) < DUP_LEXICAL:
+                continue
+            if (_negation_signature(c.title + " " + c.id)
+                    != _negation_signature(cand.title + " " + cand.id)):
+                continue
+            candidates.append((cid, oid))
+    if not candidates:
+        return []
+    if vecs is None:
+        involved = {cid for pair in candidates for cid in pair}
+        vecs = semantic_vectors(graph.claims, only_ids=involved)
+    out = []
+    for cid, oid in candidates:
+        score = cosine(vecs.get(cid, {}), vecs.get(oid, {}))
+        score = round(score, 2) if score >= DUP_MEANING else None
+        if score is not None:
+            out.append((cid, oid, score))
     return out
 
 
@@ -919,6 +1123,8 @@ def duplicate_findings(graph, only_ids=None, vecs=None):
 # ---------------------------------------------------------------------------
 
 def _lock_path(nid):
+    if not isinstance(nid, str) or ID_RE.fullmatch(nid) is None:
+        raise SystemExit(f"malformed node id {nid!r}")
     return os.path.join(lock_dir(), f"{nid}.json")
 
 
@@ -949,10 +1155,11 @@ def all_locks():
         return {}
     out = {}
     for fn in sorted(os.listdir(lock_dir())):
-        if fn.endswith(".json"):
-            lock = read_lock(fn[:-5])
+        nid = fn[:-5] if fn.endswith(".json") else ""
+        if ID_RE.fullmatch(nid) is not None:
+            lock = read_lock(nid)
             if lock:
-                out[fn[:-5]] = lock
+                out[nid] = lock
     return out
 
 
@@ -995,8 +1202,7 @@ def render_tree(graph, cid, locks, depth=0, seen=None, lines=None, max_depth=6):
     lockmark = " 🔒" if cid in locks else ""
     lines.append(f"{ind}{cid} [{MARK.get(c.status, c.status)}]{lockmark} {c.title}")
     if c.status == "REFUTED":
-        for reason in c.status_reasons:
-            lines.append(f"{ind}  {reason}")
+        lines.extend(f"{ind}  {reason}" for reason in c.status_reasons)
     if cid in seen or depth >= max_depth:
         if cid in seen:
             lines.append(f"{ind}  (…already shown)")
@@ -1144,39 +1350,112 @@ def undecomposed_open(graph):
     return out
 
 
-def frontier_view(graph, only_goal=None, with_necessity=True):
-    """Group the open holes by the goals they can serve.
+def actionable_frontier(graph):
+    """Root frontier plus undecomposed holes in every open goal cone."""
+    holes = set(graph.frontier)
+    undecomposed = set(undecomposed_open(graph))
+    for gid in graph.goals:
+        if graph.claims[gid].status == "OPEN":
+            holes.update(goal_cone(graph, gid) & undecomposed)
+    return sorted(holes, key=lambda h: (-graph.claim_impact[h], h))
 
-    Per goal: the holes on its live route-trees (its cone), which are
-    NECESSARY (granting every other hole still doesn't reach the goal —
-    the forced-solve run in reverse), and whether any complete
-    route-tree exists at all. Holes in no cone are 'elsewhere': real
-    work, but on no recorded path to a goal.
+
+def monotone_frontier_necessity(graph, gid, holes):
+    """Return (connected, necessary, stable) for one obstruction-free cone.
+
+    The old implementation solved the entire graph once per omitted hole.
+    Necessity in a monotone AND/OR graph is a dataflow property: requirements
+    combine by union and alternative routes combine by intersection. Integer
+    bitsets compute every hole together after one connectivity solve.
+    """
+    if not holes:
+        return None, set(), True
+    positions = {h: i for i, h in enumerate(holes)}
+    universe = (1 << len(holes)) - 1
+    established, _, _, _, stable = graph._solve(forced=frozenset(holes))
+    if not stable:
+        return None, set(), False
+    cone = goal_cone(graph, gid)
+    connected = established & cone
+    if gid not in connected:
+        return False, set(), True
+
+    must = {cid: 0 for cid in graph.established if cid in connected}
+    must.update({h: 1 << positions[h] for h in holes})
+    for cid in connected:
+        must.setdefault(cid, universe)
+
+    for _ in range(len(connected) + 1):
+        changed = False
+        for cid in connected:
+            if cid in graph.established or cid in positions:
+                continue
+            candidates = []
+            for rid in graph.routes_into.get(cid, ()):
+                route = graph.routes[rid]
+                if route.status == "INVALIDATED":
+                    continue
+                reqs = [q for q in route.get_list("requires")
+                        if q in graph.claims]
+                if all(q in connected for q in reqs):
+                    bits = 0
+                    for q in reqs:
+                        bits |= must[q]
+                    candidates.append(bits)
+            if candidates:
+                bits = candidates[0]
+                for alternative in candidates[1:]:
+                    bits &= alternative
+                if bits != must[cid]:
+                    must[cid] = bits
+                    changed = True
+        if not changed:
+            break
+
+    goal_bits = must[gid]
+    necessary = {h for h, i in positions.items() if goal_bits & (1 << i)}
+    return True, necessary, True
+
+
+def frontier_view(graph, only_goal=None, with_necessity=True):
+    """Group open holes by the goals they can serve.
+
+    Necessity is an all-other-holes counterfactual only for monotone cones.
+    If a live cone contains an invalidating claim, forcing every leaf can itself
+    close a route; in that case Cairn lists the holes but deliberately does not
+    label them necessary or claim that the mapped goal is disconnected.
     """
     holes = undecomposed_open(graph)
-    hole_set = set(holes)
     gids = [only_goal] if only_goal else graph.goals
     goals, covered = [], set()
     for gid in gids:
         c = graph.claims[gid]
         g = {"id": gid, "node_status": c.status, "holes": [],
-             "necessary": set(), "connected": None}
-        covered.add(gid)  # a goal is never 'elsewhere'; it gets its own section
+             "necessary": set(), "connected": None,
+             "obstruction_sensitive": False,
+             "counterfactual_unstable": False}
+        covered.add(gid)
         if c.status == "OPEN":
             cone = goal_cone(graph, gid)
             cone_holes = [h for h in holes if h in cone and h != gid]
             covered.update(cone_holes)
-            if cone_holes and with_necessity:
-                base, _, _, _, _ = graph._solve(forced=frozenset(holes))
-                g["connected"] = gid in base
-                if g["connected"]:
-                    for h in cone_holes:
-                        est, _, _, _, _ = graph._solve(forced=frozenset(hole_set - {h}))
-                        if gid not in est:
-                            g["necessary"].add(h)
-            g["holes"] = sorted(
-                cone_holes,
-                key=lambda h: (h not in g["necessary"], -graph.claim_impact[h], h))
+            g["holes"] = sorted(cone_holes,
+                                key=lambda h: (-graph.claim_impact[h], h))
+            g["obstruction_sensitive"] = any(
+                graph.claims[q].get_list("invalidates")
+                or graph.claims[q].get_list("refuted_by") for q in cone)
+            if cone_holes and with_necessity and not g["obstruction_sensitive"]:
+                connected, necessary, stable = monotone_frontier_necessity(
+                    graph, gid, cone_holes)
+                if not stable:
+                    g["counterfactual_unstable"] = True
+                else:
+                    g["connected"] = connected
+                    g["necessary"] = necessary
+                g["holes"] = sorted(
+                    cone_holes,
+                    key=lambda h: (h not in g["necessary"],
+                                   -graph.claim_impact[h], h))
         goals.append(g)
     elsewhere = sorted((h for h in graph.frontier if h not in covered),
                        key=lambda h: (-graph.claim_impact[h], h))
@@ -1259,7 +1538,7 @@ def context_packet(graph, nid, locks, budget_tokens=8000):
         if n.status == "ESTABLISHED":
             sec("DERIVATION", derivation_lines(graph, nid))
         elif n.status == "REFUTED":
-            sec("REFUTED BY", n.status_reasons)
+            sec("PROVED FALSE BY", n.status_reasons)
         chain = why_chain(graph, nid)
         if chain:
             sec("WHY THIS MATTERS", [" -> ".join([chain[0][0]] + [c for _, _, c in chain])])
@@ -1321,10 +1600,11 @@ def generate_frontier_md(graph, locks):
          "<!-- Source of truth: research/*.md -->", ""]
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
     ref = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    display_frontier = actionable_frontier(graph)
     L.append(f"{len(graph.claims)} claims ({est} established, {ref} refuted) · "
              f"{len(graph.routes)} routes "
              f"({len(graph.invalidated)} invalidated) · "
-             f"{len(graph.frontier)} frontier holes")
+             f"{len(display_frontier)} frontier holes")
     L.append("")
     if graph.goals:
         L += ["## Goals (top-level human goals)", ""]
@@ -1332,20 +1612,23 @@ def generate_frontier_md(graph, locks):
             c = graph.claims[gid]
             L.append(f"- **{gid}** [{c.status}] [{c.title}]({gid}.md)")
         L.append("")
-    for root in graph.roots:
+    anchors = list(graph.roots) + [g for g in graph.goals if g not in graph.roots]
+    for root in anchors:
         c = graph.claims[root]
-        L += [f"## {root} — {c.title}   [{c.status}]", "", "```text"]
+        label = "goal" if root in graph.goals and root not in graph.roots else "root"
+        L += [f"## {root} — {c.title}   [{c.status}] ({label})", "", "```text"]
         L += render_tree(graph, root, locks)
         L += ["```", ""]
-    serves = {}  # hole -> [(goal, necessary)] — which goals each hole can move
-    for g in frontier_view(graph)[0]:
+    views, _ = frontier_view(graph)
+    serves = {}
+    for g in views:
         for h in g["holes"]:
             serves.setdefault(h, []).append((g["id"], h in g["necessary"]))
-    L += ["## Frontier holes (open, reachable, undecomposed)", ""]
-    if not graph.frontier:
+    L += ["## Frontier holes (open, undecomposed; roots + goal cones)", ""]
+    if not display_frontier:
         L.append("*(none)*")
-    for cid in sorted(graph.frontier,
-                      key=lambda q: (q not in serves, -graph.claim_impact[q])):
+    for cid in sorted(display_frontier,
+                      key=lambda q: (q not in serves, -graph.claim_impact[q], q)):
         c = graph.claims[cid]
         lock = locks.get(cid)
         who = f" — 🔒 claimed ({fmt_remaining(lock)})" if lock else " — unclaimed"
@@ -1362,8 +1645,14 @@ def generate_frontier_md(graph, locks):
             for rid in last[:2])
         L.append(f"- **{cid}** [{graph.claim_impact[cid]} live route(s) need it"
                  f"{toward}] [{c.title}]({cid}.md){flag}{who}")
+    internal = set(graph.internal_open)
+    undecomp = set(undecomposed_open(graph))
+    for gid in graph.goals:
+        if graph.claims[gid].status == "OPEN":
+            internal.update(q for q in goal_cone(graph, gid)
+                            if graph.claims[q].status == "OPEN" and q not in undecomp)
     L += ["", "## Open internal claims (live decompositions exist)", ""]
-    L += [f"- {cid} [{graph.claims[cid].title}]({cid}.md)" for cid in graph.internal_open]
+    L += [f"- {cid} [{graph.claims[cid].title}]({cid}.md)" for cid in sorted(internal)]
     L += ["", "## Recently touched", ""]
     for day, n in recently_touched(graph):
         L.append(f"- {day} · {n.id} [{n.status}] {n.title}")
@@ -1713,7 +2002,7 @@ ASCII_OPS = sorted(
      ("->", r"\to"), ("=>", r"\Rightarrow"), ("<<", r"\ll"),
      (">>", r"\gg"), ("::", r"::"), (":=", r":="), ("||", r"\Vert")],
     key=lambda kv: -len(kv[0]))
-STOPWORDS = set(
+MATH_STOPWORDS = set(
     "a an and are as at be been but by can does do each every for from has "
     "have if in into is it its no not of on or over so some that the then "
     "there these this to under up was were where which while with without "
@@ -1813,7 +2102,7 @@ def _tex_atoms(src):
                     atoms.append(("op", OP_WORDS[w]))
                 elif len(w) == 1:
                     atoms.append(("var", w))
-                elif w.lower() in STOPWORDS:
+                elif w.lower() in MATH_STOPWORDS:
                     atoms.append(("word", r"\text{" + w + "}"))
                 else:
                     atoms.append(("var", r"\mathrm{" + w + "}"))
@@ -2009,7 +2298,7 @@ def linkify_prose(html_str):
     return "".join(out)
 
 
-def md_to_html(md, ids=()):
+def md_to_html(md, ids=(), tex_cache=None):
     out, in_code, in_list, para = [], False, False, []
     fence = [False]  # is the open fence a math fence?
     fence_buf = []
@@ -2021,7 +2310,12 @@ def md_to_html(md, ids=()):
 
         def hold(m):
             raw = m.group(1)
-            el = tex_span(raw, ids)
+            if tex_cache is not None and raw in tex_cache:
+                el = tex_cache[raw]
+            else:
+                el = tex_span(raw, ids)
+                if tex_cache is not None:
+                    tex_cache[raw] = el
             held.append(el or "<code>"
                         + linkify_prose(html.escape(raw, quote=False))
                         + "</code>")
@@ -2295,7 +2589,7 @@ color:var(--mut2);font-size:10.5px;display:flex;gap:1.4em}
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="7.6" fill="none" stroke="#4f46e5" stroke-width="1.8"/><circle cx="9" cy="8" r="4.6" fill="#fff" stroke="#c08a00" stroke-width="2"/></svg>goal</span>
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#178a5e"/></svg>established</span>
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#fff" stroke="#c08a00" stroke-width="2.2"/></svg>open</span>
-<span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#8f2738" stroke="#6f1728" stroke-width="2.2"/></svg>refuted</span>
+<span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#8f2738" stroke="#6f1728" stroke-width="2.2"/></svg>refuted / proved false</span>
 <span><svg width="24" height="16"><path d="M2.5,2.5 L8,2.5 L13.5,8 L8,13.5 L2.5,13.5 Z" fill="#fff" stroke="#171714" stroke-width="1.3" stroke-linejoin="round"/><path d="M4.4,10.4 L6.6,6.2 L8.8,10.4" fill="none" stroke="#171714" stroke-width="1.5" stroke-linejoin="miter"/></svg>&and; gate &mdash; nose points at what it proves</span>
 <span><svg width="30" height="16"><line x1="1" y1="8" x2="21" y2="8" stroke="#17171459" stroke-width="1.1"/><path d="M20.6,4.9L26,8L20.6,11.1z" fill="#fff" stroke="#171714a8" stroke-width="1.1"/></svg>premise &#8594; gate (input)</span>
 <span><svg width="30" height="16"><line x1="1" y1="8" x2="20" y2="8" stroke="#171714a8" stroke-width="2.1"/><path d="M19,3.9L27,8L19,12.1z" fill="#171714a8"/></svg>gate &#8594; claim (output)</span>
@@ -2988,7 +3282,7 @@ function ctx(d){
  if(d.status==='ESTABLISHED'&&d.via)
   h+=sec('Established by',1,[routeRow(d.via)]);
  if(d.status==='REFUTED')
-  h+=sec('Refuted by',(d.refuted_by||[]).length,
+  h+=sec('Proved false by',(d.refuted_by||[]).length,
          (d.refuted_by||[]).map(c=>`<li><span class="mk dead">refuter</span>${clink(c)}</li>`));
  const live=into.filter(r=>r!==d.via&&!RT(r).dead);
  const dead=into.filter(r=>r!==d.via&&RT(r).dead);
@@ -3000,13 +3294,20 @@ function ctx(d){
    routeRow(r,'establishes '+clink(RT(r).target))));
  const g=d.gives;
  if(g){
-  const rows=g.claims.slice(0,12).map(c=>
-    `<li><span class="mk ok">unlocks</span>${clink(c)}</li>`);
+  const rows=[];
+  if(g.unstable)
+   rows.push('<li class="hint">no stable invalidation fixpoint for this counterfactual</li>');
+  for(const c of g.claims.slice(0,12))
+   rows.push(`<li><span class="mk ok">unlocks</span>${clink(c)}</li>`);
   if(g.claims.length>12)
-   rows.push(`<li class="hint">…and ${g.claims.length-12} more</li>`);
+   rows.push(`<li class="hint">…and ${g.claims.length-12} more unlocked</li>`);
+  for(const c of (g.lost||[]).slice(0,12))
+   rows.push(`<li><span class="mk dead">retracts</span>${clink(c)}</li>`);
   for(const r of g.routes.slice(0,8))
    rows.push(`<li><span class="mk dead">closes</span>${rlink(r)}</li>`);
-  h+=sec('If established',g.claims.length+g.routes.length,rows);
+  for(const r of (g.reopened||[]).slice(0,8))
+   rows.push(`<li><span class="mk ok">reopens</span>${rlink(r)}</li>`);
+  h+=sec('If established',rows.length,rows);
  }
  h+=sec('Rules out',kills.length,kills.map(r=>
    routeRow(r,'a route to '+clink(RT(r).target))));
@@ -3085,20 +3386,11 @@ foldBox.onchange=()=>{
 function refreshVis(){
  const sd=document.getElementById('showdead').checked;
  const fold=foldBox.checked;
- // hidden first, degree second: a claim is not an orphan for having only
- // edges to things the fold is currently hiding
+ // Every canonical node is drawable. Folding an established region is the
+ // only reason to hide one; disconnected claims are data, not UI garbage.
  nodes.forEach(d=>{d.hidden=d.type==='group'?(!fold||d.open)
   :d.region?(fold&&!byId[d.region].open):false});
- const shown=l=>{const a=byId[l.source.id||l.source],b=byId[l.target.id||l.target];
-  return a&&b&&!a.hidden&&!b.hidden};
- const deg={};
- links.forEach(l=>{if(real(l)&&(!l.dead||sd)&&shown(l)){
-  const a=l.source.id||l.source,b=l.target.id||l.target;
-  deg[a]=(deg[a]||0)+1;deg[b]=(deg[b]||0)+1}});
- nodes.forEach(d=>{
-  d.orphan=d.type==='claim'&&!d.root&&!d.goal&&!d.frontier&&!(deg[d.id]>0);
-  d.gone=d.orphan||d.hidden;
- });
+ nodes.forEach(d=>{d.gone=d.hidden});
  node.classed('orphan',d=>d.gone);
  lab.classed('orphan',d=>d.gone);
  line.classed('gone',l=>{
@@ -3291,7 +3583,7 @@ def source_link(web, ref, path):
             f'rel="noopener">{mark}<span>View source on {name}</span></a>')
 
 
-def write_file_pages(ids, web, ref):
+def write_file_pages(ids, web, ref, tex_cache):
     """Render every referenced repository file as a page on this site.
 
     Markdown is rendered, so a note reached from a claim gets the same typeset
@@ -3317,7 +3609,7 @@ def write_file_pages(ids, web, ref):
                     f"<p class='muted'>{src}</p>")
             if path.lower().endswith(".md"):
                 body = text.split("---", 2)[-1] if text.startswith("---") else text
-                rendered = autolink(md_to_html(body, ids), ids)
+                rendered = autolink(md_to_html(body, ids, tex_cache), ids)
             else:
                 rows = []
                 for k, ln in enumerate(text.split("\n"), 1):
@@ -3342,15 +3634,25 @@ def generate_site(graph, locks):
     web, ref = _web_root(), _web_ref()
     # index = the graph, full viewport
     idset = set(graph.nodes)
+    rendered_bodies = {}
+    tex_cache = {}
+
+    def render_body(body):
+        if body not in rendered_bodies:
+            rendered_bodies[body] = autolink(
+                md_to_html(body, idset, tex_cache), idset)
+        return rendered_bodies[body]
+
     depths = goal_depths(graph)
     data = {"claims": [], "links": [], "junctions": [], "dead": [], "affinity": [],
             "routes": {}, "maxDepth": max(depths.values(), default=0)}
+    display_frontier = set(actionable_frontier(graph))
     for cid, c in graph.claims.items():
         data["claims"].append({
             "id": cid, "status": c.status, "root": bool(c.meta.get("root")),
             "goal": bool(c.meta.get("goal")),
             "title": c.title, "impact": graph.claim_impact.get(cid, 0),
-            "frontier": cid in graph.frontier,
+            "frontier": cid in display_frontier,
             "depth": depths.get(cid),
             "lock": fmt_remaining(locks[cid]) if cid in locks else None,
             "arts": artifact_links(c.get_list("artifacts"), web, ref),
@@ -3359,14 +3661,23 @@ def generate_site(graph, locks):
             "into": graph.routes_into.get(cid, []),
             "needs": graph.required_by.get(cid, []),
             "kills": [r for r in c.get_list("invalidates") if r in graph.routes],
-            "html": autolink(md_to_html(c.body, idset), idset)})
-    # what an open claim would buy, from the same solver the CLI uses
+            "html": render_body(c.body)})
+    # what an open claim would buy, from the same solver the CLI uses.
     for rec in data["claims"]:
         if rec["status"] != "OPEN":
             continue
-        est1, _, inv1, _, _ = graph._solve(forced=frozenset([rec["id"]]))
-        rec["gives"] = {"claims": sorted(est1 - graph.established - {rec["id"]}),
-                        "routes": sorted(inv1 - graph.invalidated)}
+        est1, _, inv1, _, stable = graph._solve(forced=frozenset([rec["id"]]))
+        if not stable:
+            rec["gives"] = {"claims": [], "lost": [], "routes": [],
+                            "reopened": [], "unstable": True}
+            continue
+        rec["gives"] = {
+            "claims": sorted(est1 - graph.established - {rec["id"]}),
+            "lost": sorted(graph.established - est1),
+            "routes": sorted(inv1 - graph.invalidated),
+            "reopened": sorted(graph.invalidated - inv1),
+            "unstable": False,
+        }
     for rid, r in graph.routes.items():
         tgt = r.meta.get("target")
         if tgt not in graph.claims:
@@ -3382,7 +3693,7 @@ def generate_site(graph, locks):
             "reasons": list(r.status_reasons),
             "blocked": list(getattr(r, "blocked_on", []) or []),
             "arts": artifact_links(r.get_list("artifacts"), web, ref),
-            "html": autolink(md_to_html(r.body, idset), idset)}
+            "html": render_body(r.body)}
         if not reqs:
             if dead:
                 data["dead"].append({"route": rid, "target": tgt,
@@ -3395,26 +3706,12 @@ def generate_site(graph, locks):
             data["junctions"].append({**rec, "requires": reqs})
     # semantic affinity: TF-IDF cosine over statements -> invisible
     # attraction links, so conceptually close claims sit close on screen
-    vecs = semantic_vectors(graph.claims)
-    _cos = cosine
-    cids = list(vecs)
-    pairs = []
-    for i in range(len(cids)):
-        for j in range(i + 1, len(cids)):
-            w = _cos(vecs[cids[i]], vecs[cids[j]])
-            if w >= 0.16:
-                pairs.append((w, cids[i], cids[j]))
-    pairs.sort(reverse=True)
-    percap = {}
-    for w, x, y in pairs:
-        if percap.get(x, 0) < 3 and percap.get(y, 0) < 3:
-            data["affinity"].append({"a": x, "b": y, "w": round(min(1.0, w), 2)})
-            percap[x] = percap.get(x, 0) + 1
-            percap[y] = percap.get(y, 0) + 1
+    data["affinity"] = semantic_affinity(
+        semantic_vectors(graph.claims, titles_only=True), threshold=0.45)
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
-    refuted = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
-    stats = (f"{len(graph.claims)} claims · {est} established · {refuted} refuted · "
-             f"{len(graph.routes)} routes · {len(graph.frontier)} frontier holes")
+    ref = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    stats = (f"{len(graph.claims)} claims · {est} established · {ref} refuted · "
+             f"{len(graph.routes)} routes · {len(display_frontier)} frontier holes")
     idx = (INDEX_TMPL.replace("__KATEX__", KATEX)
                      .replace("__PALETTE__", PALETTE)
                      .replace("__SANS__", SANS).replace("__MONO__", MONO)
@@ -3463,7 +3760,7 @@ def generate_site(graph, locks):
             rel("Routes into this claim", graph.routes_into.get(nid, []))
             rel("Needed by routes", graph.required_by.get(nid, []))
             rel("Invalidates", n.get_list("invalidates"))
-            rel("Refuted by", n.get_list("refuted_by"))
+            rel("Proved false by", n.get_list("refuted_by"))
             df = n.meta.get("distinct_from") or {}
             if df:
                 B.append("<h2>Distinct from</h2><ul class='rel'>")
@@ -3485,11 +3782,11 @@ def generate_site(graph, locks):
                          if href else f"<li class='art'>{lab}</li>")
             B.append("</ul>")
         B.append("<h2>Statement</h2>")
-        B.append(autolink(md_to_html(n.body, idset), idset)
-                 if n.body else "<p class='muted'>(no body)</p>")
+        B.append(render_body(n.body) if n.body
+                 else "<p class='muted'>(no body)</p>")
         with open(os.path.join(SITE_DIR, f"{nid}.html"), "w", encoding="utf-8") as f:
             f.write(page(f"{nid}", "\n".join(B)))
-    write_file_pages(idset, web, ref)
+    write_file_pages(idset, web, ref, tex_cache)
     return SITE_DIR
 
 
@@ -3509,10 +3806,12 @@ def recently_touched(graph, limit=8):
     section by mtime made the generated file disagree with itself on every
     machine that regenerated it — a diff nobody wrote, in every checkout.
     An uncommitted edit is the most recent thing there is, so it sorts first.
-    A node the log window does not reach is the opposite — older than every
-    stamp we have — so the two cases must not share a fallback: once the graph
-    outgrows the window most nodes miss it, and giving them the uncommitted
-    sentinel prints the alphabetically-last ids as the newest work.
+    A node the log window does not reach is the opposite of that — older than
+    every stamp we hold — and the two must not share a sentinel. Once a graph
+    grows past the window most of it misses, and one sentinel for both cases
+    ties nearly every node at "newest", where the tiebreak is the id: the
+    section then prints the alphabetically-last nodes as the latest work, in
+    every checkout, and nothing about it looks wrong.
     """
     hist, stamp = {}, None
     # bounded: the newest-touched nodes live in the newest commits by definition
@@ -3523,22 +3822,17 @@ def recently_touched(graph, limit=8):
         elif line and stamp:
             hist.setdefault(line, stamp)  # git log is newest-first
 
-    pending = set()
-    st = _git("status", "--porcelain", "--", "research")
-    for line in (st.stdout.splitlines() if st.returncode == 0 else []):
-        p = line[3:]
-        if " -> " in p:          # a rename: the new path is the live one
-            p = p.split(" -> ", 1)[1]
-        pending.add(p.strip('"'))
-
-    NEW, OLD = "9999", "0000"    # uncommitted · outside the log window
+    # what the worktree has that no commit does — the one thing that outranks
+    # every timestamp, and the only thing that may
+    pending = changed_research_files() or set()
+    NEW, OLD = "9999", "0000"       # uncommitted · older than the log window
 
     def stamp_of(n):
         if r.returncode != 0:
             return time.strftime("%Y-%m-%dT%H:%M:%S",
                                  time.localtime(os.path.getmtime(n.path)))
-        if n.relpath in pending:
-            return NEW           # sorts above any ISO timestamp
+        if n.id in pending:
+            return NEW              # sorts above any ISO timestamp
         return hist.get(n.relpath, OLD)
 
     today = time.strftime("%Y-%m-%d")
@@ -3678,8 +3972,8 @@ def remaining_cost(graph, assume=frozenset()):
 
 def kinetic_delta(old, new):
     """What the working tree changed in derived state, phrased forward:
-    establishments/refutations, routes now one prerequisite from complete,
-    fresh invalidations, and plan-cost movement at the goals and roots. This
+    establishments, routes now one prerequisite from complete, fresh
+    invalidations, and plan-cost movement at the goals and roots. This
     is the build-system moment — 'three targets just became buildable' —
     printed while the author's context is still loaded."""
     d = {"established": sorted(new.established - old.established),
@@ -3698,9 +3992,11 @@ def kinetic_delta(old, new):
     for rid in sorted(new.invalidated - old.invalidated):
         if rid in old.routes:
             d["invalidated"].append(
-                (rid, "; ".join(new.routes[rid].status_reasons)))
+                (rid, ", ".join(new.invalidated_by.get(rid, ()))))
     anchors = sorted(set(new.goals) | set(new.roots))
-    if anchors:
+    obstruction_sensitive = any(c.get_list("invalidates") or c.get_list("refuted_by")
+                                for c in new.claims.values())
+    if anchors and not obstruction_sensitive:
         oc, nc = remaining_cost(old), remaining_cost(new)
         for gid in anchors:
             if gid not in old.claims:
@@ -3731,23 +4027,72 @@ def missing_attempts(body):
 # Commands
 # ---------------------------------------------------------------------------
 
+def write_node_cache(graph):
+    """Atomically persist parsed source so query commands avoid reparsing."""
+    path = os.path.join(CACHE_DIR, "nodes.sqlite3")
+    fd, tmp = tempfile.mkstemp(prefix="nodes-", suffix=".sqlite3.tmp",
+                               dir=CACHE_DIR)
+    os.close(fd)
+    db = None
+    try:
+        db = sqlite3.connect(tmp)
+        db.executescript("""
+            PRAGMA journal_mode=OFF;
+            PRAGMA synchronous=OFF;
+            CREATE TABLE cache_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+            CREATE TABLE nodes (
+                id TEXT PRIMARY KEY, kind TEXT NOT NULL, relpath TEXT NOT NULL,
+                meta TEXT NOT NULL, body TEXT NOT NULL);
+            CREATE TABLE errors (
+                severity TEXT NOT NULL, rule TEXT NOT NULL, message TEXT NOT NULL);
+        """)
+        db.executemany("INSERT INTO cache_meta VALUES (?, ?)", [
+            ("format", str(CACHE_FORMAT)), ("cairn", __version__),
+            ("sources", json.dumps(graph.source_manifest,
+                                   separators=(",", ":")))])
+        db.executemany("INSERT INTO nodes VALUES (?, ?, ?, ?, ?)", (
+            (nid, node.kind, node.relpath,
+             json.dumps(node.meta, separators=(",", ":")), node.body)
+            for nid, node in graph.nodes.items()))
+        db.executemany("INSERT INTO errors VALUES (?, ?, ?)",
+                       graph.compile_errors)
+        db.commit()
+        db.close()
+        db = None
+        os.replace(tmp, path)
+    finally:
+        if db is not None:
+            db.close()
+        try:
+            os.unlink(tmp)
+        except FileNotFoundError:
+            pass
+
+
 def write_outputs(graph):
     os.makedirs(CACHE_DIR, exist_ok=True)
-    with open(os.path.join(CACHE_DIR, "graph.json"), "w", encoding="utf-8") as f:
-        json.dump(graph.to_json(), f, indent=1)
+    cache_path = os.path.join(CACHE_DIR, "graph.json")
+    fd, tmp_path = tempfile.mkstemp(prefix="graph-", suffix=".json.tmp",
+                                    dir=CACHE_DIR, text=True)
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(graph.to_json(graph.source_manifest), f,
+                  separators=(",", ":"))
+    os.replace(tmp_path, cache_path)
+    write_node_cache(graph)
     with open(os.path.join(RESEARCH_DIR, "FRONTIER.md"), "w", encoding="utf-8") as f:
         f.write(generate_frontier_md(graph, all_locks()))
 
 
 def cmd_check(args):
-    graph, errors = compile_graph()
+    graph, errors = compile_graph(use_cache=False)
+    graph_valid = not any(sev == "error" for sev, _, _ in errors)
     changed = changed_research_files()
     only = None
     if args.changed:
         only = changed
         if only is None:
             print("WARNING: git unavailable; checking everything", file=sys.stderr)
-    dups = duplicate_findings(graph, only_ids=only)
+    dups = duplicate_findings(graph, only_ids=only) if graph_valid else []
     policy_sev = "error" if args.changed else "warning"
     for cid, cand, score in dups:
         errors.append((policy_sev, "duplicate", f"possible duplicate claim: {cid} vs {cand} "
@@ -3755,7 +4100,7 @@ def cmd_check(args):
                        f"  distinct_from:\n    {cand}: <why this is not that>"))
     # naming a hole is not finishing it: a NEW open claim must record at
     # least one attack (or say why the attack is deferred) before parking
-    prev = previous_graph(changed)
+    prev = previous_graph(changed) if graph_valid else None
     new_open = []
     if prev is not None:
         new_open = sorted(cid for cid in graph.claims
@@ -3774,7 +4119,7 @@ def cmd_check(args):
     nerr = report_errors(errors, fail_on_warning=args.strict)
     # Only the lane tops: reconnecting one carries its dependents with it, so
     # listing the dependents too is the same fix printed several times.
-    if graph.detached_tops:
+    if graph_valid and graph.detached_tops:
         print("to reconnect a lane: add a route from a reachable claim to its "
               "top, or mark the top root: true if it is a genuine program "
               "target. nearest reachable claims by similarity:", file=sys.stderr)
@@ -3788,7 +4133,7 @@ def cmd_check(args):
             print(f"  ... and {len(graph.detached_tops) - HINT_LIMIT} more "
                   "(`cairn check --json` for all)", file=sys.stderr)
     # momentum, printed while the author's context is still loaded
-    delta = kinetic_delta(prev, graph) if prev is not None else None
+    delta = kinetic_delta(prev, graph) if graph_valid and prev is not None else None
     n_unlocked = 0
     if delta and any(delta.values()):
         n_unlocked = sum(len(v) for v in delta.values())
@@ -3823,10 +4168,13 @@ def cmd_check(args):
                       + " — check whether they already decide it")
     TELEMETRY_EXTRA.update({"unlocked": n_unlocked, "parked": len(parked),
                             "hints": hints})
-    write_outputs(graph)
-    print(f"compiled {len(graph.claims)} claims + {len(graph.routes)} routes -> "
-          f".cairn/cache/graph.json, research/FRONTIER.md"
-          + ("" if errors else " — check clean"))
+    if graph_valid:
+        write_outputs(graph)
+        print(f"compiled {len(graph.claims)} claims + {len(graph.routes)} routes -> "
+              f".cairn/cache/graph.json, research/FRONTIER.md"
+              + ("" if errors else " — check clean"))
+    else:
+        print("compile failed; derived outputs left untouched")
     if not nerr:
         return EXIT_OK
     n_policy = (len(dups) + len(parked)) if (args.changed or args.strict) else 0
@@ -3836,7 +4184,7 @@ def cmd_check(args):
 def cmd_preview(args):
     old, _, tmp = head_graph()
     shutil.rmtree(tmp, ignore_errors=True)
-    new, errors = compile_graph()
+    new, errors = compile_graph(use_cache=False)
     L = ["PROPOSED GRAPH CHANGE (working tree vs HEAD)", ""]
     delta = {"added": [], "removed": [], "status_changed": [], "dup_warnings": [],
              "direct_proof_assertions": [], "frontier_added": [], "frontier_removed": []}
@@ -3907,17 +4255,24 @@ def cmd_frontier(args):
         c = graph.claims[gid]
         L.append(f"TOWARD {gid} [{c.status}] — {c.title}")
         gp = {"id": gid, "node_status": c.status, "connected": g["connected"],
+              "obstruction_sensitive": g.get("obstruction_sensitive", False),
+              "counterfactual_unstable": g.get("counterfactual_unstable", False),
               "holes": []}
         if c.status == "ESTABLISHED":
             L.append("  ✓ established — nothing further needed")
         elif c.status == "REFUTED":
-            L.append("  REFUTED — " + "; ".join(c.status_reasons))
+            L.append("  REFUTED — proved false; " + "; ".join(c.status_reasons))
         elif not g["holes"]:
             L += [f"  no live route-tree under it — no known path exists yet.",
                   f"  The needed work is route-finding, not lemma-proving: "
                   f"decompose it (`cairn why {gid}`)."]
         else:
-            if g["connected"] is False:
+            if g.get("obstruction_sensitive"):
+                L.append("  (obstruction-sensitive cone: ★ necessity is not inferred "
+                         "by forcing every hole at once)")
+            elif g.get("counterfactual_unstable"):
+                L.append("  (necessity counterfactual has no stable invalidation fixpoint)")
+            elif g["connected"] is False:
                 L.append("  (no complete route-tree yet: resolving every hole below "
                          "still doesn't reach the goal — a route is missing somewhere)")
             for h in g["holes"]:
@@ -3961,51 +4316,114 @@ def cmd_context(args):
                        "node_status": n.status, "packet": packet}, packet)
 
 
-def cmd_search(args):
-    graph, errors = compile_graph()
-    if args.cmd == "relevant" or args.similar:
-        n = graph.nodes.get(args.query)
-        text = (n.title + " " + n.body[:400]) if n else args.query
-        hits = similar_nodes(text, graph.nodes, limit=args.limit, threshold=0.2,
-                             exclude={args.query}, min_overlap=1)
-        payload = {"status": "ok", "results": [
-            {"id": m.id, "kind": m.kind, "node_status": m.status,
-             "title": m.title, "score": s} for s, m in hits]}
-        human = "\n".join(f"{m.id:<44} [{m.kind}/{m.status}] {m.title}"
-                          for _, m in hits) or "(nothing similar)"
-        return emit(args, payload, human)
-    q = _tokens(args.query)
-    scored = []
+def _haystack(graph, with_notes):
+    """Everything searchable, tokenized once: (key, kind, status, title,
+    heading tokens, full tokens).
+
+    A sweep asks several questions of the same corpus, so the corpus is built
+    one time per invocation rather than one time per question.
+    """
+    hay = []
     for n in graph.nodes.values():
-        hay = _tokens(n.title + " " + n.id.replace("-", " ") + " " + n.body)
-        inter = len(q & hay)
-        if inter:
-            scored.append((inter / max(1, len(q)), n.id, n.kind, n.status, n.title))
-    if args.notes and os.path.isdir(NOTES_DIR):
+        head = _tokens(n.title + " " + n.id.replace("-", " "))
+        hay.append((n.id, n.kind, n.status, n.title, head,
+                    head | _tokens(n.body)))
+    if with_notes and os.path.isdir(NOTES_DIR):
         for base, _, files in os.walk(NOTES_DIR):
-            for fn in files:
+            for fn in sorted(files):
                 if not fn.endswith((".md", ".txt")):
                     continue
-                p = os.path.join(base, fn)
+                path = os.path.join(base, fn)
                 try:
-                    hay = _tokens(open(p, encoding="utf-8", errors="ignore").read())
+                    with open(path, encoding="utf-8", errors="ignore") as f:
+                        body = f.read()
                 except OSError:
                     continue
-                inter = len(q & hay)
-                if inter:
-                    scored.append((inter / max(1, len(q)),
-                                   os.path.relpath(p, REPO), "note", "-", fn))
+                head = _tokens(fn.replace("-", " ").replace("_", " "))
+                hay.append((os.path.relpath(path, REPO), "note", "-", fn,
+                            head, head | _tokens(body)))
+    return hay
+
+
+def _hit_rows(hits):
+    return [f"{key:<44} [{kind}/{status}] {title}"
+            for _, key, kind, status, title in hits]
+
+
+def _lexical_hits(query, hay, limit):
+    """Rank by how much of the query landed, and where.
+
+    One incidental word shared with a long body is not a match — on a real
+    graph that alone returns a page of unrelated claims for a query about
+    nothing, and a search that always answers teaches an agent to stop
+    reading the answer. So a multi-word query needs either a word in the
+    title/id or two words anywhere, and a title match outweighs a body one.
+    """
+    q = _tokens(query)
+    if not q:
+        return []
+    scored = []
+    for key, kind, status, title, head, full in hay:
+        inhead, infull = len(q & head), len(q & full)
+        if not infull:
+            continue
+        if len(q) > 1 and not inhead and infull < 2:
+            continue
+        scored.append(((inhead + infull) / (2 * len(q)), key, kind, status, title))
     scored.sort(key=lambda x: (-x[0], x[1]))
-    top = scored[:args.limit]
-    payload = {"status": "ok", "results": [
-        {"id": i, "kind": k, "node_status": st, "title": t, "score": round(sc, 2)}
-        for sc, i, k, st, t in top]}
-    human = "\n".join(f"{i:<44} [{k}/{st}] {t}" for _, i, k, st, t in top) or "(no matches)"
+    return scored[:limit]
+
+
+def cmd_search(args):
+    graph, errors = compile_graph()
+    report_errors(errors, brief=True)
+    similar = args.cmd == "relevant" or args.similar
+    # Recorded usage: agents probe several concepts back to back — runs of up
+    # to nine consecutive searches from one agent — because one question per
+    # invocation is all the CLI offered. A sweep is one call now: one compile,
+    # one pass over notes/, and one answer that says which probes found
+    # nothing. What `grep` cannot do, and the reason this command exists, is
+    # the [kind/status] column: status is compiled, never stored.
+    queries = list(dict.fromkeys(args.query))
+    hay = None if similar else _haystack(graph, args.notes)
+    groups = []
+    for query in queries:
+        if similar:
+            n = graph.nodes.get(query)
+            text = (n.title + " " + n.body[:400]) if n else query
+            hits = [(score, m.id, m.kind, m.status, m.title) for score, m in
+                    similar_nodes(text, graph.nodes, limit=args.limit,
+                                  threshold=0.2, exclude={query}, min_overlap=1)]
+        else:
+            hits = _lexical_hits(query, hay, args.limit)
+        groups.append((query, hits))
+
+    empty = "(nothing similar)" if similar else "(no matches)"
+    if len(groups) == 1:
+        human = "\n".join(_hit_rows(groups[0][1])) or empty
+    else:
+        blank = [query for query, hits in groups if not hits]
+        total = sum(len(h) for _, h in groups)
+        head = f"{len(groups)} probes · {total} hit{'' if total == 1 else 's'}"
+        if blank:
+            head += " · nothing for: " + ", ".join(blank)
+        L = [head]
+        for query, hits in groups:
+            L.append(f"── {query}")
+            L += ["  " + r for r in _hit_rows(hits)] or ["  " + empty]
+        human = "\n".join(L)
+
+    payload = {"status": "ok", "queries": queries, "results": [
+        {"query": query, "id": key, "kind": kind, "node_status": status,
+         "title": title, "score": round(score, 2)}
+        for query, hits in groups
+        for score, key, kind, status, title in hits]}
     return emit(args, payload, human)
 
 
 def cmd_impact(args):
     graph, errors = compile_graph()
+    report_errors(errors, brief=True)
     n = graph.nodes.get(args.id)
     if n is None:
         unknown_node(graph, args.id)
@@ -4016,21 +4434,40 @@ def cmd_impact(args):
                  + "\nA refuted claim cannot be assumed established for impact analysis.")
         return emit(args, {"status": "ok", "id": args.id,
                            "node_status": "REFUTED", "would_establish": [],
-                           "would_invalidate": [], "directly_needed_by": []}, human)
-    est1, _, inv1, _, _ = graph._solve(forced=frozenset([args.id]))
+                           "would_unestablish": [], "would_invalidate": [],
+                           "would_reactivate": [], "directly_needed_by": []}, human)
+    est1, _, inv1, _, stable = graph._solve(forced=frozenset([args.id]))
+    if not stable:
+        raise SystemExit(f"forcing {args.id!r} has no stable invalidation fixpoint")
     newly = sorted(est1 - graph.established - {args.id})
+    lost = sorted(graph.established - est1)
     newly_dead = sorted(inv1 - graph.invalidated)
-    direct = graph.required_by.get(args.id, [])
+    reopened = sorted(graph.invalidated - inv1)
+    direct = [rid for rid in graph.required_by.get(args.id, [])
+              if graph.routes[rid].status != "INVALIDATED"]
     L = [f"IF {args.id} WERE ESTABLISHED:"]
-    L += [f"  claim flips OPEN -> ESTABLISHED: {c}" for c in newly] or ["  no claims flip"]
+    L += [f"  claim flips OPEN -> ESTABLISHED: {c}" for c in newly] or ["  no claims establish downstream"]
+    L += [f"  claim flips ESTABLISHED -> OPEN: {c}" for c in lost]
     L += [f"  route becomes INVALIDATED: {r}" for r in newly_dead]
-    L.append("  routes directly waiting on it: " + (", ".join(direct) or "(none)"))
+    L += [f"  route becomes LIVE again: {r}" for r in reopened]
+    L.append("  live routes directly waiting on it: " + (", ".join(direct) or "(none)"))
     payload = {"status": "ok", "id": args.id, "would_establish": newly,
-               "would_invalidate": newly_dead, "directly_needed_by": direct}
+               "would_unestablish": lost, "would_invalidate": newly_dead,
+               "would_reactivate": reopened, "directly_needed_by": direct}
     return emit(args, payload, "\n".join(L))
 
 
 def cmd_lock(args):
+    graph, errors = compile_graph()
+    report_errors(errors, brief=True)
+    n = graph.nodes.get(args.id)
+    if n is None:
+        unknown_node(graph, args.id)
+    if n.kind != "claim":
+        raise SystemExit(f"{args.id!r} is a route; lock claims an open claim")
+    if n.status != "OPEN":
+        state = "already established" if n.status == "ESTABLISHED" else "proved false"
+        raise SystemExit(f"{args.id!r} is {state}; lock claims an open claim")
     lock, holder = acquire_lock(args.id, parse_ttl(args.ttl))
     locks = all_locks()
     held = [{"id": nid, "expires_at": lk["expires_at"]}
@@ -4081,25 +4518,20 @@ def cmd_status(args):
     report_errors(errors, brief=True)
     locks = all_locks()
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
-    refuted = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
-    L = [f"{len(graph.claims)} claims ({est} established, {refuted} refuted) · "
+    ref = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    actionable = actionable_frontier(graph)
+    L = [f"{len(graph.claims)} claims ({est} established, {ref} refuted) · "
          f"{len(graph.routes)} routes ({len(graph.invalidated)} invalidated) · "
-         f"{len(graph.frontier)} frontier holes · {len(locks)} active claims"]
+         f"{len(actionable)} frontier holes · {len(locks)} active claims"]
     if graph.goals:
         L.append("goals:")
         L += [f"  {gid} [{graph.claims[gid].status}] {graph.claims[gid].title}"
               for gid in graph.goals]
-    # goal-cone holes first: agents should see the work that serves a
-    # goal before the merely well-connected work (necessity ranking and
-    # per-hole paths live in `cairn frontier`, which is allowed to be
-    # slower than status)
-    cone = set()
-    for gid in graph.goals:
-        if graph.claims[gid].status == "OPEN":
-            cone |= goal_cone(graph, gid)
-    toward = [q for q in graph.frontier if q in cone]
+    views, _ = frontier_view(graph, with_necessity=False)
+    toward_set = {h for g in views for h in g["holes"]}
+    toward = sorted(toward_set, key=lambda q: (-graph.claim_impact[q], q))
     pool = toward or graph.frontier
-    top = sorted(pool, key=lambda q: -graph.claim_impact[q])[:5]
+    top = sorted(pool, key=lambda q: (-graph.claim_impact[q], q))[:5]
     if top:
         L.append("frontier (toward goals — `cairn frontier` for the full view):"
                  if toward else "frontier (top impact):")
@@ -4112,9 +4544,11 @@ def cmd_status(args):
         L.append("active locks:")
         L += [f"  🔒 {nid} — {fmt_remaining(lk)}" for nid, lk in locks.items()]
     payload = {"status": "ok", "claims": len(graph.claims), "established": est,
-               "refuted": refuted,
+               "refuted": ref,
+               "cache_hit": graph.cache_hit,
                "routes": len(graph.routes), "invalidated": len(graph.invalidated),
-               "frontier": len(graph.frontier), "toward_goals": len(toward),
+               "frontier": len(actionable), "root_frontier": len(graph.frontier),
+               "toward_goals": len(toward),
                "goals": [{"id": g, "node_status": graph.claims[g].status}
                          for g in graph.goals],
                "locks": sorted(locks)}
@@ -4122,33 +4556,43 @@ def cmd_status(args):
 
 
 def stakes_lines(graph, cid, waiting):
-    """Both payoffs of an open claim, so a hole reads as a fork with two
-    prizes rather than inventory: what establishing it completes and
-    cascades, and what a refutation (an established negation) would
-    dead-end."""
-    L = []
-    est2, _, _, _, _ = graph._solve(forced=frozenset(graph.established | {cid}))
-    completes = [rid for rid in waiting if graph.routes[rid].blocked_on == [cid]]
+    """Consequences of granting an open claim under the real solver."""
+    est2, _, inv2, _, stable = graph._solve(forced=frozenset({cid}))
+    if not stable:
+        return ["if established: counterfactual has no stable invalidation fixpoint"]
+    live_after = set(graph.routes) - inv2
+    completes = [rid for rid in waiting
+                 if graph.routes[rid].blocked_on == [cid] and rid in live_after]
     comp_tgts = {graph.routes[rid].meta.get("target") for rid in completes}
     cascade = sorted(est2 - graph.established - {cid} - comp_tgts)
+    lost = sorted(graph.established - est2)
+    newly_dead = sorted(inv2 - graph.invalidated)
+    reopened = sorted(graph.invalidated - inv2)
     gains = []
     if completes:
         gains.append("completes " + ", ".join(
             f"{rid} -> {graph.routes[rid].meta.get('target')}" for rid in completes))
     if cascade:
         gains.append("cascade also establishes: " + ", ".join(cascade))
-    base = remaining_cost(graph)
-    bumped = remaining_cost(graph, assume={cid})
-    for gid in sorted(set(graph.goals) | set(graph.roots)):
-        if gid == cid:
-            continue
-        a, b = base.get(gid), bumped.get(gid)
-        if a != b and b is not None:
-            kind = "goal" if gid in graph.goals else "root"
-            was = "no finite mapped plan" if a is None else str(a)
-            gains.append(f"{kind} {gid}: cheapest mapped plan {was} -> {b}")
-    if gains:
-        L.append("if established: " + "; ".join(gains))
+    if lost:
+        gains.append("retracts established: " + ", ".join(lost))
+    if newly_dead:
+        gains.append("invalidates routes: " + ", ".join(newly_dead))
+    if reopened:
+        gains.append("reactivates routes: " + ", ".join(reopened))
+    if not any(c.get_list("invalidates") or c.get_list("refuted_by")
+               for c in graph.claims.values()):
+        base = remaining_cost(graph)
+        bumped = remaining_cost(graph, assume={cid})
+        for gid in sorted(set(graph.goals) | set(graph.roots)):
+            if gid == cid:
+                continue
+            a, b = base.get(gid), bumped.get(gid)
+            if a != b and b is not None:
+                kind = "goal" if gid in graph.goals else "root"
+                was = "no finite mapped plan" if a is None else str(a)
+                gains.append(f"{kind} {gid}: cheapest mapped plan {was} -> {b}")
+    L = ["if established: " + "; ".join(gains)] if gains else []
     if waiting:
         parts = []
         for rid in waiting:
@@ -4183,7 +4627,7 @@ def cmd_why(args):
                      + (f" via {rid}" if rid else "") + f"] — {n.title}")
             L += ["derivation:"] + ["  " + x for x in derivation_lines(graph, args.id)]
         elif n.status == "REFUTED":
-            L.append(f"{args.id} [REFUTED] — {n.title}")
+            L.append(f"{args.id} [REFUTED — PROVED FALSE] — {n.title}")
             L += ["  " + reason for reason in n.status_reasons]
             for rid in graph.routes_into.get(args.id, []):
                 r = graph.routes[rid]
@@ -4231,12 +4675,16 @@ def cmd_why(args):
 TELEMETRY_EXTRA = {}  # commands may deposit counters (e.g. banner sizes)
 
 
-def record_telemetry(cmd, argv, code, ms):
+def record_telemetry(cmd, argv, code, ms, cpu_ms):
     try:
         path = telemetry_path()
         os.makedirs(os.path.dirname(path), exist_ok=True)
+        usage = resource.getrusage(resource.RUSAGE_SELF)
+        rss_divisor = 1024 * 1024 if sys.platform == "darwin" else 1024
         entry = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "cmd": cmd,
-                 "argv": argv, "exit": code, "ms": ms,
+                 "argv": argv, "exit": code, "ms": ms, "cpu_ms": cpu_ms,
+                 "max_rss_mb": round(usage.ru_maxrss / rss_divisor, 2),
+                 "version": __version__,
                  # which copy of the program ran this. The log is shared
                  # across clones now, so without it "who is stuck" has no
                  # answer; unlike an agent name it costs nobody anything.
@@ -4284,25 +4732,53 @@ def cmd_telemetry(args):
         return emit(args, {"status": "ok", "total": 0}, "(no telemetry yet)")
     per_cmd, per_exit, per_rule, per_repo = {}, {}, {}, {}
     for e in entries:
-        c = per_cmd.setdefault(e["cmd"], {"n": 0, "errors": 0, "ms": []})
+        c = per_cmd.setdefault(e["cmd"], {
+            "n": 0, "errors": 0, "ms": [], "cpu_ms": [], "rss_mb": [],
+            "cache_hits": 0, "cache_misses": 0, "phases": {}})
         c["n"] += 1
         c["errors"] += e["exit"] != 0
         c["ms"].append(e.get("ms", 0))
+        if "cpu_ms" in e:
+            c["cpu_ms"].append(e["cpu_ms"])
+        if "max_rss_mb" in e:
+            c["rss_mb"].append(e["max_rss_mb"])
+        extra = e.get("extra", {})
+        if "cache_hit" in extra:
+            c["cache_hits" if extra["cache_hit"] else "cache_misses"] += 1
+        for phase, ms in (extra.get("phases_ms") or {}).items():
+            c["phases"].setdefault(phase, []).append(ms)
         per_exit[str(e["exit"])] = per_exit.get(str(e["exit"]), 0) + 1
         who = e.get("agent") or e.get("from")
         if who:
             per_repo[who] = per_repo.get(who, 0) + 1
-        for rule, n in (e.get("extra", {}).get("lint") or {}).items():
+        for rule, n in (extra.get("lint") or {}).items():
             per_rule[rule] = per_rule.get(rule, 0) + n
     unused = sorted(set(COMMANDS) - {"telemetry", "build", "relevant"} - set(per_cmd))
+
+    def percentile(values, fraction):
+        if not values:
+            return None
+        ordered = sorted(values)
+        return round(ordered[int((len(ordered) - 1) * fraction)], 2)
+
     L = [f"{len(entries)} invocations, {entries[0]['ts']} .. {entries[-1]['ts']}", "",
-         f"{'command':<12} {'n':>5} {'errs':>5} {'med ms':>7}"]
+         f"{'command':<12} {'n':>5} {'errs':>5} {'p50':>8} {'p90':>8} {'p99':>8} {'cache':>11}"]
     stats = {}
     for cmd in sorted(per_cmd, key=lambda c: -per_cmd[c]["n"]):
         c = per_cmd[cmd]
-        med = sorted(c["ms"])[len(c["ms"]) // 2]
-        stats[cmd] = {"n": c["n"], "errors": c["errors"], "median_ms": med}
-        L.append(f"{cmd:<12} {c['n']:>5} {c['errors']:>5} {med:>7}")
+        p50, p90, p99 = (percentile(c["ms"], q) for q in (0.5, 0.9, 0.99))
+        cache_n = c["cache_hits"] + c["cache_misses"]
+        cache = f"{c['cache_hits']}/{cache_n}" if cache_n else "-"
+        row = {"n": c["n"], "errors": c["errors"], "p50_ms": p50,
+               "p90_ms": p90, "p99_ms": p99,
+               "p50_cpu_ms": percentile(c["cpu_ms"], 0.5),
+               "p90_rss_mb": percentile(c["rss_mb"], 0.9),
+               "cache_hits": c["cache_hits"], "cache_misses": c["cache_misses"],
+               "phase_p50_ms": {phase: percentile(values, 0.5)
+                                for phase, values in sorted(c["phases"].items())}}
+        stats[cmd] = row
+        L.append(f"{cmd:<12} {c['n']:>5} {c['errors']:>5} "
+                 f"{p50:>8} {p90:>8} {p99:>8} {cache:>11}")
     L += ["", "exit codes: " + ", ".join(f"{k}: {v}" for k, v in sorted(per_exit.items()))]
     if per_rule:
         L += ["", "lint findings by rule — what the graph actually trips on:"]
@@ -4372,10 +4848,12 @@ def main():
     cx = add("context", "bounded context packet (statement, derivation, routes, "
              "reusable claims, dead space)", node_id=True)
     cx.add_argument("--budget", type=int, default=8000, help="approx token budget")
-    se = add("search", "lexical search over the graph (and notes/); "
+    se = add("search", "lexical search over the graph (and notes/), reporting "
+             "each hit's compiled status; several queries sweep in one pass; "
              "--similar ranks by similarity to a node id or free text",
              aliases=("relevant",))
-    se.add_argument("query")
+    se.add_argument("query", nargs="+",
+                    help="one or more quoted queries; each is probed separately")
     se.add_argument("--limit", type=int, default=10)
     se.add_argument("--notes", action="store_true")
     se.add_argument("--similar", action="store_true",
@@ -4397,13 +4875,17 @@ def main():
         sys.exit(EXIT_USAGE)
     args = p.parse_args()
     fn = COMMANDS[args.cmd]
-    t0 = time.time()
+    t0 = time.perf_counter_ns()
+    cpu0 = time.process_time_ns()
     try:
         code = fn(args)
     except BaseException as e:
         code = e.code if isinstance(e, SystemExit) and isinstance(e.code, int) else 1
         if args.cmd != "telemetry":
-            record_telemetry(args.cmd, sys.argv[1:], code, int((time.time() - t0) * 1000))
+            record_telemetry(
+                args.cmd, sys.argv[1:], code,
+                round((time.perf_counter_ns() - t0) / 1_000_000, 2),
+                round((time.process_time_ns() - cpu0) / 1_000_000, 2))
         if (isinstance(e, SystemExit) and isinstance(e.code, str)
                 and getattr(args, "json", False)):
             print(json.dumps({"status": "error", "error": e.code}, indent=1))
@@ -4411,7 +4893,10 @@ def main():
             sys.exit(1)
         raise
     if args.cmd != "telemetry":
-        record_telemetry(args.cmd, sys.argv[1:], code, int((time.time() - t0) * 1000))
+        record_telemetry(
+            args.cmd, sys.argv[1:], code,
+            round((time.perf_counter_ns() - t0) / 1_000_000, 2),
+            round((time.process_time_ns() - cpu0) / 1_000_000, 2))
     sys.exit(code)
 
 
