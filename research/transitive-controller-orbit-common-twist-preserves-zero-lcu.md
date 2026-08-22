@@ -60,3 +60,33 @@ for orbit-symmetric checks.  It does not by itself turn an arbitrary LCU
 menu into such an orbit; that remaining operation is precisely shared-payload
 holonomy/coherent-oracle groupification, not another spectator-gauge issue.
 
+## Cyclic inner-HNN hostile test
+
+The standard clock trick does not manufacture the missing symmetry.  Put
+copies of one payload representation `pi` on clock fibers `K_i`, and ask one
+clock letter `T` to carry `K_i` to `K_(i+1)` while implementing the inner
+edge map `Ad(w_i)`.  Writing its edge block as `T_i:K_i->K_(i+1)`, covariance
+gives
+
+```text
+pi(w_i)^* T_i in pi(Gamma)',
+T_i=pi(w_i)V_i,             V_i in pi(Gamma)'.          (TCO5)
+```
+
+For the uniform clock projection `q_unif`, therefore,
+
+```text
+q_unif T q_unif
+  =(1/|I|) sum_i pi(w_i)V_i.                            (TCO6)
+```
+
+The cycle return constrains only the ordered product of the `V_i` (up to
+the payload holonomy).  Even for irreducible `pi`, there remain `|I|-1`
+independent scalar phases.  Thus `(TCO6)` is not the desired LCU sum.
+
+Adding a rotation which commutes with the whole edge cell does identify the
+`V_i`, but conjugating the covariance rows then identifies the edge maps as
+one symmetry orbit too.  This recovers `(TCO1)` exactly when the `w_i` already
+satisfy `(TCO4)` and otherwise imposes new payload relations.  The clock
+construction therefore restates, rather than solves, the common-orientation
+holonomy problem.
