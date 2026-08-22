@@ -151,3 +151,11 @@ two adjacent Heisenberg/Weyl chambers must agree on a positive amount of the
 same four-atom multiplicity reservoir, with error controlled independently
 of the ambient matrix dimension and of the periodic clock length.  Once that
 gluing is available, `(HCC10)--(HCC11)` is the finite scalar endgame.
+
+The word "gluing" here necessarily means the closed `A_2` system, not one
+literal shared root.  `one-shared-root-plus-dyadic-depth-has-ut4-countermodels`
+puts two nested Heisenberg packets with one genuinely identical root and one
+common dyadic automorphism inside `UT_4(Z[1/2])`; its odd periodic quotients
+retain the lamp overlap `1/4` in canonical finite matrices.  Hence the
+minimal positive interface must use enough opposite/simple identifications
+to return around the Weyl gallery to the same `SL_3` reservoir.

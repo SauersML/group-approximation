@@ -128,6 +128,23 @@ shared arithmetic root across adjacent chambers and its dyadic depth
 transport, exactly the shared-root seam in
 `heisenberg-chamber-clocks-escape-until-root-gluing`.
 
+Even one literal shared root plus its depth transport is not enough.
+`one-shared-root-plus-dyadic-depth-has-ut4-countermodels` uses the nested
+Heisenberg packets
+
+```text
+[x_12,x_23]=x_13,       [x_13,x_34]=x_14
+```
+
+inside one `UT_4(Z[1/2])` reservoir and one common height-doubling
+automorphism.  Odd quotients `2^L-1` give exact canonical finite matrix
+models while an independent depth lamp keeps overlap `1/4`.  Therefore the
+live shared-root seam cannot be a single adjacent pair.  It must close the
+literal `A_2` Weyl gallery, returning the depth transport through the
+opposite/simple root identifications to the same `SL_3` reservoir; this is
+the global six-chamber carrier extraction in
+`arithmetic-hexagon-decoding-or-conductor-leakage`.
+
 - `one-root-p3-denominator-fragment-has-finite-regular-leaks` uses
   separating finite quotients of
 
