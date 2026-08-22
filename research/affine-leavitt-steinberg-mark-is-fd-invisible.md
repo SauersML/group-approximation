@@ -83,3 +83,9 @@ rank-small.
   representation sees `w_A!=1` but does not extend to a representation of
   the coefficient algebra `R_A`; therefore `(ALE3)` is not asserted for all
   tracial group representations.
+- **No binary D8 conversion.**  The active packet is defined over its finite
+  splitting field of characteristic `p>=5`; it is not available over `F_2`.
+  `odd-root-cannot-drive-central-d8-actuator` proves more intrinsically that
+  a central relation `[w_A,s]=J` with `J^2=1` forces `J=1` because `w_A` has
+  odd order.  Finite-dimensional invisibility of this root cannot therefore
+  be transferred to a binary packet sign by a D8 commutator graft.

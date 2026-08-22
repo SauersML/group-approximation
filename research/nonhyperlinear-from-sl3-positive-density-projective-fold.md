@@ -6,6 +6,7 @@ title: Apply a phase-twisted finite Fejer window to the positive fold singular s
 target: non-hyperlinear-group
 requires:
   - sl3-positive-density-projective-fold-sector
+  - canonical-moments-bound-projective-fixed-carrier-density
 ---
 
 Let
@@ -33,22 +34,8 @@ Then `X_n` is a contraction with the same normalized-HS mass as `Y_n`, and
  =||(H_(n,0)-lambda_n H_(n,1))Y_n||_2 ->0.              (PFF3)
 ```
 
-Fix an integer `N` with `N alpha>1`, and put
-
-```text
-B_N(z)=sum_(j=0)^(N-1) z^j,
-F_N(z)=N^(-1) B_N(z)^* B_N(z).                          (PFF4)
-```
-
-The telescoping estimate in
-`unnamed-positive-density-fixed-space-is-terminal` applies to `(V_n,X_n)`
-and gives
-
-```text
-liminf_n tr(F_N(V_n)) >= N alpha>1.                     (PFF5)
-```
-
-On the other hand, for every fixed `0<|k|<N`, canonicality and `(PFF1)` give
+Fix an integer `N` with `N alpha>1`.  For every fixed `0<|k|<N`,
+canonicality and `(PFF1)` give
 
 ```text
 tr(V_n^k)
@@ -56,14 +43,15 @@ tr(V_n^k)
 ```
 
 Word-evaluation errors between `W_n^k` and the chosen representative of
-`w^k` also tend to zero because `k` is fixed.  Expanding the positive Fejer
-polynomial therefore gives
+`w^k` also tend to zero because `k` is fixed.  Hence
+`canonical-moments-bound-projective-fixed-carrier-density` applied to
+`(V_n,X_n)` gives
 
 ```text
-tr(F_N(V_n)) ->1,                                       (PFF7)
+limsup_n ||X_n||_2^2 <=1/N<alpha,                       (PFF7)
 ```
 
-contradicting `(PFF5)`.  Hence `D` is non-hyperlinear.
+contradicting `(PFF3)` and `(PFS1)`.  Hence `D` is non-hyperlinear.
 
 The proof consumes a genuinely finite window: the fixed presentation
 relators and the moments of `w^k` for `0<|k|<N`.  Once `alpha` is known, no

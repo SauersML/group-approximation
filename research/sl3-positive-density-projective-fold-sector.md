@@ -45,6 +45,16 @@ already makes the explicit arithmetic double `D` non-hyperlinear.  The
 model-dependent phase is harmless: a phase-twisted Fejer kernel sees the same
 vanishing canonical moments of the fold word.
 
+There is a semantic caveat.  By
+`canonical-moments-bound-projective-fixed-carrier-density`, every actual
+canonical microstate sequence of `D` excludes `(PFS1)` for every fixed
+`alpha>0`.  Therefore the universal assertion in this node holds exactly
+when no such sequence exists: it is equivalent to non-hyperlinearity of this
+specific arithmetic double.  It is a weaker **certificate shape** than
+global folding or vertex correction, but not a logically weaker existence
+statement.  Canonical moments supply the contradiction after arithmetic
+relations produce the carrier; they cannot produce the carrier themselves.
+
 The constant density is load-bearing.  If only carriers of density
 `alpha_n->0` are known, the needed Fejer order moves to infinity and the
 canonical microstate definition gives no uniform control of that moving word
@@ -78,3 +88,8 @@ macroscopic projective singular-sector estimate for one denominator element.
   those tracial hypotheses, by
   `sl3-regular-double-bass-serre-rigidity-firewall`.  A proof must see the
   finite-coordinate obstruction, not just the limiting tracial inclusion.
+- **Derive the carrier from the canonical moments.**  This has the wrong
+  direction.  The phase-uniform Fejer bound in
+  `canonical-moments-bound-projective-fixed-carrier-density` shows that the
+  first `N-1` vanishing moments force every such carrier to have density at
+  most `1/N`, and the regular `C_N` clock attains that threshold exactly.

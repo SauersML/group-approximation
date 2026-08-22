@@ -34,6 +34,11 @@ and
 ||w_A(U)-I||_2^2 <= C tr(P)+omega(delta).          (ALD2)
 ```
 
+Here `k` is the repository's fixed finite splitting field of characteristic
+`p>=5`.  There is no characteristic-two specialization of the active packet;
+`odd-root-cannot-drive-central-d8-actuator` records the exact order
+obstruction to replacing this native mark by a binary central sign.
+
 Only these three coefficient relations are required. No off-diagonal
 Leavitt relation, full coefficient-algebra representation, rank control on
 every small error, or correction of the whole almost representation is part
