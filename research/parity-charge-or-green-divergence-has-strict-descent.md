@@ -20,6 +20,17 @@ dimension-independent update, or a two-branch choice of updates, satisfying
 
 for fixed `c,lambda>0`.  Here `E_sparse` is the balanced parity/equality
 charge in `(PCG1)` and `E_dense` is complete-pair energy.
+The update must simultaneously satisfy the small-movement estimate
+
+```text
+ d_2(X_new,X)^2<=C_move(E_dense+E_sparse+epsilon_inv). (PCD2)
+```
+
+This condition is essential: without it, replacing every generator by the
+all-identity exact representation makes the left side of `(PCD1)` zero and
+vacuously proves the claim while erasing the distinguished Pauli signal.
+With `(PCD2)`, geometric energy decrease gives a summable sequence of
+movement amplitudes and hence a nearby limiting representation.
 
 Equivalently, it is enough to prove a quantitative dichotomy:
 
@@ -44,4 +55,5 @@ projections is circular outside its operator-norm tube.
 A valid proof must exploit the normalized equality channel gap to obtain a
 strict sparse decrease, or exhibit a Lyapunov cross term whose decrease
 pays the equality movement.  Merely adding the nonnegative divergence term
-to `(PCG2)` cannot establish `(PCD1)`.
+to `(PCG2)` cannot establish `(PCD1)`, and a remote exact replacement is
+excluded by `(PCD2)`.
