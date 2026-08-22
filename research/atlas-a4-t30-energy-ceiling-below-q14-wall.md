@@ -38,6 +38,18 @@ relation `q_14` forces the opposite lower bound `liminf x_30^2>=1/2`, so no
 full S3 recovery or four-variable root ellipse is needed once `(T30-CEIL)` is
 proved.
 
+## Exact augmented-zero audit
+
+`atlas-q14-augmented-zero-set-has-x30-one-escape` proves that packet plus
+19243 plus q14 has an exact finite-factor solution with `x_30^2=1`.  It also
+proves that any exact finite-dimensional solution would yield a regular
+finite-quotient solution with `x_30^2=1`.  Therefore `(T30-CEIL)` cannot be a
+nonvacuous pointwise inequality derived from matrix positivity or finite-group
+representation types.  It is equivalent in substance to a uniform positive
+joint-relator gap excluding the entire augmented matrix-microstate tower.  Any
+valid proof must use a matrix/CE-sensitive nonliftability input; universal
+tracial SOS and exact-zero optimization point in the opposite direction.
+
 ## Attempts and constraints
 
 - **Collision 19243 is essential.**  The exact q14 audit finds `11` inner and

@@ -96,3 +96,11 @@ Consequently q14 exposes the desired one-coordinate lower wall but cannot by
 ordinary algebra force the opposing upper wall.  Any contradiction between
 packet plus 19243 and `(QDC8)` remains a matrix/Connes-embedding-sensitive
 statement.
+
+The zero set itself is now sharply fenced.
+`atlas-q14-augmented-zero-set-has-x30-one-escape` constructs an exact
+finite-factor augmented solution with `x_30^2=1` and proves that any exact
+matrix solution yields a regular finite-quotient solution at the same value.
+Thus the needed opposing upper bound can only arise by excluding the entire
+matrix zero set uniformly, not by optimizing `x_30` on a surviving exact
+point.
