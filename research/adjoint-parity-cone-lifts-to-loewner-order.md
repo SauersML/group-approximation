@@ -24,9 +24,9 @@ inequality
 P_i <= sum_(k in T, k!=i) P_k.                            (APL2)
 ```
 
-Consequently every homogeneous linear inequality with nonnegative
-coefficients that is valid on the Tanner fundamental cone lifts to Loewner
-order for `(P_i)`.  In particular, if the chosen code family has uniform
+Consequently every homogeneous linear inequality that is valid on the
+Tanner fundamental cone lifts, after moving its negative-coefficient terms
+to the other side, to Loewner order for `(P_i)`.  In particular, if the chosen code family has uniform
 max-fractional pseudodistance `kappa L`, so that every cone vector obeys
 
 ```text
