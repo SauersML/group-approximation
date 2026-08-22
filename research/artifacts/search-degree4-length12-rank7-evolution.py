@@ -88,6 +88,20 @@ def replay(genome):
     return K
 
 
+def fitness(K):
+    projections = []
+    for copy in range(4):
+        result = ONE
+        for index, element in K:
+            if index == copy:
+                result = mul(result, element)
+        projections.append(result[0])
+    nontrivial = sum(result != P.ONE for result in projections)
+    # Projection-normal-form tuples should have only the copy-zero projection.
+    # A zero mark is useless and must not dominate the evolutionary population.
+    return (0 if nontrivial == 1 and projections[0] != P.ONE else 1, len(K))
+
+
 def random_word(rng, maximum=8):
     return tuple(rng.choice(alphabet) for _ in range(rng.randrange(maximum + 1)))
 
@@ -123,13 +137,13 @@ parser.add_argument("--steps", type=int, default=250000)
 args = parser.parse_args()
 rng = random.Random(args.seed)
 population = [random_genome(rng) for _ in range(64)]
-best = 10**9
+best = (2, 10**9)
 for step in range(args.steps):
     parent = population[rng.randrange(len(population))]
     genome = mutate(rng, parent) if rng.random() < .85 else random_genome(rng)
     K = replay(genome)
-    score = len(K)
-    if score == 1 and K[0][1][0] != P.ONE:
+    score = fitness(K)
+    if score == (0, 1) and K[0][1][0] != P.ONE:
         print("HIT", "seed", args.seed, "step", step, "genome", genome,
               "copy", K[0][0], "mark", K[0][1][0], flush=True)
         raise SystemExit(42)
@@ -137,7 +151,7 @@ for step in range(args.steps):
         best = score
         print("BEST", best, "step", step, "genome", genome, flush=True)
     victim = rng.randrange(len(population))
-    old_score = len(replay(population[victim]))
+    old_score = fitness(replay(population[victim]))
     if score <= old_score or rng.random() < .01:
         population[victim] = genome
     if step % 1000 == 0:
