@@ -32,3 +32,14 @@ finite-dimensional co-density — and no compression or infranormality
 is used anywhere, so it lives exactly where
 `arithmetic-integral-subgroup-is-incompressible` says Kun–Thom cannot
 go.  One hole remains: the flexible P-stability of `Gamma` itself.
+
+**SL_2 scope extension.**  The identical chain runs for
+`(SL_2(Z[1/p]), SL_2(Z))`: Serre's congruence subgroup property for
+`SL_2(Z[1/p])` (infinitely many units) plus the Margulis normal
+subgroup theorem (irreducible lattice in a rank-two product) make every
+finite action congruence, so the rounding theorem needs its uniform gap
+only on congruence representations, where Selberg's property (tau) of
+`SL_2(Z)` replaces property (T).  Hence flexible P-stability of
+`SL_2(Z[1/2])` implies ITS coset wreath is not sofic — the wreath
+sibling of `hnn-over-sl2-z-not-sofic-if-sl2-z-inverse-p-p-stable`,
+conditional on the same permutation-DV hole.
