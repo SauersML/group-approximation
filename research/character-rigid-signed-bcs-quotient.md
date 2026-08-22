@@ -97,6 +97,17 @@ with a finite central extension whose marked type is absent from every
 finite-dimensional representation.  The unresolved operation is to install
 the BCS quotient without destroying that sector character classification.
 
+There is now a sharper presentation-level restriction.  By
+`central-character-rigid-sector-forbids-relator-quotients`, if the selected
+central character is faithful, every tracial quotient representation of the
+unique sector is faithful modulo the selected center.  In particular the
+BCS quotient cannot be installed by adding any nontrivial group relator to
+the character-rigid presentation.  For the explicit faithful full-central
+character of Deligne's triple cover, the source trace is already unique, so
+this rules out the most direct quotient-presentation compiler.  Any surviving
+map must be a genuinely analytic C-star quotient with ideal inside the
+full-to-reduced GNS kernel.
+
 There is now a sharp fence on the finite-normal-subgroup version of this
 proposal.  By
 `finite-normal-type-corner-is-twisted-group-algebra`, the
@@ -205,6 +216,13 @@ selects such a face.
   has a generating unitary representation `(CRQ2)` inside a monotracial
   non-CE BCS algebra.  A family of Hecke operators in the group corner would
   instead construct the opposite map and does not address `(CRQ1)`.
+  The representation must moreover be faithful modulo the marked center;
+  quotienting the group presentation cannot create it.
+- `standard-character-envelopes-do-not-supply-signed-bcs-quotient` audits
+  the standard alternatives.  CDI's property-T envelope deliberately has a
+  nonregular infinite-dimensional character and hence lacks the required
+  dichotomy; ordinary wreath envelopes retain quotient traces; and Thompson
+  `V` has a regular/trivial segment while all central extensions split.
 - Compiling the BCS algebra as the coefficient ring of an elementary group
   does not supply `(CRQ2)`: by
   `elementary-bcs-canonical-unitary-compiler-fence`, nontrivial elementary
