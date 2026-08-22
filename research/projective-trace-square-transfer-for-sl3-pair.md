@@ -269,3 +269,14 @@ weakening consumed by the HNN marked word.
   of `(PTS1)` to its `C`-energy.  The exact theorem bounds this ratio uniformly
   in the quotient level; computation is now only a calibration of the proven
   exact constant, not a possible refutation of the zero-defect case.
+- **The remaining matrix enemy is now an exhaustive two-branch
+  dichotomy.**  `sl3-projective-transfer-enemy-dichotomy` first applies
+  residual-finite tensor camouflage and then splits by lattice
+  correctability.  Every fixed-gap enemy is either uniformly far from all
+  exact lattice representations (the regular inner-adjoint outlier), or an
+  available lattice correction has a fixed positive fraction of its
+  dimension in irreducibles of positive `2`-conductor.  The odd-correctable
+  sector is closed; mixed and pure dyadic mass is not.  This corrects the
+  tempting but false summary that only the noncorrectable sector remains.
+  The exact regular HNN factor is a simultaneous tracial countermodel, so
+  neither branch can be removed by dimension-blind tracial/SOS methods.
