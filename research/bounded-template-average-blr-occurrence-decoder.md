@@ -239,3 +239,12 @@ edge defect `O(1/log m)` while leaving the designated port a constant gauge
 distance from the bulk packet.  Therefore the new private mixed matching
 removes the old rectangle obstruction but does not make a single port of a
 large equality cloud uniformly readable.
+
+There is a positive finite-volume alternative, but it leaves the dense-BLR
+architecture.  `constant-size-private-basins-give-uniform-root-control`
+anchors each selected private endpoint through one fixed finite basin, giving
+uniform average root control while preserving a mixed matching and linear
+total size.  Since positive root density is equivalent here to uniformly
+bounded occurrence multiplicity, the resulting open problem is the direct
+selected-label code `bounded-occurrence-private-sampler-additive-decoder`,
+not another degree reduction of the exponential BLR table.

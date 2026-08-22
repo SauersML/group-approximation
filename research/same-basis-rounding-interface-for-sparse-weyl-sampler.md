@@ -52,6 +52,15 @@ pair-holonomy, or random-sample-effectivity lemma should be added downstream.
   `O(1/log m)` across every cloud edge, while the designated mixed port stays
   a constant distance from the bulk PVM.  Hence even maximum edge-defect
   control does not yield a uniform rooted decoder.
+- **Constant-size private basins.**  This geometric interface is positive.
+  `constant-size-private-basins-give-uniform-root-control` gives a direct
+  same-Hilbert path estimate, preserves mixed degree one, and uses only
+  `O(K)` vertices for `K` selected ports.  It forces the additive layer to
+  use bounded occurrence on the selected labels themselves; dense BLR
+  degree reduction has growing basin size and cannot use the lemma.  The
+  remaining positive target is now
+  `bounded-occurrence-private-sampler-additive-decoder`, with route
+  `constant-private-basins-reduce-same-basis-to-selected-code`.
 - **Separate local roundings.**  These do not produce the common PVM needed
   for `(SW2)` and leave a coupling escape.
 - **Metric-entropy sparsification of BLR itself.**  This cannot reuse the
