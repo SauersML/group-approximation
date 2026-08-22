@@ -1,0 +1,13 @@
+{
+  "A5_order": 60,
+  "A5_radial_S3_intersection_order": 2,
+  "F_order": 36,
+  "F_relation": "[c,d]=1",
+  "J_cd_subgroup_order": 8,
+  "J_commutator_nontrivial": true,
+  "J_commutator_normal_closure_contains_c": true,
+  "J_commutator_normal_closure_order": 4,
+  "J_order": 24,
+  "conclusion": "the marked A5, S3xS3, and collision S4 vertices have no faithful common completion",
+  "transported_overlap": "d=r^-1*u*r=t^-1*s*t"
+}
