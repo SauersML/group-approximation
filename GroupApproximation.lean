@@ -1415,7 +1415,6 @@ import GroupApproximation.Kazhdan.CharTwoTorsionObstruction
 import GroupApproximation.Kazhdan.SharpExistenceCertificateRoute
 import GroupApproximation.Algebra.TreeLikeHyperbolic
 import GroupApproximation.Algebra.BassSerreFreeProductAction
-import GroupApproximation.Algebra.BinaryCoprodNormalForm
 import GroupApproximation.Algebra.ListCommonPrefix
 import GroupApproximation.Algebra.HyperbolicFreeGroup
 import GroupApproximation.Kazhdan.FreeGroupSharpProfile

@@ -59,6 +59,19 @@ theorem adjoint_sum {I : Type*} [Fintype I]
   | insert i s hi ih =>
       rw [Finset.sum_insert hi, Finset.sum_insert hi, adjoint_add, ih]
 
+/-- The coefficient involution reverses multiplication. -/
+@[simp] theorem adjoint_mul (a b : RatGroupRing G) :
+    adjoint (a * b) = adjoint b * adjoint a := by
+  induction a using MonoidAlgebra.induction_linear with
+  | zero => simp
+  | add a b ha hb => simp [add_mul, ha, hb, mul_add]
+  | single g q =>
+      induction b using MonoidAlgebra.induction_linear with
+      | zero => simp
+      | add a b ha hb => simp [mul_add, ha, hb, add_mul]
+      | single h r =>
+          simp [adjoint, MonoidAlgebra.single_mul_single, mul_comm]
+
 @[simp] theorem adjoint_neg (a : RatGroupRing G) :
     adjoint (-a) = -adjoint a := by
   ext g

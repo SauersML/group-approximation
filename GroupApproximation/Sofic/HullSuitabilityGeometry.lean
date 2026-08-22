@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.HullSuitableDefectSubgroup
 import Mathlib.Analysis.Subadditive
+import Mathlib.Data.Fintype.Pigeonhole
 
 /-!
 # Hull's Definition 1.4 in full, and what its geometric clause forces
@@ -385,6 +386,97 @@ def IsAcylindrical (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
   ∀ ε : ℝ, 0 < ε → ∃ (R : ℝ) (N : ℕ), ∀ x y : X, R ≤ dist x y →
     {g : G | dist x (g • x) ≤ ε ∧ dist y (g • y) ≤ ε}.Finite ∧
       {g : G | dist x (g • x) ≤ ε ∧ dist y (g • y) ≤ ε}.ncard ≤ N
+
+/-- **The acylindrical common-power pigeonhole step.**
+
+Suppose the `N + 1` difference elements
+
+`g⁻ᵃⁱ hᵇⁱ`
+
+all move the same two sufficiently distant points by at most `ε`.  Acylindricity
+says that at most `N` elements can do this, so two difference elements agree.
+If both exponent lists are injective, cancelling that equality gives a genuine
+common nonzero power of `g` and `h`.
+
+This is the exact finite pigeonhole conclusion consumed after Morse stability
+has converted long fellow-travelling axes into the two displacement bounds. -/
+theorem acylindrical_common_power_pigeonhole
+    (hacy : IsAcylindrical G X) {ε : ℝ} (hε : 0 < ε) :
+    ∃ (R : ℝ) (N : ℕ), ∀ (x y : X), R ≤ dist x y →
+      ∀ (g h : G) (a b : Fin (N + 1) → ℤ),
+        Function.Injective a → Function.Injective b →
+        (∀ i, dist x ((g ^ (-a i) * h ^ (b i)) • x) ≤ ε ∧
+          dist y ((g ^ (-a i) * h ^ (b i)) • y) ≤ ε) →
+        ∃ i j : Fin (N + 1), i ≠ j ∧
+          a i - a j ≠ 0 ∧ b i - b j ≠ 0 ∧
+          g ^ (a i - a j) = h ^ (b i - b j) := by
+  classical
+  obtain ⟨R, N, hRN⟩ := hacy ε hε
+  refine ⟨R, N, fun x y hxy g h a b ha hb hmove => ?_⟩
+  let K : Set G := {k : G |
+    dist x (k • x) ≤ ε ∧ dist y (k • y) ≤ ε}
+  obtain ⟨hKfinite, hKcard⟩ := hRN x y hxy
+  letI : Fintype K := hKfinite.fintype
+  let d : Fin (N + 1) → K := fun i =>
+    ⟨g ^ (-a i) * h ^ (b i), hmove i⟩
+  have hcard : Fintype.card K < Fintype.card (Fin (N + 1)) := by
+    rw [Set.fintypeCard_eq_ncard, Fintype.card_fin]
+    dsimp [K]
+    omega
+  obtain ⟨i, j, hij, hdij⟩ :=
+    Fintype.exists_ne_map_eq_of_card_lt d hcard
+  have heq : g ^ (-a i) * h ^ (b i) = g ^ (-a j) * h ^ (b j) :=
+    congrArg Subtype.val hdij
+  have hpower : g ^ (a i - a j) = h ^ (b i - b j) := by
+    calc
+      g ^ (a i - a j) =
+          g ^ (a i) * (g ^ (-a j) * h ^ (b j)) * h ^ (-b j) := by
+            group
+      _ = g ^ (a i) * (g ^ (-a i) * h ^ (b i)) * h ^ (-b j) := by
+            exact (congrArg
+              (fun z : G => g ^ (a i) * z * h ^ (-b j)) heq).symm
+      _ = h ^ (b i - b j) := by group
+  refine ⟨i, j, hij, ?_, ?_, hpower⟩
+  · intro hz
+    apply hij
+    apply ha
+    omega
+  · intro hz
+    apply hij
+    apply hb
+    omega
+
+/-- The displacement of a difference element is exactly the distance between
+the corresponding two orbit points. -/
+theorem dist_zpow_difference (hiso : IsIsometricAction G X)
+    (g h : G) (a b : ℤ) (z : X) :
+    dist z ((g ^ (-a) * h ^ b) • z) =
+      dist ((g ^ a) • z) ((h ^ b) • z) := by
+  have hd := hiso (g ^ a) z ((g ^ (-a) * h ^ b) • z)
+  have hcancel : g ^ a * (g ^ (-a) * h ^ b) = h ^ b := by group
+  rw [← mul_smul, hcancel] at hd
+  exact hd
+
+/-- Geometric form of `acylindrical_common_power_pigeonhole`: sufficiently
+many distinct exponent pairs whose two orbit maps fellow-travel at two distant
+basepoints force a common nonzero power. -/
+theorem acylindrical_common_power_of_two_orbit_fellow_travel
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    {ε : ℝ} (hε : 0 < ε) :
+    ∃ (R : ℝ) (N : ℕ), ∀ (x y : X), R ≤ dist x y →
+      ∀ (g h : G) (a b : Fin (N + 1) → ℤ),
+        Function.Injective a → Function.Injective b →
+        (∀ i, dist ((g ^ (a i)) • x) ((h ^ (b i)) • x) ≤ ε ∧
+          dist ((g ^ (a i)) • y) ((h ^ (b i)) • y) ≤ ε) →
+        ∃ i j : Fin (N + 1), i ≠ j ∧
+          a i - a j ≠ 0 ∧ b i - b j ≠ 0 ∧
+          g ^ (a i - a j) = h ^ (b i - b j) := by
+  obtain ⟨R, N, hRN⟩ := acylindrical_common_power_pigeonhole hacy hε
+  refine ⟨R, N, fun x y hxy g h a b ha hb hclose => ?_⟩
+  apply hRN x y hxy g h a b ha hb
+  intro i
+  rw [dist_zpow_difference hiso, dist_zpow_difference hiso]
+  exact hclose i
 
 /-! ## Loxodromics, independence, non-elementarity -/
 
@@ -894,6 +986,10 @@ theorem stableTranslation_le (g : G) (x : X) {n : ℕ} (hn : 0 < n) :
     stableTranslation g x ≤ dist x ((g ^ n) • x) / n :=
   csInf_le (stableTranslation_set_bddBelow g x) ⟨n, hn, rfl⟩
 
+theorem stableTranslation_le_dist_smul (g : G) (x : X) :
+    stableTranslation g x ≤ dist x (g • x) := by
+  simpa using stableTranslation_le g x (n := 1) Nat.one_pos
+
 /-- The translation length bounds the orbit from below. -/
 theorem mul_le_dist_pow (g : G) (x : X) (n : ℕ) :
     stableTranslation g x * n ≤ dist x ((g ^ n) • x) := by
@@ -977,6 +1073,71 @@ theorem isLoxodromic_zpow (hiso : IsIsometricAction G X) {g : G} {x : X}
         isLoxodromic_pow hg (Nat.succ_pos n)
       have hi := isLoxodromic_inv hiso hp
       simpa only [zpow_negSucc] using hi
+
+/-- Loxodromy descends from a positive power to the element itself.  Between
+two consecutive multiples of `k`, the orbit loses at most `k` one-step
+displacements, so the linear lower bound on the subsequence extends to the
+whole orbit with a larger additive constant. -/
+theorem isLoxodromic_of_pow_isLoxodromic (hiso : IsIsometricAction G X)
+    {g : G} {x : X} {k : ℕ} (hk : 0 < k)
+    (hgk : IsLoxodromic (g ^ k) x) : IsLoxodromic g x := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := hgk
+  let D : ℝ := dist x (g • x)
+  have hD : 0 ≤ D := dist_nonneg
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+  refine ⟨l / k, div_pos hl hkR, B + l + k * D, by positivity, ?_⟩
+  intro n
+  let q : ℕ := n / k
+  let r : ℕ := n % k
+  have hr : r < k := Nat.mod_lt n hk
+  have hn : n = k * q + r := by
+    dsimp [q, r]
+    omega
+  have hstep :
+      dist ((g ^ (k * q)) • x) ((g ^ n) • x) = dist x ((g ^ r) • x) := by
+    rw [hn, pow_add, mul_smul, hiso (g ^ (k * q)) x ((g ^ r) • x)]
+  have hrem : dist x ((g ^ r) • x) ≤ k * D := by
+    have hu := dist_pow_le hiso g x r
+    have hrle : (r : ℝ) ≤ k := by exact_mod_cast (Nat.le_of_lt hr)
+    dsimp [D]
+    exact le_trans hu (mul_le_mul_of_nonneg_right hrle dist_nonneg)
+  have hsubseq : l * q - B ≤ dist x ((g ^ (k * q)) • x) := by
+    have hq := hlin q
+    simpa only [pow_mul] using hq
+  have htri := dist_triangle x ((g ^ n) • x) ((g ^ (k * q)) • x)
+  rw [dist_comm ((g ^ n) • x) ((g ^ (k * q)) • x), hstep] at htri
+  have hnle : (n : ℝ) ≤ (k : ℝ) * (q : ℝ) + k := by
+    exact_mod_cast (show n ≤ k * q + k by omega)
+  have hslope : (l / k) * n ≤ l * q + l := by
+    rw [div_mul_eq_mul_div, div_le_iff₀ hkR]
+    nlinarith
+  dsimp [D]
+  push_cast at hrem hsubseq hnle hslope ⊢
+  linarith
+
+/-- Loxodromy descends from every nonzero integer power. -/
+theorem isLoxodromic_of_zpow_isLoxodromic (hiso : IsIsometricAction G X)
+    {g : G} {x : X} {k : ℤ} (hk : k ≠ 0)
+    (hgk : IsLoxodromic (g ^ k) x) : IsLoxodromic g x := by
+  cases k with
+  | ofNat n =>
+      have hn : 0 < n := Nat.pos_of_ne_zero (by simpa using hk)
+      exact isLoxodromic_of_pow_isLoxodromic hiso hn
+        (by simpa only [zpow_natCast] using hgk)
+  | negSucc n =>
+      have hinv : IsLoxodromic (g ^ (n + 1)) x := by
+        have := isLoxodromic_inv hiso hgk
+        simpa only [zpow_negSucc, inv_inv] using this
+      exact isLoxodromic_of_pow_isLoxodromic hiso (Nat.succ_pos n) hinv
+
+/-- A nonzero common-power equation transfers loxodromy in either direction. -/
+theorem isLoxodromic_of_common_zpow (hiso : IsIsometricAction G X)
+    {g h : G} {x : X} (hg : IsLoxodromic g x) {a b : ℤ}
+    (ha : a ≠ 0) (hb : b ≠ 0) (hp : g ^ a = h ^ b) :
+    IsLoxodromic h x := by
+  have hga : IsLoxodromic (g ^ a) x := isLoxodromic_zpow hiso hg ha
+  have hhb : IsLoxodromic (h ^ b) x := by simpa only [hp] using hga
+  exact isLoxodromic_of_zpow_isLoxodromic hiso hb hhb
 
 /-- Loxodromy is invariant under conjugation.  The orbit of `a * g * a⁻¹`
 based at `x` is isometric to the orbit of `g` based at `a⁻¹ • x`; basepoint
@@ -1096,6 +1257,45 @@ theorem tendsto_stableTranslation (hiso : IsIsometricAction G X) (g : G) (x : X)
       (nhds (stableTranslation g x)) := by
   rw [stableTranslation_eq_lim hiso]
   exact (subadditive_dist_pow hiso g x).tendsto_lim (bddBelow_dist_pow_div g x)
+
+/-- The additive-error definition of genuine loxodromy forces positive stable
+translation.  Divide its lower bound by `n`; after `n` is large enough to
+absorb the additive constant, every normalised displacement is at least
+`l / 2`, and the Fekete limit preserves that lower bound. -/
+theorem stableTranslation_pos_of_isLoxodromic
+    (hiso : IsIsometricAction G X) {g : G} {x : X}
+    (hg : IsLoxodromic g x) : 0 < stableTranslation g x := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := hg
+  have hev : ∀ᶠ n : ℕ in Filter.atTop,
+      l / 2 ≤ dist x ((g ^ n) • x) / n := by
+    obtain ⟨N, hN⟩ := exists_nat_gt (max (2 * B / l) 0)
+    rw [Filter.eventually_atTop]
+    refine ⟨N, fun n hn => ?_⟩
+    have hn0 : 0 < n := by
+      have hNR : (0 : ℝ) < N := lt_of_le_of_lt (le_max_right _ _) hN
+      have hN0 : 0 < N := by exact_mod_cast hNR
+      exact lt_of_lt_of_le hN0 hn
+    have hnR : (0 : ℝ) < n := by exact_mod_cast hn0
+    rw [le_div_iff₀ hnR]
+    have hncast : (N : ℝ) ≤ n := by exact_mod_cast hn
+    have hlarge : 2 * B / l < (n : ℝ) :=
+      lt_of_le_of_lt (le_max_left _ _) (lt_of_lt_of_le hN hncast)
+    have hBn : 2 * B < l * (n : ℝ) := by
+      rw [div_lt_iff₀ hl] at hlarge
+      linarith
+    have hlower := hlin n
+    push_cast at hlower ⊢
+    linarith
+  have hlimit : l / 2 ≤ stableTranslation g x :=
+    ge_of_tendsto (tendsto_stableTranslation hiso g x) hev
+  linarith
+
+/-- Genuine loxodromy is equivalent to positive stable translation length. -/
+theorem isLoxodromic_iff_stableTranslation_pos
+    (hiso : IsIsometricAction G X) (g : G) (x : X) :
+    IsLoxodromic g x ↔ 0 < stableTranslation g x :=
+  ⟨stableTranslation_pos_of_isLoxodromic hiso,
+    isLoxodromic_of_pos_stableTranslation g x⟩
 
 /-- **Translation length is subadditive on commuting elements.**  With
 `stableTranslation_nonneg` this makes it a seminorm on any abelian subgroup ---
@@ -1234,6 +1434,52 @@ theorem orbit_quasiIsometricEmbedding (hiso : IsIsometricAction G X) (g : G)
         ≤ |((n - m : ℤ) : ℝ)| * dist x (g • x) := by
   rw [dist_zpow_orbit hiso]
   exact ⟨mul_le_dist_zpow hiso g x (n - m), dist_zpow_le hiso g x (n - m)⟩
+
+/-- A genuinely loxodromic orbit is bi-Lipschitz on the integers, with no
+additive error: the lower constant is its positive stable translation and the
+upper constant is its one-step displacement. -/
+theorem exists_pos_orbit_biLipschitz (hiso : IsIsometricAction G X)
+    {g : G} {x : X} (hg : IsLoxodromic g x) :
+    ∃ l : ℝ, 0 < l ∧ ∀ m n : ℤ,
+      l * |((n - m : ℤ) : ℝ)| ≤
+          dist ((g ^ m) • x) ((g ^ n) • x) ∧
+        dist ((g ^ m) • x) ((g ^ n) • x) ≤
+          |((n - m : ℤ) : ℝ)| * dist x (g • x) := by
+  refine ⟨stableTranslation g x,
+    stableTranslation_pos_of_isLoxodromic hiso hg, ?_⟩
+  exact orbit_quasiIsometricEmbedding hiso g x
+
+/-- The basic quantitative excursion estimate for a loxodromic orbit.  A
+Gromov product based at an orbit point is bounded by the difference between
+the two upper Lipschitz legs and the stable-translation lower bound on the
+opposite side.  This is the numerical inequality iterated in the dyadic proof
+of Morse stability. -/
+theorem two_mul_gromovProduct_zpow_le
+    (hiso : IsIsometricAction G X) (g : G) (x : X) (i j k : ℤ) :
+    2 * gromovProduct ((g ^ i) • x) ((g ^ k) • x) ((g ^ j) • x) ≤
+      |((j - i : ℤ) : ℝ)| * dist x (g • x) +
+        |((k - j : ℤ) : ℝ)| * dist x (g • x) -
+          stableTranslation g x * |((k - i : ℤ) : ℝ)| := by
+  have hleft := (orbit_quasiIsometricEmbedding hiso g x i j).2
+  have hright := (orbit_quasiIsometricEmbedding hiso g x j k).2
+  have hopposite := (orbit_quasiIsometricEmbedding hiso g x i k).1
+  unfold gromovProduct
+  rw [dist_comm ((g ^ i) • x) ((g ^ j) • x)]
+  linarith
+
+/-- Ordered form of the excursion estimate.  Along an interval of integer
+orbit parameters, the two leg lengths add to the total parameter length. -/
+theorem two_mul_gromovProduct_zpow_le_of_le
+    (hiso : IsIsometricAction G X) (g : G) (x : X)
+    {i j k : ℤ} (hij : i ≤ j) (hjk : j ≤ k) :
+    2 * gromovProduct ((g ^ i) • x) ((g ^ k) • x) ((g ^ j) • x) ≤
+      (dist x (g • x) - stableTranslation g x) * ((k - i : ℤ) : ℝ) := by
+  have h := two_mul_gromovProduct_zpow_le hiso g x i j k
+  rw [abs_of_nonneg (by exact_mod_cast sub_nonneg.mpr hij),
+    abs_of_nonneg (by exact_mod_cast sub_nonneg.mpr hjk),
+    abs_of_nonneg (by exact_mod_cast sub_nonneg.mpr (le_trans hij hjk))] at h
+  push_cast at h ⊢
+  nlinarith
 
 /-! ### The chain lemma
 
@@ -1735,6 +1981,15 @@ The commutator relation puts the nonzero loxodromic power `gⁿ⁻ᵐ` in the
 normal subgroup.  In the parallel case `m = n`, finite centralizer balls only
 give escape of `c`; the missing common-axis theorem must supply linear progress
 before `c` may honestly be called loxodromic. -/
+theorem exists_loxodromic_mem_of_common_zpow
+    (hiso : IsIsometricAction G X) {S : Subgroup G}
+    {g c : G} {x : X} (hcS : c ∈ S) (hg : IsLoxodromic g x)
+    {a b : ℤ} (ha : a ≠ 0) (hb : b ≠ 0)
+    (hpower : c ^ a = g ^ b) :
+    ∃ q ∈ S, IsLoxodromic q x := by
+  refine ⟨c, hcS, ?_⟩
+  exact isLoxodromic_of_common_zpow hiso hg hb ha hpower.symm
+
 theorem exists_loxodromic_mem_of_conj_zpow_eq_zpow_of_ne
     (hiso : IsIsometricAction G X) {S : Subgroup G} [S.Normal]
     {g c : G} {x : X} (hcS : c ∈ S)

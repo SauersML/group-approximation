@@ -1,7 +1,7 @@
-import Mathlib.Combinatorics.SimpleGraph.Basic
-import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
 import Mathlib.GroupTheory.Coprod.Basic
 import Mathlib.GroupTheory.GroupAction.Quotient
+import GroupApproximation.Algebra.BinaryCoprodNormalForm
 
 /-!
 # The Bass--Serre coset action of a binary free product
@@ -59,6 +59,11 @@ theorem leftFactor_inf_rightFactor :
 abbrev Vertex :=
   (Ambient G ⧸ leftFactor G) ⊕ (Ambient G ⧸ rightFactor G)
 
+/-- The bipartite color of a Bass--Serre vertex. -/
+def color : Vertex G → Bool
+  | Sum.inl _ => false
+  | Sum.inr _ => true
+
 /-- Left multiplication on the two colors of cosets. -/
 instance vertexMulAction : MulAction (Ambient G) (Vertex G) where
   smul g
@@ -112,6 +117,16 @@ def graph : SimpleGraph (Vertex G) where
       simpa [baseLeft, baseRight] using this
     · have : g • baseRight G = g • baseLeft G := hv.symm.trans hw
       simpa [baseLeft, baseRight] using this
+
+/-- Adjacent vertices have opposite colors. -/
+theorem color_ne_of_adj {v w : Vertex G} (h : (graph G).Adj v w) :
+    color G v ≠ color G w := by
+  change IsOrientedEdge G v w ∨ IsOrientedEdge G w v at h
+  rcases h with h | h
+  · obtain ⟨⟨x, rfl⟩, ⟨y, rfl⟩⟩ := isOrientedEdge_colors G h
+    decide
+  · obtain ⟨⟨x, rfl⟩, ⟨y, rfl⟩⟩ := isOrientedEdge_colors G h
+    decide
 
 /-- The action carries oriented edges to oriented edges. -/
 theorem isOrientedEdge_smul (a : Ambient G) {v w : Vertex G}
@@ -292,6 +307,129 @@ theorem edgeLabel_spec {v w : Vertex G} (h : (graph G).Adj v w) :
   · exact Or.inl (Classical.choose_spec ho)
   · exact Or.inr (Classical.choose_spec (h.resolve_left ho))
 
+/-- Equal edge labels determine the same undirected edge. -/
+theorem edge_eq_of_edgeLabel_eq {u v x y : Vertex G}
+    (h₁ : (graph G).Adj u v) (h₂ : (graph G).Adj x y)
+    (heq : edgeLabel G h₁ = edgeLabel G h₂) :
+    s(u, v) = s(x, y) := by
+  rcases edgeLabel_spec G h₁ with h₁f | h₁r <;>
+    rcases edgeLabel_spec G h₂ with h₂f | h₂r <;>
+    simp_all
+
+/-- Edge labels along a walk, in traversal order. -/
+noncomputable def walkLabels : {v w : Vertex G} →
+    (graph G).Walk v w → List (Ambient G)
+  | _, _, .nil => []
+  | _, _, .cons h p => edgeLabel G h :: walkLabels G p
+
+@[simp] theorem walkLabels_nil (v : Vertex G) :
+    walkLabels G ((graph G).Walk.nil : (graph G).Walk v v) = [] := rfl
+
+@[simp] theorem walkLabels_cons {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w) :
+    walkLabels G (.cons h p) = edgeLabel G h :: walkLabels G p := rfl
+
+/-- There is exactly one label per traversed edge. -/
+theorem length_walkLabels {v w : Vertex G} (p : (graph G).Walk v w) :
+    (walkLabels G p).length = p.length := by
+  induction p with
+  | nil => rfl
+  | cons h p ih => simp [ih]
+
+/-- Labels respect concatenation of walks. -/
+theorem walkLabels_append {u v w : Vertex G}
+    (p : (graph G).Walk u v) (q : (graph G).Walk v w) :
+    walkLabels G (p.append q) = walkLabels G p ++ walkLabels G q := by
+  induction p with
+  | nil => rfl
+  | cons h p ih => simp [ih]
+
+/-- Membership in the label list comes from a concrete traversed edge with
+that label. -/
+theorem exists_edge_of_mem_walkLabels {v w : Vertex G}
+    (p : (graph G).Walk v w) {a : Ambient G}
+    (ha : a ∈ walkLabels G p) :
+    ∃ (x y : Vertex G) (h : (graph G).Adj x y),
+      s(x, y) ∈ p.edges ∧ edgeLabel G h = a := by
+  induction p with
+  | nil => simp at ha
+  | @cons x y z h p ih =>
+      rw [walkLabels_cons, List.mem_cons] at ha
+      rcases ha with rfl | ha
+      · exact ⟨x, y, h, by simp, rfl⟩
+      · obtain ⟨x', y', h', hedge, hlabel⟩ := ih ha
+        exact ⟨x', y', h', by simp [hedge], hlabel⟩
+
+/-- A trail has no repeated edge labels. -/
+theorem walkLabels_nodup_of_isTrail {v w : Vertex G}
+    {p : (graph G).Walk v w} (hp : p.IsTrail) :
+    (walkLabels G p).Nodup := by
+  induction p with
+  | nil => exact List.nodup_nil
+  | @cons x y z h p ih =>
+      rw [SimpleGraph.Walk.isTrail_def, SimpleGraph.Walk.edges_cons,
+        List.nodup_cons] at hp
+      rw [walkLabels_cons, List.nodup_cons]
+      refine ⟨?_, ih hp.2⟩
+      intro hmem
+      obtain ⟨x', y', h', hedge, hlabel⟩ :=
+        exists_edge_of_mem_walkLabels G p hmem
+      apply hp.1
+      rw [edge_eq_of_edgeLabel_eq G h h' hlabel]
+      exact hedge
+
+/-- Closing a nontrivial duplicate-free list back at its first entry preserves
+consecutive inequality (although, of course, not global `Nodup`). -/
+theorem isChain_ne_append_head_of_nodup {A : Type*} {a : A} {l : List A}
+    (hn : (a :: l).Nodup) (hl : l ≠ []) :
+    (a :: (l ++ [a])).IsChain (· ≠ ·) := by
+  rw [← List.cons_append, List.isChain_append]
+  refine ⟨hn.isChain, List.IsChain.singleton _, ?_⟩
+  intro x hx y hy
+  simp only [List.head?_singleton, Option.mem_some_iff] at hy
+  subst y
+  have hx' : x ∈ l.getLast? := by
+    cases l with
+    | nil => exact (hl rfl).elim
+    | cons b t => simpa only [List.getLast?_cons_cons] using hx
+  intro hxa
+  apply hn.1
+  rw [← hxa]
+  exact List.mem_of_mem_getLast? hx'
+
+/-- Successive quotients starting from `g`. -/
+def transitionsFrom (g : Ambient G) : List (Ambient G) → List (Ambient G)
+  | [] => []
+  | h :: t => (g⁻¹ * h) :: transitionsFrom G h t
+
+/-- A nonempty cyclic label list yields the successive quotients around the
+cycle, including the closing quotient back to the first label. -/
+def cyclicTransitions : List (Ambient G) → List (Ambient G)
+  | [] => []
+  | g :: t => transitionsFrom G g (t ++ [g])
+
+/-- The product of successive quotients telescopes. -/
+theorem prod_transitionsFrom (g : Ambient G) :
+    ∀ l : List (Ambient G),
+      g * (transitionsFrom G g l).prod = l.getLastD g := by
+  intro l
+  induction l generalizing g with
+  | nil => simp [transitionsFrom]
+  | cons h t ih =>
+      simp only [transitionsFrom, List.prod_cons, mul_assoc,
+        mul_inv_cancel_left, List.getLastD_cons]
+      exact ih h
+
+/-- **The transition word of every nonempty cyclic label list multiplies to
+the identity.** -/
+theorem prod_cyclicTransitions {g : Ambient G} (t : List (Ambient G)) :
+    (cyclicTransitions G (g :: t)).prod = 1 := by
+  have htel := prod_transitionsFrom G g (t ++ [g])
+  have hlast : (t ++ [g]).getLastD g = g := by simp
+  rw [hlast] at htel
+  rw [cyclicTransitions]
+  exact mul_left_cancel (a := g) (by simpa using htel)
+
 /-- Equality at a left-colored endpoint says that the quotient of the two
 incident edge labels lies in the left factor. -/
 theorem inv_mul_mem_leftFactor_of_smul_baseLeft_eq {g h : Ambient G}
@@ -313,6 +451,188 @@ theorem inv_mul_mem_rightFactor_of_smul_baseRight_eq {g h : Ambient G}
 theorem inv_mul_ne_one_of_ne {g h : Ambient G} (hne : g ≠ h) :
     g⁻¹ * h ≠ 1 := by
   simpa [inv_mul_eq_one] using hne
+
+/-- At two consecutive edges, the quotient of their labels lies in the factor
+whose color is the shared vertex. -/
+theorem adjacentLabels_transition_mem {u v w : Vertex G}
+    (h₁ : (graph G).Adj u v) (h₂ : (graph G).Adj v w) :
+    match v with
+    | Sum.inl _ => edgeLabel G h₁⁻¹ * edgeLabel G h₂ ∈ leftFactor G
+    | Sum.inr _ => edgeLabel G h₁⁻¹ * edgeLabel G h₂ ∈ rightFactor G := by
+  rcases s₁ : edgeLabel_spec G h₁ with h₁f | h₁r
+  · rcases s₂ : edgeLabel_spec G h₂ with h₂f | h₂r
+    · rcases v with v | v
+      · exact Sum.noConfusion h₁f.2
+      · exact Sum.noConfusion h₂f.1
+    · rcases v with v | v
+      · exact Sum.noConfusion h₁f.2
+      · apply inv_mul_mem_rightFactor_of_smul_baseRight_eq G
+        exact h₁f.2.symm.trans h₂r.2
+  · rcases s₂ : edgeLabel_spec G h₂ with h₂f | h₂r
+    · rcases v with v | v
+      · apply inv_mul_mem_leftFactor_of_smul_baseLeft_eq G
+        exact h₁r.1.symm.trans h₂f.1
+      · exact Sum.noConfusion h₁r.1
+    · rcases v with v | v
+      · exact Sum.noConfusion h₂r.1
+      · exact Sum.noConfusion h₁r.1
+
+/-- A transition known to lie in the factor selected by a shared vertex,
+encoded as a dependent letter of the indexed free product. -/
+noncomputable def transitionLetter (v : Vertex G) (t : Ambient G)
+    (ht : match v with
+      | Sum.inl _ => t ∈ leftFactor G
+      | Sum.inr _ => t ∈ rightFactor G) :
+    Σ i, BinaryCoprodNormalForm.factor G i := by
+  classical
+  cases v with
+  | inl _ =>
+      obtain ⟨g, hg⟩ := ht
+      exact ⟨false, g⟩
+  | inr _ =>
+      obtain ⟨z, hz⟩ := ht
+      exact ⟨true, MulEquiv.ulift.symm z⟩
+
+@[simp] theorem transitionLetter_fst (v : Vertex G) (t : Ambient G)
+    (ht : match v with
+      | Sum.inl _ => t ∈ leftFactor G
+      | Sum.inr _ => t ∈ rightFactor G) :
+    (transitionLetter G v t ht).1 = color G v := by
+  cases v <;> rfl
+
+/-- Decoding a transition letter recovers the original binary-free-product
+element. -/
+theorem fromIndexed_of_transitionLetter (v : Vertex G) (t : Ambient G)
+    (ht : match v with
+      | Sum.inl _ => t ∈ leftFactor G
+      | Sum.inr _ => t ∈ rightFactor G) :
+    BinaryCoprodNormalForm.fromIndexed G
+        (CoprodI.of (transitionLetter G v t ht).2) = t := by
+  classical
+  cases v with
+  | inl _ =>
+      obtain ⟨g, hg⟩ := ht
+      simp only [transitionLetter,
+        BinaryCoprodNormalForm.fromIndexed_of_false]
+      exact hg
+  | inr _ =>
+      obtain ⟨z, hz⟩ := ht
+      simp only [transitionLetter,
+        BinaryCoprodNormalForm.fromIndexed_of_true]
+      simpa using hz
+
+/-- A nonidentity transition decodes to a nonidentity dependent letter. -/
+theorem transitionLetter_ne_one (v : Vertex G) (t : Ambient G)
+    (ht : match v with
+      | Sum.inl _ => t ∈ leftFactor G
+      | Sum.inr _ => t ∈ rightFactor G)
+    (htone : t ≠ 1) : (transitionLetter G v t ht).2 ≠ 1 := by
+  intro hone
+  apply htone
+  rw [← fromIndexed_of_transitionLetter G v t ht, hone, map_one]
+
+/-- Dependent transition letters between one preceding edge and each edge of
+a following walk.  For a closed walk this contains every transition except
+the final closing transition. -/
+noncomputable def linearTransitionLetters : {u v w : Vertex G} →
+    (h : (graph G).Adj u v) → (graph G).Walk v w →
+      List (Σ i, BinaryCoprodNormalForm.factor G i)
+  | _, _, _, _, .nil => []
+  | _, v, _, h₁, .cons h₂ p =>
+      let ht := adjacentLabels_transition_mem G h₁ h₂
+      transitionLetter G v (edgeLabel G h₁⁻¹ * edgeLabel G h₂) ht ::
+        linearTransitionLetters G h₂ p
+
+@[simp] theorem linearTransitionLetters_nil {u v : Vertex G}
+    (h : (graph G).Adj u v) :
+    linearTransitionLetters G h ((graph G).Walk.nil : (graph G).Walk v v) = [] := rfl
+
+@[simp] theorem linearTransitionLetters_cons {u v w z : Vertex G}
+    (h₁ : (graph G).Adj u v) (h₂ : (graph G).Adj v w)
+    (p : (graph G).Walk w z) :
+    linearTransitionLetters G h₁ (.cons h₂ p) =
+      transitionLetter G v (edgeLabel G h₁⁻¹ * edgeLabel G h₂)
+          (adjacentLabels_transition_mem G h₁ h₂) ::
+        linearTransitionLetters G h₂ p := rfl
+
+theorem length_linearTransitionLetters {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w) :
+    (linearTransitionLetters G h p).length = p.length := by
+  induction p with
+  | nil => rfl
+  | cons h₂ p ih => simp [ih]
+
+/-- Indices of consecutive linear transition letters alternate, because they
+are the colors of consecutive shared vertices. -/
+theorem linearTransitionLetters_chain_ne {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w) :
+    (linearTransitionLetters G h p).IsChain fun a b ↦ a.1 ≠ b.1 := by
+  induction p generalizing u with
+  | nil => exact List.isChain_nil
+  | @cons x y z h₂ p ih =>
+      cases p with
+      | nil => exact List.IsChain.singleton _
+      | @cons y z q h₃ p =>
+          rw [linearTransitionLetters_cons, linearTransitionLetters_cons,
+            List.isChain_cons_cons]
+          refine ⟨?_, ?_⟩
+          · simpa only [transitionLetter_fst] using color_ne_of_adj G h₂
+          · exact ih h₂
+
+/-- Consecutively distinct edge labels make every linear transition letter
+nonidentity. -/
+theorem linearTransitionLetters_ne_one_of_chain {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w)
+    (hn : (edgeLabel G h :: walkLabels G p).IsChain (· ≠ ·)) :
+    ∀ q ∈ linearTransitionLetters G h p, q.2 ≠ 1 := by
+  induction p generalizing u with
+  | nil => simp
+  | @cons x y z h₂ p ih =>
+      rw [walkLabels_cons, List.isChain_cons_cons] at hn
+      rw [linearTransitionLetters_cons, List.forall_mem_cons]
+      refine ⟨?_, ih h₂ hn.2⟩
+      apply transitionLetter_ne_one G
+      exact inv_mul_ne_one_of_ne G hn.1
+
+/-- A duplicate-free label list is in particular consecutively distinct. -/
+theorem linearTransitionLetters_ne_one {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w)
+    (hn : (edgeLabel G h :: walkLabels G p).Nodup) :
+    ∀ q ∈ linearTransitionLetters G h p, q.2 ≠ 1 :=
+  linearTransitionLetters_ne_one_of_chain G h p hn.isChain
+
+/-- The reduced indexed word carried by a consecutively-distinct edge-label
+sequence. -/
+noncomputable def linearTransitionWord {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w)
+    (hn : (edgeLabel G h :: walkLabels G p).IsChain (· ≠ ·)) :
+    CoprodI.Word (BinaryCoprodNormalForm.factor G) where
+  toList := linearTransitionLetters G h p
+  ne_one := linearTransitionLetters_ne_one_of_chain G h p hn
+  chain_ne := linearTransitionLetters_chain_ne G h p
+
+@[simp] theorem linearTransitionWord_toList {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w)
+    (hn : (edgeLabel G h :: walkLabels G p).IsChain (· ≠ ·)) :
+    (linearTransitionWord G h p hn).toList =
+      linearTransitionLetters G h p := rfl
+
+/-- Decoding the indexed transition word gives the product of the binary
+transition list. -/
+theorem fromIndexed_prod_linearTransitionWord {u v w : Vertex G}
+    (h : (graph G).Adj u v) (p : (graph G).Walk v w)
+    (hn : (edgeLabel G h :: walkLabels G p).IsChain (· ≠ ·)) :
+    BinaryCoprodNormalForm.fromIndexed G (linearTransitionWord G h p hn).prod =
+      (transitionsFrom G (edgeLabel G h) (walkLabels G p)).prod := by
+  induction p generalizing u with
+  | nil => simp [linearTransitionWord, CoprodI.Word.prod, transitionsFrom]
+  | @cons x y z h₂ p ih =>
+      rw [walkLabels_cons, List.isChain_cons_cons] at hn
+      rw [linearTransitionWord, CoprodI.Word.prod, linearTransitionLetters_cons,
+        List.map_cons, List.prod_cons, map_mul,
+        fromIndexed_of_transitionLetter, transitionsFrom, List.prod_cons]
+      congr 1
+      simpa [linearTransitionWord, CoprodI.Word.prod] using ih h₂ hn.2
 
 /-- **The base edge has trivial pointwise stabilizer.**  In particular it is
 finite, which is the algebraic core of the WPD segment argument for the
