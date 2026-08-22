@@ -119,3 +119,17 @@ established or refuted.
   Hence the naive global Fourier attachment fails soundness at defect zero.
   The missing relation must couple the BCS payload directly to, and exclude,
   these two summands rather than merely balance or transport them.
+- No fixed finite-group relation can supply that missing local coupling.
+  `finite-clifford-couplings-cannot-prune-a-forbidden-atom` allows arbitrary
+  controlled Clifford, Heisenberg and partial-swap group words around one
+  predicate packet.  If the selector subgroup embeds in the resulting finite
+  group, induction of any forbidden selector character produces a marked
+  finite-dimensional representation with its forbidden projection nonzero;
+  according to the shared selector value it survives in exactly the scalar
+  `C` or Pauli `M_2` router summand.  If the selector subgroup is collapsed
+  instead, its surviving characters form only an affine parity subspace, so
+  an arbitrary nonlinear predicate cannot be selected.  The same induction
+  applies to every residually finite coupling in which the selector subgroup
+  embeds.  Thus the first sound gate must leave fixed finite/RF groupification
+  and use an infinite state-dependent, trace-corner, or approximation-rigid
+  mechanism.
