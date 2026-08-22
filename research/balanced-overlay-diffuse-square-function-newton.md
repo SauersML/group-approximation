@@ -84,3 +84,13 @@ retain positive trace in irreducible dimensions tending to infinity.  The
 present Newton gate must control precisely that unbounded-type mass (and
 still cannot assume occurrence synchronization in order to define the
 shared generated algebra).
+
+The obvious unbounded-type stress test is also excluded.
+`balanced-parity-excludes-perfect-matching-pauli-mixtures` analyzes direct
+sums of exponentially large Clifford blocks indexed by perfect matchings.
+Although each fixed pair then has only `O(1/L)` global commutator energy,
+the Pauli parity syndromes are charged at constant density by the balanced
+original layer; if most syndromes are repaired, robust erasure cleaning
+rounds the remaining projective block.  Thus the unresolved high-type mass
+must be genuinely noncentral, not a diffuse central sum of matching Pauli
+packets.
