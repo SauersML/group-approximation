@@ -227,6 +227,16 @@ MF $C^*$-algebra.
 
 \subsection*{Outline of the proof}
 
+The overarching strategy goes back to Bachner--Dogon--Lubotzky
+\cite[Proposition~1.5]{BDL}: obstruct MF by proving that a distinguished
+central involution cannot be separated from the identity by operator-norm
+asymptotic representations.  Their argument compresses to the involution's
+$(-1)$-eigenspace and invokes operator--Hilbert--Schmidt stability.  The new
+ingredient here is a mechanism that supplies the required
+Hilbert--Schmidt rigidity directly from one-sided conjugation of a
+property-\textup{(T)} subgroup, without assuming operator--Hilbert--Schmidt
+stability of the ambient group.
+
 All approximation errors are measured in operator norm.  Let $\Gamma$
 have property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a
 homomorphism, and let $t,c\in H$ satisfy
@@ -821,6 +831,17 @@ contradicts $I\in\omega$.
 \end{proof}
 
 \section{The central involution obstruction}\label{sec:sign}
+
+This section implements the central-involution strategy of
+Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  In their setting,
+operator--Hilbert--Schmidt stability turns the compressed asymptotic
+representation into nearby genuine representations, contradicting finite
+quotient invisibility of the involution.  Here
+Theorem~\ref{thm:kazhdan-transport} instead forces the particular word whose
+square is the involution to be Hilbert--Schmidt close to the identity on the
+compressed corner.  Thus the present contribution is the Kazhdan transport
+mechanism and its explicit realization, not the underlying strategy of using
+a central involution to obstruct MF.
 
 Let $w$ be a central involution of $H$ and let $\Theta$ be a
 homomorphism to $\U(\mathcal Q)$ with $\Theta(w)\ne1$.  Then
@@ -3798,10 +3819,8 @@ Fournier-Facio for formulating the group-theoretic input as a Kazhdan
 group that is not co-Hopfian and its ascending HNN extension.  We also
 thank him for the small-cancellation construction in
 Remark~\ref{rem:ff-realization} and for helpful discussions about the
-operator and Hilbert--Schmidt norms.  We thank
-Alon Dogon for pointing out that the interaction between those two
-norms also occurs in the earlier approach of Bachner--Dogon--Lubotzky
-\cite{BDL}.
+operator and Hilbert--Schmidt norms.  We thank Alon Dogon for helpful
+discussions and for organizing the early expert feedback on the manuscript.
 
 \section*{AI and computational resource usage}
 Large language models were used extensively over multiple days and thousands
