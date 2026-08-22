@@ -82,6 +82,12 @@ valid.
 
 ## Attempts
 
+- Apply `two-chart-trivial-cocycle-order-divides-index-gcd` before proposing
+  any finite two-chart phase register.  If the phase is trivial on both
+  exactified charts, its order must divide their index gcd; coprime indices
+  kill it outright.  This is only a design screen here: the present BCS
+  payload is not yet a finite factorization `G=F Gamma`, so the criterion
+  neither proves nor refutes `(PKP1)--(PKP2)`.
 - Insert the unitriangular phase word into the fixed Fanizza predicate menu and
   search its tracial GNS representation for a central `-1` lift.
 - Permit conjugate partners only when they permute forbidden atoms and preserve
