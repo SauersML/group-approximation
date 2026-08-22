@@ -161,3 +161,20 @@ Nevertheless it closes the Maslov sector by
   unitary fixed-point, or ucp conditional-expectation averaging repairs even
   the braid face; a microstate-dependent nonlinear positivity correction is
   required.
+- **Character rigidity fixes the only trace profiles that need lifting.**
+  `deligne-maslov-sector-traces-are-central-regular` applies the arbitrary-
+  center theorem of Dogon--Glasner--Gorfine--Hanany--Levit to `E_3`.
+  Finite-dimensional invisibility removes the finite-dimensional characters,
+  so every nontrivial-sector trace is a mixture of the two central-regular
+  traces, and each full central-character summand has unique trace.  Thus a
+  hypothetical `Theta` is already trace-preserving after the residual central
+  cut.  The missing step is not trace selection but promotion from Connes
+  embeddability of that fixed trace to an amenable/ucp lift.
+- **Strict Gram regularization has no generic normalized-HS error bound.**
+  `strict-psd-regularization-has-no-uniform-hs-affine-error-bound` gives
+  bounded diagonal `H_d >= I` at affine distance `2/sqrt(d)` but distance one
+  from the positive-affine intersection, even when `H_d` is obtained by
+  mixing with the exact Slater point `I` at any fixed positive weight.
+  Therefore mixing with a regular delta kernel and projecting requires a new
+  arithmetic uniform cone-angle theorem; strict positivity alone is not the
+  missing liftability mechanism.
