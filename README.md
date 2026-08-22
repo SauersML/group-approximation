@@ -1,4 +1,4 @@
-# Group Approximation and Rigidity
+# Group Approximation
 
 The remote `verified` branch is automatically fast-forwarded after every complete Lean Prover CI success on `main`. Use that for the most recent correct Lean code.
 
