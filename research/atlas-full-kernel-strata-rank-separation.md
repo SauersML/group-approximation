@@ -33,3 +33,12 @@ between the full packet-zero collision and q14 strata.
 - Fixed rank congruences cannot prove `(FSR1)` because amplification clears
   them.  A viable invariant must be a normalized noncommutative-rank or
   shrunk-subspace quantity stable under arbitrary matrix blow-up.
+- `atlas-separate-chart-module-ledger-is-kernel-blind` removes the complete
+  separate-chart module ledger, not merely congruences: the H6/H18/A4/A8
+  restrictions, their fixed spaces, commutants, composition factors, and
+  extension classes are independent of the relative gauge and hence agree
+  on both zero strata.  The first remaining additive rank-Lipschitz
+  candidates are mixed intersection dimensions
+  `dim(Fix_K intersect T^-1 Fix_L)` or equivalent cross-chart
+  extension/holonomy modules.  No kernel-sensitive inequality for one of
+  these mixed coordinates is currently known.
