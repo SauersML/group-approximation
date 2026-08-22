@@ -315,3 +315,17 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Thus no nonzero corner selects the original probability algebra.  Enforcing
   the missing equations `p_(a meet b)=p_a p_b` is the nonlinear BCS
   groupification gate itself.
+- **Fermionic second quantization consolidates the random fibers, but its
+  groupifiable branch is exactly monomial.**
+  `every-irs-character-is-an-exact-majorana-correlation` puts the
+  quasi-regular direct integral into one real Hilbert space and obtains the
+  exact bounded identity
+  `tau(c(xi) U_g c(xi) U_g^*)=phi_mu(g)` in one Clifford crossed product.
+  The returned Majorana commutators are still not multiplicative.
+  `clifford-word-bogoliubov-groupification-is-signed-monomial` proves that
+  the Bogoliubov action preserves a countable discrete Clifford word group
+  exactly when the orthogonal representation is signed permutation in some
+  basis.  Then the crossed product is the `z=-1` corner of
+  `L(Cl_I semidirect Gamma)`; for the free Manzoor actor this group is
+  amenable-by-sofic and hyperlinear.  Nonmonomial rotations remain analytic
+  linear combinations of Majoranas and provide no canonical group words.
