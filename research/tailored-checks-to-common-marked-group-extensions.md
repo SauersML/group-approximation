@@ -92,17 +92,17 @@ and turns `qWq=0` into an ordinary extension condition without constraining
 the unused complement.  This is the exact controlled-`U`/corner-equality
 gate; LCU itself does not solve it.
 
-The final zero-compression relation is now solved when the compiled payload
-is already one involution word.
-`central-marked-involution-zero-compression-cell` uses two gradings and the
-ordinary relation `wzw=yz`; on the selected
+The final zero-compression relation is now solved when the compiled source
+is a two-cycle of one payload word.
+`central-marked-two-cycle-zero-compression-cell` uses two gradings and the
+ordinary relation `wzw^-1=yz`; on the selected
 joint atom it gives `q w q=0`, while the complementary central sector admits
-arbitrary involutive `w`.  Conversely every involutive zero-compression pair
-extends that cell.  Thus the remaining syntax gap in the general reduction
-is strictly the construction of a **Hermitian/involutive ordinary payload
-word** whose selected compression is the losing polynomial.  The usual
-`2 x 2` Hermitian dilation is additive and does not itself provide such a
-word.
+arbitrary `w`.  Conversely every zero-compression pair with a two-periodic
+selected orbit extends that cell.  Thus the remaining syntax gap in the
+general reduction is strictly a **two-cycle ordinary payload block
+encoding** of the losing polynomial.  An involutive Hermitian dilation
+would suffice, but is stronger than necessary and the usual `2 x 2`
+dilation remains additive rather than an ordinary word.
 
 There is now one exact positive reduction inside that gate.
 `finite-cocycle-select-forces-one-common-lcu-gauge` groupifies SELECT for a
