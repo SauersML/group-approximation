@@ -5,9 +5,12 @@ kind: claim
 title: The nontrivial three-winner boundary needs twenty-one cancellation blocks
 artifacts:
   - research/artifacts/rank-l14-three-winner-boundary-trees.py
+  - research/artifacts/enumerate-maximal-noncrossing-forests.py
   - research/leavitt-d4-l14-three-winner-boundary-needs-21-blocks-proof.md
 ---
 
 After exact adjacent-factor reduction, the remaining boundary has 41
 syllables.  Every color-compatible noncrossing cancellation partition has at
 least 21 blocks; exactly 1,574,216 partitions attain that minimum.
+Moreover these are all coarsening-maximal partitions, so every cancellation
+branch refines one of them.

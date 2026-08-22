@@ -29,3 +29,17 @@ cached_intervals=778
 Thus a direct materialization of all minimal coefficient systems is the
 wrong next step.  Carrier-equation substitution or a symbolic sparse packet
 must prune the 1,574,216 topologies before Tietze replay.
+
+The later all-maximal forest recursion independently returned on MSI job
+`16680094`
+
+```text
+maximal_forests=1574216
+cached_states=778.
+```
+
+Thus the all-maximal count equals the minimum-block count exactly.  Every
+noncrossing partition coarsens to a maximal one, so for this exact 41-color
+word every cancellation branch refines one of the 1,574,216 minimum schemes.
+This repairs the general minimum-block inference gap for this word, while
+leaving coefficient/Tietze compression as the remaining task.
