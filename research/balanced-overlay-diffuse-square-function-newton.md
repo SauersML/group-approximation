@@ -42,6 +42,17 @@ for a selfadjoint contraction, sign functional calculus gives
 gauge away boundary motion and charge sign-rounding cost, rather than seek
 a linear Lyapunov for the pre-pinching boundary variance.
 
+The finite contraction and terminal-rounding bookkeeping is now complete.
+`common-cut-contraction-sign-has-complete-balanced-energy-ledger` gives the
+exact even-subset parity formula, the exact compressed-pair commutator
+formula, unconditional fixed-width bounds charged by average cut boundary,
+and simultaneous terminal-sign bounds charged by the conventional squared
+involution residual.  Hence common-character rotation is harmless after
+quotienting the simultaneous-conjugation kernel and signing once: it returns
+to the exact character tuple at quartic cost.  What this does not provide is
+the tangent operator row/column inverse.  The remaining gate is still the
+code-Riesz cb estimate below and its perturbation away from an exact base.
+
 The positive part is now explicit:
 `code-laplacian-has-uniform-cp-green-approximants` supplies dimension-free
 finite CP Green polynomials for the exact adjoint code Laplacian and the
@@ -276,6 +287,12 @@ parts.  Involution residuals invert the normal part completely isometrically
 (constant `1/2`), while the old code-Riesz operator is the whole tangent
 inverse.  Thus the contraction extension creates no new linear cb
 estimate.  Its positive involution residual may remain a vanishing forcing
-floor and be sign-rounded only after convergence.  The final analytic gate
-is precisely the old tangent `(CRM3)` estimate, plus perturbative stability
-of that inverse under the vanishing normal forcing term.
+floor and be sign-rounded only after convergence.  Finally,
+`tangent-commutator-covariance-bypasses-code-riesz-endpoint` removes the
+old tangent `(CRM3)` endpoint: actual tangent commutator residuals are odd
+under their second endpoint, so the masked divergence is a completely
+contractive normalized average, and one fixed CP Green polynomial gives a
+strict dimension-free linear contraction.  The remaining analytic gate is
+now genuinely nonlinear and pre-basin: implement this finite-time
+correction without an exact character decomposition while alternating the
+sparse parity/equality layers.

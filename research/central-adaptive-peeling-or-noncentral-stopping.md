@@ -168,12 +168,16 @@ identifies average movement and average positive involution residual with
 the same boundary `D(p_a)`.  Hence no polar/sign correction can recreate an
 operator spike during peeling.  At the linear level even this augmentation
 is free: `involution-augmented-code-jacobian-adds-no-cb-loss` gives an
-explicit cb-isometric inverse on reflection-normal directions, leaving
-exactly the old tangent code-Riesz inverse `(CRM3)`.  The compression
-residual is a vanishing forcing floor and can be sign-rounded only after
-convergence.  The remaining stopping issue is perturbative stability of the
-tangent row/column Newton inverse, not a new involution exactification
-problem.
+explicit cb-isometric inverse on reflection-normal directions.  The old
+tangent endpoint is bypassed by
+`tangent-commutator-covariance-bypasses-code-riesz-endpoint`: actual
+commutator residuals are endpoint-odd, making divergence a completely
+contractive average, and a fixed CP Green polynomial supplies strict
+linear contraction.  The compression residual is exactly the vanishing
+covariance-forcing term `(TCB7)` and can be sign-rounded only after
+convergence.  The remaining stopping issue is nonlinear implementation
+before exact code characters exist, not an endpoint Riesz or involution
+exactification problem.
 
 The commutator boundary itself also has an exact monotone ledger.
 `anchor-reset-row-sign-trace-is-sharp-lyapunov` proves that the anchor's

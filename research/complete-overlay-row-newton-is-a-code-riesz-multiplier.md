@@ -59,3 +59,13 @@ It does not invert the coordinate coboundary `(CRM1)`, nor does its `L_2`
 tail estimate imply cb convergence to the character expectation.  Thus the
 Riesz/gradient assembly issue recorded here is the residual exact-base
 linear question, not a denial of the CP Laplacian result.
+
+There is now a range-sensitive bypass to this endpoint formulation.
+`tangent-commutator-covariance-bypasses-code-riesz-endpoint` observes that
+an array in the actual reflection-tangent commutator range satisfies
+`Ad(Q_j)(b_ij)=-b_ij`.  Hence the support-coordinate mask acts as the
+identity, the divergence is the plain normalized average and is completely
+contractive by Jensen.  Composing it with a fixed CP Green polynomial gives
+a uniform strict linear contraction.  Thus `(CRM3)` remains an endpoint
+question for arbitrary arrays, but it is no longer required by the
+exact-base Newton linearization.
