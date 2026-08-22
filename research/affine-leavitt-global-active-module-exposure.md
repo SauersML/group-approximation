@@ -32,6 +32,34 @@ finite-support PVM.  Then
 
 ## Attempts
 
+- **Renormalize the remaining actor-root defect through
+  `L isomorphic to M_2(L)`.**  The natural recurrence is stationary, not
+  contractive.  In `leavitt-prefix-renormalization-is-noncontractive`, the
+  prefix extraction `P(r)=t_0rs_0` is an additive surjection with section
+  `alpha(r)=s_0rt_0`, and therefore
+
+  ```text
+  D(f compose P^n)=D(f)
+  ```
+
+  for the supremal additive defect of every unitary-valued root table `f`.
+  A concrete nonlinear `p`-phase table keeps a fixed defect floor while the
+  witness moves to depth `n`; replicating it on both diagonal children still
+  leaves the same floor on either child.  With separate error parameters,
+  the mixed-triangle estimate is
+
+  ```text
+  D_active <= 2 D_actor+3 D_mixed+D_central,
+  ```
+
+  so commutator calculus also transfers rather than contracts the upstream
+  defect.  This escape is not a full Steinberg microstate—it violates the
+  remote actor-root additions it is designed to expose—but it rigorously
+  rules out a contraction obtained from the bare matrix chart and diagonal
+  branch returns.  A positive recurrence needs a new same-carrier
+  square-function term coupling all four entries with a coefficient below
+  one.
+
 - **Add the same-root actor table and the full mixed multiplication
   triangles to the right-ratio model.**  This closes algebraically.
   `mixed-steinberg-triangles-transfer-actor-additivity` applies
