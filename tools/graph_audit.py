@@ -104,7 +104,7 @@ try:
         a, b = _graph.claims[reqs[0]], _graph.claims[tgt]
         answered = (tgt in (a.meta.get('distinct_from') or {})
                     or reqs[0] in (b.meta.get('distinct_from') or {}))
-        opposite = _cairn._negated(a.title + ' ' + a.id) != _cairn._negated(b.title + ' ' + b.id)
+        opposite = _cairn._negation_signature(a.title + ' ' + a.id) != _cairn._negation_signature(b.title + ' ' + b.id)
         if answered or opposite:
             continue
         sc = _cairn.cosine(_vecs.get(a.id, {}), _vecs.get(b.id, {}))

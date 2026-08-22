@@ -4,6 +4,7 @@ id: corona-commutant-no-growth
 kind: claim
 title: Operator-norm relative commutants do not grow under the compression
 root: true
+refuted_by: corona-commutant-growth-witness
 invalidates:
   - commuting-lamp-mf-detects-defect
   - literal-mark-quotient-detects-defect
