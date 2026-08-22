@@ -50,3 +50,9 @@ timed out.  A separate low-index screen through degree sixteen ran for 120
 seconds and timed out before returning a subgroup list.  Neither run proves
 that the universal group is infinite, nor that no quotient exists in the
 screened degree range.
+
+The target-specific calculation
+`atlas-q96-c144-cycle-has-faithful-a8-quotient` subsequently solves the
+binary test positively: four `A8` quotient classes preserve all four vertex
+orders.  The timeout record remains here only to distinguish generic coset
+enumeration from that decisive finite-target search.
