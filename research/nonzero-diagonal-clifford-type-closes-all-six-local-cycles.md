@@ -46,3 +46,11 @@ representation, not merely the coadjoint type.  Alternatively it must
 remember more than two congruence layers.  This does not construct a full
 arithmetic leak: simultaneous extension of the six local characters on one
 matrix carrier is the remaining issue.
+
+The first stabilizer-extension issue is now computed and does not obstruct.
+`cartantype-mackey-cocycle-is-pauli-and-locally-absorbed` finds
+`Stab(X)~=(Z/2)^4` and a nontrivial scalar cocycle whose alternating rank is
+two.  It needs one two-dimensional Pauli multiplicity, and the conjugate
+projective module cancels it.  The same absorber works for every finite
+directional groupoid, pushing the live seam from fixed local Mackey data to
+unbounded history or additive multi-path interference.
