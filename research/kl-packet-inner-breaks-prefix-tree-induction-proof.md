@@ -48,6 +48,37 @@ So the images of `Ad(q) o iota_0` and `iota_1` are not blocks of a common
 prefix decomposition.  This is already the two-leaf tree, hence no induction
 on larger prefix codes can start once packet-inner conjugators are allowed.
 
+## Why the first noncommutative incidence invariant also fails
+
+For ordered support idempotents, record only whether `P_iP_j` is zero.  Before
+conjugation, `(PI1)` gives
+
+```text
+E0 E1=E1 E0=0.                                         (PI5)
+```
+
+After conjugating the first support by `X`, equations `(PI2)--(PI3)` sharpen
+to
+
+```text
+(X E0 X^(-1)) E1=0,
+E1 (X E0 X^(-1))=f E_34 != 0.                          (PI6)
+```
+
+Thus one allowed packet-inner operation changes the directed incidence type
+from `(0,0)` to `(0,1)`.  Because the three coefficient-copy embeddings may
+be composed independently, simultaneous-conjugacy invariance does not rescue
+this Boolean matrix.
+
+Literal leading terms in Bergman path-pair normal form do not give a fixed
+finite substitute.  Applying a depth-`n` corner replaces every active
+coefficient `r` by `s_v r t_v`, `|v|=n`; hence both path lengths move beyond
+any prescribed bounded window.  The corner map is injective, so this is not
+vanishing information--it is information escaping to arbitrary scale.  A
+successful invariant would have to strip or compare prefixes coherently at
+all depths, while `(PI6)` shows that packet-inner conjugation destroys the
+common prefix decomposition needed to perform that stripping.
+
 There is a second obstruction in the actual orbit relator.  Its zeroth copy
 is fixed rather than corner-supported, and its coefficients include `s0`,
 `t1`, and the mixed `q`; the pivot `z` solved from `R0` inherits those prefix

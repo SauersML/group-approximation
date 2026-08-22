@@ -28,3 +28,11 @@ Even with no outer packet conjugator, the fixed zeroth coefficient copy in
 these need not preserve the support partition of the other three copies.
 An all-depth theorem needs a genuinely noncommutative projection invariant,
 not a common untouched cylinder or blockwise reduction.
+
+The first such candidate, the directed zero/nonzero incidence matrix
+`1_(P_iP_j!=0)`, is not invariant under the allowed semigroup either.  The
+same two-leaf calculation changes an orthogonal pair into a one-sided pair
+with `P_0P_1=0` but `P_1P_0!=0`.  Nor can a fixed finite window of literal
+Bergman path-pair coefficients be invariant: an arbitrarily deep prefix
+corner shifts every active path pair outside that window.  Any viable
+invariant must therefore be renormalized across all prefix scales.
