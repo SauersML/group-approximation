@@ -41,4 +41,7 @@ Leavitt or Toeplitz groupification.  A live constant-loss construction must
 leave the deterministic prefix-stopping model--for example through a
 quantum/code test whose robust rank is not approximated by truncating a
 classical decision tree--or must separately amplify the deep-cell energy.
-
+The consequence is not merely a rank heuristic:
+`low-rank-weyl-tables-have-polynomial-models` converts
+the truncated matrix into explicit balanced, label-orthogonal unitary models
+with vanishing average Weyl defect.
