@@ -100,4 +100,3 @@ be bounded by mixed-root defect and first exits).  Once that is done, the
 global 42-vertex shell PVM is already present and the established building
 spectral gap applies.  Finite-fiber recycling is therefore exactly failure
 of one of these five cross-chart trace saturations.
-

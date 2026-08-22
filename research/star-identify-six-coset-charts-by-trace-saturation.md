@@ -28,4 +28,3 @@ comparison graph is disconnected, an independent unitary conjugation on
 one component preserves all recorded projection traces inside every tested
 edge while changing its placement relative to the other components.  Hence
 connectedness is necessary, and the five-edge star is minimal.
-

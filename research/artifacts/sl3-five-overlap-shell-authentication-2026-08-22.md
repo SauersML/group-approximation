@@ -20,4 +20,3 @@ This reduces the arithmetic compiler problem to five explicit cross-chart
 trace inequalities.  It does not derive them from group relators.  Once
 they are controlled by mixed-root energy and first-exit mass, no further
 global-label rounding is needed before applying building expansion.
-
