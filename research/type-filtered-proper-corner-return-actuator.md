@@ -73,6 +73,15 @@ canonical microstates still pay its full normalized mass.
 - **Use a finite graph of finite groups.**  Stationary multiplicity flow
   realizes the return in finite dimensions; an infinite-order proper-corner
   actuator or another finite-rank asymmetry is required.
+- **Subgroup-Hecke HNN edges give an exact conditional rank actuator.**
+  `subgroup-hecke-hnn-is-a-regular-safe-rank-actuator` proves
+  `e_K u e_H=u e_H` and a sharp normalized-HS payment whenever `K` embeds in
+  `H`; canonical traces have the safe order `1/|H|<=1/|K|`, while a selected
+  base type with the reverse fixed-space inequality is excluded.  This
+  reduces the Schur application to surrogate finite groups whose fixed
+  spaces are the two Reynolds ranges in the paid order.  The native
+  `A_f<=B_f` inclusion points oppositely, and two bare involution spectral
+  projections give only equality or the whole target.
 - **Use a residually finite Bass--Serre extension.**
   `residually-finite-models-refute-filtered-wandering-return` constructs an
   exact finite quotient, canonical on any prescribed finite window, in which
