@@ -124,6 +124,25 @@ compressed Weil packets.
   near-solution.  The remaining gate is therefore a reverse boundary
   dilation/authentication theorem, not another scalar index.
 
+- **Two cubic carriers give an exact reverse decoder under one angle
+  hypothesis.**
+  `two-cubic-residual-carriers-recover-the-deleted-source` proves that, in a
+  positive-corner dilation, each cubic residual has a rank-doubled carrier
+  containing the common source image `PXQH`.  If the two exit halves have a
+  uniform principal-angle gap, then
+
+  ```text
+  PXQH=ran(W_1-1) intersect ran(W_2-1),
+  ```
+
+  and a spectral projection of the product of the two carrier projections
+  recovers it stably.  This also gives a sharp one-cubic no-go: one carrier
+  contains source and exit with equal rank and cannot distinguish them.
+  The surviving arbitrary-model question is whether small presentation
+  defect forces such a two-carrier angle gap (after discarding continuously
+  correctable low singular modes), or whether heterogeneous scalar packets
+  can make the exit carriers asymptotically parallel and recycle the source.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
