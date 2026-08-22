@@ -49,3 +49,12 @@ same-basis pair table.  Although each occurrence has bounded degree, the X
 and Z code incidences can close short multi-basin contours.  A finite-
 presentation compiler must still establish sign-safe placement rather than
 infer it from bounded occurrence.
+
+There is nevertheless a new exact interaction with the parity layer.
+`unique-neighbor-ldpc-checks-force-dense-noncommutation` proves that every
+noncommutation row is a Tanner stopping set.  For a linear-stopping-distance
+code, any exact failure of global commutation therefore occupies a constant
+fraction of all logical pairs; the sparse Clifford-cycle obstruction cannot
+survive the parity contexts.  This does not control the normalized-HS size
+of those nonzero commutators.  The remaining quantitative gate is precisely
+`operator-unique-neighbor-cosystolic-rounding`.

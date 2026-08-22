@@ -62,3 +62,13 @@ tuple.  The desired estimate must use the LDPC parity contexts together with
 the complete overlay.  Word placement of that overlay remains a separate
 compatibility gate because its logical all-pairs incidence creates contours
 through distinct basins.
+
+The exact support-level interaction is now understood.  If the base Tanner
+graph has linear stopping distance, then
+`unique-neighbor-ldpc-checks-force-dense-noncommutation` makes every nonempty
+commutator row have linear support and hence every exact noncommuting model
+have quadratically many noncommuting ordered pairs.  Thus the parity layer
+does rule out the sparse Clifford-cycle escape at zero defect.  What remains
+is not classical expansion but `operator-unique-neighbor-cosystolic-rounding`:
+an operator-valued LTC estimate followed by a kernel-killing bootstrap with
+a uniform same-Hilbert correction modulus.
