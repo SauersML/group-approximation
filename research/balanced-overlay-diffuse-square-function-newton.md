@@ -116,3 +116,19 @@ iterating two-PVM orthogonalization cannot replace the missing parity-aware
 row/column coercivity.  A successful Newton argument must use the balanced
 parity layer to exclude or correct those low-weight adjoint modes before it
 invokes the orthogonalization theorem.
+
+Random coordinate anchoring gives a complementary exact-base realization
+of the desired gap.  `random-code-anchor-pinchings-contract-exact-transverse-energy`
+shows that one uniformly random coordinate pinching contracts every
+off-diagonal code-character block by `1-delta`, and that pinching followed
+by reflection sign-rounding costs at most one half of the selected anchor's
+commutator energy.  Iterated anchors preserve all earlier commutants.  The
+remaining obstruction is exactly basin entry, not the anchor calculation:
+`random-anchor-contraction-does-not-yet-enter-the-diffuse-basin` records
+that the code-character blocks used in the proof do not exist before
+synchronization, while local parity re-exactification either splits shared
+coordinates or becomes the original global rounding problem.  A successful
+version must prove expected contraction of the **full** balanced energy
+directly from the diffuse square function, with an equality-compatible
+global correction; ordinary triangle bounds supply boundedness but no
+strict contraction.
