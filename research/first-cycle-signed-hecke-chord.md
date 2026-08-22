@@ -123,6 +123,17 @@ least one non-root assignment projection must survive.
   and the two paths coalesce.  The live transverse chord must therefore use
   a weaker positive-defect polynomial or couple several transverse sums;
   exact unitarity of one sum returns to the groupoid fence.
+- **Abstract two-path payment is exactly corner leakage.**
+  `two-path-holonomy-is-paid-by-corner-leakage` removes the special `D_8`
+  coordinates.  If `A,B:q->p` are the two packet paths and
+  `V=A^*B`, then for `K=(A+B)/2`,
+  `q-K^*K=(q-V)^*(q-V)/4`.  Matching `K` to an authenticated corner unitary
+  therefore controls `V` with a dimension-independent modulus.  But every
+  such `K` is the compression of its exact Julia unitary, whose complementary
+  leakage has precisely that Gram mass.  Hence two paths are analytically
+  sufficient only after another relation forces the arithmetic word to
+  preserve the selected corner (or pays its leakage); compression equality
+  alone has an exact finite-dimensional escape.
 - **The phase-rotated companion gives aggregate payment but kills
   completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
   `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
