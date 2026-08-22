@@ -237,3 +237,19 @@ recreated.  Combined with the fourth-root charge, one cut per anchor per
 geometric energy scale is summable.  The last issue is coverage: prove that
 this schedule makes every retained anchor-odd part operator-small fast
 enough for contraction.
+
+The literal one-shot join is not the correct coverage object.
+`orthogonal-odd-cut-join-amplifies-boundary-linearly` gives even orthogonal
+site cuts whose join has macroscopic boundary while the anchor and pair
+energies vanish.  The dimension-free replacement is
+`regularized-anchor-square-function-has-dimension-free-cut`: average the
+odd squares first and threshold
+`K_a=L^(-1)sum_iY_(a,i)^2`.  Its complement satisfies the exact row-column
+bound `qK_aq<=2theta q`, while the cut trace averages as
+`O(E_pair/theta)` and its boundary as `O(sqrt(E_pair)/theta)`.  Exact
+parity further implies, by
+`regularized-anchor-cut-makes-residual-spikes-boundary-heavy`, that every
+individual compressed spike remaining below this cut is boundary-heavy.
+The final analytic gate is therefore narrower: carry the aggregate cut's
+`L_2` leakage through the row-column Newton step, or block-diagonalize it
+without recreating an operator spike on the retained block.

@@ -128,3 +128,39 @@ zero-boundary spikes require `N` cuts while saturating the same sign budget.
 The residual scheduling theorem must therefore batch a weighted family of
 central cuts or use balanced parity to rule out that profile; monotonicity
 alone is insufficient.
+
+The literal one-shot join is too discontinuous.  Noncommutativity of the
+cuts is not the essential obstruction.
+`orthogonal-odd-cut-join-amplifies-boundary-linearly` gives orthogonal
+high cuts with anchor-tail and complete-pair energy `O(1/L)` but join
+boundary `1-O(1/L)`.  Each site reflection preserves its own cut while
+moving every other cut outward.  Hence no generic coarea/complete-overlay
+estimate can charge the join without a linear loss.  Any surviving join
+route must use the all-dual parity/Loewner faces to forbid this labelled
+cross-boundary profile (or retain the labels instead of taking the bare
+join).
+
+There is a condition-number-free replacement.
+`regularized-anchor-square-function-has-dimension-free-cut` thresholds the
+average `K_a=L^(-1)sum_iY_(a,i)^2`, rather than the join of its summand
+supports.  On the retained block its operator norm is at most `2theta`;
+averaged over anchors, deleted trace is `O(E_pair/theta)` and cut boundary
+is `O(sqrt(E_pair)/theta)`.  Moreover
+`regularized-anchor-cut-makes-residual-spikes-boundary-heavy` uses the
+all-dual Loewner inequality to show that, for `theta<=kappa s/16`, every
+remaining compressed `s`-spike has boundary at least
+`(kappa s/3)` times its trace.  Thus coverage no longer needs a bare join.
+The remaining stopping issue is to transport the aggregate cut's `L_2`
+leakage through the nonlinear contraction, or to exactify the cut without
+creating a new retained operator-norm spike.
+
+The commutator boundary itself also has an exact monotone ledger.
+`anchor-reset-row-sign-trace-is-sharp-lyapunov` proves that the anchor's
+averaged commutator-row energy plus `8tau((1-A)/2)` is nonincreasing under
+every commuting-block reset; the coefficient is sharp already in `M_2`.
+Thus a boundary term cannot cycle indefinitely without consuming monotone
+negative-sign mass.  This still does not close the claim: the initial sign
+reservoir is order one, whereas basin capture needs little-o cost, and the
+disjoint central-spike profile above can spend it arbitrarily slowly.  The
+remaining stopping rule must batch weighted cuts or prove coverage while
+consuming only vanishing trace-weighted sign mass.
