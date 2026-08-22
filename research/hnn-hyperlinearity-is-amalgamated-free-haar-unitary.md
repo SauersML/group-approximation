@@ -97,3 +97,17 @@ attempts of `relative-commutant-collapse-for-sl2-pair` therefore cannot
 close `(2)`; whatever separates the hyperlinear scenario from the
 standard model must see the `B`-valued distribution of `k`, not its
 entropy.
+
+**Coordinatewise form for Kazhdan subgroups.**  When `C` has property
+(T) (the `SL_n(Z)`, `n >= 3`, pairs), Peterson's interchange formula
+`pi(C)' cap prod_U M_(d_n) = prod_U (pi_n(C)' cap M_(d_n))` (arXiv:2605.16669,
+proof of Prop. 7.8, as recorded in `kt-centralizer-normalization-hs`)
+lets the unitary `k` of `(2)` be represented by unitaries `k_n` that
+commute EXACTLY with the microstate image `pi_n(C)` in every coordinate.
+So for the higher-rank pairs the minimal statement reads: there is no
+sequence of unitaries `k_n in pi_n(SL_n(Z))' cap M_(d_n)` with
+`tr(k_n^j) -> 0` for `j != 0` and asymptotic freeness from `pi_n(A)` with
+amalgamation over `pi_n(SL_n(Z))''`, along any regular-trace microstate
+sequence `pi_n` of `A`.  The exact commutation is the only simplification
+property (T) buys at this level; the amalgamated-free joint distribution
+is untouched, and for `n = 2` even the exact commutation is unavailable.

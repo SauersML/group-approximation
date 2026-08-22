@@ -23,11 +23,18 @@ unital *-homomorphism
 A(B_*) -> L(Lambda).                                         (GFB1)
 ```
 
+The host may be taken up to corners: a unital *-homomorphism
+`A(B_*) -> p L(Lambda) p` for some nonzero projection `p in L(Lambda)`
+suffices, since Connes embeddability passes to corners; in particular a
+model in a twisted group factor `L_omega(Lambda)` with `omega` of finite
+order suffices, because such a factor is a central summand of the group
+factor of the corresponding finite central extension.
+
 Any such `Lambda` is non-hyperlinear (`non-hyperlinear-from-group-factor-bcs-model`):
-the image of `(GFB1)` generates a subalgebra of `L(Lambda)` that is the GNS
-algebra of a tracial state of `A(B_*)`, every tracial state of `A(B_*)`
-has non-Connes-embeddable GNS algebra, and Connes embeddability passes to
-subalgebras.
+the image of `(GFB1)` generates a subalgebra of `p L(Lambda) p` that is the
+GNS algebra of a tracial state of `A(B_*)`, every tracial state of
+`A(B_*)` has non-Connes-embeddable GNS algebra, and Connes embeddability
+passes to corners and to subalgebras.
 
 This is the weakest sufficient form of the transfer problem: the
 algebraic-envelope, trace-promotion, and twisted-factor holes each imply
