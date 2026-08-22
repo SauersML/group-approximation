@@ -111,3 +111,13 @@ in the matrix ultraproduct carrying `G`'s regular trace.
   trivially on the `h = 0` space `A' cap M`, an absorption that the bare
   entropy invariant does not deliver.  This is the precise, honest boundary
   of the current tool.
+- **The closed root-gallery strengthening is already the full actor.**  The
+  four integral positive/negative simple roots generate `C`, and inverse
+  powers of `h` followed by Weyl conjugacy generate every
+  `x_ij(m/2^k)`.  Thus literal opposite-root closure plus dyadic transport
+  gives all of `A`; see `closed-a2-dyadic-packet-saturates-the-sl3-actor`.
+  This rules out a further proper finite relation packet between the native
+  `A_2` gallery and `(RC3)`.  The remaining distinction is analytic support:
+  `native-parahoric-triangle-kills-all-corrector-gauges` collapses a corrector
+  after it has been placed on one common carrier, whereas the regular-HNN
+  leak supplies no such authenticated carrier.

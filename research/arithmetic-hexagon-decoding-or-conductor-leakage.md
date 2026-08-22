@@ -434,3 +434,14 @@ the fixed-depth nonhyperlinearity criterion.
   so the fixed `kappa` in `(AHD2)` must come from a matrix-only same-reservoir
   return or multiplicity payment, not from property `(T)` alone.  No
   dimension-independent proof of this extraction is currently in hand.
+- **Closing the literal root gallery saturates the actor.**  Once both simple
+  roots and their opposites are identified in one genuine `A_2` reservoir,
+  adjoining `h=diag(2,1,1/2)` generates every elementary root over
+  `Z[1/2]`, hence all of `SL_3(Z[1/2])`; see
+  `closed-a2-dyadic-packet-saturates-the-sl3-actor`.  Exact odd-congruence
+  models calibrate all of these actor relations, while the native triangle
+  already supplies the dimension-free common-carrier inequality `(NPC15)`.
+  Therefore there is no intermediate closed-gallery relation packet left to
+  add.  The unresolved content is exactly the matrix-only support statement
+  that the rectangular chamber pieces belong to one carrier; without it the
+  regular-HNN/Bernoulli lamp remains a firewall.
