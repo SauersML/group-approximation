@@ -61,13 +61,18 @@ group in this lane, hyperlinear.
   `E_(W^*(pi_k(C)) (x) 1)(pi_k(a) (x) 1) = E(pi_k(a)) (x) 1` unchanged, and
   tensoring with a finite-quotient representation keeps co-density.  A
   faithful sequence needs genuinely new microstates of the host.
-- **Gao's converse.**  The appendix of arXiv:2012.07940 proves, under extra
-  assumptions or after enlarging the amalgam, that embeddability of the
-  star amalgam implies relative embeddability; if that converse applies to
-  `L(C) subset L(A)`, this claim is EQUIVALENT to the weakest holes rather
-  than merely implied by them, and the whole lane becomes a statement
-  about microstates of the host.  Not yet checked against the appendix's
-  exact hypotheses.
+- **Gao's converse is now checked for the rank-three plain double.**
+  Appendix Theorem 7.1 requires the coefficient `N_1` to be a finite factor
+  and, for the plain double, a unitary `u in L(A)` with
+  `E_(L(C))(u^n)=0` for all `n!=0`.  For `SL_3`, `L(C)` is a CE II_1 factor
+  and `u=lambda(diag(2,1,1/2))` satisfies the power condition.  Therefore
+  `sl3-arithmetic-double-hyperlinear-iff-relative-embeddable` proves that
+  CE of `L(A)*_(L(C))L(A)` is EQUIVALENT to `RE/L(C)`.  The exact weakest
+  rank-three hole is now split out as
+  `sl3-arithmetic-inclusion-is-not-re-over-lattice`.  The same literal
+  specialization with `N_1=L(SL_2(Z))` is unavailable because that group
+  factor is not a factor (the center contains `+-I`); no rank-two conclusion
+  is asserted here.
 - **Amalgam picture for `n = 2` (Serre): three exclusions.**  Since
   `A = C *_(C_0) C'` with `C' = hCh^-1`, `C_0 = C cap C'` of index three,
   a microstate of `A` is a pair of representations `sigma` (of `C`) and
@@ -95,6 +100,27 @@ group in this lane, hyperlinear.
   congruence subgroup property" would exclude it, and that is the
   flexible-stability content of `iwahori-local-global-defect-question`
   in different clothes.
+- **Bimodule form of faithfulness (both pairs).**  Write `B = prod_omega B_k`
+  and `K = L^2(B) (-) L^2(L(C))`, a nonzero left `L(C)`-module (`B` is
+  non-separable while `L(C)` is separable, so `B != L(C)`).  The commuting
+  square makes `u_a (x) b -> u_a b` an isometry
+  `L^2(L(A)) (x)_(L(C)) K -> L^2(M)`, so the left `A`-module `L^2(M)`
+  contains the induced representation `Ind_C^A(kappa)`, `kappa` the left
+  `C`-action on `K`; by Mackey its restriction to `C` is
+  `kappa (+) (+)_(CaC != C) Ind_(C cap aCa^-1)^C(kappa^a)` with all
+  inducing subgroups of finite index (`A` commensurates `C`).  In the
+  basic construction `<M, e_B>` the projections `u_a e_B u_a^*`, `aC in A/C`,
+  are orthogonal with `Tr = 1` and are permuted by `Ad u_A`, an exact copy
+  of `l^2(A/C)` inside the conjugation representation of `A` on
+  `L^2(<M, e_B>, Tr)` with base vector `e_B` commuting with `L(C)`.
+  Property (T) of `A` or `C` yields no contradiction here by itself: the
+  left action of `A` on `L^2(M)` has no invariant vectors (regular trace)
+  hence a spectral gap, and `l^2(A/C)` has the `C`-fixed vector `delta_C`
+  but no `A`-fixed vector, exactly as these copies do.  What must be used
+  is that `B` is an ultraproduct of coordinate subalgebras: the copies of
+  `K` and of `l^2(A/C)` are coordinatewise objects, and the double-coset
+  translates `pi_k(a) B_k` must be asymptotically orthogonal subspaces of
+  `L^2(M_(d_k))` of dimension `dim B_k`, so `dim B_k / d_k^2 -> 0`.
 - **What property (T) buys for `n = 3`.**  `W^*(pi_k(C))'` is the exact
   coordinate commutant of the microstate image, and by Peterson's
   interchange formula the ultraproduct of these commutants is
