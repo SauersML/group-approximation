@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: leavitt-d4-length12-balanced-rank10-has-fifteen-cyclic-classes
+id: leavitt-d4-l12-rank10-fifteen-cyclic-classes
 kind: claim
 title: The fixed length-twelve profile has fifteen cyclic rank-ten classes
 artifacts:
   - research/artifacts/rank-degree4-length12-triangles.py
-  - research/leavitt-d4-length12-balanced-rank10-has-fifteen-cyclic-classes-proof.md
+  - research/leavitt-d4-l12-rank10-fifteen-cyclic-proof.md
 ---
 
 For the sign profile `---+-+++++++`, the 201 carrier-balanced rank-ten
@@ -17,4 +17,3 @@ Global inversion also reverses and rotates the ambient sign word.  It is not
 an action on this stored fixed representative alone, so the tempting further
 count of eight is only an upper bound until that ambient identification is
 implemented and audited.
-

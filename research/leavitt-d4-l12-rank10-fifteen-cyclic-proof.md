@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: leavitt-d4-length12-balanced-rank10-has-fifteen-cyclic-classes-proof
+id: leavitt-d4-l12-rank10-fifteen-cyclic-proof
 kind: route
 title: Enumerate the cyclic rank-ten signatures without assuming a false inversion pairing
-target: leavitt-d4-length12-balanced-rank10-has-fifteen-cyclic-classes
+target: leavitt-d4-l12-rank10-fifteen-cyclic-classes
 requires:
   - leavitt-d4-length12-balanced-rank9-is-fenced
 ---
@@ -29,4 +29,3 @@ Thus there are exactly fifteen classes under the stated cyclic quotient.
 The unequal chirality counts prove that global inversion is not closed on the
 stored representative: applying it requires the accompanying ambient slot
 reversal/rotation.  No global-inversion identification is used in this claim.
-
