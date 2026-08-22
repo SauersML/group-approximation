@@ -295,8 +295,23 @@ non-hyperlinear group `hat K rtimes Lambda`.
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
   subgroup-indicator subshift, the finite pseudo-subgroup hierarchy, and the
   AGV labeled-Schreier realization.  `Sub(F)` is not an algebraic subgroup of
-  `{0,1}^F` and is Bernoulli-Haar null; its conjugation stabilizer is
-  `N_F(H)`, not `H`.  The LP optimizers have no compatible finite-action
+  `{0,1}^F` and is Bernoulli-Haar null.  Its conjugation stabilizer is
+  `N_F(H)`, not `H`; more sharply, the strategy relators force
+  `J in N_F(H) setminus H` almost surely, so the two stabilizer characters
+  differ by `1` at `J`.  The LP optimizers have no compatible finite-action
   bonding maps, while AGV supplies only Haar fibers `[0,1]^(F/H)` over the
   unresolved base `mu`.  Thus there is no source-native compact-abelian Haar
   action to insert into `(AAE1)`.
+- **Pontryagin-dualizing the additive measure algebra produces an explicit
+  group, but the wrong trace.**
+  `stone-additive-semidir-product-loses-manzoor-measure` forms
+  `(A,symmetric_difference) semidirect F` from a countable invariant Boolean
+  generator of a stabilizer action.  Its canonical event projections all
+  have trace `1/2`, even when the original event has measure `1/3`.
+  `stone-multiplicative-locus-is-haar-null-in-additive-dual` proves the Stone
+  ultrafilters satisfying the intersection laws form a Haar-null set in the
+  additive dual; moreover every central or `A`-reducing corner inside any
+  containing group factor has Haar-absolutely-continuous spectral measure.
+  Thus no nonzero corner selects the original probability algebra.  Enforcing
+  the missing equations `p_(a meet b)=p_a p_b` is the nonlinear BCS
+  groupification gate itself.

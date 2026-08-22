@@ -42,11 +42,26 @@ The conjugation action on `(MSH1)` also has the wrong stabilizers:
 Stab_F(H for conjugation)=N_F(H),                       (MSH3)
 ```
 
-not `H`.  Hence its stabilizer IRS is the normalizer pushforward
-`H |-> N_F(H)`, not Manzoor's `mu`, unless `H=N_F(H)` almost surely.  The
-paper proves no such self-normalizing statement.  Using the canonical
-subgroup space as the desired pmp realization therefore changes the trace
-from `Pr(g in H)` to `Pr(g in N_F(H))`.
+not `H`.  For Manzoor's strategy IRS this mismatch is strict almost surely,
+not merely undecided.  Let `N` be the normal closure of the strategy
+relators
+
+```text
+u^2, J^2, [u,J], and [u,v] for u,v in one question.     (MSH4)
+```
+
+Definition 3.11 puts every displayed relator in `H` with probability one.
+IRS invariance puts each of its countably many conjugates in `H` with
+probability one, so `N <= H` almost surely.  Modulo `N`, `J` is central;
+therefore `J in N_F(H)` almost surely.  But the same definition requires
+`J notin H` almost surely.  Consequently
+
+```text
+Pr(J in H)=0,          Pr(J in N_F(H))=1.               (MSH5)
+```
+
+The natural conjugation action changes the witness trace at the distinguished
+generator itself and cannot realize Manzoor's IRS.
 
 Second, the finite objects in Manzoor Section 3.2 are distributions on
 **random pseudo-subgroups in finite word windows**.  They are solutions of
@@ -63,10 +78,10 @@ Finally, the Abért--Glasner--Virág stabilizer realization cited in Manzoor
 adds independent labels on each random Schreier set:
 
 ```text
-first H~mu, then a Haar product label in [0,1]^(F/H).    (MSH4)
+first H~mu, then a Haar product label in [0,1]^(F/H).    (MSH6)
 ```
 
-Conditioned on `H`, `(MSH4)` is a Bernoulli/Haar fiber and the fixed-`H`
+Conditioned on `H`, `(MSH6)` is a Bernoulli/Haar fiber and the fixed-`H`
 lamp identity applies.  Globally the coordinate set `F/H` and its lamp group
 vary with `H`, and the unresolved base measure is still `mu`.  Thus `(MSH4)`
 is a relatively Bernoulli measurable bundle, not Haar measure on one fixed
@@ -78,8 +93,8 @@ Consequently the actual Manzoor construction supplies no explicit Haar
 factor to combine with the coset-lamp correlation.  This is stronger than a
 mere absence of a formula: the obvious ambient Haar subshift is null and
 nonalgebraic on the support, the obvious action records normalizers rather
-than subgroup membership, and the finite approximants have no projective
-action structure.
+than subgroup membership (with the explicit `J` discrepancy `(MSH5)`), and
+the finite approximants have no projective action structure.
 
 Primary sources: Manzoor,
 [*There is an equivalence relation whose von Neumann algebra is not Connes
@@ -88,4 +103,3 @@ embeddable*](https://arxiv.org/html/2502.06697v2), Definitions 2.1, 2.3 and
 of Theorems 1.1--1.2; Abért--Glasner--Virág,
 [*Kesten's theorem for invariant random subgroups*](https://arxiv.org/abs/1201.3399),
 Propositions 13--14.
-

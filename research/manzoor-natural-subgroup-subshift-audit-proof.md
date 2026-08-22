@@ -15,6 +15,14 @@ positive-measure Haar subspace.  Equation `(MSH3)` follows immediately from
 the definition of the conjugation action: `g` fixes `H` exactly when
 `gHg^(-1)=H`.
 
+For the strict mismatch, each relation in `(MSH4)` belongs to `H` almost
+surely by Definition 3.11.  Conjugation invariance gives the same for every
+conjugate, and a countable intersection of conull sets is conull.  On that
+set `H` contains their normal closure `N`.  Since `[J,u] in N` for every free
+generator `u`, induction on word length gives `[J,f] in N` for every `f in F`.
+Thus conjugation by `J` preserves `H`.  Definition 3.11 separately imposes
+`J notin H`, proving `(MSH5)`.
+
 Manzoor's proof of Theorem 3.6 takes independent maximizers in the nested
 compact feasibility sets and passes to a weak-star cluster point.  It only
 uses restriction to prove monotonicity of the optimal values; it gives no
@@ -31,4 +39,3 @@ the compact fiber groups have been identified with one fixed algebraic
 `random-coset-lamp-correlations-realize-every-irs-character` therefore does
 not remove the base or produce a single group factor.  These three direct
 audits prove the claim.
-
