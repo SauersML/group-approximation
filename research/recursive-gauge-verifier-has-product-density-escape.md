@@ -11,8 +11,8 @@ distinct_from:
 
 **ESTABLISHED NO-GO.**  Let `R_n` be an increasing sequence of finite unitary
 relation packets with a fixed marked word `w`.  Suppose there is a
-finite-dimensional exact verifier packet `(V,e)`, where `e` is a verifier
-spectral projection of normalized trace `alpha in (0,1]`, and a tensor-natural
+finite-dimensional exact verifier packet `(V,e)`, where `e` is a reducing
+verifier spectral projection of normalized trace `alpha in (0,1]`, and a tensor-natural
 extension operation with the following property.  Assume `R_0` has an exact
 finite-dimensional seed model in which `w` has normalized-HS separation at
 least `beta>0`.  From every exact marked

@@ -31,7 +31,8 @@ the full recursive relation library in a tracial matrix ultraproduct with the
 mark still separated by `beta`.
 
 For the density statement, the level projections lie in different tensor
-factors.  They therefore commute and normalized tensor trace factorizes:
+factors.  They therefore commute, reduce their corresponding local packets,
+and normalized tensor trace factorizes:
 
 ```text
 tau(e_1 ... e_N)=product_(j=1)^N tau_V(e)=alpha^N.       (TRP2)
