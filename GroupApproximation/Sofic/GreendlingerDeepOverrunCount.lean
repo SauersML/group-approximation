@@ -236,5 +236,45 @@ theorem exists_deep_orientation {c t M : List (α × Bool)} {j : ℕ}
   exact ⟨E, hM, hinvM, hEt, five_mul_lt_six_mul_eaten hM hj hgt,
     deep_depth_le_offset hM hEt⟩
 
+/-! ## 5.  The piece bound on the intrusion, at any depth -/
+
+/-- **The intrusion into the landing rotation is a piece.**
+
+This is the step the drop-form descent still needs from the deep regime, and it
+is the only one where the eaten stretch is read: the block's deep end matches
+head-relator letters against the opening letters of `t₃`, so `t₃.take i` is a
+common prefix of `t₃` and of the rotation of `invRev t` the alignment names.  A
+common prefix that reached a sixth of `t₃` would force the two to coincide
+(`GreendlingerDeepArc.eq_of_sixth_common_prefix`), and the coincidence is
+refuted by `ne_rotate_invRev_of_minimal_forward` above — in the orientation the
+overrun produces, with the landing factor's effective conjugator extending the
+head conjugator.
+
+`e₁` is arbitrary, so this holds at every distance: the landing factor need not
+be adjacent to the head, and `GreendlingerCoincidence.exists_effectiveConjugator`
+supplies `dw` for any `e₁` and `c₃`.
+
+No bound on `i` is assumed — if the alignment ran past the whole of `t₃` the
+`take` would saturate and the same contradiction follows, so the statement is
+about the alignment and not about which of the two rotations is longer. -/
+theorem six_mul_intrusion_lt_of_forward [DecidableEq α]
+    {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
+    {c t c₃ t₃ dw y : List (α × Bool)} {i : ℕ}
+    {e₁ f : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f))) g)
+    (ht : t ∈ symmetrization R) (ht₃ : t₃ ∈ symmetrization R)
+    (hd : FreeGroup.mk dw = conjEval e₁ * FreeGroup.mk c₃)
+    (hcy : dw = c ++ y) (hy : y <+: FreeGroup.invRev t)
+    (halign : t₃.take i <+: (FreeGroup.invRev t).rotate y.length) :
+    6 * i < t₃.length := by
+  by_contra hcon
+  refine ne_rotate_invRev_of_minimal_forward hmin hd hcy hy ?_
+  refine eq_of_sixth_common_prefix hmetric ht₃
+    (rotate_mem_symmetrization (invRev_mem_symmetrization ht) y.length)
+    (List.take_prefix i t₃) halign ?_
+  rw [List.length_take]
+  omega
+
 end SmallCancellationRouter
 end GroupApproximation

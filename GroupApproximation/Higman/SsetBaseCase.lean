@@ -155,7 +155,7 @@ theorem shift_bElt_succSeq (n : ℤ) :
   have hy : rowElt 1 ^ (n + 1 + 1) = rowElt 1 ^ (n + 1) * rowElt 1 := by
     rw [zpow_add, zpow_one]
   rw [bElt_succSeq, bElt_succSeq, hx, hy]
-  group
+  simp only [mul_assoc]
 
 /-! ## 2.  The two-sided translation, realized in `G₂` -/
 
@@ -331,6 +331,10 @@ noncomputable def NormalSubS : Subgroup G₂ where
       conj_zpow_MSubS (-k) (Subgroup.inv_mem _ hu), -k, ?_⟩
     group
 
+/-- Membership in the collected set, stated rather than unfolded. -/
+theorem mem_normalSubS {w : G₂} :
+    w ∈ NormalSubS ↔ ∃ u ∈ MSubS, ∃ k : ℤ, w = u * succShift ^ k := Iff.rfl
+
 /-- The two-generated subgroup that cuts `A_S` out. -/
 noncomputable def LSubS : Subgroup G₂ :=
   Subgroup.closure {emb (aElt (succSeq 0)), succShift}
@@ -343,11 +347,12 @@ theorem LSubS_le_normalSubS : LSubS ≤ NormalSubS := by
   refine (Subgroup.closure_le _).mpr ?_
   intro x hx
   rcases hx with rfl | hx
-  · refine ⟨emb (aElt (succSeq 0)), emb_aElt_succSeq_mem_MSubS 0, 0, ?_⟩
+  · refine mem_normalSubS.mpr
+      ⟨emb (aElt (succSeq 0)), emb_aElt_succSeq_mem_MSubS 0, 0, ?_⟩
     rw [zpow_zero, mul_one]
   · rw [Set.mem_singleton_iff] at hx
     subst hx
-    refine ⟨1, Subgroup.one_mem _, 1, ?_⟩
+    refine mem_normalSubS.mpr ⟨1, Subgroup.one_mem _, 1, ?_⟩
     rw [zpow_one, one_mul]
 
 /-! ## 4.  The stable-letter grading of `G₂` that counts the shift
@@ -411,7 +416,7 @@ theorem comap_LSubS : LSubS.comap emb = ASub Sset := by
   refine le_antisymm ?_ ?_
   · intro x hx
     have hx' : emb x ∈ LSubS := Subgroup.mem_comap.mp hx
-    obtain ⟨u, hu, k, hk⟩ := LSubS_le_normalSubS hx'
+    obtain ⟨u, hu, k, hk⟩ := mem_normalSubS.mp (LSubS_le_normalSubS hx')
     obtain ⟨y, hy, rfl⟩ := Subgroup.mem_map.mp hu
     have hlen := congrArg lenS hk
     rw [lenS_emb, map_mul, lenS_emb, lenS_zpow, one_mul] at hlen

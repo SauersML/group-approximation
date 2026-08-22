@@ -1468,6 +1468,7 @@ import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 import GroupApproximation.Sofic.GreendlingerLandingProd
 import GroupApproximation.Sofic.AvatarWordFamily
 import GroupApproximation.Sofic.AvatarRouterInstance
+import GroupApproximation.Sofic.AvatarRunBound
 import GroupApproximation.Sofic.SourceFromUniversalKazhdan
 import GroupApproximation.Sofic.RelativeRouterEnvelope
 import GroupApproximation.Sofic.TorsionFreeAssembly
