@@ -53,3 +53,9 @@ threshold for this prescribed `M`.
   one.  The required no-return law must therefore combine the game-specific
   matrix contraction with a mixed colligation relation; it cannot be a
   literal orthogonal-shift presentation valid in the regular representation.
+- Pre-enumerating all finite orthogonal tails does not evade this obstruction.
+  By `existential-fock-library-has-zero-carrier-or-regular-firewall`, a freely
+  chosen carrier has the zero existential extension, one authenticated common
+  carrier contradicts regular trace, and separate depth carriers have
+  vanishing canonical mass unless an additional tight checksum returns them
+  to `q`.
