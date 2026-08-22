@@ -104,6 +104,16 @@ encoding** of the losing polynomial.  An involutive Hermitian dilation
 would suffice, but is stronger than necessary and the usual `2 x 2`
 dilation remains additive rather than an ordinary word.
 
+At the operator level even this two-cycle hypothesis costs only one
+selected-stabilizer corrector.
+`stabilizer-corrector-hermitianizes-zero-compression` proves that every pair
+`QWQ=0` admits a unitary `S` stabilizing
+`Q` for which `SW` is an involution and has the same zero compression.  The
+remaining ordinary-group syntax is therefore narrower still: wordize one
+payload-compatible auxiliary `s` which fixes the selected small atom.  A
+full finite-packet normalizer is too strong and reintroduces the established
+multiplicity-orientation obstruction.
+
 There is now one exact positive reduction inside that gate.
 `finite-cocycle-select-forces-one-common-lcu-gauge` groupifies SELECT for a
 uniform finite-group/cocycle word list and forces every coordinate
