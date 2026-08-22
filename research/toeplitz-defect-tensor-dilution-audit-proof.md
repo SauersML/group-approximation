@@ -3,7 +3,7 @@ rg: 2
 id: toeplitz-defect-tensor-dilution-audit-proof
 kind: route
 title: Apply trace cyclicity and exhibit the rectangular Morita escape
-target: toeplitz-defect-rejects-tensor-dilution-only-after-square-decoding
+target: toeplitz-defect-needs-square-decoding
 requires:
   - positive-toeplitz-head-is-square-defect-or-rectangular-escape
   - mixed-steinberg-loops-admit-morita-rectangular-model

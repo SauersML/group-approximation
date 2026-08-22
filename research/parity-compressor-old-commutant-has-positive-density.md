@@ -49,7 +49,7 @@ part of the remaining hole.
   must visibly fail in this canonical dilution model.
 - The actual packet-headed Toeplitz defect does fail on that model only
   after a square coefficient reservoir has been decoded.
-  `toeplitz-defect-rejects-tensor-dilution-only-after-square-decoding`
+  `toeplitz-defect-needs-square-decoding`
   applies trace cyclicity to `YX=1`, `1-XY=P_f` and gets the stronger direct
   floor `epsilon_l^2+epsilon_h^2>=tau(P_f)^2/2`.  But arbitrary group
   microstates need not be coefficient-ring representations; the same

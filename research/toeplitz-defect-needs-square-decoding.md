@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: toeplitz-defect-rejects-tensor-dilution-only-after-square-decoding
+id: toeplitz-defect-needs-square-decoding
 kind: claim
 title: The Toeplitz defect rejects canonical tensor dilution exactly after square coefficient decoding
 distinct_from:
