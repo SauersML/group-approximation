@@ -59,4 +59,17 @@ must follow from named relators in the canonical packet.
   dimension-free square-root estimate.  The missing word theorem is to force
   that cross-Gram scalar before the two extension paths separate; the polar
   step afterward is already available.
-
+- **The existing Pauli overlap does not supply that hypothesis.**
+  `pauli-overlap-floor-is-subcritical-for-extension-authentication` separates
+  positive overlap from near-full overlap and common range from a labelled
+  common source.  The current `5/64` floor and canonical trace-quarter
+  intersection therefore cannot be fed into the polar lemma.
+- **Hybrid A4/S3 authentication avoids the fivefold standard channel.**
+  `a4-s3-hybrid-fingerprint-diagonalizes-s4-extension-triple` observes that
+  the rows `(A4,omega),(S3,1),(S3,epsilon)` have identity coefficient matrix
+  on `2,3,3 epsilon`.  The new route
+  `atlas-a4-s3-hybrid-extension-authentication-route` asks the full twelve
+  common-product equations to couple those fixed word-visible projections on
+  one transport cut.  This is now the preferred authentication attack; the
+  standard `S3` channel is postponed to the subsequent multiplication-minor
+  calculation.
