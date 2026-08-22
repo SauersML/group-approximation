@@ -80,6 +80,16 @@ annihilates every nontrivial multiplicity sector automatically.
   profile.  Hence no Farkas certificate on A8/A4/S3 type multiplicities can
   prove this target.  The missing content is exactly liftability of those
   compatible marginals to one common rectangle holonomy representation.
+- **The exact common-frame fiber is now an explicit algebraic tower.**
+  `atlas-common-u-is-twelve-double-coset-system` decomposes every cyclic
+  centralizer and eliminates the shared frame.  At multiplicity `k`, the
+  problem is eleven equalities among twelve products
+  `X_e R Y_e`, with `X_e in U(6720k)^3`,
+  `Y_e in U(10080k)^2`, followed by the one collision equation.  Twelve
+  independent right-regular gauges must be quotiented.  The four rectangle
+  matrices are section-dependent shadows of this system, not invariant
+  coordinates.  A proof of this target must therefore produce a gauge-
+  invariant mixed moment or exclude this entire algebraic tower.
 - **Prove the two inequalities separately.**  `(A4-NG-COMP-1)` is a decoder:
   nontrivial holonomy mass is the only obstruction to placing the relative
   chart frame in the right-regular commutant.  `(A4-NG-COMP-2)` is a verifier:

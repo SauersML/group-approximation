@@ -230,3 +230,21 @@ Accordingly the claim remains open.  The minimal live task is to exclude the
 explicit positive-energy quotient trace from tracial matrix ultraproducts;
 independent tree gauges, component centrality, and universal cyclic SOS all
 lose the distinction that matters.
+
+## Exact finite-multiplicity coordinate system
+
+`atlas-common-u-is-twelve-double-coset-system` gives the smallest
+gauge-invariant fixed-`k` formulation currently available.  The thirty packet
+occurrences reduce to twelve products `X_e R Y_e`; after selecting one
+reference edge there are eleven common-product equations plus collision
+19243.  The factors are the explicit cyclic commutant groups
+
+```text
+X_e in U(6720k)^3,       Y_e in U(10080k)^2,
+```
+
+modulo twelve independent copies of the right-regular A8 commutant.  In
+particular the four graph rectangles cannot be substituted as free variables:
+they depend on a section of those right-gauge fibers.  The all-`k` matrix-only
+zero-set statement above is exactly nonliftability of this compact algebraic
+tower.
