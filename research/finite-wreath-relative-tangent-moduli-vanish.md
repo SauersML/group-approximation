@@ -88,3 +88,11 @@ positive entropy must live in models uniformly far from every exact finite
 wreath table, or exploit deterioration when a fixed presentation is expanded
 to a growing multiplication table.  It cannot be detected by a local
 cohomology calculation around regular finite packets.
+
+The presentation-level boundary is
+`wreath-ball-area-controls-only-true-group-cells`.
+True radius-`R` group cells have defect at most `Dehn_G(3R)delta`, and every
+vanishing-defect sequence admits a diagonal `R->infinity` with vanishing true
+table defect.  But a congruence quotient multiplication cell may be a
+nontrivial moving kernel word in the original group, so the presentation
+does not control the full finite table needed by `(FWT8)`.

@@ -75,6 +75,24 @@ precision.
   coboundary, uniformly in `d` and `|H|`.  Therefore an `(EX1)` witness must
   remain nonlinear/far from exact finite packets or exploit the
   presentation-to-growing-table loss; infinitesimal commutant freedom fails.
+- **The presentation-to-table loss is exactly Dehn area plus moving quotient
+  kernels.**  `wreath-ball-area-controls-only-true-group-cells`
+  proves
+
+  ```text
+  Def(true radius-R table) <= Dehn_G(3R) Def(presentation).
+  ```
+
+  Every vanishing-defect sequence has a diagonal radius `R_d->infinity` on
+  which this true table defect still vanishes.  Thus merely invoking fast
+  area growth does not construct entropy.  On the other hand, multiplication
+  cells of a finite congruence quotient lift to moving kernel words which are
+  generally nontrivial in `W_3`; presentation defect gives them no bound.
+  This is why the finite-group tangent contraction does not yet cover all
+  microstates.  The remaining witness/compiler dichotomy is precise: either
+  control those moving kernel cells from regular-character data, or build
+  `c d^2` non-conjugate models supported in them while preserving every
+  diagonal true-ball table.
 - **Freeness inside is not enough (calibration).**  `h` is not monotone
   under subalgebras: `L(F_2) subset L(F_2) tensor R` with
   `h(ambient) = 0`.  So free subgroups of `Gamma`, or the Bass–Serre

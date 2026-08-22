@@ -203,6 +203,14 @@ essentially unique modulo conjugation and lower-order corrections.
    `d^2(1-|H|^(-1))`, but all of it is orbit tangent.  The exact computation
    and uniform approximate linear contraction are
    `finite-wreath-relative-tangent-moduli-vanish`.
+6. **Only moving quotient-kernel cells escape the local contraction.**  True
+   radius-`R` multiplication cells cost at most
+   `Dehn_G(3R) Def(presentation)`, and every vanishing-defect sequence has a
+   diagonal growing radius where that table is accurate.  A congruence
+   quotient cell, however, may lift to a nontrivial kernel word in the
+   original group and has no van Kampen bound.  The exact theorem and the
+   resulting entropy/compiler dichotomy are
+   `wreath-ball-area-controls-only-true-group-cells`.
 
 ## Trust surface
 
