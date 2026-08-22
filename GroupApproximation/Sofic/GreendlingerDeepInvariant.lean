@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.GreendlingerDeepTailWindow
+import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 
 /-!
 # The deep branch on the weakened invariant: a window, and no offset at all
@@ -799,6 +800,96 @@ theorem greendlingerAt_of_landing_survivor {R : Set (List (α × Bool))}
     (i := D - c₃.length) (k := c₃.length + t₃.length - P₃.length) ht₃ ?_
     (Nat.zero_le _) hfront hback
   rw [List.nil_append]
+
+/-! ## 9.  The landing, from the forward piece bound
+
+`GreendlingerDeepOverrunCount` closes the front bound at any depth:
+`six_mul_intrusion_lt_of_forward` caps the intrusion into the landing rotation,
+`mk_effectiveConjugator_of_split` names the effective conjugator, and
+`exists_forward_containment` / `exists_forward_alignment` supply the two
+positional fields it wants.  What that chain produces is `6 i < |t₃|` — which is
+one field of `LandsIn` and not an arc, so it is `DeepCompositeLands` that it
+discharges, not `DeepArcDrop`.
+
+This section spends the chain.  Everything relator-side is derived here rather
+than assumed: the landing factor's symmetrization comes from `ConjValid`, its
+minimality from `isMinimalConjExpr_drop`, and the count that makes the descent
+terminate from the split of the expression — the same three the
+conjugator-absorbed site derives in `Sofic.GreendlingerAlphaPlumb`.  What is
+left as hypotheses is exactly the positional data: one cascade decomposition,
+one leading cancellation of the landing sub-expression, and the length
+bookkeeping that says where the block stops. -/
+
+/-- **The landing site, from the forward piece bound.**
+
+`hcasc` is `GreendlingerAlphaPlumb.exists_cascade_split` read at `k = |e₁|`,
+which carries no side conditions; `hc₃V` is the landing sub-expression's own
+leading cancellation, in the form that says its word opens with its conjugator;
+`hM` is the orientation of the eaten prefix, and `hZ`, `hlow`, `hhigh` say the
+block reaches the landing rotation and stops `i` letters into it.  The head
+factor's `hmin` carries the coincidence refutation, through
+`ne_rotate_invRev_of_minimal_forward` inside the piece bound.
+
+Instantiating `b := D + (N₀ − |P'|)` — the composite block of
+`DeepCompositeLands`, with `D` and `N₀` from `exists_postJunction_drop` — is
+what turns this into that predicate's conclusion. -/
+theorem landsIn_of_forward_alignment [DecidableEq α]
+    {R : Set (List (α × Bool))} (hmetric : MetricSmallCancellation R (1 / 6))
+    {c t c₃ t₃ M E A Z : List (α × Bool)}
+    {e₁ f₃ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    {N i b : ℕ}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))) g)
+    (ht : t ∈ symmetrization R)
+    (hredp₃ : FreeGroup.IsReduced (palindrome c₃ t₃))
+    (hcasc : (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      = A ++ (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord.drop N)
+    (hc₃V : (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord = c₃ ++ Z)
+    (hN : N ≤ c₃.length) (hZ : t₃.take i <+: Z)
+    (hM : FreeGroup.invRev M = c ++ FreeGroup.invRev E) (hEsuf : E <:+ t)
+    (hMW : FreeGroup.invRev M
+      <+: (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord)
+    (hlow : c.length ≤ A.length + (c₃.length - N))
+    (hhigh : A.length + (c₃.length - N) + i ≤ M.length)
+    (hNi : N ≤ c₃.length + i)
+    (hfit : b + N ≤ A.length + c₃.length + i) :
+    LandsIn R b (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃)).length := by
+  -- the three relator-side facts, from minimality and the split
+  have ht₃ : t₃ ∈ symmetrization R := hmin.1 (FreeGroup.mk c₃, t₃) (by simp)
+  have hdrop : ((FreeGroup.mk c, t)
+      :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).drop (e₁.length + 1)
+      = (FreeGroup.mk c₃, t₃) :: f₃ := by
+    rw [List.drop_succ_cons, List.drop_left]
+  have hmin₃ := isMinimalConjExpr_drop (e₁.length + 1)
+    ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))) g hmin
+  rw [hdrop] at hmin₃
+  have hf₃ : f₃.length < (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃)).length := by
+    simp only [List.length_append, List.length_cons]
+    omega
+  -- the effective conjugator, and the two positional fields
+  have hVc : (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord.take N
+      = c₃.take N := by
+    rw [hc₃V, take_append_of_le N c₃ Z hN]
+  have hPQ : FreeGroup.mk
+        (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      = conjEval e₁
+        * FreeGroup.mk (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord := by
+    rw [FreeGroup.mk_toWord, FreeGroup.mk_toWord, conjEval_append]
+  have hd := mk_effectiveConjugator_of_split hcasc hVc rfl hPQ
+  obtain ⟨y, hy, hyE⟩ :=
+    exists_forward_containment hcasc hc₃V hN hM hMW hlow (by omega)
+  obtain ⟨y', hy', halign⟩ :=
+    exists_forward_alignment hcasc hc₃V hN hZ hM hEsuf hMW hlow hhigh
+  have hyy : y = y' := List.append_cancel_left (hy.symm.trans hy')
+  have halign' : t₃.take i <+: (FreeGroup.invRev t).rotate y.length := by
+    rw [hyy]
+    exact halign
+  -- the front piece bound, and the landing site it completes
+  have hpiece : 6 * i < t₃.length :=
+    six_mul_intrusion_lt_of_forward hmetric hmin ht ht₃ hd hy
+      (hyE.trans (invRev_prefix_of_suffix hEsuf)) halign'
+  exact ⟨c₃, t₃, f₃, A, N, i, hf₃, hcasc, ht₃, hredp₃, hmin₃, hpiece, hNi, hfit⟩
 
 end SmallCancellationRouter
 end GroupApproximation

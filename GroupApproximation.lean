@@ -1508,6 +1508,7 @@ import GroupApproximation.Higman.HigmanVariableCalculus
 import GroupApproximation.Higman.TransportFive
 import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.TransportStarWitness
+import GroupApproximation.Higman.MapEmbSharp
 import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.OmegaTower
