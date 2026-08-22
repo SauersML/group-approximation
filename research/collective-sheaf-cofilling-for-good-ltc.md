@@ -14,7 +14,7 @@ and ordinary cosystolic/LTC soundness.  Because degree zero has no forced
 bounded-weight coboundaries, these codes evade
 `constant-cochain-collective-codes-lose-distance`.
 
-What is not proved there is the simultaneous-support estimate
+The exact desired upgrade is the simultaneous-support estimate
 
 ```text
 for every family beta_t in im(d_0),
@@ -22,13 +22,14 @@ choose d_0 a_t=beta_t with
 |union_t supp(a_t)| <= K |union_t supp(beta_t)|.          (SCC1)
 ```
 
-The paper's correction algorithm treats one cochain at a time: it repeatedly
-chooses a local correction that decreases that input's syndrome weight.
-Its ordinary bound does not control the union of correction supports across
-all syndromes contained in one erased check set.  Applying it separately
-can lose a factor equal to the number of attainable syndromes.
+For the double-Cayley sheaves used in their construction, every hypothesis
+of their degree-zero local-to-global criterion amplifies formally except
+one: agreement testability of the fixed inner tensor code.  More precisely,
+`inner-tensor-agreement-is-amplification-stable` implies `(SCC1)` by applying
+First--Kaufman Theorem 8.10 to finite direct sums of the sheaf, with constants
+independent of the number of summands.
 
-Proving `(SCC1)` for the explicit First--Kaufman sheaves would immediately
+Proving the amplified inner agreement claim would immediately
 give a bounded-degree, positive-rate, linear-distance instance of common
 erasure cleaning by `collective-cofilling-is-common-erasure-cleaning` and
 would close the projective far-valley sector.  Equivalently, one may prove
@@ -50,3 +51,9 @@ Primary source: https://arxiv.org/abs/2403.19388
   essentially to obtain positive rate.  An extension of the collective
   local-minimality argument to these sheaves is not stated, and ordinary
   cosystolic expansion alone does not imply the simultaneous estimate.
+* **Amplify the published inner-code hypothesis.**  The local distance
+  hypotheses preserve their constants under direct sums, but the local
+  `cbe_0` hypothesis is agreement testability of `C_A tensor C_B`.  Its
+  direct-sum form is exactly the new common-support lemma recorded in
+  `inner-tensor-agreement-is-amplification-stable`; ordinary agreement
+  testability is only its one-summand case.
