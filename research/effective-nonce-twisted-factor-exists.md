@@ -11,6 +11,14 @@ There are a finite-rank free group `F`, a recursively enumerable normally
 generated subgroup `N normal F`, and a scalar multiplier `omega` on `F/N`
 such that `L_omega(F/N)` is not Connes embeddable.
 
+`effective-twisted-factor-existence-is-equivalent-to-fp-nonhyperlinearity`
+shows that this is equivalent to the existence of a finitely presented
+nonhyperlinear group.  Thus the effective gate is not a weaker intermediate
+compiler target.  Its r.e.-kernel condition is precisely the Higman-level
+effectivity content of the final problem; the multiplier itself need not be
+computable because the forward relation-centralizing group `F/[F,N]` depends
+only on `N`.
+
 ## Attempts
 
 - Recognize the CDI/Manzoor factor from finitely many projective-word
@@ -20,4 +28,3 @@ such that `L_omega(F/N)` is not Connes embeddable.
 - Compile the fixed non-CE BCS trace into a finite projective presentation.
   Existing phase packets leave exact forbidden selector sectors and so do not
   transfer the finite-dimensional energy gap.
-
