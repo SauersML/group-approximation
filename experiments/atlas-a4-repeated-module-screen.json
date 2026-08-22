@@ -1,0 +1,36 @@
+{
+  "graph": {
+    "a8_centralizer_order": 6,
+    "collision_orders": {"1": 5184, "2": 65448, "4": 66096},
+    "collision_survivors": 5184,
+    "effective_gauges": 20160,
+    "f4_collision_crosscheck": 0,
+    "f4_linear_gauges": 180,
+    "f4_packet_crosscheck": 2754,
+    "f4_q14_crosscheck": 486,
+    "h6_centralizer_order": 120960,
+    "joint_survivors": 0,
+    "packet_survivors": 136728,
+    "q14_survivors": 5184,
+    "structured_candidates": 25441920
+  },
+  "inner": {
+    "a8_centralizer_order": 6,
+    "collision_orders": {"1": 5184, "2": 65448, "4": 66096},
+    "collision_survivors": 5184,
+    "effective_gauges": 20160,
+    "f4_collision_crosscheck": 0,
+    "f4_linear_gauges": 180,
+    "f4_packet_crosscheck": 2754,
+    "f4_q14_crosscheck": 729,
+    "first_collision_escape_conjugator": "401004080301c030",
+    "first_escape_hub_order": 4,
+    "first_escape_hub_value": "8040a05058440201",
+    "first_escape_q14_value": "8040201048040201",
+    "h6_centralizer_order": 120960,
+    "joint_survivors": 0,
+    "packet_survivors": 136728,
+    "q14_survivors": 10044,
+    "structured_candidates": 25441920
+  }
+}

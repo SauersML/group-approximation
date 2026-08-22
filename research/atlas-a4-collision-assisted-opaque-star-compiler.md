@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-collision-assisted-opaque-star-compiler
 kind: claim
 title: Collision-assisted opaque conjugacy transports suffice for the A8 chart frame
+refuted_by:
+  - atlas-multiplicity-two-packet-collision-hub-escape
 distinct_from:
   atlas-a4-full-packet-normal-generator-table-compiler: that stronger target constructs a 20160-state approximate multiplication table; this target asks only for three pairwise conjugacy transports around the collision opcode.
   atlas-a4-full-packet-normal-generator-holonomy-compiler: that stronger target rounds residual holonomy to an exact A8 representation; this target never constructs even an approximate representation.
@@ -10,6 +12,13 @@ artifacts:
   - experiments/atlas_a8_minimal_transvection_cycle.py
   - experiments/atlas_a4_19243_normal_closure.py
 ---
+
+**Refuted.**  The exact multiplicity-two witness in
+`atlas-multiplicity-two-packet-collision-hub-escape` has zero packet and
+collision defects but a hub opcode of order four.  Thus `(A4-STAR-2)` is
+false already in one finite regular representation.  The stronger q14-plus-
+collision system survives as a distinct lane because this witness violates
+q14.
 
 Use the minimal directed-cycle transvection set
 
