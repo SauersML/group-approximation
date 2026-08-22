@@ -111,6 +111,25 @@ all `d_n^2` adjoint directions, while the obstruction is one selected odd
 direction.  The exact remaining scalar terminal is
 `canonical-iwahori-one-hecke-overlap-saturates`.
 
+There is now a second exact scalarization through projective trace square.
+For `V_n=2p_n-1`,
+`iwahori-edge-orientation-removes-projective-sign-branch` proves
+
+```text
+1-|tr([V_n,U_n])|^2
+ =4||[p_n,U_n]||_2^2(1-||[p_n,U_n]||_2^2).
+```
+
+Although this has a balanced block-flip zero, projective centrality on the
+whole exact second vertex makes the choices of zero branch into a sign
+character of `SL_2(Z)`.  No nontrivial sign character is trivial on the
+common Iwahori subgroup, so edge commutation forces the ordinary branch.
+Consequently `projective-commutant-transfer-for-arithmetic-pair` would imply
+this claim directly.  The native edge supplies the orientation; adding
+coordinate Paulis is unnecessary.  What remains is the approximate
+arithmetic projective-transfer theorem itself, since the established exact
+trace-square gap applies only after full-ambient exactification.
+
 ## Full-HNN conditioning does not bypass the action fork
 
 One might try to exploit the extra hypothesis actually present in the HNN
