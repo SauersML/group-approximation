@@ -189,6 +189,19 @@ compressed Weil packets.
   one global multiplicity-semigroup repair; searching for an unconditional
   angle gap is now fenced.
 
+- **The global threshold has explicit qualitative rates, but invariant
+  hulling is impossible.**  `bs14-energy-threshold-active-passive-ledger`
+  chooses `tau=e^(1/4)` and gives active padding fraction `O(e^(1/2))` and
+  passive coupling cost `O(e^(1/8))`.  This would already suffice for the
+  qualitative relative-stability endpoint.  However
+  `bs14-residual-invariant-hull-has-unbounded-packet-loss` shows that the
+  BS-core invariant hull of a rank-one Weil source is the entire
+  `d`-dimensional packet.  The remaining reverse operation is isolated as
+  `bs14-residual-polar-data-build-active-dilation`: jointly round the two
+  high-residual polar decompositions to integer source/exit cells and add
+  trivial-core dimensions, without replacing the non-invariant source by a
+  core-central projection.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
