@@ -161,6 +161,27 @@ def reduce_mod2(basis, row):
     return 0
 
 
+def quotient_normal_form(basis, row):
+    """Eliminate every image pivot, retaining all complementary coordinates.
+
+    Ordinary echelon reduction may stop at the highest nonpivot, which is
+    correct for testing span membership but not for choosing a representative
+    in a quotient: lower image pivots can remain.  Moving each encountered
+    nonpivot into ``free`` gives the unique complement representative.
+    """
+    free = 0
+    while row:
+        pivot = row.bit_length() - 1
+        entry = basis.get(pivot)
+        if entry is None:
+            bit = 1 << pivot
+            free |= bit
+            row ^= bit
+        else:
+            row ^= entry[0]
+    return free
+
+
 def insert_binary(basis, row):
     row = reduce_mod2(basis, row)
     if not row:
@@ -266,7 +287,7 @@ def main():
     beta_queue = []
 
     def admit_quotient(row, target_basis, target_rows, target_queue):
-        row = reduce_mod2(image_basis, row)
+        row = quotient_normal_form(image_basis, row)
         row = reduce_mod2(target_basis, row)
         if not row:
             return False
@@ -296,7 +317,7 @@ def main():
         target = (1 << identity_index) ^ (
             1 << index_by_key[matrix_key(h)]
         )
-        remainder = reduce_mod2(image_basis, target)
+        remainder = quotient_normal_form(image_basis, target)
         bridge_remainders.append(remainder)
         admit_quotient(
             remainder, bridge_basis, bridge_rows, bridge_queue
@@ -318,7 +339,6 @@ def main():
     )
     if valuation_at_least_two_factors < 0:
         raise AssertionError("Bockstein rank exceeds the even Smith count")
-
     print(json.dumps({
         "group": "A8 ~= GL4(F2)",
         "group_order": order,
