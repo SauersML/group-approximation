@@ -74,3 +74,22 @@ A nontracial Hilbert-hotel representation does not evade this statement.
 It may contain proper isometries, but it cannot make `(FRK1)` compatible with
 an infinite-order `w`, because the same algebraic equality is automatically
 visible in the faithful regular representation.
+
+## Finite-packet corollary
+
+Exactifying one fixed finite packet does not evade the theorem.  Its Fourier
+projections and matrix units are fixed elements of a matrix algebra over
+`C[Gamma]`.  Hence any **fixed-size** rectangular pencil assembled from
+those coefficients and finitely many ambient words is an `A` of the form
+above after one fixed matrix amplification.  If a bounded packet calculation
+proves that the whole kernel is returned, its zero-defect calculation gives
+the corresponding factorization (or, more generally, the same kernel
+inclusion) in the regular packet corner.  Murray--von Neumann rank-nullity
+then gives the identical contradiction.
+
+Thus allowing the kernel projection itself to wander removes the need to
+name a carrier, but does not remove the need for a matrix-only **decoder**.
+Fixed signed-Hecke blocks, fixed semisimple packets, and a bounded menu of
+rectangular Fourier corners remain on the tracial side of the firewall.  A
+successful finite-packet Hilbert hotel must activate an unbounded family or
+make its coefficient choice depend on the finite multiplicity coordinates.

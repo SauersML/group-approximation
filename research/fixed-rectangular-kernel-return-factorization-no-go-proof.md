@@ -43,3 +43,9 @@ the block diagonal word has exactly the same normalized scalar moments as
 `unnamed-positive-density-fixed-space-is-terminal` would already contradict
 canonical microstates.  The regular argument shows why no fixed algebraic
 data with these hypotheses can exist in the first place.
+
+For a fixed finite packet, Fourier projections are finite group-algebra
+sums.  Substituting them into a bounded decoded block merely increases
+`p,q` by a fixed factor and leaves the proof unchanged.  In particular the
+argument does not assume that the model-dependent kernel projection is a
+group-algebra element; only the pencil and its return certificate are fixed.
