@@ -286,3 +286,40 @@ exactly such unitaries when the centralised subalgebra is amenable, so
 type (ii) for `C = SL_n(Z)` asserts that Popa's theorem fails past
 amenability — the Gao--Junge open problem in its first arithmetic
 instance.
+
+**Frontier map after the 2026-08-21 evening RE pass.**  The three
+independent standing routes each bottleneck at a core that is
+equivalent-to-or-harder-than a recognized open problem, and the by-hand
+routes now share ONE analytic residual:
+
+- *Arithmetic RCC / relative-embeddability (type ii).*  The HNN group's
+  minimal form is `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`;
+  its host-only weakest form is `arithmetic-pair-is-not-relatively-embeddable`
+  (`= D^+ = (A x Z) *_C A` non-hyperlinear, Gao Thm 7.1).  Under
+  `sl3-z-weakly-ucp-stable` (confinement to the `Lambda`-exact face) this
+  reduces, after `sl3-re-lambda-exact-coprime-face-is-unfaithful` (coprime
+  levels) and `lambda-exact-face-of-the-collapse-closes` (regular-type
+  2-power), to EXACTLY the `(RC3)` residual:
+  `two-adic-tower-format-of-surviving-lambda-exact-enemy` — an
+  `S_3`-interlocked depth-two solenoidal tower over `{SL_3(Z/2^a)}` with
+  every marginal forced, being measured by the sioux tower probe (exact
+  interlock floor `32/21` at `s = 1`).  The regular-trace-forces-regular-type
+  shortcut is ruled out.  The other horn of the residual is the
+  weak-ucp/outlier sector, i.e. flexible stability of `SL_3(Z)`
+  (Dogon--Vigdorovich Q1.4 shape).
+- *Atlas / binary Leavitt unit group (type ii, finite-combinatorial).*
+  Reduces to finite certificates over `A8 = GL_4(F2)` and collision `19243`
+  (`atlas-a4-holonomy-coherence-gap` family); several are being computed
+  directly.
+- *MIP*=RE transfer (type i).*  `non-ru-bcs-is-satisfiable-in-a-group-factor`
+  (weakest form; any corner of any group factor modelling the fixed non-RU
+  BCS), equivalent by `character-group-realizability-parseval-criterion` to
+  a Parseval joint-state existence; blocked on embedding-universality of
+  group factors (Chifan--Drimbe--Ioana Remark 1.1, open) or the
+  Boolean-to-linear groupification (Paddock--Slofstra Prop 5.8, equivalent
+  to the goal itself).
+
+So every current route reaches the same class of frontier: a genuinely open
+rigidity/stability question.  The RE pass's structural gain is that it
+collapses the two by-hand routes onto one residual and states it as a
+host-only, stable-letter-free question about microstates of `SL_3(Z[1/2])`.
