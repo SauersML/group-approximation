@@ -36,3 +36,15 @@ needs.
 
 The statement does not groupify the predicates.  In particular it supplies
 neither an LCS central involution nor a canonical group-algebra corner.
+
+This limitation is not removed by the standard BCS/LCS citations.
+Paddock--Slofstra Lemma 5.4 only changes to a target constraint language from
+which every source predicate is pp-definable.  Projection of a finite affine
+solution set is affine, so a genuinely nonaffine 2-CSP relation is not
+pp-definable from `LIN`; their Lemma 5.5 gives the reverse reduction, from
+`LIN` to a non-Schaefer language.  Slofstra's solution-group embedding
+theorem accepts an already formed finitely presented group with a central
+involution, not a CSP algebra with forbidden spectral projections.  The
+remaining interface is therefore a mark-relative 2-CSP-to-group
+ultraproduct decoder, as isolated in
+`perfect-completeness-constant-soundness-lcs-compiler`.

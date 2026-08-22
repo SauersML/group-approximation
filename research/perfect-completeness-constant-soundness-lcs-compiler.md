@@ -28,6 +28,61 @@ proof-search fixed-point machine `M_*`.  Taller--Vidick prove the stronger
 uniform `(PC2)` bound `omega_q<=71/72` and a version of `(PC1)` with value
 `1 - epsilon` only.
 
+## Published perfect-gap CSPs stop exactly before LIN
+
+Culf--Mastel, arXiv:2410.21223v2, do supply the right recursion-theoretic
+orientation *before* the syntax conversion.  Their finite oracular 2-CSP
+family has perfect CE completeness on halting inputs and a constant
+finite-dimensional/CE soundness gap on nonhalting inputs; this is recorded in
+`culf-mastel-oracular-2csp-perfect-gap-family`.  The output relations are
+general nonaffine 2-CSP relations (equivalently one may use their
+NP-complete Boolean languages or 3-colouring), not linear equations.
+
+The Paddock--Slofstra BCS reductions do not cross this last boundary.  Their
+Lemma 5.4 compiles a source relation `R` into a target language `L` only when
+`R` is pp-definable from `L`.  A relation pp-definable from `LIN` is affine:
+the defining parity equations have an affine solution set, and projection
+along the existential auxiliary coordinates remains affine.  Hence a
+nonaffine Culf--Mastel predicate is not eligible for the Lemma 5.4 reduction
+with target language `LIN`.  Their Lemma 5.5 runs in the opposite direction:
+`LIN` is definable from every non-Schaefer language, so it compiles an
+already-linear source *out to* the NP-hard language.  It does not compile an
+NP-hard CSP back to an LCS.  Proposition 5.8 then identifies a
+tracial/non-`R^U` LIN instance itself with the existence of a finitely
+presented nonhyperlinear group; it is an endpoint equivalence, not a generic
+BCS-to-LCS reduction.
+
+Slofstra's solution-group embedding theorem (arXiv:1606.03140, Theorem 3.1)
+also starts one step too late.  Its input is a finitely presented **group**
+with a specified central involution, and its output is a solution group into
+which that group embeds while preserving the involution.  A 2-CSP/BCS algebra
+is presented instead by vanishing joint spectral projections.  The theorem
+does not convert those additive projection relations into group relators.
+Moreover, an embedding preserves exact nontriviality and lets exact target
+representations restrict to the source group, but by itself supplies no
+decoder from almost representations to a near-perfect CSP strategy.  Thus
+the Culf--Mastel soundness gap cannot be fed directly into the theorem.
+
+The exact remaining bridge can therefore be stated without a uniform gap.
+For the Culf--Mastel instance `B_M`, construct effectively a finitely
+presented group `G_M`, a central involution `j_M`, and an ultraproduct decoder
+such that
+
+```text
+M halts and B_M has a perfect CE model  =>  j_M != 1 in G_M,
+an approximate representation sequence of G_M
+  with j_M separated from 1             =>  a perfect CE model of B_M.
+```
+
+On a nonhalting input the second implication contradicts their constant
+soundness theorem, so `j_M` is trivial in approximate representations.
+Slofstra's effective embedding can then turn `(G_M,j_M)` into an LCS family
+satisfying `(PC1)--(PC2)`: a hypothetical separated approximate
+representation sequence of the solution group restricts, through the fixed
+embedding words, to one of `G_M`.  This mark-relative CSP-to-group
+ultraproduct decoder--equivalently a direct perfect LCS compiler--is the
+missing theorem.  None of the three cited published reductions supplies it.
+
 ## Attempts
 
 - **Remove the mask from the Taller--Vidick decoder.**  Dies by
