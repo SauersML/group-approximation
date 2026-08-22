@@ -132,3 +132,11 @@ tuple.
   `L(PSL_2(Z[1/2]))` and is exactly the unresolved presentation-microstate
   problem.  Hence the polar ledger must solve regular-character correction;
   no further scalar character dichotomy is available or needed.
+- On that regular face, `bs14-regular-character-forces-sublinear-fixed-source`
+  gives a genuine new rank bound.  The spectral law of the infinite-order
+  `R` is Haar, hence `dim Fix(R)=o(d)`; by `(TBI2)` every neutral boundary
+  source block has rank `o(d)`.  More sharply, creating fixed density
+  `alpha` by a same-space perturbation costs at least
+  `Phi(alpha)=2alpha-(2/pi)sin(pi alpha)`.  This makes source replacement
+  flexibly affordable but still does not identify the cross-threshold exits
+  or build the exact `X`.

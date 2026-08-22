@@ -290,6 +290,17 @@ compressed Weil packets.
   regular-character microstate correction, not another classification of
   exact characters.
 
+- **Regular character kills positive-density fixed sources.**
+  `bs14-regular-character-forces-sublinear-fixed-source` uses the Haar
+  spectral law of the infinite-order diagonal word.  Its exact fixed space
+  has `o(d)` dimension, and inversion forces every trivial-boundary source
+  into that space.  The sharp perturbative cost for creating fixed density
+  `alpha` is
+  `2alpha-(2/pi)sin(pi alpha)~(pi^2/3)alpha^3`.
+  Thus the regular face supplies the desired qualitative rank charge for
+  sources.  The remaining obstruction is operator-valued: recovering the
+  two exits and their global congruence atom from an `o(d)` source carrier.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

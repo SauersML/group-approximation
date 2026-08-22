@@ -73,3 +73,10 @@ congruence tensors as in
 the regular character does not make the remaining analytic geometry
 artificially restrictive.
 
+The regular face does provide one extra spectral estimate.
+`bs14-regular-character-forces-sublinear-fixed-source` shows that the
+infinite-order diagonal generator has Haar spectral law, so `Fix(R)` has
+vanishing density.  Every neutral inversion-compatible boundary source lies
+in this space.  This eliminates positive-density source ambiguity, but not
+the global cross-length exit data needed to reconstruct the congruence
+atom.
