@@ -157,6 +157,17 @@ the hidden overlap has trace exactly half of the carrier.  Thus the word
 identity remembers symmetric difference, not orthogonal union.  The two
 proper returns must charge the nonlinear C18 overlap itself.
 
+Selector flips do not supply that charge by covariance alone.
+`fanizza-selector-flips-split-from-native-triangle` covariantizes a finite
+flat triangle model over the full incidence-gauge group and tensors it with
+the stationary `S_4` recurrence and positive D8 packet.  Every selector
+implementer commutes with the invariant logical machine-word algebra, while
+`tr(H)=1/8` remains exact.  Hence the missing cell must contain a genuinely
+mixed selector--machine-word relation acting nontrivially on the guarded C18
+multiplicity coordinate.  Merely adjoining all selector symmetries, or using
+them as covariance implementers around the triangle, leaves a split
+spectator gauge and cannot produce `(STR1)` or `(STR1')`.
+
 Finally, `functorial-packet-return-firewall`
 extends the regular firewall beyond literal block words.  Fixed finite-group
 averaging, spectral exactification, polar decomposition, support cuts, and
