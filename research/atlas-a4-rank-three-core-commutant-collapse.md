@@ -105,3 +105,14 @@ commutant, or the full `A8` commutant is required.
   edges, so neither residual can telescope along one shifted factorization.
   What remains is sharply a joint packet--collision cycle identity producing
   those two mixed residuals, or a matrix-only trace obstruction forcing them.
+- **There is no packet path carrying that mixed residual.**
+  `atlas-fourteen-edge-core-has-no-collision-to-c6-path` uses the exact
+  `K_(2,2) disjoint_union K_(2,2)` incidence graph and collision localization:
+  collision lives entirely at the `K` component, `b_0` is not a packet
+  vertex, and `a` lies in the `H_6` component.  Spanning-tree gauge fixing
+  leaves one independent rectangle in each component, but no path between
+  them.  Thus a word telescope through edge messages cannot prove the two
+  covariance equations.  The remaining positive route must use the shared
+  literal `U` at the level of the simultaneous shifted-double-coset
+  intersection; an exact matrix point of that intersection with nonzero
+  covariance would instead refute the target estimate.
