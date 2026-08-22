@@ -223,3 +223,19 @@ ellipse ceiling itself still requires the unresolved joint-gap theorem.
   Cauchy--Schwarz/SOS derivation of the same direction would duplicate an
   established theorem.  The missing content remains the opposite strict upper
   ceiling, equivalently the positive joint residual gap.
+- **Malcev gives rankwise gaps, not the uniform gap.**
+  `atlas-rankwise-gap-is-ultraproduct-obstruction`
+  defines the minimum joint residual `delta_k` on each compact relative-frame
+  space `U(20160k)`.  If `Gamma_A4` has no nontrivial finite quotient, the
+  exact-matrix/finite-quotient theorem gives `delta_k>0` for every fixed `k`.
+  But
+
+  ```text
+  inf_k delta_k=0
+  ```
+
+  is equivalent to an exact regular-margin solution in a tracial matrix
+  ultraproduct, and every witnessing sequence must have `k->infinity` after a
+  subsequence.  Thus a dimension-independent quantitative Malcev bound is
+  already the missing joint residual gap itself; ordinary residual finiteness
+  supplies no intermediate uniform estimate.
