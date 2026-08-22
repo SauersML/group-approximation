@@ -848,12 +848,13 @@ structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   about.  Because a positive word is in particular reduced, nothing cancels at
   a junction, so there are no junction residues and the ceiling does not have
   to be doubled to accommodate them.  It does **not** follow that the runs are
-  bounded by `A_max` at all: a positive word may be `y₂` a thousand times over.
+  bounded by `V·L` at all: a positive word may be `y₂` a thousand times over.
   That bound is a property of the avatar code's block structure — every `y₂`-run
-  is separated by a `y₁` and carries a code exponent — and it needs the
-  corresponding induction, which lives in `AvatarRunBound`.  Until that lands,
-  `AvatarMetricCheck.AvatarMetricData.runs_short` stays an instantiation
-  hypothesis and is not a consequence of this field. -/
+  is separated by a `y₁` and carries a code exponent — and it is not a
+  consequence of this field.  It is now folded into
+  `AvatarMetricCheck.AvatarMetricData.piece_short`, which states the piece
+  ceiling directly rather than deriving it from a run ceiling, and which stays
+  an instantiation hypothesis. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
   /-- **Per-relator padding, as data.**  Each relator carries a *private*
   generator: one occurring exactly once in it, and in no other relator.  This
@@ -865,26 +866,26 @@ structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   avatar occurs once in the relator, so each of its `L` exponents is read at
   exactly one cyclic position, which is the unique mark that field asks for.
 
-  It does **not** give `pinned`, and the gap is worth stating rather than
-  papering over.  A window carrying three separators spans two complete
-  `y₂`-runs; an avatar has `L = 16·(V+1)` blocks, so such a window normally
-  sits entirely *inside one avatar*.  It therefore pins `(ν, j)` — which
-  generator, which block — but not which relator, because the same generator
-  may occur in two different relators.  Rotating each of those to begin at the
-  window makes it a common prefix of two distinct symmetrized relators.  So
-  `pinned` at threshold three would need every avatar *occurrence* to be unique
-  across the whole family, which is far stronger than one private generator per
-  relator, and is not something a presentation of an arbitrary group can be
-  massaged into.
+  It does **not** give the small-cancellation condition, and the reason is
+  worth keeping on the record, because an earlier version of that condition —
+  "a window with three separators determines the relator" — was not merely hard
+  but unsatisfiable, and was withdrawn on this argument.  A window carrying
+  three separators spans two complete `y₂`-runs; an avatar has `L = 16·(V+1)`
+  blocks, so such a window normally sits entirely *inside one avatar*.  It
+  therefore pins `(ν, k)` — which generator, which block — but not which
+  relator, because the same generator may occur in two different relators.
+  Rotating each of those to begin at the window makes it a common prefix of two
+  distinct symmetrized relators.  Such a condition would need every avatar
+  *occurrence* to be unique across the whole family, which no presentation of an
+  arbitrary group admits.
 
-  The way out is to weaken the conclusion rather than strengthen this
-  hypothesis: a piece may legitimately be about one avatar long — two relators
-  sharing a generator share that generator's whole avatar — and the metric
-  condition survives provided relators are long *measured in avatars*.  That
-  moves the margin off `piece ≤ 3·A_max + 3` and onto the ratio of a single
-  avatar to a whole relator, where the spread between the shortest and longest
-  avatar is what has to be paid for.  The arithmetic belongs with whoever owns
-  the margin. -/
+  What replaces it is `AvatarMetricCheck.AvatarMetricData.piece_short`, which
+  states the piece ceiling directly: a piece may legitimately be about one
+  avatar long — two relators sharing a generator share that generator's whole
+  avatar — and the metric condition survives because relators are long
+  *measured in avatars* and, by `length_avatarWord_eq`, every avatar is the
+  same length.  That last point is what makes the ceiling a constant fraction
+  rather than a `V`-dependent one. -/
   privateGen : ∀ r ∈ pres.rel, ∃ i : Fin pres.card,
     r.count (i, true) = 1 ∧ ∀ r' ∈ pres.rel, r' ≠ r → (i, true) ∉ r'
   /-- The first designated defect element, as a word. -/
