@@ -211,6 +211,17 @@ compressed Weil packets.
   does not revive an angle gap.  The last flow must jointly round
   `R`-fixed source cells, their exit Grams, and the involution equations.
 
+- **The fixed-source flow is genuinely three-way and need not saturate.**
+  `bs14-two-exit-typed-transport-is-not-saturated` decomposes
+  `Fix(R|H_(O,V))` as the orbit-sum copy of `ker(V-1)` and writes the joint
+  multiplicity matrix: one source type must be matched simultaneously to
+  one exit type for each cubic.  The resulting three-uniform incidence
+  matrix has a determinant-two minor; an explicit even-parity four-cell
+  support has integral unit margins but only the half-integral joint table.
+  Therefore ordinary network-flow integrality cannot close `(FBR2)`.
+  A proof needs a BS-specific balanced-support theorem, an energy-controlled
+  parity padding lemma, or an operator argument excluding the parity cycle.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

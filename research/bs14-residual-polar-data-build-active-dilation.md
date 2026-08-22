@@ -21,12 +21,17 @@ and form the high singular spectral subspaces of `|D_1|,|D_2|` above
 `theta`, together with their polar partial isometries and mutual principal-
 angle decomposition.
 
-Construct from these data, without an assumed ambient dilation:
+Construct from these data, without an assumed ambient dilation, a split in
+which the `R`-fixed active source part is dilated and the orthogonal active
+part is corrected internally or discarded:
 
-1. at most `C e^(1/2)d` new trivial-BS dimensions;
-2. a joint source/exit Gram completion coupling those dimensions to the
-   original space;
-3. an exact Iwahori tuple on the enlarged space;
+1. prove that the high-residual source component orthogonal to `Fix(R)` can
+   be removed or internally corrected at `O(e^(1/8))` normalized-HS cost,
+   without taking its possibly unbounded BS-invariant hull;
+2. add at most `C e^(1/2)d` new trivial-BS dimensions for the remaining
+   `R`-fixed source component;
+3. build a joint source/two-exit Gram completion and an exact Iwahori tuple
+   on the enlarged space;
 
 so that its compression is within `O(e^(1/8))` normalized HS of the input
 tuple.
@@ -64,3 +69,15 @@ tuple.
   orbit sum.  The remaining transportation problem is therefore over these
   typed fixed-source cells, together with the involution Gram equations
   `(TBI3)`, not over arbitrary carrier dimensions.
+- The phrase "add trivial-BS dimensions" cannot cover a `v!=1` active
+  source: `(TBI2)` makes its coupling block exactly zero.  The earlier
+  formulation silently treated every high-residual carrier as dilatable and
+  was therefore too strong at the cell level.  The statement above now
+  separates the missing phase-off-one internal correction/discard estimate
+  from the `v=1` dilation.
+- Even on the fixed-source sector, this is not an ordinary bipartite
+  transportation problem.  `bs14-two-exit-typed-transport-is-not-saturated`
+  writes the necessary matrix as a three-partite three-uniform incidence
+  matrix and exhibits a determinant-two, index-two hole.  It remains to
+  prove native-support balancedness, pay such parity holes within the active
+  ledger, or use the operator Gram equations to exclude them.
