@@ -76,6 +76,14 @@ finite-support PVM.  Then
   genuinely non-diagonal orthogonal domains; on one common carrier that is
   already the relative-Leavitt trace-collapse endpoint, while changing the
   carrier restores `rectangular-escape`.
+- **Wordize the nonlinear fine-prefix atom with a finite balanced router.**
+  `finite-router-fine-prefix-return-collapses-mark` shows that this succeeds
+  locally but cannot be welded functorially to the existing prefix partial
+  swap.  Such a weld would conjugate a marked Pauli half-projection of
+  canonical trace `1/4` to a marked joint atom of trace `1/8`, contradicting
+  the regular trace.  The router therefore does not supply the missing
+  non-diagonal-domain authentication; the weld itself must use finite matrix
+  coordinates or be charged as boundary leakage.
 
 Accordingly the character-orbit backend does not prove the old
 affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by

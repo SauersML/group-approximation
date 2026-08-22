@@ -136,3 +136,10 @@ do not provide either mechanism.
   heat filters, or resolvents do not constitute the missing
   infinite-resolution square function.  A surviving square function must
   authenticate non-diagonal orthogonal domains through mixed words.
+- **Use a finite truth-table router to authenticate the first non-diagonal
+  Leavitt atom.**  The balanced router does synthesize the local nonlinear
+  reflection, but `finite-router-fine-prefix-return-collapses-mark` proves
+  that an exact/functorial return to the coarse prefix would already identify
+  unequal canonical-trace packet projections and collapse the marked sector
+  in the regular representation.  Hence local non-diagonality is not enough:
+  the return must remain genuinely finite-matrix-only.
