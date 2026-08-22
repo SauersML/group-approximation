@@ -33,6 +33,11 @@ so no full-packet survivor count is asserted here.
   labelings, while a compatible `H18` placement determines the common lift
   uniquely up to scalar.  The remaining screen must first discard
   non-liftable rectangle pairs, then test this `30 x 6` factored fiber.
+- The first proposed prefilter is provably blind:
+  `atlas-l44-h6-spectrum-is-blind-on-all-rectangle-pairs` shows all `1262`
+  pairs have the source order-three characteristic polynomial.  The remaining
+  liftability test must retain simultaneous nonsemisimple `S3` data; scalar
+  spectral invariants cannot shrink the pair list.
 - The thirty-form loop is unnecessary once a candidate `H18` placement is
   present. `atlas-l44-frobenius-intertwiner-prunes-frames` tests the common
   `F2` form by the linear space

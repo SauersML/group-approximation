@@ -69,7 +69,7 @@ end
     pair_scanner = libgap.eval(r"""
 function(G, representative, baseInvolutions, baseThrees)
   local class, candidates, x, good, a, ordered, inBase, y, mappedThrees,
-        b, overF2, z, row, entry;
+        b, overF2, z, row, entry, polynomials;
   class := ConjugacyClass(G, representative);
   candidates := [];
   for x in class do
@@ -81,6 +81,7 @@ function(G, representative, baseInvolutions, baseThrees)
   od;
   ordered := 0;
   inBase := 0;
+  polynomials := [];
   for x in candidates do
     for y in candidates do
       if x = y or (x*y)^3 <> One(G) then continue; fi;
@@ -94,6 +95,7 @@ function(G, representative, baseInvolutions, baseThrees)
       od;
       if good then
         ordered := ordered + 1;
+        Add(polynomials, CharacteristicPolynomial(x*y));
         overF2 := true;
         for z in [x,y] do
           for row in z do
@@ -108,7 +110,7 @@ function(G, representative, baseInvolutions, baseThrees)
       fi;
     od;
   od;
-  return [Length(candidates), ordered, inBase];
+  return [Length(candidates), ordered, inBase, Collected(polynomials)];
 end
 """)
     pair_result = pair_scanner(
@@ -119,9 +121,15 @@ end
     )
 
     fan_counts = [[int(entry) for entry in row] for row in fan_result]
-    pair_counts = [int(entry) for entry in pair_result]
+    pair_counts = [int(pair_result[index]) for index in range(3)]
+    characteristic_histogram = {
+        str(row[0]): int(row[1]) for row in pair_result[3]
+    }
     assert fan_counts == [[5355, 336, 18], [5355, 150, 18]]
     assert pair_counts == [336, 1262, 24]
+    assert characteristic_histogram == {
+        "x_1^4+x_1^3+x_1+Z(2)^0": 1262,
+    }
     print(json.dumps({
         "ambient": "GL(4,4)",
         "subfield_chart": "GL(4,2)",
@@ -131,9 +139,9 @@ end
         "H18_fan": [150, 18],
         "H6_ordered_rectangle_pairs": 1262,
         "H6_ordered_rectangle_pairs_over_F2": 24,
+        "H6_product_characteristic_polynomials": characteristic_histogram,
     }, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":
     main()
-
