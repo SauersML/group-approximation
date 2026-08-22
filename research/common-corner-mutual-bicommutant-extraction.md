@@ -86,6 +86,16 @@ second word-generated algebra and cannot exchange roles with the label factor.
   obstruction: packet Reynolds averaging lands in the packet commutant,
   whereas extraction of the label algebra requires averaging over the full
   scalable commutant.
+- **A scalable Pauli side needs only one orbit prototype once its actor is
+  uniformly gapped.**
+  `kazhdan-transitive-pauli-actor-localizes-one-mixed-word` proves the exact
+  Reynolds estimate: actor-average the candidate Gram, transport one mixed
+  Weyl commutator through the nonzero orbit, and average the resulting
+  square function.  The constant is independent of Pauli rank.  Applied to
+  the dual-prefix tower, this replaces the abstract scalable-algebra clause
+  by one concrete missing compiler: a word-exposed uniformly gapped
+  transitive actor.  The two bare Leavitt Morita branches do not supply that
+  actor.
 - **Rectangular firewall.** Add the proposed second packet to the exact
   `rectangular-escape`.  If the joint words still admit a larger tensor
   decomposition with an unused spectator factor, `(CCMB1)` is false for that

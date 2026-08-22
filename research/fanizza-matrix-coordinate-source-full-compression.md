@@ -95,3 +95,18 @@ Thus the localization gate specifically requires a **scalable** transverse
 algebra, or one mixed word which changes under every non-scalar spectator
 gauge.  A second bounded C18/D8 packet, even noncommuting and sharing the
 same selected carrier, does not suffice.
+
+The dual-prefix Pauli tower now gives a precise positive version of that
+alternative.  `kazhdan-transitive-pauli-actor-localizes-one-mixed-word`
+proves that if a uniformly gapped actor is transitive on the nonzero Weyl
+words and approximately fixes the decoded Gram, then one prototype mixed
+commutator controls the exact Pauli Reynolds square function.  The resulting
+distance from the full Pauli commutant has a constant independent of the
+depth `n`, rank `2^n`, dimension, and multiplicity.
+
+The bare Leavitt branches do not contain this actor.  If the transport area
+or inverse square-root actor gap grows with depth, arbitrary
+defect-versus-dimension schedules prevent choosing a supercritical packet.
+Thus the surviving one-word localization gate is specifically a
+**uniformly gapped transitive actor for the dual-prefix Weyl tower**, not a
+list of pointwise prefix commutators.
