@@ -1,9 +1,10 @@
 ---
 rg: 2
 id: toeplitz-range-commutator-mirror-exit-proof
-kind: proof_route
+kind: route
+title: Exit the Toeplitz range commutator through the mirror identity
 target: toeplitz-range-commutator-has-a-balanced-mirror-exit
-uses:
+requires:
   - fanizza-compressed-unitary-has-guarded-rank-floor
   - diagonal-difference-shift-propagates-pauli-incidence
   - central-corner-block-is-not-a-group-word

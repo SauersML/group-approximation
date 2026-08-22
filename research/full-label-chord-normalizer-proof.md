@@ -1,9 +1,10 @@
 ---
 rg: 2
 id: full-label-chord-normalizer-proof
-kind: proof_route
+kind: route
+title: Normalize the full label chord through the recorded relations
 target: full-label-chord-normalization-kills-the-hilbert-hotel
-uses:
+requires:
   - translation-reset-leaves-a-compressed-gram-spectator
   - semisimple-trace-charts-cannot-authenticate-proper-fullness
 ---
