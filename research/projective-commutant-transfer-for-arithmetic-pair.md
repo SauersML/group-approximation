@@ -438,6 +438,28 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   target must therefore force missing nonedge commutators on a positive
   carrier or solve global overlapping-clique/window coherence.  This does
   not touch the separate uniformly noncorrectable lattice sector.
+- **No bounded overlapping-shell atlas propagates the missing
+  commutators.**  `every-fixed-hecke-window-retains-graph-product-nonedges`
+  extends the preceding exact model to every fixed finite union of Weyl and
+  denominator shells.  Each genuine clique has its exact equidistributed
+  Fourier PVM, and these PVMs satisfy all marginal identities on overlaps;
+  all actor transports are also exact.  Yet the induced lamp subgroup is
+  still the right-angled Coxeter special subgroup.  For the persistent
+  nonedge `x=hC`, `y=h^(-1)C`, even cutting by a positive cylinder atom `e`
+  from any clique in their common link leaves
+
+  ```text
+  ||e(c_xc_y-c_yc_x)||_2^2=2 tau(e),
+  ||e[P_x,P_y]_add||_2^2=tau(e)/8.
+  ```
+
+  Thus expansion or chordality of the clique-cover nerve controls only
+  agreement of already shared coordinates; it cannot create a missing
+  commutation relation.  A fixed family also yields only bounded rank
+  pressure.  This closes the bounded-shell version of the nonlinear target:
+  the next mechanism must use diverging windows/global coset-action
+  coherence or genuinely new finite-dimensional-only incidence.  The
+  uniformly noncorrectable lattice sector remains separate.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
