@@ -63,9 +63,15 @@ unspecified element to kill.
    the relative quotient is `G *_(C_2) C_4`, and the degree-kernel quotient is
    the concrete nonsolvable group `G *_(C_2) G`.  Normal generation of `r`
    inside `G` does not kill `r` after it is identified with `t^2`; a candidate
-   must use at least two separated variable blocks and distinct coefficient
-   conjugacy data.
-6. **Reality check, recorded because this claim reads more tractable than it
+   must use separated variable blocks and distinct coefficient conjugacy data.
+6. **Use the shortest such two-block word.**  This also fails.  For adjacent
+   normal-generating involutive roots `r=x_12(1)`, `s=x_23(1)`, the word
+   `r t s t` becomes `y^2=rs` after `y=ts`; see
+   `two-root-two-block-kl-word-is-cyclic-amalgam`.  Its obstruction quotient
+   is `G *_(C_4) G`.  A viable word must avoid reduction to a single root
+   adjunction, so at least three blocks or an asymmetric sign pattern is the
+   next honest search space.
+7. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
    The honest reading — inherited from
