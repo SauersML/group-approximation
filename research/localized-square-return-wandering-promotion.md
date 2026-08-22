@@ -48,10 +48,25 @@ finite matrix semantics.
   corner unitary is automatically almost reducing, as `(CFP1)--(CFP4)` show.
   Thus a Hilbert-hotel implementation must prove the localized radical
   estimate itself; one-sided absorption is not an intermediate substitute.
+- **A noncentral finite-normal packet does not weaken the return.**  Suppose
+  `q in C[K]` for a finite subgroup normalized by `w`.  By
+  `finite-packet-localized-return-centralizes-after-power`, if `r` is the
+  order of the conjugation action of `w` on `K`, then `(LSR1)` promotes with
+  fixed constants to
+
+  ```text
+  ||(w(U)^(2r)-1)p(U)||_2=o(1)
+  ```
+
+  for a nonzero `p in Z(C[K])`.  The local carrier is
+  `<K,w^(2r)> ~= K times Z` and has exact finite quotient regular models with
+  return error squared `2 tau(p)`.  Thus noncentral packet geometry and a
+  finite projective/twisted-Laurent phase cannot be the matrix-only forcing
+  mechanism; the decisive inference must use ambient relations outside that
+  finite-by-cyclic carrier.
 - **Arithmetic/projective transfer remains a genuine candidate.**  The word
   `[ [t,a],s ]` in `projective-transfer-gives-universal-filtered-actuator`
   has the required exact normal form and is killed in exact finite-dimensional
   representations.  Its missing normalized-HS projective-commutant modulus
   would imply `(LSR1)` (with `q=1`) after the standard free-product
   phase-cancellation step.
-
