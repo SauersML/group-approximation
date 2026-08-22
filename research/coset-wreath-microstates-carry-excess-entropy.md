@@ -113,6 +113,20 @@ precision.
   the ultraproduct level; a proof must run at finite level in Hayes'
   covering-number definitions, where "almost commuting" carries the
   precision parameter.)
+- **Euler-characteristic calibration: the base can never supply the
+  moduli (2026-08-22).**  For the base groups the virtual deformation
+  dimension of `d`-dimensional representation varieties modulo
+  conjugation is `-chi . d^2 + O(d)`; `chi(SL_2(Z[1/2])) = chi(SL_2(Z))
+  + chi(SL_2(Z)) - chi(Gamma_0(2)) = -1/12 - 1/12 + 1/4 = +1/12 > 0`
+  (Serre amalgam), so base deformations have NEGATIVE virtual dimension
+  `-d^2/12`: rigidity pressure, consistent with `h = 0` for the base
+  and with the (tau) infinitesimal-rigidity theorems of the Iwahori
+  lane; at `SL_3` property (T) kills base moduli outright.  Any (EX1)
+  witness must therefore draw its `c d^2` parameters PURELY from the
+  lamp sector — matching `hnn-carrier-factor-has-no-free-entropy-excess`
+  (the carrier, with no lamp masa, is unconditionally entropy-starved;
+  only the wreath's infinitely generated lamp direction can carry
+  moduli, since it contributes no negative Euler characteristic).
 - **Two-sidedness, honestly.**  If `W_3` is hyperlinear then by the
   companion theorem `h(L(W_3)) = 0` — i.e. (EX1) is then FALSE and this
   claim is exactly the goal disjunct.  The route's practical value is
