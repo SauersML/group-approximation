@@ -49,4 +49,8 @@ This does not by itself yield an HS obstruction.  The rank of `K` is carried
 by the rare diagonal corrections, and
 `dense-offdiagonal-packet-has-linear-dimensional-average-models` gives an
 explicit canonical-moment countermodel to any argument using only average
-cross-relation energy.
+cross-relation energy.  More generally,
+`bounded-prefix-decision-cost-forces-bounded-approximate-rank` shows that
+this tradeoff is unavoidable for every classical prefix-stopping kernel of
+uniformly bounded expected cost, not an accident of the complementary
+identity matrix.
