@@ -43,3 +43,11 @@ any corruption below the BGV adversarial radius.
   commutators to boundedly many defining relators. Positive trace alone is
   insufficient: a projection in the external multiplicity reservoir lies in
   `N` and pays zero adjoint energy.
+- `generator-column-pauli-test-globalizes-but-does-not-pin-sites` supplies a
+  sharp positive/negative benchmark.  The corrected de la Salle code-column
+  test globally exactifies the whole `n`-site Pauli factor with explicit
+  dimension-free HS constants.  But a zero-loss conjugacy
+  `exp(i theta Z_1...Z_n)` moves every named `X_i`, and a multiplicity-valued
+  version moves the whole factor relative to external tape words.  Hence the
+  missing assertion here is not abstract tensor recovery; it is incidence
+  which pins that recovered factor to the tree-addressed computation.

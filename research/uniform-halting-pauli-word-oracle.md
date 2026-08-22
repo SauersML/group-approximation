@@ -43,3 +43,11 @@ hardware is dormant rather than inconsistent.
   braiding test gives constant quantum rigidity.  The missing splice is a
   perfect-complete self-similar orbit presentation realizing their query
   sampler in arbitrary unitary normalized-HS microstates.
+- `generator-column-pauli-test-globalizes-but-does-not-pin-sites` shows that
+  the analytic verifier is already strong enough when its questions are the
+  generator-matrix columns of an asymptotically good `[K,n,d]` code:
+  `K=Theta(n)` gives `O(log n)` sampling and dimension-independent global
+  Pauli exactification.  What it does not give is this node's word oracle.
+  Explicit polynomial-time column generation is not bounded relator area,
+  and the global correcting isometry can mix all sites with the multiplicity
+  reservoir unless the computation incidence is compiled at the same time.
