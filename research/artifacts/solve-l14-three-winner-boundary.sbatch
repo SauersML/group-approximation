@@ -2,7 +2,7 @@
 #SBATCH --job-name=d4-three-boundary
 #SBATCH --partition=amdsmall
 #SBATCH --time=08:00:00
-#SBATCH --mem=96G
+#SBATCH --mem=32G
 #SBATCH --cpus-per-task=1
 #SBATCH --output=/projects/standard/hsiehph/sauer354/nonsofic_existence/msi-d4-three-boundary-%j.out
 
