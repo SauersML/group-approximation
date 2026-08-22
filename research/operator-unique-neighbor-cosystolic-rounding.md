@@ -44,6 +44,18 @@ an operator-valued code row.  One then still needs the complete-pair or
 exterior sampler to kill the resulting Lie-algebra-valued code kernel and a
 bootstrap that improves small commutators to zero-distance from a joint PVM.
 
+At exact parity,
+`adjoint-parity-defects-form-tanner-fundamental-cone` makes this precise:
+the squared commutator magnitudes lie in the Tanner fundamental cone, so
+expander-code pseudoweight is the strongest purely classical magnitude
+input naturally available.  The naive threshold/layer-cake upgrade fails.
+`commutator-threshold-sets-need-not-be-stopping-sets` gives one exact parity
+face with magnitude vector `(4,2,2)`, whose high-level set is a singleton.
+Different local character atoms can therefore pay the required partner
+commutator on different spectral pieces.  The missing cosystolic estimate
+must align or correct those operator-valued pieces; support expansion alone
+cannot do so.
+
 Ordinary good-LDPC distance and unique-neighbor stopping expansion prove only
 `unique-neighbor-ldpc-checks-force-dense-noncommutation`; they do not provide
 this norm estimate.  Conversely the parity term in `(OUC1)` is essential:
