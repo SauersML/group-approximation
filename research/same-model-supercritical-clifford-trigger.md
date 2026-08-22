@@ -77,3 +77,16 @@ larger incompatible challenge in that very approximation.
   letters then force `2^r|m`, an immediate same-model contradiction.  This
   formulation uses only a fixed packet factor plus an adaptive number of
   cocycle directions.
+- **Exact-dimension substitutes do not remove full-commutant
+  authentication.**  Determinant, Fredholm index, and hard rank obey the
+  gap-or-functoriality fence of
+  `fixed-rank-index-authenticator-has-gap-or-functoriality`.  PI degree and
+  central polynomials read only the finitely named tape algebra.
+  `central-polynomial-tapes-do-not-exhaust-commutant`
+  shows that spectator amplification leaves this named factor unchanged
+  while enlarging the actual multiplicity commutant by an invisible matrix
+  factor.  A conductor intrinsic to a named word is genuine type data but
+  is amplification invariant and therefore not raw dimension.  Hence a
+  surviving exact-dimension backend must authenticate arbitrary variables
+  from the full commutant, or use a matrix-coordinate operation outside
+  normalized group-word semantics.
