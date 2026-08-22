@@ -87,3 +87,9 @@ specified group ball intact.
   Hamiltonian/code distance into normalized-HS group-word syndrome is exactly
   the missing work, paralleling the warning already recorded at
   `extensive-cosystolic-index-defect`.
+  More basically, `exact-code-prefixes-have-matrix-ultraproduct-model` shows
+  that an increasing qLTC/QCA family with exact finite-dimensional live-mark
+  code spaces automatically has a marked matrix-ultraproduct limit.  Local
+  testability can therefore amplify or synchronize an independently supplied
+  semantic predicate gap, but cannot itself create the required non-CE
+  separation from exactly satisfiable finite prefixes.

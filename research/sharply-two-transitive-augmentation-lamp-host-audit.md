@@ -75,6 +75,19 @@ exact Schreier gap cannot be inserted into the PVM-energy argument until
 `property-t-must-upgrade-global-augmentation-rounding` (and the separate
 actor word-energy interface) is proved.
 
+There are two further scope fences for the proposed Clifford--QCA upgrade.
+First, `relative-commutant-coset-field-removes-stabilizer` shows that an exact
+actor representation and one lamp rounded into the point-stabilizer
+commutant would indeed remove transporter ambiguity.  This is a consequence
+of the missing relative-commutant rounding, not a substitute for it.
+Second, imposing one common central sign and pairwise Clifford relations on
+the sharply two-transitive lamp orbit still gives the ordinary infinite CAR
+tower.  Its finite prefixes have exact matrix models of dimension `2^N`, and
+those prefixes diagonalize to a matrix-ultraproduct model.  Thus perfect
+address synchronization alone creates a capacity tape, not a
+nonhyperlinearity contradiction; a same-model supercritical trigger or
+summable common reducing carrier remains necessary.
+
 See `sharply-two-transitive-lamp-fd-invisibility-proof` and
 `augmentation-lamp-finite-presentation-criterion` for the two exact
 proofs used in this audit.
