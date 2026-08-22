@@ -33,3 +33,13 @@ of the local-dual tangent equations.  A proof of `(PCG1)` should therefore
 apply the established face-Hamiltonian/code gap to the linearized curl and
 use `fixed-parity-faces-exactify-with-loewner-row-square-control` to bound
 the off-base difference; a pair-only word factorization cannot work.
+
+Planar phase cancellation is not an additional obstruction.
+`short-arc-planar-pauli-edges-have-uniform-divergence-gap` writes the edge
+field through the complex order parameter and proves
+`E_edge<=4 sec^2(r)E_div` whenever the doubled Pauli axes lie in one arc of
+length `r<pi/2`, including arbitrary central mixtures with the same bound.
+Thus a countermodel to `(PCG1)` must use genuinely nonplanar/noncentral
+operator geometry or incompatible projective branches.  The parity charge
+is needed to choose/coordinate those branches, not to repair ordinary
+short-arc Kuramoto cancellation.
