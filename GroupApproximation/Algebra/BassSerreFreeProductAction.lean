@@ -297,15 +297,17 @@ incident edge labels lies in the left factor. -/
 theorem inv_mul_mem_leftFactor_of_smul_baseLeft_eq {g h : Ambient G}
     (heq : g • baseLeft G = h • baseLeft G) :
     g⁻¹ * h ∈ leftFactor G := by
-  change (g : Ambient G ⧸ leftFactor G) = h at heq
-  exact QuotientGroup.eq.mp heq
+  have heq' : (g : Ambient G ⧸ leftFactor G) = h := by
+    simpa [baseLeft, smul_eq_mul] using heq
+  exact QuotientGroup.eq.mp heq'
 
 /-- The analogous transition statement at a right-colored endpoint. -/
 theorem inv_mul_mem_rightFactor_of_smul_baseRight_eq {g h : Ambient G}
     (heq : g • baseRight G = h • baseRight G) :
     g⁻¹ * h ∈ rightFactor G := by
-  change (g : Ambient G ⧸ rightFactor G) = h at heq
-  exact QuotientGroup.eq.mp heq
+  have heq' : (g : Ambient G ⧸ rightFactor G) = h := by
+    simpa [baseRight, smul_eq_mul] using heq
+  exact QuotientGroup.eq.mp heq'
 
 /-- Distinct incident edge labels give a nonidentity transition syllable. -/
 theorem inv_mul_ne_one_of_ne {g h : Ambient G} (hne : g ≠ h) :
