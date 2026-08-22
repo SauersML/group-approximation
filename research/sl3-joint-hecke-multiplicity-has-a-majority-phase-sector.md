@@ -44,3 +44,14 @@ both ambient vertices uniformly far from exact representations.  The open
 step is therefore an extensive matrix-coordinate matching theorem for the
 joint Hecke multiplicities, not a congruence, determinant, or source-only
 moment identity.
+
+There is also an exact one-edge expander fence.
+`sl3-one-parahoric-multiplicity-flow-has-a-tracezero-gauge` tensors any
+joint parahoric packet with a spectator multiplicity space and inserts a
+cyclic shift in one of the two transports.  It preserves all one-edge
+transport equations and normalized multiplicity flow while making the
+local fold trace exactly zero.  Thus the index-forty-two packet cannot reach
+`(JHM1)` by a stronger coset spectral gap.  The narrowed positive terminal
+is `sl3-joint-parahoric-loops-share-a-majority-carrier`: synchronize the six
+directional packets on one majority carrier, where the already proved
+rank-two parahoric triangle can kill the spectator gauge.
