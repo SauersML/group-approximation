@@ -27,6 +27,13 @@ almost orthogonal copy in the compressed low-commutator space, and
 normalized-HS relator energy.  This would prove the parity compressor return
 on every positive marked carrier.
 
+There is now a shorter canonical-trace endpoint.  By
+`canonical-marked-corner-kazhdan-density-vanishes`, the old low-commutator
+space itself has vanishing adjoint density in every canonical marked
+microstate.  Hence `(PCD1)` already contradicts hyperlinearity; the parity
+copy and relative no-growth argument are optional downstream structure, not
+part of the remaining hole.
+
 ## Attempts
 
 - Declaring both packet subgroups to commute with the two Kazhdan copies is
