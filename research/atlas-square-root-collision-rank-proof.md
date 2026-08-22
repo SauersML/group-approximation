@@ -2,15 +2,12 @@
 rg: 2
 id: atlas-square-root-collision-rank-proof
 kind: route
-title: Compare collision with its nonidentity constant term through four rank-Lipschitz syllables
-target: atlas-square-root-collision-forces-linear-core-rank
-requires:
-  - atlas-square-root-bridge-two-matrix-rank-reduction
-  - atlas-a4-19243-classical-collapse
+title: Evaluate the identity-frame collision from its S3 component labels
+target: atlas-square-root-collision-constant-term-is-zero
+requires: []
 ---
 
-The identity-alignment collision has nonzero `4 by 4` defect, whose
-amplification has rank at least `s`.  The unipotent chart perturbation has
-rank `rank[X Y]`; each of four second-chart collision syllables changes by
-at most twice this rank.  Telescoping and the reverse rank triangle
-inequality give `rank P_c(X,Y)>=s-8rank[X Y]`.
+The exact stored labels show that the second-chart collision letters lie in
+one `S3`, multiply to one, and commute with the repeated first-chart
+involution.  At the identity frame the interleaved word is therefore the
+second-letter product times the fourth power of that involution, hence one.

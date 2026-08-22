@@ -3,13 +3,21 @@ rg: 2
 id: atlas-square-root-collision-forces-linear-core-rank
 kind: claim
 title: Collision forces linear row rank in the square-root two-matrix frame
+refuted_by: atlas-square-root-collision-constant-term-is-zero
 distinct_from:
   atlas-square-root-bridge-two-matrix-rank-reduction: that defines all thirteen residual polynomials and reduces a countermodel to their normalized ranks; this proves the first unconditional rank-density inequality for one of those polynomials.
   atlas-19243-relation-forces-s3-distance: that gives a Hilbert-Schmidt distance wall from an S3 commutant; this is a binary linear-rank inequality on the unipotent two-matrix chart.
   atlas-a4-19243-classical-collapse: that proves collision is nonidentity on every classical packet alignment; this uses only its nonidentity at the identity alignment to obtain a quantitative amplified rank bound.
 ---
 
-ESTABLISHED.  On the square-root frame put
+REFUTED by `atlas-square-root-collision-constant-term-is-zero`.  The claimed
+constant term is zero, not nonzero.  At the literal identity frame the four
+second-chart collision letters generate an `S3`, their product is one, and
+they all commute with the repeated first-chart involution.  Hence collision
+evaluates to one.  Classical packet-collapse does not say otherwise: the
+identity frame fails the packet, rather than collision.
+
+The invalid statement was as follows.  On the square-root frame put
 
 ```text
 A=E13 tensor X+E14 tensor Y,

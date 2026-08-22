@@ -82,18 +82,15 @@ letters are fixed matrices `a_1,...,a_4`, one has
 
 ```text
 P_collision=
- ( product_(j=1)^4 ((b_j tensor I)(a_j tensor I)) - I )
- +
  sum_(empty != J <= {1,2,3,4})
  product_(j=1)^4 ( (C_(b_j) if j in J else b_j tensor I)
                     (a_j tensor I) ).                (SBR8)
 ```
 
-The constant term is generally nonzero: the identity alignment satisfies
-the packet and q14 but is killed by collision.  Trivial projection to each
-free factor does not imply triviality after diagonalizing the two factors.
-Thus collision has degree at most eight, with the displayed fixed scalar
-matrix as its degree-zero term.  Equations
+The constant term is zero by
+`atlas-square-root-collision-constant-term-is-zero`: the identity alignment
+is collision-zero but fails the packet.  Thus collision has degree at most
+eight and no degree-zero term.  Equations
 `(SBR6)`--`(SBR8)` are the induced tensor equations on `X,Y`; the bridge
 vectors and covectors do not enter their leading amplified ranks at all.
 

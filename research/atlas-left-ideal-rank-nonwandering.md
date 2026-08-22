@@ -202,16 +202,12 @@ or genuinely nonstationary coefficient data.
   polynomials, modulo exact augmented zeros; this is the first place the
   packet and collision formulas enter the growing-width sector.
 
-- **Collision forces a positive-density unipotent core.**
-  `atlas-square-root-collision-forces-linear-core-rank` compares the
-  two-matrix collision polynomial with its nonidentity identity-alignment
-  constant term.  That term has amplified rank at least `s`; changing the
-  chart by `A=E13 tensor X+E14 tensor Y` changes each of the four
-  second-chart syllables by at most `2 rank A`.  Hence
-  `rank P_collision(X,Y)>=s-8 rank[X Y]`.  Any collision-small candidate on
-  the square-root frame must satisfy
-  `liminf rank[X_s Y_s]/s>=1/8`.  Sparse shift-wrap cores and all
-  sublinear-rank deformations are excluded.  The unresolved possibility is
-  a genuinely positive-density generating pair that simultaneously makes
-  the twelve degree-six packet polynomials and the degree-eight collision
-  polynomial small.
+- **Collision has no constant-term density wall on the square-root frame.**
+  `atlas-square-root-collision-constant-term-is-zero` corrects the tempting
+  contrary inference.  At `X=Y=0`, the four second-chart collision letters
+  lie in one `S3`, multiply to one, and commute with the repeated
+  first-chart involution, so collision is exactly one.  Identity fails the
+  packet, not collision.  Hence the previously recorded claim that
+  collision-small forces `rank[X Y]/s>=1/8` is refuted.  Any positive rank
+  inequality must combine at least one packet polynomial with collision;
+  collision alone supplies no density floor in these coordinates.
