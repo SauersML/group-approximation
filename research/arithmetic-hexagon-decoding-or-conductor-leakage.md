@@ -166,6 +166,18 @@ the fixed-depth nonhyperlinearity criterion.
   Schur matching, or conductor descent alone.  The actual mixed-root packet
   must make the marked scale graph non-Folner (or furnish an equivalent
   same-reservoir multiplicity payment).
+- **The full affine-Weyl apartment plus the native triangle still does not
+  authenticate support.**  The six Weyl-conjugate denominator translations
+  generate `Q^vee semidirect S_3`, hence a virtually `Z^2` action.  Exact
+  finite torus models have one `S_3`-invariant trace-`1/42` hexagonal cutoff
+  with total six-shift covariance energy `O(1/M)`.  Tensoring this cutoff
+  with the trivial forty-two-chart corrector makes every native translated
+  parahoric triangle exact.  Thus the triangle kills every gauge once it is
+  supported on the decoded carrier, but cannot identify that carrier; see
+  `affine-weyl-folner-cut-survives-native-parahoric-triangle`.  The remaining
+  input in `(AHD1)` is exactly raw denominator-section source/range
+  authentication, after which the established partial-isometry cancellation
+  charges only first-exit mass.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from

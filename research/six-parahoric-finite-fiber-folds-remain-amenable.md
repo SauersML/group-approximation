@@ -62,6 +62,14 @@ matrix-coordinate estimate must charge cross-chart branch collisions (the
 Gram overlap scalar of `forty-two-branch-gram-polar-rounding`) or prove an
 approximate deck-cocycle faithfulness statement.
 
+The conclusion persists after adjoining the native signed parahoric
+triangle if that triangle is not tied to the cutoff's literal support:
+`affine-weyl-folner-cut-survives-native-parahoric-triangle` gives exact finite
+torus models with a joint six-direction trace-`1/42` cutoff and an exact
+trivial triangle corrector.  Thus the first genuinely nonamenable datum is
+not the triangle relation by itself, but its raw same-carrier source/range
+incidence.
+
 This is not an arithmetic-group countermodel: the folded cocycles need not
 respect the dense integral labels of all words in `SL_3(Z[1/2])`.  It proves
 that nonamenability cannot be inferred from the six marginal depth shifts,

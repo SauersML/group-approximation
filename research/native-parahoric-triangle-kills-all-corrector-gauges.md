@@ -137,3 +137,11 @@ native parahoric/root words collapse their correction factor with a fixed HS
 modulus.  The remaining arithmetic decoder problem is exactly prior to this
 endpoint: prove that the six rounded chamber packets share such a carrier,
 or charge failure to rectangular conductor leakage.
+
+The common-carrier hypothesis is necessary, not merely an artifact of this
+proof.  In `affine-weyl-folner-cut-survives-native-parahoric-triangle`, the
+six denominator/Weyl actions have a joint trace-`1/42` Folner cutoff while
+the native triangle holds exactly on a trivial corrector in the same
+abelian ambient algebra.  The triangle becomes coercive only after a raw
+incidence relation authenticates the cutoff as the source/range of its
+factors.
