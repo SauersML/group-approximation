@@ -47,3 +47,11 @@ Nevertheless it closes the Maslov sector by
   hypothetical correction to Thom's hyperlinear Kazhdan group without the
   factorization property.  Any correction here must use the Deligne
   multiplier or symplectic arithmetic, not only a Kazhdan pair.
+- **Chordal positivity does lift.**  On any finite root chart whose partial
+  operator-matrix pattern is chordal,
+  `chordal-partial-positive-operator-matrices-lift` lifts clique-wise
+  positivity through the matrix-product quotient.  Hence the finite-operator-
+  system attack is not blocked on the chordal root charts.  The remaining
+  task is synchronization across their overlaps and positive completion
+  around the nonchordal `C2` Maslov cycle -- precisely the holonomy seam in
+  `c2-root-chart-maslov-holonomy-gap`.
