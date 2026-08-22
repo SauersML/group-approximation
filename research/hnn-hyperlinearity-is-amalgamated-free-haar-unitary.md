@@ -22,8 +22,14 @@ tracial matrix ultraproduct `M`, and identify `N` with its image.
 2. There is a unitary `k in B' cap M` with `E_B(k^n) = 0` for all
    `n != 0` (so `W^*(B, k) = B (x) W^*(k)` and `k` is Haar) such that
    `N` and `W^*(B, k)` are free with amalgamation over `B`, i.e.
-   `E_B(x_1 y_1 ... x_m y_m) = 0` whenever `x_i in N`, `y_i in W^*(B,k)`
-   and `E_B(x_i) = E_B(y_i) = 0`.
+   `E_B(z_1 z_2 ... z_m) = 0` for every alternating word -- consecutive
+   letters taken from different algebras among `N` and `W^*(B, k)`, of
+   any length `m >= 1` and starting from either algebra -- whose letters
+   all satisfy `E_B(z_j) = 0`.  (An earlier version displayed only the
+   even-length pattern `x_1 y_1 ... x_m y_m`; adjoints recover the
+   pattern `y x ... y x` but not the odd-length ones, so the standard
+   four-pattern formulation is the one meant and used; corrected after
+   the 2026-08-21 audit.)
 
 Consequently `G` is hyperlinear iff `(2)` holds for SOME embedding `iota`
 of `N` into some matrix ultraproduct, and `G` is the goal witness iff no
