@@ -103,6 +103,18 @@ precision.
   well.  Therefore the moving quotient-kernel seam cannot carry even one
   infinitesimal real parameter, let alone `c d^2`; any entropy witness there
   must be genuinely nonlinear and uniformly far from finite-image models.
+- **Pointwise local rigidity has no automatic uniform Newton upgrade.**
+  `bernoulli-adjoint-gauges-fence-uniform-wreath-newton` separates the two
+  extra inputs: a dimension-independent transverse cochain gap near every
+  finite-image representation, and a global theorem capturing every
+  small-defect canonical tuple in one of those neighbourhoods.  Neither
+  follows from `H^1=0`.  More sharply, biased Bernoulli representations give
+  exact infinite-dimensional adjoint Hilbert--Schmidt operators of unit
+  distance from the commutant whose displacement by every fixed generator
+  tends to zero.  Thus property `(T)` of the actor plus the lamp Cartan cannot
+  supply a uniform full gauge gap.  The remaining finite-dimensional
+  transverse version is not refuted: finite-dimensionalizing this witness is
+  itself the unresolved coset-action approximation interface.
 - **Freeness inside is not enough (calibration).**  `h` is not monotone
   under subalgebras: `L(F_2) subset L(F_2) tensor R` with
   `h(ambient) = 0`.  So free subgroups of `Gamma`, or the Bass–Serre

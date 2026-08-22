@@ -72,3 +72,10 @@ inflation--restriction argument supplies no presentation-level modulus when
 the finite quotient and its kernel generators move with `d`.  That missing
 uniformity is now the sole way finite-quotient neighborhoods could still
 contribute to the entropy seam.
+
+The analytic boundary is sharpened by
+`bernoulli-adjoint-gauges-fence-uniform-wreath-newton`: pointwise `H^1=0`
+does not provide a uniform transverse singular value or a global capture
+radius, and the Bernoulli lamp deformation explicitly kills any attempt to
+deduce a uniform all-representation adjoint gauge gap from the property-`(T)`
+actor and the Cartan alone.

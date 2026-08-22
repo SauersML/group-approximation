@@ -218,6 +218,15 @@ essentially unique modulo conjugation and lower-order corrections.
    gives `H^1(W_3,u(d)_Ad rho)=0`, including the actor-fixed relative fiber.
    Thus moving kernel cells can matter only nonlinearly; see
    `finite-image-summit-wreath-relative-h1-vanishes`.
+8. **The Newton constants are not formal consequences of that vanishing.**
+   A uniform correction theorem additionally needs a transverse cochain gap
+   and a global capture radius.  The biased Bernoulli representations embed
+   into adjoint Hilbert--Schmidt modules of `1 direct_sum pi_q` and contain
+   unit vectors at distance one from the commutant with generator
+   displacement tending to zero.  Hence the actor's property `(T)` and the
+   Cartan do not give a uniform all-representation gauge estimate.  The exact
+   finite-dimensional transverse question remains separate; see
+   `bernoulli-adjoint-gauges-fence-uniform-wreath-newton`.
 
 ## Trust surface
 
