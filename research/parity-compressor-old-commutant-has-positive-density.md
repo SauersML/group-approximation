@@ -70,3 +70,9 @@ part of the remaining hole.
   target is an equivalence: the Toeplitz covariance must compile the
   forbidden carrier into a bounded finite menu of old-`Lambda` types (the
   trivial type is not uniquely required).
+- `kazhdan-bounded-types-form-central-summand` packages that entire finite
+  menu into one central projection `p_<=K in C*_max(Lambda)`, with
+  `tau_can(p_<=K)=0`.  Hence the missing estimate also has a scalar form:
+  positive forbidden Schur mass must force positive `p_<=K` trace.  This is
+  a useful falsification target for any proposed coefficient word, but it
+  also confirms that `(PCD1)` already contains the trace-promotion step.
