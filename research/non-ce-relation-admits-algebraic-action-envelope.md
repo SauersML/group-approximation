@@ -25,6 +25,21 @@ non-hyperlinear group `hat K rtimes Lambda`.
 
 ## Attempts
 
+- **Correlated one-hot Haar registers do not give a cheaper compiler
+  (2026-08-22).**  `correlated-haar-onehot-dichotomy` computes the exact
+  finite-marginal density for every linear code/subshift.  High rank forces
+  exponential density loss; good distance does not help, as diagonal
+  repetition has distance one and constant density.  If the surviving
+  conditional law is affine Haar, every one-coordinate one-hot alphabet has
+  size at most two (one for odd characteristic), so genuine multiway control
+  is lost.  If instead a positive invariant nonlinear one-hot corner retains
+  the BCS holonomy, that corner is already a non-CE subalgebra of the
+  algebraic crossed product and solves `(AAE1)` directly.  Finite selector
+  image reduces further to matrix algebras over stabilizer fiber actions.
+  Thus the exact survivor is an infinite-image nonlinear positive corner,
+  but constructing its holonomy is the envelope problem itself; ordinary
+  LDPC correlations do not bypass it.
+
 - **Haar linear subshift design.**  The natural candidates are closed
   shift-invariant subgroups `K <= (F_p^m)^Lambda` cut out by finitely
   many linear local rules: the action is algebraic by construction,
