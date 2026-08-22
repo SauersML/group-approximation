@@ -22,3 +22,7 @@ An exact enumeration finds `6000` degree-five permutation solutions through
 (2.10), none with nontrivial order-three `w_beta^4`. This does not exclude
 larger or nonpermutation finite models.
 
+The representation-independent content of this same face is
+`kassel-210-forces-long-weyl-quarter-turn`: with the commuting-root
+background, (2.10) makes `w_beta^4` centralize three positive-root
+generators. The remaining scalarity problem is the opposite long-root pair.

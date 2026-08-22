@@ -120,3 +120,10 @@ Nevertheless it closes the Maslov sector by
   scalar kills all of `A5`, hence kills the mark. An exact degree-five
   enumeration finds no order-three survivor through (2.10). This is a sharp
   finite-model seam, but not yet a dimension-independent matrix gap.
+- **Abstractly, (2.10) is the first Weyl centralization step.**
+  `kassel-210-forces-long-weyl-quarter-turn` proves directly that the
+  long-root Weyl word sends `x_alpha` to `x_(alpha+beta)^(-1)`, sends
+  `x_(alpha+beta)` to `x_alpha`, and fixes `x_(2alpha+beta)`. Hence its
+  fourth power centralizes those three roots, with a bounded-word HS
+  perturbation estimate. The uncontrolled directions are now precisely
+  `x_beta` and `x_(-beta)`.
