@@ -38,3 +38,14 @@ removal of the fixed algebra, or a generic lacunary large-sieve inequality
 cannot establish the dimension-free Weyl-defect coboundary estimate.  Such
 an estimate requires an additional arithmetic theorem excluding the first
 few orbit-frequency modes from the projected Weyl-relator defect.
+
+The obstruction is sharp for a *fixed* long packet but is not stable under
+small perturbation of the exact skeleton.
+`bs14-long-cycles-admit-bounded-period-shadowing` proves that, for every
+period cap `K`, the skeleton can be replaced in the same dimension by an
+exact one whose fourth-power orbit lengths are at most `K`, at squared
+normalized-Hilbert--Schmidt cost `O(1/K)`.  On its commutative spectral
+coordinate algebra, `bounded-cycle-coboundary-inverse` then gives inverse
+norm at most `K/4`.  Consequently the generic long-cycle loss may be traded
+for a controlled skeleton perturbation; the surviving issue is transport of
+the arithmetic Weyl defect and its multiplicity/monodromy components.
