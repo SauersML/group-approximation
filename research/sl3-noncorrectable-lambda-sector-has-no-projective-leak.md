@@ -96,6 +96,25 @@ input must constrain that overlap commutant using embeddability or correct
 the underlying lattice microstate; abstract commensuration alone has now
 been exhausted.
 
+The complete finite-index Hecke decomposition is also exhausted, even after
+retaining the coboundary form and canonical lattice trace.
+`overlap-hecke-coboundaries-have-canonical-finite-matrix-models` uses the
+finite coset action `Lambda/M` and Bernoulli coordinate symmetries to build
+exact matrix unitaries with
+
+```text
+W=[U,H],  [U,pi(Lambda)]=1,  [W,pi(M)]=1,  tr(W)=0,
+```
+
+whose entire `Lambda`-orbit Gram kernel is exactly the quasi-regular kernel
+`1_M(g^(-1)g')`, while `pi|_Lambda` has canonical limiting character.  So
+neither the relative-commutant block decomposition nor any single-overlap
+Hecke moment can kill the leak.  These finite models omit the ambient
+denominator relations; conversely the regular HNN model satisfies those
+relations but is not known to be matricial.  The residual is exactly their
+intersection: use several native denominator/Weyl relations on the same
+matrix carrier, or correct the inner-adjoint lattice tuple.
+
 - `one-root-p3-denominator-fragment-has-finite-regular-leaks` uses
   separating finite quotients of
 
