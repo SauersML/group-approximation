@@ -5,19 +5,20 @@ kind: route
 title: Uniformly sample the full Weyl energy over all low-dimensional additive representations
 target: private-random-weyl-sampler-forces-growing-matrix-dimension
 requires:
-  - generator-column-pauli-test-globalizes-but-does-not-pin-sites
+  - full-weyl-energy-support-floor
 ---
 
-First fix a universal full-product gap `eta_0>0`.  The average
-Gowers--Hatami theorem quoted in
-`generator-column-pauli-test-globalizes-but-does-not-pin-sites` says that
-sufficiently small full Weyl energy produces an exact central-sign Weyl
-representation on an amplification of relative dimension at most
-`1+16 delta`.  For a fixed sufficiently small `delta`, a representation with
-`d<=r` would therefore produce a nonzero exact rank-`r` Weyl packet in
-dimension at most `2r`, impossible for large `r` because every such packet
-has dimension divisible by `2^r`.  Consequently every exact additive pair in
-dimension `d<=r` has full uniform Weyl energy at least `eta_0`.
+First fix a universal full-product gap `eta_0>0`.
+`full-weyl-energy-support-floor` gives the sharper elementary estimate
+
+```text
+E_(a,b) ||X(a)Z(b)-(-1)^(a.b)Z(b)X(a)||_2^2
+ >=4(1-d/2^r).
+```
+
+Consequently one may take, for example, `eta_0=3` for every sufficiently
+large `r` and every `d<=r`.  Notice that this estimate requires only the
+exact additive law for `X`; it permits an arbitrary unitary family `Z(b)`.
 
 It remains to sample this expectation uniformly.  Up to simultaneous
 conjugacy, an exact representation of `F_2^r` in dimension `d` is specified
