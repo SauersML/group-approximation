@@ -46,3 +46,9 @@ projective transfer must charge this bad singular mass to presentation
 defect or decode arithmetic incidence across it; a countermodel must exploit
 exactly such a block while retaining canonical character and vanishing
 relator defect.
+
+The first alternative cannot use arithmetic relator defect alone.
+`canonical-exact-polar-models-have-flat-singular-loss` constructs canonical
+exact polar tuples with every singular value equal to any prescribed
+`t in (0,1)` and with zero relator defect.  The missing charge must involve
+the projective witness jointly with the raw compression.

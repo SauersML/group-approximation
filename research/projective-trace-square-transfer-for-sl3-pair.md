@@ -366,3 +366,15 @@ weakening consumed by the HNN marked word.
   branch is a genuinely information-losing polar block of positive mass.
   Charging that block to arithmetic relator defect, or realizing it in a
   canonical microstate countermodel, is the next precise gate.
+
+- **Singular collapse is compatible with exact canonical polar tuples.**
+  `canonical-exact-polar-models-have-flat-singular-loss` realizes every fixed
+  `t in (0,1)` by exact ambient representations and positive-density corners
+  satisfying `Ppi(s)P=t rho(s)` simultaneously for the full named packet,
+  where `rho` is an exact representation with canonical limiting character.
+  Hence all compressed singular values equal `t`, the polar factor is unique,
+  and every arithmetic relator defect is zero.  This rules out charging the
+  extracted bad singular block to relator incidence alone.  The next gate is
+  necessarily joint: couple the projective witness `U` to the raw
+  compression modulus/phase, since exact transfer shows the polar tuple by
+  itself has no leak.
