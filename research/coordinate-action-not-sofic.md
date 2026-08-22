@@ -15,8 +15,10 @@ artifacts:
 The coordinate action `α : G ↷ G/Γ` of the wreath candidate is **not a sofic
 action**, in the finitary sense of Gao–Kunnawalkam Elayavalli–Patchell
 Definition 2.1(5) (a unital, `(F,ε)`-multiplicative `φ : G → Sym(A)` that is an
-`(F,E,ε)`-orbit approximation). Equivalently, and independently, the
-generalized Bernoulli action `G ↷ (K,κ)^{G/Γ}` is not sofic in Păunescu's
+`(F,E,ε)`-orbit approximation). Relatedly, and independently (the two
+statements concern different objects -- the `G`-set `G/Γ` and the p.m.p.
+action on `(K,κ)^{G/Γ}` -- and no equivalence between them is proved
+here), the generalized Bernoulli action `G ↷ (K,κ)^{G/Γ}` is not sofic in Păunescu's
 sense (Kun–Thom Corollary D).
 
 This is the hypothesis that *every* known permanence theorem for generalized

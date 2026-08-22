@@ -4,7 +4,8 @@ id: coordinate-action-not-sofic-proof
 kind: route
 title: Soficity of the coordinate action would make W sofic
 target: coordinate-action-not-sofic
-requires: []
+requires:
+  - kun-thom-nonsofic-wreath
 artifacts:
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
