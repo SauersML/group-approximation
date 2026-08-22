@@ -42,3 +42,13 @@ no-Fano-line support conclusion.
   the pp-gadget into an affine definition of that source relation.  Thus a
   positive result must use a proper support selected by the perfect trace or
   genuinely global contextual correlations.
+- **The actual-support obstruction is now exact.**
+  `fano-cap-witness-sections-force-source-affine-safety` traces the reverse
+  homomorphism in Corollary 6.7 and proves that cap-supported witnesses for
+  the positive source atoms force
+  `Aff(S_i) subseteq C_i` in every source context.  A full-support
+  one-in-three context fails because its affine hull adds `111`.  Constant
+  answer size makes this condition finitely enumerable but does not imply it.
+  The remaining positive possibility is therefore source-specific: prove
+  that the particular HALT perfect strategy used before the NP reduction has
+  affine-safe support in every answer and accepted-pair context.

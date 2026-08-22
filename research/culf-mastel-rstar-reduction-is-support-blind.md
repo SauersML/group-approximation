@@ -37,5 +37,11 @@ Culf--Mastel family, but not
 a new cap-range witness selection for the classical reduction, or a global
 support-minimality argument for the actual lifted perfect trace.
 
+The freedom in that witness selection is now sharply bounded by
+`fano-cap-witness-sections-force-source-affine-safety`: on the actual positive
+source support `S_i`, any cap-valued section would imply
+`Aff(S_i) subseteq C_i`.  The cited construction gives no such affine-safety
+statement for its perfect answer supports.
+
 References: Culf--Mastel, arXiv:2410.21223v2, Proposition 6.2, Corollary 6.7,
 and Theorem 6.8 (especially the invocation of NP-completeness in its proof).
