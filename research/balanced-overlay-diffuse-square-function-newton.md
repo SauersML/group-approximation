@@ -73,3 +73,14 @@ the layer-dependent two-form array in the correct tangent row/column module
 with a compatible finite-`p` Riesz/divergence estimate, then convert those
 moments into one approximately reducing projection in the physical matrix
 algebra.  The estimate does not supply either step or an endpoint cb bound.
+
+The genuinely noncentral remainder is now localized further.
+`bounded-type-noncentral-code-sectors-round-uniformly` uses compactness of
+empirical reflection measures to round every shared-reflection sector whose
+generated algebra has uniformly bounded irreducible type, followed by the
+ordinary scalar LTC decoder.  Therefore a diffuse far countermodel cannot
+be assembled from fixed nonabelian packets or bounded matrix blocks: it must
+retain positive trace in irreducible dimensions tending to infinity.  The
+present Newton gate must control precisely that unbounded-type mass (and
+still cannot assume occurrence synchronization in order to define the
+shared generated algebra).
