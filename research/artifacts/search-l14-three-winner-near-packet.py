@@ -57,6 +57,15 @@ def inverse_fp(word):
     return tuple((copy, (value[1], value[0])) for copy, value in reversed(word))
 
 
+def cyclic_reduce(word):
+    word = tuple(word)
+    while len(word) > 1 and word[0][0] == word[-1][0]:
+        first, last = word[0], word[-1]
+        joined = mul_pair(last[1], first[1])
+        word = reduce_fp(word[1:-1] + ((first[0], joined),))
+    return word
+
+
 def corner(slots, data):
     return reduce_fp((copy, slots[index]) for copy, index in data)
 
@@ -91,8 +100,8 @@ def evaluate(slots):
         return None
     if reduce_fp(inverse_fp(h) + c1) != rhs4:
         return None
-    boundary = reduce_fp(inverse_fp(h) + b0 + inverse_fp(h) + b1
-                         + inverse_fp(h) + e4)
+    boundary = cyclic_reduce(reduce_fp(inverse_fp(h) + b0 + inverse_fp(h)
+                                      + b1 + inverse_fp(h) + e4))
     return boundary
 
 
