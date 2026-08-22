@@ -16,10 +16,11 @@ involution `J` with
 ```
 
 Let `phi_n` be canonical-trace normalized-Hilbert--Schmidt microstates of
-`G`.  After exactifying the fixed central two-point packet, put
+`G`.  Apply `central-involution-corner-exactification`, write `psi_n` for
+the corrected tuples, and put
 
 ```text
-e_n=(1-phi_n(J))/2,
+e_n=(1-psi_n(J))/2,
 ```
 
 and normalize the adjoint trace on `e_n M_(d_n) e_n` by its squared matrix
@@ -32,11 +33,20 @@ fixed `0<b<kappa`,
 tr_ad(1_[0,b](A_n)) -> 0.                              (CMK1)
 ```
 
+Equivalently in an energetic form useful for packet constructions: there
+cannot be projections `R_n` in the corner adjoint spaces and a constant
+`rho>0` with
+
+```text
+tr_ad(R_n)>=rho,
+tr_ad(R_n A_n)/tr_ad(R_n) ->0.                         (CMK2)
+```
+
 In particular, a construction that forces a subspace of fixed positive
-adjoint density into the old low-commutator space of `Lambda` on the
+adjoint density with vanishing average old-`Lambda` commutator energy on the
 canonical `J=-1` carrier is already a non-hyperlinearity contradiction.  It
-does not additionally need to copy that subspace through a parity
-implementer and invoke commutant no-growth.
+does not need exact spectral containment, nor an additional copy through a
+parity implementer followed by commutant no-growth.
 
 The statement is specific to canonical microstates.  It says nothing about
 arbitrary exact finite-dimensional representations, and it does not provide
