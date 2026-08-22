@@ -28,6 +28,15 @@ decomposition remains.  On the complement, combine the
 little-o two-odd-factor estimate with
 `one-anchor-grading-makes-parity-damage-quadratic`.
 
+The terminal composition is now packaged in
+`central-reducing-spike-certificates-batch-round`.  Once the reducing
+decomposition has cleaning sets which cover every high odd spike, reset all
+sets simultaneously.  The cost is `C E/rho^2`, independent of how many
+historical cuts produced the blocks, and the complement retains the stated
+operator cutoff.  Thus the central branch's only missing assertion is the
+coverage certificate itself; counting, repeated-cut multiplicity, and
+balanced-energy bookkeeping are closed.
+
 There is no exponent conflict between hard reset and the soft anchor step.
 `hard-soft-exponent-conflict-is-a-norm-mismatch` observes that the
 quadratic remainder is an `L_2` row amplitude `Ct sqrt(E)` and therefore

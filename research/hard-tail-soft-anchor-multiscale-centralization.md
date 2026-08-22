@@ -15,6 +15,7 @@ requires:
   - block-adaptive-sparse-reset-is-cheap
   - central-weighted-erasure-ledger-recovers-reset-density
   - single-spike-split-or-charge-has-fourth-root-modulus
+  - central-reducing-spike-certificates-batch-round
 ---
 
 The former exponent obstruction was a norm mismatch.
