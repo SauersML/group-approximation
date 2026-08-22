@@ -45,3 +45,13 @@ coefficient in the game energy.  It also survives any finite repetition:
 repetition increases `lambda`, strengthening the lower bound rather than
 reversing its sign.
 
+There is a tempting phase-corrected use of this lower bound.  If the private
+and shared row involutions commute, their mismatch projection has trace one
+quarter of the squared row defect, and on the negative sector of a central
+involution `J` it intertwines the private sign with `J` times the shared
+sign.  However `deleted-large-row-phase-return-is-finite-clock-saturated`
+shows that transporting the private letter itself across an HNN edge makes
+the resulting return word conjugate to `Jcb`, hence an involution.  The
+large mismatch carrier lies inside its ordinary canonical fixed atom and
+cannot beat the sharp finite-clock Fejer threshold.  Thus the lower bound is
+genuine carrier mass, but not wandering or excess finite-clock mass.
