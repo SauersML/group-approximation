@@ -52,3 +52,10 @@ no-Fano-line support conclusion.
   The remaining positive possibility is therefore source-specific: prove
   that the particular HALT perfect strategy used before the NP reduction has
   affine-safe support in every answer and accepted-pair context.
+- `dfnqxy-answer-reduction-does-not-preserve-affine-safe-support` audits the
+  preceding Hadamard answer reduction.  All of its equality and code/subset
+  tests are affine-safe; only the PCPP `Verify` views remain.  A three-outcome
+  perfect EPR strategy gives an explicit counterexample showing that the
+  transformation does not preserve affine safety in general.  Thus the
+  cited perfectness/oracularizability argument cannot close this node: one
+  must inspect the particular HALT strategy's positive PCPP view images.
