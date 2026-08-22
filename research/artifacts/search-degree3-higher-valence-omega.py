@@ -10,16 +10,7 @@ be inserted.
 """
 
 import argparse
-import importlib.util
 from itertools import combinations
-from pathlib import Path
-
-
-SOURCE = Path(__file__).with_name(
-    "search-leavitt-degree4-relative-pictures.py")
-SPEC = importlib.util.spec_from_file_location("degree4_pictures", SOURCE)
-P = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(P)
 
 
 def append_z(word, exponent):
@@ -37,7 +28,7 @@ def orbit_word(mask, signs, start):
         quotient = (height - residue) // 3
         append_z(word, quotient)
         if mask & (1 << slot):
-            word.append(("g", residue, P.TARGET))
+            word.append(("g", residue))
         append_z(word, -quotient)
         height += sign
     append_z(word, 1)
@@ -51,35 +42,26 @@ def orbit_word(mask, signs, start):
     return tuple(expanded)
 
 
-def inverse_unit(unit):
-    return P.canon({(right, left) for left, right in unit})
-
-
 def inverse(word):
-    return tuple((copy, inverse_unit(unit))
-                 for copy, unit in reversed(word))
+    # The explicit gate h=[c,d] is an involution, so inversion only reverses
+    # the free-product syllables.
+    return tuple(reversed(word))
 
 
 def reduce_units(factors):
     stack = []
-    for copy, unit in factors:
-        if unit == P.ONE:
-            continue
-        if stack and stack[-1][0] == copy:
-            unit = P.mul(stack.pop()[1], unit)
-            if unit == P.ONE:
-                continue
-        stack.append((copy, unit))
+    for copy in factors:
+        if stack and stack[-1] == copy:
+            stack.pop()
+        else:
+            stack.append(copy)
     return tuple(stack)
 
 
 def cyclic_reduce(word):
     word = tuple(word)
-    while len(word) > 1 and word[0][0] == word[-1][0]:
-        first = word[0]
-        last = word[-1]
-        word = reduce_units(word[1:-1] + (
-            (first[0], P.mul(last[1], first[1])),))
+    while len(word) > 1 and word[0] == word[-1]:
+        word = word[1:-1]
     return word
 
 
@@ -90,7 +72,7 @@ def unary_value(word):
         return None
     position = positions[0]
     rotated = word[position:] + word[:position]
-    corner = reduce_units(tuple(token[1:] for token in rotated[1:]))
+    corner = reduce_units(tuple(token[1] for token in rotated[1:]))
     return inverse(corner) if rotated[0][1] == 1 else corner
 
 
@@ -100,7 +82,7 @@ def substitute(word, z_value):
         if token[0] == "z":
             factors.extend(z_value if token[1] == 1 else inverse(z_value))
         else:
-            factors.append(token[1:])
+            factors.append(token[1])
     return reduce_units(tuple(factors))
 
 
@@ -134,14 +116,13 @@ for sign_index, negative in enumerate(combinations(range(13), 5)):
                           for index in residual)
         difference = cyclic_reduce(reduce_units(
             relations[1] + inverse(relations[0])))
-        if (len(difference) == 1 and
-                difference[0][1] in (P.TARGET, P.TARGET_INV)):
+        if len(difference) == 1:
             slots = tuple("h" if mask & (1 << index) else "1"
                           for index in range(13))
             print("HIT", "negative", negative, "signs", signs,
                   "slots", slots, "pivot", pivot, "residual", residual,
                   "z_value", z_value, "relations", relations,
-                  "difference_copy", difference[0][0], flush=True)
+                  "difference_copy", difference[0], flush=True)
             raise SystemExit(42)
 
 print("sign_paths", 1287)
