@@ -67,3 +67,14 @@ The unsolved half is returning to exact faces.  The Loewner exactification
 theorem controls the return's squared movement, but not the sign of its
 first-order equality cross term.  A two-step Lyapunov must show that this
 return spends less than the damped cloud step gained.
+
+That sign cannot be obtained from the existing local exactifier.
+`damped-cloud-face-return-has-an-exact-scalar-fixed-sheet` gives exact
+scalar faces in the balanced original-plus-pair-sum overlay for which every
+`t<1/2` damped occurrence retains its old sign.  The sign-first Loewner
+exactifier therefore returns the starting tuple, and its equality cross term
+is exactly `2t(1-t)E_eq`; with the return square `t^2E_eq` this restores the
+entire old equality energy.  Central direct-sum weighting makes this a
+small-energy obstruction.  Thus branch 2 of `(PCD1)` needs a coordinated
+cloud/face character decoder or a genuinely different Lyapunov update, not
+an improved constant in facewise Loewner exactification.
