@@ -97,6 +97,24 @@ with a finite central extension whose marked type is absent from every
 finite-dimensional representation.  The unresolved operation is to install
 the BCS quotient without destroying that sector character classification.
 
+There is now a sharp fence on the finite-normal-subgroup version of this
+proposal.  By
+`finite-normal-invariant-type-corner-is-matrix-twisted-group-algebra`, the
+entire invariant `rho`-corner is already
+
+```text
+M_(dim rho)(C) tensor C*_omega(Gamma/K)
+```
+
+for a finite-valued Clifford cocycle, with canonical trace equal to matrix
+trace times twisted regular trace.  Therefore
+`finite-normal-signed-bcs-quotient-collapses-to-twisted-factor` shows that a
+successful unique-trace non-CE quotient has already produced a non-CE twisted
+group factor and hence a nonhyperlinear finite central extension.  The BCS
+quotient is not a weaker compiler in this setting.  Escaping this fence would
+require a signed projection not arising from one invariant irreducible type
+of a finite normal subgroup, or an independently new twisted-factor source.
+
 ## Exact monotracial-quotient reduction
 
 The available MIP* BCS source is stronger in one useful direction: it has a
@@ -187,3 +205,10 @@ selects such a face.
   has a generating unitary representation `(CRQ2)` inside a monotracial
   non-CE BCS algebra.  A family of Hecke operators in the group corner would
   instead construct the opposite map and does not address `(CRQ1)`.
+- Compiling the BCS algebra as the coefficient ring of an elementary group
+  does not supply `(CRQ2)`: by
+  `elementary-bcs-canonical-unitary-compiler-fence`, nontrivial elementary
+  root matrices are not unitaries in `M_n(B)`.  An abstract unitary
+  representation with the required generating image would need a new
+  factorial-character theorem over the noncommutative BCS ring; the published
+  commutative-Noetherian and arithmetic theorems do not apply.
