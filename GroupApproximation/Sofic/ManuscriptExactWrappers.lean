@@ -59,6 +59,7 @@ theorem manuscriptMFDefinitionEquivalences :
     OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one,
     isOperatorMFIncreasing_iff⟩
 
+open scoped Matrix.Norms.L2Operator in
 /-- The bounded tensor-power amplification lemma used to normalize local
 operator-norm separation to the constant one. -/
 theorem manuscriptTensorAmplification :

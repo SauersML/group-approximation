@@ -141,19 +141,20 @@ We prove that non-MF groups exist, resolving negatively the longstanding
 question whether every countable group is MF.  Our principal example is an
 explicit finitely presented sofic group.
 
-The obstruction implements the central-involution strategy of
+The proof follows the central-involution strategy of
 Bachner--Dogon--Lubotzky.  The new ingredient is a one-sided Kazhdan
 transport theorem: in every operator-norm asymptotic representation,
 one-sided conjugation preserves the Hilbert--Schmidt asymptotic commutant
-of a property-\textup{(T)} subgroup.  This forces a distinguished central
-involution to disappear in every norm matrix corona, while an auxiliary
-Clifford quotient witnesses that the involution is nontrivial.
+of a property-\textup{(T)} subgroup.  This forces every homomorphism into
+the unitary group of a norm matrix corona to map a distinguished central
+involution to the identity, while an auxiliary Clifford quotient shows
+that the involution is nontrivial.
 
-We also prove a tensor-power amplification theorem for operator-norm
+We also prove a tensor-power amplification lemma for operator-norm
 models.  It implies that MF is closed in the space of marked groups and
-under directed colimits; consequently, the existence of an arbitrary
-non-MF group is equivalent to the existence of a finitely generated, or
-finitely presented, one.  Further consequences include a separable exact
+under directed colimits; consequently, a non-MF group exists if and only
+if a finitely generated, or finitely presented, one does.  Further
+consequences include a separable exact
 stably finite reduced group $C^*$-algebra that is not MF and a hyperlinear
 trace that is not MF.
 
@@ -186,29 +187,27 @@ translations and the three generators of the linear action.  The Tietze
 reduction in Section~\ref{sec:group} gives a six-generator,
 thirty-two-relator presentation.
 
-Tensor-power amplification makes the local separation uniform and proves
-that MF is closed in marked-group space and under directed colimits
-(Theorem~\ref{thm:markedclosed} and the directed-colimit corollary below).
-Consequently, the existence of an arbitrary non-MF group is equivalent to
-the existence of a finitely generated, or finitely presented, one
-(the finite-presentation reduction below).  The value of the presentation below is
-therefore its explicitness, not finite presentability alone.
+By tensor-power amplification (Lemma~\ref{lem:tensor-amplification}), the
+element-dependent separation in this definition can be made uniform.
+Hence MF is closed in the space of marked groups and under directed
+colimits (Theorem~\ref{thm:markedclosed}), and a non-MF group exists if
+and only if a finitely generated, or finitely presented, one does
+(Section~\ref{sec:prelim}).
 
 Residually finite and LEF groups are MF \cite{CDE}.  Amenable groups are
 MF because their reduced group $C^*$-algebras embed into the universal UHF
 algebra \cite[Theorem~B]{SchafhauserAF}, using the quasidiagonality of nuclear
 $C^*$-algebras \cite{TWW}.
 
-The word ``MF'' is used for several related approximation properties, which
-must be distinguished here.  We use the Carri\'on--Dadarlat--Eckhardt
+The word ``MF'' names several related approximation properties.  We use the Carri\'on--Dadarlat--Eckhardt
 group property: an embedding of the abstract group into a norm matrix
 corona \cite{CDE}.  Schafhauser's group models additionally approximate the
 left regular representation \cite{Schafhauser}, and the strong models of
 Gao--Kunnawalkam Elayavalli--Manzoor--Patchell recover the regular norm
 \cite{GKEMP}.  Shulman's amalgamated-product results concern, in particular,
-the MF property of full group $C^*$-algebras \cite{Shulman}.  These stronger
-group and $C^*$-algebraic properties imply the group-MF property used here,
-but they are not interchangeable with it.
+the MF property of full group $C^*$-algebras \cite{Shulman}.  These
+stronger group and $C^*$-algebraic properties imply the group property
+used here.
 
 \subsection*{The result}
 
@@ -269,7 +268,8 @@ Consequently, conjugation by $t$ preserves the asymptotic commutant of
 $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm
 (Theorem~\ref{thm:kazhdan-transport}).
 
-Put $\hat c=tct^{-1}$ and $u=[\,\hat c,\iota(a)\,]$ for $a\in\Gamma$.  Since $c$
+Put $\hat c=tct^{-1}$ and $u=[\,\hat c,\iota(a)\,]$ for some $a\in\Gamma$.
+Since $c$
 commutes with $\iota(\Gamma)$, the sequence $(U_n(c))$ lies in that
 asymptotic commutant.  Theorem~\ref{thm:kazhdan-transport} therefore gives
 $\hsnorm{[U_n(\hat c),U_n(\iota(\gamma))]_{-}}\to0$ for every
@@ -296,9 +296,10 @@ Hilbert--Schmidt distances arbitrarily small (Section~\ref{sec:limits}).
 Let $\Gamma$ be a finitely presented Kazhdan group with a proper
 injective endomorphism $\alpha$, let $a\in\Gamma\setminus\alpha(\Gamma)$,
 and adjoin $t$ and $c$ subject to $t\gamma t^{-1}=\alpha(\gamma)$,
-$c^2=1$ and $[c,\gamma]=1$.  In
-the direct limit of $\alpha$ the cosets $t\Gamma$ and $at\Gamma$ are
-distinct, since $t^{-1}at\in\Gamma$ would give $a\in\alpha(\Gamma)$.
+$c^2=1$ and $[c,\gamma]=1$.  In the ascending HNN extension of $\Gamma$
+along $\alpha$ the cosets $t\Gamma$ and $at\Gamma$ are distinct, since
+$t^{-1}at\in\Gamma$ would give $a\in\alpha(\Gamma)$.  An auxiliary
+Clifford quotient witnesses that $w\ne1$.
 For a set $X$, the Clifford group $\Cl(X)$ is generated by a central
 involution $\zeta$ together with involutions $c_x$, $x\in X$, subject
 to $[c_x,c_y]=\zeta$ for $x\ne y$; every permutation of $X$ acts on it
@@ -578,8 +579,8 @@ equivalent to requiring the dimensions to be strictly increasing.
 \end{proposition}
 
 The nontrivial point in this equivalence is that an element-dependent
-positive separation in the corona can be made uniform.  The following
-operator-norm amplification is the mechanism.
+positive separation in the corona can be made uniform, by the following
+operator-norm amplification.
 
 \begin{lemma}[tensor amplification]\label{lem:tensor-amplification}
 Let $u,v\in\U(d)$ and $\opnorm{u-v}\ge\delta>0$.  If
@@ -605,12 +606,11 @@ spectrum of $z^{\otimes p}$,
 \]
 Finally, $\delta\le2$ for two unitaries, and
 $8<N\delta^2$ therefore gives $\pi/(3\delta)+1<N$.
-The defect estimate follows by telescoping the difference between two
-$p$-fold tensor products of contractions.
 \end{proof}
 
-The same telescoping identity shows that taking a $p$th tensor power
-multiplies every multiplicative defect by at most $p$.
+Telescoping the difference of two $p$-fold tensor products of
+contractions shows that a $p$th tensor power multiplies every
+multiplicative defect by at most $p$.
 
 \begin{proof}[Proof of Proposition~\ref{prop:mf-equivalences}]
 Lemma~\ref{lem:unitarycorona} gives the equivalence between a homomorphism
@@ -672,13 +672,14 @@ Let $G=\varinjlim_iG_i$ with every $G_i$ MF.  Given finite
 $F\subseteq G$ and $\varepsilon>0$, choose a stage containing lifts of
 all elements and products occurring in the local conditions on $F$, and
 then a later stage at which every equality and inequality among those
-finitely many elements has stabilized to its truth value in $G$.  A
-constant-$1$ local MF model at that stage descends to the prescribed data
-on $F$.  Proposition~\ref{prop:mf-equivalences} gives that $G$ is MF.
+finitely many elements has stabilized to its truth value in $G$.
+Composing a constant-$1$ local model at that stage with the lifts gives
+one with the prescribed data on $F$.
+Proposition~\ref{prop:mf-equivalences} gives that $G$ is MF.
 \end{proof}
 
-The amplification step plays here the role that rank amplification plays
-in the direct-limit theorem for linear sofic groups
+The amplification step plays the role that rank amplification plays in
+the direct-limit theorem for linear sofic groups
 \cite{ArzhantsevaPaunescu}.
 
 \noindent\textbf{Finite-presentation reduction.}
@@ -688,8 +689,6 @@ The following are equivalent:
 \item a finitely generated non-MF group exists;
 \item a finitely presented non-MF group exists.
 \end{enumerate}
-Equivalently, all countable groups are MF if and only if all finitely
-presented groups are MF.
 
 \begin{proof}
 If $G$ is non-MF, a failed local condition is witnessed on a finite set
@@ -858,6 +857,12 @@ to a nontrivial element.
 
 \subsection*{The asymptotic case}
 
+Recall that a \emph{Kazhdan pair} for a property-\textup{(T)} group $L$
+is a finite set $S\subseteq L$ together with a constant $\kappa>0$ such
+that, in every unitary representation $\pi$ of $L$ with no nonzero
+invariant vector, every unit vector $\xi$ satisfies
+$\lVert\pi(a)\xi-\xi\rVert\ge\kappa$ for some $a\in S$.
+
 \begin{lemma}[Kazhdan spectral gap]\label{lem:kazhdan-gap}
 Let $L$ be a group with property~\textup{(T)}, let $S\subseteq L$ be a
 finite symmetric Kazhdan set containing $1$ with Kazhdan constant
@@ -1003,16 +1008,14 @@ H$.
 
 \section{The central involution obstruction}\label{sec:sign}
 
-This section implements the central-involution strategy of
+This section follows the central-involution strategy of
 Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  In their setting,
-operator--Hilbert--Schmidt stability turns the compressed asymptotic
-representation into nearby genuine representations, contradicting finite
-quotient invisibility of the involution.  Here
-Theorem~\ref{thm:kazhdan-transport} instead forces the particular word whose
-square is the involution to be Hilbert--Schmidt close to the identity on the
-compressed corner.  Thus the present contribution is the Kazhdan transport
-mechanism and its explicit realization, not the underlying strategy of using
-a central involution to obstruct MF.
+operator--Hilbert--Schmidt stability replaces the compressed asymptotic
+representation by nearby genuine finite-dimensional representations,
+which map the involution to the identity.  Here
+Theorem~\ref{thm:kazhdan-transport} instead forces the word whose square
+is the involution to be Hilbert--Schmidt close to the identity on the
+compressed corner.
 
 Let $w$ be a central involution of $H$ and let $\Theta$ be a
 homomorphism to $\U(\mathcal Q)$ with $\Theta(w)\ne1$.  Then
@@ -1206,7 +1209,7 @@ For nontriviality, consider the ascending HNN extension
  G=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)\rangle
 \]
 and use Britton's lemma to identify $\Gamma$ with its canonical copy in
-$G$.  This is the only HNN-extension input required in the main argument.
+$G$.
 
 Let $X=G/\Gamma$ be its coset space.  The Clifford
 group $\Cl(X)$ is generated by a central involution $\zeta$ and
@@ -1226,8 +1229,6 @@ Clifford generators anticommute and
  w\longmapsto(c_{t\Gamma}c_{at\Gamma})^2=\zeta\ne1 .
 \]
 The sign $\zeta$ is central, so the map respects every defining relation.
-Thus the Clifford group is only an auxiliary quotient witnessing
-$w\ne1$; it plays no role in the analytic obstruction.
 It follows both that $w\ne1$ and that the canonical map of
 $\Gamma$ is injective.
 
@@ -1330,9 +1331,8 @@ and~\textup{(C)} give, respectively,
 \]
 \end{definition}
 
-Figure~\ref{fig:compression-pattern} summarizes how the one-sided
-conjugation relations feed the analytic obstruction and the auxiliary
-nontriviality witness.
+Figure~\ref{fig:compression-pattern} shows how the relation families
+enter the obstruction and the nontriviality witness.
 
 \begin{figure}[htbp]
 \centering
@@ -1577,8 +1577,7 @@ the matrix realization is an isomorphism.
 \leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
 \end{remark}
 
-\section{An auxiliary Clifford witness for
-\texorpdfstring{$w\ne1$}{w nontrivial}}\label{sec:witness}
+\section{An auxiliary Clifford witness}\label{sec:witness}
 
 \begin{construction}[Clifford groups]\label{con:clifford}
 For a set $X$, use the real Clifford-algebra convention generated by
@@ -1603,8 +1602,8 @@ permutation group $\Sigma\curvearrowright X$ gives
  (\Cl(X)\rtimes\Sigma)/\langle\zeta\rangle
  \cong \left(\bigoplus_XC_2\right)\rtimes\Sigma.
 \]
-Thus the auxiliary witness becomes the standard permutational lamp group
-after killing its sign.
+Modulo its sign, $\Cl(X)\rtimes\Sigma$ is thus an ordinary
+permutational wreath product.
 
 \begin{lemma}[linear model]\label{lem:linear}
 For $M\in\GL_3(\mathbb Q)$ and $u\in\mathbb Q^3$, write
@@ -1709,7 +1708,7 @@ $\operatorname{Res}_{\mathrm{MF}}(E)$.
 \leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark}
 \end{mainthm}
 
-The exact residuals of both $E$ and $E/\langle w\rangle$ are computed in
+The MF residuals of $E$ and $E/\langle w\rangle$ are computed exactly in
 Section~\ref{sec:exact-residual}.
 
 \noindent
@@ -2096,8 +2095,8 @@ $H\to\U(\mathcal Q)$ is trivial on $F$.
 The same conclusion holds for every finite normal subgroup $F$ contained
 in a subgroup $D\le H$ whose elements lie in $K_2^{\omega}(U)$ for every
 operator-norm asymptotic representation $U$ of $H$ and every $\omega$.
-The finiteness of $F$, not merely universal $2$-norm triviality of $D$,
-is what makes the coordinate averaging argument work.
+Finiteness of $F$ is essential: universal $2$-norm triviality alone does
+not force triviality in the corona (Section~\ref{sec:limits}).
 
 The central involution obstruction
 (Theorem~\ref{thm:sign-criterion}) is the case $F=\{1,w\}$, where
@@ -3114,7 +3113,7 @@ $u\in\operatorname{Res}_{\mathrm{MF}}(E)$ by
 Theorem~\ref{thm:signfree}; since the residual is normal,
 $D=\langle\!\langle u\rangle\!\rangle_E
 \le\operatorname{Res}_{\mathrm{MF}}(E)$.  Universal $2$-norm triviality
-alone would not imply this corona statement; see Section~\ref{sec:limits}.
+alone does not imply this corona statement (Section~\ref{sec:limits}).
 
 In the quotient by $D$, the involution $d$ commutes with all of
 $\mathcal B$.  Replacing $c$ by $d$, so that $c=t^{-1}dt$, makes the old
@@ -3739,7 +3738,6 @@ presented infinite simple torsion-free group $S'\le\Gamma$ such that
  t_1\Gamma t_1^{-1}\subseteq\Gamma,
  \qquad t_1^{-1}S't_1\subseteq C_{G_0}(\Gamma).
 \]
-We first verify the compression-defect assertion that will be needed below.
 For $s\in S'$, put $z=t_1^{-1}st_1$.  Then
 $z\in C_{G_0}(\Gamma)$ and $t_1\in P_\Gamma\subseteq G^+(\Gamma)$, so for
 every $\ell\in\Gamma$,
@@ -3764,8 +3762,7 @@ $G$.  The image of $S'$ is nontrivial, and its kernel is a proper normal
 subgroup of the simple group $S'$, so $q|_{S'}$ is injective.  It follows
 that $q(S')$ normally generates $G$.
 
-It remains important to repeat the defect argument after quotienting.  Put
-$L=q(\Gamma)$.  The relations above descend to
+Put $L=q(\Gamma)$.  The relations above descend to
 \[
  q(t_1)Lq(t_1)^{-1}\subseteq L,
  \qquad q(t_1)^{-1}q(S')q(t_1)\subseteq C_G(L).

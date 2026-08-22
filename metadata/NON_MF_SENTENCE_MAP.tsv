@@ -13,7 +13,6 @@
 # anchor is listed explicitly below; the checker accepts neither similarity
 # guesses nor a whole-anchor fallback.
 04f14a98e39a	definition	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the hypotheses of the transport theorem, as its binders
-e76a88d28c6d	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	names the compressed commutator; the same word is the construction's
 d13a4943aa53	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the centralizing element lands in the asymptotic commutant
 93f40f584a43	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the transport conclusion, applied to that element
 4bb94bb81c8b	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse	the displayed vanishing, for every asymptotic representation
@@ -22,7 +21,6 @@ d13a4943aa53	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscript
 b162e8dcad5c	formalized	GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction	the two-norm contradiction on the corner
 6592da4e3a5b	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the sign criterion
 cc04e353c3cf	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the construction's data, as its binders
-6a178e654de2	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the two cosets are distinct in the direct limit
 c376f8c055fd	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the Clifford group and the permutation action on it
 b41519445c83	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the action used, named
 a72a5c156877	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	w maps to the nontrivial sign
@@ -718,21 +716,12 @@ aada972c62a3	provenance	-	authorial checking and revision
 e7a5ac2e4799	ledger	PRE.16	re-reviewed after the manuscript revision
 7563a0631736	ledger	INT.01	re-reviewed after the manuscript revision
 02c13d1a2175	ledger	INT.17	re-reviewed after the manuscript revision
-cf132d224546	attribution	-	re-reviewed after the manuscript revision
 b9296e81f500	ledger	INT.03	re-reviewed after the manuscript revision
-d7ced2311944	ledger	INT.04 INT.05	re-reviewed after the manuscript revision
-4aede1ec2fc4	ledger	AE.06	re-reviewed after the manuscript revision
-70ff5d1d10f9	ledger	ML.02 AE.11 AE.12	re-reviewed after the manuscript revision
-7386e18e484c	ledger	INT.02 INT.17	re-reviewed after the manuscript revision
+7386e18e484c	ledger	INT.02 INT.17 SO.16	exactness of Cred(E) is SO.16, graded MISMATCH; the abstract clause carries that row
 ed2a6dce24e3	attribution	-	re-reviewed after the manuscript revision
-6eb8e41cd345	ledger	AE.06 ML.02 AE.11	re-reviewed after the manuscript revision
-0a95bbaaa255	ledger	AE.12	re-reviewed after the manuscript revision
-8b7dc803d901	structural	-	re-reviewed after the manuscript revision
-8c5f657927af	structural	-	re-reviewed after the manuscript revision
 6e7a167828ba	ledger	INT.18	re-reviewed after the manuscript revision
 02c82253eca2	attribution	-	re-reviewed after the manuscript revision
 aa866f9859dc	attribution	-	re-reviewed after the manuscript revision
-0c7171424771	attribution	-	re-reviewed after the manuscript revision
 202f1226191b	ledger	TF.04	re-reviewed after the manuscript revision
 017b531d0c28	structural	-	re-reviewed after the manuscript revision
 9147c109b797	attribution	-	re-reviewed after the manuscript revision
@@ -742,16 +731,12 @@ f6a0429ab407	attribution	-	re-reviewed after the manuscript revision
 e4a1585e15dc	attribution	-	re-reviewed after the manuscript revision
 1c79c1b0d45a	attribution	-	re-reviewed after the manuscript revision
 ce4bc517ef28	attribution	-	re-reviewed after the manuscript revision
-28f29a62cbcf	ledger	AE.05 AE.06	re-reviewed after the manuscript revision
-7b393dc0f129	structural	-	re-reviewed after the manuscript revision
 46458125ba2e	ledger	AE.06	re-reviewed after the manuscript revision
 d3e0004e1847	ledger	AE.06	re-reviewed after the manuscript revision
 97f691365f3a	ledger	AE.06	re-reviewed after the manuscript revision
 35e66e29503a	ledger	AE.06	re-reviewed after the manuscript revision
 229f26d94696	ledger	AE.06	re-reviewed after the manuscript revision
 e7aa9d02f9a4	ledger	AE.06	re-reviewed after the manuscript revision
-63b986f3d66f	ledger	AE.07	re-reviewed after the manuscript revision
-65fab82776c0	ledger	AE.07	re-reviewed after the manuscript revision
 34e308556f5f	ledger	AE.02	re-reviewed after the manuscript revision
 89393701e0b5	ledger	AE.04	re-reviewed after the manuscript revision
 350c06d77132	ledger	AE.04	re-reviewed after the manuscript revision
@@ -772,14 +757,11 @@ f1e1436bdae2	ledger	ML.06	re-reviewed after the manuscript revision
 19a875abb319	ledger	AE.11	re-reviewed after the manuscript revision
 2e60882463ff	ledger	AE.11	re-reviewed after the manuscript revision
 bbb5426065f2	ledger	AE.11	re-reviewed after the manuscript revision
-b6efa60c2f48	ledger	AE.11	re-reviewed after the manuscript revision
 474c10aaf074	ledger	AE.11	re-reviewed after the manuscript revision
-9f334f207457	attribution	-	re-reviewed after the manuscript revision
 b8be8c878ebb	ledger	AE.12	re-reviewed after the manuscript revision
 e86d73190cb8	ledger	AE.12	re-reviewed after the manuscript revision
 55338d7dc927	ledger	AE.12	re-reviewed after the manuscript revision
 67d50428ddcb	ledger	AE.12	re-reviewed after the manuscript revision
-3448d1540106	ledger	AE.12	re-reviewed after the manuscript revision
 ad33a2ef4f52	ledger	AE.12	re-reviewed after the manuscript revision
 1ede71f01a54	ledger	AE.12	re-reviewed after the manuscript revision
 6e0fdd805f92	ledger	AE.12	re-reviewed after the manuscript revision
@@ -795,10 +777,6 @@ be0ad5a3c458	attribution	-	re-reviewed after the manuscript revision
 3bca40548b4f	ledger	INT.03	re-reviewed after the manuscript revision
 50adcf3164b8	ledger	INT.03	re-reviewed after the manuscript revision
 de5baca25a1a	ledger	INT.03	re-reviewed after the manuscript revision
-b7021cc45b47	attribution	-	re-reviewed after the manuscript revision
-e0643090247a	attribution	-	re-reviewed after the manuscript revision
-3c86ea95fa62	ledger	INT.03 INT.04	re-reviewed after the manuscript revision
-5f63cb709d1f	attribution	-	re-reviewed after the manuscript revision
 c56aa76a93a0	ledger	CR.02	re-reviewed after the manuscript revision
 b6f6f3ad07b3	ledger	CR.02	re-reviewed after the manuscript revision
 3e677d433c17	ledger	CR.02	re-reviewed after the manuscript revision
@@ -809,19 +787,13 @@ b6f6f3ad07b3	ledger	CR.02	re-reviewed after the manuscript revision
 6f15c7336536	ledger	KC.07	re-reviewed after the manuscript revision
 ed8c92207b68	ledger	KC.04 KC.05	re-reviewed after the manuscript revision
 1c18d77dda40	ledger	KC.04	re-reviewed after the manuscript revision
-504418e57a2e	structural	-	re-reviewed after the manuscript revision
 ffdc409cf764	ledger	KC.04	re-reviewed after the manuscript revision
-fee359ebdf6f	ledger	KC.04 INT.05	re-reviewed after the manuscript revision
 91f13c2cf436	attribution	-	re-reviewed after the manuscript revision
 80cc5bad61e6	structural	-	re-reviewed after the manuscript revision
-b9c6f299b45c	structural	-	re-reviewed after the manuscript revision
 7fa2310d2b7c	ledger	PA.07	re-reviewed after the manuscript revision
 a14dea6d91fc	attribution	-	re-reviewed after the manuscript revision
 b58e48f1141f	attribution	-	re-reviewed after the manuscript revision
-62f2efed3c91	structural	-	re-reviewed after the manuscript revision
 1fcdd7dd0e77	ledger	BN.06	re-reviewed after the manuscript revision
-e9d97426e0a4	ledger	BN.06	re-reviewed after the manuscript revision
-bc84aa8684b7	structural	-	re-reviewed after the manuscript revision
 01666fc0d874	structural	-	re-reviewed after the manuscript revision
 e764ba260862	ledger	CY.10	re-reviewed after the manuscript revision
 276325f2262c	ledger	CY.10	re-reviewed after the manuscript revision
@@ -830,7 +802,6 @@ c1cac47698f1	ledger	PA.16	re-reviewed after the manuscript revision
 e157c76e6812	ledger	PA.16	re-reviewed after the manuscript revision
 ee4eeb88913b	ledger	ER.01	re-reviewed after the manuscript revision
 63932a89f6a4	ledger	ER.04	re-reviewed after the manuscript revision
-fe4b7d88ee02	ledger	ER.04	re-reviewed after the manuscript revision
 81aa811ce152	ledger	ER.03	re-reviewed after the manuscript revision
 81a9022e39d6	ledger	ER.03	re-reviewed after the manuscript revision
 7d66a37dbb6a	ledger	ER.04	re-reviewed after the manuscript revision
@@ -841,7 +812,6 @@ c66d29a55454	ledger	BN.06	re-reviewed after the manuscript revision
 4acc2a220489	ledger	BN.06	re-reviewed after the manuscript revision
 b60448114b2b	attribution	-	re-reviewed after the manuscript revision
 04256b53815c	ledger	TF.01	re-reviewed after the manuscript revision
-3acac729adbe	structural	-	re-reviewed after the manuscript revision
 4b99672f8cb4	ledger	TF.05	re-reviewed after the manuscript revision
 10f25cacce2c	ledger	TF.05	re-reviewed after the manuscript revision
 071afc7f934b	ledger	TF.05	re-reviewed after the manuscript revision
@@ -849,7 +819,6 @@ a81d7dc1d6cf	ledger	TF.05	re-reviewed after the manuscript revision
 49ca941ac32b	ledger	TF.03	re-reviewed after the manuscript revision
 78305e3488c3	ledger	TF.03	re-reviewed after the manuscript revision
 938c72bdc907	ledger	TF.03	re-reviewed after the manuscript revision
-ec3a26c61125	structural	-	re-reviewed after the manuscript revision
 cf54a6685ff6	ledger	TF.05	re-reviewed after the manuscript revision
 24a55c023f78	ledger	TF.05	re-reviewed after the manuscript revision
 3aa6d538cfbc	ledger	TF.05	re-reviewed after the manuscript revision
@@ -857,3 +826,29 @@ cf54a6685ff6	ledger	TF.05	re-reviewed after the manuscript revision
 592e9b61f652	ledger	TF.04	re-reviewed after the manuscript revision
 03d8a577dffa	attribution	-	re-reviewed after the manuscript revision
 0349eec1e531	ledger	TF.02 TF.03	parameters and quotient supplied by the second Hull application
+
+# Assignments for the 2026-08-22 sentence-level writing pass; each row was
+# checked against the printed sentence and the named ledger rows or declarations.
+ebf834e0247f	attribution	-	credits the BDL central-involution strategy
+a8a29bb41ce6	ledger	INT.04 INT.05	the transport consequence kills the involution; the Clifford quotient witnesses it
+b7780b3a0f5f	ledger	AE.06	the tensor-power amplification lemma
+ee07fad1a7de	ledger	ML.02 AE.11 AE.12	marked closure, colimit permanence, and the finite-presentation reduction
+95adf139d93b	ledger	AE.05 AE.06	amplification makes the element-dependent separation uniform
+b15ace3efcd0	ledger	ML.02 AE.11 AE.12	closure of the MF locus and the finite-presentation reduction
+478f9b6d429b	structural	-	names the convention question the paragraph settles
+7fe6b091c843	attribution	-	comparative statement about the cited stronger conventions
+e2df584b5e2e	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	names the compressed commutator; the same word is the construction's
+ff18e44efac5	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the two cosets are distinct in the ascending HNN extension
+4241d38cbf7c	ledger	INT.05	the auxiliary Clifford witness, flagged at first mention
+646e428149d5	ledger	AE.05 AE.06	the uniformization step the amplification lemma performs
+bd88209bd9d0	ledger	AE.07	tensor powers multiply multiplicative defects by at most p
+4a9d1cf67212	ledger	AE.11	the stage model supplies the local data on F
+d27ae7eab8a1	attribution	-	compares with rank amplification for linear sofic groups
+6a3b3702fc0a	definition	GroupApproximation.HasKazhdanPropertyTComplex	recalls the Kazhdan-pair convention the lemma uses
+56815069018a	attribution	-	credits the BDL central-involution strategy
+d9e3629aed67	attribution	-	describes the stability route of the BDL argument
+88f86ea72cd1	ledger	INT.03 INT.04	what the transport theorem gives on the compressed corner
+5b1d13f5367f	structural	-	points to the figure
+0da4aadf25fb	ledger	BN.06	the sign quotient is an ordinary permutational wreath product
+0d72d16e1fa7	structural	-	forward pointer to the exact-residual section
+64216c4d3be0	ledger	ER.04	2-norm triviality alone does not give the corona statement

@@ -6,17 +6,17 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 752 |
+| `ledger` | 750 |
 | `formalized` | 266 |
-| `attribution` | 48 |
-| `definition` | 42 |
-| `structural` | 30 |
+| `attribution` | 47 |
+| `definition` | 43 |
+| `structural` | 24 |
 | `provenance` | 6 |
 | `open` | 1 |
 | `partial` | 1 |
-| **total** | **1146** |
+| **total** | **1138** |
 
-Carrying a declaration or a ledger row: **1061/1146** (92.6%).
+Carrying a declaration or a ledger row: **1060/1138** (93.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -24,9 +24,9 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`open`**, line 1727 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`open`**, line 1726 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 1804 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 1803 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
@@ -34,19 +34,20 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 9 | 0 |
-| Introduction | 17 | 0 |
+| Introduction | 16 | 0 |
 | The result | 7 | 0 |
-| Outline of the proof | 36 | 0 |
+| Outline of the proof | 37 | 0 |
 | Relation to prior work | 35 | 0 |
-| Matrix quotients | 91 | 0 |
+| Matrix quotients | 88 | 0 |
 | One-sided conjugation in matrix models | 22 | 0 |
 | The exact case | 17 | 0 |
-| The asymptotic case | 42 | 0 |
-| The central involution obstruction | 49 | 0 |
-| The basic non-MF construction | 29 | 0 |
+| The asymptotic case | 43 | 0 |
+| The central involution obstruction | 48 | 0 |
+| The basic non-MF construction | 27 | 0 |
 | The explicit affine example | 49 | 0 |
 | The base and a smaller presentation | 7 | 0 |
-| Property~\textup{(T) | 42 | 0 |
+| Property~\textup{(T) | 7 | 0 |
+| An auxiliary Clifford witness | 34 | 0 |
 | Consequences of the example | 3 | 0 |
 | The quotient by the central involution | 6 | 0 |
 | A stably finite non-MF group algebra | 14 | 0 |
@@ -68,7 +69,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A finite universal Horn obstruction | 10 | 0 |
 | Undecidability of MF recognition | 29 | 0 |
 | Limitations of the operator-norm method | 21 | 0 |
-| A torsion-free finitely presented non-MF group | 28 | 0 |
+| A torsion-free finitely presented non-MF group | 26 | 0 |
 | Open questions | 9 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 25 | 0 |
 | Acknowledgements | 4 | 0 |

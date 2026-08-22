@@ -278,7 +278,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:Esofic": ["def:E", "thm:A", "prop:blocknormalform", "lem:window"],
     "lem:mftrace-group": [],
     "thm:trace": ["thm:A", "def:E", "thm:Esofic", "lem:mftrace-group"],
-    "prop:mf-equivalences": ["lem:unitarycorona"],
+    "prop:mf-equivalences": ["lem:unitarycorona", "lem:tensor-amplification"],
     "lem:tensor-amplification": [],
     "cor:kazhdan-transport-subgroup": ["thm:kazhdan-transport"],
     "prop:literal-base-T": ["def:E"],
