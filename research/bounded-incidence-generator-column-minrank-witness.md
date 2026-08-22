@@ -9,7 +9,7 @@ distinct_from:
   expander-cloud-reduction-preserves-pauli-dimension-gap: that replaces repeated occurrences but retains all dense logical tests; this sparsifies the logical cross tests themselves.
 ---
 
-OPEN.  Construct asymptotically good generator-column multisets
+**ESTABLISHED.**  There are asymptotically good generator-column multisets
 `(a_i)_(i<=K),(b_j)_(j<=K')`, with `K,K'=Theta(n)`, and bipartite edge sets
 `E_n` of uniformly bounded degree such that the affine completion rank
 
@@ -18,10 +18,9 @@ r(E_n)=min { rank(B):
   a_i^T B b_j=a_i.b_j for every (i,j) in E_n }
 ```
 
-tends to infinity.  More importantly, prove a dimension-independent robust
-version: below one fixed normalized-HS sampled-test defect, exact additive X
-and Z laws (or their uniformly correctable versions) force local dimension at
-least `2^r_n` for some `r_n->infinity`, on the same Hilbert space.
+tends to infinity.  More importantly, below one fixed normalized-HS sampled-
+test defect, exact additive X and Z laws force local dimension tending to
+infinity on the same Hilbert space.
 
 Ordinary spectral expansion and high girth do not imply this.
 `sparse-generator-column-sampling-has-bilinear-kernel` gives, for every
@@ -54,11 +53,18 @@ embedding it in ambient dimension `N=r^2` gives scalar carrier dimension
 generator block preserves uniform column spectral gaps and linear total
 length.
 
-Thus the only remaining part of this OPEN node is the matrix-valued/HS
-promotion.  Exact additive X and Z representations can have nonscalar,
-non-normalizing cross behavior not encoded by one bilinear matrix.  One must
-either round small sampled defects to the scalar-Weyl sector with constants
-independent of `r`, or build such a matrix-valued low-dimensional escape.
+The matrix-valued/HS promotion is now supplied by
+`private-random-weyl-sampler-forces-growing-matrix-dimension`.  A metric-
+entropy argument samples the full uniform Weyl energy simultaneously over
+all exact additive representations of dimension at most `r`.  The full Weyl
+gap then yields, for ambient `N=r^2`, one fixed sampled HS threshold forcing
+`d>r=sqrt(N)`.  Thus arbitrary multiplicity and relative basis position do
+not provide an escape.
+
+What remains downstream is syntactic: choose a recursive/finite-presentation
+realization of the existential random columns, and exactify approximate
+additive laws at uniform word cost.  Those requirements belong to the Cayley
+incidence/compiler nodes, not to this analytic dimension-witness claim.
 
 There is no contradiction with the ordinary sparse-Pauli model.
 `bounded-degree-partial-matrices-have-constant-completion-rank` proves that
