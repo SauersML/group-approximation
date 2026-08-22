@@ -42,3 +42,8 @@ Nevertheless it closes the Maslov sector by
   `sp4-mod3-twisted-fibres-have-llp` is a stronger open problem.  A successful
   attack should use only the finite presentation and tracial 2-norm, avoiding
   arbitrary quotient algebras.
+- Property (T) alone cannot correct arbitrary Choi/linear lifts to ucp lifts:
+  `property-t-alone-cannot-correct-tracial-choi-lifts` applies such a
+  hypothetical correction to Thom's hyperlinear Kazhdan group without the
+  factorization property.  Any correction here must use the Deligne
+  multiplier or symplectic arithmetic, not only a Kazhdan pair.
