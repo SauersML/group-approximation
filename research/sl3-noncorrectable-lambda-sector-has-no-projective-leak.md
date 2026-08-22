@@ -74,3 +74,35 @@ not correct this sector.  The remaining named condition is regular
 inner-adjoint HS stability, strictly narrower than full flexible stability
 but currently open.  A direct denominator argument could still prove
 `(UNC2)` without it.
+
+The direct root/relative-`(T)` bypass now has two exact fences.
+
+- `one-root-p3-denominator-fragment-has-finite-regular-leaks` uses
+  separating finite quotients of
+
+  ```text
+  <a,h | h a h^(-1)=a^9>=BS(1,9)
+  ```
+
+  and the exact substitution `t=a`.  The root restriction has canonical
+  limiting trace, `[t,a]=1`, but `1-|tr([t,h])|^2=1`.  Hence no one-root
+  scaling or trace-square argument can work, even in exact finite matrices.
+- `full-sl3-root-package-has-an-exact-tracial-hnn-leak` keeps all six roots,
+  all denominator conjugacies and the whole lattice simultaneously in the
+  regular factor of
+
+  ```text
+  <Gamma,t | [t,Lambda]=1>.
+  ```
+
+  There `t` centralizes `Lambda` exactly while its commutator with `h` has
+  canonical trace zero.  Thus property `(T)`, relative property `(T)`, root
+  identities and finite-tracial positivity cannot imply `(UNC2)` as a
+  universal tracial inequality.  This is not a matrix countermodel because
+  Connes embeddability of that factor is unknown.
+
+Therefore any correction-free proof must use a genuinely joint,
+finite-dimensional/embeddability-sensitive incidence among multiple roots.
+The known p-three exact-face flux proposal has that shape, but its flatness
+and transport-dictionary seams remain open; it cannot presently be imported
+into the uniformly noncorrectable sector.
