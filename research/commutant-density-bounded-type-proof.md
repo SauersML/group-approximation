@@ -6,6 +6,7 @@ title: Expand the commutant dimension over irreducible multiplicities
 target: commutant-density-forces-bounded-type-mass
 requires:
   - property-t-laplacian-sos-certificate
+  - kazhdan-bounded-unitary-types-are-finite
 ---
 
 Schur's lemma applied to `(BTM1)` gives
@@ -35,9 +36,19 @@ sum_(n_i>K) (a_i/n_i)^2
 Equations `(1)` and `(2)` prove `(BTM3)`.  If `c>=eta`, its weaker second
 bound implies `mu_K^2>=eta-(K+1)^(-2)`, proving `(BTM4)`.
 
+For the converse, there are at most `r_K` low-degree summands in `(BTM1)`.
+Since `n_i<=K` on them,
+
+```text
+sum_(n_i<=K)(a_i/n_i)^2
+ >=K^(-2)sum_(n_i<=K)a_i^2
+ >=K^(-2)mu_K^2/r_K,
+```
+
+where the last step is Cauchy--Schwarz.  This proves `(BTM4b)`.
+
 For `(BTM5)`, `dim End_Gamma(H)>=dim(W)` gives `eta=c_0q^2`.  Choose `K`
 so `(K+1)^(-2)<=c_0q^2/2`; `(BTM4)` gives the stated mass and degree
 bounds.  Finally, below a Kazhdan gap the exact adjoint Laplacian has no
 nonzero spectrum: its spectral range is its invariant space, namely the
 commutant.  This proves the property-`(T)` interpretation.
-

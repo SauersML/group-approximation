@@ -63,5 +63,10 @@ part of the remaining hole.
   of `(PCD1)`: a lower bound `c_0q^2` on the old adjoint commutant forces
   linear-in-`q` Hilbert mass in old-`Lambda` irreducibles of degree
   `O(1/q)`.  Thus the missing cell is quantitatively a bounded-type compiler,
-  not merely a way to make the local Reynolds projection invariant.  Any
-  proposed Toeplitz covariance must exhibit this conversion explicitly.
+  not merely a way to make the local Reynolds projection invariant.
+  Conversely, Wang finiteness for bounded-degree Kazhdan types shows that
+  forcing a positive carrier into any fixed bounded-degree menu would suffice
+  for positive commutant density.  So the exact representation-theoretic
+  target is an equivalence: the Toeplitz covariance must compile the
+  forbidden carrier into a bounded finite menu of old-`Lambda` types (the
+  trivial type is not uniquely required).

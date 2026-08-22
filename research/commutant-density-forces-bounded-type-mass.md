@@ -44,6 +44,22 @@ In particular, if `c>=eta` and `(K+1)^(-2)<=eta/2`, then
 mu_K>=sqrt(eta/2).                                        (BTM4)
 ```
 
+If `Gamma` has property `(T)`, let
+
+```text
+r_K=|Irr_<=K(Gamma)|<infinity
+```
+
+by `kazhdan-bounded-unitary-types-are-finite`.  The converse inequality is
+
+```text
+c >= mu_K^2/(K^2 r_K).                                    (BTM4b)
+```
+
+Thus, for a fixed Kazhdan group, positive normalized commutant density is
+equivalent (with constants depending on the chosen degree cutoff) to
+positive Hilbert mass in a bounded finite menu of irreducible types.
+
 If `Gamma` has property `(T)`, choose an adjoint Laplacian cutoff below its
 Kazhdan gap.  In every exact representation its low-spectral space is
 exactly `End_Gamma(H)`, so the same conclusion applies to any exact version
@@ -68,4 +84,3 @@ normalizer covariance cannot perform this compilation by
 `finite-normalizer-covariance-density-no-go`.  A live Toeplitz construction
 must show explicitly how non-surjectivity forces the bounded-degree mass (or
 prove the low-spectrum estimate directly with equivalent strength).
-
