@@ -491,40 +491,84 @@ def weight_lemma_violation(expr):
     return None
 
 
-def is_minimal_conj_expr(expr, S, sset, cap: int, nletters: int, atom_cache: dict):
+def _pair_min_weight(atoms, state, eff_cap):
+    """value -> least `|c1| + |c2|` over ordered pairs of atoms spelling it.
+
+    Built once per family and cap; it turns the same-length check at three
+    factors from a quadratic scan per call into one dictionary lookup per
+    leading atom, which is what makes the sweep affordable."""
+    key = ("pairs", eff_cap)
+    d = state.get(key)
+    if d is None:
+        d = {}
+        for w1, v1 in atoms:
+            for w2, v2 in atoms:
+                v = mul(v1, v2)
+                w = w1 + w2
+                cur = d.get(v)
+                if cur is None or w < cur:
+                    d[v] = w
+        state[key] = d
+    return d
+
+
+def is_minimal_conj_expr(expr, S, sset, cap: int, nletters: int, state: dict):
     """IsMinimalConjExpr, decided up to `cap` on the shorter-expression clause.
 
     Returns (verdict, reason, cap_used).  `verdict` is True only when every
-    clause passed; `reason` names the clause that failed otherwise."""
-    g = conj_eval(expr)
+    clause passed; `reason` names the clause that failed otherwise.  `state` is
+    a per-family scratch dict: it carries the atom sets, the search memo and the
+    per-expression verdicts, all of which are safe to share because they depend
+    only on the family and the cap."""
     n = len(expr)
     W = conj_weight(expr)
+    eff_cap = max(cap, W)
+    vkey = ("verdict", eff_cap, tuple(expr))
+    hit = state.get(vkey)
+    if hit is not None:
+        return hit
     viol = weight_lemma_violation(expr)
     if viol is not None:
-        return False, viol, cap
-    eff_cap = max(cap, W)
-    atoms = atom_cache.get(eff_cap)
+        state[vkey] = (False, viol, eff_cap)
+        return state[vkey]
+    g = conj_eval(expr)
+    atoms = state.get(("atoms", eff_cap))
     if atoms is None:
         atoms = build_atoms(S, eff_cap, nletters)
-        atom_cache[eff_cap] = atoms
-    memo = {}
+        state[("atoms", eff_cap)] = atoms
+    memo = state.setdefault(("memo", eff_cap), {})
+
+    def done(verdict, reason):
+        state[vkey] = (verdict, reason, eff_cap)
+        return state[vkey]
+
     # (a) no strictly shorter expression, with every conjugator up to the cap.
     for k in range(n):
         if k == 0:
             if not g:
-                return False, "length_0", eff_cap
+                return done(False, "length_0")
             continue
         if k == 1:
             if min_weight_one_factor(g, sset) is not None:
-                return False, "length_1", eff_cap
+                return done(False, "length_1")
             continue
         if min_weight_expr(g, k, atoms, k * eff_cap + 1, sset, memo) is not None:
-            return False, "length_%d" % k, eff_cap
-    # (b) no lighter expression of the same length.  Exact: a weight budget
-    # bounds each conjugator, and eff_cap >= W.
-    if W > 0 and min_weight_expr(g, n, atoms, W, sset, memo) is not None:
-        return False, "lighter_same_length", eff_cap
-    return True, None, eff_cap
+            return done(False, "length_%d" % k)
+    # (b) no lighter expression of the same length.  Exact rather than capped:
+    # a total weight below `W` bounds every conjugator by `W <= eff_cap`, so the
+    # atom set already contains every competitor.
+    if W > 0:
+        if n == 3:
+            pairs = _pair_min_weight(atoms, state, eff_cap)
+            for w1, v1 in atoms:
+                if w1 >= W:
+                    break
+                rest = pairs.get(mul(invrev(v1), g))
+                if rest is not None and w1 + rest < W:
+                    return done(False, "lighter_same_length")
+        elif min_weight_expr(g, n, atoms, W, sset, memo) is not None:
+            return done(False, "lighter_same_length")
+    return done(True, None)
 
 
 # ---------------------------------------------------------------------------

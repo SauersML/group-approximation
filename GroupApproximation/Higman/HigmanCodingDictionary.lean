@@ -574,7 +574,9 @@ theorem primrec_evalCode (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ)) :
           (Primrec.snd.comp Primrec.fst))
         (Primrec.snd.comp Primrec.snd)
         (Primrec.const (0 : ℤ)))
-  have hfold := Primrec.list_foldr hmap (Primrec.const (0 : ℤ))
+  have hfold := Primrec.list_foldr
+    (h := fun (_ : List (ℤ × ℤ) × ℤ) (bs : ℤ × ℤ) => bs.1 + bs.2)
+    hmap (Primrec.const (0 : ℤ))
     (hadd.comp (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd))
   exact hfold.of_eq fun q => (list_sum_eq_foldr _).symm
 
@@ -582,7 +584,9 @@ theorem primrec_inWindowIdx (n : ℕ) : Primrec (inWindowIdx n) := by
   have hmap : Primrec fun j : ℤ => (windowIdx n).map fun a : ℤ => decide (a = j) :=
     Primrec.list_map (Primrec.const (windowIdx n))
       (PrimrecRel.comp Primrec.eq Primrec.snd Primrec.fst).decide
-  have hfold := Primrec.list_foldr hmap (Primrec.const false)
+  have hfold := Primrec.list_foldr
+    (h := fun (_ : ℤ) (bs : Bool × Bool) => bs.1 || bs.2)
+    hmap (Primrec.const false)
     (Primrec.or.comp (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd))
   exact hfold.of_eq fun j => (list_any_eq_foldr _ _).symm
 

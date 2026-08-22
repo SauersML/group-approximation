@@ -7,6 +7,7 @@ distinct_from:
   marked-clifford-table-exponential-dimension: that starts from one all-pairs approximate extraspecial table and gives its dimension floor; this derives such a table for every rank from one presentation with one uniform van Kampen-area bound.
   thompson-clifford-central-product-tape: that constructs exact common-sign Clifford packets at arbitrarily many sites; this identifies the additional quantitative area property which would turn that exact tape into a nonhyperlinearity proof.
   hyperlinear-computable-hs-dehn-modulus-solvable-word-problem: that asks for a computable length-dependent modulus for all trivial words; this needs one constant area bound only for the multiplication identities of a selected Clifford family.
+  uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark: that proves the hypothesis below cannot occur for a nontrivial fixed finite mark in any finitely presented group; the conditional analytic implication here remains valid but is vacuous as a construction route.
 artifacts:
   - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
@@ -35,6 +36,12 @@ Then every finite-dimensional unitary tuple `U` with
 ```
 
 Consequently `Gamma` is nonhyperlinear.
+
+**Scope correction.**  The premise `(BAC1)--(BAC2)` is algebraically
+impossible by
+`uniform-clifford-table-area-is-impossible-for-a-fixed-finite-mark`.
+Accordingly this remains a valid conditional estimate, not a realizable
+route to a nonhyperlinear group.
 
 The theorem is insensitive to the lengths of the representative words.
 Only the areas of their multiplication discrepancies matter: conjugating a

@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Kazhdan.TorsionFreeKazhdanPartner
+import GroupApproximation.Algebra.FinitePresentationTietze
 import Mathlib.Data.Fin.Tuple.Basic
 
 /-!
@@ -557,6 +558,216 @@ theorem pad_hom_padList (long w : List (Fin P.card × Bool)) :
 
 end WordPresentation
 
+/-! ## 2''.  Positive finite presentations
+
+Every inverse letter can be replaced by a positive letter in a barred copy of
+the alphabet.  The positive relations `x x̄` make that replacement valid.
+Rather than asking a caller to perform this Tietze move, we take all positive
+words killed by the resulting presentation map, prove that they normally
+generate its kernel, and use finite presentability to extract a finite
+subfamily. -/
+
+namespace PositivePresentation
+
+variable {G : Type} [Group G] (P : WordPresentation G)
+
+/-- The unbarred half of the doubled alphabet. -/
+def unbar (i : Fin P.card) : Fin (P.card + P.card) := Fin.castAdd P.card i
+
+/-- The barred half of the doubled alphabet. -/
+def bar (i : Fin P.card) : Fin (P.card + P.card) := Fin.natAdd P.card i
+
+/-- Evaluation of the doubled alphabet: a barred generator evaluates to the
+inverse of its unbarred mate. -/
+def positiveHom : FreeGroup (Fin (P.card + P.card)) →* G :=
+  FreeGroup.lift (Fin.addCases
+    (fun i ↦ P.hom (FreeGroup.of i))
+    (fun i ↦ (P.hom (FreeGroup.of i))⁻¹))
+
+/-- The old free group embeds through the unbarred alphabet. -/
+def positiveInclude : FreeGroup (Fin P.card) →* FreeGroup (Fin (P.card + P.card)) :=
+  FreeGroup.map (Fin.castAdd P.card)
+
+theorem positiveHom_comp_positiveInclude : P.positiveHom.comp P.positiveInclude = P.hom := by
+  refine FreeGroup.ext_hom _ _ fun i ↦ ?_
+  simp [positiveInclude, positiveHom, unbar]
+
+/-- The doubled presentation map remains onto. -/
+theorem positiveHom_surjective : Function.Surjective P.positiveHom := by
+  intro g
+  obtain ⟨x, rfl⟩ := P.hom_surjective g
+  exact ⟨P.positiveInclude x,
+    DFunLike.congr_fun P.positiveHom_comp_positiveInclude x⟩
+
+/-- Positive words in the doubled alphabet which evaluate to the identity. -/
+def kernelWords : Set (List (Fin (P.card + P.card) × Bool)) :=
+  {w | (∀ c ∈ w, c.2 = true) ∧ P.positiveHom (FreeGroup.mk w) = 1}
+
+/-- The positive relation saying that `x̄ = x⁻¹`. -/
+def pairWord (i : Fin P.card) : List (Fin (P.card + P.card) × Bool) :=
+  [(P.unbar i, true), (P.bar i, true)]
+
+theorem pairWord_mem (i : Fin P.card) : P.pairWord i ∈ P.kernelWords := by
+  constructor
+  · intro c hc
+    simp [pairWord] at hc
+    rcases hc with rfl | rfl <;> rfl
+  · simp [pairWord, positiveHom, unbar, bar]
+
+/-- Modulo all positive kernel words, the inverse of an unbarred generator is
+its barred mate. -/
+theorem quot_inv_unbar_eq_bar (i : Fin P.card) :
+    QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.unbar i))⁻¹ =
+      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.bar i)) := by
+  have hp : FreeGroup.mk (P.pairWord i) ∈ wordSubgroup P.kernelWords :=
+    mem_wordSubgroup (P.pairWord_mem i)
+  have hq : QuotientGroup.mk' (wordSubgroup P.kernelWords)
+      (FreeGroup.mk (P.pairWord i)) = 1 :=
+    (QuotientGroup.eq_one_iff _).mpr hp
+  have hmul : QuotientGroup.mk' (wordSubgroup P.kernelWords)
+        (FreeGroup.of (P.unbar i)) *
+      QuotientGroup.mk' (wordSubgroup P.kernelWords)
+        (FreeGroup.of (P.bar i)) = 1 := by
+    simpa [pairWord] using hq
+  rw [map_inv]
+  exact inv_eq_of_mul_eq_one_left hmul
+
+/-- The inverse of a barred generator is its unbarred mate. -/
+theorem quot_inv_bar_eq_unbar (i : Fin P.card) :
+    QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.bar i))⁻¹ =
+      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.unbar i)) := by
+  have h := congrArg (fun z ↦ z⁻¹) (P.quot_inv_unbar_eq_bar i)
+  simpa using h.symm
+
+/-- Every element of the doubled free group has a positive spelling with the
+same value in `G` and the same class modulo the positive kernel words. -/
+theorem exists_positive_spelling (x : FreeGroup (Fin (P.card + P.card))) :
+    ∃ w : List (Fin (P.card + P.card) × Bool),
+      (∀ c ∈ w, c.2 = true) ∧
+      P.positiveHom (FreeGroup.mk w) = P.positiveHom x ∧
+      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.mk w) =
+        QuotientGroup.mk' (wordSubgroup P.kernelWords) x := by
+  induction x using FreeGroup.induction_on with
+  | C1 =>
+      refine ⟨[], by simp, ?_, ?_⟩ <;> simp
+  | of j =>
+      refine ⟨[(j, true)], by simp, ?_, ?_⟩ <;> simp
+  | inv_of j ih =>
+      refine Fin.addCases (motive := fun j ↦
+        ∃ w : List (Fin (P.card + P.card) × Bool),
+          (∀ c ∈ w, c.2 = true) ∧
+          P.positiveHom (FreeGroup.mk w) = P.positiveHom (FreeGroup.of j)⁻¹ ∧
+          QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.mk w) =
+            QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of j)⁻¹)
+        ?_ ?_ j
+      · intro i
+        refine ⟨[(P.bar i, true)], by simp, ?_, ?_⟩
+        · simp [positiveHom, bar, unbar]
+        · simpa using (P.quot_inv_unbar_eq_bar i).symm
+      · intro i
+        refine ⟨[(P.unbar i, true)], by simp, ?_, ?_⟩
+        · simp [positiveHom, bar, unbar]
+        · simpa using (P.quot_inv_bar_eq_unbar i).symm
+  | mul x y hx hy =>
+      obtain ⟨u, hu, hGu, hQu⟩ := hx
+      obtain ⟨v, hv, hGv, hQv⟩ := hy
+      refine ⟨u ++ v, ?_, ?_, ?_⟩
+      · intro c hc
+        exact (List.mem_append.mp hc).elim (hu c) (hv c)
+      · rw [← FreeGroup.mul_mk, map_mul, hGu, hGv, map_mul]
+      · rw [← FreeGroup.mul_mk, map_mul, hQu, hQv, map_mul]
+
+/-- The positive kernel words normally generate the entire kernel. -/
+theorem normalClosure_kernelWords :
+    wordSubgroup P.kernelWords = P.positiveHom.ker := by
+  apply le_antisymm
+  · refine Subgroup.normalClosure_le_normal ?_
+    rintro _ ⟨w, hw, rfl⟩
+    exact MonoidHom.mem_ker.mpr hw.2
+  · intro x hx
+    obtain ⟨w, hwpos, hwhom, hwquot⟩ := P.exists_positive_spelling x
+    have hw : w ∈ P.kernelWords := ⟨hwpos, hwhom.trans (MonoidHom.mem_ker.mp hx)⟩
+    have hwmem : FreeGroup.mk w ∈ wordSubgroup P.kernelWords := mem_wordSubgroup hw
+    have hwone : QuotientGroup.mk' (wordSubgroup P.kernelWords)
+        (FreeGroup.mk w) = 1 := (QuotientGroup.eq_one_iff _).mpr hwmem
+    exact (QuotientGroup.eq_one_iff _).mp (hwquot.symm.trans hwone)
+
+/-- A finite subfamily of positive kernel words already normally generates the
+kernel.  This is the compact Tietze step; no presentation positivity remains a
+caller hypothesis. -/
+theorem exists_finite_rel [Group.IsFinitelyPresented G] :
+    ∃ R₀ ⊆ P.kernelWords, R₀.Finite ∧ P.positiveHom.ker ≤ wordSubgroup R₀ := by
+  classical
+  obtain ⟨T, hTfin, hTeq⟩ :=
+    Tietze.isFinitelyNormallyGenerated_ker P.positiveHom P.positiveHom_surjective
+  have hTsub : T ⊆ wordSubgroup P.kernelWords := by
+    rw [P.normalClosure_kernelWords]
+    rw [← hTeq]
+    exact Subgroup.subset_normalClosure
+  obtain ⟨S, hSsub, hSfin, hTS⟩ :=
+    Tietze.exists_finite_subset_subset_normalClosure hTfin hTsub
+  choose! w hwmem hwmk using fun z (hz : z ∈ S) ↦ hSsub hz
+  let R₀ : Set (List (Fin (P.card + P.card) × Bool)) := w '' S
+  refine ⟨R₀, ?_, hSfin.image w, ?_⟩
+  · rintro _ ⟨z, hz, rfl⟩
+    exact hwmem z hz
+  · rw [← hTeq]
+    refine Subgroup.normalClosure_le_normal fun z hz ↦
+      Subgroup.normalClosure_mono (fun y hy ↦ by
+      obtain ⟨s, hs, rfl⟩ := hy
+      exact ⟨w s, ⟨s, hs, rfl⟩, hwmk s hs⟩) (hTS hz)
+
+noncomputable def rel [Group.IsFinitelyPresented G] :
+    Set (List (Fin (P.card + P.card) × Bool)) :=
+  (P.exists_finite_rel).choose
+
+theorem rel_subset_kernelWords [Group.IsFinitelyPresented G] :
+    P.rel ⊆ P.kernelWords := (P.exists_finite_rel).choose_spec.1
+
+theorem rel_finite [Group.IsFinitelyPresented G] : P.rel.Finite :=
+  (P.exists_finite_rel).choose_spec.2.1
+
+theorem ker_le_rel [Group.IsFinitelyPresented G] :
+    P.positiveHom.ker ≤ wordSubgroup P.rel :=
+  (P.exists_finite_rel).choose_spec.2.2
+
+/-- The unconditional positive Tietze transform of a word presentation. -/
+noncomputable def presentation [Group.IsFinitelyPresented G] : WordPresentation G where
+  card := P.card + P.card
+  hom := P.positiveHom
+  hom_surjective := P.positiveHom_surjective
+  rel := P.rel
+  rel_finite := P.rel_finite
+  ker_le := P.ker_le_rel
+
+theorem presentation_rel_positive [Group.IsFinitelyPresented G] :
+    ∀ r ∈ P.presentation.rel, ∀ c ∈ r, c.2 = true := by
+  intro r hr c hc
+  exact (P.rel_subset_kernelWords hr).1 c hc
+
+/-- Every group element has a positive word in the transformed presentation. -/
+theorem exists_positive_name [Group.IsFinitelyPresented G] (g : G) :
+    ∃ w : List (Fin P.presentation.card × Bool),
+      (∀ c ∈ w, c.2 = true) ∧ P.presentation.hom (FreeGroup.mk w) = g := by
+  obtain ⟨x, hx⟩ := P.positiveHom_surjective g
+  obtain ⟨w, hw, hval, -⟩ := P.exists_positive_spelling x
+  exact ⟨w, hw, hval.trans hx⟩
+
+/-- A chosen positive name for an element, used for defect, protected and tie
+words without imposing positivity obligations on a caller. -/
+noncomputable def name [Group.IsFinitelyPresented G] (g : G) :
+    List (Fin P.presentation.card × Bool) :=
+  (P.exists_positive_name g).choose
+
+theorem name_positive [Group.IsFinitelyPresented G] (g : G) :
+    ∀ c ∈ P.name g, c.2 = true := (P.exists_positive_name g).choose_spec.1
+
+theorem presentation_hom_name [Group.IsFinitelyPresented G] (g : G) :
+    P.presentation.hom (FreeGroup.mk (P.name g)) = g :=
+  (P.exists_positive_name g).choose_spec.2
+
+end PositivePresentation
+
 /-! ## 3.  The exponent code -/
 
 /-- `L = 16·(V+1)`, the number of blocks in each avatar.  `V` is the number of
@@ -814,7 +1025,7 @@ the same kind as §2's padding — and none of them constrains the group.
    each generator `x` with the positive relator `x·x̄`, then rewrite every `x⁻¹`
    as `x̄`.  This doubles the generator count, which the code constants absorb.
 
-2. *Long relators, padded **per relator**, and never by a power.*  The metric
+2. *Long relators, and never by a power.*  The metric
    and ball margins want a relator-length floor, and under the positivity
    convention §2's `w·Λ⁻¹` padding is unavailable.  Pad instead by appending
    positive trivial words `x₁x̄₁·x₂x̄₂·…`.  Two traps, both fatal:
@@ -825,19 +1036,19 @@ the same kind as §2's padding — and none of them constrains the group.
      suffix a common *prefix* — a piece of length `|Λ|·(avatar length)`.  With
      `Λ` carrying most of a padded relator that piece is a constant fraction of
      `|r|`, and padding *harder* makes it worse.  The design note's §1, read
-     literally, therefore defeats its own §2.  Give each relator its own tail,
-     over a fresh generator pair no other relator uses.
+     literally, therefore defeats its own §2.  The small-cancellation proof
+     must account for the chosen padding family directly.
 
    * Padding with `(x·x̄)^k` makes the rewritten relator a proper power — a
      rewrite of a power is a power — and destroys the no-proper-power field.
      Use **distinct** pairs.
 
-3. *One avatar per relator occurring exactly once*, which is what
-   `AvatarMetricCheck.AvatarMetricData.uniqueMark` reads.  An avatar occurring
-   twice in a relator repeats all `L` of its exponents, leaving no exponent
-   unique in that relator.  The per-relator padding of (2) already supplies
-   this: one fresh generator pair per relator does both jobs, and `V` has slack
-   by design. -/
+3. *One occurrence-level cyclic mark per router relator*, which is what
+   `AvatarMetricCheck.AvatarMetricData.uniqueMark` reads.  This is a property of
+   the constructed router words.  It is not represented by a private source
+   generator: such a once-occurring exclusive presentation generator is
+   eliminable, and combining one with arbitrary long padding forces an
+   unwanted free quotient. -/
 structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   /-- A word presentation of the source. -/
   pres : WordPresentation E
@@ -857,38 +1068,6 @@ structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   ceiling directly rather than deriving it from a run ceiling, and which stays
   an instantiation hypothesis. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
-  /-- **Per-relator padding, as data.**  Each relator carries a *private*
-  generator: one occurring exactly once in it, and in no other relator.  This
-  is convention (2)'s per-relator tail, stated so that it can be consumed
-  rather than merely intended.
-
-  **What it gives, and what it does not.**  It gives
-  `AvatarMetricCheck.AvatarMetricData.uniqueMark`: the private generator's
-  avatar occurs once in the relator, so each of its `L` exponents is read at
-  exactly one cyclic position, which is the unique mark that field asks for.
-
-  It does **not** give the small-cancellation condition, and the reason is
-  worth keeping on the record, because an earlier version of that condition —
-  "a window with three separators determines the relator" — was not merely hard
-  but unsatisfiable, and was withdrawn on this argument.  A window carrying
-  three separators spans two complete `y₂`-runs; an avatar has `L = 16·(V+1)`
-  blocks, so such a window normally sits entirely *inside one avatar*.  It
-  therefore pins `(ν, k)` — which generator, which block — but not which
-  relator, because the same generator may occur in two different relators.
-  Rotating each of those to begin at the window makes it a common prefix of two
-  distinct symmetrized relators.  Such a condition would need every avatar
-  *occurrence* to be unique across the whole family, which no presentation of an
-  arbitrary group admits.
-
-  What replaces it is `AvatarMetricCheck.AvatarMetricData.piece_short`, which
-  states the piece ceiling directly: a piece may legitimately be about one
-  avatar long — two relators sharing a generator share that generator's whole
-  avatar — and the metric condition survives because relators are long
-  *measured in avatars* and, by `length_avatarWord_eq`, every avatar is the
-  same length.  That last point is what makes the ceiling a constant fraction
-  rather than a `V`-dependent one. -/
-  privateGen : ∀ r ∈ pres.rel, ∃ i : Fin pres.card,
-    r.count (i, true) = 1 ∧ ∀ r' ∈ pres.rel, r' ≠ r → (i, true) ∉ r'
   /-- The first designated defect element, as a word. -/
   basisOneWord : List (Fin pres.card × Bool)
   /-- The second designated defect element, as a word. -/
@@ -920,9 +1099,6 @@ structure PartnerData (B : Type) [Group B] where
   pres : WordPresentation B
   /-- **The positivity convention**: every relator is a positive word. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
-  /-- **Per-relator padding, as data**; see `SourceData.privateGen`. -/
-  privateGen : ∀ r ∈ pres.rel, ∃ i : Fin pres.card,
-    r.count (i, true) = 1 ∧ ∀ r' ∈ pres.rel, r' ≠ r → (i, true) ∉ r'
   /-- The two designated long partner words `T'₁`, `T'₂`. -/
   tiePartnerWord : Fin 2 → List (Fin pres.card × Bool)
   /-- They are positive. -/
@@ -978,6 +1154,14 @@ def codeL : ℕ := codeLength D.avatarCount
 
 /-- The common length of every avatar in the system. -/
 def avatarLength : ℕ := (D.codeL / 2) * (D.avatarCount * D.codeL + 3)
+
+theorem sixteen_le_avatarLength : 16 ≤ D.avatarLength := by
+  have hhalf : 8 ≤ (D.codeL / 2) := by
+    simp only [codeL, codeLength]
+    omega
+  have htail : 2 ≤ D.avatarCount * D.codeL + 3 := by omega
+  unfold avatarLength
+  nlinarith
 
 /-- The avatar of the `i`-th source generator. -/
 def srcAvatarWord (i : Fin D.srcPres.card) : List (Fin 2 × Bool) :=
@@ -1129,6 +1313,17 @@ def partnerTieWord (i : Fin 2) : List (Fin 2 × Bool) :=
 def relators : Set (List (Fin 2 × Bool)) :=
   D.srcRelators ∪ D.parRelators ∪
     (Set.range D.defectTieWord ∪ Set.range D.partnerTieWord)
+
+/-- Occurrence-specific cyclic marks on the constructed router relators.
+
+This is intentionally downstream of `relators`: marks belong to router words,
+not to source or partner presentation generators.  In particular it makes no
+false Tietze claim about exclusive generators in arbitrarily long relators. -/
+structure OccurrenceMarks : Prop where
+  unique : ∀ r ∈ D.relators, ∃ e p : ℕ, p < r.length ∧
+    AvatarMetricCheck.leadCode (r.rotate p) = some e ∧
+    ∀ q, q < r.length →
+      AvatarMetricCheck.leadCode (r.rotate q) = some e → q = p
 
 /-- **The family is finite**, by construction: two images of finite relator
 sets and two ranges over `Fin 2`. -/
@@ -1366,6 +1561,15 @@ noncomputable def routingData [N.Normal] (H : D.Obligations)
     RoutingLemmaData E N s B :=
   (D.design H).routerData_of_sharpGate hgate (le_refl ((1 : ℚ) / 8)) H.metric_eighth
 
+/-- Routed data from a sharp Greendlinger conclusion proved for this concrete
+avatar family.  This is the unconditional literal endpoint's consumption path;
+it does not quantify over unrelated relator families. -/
+noncomputable def routingDataOfSharp [N.Normal] (H : D.Obligations)
+    (hsharp : GreendlingerConclusionSharp D.relators (1 / 8)) :
+    RoutingLemmaData E N s B :=
+  (D.design H).routerData_of_sharp (le_refl ((1 : ℚ) / 8)) hsharp
+    H.metric_eighth
+
 /-- Whoever exhibits a blueprint whose obligations hold has discharged the
 frozen endpoint's single hypothesis at that source, defect, protected element
 and partner — modulo the gate, and nothing else. -/
@@ -1373,6 +1577,12 @@ theorem nonempty_routingLemmaData [N.Normal] (H : D.Obligations)
     (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2)) :
     Nonempty (RoutingLemmaData E N s B) :=
   ⟨D.routingData H hgate⟩
+
+/-- Existential form of `routingDataOfSharp`. -/
+theorem nonemptyRoutingLemmaDataOfSharp [N.Normal] (H : D.Obligations)
+    (hsharp : GreendlingerConclusionSharp D.relators (1 / 8)) :
+    Nonempty (RoutingLemmaData E N s B) :=
+  ⟨D.routingDataOfSharp H hsharp⟩
 
 end Blueprint
 
@@ -1386,24 +1596,24 @@ noncomputable def gamma3WordPresentation :
     WordPresentation CongruenceSubgroup.gamma3Partner.B :=
   wordPresentation _
 
-/-- The partner side of a blueprint, over the certified partner.  The caller
-supplies the two designated long partner words and the two positivity facts:
-`gamma3WordPresentation` is an arbitrary choice of presentation, so its
-relators are not positive on the nose and the positivity convention has to be
-established for it — by the same `x̄` Tietze move `SourceData` documents. -/
+/-- The certified partner's unconditional positive finite presentation. -/
+noncomputable def gamma3PositiveWordPresentation :
+    WordPresentation CongruenceSubgroup.gamma3Partner.B :=
+  PositivePresentation.presentation gamma3WordPresentation
+
+/-- The partner side of a blueprint, over the certified partner.  A caller may
+choose the two partner elements used by the ties, but their positive words and
+all presentation-relator positivity are now supplied by the Tietze transform,
+not assumed. -/
 noncomputable def gamma3PartnerData
-    (hpos : ∀ r ∈ gamma3WordPresentation.rel, ∀ c ∈ r, c.2 = true)
-    (hpriv : ∀ r ∈ gamma3WordPresentation.rel,
-      ∃ i : Fin gamma3WordPresentation.card, r.count (i, true) = 1 ∧
-        ∀ r' ∈ gamma3WordPresentation.rel, r' ≠ r → (i, true) ∉ r')
-    (tie : Fin 2 → List (Fin gamma3WordPresentation.card × Bool))
-    (htie : ∀ i, ∀ c ∈ tie i, c.2 = true) :
+    (tie : Fin 2 → CongruenceSubgroup.gamma3Partner.B) :
     PartnerData CongruenceSubgroup.gamma3Partner.B where
-  pres := gamma3WordPresentation
-  rel_positive := hpos
-  privateGen := hpriv
-  tiePartnerWord := tie
-  tiePartnerWord_positive := htie
+  pres := gamma3PositiveWordPresentation
+  rel_positive :=
+    PositivePresentation.presentation_rel_positive gamma3WordPresentation
+  tiePartnerWord := fun i ↦ PositivePresentation.name gamma3WordPresentation (tie i)
+  tiePartnerWord_positive := fun i ↦
+    PositivePresentation.name_positive gamma3WordPresentation (tie i)
 
 end AvatarWordFamily
 end BespokeRouter

@@ -592,6 +592,33 @@ section Embedding
 
 variable {G : Bool → Type} [∀ b, Group (G b)]
 
+/-- **Protected-set injectivity in the weighted relative metric.**
+
+The length conclusion does more than keep the peripheral factor embedded.  The
+quotient map is injective on any set whose pairwise differences are at most
+half as long as every relator.  This is the relative-metric analogue of
+`SmallCancellationRouter.injOn_mk'_of_greendlinger`; it is stated directly
+from `RelativeLengthBound`, which is the exact conclusion used in the proof.
+
+In particular, taking `P = {1, s}` proves survival of a protected ambient
+element `s` as soon as its two differences have the displayed metric bound.
+No factor embedding and no torsion statement are involved. -/
+theorem injOn_mk'_of_relativeLengthBound {L : RelativeLength G}
+    {R : Set (List (CoprodI G))} (hbound : RelativeLengthBound L R)
+    (P : Set (CoprodI G))
+    (hshort : ∀ r ∈ R, ∀ x ∈ P, ∀ y ∈ P,
+      2 * L.len (x * y⁻¹) ≤ r.length) :
+    Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R)) P := by
+  intro x hx y hy hxy
+  by_contra hne
+  have hdiff : x * y⁻¹ ≠ 1 := fun h => hne (mul_inv_eq_one.mp h)
+  have hmem : x * y⁻¹ ∈ letterRelatorSubgroup R := by
+    rw [← QuotientGroup.eq_one_iff]
+    rw [map_mul, map_inv, hxy, mul_inv_cancel]
+  obtain ⟨r, hr, hlt⟩ := hbound (x * y⁻¹) hdiff hmem
+  have hs := hshort r hr x hx y hy
+  omega
+
 /-- **The source factor stays embedded**, unconditionally on the length function
 beyond its peripheral clause.
 
@@ -609,21 +636,20 @@ theorem factorMap_source_injective {L : RelativeLength G}
     {R : Set (List (CoprodI G))} (hbound : RelativeLengthBound L R)
     (hfloor : ∀ r ∈ R, 2 ≤ r.length) :
     Function.Injective (factorMap (letterRelatorSubgroup R) false) := by
+  have hinj : Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
+      (Set.range (CoprodI.of : G false → CoprodI G)) := by
+    apply injOn_mk'_of_relativeLengthBound hbound
+    intro r hr _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
+    have hlen := L.len_source_le_one (x * y⁻¹)
+    have hlong := hfloor r hr
+    have heq : CoprodI.of x * (CoprodI.of y)⁻¹ =
+        (CoprodI.of (x * y⁻¹) : CoprodI G) := by
+      rw [map_mul, map_inv]
+    rw [heq]
+    omega
   intro x y hxy
-  by_contra hne
-  have hxy1 : x * y⁻¹ ≠ 1 := fun h => hne (mul_inv_eq_one.mp h)
-  have hof : CoprodI.of (x * y⁻¹) ≠ (1 : CoprodI G) := by
-    intro h
-    exact hxy1 (CoprodI.of_injective false (by rw [h, map_one]))
-  have hmem : CoprodI.of (x * y⁻¹) ∈ letterRelatorSubgroup R := by
-    rw [← QuotientGroup.eq_one_iff]
-    have h1 : factorMap (letterRelatorSubgroup R) false (x * y⁻¹) = 1 := by
-      rw [map_mul, map_inv, hxy, mul_inv_cancel]
-    exact h1
-  obtain ⟨r, hr, hlt⟩ := hbound _ hof hmem
-  have h1 := L.len_source_le_one (x * y⁻¹)
-  have h2 := hfloor r hr
-  omega
+  apply CoprodI.of_injective false
+  exact hinj ⟨x, rfl⟩ ⟨y, rfl⟩ hxy
 
 end Embedding
 

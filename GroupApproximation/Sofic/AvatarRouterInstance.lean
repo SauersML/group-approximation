@@ -46,8 +46,8 @@ the alternative, not the design.
 
 ## What is not discharged
 
-`piece_short` and `uniqueMark` are fields.  `uniqueMark` follows from the
-family's private-generator field once that lands.  `piece_short` is the
+`piece_short` and `uniqueMark` are fields about the constructed router words.
+`piece_short` is the
 small-cancellation condition itself and is a fact about the caller's chosen
 presentation; no lemma here can supply it, and the earlier attempt to derive it
 from a pinning property was **false** — see `AvatarMetricCheck.piece_short`.
@@ -100,12 +100,8 @@ structure Inputs (D : BespokeRouter.AvatarWordFamily.Blueprint E N s B) where
   piece_short : ∀ p : List (Fin 2 × Bool),
     IsPiece (symmetrization D.relators) p →
       p.length < sharedBound * avatarLen + 2 * runCeil + 2
-  /-- **The unique cyclic mark**, discharged by the family's private-generator
-  field: that generator's avatar occurs once in its relator, so each of its
-  exponents is read at exactly one cyclic position. -/
-  uniqueMark : ∀ r ∈ D.relators, ∃ e p : ℕ, p < r.length ∧
-    AvatarMetricCheck.leadCode (r.rotate p) = some e ∧
-    ∀ q, q < r.length → AvatarMetricCheck.leadCode (r.rotate q) = some e → q = p
+  /-- Occurrence-specific marks on the constructed router relators. -/
+  occurrenceMarks : D.OccurrenceMarks
   /-- The flank term fits inside one avatar — eight times over.  This is where
   balancing is spent: it is a statement about the *common* avatar length. -/
   flank_small : 8 * (2 * runCeil + 2) ≤ avatarLen
@@ -267,7 +263,7 @@ def metricData : AvatarMetricCheck.AvatarMetricData where
   protectedLength := I.protectedLength
   relators_long := I.relators_long
   piece_short := I.piece_short
-  uniqueMark := I.uniqueMark
+  uniqueMark := I.occurrenceMarks.unique
   metric_margin := I.metric_margin
   protected_margin := I.protected_margin'
 

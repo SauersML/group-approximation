@@ -137,8 +137,8 @@ group $C^*$-algebras, sofic groups}
 A countable discrete group is MF if it embeds in the unitary group of a
 norm matrix corona
 $\mathcal Q=\prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)$.
-We prove that non-MF groups exist, resolving negatively the longstanding
-question whether every countable group is MF.  Our principal example is an
+We prove that non-MF groups exist, resolving in the negative the
+longstanding question of whether every countable group is MF.  Our principal example is an
 explicit finitely presented sofic group.
 
 The proof follows the central-involution strategy of
@@ -152,8 +152,9 @@ that the involution is nontrivial.
 
 We also prove a tensor-power amplification lemma for operator-norm
 models.  It implies that MF is closed in the space of marked groups and
-under directed colimits; consequently, a non-MF group exists if and only
-if a finitely generated, or finitely presented, one does.  Further
+under directed colimits.  Consequently, the existence of a countable
+non-MF group is equivalent to the existence of a finitely generated one
+and to the existence of a finitely presented one.  Further
 consequences include a separable exact
 stably finite reduced group $C^*$-algebra that is not MF and a hyperlinear
 trace that is not MF.
@@ -190,8 +191,9 @@ thirty-two-relator presentation.
 By tensor-power amplification (Lemma~\ref{lem:tensor-amplification}), the
 element-dependent separation in this definition can be made uniform.
 Hence MF is closed in the space of marked groups and under directed
-colimits (Theorem~\ref{thm:markedclosed}), and a non-MF group exists if
-and only if a finitely generated, or finitely presented, one does
+colimits (Theorem~\ref{thm:markedclosed}).  It follows that the existence
+of a countable non-MF group is equivalent to the existence of a finitely
+generated one and to the existence of a finitely presented one
 (Section~\ref{sec:prelim}).
 
 Residually finite and LEF groups are MF \cite{CDE}.  Amenable groups are
@@ -199,14 +201,13 @@ MF because their reduced group $C^*$-algebras embed into the universal UHF
 algebra \cite[Theorem~B]{SchafhauserAF}, using the quasidiagonality of nuclear
 $C^*$-algebras \cite{TWW}.
 
-The word ``MF'' names several related approximation properties.  We use the Carri\'on--Dadarlat--Eckhardt
-group property: an embedding of the abstract group into a norm matrix
-corona \cite{CDE}.  Schafhauser's group models additionally approximate the
-left regular representation \cite{Schafhauser}, and the strong models of
+Several nearby notions are stronger.
+Schafhauser's group models additionally approximate the left regular
+representation \cite{Schafhauser}, and the strong models of
 Gao--Kunnawalkam Elayavalli--Manzoor--Patchell recover the regular norm
 \cite{GKEMP}.  Shulman's amalgamated-product results concern, in particular,
-the MF property of full group $C^*$-algebras \cite{Shulman}.  These
-stronger group and $C^*$-algebraic properties imply the group property
+the MF property of full group $C^*$-algebras \cite{Shulman}.  Each of these
+stronger group or $C^*$-algebraic properties implies the group property
 used here.
 
 \subsection*{The result}
@@ -249,31 +250,28 @@ property-\textup{(T)} subgroup, without assuming operator--Hilbert--Schmidt
 stability of the ambient group.
 
 Multiplicative defects are measured in operator norm; asymptotic-commutant
-estimates are measured in normalized Hilbert--Schmidt norm.  Let $\Gamma$
-have property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a
-homomorphism, and let $t,c\in H$ satisfy
+estimates are measured in normalized Hilbert--Schmidt norm.  Let $L\le H$
+have property~\textup{(T)}, and let $t,c\in H$ satisfy
 \[
- t\,\iota(\Gamma)\,t^{-1}\subseteq\iota(\Gamma),\qquad
- [c,\iota(\Gamma)]=1 .
+ tLt^{-1}\subseteq L,\qquad [c,L]=1 .
 \]
 Conjugation by the unitaries in an operator-norm asymptotic
 representation $(U_n)$ of $H$ defines an asymptotic representation on
 the Hilbert--Schmidt spaces $L^2(M_{d_n}(\C),\tr_{d_n})$.  This is where
 the operator norm enters: it controls the multiplicative defects of the
 conjugation actions.  Property~\textup{(T)} produces the projection onto
-the $\iota(\Gamma)$-invariant vectors.  The subgroup inclusion implies
+the $L$-invariant vectors.  The subgroup inclusion implies
 that this projection is dominated by its conjugate under $t$.  The two
 projections are equivalent in a finite algebra and therefore equal.
 Consequently, conjugation by $t$ preserves the asymptotic commutant of
-$\iota(\Gamma)$ in normalized Hilbert--Schmidt norm
+$L$ in normalized Hilbert--Schmidt norm
 (Theorem~\ref{thm:kazhdan-transport}).
 
-Put $\hat c=tct^{-1}$ and $u=[\,\hat c,\iota(a)\,]$ for some $a\in\Gamma$.
-Since $c$
-commutes with $\iota(\Gamma)$, the sequence $(U_n(c))$ lies in that
+Put $\hat c=tct^{-1}$ and $u=[\,\hat c,a\,]$ for some $a\in L$.
+Since $c$ commutes with $L$, the sequence $(U_n(c))$ lies in that
 asymptotic commutant.  Theorem~\ref{thm:kazhdan-transport} therefore gives
-$\hsnorm{[U_n(\hat c),U_n(\iota(\gamma))]_{-}}\to0$ for every
-$\gamma\in\Gamma$.  Consequently, in every operator-norm asymptotic
+$\hsnorm{[U_n(\hat c),U_n(\ell)]_{-}}\to0$ for every
+$\ell\in L$.  Consequently, in every operator-norm asymptotic
 representation $(U_n)$ of $H$,
 \[
  \hsnorm{U_n(u)-1}\longrightarrow0 .
@@ -318,7 +316,7 @@ Taking
 \]
 gives the group $E$ of Theorem~\ref{thm:A}.
 
-Property~\textup{(T)} is used only for the subgroup $\iota(\Gamma)$:
+Property~\textup{(T)} is used only for the embedded base subgroup $\Gamma$:
 the group $E$ itself maps onto $\mathbb Z$ by sending $t$ to $1$ and
 every other generator to $0$, and therefore does not have
 property~\textup{(T)}.  An exact finite-dimensional counterpart of
@@ -342,7 +340,8 @@ finitely presented group is MF but
 not residually finite \cite[Section~2.14 and Corollary~2.18]{CDE}; since a
 finitely presented LEF group is residually finite
 \cite[Remark~2.11]{CDE}, it is not LEF.  Finally,
-the group $E$ below is sofic but not LEF (Theorem~\ref{thm:Esofic}).  The
+the group $E$ below is sofic but not LEF
+(Theorems~\ref{thm:A} and~\ref{thm:Esofic}).  The
 reverse of the bottom arrow,
 \textup{hyperlinear}$\,\Rightarrow\,$\textup{sofic}, remains open, as does the
 additional implication
@@ -413,7 +412,7 @@ sofic embeddings \cite{AlekseevThom}.  Those results concern Hamming or tracial
 approximations.  In the present operator-norm setting, the group acts by
 conjugation on the Hilbert--Schmidt space of each matrix block.  Finiteness
 of the norm ultraproduct implies that the projection onto the
-$\iota(\Gamma)$-fixed subspace equals its unitary conjugate
+property-\textup{(T)} subgroup's fixed subspace equals its unitary conjugate
 (Theorem~\ref{thm:kazhdan-transport}).
 
 Slofstra's hyperlinear-profile construction uses a Clifford group, a
@@ -500,6 +499,9 @@ The ideals defining $\mathcal Q$ and $B_\omega$ are given by
 operator-norm convergence, the third by normalized Hilbert--Schmidt
 convergence; Section~\ref{sec:limits} identifies the step that needs
 the operator norm.
+
+The next two lemmas are standard (cf.~\cite{BK,Loring98}); we include
+the short proofs to fix the constants used later.
 
 \begin{lemma}[lifting]\label{lem:lift}
 Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
@@ -727,6 +729,9 @@ vectors and $V$ represents $t$; the two
 projections are Murray--von Neumann equivalent, and finiteness of the
 ultraproduct gives $P=VPV^*$.
 
+The two lemmas of this section are standard facts about finite
+$C^*$-algebras; see, e.g., \cite{Bla06}.
+
 \begin{lemma}[comparison in a finite algebra]\label{lem:finitecompare}
 Let $A$ be a finite unital $C^*$-algebra and let $p,q\in A$ be
 projections with $p\le q$ and $p\sim q$.  Then $p=q$.
@@ -838,8 +843,9 @@ $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
 \]
 \end{proof}
 
-Every finite-dimensional linear representation of $E$ over any field
-maps $w$ to the identity; consequently every homomorphism from $E$ to
+Every finite-dimensional linear representation of the group $E$ of
+Definition~\ref{def:E} below, over any field, maps $w$ to the identity;
+consequently every homomorphism from $E$ to
 a finite group does as well (Corollary~\ref{cor:notRFD}).
 
 In an MF model, multiplicativity is only asymptotic, so the coordinate
@@ -862,6 +868,9 @@ is a finite set $S\subseteq L$ together with a constant $\kappa>0$ such
 that, in every unitary representation $\pi$ of $L$ with no nonzero
 invariant vector, every unit vector $\xi$ satisfies
 $\lVert\pi(a)\xi-\xi\rVert\ge\kappa$ for some $a\in S$.
+The next lemma is the spectral-gap form of the Kazhdan projection, which
+goes back to Akemann and Walter \cite{AW81}; see \cite{DN19} for a
+general treatment.
 
 \begin{lemma}[Kazhdan spectral gap]\label{lem:kazhdan-gap}
 Let $L$ be a group with property~\textup{(T)}, let $S\subseteq L$ be a
@@ -905,33 +914,32 @@ $1-\mu\ge\kappa^{2}/(2|S|)$.
 
 \begin{theorem}[one-sided conjugation preserves asymptotic commutants]
 \label{thm:kazhdan-transport}
-Let $\Gamma$ and $H$ be groups, let $\Gamma$ have
-property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a homomorphism, let
-$s\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
+Let $H$ be a group, let $L\le H$ have property~\textup{(T)}, let
+$t\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
 \[
- s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma).
+ tLt^{-1}\subseteq L.
 \]
 Let $U_n\colon H\to\U(d_n)$ be an operator-norm asymptotic representation.
 If $(x_n)$ is uniformly operator-norm bounded and asymptotically
-centralizes $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm,
+centralizes $L$ in normalized Hilbert--Schmidt norm,
 \[
- \hsnorm{x_nU_n(\iota(\gamma))-U_n(\iota(\gamma))x_n}\longrightarrow0
- \qquad(\gamma\in\Gamma),
+ \hsnorm{[x_n,U_n(\ell)]_{-}}\longrightarrow0
+ \qquad(\ell\in L),
 \]
 then the conjugated sequence does as well:
 \leanverified{Sofic/KazhdanTransportAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse}
 \leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport}
 \[
-\hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]_{-}}
+\hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\ell)]_{-}}
 \longrightarrow0
-\qquad(\gamma\in\Gamma).
+\qquad(\ell\in L).
 \]
 \end{theorem}
 
 \begin{proof}
-Suppose the conclusion fails: there are $\gamma_0\in\Gamma$,
+Suppose the conclusion fails: there are $\ell_0\in L$,
 $\delta>0$, and an infinite set $I\subseteq\N$ with
-$\hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma_0))]_{-}}\ge\delta$ for
+$\hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\ell_0)]_{-}}\ge\delta$ for
 $n\in I$.  Fix a free ultrafilter $\omega$ on $\N$ with $I\in\omega$.
 
 \emph{The adjoint model.}  Regard $M_{d_n}(\C)$ as the Hilbert space
@@ -956,19 +964,19 @@ Asymptotic multiplicativity implies that
 a homomorphism.
 
 \emph{The projection onto the fixed subspace.}  Choose a finite
-symmetric Kazhdan set $S\subseteq\Gamma$ containing $1$, with Kazhdan
-constant $\kappa\in(0,1]$, put $h=\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$,
+symmetric Kazhdan set $S\subseteq L$ containing $1$, with Kazhdan
+constant $\kappa\in(0,1]$, put $h=\frac1{|S|}\sum_{s'\in S}\pi(s')$,
 and let $\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors
-fixed by every $\pi(\iota(\gamma))$.  By Lemma~\ref{lem:kazhdan-gap},
+fixed by every $\pi(\ell)$, $\ell\in L$.  By Lemma~\ref{lem:kazhdan-gap},
 $1$ is isolated in $\operatorname{sp}(h)$, so the spectral projection
 $P$ of $h$ at $1$ belongs to $B_\omega$ by continuous functional
 calculus; since $h=1$ exactly on $\mathrm{Fix}$, its range is
 $\mathrm{Fix}$.
 
-\emph{The two projections agree.}  Let $V=\pi(s)$ and $Q=VPV^*$.  Since
-$s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every vector of
-$\mathrm{Fix}$ is fixed by each $\pi(s\iota(\gamma)s^{-1})$; and $\eta$
-is fixed by all $\pi(s\iota(\gamma)s^{-1})$ exactly when
+\emph{The two projections agree.}  Let $V=\pi(t)$ and $Q=VPV^*$.  Since
+$tLt^{-1}\subseteq L$, every vector of
+$\mathrm{Fix}$ is fixed by each $\pi(t\ell t^{-1})$, $\ell\in L$; and $\eta$
+is fixed by all $\pi(t\ell t^{-1})$, $\ell\in L$, exactly when
 $V^*\eta\in\mathrm{Fix}$.  Hence
 $\operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
 =\operatorname{ran}Q$, so $P\le Q$.  The
@@ -978,32 +986,18 @@ Since $B_\omega$ is finite, Lemma~\ref{lem:finitecompare} gives $Q=P$.
 \emph{Conclusion.}  Let $\xi=[x_n]_\omega\in K_\omega$; the uniform
 operator-norm bound makes this class well defined.  By unitary invariance of the normalized
 Hilbert--Schmidt norm, the commutator hypothesis says exactly that each
-$\pi(\iota(\gamma))$ fixes $\xi$.  Thus $\xi\in\mathrm{Fix}$.  Since $Q=P$, we obtain
+$\pi(\ell)$, $\ell\in L$, fixes $\xi$.  Thus $\xi\in\mathrm{Fix}$.  Since $Q=P$, we obtain
 $V\xi\in V\,\mathrm{Fix}=\operatorname{ran}Q=\operatorname{ran}P
 =\mathrm{Fix}$.
-The matrix $U_n(s)x_nU_n(s)^*$ is the vector $\Ad U_n(s)\,x_n$ of
+The matrix $U_n(t)x_nU_n(t)^*$ is the vector $\Ad U_n(t)\,x_n$ of
 $K_n$, so, again by unitary invariance,
 \[
- \hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]_{-}}
- =\bigl\lVert(\Ad U_n(\iota(\gamma))-1)\,\Ad U_n(s)\,x_n\bigr\rVert
+ \hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\ell)]_{-}}
+ =\bigl\lVert(\Ad U_n(\ell)-1)\,\Ad U_n(t)\,x_n\bigr\rVert
  \longrightarrow0
 \]
-along $\omega$, for every $\gamma\in\Gamma$.  For $\gamma=\gamma_0$ this
+along $\omega$, for every $\ell\in L$.  For $\ell=\ell_0$ this
 contradicts $I\in\omega$.
-\end{proof}
-
-\begin{corollary}[subgroup form]\label{cor:kazhdan-transport-subgroup}
-Let $L\le H$ have property~\textup{(T)}, let $s\in H$ satisfy
-$sLs^{-1}\subseteq L$, and let $(U_n)$ be an operator-norm asymptotic
-representation of $H$.  If a uniformly bounded sequence $(x_n)$
-asymptotically centralizes $L$ in normalized Hilbert--Schmidt norm, then
-$(U_n(s)x_nU_n(s)^*)$ does as well.
-\leanverified{Sofic/KazhdanTransportAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse}
-\end{corollary}
-
-\begin{proof}
-Apply Theorem~\ref{thm:kazhdan-transport} to the inclusion $L\hookrightarrow
-H$.
 \end{proof}
 
 \section{The central involution obstruction}\label{sec:sign}
@@ -1084,14 +1078,13 @@ Theorem~\ref{thm:criterion}, uses the character-isotypic corner of
 conjugation of a property-\textup{(T)} subgroup.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
-Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
-property~\textup{(T)}, let
-$\iota\colon\Gamma\to H$ be a homomorphism, and suppose
+Let $H$ be a countable group, let $L\le H$ have
+property~\textup{(T)}, let $t,c\in H$, and suppose
 \[
- t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma),
- \qquad [c,\iota(\Gamma)]=1.
+ tLt^{-1}\subseteq L,
+ \qquad [c,L]=1.
 \]
-Put $\hat c=tct^{-1}$ and $u=[\hat c,\iota(a)]$ for some $a\in\Gamma$.
+Put $\hat c=tct^{-1}$ and $u=[\hat c,a]$ for some $a\in L$.
 If $w:=u^2$ is a nontrivial central involution of $H$, then every
 homomorphism $H\to\U(\mathcal Q)$ maps
 $w$ to the identity, and $H$ is not MF.
@@ -1134,8 +1127,8 @@ By the standing corner-trace convention, all estimates below use
 $\tr_{r_n}$ and are independent of the ratio $r_n/d_n$.
 
 \emph{The commutant on the corner.}  Since $c$ centralizes
-$\iota(\Gamma)$, the sequence $(W_{c,n})$ centralizes
-$(W_{\iota(\gamma),n})$ asymptotically in operator norm, hence in
+$L$, the sequence $(W_{c,n})$ centralizes
+$(W_{\ell,n})$, $\ell\in L$, asymptotically in operator norm, hence in
 normalized Hilbert--Schmidt norm.  By
 Theorem~\ref{thm:kazhdan-transport} applied to $x_n=W_{c,n}$, the
 conjugated sequence $(W_{\hat c,n})$ lies in the same asymptotic commutant.
@@ -1154,7 +1147,7 @@ $H\to\U(\mathcal Q)$ has nontrivial kernel, so $H$ is not MF.
 
 Theorem~\ref{thm:criterion} replaces $\{1,w\}$ by any finite normal
 subgroup of the normal closure of the commutators
-$[tct^{-1},\iota(\gamma)]$, $\gamma\in\Gamma$.  Replacing the two-element
+$[tct^{-1},\ell]$, $\ell\in L$.  Replacing the two-element
 average by a Kazhdan spectral projection gives the analogous result for
 normal property-\textup{(T)} subgroups, including infinite, noncentral, and
 torsion-free ones (Theorem~\ref{thm:normal-kazhdan}).
@@ -1249,10 +1242,11 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
-The affine group $\Gamma$ is finitely presented and has
-property~\textup{(T)} by the standard relative-property and extension
-criterion \cite[Sections~1.4 and~1.7]{BHV}; see also Burger's quantitative
-work \cite{Burger}.  Moreover,
+The affine group $\Gamma$ is finitely presented, and it has
+property~\textup{(T)} because it is a lattice in
+$\mathbb R^3\rtimes\SL_3(\mathbb R)$
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
+Moreover,
 Section~\ref{sec:group} identifies it with the presentation used below.
 The endomorphism $\alpha$ is injective because doubling is injective
 on $\mathbb Z^3$, and it is not surjective because
@@ -1439,9 +1433,10 @@ Proposition~\ref{prop:witness}.
 Let $(d_n)$ be given, write $\mathcal Q=\mathcal Q((d_n))$, and let
 $\Theta\colon E\to\U(\mathcal Q)$ be a homomorphism.  Apply the central
 involution obstruction (Theorem~\ref{thm:sign-criterion}) with
-$\Gamma=\mathcal B$, the canonical homomorphism $\iota$, the elements
-$t,c\in E$, and $a=v_1$.  Proposition~\ref{prop:literal-base-T} gives
-property~\textup{(T)} of $\mathcal B$, while families~\textup{(T)}
+$L=\iota(\mathcal B)\le E$, the elements $t,c\in E$, and
+$a=\iota(v_1)$.  The basic construction identifies $\mathcal B$ with
+$L$, so Proposition~\ref{prop:literal-base-T} gives
+property~\textup{(T)} of $L$, while families~\textup{(T)}
 and~\textup{(C)} give
 $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$ and
 $[c,\iota(\mathcal B)]=1$, respectively.  In $E$ we
@@ -1527,8 +1522,9 @@ base and effective compression estimates.
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
 group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, which has
-property~\textup{(T)} by the standard relative-property and extension
-criterion \cite[Sections~1.4 and~1.7]{BHV}; see also \cite{Burger}.
+property~\textup{(T)} as a lattice in
+$\mathbb R^3\rtimes\SL_3(\mathbb R)$
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
 
 \paragraph{A six-generator presentation.}
 The group $E$ is generated by the six elements $v_1,x,y,z,t,c$, and has
@@ -1559,7 +1555,7 @@ the real-orthogonal and complex-unitary formulations.
 By Remark~\ref{rem:classical-base} the presentation
 \eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb
 Z)$, which has property~\textup{(T)}
-\cite[Sections~1.4 and~1.7]{BHV}.  Let $\rho$ be an
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}.  Let $\rho$ be an
 orthogonal representation on a real Hilbert space $H_{\mathbb R}$.  Its
 complexification $H_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ has the unitary
 representation $\rho\otimes1$.  The invariant vectors and displacement
@@ -1772,17 +1768,19 @@ Kazhdan projection (Proposition~\ref{rem:maxinfinite}).
 
 \subsection*{A sofic example}
 
-\begin{mainthm}[a finitely presented sofic non-MF group]\label{thm:Esofic}
-The group $E$ of Definition~\ref{def:E} is finitely presented, sofic,
-hyperlinear, and non-MF\@.  It is not LEF and therefore is not
-residually finite.
+\begin{mainthm}[the explicit group is sofic]\label{thm:Esofic}
+The group $E$ of Definition~\ref{def:E} is sofic.
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
 \end{mainthm}
 
 \noindent
+Hence $E$ is hyperlinear.  LEF groups are MF \cite{CDE} and $E$ is not
+MF (Theorem~\ref{thm:A}), so $E$ is not LEF; a residually finite group
+is LEF, so $E$ is not residually finite either.
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
+
 Let $E_0$ be the kernel of the exponent sum in $t$.  For every finite
 subset of $E_0$, the $T$-coordinates lie in a single level of the
 ascending chain and the lamp coordinates involve finitely many
@@ -1914,17 +1912,17 @@ $\nu_n$ in place of the dimension.
 
 \begin{theorem}[one-sided conjugation at an arbitrary weight]
 \label{thm:transport-variants}
-Let $\Gamma$, $H$, $\iota$, and $s$ be as in
+Let $H$, $L$, and $t$ be as in
 Theorem~\ref{thm:kazhdan-transport}, let $U_n\colon H\to\U(d_n)$ be an
 operator-norm asymptotic representation, let $(\nu_n)$ be nonnegative
-weights, and let $x_n\in M_{d_n}(\C)$ be matrices for which there is
+real weights, and let $x_n\in M_{d_n}(\C)$ be matrices for which there is
 $C$ with $\operatorname{Tr}(x_n^*x_n)\le C\,\nu_n$ for all $n$ and,
-for every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
+for every $\ell\in L$ and every $\varepsilon>0$, eventually
 \[
- \operatorname{Tr}\,\bigl|x_n-U_n(\iota(\gamma))\,x_n\,
-   U_n(\iota(\gamma))^*\bigr|^2\le\varepsilon\,\nu_n.
+ \operatorname{Tr}\,\bigl|x_n-U_n(\ell)\,x_n\,
+   U_n(\ell)^*\bigr|^2\le\varepsilon\,\nu_n.
 \]
-Then $U_n(s)\,x_nU_n(s)^*$ and $U_n(s)^*\,x_nU_n(s)$ satisfy both
+Then $U_n(t)\,x_nU_n(t)^*$ and $U_n(t)^*\,x_nU_n(t)$ satisfy both
 conditions as well.
 \leanverified{Sofic/TransportVariantsAnyUniverse}{GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse}
 \leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
@@ -1960,7 +1958,8 @@ there.
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
-By Theorem~\ref{thm:kazhdan-transport}, the normal closure
+By Theorem~\ref{thm:kazhdan-transport}, applied to the property-\textup{(T)}
+subgroup $L=\iota(\Lambda)$, the normal closure
 $N_{\mathrm{conj}}$ of the commutators $[tct^{-1},\iota(\lambda)]$ is
 contained in $K_2^{\omega}(U)$ for every operator-norm asymptotic
 representation $U$ of $H$.  For a finite normal subgroup of
@@ -2038,9 +2037,10 @@ $\U(\mathcal Q)$), write $U_{g,n}=U_n(g)$, and put
   K_2=\{g\in H:\hsnorm{U_{g,n}-1}\longrightarrow0\}.
 \]
 Unitary invariance and asymptotic multiplicativity make
-$K_2\trianglelefteq H$.  Since $c$ centralizes $\iota(\Lambda)$, the
-sequence $(U_{c,n})$ belongs to the asymptotic commutant of
-$\iota(\Lambda)$ in normalized Hilbert--Schmidt norm.
+$K_2\trianglelefteq H$.  Put $L=\iota(\Lambda)$, which has
+property~\textup{(T)} because it is a quotient of $\Lambda$.
+Since $c$ centralizes $L$, the sequence $(U_{c,n})$ belongs to the
+asymptotic commutant of $L$ in normalized Hilbert--Schmidt norm.
 Theorem~\ref{thm:kazhdan-transport}, applied to $x_n=U_{c,n}$, shows
 that $(U_{\hat c,n})$ for $\hat c=tct^{-1}$ lies in the same asymptotic
 commutant.  Therefore
@@ -2144,7 +2144,9 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 
 \begin{proof}
 For a one-sided conjugator $s$, Theorem~\ref{thm:kazhdan-transport}
-gives the conclusion for $V_{s,n}x_nV_{s,n}^*$.  The equality of the
+applied to $L=\iota(\Lambda)$ gives the conclusion for
+$V_{s,n}x_nV_{s,n}^*$.  The subgroup $L$ has property~\textup{(T)}
+because it is a quotient of $\Lambda$.  The equality of the
 fixed-space projection with its conjugate established in that proof
 also gives invariance under the inverse conjugation, hence the
 conclusion for $V_{s,n}^*x_nV_{s,n}$.  The set of $g\in H$ for which
@@ -3414,8 +3416,10 @@ abelian $2$-groups attached to the blocks of $\mathcal G$.  Thus the present
 normal form does not identify $E/\langle w\rangle$ with an ordinary
 permutational wreath product.  It is nevertheless closely related to
 central extensions of lamplighter groups \cite{FFG23,Bodart25}, to the
-generalized wreath products of Kun--Thom \cite{KT}, and to the halo-product
-framework of Alekseev--Bradford \cite{AlekseevBradford}.
+generalized wreath products of Kun--Thom \cite{KT}, to the sofic-action
+framework of Gao, Kunnawalkam Elayavalli, and Patchell \cite{GKEP}, and
+to the halo-product framework of Alekseev--Bradford
+\cite{AlekseevBradford}.
 
 \begin{lemma}[finite-site subgroups are residually finite]\label{lem:window}
 For every finite set $S$ of sites the subgroup $M_S$ is residually
@@ -3938,6 +3942,11 @@ properties of groups} (Russian),
 Dokl. Akad. Nauk SSSR \textbf{103} (1955), 533--535;
 English translation in Nyberg-Brodda's collection below.
 
+\bibitem[AW]{AW81}
+C.~A. Akemann and M.~E. Walter,
+\emph{Unbounded negative definite functions},
+Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
+
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
 \emph{Centralizers of sofic approximations of Kazhdan groups},
@@ -3978,6 +3987,13 @@ B.~Bekka, P.~de~la~Harpe, and A.~Valette,
 New Mathematical Monographs, vol.~11,
 Cambridge University Press, Cambridge, 2008,
 \doi{10.1017/CBO9780511542749}.
+
+\bibitem[Bla]{Bla06}
+B.~Blackadar,
+\emph{Operator algebras: theory of $C^*$-algebras and von Neumann
+algebras},
+Encyclopaedia of Mathematical Sciences, vol.~122,
+Springer, Berlin, 2006.
 
 \bibitem[BK]{BK}
 B.~Blackadar and E.~Kirchberg,
@@ -4049,6 +4065,12 @@ repr\'esentations},
 Bull. Soc. Math. France \textbf{105} (1977), 281--336,
 \doi{10.24033/bsmf.1853}.
 
+\bibitem[DN]{DN19}
+C.~Dru\c{t}u and P.~W. Nowak,
+\emph{Kazhdan projections, random walks and ergodic theorems},
+J. Reine Angew. Math. \textbf{754} (2019), 49--86,
+\doi{10.1515/crelle-2017-0002}.
+
 \bibitem[Dy]{DykemaExact}
 K.~J. Dykema,
 \emph{Free products of exact groups},
@@ -4097,6 +4119,11 @@ J. Math. Phys. \textbf{54} (2013), no.~5, 052107,
 D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
 \emph{A new source of purely finite matricial fields},
 preprint, 2026, \arxiv{2603.24502}.
+
+\bibitem[GKEP]{GKEP}
+D.~Gao, S.~Kunnawalkam Elayavalli, and G.~Patchell,
+\emph{Soficity for group actions on sets and applications},
+Res. Math. Sci. \textbf{12} (2025), no.~3, Paper No.~48.
 
 \bibitem[GHW]{GHW}
 E.~Guentner, N.~Higson, and S.~Weinberger,

@@ -40,6 +40,28 @@ The finitely many equalities in `(CPR1)` may have constants depending
 arbitrarily on `m,N_m,L_m`.  They must all refer to the same `q_m`; separate
 depth heads with trace `O(1/N_m)` are insufficient.
 
+The operator equalities in `(CPR1)` are sufficient but stronger than the
+capacity argument needs.  By
+`positive-density-hs-power-overlaps-force-finite-depth`, it is enough to
+construct the same `q_m,u_m` with
+
+```text
+||q_m u_m^(kL_m) q_m||_2^2
+ <=(alpha_m+o(1))rho_m^(2kL_m)+o(1),    1<=k<=N_m,     (CPR1-HS)
+```
+
+and to choose the fixed integers with
+
+```text
+(N_m+1)alpha_m
+ >1+2rho_m^(2L_m)/(1-rho_m^(2L_m)).                   (CPR2-HS)
+```
+
+This scalar-overlap formulation is invariant under arbitrary common
+multiplicity gauges.  It does not by itself solve the remaining selected
+corner return, but it removes coherent operator identification from the
+minimal interface.
+
 By `positive-density-power-dilation-forces-finite-depth`, clauses 1--3 rule
 out canonical microstates on every NONHALT instance using the one finite
 choice `(CPR2)`.  Clause 4 supplies the
