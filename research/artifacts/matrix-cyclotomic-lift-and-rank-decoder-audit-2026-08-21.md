@@ -24,8 +24,9 @@ special fiber in which that addition lives.
 The correct metric after reduction is normalized rank, not normalized
 Hilbert--Schmidt norm.  A sequence of faithful asymptotically multiplicative
 coefficient decoders is precisely an embedding of `k[G]` into a rank-metric
-matrix ultraproduct, i.e. linear soficity of the algebra.  Arzhantseva and
-Paunescu prove that this is equivalent to linear soficity of `G`.
+matrix ultraproduct, i.e. linear soficity of the `k`-algebra.  Restricting the
+embedding makes `G` linear sofic over `k`.  Arzhantseva and Paunescu prove the
+converse for `k=C`; they do not prove it for arbitrary coefficient fields.
 
 Rank ultraproducts are stably finite coordinatewise.  The elementary identity
 
@@ -38,11 +39,15 @@ group algebra that is not directly finite cannot possess a faithful growing
 rank decoder.
 
 This locates the exact open bridge.  Turning arbitrary unitary HS microstates
-into such decoders would establish `hyperlinear => linear sofic`.  It is not
-the same as `hyperlinear => sofic`: on `F_q^d`, a rank-`r` discrepancy fixes a
-proportion `q^(-r)` of vectors, so an `o(d)` rank defect may still disagree on
-almost every vector.  No permutation approximation follows from the naive
-finite-vector action.
+into faithful `F_2[G]` decoders would establish the coefficient-sensitive
+statement `hyperlinear G => F_2[G] linear sofic`, and hence direct finiteness
+of `F_2[G]`.  This is stronger than merely showing that `G` is linear sofic.
+It is also not the same as `hyperlinear => sofic`: on `F_q^d`, a rank-`r`
+discrepancy fixes a proportion `q^(-r)` of vectors, so an `o(d)` rank defect
+may still disagree on almost every vector.  No permutation approximation
+follows from the naive finite-vector action.
 
 Primary reference: G. Arzhantseva and L. Paunescu, *Linear sofic groups and
-algebras*, arXiv:1212.6780, especially Theorem 1.1 and Proposition 2.8.
+algebras*, arXiv:1212.6780, especially Theorem 1.2/Corollary 7.7 and
+Proposition 2.8.  Their Question 7.9 records the coefficient-field direct
+finiteness boundary.
