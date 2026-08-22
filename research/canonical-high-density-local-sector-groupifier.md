@@ -37,6 +37,19 @@ canonical finite-dimensional microstates.  The exact marked representation
 ensures the presentation is nontrivial, so the resulting group is
 nonhyperlinear.
 
+The sum condition `(CHD1)` is sufficient but no longer the sharp analytic
+target.  By `common-meet-local-sectors-pay-one-deficit`, it may be replaced
+by the strictly weaker authenticated-meet condition
+
+```text
+1-tau_Gamma(meet_c q_c)<Delta/(1+Delta).                   (CHD3)
+```
+
+In particular a literal common accepting projection pays its deficit only
+once.  However equal local Plancherel masses do not imply `(CHD3)`:
+`plancherel-marginals-do-not-control-sector-meet` realizes both the shared
+and disjoint extremes inside one finite abelian regular packet.
+
 ## Attempts
 
 The common irreducible selected-type atlas does not meet `(CHD1)`: a central
@@ -48,3 +61,10 @@ then destroys the perfect nonclassical witness.  The live possibility is a
 high-rank **accepting** sector (large sum of types, not one selected type)
 whose rejected complement pays only the local verifier row while distinct
 context algebras remain noncommuting in the exact infinite model.
+
+A common one-ghost rejection atom would quantitatively solve the density
+bookkeeping through `(CHD3)`, but only if its identity across contexts is
+authenticated without placing all context observables in one common finite
+abelian algebra.  Sharing the full context packet classicalizes the witness;
+sharing only the rejection atom is the precise remaining group-theoretic
+interface.
