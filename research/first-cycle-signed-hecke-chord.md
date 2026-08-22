@@ -168,6 +168,15 @@ least one non-root assignment projection must survive.
   Without naming `u`, the frame remains analytic and tensor-separates from
   D16.  The D16 packet itself retracts and survives in both cases, but q14
   supplies no external multiplicity payment.
+- **The degree-four common-corner separator is also blind to that block.**
+  `s4-common-holonomy-charger-is-morita-blind` shows that appending powers of
+  the common commuting holonomy `W` to four packet paths factors one unitary
+  power out of every alternating monomial, leaving the `s4` norm unchanged.
+  More strongly, a finite `M2` type, a two-qubit Pauli packet, and `W` coexist
+  on `C^2 tensor C^4 tensor K` on one literal selector corner.  Demanding the
+  stronger scalar-factor containment needed for Amitsur--Levitzki instead
+  contradicts the exact Pauli model already at `W=1`.  Thus `s4` only helps
+  after the missing non-Morita common-corner authentication has been proved.
 - **The phase-rotated companion gives aggregate payment but kills
   completeness.**  Pairing `C_T=TU` with `C_S=SU` gives positive deficits
   `D_T+D_S=1` and squared HS energy at least `1/2` on one common carrier.
