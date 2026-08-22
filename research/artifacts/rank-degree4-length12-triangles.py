@@ -120,6 +120,8 @@ parser.add_argument("--length", type=int, default=12,
 parser.add_argument("--profile", help="restrict to one +- sign representative")
 parser.add_argument("--show-rank", type=int,
                     help="print every embedding with this constraint rank")
+parser.add_argument("--classify-rank", type=int,
+                    help="quotient this rank by cyclic target-face rotations")
 parser.add_argument("--balanced-only", action="store_true",
                     help="discard systems with same-sign carrier occurrences")
 args = parser.parse_args()
@@ -154,7 +156,9 @@ for representative in sorted(profiles):
     faces = tuple(sorted(faces, key=len))
     choices = tuple(embeddings(TARGETS[index], len(face))
                     for index, face in enumerate(faces))
-    counts, balanced_counts, local_best, local_winners = Counter(), Counter(), 100, []
+    counts, balanced_counts = Counter(), Counter()
+    cyclic_classes = Counter()
+    local_best, local_winners = 100, []
     for selected in product(*choices):
         carrier_sums = {name: 0 for name in (0, 2, 4)}
         for grouping in selected:
@@ -193,6 +197,22 @@ for representative in sorted(profiles):
             balanced_counts[constraint] += 1
         if args.show_rank == constraint:
             print("RANK_WIN", text_profile, constraint, selected, flush=True)
+        if args.classify_rank == constraint:
+            # Cyclic rotation of a target face does not change its relator.
+            # Forget the two trivalent rotations.  On the last face, quotient
+            # by cyclically choosing any of its three arcs as the first arc.
+            coefficient_sign = next(sign for _, (name, sign) in selected[0]
+                                    if name % 2)
+            chirality = "N" if coefficient_sign > 0 else "I"
+            valence_groups = selected[-1]
+            start = valence_groups[0][0][0]
+            sizes = tuple(len(indices) for indices, _ in valence_groups)
+            variants = []
+            for _ in range(3):
+                variants.append((start, sizes))
+                start = (start + sizes[0]) % len(faces[-1])
+                sizes = sizes[1:] + sizes[:1]
+            cyclic_classes[(chirality, min(variants))] += 1
         if constraint < local_best:
             local_best = constraint
             local_winners = [selected]
@@ -209,6 +229,9 @@ for representative in sorted(profiles):
           "best", local_best, flush=True)
     for selected in local_winners:
         print("LOCAL_WIN", text_profile, selected, flush=True)
+    if args.classify_rank is not None:
+        print("CYCLIC_CLASSES", text_profile, args.classify_rank,
+              len(cyclic_classes), sorted(cyclic_classes.items()), flush=True)
 
 print("global_best", global_best, "winner_count", len(winners))
 for representative, selected in winners[:40]:

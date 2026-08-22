@@ -8,6 +8,8 @@
 
 set -euo pipefail
 cd /projects/standard/hsiehph/sauer354/nonsofic_existence
-git pull --ff-only origin main
-python3 research/artifacts/rank-degree4-length12-triangles.py \
+git fetch origin main
+git show origin/main:research/artifacts/rank-degree4-length12-triangles.py \
+  > /tmp/rank-degree4-length14-balanced-$SLURM_JOB_ID.py
+python3 /tmp/rank-degree4-length14-balanced-$SLURM_JOB_ID.py \
   --length=14 --balanced-only
