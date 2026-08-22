@@ -120,6 +120,15 @@ only has to transport its covariance block.
   masks only `0x3,0x7,0xb`, never all four, so the fourth edge is now the first
   unresolved relation in this carrier ladder.
 
+- **All four large-component edges complete locally in A5.**
+  `atlas-large-k22-has-faithful-a5-completion` gives a five-point image in
+  which both `S3` vertices and all four `A4` edges inject.  At regular atlas
+  multiplicity one, `336 Reg(A5)` has exactly the required `S3` and `A4`
+  restrictions.  The missing fourth edge is therefore not intrinsically
+  obstructed: the global seam is compatibility of the marked
+  `A5=<r,y,b>` with the collision/forward carrier, where the fourth first-side
+  involution is recovered as `u=r^-1 b y^-1`.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence
