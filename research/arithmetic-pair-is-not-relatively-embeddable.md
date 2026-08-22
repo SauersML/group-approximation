@@ -35,6 +35,23 @@ group in this lane, hyperlinear.
 
 ## Attempts
 
+- **Exact-face confinement at `n = 3` (from the lifting lane,
+  2026-08-21).**  `kazhdan-subgroup-weak-ucp-exactifies-microstates`
+  applies to candidate refuters of this claim, not only to HNN
+  microstates: given `(pi_k, B_k)` witnessing `RE/C`, the corner
+  transport `W_k` of that theorem carries `B_k` to the subalgebra
+  `W_k B_k W_k^* + C(1 - W_k W_k^*)`, preserves near-containment of the
+  now GENUINE congruence representation `rho_k = pi'_k|_(SL_3(Z))`, and
+  preserves `E_(B_k)(pi_k(a)) -> 0` (conditional expectations transport
+  along the algebra identification, and all changes are pointwise
+  HS-small).  So under `sl3-z-weakly-ucp-stable` this claim need only be
+  refuted on the `Lambda`-exact face, where
+  `at-op62-holds-for-representation-lifts` gives the commutant of
+  `rho_k(SL_3(Z))` levelwise and the double-coset orthogonality form of
+  faithfulness becomes a statement about finite-level isotypic blocks.
+  (For `n = 2` the subgroup lacks full (T) and this confinement is not
+  available.)
+
 - **Congruence models fail `(CF1)` maximally.**  Co-density puts
   `pi_k(a)` inside `W^*(pi_k(C))` for every `a`, so `||E(pi_k(a))||_2 = 1`.
   Any faithful sequence is exotic, i.e. far from every congruence
