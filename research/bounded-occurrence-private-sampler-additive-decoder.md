@@ -64,3 +64,12 @@ The concrete redesigned target is
 `Theta(r^2)`, dimension-`r` kernel, demand the private Weyl gap of its
 coordinate functionals, add the exterior-square overlay, and prove
 nonnilpotent operator rounding.
+
+The scalar/dimension part of that redesign is now established by
+`repeated-good-ldpc-coordinates-give-private-weyl-sampler`.  Quadratically
+repeat an ordinary good length-`Theta(r)` LDPC code and match the repeated
+coordinates privately.  Every coordinate is itself a positive-weight mixed
+port, permutation concentration preserves the generator-column Weyl gap,
+and a second degree-one matching kills the whole exterior square.  Thus the
+only missing part of the present decoder is same-Hilbert exclusion or
+stability of the remaining nonnilpotent contextual local-PVM quotient.

@@ -32,9 +32,17 @@ layer.  The unresolved tasks are (i) a sparse-kernel ensemble whose coordinate
 functionals retain the Weyl metric-entropy gap, and (ii) exclusion/stability
 of the genuinely nonnilpotent contextual quotient left after class two.
 
-A concrete ensemble to test is a bounded-degree sparse invertible matrix
-with `r` rows deleted.  Its kernel has dimension `r`, while the relevant
-coordinate functionals are rows of the inverse restricted to the deleted
-syndrome coordinates.  What is missing is a theorem that these inverse
-coordinates have sufficient pseudorandom pair energy together with an
-operator agreement theorem for the resulting local views.
+The sparse-inverse pseudorandomness problem is now bypassed by
+`repeated-good-ldpc-coordinates-give-private-weyl-sampler`.  Start with an
+ordinary constant-rate, constant-distance bounded-check code of length
+`Theta(r)`, repeat its whole coordinate system `Theta(r)` times, and use
+random perfect matchings of the repeated coordinates.  This supplies the
+private matrix Weyl gap, linear-size bounded occurrence, recursive selection,
+and a uniform full-exterior-square overlay.
+
+Accordingly the sole remaining assertion in this node is the arbitrary-
+operator one: prove that near-perfect local codeword PVMs, replicated
+equality checks, and the exterior-square matching round on the same Hilbert
+space to the scalar kernel.  The overlay eliminates every central class-two
+escape, but existing results do not exclude a genuinely nonnilpotent
+contextual quotient or provide a uniform HS correction for it.
