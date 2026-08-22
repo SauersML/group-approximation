@@ -36,6 +36,14 @@ no-Fano-line support conclusion.
   minimizes only among central blocks of that representation; a simple block
   can retain every local atom, so the Fano conclusion still requires the
   source instance's overlap geometry.
+- Noncentral postselection cannot improve this central-block reduction.
+  `tracial-cap-menus-are-central-core-partitions` proves that every normal
+  tracial convex decomposition of one supplied model into cap-supported
+  branches is exactly a partition by central profile carriers.  It also
+  proves that a noncentral compression is neither an exact representation
+  nor a tracial branch.  Hence a factor model with one full-support context
+  admits no model-selective cap menu at all; any positive construction must
+  find a different perfect trace or add a genuinely central selector.
 - A constraintwise cap-range refinement of the classical NP reduction cannot
   solve the problem on a full nonaffine source support:
   `fano-cap-range-sections-cannot-encode-nonaffine-relations` would then turn
