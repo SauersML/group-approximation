@@ -301,6 +301,17 @@ compressed Weil packets.
   sources.  The remaining obstruction is operator-valued: recovering the
   two exits and their global congruence atom from an `o(d)` source carrier.
 
+- **Low-rank surgery removes an exposed boundary but stays regular.**
+  `bs14-low-rank-boundary-surgery-preserves-the-regular-face` gives the
+  block-free forward lemma.  A rank-`r` neutral boundary can be cut, and the
+  compressed operator polar-corrected, while keeping involution and
+  inversion exact; both cubic residuals then have rank `O(r)` and
+  Frobenius norm `O(sqrt r)`.  When `r=o(d)`, every bounded word changes by
+  `o(1)`, so the regular character is unchanged.  Consequently this surgery
+  does not hand the remainder to hyperfinite stability.  The endpoint is
+  now sharply the reverse low-rank problem: reconstruct one global atom
+  from two sublinear-rank cubic residuals.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

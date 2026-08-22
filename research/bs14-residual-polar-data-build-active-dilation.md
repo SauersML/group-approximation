@@ -140,3 +140,12 @@ tuple.
   `Phi(alpha)=2alpha-(2/pi)sin(pi alpha)`.  This makes source replacement
   flexibly affordable but still does not identify the cross-threshold exits
   or build the exact `X`.
+- `bs14-low-rank-boundary-surgery-preserves-the-regular-face` proves the
+  forward operation once a boundary is exposed.  Cutting a rank-`r`
+  boundary and replacing the compressed selfadjoint contraction by its sign
+  preserves involution and inversion exactly, changes `X` on rank at most
+  `r`, and leaves each cubic with rank at most `6r` and Frobenius norm
+  `O(sqrt r)`.  For `r=o(d)` all bounded words move by `o(1)`.  Crucially,
+  this also preserves the regular character, so the remainder is not
+  hyperfinite; the reverse construction from two residual polar carriers
+  remains the genuine missing step.
