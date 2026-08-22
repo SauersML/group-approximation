@@ -166,3 +166,30 @@ cycle/commutator or make the carrier depend on the bridge multiplicity phase
 itself.  The former returns to the existing localized-commutator and
 regular-energy gates; the latter is absent from the current pulse/Schur
 decoder.
+
+## Exact-invisibility actuator audit
+
+Even the strongest exact finite-dimensional actuator is insufficient.
+`exact-fd-wandering-reflection-promotion-can-remain-sofic` starts from the
+Slofstra--Vidick finitely presented sofic group with a nontrivial involution
+`c` killed by every finite-dimensional representation.  In the free product
+with `<t>`, the commutator `h=[t,c]` has infinite order but is still killed by
+every exact finite-dimensional representation.  After direct-producting
+with an already-wordized verifier base, `w=V_m h` is therefore exactly
+`V_m` in every finite-dimensional representation and is wandering in the
+abstract group.
+
+Nevertheless the resulting group is sofic, and its canonical microstates
+retain the full compression error
+
+```text
+||Q(w-V_m)Q||_2^2 -> 2 tau(Q).
+```
+
+Thus exact finite-dimensional representation theory can simultaneously
+supply clauses 3 and 4 and the exact-model shadow of clause 1 without giving
+`(FCW1)`.  The surviving two-cell must be payload-sensitive in the robust
+normalized-HS sense: it must couple the actuator defect to the verifier
+carrier with a dimension-independent modulus.  A sterile actor placed beside
+the payload, even one whose marked word is invisible in every exact matrix
+representation, is sharply refuted by this sofic wrapper.
