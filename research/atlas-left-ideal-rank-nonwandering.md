@@ -144,3 +144,14 @@ or genuinely nonstationary coefficient data.
   nonwandering, because `M_2 tensor I_k` needs a seed of dimension at least
   `ceil(k/2)`, density at least `1/4`.  A genuine enemy must combine q14 with nonstationary
   cross-amplification mixing, not repeat the known two-copy escape.
+
+- **Approximate coefficient substitution retains the q14 wall.**
+  `atlas-m2-coefficient-substitution-cannot-dilute-q14` treats the natural
+  attempt to replace the four `M_2(F2)` matrix units of the exact escape by
+  growing shift/wrap matrices.  If their multiplication table has vanishing
+  normalized-rank defect, finite-algebra rank stability corrects it to a
+  standard amplification, and the rank-one q14 defect retains normalized
+  rank `1/8-o(1)`.  Thus an enemy must deliberately violate coefficient
+  multiplication on moving low-rank directions and use the thirteen Atlas
+  word formulas to cancel those violations; a functorial coefficient
+  amplification cannot work.
