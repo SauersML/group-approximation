@@ -1,0 +1,23 @@
+---
+rg: 2
+id: uniform-kazhdan-homogeneous-lcs-face-groups
+kind: claim
+title: Choose low-rate LTC face groups with a uniform normalized Kazhdan gap
+distinct_from:
+  repeated-ldpc-adjoint-face-hamiltonian-gap: that asks only for conjugation representations of the selected family; this stronger target seeks a group-theoretic gap in every unitary representation.
+  shared-face-synchronization-is-uniform-lcs-hs-stability: that is approximate-representation correction; property T applies after exactification and does not imply that stability.
+---
+
+OPEN.  Choose the bounded-check, low-rate binary code family so its exact
+homogeneous LCS groups satisfy `(UCK1)` uniformly, preferably through a
+Żuk/link-spectral or other finite-subgroup-colimit criterion, while retaining
+dimension `r`, length `Theta(r)`, classical distance/LTC soundness, and the
+private-Weyl coordinate distribution.
+
+Redundant equality checks do not change the abstract face group and hence
+cannot create property T.  Triangulating parity checks with auxiliaries must
+be audited as a Tietze-equivalent presentation, not counted as new spectral
+mass.  Classical code distance gives the desired gap on scalar character
+representations: every nontrivial code character moves on at least `delta L`
+coordinates.  The open issue is uniform control of nonabelian multiplicity
+sectors.

@@ -31,3 +31,10 @@ alone also cannot imply it at positive rate, by
 `positive-rate-tanner-tests-have-contextual-models`.  The possible positive
 input is the joint use of low rate, LTC soundness, and the complete-pair
 overlay; no existing Cairn theorem supplies that operator gap.
+
+`uniform-conjugation-kazhdan-gap-gives-face-hamiltonian-gap` gives an exact
+group-theoretic sufficient condition.  A uniform normalized property-T gap
+for the homogeneous LCS face groups would close this node.  This does not
+help exactify approximate face tables: the Kazhdan inequality applies only
+after `repeated-ldpc-shared-face-marginal-synchronization` has produced an
+exact group representation.

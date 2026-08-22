@@ -20,3 +20,9 @@ once is not formal: replacing a face marginal by the synchronized reflection
 can destroy joint commutation and parity, while re-correcting the face can
 move its marginal again.  This is the finite-overlap agreement step needed
 before the adjoint face-Hamiltonian gap can be applied.
+
+`shared-face-synchronization-is-uniform-lcs-hs-stability` identifies this
+step exactly with uniform same-dimension HS stability of the growing
+homogeneous LCS colimits in their redundant occurrence presentations.  In
+particular, the Lipschitz face-atom formula cannot be applied to independently
+averaged spectral signs until their within-face commutation is already known.
