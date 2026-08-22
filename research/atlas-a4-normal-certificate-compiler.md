@@ -64,6 +64,32 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **Packet-only opaque transport is spectrally false even on exact regular
+  margins.**  `atlas-a4-packet-alone-fails-opaque-star` evaluates the four
+  opcodes on all sixty exact classical packet alignments, now in `Reg(A8)`
+  rather than the smaller fifteen-point diagnostic.  One exact inner packet
+  network with every stable letter equal to one has opcode-order profile
+
+  ```text
+  (ord V(t01),ord V(t12),ord V(t23),ord V(t30))=(4,4,2,2).
+  ```
+
+  The order-four leaves stay normalized-HS distance exactly one from the
+  unitary orbit of the order-two hub, under every amplification.  Thus no
+  tree-gauged packet-path telescoping estimate with right side `C eta` can
+  prove `(A4-STAR-1)` on packet networks alone.  The ambient collision
+  hypothesis must be used essentially.  For a pointwise compiler interface,
+  the honest repair is to allow
+
+  ```text
+  C (eta_n+||sigma_n(q_19243)-1||_2)
+  ```
+
+  on the right of the transport estimate.  The current asymptotic statement
+  may still use collision through the restricted class of sequences, but the
+  collision cannot disappear from the proof as the displayed `C eta_n`
+  suggests.
+
 - **Exact chart conjugacy does not transport relative opcodes.**  The
   established A8 normal certificates alone cannot prove `(A4-STAR-1)`.  Let
   `G=A8`, let `lambda` be its left regular representation, fix two distinct
