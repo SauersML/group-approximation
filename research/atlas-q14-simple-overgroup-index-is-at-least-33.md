@@ -37,3 +37,6 @@ prime power index in a simple group*, Journal of Algebra 81 (1983), 304--311,
 Theorem 1.  It is an ambient finite-simple sieve, not a new consequence of
 the Atlas packet or collision words.
 
+The subsequent finite-simple order and maximal-subgroup classification in
+`atlas-q14-simple-overgroup-index-is-at-least-91` removes the entire interval
+through index ninety.
