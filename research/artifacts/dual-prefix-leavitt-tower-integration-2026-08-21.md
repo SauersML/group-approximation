@@ -96,3 +96,39 @@ finite-trace annihilation after coefficient decoding, and `(WW6)--(WW7)`
 locate the only remaining groupification gap.  No additional exact Pauli
 algebra or polynomial identity is missing.
 
+# Dense-phase and approximate-rank audit (2026-08-22)
+
+Adding one constant parallel root path replaces the sparse identity pairing
+by its complement:
+
+```text
+Xhat_u=x_12(A)x_13(t_u),       Yhat_v=x_24(A)x_34(s_v),
+[Xhat_u,Yhat_v]=J^(1+delta_(u,v)).                       (WW8)
+```
+
+For `D=2^n`, the matrix `I+11^T` is invertible over `F_2`, so the exact
+negative-central sector still requires dimension `2^D`.  Unlike the raw
+identity pairing, its sign has density `1-1/D`, and the coefficient
+cancellation depth has bounded first and second moments.
+
+This does not remove the analytic gap.  There are explicit balanced
+dimension-`8D` models with canonical first/second label moments which satisfy
+all off-diagonal relations in `(WW8)` and fail only its `D` diagonal cells,
+for mean squared defect `2/D`.  More generally:
+
+- `bounded-prefix-decision-cost-forces-bounded-approximate-rank` proves that
+  every Boolean pairing decided by a prefix stopping rule with bounded mean
+  depth is `epsilon`-close to a matrix of rank at most `2^(C/epsilon)`;
+- `low-rank-weyl-tables-have-polynomial-models` converts every such low-rank
+  approximation into a balanced, label-orthogonal unitary model of dimension
+  `O(2^rD^2)` and average squared Weyl defect at most `2epsilon`;
+- `paired-prefix-shears-have-bounded-joint-approximate-rank` shows that
+  finitely many synchronous Steinberg shear phase tables do not evade the
+  same collapse.
+
+Thus positive phase density and bounded average prefix area are mutually
+compatible only because the rare deep cells retain the growing rank.  A live
+Leavitt proof must overweight those cells, use a verifier with robust growing
+approximate rank, or authenticate a non-phase same-reservoir Gram/support
+operator.  Merely copying finitely many prefix phase coordinates cannot close
+the HS bridge.
