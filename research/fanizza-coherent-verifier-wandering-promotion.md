@@ -31,6 +31,15 @@ By `compressed-reflection-kills-even-cesaro-mark`, `(FCW1)` itself gives an
 weighted-state Dirichlet comparison is needed.  Clause 3 supplies canonical
 linear Cesaro growth, and `wandering-mark-cesaro-amplifier` finishes.
 
+There is now a sharper terminal audit.  By
+`compressed-finite-order-wandering-is-terminal`, clauses 1 and 3 already
+contradict hyperlinearity: compression to the reflection makes
+`(w(U)^2-1)Q_U=o(1)`, whereas infinite order and finite support make
+`(w^2-1)Q` nonzero in the regular group algebra.  Hence the Fanizza signal,
+marked translates, and Cesaro amplification are not load-bearing after
+`(FCW1)` has been established.  The strictly weaker live construction is
+`localized-square-return-wandering-promotion`.
+
 The exact tension is now explicit: `w` must be infinite and wandering in the
 group regular normal form but look like the fixed reflection `V_m` after one
 finite-dimensional packet compression.  A finite-edge graph-of-groups cell
