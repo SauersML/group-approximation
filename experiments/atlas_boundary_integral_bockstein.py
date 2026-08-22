@@ -33,12 +33,8 @@ point experiment.
 import hashlib
 import json
 
-from atlas_boundary_group_algebra_audit import (
-    group_algebra_derivative,
-    matrix_from_key,
-)
-from atlas_boundary_h_tangent_screen import INNER_ALIGNMENT_HEX
-from atlas_boundary_inner_alignment import enumerate_gl4
+import numpy as np
+
 from atlas_certified_a8_alignment import boundary_words
 from atlas_two_chart_search import (
     I4,
@@ -47,7 +43,80 @@ from atlas_two_chart_search import (
     gf2_mul,
     matrix_key,
 )
-from atlas_universal_modular_group_algebra import LeftTranslations
+
+
+INNER_ALIGNMENT_HEX = "00000100000100000100000000000001"
+
+
+def enumerate_gl4():
+    generators = [word[0][1] for _name, word in factor_generators()[:6]]
+    elements = [I4.copy()]
+    seen = {matrix_key(I4)}
+    for element in elements:
+        for generator in generators:
+            target = gf2_mul(element, generator)
+            key = matrix_key(target)
+            if key not in seen:
+                seen.add(key)
+                elements.append(target)
+    if len(elements) != 20160:
+        raise AssertionError("GL4(F2) enumeration failed")
+    return elements
+
+
+def group_algebra_derivative(word, alignment, alignment_inverse):
+    prefix = I4.copy()
+    coefficients = {}
+    for factor, matrix in word:
+        image = matrix
+        if factor == 2:
+            image = gf2_mul(gf2_mul(
+                alignment, matrix), alignment_inverse)
+        before = prefix
+        prefix = gf2_mul(prefix, image)
+        if factor == 2:
+            before_key = matrix_key(before)
+            after_key = matrix_key(prefix)
+            coefficients[before_key] = coefficients.get(before_key, 0) + 1
+            coefficients[after_key] = coefficients.get(after_key, 0) - 1
+    if matrix_key(prefix) != matrix_key(I4):
+        raise AssertionError("boundary word is nontrivial at alignment")
+    return {key: value for key, value in coefficients.items() if value}
+
+
+class LeftTranslations:
+    def __init__(self, permutations, dimension):
+        self.permutations = tuple(
+            np.asarray(permutation, dtype=np.int32)
+            for permutation in permutations
+        )
+        self.dimension = dimension
+        self.byte_width = (dimension + 7) // 8
+
+    def all_images(self, row):
+        if row.bit_count() <= 256:
+            images = [0] * len(self.permutations)
+            remaining = row
+            while remaining:
+                bit = remaining & -remaining
+                source = bit.bit_length() - 1
+                for index, permutation in enumerate(self.permutations):
+                    images[index] |= 1 << int(permutation[source])
+                remaining ^= bit
+            return images
+        packed = row.to_bytes(self.byte_width, byteorder="little")
+        bits = np.unpackbits(
+            np.frombuffer(packed, dtype=np.uint8), bitorder="little"
+        )[:self.dimension]
+        images = []
+        target = np.empty(self.dimension, dtype=np.uint8)
+        for permutation in self.permutations:
+            target[permutation] = bits
+            repacked = np.packbits(target, bitorder="little")
+            images.append(int.from_bytes(
+                repacked.tobytes(), byteorder="little"
+            ))
+        return images
 
 
 def subtract_mod4(left, right):
@@ -128,7 +197,9 @@ def main():
     ]
     translations = LeftTranslations(permutations, order)
 
-    alignment = matrix_from_key(bytes.fromhex(INNER_ALIGNMENT_HEX))
+    alignment = np.frombuffer(
+        bytes.fromhex(INNER_ALIGNMENT_HEX), dtype=np.uint8
+    ).reshape(4, 4).copy()
     alignment_inverse = gf2_inv(alignment)
     seeds = [
         derivative_mod4(
