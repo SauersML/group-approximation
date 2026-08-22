@@ -399,10 +399,23 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   `O(delta^2)`.  On the independent-coordinate escape the resulting
   square-function is exactly `2(1-R_diag)`, so zero incidence confines the
   carrier to the trace-`1/42` diagonal and the off-diagonal mass pays in
-  full.  The last correctable-sector gate is now `(RDI10)`: prove that the
-  conductor-decoded chart projections are close to these raw conjugates,
-  with squared distance controlled by mixed-root energy and first exits.
-  The raw word estimate itself is complete and Weyl-uniform.
+  full.  The raw word estimate itself is complete and Weyl-uniform.
+- **Pointwise decoded-to-raw proximity is impossible by trace capacity.**
+  `balanced-raw-lamp-orbit-cannot-approximate-shell-pvm` corrects the first
+  proposed interface after the raw incidence lemma.  Forty-two raw lamp
+  conjugates each have trace `1/2` (or `1/4` for a positive two-lamp atom),
+  while a partial shell PVM has total trace at most one.  Therefore the sum
+  of squared decoded-to-raw distances is at least `20` (respectively
+  `19/2`), even at exact defect zero.  The valid next target is nonlinear:
+  decode mutually orthogonal cylinder/character atoms from the JOINT raw
+  lamp algebra and tie their covariance to the denominator section words.
+  First exits may control loss of those atoms; they cannot make individual
+  balanced lamps into a PVM.
+- **The uniformly noncorrectable lattice sector is now a separate node.**
+  `sl3-noncorrectable-lambda-sector-has-no-projective-leak` records
+  the exact complementary assertion required for full PRCC.  None of the
+  conductor, parahoric, shell, or raw-incidence arguments proves it; they
+  all operate after a lattice correction is available.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),

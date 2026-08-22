@@ -84,8 +84,8 @@ then three-term telescoping gives
 Delta_w <=(3/2)(R_w+R_0+2 Delta_raw).                  (RDI9)
 ```
 
-Consequently the desired simple-neighbor shell inequality follows as soon
-as the decoder proves
+Algebraically, the desired simple-neighbor shell inequality would follow if
+the decoder proved
 
 ```text
 R_w+R_0 <= C(firstExitMass+mixedRootEnergy).             (RDI10)
@@ -93,6 +93,15 @@ R_w+R_0 <= C(firstExitMass+mixedRootEnergy).             (RDI10)
 
 Weyl symmetry gives the other four star edges with the same finite maximum
 of constants.
+
+**Scope correction.**  For the native lamp data, `(RDI10)` is impossible.
+Each raw lamp conjugate has trace `1/2` (and each positive two-lamp atom has
+trace `1/4`), whereas a partial 42-atom PVM has total trace at most one.
+`balanced-raw-lamp-orbit-cannot-approximate-shell-pvm` gives the exact floors
+`20` and `19/2` for `R_w` already before adding `R_0`.  Thus `(RDI9)` is a
+valid conditional inequality but not the correct decoder interface.  The
+raw incidence must instead be transferred to mutually orthogonal JOINT
+spectral atoms of the raw lamp algebra.
 
 ## Exact payment on the independent-coordinate escape
 
@@ -121,8 +130,9 @@ whose normalized trace is exactly `1/42`.  Thus the countermodel of
 extended across `(RDI2)` while retaining its full carrier: its off-diagonal
 mass pays exactly, rather than merely through a spectral-gap estimate.
 
-This proves the raw denominator incidence and reduces the correctable-sector
-problem to `(RDI10)`.  That proximity is not currently established: the
-conductor-decoded projections may live in rectangular multiplicity
-reservoirs not yet tied to the raw lamp conjugates.  Nothing here addresses
-the uniformly noncorrectable `SL_3(Z)`-vertex sector.
+This proves the raw denominator incidence but does not by itself produce a
+shell PVM.  The correctable-sector problem is to decode orthogonal
+cylinder/character atoms from the joint raw lamp algebra and charge their
+covariance loss to first exits.  Pointwise decoded-to-raw proximity is ruled
+out.  Nothing here addresses the uniformly noncorrectable
+`SL_3(Z)`-vertex sector.
