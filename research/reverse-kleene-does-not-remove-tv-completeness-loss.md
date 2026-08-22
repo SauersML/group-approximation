@@ -43,8 +43,14 @@ at zero, while the theorem chooses a repetition count `u=u(epsilon)`.  The
 published construction supplies no homomorphisms transferring a proof
 `J=1` between the changing `u`-presentations with a controlled proof gap.
 
+For fixed `(u,B,pi)`, the support is in fact constant throughout positive
+noise; `taller-vidick-positive-noise-fixed-support-reweighting` records this
+sharper statement.  It does not repair the argument: reweighting preserves
+strict soundness but multiplies honest loss by an inverse rare-mask weight,
+the weighted van Kampen gap depends on the eventual certificate, and the
+published soundness choice `(TVF9)` varies `u` with `epsilon`.
+
 Therefore a reverse-Kleene upgrade needs a genuinely new nested-transfer or
 uniform proof-gap theorem; it does not follow from
 `LIN*_(1-epsilon,s)=RE`.  The full fixed-point audit is
 `taller-vidick-reverse-kleene-endpoint-proof`.
-

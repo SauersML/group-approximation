@@ -6,6 +6,7 @@ title: Split the self-referential proof search into its two branches and expose 
 target: reverse-kleene-does-not-remove-tv-completeness-loss
 requires:
   - taller-vidick-lcs-re-hardness
+  - taller-vidick-positive-noise-fixed-support-reweighting
 artifacts:
   - research/artifacts/taller-vidick-reverse-kleene-endpoint-audit-2026-08-21.md
 ---
@@ -26,4 +27,3 @@ proportional to `epsilon`, and the repetition parameter changes with
 `epsilon`.  Hence neither taking a limit nor dovetailing output instances
 transfers the certificate with a controlled gap.  Waiting for a crossing
 certificate invalidates the inference from nonhalting to `J!=1`.
-
