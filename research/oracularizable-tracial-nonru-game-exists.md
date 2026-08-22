@@ -38,6 +38,10 @@ quantum-approximable gap to the new game by contrapositive.
   not separated from one.
 - On NO instances the same family has a finite-dimensional gap, but the cited
   theorem does not supply a perfect commuting or oracularizable strategy.
+- `three-label-affine-lowering-no-go` shows that this source interface cannot
+  itself justify the exact support-affine lowering: after a harmless finite
+  answer split, the perfect oracularizable strategy and the gap both remain,
+  while that lowering has a perfect classical strategy.
 
 This closes the source interface for the entangled long-code route.  It does
 not construct the later multiplicity return.

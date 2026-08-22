@@ -211,6 +211,13 @@ neither statement.
   predicated-control route: `controlled-linear-predication-normal-form` removes
   controlled equations exactly, leaving selector soundness as a finite
   compiler invariant.
+- **Oracularizability is not an affine-support certificate.**
+  `three-label-affine-lowering-no-go` preserves a perfect pairwise-oracularizable
+  strategy and a finite-dimensional gap under a three-label answer split, but
+  makes the standard BCS trace-support affine relaxation classically
+  satisfiable.  Therefore `(ESF3)` must use special global structure of the
+  chosen source and trace; it cannot follow from the oracularizable source
+  interface alone.
 - **Modern repetition/PCP amplification.**
   [[dinur-constraint-gap-amplification]] is now the named classical baseline:
   it amplifies ordinary finite-alphabet `UNSAT` with perfect completeness and
