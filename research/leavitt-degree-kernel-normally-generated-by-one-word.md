@@ -87,7 +87,18 @@ unspecified element to kill.
    first unresolved full-support shapes occur at length six and, after
    symmetries, have sign type `+++++-` or `++++--`.  No shorter self-similar
    coefficient packet can work.
-9. **Reality check, recorded because this claim reads more tractable than it
+9. **Audit the first full-support length-six word.**  The explicit word
+   `x_12(s_0)t x_12(s_1)t x_12(t_0)t p t x_12(t_1)t^(-2)` from
+   `leavitt-length-six-full-support-torsion-candidate` has degree two and its
+   five nonidentity coefficients generate all of `G`.  The two sign-change
+   coefficients are involutions, so it evades exactly the Stallings and
+   Clifford--Goldstein torsion-free gates.  In
+   `N_2=G_0*G_1*<z>` it becomes
+   `a_0 b_1 z c_0 d_1 z e_0 z^(-1)`; its `t`-translate is
+   `a_1 z b_0 c_1 z d_0 e_1 z^(-1)`.  Each relator alone preserves
+   `G_0*G_1` by the universal length-three theorem.  The next concrete task
+   is to decide whether this explicit pair jointly normally generates `N_2`.
+10. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
    The honest reading — inherited from

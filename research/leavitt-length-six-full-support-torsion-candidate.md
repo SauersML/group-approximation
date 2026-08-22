@@ -1,0 +1,71 @@
+---
+rg: 2
+id: leavitt-length-six-full-support-torsion-candidate
+kind: claim
+title: An explicit length-six Leavitt equation has full coefficient support and puts involutions at both unavoidable torsion gates
+distinct_from:
+  length-five-kl-fence-for-leavitt-equations: That proves no word of length at most five can work; this constructs and audits the first length-six word outside that theorem.
+  three-root-asymmetric-kl-word-has-finite-core-pushout: That word's coefficients generate a finite subgroup and its quotient is a protected pushout; these coefficients generate the entire Leavitt elementary group.
+  leavitt-degree-kernel-normally-generated-by-one-word: That asks for a word which actually normally generates the degree kernel; this identifies the first explicit word surviving all current preliminary fences but does not assert the still-open normal-generation conclusion.
+artifacts:
+  - research/leavitt-length-six-full-support-torsion-candidate-proof.md
+---
+
+Let
+
+```text
+R=L_(F_2)(1,2)
+ =F_2<s_0,s_1,t_0,t_1 | t_i s_j=delta_ij,
+                            s_0t_0+s_1t_1=1>,
+G=EL_20(R)=R^x.
+```
+
+Write `x(q)=x_12(q)`, and let `p` be the permutation matrix of the cycle
+`(1 2 ... 20)`.  Set
+
+```text
+a=x(s_0),  b=x(s_1),  c=x(t_0),  d=p,  e=x(t_1),  f=1,
+
+W=a t b t c t d t e t^(-1) f t^(-1).                 (L6.1)
+```
+
+Then:
+
+1. `{a,b,c,d,e}` generates all of `G`, not a finite prefix subgroup;
+2. `ell_t(W)=6`, `deg_t(W)=2`, and its sign type is `++++--`;
+3. the two coefficients at the cyclic sign changes are exactly `a` and `e`,
+   and both are nontrivial involutions;
+4. the generic sign-index-two theorem cannot prove injectivity, precisely
+   because it requires those two coefficients to have infinite order;
+5. `t=1` is not a solution: `abcde != 1` in `GL_20(R)`;
+6. in the degree-two kernel
+   `N_2=G_0*G_1*<z>` (`G_i=t^iGt^(-i)`, `z=t^2`), the word is
+
+```text
+W = a_0 b_1 z c_0 d_1 z e_0 z^(-1).                 (L6.2)
+```
+
+The normal closure in the ambient group is generated inside `N_2` by only
+`W` and its `t`-translate.  Writing `tau=Ad(t)`,
+
+```text
+tau(W)=a_1 z b_0 c_1 z d_0 e_1 z^(-1).              (L6.3)
+```
+
+Thus the exact coefficient-kernel test is the two-relator quotient
+
+```text
+Q=(G_0*G_1*<z>)/<< (L6.2), (L6.3) >>.               (L6.4)
+```
+
+Each relator separately is a length-three unimodular equation in `z` over
+`G_0*G_1`, so Howie's theorem embeds `G_0*G_1` after imposing either one
+alone.  Any collapse must genuinely use the interaction of the two
+`tau`-paired relators; no one-relator normal-form attack can prove it.
+
+Thus `(L6.1)` is the first literal full-support Leavitt KL candidate left by
+the established small-length theory.  The remaining question is exact and is
+not claimed here: do the two relators in `(L6.4)` normally generate `N_2`?
+An affirmative answer would make the relative quotient
+cyclic of order two and prove `G` nonhyperlinear; a proper quotient or an
+embedding argument would kill this candidate.
