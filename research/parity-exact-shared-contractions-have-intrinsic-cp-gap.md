@@ -103,3 +103,12 @@ tuple (or removes the sparse equality corner) without using an operator-norm
 perturbation argument.  The exact oddness identity, positive involution
 defects, and dense cb remainder do not by themselves solve this occurrence
 synchronization.
+
+The channel-gap part of this interface is now resolved without literal
+sharing.  `averaged-pinching-channels-are-row-square-lipschitz` proves that
+the normalized averaged channels of local exact occurrences and shared
+representatives differ on `L_2` by at most the square root of their common
+operator row-square displacement.  Consequently the fixed-time face gap
+survives on the retained equality-low block with error `K sqrt(||H||)`.
+What remains is not transfer of the CP gap, but paying the high equality
+sector and the sparse face-product damage of the shared intrinsic update.
