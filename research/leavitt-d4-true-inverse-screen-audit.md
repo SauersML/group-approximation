@@ -6,6 +6,12 @@ title: Bergman-chart inversion must be tracked multiplicatively in Leavitt scree
 artifacts:
   - research/artifacts/search-degree4-shared-triangle-boundary.py
   - research/artifacts/search-degree4-length12-rank7-branch-a.py
+invalidates:
+  - leavitt-degree3-algebraic-corner-cycle-proof
+  - leavitt-degree3-direct-pivot-screen-proof
+  - leavitt-degree3-trivalent-omega-cycle-is-absent-proof
+  - leavitt-degree4-five-corner-full-packet-is-absent-proof
+  - leavitt-d3-length9-compound-holonomy-is-absent-proof
 ---
 
 The faithful Bergman chart used by the Leavitt picture searches is an
@@ -26,3 +32,7 @@ and asserts both inverse identities on the generator library.  Symbolic
 free-product/retraction theorems do not use the chart helper and are
 unaffected.  Any old bounded census that used transpose-as-inverse is not an
 exact census and must be rerun before its zero count is cited.
+
+The five invalidated routes above depended on such a bounded census.  This
+does not refute their target statements; it removes the defective certificate
+until a true-inverse replay or a symbolic proof replaces it.
