@@ -42,6 +42,12 @@ is the weakest remaining gate in this lane.
   Giving the mixed test uniform access to all ports needs `Omega(m)` lifted
   pair edges; any two lifts of one logical pair create the fatal contour of
   `equality-synchronized-lifts-create-two-pair-contours`.
+- **Maximum-edge control does not repair the rooted port.**
+  `bounded-degree-clouds-have-logarithmic-root-gauge-leak` conjugates an exact
+  two-dimensional local packet down a distance ramp.  Every equality edge
+  then has defect `O(1/log m)`, every local predicate is exact, and the one
+  distinguished port remains a constant distance from the bulk PVM.  Thus
+  the obstruction is not an artifact of averaging a single bad edge.
 - **Only average additive error.**  This is no longer an analytic obstruction:
   `unitary-blr-average-self-corrects-uniformly` upgrades average BLR error to
   a uniform almost-action.  Producing that average from bounded-template

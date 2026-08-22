@@ -230,3 +230,12 @@ finite-dimensional counterstrategy for this particular simplex complex.
   `m`.  Sampling the mixed edge uniformly over the fiber requires many lifts
   of the same logical pair, recreating the two-pair contour.  This quantitative
   rooted-port obstruction is recorded in the parent decoder claim.
+
+The rooted obstruction persists when finite-presentation semantics controls
+the maximum defect of every equality edge.  By
+`bounded-degree-clouds-have-logarithmic-root-gauge-leak`, simultaneously
+conjugating each exact local BLR packet along a distance ramp makes every
+edge defect `O(1/log m)` while leaving the designated port a constant gauge
+distance from the bulk packet.  Therefore the new private mixed matching
+removes the old rectangle obstruction but does not make a single port of a
+large equality cloud uniformly readable.

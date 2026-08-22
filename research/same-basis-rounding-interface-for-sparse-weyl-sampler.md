@@ -45,6 +45,13 @@ pair-holonomy, or random-sample-effectivity lemma should be added downstream.
   directly compatible with the bounded-template placement gate.
 - **Expander equality clouds.**  They synchronize copies through repeated
   equality fibers and recreate short balanced contours.
+- **One private port per equality cloud.**  Removing repeated mixed pairs
+  removes those contours, but not rooted dilution.
+  `bounded-degree-clouds-have-logarithmic-root-gauge-leak` gives exact local
+  two-dimensional packets whose conjugation gauge changes by only
+  `O(1/log m)` across every cloud edge, while the designated mixed port stays
+  a constant distance from the bulk PVM.  Hence even maximum edge-defect
+  control does not yield a uniform rooted decoder.
 - **Separate local roundings.**  These do not produce the common PVM needed
   for `(SW2)` and leave a coupling escape.
 - **Metric-entropy sparsification of BLR itself.**  This cannot reuse the
