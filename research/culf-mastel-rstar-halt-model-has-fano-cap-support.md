@@ -30,6 +30,12 @@ no-Fano-line support conclusion.
   theorem currently shows that a support-minimal perfect CE model of the
   Culf--Mastel instance cannot retain a forced Fano line.  This is the exact
   remaining possible canonical operation.
+- On the finite-dimensional HALT strategy one may at least choose a
+  support-minimal irreducible summand, by
+  `finite-perfect-strategy-reduces-only-to-support-minimal-irrep`.  This
+  minimizes only among central blocks of that representation; a simple block
+  can retain every local atom, so the Fano conclusion still requires the
+  source instance's overlap geometry.
 - A constraintwise cap-range refinement of the classical NP reduction cannot
   solve the problem on a full nonaffine source support:
   `fano-cap-range-sections-cannot-encode-nonaffine-relations` would then turn
