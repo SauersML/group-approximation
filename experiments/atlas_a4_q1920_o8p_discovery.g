@@ -78,17 +78,26 @@ embeddingTwists:=List(RightCosets(qAutomorphisms,
 Print("induced_aut_order=",Size(inducedAutomorphismGroup),
       " embedding_twist_count=",Length(embeddingTwists),"\n");
 
-AnalyzeMarking:=function(images)
+AnalyzeMarking:=function(images,markingIndex)
   local Q,iso,baseMapped,mapped,twist,r,y,u,b,t,s,A,centralizer,
         candidates,c,collisionWord,orderThree,z,seamPairs,profiles,
-        totalCollision,totalSeams,completionOrders;
+        totalCollision,totalSeams,completionOrders,twistIndex;
   Q:=Group(images);
   iso:=IsomorphismGroups(Q,ambientQ);
   if iso=fail then Error("marked Q1920 did not transport to Omega8+"); fi;
   baseMapped:=List(images,g->Image(iso,g));
   profiles:=[]; totalCollision:=0; totalSeams:=0; completionOrders:=[];
+  twistIndex:=0;
   for twist in embeddingTwists do
+    twistIndex:=twistIndex+1;
     mapped:=List(baseMapped,g->Image(twist,g));
+    if IsBound(EXPORT_MODULE_MATRICES) and EXPORT_MODULE_MATRICES then
+      Print("module_matrices=",List(mapped,g->List(g,row->
+          List(row,IntFFE))),"\n");
+    fi;
+    if IsBound(AnalyzeRepeatedCollisionModule) then
+      AnalyzeRepeatedCollisionModule(mapped,["O8+",markingIndex,twistIndex]);
+    fi;
     r:=mapped[1]; y:=mapped[2]; u:=mapped[3]; b:=mapped[4];
     t:=y^-1; s:=b*y; A:=Group([r,u]);
     centralizer:=Centralizer(ambient,A);
@@ -138,7 +147,7 @@ for sub in LowIndexSubgroupsFpGroup(localUniversal,MAX_INDEX) do
      edgeOrders=[12,12,12,12] and Size(Group(images))=1920 then
     count:=count+1;
     Print("=== marking ",count," ===\n");
-    AnalyzeMarking(images);
+    AnalyzeMarking(images,count);
   fi;
 od;
 Print("marking_count=",count,"\n");
