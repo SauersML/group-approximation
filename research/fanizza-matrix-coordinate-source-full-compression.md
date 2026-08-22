@@ -60,3 +60,24 @@ The surviving coefficient route must expose a larger rank/Morita chart and
 prove characteristic-zero same-reservoir trace reflection, or activate an
 extensive matrix-dependent family of coefficient atoms.  Root additivity
 alone controls algebraic multiplication, not the complex adjoint Gram.
+
+There is now also a sharp fence on the first alternative when the proposed
+chart is fixed and semisimple.
+`fixed-semisimple-trace-charts-cannot-authenticate-proper-fullness` computes
+the reflected trace of a projection in
+`A=direct_sum_j M_(d_j)(C)` from the irreducible multiplicities.  A rank is
+independent of multiplicity exactly when its relative rank is the same in
+every simple sector.  If `g<=E` has the same trace as `E` in every finite
+representation, this criterion forces `g=E` inside the chart itself.
+
+Hence a fixed two-idempotent overlap table, four-root square, or finite
+shared-selector extension has only two outcomes: multiplicity escapes, or
+an algebraic fullness identity inherited by the infinite model.  The same
+calculation gives the sharp positive residue: a fixed faithful packet has a
+dimension-free smallest nonzero projection trace `gamma_A`.  It would
+suffice to authenticate the Gram deficiency `E-X^*X` as a projection in the
+packet's algebra coordinate; trace below `gamma_A` would force it to vanish.
+The packet relations do not distinguish that coordinate from the amplified
+multiplicity commutant.  The surviving terminal is therefore
+**algebra-factor localization of the Gram deficiency**, or else a growing
+matrix-coordinate family / genuinely finite-only non-semisimple law.
