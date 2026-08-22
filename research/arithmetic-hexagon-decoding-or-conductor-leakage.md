@@ -248,6 +248,17 @@ the fixed-depth nonhyperlinearity criterion.
   `native-c2-hecke-corner-cannot-wordize-the-a2-average`.  Thus the first
   finite character idempotent cannot expose the trace-zero holonomy without
   abandoning the raw section interface.
+- **Trace alone closes every finite arithmetic Hecke source.**  For any
+  finite `K<D` and projection `q in C[K]`, canonical trace is
+  `rank(lambda_K(q))/|K|`.  Since every finite subgroup of
+  `SL_3(Z[1/2])` has order at most `24`, it can never equal `1/42`; see
+  `no-finite-arithmetic-hecke-corner-can-have-shell-atom-trace`.  Thus no
+  finite character idempotent can simultaneously rank-match the shell,
+  preserve the section covariance, and wordize the `x_23(2)` two-path
+  holonomy.  The first surviving source is necessarily an unbounded-depth
+  Borel/matrix-coordinate projection, noncentral relative to a second chart;
+  this exact remaining target is
+  `unbounded-noncentral-hecke-corner-wordizes-a2-average`.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from

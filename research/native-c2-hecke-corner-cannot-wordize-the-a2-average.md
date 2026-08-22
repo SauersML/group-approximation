@@ -102,3 +102,7 @@ two paths with finite relative holonomy, or violates the native section
 covariance by the fixed floor `(CHC9)`.  The desired trace-zero unipotent
 holonomy cannot be synthesized from this finite packet.
 
+The trace obstruction closes the whole finite arithmetic class, not only
+this `C_2`: `no-finite-arithmetic-hecke-corner-can-have-shell-atom-trace`
+uses the order-`24` bound to show that no projection in `C[K]`, for any
+finite `K<D`, can have canonical trace `1/42` at all.
