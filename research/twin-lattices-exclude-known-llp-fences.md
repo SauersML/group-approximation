@@ -62,13 +62,23 @@ lattices as candidates for
 excluded.    (i) The theorem is geometric: it needs neither
 simplicity nor property (T) of `Lambda`, only the proper cellular action;
 it applies to all twin building lattices, affine (`SL_n(F_q[t, t^-1])`)
-included.  For the affine ones `C^*(Lambda)` may still fail LLP through
-OTHER subgroups — `SL_3(F_q[t])`-type groups are fenced by
-Ioana--Spaas--Wiersma's Corollary B remark on `SL_n(F_p[X])` — but those
-fences again enter through congruence-unipotent pairs, which are
-`(F_q[t], +)`-modules, not `Z^k`'s; the theorem's `Z^k` form does not
-exclude them, and non-affine lattices over `F_q` have torsion root
-subgroups throughout, so the char-`p` analogues of the fence pairs have
-torsion fibres and carry no relative-(T) `Z^k`.  (ii) Conclusion (a)
+included — but for the AFFINE ones the char-`p` ring fences of
+Ioana--Spaas--Wiersma Corollary B bite anyway: for `R = F_q[t]` with `q`
+odd, `2R` is infinite, so `C^*(SL_n(R))` (`n >= 3`) and
+`C^*(R^2 rtimes SL_2(R))` fail the LLP, and an affine twin lattice of
+rank `>= 3` contains `SL_3(F_q[t])` inside `SL_3(F_q[t, t^-1])`.  Hence
+affine twin lattices of rank `>= 3` (odd `q`) FAIL the LLP by subgroup
+permanence, and more generally any Kac--Moody lattice whose Dynkin
+diagram contains an affine subdiagram of rank `>= 3` inherits such a
+subgroup.  The LLP candidacy is therefore confined to types with NO
+affine subdiagram of rank `>= 3` — in particular the COMPACT HYPERBOLIC
+diagrams, where every proper subdiagram is spherical and all root-group
+generated `R`-module pairs are finite; the `(2,4,6)` instance of
+`simple-kazhdan-kac-moody-lattices-exist` is of this kind.  The one
+unrecorded residual risk is a char-`p` fenced pair `R^2 rtimes SL_2(R)`
+embedded WITHOUT an affine subdiagram (an infinite-exponent-`p` abelian
+subgroup with an infinite `SL_2(R)`-normalizer); the `Z^k` fence of this
+theorem is blind to torsion modules, and no such embedding is recorded
+in either direction.  (ii) Conclusion (a)
 also reproves that such `Lambda` has no infinite-order distorted cyclic
 subgroups, hence no Baumslag--Solitar `BS(1, n)` (`n >= 2`) subgroups.
