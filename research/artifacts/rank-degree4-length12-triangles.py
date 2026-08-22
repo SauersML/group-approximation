@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rank every (1,3,3,5) degree-four length-twelve triangle embedding."""
+"""Rank degree-four triangle embeddings at any even word length."""
 
 from collections import Counter
 from itertools import combinations, product
@@ -75,18 +75,17 @@ def embeddings(triple, valence):
             result.append(tuple(((index,), target)
                                 for index, target in enumerate(oriented)))
             continue
-        # All ordered cyclic contiguous partitions of five atoms into three
-        # nonempty arcs: five starts times the six positive compositions.
-        for start in range(5):
-            for first in range(1, 4):
-                for second in range(1, 5 - first):
-                    third = 5 - first - second
+        # All ordered cyclic contiguous partitions into three nonempty arcs.
+        for start in range(valence):
+            for first in range(1, valence - 1):
+                for second in range(1, valence - first):
+                    third = valence - first - second
                     if third < 1:
                         continue
                     sizes = (first, second, third)
                     cursor, groups = start, []
                     for size, target in zip(sizes, oriented):
-                        indices = tuple((cursor + offset) % 5
+                        indices = tuple((cursor + offset) % valence
                                         for offset in range(size))
                         groups.append((indices, target))
                         cursor += size
@@ -115,20 +114,29 @@ def rank(matrix, prime=1_000_003):
     return row
 
 
-profiles = {}
-for negative in combinations(range(12), 4):
-    signs = tuple(-1 if index in negative else 1 for index in range(12))
-    data = tuple(corners(signs, start) for start in range(4))
-    if sorted(map(len, data)) == [1, 3, 3, 5]:
-        profiles.setdefault(canonical(signs), signs)
-
 parser = argparse.ArgumentParser()
+parser.add_argument("--length", type=int, default=12,
+                    help="even sign-word length (total exponent remains four)")
 parser.add_argument("--profile", help="restrict to one +- sign representative")
 parser.add_argument("--show-rank", type=int,
                     help="print every embedding with this constraint rank")
 parser.add_argument("--balanced-only", action="store_true",
                     help="discard systems with same-sign carrier occurrences")
 args = parser.parse_args()
+
+if args.length < 6 or args.length % 2:
+    parser.error("--length must be an even integer at least six")
+
+profiles = {}
+negative_count = (args.length - 4) // 2
+for negative in combinations(range(args.length), negative_count):
+    signs = tuple(-1 if index in negative else 1
+                  for index in range(args.length))
+    data = tuple(corners(signs, start) for start in range(4))
+    valences = sorted(map(len, data))
+    if len(valences) == 4 and valences[0] == 1 and all(
+            valence % 2 for valence in valences):
+        profiles.setdefault(canonical(signs), signs)
 
 global_best, winners = 100, []
 for representative in sorted(profiles):
@@ -160,7 +168,7 @@ for representative in sorted(profiles):
         for face, grouping in zip(faces, selected):
             for indices, target in grouping:
                 for copy in range(4):
-                    row = [0] * 36
+                    row = [0] * (args.length + 24)
                     for index in indices:
                         stable_sign, corner = face[index]
                         hsign = -stable_sign * pivot_sign
@@ -171,14 +179,15 @@ for representative in sorted(profiles):
                             if corner_copy == copy:
                                 row[slot] += 1
                     name, sign = target
-                    row[12 + 4 * name + copy] -= sign
+                    row[args.length + 4 * name + copy] -= sign
                     rows.append(row)
         for copy in range(4):
-            row = [0] * 36
+            row = [0] * (args.length + 24)
             for name in (1, 3, 5):
-                row[12 + 4 * name + copy] += 1
+                row[args.length + 4 * name + copy] += 1
             rows.append(row)
-        constraint = rank(rows) - rank([row[12:] for row in rows])
+        constraint = rank(rows) - rank(
+            [row[args.length:] for row in rows])
         counts[constraint] += 1
         if balanced:
             balanced_counts[constraint] += 1
