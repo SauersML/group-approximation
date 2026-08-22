@@ -275,3 +275,14 @@ carrier density `1/d`, while leaving it unselected makes its energy vanish.
 An independent expander wrapper is covered by the tensor-separated firewall.
 Thus an `A,B`-dependent carrier must be extensive for a reason tied to the
 BCS payload itself; the spectral boundary of a fixed commutator is too thin.
+
+Allowing an arbitrary nonlinear carrier chosen after observing the holonomy
+still does not rescue any controller with long cyclic completions.
+`long-cyclic-return-holonomy-annihilates-every-carrier` applies the Fejer
+kernel inside the positive losing sector: if the return holonomy has
+asymptotically vanishing fixed moments, every contraction on which it is
+approximately the identity has vanishing mass.  No spectral, word, or
+functorial assumption on that contraction is used.  Therefore the remaining
+controller must exclude long cyclic holonomy with a dimension-independent
+BCS-dependent relator cost.  “Choose the carrier as a function of `A`” is not
+an additional escape hatch.
