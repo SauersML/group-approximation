@@ -14,5 +14,8 @@ square, to obtain `(OSC6)`.  Average over `l` by Cauchy--Schwarz.  Apply the
 spectral coarea identity on the interval `[t,2t]`; its length is `t`, giving
 `(OSC3)`.  Markov and the identity
 `tau(R_(a,i))=||[Q_a,Q_i]||_2^2/4` give `(OSC2)`.  The ordinary
-cosine--sine correction makes the cut reducing, and central-block reset on
-that cut supplies the final repair estimate.
+cosine--sine correction makes the cut reducing, and block-adaptive reset on
+that cut supplies the final repair estimate.  The Laurent formula
+`4R=2-(Q_aQ_i)^2-(Q_aQ_i)^(-2)` shows that the cut already commutes with
+the anchor and reset site; leave those two generators fixed so the
+complementary operator bound persists.

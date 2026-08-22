@@ -23,6 +23,14 @@ The central branch is terminal by
 little-o two-odd-factor estimate with
 `one-anchor-grading-makes-parity-damage-quadratic`.
 
+There is no exponent conflict between hard reset and the soft anchor step.
+`hard-soft-exponent-conflict-is-a-norm-mismatch` observes that the
+quadratic remainder is an `L_2` row amplitude `Ct sqrt(E)` and therefore
+only changes the linear contraction coefficient by `Ct`.  A fixed small
+`t`, or `t=E^alpha` with `0<alpha<1/2`, is compatible with vanishing reset
+cost `E/t^2`.  The sole threshold issue is constructing the operator-small
+reducing pieces and summing their boundaries.
+
 One local noncentral step is now complete.
 `one-anchor-odd-spike-has-a-cheap-reducing-cut` thresholds
 `R_(a,i)=Y_(a,i)^2`.  Its average boundary against all generators is

@@ -3,6 +3,7 @@ rg: 2
 id: hard-soft-thresholds-cannot-enter-anchor-contraction
 kind: claim
 title: Hard-tail replacement and quadratic soft anchoring demand incompatible thresholds for contraction
+refuted_by: hard-soft-exponent-conflict-is-a-norm-mismatch
 invalidates: [hard-tail-soft-anchor-multiscale-centralization]
 distinct_from:
   operator-tail-contraction-misses-uniform-diffuse-matching: that shows the scalar tail recurrence is vacuous on a uniform profile; this proves the quantitative exponent conflict after adding hard replacement and the optimistic quadratic anchor estimate.
@@ -10,7 +11,9 @@ distinct_from:
   sparse-pauli-pair-defeats-random-order-blr: that shows sparse errors amplify under a full-table construction; this audits a direct hard-repair-then-anchor iteration without constructing a BLR table.
 ---
 
-ESTABLISHED as a no-go for the scalar-threshold proof architecture.  Let
+**Refuted.**  The argument below compares the row-amplitude remainder in
+`(HST4)` to squared energy rather than to the linearly contracted row
+amplitude.  Let
 
 ```text
 E=(1/L)sum_i q_i^2,       U_t={i:q_i>=t}.                 (HST1)
@@ -88,3 +91,8 @@ operator-valued stopping inequality which makes the sparse quadratic
 remainder `o(E)` **without** imposing `t<<sqrt(E)` on the same cutoff used
 for hard repair.
 
+The comparison in the preceding paragraphs is invalid: if the linear step
+contracts `sqrt(E)` by `theta<1`, then `(HST4)` gives the valid recurrence
+`sqrt(E')<=(theta+Ct)sqrt(E)`, which needs only a sufficiently small fixed
+`t`, not `(HST5)`.  The precise correction is
+`hard-soft-exponent-conflict-is-a-norm-mismatch`.

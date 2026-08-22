@@ -198,3 +198,11 @@ the high block and retain the operator bound `Y_(a,i)^2<=2t` on its
 complement.  What remains is a disjoint-mass or geometrically decaying
 stopping selection: cutting all `L^2` spikes independently repeats the same
 commutator rows and loses length.
+
+The earlier scalar exponent fence was a bookkeeping error.
+`hard-soft-exponent-conflict-is-a-norm-mismatch` notes that the soft
+remainder `Ct sqrt(E)` is a row **amplitude**, so it perturbs an amplitude
+contraction by the coefficient `Ct`; it need not be `o(E)`.  Fixed small
+`t`, or `t=E^alpha` for `0<alpha<1/2`, is compatible with hard reset cost
+`E/t^2->0`.  Thus only the reducing-cut summability problem remains, not an
+incompatible threshold scale.

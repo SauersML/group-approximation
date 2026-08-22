@@ -41,7 +41,9 @@ On the complementary block `(1-p)`, one has the operator bound
  (1-p)R_(a,i)(1-p) <=2t(1-p).                           (OSC5)
 ```
 
-After the block-diagonal correction, resetting coordinate `i` to the
+In fact `R_(a,i)` commutes exactly with both `Q_a` and `Q_i`.  Leave those
+two reflections unchanged in the cosine--sine correction of the other
+generators.  Then `(OSC5)` survives the correction.  Resetting coordinate `i` to the
 identity only on `p` costs at most `4tau(p)/L` in average squared generator
 distance and `C'tau(p)/L` in induced balanced energy, by
 `block-adaptive-sparse-reset-is-cheap`.
@@ -59,6 +61,15 @@ then commute the square and use `||Y_(a,i)||_infty<=1`.  Averaging `(OSC6)`
 and applying Cauchy--Schwarz gives covariance at most `2(q_i+q_a)`.
 Spectral coarea on `[t,2t]` proves `(OSC3)`, Markov proves `(OSC2)`, and
 cosine--sine block diagonalization proves `(OSC4)`.
+
+For exact commutation, put `U=Q_aQ_i`.  Direct expansion gives
+
+```text
+ 4R_(a,i)=2-U^2-U^(-2).
+```
+
+Conjugation by either `Q_a` or `Q_i` sends `U` to `U^(-1)`, so it fixes
+`R_(a,i)` and all its spectral projections.
 
 Thus every individual operator spike admits exactly the desired dichotomy:
 remove a small reducing block or obtain an operator-small complement.  The
