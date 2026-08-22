@@ -371,6 +371,26 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   independent multiplicity conjugation.  The open arithmetic statement is
   now sharply finite: bound these five deficits by mixed-root energy and
   first-exit mass.  No further PVM authentication theorem is required.
+- **The fixed shell Laplacian cannot prove even the first saturation.**
+  `two-equivariant-shell-pvms-have-independent-coordinate-escape` uses the
+  diagonal action of `C` on `Omega times Omega`.  The two coordinate PVMs
+  are complete, exactly covariant under the same actor, and have zero
+  lattice mixed-root and first-exit energy, yet their corresponding-atom
+  deficit is exactly `41/42`.  Tensoring with deep regular congruence blocks
+  makes the lattice character canonical locally without changing the
+  deficit.  Hence finite shell spectral gap only reaches the full orbital
+  commutant; a denominator-generator incidence must select the diagonal
+  orbit from its off-diagonal orbitals.  This countermodel does not extend
+  to the ambient arithmetic group and therefore identifies, rather than
+  refutes, the remaining simple-neighbor inequality.
+- **Scope boundary: the uniform vertex-outlier sector remains separate.**
+  The conductor, parahoric-chart, and five-saturation reductions all begin
+  after the `SL_3(Z)` restriction is close to an exact congruence
+  representation.  They do not address approximate lattice tuples uniformly
+  far from every exact finite-dimensional representation.  Full PRCC still
+  needs either a canonical-character correction theorem for at least one
+  vertex or an independent argument excluding that outlier sector; no shell
+  inequality should be advertised as closing it.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),

@@ -100,3 +100,12 @@ be bounded by mixed-root defect and first exits).  Once that is done, the
 global 42-vertex shell PVM is already present and the established building
 spectral gap applies.  Finite-fiber recycling is therefore exactly failure
 of one of these five cross-chart trace saturations.
+
+The first proposed source of these saturations is false.
+`two-equivariant-shell-pvms-have-independent-coordinate-escape` places two
+complete shell PVMs on the two coordinates of `Omega times Omega`.  The full
+diagonal `C`-action covaries both exactly and every lattice root relation has
+zero defect, but their corresponding-atom deficit is `41/42`.  Thus the
+finite shell Laplacian reaches the full orbital commutant, not specifically
+the diagonal matching.  At least one denominator-incidence row selecting
+the diagonal orbital sector is necessary.
