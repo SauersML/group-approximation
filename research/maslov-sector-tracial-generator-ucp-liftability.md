@@ -71,3 +71,11 @@ Nevertheless it closes the Maslov sector by
   zero defect.  The missing positive kernel must already encode mixed
   noncommuting `C2` Chevalley relations; producing it remains this global ucp
   lifting problem.
+- **The first mixed scalar cell is now explicit, but determinant-blind.**
+  `kassel-four-cell-is-minimal-determinant-holonomy` shows that (2.4),
+  (2.5), (2.6), and (2.12) are the support-minimal determinant certificate
+  for `w_beta^4`; every deleted face has an exact scalar `omega` model.
+  In matrices the certificate says only `det(w_beta^4)=1`, allowing
+  `omega I_d` whenever `3|d`, and determinant is not uniformly continuous
+  in normalized HS norm.  Hence even the correctly located mixed cell still
+  needs the common positive kernel demanded here.
