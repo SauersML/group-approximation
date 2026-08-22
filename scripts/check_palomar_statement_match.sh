@@ -50,7 +50,7 @@ for side in Challenge Solution; do
 done
 
 if ! diff -u "$work/Challenge.txt" "$work/Solution.txt" > "$work/diff"; then
-  echo "::error::[palomar] the compared statement differs between Palomar.Challenge and Palomar.Solution after elaboration"
+  echo "::error::[palomar] the compared statement differs between Palomar.Challenge and PalomarSolution after elaboration"
   sed -n '1,40p' "$work/diff"
   exit 1
 fi

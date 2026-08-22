@@ -33,7 +33,7 @@ roots = ["Audit.DeclFilter", "Audit.Scan", "Audit.Plants"]
 # of the three approximation notions, and states the theorem with a
 # deliberate hole.
 #
-# `Palomar/Solution.lean` repeats that block byte-for-byte -- Comparator
+# `PalomarSolution.lean` repeats that block byte-for-byte -- Comparator
 # compares the exported statements SYNTACTICALLY, and recursively requires
 # every constant they mention to be identical in both environments, so the
 # copy cannot be replaced by an import -- and then proves the theorem from
@@ -47,4 +47,4 @@ roots = ["Palomar.Challenge"]
 
 [[lean_lib]]
 name = "PalomarSolution"
-roots = ["Palomar.Solution"]
+roots = ["PalomarSolution"]

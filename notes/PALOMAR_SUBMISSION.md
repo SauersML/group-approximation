@@ -48,7 +48,7 @@ permits.
 | path | role |
 |------|------|
 | `Palomar/Challenge.lean` | the statement of record; imports Mathlib only |
-| `Palomar/Solution.lean` | the same statement, proved from the development |
+| `PalomarSolution.lean` | the same statement, proved from the development |
 | `Palomar/comparator.json` | names the two modules and the compared theorem |
 | `formalization.yaml` | registry metadata; `project.description` is the published abstract |
 | `LICENSE` | Apache-2.0 at the repository root, matching `project.license` |

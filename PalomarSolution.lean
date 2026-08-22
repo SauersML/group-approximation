@@ -52,7 +52,7 @@ open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
--- BEGIN SHARED BLOCK (kept byte-identical with `Palomar/Solution.lean`)
+-- BEGIN SHARED BLOCK (kept byte-identical with `PalomarSolution.lean`)
 
 /-! ## Finite models
 

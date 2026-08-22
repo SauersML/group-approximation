@@ -311,7 +311,7 @@ searchable.
 
 The repository carries a
 [Palomar](https://palomar-registry.org) submission surface: `Palomar/Challenge.lean`
-states one theorem against Mathlib alone, `Palomar/Solution.lean` proves the
+states one theorem against Mathlib alone, `PalomarSolution.lean` proves the
 same statement from this development, and `Palomar/comparator.json` selects it.
 `notes/PALOMAR_SUBMISSION.md` is the record: what the entry claims, what it
 deliberately does not, and how to verify it.

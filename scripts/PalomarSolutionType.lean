@@ -1,4 +1,4 @@
-import Palomar.Solution
+import PalomarSolution
 
 /-!
 # Dump the compared statement and its declaration closure
