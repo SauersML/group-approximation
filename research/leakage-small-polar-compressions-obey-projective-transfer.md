@@ -39,3 +39,8 @@ from zero whose polar corrections nevertheless satisfy the presentation by
 cancellation, nor an approximate representation with no exact ambient
 dilation.  Those remain genuine outlier possibilities.
 
+The first exclusion is sharp.  By
+`macroscopic-zero-compressions-make-polar-data-universal`, at maximal leakage
+every finite unitary tuple is the polar-correction tuple of zero compressions
+of one exact finite representation.  Hence the exact-dilation description
+has no content without a leakage or singular-overlap hypothesis.

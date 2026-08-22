@@ -343,3 +343,15 @@ weakening consumed by the HNN marked word.
   positive-codimension compression attack must keep macroscopic generator
   leakage while arranging cancellation of its presentation relators, or
   cease to be a compression of an exact ambient model.
+
+- **At macroscopic leakage, polar-compression data are universal.**
+  `macroscopic-zero-compressions-make-polar-data-universal` uses an
+  independent set in a finite quotient Cayley graph.  On the corresponding
+  positive-density coordinate subspace every compressed presentation
+  generator is zero, so its unitary polar extension is arbitrary.  Therefore
+  every finite tuple, enemy or not, is a polar-correction tuple of an exact
+  arithmetic representation with maximal leakage.  This is not a PRCC
+  countermodel, because the arbitrary tuple must still solve the arithmetic
+  relators and carry the leak.  It proves sharply that exact ambient dilation
+  cannot control the remaining branch without small leakage,
+  singular-overlap, or additional arithmetic incidence.
