@@ -48,3 +48,33 @@ The single parabolic equation is not itself the remaining obstruction:
 square roots after a two-copy odd-cycle amplification.  The hole is the
 simultaneous extension of such a root to the second `C_2*C_3` vertex, the
 second edge generator, and the normal-form separation condition.
+
+## Exact dessin coordinates and two eliminated random models
+
+Write one modular action as a permutation pair `(A,Y)` with
+`A^2=Y^3=1`.  In the edge coordinates of
+`iwahori-commensurator-nielsen-involution`, its restriction is
+
+```text
+U=AY,                 E=AY^2AYA,
+alpha(U)=U^(-1)E,     alpha(E)=U^(-1)EU.              (DAE1)
+```
+
+Thus the surviving finite problem is completely explicit: construct two
+exact torsion pairs `(A_0,Y_0),(A_1,Y_1)` and a point relabelling for which
+the two pairs in `(DAE1)` are Hamming-close, while the incidence graph of
+the two modular orbit partitions has the required finite injectivity
+radius.
+
+Two natural probability spaces are now rigorously excluded.
+`dyadic-radial-shell-couplings-have-one-third-boundary` proves that arbitrary
+finite mixtures of genuine tree spheres have weighted boundary at least
+`1/3`; exponential shell growth defeats radial plateaux.
+`random-iwahori-actions-resist-nielsen-matching` proves that two independent
+uniform edge actions `(U,E)` stay at constant Hamming distance after every
+point relabelling with overwhelming probability.  Therefore neither random
+tree shells nor independently sampled high-girth edge Schreier graphs can
+work.  Any positive construction has to sample **inside a correlated
+coupling of the two modular extension loci** and randomize only the
+remaining orbit incidence.  Counting or constructing that conditioned
+locus is the smallest explicit unresolved lemma.
