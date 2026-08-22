@@ -109,3 +109,12 @@ zero defect, but their corresponding-atom deficit is `41/42`.  Thus the
 finite shell Laplacian reaches the full orbital commutant, not specifically
 the diagonal matching.  At least one denominator-incidence row selecting
 the diagonal orbital sector is necessary.
+
+That raw row is now explicit.  For the two section words representing one
+Hecke vertex, `a_i=b_i d_i` with `d_i in C`; centrality of the native base
+projection therefore makes their raw conjugate projections equal.
+`raw-denominator-incidence-kills-off-diagonal-shell-orbit` proves the
+dimension-free defect estimate and the exact square-function payment on
+`Omega times Omega`.  The remaining issue is solely to compare each decoded
+conductor projection with its raw lamp conjugate and charge that distance to
+first exits.

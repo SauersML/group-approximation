@@ -391,6 +391,18 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   needs either a canonical-character correction theorem for at least one
   vertex or an independent argument excluding that outlier sector; no shell
   inequality should be advertised as closing it.
+- **Raw denominator incidence selects the diagonal orbital sector exactly.**
+  `raw-denominator-incidence-kills-off-diagonal-shell-orbit` chooses the two
+  fixed section words `a_i,b_i` representing each of the same `42` Hecke
+  vertices.  They satisfy `a_i=b_i d_i` for fixed `d_i in C`; hence their
+  conjugates of the native `C`-central base projection have total mismatch
+  `O(delta^2)`.  On the independent-coordinate escape the resulting
+  square-function is exactly `2(1-R_diag)`, so zero incidence confines the
+  carrier to the trace-`1/42` diagonal and the off-diagonal mass pays in
+  full.  The last correctable-sector gate is now `(RDI10)`: prove that the
+  conductor-decoded chart projections are close to these raw conjugates,
+  with squared distance controlled by mixed-root energy and first exits.
+  The raw word estimate itself is complete and Weyl-uniform.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
