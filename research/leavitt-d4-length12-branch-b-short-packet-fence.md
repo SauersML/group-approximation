@@ -9,5 +9,5 @@ artifacts:
 
 Across the complete six-parameter natural short library, the second
 inequivalent length-twelve rank-seven branch has many adaptive one-copy
-projection survivors but no full free-product one-copy boundary.
-
+projection survivors but no full free-product one-copy boundary.  Its mixed
+carrier chirality makes the census nonterminal.

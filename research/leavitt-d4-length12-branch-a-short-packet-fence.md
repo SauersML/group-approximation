@@ -11,4 +11,5 @@ distinct_from:
 
 Across the complete six-parameter natural short library, length-twelve
 branch A has many adaptive one-copy projection survivors but no full
-free-product one-copy boundary.
+free-product one-copy boundary.  Its mixed carrier chirality means this is
+nonterminal search data, not a coefficient-only triangle compiler.
