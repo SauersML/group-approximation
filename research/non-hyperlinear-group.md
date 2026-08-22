@@ -260,3 +260,29 @@ sharpest live instance of Fournier-Facio--Willett Question 1.12), so the
 lifting lane and the Deligne Maslov lane
 (`deligne-sector-gap-is-exactly-nonhyperlinearity`) now certify each
 other's endpoint.
+
+**Partition of the routes (2026-08-21 evening).**  Every route into this
+goal either (i) transfers the MIP*=RE non-Connes-embeddable object — the
+tracially satisfiable, non-`R^U` constraint system `B_*`
+(`mipstar-bcs-tracial-nonru-exists`), equivalently the non-CE character of
+the sofic Coxeter host (`non-ce-trace-on-sofic-racg`), or the
+non-co-hyperlinear IRS relation — into a group factor, or (ii) produces a
+non-Connes-embeddable II_1 factor by hand (relative-commutant collapse,
+stability, atlas, Kervaire--Laudenbach), which no published argument has
+done without MIP*=RE.  The minimal statement of type (i) is
+`non-ru-bcs-is-satisfiable-in-a-group-factor`: any countable host, any
+model, state-space form in `character-group-realizability-parseval-criterion`;
+embedding universality of group factors is open (Chifan--Drimbe--Ioana
+Remark 1.1), and the IRS relation is not even treeable
+(`non-ce-relation-is-not-treeable`).  The minimal statement of type (ii)
+for the HNN family is `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`:
+one Haar unitary in `L(C)' cap R^omega` free from `L(A)` with amalgamation
+over `L(C)`, strictly weaker than the collapse and than projective
+transfer; its standard-model calibration is
+`arithmetic-pair-group-factor-ultrapower-has-no-leak` (collapse holds in
+`L(A)^omega`, so the matrix question lives in `L^2(M) (-) L^2(L(A))`).
+Popa's relative free-independence theorem (arXiv:1308.3982) supplies
+exactly such unitaries when the centralised subalgebra is amenable, so
+type (ii) for `C = SL_n(Z)` asserts that Popa's theorem fails past
+amenability — the Gao--Junge open problem in its first arithmetic
+instance.
