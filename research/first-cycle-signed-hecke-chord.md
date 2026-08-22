@@ -197,6 +197,16 @@ least one non-root assignment projection must survive.
   supporting `q` (even `xgx^(-1)=1` kills `g`).  Small cancellation is useful
   only if one proves relative injectivity for this specific coherent cycle,
   which is exactly the remaining chord theorem.
+- **Long coherent tags cannot put those pairings in relative `C'(1/6)`.**
+  `coherent-four-potential-pairings-cannot-be-long-c-sixth` isolates one
+  paired off-diagonal contour.  Its four vertex-potential blocks recur on the
+  cyclic term-table core and are therefore pieces.  Summing their four
+  one-sixth inequalities makes the relative condition impossible when the
+  coefficient group is peripheral; with bounded ordinary coefficient
+  bridges it bounds the whole contour length.  The existing relative
+  Freiheitssatz cannot therefore be invoked by merely choosing longer random
+  free-phase words.  A live small-cancellation chord needs a different
+  non-recurrent contour architecture, not padded standard potentials.
 - **An infinite recursive tail is finitely compact for this target.**
   `finite-bcs-corner-diagram-is-finitely-witnessed` allows an arbitrary
   recursively presented ambient group and infinitely many auxiliary
