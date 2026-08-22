@@ -40,3 +40,11 @@ Thus the signed-Hecke programme does not need to recover a preselected BCS
 trace or prove character rigidity. A single exact unital corner realization
 of the BCS relations already promotes the canonical group trace to the
 forbidden finite moment profile.
+
+This implication also has a finite-coordinate ordinary-word form.
+`algebraic-bcs-corner-has-relator-energy-decoder` proves that the finitely
+many algebraic corner identities admit finite van Kampen certificates; after
+one spectral cut of `q(U)`, positive corner density forces a fixed lower bound
+on the defining relator energy through the robust non-CE BCS gap.  Thus an
+exact compatible corner atlas needs no separate HS stability or
+coefficient-to-word compiler.
