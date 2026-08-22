@@ -67,4 +67,8 @@ bookkeeping through `(CHD3)`, but only if its identity across contexts is
 authenticated without placing all context observables in one common finite
 abelian algebra.  Sharing the full context packet classicalizes the witness;
 sharing only the rejection atom is the precise remaining group-theoretic
-interface.
+interface.  Literal equality of the natural rank-one assignment atoms does
+not achieve that separation: `literal-common-ghost-atom-classicalizes-contexts`
+shows that their full group-basis support forces the entire elementary
+abelian context subgroups to coincide.  The shared object must therefore be
+higher-rank or nonliteral.
