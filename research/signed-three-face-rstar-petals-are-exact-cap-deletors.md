@@ -37,8 +37,9 @@ tuple is the ghost.  By `(TFP2)`, the triple equals `100` exactly when a
 center assignment agrees with `b` on `i,j,k`; two points of the same
 odd-parity hyperplane agreeing on three coordinates agree on the fourth.
 
-The signs require no language extension.  A complement wire is one
-`R_*` row with a repeated dummy coordinate:
+In the standard relational-CSP convention in which an atomic formula may
+repeat a variable, the signs require no new predicate.  A complement wire
+is one `R_*` row with a repeated dummy coordinate:
 
 ```text
 R_*(d,d,x,xbar).                                        (TFP4)
@@ -47,6 +48,12 @@ R_*(d,d,x,xbar).                                        (TFP4)
 Its parity equation is `x+xbar=1`, while its first two coordinates are
 equal and hence can never be the ghost prefix `10`.  Thus `(TFP4)` enforces
 `xbar=1+x` exactly.  Unsigned literals use `x` directly.
+
+If a chosen constraint-system formalism requires all four scope variables
+to be distinct, `(TFP2)--(TFP3)` remains the exact signed-petal
+classification, while compiling the signed literals becomes a separate pp
+interface.  No conclusion here silently identifies two distinct scope
+variables.
 
 It follows that for every subset `B subseteq R_*`, a finite conjunction of
 one signed three-face petal for each `b in B` has center projection exactly
@@ -75,4 +82,3 @@ that line-hits has deliberately discarded a blocking set.  Such a branch is
 complete only when the chosen perfect model's center support is contained
 in its surviving cap.  A model-selective or shared noncentral selection
 mechanism remains necessary.
-

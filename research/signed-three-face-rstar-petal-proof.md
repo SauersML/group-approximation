@@ -15,10 +15,10 @@ The signs in `(TFP2)` make the prefix `100` equivalent to agreement with
 then forces agreement on the omitted coordinate, proving the singleton
 deletion formula.
 
-The repeated-coordinate row `(TFP4)` cancels its first two entries in the
-parity equation and cannot equal the ghost, proving the fixed-language sign
-implementation.  Independent petals intersect their singleton exclusions,
-giving `(TFP5)`.
+In a relational syntax permitting repeated variables, the
+repeated-coordinate row `(TFP4)` cancels its first two entries in the parity
+equation and cannot equal the ghost, proving the sign implementation there.
+Independent petals intersect their singleton exclusions, giving `(TFP5)`.
 
 Translate assignments by the ghost to identify them with the seven nonzero
 vectors of `F_2^3`.  A deletion set hits every projective line exactly when
@@ -27,4 +27,3 @@ If a three-point blocking set were not a line, its three translated vectors
 would be independent; their three pairwise sums would form a line disjoint
 from them.  Hence a three-point blocking set is a line, whose complement is
 the other coset of its two-dimensional span.
-
