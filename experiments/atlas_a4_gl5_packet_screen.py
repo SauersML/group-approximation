@@ -70,6 +70,18 @@ def inv5(matrix):
     return aug[:, 5:]
 
 
+def graph4(matrix):
+    """The outer inverse-transpose automorphism of GL4(F2)."""
+    return gf2_inv(matrix).T.copy()
+
+
+def twist_second_word(word):
+    return [
+        (factor, graph4(matrix) if factor == 2 else matrix)
+        for factor, matrix in word
+    ]
+
+
 def key5(matrix):
     return bytes(matrix.reshape(-1))
 
@@ -239,11 +251,20 @@ def main():
         action="store_true",
         help="find q=1 core positions surviving each one of the eight central constraints",
     )
+    parser.add_argument(
+        "--dual-second",
+        action="store_true",
+        help="apply inverse-transpose to every factor-two chart label",
+    )
     args = parser.parse_args()
 
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
     full_packet = select_packet(words, x_lengths())
+    if args.dual_second:
+        full_packet = [
+            (index, twist_second_word(word)) for index, word in full_packet
+        ]
     packet = full_packet
     selected_central_constraints = 0
     ordered_central = []
@@ -335,6 +356,8 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as handle:
         collision = decode_word(json.load(handle)[0]["word"])
+    if args.dual_second:
+        collision = twist_second_word(collision)
 
     GL4 = enumerate_gl4()
     GL4_index = {matrix_key(matrix): index for index, matrix in enumerate(GL4)}
@@ -630,10 +653,11 @@ def main():
         "ambient_order": 9999360,
         "chart_group": "GL4(F2)=A8",
         "chart_order": 20160,
+        "factor_two_label_parity": "dual" if args.dual_second else "natural",
         "cosets_tested": 496,
         "packet_relations": len(packet),
         "distinct_ordered_pair_constraints": expected_distinct_relations,
-        "packet_exact_relative_positions": 202,
+        "packet_exact_relative_positions": len(solutions),
         "packet_exact_relative_positions_hex": (
             [] if args.core else [
                 key5(relative).hex() for _, _, relative in solutions

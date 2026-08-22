@@ -21,3 +21,6 @@ opposite graph parity.  Equivalently, one chart acts through the natural
 four-dimensional `F2` module and the other through its dual.  This one mixed
 natural/dual double-coset system is the next exact finite-simple gate.
 
+That final parity is excluded by `atlas-a4-gl5-dual-packet-collision-screen`,
+yielding `atlas-q14-simple-overgroup-index-is-at-least-506` and isolating the
+maximal `A8<M23` class.

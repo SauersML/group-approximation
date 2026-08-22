@@ -62,3 +62,10 @@ marked chart, ordered pairs split into same and opposite relative graph
 parity.  The existing inner-conjugator screen covers exactly the former.  Its
 failure to cover the latter is a genuine labeling issue, not an omitted
 subgroup conjugacy class.  This completes the claim.
+
+Finally the simple-order table gives `S=M23` at index 506.  The ATLAS maximal
+subgroup list contains one `A8` class of precisely this index.  The other
+maximal types cannot contain `A8`: the only relevant order-equality case is
+`L3(4)<L3(4):2`, while the `M22` maximal-subgroup list likewise has no
+maximal overgroup divisible by `20160` except nonisomorphic `L3(4)`.
+Therefore every `A8<M23` is in the stated maximal degree-506 class.
