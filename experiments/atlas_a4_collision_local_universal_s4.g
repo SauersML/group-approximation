@@ -6,9 +6,19 @@ c := free.3;;
 collision := t*c*s*c*t^-1*c*s*t*c;;
 group := free / [t^3, s^2, (s*t)^2, c^2, (c*t)^3, collision];;
 
+# A lower-degree Tietze-equivalent presentation exposes V4 explicitly:
+# c^s=c^t and c*c^t=c^(t^2).  It is checked independently below rather
+# than assumed from the first presentation.
+v4Group := free / [t^3, s^2, (s*t)^2, c^2,
+                   (c^s)*(c^t)^-1,
+                   c*c^t*(c^(t^2))^-1];;
+
 # A Todd--Coxeter calculation gives the upper bound 24.
 if Size(group) <> 24 then
   Error("universal local collision presentation does not have order 24");
+fi;
+if Size(v4Group) <> 24 then
+  Error("lower-degree V4 presentation does not have order 24");
 fi;
 if AbelianInvariants(group) <> [2] then
   Error("unexpected abelianization");
@@ -26,6 +36,10 @@ if t4^3 <> () or s4^2 <> () or (s4*t4)^2 <> () or c4^2 <> ()
    or t4*c4*s4*c4*t4^-1*c4*s4*t4*c4 <> () then
   Error("marked S4 tuple does not satisfy the universal relators");
 fi;
+if (c4^s4)*(c4^t4)^-1 <> ()
+   or c4*c4^t4*(c4^(t4^2))^-1 <> () then
+  Error("marked S4 tuple does not satisfy the V4 presentation");
+fi;
 image := Group(t4, s4, c4);;
 if Size(image) <> 24 or IdGroup(image) <> [24,12] then
   Error("marked quotient is not S4");
@@ -35,6 +49,10 @@ permutation_isomorphism := IsomorphismPermGroup(group);;
 permutation_group := Image(permutation_isomorphism);;
 if IdGroup(permutation_group) <> [24,12] then
   Error("universal group is not S4");
+fi;
+v4PermutationGroup := Image(IsomorphismPermGroup(v4Group));;
+if IdGroup(v4PermutationGroup) <> [24,12] then
+  Error("lower-degree V4 group is not S4");
 fi;
 
 quotient_generators := GeneratorsOfGroup(group);;
@@ -49,6 +67,8 @@ fi;
 
 Print("universal_order=", Size(group),
       " id=", IdGroup(permutation_group),
+      " v4_presentation_order=", Size(v4Group),
+      " v4_id=", IdGroup(v4PermutationGroup),
       " marked_K_order=", Size(k),
       " normal_closure_c_order=", Size(v),
       " quotient_by_normal_closure_order=", Size(FactorGroup(group,v)),

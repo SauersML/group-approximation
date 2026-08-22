@@ -1,0 +1,59 @@
+{
+  "statement": "Both dimension-20 A-centralizer twists of the natural Omega8+(2) Q1920 module collapse the collision operator at every multiplicity",
+  "field": "F2",
+  "base_module_dimension": 8,
+  "multiplicity": "arbitrary m>=1",
+  "marked_Q_image": "Q=2^5:A5 of order 1920 in the singular parabolic of Omega8+(2)",
+  "Q_module": {
+    "indecomposable_dimensions": [8],
+    "composition_factor_dimensions": [1, 1, 4, 1, 1]
+  },
+  "transverse_subgroup": "A=<r,u>=S3",
+  "A_module_restriction": "1^4 + U^2, U absolutely irreducible of dimension two",
+  "multiplicity_centralizer": "End_A(H^m)=M_(4m)(F2) x M_(2m)(F2)",
+  "generic_coefficient_algebra": "F2<x0,...,x19>",
+  "generic_operator": "sum of the 16 M4 matrix units tensor x0,...,x15 and the 4 M2 matrix units tensor x16,...,x19",
+  "old_collision_presentation": [
+    "c^2=1",
+    "(c*t)^3=1",
+    "t*c*s*c*t^-1*c*s*t*c=1"
+  ],
+  "equivalent_v4_presentation": [
+    "c^2=1",
+    "c^s=c^t",
+    "c*c^t=c^(t^2)"
+  ],
+  "presentation_equivalence_certificate": {
+    "old_order": 24,
+    "new_order": 24,
+    "common_marked_quotient": "S4=SmallGroup(24,12)",
+    "reason": "Both quotients of the same marked free group have order 24 and map onto the same marked S4 tuple, so both kernels equal the kernel of that marked epimorphism."
+  },
+  "gbnp_version": "1.1.0",
+  "sha256": {
+    "experiments/atlas_a4_collision_local_universal_s4.g": "0de3287056c73a6e5863ca8e4e2e65999f4f3c8e45fa5afe5255ef67b20328e6",
+    "experiments/atlas_a4_repeated_module_collision.g": "94ef2e7e74e7200924153659ff83309aa8c5b0ea94c9ba5dfba0ac09a5800776",
+    "experiments/atlas_a4_q1920_o8p_discovery.g": "585406ebf0174950e1f223c975f2c14e32003af7da0a4f0b5ff42393e67259fa",
+    "experiments/atlas_a4_q1920_o8plus_typeb_repeated_v4.g": "7a826f78f440a0bf1ff78eb5c899909d7a3ebc78b134faef0de31dee0bd065c9",
+    "research/artifacts/atlas-a4-o8plus-type-b-repeated-v4-gbnp.txt": "121658b0f38b7d3291fcefc3357fef2956ec8dfa25b8cb00965eac70f71ec337"
+  },
+  "markings": [
+    {
+      "marking": 1,
+      "centralizer_dimension": 20,
+      "relation_count": 129,
+      "strong_two_sided_basis_count": 20,
+      "basis": ["x0+1", "x1", "x2", "x3", "x4", "x5+1", "x6", "x7", "x8", "x9", "x10+1", "x11", "x12", "x13", "x14", "x15+1", "x16+1", "x17", "x18", "x19"],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "centralizer_dimension": 20,
+      "relation_count": 119,
+      "strong_two_sided_basis_count": 20,
+      "basis": ["x0+1", "x1", "x2", "x3", "x4", "x5+1", "x6", "x7", "x8", "x9", "x10+1", "x11", "x12", "x13", "x14", "x15+1", "x16+1", "x17", "x18", "x19"],
+      "identity_forced": true
+    }
+  ],
+  "functorial_scope": "The coefficients are noncommuting. Substitution xi->Xi in M_m(F2) parametrizes every element of End_A(H^m), so the two-sided ideal certificate applies to every finite m, not only scalar or commuting specializations."
+}

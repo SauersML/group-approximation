@@ -1,0 +1,73 @@
+GBNP 1.1.0 decisive transcript (warnings and ambient census elided)
+
+=== marking 1 ===
+REPEATED_MODULE label=[ "O8+", 1, 2 ] Q_indecomposable_dimensions=[ 8 ]
+ A_indecomposable_dimensions=[ 1, 1, 1, 2, 2, 1 ]
+ K_indecomposable_dimensions=[ 2, 2, 2, 2 ]
+ Q_composition_dimensions=[ 1, 1, 4, 1, 1 ]
+REPEATED_ISOTYPIC label=[ "O8+", 1, 2 ]
+ centralizer_structure=M4(F2)xM2(F2)
+REPEATED_V4_BASE label=[ "O8+", 1, 2 ] module_dimension=8
+ centralizer_dimension=20 relation_count=129
+REPEATED_V4_RESULT label=[ "O8+", 1, 2 ] gb_count=20
+ identity_coordinates=[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
+                        0, 0, 0, 1, 1, 0, 0, 1 ]
+ identity_forced=true
+full_groebner_basis=
+ x0 + 1
+ x1
+ x2
+ x3
+ x4
+ x5 + 1
+ x6
+ x7
+ x8
+ x9
+ x10 + 1
+ x11
+ x12
+ x13
+ x14
+ x15 + 1
+ x16 + 1
+ x17
+ x18
+ x19 + 1
+identity_normal_forms=twenty zero entries
+
+=== marking 2 ===
+REPEATED_MODULE label=[ "O8+", 2, 1 ] Q_indecomposable_dimensions=[ 8 ]
+ A_indecomposable_dimensions=[ 2, 1, 1, 1, 2, 1 ]
+ K_indecomposable_dimensions=[ 2, 2, 2, 2 ]
+ Q_composition_dimensions=[ 1, 1, 4, 1, 1 ]
+REPEATED_ISOTYPIC label=[ "O8+", 2, 1 ]
+ centralizer_structure=M4(F2)xM2(F2)
+REPEATED_V4_BASE label=[ "O8+", 2, 1 ] module_dimension=8
+ centralizer_dimension=20 relation_count=119
+REPEATED_V4_RESULT label=[ "O8+", 2, 1 ] gb_count=20
+ identity_coordinates=[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
+                        0, 0, 0, 1, 1, 0, 0, 1 ]
+ identity_forced=true
+full_groebner_basis=
+ x0 + 1
+ x1
+ x2
+ x3
+ x4
+ x5 + 1
+ x6
+ x7
+ x8
+ x9
+ x10 + 1
+ x11
+ x12
+ x13
+ x14
+ x15 + 1
+ x16 + 1
+ x17
+ x18
+ x19 + 1
+identity_normal_forms=twenty zero entries
