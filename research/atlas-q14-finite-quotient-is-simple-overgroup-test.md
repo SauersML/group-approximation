@@ -45,3 +45,8 @@ This is an exact reduction, not a construction or a nonexistence theorem.
 It rules out `S=A8`, but it does not rule out a larger finite simple overgroup.
 In particular it does not by itself settle whether the augmented matrix zero
 set is empty.
+
+The finite-group sieve is now explicit:
+`atlas-q14-simple-overgroup-index-is-at-least-32` proves that every such
+overgroup has chart index at least 32 and classifies the primitive and
+imprimitive residues at the first possible index.
