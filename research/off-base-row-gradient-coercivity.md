@@ -46,3 +46,17 @@ The live attack is instead an SOS expansion of
 parity faces re-exactified between gradient steps.  The dense quadratic
 part already has the required row-column bound; the sparse re-exactification
 term is the unproved part of `(ORG1)`.
+
+There is now a complete restricted bypass after local exactification **and**
+literal sharing.  `parity-exact-shared-contractions-have-intrinsic-cp-gap`
+first observes that an exact product of contractions forces every factor to
+be unitary, so the involution forcing vanishes.  It then transfers the
+established whole-face Hamiltonian gap to the intrinsic coordinate channel
+`A_X=I-L^(-1)sum_iP_i`, yielding a finite-Green contraction before global
+commutativity or characters.  What prevents applying it here is precisely
+equality synchronization: normalized-HS-close occurrence reflections can
+have adjoint actions distance two on a sparse corner.  Thus the remaining
+pre-character nonlinear estimate may be replaced by an equality-compatible
+local-exactification/sharing theorem, but neither exact oddness nor the
+dense cb remainder alone transports the face gap across approximate
+equality.
