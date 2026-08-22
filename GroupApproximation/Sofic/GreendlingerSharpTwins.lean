@@ -587,16 +587,54 @@ theorem greendlingerAtSharp_of_three_pieces {R : Set (List (α × Bool))}
   push_cast
   linarith
 
-/-! ## 6.  The junction fact, at the sharp constant -/
+/-! ## 6.  The junction fact, at the sharp constant --- DEMOTED
 
-/-- **What a block is matched against at a maximal junction**, at a general
-constant.  The `λ`-twin of `MaximalJunction`: at a factor whose conjugator is at
-least as long as the neighbouring one, the part of its rotation the junction
-destroys is matched letter for letter against the neighbour's rotation, hence is
-a piece, hence under `λ` of it.
+This section is kept as a record of a trap, not as a route.  Its predicate is
+**vacuous**, and so was the half-form predicate it twins.
+-/
 
-The statement is one-sided; the argument applies it twice, once at each side of
-the maximising factor. -/
+/-- **DEMOTED --- this predicate assumes its own content and is a theorem.**
+
+The intent, inherited verbatim from `MaximalJunction`, was: at a factor whose
+conjugator is at least as long as the neighbouring one, the part of its rotation
+the junction destroys is matched letter for letter against the neighbour's
+rotation, hence is a piece.  The statement below does not say that.  It *takes*
+`IsPiece (symmetrization R) (t.take x)` as a hypothesis and concludes a numeric
+bound the metric condition already gives for any piece whatever --- `t.take x`
+is a prefix of `t` unconditionally, so `MetricSmallCancellation` applies to it
+directly.
+
+`GreendlingerLandingProd.maximalJunctionSharp_of_metric` proves it outright from
+`hRne`, `0 < lam`, `lam ≤ 1/6` and the metric condition; g3 found it, and
+re-deriving it here confirms it.  The tell is visible in the binder list below:
+`c`, `c'`, `t'` and the domination `c'.length ≤ c.length` appear nowhere in
+either the hypothesis or the conclusion, both of which mention only `t` and `x`.
+Four of the eight arguments cannot influence the statement, and those four are
+exactly what the intent turns on.
+
+Consequences, stated plainly:
+
+* `greendlingerAtSharp_of_maximalJunctionSharp` below is **not** conditional on
+  this predicate --- it never mentions it, and is
+  `greendlingerAtSharp_of_two_pieces` with its hypotheses renamed.
+* Discharging `MaximalJunctionSharp` would close nothing.
+* The same defect is in the half form, `GreendlingerMaxConjugator.MaximalJunction`
+  (conclusion `6 * x < t.length`, same four decorative binders).  This file
+  twinned it faithfully and so inherited the defect; the twin is not a new error
+  but it did restate the false claim, which is why the docstring is rewritten
+  rather than merely footnoted.
+
+**What the statement would have to say.**  The content the maximal-conjugator
+argument actually needs is word-level and comes *before* the numeric step: that
+at such a junction the destroyed part **is** `t.take x` and **is** a piece, as a
+consequence of the conjugator domination.  That is not stated anywhere in the
+lane, and it is not restated here: writing it correctly needs the junction
+configuration --- which palindrome, which cancellation, what "destroyed" names
+--- and inventing a plausible-looking predicate without that data is precisely
+the failure this demotion records.  The route is in any case not the live one;
+the lane runs through `DeepArcSourceSharp` and the (β) side.
+
+Kept rather than deleted so the trap stays on the record. -/
 def MaximalJunctionSharp (R : Set (List (α × Bool))) (lam : ℚ) : Prop :=
   ∀ (c t c' t' : List (α × Bool)) (x : ℕ),
     t ∈ symmetrization R → t' ∈ symmetrization R →
@@ -605,12 +643,16 @@ def MaximalJunctionSharp (R : Set (List (α × Bool))) (lam : ℚ) : Prop :=
     (x : ℚ) < lam * (t.length : ℚ)
 
 /-- **The located conclusion at the maximising factor, at the sharp constant.**
-The `λ`-twin of `greendlingerAt_of_maximalJunction`.  Given the junction fact on
-both sides, the factor with the longest conjugator keeps more than `(1 − 3λ)` of
-its rotation, which is more than the sharp gate asks for.
+The `λ`-twin of `greendlingerAt_of_maximalJunction`: a rotation losing at most
+`x` at one end keeps more than `(1 − 3λ)` of itself, which is more than the
+sharp gate asks for.
 
-Nothing else is needed once both losses are pieces: the proof is
-`two_pieces_budget`, exactly as the half form's is `keeps_of_two_pieces`. -/
+This is **unconditional**, and it is worth being exact about why.  It does not
+mention `MaximalJunctionSharp`, and never did: it takes the numeric bound `hx`
+as a hypothesis, and the demoted predicate would only have supplied that same
+bound.  So it is `greendlingerAtSharp_of_two_pieces` with its hypotheses
+renamed --- kept under this name because the maximal-conjugator route cites it,
+not because it adds anything. -/
 theorem greendlingerAtSharp_of_maximalJunctionSharp {R : Set (List (α × Bool))}
     {lam : ℚ} (hlam : lam ≤ 1 / 6)
     {c t P' M B' : List (α × Bool)} {x j : ℕ}
