@@ -58,6 +58,15 @@ Thus branch 2 must route mass between different conductors over an
 unbounded-width profile; it cannot hide inside large same-level
 multiplicities.
 
+Clifford classification of only the newest two congruence layers cannot
+finish this cross-conductor problem.
+`depth-two-clifford-types-form-a-finite-fiber-folner-graph` identifies
+those types with a fixed finite orbit set in
+`sl_3(Z/4Z)^hat/SL_3(Z/4Z)`.  With the six denominator moves they form a
+finite-state skew product over the amenable `A_2` coweight lattice.  The
+remaining rigidity must therefore remember unbounded branch history, not
+merely the local irreducible type at each depth.
+
 There is a sharp proof firewall.  In the regular group factor of
 
 ```text
