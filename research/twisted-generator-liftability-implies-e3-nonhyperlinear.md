@@ -41,6 +41,21 @@ finite-dimensional `alpha`-projective representation — which
 `deligne-triple-cover-fd-central-invisibility` forbids.  So a lift can
 never coexist with a `Theta`, and TGL1 can hold only vacuously.
 
+**No QWEP backdoor.**  Two soft-looking shortcuts fail, in opposite
+directions.  A GLOBAL ucp lift `A_alpha -> prod M_(d_n)` of some `Theta`
+would exhibit the fibre as a ucp-retract of an injective von Neumann
+algebra, giving it WEP; for the property (T) von Neumann fibre this
+means hyperfiniteness — impossible.  And in the converse direction,
+Connes embeddability of the fibre would give QWEP, but QWEP supplies no
+LOCAL lifts either: `B(H)` has WEP yet fails the LLP (Junge--Pisier).
+So if `E_3` is hyperlinear, the resulting `Theta`'s simply have no
+generator lifts, which is exactly how the vacuity equivalence `(TG1)`
+predicts the world looks on that side.  The peers' companion route
+`brown-ucp-generator-lift-closes-maslov-gap` (TGL1 plus
+`deligne-twisted-fibres-have-no-amenable-trace` gives the Maslov gap) is
+the tracial packaging of the same mechanism: their no-amenable-trace
+input is the Kirchberg-side face of the Deligne invisibility used here.
+
 **Lane intelligence.**  TGL1 should therefore not be attacked as a
 "strictly weaker lifting assertion": as stated it is at least as strong
 as the goal.  What remains genuinely weaker-than-LLP territory is
