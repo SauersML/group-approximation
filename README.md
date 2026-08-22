@@ -135,7 +135,7 @@ class alongside MF, sofic, and hyperlinear groups.  The present result is an
 operator-norm obstruction and makes no additional sofic or hyperlinear
 classification claim.
 
-### Formal counterpart
+## The Lean formalization
 
 The conceptual headline is now
 `KazhdanCliffordConstruction.kazhdanCliffordConstruction`: every finitely
