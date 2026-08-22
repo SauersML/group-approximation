@@ -41,3 +41,12 @@ makes the four orthogonal branch carriers add rather than overlap.
   reservoir at least as large as the entire forbidden carrier. Tracking that
   reservoir restores the regular stationary flow. Thus no finite chart/HNN
   atlas alone closes this node.
+- **Transport one named relative-Pauli half:** the fixed words do make the
+  active and exit supports literal spectral projections.  However
+  `relative-pauli-spectral-half-hnn-transports-its-equal-reservoir` proves
+  that an HNN edge containing the addressing involution transports both
+  halves.  Its Pauli partner makes the second half an equal-size target
+  reservoir.  A true one-sided actor would close the ledger only after its
+  nested invariant projections were identified with these two spectral
+  supports; that character-conditioned identification is exactly the
+  charged proper-corner gate, not a consequence of the raw radical words.
