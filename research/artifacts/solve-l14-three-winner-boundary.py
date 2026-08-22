@@ -333,6 +333,7 @@ def main():
     parser.add_argument("--carrier-start", type=int)
     parser.add_argument("--carrier-end", type=int)
     parser.add_argument("--target", type=int, choices=range(4))
+    parser.add_argument("--rotation-index", type=int)
     parser.add_argument("--trace-words", action="store_true")
     args = parser.parse_args()
     carriers = S.combined_carrier_states(report=True)
@@ -353,6 +354,9 @@ def main():
             print(f"TRACE carrier={index} rotations={len(cuts)} "
                   f"syllables={len(transformed)}", flush=True)
         for rotation_index, rotation in enumerate(cuts):
+            if (args.rotation_index is not None
+                    and rotation_index != args.rotation_index):
+                continue
             for target in range(4):
                 if args.target is not None and target != args.target:
                     continue
