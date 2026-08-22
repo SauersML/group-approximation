@@ -21,3 +21,6 @@ support theorem says the packet first forces those supports equal and
 collision 19243 then kills every relative marking.  Hence the boundary is
 impossible.
 
+The next complete CFSG interval is recorded by
+`atlas-q14-simple-overgroup-index-is-at-least-2200`, which isolates one
+`S8`-derived `A8` class in `HS`.
