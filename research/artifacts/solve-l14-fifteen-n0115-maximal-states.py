@@ -24,14 +24,9 @@ P = load("i1412_pairs", "enumerate-l14-i1412-carrier-pairs.py")
 ALG = P.EQ3
 
 
-def solver(branch):
-    free = (("q", "r", "s", "t", "u", "A", "B", "E")
-            if branch == "I" else
-            ("q", "r", "s", "u", "A", "B", "C", "E"))
+def build_solver(compression, branch, free, power_names):
     number = {name: index + 1 for index, name in enumerate(free)}
     identity_images = tuple((index,) for index in range(1, len(free) + 1))
-    power_names = ("A", "B", "E", "s") if branch == "I" else (
-        "A", "B", "C", "E")
     base_relations = tuple((number[name], number[name])
                            for name in power_names)
 
@@ -100,11 +95,20 @@ def solver(branch):
         return states, visit.cache_info().currsize
 
     words = {
-        "r0": C.branch_reduce(C.R0, branch),
-        "r4": C.branch_reduce(C.R4, branch),
-        "boundary": C.branch_reduce(C.K, branch),
+        "r0": compression.branch_reduce(compression.R0, branch),
+        "r4": compression.branch_reduce(compression.R4, branch),
+        "boundary": compression.branch_reduce(compression.K, branch),
     }
     return maximal_states, words, combine, encode, identity_images
+
+
+def solver(branch):
+    free = (("q", "r", "s", "t", "u", "A", "B", "E")
+            if branch == "I" else
+            ("q", "r", "s", "u", "A", "B", "C", "E"))
+    powers = (("A", "B", "E", "s") if branch == "I" else
+              ("A", "B", "C", "E"))
+    return build_solver(C, branch, free, powers)
 
 
 def main():
