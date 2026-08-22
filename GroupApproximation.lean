@@ -1464,7 +1464,9 @@ import GroupApproximation.Sofic.GreendlingerSharpResidualWiring2
 import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 import GroupApproximation.Sofic.GreendlingerLandingProd
 import GroupApproximation.Sofic.AvatarWordFamily
+import GroupApproximation.Sofic.AvatarRouterInstance
 import GroupApproximation.Sofic.SourceFromUniversalKazhdan
+import GroupApproximation.Sofic.RelativeRouterEnvelope
 import GroupApproximation.Sofic.TorsionFreeAssembly
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.TorsionDescent
@@ -1496,6 +1498,7 @@ import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.SwapWitnessTower
+import GroupApproximation.Higman.SwapCarrierFromTower
 import GroupApproximation.Higman.SsetBaseCase
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau

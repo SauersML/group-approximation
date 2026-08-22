@@ -115,14 +115,28 @@ theorem mk_palindrome_mul_ne_one_of_minimal [DecidableEq α]
 
 /-! ## The bound -/
 
-/-- **The destroyed block never swallows the first rotation.**  Every way it
-could is either a re-expression with strictly shorter total conjugator length,
-which weight-minimality forbids, or a relator that is a piece of itself, which
+/-- **The destroyed block never swallows the first rotation**, from the prefix
+the swallowing shape produces rather than from confinement.  Every way it could
+is either a re-expression with strictly shorter total conjugator length, which
+weight-minimality forbids, or a relator that is a piece of itself, which
 `C'(1/6)` forbids, or a coincidence of the two rotations, which makes the two
-factors mutually inverse and so is forbidden by the factor count. -/
-theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
+factors mutually inverse and so is forbidden by the factor count.
+
+The hypothesis is `c ++ invRev t <+: palindrome c' t'` and not the confinement
+`palindrome c' t' = invRev M ++ B'`.  That is the whole of what the argument
+below reads: a swallowing block has `invRev M = c ++ invRev t ++ invRev c₂`, so
+confinement supplies the prefix, but so does any configuration in which the
+adjacent palindrome merely holds the leading conjugator and the inverted
+rotation — including one where the block runs on past that factor.  Stating it
+this way is what lets the cascade's *overrun* regime use the bound, where
+confinement is exactly what fails.
+
+`swallow_bound_of_minimal` below is the confined instance, with the original
+signature. -/
+theorem swallow_bound_of_minimal_of_prefix [DecidableEq α]
+    {R : Set (List (α × Bool))}
     (hRne : ∀ r ∈ R, r ≠ []) (hmetric : MetricSmallCancellation R (1 / 6))
-    {c t c' t' P' M B' : List (α × Bool)}
+    {c t c' t' P' M : List (α × Bool)}
     {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
     (hmin : IsMinimalConjExpr R
       ((FreeGroup.mk c, t) :: (FreeGroup.mk c', t') :: e) g)
@@ -130,7 +144,7 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
     (hredp : FreeGroup.IsReduced (palindrome c t))
     (hredp' : FreeGroup.IsReduced (palindrome c' t'))
     (heq : palindrome c t = P' ++ M)
-    (heq' : palindrome c' t' = FreeGroup.invRev M ++ B') :
+    (hctpre : c ++ FreeGroup.invRev t <+: palindrome c' t') :
     M.length ≤ c.length + t.length := by
   by_contra hcon
   push Not at hcon
@@ -147,25 +161,12 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
   -- the two factors do not cancel
   have hcoin := mk_palindrome_mul_ne_one_of_minimal hmin
   -- the swallowing shape
-  obtain ⟨_c₁, c₂, _hc, _hc₂ne, _hM, hinvM⟩ := exists_swallow_split heq hcon
+  obtain ⟨_c₁, _c₂, _hc, _hc₂ne, _hM, _hinvM⟩ := exists_swallow_split heq hcon
   have hP2 : palindrome c' t' = c' ++ (t' ++ FreeGroup.invRev c') := by
     unfold palindrome
     rw [List.append_assoc]
-  have hpre : c ++ (FreeGroup.invRev t ++ FreeGroup.invRev c₂)
-      <+: palindrome c' t' := by
-    rw [← hinvM]
-    exact ⟨B', heq'.symm⟩
-  have hpre2 : (c ++ FreeGroup.invRev t) ++ FreeGroup.invRev c₂
-      <+: palindrome c' t' := by
-    rw [List.append_assoc]
-    exact hpre
   have hcpre : c <+: palindrome c' t' :=
-    (show c <+: c ++ (FreeGroup.invRev t ++ FreeGroup.invRev c₂) from
-      ⟨_, rfl⟩).trans hpre
-  have hctpre : c ++ FreeGroup.invRev t <+: palindrome c' t' :=
-    (show c ++ FreeGroup.invRev t
-      <+: (c ++ FreeGroup.invRev t) ++ FreeGroup.invRev c₂ from
-      ⟨_, rfl⟩).trans hpre2
+    (show c <+: c ++ FreeGroup.invRev t from ⟨_, rfl⟩).trans hctpre
   have hc'pre : c' <+: palindrome c' t' := by
     rw [hP2]
     exact ⟨t' ++ FreeGroup.invRev c', rfl⟩
@@ -266,15 +267,11 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
         rw [hc'y, List.length_append]
       have hP2' : palindrome c' t' = c ++ (y ++ (t' ++ FreeGroup.invRev c')) := by
         rw [hP2, hc'y, List.append_assoc]
-      have hstep : FreeGroup.invRev t ++ FreeGroup.invRev c₂
+      have hinvpre : FreeGroup.invRev t
           <+: y ++ (t' ++ FreeGroup.invRev c') := by
         refine (List.prefix_append_right_inj c).mp ?_
         rw [← hP2']
-        exact hpre
-      have hinvpre : FreeGroup.invRev t
-          <+: y ++ (t' ++ FreeGroup.invRev c') :=
-        (show FreeGroup.invRev t
-          <+: FreeGroup.invRev t ++ FreeGroup.invRev c₂ from ⟨_, rfl⟩).trans hstep
+        exact hctpre
       have hyinv : y <+: FreeGroup.invRev t := by
         refine List.prefix_of_prefix_length_le
           (show y <+: y ++ (t' ++ FreeGroup.invRev c') from ⟨_, rfl⟩) hinvpre ?_
@@ -286,12 +283,10 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
         rw [List.length_append, FreeGroup.invRev_length] at hb
         omega
       have hvpos : 0 < v.length := by omega
-      have hvstep : v ++ FreeGroup.invRev c₂ <+: t' ++ FreeGroup.invRev c' := by
+      have hvpre : v <+: t' ++ FreeGroup.invRev c' := by
         refine (List.prefix_append_right_inj y).mp ?_
-        rw [← List.append_assoc, hv]
-        exact hstep
-      have hvpre : v <+: t' ++ FreeGroup.invRev c' :=
-        (show v <+: v ++ FreeGroup.invRev c₂ from ⟨_, rfl⟩).trans hvstep
+        rw [hv]
+        exact hinvpre
       have hvrot : v <+: (FreeGroup.invRev t).rotate y.length := by
         rw [← hv, rotate_append]
         exact ⟨y, rfl⟩
@@ -327,6 +322,45 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
           have hsix := six_mul_length_lt_of_isPiece hmetric hpiece ht'
             (List.prefix_refl _)
           omega
+
+/-- **The destroyed block never swallows the first rotation**, in the confined
+shape the adjacent analysis produces.  This is the original statement, and it is
+now the instance of `swallow_bound_of_minimal_of_prefix` at which the prefix
+comes from confinement: a swallowing block has
+`invRev M = c ++ invRev t ++ invRev c₂` (`exists_swallow_split`), so
+`palindrome c' t' = invRev M ++ B'` exhibits `c ++ invRev t` as a prefix of the
+adjacent palindrome and the general bound applies.
+
+The three lines below are the whole difference between the two: the confinement
+is used once, to produce the prefix, and never again. -/
+theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
+    (hRne : ∀ r ∈ R, r ≠ []) (hmetric : MetricSmallCancellation R (1 / 6))
+    {c t c' t' P' M B' : List (α × Bool)}
+    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t) :: (FreeGroup.mk c', t') :: e) g)
+    (ht : t ∈ symmetrization R) (ht' : t' ∈ symmetrization R)
+    (hredp : FreeGroup.IsReduced (palindrome c t))
+    (hredp' : FreeGroup.IsReduced (palindrome c' t'))
+    (heq : palindrome c t = P' ++ M)
+    (heq' : palindrome c' t' = FreeGroup.invRev M ++ B') :
+    M.length ≤ c.length + t.length := by
+  by_contra hcon
+  push Not at hcon
+  obtain ⟨_c₁, c₂, _hc, _hc₂ne, _hM, hinvM⟩ := exists_swallow_split heq hcon
+  have hpre : c ++ (FreeGroup.invRev t ++ FreeGroup.invRev c₂)
+      <+: palindrome c' t' := by
+    rw [← hinvM]
+    exact ⟨B', heq'.symm⟩
+  have hctpre : c ++ FreeGroup.invRev t <+: palindrome c' t' := by
+    refine (show c ++ FreeGroup.invRev t
+        <+: (c ++ FreeGroup.invRev t) ++ FreeGroup.invRev c₂ from
+      ⟨_, rfl⟩).trans ?_
+    rw [List.append_assoc]
+    exact hpre
+  have hb := swallow_bound_of_minimal_of_prefix hRne hmetric hmin ht ht' hredp
+    hredp' heq hctpre
+  omega
 
 /-! ## The mirrored bound, and the case closed -/
 

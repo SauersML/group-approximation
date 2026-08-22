@@ -44,11 +44,14 @@ reachable: the orientation package gives `M = E ++ invRev c`, so
 landing site is built and the head conjugator's overhang never enters — which
 matters, because §9 shows that overhang is exactly what no local move bounds.
 
-§§3–6 keep the literal target: `LandingProductionBetaSharp` reduced to one
-per-factor leaf by a walk down the cascade.  That route is complete as a
-reduction and is kept because the leaf it isolates is a sharper object than
-`DeepSegmentIsPiece` in one respect — it is positional — and because §8's
-obstruction is stated against it.
+§§3–6 attempted the literal target by a walk down the cascade, and that route is
+**dead**: its leaf `StoppingAlternativeBetaSharp` is refuted in §3 by
+`not_stoppingAlternativeBetaSharp`.  The reduction theorems there are true but
+vacuous and must not be read as progress.  They are kept because the defect is
+instructive — a per-factor leaf cannot be stated without the cascade's
+provenance for the block length, which is why
+`GreendlingerThreeFactor.LeadingConfinement` failed too — and because §2's
+cascade moves and §4's step are sound and reusable.
 
 ## What the residual regime is, and what it is not
 
@@ -236,8 +239,14 @@ theorem landsInSharp_of_overrun [DecidableEq α] {R : Set (List (α × Bool))}
 
 /-! ## 3.  The one open leaf: where a block stops in the factor it meets -/
 
-/-- **OPEN — the per-factor stopping alternative, over the (β) regime, at a
-general constant.**  A block of length `b` arriving at the head of a tail word
+/-- **REFUTED — the per-factor stopping alternative, over the (β) regime, at a
+general constant.**  `not_stoppingAlternativeBetaSharp` below refutes it for
+every family with a nonempty reduced symmetrized relator; read that first.  The
+statement is kept because §§4–6 are stated against it and because the *shape* of
+the defect is the reusable part.
+
+The intended reading, which is what the walk of §5 asks at each factor: a block
+of length `b` arriving at the head of a tail word
 meets a factor in palindromic normal form `(c', t')`, which keeps `P''` of its
 own palindrome and loses `M''` to everything after it.  If the block reaches
 past that factor's conjugator, then either it stops within `λ` of the factor's
@@ -254,9 +263,10 @@ outruns the word it is travelling through.  Both `P''` and `B''` are named
 rather than derived so that the predicate speaks only about data the walk
 already has in hand at the moment it asks the question.
 
-The second disjunct's `f ≠ []` is what keeps the walk from being handed a block
-that has eaten the whole word; `lt_length_of_landsInSharp_one` below is the
-precise reason it cannot be dropped. -/
+The second disjunct's `f ≠ []` was meant to keep the walk from being handed a
+block that has eaten the whole word — `lt_length_of_landsInSharp_one` in §9 is
+why the walk cannot recurse there — and it is exactly what makes the predicate
+false rather than merely restrictive: in that corner *neither* disjunct holds. -/
 def StoppingAlternativeBetaSharp [DecidableEq α] (R : Set (List (α × Bool)))
     (lam : ℚ) : Prop :=
   ∀ (c E M : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
@@ -272,6 +282,70 @@ def StoppingAlternativeBetaSharp [DecidableEq α] (R : Set (List (α × Bool)))
     c'.length < b → b ≤ P''.length + B''.length →
     ((b - c'.length : ℕ) : ℚ) < lam * (t'.length : ℚ)
       ∨ (P''.length ≤ b ∧ f ≠ [])
+
+/-- **The refutation.**  `StoppingAlternativeBetaSharp` fails for every family
+carrying a nonempty reduced symmetrized relator, and the witness costs nothing.
+
+The four arguments `c E M e` occur in exactly one hypothesis,
+`¬ConjugatorAbsorbedSite c E M e`, and nowhere else in the statement.  Taking
+`e := []` makes that hypothesis *free*: a site names a decomposition
+`e = e₁ ++ ((mk c', t') :: f)`, and a list equal to an append ending in a cons
+is nonempty, so no site exists over the empty expression.
+
+With the site hypothesis spent for nothing, take a one-factor landing expression
+with empty conjugator and let the block be the whole rotation.  Then
+`P'' = t'`, `M'' = B'' = []`, every hypothesis holds, and both disjuncts fail:
+the left asks `|t'| < λ·|t'|` and the right asks `f ≠ []` of `f = []`.
+
+The defect is over-quantification.  `b` ranges freely over
+`|c'| < b ≤ |P''| + |B''|` with nothing tying it to the head block the walk
+carries, so the predicate asserts things about blocks the walk never produces —
+and it is not a knife-edge, since the same failure occurs with `f ≠ []` whenever
+`b = |P''| − 1 > |c'|` and the surviving stretch is at least `λ·|t'|`.  A
+per-factor leaf cannot be stated without the cascade's provenance for `b`, which
+is the same reason `GreendlingerThreeFactor.LeadingConfinement` failed.
+
+Found by `strike-sweep` while transcribing the predicate for the bounded
+adversary search, and recorded rather than repaired because §§7–8 do not go
+through it.  `hmin` is a hypothesis rather than a construction only to keep the
+witness short; it holds for the expression named, whose conjugator has norm
+zero. -/
+theorem not_stoppingAlternativeBetaSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ} (hlam : lam ≤ 1)
+    {t' : List (α × Bool)} (ht' : t' ∈ symmetrization R)
+    (hred : FreeGroup.IsReduced t') (hne : t' ≠ [])
+    (hmin : IsMinimalConjExpr R [(FreeGroup.mk ([] : List (α × Bool)), t')]
+      (conjEval [(FreeGroup.mk ([] : List (α × Bool)), t')])) :
+    ¬StoppingAlternativeBetaSharp R lam := by
+  intro halt
+  have htpos : 0 < t'.length := List.length_pos_iff.mpr hne
+  have htq : (0 : ℚ) < (t'.length : ℚ) := by exact_mod_cast htpos
+  have hinvnil : FreeGroup.invRev ([] : List (α × Bool)) = [] :=
+    List.length_eq_zero_iff.mp (by rw [FreeGroup.invRev_length])
+  have hsitefree :
+      ¬ConjugatorAbsorbedSite ([] : List (α × Bool)) [] []
+        ([] : List (FreeGroup α × List (α × Bool))) := by
+    rintro ⟨e₁, f₀, c₀, t₀, d, q, A, N, he, -⟩
+    have hlen := congrArg List.length he
+    simp only [List.length_nil, List.length_append, List.length_cons] at hlen
+    omega
+  have hpal : palindrome ([] : List (α × Bool)) t' = t' ++ [] := by
+    rw [palindrome_nil, List.append_nil]
+  have hredp : FreeGroup.IsReduced (palindrome ([] : List (α × Bool)) t') := by
+    rw [palindrome_nil]
+    exact hred
+  have htailnil : (conjEval ([] : List (FreeGroup α × List (α × Bool)))).toWord
+      = FreeGroup.invRev ([] : List (α × Bool)) ++ [] := by
+    rw [hinvnil, List.append_nil, conjEval_nil]
+    exact FreeGroup.toWord_eq_nil_iff.mpr rfl
+  rcases halt [] [] [] [] [] t' t' [] [] [] t'.length hsitefree ht' hredp hmin
+      hpal htailnil (by simpa using htpos) (by simp) with hleft | ⟨-, hfne⟩
+  · simp only [List.length_nil, Nat.sub_zero] at hleft
+    have hb : lam * (t'.length : ℚ) ≤ 1 * (t'.length : ℚ) :=
+      mul_le_mul_of_nonneg_right hlam (le_of_lt htq)
+    rw [one_mul] at hb
+    linarith
+  · exact hfne rfl
 
 /-! ## 4.  One step of the walk, with both halves of the word named -/
 
@@ -407,7 +481,14 @@ tail is nonempty because the block is not.
 
 The orientation package and the regime inequality go unused; what the walk
 consumes from the instance is the minimality, the tail decomposition, the fact
-that the block is nonempty, and the (α)-site negation. -/
+that the block is nonempty, and the (α)-site negation.
+
+**Vacuous.**  The implication is a true theorem, but its hypothesis is refuted
+by `not_stoppingAlternativeBetaSharp`, so it establishes nothing and must not be
+read as progress on `LandingProductionBetaSharp`.  It is kept because the
+bookkeeping it assembles — §2's cascade moves, §4's step, the invariant — is
+sound and reusable, and because a reader who reaches for the walk should meet
+the refutation on the way.  The live route is §§7–8. -/
 theorem landingProductionBetaSharp_of_stoppingAlternativeBetaSharp
     [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])

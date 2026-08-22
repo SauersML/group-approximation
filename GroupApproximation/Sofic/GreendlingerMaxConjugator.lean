@@ -53,19 +53,52 @@ The arithmetic of that argument, unconditionally, and the selection of `m`:
   `conj_ne_inv_of_minimal` from two factors to any number, and it is what says
   the nested matching cannot skip whole factors: the partner of the letter next
   to a chunk is the letter next to it.
-* `MaximalJunction` --- the one word-combinatorial fact the argument consumes:
-  at a factor whose conjugator is at least as long as its neighbour's, the part
-  of its rotation that the neighbour destroys is a piece.
+* `MaximalJunction` --- **DEMOTED: vacuous.**  It was meant to be the one
+  word-combinatorial fact the argument consumes, and it is not; see the section
+  where it is defined.
 * `greendlingerAt_of_maximalJunction` --- the located conclusion at the
-  maximising factor, from that fact and nothing else.
+  maximising factor.  **Unconditional**: it takes the numeric bound as a
+  hypothesis and never mentions `MaximalJunction`.
 
-`MaximalJunction` is not the old hypothesis in new clothes.  `LeadingConfinement`
-and `CascadeLanding` both ask where a block *stops*, which is a question about
-the whole chain; this asks only what a block is *matched against* at one
-junction, and it asks it only where the conjugator is maximal --- which is
-exactly where the hug that made the old race unwinnable is zero.
+## The demotion, and what it costs
 
-Unconditional except where `MaximalJunction` is named.
+An earlier version of this header claimed `MaximalJunction` was "the one
+word-combinatorial fact the argument consumes" and that the file was
+"unconditional except where `MaximalJunction` is named".  Both are false.
+
+The predicate takes `IsPiece (symmetrization R) (t.take x)` as a *hypothesis*
+and concludes `6 * x < t.length`, which the metric condition already gives for
+any piece whatever: `t.take x` is a prefix of `t` unconditionally, so
+`six_mul_length_lt_of_isPiece` applies to it directly, and the `x = 0` branch
+needs only `t ≠ []`.  So `MaximalJunction R` is a **theorem** given `C'(1/6)`
+and `∀ r ∈ R, r ≠ []`, and discharging it closes nothing.
+
+The tell is in the binder list: neither the hypothesis nor the conclusion
+mentions `c`, `c'` or `t'` --- both speak only of `t` and `x`.  The conjugator
+domination `c'.length ≤ c.length`, which is the entire content of the word
+"maximal", is inert, as is the neighbour's membership `t' ∈ symmetrization R`.
+The predicate says nothing about a junction at all.
+
+The sharp twin `GreendlingerSharpTwins.MaximalJunctionSharp` inherited the
+defect verbatim and is demoted there too;
+`GreendlingerLandingProd.maximalJunctionSharp_of_metric` is the written proof of
+its vacuity, and the same two branches settle this one at `1/6`.
+
+**What the statement would have to say.**  The content the maximal-conjugator
+argument needs is word-level and comes *before* the numeric step: that at such a
+junction the destroyed part **is** `t.take x` and **is** a piece, as a
+consequence of the conjugator domination.  That is what the prose at the top of
+this file argues informally and what the predicate skips, and it is stated
+nowhere in the lane.  It is not restated here either: writing it correctly needs
+the junction configuration --- which palindrome, which cancellation, what
+"destroyed" names --- and inventing a predicate without that data is exactly the
+failure this demotion records.
+
+Everything else in this file stands: the arithmetic and the selection of `m` are
+unconditional, and were never routed through the predicate.  The route itself is
+not the live one --- the lane runs through `DeepArcSourceSharp` and the (β)
+side.  `MaximalJunction` is kept rather than deleted so the trap stays on the
+record.
 -/
 
 namespace GroupApproximation
@@ -248,20 +281,30 @@ theorem conjEval_middle_ne_one [DecidableEq α] {R : Set (List (α × Bool))}
 
 /-! ## The junction fact -/
 
-/-- **What a block is matched against at a maximal junction.**  At a factor
-whose conjugator is at least as long as the neighbouring one, the part of its
-rotation that the junction destroys is matched letter for letter against the
-neighbour's rotation, so it is a piece.
+/-- **DEMOTED --- this predicate assumes its own content and is a theorem.**
 
-`x` is the amount of `t` destroyed at the junction, `t` and `t'` the two
-rotations.  The statement is one-sided; the argument applies it twice, once at
-each side of the maximising factor, and at the two ends of the expression the
-corresponding loss is zero and it is not needed at all.
+The intent was: at a factor whose conjugator is at least as long as the
+neighbouring one, the part of its rotation that the junction destroys is matched
+letter for letter against the neighbour's rotation, so it is a piece.  The
+statement below does not say that.  It *takes* `IsPiece (symmetrization R)
+(t.take x)` as a hypothesis and concludes a numeric bound the metric condition
+already gives for any piece: `t.take x <+: t` holds unconditionally, so
+`six_mul_length_lt_of_isPiece` applies to it with no junction geometry, and the
+`x = 0` branch needs only `t ≠ []`.  Given `C'(1/6)` and nonempty relators this
+is a theorem, so it is not "the whole of what is not yet proved" --- it is not
+open at all, and discharging it would close nothing.
 
-This is the whole of what is not yet proved.  It is a statement about **one**
-junction, not about a chain: the block is not followed anywhere, and no
-minimality move is spent on it beyond the piece bound and the hug bound that
-`no_overrun_of_hug_and_piece` consumes. -/
+Neither the hypothesis nor the conclusion mentions `c`, `c'` or `t'`: both speak
+only of `t` and `x`.  So the domination `c'.length ≤ c.length` --- the whole
+content of "maximal" --- and the membership `t' ∈ symmetrization R` are inert,
+and the predicate is not about a junction.
+
+`GreendlingerSharpTwins.MaximalJunctionSharp` is the sharp twin, demoted the
+same way, and `GreendlingerLandingProd.maximalJunctionSharp_of_metric` is the
+written proof of the vacuity.  The module header records what the missing
+word-level statement would have to assert.
+
+Kept rather than deleted so the trap stays on the record. -/
 def MaximalJunction [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
   ∀ (c t c' t' : List (α × Bool)) (x : ℕ),
     t ∈ symmetrization R → t' ∈ symmetrization R →
@@ -269,12 +312,16 @@ def MaximalJunction [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
     IsPiece (symmetrization R) (t.take x) ∨ x = 0 →
     6 * x < t.length
 
-/-- **The located conclusion at the maximising factor.**  Given the junction
-fact on both sides, the factor with the longest conjugator keeps more than two
-thirds of its rotation, which is more than the half the gate asks for.
+/-- **The located conclusion at the maximising factor.**  A rotation losing at
+most `x` at one end keeps more than two thirds of itself, which is more than the
+half the gate asks for.  The proof is `keeps_of_two_pieces`: nothing else is
+needed once both losses are pieces.
 
-The proof is `keeps_of_two_pieces`: nothing else is needed once both losses are
-pieces. -/
+This is **unconditional**, and it is worth being exact about why.  It does not
+mention `MaximalJunction`, and never did: it takes the numeric bound `hx` as a
+hypothesis, and the demoted predicate would only have supplied that same bound.
+An earlier docstring said "given the junction fact on both sides", which read as
+though the theorem were conditional on the predicate; it is not. -/
 theorem greendlingerAt_of_maximalJunction {R : Set (List (α × Bool))}
     {c t P' M B' : List (α × Bool)} {x j : ℕ}
     (ht : t ∈ symmetrization R)

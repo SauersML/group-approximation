@@ -182,7 +182,21 @@ orientation itself, `five_mul_lt_six_mul_eaten`, `eq_rotate_of_deep_eaten`,
 here rather than assumed silently.  `GreendlingerRegime.exists_swallow_split`
 describes what the failing case looks like: `invRev M = c ++ invRev t ++ invRev c₂`,
 so the whole inverted head rotation sits in the tail word, and the depth becomes
-`|c₂| + j`, which no bound above controls. -/
+`|c₂| + j`, which no bound above controls.
+
+The hole is narrower than it first appears, and the narrowing is now a theorem.
+`GreendlingerRegime.swallow_bound_of_minimal_of_prefix` is that file's argument
+with the confinement hypothesis replaced by the only thing it ever read from it,
+`c ++ invRev t <+: palindrome c' t'` — the branch that looks like it needs the
+whole block discards `invRev c₂` at its second step, and no branch consumes more
+than `|c| + |t|` letters of the adjacent palindrome.  So the swallow bound is
+available in the overrun regime too, whenever those letters still fit inside the
+adjacent palindrome; `swallow_bound_of_minimal` is now the confined instance of
+it.
+
+What is left open below is therefore only the residue: the case where the
+adjacent factor's survivor is shorter than `c ++ invRev t`, so that not even the
+inverted head rotation fits beside the head conjugator before the block runs on. -/
 def DeepOverrunSwallowBound [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
   ∀ (c t c' t' M B' : List (α × Bool))
     (f : List (FreeGroup α × List (α × Bool))) (g : FreeGroup α) (j : ℕ),
