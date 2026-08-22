@@ -52,3 +52,12 @@ is still required.
   marginal holonomy unchanged.  A positive construction must use the common
   reflection sector inside the overlap/return cell, rather than as a spectator
   amplification.
+- In fact `common-reflection-defect-is-holonomy-spectator` proves that every
+  unitary transporting a complete `q`-partition to another complete
+  `q`-partition must preserve `q` and split block-diagonally across `e+q`.
+  Hence the defect block cannot enter the accepting-corner return word at
+  all.  The alternative hyperoctahedral realization
+  `hyperoctahedral-reflection-common-q-context-atlas` solves every nonlinear
+  local predicate and every edgewise rank match at arbitrarily high density,
+  but its first cycle is still exactly the signed-Hecke block-escaping
+  holonomy gate.
