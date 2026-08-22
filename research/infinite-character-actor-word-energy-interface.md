@@ -156,3 +156,13 @@ do not provide either mechanism.
   every conjugation-balanced mixed word unchanged while its fine transport
   energy is `2`.  Additional actor relations must independently
   authenticate the exchanged domains.
+- **Bypass rather than solve the PVM interface with one spherical HS
+  average.**  `spherical-hs-average-bypasses-global-character-resolution`
+  isolates the only genuinely different version of this proposal.  It asks
+  actor relations to authenticate a non-diagonal seed orbit frame on which
+  one fixed finitely supported conjugation average is contractive, while the
+  Pauli mark makes the same vector almost invariant.  This would close a
+  parallel metapixel route without proving `(ISC2)`.  The invisible-fiber
+  swap is its mandatory first falsifier: if the swap preserves the proposed
+  average and actor relations, the route adds no information beyond the
+  mixed-word no-go.

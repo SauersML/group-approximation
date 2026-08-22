@@ -55,3 +55,10 @@ host's relator budget and the subgroup's relation budget.  Nothing here needs
 the embedding to be undistorted; distortion controls the relation between
 `|w|_A` and `|w|_B`, which enters only if one wants to compare the two word
 metrics as well.
+
+Golan's theorem that every copy of Thompson's `F` in `F` is undistorted
+([arXiv:2608.17193](https://arxiv.org/abs/2608.17193)) does not change this
+gate.  It controls the comparison of word metrics, whereas `(SDM1)--(SDM3)`
+need relative filling area to convert host relator defect into subgroup
+relation defect.  It is therefore useful corroboration for the metric side,
+not a replacement for `quantitative-higman-embedding-with-dehn-control`.

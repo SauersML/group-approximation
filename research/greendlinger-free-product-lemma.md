@@ -88,3 +88,12 @@ needs: the *two disjoint pieces* of Greendlinger's lemma proper, which the
 one-piece conclusion cannot supply because the next factor can eat exactly
 the relator the previous step produced.  That strengthening is what classical
 treatments obtain from a reduced van Kampen diagram.
+
+There is now a deliberately weaker alternate endpoint for the consumers
+which need only a length lower bound.  The Kapovich-inspired claim
+`relative-region-length-bound-from-fragment-slack` asks for
+`wlen(r)<sylLength(boundary)` rather than a more-than-half external arc.  If
+proved, it can discharge protected-ball and factor-injectivity checks after
+those consumers are split away from `GreendlingerGate`.  It does not prove
+this claim: the two-disjoint-piece induction and the torsion companion remain
+open.
