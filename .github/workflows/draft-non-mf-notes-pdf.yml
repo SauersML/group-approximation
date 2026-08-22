@@ -62,7 +62,7 @@ jobs:
           sudo apt-get $retry install --yes --no-install-recommends qpdf
           docker pull "$TEXLIVE_IMAGE"
 
-      - name: Compile the main aux and notes in pinned TeX Live
+      - name: Compile the main aux in pinned TeX Live
         if: steps.gate.outputs.build == 'true'
         run: |
           mkdir -p build
@@ -71,12 +71,21 @@ jobs:
             -e SOURCE_DATE_EPOCH="$source_epoch" \
             -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
             -v "$GITHUB_WORKSPACE:/work" -w /work \
-            "$TEXLIVE_IMAGE" sh -lc '
-              latexmk -lualatex -outdir=build -interaction=nonstopmode \
-                -halt-on-error -file-line-error non_mf_groups_exist.tex &&
-              latexmk -lualatex -outdir=build -interaction=nonstopmode \
-                -halt-on-error -file-line-error non_mf_group_notes.tex
-            '
+            "$TEXLIVE_IMAGE" \
+            latexmk -lualatex -outdir=build -interaction=nonstopmode \
+              -halt-on-error -file-line-error non_mf_groups_exist.tex
+
+      - name: Compile the notes in pinned TeX Live
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" \
+            latexmk -lualatex -outdir=build -interaction=nonstopmode \
+              -halt-on-error -file-line-error non_mf_group_notes.tex
 
       - name: Refuse unresolved references
         if: steps.gate.outputs.build == 'true'
