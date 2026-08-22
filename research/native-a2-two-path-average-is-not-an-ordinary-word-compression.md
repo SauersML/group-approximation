@@ -93,3 +93,10 @@ through a noncentral two-path selector, while also forcing its complementary
 Julia leakage onto an already charged carrier.  Merely adjoining more
 native monomial section identities cannot invoke `(NTA6)`.
 
+The first internal finite-Hecke attempt also fails sharply.
+`native-c2-hecke-corner-cannot-wordize-the-a2-average` takes
+`c=diag(-1,-1,1) in D`, which even inverts the desired holonomy
+`d=x_23(2)`.  A compression by `(1+c)/2` has either four support words or two
+whose relative word is a finite involution, never the two paths with
+infinite relative word `d`; moreover its section covariance defect against
+`d` has squared norm exactly `1/2`.

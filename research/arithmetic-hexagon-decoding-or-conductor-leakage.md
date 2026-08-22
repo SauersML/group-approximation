@@ -238,6 +238,16 @@ the fixed-depth nonhyperlinearity criterion.
   close the decoder: the base projection commutes with `D`, so the
   nonamenable holonomy is an internal corner unitary until two paths are
   forced to interfere on the identical carrier.
+- **The smallest internal finite-Hecke wordization fails three times.**
+  Take `c=diag(-1,-1,1) in D` and `q=(1+c)/2`.  Although `c` inverts the
+  desired holonomy `d=x_23(2)`, every literal `qgq` has either four distinct
+  support words or two whose relative word is a finite involution, never the
+  two A2 paths with infinite relative word `d`.  Its trace is `1/2`, not
+  `1/42`, and the exact section-covariance floor is
+  `||dqd^(-1)-q||_2^2=1/2`.  See
+  `native-c2-hecke-corner-cannot-wordize-the-a2-average`.  Thus the first
+  finite character idempotent cannot expose the trace-zero holonomy without
+  abandoning the raw section interface.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from
