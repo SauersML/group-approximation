@@ -8,11 +8,33 @@ from itertools import combinations, product
 COLORS = (3, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 1,
           2, 3, 2, 1, 2, 1, 2, 1, 2, 1, 0, 1, 2, 3)
 
-# g1,g2,g4,...,g13 are numbered 1,...,12; g0=g3=1 already.
+# g1,g2,g4,...,g13 are numbered 1,...,12; g0=g3=1 already.  Keep
+# the raw names beside the compressed integers: the previous version of this
+# screen had an off-by-one generator map, and these assertions are the cheap
+# one-hot replay that prevents such a result from entering Cairn again.
+GENERATORS = ("g1", "g2", "g4", "g5", "g6", "g7", "g8", "g9",
+              "g10", "g11", "g12", "g13")
+NUMBER = {name: index + 1 for index, name in enumerate(GENERATORS)}
+RAW_S = (
+    (("g10", -1),), (("g9", -1),), (("g8", -1),), (("g7", -1),),
+    (("g6", -1),), (("g5", -1),), (("g4", -1), ("g2", -1)),
+    (("g1", -1), ("g13", -1)), (("g12", -1),),
+    (("g11", -1), ("g4", 1)), (("g5", 1),), (("g6", 1),),
+    (("g7", 1),), (("g8", 1),), (("g9", 1),), (("g10", 1),),
+    (("g11", 1), ("g10", -1)), (("g9", -1),), (("g8", -1),),
+    (("g7", -1),), (("g6", -1),), (("g5", -1),),
+    (("g4", -1), ("g2", -1)), (("g1", -1), ("g13", -1)),
+    (("g12", -1),), (("g11", -1), ("g9", 1)), (("g10", 1),),
+    (("g11", 1),), (("g12", 1),),
+)
 S = ((-9,), (-8,), (-7,), (-6,), (-5,), (-4,), (-3, -2),
      (-1, -12), (-11,), (-10, 3), (4,), (5,), (6,), (7,), (8,),
      (9,), (10, -9), (-8,), (-7,), (-6,), (-5,), (-4,),
      (-3, -2), (-1, -12), (-11,), (-10, 8), (9,), (10,), (11,))
+
+assert S == tuple(tuple(sign * NUMBER[name] for name, sign in syllable)
+                  for syllable in RAW_S)
+assert len(S) == len(COLORS)
 
 
 @lru_cache(maxsize=None)
