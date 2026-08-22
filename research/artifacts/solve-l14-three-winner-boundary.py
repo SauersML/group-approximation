@@ -332,6 +332,7 @@ def main():
     parser.add_argument("--carrier-index", type=int)
     parser.add_argument("--carrier-start", type=int)
     parser.add_argument("--carrier-end", type=int)
+    parser.add_argument("--target", type=int, choices=range(4))
     parser.add_argument("--trace-words", action="store_true")
     args = parser.parse_args()
     carriers = S.combined_carrier_states(report=True)
@@ -353,6 +354,8 @@ def main():
                   f"syllables={len(transformed)}", flush=True)
         for rotation_index, rotation in enumerate(cuts):
             for target in range(4):
+                if args.target is not None and target != args.target:
+                    continue
                 augmented = normalize_fp(rotation + ((target, (-Q,)),))
                 augmented_words.add(augmented)
                 started = monotonic()
