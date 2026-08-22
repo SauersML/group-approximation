@@ -116,7 +116,11 @@ refutation mechanism is ISW's operator-valued Theorem C: a p.m.p.
 action with cocycles in `Z^2(Gamma, L^0(X,T))`, `||c_n - 1||_2 -> 0`,
 non-coboundary restrictions, and — for LLP rather than LP —
 `R^omega`-embeddability of every twisted crossed product
-`L^infty(X) x| Gamma`.  No such data exists for `Sp_4(Z)` in the
-recorded literature; note their Remark 1.1 (LP would force
-`H^2(Gamma, L^0(X,T))` countable for every ergodic p.m.p. action)
-marks the same frontier from the other side.
+`L^infty(X) x| Gamma`.  That mouth is parked as the open claim
+`sp4-isw-theorem-c-embeddable-twist-data-exists`: the cocycle half is
+essentially supplied by the Deligne circle over the Bernoulli action
+(Jiang's embedding), so the whole question is the Connes-embeddability
+of the Maslov-twisted crossed products — which the multiplier
+finiteness shows cannot be certified through finite models; note ISW
+Remark 1.1 (LP would force `H^2(Gamma, L^0(X,T))` countable for every
+ergodic p.m.p. action) marks the same frontier from the other side.
