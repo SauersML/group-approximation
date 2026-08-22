@@ -123,3 +123,10 @@ and a new normal-form or picture analysis is required.  The next exact test
 is whether the new two-edge coefficient face can close a corridor with outer
 boundary in one coefficient copy.  Calling `(NC2)` a KL counterexample
 before that test would be unjustified.
+
+That test is continued in
+`leavitt-nielsen-collision-has-a-hidden-first-side-relation`.
+After folding the duplicate gate, a disjoint-root commutator gives a genuine
+long kernel in the first edge map, but a complete four-cell audit still finds
+no coefficient-boundary disk.  The first-edge kernel has the wrong pushout
+variance to imply a KL violation on its own.

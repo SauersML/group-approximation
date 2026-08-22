@@ -41,3 +41,8 @@ This is the next explicit Leavitt KL candidate selected by a deliberate
 Nielsen-table collision.  The collision invalidates the complete
 Nielsen--amalgam fence for the previous word, but it does not yet establish a
 coefficient-copy kernel in the full paired quotient.
+
+The folded atlas also has the exact long kernel recorded in
+`leavitt-nielsen-collision-has-a-hidden-first-side-relation`.  That strengthens the
+diagnosis, but its pushout direction is `ker(Q->C)`, not the `ker(Q->P)`
+direction which would immediately kill a coefficient word.
