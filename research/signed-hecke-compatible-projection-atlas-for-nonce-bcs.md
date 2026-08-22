@@ -132,6 +132,16 @@ trace is required.
   is more specific: place isomorphic local `M_D` blocks as distinct algebraic
   subalgebras of the infinite corner and identify only their shared signed
   marginals.
+- **Finite groupoids do not enlarge the overlap syntax.**
+  `finite-groupoid-diagonals-have-only-classical-gluing` computes the strict
+  limit of the context coarse diagonals: its sheets are exactly compatible
+  families of allowed context answers, hence exactly classical solutions.
+  A connected object corner kills all non-root object identities; retaining
+  finitely many objects leaves one common coordinate diagonal.  Groupoid
+  transports avoid the classical limit only by retaining cycle holonomy, in
+  which case they give covariance rather than `(BPA3)`.  Non-diagonal
+  isotropy-corner elements return to the signed-Hecke chord, while a graph of
+  finite isotropy groups is virtually free and is already excluded.
 - **Narrow live cell.**  The route
   `signed-hecke-balanced-holonomy-route` leaves only
   `signed-hecke-block-escaping-cycle-holonomy`: realize the residual chord
