@@ -28,6 +28,14 @@ only on `N`.
 - Compile the fixed non-CE BCS trace into a finite projective presentation.
   Existing phase packets leave exact forbidden selector sectors and so do not
   transfer the finite-dimensional energy gap.
+- It would already suffice to find a finite-index projective core rather
+  than a projective basis for the whole BCS factor, by
+  `finite-index-projective-core-yields-central-witness`.
+  The explicit context and fixed packet algebras do not provide one: they
+  are finite-dimensional and therefore have infinite Jones index in the
+  non-CE factor.  The native global BCS generators still force affine
+  context support.  No current MIP-star/BCS construction supplies the
+  missing diffuse finite-index projective core.
 - Merely use computability of the BCS character and centralize its scalar GNS
   kernel.  `computable-projective-kernel-has-reversed-enumerability` proves
   that computable coefficients enumerate the **complement** of that kernel;
