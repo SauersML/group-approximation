@@ -634,6 +634,66 @@ theorem fromIndexed_prod_linearTransitionWord {u v w : Vertex G}
       congr 1
       simpa [linearTransitionWord, CoprodI.Word.prod] using ih h₂ hn.2
 
+/-- The Bass--Serre coset graph has no cycles.  A hypothetical cycle supplies
+a nonempty reduced transition word: trailness makes consecutive edge labels
+distinct, bipartiteness makes the transition factors alternate, and the
+transition product telescopes to `1`, contradicting binary free-product normal
+form. -/
+theorem graph_isAcyclic : (graph G).IsAcyclic := by
+  intro start c hc
+  cases c with
+  | nil => exact hc.not_nil rfl
+  | @cons start next _ h p =>
+      let q : (graph G).Walk next next := p.append h.toWalk
+      have hn : (edgeLabel G h :: walkLabels G p).Nodup := by
+        simpa using walkLabels_nodup_of_isTrail G hc.isTrail
+      have hpLabels : walkLabels G p ≠ [] := by
+        intro hempty
+        have hlen := length_walkLabels G p
+        rw [hempty] at hlen
+        have hthree := hc.three_le_length
+        rw [SimpleGraph.Walk.length_cons] at hthree
+        simp at hlen
+        omega
+      have hclosedChain :
+          (edgeLabel G h :: (walkLabels G p ++ [edgeLabel G h])).IsChain
+            (· ≠ ·) :=
+        isChain_ne_append_head_of_nodup hn hpLabels
+      have hqLabels :
+          walkLabels G q = walkLabels G p ++ [edgeLabel G h] := by
+        dsimp [q]
+        rw [walkLabels_append]
+        simp
+      have hchain :
+          (edgeLabel G h :: walkLabels G q).IsChain (· ≠ ·) := by
+        rw [hqLabels]
+        exact hclosedChain
+      let W := linearTransitionWord G h q hchain
+      have hWnonempty : W.toList ≠ [] := by
+        intro hnil
+        have hlen := length_linearTransitionLetters G h q
+        change (linearTransitionLetters G h q).length = q.length at hlen
+        have hzero : (linearTransitionLetters G h q).length = 0 := by
+          simpa [W, linearTransitionWord] using congrArg List.length hnil
+        have hqpos : 0 < q.length := by
+          dsimp [q]
+          simp
+        omega
+      have hdecode := fromIndexed_prod_linearTransitionWord G h q hchain
+      have htransitionOne :
+          (transitionsFrom G (edgeLabel G h) (walkLabels G q)).prod = 1 := by
+        rw [hqLabels]
+        exact prod_cyclicTransitions G (walkLabels G p)
+      have hWone : BinaryCoprodNormalForm.fromIndexed G W.prod = 1 := by
+        exact hdecode.trans htransitionOne
+      exact
+        (BinaryCoprodNormalForm.fromIndexed_prod_ne_one_of_toList_ne_nil G hWnonempty)
+          hWone
+
+/-- **The canonical Bass--Serre coset graph of `G ∗ ℤ` is a tree.** -/
+theorem graph_isTree : (graph G).IsTree :=
+  ⟨graph_connected G, graph_isAcyclic G⟩
+
 /-- **The base edge has trivial pointwise stabilizer.**  In particular it is
 finite, which is the algebraic core of the WPD segment argument for the
 Bass--Serre action. -/

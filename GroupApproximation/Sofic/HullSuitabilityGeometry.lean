@@ -1848,6 +1848,37 @@ theorem gromovProduct_chain_le_pow_two_of_pos {δ : ℝ}
     exact le_trans hlast (gromovProduct_le_right _ _ _)
   exact gromovProduct_chain_le_pow_two hδ hδ0 w y c N k hN hc hend
 
+/-- **Discrete exponential divergence.**  Let a chain of `N` edges, each of
+length at most `D`, stay outside the radius-`R` ball about `w`.  Consecutive
+vertices then have Gromov product at least `R - D/2` at `w`.  If
+`N ≤ 2ᵏ`, the dyadic chain lemma forces the endpoints' Gromov product to be
+at least `R - D/2 - kδ`.
+
+Equivalently, when the endpoint product is at most `C`, one has
+`R ≤ C + D/2 + kδ`.  This is the exponential-detour estimate at the heart of
+the Morse excursion argument, proved directly from four-point hyperbolicity. -/
+theorem radius_le_of_chain_avoids_ball {δ D R C : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (w : X) (y : ℕ → X)
+    (N k : ℕ) (hNpos : 0 < N) (hN : N ≤ 2 ^ k)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (havoid : ∀ i, i ≤ N → R ≤ dist (y i) w)
+    (hend : gromovProduct (y 0) (y N) w ≤ C) :
+    R ≤ C + D / 2 + k * δ := by
+  have hlocal : ∀ i, i < N →
+      R - D / 2 ≤ gromovProduct (y i) (y (i + 1)) w := by
+    intro i hi
+    have hiN : i ≤ N := by omega
+    have hisN : i + 1 ≤ N := by omega
+    have hleft := havoid i hiN
+    have hright := havoid (i + 1) hisN
+    have he := hedge i hi
+    unfold gromovProduct
+    linarith
+  have hchain := gromovProduct_chain_le_pow_two_of_pos hδ hδ0 w y
+    (R - D / 2) N k hNpos hN hlocal
+  push_cast at hchain ⊢
+  linarith
+
 /-! ### Geodesics
 
 The prerequisite the stability theorem needs and that nothing before it did.
@@ -2093,6 +2124,38 @@ theorem gromovProduct_le_dist_of_mem_geodesic {f : ℝ → X} {a b s : ℝ}
     dist_triangle _ _ _
   simp only [gromovProduct, h3]
   rw [dist_comm w (f s)]
+  linarith
+
+/-- Every point of a geodesic spanning a bounded-step chain is logarithmically
+close to some vertex of the chain.  If all vertices avoided a slightly larger
+ball around that geodesic point, `radius_le_of_chain_avoids_ball` would force
+that radius to be no larger than itself minus one, since the endpoint Gromov
+product based at a point of their geodesic is zero. -/
+theorem exists_chain_point_dist_le_of_mem_geodesic {δ D : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (y : ℕ → X) (N k : ℕ) (hNpos : 0 < N) (hN : N ≤ 2 ^ k)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    {f : ℝ → X} (hf : IsGeodesicSegment f 0 (dist (y 0) (y N)))
+    (hf0 : f 0 = y 0) (hf1 : f (dist (y 0) (y N)) = y N)
+    {s : ℝ} (hs : s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N))) :
+    ∃ i : ℕ, i ≤ N ∧ dist (y i) (f s) ≤ D / 2 + k * δ := by
+  by_contra hnone
+  have hfar : ∀ i : ℕ, i ≤ N →
+      D / 2 + k * δ + 1 ≤ dist (y i) (f s) := by
+    intro i hi
+    have hnot : ¬ dist (y i) (f s) ≤ D / 2 + k * δ := by
+      intro hle
+      exact hnone ⟨i, hi, hle⟩
+    linarith
+  have hend : gromovProduct (y 0) (y N) (f s) ≤ 0 := by
+    have h := gromovProduct_le_dist_of_mem_geodesic
+      (a := 0) (b := dist (y 0) (y N)) (s := s)
+      dist_nonneg hs hf (f s)
+    rw [hf0, hf1, dist_self] at h
+    exact h
+  have hrad := radius_le_of_chain_avoids_ball hδ hδ0 (f s) y N k
+    hNpos hN hedge hfar hend
+  push_cast at hrad
   linarith
 
 /-! ### The converse: the Gromov product *is* the distance to the geodesic
