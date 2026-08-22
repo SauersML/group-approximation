@@ -118,3 +118,27 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   coefficient in `supp(q)`; unlike the central case, no theorem forces that
   support into a finite normal subgroup.  Thus the finite-normal twisted-
   sector fence and this finite-packet literal fence are complementary.
+- **Arbitrary algebraic Bass--Serre projections have no new stable packet
+  class.**  `bass-serre-algebraic-projections-are-stably-vertex-induced`
+  applies the Bergman--Dicks projective-module theorem to every projection in
+  `M_n(q C[Gamma] q)` when `Gamma` is a finite graph of finite groups and
+  `q` lies in a finite vertex algebra.  Even if the projection is a finite
+  linear combination spanning many reduced-word double cosets, it is stably
+  Murray--von Neumann equivalent in a matrix amplification of `L(Gamma)` to a
+  finite direct sum of vertex-group projections.  This closes the proposed
+  escape through the stable class or trace capacity of one long-support
+  projection.  It does not simultaneously straighten a family: relative
+  positions and cycle holonomy can survive individual equivalence, so a full
+  signed-Hecke atlas still requires a separate compatibility obstruction.
+- **The 2026 solution of Kadison's unitary-basis problem does not supply a
+  group basis.**
+  `every-separable-diffuse-finite-algebra-has-an-orthonormal-symmetry-basis`
+  applies to the non-CE BCS factor and gives a countable complete
+  orthonormal basis of self-adjoint unitaries.  However
+  `projectively-closed-symmetry-bases-are-hyperfinite` proves that if this
+  basis were closed under multiplication up to scalar, its projective index
+  group would have exponent two, hence be abelian, and the factor would be a
+  hyperfinite twisted group algebra.  Thus the new basis theorem supplies
+  bounded coordinates but not `(GFB1)`; the missing information is exactly
+  a regular multiplicative group law, and a non-CE factor forces some basis
+  products to spread over several coordinates.
