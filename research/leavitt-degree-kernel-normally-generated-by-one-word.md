@@ -56,7 +56,16 @@ unspecified element to kill.
    normally generate, the quotient by its ambient normal closure is necessarily
    infinite, perfect, and has no finite quotients.  A Peiffer/crossed-module
    test must therefore retain a genuinely nonsolvable coefficient image.
-5. **Reality check, recorded because this claim reads more tractable than it
+5. **Put a normally generating Leavitt root next to the variable power.**
+   The explicit candidate `w=r t^2`, where the involutive root `r` normally
+   generates `G`, fails at
+   `leavitt-normal-root-square-equation-has-amalgam-countermodel`:
+   the relative quotient is `G *_(C_2) C_4`, and the degree-kernel quotient is
+   the concrete nonsolvable group `G *_(C_2) G`.  Normal generation of `r`
+   inside `G` does not kill `r` after it is identified with `t^2`; a candidate
+   must use at least two separated variable blocks and distinct coefficient
+   conjugacy data.
+6. **Reality check, recorded because this claim reads more tractable than it
    is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
    outright, and no violating equation is known over any group whatsoever.
    The honest reading — inherited from
