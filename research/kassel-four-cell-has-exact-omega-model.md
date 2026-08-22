@@ -27,3 +27,7 @@ relator defects.
 The matrices and direct verification are in
 `research/artifacts/kassel-four-cell-exact-omega-model-2026-08-21.md`.
 
+The first cumulative extension collision for this exact packet is computed
+by `kassel-27-28-charge-the-explicit-omega-packet`: either (2.7) or (2.8)
+extends separately, but together they have squared defect at least `2/5`
+when the four-cell generators are frozen.

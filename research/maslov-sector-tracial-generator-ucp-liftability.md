@@ -85,3 +85,10 @@ Nevertheless it closes the Maslov sector by
   (2.5), (2.6), and (2.12) exactly while `w_beta^4=omega I_24`.  Thus even
   the complete support-minimal determinant cell cannot supply the positive
   kernel.  A further relation must couple those two tensor factors.
+- **The first coupling pair is (2.7)--(2.8), on the explicit packet.**
+  `kassel-27-28-charge-the-explicit-omega-packet` shows that either face
+  extends separately, while together their squared defect is at least
+  `2/5` after freezing the 24-dimensional omega packet.  This is the desired
+  clock/permutation coupling mechanism in one exact local model.  Promoting
+  it from that packet to every nontrivial marked tuple remains the global
+  positive-kernel/lifting step.
