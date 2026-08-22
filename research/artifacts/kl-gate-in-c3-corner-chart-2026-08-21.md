@@ -185,3 +185,35 @@ identity fiber odd.  The full residue sizes range over
 `122,156,164,202,220,222,224,234,236,238,242`; formula (8) is the uniform
 certificate.  A surviving short conjugator must therefore use a longer
 Steinberg interaction than one KL gate times one cyclic `s_0`- or `t_1`-root.
+
+## Coordinate monomials and shortest Steinberg commutators
+
+The last natural one-gate families use the order-twenty coordinate cycle
+itself.  For every `i` and every `1<=j<20`, the verifier audits
+
+```text
+x=q_i phat^j,        x=phat^j q_i,
+```
+
+with their explicit reverse-order inverses.  All 760 words satisfy the same
+identity-coefficient formula (8): the three correction bits vanish and the
+base bit is one.
+
+It also audits the two shortest commutator grids
+
+```text
+[q_i,a_j]=q_i a_j q_i a_j,
+[q_i,f_j]=q_i f_j q_i f_j.
+```
+
+In each 400-word grid exactly 80 commutators are nontrivial in Bergman normal
+form.  Every one of those 160 nontrivial commutators again has correction-bit
+triple `(0,0,0)` and hence odd identity fiber.  The trivial commutators reduce
+to the already-failed base word and have the same bit.
+
+This exhausts the canonical short program consisting of one coordinate KL
+gate, one coordinate-cycle monomial or one cyclic pure root, products in both
+orders, and their shortest commutators.  It does **not** assert a theorem for
+arbitrary prefix permutations or arbitrary longer Steinberg words.  Any next
+constructive packet candidate must introduce either a second gate type not in
+the KL triple, a noncyclic prefix permutation, or a longer nested commutator.

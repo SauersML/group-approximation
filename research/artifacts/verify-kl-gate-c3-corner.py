@@ -5,7 +5,18 @@ An element of L_F2(1,2) is stored as a finite XOR-set of pairs (u,v),
 representing s_u t_v.  Equality is decided in Bergman normal form by the
 oriented rule s_1 t_1 -> 1+s_0 t_0.  Group-ring elements are XOR-sets of
 these canonical units.
+
+Pass ``--final-only --family=cycleq|qcycle|qa_comm|qe_comm`` to run one of
+the larger final short-word families without replaying the earlier audits.
 """
+
+import sys
+
+FINAL_ONLY = "--final-only" in sys.argv
+FINAL_FAMILY = next(
+    (arg.split("=", 1)[1] for arg in sys.argv if arg.startswith("--family=")),
+    "all",
+)
 
 def xor(*sets):
     out = set()
@@ -170,13 +181,13 @@ for j in range(20):
     assert mul(qj, qj) == ONE
     candidates.append((f"q_{j}", qj))
 
-for name, candidate in candidates:
+for name, candidate in (candidates if not FINAL_ONLY else []):
     residue = defect(candidate, candidate)
     assert ONE in residue
     print(name, "SOLVES" if not residue else f"fails: {len(residue)} odd units")
 
 root_results = []
-for i in range(1, 21):
+for i in (range(1, 21) if not FINAL_ONLY else []):
     for j in range(1, 21):
         if i == j:
             continue
@@ -201,7 +212,7 @@ corner_a = gr_mul(gr_mul(e, t_lift), e)
 corner_b = gr_mul(gr_mul(e, s_lift), e)
 base_delta = gr_add(gr_mul(corner_a, corner_b), e)
 assert ONE in base_delta
-for d in range(1, 20):
+for d in (range(1, 20) if not FINAL_ONLY else []):
     qd = candidates[d][1]
     candidate = mul(q0, qd)
     candidate_inverse = mul(qd, q0)
@@ -222,7 +233,7 @@ print(two_gate_results)
 print("two-gate identity formula: 1(base)+(0+0+0)(corrections)=1")
 
 all_two_gate_results = []
-for i in range(20):
+for i in (range(20) if not FINAL_ONLY else []):
     qi = candidates[i][1]
     for j in range(20):
         if i == j:
@@ -292,9 +303,74 @@ def audit_distinct_type(label, left_family, right_family):
     return results
 
 
-distinct_type_results = {
+distinct_type_results = {} if FINAL_ONLY else {
     "q*a": audit_distinct_type("q*a", [unit for _, unit in candidates], a_candidates),
     "q*e": audit_distinct_type("q*e", [unit for _, unit in candidates], e_candidates),
     "a*q": audit_distinct_type("a*q", a_candidates, [unit for _, unit in candidates]),
     "e*q": audit_distinct_type("e*q", e_candidates, [unit for _, unit in candidates]),
 }
+
+
+def audit_word_family(label, words):
+    results = []
+    for indices, candidate, candidate_inverse in words:
+        assert mul(candidate, candidate_inverse) == ONE
+        p_x = packet(candidate, candidate_inverse)
+        p_x_inverse = packet(candidate_inverse, candidate)
+        correction_bits = (
+            ONE in gr_mul(corner_a, p_x_inverse),
+            ONE in gr_mul(p_x, corner_b),
+            ONE in gr_mul(p_x, p_x_inverse),
+        )
+        identity_odd = (ONE in base_delta) ^ correction_bits[0] ^ \
+            correction_bits[1] ^ correction_bits[2]
+        results.append((indices, correction_bits, identity_odd, candidate != ONE))
+    print(label, "tested:", len(results))
+    print(label, "correction-bit triples:", sorted({row[1] for row in results}))
+    print(label, "identity-odd count:", sum(row[2] for row in results))
+    print(label, "nontrivial word count:", sum(row[3] for row in results))
+    assert all(row[1] == (False, False, False) for row in results)
+    assert all(row[2] for row in results)
+    return results
+
+
+q_units = [unit for _, unit in candidates]
+cycle_powers = [power(pcycle, j) for j in range(20)]
+
+q_cycle_words = []
+cycle_q_words = []
+for i, qi in enumerate(q_units):
+    for j in range(1, 20):
+        pj = cycle_powers[j]
+        pinv = cycle_powers[20 - j]
+        q_cycle_words.append(((i, j), mul(qi, pj), mul(pinv, qi)))
+        cycle_q_words.append(((i, j), mul(pj, qi), mul(qi, pinv)))
+
+q_cycle_results = (
+    audit_word_family("q*p^j", q_cycle_words)
+    if FINAL_FAMILY in {"all", "qcycle"} else []
+)
+cycle_q_results = (
+    audit_word_family("p^j*q", cycle_q_words)
+    if FINAL_FAMILY in {"all", "cycleq"} else []
+)
+
+
+def commutator_words(root_family):
+    words = []
+    for i, qi in enumerate(q_units):
+        for j, root_unit in enumerate(root_family):
+            candidate = mul(mul(mul(qi, root_unit), qi), root_unit)
+            candidate_inverse = mul(mul(mul(root_unit, qi), root_unit), qi)
+            words.append(((i, j), candidate, candidate_inverse))
+    return words
+
+
+q_a_commutator_results = (
+    audit_word_family("[q,a]", commutator_words(a_candidates))
+    if FINAL_FAMILY in {"all", "qa_comm"} else []
+)
+q_e_commutator_results = (
+    audit_word_family("[q,e]", commutator_words(e_candidates))
+    if FINAL_FAMILY in {"all", "qe_comm"} else []
+)
