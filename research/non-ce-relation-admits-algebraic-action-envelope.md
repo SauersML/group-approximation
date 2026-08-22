@@ -290,3 +290,13 @@ non-hyperlinear group `hat K rtimes Lambda`.
   but converting its random bundle into one group factor is exactly `(AAE1)`
   or an equally strong non-Cartan group-factor envelope; packet limits cannot
   perform that conversion.
+- **The compact objects in Manzoor's primary construction do not already
+  provide that envelope.**
+  `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
+  subgroup-indicator subshift, the finite pseudo-subgroup hierarchy, and the
+  AGV labeled-Schreier realization.  `Sub(F)` is not an algebraic subgroup of
+  `{0,1}^F` and is Bernoulli-Haar null; its conjugation stabilizer is
+  `N_F(H)`, not `H`.  The LP optimizers have no compatible finite-action
+  bonding maps, while AGV supplies only Haar fibers `[0,1]^(F/H)` over the
+  unresolved base `mu`.  Thus there is no source-native compact-abelian Haar
+  action to insert into `(AAE1)`.
