@@ -90,3 +90,15 @@ nonhyperlinearity--but it shows precisely that neither positive packet
 density nor coherent reflection aggregation performs the promotion.  The
 missing input is a dimension-independent matrix-only rule which overcomes
 the explicit floor `(FCW2)` by making canonical microstates impossible.
+
+## D16/Hadamard audit
+
+`fanizza-verifier-d16-charger-globalizes-ground-support` diagonalizes the
+coherent reflection in the flag-`X` basis.  It is selector-central with
+blocks `I` and `sum_j e_(jj)(1-2L_j)`, and the transverse D16 commutator has
+energy exactly four times the average losing mass.  But the native signal
+carrier uses the transverse flag-`Z` line and is not reducing.  Making the
+commutator a global relator forces every losing projection to vanish as an
+operator, while the recorded HALT theorem supplies only a positive-signal
+ground vector.  Hence the D16 cell reads the verifier Hamiltonian but does
+not perform the required support localization or wandering promotion.

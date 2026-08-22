@@ -108,6 +108,14 @@ interface.
   predicates in that cell and check whether their signed composition has the
   required `1/2` coefficient on the marked type; any complementary type with
   nonzero return coefficient is the remaining leakage channel.
+- **The coherent-verifier D16 shortcut does not expose a doubling cell.**
+  `fanizza-verifier-d16-charger-globalizes-ground-support` shows that its two
+  selector blocks are the identity and the aggregate losing reflection, not
+  the two successor branches.  Applied to one recurrence overlap, the needed
+  block is `1-2P_n X_nP_nX_n^*`, the Boolean-AND reflection of the two cuts.
+  Its four-character truth table is not a word in the commuting reflection
+  skeleton, and the stationary `S4` escape realizes every character.  Thus
+  the shortcut returns exactly to additive/controlled wordization.
 - **Fixed packet repeated without a bridge. Dead.** Restriction across
   `A_f<=B_f` outputs an `A_f`-module; a second independent copy of `B_f`
   expects another `B_f`-module. Identifying only the two `A_f` restrictions
