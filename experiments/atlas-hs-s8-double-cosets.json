@@ -1,0 +1,122 @@
+{
+  "S8_action": "b",
+  "actions": [
+    {
+      "cells": [
+        {
+          "derived_intersection_order": 20160,
+          "derived_intersection_structure": "PSL(3,4)",
+          "generated_by_two_derived_subgroups_order": 20160,
+          "stabilizer_intersection_order": 40320,
+          "subdegree": 1
+        },
+        {
+          "derived_intersection_order": 960,
+          "derived_intersection_structure": "(C2 x C2 x C2 x C2) : A5",
+          "generated_by_two_derived_subgroups_order": 443520,
+          "stabilizer_intersection_order": 960,
+          "subdegree": 42
+        },
+        {
+          "derived_intersection_order": 192,
+          "derived_intersection_structure": "(((C2 x C2 x C2 x C2) : C2) : C2) : C3",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 384,
+          "subdegree": 105
+        },
+        {
+          "derived_intersection_order": 36,
+          "derived_intersection_structure": "(C3 x C3) : C4",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 144,
+          "subdegree": 280
+        },
+        {
+          "derived_intersection_order": 60,
+          "derived_intersection_structure": "A5",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 60,
+          "subdegree": 672
+        }
+      ],
+      "derived_is_A8": false,
+      "derived_order": 20160,
+      "group_order": 44352000,
+      "intersection_orders": [
+        40320,
+        960,
+        384,
+        144,
+        60
+      ],
+      "representation": "a",
+      "stabilizer_order": 40320,
+      "subdegrees": [
+        1,
+        42,
+        105,
+        280,
+        672
+      ]
+    },
+    {
+      "cells": [
+        {
+          "derived_intersection_order": 20160,
+          "derived_intersection_structure": "A8",
+          "generated_by_two_derived_subgroups_order": 20160,
+          "stabilizer_intersection_order": 40320,
+          "subdegree": 1
+        },
+        {
+          "derived_intersection_order": 720,
+          "derived_intersection_structure": "S6",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 1440,
+          "subdegree": 28
+        },
+        {
+          "derived_intersection_order": 192,
+          "derived_intersection_structure": "(((C2 x C2 x C2) : (C2 x C2)) : C3) : C2",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 384,
+          "subdegree": 105
+        },
+        {
+          "derived_intersection_order": 60,
+          "derived_intersection_structure": "A5",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 120,
+          "subdegree": 336
+        },
+        {
+          "derived_intersection_order": 16,
+          "derived_intersection_structure": "C2 x D8",
+          "generated_by_two_derived_subgroups_order": 44352000,
+          "stabilizer_intersection_order": 64,
+          "subdegree": 630
+        }
+      ],
+      "derived_is_A8": true,
+      "derived_order": 20160,
+      "group_order": 44352000,
+      "intersection_orders": [
+        40320,
+        1440,
+        384,
+        120,
+        64
+      ],
+      "representation": "b",
+      "stabilizer_order": 40320,
+      "subdegrees": [
+        1,
+        28,
+        105,
+        336,
+        630
+      ]
+    }
+  ],
+  "source": "official ATLAS HS degree-1100 GAP generators"
+}
