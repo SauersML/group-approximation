@@ -2,8 +2,9 @@
 rg: 2
 id: constant-depth-pauli-naming-boundary-proof
 kind: route
+title: Exactify the fixed-depth rows as one finite packet and verify marked completeness on properly infinite factors
 target: constant-depth-pauli-naming-does-not-create-schur-contraction
-uses:
+requires:
   - schur-child-toeplitz-morita-wire
   - finite-packet-cannot-realize-absorbing-contraction
 ---

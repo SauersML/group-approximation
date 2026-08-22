@@ -2,8 +2,9 @@
 rg: 2
 id: diagonal-difference-shift-pauli-incidence-proof
 kind: route
+title: Cancel the unitary part across the Pauli seed and propagate selectors through the finite relations
 target: diagonal-difference-shift-propagates-pauli-incidence
-uses:
+requires:
   - diagonal-covariance-has-quadratic-hs-word-cost
   - toeplitz-coordinate-paulis-localize-cells-and-grams
 ---
