@@ -75,6 +75,15 @@ explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
   `MIP^co = coRE` compiler: its exact side is the commuting side on
   nonhalting inputs, which is the other orientation
   (`kleene-mipco-self-destroying-game`).
+- **Reverse Kleene does not manufacture perfect completeness.**
+  `reverse-kleene-does-not-remove-tv-completeness-loss` runs the exact
+  self-referential proof search for `J=1`.  The NONHALT branch would close the
+  goal, but a HALT proof gives only an instance-dependent upper gap
+  `gamma(D)` and conflicts with completeness `1-epsilon` only if
+  `epsilon<gamma(D)`.  Since `epsilon` was fixed before `D` is found, this is
+  another threshold-crossing obligation.  At `epsilon=0` the Bernoulli mask
+  support collapses and the Taller--Vidick decoder becomes vacuous, so no
+  algebraic limiting argument repairs it.
 - **2026 shortcut audit.**  Cleve--Culf--Taller, arXiv:2607.06876, now give
   RE-hard tilted-XOR games, but their inherited completeness is
   `3/4-epsilon`, not one.  Culf, arXiv:2603.14746, rounds almost-perfect
