@@ -9,6 +9,7 @@ p,d,b,c,u after a=d*u*p^-1.
 
 from functools import lru_cache
 from itertools import combinations
+from math import gcd
 
 
 SYLLABLES = (
@@ -112,6 +113,22 @@ def tietze(relations, target):
         target = substitute(target, generator, replacement)
 
 
+def forced_trivial(relations, target):
+    if target in relations or inverse(target) in relations:
+        return True
+    if not target or len({abs(x) for x in target}) != 1:
+        return False
+    generator = abs(target[0])
+    powers = []
+    for relation in relations:
+        if relation and all(abs(x) == generator for x in relation):
+            powers.append(len(relation))
+    order_bound = 0
+    for power in powers:
+        order_bound = gcd(order_bound, power)
+    return order_bound == 1
+
+
 def block_word(block):
     return " * ".join(SYLLABLES[i][1] for i in block)
 
@@ -122,20 +139,17 @@ def main():
     one_copy = set()
     for scheme in schemes:
         for target in scheme:
-            if SYLLABLES[target[0]][0] != 0:
-                continue
             total_targets += 1
             equations = tuple(block_tuple(block) for block in scheme if block != target)
             residual_relations, residual_target = tietze(equations, block_tuple(target))
             if residual_target:
                 one_copy.add((tuple(target), residual_relations, residual_target))
     print(f"noncrossing_partitions={len(schemes)}")
-    print(f"copy0_target_schemes={total_targets}")
+    print(f"one_copy_target_schemes={total_targets}")
     print(f"tietze_nontrivial_target_schemes={len(one_copy)}")
-    unresolved = [item for item in one_copy
-                  if item[2] not in item[1] and inverse(item[2]) not in item[1]]
+    unresolved = [item for item in one_copy if not forced_trivial(item[1], item[2])]
     print(f"universally_unresolved_schemes={len(unresolved)}")
-    for target, equations, residual_target in sorted(one_copy)[:200]:
+    for target, equations, residual_target in sorted(unresolved):
         print(f"TARGET {target}: {block_word(target)} => {residual_target}")
         print(f"  residual_relations={equations}")
 
