@@ -79,6 +79,29 @@ group in this lane, hyperlinear.
   `n = 3` hole on the exact face is the STABILITY of this one-unitary
   system: approximate solutions near exact ones.  This is the finite-level
   bookkeeping the previous bullet names, stated as a single equation.
+- **Cocycle form of the exact-face system (`n = 3`).**  Let
+  `rho-tilde : A -> U(d)` be the congruence representation extending
+  `rho` (`rho-tilde(g) = rho(g-bar)`, `g-bar in Q`), and put
+  `c(g) = pi(g) rho-tilde(g)^(-1)`.  Then `c|_C = 1` and `c` is an
+  approximate 1-cocycle for the action `Ad rho-tilde` of `A` on `U(d)`,
+  which factors through the finite group `Q`:
+  `c(g g') ~ c(g) rho-tilde(g) c(g') rho-tilde(g)^(-1)`, with defect the
+  presentation defect of `pi`.  An exact cocycle with `c|_C = 1` gives an
+  exact representation `c . rho-tilde` of `A` extending `rho`, which is
+  congruence, so `c = 1` when `rho = lambda_Q (x) 1_m` (co-density pins
+  the quotient).  Hence on the exact face, faithfulness fails as soon as
+  approximate `U(d)`-valued 1-cocycles of `A` for finite-quotient actions,
+  trivial on `C`, are uniformly (in `d`) close to exact ones.  The
+  linearisation is the additive cocycle problem for the conjugation
+  representation `Ad rho-tilde` on `M_d`, where property (T) of `A` gives
+  a uniform spectral gap; the nonlinear remainder is the same obstacle the
+  Newton iteration of `iwahori-newton-closes-near-sector` controls only
+  inside fixed torsion-multiplicity strata.  So the exact-face hole is a
+  relative (to `C`) normalized-HS cocycle-stability statement for
+  `SL_3(Z[1/2])`, with the action through a finite quotient — narrower
+  than `sl3-z-weakly-ucp-stable` in two ways (the subgroup is exact, the
+  action is finite) and the precise remaining content of this claim at
+  `n = 3` under that stability hypothesis.
 
 - **Congruence models fail `(CF1)` maximally.**  Co-density puts
   `pi_k(a)` inside `W^*(pi_k(C))` for every `a`, so `||E(pi_k(a))||_2 = 1`.
