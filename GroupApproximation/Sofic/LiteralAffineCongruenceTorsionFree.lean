@@ -62,7 +62,7 @@ theorem p_isPowerTorsionFree : IsPowerTorsionFree P := by
     exact hgpow
   have htone : t = 1 := translations_isPowerTorsionFree t n hn htpow
   apply Subtype.ext
-  exact congrArg Subtype.val htone
+  simpa [t] using congrArg (fun x : translations => (x : Base)) htone
 
 end
 

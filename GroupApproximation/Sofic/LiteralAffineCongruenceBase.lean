@@ -1,5 +1,7 @@
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Kazhdan.TorsionFreeKazhdanPartner
+import GroupApproximation.Algebra.FiniteResidual
 
 /-!
 # The torsion-free affine level-three base
@@ -53,6 +55,10 @@ noncomputable def linearPart : Base →* SL3Z :=
 theorem linearPart_surjective : Function.Surjective linearPart :=
   rotationEquivSL3.surjective.comp baseToRotation_surjective
 
+instance gamma3_normal : gamma3.Normal := by
+  dsimp [gamma3]
+  infer_instance
+
 /-- The affine level-three subgroup: translations together with rotations
 congruent to the identity modulo three. -/
 noncomputable def levelThree : Subgroup Base := gamma3.comap linearPart
@@ -77,14 +83,14 @@ theorem translations_le_levelThree : translations ≤ levelThree := by
   rw [linearPart, MonoidHom.comp_apply, hrot, map_one]
   exact Subgroup.one_mem gamma3
 
-theorem v1_mem_levelThree : v1 ∈ levelThree :=
-  translations_le_levelThree v1_mem_translations
+theorem v1_mem_levelThree : LiteralBaseRelations.v1 ∈ levelThree :=
+  translations_le_levelThree LiteralBaseTranslationNormal.v1_mem_translations
 
-theorem v2_mem_levelThree : v2 ∈ levelThree :=
-  translations_le_levelThree v2_mem_translations
+theorem v2_mem_levelThree : LiteralBaseRelations.v2 ∈ levelThree :=
+  translations_le_levelThree LiteralBaseTranslationNormal.v2_mem_translations
 
-theorem v3_mem_levelThree : v3 ∈ levelThree :=
-  translations_le_levelThree v3_mem_translations
+theorem v3_mem_levelThree : LiteralBaseRelations.v3 ∈ levelThree :=
+  translations_le_levelThree LiteralBaseTranslationNormal.v3_mem_translations
 
 end
 

@@ -31,9 +31,14 @@ open LiteralAffineCongruenceBase
 
 noncomputable section
 
+private abbrev Base := LiteralNonMFPresentation.Base
+
 private noncomputable def baseCompression : Base →* Base :=
   baseAffineEquiv.symm.toMonoidHom.comp
     (conjD.comp baseAffineEquiv.toMonoidHom)
+
+private theorem baseAffineEquiv_apply (g : Base) :
+    baseAffineEquiv g = affineQuotient g := rfl
 
 private theorem baseCompression_injective : Function.Injective baseCompression := by
   intro g h hgh
@@ -42,29 +47,47 @@ private theorem baseCompression_injective : Function.Injective baseCompression :
   exact baseAffineEquiv.injective
     (conjD_injective (baseAffineEquiv.symm.injective hgh))
 
-private theorem baseCompression_v1 : baseCompression v1 = v1 ^ 2 := by
+private theorem baseCompression_v1 :
+    baseCompression LiteralBaseRelations.v1 = LiteralBaseRelations.v1 ^ 2 := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_v1, map_pow] using conjD_v1G
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, map_pow, affineQuotient_v1] using conjD_v1G
 
-private theorem baseCompression_v2 : baseCompression v2 = v2 ^ 2 := by
+private theorem baseCompression_v2 :
+    baseCompression LiteralBaseRelations.v2 = LiteralBaseRelations.v2 ^ 2 := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_v2, map_pow] using conjD_v2G
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, map_pow, affineQuotient_v2] using conjD_v2G
 
-private theorem baseCompression_v3 : baseCompression v3 = v3 ^ 2 := by
+private theorem baseCompression_v3 :
+    baseCompression LiteralBaseRelations.v3 = LiteralBaseRelations.v3 ^ 2 := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_v3, map_pow] using conjD_v3G
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, map_pow, affineQuotient_v3] using conjD_v3G
 
-private theorem baseCompression_x : baseCompression x = x := by
+private theorem baseCompression_x :
+    baseCompression LiteralBaseRelations.x = LiteralBaseRelations.x := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_x] using conjD_xG
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, affineQuotient_x] using conjD_xG
 
-private theorem baseCompression_y : baseCompression y = y := by
+private theorem baseCompression_y :
+    baseCompression LiteralBaseRelations.y = LiteralBaseRelations.y := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_y] using conjD_yG
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, affineQuotient_y] using conjD_yG
 
-private theorem baseCompression_z : baseCompression z = z := by
+private theorem baseCompression_z :
+    baseCompression LiteralBaseRelations.z = LiteralBaseRelations.z := by
   apply baseAffineEquiv.injective
-  simpa [baseCompression, affineQuotient_z] using conjD_zG
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, affineQuotient_z] using conjD_zG
 
 /-- Doubling translations does not change the rotation quotient. -/
 theorem baseToRotation_comp_baseCompression :
@@ -72,12 +95,18 @@ theorem baseToRotation_comp_baseCompression :
   apply PresentedGroup.ext
   intro i
   fin_cases i
-  · simpa [v1, v1Index] using congrArg baseToRotation baseCompression_v1
-  · simpa [v2, v2Index] using congrArg baseToRotation baseCompression_v2
-  · simpa [v3, v3Index] using congrArg baseToRotation baseCompression_v3
-  · simpa [x, xIndex] using congrArg baseToRotation baseCompression_x
-  · simpa [y, yIndex] using congrArg baseToRotation baseCompression_y
-  · simpa [z, zIndex] using congrArg baseToRotation baseCompression_z
+  · simpa [LiteralBaseRelations.v1, LiteralNonMFPresentation.v1Index] using
+      congrArg baseToRotation baseCompression_v1
+  · simpa [LiteralBaseRelations.v2, LiteralNonMFPresentation.v2Index] using
+      congrArg baseToRotation baseCompression_v2
+  · simpa [LiteralBaseRelations.v3, LiteralNonMFPresentation.v3Index] using
+      congrArg baseToRotation baseCompression_v3
+  · simpa [LiteralBaseRelations.x, LiteralNonMFPresentation.xIndex] using
+      congrArg baseToRotation baseCompression_x
+  · simpa [LiteralBaseRelations.y, LiteralNonMFPresentation.yIndex] using
+      congrArg baseToRotation baseCompression_y
+  · simpa [LiteralBaseRelations.z, LiteralNonMFPresentation.zIndex] using
+      congrArg baseToRotation baseCompression_z
 
 theorem linearPart_baseCompression (g : Base) :
     linearPart (baseCompression g) = linearPart g := by
@@ -94,8 +123,9 @@ theorem baseCompression_mem_levelThree {g : Base} (hg : g ∈ levelThree) :
 /-- Doubling translations, restricted to `ℤ³ ⋊ Γ(3)`. -/
 noncomputable def compression : P →* P where
   toFun g := ⟨baseCompression g, baseCompression_mem_levelThree g.property⟩
-  map_one' := Subtype.ext (map_one baseCompression)
-  map_mul' g h := Subtype.ext (map_mul baseCompression g h)
+  map_one' := Subtype.ext baseCompression.map_one
+  map_mul' g h :=
+    Subtype.ext (baseCompression.map_mul (g : Base) (h : Base))
 
 theorem compression_injective : Function.Injective compression := by
   intro g h hgh
@@ -103,16 +133,20 @@ theorem compression_injective : Function.Injective compression := by
   exact baseCompression_injective (congrArg Subtype.val hgh)
 
 /-- The first integral translation, as an element of the congruence base. -/
-noncomputable def omitted : P := ⟨v1, v1_mem_levelThree⟩
+noncomputable def omitted : P :=
+  ⟨LiteralBaseRelations.v1, v1_mem_levelThree⟩
 
 theorem omitted_not_mem_range : omitted ∉ Set.range compression := by
   rintro ⟨g, hg⟩
   apply v1G_not_mem_range
   refine ⟨baseAffineEquiv (g : Base), ?_⟩
-  have hbase := congrArg Subtype.val hg
+  have hbase : baseCompression (g : Base) = LiteralBaseRelations.v1 :=
+    congrArg Subtype.val hg
   have haffine := congrArg baseAffineEquiv hbase
-  change conjD (baseAffineEquiv (g : Base)) = v1G
-  simpa [baseCompression, affineQuotient_v1] using haffine
+  change conjD (affineQuotient (g : Base)) = v1G
+  simpa only [baseCompression, MonoidHom.comp_apply,
+    MulEquiv.coe_toMonoidHom, MulEquiv.apply_symm_apply,
+    baseAffineEquiv_apply, affineQuotient_v1] using haffine
 
 /-- The HNN envelope of the proper level-three affine compression. -/
 noncomputable abbrev Envelope : Type :=
@@ -155,7 +189,7 @@ The only fields separating this datum from the older
 consume them. -/
 theorem exists_literal_torsionFree_finitelyPresented_bareDefectSource :
     ∃ (P₀ E₀ : Type) (_ : Group P₀) (_ : Group E₀)
-      (D : BareDefectSourceData P₀ E₀),
+      (_D : BareDefectSourceData P₀ E₀),
       IsPowerTorsionFree P₀ ∧
         Group.IsFinitelyPresented P₀ ∧
         IsPowerTorsionFree E₀ ∧
