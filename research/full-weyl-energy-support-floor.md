@@ -11,7 +11,7 @@ for `Z` is needed).  Then
 
 ```text
 E_(a,b) ||X(a)Z(b)-(-1)^(a.b) Z(b)X(a)||_2^2
-  >= 4(1-d/2^r).                                         (FWE1)
+  >= 2(1-d/2^r).                                         (FWE1)
 ```
 
 Thus every `d<=r` exact additive `X`-representation has full Weyl energy
@@ -22,4 +22,3 @@ without an exactification or stability theorem.
 
 DERIVATION
 full-weyl-energy-support-floor via full-weyl-energy-support-floor-proof
-

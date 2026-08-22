@@ -19,12 +19,13 @@ Fourier orthogonality in `a` give the exact identity
 
 ```text
 E_a ||X(a)Z(b)-(-1)^(a.b)Z(b)X(a)||_2^2
- =4(1-sum_x ||P_(x+b) Z(b) P_x||_2^2).                  (1)
+ =2(1-sum_x ||P_(x+b) Z(b) P_x||_2^2).                  (1)
 ```
 
 Indeed the `(y,x)` block has coefficient
 `(-1)^(a.y)-(-1)^(a.(x+b))`; its averaged squared modulus is zero when
-`y=x+b` and four otherwise.
+`y=x+b` and two otherwise, since distinct characters disagree on exactly
+half of `H`.
 
 Every block satisfies
 
@@ -43,4 +44,3 @@ E_b sum_x sqrt(p_x p_(x+b))
 ```
 
 Substituting `(3)` into `(1)` proves `(FWE1)`.
-

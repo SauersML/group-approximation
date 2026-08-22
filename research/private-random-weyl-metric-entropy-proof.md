@@ -13,10 +13,10 @@ First fix a universal full-product gap `eta_0>0`.
 
 ```text
 E_(a,b) ||X(a)Z(b)-(-1)^(a.b)Z(b)X(a)||_2^2
- >=4(1-d/2^r).
+ >=2(1-d/2^r).
 ```
 
-Consequently one may take, for example, `eta_0=3` for every sufficiently
+Consequently one may take, for example, `eta_0=1` for every sufficiently
 large `r` and every `d<=r`.  Notice that this estimate requires only the
 exact additive law for `X`; it permits an arbitrary unitary family `Z(b)`.
 
