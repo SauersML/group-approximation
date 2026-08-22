@@ -29,6 +29,9 @@ FixedDimension:=function(module)
   return Length(BaseFixedSpace(images));
 end;
 fixedDimensions:=List(irreducibles,FixedDimension);;
+module4:=First(irreducibles,module->module.dimension=4);;
+image4:=Group(module4.generators);;
+centralizer4:=Centralizer(GL(4,3),image4);;
 
 Print("A5_order=",Size(G),"\n");
 Print("S3_class_count=",Length(s3Classes),"\n");
@@ -36,6 +39,10 @@ Print("coset_degree=",Length(cosets),"\n");
 Print("irreducible_F3_dimensions=",
       List(irreducibles,module->module.dimension),"\n");
 Print("irreducible_F3_S3_fixed_dimensions=",fixedDimensions,"\n");
+Print("four_dimensional_image_order=",Size(image4),"\n");
+Print("four_dimensional_is_absolutely_irreducible=",
+      module4.IsAbsolutelyIrreducible,"\n");
+Print("four_dimensional_GL4_centralizer_order=",Size(centralizer4),"\n");
 Print("Ind_S3_A5_trivial_composition_dimensions=",
       List(factors,module->module.dimension),"\n");
 QUIT;

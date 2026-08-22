@@ -2,6 +2,7 @@
   "method": "For each of the two marked Q1920 local images, form the exact six-generator seam presentation P, its canonical epimorphism to Q/V=A5, and the index-60 kernel N. Compute N_ab by Reidemeister-Schreier and independently compute H_1(N,F_2) as the cellular homology of the 60-sheeted presentation cover.",
   "marking_count": 2,
   "common_profile": {
+    "P_abelian_invariants": [],
     "Q_retraction_image_order": 1920,
     "kernel_index": 60,
     "kernel_abelian_invariants": [2, 2, 2, 2, 2, 2, 2, 2, 2],

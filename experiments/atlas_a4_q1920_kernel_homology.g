@@ -39,6 +39,7 @@ AnalyzeMarking:=function(marked,action)
   ];
   P:=free/Concatenation(qRelations,seamRelations);
   pGenerators:=GeneratorsOfGroup(P);
+  Print("P_abelian_invariants=",AbelianInvariants(P),"\n");
   targetImages:=Concatenation(List(marked,g->Image(qMap,g)),
                               [One(qQuotient),One(qQuotient)]);
   phi:=GroupHomomorphismByImages(P,qQuotient,pGenerators,targetImages);
@@ -145,7 +146,10 @@ count:=0;;
 for sub in LowIndexSubgroupsFpGroup(localUniversal,MAX_INDEX) do
   cosets:=RightCosets(localUniversal,sub);;
   action:=ActionHomomorphism(localUniversal,cosets,OnRight);;
-  marked:=List(localGenerators,g->Image(action,g));;
+  marked:=[];;
+  for generator in localGenerators do
+    Add(marked,Image(action,generator));
+  od;
   r:=marked[1];; y:=marked[2];; u:=marked[3];; b:=marked[4];;
   edgeOrders:=[Size(Group([r^-1,b])),Size(Group([u,y])),
                Size(Group([u*r,y^-1])),Size(Group([r,b*y]))];;
