@@ -28,3 +28,21 @@ What is still unproved is an SOS/coercivity identity extending the exact
 character-block Jacobian inverse to a tuple known only through this
 square-function bound; assuming the exact character decomposition here
 would be circular.
+
+`complete-overlay-row-newton-is-a-code-riesz-multiplier` sharpens even the
+exact-base part: the characterwise inverse formulas assemble into a
+vector-valued code Riesz Schur multiplier.  The HS inverse is automatic, but
+the needed operator row/column estimate is a cb bound for that multiplier
+(or a BMO estimate with summable John--Nirenberg cuts).  After that linear
+estimate is obtained, one must still perturb it from exact bases to tuples
+controlled only by the diffuse square function.
+
+The nonlinear dense layer itself is no longer an obstruction:
+`dense-complete-pair-remainders-are-cb-quadratic` proves the required
+dimension-free row/column quadratic estimate by factoring the full double
+average through the coordinate square function.  The unresolved interaction
+is with the sparse bounded-template layers.  One must alternate exact local
+parity-face projection and equality-cloud alignment with the dense step and
+show that these local corrections preserve (or contract back into) the
+global row basin.  A coordinatewise Taylor bound would reintroduce the
+forbidden sparse high-operator-norm loss.
