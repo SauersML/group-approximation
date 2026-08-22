@@ -329,3 +329,12 @@ only has to transport its covariance block.
   data allow a full interval starting at zero.  The sole remaining content is
   whether the other component's simultaneous double-coset equations force
   the endpoint `Lambda=0`; no local spectral strengthening can do so.
+- **Regular symmetry does not promote the repeated collision slice.**
+  `atlas-collision-fiber-has-no-block-symmetrization` shows
+  that the `K`-multiplicity unitary group fails to preserve the packet
+  coefficients, while the actual scalar symmetry averages every collision
+  orbit to zero.  The packet energy is explicitly nonconvex (`R` and `-R`
+  have zero energy but their midpoint has energy 30), so conditional
+  expectation plus polar repair supplies no minimizer reduction.  Thus the
+  exact two-`3 x 3` Procrustes calculation remains a restricted search slice,
+  not an all-fiber theorem.

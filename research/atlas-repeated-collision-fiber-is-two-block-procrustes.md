@@ -77,3 +77,10 @@ probes, the Procrustes minimizers at `theta=0,0.1,0.4,pi/4` had packet RMS
 defects `1.3906,1.3912,1.3972,1.4044`; their exact Procrustes distance-squared
 values to `R` were approximately `1.4291,1.4289,1.4335,1.4523`.  These
 numbers are signal about this one subfiber only.
+
+The restriction to this subfiber cannot be removed by averaging.
+`atlas-collision-fiber-has-no-block-symmetrization` proves
+that the `K`-copy group is not a packet symmetry, the packet energy is
+nonconvex, and even the genuine scalar symmetry has zero Haar barycenter on
+every collision fiber.  A global promotion would need a new nonzero-overlap
+or direct twelve-product argument.
