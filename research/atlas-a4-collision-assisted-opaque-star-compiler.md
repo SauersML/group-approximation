@@ -64,6 +64,24 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **Second moments have a canonical common-`U` coordinate, but rectangles do
+  not.**  `atlas-common-u-second-moment-is-one-projection-gram` gives the
+  exact identity
+
+  ```text
+  tau(V_t^2)=1-16[tau(P_tQ_t)-tau(P_tQ_tP_tQ_t)],
+  Q_t=U P_t U^*.
+  ```
+
+  This is the smallest root-gauge-independent scalar which detects the
+  order-two/order-four mismatch in the finite screen.  In contrast,
+  `atlas-shifted-factorizations-have-independent-right-gauge` shows that the
+  thirty local factorizations of one `U` carry independent
+  `rho(A8)'`-gauge fibers.  Hence the four rectangles extracted from chosen
+  edge messages are not canonical functions of `U`.  Any rectangle-to-Gram
+  proof must first fix or quotient these gauges, or supply one additional
+  mixed moment selecting a common section.
+
 - **The entire classical simplex obeys a sharp dimension-free estimate.**
   `atlas-a4-classical-opaque-star-sharp-constant` computes all sixty exact
   packet alignments in `Reg(A8)`.  Their sharp transport coefficient is
