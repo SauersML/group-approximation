@@ -237,6 +237,65 @@ def target_rotation(corners):
     return None
 
 
+def canonical_cyclic(factors):
+    if not factors:
+        return ()
+    inverse = tuple((copy, name, -exponent)
+                    for copy, name, exponent in reversed(factors))
+    rotations = []
+    for word in (factors, inverse):
+        rotations.extend(word[offset:] + word[:offset]
+                         for offset in range(len(word)))
+    return min(rotations)
+
+
+def reduce_universal_copy(word):
+    """Normal form in V4(a,b)*C2(c)*C2(d)*C2(e)*Z(p)*Z(r)."""
+    stack = []
+    for name, exponent in word:
+        if name in ("a", "b"):
+            family = "ab"
+            value = 1 if name == "a" else 2
+        elif name in ("c", "d", "e"):
+            family = name
+            value = 1
+        else:
+            family = name
+            value = exponent
+        if stack and stack[-1][0] == family:
+            old = stack.pop()[1]
+            value = old ^ value if family in ("ab", "c", "d", "e") else (
+                old + value)
+        if value:
+            stack.append((family, value))
+    return tuple(stack)
+
+
+def reduce_universal(factors):
+    """Normal form in the free product of four universal packet groups."""
+    blocks = []
+    current_copy = None
+    current_word = []
+    for copy, name, exponent in factors:
+        if copy != current_copy and current_word:
+            blocks.append((current_copy, reduce_universal_copy(current_word)))
+            current_word = []
+        current_copy = copy
+        current_word.append((name, exponent))
+    if current_word:
+        blocks.append((current_copy, reduce_universal_copy(current_word)))
+    stack = []
+    for copy, word in blocks:
+        if not word:
+            continue
+        if stack and stack[-1][0] == copy:
+            word = reduce_universal_copy(stack.pop()[1] + word)
+            if not word:
+                continue
+        stack.append((copy, word))
+    return tuple(stack)
+
+
 def connected(vertex_count, pairs):
     adjacency = [set() for _ in range(vertex_count)]
     for left, right in pairs:
@@ -258,6 +317,8 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
     one_copy_disks = 0
     one_copy_units = set()
     trivial_face_shapes = Counter()
+    trivial_face_labels = {}
+    nonuniversal_trivial_labels = set()
     one_residue_shapes = Counter()
     two_residue_shapes = Counter()
     one_residue_examples = []
@@ -319,7 +380,12 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
                 reduced_regions.append(reduced)
                 trivial.append(not reduced)
                 if not reduced:
-                    trivial_face_shapes[(len(region), len(factors))] += 1
+                    face_shape = (len(region), len(factors))
+                    trivial_face_shapes[face_shape] += 1
+                    trivial_face_labels.setdefault(face_shape, set()).add(
+                        canonical_cyclic(factors))
+                    if reduce_universal(factors):
+                        nonuniversal_trivial_labels.add(canonical_cyclic(factors))
                 targets_found.append(target_rotation(corners))
             nontrivial_indices = [index for index, value in enumerate(trivial)
                                   if not value]
@@ -368,10 +434,13 @@ def census(area, stop_on_hit=False, shard=0, shards=1):
                         return (type_multisets, planar, exact_disks,
                                 one_copy_disks, len(one_copy_units),
                                 trivial_face_shapes, one_residue_shapes,
-                                two_residue_shapes, one_residue_examples)
+                                two_residue_shapes, one_residue_examples,
+                                trivial_face_labels,
+                                nonuniversal_trivial_labels)
     return (type_multisets, planar, exact_disks, one_copy_disks,
             len(one_copy_units), trivial_face_shapes, one_residue_shapes,
-            two_residue_shapes, one_residue_examples)
+            two_residue_shapes, one_residue_examples, trivial_face_labels,
+            nonuniversal_trivial_labels)
 
 
 def main():
@@ -390,6 +459,13 @@ def main():
               f"one_copy_units={result[4]} shard={args.shard}/{args.shards}",
               flush=True)
         print("trivial_face_shapes", result[5].most_common(20), flush=True)
+        print("trivial_face_label_counts",
+              sorted((shape, len(labels)) for shape, labels in result[9].items()),
+              flush=True)
+        print("nonuniversal_trivial_face_labels", len(result[10]), flush=True)
+        for shape, labels in sorted(result[9].items()):
+            for label in sorted(labels)[:20]:
+                print("trivial_face_label", shape, label, flush=True)
         print("one_residue_shapes", result[6].most_common(20), flush=True)
         print("two_residue_shapes", result[7].most_common(20), flush=True)
         for example in result[8]:
