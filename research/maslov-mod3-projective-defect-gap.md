@@ -63,6 +63,13 @@ presentation coordinates.
   falsifying this claim must put asymptotically all dimension into common
   irreducible blocks whose sizes escape every fixed bound; scalar phase
   mixtures and bounded packet induction cannot be countermodels.
+- **Fixed-representation compression no-go.** C-star property (T), Brown's
+  amenable-trace theorem, and Deligne invisibility show that the two twisted
+  fibres have no amenable traces.  Hence no exact infinite-dimensional
+  Maslov representation has finite-rank Folner compressions.  Any
+  countermodel must vary intrinsically with dimension; it cannot be obtained
+  by compressing the twisted regular, discrete-series, or another fixed
+  projective representation.
 - **No tracial-positivity shortcut.** The twisted left-regular representation
   exists in infinite dimension, so a moment/SOS certificate valid in every
   tracial von Neumann algebra cannot exclude `alpha`.  Any separator must use
