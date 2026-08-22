@@ -1,7 +1,5 @@
 # Exact finite-simple quotient screen for the full large rectangle, collision,
-# and forward fan.  Set TARGET_DEGREES before Read() to change A_n targets.
-
-if not IsBound(TARGET_DEGREES) then TARGET_DEGREES:=[8,9,10]; fi;
+# and forward fan.
 
 free:=FreeGroup("r","z","c","u","t","s");;
 r:=free.1;; z:=free.2;; c:=free.3;;
@@ -18,8 +16,20 @@ full:=free/[
   ((u*r)*t)^3,(r*s)^3
 ];;
 
-for degree in TARGET_DEGREES do
-  ambient:=AlternatingGroup(degree);;
+targets:=[
+  ["A8",AlternatingGroup(8)],
+  ["A9",AlternatingGroup(9)],
+  ["A10",AlternatingGroup(10)],
+  ["PSL3(4)",PSL(3,4)],
+  ["PSU3(3)",PSU(3,3)],
+  ["PSp4(3)",PSp(4,3)],
+  ["M11",MathieuGroup(11)],
+  ["M12",MathieuGroup(12)],
+  ["Sp6(2)",Image(IsomorphismPermGroup(Sp(6,2)))]
+];;
+
+for target in targets do
+  name:=target[1];; ambient:=target[2];;
   quotients:=GQuotients(full,ambient);;
   good:=[];; histogram:=[];;
   for quotient in quotients do
@@ -35,14 +45,14 @@ for degree in TARGET_DEGREES do
     Add(histogram,orders);
     if orders=[60,36,24,144] then Add(good,images); fi;
   od;
-  Print("target=A",degree,
+  Print("target=",name,
         " target_order=",Size(ambient),
         " epimorphism_classes=",Length(quotients),
         " faithful_vertex_classes=",Length(good),
         " vertex_histogram=",Collected(histogram),"\n");
   if Length(good)>0 then
     Print("certificate_generator_order=[r,z,c,u,t,s]\n");
-    Print("certificate=",List(good[1],p->ListPerm(p,degree)),"\n");
+    Print("certificate=",List(good[1],p->ListPerm(p,LargestMovedPoint(ambient))),"\n");
   fi;
 od;
 QUIT;
