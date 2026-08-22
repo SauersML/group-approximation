@@ -9,15 +9,16 @@ requires:
   - averaged-pinching-channels-are-row-square-lipschitz
   - row-square-equality-variance-transfers-averaged-pinching-gap
   - shared-pinching-low-band-is-gauge-or-cheap
+  - sparse-face-row-square-survives-intrinsic-green-step
   - intrinsic-finite-green-commutator-step-has-the-correct-tangent
 ---
 
 Exact local faces supply a pre-character spectral gap for their averaged
 coordinate channel.  Weighted equality variance and the averaged-channel
 estimate transfer it to shared representatives, leaving only the small
-spectral band created from the old commutant.  The low-band gauge/reset
-claim removes that band.  The intrinsic finite-Green step is a fixed
+spectral band created from the old commutant.  The low-band energy theorem
+leaves that band as a vanishing forcing floor.  The intrinsic finite-Green step is a fixed
 polynomial in the remaining channel, so the transferred gap gives strict
 transverse contraction; the dense nonlinear remainder is cb-quadratic and
 involution forcing is carried to terminal sign.  This yields `(ORG1)` once
-bounded sparse face re-exactification preserves the row-square hypothesis.
+the sparse face/equality theorem preserves the row-square hypothesis.
