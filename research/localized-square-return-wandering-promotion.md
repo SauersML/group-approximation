@@ -44,6 +44,20 @@ finite matrix semantics.
   algebra, finite support forces `w` to have finite order.  The return must
   therefore be a matrix-only inference, not a relator identity hidden in
   block notation.
+- **Self-similar cylinders live in the wrong trace.**  A Nekrashevych/full
+  group, Toeplitz, or Leavitt prefix model can make an infinite-order global
+  element square to one on a positive boundary cylinder.  However,
+  `self-similar-cylinder-return-regular-energy-floor` shows that in the
+  canonical regular factor every projection of trace `alpha` pays at least
+
+  ```text
+  2 alpha-(2/pi)sin(pi alpha)
+  ```
+
+  in squared square-return energy.  Thus even an infinite-edge or
+  noncontracting prefix table cannot be promoted by identifying its diagonal
+  cylinder with the canonical packet.  A matrix-only trace-promotion step is
+  still necessary.
 - **Proper-corner leakage does not by itself help.**  A compression to a
   corner unitary is automatically almost reducing, as `(CFP1)--(CFP4)` show.
   Thus a Hilbert-hotel implementation must prove the localized radical

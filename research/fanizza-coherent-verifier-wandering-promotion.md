@@ -47,6 +47,16 @@ cannot suffice, because its regular finite models reproduce the Hecke
 compression.  The promotion must use a genuinely infinite-edge,
 non-Bass--Serre, or finite-multiplicity return mechanism.
 
+An infinite-edge self-similar return is not sufficient by itself either.
+`self-similar-cylinder-return-regular-energy-floor` computes the exact
+canonical obstruction: if the selected cylinder has density `alpha`, the
+regular squared return defect is at least
+`2 alpha-(2/pi)sin(pi alpha)`, even though the boundary/groupoid return can
+be exact.  Hence a Nekrashevych, Toeplitz, or Leavitt normal form supplies a
+noncanonical boundary carrier, not clause 1.  The surviving interface is a
+matrix-only mechanism which promotes that cylinder mass to the canonical
+packet while violating this regular Haar floor.
+
 ## Conjugate-product audit
 
 The tempting word
