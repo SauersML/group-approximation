@@ -7,6 +7,7 @@ distinct_from:
   atlas-defect-orbit-span-quotient-dichotomy: that gives an exact quotient when the relator orbit-span is proper; this is the missing normalized-rank theorem asserting properness for low-rank augmented residuals.
   atlas-augmented-relator-ideal-not-left-finite: that rules out a universal finite algebraic spanning list; this asks for a representation-specific Sylvester-rank estimate despite the infinite one-sided generating width.
   atlas-augmented-rank-zero-set-compactness: that states the finite-zero promotion conclusion; this is its precise finitely presented module input.
+  atlas-morita-coefficient-cyclicity-reduction: that exactly identifies the full orbit-span with a coefficient-algebra cyclic span on the multiplicity space; the present claim is the still-missing assertion that the thirteen residual formulas cannot create a sublinear cyclic seed.
 ---
 
 OPEN.  Use the notation
@@ -80,3 +81,16 @@ or genuinely nonstationary coefficient data.
   gap.  Thus truncating the infinite chart-coset graph does not construct
   `(LRN3)`; a negative model needs positive-density nonfree chart cells and
   a new mechanism keeping all thirteen residual images small there.
+- **Morita reduction isolates the exact growing-width enemy.**
+  `atlas-morita-coefficient-cyclicity-reduction` writes the chart change as
+  a `4 by 4` block matrix `T=(T_ia)` with inverse `(S_bj)`.  The full defect
+  orbit is exactly `V tensor C_T U_D`, where
+  `C_T=<T_ia S_bj><=M_m(F2)` and `U_D` is the multiplicity-coordinate span
+  of the thirteen residual images.  Thus a countermodel is precisely a
+  sequence in which `dim U_D=o(m)` but `C_T U_D=F2^m`.  This also proves
+  that its alternating saturation depth is at least
+  `log_16(1/(13 epsilon))` when every normalized residual rank is at most
+  `epsilon`.  Generic coefficient algebras can have one-dimensional cyclic
+  seeds, so the repeated-natural chart type alone cannot close the claim;
+  the remaining input must use the thirteen explicit residual formulas to
+  force a proper `C_T`-invariant subspace.
