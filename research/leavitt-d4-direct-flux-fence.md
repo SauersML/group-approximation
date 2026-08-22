@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: leavitt-d4-three-carrier-direct-collapse-is-retraction-fenced
+id: leavitt-d4-direct-flux-fence
 kind: claim
 title: Copy flux forbids two trivial carriers and one central carrier at degree four
 artifacts:
-  - research/leavitt-d4-three-carrier-direct-collapse-is-retraction-fenced-proof.md
+  - research/leavitt-d4-direct-flux-fence-proof.md
 distinct_from:
   leavitt-d3-length15-retraction-fence: that treats two residual carriers in a degree-three cyclic cover; this treats the first one-pivot three-residual topology and its proposed two-source one-target network.
 ---

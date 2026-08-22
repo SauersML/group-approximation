@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: leavitt-d4-three-carrier-direct-collapse-is-retraction-fenced-proof
+id: leavitt-d4-direct-flux-fence-proof
 kind: route
 title: Identify the target projections with cyclic shifts of the two source projections
-target: leavitt-d4-three-carrier-direct-collapse-is-retraction-fenced
+target: leavitt-d4-direct-flux-fence
 requires:
   - leavitt-d3-length15-retraction-fence
 ---
