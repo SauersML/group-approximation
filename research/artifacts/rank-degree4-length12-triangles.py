@@ -3,6 +3,7 @@
 
 from collections import Counter
 from itertools import combinations, product
+import argparse
 
 
 def append_z(word, exponent):
@@ -121,8 +122,16 @@ for negative in combinations(range(12), 4):
     if sorted(map(len, data)) == [1, 3, 3, 5]:
         profiles.setdefault(canonical(signs), signs)
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--profile", help="restrict to one +- sign representative")
+args = parser.parse_args()
+
 global_best, winners = 100, []
 for representative in sorted(profiles):
+    text_profile = "".join("+" if sign > 0 else "-"
+                           for sign in representative)
+    if args.profile and text_profile != args.profile:
+        continue
     data = tuple(corners(representative, start) for start in range(4))
     pivot_index = next(index for index, face in enumerate(data)
                        if len(face) == 1)
@@ -133,7 +142,7 @@ for representative in sorted(profiles):
     faces = tuple(sorted(faces, key=len))
     choices = tuple(embeddings(TARGETS[index], len(face))
                     for index, face in enumerate(faces))
-    counts, local_best = Counter(), 100
+    counts, local_best, local_winners = Counter(), 100, []
     for selected in product(*choices):
         rows = []
         for face, grouping in zip(faces, selected):
@@ -161,6 +170,9 @@ for representative in sorted(profiles):
         counts[constraint] += 1
         if constraint < local_best:
             local_best = constraint
+            local_winners = [selected]
+        elif constraint == local_best:
+            local_winners.append(selected)
         if constraint < global_best:
             global_best, winners = constraint, [(representative, selected)]
         elif constraint == global_best:
@@ -169,6 +181,8 @@ for representative in sorted(profiles):
                               for sign in representative),
           "valences", tuple(map(len, data)), "rank_counts", dict(counts),
           "best", local_best, flush=True)
+    for selected in local_winners:
+        print("LOCAL_WIN", text_profile, selected, flush=True)
 
 print("global_best", global_best, "winner_count", len(winners))
 for representative, selected in winners[:40]:
