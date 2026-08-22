@@ -12,10 +12,11 @@ requires:
   - sign-safe-unbounded-multibasin-placement
 ---
 
-The private sampler supplies the same-Hilbert dimension lower bound, the free-
+The private sampler supplies the bounded-flexible dimension lower bound, the free-
 product shift supplies literal constant-area mixed sign relations and exact
 marked completeness, and the same-basis interface rounds the X and Z tapes to
-the exact additive actions assumed by the sampler.  The combined incidence
+exact additive actions of dimension at most a fixed multiple of the original
+matrix dimension.  The strengthened sampler absorbs that multiple.  The combined incidence
 can nevertheless close a contour through several same-basis basins, so the
 sign-safe multi-basin input is required in addition to the analytic decoder.
 `random-private-matching-eliminates-fixed-multibasin-contours` removes every

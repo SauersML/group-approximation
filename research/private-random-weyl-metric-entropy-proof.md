@@ -16,9 +16,10 @@ E_(a,b) ||X(a)Z(b)-(-1)^(a.b)Z(b)X(a)||_2^2
  >=2(1-d/2^r).
 ```
 
-Consequently one may take, for example, `eta_0=1` for every sufficiently
-large `r` and every `d<=r`.  Notice that this estimate requires only the
-exact additive law for `X`; it permits an arbitrary unitary family `Z(b)`.
+Consequently, for every fixed `K`, one may take, for example, `eta_0=1` for
+every sufficiently large `r` and every `d<=K r`, since `K r/2^r->0`.
+Notice that this estimate requires only the exact additive law for `X`; it
+permits an arbitrary unitary family `Z(b)`.
 
 It remains to sample this expectation uniformly.  Up to simultaneous
 conjugacy, an exact representation of `F_2^r` in dimension `d` is specified
@@ -46,16 +47,16 @@ within `eta_0/4` by
 2 exp(-c_0 eta_0^2 m).                                    (2)
 ```
 
-For every `d<=r`, the logarithm of the total net size is
+For every `d<=K r`, the logarithm of the total net size is
 
 ```text
-2rd log 2 + 2d^2 log(C_0/epsilon)=O_(eta_0)(r^2).          (3)
+2rd log 2 + 2d^2 log(C_0/epsilon)=O_(eta_0,K)(r^2).        (3)
 ```
 
-Summing `(2)` over the nets for all `d<=r`, a sufficiently large universal
-choice `m=C r^2` leaves positive probability that every empirical energy is
+Summing `(2)` over the nets for all `d<=K r`, a sufficiently large choice
+`m=C_K r^2` leaves positive probability that every empirical energy is
 within `eta_0/2` of its full expectation.  Fix one realization.  Then
-`(PRW1)` holds with `eta=eta_0/2`.
+`(PRW1)` holds with `eta=eta_0/2` for every `d<=K r`.
 
 Finally put `N=r^2` and append the private columns to a good dimension-`N`
 generator block.  Since `m=O(N)`, the same distance calculation as in the
