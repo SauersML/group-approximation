@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exact free-product branch splitter for the two balanced rank-nine classes."""
 
+import argparse
 from collections import defaultdict
 
 
@@ -38,7 +39,7 @@ def minimal_families(families):
 
 def identity_schemes(word):
     states = {((), frozenset())}
-    for copy, coefficient in word:
+    for position, (copy, coefficient) in enumerate(word):
         following = set()
         for stack, equations in states:
             following.add((stack, equations | {coefficient}))
@@ -51,11 +52,15 @@ def identity_schemes(word):
                     following.add((stack[:-1], equations))
             else:
                 following.add((stack + ((copy, coefficient),), equations))
+        remaining = len(word) - position - 1
         grouped = defaultdict(list)
         for stack, equations in following:
+            if len(stack) > remaining:
+                continue
             grouped[stack].append(equations)
         states = {(stack, equations) for stack, families in grouped.items()
                   for equations in minimal_families(families)}
+        print(" progress", position + 1, len(states), flush=True)
     return minimal_families([equations for stack, equations in states if not stack])
 
 
@@ -83,12 +88,33 @@ E5 = tuple((copy, g(index)) for index, copy in
 
 systems = {
     "classA-eq1": concatenate(H, A0, H, E1),
-    "classA-eq2": concatenate(inverse_free(H), C0, H, A1),
     "classA-eq3": concatenate(inverse_free(H), C1, inverse_free(H), E2),
     "classB-eq1": concatenate(H, A0, H, E3),
-    "classB-eq2": concatenate(inverse_free(H), C0, H, A1),
     "classB-eq3": concatenate(inverse_free(H), C1, inverse_free(H), E4,
                                inverse_free(H), E5),
+}
+
+
+def substitute_coefficient(word, replacement):
+    result = ()
+    for letter in word:
+        image = replacement.get(abs(letter) - 1, (abs(letter),))
+        if letter < 0:
+            image = inverse_coefficient(image)
+        result = reduce_coefficient(result + image)
+    return result
+
+
+def substitute_free(word, replacement):
+    return tuple((copy, substitute_coefficient(coefficient, replacement))
+                 for copy, coefficient in word)
+
+
+# The common Q carrier equation is first solved by malnormality.  It forces
+# g0=1 and A1=1.  The alternating five-syllable A1 has exactly two branches.
+branches = {
+    "I": {0: (), 3: (), 5: (), 6: (-5, -3)},
+    "II": {0: (), 4: (), 5: (-4,), 6: (-3,)},
 }
 
 
@@ -99,7 +125,16 @@ def show_coefficient(word):
                     ("^-1" if letter < 0 else "") for letter in word)
 
 
-for name, word in systems.items():
+parser = argparse.ArgumentParser()
+tasks = tuple((name, word, branch_name, replacement)
+              for name, word in systems.items()
+              for branch_name, replacement in branches.items())
+parser.add_argument("--task", type=int, choices=range(len(tasks)), required=True)
+args = parser.parse_args()
+name, word, branch_name, replacement = tasks[args.task]
+name += "-branch" + branch_name
+word = substitute_free(word, replacement)
+for name, word in ((name, word),):
     schemes = identity_schemes(word)
     print(name, "syllables", len(word), "minimal_schemes", len(schemes))
     for index, equations in enumerate(schemes):
