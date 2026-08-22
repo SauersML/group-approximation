@@ -7,6 +7,7 @@ distinct_from:
   bespoke-extension-nemesis-library-defeats-diagonal-schedules: that proves the finite subcover theorem on complete canonical extension types; this audits the full QCA interpretation and records every extra groupification hypothesis.
   exact-code-prefixes-have-matrix-ultraproduct-model: that gives the capacity-prefix diagonal model; this combines that firewall with the positive extension-profile alternative.
   central-sign-bcs-energy-decoder-implies-nonhyperlinear: that is the final finite verifier criterion; this explains why a recursive QCA supplies no additional analytic gap beyond such a finite decoder.
+  recursive-gauge-verifier-has-product-density-escape: that proves the exact tensor-prefix and product-density failure for installing the same verifier in every multiplicity gauge; this gives the broader finite-static reduction after arbitrary finite-light-cone gadgets are allowed.
 ---
 
 **ESTABLISHED SYNTHESIS.**  A finite-light-cone QCA challenge, after naming
@@ -55,6 +56,14 @@ model of the whole library.  Hence growing Clifford rank, PI degree, code
 block size, or clock depth cannot be the semantic obstruction.  A QLTC may
 amplify or synchronize an already non-CE semantic gap, but cannot create one
 from exact matrix-realizable prefixes.
+
+In particular, placing the same verifier in every independent multiplicity
+gauge does not synchronize the gauges.  Under the natural tensor extension,
+all finite depths remain exact and marked, while the intersection of `N`
+local verifier carriers of trace `alpha` has trace `alpha^N`; see
+`recursive-gauge-verifier-has-product-density-escape`.
+Positive local density is therefore not a fixed common carrier and is not an
+index-energy payment.
 
 Normalized Hilbert--Schmidt norm already has the correct tracial-verifier
 meaning through maximally entangled vectorization.  Thus the strongest finite

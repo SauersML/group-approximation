@@ -10,6 +10,7 @@ requires:
   - finite-static-nemesis-core-needs-canonical-base-embedding
   - one-complete-base-type-simultaneously-realizes-disjoint-gadgets
   - exact-code-prefixes-have-matrix-ultraproduct-model
+  - recursive-gauge-verifier-has-product-density-escape
   - maximally-entangled-vectorization-is-hs-isometry
   - non-ce-bcs-has-robust-approximate-energy-gap
   - central-sign-bcs-energy-decoder-implies-nonhyperlinear
@@ -27,7 +28,9 @@ finite family with one residual gap.  The third supplies the missing passage
 from that family to canonical microstates of one final finite extension.  The
 fourth shows that separate gadget extensions automatically coexist only when
 they lie over one complete base type.  The fifth proves the converse
-capacity-prefix firewall.  Vectorization identifies
+capacity-prefix firewall, and the sixth applies it sharply to identical
+verifiers recursively installed in independent multiplicity gauges.
+Vectorization identifies
 the finite-matrix norm with tracial verifier energy; the BCS gap and central
 sign decoder give the corrected finite endpoint.  The affine and
 relative-commutant requirements record why group syntax and transporter
