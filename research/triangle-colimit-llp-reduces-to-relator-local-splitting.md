@@ -72,20 +72,27 @@ is Enders--Shulman arXiv:2403.12224 Corollary 4.6 (finite tree
 products of finite groups; source-verified, see artifact); everything
 else is self-contained.
 
-**Instantiation at the Kac--Moody candidates.**  For the split lattice
-`Lambda_(2,4,6)(q)` of `simple-kazhdan-kac-moody-lattices-exist`, with
-`P_0` the Borel of the finite rank-2 group `P_13` and `P_1, P_3` its
-two maximal parabolics, `L` is the incidence graph of the generalized
-`m_13`-gon over `F_q` — a `(q+1)`-regular bipartite graph of girth
-`2 m_13` — and the Bruhat chamber count gives `r = q^{l(w_0)} =
-q^{m_13}`.  So the three ways of closing the triangle give relator
-ideals with `q^2` (pair with `m = 2`), `q^4` (`m = 4`) or `q^6`
-(`m = 6`) free relator generators; the most economical presentation of
-the whole LLP hole at this candidate is: `C*(P_13-type-B2 *_{P_3}
-P_23-type-G2)` modulo `q^2` commutator-shaped relators.  The program's
-"large girth of the links" hypothesis is now a literal statement about
-the relators: the shortest elements of `N` are cycles of length `2m`
-in `L`.
+**Instantiation: two distinct families (corrected 2026-08-21).**
+(i) For the Kac--Moody lattices of
+`simple-kazhdan-kac-moody-lattices-exist`, the triangle presentation
+is the Abramenko--Mühlherr amalgam ([AM97], C. R. Acad. Sci. Paris
+325 (1997) 701-706, identified at source through Caprace--Rémy) by
+the rank-`<= 2` finite subgroups of the twin root datum; `r` is given
+by the index formula of (TC2), and by
+`km-lattices-admit-no-cocompact-npc-model` the links of ANY triangle
+of finite groups presenting such a lattice contain short cycles
+(`2/g_12 + 2/g_13 + 2/g_23 > 1`) — the presentation is never
+nonpositively curved.  (ii) The triangles whose links are generalized
+`m_ij`-gon incidence graphs (girth `2 m_ij`, `sum 1/m_ij <= 1`) ARE
+nonpositively curved, and for them the Bruhat chamber count gives
+`r = q^{l(w_0)} = q^{m}` with the relators literally the
+girth-length-`2m` cycles of the link — but their colimits are
+Gromov-hyperbolic uniform lattices on the CAT(-1) development
+(Fuchsian-building type), provably NOT Kac--Moody lattices (same
+node).  The theorem applies verbatim to both families; the
+"large girth of the links" geometry lives only in family (ii), whose
+non-residual-finiteness (needed for the non-RF hole) and per-instance
+property (T) are unrecorded.
 
 **Where the Enders--Shulman engine dies (obstruction located).**
 Their amalgam theorem (Theorem 4.2, read at proof level) corrects two
@@ -152,16 +159,18 @@ cannot respect the pattern, which is exactly where that tool dies.
 gap: positivity in `M_n` of the operator system is tested against
 matrices that are not of Gram form.)
 
-**LP-side remarks.**  `H^2(Lambda; R) = 0` for these lattices
-(`Lambda` acts properly cocompactly with finite stabilizers on a
-contractible 2-complex with quotient a simplex, so rational group
-cohomology vanishes in positive degrees): the first
-Ioana--Spaas--Wiersma LP fence recorded in
-`non-rf-kazhdan-group-with-llp-full-c-star-algebra` is vacuous here.
-The `H^2(Lambda, Z Lambda)` fence plausibly fires instead — for a
-thick 2-dimensional hyperbolic building `X` one expects `H^2_c(X) =
-H^1-tilde(boundary) != 0`, which with the finite-stabilizer transfer
-would kill *global* splitting (LP) and leave (TC4)'s local-vs-global
-daylight as the entire question; neither the boundary cohomology nor
-the transfer is verified here, and settling them is a concrete
-sub-task recorded on the open claim.
+**LP-side remarks (corrected 2026-08-21).**  An earlier version of
+this paragraph asserted `H^2(Lambda; R) = 0` via a "contractible
+cocompact development"; that justification was WRONG — the
+development of the triangle presentation is proper and cocompact but
+is never CAT(0) (`km-lattices-admit-no-cocompact-npc-model`), and its
+contractibility is unknown, so `H^2(Lambda; R)` is UNRECORDED in both
+directions.  The Ioana--Spaas--Wiersma LP fences (Corollary D:
+property (T) with `H^2(Gamma, Z Gamma) != 0`; Corollary E: property
+(T) with an ergodic p.m.p. action satisfying
+`H^2(Gamma, L^0(X, R)) != 0`, in particular `H^2(Gamma, R) != 0` —
+both source-verified verbatim) target exactly the *global* splitting
+side of (TC4); whether either fires at `Lambda` is the open claim
+`compact-hyperbolic-km-lattices-fail-lp`, whose Attempts record why
+no current model computes the needed cohomology and what each
+outcome buys.
