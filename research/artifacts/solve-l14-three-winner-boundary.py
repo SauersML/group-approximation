@@ -214,11 +214,13 @@ def saturate_primitive_roots(q_image, residual):
 
 
 def involution_substitution_killed(q_image, residual):
-    """Detect q=1 after a length-two root is made an involution.
+    """Detect q=1 after a primitive root is made an involution.
 
-    If ``(xy)^2`` is a relator, introduce ``t=xy`` with ``t^2=1``, solve
-    for the generator occurring in ``x``, and freely reduce with ``t^2``.
-    This is a Tietze transformation, not a quotient or an abelian screen.
+    If ``r^2`` is a relator and some generator occurs exactly once in ``r``,
+    introduce ``t=r`` with ``t^2=1``, solve for that generator, and freely
+    reduce with ``t^2``.  This is a Tietze transformation, not a quotient or
+    an abelian screen.  The former length-two test is the special case
+    ``r=xy``.
     """
     temporary = 10
 
@@ -254,37 +256,56 @@ def involution_substitution_killed(q_image, residual):
                             for index in range(len(candidate)))
         return min(variants) if variants else ()
 
+    def solved_positive_image(root, position):
+        pivot = root[position]
+        left, right = root[:position], root[position + 1:]
+        if pivot > 0:
+            return inverse(left) + (temporary,) + inverse(right)
+        # t = left g^-1 right, hence g = right t^-1 left; t^-1=t.
+        return right + (temporary,) + left
+
+    def rewrite_with_image(word, generator, positive_image):
+        expanded = []
+        for letter in word:
+            if abs(letter) != generator:
+                expanded.append(letter)
+            elif letter > 0:
+                expanded.extend(positive_image)
+            else:
+                expanded.extend(inverse(positive_image))
+        return reduce_involution(expanded)
+
+    # Independent algebraic replay of both signs of the eliminated occurrence.
+    for sample_root in ((1, 2, 3), (1, -2, 3)):
+        sample_image = solved_positive_image(sample_root, 1)
+        assert rewrite_with_image(sample_root, 2, sample_image) == (temporary,)
+    assert reduce_involution((temporary, -temporary)) == ()
+    assert cyclic_involution_key((temporary, 1)) == \
+        cyclic_involution_key((-1, -temporary))
+
     for relation in residual:
         power = primitive_power(relation)
-        if power is None or power[1] != 2 or len(power[0]) != 2:
+        if power is None or power[1] != 2:
             continue
-        first, second = power[0]
-        if abs(first) == abs(second):
-            continue
-        generator = abs(first)
-        if first > 0:
-            positive_image = (temporary, -second)
-        else:
-            positive_image = (second, temporary)
+        root = power[0]
+        for position, pivot in enumerate(root):
+            generator = abs(pivot)
+            if sum(abs(letter) == generator for letter in root) != 1:
+                continue
+            positive_image = solved_positive_image(root, position)
 
-        def rewrite(word):
-            expanded = []
-            for letter in word:
-                if abs(letter) != generator:
-                    expanded.append(letter)
-                elif letter > 0:
-                    expanded.extend(positive_image)
-                else:
-                    expanded.extend(inverse(positive_image))
-            return reduce_involution(expanded)
+            def rewrite(word):
+                return rewrite_with_image(word, generator, positive_image)
 
-        rewritten_q = rewrite(q_image)
-        rewritten_residual = tuple(sorted(set(filter(None,
-            (rewrite(item) for item in residual)))))
-        if (not rewritten_q
-                or cyclic_involution_key(rewritten_q) in
-                {cyclic_involution_key(item) for item in rewritten_residual}):
-            return True
+            assert rewrite(root) == (temporary,)
+            rewritten_q = rewrite(q_image)
+            rewritten_residual = tuple(sorted(set(filter(None,
+                (rewrite(item) for item in residual)))))
+            if (not rewritten_q
+                    or cyclic_involution_key(rewritten_q) in
+                    {cyclic_involution_key(item)
+                     for item in rewritten_residual}):
+                return True
     return False
 
 
