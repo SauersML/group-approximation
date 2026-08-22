@@ -81,6 +81,17 @@ only has to transport its covariance block.
   `c` also rules out strict relative `C'(1/6)`, so no vertex injection is being
   smuggled in through a borderline small-cancellation claim.
 
+- **That one-relator quotient has faithful finite vertex images.**
+  `atlas-forward-collision-has-faithful-s288-amalgam` gives a structural
+  degree-288 construction, and
+  `atlas-forward-collision-has-faithful-a10-quotient` independently gives
+  five explicit degree-ten permutations generating `A10`.  In the latter
+  image the vertex subgroup orders are exactly `18,144,6`, and
+  `Reg(A10)` realizes the compatible atlas margins at multiplicity `90`.
+  Hence neither collision nor one forward edge kills the common involution,
+  even after the minimal internal chart supports are included.  The next
+  obstruction must use at least one of the remaining rank-three core edges.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence
