@@ -78,10 +78,23 @@ compiler has not been obtained.
    isomorphic packet and preserves its symplectic rank.  Growth occurs only
    because both branch images are present and commute as a central product.
 
-Consequently the conjugate-sign idea clears the spectral-density issue but
-does not make the Morita transport finitely presentable inside the current
-elementary group.  A positive compiler needs a finitely generated ambient
-state group to which both root-dependent branches extend coherently.  This
-is additional structure of the type supplied abstractly by a Thompson
-Clifford tape, not by the bare Leavitt matrix-ring isomorphism.
+Consequently the conjugate-sign idea clears the spectral-density issue.  On
+the unstabilized Heisenberg subgroup it still leaves infinitely many HNN
+edge relations, so a positive compiler needs a finitely generated ambient
+which realizes both root-dependent branches coherently.
 
+The finite-naming part of that obstruction has now been removed.
+`stabilized-morita-branches-are-inner-but-incoherent` uses the explicit
+two-by-two dilation
+
+```text
+[[s_i,A-s_it_i],[0,t_i]]
+```
+
+to realize each branch by inner conjugation in one fixed stabilization.
+Thus finite algebraic naming of the branch maps is available.  What remains
+is global coherence: local conjugate signs and pairwise contextual frame
+transports must be aligned with one global prefix section.  The transition
+elements fill an infinite frame stabilizer, so their centralizer fillings
+are necessarily unbounded; property `(T)/(TT)` can replace that filling
+only after an exact actor representation has been recovered.
