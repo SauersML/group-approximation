@@ -118,3 +118,26 @@ presentation and an explicit infinite Clifford model keeping `J!=1`.
 The remaining placement theorem is
 `colored-cayley-pauli-incidence-separation`; its load-bearing content is the
 relative coset/double-coset separation `(CCP1)`, not bounded edge length.
+
+## 2026-08-22 private-matching update
+
+The new private Weyl sampler changes the placement problem decisively.  Its
+mixed X--Z occurrence graph is a matching, not a degree-reduced copy of a
+dense logical rectangle system.  By
+`private-matching-free-product-separates-pauli-signs`, pair `t` can be placed
+at `(s^t,s^t p_b)` in `F(s,p_0,p_1)`.  All pair relations are literal
+conjugates of two sign prototypes, free normal form separates the signs, and
+no endpoint is compared with a second mixed occurrence.  Thus neither pair
+holonomy nor colored relative small cancellation is a remaining gate for
+this branch.  The exact model is the invariant coset-Heisenberg
+representation, so the marked central sign survives.
+
+The matrix-valued dimension witness is already uniform for exact additive
+actions by `private-random-weyl-sampler-forces-growing-matrix-dimension`, and
+the finite samples are recursively selectable by
+`private-weyl-samplers-admit-recursive-selection`.  What is still missing is
+not mixed-pair consistency or sign-double-coset separation.  It is the
+same-basis compiler: bounded-template relations must turn all privately
+named X occurrences (and separately all Z occurrences) into one exact
+additive action with dimension-independent normalized-HS loss.  This is
+precisely `same-basis-rounding-interface-for-sparse-weyl-sampler`.

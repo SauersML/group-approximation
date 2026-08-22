@@ -29,6 +29,16 @@ BLR supplies the algebraic conclusion but its complete pair table is not a
 finite-template small-cancellation incidence object.  Equality-cloud degree
 reduction recreates the known two-pair contour obstruction.
 
+All downstream mixed-incidence issues are now discharged for the private
+sampler.  `private-random-weyl-sampler-forces-growing-matrix-dimension` gives
+the same-Hilbert matrix-valued dimension floor once the two additive actions
+are exact; `private-matching-free-product-separates-pauli-signs` places every
+mixed sign test as a constant-area conjugate with no mixed contour; and
+`private-weyl-samplers-admit-recursive-selection` computes the finite label
+lists.  Consequently this node is the sole analytic/finite-presentation gate
+on that route.  In particular no extra relative-small-cancellation,
+pair-holonomy, or random-sample-effectivity lemma should be added downstream.
+
 ## Attempts
 
 - **Dense BLR.**  Robust but its complete additive-triple incidence is not
@@ -37,4 +47,3 @@ reduction recreates the known two-pair contour obstruction.
   equality fibers and recreate short balanced contours.
 - **Separate local roundings.**  These do not produce the common PVM needed
   for `(SW2)` and leave a coupling escape.
-

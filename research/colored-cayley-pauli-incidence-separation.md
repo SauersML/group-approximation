@@ -179,3 +179,32 @@ sampled HS defect reduce uniformly to that scalar-Weyl model.  Hence sparse
 mixed incidence is no longer blocked by rectangle combinatorics at the
 scalar level; its next gate is matrix-valued exactification on the same
 Hilbert space.
+
+That matrix-valued issue is now also closed for **exact additive** X/Z laws by
+`private-random-weyl-sampler-forces-growing-matrix-dimension`, and the mixed
+placement itself is completely explicit by
+`private-matching-free-product-separates-pauli-signs`.  Put private pair `t`
+at the two addresses
+
+```text
+s^t,             s^t p_(b_t)       in F(s,p_0,p_1).
+```
+
+Every signed commutator is then a conjugate of one of two prototypes.  Since
+each endpoint has mixed degree one, there is no alternating mixed contour at
+all: threshold rectangles, equality-cloud lifts, relative pieces, and
+balanced-Greendlinger estimates disappear rather than being repaired.  Free
+normal form separates the two singleton sign offsets, and the invariant
+coset-Heisenberg model keeps the common sign nontrivial.
+
+The selected private samples may moreover be chosen recursively by
+`private-weyl-samplers-admit-recursive-selection`; existential randomness is
+not a naming obstruction.  The exact remaining gate is now only
+`same-basis-rounding-interface-for-sparse-weyl-sampler`: compile bounded-
+template relations which round the privately addressed X occurrences, and
+separately the Z occurrences, to common exact additive actions on the same
+Hilbert space.  Route
+`private-matching-plus-same-basis-rounding-closes-placement` records that this
+single input closes the present target.  The older dense expander-cloud
+small-cancellation branches remain correctly blocked, but they are no longer
+needed by the private-sampler route.

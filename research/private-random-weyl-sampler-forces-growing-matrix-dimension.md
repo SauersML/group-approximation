@@ -46,7 +46,11 @@ exact additive X/Z laws, including arbitrary matrix-valued multiplicity and
 relative basis position.  The scalar affine-rank condenser was not an
 artifact of Pauli normal form.
 
-This theorem is existential.  It does not give a recursive finite
-presentation naming the random columns, nor uniformly correct approximate
-additive laws.  Those are compiler/exactification questions downstream of
-the analytic bounded-incidence dimension witness.
+The theorem itself is proved by probabilistic existence, but
+`private-weyl-samplers-admit-recursive-selection` turns it into a recursive
+family: goodness of a finite candidate is decidable by real quantifier
+elimination and lexicographic search therefore terminates.  What remains is
+not sample effectivity.  It is bounded-area group-word naming together with
+uniform correction of approximate same-basis laws to exact additive actions,
+the interface isolated in
+`same-basis-rounding-interface-for-sparse-weyl-sampler`.
