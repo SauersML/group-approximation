@@ -116,6 +116,17 @@ do not provide either mechanism.
   or matrix-only rigidity must forbid motion inside those fibers.
 - **Finite quotient modules.**  These return to the finite-orbit capacity
   theorem and require an unbounded family.
+- **Use a free actor so that conjugacy names have no relator holonomy.**
+  `finite-character-orbits-detect-module-residual` shows that seed-visible
+  finite character orbits are exactly finite module quotients.  The sharper
+  specialization
+  `virtually-free-linear-self-similarity-retains-fd-mark` proves that every
+  nonzero seed in a finite-type linear module over a free or virtually free
+  actor is visible in such an orbit and even yields an exact finite-dimensional
+  `J=-1` Pauli model.  Thus exact reduced-word naming removes the analytic
+  covariance leak only by restoring the finite spectral packets that the
+  infinite-character route must exclude.  A surviving self-similar module
+  must place the mark in its module finite residual.
 - **Package infinitely many characters into finitely many bounded diagonal
   operators.**
   `finite-bounded-spectral-probe-obstruction`
