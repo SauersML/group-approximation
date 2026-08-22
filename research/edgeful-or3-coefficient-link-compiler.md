@@ -137,6 +137,18 @@ that certificate.
   retraction is not the endpoint: the link must destroy every
   packet-preserving finite evaluation.  A single projective two-chart mixer
   does not do so.
+- **Graft an affine-Leavitt third actuator onto the marked D8 cell.**
+  `four-cap-three-actuator-destroys-all-fd-packet-evaluations` closes the
+  exact algebraic gate.  The amalgam embeds the complete packet and keeps
+  `J` central and nontrivial, but every finite-dimensional representation
+  kills `J`; no packet-preserving finite evaluator survives.  This does not
+  finish the HS compiler.  The fixed D8 relation transfers a robust collapse
+  of the active Steinberg root to `J` with constant cost, so the precise
+  remaining dependency is
+  `affine-leavitt-steinberg-hs-coefficient-decoder`, packaged here as
+  `four-cap-three-actuator-hs-packet-blocker`.  Importing the exact actuator
+  without that decoder would repeat exact finite-dimensional invisibility,
+  not prove a normalized-HS obstruction.
 
 The attack is not deferred: the finite slot-frame and packet-term matching
 problem in the preceding paragraph is the next explicit computation.
@@ -156,3 +168,18 @@ firewall.  Therefore a live use must derive the coefficient-link energy
 directly from the rectangular frame.  Treating its labels as the affine
 branches, or imposing exact label/source intertwining, is not a valid
 closure.
+
+Adding the missing ghost channel does give one exact local wordizer.
+`ghost-completed-fano-naimark-wordizes-one-local-predicate` completes the
+seven cap channels by the ghost atom and obtains one ordinary dihedral
+commutator whose squared defect is exactly the local ghost trace.  This
+removes local nonlinear predicate wordization from the four-cap branch.
+
+It still does not authenticate one common source across clauses: the honest
+selected types can occupy orthogonal multiplicity reservoirs.  Moreover
+`universal-residual-wordization-collapses-carrier` shows
+that a universal lower bound from defining words to the tight-frame rows
+would force the residual algebraic carrier to vanish in the faithful regular
+trace.  Hence the remaining coefficient-link step must provide a genuinely
+finite-matrix/canonical-type alignment estimate.  A fixed exact Morita
+identity cannot promote the local dihedral rows by itself.
