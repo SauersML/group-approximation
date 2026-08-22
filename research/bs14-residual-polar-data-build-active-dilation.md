@@ -81,3 +81,11 @@ tuple.
   matrix and exhibits a determinant-two, index-two hole.  It remains to
   prove native-support balancedness, pay such parity holes within the active
   ledger, or use the operator Gram equations to exclude them.
+- `bs14-native-cell-padding-preserves-lattice-charge` shows that the phrase
+  "pay such a hole by padding" must permit a controlled **change of cell
+  type**.  Same-support padding preserves the incidence-lattice coset, so
+  the determinant-two example cannot be repaired by adjoining any number of
+  its four native cells, even though doubling the whole margin vector
+  integralizes it.  The remaining statement must authenticate
+  support-enlarging cells (or perturb the rounded margins); a bounded
+  saturation exponent alone is logically insufficient.
