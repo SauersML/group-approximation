@@ -34,6 +34,14 @@ phase, never an additive index or absolute rank.
 
 ## Attempts
 
+- `non-ce-algebras-have-finite-symmetry-moment-witnesses` shows that no
+  infinite operator-algebra profile is needed: every separable diffuse non-CE
+  source has finitely many self-adjoint unitary coordinates, a finite word
+  window, and one amplification-invariant matrix gap.  This sharpens the
+  decoder target but does not solve it, because those target word traces are
+  generally intermediate scalars rather than the canonical delta character.
+  Projective closure of the full symmetry basis would force hyperfiniteness.
+
 - **Multiplicity lane:** use the Schur predicate rank jump and a returning
   finite-scale wire. The local gap is established; stationary regular type
   flow is the current escape.

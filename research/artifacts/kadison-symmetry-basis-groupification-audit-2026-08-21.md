@@ -4,7 +4,7 @@
 
 Yixin He, Quanyu Tang and Teng Zhang, *The separable case of Kadison's
 problem on orthonormal bases of unitaries for type II_1 factors*,
-arXiv:2605.15006v2 (16 May 2026), Theorem 1.2.
+arXiv:2605.15006v2 (16 May 2026), Theorem 1.
 
 The theorem states that every diffuse finite von Neumann algebra with
 faithful normal trace and separable `L^2` has a complete orthonormal basis

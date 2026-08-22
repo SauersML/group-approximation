@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/kadison-symmetry-basis-groupification-audit-2026-08-21.md
 ---
 
-He--Tang--Zhang, arXiv:2605.15006v2, Theorem 1.2, prove:
+He--Tang--Zhang, arXiv:2605.15006v2, Theorem 1, prove:
 
 > If `(M,tau)` is a diffuse finite von Neumann algebra, `tau` is faithful and
 > normal, and `L^2(M,tau)` is separable, then `L^2(M,tau)` has an orthonormal
