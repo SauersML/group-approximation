@@ -28,3 +28,6 @@ the two natural supports to coincide before collision excludes the relative
 marking.  Thus neither q14 nor a new marked computation is needed in this
 interval.
 
+The next classification step, `atlas-q14-simple-overgroup-index-is-at-least-496`,
+removes the entire interval through 495 and isolates the mixed natural/dual
+labeling of the standard `A8<L5(2)` class at index 496.
