@@ -52,11 +52,13 @@ cross-context encodings require a local extendability hypothesis.
   its fixed-support/decoder statements use a noise parameter
   `epsilon in (0,1)` and do not establish the perfect-completeness endpoint
   `epsilon=0`.  It therefore does not close the cap-profile selector.
-- Model-by-model pruning to some Fano cap is not a uniform finite compiler.
-  Different strategies may leave different caps.  A finite OR over cap
-  profiles is not automatically a solution group with one central mark;
-  identifying branch signs implements an AND.  This is isolated as
-  `culf-mastel-rstar-uniform-fano-cap-profile`.
+- Model-by-model pruning to some Fano cap can be combined over the finite
+  profile list by `finite-lcs-product-sign-is-exact-or`.  Its private branch
+  selectors and priority corners implement OR inside ordinary LCS syntax;
+  only identifying all branch signs would implement AND.
+- The remaining gate is existence of at least one cap-supported perfect CE
+  model on the halting branch.  Extremality and pairwise pruning do not imply
+  that property, and a symmetry-equivariant maximal cap cannot be selected.
 
 ## Kleene orientation
 

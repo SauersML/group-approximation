@@ -1,0 +1,32 @@
+---
+rg: 2
+id: culf-mastel-rstar-halt-model-has-fano-cap-support
+kind: claim
+title: The halting Culf--Mastel R-star instance has a perfect CE model with Fano-cap local supports
+distinct_from:
+  culf-mastel-rstar-uniform-fano-cap-profile: that compiles all possible cap profiles into one marked LCS; this is now the sole source-specific existence statement needed for that finite compilation.
+  rstar-fano-cap-support-preserves-nonru-affine-relaxation: that proves soundness after a cap profile is given; this asks whether the published completeness construction supplies such a profile.
+---
+
+OPEN.
+Choose a perfect CE model in the halting branch of a realization of the
+Culf--Mastel family over `R_*` such that, in every `R_*` context, its positive
+joint spectral support becomes a Fano cap after translation by the ghost.
+
+Equivalently, no local support contains all three points of a Fano line.
+This must be checked in the actual perfect-completeness reduction to the
+fixed language; NP-hardness of `R_*` alone does not preserve quantum support.
+`culf-mastel-rstar-reduction-is-support-blind` verifies that Theorem 6.8
+applies to `R_*` but that its stated classical extension map supplies no
+no-Fano-line support conclusion.
+
+## Attempts
+
+- Pairwise arc pruning does not force the property: two equality-linked
+  copies of the full seven-point relation are already a pruning fixed point.
+- Passing to an extreme trace does not force it either; see
+  `extreme-traces-and-local-pruning-do-not-select-fano-caps`.
+- Minimal-support selection may shrink a particular satisfying face, but no
+  theorem currently shows that a support-minimal perfect CE model of the
+  Culf--Mastel instance cannot retain a forced Fano line.  This is the exact
+  remaining possible canonical operation.

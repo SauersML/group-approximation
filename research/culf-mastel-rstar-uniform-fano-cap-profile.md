@@ -33,7 +33,8 @@ The missing operation is therefore earlier: effectively produce a finite
 menu of cap-profile affine branches for which **some** branch retains a
 perfect model on every halting instance.  Once that finite complete menu is
 available, its sound branches can be combined without choosing a profile
-uniformly in advance.
+uniformly in advance.  This sole remaining source-specific statement is
+`culf-mastel-rstar-halt-model-has-fano-cap-support`.
 
 ## Attempts
 
@@ -46,6 +47,14 @@ finite set of cap profiles, model-dependence of the chosen profile is no
 longer an obstruction: the product-sign OR compiler combines the list.  What
 is not established is that pruning/completeness theorem, nor the required
 fixed-language quantum reduction producing the list.
+
+The three most natural canonical shortcuts fail in general.
+`extreme-traces-and-local-pruning-do-not-select-fano-caps` gives an extreme
+factor trace with full seven-point local supports, an equality-linked
+arc-pruning fixed point with full supports, and the `GL(3,2)` symmetry
+obstruction to choosing one maximal cap equivariantly.  These examples do not
+settle global support-minimality in the actual Culf--Mastel completeness
+model; they isolate it as the remaining plausible operation.
 
 The recursion-theoretic orientation is otherwise correct.  Culf--Mastel give
 perfect CE completeness on `HALT` and a constant CE gap on `NONHALT`, exactly
