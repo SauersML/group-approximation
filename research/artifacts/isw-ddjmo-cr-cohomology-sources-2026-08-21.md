@@ -68,3 +68,35 @@ cohomology of buildings*, arXiv:0806.2412, Comment. Math. Helv. 85
   residue: every element is torsion, and V_± are infinite (non-compact
   closures), metabelian [Rém02a, 3.2 Example 2] — infinite torsion
   subgroups of Λ, on the record.
+- **Uniform integrability theorem (their Theorem 30; verbatim).**
+  "Let Λ be a split or almost split Kac-Moody group over Fq.  Assume
+  that Λ is a lattice of the product of its twinned buildings B±.
+  Then the group Λ admits a natural fundamental domain with respect
+  to which it is uniformly p–integrable for any p ∈ [1; +∞)."  Their
+  framing: "an integrability condition (a substitute for
+  cocompactness) required by [GKM06] for a lattice to enjoy
+  superrigidity properties ... it ensures the existence of harmonic
+  maps [GKM06]"; consumed via Corollary 31 to import
+  Gelander–Karlsson–Margulis Theorems 1.1/1.3/1.4 (superrigidity of
+  isometric actions on Busemann NPC uniformly convex spaces) —
+  degree-≤ 1 cocycle/harmonic-map technology, nothing in degree 2.
+
+## Oppenheim, *Vanishing of cohomology with coefficients in
+representations on Banach spaces of groups acting on Buildings*,
+arXiv:1512.08188v2 (read this date)
+
+- Describes [8] = Dymara–Januszkiewicz, Invent. Math. 150(3):579–627
+  (2002): "property (T) ... and vanishing of higher cohomologies with
+  coefficients in representations on Hilbert spaces for groups acting
+  on simplicial complexes", via angles between subgroups/projections.
+- **Main BN-pair theorem (verbatim in substance).**  G a BN-pair
+  group acting on its n-dimensional building Σ, n > 1, all
+  l-dimensional links compact, thickness q + 1: there are s0(n) and
+  Q(n, C1, θ2, C3) such that for q ≥ Q and every representation π in
+  the stated Banach class (contains all isometric representations on
+  the class; Hilbert spaces included), `H^i(G, π) = 0, i = 1, ..., l`.
+- Consequence used by the graph: the vanishing range is bounded by
+  the compact-link parameter, hence by n − 1.  For 2-dimensional
+  buildings (rank-3 compact hyperbolic Kac–Moody factors) the range
+  is degree 1 only; degree 2 is the top degree of the factor's
+  building — the DDJMO concentration/nonvanishing degree.

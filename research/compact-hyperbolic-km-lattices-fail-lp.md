@@ -28,8 +28,11 @@ projective-representation mechanism, is NOT a priori vacuous at
 simple groups).  If instead it FAILS — `C*(Lambda)` has the LP —
 then a fortiori `C*(Lambda)` has the LLP, and
 `llp-non-rf-kazhdan-group-is-non-hyperlinear` closes the whole
-program with `Lambda` as the witness.  Every outcome is progress;
-the missing piece is a single cohomological input.
+program with `Lambda` as the witness.  The refutation branch of this
+claim — "`C*(Lambda_(2,4,6)(q))` has the LP" — is currently the
+single shortest conditional statement in the graph that closes the
+program.  Every outcome is progress; the missing piece is a single
+cohomological input.
 
 ## Attempts
 
@@ -71,18 +74,59 @@ the missing piece is a single cohomological input.
   through Bernoulli-coefficient cocycles `L^0(T^Gamma, T)` and Popa
   malleability, so the `Z Gamma` and p.m.p. routes converge on the
   same kind of soft-coefficient 2-cocycle nonvanishing.
-- **Continuous-cohomology route (the other side of the fork).**  The
-  (T) input for `Lambda` is Dymara--Januszkiewicz cohomology
-  vanishing ([DJ02, Theorem E], per Caprace--Rémy Corollary 21 read
-  at source — the origin of the 1764 bound).  If a DJ-type vanishing
-  in degree 2 applied to modules induced from the NON-uniform lattice
-  (Caprace--Rémy's uniform-integrability theorem is their recorded
-  substitute for cocompactness in rigidity, and whether it supports
-  Eckmann--Shapiro induction in degree 2 is unrecorded), it would
-  prove `H^2(Lambda, R) = 0` and mute Corollary E's easy clause,
-  pushing everything to the `Z Lambda` / `L^0`-coefficient routes.
-  Neither direction of this inner fork is decided; deciding it is the
-  cheapest decisive sub-task on this claim.
+- **Continuous-cohomology induction: inner fork DECIDED NEGATIVE
+  (2026-08-21), by three independent blocks.**  (i) *The degree-2
+  vanishing input does not exist.*  The DJ-framework vanishing for a
+  BN-pair group acting on its `n`-dimensional building covers degrees
+  `1, ..., l` with `l` the compact-link parameter, hence at most
+  `n - 1` (Oppenheim arXiv:1512.08188, main BN-pair theorem, read at
+  source: `H^i(G, pi) = 0, i = 1, ..., l` for thickness `q >= Q`,
+  Hilbert and Banach coefficient classes; and Caprace--Rémy
+  Corollary 21 consumes [DJ02, Theorem E] precisely as "the
+  1-cohomology vanishing").  For the rank-3 compact-hyperbolic
+  factors `n = 2`: the vanishing range stops at degree 1, and degree
+  2 is the TOP degree of each factor's building — the
+  DDJMO nonvanishing zone; Künneth for `G_+ x G_-` kills only the
+  `H^1 (x) H^1` piece (property (T)), leaving the top-degree factor
+  pieces untouched.  (ii) *No degree-2 Shapiro bridge exists for
+  non-uniform lattices.*  Caprace--Rémy's uniform integrability
+  theorem (Theorem 30, verbatim verified: a natural fundamental
+  domain, uniformly p-integrable for every `p in [1, infty)`) is
+  stated and consumed as a substitute for cocompactness in the
+  Gelander--Karlsson--Margulis harmonic-map superrigidity (their
+  Corollary 31) — degree-`<= 1` cocycle technology; no published
+  statement upgrades any integrability substitute to a degree-2
+  Eilenberg--MacLane induction isomorphism.  (iii) *The hoped-for
+  principle is false in the classical world.*  ISW Example 1.3(ii)
+  ([So78], read at source): the congruence subgroup `Gamma_p <=
+  SL_3(Z)` is a non-uniform higher-rank (T) lattice with
+  `H^2(Gamma_p, R) != 0` although `H^2_ct(SL_3(R); R) = 0` — ambient
+  degree-2 vanishing plus integrability can never imply lattice
+  `H^2`-vanishing; classically the lattice classes live in the
+  NON-unitary smooth induced module (Borel-type Shapiro with
+  `C^infty(G/Gamma)`), outside every unitary vanishing theorem.
+  *Tilt:* (i) and (iii) weakly predict `H^2(Lambda; R) != 0`
+  (Corollary E LIVE) — degree 2 is exactly where the buildings carry
+  cohomology and where non-uniform (T) lattices are known to hide
+  classes — but the known class-producing mechanism (congruence
+  level structure) has no analogue in a simple group.  The outer
+  fork stays genuinely open, with the inner fork closed.
+- **Surviving concrete route to `H^2(Lambda; R)`.**  After
+  barycentric subdivision, `Lambda` acts cellularly, properly, with
+  finite stabilizers on the contractible locally finite 4-complex
+  `X_+ x X_-`, so the equivariant spectral sequence with rational
+  coefficients collapses (finite stabilizers are Q-acyclic) to
+
+      `H^k(Lambda; Q) = H^k(Lambda \ (X_+ x X_-); Q)`  for all k,
+
+  with NO cocompactness needed.  The quotient is an explicit
+  infinite 4-complex: chamber-pair cells are indexed by the
+  codistance in `W` (twin strong transitivity), lower cells by
+  parabolic double-coset data.  Computing its `H^2` is the honest
+  open computation that replaces every vanished shortcut — and is
+  the corrected form of the repaired wrong claim: the erroneous step
+  had quotiented a cocompact model that does not exist; the
+  non-cocompact quotient computation is what actually remains.
 - **What would NOT follow.**  LP failure says nothing about the LLP
   (the local side, `triangle-relator-extension-admits-local-ucp-
   sections`) — by design of the equivalence; conversely no LLP-side
