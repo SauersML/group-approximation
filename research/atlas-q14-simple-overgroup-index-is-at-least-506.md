@@ -19,3 +19,6 @@ If equality holds, then `S ~= M23` and both charts belong to its maximal
 degree-506 `A8` class.  Thus the next exact finite-simple question is one
 specific sporadic double-coset problem, not an unbounded classical census.
 
+That equality problem is now closed by
+`atlas-a4-m23-packet-double-coset-screen`, yielding
+`atlas-q14-simple-overgroup-index-is-at-least-507`.
