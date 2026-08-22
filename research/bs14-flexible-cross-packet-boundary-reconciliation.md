@@ -143,6 +143,21 @@ compressed Weil packets.
   correctable low singular modes), or whether heterogeneous scalar packets
   can make the exit carriers asymptotically parallel and recycle the source.
 
+- **Canonical determinant-neutral packets have a large uniform carrier
+  angle.**
+  `even-weil-two-cubic-exit-angle-is-one-over-root-p-plus-two` computes the
+  non-source principal cosine for `p=1 mod 8` as
+
+  ```text
+  1/(sqrt(p)+2)<1/6.
+  ```
+
+  Orthogonal sums, heterogeneous primes, and multiplicity mixing preserve
+  this bound.  Hence the known neutral Weil family cannot furnish the
+  parallel-exit counterexample.  Any such counterfamily must use genuinely
+  non-Weil scalar return phases or an approximate off-diagonal coupling not
+  unitarily equivalent to multiplicity mixing of exact Weil blocks.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
