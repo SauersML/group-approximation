@@ -149,3 +149,13 @@ tuple.
   this also preserves the regular character, so the remainder is not
   hyperfinite; the reverse construction from two residual polar carriers
   remains the genuine missing step.
+- `bs14-thresholded-newton-needs-coordinate-basin`
+  records the exact active/passive Newton synthesis.  Threshold `theta`
+  leaves high rank at most `ed/theta^2` and low residual operator norm at
+  most `theta`.  The uniform infinitesimal inverse then integrates with a
+  dimension-free HS bound **if** the generators are already in a fixed
+  operator-norm tube of an exact congruence atom.  Small residual operator
+  norm does not supply that coordinate tube, and deleting a residual's high
+  singular matrix is not an integrable modification of `X`.  There is no
+  tangent inverse blowup; the missing gate is global operator-norm basin
+  entry after high-carrier realization.

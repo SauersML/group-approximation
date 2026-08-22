@@ -312,6 +312,18 @@ compressed Weil packets.
   now sharply the reverse low-rank problem: reconstruct one global atom
   from two sublinear-rank cubic residuals.
 
+- **Thresholding fixes the Hessian scale but not basin entry.**
+  `bs14-thresholded-newton-needs-coordinate-basin`
+  separates residuals at singular threshold `theta`.  The high carrier has
+  relative rank at most `e/theta^2`, while the low residual has operator norm
+  at most `theta`.  Uniform infinitesimal rigidity plus the correct mixed
+  Hessian estimate gives a level-independent Newton correction once the
+  tuple is operator-norm close to an exact atom.  But low residual operator
+  norm is a codomain condition, not coordinate proximity, and the spectral
+  truncation itself is not a tuple.  The surviving low-part theorem is a
+  global operator-norm coordinate-basin result; no tangent sequence defeats
+  it, because the exact-point derivative gap is already uniform.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
