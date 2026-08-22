@@ -51,7 +51,7 @@ prescribed signs sum to one.  This is the exact algebraic obstruction which
 an unbounded sign-colliding contour would witness.
 
 The first nontrivial dependence now has a closed-form test.
-`opposite-sign-stabilizer-double-coset-collapses-coinvariant-pairing` shows
+`opposite-sign-double-coset-collapses-pairing` shows
 that, for base classes `x,z` and sign offsets `p_0,p_1`, the quotient-module
 stabilizers
 

@@ -80,7 +80,7 @@ cloud/face character decoder or a genuinely different Lyapunov update, not
 an improved constant in facewise Loewner exactification.
 
 That coordinated branch is complete on the globally commuting sector.
-`globally-commuting-balanced-occurrences-have-linear-character-decoder`
+`balanced-occurrences-have-linear-character-decoder`
 uses the common spectral decomposition, pointwise cloud majority, and the
 classical LTC decoder to jump directly to a shared code PVM with squared
 movement `O(E_sparse)`.  It therefore satisfies `(PCD2)` and makes both

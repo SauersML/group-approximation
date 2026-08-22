@@ -32,15 +32,16 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptTensorAmplification"),
     "thm:kazhdan-transport": (
-        "Sofic/KazhdanTransportAnyUniverse",
-        "GroupApproximation.KazhdanAsymptoticCommutant."
-        "manuscriptKazhdanTransport_anyUniverse"),
+        "Sofic/ManuscriptSubgroupSpecializations",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptKazhdanTransportSubgroup"),
     "cor:generaltransport": (
         "Sofic/DefectActionAnyUniverse",
         "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse"),
     "thm:sign-criterion": (
-        "Sofic/CentralSignAnyUniverse",
-        "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse"),
+        "Sofic/ManuscriptSubgroupSpecializations",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptCentralSignCriterionSubgroup"),
     "lem:corner": (
         "Analysis/PrintedCornerCompression",
         "GroupApproximation.PrintedCornerCompression."
@@ -182,9 +183,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
     ),
     "thm:transport-variants": (
-        "Sofic/TransportVariantsAnyUniverse",
-        "GroupApproximation.TransportVariantsAnyUniverse."
-        "scaled_transport_both_anyUniverse",
+        "Sofic/ManuscriptSubgroupSpecializations",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptWeightedTransportSubgroup",
     ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",
@@ -240,24 +241,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 }
 
 
-# These claims are exact specializations of the named, more general Lean
-# propositions.  They deliberately remain reader-facing subgroup statements;
-# the manifest records the reduction instead of pretending the binders are
-# literally identical.
-SPECIALIZATION_IDENTITIES: dict[str, str] = {
-    "thm:kazhdan-transport": (
-        "The named declaration proves the complete printed proposition after "
-        "specializing its source group to L and its homomorphism to the "
-        "inclusion L → H."),
-    "thm:sign-criterion": (
-        "The named declaration proves the complete printed proposition after "
-        "specializing its source group to L and its homomorphism to the "
-        "inclusion L → H."),
-    "thm:transport-variants": (
-        "The named declaration proves the complete printed proposition after "
-        "specializing its source group to L and its homomorphism to the "
-        "inclusion L → H."),
-}
+# Numbered claims whose formal counterpart intentionally uses different
+# binders are recorded here.  The current manuscript subgroup statements now
+# have literal subgroup-coordinate wrappers, so this table is empty.
+SPECIALIZATION_IDENTITIES: dict[str, str] = {}
 
 
 # No single declaration states these enumerated claims as one conjunction;

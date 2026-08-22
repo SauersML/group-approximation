@@ -22,3 +22,11 @@ non-split central extension by `<J>~=C_2`, contains two conjugate commuting
 child copies intersecting exactly in `<J>`, has an internal sibling swap, and
 contains one newly addressed Pauli pair at every binary depth.  It has a
 faithful tracial crossed-product representation with `J=-I`.
+
+The exact tape does not admit a hidden uniformly bounded full-table naming.
+For every finite presentation and every choice of word representatives, the
+maximum filling area in its natural rank-`N` Pauli multiplication table is at
+least linear in `N`; see
+`thompson-clifford-table-area-grows-linearly-in-rank`.  This sharper
+crossed-Fox obstruction uses the `p`-lamp quotient and is independent of the
+choice of word representing the identity.

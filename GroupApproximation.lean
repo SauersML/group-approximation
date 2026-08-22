@@ -864,6 +864,7 @@ import GroupApproximation.Sofic.LiteralRelatorObstruction
 import GroupApproximation.Sofic.ExactCoronaNegativeCorner
 import GroupApproximation.Sofic.LiteralTheoremAPackage
 import GroupApproximation.Sofic.ManuscriptExactWrappers
+import GroupApproximation.Sofic.ManuscriptSubgroupSpecializations
 import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 
 -- Modules that until now compiled only in isolation.  Outside the root import

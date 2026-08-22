@@ -141,3 +141,41 @@ This model proves exact marked completeness and exhibits one new CAR qubit at
 every level.  It does not yet couple the tape to the non-CE BCS trace or prove
 the finite-dimensional sibling-factor placement needed for the contraction
 ledger; those are separate interfaces.
+
+## 5. Representative-independent table-area obstruction
+
+The same quotient `(TCP2)` gives a quantitative obstruction to uniformly
+cheap names.  Project it to the `p` coordinate
+
+```text
+d_bar:VCl -> directSum_X F_2,
+```
+
+viewed as a crossed cocycle for the actor map to `V`.  For any finite
+presentation `<S|R>` of `VCl`, choose integral lifts of `d_bar(s)` and extend
+them to a crossed derivative `D:F(S)->directSum_X Z`.  If
+
+```text
+C_P=max_(r in R) ||D(r)||_1,
+```
+
+then every null word `z` satisfies
+
+```text
+Area_R(z)>=||D(z)||_1/C_P.
+```
+
+Here `D` itself is deliberately not asserted to descend.  In the standard
+generator-adapted presentation `D(p^2)=2e_xi`; for an arbitrary presentation
+the square of a word representing the base lamp has derivative twice a
+vector with odd `xi` coefficient.  Its reduction modulo two descends by
+`(TCP2)`, which is exactly what makes every representative of a product of
+`N` distinct `p`-lamps have derivative norm at least `N`.
+
+For a completely arbitrary section of the rank-`N` Pauli packet, write `u`
+for the word assigned to that lamp product and `v` for the word assigned to
+the identity.  The full table contains both cells `(1,1)` and `(a,a)`.  Their
+derivatives are `D(v)` and `2D(u)-D(v)`, so one has norm at least
+`||D(u)||_1>=N`.  Consequently the largest table-cell area is at least
+`N/C_P`.  Pairing these two cells is essential: using only `u^2` silently
+assumes that the identity representative is the empty word.

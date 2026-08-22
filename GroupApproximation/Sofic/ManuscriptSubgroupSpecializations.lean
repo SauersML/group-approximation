@@ -116,24 +116,77 @@ theorem manuscriptCentralSignCriterionSubgroup :
 
 /-! ## The subgroup form of weighted transport -/
 
-/-- Exact subgroup form of weighted two-sided transport.  The weight is an
-arbitrary nonnegative sequence, the mass bound is the unnormalized trace
-bound, and both forward and inverse conjugation preserve the scaled
-asymptotic commutant of `L`. -/
+/-- The manuscript's weighted Frobenius-mass bound in literal natural matrix
+coordinates. -/
+def NaturalScaledMassBounded (d : ℕ → ℕ) (weight : ℕ → ℝ)
+    (x : ∀ n, Matrix (naturalFiniteModel (d n))
+      (naturalFiniteModel (d n)) ℂ) : Prop :=
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ n, matMass (x n) ≤ C * weight n
+
+/-- The manuscript's weighted asymptotic-commutant condition in literal
+natural matrix coordinates. -/
+def NaturalScaledCommutatorVanishing {H : Type u} [Group H]
+    (d : ℕ → ℕ)
+    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+    (weight : ℕ → ℝ)
+    (x : ∀ n, Matrix (naturalFiniteModel (d n))
+      (naturalFiniteModel (d n)) ℂ) (g : H) : Prop :=
+  ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
+    matMass (x n -
+      (U n g : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ) * x n *
+      (U n g : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ)ᴴ) ≤ epsilon * weight n
+
+/-- Exact subgroup form of the manuscript's weighted transport theorem, in
+the displayed natural matrix coordinates.  Each transported sequence again
+satisfies both printed conditions: its Frobenius mass is `O(weight n)`, and it
+asymptotically centralizes every ambient element belonging to `L` at that
+weight. -/
 theorem manuscriptWeightedTransportSubgroup :
     ∀ {H : Type u} [Group H]
-      (B : OpAlmostRepresentation H) (weight : ℕ → ℝ)
-      (_hweight : ∀ n, 0 ≤ weight n)
       (L : Subgroup H) (_hT : HasKazhdanPropertyT.{u, u} L)
       (s : H) (_hs : ∀ gamma : H, gamma ∈ L → s * gamma * s⁻¹ ∈ L)
-      (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
-      (_hx : IsScaledAsymptoticCommutantOf B weight (Subgroup.subtype L) x)
-      (_hbound : IsScaledMassBounded B weight x),
-    IsScaledAsymptoticCommutantOf B weight (Subgroup.subtype L)
-        (KazhdanAsymptoticCommutant.adjointSequence B s x) ∧
-      IsScaledAsymptoticCommutantOf B weight (Subgroup.subtype L)
-        (KazhdanAsymptoticCommutant.coadjointSequence B s x) := by
-  intro H _ B weight hweight L hT s hs x hx hbound
+      (d : ℕ → ℕ) (_hd : ∀ n, 0 < d n)
+      (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+      (_hU : ∀ g h : H, ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
+        ‖(U n (g * h) : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) -
+          (U n g : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) * U n h‖ ≤ epsilon)
+      (weight : ℕ → ℝ) (_hweight : ∀ n, 0 ≤ weight n)
+      (x : ∀ n, Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ)
+      (_hbound : NaturalScaledMassBounded d weight x)
+      (_hx : ∀ gamma : H, gamma ∈ L →
+        NaturalScaledCommutatorVanishing d U weight x gamma),
+    let forward : ∀ n, Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ := fun n ↦
+      (U n s : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ) * x n *
+      (U n s : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ)ᴴ
+    let reverse : ∀ n, Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ := fun n ↦
+      (U n s : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ)ᴴ * x n *
+      (U n s : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ)
+    (NaturalScaledMassBounded d weight forward ∧
+      ∀ gamma : H, gamma ∈ L →
+        NaturalScaledCommutatorVanishing d U weight forward gamma) ∧
+      (NaturalScaledMassBounded d weight reverse ∧
+        ∀ gamma : H, gamma ∈ L →
+          NaturalScaledCommutatorVanishing d U weight reverse gamma) := by
+  intro H _ L hT s hs d hd U hU weight hweight x hbound hx
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  let B : OpAlmostRepresentation H := {
+    model := fun n ↦ naturalFiniteModel (d n)
+    modelNonempty := fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+    map := U
+    asymptoticallyMultiplicative := hU
+  }
   let C : KazhdanCompressionCore L H := {
     iota := Subgroup.subtype L
     t := s
@@ -144,10 +197,16 @@ theorem manuscriptWeightedTransportSubgroup :
       exact ⟨⟨s * (ell : H) * s⁻¹, hs ell ell.property⟩, rfl⟩
     comm_c := fun ell ↦ Commute.one_left ell
   }
-  have hxC : IsScaledAsymptoticCommutant B weight C x := hx
-  have hresult := TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse
-    B weight hweight C x hxC hbound
-  exact hresult
+  have hboundB : IsScaledMassBounded B weight x := hbound
+  have hxB : IsScaledAsymptoticCommutant B weight C x :=
+    fun ell ↦ hx ell ell.property
+  obtain ⟨hforward, hreverse⟩ :=
+    TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse
+      B weight hweight C x hxB hboundB
+  have hforwardBound := hboundB.adjointSequence (g := s)
+  have hreverseBound := hboundB.coadjointSequence (g := s)
+  exact ⟨⟨hforwardBound, fun gamma hgamma ↦ hforward ⟨gamma, hgamma⟩⟩,
+    ⟨hreverseBound, fun gamma hgamma ↦ hreverse ⟨gamma, hgamma⟩⟩⟩
 
 /-! ## The literal residual computation, with its exact external boundary -/
 

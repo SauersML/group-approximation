@@ -88,7 +88,7 @@ controlling that unbounded-type mass is still open.
 
 The scalar fixed sheet also admits an explicit coordinated repair, rather
 than only the bounded-type compactness argument.
-`globally-commuting-balanced-occurrences-have-linear-character-decoder`
+`balanced-occurrences-have-linear-character-decoder`
 diagonalizes the entire abelian occurrence algebra once, takes cloud
 majorities on every common spectral atom, and applies the classical LTC
 decoder there.  It gives a linear same-Hilbert modulus, uniformly over
