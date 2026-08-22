@@ -138,6 +138,15 @@ work into a metric decoder, rather than mixing it with Toeplitz algebra.
   showing that the finite packet multiplicity carried by this literal head
   factor passes through the represented root triangles with the oriented
   child coefficient `(OCB3)`.
+- **Full-packet Reynolds authentication alone still has an exact escape.**
+  `finite-schur-head-has-trace-character-escape` applies one Wedderburn-block
+  matrix trace to `F_N^-=M_N(A_f^-)`. The resulting additive root character
+  is invariant under every unit of the complete forbidden head and detects
+  every site defect `e_i`. Thus even before selector reset, no collection of
+  packet conjugation or Reynolds identities can localize the root-character
+  mass. A transverse Steinberg multiplication row coupled to the one-sided
+  boundary is mandatory; more inner packet authentication is provably
+  inert.
 - **The present shift does not supply that decoder.**
   `packet-headed-toeplitz-shift-is-schur-type-preserving` proves that
   `sigma^n` carries each full forbidden Wedderburn block isomorphically to the

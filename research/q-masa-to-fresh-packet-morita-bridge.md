@@ -56,6 +56,13 @@ to reconstruct it.
   the full packet before the selector-forgetting endpoint. The unresolved
   part is its normalized-HS ordinary-group realization, not another finite
   `K_f` incidence table.
+- **Authenticate the pre-reset head only by full-packet Reynolds data. Dead.**
+  `finite-schur-head-has-trace-character-escape` constructs, in every finite
+  packet-headed window, an additive character invariant under the entire
+  head unit group and nontrivial on every Toeplitz site defect. Consequently
+  the extra pre-reset observable must enter a transverse multiplication row;
+  inner covariance of the full packet does not remove the multiplicity/root
+  gauge.
 - **Direct product or selector amalgam. Dead.**  Commuting the fresh packet
   only with `K_f` does avoid selector globalization, but
   `q-masa-selector-bridge-is-scale-conservation` shows that its apparent
