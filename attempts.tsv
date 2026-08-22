@@ -85,3 +85,4 @@
 32548163064	2026-08-22T03:09:11Z	GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean	flatE_unflatE
 32550397301	2026-08-22T03:58:17Z	GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean	stage_transport_bound
 32552798000	2026-08-22T04:57:38Z	GroupApproximation/Sofic/InvolutionCollapseEndpointPrep.lean	eventually_bVec_eq_zero_of_orbit_fixed
+32555103056	2026-08-22T05:45:25Z	GroupApproximation/Sofic/LiteralSoficEndpoint.lean	splitHom_injective
