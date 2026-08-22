@@ -92,6 +92,20 @@ and turns `qWq=0` into an ordinary extension condition without constraining
 the unused complement.  This is the exact controlled-`U`/corner-equality
 gate; LCU itself does not solve it.
 
+There is now one exact positive reduction inside that gate.
+`finite-cocycle-select-forces-one-common-lcu-gauge` groupifies SELECT for a
+uniform finite-group/cocycle word list and forces every coordinate
+orientation to one common right unitary, which does not change the HS norm of
+the average.  In particular this handles the Fourier average of one affine
+character atom.  It does not handle a general coefficient list without
+imposing the cocycle multiplication relations on the payload, and for a
+character group of order greater than two its uniform projection has rank
+`1/|K|`, so the remaining zero-compression condition is still the selected
+small-corner return actuator rather than a balanced grading relation.  The
+construction uses the reducing free lamp-character orbit of a wreath packet;
+it therefore does not claim that SELECT normalizes the full control matrix
+algebra and is consistent with the normalizer no-go below.
+
 A tempting repair is to allow one common unknown left orientation and seek
 one word with blocks `Aw_j`: the prepared compression would be
 `A(P/M)`, so its zero set and HS norm are correct.  However
@@ -101,3 +115,63 @@ be projectively equal.  Enlarging the normalized packet by the payload
 ratios admits the intended wreath-product module but loses the
 representation-wide shared-`A` conclusion.  Hence this repair returns to
 the same selected induced-type gate rather than closing it.
+
+## Finite verifier-type reduction
+
+There is nevertheless a rigorous weakening of the required synchronization.
+Partition the finite check set into its finitely many local predicate/gate
+types `C=disjointUnion_(t in T) C_t`, and put
+
+```text
+epsilon_t(S)=sum_(c in C_t) beta_c tau_S(L_c).
+```
+
+Then `(TCN1)` gives
+
+```text
+max_t epsilon_t(S) >= 1/(2|T|).                         (TCG2)
+```
+
+It would therefore suffice to construct one extension gadget `E_t` per
+type, all sharing the perfect infinite completion, such that extension of a
+CE base type through `E_t` forces `epsilon_t=0`.  The multiplicity
+orientation need only be common inside `C_t`: by
+`transitive-controller-orbit-common-twist-preserves-zero-lcu` it factors
+harmlessly from the typewise zero test.  Different types may retain
+unrelated gauges.  If a CE base type extended every `E_t`, `(TCG2)` would be
+contradicted.
+
+## Signed-Hecke transporter audit
+
+The balanced signed-Hecke atlas supplies exactly the local prerequisites:
+one common finite packet type, equal-rank atoms, sign-preserving pairwise
+matchings, and hence coherent transporters along a chosen spanning tree.
+It does **not** supply the hypothesis that all full payload controllers of a
+type are one equivariant orbit.  On every non-tree incidence the remaining
+ordered product is an arbitrary multiplicity-space cycle holonomy, as in
+`oracular-local-block-detectors-miss-balanced-cycle-holonomy`.
+
+Approximation-specific extension profiles give a useful dichotomy but do not
+remove this last datum.  A type can be challenged by adjoining its proposed
+equivariant transporters:
+
+- if the actual CE base type has no such extension, that transporter gadget
+  is already its nemesis;
+- if it does extend, the common-orientation factorization is available, but
+  soundness still requires an ordinary word or corner relation whose zero
+  compression is exactly `epsilon_t`.
+
+Every gadget made solely of the balanced finite-sheet transports passes the
+second branch with arbitrary monodromy; this is the exact finite model in
+`finite-sheet-transport-networks-are-exactly-matricial`.  Killing the
+monodromy by coherent coordinate identifications would instead manufacture
+a forbidden finite-dimensional perfect strategy by
+`coherent-balanced-context-permutations-would-give-a-ce-trace`.
+
+Thus the finite-type scheme closes all analytic gauge bookkeeping and makes
+transporter nonexistence adversarially useful.  Its smallest remaining cell
+is a **typewise nontransport holonomy readout**: on types admitting the
+transporters, turn the residual cycle relative position into the selected
+zero corner without forcing global finite-sheet coherence.  This is the
+same block-escaping signed-Hecke chord, now needed for only one of finitely
+many verifier types rather than for one globally oriented circuit.
