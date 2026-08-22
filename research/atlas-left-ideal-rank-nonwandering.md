@@ -133,3 +133,14 @@ or genuinely nonstationary coefficient data.
   one-dimensional arbitrary seed can wander through the whole carrier.  A
   conserved multiplicity subspace must use the twelve packet formulas and
   collision jointly; q14 and chart type contribute none by themselves.
+
+- **Packet plus collision also permits a full coefficient algebra at
+  multiplicity two.**
+  `atlas-packet-collision-m2-has-full-coefficient-algebra` evaluates the
+  stored exact packet-and-19243 escape and finds four coefficient products
+  equal to the four matrix units of `M_2(F2)`.  Thus neither the twelve cubes
+  nor collision blocks coefficient cyclicity on that exact stratum; q14 is
+  the first relation rejecting it.  Direct amplification does not refute
+  nonwandering, because `M_2 tensor I_k` needs a seed of dimension at least
+  `ceil(k/2)`, density at least `1/4`.  A genuine enemy must combine q14 with nonstationary
+  cross-amplification mixing, not repeat the known two-copy escape.
