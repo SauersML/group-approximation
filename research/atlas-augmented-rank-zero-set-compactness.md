@@ -56,3 +56,9 @@ lane.
   model.  Here the permitted width grows, and amplification realizes every
   unrestricted rank microstate inside that regime.  Invoking such a compactness
   argument would therefore assume `(ARC1)` rather than prove it.
+- **The quotient is not itself a graph of finite groups.**
+  `atlas-augmented-thirteen-vf-fillings`
+  presents it as a virtually free carrier filled by twelve independent cycle
+  stable letters and the hyperbolic collision word.  Residual finiteness of
+  the carrier does not descend through this multiple filling, and the
+  collision misses the available relative small-cancellation threshold.
