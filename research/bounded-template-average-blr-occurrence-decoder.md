@@ -224,7 +224,11 @@ finite-dimensional counterstrategy for this particular simplex complex.
 - A single cyclic orbit of line checks can have constant incidence, but its
   constraint graph is a bounded-generator Cayley graph of a cyclic group.
   Such graphs have spectral gap tending to zero, so they cannot yield the
-  required uniform syndrome/agreement modulus.
+  required uniform syndrome/agreement modulus.  This is now quantitative in
+  `bounded-radial-simplex-templates-have-vanishing-linearized-gap`: even when
+  the radial cyclic gcd gives exactly the affine kernel, simultaneous
+  Dirichlet approximation produces an off-kernel tangent mode with energy
+  `O(((2n+3)/(2^n-1))^(2/D))` for `D` radial offsets.
 - Dense BLR plus equality fibers controls an average representative, but a
   fixed mixed-test port can be corrupted at cost `O(1/m)` in a fiber of size
   `m`.  Sampling the mixed edge uniformly over the fiber requires many lifts

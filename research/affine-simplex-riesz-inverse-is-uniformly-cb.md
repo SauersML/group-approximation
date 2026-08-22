@@ -48,3 +48,13 @@ One still needs a bounded-occurrence presentation with uniform off-exact
 agreement/basin capture; `bounded-template-average-blr-occurrence-decoder`
 is precisely that separate global problem.
 
+Two tempting sparsifications are now fenced.  A bounded number of radial
+shift templates has vanishing cyclic linearized gap even when its gcd gives
+the exact affine kernel, by
+`bounded-radial-simplex-templates-have-vanishing-linearized-gap`.  An
+arbitrary bounded-degree expander restriction has a large kernel on the full
+operator residual-array domain, by
+`sparse-edge-sampling-does-not-inherit-dense-simplex-cb-inverse`.  Thus a
+positive bounded-occurrence use of `(ASR3)` must establish a new range-
+restricted cb inverse for actual occurrence gradients; it cannot inherit the
+dense inverse by black-box sampling.
