@@ -92,6 +92,15 @@ only has to transport its covariance block.
   even after the minimal internal chart supports are included.  The next
   obstruction must use at least one of the remaining rank-three core edges.
 
+- **The A10 point carrier stops at the very next core edge, even after
+  padding.**  `atlas-a10-natural-padding-fails-next-core-edge` computes the
+  twelve canonical first-chart extensions inside the natural `A10`; all have
+  large-core mask `0x1`.  More generally no involution completing the missing
+  `S3 x S3` support and the next A4 edge exists in the natural `S_d` padding
+  for any `d>=10`.  The all-`d` statement follows from the fixed-orbit split,
+  not from a bounded extrapolation.  This locates the first failed point-model
+  edge, while leaving its regular-representation triangle completion open.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence

@@ -1,0 +1,17 @@
+{
+  "canonical_first_A8_extensions": 12,
+  "canonical_large_core_mask_histogram": {
+    "0x1": 12
+  },
+  "next_edge": "first H18[1] involution u to second H18[4]=t^-1",
+  "padded_transporter_screen": [
+    {"degree": 10, "involutions": 12, "next_edge": 0, "transporter_candidates": 12},
+    {"degree": 11, "involutions": 24, "next_edge": 0, "transporter_candidates": 36},
+    {"degree": 12, "involutions": 60, "next_edge": 0, "transporter_candidates": 144},
+    {"degree": 13, "involutions": 156, "next_edge": 0, "transporter_candidates": 720},
+    {"degree": 14, "involutions": 456, "next_edge": 0, "transporter_candidates": 4320},
+    {"degree": 15, "involutions": 1392, "next_edge": 0, "transporter_candidates": 30240},
+    {"degree": 16, "involutions": 4584, "next_edge": 0, "transporter_candidates": 241920}
+  ],
+  "theorem_for_all_natural_paddings": true
+}
