@@ -116,3 +116,12 @@ still `(41/42)cos(t)^2`.  Thus the smallest surviving same-corner datum is a
 three-chart arithmetic triangle with two competing returns (a Bargmann or
 loop-holonomy term), unless the raw denominator section identities can pin
 the two-chart transporter directly.
+
+Nor is an unpaired triangle enough.
+`three-chart-loop-retains-free-multiplicity-holonomy` computes the exact
+gauge-invariant cross term between two corner returns, but an unrestricted
+multiplicity unitary realizes every value in the closed unit disk while all
+chart fullness and covariance equations remain exact.  The presentation must
+make two native arithmetic return paths occur coherently in one block and
+control their relative trace; simply authenticating the paths separately
+leaves the loop gauge free.

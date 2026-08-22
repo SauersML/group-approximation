@@ -98,3 +98,10 @@ invisible to every two-projection principal-angle decomposition.  A useful
 arithmetic triangle must authenticate two competing return paths (or their
 additive difference); one loop by itself can still be absorbed in a
 multiplicity gauge.
+
+The three-chart audit is now exact as well.
+`three-chart-loop-retains-free-multiplicity-holonomy` identifies the
+Bargmann/loop trace as the first gauge invariant, but shows that a spectator
+multiplicity unitary realizes it arbitrarily.  The useful datum is therefore
+not merely a triangle: it is a native relation comparing two returns in the
+same corner.
