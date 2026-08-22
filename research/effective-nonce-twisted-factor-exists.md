@@ -28,3 +28,13 @@ only on `N`.
 - Compile the fixed non-CE BCS trace into a finite projective presentation.
   Existing phase packets leave exact forbidden selector sectors and so do not
   transfer the finite-dimensional energy gap.
+- Merely use computability of the BCS character and centralize its scalar GNS
+  kernel.  `computable-projective-kernel-has-reversed-enumerability` proves
+  that computable coefficients enumerate the **complement** of that kernel;
+  an r.e. scalar kernel would already be decidable.  More decisively, even a
+  decidable scalar kernel does not retain the bad trace: mixing the BCS trace
+  with the regular trace makes the scalar kernel equal to the ordinary RACG
+  relator kernel while the selected canonical sector remains the CE regular
+  RACG factor.  A recursive diagonal or free-label scheme must therefore
+  prove a new non-CE retention theorem inside the projective-regular generated
+  algebra, not merely in its ambient tensor product.
