@@ -51,3 +51,21 @@ blocks whose dimensions tend to infinity.  This is a localization theorem,
 not full basin capture: normalized-HS small commutators do not bound the
 type of `N`, and the occurrence synchronization step must still produce one
 shared tuple before `(BTN1)` is meaningful.
+
+More sharply, for an arbitrary finite type-I `N`, let `z_(>D)` be the
+central sum of its blocks of size greater than `D`.  Round on `1-z_(>D)` by
+the theorem and replace every coordinate by the identity on `z_(>D)`.  Then
+
+```text
+ dist_code(Q)^2 <= Omega_D(beta+eta)+4 tau(z_(>D)).       (BTN5)
+```
+
+Hence a countersequence at squared distance at least `c>0` satisfies
+
+```text
+ liminf tau(z_(>D)) >= c/4
+```
+
+for every fixed `D`.  Its irreducible-type distribution is not tight in
+central trace; a single huge block of vanishing trace cannot witness the
+remaining obstruction.

@@ -47,3 +47,10 @@ it.  On each joint atom, squared defect of a parity word is four times its
 binary syndrome indicator.  Classical LTC soundness moves that atom's word
 to the code with proportional average Hamming cost.  Applying the correction
 atom by atom inside the same joint PVM proves `(BTN4)`.
+
+For `(BTN5)`, apply `(BTN4)` to the central compression below type `D`.
+Concavity and `Omega_D(0)=0` absorb its central weight into the same modulus
+evaluated at the unnormalized global defect.  On the complementary central
+projection use the all-identity codeword; since two reflections have squared
+normalized Hilbert--Schmidt distance at most four, this costs at most
+`4 tau(z_(>D))`.  Taking a limit proves the trace non-tightness statement.

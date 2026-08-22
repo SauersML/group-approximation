@@ -35,3 +35,8 @@ Finally, a bounded binary face PVM is a fixed multilinear expression in its
 commuting marginal spectral projections, so
 `binary-face-pvm-is-determined-by-coordinate-reflections` reconstructs every
 face with no length- or dimension-dependent loss.
+
+For `(BTO2)`, run the argument on the central type-at-most-`D` projection.
+On its complement assign the all-identity codeword to every occurrence.
+The latter costs at most four times its central trace, while concavity of the
+bounded-type modulus absorbs the former compression's trace weight.
