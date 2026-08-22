@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: constant-depth-pauli-naming-boundary-proof
-kind: proof_route
+kind: route
 target: constant-depth-pauli-naming-does-not-create-schur-contraction
 uses:
   - schur-child-toeplitz-morita-wire

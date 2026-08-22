@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: diagonal-difference-shift-pauli-incidence-proof
-kind: proof_route
+kind: route
 target: diagonal-difference-shift-propagates-pauli-incidence
 uses:
   - diagonal-covariance-has-quadratic-hs-word-cost
