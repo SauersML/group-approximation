@@ -352,6 +352,25 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   way and instead form distinct atoms of one global PVM.  This pins the next
   non-marginal arithmetic gate to cross-chart Gram collision/deck-cocycle
   faithfulness, not to another weighted conductor inequality.
+- **Five cross-chart saturation scalars are necessary and sufficient for
+  one native shell PVM.**
+  `five-parahoric-overlap-saturations-give-global-shell-pvm` observes that
+  the six Weyl charts `C/D_w` canonically parameterize the same Hecke sphere
+  `C h C/C`.  Choose one root chart and compare each other chart to it under
+  this canonical bijection.  The aggregate deficit on one star edge is half
+  the sum of the `42` squared projection distances, hence is determined by
+  `42` cross traces.  The exact identity
+
+  ```text
+  total chart-to-root movement^2=2 sum_(five edges) Delta_w
+  ```
+
+  shows that vanishing of the five scalars gives literal global labeling,
+  with a dimension-free approximate version.  Five links are minimal since
+  fewer cannot connect six charts and a disconnected component retains an
+  independent multiplicity conjugation.  The open arithmetic statement is
+  now sharply finite: bound these five deficits by mixed-root energy and
+  first-exit mass.  No further PVM authentication theorem is required.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
