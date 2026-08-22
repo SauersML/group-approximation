@@ -139,5 +139,6 @@ the finite samples are recursively selectable by
 not mixed-pair consistency or sign-double-coset separation.  It is the
 same-basis compiler: bounded-template relations must turn all privately
 named X occurrences (and separately all Z occurrences) into one exact
-additive action with dimension-independent normalized-HS loss.  This is
+additive action with dimension-independent normalized-HS loss and at most a
+fixed dimension-enlargement factor.  This is
 precisely `same-basis-rounding-interface-for-sparse-weyl-sampler`.

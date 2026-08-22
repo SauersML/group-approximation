@@ -2,26 +2,35 @@
 rg: 2
 id: same-basis-rounding-interface-for-sparse-weyl-sampler
 kind: claim
-title: Round same-basis occurrence tests to one PVM without dimension loss
+title: Round same-basis occurrence tests to one PVM with bounded dimension loss
 distinct_from:
   bounded-degree-entangled-agreement-pauli-metapixel: that is the complete mixed X/Z metapixel; this isolates its same-basis input.
 ---
 
 OPEN.  Construct a bounded-degree, bounded-template, perfect-completeness
-same-basis occurrence test with the following same-Hilbert conclusion.
+same-basis occurrence test with the following bounded-flexible conclusion.
 From value at least `1-epsilon`, round all X occurrences (and separately all
 Z occurrences) to one exact additive `F_2^n` action on a common marked
-carrier, equivalently to one spectral PVM, with total squared normalized-HS
-change at most
+carrier in a Hilbert space of dimension at most `K` times the original
+dimension, equivalently to one spectral PVM, with total squared normalized-HS
+change from the padded occurrence tuple at most
 
 ```text
 C epsilon^theta
 ```
 
-for constants independent of `n`, answer count, and ambient dimension.
+for constants `K,C,theta` independent of `n`, answer count, and ambient
+dimension.
 The rounding may discard at most `C epsilon^theta` marked mass but may not
-use a context-dependent family of PVMs, an equality fiber, or a flexible
-dimension enlargement.
+use a context-dependent family of PVMs or an equality fiber.  Unbounded or
+instance-dependent enlargement is not allowed.
+
+Bounded flexibility is sufficient for the terminal argument.
+`private-random-weyl-sampler-forces-growing-matrix-dimension` holds uniformly
+for exact additive actions of dimension at most `K r` for every fixed `K`,
+and `occurrence-local-dimension-games-force-mark-collapse` already permits
+extracted strategies of dimension `C_0d`.  Choosing the sampler rank after
+the original matrix dimension absorbs the fixed enlargement factor.
 
 This is the exact input needed before
 `sampled-weyl-defect-controls-common-pvm-dirichlet-energy`.  Ordinary dense
@@ -31,7 +40,7 @@ reduction recreates the known two-pair contour obstruction.
 
 The mixed incidence **in isolation** is discharged for the private sampler.
 `private-random-weyl-sampler-forces-growing-matrix-dimension` gives
-the same-Hilbert matrix-valued dimension floor once the two additive actions
+the bounded-flexible matrix-valued dimension floor once the two additive actions
 are exact; `private-matching-free-product-separates-pauli-signs` places every
 mixed sign test as a constant-area conjugate with no mixed contour; and
 `private-weyl-samplers-admit-recursive-selection` computes the finite label
