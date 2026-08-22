@@ -114,6 +114,22 @@ the affine active Leavitt construction.
 - **No regular-trace contradiction is asserted.** The decoder is a
   finite-matrix stability statement. It need not extend to the left regular
   representation or any arbitrary tracial representation of `Gamma_A`.
+- **A purely tracial square-function proof is impossible.**
+  `affine-leavitt-tracial-square-function-firewall`
+  proves that fixed word polynomials, packet conditional expectations,
+  Gram/SOS forms, spectral coarea, and dimension-free finite-tracial `L2`
+  estimates all survive substitution of the left regular representation.
+  They therefore cannot collapse the nontrivial mark.  Any successful
+  decoder must expose one explicitly finite-matrix coordinate before a
+  square-function or coarea ledger is applied; same-reservoir multiplicity,
+  superrank transport, or a polynomial-identity factor comparison are the
+  currently isolated possibilities.
+- **Odd characteristic does not remove the prefix actuator.**
+  `odd-leavitt-prefix-whitehead-transport` proves that the signed word
+  `E_12(x)E_21(-y)E_12(x)` conjugates the coarse prefix corner to its fine
+  descendant in the actual field characteristic `p>=5`.  What fails to
+  follow from group-word defect is the common-carrier spectral-selector
+  covariance, not the algebraic return itself.
 - **Exact depth pressure is now quantified.**
   `leavitt-prefixes-form-exponential-heisenberg-packet` gives `2^n` Pauli
   pairs over the active root, and

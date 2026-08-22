@@ -108,6 +108,19 @@ all four `s_4` placement estimates.
 
 ### The required same-object return word already exists
 
+The formulas `(PSR5)--(PSR9)` below are the characteristic-two normalization
+of the prefix bridge.  The actual affine packet in this route is over its
+odd splitting characteristic `p>=5`.  There the correct word is the signed
+Whitehead transport
+
+```text
+W_x=E_12(x)E_21(-y)E_12(x),
+```
+
+and `odd-leavitt-prefix-whitehead-transport` proves the same corner
+covariance.  It need not be an involution; only its unitarity as an evaluated
+group word and the covariance row are used by the rank/trace endpoint.
+
 Put
 
 ```text

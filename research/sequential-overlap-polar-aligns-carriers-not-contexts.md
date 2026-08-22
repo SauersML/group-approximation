@@ -126,6 +126,18 @@ with `C_a` depending only on the fixed overlap floor `a`.  Positive
 sequential mass therefore solves the common-source geometry completely.
 Only word payment of the raw prefix covariance remains.
 
+The most direct typed-chain payment is now ruled out sharply.
+`full-support-factor-refutes-exact-exhaustive-typed-cap-chain` observes that
+the normalized Fano factors `q_(c,lambda)/2` have an exact Parseval product
+identity and that typed intertwining errors telescope with a fixed constant.
+However, making those typed rows exact in the full-support witness would
+produce the forbidden common covariant cap carriers above.  Incidence-local
+rows do not telescope through contexts which omit the transported variable;
+adding the missing nonincidence rows destroys exact completeness already for
+two Pauli contexts.  Thus `(SPA12)` cannot come from a
+representation-universal exact cap-product chain.  Its payment must be
+finite-matrix/canonical-type-only, or the exact witness must change.
+
 That payment cannot be installed as an exact common-source covariance
 identity in the supplied full-support factor model.  If ordinary relations
 made the common source nonzero, put every polar range inside its selected cap,

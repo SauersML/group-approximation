@@ -108,6 +108,18 @@ wordization is available without sharp cap profiles.  What remains is the
 matrix-only promotion of all these locally selected types to one common
 cross-context source.
 
+The finite group in `(GCN9)` authenticates the router table but not the
+representation-specific correlation between the affine selector character
+and the `D_8` type.  By
+`ghost-finite-router-induced-sector-or-perfect-corner`,
+inducing the ghost selector character gives an exact finite packet model in
+which every packet relation still holds.  Selecting a common Hecke corner
+that deletes every ghost avoids this local countermodel only if that corner
+also synchronizes the shared variables; in that case the corner itself is a
+finite perfect `R_*` strategy.  Thus neither a deterministic controlled
+router nor the full eight-channel column on one fixed finite label register
+closes the cross-context seam.
+
 `sequential-overlap-polar-aligns-carriers-not-contexts` supplies the common
 source analytically: a positive sequential profile yields one
 positive-density source and polar ranges inside every selected context

@@ -217,3 +217,26 @@ sources and finite sheet holonomy, which does not feed the common-source
 decoder.  The coefficient link must therefore create a finite-matrix-only
 payment or use a different cap-supported exact trace, not sharpen the Naimark
 labels into globally covariant cap projections.
+
+Normalizing the cap projections does not evade this conclusion.
+`full-support-factor-refutes-exact-exhaustive-typed-cap-chain` proves that
+the contractions `q_(c,lambda)/2` form an exact Parseval branching chain and
+that local typed covariance rows telescope algebraically.  The smallest
+candidate therefore has the desired exhaustive product mass and fixed
+telescoping constants.  Its fatal row is the first context not incident to
+the transported variable: omitting that row leaves an uncancelled
+commutator, while imposing it exactly is incompatible with the full-support
+perfect model.  Hence the remaining coefficient link cannot be a finite
+exact typed cap chain whose ordinary rows vanish in every representation;
+the cross-context payment must remain canonical-matrix-only.
+
+Keeping the ghost channel does not give a finite-packet escape.  The full
+eight-channel controlled column preserves exact local completeness, but
+`ghost-finite-router-induced-sector-or-perfect-corner`
+shows the resulting dichotomy.  Without a common selected corner, induction
+from the selector subgroup supplies an exact finite ghost block satisfying
+the entire router table.  With one common corner that removes every ghost
+and literally synchronizes shared coordinates, the corner is already a
+finite perfect source strategy.  Hence the missing coefficient link must be
+genuinely non-finite-packet and cross-context; another fixed label register
+cannot authenticate it.

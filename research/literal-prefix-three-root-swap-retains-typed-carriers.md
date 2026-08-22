@@ -10,7 +10,7 @@ distinct_from:
   controlled-pauli-corner-has-clifford-groupification: that groupifies the conjugation action of the fine-atom controlled-Z but leaves an arbitrary multiplicity involution; this needs the literal fine-atom reflection in a support row, where that twist does not cancel.
 ---
 
-**ESTABLISHED AUDIT.**  The Leavitt coefficient identities for
+**ESTABLISHED AUDIT (characteristic two).**  The Leavitt coefficient identities for
 
 ```text
 x=s_(00)t_0,              y=s_0t_(00),
@@ -93,6 +93,12 @@ not its common-carrier control.  The exact remaining construction is either
    selection theorem without naming `(LTS5)` as a universal word.
 
 Adding more typed Morita/Steinberg relations cannot close this gap.
+
+For the actual affine packet over its splitting field of characteristic
+`p>=5`, replace `(LTS2)` by the signed word
+`E_12(x)E_21(-y)E_12(x)`.  The exact covariance and the identical typed
+escape are recorded in `odd-leavitt-prefix-whitehead-transport`; only the
+involution normalization is lost.
 
 Nor can repeated packet-dressed Clifford occurrences cancel the twist while
 retaining the fine reflection.  The exact parity theorem
