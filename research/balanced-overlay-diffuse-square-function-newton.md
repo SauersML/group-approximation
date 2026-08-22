@@ -226,3 +226,14 @@ cost `D(p)/L`.  Thus all static length factors have been removed.  The
 remaining dynamic question is whether successive nonreducing resets can
 recycle the same boundary energy instead of decreasing the high-tail
 ledger.
+
+There is now an exact no-recycling potential for anchor resets.
+`odd-spectral-anchor-resets-have-monotone-sign-budget` polarizes the odd
+part on every positive spectral cut and proves balanced anchor signs.
+Resetting deletes exactly half the cut from the negative spectral
+projection; along arbitrary overlapping iterations,
+`sum_n tau(p_n)<=2tau(e_-)`.  Thus already spent sign mass cannot be
+recreated.  Combined with the fourth-root charge, one cut per anchor per
+geometric energy scale is summable.  The last issue is coverage: prove that
+this schedule makes every retained anchor-odd part operator-small fast
+enough for contraction.

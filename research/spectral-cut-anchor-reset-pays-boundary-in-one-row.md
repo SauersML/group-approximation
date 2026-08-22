@@ -54,3 +54,10 @@ This is the correct greedy primitive.  It does not alone prove geometric
 decay: successive nonreducing anchor resets can create new odd spectral
 mass through their boundary terms.  A terminal stopping ledger must show
 that the high-tail coarea charge for `D(p)/L` is not reused indefinitely.
+
+Literal sign-mass reuse is excluded by
+`odd-spectral-anchor-resets-have-monotone-sign-budget`: every positive
+odd-square cut contains equal positive and negative anchor trace, and the
+reset permanently deletes its negative half.  Remaining reuse can only
+mean conversion of still-unused negative mass into boundary odd mass at too
+many energy scales.
