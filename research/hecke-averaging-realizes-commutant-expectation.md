@@ -17,7 +17,7 @@ Lambda gamma_0 Lambda = w_1 Lambda sqcup ... sqcup w_L Lambda,   (HA1)
 
 with fixed coset representatives `w_i in Gamma` (finitely many, since
 `Lambda` is commensurated).  Let `(M, tau)` be ANY von Neumann algebra
-with faithful normal trace, `pi : Gamma -> U(M)` any unitary
+with faithful normal tracial state (a finite von Neumann algebra with `tau(1) = 1`; the normalizations `|| k ||_2 = 1` below need it), `pi : Gamma -> U(M)` any unitary
 representation, and define the lazy Hecke average on `L^2(M)`:
 
 ```text

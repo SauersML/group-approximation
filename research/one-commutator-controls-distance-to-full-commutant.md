@@ -10,7 +10,7 @@ distinct_from:
 
 Let `n >= 3`, `Gamma = SL_n(Z[1/p])`, `Lambda = SL_n(Z)`,
 `h = gamma_0 = diag(p, 1, ..., 1, p^(-1))`, `(M, tau)` any von
-Neumann algebra with faithful normal trace, `pi : Gamma -> U(M)` any
+Neumann algebra with faithful normal tracial state (a finite von Neumann algebra with `tau(1) = 1`; the normalizations `|| k ||_2 = 1` below need it), `pi : Gamma -> U(M)` any
 unitary representation.  Let `xi in L^2(M)` be ANY exactly
 `Lambda`-central vector (`Ad pi(lambda) xi = xi` for all `lambda`),
 and let `E` be the orthogonal projection onto

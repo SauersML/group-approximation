@@ -19,7 +19,7 @@ Gamma = SL_n(Z[1/p]),  Lambda = SL_n(Z),  G = PSL_n(Q_p),  n >= 2,
 ```
 
 with `G` the Schlichting completion by Shalom--Willis/Tzanev.  Let `M` be
-ANY von Neumann algebra with faithful normal trace `tau`, let
+ANY von Neumann algebra with faithful normal tracial state (a finite von Neumann algebra with `tau(1) = 1`; the normalizations `|| k ||_2 = 1` below need it) `tau`, let
 `pi : Gamma -> U(M)` be any unitary representation, and let `k` be a
 unitary in `pi(Lambda)' cap M`.  Set
 
