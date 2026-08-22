@@ -85,3 +85,11 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   transverse pair does not by itself provide the oriented exit in `(BHP2)`.
   It becomes useful only if collision 19243 or another external incidence
   pins the branch selector independently of the holonomy spectrum.
+- **Collision 19243 in the current projective frame does not pin it.**  The
+  Schur relative frame is `[W] in PGL`, so the entire Atlas packet/collision
+  interface is invariant under `W->iW`.  That same phase rotation exchanges
+  the T and S branch deficits.  Hence the current 19243 route can only charge
+  symmetric projective holonomy, not orient a fixed exit.  A new
+  phase-sensitive odd return word must be coupled to the payload without
+  promoting the flip into the full Pauli algebra, which would cancel the
+  surplus.

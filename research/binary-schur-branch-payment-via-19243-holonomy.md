@@ -30,3 +30,15 @@ not competing constructions.  Skolem--Noether shows that relative holonomy is
 the only nonstationary datum a unital binary coefficient embedding can carry,
 and the A4 packet is the current finite compiler for charging precisely that
 datum.
+
+## Phase-orientation gap
+
+`projective-atlas-cannot-orient-transverse-branch-phase` shows that the route
+as stated cannot orient the two children. Its relative datum is `[W] in PGL`,
+so `W` and `iW` have identical Atlas packet and collision data. But that phase
+rotation exchanges the complementary D8 deficits `D_T,D_S`. Thus 19243 may
+charge total nontrivial projective holonomy, but it cannot decide which child
+is the paid exit in `(BHP2)`. This route remains open only with an additional
+odd, phase-sensitive lift of the return frame tied to the payload; adjoining
+the full branch-flip Pauli cell is not such a lift because it consumes the
+Schur surplus.

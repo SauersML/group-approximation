@@ -116,3 +116,10 @@ floor.
   finite-matrix-only return
   `shared-bcs-eight-slice-symmetric-return`; if it holds, the fixed floor is
   `sum_c tau(P_c)/16`.
+- **The transverse D8 ledger does not become oriented through the current
+  Atlas frame.**  Its two deficits add to one, but `W->iW` exchanges them.
+  The A4/19243 relative-inner-frame data depend only on `[W] in PGL` and are
+  unchanged by that phase.  Promoting the phase to the branch-flip Pauli cell
+  invokes the established Morita cancellation of the surplus.  Thus the
+  missing recurrent return must contain an odd phase-sensitive payload
+  incidence, not only projective holonomy or a finite transverse packet.
