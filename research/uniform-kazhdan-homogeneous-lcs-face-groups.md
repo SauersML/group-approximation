@@ -49,3 +49,11 @@ group exactly `K x (C_2)^r`: the mod-two `H_2` presentation bound requires
 quadratically many relators.  A positive construction must obtain the
 logical sector through a non-direct extension or global actor, rather than
 an exact face-presented direct product.
+
+Nor does the fixed Magic-Square factor improve low-rate rounding by itself.
+On its negative-central-character sector it is a four-dimensional irreducible
+factor tensored with a completely free multiplicity algebra.  Packet-central
+logical variables live wholly in that multiplicity algebra, so the existing
+class-two/sparse-Clifford contextual model tensors through with unchanged HS
+energy.  Only noncentral K-label coupling tested by the twisted-intertwiner
+criterion can potentially add a gap.
