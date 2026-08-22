@@ -125,5 +125,38 @@ for extra in extras:
                   "hword", hword, flush=True)
             raise SystemExit(42)
 
+# Second source-identity normal-form branch: delete the central copy-2
+# syllable g3, cancel the adjacent copy-1 pair g2*g4, and require the two
+# exposed copy-2 endpoints to multiply to g2.
+for extra in extras:
+    for assignment in permutations(basis + (extra,)):
+        names = tuple(item[0] for item in assignment)
+        g1, g5, g6, g7, g8, g9 = (item[1] for item in assignment)
+        g0 = P.TARGET
+        g2 = product(g1, g5)
+        g3 = P.ONE
+        g4 = inverse_unit(g2)
+        g10 = product(P.TARGET, inverse_unit(g1))
+        slots = (g0, g1, g2, g3, g4, g5,
+                 g6, g7, g8, g9, g10)
+        hword = reduce_units(tuple((copy, slots[index]) for copy, index in
+            ((0, 9), (1, 10), (2, 0), (1, 1), (0, 2), (1, 3),
+             (0, 4), (1, 5), (2, 6), (1, 7), (2, 8))))
+        hinv = inverse(hword)
+        left = reduce_units(((0, g6),) + hword + ((2, g7),) + hinv +
+                            ((0, g8), (1, g9), (2, g10)))
+        right = reduce_units(((0, g3),) + hword + ((2, g4),) + hinv +
+                             ((0, g5), (1, g6), (0, g7),
+                              (1, g8), (2, g9)))
+        tested += 1
+        if left == right:
+            print("HIT", "source_identity_central", True,
+                  "free_names_g1_g5_g6_g7_g8_g9", names,
+                  "derived", {"g0": "h", "g2": "g1 g5",
+                              "g3": "1", "g4": "g5^-1 g1^-1",
+                              "g10": "h g1^-1"},
+                  "hword", hword, flush=True)
+            raise SystemExit(42)
+
 print("tested", tested)
 print("hits 0")
