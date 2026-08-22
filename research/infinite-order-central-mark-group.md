@@ -22,6 +22,21 @@ Together with `commutant-projection-extraction` this yields the root; the
 two claims split that branch cleanly into its group-theoretic and its
 operator-algebraic halves.
 
+This claim is now established by
+`infinite-order-central-mark-group-proof`.  The construction does not need
+an equivariant Heisenberg lamp kernel.  Starting from the bare torsion-free
+Britton compression source, it adjoins a central integer `z` and an HNN
+stable letter `s` with
+
+```text
+s u s^-1 = u z,       s z s^-1 = z.
+```
+
+The associated subgroup `<u,z>` is `Z^2`, the displayed map is a
+unimodular shear, and Britton embedding proves that `z` survives with
+infinite order.  The HNN torsion theorem preserves torsion-freeness, while
+`z=(s u s^-1)u^-1` puts the mark in the normal closure of the defect.
+
 This is the **secondary** branch.  The root's primary route,
 `torsion-free-non-mf-from-normal-kazhdan-defect`, needs no mark at all: it
 puts a normal Kazhdan subgroup in the defect and cuts the corner with its
@@ -29,7 +44,7 @@ Kazhdan projection.  What keeps this claim alive is that it needs no
 small-cancellation machinery — the construction here is an explicit
 presentation of the same shape as the existing Clifford witness.
 
-## Ideas
+## Superseded direct-lamp idea and its exact obstruction
 
 **Heisenberg lamps instead of Clifford lamps.**  In the existing witness
 the lamps are order-two Clifford generators at the sites of a coset space,
@@ -59,14 +74,9 @@ injective self-embedding, and property (T) passes to finite-index
 subgroups.  So the base can be made torsion-free without losing the
 compression architecture.
 
-**What is genuinely open here.**  Nontriviality of the mark.  In the
-Clifford case `z != 1` is proved by an explicit finite-dimensional Clifford
-model in which the sign is `-1`.  The Heisenberg analogue needs a model of
-the lamp group in which the central `Z` survives the quotient by the
-telescope relations; the finite-site-orbit machinery
-(`finite-site-orbits-invariant-clifford-kernel`) is stated for finite
-invariant lamp subgroups and does not transfer verbatim to an
-infinite-order centre.  Soficity of the witness, which the Clifford version
-gets from local finiteness of the lamp kernel, would also be lost: a
-Heisenberg lamp kernel is nilpotent, hence amenable, hence still sofic, so
-the sofic-and-non-MF consequence should survive.
+At scale two the direct replacement is impossible, not merely unfinished.
+For `r=t^-1 a t`, the identity `alpha(a)=a^2` gives `r^2=a in Gamma`, so
+`r` swaps the two marked cosets.  Any invariant alternating integral
+commutator form must vanish on that pair.  This is recorded as
+`doubling-coset-heisenberg-orientation-forces-zero-mark`.  The HNN shear
+avoids the orientation obstruction and supplies the mark unconditionally.
