@@ -38,3 +38,21 @@ IRS as a probability-measure component.
   only remaining attack is a nontrivial central decomposition or a direct
   construction whose conclusion is already the desired canonical non-CE
   summand.
+- `diagonal-retention-fusion-coefficient` gives the exact categorical
+  multiplicity: it is the infimum of the powered Gram quadratic form divided
+  by the original Gram form over finite group-algebra vectors.  It tends to
+  zero whenever the scalar-kernel quotient has CE canonical algebra.
+- In particular, `regular-mixing-forces-diagonal-retention-decay` rules out
+  the obvious scalar-kernel repair for every standard source currently in
+  the graph: the free-group IRS, the sofic RACG BCS trace, and the CDI
+  property-T lattice character.  Regular mixing makes the scalar kernel
+  trivial but forces every retained fusion weight to vanish.  Leaving the
+  character unmixed can evade this conclusion only when its scalar-kernel
+  quotient is itself already non-hyperlinear.
+- The apparent categorical escape `pi -> pi tensor pi tensor conjugate(pi)`
+  is also quantitatively exhausted.  `pairwise-coevaluation-retention-has-commutant-density-decay`
+  computes its weight as `(dim End_G(pi)/(dim pi)^2)^n`; it decays for every
+  fixed nonscalar finite-dimensional type, while a diffuse factor GNS
+  representation has no Hilbert-space coevaluation vector at all.  Any
+  surviving fusion must therefore be a new global channel, not cancellation
+  of representation/conjugate pairs.
