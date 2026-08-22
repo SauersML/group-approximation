@@ -126,8 +126,13 @@ theorem eq_one_of_fixes_distinct {x y : PathVertex G} (hxy : x ≠ y)
   let p' : (BassSerreFreeProduct.graph G).Walk x y :=
     (p.map (BassSerreFreeProduct.actionHom G a)).copy hx hy
   have hp' : p'.IsPath := by
+    have hinj : Function.Injective (fun z : PathVertex G ↦ a • z) := by
+      intro u v huv
+      simpa only [inv_smul_smul] using
+        congrArg (fun z : PathVertex G ↦ a⁻¹ • z) huv
     dsimp [p']
-    exact (hp.map (BassSerreFreeProduct.actionHom G a)).copy
+    rw [SimpleGraph.Walk.isPath_copy]
+    exact hp.map hinj
   have heq : p = p' := congrArg Subtype.val
     ((BassSerreFreeProduct.graph_isAcyclic G).path_unique ⟨p, hp⟩ ⟨p', hp'⟩)
   cases p with
@@ -137,7 +142,7 @@ theorem eq_one_of_fixes_distinct {x y : PathVertex G} (hxy : x ≠ y)
       have htail := congrArg List.tail hs
       have hhead := congrArg List.head? htail
       have hz : a • z = z := by
-        simpa [p', SimpleGraph.Walk.support_map] using hhead
+        simpa [p'] using hhead
       exact eq_one_of_fixes_adjacent G hxz hx hz
 
 /-- The simultaneous exact-displacement set at the endpoints of an edge is
@@ -162,6 +167,21 @@ theorem exactEdgeDisplacement_ncard {x y : PathVertex G}
     {a : BassSerreFreeProduct.Ambient G | a • x = x ∧ a • y = y}.ncard = 1 := by
   rw [exactEdgeDisplacement_eq_singleton G hxy]
   simp
+
+/-- Exact simultaneous displacement at any two distinct vertices has the same
+optimal bound; the intervening geodesic supplies an edge fixed pointwise. -/
+theorem exactDistinctDisplacement_eq_singleton {x y : PathVertex G}
+    (hxy : x ≠ y) :
+    {a : BassSerreFreeProduct.Ambient G | a • x = x ∧ a • y = y} = {1} := by
+  ext a
+  constructor
+  · intro ha
+    have : a = 1 := eq_one_of_fixes_distinct G hxy ha.1 ha.2
+    simpa [this]
+  · intro ha
+    have : a = 1 := by simpa using ha
+    subst a
+    simp
 
 end BassSerreHullGeometry
 end GroupApproximation
