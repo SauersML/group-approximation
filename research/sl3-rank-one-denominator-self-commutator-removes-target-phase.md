@@ -99,3 +99,10 @@ exactly the hard one, proving `e_h->0` from lattice energy and presentation
 defect.  In particular `(RSC5)` is progress on the shape of the terminal,
 not a proof of `projective-trace-square-transfer-for-sl3-pair`.
 
+The identity cannot be run backwards from its immediate overlap-power
+consequences.  The actual root elements also give `[W,Z^4]=[W,X^2]=1`, but
+`sl3-self-commutator-overlap-packet-has-s3-leak` realizes these two
+centralities and `(RSC2)` exactly in the regular representation of `S_3`
+with `tr(W)=0`.  Hence a direct trace-square proof must retain further
+same-microstate arithmetic coupling; the bounded self-commutator packet by
+itself has a maximal finite-dimensional leak.
