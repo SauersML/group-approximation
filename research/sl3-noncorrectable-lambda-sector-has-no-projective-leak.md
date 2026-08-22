@@ -46,3 +46,31 @@ statement already isolated in the parent PRCC claim, and general HS
 stability of `SL_3(Z)` is false.  The attack is therefore deferred until one
 uses an arithmetic denominator relation to exactify the adjoint lift or
 proves the alternative one-correctable-vertex theorem.
+
+The exact remaining correction hypothesis is now narrower.  By
+`sl3-regular-projective-correction-is-inner-adjoint-stability`,
+
+```text
+||Ad(U)-Ad(V)||_(2,End(M_d))^2
+ =2(1-|tr_d(U*V)|^2),                                  (UNC3)
+```
+
+so projective correction of the canonical lattice tuple is equivalent to
+HS correction of its adjoint tuple **within inner conjugation
+representations**.  The adjoint character is still regular, because
+`tr(Ad(rho(g)))=|tr(rho(g))|^2`.  Arbitrary HS correction of the adjoint
+tuple is insufficient: it need not remain inner and normalized-HS closeness
+of superoperators does not control their action on the selected vector
+`U_n`.
+
+`sl3-rigidity-stops-before-inner-adjoint-correction`
+checks the primary literature boundary.  Strict and local HS stability of
+`SL_3(Z)` are false (Becker--Lubotzky; Fournier-Facio--Gerasimova--Spaas),
+but those existential bad challenges do not decide this restricted class.
+Dogon--Vigdorovich's positive character-rigidity theorem gives hyperfinite
+HS stability only; the regular character generates the nonamenable factor
+`L(SL_3(Z))` and lies outside its hypothesis.  Thus character rigidity does
+not correct this sector.  The remaining named condition is regular
+inner-adjoint HS stability, strictly narrower than full flexible stability
+but currently open.  A direct denominator argument could still prove
+`(UNC2)` without it.
