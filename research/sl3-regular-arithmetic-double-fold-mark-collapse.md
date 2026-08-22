@@ -135,3 +135,12 @@ trace is `1/42`, while the available raw lamp and positive two-lamp atoms
 have traces `1/2` and `1/4`.  The remaining gate is therefore a rank-matched
 joint-atom decoder or a non-pointwise authentication map, not another loop
 identity.
+
+An exact finite packet cannot supply that rank-matched decoder.
+`sl3-one-over-forty-two-packet-is-external-or-folded` rules out an internal
+finite-character idempotent of trace `1/42` and shows that a 21-atom quotient
+refinement has only two outcomes: a `C`-fixed atom is `A`-fixed by co-density,
+whereas a moving atom no longer carries the raw section identities.  The
+rank-matched source must therefore be a genuinely approximate
+matrix-coordinate object or a non-finite packet, not an exact finite
+selector attached to the lamp.

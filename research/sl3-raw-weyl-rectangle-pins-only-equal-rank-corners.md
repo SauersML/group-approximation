@@ -120,3 +120,11 @@ joint-atom construction or a different, non-pointwise authentication map.
 An external multiplicity PVM can still carry the free loop from
 `three-chart-loop-retains-free-multiplicity-holonomy` because `(RWR10)`
 prevents it from satisfying the raw source-fullness premise.
+
+The natural finite rank refinement is also fenced.
+`sl3-one-over-forty-two-packet-is-external-or-folded` proves that no internal
+finite-subgroup character idempotent has trace `1/42`, while any exact finite
+packet atom fixed by `C` is fixed by `A` through co-density.  A 21-atom
+refinement therefore either stays under one invariant support and cannot
+host the 42 orthogonal branches, or moves under `C` and loses the raw section
+identity used above.
