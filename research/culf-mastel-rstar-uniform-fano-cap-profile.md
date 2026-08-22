@@ -21,12 +21,18 @@ M nonhalts  => every marked approximate LCS model would restrict to a
 ```
 
 For any **fixed** cap profile, the local affine replacement is sound by
-`rstar-fano-cap-support-preserves-nonru-affine-relaxation`.  The missing
-operation is an effective finite OR over the possible cap profiles (or a
-presentation-level rule which canonically selects one).  Identifying all
-branch central signs is an AND, not an OR: a single unsatisfiable branch can
-kill the shared sign.  A direct sum of game algebras is likewise not an
-ordinary solution-group construction with one authenticated central mark.
+`rstar-fano-cap-support-preserves-nonru-affine-relaxation`.  The finite OR
+operation itself is now supplied by
+`finite-lcs-product-sign-is-exact-or`: homogenize branch `i` with a private
+central selector `Z_i`, impose `product_i Z_i=J`, and priority-decompose the
+odd selector sector.  Unlike identifying all branch signs, this is an OR
+and remains an ordinary finite LCS with one authenticated mark.
+
+The missing operation is therefore earlier: effectively produce a finite
+menu of cap-profile affine branches for which **some** branch retains a
+perfect model on every halting instance.  Once that finite complete menu is
+available, its sound branches can be combined without choosing a profile
+uniformly in advance.
 
 ## Attempts
 
@@ -34,9 +40,11 @@ Pairwise pruning removes an atom with no compatible neighbor, and
 `commuting-neighborhood-pruning-pays-atom-mass` removes an atom with no joint
 extension when all neighbor PVM algebras commute.  General oracular 2-CSP
 strategies do not provide that mutual neighborhood commutation.  Even if
-every individual model prunes to some cap profile, the profile may depend on
-the model; this does not yet produce one computable finite LCS with perfect
-completeness.
+one proves that every perfect model prunes to one of a computably listed
+finite set of cap profiles, model-dependence of the chosen profile is no
+longer an obstruction: the product-sign OR compiler combines the list.  What
+is not established is that pruning/completeness theorem, nor the required
+fixed-language quantum reduction producing the list.
 
 The recursion-theoretic orientation is otherwise correct.  Culf--Mastel give
 perfect CE completeness on `HALT` and a constant CE gap on `NONHALT`, exactly
