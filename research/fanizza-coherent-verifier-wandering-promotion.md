@@ -66,3 +66,27 @@ the finite verifier `V_m` in the regular trace; residual finite quotients give
 a fixed positive HS error.  Thus the multiplicity gauge is not the remaining
 problem -- the incompatible pair is full carrier return versus ambient
 wandering.
+
+## Quantitative character-carrier audit
+
+When the finite clock/flag line is groupified as a one-dimensional character
+idempotent of a fixed packet `K`,
+`character-carrier-wandering-floor` gives,
+for every infinite-order candidate word,
+
+```text
+||Q w Q-V_m||_(2,regular)
+ >= (1-1/sqrt(2))/sqrt(|K|).                           (FCW2)
+```
+
+The proof has an exact dichotomy.  If `w` fails to preserve the packet
+character, a proper character-Hecke intersection loses at least half the
+corner norm.  If it preserves the character, `w` reduces the corner, and
+the reflection equation exposes the nonzero square-return word
+`(w^2-1)Q`.  Hence every sufficiently canonical finite model has the same
+positive floor up to profile error.  This does not refute the target--the
+target is meant to exclude those canonical models and thereby prove
+nonhyperlinearity--but it shows precisely that neither positive packet
+density nor coherent reflection aggregation performs the promotion.  The
+missing input is a dimension-independent matrix-only rule which overcomes
+the explicit floor `(FCW2)` by making canonical microstates impossible.
