@@ -64,6 +64,13 @@ finite matrix semantics.
   finite projective/twisted-Laurent phase cannot be the matrix-only forcing
   mechanism; the decisive inference must use ambient relations outside that
   finite-by-cyclic carrier.
+  If `K` is normal and `wK` is central in `Gamma/K`, the same theorem goes
+  further: finite orbit averaging and the exponent of `K` promote the return
+  to a nonzero `p_Gamma in Z(C[Gamma])`.  The full ambient corner is then one
+  of the finite-normal twisted sectors already classified by
+  `finite-support-central-corners-are-finite-normal-twisted-sectors`; a
+  central-modulo-finite actuator cannot evade that existing gate by choosing
+  its initial packet noncentrally.
 - **Arithmetic/projective transfer remains a genuine candidate.**  The word
   `[ [t,a],s ]` in `projective-transfer-gives-universal-filtered-actuator`
   has the required exact normal form and is killed in exact finite-dimensional

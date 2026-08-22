@@ -62,6 +62,27 @@ Its quotients `K times Z/N` give exact canonical finite models, and for every
 ||(lambda_N(g)-I)lambda_N(p)||_2^2=2 tau(p)>0.          (FPR7)
 ```
 
+There is a stronger ambient-central form.  Suppose additionally that `K` is
+normal in `Gamma` and that the image of `w` is central in `Gamma/K`.  If
+`e=exp(K)`, there is a nonzero finite-support projection
+
+```text
+p_Gamma in Z(C[Gamma])                                 (FPR8)
+```
+
+such that `(FPR3)` implies, again with fixed constants,
+
+```text
+||(W^(2re)-I)P_Gamma||_2
+ <= C'_(Gamma,K,q,w)(epsilon+defect+exactification).    (FPR9)
+```
+
+Thus in the central-modulo-finite case even the *ambient* noncentral packet
+disappears: the asserted return promotes to a return on a central
+finite-support sector, and
+`finite-support-central-corners-are-finite-normal-twisted-sectors` applies
+verbatim.
+
 Consequently neither a noncentral finite-normal packet nor a projective
 twisted-Laurent description can itself prove the localized return.  After
 one fixed power and Reynolds averaging it has become a central packet in the
@@ -69,4 +90,3 @@ residually finite direct product `(FPR6)`.  Any successful use of such a
 packet must obtain `(FPR3)` from ambient relations outside this local
 finite-by-cyclic carrier; packet noncentrality, cyclic holonomy, and finite
 projective phases do not supply the matrix-only step.
-

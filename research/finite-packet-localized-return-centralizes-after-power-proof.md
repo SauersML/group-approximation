@@ -71,3 +71,40 @@ tau_N((gp)^*(gp))=tau_N(p^2)=tau_N(p).
 
 Thus the squared norm is `2 tau_N(p)=2 tau(p)`, proving `(FPR7)`.
 
+For the ambient-central strengthening, let `X` be the finite orbit of `q`
+under conjugation by `Gamma`; it is finite because the action on `C[K]`
+factors through the finite group `Aut(K)`.  Choose one fixed representative
+`h_x in Gamma` for every `x in X`, so `q_x=h_x q h_x^(-1)`.  Conjugating
+`(FPP1)` by `h_x` gives, up to one fixed presentation-defect error,
+
+```text
+||(h_x g h_x^(-1)-I)Q_x||_2
+ <= r epsilon+O(defect+exactification),                (FPP6)
+```
+
+where `g=w^(2r)`.  Centrality of `wK` in `Gamma/K` gives
+
+```text
+h_x g h_x^(-1)=k_x g,                  k_x in K.       (FPP7)
+```
+
+The word `g` centralizes `K`, and `k_x^e=1` for `e=exp(K)`.  Telescope
+`(FPP6)` through the fixed power `e`; then `(k_xg)^e=g^e`, and hence
+
+```text
+||(g^e-I)Q_x||_2
+ <= e r epsilon+O(defect+exactification).              (FPP8)
+```
+
+Now put
+
+```text
+z_Gamma=sum_(x in X) q_x.                              (FPP9)
+```
+
+This is positive, nonzero, and invariant under conjugation by all of
+`Gamma`, so `z_Gamma in Z(C[Gamma])`.  Its support projection `p_Gamma` and
+its inverse on that support are polynomials in `z_Gamma`, hence also lie in
+`Z(C[Gamma])` and have finite support.  Sum `(FPP8)` over `X` and multiply
+by that fixed inverse exactly as in `(FPP3)--(FPP5)`.  This proves `(FPR9)`.
+The word `g^e=w^(2re)` still has infinite order.

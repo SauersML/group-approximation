@@ -60,3 +60,20 @@ Nothing weaker than this statement makes `G_3` the witness.
   which for such a `k` says the conjugates `pi(g) k pi(g)^*` along far
   double cosets become asymptotically orthogonal to `k` — consistent
   with freeness, hence not yet a contradiction.
+- **Symmetric-double MF firewall.**
+  `sl3-hnn-sits-in-shulman-symmetric-double` embeds the entire HNN group
+  in
+
+  ```text
+  (A x Z) *_C (A x Z).
+  ```
+
+  Shulman's genuine operator-norm theorem therefore shows that MF of the
+  full group C-star algebra `C*(A x Z)` would make the full group C-star
+  algebra of the symmetric double MF.  This still does **not** make the
+  HNN group hyperlinear: the resulting corona embedding need not preserve
+  the canonical trace, and operator-norm group-MF does not imply
+  canonical-trace hyperlinearity.  Thus the symmetric-double idea gives no
+  shortcut in either direction.  To use it one would have to upgrade its
+  embedding to the canonical trace on the nonamenable amalgam, precisely
+  the trace-sensitive problem this target already expresses.
