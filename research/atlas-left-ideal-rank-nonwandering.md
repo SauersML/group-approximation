@@ -253,3 +253,16 @@ or genuinely nonstationary coefficient data.
   twelve packet cubes and collision on these irreducible q14 bands and prove
   a uniform rank payment, or construct a band sequence with sublinear
   residuals.
+
+- **Irreducible field bands pay a fixed packet-collision rank floor.**
+  `atlas-q14-irreducible-field-bands-pay-quarter-rank` chooses the full chart
+  conjugator `T(C)=diag(C,I,I,I)`.  Every literal residual block is then a
+  fixed bounded-degree Laurent polynomial in `C`.  The polynomials cannot all
+  vanish identically, because specializing `C=1` would give a forbidden
+  classical packet-and-collision alignment.  If `C` is an irreducible
+  degree-`m` companion beyond those fixed degrees, any nonzero residual entry
+  becomes a nonzero element of `F_(2^m)` and hence an invertible rank-`m`
+  binary block.  One residual has normalized rank at least `1/4`.  Therefore
+  the independent enemy cannot be a single primary/field mode; it must use
+  reducible moving spectra, genuinely noncommutative coefficients, or another
+  nonstationary mechanism that avoids fixed Laurent functional calculus.

@@ -82,3 +82,11 @@ identifies the exact next test family after the equal triangular slice was
 closed: substitute `(QBW2)` into the thirteen post-q14 residuals and seek a
 rank floor uniform over irreducible `C`, or an asymptotic family in which
 those residuals become sublinear.
+
+The irreducible-field fork is now closed by
+`atlas-q14-irreducible-field-bands-pay-quarter-rank`.  The conjugator may be
+chosen as `diag(C,I,I,I)`, so every residual block is a bounded-degree
+Laurent polynomial in `C`.  For irreducible companions of growing degree,
+one nonzero entry is invertible and forces normalized residual rank at least
+`1/4`.  Thus unbounded q14 band width exists, but the primary field bands do
+not evade the Atlas fillings.
