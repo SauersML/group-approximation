@@ -49,6 +49,14 @@ that reads only individual isotypic multiplicities cannot establish clause
 
 ## Attempts
 
+- **Algebraic-corner bypass.**
+  `oracular-2csp-algebraic-corner-map-is-a-canonical-groupifier` proves that
+  an explicit unital map `A(B)->q Q[Gamma_B]q`, with `q` a nonzero rational
+  algebraic projection, already supplies clause 2 by pulling back the
+  normalized canonical corner trace.  This removes every finite-coordinate
+  decoder and multiplicity modulus.  It does not construct the map: its only
+  unsolved equation is equality of the shared signed marginals in one
+  algebraic corner while preserving `q`.
 - **Canonical local packet authentication.**  Restrict canonical microstates
   to fixed finite context subgroups and use finite-group HS stability.  This
   pins every local Plancherel type, but
