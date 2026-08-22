@@ -26,3 +26,13 @@ extends the lift to `C^*(Gamma)`; Stinespring dilates each component to a
 genuine representation whose corner agrees with the approximation on `F`
 up to `o(1)` in normalized HS norm; a diagonal argument over an exhaustion
 of `Gamma` converts the ultrafilter form to Dogon's sequential Def 1.5.
+
+**Source note (2026-08-21 audit).**  Ioana--Spaas--Wiersma Corollary 1.7
+verbatim carries the extra hypothesis "and `M_n` embeds into `R^omega`
+for every `n`" (or LP instead of LLP); Dogon's paraphrase drops it.  It is
+harmless for Definition 1.5, which quantifies over `phi_n : Gamma -> U(d_n)`
+with `M_n = M_(d_n)`, but any consumer applying this node to
+non-matricial targets must restore it.  The sketch's "diagonal argument
+over an exhaustion" is better replaced by working in the sequential
+quotient `prod M_(d_n) / {(x_n) : lim_n || x_n ||_2 = 0}` directly, since
+an asymptotic homomorphism already defines a homomorphism there.

@@ -16,11 +16,17 @@ Then `Gamma` is not hyperlinear.
 
 Equivalently, **every non-residually-finite Kazhdan group is either
 non-hyperlinear or a counterexample to LLP for full group C*-algebras.**
-Before Ioana--Spaas--Wiersma (GAFA 30 (2020), arXiv:2006.01874) no group
-C*-algebra was known to fail LLP; their examples are `SL_n(Z)` (`n >= 3`)
-and `Z^2 rtimes SL_2(Z)`, obtained from second cohomology, and by this
-theorem Thom's hyperlinear Kazhdan groups without the factorization
-property are further (non-cohomological) LLP failures.
+Earlier LLP failures for full group C*-algebras are Ozawa's (property
+(T) groups without the factorization property) and Thom's two
+Connes-embeddable non-residually-finite Kazhdan groups (as recorded in
+Ioana--Spaas--Wiersma's own introduction); Ioana--Spaas--Wiersma (GAFA 30
+(2020), arXiv:2006.01874) gave the first RESIDUALLY FINITE examples,
+`SL_n(Z)` (`n >= 3`) and `Z^2 rtimes SL_2(Z)`, from second cohomology.
+That Thom's hyperlinear non-RF Kazhdan groups fail LLP is consistent with
+this theorem's contrapositive, but it is not new and does not need it:
+for Connes-embeddable groups LLP implies Kirchberg's factorization
+property (Ozawa), which (T) plus non-residual-finiteness forbids.
+(History corrected after the 2026-08-21 audit.)
 
 **Mechanism.**  LLP of `C^*(Gamma)` implies weak ucp-stability of `Gamma`
 (Ioana--Spaas--Wiersma Cor. 1.7 as quoted by Dogon arXiv:2211.10492 p. 4;

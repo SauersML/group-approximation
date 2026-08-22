@@ -124,3 +124,14 @@ of the Maslov-twisted crossed products — which the multiplier
 finiteness shows cannot be certified through finite models; note ISW
 Remark 1.1 (LP would force `H^2(Gamma, L^0(X,T))` countable for every
 ergodic p.m.p. action) marks the same frontier from the other side.
+
+- **Why no exotic `SL_3(Z)` sits inside `Sp_4(Z)` (2026-08-21 audit).**
+  The "alive only at `g = 2`" scoping needs that `Sp_4(Z)` contains no
+  copy of `SL_3(Z)` at all, not merely none in the obvious parabolics.  A
+  faithful four-dimensional representation of `SL_3(Z)` has infinite
+  image, hence by Margulis superrigidity is the restriction of a rational
+  representation of `SL_3`, i.e. `std (+) triv` or its dual; and
+  `Lambda^2(std (+) triv) = std^* (+) std` contains no trivial summand, so
+  no `SL_3(Z)`-invariant symplectic form exists on `Z^4`.  Hence
+  `SL_3(Z)` does not embed in `Sp_4(Z)`, and the ISW subgroup fence does
+  not reach `g = 2`.

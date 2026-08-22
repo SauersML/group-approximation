@@ -123,7 +123,7 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   no `Z^2 rtimes F_2` standard pair, no `Z^2 rtimes SL_2(Z)`, no Sym^2
   pair and no `SL_n(Z)` (`n >= 3`) embeds.  Every known LLP-refutation
   route — direct Theorem A and subgroup permanence alike — is therefore
-  provably unavailable at the simple Kazhdan Kac--Moody lattices; the
+  unavailable for the ISW `Z^k`-pair and expander-containing families (the twin-lattice fence does NOT exclude the property-(T) examples of Ozawa and Thom nor the char-`p` ring pairs; 2026-08-21 audit) at the simple Kazhdan Kac--Moody lattices; the
   hole is open there with no published mechanism pointing either way.
 - **NEW SHARPEST CANDIDATES (2026-08-22): the Titz--Witzel simple CAT(0)
   Kazhdan lattices** (`titz-witzel-simple-kazhdan-cat0-lattices-exist`,

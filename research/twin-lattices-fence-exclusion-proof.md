@@ -55,11 +55,20 @@ by the upper-left `SL_2`), so it cannot embed either.  `BS(1, n)`,
 logarithmic word growth of `a^(n^m)`, contradicting (a); this proves the
 final scope remark.
 
-**(d).**  A locally finite two-dimensional polyhedral complex of
-Gromov-hyperbolic type has finite asymptotic dimension (bounded-geometry
-hyperbolic spaces: Roe, *Hyperbolic groups have finite asymptotic
-dimension*, Proc. AMS 133 (2005); the Euclidean/affine case is classical
-for buildings), and `asdim(X_+ x X_-) <= asdim X_+ + asdim X_-`.  A
+**(d).**  Each factor is a building, and every building has finite
+asymptotic dimension, equal to that of an apartment (Dymara--Schick,
+*Buildings have finite asymptotic dimension*, arXiv:math/0703199; this
+replaces an earlier appeal to Gromov-hyperbolicity, which is not a
+hypothesis), and `asdim(X_+ x X_-) <= asdim X_+ + asdim X_-`.
+
+**Standing hypothesis made explicit (2026-08-21 audit).**  Parts (b) and
+(c) use the Flat Torus Theorem and the existence of axes, hence need
+`X_+`, `X_-` complete CAT(0) (true for Davis realizations of buildings);
+in a CAT(0) space a hyperbolic isometry has an axis, so the stable
+translation length `lim d(x, a^m x)/m` used for `BS(1,n)` agrees with the
+attained infimum `inf_x d(x, ax)` of (a) -- the two differ on general
+polyhedral complexes, which is exactly why the hypothesis cannot be
+dropped.  A
 metrically proper isometric action of a finitely generated group on a
 space of finite asymptotic dimension makes every orbit map a coarse
 embedding, so every finitely generated subgroup of `Lambda` has finite
