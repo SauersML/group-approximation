@@ -29,6 +29,20 @@ has to rebuild it.
   `Seq.boundedWindowRE_iff_coord` restates the hypothesis of
   `Higman.BoundedWindowRE` purely in arity-`n` terms.
 
+## The intersection convention
+
+Every window-supported set here is written `{f | R f} ∩ Seq.windowSupport n`,
+with the condition **first**.  That is not cosmetic: `A ∩ B` and `B ∩ A` are
+equal but not definitionally equal, so the order is what makes this set
+*definitionally* `Seq.restrictArity n {f | R f}` in
+`Higman.HigmanVariableCalculus`.  With the orders agreeing, the two layers meet
+by `Iff.rfl` and that file's `Seq.restrictArity_inter` and
+`Seq.restrictArity_union` apply to these sets; with them disagreeing, every
+seam would carry a `Set.inter_comm`.  This module does **not** import the
+variable calculus — the coding layer is the foundation of the fan-out and must
+not go red when a module above it does — so the one-line bridge belongs in
+whichever file first needs both.
+
 ## Why the window test compares against a list of constants
 
 `Seq.windowSupport n` is the condition `0 ≤ j < n` on the indices, and the
@@ -191,6 +205,21 @@ theorem coordSeq_apply_of_outside (n : ℕ) (v : Fin n → ℤ) (j : ℤ)
   rw [coordSeq_apply]
   exact Finset.sum_eq_zero fun i _ => if_neg (hj i)
 
+/-- **Appending a last variable.**  Writing a tuple back after `Fin.snoc` adds a
+single coordinate at index `n`.  This is the bridge to the quantifier layer: the
+carrier-free characterizations there (`Seq.mem_existsLast_iff`,
+`Seq.mem_padLast_iff`, `Seq.mem_existsAt_iff` in
+`Higman.HigmanVariableCalculus`) speak only of `f + Finsupp.single (n : ℤ) y`,
+so this identity transports all of them to `Fin n → ℤ` verbatim. -/
+theorem coordSeq_snoc (n : ℕ) (v : Fin n → ℤ) (y : ℤ) :
+    coordSeq (n + 1) (Fin.snoc v y) = coordSeq n v + Finsupp.single (n : ℤ) y := by
+  refine Finsupp.ext fun j => ?_
+  rw [Finsupp.add_apply, coordSeq_apply, coordSeq_apply, Finsupp.single_apply,
+    Fin.sum_univ_castSucc]
+  congr 1
+  · exact Finset.sum_congr rfl fun i _ => by simp
+  · simp
+
 theorem coordSeq_mem_windowSupport (n : ℕ) (v : Fin n → ℤ) :
     coordSeq n v ∈ windowSupport n := by
   rw [mem_windowSupport_iff]
@@ -251,17 +280,17 @@ theorem coordSeq_windowCoords_eq_windowAt (n : ℕ) (f : E) :
     omega
 
 /-- A window-supported condition is the image of its coordinate form. -/
-theorem windowSupport_inter_eq_image (n : ℕ) (R : E → Prop) :
-    windowSupport n ∩ {f | R f} = coordSeq n '' {v | R (coordSeq n v)} := by
+theorem inter_windowSupport_eq_image (n : ℕ) (R : E → Prop) :
+    {f | R f} ∩ windowSupport n = coordSeq n '' {v | R (coordSeq n v)} := by
   ext f
   constructor
-  · rintro ⟨hw, hR⟩
+  · rintro ⟨hR, hw⟩
     refine ⟨windowCoords n f, ?_, coordSeq_windowCoords hw⟩
     show R (coordSeq n (windowCoords n f))
     rw [coordSeq_windowCoords hw]
     exact hR
   · rintro ⟨v, hv, rfl⟩
-    exact ⟨coordSeq_mem_windowSupport n v, hv⟩
+    exact ⟨hv, coordSeq_mem_windowSupport n v⟩
 
 theorem image_coordSeq_preimage {n : ℕ} {B : Set E} (hB : B ⊆ windowSupport n) :
     coordSeq n '' {v | coordSeq n v ∈ B} = B := by
@@ -276,27 +305,33 @@ theorem image_coordSeq_preimage {n : ℕ} {B : Set E} (hB : B ⊆ windowSupport 
     exact hf
 
 theorem inter_setOf_mem_eq {n : ℕ} {B : Set E} (hB : B ⊆ windowSupport n) :
-    windowSupport n ∩ {f | f ∈ B} = B := by
+    {f | f ∈ B} ∩ windowSupport n = B := by
   ext f
-  exact ⟨fun h => h.2, fun h => ⟨hB h, h⟩⟩
+  exact ⟨fun h => h.1, fun h => ⟨h, hB h⟩⟩
 
 /-! ## 3.  Generation, on the window and in coordinates -/
 
 /-- **Higman-generation of a window-supported condition.**  Only the values of
-`R` on sequences supported in `[0, n)` enter. -/
+`R` on sequences supported in `[0, n)` enter.
+
+The intersection is written with the condition **first**, so that this set is
+*definitionally* `Seq.restrictArity n {f | R f}` in
+`Higman.HigmanVariableCalculus` — `A ∩ B` and `B ∩ A` are equal but not defeq,
+so the order is what makes the two layers compose without a `Set.inter_comm` at
+every seam. -/
 def WindowHigman (n : ℕ) (R : E → Prop) : Prop :=
-  HigmanGenerated (windowSupport n ∩ {f | R f})
+  HigmanGenerated ({f | R f} ∩ windowSupport n)
 
 /-- **`WindowHigman` sees only the window.** -/
 theorem windowHigman_congr {n : ℕ} {R R' : E → Prop}
     (h : ∀ f ∈ windowSupport n, (R f ↔ R' f)) : WindowHigman n R ↔ WindowHigman n R' := by
-  have hset : windowSupport n ∩ {f | R f} = windowSupport n ∩ {f | R' f} := by
+  have hset : {f | R f} ∩ windowSupport n = {f | R' f} ∩ windowSupport n := by
     ext f
     constructor
-    · rintro ⟨hw, hR⟩
-      exact ⟨hw, (h f hw).mp hR⟩
-    · rintro ⟨hw, hR⟩
-      exact ⟨hw, (h f hw).mpr hR⟩
+    · rintro ⟨hR, hw⟩
+      exact ⟨(h f hw).mp hR, hw⟩
+    · rintro ⟨hR, hw⟩
+      exact ⟨(h f hw).mpr hR, hw⟩
   unfold WindowHigman
   rw [hset]
 
@@ -307,13 +342,13 @@ def CoordHigman (n : ℕ) (P : (Fin n → ℤ) → Prop) : Prop :=
 
 theorem coordHigman_iff (n : ℕ) (P : (Fin n → ℤ) → Prop) :
     CoordHigman n P ↔ WindowHigman n fun f => P (windowCoords n f) := by
-  have hkey : windowSupport n ∩ {f | P (windowCoords n f)} = coordSeq n '' {v | P v} := by
+  have hkey : {f | P (windowCoords n f)} ∩ windowSupport n = coordSeq n '' {v | P v} := by
     ext f
     constructor
-    · rintro ⟨hw, hR⟩
+    · rintro ⟨hR, hw⟩
       exact ⟨windowCoords n f, hR, coordSeq_windowCoords hw⟩
     · rintro ⟨v, hv, rfl⟩
-      refine ⟨coordSeq_mem_windowSupport n v, ?_⟩
+      refine ⟨?_, coordSeq_mem_windowSupport n v⟩
       show P (windowCoords n (coordSeq n v))
       rw [windowCoords_coordSeq]
       exact hv
@@ -322,14 +357,14 @@ theorem coordHigman_iff (n : ℕ) (P : (Fin n → ℤ) → Prop) :
 
 /-! ### Membership, in applied form
 
-Membership in `windowSupport n ∩ {f | R f}` and in `coordSeq n '' {v | P v}` is
+Membership in `{f | R f} ∩ windowSupport n` and in `coordSeq n '' {v | P v}` is
 *definitionally* the applied predicate but not *syntactically*, so `rw` and
 `simp` at such a hypothesis find no occurrence.  These three restate the two
 sets this module exports with the predicate applied; rewrite by them before
 destructuring. -/
 
-theorem mem_windowSupport_inter_iff (n : ℕ) (R : E → Prop) (f : E) :
-    f ∈ windowSupport n ∩ {g | R g} ↔ f ∈ windowSupport n ∧ R f := Iff.rfl
+theorem mem_inter_windowSupport_iff (n : ℕ) (R : E → Prop) (f : E) :
+    f ∈ {g | R g} ∩ windowSupport n ↔ R f ∧ f ∈ windowSupport n := Iff.rfl
 
 theorem mem_coordSeq_image_iff (n : ℕ) (P : (Fin n → ℤ) → Prop) (f : E) :
     f ∈ coordSeq n '' {v | P v} ↔ ∃ v, P v ∧ coordSeq n v = f :=
@@ -543,10 +578,10 @@ theorem seqOfList_listOfCoords (n : ℕ) (v : Fin n → ℤ) :
 enumerable on codes, its arity-`n` form is recursively enumerable on tuples.
 This direction needs no arithmetic. -/
 theorem rePred_coords_of_REset {n : ℕ} {R : E → Prop}
-    (h : REset (windowSupport n ∩ {f | R f})) :
+    (h : REset ({f | R f} ∩ windowSupport n)) :
     REPred fun v : Fin n → ℤ => R (coordSeq n v) := by
   have h' : REPred fun l : List (ℤ × ℤ) =>
-      seqOfList l ∈ windowSupport n ∩ {f | R f} := h
+      seqOfList l ∈ {f | R f} ∩ windowSupport n := h
   obtain ⟨F, hF, hspec⟩ := exists_primrec_of_rePred h'
   have hg : Primrec₂ fun (v : Fin n → ℤ) (m : ℕ) => F (listOfCoords n v) m :=
     hF.comp ((primrec_listOfCoords n).comp Primrec.fst) Primrec.snd
@@ -554,10 +589,10 @@ theorem rePred_coords_of_REset {n : ℕ} {R : E → Prop}
   show (∃ m : ℕ, F (listOfCoords n v) m = true) ↔ R (coordSeq n v)
   rw [← hspec (listOfCoords n v)]
   constructor
-  · rintro ⟨_, hR⟩
+  · rintro ⟨hR, _⟩
     exact hR
   · intro hR
-    exact ⟨coordSeq_mem_windowSupport n v, hR⟩
+    exact ⟨hR, coordSeq_mem_windowSupport n v⟩
 
 /-- **The transfer, backward.**  If the arity-`n` form is recursively
 enumerable on tuples, the window-supported condition is recursively enumerable
@@ -565,25 +600,25 @@ on codes.  This is the direction that decodes, and the only one that needs
 `hadd`. -/
 theorem REset_of_rePred_coords (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ)) {n : ℕ}
     {R : E → Prop} (h : REPred fun v : Fin n → ℤ => R (coordSeq n v)) :
-    REset (windowSupport n ∩ {f | R f}) := by
+    REset ({f | R f} ∩ windowSupport n) := by
   obtain ⟨F, hF, hspec⟩ := exists_primrec_of_rePred h
   have hg : Primrec₂ fun (l : List (ℤ × ℤ)) (m : ℕ) =>
       windowCheck n l && F (decodeCoords n l) m :=
     Primrec.and.comp ((primrec_windowCheck hadd n).comp Primrec.fst)
       (hF.comp ((primrec_decodeCoords hadd n).comp Primrec.fst) Primrec.snd)
   have hre := WordProblemRE.rePred_exists_eq_true hg.to_comp
-  show REPred fun l : List (ℤ × ℤ) => seqOfList l ∈ windowSupport n ∩ {f | R f}
+  show REPred fun l : List (ℤ × ℤ) => seqOfList l ∈ {f | R f} ∩ windowSupport n
   refine hre.of_eq fun l => ?_
   show (∃ m : ℕ, (windowCheck n l && F (decodeCoords n l) m) = true) ↔
-    seqOfList l ∈ windowSupport n ∩ {f | R f}
+    seqOfList l ∈ {f | R f} ∩ windowSupport n
   constructor
   · rintro ⟨m, hm⟩
     rw [Bool.and_eq_true] at hm
     have hw : seqOfList l ∈ windowSupport n := (windowCheck_eq_true_iff n l).mp hm.1
-    refine ⟨hw, ?_⟩
+    refine ⟨?_, hw⟩
     have hR : R (coordSeq n (decodeCoords n l)) := (hspec _).mpr ⟨m, hm.2⟩
     rwa [decodeCoords_eq, coordSeq_windowCoords hw] at hR
-  · rintro ⟨hw, hR⟩
+  · rintro ⟨hR, hw⟩
     have hR' : R (coordSeq n (decodeCoords n l)) := by
       rw [decodeCoords_eq, coordSeq_windowCoords hw]
       exact hR
@@ -596,7 +631,7 @@ theorem REset_of_rePred_coords (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → �
 condition, read on codes, is recursive enumerability of its arity-`n` form, read
 on tuples over the `Primcodable` type `Fin n → ℤ`. -/
 theorem REset_window_iff (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ)) (n : ℕ) (R : E → Prop) :
-    REset (windowSupport n ∩ {f | R f}) ↔ REPred fun v : Fin n → ℤ => R (coordSeq n v) :=
+    REset ({f | R f} ∩ windowSupport n) ↔ REPred fun v : Fin n → ℤ => R (coordSeq n v) :=
   ⟨rePred_coords_of_REset, REset_of_rePred_coords hadd⟩
 
 /-- **Recursive enumerability transfers between the two forms.**  With
@@ -605,7 +640,7 @@ for a work item that carries its arity-`n` relation as a subset of
 `Seq.windowSupport n`. -/
 theorem rePred_coordsOf_iff (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ)) {n : ℕ} {B : Set E}
     (hB : B ⊆ windowSupport n) : REPred (coordsOf n B) ↔ REset B := by
-  have hset : windowSupport n ∩ {f | f ∈ B} = B := inter_setOf_mem_eq hB
+  have hset : {f | f ∈ B} ∩ windowSupport n = B := inter_setOf_mem_eq hB
   constructor
   · intro h
     have hc : REPred fun v : Fin n → ℤ => coordSeq n v ∈ B := h
@@ -626,11 +661,11 @@ theorem boundedWindowRE_iff_coord (hadd : Primrec₂ ((· + ·) : ℤ → ℤ �
       ↔ ∀ (n : ℕ) (P : (Fin n → ℤ) → Prop), REPred P → CoordHigman n P := by
   constructor
   · intro h n P hP
-    have hre : REset (windowSupport n ∩ {f | P (windowCoords n f)}) := by
+    have hre : REset ({f | P (windowCoords n f)} ∩ windowSupport n) := by
       refine REset_of_rePred_coords hadd ?_
       refine hP.of_eq fun v => ?_
       rw [windowCoords_coordSeq]
-    have hgen := h n _ hre Set.inter_subset_left
+    have hgen := h n _ hre Set.inter_subset_right
     exact (coordHigman_iff n P).mpr hgen
   · intro h n B hB hsub
     have hP : REPred fun v : Fin n → ℤ => coordSeq n v ∈ B := by
