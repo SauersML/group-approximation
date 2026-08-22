@@ -57,3 +57,11 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   contextual escape tensors through unchanged.  Any survivor must use
   genuinely noncentral, twisted K labels rather than only commute the code
   variables with K.
+- **Label every occurrence by a noncentral Pauli direction.**  Still
+  insufficient when the packet action is pinned by inner conjugation.  If
+  `r_i` has the same action on K as `k_i`, then `y_i=k_i^{-1}r_i` centralizes
+  K; because the K labels satisfy every local face, all face relations reduce
+  exactly to those on the `y_i`.  The presentation is Tietze-equivalent to
+  `K x Gamma_H`, and the contextual multiplicity model survives.  A remaining
+  packet construction must use genuinely outer/projective or multi-variable
+  coupling, not an inner Pauli label field.

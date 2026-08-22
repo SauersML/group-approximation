@@ -57,3 +57,10 @@ logical variables live wholly in that multiplicity algebra, so the existing
 class-two/sparse-Clifford contextual model tensors through with unchanged HS
 energy.  Only noncentral K-label coupling tested by the twisted-intertwiner
 criterion can potentially add a gap.
+
+The most direct such noncentral coupling is also now excluded.  Assigning a
+Pauli label `k_i` to each occurrence and pinning its conjugation action on K
+is an inner gauge twist: `y_i=k_i^{-1}r_i` centralizes K, and the K-valued
+local solution cancels from every face.  The universal group is exactly the
+same `K x Gamma_H` in skewed generators.  Thus only outer/projective or
+genuinely multi-variable packet coupling could improve the face gap.
