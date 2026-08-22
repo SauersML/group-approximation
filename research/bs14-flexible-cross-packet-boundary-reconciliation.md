@@ -202,6 +202,15 @@ compressed Weil packets.
   trivial-core dimensions, without replacing the non-invariant source by a
   core-central projection.
 
+- **The active flow is typed by the inversion relation.**
+  `bs14-trivial-boundary-inversion-forces-r-fixed-source` shows that every
+  neutral source column must lie in `Fix(R)`; on a scalar packet this exists
+  exactly at return phase `v=1`.  An ordinary integral transportation of
+  carrier dimensions is therefore insufficient.  Explicit long
+  `v=1` cycles still make the two exits parallel, so the phase restriction
+  does not revive an angle gap.  The last flow must jointly round
+  `R`-fixed source cells, their exit Grams, and the involution equations.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

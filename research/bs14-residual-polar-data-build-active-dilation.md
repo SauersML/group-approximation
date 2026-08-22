@@ -49,3 +49,18 @@ tuple.
   source/exit cells with integer multiplicities.  Separate singular-value
   rounding of `D_1,D_2` does not ensure their cells use the same added
   dimensions or satisfy both cubic equations.
+- **Inversion adds a typed linear constraint before network-flow
+  integrality.**  `bs14-trivial-boundary-inversion-forces-r-fixed-source`
+  proves that the neutral added dimensions are forced to carry the trivial
+  BS character and every source map must satisfy
+
+  ```text
+  RB=B,                 AR=R^(-1)A.
+  ```
+
+  Thus an untyped CS cell whose source is not `R`-fixed cannot be repaired by
+  adding one trivial line, regardless of integer rounding.  On a scalar
+  packet this forces return phase `v=1` and selects its unique `R`-fixed
+  orbit sum.  The remaining transportation problem is therefore over these
+  typed fixed-source cells, together with the involution Gram equations
+  `(TBI3)`, not over arbitrary carrier dimensions.
