@@ -121,3 +121,43 @@ injectivity statement for the incidence operator between the `H`- and
 `uHu^-1`-coset systems.  Relations create cycles in that graph, and nothing
 in the coefficient equations turns injectivity into surjectivity.  This is
 the irreducible obstruction left by the symbolic reduction.
+
+## The four residual operator equations
+
+Write `Q_v=e[v]e`.  In the `m=3` rectangle/rectangle case, both four-cycles
+have two nonzero `F_4` edge coefficients.  Absorbing those coefficients into
+their group letters turns the forward equation into
+
+```text
+(e+Q_y) Q_u=e.                                         (4)
+```
+
+The missing reverse equation is `Q_u(e+Q_y)=e`.  Algebraically, `Q_u` is the
+finite-propagation incidence map between the two equal-degree coset systems
+for `H` and `uHu^-1`.  Equation (4) makes it injective with a finite-
+propagation left inverse.  Equal local degree does not make it surjective on
+an infinite nonamenable graph; asserting that it does here is precisely a
+direct-finiteness/Garden-of-Eden theorem for the generated subgroup.
+
+For `m=1`, toggling by `z` turns the selected base element into one nonzero
+scalar in `F_4`.  Hence the `4+2` type gives a corner partner with three
+summands
+
+```text
+c e + a Q_u b + d[n],                                  (5)
+```
+
+where `n` normalizes `H` and all lowercase coefficients are nonzero elements
+of `F_4`.  The 6-cycle type gives a nonzero base scalar plus one alternating
+six-edge incidence operator.  Finally the normalizer branch is the
+`3`-monomial by `4`-monomial equation in the fixed projective semilinear
+crossed product.  These are the only four systems left by the support
+equations.
+
+There is no purely finite-dimensional rank argument completing them.  A
+finite-support injective cellular operator need not be surjective merely
+because source and target fibers have equal dimension; the implication for
+arbitrary group actions is the linear Garden-of-Eden/direct-finiteness
+property.  Soficity or amenability of the generated subgroup would close
+each equation by coset projection, but neither is available here.  Thus the
+symbolic split is complete, while the reverse products remain undecided.
