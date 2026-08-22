@@ -1,0 +1,38 @@
+{
+  "method": "Enumerate the complete degree-at-most-twelve local large-K2,2 coset census, retain its two marked order-1920 images, and compute exact normal-subgroup, quotient, module, complement, and radial-subgroup data in GAP.",
+  "marking_count": 2,
+  "common_group_profile": {
+    "order": 1920,
+    "structure": "(C2^5):A5",
+    "derived_subgroup_order": 1920,
+    "center_order": 2,
+    "normal_subgroup_orders": [1, 2, 32, 1920],
+    "elementary_abelian_module_order": 32,
+    "module_quotient": "A5",
+    "module_conjugacy_orbits_as_orbit_order_and_span_order": [
+      [1, 1],
+      [1, 2],
+      [15, 32],
+      [15, 32]
+    ],
+    "complement_class_orders": [60, 60, 60, 60]
+  },
+  "common_marked_radial_profile": {
+    "radial_subgroup_orders": [6, 6],
+    "radial_intersections_with_module": [1, 1],
+    "quotient_radial_intersection_order": 2,
+    "quotient_radial_join_order": 60,
+    "upstairs_radial_intersection_order": 1,
+    "upstairs_radial_join_order": 1920,
+    "shared_quotient_involution_labels": [3, 3],
+    "lift_mismatch_order": 2,
+    "lift_mismatch_is_central": false,
+    "lift_mismatch_conjugacy_orbit_order": 15,
+    "lift_mismatch_normal_closure_order": 32
+  },
+  "marking_affine_vectors_in_gap_pcgs_basis": [
+    [[0, 0, 0, 0, 0], [1, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 1, 1, 0, 1]],
+    [[0, 0, 0, 1, 0], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1], [1, 0, 0, 0, 1]]
+  ],
+  "scope": "This classifies the two marked order-1920 local images in the complete degree-at-most-twelve census. It does not classify higher-index local completions or decide the universal F/J colimit."
+}
