@@ -87,6 +87,17 @@ the affine active Leavitt construction.
   positive datum discarded by that closure is quantified by
   `relative-leavitt-active-subspaces-expand-by-two`: every old active
   coefficient window has a new binary boundary at least as large as itself.
+- **Finite torus characters grade roots but do not linearize coefficients.**
+  `finite-torus-root-fourier-has-stationary-aliases`
+  computes every character corner and every full conjugation-weight
+  component in the finite Frobenius packet `(k,+) rtimes Lambda`.  Every
+  nontrivial weight has squared HS mass `1/|Lambda|`, while its additive
+  defect is at least
+  `p/((p-1)sqrt(|Lambda|))` even at zero group defect.  Multiplication is
+  convolution over all character weights, so a purported degree-one or odd
+  component retains equal-mass higher-weight aliases.  The surviving decoder
+  must use the complete block system nonlinearly to recover only `(ALD1)` and
+  must exclude this stationary packet by an additional coercive relation.
 - **A strictly weaker sufficient target is available.**  The decoder above
   asks for one modulus valid for arbitrary approximate representations.
   Nonhyperlinearity only needs canonical delta microstates.  By
