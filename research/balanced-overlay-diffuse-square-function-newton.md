@@ -163,13 +163,19 @@ quadratic whenever the odd part is operator-small.  Thus random anchoring
 really has the Newton form “CP-contracted linear residual plus quadratic
 remainder,” without first naming a code-character PVM.
 
-The residual sparse estimate is isolated as
-`sparse-anchor-odd-fourth-moment-is-the-renormalization-gate`.  Dense
-complete-pair averaging controls the two-odd-factor terms, but a bounded
-face graph has only `Theta(L)` edges and comparison with the dense square
-loses a factor `L`.  The common cut bounds an averaged positive square
-function, not every anchor-coordinate odd part in operator norm.  Closing
-the random-anchor scheme therefore requires an operator-valued
-unique-neighbor/stopping estimate for the sparse fourth moments, or an
-equivalent equality-compatible global correction; this is now the exact
-place where the parity geometry must enter.
+The initially proposed sparse little-o estimate
+`sparse-anchor-odd-fourth-moment-is-the-renormalization-gate` is false
+before coordinate peeling.  `three-site-pauli-refutes-unpeeled-fourth-moment`
+puts `X,X` on one exact face and an external `Z` anchor.  Its common raw
+square-function bound is `O(1/L)`, but the sparse fourth moment and anchor
+energy are both `Theta(1/L^2)`, so their ratio does not vanish.  The block
+is full rank but supported on only three coordinates and is therefore
+cheaply repairable, not a far countermodel.
+
+The corrected gate is
+`sparse-peeling-before-anchor-fourth-moment-dichotomy`: first use all-dual
+tail contraction to assign sparse anchor-odd spikes to a small coordinate
+set and repair/shorten those sites at proportional cost; only then seek the
+little-o fourth-moment bound on the diffuse shortened core.  This precisely
+separates coordinate sparsity from the physical Hilbert-space outlier cut
+and identifies the required operator-valued stopping or local repair lemma.

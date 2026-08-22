@@ -3,13 +3,14 @@ rg: 2
 id: sparse-anchor-odd-fourth-moment-is-the-renormalization-gate
 kind: claim
 title: Sparse anchor-odd fourth moments are the remaining random-anchor renormalization gate
+refuted_by: three-site-pauli-refutes-unpeeled-fourth-moment
 distinct_from:
   balanced-overlay-diffuse-square-function-newton: that asks for a full row-column Newton inverse; this isolates the concrete sparse nonlinear estimate left after the one-anchor linear and quadratic terms are separated.
   dense-complete-pair-remainders-are-cb-quadratic: that controls the complete double average by a CP row factorization; this explains why the same argument loses length on bounded-degree face edges.
   all-dual-unique-neighbors-contract-operator-tails: that contracts scalar coordinate tails using parity geometry; this asks for the operator-valued two-odd-factor analogue on the low diffuse block.
 ---
 
-OPEN.  For a uniformly random anchor `a`, put
+**Refuted as stated.**  For a uniformly random anchor `a`, put
 
 ```text
  Y_(a,i)=(Q_i-Q_a Q_i Q_a)/2.                           (SAF1)
@@ -68,3 +69,10 @@ physical cuts for different anchors.  Assuming individual operator bounds
 on all `Y_(a,i)` would prove `(SAF3)` immediately, but is strictly stronger
 than the common averaged square-function cut and cannot be inserted as a
 hypothesis.
+
+The localized Pauli construction in
+`three-site-pauli-refutes-unpeeled-fourth-moment` makes
+`b=O(1/L)` while both sides of `(SAF3)` are `Theta(1/L^2)`.  Thus no
+coefficient tending to zero with `b` is possible before sparse coordinate
+repair.  The corrected target is
+`sparse-peeling-before-anchor-fourth-moment-dichotomy`.
