@@ -42,6 +42,12 @@ presented nonhyperlinear group after effective Higman embedding.
 - Common HALT completeness is load-bearing.  Independently tailored gadgets
   that require mutually incompatible infinite completions cannot all be put
   in one final group.
+- `common-completion-amalgamates-compatible-bespoke-gadgets` discharges this
+  coexistence issue when the local models agree on successive
+  finite-dimensional packet wires (or already share one Fock assignment).
+  It does not supply clause 2: free amalgamation preserves compatible
+  gadgets but cannot turn an additive projection predicate into an ordinary
+  group-word nonextension test.
 - Robust nonextendability is load-bearing.  A challenge that excludes one
   exact rational code but not an open extension-type neighborhood permits a
   diagonal sequence to move among codes.
