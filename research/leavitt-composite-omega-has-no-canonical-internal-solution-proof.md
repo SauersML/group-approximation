@@ -25,7 +25,7 @@ r=qp,                        c=x_13(s_0),
 b=r^2 a r^(-2),              d=p^2 c p^(-2).          (IS1)
 ```
 
-For every candidate
+For every radius-one candidate
 
 ```text
 t in {1,p,p^(-1),q,r,r^(-1),a,e,c,b,d},              (IS2)
@@ -52,3 +52,32 @@ finite-ring or finite-dimensional approximation.
 This closes only the canonical packet-word screen.  An arbitrary solution
 `t in G`, or an embedding of the coefficient copy into a larger solution
 group, is not excluded.
+
+## Exact radius-four extension
+
+The second artifact works directly in Bergman normal form.  A ring element is
+an XOR-set of monomials `s_u t_v`, with the terminating rewrite
+
+```text
+s_(u1)t_(v1) = s_u t_v + s_(u0)t_(v0).               (IS4)
+```
+
+It uses the standard twenty-leaf prefix chart to identify `M_20(L)` with
+`L`.  Consequently equality of the resulting units is exact.  The script
+enumerates every freely reduced word of length at most four over
+
+```text
+{p,p^(-1),q,r,r^(-1),a,e,c,b,d}.                     (IS5)
+```
+
+Inverse pairs are suppressed during generation.  The exact counts by radius
+are
+
+```text
+1, 10, 90, 810, 7290,
+```
+
+for `8,201` words in total.  For each word it constructs `(IS3)` in the
+20-leaf chart and compares its Bergman normal form with the identity.  There
+are zero solutions.  The run was performed through the MSI wrapper; only the
+lightweight syntax check and the radius-one witness audit ran locally.
