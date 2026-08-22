@@ -306,6 +306,23 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   (including mixed levels), or to lattice tuples uniformly far from every
   exact representation.  For `p=2`, no purely odd correctable far sector
   remains; this does not yet bound the two-primary mass in a mixed level.
+- **A fixed far gap forces positive denominator-primary mass.**
+  `fixed-projective-gap-forces-primary-congruence-mass` closes the mass
+  loophole left by the preceding item.  For any exact correction `sigma` of
+  the lattice tuple, split its irreducibles by minimal congruence conductor
+  and let `m` be the normalized dimension of the positive `p`-conductor
+  part.  Replacing that part by trivial blocks gives a wholly coprime exact
+  representation at generator cost at most `2 sqrt(m)`.  Hence
+
+  ```text
+  e_h <= eta_odd(delta+xi+E_Lambda+2 sqrt(m)).
+  ```
+
+  Every fixed-gap projective enemy with the other errors vanishing therefore
+  has `liminf m>0`.  What remains is not a vanishing primary spectator but a
+  positive primary mass that may spread over unbounded conductor depth; the
+  Folner-atlas fence shows why a separate arithmetic coherence/contraction
+  input is still necessary.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
