@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Enumerate only maximal noncrossing schemes for inverse I1;412 Eq3."""
+"""Enumerate globally minimum-block NC schemes for inverse I1;412 Eq3.
+
+These are not, in general, all schemes maximal under coarsening.  Consequently
+this script is a high-cancellation screen, not an exhaustive identity fence.
+"""
 
 from functools import lru_cache
 from itertools import combinations, product
@@ -113,7 +117,7 @@ def tietze(relations):
 def main():
     count, schemes = maximal(0, len(COLORS))
     print(f"minimum_blocks={count}")
-    print(f"maximal_schemes={len(schemes)}")
+    print(f"minimum_block_schemes={len(schemes)}")
     presentations = set()
     for scheme in schemes:
         relations = [reduce_word(sum((S[index] for index in block), ()))

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Push the exact inverse I1;412 carrier states through one-copy boundary DP."""
+"""Push the inverse I1;412 minimum-block carrier screen through cyclic boundary DP.
+
+The cyclic rotations cover conjugate one-copy boundaries for the screened
+carrier states.  The upstream global-minimum-block restriction means this is
+not, by itself, a global fence.
+"""
 
 import importlib.util
 from pathlib import Path

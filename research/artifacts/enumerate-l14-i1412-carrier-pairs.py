@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Intersect the two audited inverse I1;412 carrier equations exactly.
+"""Intersect the minimum-block screens for inverse I1;412 carrier equations.
 
 The key point is to retain every Tietze substitution on the twelve original
 coefficient generators.  Merely intersecting the 116 and 47 abstract residual
 presentations is invalid because their eliminated generators need not use the
 same change of variables.
+
+This preserves coefficient coordinates exactly, but its NC inputs are only the
+globally minimum-block schemes.  It is not an exhaustive carrier classifier.
 """
 
 import importlib.util

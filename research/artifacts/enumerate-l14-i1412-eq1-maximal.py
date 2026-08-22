@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Enumerate maximal noncrossing schemes for inverse I1;412 Eq1.
+"""Enumerate globally minimum-block NC schemes for inverse I1;412 Eq1.
 
 This imports the audited free-product/Tietze machinery from the Eq3 screen and
-retains a raw-name assertion for the independently expanded 31 syllables.
+retains a raw-name assertion for the independently expanded 31 syllables.  It
+does not enumerate every scheme maximal under coarsening.
 """
 
 import importlib.util
@@ -42,7 +43,7 @@ def main():
     EQ3.maximal.cache_clear()
     count, schemes = EQ3.maximal(0, len(COLORS))
     print(f"minimum_blocks={count}")
-    print(f"maximal_schemes={len(schemes)}")
+    print(f"minimum_block_schemes={len(schemes)}")
     presentations = set()
     for scheme in schemes:
         relations = [EQ3.reduce_word(sum((S[index] for index in block), ()))
