@@ -23,7 +23,14 @@ fact the second cyclic lift `R1` already fails in every case.  Each rejection
 is certified by a concrete moved basis vector in the faithful infinite-word
 Leavitt module; no finite quotient or word-length truncation is used.
 
-This closes the trivial, cycle-inner, one-packet-inner, and primitive
-prefix-corner families.  Iterated/mixed self-embeddings, non-inner
+The first deeper composition pattern which defeats a common-complement
+argument is also closed.  Assign the complete prefix code `{0,10,11}` to the
+three copies in any of its six orders and put either an outer `p^k` or an outer
+coordinate-`q` conjugator on each corner.  All `6*40^3=384000` cases again fail
+at `R1` on exact moved vectors.
+
+This closes the trivial, cycle-inner, one-packet-inner, primitive
+prefix-corner, and minimal three-leaf complete-prefix-code families.
+Arbitrary nested/mixed self-embeddings, non-inner
 automorphisms, and arbitrary graph-of-groups targets remain open, so the result
 is neither coefficient injectivity nor a KL violation.

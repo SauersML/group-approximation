@@ -53,8 +53,32 @@ The exact output was
 cases=531441
 rejected_by_R1_R2_R3=(531441, 0, 0)
 witness_screen_survivors=0
+three_leaf_cases=384000
+three_leaf_rejected_by_R1_R2_R3=(384000, 0, 0)
+three_leaf_witness_screen_survivors=0
 ```
 
 The phrase `witness_screen` limits the positive direction only: a survivor
 would require a complete identity audit.  Since every case has an explicit
 moved vector, the zero-survivor conclusion for the family `(IR1)` is exact.
+
+## The first complete-prefix-code obstruction
+
+A tempting infinite-depth proof would choose a cylinder outside the supports
+of all three proper corner maps.  The first symbolic shape where that is
+impossible is the three-leaf code
+
+```text
+{0,10,11}.                                             (IR3)
+```
+
+The artifact therefore tests `(IR3)` separately: all six assignments of its
+leaves to copies `1,2,3`, and independently on each copy all forty outer
+conjugators `p^k` and `p^k q p^(-k)`.  These are
+`6*40^3=384000` cases.  The coordinate-`q` sector is load-bearing because it
+need not preserve the cylinder blocks.  Nevertheless every case is rejected
+already by `R1` on an exact moved vector, as the final three output lines show.
+
+This removes the first obstruction to a partition-sensitive induction.  It
+does not itself supply that induction for arbitrary nested prefix codes or
+for inner words of unbounded packet length.

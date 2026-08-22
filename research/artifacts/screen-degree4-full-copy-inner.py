@@ -9,7 +9,7 @@ rejection is exact: one standard-module basis vector with an opaque tail is
 moved by one of R1,R2,R3.  The screen is not a finite-dimensional truncation.
 """
 
-from itertools import product
+from itertools import permutations, product
 
 N = 20
 
@@ -87,24 +87,28 @@ D = P + P + C + inverse(P) + inverse(P)
 def image(word, choice):
     if choice is None:
         return ()
-    family, k = choice
+    family, k, *prefix_data = choice
     shift = (("p", k),)
-    if family == "p":
+    if not prefix_data and family == "p":
         conjugator = shift
         return conjugator + word + inverse(conjugator)
-    if family == "q":
+    if not prefix_data and family == "q":
         conjugator = shift + Q + inverse(shift)
         return conjugator + word + inverse(conjugator)
-    bit = family[-1]
+    prefix = prefix_data[0] if prefix_data else family[len("corner"):]
     corner = []
     for factor in word:
         if factor[0] == "p":
-            corner.append(("cp", bit, factor[1]))
+            corner.append(("cp", prefix, factor[1]))
         else:
             _, coefficient, row, column = factor
-            corner.append(("r", (("s", bit),) + coefficient
-                           + (("t", bit),), row, column))
-    return shift + tuple(corner) + inverse(shift)
+            add = tuple(("s", bit) for bit in prefix)
+            delete = tuple(("t", bit) for bit in reversed(prefix))
+            corner.append(("r", add + coefficient + delete, row, column))
+    corner = tuple(corner)
+    conjugator = shift if family == "p" or family.startswith("corner") else (
+        shift + Q + inverse(shift))
+    return conjugator + corner + inverse(conjugator)
 
 
 def moved(word):
@@ -112,7 +116,8 @@ def moved(word):
     depth = sum(sum(kind == "t" for kind, _ in factor[1])
                 for factor in word if factor[0] == "r")
     if any(factor[0] == "cp" for factor in word):
-        depth = max(depth, 1)
+        depth = max(depth, max(len(factor[1]) for factor in word
+                               if factor[0] == "cp"))
     patterns = {"0" * depth, "1" * depth,
                 ("01" * ((depth + 1) // 2))[:depth],
                 ("10" * ((depth + 1) // 2))[:depth]}
@@ -160,3 +165,44 @@ print(f"rejected_by_R1_R2_R3={tuple(rejected)}")
 print(f"witness_screen_survivors={len(survivors)}")
 if survivors:
     print("survivors=", survivors)
+
+# The first complete prefix code not contained in the primitive one-bit menu.
+# Outer q-packet conjugation is load-bearing here because it need not preserve
+# the three cylinder blocks.
+three_leaf_survivors = []
+three_leaf_rejected = [0, 0, 0]
+inner_options = tuple((family, k) for family in ("p", "q")
+                      for k in range(20))
+for prefixes in permutations(("0", "10", "11")):
+    for x1, x2, x3 in product(inner_options, repeat=3):
+        cs = (identity,
+              (x1[0], x1[1], prefixes[0]),
+              (x2[0], x2[1], prefixes[1]),
+              (x3[0], x3[1], prefixes[2]))
+        z = inverse(
+            image(R, cs[0]) + image(E, cs[1]) + image(A, cs[2])
+            + image(C, cs[1]) + image(B, cs[3]) + image(D, cs[2])
+            + image(P, cs[3]))
+        relators = (
+            image(R, cs[1]) + image(E, cs[2]) + image(A, cs[3])
+            + image(C, cs[2]) + z + image(B, cs[0]) + inverse(z)
+            + image(D, cs[3]) + z + image(P, cs[0]),
+            image(R, cs[2]) + image(E, cs[3]) + z + image(A, cs[0])
+            + inverse(z) + image(C, cs[3]) + z + image(B, cs[1])
+            + image(D, cs[0]) + image(P, cs[1]),
+            image(R, cs[3]) + z + image(E, cs[0]) + image(A, cs[1])
+            + image(C, cs[0]) + image(B, cs[2]) + image(D, cs[1])
+            + image(P, cs[2]),
+        )
+        for index, relator in enumerate(relators):
+            if moved(relator) is not None:
+                three_leaf_rejected[index] += 1
+                break
+        else:
+            three_leaf_survivors.append((prefixes, x1, x2, x3))
+
+print(f"three_leaf_cases={6 * len(inner_options) ** 3}")
+print(f"three_leaf_rejected_by_R1_R2_R3={tuple(three_leaf_rejected)}")
+print(f"three_leaf_witness_screen_survivors={len(three_leaf_survivors)}")
+if three_leaf_survivors:
+    print("three_leaf_survivors=", three_leaf_survivors)
