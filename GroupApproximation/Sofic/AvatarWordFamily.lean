@@ -36,10 +36,19 @@ finite list of word-combinatorial checks.
 
 * **§2, the exponent code.**  `avatarWord L K ν` is the explicit positive word
   `∏_{j=1}^{L} y₁·y₂^{K·ν+j}` as a `List (Fin 2 × Bool)`.  The whole design
-  rests on one arithmetic fact, `codeExponent_inj`: when the stride exceeds the
-  block length — and `K = 2L` gives that — the pair `(ν, j)` is recoverable
-  from the exponent `K·ν + j + 1`, so the exponent ranges of distinct avatars
-  are disjoint and every exponent in the system occurs exactly once.
+  is **length-balanced**: avatar `ν` carries `L/2` pairs of blocks, the `k`-th
+  pair having exponents `V·k + ν + 1` and `V·L − V·k − ν`, which sum to
+  `V·L + 1`.  Two facts come out of that, and the design needs both.  Every
+  exponent in the system occurs exactly once — the low exponents run through
+  `1 … V·(L/2)` and the high ones through `V·(L/2)+1 … V·L`, each bijectively
+  (`codeLow_inj`, `codeHigh_inj`, `codeLow_ne_codeHigh`).  And every avatar has
+  the *same* length (`length_avatarWord_eq`), which the earlier code
+  `K·ν+1, …, K·ν+L` did not: there `|W_ν|` grew linearly in `ν`, and the
+  resulting spread of about `4V` is fatal, because a piece may legitimately be
+  one whole avatar long, so the metric condition would compare the longest
+  avatar against a relator built from the shortest — a gap padding cannot close,
+  since padding with fresh generators grows `V` faster than it grows the
+  relator.
 
 * **§3, the family.**  `Blueprint.relators` is `R_E ∪ R_B ∪ R_tie`: the padded
   source relators rewritten through the source avatars, the padded partner
@@ -243,6 +252,20 @@ theorem le_length_avatarSubst (A : α → List (Fin 2 × Bool)) (m : ℕ)
         rw [length_avatarSubstLetter]
         exact hm x.1
       rw [avatarSubst_cons, List.length_append, List.length_cons, add_mul, one_mul]
+      omega
+
+/-- **Exact rewritten length, when the avatars are length-balanced.**  With
+every avatar the same length `S`, a rewritten word is exactly its letter count
+times `S` — no bounds, no junction accounting.  This is what turns
+`AvatarMetricCheck.AvatarMetricData.relators_long` into arithmetic. -/
+theorem length_avatarSubst_eq (A : α → List (Fin 2 × Bool)) (S : ℕ)
+    (hA : ∀ k, (A k).length = S) (w : List (α × Bool)) :
+    (avatarSubst A w).length = w.length * S := by
+  induction w with
+  | nil => simp
+  | cons x w ih =>
+      rw [avatarSubst_cons, List.length_append, List.length_cons, add_mul,
+        one_mul, length_avatarSubstLetter, hA]
       omega
 
 /-- **A positive word rewrites to a positive word.**  A positive source letter
@@ -539,24 +562,20 @@ end WordPresentation
 avatar-carrying generators; the constant is deliberately generous. -/
 def codeLength (V : ℕ) : ℕ := 16 * (V + 1)
 
-/-- `K = 2L`, the stride between consecutive avatars' exponent ranges. -/
-def codeStride (V : ℕ) : ℕ := 2 * codeLength V
-
 /-- The block count is positive. -/
 theorem codeLength_pos (V : ℕ) : 0 < codeLength V := by
   unfold codeLength
   omega
 
-/-- **The stride exceeds the block length.**  This single inequality is what
-makes the code injective, and `K = 2L` is chosen for it. -/
-theorem codeLength_lt_codeStride (V : ℕ) : codeLength V < codeStride V := by
-  have h := codeLength_pos V
-  unfold codeStride
-  omega
+/-- The **low** exponent of the `k`-th pair of avatar `ν`.  Over the whole
+system the low exponents run through `1, …, V·(L/2)` exactly once: `ν` is the
+residue mod `V` and `k` the quotient. -/
+def codeLow (V ν k : ℕ) : ℕ := V * k + ν + 1
 
-/-- The exponent carried by the `j`-th block of the `ν`-th avatar: `K·ν + j+1`,
-so that the `ν`-th avatar's exponents fill the block `(K·ν, K·ν + L]`. -/
-def codeExponent (K ν j : ℕ) : ℕ := K * ν + (j + 1)
+/-- The **high** exponent of the `k`-th pair of avatar `ν`, chosen so that
+`codeLow + codeHigh = V·L + 1`.  Over the whole system the high exponents run
+through `V·(L/2)+1, …, V·L` exactly once. -/
+def codeHigh (V L ν k : ℕ) : ℕ := V * L - V * k - ν
 
 /-- The block `y₁ · y₂^e`. -/
 def blockWord (e : ℕ) : List (Fin 2 × Bool) :=
@@ -566,61 +585,153 @@ def blockWord (e : ℕ) : List (Fin 2 × Bool) :=
 theorem length_blockWord (e : ℕ) : (blockWord e).length = e + 1 := by
   simp [blockWord]
 
-/-- **The `ν`-th avatar**, `W_ν = ∏_{j=1}^{L} y₁ · y₂^{K·ν+j}` — a positive
-word in the two free generators, written out as a letter list. -/
-def avatarWord (L K ν : ℕ) : List (Fin 2 × Bool) :=
-  ((List.range L).map fun j => blockWord (codeExponent K ν j)).flatten
+/-- One **balanced pair** of blocks, `y₁ y₂^low y₁ y₂^high`. -/
+def pairWord (V L ν k : ℕ) : List (Fin 2 × Bool) :=
+  blockWord (codeLow V ν k) ++ blockWord (codeHigh V L ν k)
 
-/-- **Avatars are positive words.**  Each block is one `y₁` followed by a run of
-`y₂`, and the avatar is their concatenation, so no letter is ever inverted. -/
-theorem forall_positive_avatarWord (L K ν : ℕ) :
-    ∀ c ∈ avatarWord L K ν, c.2 = true := by
-  refine AvatarMetricCheck.forall_positive_flatten ?_
-  intro u hu c hc
-  obtain ⟨j, -, rfl⟩ := List.mem_map.mp hu
+/-- **The `ν`-th avatar**, length-balanced: `L/2` pairs, each one low exponent
+and one high one summing to `V·L + 1`.
+
+The earlier design ran the exponents of avatar `ν` through `K·ν+1, …, K·ν+L`,
+which is globally injective but makes `|W_ν|` grow linearly in `ν`: the spread
+between the shortest and the longest avatar is a factor of about `4V`.  That
+spread is fatal, because a piece may legitimately be one whole avatar long —
+two relators sharing a generator share that generator's entire avatar — so the
+metric condition compares the *longest* avatar against a relator built from the
+*shortest*, and no amount of padding closes the gap: padding with fresh
+generators grows `V` faster than it grows the relator.
+
+Pairing a low exponent with a high one removes the spread entirely while
+keeping every exponent distinct, so `|W_ν|` is the same for every `ν`
+(`length_avatarWord_eq`) and the metric condition becomes a statement about the
+number of avatars in a relator alone. -/
+def avatarWord (V L ν : ℕ) : List (Fin 2 × Bool) :=
+  ((List.range (L / 2)).map fun k => pairWord V L ν k).flatten
+
+/-- Blocks are positive words. -/
+theorem forall_positive_blockWord (e : ℕ) : ∀ c ∈ blockWord e, c.2 = true := by
+  intro c hc
   rcases List.mem_cons.mp hc with rfl | hc'
   · rfl
   · have hcv : c = ((1 : Fin 2), true) := List.eq_of_mem_replicate hc'
     subst hcv
     rfl
 
-/-- **The exponent range of one avatar** is the block `(K·ν, K·ν + L]`. -/
-theorem codeExponent_mem_block {L K ν j : ℕ} (hj : j < L) :
-    K * ν < codeExponent K ν j ∧ codeExponent K ν j ≤ K * ν + L := by
-  unfold codeExponent
-  omega
+/-- Balanced pairs are positive words. -/
+theorem forall_positive_pairWord (V L ν k : ℕ) :
+    ∀ c ∈ pairWord V L ν k, c.2 = true := by
+  intro c hc
+  rcases List.mem_append.mp hc with hc' | hc'
+  · exact forall_positive_blockWord _ c hc'
+  · exact forall_positive_blockWord _ c hc'
 
-/-- **Every exponent occurs exactly once in the whole system.**  When the
-stride exceeds the block length the pair `(ν, j)` is recoverable from
-`K·ν + j + 1`: this is simultaneously the pairwise disjointness of the ranges
-`[K·ν, K·ν + L)` and the injectivity of the code inside one range.  It is the
-only arithmetic the design rests on. -/
-theorem codeExponent_inj {L K ν j ν' j' : ℕ} (hK : L < K) (hj : j < L)
-    (hj' : j' < L) (h : codeExponent K ν j = codeExponent K ν' j') :
-    ν = ν' ∧ j = j' := by
-  have key : ∀ a b c d : ℕ, c < L → a < b →
-      codeExponent K a c < codeExponent K b d := by
+/-- **Avatars are positive words**, so no letter is ever inverted. -/
+theorem forall_positive_avatarWord (V L ν : ℕ) :
+    ∀ c ∈ avatarWord V L ν, c.2 = true := by
+  refine AvatarMetricCheck.forall_positive_flatten ?_
+  intro u hu c hc
+  obtain ⟨k, -, rfl⟩ := List.mem_map.mp hu
+  exact forall_positive_pairWord V L ν k c hc
+
+/-- **Division uniqueness**, in the form the code needs: `(k, ν)` is recoverable
+from `V·k + ν` when `ν` is a residue.  This is the one nonlinear step, and both
+halves of the code reduce to it. -/
+theorem mul_add_inj {V k ν k' ν' : ℕ} (hν : ν < V) (hν' : ν' < V)
+    (h : V * k + ν = V * k' + ν') : k = k' ∧ ν = ν' := by
+  have key : ∀ a b c d : ℕ, c < V → a < b → V * a + c < V * b + d := by
     intro a b c d hc hab
     have hab' : a + 1 ≤ b := hab
-    have h1 : K * (a + 1) ≤ K * b := Nat.mul_le_mul (le_refl K) hab'
-    have h2 : K * a + K ≤ K * b :=
-      calc K * a + K = K * (a + 1) := by ring
-        _ ≤ K * b := h1
-    unfold codeExponent
+    have h1 : V * (a + 1) ≤ V * b := Nat.mul_le_mul (le_refl V) hab'
+    have h2 : V * a + V ≤ V * b :=
+      calc V * a + V = V * (a + 1) := by ring
+        _ ≤ V * b := h1
     omega
-  rcases lt_trichotomy ν ν' with hlt | heq | hgt
-  · exact absurd h (Nat.ne_of_lt (key ν ν' j j' hj hlt))
+  rcases lt_trichotomy k k' with hlt | heq | hgt
+  · exact absurd h (Nat.ne_of_lt (key k k' ν ν' hν hlt))
   · subst heq
-    refine ⟨rfl, ?_⟩
-    unfold codeExponent at h
-    omega
-  · exact absurd h.symm (Nat.ne_of_lt (key ν' ν j' j hj' hgt))
+    exact ⟨rfl, by omega⟩
+  · exact absurd h.symm (Nat.ne_of_lt (key k' k ν' ν hν' hgt))
 
-/-- **Distinct avatars use disjoint exponent ranges.** -/
-theorem codeExponent_ne_of_index_ne {L K ν j ν' j' : ℕ} (hK : L < K) (hj : j < L)
-    (hj' : j' < L) (hν : ν ≠ ν') :
-    codeExponent K ν j ≠ codeExponent K ν' j' := fun h =>
-  hν (codeExponent_inj hK hj hj' h).1
+/-- Twice the half-length is at most the length, scaled by `V`. -/
+theorem two_mul_mul_half_le (V L : ℕ) : 2 * (V * (L / 2)) ≤ V * L := by
+  have hle : 2 * (L / 2) ≤ L := by omega
+  calc 2 * (V * (L / 2)) = V * (2 * (L / 2)) := by ring
+    _ ≤ V * L := Nat.mul_le_mul (le_refl V) hle
+
+/-- Low exponents sit at or below `V·(L/2)`. -/
+theorem codeLow_le {V L ν k : ℕ} (hν : ν < V) (hk : k < L / 2) :
+    codeLow V ν k ≤ V * (L / 2) := by
+  have h1 : V * (k + 1) ≤ V * (L / 2) := Nat.mul_le_mul (le_refl V) hk
+  have h2 : V * k + V ≤ V * (L / 2) :=
+    calc V * k + V = V * (k + 1) := by ring
+      _ ≤ V * (L / 2) := h1
+  unfold codeLow
+  omega
+
+/-- High exponents sit strictly above `V·(L/2)`. -/
+theorem lt_codeHigh {V L ν k : ℕ} (hν : ν < V) (hk : k < L / 2) :
+    V * (L / 2) < codeHigh V L ν k := by
+  have h1 : codeLow V ν k ≤ V * (L / 2) := codeLow_le hν hk
+  have h2 : 2 * (V * (L / 2)) ≤ V * L := two_mul_mul_half_le V L
+  unfold codeLow at h1
+  unfold codeHigh
+  omega
+
+/-- **The balance condition**: every pair sums to `V·L + 1`. -/
+theorem codeLow_add_codeHigh {V L ν k : ℕ} (hν : ν < V) (hk : k < L / 2) :
+    codeLow V ν k + codeHigh V L ν k = V * L + 1 := by
+  have h1 : codeLow V ν k ≤ V * (L / 2) := codeLow_le hν hk
+  have h2 : 2 * (V * (L / 2)) ≤ V * L := two_mul_mul_half_le V L
+  unfold codeLow at h1
+  unfold codeLow codeHigh
+  omega
+
+/-- **Every pair has the same length**, `V·L + 3`. -/
+theorem length_pairWord {V L ν k : ℕ} (hν : ν < V) (hk : k < L / 2) :
+    (pairWord V L ν k).length = V * L + 3 := by
+  have h := codeLow_add_codeHigh hν hk
+  unfold pairWord
+  rw [List.length_append, length_blockWord, length_blockWord]
+  omega
+
+/-- A low exponent is never a high one. -/
+theorem codeLow_ne_codeHigh {V L ν k ν' k' : ℕ} (hν : ν < V) (hν' : ν' < V)
+    (hk : k < L / 2) (hk' : k' < L / 2) :
+    codeLow V ν k ≠ codeHigh V L ν' k' := by
+  have h1 := codeLow_le (L := L) hν hk
+  have h2 := lt_codeHigh (L := L) hν' hk'
+  omega
+
+/-- **Low exponents are globally distinct**: the pair `(ν, k)` is recoverable. -/
+theorem codeLow_inj {V ν k ν' k' : ℕ} (hν : ν < V) (hν' : ν' < V)
+    (h : codeLow V ν k = codeLow V ν' k') : ν = ν' ∧ k = k' := by
+  unfold codeLow at h
+  have hmul := mul_add_inj hν hν' (by omega : V * k + ν = V * k' + ν')
+  exact ⟨hmul.2, hmul.1⟩
+
+/-- **High exponents are globally distinct.** -/
+theorem codeHigh_inj {V L ν k ν' k' : ℕ} (hν : ν < V) (hν' : ν' < V)
+    (hk : k < L / 2) (hk' : k' < L / 2)
+    (h : codeHigh V L ν k = codeHigh V L ν' k') : ν = ν' ∧ k = k' := by
+  have h1 : codeLow V ν k ≤ V * (L / 2) := codeLow_le hν hk
+  have h1' : codeLow V ν' k' ≤ V * (L / 2) := codeLow_le hν' hk'
+  have h2 : 2 * (V * (L / 2)) ≤ V * L := two_mul_mul_half_le V L
+  unfold codeLow at h1 h1'
+  unfold codeHigh at h
+  have hmul := mul_add_inj hν hν' (by omega : V * k + ν = V * k' + ν')
+  exact ⟨hmul.2, hmul.1⟩
+
+/-- Every exponent in the system is at most `V·L`, so `A_max = V·L`. -/
+theorem codeLow_le_max {V L ν k : ℕ} (hν : ν < V) (hk : k < L / 2) :
+    codeLow V ν k ≤ V * L := by
+  have h1 : codeLow V ν k ≤ V * (L / 2) := codeLow_le hν hk
+  have h2 : 2 * (V * (L / 2)) ≤ V * L := two_mul_mul_half_le V L
+  omega
+
+/-- Every high exponent is at most `V·L`. -/
+theorem codeHigh_le_max (V L ν k : ℕ) : codeHigh V L ν k ≤ V * L := by
+  unfold codeHigh
+  omega
 
 /-- Every block of a flattened list is short, so the flattening is. -/
 theorem length_flatten_le {β : Type} (b : ℕ) :
@@ -661,56 +772,32 @@ theorem length_flatten_eq {β : Type} :
   | cons l ls ih =>
       rw [List.flatten_cons, List.length_append, ih, List.map_cons, List.sum_cons]
 
-/-- **The exact length of an avatar.**  Block `j` is one `y₁` and `K·ν+j+1`
-copies of `y₂`, so the avatar is `∑_{j<L} (K·ν + j + 2)` letters.
+/-- **The avatar's length does not depend on `ν`.**  This is the payoff of the
+balanced code, and it is what makes the metric condition tractable: every
+avatar is exactly `(L/2)·(V·L + 3)` letters, so a relator's rewritten length is
+its letter count times a single constant, and a piece that is one avatar long
+costs the same fraction of every relator.
 
-This is strictly sharper than the two bounds below, which discard the
-triangular term `∑ j` — for the design's constants that term is about `L²/2`
-and is the dominant part of a low-index avatar, so a margin computed from
-`le_length_avatarWord` alone pays for it twice.  The sum is left unevaluated on
-purpose: whoever is doing margin arithmetic can apply Gauss to it in the
-setting where the rest of the arithmetic lives. -/
-theorem length_avatarWord (L K ν : ℕ) :
-    (avatarWord L K ν).length = ((List.range L).map fun j => K * ν + j + 2).sum := by
-  have hfun : (List.length ∘ fun j => blockWord (codeExponent K ν j))
-      = (fun j : ℕ => K * ν + j + 2) := by
-    funext j
-    show (blockWord (codeExponent K ν j)).length = K * ν + j + 2
-    rw [length_blockWord]
-    unfold codeExponent
-    omega
-  show ((List.range L).map fun j => blockWord (codeExponent K ν j)).flatten.length = _
-  rw [length_flatten_eq, List.map_map, hfun]
-
-/-- The `ν`-th avatar is at least `L·(K·ν+2)` letters long.  Sharper than this,
-and usually worth using instead, is `length_avatarWord`. -/
-theorem le_length_avatarWord (L K ν : ℕ) :
-    L * (K * ν + 2) ≤ (avatarWord L K ν).length := by
-  have h : ∀ l ∈ (List.range L).map (fun j => blockWord (codeExponent K ν j)),
-      K * ν + 2 ≤ l.length := by
-    intro l hl
-    obtain ⟨j, _, rfl⟩ := List.mem_map.mp hl
-    rw [length_blockWord]
-    unfold codeExponent
-    omega
-  have h2 := le_length_flatten (K * ν + 2) _ h
-  rw [List.length_map, List.length_range] at h2
-  exact h2
-
-/-- The `ν`-th avatar is at most `L·(K·ν+L+1)` letters long. -/
-theorem length_avatarWord_le (L K ν : ℕ) :
-    (avatarWord L K ν).length ≤ L * (K * ν + L + 1) := by
-  have h : ∀ l ∈ (List.range L).map (fun j => blockWord (codeExponent K ν j)),
-      l.length ≤ K * ν + L + 1 := by
-    intro l hl
-    obtain ⟨j, hj, rfl⟩ := List.mem_map.mp hl
-    have hjL : j < L := List.mem_range.mp hj
-    rw [length_blockWord]
-    unfold codeExponent
-    omega
-  have h2 := length_flatten_le (K * ν + L + 1) _ h
-  rw [List.length_map, List.length_range] at h2
-  exact h2
+Under the previous, unbalanced code this statement was false — `|W_ν|` grew
+linearly in `ν` — and the resulting spread of about `4V` between the shortest
+and longest avatar is what forced relators of order `32·V` letters, which
+per-relator padding cannot supply because it grows `V` faster still. -/
+theorem length_avatarWord_eq {V L ν : ℕ} (hν : ν < V) :
+    (avatarWord V L ν).length = (L / 2) * (V * L + 3) := by
+  have hb : ∀ u ∈ (List.range (L / 2)).map (fun k => pairWord V L ν k),
+      u.length = V * L + 3 := by
+    intro u hu
+    obtain ⟨k, hk, rfl⟩ := List.mem_map.mp hu
+    exact length_pairWord hν (List.mem_range.mp hk)
+  have hle := length_flatten_le (V * L + 3)
+    ((List.range (L / 2)).map fun k => pairWord V L ν k)
+    (fun u hu => (hb u hu).le)
+  have hge := le_length_flatten (V * L + 3)
+    ((List.range (L / 2)).map fun k => pairWord V L ν k)
+    (fun u hu => (hb u hu).ge)
+  rw [List.length_map, List.length_range] at hle hge
+  show ((List.range (L / 2)).map fun k => pairWord V L ν k).flatten.length = _
+  omega
 
 /-! ## 4.  The blueprint -/
 
@@ -887,35 +974,48 @@ def avatarCount : ℕ := D.srcPres.card + D.parPres.card
 /-- The blueprint's `L`. -/
 def codeL : ℕ := codeLength D.avatarCount
 
-/-- The blueprint's `K = 2L`. -/
-def codeK : ℕ := codeStride D.avatarCount
+/-- The common length of every avatar in the system. -/
+def avatarLength : ℕ := (D.codeL / 2) * (D.avatarCount * D.codeL + 3)
 
-/-- The blueprint's stride exceeds its block length. -/
-theorem codeL_lt_codeK : D.codeL < D.codeK := codeLength_lt_codeStride _
-
-/-- The avatar of the `i`-th padded source generator. -/
+/-- The avatar of the `i`-th source generator. -/
 def srcAvatarWord (i : Fin D.srcPres.card) : List (Fin 2 × Bool) :=
-  avatarWord D.codeL D.codeK (i : ℕ)
+  avatarWord D.avatarCount D.codeL (i : ℕ)
 
-/-- The avatar of the `k`-th padded partner generator: the partner indices sit
-above the source indices, so the two families never share an exponent. -/
+/-- The avatar of the `k`-th partner generator: the partner indices sit above
+the source indices, so the two families never share an exponent. -/
 def parAvatarWord (k : Fin D.parPres.card) : List (Fin 2 × Bool) :=
-  avatarWord D.codeL D.codeK (D.srcPres.card + (k : ℕ))
+  avatarWord D.avatarCount D.codeL (D.srcPres.card + (k : ℕ))
 
-/-- **Source and partner avatar indices are distinct.**  With
-`codeExponent_inj` this is the system-wide half of "each exponent appears
-exactly once". -/
+/-- Source avatar indices are in range. -/
+theorem srcIndex_lt (i : Fin D.srcPres.card) : (i : ℕ) < D.avatarCount := by
+  have h := i.isLt
+  unfold avatarCount
+  omega
+
+/-- Partner avatar indices are in range. -/
+theorem parIndex_lt (k : Fin D.parPres.card) :
+    D.srcPres.card + (k : ℕ) < D.avatarCount := by
+  have h := k.isLt
+  unfold avatarCount
+  omega
+
+/-- **Source and partner avatar indices are distinct.**  With `codeLow_inj` and
+`codeHigh_inj` this is the system-wide half of "each exponent appears exactly
+once". -/
 theorem srcIndex_ne_parIndex (i : Fin D.srcPres.card) (k : Fin D.parPres.card) :
     (i : ℕ) ≠ D.srcPres.card + (k : ℕ) := by
   have h := i.isLt
   omega
 
-/-- **System-wide exponent uniqueness**, at the blueprint's own constants. -/
-theorem codeExponent_system_inj {ν j ν' j' : ℕ} (hj : j < D.codeL)
-    (hj' : j' < D.codeL)
-    (h : codeExponent D.codeK ν j = codeExponent D.codeK ν' j') :
-    ν = ν' ∧ j = j' :=
-  codeExponent_inj D.codeL_lt_codeK hj hj' h
+/-- **Every source avatar has the same length.** -/
+theorem length_srcAvatarWord (i : Fin D.srcPres.card) :
+    (D.srcAvatarWord i).length = D.avatarLength :=
+  length_avatarWord_eq (D.srcIndex_lt i)
+
+/-- **Every partner avatar has the same length**, and the same one. -/
+theorem length_parAvatarWord (k : Fin D.parPres.card) :
+    (D.parAvatarWord k).length = D.avatarLength :=
+  length_avatarWord_eq (D.parIndex_lt k)
 
 /-- The source's target-word assignment. -/
 def srcAvatar (i : Fin D.srcPres.card) : RouterFree :=
@@ -1068,9 +1168,10 @@ positive designated word. -/
 theorem forall_positive_relators :
     ∀ r ∈ D.relators, ∀ c ∈ r, c.2 = true := by
   have hsrc : ∀ k, ∀ c ∈ D.srcAvatarWord k, c.2 = true :=
-    fun k => forall_positive_avatarWord D.codeL D.codeK (k : ℕ)
+    fun k => forall_positive_avatarWord D.avatarCount D.codeL (k : ℕ)
   have hpar : ∀ k, ∀ c ∈ D.parAvatarWord k, c.2 = true :=
-    fun k => forall_positive_avatarWord D.codeL D.codeK (D.srcPres.card + (k : ℕ))
+    fun k =>
+      forall_positive_avatarWord D.avatarCount D.codeL (D.srcPres.card + (k : ℕ))
   have hdef : ∀ k, ∀ c ∈ D.defectAvatarWord k, c.2 = true := fun k =>
     forall_positive_avatarSubst D.srcAvatarWord hsrc (D.basisWord_positive k)
   intro r hr
