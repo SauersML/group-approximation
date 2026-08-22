@@ -33,21 +33,22 @@ The sibling supplies that bundle; everything downstream of it is proved.
   so one normalization pass leaves a cyclically reduced word — and at most `K·V`,
   so junction runs are code-sized and the run ceiling survives rewriting.
 
-* **(b) Piece pinning → `C'(1/8)`.**  `length_le_of_runs_bounded` is the
-  counting half: in a word whose `y₂`-runs are bounded by `A`, a window carrying
-  at most `k` `y₁`-letters is at most `k·(A + 1) + A` long.  So a window of
-  length `3·A + 3` spans two consecutive complete `y₂`-runs, at least one of
-  which is a code run rather than a junction residue
-  (`code_ne_mul_stride`), and its exponent pins the position — that is the
-  `pinned` field — while a piece cannot do that, because it prefixes two
-  *different* symmetrized relators.  `metric_eighth` turns the resulting piece
+* **(b) The piece ceiling → `C'(1/8)`.**  `metric_eighth` turns the piece
   ceiling and the relator floor into `MetricSmallCancellation R (1/8)` by one
-  inequality.
+  inequality.  The ceiling itself is the `piece_short` field.
 
-  The threshold is *three* separators, not the design note's two: a window
-  spanning one complete run pins nothing when that run is a junction residue,
-  since a residue records only a difference of avatar indices.  Two consecutive
-  runs always meet a code run, because a junction leaves at most one residue.
+  It is a field and not a theorem because the design note's derivation is
+  **false**, and the correction is the main thing to know about this module.  A
+  long window pins its *block* — `code_injective` reads the avatar and block off
+  the exponent — but not its *relator*: a generator occurring in two distinct
+  relators puts the whole of its avatar into both rewrites, so a window inside
+  that avatar prefixes two different symmetrized relators.  Pieces are
+  **avatar-sized**, and the honest ceiling is `c·S + 2·(A + 1)` with `c` the
+  longest common cyclic generator-subword of two distinct source relators.  The
+  counting machinery of §1 and `code_ne_mul_stride` in §2 served the failed
+  derivation and are marked DEMOTED in place; `AvatarRunBound` moves from the
+  main argument to the flank estimate, which is where the `2·(A + 1)` comes
+  from.
 
 * **(c) No block powers.**  `not_isProperPower_of_unique_mark` is the general
   fact: if some property of the cyclic word holds at exactly one cyclic position,
@@ -74,15 +75,18 @@ the gate call: both consumers are fed from `metric_eighth`.
 ## Decidability, and why it is not spent here
 
 Every field of `AvatarMetricData` reduces to a finite check on an explicit
-family — `uniqueMark` and `runs_short` range over the finitely many rotations and
-windows of finitely many relators, `pinned` over their finitely many common
-prefixes, and `leadCode` is by design a computable reading.  They are
-nevertheless *stated*, not computed: the relators of this family are thousands of
-letters long, and a kernel-level `decide` over normal forms of words that size is
-the repository's standard timeout.  The arithmetic above is deliberately
-inequality-only for the same reason, and `runs_short_of_doubled` exists so that
-the run check is two explicit words per relator rather than a quantifier over
-rotations.
+family — `uniqueMark` ranges over the finitely many rotations of finitely many
+relators, `piece_short` over their finitely many common prefixes, and `leadCode`
+is by design a computable reading.  They are nevertheless *stated*, not computed:
+the relators of this family are thousands of letters long, and a kernel-level
+`decide` over normal forms of words that size is the repository's standard
+timeout.  The arithmetic above is deliberately inequality-only for the same
+reason.
+
+`runs_short_of_doubled` survives the demotion of §1 for the same practical
+purpose it always had — it turns a quantifier over rotations into two explicit
+words per relator — and now serves the flank estimate rather than the piece
+bound.
 -/
 
 namespace GroupApproximation
@@ -107,11 +111,16 @@ def isGenOne (c : Fin 2 × Bool) : Bool := decide (c.1 = 0)
 
 /-! ## 1.  Counting: how far a window runs without meeting a separator
 
-The one combinatorial input the piece bound needs.  In a word all of whose
-separator-free stretches are at most `A` long, the length is controlled by the
-number of separators; a window carrying at most `k` separators is at most
-`k·(A + 1) + A` long, so any longer window spans more than `k − 1` complete
-runs. -/
+**DEMOTED.**  This section was the combinatorial input to a piece bound that does
+not work.  The argument it served — a long window carries three separators, hence
+spans two complete runs, hence pins its position, hence pins its relator — fails
+at the last step: pinning the block does not pin the relator, because a generator
+occurring in two relators puts its whole avatar into both rewrites.  See the
+`piece_short` field.
+
+The lemmas are correct and are kept: in a word all of whose separator-free
+stretches are at most `A` long, a window carrying at most `k` separators is at
+most `k·(A + 1) + A` long.  Nothing on the critical path consumes them now. -/
 
 /-- The counting induction, carrying the length `k` of the separator-free
 stretch already consumed to the left of the window.  The accumulator is what
@@ -294,15 +303,14 @@ theorem junction_residue {K V x x' : ℕ} (hK : 0 < K) (hx : x ≤ V) (hlt : x' 
 /-- **A junction residue is never a code exponent.**  A junction leaves a run of
 length `K·|x − x'|`, a multiple of the stride; a code run has length `K·ν + j`
 with `1 ≤ j ≤ L < K`, which is never a multiple of the stride.  So the two kinds
-of run live in different residue classes mod `K` and a normalization pass cannot
-disguise one as the other.
+of run live in different residue classes mod `K`.
 
-This is what forces the piece threshold to be *three* separators rather than
-two.  A window spanning a single complete run pins nothing if that run happens
-to be a junction residue — `K·3` is left by the pair `(5,2)` and by `(7,4)`
-alike — whereas a window spanning two consecutive complete runs meets at most
-one residue, since each junction leaves at most one, and so always meets a code
-run. -/
+**DEMOTED, twice over.**  It was proved to justify a three-separator piece
+threshold, and that threshold rests on the pinning argument that fails (see
+`piece_short`).  It is also moot on its own terms: the family is built from
+positive words, so no junction cancels and there are no residue runs to
+distinguish.  Kept because the arithmetic is correct and the residue-class
+separation is the fact anyone re-deriving the code will want. -/
 theorem code_ne_mul_stride {K L a ν j : ℕ} (hLK : L < K)
     (hj : 1 ≤ j) (hjL : j ≤ L) : K * a ≠ K * ν + j := by
   intro h
@@ -423,47 +431,55 @@ theorem runs_short_of_doubled {A : ℕ} {R : Set (List (Fin 2 × Bool))}
 
 Everything an exponent-code family owes, in the form a finite explicit family
 can be inspected for.  The design parameters `L`, `K`, `V` and the padding floor
-enter only through the three numbers `maxExponent`, `relatorFloor` and
+enter only through the three numbers `pieceCeil`, `relatorFloor` and
 `protectedLength` and the two margins between them, so the results below are
-generic in the design and survive any retuning of the constants. -/
+generic in the design and survive any retuning of the constants — including the
+move to a length-balanced code, which changes what `pieceCeil` evaluates to and
+nothing else here. -/
 
-/-- **The avatar family's verification data.**  `maxExponent` is `A_max = K·V + L`
-of the design note, `relatorFloor` is the §1 padding floor read on the rewritten
-relators, and `protectedLength` bounds the protected target word. -/
+/-- **The avatar family's verification data.**  `pieceCeil` is the ceiling on
+pieces — `c·S + 2·A + 2` for the avatar family, see `piece_short` — `relatorFloor`
+is the §1 padding floor read on the rewritten relators, and `protectedLength`
+bounds the protected target word. -/
 structure AvatarMetricData where
   /-- The relator family, as letter lists over the two-generator alphabet. -/
   relators : Set (List (Fin 2 × Bool))
-  /-- `A_max`: the ceiling on the `y₂`-runs the code and its junctions produce. -/
-  maxExponent : ℕ
+  /-- The ceiling on pieces.  For the avatar family this is `c·S + 2·A + 2`,
+  where `S` is the avatar length, `A` the run ceiling, and `c` the caller's
+  small-cancellation datum; see `piece_short`. -/
+  pieceCeil : ℕ
+  /-- The ceiling is at least the flank term, which is all any nonemptiness
+  argument below needs. -/
+  two_le_pieceCeil : 2 ≤ pieceCeil
   /-- The common length floor of the family, from §1's padding step. -/
   relatorFloor : ℕ
   /-- A ceiling for the length of the protected target word. -/
   protectedLength : ℕ
   /-- Every relator meets the floor. -/
   relators_long : ∀ r ∈ relators, relatorFloor ≤ r.length
-  /-- **The run ceiling.**  No `y₂`-run of a symmetrized relator exceeds the top
-  exponent — for code runs because the code stops at `A_max`, for junction runs
-  by `junction_residue`.  `runs_short_of_doubled` reduces this to two explicit
-  words per relator. -/
-  runs_short : ∀ w ∈ symmetrization relators, ∀ u : List (Fin 2 × Bool),
-    u <:+: w → (∀ c ∈ u, isGenOne c = false) → u.length ≤ maxExponent
-  /-- **Piece pinning.**  A window carrying three `y₁`-letters spans two
-  consecutive complete `y₂`-runs, at least one of which is a code run
-  (`code_ne_mul_stride`: each junction leaves at most one residue run, and a
-  residue is never a code exponent).  By `code_injective` that run's exponent
-  names its avatar and block, so the window is pinned to one place in the
-  system and cannot prefix two different symmetrized relators.
+  /-- **The piece ceiling.**  This is the field with the real mathematical
+  content, and it is a condition on the family rather than a consequence of the
+  code.
 
-  **This is the field with real content, and it is a condition on the family,
-  not a consequence of the code.**  Pinning the block does not by itself pin the
-  *relator*: two distinct relators may legitimately contain the same avatar, and
-  if they share a long run of avatars — the same padding tail, say — they share a
-  long piece and this fails. The family must therefore be built so that no two
-  distinct symmetrized relators agree across two consecutive blocks, which for
-  the padding step means a per-relator padding rather than a common one. -/
-  pinned : ∀ p : List (Fin 2 × Bool), 3 ≤ p.countP isGenOne →
-    ∀ w₁ ∈ symmetrization relators, ∀ w₂ ∈ symmetrization relators,
-      p <+: w₁ → p <+: w₂ → w₁ = w₂
+  It is stated directly, rather than derived from a pinning property, because
+  the obvious derivation is **false**.  A window carrying three `y₁`-letters pins
+  its *block* — `code_injective` reads the avatar and the block index off the
+  exponent — but not its *relator*: a generator occurring in two distinct
+  relators puts the whole of its avatar into both rewrites, so a window inside
+  that avatar prefixes two different symmetrized relators and pins nothing.
+  Pieces are therefore genuinely **avatar-sized**, not run-sized.
+
+  The honest bound is `c·S + 2·(A + 1)`: a piece covers `c` complete shared
+  avatars, where `c` is the longest common cyclic subword of two distinct source
+  relators *measured in generators*, plus a partial avatar at each end — and each
+  flank is at most `A + 1`, because two different avatars agree only on
+  `y₁·y₂^{min(e,e')}` before their exponents diverge.  That flank estimate is
+  where `AvatarRunBound` and `code_injective` now do their work.
+
+  So `c` is the caller's small-cancellation datum, bounded through the family's
+  private-generator field where that applies. -/
+  piece_short : ∀ p : List (Fin 2 × Bool),
+    IsPiece (symmetrization relators) p → p.length < pieceCeil
   /-- **The unique cyclic mark.**  Each relator has a cyclic position whose
   exponent is read nowhere else in that relator — the strictly increasing
   exponent sequence, localized to one relator. -/
@@ -472,17 +488,19 @@ structure AvatarMetricData where
     ∀ q, q < r.length → leadCode (r.rotate q) = some e → q = p
   /-- The metric margin: eight piece ceilings fit inside one relator floor.
 
-  It is satisfiable at the note's constants, with room.  Writing `P = V + 1`,
-  `L = 16·P` and `K = 2·L = 32·P`, an avatar is at least `128·P² + 24·P` long
-  while a junction costs at most `2·A_max + 2 = 64·P² − 96·P + 2`, so a relator
-  rewritten from `n` avatar letters is at least `n·(64·P² + 120·P − 2)` long
-  against a requirement of `8·(3·A_max + 3) = 768·P² − 1152·P + 24`.  Twelve
-  letters suffice for every `P ≥ 1`, so the note's padding floor of thirty
-  clears it.  The junction cost is the per-junction bound of `junction_residue`,
-  which is what a normalization pass removes when the source relator is itself a
-  reduced word; a source relator with a cancelling adjacency would cascade and is
-  excluded by that reducedness, not by this arithmetic. -/
-  metric_margin : 8 * (3 * maxExponent + 3) ≤ relatorFloor
+  With a **length-balanced** code — every avatar carrying `L` blocks whose
+  globally distinct exponents sum to a constant, so that all avatars have the
+  same length `S` — this reads `8·(c·S + 2·A + 2) ≤ n·S` and is met by
+  `n ≥ 8·c + 1`, a floor *constant in the alphabet size*.
+
+  Balancing is not cosmetic.  With the arithmetic-progression code the avatar
+  lengths spread by a factor `R ≈ 4·V + 1`, the requirement becomes `n ≳ 8·c·R`,
+  and padding each relator with its own fresh generators grows `V` like `m·n` —
+  so `n ≳ 32·m·n` has no solution and the design diverges.  A shared padding pool
+  whose relators pairwise share no two-letter subword escapes that at
+  `n ≳ 4096·m`, which is recorded here as the alternative and is not the design:
+  balancing removes the tension outright rather than balancing it delicately. -/
+  metric_margin : 8 * pieceCeil ≤ relatorFloor
   /-- The protected-ball margin, which is §1's reason for padding at all. -/
   protected_margin : 2 * protectedLength ≤ relatorFloor
 
@@ -501,6 +519,7 @@ theorem floor_le_length {w : List (Fin 2 × Bool)}
 nonemptiness arguments below need. -/
 theorem zero_lt_floor : 0 < C.relatorFloor := by
   have h := C.metric_margin
+  have h2 := C.two_le_pieceCeil
   omega
 
 /-- Relators are nonempty — derived, not assumed. -/
@@ -510,27 +529,20 @@ theorem relator_ne_nil {r : List (Fin 2 × Bool)} (hr : r ∈ C.relators) : r �
   have h3 : 0 < r.length := by omega
   exact List.length_pos_iff.mp h3
 
-/-! ### (b)  Piece pinning gives the piece ceiling and `C'(1/8)` -/
+/-! ### (b)  The piece ceiling gives `C'(1/8)` -/
 
-/-- **Pieces are shorter than `3·A_max + 3`.**  A piece prefixes two *different*
-symmetrized relators; were it that long it would carry three `y₁`-letters, hence
-span two consecutive complete runs, hence pin the two relators to be equal. -/
+/-- **Pieces are shorter than the ceiling.**  Named for citation; the content is
+the `piece_short` field, and the reason it is a field rather than a theorem is in
+that field's docstring. -/
 theorem piece_length_lt {p : List (Fin 2 × Bool)}
-    (hp : IsPiece (symmetrization C.relators) p) :
-    p.length < 3 * C.maxExponent + 3 := by
-  obtain ⟨w₁, hw₁, w₂, hw₂, hne, hp₁, hp₂⟩ := hp
-  by_contra hcon
-  have hlen : 2 * (C.maxExponent + 1) + C.maxExponent < p.length := by omega
-  have hcount : 2 < p.countP isGenOne :=
-    lt_countP_of_length isGenOne C.maxExponent
-      (fun u hu hfree => C.runs_short w₁ hw₁ u (hu.trans hp₁.isInfix) hfree) hlen
-  exact hne (C.pinned p (by omega) w₁ hw₁ w₂ hw₂ hp₁ hp₂)
+    (hp : IsPiece (symmetrization C.relators) p) : p.length < C.pieceCeil :=
+  C.piece_short p hp
 
 /-- **The family is `C'(1/8)`.**  The piece ceiling against the relator floor,
 with the margin clearing the denominator once. -/
 theorem metric_eighth : MetricSmallCancellation C.relators (1 / 8) := by
   intro p hp w hw _
-  have h1 : p.length < 3 * C.maxExponent + 3 := C.piece_length_lt hp
+  have h1 : p.length < C.pieceCeil := C.piece_length_lt hp
   have h2 : C.relatorFloor ≤ w.length := C.floor_le_length hw
   have h3 := C.metric_margin
   have hnat : 8 * p.length < w.length := by omega
@@ -640,7 +652,7 @@ This is the half of "normalizing a positive word changes nothing" that does not
 touch the cyclic layer.  It matters because a family whose members are *defined*
 as a normalization has opaque lengths and opaque letters: a length bound proved
 about `w` says nothing about `normalize w` until the two are known equal, and
-`relatorFloor` and `runs_short` are both length-and-letter statements.  A
+`relatorFloor` and the run ceiling are both length-and-letter statements.  A
 positive family should therefore either drop the normalization or prove it
 inert; this lemma reduces the second option to the cyclic step alone. -/
 theorem toWord_mk_of_forall_positive {α : Type*} [DecidableEq α]
@@ -697,7 +709,7 @@ theorem reduceCyclically_eq_self {α : Type*} [DecidableEq α]
   obtain ⟨a, ha⟩ : ∃ a, (FreeGroup.reduceCyclically.conjugator L).head? = some a := by
     cases hcc : FreeGroup.reduceCyclically.conjugator L with
     | nil => exact absurd hcc hne
-    | cons x t => exact ⟨x, by rw [hcc]; rfl⟩
+    | cons x t => exact ⟨x, rfl⟩
   have hinvne : FreeGroup.invRev (FreeGroup.reduceCyclically.conjugator L) ≠ [] := by
     intro hz
     apply hne

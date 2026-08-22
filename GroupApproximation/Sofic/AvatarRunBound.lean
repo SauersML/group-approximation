@@ -343,5 +343,86 @@ theorem runBounded_invRev {A : ℕ} {w : List (Fin 2 × Bool)} (h : RunBounded A
   have h2 := h _ hinf hfree'
   rwa [FreeGroup.invRev_length] at h2
 
+/-! ## 9.  The trailing run, and the last doubled case
+
+The one case §5 left open is the doubled tying relator at `j = 1`, where
+`r = y₂ · B` and the junction of `r ++ r` merges `B`'s final run with the leading
+`y₂`.  Rather than track trailing runs, note that appending `y₂^t` to a block
+word is the *same* block word with its last exponent raised by `t` — so the
+merged word is again a `blockFlatten`, and §4's theorem applies unchanged.
+
+`incrLast` is that operation on exponent lists.  The bound it needs is uniform
+(`e + t ≤ A` for every exponent, not just the last), which costs nothing: with
+`t = 1` it asks that exponents miss the ceiling by one, and the `+ 1` already
+built into `AvatarRouterInstance.maxExponent` is exactly that headroom. -/
+
+/-- Raise the last exponent of a list by `t`. -/
+def incrLast (t : ℕ) : List ℕ → List ℕ
+  | [] => []
+  | [e] => [e + t]
+  | e :: f :: es => e :: incrLast t (f :: es)
+
+/-- **Appending a run raises the last exponent.** -/
+theorem blockFlatten_incrLast (t : ℕ) : ∀ es : List ℕ, es ≠ [] →
+    blockFlatten (incrLast t es) = blockFlatten es ++ List.replicate t genTwo := by
+  intro es
+  induction es with
+  | nil => intro h; exact absurd rfl h
+  | cons e es ih =>
+      intro _
+      cases es with
+      | nil =>
+          have hstep : incrLast t [e] = [e + t] := rfl
+          rw [hstep, blockFlatten_cons (e + t) [], blockFlatten_cons e [],
+            blockFlatten_nil, List.append_nil, List.append_nil]
+          simp [blockWord, genTwo, List.replicate_add]
+      | cons f es' =>
+          have hstep : incrLast t (e :: f :: es') = e :: incrLast t (f :: es') := rfl
+          rw [hstep, blockFlatten_cons e (incrLast t (f :: es')),
+            blockFlatten_cons e (f :: es'), ih (by simp), List.append_assoc]
+
+/-- The raised exponents still meet the ceiling. -/
+theorem mem_incrLast_le {A t : ℕ} : ∀ es : List ℕ, (∀ e ∈ es, e + t ≤ A) →
+    ∀ e ∈ incrLast t es, e ≤ A := by
+  intro es
+  induction es with
+  | nil => intro _ e he; simp [incrLast] at he
+  | cons a es ih =>
+      intro hes e he
+      cases es with
+      | nil =>
+          have hstep : incrLast t [a] = [a + t] := rfl
+          rw [hstep] at he
+          have hae : e = a + t := by simpa using he
+          have := hes a (by simp)
+          omega
+      | cons f es' =>
+          have hstep : incrLast t (a :: f :: es') = a :: incrLast t (f :: es') := rfl
+          rw [hstep] at he
+          rcases List.mem_cons.mp he with rfl | he'
+          · have := hes e (by simp)
+            omega
+          · exact ih (fun x hx => hes x (List.mem_cons_of_mem _ hx)) e he'
+
+/-- **The last doubled case.**  For a word `y₂^t · B` with `B` a block word, the
+doubling `r ++ r` is again `y₂^t` followed by a block word — the merged junction
+run being the last exponent of `B` raised by `t`. -/
+theorem runBounded_replicate_blockFlatten_double (A t : ℕ) {es : List ℕ}
+    (hne : es ≠ []) (hes : ∀ e ∈ es, e + t ≤ A) (ht : t ≤ A) :
+    RunBounded A ((List.replicate t genTwo ++ blockFlatten es) ++
+      (List.replicate t genTwo ++ blockFlatten es)) := by
+  have hkey : (List.replicate t genTwo ++ blockFlatten es) ++
+      (List.replicate t genTwo ++ blockFlatten es)
+      = List.replicate t genTwo ++ blockFlatten (incrLast t es ++ es) := by
+    rw [blockFlatten_append, blockFlatten_incrLast t es hne, List.append_assoc,
+      List.append_assoc]
+  rw [hkey]
+  refine runBounded_of_blockShape (blockShape_replicate_blockFlatten A _ ?_ t ht)
+  intro e he
+  rcases List.mem_append.mp he with h | h
+  · exact mem_incrLast_le es hes e h
+  · have := hes e h
+    omega
+
 end AvatarRunBound
 end GroupApproximation

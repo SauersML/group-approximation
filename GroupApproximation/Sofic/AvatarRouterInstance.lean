@@ -10,56 +10,47 @@ the explicit family and derives every structural field of the router's design
 from it.  Neither can import the other's conclusion — the family imports the
 check — so the two meet here, in the only module that can see both.
 
-## What this module does
+## The three numbers
 
-It builds an `AvatarMetricCheck.AvatarMetricData` whose relator set *is* the
-family's, so that `hrel` is `rfl`, and threads it to the endpoint.  Four of the
-six fields are discharged; three combinatorial conditions remain, carried as
-fields of `Inputs` in the library's data-not-axiom style.  The split is not
-arbitrary — see below.
+The instantiation turns on three quantities, and stating them separately is what
+makes the margin provable rather than assumed.
 
-## The two constants, and why the floor must grow with the alphabet
+* `avatarLen` — a common lower bound on avatar lengths.  Under a **length-balanced**
+  code, where each avatar carries `L` blocks whose globally distinct exponents sum
+  to a constant, every avatar has exactly this length and the bound is tight.
+* `runCeil` — the ceiling on `y₂`-runs.  Since the family is positive no junction
+  cancels, so every run is a code run.
+* `sharedBound` — the caller's **small-cancellation datum**: the longest common
+  cyclic subword of two distinct source relators, measured in generators.
 
-`maxExponent` is the ceiling on `y₂`-runs.  Because the family is *positive*,
-no junction cancels: every run of a relator is a code run `K·ν + j + 1` with
-`ν < V` and `j < L`, so `K·V + L` bounds them, and the `+1` here covers the
-single generator letter that opens a tying relator, which the wrap of a rotation
-can abut against a trailing run.
+From these, `pieceCeil = sharedBound·avatarLen + 2·runCeil + 2`.  That shape is
+forced: a piece covers `sharedBound` complete shared avatars plus a partial
+avatar at each end, and each flank is at most `runCeil + 1` because two different
+avatars agree only on `y₁·y₂^{min(e,e')}` before their exponents diverge.
 
-`relatorFloor` is `wordFloor · (2·L)`, where `2·L` is the shortest avatar length
-that `le_length_avatarWord` delivers — at `ν = 0` that lemma gives `L·(K·0 + 2)`,
-dropping the triangular term `L·(L−1)/2` that the avatar actually carries.  The
-consequence is that `wordFloor` must be taken proportional to `V`, not constant:
-`metric_margin` needs
+## Why the margin needs balancing
 
-    24·(K·V + L + 1) + 24  ≤  wordFloor · 2·L,
+`metric_margin` is proved here from two inputs, `8·(2·runCeil + 2) ≤ avatarLen`
+and `8·sharedBound + 1 ≤ wordFloor`, giving
 
-and with `L = 16·(V+1)`, `K = 2·L` this is `wordFloor ≥ 24·V + 14`.  A sharper
-lower bound on `avatarWord` — one that keeps the triangular term — would bring
-this back to a constant, and is the obvious optimisation if the padding ever
-becomes expensive.  It is not needed: padding is free, and `Inputs.wordFloor_ge`
-records the requirement rather than hiding it.
+    8·pieceCeil = 8·c·S + 8·(2A+2) ≤ 8·c·S + S = (8c+1)·S ≤ wordFloor·S.
 
-## What is *not* discharged, and why it cannot be
+The second input is a floor *constant in the alphabet size*.  It is constant only
+because `avatarLen` is a genuine common length.  With the arithmetic-progression
+code the avatar lengths spread by `R ≈ 4·V + 1`, `avatarLen` collapses to the
+shortest avatar, and the requirement grows like `8·c·R ≈ 32·c·V`; padding each
+relator with its own fresh generators then grows `V` like `m·n`, so `n ≳ 32·m·n`
+has no solution and the design diverges.  A shared padding pool whose relators
+pairwise share no two-letter subword escapes that at `n ≳ 4096·m` — recorded as
+the alternative, not the design.
 
-`pinned` and `uniqueMark` are **underdetermined by `Blueprint`.**  Both hold only
-for a family whose relators are padded *per relator*, over a fresh generator pair
-no other relator uses; `AvatarWordFamily`'s `SourceData` records that as a prose
-convention on the caller and has no field asserting it, and the `WordPresentation.pad`
-toolkit in that file is a common tail, which is exactly the shape that makes
-`C'(1/8)` false.  So there is nothing in the blueprint's data from which either
-could be derived, and stating them as fields here is not a deferral but the
-honest location: they are conditions on *which words the caller chose*, and the
-caller is the only one who knows.  The remedy, if they are to be discharged
-rather than checked, is a field on `SourceData`/`PartnerData` asserting the
-disjointness; that is a change to the family module.
+## What is not discharged
 
-`runs_short` is different: it *is* derivable from the block structure, by an
-induction showing that a separator-free window of a concatenation of blocks
-`y₁·y₂^e` is bounded by `max e`.  It is carried as a field here only because that
-induction is not yet written; `AvatarMetricCheck.runs_short_of_doubled` already
-reduces it from the symmetrization to two explicit words per relator, which is
-the form the field takes.
+`piece_short` and `uniqueMark` are fields.  `uniqueMark` follows from the
+family's private-generator field once that lands.  `piece_short` is the
+small-cancellation condition itself and is a fact about the caller's chosen
+presentation; no lemma here can supply it, and the earlier attempt to derive it
+from a pinning property was **false** — see `AvatarMetricCheck.piece_short`.
 -/
 
 namespace GroupApproximation
@@ -72,73 +63,76 @@ variable {E : Type} [Group E] {N : Subgroup E} {s : E} {B : Type} [Group B]
 
 /-! ## 1.  The instantiation inputs -/
 
-/-- **The run ceiling.**  Because the family is positive no junction cancels, so
-every run of a relator is a code run `K·ν + j + 1` with `ν < V` and `j < L`; the
-trailing `+ 1` covers the single generator letter that opens a tying relator,
-which a rotation can bring against a trailing run. -/
-def maxExponent (D : BespokeRouter.AvatarWordFamily.Blueprint E N s B) : ℕ :=
-  D.codeK * D.avatarCount + D.codeL + 1
-
-/-- **What the caller owes**, on top of a `Blueprint`: one length floor on the
-source words, one ceiling on the protected word, and the three combinatorial
-conditions the exponent code does not by itself supply. -/
+/-- **What the caller owes** on top of a `Blueprint`: the three numbers, the
+length floors, and the two combinatorial conditions the exponent code does not
+by itself supply. -/
 structure Inputs (D : BespokeRouter.AvatarWordFamily.Blueprint E N s B) where
-  /-- A common lower bound on the *source-alphabet* lengths of every relator and
-  every tying word.  This is §1's padding floor, read before the rewrite. -/
+  /-- A common lower bound on the length of every avatar; exact under a
+  length-balanced code. -/
+  avatarLen : ℕ
+  /-- The ceiling on `y₂`-runs of the family. -/
+  runCeil : ℕ
+  /-- The caller's small-cancellation datum: the longest common cyclic subword of
+  two distinct source relators, in generators. -/
+  sharedBound : ℕ
+  /-- A common lower bound on the source-alphabet lengths of every relator and
+  tying word — §1's padding floor, read before the rewrite. -/
   wordFloor : ℕ
-  /-- The floor is large enough for the metric margin.  It grows with the
-  alphabet because `le_length_avatarWord` is weak at `ν = 0`; see the module
-  docstring. -/
-  wordFloor_ge : 24 * D.avatarCount + 14 ≤ wordFloor
-  /-- Every source relator meets the floor. -/
+  /-- Source avatars meet the common length. -/
+  src_avatar_long : ∀ i, avatarLen ≤ (D.srcAvatarWord i).length
+  /-- Partner avatars meet the common length. -/
+  par_avatar_long : ∀ k, avatarLen ≤ (D.parAvatarWord k).length
+  /-- Every source relator meets the word floor. -/
   src_long : ∀ r ∈ D.srcPres.rel, wordFloor ≤ r.length
-  /-- Every partner relator meets the floor. -/
+  /-- Every partner relator meets the word floor. -/
   par_long : ∀ r ∈ D.parPres.rel, wordFloor ≤ r.length
-  /-- Every defect tying word meets the floor. -/
+  /-- Every defect tying word meets the word floor. -/
   defectTie_long : ∀ i, wordFloor ≤ (D.src.tieDefectWord i).length
-  /-- Every partner tying word meets the floor. -/
+  /-- Every partner tying word meets the word floor. -/
   partnerTie_long : ∀ i, wordFloor ≤ (D.par.tiePartnerWord i).length
-  /-- The two designated defect words are nonempty, so that the defect avatars
-  are at least one avatar long. -/
+  /-- The designated defect words are nonempty, so the defect avatars are at
+  least one avatar long. -/
   basis_ne_nil : ∀ k, 1 ≤ (D.basisWord k).length
+  /-- **The piece ceiling.**  A piece covers at most `sharedBound` complete shared
+  avatars plus one partial avatar at each end.  This is the small-cancellation
+  condition on the caller's presentation; it is not derivable from `Blueprint`,
+  and the pinning derivation that once stood here is false. -/
+  piece_short : ∀ p : List (Fin 2 × Bool),
+    IsPiece (symmetrization D.relators) p →
+      p.length < sharedBound * avatarLen + 2 * runCeil + 2
+  /-- **The unique cyclic mark**, discharged by the family's private-generator
+  field: that generator's avatar occurs once in its relator, so each of its
+  exponents is read at exactly one cyclic position. -/
+  uniqueMark : ∀ r ∈ D.relators, ∃ e p : ℕ, p < r.length ∧
+    AvatarMetricCheck.leadCode (r.rotate p) = some e ∧
+    ∀ q, q < r.length → AvatarMetricCheck.leadCode (r.rotate q) = some e → q = p
+  /-- The flank term fits inside one avatar — eight times over.  This is where
+  balancing is spent: it is a statement about the *common* avatar length. -/
+  flank_small : 8 * (2 * runCeil + 2) ≤ avatarLen
+  /-- The relators are long enough in avatars.  Constant in the alphabet size,
+  because `avatarLen` is a genuine common length. -/
+  floor_ge : 8 * sharedBound + 1 ≤ wordFloor
   /-- A ceiling on the protected element's reduced length. -/
   protectedLength : ℕ
   /-- It is a ceiling. -/
   protected_norm :
     FreeGroup.norm (FreeGroup.lift D.srcAvatar D.protectedWord) ≤ protectedLength
   /-- The protected ball margin. -/
-  protected_margin : 2 * protectedLength ≤ wordFloor * (2 * D.codeL)
-  /-- **The run ceiling**, in the doubled form `runs_short_of_doubled` consumes:
-  two explicit words per relator, no quantifier over rotations.  Derivable from
-  the block structure; see the module docstring. -/
-  runs_short : ∀ r ∈ D.relators, ∀ u : List (Fin 2 × Bool),
-    (u <:+: (r ++ r) ∨
-      u <:+: (FreeGroup.invRev r ++ FreeGroup.invRev r)) →
-    (∀ c ∈ u, AvatarMetricCheck.isGenOne c = false) →
-    u.length ≤ maxExponent D
-  /-- **Piece pinning**, the honest small-cancellation condition: no two distinct
-  symmetrized relators agree across two consecutive blocks.  Holds exactly when
-  the padding is per relator; not derivable from `Blueprint`. -/
-  pinned : ∀ p : List (Fin 2 × Bool), 3 ≤ p.countP AvatarMetricCheck.isGenOne →
-    ∀ w₁ ∈ symmetrization D.relators, ∀ w₂ ∈ symmetrization D.relators,
-      p <+: w₁ → p <+: w₂ → w₁ = w₂
-  /-- **The unique cyclic mark**: each relator carries an exponent read at exactly
-  one of its cyclic positions.  Needs an avatar occurring exactly once in that
-  relator, which the per-relator padding generator supplies. -/
-  uniqueMark : ∀ r ∈ D.relators, ∃ e p : ℕ, p < r.length ∧
-    AvatarMetricCheck.leadCode (r.rotate p) = some e ∧
-    ∀ q, q < r.length → AvatarMetricCheck.leadCode (r.rotate q) = some e → q = p
+  protected_margin : 2 * protectedLength ≤ wordFloor * avatarLen
 
 namespace Inputs
 
 variable {D : BespokeRouter.AvatarWordFamily.Blueprint E N s B} (I : Inputs D)
 
-/-! ## 2.  The avatar length floor
+/-! ## 2.  A default common avatar length, for the unbalanced code
 
-`le_length_avatarWord` at `ν = 0` gives `L·2`; every avatar is at least that
-long, and every relator is a concatenation of at least `wordFloor` of them. -/
+Offered for callers who have not balanced: `le_length_avatarWord` at `ν = 0`
+gives `2·L`, so `avatarLen := 2·D.codeL` always satisfies the two avatar fields.
+It is a poor bound — it drops the triangular term the avatar actually carries,
+and it is the shortest avatar rather than a common one — which is exactly why the
+unbalanced design diverges. -/
 
-/-- The shortest avatar the code assigns is at least `2·L` letters. -/
+/-- Every avatar is at least `2·L` letters. -/
 theorem two_mul_codeL_le_avatarWord (ν : ℕ) :
     2 * D.codeL ≤ (avatarWord D.codeL D.codeK ν).length := by
   have h1 := le_length_avatarWord D.codeL D.codeK ν
@@ -148,59 +142,52 @@ theorem two_mul_codeL_le_avatarWord (ν : ℕ) :
   rw [h3]
   exact le_trans h2 h1
 
-/-- Every source avatar is at least `2·L` letters. -/
 theorem two_mul_codeL_le_srcAvatarWord (i : Fin D.srcPres.card) :
     2 * D.codeL ≤ (D.srcAvatarWord i).length :=
   two_mul_codeL_le_avatarWord (D := D) (i : ℕ)
 
-/-- Every partner avatar is at least `2·L` letters. -/
 theorem two_mul_codeL_le_parAvatarWord (k : Fin D.parPres.card) :
     2 * D.codeL ≤ (D.parAvatarWord k).length :=
   two_mul_codeL_le_avatarWord (D := D) (D.srcPres.card + (k : ℕ))
 
-/-- Every defect avatar is at least `2·L` letters, because the designated defect
+/-! ## 3.  The relator floor, one branch at a time -/
+
+/-- Every defect avatar meets the common length, because the designated defect
 words are nonempty. -/
-theorem two_mul_codeL_le_defectAvatarWord (k : Fin 2) :
-    2 * D.codeL ≤ (D.defectAvatarWord k).length := by
-  have h1 := le_length_avatarSubst D.srcAvatarWord (2 * D.codeL)
-    (fun i => two_mul_codeL_le_srcAvatarWord i) (D.basisWord k)
-  have h2 : 1 * (2 * D.codeL) ≤ (D.basisWord k).length * (2 * D.codeL) :=
+theorem avatarLen_le_defectAvatarWord (k : Fin 2) :
+    I.avatarLen ≤ (D.defectAvatarWord k).length := by
+  have h1 := le_length_avatarSubst D.srcAvatarWord I.avatarLen
+    I.src_avatar_long (D.basisWord k)
+  have h2 : 1 * I.avatarLen ≤ (D.basisWord k).length * I.avatarLen :=
     Nat.mul_le_mul (I.basis_ne_nil k) (Nat.le_refl _)
   rw [Nat.one_mul] at h2
   exact le_trans h2 h1
 
-/-! ## 3.  The relator floor, one branch at a time -/
+/-- The floor, as a number: `wordFloor` avatars, each at least `avatarLen`. -/
+def relatorFloor : ℕ := I.wordFloor * I.avatarLen
 
-/-- The floor, as a number: `wordFloor` avatars, each at least `2·L` long. -/
-def relatorFloor : ℕ := I.wordFloor * (2 * D.codeL)
-
-/-- A rewritten source relator meets the floor. -/
 theorem floor_le_src {r : List (Fin D.srcPres.card × Bool)}
     (hr : r ∈ D.srcPres.rel) :
     I.relatorFloor ≤ (avatarSubst D.srcAvatarWord r).length := by
-  have h1 := le_length_avatarSubst D.srcAvatarWord (2 * D.codeL)
-    (fun i => two_mul_codeL_le_srcAvatarWord i) r
-  have h2 : I.wordFloor * (2 * D.codeL) ≤ r.length * (2 * D.codeL) :=
+  have h1 := le_length_avatarSubst D.srcAvatarWord I.avatarLen I.src_avatar_long r
+  have h2 : I.wordFloor * I.avatarLen ≤ r.length * I.avatarLen :=
     Nat.mul_le_mul (I.src_long r hr) (Nat.le_refl _)
   exact le_trans h2 h1
 
-/-- A rewritten partner relator meets the floor. -/
 theorem floor_le_par {r : List (Fin D.parPres.card × Bool)}
     (hr : r ∈ D.parPres.rel) :
     I.relatorFloor ≤ (avatarSubst D.parAvatarWord r).length := by
-  have h1 := le_length_avatarSubst D.parAvatarWord (2 * D.codeL)
-    (fun k => two_mul_codeL_le_parAvatarWord k) r
-  have h2 : I.wordFloor * (2 * D.codeL) ≤ r.length * (2 * D.codeL) :=
+  have h1 := le_length_avatarSubst D.parAvatarWord I.avatarLen I.par_avatar_long r
+  have h2 : I.wordFloor * I.avatarLen ≤ r.length * I.avatarLen :=
     Nat.mul_le_mul (I.par_long r hr) (Nat.le_refl _)
   exact le_trans h2 h1
 
-/-- A defect tying relator meets the floor. -/
 theorem floor_le_defectTie (i : Fin 2) :
     I.relatorFloor ≤ (D.defectTieWord i).length := by
-  have h1 := le_length_avatarSubst D.defectAvatarWord (2 * D.codeL)
-    (fun k => I.two_mul_codeL_le_defectAvatarWord k) (D.src.tieDefectWord i)
-  have h2 : I.wordFloor * (2 * D.codeL)
-      ≤ (D.src.tieDefectWord i).length * (2 * D.codeL) :=
+  have h1 := le_length_avatarSubst D.defectAvatarWord I.avatarLen
+    (fun k => I.avatarLen_le_defectAvatarWord k) (D.src.tieDefectWord i)
+  have h2 : I.wordFloor * I.avatarLen
+      ≤ (D.src.tieDefectWord i).length * I.avatarLen :=
     Nat.mul_le_mul (I.defectTie_long i) (Nat.le_refl _)
   have h3 : (D.defectTieWord i).length
       = 1 + (avatarSubst D.defectAvatarWord (D.src.tieDefectWord i)).length := by
@@ -209,13 +196,12 @@ theorem floor_le_defectTie (i : Fin 2) :
   have h4 := le_trans h2 h1
   omega
 
-/-- A partner tying relator meets the floor. -/
 theorem floor_le_partnerTie (i : Fin 2) :
     I.relatorFloor ≤ (D.partnerTieWord i).length := by
-  have h1 := le_length_avatarSubst D.parAvatarWord (2 * D.codeL)
-    (fun k => two_mul_codeL_le_parAvatarWord k) (D.par.tiePartnerWord i)
-  have h2 : I.wordFloor * (2 * D.codeL)
-      ≤ (D.par.tiePartnerWord i).length * (2 * D.codeL) :=
+  have h1 := le_length_avatarSubst D.parAvatarWord I.avatarLen
+    I.par_avatar_long (D.par.tiePartnerWord i)
+  have h2 : I.wordFloor * I.avatarLen
+      ≤ (D.par.tiePartnerWord i).length * I.avatarLen :=
     Nat.mul_le_mul (I.partnerTie_long i) (Nat.le_refl _)
   have h3 : (D.partnerTieWord i).length
       = 1 + (avatarSubst D.parAvatarWord (D.par.tiePartnerWord i)).length := by
@@ -224,8 +210,7 @@ theorem floor_le_partnerTie (i : Fin 2) :
   have h4 := le_trans h2 h1
   omega
 
-/-- **Every relator meets the floor.**  The four branches of the family, each by
-its own length bound. -/
+/-- **Every relator meets the floor.** -/
 theorem relators_long : ∀ r ∈ D.relators, I.relatorFloor ≤ r.length := by
   intro r hr
   simp only [BespokeRouter.AvatarWordFamily.Blueprint.relators,
@@ -240,43 +225,36 @@ theorem relators_long : ∀ r ∈ D.relators, I.relatorFloor ≤ r.length := by
 
 /-! ## 4.  The two margins -/
 
-/-- **The metric margin holds at the design's constants.**  `L = 16·(V+1)` and
-`K = 2·L` turn the requirement into `wordFloor ≥ 24·V + 14`, which is
-`wordFloor_ge`.  The proof is inequality algebra: both sides are expanded in
-`V` and compared, with the products of variables named first so that the
-comparison is linear. -/
-theorem metric_margin : 8 * (3 * maxExponent D + 3) ≤ I.relatorFloor := by
-  have hL : D.codeL = 16 * (D.avatarCount + 1) := rfl
-  have hK : D.codeK = 2 * D.codeL := rfl
-  obtain ⟨V, hV⟩ : ∃ V, D.avatarCount = V := ⟨_, rfl⟩
-  obtain ⟨F, hF⟩ : ∃ F, I.wordFloor = F := ⟨_, rfl⟩
-  have hFge : 24 * V + 14 ≤ F := by
-    have h := I.wordFloor_ge
-    rw [hV, hF] at h
-    exact h
-  have hLV : D.codeL = 16 * (V + 1) := by rw [hL, hV]
-  have hKV : D.codeK = 32 * (V + 1) := by rw [hK, hLV]; ring
-  show 8 * (3 * (D.codeK * D.avatarCount + D.codeL + 1) + 3)
-    ≤ I.wordFloor * (2 * D.codeL)
-  rw [hV, hF, hLV, hKV]
-  -- `768·V² + 1152·V + 432 ≤ (F)·32·(V+1)`, and `F ≥ 24·V + 14` gives
-  -- `768·V² + 1216·V + 448` on the right.
-  have hbase : (24 * V + 14) * (2 * (16 * (V + 1)))
-      = 768 * (V * V) + 1216 * V + 448 := by ring
-  have hgrow : (24 * V + 14) * (2 * (16 * (V + 1))) ≤ F * (2 * (16 * (V + 1))) :=
-    Nat.mul_le_mul hFge (Nat.le_refl _)
-  have hlhs : 8 * (3 * (32 * (V + 1) * V + 16 * (V + 1) + 1) + 3)
-      = 768 * (V * V) + 1152 * V + 432 := by ring
-  rw [hlhs]
-  obtain ⟨S, hS⟩ : ∃ S, V * V = S := ⟨_, rfl⟩
-  obtain ⟨T, hT⟩ : ∃ T, F * (2 * (16 * (V + 1))) = T := ⟨_, rfl⟩
-  rw [hS] at hbase
-  rw [hbase, hT] at hgrow
-  rw [hS, hT]
-  clear hbase hS hT hlhs
+/-- The piece ceiling, as a number. -/
+def pieceCeil : ℕ := I.sharedBound * I.avatarLen + 2 * I.runCeil + 2
+
+theorem two_le_pieceCeil : 2 ≤ I.pieceCeil := by
+  simp only [pieceCeil]
+  obtain ⟨P, hP⟩ : ∃ P, I.sharedBound * I.avatarLen = P := ⟨_, rfl⟩
+  rw [hP]
+  clear hP
   omega
 
-/-- The protected margin, as the check states it. -/
+/-- **The metric margin.**  Eight flank terms fit inside one avatar, and the
+relator carries `8·sharedBound + 1` avatars, so eight piece ceilings fit inside
+one relator floor.  The whole computation is linear once the two products are
+named. -/
+theorem metric_margin : 8 * I.pieceCeil ≤ I.relatorFloor := by
+  have hflank := I.flank_small
+  have hfloor := I.floor_ge
+  have hgrow : (8 * I.sharedBound + 1) * I.avatarLen ≤ I.wordFloor * I.avatarLen :=
+    Nat.mul_le_mul hfloor (Nat.le_refl _)
+  have hexp : (8 * I.sharedBound + 1) * I.avatarLen
+      = 8 * (I.sharedBound * I.avatarLen) + I.avatarLen := by ring
+  rw [hexp] at hgrow
+  obtain ⟨P, hP⟩ : ∃ P, I.sharedBound * I.avatarLen = P := ⟨_, rfl⟩
+  obtain ⟨T, hT⟩ : ∃ T, I.wordFloor * I.avatarLen = T := ⟨_, rfl⟩
+  rw [hP, hT] at hgrow
+  simp only [pieceCeil, relatorFloor]
+  rw [hP, hT]
+  clear hP hT hexp
+  omega
+
 theorem protected_margin' : 2 * I.protectedLength ≤ I.relatorFloor :=
   I.protected_margin
 
@@ -286,13 +264,12 @@ theorem protected_margin' : 2 * I.protectedLength ≤ I.relatorFloor :=
 family's on the nose, so the bridge hypothesis downstream is `rfl`. -/
 def metricData : AvatarMetricCheck.AvatarMetricData where
   relators := D.relators
-  maxExponent := maxExponent D
+  pieceCeil := I.pieceCeil
+  two_le_pieceCeil := I.two_le_pieceCeil
   relatorFloor := I.relatorFloor
   protectedLength := I.protectedLength
   relators_long := I.relators_long
-  runs_short :=
-    AvatarMetricCheck.runs_short_of_doubled (A := maxExponent D) I.runs_short
-  pinned := I.pinned
+  piece_short := I.piece_short
   uniqueMark := I.uniqueMark
   metric_margin := I.metric_margin
   protected_margin := I.protected_margin'
@@ -311,9 +288,7 @@ noncomputable def design
     BespokeRouter.RouterRelatorDesign E N s B :=
   D.design (I.obligations hne)
 
-/-- **The router's word-combinatorial conclusions**, from the two residuals.
-Everything metric-side is discharged; the binders are the residual bundle and
-the protected avatar. -/
+/-- **The router's word-combinatorial conclusions**, from the two residuals. -/
 theorem routerConclusions
     (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1)
     (h : SmallCancellationRouter.SharpResiduals (Fin 2)) :
@@ -321,8 +296,7 @@ theorem routerConclusions
   AvatarMetricCheck.routerConclusions_of_check_of_residuals
     (I.design hne) I.metricData rfl h
 
-/-- **The endpoint.**  A blueprint, its inputs, a nontrivial protected avatar and
-the residual bundle produce the frozen router output. -/
+/-- **The endpoint.** -/
 theorem nonempty_routingLemmaData [N.Normal]
     (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1)
     (h : SmallCancellationRouter.SharpResiduals (Fin 2)) :
