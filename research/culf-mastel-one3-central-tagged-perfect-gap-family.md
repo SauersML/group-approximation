@@ -37,6 +37,12 @@ destroy perfect completeness.
   context only when the two visible observables are intended to commute in
   the completeness model.  Its existence does not prove the new global
   commutations in `(C13)`.
+- A constraintwise classical lift cannot make all designated tags scalar on
+  a full nonaffine source support.  By
+  `central-one3-tag-sections-force-source-affine-safety`, the selected affine
+  fibers would give an affine relation sandwiched between that support and
+  the source predicate.  Thus the positive route must again exploit a proper
+  affine-safe HALT support or global contextual structure.
 
 If `(C13)` is established, no support selection remains:
 `central-tagged-one-in-three-is-a-finite-lcs-or` decomposes every exact model
