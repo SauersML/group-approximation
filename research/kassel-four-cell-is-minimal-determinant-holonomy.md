@@ -29,6 +29,10 @@ with `w_beta^4=omega I_d` for `3|d`; normalized determinant is not uniformly
 HS-continuous.  Thus the calculation locates the noncommuting seam but does
 not close the Maslov projective-defect gap.
 
+In fact `kassel-four-cell-has-exact-omega-model` realizes this compatibility
+exactly in dimension `24`.  Therefore these four faces have no marked-word
+energy inequality at all; a surviving atlas must add another mixed relation
+that couples the permutation and clock tensor factors of that countermodel.
+
 The proof and explicit deleted-face assignments are in
 `research/artifacts/kassel-four-cell-determinant-holonomy-2026-08-21.md`.
-

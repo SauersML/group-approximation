@@ -79,3 +79,9 @@ Nevertheless it closes the Maslov sector by
   `omega I_d` whenever `3|d`, and determinant is not uniformly continuous
   in normalized HS norm.  Hence even the correctly located mixed cell still
   needs the common positive kernel demanded here.
+- **The minimal four-cell has an exact matrix escape.**
+  `kassel-four-cell-has-exact-omega-model` tensors a four-point permutation
+  transport packet with a six-clock scalar commutator, satisfying (2.4),
+  (2.5), (2.6), and (2.12) exactly while `w_beta^4=omega I_24`.  Thus even
+  the complete support-minimal determinant cell cannot supply the positive
+  kernel.  A further relation must couple those two tensor factors.
