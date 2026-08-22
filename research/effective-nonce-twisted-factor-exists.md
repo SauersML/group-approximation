@@ -11,7 +11,7 @@ There are a finite-rank free group `F`, a recursively enumerable normally
 generated subgroup `N normal F`, and a scalar multiplier `omega` on `F/N`
 such that `L_omega(F/N)` is not Connes embeddable.
 
-`effective-twisted-factor-existence-is-equivalent-to-fp-nonhyperlinearity`
+`effective-twisted-factor-existence-is-fp-nonhyperlinearity`
 shows that this is equivalent to the existence of a finitely presented
 nonhyperlinear group.  Thus the effective gate is not a weaker intermediate
 compiler target.  Its r.e.-kernel condition is precisely the Higman-level

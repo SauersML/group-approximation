@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: effective-twisted-factor-existence-is-equivalent-to-fp-nonhyperlinearity
+id: effective-twisted-factor-existence-is-fp-nonhyperlinearity
 kind: claim
 title: The effective bad-twist gate is exactly finitely presented nonhyperlinearity
 distinct_from:

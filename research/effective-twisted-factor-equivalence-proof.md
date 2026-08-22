@@ -3,7 +3,7 @@ rg: 2
 id: effective-twisted-factor-equivalence-proof
 kind: route
 title: Apply the relation-centralizing compiler and reverse it with the trivial twist
-target: effective-twisted-factor-existence-is-equivalent-to-fp-nonhyperlinearity
+target: effective-twisted-factor-existence-is-fp-nonhyperlinearity
 requires:
   - recursive-twisted-factor-higman-compiler
   - higman-bypass-needs-only-fg-recursive-nonhyperlinear
