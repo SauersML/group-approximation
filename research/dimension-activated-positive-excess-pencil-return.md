@@ -65,6 +65,13 @@ contradiction.
   and preserve normalized return error.  Selecting only the bad descendants
   presupposes an authenticated bad-summand decoder; generating fresh bad rows
   at positive rate is the missing code actuator itself.
+- Tensor powers have the right rank arithmetic but the wrong return
+  arithmetic.  `tensor-power-deficiency-amplification-loses-common-return`
+  proves that a kernel of density `beta` grows to
+  `1-(1-beta)^k`, while the part universally fixed by the common tensor-power
+  word can shrink to `beta^k`.  A Koszul or tensor-complex repair must name a
+  first bad factor on each kernel summand, which is again the missing
+  authenticated selector.
 - The required advance is therefore exactly a runtime-independent local
   compiler from one dimension-triggered failure to an extensive family of
   returned rows.  Existing adaptive tape/PCP frontiers provide the right
