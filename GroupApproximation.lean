@@ -1472,6 +1472,7 @@ import GroupApproximation.Sofic.AvatarRouterInstance
 import GroupApproximation.Sofic.AvatarRunBound
 import GroupApproximation.Sofic.SourceFromUniversalKazhdan
 import GroupApproximation.Sofic.RelativeRouterEnvelope
+import GroupApproximation.Sofic.OsinWeightedMetric
 import GroupApproximation.Sofic.TorsionFreeAssembly
 import GroupApproximation.Sofic.AvatarMetricCheck
 import GroupApproximation.Sofic.TorsionDescent
