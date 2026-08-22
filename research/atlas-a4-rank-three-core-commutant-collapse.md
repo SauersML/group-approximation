@@ -71,3 +71,10 @@ commutant, or the full `A8` commutant is required.
   are not needed by the final two-generator S3 covariance contradiction.  A
   proof here would bypass more than half of the A4 packet and all full-A8
   packet-centrality machinery.
+- **The collision equation leaves a continuous line-sector angle.**
+  `atlas-19243-has-continuous-regular-s3-line-holonomy` gives exact balanced
+  collision solutions with regular `S3` restriction in which an arbitrary
+  dihedral reflection survives on `triv direct_sum sign`.  Hence the proposed
+  connection-Laplacian must contain an off-diagonal packet term coupling that
+  line sector to the two standard copies.  A block-diagonal estimate internal
+  to the collision `S3` has zero gap and cannot prove this claim.

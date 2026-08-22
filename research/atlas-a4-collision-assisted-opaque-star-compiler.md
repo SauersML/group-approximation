@@ -202,3 +202,15 @@ only has to transport its covariance block.
   rectangle/stable-letter residuals touched by the three paths.  The abstract
   four-transvection generator theorem proves there is no reason to optimize a
   larger star.
+- **Collision has one exact continuous blind sector.**
+  `atlas-19243-has-continuous-regular-s3-line-holonomy` rewrites the relative
+  collision group with `x=cs` as
+  `sxs=x^(-1), r x^2 r=x r x` and exhibits its infinite-dihedral quotient.
+  More decisively, it constructs a continuous six-dimensional family with
+  restriction exactly `Reg(S3)` and with a balanced collision involution:
+  an arbitrary dihedral reflection angle on `triv direct_sum sign`, balanced
+  by `c=+1` and `c=-1` on the two standard copies.  Therefore collision does
+  not reduce to finitely many local representation types and cannot by itself
+  control the multiplicity holonomy.  The minimal positive estimate must use
+  common-`U` packet coupling to transfer control from the standard blocks into
+  this line sector.
