@@ -52,3 +52,11 @@ stability.
   necessarily infinitely presented.  Finding a finite presentation with
   the same local property would already solve this node rather than provide
   an intermediate theorem.
+- `ffgs-local-hs-examples-resist-split-finite-presentation-wrappers` audits
+  the natural compilation attempts on the explicit FFGS groups `[[T]]'`.
+  Retract, direct-product, graph-product, split-HNN, and finite-extension
+  wrappers cannot become finitely presented at all.  A nonsplit Higman or
+  Clapham embedding preserves every nontrivial source word as a
+  finite-dimensionally invisible mark, but has no upward local-HS-stability
+  permanence theorem.  Establishing that permanence for one such wrapper
+  would already close this claim.
