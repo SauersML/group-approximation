@@ -51,3 +51,10 @@ hardware is dormant rather than inconsistent.
   Explicit polynomial-time column generation is not bounded relator area,
   and the global correcting isometry can mix all sites with the multiplicity
   reservoir unless the computation incidence is compiled at the same time.
+- `lin-introspection-payload-is-global-gauge-covariant` removes the global-
+  frame ambiguity as a separate analytic obstacle: Lin transports every
+  `Read/Hide/Sample/Intro` PVM through the same Pauli extraction isometry.
+  But the verifier's classical dense-column parity calculation is not an
+  ordinary group word.  Thus this node is now the exact remaining gate for
+  that source-specific route, rather than site-noise localization or an
+  additional anchor packet.

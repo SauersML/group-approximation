@@ -87,3 +87,11 @@ would still have to realize the generator-column sampler and pin the global
 correction `w` to the computation words with dimension-independent cost.
 That is exactly `uniform-halting-pauli-word-oracle`, not a consequence of
 the code spectral gap.
+
+There are now two exact continuations.  `single-anchor-cannot-pin-pauli-gauge`
+shows that one external observable cannot remove the conjugacy and that the
+full generator-column family gives the optimal Pauli-word adjoint anchor.
+`lin-introspection-payload-is-global-gauge-covariant` shows that Lin's native
+payload does not need such an anchor at all: every computation PVM is carried
+through the same extraction isometry.  On that route the sole surviving gate
+is bounded-area group-word realization of the sampled dense columns.
