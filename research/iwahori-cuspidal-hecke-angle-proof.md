@@ -25,7 +25,7 @@ Consequently, for cuspidal classes `f,g`,
  =3||f||^2+3||g||^2-2 Re <f,T_2 g>.                    (2)
 ```
 
-The operator `T_2` is selfadjoint because `2` is prime to the odd level.
+The operator `T_2` is normal because `2` is prime to the odd level: at full level `Gamma(m)` its Petersson adjoint is `T_2^* = <2>^(-1) T_2` with the diamond operator `<2>` unitary and commuting with `T_2` (it is selfadjoint only when that diamond acts trivially), and normality is all that the spectral bound below uses.
 Eichler--Shimura identifies its eigenvalues with the weight-two Hecke
 eigenvalues, and Deligne's Ramanujan--Petersson bound gives
 
