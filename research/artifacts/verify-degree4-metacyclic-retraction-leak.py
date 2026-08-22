@@ -106,7 +106,7 @@ def orientations(tokens):
 
 
 orientation_sets = tuple(orientations(tokens) for tokens in canonical)
-linked, marked = 0, []
+linked, marked, linked_data = 0, [], []
 from itertools import product
 for choices in product(range(6), repeat=3):
     values = {}
@@ -122,9 +122,11 @@ for choices in product(range(6), repeat=3):
     linked += 1
     coefficients = tuple(values[name][0] for name in ("A", "B", "C"))
     mark = multiply_words(*coefficients)
+    linked_data.append((choices, len(mark)))
     if len(mark) == 1 and mark[0][1] != P.ONE:
         marked.append((choices, mark[0][0], mark[0][1] == power(w, 8)))
 print("linked orientations", linked)
+print("linked orientation/block counts", tuple(linked_data))
 print("one-copy nonidentity orientations", tuple(marked))
 assert not marked
 
@@ -179,3 +181,20 @@ print("metacyclic gauge size", len(packet))
 print("metacyclic gauge one-copy hits", len(gauge_hits))
 assert len(packet) == 64
 assert not gauge_hits
+
+# The packet is contained in the affine normalizer of the regular 16-cycle.
+# Exhaust the full 128 affine permutations as gauges as a sharper normalizer
+# screen (including the four unit slopes outside <13>).
+affine_hits = []
+for slope in range(1, 16, 2):
+    for shift in range(16):
+        gauge = permutation(lambda index, slope=slope, shift=shift:
+                            (slope * index + shift) % 16
+                            if index < 16 else index)
+        a_gauge = P.mul(gauge, x)
+        d_gauge = P.mul(a_gauge, w)
+        c_gauge = P.mul(d_gauge, z)
+        affine_hits.extend(scan_parameters(a_gauge, gauge, c_gauge, d_gauge))
+print("affine-normalizer gauge size", 128)
+print("affine-normalizer one-copy hits", len(affine_hits))
+assert not affine_hits

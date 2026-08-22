@@ -49,3 +49,7 @@ No gauge and no orientation produces a one-copy nonidentity boundary.  This
 is a countermodel to the inference from the four retractions and a complete
 fence for this order-sixteen metacyclic packet, not for coefficient units
 outside that packet.
+
+The companion gauge-capture argument
+`leavitt-d4-order16-triangle-global-fence` removes the final restriction on
+the gauge.
