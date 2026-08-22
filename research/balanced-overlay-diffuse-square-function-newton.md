@@ -189,3 +189,12 @@ sets into central reducing blocks, or prove that their failure to paste
 creates a noncentral physical boundary charged by the common covariant
 square function.  This is strictly weaker than a global coordinate set and
 survives the translated-block counterexample.
+
+The noncentral branch has a rigorous local primitive.
+`one-anchor-odd-spike-has-a-cheap-reducing-cut` proves that every
+`Y_(a,i)^2` has a spectral threshold whose generator-boundary cost is
+`O((q_i+q_a)/t)`.  After cosine--sine block diagonalization, reset `i` on
+the high block and retain the operator bound `Y_(a,i)^2<=2t` on its
+complement.  What remains is a disjoint-mass or geometrically decaying
+stopping selection: cutting all `L^2` spikes independently repeats the same
+commutator rows and loses length.

@@ -23,6 +23,14 @@ The central branch is terminal by
 little-o two-odd-factor estimate with
 `one-anchor-grading-makes-parity-damage-quadratic`.
 
+One local noncentral step is now complete.
+`one-anchor-odd-spike-has-a-cheap-reducing-cut` thresholds
+`R_(a,i)=Y_(a,i)^2`.  Its average boundary against all generators is
+controlled by `q_i+q_a`; coarea produces a reducing correction of cost
+`O((q_i+q_a)/t)`, the high block is cheaply reset, and the complement has
+`R_(a,i)<=2t`.  The remaining theorem is a selection/summability statement
+for these cuts, not a missing one-spike estimate.
+
 ## Attempts
 
 For every vector state, the Loewner shortened-core inequalities give a
@@ -40,3 +48,7 @@ overlapping spike projections.  The next quantitative target is a
 noncommutative layer-cake statement which either approximately centralizes
 those projections (feeding branch 1) or charges their commutator/boundary
 to the common covariant residual square function (feeding branch 2).
+Naively invoking the local cut for every `(a,i)` is not enough: its boundary
+cost is linear in `q_i+q_a`, and the same commutator row can be charged
+`Theta(L)` times.  A stopping rule must select disjoint physical mass or
+prove geometric decay before the next cut.
