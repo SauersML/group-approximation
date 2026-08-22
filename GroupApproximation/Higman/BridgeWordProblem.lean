@@ -238,8 +238,8 @@ theorem evalRaw_aRaw {A : Type} [Group A] (g : ℕ → A) (i : ℕ) :
   induction i with
   | zero =>
       have hval : evalRaw (extGen g) (aRaw 0) = extGen g 1 := by
-        show evalRaw (extGen g) [((1 : ℕ), true)] = extGen g 1
-        simp only [evalRaw_cons, evalRaw_nil, mul_one]
+        show extGen g 1 * 1 = extGen g 1
+        exact mul_one _
       rw [hval, extGen_one]
       refine congrArg (fun z : P A ↦ HNNExtension.of z) ?_
       show (yg : P A) = aFam 0
@@ -252,8 +252,10 @@ theorem evalRaw_aRaw {A : Type} [Group A] (g : ℕ → A) (i : ℕ) :
         group
       have hval : evalRaw (extGen g) (aRaw (i + 1))
           = (extGen g 0)⁻¹ * (evalRaw (extGen g) (aRaw i) * extGen g 0) := by
-        rw [aRaw_succ]
-        simp only [evalRaw_cons, evalRaw_append, evalRaw_nil, mul_one]
+        show (extGen g 0)⁻¹ * evalRaw (extGen g) (aRaw i ++ [((0 : ℕ), true)]) = _
+        rw [evalRaw_append]
+        show (extGen g 0)⁻¹ * (evalRaw (extGen g) (aRaw i) * (extGen g 0 * 1)) = _
+        rw [mul_one]
       rw [hval, ih, extGen_zero, hstep, map_mul, map_mul, map_inv]
 
 /-- **The stable-letter relators die.** -/
@@ -268,7 +270,13 @@ theorem evalRaw_hnnRaw {A : Type} [Group A] (g : ℕ → A) (i : ℕ) :
     rw [map_mul]
     rfl
   unfold hnnRaw
-  simp only [evalRaw_append, evalRaw_cons, evalRaw_invRaw, evalRaw_nil, mul_one]
+  rw [evalRaw_append]
+  show (extGen g 2 * evalRaw (extGen g) (aRaw i)) *
+    ((extGen g 2)⁻¹ *
+      evalRaw (extGen g) (invRaw ((((i + 3 : ℕ), true) : ℕ × Bool) :: aRaw i))) = 1
+  rw [evalRaw_invRaw]
+  show (extGen g 2 * evalRaw (extGen g) (aRaw i)) *
+    ((extGen g 2)⁻¹ * (extGen g (i + 3) * evalRaw (extGen g) (aRaw i))⁻¹) = 1
   rw [evalRaw_aRaw, extGen_two, extGen_add_three, ← hconj]
   group
 
@@ -284,11 +292,13 @@ theorem inv_mem_relSet {A : Type} [Group A] (g : ℕ → A) {z : FreeGroup ℕ}
       have hidx : (2 * (n / 2) + 1) / 2 = n / 2 := by omega
       have h1 : hnnFam (2 * (n / 2) + 1) = invRaw (hnnRaw (n / 2)) := by
         rw [hnnFam_odd (n := 2 * (n / 2) + 1) (by omega), hidx]
+      show freeEval (hnnFam (2 * (n / 2) + 1)) = (freeEval (hnnFam n))⁻¹
       rw [h1, hnnFam_even hpar, freeEval_invRaw]
     · refine Or.inr ⟨2 * (n / 2), ?_⟩
       have hidx : 2 * (n / 2) / 2 = n / 2 := by omega
       have h1 : hnnFam (2 * (n / 2)) = hnnRaw (n / 2) := by
         rw [hnnFam_even (n := 2 * (n / 2)) (by omega), hidx]
+      show freeEval (hnnFam (2 * (n / 2))) = (freeEval (hnnFam n))⁻¹
       rw [h1, hnnFam_odd hpar, freeEval_invRaw, inv_inv]
 
 theorem symmetrize_relSet {A : Type} [Group A] (g : ℕ → A) :
@@ -321,8 +331,8 @@ theorem primrec_hnnFam : Primrec hnnFam := by
   have hhalf : Primrec fun n : ℕ ↦ n / 2 :=
     Primrec.nat_div.comp Primrec.id (Primrec.const 2)
   have hcond : Primrec fun n : ℕ ↦ decide (n % 2 = 0) :=
-    Primrec.eq.comp (Primrec.nat_mod.comp Primrec.id (Primrec.const 2))
-      (Primrec.const 0)
+    (Primrec.eq.comp (Primrec.nat_mod.comp Primrec.id (Primrec.const 2))
+      (Primrec.const 0)).decide
   exact Primrec.cond hcond (primrec_hnnRaw.comp hhalf)
     (primrec_invRaw.comp (primrec_hnnRaw.comp hhalf))
 
