@@ -457,3 +457,15 @@ the fixed-depth nonhyperlinearity criterion.
   mass requires the entire coset PVM, returning exactly to the open
   coordinatewise covariance/Gram estimate rather than bypassing it with one
   Iwahori projection.
+- **Six simultaneous Hecke gaps still do not control the Gram scalar.**  Put
+  the six shell PVMs on the six independent coordinates of `Omega^6` and
+  let `C` act diagonally.  Every chart covariance and every lattice/root
+  relation is exact, but each of the five star deficits is `41/42`, for
+  total mismatch `205/42`; see
+  `six-shell-hecke-gap-is-blind-to-cross-chart-gram-energy`.  Tensoring with
+  deep regular congruence representations makes the lattice character
+  canonical without changing the mismatch.  Thus property `(T)` only mixes
+  within diagonal-action orbitals and cannot select the diagonal matching
+  orbital.  The sole remaining scalar input is the raw denominator
+  incidence `(RDI11)`, transferred from raw lamp conjugates to decoded joint
+  atoms with first-exit control.

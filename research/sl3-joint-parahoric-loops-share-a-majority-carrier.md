@@ -33,3 +33,13 @@ The existing parahoric-triangle theorem kills the gauge once all six packets
 have been synchronized on one carrier.  The unresolved step is therefore
 cross-direction carrier synchronization in the simultaneous-two-outlier
 sector, not a stronger spectral gap for any individual finite-index packet.
+
+Nor does summing all six finite-shell gaps authenticate the carrier.
+`six-shell-hecke-gap-is-blind-to-cross-chart-gram-energy` gives six exact
+covariant shell PVMs in the canonical lattice-character sector for which
+all six Hecke energies vanish but the five star-identification deficits sum
+to `205/42`.  The invariant kernel is the full diagonal-action orbital
+algebra.  A successful majority-carrier proof must therefore use the raw
+denominator incidence to select the diagonal orbital and transfer that
+selection to decoded joint atoms; property `(T)` cannot supply the missing
+cross-chart Gram estimate.
