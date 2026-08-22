@@ -116,6 +116,17 @@ bounded-occurrence, bounded-amplitude linear extended formulation of the
 dense normalized-sum graph with uniform `kappa`, or add a genuinely robust
 quantization layer.
 
+There is now a general obstruction to the first alternative.
+`rooted-normalized-sum-linear-pcpp-needs-sqrt-n-norm` proves directly from
+linearity and exact completeness that `(LPA4)` forces
+`||D_N||>=kappa sqrt(N)`: reuse an exact auxiliary proof for
+`(t,v_i)=(1,N^(-1/2))` after deleting its leaf vector, whose boundary norm is
+only `N^(-1/2)`.  Thus bounded locality, weighted occurrence and coefficients
+cannot produce the proposed uniformly bounded linear checker.  A surviving
+PCP layer must use nonlinear quantization/gap amplification or expose a
+delocalized terminal observable by a group word; auxiliary linear proof
+coordinates alone cannot repair the normalization geometry.
+
 Even after that scalar object is built, the rows of `D_N` are additive
 operator equations, not ordinary group relators.  Finite signed-permutation
 packets may supply local control sectors, but they do not wordize the linear
