@@ -31,6 +31,25 @@ reflections in that face.  This is precisely a fixed symmetrization
 `H_inc^sym`.  Finally `I=Theta(L^2)` for the balanced original-plus-pair-sum
 overlay.  Divide by `L^2` to obtain `(PSR1)`.
 
+Here is the normalization with the repeats exposed.  There are
+`Theta(M^2)` indexed faces: all unordered pairs of distinct original rows,
+together with `Theta(M)` copies of every original row in the balanced
+version.  Every indexed face is nonempty and has size at most `2q`
+(distinct binary rows have nonzero symmetric difference), whence
+
+```text
+ c M^2<=I=sum_f|f|<=C_q M^2.
+```
+
+The fixed choices `a(i)` use at most `q` coordinates per original row.
+Thus an original face receives `O(q^2)` assigned ordered pairs and a
+pair-sum face indexed by `{a,b}` receives at most `2q^2`.  When original
+faces are repeated, assign the finitely many relevant pairs to any indexed
+copies; this only decreases congestion, while unused occurrence squares
+remain positive terms of `H_inc`.  Consequently every occurrence square
+and endpoint conjugate is counted `O_q(1)` times.  Since `M/L` is bounded
+above and below, replacing `M^2` by `L^2` costs only a fixed constant.
+
 Taking normalized trace and using tracial invariance recovers the earlier
 Hilbert--Schmidt congestion estimate.  The operator-order statement is
 an algebraic strengthening, but its endpoint symmetrization need not be
