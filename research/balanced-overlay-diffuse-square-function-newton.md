@@ -250,6 +250,13 @@ bound `qK_aq<=2theta q`, while the cut trace averages as
 parity further implies, by
 `regularized-anchor-cut-makes-residual-spikes-boundary-heavy`, that every
 individual compressed spike remaining below this cut is boundary-heavy.
-The final analytic gate is therefore narrower: carry the aggregate cut's
-`L_2` leakage through the row-column Newton step, or block-diagonalize it
-without recreating an operator spike on the retained block.
+The aggregate leakage also has an exact safe representation.
+`aggregate-cut-compression-stores-boundary-as-involution-defect`
+block-compresses every reflection without sign rounding.  The resulting
+selfadjoint contractions reduce the cut exactly, retain the same soft
+row-column square function, and store both their squared movement and
+positive involution residual exactly as `D(p_a)`.  Fixed-width face defects
+increase by only `O(D(p_a))`.  The final analytic gate is now the augmented
+Newton statement: preserve the linearized gap and nonlinear contraction
+for selfadjoint contractions when `I-X_i^2` is included in the energy, and
+sign-round only after convergence.

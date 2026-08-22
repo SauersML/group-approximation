@@ -160,9 +160,15 @@ is `O(sqrt(E_pair)/theta)`.  Moreover
 all-dual Loewner inequality to show that, for `theta<=kappa s/16`, every
 remaining compressed `s`-spike has boundary at least
 `(kappa s/3)` times its trace.  Thus coverage no longer needs a bare join.
-The remaining stopping issue is to transport the aggregate cut's `L_2`
-leakage through the nonlinear contraction, or to exactify the cut without
-creating a new retained operator-norm spike.
+The aggregate leakage can be transported without early exactification.
+`aggregate-cut-compression-stores-boundary-as-involution-defect` replaces
+each reflection by its block compression.  This produces exactly reducing
+selfadjoint contractions, preserves the retained row-column bound, and
+identifies average movement and average positive involution residual with
+the same boundary `D(p_a)`.  Hence no polar/sign correction can recreate an
+operator spike during peeling.  The remaining stopping issue is the
+augmented contraction-valued Newton estimate; reflection rounding is safe
+once its involution residual has converged to zero.
 
 The commutator boundary itself also has an exact monotone ledger.
 `anchor-reset-row-sign-trace-is-sharp-lyapunov` proves that the anchor's
