@@ -64,10 +64,25 @@ coordinates `1,2,4`.  Hence for every prescribed coordinate `x` there are
 distinct `a,b in R_edge` which agree at `x` and differ in exactly one other
 coordinate.
 
-There is a precise tradeoff.  `R_edge` is two-variable falsifiable: its
-projection to coordinates `(1,2)` is only `{10,01}`.  Thus the non-TVF
-one-row commutativity-gadget shortcut used for `R_*` is unavailable.  Its
-NP-hardness still places it in the Boolean fixed-language side of the
-Culf--Mastel theorem, but any use requiring their separate non-TVF clause
-must provide another commutativity gadget.  This claim supplies the local
-Fano and escape geometry, not a cap-supported HALT model.
+Although `R_edge` is two-variable falsifiable on the physical pair `(1,2)`,
+it still has an explicit one-row commutativity gadget.  Its projection to
+coordinates `(2,3)` is all of `F_2^2`: for visible values `(u,v)`, take
+
+```text
+x_2=u,  x_3=v,  x_1=1-u,
+x_4=1 if (u,v)=(0,0), and x_4=0 otherwise.              (EOF6)
+```
+
+The resulting tuple is in `R_edge`.  Thus one `R_edge` constraint with the
+two visible variables in slots `(2,3)` and private variables in slots
+`(1,4)` imposes no classical visible relation, while every exact operator
+model makes the two visible observables commute because they belong to one
+context.  This is precisely the elementary commutativity-gadget interface
+used in the fixed-language compiler; non-TVF of *every* coordinate pair was
+only a convenient sufficient condition for `R_*`.  The robust qa/q version
+follows from `quantum-polymorphism-commutativity-gadget` once this exact
+gadget is inserted.
+
+This claim supplies the fixed NP-hard language, the local Fano certificate,
+the escape geometry, and the commutativity gadget.  It still does not supply
+a cap-supported HALT model.

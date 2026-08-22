@@ -3375,9 +3375,9 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-22 · first-cycle-signed-hecke-chord [OPEN] Close the first non-tree BCS overlap without changing the join-tree context partitions
 - 2026-08-22 · edgeful-one-ghost-fano-relation [ESTABLISHED] A fixed NP-hard one-ghost relation has Fano-cap soundness and honest Hamming edges
 - 2026-08-22 · edgeful-one-ghost-fano-proof [COMPLETE] Check Schaefer witnesses, translate the deleted hyperplane, and list two cube edges
+- 2026-08-22 · first-cycle-signed-hecke-chord [OPEN] Close the first non-tree BCS overlap without changing the join-tree context partitions
 - 2026-08-22 · edgeful-one-ghost-escape-proof [COMPLETE] Apply the Hadamard coefficient formula to a Hamming-distance-one honest edge
 - 2026-08-22 · edgeful-one-ghost-escape-avoids-term-recurrence [ESTABLISHED] The edgeful one-ghost Hadamard cell changes exactly one logical marginal
 - 2026-08-22 · disjoint-givens-planes-cannot-cancel-parity-terms [ESTABLISHED] Orthogonal Givens escape planes cannot cancel recurrent terms in a constant-parity context

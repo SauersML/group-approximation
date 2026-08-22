@@ -4,7 +4,8 @@ id: edgeful-one-ghost-fano-proof
 kind: route
 title: Check Schaefer witnesses, translate the deleted hyperplane, and list two cube edges
 target: edgeful-one-ghost-fano-relation
-requires: []
+requires:
+  - quantum-polymorphism-commutativity-gadget
 ---
 
 The seven tuples in `(EOF2)` are obtained by taking `(x_1,x_2)` equal to
@@ -22,3 +23,9 @@ proves `(EOF4)`.
 Finally the two pairs in `(EOF5)` belong to `(EOF2)` and have the stated
 coordinate differences.  The first serves prescribed coordinates `1,2,3`,
 and the second serves coordinate `4`.
+
+For `(EOF6)`, the parity equation is automatic from `x_1=1-x_2`.  If
+`(u,v)=(0,0)`, the chosen fourth bit prevents the ghost; otherwise at least
+one of `x_2,x_3` already differs from the ghost.  Hence every visible pair
+extends.  Variables in one BCS context commute in every operator model, so
+the same row is an exact commutativity gadget.
