@@ -6,6 +6,7 @@ title: Exhaust the 3,121,680 exact area-six mixed-valence ribbons
 target: leavitt-degree-four-target-picture-has-area-at-least-eight
 requires:
   - leavitt-degree-four-target-picture-has-area-at-least-six
+  - leavitt-degree-four-one-copy-picture-has-area-at-least-eight
 ---
 
 Use the exact signed-ribbon and faithful coefficient-normal-form enumerator in
