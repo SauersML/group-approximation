@@ -102,8 +102,10 @@ def substitute(word, z_value):
             factors.extend(z_value if token[1] == 1
                            else inverse_normal_form(z_value))
         else:
-            factors.append(token[1:])
-    return P.reduce_free_product(tuple(factors))
+            copy, name, exponent = token[1:]
+            unit = P.UNITS[name] if exponent == 1 else P.INVERSES[name]
+            factors.append((copy, unit))
+    return reduce_units(tuple(factors))
 
 
 parser = argparse.ArgumentParser()
