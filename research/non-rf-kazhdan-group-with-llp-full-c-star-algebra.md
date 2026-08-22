@@ -129,6 +129,24 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   C*-algebras FAIL LLP: every such example is a new LLP counterexample,
   and the construction principle behind them (central extensions /
   hyperlinear profiles) is a source of fences, not candidates.
+- **The concrete C*-shape of the positive question.**  The full group
+  C*-functor is a left adjoint, so it preserves colimits: for a rank-three
+  2-spherical Kac--Moody lattice, `C^*(Lambda)` IS the colimit, in the
+  category of C*-algebras, of the FINITE-DIMENSIONAL algebras
+  `C^*(P_J)` of the rank `<= 2` parabolic subgroups over the triangle
+  diagram of the Dynkin nerve.  For a TREE of finite groups the same
+  colimit is an iterated amalgamated free product over finite-dimensional
+  subalgebras, which has the LLP (arXiv:2403.12224: `A *_C B` has LLP for
+  LLP `A, B` and finite-dimensional `C`).  The triangle closure is a
+  colimit with NON-injective legs (the edge groups generate an infinite
+  virtually free subgroup on the partial amalgam side that surjects onto
+  a finite subgroup of the third vertex algebra), i.e. a quotient, where
+  no LLP permanence exists.  So the positive question is exactly: **is
+  there an LLP permanence theorem for developable, nonpositively curved
+  triangles (simple complexes) of finite-dimensional C*-algebras?**  The
+  geometry that might power it — links are generalized polygons with
+  large girth, the complex is CAT(0) — is the same geometry that proved
+  `twin-lattices-exclude-known-llp-fences`.
 - **No known positive LLP theorem reaches a Kazhdan group.**  LLP is known
   for nuclear algebras, `C^*(F)` (Kirchberg), free products and amalgams
   over finite-dimensional subalgebras, and is inherited by quotients only
