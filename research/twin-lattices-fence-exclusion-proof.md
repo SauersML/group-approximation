@@ -54,3 +54,18 @@ by the upper-left `SL_2`), so it cannot embed either.  `BS(1, n)`,
 `t a^n t^(-1)`-growth forcing `l(a) = lim d(x, a^(m) x)/m = 0` by the
 logarithmic word growth of `a^(n^m)`, contradicting (a); this proves the
 final scope remark.
+
+**(d).**  A locally finite two-dimensional polyhedral complex of
+Gromov-hyperbolic type has finite asymptotic dimension (bounded-geometry
+hyperbolic spaces: Roe, *Hyperbolic groups have finite asymptotic
+dimension*, Proc. AMS 133 (2005); the Euclidean/affine case is classical
+for buildings), and `asdim(X_+ x X_-) <= asdim X_+ + asdim X_-`.  A
+metrically proper isometric action of a finitely generated group on a
+space of finite asymptotic dimension makes every orbit map a coarse
+embedding, so every finitely generated subgroup of `Lambda` has finite
+asymptotic dimension, hence Yu's property A.  A group containing a
+coarsely embedded expander sequence does not coarsely embed in Hilbert
+space, while property A implies such an embedding; so no subgroup of
+`Lambda` contains coarsely embedded expanders, which is the defining
+feature of the Osajda-type groups behind the Buss--Echterhoff--Willett
+LLP failures.

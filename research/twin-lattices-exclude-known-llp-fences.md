@@ -27,13 +27,25 @@ buildings, `q >= |S|`).  Then:
     with n >= 3 (which contains a standard pair) embeds in Lambda.  (TL1)
 ```
 
-Since the local lifting property passes to subgroups and every group
-C*-algebra currently known to fail the LLP is one of
-`Z^2 rtimes Sigma` (`Sigma <= SL_2(Z)` nonamenable), `SL_n(Z)` (`n >= 3`),
-their relatives through the same pairs, or contains one of these
-(Ioana--Spaas--Wiersma; Fournier-Facio--Willett §3.2), the
-subgroup-permanence route cannot refute the LLP for any twin building
-lattice.  Combined with the vacuity of the direct
+```text
+(d) X_+ x X_- has finite asymptotic dimension (each factor is a locally
+    finite polyhedral complex that is Gromov-hyperbolic or Euclidean of
+    dimension two, and asymptotic dimension is finite for such spaces
+    and additive under products), and the orbit map of the metrically
+    proper Lambda-action is a coarse embedding; hence every subgroup of
+    Lambda has finite asymptotic dimension and property A, and contains
+    no coarsely embedded expander sequence.                        (TL2)
+```
+
+Since the local lifting property passes to subgroups, and the group
+C*-algebras currently known to fail the LLP fall into exactly two
+families — the cohomological ones of Ioana--Spaas--Wiersma
+(`Z^2 rtimes Sigma` with `Sigma <= SL_2(Z)` nonamenable, `SL_n(Z)` with
+`n >= 3`, and groups containing these) and the Osajda-type examples of
+Buss--Echterhoff--Willett, which contain coarsely embedded expanders
+(Fournier-Facio--Willett §3.2) — parts `(c)` and `(d)` together show
+that NO known LLP-failure group embeds in a twin building lattice: the
+subgroup-permanence route cannot refute the LLP for any of them.  Combined with the vacuity of the direct
 Ioana--Spaas--Wiersma mechanism at infinite simple groups (recorded in
 `non-rf-kazhdan-group-with-llp-full-c-star-algebra`), NO currently known
 method decides the LLP for the simple Kazhdan Kac--Moody lattices in
