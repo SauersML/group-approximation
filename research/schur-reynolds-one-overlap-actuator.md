@@ -62,6 +62,15 @@ immune to spectator amplification.
 - **Live search target.**  Use `(SOM7)` to seek a finite Hecke, PSD, or
   root-character certificate for the single moment lower bound `(ORA1)`.
   This is strictly weaker than termwise covariance of all packet words.
+- **A subgroup-Hecke actuator is now exact, but needs surrogate groups.**
+  `subgroup-hecke-hnn-is-a-regular-safe-rank-actuator` proves that an HNN
+  inclusion `K_f->H_f` with fixed spaces `R_B,R_A` pays the complete reverse
+  rank gap by ordinary relator energy and passes the regular trace.  The
+  native inclusion `A_f<=B_f` points the wrong way; the missing finite
+  representation-theory compiler must realize the same two Reynolds ranges
+  by surrogate groups with `K_f` embedding in `H_f`.  Bare involution
+  half-projections cannot do this: their universal one-sided inclusion is
+  only equality or the whole target.
 - **Scalar syntax does not remove the geometric load.**  Identity `(SOM3)`
   says the deficit in `(ORA1)` is exactly the total squared leakage
   `||(I-R_B)TR_A||^2`.  Thus the scalar is a compact certificate for the
