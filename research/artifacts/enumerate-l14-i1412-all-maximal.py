@@ -9,6 +9,8 @@ partitions with more than the global minimum number of blocks.
 
 import argparse
 import importlib.util
+from functools import lru_cache
+from itertools import combinations, product
 from pathlib import Path
 
 
@@ -26,52 +28,45 @@ EQ3 = load("i1412_eq3", "enumerate-l14-i1412-eq3-maximal.py")
 EQ1 = load("i1412_eq1", "enumerate-l14-i1412-eq1-maximal.py")
 
 
-def crosses(left, right):
-    for a_index, a in enumerate(left):
-        for c in left[a_index + 1:]:
-            for b_index, b in enumerate(right):
-                for d in right[b_index + 1:]:
-                    if a < b < c < d or b < a < d < c:
-                        return True
-    return False
-
-
-def merge_if_noncrossing(partition, left_index, right_index):
-    merged = tuple(sorted(partition[left_index] + partition[right_index]))
-    for index, block in enumerate(partition):
-        if index not in (left_index, right_index) and crosses(merged, block):
-            return None
-    blocks = [block for index, block in enumerate(partition)
-              if index not in (left_index, right_index)]
-    blocks.append(merged)
-    return tuple(sorted(blocks, key=lambda block: block[0]))
-
-
 def enumerate_leaves(colors):
-    initial = tuple((index,) for index in range(len(colors)))
-    pending, visited, leaves = [initial], {initial}, set()
-    while pending:
-        partition = pending.pop()
-        children = []
-        for left_index, left in enumerate(partition):
-            color = colors[left[0]]
-            for right_index in range(left_index + 1, len(partition)):
-                right = partition[right_index]
-                if colors[right[0]] != color:
+    @lru_cache(maxsize=None)
+    def forests(lo, hi, parent_color):
+        """Maximal forests, paired with their distinct top-level colors."""
+        if lo == hi:
+            return (((), ()),)
+        root_color = colors[lo]
+        if root_color == parent_color:
+            return ()
+        candidates = [index for index in range(lo + 1, hi)
+                      if colors[index] == root_color]
+        answers = set()
+        for width in range(len(candidates) + 1):
+            for tail in combinations(candidates, width):
+                block = (lo,) + tail
+                internal_bounds = block + (block[-1] + 1,)
+                gaps = tuple((left + 1, right)
+                             for left, right in zip(internal_bounds,
+                                                    internal_bounds[1:])
+                             if left + 1 < right)
+                child_options = [forests(left, right, root_color)
+                                 for left, right in gaps]
+                if any(not options for options in child_options):
                     continue
-                child = merge_if_noncrossing(partition, left_index, right_index)
-                if child is not None:
-                    children.append(child)
-        if not children:
-            leaves.add(partition)
-        for child in children:
-            if child not in visited:
-                visited.add(child)
-                pending.append(child)
-        if len(visited) % 100000 == 0:
-            print(f"visited={len(visited)} pending={len(pending)} leaves={len(leaves)}",
-                  flush=True)
-    return visited, leaves
+                suffix_options = forests(block[-1] + 1, hi, parent_color)
+                for children in product(*child_options) if child_options else ((),):
+                    child_partition = sum((entry[0] for entry in children), ())
+                    for suffix_partition, suffix_colors in suffix_options:
+                        if root_color in suffix_colors:
+                            continue
+                        partition = tuple(sorted(
+                            (block,) + child_partition + suffix_partition,
+                            key=lambda item: item[0]))
+                        answers.add((partition, (root_color,) + suffix_colors))
+        return tuple(sorted(answers))
+
+    entries = forests(0, len(colors), -1)
+    leaves = {partition for partition, _ in entries}
+    return forests.cache_info().currsize, leaves
 
 
 def main():
@@ -79,12 +74,12 @@ def main():
     parser.add_argument("equation", choices=("eq1", "eq3"))
     args = parser.parse_args()
     module = EQ1 if args.equation == "eq1" else EQ3
-    visited, leaves = enumerate_leaves(module.COLORS)
+    cached_intervals, leaves = enumerate_leaves(module.COLORS)
     histogram = {}
     for leaf in leaves:
         histogram[len(leaf)] = histogram.get(len(leaf), 0) + 1
     print(f"equation={args.equation}")
-    print(f"visited_partitions={len(visited)}")
+    print(f"cached_forest_states={cached_intervals}")
     print(f"coarsening_maximal_partitions={len(leaves)}")
     print(f"block_histogram={dict(sorted(histogram.items()))}")
 
