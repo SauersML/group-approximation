@@ -33,4 +33,7 @@ overlay.  Divide by `L^2` to obtain `(PSR1)`.
 
 Taking normalized trace and using tracial invariance recovers the earlier
 Hilbert--Schmidt congestion estimate.  The operator-order statement is
-what permits the same common outlier cut to control this step.
+an algebraic strengthening, but its endpoint symmetrization need not be
+covariant under the raw presentation.  Therefore it is not, by itself, a
+license for a reducing physical cut; the downstream Green-edge proof uses
+its normalized trace consequence.

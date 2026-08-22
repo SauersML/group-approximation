@@ -39,8 +39,7 @@ positive residual square `H` and every contraction word `w`,
 ```
 
 The row-square pair-sum congestion theorem now applies to these exact local
-copies and the shared candidates.  Its fixed endpoint-conjugacy
-symmetrization is absorbed into the same common outlier square:
+copies and the shared candidates:
 
 ```text
  H_pair=(1/L^2)sum_(i,j)[Q_i,Q_j]^*[Q_i,Q_j]
@@ -50,6 +49,13 @@ symmetrization is absorbed into the same common outlier square:
        <=C E_inc
        <=C(E_equality+E_sparse).                          (PEG2)
 ```
+
+Only the traced consequence is used here.  Although the first line is a
+Loewner inequality, its endpoint-conjugacy symmetrization is not asserted
+to be covariant under the original presentation, because the shared
+`Q_i` can be analytic signs of cloud averages.  Tracial invariance removes
+all those endpoint conjugates with no loss and requires no additional
+physical spectral cut.
 
 It remains only to compare the finite-Green edge signal with the ordinary
 commutator.  Put `U_ij=Q_iQ_j`.  Since the `Q_i` are reflections,

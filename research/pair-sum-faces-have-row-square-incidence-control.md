@@ -29,3 +29,10 @@ many endpoint reflection words attached to one bounded face occurrence;
 its multiplicity and `C` depend only on the fixed row width and on `M/L`.
 Consequently its normalized trace is at most a fixed constant times the
 ordinary incidence energy.
+
+This operator inequality does **not** say that `H_inc^sym` is covariant
+under the original presentation generators.  The shared endpoint
+reflections can be analytic signs of cloud averages rather than group
+words.  Thus `(PSR1)` alone does not authorize a new reducing spectral cut.
+Its use in the Green-edge argument is after normalized trace, where every
+endpoint conjugate has exactly the same trace as its unconjugated square.
