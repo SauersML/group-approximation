@@ -332,3 +332,14 @@ weakening consumed by the HNN marked word.
   tempting but false summary that only the noncorrectable sector remains.
   The exact regular HNN factor is a simultaneous tracial countermodel, so
   neither branch can be removed by dimension-blind tracial/SOS methods.
+
+- **Arbitrary codimension does not rescue leakage-small polar enemies.**
+  `leakage-small-polar-compressions-obey-projective-transfer` strengthens the
+  vanishing-codimension fence.  If a tuple is obtained by polar-compressing
+  one exact arithmetic representation and the retained range has vanishing
+  normalized leakage for the fixed generator packet, property `(T)` applied
+  to the zero-extended corner proves `(PTS1)` with a leakage error,
+  independently of the retained rank fraction.  Any remaining
+  positive-codimension compression attack must keep macroscopic generator
+  leakage while arranging cancellation of its presentation relators, or
+  cease to be a compression of an exact ambient model.

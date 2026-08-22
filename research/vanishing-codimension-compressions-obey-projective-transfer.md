@@ -60,3 +60,12 @@ The result does not address compressions deleting a positive density, nor
 approximate representations which are not polar compressions of exact
 representations.  Those remain in the two enemy branches already recorded in
 Cairn.
+
+**Strengthened scope.**  The codimension restriction is only a convenient
+automatic leakage bound.  The theorem
+`leakage-small-polar-compressions-obey-projective-transfer` proves the same
+projective conclusion at arbitrary codimension whenever the retained range
+has vanishing normalized leakage for the fixed arithmetic generator packet.
+Thus a positive-density compression enemy must have macroscopic generator
+leakage (or exploit cancellation in its polar-corrected relators); positive
+codimension by itself is not an escape.
