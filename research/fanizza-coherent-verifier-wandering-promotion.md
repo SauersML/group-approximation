@@ -244,3 +244,14 @@ the two-cycle into `(FCW1)` or its unnamed fixed-carrier weakening.  A viable
 promotion must couple the verifier loss to the holonomy itself with a
 dimension-independent matrix-only inequality; a relation which only exchanges
 the two flag atoms leaves precisely that variable unconstrained.
+
+Nor can a finite common-orientation flag controller constrain that variable
+in the required way.  `one-holonomy-word-controllers-are-free-or-torsion`
+gives an exact dichotomy: its relators either have zero holonomy exponent, in
+which case arbitrarily long cyclic-shift completions survive, or force one
+bounded power of the holonomy to be trivial.  The latter makes a bounded power
+of the wandering word return universally on the fixed source; the regular
+finite-support argument then collapses the source or the wandering word.
+Consequently a surviving controller must act noncommutatively on the
+multiplicity algebra, or choose a carrier depending on that algebra.  Adding
+more fixed packet words in the same tensor orientation cannot close `(FCW1)`.
