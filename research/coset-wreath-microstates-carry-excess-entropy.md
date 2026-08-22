@@ -68,6 +68,27 @@ precision.
   technology cannot prove (EX1); the hole calls for a relative/local
   entropy count of the lamp torsor given the base, or an auxiliary
   algebra whose entropy is computable from CE of `W_3`.
+- **Fibration form and the two-sided squeeze (sharpened 2026-08-22).**
+  Microstates of `W_3` fiber over microstates of `Gamma`; by Brown's
+  convex structure with property (T), the base classes are discrete, so
+  excess entropy must live in a FIBER: the space of admissible lamp
+  families over one fixed `Gamma`-model, modulo the absorbing
+  conjugations — unitaries almost commuting with the `Gamma`-image,
+  i.e. (in the limit) `U(pi(Gamma)' cap M)`, acting on lamp families
+  drawn from `U(pi(Lambda)' cap M)`.  So the hole's quantitative
+  content is a COMMUTANT RATIO: does the `Lambda`-central admissible
+  torsor exceed the `Gamma`-commutant absorption at scale `c d^2`?
+  This squeezes the fork from both sides: if the p = 3 collapse holds,
+  the torsor is empty and the commutant route
+  (`nonhyperlinear-coset-wreath-from-p3-collapse`) closes the goal; if
+  the collapse fails EXPONENTIALLY (torsor bigger than absorption at
+  `d^2`-scale), this route closes the goal instead.  The only
+  surviving hyperlinear scenario is a razor-thin middle: a nonempty
+  `Lambda`-central torsor that is exactly conjugation-null at every
+  scale.  (Caveat for rigor: the absorption picture above is stated at
+  the ultraproduct level; a proof must run at finite level in Hayes'
+  covering-number definitions, where "almost commuting" carries the
+  precision parameter.)
 - **Two-sidedness, honestly.**  If `W_3` is hyperlinear then by the
   companion theorem `h(L(W_3)) = 0` — i.e. (EX1) is then FALSE and this
   claim is exactly the goal disjunct.  The route's practical value is
