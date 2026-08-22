@@ -26,3 +26,13 @@ under their generated group and is equivalent to the desired globally
 positive-definite kernel.  No such simultaneous correction follows from the
 word telescoping calculation.
 
+For the stronger fixed-level statement, define the unital star-linear
+coordinate map on the finite generator system by sending each canonical
+root unitary to its chosen matrix representative.  At every fixed matrix
+level, the image of a positive element is positive in the tracial quotient,
+so the normalized Hilbert--Schmidt norm of its negative part tends to zero.
+Compactness of the positive unit ball at that fixed level and uniform
+boundedness of the coordinate maps make the convergence uniform there.
+Smith's criterion tests maps into `M_(d_n)` at level `d_n`, so this fixed-level
+fact does not imply complete positivity; a surviving witness must move to
+unbounded amplification level.

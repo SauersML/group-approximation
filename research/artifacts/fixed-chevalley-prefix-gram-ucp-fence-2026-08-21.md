@@ -82,6 +82,35 @@ makes `d_n`-positivity sufficient).  A fixed prefix atlas controls only a
 fixed matrix level.  Coherence over increasing word sets is the
 positive-definite-kernel formulation of the same missing lift.
 
+This can be sharpened.  Let
+
+```text
+E=span{1,u_s,u_s^*:s in S} subset A_alpha
+```
+
+and define the unital star-linear coordinate map `psi_n:E -> M_(d_n)` from
+chosen representatives of `Theta(u_s)`.  For every fixed `k` and every
+`X in M_k(E)_+`,
+
+```text
+[(id_k tensor psi_n)(X)] = (id_k tensor Theta)(X) >= 0
+```
+
+in the tracial quotient.  Hence
+
+```text
+||((id_k tensor psi_n)(X))_-||_2 -> 0.                  (4)
+```
+
+Because `E` and `k` are fixed, the positive unit ball is norm compact and
+the `psi_n` have a uniform linear norm bound determined by the chosen basis.
+A finite-net argument makes (4) uniform on that ball.  Thus a hypothetical
+Maslov ultraproduct model already satisfies every fixed Choi test in the
+only tracial sense available.  If no nearby ucp maps exist, the separating
+matrix-positive witnesses must occur at levels `k_n -> infinity` (one may
+take `k_n <= d_n` by Smith's criterion).  In particular, adding finitely many
+fixed root-word centrality Gram matrices cannot close the liftability seam.
+
 ## 3. Averaging over root subgroups is circular at the mixed cell
 
 Each root subgroup is cyclic.  On one such subgroup a chosen unitary gives
@@ -112,4 +141,3 @@ imply the honest simultaneous positivity condition (3).  Proving a
 dimension-free correction from (2) to (3), coherently as the atlas grows, is
 an equivalent concrete form of the remaining Maslov generator-liftability
 problem.  No approximate defect gap follows from the present calculation.
-

@@ -145,3 +145,19 @@ Nevertheless it closes the Maslov sector by
   dimension.  Positive-part clipping breaks label consistency, and averaging
   separately over cyclic root subgroups is circular: simultaneous invariance
   under all of them is already the desired global positive-definite kernel.
+  In fact the ultraproduct homomorphism automatically passes every fixed
+  amplification-level Choi test modulo `o(1)` normalized HS error.  Hence a
+  failure of ucp liftability can only be witnessed at amplification levels
+  escaping to infinity with the coordinate dimension; no finite root atlas
+  alone can detect it.
+- **The braid label space is not an averaging fixed space.**
+  `braid-prefix-label-space-has-no-ucp-expectation` tests the proposed
+  finite-action repair on the support-minimal six-prefix braid cell.  The
+  repeated-label space contains all diagonal units, so any ucp projection
+  onto it would be a diagonal-bimodule Schur multiplier; fixing the sum of
+  the three `x` edges would then fix each edge separately, outside the
+  repeated-label space.  The orthogonal averaging projection is explicitly
+  nonpositive on one rational rank-one matrix.  Thus no finite permutation,
+  unitary fixed-point, or ucp conditional-expectation averaging repairs even
+  the braid face; a microstate-dependent nonlinear positivity correction is
+  required.

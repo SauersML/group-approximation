@@ -37,6 +37,13 @@ clipping that spectrum destroys the label equalities.  The Chevalley
 relations control the size of those failures in normalized `2`-norm but do
 not provide a dimension-uniform positive-and-affine correction.
 
+More generally, the ultraproduct homomorphism itself makes arbitrary linear
+coordinate representatives on the finite generator system uniformly
+tracially `k`-positive for every **fixed** amplification `k`.  Consequently
+any failure of coordinate ucp liftability is witnessed only at amplification
+levels tending to infinity with `d_n`; no fixed Choi or prefix atlas can be
+the missing condition.
+
 Likewise, averaging over each cyclic root subgroup separately produces
 positive kernels on the individual root charts, but simultaneous invariance
 under all root subgroups is already invariance under the group they generate.
@@ -48,3 +55,6 @@ arithmetic positive-kernel estimate.
 The detailed calculation and operator-system fence are in
 `fixed-chevalley-prefix-gram-ucp-fence-proof`.
 
+The most tempting correction, conditional expectation onto the repeated-
+label space, already fails on the six-vertex braid face by
+`braid-prefix-label-space-has-no-ucp-expectation`.
