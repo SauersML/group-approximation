@@ -136,3 +136,19 @@ cylinder/character atoms from the joint raw lamp algebra and charge their
 covariance loss to first exits.  Pointwise decoded-to-raw proximity is ruled
 out.  Nothing here addresses the uniformly noncorrectable
 `SL_3(Z)`-vertex sector.
+
+There is, however, no remaining analytic obstacle in transferring the raw
+section word **after** equal-rank decoded atoms have been constructed.
+`equal-rank-denominator-edges-authenticate-decoded-atoms` uses
+`T_i=rho(b_i)^*rho(a_i)` directly and proves
+
+```text
+(1/2)sum_i||Ehat_i-F_i||_2^2
+ <=2 sum_i firstExit_i+2 sum_i pvmCovariance_i
+    +C_sec delta^2.                                    (RDI13)
+```
+
+This replaces the impossible decoded-to-raw proximity target `(RDI10)`.
+The remaining extraction gate is exactly to construct equal-rank joint
+atoms for which the first two terms in `(RDI13)` belong to the established
+conductor and full-PVM covariance ledgers.

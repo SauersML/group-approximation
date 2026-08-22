@@ -469,3 +469,14 @@ the fixed-depth nonhyperlinearity criterion.
   orbital.  The sole remaining scalar input is the raw denominator
   incidence `(RDI11)`, transferred from raw lamp conjugates to decoded joint
   atoms with first-exit control.
+- **Equal-rank first exits perform the raw-to-decoded transfer directly.**
+  For decoded atoms `E_i,F_i` of equal trace and the actual section
+  transition `T_i=rho(b_i)^*rho(a_i)`, one has the exact identity
+  `||T_iE_iT_i^*-F_i||_2^2=2||(1-F_i)T_iE_i||_2^2`.
+  Comparing `T_i` with the section correction `rho(d_i)` gives the
+  dimension-free star-link estimate `(EDA13)` in
+  `equal-rank-denominator-edges-authenticate-decoded-atoms`.  Thus the
+  impossible pointwise decoded-to-raw comparison is unnecessary.  The sole
+  remaining construction problem is now sharper: produce equal-rank joint
+  atoms whose section leakage is the existing first-exit mass and whose
+  `d_i`-relabeling is paid by the decoded full-PVM lattice covariance.

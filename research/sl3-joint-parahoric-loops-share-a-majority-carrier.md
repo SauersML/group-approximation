@@ -43,3 +43,12 @@ algebra.  A successful majority-carrier proof must therefore use the raw
 denominator incidence to select the diagonal orbital and transfer that
 selection to decoded joint atoms; property `(T)` cannot supply the missing
 cross-chart Gram estimate.
+
+Once equal-rank decoded atoms exist, the denominator incidence itself is no
+longer missing.  `equal-rank-denominator-edges-authenticate-decoded-atoms`
+shows that each star-link mismatch is bounded by twice its literal
+first-exit mass, twice its full-PVM lattice covariance energy, and a fixed
+section word-defect term.  The open majority-carrier statement is therefore
+reduced to constructing those equal-rank joint atoms with the advertised
+leakage ledger; no additional spectral or support-transfer inequality
+remains.
