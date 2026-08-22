@@ -215,6 +215,18 @@ the fixed-depth nonhyperlinearity criterion.
   exact surviving scalar is known, but exposing it requires a noncentral
   additive two-path wordization plus control of the complementary Julia
   leakage; another monomial arithmetic section word cannot do it.
+- **The shortest second-denominator return closes only the type.**  After
+  changing `x_13(2)` back to the `12` root coordinate, exactly two of the six
+  denominator directions rescale it to `x_12(1)`: the literal backtrack
+  `h^(-1)` and `h_(s_12)=diag(1,2,1/2)`.  Their relative returned holonomy is
+  the ordinary arithmetic word
+  `diag(2,2,1/4)`, which centralizes `x_12` but translates the conductor
+  carrier by coweight `(1,1,-2)`.  See
+  `shortest-second-denominator-return-has-coweight-holonomy`.  Every fixed
+  such translation has squared cutoff leakage `O(1/M)` on the joint
+  affine-Weyl Folner model.  Thus this loop identifies the root packet type,
+  not the raw atom; its product word remains inside the amenable conductor
+  action and gives no fixed payment.
 - **Full-conductor adjoint regularity does not repair that failure.**  This
   follows by an exact tensor test, not an asymptotic heuristic.  Let
   `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from

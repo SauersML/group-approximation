@@ -133,6 +133,13 @@ average occupies the two distinct cosets `<c>` and `d<c>`.  The missing
 cross term must therefore be genuinely wordized by an additional
 noncentral selector/corner gadget.
 
+The alternative second-denominator search is also now exact.
+`shortest-second-denominator-return-has-coweight-holonomy` finds the two
+shortest returns among the six Weyl-conjugate denominators.  Their relative
+word is `diag(2,2,1/4)`: it closes the root type but shifts the actual carrier
+by an amenable coweight translation, so the finite-torus Folner cuts absorb
+its ordinary product-word energy.
+
 The conclusion is exact.  A second return made only of integral root/Weyl
 words cannot identify the rectangular target with the source, and the
 shortest commutator multipath authenticates the target within its own type
