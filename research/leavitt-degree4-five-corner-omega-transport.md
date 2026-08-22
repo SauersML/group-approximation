@@ -6,6 +6,7 @@ title: A degree-four five-corner packet word transports the Leavitt Omega mismat
 artifacts:
   - research/artifacts/search-degree4-five-corner-omega.py
   - research/artifacts/search-degree4-five-corner-omega.sbatch
+refuted_by: leavitt-degree4-five-corner-full-packet-is-absent
 ---
 
 There is a placement of the immutable Leavitt packet
@@ -28,6 +29,7 @@ separators trivial in the first length-twelve topology merely pads the
 positive diagonal word `t A t B t C t`; it is not a five-corner core.  The
 attached exhaustive packet screen therefore retains the exact cyclic word,
 allows identities only as part of the enumerated layout, and accepts solely
-after complete ordered Bergman-normal-form pivot and target checks.  Its MSI
-array run is pending.
-
+after complete ordered Bergman-normal-form pivot and target checks.  MSI job
+`16662164` completed all 128 shards.  No layout even passed the second-unary
+compatibility test, so this finite design class is refuted by the cited
+claim.
