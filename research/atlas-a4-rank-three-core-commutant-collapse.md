@@ -116,3 +116,14 @@ commutant, or the full `A8` commutant is required.
   literal `U` at the level of the simultaneous shifted-double-coset
   intersection; an exact matrix point of that intersection with nonzero
   covariance would instead refute the target estimate.
+- **Linearized simultaneous-double-coset transversality is false.**
+  `atlas-fourteen-shifted-tangent-spaces-have-an-s3-flat` differentiates the
+  literal eight distinct shifted cells at the reference alignment.  Choosing
+  one cyclic fixed-space summand from each tangent sum yields the same
+  subgroup `L ~= S3`, so `Fix(Ad rho(L))` is a common tangent flat of
+  dimension `3360` on every relative regular coordinate.  It contains
+  explicit directions outside `rho(H)'`.  Thus alternating projections onto
+  the fourteen packet tangent sums cannot prove commutant collapse.  Since
+  the reference packet alignment is not collision-zero, this does not refute
+  the nonlinear joint estimate; it says collision must remove this exact
+  `S3` flat through a genuinely nonlinear common-`U` coupling.
