@@ -51,6 +51,39 @@ routes while resolving their fork.
   yet exclude; the gap between "no finite equivariant quotients" and
   "no sofic approximation" is exactly where a proof must live, and
   property (T) is available to rigidify almost-actions.
+- **Conditional chain via flexible P-stability (2026-08-22, the
+  compression-free candidate mechanism).**  Suppose
+  `Gamma = SL_3(Z[1/3])` is FLEXIBLY P-stable (open; strict P-stability
+  is refuted by Becker–Lubotzky, arXiv:1809.00632 — RF + (tau) groups
+  are never P-stable — which is exactly why only the flexible form is
+  on the table; Bowen–Burton, arXiv:1906.02172, is the home of the
+  "flexible stability of a higher-rank lattice implies nonsofic groups
+  exist" mechanism, and
+  `hnn-over-sl2-z-not-sofic-if-sl2-z-inverse-p-p-stable` is this
+  graph's SL_2 HNN twin).  Then a sofic approximation of `W_3`
+  restricts to almost-actions of `Gamma`, corrected (after padding) to
+  genuine finite `Gamma`-actions; by Margulis + CSP these are disjoint
+  unions of transitive congruence actions at levels prime to 3, on
+  each of which `Lambda` SURJECTS onto the acting quotient, hence acts
+  transitively with a uniform (tau) spectral gap.  The base lamp
+  `sigma(k_0)` almost-commutes with `sigma(Lambda)`; IF an
+  almost-centralizing permutation of a gap-transitive action must be
+  Hamming-close to the exact centralizer (the CENTRALIZER-ROUNDING
+  LEMMA — provable-looking: HS-project to the commutant, then round by
+  Birkhoff/matching inside the centralizer group of a transitive
+  action, which is the right-translation group `N(H)/H` extended by
+  isomorphic-orbit swaps), THEN `sigma(k_0) ~ ` an element `c` of the
+  centralizer; but LEFT translations commute with RIGHT translations,
+  so `sigma(gamma) sigma(k_0) sigma(gamma)^{-1} ~ c` as well, forcing
+  `fix(sigma(k_0) . sigma(gamma k_0 gamma^{-1})) ~ fix(c^2) = 1` for
+  involutive `c` — while the wreath's canonical soficity demands that
+  density be near 0 (the two lamps at distinct cosets multiply to a
+  nontrivial lamp word).  Contradiction: `W_3` not sofic.  STATUS: two
+  gaps — flexible P-stability of `Gamma` (open, the permutation
+  sibling of the Dogon–Vigdorovich question) and the rounding lemma
+  (unwritten; the isomorphic-orbit-swap part and the flexible padding
+  bookkeeping need care).  Worth recording because it needs NO
+  compression: Stuck–Zimmer/CSP arithmetic replaces infranormality.
 - **Positive side (deliberately recorded).**  At SL_2 a peer lane
   (`dyadic-bruhat-tits-vertex-action-is-sofic`,
   `dyadic-random-lifts-produce-sofic-vertex-action`) attempts sofic
