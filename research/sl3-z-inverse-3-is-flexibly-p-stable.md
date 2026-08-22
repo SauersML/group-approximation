@@ -44,7 +44,16 @@ the congruence ones, the Hamming shadow of the outlier sector.
   statistics into an invariant random subgroup loses the
   almost-multiplicativity control.  Making the Stuck–Zimmer rigidity
   bite on almost-actions rather than actions is exactly the open
-  content.
+  content.  Note the statistics side is COMPLETE: every
+  Benjamini–Schramm limit of almost-actions of `Gamma` is an invariant
+  random Schreier structure, classified (Nevo–Stuck–Zimmer type IRS
+  rigidity for higher-rank S-arithmetic groups) as mixtures of
+  congruence coset statistics and the free part — and both are
+  realized by genuine deep-congruence actions (injectivity radius of
+  congruence quotients tends to infinity, so deep levels realize the
+  free statistics).  So the hole's entire content is the gap between
+  matching STATISTICS and matching in HAMMING (pointwise correction),
+  the same gap as everywhere in the program.
 - **Two-sided warning.**  A flexible P-stability proof for `Gamma`
   would, via Bowen–Burton-type arguments and the wreath collapse,
   produce nonsofic groups; skepticism is warranted exactly to the
