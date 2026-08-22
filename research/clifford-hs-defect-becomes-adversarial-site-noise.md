@@ -44,3 +44,10 @@ must also control coherent errors, not only Pauli errors supplied in advance.
 - Pauli twirling turns a channel into a Pauli distribution only after a stable
   tensor factorization exists.  Using twirling before proving that
   factorization is circular.
+- `lin-code-space-pauli-test-has-only-logarithmic-weyl-rank` audits the most
+  concrete proposed rigidity shortcut.  Lin's literal dimension-`log n`
+  Justesen **code-space** sampler has a perfect strategy on only `O(log n)`
+  qubits and a dense `C^perp` coherent gauge.  Replacing it by the generator
+  columns of a dimension-`n`, length-`Theta(n)` code repairs global Pauli
+  rigidity with logarithmic sampling, but only up to a global isometry; pinning
+  that isometry to the named tape sites is still precisely the present claim.
