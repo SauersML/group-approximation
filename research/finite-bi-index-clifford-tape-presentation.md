@@ -44,3 +44,26 @@ many pair orbits.  The remaining analytic problem is to make an approximate
 representation of `(FCT1)` define one coherent matrix `A_x` for every coset,
 with a pair-error bound independent of the representatives.
 
+**Augmentation--Heisenberg identification.**  This also contains the
+apparently different invariant-dot-product construction.  Put
+
+```text
+M=ker(F_2^(X) -> F_2),
+```
+
+and let `K_X^0` be the inverse image of `M` in `K_X`.  The complete-graph
+commutator form satisfies
+
+```text
+b(f,g)=(sum f)(sum g)+sum_x f(x)g(x),
+```
+
+so on `M` it is exactly the invariant dot product.  Hence
+`K_X^0 semidirect L` is the corresponding Heisenberg augmentation group;
+it is the parity-index-two subgroup of the Clifford tape and is finitely
+presented as well.  Every exact finite-dimensional representation kills
+`J`, since disjoint triples of sites supply arbitrarily many independent
+Pauli pairs on a hypothetical `J=-1` block.  This still does not bypass the
+analytic gate: every finite augmentation window has an exact `J=-1` Weyl
+model, while turning those growing windows into one orbit-wide family is
+precisely `uniform-hs-site-coherence-for-finite-bi-index-pair`.
