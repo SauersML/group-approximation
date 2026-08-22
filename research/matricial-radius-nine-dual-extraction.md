@@ -45,3 +45,11 @@ implementation has accidentally reverted to the forbidden tracial NPA cone.
   defect coefficient.  Hence a finite-size SDP is useful only if accompanied
   by a rigorous all-size outer bound on that body.  Sampling or a dimension
   cap alone separates from an inner approximation and is not a certificate.
+- **Bounded-degree matrix identities do not provide the missing outer bound.**
+  `radius-nine-pi-exterior-all-size-fence` uses
+  the minimal PI degree and spectator amplification.  At radius nine the
+  standard-identity cases stop at dimension four, while `M_5(C)` has no
+  nonzero PI of degree at most nine; amplification preserves every normalized
+  moment and defect while making the dimension arbitrary.  Hence an
+  Amitsur--Levitzki/exterior-power case split cannot close this claim.  The
+  remaining target is a universal matrix trace inequality, not an identity.

@@ -76,3 +76,12 @@ bounded-complexity theorem target and a finite coefficient search problem.
   matrix-microstate sequence and no radius-nine separator exists.  Thus the
   remaining issue is an all-size moment-body membership theorem, not numerical
   dual extraction or rational reconstruction.
+- **The obvious finite-dimensional invariant-theory shortcut is fenced.**
+  By `radius-nine-pi-exterior-all-size-fence`, no
+  nonzero degree-nine polynomial identity survives all matrix sizes, and the
+  dimension-specific identities visible at this radius stop before `M_5`.
+  Since tensor amplification leaves the radius-nine moment/defect point fixed,
+  finitely many exterior-power or PI cases cannot yield the all-size outer
+  bound.  A successful separator must use a universal matrix-only trace
+  inequality (or another amplification-invariant restriction), not bounded
+  polynomial vanishing.
