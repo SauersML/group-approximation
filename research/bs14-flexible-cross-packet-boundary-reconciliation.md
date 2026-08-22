@@ -277,6 +277,19 @@ compressed Weil packets.
   level-agnostic, conductor-growing, or directly geometric rather than a
   fixed scalar moment separator.
 
+- **Character rigidity removes every finite-level mixture, but not the
+  regular face.**
+  `bs14-character-split-leaves-only-the-regular-microstate-face` performs
+  the central ultraproduct cut.  The finite-character branch is a
+  hyperfinite direct integral of congruence factors and is already covered
+  by hyperfinite HS stability, with no level extraction.  The complementary
+  branch has the canonical regular character and nonamenable GNS algebra
+  `L(PSL_2(Z[1/2]))`.  Producing the energy-paid boundary completion there
+  is precisely the missing full stability theorem.  Thus character
+  rigidity is available and exhausted; its unavailable strengthening is
+  regular-character microstate correction, not another classification of
+  exact characters.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

@@ -124,3 +124,11 @@ tuple.
   zero.  The active dilation must therefore recover a compatible endpoint
   without a fixed scalar level fingerprint, or use a conductor-dependent
   hierarchy whose complexity grows with the model.
+- The level-agnostic character split is complete but stops at the regular
+  face.  `bs14-character-split-leaves-only-the-regular-microstate-face`
+  cuts any ultraproduct character into a hyperfinite mixture of finite
+  congruence characters and the regular character.  Hyperfinite stability
+  corrects the former without naming levels.  The latter has GNS algebra
+  `L(PSL_2(Z[1/2]))` and is exactly the unresolved presentation-microstate
+  problem.  Hence the polar ledger must solve regular-character correction;
+  no further scalar character dichotomy is available or needed.
