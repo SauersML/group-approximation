@@ -68,3 +68,13 @@ of those occurrence ranges would be Fano caps, contradicting
 `fano-cap-range-sections-cannot-encode-nonaffine-relations` for the
 nonaffine seven-point 3SAT relation.  See
 `star-surjective-nonaffine-context-blocks-fano-empty-link-lift`.
+
+Allowing effective three-coordinate overlaps does not rescue the same
+assignment-faithful plan.  The exact calculation in
+`signed-three-face-rstar-petals-are-exact-cap-deletors` shows that one signed
+three-face petal deletes one chosen center atom, and a minimum line-hitting
+triple deletes a Fano line and leaves its affine-plane complement.  This is
+an explicit cap branch, not a way to preserve the seven-point source
+relation.  The unresolved resource would have to select such branches from
+the chosen operator model without imposing one affine branch on the full
+nonaffine source support.
