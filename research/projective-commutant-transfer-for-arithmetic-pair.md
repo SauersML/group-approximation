@@ -323,6 +323,21 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   positive primary mass that may spread over unbounded conductor depth; the
   Folner-atlas fence shows why a separate arithmetic coherence/contraction
   input is still necessary.
+- **The genuine congruence branching still has Folner depth marginals.**
+  `regular-congruence-depth-mixtures-remain-folner` tests the most immediate
+  weighted-shift rescue on actual arithmetic blocks.  In
+  `Reg(SL_3(Z/p^a))`, minimal-conductor bands form a geometric tail with
+  ratio `p^(-8)`.  Arbitrary rational top-level weights are realizable by
+  integer regular-block multiplicities, so resolving a wide triangular
+  top-level profile into genuine conductor bands merely convolves it with
+  this geometric kernel.  Fixed one- and two-depth translation variation
+  still tends to zero, the largest band atom tends to zero, and shifting the
+  window to infinity gives the canonical lattice character locally.  Thus
+  neither the `p^8` branching dimensions nor canonical normalization yields
+  a one-dimensional depth boundary.  The remaining payment must see the
+  joint parahoric branch labels, mixed-root coherence, or the global
+  building PVM; this construction does not supply those denominator
+  intertwiners and is not a full countermodel.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
