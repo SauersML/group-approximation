@@ -63,3 +63,13 @@ BMO loses `sqrt(L)` and row-valued John--Nirenberg produces a projection in
 martingale target is therefore a permutation-averaged BMO estimate followed
 by an exponential tail bound for the physical coordinate square function
 (or a product-cut theorem for the amplified Cuculescu projection).
+
+There is a finite-moment gain short of that endpoint.
+`code-gap-gives-finite-p-inverse-square-root` shows that the scalar
+inverse-square-root Laplacian factor has amplified `L_p` norm at most
+`sqrt(2p/delta)` under relative code distance `delta`.  Thus this factor no
+longer obstructs any fixed-`p` truncation scheme.  What remains is to place
+the layer-dependent two-form array in the correct tangent row/column module
+with a compatible finite-`p` Riesz/divergence estimate, then convert those
+moments into one approximately reducing projection in the physical matrix
+algebra.  The estimate does not supply either step or an endpoint cb bound.
