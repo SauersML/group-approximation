@@ -49,3 +49,9 @@ Morita matrix units; neutral same-carrier expressions remain phase-blind.
   equal positive branch mass and `L=0`. Any viable correction must add a
   mixed support test correlating that complement with `L`; positivity alone
   is insufficient.
+- The current phase-even Atlas candidates do not supply that mixed test.
+  `atlas-even-gram-does-not-pay-toeplitz-exit` shows that the common quarter
+  carrier is transverse to the child algebra, the mixed `C_3` Gram has a
+  collision-regular zero, and q14's positive wall has an exact finite-factor
+  escape after tensoring with the Toeplitz spectator. What remains possible
+  is only a matrix-specific adaptive Wedderburn/support selection.

@@ -114,3 +114,12 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   exactly canceled by the factor-two full-input return. Consequently the
   best recurrence coefficient is `c=1`, as proved by
   `involutive-compression-gram-ledger-has-unit-loss`.
+- **Use collision, q14, or the canonical Atlas quarter carrier to localize
+  the positive leakage.** The carrier fingerprints do not match: the quarter
+  projection is transverse to both child character algebras, and the mixed
+  `C_3` Gram has a collision-regular zero interval. q14 gives a lower wall on
+  another covariance coordinate, but an exact augmented finite-factor model
+  tensored with the Toeplitz spectator refutes any universal tracial upper
+  transfer to `L`. This mismatch is
+  `atlas-even-gram-does-not-pay-toeplitz-exit`; only a matrix-specific
+  adaptive support selection remains open.
