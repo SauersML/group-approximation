@@ -652,7 +652,38 @@ theorem le_length_flatten {β : Type} (a : ℕ) :
         ih fun x hx => h x (by simp [hx])
       omega
 
-/-- The `ν`-th avatar is at least `L·(K·ν+2)` letters long. -/
+/-- The length of a flattening, as the sum of the block lengths. -/
+theorem length_flatten_eq {β : Type} :
+    ∀ ls : List (List β), ls.flatten.length = (ls.map List.length).sum := by
+  intro ls
+  induction ls with
+  | nil => simp
+  | cons l ls ih =>
+      rw [List.flatten_cons, List.length_append, ih, List.map_cons, List.sum_cons]
+
+/-- **The exact length of an avatar.**  Block `j` is one `y₁` and `K·ν+j+1`
+copies of `y₂`, so the avatar is `∑_{j<L} (K·ν + j + 2)` letters.
+
+This is strictly sharper than the two bounds below, which discard the
+triangular term `∑ j` — for the design's constants that term is about `L²/2`
+and is the dominant part of a low-index avatar, so a margin computed from
+`le_length_avatarWord` alone pays for it twice.  The sum is left unevaluated on
+purpose: whoever is doing margin arithmetic can apply Gauss to it in the
+setting where the rest of the arithmetic lives. -/
+theorem length_avatarWord (L K ν : ℕ) :
+    (avatarWord L K ν).length = ((List.range L).map fun j => K * ν + j + 2).sum := by
+  have hfun : (List.length ∘ fun j => blockWord (codeExponent K ν j))
+      = (fun j : ℕ => K * ν + j + 2) := by
+    funext j
+    show (blockWord (codeExponent K ν j)).length = K * ν + j + 2
+    rw [length_blockWord]
+    unfold codeExponent
+    omega
+  show ((List.range L).map fun j => blockWord (codeExponent K ν j)).flatten.length = _
+  rw [length_flatten_eq, List.map_map, hfun]
+
+/-- The `ν`-th avatar is at least `L·(K·ν+2)` letters long.  Sharper than this,
+and usually worth using instead, is `length_avatarWord`. -/
 theorem le_length_avatarWord (L K ν : ℕ) :
     L * (K * ν + 2) ≤ (avatarWord L K ν).length := by
   have h : ∀ l ∈ (List.range L).map (fun j => blockWord (codeExponent K ν j)),
@@ -722,12 +753,53 @@ the same kind as §2's padding — and none of them constrains the group.
 structure SourceData (E : Type) [Group E] (N : Subgroup E) (s : E) where
   /-- A word presentation of the source. -/
   pres : WordPresentation E
-  /-- **The positivity convention**: every relator is a positive word.  This
-  buys two things, not one: the rewrite is cyclically reduced, and — since a
-  positive word is in particular *reduced* — the rewrite's `y₂`-runs stay at
-  the honest `A_max`, with no cancellation cascading past a junction to merge
-  two runs.  Both are what `AvatarMetricCheck` reads off the family. -/
+  /-- **The positivity convention**: every relator is a positive word.
+
+  What this buys outright is cyclic reducedness of the rewrite
+  (`Blueprint.relators_cyclicallyReduced`).  It also buys something for the run
+  ceiling, but *less than it looks*, and the difference is worth being exact
+  about.  Because a positive word is in particular reduced, nothing cancels at
+  a junction, so there are no junction residues and the ceiling does not have
+  to be doubled to accommodate them.  It does **not** follow that the runs are
+  bounded by `A_max` at all: a positive word may be `y₂` a thousand times over.
+  That bound is a property of the avatar code's block structure — every `y₂`-run
+  is separated by a `y₁` and carries a code exponent — and it needs the
+  corresponding induction, which lives in `AvatarRunBound`.  Until that lands,
+  `AvatarMetricCheck.AvatarMetricData.runs_short` stays an instantiation
+  hypothesis and is not a consequence of this field. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
+  /-- **Per-relator padding, as data.**  Each relator carries a *private*
+  generator: one occurring exactly once in it, and in no other relator.  This
+  is convention (2)'s per-relator tail, stated so that it can be consumed
+  rather than merely intended.
+
+  **What it gives, and what it does not.**  It gives
+  `AvatarMetricCheck.AvatarMetricData.uniqueMark`: the private generator's
+  avatar occurs once in the relator, so each of its `L` exponents is read at
+  exactly one cyclic position, which is the unique mark that field asks for.
+
+  It does **not** give `pinned`, and the gap is worth stating rather than
+  papering over.  A window carrying three separators spans two complete
+  `y₂`-runs; an avatar has `L = 16·(V+1)` blocks, so such a window normally
+  sits entirely *inside one avatar*.  It therefore pins `(ν, j)` — which
+  generator, which block — but not which relator, because the same generator
+  may occur in two different relators.  Rotating each of those to begin at the
+  window makes it a common prefix of two distinct symmetrized relators.  So
+  `pinned` at threshold three would need every avatar *occurrence* to be unique
+  across the whole family, which is far stronger than one private generator per
+  relator, and is not something a presentation of an arbitrary group can be
+  massaged into.
+
+  The way out is to weaken the conclusion rather than strengthen this
+  hypothesis: a piece may legitimately be about one avatar long — two relators
+  sharing a generator share that generator's whole avatar — and the metric
+  condition survives provided relators are long *measured in avatars*.  That
+  moves the margin off `piece ≤ 3·A_max + 3` and onto the ratio of a single
+  avatar to a whole relator, where the spread between the shortest and longest
+  avatar is what has to be paid for.  The arithmetic belongs with whoever owns
+  the margin. -/
+  privateGen : ∀ r ∈ pres.rel, ∃ i : Fin pres.card,
+    r.count (i, true) = 1 ∧ ∀ r' ∈ pres.rel, r' ≠ r → (i, true) ∉ r'
   /-- The first designated defect element, as a word. -/
   basisOneWord : List (Fin pres.card × Bool)
   /-- The second designated defect element, as a word. -/
@@ -759,6 +831,9 @@ structure PartnerData (B : Type) [Group B] where
   pres : WordPresentation B
   /-- **The positivity convention**: every relator is a positive word. -/
   rel_positive : ∀ r ∈ pres.rel, ∀ c ∈ r, c.2 = true
+  /-- **Per-relator padding, as data**; see `SourceData.privateGen`. -/
+  privateGen : ∀ r ∈ pres.rel, ∃ i : Fin pres.card,
+    r.count (i, true) = 1 ∧ ∀ r' ∈ pres.rel, r' ≠ r → (i, true) ∉ r'
   /-- The two designated long partner words `T'₁`, `T'₂`. -/
   tiePartnerWord : Fin 2 → List (Fin pres.card × Bool)
   /-- They are positive. -/

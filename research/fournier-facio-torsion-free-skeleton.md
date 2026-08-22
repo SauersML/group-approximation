@@ -18,14 +18,21 @@ torsion-free** group `G` with property (T) together with:
 - `Gamma = pi(P) <= G` with property (T), infinite, and
   `G = <Gamma, t_1, t_2>` with `t_i Gamma t_i^-1 <= Gamma`;
 - a finitely presented simple torsion-free group `S` (Burger--Mozes or
-  Hyde--Lodha) with `pi|_S` injective, and `J = t_1 pi(S) t_1^-1` satisfying
-  `[Gamma, J] = 1`, `Gamma cap J = 1`, and `t_1 J t_1^-1 <= Gamma`.
+  Hyde--Lodha) with `pi|_S` injective, and `J = t_1^-1 pi(S) t_1` satisfying
+  `[Gamma, J] = 1`, `Gamma cap J = 1`, and `t_1 J t_1^-1 = pi(S) <= Gamma`.
+
+**Conjugation convention.**  `J` is `pi(S)` pushed *out* of `Gamma` by the
+inverse stable letter, not into it.  The direction is forced: `t_1` compresses,
+`t_1 Gamma t_1^-1 <= Gamma`, so `t_1 pi(S) t_1^-1` would lie inside `Gamma`,
+and then `[Gamma, J] = 1` together with `Gamma cap J = 1` would give `J = 1`
+and the claim would be vacuous.  This matches the formalization, whose root is
+`c = u^-1 s u` with `s` in the simple factor and `u c u^-1 = s`.
 
 Consequently `G` carries a `KazhdanCompressionCore` with `iota` the
 inclusion of `Gamma`, `t = t_1`, and `c` any element of `J`; and — this part
 is not in the paper — **its compression defect contains a copy of `S`**:
 
-    S' := t_1 J t_1^-1  is a copy of S inside Gamma, and
+    S' := t_1 J t_1^-1 = pi(S)  is a copy of S inside Gamma, and
     S' <= defectNormal.
 
 So the published torsion-free group already satisfies every hypothesis of

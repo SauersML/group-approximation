@@ -87,7 +87,7 @@ theorem counter_linear {j : ℤ → ℤ} {a b : ℤ}
     (hstep : ∀ i : ℤ, a ≤ i → i < b → j (i + 1) = j i + 1) :
     ∀ i : ℤ, a ≤ i → i ≤ b → j i = j a + (i - a) := by
   intro i hai
-  induction i, hai using Int.le_induction with
+  induction i, hai using Int.leInduction with
   | base =>
       intro _
       simp

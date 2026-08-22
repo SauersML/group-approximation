@@ -27,9 +27,10 @@ pointwise operator-norm correction of every asymptotic representation.
 ## What the shape of the proof implies
 
 Two readings that the statement alone does not force, recorded when this node
-and `fournier-facio-stability-from-total-corona-triviality` were merged into
-one lane (the latter proved the same thing in one step and has been retired in
-favour of this factoring).
+and the retired node *fournier-facio-stability-from-total-corona-triviality*
+were merged into one lane (the latter proved the same thing in one step and has
+been retired in favour of this factoring; the name is written unbackticked
+because it resolves to nothing and is kept only for anyone tracing the merge).
 
 - **The stability it yields is degenerate.**  `G` is matricially stable
   because it admits no nontrivial finite-dimensional approximation at all, not

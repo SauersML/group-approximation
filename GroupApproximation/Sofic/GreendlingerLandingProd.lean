@@ -321,7 +321,7 @@ theorem not_stoppingAlternativeBetaSharp [DecidableEq α]
   have htpos : 0 < t'.length := List.length_pos_iff.mpr hne
   have htq : (0 : ℚ) < (t'.length : ℚ) := by exact_mod_cast htpos
   have hinvnil : FreeGroup.invRev ([] : List (α × Bool)) = [] :=
-    List.length_eq_zero_iff.mp (by rw [FreeGroup.invRev_length])
+    List.length_eq_zero_iff.mp (by rw [FreeGroup.invRev_length]; rfl)
   have hsitefree :
       ¬ConjugatorAbsorbedSite ([] : List (α × Bool)) [] []
         ([] : List (FreeGroup α × List (α × Bool))) := by

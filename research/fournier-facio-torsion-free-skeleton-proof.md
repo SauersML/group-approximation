@@ -23,8 +23,8 @@ Minasyan--Osin; and let `pi : E -> G` be Hull's common quotient of `E` and
 with property (T) and `pi(S) != 1`, hence `pi|_S` injective by simplicity.
 Setting `Gamma = pi(P)` and `t_i = pi(u_i)`, the paper records
 `G = <Gamma, t_1, t_2>`, `t_i Gamma t_i^-1 <= Gamma`, and for
-`J = t_1 pi(S) t_1^-1` that `[Gamma, J] = 1`, `Gamma cap J = 1` and
-`t_1 J t_1^-1 <= Gamma` (these are exactly the hypotheses the paper needs
+`J = t_1^-1 pi(S) t_1` that `[Gamma, J] = 1`, `Gamma cap J = 1` and
+`t_1 J t_1^-1 = pi(S) <= Gamma` (these are exactly the hypotheses the paper needs
 for the OpenAI/Kun--Thom criterion, its Proposition 1.2).
 
 **The compression core.**  `[Gamma, J] = 1` is `comm_c` for any `c in J`;
@@ -32,8 +32,9 @@ for the OpenAI/Kun--Thom criterion, its Proposition 1.2).
 recorded in the paper.  So `KazhdanCompressionCore` is satisfied with
 `t = t_1` and `c in J`.
 
-**The simple group lies in the defect.**  Put `S' = t_1 J t_1^-1`.  Then
-`S'` is a conjugate of `pi(S)`, hence isomorphic to `S` — simple, nonabelian,
+**The simple group lies in the defect.**  Put `S' = t_1 J t_1^-1`, which with
+the convention `J = t_1^-1 pi(S) t_1` is `pi(S)` on the nose.  Then
+`S'` is isomorphic to `S` — simple, nonabelian,
 therefore centreless — and `S' <= Gamma` by the paper's third property.  The
 transported root is `d = t_1 c t_1^-1 in S'`.  Choose `c != 1`, so `d != 1`;
 since `S'` is centreless there is `gamma in S'` with `[d, gamma] != 1`, and

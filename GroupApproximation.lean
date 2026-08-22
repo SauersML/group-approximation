@@ -1385,6 +1385,7 @@ import GroupApproximation.Higman.EmbeddingTheorem
 import GroupApproximation.Higman.ChiodoReduction
 import GroupApproximation.Higman.RowKernel
 import GroupApproximation.Higman.HNNDescent
+import GroupApproximation.Algebra.HNNSubextension
 import GroupApproximation.Sofic.GreendlingerChunks
 import GroupApproximation.Sofic.OsinRelativeSmallCancellation
 import GroupApproximation.Analysis.CStarHilbertModule
@@ -1458,6 +1459,8 @@ import GroupApproximation.Sofic.GreendlingerSharpTwins
 import GroupApproximation.Sofic.GreendlingerDeepVacuitySharp
 import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
 import GroupApproximation.Sofic.GreendlingerDeepInduction
+import GroupApproximation.Sofic.GreendlingerDeepTailWindow
+import GroupApproximation.Sofic.GreendlingerLandingConfined
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
 import GroupApproximation.Sofic.GreendlingerSharpResidualWiring
 import GroupApproximation.Sofic.GreendlingerSharpResidualWiring2
@@ -1492,6 +1495,7 @@ import GroupApproximation.Higman.AmalgamTorsionDischarge
 import GroupApproximation.Higman.TheoremThreeAssembly
 import GroupApproximation.Higman.EnumeratedRange
 import GroupApproximation.Higman.EnumeratedRangeTrace
+import GroupApproximation.Higman.EnumeratedRangeTraceCorrectness
 import GroupApproximation.Higman.TransportFive
 import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.OmegaTower
