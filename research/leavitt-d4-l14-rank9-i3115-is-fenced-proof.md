@@ -26,11 +26,18 @@ K=A0^-1H^-1C1^-1H E3^-1H^-1E2^-1H
 
 In branch I, `B0=1` and `H=h_2`, where `h=pd`.  The last carrier equation
 has two cases.  If `h=1`, then `p=w,d=w^-1` and `K=1`.  Otherwise
-`h=p` is a nontrivial involution and `w=d=1`; the boundary contains unique
-nontrivial copy-3 and copy-1 syllables and is not one-copy.  Branch II forces
+`h=p` is a nontrivial involution and `w=d=1`; its boundary is
+
+```text
+K=p_3p_2(p^-1u^-1)_0p^-1_1p_2u_0p_2.
+```
+
+It cannot land in copy 1 because the initial `p_3` cannot vanish, and it
+cannot land in another copy because its unique `p^-1_1` cannot vanish.
+Branch II forces
 `H=1,c=z,p=z^-1,d=1` and has `K=1`.  Branch III has the same carrier split
 as branch I: its `h=1` case has identity boundary, while its involutory case
-again retains unique copy-3 and copy-1 syllables.
+has the same displayed residue and the same unique-syllable fence.
 
 In branch IV, the first conjugacy equation has the same four maximal
 noncrossing schemes as in the `0;142` proof.  They force
@@ -55,5 +62,6 @@ f=p!=1, f^2=1, a=1, v=1,
 K=p_3p_2(p^-1u^-1)_0p^-1_1p_2u_0p_2.
 ```
 
-The last word is visibly multi-copy.  This exhausts the class.
-
+For each of the last two involutory residues, the copy-1 syllable is unique.
+A one-copy reduction would therefore have to land in copy 1, but its initial
+nontrivial copy-3 syllable cannot then disappear.  This exhausts the class.
