@@ -47,6 +47,17 @@ part of the remaining hole.
   density is exactly `1/|Q_n|`.  Thus `(PCD1)` cannot follow directly from
   canonical word moments plus Schur identities; the added coefficient cell
   must visibly fail in this canonical dilution model.
+- The actual packet-headed Toeplitz defect does fail on that model only
+  after a square coefficient reservoir has been decoded.
+  `toeplitz-defect-rejects-tensor-dilution-only-after-square-decoding`
+  applies trace cyclicity to `YX=1`, `1-XY=P_f` and gets the stronger direct
+  floor `epsilon_l^2+epsilon_h^2>=tau(P_f)^2/2`.  But arbitrary group
+  microstates need not be coefficient-ring representations; the same
+  relations decoded on rectangular Morita source/target objects have exact
+  positive-head models.  Hence a proposed PCD coefficient cell must
+  authenticate the same reservoir or charge its change.  Once it does,
+  trace cyclicity is already terminal and the old-commutant placement is
+  unnecessary.
 - The local Schur theorem already supplies the density `c q^2`; the missing
   statement is an ordinary-word coefficient covariance that embeds its
   canonical three-generator Reynolds core into the compressor commutant.
