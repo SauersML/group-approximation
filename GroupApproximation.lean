@@ -1501,6 +1501,7 @@ import GroupApproximation.Higman.EnumeratedRangeTrace
 import GroupApproximation.Higman.EnumeratedRangeTraceCorrectness
 import GroupApproximation.Higman.EnumeratedRangeProjection
 import GroupApproximation.Higman.EnumeratedRangeVerify
+import GroupApproximation.Higman.TraceRelationRE
 import GroupApproximation.Higman.HigmanCodingDictionary
 import GroupApproximation.Higman.HigmanAtoms
 import GroupApproximation.Higman.HigmanVariableCalculus
