@@ -86,6 +86,19 @@ all-representations decoder `(ALD1)--(ALD2)`.
   finite-dimensional sector to have dimension divisible by `p^(2^N)`, but
   that sector may still occupy all of an arbitrarily large matrix model.
   Thus packet rank alone cannot prove `(BSP2)`.
+- **Finitely many paired prefix phases still miss the rare deep cells.**
+  `paired-prefix-shears-have-bounded-joint-approximate-rank` extends the
+  prefix truncation theorem to a vector of shear outcomes read from one
+  transcript.  After changing only the common rare tail event, the
+  concatenated phase tables have dimension-independent rank; tensor products
+  of the low-rank Weyl models retain the marked phase and canonical marginal
+  moments.  Hence using two (or any fixed finite number of) root coordinates
+  only as extra commutator phases does not provide the boundary payment.
+  This does not rule out `(BSP2)`, because its window and constant may grow
+  with `N`.  It says exactly what that growth must buy: explicit overweighting
+  of the depth-`N` tail, or non-phase same-reservoir Gram/support
+  authentication.  The paired-triangle lemma cannot be replaced by a
+  bounded-average vector-valued prefix test.
 - **Additive first-detection does not split the boundary.**
   `leavitt-prefix-boundaries-do-not-split-additive-character-mass` constructs
   one additive character which is nontrivial on every binary prefix at every
