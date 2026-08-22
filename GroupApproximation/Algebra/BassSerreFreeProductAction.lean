@@ -11,12 +11,13 @@ already completely algebraic.  For `F = G ∗ Multiplicative ℤ`, its vertices
 are the left cosets of the two free factors and its edges are the translates
 of the pair of base cosets.  Left multiplication gives the canonical action.
 
-The key output is `baseEdge_pointwiseStabilizer_eq_bot`: the pointwise
-stabilizer of the base edge is trivial.  This is the finite-stabilizer input in
-the WPD/acylindricity argument, proved directly from the two free-product
-retractions.  No tree, hyperbolicity, or acylindricity assertion is stored as
-an input here.  The remaining geometric step is to identify the graph below
-with a tree using the reduced-word normal form.
+The graph is proved to be a tree by transporting binary free-product words to
+Mathlib's indexed reduced normal forms.  The other key output is
+`baseEdge_pointwiseStabilizer_eq_bot`: the pointwise stabilizer of the base
+edge is trivial.  This is the finite-stabilizer input in the subsequent
+WPD/acylindricity argument, proved directly from the two free-product
+retractions.  No hyperbolicity or acylindricity assertion is stored as an
+input here.
 -/
 
 namespace GroupApproximation

@@ -1,4 +1,6 @@
 import GroupApproximation.Sofic.LiteralAffineCongruenceBase
+import GroupApproximation.Sofic.LiteralAffineCongruenceTorsionFree
+import GroupApproximation.Sofic.LiteralAffineCongruenceKazhdan
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Algebra.ProductFinitePresentation
 import GroupApproximation.Algebra.HNNFinitePresentation

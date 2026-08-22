@@ -637,6 +637,108 @@ noncomputable def garlandGramRow {Row : Type} [Fintype Row]
 def garlandGap (regularDegree : ℕ) (gap : ℚ) : ℚ :=
   (2 * gap - 1) / regularDegree
 
+/-- Gram matrix obtained by pulling back the finite rational link factor. -/
+noncomputable def linkGramPullback {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (i l : Generator) : RatGroupRing (Presented T) :=
+  ∑ u, ∑ v,
+    adjoint (orientedCoefficient T u i) *
+      MonoidAlgebra.single 1 (gramMatrix q u v) *
+        orientedCoefficient T v l
+
+/-- Scaling every Fox row by `1/d` scales its Gram matrix by `1/d²`. -/
+theorem sum_scaledBoundary_gram
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (regularDegree : ℕ) (i l : Generator) :
+    (∑ j, adjoint (scaledBoundary T regularDegree j i) *
+      scaledBoundary T regularDegree j l) =
+      MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+        (∑ j, adjoint (boundary T j i) * boundary T j l) := by
+  simp [scaledBoundary, Finset.mul_sum, adjoint_mul, mul_assoc]
+  noncomm_ring
+
+/-- The `d` copies of rows scaled by `1/d` have total Gram coefficient
+`1/d`. -/
+theorem sum_liftedLinkRow_gram {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (regularDegree : ℕ) (hdegree : 0 < regularDegree)
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (i l : Generator) :
+    (∑ copyRow : Fin regularDegree × Row,
+      adjoint (liftedLinkRow T regularDegree q copyRow.2 i) *
+        liftedLinkRow T regularDegree q copyRow.2 l) =
+      MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
+        linkGramPullback T q i l := by
+  classical
+  rw [Fintype.sum_prod_type]
+  simp [liftedLinkRow, linkGramPullback, adjoint_sum, adjoint_mul,
+    Finset.mul_sum, Finset.sum_mul, mul_assoc, Fintype.card_fin]
+  have hd : (regularDegree : ℚ) ≠ 0 := by exact_mod_cast hdegree.ne'
+  field_simp [hd]
+  noncomm_ring
+
+/-- The four internally chosen rows realize exactly the remaining multiple of
+`D D⁺`. -/
+theorem sum_coboundaryFactor_gram {Row : Type} [Fintype Row]
+    {T : TriangleIndex → Triangle (Generator := Generator)}
+    {regularDegree : ℕ} {gap : ℚ}
+    {q : Row → SignedGenerator (Generator := Generator) → ℚ}
+    (h : LinkCertificateChecks T regularDegree gap q) (i l : Generator) :
+    (∑ k : Fin 4,
+      adjoint (MonoidAlgebra.single 1 (coboundaryFactor h k) *
+        adjoint (generatorCoboundary (generator T) i)) *
+      (MonoidAlgebra.single 1 (coboundaryFactor h k) *
+        adjoint (generatorCoboundary (generator T) l))) =
+      MonoidAlgebra.single 1
+          (garlandCoboundaryCoefficient
+            (Generator := Generator) regularDegree gap) *
+        (generatorCoboundary (generator T) i *
+          adjoint (generatorCoboundary (generator T) l)) := by
+  simp [adjoint_mul, Finset.mul_sum, ← sum_sq_coboundaryFactor h, mul_assoc]
+  noncomm_ring
+
+/-- Pullback of the mean-zero projector. -/
+theorem meanZeroProjector_pullback
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1 (meanZeroProjector u v) *
+          orientedCoefficient T v l) =
+      (if i = l then MonoidAlgebra.single 1 2 else 0) -
+        MonoidAlgebra.single 1
+          ((1 : ℚ) /
+            Fintype.card (SignedGenerator (Generator := Generator))) *
+          (generatorCoboundary (generator T) i *
+            adjoint (generatorCoboundary (generator T) l)) := by
+  classical
+  simp [meanZeroProjector, Finset.sum_sub_distrib, adjoint_sum,
+    Finset.mul_sum, Finset.sum_mul, sum_orientedCoefficient,
+    sum_adjoint_orientedCoefficient_mul, adjoint_mul, mul_assoc]
+  noncomm_ring
+
+/-- Pulling back the checked normalized link identity. -/
+theorem normalizedLink_pullback {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (regularDegree : ℕ) (gap : ℚ)
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (h : LinkCertificateChecks T regularDegree gap q) (i l : Generator) :
+    MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+        linkLaplacianPullback T i l =
+      MonoidAlgebra.single 1 (gap / regularDegree) *
+        (∑ u, ∑ v,
+          adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1 (meanZeroProjector u v) *
+              orientedCoefficient T v l) +
+      MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
+        linkGramPullback T q i l := by
+  classical
+  have hd : (regularDegree : ℚ) ≠ 0 := by exact_mod_cast h.1.ne'
+  simp [linkLaplacianPullback, linkGramPullback,
+    linkGap_identity_of_checks h, Finset.mul_sum, Finset.sum_mul, mul_assoc]
+  field_simp [hd]
+  noncomm_ring
+
 /-- The exact Garland/Żuk certificate assembled entirely from finite link
 data.  There is no analytic or literature premise: all rows are explicit
 rational group-ring expressions. -/
@@ -663,13 +765,7 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
     simp
   · intro i l
     unfold hodgeMatrix
-    rw [show (∑ j,
-        adjoint (scaledBoundary T regularDegree j i) *
-          scaledBoundary T regularDegree j l) =
-        MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
-          (∑ j, adjoint (boundary T j i) * boundary T j l) by
-      simp [scaledBoundary, Finset.mul_sum, adjoint_mul, mul_assoc]
-      noncomm_ring]
+    rw [sum_scaledBoundary_gram]
     have hglobal := linkLaplacianPullback_eq_boundaryGram_add_diagonal
       T regularDegree h.2.2.1 i l
     rw [show (∑ j, adjoint (boundary T j i) * boundary T j l) =
@@ -677,13 +773,13 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
           (if i = l then MonoidAlgebra.single 1 (regularDegree : ℚ) else 0) by
       rw [hglobal]
       noncomm_ring]
-    simp only [garlandGramRow, GarlandRow, Fintype.sum_sum_type,
-      Fintype.sum_prod_type]
-    rw [sum_sq_coboundaryFactor h]
-    simp [liftedLinkRow, linkLaplacianPullback,
-      linkGap_identity_of_checks h, gramMatrix, meanZeroProjector,
-      garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-      Finset.mul_sum, Finset.sum_mul, adjoint_sum, adjoint_mul, mul_assoc]
+    simp only [garlandGramRow, GarlandRow, Fintype.sum_sum_type]
+    rw [mul_sub]
+    rw [sum_liftedLinkRow_gram T regularDegree h.1 q i l,
+      sum_coboundaryFactor_gram h i l,
+      normalizedLink_pullback T regularDegree gap q h i l,
+      meanZeroProjector_pullback]
+    simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix]
     noncomm_ring
 
 /-- A checked exact regular triangular-link table above the one-half threshold

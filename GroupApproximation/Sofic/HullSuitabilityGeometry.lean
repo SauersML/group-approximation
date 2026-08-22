@@ -1,6 +1,8 @@
 import GroupApproximation.Sofic.HullSuitableDefectSubgroup
 import Mathlib.Analysis.Subadditive
+import Mathlib.Analysis.SpecificLimits.Normed
 import Mathlib.Data.Fintype.Pigeonhole
+import Mathlib.Data.Nat.Log
 
 /-!
 # Hull's Definition 1.4 in full, and what its geometric clause forces
@@ -1960,6 +1962,218 @@ theorem radius_le_of_chain_avoids_ball {δ D R C : ℝ}
   push_cast at hchain ⊢
   linarith
 
+/-- Canonical logarithmic form of discrete divergence, choosing the least
+dyadic exponent that contains the chain length. -/
+theorem radius_le_add_clog_of_chain_avoids_ball {δ D R C : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (w : X) (y : ℕ → X)
+    (N : ℕ) (hNpos : 0 < N)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (havoid : ∀ i, i ≤ N → R ≤ dist (y i) w)
+    (hend : gromovProduct (y 0) (y N) w ≤ C) :
+    R ≤ C + D / 2 + Nat.clog 2 N * δ := by
+  exact radius_le_of_chain_avoids_ball hδ hδ0 w y N (Nat.clog 2 N)
+    hNpos (Nat.le_pow_clog (by norm_num) N) hedge havoid hend
+
+/-- **Exterior excursion components have only logarithmic room.**  Suppose an
+`N`-edge chain stays outside the radius-`R` ball, its two endpoints lie within
+one edge length `D` of the sphere, and positive progress separates the
+endpoints by at least `lN`.  The radius cancels from the dyadic divergence
+bound, leaving a linear-versus-logarithmic inequality for `N`.
+
+This is the specialized interior Morse bootstrap: maximal exterior components
+of a loxodromic orbit satisfy exactly these hypotheses. -/
+theorem linear_length_le_of_excursion_chain {δ D R l : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (w : X) (y : ℕ → X)
+    (N : ℕ) (hNpos : 0 < N)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (havoid : ∀ i, i ≤ N → R ≤ dist (y i) w)
+    (hends : dist (y 0) w ≤ R + D ∧ dist (y N) w ≤ R + D)
+    (hprogress : l * N ≤ dist (y 0) (y N)) :
+    l * N / 2 ≤ 3 * D / 2 + Nat.clog 2 N * δ := by
+  have hend : gromovProduct (y 0) (y N) w ≤ R + D - l * N / 2 := by
+    unfold gromovProduct
+    linarith
+  have hrad := radius_le_add_clog_of_chain_avoids_ball hδ hδ0 w y N
+    hNpos hedge havoid hend
+  push_cast at hrad ⊢
+  linarith
+
+/-- Powers of two eventually dominate every nonnegative affine function.  This
+is the numerical cutoff used by the dyadic Morse bootstrap. -/
+theorem eventually_affine_lt_pow_two (A B : ℝ) :
+    ∀ᶠ k : ℕ in Filter.atTop, A * k + B < (2 : ℝ) ^ k := by
+  have hk := tendsto_pow_const_div_const_pow_of_one_lt 1 (r := (2 : ℝ))
+    (by norm_num)
+  have hzero := tendsto_pow_const_div_const_pow_of_one_lt 0 (r := (2 : ℝ))
+    (by norm_num)
+  have ht : Filter.Tendsto
+      (fun k : ℕ => (A * k + B) / (2 : ℝ) ^ k)
+      Filter.atTop (nhds 0) := by
+    convert (hk.const_mul A).add (hzero.const_mul B) using 1
+    · funext k
+      push_cast
+      field_simp
+      ring
+    · ring
+  filter_upwards [ht.eventually_lt_const zero_lt_one] with k hklt
+  have hpow : (0 : ℝ) < (2 : ℝ) ^ k := by positivity
+  rw [div_lt_iff₀ hpow] at hklt
+  simpa using hklt
+
+/-- A concrete natural-number form of the dyadic bootstrap: no affine
+multiple of `clog` can dominate every radius. -/
+theorem exists_nat_gt_const_add_mul_clog (A B c d : ℕ) :
+    ∃ r : ℕ, c + d * Nat.clog 2 (A * r + B) < r := by
+  have hev := eventually_affine_lt_pow_two
+    ((A * (d + 1) : ℕ) : ℝ) (B : ℝ)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨K, hK⟩ := hev
+  let k : ℕ := max K (c + 1)
+  have hkK : K ≤ k := le_max_left _ _
+  have hkc : c < k := lt_of_lt_of_le (Nat.lt_succ_self c) (le_max_right _ _)
+  have hpR := hK k hkK
+  have hp : A * ((d + 1) * k) + B < 2 ^ k := by
+    exact_mod_cast hpR
+  have hclog : Nat.clog 2 (A * ((d + 1) * k) + B) ≤ k :=
+    Nat.clog_le_of_le_pow (Nat.le_of_lt hp)
+  refine ⟨(d + 1) * k, ?_⟩
+  omega
+
+/-- An affine function of the binary ceiling logarithm is eventually strictly
+smaller than its argument. -/
+theorem eventually_const_add_mul_clog_lt (c d : ℕ) :
+    ∃ M : ℕ, ∀ N : ℕ, M < N → c + d * Nat.clog 2 N < N := by
+  have hev := eventually_affine_lt_pow_two (d : ℝ) (c + d : ℕ)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨K, hK⟩ := hev
+  refine ⟨2 ^ (K + 1), fun N hMN => ?_⟩
+  have hclog : K + 1 < Nat.clog 2 N := by
+    rw [Nat.lt_clog_iff_pow_lt (by norm_num)]
+    exact hMN
+  have hN1 : 1 < N := lt_of_lt_of_le (by norm_num : 1 < 2 ^ (K + 1))
+    (Nat.le_of_lt hMN)
+  let t : ℕ := (Nat.clog 2 N).pred
+  have htK : K ≤ t := by
+    dsimp [t]
+    omega
+  have hpR := hK t htK
+  have hp : d * t + (c + d) < 2 ^ t := by exact_mod_cast hpR
+  have htN : 2 ^ t < N := by
+    dsimp [t]
+    exact Nat.pow_pred_clog_lt_self (by norm_num) hN1
+  have ht : t + 1 = Nat.clog 2 N := by
+    dsimp [t]
+    have : 0 < Nat.clog 2 N := Nat.clog_pos (by norm_num) hN1
+    omega
+  omega
+
+/-- Consequently, a positive linear function cannot be bounded by a constant
+plus `δ·clog₂` for arbitrarily large natural arguments. -/
+theorem exists_bound_of_linear_le_add_clog {l D δ : ℝ} (hl : 0 < l) :
+    ∃ M : ℕ, ∀ N : ℕ,
+      l * N / 2 ≤ 3 * D / 2 + Nat.clog 2 N * δ → N ≤ M := by
+  obtain ⟨c, hc⟩ := exists_nat_ge (3 * D / l)
+  obtain ⟨d, hd⟩ := exists_nat_ge (2 * δ / l)
+  obtain ⟨M, hM⟩ := eventually_const_add_mul_clog_lt c d
+  refine ⟨M, fun N hlin => ?_⟩
+  have hscaled : (N : ℝ) ≤
+      3 * D / l + (2 * δ / l) * Nat.clog 2 N := by
+    have hl0 : l ≠ 0 := ne_of_gt hl
+    calc
+      (N : ℝ) = (2 / l) * (l * N / 2) := by field_simp; ring
+      _ ≤ (2 / l) * (3 * D / 2 + Nat.clog 2 N * δ) :=
+        mul_le_mul_of_nonneg_left hlin (by positivity)
+      _ = 3 * D / l + (2 * δ / l) * Nat.clog 2 N := by
+        field_simp [hl0]
+        ring
+  have hlog0 : (0 : ℝ) ≤ Nat.clog 2 N := by positivity
+  have hupper : (N : ℝ) ≤ c + d * Nat.clog 2 N := by
+    have hdmul := mul_le_mul_of_nonneg_right hd hlog0
+    push_cast at hc hdmul ⊢
+    linarith
+  have hupperNat : N ≤ c + d * Nat.clog 2 N := by exact_mod_cast hupper
+  by_contra hNM
+  have hstrict := hM N (lt_of_not_ge hNM)
+  omega
+
+/-- Uniform form of the exterior-component estimate. -/
+theorem exists_bound_excursion_chain_length {δ D l : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hl : 0 < l) :
+    ∃ M : ℕ, ∀ (R : ℝ) (w : X) (y : ℕ → X) (N : ℕ),
+      0 < N →
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i, i ≤ N → R ≤ dist (y i) w) →
+      dist (y 0) w ≤ R + D ∧ dist (y N) w ≤ R + D →
+      l * N ≤ dist (y 0) (y N) → N ≤ M := by
+  obtain ⟨M, hM⟩ := exists_bound_of_linear_le_add_clog
+    (l := l) (D := D) (δ := δ) hl
+  refine ⟨M, fun R w y N hN hedge havoid hends hprogress => ?_⟩
+  exact hM N (linear_length_le_of_excursion_chain hδ hδ0 w y N hN
+    hedge havoid hends hprogress)
+
+/-- Scanning left from an exterior vertex in a finite real-valued path finds
+the first exterior vertex after the path last entered the ball. -/
+theorem exists_left_excursion_boundary (q : ℕ → ℝ) {D R : ℝ} :
+    ∀ {j : ℕ}, q 0 < R → R ≤ q j →
+      (∀ i, i < j → q (i + 1) ≤ q i + D) →
+      ∃ a : ℕ, a ≤ j ∧ q a ≤ R + D ∧
+        ∀ i : ℕ, a ≤ i → i ≤ j → R ≤ q i := by
+  intro j
+  induction j with
+  | zero =>
+      intro h0 hj _
+      linarith
+  | succ n ih =>
+      intro h0 hj hstep
+      by_cases hn : R ≤ q n
+      · obtain ⟨a, haj, haR, hall⟩ := ih h0 hn
+          (fun i hi => hstep i (by omega))
+        refine ⟨a, by omega, haR, fun i hai hij => ?_⟩
+        rcases lt_or_eq_of_le hij with hi | rfl
+        · exact hall i hai (by omega)
+        · exact hj
+      · refine ⟨n + 1, le_rfl, ?_, fun i hai hij => ?_⟩
+        · have hs := hstep n (by omega)
+          linarith
+        · have hi : i = n + 1 := by omega
+          simpa [hi] using hj
+
+/-- The analogous scan to the right, parametrised by the remaining number of
+edges. -/
+theorem exists_right_excursion_boundary (q : ℕ → ℝ) {D R : ℝ} :
+    ∀ (d j : ℕ), q (j + d) < R → R ≤ q j →
+      (∀ i, i < d → q (j + i) ≤ q (j + i + 1) + D) →
+      ∃ b : ℕ, b ≤ d ∧ q (j + b) ≤ R + D ∧
+        ∀ i : ℕ, i ≤ b → R ≤ q (j + i) := by
+  intro d
+  induction d with
+  | zero =>
+      intro j hend hj _
+      simp only [add_zero] at hend
+      linarith
+  | succ n ih =>
+      intro j hend hj hstep
+      by_cases hnext : R ≤ q (j + 1)
+      · have hend' : q ((j + 1) + n) < R := by
+          convert hend using 1 <;> omega
+        have hstep' : ∀ i, i < n →
+            q ((j + 1) + i) ≤ q ((j + 1) + i + 1) + D := by
+          intro i hi
+          convert hstep (i + 1) (by omega) using 1 <;> omega
+        obtain ⟨b, hbn, hbR, hall⟩ := ih (j + 1) hend' hnext hstep'
+        refine ⟨b + 1, by omega, ?_, fun i hi => ?_⟩
+        · convert hbR using 1 <;> omega
+        · rcases Nat.eq_zero_or_pos i with rfl | hi0
+          · simpa using hj
+          · have := hall (i - 1) (by omega)
+            convert this using 1 <;> omega
+      · refine ⟨0, by omega, ?_, fun i hi => ?_⟩
+        · have hs := hstep 0 (by omega)
+          simp only [add_zero] at hs ⊢
+          linarith
+        · have hi0 : i = 0 := by omega
+          simpa [hi0] using hj
+
 /-! ### Geodesics
 
 The prerequisite the stability theorem needs and that nothing before it did.
@@ -2325,6 +2539,43 @@ theorem gromovProduct_dist_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ X)
       have h := gromovProduct_le_dist_of_mem_geodesic dist_nonneg hs hf w
       rwa [hA, hC] at h,
     exists_mem_geodesic_dist_le hδ hf hA hC w⟩
+
+/-- **Geodesic triangles are `3δ`-thin.**  A point on the `A--C` side lies
+within `3δ` of one of the other two sides.  At that point
+`(A|C)=0`; four-point hyperbolicity makes one of `(A|B)` and `(B|C)` at most
+`δ`, and the Gromov-product/geodesic dictionary costs another `2δ`. -/
+theorem exists_close_on_other_side_of_geodesic_triangle {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    {A B C : X}
+    {fAC fAB fBC : ℝ → X}
+    (hAC : IsGeodesicSegment fAC 0 (dist A C))
+    (hAC0 : fAC 0 = A) (hAC1 : fAC (dist A C) = C)
+    (hAB : IsGeodesicSegment fAB 0 (dist A B))
+    (hAB0 : fAB 0 = A) (hAB1 : fAB (dist A B) = B)
+    (hBC : IsGeodesicSegment fBC 0 (dist B C))
+    (hBC0 : fBC 0 = B) (hBC1 : fBC (dist B C) = C)
+    {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) (dist A C)) :
+    (∃ s ∈ Set.Icc (0 : ℝ) (dist A B),
+      dist (fAC t) (fAB s) ≤ 3 * δ) ∨
+    (∃ s ∈ Set.Icc (0 : ℝ) (dist B C),
+      dist (fAC t) (fBC s) ≤ 3 * δ) := by
+  have hzero : gromovProduct A C (fAC t) = 0 := by
+    have h := gromovProduct_le_dist_of_mem_geodesic dist_nonneg ht hAC (fAC t)
+    rw [hAC0, hAC1, dist_self] at h
+    exact le_antisymm h (gromovProduct_nonneg _ _ _)
+  have hfour := hδ (fAC t) A B C
+  rw [hzero] at hfour
+  have hmin : min (gromovProduct A B (fAC t))
+      (gromovProduct B C (fAC t)) ≤ δ := by linarith
+  rcases min_le_iff.mp hmin with hleft | hright
+  · left
+    obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hAB hAB0 hAB1
+      (fAC t)
+    exact ⟨s, hs, by rw [dist_comm]; linarith⟩
+  · right
+    obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hBC hBC0 hBC1
+      (fAC t)
+    exact ⟨s, hs, by rw [dist_comm]; linarith⟩
 
 /-- **Endpoint stability for a bounded-turn orbit.**  Under the strict local
 backtracking gap, the penultimate point of every finite orbit segment lies
