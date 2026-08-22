@@ -57,6 +57,14 @@ The remaining opening is exactly a **nonlinear equivariant factor** from the
 affine support hull, or a genuinely non-Cartan crossed-product embedding; no
 injective affine mask bridges the gap.
 
+For an IRS membership process, “factor” here cannot mean only the factor onto
+the subgroup-indicator sigma-algebra.  By
+`affine-haar-membership-does-not-promote-irs-trace`, even an affine-Haar
+membership factor may have canonical action crossed product `L(Gamma)` while
+the IRS GNS algebra is `L(Gamma/N)`.  A sufficient `(HSD1)` must start from an
+action crossed product which already contains the non-CE GNS/relation algebra,
+and its pullback must retain the relevant normalizer multiplication.
+
 At finite convolution level the direction issue is explicit.  The sum map
 `Sigma:E^n->E` gives
 

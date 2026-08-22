@@ -22,6 +22,16 @@ omega*(G)<1/2,
 where `omega_ZIRS` is the value over Z-aligned, edge-commuting IRS strategies.
 Moreover the value one is attained by an actual ZPC-IRS strategy.
 
+This existential attainment supplies no affine-Haar selection theorem.
+`zpc-does-not-force-affine-haar-membership-law` proves that the defining ZPC
+axioms and perfect acceptance are compatible with a membership Fourier moment
+of modulus `1/3`, while
+`affine-haar-membership-does-not-promote-irs-trace` proves that even a strategy
+whose membership law passes every affine-Haar moment test would not thereby
+place its IRS GNS algebra in the associated algebraic crossed product.  Thus
+the affine-envelope route needs both special joint-cylinder data and a
+separate trace-preserving retention of the non-CE relation normalizers.
+
 The proof combines TailoredMIP*=RE with the computable decreasing hierarchy
 `zpc-irs-value-computable-upper-hierarchy`.  If every non-halting TailoredMIP
 instance had ZPC-IRS value strictly below one, that decreasing hierarchy and

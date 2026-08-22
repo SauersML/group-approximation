@@ -57,3 +57,13 @@ obstruction: it is an affine phase absorbed by `(AHF3)`.  The genuine hurdle
 is whether all joint membership moments have modulus zero or one, equivalently
 whether the entire stabilizer-name law is affine Haar; subgroup closure is
 nonlinear and is not made automatic by homogenization.
+
+Two limits on that IRS application are now explicit.  First,
+`zpc-does-not-force-affine-haar-membership-law` shows that even a perfect
+finite ZPC strategy can have a membership Fourier moment of modulus `1/3`.
+Second, `affine-haar-membership-does-not-promote-irs-trace` shows that passing
+`(AHF2)` for the membership factor does not automatically retain the IRS GNS
+algebra: for a Dirac normal subgroup the name crossed product is `L(Gamma)`
+but the IRS GNS algebra is `L(Gamma/N)`.  The compiler applies to a source
+crossed product already known to be non-CE; it does not turn an affine-Haar
+stabilizer law alone into such a source.
