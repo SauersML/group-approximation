@@ -28,7 +28,14 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "prop:mf-equivalences": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences"),
+    "lem:tensor-amplification": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptTensorAmplification"),
     "thm:kazhdan-transport": (
+        "Sofic/KazhdanTransportAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant."
+        "manuscriptKazhdanTransport_anyUniverse"),
+    "cor:kazhdan-transport-subgroup": (
         "Sofic/KazhdanTransportAnyUniverse",
         "GroupApproximation.KazhdanAsymptoticCommutant."
         "manuscriptKazhdanTransport_anyUniverse"),
@@ -244,6 +251,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:quotclosure": (
         "Sofic/LiteralMFQuotientControls",
         "GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure"),
+    "thm:torsionfree": (
+        "LITERATURE",
+        "Fournier-Facio, Section 2; Hull, Theorem 7.1; Osin, Lemma 7.1"),
 }
 
 
@@ -269,6 +279,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:mftrace-group": [],
     "thm:trace": ["thm:A", "def:E", "thm:Esofic", "lem:mftrace-group"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
+    "lem:tensor-amplification": [],
+    "cor:kazhdan-transport-subgroup": ["thm:kazhdan-transport"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
@@ -297,6 +309,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
+    "thm:torsionfree": ["cor:intrinsic-nk"],
 }
 
 
