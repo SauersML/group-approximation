@@ -82,3 +82,13 @@ noncommuting extensions but cannot isolate the one ghost.  The remaining
 positive options are therefore a cylinder-predicate gap construction, or a
 genuinely nonliteral Hecke/Morita overlap whose actual meet is authenticated
 without literal equality in both context group algebras.
+
+There is now an explicit nonabelian outer-packet solution to the density
+part.  `standard-type-thin-common-reflection-sector` uses the standard type
+of `S_n`: one transposition has a rank-one negative projection `e` and a
+common complement `q` of relative trace `(n-2)/(n-1)`.  Taking `n` large
+makes `(CHD3)` automatic and does not identify the private context groups.
+The route `high-density-via-standard-reflection-corner` leaves only
+`standard-reflection-sector-bcs-groupifier`: enforce the BCS and overlap rows
+on this noncentral common complement by a block-escaping algebraic corner
+construction.
