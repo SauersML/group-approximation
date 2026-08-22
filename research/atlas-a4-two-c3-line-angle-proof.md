@@ -42,3 +42,12 @@ spectrum.  Removing the eigenvalue-one constant line leaves the maximum
 `lambda_*`; the projection identity
 `||(1-P_6)z||^2=||z||^2-||P_6z||^2` proves `(A4-C3-4)`.
 
+For the operator-space statement, identify Hilbert--Schmidt operators with
+the Hilbert tensor square.  Left-right compression by `P_i` becomes
+`P_i tensor conjugate(P_i)`, so the compressed connection spectrum consists
+of pairwise products of `(A4-C3-2)`.  The only product equal to one uses the
+constant eigenvector in both factors; every other product is at most
+`lambda_*`.  This proves `(A4-C3-6)`.  The idempotent formulas `(A4-C3-7)` are
+the standard central projections for the trivial and sign characters of
+`S3`.  Their orthogonality proves the support and scalar-orthogonality claims
+for `(A4-C3-8)`.

@@ -87,3 +87,12 @@ commutant, or the full `A8` commutant is required.
   extract the collision's dihedral angle as one vector in the `K` line space
   and show an `H_6` packet residual controls its orthogonal complement to the
   `H_6` line space.  Then the exact angle gap pays that mode quantitatively.
+- **The common variable is now canonical.**  With the trivial/sign central
+  idempotents of `K`, the free collision angle is
+  `Z(U)=E_K^- U^*rho(b_0)U E_K^+`.  The tensor-square version of the exact
+  angle theorem gives
+  `||Z-P_6 ZP_6||_2^2 >=((9-sqrt(17))/18)||Z||_2^2`.
+  Hence the last symbolic packet identity is precisely `(A4-C3-9)` in
+  `atlas-a4-two-c3-line-carriers-have-exact-angle-gap`: bound the left side
+  by the fourteen shifted common-`U` residuals.  This formulation is
+  invariant under the independent gauges of the existential factorizations.

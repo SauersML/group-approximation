@@ -55,17 +55,61 @@ In particular, if `z in ran(P_K)` is orthogonal to the constants, then
 The same constant holds in `Reg(A8)|_H=120 Reg(H)`, under every external
 amplification, and for Hilbert-space-valued copies of the connection.
 
+There is also an exact operator-space form.  On Hilbert--Schmidt operators put
+
+```text
+mathcal P_i(X)=P_i X P_i,       i in {6,K}.              (A4-C3-5)
+```
+
+After vectorization, the compression
+`mathcal P_K mathcal P_6 mathcal P_K` is the tensor product of
+`P_KP_6P_K` with its conjugate.  Its eigenvalues are the pairwise products of
+those in `(A4-C3-2)`.  Off the common scalar operator its norm is still at
+most `lambda_*` (one factor may be the constant eigenvector).  Hence every
+`Z in P_K L^2 P_K` orthogonal to the common scalar satisfies
+
+```text
+||Z-P_6 Z P_6||_2^2 >= gamma_* ||Z||_2^2.              (A4-C3-6)
+```
+
 Thus the continuous collision line holonomy is not invisible to the other
 packet component: once the **same common-frame defect vector** is known to
 lie in the `K` line carrier and is tested by the `H_6` line carrier, it pays
 the explicit dimension-free gap `(A4-C3-3)`.  No spectral estimate remains
 to be guessed at this stage.
 
-The exact remaining common-`U` equation is now isolated.  Starting from the
-shifted factorizations `U=X_j R Y_j`, one must show that the dihedral
-trivial/sign angle produced by collision is represented by a single vector
-`z` to which an `H_6` packet residual bounds `||(1-P_6)z||_2`.  Equation
-`(A4-C3-4)` would then bound the nonconstant angle by that residual.  Separate
-tree gauges do not provide such a common `z`; retaining the literal common
-`U` in all fourteen factorizations is essential.
+The exact remaining common-`U` equation can be written without choosing any
+factorization witnesses.  For `K=<r,s>` define its trivial/sign idempotents
 
+```text
+E_K^+=(1/6)(1+r+r^2)(1+s),
+E_K^-=(1/6)(1+r+r^2)(1-s).                              (A4-C3-7)
+```
+
+Let `b_0` be the repeated first-chart involution in collision `19243`, and
+write all matrices in the reference-aligned common frame.  The canonical
+collision line-angle operator is
+
+```text
+Z(U)=E_K^- U^* rho(b_0) U E_K^+.                       (A4-C3-8)
+```
+
+In the continuous dihedral family of
+`atlas-19243-has-continuous-regular-s3-line-holonomy`, `(A4-C3-8)` is exactly
+the off-diagonal sine of the free reflection angle.  It lies in
+`P_K L^2 P_K` and is orthogonal to the common scalar because it maps the
+trivial sector to the sign sector.
+
+Consequently the last gauge-free compression estimate required from the
+fourteen shifted common-`U` packet equations is
+
+```text
+||Z(U)-P_6 Z(U) P_6||_2
+ <= C [sum_j dist_2(U,D_j)^2+||q_19243(U)-1||_2^2]^1/2 (A4-C3-9)
+```
+
+Combining `(A4-C3-9)` with `(A4-C3-6)` controls the continuous angle
+quantitatively.  Independent witnesses `U=X_jRY_j` cannot define `Z`; formula
+`(A4-C3-8)` shows exactly why retaining their shared literal `U` is essential.
+The proof of `(A4-C3-9)`, or an exact common-`U` matrix countermodel to it, is
+the remaining coupling problem.

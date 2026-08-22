@@ -240,3 +240,11 @@ only has to transport its covariance block.
   `(9-sqrt(17))/18` as soon as the common-`U` equations expose the same defect
   vector to both components.  What remains is precisely that compression
   identity; separate rectangle gauges cannot supply it.
+- **Gauge-free form of the last identity.**  The collision angle is the
+  canonical off-diagonal block
+  `Z(U)=E_K^- U^*rho(b_0)U E_K^+`.  Vectorization puts it in the tensor-square
+  `K` line carrier, where the same exact connection gap holds.  It is enough
+  to prove that the fourteen common-`U` shifted packet residuals control
+  `||Z(U)-P_6Z(U)P_6||_2`; the independent factorization witnesses never
+  appear.  This is the smallest symbolic equation still missing before the
+  continuous collision sector can be removed.
