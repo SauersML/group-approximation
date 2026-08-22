@@ -39,7 +39,7 @@ The sum of the positive coefficients after the leading `1` is `N-1`, so
 the stated moment bound proves `(UFS3)`.
 
 Now assume `Gamma` were hyperlinear and take canonical-trace microstates.
-Fix `N` with `N alpha>1`.  Because `u` has infinite order, the finitely many
+Use the supplied `N` with `N alpha>1`.  By `(UFS0)`, the finitely many
 nonidentity words `u^k`, `0<|k|<N`, have canonical trace zero.  Thus their
 profile errors give `eta->0`.  The assumed contractions give
 `epsilon->0` and `||X||_2^2>=alpha-o(1)`.  The lower bound tends to `N alpha>1`

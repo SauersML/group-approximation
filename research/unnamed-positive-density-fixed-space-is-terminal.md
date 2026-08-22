@@ -8,8 +8,14 @@ distinct_from:
   self-similar-cylinder-return-regular-energy-floor: that minimizes the regular displacement of a named projection of fixed trace; this proves a finite-moment obstruction for a model-dependent contraction which need not come from the group algebra or converge to a regular projection.
 ---
 
-Let `Gamma=<S|R>` be finitely presented and let `u in Gamma` have infinite
-order.  Suppose that there is `alpha>0` such that every sufficiently accurate
+Let `Gamma=<S|R>` be finitely presented.  Suppose there are `alpha>0`, an
+integer `N` with `N alpha>1`, and a word `u in Gamma` such that
+
+```text
+u^k!=1                         (1<=k<N).              (UFS0)
+```
+
+Suppose also that every sufficiently accurate
 canonical-trace matrix microstate `U` admits an arbitrary contraction `X_U`
 (not required to be a word, a projection, a packet element, or functorially
 selected)
@@ -49,17 +55,19 @@ then
 tr(F_N(V))<=1+(N-1)eta.                               (UFS3)
 ```
 
-Choose one fixed integer `N` with `N alpha>1`.  Equations `(UFS2)--(UFS3)`
-are incompatible as `epsilon,eta->0`.  Since the canonical character of an
-infinite-order word has `tau_Gamma(u^k)=0` for every `0<|k|<N`, canonical
-microstates provide exactly the hypothesis of `(UFS3)`.
+Equations `(UFS2)--(UFS3)` are incompatible as `epsilon,eta->0`.  Condition
+`(UFS0)` makes the canonical character of every `u^k`, `0<|k|<N`, zero, so
+canonical microstates provide exactly the hypothesis of `(UFS3)`.  Infinite
+order is sufficient but not necessary: a torsion word of order greater than
+`1/alpha` also works by choosing `N` above `1/alpha` and at most that order.
 
 This removes a load-bearing-looking requirement from localized-return
 constructions.  A boundary, groupoid, Toeplitz, or finite-coordinate decoder
 does **not** have to identify its returned subspace with a fixed
 `q in C[Gamma]`, nor provide a trace-preserving lift of the boundary
 diagonal.  It is enough to force the existence of some model-dependent
-positive-mass approximate fixed contraction for one infinite-order word.  In
+positive-mass approximate fixed contraction for one word whose first enough
+powers remain nontrivial.  In
 particular, one need not polar-correct or spectrally threshold a soft carrier
 into a projection.  The carrier may wander arbitrarily between matrix models.
 
