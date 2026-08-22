@@ -168,6 +168,22 @@ bits must be exactly balanced.  Thus countable recoding supplies no softer
 intermediate regime; satisfying all binary Fourier tests is already the full
 compiler theorem.
 
+There is a canonical way to force the test, but it exposes the information
+loss rather than solving it.  `finite-field-convolution-haarizes-affine-support`
+proves that the `pn`-fold coordinatewise sum of independent copies of any
+stationary `F_p` label process converges to Haar measure on the closed linear
+span of its support differences.  The `pn+1` powers retain the affine offset;
+adjoining one fixed scalar coordinate makes that affine Haar action an
+invariant positive central corner of a genuine Haar linear action.  This
+preserves exactly the almost-sure affine equations and forgets every
+nonaffine support restriction.  Applied to the perfect tailored-game witness,
+this closes both easy cases: affine full-answer relations already give the
+non-hyperlinear LCS solution group, while a nonaffine accepted relation can
+acquire losing points under Haarization.
+Consequently convolution cannot bypass readable-control freezing; the only
+remaining question is whether the non-CE witness itself survives passage to
+that affine support hull.
+
 The actor restriction is substantially stronger than “not virtually free.”
 `haagerup-actors-cannot-host-property-t-algebraic-envelope` applies Popa's
 relative property-H rigidity theorem: if `Lambda` is Haagerup, then
