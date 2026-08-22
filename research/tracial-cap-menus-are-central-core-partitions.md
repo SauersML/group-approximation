@@ -168,6 +168,22 @@ so that density is central.  A commutant selector can change the weights of
 central representation types, but cannot change the local support inside a
 factor type.
 
+Consequently the theorem is also a **dilation firewall**.  Suppose the
+given model is embedded trace preservingly in a larger finite tracial
+algebra `N`, and projections `(q_K)` form a partition of unity, commute with
+the old model, and obey
+
+```text
+q_K pi(p_(c,a))=0             for a notin K_c.          (TCM14)
+```
+
+The normalized traces on `q_K N q_K`, restricted to the old algebra, give
+exactly a decomposition `(TCM5)`.  Hence such an external selector exists
+only if the original central cores already satisfy `(TCM8)`.  This includes
+central selector ancillas and arbitrary noncentral projections in the
+multiplicity commutant.  A tracial dilation cannot refine a full-support
+factor model into cap branches while preserving that model's trace.
+
 ## Consequences for the R-star petals
 
 For `R_*`, take `P` to be any finite menu of Fano-cap profiles and let
@@ -187,9 +203,8 @@ do one of the following:
 
 ```text
 find a different perfect trace already having central cap carriers;
-add a genuinely central selector while preserving the hard source model;
 or build a new representation not obtained by compressing the supplied one.
-                                                               (TCM14)
+                                                               (TCM15)
 ```
 
 The last alternative is a new compiler, not a decomposition theorem for
