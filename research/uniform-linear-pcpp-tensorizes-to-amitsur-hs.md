@@ -132,6 +132,14 @@ The same claim also gives a scalar-unitary witness on every square
 sums one and zero but normalized leaf distance `O(N^(-1/2))`.  Therefore
 imposing unit modulus on every leaf does not save the linear checker.
 
+`bounded-local-group-relators-cannot-test-continuous-normalized-unitary-sum`
+extends this obstruction from linear maps to arbitrary bounded-local,
+bounded-weighted-occurrence group-word verifiers by direct word telescoping.
+Hence a generic continuous normalized-sum PCP cannot be rescued merely by
+wordizing its rows.  Any remaining Amitsur route must exploit the special
+noncommutative Fock Gram structure or introduce a genuinely discrete robust
+quantization layer.
+
 Even after that scalar object is built, the rows of `D_N` are additive
 operator equations, not ordinary group relators.  Finite signed-permutation
 packets may supply local control sectors, but they do not wordize the linear
