@@ -8,8 +8,5 @@
 
 set -euo pipefail
 cd /projects/standard/hsiehph/sauer354/nonsofic_existence
-git fetch origin main
-git show origin/main:research/artifacts/rank-degree4-length12-triangles.py \
-  > /tmp/rank-degree4-length14-balanced-$SLURM_JOB_ID.py
-python3 /tmp/rank-degree4-length14-balanced-$SLURM_JOB_ID.py \
+python3 msi-stage/rank-degree4-length12-triangles.py \
   --length=14 --balanced-only
