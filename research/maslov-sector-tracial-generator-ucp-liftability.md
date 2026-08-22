@@ -194,6 +194,16 @@ Nevertheless it closes the Maslov sector by
   to the matrix dimension arbitrarily small.  A surviving argument must be
   genuinely arithmetic: either dimension-scale positivity or a direct
   amplification-stable complete-positivity theorem.
+- **Trace uniqueness does not supply the coordinate-scale upgrade.**
+  `vanishing-corner-reduction-maps-defeat-tracial-cp-upgrade` gives explicit
+  unital trace-preserving maps on full matrix factors which are `k_n`-positive
+  with `k_n->infinity`, are `o(1)` in normalized `2`-norm from the identity on
+  every fixed block-diagonal arithmetic tuple, but fail positivity at level
+  `k_n+1`.  The bad Schmidt-rank witness lives on a vanishing corner, so the
+  unique central-regular trace and all bounded root-word moments miss it.
+  Therefore character rigidity cannot by itself upgrade the lifts to ucp.
+  The remaining arithmetic theorem must make every escaping Choi witness
+  intersect the fixed root/Weyl operator system.
 - **Strict Gram regularization has no generic normalized-HS error bound.**
   `strict-psd-regularization-has-no-uniform-hs-affine-error-bound` gives
   bounded diagonal `H_d >= I` at affine distance `2/sqrt(d)` but distance one
