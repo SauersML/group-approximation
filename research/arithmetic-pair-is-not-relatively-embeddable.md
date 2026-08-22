@@ -172,6 +172,25 @@ group in this lane, hyperlinear.
   `K` and of `l^2(A/C)` are coordinatewise objects, and the double-coset
   translates `pi_k(a) B_k` must be asymptotically orthogonal subspaces of
   `L^2(M_(d_k))` of dimension `dim B_k`, so `dim B_k / d_k^2 -> 0`.
+- **Ruled out: "regular trace forces regular type" (do not retry).**  It is
+  tempting to close the whole `Lambda`-exact face at `n = 3` at once: an
+  `RE/C` witness has the regular trace of `A` (Gao's embedding is
+  trace-preserving on the group factor), hence the regular trace `delta_e`
+  on `C`, and on a genuine congruence tower `sigma_m = (+)_rho rho^(m_rho)`
+  the normalized trace is `sum_rho (m_rho dim rho / d)(chi_rho/dim rho)`; if
+  this forced the Plancherel weights `m_rho propto dim rho` (regular type),
+  `lambda-exact-face-of-the-collapse-closes` would finish both the coprime
+  and `p`-power faces and, with the confinement, close the claim under
+  `sl3-z-weakly-ucp-stable`.  It does NOT: pointwise convergence of the
+  weighted character sum to `delta_e` does not force the weights to
+  Plancherel (many non-Plancherel weight sequences have weighted character
+  sums tending to `delta_e`), exactly the scope limitation recorded in
+  `lambda-exact-face-of-the-collapse-closes` (Step 2) and the failure of
+  `fixed-shift-invariance-does-not-force-flat-profile`.  So the residual
+  after the coprime closure `sl3-re-lambda-exact-coprime-face-is-unfaithful`
+  and the regular-type `p`-power closure is genuinely the NON-regular-type
+  `p`-primary `Lambda`-exact towers (plus the weak-ucp outliers), the same
+  live enemy as `(RC3)`; regular trace does not shortcut it.
 - **What property (T) buys for `n = 3`.**  `W^*(pi_k(C))'` is the exact
   coordinate commutant of the microstate image, and by Peterson's
   interchange formula the ultraproduct of these commutants is
