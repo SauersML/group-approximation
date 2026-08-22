@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Exhaust cyclic one-copy boundaries over all three-winner carrier states."""
 
+import argparse
 import importlib.util
 from functools import lru_cache
 from itertools import combinations
 from math import gcd
 from pathlib import Path
+from time import monotonic
 
 
 HERE = Path(__file__).resolve().parent
@@ -167,21 +169,38 @@ ENCODED_K = tuple((copy, S.encode(coefficient)) for copy, coefficient in C.K)
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--carrier-index", type=int)
+    parser.add_argument("--trace-words", action="store_true")
+    args = parser.parse_args()
     carriers = S.combined_carrier_states(report=True)
     results = set()
     augmented_words = set()
     for index, (residual, images) in enumerate(carriers, 1):
+        if args.carrier_index is not None and index != args.carrier_index:
+            continue
         transformed = normalize_fp((copy, transform(coefficient, images))
                                    for copy, coefficient in ENCODED_K)
         base = residual, images + ((Q,),)
-        for rotation in rotations(transformed):
+        cuts = rotations(transformed)
+        if args.trace_words:
+            print(f"TRACE carrier={index} rotations={len(cuts)} "
+                  f"syllables={len(transformed)}", flush=True)
+        for rotation_index, rotation in enumerate(cuts):
             for target in range(4):
                 augmented = normalize_fp(rotation + ((target, (-Q,)),))
                 augmented_words.add(augmented)
-                for boundary in maximal_states(augmented):
+                started = monotonic()
+                boundary_choices = maximal_states(augmented)
+                if args.trace_words:
+                    print(f"TRACE carrier={index} rotation={rotation_index} "
+                          f"target={target} syllables={len(augmented)} "
+                          f"forest_states={len(boundary_choices)} "
+                          f"seconds={monotonic() - started:.3f}", flush=True)
+                for boundary in boundary_choices:
                     final = combine(base, boundary)
                     results.add((target, final[0], final[1][-1], final[1][:-1]))
-        if index % 25 == 0:
+        if index % 25 == 0 or args.carrier_index is not None:
             print(f"carrier={index} words={len(augmented_words)} states={len(results)}",
                   flush=True)
     nonempty = [state for state in results if state[2]]
