@@ -78,3 +78,18 @@ lane.
   rank-eight steps.  The canonical path pays a linear joint residual.  The
   unresolved invariant is the full-stratum density statement
   `atlas-full-kernel-strata-rank-separation`, not topological disconnectedness.
+- **Mixed fixed-space charges are rank pencils, not a lift.**
+  `atlas-mixed-fixed-spaces-are-rank-pencils` writes every proposed
+  `dim(Fix_K intersect T^-1 Fix_L)` exactly as the nullity of a degree-one
+  rectangular pencil.  These values pass continuously to the rank
+  ultraproduct and have growing denominators, so no finite-profile
+  pigeonhole extracts an exact coordinate.  They remain viable only as a
+  source of a universal Sylvester-rank contradiction or after a relative
+  correction theorem for the packet.
+- **There is no formal rank-zero compactness principle.**
+  `rank-zero-compactness-fails-for-invertible-laurent` gives invertible
+  rational matrices with rank-one defect for `VUV^-1U^-1=2I`, although the
+  determinant excludes every nonzero finite exact solution.  This is not a
+  characteristic-two counterexample to `(ARC1)`; it proves that any proof of
+  `(ARC1)` must exploit special Atlas structure rather than ultraproduct
+  exactness plus a finite relation list.
