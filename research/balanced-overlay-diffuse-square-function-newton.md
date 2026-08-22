@@ -117,6 +117,18 @@ row/column coercivity.  A successful Newton argument must use the balanced
 parity layer to exclude or correct those low-weight adjoint modes before it
 invokes the orthogonalization theorem.
 
+There is now a complete terminal theorem once a commuting reference enters
+the basin.  `code-distance-upgrades-pair-energy-to-full-pinching` first
+decodes any commuting reference atomwise to the code, then uses relative
+code distance to force every nonzero adjoint Fourier character to have
+weight `Omega(L)`.  De la Salle consequently rounds any further reflection
+against that code PVM with a length-independent constant.  Thus the
+low-weight Fourier obstruction belongs entirely to **basin capture**: the
+all-local-dual tail inequalities may peel its sparse coordinate support,
+but the still-missing diffuse estimate must construct one commuting
+reference on the shortened core.  Once it does, neither an endpoint cb
+orthogonalization estimate nor a new many-outcome PVM theorem is required.
+
 Random coordinate anchoring gives a complementary exact-base realization
 of the desired gap.  `random-code-anchor-pinchings-contract-exact-transverse-energy`
 shows that one uniformly random coordinate pinching contracts every
