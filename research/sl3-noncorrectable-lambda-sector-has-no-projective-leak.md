@@ -77,6 +77,25 @@ but currently open.  A direct denominator argument could still prove
 
 The direct root/relative-`(T)` bypass now has two exact fences.
 
+The bare commensurator relations do give one dimension-free localization,
+but no collapse.  By
+`arithmetic-leak-commutator-localizes-in-overlap-commutant`, after the
+perfectness estimate converts projective lattice centrality to ordinary
+centrality, the target unitary
+
+```text
+W_n=[U_n,rho_n(h)]
+```
+
+asymptotically centralizes the fixed finite-index overlap
+`Lambda cap h Lambda h^(-1)`.  Thus the residual can be phrased as excluding
+a nonscalar, overlap-central, **coboundary-form** unitary in a canonical
+matrix microstate.  Finite index does not finish this: the exact regular HNN
+leak has precisely the same overlap-centrality and trace zero.  The missing
+input must constrain that overlap commutant using embeddability or correct
+the underlying lattice microstate; abstract commensuration alone has now
+been exhausted.
+
 - `one-root-p3-denominator-fragment-has-finite-regular-leaks` uses
   separating finite quotients of
 
