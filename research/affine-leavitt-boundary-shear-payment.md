@@ -164,3 +164,21 @@ all-representations decoder `(ALD1)--(ALD2)`.
   identical reservoir.  The required new loop must retain a same-object
   coefficient identification after net refinement; adding further ordinary
   Steinberg triangle pastings cannot do it.
+- **Dimension-free square-function/coarea payment is tracially blind.**
+  `affine-leavitt-tracial-square-function-firewall`
+  substitutes the left regular representation into every certificate made
+  from fixed word polynomials, packet Reynolds expectations, Gram/SOS forms,
+  spectral coarea cuts, and finite-tracial `L2` inequalities.  Relator and
+  canonical-window errors are then zero while the marked distance squared is
+  exactly `2`.  Thus no such calculus can yield `(BSP2)` with residual below
+  `2`.  A positive square-function attack must first decode a genuinely
+  finite-matrix coordinate--for example the same returned multiplicity
+  reservoir--and only then use the tracial checksum to aggregate its paid
+  boundary energy.
+- **The return actuator exists in the native odd characteristic.**
+  `odd-leavitt-prefix-whitehead-transport` inserts the missing minus sign in
+  the three-elementary coarse-to-fine prefix word and proves exact
+  conjugacy of the coarse atom with its fine descendant over `p>=5`.
+  Involutivity was a characteristic-two convenience, not a requirement.
+  The surviving gap is solely decoding the two selector projections on one
+  finite-matrix carrier (or paying failure of that authentication).
