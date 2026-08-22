@@ -324,35 +324,41 @@ rigidity/stability question.  The RE pass's structural gain is that it
 collapses the two by-hand routes onto one residual and states it as a
 host-only, stable-letter-free question about microstates of `SL_3(Z[1/2])`.
 
-**Capstone of the RE pass — the program has exactly two independent hard
-cores.**  The Kostant computation
+**Capstone of the RE pass — the two ARITHMETIC routes collapse onto one
+rank-one core.**  The Kostant computation
 (`bounded-degree-two-primitives-for-higher-rank-lattices`, all `N >= 4`)
 shows the operator-norm degree-2 primitive that the higher-rank
 flexible-stability route needs is obstructed at the `(2,N-2)` Borel--Serre
 cusp by a `GL_2`-block `SL_2(Z[1/p])`-Levi-fixed class, at EVERY rank.  So
 raising the rank does not buy escape from rank one: the RCC/RE route
-(through its weak-ucp/outlier horn) and the flexible-stability route both
-reduce to the SAME core,
+(through its weak-ucp/outlier horn) and the higher-rank flexible-stability
+route both reduce to the SAME rank-one core,
 
 ```text
 CORE A:  flexible HS-stability of the rank-one pair SL_2(Z) < SL_2(Z[1/2])
          (Dogon--Vigdorovich Question 1.4, the Iwahori / BS(1,4) lane).
 ```
 
-The only genuinely independent alternative is the MIP*=RE transfer side,
+The 2-adic tower residual is the `Lambda`-exact sub-case of CORE A; the
+weak-ucp outlier residual is the non-exact sub-case; the cusp computation
+shows both are rank-one at heart, so within the arithmetic family no route
+escapes to a strictly easier object.  This does NOT reduce the WHOLE
+program to CORE A: at least three further genuinely independent cores stand
+outside the arithmetic family and are not touched by this pass ---
 
 ```text
-CORE B:  a model of the fixed non-RU BCS in some group factor
-         (embedding-universality of group factors, Chifan--Drimbe--Ioana
-          Remark 1.1; or the Boolean-to-linear groupification,
-          Paddock--Slofstra Prop 5.8),
+CORE B:  a model of the fixed non-RU BCS in some group factor (MIP*=RE
+         transfer; embedding-universality of group factors, CDI Rem. 1.1,
+         or the Boolean-to-linear groupification, Paddock--Slofstra 5.8);
+CORE C:  a non-residually-finite Kazhdan group, or Sp_4(Z), with LLP full
+         C*-algebra (`non-hyperlinear-from-llp-non-rf-kazhdan`,
+         `non-hyperlinear-from-sp2g-llp`; Fournier-Facio--Willett Q1.9/Q1.12);
+CORE D:  the finite-combinatorial atlas certificates over A8 = GL_4(F2)
+         (`atlas-a4-holonomy-coherence-gap`), self-contained and computational.
 ```
 
-with the finite-combinatorial atlas certificates
-(`atlas-a4-holonomy-coherence-gap`) a third, self-contained computational
-route.  Net: after this pass the non-hyperlinear program is
-`CORE A or CORE B or the atlas certificate`, and CORE A is where the two
-arithmetic routes now provably meet.  The 2-adic tower residual is the
-`Lambda`-exact sub-case of CORE A; the weak-ucp outlier residual is the
-non-exact sub-case, and the cusp computation shows both are rank-one at
-heart.  No route escapes to a strictly easier object.
+Net: the program is `CORE A or B or C or D` (plus the machine/reverse-Kleene
+compilers, which feed CORE B via LCS perfect completeness).  This pass's
+gain is specifically that the arithmetic RCC/RE and flexible-stability
+routes are now proven to meet at CORE A --- one rank-one problem, not two
+rank-dependent ones.
