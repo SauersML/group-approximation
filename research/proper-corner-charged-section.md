@@ -29,6 +29,16 @@ Morita matrix units; neutral same-carrier expressions remain phase-blind.
 
 ## Attempts
 
+- The binary Leavitt prefix connector now supplies the exact uncharged
+  proper-corner ledger.  By
+  `one-sided-leavitt-connector-has-sharp-overlap-payment`, the fixed
+  three-root word built from `x=s_(00)t_0`, `y=s_0t_(00)` conjugates the
+  coarse corner `Q=f_0+f_1` to `P=f_0`, and every finite tracial realization
+  pays
+  `tau(f_1)<=||UQU^*-P||_2^2`.  The properly infinite Leavitt model realizes
+  the connector exactly.  What remains is not the connector or its Gram
+  estimate: it is making the fine support reflection `1-2f_0` an ordinary
+  same-carrier word without the arbitrary Clifford multiplicity twist.
 - A reverse full Schur edge exposes the phase but generates the full branch
   `M_2`, by `two-chart-square-lift-recreates-schur-m2`.
 - A projective Atlas rectangle is either flat on the canonical common-`U`

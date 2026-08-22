@@ -258,6 +258,19 @@ made universal identities in the group algebra.
 
 ## Attempts
 
+- **The native one-sided connector has a sharp trace ledger.**
+  `one-sided-leavitt-connector-has-sharp-overlap-payment` takes
+  `Q=e=f_0+f_1`, `P=f_0` and the fixed three-root partial-swap word from
+  `x=s_(00)t_0`, `y=s_0t_(00)`.  Once `P,Q` are decoded on one carrier,
+  finite trace gives
+  `tau(f_1)<=||UQU^*-P||_2^2`, sharply, while the exact properly infinite
+  Leavitt model realizes the connector.  Thus the nonpermutational
+  Hilbert-hotel geometry and ordinary connector naming are solved.  The
+  remaining incidence is the fine support reflection
+  `1-2s_(00)t_(00)`: native Clifford covariance exposes it only with an
+  arbitrary multiplicity twist.  The crossed overlap must likewise be
+  authenticated as this paid complement; the coefficient word alone does
+  not make that identification.
 - **The D16 sibling-path charger is collapse-or-zero.**
   `d16-charge-of-two-leavitt-branches-is-collapse-or-zero` computes the two
   native coarse-to-fine partial swaps `J_0,J_1`.  Feeding the forward swaps
