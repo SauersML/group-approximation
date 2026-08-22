@@ -207,6 +207,17 @@ least one non-root assignment projection must survive.
   Freiheitssatz cannot therefore be invoked by merely choosing longer random
   free-phase words.  A live small-cancellation chord needs a different
   non-recurrent contour architecture, not padded standard potentials.
+- **High-girth overlap subdivision does not change the endpoint contours.**
+  `overlap-subdivision-preserves-coherent-piece-obstruction` shows
+  that replacing every overlap equality by a long equality chain preserves
+  exact semantics and preserves a strict finite-dimensional gap (with only
+  a finite loss), but every endpoint segment still contains the same four
+  recurrent vertex-potential blocks.  Thus macro girth does not repair
+  relative `C'(1/6)`.  A single long path relator with a once-used auxiliary
+  letter is Tietze-eliminable and imposes no endpoint equality.  The argument
+  deliberately leaves open a genuinely redesigned `C(4)-T(4)` coefficient
+  complex; its link condition must be proved for the term-pairing link, not
+  inferred from the subdivided BCS incidence graph.
 - **An infinite recursive tail is finitely compact for this target.**
   `finite-bcs-corner-diagram-is-finitely-witnessed` allows an arbitrary
   recursively presented ambient group and infinitely many auxiliary
