@@ -113,6 +113,59 @@ basis:=CentralizerAlgebraBasis([r,u]);;
 adecomposition:=MTX.Indecomposition(GModuleByMats([r,u],GF(2)));;
 bdecomposition:=MTX.Indecomposition(GModuleByMats([y,b],GF(2)));;
 space:=VectorSpace(GF(2),List(basis,current->Flat(current)));;
+
+if IsBound(NC_GROBNER) and NC_GROBNER then
+  if BLOCKS<>1 then Error("NC_GROBNER uses the five-dimensional base module"); fi;
+  if LoadPackage("GBNP")<>true then Error("GBNP is required"); fi;
+  SetInfoLevel(InfoGBNP,0);
+  freeAlgebra:=FreeAssociativeAlgebraWithOne(
+      GF(2),"x0","x1","x2","x3","x4");;
+  freeGenerators:=GeneratorsOfAlgebra(freeAlgebra);;
+  freeOne:=freeGenerators[1];;
+  variables:=freeGenerators{[2..6]};;
+  freeZero:=Zero(freeAlgebra);;
+  LiftScalarMatrix:=function(current)
+    return List(current,row->List(row,entry->IntFFE(entry)*freeOne));
+  end;;
+  genericC:=List([1..5],i->List([1..5],j->
+      Sum([1..5],k->IntFFE(basis[k][i][j])*variables[k])));;
+  freeT:=LiftScalarMatrix(t);;
+  freeS:=LiftScalarMatrix(s);;
+  freeIdentity:=LiftScalarMatrix(IdentityMat(5,GF(2)));;
+  relationMatrices:=[
+    genericC*genericC+freeIdentity,
+    (genericC*freeT)^3+freeIdentity,
+    freeT*genericC*freeS*genericC*(freeT^2)*genericC*freeS*freeT*genericC+
+        freeIdentity
+  ];;
+  freeRelations:=Filtered(Set(Concatenation(List(relationMatrices,
+      current->Concatenation(current)))),entry->not IsZero(entry));;
+  freeGb:=SGrobner(GP2NPList(freeRelations));;
+  identityCoordinates:=SolutionMat(List(basis,current->Flat(current)),
+      Flat(IdentityMat(5,GF(2))));;
+  targetNormalForms:=List([1..5],index->StrongNormalFormNP(
+      GP2NP(variables[index]+IntFFE(identityCoordinates[index])*freeOne),
+      freeGb));;
+  Print("marking=",MARKING,
+      " embedding_class=",EMBEDDING_CLASS,
+      " twist_index=",TWIST_INDEX,
+      " twist_count=",Length(twists),
+      " algebra_dimension=",Length(basis),
+      " relation_count=",Length(freeRelations),
+      " gb_count=",Length(freeGb),
+      " identity_coordinates=",List(identityCoordinates,IntFFE),
+      " identity_forced=",ForAll(targetNormalForms,current->current=[[],[]]),
+      "\n");
+  if IsBound(EXPORT_NC_GB) and EXPORT_NC_GB then
+    GBNP.ConfigPrint("x0","x1","x2","x3","x4");
+    Print("groebner_basis=\n");
+    PrintNPList(freeGb);
+    Print("identity_normal_forms=\n");
+    PrintNPList(targetNormalForms);
+  fi;
+  FORCE_QUIT_GAP(0);
+fi;
+
 centralizer:=[];;
 for coordinates in Elements(space) do
   current:=ImmutableMatrix(GF(2),List([0..dimension-1],index->
