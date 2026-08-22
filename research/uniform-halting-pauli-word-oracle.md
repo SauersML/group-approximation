@@ -58,3 +58,12 @@ hardware is dormant rather than inconsistent.
   ordinary group word.  Thus this node is now the exact remaining gate for
   that source-specific route, rather than site-noise localization or an
   additional anchor packet.
+- The direct oligomorphic-GL implementation is excluded by
+  `oligomorphic-gl-has-unbounded-stabilizer-fillings`.
+  Although all code/BLR/Weyl tuples have finitely many linear orbit types and
+  the common sign has an exact marked model, fixed global query names differ
+  from contextual prototype transports by an infinite centralizing
+  stabilizer.  Its commutators have unbounded filling area.  The remaining
+  syntax route is therefore the section-free bounded-neighbor incidence
+  placement isolated by `colored-cayley-pauli-incidence-separation`, not a
+  dense oligomorphic orbit.

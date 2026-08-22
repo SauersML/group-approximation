@@ -125,3 +125,13 @@ short-gap/long-gap rectangle violating every uniform balance constant.  The
 common surviving target is therefore exact: replace the **mixed** Pauli
 incidence geometry on the same Hilbert space so that dimension soundness is
 preserved while all short/reused or severely unbalanced rectangles disappear.
+
+The tempting dense-orbit alternative is now closed by
+`oligomorphic-gl-has-unbounded-stabilizer-fillings`.
+Finitary `GL` does put all bounded linear and Weyl configurations into
+finitely many orbits, but converting a contextual simultaneous transport to
+fixed question names inserts elements of an infinite centralizing
+stabilizer, whose commutator fillings are unbounded.  Actual Cayley addresses
+in the present bounded-neighbor route avoid precisely that section cocycle;
+this is why `(CCP1)`, rather than oligomorphic transitivity, remains the
+correct placement target.
