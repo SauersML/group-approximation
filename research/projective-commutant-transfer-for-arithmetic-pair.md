@@ -416,6 +416,28 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   the exact complementary assertion required for full PRCC.  None of the
   conductor, parahoric, shell, or raw-incidence arguments proves it; they
   all operate after a lattice correction is available.
+- **The native forty-two raw lamps are not one Boolean packet.**
+  `fixed-commuting-lamps-have-robust-fourier-atoms` gives the exact proposed
+  decoder under its true hypothesis: for `k` commuting involutions the
+  `2^k` Fourier products are an orthogonal PVM, their traces are the finite
+  Fourier transform of the lamp moments, and transported atoms obey the
+  dimension-free bound
+
+  ```text
+  ||vE_epsilon v* - E'_(sigma epsilon)||_2^2
+  <=(k/4) sum_i ||v u_i v* - u'_(sigma i)||_2^2.
+  ```
+
+  But `native-forty-two-shell-has-a-noncommuting-pair` shows that the native
+  `42`-point Hecke shell fails the hypothesis at zero defect.  The labels
+  `hC` and `h^(-1)C` lie in the same shell but are nonadjacent in the orbital
+  graph; in the exact graph-wreath regular model their lamp commutator has
+  squared 2-norm `2`.  Moreover `h` sends `hC` to `h^2C` outside the shell,
+  so denominator covariance enlarges the coordinate window rather than
+  normalizing a fixed finite algebra.  The remaining correctable-sector
+  target must therefore force missing nonedge commutators on a positive
+  carrier or solve global overlapping-clique/window coherence.  This does
+  not touch the separate uniformly noncorrectable lattice sector.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),
