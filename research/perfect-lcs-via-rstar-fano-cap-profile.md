@@ -5,7 +5,7 @@ kind: route
 title: Affinize a uniformly selected one-ghost Fano-cap support profile
 target: perfect-completeness-constant-soundness-lcs-compiler
 requires:
-  - culf-mastel-oracular-2csp-perfect-gap-family
+  - culf-mastel-rstar-fixed-language-gap-is-published
   - rstar-fano-cap-support-preserves-nonru-affine-relaxation
   - culf-mastel-rstar-uniform-fano-cap-profile
 ---

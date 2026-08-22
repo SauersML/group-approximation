@@ -5,7 +5,7 @@ kind: route
 title: Enumerate every cap profile and apply the exact finite LCS OR
 target: culf-mastel-rstar-uniform-fano-cap-profile
 requires:
-  - culf-mastel-oracular-2csp-perfect-gap-family
+  - culf-mastel-rstar-fixed-language-gap-is-published
   - rstar-fano-cap-support-preserves-nonru-affine-relaxation
   - finite-lcs-product-sign-is-exact-or
   - culf-mastel-rstar-halt-model-has-fano-cap-support
