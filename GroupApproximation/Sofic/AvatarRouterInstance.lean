@@ -124,31 +124,28 @@ namespace Inputs
 
 variable {D : BespokeRouter.AvatarWordFamily.Blueprint E N s B} (I : Inputs D)
 
-/-! ## 2.  A default common avatar length, for the unbalanced code
+/-! ## 2.  The avatars have one length
 
-Offered for callers who have not balanced: `le_length_avatarWord` at `ν = 0`
-gives `2·L`, so `avatarLen := 2·D.codeL` always satisfies the two avatar fields.
-It is a poor bound — it drops the triangular term the avatar actually carries,
-and it is the shortest avatar rather than a common one — which is exactly why the
-unbalanced design diverges. -/
+Under the length-balanced code every avatar is exactly `D.avatarLength` letters
+long — `L / 2` pairs whose exponents sum to `V·L + 1` apiece, independent of `ν`.
+So the two avatar fields of `Inputs` are discharged by an *equality* rather than
+estimated, and that is the whole reason the floor below is constant in the
+alphabet size.
 
-/-- Every avatar is at least `2·L` letters. -/
-theorem two_mul_codeL_le_avatarWord (ν : ℕ) :
-    2 * D.codeL ≤ (avatarWord D.codeL D.codeK ν).length := by
-  have h1 := le_length_avatarWord D.codeL D.codeK ν
-  have h2 : D.codeL * 2 ≤ D.codeL * (D.codeK * ν + 2) :=
-    Nat.mul_le_mul (Nat.le_refl _) (by omega)
-  have h3 : 2 * D.codeL = D.codeL * 2 := Nat.mul_comm 2 D.codeL
-  rw [h3]
-  exact le_trans h2 h1
+The superseded route is worth recording: before balancing, the only bound
+available was the one the old stride code gave at `ν = 0`, namely `2·L`.  That is
+the shortest avatar rather than a common one, and taking it as `avatarLen` is what
+made the requirement grow like `8·c·R ≈ 32·c·V` and the design diverge. -/
 
-theorem two_mul_codeL_le_srcAvatarWord (i : Fin D.srcPres.card) :
-    2 * D.codeL ≤ (D.srcAvatarWord i).length :=
-  two_mul_codeL_le_avatarWord (D := D) (i : ℕ)
+/-- Source avatars have the common length. -/
+theorem avatarLength_le_srcAvatarWord (i : Fin D.srcPres.card) :
+    D.avatarLength ≤ (D.srcAvatarWord i).length :=
+  le_of_eq (D.length_srcAvatarWord i).symm
 
-theorem two_mul_codeL_le_parAvatarWord (k : Fin D.parPres.card) :
-    2 * D.codeL ≤ (D.parAvatarWord k).length :=
-  two_mul_codeL_le_avatarWord (D := D) (D.srcPres.card + (k : ℕ))
+/-- Partner avatars have the common length. -/
+theorem avatarLength_le_parAvatarWord (k : Fin D.parPres.card) :
+    D.avatarLength ≤ (D.parAvatarWord k).length :=
+  le_of_eq (D.length_parAvatarWord k).symm
 
 /-! ## 3.  The relator floor, one branch at a time -/
 

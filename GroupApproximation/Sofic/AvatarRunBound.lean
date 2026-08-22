@@ -245,17 +245,50 @@ theorem runBounded_blockFlatten_append (A : ℕ) {es es' : List ℕ}
 
 /-! ## 6.  The family's words are block words -/
 
-theorem blockFlatten_avatarWord (L K ν : ℕ) :
-    avatarWord L K ν = blockFlatten ((List.range L).map (codeExponent K ν)) := by
-  simp [avatarWord, blockFlatten, List.map_map, Function.comp]
+/-- Nesting exponent lists nests their words. -/
+theorem blockFlatten_flatten : ∀ ls : List (List ℕ),
+    blockFlatten ls.flatten = (ls.map blockFlatten).flatten := by
+  intro ls
+  induction ls with
+  | nil => simp [blockFlatten]
+  | cons e es ih =>
+      rw [List.flatten_cons, blockFlatten_append, ih, List.map_cons, List.flatten_cons]
 
-theorem exists_blockFlatten_avatarWord {A : ℕ} (L K ν : ℕ)
-    (h : ∀ j, j < L → codeExponent K ν j ≤ A) :
-    ∃ es, (∀ e ∈ es, e ≤ A) ∧ avatarWord L K ν = blockFlatten es := by
-  refine ⟨(List.range L).map (codeExponent K ν), ?_, blockFlatten_avatarWord L K ν⟩
+/-- **The exponent list of a balanced avatar**: the low and high member of each
+block pair, in order.  Under the length-balanced code every avatar carries
+`L / 2` such pairs, each summing to `V·L + 1`, which is what makes the avatar
+length constant in `ν`. -/
+def avatarExps (V L ν : ℕ) : List ℕ :=
+  ((List.range (L / 2)).map fun k => [codeLow V ν k, codeHigh V L ν k]).flatten
+
+theorem blockFlatten_avatarWord (V L ν : ℕ) :
+    avatarWord V L ν = blockFlatten (avatarExps V L ν) := by
+  rw [avatarExps, blockFlatten_flatten]
+  simp [avatarWord, pairWord, blockFlatten, List.map_map, Function.comp]
+
+/-- The avatar's exponents meet a ceiling as soon as both halves of the code do.
+The two hypotheses are exactly `codeLow_le_max` and `codeHigh_le_max` of the
+family module, taken as arguments so that this file cites no name that a
+retuning of the code could move. -/
+theorem avatarExps_le {V L ν A : ℕ}
+    (hlow : ∀ k, k < L / 2 → codeLow V ν k ≤ A)
+    (hhigh : ∀ k, k < L / 2 → codeHigh V L ν k ≤ A) :
+    ∀ e ∈ avatarExps V L ν, e ≤ A := by
   intro e he
-  obtain ⟨j, hj, rfl⟩ := List.mem_map.mp he
-  exact h j (List.mem_range.mp hj)
+  rw [avatarExps, List.mem_flatten] at he
+  obtain ⟨u, hu, heu⟩ := he
+  obtain ⟨k, hk, rfl⟩ := List.mem_map.mp hu
+  have hkk : k < L / 2 := List.mem_range.mp hk
+  rcases List.mem_cons.mp heu with rfl | he2
+  · exact hlow k hkk
+  · have hhe : e = codeHigh V L ν k := by simpa using he2
+    rw [hhe]
+    exact hhigh k hkk
+
+theorem exists_blockFlatten_avatarWord {A : ℕ} (V L ν : ℕ)
+    (h : ∀ e ∈ avatarExps V L ν, e ≤ A) :
+    ∃ es, (∀ e ∈ es, e ≤ A) ∧ avatarWord V L ν = blockFlatten es :=
+  ⟨avatarExps V L ν, h, blockFlatten_avatarWord V L ν⟩
 
 /-- **A positive rewrite is a block word.**  Each positive letter contributes its
 avatar unchanged, and avatars are block words, so the exponent lists concatenate.
@@ -294,29 +327,22 @@ theorem runBounded_avatarSubst {α : Type} {A : ℕ} (Aw : α → List (Fin 2 ×
   rw [heq]
   exact runBounded_of_blockShape (blockShape_blockFlatten A hes)
 
-/-! ## 7.  The code exponents are bounded -/
+/-! ## 7.  The code exponents are bounded
 
-/-- Every code exponent of an avatar with index at most `V` is at most
-`K·V + L`. -/
-theorem codeExponent_le {K ν j L V A : ℕ} (hj : j < L) (hν : ν ≤ V)
-    (hA : K * V + L ≤ A) : codeExponent K ν j ≤ A := by
-  have h1 : K * ν ≤ K * V := Nat.mul_le_mul (Nat.le_refl K) hν
-  obtain ⟨X, hX⟩ : ∃ X, K * ν = X := ⟨_, rfl⟩
-  obtain ⟨Y, hY⟩ : ∃ Y, K * V = Y := ⟨_, rfl⟩
-  rw [hX, hY] at h1
-  rw [hY] at hA
-  simp only [codeExponent]
-  rw [hX]
-  clear hX hY
-  omega
+Under the length-balanced code the two halves of a block pair are bounded
+separately — `codeLow` below the midpoint `V·(L/2)`, `codeHigh` above it, and
+both by `V·L`, which is the run ceiling.  Those are facts of the family module
+and are taken here as arguments, so that retuning the code moves no name in this
+file.  The earlier arithmetic version, keyed to `K·ν + j + 1`, went out with the
+stride. -/
 
-/-- **The avatars of the family are block words**, at the ceiling
-`AvatarRouterInstance` takes.  This is the hypothesis `runBounded_avatarSubst`
-asks for, discharged from the code's own arithmetic. -/
-theorem exists_blockFlatten_of_codeExponent_le {A L K V ν : ℕ} (hν : ν ≤ V)
-    (hA : K * V + L ≤ A) :
-    ∃ es, (∀ e ∈ es, e ≤ A) ∧ avatarWord L K ν = blockFlatten es :=
-  exists_blockFlatten_avatarWord L K ν (fun _ hj => codeExponent_le hj hν hA)
+/-- **The avatars of the family are block words** at any ceiling both halves of
+the code respect.  This is the hypothesis `runBounded_avatarSubst` asks for. -/
+theorem exists_blockFlatten_of_bounds {A V L ν : ℕ}
+    (hlow : ∀ k, k < L / 2 → codeLow V ν k ≤ A)
+    (hhigh : ∀ k, k < L / 2 → codeHigh V L ν k ≤ A) :
+    ∃ es, (∀ e ∈ es, e ≤ A) ∧ avatarWord V L ν = blockFlatten es :=
+  exists_blockFlatten_avatarWord V L ν (avatarExps_le hlow hhigh)
 
 /-! ## 8.  Transfer to the formal inverse
 
