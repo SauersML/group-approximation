@@ -50,6 +50,37 @@ the mixed prototype tensors must have no binary linear dependence whose
 prescribed signs sum to one.  This is the exact algebraic obstruction which
 an unbounded sign-colliding contour would witness.
 
+The first nontrivial dependence now has a closed-form test.
+`opposite-sign-stabilizer-double-coset-collapses-coinvariant-pairing` shows
+that, for base classes `x,z` and sign offsets `p_0,p_1`, the quotient-module
+stabilizers
+
+```text
+H_X=Stab_A(x),                 H_Z=Stab_A(z)
+```
+
+must satisfy
+
+```text
+H_X p_0 H_Z  intersect  H_X p_1 H_Z = empty.
+```
+
+This separation must be checked after adjoining all equality and parity
+submodule relations.  A path which fixes `x` and carries `p_1 z` to
+`p_0 z` makes the two prototype tensors equal in diagonal coinvariants and
+immediately forbids opposite values.  Thus a free-product separation before
+the same-basis quotient is not sufficient.
+
+There is an algebraic model with no such collision: the natural and
+contragredient modules of the finitary linear actor, paired by evaluation,
+separate the two values by definition.  It does not close this claim.
+`oligomorphic-gl-has-unbounded-stabilizer-fillings` shows that the contextual
+transporters in that model cannot be replaced by fixed ordinary group-word
+occurrences with uniform relator area.  The surviving construction must
+therefore give literal Cayley-module representatives satisfying the displayed
+post-quotient separation, rather than only an abstract vector/covector
+orbit model.
+
 Thus relative small cancellation is only one possible construction method,
 not part of the necessary conclusion.  The remaining issue is genuinely
 global: realize the recursive private sampler and the repeated-LDPC face
