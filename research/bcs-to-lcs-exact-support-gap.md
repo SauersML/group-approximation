@@ -114,6 +114,14 @@ solution, is the remaining exact-support content.  Exact finite-dimensional
 invisibility alone is insufficient by
 `exact-fd-invisibility-has-no-general-hs-robustification`.
 
+Lowering the source instead to Boolean unary/binary predicates does not evade
+this obstruction.  By `binary-tracial-two-csp-has-classical-solution`, every
+exact tracial operator solution of such a 2-CSP implies a deterministic
+classical solution, even if some edge has the full nonlinear support
+`F_2^2 minus {g}`.  Thus the minimal NAND/implication fiber can be a local
+packet inside a common-corner construction, but cannot replace the global
+exact-support compiler.
+
 ## Extreme traces are without loss, but do not remove odd subsets
 
 There is an exact reduction answering the ``choose an extreme trace'' part
