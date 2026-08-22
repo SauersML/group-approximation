@@ -2,7 +2,7 @@
 rg: 2
 id: subgroup-exact-outliers-do-not-exist
 kind: claim
-title: Finite-index-exact almost representations of a Kazhdan group are flexibly correctable
+title: Finite-index-near-exact almost representations of a Kazhdan group are flexibly correctable
 distinct_from:
   kazhdan-subgroup-weak-ucp-exactifies-microstates: that starts from weak ucp stability and makes a subgroup restriction exact; this starts with an exact finite-index restriction and corrects the whole ambient tuple by induction.
   close-normalized-characters-do-not-force-equivalence: that refutes correction by comparing normalized characters; the present proof never compares characters or irreducible multiplicities.
@@ -16,12 +16,16 @@ finite index.  Fix generators and relators for `G`.  Suppose
 sigma_j:S_G -> U(H_j)
 ```
 
-has presentation defect tending to zero, and that the evaluated words on
-`N` agree exactly with a genuine representation
+has presentation defect tending to zero, and suppose there are genuine
+representations
 
 ```text
-pi_j:N -> U(H_j).
+pi_j:N -> U(H_j)
 ```
+
+such that `sigma_j|_N` is `o(1)`-close to `pi_j` on one fixed generating
+set of `N`.  (Exact agreement is the special case needed by the node's
+original formulation.)
 
 Then `sigma_j` is **flexibly Hilbert--Schmidt correctable**: there are exact
 finite-dimensional representations
@@ -39,7 +43,8 @@ normalized-HS distance from every genuine representation cannot be exact on
 any one fixed finite-index subgroup along a subsequence.  This is a habitat
 restriction on the outlier branch of
 `projective-commutant-transfer-for-arithmetic-pair`; it does not eliminate
-microstates which remain inexact on every finite-index subgroup.
+microstates whose restrictions remain uniformly far from exact
+representations on every fixed finite-index subgroup.
 
 ## Proof mechanism
 
@@ -73,19 +78,20 @@ sigma_j(t')^* sigma_j(g)
 
 would give `Pi_j(g)W_j=W_j sigma_j(g)`.  Only finitely many multiplication
 words occur in `(SE3)` for `g` in the fixed generator packet and `t in T`.
-Van Kampen telescoping therefore gives one presentation-dependent constant
-`C_0` such that
+Van Kampen telescoping, together with the `o(1)` subgroup correction on the
+finitely many elements `n(g,t)`, therefore gives one
+presentation-dependent constant `C_0` and an error `xi_j->0` such that
 
 ```text
 max_(g in S_G)||Pi_j(g)W_j-W_j sigma_j(g)||_(2,H_j)
- <= C_0 delta_j.                                         (SE4)
+ <= C_0(delta_j+xi_j).                                   (SE4)
 ```
 
 Let `P_j=W_jW_j^*`.  Projection telescoping turns `(SE4)` into
 
 ```text
 max_(g in S_G)||Pi_j(g)P_jPi_j(g)^*-P_j||_(2,L_j)
- <= C_1 delta_j.                                         (SE5)
+ <= C_1(delta_j+xi_j).                                   (SE5)
 ```
 
 Here all norms are normalized on their displayed spaces; `m` is fixed, so
@@ -96,7 +102,7 @@ Apply a Kazhdan pair for `G` to the exact conjugation representation
 trace-preserving conditional expectation onto `Pi_j(G)'`, then
 
 ```text
-||P_j-E_j(P_j)||_(2,L_j) <= C_2 delta_j.                 (SE6)
+||P_j-E_j(P_j)||_(2,L_j) <= C_2(delta_j+xi_j).           (SE6)
 ```
 
 Since `E_j(P_j)` is a positive contraction, functional calculus at `1/2`
@@ -109,7 +115,7 @@ Q_j=1_[1/2,infinity)(E_j(P_j)) in Pi_j(G)'
 with
 
 ```text
-||P_j-Q_j||_(2,L_j) <= 2 C_2 delta_j.                    (SE7)
+||P_j-Q_j||_(2,L_j) <= 2 C_2(delta_j+xi_j).              (SE7)
 ```
 
 Thus `rank(Q_j)=dim(H_j)+o(dim H_j)`.  The range of `Q_j` carries the exact

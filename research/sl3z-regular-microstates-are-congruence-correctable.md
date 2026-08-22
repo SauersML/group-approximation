@@ -130,8 +130,13 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
   reassembles this claim from the factorial-commutant case by
   disintegration.  The subgroup-exact stratum of the outlier sector
   is separately CLOSED by `subgroup-exact-outliers-do-not-exist`:
-  enemy microstates must be uniformly inexact on every finite-index
-  subgroup.
+  enemy microstates must remain uniformly far from exact representations on
+  every fixed finite-index subgroup.  The stronger bookkeeping theorem
+  `finite-index-correction-is-equivalent-for-kazhdan-groups` shows that this
+  is not a new hierarchy of progressively weaker holes: for every fixed
+  congruence subgroup, correction of the restriction is equivalent to
+  correction of the ambient tuple.  Thus CSP identifies the finite quotients
+  of an exact correction but does not force exactness at some nested level.
 - **Quantitative interface.**  Any correction modulus here composes
   with the exact evaluation `W = 1` and needs no uniformity beyond
   the generating set: the Weyl relations are finitely many fixed
@@ -139,8 +144,9 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
   ultraproduct closes the gap.  This is a much lighter demand than
   the dimension-free moduli the transfer inequalities require.
 
-**Note (2026-08-21 audit).**  `subgroup-exact-outliers-do-not-exist` is
-OPEN again (its route's exact-equivalence lemma is false; see
-`close-normalized-characters-do-not-force-equivalence`); any statement
-here that relies on it -- in particular that outlier microstates must be
-non-exact on every finite-index subgroup -- is conditional on that claim.
+**Update (2026-08-22).**  `subgroup-exact-outliers-do-not-exist` is now
+established by a different proof: induce the exact subgroup representation
+and use property `(T)` to round the section isometry's almost-invariant range
+projection.  It does not use the false close-character equivalence or any
+commutant-valued cocycle vanishing theorem.  Hence the finite-index habitat
+restriction above is unconditional.

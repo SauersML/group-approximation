@@ -308,15 +308,22 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   remains; this does not yet bound the two-primary mass in a mixed level.
 - **Finite-index-exact outliers are excluded without a cocycle argument.**
   `subgroup-exact-outliers-do-not-exist` gives a general induction proof: if
-  an almost representation of a property-`(T)` group is exact on one fixed
-  finite-index subgroup, its section isometry has an almost-invariant range
+  an almost representation of a property-`(T)` group is near an exact
+  representation on one fixed finite-index subgroup, its section isometry
+  has an almost-invariant range
   projection inside an exact induced representation.  Property `(T)` rounds
   that projection in the induced commutant and yields a flexible exact
   correction.  Applied to `SL_3(Z)`, this removes every outlier sequence
-  which becomes exact on any fixed finite-index subgroup.  Thus the
-  noncorrectable branch of a projective-transfer enemy must remain genuinely
-  inexact on every fixed finite-index subgroup; the everywhere-inexact branch
-  is not closed by this lemma.
+  whose restriction becomes near-exact on any fixed finite-index subgroup.
+  Thus the noncorrectable branch of a projective-transfer enemy must remain
+  uniformly far from exact representations on every fixed finite-index
+  subgroup; that everywhere-inexact branch is not closed by this lemma.
+  Moreover `finite-index-correction-is-equivalent-for-kazhdan-groups`
+  shows that the nested congruence tower supplies no weaker compactness
+  target: correction on any one fixed congruence subgroup is equivalent to
+  ambient correction, while an ambient outlier restricts compatibly to an
+  outlier on every fixed level.  CSP classifies exact outputs after a
+  correction exists; it cannot manufacture the first correction.
 - **A fixed far gap forces positive denominator-primary mass.**
   `fixed-projective-gap-forces-primary-congruence-mass` closes the mass
   loophole left by the preceding item.  For any exact correction `sigma` of

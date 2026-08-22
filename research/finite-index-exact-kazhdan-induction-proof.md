@@ -8,10 +8,11 @@ requires: []
 ---
 
 Let the notation be as in the target.  Replacing the finite-index subgroup
-by its normal core preserves exactness and leaves a fixed finite index.
+by its normal core preserves near-exactness and leaves a fixed finite index.
 Induce the exact subgroup representation to `G`, and use the section
 isometry `(SE2)`.  The finitely many section multiplication identities give
-the intertwining estimate `(SE4)` by relator telescoping.  Hence the range
+the intertwining estimate `(SE4)` by relator and subgroup-word telescoping.
+Hence the range
 projection of the section isometry is almost invariant for the **exact**
 conjugation representation of `G` on the induced Hilbert--Schmidt space.
 

@@ -43,11 +43,11 @@ Frobenius stability.
 
 There is now one unconditional correction sector beyond the previously
 recorded near-exact cases.  By `subgroup-exact-outliers-do-not-exist`, if
-either vertex restriction is exact on any one fixed finite-index subgroup
+either vertex restriction is near exact on any one fixed finite-index subgroup
 of `SL_3(Z)`, induction of that exact restriction and property `(T)` flexibly
 correct the entire lattice tuple.  Therefore a simultaneous-outlier double
-microstate must keep both vertex restrictions inexact on every fixed
-finite-index subgroup.  This sharpens the habitat of the remaining enemy
+microstate must keep both vertex restrictions uniformly far from exact
+representations on every fixed finite-index subgroup.  This sharpens the habitat of the remaining enemy
 but does not produce the first correctable vertex.
 
 ## Exact simultaneous-outlier boundary

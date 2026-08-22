@@ -52,12 +52,20 @@ problems.
 
 The first branch has a further exact restriction.
 `subgroup-exact-outliers-do-not-exist` proves that an almost representation
-of a property-`(T)` group which is exact on one fixed finite-index subgroup
+of a property-`(T)` group which is near exact on one fixed finite-index subgroup
 is flexibly correctable, by inducing that subgroup representation and
 rounding the almost-invariant section range projection.  Hence an SL3
-inner-adjoint outlier cannot become exact on any fixed finite-index subgroup
-along a subsequence.  It must be an everywhere-inexact outlier.  This does
-not rule such outliers out.
+inner-adjoint outlier must stay uniformly far from exact representations on
+every fixed finite-index subgroup.  This does not rule such everywhere-inexact
+outliers out.
+
+Nor can one descend the nested principal-congruence tower hoping for a first
+good fixed level.  `finite-index-correction-is-equivalent-for-kazhdan-groups`
+proves that, for each fixed finite-index subgroup, correction of the
+restricted tuple is equivalent to correction of the ambient tuple.  An
+ambient outlier therefore restricts to a compatible outlier on every fixed
+congruence level.  CSP constrains exact representations once found; it does
+not break this outlier branch.
 
 The dyadic alternative has one further unconditional restriction.
 `exact-dyadic-conductor-band-has-uniform-parahoric-overlap-loss` proves
