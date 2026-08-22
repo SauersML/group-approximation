@@ -75,11 +75,14 @@ The Fano argument proves local soundness for a fixed cap profile, but not
 that uniform selection step.  Reversing the Kleene branches is neither
 necessary nor justified by the cited family.
 
-## Source boundary
+## Source boundary -- corrected fixed-language audit
 
-The fixed-language step remains inside the open selector node. Culf--Mastel
-supply the machine-indexed perfect-gap oracular CSP family, but turning that
-family into instances over this particular four-ary relation, adding the
-required commuting neighborhoods, and selecting one cap profile must be one
-effective mark-preserving construction. Schaefer NP-hardness of `R_*` alone
-does not certify those quantum/compiler properties.
+The fixed-language step itself is already published.  Culf--Mastel Theorem
+4.14 applies to every NP-complete Boolean language, and `R_*` is additionally
+non-TVF because every two-coordinate projection is full.  Corollaries 4.17
+and 4.18 therefore give a total finite `R_*` family with a constant gap in
+the assignment-with-commutation model.  Proposition 6.2 supplies the robust
+one-constraint commutativity gadget.  What remains inside the selector node
+is not language reduction but the stronger Fano interface: their commutator
+weight covers variables sharing one context, not mutually different
+neighbors around a context, and no uniform cap profile is selected.

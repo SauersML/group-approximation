@@ -9,8 +9,9 @@ distinct_from:
 ---
 
 OPEN.
-Realize the Culf--Mastel perfect-gap family over the fixed non-Schaefer
-relation `R_*`, and effectively output one finite marked LCS instance such
+Starting from the fixed `R_*` perfect-gap family now supplied directly by
+`culf-mastel-rstar-fixed-language-gap-is-published`, effectively output one
+finite marked LCS instance such
 that:
 
 ```text
@@ -51,3 +52,9 @@ perfect CE completeness on `HALT` and a constant CE gap on `NONHALT`, exactly
 the orientation required by `re-oriented-lcs-compiler-gives-nonhyperlinear-group`.
 What is conditional is the uniform cap-profile compiler, not the Kleene
 branch direction.
+
+The fixed-language part is no longer conditional.  Theorem 4.14 and
+Corollaries 4.17--4.18 of Culf--Mastel apply directly to the Boolean,
+non-TVF relation `R_*`.  Their commutation weights remain contextwise,
+however, and therefore do not supply the mutually commuting neighborhoods
+assumed by the stronger pruning step.
