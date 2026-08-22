@@ -94,3 +94,13 @@ Proving a constant lower bound for `(PH4)` would collapse this clock sector;
 constructing such matchers would give a nontrivial vanishing-seam Higman
 microstate family.
 
+## Attempts
+
+`folner-block-shifts-do-not-dilute-four-matcher-holonomy` tests the natural
+long-path amplification.  A cyclic block shift does reduce the one-step
+matcher wrap to `O(L^(-1/2))`, but its fourth power compares the four-step
+gauge return on `L-4` interior blocks.  The residual converges to
+`||S^4PS^(-4)-P||_2`, rather than zero.  With varying gauges, the ordered
+product of each four consecutive matchers is tested at positive density.
+Thus fixed four-generator folding cannot convert the holonomy into a single
+Folner boundary defect.

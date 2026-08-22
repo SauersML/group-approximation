@@ -58,3 +58,27 @@ This does not claim a full Higman microstate: the fourth seam is precisely
 the unresolved gate.  It reduces the periodic-clock sector to the concrete
 order-four matcher question without hiding the missing condition.
 
+## Long-path/Folner block transport does not remove the gate
+
+Let `S` be one approximate matcher and place the conjugated packets
+`S^k(P,D)S^-k` on `L` blocks.  The cyclic block shift matches `P` to `D` on
+`L-1` blocks, so its one-step error is at most
+`(epsilon^2+4/L)^(1/2)`.
+
+Its fourth power, however, compares `S^(k+4)PS^(-(k+4))` with
+`S^kPS^(-k)` on every interior block.  Therefore its squared error lies
+between
+
+```text
+(1-4/L)||S^4PS^-4-P||_2^2
+```
+
+and that quantity plus `16/L`.  The product holonomy is a bulk density, not
+the single cyclic wrap.  A varying moduli path has the same formula with the
+product of four consecutive matcher increments at each site.
+
+This also pinpoints why an eigenvalue-quartet argument is insufficient.
+Optimal spectral matching chooses a unitary between two different
+eigenbases.  Requiring its fourth power to return is a constraint on the
+fourfold eigenbasis transport, not merely on grouping the paired eigenvalues
+into four-cycles.
