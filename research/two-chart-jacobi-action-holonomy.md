@@ -32,3 +32,16 @@ finite syntax required by `jacobi-congruence-clifford-tower`.
   energy. Direct finite-table return is impossible by
   `termwise-finite-reynolds-holonomy-has-zero-rank-gap`; the corrected
   algebraic claim is `stabilized-two-chart-reynolds-word-transport`.
+- The two parabolics cannot be closed by transporting the ordinary rank-one
+  braid.  `jacobi-drifted-braid-defect-is-extensive` computes
+
+  ```text
+  A_uB_uA_u-B_uA_uB_u=u(1+u^2)F,
+  ```
+
+  of rank `2(N-1)` on `R_N^2`.  The uniquely forced fixed Fourier cocycle
+  moves `2N-1` dimensions.  Thus the separate one-cell covariance laws in
+  `(TWC3)` do not make the closed chart holonomy one-cell.  Any successful
+  stabilized transport must either duplicate the two rank-one actors and
+  never transport their braid, or explicitly cancel this extensive cocycle
+  in the tail; boundary signs and projective phases cannot do so.

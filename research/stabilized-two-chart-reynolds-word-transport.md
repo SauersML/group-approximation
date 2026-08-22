@@ -52,3 +52,11 @@ trace-functorial regular-representation contradiction.
   It is enough to place their difference as low compressed spectrum
   transverse to the original low spectrum. The sharper remaining target is
   `schur-packet-as-positive-density-compressor-wall`.
+- **The raw Jacobi braid is an extensive boundary term.**  The exact
+  calculation in `jacobi-drifted-braid-defect-is-extensive` shows that
+  drifting both rank-one root parameters sends the `S_3` braid to two words
+  differing on `2(N-1)` of the `2N` coefficient dimensions.  Hence the
+  proposed `P/Q` switch does not leave only a far one-qubit boundary after a
+  closed upper/lower cycle.  A stabilized swindle must cancel this explicit
+  extensive braid cocycle before the Reynolds telescoping in item 4 can even
+  be formulated.
