@@ -72,13 +72,29 @@ than the old one wherever the old one applies.
 ## What is open
 
 Two leaves, the weighted twins of `GreendlingerRelativeTransfer`'s, stated at
-the letter alphabet and at the same concrete pair `(1/7, 42)`:
+the letter alphabet and at the concrete pair `(1/7, 42)`:
 
-* `WeightedGreendlingerLeaf` — symmetrized, cyclically reduced, letters of
-  length at most one, fragment slack, `C'(1/7)`  ⟹  `RelativeLengthBound`;
+* `WeightedGreendlingerLeaf` — geodesic spellings, symmetrized, cyclically
+  reduced, letters of length at most one, fragment slack, `C'(1/7)`  ⟹
+  `RelativeLengthBound`;
 * `WeightedTorsionLeaf` — the same, plus no proper powers  ⟹  `TorsionLifts`.
 
-Both hold outright for the empty family.  Nothing else in this file is
+`HasGeodesicSpellings` is first for a reason that is easy to get wrong.  The
+classical argument produces a *reduced* word `W` spelling `g` with
+`|r| < 2·|W|`, while the conclusion is `|r| < 2·L.len g`; since `L.len g ≤ |W|`
+always and never the reverse, the first does not give the second.  The diagram
+argument must therefore run on a *geodesic* spelling, and then reducedness comes
+free (`letterReducedLinear_of_geodesic`) instead of being assumed.  For the
+canonical model the clause is discharged outright by
+`WordMetric.exists_isWord_length_eq`, so no design pays for it.
+
+The design's own metric field is at `C'(1/8)`, not `1/7`: the boundary-layer
+count gives the sharp arc bound `(1 - 3·lam)|r|`, and `1/8` is where the torsion
+half's residual case is arithmetically empty — the free lane's choice in
+`AvatarMetricCheck.metric_eighth`.  `C'(1/7)` is derived by `metric_seventh`
+through `letterMetricSmallCancellation_mono`, which runs that way only.
+
+Both leaves hold outright for the empty family.  Nothing else in this file is
 conditional: `factorMap_source_injective`, `partnerHom_surjective`, `kazhdan`,
 `finitelyPresented`, `isPowerTorsionFree_coprodI` and the whole of section 8 are
 theorems.  **In particular `kazhdanEnvelope_of_design` no longer carries a
@@ -90,11 +106,25 @@ relative-transfer lane): every letter-level predicate here carries the `Letter`
 prefix, and the length-level ones are `RelativeLength*`.
 
 The fragment slack keeps the same shape and the same numbers as the unweighted
-lane, `lam · |r| + 1 ≤ (1/6) · |r|` at `lam = 1/7` and `|r| ≥ 42`, because the
-alphabet is atomic: the one-letter correction now accounts for a path entering
-and leaving a peripheral coset rather than for a fragment of a syllable.  What
-changed is not the inequality but what `|r|` counts — letters, not syllables — and
-that is exactly why a tie relator can meet the floor.
+lane, `lam · |r| + 1 ≤ (1/6) · |r|` at `lam = 1/7` and `|r| ≥ 42`.  What changed
+is not the inequality but what `|r|` counts — letters, not syllables — and that is
+exactly why a tie relator can meet the floor.
+
+**What the `+ 1` is, stated plainly.**  It is a *conservative allowance*, not a
+derivation.  Over a free group a piece is a common subword and nothing else; over
+`U * B` relative to `{U}` a diagram can glue two faces along a path that enters
+and leaves a peripheral coset — `r₁` reading `… a u₁ b …` and `r₂` reading
+`… a u₂ b′ …` with `u₁ ≠ u₂` in `U` — and the two faces then share more of that
+coset than any common prefix of the two letter-lists accounts for.  That is the
+configuration Osin's component analysis and Ω-condition exist to handle, and it
+has no free-group counterpart.  Charging one extra letter per relator errs in the
+safe direction: constraining too *many* pieces makes the design harder and the
+leaf easier, whereas constraining too *few* is what refuted the whole-syllable
+version.  Making it rigorous is either a checkable design condition — no two
+distinct members of `R`, rotations included, traverse a common peripheral coset
+along a shared subpath, which a family with disjoint exponent ranges meets by
+construction — or a port of Osin's component machinery.  Until one of those
+lands, the `+ 1` should be read as an allowance and described as one.
 -/
 
 namespace GroupApproximation
@@ -280,11 +310,106 @@ by the change of alphabet. -/
 def LetterNoProperPower (R : Set (List (CoprodI G))) : Prop :=
   ∀ r ∈ R, ∀ (s : CoprodI G) (k : ℕ), 2 ≤ k → r.prod ≠ s ^ k
 
-/-- **Cyclically reduced**: no two cyclically adjacent letters cancel.  The
-rotation quantifier is what makes it cyclic. -/
-def LetterCyclicallyReduced (r : List (CoprodI G)) : Prop :=
-  ∀ (n : ℕ) (a b : CoprodI G) (t : List (CoprodI G)),
-    r.rotate n = a :: b :: t → a * b ≠ 1
+/-- **Linearly reduced**: no two adjacent letters collapse into a single letter.
+
+Over a free alphabet the only collapse is cancellation, `a * b = 1`.  Over the
+atomic alphabet `X ∪ U` there is a second one that has no free-group
+counterpart: two adjacent *peripheral* letters do not cancel, they **merge**,
+`of u₁ · of u₂ = of (u₁u₂)`, which is again a single letter.  A word containing
+such a pair is not reduced, and its letter count overstates its relative length.
+
+`2 ≤ L.len (a * b)` is the honest form of "neither happens": it says the product
+of two adjacent letters is not itself a letter.  It subsumes non-cancellation,
+since `L.len 1 = 0` (`ne_one_of_letterReducedLinear`). -/
+def LetterReducedLinear (L : RelativeLength G) (r : List (CoprodI G)) : Prop :=
+  ∀ (s t : List (CoprodI G)) (a b : CoprodI G),
+    r = s ++ a :: b :: t → 2 ≤ L.len (a * b)
+
+/-- **Cyclically reduced**: every rotation is linearly reduced.  The rotation
+quantifier is what makes it cyclic. -/
+def LetterReduced (L : RelativeLength G) (r : List (CoprodI G)) : Prop :=
+  ∀ n : ℕ, LetterReducedLinear L (r.rotate n)
+
+/-- Reducedness subsumes non-cancellation, which is what the old, weaker
+definition asked for on its own. -/
+theorem ne_one_of_letterReducedLinear {L : RelativeLength G}
+    {r s t : List (CoprodI G)} {a b : CoprodI G} (h : LetterReducedLinear L r)
+    (hr : r = s ++ a :: b :: t) : a * b ≠ 1 := by
+  intro h1
+  have h2 := h s t a b hr
+  rw [h1, L.len_one] at h2
+  omega
+
+/-- **Monotonicity of the metric condition.**  A design proves `C'(1/8)` once and
+spends it at `1/7` here and at the sharp boundary-layer constant in the diagram
+argument; the implication runs this way only, so a `C'(1/7)` hypothesis would be
+strictly weaker and would not feed the sharp count. -/
+theorem letterMetricSmallCancellation_mono {R : Set (List (CoprodI G))}
+    {lam lam' : ℚ} (h : lam ≤ lam')
+    (hm : LetterMetricSmallCancellation R lam) :
+    LetterMetricSmallCancellation R lam' := by
+  intro p hp r hr hpre
+  have h1 := hm p hp r hr hpre
+  have h2 : lam * (r.length : ℚ) ≤ lam' * (r.length : ℚ) :=
+    mul_le_mul_of_nonneg_right h (Nat.cast_nonneg _)
+  linarith
+
+/-! ### Geodesic spellings
+
+The clause that makes the Greendlinger conclusion land on the right side.  The
+classical argument produces a *reduced* word `W` spelling `g` with
+`|r| < 2·|W|`; the conclusion below is `|r| < 2·L.len g`.  Since
+`L.len g ≤ |W|` always (`RelativeLength.len_prod_le`) and never the reverse, the
+first does **not** give the second — the inequality points the wrong way.  The
+argument must therefore be run on a *geodesic* spelling, `|W| = L.len g`, and
+then reducedness is a consequence rather than a hypothesis. -/
+
+/-- **The relative length is realised by spellings in the letter alphabet.**
+For the canonical model this is `WordMetric.exists_isWord_length_eq`, so no
+design pays for it; it is stated as a predicate on `L` because an abstract
+length function has no notion of spelling and the diagram argument needs one. -/
+def HasGeodesicSpellings (L : RelativeLength G) : Prop :=
+  ∀ g : CoprodI G, ∃ l : List (CoprodI G),
+    (∀ a ∈ l, L.len a ≤ 1) ∧ l.prod = g ∧ l.length = L.len g
+
+/-- **A geodesic spelling has no collapsing adjacent pair.**  Replacing such a
+pair by its product would spell the same element with one letter fewer, so a
+shortest spelling cannot contain one.
+
+This is what makes reducedness free rather than hypothesised: the diagram
+argument chooses its own spelling of `g`, and choosing a geodesic one buys
+reducedness outright.  Note that it buys the *linear* notion only — cyclic
+reducedness is a condition on relators, where it stays a design obligation. -/
+theorem two_le_len_mul_of_geodesic {L : RelativeLength G}
+    {s t : List (CoprodI G)} {a b : CoprodI G}
+    (hlet : ∀ c ∈ s ++ a :: b :: t, L.len c ≤ 1)
+    (hgeo : (s ++ a :: b :: t).length = L.len (s ++ a :: b :: t).prod) :
+    2 ≤ L.len (a * b) := by
+  by_contra hcon
+  have hab : L.len (a * b) ≤ 1 := by omega
+  have hlet' : ∀ c ∈ s ++ (a * b) :: t, L.len c ≤ 1 := by
+    intro c hc
+    rcases List.mem_append.mp hc with hc | hc
+    · exact hlet c (List.mem_append.mpr (Or.inl hc))
+    · rcases List.mem_cons.mp hc with rfl | hc
+      · exact hab
+      · exact hlet c (List.mem_append.mpr (Or.inr
+          (List.mem_cons_of_mem _ (List.mem_cons_of_mem _ hc))))
+  have hprod : (s ++ (a * b) :: t).prod = (s ++ a :: b :: t).prod := by
+    simp [List.prod_append, mul_assoc]
+  have h := L.len_prod_le hlet'
+  rw [hprod, ← hgeo] at h
+  simp only [List.length_append, List.length_cons] at h
+  omega
+
+/-- **Geodesic spellings are linearly reduced**, at the shape the diagram
+argument consumes. -/
+theorem letterReducedLinear_of_geodesic {L : RelativeLength G}
+    {l : List (CoprodI G)} (hlet : ∀ a ∈ l, L.len a ≤ 1)
+    (hgeo : l.length = L.len l.prod) : LetterReducedLinear L l := by
+  intro s t a b hl
+  subst hl
+  exact two_le_len_mul_of_geodesic hlet hgeo
 
 /-- **The Greendlinger length bound, at the relative length.**  A nontrivial
 element of the relator subgroup is longer — *in the relative metric* — than half
@@ -419,20 +544,32 @@ The proof to write is Lyndon--Schupp Ch. V §§9--11 over `X ∪ U`: a reduced v
 Kampen diagram over `U * B` whose boundary reads the relative normal form, the
 curvature count on its interior, and the boundary-layer estimate that `C'(1/6)`
 turns into "more than half".  `LetterFragmentSlack` licenses the step to the
-classical constant. -/
+classical constant.
+
+`HasGeodesicSpellings` comes first because it is what makes the conclusion
+land: the diagram argument must choose a geodesic spelling of `g`, not an
+arbitrary reduced one, or the final inequality points the wrong way.  See the
+comment above `two_le_len_mul_of_geodesic`. -/
 def WeightedGreendlingerLeaf (L : RelativeLength G)
     (R : Set (List (CoprodI G))) (lam : ℚ) : Prop :=
-  LetterSymmetrized R → (∀ r ∈ R, LetterCyclicallyReduced r) →
+  HasGeodesicSpellings L →
+    LetterSymmetrized R → (∀ r ∈ R, LetterReduced L r) →
     (∀ r ∈ R, ∀ a ∈ r, L.len a ≤ 1) →
     LetterFragmentSlack R lam → LetterMetricSmallCancellation R lam →
     RelativeLengthBound L R
 
 /-- **OPEN LEAF.**  The relative torsion classification at the letter alphabet,
 stated at `TorsionLifts` — the form that mentions no factor map, so that the
-partner factor is free to collapse. -/
+partner factor is free to collapse.
+
+The annular companion of the previous leaf: a reduced annular diagram whose
+outer boundary reads `wⁿ`, the same boundary-layer count, and `LetterNoProperPower`
+to rule out the degenerate case where `w` is conjugate to a power of a root of a
+relator. -/
 def WeightedTorsionLeaf (L : RelativeLength G)
     (R : Set (List (CoprodI G))) (lam : ℚ) : Prop :=
-  LetterSymmetrized R → (∀ r ∈ R, LetterCyclicallyReduced r) →
+  HasGeodesicSpellings L →
+    LetterSymmetrized R → (∀ r ∈ R, LetterReduced L r) →
     (∀ r ∈ R, ∀ a ∈ r, L.len a ≤ 1) →
     LetterFragmentSlack R lam → LetterMetricSmallCancellation R lam →
     LetterNoProperPower R → TorsionLifts (letterRelatorSubgroup R)
@@ -440,12 +577,12 @@ def WeightedTorsionLeaf (L : RelativeLength G)
 /-- **Neither leaf is empty.** -/
 theorem weightedGreendlingerLeaf_empty {L : RelativeLength G} {lam : ℚ} :
     WeightedGreendlingerLeaf L (∅ : Set (List (CoprodI G))) lam :=
-  fun _ _ _ _ _ => relativeLengthBound_of_eq_bot letterRelatorSubgroup_empty
+  fun _ _ _ _ _ _ => relativeLengthBound_of_eq_bot letterRelatorSubgroup_empty
 
 /-- The empty family satisfies the torsion leaf outright. -/
 theorem weightedTorsionLeaf_empty {L : RelativeLength G} {lam : ℚ} :
     WeightedTorsionLeaf L (∅ : Set (List (CoprodI G))) lam :=
-  fun _ _ _ _ _ _ => torsionLifts_of_eq_bot letterRelatorSubgroup_empty
+  fun _ _ _ _ _ _ _ => torsionLifts_of_eq_bot letterRelatorSubgroup_empty
 
 end Leaves
 
@@ -507,6 +644,10 @@ structure WeightedRouterDesign (U B : Type) [Group U] [Group B]
   partnerEquiv : B ≃* G true
   /-- The relative length function, with its peripheral clause. -/
   relLength : RelativeLength G
+  /-- **The relative length is realised by letter spellings.**  Free for the
+  canonical model (`hasGeodesicSpellings_osinLength`), and what lets the diagram
+  argument choose a geodesic word. -/
+  geodesic : HasGeodesicSpellings relLength
   /-- The relator family, as letter lists. -/
   relators : Set (List (CoprodI G))
   /-- Finitely many relators — the finite-presentation obligation. -/
@@ -515,15 +656,22 @@ structure WeightedRouterDesign (U B : Type) [Group U] [Group B]
   relators_letters : ∀ r ∈ relators, ∀ a ∈ r, relLength.len a ≤ 1
   /-- Closed under rotation and formal inversion. -/
   relators_symmetrized : LetterSymmetrized relators
-  /-- No two cyclically adjacent letters cancel. -/
-  relators_cyclicallyReduced : ∀ r ∈ relators, LetterCyclicallyReduced r
+  /-- No two cyclically adjacent letters collapse — neither cancelling nor, over
+  the atomic alphabet, merging into a single peripheral letter. -/
+  relators_cyclicallyReduced : ∀ r ∈ relators, LetterReduced relLength r
   /-- **The length floor**, now counted in letters — which is exactly what lets a
   tie relator meet it. -/
   relators_long : ∀ r ∈ relators, 42 ≤ r.length
   /-- No relator is a proper power. -/
   relators_noProperPower : LetterNoProperPower relators
-  /-- The metric condition at the design's constant. -/
-  metric : LetterMetricSmallCancellation relators (1 / 7)
+  /-- **The metric condition at the design's own constant, `C'(1/8)`.**  Not
+  `C'(1/7)`: the boundary-layer count produces the sharp arc bound `(1 - 3·lam)|r|`
+  rather than the rounded half, and `1/8` is the constant at which the torsion
+  half's residual case is arithmetically empty — the same choice the free lane
+  makes in `AvatarMetricCheck.metric_eighth`.  `C'(1/7)`, which is what the two
+  leaves and the fragment slack are stated at, is *derived* by
+  `metric_seventh`; monotonicity runs this way only. -/
+  metric : LetterMetricSmallCancellation relators (1 / 8)
   /-- The number of source generators. -/
   sourceCard : ℕ
   /-- The source generators. -/
@@ -546,9 +694,16 @@ variable {U B : Type} [Group U] [Group B] {G : Bool → Type} [∀ b, Group (G b
 /-- **The routed quotient** `(U * B) / ⟪R⟫`. -/
 abbrev Routed : Type := CoprodI G ⧸ letterRelatorSubgroup D.relators
 
-/-- The fragment slack at the design's constant, from the letter floor. -/
+/-- The fragment slack at `1/7`, from the letter floor.  The floor of `42` still
+clears it with room at the design's own `1/8`: `1/6 - 1/8 = 1/24`, and `24 ≤ 42`. -/
 theorem fragmentSlack : LetterFragmentSlack D.relators (1 / 7) :=
   letterFragmentSlack_of_le_seventh le_rfl D.relators_long
+
+/-- **The metric condition at `1/7`, derived from the design's `C'(1/8)`.**  One
+`C'(1/8)` proof serves the two leaves, the fragment slack, and the sharp
+boundary-layer count. -/
+theorem metric_seventh : LetterMetricSmallCancellation D.relators (1 / 7) :=
+  letterMetricSmallCancellation_mono (by norm_num) D.metric
 
 /-- The source's map into the routed quotient. -/
 def emb : U →* D.Routed :=
@@ -668,8 +823,8 @@ theorem kazhdan (hB : HasKazhdanPropertyT.{0, 0} B) :
 theorem lengthBound
     (hleafG : WeightedGreendlingerLeaf D.relLength D.relators (1 / 7)) :
     RelativeLengthBound D.relLength D.relators :=
-  hleafG D.relators_symmetrized D.relators_cyclicallyReduced D.relators_letters
-    D.fragmentSlack D.metric
+  hleafG D.geodesic D.relators_symmetrized D.relators_cyclicallyReduced
+    D.relators_letters D.fragmentSlack D.metric_seventh
 
 /-- **The source embeds**, from the length leaf and the peripheral clause. -/
 theorem emb_injective
@@ -689,8 +844,9 @@ theorem torsionFree (hleafT : WeightedTorsionLeaf D.relLength D.relators (1 / 7)
     (hU : IsPowerTorsionFree U) (hB : IsPowerTorsionFree B) :
     IsPowerTorsionFree D.Routed :=
   isPowerTorsionFree_of_torsionLifts (D.ambient_torsionFree hU hB)
-    (hleafT D.relators_symmetrized D.relators_cyclicallyReduced
-      D.relators_letters D.fragmentSlack D.metric D.relators_noProperPower)
+    (hleafT D.geodesic D.relators_symmetrized D.relators_cyclicallyReduced
+      D.relators_letters D.fragmentSlack D.metric_seventh
+      D.relators_noProperPower)
 
 /-! ## 7.  The envelope, with no property-`(T)` hypothesis -/
 
@@ -881,6 +1037,26 @@ theorem osinLength_gen_inv_le_one {k : ℕ} (gen : Fin k → G true)
     (hgen : Subgroup.closure (Set.range gen) = ⊤) (j : Fin k) :
     (osinLength gen hgen).len ((CoprodI.of (gen j))⁻¹) ≤ 1 :=
   WordMetric.wordNorm_le_one_of_mem (Or.inr ⟨j, rfl⟩)
+
+/-- **Geodesic spellings, for free.**  The word metric attains its infimum, which
+is `WordMetric.exists_isWord_length_eq`, so the design's `geodesic` field costs a
+caller over the canonical model nothing at all. -/
+theorem hasGeodesicSpellings_ofSymmetricGeneratingSet {S : Set (CoprodI G)}
+    (hS : WordMetric.IsSymmetricGeneratingSet S)
+    (hsrc : ∀ x : G false, CoprodI.of x ∈ S) :
+    HasGeodesicSpellings (ofSymmetricGeneratingSet hS hsrc) := by
+  intro g
+  obtain ⟨l, hl, hlen⟩ := WordMetric.exists_isWord_length_eq hS g
+  exact ⟨l, fun a ha => WordMetric.wordNorm_le_one_of_mem (hl.letters a ha),
+    hl.prod_eq, hlen⟩
+
+/-- The same at Osin's alphabet: the canonical model has geodesic spellings. -/
+theorem hasGeodesicSpellings_osinLength {k : ℕ} (gen : Fin k → G true)
+    (hgen : Subgroup.closure (Set.range gen) = ⊤) :
+    HasGeodesicSpellings (osinLength gen hgen) :=
+  hasGeodesicSpellings_ofSymmetricGeneratingSet
+    (isSymmetricGeneratingSet_osinAlphabet gen hgen)
+    (fun x => Or.inl (Or.inl ⟨x, rfl⟩))
 
 end AlphabetModel
 
