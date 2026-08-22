@@ -48,6 +48,15 @@ whenever `A` and `C` are finitely presented.  So the host-only statement
 non-hyperlinearity of the HNN group, and it closes the goal through
 `non-hyperlinear-from-non-relative-embeddability`.
 
+**Plain-double specialization at `SL_3`.**  Gao's Appendix Theorem 7.1 also
+has a converse for `M*_N M` itself when `N_1` is a factor and `M` contains a
+unitary whose every nonzero power has zero `N`-expectation.  The arithmetic
+pair satisfies this with `N_1=L(SL_3(Z))` and
+`u=lambda(diag(2,1,1/2))`; see
+`sl3-arithmetic-double-hyperlinear-iff-relative-embeddable`.  Thus in rank
+three the enlargement `D^+` is unnecessary: the plain double `A*_C A` is
+hyperlinear iff the inclusion is `RE/L(C)`.
+
 **Microstate form (`N_1 = C`, `A_k = M_(d_k)`).**  Call a regular-trace
 microstate sequence `pi_k : A -> U(d_k)` **`C`-faithful** if there are
 subalgebras `B_k subset M_(d_k)` with
