@@ -78,3 +78,13 @@ entire old equality energy.  Central direct-sum weighting makes this a
 small-energy obstruction.  Thus branch 2 of `(PCD1)` needs a coordinated
 cloud/face character decoder or a genuinely different Lyapunov update, not
 an improved constant in facewise Loewner exactification.
+
+That coordinated branch is complete on the globally commuting sector.
+`globally-commuting-balanced-occurrences-have-linear-character-decoder`
+uses the common spectral decomposition, pointwise cloud majority, and the
+classical LTC decoder to jump directly to a shared code PVM with squared
+movement `O(E_sparse)`.  It therefore satisfies `(PCD2)` and makes both
+energies zero, including on every direct sum of scalar fixed sheets.  What
+remains in branch 2 is not character tie breaking on central packets but
+the construction of a common abelian spectral space from a genuinely
+noncentral unbounded-type tuple.
