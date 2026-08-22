@@ -58,6 +58,25 @@ so this is exactly the fiber count of the fibration form below.
   by conjugations fixing `pi(Gamma)` approximately.  The quantitative
   question — does a positive-dimension quotient survive — is precisely
   the hole.
+- **The intrinsic commutant ratio is abelian and quadratically null.**
+  `summit-wreath-intrinsic-lattice-commutant-is-abelian` computes
+
+  ```text
+  L(Lambda)' cap L(W_3)=L^infinity(X)^Lambda.
+  ```
+
+  Every nonidentity crossed-product Fourier coefficient is killed by its
+  infinite `Lambda`-conjugacy orbit.  Hence the canonical relative
+  commutant which contains the base lamp is abelian.  Uniformly over all
+  abelian matrix algebras `B_d<=M_d`, the unitary covering number is only
+  `(C/epsilon)^d=exp(o(d^2))`.  Thus raw `Lambda`-central lamp freedom does
+  not yield `(EX1)`: quadratic packing must come from extrinsic nonabelian
+  growth of the approximate matrix commutants, or from inequivalent
+  embeddings of the abelian algebra after pinning.  A `p=3` transfer modulus
+  absorbs the former into the `Gamma`-central gauge, while a surviving
+  macroscopic quotient is a quadratic family of transfer enemies.  This
+  makes the finite-level commutant-ratio branch a multiplicity strengthening
+  of the same arithmetic transfer wall, not an independent entropy source.
 - **Exact finite congruence-wreath torsors are entirely gauge/subquadratic.**
   `finite-congruence-wreath-lamp-torsors-are-subquadratic-gauge` performs the
   quotient that the raw commutant count omits.  Uniform Bernoulli lamp
