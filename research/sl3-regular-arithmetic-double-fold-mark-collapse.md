@@ -43,6 +43,15 @@ almost representation of D + canonical character
     => their relative h-word has trace modulus near one.       (RDF2)
 ```
 
+The joint near-exact sector is also complete.
+`sl3-arithmetic-double-near-exact-vertices-fold-projectively` proves
+`(RDF1)` whenever BOTH full vertex assignments approach exact
+finite-dimensional representations, with a dimension-free estimate.  Hence
+every enemy keeps at least one whole `A` vertex uniformly outside the exact
+representation variety.  This is stronger localization than saying only
+that the lattice restriction is an outlier, but it does not control the
+remaining one-vertex-outlier sector.
+
 This is strictly narrower than `projective-trace-square-transfer-for-sl3-pair`.
 That universal claim would apply to the block diagonal of the two vertex
 assignments and the swap unitary, and immediately give `(RDF1)`; the converse
