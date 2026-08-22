@@ -47,6 +47,34 @@ static bool inverse(Matrix value, Matrix &result) {
   return true;
 }
 
+static int rank(Matrix value) {
+  std::array<std::uint8_t, 8> rows{};
+  for (int i = 0; i < 8; ++i) rows[i] = (value >> (8 * i)) & 255;
+  int pivot_row = 0;
+  for (int column = 0; column < 8; ++column) {
+    int pivot = pivot_row;
+    while (pivot < 8 && !((rows[pivot] >> column) & 1)) ++pivot;
+    if (pivot == 8) continue;
+    std::swap(rows[pivot_row], rows[pivot]);
+    for (int row = 0; row < 8; ++row)
+      if (row != pivot_row && ((rows[row] >> column) & 1)) rows[row] ^= rows[pivot_row];
+    ++pivot_row;
+  }
+  return pivot_row;
+}
+
+static bool repeated_binary_frame(Matrix value, std::uint16_t &small) {
+  small = 0;
+  for (int i = 0; i < 4; ++i) for (int j = 0; j < 4; ++j) {
+    int block = 0;
+    for (int row = 0; row < 2; ++row)
+      block |= ((value >> (8 * (2 * i + row) + 2 * j)) & 3) << (2 * row);
+    if (block == 0b1001) small |= std::uint16_t{1} << (4 * i + j);
+    else if (block != 0) return false;
+  }
+  return true;
+}
+
 static std::vector<Matrix> nullspace(std::vector<Matrix> rows) {
   rows.erase(std::remove(rows.begin(), rows.end(), 0), rows.end());
   std::vector<int> pivots;
@@ -128,6 +156,7 @@ struct Gauge {
   Matrix value;
   Matrix inverse;
   bool f4_linear_action;
+  Matrix f4_value;
 };
 
 static Matrix read_hex() {
@@ -205,12 +234,15 @@ int main() {
     Matrix value_inverse;
     assert(inverse(value, value_inverse));
     bool f4_linear_action = false;
+    Matrix f4_value = 0;
     for (Matrix scalar : a8_units) {
       Matrix candidate = multiply(scalar, value);
-      if (multiply(candidate, field_structure) == multiply(field_structure, candidate))
+      if (multiply(candidate, field_structure) == multiply(field_structure, candidate)) {
         f4_linear_action = true;
+        f4_value = candidate;
+      }
     }
-    gauges.push_back({value, value_inverse, f4_linear_action});
+    gauges.push_back({value, value_inverse, f4_linear_action, f4_value});
     for (Matrix scalar : a8_units) seen.insert(multiply(scalar, value));
   }
   assert(seen.size() == h6_units.size());
@@ -223,7 +255,11 @@ int main() {
   std::uint64_t f4_packet = 0, f4_collision_good = 0, f4_q14_good = 0;
   Matrix first_escape = 0, first_escape_q14 = 0;
   Matrix first_escape_hub = 0;
+  Matrix first_f4_packet = 0;
+  Matrix first_binary_packet = 0;
+  std::uint16_t first_binary_packet_small = 0;
   std::array<std::uint64_t, 4097> order_histogram{};
+  std::array<std::array<std::uint64_t, 9>, 9> defect_rank_histogram{};
   for (Matrix base : data.conjugators) {
     Matrix base_inverse;
     assert(inverse(base, base_inverse));
@@ -247,6 +283,19 @@ int main() {
       if (!good) continue;
       ++packet;
       f4_packet += gauge.f4_linear_action;
+      if (gauge.f4_linear_action && first_f4_packet == 0)
+        first_f4_packet = multiply(gauge.f4_value, base);
+      if (gauge.f4_linear_action && first_binary_packet == 0) {
+        for (Matrix scalar : a8_units) {
+          Matrix candidate = multiply(multiply(scalar, gauge.value), base);
+          std::uint16_t small;
+          if (repeated_binary_frame(candidate, small)) {
+            first_binary_packet = candidate;
+            first_binary_packet_small = small;
+            break;
+          }
+        }
+      }
       Matrix collision = evaluate(data.collision, conjugator, conjugator_inverse);
       Matrix q14 = evaluate(data.q14, conjugator, conjugator_inverse);
       bool cg = collision == identity(), qg = q14 == identity();
@@ -269,12 +318,15 @@ int main() {
       int value_order = matrix_order(collision);
       assert(value_order > 0);
       ++order_histogram[value_order];
+      ++defect_rank_histogram[rank(collision ^ identity())][rank(q14 ^ identity())];
     }
   }
   assert(f4_packet == 2754);
   assert(f4_collision_good == 0);
   assert(f4_q14_good == (data.parity == "graph" ? 486 : 729));
   assert(first_escape != 0);
+  assert(first_f4_packet != 0);
+  assert(first_binary_packet != 0);
   assert(packet == 136728);
   assert(collision_good == 5184);
   assert(q14_good == (data.parity == "graph" ? 5184 : 10044));
@@ -294,6 +346,12 @@ int main() {
             << "  \"f4_packet_crosscheck\": " << f4_packet << ",\n"
             << "  \"f4_collision_crosscheck\": " << f4_collision_good << ",\n"
             << "  \"f4_q14_crosscheck\": " << f4_q14_good << ",\n"
+            << "  \"first_f4_packet_conjugator\": \""
+            << std::hex << std::setw(16) << first_f4_packet << "\",\n" << std::dec
+            << "  \"first_binary_packet_conjugator\": \""
+            << std::hex << std::setw(16) << first_binary_packet << "\",\n"
+            << "  \"first_binary_packet_4x4\": \""
+            << std::setw(4) << first_binary_packet_small << "\",\n" << std::dec
             << "  \"structured_candidates\": " << data.conjugators.size() * gauges.size() << ",\n"
             << "  \"packet_survivors\": " << packet << ",\n"
             << "  \"collision_survivors\": " << collision_good << ",\n"
@@ -314,5 +372,15 @@ int main() {
       first = false;
       std::cout << "\"" << value_order << "\": " << order_histogram[value_order];
     }
+  std::cout << "},\n  \"defect_rank_pairs\": {";
+  first = true;
+  for (int collision_rank = 0; collision_rank <= 8; ++collision_rank)
+    for (int q14_rank = 0; q14_rank <= 8; ++q14_rank)
+      if (defect_rank_histogram[collision_rank][q14_rank]) {
+        if (!first) std::cout << ", ";
+        first = false;
+        std::cout << "\"" << collision_rank << "," << q14_rank << "\": "
+                  << defect_rank_histogram[collision_rank][q14_rank];
+      }
   std::cout << "}\n}\n";
 }

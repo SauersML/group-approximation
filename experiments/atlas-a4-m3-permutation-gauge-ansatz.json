@@ -1,0 +1,10 @@
+{
+  "ansatz": "m=3 H6-trivial-carrier permutation gauges",
+  "collision_survivors": 0,
+  "defect_rank_pairs": {"3,3": 288},
+  "first_joint_permutation": null,
+  "gauges": 720,
+  "joint_survivors": 0,
+  "packet_survivors": 288,
+  "q14_survivors": 0
+}

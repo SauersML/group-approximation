@@ -28,6 +28,17 @@ parities the collision orders on the packet locus are
 1:5184,     2:65448,     4:66096.                     (M2J1)
 ```
 
+The defect-rank spectrum sharpens the zero count.  In both parities every
+collision-zero point has
+
+```text
+(rank(q_19243-I),rank(q_14-I))=(0,1),                 (M2J3)
+```
+
+while every q14-zero point has pair `(2,0)`.  Thus the minimum unweighted
+rank sum is only one.  This finite calibration does not itself provide a
+rank deficit proportional to multiplicity.
+
 This is not an exhaustive classification of all H6 image pairs in GL8(2):
 the `1262` base lifts are the F4-linear seed cell.  It is therefore a sharp
 finite slice theorem, not an all-multiplicity q14-plus-collision identity.
