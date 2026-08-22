@@ -124,3 +124,20 @@ lane.
   block/state width or genuinely nonstationary coefficients; neither an
   invertible nor a singular fixed-width companion symbol can evade finite
   specialization.
+- **The finitely presented algebra has infinite one-sided width.**
+  Put `P=F2[A8*A8]` and let `I` be the augmented relator ideal.
+  `atlas-augmented-relator-ideal-not-left-finite` proves that `I`, although
+  finitely generated as a two-sided ideal, is not finitely generated as a
+  left `P`-module.  The reason is exact: the Bass--Serre kernel is a free
+  group of infinite rank, and a group-algebra quotient kernel is
+  left-finitely-generated exactly when the kernel subgroup is finitely
+  generated.  Thus no bounded algebraic list of relator translates can
+  control the wandering space.
+- **Exact remaining module statement.**
+  `atlas-left-ideal-rank-nonwandering` asks whether, on modules restricting
+  to `V^m` on both charts, low normalized rank of the thirteen named ideal
+  generators forces the full ideal image `I E` to have sub-full (ideally
+  vanishing) normalized dimension.  The quotient dichotomy turns that
+  statement directly into `(ARC1)`.  A countermodel is precisely a sequence
+  with a vanishing-rank named seed but `I E=E`; the fixed-width theorems force
+  any such sequence to use growing state width or nonstationary data.
