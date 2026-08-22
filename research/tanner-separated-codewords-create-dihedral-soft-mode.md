@@ -70,6 +70,13 @@ indecomposability condition excluding `(DSM1)`--`(DSM2)`; classical distance,
 stopping distance, bounded check degree, and LTC soundness alone do not do
 so.
 
+This soft mode also cannot be amplified into a far diffuse model by taking
+arbitrarily many independent tensor copies, even when factor participation
+and generated matrix type diverge.
+`tensor-dihedral-soft-modes-round-by-code-distance` aligns all such factors
+simultaneously and charges the resulting squared movement by
+`E_pair/delta`, using only the relative distance of the scalar code.
+
 The obstruction is compatible with all usual scalar quality parameters.
 The direct sum of two copies of any good bounded-check LDPC code has bounded
 degree and positive rate, relative distance, stopping distance, and LTC

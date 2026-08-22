@@ -121,6 +121,16 @@ rounds the remaining projective block.  Thus the unresolved high-type mass
 must be genuinely noncentral, not a diffuse central sum of matching Pauli
 packets.
 
+Nor can the noncentral dihedral soft mode be amplified into such a sector by
+putting arbitrarily many independent soft factors in tensor product.
+`tensor-dihedral-soft-modes-round-by-code-distance` permits unbounded factor
+participation and hence unbounded generated type.  Its exact tensor-overlap
+calculation constructs one commuting parity representation at squared cost
+at most `E_pair/delta`.  The code-distance double count prevents weak
+incompatibilities from accumulating on every coordinate while remaining
+invisible on almost every pair.  A surviving high-type model must therefore
+use more than independent two-direction dihedral factors.
+
 However, generated-algebra type itself cannot be used as the next coercive
 quantity.  `high-type-mass-is-discontinuous-at-exact-code-tuples` perturbs
 one reflection of an exact diagonal all-local-dual code tuple by an

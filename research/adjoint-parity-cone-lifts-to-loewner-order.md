@@ -66,12 +66,66 @@ application makes the corresponding full row sum at least `kappa L` times
 that entry.  Summing gives total matrix mass at least `kappa^2 L^2` times
 the original entry.
 
+There is also a sharper deterministic **row** consequence, useful for
+physical spectral cutting.  Put
+
+```text
+q_a^2=(1/L)sum_i||Q_aQ_i-Q_iQ_a||_2^2.
+```
+
+Then every anchor, rather than merely an anchor chosen on average, obeys
+
+```text
+q_a^2 <= E_com/kappa.                                    (APL7)
+```
+
+Indeed `(APL5)`, with its two indices interchanged if necessary, gives
+
+```text
+sum_j||[Q_i,Q_j]||_2^2
+ >=kappa L ||[Q_i,Q_a]||_2^2
+```
+
+for every `i`.  Sum this over `i`; the left side is `L^2 E_com` and
+the right side is `kappa L^2 q_a^2`.
+
+Combine `(APL7)` with
+`regularized-anchor-square-function-has-dimension-free-cut`.  For every
+anchor `a` and every `0<theta<1/2`, there is an anchor-commuting projection
+`p_a` for which
+
+```text
+tau(p_a) <= E_com/(4 kappa theta),
+(1/L)sum_l||[p_a,Q_l]||_2^2
+  <=2(1+kappa^(-1/2))sqrt(E_com)/theta,                  (APL8)
+```
+
+and, on `q=1-p_a`,
+
+```text
+q[(1/L)sum_i Y_(a,i)^2]q <=2theta q,
+Y_(a,i)=(Q_i-Q_aQ_iQ_a)/2.                              (APL9)
+```
+
+Resetting `Q_a` to the identity on `p_a` costs at most
+
+```text
+E_com/(kappa theta).                                    (APL10)
+```
+
+Thus choosing, for example, `theta=E_com^(1/4)` gives simultaneously for
+**every** anchor a discarded trace and reset cost `O(E_com^(3/4))`, a
+physical boundary `O(E_com^(1/4))`, and retained anchor-row square-function
+operator norm `O(E_com^(1/4))`.  No exceptional-anchor or coordinated-row
+cancellation can survive this cut.
+
 Thus exact parity forbids the proposed spectral-partner reservoir: a large
 commutator in one pair cannot be paid by mutually incompatible partners on
 tiny character pieces without making the whole commutator row large.  This
 statement does not centralize the commutators and does not prove basin
-capture.  A remaining countermodel may have every pair commutator uniformly
-small in normalized Hilbert--Schmidt norm while its order-one operator-norm
-spectral cuts move with the pair.  Controlling a common approximately
-reducing cut for those diffuse noncentral remainders is still exactly
+capture.  Equations `(APL8)`--`(APL10)` give a separate cheap cut for every
+anchor, not one common reducing projection and not a summable schedule for
+successive nonreducing resets.  A remaining countermodel may move the
+order-one spectral cuts with the anchor and recycle their physical boundary.
+Controlling that diffuse noncentral remainder is still exactly
 `complete-pair-overlay-uniform-hs-basin-capture`.
