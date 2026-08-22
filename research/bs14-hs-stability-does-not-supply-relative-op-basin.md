@@ -98,3 +98,12 @@ A Voiculescu clock--shift countersequence satisfying the exact BS and
 dihedral relations while both cubic defects vanish in operator norm would
 refute the basin, but no primary result above constructs such a relative
 countersequence.
+
+The final attempt to combine HS repair with thresholded outlier deletion is
+fenced by `long-bs14-packets-defeat-invariant-op-thresholding`.  Two explicit
+irreducible length-`m` cores are `O(m^(-1/2))` apart in normalized HS and at
+least `sqrt(2)` apart in operator norm.  Only `O(log(1/theta))` coordinate
+lines exceed threshold `theta`, but their invariant hull is the whole
+packet, and exact type-balancing padding costs another `m` dimensions.
+Hence HS repair plus invariant high-mass deletion does not enter the
+operator tube.

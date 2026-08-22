@@ -89,3 +89,12 @@ approximate BS implementer, but the established solenoid theorem repairs it
 only in normalized HS.  Exact BS cores can be `o(1)` apart in normalized HS
 and `sqrt(3)` apart in operator norm on one scalar packet, so that correction
 does not enter the mixed-norm Newton tube.
+
+`long-bs14-packets-defeat-invariant-op-thresholding` shows that flexible
+outlier removal does not repair this formally.  There are irreducible
+length-`m` exact cores which are `O(m^(-1/2))` apart in HS but uniformly
+operator-far.  A fixed threshold sees only boundedly many high coordinate
+lines, yet the BS-invariant hull of any one is the entire packet and exact
+type-balancing padding costs `m`.  Thus the high/low singular cut cannot be
+promoted to an exact-core cut before Newton without a new non-invariant
+reconnection and joint repair theorem.
