@@ -45,6 +45,21 @@ node is precisely a constant-distance affine rank condenser: the ideal
 syndrome must stay a fixed relative Hamming distance from every bounded-rank
 completion, followed by its amplification-stable HS promotion.
 
+The discrete scalar-Weyl condenser is now established by
+`private-random-generator-columns-form-affine-rank-condenser`.  A degree-one
+matching of `64r^2` private random pairs in an active `r`-space stays at
+relative distance at least `1/4` from every rank-at-most-`r/4` bilinear form;
+embedding it in ambient dimension `N=r^2` gives scalar carrier dimension
+`2^Omega(sqrt(N))` at a fixed sign-error threshold.  Appending a good base
+generator block preserves uniform column spectral gaps and linear total
+length.
+
+Thus the only remaining part of this OPEN node is the matrix-valued/HS
+promotion.  Exact additive X and Z representations can have nonscalar,
+non-normalizing cross behavior not encoded by one bilinear matrix.  One must
+either round small sampled defects to the scalar-Weyl sector with constants
+independent of `r`, or build such a matrix-valued low-dimensional escape.
+
 There is no contradiction with the ordinary sparse-Pauli model.
 `bounded-degree-partial-matrices-have-constant-completion-rank` proves that
 an unrestricted degree-`Delta` partial binary matrix has completion rank

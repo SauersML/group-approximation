@@ -169,3 +169,13 @@ fraction of tests, and diagonal reweighting still admits rank-`O(1/epsilon)`
 block completions at error `epsilon`.  Cayley placement therefore needs the
 still-open **constant-distance** affine rank witness, not merely growing exact
 minrank.
+
+The scalar constant-distance half is now positive:
+`private-random-generator-columns-form-affine-rank-condenser` supplies a
+degree-one private matching with constant syndrome distance from every
+rank-`o(sqrt(N))` bilinear completion.  The unresolved analytic issue is
+whether arbitrary matrix-valued additive X/Z representations with small
+sampled HS defect reduce uniformly to that scalar-Weyl model.  Hence sparse
+mixed incidence is no longer blocked by rectangle combinatorics at the
+scalar level; its next gate is matrix-valued exactification on the same
+Hilbert space.
