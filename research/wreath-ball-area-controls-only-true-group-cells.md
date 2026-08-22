@@ -73,3 +73,11 @@ quotient-kernel cells by a new regular-character compiler, yielding the
 subquadratic finite-packet cover, or construct many non-conjugate
 presentation microstates whose moduli survive every diagonal true-ball table
 while living in those uncontrolled moving kernel directions.
+
+Their exact tangent contribution is nevertheless zero.
+`finite-image-summit-wreath-relative-h1-vanishes` proves that the kernel of
+every finite-image representation of `W_3` has torsion abelianization, so
+inflation--restriction kills all real adjoint one-cocycles.  Moving kernel
+cells can support the entropy branch only through nonlinear approximate
+models far from the finite-image representation variety, not through local
+congruence deformations.

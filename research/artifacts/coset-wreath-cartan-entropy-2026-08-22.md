@@ -211,6 +211,13 @@ essentially unique modulo conjugation and lower-order corrections.
    original group and has no van Kampen bound.  The exact theorem and the
    resulting entropy/compiler dichotomy are
    `wreath-ball-area-controls-only-true-group-cells`.
+7. **Finite-image moving-kernel tangents vanish.**  For every finite-image
+   representation of `W_3`, its kernel has torsion abelianization: the lamp
+   part has exponent two and the projected finite-index arithmetic subgroup
+   has property `(T)` and finite abelianization.  Inflation--restriction then
+   gives `H^1(W_3,u(d)_Ad rho)=0`, including the actor-fixed relative fiber.
+   Thus moving kernel cells can matter only nonlinearly; see
+   `finite-image-summit-wreath-relative-h1-vanishes`.
 
 ## Trust surface
 

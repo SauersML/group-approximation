@@ -93,6 +93,16 @@ precision.
   control those moving kernel cells from regular-character data, or build
   `c d^2` non-conjugate models supported in them while preserving every
   diagonal true-ball table.
+- **Moving congruence kernels have zero real tangent dimension.**
+  `finite-image-summit-wreath-relative-h1-vanishes` applies
+  inflation--restriction to the actual infinite group `W_3`.  The kernel of
+  any finite-image representation projects to a finite-index property-`(T)`
+  subgroup of `Gamma` and has an exponent-two lamp kernel; its abelianization
+  is torsion.  Hence it has no homomorphisms into the real adjoint module, and
+  `H^1(W_3,u(d)_Ad rho)=0`.  The actor-fixed relative tangent vanishes as
+  well.  Therefore the moving quotient-kernel seam cannot carry even one
+  infinitesimal real parameter, let alone `c d^2`; any entropy witness there
+  must be genuinely nonlinear and uniformly far from finite-image models.
 - **Freeness inside is not enough (calibration).**  `h` is not monotone
   under subalgebras: `L(F_2) subset L(F_2) tensor R` with
   `h(ambient) = 0`.  So free subgroups of `Gamma`, or the Bass–Serre
