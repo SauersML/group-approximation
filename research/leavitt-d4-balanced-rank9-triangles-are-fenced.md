@@ -5,6 +5,8 @@ kind: claim
 title: Every balanced rank-nine length-twelve triangle is globally fenced
 artifacts:
   - research/leavitt-d4-balanced-rank9-triangles-are-fenced-proof.md
+  - research/artifacts/split-degree4-length12-rank9-carriers.py
+  - research/artifacts/split-degree4-length12-rank9-carriers.sbatch
 distinct_from:
   leavitt-d4-low-rank-triangles-are-fenced: That theorem concerns the length-ten four-face compiler; this theorem treats the two all-same-chirality balanced classes at length twelve.
 ---
