@@ -96,3 +96,12 @@ commutant, or the full `A8` commutant is required.
   `atlas-a4-two-c3-line-carriers-have-exact-angle-gap`: bound the left side
   by the fourteen shifted common-`U` residuals.  This formulation is
   invariant under the independent gauges of the existential factorizations.
+- **The leakage has an exact two-covariance sum of squares.**
+  `atlas-common-u-c3-compression-is-two-covariance-residuals` expands the
+  left side of `(A4-C3-9)` as the sum of the left and right `C_6` covariance
+  residuals of the single operator `E_K^-U^*rho(b_0)UE_K^+`.  Exact
+  compression is therefore equivalent to two displayed linear equations.
+  The packet endpoint audit shows that `b_0` occurs in none of the fourteen
+  edges, so neither residual can telescope along one shifted factorization.
+  What remains is sharply a joint packet--collision cycle identity producing
+  those two mixed residuals, or a matrix-only trace obstruction forcing them.
