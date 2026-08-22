@@ -64,3 +64,10 @@ for the canonical-profile reverse-Kleene route.
 - **Finite Pauli rank is not that comparison.**
   `depthwise-pauli-packets-have-canonical-regular-escape` gives an exact
   canonical left-regular countermodel at every fixed packet rank.
+- **A natural `2 by 2` Julia/Schur cell is not that comparison either.**
+  `two-by-two-julia-schur-cell-cannot-return-the-fanizza-mark` shows that
+  Julia and ordinary Schur calculus are regular-tracially functorial.  The
+  alternative opposite-root `GL_2` commutator has exact quadratic/cubic
+  contamination and does not isolate the additive trace-zero certificate.
+  Passing to the clean `GL_3` Steinberg identity leaves the already isolated
+  characteristic-zero coefficient-decoding problem.
