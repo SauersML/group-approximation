@@ -42,8 +42,11 @@ carrying the Bernoulli mixed moments — is a microstate of `W_3`.  So:
   succeed rigidly.  This converts the constructive probes (the p = 2
   flat tower) into a second refutation instrument: measure the moduli.
 - **Consistency guard.**  This does not contradict Kun–Thom Cor. D
-  (`coordinate-action-not-sofic`): the Cartan exists in the limit
-  algebra while approximations can never respect it.  Nor does it
+  (`coordinate-action-not-sofic`): that theorem concerns the Kun–Thom
+  pair, and by `arithmetic-integral-subgroup-is-incompressible` its
+  infranormality hypothesis FAILS for the arithmetic pair — the
+  soficity of `W_3` and of its coset action is genuinely open, and the
+  Cartan lives in the limit algebra either way.  Nor does it
   separate the wreath from its base by a naive count: `L(Gamma)` is
   itself strongly 1-bounded by property (T)
   (Hayes–Jekel–Kunnawalkam Elayavalli, arXiv:2107.03278, JIMJ).  The

@@ -38,7 +38,12 @@ and it is the lane's summit group.
 
 Deliberately recorded alongside `coordinate-action-not-sofic`: the
 existence of a Cartan in the limit algebra does NOT contradict the
-Kun–Thom refutation of Cartan-compatible (permutation) approximations;
-microstates of `W_3`, if any, cannot respect this Cartan, yet
-(`coset-wreath-hyperlinearity-forces-strong-one-boundedness`) they are
-still entropy-starved because the Cartan exists at the limit.
+Kun–Thom refutation of Cartan-compatible (permutation) approximations
+for THEIR pair.  Scope note
+(`arithmetic-integral-subgroup-is-incompressible`): the arithmetic pair
+has trivial compression semigroup, so Kun–Thom Thm A / Cor. D do not
+apply to `W_3` and the soficity of the arithmetic coset action is open;
+what is unconditional here is only the entropy ceiling
+(`coset-wreath-hyperlinearity-forces-strong-one-boundedness`) — any
+microstates, Cartan-respecting or not, are entropy-starved because the
+Cartan exists at the limit.

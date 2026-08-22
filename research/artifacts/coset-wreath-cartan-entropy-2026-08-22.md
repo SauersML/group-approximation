@@ -159,15 +159,27 @@ essentially unique modulo conjugation and lower-order corrections.
    non-hyperlinear.  A successful "hyperlinear-side" construction must
    therefore be RIGID; the constructive probe (the p = 2 flat tower) is
    two-sided in a sharper way than the fork previously recorded.
-2. **No contradiction with Kun–Thom Corollary D.**  Cor. D
-   (`coordinate-action-not-sofic`) forbids permutation/Cartan-compatible
-   APPROXIMATIONS of the coset action.  Theorem 2 exhibits a Cartan in
-   the LIMIT algebra.  These coexist: existence of a Cartan masa in
-   `L(W_3)` does not produce microstates respecting it — indeed Cor. D
-   says exactly that microstates, if any, must be far from the Cartan
-   picture, while Theorem 3 says they are nevertheless entropy-starved.
-   Recording this pair kills a tempting false shortcut in both
-   directions.
+2. **Scope of Kun–Thom Corollary D, and an incompressibility fence.**
+   Cor. D (`coordinate-action-not-sofic`) forbids permutation/Cartan-
+   compatible approximations of the coset action FOR THE KUN–THOM PAIR;
+   its hypothesis is infranormality (the compression semigroup
+   `P_Lambda = {g : g Lambda g^{-1} <= Lambda}` generates).  For the
+   arithmetic pair `P_Lambda` is trivial: if `g SL_n(Z) g^{-1}
+   subseteq SL_n(Z)` for `g in SL_n(R)`-conjugation coming from
+   `GL_n(Q)`, both sides are lattices in `SL_n(R)` of equal covolume
+   (conjugation preserves Haar), and `covol(g Lambda g^{-1}) =
+   [Lambda : g Lambda g^{-1}] . covol(Lambda)` forces index one, i.e.
+   equality.  So `P_Lambda = N(Lambda)`, which is `Lambda` itself
+   (a normalizing `g` maps the `SL_3(Z)`-invariant lattice class of
+   `Z^3` — unique up to scaling by the elementary-difference argument —
+   to a scaling, so `g in GL_3(Z) cap SL_3 = SL_3(Z)`), and `Lambda` is
+   as far from infranormal as possible.  Consequently Kun–Thom Thm A /
+   Cor. D do NOT apply to `W_3`: the soficity of `W_3` and of the
+   arithmetic coset action is genuinely open, and the arithmetic lane's
+   mechanism (commensuration/co-density) is provably disjoint from the
+   Kun–Thom compression mechanism.  Theorem 3's entropy ceiling is
+   unconditional either way.  Recorded as
+   `arithmetic-integral-subgroup-is-incompressible`.
 3. **Both `L(Gamma)` and `L(W_3)` are strongly 1-bounded (if CE).**
    For `L(Gamma) = L(SL_3(Z[1/3]))` this is property (T) strong
    1-boundedness (Hayes–Jekel–Kunnawalkam Elayavalli, arXiv:2107.03278,
