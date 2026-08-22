@@ -105,6 +105,16 @@ least one non-root assignment projection must survive.
   `U`.  Thus two paths are necessary but one isolated two-path cell does not
   close the chord.  The next target is a shared-block loop of at least two
   additive cells whose relative gauge is read by another corner polynomial.
+- **Shared rank-one swap cycles only read ordinary isotropy.**  Two parallel
+  `D_8` cells expose `U_u^*U_t` as
+  `p_0u^(-1)t p_0`; an `A_4/V_4` triangle exposes
+  `U_20U_12U_01` as `p_0t_20t_12t_01p_0`.  Leaving the return word free leaves
+  arbitrary holonomy.  Equating the whole return word to its compatible
+  finite label merely removes a graph-of-groups cycle.  Imposing only the
+  compressed equality would be useful, but is exactly the unresolved
+  algebraic corner term-pairing operation.  The next genuinely new finite
+  cell must use transverse noncommuting source partitions so multiplication
+  leaves a sum of at least two return paths.
 - **Pair opposite group-ring terms with new relators: circular.**  A single
   additive marginal equality can be forced by pairing its finite positive
   and negative support terms.  But

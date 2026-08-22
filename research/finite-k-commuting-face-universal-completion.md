@@ -101,3 +101,10 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   normalizes `q`.  Hence the remaining construction needs multiple additive
   cells with a shared-block holonomy polynomial, not one stable word or one
   rank-one swap.
+- **Close a cycle of rank-one additive swaps.**  The cycle polynomial does
+  read the relative multiplicity gauge, but it is exactly the compression of
+  one ordinary isotropy return word.  Ordinary relations either leave that
+  word arbitrary or identify it with its finite packet label and remove the
+  graph cycle.  Selective equality only on the rank-one corner is not a group
+  relator.  Thus the remaining multi-path target needs transverse source
+  partitions producing a genuine sum of return words.
