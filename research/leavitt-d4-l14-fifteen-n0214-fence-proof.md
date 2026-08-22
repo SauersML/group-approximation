@@ -15,7 +15,7 @@ middle-carrier branches.  It gives `70` joint carrier states in branch I and
 all normalized cyclic cuts, append the fresh target coordinate in all four
 copies, and enumerate all coarsening-maximal cancellation forests.
 
-MSI job `16682211` returned
+The Q-first replay, MSI job `16683063`, returned
 
 ```text
              branch I   branch II

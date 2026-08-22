@@ -25,17 +25,17 @@ retains every coordinate image during Tietze elimination.  This produces
 
 For each state the boundary calculation takes every normalized cyclic cut,
 appends a fresh coordinate `q^-1` in each of the four possible target copies,
-and again generates all coarsening-maximal forests.  Job `16681784` on MSI
-returned
+and again generates all coarsening-maximal forests.  The final Q-first replay,
+MSI job `16683062`, returned
 
 ```text
              branch I   branch II
 augmented words   1848        1100
-boundary states    213         101
-q nonempty           42           9
+boundary states    197         101
+q nonempty           27           9
 q free                0           0
-direct kills          11           3
-power kills           31           6
+direct kills           8           3
+power kills           19           6
 unresolved             0           0
 ```
 
@@ -43,5 +43,6 @@ A direct kill means that the cyclically reduced `q` image is itself one of the
 residual relators up to cyclic conjugacy and inversion.  A power kill means
 that `q` is a pure power of one generator and the gcd of the pure-power
 residual exponents divides its exponent.  Thus every nonempty apparent mark is
-already trivial in its carrier quotient.  A second exact replay, job
-`16682011`, prints all direct- and power-killed terminal states for audit.
+already trivial in its carrier quotient.  The earlier jobs `16681784` and
+`16682011` used generic Tietze ordering; `16683062` is the canonical terminal
+audit because it eliminates the once-occurring formal target first.
