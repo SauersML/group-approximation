@@ -6,7 +6,7 @@ title: The mod-three Maslov defect gap and one-word central collapse are each eq
 artifacts:
   - research/artifacts/deligne-sector-tensor-camouflage-2026-08-21.md
 distinct_from:
-  nonhyperlinear-via-deligne-central-mark-collapse: that records only the easy implication from central-mark collapse to non-hyperlinearity; this proves the converse by tensoring any surviving projective sector with canonical microstates of the residually finite quotient.
+  deligne-central-mark-hs-collapse: that is the one-word analytic statement; this proves that, for this cover, the statement is equivalent to the terminal non-hyperlinearity conclusion by tensor camouflage in the converse direction.
   residual-finite-tensor-camouflages-iwahori-transfer-failures: that regularizes the character of an Iwahori transfer counterexample; this uses the same tensor principle to turn any mod-three projective almost representation into a faithful hyperlinear embedding of the central extension.
 ---
 
@@ -35,4 +35,3 @@ from zero as dimension grows.  Property (T) does not change this logical
 equivalence.
 
 The proof is `deligne-sector-gap-equivalence-proof`.
-
