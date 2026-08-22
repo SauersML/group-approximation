@@ -26,7 +26,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`open`**, line 1739 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 1819 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 1818 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
