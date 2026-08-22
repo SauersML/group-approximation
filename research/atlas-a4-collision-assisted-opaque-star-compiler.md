@@ -111,6 +111,15 @@ only has to transport its covariance block.
   `J=<F,t>` relations, so a global matrix obstruction still has to control
   all carrier types.
 
+- **Changing carrier type reaches a third large-component edge.**
+  `atlas-a8-carrier-reaches-third-large-core-edge` gives an exact degree-eight
+  `A8` image satisfying the minimal forward-collision support and the first
+  three of the four large `K2,2` pair-cubes.  Its regular representation is
+  already at atlas multiplicity one.  Thus neither the A10 collapse nor the
+  first cycle is a global obstruction.  The same bounded low-index census has
+  masks only `0x3,0x7,0xb`, never all four, so the fourth edge is now the first
+  unresolved relation in this carrier ladder.
+
 - **The other component supplies a moving regular-A4 carrier.**
   `atlas-collision-involution-is-an-a4-bridge-to-h6` proves the exact
   asymmetric incidence
