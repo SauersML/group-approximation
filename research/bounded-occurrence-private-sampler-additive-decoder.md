@@ -44,3 +44,23 @@ This is strictly smaller than global BLR decoding and is now the most
 concrete positive same-basis target.  The private mixed placement, matrix
 dimension witness, recursive label selection, and rooted-port interface are
 all already established.
+
+## Scalar and class-two feasibility audit
+
+The independently random labels used in the present existence proof cannot
+be checked directly by bounded-arity parities:
+`independent-private-labels-have-growing-dual-distance` gives their dual code
+distance `Omega(r/log r)`.  Auxiliary encoding or a redesigned sampler is
+therefore mandatory.
+
+On the other hand the full class-two obstruction fits inside the linear
+budget.  `disjoint-private-pairs-expand-the-full-exterior-square` uses a
+degree-one overlay on `O(r^2)` random selected labels and gives a uniform gap
+on every nonzero alternating form.  Thus class two is not the terminal; after
+it is killed, a nonnilpotent contextual quotient may still survive.
+
+The concrete redesigned target is
+`very-low-rate-ldpc-private-weyl-sampler`: start from a bounded-check length-
+`Theta(r^2)`, dimension-`r` kernel, demand the private Weyl gap of its
+coordinate functionals, add the exterior-square overlay, and prove
+nonnilpotent operator rounding.
