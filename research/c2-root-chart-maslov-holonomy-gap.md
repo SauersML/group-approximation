@@ -3,6 +3,7 @@ rg: 2
 id: c2-root-chart-maslov-holonomy-gap
 kind: claim
 title: Chordal C2 root charts leave a single Maslov holonomy cycle with positive HS energy
+refuted_by: c2-root-commuting-cycle-is-maslov-trivial
 artifacts:
   - research/artifacts/deligne-maslov-hyperlinear-strategies-2026-08-21.md
 distinct_from:
@@ -40,3 +41,21 @@ mod-three Deligne/Meyer--Maslov multiplier such that:
 - **Falsification.** If a coboundary gauge moves the entire mod-three cocycle
   into chordal charts, or if the overlap commutants admit stationary phase
   flow with vanishing energy, this compiler does not prove the desired gap.
+
+## REFUTED (2026-08-21)
+
+The proposed nonchordal cycle exists, but it carries no Deligne curvature.
+Kassel's explicit eight-root Steinberg presentation shows that the commuting
+graph has four maximal triangular charts and one induced four-cycle on the
+long roots.  The canonical root generators lift **all twelve commuting
+edges simultaneously** to the Steinberg cover.  Thus the map from the whole
+root graph product to `Sp4(Z)` lifts through the Deligne three-cover, and the
+multiplier is already a coboundary on the whole nonchordal graph product.
+See `c2-root-commuting-cycle-is-maslov-trivial`.
+
+The central generator is the rank-one Weyl word `w_gamma^4`; comparing its
+long-root realizations uses noncommuting Chevalley relations.  Those relations
+are not controlled by chordal abelian graph-product stability.  Therefore the
+positive-cycle inequality remains correct, but this root-commuting chart
+compiler cannot supply it with a cycle whose edge product is the nontrivial
+Maslov scalar.
