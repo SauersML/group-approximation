@@ -32,3 +32,9 @@ with one finite-support corner model.  What cannot be weakened is the
 load-bearing overlap itself: its finite support subgroup is already the
 nonhyperlinear object.
 
+For a finite BCS constraint algebra there is a stronger compactness fact.
+`finite-bcs-corner-diagram-is-finitely-witnessed` shows that the finitely
+many corner and defining-algebra identities already hold in a finite
+subpresentation of the recursive host, with the corner still nonzero.  Thus
+recursive presentation is a legitimate convenience, but an infinite tail
+cannot be the mathematical source of the completed signed-Hecke chord.

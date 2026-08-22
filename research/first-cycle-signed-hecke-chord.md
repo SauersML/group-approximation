@@ -197,3 +197,15 @@ least one non-root assignment projection must survive.
   supporting `q` (even `xgx^(-1)=1` kills `g`).  Small cancellation is useful
   only if one proves relative injectivity for this specific coherent cycle,
   which is exactly the remaining chord theorem.
+- **An infinite recursive tail is finitely compact for this target.**
+  `finite-bcs-corner-diagram-is-finitely-witnessed` allows an arbitrary
+  recursively presented ambient group and infinitely many auxiliary
+  wrong-type or Bass--Serre relators.  Nevertheless the BCS algebra has a
+  finite star presentation and the corner and generator images have finite
+  group support.  Every required group-ring equality therefore uses only
+  finitely many word-equality proofs, hence finitely many ambient relators;
+  nonvanishing of the final corner persists on passing to that earlier finite
+  subpresentation.  Thus a recursive tower can organize the search, but it
+  cannot close the first chord only in the limit.  Some finite stage must
+  already contain the load-bearing coherent holonomy while preserving the
+  packet corner.
