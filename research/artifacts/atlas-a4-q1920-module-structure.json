@@ -29,7 +29,10 @@
     "lift_mismatch_is_central": false,
     "lift_mismatch_conjugacy_orbit_order": 15,
     "lift_mismatch_normal_closure_order": 32,
-    "lift_mismatch_A_span_order": 8
+    "lift_mismatch_A_span_order": 8,
+    "A_fixed_submodule_order": 2,
+    "A_submodule_order_histogram": {"1": 1, "2": 1, "4": 3, "8": 3, "16": 1, "32": 1},
+    "mismatch_containing_A_submodule_order_histogram": {"8": 1, "32": 1}
   },
   "linear_collision_profile": {
     "pointwise_A_linear_centralizer_order": 6,

@@ -28,8 +28,15 @@ Inside the marked collision `S4`, the noncentral transpositions `d` and
 
 and `v,v^c` generate a Klein four group joining `V`, `V^c`, and the normal
 collision Klein four.  Moreover the `A`-span of each of `v` and `v^c` has
-order eight.  Thus the remaining moved-module problem is not a free amalgam:
-it contains a forced pair of three-dimensional `F2[S3]` packets coupled by
+order eight and is the unique proper `A`-submodule containing that vector.
+The full `A`-submodule order profile of `V` is
+
+```text
+1^1, 2^1, 4^3, 8^3, 16^1, 32^1.                          (V4-BRIDGE-3)
+```
+
+Thus the remaining moved-module problem is not a free amalgam: it contains
+a forced pair of three-dimensional `F2[S3]` packets coupled by
 `(V4-BRIDGE-2)`.
 
 This does not determine `V cap V^c` or the full group `<V,V^c,A,c>`; those

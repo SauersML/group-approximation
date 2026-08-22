@@ -45,7 +45,7 @@ DescribeMarkedGroup:=function(images)
         conjugate,complements,K,k,affineVectors,affine,edgeData,classes,
         quotientA,quotientB,aInvolutions,bInvolutions,pairs,pair,mismatch,
         matrixGenerators,linearCentralizer,linearCandidates,
-        cmatrix,tmatrix,smatrix,collisionWord;
+        cmatrix,tmatrix,smatrix,collisionWord,submodules;
   Q:=Group(images);
   normals:=NormalSubgroups(Q);
   Print("structure=",StructureDescription(Q)," derived_order=",
@@ -90,6 +90,12 @@ DescribeMarkedGroup:=function(images)
         "\n");
   Print("radial_mismatch_A_span_order=",
         Size(NormalClosure(A,Group(mismatch))),"\n");
+  submodules:=Filtered(SubgroupsSolvableGroup(N),W->
+      ForAll(GeneratorsOfGroup(A),g->W^g=W));
+  Print("A_submodule_order_histogram=",
+        Collected(List(submodules,Size))," mismatch_containing=",
+        Collected(List(Filtered(submodules,W->mismatch in W),Size)),
+        " A_fixed_order=",Size(Centralizer(N,A)),"\n");
   Print("radial_join_order=",
         Size(Group(Concatenation(GeneratorsOfGroup(A),GeneratorsOfGroup(B)))),
         "\n");
