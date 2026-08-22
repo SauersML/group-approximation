@@ -209,3 +209,17 @@ ellipse ceiling itself still requires the unresolved joint-gap theorem.
   patterns.  Thus an amplified finite-quotient escape cannot be hidden in
   favorable blocks.  This is a no-go for dilution, not construction of the
   presently unknown finite quotient and not the matrix-specific ceiling.
+- **Exact matrix zeros are already finite-quotient tests.**
+  `atlas-exact-matrix-zero-set-is-a-finite-quotient-test` applies Malcev
+  residual finiteness to the finitely generated image of any exact
+  finite-dimensional packet/collision model.  Such a model exists if and only
+  if `Gamma_A4` has a nontrivial finite quotient, in which case a regular
+  finite-quotient model has `F>=1`.  Therefore a bounded fixed-rank unitary
+  search cannot find an exact escape of a genuinely new type.  Only an
+  unbounded approximate matrix sequence can evade the finite-quotient fork.
+
+  The arbitrary-matrix lower estimate `F>=3/128` at exact collision is already
+  `atlas-root-energy-ellipse-controls-s3-distance`; another operator
+  Cauchy--Schwarz/SOS derivation of the same direction would duplicate an
+  established theorem.  The missing content remains the opposite strict upper
+  ceiling, equivalently the positive joint residual gap.
