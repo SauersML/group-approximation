@@ -8,6 +8,8 @@ artifacts:
   - research/artifacts/search-degree4-shared-triangle-boundary.sbatch
   - research/artifacts/search-degree4-length12-rank7-branch-a.py
   - research/artifacts/search-degree4-length12-rank7-branch-a.sbatch
+  - research/artifacts/search-degree4-length12-rank7-evolution.py
+  - research/artifacts/search-degree4-length12-rank7-evolution.sbatch
 ---
 
 Two bounded screens have been rerun with actual multiplicative inverses.
@@ -31,3 +33,11 @@ Across the 12-element short library, all `165,888` tuples were inspected;
 one-copy projection.  None makes the full free-product boundary a one-copy
 word (MSI job `16672532`).  This is a bounded-library fence only, not a
 symbolic obstruction to arbitrary Leavitt units.
+
+## Next attack
+
+MSI job `16672971` searches beyond the fixed library by evolving words of
+length at most ten in the exact projection parametrization.  It constructs
+`v=kck^-1` and takes `t` in its centralizer, so the projection equations hold
+identically while fitness is the full free-product reduced length.  This is a
+candidate generator, not part of the bounded zero theorem above.
