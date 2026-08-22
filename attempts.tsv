@@ -83,3 +83,4 @@
 32538907410	2026-08-22T00:01:22Z	GroupApproximation/Sofic/FullMFRadicalEndpoint.lean	exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
 32544646647	2026-08-22T01:52:27Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	IsGeodesicSegment.dist_endpoints
 32548163064	2026-08-22T03:09:11Z	GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean	flatE_unflatE
+32550397301	2026-08-22T03:58:17Z	GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean	stage_transport_bound
