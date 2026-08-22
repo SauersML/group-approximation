@@ -78,6 +78,15 @@ trace is required.
   model.  Any successful atlas must therefore couple several such indices
   through a genuinely global relative-position relation; one odd NAND phase
   cell cannot be the nonmatricial obstruction.
+- The smallest coupling of two cycle indices is still finite-packet data.
+  `two-nand-triangles-have-only-free-finite-packet-indices` treats both ways
+  two minimal NAND triangles can overlap.  Sharing a full edge identifies
+  the two private variables and the two `Z` indices, leaving one free `Z`;
+  sharing one variable leaves independent row and column differences `Z^2`.
+  The two phase words equal the same `J`, so their ratio and product are
+  trivial.  Explicit signed-permutation models exist in dimensions three
+  and six respectively.  Thus neither torsion nor a new central class begins
+  at the two-cycle level.
 - **Literal local contexts are completely solved, but finite Bass--Serre
   compatibility is impossible.**
   `common-corner-literal-contexts-stop-at-bass-serre` tensors all selected

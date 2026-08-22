@@ -28,4 +28,3 @@ then group-MF after restriction.  The source-scope theorem
 prescribed-trace conclusion is present.  In particular this argument does
 not construct canonical-trace microstates for the HNN subgroup; the missing
 upgrade is exactly the nonamenable amalgamated-free trace problem.
-
