@@ -109,7 +109,8 @@ attribute [instance] Carrier.group Carrier.fp
 
 /-- The coded conjugate, read inside the carrier.  Naming it keeps the
 dependent pair out of every statement below. -/
-def Carrier.gen (c : Carrier) (f : E) : ↥c.L := ⟨c.emb (aElt f), c.mem_L f⟩
+noncomputable def Carrier.gen (c : Carrier) (f : E) : ↥c.L :=
+  ⟨c.emb (aElt f), c.mem_L f⟩
 
 theorem Carrier.coe_gen (c : Carrier) (f : E) :
     (c.gen f : c.K) = c.emb (aElt f) := rfl

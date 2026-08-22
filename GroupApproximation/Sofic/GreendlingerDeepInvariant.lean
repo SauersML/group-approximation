@@ -1,0 +1,332 @@
+import GroupApproximation.Sofic.GreendlingerDeepTailWindow
+
+/-!
+# The deep branch on the weakened invariant: a window, and no offset at all
+
+Two things had to go before the deep regime could be discharged, and they were
+found separately.
+
+`GreendlingerDeepInduction` §§7-10 removed the first: the descent no longer
+demands an arc at a position measured against the **head** rotation.  Its
+invariant is "for every `N ≤ |c| + i` with `6i < |t|`, the word with `N` letters
+dropped carries an arc", so the deep obligation `DeepArcDrop` asks only for an
+arc in `B'.drop (N − |P'|)` — position `0`, no offset.
+
+`GreendlingerDeepTailWindow` removed the second: over a tail longer than one
+factor the landing rotation is eaten from **both** ends, the head's block taking
+`i` letters off the front and the landing factor's own block taking `k` off the
+back, so the arc is a window `(t₃.drop i).take m` rather than a suffix, and
+`greendlingerAt_of_rotation_window` produces it from `|t₃| < 2m` alone.
+
+This file is the join.  `DeepOverrunWindow` still carries the head-denominated
+offset field — `|M| + j − (|c| + |t|) ≤ |A|` — which is exactly the demand that
+is unavailable once `|t| > 2|t₃|`; `DeepWindowDrop` below is the same window
+statement with that field **deleted**, because on the weakened invariant the
+arc is read at position `0` and the offset has nothing left to do.  What remains
+is a statement about where two cancellations leave one rotation, and nothing
+else:
+
+    what survives carries a window of some symmetrized relator, longer than
+    half of it.
+
+## What is proved here
+
+* `window_of_palindrome_take` and `window_of_palindrome_survivor` — the list
+  surgery that turns "the landing factor's survivor, with `D` letters dropped"
+  into the window shape the producer consumes.  This is the step
+  `GreendlingerDeepTailWindow` left open; `take_drop_swap` is its pivot and
+  `take_append_of_le` is proved here rather than cited, on the same principle.
+* `exists_postJunction_drop` — in the deep regime the adjacent junction is empty
+  (`GreendlingerDeepVacuity.not_deep_confined`), so what survives is always a
+  drop of the word of the expression **after** that junction, at any tail
+  length.  This is `exists_overrun_landing_drop` with the junction case
+  discharged rather than assumed, and it is what lets the window be looked for
+  in a factor the block is not adjacent to.
+* `DeepWindowDrop`, `DeepArcDropSharp`, `DeepWindowDropSharp` and their
+  discharges, and the gate over the window residual and the landing production,
+  in both forms.
+
+The relator the window comes from is existentially quantified rather than named:
+the weakened invariant's context does not mention the landing factor, and the
+predicate is weaker for letting its prover choose which factor pays.
+
+Depends on `C'(1/6)` only through `not_deep_confined`, where the junction kill
+reads a piece bound.
+-/
+
+namespace GroupApproximation
+namespace SmallCancellationRouter
+
+variable {α : Type*}
+
+/-! ## 1.  Taking past an append -/
+
+/-- Taking fewer letters than the first block has ignores the second.  The
+mirror of `GreendlingerChunks.drop_append_of_le`, proved here for the same
+reason `GreendlingerDeepTailWindow.take_drop_swap` is: the window arithmetic
+should not depend on a library name. -/
+theorem take_append_of_le {β : Type*} :
+    ∀ (n : ℕ) (l₁ l₂ : List β), n ≤ l₁.length →
+      (l₁ ++ l₂).take n = l₁.take n := by
+  intro n
+  induction n with
+  | zero =>
+      intro l₁ l₂ _
+      simp
+  | succ n ih =>
+      intro l₁ l₂ h
+      cases l₁ with
+      | nil =>
+          rw [List.length_nil] at h
+          exact absurd h (by omega)
+      | cons x xs =>
+          rw [List.length_cons] at h
+          simp only [List.cons_append, List.take_succ_cons]
+          rw [ih xs l₂ (by omega)]
+
+/-! ## 2.  The window a two-sided cancellation leaves -/
+
+/-- **The window, read off the palindrome.**  A palindrome truncated at `L` and
+then advanced by `D` is a window of its rotation, provided the truncation has
+not passed the rotation and the advance has passed the conjugator.
+
+The two hypotheses are the two cancellations: `D` is what the head's block ate
+off the front, `|c₃| + |t₃| − L` is what the landing factor's own block ate off
+the back, and the window between them is what
+`GreendlingerDeepTailWindow.greendlingerAt_of_rotation_window` turns into an
+arc. -/
+theorem window_of_palindrome_take {c₃ t₃ : List (α × Bool)} {D L : ℕ}
+    (hc : c₃.length ≤ D) (hD : D ≤ L) (hL : L ≤ c₃.length + t₃.length) :
+    ((palindrome c₃ t₃).take L).drop D
+      = (t₃.drop (D - c₃.length)).take (L - D) := by
+  have hpal : palindrome c₃ t₃ = c₃ ++ (t₃ ++ FreeGroup.invRev c₃) := by
+    unfold palindrome
+    rw [List.append_assoc]
+  rw [take_drop_swap, hpal, drop_append_of_ge c₃ D (t₃ ++ FreeGroup.invRev c₃) hc,
+    drop_append_of_le (D - c₃.length) t₃ (FreeGroup.invRev c₃) (by omega),
+    take_append_of_le (L - D) (t₃.drop (D - c₃.length)) (FreeGroup.invRev c₃)
+      (by rw [List.length_drop]; omega)]
+
+/-- **The window, read off the landing factor's survivor.**  `P₃` is what the
+factor keeps of its palindrome after its own cancellation, `B₃` is the rest of
+the word, and `D` is where the block from above stops.  What survives is the
+window, followed by everything the landing factor did not produce.
+
+This is the shape `DeepWindowDrop` asks for, with `A = []`. -/
+theorem window_of_palindrome_survivor {c₃ t₃ P₃ M₃ B₃ : List (α × Bool)} {D : ℕ}
+    (heq : palindrome c₃ t₃ = P₃ ++ M₃)
+    (hc : c₃.length ≤ D) (hD : D ≤ P₃.length)
+    (hP : P₃.length ≤ c₃.length + t₃.length) :
+    (P₃ ++ B₃).drop D
+      = (t₃.drop (D - c₃.length)).take (P₃.length - D) ++ B₃ := by
+  have hP₃ : (palindrome c₃ t₃).take P₃.length = P₃ := by
+    rw [heq, List.take_left]
+  have hstep : P₃.drop D = ((palindrome c₃ t₃).take P₃.length).drop D := by
+    rw [hP₃]
+  rw [drop_append_of_le D P₃ B₃ hD, hstep, window_of_palindrome_take hc hD hP]
+
+/-! ## 3.  Past the adjacent junction, at any tail length -/
+
+/-- **In the deep regime the survivor is a drop of the word past the junction.**
+
+The block runs deep, so `GreendlingerDeepVacuity.not_deep_confined` says it
+cannot stop inside the adjacent palindrome — the junction admits no deep
+configuration at all.  Hence the overrun hypothesis of
+`exists_overrun_landing_drop` is not an assumption but a theorem here, and what
+survives the head's cancellation is a drop of the word of the expression after
+the junction, whatever the length of that expression.
+
+Compose with `drop_add` to move the incoming block across: the survivor
+`B'.drop (N − |P'|)` is `(conjEval f).toWord.drop (D + (N − |P'|))`, and the
+window is then looked for in a factor of `f`. -/
+theorem exists_postJunction_drop [DecidableEq α] {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    {c t P' M B' : List (α × Bool)} {e : List (FreeGroup α × List (α × Bool))}
+    {g : FreeGroup α} {i : ℕ}
+    (hmin : IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g)
+    (ht : t ∈ symmetrization R)
+    (hredp : FreeGroup.IsReduced (palindrome c t))
+    (heq : palindrome c t = P' ++ M)
+    (htail : (conjEval e).toWord = FreeGroup.invRev M ++ B')
+    (hlow : c.length < M.length) (hi : 6 * i < t.length)
+    (hgt : c.length + t.length < M.length + i) :
+    ∃ (c₂ t₂ : List (α × Bool)) (f : List (FreeGroup α × List (α × Bool)))
+      (D : ℕ),
+      t₂ ∈ symmetrization R ∧
+        FreeGroup.IsReduced (palindrome c₂ t₂) ∧
+        IsMinimalConjExpr R
+          ((FreeGroup.mk c, t) :: (FreeGroup.mk c₂, t₂) :: f) g ∧
+        f.length < e.length ∧ B' = (conjEval f).toWord.drop D := by
+  obtain ⟨c₂, t₂, f, ht₂, hredp₂, hmin₂, hev, hf⟩ :=
+    exists_deep_tail_setup hR hRne hmin htail hlow
+  rw [← hev] at htail
+  by_cases hconf : FreeGroup.invRev M <+: palindrome c₂ t₂
+  · exfalso
+    obtain ⟨B'', hB''⟩ := hconf
+    exact not_deep_confined hRne hmetric hmin₂ ht ht₂ hredp hredp₂ heq hB''.symm
+      hlow hi hgt
+  · obtain ⟨D, hD⟩ := exists_overrun_landing_drop hredp₂ htail hconf
+    exact ⟨c₂, t₂, f, D, ht₂, hredp₂, hmin₂, hf, hD⟩
+
+/-! ## 4.  The deep obligation as a window, with the offset deleted -/
+
+/-- **The deep obligation, as a window.**  On the weakened invariant the arc is
+read at position `0`, so all that is left to produce is a window of some
+symmetrized relator, longer than half of it, inside what survives.
+
+Compare `GreendlingerDeepTailWindow.DeepOverrunWindow`, which is this statement
+plus the field `|M| + j − (|c| + |t|) ≤ |A|`: an offset denominated in the head
+rotation, which is unavailable exactly when the landing rotation is the shorter
+of the two (`GreendlingerDeepOverrunCount.two_mul_lt_of_relator_ratio`).  Here
+that field is gone, and with it the ratio between the two rotations.
+
+The relator is existentially quantified because the context does not name the
+landing factor; a prover picks it, and `window_of_palindrome_survivor` above is
+what exhibits the window once it has. -/
+def DeepWindowDrop [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → 6 * i < t.length → N ≤ c.length + i →
+    c.length + t.length < M.length + i →
+    ∃ (s A C : List (α × Bool)) (k m : ℕ),
+      s ∈ symmetrization R ∧
+        B'.drop (N - P'.length) = A ++ (s.drop k).take m ++ C ∧
+        k + m ≤ s.length ∧ s.length < 2 * m
+
+/-- **The deep branch, from the window.** -/
+theorem deepArcDrop_of_deepWindowDrop [DecidableEq α]
+    {R : Set (List (α × Bool))} (h : DeepWindowDrop R) : DeepArcDrop R := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN hgt
+  obtain ⟨s, A, C, k, m, hs, hsplit, hfit, hbound⟩ :=
+    h c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN hgt
+  exact greendlingerAt_of_rotation_window hs hsplit (Nat.zero_le _) hfit hbound
+
+/-- **The deep obligation on the weakened invariant, at the sharp constant.**
+The `λ`-twin of `GreendlingerDeepInduction.DeepArcDrop`. -/
+def DeepArcDropSharp [DecidableEq α] (R : Set (List (α × Bool)))
+    (lam : ℚ) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → (i : ℚ) < lam * (t.length : ℚ) →
+    N ≤ c.length + i →
+    c.length + t.length < M.length + i →
+    GreendlingerAtSharp R lam 0 (B'.drop (N - P'.length))
+
+/-- **The window obligation at the sharp constant.**  Only the window's length
+bound moves; the shape is `λ`-free. -/
+def DeepWindowDropSharp [DecidableEq α] (R : Set (List (α × Bool)))
+    (lam : ℚ) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (N i : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → (i : ℚ) < lam * (t.length : ℚ) →
+    N ≤ c.length + i →
+    c.length + t.length < M.length + i →
+    ∃ (s A C : List (α × Bool)) (k m : ℕ),
+      s ∈ symmetrization R ∧
+        B'.drop (N - P'.length) = A ++ (s.drop k).take m ++ C ∧
+        k + m ≤ s.length ∧
+        (1 - 3 * lam) * (s.length : ℚ) < (m : ℚ)
+
+/-- **The sharp deep branch, from the sharp window.** -/
+theorem deepArcDropSharp_of_deepWindowDropSharp [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ} (h : DeepWindowDropSharp R lam) :
+    DeepArcDropSharp R lam := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN hgt
+  obtain ⟨s, A, C, k, m, hs, hsplit, hfit, hbound⟩ :=
+    h c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN hgt
+  exact greendlingerAtSharp_of_rotation_window hs hsplit (Nat.zero_le _) hfit
+    hbound
+
+/-- **The sharp weakened invariant, from the two branches.**  The `λ`-twin of
+`GreendlingerDeepInduction.cascadeLandingDrop_of_deepArcDrop_of_landing`, with
+`GreendlingerSharpTwins.LandingProductionSharp` unchanged. -/
+theorem cascadeLandingDropSharp_of_deepArcDropSharp_of_landingSharp
+    [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
+    (hdeep : DeepArcDropSharp R lam) (hland : LandingProductionSharp R lam) :
+    CascadeLandingDropSharp R lam := by
+  intro c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+  rcases le_or_gt (M.length + i) (c.length + t.length) with hle | hgt
+  · exact Or.inr ⟨hle,
+      hland c t e g P' M B' i hmin ht hredp heq htail hlow hi hle⟩
+  · exact Or.inl ((hdeep c t e g P' M B' N i hmin ht hredp heq htail hlow hi hN
+      hgt).of_suffix (drop_suffix_append P' B' N))
+
+/-! ## 5.  The gate, over the window and the landing production -/
+
+/-- **The weakened invariant, from the window and the landing production.** -/
+theorem cascadeLandingDrop_of_deepWindowDrop_of_landing [DecidableEq α]
+    {R : Set (List (α × Bool))} (hwin : DeepWindowDrop R)
+    (hland : LandingProduction R) : CascadeLandingDrop R :=
+  cascadeLandingDrop_of_deepArcDrop_of_landing
+    (deepArcDrop_of_deepWindowDrop hwin) hland
+
+/-- **The free-group half-form gate over the window and the landing
+production.**  The deep half now costs exactly one statement, and it names
+neither the head rotation, nor the eaten stretch, nor any ratio between two
+relators. -/
+theorem greendlingerConclusion_of_deepWindowDrop_of_landing [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hwin : DeepWindowDrop R) (hland : LandingProduction R) :
+    GreendlingerConclusion R :=
+  greendlingerConclusion_of_cascadeLandingDrop hR hRne
+    (cascadeLandingDrop_of_deepWindowDrop_of_landing hwin hland)
+
+/-- **The same, over the (β)-regime landing residual.**  Composing with the
+conjugator-absorbed plumbing of `Sofic.GreendlingerAlphaPlumb`: the gate costs
+the deep window and the (β) landing production, and nothing else. -/
+theorem greendlingerConclusion_of_deepWindowDrop_of_beta [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    (hwin : DeepWindowDrop R) (hbeta : LandingProductionBeta R) :
+    GreendlingerConclusion R :=
+  greendlingerConclusion_of_deepWindowDrop_of_landing hR hRne hwin
+    (landingProduction_of_beta hmetric hbeta)
+
+/-- **The sharp gate over the sharp window and the sharp landing
+production.** -/
+theorem greendlingerConclusionSharp_of_deepWindowDropSharp_of_landingSharp
+    [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hwin : DeepWindowDropSharp R lam)
+    (hland : LandingProductionSharp R lam) :
+    GreendlingerConclusionSharp R lam :=
+  greendlingerConclusionSharp_of_cascadeLandingDropSharp hR hRne hlam0 hlam
+    (cascadeLandingDropSharp_of_deepArcDropSharp_of_landingSharp
+      (deepArcDropSharp_of_deepWindowDropSharp hwin) hland)
+
+/-- **The sharp gate over the sharp window and the sharp (β) landing.**  The end
+state of both lanes: `GreendlingerConclusionSharp` — and through
+`GreendlingerSharpTwins`, the sharp gate and the router's two obligations — over
+the deep window and the conjugator-absorbed residual alone. -/
+theorem greendlingerConclusionSharp_of_deepWindowDropSharp_of_betaSharp
+    [DecidableEq α] {R : Set (List (α × Bool))} {lam : ℚ}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    (hlam0 : 0 < lam) (hlam : lam ≤ 1 / 6)
+    (hmetric : MetricSmallCancellation R lam)
+    (hwin : DeepWindowDropSharp R lam)
+    (hbeta : LandingProductionBetaSharp R lam) :
+    GreendlingerConclusionSharp R lam :=
+  greendlingerConclusionSharp_of_deepWindowDropSharp_of_landingSharp hR hRne
+    hlam0 hlam hwin (landingProductionSharp_of_betaSharp hmetric hbeta)
+
+end SmallCancellationRouter
+end GroupApproximation

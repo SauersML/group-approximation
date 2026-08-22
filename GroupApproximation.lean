@@ -1460,6 +1460,7 @@ import GroupApproximation.Sofic.GreendlingerDeepVacuitySharp
 import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
 import GroupApproximation.Sofic.GreendlingerDeepInduction
 import GroupApproximation.Sofic.GreendlingerDeepTailWindow
+import GroupApproximation.Sofic.GreendlingerDeepInvariant
 import GroupApproximation.Sofic.GreendlingerLandingConfined
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
 import GroupApproximation.Sofic.GreendlingerSharpResidualWiring
@@ -1507,6 +1508,7 @@ import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.SwapWitnessTower
 import GroupApproximation.Higman.SwapCarrierFromTower
 import GroupApproximation.Higman.SwapCarrierWitness
+import GroupApproximation.Higman.TauRouteC
 import GroupApproximation.Higman.SsetBaseCase
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
