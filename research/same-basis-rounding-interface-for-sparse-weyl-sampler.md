@@ -29,15 +29,18 @@ BLR supplies the algebraic conclusion but its complete pair table is not a
 finite-template small-cancellation incidence object.  Equality-cloud degree
 reduction recreates the known two-pair contour obstruction.
 
-All downstream mixed-incidence issues are now discharged for the private
-sampler.  `private-random-weyl-sampler-forces-growing-matrix-dimension` gives
+The mixed incidence **in isolation** is discharged for the private sampler.
+`private-random-weyl-sampler-forces-growing-matrix-dimension` gives
 the same-Hilbert matrix-valued dimension floor once the two additive actions
 are exact; `private-matching-free-product-separates-pauli-signs` places every
 mixed sign test as a constant-area conjugate with no mixed contour; and
 `private-weyl-samplers-admit-recursive-selection` computes the finite label
-lists.  Consequently this node is the sole analytic/finite-presentation gate
-on that route.  In particular no extra relative-small-cancellation,
-pair-holonomy, or random-sample-effectivity lemma should be added downstream.
+lists.  The same-basis incidence can nevertheless join several private
+basins into a combined contour.
+`random-private-matching-eliminates-fixed-multibasin-contours` removes every
+bounded such contour, while `sign-safe-unbounded-multibasin-placement`
+records the residual asymptotic word-placement gate.  Thus the present node
+is the sole analytic gate, not the sole finite-presentation gate.
 
 The apparent shortcut through de la Salle Theorem 3.11 is circular here.
 `de-la-salle-pauli-game-starts-after-the-same-pvm-gate` shows that the theorem
@@ -45,6 +48,13 @@ begins with one primitive full answer PVM, hence one exact additive action,
 on each side.  Its uniform conclusion is valuable only after the present
 same-PVM authentication has been achieved; it does not round the local LDPC
 occurrences into that input PVM.
+
+Spaas's chordal graph-product stability is also downstream rather than the
+missing bridge.  `spaas-chordal-stability-does-not-cross-the-ldpc-quotient-gate`
+records that the occurrence equalities and LDPC parity words are external
+quotient relations, while collapsing them first destroys bounded occurrence.
+Its strict stability theorem is for each fixed graph and supplies no modulus
+uniform over the growing average-relator family.
 
 ## Attempts
 
