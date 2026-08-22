@@ -59,3 +59,9 @@ no-Fano-line support conclusion.
   transformation does not preserve affine safety in general.  Thus the
   cited perfectness/oracularizability argument cannot close this node: one
   must inspect the particular HALT strategy's positive PCPP view images.
+- The alternative Lemma-20 source in
+  `cmps-two-oracular-rstar-lift-has-commuting-context-stars` closes the
+  mutual-neighbor hypothesis: its `2`-oracularizable completeness strategy
+  survives a fixed-language `R_*` lift with jointly commuting incident
+  context algebras.  This enables joint pruning, but does not itself exclude
+  a full seven-point support or prove the affine-safety condition above.

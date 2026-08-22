@@ -41,7 +41,13 @@ uniformly in advance.  This sole remaining source-specific statement is
 Pairwise pruning removes an atom with no compatible neighbor, and
 `commuting-neighborhood-pruning-pays-atom-mass` removes an atom with no joint
 extension when all neighbor PVM algebras commute.  General oracular 2-CSP
-strategies do not provide that mutual neighborhood commutation.  Even if
+strategies do not provide that mutual neighborhood commutation.  The
+stronger source in
+`cmps-two-oracular-rstar-lift-has-commuting-context-stars` does: Lemma 20's
+radius-two commutation survives a contextwise `R_*` lift and supplies a joint
+PVM on every variable star.  This repairs the hypothesis for joint pruning,
+but full seven-point commuting supports can remain pruning fixed points, so
+it does not yet produce a cap profile.  Even if
 one proves that every perfect model prunes to one of a computably listed
 finite set of cap profiles, model-dependence of the chosen profile is no
 longer an obstruction: the product-sign OR compiler combines the list.  What
