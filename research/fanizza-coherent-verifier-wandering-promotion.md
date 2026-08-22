@@ -142,3 +142,27 @@ gap forces the omitted row defect to stay macroscopically large on every
 positive-mass Gram carrier when all retained rows are small.  The surviving
 one-row compiler must infer vanishing from a genuinely mixed matrix-only
 mechanism while keeping the four-letter word outside the relator closure.
+
+## Relative-character audit of pulse and Schur carriers
+
+The unnamed-carrier theorem does not make an unbalanced bridge word into a
+return word.  `twist-invariant-carriers-force-relative-character-kernels`
+gives the exact obstruction.  The projected Schur exit and the Thompson
+first-hit cuts are functions only of the exactified packet/pulse letters.
+They are therefore unchanged when a covariance/HNN bridge is multiplied by
+an arbitrary scalar character.  Canonical microstates are also preserved.
+Applying a claimed return before and after the twist gives
+
+```text
+|chi(w)-1| ||X||_2 <= 2 epsilon.
+```
+
+Thus no positive-density return can use a bridge with nonzero relative
+abelianization class.  The one-sided pulse cells established in Cairn
+genuinely transport the analytic exit into a summable first-hit site, but a
+single unbalanced transporter cannot also be the wandering identity word on
+that exit.  Any surviving promotion must use an exponent-balanced
+cycle/commutator or make the carrier depend on the bridge multiplicity phase
+itself.  The former returns to the existing localized-commutator and
+regular-energy gates; the latter is absent from the current pulse/Schur
+decoder.
