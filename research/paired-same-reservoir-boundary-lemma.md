@@ -279,6 +279,16 @@ made universal identities in the group algebra.
   global gauge and the exact lower bound would again be `4 tau(F_0F_1)`.
   Thus the native zero coefficient/root commutator pays branch-range overlap
   exactly after, but not before, common-packet authentication.
+- **A transitive selector packet is incompatible with exact siblings.**
+  `transitive-selector-flips-kill-leavitt-sibling-support` tests the smallest
+  way to supply that authentication.  If the two bit flips connect all four
+  joint range atoms, the forbidden overlap atom is conjugate to both allowed
+  sibling atoms.  Its exact Leavitt rank zero then propagates around the
+  orbit and kills the parent.  Keeping only the native sibling exchange
+  preserves completeness and the common sign, but leaves the overlap atom
+  in a separate orbit carrying exactly the independent gauge used by the
+  crossed-Pauli escape.  Gauge connection must therefore be non-permutational
+  and one-sided/Gram-like.
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
   `V direct_sum V` satisfy every four pairing identity while shrinking

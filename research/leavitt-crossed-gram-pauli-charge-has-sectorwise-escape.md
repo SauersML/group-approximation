@@ -99,6 +99,13 @@ Exactly such a connector is absent from the native crossed Steinberg zero
 relation and from the typed rectangular branch returns.  Adding it is the
 common-packet/same-reservoir authentication being sought.
 
+The obvious connector cannot be used: by
+`transitive-selector-flips-kill-leavitt-sibling-support`, any packet flip
+whose orbit joins the overlap atom to an allowed sibling forces their ranks
+equal.  Exact Leavitt orthogonality makes the overlap rank zero, so that flip
+kills the sibling and the parent.  The native sibling-only flip preserves
+the model but leaves the overlap gauge in a separate orbit.
+
 The same escape is already visible in the rectangular Weyl model: the two
 child algebras are tensor factors, their standard half-carriers have overlap
 `1/4`, and unconditioned cross-root words commute exactly.  Formula `(LPG2)`
