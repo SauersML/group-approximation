@@ -82,3 +82,11 @@ There is no exact nonnilpotent survivor.  Quantitative rounding remains open,
 and `sparse-clifford-cycles-refute-average-commutator-rounding` proves that
 average pair commutator energy alone is insufficient; the replicated LDPC
 parity constraints must enter the estimate.
+
+Theorem 3.11 of de la Salle cannot be used to supply this estimate directly.
+As recorded in `de-la-salle-pauli-game-starts-after-the-same-pvm-gate`, the
+theorem takes a single `2^r`-answer PVM on each side as primitive data.  Those
+PVMs already are exact additive actions; the code columns provide only the
+mixed spectral-gap sampler.  A bounded-occurrence group encoding of the PVM
+is perfect-complete at zero defect, but its approximate synchronization is
+exactly the present decoder claim.

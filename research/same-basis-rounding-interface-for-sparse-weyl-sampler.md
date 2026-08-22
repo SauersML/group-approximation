@@ -39,6 +39,13 @@ lists.  Consequently this node is the sole analytic/finite-presentation gate
 on that route.  In particular no extra relative-small-cancellation,
 pair-holonomy, or random-sample-effectivity lemma should be added downstream.
 
+The apparent shortcut through de la Salle Theorem 3.11 is circular here.
+`de-la-salle-pauli-game-starts-after-the-same-pvm-gate` shows that the theorem
+begins with one primitive full answer PVM, hence one exact additive action,
+on each side.  Its uniform conclusion is valuable only after the present
+same-PVM authentication has been achieved; it does not round the local LDPC
+occurrences into that input PVM.
+
 ## Attempts
 
 - **Dense BLR.**  Robust but its complete additive-triple incidence is not

@@ -47,3 +47,11 @@ It does **not** prove that arbitrary near-perfect local-PVM representations
 round to the scalar kernel on the same Hilbert space.  Exact contextual
 quotients remaining after class two are genuinely nonnilpotent, and their
 uniform exclusion/stability is the sole analytic code gate.
+
+De la Salle's Pauli game does not supply that last gate.
+`de-la-salle-pauli-game-starts-after-the-same-pvm-gate` checks Theorem 3.11
+against this occurrence system: its two exponential-answer PVMs already give
+exact additive `F_2^r` actions by Fourier transform, and the good codes only
+globalize sampled mixed Weyl energy.  Compiling those PVMs into the repeated
+coordinates recreates the same approximate parity/commutation rounding
+problem.
