@@ -32,6 +32,22 @@ comparison with the complete product measure.
 
 If established together with sign-separated Cayley placement, this replaces
 the complete logical Pauli rectangles by a sparse robust dimension witness
-without an expander-cloud sheet loss.  At present neither growing exact
-minimum rank nor its amplification-stable robust form is known for a concrete
-bounded-incidence generator-column family.
+without an expander-cloud sheet loss.
+
+The exact half is now solved by
+`degree-one-generator-columns-have-sqrt-minrank-but-no-gap`: private repeated
+basis columns force a triangular identity block and give
+`r(E)=Theta(sqrt(n))` even when the sampled occurrence graph is a matching.
+The same construction has no fixed robust gap: its diagonal constraints have
+vanishing density, and even after diagonal reweighting a `k`-block completion
+has rank `k` and error `1/k+o(1)`.  Thus the remaining content of this OPEN
+node is precisely a constant-distance affine rank condenser: the ideal
+syndrome must stay a fixed relative Hamming distance from every bounded-rank
+completion, followed by its amplification-stable HS promotion.
+
+There is no contradiction with the ordinary sparse-Pauli model.
+`bounded-degree-partial-matrices-have-constant-completion-rank` proves that
+an unrestricted degree-`Delta` partial binary matrix has completion rank
+bounded only by `Delta`.  Its greedy row labels do not respect dependencies
+among repeated generator columns.  Those additive dependencies are exactly
+what forces the triangular block in the new exact witness.

@@ -77,3 +77,11 @@ Consequently the sparse alternative in
 local-testing problem, rather than a graph-sampler problem.  It may still be
 possible, but it must force growing completion rank without first recovering
 all `n^2` Weyl signs.
+
+Growing exact rank is indeed possible despite the kernel:
+`degree-one-generator-columns-have-sqrt-minrank-but-no-gap` constructs a
+matching sampler with `r(E)=Theta(sqrt(n))` by repeating basis columns and
+using additivity to force a triangular identity block.  That example also
+shows why exact rank is not the robust theorem needed here: bounded-rank
+models approximate its sampled syndrome with arbitrarily small relative
+error.

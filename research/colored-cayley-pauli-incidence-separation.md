@@ -160,3 +160,12 @@ minimum completion rank `(SGB6)` and a robust normalized-HS version; it must
 force dimension directly rather than transfer to the full Weyl table.
 This exact new gate is
 `bounded-incidence-generator-column-minrank-witness`.
+
+Its exact algebraic half is nonvacuous:
+`degree-one-generator-columns-have-sqrt-minrank-but-no-gap` gives a matching
+of private generator-column occurrences with completion rank
+`Theta(sqrt(n))`.  But its one-dimensional model fails only a vanishing
+fraction of tests, and diagonal reweighting still admits rank-`O(1/epsilon)`
+block completions at error `epsilon`.  Cayley placement therefore needs the
+still-open **constant-distance** affine rank witness, not merely growing exact
+minrank.

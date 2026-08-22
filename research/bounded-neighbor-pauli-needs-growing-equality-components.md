@@ -40,3 +40,12 @@ of the following genuinely global mechanisms:
 This makes expander consistency load-bearing rather than cosmetic.  Sparse
 Pauli anticommutation on a Cayley graph is not an error-spread mechanism by
 itself.
+
+The matrix-completion form of the same phenomenon is
+`bounded-degree-partial-matrices-have-constant-completion-rank`, with the
+explicit bound `Delta+ceil(log_2 Delta)+1`.  Additive generator-column tests
+can evade it because repeated occurrences must receive labels from one common
+linear map; `degree-one-generator-columns-have-sqrt-minrank-but-no-gap`
+exhibits degree-one exact minrank `Theta(sqrt(n))`.  Its vanishing robust gap
+confirms that the distinction is real but does not yet supply the desired
+dimension witness.
