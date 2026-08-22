@@ -158,6 +158,19 @@ compressed Weil packets.
   non-Weil scalar return phases or an approximate off-diagonal coupling not
   unitarily equivalent to multiplicity mixing of exact Weil blocks.
 
+- **Fixed-period preconditioning leaves a quantitative basin condition.**
+  `fixed-level-bs14-compatible-basin`
+  identifies the bounded problem as the arbitrary-multiplicity extension of
+  one finite metacyclic core `B_(K,M)` by `x`.  If its stability radius and
+  modulus dominate the explicit preconditioning error
+  `alpha_(K,M)=O(K^(-1/2)+M^(-1))` along a cofinal sequence, the staircase
+  closes the qualitative relative-stability endpoint, but does not itself
+  give the sharp quadratic padding bound in the present claim.  Qualitative
+  stability separately for every
+  fixed `(K,M)` is not enough: its radius may decay faster than `alpha`, so
+  the preconditioned tuple never enters the local basin.  This is the exact
+  uniformity datum a finite-level packet proof must report.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or
