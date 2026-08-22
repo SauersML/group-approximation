@@ -62,6 +62,15 @@ lane.
   stable letters and the hyperbolic collision word.  Residual finiteness of
   the carrier does not descend through this multiple filling, and the
   collision misses the available relative small-cancellation threshold.
+- **Published rank stability stops before both required operations.**
+  `atlas-rank-stability-literature-fence`
+  source-checks the normalized-rank literature.  Finite-dimensional
+  `F_2`-algebras and their ordinary free products are flexibly rank-stable,
+  so the individual Atlas charts can be corrected.  No audited theorem
+  synchronizes those corrections across nontrivial finite-edge amalgams, and
+  no theorem preserves rank stability under the thirteen finite-relator
+  fillings.  Schatten stability and p-adic ultrametric stability of virtually
+  free groups use different metrics and do not fill this gap.
 - **The two observed phases are separated but path-connected.**
   `atlas-m2-kernel-phases-have-rank-path-barrier` gives normalized rank
   separation `1/32` from each pure amplified phase to the opposite zero
