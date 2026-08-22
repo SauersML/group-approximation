@@ -213,6 +213,81 @@ def saturate_primitive_roots(q_image, residual):
         q_image, residual = closed_q, closed_residual
 
 
+def involution_substitution_killed(q_image, residual):
+    """Detect q=1 after a length-two root is made an involution.
+
+    If ``(xy)^2`` is a relator, introduce ``t=xy`` with ``t^2=1``, solve
+    for the generator occurring in ``x``, and freely reduce with ``t^2``.
+    This is a Tietze transformation, not a quotient or an abelian screen.
+    """
+    temporary = 10
+
+    def inverse(word):
+        return tuple(-letter for letter in reversed(word))
+
+    def reduce_involution(word):
+        reduced = []
+        for letter in word:
+            if abs(letter) == temporary:
+                letter = temporary
+            if reduced and reduced[-1] == -letter:
+                reduced.pop()
+            elif letter == temporary and reduced and reduced[-1] == temporary:
+                reduced.pop()
+            else:
+                reduced.append(letter)
+        return tuple(reduced)
+
+    def cyclic_involution_key(word):
+        word = list(reduce_involution(word))
+        while len(word) > 1:
+            inverse_last = (temporary if word[-1] == temporary else -word[-1])
+            if word[0] != inverse_last:
+                break
+            word = word[1:-1]
+        word = tuple(word)
+        inverse_word = tuple(temporary if letter == temporary else -letter
+                             for letter in reversed(word))
+        variants = []
+        for candidate in (word, inverse_word):
+            variants.extend(candidate[index:] + candidate[:index]
+                            for index in range(len(candidate)))
+        return min(variants) if variants else ()
+
+    for relation in residual:
+        power = primitive_power(relation)
+        if power is None or power[1] != 2 or len(power[0]) != 2:
+            continue
+        first, second = power[0]
+        if abs(first) == abs(second):
+            continue
+        generator = abs(first)
+        if first > 0:
+            positive_image = (temporary, -second)
+        else:
+            positive_image = (second, temporary)
+
+        def rewrite(word):
+            expanded = []
+            for letter in word:
+                if abs(letter) != generator:
+                    expanded.append(letter)
+                elif letter > 0:
+                    expanded.extend(positive_image)
+                else:
+                    expanded.extend(inverse(positive_image))
+            return reduce_involution(expanded)
+
+        rewritten_q = rewrite(q_image)
+        rewritten_residual = tuple(sorted(set(filter(None,
+            (rewrite(item) for item in residual)))))
+        if (not rewritten_q
+                or cyclic_involution_key(rewritten_q) in
+                {cyclic_involution_key(item) for item in rewritten_residual}):
+            return True
+    return False
+
+
 ENCODED_K = tuple((copy, S.encode(coefficient)) for copy, coefficient in C.K)
 
 
@@ -265,6 +340,7 @@ def main():
     powers = [state for state in nonempty
               if state not in direct and power_killed(state[2], state[1])]
     saturated = []
+    involution_killed = []
     saturation_images = {}
     for state in nonempty:
         if state in direct or state in powers:
@@ -276,9 +352,11 @@ def main():
                 {cyclic_key(relation) for relation in reduced_residual}
                 or power_killed(reduced_q, reduced_residual)):
             saturated.append(state)
+        elif involution_substitution_killed(reduced_q, reduced_residual):
+            involution_killed.append(state)
     unresolved = [state for state in nonempty
                   if state not in direct and state not in powers
-                  and state not in saturated]
+                  and state not in saturated and state not in involution_killed]
     print(f"distinct_augmented_words={len(augmented_words)}")
     print(f"boundary_states={len(results)}")
     print(f"nonempty_q={len(nonempty)}")
@@ -286,6 +364,7 @@ def main():
     print(f"direct_killed_q={len(direct)}")
     print(f"power_killed_q={len(powers)}")
     print(f"saturation_killed_q={len(saturated)}")
+    print(f"involution_killed_q={len(involution_killed)}")
     print(f"unresolved_q={len(unresolved)}")
     for state in sorted(free)[:100]:
         print("FREE", state)
