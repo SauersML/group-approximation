@@ -193,3 +193,39 @@ normalized-HS sense: it must couple the actuator defect to the verifier
 carrier with a dimension-independent modulus.  A sterile actor placed beside
 the payload, even one whose marked word is invisible in every exact matrix
 representation, is sharply refuted by this sofic wrapper.
+
+## Common-gauge D16 phase-twist audit
+
+There is a more payload-sensitive attempt.  Use the binary controller of
+`finite-cocycle-select-forces-one-common-lcu-gauge` to place the identity and
+one verifier reflection `r` in the two selector blocks with a shared right
+gauge:
+
+```text
+c=diag(A,rA).
+```
+
+Hadamard rotation cancels `A`, and the commutator `g=[hch,z]` acts as two
+copies of `r`.  On the `J=-1,r=-1` spectral carrier, `Jg` is therefore the
+identity; a robust BCS losing-mass gap would give that carrier positive
+density.  Unlike an uncoupled sterile actor, this construction genuinely
+uses the verifier payload.
+
+However `d16-common-gauge-select-collapses-charger-to-payload` proves the
+exact group identity hidden in the block calculation.  Writing `x=hzh`, the
+SELECT covariance is `cxc^(-1)=rx`, whence
+
+```text
+h[hch,z]h=cxc^(-1)x=r,
+[hch,z]=r.
+```
+
+Thus the phase-twisted word is only `Jr`, an order-two clock, and its returned
+carrier saturates rather than exceeds the canonical finite-clock threshold.
+The common gauge has been removed by removing the wandering normal form.
+
+This leaves a sharp requirement on a successful payload-sensitive two-cell:
+the relative verifier block must be inferred only on a model-dependent
+positive carrier (or by a genuinely finite-dimensional inequality).  If it
+is imposed by the literal binary SELECT conjugacy relation, the proposed
+wandering word reduces algebraically before any HS estimate is used.
