@@ -118,3 +118,38 @@ Equation (5), with the closed formulas (1)--(4), is a bounded unit-equality
 audit, not an unbounded search over the group.  The audit now shows that the
 next candidate must involve at least two interacting mixed gates, or another
 mixed word outside the tested KL coordinate orbit and single-root family.
+
+## Two interacting KL gates
+
+The next minimal family is also decidable without an enlarged search.  Put
+
+```text
+q_i=phat^i qhat phat^-i,       x_(i,j)=q_i q_j,
+x_(i,j)^-1=q_j q_i.
+```
+
+The anchored family `x_(0,d)` has nineteen nontrivial relative distances.
+Cyclic conjugation need not fix the corner lifts `A,B`, so the verifier also
+audits all `20*19=380` ordered pairs rather than assuming that reduction.
+Write `epsilon_1` for the coefficient of the identity unit in the group ring.
+The exact normal-form audit proves, for every ordered pair,
+
+```text
+epsilon_1(Delta)=1,
+epsilon_1(A P_(x^-1))=0,
+epsilon_1(P_x B)=0,
+epsilon_1(P_x P_(x^-1))=0.                            (6)
+```
+
+Therefore
+
+```text
+epsilon_1(A P_(x^-1)+P_x B+P_xP_(x^-1)+Delta)=1,      (7)
+```
+
+so no ordered product of two coordinate KL gates solves the inverse-pair
+equation.  Across all 380 pairs the full residue sizes are `122`, `164`,
+`202`, `224`, `234`, `236`, `238`, or `242`.  Equation (6), rather than those
+counts, is the uniform obstruction for the whole family.  The next candidate
+must mix distinct gate types, not merely two coordinate copies of the KL
+gate.

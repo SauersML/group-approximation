@@ -134,20 +134,18 @@ t_lift = {U1, U2, U3}
 s_lift = {V1, V2, V3}
 
 
-def packet(x):
-    # Every tested conjugator is an involution.
-    return gr_mul(gr_mul(gr_mul(gr_mul(e, singleton(x)), k), singleton(x)), e)
+def packet(x, x_inverse):
+    return gr_mul(
+        gr_mul(gr_mul(gr_mul(e, singleton(x)), k), singleton(x_inverse)), e
+    )
 
 
-def defect(x):
-    p = packet(x)
-    left = gr_add(t_lift, gr_mul(gr_mul(e, singleton(x)), gr_mul(k, gr_mul(singleton(x), e))))
-    # The displayed form above is t~ + e[x]k[x]e; retain it only as an
-    # independent construction check against P.
-    assert gr_add(left, t_lift) == p
+def defect(x, x_inverse):
+    p = packet(x, x_inverse)
+    p_inverse = packet(x_inverse, x)
     return gr_add(
         gr_mul(gr_add(gr_mul(gr_mul(e, t_lift), e), p),
-               gr_add(gr_mul(gr_mul(e, s_lift), e), p)),
+               gr_add(gr_mul(gr_mul(e, s_lift), e), p_inverse)),
         e,
     )
 
@@ -173,7 +171,7 @@ for j in range(20):
     candidates.append((f"q_{j}", qj))
 
 for name, candidate in candidates:
-    residue = defect(candidate)
+    residue = defect(candidate, candidate)
     assert ONE in residue
     print(name, "SOLVES" if not residue else f"fails: {len(residue)} odd units")
 
@@ -184,7 +182,7 @@ for i in range(1, 21):
             continue
         candidate = root(i, ONE, j)
         assert mul(candidate, candidate) == ONE
-        residue = defect(candidate)
+        residue = defect(candidate, candidate)
         assert ONE in residue
         root_results.append((i, j, len(residue)))
 
@@ -194,3 +192,59 @@ print("coefficient-one roots:", len(root_results), "tested")
 print("coefficient-one root solutions:", solving_roots)
 print("coefficient-one root residue sizes:", residue_sizes)
 print("identity unit is an odd fiber in all 400 failed candidates")
+
+# First audit the anchored family q_0 q_d, then all ordered products.  We do
+# not assume that cyclic coordinate conjugation fixes the corner lifts A,B.
+two_gate_results = []
+q0 = candidates[0][1]
+corner_a = gr_mul(gr_mul(e, t_lift), e)
+corner_b = gr_mul(gr_mul(e, s_lift), e)
+base_delta = gr_add(gr_mul(corner_a, corner_b), e)
+assert ONE in base_delta
+for d in range(1, 20):
+    qd = candidates[d][1]
+    candidate = mul(q0, qd)
+    candidate_inverse = mul(qd, q0)
+    assert mul(candidate, candidate_inverse) == ONE
+    p_x = packet(candidate, candidate_inverse)
+    p_x_inverse = packet(candidate_inverse, candidate)
+    identity_correction_bits = (
+        ONE in gr_mul(corner_a, p_x_inverse),
+        ONE in gr_mul(p_x, corner_b),
+        ONE in gr_mul(p_x, p_x_inverse),
+    )
+    assert identity_correction_bits == (False, False, False)
+    residue = defect(candidate, candidate_inverse)
+    two_gate_results.append((d, len(residue), ONE in residue))
+
+print("two-gate orbit representatives (distance, odd units, identity odd):")
+print(two_gate_results)
+print("two-gate identity formula: 1(base)+(0+0+0)(corrections)=1")
+
+all_two_gate_results = []
+for i in range(20):
+    qi = candidates[i][1]
+    for j in range(20):
+        if i == j:
+            continue
+        qj = candidates[j][1]
+        candidate = mul(qi, qj)
+        candidate_inverse = mul(qj, qi)
+        p_x = packet(candidate, candidate_inverse)
+        p_x_inverse = packet(candidate_inverse, candidate)
+        correction_bits = (
+            ONE in gr_mul(corner_a, p_x_inverse),
+            ONE in gr_mul(p_x, corner_b),
+            ONE in gr_mul(p_x, p_x_inverse),
+        )
+        residue = defect(candidate, candidate_inverse)
+        all_two_gate_results.append(
+            (i, j, len(residue), correction_bits, ONE in residue)
+        )
+
+assert all(identity_odd for _, _, _, _, identity_odd in all_two_gate_results)
+print("all ordered two-gate products tested:", len(all_two_gate_results))
+print("all ordered two-gate residue sizes:",
+      sorted({size for _, _, size, _, _ in all_two_gate_results}))
+print("all ordered correction-bit triples:",
+      sorted({bits for _, _, _, bits, _ in all_two_gate_results}))
