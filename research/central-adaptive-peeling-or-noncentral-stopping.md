@@ -166,9 +166,14 @@ each reflection by its block compression.  This produces exactly reducing
 selfadjoint contractions, preserves the retained row-column bound, and
 identifies average movement and average positive involution residual with
 the same boundary `D(p_a)`.  Hence no polar/sign correction can recreate an
-operator spike during peeling.  The remaining stopping issue is the
-augmented contraction-valued Newton estimate; reflection rounding is safe
-once its involution residual has converged to zero.
+operator spike during peeling.  At the linear level even this augmentation
+is free: `involution-augmented-code-jacobian-adds-no-cb-loss` gives an
+explicit cb-isometric inverse on reflection-normal directions, leaving
+exactly the old tangent code-Riesz inverse `(CRM3)`.  The compression
+residual is a vanishing forcing floor and can be sign-rounded only after
+convergence.  The remaining stopping issue is perturbative stability of the
+tangent row/column Newton inverse, not a new involution exactification
+problem.
 
 The commutator boundary itself also has an exact monotone ledger.
 `anchor-reset-row-sign-trace-is-sharp-lyapunov` proves that the anchor's

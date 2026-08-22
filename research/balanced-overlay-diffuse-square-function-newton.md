@@ -269,7 +269,13 @@ block-compresses every reflection without sign rounding.  The resulting
 selfadjoint contractions reduce the cut exactly, retain the same soft
 row-column square function, and store both their squared movement and
 positive involution residual exactly as `D(p_a)`.  Fixed-width face defects
-increase by only `O(D(p_a))`.  The final analytic gate is now the augmented
-Newton statement: preserve the linearized gap and nonlinear contraction
-for selfadjoint contractions when `I-X_i^2` is included in the energy, and
-sign-round only after convergence.
+increase by only `O(D(p_a))`.  The augmented linear problem is also
+reduced.  `involution-augmented-code-jacobian-adds-no-cb-loss` splits
+perturbations at an exact code tuple into reflection-normal and tangent
+parts.  Involution residuals invert the normal part completely isometrically
+(constant `1/2`), while the old code-Riesz operator is the whole tangent
+inverse.  Thus the contraction extension creates no new linear cb
+estimate.  Its positive involution residual may remain a vanishing forcing
+floor and be sign-rounded only after convergence.  The final analytic gate
+is precisely the old tangent `(CRM3)` estimate, plus perturbative stability
+of that inverse under the vanishing normal forcing term.
