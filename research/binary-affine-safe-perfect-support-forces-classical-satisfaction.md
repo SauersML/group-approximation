@@ -4,6 +4,7 @@ id: binary-affine-safe-perfect-support-forces-classical-satisfaction
 kind: claim
 title: Binary affine-safe perfect edge supports force a perfect classical strategy
 distinct_from:
+  binary-tracial-two-csp-has-classical-solution: that rules out every exact tracial Boolean unary-binary CSP, even when a positive edge support is the nonlinear three-of-four fiber; this applies without traciality but assumes every positive edge support is affine-safe.
   tailored-gap-is-lcs-or-has-a-nonaffine-edge: that classifies full accepted relations in arbitrary answer alphabets; this uses the positive support of one perfect strategy and closes the binary-answer case even when the ambient relation is nonaffine.
   functional-support-is-affine-exactly-on-an-affine-domain-map: that classifies functional graphs abstractly; this proves the stronger global classical-collapse theorem for arbitrary binary relations.
   perfect-commuting-unique-game-is-classically-satisfiable: that transports labels through bijective constraints in arbitrary alphabets; this allows arbitrary binary relations and needs only affine safety of the positive edge supports.
@@ -48,3 +49,11 @@ Thus a binary partial-projection game with a perfect commuting strategy always
 has a perfect classical strategy.  Non-uniqueness can evade the earlier
 unique-game collapse only by introducing the full three-of-four fiber `(BAS2)`;
 there is no affine-safe binary projection or relational bypass.
+
+The three-of-four conclusion is necessary here, not sufficient.  In the
+tracial/operator-CSP setting, `binary-tracial-two-csp-has-classical-solution`
+shows that even a full positive three-of-four edge cannot support a global
+perfect-versus-finite gap when every constraint is unary or binary.  A
+positive source must retain higher-arity semantics or add genuinely global
+nontransport relations rather than treating the minimal nonlinear edge as a
+standalone verifier.

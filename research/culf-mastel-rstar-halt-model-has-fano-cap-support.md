@@ -93,3 +93,9 @@ no-Fano-line support conclusion.
   `fano-maximal-cap-overlap-has-positive-sequential-mass` gives a profile of
   squared sequential mass at least `(4/7)^m`; such a product need not be a
   common reducing corner, so the central-core firewall still applies.
+- There is an exact local alternative rather than an intermediate case.
+  By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
+  is not cap-supported contains, on the sum of three line atoms, two parities
+  with full support `F_2^2 minus {00}`.  This identifies the nonlinear mass
+  but does not globalize it: the line projection is not a reducing carrier,
+  and a purely Boolean unary-binary tracial instance is classical.

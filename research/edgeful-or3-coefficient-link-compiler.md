@@ -127,6 +127,32 @@ that certificate.
   collapse, but then all word equations split sectorwise and contain no
   cross-cap holonomy.  The surviving link must therefore mix cap sectors by
   a selector noncentral relative to another authenticated chart.
+- **Mix two cap charts and charge their commutator by the mark.**
+  `four-cap-two-chart-mixer-has-finite-clifford-evaluator` gives the exact
+  minimal test.  Its first and second `C_2^2` selector charts genuinely do
+  not commute, their commutator is the common `J`, the finite packet embeds,
+  and no retraction to that packet exists.  Nevertheless Pauli and Hadamard
+  matrices give a sixteen-dimensional Clifford evaluation faithful on the
+  packet and nonzero on every cap atom.  Thus destroying the packet
+  retraction is not the endpoint: the link must destroy every
+  packet-preserving finite evaluation.  A single projective two-chart mixer
+  does not do so.
 
 The attack is not deferred: the finite slot-frame and packet-term matching
 problem in the preceding paragraph is the next explicit computation.
+
+## Noncentral sequential carrier input
+
+`fano-cap-sequential-products-form-an-algebraic-naimark-carrier` packages all
+four-cap profile products into one positive-trace algebraic projection in a
+finite-group/Hecke matrix amplification.  Its tight-frame identity can pack
+right-multiplied coefficient residuals with no dimension loss, so it is a
+legitimate new input to an interference-based solution of `(OCL1)`.
+
+It does not solve the cap-sector obligation above.  The external profile
+diagonals compress to the POVM effects `E_lambda/4`, not to projections, and
+making them sharp forces a reducing compression and hence the central-core
+firewall.  Therefore a live use must derive the coefficient-link energy
+directly from the rectangular frame.  Treating its labels as the affine
+branches, or imposing exact label/source intertwining, is not a valid
+closure.
