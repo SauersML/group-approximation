@@ -6,13 +6,17 @@ title: Exhaust both carriers and every cyclic one-copy boundary
 target: leavitt-i1412-is-globally-fenced
 requires:
   - leavitt-i1412-carrier-screens-exhaustive
+  - leavitt-i1412-transformed-eq1-screens-exhaustive
   - leavitt-d4-l14-i1412-paired-minimum-block-screen-is-fenced
 ---
 
 The exact all-maximal carrier census proves that the earlier minimum-block
 lists already contain every coarsening-maximal cancellation of Eq3 and Eq1.
-Their coordinate-preserving intersection gives 43 simultaneous carrier
-states.
+After every Eq3 coordinate substitution, a separate all-maximal audit proves
+the transformed Eq1 minimum screen remains exhaustive: all 223 transformed
+inputs have 395 minimum schemes and exactly 395 maximal schemes.  Their
+coordinate-preserving intersection therefore gives all 43 simultaneous
+carrier states.
 
 For each state, cyclically rotate the freely reduced boundary through every
 syllable cut, normalize any endpoint cascade, append a formal `q^-1` in each
