@@ -2,7 +2,7 @@
 rg: 2
 id: non-hyperlinear-from-perfect-completeness-lcs-compiler
 kind: route
-title: Feed a perfect-completeness LCS compiler through the halting co-r.e. argument
+title: Feed a perfect-completeness LCS compiler through an explicit proof-search fixed point
 target: non-hyperlinear-group
 requires:
   - perfect-completeness-constant-soundness-lcs-compiler
@@ -12,8 +12,9 @@ artifacts:
 ---
 
 With `(PC1)` and `(PC2)` in hand,
-`re-oriented-lcs-compiler-gives-nonhyperlinear-group` produces a nonhalting
-machine whose solution group keeps `J` and has quantum value at most
-`1 - delta`; `perfect-lcs-gap-implies-nonhyperlinear` makes that group
+`re-oriented-lcs-compiler-gives-nonhyperlinear-group` effectively constructs
+a nonhalting machine whose solution group keeps `J` and has quantum value
+strictly below one; `perfect-lcs-gap-implies-nonhyperlinear` makes that group
 nonhyperlinear.  This is the Taller--Vidick route with its missing
-hypothesis isolated and its self-reference removed.
+hypothesis isolated.  The fixed point enumerates group proofs only; it does
+not search matrices or depend on an unknown quantitative threshold.
