@@ -1670,18 +1670,18 @@ theorem finite_centralizer_ball (hiso : IsIsometricAction G X)
     exact hkx
   exact ⟨hmove _, hmove _⟩
 
-/-- An infinite-order element commuting with a loxodromic element is itself
-loxodromic under an acylindrical action.
+/-- An infinite-order element commuting with a loxodromic element has an orbit
+escaping every bounded set under an acylindrical action.
 
 Indeed `finite_centralizer_ball` says that every bounded ball contains only
 finitely many elements of the centralizer.  The nonnegative powers of an
 infinite-order element are distinct, so only finitely many can remain in any
 fixed ball.  This is exactly convergence of their displacement to infinity. -/
-theorem isLoxodromic_of_commutes_of_not_isOfFinOrder
+theorem isEscaping_of_commutes_of_not_isOfFinOrder
     (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
     {g c : G} {x : X} (hg : IsLoxodromic g x) (hcg : Commute c g)
-    (hc : ¬ IsOfFinOrder c) : IsLoxodromic c x := by
-  rw [IsLoxodromic, Filter.tendsto_atTop]
+    (hc : ¬ IsOfFinOrder c) : IsEscaping c x := by
+  rw [IsEscaping, Filter.tendsto_atTop]
   intro B
   let ε : ℝ := max (B + 1) 1
   have hε : 0 < ε := lt_of_lt_of_le zero_lt_one (le_max_right _ _)
@@ -1709,62 +1709,46 @@ theorem isLoxodromic_of_commutes_of_not_isOfFinOrder
 No elementary-closure predicate is used.  The input is the power relation that
 such a shared axis must eventually provide:
 
-`c gᵐ c⁻¹ = gⁿ`, with `m ≠ 0`.
+`c gᵐ c⁻¹ = gⁿ`, with `m ≠ n`.
 
-If `m = n`, then `c` centralizes the loxodromic element `gᵐ`; torsion-freeness
-and acylindricity make `c` loxodromic.  If `m ≠ n`, the commutator relation puts
-the nonzero loxodromic power `gⁿ⁻ᵐ` in the normal subgroup. -/
-theorem exists_loxodromic_mem_of_conj_zpow_eq_zpow
-    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
-    (htf : IsPowerTorsionFree G) {S : Subgroup G} [S.Normal]
-    {g c : G} {x : X} (hcS : c ∈ S) (hncomm : ¬ Commute c g)
-    (hg : IsLoxodromic g x) {m n : ℤ} (hm : m ≠ 0)
+The commutator relation puts the nonzero loxodromic power `gⁿ⁻ᵐ` in the
+normal subgroup.  In the parallel case `m = n`, finite centralizer balls only
+give escape of `c`; the missing common-axis theorem must supply linear progress
+before `c` may honestly be called loxodromic. -/
+theorem exists_loxodromic_mem_of_conj_zpow_eq_zpow_of_ne
+    (hiso : IsIsometricAction G X) {S : Subgroup G} [S.Normal]
+    {g c : G} {x : X} (hcS : c ∈ S)
+    (hg : IsLoxodromic g x) {m n : ℤ} (hmn : m ≠ n)
     (hpower : c * g ^ m * c⁻¹ = g ^ n) :
     ∃ q ∈ S, IsLoxodromic q x := by
-  by_cases hmn : m = n
-  · subst n
-    have hgm : IsLoxodromic (g ^ m) x := isLoxodromic_zpow hiso hg hm
-    have hcomm : Commute c (g ^ m) := by
-      show c * g ^ m = g ^ m * c
-      calc
-        c * g ^ m = (c * g ^ m * c⁻¹) * c := by group
-        _ = g ^ m * c := by rw [hpower]
-    have hc1 : c ≠ 1 := by
-      intro hc
-      apply hncomm
-      simpa [hc] using (Commute.one_left g)
-    exact ⟨c, hcS, isLoxodromic_of_commutes_of_not_isOfFinOrder
-      hiso hacy hgm hcomm (htf.not_isOfFinOrder hc1)⟩
-  · have hdiff : n - m ≠ 0 := sub_ne_zero.mpr (Ne.symm hmn)
-    have hmemComm : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S := by
-      have hconj : g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S :=
-        (inferInstance : S.Normal).conj_mem c⁻¹ (S.inv_mem hcS) (g ^ m)
-      exact S.mul_mem hcS hconj
-    have heq : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ = g ^ (n - m) := by
-      rw [hpower, ← zpow_neg, ← zpow_add]
-      congr 1
-      ring
-    have hmem : g ^ (n - m) ∈ S := by rwa [heq] at hmemComm
-    exact ⟨g ^ (n - m), hmem,
-      isLoxodromic_zpow hiso hg hdiff⟩
+  have hdiff : n - m ≠ 0 := sub_ne_zero.mpr (Ne.symm hmn)
+  have hmemComm : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S := by
+    have hconj : g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S :=
+      (inferInstance : S.Normal).conj_mem c⁻¹ (S.inv_mem hcS) (g ^ m)
+    exact S.mul_mem hcS hconj
+  have heq : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ = g ^ (n - m) := by
+    rw [hpower, ← zpow_neg, ← zpow_add]
+    congr 1
+    ring
+  have hmem : g ^ (n - m) ∈ S := by rwa [heq] at hmemComm
+  exact ⟨g ^ (n - m), hmem, isLoxodromic_zpow hiso hg hdiff⟩
 
 /-- **The first concrete dichotomy in Osin's s-normal argument.**
 
 Let `S` be s-normal in a torsion-free group and let `g` be an ambient
 loxodromic.  The twisted intersection `S ∩ g⁻¹ S g` is infinite, hence contains
 a nonidentity element `c`.  If `c` commutes with `g`, torsion-freeness and the
-preceding theorem make `c` loxodromic.  Otherwise `c` and its `g`-conjugate are
+preceding theorem make `c` escaping.  Otherwise `c` and its `g`-conjugate are
 both in `S`, giving the noncommuting configuration consumed by the next stage
 of the product argument.
 
-Thus the remaining loxodromic-extraction problem is confined to the genuinely
-noncommuting branch; the centralizing branch is completely discharged. -/
-theorem exists_loxodromic_or_noncommuting_of_isSNormal
+Thus the centralizing branch still visibly requires the common-axis theorem. -/
+theorem exists_escaping_or_noncommuting_of_isSNormal
     (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
     (htf : IsPowerTorsionFree G) {S : Subgroup G}
     (hS : HullSuitable.IsSNormal S) {g : G} {x : X}
     (hg : IsLoxodromic g x) :
-    (∃ c ∈ S, IsLoxodromic c x) ∨
+    (∃ c ∈ S, IsEscaping c x) ∨
       ∃ c ∈ S, g * c * g⁻¹ ∈ S ∧ ¬ Commute c g := by
   have hinter := hS g
   have hex : ∃ c : G,
@@ -1780,7 +1764,7 @@ theorem exists_loxodromic_or_noncommuting_of_isSNormal
   obtain ⟨c, ⟨hcS, hgcS⟩, hc1⟩ := hex
   by_cases hcomm : Commute c g
   · left
-    exact ⟨c, hcS, isLoxodromic_of_commutes_of_not_isOfFinOrder
+    exact ⟨c, hcS, isEscaping_of_commutes_of_not_isOfFinOrder
       hiso hacy hg hcomm (htf.not_isOfFinOrder hc1)⟩
   · right
     exact ⟨c, hcS, hgcS, hcomm⟩
