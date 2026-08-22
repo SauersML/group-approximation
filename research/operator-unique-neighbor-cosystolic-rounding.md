@@ -72,3 +72,13 @@ at zero defect.  Hence an agreement theorem for separate face gauges would
 attack the wrong object.  The unresolved estimate is precisely uniform
 approximate correction of the shared coordinate reflections; after that,
 the bounded faces follow by the Lipschitz reconstruction formula.
+
+The canonical randomized sequential-product POVM does not bypass this gate.
+`sequential-pinchings-have-sharp-linear-disturbance-loss` computes its
+marginals on the sparse Clifford cycle: every order has average disturbance
+at least `1/2`, a random order has expectation `2/3`, but the complete-pair
+energy is only `8/L`.  Subsequent POVM orthogonalization cannot recover the
+original tuple because any PVM output has commuting marginals.  Therefore
+the LDPC parity/fundamental-cone structure must be used inside a spectral-
+mixture alignment or correction step before sequential measurement; generic
+random ordering necessarily pays the forbidden factor `L`.
