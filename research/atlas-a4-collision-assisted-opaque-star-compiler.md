@@ -64,6 +64,16 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **The entire classical simplex obeys a sharp dimension-free estimate.**
+  `atlas-a4-classical-opaque-star-sharp-constant` computes all sixty exact
+  packet alignments in `Reg(A8)`.  Their sharp transport coefficient is
+  `1/sqrt(2)` and their sharp hub coefficient is one; the same bounds survive
+  arbitrary direct sums and external amplification.  This proves that there
+  is no classical-sector amplification counterexample.  It does not control
+  general matrix holonomy: all sixty collision defects equal `sqrt(2)`, so
+  the finite calibration contains no points approaching the required
+  collision-zero fiber.
+
 - **The collision term is forced by an exact regular spectral obstruction.**
   Packet-only opaque transport is false even on exact regular
   margins.  `atlas-a4-packet-alone-fails-opaque-star` evaluates the four

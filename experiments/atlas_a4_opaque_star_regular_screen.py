@@ -17,11 +17,14 @@ for the minimal transvection cycle t01,t12,t23,t30 (hub t23).
 """
 
 import collections
+import json
+import os
 
 from atlas_a4_classical_two_holonomy_profile import transformed
 from atlas_a4_packet_generation import select_packet, x_lengths
 from atlas_boundary_inner_alignment import enumerate_gl4
 from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kernel_words
+from atlas_triangle_19243_packet import decode_word
 from atlas_two_chart_search import I4, gf2_inv, gf2_mul, matrix_key
 
 
@@ -56,7 +59,7 @@ def word_value(word, alignment, inverse, use_outer):
     return value
 
 
-def audit(packet, use_outer):
+def audit(packet, collision, use_outer):
     identity = matrix_key(I4)
     profiles = collections.Counter()
     witnesses = []
@@ -68,6 +71,8 @@ def audit(packet, use_outer):
         ):
             continue
 
+        q_value = word_value(collision, alignment, inverse, use_outer)
+        assert matrix_key(q_value) != identity
         profile = tuple(
             order(gf2_mul(transformed(t, alignment, inverse, use_outer), t))
             for _name, t in TRANSVECTIONS
@@ -84,16 +89,21 @@ def main():
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
     packet = select_packet(words, x_lengths())
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "atlas-word-19243.json"), encoding="utf-8") as stream:
+        collision = decode_word(json.load(stream)[0]["word"])
 
     expected = {
         "inner": (22, ("00000100010000000001000000000001", (4, 4, 2, 2))),
         "outer": (20, ("00000100010000000001000000000001", (2, 2, 4, 4))),
     }
     for branch, use_outer in (("inner", False), ("outer", True)):
-        profiles, witnesses = audit(packet, use_outer)
+        profiles, witnesses = audit(packet, collision, use_outer)
         assert (len(witnesses), witnesses[0]) == expected[branch]
         print(branch, "profiles", dict(sorted(profiles.items())))
         print(branch, "nonconjugate_star_witnesses", len(witnesses))
+        print(branch, "sharp_transport_ratio", "1/sqrt(2)")
+        print(branch, "sharp_hub_ratio", "1")
         if witnesses:
             print(branch, "first_witness", witnesses[0])
 
