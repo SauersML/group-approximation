@@ -24,6 +24,13 @@ Equivalently, neither nontrivial twisted sector admits a sequence of
 finite-dimensional projective almost representations with defect tending to
 zero.
 
+By `deligne-sector-gap-is-exactly-nonhyperlinearity`, this statement is
+equivalent to non-hyperlinearity of the Deligne triple cover itself: any
+surviving projective almost representation can be tensored with canonical
+finite-quotient microstates of `Sp_4(Z)` to produce a faithful hyperlinear
+embedding of the cover.  Thus this node is a terminal formulation, not a
+strictly easier analytic precursor.
+
 By `maslov-inverse-sector-symmetry`, the two nontrivial sectors are exchanged
 by an anti-symplectic automorphism.  Analytically it is enough to prove the gap
 for `alpha`; the `alpha^2` case follows with the same constant after changing
@@ -59,3 +66,7 @@ presentation coordinates.
   should be run first.  If the minimum projective relator energy visibly
   decays toward zero, this claim is false and the Deligne lane must use a
   weaker positive-density/trace obstruction rather than a full sector gap.
+- **Tensor-camouflage audit.** Exact finite-dimensional invisibility rules out
+  zero defect at each fixed dimension, but a dimension-uniform positive gap
+  is already precisely non-hyperlinearity of the cover.  Property (T) does
+  not by itself bridge that quantifier change.

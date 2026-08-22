@@ -27,6 +27,14 @@ zero satisfies
 
 No correction of the other generators is required.
 
+For this particular cover, `deligne-sector-gap-is-exactly-nonhyperlinearity`
+shows that `(DCM1)` is nevertheless equivalent to non-hyperlinearity itself.
+If collapse fails, central-sector cutting produces a nontrivial projective
+almost representation; tensoring it with canonical quotient microstates
+makes the whole cover hyperlinear.  Hence the one-word formulation reduces
+the number of words to control, but not the logical strength of the terminal
+claim.
+
 ## Attempts
 
 - **Central-character cut.** `finite-central-hs-sector-decomposition` reduces
