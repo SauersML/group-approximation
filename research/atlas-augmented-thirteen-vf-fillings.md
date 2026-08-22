@@ -54,3 +54,8 @@ closure of the twelve cycle stable letters together with the hyperbolic
 collision word in `(AVF3)`.  Proving residual finiteness or soficity of that
 specific multiple filling remains open; no order-by-order finite-simple
 sieve is implicit in this reduction.
+
+The explicit maximal-tree elimination and dependency calculation are given
+by `atlas-thirteen-vf-fillings-are-tietze-irredundant`: all twelve cycle
+fillings become genuine packet compatibility relators, and collision remains
+an independent thirteenth filling.
