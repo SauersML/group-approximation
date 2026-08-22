@@ -125,3 +125,11 @@ or genuinely nonstationary coefficient data.
   legitimately be studied as the thirteen post-q14 residuals: twelve packet
   cubes plus collision.  No analogous correction of those fillings follows
   from the finite-algebra theorem.
+
+- **Exact q14 supplies no coefficient invariant.**
+  `atlas-q14-exact-allows-full-coefficient-cyclicity` constructs binary
+  chart changes inside the marked transvection centralizer for which q14 is
+  exact but `C_T=M_m(F2)`.  Thus even after the flexible q14 correction a
+  one-dimensional arbitrary seed can wander through the whole carrier.  A
+  conserved multiplicity subspace must use the twelve packet formulas and
+  collision jointly; q14 and chart type contribute none by themselves.
