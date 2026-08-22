@@ -18,15 +18,17 @@ rho_i(x)=min { G_i(x,y) : (x,y) is a matricial-ultraproduct
                               joint extension type }.             (FER1)
 ```
 
-The minimum exists.  The graph of admissible joint types is compact and
-`G_i` is continuous.  Therefore
+On the **complete continuous-logic tracial type space**, `rho_i` is the value
+of the formula `inf_y G_i(x,y)`.  It is therefore continuous, with the same
+uniform continuity modulus in the base variables as `G_i`.  Equivalently,
+compactness of matricial joint types realizes the infimum after passing to an
+elementary/matricial-ultraproduct extension.  In particular
 
 ```text
 {x : rho_i(x)<=c}
 ```
 
-is compact for every `c`; equivalently `rho_i` is lower semicontinuous.  In
-particular
+is compact for every `c`, and
 
 ```text
 C_i={x:rho_i(x)=0}                                    (FER2)
@@ -51,14 +53,15 @@ every separated tuple has optimized residual at least `epsilon/2` for one of
 these gadgets.  This last modulus is qualitative unless the compactness
 argument is made effective.
 
-## Quantifier fence
+## Topology and quantifier fence
 
-The optimized residual need not be continuous.  Infimizing a continuous
-function over the fibers of an arbitrary compact correspondence gives lower
-semicontinuity from compact projection, but upper semicontinuity requires a
-lower-hemicontinuity or witness-lifting theorem for those fibers.  The proof
-uses only lower semicontinuity, which is exactly the direction needed for a
-robust positive nonextension neighborhood.
+Continuity here uses the word **complete**.  If one instead records only
+quantifier-free scalar word moments and defines the infimum by an external
+restricted correspondence of admissible witnesses, compact projection gives
+only lower semicontinuity in general.  That weaker conclusion is still enough
+for the positive nonextension neighborhoods, but it does not justify calling
+the residual continuous.  For complete types the existential quantifier is
+part of the logic topology, so the supplied continuity claim is valid.
 
 Moreover `(FER3)` is conditional on
 
@@ -69,4 +72,3 @@ forall x exists i forall auxiliary y: G_i(x,y)>=epsilon_x,          (FER4)
 not on `forall x forall i exists y`.  It does not manufacture the local
 nemesis, authenticate a positive carrier, or prove that all gadgets share the
 HALT witness.  Those are precisely the remaining compiler quantifiers.
-
