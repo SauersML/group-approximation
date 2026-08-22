@@ -10,13 +10,14 @@ distinct_from:
 ---
 
 **OPEN.**  From a code for a neighborhood in the marked canonical CE
-extension-type space, construct finite subgroups `K,H` of one recursively
-presented base and an injection `phi:K->H` such that:
+extension-type space, construct an authenticated central projection `z` of a
+fixed finite packet, finite subgroups `K,H` of one recursively presented base,
+and an injection `phi:K->H` such that:
 
 1. on every type in that neighborhood retaining the losing payload,
-   `tr(e_H)-tr(e_K)>=eta` for a computable `eta>0`;
-2. the finite subgroup tables and their incidence with the shared decoded
-   strategy are ordinary group relations; and
+   `tr(z e_H)-tr(z e_K)>=eta` for a computable `eta>0`;
+2. the finite subgroup tables, the authentication of `z`, and stable-letter
+   preservation of its packet are ordinary group relations; and
 3. the construction is enumerable from rational extension data.
 
 The pair must be payload-coupled.  Native line/whole-subgroup choices in the
@@ -27,3 +28,8 @@ order.  A successful surrogate must make the larger abstract subgroup fix
 more vectors **on the selected payload type** while retaining the safe
 canonical order `1/|H|<=1/|K|` globally.
 
+The filter is mandatory.  For the raw canonical trace one always has
+`tau(e_H)=1/|H|<=1/|K|=tau(e_K)`, so no uncompressed subgroup-Hecke edge can
+recognize an approximation-specific canonical type.  A positive filtered gap
+must be compensated on the other packet blocks; that is exactly where the
+actual extension profile enters.

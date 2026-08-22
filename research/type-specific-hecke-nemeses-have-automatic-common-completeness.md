@@ -25,26 +25,33 @@ representation-theoretically, every representation of `Gamma_0` detecting
 original representation.  No pairwise compatibility of the stable-letter
 implementations is required.
 
-For a finite-dimensional base type `rho`, put
+Raw subgroup averages cannot distinguish canonical base types: in every
+canonical trace `tau(e_L)=1/|L|`, so injectivity always points safely.  The
+actuator must therefore be localized by a separately authenticated central
+packet projection `z_i`, and its stable letter must preserve that packet. Put
 
 ```text
 p_i=e_(H_i),       q_i=e_(K_i),
-Delta_i(rho)=max(0,tr_rho(p_i)-tr_rho(q_i)).           (TCH2)
+Delta_i(rho)=max(0,tr_rho(z_i p_i)-tr_rho(z_i q_i)).   (TCH2)
 ```
 
 If a neighborhood of that type has `Delta_i>=eta_i>0`, then every extension
-through the `i`th HNN cell pays, after exactification of the two fixed finite
-tables,
+through the `i`th HNN cell which preserves `z_i` pays, after exactification of
+the fixed finite tables,
 
 ```text
 |K_i|^(-1) sum_(k in K_i)
  ||U_i^*rho(k)U_i-rho(phi_i(k))||_2^2 >= eta_i-o(1).  (TCH3)
 ```
 
-Consequently a computably enumerable family of such pairs which gives one
-positive robust gap on every marked canonical CE extension type is already a
-common-complete approximation-specific nemesis compiler.  The remaining
-problem is solely the **payload-coupled Hecke separator theorem**: manufacture
-the pair `(K_i,H_i)` from the actual extension type.  Common HALT completeness
-does not constrain the pairs.
+with one additional fixed packet-covariance term controlling `[U_i,z_i]`.
+Consequently a computably enumerable family of such **filtered** pairs which
+gives one positive robust gap on every marked canonical CE extension type is
+already a common-complete approximation-specific nemesis compiler.  The
+remaining problem is solely the **payload-coupled Hecke separator theorem**:
+manufacture `(z_i,K_i,H_i)` from the actual extension type.  Common HALT
+completeness does not constrain the different pairs, but authentication and
+preservation of each `z_i` are mandatory.
 
+Without `z_i`, the proposal is impossible rather than merely incomplete:
+`tau_can(e_H)=1/|H|<=1/|K|=tau_can(e_K)` for every canonical representation.
