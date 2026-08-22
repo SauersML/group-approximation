@@ -443,7 +443,6 @@ f6c54ecf7142	ledger	FD.04	conclusion of the commutant inclusion
 6229c922a1a5	ledger	FD.04	finite dimension reverses the inclusion to equality
 bb772cca00f6	ledger	FD.06 FD.07	the lamp and displaced lamp both lie in the commutant
 4dfb1e69d088	ledger	FD.08 FD.09	conjugate equality and marked-commutator collapse
-a1de516b2da3	ledger	FD.13 FD.14	literal finite-dimensional and finite-target consequences
 d9c8b24b7de1	ledger	FD.10	commutant setup for the intrinsic theorem
 5a98d87678ea	ledger	FD.10	the bidirectional commutant preservers form a subgroup
 8e7e50ecc1d7	ledger	FD.10	all one-sided conjugators generate a subgroup of preservers
@@ -460,7 +459,6 @@ fbb25f95f817	ledger	KC.12	the permutation action and root lamp
 9bb2b8380ab2	ledger	KC.04 KC.18	the central-sign criterion kills the surviving central involution
 1f1c1db7e0c3	ledger	KC.18	the surviving word makes every corona homomorphism nonfaithful
 ceed07aa91af	ledger	KC.04 KC.05	finite presentation is the only conclusion using finite presentation of the base
-462e6cee99cb	ledger	KT.01	the fixed failing subsequence
 e52a8e80d7ac	ledger	KT.02	a free ultrafilter containing the failing set
 c0318cdc0b8c	ledger	KT.03	the Hilbert--Schmidt adjoint model
 3dde5cd629fb	ledger	KT.04	operator-norm asymptotic multiplicativity of the adjoint action
@@ -470,15 +468,12 @@ b967a030b8ec	ledger	KT.08	range inclusion equals projection order
 e2fd36c687cf	ledger	KT.09	conclusion that the adjoint classes form a homomorphism
 a54f9d7839ac	ledger	KT.11 KT.12	the Kazhdan set, average, and fixed subspace
 590c2297bb1d	ledger	KT.13 KT.14 KT.15 KT.16 KT.17 KT.18	the spectral gap and fixed-space projection
-d7c9dc3894d3	ledger	KT.19	the transported fixed-space projection
-a60f111c7da0	ledger	KT.19 KT.20	one-sided inclusion identifies the two fixed subspaces
 bcd0a8170d5d	ledger	KT.20	range inclusion gives projection domination
 d892807d0747	ledger	KT.21	Murray--von Neumann equivalence of the projections
 1f4cc72275dc	ledger	KT.22 KT.23	finiteness turns domination into equality
 0bd29ae910fd	ledger	KT.24 KT.25	the bounded vector class and its fixedness
 7d1eae27b434	ledger	KT.25	membership in the fixed subspace
 ce6b65599177	ledger	KT.26	transported vector remains fixed
-2f538dc7f56c	ledger	KT.27	the transported matrix is the adjoint-action vector
 41f319e0373f	ledger	KT.27	ultrafilter convergence for every base element
 484e51d8fc15	ledger	KT.01 KT.28	contradiction on the selected failing set and recovery of full convergence
 90bd3a4f03c2	ledger	NK.00	the finite-normal criterion is the finite property-T case
@@ -583,7 +578,6 @@ d09019098543	ledger	TV.04	unitarity of conjugation in every weighted inner produ
 4145a428584b	ledger	TV.01 TV.05	finiteness gives equality and both transport directions
 cad5a22c197c	ledger	INT.30	summary of the three failed reverse arrows
 2827be948c84	ledger	INT.31	standard finitary alternating-group counterexample
-252cf7f0aeb8	ledger	INT.33	literal group E is sofic and not LEF
 3300e2833a0a	ledger	INT.34	current open-status claim
 8e0e14c78c4b	ledger	TR.04 TR.06	hyperlinearity and failure of MF for the canonical trace
 6b2d7c47aa57	ledger	UN.04b	fixed finitely presented Boone group with undecidable word problem
@@ -714,7 +708,6 @@ efb9ec2fe1a2	provenance	-	origin of the non-MF construction
 aada972c62a3	provenance	-	authorial checking and revision
 25d5e724d042	provenance	-	computational experiments and their relation to the proofs
 e7a5ac2e4799	ledger	PRE.16	re-reviewed after the manuscript revision
-7563a0631736	ledger	INT.01	re-reviewed after the manuscript revision
 02c13d1a2175	ledger	INT.17	re-reviewed after the manuscript revision
 b9296e81f500	ledger	INT.03	re-reviewed after the manuscript revision
 7386e18e484c	ledger	INT.02 INT.17 SO.16	exactness of Cred(E) is SO.16, graded MISMATCH; the abstract clause carries that row
@@ -788,11 +781,8 @@ b6f6f3ad07b3	ledger	CR.02	re-reviewed after the manuscript revision
 ed8c92207b68	ledger	KC.04 KC.05	re-reviewed after the manuscript revision
 1c18d77dda40	ledger	KC.04	re-reviewed after the manuscript revision
 ffdc409cf764	ledger	KC.04	re-reviewed after the manuscript revision
-91f13c2cf436	attribution	-	re-reviewed after the manuscript revision
 80cc5bad61e6	structural	-	re-reviewed after the manuscript revision
 7fa2310d2b7c	ledger	PA.07	re-reviewed after the manuscript revision
-a14dea6d91fc	attribution	-	re-reviewed after the manuscript revision
-b58e48f1141f	attribution	-	re-reviewed after the manuscript revision
 1fcdd7dd0e77	ledger	BN.06	re-reviewed after the manuscript revision
 01666fc0d874	structural	-	re-reviewed after the manuscript revision
 e764ba260862	ledger	CY.10	re-reviewed after the manuscript revision
@@ -810,7 +800,6 @@ fa7017f7b86e	ledger	BN.04	re-reviewed after the manuscript revision
 fd8f0ada3224	ledger	BN.06	re-reviewed after the manuscript revision
 c66d29a55454	ledger	BN.06	re-reviewed after the manuscript revision
 4acc2a220489	ledger	BN.06	re-reviewed after the manuscript revision
-b60448114b2b	attribution	-	re-reviewed after the manuscript revision
 04256b53815c	ledger	TF.01	re-reviewed after the manuscript revision
 4b99672f8cb4	ledger	TF.05	re-reviewed after the manuscript revision
 10f25cacce2c	ledger	TF.05	re-reviewed after the manuscript revision
@@ -852,3 +841,22 @@ d9e3629aed67	attribution	-	describes the stability route of the BDL argument
 0da4aadf25fb	ledger	BN.06	the sign quotient is an ordinary permutational wreath product
 0d72d16e1fa7	structural	-	forward pointer to the exact-residual section
 64216c4d3be0	ledger	ER.04	2-norm triviality alone does not give the corona statement
+
+# Assignments for the 2026-08-22 reader-visible wave: verified citations,
+# the Theorem D restructure, and the transport-conjugator rename.
+71cc3302a6ad	ledger	INT.01	the headline resolution sentence
+f32695e7bd4c	ledger	INT.33	sofic but not LEF, now citing both theorems
+148351a0270b	attribution	-	credits the standard corona-lifting material
+47671f5f5c11	attribution	-	credits the standard finite C*-algebra facts
+b6d558823d79	ledger	FD.13 FD.14	the finite-dimensional consequence, now with the pointer to def:E
+e9a446ce565d	attribution	-	credits Akemann--Walter and Drutu--Nowak for the Kazhdan projection
+7dba5600a5f4	ledger	KT.01	the contradiction setup, conjugator renamed to t
+14f4c2bcedf3	ledger	KT.19	the two projections, conjugator renamed to t
+7f4aaf5b840d	ledger	KT.19 KT.20	fixed vectors under the conjugated subgroup, conjugator renamed to t
+321fbda5cbe8	ledger	KT.27	the transported matrix as an adjoint-action vector, conjugator renamed to t
+effe3fb04b35	attribution	-	property (T) of the affine base, with the verified lattice citation
+5d5cf30b3a9a	attribution	-	property (T) of the base, with the verified lattice citation
+4945b1ac49fa	attribution	-	the classical-base identification, with the verified pinpoint citation
+5cabe757b953	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF	hyperlinearity from soficity
+d006d0b1a414	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF	non-LEF and non-residual-finiteness from non-MF
+c5900819d0e8	attribution	-	related frameworks, now including the sofic-action one

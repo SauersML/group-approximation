@@ -107,7 +107,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
     "thm:Esofic": (
         "Sofic/LiteralSoficAssembly",
-        "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF"),
+        "GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic"),
     "lem:mftrace-group": (
         "Sofic/TraceSeparationEndpoint",
         "GroupApproximation.manuscriptMFTraceGroupBridge"),
@@ -275,7 +275,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:exactfd-intrinsic": ["thm:exactfd"],
     "thm:cyclic": ["thm:exactfd", "con:clifford"],
     "thm:reduced": ["thm:A", "lem:faithfultrace"],
-    "thm:Esofic": ["def:E", "thm:A", "prop:blocknormalform", "lem:window"],
+    "thm:Esofic": ["def:E", "prop:blocknormalform", "lem:window"],
     "lem:mftrace-group": [],
     "thm:trace": ["thm:A", "def:E", "thm:Esofic", "lem:mftrace-group"],
     "prop:mf-equivalences": ["lem:unitarycorona", "lem:tensor-amplification"],

@@ -239,7 +239,7 @@
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "one-sided conjugation preserves asymptotic commutants",
-      "statement_sha256": "36a5391cd928c3d3efd79266320a95f8a6ae81a8a7428cd59ff59d0313a4c83a",
+      "statement_sha256": "3552a726c6f853ff6625565c3b5107f52ad4c8a60ce362e0d00a5092c1167147",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -265,7 +265,7 @@
       "id": "cor:kazhdan-transport-subgroup",
       "environment": "corollary",
       "title": "subgroup form",
-      "statement_sha256": "2f03fd942cc763a18cbb10475a9f70b7862a55b2f2e136f3f6f9e915e3415e8a",
+      "statement_sha256": "827fa6d69ba854f5870dcebf0b799fffbc664255870d3b8d6c2e940cc754ac4a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -594,13 +594,12 @@
     {
       "id": "thm:Esofic",
       "environment": "mainthm",
-      "title": "a finitely presented sofic non-MF group",
-      "statement_sha256": "a31c79735c511ebc2525423a3b69694d1c138cb8daeb03a7bec47137e0ae290b",
+      "title": "the explicit group is sofic",
+      "statement_sha256": "883dcd02d25bf9aad0684941b5b50b0deaacc3c45b46f300dd684b98108697c3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:E",
-        "thm:A",
         "prop:blocknormalform",
         "lem:window"
       ],
@@ -612,25 +611,7 @@
           "role": "exact",
           "module": "Sofic/LiteralSoficAssembly",
           "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSoficAssembly",
-          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF",
           "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSoficAssembly",
-          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSoficAssembly",
-          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional",
-          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -683,7 +664,7 @@
       "id": "thm:transport-variants",
       "environment": "theorem",
       "title": "one-sided conjugation at an arbitrary weight",
-      "statement_sha256": "7a79775ae5cf5bc942191dab5e71b1ef0ff81ab1de25d6e62264625affe4cde0",
+      "statement_sha256": "a076d7cf8d7a6279987606f84ca90a37dd166caf65b607d46c62e9283e730a9e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

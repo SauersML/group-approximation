@@ -137,8 +137,8 @@ group $C^*$-algebras, sofic groups}
 A countable discrete group is MF if it embeds in the unitary group of a
 norm matrix corona
 $\mathcal Q=\prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)$.
-We prove that non-MF groups exist, resolving negatively the longstanding
-question whether every countable group is MF.  Our principal example is an
+We prove that non-MF groups exist, resolving in the negative the
+longstanding question of whether every countable group is MF.  Our principal example is an
 explicit finitely presented sofic group.
 
 The proof follows the central-involution strategy of
@@ -342,7 +342,8 @@ finitely presented group is MF but
 not residually finite \cite[Section~2.14 and Corollary~2.18]{CDE}; since a
 finitely presented LEF group is residually finite
 \cite[Remark~2.11]{CDE}, it is not LEF.  Finally,
-the group $E$ below is sofic but not LEF (Theorem~\ref{thm:Esofic}).  The
+the group $E$ below is sofic but not LEF
+(Theorems~\ref{thm:A} and~\ref{thm:Esofic}).  The
 reverse of the bottom arrow,
 \textup{hyperlinear}$\,\Rightarrow\,$\textup{sofic}, remains open, as does the
 additional implication
@@ -500,6 +501,9 @@ The ideals defining $\mathcal Q$ and $B_\omega$ are given by
 operator-norm convergence, the third by normalized Hilbert--Schmidt
 convergence; Section~\ref{sec:limits} identifies the step that needs
 the operator norm.
+
+The next two lemmas are standard (cf.~\cite{BK,Loring98}); we include
+the short proofs to fix the constants used later.
 
 \begin{lemma}[lifting]\label{lem:lift}
 Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
@@ -727,6 +731,9 @@ vectors and $V$ represents $t$; the two
 projections are Murray--von Neumann equivalent, and finiteness of the
 ultraproduct gives $P=VPV^*$.
 
+The two lemmas of this section are standard facts about finite
+$C^*$-algebras; see, e.g., \cite{Bla06}.
+
 \begin{lemma}[comparison in a finite algebra]\label{lem:finitecompare}
 Let $A$ be a finite unital $C^*$-algebra and let $p,q\in A$ be
 projections with $p\le q$ and $p\sim q$.  Then $p=q$.
@@ -838,8 +845,9 @@ $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
 \]
 \end{proof}
 
-Every finite-dimensional linear representation of $E$ over any field
-maps $w$ to the identity; consequently every homomorphism from $E$ to
+Every finite-dimensional linear representation of the group $E$ of
+Definition~\ref{def:E} below, over any field, maps $w$ to the identity;
+consequently every homomorphism from $E$ to
 a finite group does as well (Corollary~\ref{cor:notRFD}).
 
 In an MF model, multiplicativity is only asymptotic, so the coordinate
@@ -862,6 +870,9 @@ is a finite set $S\subseteq L$ together with a constant $\kappa>0$ such
 that, in every unitary representation $\pi$ of $L$ with no nonzero
 invariant vector, every unit vector $\xi$ satisfies
 $\lVert\pi(a)\xi-\xi\rVert\ge\kappa$ for some $a\in S$.
+The next lemma is the spectral-gap form of the Kazhdan projection, which
+goes back to Akemann and Walter \cite{AW81}; see \cite{DN19} for a
+general treatment.
 
 \begin{lemma}[Kazhdan spectral gap]\label{lem:kazhdan-gap}
 Let $L$ be a group with property~\textup{(T)}, let $S\subseteq L$ be a
@@ -907,22 +918,22 @@ $1-\mu\ge\kappa^{2}/(2|S|)$.
 \label{thm:kazhdan-transport}
 Let $\Gamma$ and $H$ be groups, let $\Gamma$ have
 property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a homomorphism, let
-$s\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
+$t\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
 \[
- s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma).
+ t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma).
 \]
 Let $U_n\colon H\to\U(d_n)$ be an operator-norm asymptotic representation.
 If $(x_n)$ is uniformly operator-norm bounded and asymptotically
 centralizes $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm,
 \[
- \hsnorm{x_nU_n(\iota(\gamma))-U_n(\iota(\gamma))x_n}\longrightarrow0
+ \hsnorm{[x_n,U_n(\iota(\gamma))]_{-}}\longrightarrow0
  \qquad(\gamma\in\Gamma),
 \]
 then the conjugated sequence does as well:
 \leanverified{Sofic/KazhdanTransportAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse}
 \leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport}
 \[
-\hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]_{-}}
+\hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\iota(\gamma))]_{-}}
 \longrightarrow0
 \qquad(\gamma\in\Gamma).
 \]
@@ -931,7 +942,7 @@ then the conjugated sequence does as well:
 \begin{proof}
 Suppose the conclusion fails: there are $\gamma_0\in\Gamma$,
 $\delta>0$, and an infinite set $I\subseteq\N$ with
-$\hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma_0))]_{-}}\ge\delta$ for
+$\hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\iota(\gamma_0))]_{-}}\ge\delta$ for
 $n\in I$.  Fix a free ultrafilter $\omega$ on $\N$ with $I\in\omega$.
 
 \emph{The adjoint model.}  Regard $M_{d_n}(\C)$ as the Hilbert space
@@ -965,10 +976,10 @@ $P$ of $h$ at $1$ belongs to $B_\omega$ by continuous functional
 calculus; since $h=1$ exactly on $\mathrm{Fix}$, its range is
 $\mathrm{Fix}$.
 
-\emph{The two projections agree.}  Let $V=\pi(s)$ and $Q=VPV^*$.  Since
-$s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every vector of
-$\mathrm{Fix}$ is fixed by each $\pi(s\iota(\gamma)s^{-1})$; and $\eta$
-is fixed by all $\pi(s\iota(\gamma)s^{-1})$ exactly when
+\emph{The two projections agree.}  Let $V=\pi(t)$ and $Q=VPV^*$.  Since
+$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$, every vector of
+$\mathrm{Fix}$ is fixed by each $\pi(t\iota(\gamma)t^{-1})$; and $\eta$
+is fixed by all $\pi(t\iota(\gamma)t^{-1})$ exactly when
 $V^*\eta\in\mathrm{Fix}$.  Hence
 $\operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
 =\operatorname{ran}Q$, so $P\le Q$.  The
@@ -981,11 +992,11 @@ Hilbert--Schmidt norm, the commutator hypothesis says exactly that each
 $\pi(\iota(\gamma))$ fixes $\xi$.  Thus $\xi\in\mathrm{Fix}$.  Since $Q=P$, we obtain
 $V\xi\in V\,\mathrm{Fix}=\operatorname{ran}Q=\operatorname{ran}P
 =\mathrm{Fix}$.
-The matrix $U_n(s)x_nU_n(s)^*$ is the vector $\Ad U_n(s)\,x_n$ of
+The matrix $U_n(t)x_nU_n(t)^*$ is the vector $\Ad U_n(t)\,x_n$ of
 $K_n$, so, again by unitary invariance,
 \[
- \hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]_{-}}
- =\bigl\lVert(\Ad U_n(\iota(\gamma))-1)\,\Ad U_n(s)\,x_n\bigr\rVert
+ \hsnorm{[U_n(t)x_nU_n(t)^*,U_n(\iota(\gamma))]_{-}}
+ =\bigl\lVert(\Ad U_n(\iota(\gamma))-1)\,\Ad U_n(t)\,x_n\bigr\rVert
  \longrightarrow0
 \]
 along $\omega$, for every $\gamma\in\Gamma$.  For $\gamma=\gamma_0$ this
@@ -993,11 +1004,11 @@ contradicts $I\in\omega$.
 \end{proof}
 
 \begin{corollary}[subgroup form]\label{cor:kazhdan-transport-subgroup}
-Let $L\le H$ have property~\textup{(T)}, let $s\in H$ satisfy
-$sLs^{-1}\subseteq L$, and let $(U_n)$ be an operator-norm asymptotic
+Let $L\le H$ have property~\textup{(T)}, let $t\in H$ satisfy
+$tLt^{-1}\subseteq L$, and let $(U_n)$ be an operator-norm asymptotic
 representation of $H$.  If a uniformly bounded sequence $(x_n)$
 asymptotically centralizes $L$ in normalized Hilbert--Schmidt norm, then
-$(U_n(s)x_nU_n(s)^*)$ does as well.
+$(U_n(t)x_nU_n(t)^*)$ does as well.
 \leanverified{Sofic/KazhdanTransportAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse}
 \end{corollary}
 
@@ -1249,10 +1260,11 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
-The affine group $\Gamma$ is finitely presented and has
-property~\textup{(T)} by the standard relative-property and extension
-criterion \cite[Sections~1.4 and~1.7]{BHV}; see also Burger's quantitative
-work \cite{Burger}.  Moreover,
+The affine group $\Gamma$ is finitely presented, and it has
+property~\textup{(T)} because it is a lattice in
+$\mathbb R^3\rtimes\SL_3(\mathbb R)$
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
+Moreover,
 Section~\ref{sec:group} identifies it with the presentation used below.
 The endomorphism $\alpha$ is injective because doubling is injective
 on $\mathbb Z^3$, and it is not surjective because
@@ -1527,8 +1539,9 @@ base and effective compression estimates.
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
 group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, which has
-property~\textup{(T)} by the standard relative-property and extension
-criterion \cite[Sections~1.4 and~1.7]{BHV}; see also \cite{Burger}.
+property~\textup{(T)} as a lattice in
+$\mathbb R^3\rtimes\SL_3(\mathbb R)$
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
 
 \paragraph{A six-generator presentation.}
 The group $E$ is generated by the six elements $v_1,x,y,z,t,c$, and has
@@ -1559,7 +1572,7 @@ the real-orthogonal and complex-unitary formulations.
 By Remark~\ref{rem:classical-base} the presentation
 \eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb
 Z)$, which has property~\textup{(T)}
-\cite[Sections~1.4 and~1.7]{BHV}.  Let $\rho$ be an
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}.  Let $\rho$ be an
 orthogonal representation on a real Hilbert space $H_{\mathbb R}$.  Its
 complexification $H_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ has the unitary
 representation $\rho\otimes1$.  The invariant vectors and displacement
@@ -1772,15 +1785,18 @@ Kazhdan projection (Proposition~\ref{rem:maxinfinite}).
 
 \subsection*{A sofic example}
 
-\begin{mainthm}[a finitely presented sofic non-MF group]\label{thm:Esofic}
-The group $E$ of Definition~\ref{def:E} is finitely presented, sofic,
-hyperlinear, and non-MF\@.  It is not LEF and therefore is not
-residually finite.
+\begin{mainthm}[the explicit group is sofic]\label{thm:Esofic}
+The group $E$ of Definition~\ref{def:E} is sofic.
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
+\end{mainthm}
+
+\noindent
+Hence $E$ is hyperlinear.  LEF groups are MF \cite{CDE} and $E$ is not
+MF (Theorem~\ref{thm:A}), so $E$ is not LEF; a residually finite group
+is LEF, so $E$ is not residually finite either.
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
-\end{mainthm}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
 
 \noindent
 Let $E_0$ be the kernel of the exponent sum in $t$.  For every finite
@@ -1914,7 +1930,7 @@ $\nu_n$ in place of the dimension.
 
 \begin{theorem}[one-sided conjugation at an arbitrary weight]
 \label{thm:transport-variants}
-Let $\Gamma$, $H$, $\iota$, and $s$ be as in
+Let $\Gamma$, $H$, $\iota$, and $t$ be as in
 Theorem~\ref{thm:kazhdan-transport}, let $U_n\colon H\to\U(d_n)$ be an
 operator-norm asymptotic representation, let $(\nu_n)$ be nonnegative
 weights, and let $x_n\in M_{d_n}(\C)$ be matrices for which there is
@@ -1924,7 +1940,7 @@ for every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
  \operatorname{Tr}\,\bigl|x_n-U_n(\iota(\gamma))\,x_n\,
    U_n(\iota(\gamma))^*\bigr|^2\le\varepsilon\,\nu_n.
 \]
-Then $U_n(s)\,x_nU_n(s)^*$ and $U_n(s)^*\,x_nU_n(s)$ satisfy both
+Then $U_n(t)\,x_nU_n(t)^*$ and $U_n(t)^*\,x_nU_n(t)$ satisfy both
 conditions as well.
 \leanverified{Sofic/TransportVariantsAnyUniverse}{GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse}
 \leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
@@ -3414,8 +3430,10 @@ abelian $2$-groups attached to the blocks of $\mathcal G$.  Thus the present
 normal form does not identify $E/\langle w\rangle$ with an ordinary
 permutational wreath product.  It is nevertheless closely related to
 central extensions of lamplighter groups \cite{FFG23,Bodart25}, to the
-generalized wreath products of Kun--Thom \cite{KT}, and to the halo-product
-framework of Alekseev--Bradford \cite{AlekseevBradford}.
+generalized wreath products of Kun--Thom \cite{KT}, to the sofic-action
+framework of Gao, Kunnawalkam Elayavalli, and Patchell \cite{GKEP}, and
+to the halo-product framework of Alekseev--Bradford
+\cite{AlekseevBradford}.
 
 \begin{lemma}[finite-site subgroups are residually finite]\label{lem:window}
 For every finite set $S$ of sites the subgroup $M_S$ is residually
@@ -3938,6 +3956,11 @@ properties of groups} (Russian),
 Dokl. Akad. Nauk SSSR \textbf{103} (1955), 533--535;
 English translation in Nyberg-Brodda's collection below.
 
+\bibitem[AW]{AW81}
+C.~A. Akemann and M.~E. Walter,
+\emph{Unbounded negative definite functions},
+Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
+
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
 \emph{Centralizers of sofic approximations of Kazhdan groups},
@@ -3978,6 +4001,13 @@ B.~Bekka, P.~de~la~Harpe, and A.~Valette,
 New Mathematical Monographs, vol.~11,
 Cambridge University Press, Cambridge, 2008,
 \doi{10.1017/CBO9780511542749}.
+
+\bibitem[Bla]{Bla06}
+B.~Blackadar,
+\emph{Operator algebras: theory of $C^*$-algebras and von Neumann
+algebras},
+Encyclopaedia of Mathematical Sciences, vol.~122,
+Springer, Berlin, 2006.
 
 \bibitem[BK]{BK}
 B.~Blackadar and E.~Kirchberg,
@@ -4049,6 +4079,12 @@ repr\'esentations},
 Bull. Soc. Math. France \textbf{105} (1977), 281--336,
 \doi{10.24033/bsmf.1853}.
 
+\bibitem[DN]{DN19}
+C.~Dru\c{t}u and P.~W. Nowak,
+\emph{Kazhdan projections, random walks and ergodic theorems},
+J. Reine Angew. Math. \textbf{754} (2019), 49--86,
+\doi{10.1515/crelle-2017-0002}.
+
 \bibitem[Dy]{DykemaExact}
 K.~J. Dykema,
 \emph{Free products of exact groups},
@@ -4097,6 +4133,11 @@ J. Math. Phys. \textbf{54} (2013), no.~5, 052107,
 D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
 \emph{A new source of purely finite matricial fields},
 preprint, 2026, \arxiv{2603.24502}.
+
+\bibitem[GKEP]{GKEP}
+D.~Gao, S.~Kunnawalkam Elayavalli, and G.~Patchell,
+\emph{Soficity for group actions on sets and applications},
+Res. Math. Sci. \textbf{12} (2025), no.~3, Paper No.~48.
 
 \bibitem[GHW]{GHW}
 E.~Guentner, N.~Higson, and S.~Weinberger,
