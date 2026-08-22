@@ -22,6 +22,24 @@
   `p_r proportional to m_r`, so weighting cannot beat inverse square area for
   one fixed diagram.
 
+## Standard affine-source no-gos retained
+
+- The graph-colouring edge relation has a universal odd-subset ghost for
+  every `k>=3`: on every edge use the allowed pairs
+  `(1,2),(2,3),(3,1)`. Both endpoint parity marginals agree, so these choices
+  glue on every graph independently of colourability. For `k=3`, direct
+  enumeration gives all sixteen pairs in `{100,010,001,111}^2`, with two
+  odd-subset witnesses per pair.
+- Positive one-in-three has affine hull `x+y+z=1`; its sole added point is
+  `111`, and the global all-ones assignment realizes that ghost in every
+  clause. Standard `3-OR` and `NAE-3` have full affine hull, while
+  exact-two-of-three has the even-parity plane.
+
+These exact finite calculations are fenced source-selection failures, not a
+general odd-subset compiler theorem. Cairn's broader
+`linear-encoding-lcs-admits-odd-subset-cheats` claim remains open because
+cross-context encodings require a local extendability hypothesis.
+
 ## Items not promoted to established claims
 
 - The counts “all 12 arity-three derived hyperplanes are bijunctive” and
@@ -56,3 +74,12 @@ predicate-to-mark compiler supplies one finite LCS/group on both branches.
 The Fano argument proves local soundness for a fixed cap profile, but not
 that uniform selection step.  Reversing the Kleene branches is neither
 necessary nor justified by the cited family.
+
+## Source boundary
+
+The fixed-language step remains inside the open selector node. Culf--Mastel
+supply the machine-indexed perfect-gap oracular CSP family, but turning that
+family into instances over this particular four-ary relation, adding the
+required commuting neighborhoods, and selecting one cap profile must be one
+effective mark-preserving construction. Schaefer NP-hardness of `R_*` alone
+does not certify those quantum/compiler properties.
