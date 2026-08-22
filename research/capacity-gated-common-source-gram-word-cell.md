@@ -145,3 +145,18 @@ the guarded multiplicative reflection skeleton exactly while this overlap
 has trace `1/8`; tensoring any fixed D16 packet preserves it.  Thus R6 names
 the selector but does not close the source-Gram wordization or exclude the
 stationary wrong-sector model.
+
+The nonlinear finite-packet escape has also been tested.
+`boolean-phase-packet-does-not-wordize-r6-guarded-return` applies the
+established unitriangular predicate word to the exact cubic guarded AND.
+It computes `1-2GPS` in the chosen assignment-coordinate irreducibles, so
+local completeness is real.  Its cubic word is an iterated commutator of
+overlapping transvections, however, and direct substitution of the commuting
+native guard/child signs makes it trivial.  Externally matching its
+assignment sectors to the native signs leaves every finite regular packet
+with one-half wrong phase above each selector character unless the phase is affine.
+Tensoring D16 makes that central phase act in equal selector blocks and gives
+zero Hadamard charge; controlling it by the D16 bit merely repeats the same
+four-bit wrong-sector problem.  Hence the remaining input is state/type
+selection onto the intended predicate sectors, not availability of a finite
+word which computes the coefficient in one representation.
