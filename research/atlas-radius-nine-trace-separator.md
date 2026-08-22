@@ -102,3 +102,11 @@ bounded-complexity theorem target and a finite coefficient search problem.
   gap is possible only from a real representation-type incompatibility; a
   genuinely matrix-only route must activate unbounded data or a global
   coupling not determined by the A4 type vector.
+- **At the literal A4/19243 profile, even real type incompatibility is absent.**
+  `atlas-a4-19243-type-relaxation-has-regular-zero` exhibits the rational
+  regular restriction flow at both A8 charts and all thirty A4 contexts, and
+  fibers it with an exact zero-collision `Reg(S3)` family whose involution is
+  balanced.  Thus the canonical regular point lies in the zero-defect
+  multiplicity relaxation.  The classical sixty-alignment exclusion lives
+  entirely in the forgotten holonomy/common-frame coordinates; no
+  multiplicity LP can recover it.

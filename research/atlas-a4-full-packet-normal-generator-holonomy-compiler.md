@@ -73,6 +73,13 @@ annihilates every nontrivial multiplicity sector automatically.
   over the finite groupoid, or equivalently solve the finite intertwiner
   equations and use amplification-stable subspace angles, to obtain exact
   `pi_n` without a dimension-dependent constant.
+- **Multiplicity feasibility does not obstruct the compiler.**
+  `atlas-a4-19243-type-relaxation-has-regular-zero` computes the exact
+  restriction-flow point forced by canonical regular margins and shows that
+  collision 19243 has an exact balanced `Reg(S3)` realization on that same
+  profile.  Hence no Farkas certificate on A8/A4/S3 type multiplicities can
+  prove this target.  The missing content is exactly liftability of those
+  compatible marginals to one common rectangle holonomy representation.
 - **Prove the two inequalities separately.**  `(A4-NG-COMP-1)` is a decoder:
   nontrivial holonomy mass is the only obstruction to placing the relative
   chart frame in the right-regular commutant.  `(A4-NG-COMP-2)` is a verifier:

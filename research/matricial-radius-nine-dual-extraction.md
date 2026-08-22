@@ -73,3 +73,12 @@ implementation has accidentally reverted to the forbidden tracial NPA cone.
   real representation-type incompatibility; it is not matrix-only
   integrality.  The remaining branch must be dimension-activated or use data
   outside the fixed type profile.
+- **The actual A4/19243 type-profile feasibility problem has an exact escape.**
+  `atlas-a4-19243-type-relaxation-has-regular-zero` writes the restriction
+  polytope explicitly and places in it the regular point
+  `z_(H,pi)=dim(pi)/|H|`.  The exact six-dimensional collision family has the
+  matching `Reg(S3)` marginal and a balanced involution, so `3360` copies
+  fiber with the `Reg(A8)` scale at zero collision defect.  Therefore no LP
+  over packet irreducible multiplicities or collision ranks can provide the
+  missing outer bound.  What remains is a common-holonomy lift obstruction,
+  not type-profile separation.
