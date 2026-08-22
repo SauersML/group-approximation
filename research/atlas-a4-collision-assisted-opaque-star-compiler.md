@@ -64,6 +64,23 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **Even the full regular local collision cell has a common-`U` hub escape.**
+  `atlas-19243-common-u-regular-local-hub-gram-escape` works on the literal
+  `Reg(K x L)` cell, fixes the actual involution `b`, and rotates its
+  positive/negative eigenspaces only in the `K` trivial/sign carrier.  It has
+
+  ```text
+  q_19243=1,
+  Re tau(V_b)=(2+cos(2 theta))/3,
+  tau(V_b^2)=(2+cos(4 theta))/3.
+  ```
+
+  Hence neither the hub energy nor its canonical projection-Gram coordinate
+  is controlled by collision, even with a single common `U` and exact regular
+  `S3 x S3` local margins.  The missing mixed moment must use the other
+  `H_6` packet component.  This rules out every proposed identity internal to
+  the collision cell before any four-rectangle calculation is attempted.
+
 - **Second moments have a canonical common-`U` coordinate, but rectangles do
   not.**  `atlas-common-u-second-moment-is-one-projection-gram` gives the
   exact identity
