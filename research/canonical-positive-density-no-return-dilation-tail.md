@@ -2,7 +2,7 @@
 rg: 2
 id: canonical-positive-density-no-return-dilation-tail
 kind: claim
-title: Attach a no-return dilation tail without diluting the canonical head
+title: Attach one sufficiently long no-return dilation cell without diluting the canonical head
 distinct_from:
   block-encoded-acceptance-still-needs-corner-return: that produces one unitary whose first compression is the acceptance contraction; this asks for coherent powers of that compression.
   geometric-infinite-counter-is-hs-trace-diluting: that proves the ordinary unilateral/cyclic head has vanishing normalized density; this asks for a packet-authenticated head of fixed canonical density.
@@ -19,10 +19,10 @@ T=qWq.
 ```
 
 and, after packet exactification in every canonical-profile matrix
-microstate, for every fixed `N`,
+microstate, for one prescribed finite length `M`,
 
 ```text
-q u^n q=T^n+o(1),             0<=n<=N,                 (NRT1)
+q u^n q=T^n+o(1),             0<=n<=M,                 (NRT1)
 tr(q)->tau_Gamma(q)>0.                                      (NRT2)
 ```
 
@@ -31,14 +31,15 @@ properly-infinite completeness representation, the extension must retain the
 perfect fixed carrier and keep `q!=0` algebraically.
 
 Equation `(NRT1)` says that amplitude which exits the head after one use of
-`W` cannot return to it during the first `N` steps.  The content is not the
+`W` cannot return to it during the first `M` steps.  The content is not the
 existence of a unitary dilation--that is automatic--but authentication of a
-single head whose normalized canonical mass does not fall as `N` grows.
+single head whose normalized canonical mass exceeds the orbit-capacity
+threshold for this prescribed `M`.
 
 ## Attempts
 
-- A unilateral level register gives exact no-return powers, but its head has
-  density `1/(N+1)` in finite truncations.
+- A finite level register gives exact no-return powers, but its head has
+  density `1/(M+1)`.
 - The Pauli zero atom fixes the mass of a correctly oriented control type but
   does not itself select that orientation or identify it with the
   capacity-gated game source.  Those identifications are part of this claim,
@@ -47,8 +48,8 @@ single head whose normalized canonical mass does not fall as `N` grows.
   canonical trace sums the level types.
 - Identifying all level heads restores positive density but lets the defect
   amplitude return, so `q u^n q` is no longer `T^n`.
-- Exact orthogonality of infinitely many conjugates of `q` cannot be a group
-  algebra identity: canonical trace would sum the common positive trace past
-  one.  The required no-return law must therefore be a finite-matrix-only
-  consequence of a self-similar or multiplicity-rigid relation, not a literal
-  orthogonal-shift presentation.
+- Exact orthogonality of more than `tau(q)^(-1)` conjugates of `q` cannot be a
+  group-algebra identity: canonical trace would sum their common trace past
+  one.  The required no-return law must therefore combine the game-specific
+  matrix contraction with a mixed colligation relation; it cannot be a
+  literal orthogonal-shift presentation valid in the regular representation.

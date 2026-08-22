@@ -11,8 +11,8 @@ requires:
   - canonical-profile-kleene-higman
 ---
 
-For a NONHALT instance, fix a depth `N>alpha_m^(-1)-1` and choose a spacing
-`L` from its strict acceptance-contraction constant.  Send the canonical
+For a NONHALT instance, use the compiled depth `N_m>alpha_m^(-1)-1` and
+spacing `L_m` from its strict acceptance-contraction constant.  Send the canonical
 microstate index to infinity in `(CPR1)` through depth `NL`.  The limiting
 orbit Gram matrix is injective on `N+1` copies of the `alpha_m`-density
 carrier, contradicting `(PDD6)`.  Thus canonical microstates collapse.

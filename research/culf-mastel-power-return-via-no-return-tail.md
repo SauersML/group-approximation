@@ -15,7 +15,7 @@ Use the finite-game construction to obtain the strict NONHALT contraction
 `T_m`, and its finite-control block encoding.  The Pauli-zero theorem removes
 the raw source-mass deficit.  The no-return tail performs the still-missing
 orientation/capacity identification, makes `T_m=q_mW_mq_m`, and obtains
-`(CPR1)` for every fixed power.  The finite packet fixes
+`(CPR1)` through the one prescribed length `N_mL_m`.  The finite packet fixes
 `alpha_m=tau(q_m)>0`; perfect
 completeness makes `T_m` the identity on the exact accepted carrier, so its
 properly infinite amplification extends down the tail.  These are clauses
