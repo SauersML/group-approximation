@@ -196,3 +196,17 @@ central square becomes useful only for a raw lift already fixed by the base;
 a Reynolds comparison becomes useful only after it includes a larger
 context algebra and is therefore already nontransport.  The surviving
 phase-sensitive option is the one-sided charged proper-corner section.
+
+Nor can approximation-specificity be obtained by replacing each losing
+projector with a tailored finite overgroup or finite-subgroup HNN actor.
+`canonical-types-extend-every-finite-bass-serre-actor` proves that **every**
+canonical matrix-ultraproduct base representation extends through every such
+actor: all finite subgroup restrictions have the regular character, and
+trace-preserving embeddings of a finite-dimensional group algebra into the
+ultraproduct factor are unitarily conjugate.  Those conjugating unitaries are
+the stable letters.  In particular an injection `K->H` always has canonical
+fixed-space order `tau(e_H)=1/|H|<=1/|K|=tau(e_K)`; payload-dependent choice
+of the literal subgroups cannot reverse it.  Thus surrogate finite actors have no canonical
+extension-profile resolving power, even when chosen check by check.  A
+successful nemesis must add a non-Bass--Serre two-cell between its
+intertwiners or an infinite actor tied to the losing carrier.
