@@ -10,6 +10,7 @@ the marked coefficient h=[c,d], then the two relators force h=1.
 
 import argparse
 import importlib.util
+from collections import Counter
 from itertools import combinations, permutations
 from pathlib import Path
 
@@ -20,7 +21,26 @@ SPEC = importlib.util.spec_from_file_location("degree4_pictures", SOURCE)
 P = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(P)
 
-PACKET = ("r", "e", "a", "c", "b", "d", "p")
+DEFAULT_PACKET = ("r", "e", "a", "c", "b", "d", "p")
+
+
+def multiset_permutations(values):
+    counts = Counter(values)
+    names = tuple(counts)
+    result = [None] * len(values)
+
+    def visit(position):
+        if position == len(result):
+            yield tuple(result)
+            return
+        for name in names:
+            if counts[name]:
+                counts[name] -= 1
+                result[position] = name
+                yield from visit(position + 1)
+                counts[name] += 1
+
+    yield from visit(0)
 
 
 def append_z(word, exponent):
@@ -111,13 +131,16 @@ def substitute(word, z_value):
 parser = argparse.ArgumentParser()
 parser.add_argument("--shard", type=int, default=0)
 parser.add_argument("--shards", type=int, default=1)
+parser.add_argument("--packet", default=",".join(DEFAULT_PACKET))
 args = parser.parse_args()
 assert 0 <= args.shard < args.shards
+packet = tuple(args.packet.split(","))
+assert len(packet) == 7 and all(name in P.UNITS for name in packet)
 
 topologies = []
 for negative in combinations(range(7), 2):
     signs = tuple(-1 if index in negative else 1 for index in range(7))
-    sample = tuple(orbit_word(PACKET, signs, start) for start in range(3))
+    sample = tuple(orbit_word(packet, signs, start) for start in range(3))
     valences = tuple(sum(token[0] == "z" for token in word)
                      for word in sample)
     if sorted(valences) == [1, 3, 3]:
@@ -130,7 +153,9 @@ for topology_index, (negative, signs, valences) in enumerate(topologies):
         continue
     pivot = valences.index(1)
     residual = tuple(index for index in range(3) if index != pivot)
-    for slots in permutations(PACKET):
+    layouts = (permutations(packet) if len(set(packet)) == len(packet)
+               else multiset_permutations(packet))
+    for slots in layouts:
         tested += 1
         words = tuple(orbit_word(slots, signs, start) for start in range(3))
         z_value = unary_value(words[pivot])
