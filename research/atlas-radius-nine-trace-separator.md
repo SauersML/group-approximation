@@ -85,3 +85,11 @@ bounded-complexity theorem target and a finite coefficient search problem.
   bound.  A successful separator must use a universal matrix-only trace
   inequality (or another amplification-invariant restriction), not bounded
   polynomial vanishing.
+- **Packet symmetrization plus Gram positivity is also tracially blind.**
+  By `atlas-radius-nine-packet-gram-sos-is-tracial`, the A4 Reynolds
+  conditional expectations, fixed operator-valued Gram matrices, and their
+  Schur complements are positive in arbitrary finite tracial von Neumann
+  algebras, including the regular atlas model.  Consequently no fixed SOS in
+  that calculus separates the canonical point.  Any successful matrix-only
+  inequality must visibly use finite rank/multiplicity integrality or another
+  operation unavailable in a diffuse finite algebra.

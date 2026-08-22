@@ -53,3 +53,12 @@ implementation has accidentally reverted to the forbidden tracial NPA cone.
   moment and defect while making the dimension arbitrary.  Hence an
   Amitsur--Levitzki/exterior-power case split cannot close this claim.  The
   remaining target is a universal matrix trace inequality, not an identity.
+- **Fixed packet Gram/SOS proofs are dimension-free as well.**
+  `atlas-radius-nine-packet-gram-sos-is-tracial` shows that finite A4 packet
+  Reynolds averages, operator-valued Gram positivity, fixed matrix
+  compressions, and ordinary (regularized) Schur complements all make sense
+  with the same constants in every finite tracial von Neumann algebra.  Their
+  SOS consequences therefore hold in the regular representation and cannot
+  be negative at the canonical point.  The required outer bound must expose
+  a genuinely matricial rank or multiplicity operation; packet symmetry and
+  PSD Gram forms alone merely rebuild a richer tracial relaxation.
