@@ -57,3 +57,13 @@ strict sparse decrease, or exhibit a Lyapunov cross term whose decrease
 pays the equality movement.  Merely adding the nonnegative divergence term
 to `(PCG2)` cannot establish `(PCD1)`, and a remote exact replacement is
 excluded by `(PCD2)`.
+
+There is now a strict half-step from the exact-face sheet.
+`damped-cloud-averaging-contracts-from-exact-faces` moves each occurrence a
+fixed fraction toward its cloud mean.  Equality energy falls by
+`(1-t)^2`, while all face and involution energy is created only at order
+`t^2`; optimizing `t` gives a fixed contraction and satisfies `(PCD2)`.
+The unsolved half is returning to exact faces.  The Loewner exactification
+theorem controls the return's squared movement, but not the sign of its
+first-order equality cross term.  A two-step Lyapunov must show that this
+return spends less than the damped cloud step gained.
