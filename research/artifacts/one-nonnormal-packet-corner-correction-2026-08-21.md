@@ -183,3 +183,66 @@ turns its bilinear equation into `Delta`.  A bounded word audit would have to
 work inside `Gamma_0`, where the two rank-three support groups together
 already mix the `s` and `t` coordinates; it cannot be replaced by a finite
 packet or free-product calculation.
+
+## The inverse-pair ansatz and the pure-chart obstruction
+
+For `y=x^-1`, the two-packet equation is the single folding identity
+
+```text
+e(t~+[x]k[x^-1])e(s~+[x^-1]k[x])e=e.                  (8)
+```
+
+Equivalently, after subtracting the base defect, it is
+
+```text
+A P_(x^-1) + P_x B + P_x P_(x^-1)=Delta.              (9)
+```
+
+This is the requested commutator/double-coset form: the two linear terms use
+the opposite conjugate transposition packets, and the bilinear term is their
+only possible relative folding back to the base defect.
+
+There is a large exact no-go class.  Put
+
+```text
+R_t=F_2<t_0,t_1>,        R_s=F_2<s_0,s_1>.
+```
+
+Both are free associative subalgebras.  Their finite word-length
+truncations are finite rings and separate nonzero elements, so
+`GL_2(R_t)` and `GL_2(R_s)` are residually finite: a nonidentity matrix has a
+nonzero entry in some finite truncation, while its inverse descends as well.
+
+If `x in GL_2(R_t)`, then `A+P_x`, the constant packet, and `e` are all
+supported in this residually finite group.  A solution of (8) would give
+`A+P_x` a right inverse in the ambient corner; support projection and direct
+finiteness would make it two-sided, although its evaluation is the nonunit
+`t_0`.  This is impossible.  If `x in GL_2(R_s)`, then
+`x^-1 in GL_2(R_s)` and the same argument applied to the fixed right factor
+`B+P_(x^-1)`, whose image is `s_0`, is impossible.
+
+This eliminates all constant/permutation candidates, all scalar
+self-similar candidates (already zero by (6)), and every word made solely
+from the explicit `t`-root units or solely from the explicit `s`-root units.
+For example, for an upper root `x=x_12(a)` (an involution), the conjugated
+constant transpositions are explicitly
+
+```text
+x u x = u,
+x v x = [[1+a,a^2],[1,1+a]],
+x w x = [[a,a^2+1],[1,a]].                             (10)
+```
+
+Taking `a` among `t_0,t_1,s_0,s_1` therefore produces no solution by the
+pure-chart argument, without a bounded search.
+
+The first live inverse-pair target is consequently (8) with
+
+```text
+x notin N_G(H) union GL_2(R_t) union GL_2(R_s),         (11)
+```
+
+and with the double cosets of `x` and `x^-1` folding nontrivially over
+`Gamma_0`.  In concrete terms `x` must contain both an `s`-coefficient and a
+`t`-coefficient.  No identity among the currently recorded short mixed words
+proves (8); (8)+(11) is the exact next constructive target.
