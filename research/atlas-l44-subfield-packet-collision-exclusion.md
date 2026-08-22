@@ -28,3 +28,8 @@ so no full-packet survivor count is asserted here.
   common-conjugator centralizer fibers against `H18` did not finish within the
   strict two-minute development cap.  The next attack should quotient those
   fibers by the centralizer action before replay, not extend the raw loop.
+- `atlas-l44-h6-has-thirty-frobenius-frames` supplies that quotient exactly:
+  each liftable pair has thirty candidate subfield forms and six internal
+  labelings, while a compatible `H18` placement determines the common lift
+  uniquely up to scalar.  The remaining screen must first discard
+  non-liftable rectangle pairs, then test this `30 x 6` factored fiber.
