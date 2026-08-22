@@ -36,6 +36,15 @@ def order(a):
     raise AssertionError("order too large")
 
 
+def inverse(a):
+    value = I4
+    for _ in range(32):
+        if mul(value, a) == I4:
+            return value
+        value = mul(value, a)
+    raise AssertionError("inverse search exceeded GL(4,2) order bound")
+
+
 def subgroup(generators):
     seen = {I4}
     todo = [I4]
@@ -124,6 +133,25 @@ def main():
     assert a4_bridge & h6 == c6
     assert a4_bridge & k == {I4}
 
+    # The full opposite packet component closes with b to S4.  This is the
+    # smallest finite carrier containing both the H6 margin and the collision
+    # involution; it meets the rank-three core precisely in H6.
+    s4_bridge = subgroup(tuple(h6) + (b,))
+    assert len(s4_bridge) == 24
+    assert Counter(order(value) for value in s4_bridge) == Counter(
+        {2: 9, 3: 8, 4: 6, 1: 1}
+    )
+    h6_core = set(h6)
+    for value in s4_bridge:
+        h6_core &= {mul(mul(value, old), inverse(value)) for old in h6}
+    assert h6_core == {I4}
+    rank_three_core = subgroup(tuple(h6 | k))
+    assert len(rank_three_core) == 168
+    assert s4_bridge & rank_three_core == h6
+    assert s4_bridge & k == {I4}
+    affine_bridge = subgroup(tuple(rank_three_core) + (b,))
+    assert len(affine_bridge) == 1344
+
     nontrivial_z = [value for value in z if value != I4]
     assert len(nontrivial_z) == 2
     for value in nontrivial_z:
@@ -144,6 +172,8 @@ def main():
     print("the repeated first-chart involution centralizes K and inverts Z(H18)=C3")
     print("therefore <H18, b> = K x <Z(H18),b> = S3 x S3 (order 36)")
     print("with the other component C6, <C6,b> = A4 and A4 intersect H6 = C6")
+    print("more strongly <H6,b> = S4, meeting <H6,K> exactly in H6")
+    print("the joined bridge <H6,K,b> has order 1344")
 
 
 if __name__ == "__main__":

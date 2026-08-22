@@ -35,3 +35,19 @@ amplification independence.  No assertion about compression by the fixed
 `P_6` is made; obtaining that replacement is precisely the remaining packet
 transport problem.
 
+For the stronger closure, the same exact multiplication closes
+`H_6 union {b_0}` to a group of order `24`, with order distribution
+
+```text
+1 + 9(order 2) + 8(order 3) + 6(order 4).
+```
+
+This is `S4`.  Closing `H_6 union K` gives the established rank-three group of
+order `168`; concretely, the core of `H_6` in the order-`24` closure is
+trivial, so its action on the four cosets of `H_6` is faithful and identifies
+the closure with the full symmetric group `S4`.  Direct set intersection gives
+`S4 intersect GL3(2)=H_6` and
+`S4 intersect K=1`.  Finally adjoining `b_0` to the rank-three group gives
+order `1344`, agreeing with the affine-hyperplane stabilizer already located
+in the subgroup ladder.  These checks isolate the finite branching category
+without asserting the missing fixed-carrier transport.

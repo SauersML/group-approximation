@@ -82,6 +82,13 @@ only has to transport its covariance block.
   replacement, so the result is a common-`U` reduction rather than a
   collision-only hub proof.
 
+  The same exact closure is stronger: `<H_6,b_0> ~= S4`, this `S4` meets the
+  rank-three core exactly in `H_6`, and it meets `K` trivially.  Thus the
+  finite operator problem behind the replacement is the branching
+  `Reg(S4) downarrow H_6`, coupled through the literal common `U` to the
+  disjoint `K` line.  A calculation internal to either factor separately
+  cannot perform that coupling.
+
 - **Even the full regular local collision cell has a common-`U` hub escape.**
   `atlas-19243-common-u-regular-local-hub-gram-escape` works on the literal
   `Reg(K x L)` cell, fixes the actual involution `b`, and rotates its

@@ -40,6 +40,21 @@ and
 <C_6,b_0> intersect K = 1.                              (A4-BRIDGE-3)
 ```
 
+The closure with the full opposite component is also exact:
+
+```text
+S=<H_6,b_0> ~= S4,
+S intersect <H_6,K> = H_6,
+S intersect K = 1,                                    (A4-BRIDGE-4)
+|<H_6,K,b_0>|=1344.                                   (A4-BRIDGE-5)
+```
+
+The order distribution in `S` is `1,9,8,6` in orders `1,2,3,4`, respectively.
+Thus the moving carrier is equivalently the restriction of one fixed regular
+`S4` packet to its point-stabilizer `H_6 ~= S3`.  The common-`U` compression
+gate is a finite `S4 downarrow S3` branching problem coupled to the disjoint
+`K` margin; no larger part of `A8` is needed to state it.
+
 Thus the collision's continuous trivial/sign angle is not merely adjacent to
 the other packet component: its repeated involution is already the reflection
 of a named regular `A4` context with the other component's `C_6`.
@@ -71,4 +86,3 @@ Z(U)=E_K^- c(U) E_K^+.
 This is a matrix/CE-sensitive transport statement.  It is not supplied by the
 finite subgroup incidence, and replacing `P_6(U)` by `P_6` without using the
 common packet equations would discard exactly the common-`U` gate.
-
