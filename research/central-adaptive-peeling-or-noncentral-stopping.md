@@ -140,6 +140,16 @@ route must use the all-dual parity/Loewner faces to forbid this labelled
 cross-boundary profile (or retain the labels instead of taking the bare
 join).
 
+All-local-dual parity does not make that bare boundary small either.
+`codeword-background-keeps-odd-join-parity-cheap` places the sparse odd
+gadget over an exact positive-density codeword background.  Every bounded
+dual parity word then fails only on its own coordinate blocks, with exact
+defect `(|h|+|h intersect supp(c)|)/L`; the whole balanced energy is
+`O(1/L)` while the join boundary stays constant.  The tuple is nevertheless
+`O(1/L)`-close to its exact commuting background.  Thus the right target is
+the normalized leakage `D(p)/L`, or a sparse-reset branch, not a theorem
+forcing the unnormalized `D(p)` to vanish.
+
 There is a condition-number-free replacement.
 `regularized-anchor-square-function-has-dimension-free-cut` thresholds the
 average `K_a=L^(-1)sum_iY_(a,i)^2`, rather than the join of its summand
