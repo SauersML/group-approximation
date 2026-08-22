@@ -8,6 +8,7 @@ requires:
   - one-binary-marginal-block-escape
   - feasible-chord-collision-has-free-phase-block-escape
   - finite-chord-context-is-joint-table-plus-collision
+  - global-chord-target-selection-is-fixed-profile-boundary-bcs
   - simultaneous-block-escaping-context-holonomy
 ---
 

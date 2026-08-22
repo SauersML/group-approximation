@@ -61,3 +61,14 @@ all of its marginals have to arise from the same atom partition `(BCH1)`.
   collapses to a finite joint table.  What remains is global: choose compatible
   target tuples around every cycle, or escape a collision-free context by a
   non-conjugation additive operation.
+- **The global target problem is a fixed-profile boundary BCS.**
+  `global-chord-target-selection-is-fixed-profile-boundary-bcs` writes the
+  exact matrix equations.  Only its globally commuting sector is an integer
+  multi-marginal transport polytope.  Balanced one-variable ranks do not
+  imply feasibility: an unconstrained three-context triangle can prescribe
+  equality, equality, and inequality joint tables with balanced single-site
+  ranks, forcing `Z_1=Z_2=Z_3=-Z_1`.  If every context variable is shared,
+  global target selection is already an exact finite-dimensional model of
+  the original BCS and is impossible for the no-CE source.  Free-phase
+  collisions help only in private extension fibers after the boundary model
+  exists.
