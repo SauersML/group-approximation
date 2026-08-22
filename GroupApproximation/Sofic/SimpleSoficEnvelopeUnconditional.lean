@@ -131,5 +131,83 @@ theorem manuscript_simpleSoficEnvelope :
         ¬ IsOperatorMF ↥E :=
   SoficEnvelopeWitness.manuscript_simpleSoficEnvelope boundedNormalGeneration
 
+/-! ## The torsion-free-quotient no-go
+
+The envelope above contains the concrete witness injectively.  In particular
+it contains the witness's nontrivial Clifford sign, an involution.  Since the
+envelope is simple, killing that one element kills the whole envelope.  Every
+map to a torsion-free group therefore is trivial; passing to the universal
+torsion-free quotient cannot turn this unconditional non-MF group into a
+torsion-free non-MF example. -/
+
+/-- A simple envelope receiving the concrete witness injectively has no
+nontrivial torsion-free image. -/
+theorem hom_eq_one_to_isPowerTorsionFree_of_witnessEmbedding
+    {E : Type*} [Group E] [IsSimpleGroup E]
+    (f : LiteralNonMFLinearWitness.WitnessGroup →* E)
+    (hf : Function.Injective f) {T : Type*} [Group T]
+    (hT : IsPowerTorsionFree T) (phi : E →* T) : phi = 1 := by
+  let z : LiteralNonMFLinearWitness.WitnessGroup :=
+    MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective
+  have hz_ne : f z ≠ 1 := by
+    apply map_ne_one_of_injective f hf
+    exact MarkedCompression.signAmbient_ne_one LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective
+  have hz_sq : z ^ 2 = 1 :=
+    MarkedCompression.signAmbient_sq LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective
+  have hkill : phi (f z) = 1 := by
+    apply hT (phi (f z)) 2 (by decide)
+    rw [← map_pow, ← map_pow, hz_sq, map_one, map_one]
+  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal phi.ker inferInstance with
+    hbot | htop
+  · exfalso
+    apply hz_ne
+    apply Subgroup.mem_bot.mp
+    rw [← hbot]
+    exact MonoidHom.mem_ker.mpr hkill
+  · apply MonoidHom.ext
+    intro x
+    apply MonoidHom.mem_ker.mp
+    rw [htop]
+    exact Subgroup.mem_top x
+
+/-- **Premise-free torsion-free no-go for the manuscript envelope.**  There
+is an unconditional countable simple sofic full-MF-radical envelope for which
+every map to every torsion-free group is trivial; consequently that envelope
+itself is not torsion-free. -/
+theorem manuscript_simpleSoficEnvelope_no_torsionFree_image :
+    ∃ (𝒰 : Ultrafilter ℕ) (X : ℕ → FiniteModel)
+      (E : Subgroup (UniversalSofic 𝒰 X)),
+      Countable ↑E ∧ IsSimpleGroup ↑E ∧ IsSofic ↑E ∧
+        coronaMFResidual ↑E = ⊤ ∧ normMFResidual ↑E = ⊤ ∧
+        (∀ (T : Type) [Group T], IsPowerTorsionFree T →
+          ∀ phi : ↑E →* T, phi = 1) ∧
+        ¬ IsPowerTorsionFree ↑E := by
+  obtain ⟨𝒰, X, E, hEc, hEs, hEsofic, f, hf⟩ :=
+    exists_countable_simple_sofic_envelope boundedNormalGeneration
+      LiteralWitnessConsequences.witnessGroup_isSofic
+  letI : Countable ↑E := hEc
+  letI : IsSimpleGroup ↑E := hEs
+  obtain ⟨hcorona, hnorm, -, -⟩ :=
+    SimpleSoficEnvelope.simpleEnvelope_of_witnessEmbedding f hf
+  have hmaps : ∀ (T : Type) [Group T], IsPowerTorsionFree T →
+      ∀ phi : ↑E →* T, phi = 1 := by
+    intro T _ hT phi
+    exact hom_eq_one_to_isPowerTorsionFree_of_witnessEmbedding f hf hT phi
+  refine ⟨𝒰, X, E, hEc, hEs, hEsofic, hcorona, hnorm, hmaps, ?_⟩
+  intro htf
+  have hid : MonoidHom.id ↑E = 1 := hmaps ↑E htf (MonoidHom.id ↑E)
+  let z : LiteralNonMFLinearWitness.WitnessGroup :=
+    MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective
+  have hz_ne : f z ≠ 1 := by
+    apply map_ne_one_of_injective f hf
+    exact MarkedCompression.signAmbient_ne_one LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective
+  apply hz_ne
+  simpa using DFunLike.congr_fun hid (f z)
+
 end SimpleSoficEnvelopeUnconditional
 end GroupApproximation

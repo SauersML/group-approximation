@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.FullMFRadicalEndpoint
+import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 
 /-!
@@ -120,10 +120,9 @@ theorem manuscriptExistsSubsingletonQuotient :
 
 /-- **The five printed conditions cannot force nontriviality.**
 
-This is the precise reason
-`FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical`
-and its hereditary companion drop the `Nontrivial Q` conjunct: were they to
-assert it, they would assert something this theorem refutes. -/
+This is the precise reason the consequences proved directly from
+`FiveConditionRoutingData` cannot include a `Nontrivial Q` conjunct: were they
+to assert it, they would assert something this theorem refutes. -/
 theorem not_forall_nontrivial_quotient (D : FournierFacioDefectData P E) :
     ¬ ∀ R : FiveConditionRoutingData.{u} D, Nontrivial R.Quotient := by
   intro h
@@ -159,9 +158,8 @@ The source `E` of a Fournier--Facio defect datum is never trivial — it
 contains the nonidentity element `D.s` — and a map preserving element
 orders cannot collapse it.  So no analogue of `trivialQuotient` exists for
 `OrderPreservingRoutingData`: every inhabitant of that structure has a
-nontrivial quotient and hence, by
-`FullMFRadicalEndpoint.exists_nontrivial_fullMFRadical_of_orderPreservingRouting`,
-produces a nontrivial full-radical quotient.
+nontrivial quotient, and its conversion to `DefectRoutingData` supplies the
+proved non-MF and full-radical consequences.
 
 That asymmetry is what the repair turns on, and it is why no toy inhabitant
 of the order-preserving layer is exhibited here.  This is a limitation of this

@@ -19,11 +19,10 @@ excluded by non-MF.  So for simple groups there is no middle case:
 
 Hence the question reduces to the existence of a *finitely presented simple
 non-MF group*, with no separate computation of a radical required.  That is a
-statement about the construction lane, not about the radical: the endpoint
-`FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF`
-is the routed form of the same target, and simplicity is the cheapest way to
-get the "every nontrivial quotient" clause, since there is only one such
-quotient to check.
+statement about the construction lane, not about the radical. The hereditary
+theorems on `DefectRoutingData` give the routed form of the same target, and
+simplicity is the cheapest way to get the "every nontrivial quotient" clause,
+since there is only one such quotient to check.
 
 The contrapositive is the useful direction when hunting for examples: a simple
 group with even one nontrivial corona representation is MF outright.  So in the

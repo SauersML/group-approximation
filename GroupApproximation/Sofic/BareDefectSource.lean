@@ -12,7 +12,7 @@ infinite simple factor — `simpleSubgroup`, its `IsSimpleGroup` instance,
 `s_mem` and `witness_mem`.  A consumer trace through
 
   `RoutingLemmaData` → `DefectRoutingData` → `FiveConditionRoutingData`
-  → `FullMFRadicalEndpoint` → `Analysis/TorsionFreeFullMFCStarConsequences`
+  → `Analysis/TorsionFreeFullMFCStarConsequences`
 
 shows that **none of the four is read anywhere on that chain**.  They are
 read in exactly two places, both off it: `HullSuitableDefectSubgroup`
@@ -195,6 +195,81 @@ theorem s_ne_one : D.s ≠ 1 := by
   rw [hs]
   simp
 
+/-- An injective homomorphism of ambient groups transports every clause of a
+slimmed defect source.  Injectivity is used only once, to reflect
+nontriviality of the protected commutator; all displayed HNN relations simply
+map forward. -/
+def mapAmbient {F : Type*} [Group F] (f : E →* F)
+    (hf : Function.Injective f) : BareDefectSourceData P F where
+  iota := f.comp D.iota
+  u := f D.u
+  s := f D.s
+  kazhdan := D.kazhdan
+  compresses := by
+    intro p
+    obtain ⟨q, hq⟩ := D.compresses p
+    refine ⟨q, ?_⟩
+    simpa using congrArg f hq
+  commutesAfterCompression := by
+    intro p
+    simpa using (D.commutesAfterCompression p).map f
+  witness := D.witness
+  witness_commutator_ne_one := by
+    intro h
+    apply D.witness_commutator_ne_one
+    apply hf
+    simpa only [map_commutatorElement, MonoidHom.comp_apply, map_one] using h
+
+end BareDefectSourceData
+
+/-! ## Exact comparison with the Fournier--Facio source
+
+`BareDefectSourceData` is not merely analogous to
+`FournierFacioDefectData`: the latter is obtained by adjoining exactly one
+small package.  Keeping that package separate is useful for construction
+work, because it prevents the four simple-factor clauses (which the non-MF
+endpoint does not consume) from being confused with any of the compression
+relations.
+-/
+
+/-- The exact extra data needed to upgrade a slimmed defect source to the
+original Fournier--Facio interface.
+
+There are only three mathematical clauses: a simple subgroup containing the
+protected element and the image of the chosen witness.  The `simple` field is
+the typeclass-form proof attached to that subgroup.  Every other field of
+`FournierFacioDefectData` is already a field of `D`. -/
+structure FournierFacioSimpleFactorCompletion
+    {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E) where
+  simpleSubgroup : Subgroup E
+  [simple : IsSimpleGroup simpleSubgroup]
+  s_mem : D.s ∈ simpleSubgroup
+  witness_mem : D.iota D.witness ∈ simpleSubgroup
+
+namespace BareDefectSourceData
+
+variable {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+
+/-- Adjoining a simple-factor completion recovers the original
+Fournier--Facio defect datum, with no further hypothesis. -/
+def toFournierFacioDefectData
+    (C : FournierFacioSimpleFactorCompletion D) :
+    FournierFacioDefectData P E where
+  iota := D.iota
+  u := D.u
+  s := D.s
+  kazhdan := D.kazhdan
+  compresses := D.compresses
+  commutesAfterCompression := D.commutesAfterCompression
+  simpleSubgroup := C.simpleSubgroup
+  simple := C.simple
+  s_mem := C.s_mem
+  witness := D.witness
+  witness_mem := C.witness_mem
+  witness_commutator_ne_one := D.witness_commutator_ne_one
+
 end BareDefectSourceData
 
 /-! ## Both existing sources land on the slimmed datum -/
@@ -212,6 +287,14 @@ def FournierFacioDefectData.toBareDefectSourceData
   commutesAfterCompression := D.commutesAfterCompression
   witness := D.witness
   witness_commutator_ne_one := D.witness_commutator_ne_one
+
+/-- Upgrading a slimmed source by exactly its simple-factor fields and then
+forgetting those fields returns the original source definitionally. -/
+@[simp] theorem BareDefectSourceData.toFournierFacioDefectData_toBareDefectSourceData
+    {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+    (C : FournierFacioSimpleFactorCompletion D) :
+    (D.toFournierFacioDefectData C).toBareDefectSourceData = D := rfl
 
 /-- Deleting the simple-factor fields does not move the compression core. -/
 @[simp] theorem FournierFacioDefectData.toBareDefectSourceData_core
@@ -592,10 +675,8 @@ over a slimmed source yields a nontrivial two-generated finitely presented
 torsion-free property-`(T)` group whose literal CDE MF radical is
 everything.
 
-This is `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical`
-with `FournierFacioDefectData` replaced by `BareDefectSourceData`.  The
-conclusion is verbatim the same; only the interface the hypothesis is
-stated over has shrunk. -/
+This is the direct existential packaging of `BareRoutingData`'s proved
+consequences. No separate conditional endpoint wrapper is involved. -/
 theorem exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical :
     ∀ {P : Type} {E : Type u} [Group P] [Group E]
       {D : BareDefectSourceData P E}

@@ -1,7 +1,6 @@
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Sofic.CommutingLampCollapse
-import GroupApproximation.Sofic.FullMFRadicalEndpoint
 import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.MarkedMFClosed
@@ -21,11 +20,11 @@ Every theorem here is a zero-input restatement of an endpoint that was
 parameterized when this module was written (38764495).  That premise no
 longer holds: the six "Zero-input badges" commits of 2026-08-16
 rewrote the *originals* into closed `∀`-form in place, keeping their
-universe polymorphism.  Every one of the twenty declarations wrapped
+universe polymorphism. Every remaining declaration wrapped
 here is therefore already closed, already cited by the manuscript, and
 already more general than its wrapper.
 
-More general, specifically.  Eleven of the twenty wrappers quantify
+More general, specifically. Several wrappers quantify
 over `Type` where the original quantifies over `Type u` or `Type*`, and
 `manuscriptMFRecognitionUndecidable` collapses two independent
 universes into one.  Each wrapper is proved by `exact <original> …`,
@@ -39,7 +38,7 @@ universe.
 
 This layer is kept only so the supersession is on the record rather
 than rediscovered.  Nothing cites it.  Retiring it is the clean end
-state; a second hand-maintained copy of twenty propositions has already
+state; a second hand-maintained copy of these propositions has already
 drifted from its originals once.
 -/
 
@@ -134,58 +133,6 @@ theorem manuscriptCommutingLampCollapse :
         (Ambient α hα ⧸ Subgroup.zpowers (signAmbient α hα)) := by
   intro Γ _ α hα _ hT a₀ ha₀
   exact CommutingLampCollapse.commutingLampQuotient_collapse α hα hT ha₀
-
-/-! ## The full-MF-radical endpoints -/
-
-/-- Closed form of the conditional full-radical endpoint: any routing
-datum for a Fournier-Facio defect datum yields a two-generated finitely
-presented torsion-free Kazhdan group with full MF radical.  The routing
-hypothesis is the quantified antecedent.
-
-This wrapper asserts `Nontrivial Q`, so it consumes the strictly stronger
-`DefectRoutingData` layer rather than the five printed conditions; the
-endpoint the manuscript cites is
-`FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical`,
-which drops that conjunct because the printed five do not supply it. -/
-theorem manuscriptFullMFRadicalFromRouting :
-    ∀ {P E : Type} [Group P] [Group E]
-      (D : FournierFacioDefectData P E),
-      Nonempty (DefectRoutingData.{0} D) →
-      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
-        IsTwoGenerated Q ∧
-        Group.IsFinitelyPresented Q ∧
-        IsPowerTorsionFree Q ∧
-        HasKazhdanPropertyT.{0, 0} Q ∧
-        Nontrivial Q ∧
-        cdeMFResidual Q = ⊤ := by
-  intro P E _ _ D h
-  exact FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
-    h
-
-/-- Closed form of the conditional every-quotient endpoint: any routing
-datum yields a nontrivial group all of whose nontrivial countable
-quotients fail CDE operator MF.
-
-As above, the `Nontrivial Q` conjunct is why this consumes routing data
-rather than the five printed conditions. -/
-theorem manuscriptEveryQuotientNonMFFromRouting :
-    ∀ {P E : Type} [Group P] [Group E]
-      (D : FournierFacioDefectData P E),
-      Nonempty (DefectRoutingData.{0} D) →
-      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
-        IsTwoGenerated Q ∧
-        Group.IsFinitelyPresented Q ∧
-        IsPowerTorsionFree Q ∧
-        HasKazhdanPropertyT.{0, 0} Q ∧
-        Nontrivial Q ∧
-        ∀ (H : Type) (_ : Group H) (_ : Countable H) (_ : Nontrivial H)
-          (f : Q →* H),
-          Function.Surjective f → ¬ IsCDEOperatorMF H := by
-  intro P E _ _ D h
-  obtain ⟨Q, hgroup, hcount, htwo, hfp, htf, hT, hnt, -, hher⟩ :=
-    FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
-      h
-  exact ⟨Q, hgroup, hcount, htwo, hfp, htf, hT, hnt, hher⟩
 
 /-! ## Scaled transport -/
 

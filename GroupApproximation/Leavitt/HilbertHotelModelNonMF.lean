@@ -250,6 +250,44 @@ instance model_countable : Countable Model :=
 theorem model_nontrivial : Nontrivial Model :=
   ⟨⟨defectModel, 1, defectModel_ne_one⟩⟩
 
+/-- The normally generating Hilbert-hotel defect is an involution.  This is
+the characteristic-two elementary-root relation, recorded here because it
+completely determines what happens under maps to torsion-free groups. -/
+theorem defectModel_sq : defectModel ^ 2 = 1 := by
+  exact elementaryRoot_pow_char 2 (0 : Fin 16) 2 (by decide) Binary.L.p1
+
+/-- **The Hilbert-hotel model has no nontrivial torsion-free image.**  Its
+normally generating defect has order two, so every map to a torsion-free
+group kills that defect and hence its whole normal closure.  Thus the
+unconditional full-MF-radical model cannot be converted into the requested
+torsion-free witness by taking its universal torsion-free quotient. -/
+theorem hom_eq_one_to_isPowerTorsionFree
+    {T : Type*} [Group T] (hT : IsPowerTorsionFree T) (f : Model →* T) :
+    f = 1 := by
+  have hdef : f defectModel = 1 := by
+    apply hT (f defectModel) 2 (by decide)
+    rw [← map_pow, defectModel_sq, map_one]
+  have hclosure : Subgroup.normalClosure ({defectModel} : Set Model) ≤ f.ker := by
+    apply Subgroup.normalClosure_le_normal
+    intro x hx
+    rw [Set.mem_singleton_iff] at hx
+    subst x
+    exact MonoidHom.mem_ker.mpr hdef
+  apply MonoidHom.ext
+  intro g
+  apply MonoidHom.mem_ker.mp
+  apply hclosure
+  rw [normalClosure_defectModel_eq_top]
+  exact Subgroup.mem_top g
+
+/-- In particular the model itself is not torsion-free. -/
+theorem model_not_isPowerTorsionFree : ¬ IsPowerTorsionFree Model := by
+  intro htf
+  have htrivial : MonoidHom.id Model = 1 :=
+    hom_eq_one_to_isPowerTorsionFree htf (MonoidHom.id Model)
+  exact defectModel_ne_one (by
+    simpa using DFunLike.congr_fun htrivial defectModel)
+
 /-- Property `(T)` for the whole model, read as a subgroup. -/
 theorem top_hasKazhdanPropertyT_model :
     HasKazhdanPropertyT.{0, 0} ↥(⊤ : Subgroup Model) :=

@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+import GroupApproximation.Sofic.HullPrescribedSaturation
 
 /-!
 # The suitable subgroup inside the compression defect
@@ -334,9 +335,69 @@ theorem map_surjective (hq : S.carrier.map q = ⊤) : Function.Surjective q := b
   obtain ⟨x, -, hx⟩ := Subgroup.mem_map.mp hy
   exact ⟨x, hx⟩
 
+/-- **The prescribed-defect conclusion of Hull's two quotient stages.**
+At the first stage it is enough to route the auxiliary first factor into the
+image of the suitable subgroup `S.carrier`; at the second stage it is enough
+to make that first factor surject.  The composite then maps the entire defect
+`D` onto the final quotient.
+
+This is the exact algebraic conclusion needed from the proposed substitution
+of Hull target words by target words selected inside the defect.  Geometry is
+responsible only for producing `hroute` and `hfinish`; no geometric assumption
+occurs in this theorem. -/
+theorem defect_map_eq_top_of_two_stage
+    {A M Q : Type*} [Group A] [Group M] [Group Q]
+    (first : A →* M) (second : E →* M) (finish : M →* Q)
+    (hroute : first.range ≤ S.carrier.map second)
+    (hfinish : Function.Surjective (finish.comp first)) :
+    D.map (finish.comp second) = ⊤ :=
+  HullPrescribedSaturation.map_eq_top_of_range_le_map_of_comp_surjective
+    D first second finish
+    (hroute.trans (Subgroup.map_mono S.le_defect)) hfinish
+
 end SuitableDefectSubgroup
 
 end HullSuitable
+
+/-! ## The normal defect of the slimmed source
+
+For the non-MF construction the embedded simple factor is unnecessary.  The
+normal subgroup fed to Osin is the compression defect itself.  Its chosen
+marked commutator is already a nonidentity member, so torsion-freeness makes
+that subgroup infinite; normality then makes it `s`-normal.  These are the
+exact algebraic hypotheses of the geometric argument and use only
+`BareDefectSourceData`. -/
+
+namespace BareDefectSourceData
+
+open HullSuitable
+
+variable {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+
+/-- The compression defect is infinite in a torsion-free ambient group,
+witnessed by the powers of its selected nontrivial marked commutator. -/
+theorem defectNormal_infinite (hE : IsPowerTorsionFree E) :
+    Infinite D.core.defectNormal :=
+  infinite_of_mem_of_not_isOfFinOrder D.witness_commutator_mem_defectNormal
+    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
+
+/-- The compression defect is `s`-normal: it is normal by construction and
+infinite by the selected marked commutator. -/
+theorem defectNormal_isSNormal (hE : IsPowerTorsionFree E) :
+    IsSNormal D.core.defectNormal :=
+  isSNormal_of_normal_of_mem_not_isOfFinOrder D.core.defectNormal
+    D.witness_commutator_mem_defectNormal
+    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
+
+/-- Hull's finite-normalizer clause for the bare defect is automatic from
+torsion-freeness of the ambient group. -/
+theorem defectNormal_normalizesNoNontrivialFinite
+    (hE : IsPowerTorsionFree E) :
+    NormalizesNoNontrivialFinite D.core.defectNormal :=
+  normalizesNoNontrivialFinite_of_torsionFree hE _
+
+end BareDefectSourceData
 
 /-! ## The instance at the Fournier--Facio defect datum -/
 

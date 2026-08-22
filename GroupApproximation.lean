@@ -440,7 +440,6 @@ import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.LiteralDoublingWreathNonMF
 import GroupApproximation.Sofic.CoronaRadicalPullback
 import GroupApproximation.Sofic.MoverGeneration
-import GroupApproximation.Sofic.FullMFRadicalEndpoint
 import GroupApproximation.Sofic.HereditaryNonsoficDescent
 import GroupApproximation.Sofic.SmallCancellationRouter
 import GroupApproximation.Sofic.ConcreteCompressionSource
@@ -1284,7 +1283,9 @@ import GroupApproximation.Sofic.ChiodoBelegradekTheorem
 import GroupApproximation.Sofic.ChiodoUniversalHost
 import GroupApproximation.Sofic.ExplicitSuitableDefect
 import GroupApproximation.Sofic.GreendlingerTwoPieceRegime
+import GroupApproximation.Sofic.HullPrescribedSaturation
 import GroupApproximation.Sofic.HullSuitableDefectSubgroup
+import GroupApproximation.Sofic.FournierFacioHullBridge
 import GroupApproximation.Sofic.InfranormalCompressionPair
 import GroupApproximation.Sofic.KunThomDoubleWitness
 import GroupApproximation.Sofic.TikuisisWhiteWinterSharpness
@@ -1469,15 +1470,9 @@ import GroupApproximation.Sofic.GreendlingerSharpResidualWiring
 import GroupApproximation.Sofic.GreendlingerSharpResidualWiring2
 import GroupApproximation.Sofic.GreendlingerDeepOverrunCount
 import GroupApproximation.Sofic.GreendlingerLandingProd
-import GroupApproximation.Sofic.AvatarWordFamily
-import GroupApproximation.Sofic.AvatarRouterInstance
-import GroupApproximation.Sofic.AvatarRunBound
-import GroupApproximation.Sofic.SourceFromUniversalKazhdan
-import GroupApproximation.Sofic.RelativeRouterEnvelope
-import GroupApproximation.Sofic.OsinWeightedMetric
+import GroupApproximation.Sofic.FournierFacioDoubleHNNSource
 import GroupApproximation.Sofic.OsinWeightedDefectNoGo
-import GroupApproximation.Sofic.TorsionFreeAssembly
-import GroupApproximation.Sofic.AvatarMetricCheck
+import GroupApproximation.Sofic.OsinWeightedLeafNoGo
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
 import GroupApproximation.Leavitt.HilbertHotelSaturation
@@ -1532,7 +1527,6 @@ import GroupApproximation.Higman.GeneratedPin
 import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
-import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Sofic.LiteralTorsionFreeRouterSourceNoGo
 import GroupApproximation.Sofic.AvatarDefectTieNoGo
 import GroupApproximation.Sofic.BespokeRouterGateAssembly

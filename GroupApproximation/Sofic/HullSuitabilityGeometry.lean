@@ -72,6 +72,8 @@ left, and makes it a statement rather than a paragraph.
 namespace GroupApproximation
 namespace HullGeometry
 
+open scoped commutatorElement
+
 universe u v
 
 variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
@@ -96,10 +98,76 @@ noncomputable def gromovProduct (x y w : X) : ℝ :=
   rw [dist_self]
   ring
 
+theorem gromovProduct_comm (x y w : X) :
+    gromovProduct x y w = gromovProduct y x w := by
+  simp only [gromovProduct, dist_comm x y]
+  ring
+
+/-- The Gromov product is invariant under an isometric group action. -/
+theorem gromovProduct_smul (hiso : IsIsometricAction G X) (a : G)
+    (y z w : X) :
+    gromovProduct (a • y) (a • z) (a • w) = gromovProduct y z w := by
+  unfold gromovProduct
+  rw [hiso a y w, hiso a z w, hiso a y z]
+
+/-- Moving the first endpoint changes the Gromov product by at most the
+distance moved. -/
+theorem gromovProduct_le_add_dist_left (y y' z w : X) :
+    gromovProduct y z w ≤ gromovProduct y' z w + dist y y' := by
+  have h1 : dist y w ≤ dist y y' + dist y' w := dist_triangle y y' w
+  have h2 : dist y' z ≤ dist y' y + dist y z := dist_triangle y' y z
+  unfold gromovProduct
+  rw [dist_comm y' y] at h2
+  linarith
+
+/-- Moving the second endpoint changes the Gromov product by at most the
+distance moved. -/
+theorem gromovProduct_le_add_dist_right (y z z' w : X) :
+    gromovProduct y z w ≤ gromovProduct y z' w + dist z z' := by
+  have h1 : dist z w ≤ dist z z' + dist z' w := dist_triangle z z' w
+  have h2 : dist y z' ≤ dist y z + dist z z' := dist_triangle y z z'
+  unfold gromovProduct
+  linarith
+
+/-- Moving the basepoint changes the Gromov product by at most the distance
+moved. -/
+theorem gromovProduct_le_add_dist_base (y z w w' : X) :
+    gromovProduct y z w ≤ gromovProduct y z w' + dist w w' := by
+  have h1 : dist y w ≤ dist y w' + dist w' w := dist_triangle y w' w
+  have h2 : dist z w ≤ dist z w' + dist w' w := dist_triangle z w' w
+  unfold gromovProduct
+  rw [dist_comm w' w] at h1 h2
+  linarith
+
+/-- The complementary Gromov products based at the two ends of a segment add
+up to the length of that segment. -/
+theorem gromovProduct_add_swap_base (a b c : X) :
+    gromovProduct a b c + gromovProduct a c b = dist b c := by
+  unfold gromovProduct
+  rw [dist_comm a c, dist_comm a b, dist_comm c b]
+  ring
+
 /-- Gromov's four-point condition. -/
 def IsHyperbolicSpace (δ : ℝ) (X : Type v) [PseudoMetricSpace X] : Prop :=
   ∀ w x y z : X,
     min (gromovProduct x y w) (gromovProduct y z w) - δ ≤ gromovProduct x z w
+
+/-- The upper-bound form of the four-point inequality.  If `(a|b)_w` is more
+than `δ` larger than `(b|c)_w`, then `(a|c)_w` is at most
+`(b|c)_w + δ`. -/
+theorem gromovProduct_le_add_delta_of_lt {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) {a b c w : X}
+    (hfar : gromovProduct b c w + δ < gromovProduct a b w) :
+    gromovProduct a c w ≤ gromovProduct b c w + δ := by
+  by_contra hnot
+  have hac : gromovProduct b c w + δ < gromovProduct a c w :=
+    lt_of_not_ge hnot
+  have h4 := hδ w b a c
+  rw [gromovProduct_comm b a w] at h4
+  have hmin : gromovProduct b c w + δ <
+      min (gromovProduct a b w) (gromovProduct a c w) :=
+    lt_min hfar hac
+  linarith
 
 /-! ## Acylindricity -/
 
@@ -126,6 +194,58 @@ def Independent (g h : G) (x : X) : Prop :=
 loxodromics. -/
 def ActsNonElementarily (S : Subgroup G) (x : X) : Prop :=
   ∃ g ∈ S, ∃ h ∈ S, IsLoxodromic g x ∧ IsLoxodromic h x ∧ Independent g h x
+
+/-- Independence of two loxodromic directions does not depend on the chosen
+basepoint.  Moving the two endpoints and the basepoint costs at most three
+times the distance between the basepoints. -/
+theorem independent_of_independent (hiso : IsIsometricAction G X) {g h : G}
+    {x y : X} (hind : Independent g h x) : Independent g h y := by
+  obtain ⟨C, hC⟩ := hind
+  refine ⟨C + 3 * dist x y, ?_⟩
+  intro n m
+  have hgn : dist ((g ^ n) • y) ((g ^ n) • x) = dist y x :=
+    hiso (g ^ n) y x
+  have hhm : dist ((h ^ m) • y) ((h ^ m) • x) = dist y x :=
+    hiso (h ^ m) y x
+  calc
+    gromovProduct ((g ^ n) • y) ((h ^ m) • y) y ≤
+        gromovProduct ((g ^ n) • x) ((h ^ m) • y) y +
+          dist ((g ^ n) • y) ((g ^ n) • x) :=
+      gromovProduct_le_add_dist_left _ _ _ _
+    _ ≤ gromovProduct ((g ^ n) • x) ((h ^ m) • x) y +
+          dist ((g ^ n) • y) ((g ^ n) • x) +
+          dist ((h ^ m) • y) ((h ^ m) • x) := by
+      have hmove := gromovProduct_le_add_dist_right
+        ((g ^ n) • x) ((h ^ m) • y) ((h ^ m) • x) y
+      linarith
+    _ ≤ gromovProduct ((g ^ n) • x) ((h ^ m) • x) x +
+          dist y x + dist ((g ^ n) • y) ((g ^ n) • x) +
+          dist ((h ^ m) • y) ((h ^ m) • x) := by
+      have hmove := gromovProduct_le_add_dist_base
+        ((g ^ n) • x) ((h ^ m) • x) y x
+      linarith
+    _ ≤ C + 3 * dist x y := by
+      have hc := hC n m
+      rw [hgn, hhm, dist_comm y x]
+      linarith
+
+/-- Independence is invariant under simultaneous conjugation. -/
+theorem independent_conj (hiso : IsIsometricAction G X) {g h a : G} {x : X}
+    (hind : Independent g h x) :
+    Independent (a * g * a⁻¹) (a * h * a⁻¹) x := by
+  obtain ⟨C, hC⟩ := independent_of_independent hiso hind (y := a⁻¹ • x)
+  refine ⟨C, ?_⟩
+  intro n m
+  rw [conj_zpow, conj_zpow]
+  calc
+    gromovProduct ((a * g ^ n * a⁻¹) • x) ((a * h ^ m * a⁻¹) • x) x =
+        gromovProduct (a • ((g ^ n) • (a⁻¹ • x)))
+          (a • ((h ^ m) • (a⁻¹ • x))) (a • (a⁻¹ • x)) := by
+      simp only [mul_smul, smul_inv_smul]
+    _ = gromovProduct ((g ^ n) • (a⁻¹ • x))
+          ((h ^ m) • (a⁻¹ • x)) (a⁻¹ • x) :=
+      gromovProduct_smul hiso a _ _ _
+    _ ≤ C := hC n m
 
 /-! ## Hull's Definition 1.4 -/
 
@@ -637,6 +757,42 @@ theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
     (-(2 * dist x y)) h
   simpa [sub_eq_add_neg] using hadd
 
+/-- Loxodromy is invariant under conjugation.  The orbit of `a * g * a⁻¹`
+based at `x` is isometric to the orbit of `g` based at `a⁻¹ • x`; basepoint
+independence supplies loxodromy at that latter point. -/
+theorem isLoxodromic_conj (hiso : IsIsometricAction G X) {g a : G} {x : X}
+    (hg : IsLoxodromic g x) : IsLoxodromic (a * g * a⁻¹) x := by
+  have hgbase : IsLoxodromic g (a⁻¹ • x) :=
+    isLoxodromic_of_isLoxodromic hiso hg
+  have hpow : ∀ n : ℕ, (a * g * a⁻¹) ^ n = a * g ^ n * a⁻¹ := by
+    intro n
+    induction n with
+    | zero => simp
+    | succ n ih =>
+        rw [pow_succ, ih]
+        group
+  have hdist : ∀ n : ℕ,
+      dist x (((a * g * a⁻¹) ^ n) • x) =
+        dist (a⁻¹ • x) ((g ^ n) • (a⁻¹ • x)) := by
+    intro n
+    have h := hiso a (a⁻¹ • x) ((g ^ n) • (a⁻¹ • x))
+    rw [← mul_smul, ← mul_smul, mul_inv_cancel, one_smul] at h
+    rw [hpow]
+    exact h
+  simpa only [IsLoxodromic, hdist] using hgbase
+
+/-- A normal subgroup acts non-elementarily as soon as one of its loxodromic
+elements has an independent conjugate.  Normality puts the conjugate back in
+the subgroup, and `isLoxodromic_conj` supplies its loxodromy.  This isolates the
+remaining geometric heart of Osin's s-normal argument: producing the
+independent conjugator. -/
+theorem actsNonElementarily_of_normal_conjugate {S : Subgroup G} [S.Normal]
+    (hiso : IsIsometricAction G X) {g a : G} {x : X} (hgS : g ∈ S)
+    (hg : IsLoxodromic g x) (hind : Independent g (a * g * a⁻¹) x) :
+    ActsNonElementarily S x := by
+  refine ⟨g, hgS, a * g * a⁻¹, ?_, hg, isLoxodromic_conj hiso hg, hind⟩
+  exact (inferInstance : S.Normal).conj_mem g hgS a
+
 /-! ### The translation length is a limit, and a seminorm on a centralizer
 
 `stableTranslation` was defined as an infimum, which is all the two facts above
@@ -818,6 +974,114 @@ not yet give is *uniform* control: the loss is linear in the length of the
 chain, and taming that --- to a logarithm by bisection, and then to a constant
 by the Morse argument --- is the remaining work. -/
 
+/-- **Local bounded backtracking gives uniform global backtracking and linear
+progress.**
+
+Suppose every edge of a chain has length at least `L`, and at each intermediate
+vertex the Gromov product of the preceding and following vertices is at most
+`C`.  If `L > 2(C + δ)`, the four-point inequality propagates the local bound:
+the Gromov product of the initial vertex and the next vertex, based at the
+current vertex, is always at most `C + δ`.  Consequently every edge advances
+the distance from the initial vertex by at least `L - 2(C + δ)`.
+
+This is the concrete local-to-global estimate needed for ping-pong products;
+unlike the earlier linear-loss chain inequality, its loss is uniform. -/
+theorem chain_backtracking_and_progress {δ C L : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hCδ : 0 ≤ C + δ)
+    (hgap : 2 * (C + δ) < L) (y : ℕ → X)
+    (hedge : ∀ n : ℕ, L ≤ dist (y n) (y (n + 1)))
+    (hlocal : ∀ n : ℕ,
+      gromovProduct (y n) (y (n + 2)) (y (n + 1)) ≤ C) :
+    ∀ n : ℕ,
+      (L - 2 * (C + δ)) * n ≤ dist (y 0) (y n) ∧
+        gromovProduct (y 0) (y (n + 1)) (y n) ≤ C + δ := by
+  intro n
+  induction n with
+  | zero =>
+      constructor
+      · simp
+      · have hzero : gromovProduct (y 0) (y 1) (y 0) = 0 := by
+          unfold gromovProduct
+          rw [dist_self, dist_comm (y 1) (y 0)]
+          ring
+        rw [hzero]
+        exact hCδ
+  | succ n ih =>
+      have hed := hedge n
+      have hdist :
+          dist (y 0) (y n) + L - 2 * (C + δ) ≤
+            dist (y 0) (y (n + 1)) := by
+        have hb := ih.2
+        unfold gromovProduct at hb
+        rw [dist_comm (y (n + 1)) (y n)] at hb
+        linarith
+      constructor
+      · have hp := ih.1
+        push_cast
+        linarith
+      · have hswap := gromovProduct_add_swap_base (y 0) (y n) (y (n + 1))
+        have hbehind : C + δ <
+            gromovProduct (y 0) (y n) (y (n + 1)) := by
+          linarith [ih.2, hedge n]
+        have hloc := hlocal n
+        have hfar :
+            gromovProduct (y n) (y (n + 2)) (y (n + 1)) + δ <
+              gromovProduct (y 0) (y n) (y (n + 1)) := by
+          linarith
+        have hnext := gromovProduct_le_add_delta_of_lt hδ hfar
+        have hbound :
+            gromovProduct (y 0) (y (n + 2)) (y (n + 1)) ≤ C + δ := by
+          linarith
+        simpa only [Nat.succ_eq_add_one, Nat.add_assoc] using hbound
+
+/-- **One local turn certifies a loxodromic orbit.**
+
+For a group orbit all edges have the same length and all local turns are
+isometric translates of the turn at `p x`.  Hence the preceding chain theorem
+reduces the entire local-to-global problem to the single inequality
+
+`(x | p²x)_{p x} ≤ C`
+
+together with `2(C + δ) < d(x, p x)`. -/
+theorem isStronglyLoxodromic_of_local_backtracking {δ C : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hiso : IsIsometricAction G X)
+    {p : G} {x : X} (hCδ : 0 ≤ C + δ)
+    (hgap : 2 * (C + δ) < dist x (p • x))
+    (hturn : gromovProduct x ((p ^ 2) • x) (p • x) ≤ C) :
+    IsStronglyLoxodromic p x := by
+  let y : ℕ → X := fun n => (p ^ n) • x
+  have hedge : ∀ n : ℕ,
+      dist x (p • x) ≤ dist (y n) (y (n + 1)) := by
+    intro n
+    have h := hiso (p ^ n) x (p • x)
+    rw [← mul_smul, ← pow_succ] at h
+    exact le_of_eq h.symm
+  have hlocal : ∀ n : ℕ,
+      gromovProduct (y n) (y (n + 2)) (y (n + 1)) ≤ C := by
+    intro n
+    have h := gromovProduct_smul hiso (p ^ n) x ((p ^ 2) • x) (p • x)
+    have htwo : p ^ n * p ^ 2 = p ^ (n + 2) := by rw [← pow_add]
+    have hone : p ^ n * p = p ^ (n + 1) := by rw [← pow_succ]
+    rw [← mul_smul, htwo, ← mul_smul, hone] at h
+    change gromovProduct (y n) (y (n + 2)) (y (n + 1)) =
+      gromovProduct x ((p ^ 2) • x) (p • x) at h
+    exact h.trans_le hturn
+  have hall := chain_backtracking_and_progress hδ hCδ hgap y hedge hlocal
+  refine ⟨dist x (p • x) - 2 * (C + δ), by linarith, ?_⟩
+  intro n
+  exact (hall n).1
+
+/-- The escape-to-infinity form of the one-turn criterion. -/
+theorem isLoxodromic_of_local_backtracking {δ C : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hiso : IsIsometricAction G X)
+    {p : G} {x : X} (hCδ : 0 ≤ C + δ)
+    (hgap : 2 * (C + δ) < dist x (p • x))
+    (hturn : gromovProduct x ((p ^ 2) • x) (p • x) ≤ C) :
+    IsLoxodromic p x :=
+  isLoxodromic_of_isStronglyLoxodromic
+    (isStronglyLoxodromic_of_local_backtracking
+      hδ hiso hCδ hgap hturn)
+
 /-- **The chain lemma.**  If every consecutive Gromov product along a chain is
 at least `c`, the endpoints' Gromov product is at least `c` less one `δ` per
 step. -/
@@ -873,6 +1137,129 @@ theorem gromovProduct_orbit_succ (hiso : IsIsometricAction G X) (g : G) (x : X)
   simp only [gromovProduct, hstep, dist_comm ((g ^ k) • x) x,
     dist_comm ((g ^ (k + 1)) • x) x]
 
+/-- Move the basepoint of an orbit-backtracking product back to `x`.
+
+The `n`-th term in the bounded-backtracking criterion is exactly the Gromov
+product between the negative orbit point `p⁻ⁿx` and the one-step positive point
+`p x`, based at `x`.  Thus the apparently moving-basepoint condition is a
+fixed-basepoint separation estimate between the two orbit directions. -/
+theorem gromovProduct_orbit_backtracking_eq (hiso : IsIsometricAction G X)
+    (p : G) (x : X) (n : ℤ) :
+    gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) =
+      gromovProduct ((p ^ (-n)) • x) (p • x) x := by
+  have hnext : p ^ (-n) * p ^ (n + 1) = p := by
+    rw [← zpow_add]
+    simp
+  have hbase : p ^ (-n) * p ^ n = 1 := by
+    rw [← zpow_add]
+    simp
+  calc
+    gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) =
+        gromovProduct ((p ^ (-n)) • x)
+          ((p ^ (-n)) • ((p ^ (n + 1)) • x))
+          ((p ^ (-n)) • ((p ^ n) • x)) :=
+      (gromovProduct_smul hiso (p ^ (-n)) x
+        ((p ^ (n + 1)) • x) ((p ^ n) • x)).symm
+    _ = gromovProduct ((p ^ (-n)) • x) (p • x) x := by
+      rw [← mul_smul, hnext, ← mul_smul, hbase, one_smul]
+
+/-- The natural-power form consumed directly by
+`isLoxodromic_of_bounded_orbit_backtracking`. -/
+theorem gromovProduct_orbit_backtracking_eq_nat
+    (hiso : IsIsometricAction G X) (p : G) (x : X) (n : ℕ) :
+    gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) =
+      gromovProduct ((p ^ (-(n : ℤ))) • x) (p • x) x := by
+  have h := gromovProduct_orbit_backtracking_eq hiso p x (n : ℤ)
+  have he : (n : ℤ) + 1 = ((n + 1 : ℕ) : ℤ) := by omega
+  rw [he, zpow_natCast, zpow_natCast] at h
+  exact h
+
+/-- Multiplying a long loxodromic power by a fixed element loses at most the
+fixed element's displacement.  This is the elementary displacement half of the
+standard `gⁿ c` loxodromic-product argument. -/
+theorem dist_pow_mul_lower (hiso : IsIsometricAction G X) (g c : G) (x : X)
+    (n : ℕ) :
+    dist x ((g ^ n) • x) - dist x (c • x) ≤
+      dist x (((g ^ n) * c) • x) := by
+  have htri := dist_triangle x (((g ^ n) * c) • x) ((g ^ n) • x)
+  have htail :
+      dist (((g ^ n) * c) • x) ((g ^ n) • x) = dist (c • x) x := by
+    have h := hiso (g ^ n) (c • x) x
+    rw [← mul_smul] at h
+    exact h
+  rw [htail, dist_comm (c • x) x] at htri
+  linarith
+
+/-- A sufficiently long power in `gⁿ c` makes its one-step displacement exceed
+any prescribed backtracking budget.  Thus, for the bounded-backtracking
+criterion below, the positivity inequality is automatic; only the uniform
+Gromov-product estimate remains. -/
+theorem exists_pow_mul_progress (hiso : IsIsometricAction G X)
+    {g : G} (c : G) {x : X} (hg : IsLoxodromic g x) (A : ℝ) :
+    ∃ n : ℕ, 2 * A < dist x (((g ^ n) * c) • x) := by
+  have hev := hg.eventually_ge_atTop (2 * A + dist x (c • x) + 1)
+  rw [Filter.eventually_atTop] at hev
+  obtain ⟨N, hN⟩ := hev
+  refine ⟨N, ?_⟩
+  have hlarge := hN N le_rfl
+  have hlower := dist_pow_mul_lower hiso g c x N
+  linarith
+
+/-- **Bounded backtracking makes an element strongly loxodromic.**
+
+Let `D = d(x, p x)`.  At the `n`-th orbit point, the Gromov product
+
+`(x | pⁿ⁺¹x)_{pⁿx}`
+
+measures exactly half the amount by which the next step fails to add its full
+length `D` to the distance from `x`.  Consequently, if all these products are
+at most `A` and `2A < D`, every step makes progress at least `D - 2A`, and
+
+`d(x, pⁿx) ≥ n (D - 2A)`.
+
+This is the quantitative last step in a loxodromic-product argument.  For a
+candidate such as `p = g ^ m * c`, the remaining ping-pong task is now the
+concrete inequality `hback` rather than an unnamed local-to-global premise. -/
+theorem isStronglyLoxodromic_of_bounded_orbit_backtracking
+    (hiso : IsIsometricAction G X) {p : G} {x : X} {A : ℝ}
+    (hprogress : 2 * A < dist x (p • x))
+    (hback : ∀ n : ℕ,
+      gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) ≤ A) :
+    IsStronglyLoxodromic p x := by
+  let l : ℝ := dist x (p • x) - 2 * A
+  have hl : 0 < l := by
+    dsimp [l]
+    linarith
+  have hlower : ∀ n : ℕ, l * n ≤ dist x ((p ^ n) • x) := by
+    intro n
+    induction n with
+    | zero => simp
+    | succ n ih =>
+        have hstep :
+            dist ((p ^ n) • x) ((p ^ (n + 1)) • x) = dist x (p • x) := by
+          have h := hiso (p ^ n) x (p • x)
+          rw [← mul_smul, ← pow_succ] at h
+          exact h
+        have hb := hback n
+        rw [gromovProduct,
+          dist_comm ((p ^ (n + 1)) • x) ((p ^ n) • x), hstep] at hb
+        push_cast
+        dsimp [l] at ih ⊢
+        linarith
+  exact ⟨l, hl, hlower⟩
+
+/-- The bounded-backtracking criterion also gives loxodromy in the escape-to-
+infinity form used by `ActsNonElementarily`. -/
+theorem isLoxodromic_of_bounded_orbit_backtracking
+    (hiso : IsIsometricAction G X) {p : G} {x : X} {A : ℝ}
+    (hprogress : 2 * A < dist x (p • x))
+    (hback : ∀ n : ℕ,
+      gromovProduct x ((p ^ (n + 1)) • x) ((p ^ n) • x) ≤ A) :
+    IsLoxodromic p x :=
+  isLoxodromic_of_isStronglyLoxodromic
+    (isStronglyLoxodromic_of_bounded_orbit_backtracking
+      hiso hprogress hback)
+
 /-- **The chain lemma by bisection.**  Splitting a chain in half rather than
 peeling one step at a time reduces the loss from one `δ` per step to one `δ` per
 *halving*: over a chain of `2 ᵏ` steps the loss is `k · δ`, not `2 ᵏ · δ`.
@@ -908,6 +1295,60 @@ theorem gromovProduct_chain_pow_two {δ : ℝ} (hδ : IsHyperbolicSpace δ X)
       rw [hsplit]
       push_cast
       linarith
+
+/-- A Gromov product is at most the distance from either of its entries to
+the basepoint.  This elementary bound is what permits a finite chain to be
+padded by repetitions of its final vertex. -/
+theorem gromovProduct_le_right (x y w : X) :
+    gromovProduct x y w ≤ dist y w := by
+  have htri : dist x w ≤ dist x y + dist y w := dist_triangle x y w
+  unfold gromovProduct
+  linarith
+
+/-- **The logarithmic chain estimate for an arbitrary finite chain.**
+
+If a chain has `N ≤ 2 ^ k` edges, pad it to `2 ^ k` edges by repeating its
+last vertex.  The genuine edges have the assumed lower Gromov-product bound;
+the padded edges have Gromov product `dist (y N) w`.  Thus the dyadic chain
+lemma applies with the same `k · δ` loss.
+
+The endpoint-distance hypothesis is separated out because this form is useful
+also for a chain with no edges.  The positive-length corollary below derives it
+from the final genuine edge. -/
+theorem gromovProduct_chain_le_pow_two {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (w : X) (y : ℕ → X)
+    (c : ℝ) (N k : ℕ) (hN : N ≤ 2 ^ k)
+    (hc : ∀ i, i < N → c ≤ gromovProduct (y i) (y (i + 1)) w)
+    (hend : c ≤ dist (y N) w) :
+    c - k * δ ≤ gromovProduct (y 0) (y N) w := by
+  let z : ℕ → X := fun i => y (min i N)
+  have hz : ∀ i, i < 2 ^ k → c ≤ gromovProduct (z i) (z (i + 1)) w := by
+    intro i hi
+    by_cases hiN : i < N
+    · have hi_le : i ≤ N := Nat.le_of_lt hiN
+      have his_le : i + 1 ≤ N := by omega
+      simpa [z, Nat.min_eq_left hi_le, Nat.min_eq_left his_le] using hc i hiN
+    · have hNi : N ≤ i := Nat.le_of_not_gt hiN
+      have hNis : N ≤ i + 1 := le_trans hNi (Nat.le_succ i)
+      simpa [z, Nat.min_eq_right hNi, Nat.min_eq_right hNis,
+        gromovProduct_self] using hend
+  have h := gromovProduct_chain_pow_two hδ hδ0 w c k z hz
+  simpa [z, Nat.min_eq_left hN] using h
+
+/-- For a nonempty chain the endpoint-distance condition needed for padding is
+automatic: the Gromov product on its final edge is bounded above by the
+distance from the final vertex to the basepoint. -/
+theorem gromovProduct_chain_le_pow_two_of_pos {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (w : X) (y : ℕ → X)
+    (c : ℝ) (N k : ℕ) (hNpos : 0 < N) (hN : N ≤ 2 ^ k)
+    (hc : ∀ i, i < N → c ≤ gromovProduct (y i) (y (i + 1)) w) :
+    c - k * δ ≤ gromovProduct (y 0) (y N) w := by
+  have hlast := hc (N - 1) (Nat.sub_lt hNpos Nat.one_pos)
+  have hsucc : N - 1 + 1 = N := Nat.sub_add_cancel hNpos
+  have hend : c ≤ dist (y N) w := by
+    rw [hsucc] at hlast
+    exact le_trans hlast (gromovProduct_le_right _ _ _)
+  exact gromovProduct_chain_le_pow_two hδ hδ0 w y c N k hN hc hend
 
 /-! ### Geodesics
 
@@ -996,6 +1437,94 @@ theorem finite_centralizer_ball (hiso : IsIsometricAction G X)
     rw [hstep, hiso (g ^ m) x (k • x)]
     exact hkx
   exact ⟨hmove _, hmove _⟩
+
+/-- An infinite-order element commuting with a loxodromic element is itself
+loxodromic under an acylindrical action.
+
+Indeed `finite_centralizer_ball` says that every bounded ball contains only
+finitely many elements of the centralizer.  The nonnegative powers of an
+infinite-order element are distinct, so only finitely many can remain in any
+fixed ball.  This is exactly convergence of their displacement to infinity. -/
+theorem isLoxodromic_of_commutes_of_not_isOfFinOrder
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    {g c : G} {x : X} (hg : IsLoxodromic g x) (hcg : Commute c g)
+    (hc : ¬ IsOfFinOrder c) : IsLoxodromic c x := by
+  rw [IsLoxodromic, Filter.tendsto_atTop]
+  intro B
+  let ε : ℝ := max (B + 1) 1
+  have hε : 0 < ε := lt_of_lt_of_le zero_lt_one (le_max_right _ _)
+  have hBε : B < ε := lt_of_lt_of_le (lt_add_one B) (le_max_left _ _)
+  have hfinite :
+      {k : G | Commute k g ∧ dist x (k • x) ≤ ε}.Finite :=
+    finite_centralizer_ball hiso hacy hg hε
+  have hinj : Function.Injective (fun n : ℕ => c ^ n) :=
+    injective_pow_iff_not_isOfFinOrder.mpr hc
+  have hpre :
+      {n : ℕ | c ^ n ∈ {k : G | Commute k g ∧ dist x (k • x) ≤ ε}}.Finite :=
+    hfinite.preimage hinj.injOn
+  have hev : ∀ᶠ n : ℕ in Filter.atTop,
+      n ∉ {n : ℕ | c ^ n ∈ {k : G |
+        Commute k g ∧ dist x (k • x) ≤ ε}} := by
+    rw [← Nat.cofinite_eq_atTop]
+    exact hpre.eventually_cofinite_notMem
+  filter_upwards [hev] with n hn
+  by_contra hnot
+  apply hn
+  exact ⟨hcg.pow_left n, le_trans (le_of_not_ge hnot) (le_of_lt hBε)⟩
+
+/-- **The first concrete dichotomy in Osin's s-normal argument.**
+
+Let `S` be s-normal in a torsion-free group and let `g` be an ambient
+loxodromic.  The twisted intersection `S ∩ g⁻¹ S g` is infinite, hence contains
+a nonidentity element `c`.  If `c` commutes with `g`, torsion-freeness and the
+preceding theorem make `c` loxodromic.  Otherwise `c` and its `g`-conjugate are
+both in `S`, giving the noncommuting configuration consumed by the next stage
+of the product argument.
+
+Thus the remaining loxodromic-extraction problem is confined to the genuinely
+noncommuting branch; the centralizing branch is completely discharged. -/
+theorem exists_loxodromic_or_noncommuting_of_isSNormal
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    (htf : IsPowerTorsionFree G) {S : Subgroup G}
+    (hS : HullSuitable.IsSNormal S) {g : G} {x : X}
+    (hg : IsLoxodromic g x) :
+    (∃ c ∈ S, IsLoxodromic c x) ∨
+      ∃ c ∈ S, g * c * g⁻¹ ∈ S ∧ ¬ Commute c g := by
+  have hinter := hS g
+  have hex : ∃ c : G,
+      c ∈ {c : G | c ∈ S ∧ g * c * g⁻¹ ∈ S} ∧ c ≠ 1 := by
+    by_contra hnone
+    have hsub : {c : G | c ∈ S ∧ g * c * g⁻¹ ∈ S} ⊆ ({1} : Set G) := by
+      intro c hc
+      have hc1 : c = 1 := by
+        by_contra hc1
+        exact hnone ⟨c, hc, hc1⟩
+      simpa [hc1]
+    exact hinter (Set.Finite.subset (Set.finite_singleton 1) hsub)
+  obtain ⟨c, ⟨hcS, hgcS⟩, hc1⟩ := hex
+  by_cases hcomm : Commute c g
+  · left
+    exact ⟨c, hcS, isLoxodromic_of_commutes_of_not_isOfFinOrder
+      hiso hacy hg hcomm (htf.not_isOfFinOrder hc1)⟩
+  · right
+    exact ⟨c, hcS, hgcS, hcomm⟩
+
+/-- The noncommuting branch produces a concrete nontrivial product inside the
+subgroup: the difference between `g c g⁻¹` and `c` is their commutator.  This is
+the candidate to which a bounded-backtracking/ping-pong estimate can be
+applied; unlike `gⁿ c`, it is guaranteed to remain in `S`. -/
+theorem nontrivial_commutator_mem_of_mem_conjugate {S : Subgroup G}
+    {g c : G} (hcS : c ∈ S) (hgcS : g * c * g⁻¹ ∈ S)
+    (hncomm : ¬ Commute c g) :
+    g * c * g⁻¹ * c⁻¹ ∈ S ∧ g * c * g⁻¹ * c⁻¹ ≠ 1 := by
+  constructor
+  · exact S.mul_mem hgcS (S.inv_mem hcS)
+  · intro htriv
+    apply hncomm
+    have hcomm : Commute g c := commutatorElement_eq_one_iff_commute.mp (by
+      rw [commutatorElement_def]
+      exact htriv)
+    exact hcomm.symm
 
 /-- **The Gromov product is at most the distance to any point of a geodesic
 joining its two arguments.**
@@ -1131,11 +1660,6 @@ geodesic from `x` to `y`, the point at distance `t` from `x` has
 `(f t | y)_x = t` exactly.  So `(y | h t)_x ≥ min((y|z)_x, (z|h t)_x) − δ ≥ t − δ`
 and then `(f t | h t)_x ≥ min((f t|y)_x, (y|h t)_x) − δ ≥ t − 2δ`, whence
 `d(f t, h t) = 2t − 2(f t|h t)_x ≤ 4δ`. -/
-
-theorem gromovProduct_comm (x y w : X) :
-    gromovProduct x y w = gromovProduct y x w := by
-  simp only [gromovProduct, dist_comm x y]
-  ring
 
 /-- On a geodesic from `x` to `y`, the point at distance `t` from `x` has
 Gromov product exactly `t` with the far endpoint. -/

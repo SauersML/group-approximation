@@ -19,16 +19,12 @@ import Mathlib.Algebra.Group.Subgroup.Ker
 > None occurs inside a `theorem`, `mainthm`, `proposition`, `lemma`,
 > `corollary` or `proof` environment — four are body text and one is a
 > `remark` — as determined by bracket-matching those environments over the
-> whole file, not by reading context.  Of the 100 `\leanverified` badges
-> across 55 modules, exactly two live in a Lean file that so much as
-> contains the string "Fournier": the two `Sofic/FullMFRadicalEndpoint`
-> endpoints, which quantify over an abstract `FournierFacioDefectData` with
-> `Nonempty (FiveConditionRoutingData D)` — the manuscript's five printed
-> conditions — as a declared hypothesis.  Those are a
-> **conditional-Lean debt, not a literature-input debt** — they assume
-> routing data, not a theorem of Fournier-Facio, and the structure is merely
-> *named after* him because his group satisfies it.  Nothing the manuscript
-> proves depends on a Fournier-Facio input, so nothing is owed here.
+> whole file, not by reading context. The former conditional endpoint wrappers
+> have since been retired. The explicit construction boundary now lives in
+> `Sofic/FournierFacioHullBridge`: it takes
+> proof-carrying two-stage data and is not exported as a closed manuscript
+> theorem. Nothing the manuscript proves depends on a Fournier-Facio input, so
+> nothing is owed here.
 >
 > This module records the remark's own deduction in unconditional form.
 > Nothing below is conditional.  Everything from here down describes the

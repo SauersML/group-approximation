@@ -62,6 +62,49 @@ declaration below is conditional on it.
 -/
 
 namespace GroupApproximation
+
+namespace ExactHodgeCertificate
+
+/-! ## A finite presentation needs only its rational certificate -/
+
+/-- **A finite presented-group certificate gives a Kazhdan group directly.**
+
+For a finite generator alphabet and a finite relator list, finite presentation
+is an instance and the canonical generators generate by
+`PresentedGroup.closure_range_of`. Thus an explicit rational Hodge certificate
+is the only input needed here: neither a generating proof nor an abstract
+group-level property `(T)` premise is exposed to the caller.
+
+This is the concrete handoff for a future triangular/link computation. Such a
+computation may name its finite relators and fill the coefficient identities
+in `Certificate`; this theorem turns those checked identities into the exact
+property `(T)` consumed by the hyperbolic-partner construction. -/
+theorem finitePresentation_kazhdan_of_hodgeCertificate
+    {α J K : Type} [Fintype α] [DecidableEq α] [Fintype J] [Fintype K]
+    (hα : Nonempty α) (relators : Finset (FreeGroup α))
+    {B : J → α → RatGroupRing
+      (PresentedGroup (relators : Set (FreeGroup α)))}
+    {q : K → α → RatGroupRing
+      (PresentedGroup (relators : Set (FreeGroup α)))}
+    {R : α → α → RatGroupRing
+      (PresentedGroup (relators : Set (FreeGroup α)))}
+    {c r : ℚ}
+    (C : Certificate
+      (generatorCoboundary
+        (PresentedGroup.of :
+          α → PresentedGroup (relators : Set (FreeGroup α))))
+      B q R c r) :
+    Group.IsFinitelyPresented
+        (PresentedGroup (relators : Set (FreeGroup α))) ∧
+      HasKazhdanPropertyT.{0, 0}
+        (PresentedGroup (relators : Set (FreeGroup α))) := by
+  refine ⟨inferInstance, Certificate.hasKazhdanPropertyT hα
+    (PresentedGroup.of :
+      α → PresentedGroup (relators : Set (FreeGroup α))) ?_ C⟩
+  exact PresentedGroup.closure_range_of (relators : Set (FreeGroup α))
+
+end ExactHodgeCertificate
+
 namespace Hyperbolic
 
 /-! ## The reduction -/

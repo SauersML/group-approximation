@@ -141,6 +141,27 @@ theorem envelope_isFinitelyPresented : Group.IsFinitelyPresented Envelope := by
   exact HNNFinitePresentation.isFinitelyPresented_hnnExtension
     (ConcreteCompressionSource.sourceEquiv compression compression_injective)
 
+/-- **The unconditional source-stage deliverable.**  There is a concrete
+Kazhdan compression source whose base and HNN envelope are both torsion-free
+and finitely presented.  This packages the largest source fragment needed by
+the torsion-free non-MF construction without importing a universal group or
+any literature-shaped input.
+
+The only fields separating this datum from the older
+`FournierFacioDefectData` interface are recorded by
+`FournierFacioSimpleFactorCompletion`; the slimmed non-MF endpoint does not
+consume them. -/
+theorem exists_literal_torsionFree_finitelyPresented_bareDefectSource :
+    ∃ (P₀ E₀ : Type) (_ : Group P₀) (_ : Group E₀)
+      (D : BareDefectSourceData P₀ E₀),
+      IsPowerTorsionFree P₀ ∧
+        Group.IsFinitelyPresented P₀ ∧
+        IsPowerTorsionFree E₀ ∧
+        Group.IsFinitelyPresented E₀ :=
+  ⟨P, Envelope, inferInstance, inferInstance, literalBareDefectSourceData,
+    p_isPowerTorsionFree, p_isFinitelyPresented,
+    envelope_isPowerTorsionFree, envelope_isFinitelyPresented⟩
+
 end
 
 end LiteralAffineCongruenceSource
