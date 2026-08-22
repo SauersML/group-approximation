@@ -7,15 +7,15 @@ target: hnn-compressed-row-is-unnamed-fixed-carrier
 requires: []
 ---
 
-Because `[a,p]=0`, direct multiplication gives
+Because `[b,p]=0`, direct multiplication gives
 
 ```text
 (u-1)tp
- =a t a^(-1)p-tp
- =(a t p-t p a)a^(-1).                                (HCR6)
+ =a t b^(-1)p-tp
+ =(a t p-t p b)b^(-1).                                (HCR6)
 ```
 
-Right multiplication by `a^(-1)` preserves normalized Hilbert--Schmidt
+Right multiplication by `b^(-1)` preserves normalized Hilbert--Schmidt
 norm, proving the first identity in `(HCR2)`.  Since `t` is unitary and `p`
 is a projection,
 
@@ -35,12 +35,11 @@ It remains to check the marked word.  In the convention
 `tAt^(-1)=C`, the only possible pinch inside
 
 ```text
-u=a t a^(-1)t^(-1)
+u=a t b^(-1)t^(-1)
 ```
 
-would require `a in A`.  At the cyclic seam between two copies of `u`, the
+would require `b in A`.  At the cyclic seam between two copies of `u`, the
 only possible pinch would require `a in C`.  Both are excluded.  Hence every
 positive power of `u` is Britton reduced and contains stable letters.
 Britton's lemma makes every such power nonidentity, so `u` has infinite
 order.
-

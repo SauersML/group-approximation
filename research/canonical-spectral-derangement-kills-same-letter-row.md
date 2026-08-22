@@ -48,9 +48,9 @@ the defect squared is exactly `4 tr(p_j)`.
 This countermodel tensors with any independent exact finite edge-packet
 transporter.  Consequently finite packet relations, canonical marginal type
 multiplicities, and the lower bound `tr(p_j)=1/m` do not imply the compressed
-row `(FSC1)` in `fanizza-same-letter-compressed-row`.  A successful compiler
+equal-letter specialization of `(FHC1)` in
+`fanizza-heterogeneous-compressed-row`.  A successful compiler
 must contain a mixed relation or matrix-only gap coupling the transported
 edge coordinate to the **same** Fanizza observable.  Merely obtaining more
 copies or a larger union of spectral types does not help: the cyclic shift
 deranges all types at once.
-
