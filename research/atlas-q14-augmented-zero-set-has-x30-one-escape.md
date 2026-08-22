@@ -41,6 +41,14 @@ If either holds, there is such a matrix model with
 x_30(W)^2=1.                                          (QZE3)
 ```
 
+The remaining finite-quotient question has an exact smaller form.
+By `atlas-q14-finite-quotient-is-simple-overgroup-test`, it is equivalent to
+finding a nonabelian finite simple group strictly larger than `A8` containing
+two generating marked `A8` copies which satisfy the twelve distinct packet
+edges, collision `19243`, and the single commuting-involution relation encoded
+by q14.  Thus no solvable radical or nonsimple extension can be essential to
+an escape.
+
 Thus an exact matrix escape would not merely touch the q14 threshold
 `1/2`; after passing to a regular finite quotient it violates every proposed
 upper ceiling maximally.
