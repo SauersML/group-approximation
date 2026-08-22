@@ -21,7 +21,11 @@ For the cyclic roots `a_j=x_12(s_0)^(phat^j)` and
 `[q_i,a_j]` and `[q_i,f_j]` are nontrivial.  Every nontrivial commutator has
 the same `(0,0,0)` correction triple and therefore an odd identity fiber.
 Together with the preceding single-gate, two-gate, and gate/root product
-audits, this exhausts the canonical one-KL-gate short-word program.
+audits, this covers the inverse-pair slice `y = x^(-1)` of the canonical
+one-KL-gate short-word program (the artifact's `defect(x, x_inverse)` ties
+the second conjugator to the inverse of the first); the general
+two-conjugator bilinear equation is untested, so "exhausts" was an
+overstatement (2026-08-22 audit).
 
 The fence is deliberately finite: arbitrary noncyclic prefix permutations
 and longer nested Steinberg words are not covered.

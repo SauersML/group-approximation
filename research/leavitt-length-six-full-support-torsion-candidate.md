@@ -92,3 +92,10 @@ the generic small-length theory.  The remaining question is now answered by
 support a sharp relative weight function, and the zero-weight labels are
 Nielsen reduced in `G_0*G_1`.  Hence `G_0*G_1` embeds in `(L6.4)`.  The two
 relators do not normally generate `N_2`, so this candidate is fenced.
+
+**Provenance note (2026-08-22 audit).**  Item 4 ("the generic
+sign-index-two theorem cannot prove injectivity") rests on Stallings'
+sign-index-two theorem and on Clifford--Goldstein, *Equations with
+torsion-free coefficients*, Proc. Edinburgh Math. Soc. 43 (2000) 295--307,
+Theorem 1.1; neither has a citation node or a recorded source read in
+this repository.

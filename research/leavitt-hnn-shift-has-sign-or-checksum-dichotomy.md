@@ -85,7 +85,10 @@ For `u!=v`, the desired map
 ```text
 beta_(u,v)(r)=s_u r t_v                                 (HSD9)
 
-is not multiplicative: its square product is zero because `t_v s_u=0`,
+is not multiplicative: its square product is zero because `t_v s_u=0`
+(for INCOMPARABLE `u, v` -- neither a prefix of the other; for `u != v`
+alone this fails, e.g. `t_(01) s_1 = t_0`; the proof only ever uses
+`|u| = |v|`, where incomparability is automatic),
 while `beta_(u,v)(rs)` need not vanish.  It therefore cannot induce a
 Steinberg or elementary-group endomorphism and cannot be implemented by an
 ascending HNN stable letter.
@@ -125,3 +128,10 @@ Thus even the diagonal-checksum HNN requires either a separate injectivity
 theorem on the finitely presented Steinberg cover or a finite presentation
 of the concrete elementary group.  Resolving that caveat would not repair
 the cross-corner failure `(HSD8)--(HSD9)`.
+
+**Scope note (2026-08-22 audit).**  The three computations are correct,
+but the dichotomy is verified for the three displayed maps only; no
+closure argument shows that every "canonical" shift (e.g.
+`r -> sum_i s_i phi_i(r) t_i` with automorphisms `phi_i`, or `alpha_u`
+with `|u| > 1`) falls into one of the two cases.  Read the title as a
+classification of the listed shifts.

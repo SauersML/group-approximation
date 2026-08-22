@@ -126,3 +126,10 @@ turns the two half-relator overlaps into involution mirrors.  The zero-weight
 Nielsen argument proves that no chain between those mirrors can close with
 zero or one mirror.  Two mirrors have exactly the curvature cost needed by
 the weight test; they do not create a coefficient-boundary diagram.
+
+**Provenance note (2026-08-22 audit).**  The step "relative asphericity
+includes injectivity of the coefficient group" is Bogley--Pride,
+*Aspherical relative presentations*, Proc. Edinburgh Math. Soc. 35 (1992),
+Section 2.2 (aspherical relative presentation ⟹ the coefficient group
+embeds); that theorem carries the whole fence and has no citation node of
+its own in this repository.

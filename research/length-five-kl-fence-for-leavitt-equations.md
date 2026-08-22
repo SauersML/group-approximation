@@ -46,10 +46,24 @@ full-support sign types are
 
 ```text
 +++++-    (five positive, one negative; degree 4),
-++++--    (four positive, two negative; degree 2).
+++++--    (four positive, two negative; degree 2; two minus signs at
+           cyclic distance 1),
++++-+-    (four positive, two negative; degree 2; distance 2),
+++-++-    (four positive, two negative; degree 2; distance 3).
 ```
 
 This is a search fence, not a length-six solution.  The available general
 length-six theorems require torsion-free coefficients, while the binary
 Leavitt unit group has explicit involutions.
 
+**Census correction and provenance (2026-08-22 audit).**  The `4+2`
+distribution has THREE cyclic classes up to inversion, rotation and
+`t <-> t^(-1)` (bracelets of length six with two marked beads: the two
+minus signs at distance 1, 2 or 3; reflection merges none), not one as an
+earlier version listed; the lane's only worked length-six candidate
+`(L6.1)` is of type `++++--`, so the classes `+++-+-` and `++-++-` have
+not been examined.  The Evangelidou length-five input is cited from its
+published abstract and has not been read at source in this repository;
+what must be confirmed there is that the length-five theorem is
+coefficient-unrestricted, which is exactly the strength this fence
+claims.

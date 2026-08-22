@@ -108,3 +108,14 @@ unspecified element to kill.
    `kl-violating-equation-over-leavitt-unit-group` and unchanged by the
    sharpening — is that this is a falsification instrument and a consistency
    constraint, not a plausible line of attack.
+
+**Status note (2026-08-22 audit).**  The explicit paired relators
+`(L6.2)/(L6.3)` asked about in the attempts above do NOT normally generate
+`N_2`: `leavitt-paired-quotient-passes-relative-weight-test` (relative
+weight test on the census labels) shows `H -> Q` is injective.  The
+length-six search space is also larger than the attempts suggest: the
+`4+2` sign distribution has three cyclic classes, of which only `++++--`
+has been worked (`length-five-kl-fence-for-leavitt-equations`).  Every
+fence recorded here is prose-only -- none sits in a `requires` -- so
+demoting one would not be flagged by `cairn`; read them as attempts, not
+as certified inputs.
