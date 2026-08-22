@@ -267,6 +267,18 @@ made universal identities in the group algebra.
   `y_i x_i=e`, so both D16 blocks are the identity and the charger sees zero,
   including in the rectangular model.  The missing datum is the crossed
   Gram/support coefficient, not a difference of two source holonomies.
+- **The crossed-Gram Pauli charge is exact but has a sectorwise gauge
+  escape.**  `leavitt-crossed-gram-pauli-charge-has-sectorwise-escape`
+  proves that genuinely controlled Pauli gates satisfy
+  `||[A,B]-1||_2^2=4 tau(F_0F_1)`.  However, on the four selector sectors a
+  second Pauli pair in the multiplicity factor can be activated only on the
+  overlap; its commutator phase cancels the label phase, leaving zero word
+  defect with overlap trace `1/4`.  All separate typed/sector-preserving
+  covariance relations survive.  If one extra packet flip connected all
+  four sectors into one irreducible type, Schur's lemma would leave one
+  global gauge and the exact lower bound would again be `4 tau(F_0F_1)`.
+  Thus the native zero coefficient/root commutator pays branch-range overlap
+  exactly after, but not before, common-packet authentication.
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
   `V direct_sum V` satisfy every four pairing identity while shrinking
