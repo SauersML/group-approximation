@@ -104,3 +104,15 @@ but its generated algebra is the full `M_d`, with `d` arbitrary.  Hence no
 fixed standard-polynomial/subhomogeneity estimate can charge high-type mass.
 The remaining argument must be metric and generator-local; it cannot first
 truncate the entire generated algebra by irreducible dimension.
+
+The strongest cardinality-free PVM orthogonalization theorem also lands
+exactly on this boundary.  `de-la-salle-full-pinching-rounds-one-reflection`
+rounds a reflection against an already exact joint PVM with constant `20`,
+but its input is the whole joint-pinching disturbance.  The exact Fourier
+calculation `joint-pinching-costs-linear-generator-gap` shows that averaged
+commutators with `k` commuting generators control that disturbance only with
+a sharp factor `k`, attained by a weight-one adjoint character.  Therefore
+iterating two-PVM orthogonalization cannot replace the missing parity-aware
+row/column coercivity.  A successful Newton argument must use the balanced
+parity layer to exclude or correct those low-weight adjoint modes before it
+invokes the orthogonalization theorem.
