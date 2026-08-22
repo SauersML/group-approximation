@@ -42,3 +42,8 @@ This is a fence, not a CE exclusion.  A nonamenable group can still be
 hyperlinear, and the Leavitt quotient's lack of finite quotients does not
 prevent `Gamma_A4` from having other finite quotients which do not factor
 through it.
+
+The fence is stable under arbitrary mixing, not only repeated amplification.
+By `atlas-root-ellipse-is-amplification-concave`, every dimension-weighted
+direct sum of nontrivial regular finite-quotient models still satisfies
+`F>=1`.  Root-energy square roots therefore do not provide a dilution loophole.

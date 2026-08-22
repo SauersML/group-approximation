@@ -195,3 +195,17 @@ ellipse ceiling itself still requires the unresolved joint-gap theorem.
   relevant only if its axioms encode matrix embeddability rather than merely
   positivity and the exact trace relations.  Any relaxation valid for all
   finite tracial von Neumann algebras must admit this escaping point.
+- **Amplification cannot dilute a blockwise counterexample.**
+  `atlas-root-ellipse-is-amplification-concave` proves that the ellipse
+  functional is positively homogeneous and concave in the four squared root
+  energies.  Since those squared energies average under direct sums,
+
+  ```text
+  F(direct sum_j U_j) >= sum_j theta_j F(U_j).
+  ```
+
+  In particular every direct sum of nontrivial regular finite-quotient models
+  still has `F>=1`; the scalar bound is sharp among binary nonzero energy
+  patterns.  Thus an amplified finite-quotient escape cannot be hidden in
+  favorable blocks.  This is a no-go for dilution, not construction of the
+  presently unknown finite quotient and not the matrix-specific ceiling.
