@@ -29,10 +29,11 @@ Then
 ```
 
 Consequently, for every canonical-trace matrix microstate sequence `U_n`
-of any fixed finite presentation of `Gamma`,
+of any fixed finite presentation of `Gamma`, and every packet exactification
+`p_n` with `||p_n-p(U_n)||_2=o(1)`,
 
 ```text
-||a(U_n)t(U_n)p(U_n)-t(U_n)p(U_n)b(U_n)||_2^2
+||a(U_n)t(U_n)p_n-t(U_n)p_n b(U_n)||_2^2
    ->2 tau_Gamma(p).                                  (HBR3)
 ```
 
@@ -51,4 +52,3 @@ row energy is `(HBR2)`.  A proof using error-correcting consistency must use
 a genuinely finite-matrix-only soundness theorem which fails in the regular
 factor.  Establishing that theorem is precisely the missing non-hyperlinear
 compiler, not a consequence of adding finitely many syntactic checks.
-

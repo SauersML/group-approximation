@@ -40,5 +40,12 @@ combination of traces of group words.  Approximate satisfaction of a fixed
 finite presentation transports the finitely many fixed group equalities
 used in this expansion with `o(1)` loss, and the canonical moment condition
 converges to the corresponding regular traces.  Hence `(HBP3)` gives
-`(HBR3)`.
+`(HBR3)` first with `p(U_n)`.  Replacing it by a packet exactification `p_n`
+changes the row by at most
 
+```text
+||a t(p_n-p(U_n))||_2+||t(p_n-p(U_n))b||_2
+ <=2||p_n-p(U_n)||_2=o(1),
+```
+
+so the same limit holds for the exactified carrier used in `(FHC1)`.
