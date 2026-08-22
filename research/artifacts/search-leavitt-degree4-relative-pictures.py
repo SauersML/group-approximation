@@ -244,6 +244,8 @@ def connected(vertex_count, pairs):
 def census(area, stop_on_hit=False):
     planar = 0
     exact_disks = 0
+    one_copy_disks = 0
+    one_copy_units = set()
     type_multisets = 0
     for choices in combinations_with_replacement(range(len(VERTEX_TYPES)), area):
         vertices = [VERTEX_TYPES[choice] for choice in choices]
@@ -282,14 +284,33 @@ def census(area, stop_on_hit=False):
             region_corners = []
             trivial = []
             targets_found = []
+            reduced_regions = []
             for region in regions:
                 corners = tuple(
                     vertices[halves[alpha[half]][0]][3][halves[alpha[half]][1]]
                     for half in region)
                 region_corners.append(corners)
                 factors = tuple(factor for corner in corners for factor in corner)
-                trivial.append(not reduce_free_product(factors))
+                reduced = reduce_free_product(factors)
+                reduced_regions.append(reduced)
+                trivial.append(not reduced)
                 targets_found.append(target_rotation(corners))
+            for outer, reduced in enumerate(reduced_regions):
+                if (len(reduced) == 1 and all(
+                        trivial[index] for index in range(len(regions))
+                        if index != outer)):
+                    one_copy_disks += 1
+                    one_copy_units.add((reduced[0][0], reduced[0][1]))
+                    if one_copy_disks <= 5:
+                        print("ONE_COPY_BOUNDARY", flush=True)
+                        print("area", area, "choices", choices, flush=True)
+                        print("vertex_types", [(v[0], v[1]) for v in vertices],
+                              flush=True)
+                        print("pairs", pairs, flush=True)
+                        print("regions", regions, "outer", outer, flush=True)
+                        print("outer_corners", region_corners[outer], flush=True)
+                        print("copy", reduced[0][0], "bergman_terms",
+                              len(reduced[0][1]), flush=True)
             for outer, target_offset in enumerate(targets_found):
                 if target_offset is not None and all(
                         trivial[index] for index in range(len(regions))
@@ -303,8 +324,10 @@ def census(area, stop_on_hit=False):
                           "target_offset", target_offset, flush=True)
                     print("region_corners", region_corners, flush=True)
                     if stop_on_hit:
-                        return type_multisets, planar, exact_disks
-    return type_multisets, planar, exact_disks
+                        return (type_multisets, planar, exact_disks,
+                                one_copy_disks, len(one_copy_units))
+    return (type_multisets, planar, exact_disks, one_copy_disks,
+            len(one_copy_units))
 
 
 def main():
@@ -315,7 +338,8 @@ def main():
     for area in range(2, args.max_area + 1):
         result = census(area, args.stop_on_hit)
         print(f"area={area} type_multisets={result[0]} planar={result[1]} "
-              f"exact_target_disks={result[2]}", flush=True)
+              f"exact_target_disks={result[2]} one_copy_disks={result[3]} "
+              f"one_copy_units={result[4]}", flush=True)
         if result[2] and args.stop_on_hit:
             break
 

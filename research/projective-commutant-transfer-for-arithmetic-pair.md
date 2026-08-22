@@ -293,6 +293,19 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   verbatim: any failure of `(PRT1)` along microstates is pinned to the
   even-level/non-congruence vertex sector, i.e. the two-adic solenoid
   wall of `far-sector-is-solenoid-measure-rigidity`.
+- **Uniform odd-correctable projective modulus.**
+  `sl3-odd-correctable-sector-has-uniform-projective-modulus` upgrades the
+  established odd-congruence commutant collapse to arbitrary projective
+  witnesses.  If the ambient defect, subgroup projective energy, and
+  distance of the `SL_3(Z)` restriction to an exact congruence
+  representation of level prime to `p` all tend to zero, then projective
+  energy at `h` tends to zero with a uniform (not presently linear) modulus.
+  The proof uses perfectness in the ultraproduct and requires no canonical
+  trace.  Hence every fixed-gap failure of `(PRT1)` is now rigorously confined
+  to exactifications whose levels are divisible by the denominator prime
+  (including mixed levels), or to lattice tuples uniformly far from every
+  exact representation.  For `p=2`, no purely odd correctable far sector
+  remains; this does not yet bound the two-primary mass in a mixed level.
 - **Projective far-defect formula (now a theorem).**  Established as
   `projective-far-defect-formula`: doubling the adjoint representation
   cancels the phases (`U otimes conj(U)` is exactly `Lambda`-fixed),

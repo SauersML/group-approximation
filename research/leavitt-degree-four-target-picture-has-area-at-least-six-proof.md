@@ -52,14 +52,17 @@ is an exact identity in the full coefficient group.
 The exact output, computed through the permitted MSI wrapper, is
 
 ```text
-area=2 type_multisets=16 planar=40 exact_target_disks=0
-area=3 type_multisets=0  planar=0  exact_target_disks=0
-area=4 type_multisets=100 planar=5954 exact_target_disks=0
-area=5 type_multisets=0  planar=0  exact_target_disks=0
+area=2 type_multisets=16 planar=40 exact_target_disks=0 one_copy_disks=0
+area=3 type_multisets=0  planar=0  exact_target_disks=0 one_copy_disks=0
+area=4 type_multisets=100 planar=5954 exact_target_disks=0 one_copy_disks=0
+area=5 type_multisets=0  planar=0  exact_target_disks=0 one_copy_disks=0
 ```
 
-The target test permits every rotation at a coefficient-letter boundary and
-both orientations of `[c_0,d_0]`.  Hence it includes conjugate outer-boundary
-readings induced by changing the marked corner.  Odd areas have no admissible
-relator/orientation multiset: the total positive and negative `z` occurrences
-cannot balance.  This proves the claimed lower bound of six.
+The stronger `one_copy_disks` test accepts an outer region whenever its exact
+free-product normal form is one nonidentity block in any of the four factors;
+the other regions must all be identities.  Thus its zero count rules out
+*every* coefficient-kernel disk through area four.  The target test separately
+permits every rotation at a coefficient-letter boundary and both orientations
+of `[c_0,d_0]`.  Odd areas have no admissible relator/orientation multiset: the
+total positive and negative `z` occurrences cannot balance.  This proves the
+claimed lower bound of six.
