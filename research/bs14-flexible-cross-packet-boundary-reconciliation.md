@@ -138,10 +138,10 @@ compressed Weil packets.
   and a spectral projection of the product of the two carrier projections
   recovers it stably.  This also gives a sharp one-cubic no-go: one carrier
   contains source and exit with equal rank and cannot distinguish them.
-  The surviving arbitrary-model question is whether small presentation
-  defect forces such a two-carrier angle gap (after discarding continuously
-  correctable low singular modes), or whether heterogeneous scalar packets
-  can make the exit carriers asymptotically parallel and recycle the source.
+  General scalar phases do make the exits asymptotically parallel, as
+  recorded below.  Thus the surviving arbitrary-model question is how to
+  separate energy-paid active parallel modes from continuously correctable
+  passive modes, not whether every carrier has a uniform angle.
 
 - **Canonical determinant-neutral packets have a large uniform carrier
   angle.**
@@ -170,6 +170,24 @@ compressed Weil packets.
   fixed `(K,M)` is not enough: its radius may decay faster than `alpha`, so
   the preconditioned tuple never enters the local basin.  This is the exact
   uniformity datum a finite-level packet proof must report.
+
+- **General scalar phases refute a uniform angle but obey an energy-angle
+  dichotomy.**  `scalar-bs14-exit-angle-energy-dichotomy` computes the exit
+  cosine from the return-shift numerical range:
+
+  ```text
+  kappa=|(1+a)^2<z,S^(-2)RSz>-a^2|/(1+2a).
+  ```
+
+  Long scalar cycles with return phase chosen so the weighted shift has
+  monodromy one admit Gram data with `kappa->1`.  Thus the canonical Weil
+  angle cannot be extended phase-uniformly.  However the first-cubic energy
+  satisfies `f(a)>=(3/8)(1-a^2)^2`: after thresholding the source coupling,
+  active parallel directions have rank charged by the relator energy and
+  passive directions have total normalized-HS coupling at most
+  `sqrt(tau)`.  The remaining task is to turn this active/passive split into
+  one global multiplicity-semigroup repair; searching for an unconditional
+  angle gap is now fenced.
 
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
