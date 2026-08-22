@@ -395,7 +395,9 @@ envelope lane (which reaches a group factor by duality and needs neither
 embedding universality nor Paddock--Slofstra 5.8) are live and not
 subsumed by the four named cores.  Honest count: the program is
 `CORE A or B or C or D or E(Pestov)` plus three smaller independent lanes.
-(4) *Tool note.*  `bin/cairn frontier` lists
-`atlas-a4-rank-three-core-commutant-collapse` as an open goal-path hole
-although the compiled graph and `cairn why` report it REFUTED; the
-frontier view over-counts by one.
+(4) *Tool note, withdrawn.*  An earlier draft of this note reported that
+`bin/cairn frontier` listed `atlas-a4-rank-three-core-commutant-collapse`
+as an open hole while `cairn why` called it refuted; on re-check the claim
+was OPEN when that listing was taken and was refuted shortly afterwards by
+`atlas-14-core-q19243-gl5-countermodel`, and the frontier view now agrees.
+No tool defect.
