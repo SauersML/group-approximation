@@ -235,6 +235,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:quotclosure": (
         "Sofic/LiteralMFQuotientControls",
         "GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure"),
+    "thm:exact-mf-residual": (
+        "PAPER",
+        "Malcev residual-finiteness theorem; Shulman, Theorem 10; "
+        "normal forms for amalgamated free products"),
     "thm:torsionfree": (
         "LITERATURE",
         "Fournier-Facio, Section 2; Hull, Theorem 7.1; Osin, Lemma 7.1"),
@@ -303,6 +307,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
+    "thm:exact-mf-residual": ["thm:signfree", "cor:pullback",
+                               "cor:exactradical"],
     "thm:torsionfree": ["cor:intrinsic-nk"],
 }
 
@@ -320,18 +326,22 @@ def generate(tex: Path) -> dict:
         raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
         module, declaration = CLAIM_TARGETS[claim.claim_id]
-        if module == "LITERATURE":
+        if module in {"PAPER", "LITERATURE"}:
             if claim.badges:
                 raise SystemExit(
-                    f"{claim.claim_id}: literature-input claims carry no "
+                    f"{claim.claim_id}: non-Lean claims carry no "
                     "in-environment margin declaration")
+            paper_proof = module == "PAPER"
             entries.append({
                 "id": claim.claim_id,
                 "environment": claim.environment,
                 "title": claim.title,
                 "statement_sha256": claim.statement_sha256,
-                "status": "literature-input",
+                "status": "paper-proof" if paper_proof else "literature-input",
                 "object_identity": (
+                    "The complete proof is given in the manuscript; its "
+                    "external inputs are listed explicitly."
+                    if paper_proof else
                     "The printed environment consumes the stated literature "
                     "input; its machine-checked inputs are badged in the "
                     "surrounding discussion."),
@@ -339,6 +349,7 @@ def generate(tex: Path) -> dict:
                 "extra_assumptions": [],
                 "external_inputs": [declaration],
                 "coverage_gap": (
+                    "" if paper_proof else
                     "The literature input itself is not formalized."),
                 "lean": [],
             })
@@ -402,10 +413,10 @@ def generate(tex: Path) -> dict:
         "schema_version": 1,
         "manuscript": tex.name,
         "status_policy": (
-            "Every numbered theorem-like environment is exact. Each carries "
-            "exact-role margin declarations. The manifest records explicitly "
-            "whether coverage is literal, collective across clauses, or an "
-            "inclusion specialization of a more general proposition."),
+            "Every numbered theorem-like environment records its proof "
+            "boundary explicitly: exact Lean counterpart, complete paper "
+            "proof, or stated literature input. Exact claims carry exact-role "
+            "margin declarations; paper and literature claims carry none."),
         "claims": entries,
     }
 

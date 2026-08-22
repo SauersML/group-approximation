@@ -146,22 +146,29 @@ analogue of the invisible subgroups of \cite[Definitions~2.5--2.7]
 {SlofstraCorrelations} and of the metric-ultraproduct approximation framework of
 \cite{NST}"), which is the sentence the ledger's `RA.*` rows sit beside.
 
-### INT.26 — the rounding and corner procedures
+### INT.26 — the cross-norm compression and corner procedures
 
-*Sentence.* "Bachner--Dogon--Lubotzky develop the operator-norm rounding,
-compression, and polar-correction procedures used in
-Section~\ref{sec:conj} \cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
-Proposition~1.5]{BDL}, and handle a finite normal subgroup by a
-character-isotypic corner \cite[proof of Proposition~1.6]{BDL}."
+*Sentences.* "For the rounding, compression, and polar-correction
+implementation, we follow Bachner--Dogon--Lubotzky
+\cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
+Proposition~1.5]{BDL}.  Their involution-rounding lemma, in turn, is due to
+De~Chiffre--Glebsky--Lubotzky--Thom \cite[Proposition~1.4]{DGLT}.  The
+normalization of a distinguished central involution by passage to its negative
+eigenspace appears earlier in Slofstra
+\cite[Lemma~3.9]{SlofstraCorrelations} and Slofstra--Vidick
+\cite[proof of Proposition~2.7]{SlofstraVidick}."  The finite-normal
+generalization uses BDL's character-isotypic corner
+\cite[proof of Proposition~1.6]{BDL}.
 
-*Keys.* `DGLT`, `BDL`, `GR`, `Gl19`.  *Anchor.* `p:intro-dglt`.
-*Load-bearing.* no.  *Recorded.* 2026-08-17.
+*Keys.* `DGLT`, `BDL`, `SlofstraCorrelations`, `SlofstraVidick`, `GR`, `Gl19`.
+*Anchor.* `p:intro-dglt`.  *Load-bearing.* no.  *Recorded.* 2026-08-17;
+attribution refined 2026-08-22.
 
 *Caution.* This is the closest of the sixteen to being load-bearing, and it is
-the one to re-check if the attribution list changes: the procedures it names are
-re-proved in `Section~\ref{sec:conj}` rather than quoted, and the ledger grades
-those proofs on their own (`FN.*`).  The sentence is an attribution of priority,
-not an import.
+the one to re-check if the attribution list changes: the implementation is
+re-proved in `Section~\ref{sec:sign}` rather than quoted, and the ledger grades
+that proof on its own (`CN.*`).  These sentences assign provenance; they are
+not imports into the proof.
 
 ### INT.27 — the group-MF framework
 

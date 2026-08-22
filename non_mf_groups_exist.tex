@@ -141,8 +141,9 @@ We prove that non-MF groups exist, resolving in the negative the
 longstanding question of whether every countable group is MF.  Our principal example is an
 explicit finitely presented sofic group.
 
-The proof follows the central-involution strategy of
-Bachner--Dogon--Lubotzky.  The new ingredient is a one-sided Kazhdan
+At the final obstruction step, we adapt the operator--Hilbert--Schmidt
+compression argument of Bachner--Dogon--Lubotzky for Deligne-type groups.
+The new ingredient is a one-sided Kazhdan
 transport theorem: in every operator-norm asymptotic representation,
 one-sided conjugation preserves the Hilbert--Schmidt asymptotic commutant
 of a property-\textup{(T)} subgroup.  This forces every homomorphism into
@@ -234,20 +235,19 @@ MF $C^*$-algebra.
 \end{mainthm}
 
 The construction also yields a torsion-free finitely presented non-MF group
-(Theorem~\ref{thm:torsionfree}).  The MF residual of the explicit group is
-computed exactly in Section~\ref{sec:exact-residual}.
+(Theorem~\ref{thm:torsionfree}).  The exact MF residual of the explicit group
+is computed in Theorem~\ref{thm:exact-mf-residual}.
 
 \subsection*{Outline of the proof}
 
-The overarching strategy goes back to Bachner--Dogon--Lubotzky
-\cite[Proposition~1.5]{BDL}: obstruct MF by proving that a distinguished
-central involution cannot be separated from the identity by operator-norm
-asymptotic representations.  Their argument compresses to the involution's
-$(-1)$-eigenspace and invokes operator--Hilbert--Schmidt stability.  The new
-ingredient here is a mechanism that supplies the required
-Hilbert--Schmidt rigidity directly from one-sided conjugation of a
-property-\textup{(T)} subgroup, without assuming operator--Hilbert--Schmidt
-stability of the ambient group.
+The final analytic maneuver is adapted from the
+operator--Hilbert--Schmidt compression argument of
+Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  Starting from a
+separated central involution, their proof passes to its negative spectral
+corner and uses operator--Hilbert--Schmidt stability to obtain nearby genuine
+finite-dimensional representations.  Here the same corner reduction is
+combined with a different source of Hilbert--Schmidt rigidity: one-sided
+conjugation of a property-\textup{(T)} subgroup.
 
 Multiplicative defects are measured in operator norm; asymptotic-commutant
 estimates are measured in normalized Hilbert--Schmidt norm.  Let $L\le H$
@@ -1001,14 +1001,14 @@ contradicts $I\in\omega$.
 
 \section{The central involution obstruction}\label{sec:sign}
 
-This section follows the central-involution strategy of
-Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  In their setting,
-operator--Hilbert--Schmidt stability replaces the compressed asymptotic
-representation by nearby genuine finite-dimensional representations,
-which map the involution to the identity.  Here
-Theorem~\ref{thm:kazhdan-transport} instead forces the word whose square
-is the involution to be Hilbert--Schmidt close to the identity on the
-compressed corner.
+We now isolate the final obstruction.  Its corner reduction is modeled on the
+operator--Hilbert--Schmidt compression argument of Bachner--Dogon--Lubotzky
+\cite[Proposition~1.5]{BDL}.  Their proof uses
+operator--Hilbert--Schmidt stability to replace the compressed asymptotic
+representation by nearby genuine finite-dimensional representations.  Here
+Theorem~\ref{thm:kazhdan-transport} replaces that stability step: on the
+compressed corner, it forces the word whose square is the involution to be
+Hilbert--Schmidt close to the identity.
 
 Let $w$ be a central involution of $H$ and let $\Theta$ be a
 homomorphism to $\U(\mathcal Q)$ with $\Theta(w)\ne1$.  Then
@@ -1066,12 +1066,14 @@ which tends to $0$.  Adding the three polar corrections gives
 \]
 \end{proof}
 
-The rounding, compression and polar-correction estimates of
-Lemma~\ref{lem:corner} follow Bachner--Dogon--Lubotzky
-\cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
-Proposition~1.5]{BDL}.  Compression to a negative eigenspace appears
-in Slofstra--Vidick \cite[proof of
-Proposition~2.7]{SlofstraVidick}.  The finite normal case,
+For the rounding, compression, and polar-correction implementation, we follow
+Bachner--Dogon--Lubotzky \cite[Lemmas~2.2--2.3, Proposition~2.4, and the
+proof of Proposition~1.5]{BDL}.  Their involution-rounding lemma, in turn, is
+due to De~Chiffre--Glebsky--Lubotzky--Thom
+\cite[Proposition~1.4]{DGLT}.  The normalization of a distinguished central
+involution by passage to its negative eigenspace appears earlier in Slofstra
+\cite[Lemma~3.9]{SlofstraCorrelations} and Slofstra--Vidick
+\cite[proof of Proposition~2.7]{SlofstraVidick}.  The finite normal case,
 Theorem~\ref{thm:criterion}, uses the character-isotypic corner of
 \cite[proof of Proposition~1.6]{BDL} together with one-sided
 conjugation of a property-\textup{(T)} subgroup.
@@ -3085,7 +3087,9 @@ quotient of $H$ (Proposition~\ref{prop:univquot}): every homomorphism
 from $H$ to an MF group factors through it.
 
 \subsection{The exact residual of $E$}\label{sec:exact-residual}
-For the literal group $E$, put $d=\hat c=tct^{-1}$,
+
+\begin{theorem}[the exact MF residual]\label{thm:exact-mf-residual}
+For the group $E$ of Definition~\ref{def:E}, put $d=\hat c=tct^{-1}$,
 $u=[d,v_1]$, and $D=\langle\!\langle u\rangle\!\rangle_E$.  Then
 \[
  \operatorname{Res}_{\mathrm{MF}}(E)=D=N_{\mathrm{conj}},
@@ -3101,6 +3105,7 @@ Theorem~\ref{thm:signfree}, then
  \qquad
  \operatorname{Res}_{\mathrm{MF}}(E)=q^{-1}(D_{\mathrm{coll}}).
 \]
+\end{theorem}
 
 \begin{proof}
 $d$ commutes with the linear part of $\mathcal B$ and with every

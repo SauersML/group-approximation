@@ -627,8 +627,6 @@ b232b79afdb1	ledger	PM.04	operator-norm separation of distinct permutation matri
 62d2253868b1	ledger	CO.21	inner action on the invariant rank-normalized subspace
 bb0656ff4c0d	ledger	SF.10	the surviving product of two distinct Clifford generators
 23b0fa9dae97	ledger	SF.10 SF.11	nontrivial residual element and non-MF quotient
-d49beb41edc6	ledger	ER.01 ER.02 ER.03 ER.04	notation and scope of the exact-residual calculation
-08599d9e5ebf	structural	-	lead-in to the displayed exact residual identities
 7c536d23eb4b	ledger	ER.03	the quotient E/D is MF
 40e04965568c	ledger	ER.04	the corresponding residual identities in the sign quotient
 8870c25baa40	ledger	ER.01	commutation used in the parity-orbit calculation
@@ -699,10 +697,6 @@ ed2a6dce24e3	attribution	-	re-reviewed after the manuscript revision
 02c82253eca2	attribution	-	re-reviewed after the manuscript revision
 aa866f9859dc	attribution	-	re-reviewed after the manuscript revision
 202f1226191b	ledger	TF.04	re-reviewed after the manuscript revision
-017b531d0c28	structural	-	re-reviewed after the manuscript revision
-9147c109b797	attribution	-	re-reviewed after the manuscript revision
-f6a0429ab407	attribution	-	re-reviewed after the manuscript revision
-6ff02e4c2280	ledger	INT.03	re-reviewed after the manuscript revision
 143776191ec1	ledger	INT.03	re-reviewed after the manuscript revision
 e4a1585e15dc	attribution	-	re-reviewed after the manuscript revision
 1c79c1b0d45a	attribution	-	re-reviewed after the manuscript revision
@@ -800,7 +794,6 @@ cf54a6685ff6	ledger	TF.05	re-reviewed after the manuscript revision
 
 # Assignments for the 2026-08-22 sentence-level writing pass; each row was
 # checked against the printed sentence and the named ledger rows or declarations.
-ebf834e0247f	attribution	-	credits the BDL central-involution strategy
 a8a29bb41ce6	ledger	INT.04 INT.05	the transport consequence kills the involution; the Clifford quotient witnesses it
 b7780b3a0f5f	ledger	AE.06	the tensor-power amplification lemma
 95adf139d93b	ledger	AE.05 AE.06	amplification makes the element-dependent separation uniform
@@ -811,13 +804,23 @@ bd88209bd9d0	ledger	AE.07	tensor powers multiply multiplicative defects by at mo
 4a9d1cf67212	ledger	AE.11	the stage model supplies the local data on F
 d27ae7eab8a1	attribution	-	compares with rank amplification for linear sofic groups
 6a3b3702fc0a	definition	GroupApproximation.HasKazhdanPropertyTComplex	recalls the Kazhdan-pair convention the lemma uses
-56815069018a	attribution	-	credits the BDL central-involution strategy
-d9e3629aed67	attribution	-	describes the stability route of the BDL argument
-88f86ea72cd1	ledger	INT.03 INT.04	what the transport theorem gives on the compressed corner
 5b1d13f5367f	structural	-	points to the figure
 0da4aadf25fb	ledger	BN.06	the sign quotient is an ordinary permutational wreath product
 0d72d16e1fa7	structural	-	forward pointer to the exact-residual section
 64216c4d3be0	ledger	ER.04	2-norm triviality alone does not give the corona statement
+
+# Assignments for the 2026-08-22 attribution and exact-residual theorem pass.
+38099bdb56cd	attribution	-	credits BDL specifically for the final operator--Hilbert--Schmidt compression argument
+0a70eae38bc2	structural	-	forward pointer to the numbered exact-residual theorem
+abaccf5b9b67	attribution	-	identifies BDL Proposition 1.5 as the source of the final analytic maneuver
+63bd08a3b586	attribution	-	describes the stability step in BDL Proposition 1.5
+5af730719518	ledger	INT.03	identifies one-sided Kazhdan transport as the different Hilbert--Schmidt rigidity input
+f5acac04a813	structural	-	transition into the final obstruction
+854dc7d2f733	attribution	-	credits BDL specifically for the corner reduction
+dbb8ebd0d2dd	attribution	-	describes the stability step in BDL Proposition 1.5
+2a8ff6babad2	ledger	INT.03 INT.04	what Kazhdan transport gives on the compressed corner
+170efd0ca92e	ledger	ER.01 ER.02 ER.03 ER.04	notation and scope of the exact-residual theorem
+a3dad68882b3	structural	-	lead-in to the displayed exact residual identities
 
 # Assignments for the 2026-08-22 reader-visible wave: verified citations,
 # the Theorem D restructure, and the transport-conjugator rename.

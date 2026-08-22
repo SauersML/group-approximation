@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment is exact. Each carries exact-role margin declarations. The manifest records explicitly whether coverage is literal, collective across clauses, or an inclusion specialization of a more general proposition.",
+  "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: exact Lean counterpart, complete paper proof, or stated literature input. Exact claims carry exact-role margin declarations; paper and literature claims carry none.",
   "claims": [
     {
       "id": "thm:A",
@@ -1197,6 +1197,25 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "thm:exact-mf-residual",
+      "environment": "theorem",
+      "title": "the exact MF residual",
+      "statement_sha256": "f30bd75a8679b824961597cb1434dc580ee2c48023a9fe21423ec53ea6be9d68",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:signfree",
+        "cor:pullback",
+        "cor:exactradical"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Malcev residual-finiteness theorem; Shulman, Theorem 10; normal forms for amalgamated free products"
+      ],
+      "coverage_gap": "",
+      "lean": []
     },
     {
       "id": "lem:faithfultrace",

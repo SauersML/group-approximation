@@ -3,16 +3,19 @@
 
 Unlike the margin-link checker, this gate starts from *every* numbered
 theorem-like environment.  Each environment must occur exactly once in the
-JSON manifest and must carry one exact declaration mapping.  The manifest
-records the source module and declaration, paper dependencies, external
-inputs, and the proposition's object identity.
+JSON manifest.  A machine-checked claim carries an exact declaration mapping;
+a paper-proved claim or a stated literature input records that boundary
+explicitly.  The manifest records source declarations, paper dependencies,
+external inputs, and the proposition's object identity.
 
 The normalized SHA-256 digest is deliberately a digest of the printed
 statement, not of its proof or nearby prose.  Editing a quantified object,
 hypothesis, target, or conclusion therefore forces an explicit manifest
 review.  This is still not an automated proof of semantic equivalence; exact
 status ultimately requires a Lean wrapper with the same outer proposition.
-The gate does make that human judgment complete, explicit, and drift-proof.
+The gate does make that human judgment complete, explicit, and drift-proof,
+without requiring the manuscript to hide a theorem merely because it is
+proved on paper rather than in Lean.
 """
 
 from __future__ import annotations
@@ -47,7 +50,7 @@ RESULT_ENVS = (
     "claim",
     "example",
 )
-STATUSES = {"exact", "literature-input"}
+STATUSES = {"exact", "paper-proof", "literature-input"}
 ROLES = {"exact"}
 BADGE_TO_ROLE = {
     "verified": "exact",
@@ -271,12 +274,12 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
             problems.append(
                 f"{prefix}: forbidden nonexact manuscript badge(s): {rendered}"
             )
-        if entry.get("status") == "literature-input":
+        if status in {"paper-proof", "literature-input"}:
             if claim.badges:
                 problems.append(
-                    f"{prefix}: literature-input claim must carry no "
+                    f"{prefix}: {status} claim must carry no "
                     "in-environment badge")
-            if not entry.get("external_inputs"):
+            if status == "literature-input" and not entry.get("external_inputs"):
                 problems.append(
                     f"{prefix}: literature-input claim must state its "
                     "external inputs")
@@ -302,7 +305,7 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         gap = entry.get("coverage_gap")
         if not isinstance(gap, str):
             problems.append(f"{prefix}: `coverage_gap` must be a string")
-        elif gap and entry.get("status") != "literature-input":
+        elif gap and status != "literature-input":
             problems.append(f"{prefix}: exact claim cannot record a coverage gap")
 
         identity = entry.get("object_identity")
@@ -313,8 +316,10 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         if not isinstance(lean, list):
             problems.append(f"{prefix}: `lean` must be a list")
             lean = []
-        if not lean and entry.get("status") != "literature-input":
+        if not lean and status == "exact":
             problems.append(f"{prefix}: exact claim must list a Lean declaration")
+        if lean and status != "exact":
+            problems.append(f"{prefix}: {status} claim cannot list a Lean declaration")
 
         declared_refs: set[tuple[str, str, str]] = set()
         for position, ref in enumerate(lean, 1):
@@ -361,7 +366,7 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
                 )
 
         roles = {ref.get("role") for ref in lean if isinstance(ref, dict)}
-        if "exact" not in roles and entry.get("status") != "literature-input":
+        if "exact" not in roles and status == "exact":
             problems.append(f"{prefix}: exact status requires an exact Lean mapping")
         if entry.get("extra_assumptions"):
             problems.append(f"{prefix}: exact status cannot retain extra formal assumptions")
