@@ -155,3 +155,18 @@ or genuinely nonstationary coefficient data.
   multiplication on moving low-rank directions and use the thirteen Atlas
   word formulas to cancel those violations; a functorial coefficient
   amplification cannot work.
+
+- **Low-rank bridges out of a fixed-width phase cannot become cyclic.**
+  `atlas-fixed-width-phases-resist-low-rank-bridging` treats the proposed
+  perturbation of a direct amplification of the exact multiplicity-two
+  phase.  If the whole chart change moves by rank `r`, each of its `4^4`
+  coefficient generators moves by rank at most `2r`.  All coefficient words
+  applied to a seed `U` remain in the tensor product of the fixed-width
+  factor with the passive-coordinate span of `U` and those finitely many
+  error images.  Quantitatively, for width `s`,
+  `dim(C_TU)<=s^2(dim U+512r)`.  Thus an `o(k)` seed plus an `o(k)` bridge
+  cannot fill a `sk`-dimensional multiplicity space.  Rank-one outer-product
+  bridging, even though it changes every fixed residual by only bounded
+  rank, cannot supply `(LRN3)`.  A countermodel must move linearly far from
+  every fixed-width amplified coefficient phase, not merely connect its
+  multiplicity copies on a low-rank set.
