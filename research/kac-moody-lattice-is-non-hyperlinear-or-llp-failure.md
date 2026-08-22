@@ -45,4 +45,8 @@ Kac--Moody lattices are not: they are amalgams of finite groups of Lie
 type along a chamber, `Lambda = *_(chamber) P_J`, a complex of FINITE
 groups, and complexes of finite groups over non-tree nerves have no
 soficity permanence theorem).  Conversely, no LLP result reaches a
-Kazhdan group (`non-rf-kazhdan-group-with-llp-full-c-star-algebra`).
+Kazhdan group (`non-rf-kazhdan-group-with-llp-full-c-star-algebra`), and
+no LLP refutation reaches these lattices either:
+`twin-lattices-exclude-known-llp-fences` excludes every known
+LLP-failure group as a subgroup, and the direct cohomological mechanism
+is vacuous at simple groups.

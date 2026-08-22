@@ -114,12 +114,15 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   (Ozawa, as quoted by Ioana--Spaas--Wiersma p. 2), which with (T) and
   Kirchberg forces residual finiteness — the same dichotomy as
   `llp-non-rf-kazhdan-group-is-non-hyperlinear` seen from the C*-side.)
-  For the Kac--Moody candidates the one LIVE refutation risk is therefore
-  a fenced SUBGROUP: whether `Lambda_(2,4,6)(q)` contains a standard
-  relative-(T) pair `Z^2 rtimes F_2` is not recorded — its `Z^2`
-  subgroups arise from commuting hyperbolic pairs acting on the two
-  building factors, and the normalizer structure of the corresponding
-  flats decides the question.
+  For the Kac--Moody candidates the subgroup risk is now CLOSED as well:
+  `twin-lattices-exclude-known-llp-fences` (Bridson semisimplicity +
+  properness + the flat torus theorem) shows a twin building lattice
+  normalizes no free abelian subgroup with infinite `GL_k(Z)`-image, so
+  no `Z^2 rtimes F_2` standard pair, no `Z^2 rtimes SL_2(Z)`, no Sym^2
+  pair and no `SL_n(Z)` (`n >= 3`) embeds.  Every known LLP-refutation
+  route — direct Theorem A and subgroup permanence alike — is therefore
+  provably unavailable at the simple Kazhdan Kac--Moody lattices; the
+  hole is open there with no published mechanism pointing either way.
 - **Thom's groups are on the wrong side.**  Thom's hyperlinear Kazhdan
   groups without the factorization property (Groups Geom. Dyn. 4 (2010))
   are non-RF Kazhdan and hyperlinear, hence by the theorem their full
