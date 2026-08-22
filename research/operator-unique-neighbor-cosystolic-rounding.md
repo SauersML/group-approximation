@@ -63,3 +63,12 @@ this norm estimate.  Conversely the parity term in `(OUC1)` is essential:
 complete-pair energy but stays a constant distance from all commuting
 tuples.  Thus the exact new analytic target is an operator-valued LTC plus
 kernel-killing bootstrap, not generic almost-commuting stability.
+
+There is no additional exact atlas-agreement obstruction hidden in the face
+PVMs.  `binary-face-pvm-is-determined-by-coordinate-reflections` reconstructs
+each bounded binary face from its coordinate marginals, and
+`complete-overlay-glues-exact-ldpc-face-pvms` constructs one global code PVM
+at zero defect.  Hence an agreement theorem for separate face gauges would
+attack the wrong object.  The unresolved estimate is precisely uniform
+approximate correction of the shared coordinate reflections; after that,
+the bounded faces follow by the Lipschitz reconstruction formula.
