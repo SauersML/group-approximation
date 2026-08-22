@@ -43,6 +43,28 @@ invariant vector in `HS(H)` has no operator-norm bound, but the limit of
 lazy Kazhdan averages of `P` is a positive contraction, and only then does
 the spectral cut-off at `1/2` give a projection of the right rank.
 
+**Ultraproduct corollary.**  Let `rho_n` be genuine finite-dimensional
+unitary representations of a Kazhdan `Gamma` and
+`M = prod_U M_(d_n)` the tracial ultraproduct, `pi = [rho_n]`.  Then
+
+```text
+pi(Gamma)' cap M = prod_U ( rho_n(Gamma)' cap M_(d_n) ) :          (KA3)
+```
+
+any `u in pi(Gamma)' cap M` lifts to a bounded sequence `(u_n)` with
+`|| [u_n, rho_n(s)] ||_(2,d_n) -> 0` for the finite Kazhdan set, and the
+lazy averages `P_inv(u_n) in rho_n(Gamma)'` (contractions, as in the
+proof) satisfy `|| P_inv(u_n) - u_n ||_(2,d_n) -> 0`; the reverse
+inclusion is levelwise.  So on the exact sector the relative commutant is
+itself an ultraproduct of finite-dimensional commutants — the
+normalized-HS analogue of Alekseev--Thom's theorem that the centralizer
+of a sofic embedding of a Kazhdan group is a metric ultraproduct of
+permutation centralizers (arXiv:2608.05362), and the standalone form of
+the "(T)-lifting into the congruence commutant tower" steps of
+`odd-congruence-lambda-exact-sector-collapses`.  For INEXACT microstates
+nothing of the sort holds — that gap is the correctability frontier
+(`sl3z-regular-microstates-are-congruence-correctable`).
+
 **What it is not.**  It does not correct an almost-REPRESENTATION: if
 `pi` is only approximately multiplicative, `Ad pi` is not a
 representation and property (T) has nothing to act on.  For finite
