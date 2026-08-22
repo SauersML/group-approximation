@@ -24,6 +24,7 @@ import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
+import GroupApproximation.Sofic.OperatorMFPairAmplification
 
 /-!
 # Exact outer-form declarations for the non-MF manuscript
@@ -57,6 +58,25 @@ theorem manuscriptMFDefinitionEquivalences :
   exact ⟨isCDEOperatorMF_iff_isOperatorMF G,
     OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one,
     isOperatorMFIncreasing_iff⟩
+
+open scoped Matrix.Norms.L2Operator in
+/-- The bounded tensor-power amplification lemma used to normalize local
+operator-norm separation to the constant one. -/
+theorem manuscriptTensorAmplification :
+    ∀ (Y : Type u) [Fintype Y] [DecidableEq Y] [Nonempty Y]
+      (A B : Matrix Y Y ℂ),
+      A ∈ Matrix.unitaryGroup Y ℂ →
+      B ∈ Matrix.unitaryGroup Y ℂ →
+      ∀ (δ : ℝ), 0 < δ → δ ≤ ‖A - B‖ →
+      ∀ (N : ℕ), 8 < (N : ℝ) * δ ^ 2 →
+      ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧
+        1 ≤ ‖OperatorNormAmplification.opTensorPow A p -
+          OperatorNormAmplification.opTensorPow B p‖ := by
+  intro Y _ _ hY A B hA hB δ hδ hsep N hN
+  obtain ⟨p, hp1, hpN, hp⟩ :=
+    OperatorNormAmplification.exists_tensorPower_pair_far
+      hY hA hB hδ hsep N hN
+  exact ⟨p, hp1, hpN, le_of_lt hp⟩
 
 /-! ## Finite-dimensional obstruction -/
 
