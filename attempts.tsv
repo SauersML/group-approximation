@@ -87,3 +87,4 @@
 32552798000	2026-08-22T04:57:38Z	GroupApproximation/Sofic/InvolutionCollapseEndpointPrep.lean	eventually_bVec_eq_zero_of_orbit_fixed
 32555103056	2026-08-22T05:45:25Z	GroupApproximation/Sofic/LiteralSoficEndpoint.lean	splitHom_injective
 32555918181	2026-08-22T06:03:25Z	GroupApproximation/Sofic/MFNonsoficDoubleEndpoint.lean	not_isSofic_freeLamp_of_centralizerNormalization
+32558459053	2026-08-22T07:03:33Z	GroupApproximation/Sofic/SplitExtensionEndpoint.lean	not_isOperatorMF_wreath
