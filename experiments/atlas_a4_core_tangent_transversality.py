@@ -16,6 +16,7 @@ projections.  External multiplicity does not change either result.
 from collections import deque
 
 import numpy as np
+from scipy.sparse.linalg import LinearOperator, eigsh
 
 from atlas_a4_packet_generation import matrix_order, select_packet, x_lengths
 from atlas_a4_rank_three_core import H18_LABEL_HEX, matrix
@@ -74,6 +75,33 @@ def range_projection(columns, tolerance=1e-10):
     return basis @ basis.T, rank
 
 
+def left_coset_blocks(group, subgroup):
+    """Index blocks for the left-subgroup orbits in the regular action."""
+    group_keys = sorted(group)
+    index = {key: i for i, key in enumerate(group_keys)}
+    subgroup_values = [subgroup[key] for key in sorted(subgroup)]
+    unseen = set(group_keys)
+    blocks = []
+    while unseen:
+        representative_key = min(unseen)
+        representative = group[representative_key]
+        orbit_keys = [
+            matrix_key(gf2_mul(value, representative))
+            for value in subgroup_values
+        ]
+        blocks.append([index[key] for key in orbit_keys])
+        unseen.difference_update(orbit_keys)
+    return np.asarray(blocks, dtype=np.int64), subgroup_values
+
+
+def local_sum_projection(subgroup_values, left, right):
+    """Projection onto Fix(left)+Fix(right) in one regular subgroup block."""
+    elements = {matrix_key(value): value for value in subgroup_values}
+    left_basis = cyclic_fixed_basis(elements, left)
+    right_basis = cyclic_fixed_basis(elements, right)
+    return range_projection(np.column_stack((left_basis, right_basis)))
+
+
 def main():
     states, _ = enumerate_ball(5)
     words, _, _ = spanning_tree_kernel_words(states)
@@ -106,24 +134,43 @@ def main():
     if len(pairs) != 8:
         raise AssertionError(f"expected eight distinct core pairs, got {len(pairs)}")
     group = generated_group(generators)
-    if len(group) != 168:
-        raise AssertionError(f"translated core generated {len(group)}, not 168")
+    if len(group) not in (168, 20160):
+        raise AssertionError(f"unexpected translated core group order {len(group)}")
 
-    identity = np.eye(168)
-    laplacian = np.zeros((168, 168), dtype=np.float64)
+    edge_operators = []
     sum_dimensions = []
+    local_group_orders = []
     for left, right in pairs.values():
-        left_basis = cyclic_fixed_basis(group, left)
-        right_basis = cyclic_fixed_basis(group, right)
-        projection, rank = range_projection(np.column_stack((left_basis, right_basis)))
-        sum_dimensions.append(rank)
-        laplacian += identity - projection
+        local_group = generated_group((left, right))
+        local_group_orders.append(len(local_group))
+        blocks, local_values = left_coset_blocks(group, local_group)
+        local_projection, local_rank = local_sum_projection(local_values, left, right)
+        edge_operators.append((blocks, local_projection))
+        sum_dimensions.append(local_rank * blocks.shape[0])
 
-    eigenvalues = np.linalg.eigvalsh((laplacian + laplacian.T) / 2.0)
+    dimension = len(group)
+
+    def apply_laplacian(vector):
+        output = np.zeros_like(vector)
+        for blocks, local_projection in edge_operators:
+            block_values = vector[blocks]
+            projected = block_values @ local_projection.T
+            output[blocks] += block_values - projected
+        return output
+
+    laplacian = LinearOperator(
+        (dimension, dimension), matvec=apply_laplacian, dtype=np.float64
+    )
+    eigenvalues = eigsh(
+        laplacian, k=20, which="SM", tol=1e-11, maxiter=20000,
+        return_eigenvectors=False,
+    )
+    eigenvalues.sort()
     zero_count = int(np.sum(np.abs(eigenvalues) < 1e-9))
     positive = eigenvalues[eigenvalues >= 1e-9]
     print("distinct translated core pairs:", len(pairs))
-    print("generated subgroup order:", len(group))
+    print("generated translated tangent group order:", len(group))
+    print("edge local subgroup orders:", sorted(local_group_orders))
     print("edge tangent-sum dimensions:", sorted(sum_dimensions))
     print("common tangent dimension:", zero_count)
     print("smallest 20 eigenvalues:")
