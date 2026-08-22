@@ -95,6 +95,17 @@ chord--reset relation which acts nontrivially on the scalar multiplicity
 factor; type-vector balance and the fixed Reynolds wall alone leave this
 zero-defect spectator.
 
+Imposing full finite-label covariance on that chord is not the missing
+relation.  By `full-label-chord-normalization-kills-the-hilbert-hotel`, two
+or more fixed transverse charts which generate the label factor force the
+chord to be `u_0 tensor U_res`.  This removes the Gram spectator with a
+dimension-free mixed-word floor, but also prevents the proper infinite
+one-sided return.  More generally, any fixed-chart covariance strong enough
+to return both support cuts to its finite label algebra preserves their
+finite rank deficit; weaker covariance leaves the Gram unauthenticated.
+The clause-3 payment must therefore be genuinely finite-multiplicity
+sensitive rather than a fixed chart normalizer.
+
 There is a cleaner predicate-sensitive observable than the bare Reynolds
 rank. By `schur-predicate-is-character-density-difference`, every local
 forbidden projection satisfies

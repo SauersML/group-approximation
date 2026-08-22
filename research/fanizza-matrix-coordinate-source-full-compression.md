@@ -152,3 +152,20 @@ invoked from these inputs.  The remaining decoder must contain a genuinely
 mixed chord--reset word which detects the scalar multiplicity coordinate;
 another local type-vector or Reynolds constraint cannot authenticate source
 fullness.
+
+The most direct mixed word overcorrects.
+`full-label-chord-normalization-kills-the-hilbert-hotel` adds commutators of
+the chord with a fixed Weyl/reset word basis spanning the label algebra.  It
+does give a dimension-free defect floor on the saturated spectator, and in
+every exact amplification it forces `U=u_0 tensor U_res`, so the Gram lies
+in the finite label algebra.  But the same tensor form preserves the finite
+label rank deficit and makes the required proper infinite source-full
+compression impossible.  Two or three fixed transverse charts have the
+same dichotomy: if their covariance controls the support cuts inside a fixed
+label algebra, finite label rank kills completeness; if it does not, the
+Gram coordinate remains unauthenticated.
+
+Accordingly the remaining mixed chord--reset constraint cannot be a fixed
+label normalizer/covariance table.  It must distinguish finite from properly
+infinite multiplicity while remaining non-functorial in the exact infinite
+marked representation.
