@@ -168,6 +168,21 @@ multiplicity coordinate.  Merely adjoining all selector symmetries, or using
 them as covariance implementers around the triangle, leaves a split
 spectator gauge and cannot produce `(STR1)` or `(STR1')`.
 
+The first genuinely mixed selector relation is still insufficient.
+`fanizza-mixed-selector-transvection-retains-guard-mass` analyzes
+
+```text
+S Z S^(-1)=KZ,       H=(1-K)/2,
+```
+
+where `S` is the selector flip and `Z` the guarded machine involution.  On
+`H` this is only the Pauli anticommutation relation; an exact finite model
+has `tr(H)=1/8` and zero defect.  Thus a finite controlled-Clifford covariance
+table can balance the guarded selector fibers but cannot shrink their total
+rank.  The missing two-cell must become non-automorphic after compression:
+it must compare unequal carriers or realize a one-sided return, not merely
+flip the phase of a guarded word.
+
 Finally, `functorial-packet-return-firewall`
 extends the regular firewall beyond literal block words.  Fixed finite-group
 averaging, spectral exactification, polar decomposition, support cuts, and
