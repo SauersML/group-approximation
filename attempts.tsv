@@ -138,3 +138,4 @@
 32644549493	2026-08-23T14:09:52Z	GroupApproximation/Sofic/WreathFinitePresentationObstruction.lean	exists_not_adj_of_finitely_many_orbits
 32646240371	2026-08-23T14:42:52Z	GroupApproximation/Algebra/DyadicRationals.lean	manuscript_bs_affine_identification
 32647230984	2026-08-23T15:01:43Z	GroupApproximation/Algebra/ZariskiDescendingChain.lean	manuscriptZariskiEnvelopeCompressionBlind
+32649187530	2026-08-23T15:39:05Z	GroupApproximation/Analysis/CollapseDelormeEndpoint.lean	partialComplement_succ
