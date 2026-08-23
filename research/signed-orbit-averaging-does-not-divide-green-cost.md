@@ -70,9 +70,19 @@ J_chi=|H|^(-1) sum_(h in H) chi(h) hJ,                 (SOG7)
 ```
 
 then the triangle inequality gives cost at most `L`, not `L/|H|`.
-An orbit-size gain requires a separate bound saying that the translated
-flows have essentially disjoint support, or more generally a uniformly
-small edge-congestion overlap.  The arithmetic inequality
+In fact, disjoint support gives the opposite of the hoped-for conclusion:
+if the supports of the translates `hJ` are pairwise disjoint, then
+
+```text
+||J_chi||_1
+ =|H|^(-1) sum_(h in H)||hJ||_1
+ =L.                                                    (SOG8)
+```
+
+Thus disjointness preserves the whole routing cost.  An orbit-size gain
+requires a separate **signed cancellation on overlapping translates**;
+small congestion or large orbit cardinality alone does not provide it.
+The arithmetic inequality
 
 ```text
 ord_p(4)>=log_4 p
@@ -92,4 +102,3 @@ for the full `A/B` incidence operator or an arithmetic congestion theorem
 for the specific translated routings.  Orbit averaging alone supplies
 neither, and this claim does not assert that the proper-torus Green norms
 diverge.
-

@@ -9,6 +9,7 @@ distinct_from:
   right-u-reynolds-has-torus-hecke-blocks: that decomposes the proper-subtorus domain into explicit torus-character blocks; this gives the global labeled-edge geometry and the obstruction to a covering-space contraction.
   fourth-power-mersenne-reynolds-levels-have-diagonal-crt-coupling: that produces an explicit unbounded-index composite family and isolates its right-unipotent blocks; this gives the exact edge-refinement model shared by all proper-subtorus levels.
   flat-gain-multipartite-covers-have-uniform-green-bound: that proves every genuine flat gain cover is gauge-trivial and retains the base Green bound; this proves the Reynolds refinement is not such a cover.
+  signed-orbit-averaging-does-not-divide-green-cost: that proves averaging a generic electrical routing over the growing signed torus orbit has norm one rather than inverse-orbit-size cost; this identifies the labeled geometry.
 ---
 
 **ESTABLISHED; COVERING-TRANSFER NO-GO.**  Let `Q` be a finite congruence
@@ -122,3 +123,12 @@ of the deck degree.  The arithmetic sector in `(PSE7)` is load-bearing
 precisely because `(PSE4)` omits the other deck translates of each
 triangle; it is an incomplete, curved label system rather than a flat
 local system.
+
+The growing orbit itself supplies no compensating infinity-norm factor.
+`signed-orbit-averaging-does-not-divide-green-cost` proves that
+the signed Reynolds projection onto `<H,w>`-equivariant functions has
+exact infinity and cb norm one, and that disjoint translated Green rows
+retain their full `l_1` mass after normalized averaging.  Hence a putative
+generic `O(log|Q|)` routing cost is not reduced formally by `|H|`; a
+positive proof needs arithmetic cancellation or a genuinely new
+constrained routing.
