@@ -126,15 +126,17 @@ matrix-ultraproduct models remain.  This is therefore a structural finite
 restriction on the exact escape, not evidence sufficient to assert the
 five-row phase lift.
 
-The next exact Atlas boundary is now completely isolated.  The CFSG carrier
-screen in `atlas-six-relator-next-simple-target-is-o8p2` leaves no simple
-group with an `A8` carrier at indices `2201` through `8639`; the next target
-is `O_8^+(2)` at index `8640`.  Unlike the preceding unique-class cases, its
-finite screen has a genuine carrier fork: orthogonal `Sp_6(2)`, natural `A9`,
-and two affine-complement classes, including cross-carrier cells.  Excluding
-that finite family would raise the exact floor again, but no sequence of such
-exact exclusions substitutes for the required dimension-free ultraproduct
-energy estimate.
+The next triality boundary is now excluded as well.  The carrier classification
+for `O_8^+(2)` reduces its six ambient `A8` classes to ten marked pair screens.
+The exact `s_0`-fiber replay in
+`atlas-six-relator-o8p2-has-no-marked-pair` finds no six-relator survivor:
+eight screens die before the third word, and the two orthogonal screens plus
+one twisted natural diagonal each leave one five-row survivor which
+`c_19243` kills.  Consequently
+`atlas-six-relator-simple-index-is-at-least-9792` raises the exact finite-simple
+escape floor to `9792`, whose equality group can only be `O_8^-(2)`.  This is
+still an exact-zero restriction; no sequence of finite-simple exclusions
+substitutes for the required dimension-free ultraproduct energy estimate.
 
 The finite-depth ZPC groupoid shortcut has also been decided negatively.
 For the readable Boolean algebra `D_0` and unreadable actor words, put

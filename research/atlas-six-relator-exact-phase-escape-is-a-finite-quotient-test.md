@@ -77,8 +77,12 @@ This is still a finite restriction and does not decide condition 2 for an
 arbitrary finite group.  The next interval is now completely classified by
 `atlas-six-relator-simple-index-is-at-least-2201`: the unique Higman--Sims
 family at index 2200 is empty for the six words.  The next complete CFSG
-interval is also classified: `atlas-six-relator-next-simple-target-is-o8p2`
-isolates `O8+(2)` at index 8640 and its finite carrier fork.
+interval through the triality endpoint is now completely screened.  The
+carrier theorem isolates `O8+(2)` at index `8640`, while
+`atlas-six-relator-o8p2-has-no-marked-pair` exhausts its ten marked pair
+types.  Crossing the next empty carrier interval gives
+`atlas-six-relator-simple-index-is-at-least-9792`; any finite simple escape
+has `A8` index at least `9792`, with equality possible only in `O8-(2)`.
 
 The blockwise consequence is stronger than a degree cutoff but still not a
 general exclusion.  By
