@@ -1,3 +1,5 @@
-% Public author metadata.  The anonymous build never inputs this file, and
-% .gitattributes excludes it from the anonymous source archive.
-\newcommand{\paperauthorname}{Sauers}
+% Author metadata wrapper.  Public checkouts include coderepo-private.tex;
+% anonymous source archives exclude it and use the fallback below.
+\IfFileExists{coderepo-private.tex}
+  {\input{coderepo-private.tex}}
+  {\newcommand{\paperauthorname}{Anonymous}}

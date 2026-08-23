@@ -210,8 +210,8 @@ MF $C^*$-algebra.
 \leanverified{Sofic/LiteralTheoremAPackage}{GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package}
 \end{mainthm}
 
-Lean-facing presentation data, an affine certificate, and further variants
-and consequences are collected in the companion
+A literal finite presentation, its Lean-facing affine certificate, and
+further variants and consequences are collected in the companion
 \emph{Non-MF group notes}.
 
 \subsection*{Outline of the proof}
@@ -266,7 +266,7 @@ corner is essential: enlarging a model by an identity block preserves
 operator-norm defects and separations while making normalized
 Hilbert--Schmidt distances arbitrarily small.
 
-Let $\Gamma$ be a countable Kazhdan group with a proper
+Let $\Gamma$ be a finitely presented Kazhdan group with a proper
 injective endomorphism $\alpha$, let $a\in\Gamma\setminus\alpha(\Gamma)$,
 and adjoin $t$ and $c$ subject to $t\gamma t^{-1}=\alpha(\gamma)$,
 $c^2=1$ and $[c,\gamma]=1$.  In the ascending HNN extension of $\Gamma$
@@ -1087,7 +1087,7 @@ permuting the $c_x$ and fixing $\zeta$.
 
 \begin{theorem}[the basic construction]
 \label{thm:kazhdan-clifford}
-Let $\Gamma$ be a countable group with property~\textup{(T)}, let
+Let $\Gamma$ be a finitely presented group with property~\textup{(T)}, let
 $\alpha\colon\Gamma\hookrightarrow\Gamma$ be an injective endomorphism, and
 choose $a\in\Gamma\setminus\alpha(\Gamma)$.  Define
 $E(\Gamma,\alpha,a)$ by adjoining elements $t,c$ and imposing
@@ -1100,7 +1100,13 @@ Put
  \hat c=tct^{-1},\qquad u=[\hat c,a],\qquad w=u^2=[\hat c,a\hat ca^{-1}],
 \]
 and impose centrality of $w$.
-The canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
+More explicitly, for a finite generating set $S_\Gamma$ it is enough to
+impose the conjugation and commutation relations for $s\in S_\Gamma$, together with
+\[
+ [w,s]=1\quad(s\in S_\Gamma),\qquad [w,t]=[w,c]=1.
+\]
+The group $E(\Gamma,\alpha,a)$ is finitely presented,
+the canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
 nontrivial central involution.  Every homomorphism
 $E(\Gamma,\alpha,a)\to\U(\mathcal Q)$ maps $w$ to $1$, so
 $E(\Gamma,\alpha,a)$ is not MF\@.
@@ -1108,6 +1114,11 @@ $E(\Gamma,\alpha,a)$ is not MF\@.
 \end{theorem}
 
 \begin{proof}
+Finite presentability follows from the relative presentation.  Start
+with the free product of $\Gamma$ and the free group on $t,c$, and
+quotient by the finitely many displayed relations for a finite
+generating set of $\Gamma$.
+
 The relation $w^2=1$ need not be imposed.  Put $b=a\hat ca^{-1}$.  Both $\hat c$
 and $b$ are involutions, $u=[\hat c,a]=\hat cb$, and $w=u^2=(\hat cb)^2$.
 Since $\hat c^2=1$,
@@ -1156,6 +1167,10 @@ $\U(\mathcal Q)$ maps $w$ to the identity.  Since $w\ne1$, every such
 homomorphism has nontrivial kernel.
 \end{proof}
 
+Finite presentability of $\Gamma$ is used only to make
+$E(\Gamma,\alpha,a)$ finitely presented; for the rest, $\Gamma$ may be
+any property-\textup{(T)} group with a proper injective endomorphism.
+
 \section{The explicit affine example}\label{sec:example}
 
 Specialize Theorem~\ref{thm:kazhdan-clifford} to
@@ -1163,7 +1178,8 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
-It has property~\textup{(T)} because it is a lattice in
+The usual semidirect-product presentation shows that $\Gamma$ is finitely
+presented.  It has property~\textup{(T)} because it is a lattice in
 $\mathbb R^3\rtimes\SL_3(\mathbb R)$
 \cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
 The endomorphism $\alpha$ is injective because doubling is injective on
