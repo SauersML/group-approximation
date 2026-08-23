@@ -746,3 +746,23 @@ superrigidity frame: the surviving expectation is vanishing, i.e.
 the forced-witness fork is heading toward "no cohomological
 mechanism decides it" -- everything rides on the positive
 construction (triangle-relator-extension-admits-local-ucp-sections).
+
+## Addendum 22: the L^2 avatar carries the same defect formula
+
+Every step of the three-subspace theorem used only unique
+divisibility, so verbatim: `H^2(Lambda, L^2_0(Y,R))` is the SAME
+three-subspace defect computed inside `H^1(B_-, L^2_0)`, and the
+ingredient groups are again nonzero -- in fact the tower refutation
+is EASIER in L^2: a telescoping solution satisfies (orthogonality of
+`S_n` to `A_n` from the zero-average design) `||t||^2 >= ||S_n||^2 =
+sum ||e_k||^2 -> infinity`.  Consequently the natural attack order
+for the degree-two superrigidity conjecture is: decide the defect
+first for `L^2_0(Y)` (closed subspaces, orthogonal projections,
+spectral tools available -- with the usual caveat that sums of
+closed subspaces need not be closed), then transfer to `L^0` along
+the malleability deformation, mirroring how Popa's degree-one
+argument passes through the Hilbert-space picture.  Note
+`L^2_0 c L^0` induces a comparison map of defect modules; vanishing
+in `L^0` does NOT follow formally from vanishing in `L^2_0` (or
+vice versa), but the two computations share all combinatorial
+scaffolding built today.
