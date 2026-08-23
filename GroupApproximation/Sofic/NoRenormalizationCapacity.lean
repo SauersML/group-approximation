@@ -27,7 +27,7 @@ statements.
 namespace GroupApproximation
 namespace NoRenormalizationCapacity
 
-open Matrix
+open Matrix KazhdanCornerMatrices
 open scoped Matrix.Norms.L2Operator
 
 /-! ## The packet collision estimate -/
@@ -37,6 +37,7 @@ packet is approximately `A * Bv = Z * Bv * A`, the cross packet approximately
 commutes `A` with `Bw`, and `Bv` and `Bw` collide, then `Z` is close to the
 identity. -/
 theorem collision_kills_phase {Y : Type*} [Fintype Y] [DecidableEq Y]
+    [Nonempty Y]
     {A Bv Bw Z : Matrix Y Y ℂ} {ε δ : ℝ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hBv : Bv ∈ Matrix.unitaryGroup Y ℂ)
@@ -116,7 +117,7 @@ colors with same-color diameter at most `δ`, a challenge defeating that
 palette supplies an adjacent collision and the packet estimate forces the
 phase close to `1`. -/
 theorem phase_close_of_palette_overflow
-    {Y V C : Type*} [Fintype Y] [DecidableEq Y]
+    {Y V C : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
     {Adjacent : V → V → Prop}
     (hchallenge : DefeatsPalette (C := C) Adjacent)
     (A B : V → Matrix Y Y ℂ) (Z : Matrix Y Y ℂ)
@@ -167,7 +168,7 @@ theorem rank_zero_of_power_monodromy {a b k r : ℕ}
     r = 0 := by
   by_contra hr
   have hpowers : a ^ k = b ^ k := mul_right_cancel₀ hr hcycle
-  exact hab (Nat.pow_left_injective hk hpowers)
+  exact hab (Nat.pow_left_injective (Nat.ne_of_gt hk) hpowers)
 
 end NoRenormalizationCapacity
 end GroupApproximation

@@ -1,6 +1,6 @@
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
-import Mathlib.Data.Nat.Prime.Nth
+import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.Data.ZMod.Basic
 
 /-!
@@ -54,16 +54,15 @@ theorem freeProduct_seed_transport {w : G}
   constructor
   · intro h
     apply hne
-    apply Monoid.Coprod.inl_injective
-    simpa using h
-  · exact hinvisible.map Monoid.Coprod.inl
+    exact Monoid.Coprod.inl_injective (N := H) (by simpa using h)
+  · exact hinvisible.map (Monoid.Coprod.inl : G →* G ∗ H)
 
 /-- The nonhalting endpoint of the explicit seeded compiler. -/
 abbrev NonhaltGroup : Type := MarkedGroup ∗ Multiplicative ℤ
 
 /-- The original literal mark, carried into the nonhalting free-product
 endpoint. -/
-def nonhaltMark : NonhaltGroup := Monoid.Coprod.inl mark
+noncomputable def nonhaltMark : NonhaltGroup := Monoid.Coprod.inl mark
 
 /-- The nonhalting mark remains both nontrivial and MF-invisible. -/
 theorem nonhaltMark_blackHole :
@@ -106,7 +105,7 @@ def HasConstantCarrierMFCompiler (P : ℕ → Prop) : Prop :=
 /-- Every nontrivial MF-radical seed gives constant-carrier compiler semantics
 for every predicate on machine indices. -/
 theorem hasConstantCarrierMFCompiler_of_seed
-    {K : Type u} [Group K] {w : K}
+    {K : Type} [Group K] {w : K}
     (hne : w ≠ 1) (hinvisible : NormMFInvisible w)
     (P : ℕ → Prop) : HasConstantCarrierMFCompiler P := by
   refine ⟨K, inferInstance, fun _ ↦ w, ?_, ?_⟩
@@ -185,24 +184,25 @@ theorem logicalSelfAwareMFCompiler_iff_seed :
 
 /-! ## Prime-coded finite presentations -/
 
-/-- The `(e+1)`-st prime, used to make the compiler index literal in its
-finite cyclic free factor.  `Nat.nth Nat.Prime` is zero-indexed. -/
-def primeCode (e : ℕ) : ℕ := Nat.nth Nat.Prime e
-
 /-- A carrier which records the compiler index in the order of a finite
-cyclic free factor. -/
-abbrev PrimeCodedGroup (K : Type u) [Group K] (e : ℕ) : Type u :=
+cyclic free factor.  The external computability layer instantiates
+`primeCode e` with the `(e+1)`-st prime; the group-theoretic transport below
+works for every code function. -/
+abbrev PrimeCodedGroup (K : Type u) [Group K]
+    (primeCode : ℕ → ℕ) (e : ℕ) : Type u :=
   K ∗ Multiplicative (ZMod (primeCode e))
 
 /-- The seed mark in the prime-coded carrier. -/
-def primeCodedMark (K : Type u) [Group K] (e : ℕ) (w : K) :
-    PrimeCodedGroup K e := Monoid.Coprod.inl w
+def primeCodedMark (K : Type u) [Group K]
+    (primeCode : ℕ → ℕ) (e : ℕ) (w : K) :
+    PrimeCodedGroup K primeCode e := Monoid.Coprod.inl w
 
 /-- Prime coding does not change survival or MF-invisibility of the seed. -/
 theorem primeCodedMark_blackHole {K : Type u} [Group K] {w : K}
-    (hne : w ≠ 1) (hinvisible : NormMFInvisible w) (e : ℕ) :
-    primeCodedMark K e w ≠ 1 ∧
-      NormMFInvisible (primeCodedMark K e w) := by
+    (hne : w ≠ 1) (hinvisible : NormMFInvisible w)
+    (primeCode : ℕ → ℕ) (e : ℕ) :
+    primeCodedMark K primeCode e w ≠ 1 ∧
+      NormMFInvisible (primeCodedMark K primeCode e w) := by
   simpa [primeCodedMark] using
     (freeProduct_seed_transport (H := Multiplicative (ZMod (primeCode e)))
       hne hinvisible)
@@ -210,8 +210,10 @@ theorem primeCodedMark_blackHole {K : Type u} [Group K] {w : K}
 /-- The prime-coded carrier is finitely presented whenever the seed carrier
 is. -/
 theorem primeCodedGroup_finitelyPresented {K : Type u} [Group K]
-    [Group.IsFinitelyPresented K] (e : ℕ) :
-    Group.IsFinitelyPresented (PrimeCodedGroup K e) := by
+    [Group.IsFinitelyPresented K] (primeCode : ℕ → ℕ) (e : ℕ)
+    (hprime : Nat.Prime (primeCode e)) :
+    Group.IsFinitelyPresented (PrimeCodedGroup K primeCode e) := by
+  letI : NeZero (primeCode e) := ⟨hprime.ne_zero⟩
   infer_instance
 
 /-! ## The monotone same-mark obstruction -/

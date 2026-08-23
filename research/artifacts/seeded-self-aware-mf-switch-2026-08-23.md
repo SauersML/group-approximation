@@ -200,6 +200,8 @@ The effective recursion theorem, enumeration of recursively enumerable group
 proofs, and presentation coding remain represented by Cairn's computability
 nodes rather than a Lean machine-code structure. The formal theorem is named
 `logicalSelfAwareMFCompiler_iff_seed` to keep that boundary explicit.
+The Lean carrier is parameterized by the code function; the effective layer
+instantiates it with the `(e+1)`-st-prime function.
 
 ## 8. Consequences for the Cairn graph
 
