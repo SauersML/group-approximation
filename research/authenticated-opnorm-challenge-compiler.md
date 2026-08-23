@@ -2,16 +2,17 @@
 rg: 2
 id: authenticated-opnorm-challenge-compiler
 kind: claim
-title: Compile computation into an authenticated operator-norm support challenge
+title: A threshold-free operator-norm compiler exists from one marked MF-radical seed
 distinct_from:
-  hs-pcp-boone-compiler: that needs a positive-density normalized-HS carrier and runtime-independent soundness; this needs only support of a nonzero operator-norm sector and permits arbitrary depth-dependent loss.
-  reverse-kleene-operator-norm-collapse-gives-non-mf: that is the fixed-point implication after a compiler with finite quantitative semantics is supplied; this is the missing construction and has a recursively enumerable qualitative MF-radical output.
-  threshold-free-reverse-kleene-mf-higman: that is the abstract fixed-point theorem consuming HALT survival and NONHALT MF-radical collapse; this constructs those two semantics from finite CPU challenges.
+  marked-mf-radical-seed-gives-proof-triggered-compiler: that is the generic one-generator switch theorem; this instantiates it at the literal non-MF mark and closes the formerly open compiler endpoint.
+  threshold-free-reverse-kleene-mf-higman: that is the fixed-point implication after a compiler is supplied; this provides the compiler.
+artifacts:
+  - research/artifacts/seeded-self-aware-mf-switch-2026-08-23.md
 ---
 
-**OPEN.**  There is a total computable map from a Turing-machine index `e` to
-a finite alphabet, a uniformly recursively enumerable ordinary group
-presentation
+**ESTABLISHED AS STATED (2026-08-23), by a simpler seeded switch.**  There is a
+total computable map from a Turing-machine index `e` to a finite alphabet, a
+uniformly recursively enumerable ordinary group presentation
 
 ```text
 Gamma_e=<S_e|R_e>,
@@ -24,19 +25,19 @@ e halts     => w_e!=1 in Gamma_e,
 e nonhalts  => w_e lies in Res_MF(Gamma_e).
 ```
 
-The compiler uses finite signed-permutation CPU sectors, discrete exactified
-support profiles, group-word authentication, and a depthwise same-mark
-challenge return.  It never reads a candidate matrix dimension and imposes
-no computable finite-coordinate error modulus.
+Take the literal finitely presented group `E` with its nontrivial invisible
+mark `w`.  Adjoin one fresh generator `s`; emit the relators of `E` immediately
+and emit `s=1` exactly when `e` halts.  The halting branch is `E`, and the
+nonhalting branch is `E*Z`.  Free-factor injectivity keeps `w` nontrivial, and
+MF-radical functoriality puts it in `Res_MF(E*Z)`.
 
-## Attempts
+This closes the extensional compiler claim without matrix self-detection,
+support-profile authentication, a dimension oracle, or quantitative error
+moduli.  It also shows that the bare TFM1--TFM2 interface is not an independent
+route to the first non-MF group: by `threshold-free-mf-compiler-equivalence`,
+it is exactly equivalent to already having one marked MF-radical seed.
 
-The active decomposition is `authenticated-opnorm-compiler-assembly`.
-Finite-predicate CPU realization, fixed-finite-group operator-norm
-exactification, the depthwise MF-radical limit, and the threshold-free fixed
-point are established.  The attack is presently deferred at exactly two
-open inputs: `opnorm-support-profile-challenge-library` must authenticate and
-defeat every marked finite support type while preserving an infinite marked
-model, and `opnorm-depthwise-same-mark-return` must send those terminal
-violations back to one word.  Searching matrix microstates is not a fallback:
-it reintroduces the dimension-dependent threshold-crossing problem.
+The original finite signed-permutation CPU programme remains recorded in
+`authenticated-opnorm-compiler-assembly` as a stronger seed-free
+implementation problem.  Its two open support/return inputs are not needed
+for the unconditional self-aware endpoint.

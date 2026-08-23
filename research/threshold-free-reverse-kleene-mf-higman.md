@@ -7,6 +7,7 @@ distinct_from:
   threshold-free-reverse-kleene-higman-diagonal: that is the normalized-Hilbert--Schmidt theorem and concludes nonhyperlinearity; this is its operator-norm analogue, uses the MF radical, and has no canonical-trace conditions.
   reverse-kleene-operator-norm-collapse-gives-non-mf: that assumes a finite presentation and one computable finite-coordinate defect threshold; this permits a uniformly recursively enumerable relator stream and assumes only qualitative death in every norm matrix corona.
   canonical-profile-kleene-higman: that permits a rational group-algebra mark but only controls canonical tracial microstates; this uses a group word and all norm-corona homomorphisms.
+  threshold-free-mf-compiler-equivalence: that adds the converse and proves that the bare compiler interface is exactly as strong as a marked non-MF seed.
 ---
 
 Suppose a total computable compiler sends every Turing-machine index `e` to
@@ -32,3 +33,9 @@ The fixed-point program enumerates proofs, not matrix tuples.  Consequently
 the compiler interface needs no defect threshold, separation cutoff,
 dimension report, convergence rate, runtime bound, or finite presentation at
 the source stage.
+
+The theorem is sharp as a statement about existence.  By
+`threshold-free-mf-compiler-equivalence`, a marked finitely presented
+MF-radical seed also gives such a compiler, via one dummy free generator.
+Thus the fixed point is an unconditional self-awareness wrapper but the bare
+TFM1--TFM2 interface alone does not certify a seed-free analytic mechanism.

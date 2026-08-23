@@ -33,3 +33,8 @@ By `(TFM2)` every norm-corona homomorphism kills this nontrivial word, so
 presented.  Apply `mikaelian-explicit-higman-embedding` to embed it effectively
 in a finitely presented group `H`.  If `H` were MF, subgroup heredity from
 `mf-positive-controls` would make `Gamma_(e_*)` MF, a contradiction.
+
+For the one-generator compiler of
+`marked-mf-radical-seed-gives-proof-triggered-compiler`, the fixed-point group
+is already the finitely presented free product of the seed with `Z`; in that
+instance the Higman step is unnecessary.

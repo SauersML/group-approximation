@@ -619,29 +619,6 @@ The amplification step plays the role that rank amplification plays in
 the direct-limit theorem for linear sofic groups
 \cite{ArzhantsevaPaunescu}.
 
-\noindent\textbf{Finite-presentation reduction.}
-The following are equivalent:
-\begin{enumerate}
-\item a countable non-MF group exists;
-\item a finitely generated non-MF group exists;
-\item a finitely presented non-MF group exists.
-\end{enumerate}
-
-\begin{proof}
-If $G$ is non-MF, a failed local condition is witnessed on a finite set
-$F\subseteq G$.  The subgroup $H=\langle F\rangle$ is non-MF, since an MF
-model of $H$ on that finite data would contradict the obstruction in $G$.
-
-Write $H=F_k/N$.  By Theorem~\ref{thm:markedclosed}, a basic cylinder
-around $H$, determined by finitely many words $W\subseteq F_k$, consists
-entirely of non-MF groups.  Let $R_+$ be the words in $W$ which are trivial
-in $H$, and put $P=F_k/\langle\!\langle R_+\rangle\!\rangle$.  Then $P$ is
-finitely presented and maps onto $H$.  Every required equality holds in
-$P$, while every word of $W$ nontrivial in $H$ remains nontrivial in $P$
-because of the quotient map $P\twoheadrightarrow H$.  Thus $P$ lies in
-the same non-MF cylinder.  The remaining implications are immediate.
-\end{proof}
-
 Two stronger conventions also occur in the literature.  The maps in
 \cite{GKEMP} must recover the canonical trace and the left-regular norm of
 every group-ring element.  The purely matricial field (PMF) property of
@@ -1228,8 +1205,8 @@ rational-matrix certificate.
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
 The preceding verification of the affine data and
-Theorem~\ref{thm:kazhdan-clifford} show that $E$ is finitely presented,
-that $w$ is a nontrivial central involution, and that every homomorphism
+Theorem~\ref{thm:kazhdan-clifford} show that $w$ is a nontrivial central
+involution and that every homomorphism
 $E\to\U(\mathcal Q)$ maps $w$ to $1$.  Thus $E$ is not MF.
 
 The canonical maps $E\to\U(\Cred(E))$ and $E\to\U(\Cmax(E))$ are

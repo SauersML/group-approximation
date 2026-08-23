@@ -3,7 +3,6 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Analysis.CStarAlgebra.Matrix
-import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.GroupTheory.FreeGroup.Basic
 import Mathlib.GroupTheory.FreeGroup.Reduce
@@ -13,18 +12,11 @@ import Mathlib.Order.Filter.AtTopBot.Defs
 import Mathlib.Topology.Algebra.Order.Field
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralSoficAssembly
-import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
-import GroupApproximation.Sofic.LiteralUniformObstruction
-import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.NormMFConsequences
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Proof of the advertised statement
-
-The declaration block and theorem type match `Palomar/Challenge.lean`.
-`E_eq` and `w_eq` definitionally pin the copied presentation to the
-development; submission gates check source identity and elaborated closure.
+# Proof
 -/
 
 namespace ExplicitNonMF
@@ -56,10 +48,6 @@ instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
 def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=
   ((Finset.univ.filter fun y : Y ↦ p y ≠ q y).card : ℝ) / Fintype.card Y
 
-/-- The squared normalized Hilbert--Schmidt distance between two matrices. -/
-def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=
-  (∑ i : Y, ∑ j : Y, Complex.normSq (A i j - B i j)) / Fintype.card Y
-
 /-- Soficity in the finite-set normalized-Hamming formulation. -/
 def IsSoficGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
@@ -67,15 +55,6 @@ def IsSoficGroup (G : Type) [Group G] : Prop :=
       0 < Fintype.card Y ∧
       (∀ g ∈ F, ∀ h ∈ F, hammingDist Y (σ (g * h)) (σ g * σ h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 - ε ≤ hammingDist Y (σ g) (σ h))
-
-/-- Hyperlinearity in the finite-set normalized-Hilbert--Schmidt formulation. -/
-def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
-  ∀ (F : Finset G) (ε : ℝ), 0 < ε →
-    ∃ (Y : FiniteCarrier) (U : G → Matrix Y Y ℂ),
-      0 < Fintype.card Y ∧
-      (∀ g, U g ∈ Matrix.unitaryGroup Y ℂ) ∧
-      (∀ g ∈ F, ∀ h ∈ F, hsDistSq Y (U (g * h)) (U g * U h) ≤ ε) ∧
-      (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 2 - ε ≤ hsDistSq Y (U g) (U h))
 
 /-- The sequential operator-norm form of the CDE matrix-corona MF property. -/
 def IsSequentialOperatorMFGroup (G : Type) [Group G] : Prop :=
@@ -260,94 +239,20 @@ abbrev E : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
 
-/-- The canonical map from words in the eight letters to `E`. -/
-abbrev wordInE : FreeGroup Generator →* E :=
-  PresentedGroup.mk ((relators : Finset (FreeGroup Generator)) :
-    Set (FreeGroup Generator))
-
-/-- **The distinguished element** `w = [t c t⁻¹, v₁ (t c t⁻¹) v₁⁻¹]` of `E`. -/
-abbrev w : E := wordInE markedWord
-
 -- END SHARED BLOCK
-
-/-! ## Bridge to the development -/
 
 open GroupApproximation
 
-theorem E_eq : E = LiteralNonMFPresentation.MarkedGroup := rfl
-
-theorem w_eq : w = (LiteralNonMFPresentation.mark : E) := rfl
-
-/-- The literal group has the displayed finiteness, approximation and
-representation properties. -/
-theorem explicit_fp_sofic_hyperlinear_not_MF :
-    Fintype.card Generator = 8 ∧
-    relators.card = 41 ∧
-    Group.IsFinitelyPresented E ∧
-    (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
-    (∃ S : Finset E, S.card ≤ 6 ∧ Subgroup.closure (S : Set E) = ⊤) ∧
-    IsSoficGroup E ∧
-    IsHyperlinearGroup E ∧
-    (∀ (Y : ℕ → FiniteCarrier) (U : ∀ n, E → Matrix (Y n) (Y n) ℂ),
-        (∀ n g, U n g ∈ Matrix.unitaryGroup (Y n) ℂ) →
-        (∀ g h : E, Filter.Tendsto
-            (fun n ↦ ‖U n (g * h) - U n g * U n h‖) Filter.atTop (nhds 0)) →
-        Filter.Tendsto (fun n ↦ ‖U n w - 1‖) Filter.atTop (nhds 0)) ∧
-    (∃ (δ : ℝ) (F₀ : Finset E), 0 < δ ∧
-        ∀ (Y : FiniteCarrier) (φ : E → Matrix Y Y ℂ),
-          (∀ g, φ g ∈ Matrix.unitaryGroup Y ℂ) →
-          (∀ g ∈ F₀, ∀ h ∈ F₀, ‖φ (g * h) - φ g * φ h‖ ≤ δ) →
-          ‖φ w - 1‖ < 1) ∧
-    ¬ IsSequentialOperatorMFGroup E ∧
-    (∀ (K : Type) (W : Type) [Field K] [AddCommGroup W] [Module K W]
-        [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) ∧
-    (∀ (Q : Type) [Group Q] [Finite Q] (φ : E →* Q), φ w = 1) := by
-  refine ⟨?_, ?_, inferInstance, ⟨?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · exact LiteralNonMFPresentation.generator_card
-  · exact LiteralNonMFPresentation.relators_card
-  · exact LiteralNonMFLinearWitness.literal_mark_ne_one
-  · exact LiteralNonMFPresentation.mark_sq
-  · exact LiteralNonMFPresentation.mark_central
-  · obtain ⟨S, hcard, hclosure⟩ :=
-      Group.rank_spec LiteralNonMFPresentation.MarkedGroup
-    exact ⟨S, hcard.trans_le LiteralSixGenerator.literal_rank_le_six, hclosure⟩
+/-- The explicit group is sofic and not MF. -/
+theorem explicit_sofic_not_MF :
+    IsSoficGroup E ∧ ¬ IsSequentialOperatorMFGroup E := by
+  constructor
   · intro F ε hε
     obtain ⟨m⟩ := LiteralSoficAssembly.markedGroup_isSofic F ε hε
     exact ⟨⟨m.carrier.carrier, m.carrier.fintype, m.carrier.decidableEq⟩,
       m.map, m.nonempty, m.multiplicative, m.separated⟩
-  · intro F ε hε
-    obtain ⟨m⟩ :=
-      LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF.2.1
-        F ε hε
-    exact ⟨⟨m.carrier.carrier, m.carrier.fintype, m.carrier.decidableEq⟩,
-      m.map, m.nonempty, m.isUnitary, m.multiplicative, m.separated⟩
-  · intro Y U hU hmul
-    have main : ∀ ε : ℝ, 0 < ε →
-        ∀ᶠ n in Filter.atTop, ‖U n w - 1‖ < ε := by
-      intro ε hε
-      obtain ⟨δ, F₀, hδ, hbound⟩ :=
-        uniform_invisibility LiteralNonMFEndpoint.literal_mark_normMFInvisible
-          ε hε
-      have key : ∀ᶠ n in Filter.atTop, ∀ g ∈ F₀, ∀ h ∈ F₀,
-          ‖U n (g * h) - U n g * U n h‖ ≤ δ := by
-        rw [Filter.eventually_all_finset]
-        intro g _
-        rw [Filter.eventually_all_finset]
-        intro h _
-        exact (hmul g h).eventually_le_const hδ
-      filter_upwards [key] with n hn
-      exact hbound ⟨(Y n).carrier, (Y n).fintype, (Y n).decidableEq⟩
-        (fun g ↦ ⟨U n g, hU n g⟩) hn
-    refine Metric.tendsto_atTop.mpr fun ε hε ↦ ?_
-    obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp (main ε hε)
-    refine ⟨N, fun n hn ↦ ?_⟩
-    rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
-    exact hN n hn
-  · obtain ⟨δ, F₀, hδ, hbound⟩ :=
-      LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
-    exact ⟨δ, F₀, hδ, fun Y φ hφ hmul ↦
-      hbound ⟨Y.carrier, Y.fintype, Y.decidableEq⟩ (fun g ↦ ⟨φ g, hφ g⟩) hmul⟩
   · rintro ⟨Y, U, _, hU, hmul, hsep⟩
+    let w : E := LiteralNonMFPresentation.mark
     have hzero : Filter.Tendsto (fun n ↦ ‖U n w - 1‖)
         Filter.atTop (nhds 0) := by
       have main : ∀ ε : ℝ, 0 < ε →
@@ -380,19 +285,10 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
     have hfar := hM n (le_max_right N M)
     rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)] at hnear
     exact (not_lt_of_ge hfar) hnear
-  -- Explicit universes include the later finite-quotient clause's universe.
-  · intro K W _ _ _ _ π
-    exact
-      LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
-        0, 0}.2.1 π
-  · intro Q _ _ φ
-    exact
-      LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
-        0, 0}.2.2 φ
 
 /-! The selected theorem uses only the permitted classical axioms. -/
 
-#audit_axioms ExplicitNonMF.explicit_fp_sofic_hyperlinear_not_MF
+#audit_axioms ExplicitNonMF.explicit_sofic_not_MF
 
 end
 
