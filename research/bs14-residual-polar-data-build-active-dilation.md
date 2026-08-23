@@ -201,3 +201,13 @@ tuple.
   residual polar data alone do not imply either fact, and the second cubic
   remains essential to select the common endpoint rather than an
   independently rounded first-cubic baseline.
+- **Every bounded-period target is now known to be finite.**
+  `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
+  normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
+  finite-group flexible stability closes the short-support problem at each
+  fixed level, including arbitrary multiplicity.  This does not by itself
+  produce the required long/short staircase: the finite-group presentation
+  radius can still decay faster than the `O(K^(-1/2)+M^(-1))`
+  preconditioning error.  The remaining analytic statement is uniform basin
+  entry across these moving finite quotients, equivalently the reverse
+  carrier authentication above.
