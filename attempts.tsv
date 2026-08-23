@@ -131,3 +131,4 @@
 32632650169	2026-08-23T10:05:49Z	GroupApproximation/Sofic/RealizationFromUniversalGroup.lean	construction_hypotheses
 32634506379	2026-08-23T10:43:29Z	GroupApproximation/Sofic/ThompsonFObstruction.lean	conjugateTerm_succ
 32635380804	2026-08-23T11:02:09Z	GroupApproximation/Sofic/UltraproductModelConstruction.lean	rowMat_rowVec
+32637034414	2026-08-23T11:37:24Z	GroupApproximation/Sofic/UltraproductModelConstruction.lean	vec_linearMap_ext
