@@ -190,6 +190,22 @@ must pin this **mixed** selector moment by finite multiplicity or make the
 multiplicity twist recur contractively; universal algebraic frames are ruled
 out by `algebraic-selector-mixing-frame-collapses-forbidden-sector`.
 
+The Atlas hard-prefix audit closes one finite-carrier hole without closing
+the goal.  `actual-hard-prefix-generates-s4-over-raw-s3` proves that every
+actual class-11/class-30 cross-chart prefix, not merely its classical fold,
+generates an honest `S4` with the raw `S3`; adjoining the separate
+Leavitt-star word gives an order-168 packet.  Hence the multiplicity-free
+`S4 downarrow S3` carrier decomposition may be exactified.  The remaining
+obstruction is purely mixed and matrix-specific:
+`separated-channel-identities-retain-rectangular-escape` proves
+that carrier determinants and Leavitt coefficient equivariance cannot force
+same-scale closure while they live in separate tensor factors.  The open
+`atlas-hard-packet-s3-channel-decoder` must extract from actual quotient
+relators one fixed invertible operator system on the same three multiplicity
+path-products (or prove the equivalent full-packet bicommutant estimate).
+The delta and exact replay are summarized in
+`research/artifacts/leavitt-atlas-final-audit-2026-08-22.md`.
+
 The first error-spreading version of this endpoint is now exact:
 `cyclic-coarse-fine-selector-rows-spread-carrier-error` allows a different
 carrier mass and an arbitrary multiplicity-twisted unitary at every vertex,

@@ -8,6 +8,7 @@ distinct_from:
   s3-hard-cell-three-channel-data-is-nondegenerate: that supplies three invertible finite carrier transforms once a three-coordinate channel has been authenticated; this is the missing authentication theorem.
   atlas-19243-s3-relative-normal-form: that reduces one interior relation to an S3-relative involution equation with an exact S4 model; this requires simultaneous compatibility with the full hard and comb packet and cannot assume that model is selected.
   atlas-hard-packet-s3-channel-decoder: that additionally needs a nonzero literal coefficient minor and identification of its solved monomials with the three Leavitt pairings.
+  actual-hard-prefix-generates-s4-over-raw-s3: that proves each cross-chart prefix is an honest quotient-level S4 extension; this asks the packet to put the relevant extension channels from different boundaries on one common multiplicity cut.
 ---
 
 OPEN.  In the exact raw `K~=S3` packet, decompose the relative chart operator
@@ -15,17 +16,19 @@ and the running class-11/class-30 hard prefixes under diagonal `K`
 conjugation.  Construct fixed word-visible projections or mixed Gram
 coordinates which, with dimension-independent normalized-HS loss,
 
-1. suppress or determine the two extra standard-channel reduced sources from
-   `s3-standard-operator-channel-has-fivefold-reduced-gauge`;
-2. identify the remaining three coordinates with the extension labels
-   `2,3,3 epsilon` whose `S4 -> S3` restrictions meet in `sigma`; and
-3. make the same three coordinates available to the raw/comb path products
+1. use the intrinsic central idempotents of the actual quotient-level `S4`
+   extensions to identify the labels `2,3,3 epsilon` meeting in `sigma`;
+2. control the relative position of the corresponding decompositions from
+   two different hard extensions, including every external overlap block;
+3. make the resulting three coordinates available to the raw/comb path products
    on one common finite multiplicity cut.
 
-The construction may use the classical-fold `S4 <- S3 -> S4` geometry only
-to choose carrier coefficients.  It may not assume that the cross-chart hard
-prefix is an exact `S4` representation in the microstate.  Authentication
-must follow from named relators in the canonical packet.
+The first finite-group recovery step is established by
+`actual-hard-prefix-generates-s4-over-raw-s3`; the construction may exactify
+that actual finite subgroup.  Authentication here now means synchronizing
+the intrinsic decompositions of two extensions and tying them to named
+raw/comb relators.  It may not identify their external multiplicity spaces
+merely because both restrict multiplicity-freely to `K`.
 
 ## Attempts
 
@@ -33,6 +36,15 @@ must follow from named relators in the canonical packet.
   an exact regular-margin affine escape with noncollapsed raw `S3`
   directions.  Hence classes 11 and 30 alone cannot isolate the extension
   triple.
+- **The hard-prefix recovery hole is closed.** Exact Leavitt enumeration
+  gives `<K,q>~=S4` for every actual prefix, and `<K,q,q^star>` has order
+  168 when `q^star` is treated as a separate word.  This legitimizes finite
+  carrier projectors but does not identify multiplicity reservoirs.
+- **Separated carrier and coefficient arguments are impossible.** By
+  `separated-channel-identities-retain-rectangular-escape`, any
+  proof whose S4 determinant acts on one tensor factor and whose Leavitt
+  transports act on another retains the exact doubled rectangular model.
+  A named quotient relator must mix the two in one operator equation.
 - **A source word is not a channel equation.**  The raw and comb artifacts
   give literal words of lengths 25 and 175 and their Leavitt values.  Their
   existence does not itself add a microstate relation.  A successful attack
