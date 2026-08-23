@@ -9,6 +9,7 @@ distinct_from:
   finite-face-flatness-stops-at-fundamental-group-holonomy: that classifies bare face-flat multiplicity connections and shows curvature repair is presentation stability; this can succeed only through additional native label--multiplicity coupling.
   fixed-finite-label-km-holonomy-is-scalar-or-gapped: that rules out every fixed projective-label Schur-product twist; this still permits growing or genuinely label--multiplicity-entangled overlap maps.
   finite-multipath-average-coercivity-has-exact-julia-absorber: that proves finite additive paths coerce their pairwise Gram energy only after complementary leakage is controlled; this must construct that carrier control from native Kac--Moody relations.
+  triangle-kernel-relators-charge-authenticated-corner-leakage: that proves the native kernel words pay all complementary leakage on a positive carrier; this must still identify one compressed word with the desired finite-label multipath block.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
@@ -94,3 +95,26 @@ Curtis--Tits multipath block on a positive regular carrier and prove either
 small complementary leakage or an independent relator-energy charge for that
 leakage.  More paths and non-Schur coordinate entanglement do not remove this
 carrier obligation.
+
+## Native triangle relators do pay leakage
+
+The triangle presentation has a precise tree-first form:
+`G_0=P_12*_(P_2)P_23` is virtually free, and the remaining two-cells are a
+free basis `n_a=1` of
+`N=ker(P_1*_(P_0)P_3 ->> P_13)`.  These relations are analytically sufficient
+once the correct corner is named.  By
+`triangle-kernel-relators-charge-authenticated-corner-leakage`, for every
+projection `q` of trace `beta`,
+
+```text
+tau_q(q pi(n_a)^*(1-q)pi(n_a)q)
+ <=beta^(-1)||pi(n_a)-I||_2^2.
+```
+
+Combining this with the multipath Gram identity gives `(TKL3)`, with exact
+constants `2m^2/beta` and `4m^2`.  Hence a correctly compiled kernel-word
+compression has no Julia escape.  The narrowed native problem is algebraic:
+construct one common regular-core projection of uniform density and expand
+`q pi(n_a)q` as, or approximate it by, the desired coherent finite-label
+paths.  A further abstract leakage or face-gap lemma would duplicate the
+established estimate.

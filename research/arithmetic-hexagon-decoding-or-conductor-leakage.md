@@ -594,3 +594,39 @@ the fixed-depth nonhyperlinearity criterion.
   prove that the actual section transition applied to each decoded root atom
   has leakage controlled by the conductor/root ledger. No marginal or raw
   factor estimate can substitute for it.
+- **Carrier-level first exit still does not pay atomwise section exit.**
+  `independent-chart-refinement-forces-eda-leakage` starts with any
+  equal-trace conductor edge `(R,S,V)` of mass `mu` and base first exit
+  `L=||(1-S)VR||_2^2`. Refining its endpoints by two independent `q`-atom
+  coordinate PVMs gives equal-rank decoded atoms with the exact identity
+
+  ```text
+  sum_i ||(1-F_i)(V tensor 1)E_i||_2^2
+   =mu(1-1/q)+L/q.
+  ```
+
+  At `q=42`, even a perfect carrier edge has atomwise EDA leakage
+  `41mu/42`. Tensoring preserves every old conductor/root defect and raw
+  incidence scalar. Thus the surviving target cannot be an inequality
+  deriving `(EDA11)` from the carrier-level ledger: the independent-label
+  tensor packet refutes it sharply. The six chart PVMs must instead be
+  constructed inside a section-functorial label algebra so their atomwise
+  leakages are literal summands of the decoder's ledger. This is a new
+  structural input, not a constants problem.
+- **One injective chart phase is the smallest sufficient mixed Gram row.**
+  `one-phase-chart-tag-pays-atomwise-leakage` assigns the `42` decoded atoms
+  the distinct phases `zeta^i` and forms partial tags `A=sum zeta^iE_i`,
+  `B=sum zeta^iF_i`. If `T` is the actual denominator section, carrier exit
+  is `L`, and `K=||BTR-TA||_2^2`, then
+
+  ```text
+  sum_i||(1-F_i)TE_i||_2^2
+   <=L+(K-L)/(4 sin^2(pi/42)).
+  ```
+
+  This follows from an exact block decomposition, not rounding, and feeds
+  directly into `(EDA13)`. Hence the frontier is now one explicit mixed-root
+  construction: wordize or otherwise control a section-covariant injective
+  phase tag built from each chart's one-hot/Fourier atoms. The independent
+  refinement countermodel proves that no collection of marginal phase or
+  carrier energies can replace this cross-section covariance row.

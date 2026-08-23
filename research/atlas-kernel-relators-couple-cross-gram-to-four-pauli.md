@@ -84,3 +84,18 @@ any singular value of the additive rows.  The viable finite-only object has
 therefore narrowed to relative singular *spaces* (or an equivalent
 noncommutative-rank/shrunk-subspace certificate), not scalar determinant,
 index, or separate-rank data.
+
+There is a larger gauge than the scalar circle.
+`atlas-full-relator-data-factor-through-double-commutant-gauge` proves that
+every word evaluation is unchanged up to conjugacy under
+
+```text
+U -> D U C,       D in rho_1(A8)', C in rho_2(A8)'.
+```
+
+Hence no raw multiplicity basis, coefficient of `U`, or one-sided singular
+vector is authenticated by the full kernel.  The smallest admissible objects
+are simultaneous singular/range data of mixed compressions `P_i U Q_j`,
+considered equivariantly under this double gauge.  The remaining target must
+derive its common four-word carrier from such a family, not from a pinned raw
+coordinate.

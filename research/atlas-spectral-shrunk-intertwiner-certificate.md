@@ -102,3 +102,12 @@ universal-factor no-go results leave open.
   that expression by nonlinear defect is already the missing five-row
   inequality.  Thus a bilinear Hessian does not furnish an independent
   shortcut.
+- **Full word data have a double-commutant gauge.**
+  `atlas-full-relator-data-factor-through-double-commutant-gauge` audits the
+  complete two-chart word list at once: `U` and `DUC`, for left/right chart
+  commutant unitaries, give conjugate evaluations of every word.  Thus a raw
+  multiplicity coordinate or singular vector cannot define `K_delta`.
+  Gauge-legal candidates must be assembled from the simultaneous mixed
+  blocks `P_i U Q_j`; only their equivariant range/principal-angle data
+  survive.  This identifies the block-range Hall construction as the first
+  admissible singular-space target rather than merely a convenient one.
