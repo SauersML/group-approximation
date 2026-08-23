@@ -299,6 +299,24 @@ further Cuntz/Leavitt trace arithmetic is missing: the sole surviving seam is
 a finite-coordinate decoder which makes the compressed source Grams small
 without turning them into universal group-algebra identities.
 
+Coupling that endpoint directly to the non-CE BCS does not reduce the seam.
+`bcs-to-compressed-cuntz-coupling-is-not-a-smaller-gate` writes `B` for the
+marked BCS energy and `D` for the compressed source-Gram defect.  Finite
+matrices already satisfy two independent lower bounds
+
+```text
+B>=beta_B q,                    D>=(k-1)q.
+```
+
+Thus `D<=CB` supplies no presentation payment.  If relators upper-bound
+`B`, the BCS gap is terminal without Cuntz; if they upper-bound `D`, the
+Cuntz floor is terminal without BCS.  Activating the branches only on the
+uncovered forbidden column makes `D` comparable to `L_forb`, and then
+`D<=C(C_forb+E_cons)` is quantitatively equivalent to `(CPS12)`.  A fixed
+all-tracial/first-order shortcut again collapses the mark in the regular
+factor.  The surviving task is therefore the genuinely finite-coordinate
+source-Gram decoder itself.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
