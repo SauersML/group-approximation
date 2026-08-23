@@ -9,6 +9,7 @@ distinct_from:
   one-common-intertwiner-carries-the-four-pauli-pi-bridge: that transports four target operators through one almost-unitary physical intertwiner; this transports only one adjoint overlap scalar and does not reconstruct a physical factor or its spectator.
   balanced-controlled-whitehead-return-checksum: that computes a rank gap for the controlled-reflection extension of one two-qubit packet; this uses the actual source-versus-two-child Leavitt Weyl packets with superranks `p^(-2)` and `p^(-4)`.
   canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
+  leavitt-morita-coefficient-polar-points-in-wrong-reynolds-direction: that computes the polar of the native forward coefficient chart and shows it is either gauge-uncontrolled or the exact label-amplifying rectangular escape; this requires a reverse cross-typed return Gram instead.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -68,3 +69,15 @@ extract source saturation from a genuinely finite-matrix feature of the
 full presentation, or pay its failure as boundary leakage.  More typed
 associativity loops, separate PI fingerprints, fixed word returns, and
 preservation of every target invariant remain below the exact countermodel.
+
+The first explicit polar candidate is now refuted.
+`leavitt-morita-coefficient-polar-points-in-wrong-reynolds-direction` applies
+the native coefficient formula `A |-> sum_i x_iAy_i`.  Typed multiplication
+gives it an exact algebraic inverse but does not control its Hilbert adjoint,
+because arbitrary nonunitary target-object gauges preserve every coefficient
+relation.  After choosing a unitary gauge its polar is already an exact
+isometry, but it maps the source label algebra into the doubled target label
+algebra—the rectangular escape direction.  It does not map the larger source
+commutant into the smaller target commutant.  The live `X_U` must therefore
+come from a mixed **return** Gram which reverses the Morita arrow on the
+multiplicity coordinate, not from polarizing the forward `Phi` chart.
