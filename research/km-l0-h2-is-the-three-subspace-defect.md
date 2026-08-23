@@ -31,10 +31,12 @@ and unique divisibility) each `H^1(P_K^-, V)` with its stable image
 (c) H^2(Lambda, V) ~= ((St_1 + St_2) cap St_3) / (St_13 + St_23),
     the three-subspace distributivity defect;
 
-(d) the defect is an extension whose kernel part is
-    coker(H^1(Gamma_3, V) -> Hom(N_3, V)^Lambda) for
-    Gamma_3 = P_13^- *_(P_3^-) P_23^- ->> Lambda with free kernel
-    N_3, N_3^ab = H_1 of the cotype-3 subgraph of X_-.
+(d) Hom(N_3, V)^Lambda = 0 (the digon-link flag-transitivity
+    kill, artifact Addendum 14), so inflation embeds H^2(Lambda, V)
+    into H^2(Gamma_3, V) = St_3/(St_13 + St_23) EXACTLY onto the
+    defect of (c): no extension ambiguity, and the defect is the
+    kernel of an explicit Shapiro map delta into
+    H^1(P_12^-, Hom(Z_1(K_(q+1,q+1)), V)).
 ```
 
 Consequence: Ioana--Spaas--Wiersma Corollary E fires at the Bernoulli

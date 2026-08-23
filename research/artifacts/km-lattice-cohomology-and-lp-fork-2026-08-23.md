@@ -476,3 +476,46 @@ Late-day cascade; each step short, recorded for verification.
    existence of an equivariant assignment of measurable functions to
    the cycles of one cotype-deleted building layer -- is the
    surviving computation, in both directions.
+
+## Addendum 14: inflation is injective; the defect descends to finite blocks
+
+1. **`Hom_Lambda(N_3^ab, V) = 0`.**  Excision against the contractible
+   `X_-`: `N_3^ab = H_1(cotype-3 subgraph)` decomposes over the
+   deleted cotype-{1,2} vertices as the induced sum of the digon-link
+   cycle spaces `Z_1(K_(q+1,q+1))` with stabilizer `P_12^-` (one
+   orbit).  Frobenius reciprocity reduces equivariant maps to
+   `Hom_(P_12^-)(Z_1(digon), V)`; the radical acts trivially on the
+   link and mixes `Y`, forcing constant values; `L_12` is
+   flag-transitive on `K_(q+1,q+1)` and the all-ones edge vector is
+   not a cycle.  Zero -- the same kill as Addendum 13(b), one level
+   up.
+
+2. **Exact final form.**  With `N_3` free and the above vanishing,
+   Hochschild--Serre (seven-term) gives
+
+   ```text
+   0 -> H^2(Lambda, V) -> H^2(Gamma_3, V) = St_3/(St_13 + St_23)
+        --delta--> H^1(P_12^-, Hom(Z_1(K_(q+1,q+1)), V))
+   ```
+
+   (Shapiro on the coinduced module), so `H^2(Lambda, V) = ker delta
+   = ((St_1+St_2) cap St_3)/(St_13+St_23)` with NO extension
+   ambiguity.
+
+3. **Finite-level three-subspace criterion.**  Producing a nonzero
+   defect element needs tower data `h_k`, `H^3`-invariant with
+   vanishing next-level `P^3`-average, that SPLITS as `f^1 + f^2`
+   with `f^i` `H^i`-invariant -- while not refining to
+   `M_13`/`M_23`-invariant pieces.  On a single finite block this is
+   the three-subspace defect `C_3 cap (C_1 + C_2)` versus its
+   distributive part for the three orbit-constancy subspaces of the
+   finite groups `H^1_n, H^2_n, H^3_n <= M_n` -- a computable
+   walk-graph-flavored linear-algebra question, exactly in the
+   `km-opposition-class-walk-threshold-law` toolbox.  Three-subspace
+   defects are GENERICALLY nonzero (three distinct lines in a
+   plane), so this is the first concrete evidence leaning toward
+   `H^2(Lambda, L^0) != 0`, i.e. toward LP FAILURE; but parabolic
+   triples are not generic, and the tower-level survival argument
+   (char-function style, against the `St_13 + St_23` gauge) is
+   still to be built.  NEXT STEP: compute the finite-level defect
+   spaces on small BN-levels/Levi quotients.

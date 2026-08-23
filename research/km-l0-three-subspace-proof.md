@@ -44,8 +44,15 @@ two vertex diagonals yields the stated defect module.
 
 (d) `P_13^-` and `P_23^-` generate `Lambda` (their Levis contain
 all `U_(+-alpha_i)`), the amalgam kernel `N_3` is free (vertex
-groups embed), Mayer--Vietoris computes `H^2` of the amalgam as
-`St_3/(St_13 + St_23)` (using `H^2(P^-, V) = 0`), and the five-term
-sequence for `Lambda = Gamma_3/N_3` gives the stated extension;
-`N_3^ab` is `H_1` of the corresponding coset graph, which is the
-cotype-3 subgraph of `X_-`.
+groups embed), and Mayer--Vietoris computes `H^2` of the amalgam as
+`St_3/(St_13 + St_23)` (using `H^2(P^-, V) = 0`).  `N_3^ab` is
+`H_1` of the coset graph = the cotype-3 subgraph of `X_-`, which
+decomposes over the deleted cotype-{1,2} vertex stars as the
+`P_12^-`-induced sum of digon-link cycle spaces; the flag-transitive
+kill of (b) applied to the digon link gives
+`Hom(N_3, V)^Lambda = 0`, and since `N_3` is free (so
+`H^2(N_3, V) = 0`), the Hochschild--Serre seven-term sequence makes
+inflation an isomorphism of `H^2(Lambda, V)` onto the kernel of the
+Shapiro-identified map `delta` into
+`H^1(P_12^-, Hom(Z_1(K_(q+1,q+1)), V))`, i.e. exactly the defect
+module of (c).
