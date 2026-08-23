@@ -630,3 +630,45 @@ the fixed-depth nonhyperlinearity criterion.
   phase tag built from each chart's one-hot/Fourier atoms. The independent
   refinement countermodel proves that no collection of marginal phase or
   carrier energies can replace this cross-section covariance row.
+- **The injective tag cannot be an actor group-algebra word.** On the
+  transitive `42`-point module, every linear combination of lattice actor,
+  root, Weyl, and section-correction words preserves the constant line.
+  The diagonal tag using all `42`nd roots sends that line orthogonally away
+  from itself. `actor-algebra-cannot-wordize-shell-phase-tag` computes
+
+  ```text
+  inf_(X in actor algebra)||sum_i zeta^iP_i-X||_2^2>=2/42=1/21.
+  ```
+
+  Thus increasing the degree of a fixed actor polynomial cannot supply the
+  phase covariance row above. Any successful wordization must use actual
+  lamp/selector coefficients, an enlarged off-shell crossed-product
+  window, or conductor-dependent nonlinear spectral cuts. The native shell
+  lamps do not give the first option by Boolean Fourier expansion because
+  they retain exact graph-product nonedges. Hence the fixed-shell
+  actor-only phase-tag route is closed, not merely quantitatively weak.
+- **The minimal off-shell return still defeats every fixed window.**
+  `finite-shell-window-cannot-wordize-returning-tag` first extends the
+  constant-line estimate to any finite union of lattice shell orbits: an
+  injective diagonal tag has squared distance at least
+  `(2/Q)sum_r(1-|meanPhase_r|^2)` from the actor algebra. Granting the full
+  diagonal coefficient algebra only moves the obstruction to the shortest
+  second-denominator return. Its holonomy
+
+  ```text
+  k=diag(2,2,1/4)
+  ```
+
+  has no finite orbit on `SL_3(Z[1/2])/SL_3(Z)`. Every nonempty fixed window
+  `F` therefore satisfies
+
+  ```text
+  ||kA_Fk^(-1)-A_F||_2^2>=1/|F|.
+  ```
+
+  This positive term is not presentation defect because `k` is a genuine
+  coweight word, not a relator. Hence the two-cycle/four-cycle Morita edge,
+  shortest A2 path, and one alternative denominator return cannot produce a
+  fixed finite-window covariant phase tag. Only growing affine-Weyl Folner
+  windows evade the bound; a closing incidence must make that off-shell
+  direction nonamenable rather than enlarge the window by a fixed amount.

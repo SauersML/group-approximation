@@ -10,6 +10,7 @@ distinct_from:
   fixed-finite-label-km-holonomy-is-scalar-or-gapped: that rules out every fixed projective-label Schur-product twist; this still permits growing or genuinely label--multiplicity-entangled overlap maps.
   finite-multipath-average-coercivity-has-exact-julia-absorber: that proves finite additive paths coerce their pairwise Gram energy only after complementary leakage is controlled; this must construct that carrier control from native Kac--Moody relations.
   triangle-kernel-relators-charge-authenticated-corner-leakage: that proves the native kernel words pay all complementary leakage on a positive carrier; this must still identify one compressed word with the desired finite-label multipath block.
+  km-triangle-local-bimodules-have-finite-nonflat-models: that gives exact regular charts and pairwise overlap intertwiners with a nontrivial native kernel cycle; this must use the kernel relator itself to close the common carrier.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
@@ -118,3 +119,25 @@ construct one common regular-core projection of uniform density and expand
 `q pi(n_a)q` as, or approximate it by, the desired coherent finite-label
 paths.  A further abstract leakage or face-gap lemma would duplicate the
 established estimate.
+
+## Local regular bimodules do not compile the common corner
+
+The remaining coefficient step cannot be derived from the local finite
+subgroup tables and pairwise overlap maps alone.
+`km-triangle-local-bimodules-have-finite-nonflat-models`
+uses residual finiteness of the virtually free tree side `G_0` to separate
+any chosen `1!=n_a in N` in a finite quotient.  Its quotient-regular
+representation is a regular multiple on `P_12` and `P_23`.  After a fixed
+common amplification, an independent regular `P_13` chart has exactly the
+same restriction multiplicities on `P_1` and `P_3`, so both overlap
+intertwiners and all finite group-algebra matrix units match exactly.  The
+returned `n_a` holonomy nevertheless remains nontrivial on the tree side and
+is identity on the `P_13` side.
+
+Therefore the desired positive carrier and multipath identity must consume
+the native relation `n_a=1` during their construction; they cannot be
+selected first from local regular cores and then closed formally.  This does
+not weaken `(TKL3)`: once such a relation-dependent common carrier is built,
+the kernel defect pays its leakage.  It rules out a local-bimodule-only
+compiler and isolates the unresolved step as **relation-dependent common-core
+extraction**.

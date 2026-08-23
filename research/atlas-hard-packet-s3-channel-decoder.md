@@ -117,6 +117,14 @@ later multiplication-minor gate.
   arXiv:2608.13872, motivates the multiplicity-one-channel/nonvanishing/small-
   determinant proof architecture.  The VOA theorem is not used here; the
   actual atlas rank statement remains entirely open and project-specific.
+- **A local minor must propagate before it becomes a Hall certificate.**
+  `atlas-a8-hall-deficit-needs-439-forbidden-blocks` proves that a hard
+  support deficit on the complete regular-A8 minimal Fourier alphabet needs
+  at least 439 forbidden block pairs.  Thus a nonzero three-channel minor may
+  still be the correct local decoder, but its output must be transported by
+  the literal packet across a 439-edge-or-larger block orbit (or used as a
+  within-block range deficit).  Invertibility of the local `3 by 3` channel
+  matrix alone is not yet a global Hall cut.
 
 ## Equivalent sufficient matrix estimates
 

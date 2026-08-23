@@ -93,3 +93,27 @@ to the exact infinite-multiplicity factor model.
 - **Respect the equalizer-density no-go.** Do not require one character sector
   to survive all compressor depths. The Hall set may aggregate many Fourier
   corners; only its total regular weight must stay positive.
+- **The concrete Hall gap is discrete; only support deletion is missing.**
+  `atlas-a8-mixed-block-transport-has-permutation-models` lists the fourteen
+  A8 degrees and proves that every strict cut deficit on the 448 minimal
+  Fourier vertices is at least `1/20160`.  It also realizes every rational
+  regular-marginal transport plan by an exact permutation unitary after
+  amplification.  Therefore `(AWH1)` needs no separate quantitative search
+  for `gamma`: any strict deficient cut has a fixed gap.  Conversely, neither
+  block-mass integrality nor the concrete multiplicities can create that
+  cut.  The sole gate is relation-sensitive deletion/shrinkage of simultaneous
+  within-block directions in `(AWH2)`.
+- **One local block deletion is far below the Hall threshold.**
+  `atlas-a8-hall-deficit-needs-439-forbidden-blocks` solves the concrete
+  weighted support problem sharply: every deficient graph on the 448
+  minimal Fourier vertices omits at least 439 source--target pairs.  The
+  bound is attained by isolating one degree-70 minimal corner from all but a
+  weight-64 nine-vertex neighborhood.  Therefore a projected relator minor
+  is useful for hard Hall only if its common kernel implication propagates
+  across a large orbit of block pairs.  A one-pair vanishing, or even 438
+  unrelated pair vanishings, cannot close `(AWH1)`.
+  In fact the same theorem constructs an exact `20160`-dimensional
+  permutation absorber for every prescribed family of at most 438 forbidden
+  pairs.  Thus a bounded minor calculation must be replayed through its full
+  packet orbit and shown to suppress at least 439 distinct pairs before it
+  has any hard-support force.

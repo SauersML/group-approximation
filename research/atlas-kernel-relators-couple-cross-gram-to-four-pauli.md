@@ -99,3 +99,13 @@ are simultaneous singular/range data of mixed compressions `P_i U Q_j`,
 considered equivariantly under this double gauge.  The remaining target must
 derive its common four-word carrier from such a family, not from a pinned raw
 coordinate.
+
+Even the complete scalar mass profile of that family is insufficient.
+`atlas-a8-mixed-block-transport-has-permutation-models` constructs an exact
+finite permutation unitary for every rational transport plan on the 448
+minimal regular-A8 Fourier corners.  Thus the mixed full-kernel step must
+control simultaneous *directions* or singular ranges inside `P_i U Q_j`, not
+only their ranks or squared-HS masses.  On the positive side, any strict Hall
+deficit extracted from those ranges automatically has gap at least
+`1/20160`; the remaining difficulty is qualitative range deletion, not the
+size of the final constant.
