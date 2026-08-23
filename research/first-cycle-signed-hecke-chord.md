@@ -76,6 +76,15 @@ least one non-root assignment projection must survive.
   canonical regular corner.  The affine-Leavitt Heisenberg graft supplies
   this invisibility for one selected cap packet, but not the global overlap
   atlas.
+- **Strict rectangular polar transport does not trivialize the cycle.**
+  `rectangular-hecke-polar-cycle-has-no-strict-trace-gain` shows that every
+  bounded-below polar arrow can only increase carrier trace.  On a closed
+  composable cycle all carrier traces are therefore equal and every arrow
+  is onto; any larger target complement is unused spectator mass.  The
+  effective return is again the balanced multiplicity-holonomy problem.
+  Moreover polar calculus generally leaves `C[G]`, even for an invertible
+  coefficient of `C[Z]`, so analytic bounded-below compression alone does
+  not build the required algebraic Hecke-corner map.
 - **Finite-edge HNN transport is exact but globally dead.**
   `finite-character-idempotents-have-exact-hnn-transport` shows that matched
   finite-subgroup character pieces can be transported and assembled exactly.
