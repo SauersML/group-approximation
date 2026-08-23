@@ -21,9 +21,12 @@ cells `x x y` over opposite chamber pairs, a simply connected
 four-dimensional cocompact proper `Lambda`-complex (NOT the
 two-dimensional Levi-triangle development `X`, which is homotopy
 equivalent to `X^` minus its mixed-type 1-skeleton; see
-`km-development-has-nonzero-end-cohomology-in-degree-one`).  Let `q` be large enough
-that the opposition graph of every thick generalized `m`-gon residue
-(`m in {2,4,6}`) is connected.  Then:
+`km-development-has-nonzero-end-cohomology-in-degree-one`).  The opposition graphs of the thick generalized `m`-gon residues
+(`m in {2,4,6}`) are connected: Abramenko--Van Maldeghem,
+*Connectedness of opposite-flag geometries in Moufang polygons*
+(European J. Combin. 20 (1999)), prove connectedness for every Moufang
+polygon with the single exception of the `Sp_4(2)` quadrangle, far
+below `q > 1764^3`.  Then:
 
 ```text
 (a) Z_(<=R+1)/Z_(<=R) is a wedge, over residue pairs (R_+,R_-) of types
