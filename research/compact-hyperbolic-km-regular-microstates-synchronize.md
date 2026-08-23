@@ -13,6 +13,7 @@ distinct_from:
   km-triangle-local-bimodules-have-finite-nonflat-models: that gives exact regular charts and pairwise overlap intertwiners with a nontrivial native kernel cycle; this must use the kernel relator itself to close the common carrier.
   reynolds-defect-cut-gives-regular-relator-corner: that constructs a large regular-overlap carrier and polar two-path corner for one kernel word; the summed-Reynolds claim below supplies its finite-family upgrade.
   summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
+  summed-reynolds-carrier-transports-only-tautologically: that transports the high-density projection and its polar corrections through every chart by replacing the projection with the full carrier, but shows that the resulting paths are only I and the original kernel word; this must compare the polar path with the independently exactified P_13 coefficient.
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
@@ -236,10 +237,27 @@ tr(q)>=1-sqrt(E),
 ```
 
 In a regular `H` chart it retains a regular summand of relative dimension at
-least `1-|H|sqrt(E)`.  The remaining carrier problem is no longer
-simultaneous kernel-word extraction: it is extending this one
-overlap-subgroup-invariant carrier through `P_1`, `P_3`, and the rank-two
-vertex charts without losing density or recreating the nonflat counterpacket.
+least `1-|H|sqrt(E)`.
+
+The projection-transport problem is now closed.
+`summed-reynolds-carrier-transports-only-tautologically` observes that the
+same trace estimate already gives
+
+```text
+||q-I||_2<=E^(1/4),
+||[U,q]||_2<=sqrt(2)E^(1/4)       for every ambient unitary U.
+```
+
+Thus replacing `q` by the identity transports the carrier through all three
+rank-two charts with no loss of regular mass.  Every corner polar correction
+also extends by identity to a global unitary `O_H(E^(1/4))` from `I`.  This
+does not solve the coefficient problem: the construction then names only the
+tautological paths `I` and `pi(n_a)`.  Its polar completion is not a group
+word and is not tied to the independently exactified `P_13` chart.  The
+precise remaining bridge is a relative finite-group exactification which
+compares that corrected chart's two overlap-path coefficients to the
+Reynolds polar path on positive regular mass.  No further carrier-invariance
+estimate is needed.
 
 ## The kernel basis already builds the missing finite rank-two chart
 

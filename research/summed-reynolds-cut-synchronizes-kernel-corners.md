@@ -7,6 +7,7 @@ distinct_from:
   reynolds-defect-cut-gives-regular-relator-corner: that constructs a carrier for one relator; this uses one spectral cut for a whole finite family and synchronizes all of their polar corrections on it.
   hs-defect-operator-norm-quarantine: that cuts an arbitrary finite defect family but produces no invariant carrier or leakage control; this Reynolds-averages over a finite overlap subgroup, preserves its regular core, and controls every compressed word's Julia leakage.
   compact-hyperbolic-km-regular-microstates-synchronize: that must propagate the common overlap-subgroup carrier through all three rank-two charts; this settles simultaneous extraction for the finite kernel basis at one fixed overlap subgroup.
+  summed-reynolds-carrier-transports-only-tautologically: that proves this high-density projection and every corner polar correction extend through all rank-two charts at dimension-free cost, but also proves the extension names only the tautological identity/kernel-word paths and supplies no coefficient from the independently exactified P_13 chart.
 ---
 
 **ESTABLISHED.**  Let `rho:H->U(D)` be exact for a fixed finite group and
@@ -73,3 +74,9 @@ subgroup.  It does not yet make `q` invariant under `P_1`, `P_3`, or the
 three rank-two vertex groups.  The remaining Kac--Moody step is transport of
 this one `P_0`-regular carrier through those larger finite charts without
 reintroducing cycle holonomy.
+
+The projection-transport part is now closed by
+`summed-reynolds-carrier-transports-only-tautologically`: replacing `q` by
+the full carrier costs only `E^(1/4)` at the optimized cut.  What remains is
+the relative coefficient comparison between its polar path and the
+separately exactified `P_13` chart path.
