@@ -10,19 +10,16 @@ requires:
 ---
 
 Since scalar defects disappear under conjugation, `Ad V_j` is an exact
-homomorphism.  It induces
+homomorphism.  Clause `(ORC4)` says that for every `r in R` and `e in E`,
 
 ```text
-sigma_j:L->Sym(O_j),
-sigma_j(l)(B)=Ad(V_j(l))(B).                            (ORP1)
+Ad(V_j(e^(-1) r e))(A_j)=A_j.                          (ORP1)
 ```
 
-The image is finite.  Clause `(ORC4)` says `R<ker(sigma_j)`.  The kernel is
-normal in `L`, hence its intersection with `E` is normal in `E` and contains
-`R`.  Therefore
+Those conjugates generate `N=normal_closure_E(R)`, so
 
 ```text
-N=normal_closure_E(R) < ker(sigma_j).                  (ORP2)
+Ad(V_j(n))(A_j)=A_j          (n in N).                 (ORP2)
 ```
 
 Fix `g in L-N`.  From `(ORC2)`, for all sufficiently large `j`,
@@ -39,14 +36,15 @@ norm,
  =2-2 Re tr(A_j Ad(V_j(g))(A_j)) >1.                  (ORP3)
 ```
 
-Thus `sigma_j(g)` moves the seed `A_j`.  If
+Thus `g` moves the seed `A_j`.  If
 
 ```text
-K_j=Stab_(sigma_j)(A_j),                               (ORP4)
+K_j={l in L:Ad(V_j(l))(A_j)=A_j},                      (ORP4)
 ```
 
-then `K_j` has finite index in `L`, `(ORP2)` gives `N<K_j`, and `(ORP3)`
-gives `g notin K_j`.  This is subgroup separability of `N` in `L`.
+then `K_j` has finite index in `L` because `O_j^L` is finite.  Equation
+`(ORP2)` gives `N<K_j`, and `(ORP3)` gives `g notin K_j`.  This is subgroup
+separability of `N` in `L`.
 
 For completeness, it contradicts the intended input without using an
 undecidable-membership argument.  If `N` were separable in `L`, then for
@@ -75,10 +73,9 @@ The established exact `SL_3` projective trace-square transfer closes a
 different gap.  It controls an auxiliary unitary once it projectively
 commutes with a Kazhdan co-dense subgroup, and its open approximate version
 would at most help replace actor matrices by exact projective ones.  Exact
-projective lifting makes `(ORC3)` finite, but it does not say that a
+projective lifting makes `O_j^L` finite, but it does not say that a
 Mihailova relator fixes every conjugate lamp branch.  The Kac--Moody regular
 overlap machinery likewise targets simultaneous correction of actor tables;
 its multiplicity/classicalization boundary does not impose `(ORC4)`.  The
 finite counterpacket `(ORP5)` shows that this missing clause is algebraic,
 not an unoptimized Hilbert--Schmidt constant.
-

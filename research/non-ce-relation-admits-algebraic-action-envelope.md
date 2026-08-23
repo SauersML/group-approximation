@@ -417,6 +417,21 @@ non-hyperlinear group `hat K rtimes Lambda`.
   zero-defect `S_3` permutation packet shows why fixing the seed alone cannot
   be upgraded by any HS constant: a relator can fix one branch while a
   conjugate moves it.
+- **Finite lamp balls plus Kazhdan expansion still do not give orbitwise
+  relator triviality (proved, 2026-08-23).**
+  `sparse-relator-defects-defeat-orbitwise-classicalization` sharpens the
+  preceding gate and corrects "entire orbit" to the weakest canonical clause,
+  the `F_m`-orbit of the seed.  Over congruence quotients of the property-`(T)`
+  group `SL_3(Z)`, take two regular orbits and cross-switch one edge of a
+  redundant generator `z=w`.  The resulting exact free-group action is
+  transitive, agrees with the quotient on any prescribed rooted word ball,
+  and has relator defect density tending to zero, but `z w^(-1)` moves exactly
+  two points.  Its binary Bernoulli matrices have exact actor covariance and
+  exact pairwise lamp traces.  Since the orbit is transitive, deleting the
+  two bad points has full invariant saturation: there is no positive
+  invariant defect-free branch.  Thus property `(T)`/Poincare control cannot
+  turn averaged relator triviality into the orbitwise clause; a genuinely
+  global stability input is necessary.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
