@@ -16,7 +16,7 @@ distinct_from:
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
-  property-t-character-rigidity-allow-maximally-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
+  pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
   - research/artifacts/high-cascade-holonomy-audit-2026-08-23.md
@@ -59,7 +59,7 @@ large-degree multiplicity regime itself.
 
 The escape cannot be removed by combining property `(T)`, character
 rigidity, canonical trace, and asymptotic adjoint spectral gap abstractly.
-`property-t-character-rigidity-allow-maximally-nontight-regular-tails`
+`pt-rigidity-allows-nontight-regular-tails`
 constructs exact irreducible projective-plane representations of
 `SL_3(Z)` with all four properties and with degree distribution
 `delta_(p^2+p)`.  Thus these inputs are compatible with maximal degree

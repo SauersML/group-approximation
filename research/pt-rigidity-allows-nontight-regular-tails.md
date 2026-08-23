@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: property-t-character-rigidity-allow-maximally-nontight-regular-tails
+id: pt-rigidity-allows-nontight-regular-tails
 kind: claim
 title: Property T and character rigidity allow maximally non-tight regular degree tails
 distinct_from:

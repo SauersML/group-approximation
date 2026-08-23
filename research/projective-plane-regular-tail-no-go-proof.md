@@ -3,7 +3,7 @@ rg: 2
 id: projective-plane-regular-tail-no-go-proof
 kind: route
 title: Use projective-plane augmentation representations as maximally escaping regular tails
-target: property-t-character-rigidity-allow-maximally-nontight-regular-tails
+target: pt-rigidity-allows-nontight-regular-tails
 requires:
   - character-rigidity-equals-hyperfinite-hs-stability
 ---
