@@ -146,6 +146,24 @@ inequalities to `(CPS9)` gives the full `E_BCS(S_D8)` estimate used in
 
 None of the existing common-source lemmas proves `(CPS9)`.
 
+Lin's state-dependent dilation does not supply a hidden sixth mechanism.
+`lin-canonical-dilation-twirls-unprotected-left-carriers` computes the
+explicit isometry from Theorem 5.1:
+
+```text
+V^*(a tensor I)V=|G|^(-1) sum_g phi(g)^* a phi(g).
+```
+
+Thus the whole opposite algebra is carried exactly, but a left context
+carrier is Reynolds-twirled.  The Pauli `X,Z` example shows total loss of a
+second left observable at zero defect, while
+`lin-near-synchrony-selects-one-state-corner` gives rank-one densities
+inside a half-dimensional marked sector for which every selected layer has
+relative marked mass tending to zero.  Combining Theorems 4.1 and 5.1
+therefore yields neither `(CPS2)` nor `(CPS12)`: one needs both a
+canonical-trace mass input and a commutator/covariance estimate protecting
+the selected left carrier from the exactification twirl.
+
 1. `common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
    the scalar deficit
 

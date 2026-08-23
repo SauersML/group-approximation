@@ -27,3 +27,20 @@ This is a genuine common corner for one state.  It has no uniform trace
 floor and is selected from `sigma`, rather than by a fixed group word.  It
 therefore cannot by itself supply the common marked source in `(CPS2)` or
 align corners arising from different context densities.
+
+The failure remains true **relative to a macroscopic marked sector**, not
+only relative to the ambient identity.  In `M_N` with normalized trace, let
+`q<=p` have ranks `1` and `floor(N/2)`, respectively, and take
+`sigma=sqrt(N)q`.  Then `tau(sigma^2)=1`, while positivity of Lin's layer
+identity forces every nonzero spectral layer below `q`.  Hence
+
+```text
+tau(P_lambda)/tau(p) <= 1/(N tau(p)) -> 0.             (L4.2)
+```
+
+All state-seminorm estimates are concentrated on `q`, although the marked
+projection `p` has asymptotic trace `1/2`.  Thus no constant `gamma>0` in a
+bound `tau(P_lambda)>=gamma tau(p)` can be extracted from Theorem 4.1,
+even when the density is supported inside the marked sector.  Equivalently,
+declare the marked involution to be `J=I-2p`; then `p=(I-J)/2`, exactly the
+normalization used in `(CPS2)`.
