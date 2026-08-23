@@ -7,6 +7,7 @@ distinct_from:
   induced-rounding-needs-rms-section-fillings: that freezes the supplied exact core and is refuted by a small r-character twist; this minimizes over nearby exact core coordinates before constructing the induced section.
   authenticated-core-union-basin-is-relative-liftability: that gives the qualitative ultraproduct lifting endpoint; this states one finite-dimensional quadratic functional sufficient for it and checks that the known frozen-core counterfamily is absorbed at the correct scale.
   regular-congruence-endpoint-orbit-has-uniform-selberg-retraction: that retracts after one exact endpoint type has been selected; this is a proposed energy estimate for selecting a nearby core and producing the almost-invariant induced range.
+  gauge-optimized-target-has-uniform-congruence-tangent-gap: that proves the first-order version of the optimized estimate at every congruence endpoint while leaving its nonlinear HS integration open.
 ---
 
 Use the square-free endpoint coordinates
@@ -118,3 +119,9 @@ flexible endpoint notion and by the explicit refutation of frozen-core
 `(IRF8)`.  Any future Hodge or square-function proof must therefore be a
 coercive estimate **transverse to `C_N(d)`**, with the tangent exact-core
 directions quotiented out before the Cayley spectral gap is applied.
+
+There is no further moving-level obstruction at the derivative: the
+uniform quotient gap is established in
+`gauge-optimized-target-has-uniform-congruence-tangent-gap`.  The unresolved
+content of `(GOI5)` is therefore nonlinear HS integration, including
+operator-large small-rank motions and changes of torsion multiplicity.
