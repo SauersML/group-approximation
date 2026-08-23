@@ -263,6 +263,16 @@ weakening consumed by the HNN marked word.
   falsification gate.  What remains is entirely the uniform-outlier sector of
   approximate ambient representations.
 
+  There is no general compactness promotion even after restricting to full
+  canonical adjacent-vertex doubles.
+  `canonical-free-double-escapes-uniform-exact-projective-folding` constructs
+  a fixed finitely presented sofic pair whose exact projective-transfer
+  constant is zero and whose every exact double representation folds, but
+  whose canonical double microstates keep the fold word trace-zero.  Thus the
+  exact arithmetic gap is useful only after one proves an SL3-specific
+  correction or mixed-word theorem; exactness plus canonicality does not
+  close the outlier sector formally.
+
 - **The target scalar phase is now removed by one bounded rank-one
   identity.**  In the `(1,3)` `SL_2` block, write
 
