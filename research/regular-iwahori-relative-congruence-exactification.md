@@ -146,6 +146,13 @@ congruence quotients.  It does not establish `(RCE1)`.
   arbitrary canonical endpoint.  Basin capture must jointly choose a nearby
   congruence endpoint (or minimize over its exact endpoint fiber), after
   which same-core coercivity applies.
+  This exact ambiguity is field-locally exceptional:
+  `prime-field-iwahori-weyl-endpoint-is-unique-away-from-three` proves that
+  the standard endpoint in `PSL_2(k)` is unique for `char(k)>3` already from
+  inversion and the first cubic.  The arbitrary-baseline counterexample is
+  enabled by `h(2)=1` in `PSL_2(F_3)`.  This removes a putative generic
+  finite-field Weyl ambiguity, but does not control multiplicity commutants,
+  higher congruence rings, or the regular moving-level basin.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that

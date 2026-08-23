@@ -48,3 +48,10 @@ component (or minimize over all exact endpoints).  Finding merely one
 canonical extender of a nearby `(R,T)` core and then invoking a universal
 commutant-promotion inequality is false.
 
+The degeneracy is sharply localized at field level.
+`prime-field-iwahori-weyl-endpoint-is-unique-away-from-three` proves that on
+the standard `PSL_2(k)` core in characteristic greater than three, inversion
+puts every candidate in the Weyl normalizer coset and the first cubic makes
+that Weyl element unique.  At characteristic three the dilation `h(2)` is
+scalar in the projective group, which is exactly why the counterexample is
+possible.
