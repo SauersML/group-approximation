@@ -519,3 +519,33 @@ Late-day cascade; each step short, recorded for verification.
    (char-function style, against the `St_13 + St_23` gauge) is
    still to be built.  NEXT STEP: compute the finite-level defect
    spaces on small BN-levels/Levi quotients.
+
+## Addendum 15: finite-level defects are NONZERO in all probed models
+
+`experiments/km_three_subspace_defect_probe.py` (sub-second):
+unitriangular F_2-triples `A = <M1>, B = <M2>, C = <M3>` with
+`[M1, M2] = 1` (the digon constraint), function spaces on the
+generated 2-group by right-coset constancy, defect
+`dim(C_3 cap (C_1 + C_2)) - dim(C_13 + C_23)`:
+
+```text
+UT4 commuting-ends: |G|=64   defect 17 - 15 = 2
+UT5 spread:         |G|=512  defect 163 - 31 = 132
+UT5 mixed:          |G|=64   defect 17 - 15 = 2
+UT6 wide:           |G|=32   defect  9 -  7 = 2
+```
+
+NONZERO in every case: three-subspace non-distributivity is robust
+for nilpotent commuting-pair triples, the unipotent shadow of the
+parabolic triple.  Interpretation, with care: this is EVIDENCE (not
+proof) that the H^2(Lambda, L^0) defect module is nonzero, i.e. that
+Ioana--Spaas--Wiersma Corollary E fires at the Bernoulli action and
+C*(Lambda) FAILS the LP.  What separates evidence from proof:
+(a) the true triple is the three negative-parabolic chains (Levi
+parts included, correct (2,4,6) commutator constants); (b) the
+finite-level defect functions must be assembled into tower data
+whose class survives the `St_13 + St_23` gauge at the lim^1 level --
+the char-function survival argument of
+`locally-finite-bernoulli-lim1-proof` adapted to quotient towers;
+(c) role-symmetry (the same module has three vertex descriptions)
+is a consistency check any candidate construction must pass.
