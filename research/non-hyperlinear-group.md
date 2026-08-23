@@ -170,6 +170,34 @@ simple Kac--Moody candidate, but excluding approximate one-block analogues is
 exactly the terminal regular-branch HS-stability/non-hyperlinearity theorem,
 not a consequence of the other rigidity inputs.
 
+The factor-universality splice has been reduced to one character and then
+closed as a proper-quotient construction.  If a group with the
+regular-or-finite-dimensional extremal-character dichotomy surjects onto a
+group carrying even one non-CE factorial character, then
+`proper-quotient-nonce-factor-characters-are-ce` shows that the kernel is
+trivial and that character is the quotient's regular character.  Hence the
+source is already the desired nonhyperlinear group.  Full CDI universality,
+ICC, and a classification of all quotient characters are unnecessary, but
+semidirect and wreath projections, finite or central kernels, relative
+rigidity which omits the quotient face, and retracting simple envelopes are
+all excluded: their pulled-back non-CE character is identically one on the
+kernel.  Finite-index induction remains a separate valid compiler, but no
+character-rigid finite-index host for the available universal groups is
+known.
+
+The Bernoulli-lamp route now has no residual finite normalizer-phase problem.
+For an exact finite transformation table, the atomwise canonical moments
+`tr(P_omega U_s)=0` on every nontrivial stabilizer element force each
+stabilizer representation to be regular.  The resulting induced tables are
+simultaneously permutationizable, and
+`finite-cylinder-mixed-traces-kill-normalizer-holonomy` gives a quantitative
+`1-o(1)` permutation core under `o(1)` mixed-moment error.  Scalar actor
+traces alone sharply fail, so the cylinder resolution is load-bearing.
+Canonical Bernoulli trace supplies all the required mixed moments; the sole
+remaining gate is now coherent finite actor/table extraction from the HS
+microstate.  Producing that table is the Cartan/sofic-action completion, not
+another unitary-fiber rounding lemma, and property `(T)` does not provide it.
+
 The finite-depth ZPC groupoid shortcut has also been decided negatively.
 For the readable Boolean algebra `D_0` and unreadable actor words, put
 `D_n=join_(|w|<=n) wD_0w^(-1)`.  The established equivalence
