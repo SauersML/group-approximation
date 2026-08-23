@@ -52,6 +52,16 @@ panel class; for `q > 3` the `q+1` gradings must satisfy `q-3`
 relations.  This is the combinatorial skeleton any connecting-map
 computation will use.
 
+Addendum 3 (same day, experiments/km_w3_omega_h2_validation.py): at
+the `W(3)` twisted level the reduced simplicial `H_2(Omega; F_2)`,
+computed from raw boundary ranks (`d_3` rank 7904 of 8748, `d_2` rank
+3736 of 11664), equals 24 -- EXACTLY the cokernel dimension
+`1296 - 1272` of the product-cycle map computed by the independent
+graph-cycle code path.  The Mayer--Vietoris/cokernel identification of
+the level complexes (`km-codistance-filtration-twisted-levels-are-rank-
+two-pairs` (d)) is thus numerically confirmed at a nontrivial
+instance.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
