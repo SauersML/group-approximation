@@ -271,6 +271,17 @@ and finite-matrix-only: an unequal-index/proper-corner return, integer
 capacity gate, or self-similar arithmetic recurrence whose rank loss is not
 a universal group-algebra identity.
 
+The self-similar alternative has a further exact fence.
+`faithful-rooted-tree-recurrence-cannot-pay-cps12` shows that every faithful
+level-preserving rooted-tree actor has finite-level quotient regular models
+which simultaneously retain the entire D8 packet, satisfy all relators, put
+canonical trace zero on any prescribed nonidentity word window, and keep
+`tr(F)=tau_K(F)>0`.  This covers synchronous automata, branch, and arithmetic
+recurrences without any finite-state or contraction hypothesis.  Therefore
+the surviving recurrence must be genuinely non-level-preserving: an
+asynchronous unequal-prefix correspondence or capacity gate whose source
+containment is authenticated only in finite matrix coordinates.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
