@@ -2,28 +2,31 @@
 rg: 2
 id: one-hot-central-character-selector-ghost-proof
 kind: route
-title: Multiply selector-trivial character ratios to create the weight-three block
+title: Tensor deterministic sectors in a central-character-preserving three-minus-two power
 target: one-hot-central-character-selector-forces-weight-three-ghost
 requires: []
 ---
 
-The product in `(CCG3)` is a one-dimensional representation because the
-one-dimensional representations of `G` form a group under pointwise
-multiplication.  On `Z` its value is
+The diagonal tensor product in `(CCG3)` is a representation of `G`.  On `Z`
+its value is
 
 ```text
-zeta^3 zeta^(-1) zeta^(-1)=zeta.
+zeta^3 conjugate(zeta)^2=zeta,
 ```
 
-For each involution `r_b`, every value is `+1` or `-1`, so inverses have the
-same value.  The negative coordinate set of a product is the symmetric
-difference of the negative coordinate sets of its factors.  Applying that
-observation to `(CCG3)` gives `{0,1,2}` exactly.
+because `zeta` is unitary.  For each involution `r_b`, every deterministic
+sector value is the scalar `+I` or `-I`, and conjugation leaves that sign
+unchanged.  The negative coordinate set of a tensor product is the
+symmetric difference of the negative coordinate sets of its factors.
+Applying this observation to three copies of `{0}`, one copy of `{1}`, and
+one copy of `{2}` gives `{0,1,2}` exactly.
 
 If a selected semisimple group-algebra corner realizes arbitrary
 four-outcome PVMs, it realizes each deterministic PVM.  Those four corner
-characters extend to one-dimensional group representations carrying the
-same central selector and satisfying `(CCG1)`.  The constructed `psi` is
-therefore another one-dimensional block in the same selected corner, but
-its joint signs violate the exactly-one condition.  This proves the claimed
-selector obstruction.
+sectors give finite-dimensional group representations carrying the same
+central character and satisfying `(CCG1)`; their auxiliary generators need
+not act scalarly.  The constructed `Psi` is therefore another nonzero block
+in the same central-character sector, but its joint selector signs violate
+the exactly-one condition.  This proves the claimed selector obstruction
+without assuming that deterministic sectors are one-dimensional characters
+of the whole gadget.

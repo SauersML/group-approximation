@@ -56,7 +56,9 @@ equalities there without restricting completeness-side atom multiplicities.
 
 A common finite central-character label is not enough.
 `one-hot-central-character-selector-forces-weight-three-ghost` shows that
-the character ratios required to realize the deterministic one-hot PVMs
-produce a weight-three character in the same selected sector.  The missing
-positive correlation must therefore be noncentral, representation-dependent,
-or implemented by a genuinely non-character corner coupling.
+the tensor product of deterministic one-hot sectors produces a
+weight-three sector with the same central character, even when the
+deterministic sectors have noncommutative higher-dimensional auxiliary
+actions.  The missing positive correlation must therefore be noncentral,
+representation-dependent, or implemented by a genuinely non-character
+corner coupling.
