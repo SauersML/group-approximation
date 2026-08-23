@@ -71,12 +71,17 @@ downward induction over cusp levels (each has cohomology only in degree
 four) then gives `H^3_c(Z minus X^) = 0`: the SAME finite input that
 yields `F_3` also computes `H^2(Lambda;Z Lambda) = 0`, so ISW Corollary D
 would be DEAD at these lattices, alongside the trivial-coefficient clause
-of Corollary E.  The status of the surjectivity input: proved for grid
-levels; for `B_2` the two-class graph is exactly `q` disjoint `K_(q,q)`'s
-in the symplectic model but three classes reach everything by a
-perp-pencil argument; for `G_2` the `B_2` collapse provably does not
-occur (two-step sets are cones of `q+1` lines) and full connectivity is
-the one remaining cell.  For affine `A~_2` the odd labels allow
+of Corollary E.  The status of the surjectivity input, for `q`
+COPRIME TO SIX: proved for grid levels and `B_2` line-panels (symplectic
+model: the two-class graph is `q` disjoint `K_(q,q)`'s, three classes
+reach everything by a perp-pencil argument); `B_2` point-panels, `G_2`
+point-panels (stabilizer `X_alpha` plus the visible `x_(alpha+beta)`
+translation span the Frattini plane) and `G_2` line-panels (distance
+sphere `c^2 = lambda bd` computed in the seven-dimensional
+representation) are reduced to short genericity counts.
+Characteristics two and three are genuinely open (structure-constant
+degenerations), so the chain is scoped to lattices with `q` coprime to
+six -- a legitimate restriction of the candidate class.  For affine `A~_2` the odd labels allow
 rank-`(1,2)` twisted levels with nonzero relative `H_3`, consistent with
 finiteness length three and with the possibility of nonzero group-ring
 `H^2` there.
