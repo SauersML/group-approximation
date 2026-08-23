@@ -88,6 +88,19 @@ that certificate.
   not be trivial.  Correcting that return by equating unmatched diagonal
   packet coefficients imposes a relation inside the finite packet, where
   there is no private pivot to eliminate.
+- **Use the ten-coordinate slot frame uniformly.**
+  `ten-coordinate-or3-slot-frames-have-a-six-clique-obstruction` gives a
+  finite obstruction before coefficient matching starts.  The root-diagonal
+  part of each marginal deletes a rank-`1/5` private plane, and the three
+  deleted planes in one clause are orthogonal.  Literal root-skeleton
+  alignment would therefore assign rank-`1/5` projections to variables that
+  are orthogonal whenever the variables co-occur.  The positive OR3 formula
+  containing every triple on six variables is satisfiable, but would require
+  six pairwise orthogonal such projections.  The robust Welch bound forces
+  total pair-overlap at least `3/25`.  Thus the ten-coordinate packet is not
+  a uniform source compiler; the live branch must use the zero-diagonal
+  four-cap packet, enlarge the root packet with the incidence, or abandon
+  literal root-skeleton matching.
 - **Pair every finite-support coefficient independently.**  The off-diagonal
   matrix unit expands into several packet terms.  Giving every term its own
   equation generally reuses the same endpoint phase in several equations;
