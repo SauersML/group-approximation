@@ -766,3 +766,18 @@ argument passes through the Hilbert-space picture.  Note
 in `L^0` does NOT follow formally from vanishing in `L^2_0` (or
 vice versa), but the two computations share all combinatorial
 scaffolding built today.
+
+## Addendum 23: all three roles zero at the first faithful level
+
+`km_faithful_role2_66pt_defect.py`: the role-2 arena
+`U_(A1xA1)(2) u_(U_(-a2)) U_(G2)(2)` (66 points) has defect 0 for
+all four consistent G2 presentations (numerators 9/9/5/5).  Combined
+with Addenda 19-20, ALL THREE vertex roles of the defect module now
+compute to ZERO at the first faithful unipotent level, over the
+whole constants envelope, matching the role-symmetry the true module
+must satisfy and uniformly supporting the degree-two superrigidity
+vanishing conjecture of Addendum 21.  Faithful scoreboard: 18-pt
+(role 1) 0, 750-pt Levi (role 1) 0, 78-pt (role 3, envelope) 0,
+66-pt (role 2, envelope) 0; every rich-overlap surrogate nonzero.
+Next discriminating rung: Borel-overlap arenas (MSI job, Addendum
+18/19 spec).
