@@ -9,6 +9,7 @@ distinct_from:
   atlas-authenticated-s3-extension-minor-decodes-pairings: that additionally asks the resulting matrix to have nuisance-quotient rank three; this claim makes the matrix auditable without asserting its rank.
   separate-packet-calculi-have-no-common-matching: that rules out the natural spectral, Gram, PI, and exterior-power selectors when applied separately to the authenticated finite blocks; this census still permits a selector built from a literal mixed cross-reservoir word block.
   atlas-relative-block-polar-cut-reduction: that automatically supplies a positive common cut once the required typed incidence set has fixed relative-unitary block mass; this census must still derive that localization from literal hard/interior/comb relations.
+  atlas-19243-forces-sign-or-standard-channel-mass: that obtains the strongest unconditional relation-sensitive localization presently available; this census must use the boundary rows to move its sign/extra-standard alternatives into the single extension-labelled incidence.
 artifacts:
   - research/artifacts/atlas-typed-row-census-acquisition-2026-08-23.md
 ---
@@ -77,6 +78,26 @@ depends.
   positive blocks do not suffice: their cuts may have zero common meet and
   retain separate nuisance variables.  The polar amplitude is permitted as
   one stable nuisance monomial once the simultaneous typed localization is
-  proved.
+  proved.  The polar construction also exists in a finite factor, so the
+  required matrix-only category boundary must occur in the proof of typed
+  localization or in a later rank/integrality step; polar thresholding alone
+  is not that boundary.
+- **Collision gives an explicit two-channel mass dichotomy.**
+  `atlas-19243-forces-sign-or-standard-channel-mass` decomposes the relative
+  unitary under diagonal `S3` conjugation.  At vanishing packet defect it
+  forces sign-channel mass at least `1/2048` or standard-channel mass at least
+  `1/1536`; in the latter branch one of the five reduced standard sources has
+  mass at least `1/7680`.  The exact continuous collision family realizes
+  the sign branch with zero standard mass, so the interior row alone cannot
+  select the extension triple.  The remaining typed localization is exactly
+  to make the five boundary rows charge the sign branch and the two unwanted
+  standard sources, or transport them into the extension-labelled triple.
+- **The strongest existing common-frame escape fails all five boundary rows.**
+  `atlas-multiplicity-two-escape-fails-five-saturated-rows` evaluates the
+  literal six words on the exact multiplicity-two packet/collision frame.
+  Collision is identity, while each of `s_0,s_11,s_30,s_44,s_55` is a
+  nonidentity involution.  Thus that finite model does not refute the desired
+  six-row localization and cannot be promoted by dropping only some other
+  saturated rows.
 - Stop rather than emit a matrix if any term lacks a source/target type or a
   reduced monomial tag.  An incomplete nuisance list cannot test the decoder.
