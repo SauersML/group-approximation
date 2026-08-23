@@ -7,6 +7,7 @@ target: invariant-bs-block-cut-leaves-a-passive-coordinate-basin
 requires:
   - regular-short-low-frequency-bs-source-hull-is-sublinear
   - low-rank-reflection-surgery-preserves-the-exact-bs-core
+  - right-displacement-reynolds-scalar-cb-complete
   - passive-iwahori-off-zero-cb-normal-splitting
 ---
 
@@ -78,4 +79,3 @@ in `(PCN1)` can be of first order in normalized HS on a small carrier.  The
 remaining passive theorem is therefore the off-zero completely bounded
 normal splitting, not another congruence-level conductor or a scalar
 endpoint fingerprint.
-
