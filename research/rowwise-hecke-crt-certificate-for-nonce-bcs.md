@@ -49,6 +49,11 @@ with small weighted canonical codimensions.  This is the **Hecke CRT** gate.
   changes the context PVM or constructs a different `B_x` for each edge.
 - Making the `q_i` orthogonal prevents them all from having high trace;
   making them identical returns to the old common-corner holonomy problem.
+- `rowwise-shared-involution-forces-pairwise-marginal-closeness` shows that
+  every two incidences of one variable already satisfy a canonical `L2`
+  distance bound by the sum of their mask deficits.  Thus the Hecke CRT must
+  simultaneously correlate the fixed context marginals; it cannot start
+  from independent packets and treat `B_x` as a later appendage.
 - Literal group elements cannot provide arbitrary one-sided interpolation:
   `finite-support-one-sided-stabilizers-are-torsion` reduces equality on a
   finite-support mask to its finite stabilizer.
@@ -61,4 +66,3 @@ with small weighted canonical codimensions.  This is the **Hecke CRT** gate.
   `affine-frobenius-packets-solve-local-row-mask-storage`.  What remains is
   one global algebraic involution per variable acting as the prescribed
   marginals on its several noncommuting large right ideals.
-

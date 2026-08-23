@@ -37,10 +37,16 @@ the finite game gap.
   recreates the stronger signed-corner problem.  The intended room is a
   multi-piece self-adjoint Hecke unitary on several noncommuting large right
   ideals.
+- The context blocks cannot remain freely independent while that unitary is
+  added.  `rowwise-shared-involution-forces-pairwise-marginal-closeness`
+  gives the necessary inequality
+  `(1/4)||A_(c,x)-A_(d,x)||_2^2<=delta_(c,x)+delta_(d,x)`.
+  For unbiased marginals in distinct free factors the left side is `1/2`.
+  The overlap relations must therefore create the required canonical
+  correlation among the fixed marginals, not merely attach `B_x` afterward.
 - Independent uses of the one-chord transport cell may change the context
   PVM from incidence to incidence.  Such a construction does not feed the
   ambient identity-Gram BCS gap and is invalid.
 - A finite graph of finite groups remains virtually free and therefore
   cannot realize a strict row-mask budget.  At least one overlap cycle must
   use a non-Bass--Serre relation or infinite edge algebra.
-

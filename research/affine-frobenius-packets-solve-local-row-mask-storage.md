@@ -31,3 +31,9 @@ matrix data.  This solves the storage, rational-rank, and density halves of
 the rowwise certificate.  It does not construct one `B_x` shared across
 different context packets.
 
+Nor may the context packets simply remain independent.  By
+`rowwise-shared-involution-forces-pairwise-marginal-closeness`, two occurrences
+which agree with one `B_x` on large masks must already have small canonical
+`L2` distance.  Independent free-factor placement has a fixed distance floor
+(equal to `1/2` in squared half-distance for unbiased marginals), regardless
+of how large `p` is.
