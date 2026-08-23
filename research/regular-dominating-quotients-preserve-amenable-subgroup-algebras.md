@@ -4,7 +4,6 @@ id: regular-dominating-quotients-preserve-amenable-subgroup-algebras
 kind: claim
 title: Every regular-dominating representation quotient is faithful on amenable subgroup algebras
 distinct_from:
-  llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear: that consumes an intermediate completion positively once LLP and nonamenability are known; this is an unconditional structural restriction on every such intermediate completion, independent of LLP and hyperlinearity.
   finite-subgroup-near-regular-has-large-regular-core: that rounds the restriction of regular HS microstates to asymptotically regular finite-group packets; this is an exact full-C-star statement saying that no quotient which still dominates the regular representation can delete any local finite-group sector.
   triangle-colimit-llp-reduces-to-relator-local-splitting: that reduces full-algebra LLP of a triangle colimit to local ucp splitting of a global relator extension; this proves why passing to a regular-dominating intermediate quotient cannot simplify that problem by altering any of the finite vertex-group algebras.
 ---

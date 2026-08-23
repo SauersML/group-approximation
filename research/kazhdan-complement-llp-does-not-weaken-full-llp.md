@@ -4,7 +4,6 @@ id: kazhdan-complement-llp-does-not-weaken-full-llp
 kind: claim
 title: Removing the trivial Kazhdan summand does not weaken the LLP gate for minimally almost periodic Kazhdan groups
 distinct_from:
-  llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear: that is the general Paulsen--Rahaman--Samei closing criterion for an arbitrary representation completion; this identifies its most obvious proper completion at the simple Kac--Moody candidates and proves that its LLP is equivalent to LLP of the full group C-star algebra.
   non-rf-kazhdan-group-with-llp-full-c-star-algebra: that is the open positive full-algebra target; this is an established no-gain theorem showing that deletion of the isolated trivial sector produces an equivalent target.
   simple-kazhdan-kac-moody-lattices-exist: that supplies explicit simple Kazhdan groups with no nontrivial finite-dimensional representations; this is the operator-algebraic reduction that applies to every group with those representation-theoretic properties.
 ---
