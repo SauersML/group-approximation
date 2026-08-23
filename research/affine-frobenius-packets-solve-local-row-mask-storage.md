@@ -31,6 +31,50 @@ matrix data.  This solves the storage, rational-rank, and density halves of
 the rowwise certificate.  It does not construct one `B_x` shared across
 different context packets.
 
+There is a completely explicit Fourier specialization over
+`K=Q(zeta_p)`.  Present
+
+```text
+H_p=<u,t | u^p=1, t^(p-1)=1, tut^(-1)=u^g>,           (AFP2)
+```
+
+where `g` is primitive modulo `p`, and put
+
+```text
+e_r=(1/p)sum_(j=0)^(p-1) zeta_p^(-rj)u^j.             (AFP3)
+```
+
+The `e_r` are orthogonal self-adjoint projections summing to one,
+`e_0=e_N`, and `q_p=sum_(r!=0)e_r`.  Given any labelling
+
+```text
+ell:F_p -> {+1,-1}^U                                  (AFP4)
+```
+
+whose nonzero labels are allowed context assignments, define
+
+```text
+P_a=sum_(ell(r)=a)e_r,
+A_x=sum_a a_x P_a.                                    (AFP5)
+```
+
+Then `(P_a)` is an exact context PVM in `K[H_p]`, every `A_x` is a
+self-adjoint involution, and the predicate mask `q_p` kills every forbidden
+atom.  If `ell(0)` is forbidden, the full forbidden projection is exactly
+`e_N`; otherwise it is zero.  Thus the predicate-mask deficit is exactly
+`1/p`, with no asymptotic or functional-calculus step.
+
+Every coefficient is explicit:
+
+```text
+P_a=(1/p)sum_j (sum_(ell(r)=a)zeta_p^(-rj))u^j,
+A_x=(1/p)sum_j (sum_r ell(r)_x zeta_p^(-rj))u^j.       (AFP6)
+```
+
+This diagonal specialization is enough for the proposed Hecke--CRT
+certificate.  Its rigidity under free placement is recorded in
+`rowwise-shared-involution-forces-pairwise-marginal-closeness`.
+
 Nor may the context packets simply remain independent.  By
 `rowwise-shared-involution-forces-pairwise-marginal-closeness`, two occurrences
 which agree with one `B_x` on large masks must already have small canonical

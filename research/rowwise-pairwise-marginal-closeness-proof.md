@@ -32,3 +32,31 @@ moment vanishes, hence `tau(A_iA_j)=m_i m_j`.  Self-adjoint unitarity gives
 ```
 
 Divide by four and combine with `(PIC2)`.
+
+For the Fourier specialization, both mask deficits are `1/p`, so `(PIC2)`
+and `(PIC7)` give
+
+```text
+2-2 alpha gamma=||A_(c,x)-A_(d,x)||_2^2<=16/p,
+```
+
+which is `(PIC9)`.  Since `|alpha|,|gamma|<=1` and `1-8/p>0`, the traces
+have the same sign and each absolute value is at least `1-8/p`.  For
+`s_x=sgn(alpha)=sgn(gamma)`, involutivity gives
+
+```text
+||A_(c,x)-s_x I||_2^2=2-2|tau(A_(c,x))|<=16/p,        (1)
+```
+
+proving `(PIC10)`.  The spectral distribution of `A_(c,x)` under the
+context PVM satisfies
+
+```text
+nu_c(a_x!=s_x)=(1-s_x tau(A_(c,x)))/2<=4/p.           (2)
+```
+
+The union bound proves `(PIC11)`.  If `s|_(U_c)` were forbidden, its atom
+would contribute at least `1-4|U_c|/p` to the forbidden mass.  Under
+`(PIC12)` this is strictly larger than `1/p`, contradicting the Fourier
+predicate-mask construction.  Hence every rounded context tuple is allowed,
+and the common signs satisfy the whole BCS.
