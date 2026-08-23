@@ -223,6 +223,24 @@ tuple.
   What is still missing is extraction of one common source-mode ledger from
   the two residual polar ranges with total frequency and duplication cost
   controlled by their Frobenius energy.
+- **The analytic common-source ledger is available, but mode purity is not.**
+  `two-source-gram-alignment-pays-frequency-not-mode-purity` polar-aligns any
+  two supplied source isometries to one literal isometry.  Their cross-Gram
+  defect pays the alignment with no angle denominator, and their two
+  inversion block defects bound exactly
+
+  ```text
+  sum_j |1-lambda_j|^2 ||P_j W||_F^2.
+  ```
+
+  This is the desired direct-frequency ledger after source extraction.
+  However identical sources `(f_0+f_1)/sqrt(2)` on long cyclic packets have
+  zero Gram defect and `O(m^(-2))` inversion cost while staying a fixed
+  distance from every flat, single-mode reset source.  Thus inversion plus
+  two-carrier Gram data cannot enforce the one-mode-per-simple-packet
+  capacity.  The remaining active/passive construction must discard this
+  spectrally spread low-frequency mass by rank, or pay genuine packet-copy
+  duplication through an additional integer carrier ledger.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
