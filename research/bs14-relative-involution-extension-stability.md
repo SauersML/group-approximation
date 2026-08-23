@@ -223,6 +223,14 @@ congruence `(R,T)` core and align the extending involution.
   canonical endpoint and expect the second cubic to align every other exact
   endpoint to it.  The flexible repair must select the correct endpoint
   component or optimize over the entire exact endpoint fiber.
+  `prime-power-iwahori-weyl-endpoint-is-unique-away-from-three` removes the
+  discrete Weyl-label ambiguity at every standard `p^k` level for `p>3`.
+  Nevertheless
+  `congruence-iwahori-endpoint-fiber-contains-core-commutant-orbits` shows
+  that the represented endpoint fiber still contains a full core-commutant
+  conjugacy orbit, with exact representatives whose relative gauges are not
+  `T`-central.  The remaining flexible reconciliation is therefore exactly
+  multiplicity-orbit selection, not scalar group-element matching.
 - **The matrix-monodromy obstruction disappears.**  The return unitary is
   diagonalizable, so the core is a sum of scalar-phase packets.  The phase
   coordinate remains essential, but no noncommutative `U(k)` matching

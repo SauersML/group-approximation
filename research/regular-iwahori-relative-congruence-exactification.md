@@ -153,6 +153,16 @@ congruence quotients.  It does not establish `(RCE1)`.
   enabled by `h(2)=1` in `PSL_2(F_3)`.  This removes a putative generic
   finite-field Weyl ambiguity, but does not control multiplicity commutants,
   higher congruence rings, or the regular moving-level basin.
+  The arithmetic label statement now extends through every depth:
+  `prime-power-iwahori-weyl-endpoint-is-unique-away-from-three` proves
+  uniqueness in `PSL_2(Z/p^kZ)` for all `p>3`.  But
+  `congruence-iwahori-endpoint-fiber-contains-core-commutant-orbits` gives
+  the exact surviving obstruction: in a regular congruence representation,
+  conjugation by any unitary in `{R,T}'` fixes the core and moves the Weyl
+  endpoint, and the relative gauge between two such endpoints need not
+  commute with `T`.  Thus the open basin theorem is now localized to
+  selecting/synchronizing these multiplicity-commutant orbits across moving
+  levels; it is not missing any prime-power Weyl-element classification.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that
