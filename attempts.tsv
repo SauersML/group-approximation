@@ -150,3 +150,4 @@
 32665168827	2026-08-23T20:41:40Z	GroupApproximation/Sofic/FiniteIndexRigidity.lean	ker_le_of_finiteIndex
 32666155122	2026-08-23T21:00:56Z	GroupApproximation/Sofic/FreeLampRigidity.lean	adjointRep_mul_apply
 32668070813	2026-08-23T21:37:47Z	GroupApproximation/Sofic/AmalgamMFTrace.lean	manuscriptExactRadical_of_isOperatorMF_symmetricDouble
+32669150873	2026-08-23T21:59:08Z	GroupApproximation/Sofic/TerminalQuotientPresentation.lean	manuscriptExactRadical_of_terminalIdentification
