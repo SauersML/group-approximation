@@ -63,7 +63,7 @@ open scoped Matrix.Norms.L2Operator in
 /-- The bounded tensor-power amplification lemma used to normalize local
 operator-norm separation to the constant one. -/
 theorem manuscriptTensorAmplification :
-    ∀ (Y : Type u) [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    ∀ (Y : Type) [Fintype Y] [DecidableEq Y] [Nonempty Y]
       (A B : Matrix Y Y ℂ),
       A ∈ Matrix.unitaryGroup Y ℂ →
       B ∈ Matrix.unitaryGroup Y ℂ →

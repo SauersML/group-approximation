@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.HilbertHotelCover
 import GroupApproximation.Leavitt.GeneralCornerTheorem
+import GroupApproximation.Algebra.GroupTorsionFree
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.CDEMFRadical
 

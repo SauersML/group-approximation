@@ -77,6 +77,7 @@ theorem star_four_sum_mul_self_le (a b c d : A) :
       abel
 
 /-- The commutator decomposition against commuting exact local copies. -/
+omit [PartialOrder A] [StarOrderedRing A] in
 theorem commutator_eq_incidence_sum
     {localLeft localRight sharedLeft sharedRight leftError rightError : A}
     (hleftError : leftError = sharedLeft - localLeft)

@@ -101,7 +101,8 @@ def benignWitness_top {G N : Type} [Group G] [Group N] [Group.IsFinitelyPresente
     exact (Subgroup.fg_iff _).mpr ⟨X, hX, hXfin⟩
   comap_eq := Subgroup.comap_top θ
 
-theorem benign_top {G N : Type} [Group G] [Group N] [Group.IsFinitelyPresented N]
+theorem benign_top_of_embedding {G N : Type} [Group G] [Group N]
+    [Group.IsFinitelyPresented N]
     (θ : G →* N) (hθ : Function.Injective θ) : Benign (⊤ : Subgroup G) :=
   ⟨benignWitness_top θ hθ⟩
 

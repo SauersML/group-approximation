@@ -165,11 +165,15 @@ theorem exists_piece_length_ceiling {R : Set (List (α × Bool))}
   intro p hp
   obtain ⟨w₁, hw₁, -, -, hp₁, -⟩ := hp
   obtain ⟨r, hr, _, hrot | hrot⟩ := hw₁
-  · have hpLen : p.length ≤ w₁.length := hp₁.length_le
+  · have hpLen : p.length ≤ w₁.length := by
+      obtain ⟨t, rfl⟩ := hp₁
+      simp
     have hwLen : w₁.length = r.length := by
       rw [hrot, List.length_rotate]
     omega
-  · have hpLen : p.length ≤ w₁.length := hp₁.length_le
+  · have hpLen : p.length ≤ w₁.length := by
+      obtain ⟨t, rfl⟩ := hp₁
+      simp
     have hwLen : w₁.length = r.length := by
       rw [hrot, List.length_rotate, FreeGroup.invRev_length]
     omega
