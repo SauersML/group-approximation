@@ -110,6 +110,16 @@ congruence quotients.  It does not establish `(RCE1)`.
   has been reduced to two fixed structural words over an exact
   `C_2*C_3*C_3` representation; exact endpoint classification and spectral
   rounding have no further role before those two words are synchronized.
+- **The two structural rows neither decouple nor satisfy classical small
+  cancellation.**
+  `iwahori-torsion-frame-relators-have-a-half-piece` computes the inversion
+  and covariance words in `C_2*C_3*C_3`.  They have lengths ten and twelve,
+  but a cyclic conjugate of the former and the latter share a length-five
+  piece.  They therefore fail `C'(1/2)` (hence `C'(1/6)`), and two explicit
+  quotient maps show that neither row follows from the other plus the
+  torsion frame.  Basin capture cannot be reduced to a one-relator theorem
+  or a classical free-product small-cancellation estimate; it must use a
+  genuinely joint analytic/flexible mechanism.
 - **Same-core gauge coercivity makes the terminal boundary exact.**  Once a
   congruence endpoint `(X_0,R_0,T_0)` has been authenticated on the same
   square-free core, put `c=XX_0`.  The involution and inversion rows give
