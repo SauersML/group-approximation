@@ -106,22 +106,20 @@ algebraic rank computation.
 This also identifies the congruence-kernel character decomposition.  The
 new root-direction modes are precisely the mean-zero Fourier modes within
 the `m` vertices of each residue fiber.  They are coupled by triangle curl;
-they are not passive tensor copies.  Conversely, no divergent mode follows
-from their mere multiplicity.  The exact remaining full-torus question is
+they are not passive tensor copies.  Their Green norm is nevertheless
+uniformly bounded.  `multipartite-triangle-curl-has-uniform-infinity-green-bound`
+proves
 
 ```text
-sup_(r,m) ||delta_1^dagger||_(infinity -> infinity)
+||delta_1^dagger||_(infinity -> infinity)
+ <= (r-2)/(r-4).                                       (MTC7)
 ```
 
-for the complete multipartite clique complexes in `(MTC1)` (with `r=p+1`
-and the arithmetic normalizations above).  A bounded simplicial
-contraction proves the scalar prime-power estimate in this family; an
-unbounded multipartite Green kernel refutes it.  Fourier decomposition
-alone is not an infinity-norm proof, because recombining the mean-zero
-fiber characters is not unconditional in `l_infinity`.
+Thus for `p>3` the bound is at most `2`, uniformly in the prime-power depth
+and the root-fiber size.  The increasing multiplicity of the congruence
+characters does not produce a divergent mode in this family.
 
 If `2` is square, the two prototypes in `(MTC2)` lie in the same square
 class, so the identification with the *full* triangle coboundary does not
 follow.  If `H` is a proper subtorus there is also the extra torus label
 from `(DSS9)`.  Neither case is claimed here.
-
