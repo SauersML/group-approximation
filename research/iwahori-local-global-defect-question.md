@@ -78,6 +78,16 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
 - **Not attempted here: the negative side.**  No construction in this
   repository produces a sequence with `def(pi_n) -> 0` and `D(pi_n)` bounded
   below.  A negative answer would kill this route without touching the goal.
+- **The exact odd-congruence sector is uniformly repaired.**
+  `odd-congruence-iwahori-pairs-have-uniform-linear-repair` proves
+  `D(pi)<=K def(pi)`, uniformly in dimension and in both odd levels, whenever
+  the two exact vertex representations already factor through odd
+  congruence quotients.  Selberg `(tau)` produces a large exact edge
+  intertwiner, and fullness of the Iwahori image at odd level makes its
+  support projections reduce the whole vertices, so the discarded
+  complements can both be replaced by the trivial representation.  Thus a
+  surviving counterexample must use essential two-primary or noncongruence
+  vertex mass; growing odd level by itself is now excluded.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes
