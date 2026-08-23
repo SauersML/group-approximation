@@ -3,6 +3,7 @@ rg: 2
 id: common-corner-word-pair-has-uniform-spectator-gap
 kind: claim
 title: The common-corner packet words have a dimension-free joint spectator gap
+refuted_by: amplification-natural-word-pairs-have-no-scalar-joint-gap
 distinct_from:
   quantum-expander-relative-commutant-rounding: that rounds to the full multiplicity commutant of one growing matrix factor; this must reduce the commutant of both named factors together to the scalar line.
   full-packet-bicommutant-synchronization: that tests one transported carrier against every unitary in a packet commutant; this asks a bounded word-exposed joint actor to detect every non-scalar spectator operator.
@@ -31,3 +32,10 @@ The zero-defect algebraic criterion would only ask that the joint commutant
 be scalar.  The uniform inequality `(CSG1)` is the quantitative form needed
 to pass from vanishing normalized-Hilbert--Schmidt word defects through
 corners of growing dimension.
+
+**REFUTED for the stated all-microstate word-natural interface.**  Tensor
+amplification preserves the corner and every named word but inserts a full
+matrix algebra into their joint commutant.  A viable replacement can only
+bound distance to the actual joint commutant, as in `(ANJ2)` of
+`amplification-natural-word-pairs-have-no-scalar-joint-gap`; it yields tensor
+factors modulo a common spectator, not `(CCMB1)` in the full ambient corner.

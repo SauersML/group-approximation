@@ -78,7 +78,12 @@ second word-generated algebra and cannot exchange roles with the label factor.
   alone implies the two mutual-commutant identities.  The repaired minimal
   target is `common-corner-word-pair-has-uniform-spectator-gap`, and
   `common-corner-bicommutant-from-gauge-and-spectator-gap` records the exact
-  three-lemma dependency chain.
+  three-lemma dependency chain.  This repaired target is itself refuted at
+  the all-microstate word-natural level by
+  `amplification-natural-word-pairs-have-no-scalar-joint-gap`: every current
+  scalable candidate tensors with the identity and therefore retains the
+  anonymous amplification factor.  Internal Pauli/Kazhdan or quantum-expander
+  gaps can prove only a relative estimate to the enlarged joint commutant.
 
 - **Nested Gowers--Hatami uniqueness does not expose the reservoir.**
   `gowers-hatami-uniqueness-does-not-lock-nested-pauli-reservoirs` gives the
