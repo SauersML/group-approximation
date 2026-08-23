@@ -4,9 +4,7 @@ id: rectangular-hecke-polar-cycle-trace-proof
 kind: route
 title: Polarize each bounded-below arrow, telescope carrier traces, and test algebraicity on the circle
 target: rectangular-hecke-polar-cycle-has-no-strict-trace-gain
-requires:
-  - first-cycle-signed-hecke-chord
-  - fixed-rank-index-authenticator-has-gap-or-functoriality
+requires: []
 ---
 
 The lower bound in `(RHP1)` says that `|T_i|` has support exactly `p_i`.
