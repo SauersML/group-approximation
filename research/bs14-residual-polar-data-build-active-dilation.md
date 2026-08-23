@@ -81,6 +81,17 @@ tuple.
   matrix and exhibits a determinant-two, index-two hole.  It remains to
   prove native-support balancedness, pay such parity holes within the active
   ledger, or use the operator Gram equations to exclude them.
+- **At fixed support, nonnormality is not the lasting obstruction; lattice
+  charge is.**
+  `three-way-cell-semigroups-have-conductor-but-unbounded-charge` proves
+  that every finite cell semigroup has one conductor packet which repairs
+  all integral margins in its cone and group lattice.  But it also gives
+  moving three-way supports with lattice charges of exact order `n` for
+  every `n`.  Thus fixed-level saturation holes cost only bounded absolute
+  padding after charge vanishes, whereas no level-independent saturation
+  multiplier or same-support padding theorem can remove moving lattice
+  charge.  The native BS operator data must force the correct lattice or
+  pay for support-changing cells.
 - `bs14-native-cell-padding-preserves-lattice-charge` shows that the phrase
   "pay such a hole by padding" must permit a controlled **change of cell
   type**.  Same-support padding preserves the incidence-lattice coset, so
