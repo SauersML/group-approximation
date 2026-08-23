@@ -1,31 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
-
 version: "v0.4"
 
 project:
-  name: "An explicit finitely presented sofic group that is not MF"
+  name: "An explicit sofic group that is not MF"
   description: >-
-    MF means the Carrion-Dadarlat-Eckhardt operator-norm property: embedding
-    in the unitary group of a matrix quotient, equivalently admitting
-    separating finite-dimensional approximate unitary representations with
-    operator-norm defects tending to zero.  Strong-convergence and purely
-    matricial field notions sometimes also called MF are not addressed.
-
-    For an explicit group E on eight generators and forty-one relators, Lean
-    proves that E is finitely presented, six-generated, sofic and hyperlinear
-    but not MF.  The displayed word w is a nontrivial central involution
-    killed by every operator-norm asymptotic unitary representation, uniformly
-    on one fixed finite test set, by every finite-dimensional linear
-    representation over every field, and by every finite quotient.  Thus E
-    has no faithful finite-dimensional representation, is not residually
-    finite, and shows that soficity and hyperlinearity do not imply MF.  This
-    Comparator entry excludes the repository's C*-algebraic consequences,
-    quotient result, general obstruction criteria and undecidability results.
-
-  authors:
-    - SauersML
-  responsible_maintainers:
-    - SauersML
+    Lean proves that an explicit sofic group is not MF in the
+    Carrión-Dadarlat-Eckhardt operator-norm sense.
+  authors: [Sauers]
+  responsible_maintainers: [SauersML]
   license: Apache-2.0
 
 classification:
@@ -33,18 +15,9 @@ classification:
   msc2020: ["46L05", "20F05", "22D25", "20E26"]
 
 sources:
-  - title: >-
-      An explicit finitely presented sofic group that is not MF, and the
-      central-involution obstruction behind it
+  - title: "An explicit sofic group that is not MF"
     type: original-proof
     relationship: other
-    note: >-
-      First presentation of the result.  A non-exhaustive arXiv and published
-      literature search on 2026-08-19 found the question recorded as open by
-      Shulman and by Bachner-Dogon-Lubotzky, and found no counterexample.  This
-      confers no priority; the novelty of the formalization itself is unknown.
-      The surrounding compression and lamp architecture is not claimed; see
-      the OpenAI and Kun-Thom entries below.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
@@ -52,17 +25,13 @@ sources:
     type: paper
     id: https://arxiv.org/abs/1210.4050
     relationship: background
-    note: >-
-      Source of the group-MF definition formalized here and the implication
-      from local embeddability into finite groups to MF.
 
-  - title: Generalized inductive limits of finite-dimensional C*-algebras
-    authors: [Bruce Blackadar, Eberhard Kirchberg]
-    year: 1997
+  - title: MF-property for countable discrete groups
+    authors: [A. I. Korchagin]
+    year: 2017
     type: paper
-    id: https://doi.org/10.1007/s002080050039
+    id: https://arxiv.org/abs/1704.06906
     relationship: background
-    note: Introduces MF algebras, after which the group property is named.
 
   - title: The MF property for amalgamated free products
     authors: [Tatiana Shulman]
@@ -70,31 +39,48 @@ sources:
     type: paper
     id: https://arxiv.org/abs/2603.13564
     relationship: background
-    note: >-
-      Uses this MF definition and records in March 2026 that no group
-      C*-algebra was known not to be MF.
 
   - title: On L^1-approximation of groups
-    authors: [Ben Bachner, Alon Dogon, Alexander Lubotzky]
+    authors: [Benjamin Bachner, Alon Dogon, Alexander Lubotzky]
     year: 2026
     type: paper
     id: https://doi.org/10.1016/j.jalgebra.2026.04.041
     relationship: background
-    note: >-
-      Source of the reused operator-norm rounding and compression procedure
-      and contemporaneous evidence that the problem was open.
 
-  - title: >-
-      Nonsofic groups exist, in "Ten advances in mathematics and theoretical
-      computer science", Chapter 3, 78-95
+  - title: Stability, cohomology vanishing, and nonapproximable groups
+    authors: [Marcus De Chiffre, Lev Glebsky, Alexander Lubotzky, Andreas Thom]
+    year: 2020
+    type: paper
+    id: https://doi.org/10.1017/fms.2020.5
+    relationship: background
+
+  - title: Entanglement in non-local games and the hyperlinear profile of groups
+    authors: [William Slofstra, Thomas Vidick]
+    year: 2018
+    type: paper
+    id: https://arxiv.org/abs/1711.10676
+    relationship: background
+
+  - title: The set of quantum correlations is not closed
+    authors: [William Slofstra]
+    year: 2019
+    type: paper
+    id: https://doi.org/10.1017/fmp.2018.3
+    relationship: background
+
+  - title: A group with at least subexponential hyperlinear profile
+    authors: [William Slofstra]
+    year: 2018
+    type: paper
+    id: https://arxiv.org/abs/1806.05267
+    relationship: background
+
+  - title: Nonsofic groups exist
     authors: [OpenAI]
     year: 2026
     type: other
     id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
     relationship: background
-    note: >-
-      Source of the compression and lamp architecture, which is not claimed
-      here; this construction shares its conjugated property-(T) ingredient.
 
   - title: Nonsofic wreath products of residually finite groups
     authors: [Gábor Kun, Andreas Thom]
@@ -102,9 +88,6 @@ sources:
     type: paper
     id: https://arxiv.org/abs/2608.06222
     relationship: background
-    note: >-
-      Source of the compression-semigroup terminology used by the intrinsic
-      obstruction.
 
   - title: On sofic groups
     authors: [Gábor Elek, Endre Szabó]
@@ -112,95 +95,23 @@ sources:
     type: paper
     id: https://arxiv.org/abs/math/0305352
     relationship: background
-    note: >-
-      Source of the amenable-quotient extension theorem behind soficity; the
-      result is proved here rather than assumed.
 
-  - title: >-
-      Presentations for 3-dimensional special linear groups over integer rings
+  - title: Presentations for 3-dimensional special linear groups over integer rings
     authors: [Marston D. E. Conder, Edmund F. Robertson, Peter Williams]
     year: 1992
     type: paper
     id: https://doi.org/10.2307/2159559
     relationship: background
-    note: >-
-      Source of the eight-relator presentation of SL_3(Z) used in the base
-      presentation.
 
   - title: Kazhdan's property (T)
     authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
     year: 2008
     type: book
     relationship: background
-    note: >-
-      Source for property (T) of Z^3 semidirect SL_3(Z), the obstruction's
-      principal input.
-
-related_formalizations: []
-
-status:
-  scope: >-
-    This no-`sorry` Comparator selection verifies the explicit presentation,
-    the marked word's nontrivial central involution properties, six-generation,
-    soficity, hyperlinearity, uniform and asymptotic operator-norm
-    invisibility, failure of MF, and invisibility in all finite-dimensional
-    linear representations and finite quotients.  It excludes the repository's
-    C*-algebraic, quotient, general obstruction and undecidability results.
-    Exactness of the reduced group C*-algebra is not formalized or claimed.
-  sorry_count: 0
-  sorry_in_definitions: 0
-  axioms: []
 
 automation:
   methods:
     - method: agent
-      framework: Claude Code (Anthropic)
-      tool_setup: >-
-        Claude Code agents materially developed the mathematics and authored
-        the Lean proof, supporting library, manuscript and initial metadata
-        against remote builds; the route was not transcribed from an existing
-        human proof.
-    - method: agent
-      framework: OpenAI Codex
-      tool_setup: >-
-        Codex audited the Palomar requirements and registry code, edited the
-        submission metadata and narrative, and ran submission checks.  This
-        Codex pass did not author the selected Lean proof.
-  notes: >-
-    Per-declaration attribution is in the git history; supporting audit
-    material remains under notes/, research/ and metadata/.
 
 review:
   status: self-assessed
-  reviewers: []
-  notes: >-
-    No independent human mathematical review or peer review has occurred.
-    Automated gates build with warnings as errors, forbid unapproved trust
-    escapes, audit axiom closure, replay the kernel, and compare the challenge
-    and solution in source and elaborated form.  Claim maps, signature
-    snapshots and the proof ledger are mechanically checked mappings but
-    ultimately depend on human judgement.
-
-fidelity:
-  divergences: >-
-    The compared statement expresses the MF property in its equivalent local
-    operator-norm form -- approximate unitary representations with separation
-    constant 1 -- rather than as an embedding into a matrix quotient, because
-    the challenge file may import Mathlib only and Mathlib has no C*-algebra
-    quotients.  Fixing the separation constant is not a weakening: for
-    countable groups the local form is equivalent to the embedding form by
-    tensor-power amplification.  Both equivalences are proved in this
-    repository and packaged as
-    `GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences`;
-    the embedding form of the endpoint is
-    `GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA`.
-
-acknowledgements: >-
-  Caleb Eckhardt, for discussions clarifying the finite-quotient analogy that
-  organizes the transport argument.  Francesco Fournier-Facio, for formulating
-  the group-theoretic input as a Kazhdan group that is not co-Hopfian together
-  with its ascending HNN extension, and for discussions on the distinct roles
-  of the operator and Hilbert-Schmidt norms.  Alon Dogon, for pointing out
-  that the interaction between those two norms also occurs in the earlier
-  approach of Bachner-Dogon-Lubotzky.  Mathlib, on which the whole development
-  rests.

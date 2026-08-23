@@ -1,20 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this formalization, please cite the repository and its archived release."
-title: "Group Approximation and Rigidity"
+message: "Please cite this repository."
+title: "An explicit sofic group that is not MF"
 type: software
 authors:
-  - name: "Anonymous"
-abstract: >-
-  Lean formalization and manuscript companion for explicit nonsofic and non-MF
-  group constructions, with machine-checked claim manifests and explicit
-  documentation of the paper-level literature boundary.
+  - family-names: "Sauers"
 version: 0.3.0
 date-released: 2026-08-20
 license: Apache-2.0
 repository-code: "https://github.com/SauersML/group-approximation"
-keywords:
-  - Lean
-  - group approximation
-  - MF groups
-  - sofic groups
-  - property (T)

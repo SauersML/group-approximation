@@ -17,7 +17,6 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniformObstruction
 import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.NormMFConsequences
-import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -36,22 +35,10 @@ noncomputable section
 
 -- BEGIN SHARED BLOCK (kept byte-identical with `PalomarSolution.lean`)
 
-/-! ## Finite models
-
-Every model below lives on a finite set.  Bundling the finiteness and
-decidable-equality data keeps the statements free of instance binders; the
-bundle carries no information beyond "a finite set". -/
-
-/-- A finite type together with the two instances a finite permutation or
-matrix model needs.  It carries no information beyond the underlying finite
-set. -/
+/-- A finite index type for matrix and permutation models. -/
 structure FiniteCarrier where
-  /-- The underlying set of the model. -/
   carrier : Type
-  /-- Finiteness of that set. -/
   fintype : Fintype carrier
-  /-- Decidable equality on it, used to index matrices and to count the
-  points at which two permutations disagree. -/
   decidableEq : DecidableEq carrier
 
 instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
@@ -65,31 +52,15 @@ instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
     DecidableEq Y :=
   Y.decidableEq
 
-/-! ## The three approximation properties
-
-Each of the three is the same local scheme -- a finite model of every
-accuracy on every finite test set -- differing only in what the models are
-and in which metric the two defects are measured. -/
-
-/-- The **normalized Hamming distance** between two permutations of a finite
-set: the proportion of points at which they disagree.  It is `0` exactly when
-they agree and `1` when they disagree everywhere. -/
+/-- The proportion of points where two finite permutations differ. -/
 def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=
   ((Finset.univ.filter fun y : Y ↦ p y ≠ q y).card : ℝ) / Fintype.card Y
 
-/-- The square of the **normalized Hilbert-Schmidt distance** between two
-matrices: the sum of the squared moduli of the entries of the difference,
-divided by the size of the index set.  For unitaries this is
-`2 - 2 Re tr(A* B)` with the normalized trace. -/
+/-- The squared normalized Hilbert--Schmidt distance between two matrices. -/
 def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=
   (∑ i : Y, ∑ j : Y, Complex.normSq (A i j - B i j)) / Fintype.card Y
 
-/-- **Soficity**, in the standard local form.  For every finite test set `F` and
-every tolerance `ε > 0` there is a nonempty finite set and a map from the
-group to its permutations which is multiplicative within `ε` on `F` and
-separates distinct elements of `F` by at least `1 - ε`, both measured in
-normalized Hamming distance.  Equivalently: `G` embeds in a metric
-ultraproduct of finite symmetric groups with the Hamming length function. -/
+/-- Soficity in the finite-set normalized-Hamming formulation. -/
 def IsSoficGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (σ : G → Equiv.Perm Y),
@@ -97,12 +68,7 @@ def IsSoficGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, hammingDist Y (σ (g * h)) (σ g * σ h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 - ε ≤ hammingDist Y (σ g) (σ h))
 
-/-- **Hyperlinearity**: the same local scheme with unitary matrices in place of
-permutations and the normalized Hilbert-Schmidt metric in place of the
-Hamming metric.  The separation constant is `2 - ε` rather than `1 - ε`
-because the translation from Hamming doubles distances: two permutation
-unitaries with disjoint supports sit at squared normalized Hilbert-Schmidt
-distance `2`.  Every sofic group is hyperlinear. -/
+/-- Hyperlinearity in the finite-set normalized-Hilbert--Schmidt formulation. -/
 def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (U : G → Matrix Y Y ℂ),
@@ -111,73 +77,43 @@ def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, hsDistSq Y (U (g * h)) (U g * U h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 2 - ε ≤ hsDistSq Y (U g) (U h))
 
-/-- **The MF property** in the sense of Carrión-Dadarlat-Eckhardt, in its local
-operator-norm form: the same scheme again, with the multiplicative defect and
-the separation both measured in the operator norm and the separation constant
-fixed at `1`.  For a countable group this is equivalent to admitting an
-injective homomorphism into the unitary group of a matrix quotient
-`∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ)`; see the module documentation for where that
-equivalence is proved. -/
-def IsMFGroup (G : Type) [Group G] : Prop :=
-  ∀ (F : Finset G) (ε : ℝ), 0 < ε →
-    ∃ (Y : FiniteCarrier) (U : G → Matrix Y Y ℂ),
-      0 < Fintype.card Y ∧
-      (∀ g, U g ∈ Matrix.unitaryGroup Y ℂ) ∧
-      (∀ g ∈ F, ∀ h ∈ F, ‖U (g * h) - U g * U h‖ ≤ ε) ∧
-      (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 ≤ ‖U g - U h‖)
+/-- The sequential operator-norm form of the CDE matrix-corona MF property. -/
+def IsSequentialOperatorMFGroup (G : Type) [Group G] : Prop :=
+  ∃ (Y : ℕ → FiniteCarrier) (U : ∀ n, G → Matrix (Y n) (Y n) ℂ),
+    (∀ n, 0 < Fintype.card (Y n)) ∧
+    (∀ n g, U n g ∈ Matrix.unitaryGroup (Y n) ℂ) ∧
+    (∀ g h : G, Filter.Tendsto
+      (fun n ↦ ‖U n (g * h) - U n g * U n h‖) Filter.atTop (nhds 0)) ∧
+    (∀ g : G, g ≠ 1 →
+      ∃ δ : ℝ, 0 < δ ∧ ∀ᶠ n in Filter.atTop, δ ≤ ‖U n g - 1‖)
 
-/-! ## The group `E`
-
-The alphabet is the six base letters `v₁, v₂, v₃, x, y, z` followed by the
-two adjoined letters `t` and `c`, so `E` has eight generators. -/
-
-/-- Catch-all decidable equality for the alphabets and free groups below.  It
-sits in the discrimination tree's catch-all bucket, so any specific instance
-takes precedence over it.  Nothing in the statement depends on which
-instance is found: the relator set is a finite set of free-group words either
-way. -/
 local instance literalDecidableEq {α : Type*} : DecidableEq α :=
   Classical.decEq α
 
-/-- The six base letters, ordered as `v₁, v₂, v₃, x, y, z`. -/
+/-- The six base letters. -/
 abbrev BaseGenerator := Fin 6
 
-/-- The full alphabet: the six base letters followed by `t` and `c`.  It has
-eight elements, which is the generator count of `E`. -/
+/-- The six base letters followed by `t` and `c`. -/
 abbrev Generator := BaseGenerator ⊕ Fin 2
 
-/-- The index of the base letter `v₁`, the first translation. -/
-abbrev v1Index : BaseGenerator := 0
-/-- The index of the base letter `v₂`, the second translation. -/
-abbrev v2Index : BaseGenerator := 1
-/-- The index of the base letter `v₃`, the third translation. -/
-abbrev v3Index : BaseGenerator := 2
-/-- The index of the base letter `x`, the first linear generator. -/
-abbrev xIndex : BaseGenerator := 3
-/-- The index of the base letter `y`, the second linear generator. -/
-abbrev yIndex : BaseGenerator := 4
-/-- The index of the base letter `z`, the third linear generator. -/
-abbrev zIndex : BaseGenerator := 5
+/-- Index of `v₁`. -/ abbrev v1Index : BaseGenerator := 0
+/-- Index of `v₂`. -/ abbrev v2Index : BaseGenerator := 1
+/-- Index of `v₃`. -/ abbrev v3Index : BaseGenerator := 2
+/-- Index of `x`. -/ abbrev xIndex : BaseGenerator := 3
+/-- Index of `y`. -/ abbrev yIndex : BaseGenerator := 4
+/-- Index of `z`. -/ abbrev zIndex : BaseGenerator := 5
 
-/-- A base letter, viewed as a letter of the full alphabet. -/
+/-- A base letter in the full alphabet. -/
 abbrev Generator.base (i : BaseGenerator) : Generator := Sum.inl i
-/-- The stable letter `t`, which conjugates the base onto its doubling image. -/
-abbrev Generator.stable : Generator := Sum.inr 0
-/-- The letter `c`, an involution centralising the base. -/
-abbrev Generator.lamp : Generator := Sum.inr 1
+/-- The stable letter `t`. -/ abbrev Generator.stable : Generator := Sum.inr 0
+/-- The lamp letter `c`. -/ abbrev Generator.lamp : Generator := Sum.inr 1
 
-/-- The letter `v₁` as a word over the base alphabet. -/
-abbrev bv1 : FreeGroup BaseGenerator := FreeGroup.of v1Index
-/-- The letter `v₂` as a word over the base alphabet. -/
-abbrev bv2 : FreeGroup BaseGenerator := FreeGroup.of v2Index
-/-- The letter `v₃` as a word over the base alphabet. -/
-abbrev bv3 : FreeGroup BaseGenerator := FreeGroup.of v3Index
-/-- The letter `x` as a word over the base alphabet. -/
-abbrev bx : FreeGroup BaseGenerator := FreeGroup.of xIndex
-/-- The letter `y` as a word over the base alphabet. -/
-abbrev bY : FreeGroup BaseGenerator := FreeGroup.of yIndex
-/-- The letter `z` as a word over the base alphabet. -/
-abbrev bz : FreeGroup BaseGenerator := FreeGroup.of zIndex
+/-- The base word `v₁`. -/ abbrev bv1 : FreeGroup BaseGenerator := FreeGroup.of v1Index
+/-- The base word `v₂`. -/ abbrev bv2 : FreeGroup BaseGenerator := FreeGroup.of v2Index
+/-- The base word `v₃`. -/ abbrev bv3 : FreeGroup BaseGenerator := FreeGroup.of v3Index
+/-- The base word `x`. -/ abbrev bx : FreeGroup BaseGenerator := FreeGroup.of xIndex
+/-- The base word `y`. -/ abbrev bY : FreeGroup BaseGenerator := FreeGroup.of yIndex
+/-- The base word `z`. -/ abbrev bz : FreeGroup BaseGenerator := FreeGroup.of zIndex
 
 /-- A base letter as a word over the full alphabet. -/
 abbrev vertexLetter (i : BaseGenerator) : FreeGroup Generator :=
@@ -200,8 +136,7 @@ abbrev stableWord : FreeGroup Generator := FreeGroup.of Generator.stable
 /-- The letter `c` as a word over the full alphabet. -/
 abbrev lampWord : FreeGroup Generator := FreeGroup.of Generator.lamp
 
-/-- The commutator word, with the convention `[g, h] = g h g⁻¹ h⁻¹`.  Imposing
-it as a relator is imposing `g h = h g`. -/
+/-- The word `[g,h] = g h g⁻¹ h⁻¹`. -/
 def commutatorWord {G : Type*} [Group G] (g h : G) : G :=
   g * h * g⁻¹ * h⁻¹
 
@@ -209,12 +144,7 @@ def commutatorWord {G : Type*} [Group G] (g h : G) : G :=
 def embedBaseWord : FreeGroup BaseGenerator →* FreeGroup Generator :=
   FreeGroup.lift fun i ↦ vertexLetter i
 
-/-! ### The twenty base relators
-
-These present the affine group `ℤ³ ⋊ SL₃(ℤ)`.  The first eight are the
-Conder-Robertson-Williams presentation of `SL₃(ℤ)` on `x, y, z`; the next
-three make the three translations commute; the last nine give the action of
-each linear generator on each translation. -/
+/-! The twenty affine-base relators. -/
 
 /-- `x³ = 1`. -/
 abbrev baseRelXCube : FreeGroup BaseGenerator := bx ^ 3
@@ -230,16 +160,14 @@ abbrev baseRelYZCube : FreeGroup BaseGenerator := (bY * bz) ^ 3
 abbrev baseRelXInvZXY : FreeGroup BaseGenerator := (bx⁻¹ * bz * bx * bY) ^ 2
 /-- `(y⁻¹ z y x)² = 1`. -/
 abbrev baseRelYInvZYX : FreeGroup BaseGenerator := (bY⁻¹ * bz * bY * bx) ^ 2
-/-- `(x y)⁶ = 1`.  With the seven relations above this presents `SL₃(ℤ)` on
-`x, y, z`. -/
+/-- `(x y)⁶ = 1`. -/
 abbrev baseRelXYSix : FreeGroup BaseGenerator := (bx * bY) ^ 6
 
 /-- `v₁ v₂ = v₂ v₁`. -/
 abbrev baseRelV12 : FreeGroup BaseGenerator := commutatorWord bv1 bv2
 /-- `v₁ v₃ = v₃ v₁`. -/
 abbrev baseRelV13 : FreeGroup BaseGenerator := commutatorWord bv1 bv3
-/-- `v₂ v₃ = v₃ v₂`.  With the two above, the three translations commute, so
-they generate a copy of `ℤ³`. -/
+/-- `v₂ v₃ = v₃ v₂`. -/
 abbrev baseRelV23 : FreeGroup BaseGenerator := commutatorWord bv2 bv3
 
 /-- `x v₁ x⁻¹ = v₃`. -/
@@ -262,8 +190,7 @@ abbrev baseRelZV1 : FreeGroup BaseGenerator :=
 /-- `z v₂ z⁻¹ = v₁ v₃⁻¹`. -/
 abbrev baseRelZV2 : FreeGroup BaseGenerator :=
   bz * bv2 * bz⁻¹ * (bv1 * bv3⁻¹)⁻¹
-/-- `z v₃ z⁻¹ = v₃⁻¹`.  With the eight above, the linear generators act on the
-translation lattice by their matrices, so the base is `ℤ³ ⋊ SL₃(ℤ)`. -/
+/-- `z v₃ z⁻¹ = v₃⁻¹`. -/
 abbrev baseRelZV3 : FreeGroup BaseGenerator :=
   bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹
 
@@ -276,16 +203,9 @@ def baseRelators : Finset (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3].toFinset
 
-/-! ### The remaining twenty-one relators
+/-! The remaining twenty-one relators. -/
 
-Six make `t` conjugate the base onto its doubling image, seven make `c` an
-involution centralising the base, and eight make the distinguished word
-central. -/
-
-/-- The right-hand side of the stable-letter relation, as a base word: each of
-the three translations is squared and each of the three linear generators is
-fixed.  This is the doubling endomorphism `(v, A) ↦ (2v, A)` of
-`ℤ³ ⋊ SL₃(ℤ)`, which is injective and not surjective. -/
+/-- Doubles translations and fixes the linear generators. -/
 def compressedBaseWord (i : BaseGenerator) : FreeGroup BaseGenerator :=
   if i = v1Index then bv1 ^ 2
   else if i = v2Index then bv2 ^ 2
@@ -298,19 +218,15 @@ def compressedBaseWord (i : BaseGenerator) : FreeGroup BaseGenerator :=
 def compressedGeneratorWord (i : BaseGenerator) : FreeGroup Generator :=
   embedBaseWord (compressedBaseWord i)
 
-/-- The stable-letter relator for a base letter `s`: `t s t⁻¹ = α(s)`, where `α`
-is the doubling endomorphism.  Imposing these six makes `t` conjugate the
-base into a proper subgroup of itself. -/
+/-- The relator `t s t⁻¹ = α(s)`. -/
 def stableRelator (i : BaseGenerator) : FreeGroup Generator :=
   stableWord * vertexLetter i * stableWord⁻¹ * (compressedGeneratorWord i)⁻¹
 
-/-- The conjugated lamp `d = t c t⁻¹`.  It is an involution, and it commutes
-with the doubling image of the base. -/
+/-- The word `d = t c t⁻¹`. -/
 abbrev displacedLampWord : FreeGroup Generator :=
   stableWord * lampWord * stableWord⁻¹
 
-/-- The distinguished word `w = [d, v₁ d v₁⁻¹]` with `d = t c t⁻¹`.  Since `d`
-is an involution this equals `[d, v₁]²`, so it is a square. -/
+/-- The word `w = [d, v₁ d v₁⁻¹]`. -/
 abbrev markedWord : FreeGroup Generator :=
   commutatorWord displacedLampWord
     (v1Word * displacedLampWord * v1Word⁻¹)
@@ -323,16 +239,13 @@ def transportedBaseRelators : Finset (FreeGroup Generator) :=
 def stableRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image stableRelator
 
-/-- The seven lamp relators: `c² = 1`, and `c s = s c` for each of the six base
-letters `s`. -/
+/-- The relators `c²=1` and `[c,s]=1` for the six base letters. -/
 def lampRelators : Finset (FreeGroup Generator) :=
   {lampWord ^ 2} ∪
     Finset.univ.image (fun i : BaseGenerator ↦
       commutatorWord lampWord (vertexLetter i))
 
-/-- The eight relators making `w` central: `w g = g w` for each of the eight
-generators.  Note that `w² = 1` is **not** imposed here; it is a consequence,
-proved in the compared theorem. -/
+/-- The eight relators making `w` central. -/
 def markedRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image (fun i : Generator ↦
     commutatorWord markedWord (FreeGroup.of i))
@@ -365,16 +278,11 @@ theorem E_eq : E = LiteralNonMFPresentation.MarkedGroup := rfl
 
 theorem w_eq : w = (LiteralNonMFPresentation.mark : E) := rfl
 
-/-! ## The proof -/
-
-/-- **An explicit finitely presented sofic group that is not MF.**
-
-The explicit group `E` is finitely presented, six-generated, sofic and
-hyperlinear but not MF.  Its marked word `w` is a nontrivial central
-involution killed by every operator-norm asymptotic unitary representation,
-uniformly on one finite test set, by every finite-dimensional linear
-representation over every field, and by every finite quotient. -/
+/-- The literal group has the displayed finiteness, approximation and
+representation properties. -/
 theorem explicit_fp_sofic_hyperlinear_not_MF :
+    Fintype.card Generator = 8 ∧
+    relators.card = 41 ∧
     Group.IsFinitelyPresented E ∧
     (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
     (∃ S : Finset E, S.card ≤ 6 ∧ Subgroup.closure (S : Set E) = ⊤) ∧
@@ -390,11 +298,13 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
           (∀ g, φ g ∈ Matrix.unitaryGroup Y ℂ) →
           (∀ g ∈ F₀, ∀ h ∈ F₀, ‖φ (g * h) - φ g * φ h‖ ≤ δ) →
           ‖φ w - 1‖ < 1) ∧
-    ¬ IsMFGroup E ∧
+    ¬ IsSequentialOperatorMFGroup E ∧
     (∀ (K : Type) (W : Type) [Field K] [AddCommGroup W] [Module K W]
         [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) ∧
     (∀ (Q : Type) [Group Q] [Finite Q] (φ : E →* Q), φ w = 1) := by
-  refine ⟨inferInstance, ⟨?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨?_, ?_, inferInstance, ⟨?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact LiteralNonMFPresentation.generator_card
+  · exact LiteralNonMFPresentation.relators_card
   · exact LiteralNonMFLinearWitness.literal_mark_ne_one
   · exact LiteralNonMFPresentation.mark_sq
   · exact LiteralNonMFPresentation.mark_central
@@ -437,18 +347,39 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
       LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
     exact ⟨δ, F₀, hδ, fun Y φ hφ hmul ↦
       hbound ⟨Y.carrier, Y.fintype, Y.decidableEq⟩ (fun g ↦ ⟨φ g, hφ g⟩) hmul⟩
-  · intro hMF
-    refine LiteralNonMFEndpoint.literal_not_isOperatorMF
-      (OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one.mpr
-        ?_)
-    intro F ε hε
-    obtain ⟨Y, V, hpos, hunit, hmul, hsep⟩ := hMF F ε hε
-    exact ⟨{ carrier := ⟨Y.carrier, Y.fintype, Y.decidableEq⟩
-             nonempty := hpos
-             map := V
-             isUnitary := hunit
-             multiplicative := hmul
-             separated := hsep }⟩
+  · rintro ⟨Y, U, _, hU, hmul, hsep⟩
+    have hzero : Filter.Tendsto (fun n ↦ ‖U n w - 1‖)
+        Filter.atTop (nhds 0) := by
+      have main : ∀ ε : ℝ, 0 < ε →
+          ∀ᶠ n in Filter.atTop, ‖U n w - 1‖ < ε := by
+        intro ε hε
+        obtain ⟨δ, F₀, hδ, hbound⟩ :=
+          uniform_invisibility LiteralNonMFEndpoint.literal_mark_normMFInvisible
+            ε hε
+        have key : ∀ᶠ n in Filter.atTop, ∀ g ∈ F₀, ∀ h ∈ F₀,
+            ‖U n (g * h) - U n g * U n h‖ ≤ δ := by
+          rw [Filter.eventually_all_finset]
+          intro g _
+          rw [Filter.eventually_all_finset]
+          intro h _
+          exact (hmul g h).eventually_le_const hδ
+        filter_upwards [key] with n hn
+        exact hbound ⟨(Y n).carrier, (Y n).fintype, (Y n).decidableEq⟩
+          (fun g ↦ ⟨U n g, hU n g⟩) hn
+      refine Metric.tendsto_atTop.mpr fun ε hε ↦ ?_
+      obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp (main ε hε)
+      refine ⟨N, fun n hn ↦ ?_⟩
+      rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
+      exact hN n hn
+    obtain ⟨δ, hδ, hgap⟩ :=
+      hsep w LiteralNonMFLinearWitness.literal_mark_ne_one
+    obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp hzero δ hδ
+    obtain ⟨M, hM⟩ := Filter.eventually_atTop.mp hgap
+    let n := max N M
+    have hnear := hN n (le_max_left N M)
+    have hfar := hM n (le_max_right N M)
+    rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)] at hnear
+    exact (not_lt_of_ge hfar) hnear
   -- Explicit universes include the later finite-quotient clause's universe.
   · intro K W _ _ _ _ π
     exact

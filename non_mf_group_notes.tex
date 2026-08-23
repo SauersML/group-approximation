@@ -15,7 +15,7 @@
 \usepackage[T1]{fontenc}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{enumitem}
+\usepackage{enumitem,etoolbox}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage{xr-hyper}
@@ -100,6 +100,16 @@
 \newcommand{\Cred}{C^*_{\mathrm r}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
+
+% Keep the AMS title-page abstract layout without printing a redundant
+% ``Abstract.'' label.
+\makeatletter
+\patchcmd{\abstract}
+  {\item[\hskip\labelsep\scshape\abstractname.]}
+  {\item[]}
+  {}
+  {\PackageError{non-mf-notes}{Could not remove the abstract heading}{}}
+\makeatother
 
 \externaldocument[paper-]{build/non_mf_groups_exist}[non_mf_groups_exist.pdf]
 
