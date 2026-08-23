@@ -151,6 +151,7 @@ theorem isLoxodromic_of_sylLength_pow_lower
       FreeProductCyclic.sylLength
         (BinaryCoprodNormalForm.toIndexed G (g ^ n))) :
     HullGeometry.IsLoxodromic g (baseLeft G : PathVertex G) := by
+  letI : MetricSpace (BassSerreFreeProduct.Vertex G) := pathVertexMetricSpace G
   refine ⟨(c : ℝ), by exact_mod_cast hc, 1, by norm_num, ?_⟩
   intro n
   cases n with

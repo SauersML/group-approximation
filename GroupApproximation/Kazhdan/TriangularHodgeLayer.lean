@@ -787,6 +787,42 @@ theorem targetDiagonal_incidence
   simp_rw [hrow]
   exact targetDiagonal_incidence_core T i l
 
+theorem directed_incidence_core
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (s t : TriangleIndex → Fin 3 →
+      SignedGenerator (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3,
+            if s j k = u ∧ t j k = v
+            then 1 else 0) : ℚ)) *
+        orientedCoefficient T v l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (s j k) i) *
+          orientedCoefficient T (t j k) l := by
+  classical
+  simp_rw [single_cast_nested_indicator_sum T]
+  simp_rw [Finset.mul_sum, Finset.sum_mul]
+  rw [incidence_sum_rotate]
+  have hrhs :
+      (∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (s j k) i) *
+          orientedCoefficient T (t j k) l) =
+      ∑ e : TriangleIndex × Fin 3,
+        adjoint (orientedCoefficient T (s e.1 e.2) i) *
+          orientedCoefficient T (t e.1 e.2) l :=
+    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
+      adjoint (orientedCoefficient T (s e.1 e.2) i) *
+        orientedCoefficient T (t e.1 e.2) l)).symm
+  rw [hrhs]
+  apply Finset.sum_congr rfl
+  intro e he
+  exact sum_double_indicator
+    (fun u ↦ adjoint (orientedCoefficient T u i))
+    (fun v ↦ orientedCoefficient T v l)
+    (s e.1 e.2) (t e.1 e.2)
+
 /-- The forward directed cross-energy. -/
 theorem forward_incidence
     (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
@@ -799,30 +835,9 @@ theorem forward_incidence
         orientedCoefficient T v l) =
       ∑ j, ∑ k : Fin 3,
         adjoint (orientedCoefficient T (T j k) i) *
-          orientedCoefficient T (inverseSigned (T j (nextCorner k))) l := by
-  classical
-  simp_rw [single_cast_nested_indicator_sum T]
-  simp_rw [Finset.mul_sum, Finset.sum_mul]
-  rw [incidence_sum_rotate]
-  have hrhs :
-      (∑ j, ∑ k : Fin 3,
-        adjoint (orientedCoefficient T (T j k) i) *
-          orientedCoefficient T (inverseSigned (T j (nextCorner k))) l) =
-      ∑ e : TriangleIndex × Fin 3,
-        adjoint (orientedCoefficient T (T e.1 e.2) i) *
-          orientedCoefficient T
-            (inverseSigned (T e.1 (nextCorner e.2))) l :=
-    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
-      adjoint (orientedCoefficient T (T e.1 e.2) i) *
-        orientedCoefficient T
-          (inverseSigned (T e.1 (nextCorner e.2))) l)).symm
-  rw [hrhs]
-  apply Finset.sum_congr rfl
-  intro e he
-  exact sum_double_indicator
-    (fun u ↦ adjoint (orientedCoefficient T u i))
-    (fun v ↦ orientedCoefficient T v l)
-    (T e.1 e.2) (inverseSigned (T e.1 (nextCorner e.2)))
+          orientedCoefficient T (inverseSigned (T j (nextCorner k))) l :=
+  directed_incidence_core T (fun j k ↦ T j k)
+    (fun j k ↦ inverseSigned (T j (nextCorner k))) i l
 
 /-- The reverse directed cross-energy. -/
 theorem reverse_incidence
@@ -839,29 +854,10 @@ theorem reverse_incidence
             (inverseSigned (T j (nextCorner k))) i) *
           orientedCoefficient T (T j k) l := by
   classical
-  simp_rw [single_cast_nested_indicator_sum T]
-  simp_rw [Finset.mul_sum, Finset.sum_mul]
-  rw [incidence_sum_rotate]
-  have hrhs :
-      (∑ j, ∑ k : Fin 3,
-        adjoint (orientedCoefficient T
-            (inverseSigned (T j (nextCorner k))) i) *
-          orientedCoefficient T (T j k) l) =
-      ∑ e : TriangleIndex × Fin 3,
-        adjoint (orientedCoefficient T
-            (inverseSigned (T e.1 (nextCorner e.2))) i) *
-          orientedCoefficient T (T e.1 e.2) l :=
-    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
-      adjoint (orientedCoefficient T
-          (inverseSigned (T e.1 (nextCorner e.2))) i) *
-        orientedCoefficient T (T e.1 e.2) l)).symm
-  rw [hrhs]
-  apply Finset.sum_congr rfl
-  intro e he
-  exact sum_double_indicator
-    (fun u ↦ adjoint (orientedCoefficient T u i))
-    (fun v ↦ orientedCoefficient T v l)
-    (inverseSigned (T e.1 (nextCorner e.2))) (T e.1 e.2)
+  simpa only [and_comm] using
+    (directed_incidence_core T
+      (fun j k ↦ inverseSigned (T j (nextCorner k)))
+      (fun j k ↦ T j k) i l)
 
 /-- Number of literal occurrences of an underlying generator. -/
 def generatorOccurrenceCount
