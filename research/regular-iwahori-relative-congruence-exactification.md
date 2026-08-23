@@ -95,3 +95,13 @@ congruence quotients.  It does not establish `(RCE1)`.
   alignment of the input gauge into the commutant of the same `S_0`.
   Regular trace, opposite-root orthogonality, and endpoint classification
   do not presently authenticate those data.
+- **Qualitative ultraproduct lifting is equivalent to the whole regular
+  stability endpoint.**
+  `regular-iwahori-exactification-is-regular-branch-liftability` proves that
+  this claim is equivalent, using the already established modular-vertex
+  exactification, odd-congruence repair and finite-dimensional endpoint
+  classification, to same-dimensional correction of every regular
+  microstate of `SL_2(Z[1/2])`.  Thus passing to an exact regular
+  ultraproduct homomorphism does not weaken the missing theorem.  The two
+  vertex restrictions always lift exactly; lifting their common Iwahori
+  incidence is the entire problem.

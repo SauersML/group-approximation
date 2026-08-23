@@ -52,3 +52,37 @@ round the vertex together with a chosen lift of its product through the
 square map, and must use the inversion/second-cubic rows to forbid the wrong
 branch before changing the vertex.
 
+## Ultraproduct consequence
+
+The same example is a literal failure of the relative square-root lifting
+step, not merely a bad quantitative estimate.  Pass to any ultrafilter along
+`p->infinity` and put
+
+```text
+s=[(S_p)],                 q=[(Q_p)]
+```
+
+in the tracial matrix ultraproduct.  Equation `(FTR2)` gives
+
+```text
+q=s^2                                                   (FTR5)
+```
+
+exactly in the quotient.  Nevertheless `(FTR3)` gives
+
+```text
+liminf_p inf { ||T-S_p||_2 : T in U(d_p), T^2=Q_p } >= 1.  (FTR6)
+```
+
+Thus the exact quotient root `s` has no coordinatewise exact roots of the
+**already rounded** products `Q_p` converging to its chosen representatives.
+This does not contradict ordinary HS stability of the equation `t^2=q`:
+one may change `Q_p` back to `S_p^2` by `o(1)`.  It refutes precisely the
+relative path-lifting assertion needed by the alternating scheme, where the
+first vertex has already been exactified and its product `Q_p` is held fixed.
+
+Consequently neither compactness of the tracial ultraproduct nor exactness
+of `(FTR5)` supplies the missing coordinate lift.  Any qualitative
+ultraproduct proof must retain the BS root branch while rounding the modular
+vertex; equivalently it must use the remaining Iwahori relations before the
+rounding, rather than afterwards.
