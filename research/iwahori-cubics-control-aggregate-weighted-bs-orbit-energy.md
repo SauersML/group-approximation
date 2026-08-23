@@ -63,3 +63,21 @@ singular-value estimate on fourth-power cycles.  The compressed even-Weil
 outliers have zero Weyl/inversion residual and hence do not challenge the
 weighted estimate; they locate the missing content in nonlinear boundary
 padding and endpoint selection.
+
+There is in fact no need to integrate the differential.  The upgraded
+pairwise identity in `same-core-involution-cubic-gauge-coercivity` compares
+two finite endpoint row values directly and proves
+
+```text
+||c-1||_2
+ <= defect_(x^2)(X)+defect_(x^2)(c^(-1)X)
+   +defect_((xt)^3)(X)+defect_((xt)^3)(c^(-1)X).       (IAG2)
+```
+
+Accordingly the remaining nonlinear input is decomposed as the narrower
+claim `iwahori-weyl-coboundary-admits-row-tame-target`: select a coboundary
+gauge whose corrected endpoint has the last two defects in `(IAG2)` of
+order `delta`.  Route `row-tame-weyl-correction-proves-aggregate-energy`
+then gives the desired small gauge with no Fourier, Taylor, or geodesic
+loss.  This selection claim allows an approximate target and is strictly
+weaker than full relative Iwahori repair.

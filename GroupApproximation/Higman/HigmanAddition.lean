@@ -231,8 +231,8 @@ def addStopped (g : E) (r : ℤ) : Prop :=
 def addIdled (g : E) (r : ℤ) : Prop :=
   addY g r = 0 ∧ addZ g r = 0 ∧ addC g r = 0 ∧ addW g r = 0
 
-/-- **The step relation, read on the tracks.** -/
 set_option maxHeartbeats 800000 in
+/-- **The step relation, read on the tracks.** -/
 theorem mem_addStep_window (g : E) (r : ℤ) :
     windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addStep ↔
       addRunning g r ∨ addStopped g r ∨ addIdled g r := by
@@ -256,9 +256,32 @@ theorem mem_addStep_window (g : E) (r : ℤ) :
   have h12 : windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g 12 = g (8 * (r + 1) + 4) := by
     have e : (8 : ℤ) * (r + 1) + 4 = 8 * r + 12 := by ring
     rw [windowAt_eight_eval g r 12 (by omega) (by omega), e]
-  simp only [addStep, addRun, addBack, addStop, addIdle, addRunning, addStopped, addIdled,
-    addY, addZ, addC, addW, eqCoord, succCoord, pinAt, Set.mem_union, Set.mem_inter_iff,
-    Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
+  have hrun :
+      windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addRun ↔
+        addY g (r + 1) = addY g r ∧ addZ g (r + 1) = addZ g r ∧
+          addC g (r + 1) = addC g r + 1 ∧ addW g (r + 1) = addW g r + 1 := by
+    simp only [addRun, addY, addZ, addC, addW, eqCoord, succCoord,
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
+    tauto
+  have hback :
+      windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addBack ↔
+        addY g (r + 1) = addY g r ∧ addZ g (r + 1) = addZ g r ∧
+          addC g r = addC g (r + 1) + 1 ∧ addW g r = addW g (r + 1) + 1 := by
+    simp only [addBack, addY, addZ, addC, addW, eqCoord, succCoord,
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
+    tauto
+  have hstop :
+      windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addStop ↔ addStopped g r := by
+    simp only [addStop, addStopped, addY, addZ, addC, addW, eqCoord, pinAt,
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
+    tauto
+  have hidle :
+      windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addIdle ↔ addIdled g r := by
+    simp only [addIdle, addIdled, addY, addZ, addC, addW, pinAt,
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4]
+    tauto
+  rw [addStep, Set.mem_union, Set.mem_union, Set.mem_union, hrun, hback, hstop, hidle,
+    addRunning]
   tauto
 
 theorem addStep_cases {g : E} (hg : g ∈ transitionSet 8 addStep) (r : ℤ) :

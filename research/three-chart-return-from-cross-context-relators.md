@@ -13,6 +13,15 @@ requires:
   - rank-one-no-signaling-pairing-floor
 ---
 
+**INVALIDATED.**  The completeness-side outside-word tuples do have the exact
+stabilizer alignments recorded in
+`fanizza-radical-tuples-have-stabilizer-shears`, but the soundness argument
+below makes a false reset-commutant inference.  By
+`two-raw-radicals-fail-common-symplectic-reset`, the crossed chart's reset
+commutant contains only the line `<r_(a,0)+r_(a,1)>`; neither endpoint basis
+word lies in it.  Hence the paragraph claiming that both `P,Q` live in the
+fresh multiplicity algebra cannot prove the target incidence.
+
 Quotient the affine Clifford return presentation by the two cross-context
 radical relators `(CCR1)`.  Everything the target asks for then follows
 from established finite facts plus the single covariant-model obligation.
