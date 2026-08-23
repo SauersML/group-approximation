@@ -192,6 +192,27 @@ weakening consumed by the HNN marked word.
   projection/co-density statement is already the universal matrix-
   ultraproduct relative-commutant wall.
 
+- **The arbitrary-unitary wall is exactly one balanced-projection endpoint
+  problem.** `sl3-projective-transfer-is-balanced-projection-endpoint-transfer`
+  combines the trace-zero involution dilation with a projection calculation
+  that does not require the native commuting-lamp relation.  If
+  `P=(I-v)/2`, `tr(P)=1/2`, and `Q=rho(h)P rho(h)^*`, then
+
+  ```text
+  2 dist_2(Q,{P,I-P})^2
+   <=1-|tr([v,rho(h)])|^2
+   <=4 dist_2(Q,{P,I-P})^2.
+  ```
+
+  Thus `(PTS1)` is equivalent at the qualitative/linearized level to saying
+  that every asymptotically `C`-invariant half-rank projection is sent by
+  `h` to either itself or its complement.  The rank-one denominator identity
+  then excludes the complementary endpoint and selects actual invariance.
+  This is sharper than the native commuting-conjugate lamp problem: the
+  generic dilation produces no relation `[P,Q]=0`.  The remaining theorem is
+  therefore a balanced projection endpoint-transfer statement for an
+  approximate arithmetic action, not correction of an arbitrary unitary.
+
 - **The native joint relation has a strictly smaller defect-only certificate.**
   `native-transfer-has-defect-only-certificate` proves that after restricting
   to the balanced involution `c` and imposing `[c,h c h^-1]=1`, qualitative
