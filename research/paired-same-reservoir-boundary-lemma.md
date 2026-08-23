@@ -3,8 +3,6 @@ rg: 2
 id: paired-same-reservoir-boundary-lemma
 kind: claim
 title: Paired Leavitt children either remain in one multiplicity reservoir or pay their full boundary mass
-requires:
-  - target-saturated-reynolds-return-does-not-lock-leavitt-reservoir
 artifacts:
   - research/artifacts/affine-leavitt-normalized-hs-decoder-audit-2026-08-21.md
 distinct_from:
