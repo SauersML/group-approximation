@@ -105,9 +105,17 @@ cohomological input.
   finite mixed stabilizers `P_J^+ cap P_(J')^-` -- torus times the
   root subgroups fixing both residues), i.e. group-cohomology-of-an-
   orbifold data with all stabilizers finite and listable from the
-  rank-two root combinatorics.  Exactness analysis of this complex,
-  per action, is the concrete route to deciding Corollary E's last
-  clause.
+  rank-two root combinatorics.  EVENING UPDATE (2026-08-23): for the
+  BERNOULLI action the analysis is COMPLETE down to one module
+  (`km-l0-h2-is-the-three-subspace-defect`): `H^2(Lambda, L^0(Y))`
+  is exactly the three-subspace defect `((St_1+St_2) cap St_3)/
+  (St_13+St_23)` in `H^1(B_-, L^0)`, all of whose ingredient groups
+  are nonzero (`locally-finite-bernoulli-first-l0-cohomology-
+  nonzero`) while all pairwise defects vanish.  By role symmetry the
+  same module has three descriptions (one per distinguished vertex),
+  each the kernel of an explicit Shapiro map.  Nonzero defect =>
+  Corollary E fires => NO LP.  Note: LP failure does not by itself
+  decide LLP; an LLP=>LP bridge for (T) groups is unverified.
   A third route: malleability/deformation techniques (Popa--Sasyk
   computed `H^1` of Bernoulli shifts of relative-(T) groups to be the
   character group, arXiv:math/0310211); a degree-two analogue for
