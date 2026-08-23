@@ -152,15 +152,17 @@ theorem mem_repCommutant_of_commutes_compressed [FiniteDimensional k V]
   rw [heq]
   refine ⟨π (t⁻¹ * x * t), ?_, ?_⟩
   · intro γ hγ
-    have hcomm : γ * (t⁻¹ * x * t) = (t⁻¹ * x * t) * γ := by
-      have h := (hx γ hγ).eq
-      calc
-        γ * (t⁻¹ * x * t) = t⁻¹ * ((t * γ * t⁻¹) * x) * t := by group
-        _ = t⁻¹ * (x * (t * γ * t⁻¹)) * t := by rw [← h]
-        _ = (t⁻¹ * x * t) * γ := by group
-    simpa only [map_mul] using congrArg π hcomm
-  · rw [sandwich_apply, map_mul, map_mul]
-    group
+    have hcomm : Commute γ (t⁻¹ * x * t) := by
+      simpa [mul_assoc] using (hx γ hγ).symm.conj t⁻¹
+    simpa only [map_mul] using congrArg π hcomm.eq
+  · have hTT : π t * π t⁻¹ = 1 := by
+      rw [← map_mul, mul_inv_cancel, map_one]
+    rw [sandwich_apply, map_mul, map_mul]
+    calc
+      π t * (π t⁻¹ * π x * π t) * π t⁻¹ =
+          π t * π t⁻¹ * π x * (π t * π t⁻¹) := by
+            simp only [mul_assoc]
+      _ = π x := by rw [hTT, one_mul, mul_one]
 
 /-- **Sibling commutator collapse.**  If `p` commutes with the compressed copy
 and `q` belongs to the parent copy, every finite-dimensional representation
@@ -175,9 +177,10 @@ theorem map_commutator_eq_one_of_commutes_compressed [FiniteDimensional k V]
     π ⁅p, q⁆ = 1 := by
   have hpC : π p ∈ repCommutant π Γ :=
     mem_repCommutant_of_commutes_compressed π hcomp hp
-  rw [map_commutatorElement]
-  exact commutatorElement_eq_one_iff_commute.mpr
-    (Commute.symm (hpC q hq))
+  have hcommute : π p * π q = π q * π p := (hpC q hq).symm
+  rw [commutatorElement_def, map_mul, map_mul, map_mul, hcommute,
+    mul_assoc (π q) (π p), ← map_mul, mul_inv_cancel, map_one, mul_one,
+    ← map_mul, mul_inv_cancel, map_one]
 
 /-- The invertible form of the exact one-step self-copy detector.  Every
 finite-dimensional linear representation into `GL(V)` kills the sibling
