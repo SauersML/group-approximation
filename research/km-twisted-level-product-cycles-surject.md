@@ -89,3 +89,21 @@ class is unavailable).
   quadrangle `Q(4,q)` for odd `q` (same computation in the orthogonal
   model) and orientation bookkeeping.  The `G_2` case (split Cayley
   hexagon) awaits the analogous pencil computation.
+- **`G_2` setup (2026-08-23).**  Model the hexagon residue as the split
+  Cayley hexagon `H(q)` on the parabolic quadric `Q(6,q)`: two points
+  are hexagon-collinear iff one lies in the other's hexagon plane
+  `pi_x` (the plane containing the `q+1` lines through `x`), at
+  distance four iff perpendicular but not collinear, opposite iff not
+  perpendicular.  For the line-panel `ell_1` with classes its points
+  `p_i`, the class-`i` single-class vertices are
+  `p_i^perp cap Q(6,q) minus (ell_1^perp cup pi_(p_i))`, and the
+  class-`k` neighbours of a class-`j` point `P` lie on the single line
+  `pi_P cap p_k^perp` of the plane of `P`.  The `B_2` collapse used the
+  LINEARITY of `P |-> P^perp`; here the plane map `Q |-> pi_Q` is the
+  twisted (octonionic) `G_2` map, not linear, so the two-step sets
+  `union_(Q) (pi_Q cap p_j^perp)` over the `q+1` points `Q` of one
+  such line should sweep a two-parameter family rather than collapse
+  onto one line.  The remaining verification is this spread (or, if it
+  fails, the three-class analogue) in Zorn-matrix coordinates, plus
+  the point-panel dual; nothing else stands between the recorded cases
+  and `(TLS1)` in full.
