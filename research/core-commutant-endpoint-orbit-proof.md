@@ -17,43 +17,65 @@ rho_U(w)=X_U.                                              (CCP1)
 
 All defining words therefore vanish exactly.
 
-For the noncommuting relative gauge, let `P` be the diagonal projection of
-`ell^2(G)` onto `ell^2(K)` and put
+For the uniformly noncommuting relative gauge, put
+
+```text
+s=w^(-1)t w.
+```
+
+This is a nontrivial lower unipotent, while
+`K=<h(2),u(1)>` lies in the upper triangular subgroup, so `s notin K`.
+Partition `G` into the left-`K` orbits `Kg`.  Choose each orbit independently
+with probability `1/2` and let `A` be the union of the chosen orbits.  For
+every `g`, the orbits `Kg` and `Ks^(-1)g` are distinct: equality would imply
+`s^(-1) in K`.  Their two selection bits are therefore independent, and
+
+```text
+E |A triangle sA|=|G|/2.                               (CCP2)
+```
+
+Fix one choice with `|A triangle sA|>=|G|/2`.  Let `P` be multiplication by
+the indicator of `A` on `ell^2(G)` and put
 
 ```text
 U=I-2P.
 ```
 
-Left multiplication by `K` preserves `ell^2(K)`, so `U` belongs to
+The set `A` is a union of left-`K` orbits, so `U` belongs to
 `lambda(K)'`.  Write `W=lambda(w)` and
 
 ```text
 Q=WPW^*,
 ```
 
-the projection onto `ell^2(wK)`.  Since `U=U^*=U^(-1)`, the relative gauge
+the projection onto `ell^2(wA)`.  Since `U=U^*=U^(-1)`, the relative gauge
 is
 
 ```text
-c_U=UWUW^*=(I-2P)(I-2Q).                                (CCP2)
+c_U=UWUW^*=(I-2P)(I-2Q).                                (CCP3)
 ```
 
-The first factor commutes with `T=lambda(t)`.  The second does not.  Indeed
-`TQT^*` is the projection onto `ell^2(twK)`.  The left cosets `twK` and
-`wK` are unequal precisely because
+The first factor commutes with `T=lambda(t)`.  Moreover `TQT^*` is the
+projection onto
 
 ```text
-w^(-1)t w notin K:                                      (CCP3)
+t w A=w s A.
 ```
 
-the left side is a nontrivial lower unipotent, whereas
-`K=<h(2),u(1)>` is contained in the upper triangular subgroup.  Distinct
-left cosets are disjoint, so `TQT^*!=Q`.  From `(CCP2)` and `[P,T]=0`,
+Consequently normalized counting trace gives
 
 ```text
-[c_U,T]=(I-2P)[I-2Q,T] !=0.                             (CCP4)
+||TQT^*-Q||_2^2=|A triangle sA|/|G|>=1/2.              (CCP4)
 ```
 
-Both endpoints still have zero defect by `(CCP1)`.  Repeating the finite
-regular block by direct sum preserves this exact nonalignment, proving the
-claimed matrix-level endpoint-fiber obstruction.
+Using `(CCP3)` and `[P,T]=0`,
+
+```text
+[c_U,T]=(I-2P)[I-2Q,T],
+||[c_U,T]||_2=2||TQT^*-Q||_2>=sqrt(2).                 (CCP5)
+```
+
+Both endpoints still have zero defect by `(CCP1)`.  The lower bound is
+independent of `G`, and repeating any finite regular block by direct sum
+preserves it.  Thus the obstruction survives both amplification and moving
+congruence levels.

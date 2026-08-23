@@ -38,13 +38,20 @@ c_U=X_U X_0^(-1)
 ```
 
 does not commute with `T`, although `X_U` and `X_0` satisfy every Iwahori
-row exactly.  Hence prime-power uniqueness of the abstract Weyl element
-does not justify arbitrary-baseline `T`-commutant promotion in matrices.
+row exactly.  The choice can be made with the dimension-independent bound
+
+```text
+||[c_U,T]||_2>=sqrt(2).                                (CCO2)
+```
+
+Hence prime-power uniqueness of the abstract Weyl element does not justify
+arbitrary-baseline `T`-commutant promotion in matrices, even on a moving
+sequence of exact regular congruence blocks.
 
 The correct quotient geometry is therefore
 
 ```text
-exact endpoints over (R,T) / conjugacy by {R,T}' .     (CCO2)
+exact endpoints over (R,T) / conjugacy by {R,T}' .     (CCO3)
 ```
 
 A flexible basin theorem must find a nearby point of this entire orbit (or
