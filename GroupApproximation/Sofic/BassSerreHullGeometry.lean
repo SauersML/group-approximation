@@ -252,7 +252,8 @@ theorem isHyperbolicSpace :
   by_cases hab : A ≤ B
   · rw [min_eq_left (by linarith)]
     rw [min_eq_left hab] at hreal
-    linarith
+      linarith
+
   · have hba : B ≤ A := le_of_not_ge hab
     rw [min_eq_right (by linarith)]
     rw [min_eq_right hba] at hreal

@@ -113,7 +113,10 @@ no-Fano-line support conclusion.
   squared sequential mass at least `(4/7)^m`; such a product need not be a
   common reducing corner, so the central-core firewall still applies.
 - The fiberwise auxiliary selector is valid only under a stronger syntax;
-  see `rstar-private-tail-fiberwise-cap-collapse`.  Its displayed common
+  its unconditional one-context core is
+  `isolated-rstar-context-determinizes-to-a-fano-cap`, and its simultaneous
+  private-tail form is `rstar-private-tail-fiberwise-cap-collapse`.  The
+  displayed common
   annihilator gives the homogeneous row `lambda dot t=0`, whose three
   nonzero solutions form a Fano line and whose operator sign is `+I`, not
   FC-char's `-I`.  The local argument is repaired because the replacement
