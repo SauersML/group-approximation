@@ -9,14 +9,8 @@ unfolding -- and then walking the constants the compared type mentions,
 transitively, requiring each ordinary declaration to be IDENTICAL in both
 environments.  Identical means name, type **and value**.
 
-An earlier version of this driver printed only the compared type and the names
-of the constants it uses.  That was not enough, and the real Comparator said
-so: with byte-identical source in both files, `ExplicitNonMF.relators`
-elaborated to different values, because the Challenge saw only the instances
-its own imports provide while the Solution saw Mathlib's
-`FreeGroup.instDecidableEq` through the development.  Same text, same type,
-different constant -- and a submission that would have been rejected after the
-commit was public.
+The driver hashes both types and values because identical source can elaborate
+differently when the two modules import different instances.
 
 So this walks the same closure Comparator walks and prints, for every constant
 in it, the structural hash of its type and of its value.  Its Challenge twin
@@ -27,7 +21,7 @@ Run with `scripts/remote-build.sh --run scripts/PalomarSolutionType.lean`.
 
 open Lean Meta in
 #eval show MetaM Unit from do
-  let target : Name := `ExplicitNonMF.explicit_sofic_not_MF
+  let target : Name := `NonMFExistence.exists_countable_not_MF
   let env ← getEnv
   let some info := env.find? target
     | throwError "declaration {target} is not in this environment"
