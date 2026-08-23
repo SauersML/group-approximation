@@ -3484,7 +3484,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **dimension-expander-two-matching-square-function** [1 live route(s) need it; toward: non-hyperlinear-group] [Turn dimension-expander matching defects into one orthogonal bridge square function](dimension-expander-two-matching-square-function.md) — ⚑ last missing for dimension-expander-robustifies-two-matching-blocks → two-matching-matrix-block-propagation — unclaimed
 - **dimension-reported-clifford-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Clifford table](dimension-reported-clifford-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-clifford-compiler → non-hyperlinear-group — unclaimed
 - **dimension-reported-hyperoctahedral-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output activates one low-dimensional hyperoctahedral predicate packet](dimension-reported-hyperoctahedral-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-hyperoctahedral-compiler → non-hyperlinear-group — unclaimed
-- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — 🔒 claimed (9m13s remaining)
+- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — 🔒 claimed (1m50s remaining)
 - **dimension-reported-schur-replica-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Schur-replica table](dimension-reported-schur-replica-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-schur-compiler → non-hyperlinear-group — unclaimed
 - **edge-pair-mixed-gap-collapse** [1 live route(s) need it; toward: non-hyperlinear-group] [Mixed-gap collapse for high-dimensional edge-irreducible pairs](edge-pair-mixed-gap-collapse.md) — ⚑ last missing for iwahori-outlier-localization → iwahori-outlier-repair — unclaimed
 - **effective-fixed-density-diagonal-retention-character** [1 live route(s) need it; toward: non-hyperlinear-group] [An effective non-CE character has fixed-density self-retention along its polarizing tensor powers](effective-fixed-density-diagonal-retention-character.md) — ⚑ last missing for nonhyperlinear-via-fixed-density-diagonal-retention → non-hyperlinear-group — unclaimed
@@ -3862,18 +3862,18 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes-proof [COMPLETE] Cartan-Leray spectral sequence of the development with finite stabilizers
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes [ESTABLISHED] Every colimit of a developable triangle of finite groups has vanishing rational second cohomology
 - 2026-08-23 · km-lp-fails-via-development-end-cohomology [OPEN] Ioana-Spaas-Wiersma Corollary D through the end cohomology of the development
 - 2026-08-23 · km-group-ring-h2-is-development-end-cohomology-proof [COMPLETE] Compactly supported cochains, the universal coefficient theorem, and the sequence of the pair at infinity
 - 2026-08-23 · km-group-ring-h2-is-development-end-cohomology [ESTABLISHED] Group-ring second cohomology of a triangle colimit is the degree-one end cohomology of its development
-- 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
 - 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
 - 2026-08-23 · arithmetic-single-defect-saturation [ESTABLISHED] One certified defect element saturates the routed quotient and forces its own survival
 
 ## Active claims
 
-- 🔒 covariant-model-satisfies-cross-context-radical-relators — 9m11s remaining
-- 🔒 dimension-reported-julia-amplitude-return — 9m11s remaining
-- 🔒 edgeful-or3-coefficient-link-compiler — 9m11s remaining
-- 🔒 iwahori-cubics-control-aggregate-weighted-bs-orbit-energy — 9m11s remaining
+- 🔒 covariant-model-satisfies-cross-context-radical-relators — 1m48s remaining
+- 🔒 dimension-reported-julia-amplitude-return — 1m49s remaining
+- 🔒 edgeful-or3-coefficient-link-compiler — 1m49s remaining
+- 🔒 iwahori-cubics-control-aggregate-weighted-bs-orbit-energy — 1m49s remaining

@@ -54,3 +54,50 @@ supported 1-cochain.
   (LP would then be undecided by every Ioana--Spaas--Wiersma clause,
   since `H^2(Lambda;R)=0` by `triangle-colimit-rational-h2-vanishes`).
   Either outcome is recorded progress.
+- **Structure of the development (2026-08-23).**  Every opposite
+  chamber pair lies in exactly one twin apartment, so every 2-cell of
+  `X` lies in exactly one of the planar subcomplexes
+  `Sigma={(sigma,op(sigma))}`: `X` is a union of hyperbolic `(2,4,6)`
+  planes, any two meeting only in edges and vertices (common opposite
+  panel pairs).  Each edge (an opposite panel pair) lies in `q(q+1)`
+  2-cells, since a chamber of one panel is opposite every chamber of
+  the other panel except its projection.  No 2-cycle of `X` is
+  supported in the star of a vertex: distinct triangles at a vertex
+  have distinct opposite edges (a rank-three panel meets a rank-two
+  residue in one chamber), so a 2-chain supported in a star has
+  nonzero boundary.  Thus
+  2-cycles, if any, are spread out, and the pairing in `(DE1)` is a
+  genuinely global condition.
+- **Thick-part models.**  Inside the contractible product
+  `Z=X_+ x X_-`, the subcomplexes `Z_(<=R)` of chamber pairs of
+  codistance length `<= R` are `Lambda`-cocompact (finitely many
+  codistance orbits), increase to `Z`, and `Z_(<=0)=X`.  By Gersten's
+  quasi-isometry invariance of `H^2(Lambda;Z Lambda)` for finitely
+  presented groups, `H^1_infty(Z_(<=R))=H^1_infty(X)` for every `R`
+  at which `Z_(<=R)` is simply connected, while
+  `H^1_infty(Z)=0` (the boundary of the product is the join of two
+  connected spaces, so `Z` is simply connected at infinity).  The
+  answer to `(DE1)` is therefore the failure of this vanishing to
+  persist under truncation to bounded codistance: the exact analogue
+  of the Borel--Serre thick part, except that for function-field-type
+  lattices the thick part need not be contractible.
+- **No proper map through the product detects the apartment.**  If
+  `f: X -> H^2` is proper and factors through a proper map
+  `X_+ x X_- -> H^2` (for instance through the pair of building
+  retractions `(rho_+,rho_-)` onto a twin apartment), then `f` has
+  degree zero on every apartment `Sigma <= X`: the circle at infinity
+  of `Sigma` bounds a disc in the boundary `S^1 * S^1 = S^3` of the
+  product, so the induced map on the circle at infinity is
+  null-homotopic.  A proper degree-nonzero map `X -> H^2`, which would
+  prove `(DE1)`, must therefore use the intrinsic geometry of the
+  opposition complex, not the ambient product.
+- **Heuristic tension.**  For the affine analogue
+  `SL_3(F_q[t,t^(-1)])` the finiteness length is three
+  (Bux--Köhl--Witzel), and for the one-place group `SL_3(F_q[t])`
+  (finiteness length one, property (T)) the group-ring `H^2` is
+  expected nonzero from the rational Tits building at the cusp.  No
+  analogous computation is recorded for two places or for
+  compact-hyperbolic type; both `H^2(Lambda;Z Lambda)=0` (Corollary D
+  dead, LP undecided by every Ioana--Spaas--Wiersma clause except the
+  `L^0` one) and `!=0` (LP fails) remain consistent with what is
+  established.
