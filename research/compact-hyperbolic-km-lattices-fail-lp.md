@@ -64,16 +64,37 @@ cohomological input.
   theorem transports it to `H^2(Lambda, Z Lambda)`.
 - **ISW Corollary E (source-verified verbatim): needs an ergodic
   p.m.p. action with `H^2(Lambda, L^0(X, R)) != 0`; in particular
-  `H^2(Lambda, R) != 0` suffices.**  `H^2(Lambda; R)` is UNRECORDED
-  (an earlier assertion of vanishing in this lane was WRONG — it
-  assumed a contractible cocompact development, repaired 2026-08-21;
-  the NPC route to contractibility is now provably closed).
-  Simplicity kills the finite-index detour of ISW Example 1.3(ii)
-  and Remark 1.2 (no congruence subgroups to retreat to).  Candidate
-  actions: Bernoulli — note ISW's own proof of Corollary D runs
-  through Bernoulli-coefficient cocycles `L^0(T^Gamma, T)` and Popa
-  malleability, so the `Z Gamma` and p.m.p. routes converge on the
-  same kind of soft-coefficient 2-cocycle nonvanishing.
+  `H^2(Lambda, R) != 0` suffices.**  DECIDED 2026-08-23: `H^2(Lambda;
+  R) = 0` (`triangle-colimit-rational-h2-vanishes`).  The 2026-08-21
+  repair had correctly withdrawn a vanishing argument that assumed a
+  contractible cocompact development, but degree two needs only SIMPLE
+  CONNECTIVITY of the Levi-triangle development (Bridson--Haefliger
+  III.C.3.13): the Cartan--Leray spectral sequence has
+  `E_2^(*,1) = 0`, so `H^2(Lambda;Q)` injects into
+  `H^2_Lambda(X;Q) = H^2(X/Lambda;Q) = H^2(triangle;Q) = 0`.  The
+  trivial-coefficient clause of Corollary E is therefore DEAD at every
+  triangle colimit; the earlier tilt toward nonvanishing is withdrawn.
+  Only the `L^0(Y,R)` clause survives, in the exact form
+  `H^2(Lambda;L^0) = ker( L^0(Y)^T/(sum_i L^0(Y)^(P_i)) -> H^2(X;L^0) )`:
+  a `T`-invariant measurable function, not a sum of `P_i`-invariant
+  ones, whose equivariant extension to the development is a coboundary
+  there.  Simplicity still kills the finite-index detour of ISW Example
+  1.3(ii) and Remark 1.2.
+- **ISW Corollary D, exact input identified (2026-08-23).**  The same
+  spectral sequence with group-ring coefficients gives
+  `H^2(Lambda; Z Lambda) = ker( H^2_c(X;Z) -> H^2(X;Z) ) =
+  H^1_infty(X;Z)`, the degree-one end cohomology of the development
+  (`km-group-ring-h2-is-development-end-cohomology`); no contractible
+  model is needed.  Corollary D fires iff
+  `km-development-has-nonzero-end-cohomology-in-degree-one`, consumed
+  by the live route `km-lp-fails-via-development-end-cohomology`.  A
+  proper cellular retraction of the development onto an embedded twin
+  apartment would suffice (retract criterion in the same node); the
+  standard one-factor building retractions are NOT proper because the
+  set of chambers opposite a fixed chamber is infinite.  Caution: when
+  `H_2(X) != 0` (provably the case for affine rank-three type, by the
+  Bux--Köhl--Witzel finiteness length and Brown's criterion),
+  `H^2_c(X) != 0` alone does not suffice.
 - **Continuous-cohomology induction: inner fork DECIDED NEGATIVE
   (2026-08-21), by three independent blocks.**  (i) *The degree-2
   vanishing input does not exist.*  The DJ-framework vanishing for a
@@ -111,22 +132,16 @@ cohomological input.
   classes — but the known class-producing mechanism (congruence
   level structure) has no analogue in a simple group.  The outer
   fork stays genuinely open, with the inner fork closed.
-- **Surviving concrete route to `H^2(Lambda; R)`.**  After
-  barycentric subdivision, `Lambda` acts cellularly, properly, with
-  finite stabilizers on the contractible locally finite 4-complex
-  `X_+ x X_-`, so the equivariant spectral sequence with rational
-  coefficients collapses (finite stabilizers are Q-acyclic) to
-
-      `H^k(Lambda; Q) = H^k(Lambda \ (X_+ x X_-); Q)`  for all k,
-
-  with NO cocompactness needed.  The quotient is an explicit
-  infinite 4-complex: chamber-pair cells are indexed by the
-  codistance in `W` (twin strong transitivity), lower cells by
-  parabolic double-coset data.  Computing its `H^2` is the honest
-  open computation that replaces every vanished shortcut — and is
-  the corrected form of the repaired wrong claim: the erroneous step
-  had quotiented a cocompact model that does not exist; the
-  non-cocompact quotient computation is what actually remains.
+- **Former "surviving concrete route to `H^2(Lambda; R)`" (now
+  superseded).**  The non-cocompact quotient `Lambda \\ (X_+ x X_-)`
+  computation proposed here is no longer needed for the real
+  coefficients: the cocompact development answers it
+  (`H^2(Lambda;R)=0`).  The same spectral-sequence bookkeeping applied
+  to `X_+ x X_-` expresses `H^2(Lambda;Z Lambda)` as the second
+  cohomology of the complex of cochains finitely supported on every
+  `Lambda`-orbit of cells; this is an alternative, non-cocompact model
+  of the same group identified in
+  `km-group-ring-h2-is-development-end-cohomology`.
 - **What would NOT follow.**  LP failure says nothing about the LLP
   (the local side, `triangle-relator-extension-admits-local-ucp-
   sections`) — by design of the equivalence; conversely no LLP-side

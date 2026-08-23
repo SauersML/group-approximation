@@ -7,7 +7,6 @@ distinct_from:
   concrete-compression-source: that claim is the SOURCE stage — it produces the arithmetic HNN skeleton and Britton-certifies one nontrivial marked commutator, and stops there; this one is the SATURATION stage, which consumes that certified element plus a routing quotient and concludes that the whole defect fills the quotient.
   normal-kazhdan-defect-non-mf: that claim is the ANALYTIC detector — given a nontrivial normal Kazhdan subgroup inside the defect it kills every corona representation; this one is pure group theory feeding that detector, and supplies precisely the hypothesis `K = ⊤` at which the detector is applied.  No operator algebra occurs here.
   two-generated-single-element-hull-router: that claim is the routing EXISTENCE statement, and is the acylindrically hyperbolic input this one consumes as data; this one asserts no quotient exists and proves only what follows once one does.
-  defect-saturation-from-arithmetic-source: that route assembles the whole arithmetic construction end to end, from `Gamma(3) ltimes Z^3` through to `Rad_MF(Q) = Q`; this one isolates the single algebraic implication in its saturation step, states it for an arbitrary compression source, and adds the survival derivation that the route uses inline without recording.
   defect-saturation-full-mf-radical: that claim is an EXISTENCE statement about a group `G` with full MF radical; this one is a conditional implication about any routed quotient and asserts no existence.
 artifacts:
   - research/artifacts/arithmetic-single-defect-saturation-2026-08-23.md
