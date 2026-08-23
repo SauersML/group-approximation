@@ -7,9 +7,12 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTheoremAPackage
 import GroupApproximation.Sofic.NoRenormalizationCapacity
+import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.OpToHSShadowResidual
+import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
 
 /-!
@@ -34,6 +37,19 @@ does not erase their displayed hypotheses.  In particular, the shadow
 saturation theorem still requires a routing homomorphism and the
 no-renormalization diagonal still requires a uniformly authenticated
 challenge family.
+
+The middle block deliberately places the three completed analytic mechanisms
+next to one another:
+
+* the closed central-sign/Kazhdan--Clifford endpoint;
+* the closed sign-free involutive-compression quotient endpoint;
+* the normal-Kazhdan defect theorem, both in its concrete compression-core
+  form and in its more general tracial-shadow form.
+
+The first two include premise-free finitely presented witnesses.  The third is
+a completely proved implication from a normal Kazhdan subgroup in the defect;
+this audit does not mislabel the separate, still paper-level
+Fournier--Facio--Hull routing construction as a closed Lean witness.
 -/
 
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
@@ -69,6 +85,15 @@ challenge family.
 #audit_closed_axioms GroupApproximation.MFRadicalComputer.promised_word_problem_not_computable
 #audit_closed_axioms GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package
 #audit_closed_axioms GroupApproximation.LiteralNonMFEndpoint.literal_not_isOperatorMF
+#audit_closed_axioms GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction
+#audit_closed_axioms GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_finitelyPresented
+#audit_closed_axioms GroupApproximation.LiteralSignFreeQuotient.signFree_collapse
+#audit_closed_axioms GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isOperatorMF
+#audit_closed_axioms GroupApproximation.LiteralSignFreeQuotient.exists_finitelyPresented_signFree_not_isOperatorMF
+#audit_axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
+#audit_axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual
+#audit_axioms GroupApproximation.QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect
+#audit_axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual_of_hyperlinear_killed
 #audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope
 #audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope_no_torsionFree_image
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.primeCodedMark_blackHole

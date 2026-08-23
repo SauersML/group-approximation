@@ -36,6 +36,7 @@ import GroupApproximation.Monsters.HitchhikerPayload
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.ManuscriptExactWrappers
 import GroupApproximation.Sofic.ManuscriptClosedWrappers
@@ -44,7 +45,9 @@ import GroupApproximation.Sofic.LiteralNonMFConsequences
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
+import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -161,6 +164,24 @@ This module is the short list.
   increasing convention.
 * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
+
+## Three independently exposed non-MF mechanisms
+
+* `LiteralNonMFEndpoint.literal_not_isOperatorMF` is the closed central-sign
+  route: the nontrivial central Clifford involution is the square of a
+  compression defect and every norm-matrix-corona homomorphism kills it.
+* `LiteralSignFreeQuotient.signFreeQuotient_not_isOperatorMF` is the closed
+  sign-free route: after quotienting out that central sign, a noncentral
+  involutive compression witness still kills a surviving unsquared lamp
+  commutator.  `exists_finitelyPresented_signFree_not_isOperatorMF` is its
+  premise-free finitely presented existence endpoint.
+* `QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect`
+  is the normal-Kazhdan route: a nontrivial normal property-`(T)` subgroup in
+  the compression defect is killed elementwise and obstructs operator MF.
+  `normalKazhdan_le_normMFResidual_of_hyperlinear_killed` records the stronger
+  detector against an arbitrary tracial-shadow kill theorem.  These analytic
+  implications are complete; constructing the torsion-free routed input by
+  Hull small cancellation remains outside Lean's current group-theory library.
 
 ## Marked-limit stability of operator MF
 
@@ -464,6 +485,8 @@ export GroupApproximation.KazhdanCompressionCore
     finiteNormal_le_normMatrixCoronaKernel
     finiteNormal_le_normMatrixCStarCoronaKernel
     not_isOperatorMF_of_finiteNormal_le_defect)
+export GroupApproximation.QuestionTwoReduction
+  (not_isOperatorMF_of_nontrivial_normal_kazhdan_defect)
 export GroupApproximation.KazhdanAsymptoticCommutant
   (manuscriptKazhdanTransport manuscriptCompressionRadical)
 export GroupApproximation.KazhdanCliffordConstruction
@@ -510,6 +533,8 @@ export GroupApproximation.KazhdanCompressionCore
     normalKazhdan_le_normMatrixCStarCoronaKernel
     normalKazhdanDefectPart_le_normMFResidual
     existsUnique_defectNormal_factorization_to_normMatrixCStarCorona
+    normalKazhdan_le_normMFResidual_of_hyperlinear_killed
+    normalKazhdan_le_normMatrixCStarCoronaKernel_of_hyperlinear_killed
     defectNormal_le_orbitDefectNormal
     orbitDefectNormal_le_compressionCentralizerDefect)
 export GroupApproximation.KazhdanAsymptoticCommutant
@@ -548,6 +573,10 @@ export GroupApproximation.LiteralNonMFEndpoint
     literal_reducedGroupCStar_not_hasMFEmbedding
     literal_reducedGroupCStar_not_isMFAlgebra
     manuscriptTheoremA manuscriptTheoremD)
+export GroupApproximation.LiteralSignFreeQuotient
+  (signFree_collapse signFreeQuotient_finitelyPresented
+    signFreeQuotient_not_isCDEOperatorMF signFreeQuotient_not_isOperatorMF
+    exists_finitelyPresented_signFree_not_isOperatorMF)
 export GroupApproximation.LiteralBaseTranslationLattice
   (latticeToBase_injective latticeToBase_range latticeEquivTranslations)
 export GroupApproximation.LiteralBaseP13Replay

@@ -191,6 +191,7 @@ import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.ChosenMarkedPresentation
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Endpoint.ChosenNonMFAudit
+import GroupApproximation.Endpoint.SignFreeCompressionAudit
 import GroupApproximation.Sofic.ChosenNonMFEndpoint
 import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
 import GroupApproximation.Sofic.NormMFConsequences
