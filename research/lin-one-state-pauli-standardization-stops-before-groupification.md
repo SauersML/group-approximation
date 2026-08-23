@@ -25,3 +25,12 @@ average of `a` under the packet.  A second unrelated left context can be
 annihilated by this twirl even at zero defect (the two Pauli matrices in
 `M_2` give the minimal example).  Thus opposite-algebra preservation is not
 a sequential left-context alignment theorem.
+
+For the specific common-swap application, the mass statement admits a
+positive sharpening.  By
+`partial-isometry-gram-state-collapses-lin-corners`, the normalized Gram
+vector of `S_D8` has projection density, so almost every Lin spectral layer
+is exactly the D8 source projection and inherits its marked-mass floor.
+What still stops groupification is not density loss for this state, but the
+representation-dependent polar conjugacy of the left observables and the
+Reynolds twirl above.
