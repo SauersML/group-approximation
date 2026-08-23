@@ -49,3 +49,9 @@ route.  Each counterpacket has a one-dimensional exact completion at cost
 the missing positive theorem sharply: the four-row/native-level problem must
 turn residual energy into `o(d)` padding, rather than round inside the
 original dimension.
+
+The constructed levels are `K=p-1`; they are not asserted to be powers of
+two.  Thus the claim caps a family-wide strict estimate, not a hypothetical
+strict theorem restricted only to the dyadic staircase.  The latter
+distinction does not affect the flexible target, which the packets do not
+refute on any level.

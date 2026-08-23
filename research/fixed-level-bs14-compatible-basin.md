@@ -11,7 +11,7 @@ distinct_from:
   one-unipotent-quotients-are-bounded-congruence: that identifies every finite target up to the one fixed congruence kernel; this asks for the remaining quantitative repair across those moving congruence levels.
   regular-bs14-cores-admit-dyadic-one-power-shadows: that improves the regular-branch preconditioner to the single level 4^K-1 at square-root logarithmic cost; this states the basin comparison which remains after either preconditioner.
   bs14-one-power-level-is-a-native-short-commutator: that replaces the exponentially written power row by one native BS commutator of length 2K+2; this asks for the quantitative repair basin after that exact syntactic compression.
-  native-bs-level-has-strict-square-root-counterpackets: that caps any strict same-dimensional native-row basin at the K^-1/2 scale; this keeps the flexible o(d)-padding formulation which those counterpackets do not refute.
+  native-bs-level-has-strict-square-root-counterpackets: that caps any family-wide strict same-dimensional native-row basin at the K^-1/2 scale along K=p-1; this keeps the flexible o(d)-padding formulation which those counterpackets do not refute and makes no dyadic-only strict claim.
   induced-rounding-needs-rms-section-fillings: that builds the canonical induced-space repair and reduces its success to sub-square-root RMS relative fillings; this keeps the abstract basin formulation independent of a chosen repair mechanism.
 ---
 
