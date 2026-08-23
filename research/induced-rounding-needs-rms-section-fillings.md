@@ -8,6 +8,7 @@ distinct_from:
   repeated-squaring-and-tau-do-not-supply-the-moving-basin: that proves a generic short-presentation and expansion firewall; this locates the missing two-dimensional quantity inside the special exact-core induction construction.
   regular-congruence-endpoint-orbit-has-uniform-selberg-retraction: that rounds inside one already authenticated endpoint orbit; this uses induction to formulate the prior relative lift from an exact core into some endpoint type.
   authenticated-core-union-basin-is-relative-liftability: that identifies the qualitative flexible lifting endpoint; this supplies one quantitative sufficient construction in terms of Schreier-section fillings and an exact finite induced representation.
+  cyclic-core-character-forces-linear-rms-section-area: that refutes the required sub-square-root RMS bound, even on authenticated regular cores, while leaving gauge-optimized flexible repair open.
 ---
 
 Let `A_N` be one finite one-power Iwahori quotient, let `B_N<A_N` be
@@ -99,4 +100,11 @@ would close the flexible boundary step; one-dimensional property `(tau)`
 only performs the subsequent projection rounding.
 
 This is a sufficient reduction and a proof-method firewall.  It does not
-assert that the special Iwahori sections fail `(IRF7)`.
+by itself assert that the special Iwahori sections fail `(IRF7)`.
+`cyclic-core-character-forces-linear-rms-section-area` now proves the sharp
+negative answer: every section has `M_(4^K-1)>=cK`.  It also refutes the raw
+fixed-core energy estimate `(IRF8)`.  The counterfamily is nevertheless
+`O(1/K)` from an exact endpoint after moving the core, so the surviving
+target must optimize continuous core coordinates before forming the induced
+section, or use a gauge-optimized two-dimensional energy rather than frozen
+relative fillings.
