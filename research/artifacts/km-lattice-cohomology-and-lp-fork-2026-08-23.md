@@ -128,3 +128,33 @@ connecting map.  What remains established unconditionally from today:
 structure theorem for the filtration with its per-level homology
 formulas; the exact solution of the `B_2` class-graph geometry; and the
 triple-validated computational models.
+
+## Truly final state (after the H(4) computation)
+
+The day ended with one more reversal, resolving all earlier ones.  The
+class-stabilizer subgroups trace a rational normal curve in the
+Frattini quotient of the parabolic radical, so the class-walk graphs on
+`k` classes have `q^(max(0,dim-k))` components in every characteristic
+(verified exactly at `q = 2, 3, 4`; the characteristic-two collapse
+claim came from an adjoint-vs-module structure-constant bug and is
+retracted).  Hence: the hexagon-level refutations of the twisted
+surjectivity live only at `q <= 3`; for the actual lattices
+(`q > 1764^3`) the disjoint-class construction applies at every level
+(`q >= 8` suffices, four intermediate classes per side at hexagon
+levels), and the chain
+
+    twisted surjectivity  =>  thick part 2-connected  =>
+    Lambda is type F_3  and  H^2(Lambda; Z Lambda) = 0  =>
+    ISW Corollary D dead (any characteristic)
+
+is restored as the expected outcome, pending one careful write-up of
+the single-slot construction.  The LP fork's only surviving known
+failure mechanism is the L^0 clause of Corollary E, now equipped with
+the explicit sphere-pairing obstruction identities; LP holding would
+still close the whole program.  Established unconditionally today:
+`H^2(Lambda;Q) = 0`; the end-cohomology identification; the 2-spheres
+in the development (never contractible); the filtration structure
+theorem with per-level formulas (validated numerically in both
+connected and disconnected regimes); the exact `B_2` class-graph
+geometry; the curve-span threshold law; and the small-`q` cokernel
+theorems.
