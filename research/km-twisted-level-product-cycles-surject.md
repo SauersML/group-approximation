@@ -8,7 +8,9 @@ distinct_from:
   km-development-has-nonzero-end-cohomology-in-degree-one: that is the end-cohomology input for Corollary D; this is the finite combinatorial statement that makes the thick part 2-connected (type `F_3`) and identifies that input with `H^2_c` of the thick part, without deciding it.
 ---
 
-**OPEN (finite).**  For each twisted type of
+**OPEN (finite; scope corrected 2026-08-23: assert only for `q` large
+and coprime to six -- for `q=2` the `G_2` case is FALSE, see the
+computational bullet).**  For each twisted type of
 `km-codistance-filtration-twisted-levels-are-rank-two-pairs` -- a pair
 of rank-two residues of types in `{A_1 x A_1, B_2, G_2}` of the
 `(2,4,6)` twin building over `F_q`, `q>1764^3`, twisted by a common
@@ -301,3 +303,25 @@ class is unavailable).
   dictionary, and the surviving `c^2`-term in the quotient by the
   radical -- each has been double-checked once).  Deciding `H(2)` is
   the sharpest next test of the whole even-`q` branch.
+- **Computational adjudication (2026-08-23, scripts in experiments/,
+  artifact km-opposition-connectivity-computations-2026-08-23.md).**
+  `H(2)`: the full opposite-line geometry is DISCONNECTED (two
+  24-point components) -- the characteristic-two collapse is CONFIRMED
+  -- and `b_1(A)^2 = 324 < 768` = target: `(TLS1)` is FALSE at `G_2`
+  levels for `q=2` by dimension count.  `H(3)`: the full geometry is
+  connected, but deleting any one class disconnects it into three
+  81-point components, so every class-restricted cycle mechanism
+  (pencil, duality reduction) fails for hexagons even at odd `q`; the
+  odd-`q` `G_2` cell is a genuine open RANK computation
+  (`~165k x 105k` sparse at `q=3`; dimensionally source `~q^12`
+  exceeds target `~q^11` for large `q`, so surjectivity remains
+  plausible).  `W(3)`: two-class graphs are exactly `q` disjoint
+  `K_(q,q)` and three classes connect -- both symplectic theorems
+  validated -- with mod-two rank 1272 of 1296, consistent with the
+  `q+1 >= 7` threshold and warning of small-`q` torsion.  NET: the
+  claim as stated must be scoped to ODD `q` (indeed `q` coprime to
+  six) and LARGE `q`; for even `q` its negation holds at `G_2` levels
+  and the filtration then has genuine relative `H_3` there, reopening
+  the connecting-map question and with it the LP fork specifically for
+  characteristic-two lattices.  The G_2-level rank computation at
+  `q in {3,5}` on MSI is the sharpest next step.
