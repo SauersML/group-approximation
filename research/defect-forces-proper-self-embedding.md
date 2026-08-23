@@ -53,3 +53,26 @@ Two design corollaries for the torsion-free program.
    `EL₃(ℤ[x])` is (T)+torsion-free+non-co-Hopfian via the `x ↦ x²`
    substitution, but it is not finitely presented and realizing a
    homomorphic copy inside a f.p. ambient is again Higman-shaped).
+
+## Addendum 2026-08-23: an off-the-shelf group does qualify
+
+Corollary 2 above concludes that "no off-the-shelf classical group qualifies"
+for the sharp source demand, on the grounds that torsion-free hyperbolic (T)
+groups and higher-rank lattices are all co-Hopfian.  That reasoning is correct
+about *lattices*, and the conclusion drawn from it is too strong.  The affine
+congruence group `P = Gamma(3) ltimes Z^3` is not a lattice in a semisimple
+group: the dilation `(g,v) |-> (g, m v)` is a proper injective endomorphism
+that moves only the translation factor and leaves the arithmetic linear part —
+the part rigidity makes co-Hopfian — untouched.  `P` is finitely presented,
+torsion-free and Kazhdan, and carries the centralizing root and the
+Britton-nontrivial marked commutator inside a torsion-free finitely presented
+ambient.  So it meets the demand this claim isolates, in full, and the whole
+package is kernel-checked.
+
+That is recorded as [[affine-congruence-source-is-kazhdan]], which supplies the
+property-(T) certificate that [[concrete-compression-source]] deliberately
+leaves out, and it is what makes the Fournier--Facio universal-group machinery
+optional on the source side.  Nothing else in this claim changes: the forcing
+theorem, corollary 1's linear-centralizer observation, and the correction that
+the core's (T) field is not vestigial all stand, and the last of those is
+exactly why the added certificate is load-bearing.
