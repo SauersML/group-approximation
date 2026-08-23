@@ -107,3 +107,22 @@ class is unavailable).
   fails, the three-class analogue) in Zorn-matrix coordinates, plus
   the point-panel dual; nothing else stands between the recorded cases
   and `(TLS1)` in full.
+- **`G_2`: no `B_2`-type collapse — two-step sets are cones
+  (2026-08-23, coordinate-free).**  For a class-`j` point `P` of the
+  hexagon: the class-`k` neighbour candidates form the line
+  `m_P = pi_P cap p_k^perp` of the singular plane `pi_P`, which does
+  NOT pass through `P` (`P` is opposite `p_k`, not perpendicular) and
+  hence is not a hexagon line (those form the pencil through `P`), so
+  it meets each hexagon line through `P` once -- consistent with the
+  one-gate-per-line count.  For distinct `Q, Q' in m_P`: they are at
+  hexagon distance four with UNIQUE midpoint `P`, so
+  `pi_Q cap pi_(Q') = {P}`: the planes `pi_Q` form a pencil of planes
+  meeting pairwise only at `P`.  Since `P` is perpendicular to `p_j`,
+  `P` lies on every return line `pi_Q cap p_j^perp`; therefore the
+  two-step class-`j` reachable set from `P` is a CONE of `q+1`
+  distinct lines through `P` in distinct planes -- about `q^2` points,
+  against the single line (`q` points) of the `B_2` collapse.  So the
+  two-class graph of the hexagon is locally expanding; the remaining
+  verification is that iterating the cones (possibly with a third
+  class, as in `B_2`) reaches all `~q^4` class-`j` points, e.g. by an
+  orbit count for the stabilizer of `(ell_1, p_j, p_k)` in `G_2(q)`.

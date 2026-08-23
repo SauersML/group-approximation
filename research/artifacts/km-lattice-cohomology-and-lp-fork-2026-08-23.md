@@ -66,11 +66,30 @@ level is a wedge over residue pairs of `(cl O_w, D)`.  With
   explicit class graphs for `B_2`, `G_2` (`km-twisted-level-product-cycles-surject`).
 
 Hence, if the cokernels vanish, `X^` is 2-connected, `Lambda` is of type
-`F_3`, and `H^2(Lambda;Z Lambda) = H^2_c(X^) = H^3_c(Z minus X^)`: Corollary D
-becomes the question whether the cusp region of the twin-building product
-has compactly supported cohomology in degree three.  For affine `A~_2` the
-odd labels allow rank-`(1,2)` twisted levels with nonzero relative `H_3`,
-consistent with finiteness length three.
+`F_3`, and `H^2(Lambda;Z Lambda) = H^2_c(X^) = H^3_c(Z minus X^)`.  A
+downward induction over cusp levels (each has cohomology only in degree
+four) then gives `H^3_c(Z minus X^) = 0`: the SAME finite input that
+yields `F_3` also computes `H^2(Lambda;Z Lambda) = 0`, so ISW Corollary D
+would be DEAD at these lattices, alongside the trivial-coefficient clause
+of Corollary E.  The status of the surjectivity input: proved for grid
+levels; for `B_2` the two-class graph is exactly `q` disjoint `K_(q,q)`'s
+in the symplectic model but three classes reach everything by a
+perp-pencil argument; for `G_2` the `B_2` collapse provably does not
+occur (two-step sets are cones of `q+1` lines) and full connectivity is
+the one remaining cell.  For affine `A~_2` the odd labels allow
+rank-`(1,2)` twisted levels with nonzero relative `H_3`, consistent with
+finiteness length three and with the possibility of nonzero group-ring
+`H^2` there.
+
+## Net status of the LP fork
+
+`H^2(Lambda;R)=0` is established; `H^2(Lambda;Z Lambda)=0` follows from the
+remaining finite surjectivity cell; the `L^0(Y,R)` clause of Corollary E is
+then the only Ioana--Spaas--Wiersma mechanism left for LP failure at the
+Kac--Moody lattices, while LP holding would still close the whole program
+(`compact-hyperbolic-km-lattices-fail-lp`, stakes paragraph).  The lattice
+being of type `F_3` (conditional on the same cell) appears to be a new
+finiteness property for compact hyperbolic Kac--Moody groups.
 
 ## Why this matters for the program
 
