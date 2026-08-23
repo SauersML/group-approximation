@@ -700,3 +700,42 @@ discriminating computations need arenas whose overlap is a whole
 Borel level -- Levi x| radical levels glued along T.U-levels
 (q = 2: unipotent times Levi), sizes in the thousands: an MSI job,
 now precisely specified with a validated envelope methodology.
+
+## Addendum 21: Popa superrigidity enters -- H^1(Lambda, L^0) = 0 and the flipped lean
+
+(To be source-verified against Popa, "Cocycle and orbit equivalence
+superrigidity for malleable actions of w-rigid groups", Invent.
+Math. 170 (2007); the U_fin framework.)  `R` belongs to Popa's class
+`U_fin`: `t |-> e^(i t x)` is a closed embedding of `R` into
+`U(L^infty[0,1])`, the unitary group of a finite abelian von Neumann
+algebra (closedness: `e^(i t_n x) -> 1` in measure forces
+`t_n -> 0`).  `Lambda` has property (T), hence is w-rigid, and the
+Bernoulli action is malleable; a group 1-cocycle valued in
+`L^0(Y,R)` IS a measurable dynamical cocycle `Lambda x Y -> R`.  So
+Popa's theorem applies: every such cocycle untwists to a
+homomorphism `Lambda -> R`, and simplicity kills homomorphisms:
+
+```text
+H^1(Lambda, L^0(Y,R)) = 0  for the Bernoulli action.
+```
+
+Two consequences.  (1) In the stable-subspace calculus this is a new
+structural constraint: the `(0,1)` entry of the building spectral
+sequence gives `H^1(Lambda,V) = St_12 cap St_13 cap St_23` (vertex
+classes compatible over the triangle), so the TRIPLE intersection of
+the vertex subspaces is ZERO.  (2) The defect module
+(`= H^2(Lambda, L^0(Y))`) is now precisely a DEGREE-TWO cocycle
+superrigidity question -- the natural conjecture, supported by every
+faithful finite-level computation today (all zeros: 18-point,
+750-point Levi, 78-point unipotent envelope), is that malleability
+kills degree two as well and the defect VANISHES.  That would
+extinguish Ioana--Spaas--Wiersma Corollary E at the Bernoulli
+action, leaving the LP -- like the LLP -- with NO known obstruction
+at the lattices, and would redirect the L^0 clause's remaining hope
+to non-Bernoulli ergodic actions (Gaussian actions of exotic
+orthogonal representations being the natural next family).  The
+lean of Addendum 15 is hereby REVERSED by the faithful data and the
+superrigidity frame: the surviving expectation is vanishing, i.e.
+the forced-witness fork is heading toward "no cohomological
+mechanism decides it" -- everything rides on the positive
+construction (triangle-relator-extension-admits-local-ucp-sections).

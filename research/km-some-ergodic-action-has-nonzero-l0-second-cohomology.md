@@ -157,3 +157,16 @@ Three recorded routes (details on the LP node):
   with LLP would exhibit a full group C*-algebra with LLP but
   without LP.  Source: isw-ddjmo-cr-cohomology-sources artifact,
   2026-08-23 re-read section.
+
+- 2026-08-23 (final entry: superrigidity frame).  Popa cocycle
+  superrigidity (w-rigid + malleable, targets in U_fin; `R` is in
+  U_fin via `t |-> e^(itx)` into `U(L^infty[0,1])`) plus simplicity
+  gives `H^1(Lambda, L^0(Y,R)) = 0` for Bernoulli -- equivalently
+  `St_12 cap St_13 cap St_23 = 0` in the stable-subspace calculus
+  (SOURCE-VERIFY Popa Invent. 170 (2007) next session).  The
+  Bernoulli instance of this claim is therefore exactly a DEGREE-TWO
+  cocycle superrigidity question; all faithful finite-level defects
+  computed today are ZERO (18, 750, and 78-point envelope), so the
+  working expectation is now VANISHING at Bernoulli, with the
+  clause's remaining hope in non-Bernoulli actions (Gaussian
+  families first).  Artifact Addenda 15-21 carry the full trail.
