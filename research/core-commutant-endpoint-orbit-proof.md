@@ -17,6 +17,19 @@ rho_U(w)=X_U.                                              (CCP1)
 
 All defining words therefore vanish exactly.
 
+For the converse on the regular endpoint fiber, finite-group
+representations are unitarily equivalent exactly when their characters
+agree.  Hence an exact `rho_X` with the regular character has
+`rho_X=Ad(V)o lambda_G` for some unitary `V`.  For every `k in K`, agreement
+on the fixed core gives
+
+```text
+V lambda(k)V^*=rho_X(k)=lambda(k),
+```
+
+so `V in lambda(K)'`.  Evaluating at `w` proves that every regular endpoint
+is in the displayed orbit.
+
 For the uniformly noncommuting relative gauge, put
 
 ```text

@@ -163,6 +163,12 @@ congruence quotients.  It does not establish `(RCE1)`.
   commute with `T`.  Thus the open basin theorem is now localized to
   selecting/synchronizing these multiplicity-commutant orbits across moving
   levels; it is not missing any prime-power Weyl-element classification.
+  On each exact regular finite block the orbit description is complete:
+  equality of finite-group characters makes every other regular endpoint
+  unitarily conjugate to the regular one, and agreement on `(R,T)` forces
+  the conjugator into `{R,T}'`.  The missing theorem is therefore precisely
+  **uniform approximate distance to this exact orbit** as the congruence
+  level and its multiplicity grow.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that

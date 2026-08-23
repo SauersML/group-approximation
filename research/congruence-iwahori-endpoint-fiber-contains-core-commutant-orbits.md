@@ -2,7 +2,7 @@
 rg: 2
 id: congruence-iwahori-endpoint-fiber-contains-core-commutant-orbits
 kind: claim
-title: Every congruence Iwahori endpoint fiber contains the full core-commutant conjugacy orbit
+title: The regular congruence Iwahori endpoint fiber is exactly one core-commutant conjugacy orbit
 distinct_from:
   fixed-packet-correction-retains-multiplicity-gauge: that is the abstract Schur-form gauge for an actuator implementing a packet automorphism; this identifies the gauge concretely in the Iwahori endpoint fiber and proves it can defeat T-commutant alignment even when the congruence group element is unique.
   iwahori-square-root-odd-mode-is-amalgam-bending: that records abstract vertex bending and the odd square-root mode; this works in the square-free BS coordinates, identifies the exact endpoint-fiber quotient relevant after prime-power Weyl uniqueness, and gives an explicit regular congruence endpoint whose relative gauge is not T-central.
@@ -29,6 +29,26 @@ Indeed `Ad(U) o lambda_G` is an exact representation and agrees with
 `lambda_G` on `K`.  Thus the endpoint fiber contains the full conjugacy
 orbit of `X_0` under the core commutant.
 
+Conversely, suppose an exact endpoint `X` over this same core defines a
+representation
+
+```text
+rho_X:G -> U(ell^2(G))
+```
+
+with the regular character.  Then `rho_X` and `lambda_G` have the same
+finite-group character, so there is a unitary `V` with
+`rho_X=Ad(V)o lambda_G`.  Since the two representations agree on `K`, this
+intertwiner lies in `lambda_G(K)'`.  In particular
+
+```text
+X=V lambda(w)V^*.                                      (CCO2)
+```
+
+Thus, on the regular finite block relevant to canonical microstates, the
+exact endpoint fiber is **exactly** the core-commutant orbit, not merely a
+subset containing it.
+
 This orbit is not invisible in the relative gauge.  For every standard
 `PSL_2(Z/p^k Z)` quotient, one can choose an involution
 `U in lambda(K)'` such that
@@ -41,7 +61,7 @@ does not commute with `T`, although `X_U` and `X_0` satisfy every Iwahori
 row exactly.  The choice can be made with the dimension-independent bound
 
 ```text
-||[c_U,T]||_2>=sqrt(2).                                (CCO2)
+||[c_U,T]||_2>=sqrt(2).                                (CCO3)
 ```
 
 Hence prime-power uniqueness of the abstract Weyl element does not justify
@@ -51,7 +71,7 @@ sequence of exact regular congruence blocks.
 The correct quotient geometry is therefore
 
 ```text
-exact endpoints over (R,T) / conjugacy by {R,T}' .     (CCO3)
+exact endpoints over (R,T) / conjugacy by {R,T}' .     (CCO4)
 ```
 
 A flexible basin theorem must find a nearby point of this entire orbit (or
