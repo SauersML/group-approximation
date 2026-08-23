@@ -8,6 +8,7 @@ distinct_from:
   one-cross-gram-moment-extracts-the-common-polar-gauge: that assumes a large cross-Gram moment; this derives it quantitatively from the common Gowers--Hatami isometry.
   one-state-protected-coefficient-leaves-relative-gh-gauge: that refutes selection from unrelated one-state intertwiners; this proves selection when the normalized-HS exactification supplies one common trace-controlled isometry for both overlaps.
   summed-reynolds-carrier-transports-only-tautologically: that leaves comparison with the independently exactified P_13 coefficient open; this closes that approximate coefficient-selection step and isolates exact simultaneous invariance as the remaining obstruction.
+  relative-finite-group-gh-cannot-fix-two-generating-subgroups: that gives an amplified canonical-regular C2-square packet exact on both generating subgroups with no nonzero simultaneous exact support; this claim supplies the strongest approximate coefficient selection that survives that counterpacket.
 ---
 
 **ESTABLISHED.**  Let `H_1,H_3` be finite groups.  For `i in {1,3}`, let
@@ -88,3 +89,14 @@ group they generate.  In the Kac--Moody triangle that group is `P_13`, and
 making the analogous choices simultaneously around all three edges is the
 regular-branch stability problem, not a remaining choice of multiplicity
 gauge.
+
+The lack of exact support is not merely the scalar-phase pathology of an
+abstract comparison coefficient.  In
+`relative-finite-group-gh-cannot-fix-two-generating-subgroups`, two regular
+involutions have commutator `delta` times a unitary.  Their four-point table
+is `delta`-multiplicative and exact on each generating subgroup, but no
+nonzero common invariant subspace makes the two restrictions commute.
+Therefore a relative finite-group theorem cannot preserve both selected
+subgroup actions literally; any successful Kac--Moody correction must allow
+small perturbations of them and control those perturbations around the
+whole native triangle.

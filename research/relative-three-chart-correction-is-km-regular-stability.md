@@ -8,6 +8,7 @@ distinct_from:
   finite-face-flatness-stops-at-fundamental-group-holonomy: that classifies bare face-flat unitary connections; this uses the actual triangle-of-finite-groups universal property and the absence of nontrivial finite-dimensional representations.
   compact-hyperbolic-km-regular-microstates-synchronize: that states global regular-microstate correction; this gives its exact equivalent formulation in terms of the three finite rank-two charts.
   common-gh-isometry-selects-the-two-overlap-cross-coefficient: that coherently selects the P_1/P_3 overlap gauges near the identity on a 1-o(1) source; this proves the equivalence here begins only at exact simultaneous support invariance, not at an unresolved auxiliary gauge choice.
+  relative-finite-group-gh-cannot-fix-two-generating-subgroups: that refutes the generic relative preprocessing theorem which freezes two exact subgroup actions and shows the corresponding alternating Reynolds gap is only quadratic in the local defect; this claim records the stronger Kac--Moody-specific correction still required.
 ---
 
 **ESTABLISHED.**  Fix the simple Kac--Moody lattice and its native triangle
@@ -63,3 +64,16 @@ one support invariant under both, and do so consistently around the triangle.
 A full-rank scalar phase tending to one shows why deleting `o(d)` dimensions
 does not turn near equality into literal equality.  No multiplicity-gauge
 choice remains to be optimized before this terminal step.
+
+Nor can generic finite-group stability make that step relative while
+freezing the overlap restrictions.  The Pauli packet in
+`relative-finite-group-gh-cannot-fix-two-generating-subgroups` is exact and
+regular on two generating copies of `C_2`, has defect `delta` on their
+commuting relation, and has invertible commutator.  It has no nonzero exact
+simultaneous support after any common amplification.  Moreover the natural
+two-subgroup alternating conditional expectation has an exact eigenvalue
+`1-delta^2/4`; hence there is no defect-independent one-step contraction.
+This does not refute a coercive estimate using all native Kac--Moody triangle
+relations.  It shows precisely that such an estimate cannot be obtained by
+applying a relative Gowers--Hatami lemma or alternating overlap projections
+edge by edge.
