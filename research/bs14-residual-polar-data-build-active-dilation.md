@@ -212,6 +212,17 @@ tuple.
   residual polar data alone do not imply either fact, and the second cubic
   remains essential to select the common endpoint rather than an
   independently rounded first-cubic baseline.
+- **A selected cyclic source has an exact frequency price.**
+  `bs14-source-mode-reset-has-exact-frequency-cost` shows that any one
+  `R`-eigenmode on a simple length-`m` packet can be made the unique fixed
+  source by the exact reset `R -> lambda^(-1)R`, at cost `|1-lambda|`.
+  There is never room for two independent fixed sources on that packet.
+  Hence the active construction may select and reconnect one source without
+  taking its invariant hull, but it must pay high cyclic frequencies and
+  duplicate packet multiplicity when more than one source is required.
+  What is still missing is extraction of one common source-mode ledger from
+  the two residual polar ranges with total frequency and duplication cost
+  controlled by their Frobenius energy.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
