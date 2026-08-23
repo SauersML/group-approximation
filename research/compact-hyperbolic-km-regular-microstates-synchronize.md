@@ -17,6 +17,7 @@ distinct_from:
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
   pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
+  finitely-generated-map-lef-has-perfect-regular-chart-microstates: that gives a finitely generated minimally almost periodic LEF group whose finite-subgroup charts are eventually exactly regular and perfectly coherent on every fixed window, but whose canonical microstates remain a square-root-of-two away from every genuine finite-dimensional representation; this must use the fixed native Kac--Moody relators to prevent the window from escaping.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
   - research/artifacts/high-cascade-holonomy-audit-2026-08-23.md
@@ -35,6 +36,30 @@ remaining multiplicity-commutant holonomies around the Curtis--Tits/chamber
 two-cells are `o(1)`-gauge-equivalent to an exact global representation.
 Neither property `(T)`, IRS rigidity, nor local finite-group stability proves
 this statement.
+
+## Perfect local synchronization still needs a fixed presentation
+
+The finite-subgroup regular-core theorem cannot be strengthened into the
+answer by making its local choices canonical.  The established countermodel
+`finitely-generated-map-lef-has-perfect-regular-chart-microstates` takes a
+finitely generated infinite simple amenable LEF group `H`.  Its LEF windows,
+placed in finite left regular representations, have all of the following
+properties simultaneously: every fixed finite subgroup is eventually an
+exact full regular multiple; every finite collection of subgroup charts and
+overlaps is the restriction of one common finite action; and the normalized
+characters converge to the canonical regular trace.  Yet `H` has no
+nontrivial finite-dimensional representations, and every nonidentity
+microstate matrix stays at normalized-HS distance `sqrt(2)` from the only
+possible exact correction.
+
+Thus even *perfect* multiplicity-commutant synchronization on every fixed
+finite window does not compactify for a finitely generated minimally almost
+periodic group.  The example is not finitely presented and has no property
+`(T)`; that is exactly its diagnostic value.  A Kac--Moody proof must turn the
+fixed finite list of native kernel relations into a uniform estimate on the
+growing regular multiplicity coordinates.  Further refinement of the local
+regular core, without such a relation-dependent estimate, cannot close this
+claim.
 
 ## Bounded-degree holonomy is closed
 
