@@ -64,6 +64,18 @@ least one non-root assignment projection must survive.
   product of the finite packet and the fresh free-phase groups is residually
   finite.  Completing every chord in that unchanged corner would create a CE
   trace on the no-CE BCS.
+- **Every successful finite-subgroup corner must lose its selected type in
+  all finite-dimensional representations.**
+  `no-ce-hecke-host-needs-an-fd-invisible-type` applies to arbitrary
+  multi-piece Hecke coefficients, not only literal compressed group words.
+  It proves that the common packet projection must be annihilated by every
+  finite-dimensional representation of the completed host.  Thus the first
+  live chord cannot remain merely noncommuting inside a residually finite or
+  maximally almost periodic extension: it must create an exact
+  finite-dimensional-invisible packet type while preserving the positive
+  canonical regular corner.  The affine-Leavitt Heisenberg graft supplies
+  this invisibility for one selected cap packet, but not the global overlap
+  atlas.
 - **Finite-edge HNN transport is exact but globally dead.**
   `finite-character-idempotents-have-exact-hnn-transport` shows that matched
   finite-subgroup character pieces can be transported and assembled exactly.
