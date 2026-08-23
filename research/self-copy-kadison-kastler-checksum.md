@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: self-copy-kadison-kastler-checksum
-kind: question
+kind: claim
 title: Authenticate a one-step HNN self-copy in operator norm with a dimension-independent algebra checksum
 artifacts:
   - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md

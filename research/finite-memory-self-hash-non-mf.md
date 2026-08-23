@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: finite-memory-self-hash-non-mf
-kind: question
+kind: claim
 title: A finite self-copy or aperiodic-state checksum yields a no-renormalization non-MF group
 artifacts:
   - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md

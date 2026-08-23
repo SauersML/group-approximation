@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: operator-norm-finite-state-rounding
-kind: question
+kind: claim
 title: Round an approximate Thompson even-lamp model to a finite exact spectral state machine
 artifacts:
   - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md
