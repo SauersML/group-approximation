@@ -51,3 +51,15 @@ The packet sought here must use finite-matrix structure: the genuine
 Leavitt representation retains the nontrivial root carrier, so no universal
 finite-tracial SOS or ordinary group-algebra identity can establish
 `(APC3)`.
+
+The finite-matrix step must also be **cross-typed**.
+`typed-pi-superrank-data-do-not-decode-prescribed-leavitt-carrier` gives an
+exact depth-one rectangular model on which the prescribed root carrier is
+all of the Hilbert space, the separate source/target PI degrees and
+normalized Reynolds ranks are all correct, and every typed Steinberg
+triangle is exact, while the three residuals in `(APC3)` have maximum at
+least `1/3`.  Thus neither more typed standard-polynomial tests nor more
+individual packet superrank measurements can close this claim.  The
+remaining finite-coordinate assertion must identify a returned target with
+the source on one physical reservoir, or charge the failure of that
+cross-typed return.
