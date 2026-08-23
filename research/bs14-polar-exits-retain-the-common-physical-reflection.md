@@ -9,7 +9,7 @@ distinct_from:
   bs14-residual-polar-data-build-active-dilation: that includes the later Gram completion, integer cells, and endpoint authentication; this is only the continuous physical-exit row.
 ---
 
-**OPEN; EXACT REMAINING INPUT TO THE MIXED GRAM SEAM.**  In the setup of
+In the setup of
 `bs14-residual-polar-data-build-active-dilation`, let `V` be the common
 source isometry obtained after the two polar source maps are aligned, let
 `P=1-VV^*`, and put
@@ -28,6 +28,32 @@ sum_(i=1)^2 ||X F_i-H_i||_F^2/d ->0                  (PER2)
 
 with one dimension-independent modulus in the original four-relator
 energy.
+
+In fact no detailed SVD covariance is required.  If `e` is the normalized
+four-relator energy and the high-residual threshold is
+
+```text
+theta=c e^(1/4),
+```
+
+then the common active source dimension `r=dim E` satisfies
+
+```text
+r/d <= c^(-2)e^(1/2).                                (PER3)
+```
+
+Consequently
+
+```text
+sum_i ||XF_i-H_i||_F^2/d
+ <=8r/d
+ <=8c^(-2)e^(1/2).                                   (PER4)
+```
+
+Thus even if polar alignment loses the literal exit equation, the entire
+loss is confined to the already energy-paid active source rank.  Rounding
+`X` to a reflection does not affect the estimate because only unitarity and
+contractivity are used.
 
 The phrase “each polar row is individually compatible” is insufficient:
 it permits a different reflection for each row.  Equation `(PER2)` requires

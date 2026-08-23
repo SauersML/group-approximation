@@ -318,6 +318,23 @@ tuple.
   residual polar extraction to preserve those two exit equations against
   the same `X`.  Merely finding a separately compatible reflection for each
   cubic row does not suffice.
+- **The active-rank ledger automatically retains the physical exit rows at
+  the qualitative scale.**
+  `bs14-polar-exits-retain-the-common-physical-reflection` observes that the
+  aligned high-carrier source has rank at most
+
+  ```text
+  r/d <= c^(-2)e^(1/2).
+  ```
+
+  Since each forward/backward exit is a contraction on that `r`-dimensional
+  source, even a completely wrong physical image costs at most `4r` per
+  row.  Hence the two errors `||XF_i-H_i||_F^2/d` sum to
+  `O(e^(1/2))`.  Together with the common-reflection seam inequality this
+  closes the mixed `S^(-3)`/`S^6` moment without any SVD-equivariance
+  theorem.  The continuous finite-rank `X` seam is therefore closed at the
+  qualitative flexible scale; exact Gram correction and the global
+  congruence/integer cell realization remain.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
