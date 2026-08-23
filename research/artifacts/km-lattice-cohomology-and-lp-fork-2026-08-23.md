@@ -580,3 +580,28 @@ setting, using per-level refined-defect components as the fresh
 independent data and the orthogonality to absorb every adversary
 decomposition.  Role-symmetry (three vertex descriptions of the
 same module) is the consistency check.
+
+## Addendum 17: the faithful arena is two overlapping blocks -- and it discriminates
+
+Correction to Addenda 15-16's model shape: at the lattice the TRIPLE
+`<H^1_k, H^2_k, H^3_k>` is INFINITE once Weyl lifts appear (only the
+pairwise vertex groups are finite), so defect functions cannot live
+on a single transitive block.  The faithful finite arena is
+`U = M_13-orbit u M_23-orbit` through a common point, glued along
+(at least) the shared B-level: `f^1` is `H^1`-invariant supported in
+the first block, `f^2` in the second, and `H^3`-invariance of the
+sum couples them through the overlap.
+
+Two-block probe (same models): defects `0, 3, 0, 0` -- three of four
+models DIE in the faithful shape; only the model with the richest
+overlap structure retains a defect.  Interpretation: the mechanism
+is decided by the RICHNESS OF THE OVERLAP relative to the blocks.
+In the models the overlap is a tiny subgroup; at the lattice the
+overlap contains the entire B-level, a large fraction of each vertex
+level (index = residue chamber counts `(q+1)(q^2+1)`-scale).  Both
+outcomes are genuinely live; genericity arguments cut neither way.
+The decisive computation is now precisely specified: the two-block
+defect for the true `(2,4,6)` parabolic levels with the B-level
+overlap -- a finite incidence-combinatorics computation (chamber
+systems of the B_2 and G_2 residues glued along a Borel level),
+within reach of the morning's polygon machinery.
