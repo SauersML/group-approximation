@@ -15,6 +15,8 @@ Fournier-Facio, *A torsion-free non-sofic group* (arXiv:2608.02025, 3 August
 2026), Theorem 1.3 and Section 2, constructs a **finitely presented,
 torsion-free** group `G` with property (T) together with:
 
+- `G` may be chosen in Hull's finitely generated `AH_0` common-quotient
+  branch, hence is acylindrically hyperbolic with trivial finite radical;
 - `Gamma = pi(P) <= G` with property (T), infinite, and
   `G = <Gamma, t_1, t_2>` with `t_i Gamma t_i^-1 <= Gamma`;
 - a finitely presented simple torsion-free group `S` (Burger--Mozes or

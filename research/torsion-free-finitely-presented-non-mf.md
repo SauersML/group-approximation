@@ -6,6 +6,8 @@ title: Torsion-free finitely presented non-MF group
 root: true
 artifacts:
   - non_mf_groups_exist.tex
+  - research/artifacts/hyperlinear-to-mf-saturation-compiler-2026-08-22.md
+  - research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md
   - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
@@ -60,6 +62,13 @@ on 2026-08-15 (`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9).
 The route's group theory is a written argument on source-verified Hull/Osin
 statements; nothing in it is formalized — the Lean boundary is
 `DefectRoutingData`.
+
+The stronger compiled conclusion is `defectNormal = G` and therefore
+`Res_MF(G)=G`: every norm-corona homomorphism is trivial, not merely
+noninjective.  The complete router--detector synthesis is recorded in
+`research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md` and
+is also wired to `defect-saturation-full-mf-radical` and
+`fournier-facio-asymptotic-representations-trivial`.
 
 Two secondary routes are recorded and are worth keeping because they need no
 small-cancellation machinery: `torsion-free-non-mf-from-infinite-order-mark`

@@ -9,6 +9,7 @@ distinct_from:
   corona-corner-detection-criterion: that claim analyses which corners a central mark of arbitrary order can supply; this one obtains the corner from property (T) of the marked subgroup and reaches the non-MF conclusion outright.
   finite-infranormal-subgroup-is-normal: that claim is a group-theoretic normality statement about finite infranormal subgroups; this one is an analytic non-MF obstruction whose subgroup is assumed normal and Kazhdan and may be infinite.
 artifacts:
+  - research/artifacts/hyperlinear-to-mf-saturation-compiler-2026-08-22.md
   - GroupApproximation/Sofic/NormalKazhdanCompressionObstruction.lean
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/InternalRadicalGap.lean
@@ -36,3 +37,9 @@ The root `torsion-free-finitely-presented-non-mf` therefore has no remaining
 analytic obstacle on this branch.  What it needs is a torsion-free finitely
 presented group whose compression defect contains a nontrivial normal
 Kazhdan subgroup — a question of combinatorial group theory.
+
+This compression-core theorem is now also registered as an instance of the
+strictly more general `hyperlinear-killed-normal-kazhdan-mf-transfer`: the
+declaration `defectNormal_hyperlinear_killed` supplies the abstract tracial
+kill hypothesis, after which the normal-Kazhdan detector no longer mentions
+compression.

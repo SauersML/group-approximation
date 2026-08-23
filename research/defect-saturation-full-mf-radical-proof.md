@@ -9,6 +9,8 @@ requires:
   - defect-normally-generates-torsion-free-quotient
   - normal-kazhdan-defect-non-mf
 artifacts:
+  - research/artifacts/hyperlinear-to-mf-saturation-compiler-2026-08-22.md
+  - research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
   - GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean
   - GroupApproximation/Sofic/ManuscriptClosedWrappers.lean
@@ -25,13 +27,18 @@ saturation step is independently kernel-checked in
 `defect-normally-generates-torsion-free-quotient` supplies the audited
 Hull--Osin quotient `q : G ->> Q` with the following simultaneous properties:
 `Q` is two-generated, finitely presented, torsion-free and acylindrically
-hyperbolic; property (T) passes from the source; a protected nontrivial element
-of `S` survives; and `Q = <<q(S)>>^Q`.
+hyperbolic; a protected nontrivial element of `S` survives; and
+`Q = <<q(S)>>^Q`.  Property (T) passes through the second common-quotient map
+from the torsion-free hyperbolic Kazhdan factor `H ->> Q` (not from the HNN
+source `E`).
 
-The image of the compression defect is normal and contains `q(S)`, hence it is
-all of `Q`.  Apply `normal-kazhdan-defect-non-mf` to the mapped compression core
-with normal Kazhdan subgroup `K = Q`.  Every norm-matrix-corona homomorphism
-kills all of `Q`, so `Res_MF(Q)=Q`.  The protected element makes `Q` nontrivial.
+The image of the compression defect is normal and contains `q(S)`: a
+nontrivial commutator with the protected element gives a nontrivial normal
+intersection with the nonabelian simple group `q(S)`, hence contains all of
+`q(S)`.  Since `q(S)` normally generates `Q`, the mapped defect is all of
+`Q`.  Apply `normal-kazhdan-defect-non-mf` to the mapped compression core with
+normal Kazhdan subgroup `K = Q`.  Every norm-matrix-corona homomorphism kills
+all of `Q`, so `Res_MF(Q)=Q`.  The protected element makes `Q` nontrivial.
 
 Finally, full MF residual passes through every surjective homomorphism
 (`coronaMFResidual_eq_top_of_surjective` in the Lean artifact), so every

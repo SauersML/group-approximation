@@ -21,6 +21,10 @@ conjugating `P` to `P_i` — torsion-free, and acylindrically hyperbolic by
 Minasyan--Osin; and let `pi : E -> G` be Hull's common quotient of `E` and
 `H` (Corollary 7.4), finitely presented, torsion-free (Theorem 7.1(e)),
 with property (T) and `pi(S) != 1`, hence `pi|_S` injective by simplicity.
+In the finitely generated clause of Hull's Corollary 7.4 the output is in
+`AH_0`, so the final `G` may also be retained as acylindrically hyperbolic
+with trivial finite radical; this is the clause used by the later direct
+saturation pass.
 Setting `Gamma = pi(P)` and `t_i = pi(u_i)`, the paper records
 `G = <Gamma, t_1, t_2>`, `t_i Gamma t_i^-1 <= Gamma`, and for
 `J = t_1^-1 pi(S) t_1` that `[Gamma, J] = 1`, `Gamma cap J = 1` and

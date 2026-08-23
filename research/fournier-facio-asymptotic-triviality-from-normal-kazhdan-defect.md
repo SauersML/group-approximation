@@ -5,6 +5,9 @@ kind: route
 title: Full defect saturation makes every asymptotic representation trivial
 target: fournier-facio-asymptotic-representations-trivial
 requires: [normal-kazhdan-defect-non-mf, fournier-facio-torsion-free-skeleton, defect-normally-generates-torsion-free-quotient]
+artifacts:
+  - research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md
+  - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
 ---
 
 ## Proof

@@ -463,6 +463,7 @@ import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.CoronaImageNormalKazhdan
 import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+import GroupApproximation.Sofic.OpToHSShadowResidual
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport

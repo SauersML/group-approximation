@@ -8,6 +8,7 @@ distinct_from:
   fournier-facio-group-finite-dimensional-shadow: that claim concerns exact finite-dimensional representations; this one concerns arbitrary operator-norm asymptotic representations of varying dimensions.
   normal-kazhdan-defect-non-mf: that is the general corona killing theorem; this is its concrete consequence after the Fournier-Facio defect is shown to normally generate the whole group.
 artifacts:
+  - research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md
   - research/artifacts/fournier-facio-matricial-stability-solution-2026-08-17.md
 ---
 

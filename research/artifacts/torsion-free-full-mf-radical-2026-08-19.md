@@ -54,8 +54,9 @@ Hull--Osin route.
   Q = q(N) = <<q(S)>>^Q.
   ```
 
-* Property (T) passes to `Q` because it is a quotient of the property-(T)
-  source.
+* Property (T) passes to `Q` through the second common-quotient map from the
+  torsion-free hyperbolic property-`(T)` factor `H`; it is not attributed to
+  the HNN source `E`.
 
 The repository's 2026-08-15 adversarial audit records this routing statement as
 `CONFIRMED`; the small-cancellation theorem itself is intentionally kept outside

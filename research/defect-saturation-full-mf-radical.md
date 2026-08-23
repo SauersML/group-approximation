@@ -4,6 +4,10 @@ id: defect-saturation-full-mf-radical
 kind: claim
 title: Defect saturation gives groups with full MF radical
 artifacts:
+  - research/artifacts/hyperlinear-to-mf-saturation-compiler-2026-08-22.md
+  - research/artifacts/shadow-kleene-saturation-compiler-2026-08-22.md
+  - GroupApproximation/Sofic/OpToHSShadowResidual.lean
+  - research/artifacts/router-detector-torsion-free-non-mf-2026-08-22.md
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
   - GroupApproximation/Sofic/DefectSaturation.lean
   - GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean
@@ -28,6 +32,16 @@ the audited Hull--Osin routing quotient of
 `defect-saturation-full-mf-radical-proof` records exactly how those published
 group-theoretic inputs feed the machine-checked normal-Kazhdan and residual
 plumbing.
+
+The 2026-08-22 router--detector artifact gives the complete proof in one
+place, including the explicit algebraic identity `defectNormal = G`, the
+normal-Kazhdan moving-corner argument, and the separation from every
+central-sign, Clifford, and Hilbert-hotel mechanism.
+
+The stronger hyperlinear-to-MF compiler artifact factors the same result
+through an arbitrary op-to-HS killed subgroup.  On that route the
+Fournier--Facio compression defect is only the explicit input; the reusable
+theorem is `acylindrical-hyperlinear-saturation-compiler`.
 
 **Trust boundary.**  The Hull/Osin existence step is source-verified and
 paper-level, not formalized.  Once the routing data exist, defect saturation,

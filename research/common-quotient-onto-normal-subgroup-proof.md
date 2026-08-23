@@ -32,8 +32,10 @@ argument uses — infinite order, non-commensurable, `{<h_1>, <h_2>} ,->_h G_2`
 — so Lemma 3.5, Lemma 5.8, and both applications of Theorem 7.1 run verbatim.
 The first application gives `gamma(G_1) <= gamma(S_{suit}) <= gamma(D)`, the
 second gives `Q = eta(gamma(G_1))`, and chaining the two inclusions gives
-`alpha_2(D) = Q`.  Torsion (clause 3) is [Hul16, Theorem 7.1(e)] applied to
+`alpha_2(D) = Q`.  In the direct form, `S_suit=<h_1,h_2>` and routing a
+finite generating set gives `Q=q(S_suit)`, hence two-generation by the
+reservoir images.  Torsion (clause 4) is [Hul16, Theorem 7.1(e)] applied to
 each of the finitely many small-cancellation steps; finite presentability
-(clause 4) holds because the finitely generated case of Corollary 7.4 uses
+(clause 5) holds because the finitely generated case of Corollary 7.4 uses
 only two applications of Theorem 7.1, each adding one relator per prescribed
 element, and never the direct limit of Corollary 7.3.
