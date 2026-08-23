@@ -80,7 +80,7 @@ private theorem edges_getElem_eq_getVert {V : Type*} {H : SimpleGraph V}
           simpa [Nat.succ_eq_add_one, Nat.add_assoc] using ih i hi
 
 /-- Bass--Serre vertices carrying the real path metric. -/
-def PathVertex := BassSerreFreeProduct.Vertex G
+abbrev PathVertex := BassSerreFreeProduct.Vertex G
 
 instance pathVertexMulAction :
     MulAction (BassSerreFreeProduct.Ambient G) (PathVertex G) :=
@@ -151,7 +151,6 @@ theorem isLoxodromic_of_sylLength_pow_lower
       FreeProductCyclic.sylLength
         (BinaryCoprodNormalForm.toIndexed G (g ^ n))) :
     HullGeometry.IsLoxodromic g (baseLeft G : PathVertex G) := by
-  letI : MetricSpace (BassSerreFreeProduct.Vertex G) := pathVertexMetricSpace G
   refine ⟨(c : ℝ), by exact_mod_cast hc, 1, by norm_num, ?_⟩
   intro n
   cases n with
@@ -160,7 +159,10 @@ theorem isLoxodromic_of_sylLength_pow_lower
       let L := FreeProductCyclic.sylLength
         (BinaryCoprodNormalForm.toIndexed G (g ^ (n + 1)))
       have hword : (n + 1) * c ≤ L := hpow (n + 1)
-      have hLpos : 1 ≤ L := by omega
+      have hproductPos : 0 < (n + 1) * c :=
+        Nat.mul_pos (Nat.succ_pos n) hc
+      have hLpos : 1 ≤ L :=
+        (Nat.one_le_iff_ne_zero.mpr (Nat.ne_of_gt hproductPos)).trans hword
       have hdisp :=
         BassSerreFreeProduct.sylLength_toIndexed_sub_one_le_graph_dist G
           (g ^ (n + 1))
@@ -172,8 +174,14 @@ theorem isLoxodromic_of_sylLength_pow_lower
       rw [Nat.cast_sub hLpos] at hdispReal
       have hwordReal : (((n + 1) * c : ℕ) : ℝ) ≤ (L : ℝ) := by
         exact_mod_cast hword
+      norm_num only [Nat.cast_one] at hdispReal
       norm_num only [Nat.cast_mul, Nat.cast_add, Nat.cast_one] at hwordReal ⊢
-      linarith
+      calc
+        (c : ℝ) * ((n : ℝ) + 1) - 1 =
+            ((n : ℝ) + 1) * (c : ℝ) - 1 := by ring
+        _ ≤ (L : ℝ) - 1 := sub_le_sub_right hwordReal 1
+        _ ≤ dist (baseLeft G : PathVertex G)
+            ((g ^ (n + 1)) • (baseLeft G : PathVertex G)) := hdispReal
 
 /-- The real path metric on the Bass--Serre tree satisfies Gromov's four-point
 condition with constant one. -/

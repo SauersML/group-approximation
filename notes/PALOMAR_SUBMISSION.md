@@ -141,8 +141,8 @@ and they map onto the three risks this submission is shaped around:
 
 Challenge size is not a concern: `WillWhistler/Regts-Sevenster` registered at
 999 lines and 40,610 bytes with trust `high`, carrying only the
-`Challenge exceeds the preferred audit surface` note.  This challenge is 532
-lines and 25,669 bytes, so it trips the line threshold and not the byte one.
+`Challenge exceeds the preferred audit surface` note.  This challenge is 533
+lines and 25,712 bytes, so it trips the line threshold and not the byte one.
 Deleting docstrings to clear it would trade a note in the report for a risk on
 the definition-fidelity check, which is mandatory and scored.
 
@@ -158,7 +158,7 @@ the definition-fidelity check, which is mandatory and scored.
 | no Git submodules, no LFS | none |
 | no committed compiled artifacts outside `.lake` | none |
 | checkout at most 500 MiB excluding `.git` | about 56 MB tracked |
-| challenge at most 100 KiB and 1000 lines | 532 lines / 25,669 bytes |
+| challenge at most 100 KiB and 1000 lines | 533 lines / 25,712 bytes |
 | `permitted_axioms` exactly the three classical axioms, and the proof's closure matching | yes; `#audit_axioms` reports `[propext, Classical.choice, Quot.sound]` |
 | `formalization.yaml` accepted by `PalomarSubmission/scripts/submission_contract.py` | yes; derived `result_origin: original`, `repository_role: substantive-development` |
 | challenge and solution elaborate the same statement | yes; identical type and value hashes across the whole 5,448-constant closure |
