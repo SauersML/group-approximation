@@ -55,3 +55,9 @@ same-matrix rank mismatch.  That is precisely the robustness obligation of
 `multiplicity-return-transducer`; the incidence calculation supplies no such
 return by itself.
 
+The two standard ways of trying to amplify this defect are ruled out jointly
+by `fano-incidence-recurrence-needs-a-nonstationary-two-cell`: finite packet
+restriction graphs have a positive regular stationary completion, while any
+fixed finite-depth Smith/divisibility test has a bulk-padding sequence with
+vanishing normalized-HS defect.  A successful use must therefore be a
+source-coupled nonstationary two-cell or proper-corner return.
