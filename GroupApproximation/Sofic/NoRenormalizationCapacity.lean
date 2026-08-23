@@ -268,12 +268,18 @@ theorem no_model_of_uniform_power_return
     (hA : ∀ m, A m ∈ Matrix.unitaryGroup Y ℂ)
     {β C defect : ℝ} (hβ : 0 < β)
     (hsep : β ≤ ‖W - 1‖)
-    (hauth : ∀ m, 0 < m → ‖A m * W * (A m)ᴴ - W ^ m‖ ≤ C * defect)
+    (hauth : ∀ m, 2 ≤ m → ‖A m * W * (A m)ᴴ - W ^ m‖ ≤ C * defect)
     (hbudget : C * defect < β / 2) : False := by
   obtain ⟨m, hm, hreturn⟩ :=
     exists_positive_power_opNorm_sub_one_lt hW (show 0 < β / 4 by positivity)
+  have hm_ne_one : m ≠ 1 := by
+    intro hm_one
+    subst m
+    simp only [pow_one] at hreturn
+    linarith
+  have hm_two : 2 ≤ m := by omega
   exact no_model_of_recurrent_uniform_power_return (hA m) hβ hsep hreturn.le
-    (hauth m hm) hbudget
+    (hauth m hm_two) hbudget
 
 /-! ## Rank monodromy -/
 
