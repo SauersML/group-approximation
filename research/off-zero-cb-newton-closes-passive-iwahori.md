@@ -10,6 +10,7 @@ requires:
   - right-displacement-reynolds-scalar-cb-complete
   - regular-reynolds-bad-levels-cannot-be-quarantined
   - passive-core-quotient-has-relative-rational-h2
+  - relative-h2-does-not-supply-passive-hs-obstruction
   - passive-iwahori-off-zero-cb-normal-splitting
 ---
 
