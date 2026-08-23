@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Algebra.GroupTorsionFree
 import GroupApproximation.Monsters.UniversalFinitelyPresentedGroup
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.NormMFPrintedConsequences

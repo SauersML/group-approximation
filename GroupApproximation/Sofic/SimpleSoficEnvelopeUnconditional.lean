@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.InvolutionBlockAssembly
+import GroupApproximation.Algebra.GroupTorsionFree
 import GroupApproximation.Sofic.SoficEnvelopeWitness
 
 /-!
@@ -151,7 +152,7 @@ theorem hom_eq_one_to_isPowerTorsionFree_of_witnessEmbedding
     MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
       ExplicitLinearModel.conjD_injective
   have hz_ne : f z ≠ 1 := by
-    apply map_ne_one_of_injective f hf
+    apply SimpleSoficEnvelope.map_ne_one_of_injective f hf
     exact MarkedCompression.signAmbient_ne_one LiteralNonMFLinearWitness.alpha
       ExplicitLinearModel.conjD_injective
   have hz_sq : z ^ 2 = 1 :=
@@ -186,7 +187,7 @@ theorem manuscript_simpleSoficEnvelope_no_torsionFree_image :
           ∀ phi : ↑E →* T, phi = 1) ∧
         ¬ IsPowerTorsionFree ↑E := by
   obtain ⟨𝒰, X, E, hEc, hEs, hEsofic, f, hf⟩ :=
-    exists_countable_simple_sofic_envelope boundedNormalGeneration
+    exists_countable_simple_sofic_envelope
       LiteralWitnessConsequences.witnessGroup_isSofic
   letI : Countable ↑E := hEc
   letI : IsSimpleGroup ↑E := hEs
@@ -203,7 +204,7 @@ theorem manuscript_simpleSoficEnvelope_no_torsionFree_image :
     MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
       ExplicitLinearModel.conjD_injective
   have hz_ne : f z ≠ 1 := by
-    apply map_ne_one_of_injective f hf
+    apply SimpleSoficEnvelope.map_ne_one_of_injective f hf
     exact MarkedCompression.signAmbient_ne_one LiteralNonMFLinearWitness.alpha
       ExplicitLinearModel.conjD_injective
   apply hz_ne

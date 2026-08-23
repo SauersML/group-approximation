@@ -341,7 +341,6 @@ theorem isLoxodromic_mul_of_cross_backtracking {δ C L : ℝ}
   refine ⟨2 * q, by positivity, 0, le_rfl, ?_⟩
   intro k
   have hk := (hind k).1
-  push_cast at hk ⊢
   nlinarith
 
 /-- **The independent-axes branch.**  Two independent loxodromics have a
@@ -1144,7 +1143,6 @@ theorem isLoxodromic_of_pow_isLoxodromic (hiso : IsIsometricAction G X)
     rw [div_mul_eq_mul_div, div_le_iff₀ hkR]
     nlinarith
   dsimp [D]
-  push_cast at hrem hsubseq hnle hslope ⊢
   linarith
 
 /-- Loxodromy descends from every nonzero integer power. -/
@@ -1321,7 +1319,6 @@ theorem stableTranslation_pos_of_isLoxodromic
       rw [div_lt_iff₀ hl] at hlarge
       linarith
     have hlower := hlin n
-    push_cast at hlower ⊢
     linarith
   have hlimit : l / 2 ≤ stableTranslation g x :=
     ge_of_tendsto (tendsto_stableTranslation hiso g x) hev
@@ -1340,7 +1337,7 @@ hyperbolicity allowance).  This follows from convergence of normalised
 displacements: `d(x,gᵏx)/k` and `d(x,g²ᵏx)/(2k)` have the same positive limit,
 so `d(x,g²ᵏx) - d(x,gᵏx)` grows linearly. -/
 theorem exists_power_local_backtracking_gap
-    (hiso : IsIsometricAction G X) {δ : ℝ} (hδ0 : 0 ≤ δ)
+    (hiso : IsIsometricAction G X) {δ : ℝ} (_hδ0 : 0 ≤ δ)
     {g : G} {x : X} (hg : IsLoxodromic g x) :
     ∃ k : ℕ, 0 < k ∧
       2 * (gromovProduct x ((g ^ (2 * k)) • x) ((g ^ k) • x) + δ) <
@@ -1991,7 +1988,6 @@ theorem radius_le_of_chain_avoids_ball {δ D R C : ℝ}
     linarith
   have hchain := gromovProduct_chain_le_pow_two_of_pos hδ hδ0 w y
     (R - D / 2) N k hNpos hN hlocal
-  push_cast at hchain ⊢
   linarith
 
 /-- Canonical logarithmic form of discrete divergence, choosing the least
@@ -2027,7 +2023,6 @@ theorem linear_length_le_of_excursion_chain {δ D R l : ℝ}
     linarith
   have hrad := radius_le_add_clog_of_chain_avoids_ball hδ hδ0 w y N
     hNpos hedge havoid hend
-  push_cast at hrad ⊢
   linarith
 
 /-- Powers of two eventually dominate every nonnegative affine function.  This
@@ -2043,7 +2038,6 @@ theorem eventually_affine_lt_pow_two (A B : ℝ) :
       Filter.atTop (nhds 0) := by
     convert (hk.const_mul A).add (hzero.const_mul B) using 1
     · funext k
-      push_cast
       field_simp
     · ring
   filter_upwards [ht.eventually_lt_const zero_lt_one] with k hklt
@@ -2135,7 +2129,6 @@ theorem exists_bound_of_linear_le_add_clog {l D δ : ℝ} (hl : 0 < l) :
   have hlog0 : (0 : ℝ) ≤ Nat.clog 2 N := by positivity
   have hupper : (N : ℝ) ≤ c + d * Nat.clog 2 N := by
     have hdmul := mul_le_mul_of_nonneg_right hd hlog0
-    push_cast at hc hdmul ⊢
     linarith
   have hupperNat : N ≤ c + d * Nat.clog 2 N := by exact_mod_cast hupper
   by_contra hNM
@@ -2263,7 +2256,7 @@ theorem IsGeodesicSegment.dist_endpoints {f : ℝ → X} {a b : ℝ} (hab : a �
 /-- Reversing an arclength geodesic on `[0,D]` gives an arclength geodesic
 with the opposite orientation. -/
 theorem IsGeodesicSegment.reverse_zero {f : ℝ → X} {D : ℝ}
-    (hD : 0 ≤ D) (h : IsGeodesicSegment f 0 D) :
+    (_hD : 0 ≤ D) (h : IsGeodesicSegment f 0 D) :
     IsGeodesicSegment (fun t => f (D - t)) 0 D := by
   intro s hs t ht
   have hs' : D - s ∈ Set.Icc (0 : ℝ) D := by
@@ -2425,7 +2418,7 @@ theorem exists_escaping_or_noncommuting_of_isSNormal
       have hc1 : c = 1 := by
         by_contra hc1
         exact hnone ⟨c, hc, hc1⟩
-      simpa [hc1]
+      simp [hc1]
     exact hinter (Set.Finite.subset (Set.finite_singleton 1) hsub)
   obtain ⟨c, ⟨hcS, hgcS⟩, hc1⟩ := hex
   by_cases hcomm : Commute c g
@@ -2548,7 +2541,6 @@ theorem exists_chain_point_dist_le_of_mem_geodesic {δ D : ℝ}
     exact h
   have hrad := radius_le_of_chain_avoids_ball hδ hδ0 (f s) y N k
     hNpos hN hedge hfar hend
-  push_cast at hrad
   linarith
 
 /-! ### The converse: the Gromov product *is* the distance to the geodesic
@@ -2643,7 +2635,7 @@ within `3δ` of one of the other two sides.  At that point
 `(A|C)=0`; four-point hyperbolicity makes one of `(A|B)` and `(B|C)` at most
 `δ`, and the Gromov-product/geodesic dictionary costs another `2δ`. -/
 theorem exists_close_on_other_side_of_geodesic_triangle {δ : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
     {A B C : X}
     {fAC fAB fBC : ℝ → X}
     (hAC : IsGeodesicSegment fAC 0 (dist A C))
@@ -2903,7 +2895,6 @@ theorem exists_chain_vertices_across_far_vertex {delta D r : ℝ}
       (fAB (dist (y 0) (y j) - r))
       (fCB (dist (y N) (y j) - r)) (y (j + q))
     rw [dist_comm (fCB (dist (y N) (y j) - r)) (y (j + q))] at ht
-    push_cast at ht ⊢
     linarith
   have hleftRadius : dist (y j)
       (fAB (dist (y 0) (y j) - r)) = r := by
@@ -3010,7 +3001,6 @@ theorem two_mul_progress_mul_far_radius_le {delta D l r : ℝ}
     have hcast : (((j - i) + q : ℕ) : ℝ) =
         ((j - i : ℕ) : ℝ) + (q : ℝ) := by push_cast; rfl
     rw [hcast]
-    push_cast at hiRadius hqRadius ⊢
     nlinarith
   have hscaledRadius := mul_le_mul_of_nonneg_left hradius (le_of_lt hl)
   have hscaledParam := mul_le_mul_of_nonneg_left hparamUpper hD0
@@ -3021,7 +3011,7 @@ theorem two_mul_progress_mul_far_radius_le {delta D l r : ℝ}
 backtracking gap, the penultimate point of every finite orbit segment lies
 within `C + 3δ` of a geodesic joining the segment's endpoints. -/
 theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
     (hiso : IsIsometricAction G X) (hgeo : IsGeodesicSpace X)
     {p : G} {x : X} (hCδ : 0 ≤ C + δ)
     (hgap : 2 * (C + δ) < dist x (p • x))

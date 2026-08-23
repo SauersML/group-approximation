@@ -614,7 +614,10 @@ theorem injOn_mk'_of_relativeLengthBound {L : RelativeLength G}
   have hdiff : x * y⁻¹ ≠ 1 := fun h => hne (mul_inv_eq_one.mp h)
   have hmem : x * y⁻¹ ∈ letterRelatorSubgroup R := by
     rw [← QuotientGroup.eq_one_iff]
-    rw [map_mul, map_inv, hxy, mul_inv_cancel]
+    have hquot :
+        QuotientGroup.mk' (letterRelatorSubgroup R) (x * y⁻¹) = 1 := by
+      rw [map_mul, map_inv, hxy, mul_inv_cancel]
+    exact hquot
   obtain ⟨r, hr, hlt⟩ := hbound (x * y⁻¹) hdiff hmem
   have hs := hshort r hr x hx y hy
   omega
@@ -639,17 +642,20 @@ theorem factorMap_source_injective {L : RelativeLength G}
   have hinj : Set.InjOn (QuotientGroup.mk' (letterRelatorSubgroup R))
       (Set.range (CoprodI.of : G false → CoprodI G)) := by
     apply injOn_mk'_of_relativeLengthBound hbound
-    intro r hr _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
-    have hlen := L.len_source_le_one (x * y⁻¹)
+    intro r hr x hx y hy
+    obtain ⟨x₀, hx₀⟩ := hx
+    obtain ⟨y₀, hy₀⟩ := hy
+    rw [← hx₀, ← hy₀]
+    have hlen := L.len_source_le_one (x₀ * y₀⁻¹)
     have hlong := hfloor r hr
-    have heq : CoprodI.of x * (CoprodI.of y)⁻¹ =
-        (CoprodI.of (x * y⁻¹) : CoprodI G) := by
+    have heq : CoprodI.of x₀ * (CoprodI.of y₀)⁻¹ =
+        (CoprodI.of (x₀ * y₀⁻¹) : CoprodI G) := by
       rw [map_mul, map_inv]
     rw [heq]
     omega
   intro x y hxy
   apply CoprodI.of_injective false
-  exact hinj ⟨x, rfl⟩ ⟨y, rfl⟩ hxy
+  exact hinj (Set.mem_range_self x) (Set.mem_range_self y) hxy
 
 end Embedding
 

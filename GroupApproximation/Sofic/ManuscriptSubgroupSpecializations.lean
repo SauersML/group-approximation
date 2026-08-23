@@ -135,7 +135,7 @@ theorem manuscriptWeightedTransportSubgroup :
     compresses := by
       intro ell
       exact ⟨⟨s * (ell : H) * s⁻¹, hs ell ell.property⟩, rfl⟩
-    comm_c := fun ell ↦ Commute.one_left ell
+    comm_c := fun ell ↦ Commute.one_left (L.subtype ell)
   }
   have hxC : IsScaledAsymptoticCommutant B weight C x := hx
   exact TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse

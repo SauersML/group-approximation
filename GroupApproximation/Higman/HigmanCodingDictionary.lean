@@ -601,7 +601,9 @@ theorem primrec_windowCheck (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ)
         (PrimrecRel.comp Primrec.eq
           (hev.comp Primrec.fst (Primrec.fst.comp Primrec.snd))
           (Primrec.const (0 : ℤ))).decide)
-  have hfold := Primrec.list_foldr hmap (Primrec.const true)
+  have hfold := Primrec.list_foldr
+    (h := fun (_ : List (ℤ × ℤ)) (bs : Bool × Bool) => bs.1 && bs.2)
+    hmap (Primrec.const true)
     (Primrec.and.comp (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd))
   exact hfold.of_eq fun l => (list_all_eq_foldr _ _).symm
 
@@ -610,7 +612,7 @@ theorem primrec_decodeCoords (hadd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ
   have hev := primrec_evalCode hadd
   have hi : Primrec₂ fun (i : Fin n) (l : List (ℤ × ℤ)) => evalCode l ((i : ℕ) : ℤ) :=
     Primrec.fin_curry₁.2 fun i => hev.comp Primrec.id (Primrec.const (((i : ℕ) : ℤ)))
-  exact Primrec.fin_curry.2 (Primrec.comp hi (Primrec.pair Primrec.snd Primrec.fst))
+  exact Primrec.fin_curry.2 (hi.comp Primrec.snd Primrec.fst)
 
 /-- The coordinate code of a tuple is primitive recursive, with **no** cast on
 `ℤ`: the index of each slot is a constant of the slot, supplied by
