@@ -77,4 +77,3 @@ canonical group-factor corner, prove LLP for any non-residually-finite
 Kazhdan candidate, or produce a non-hyperlinear group.  Its role in Cairn is
 negative but precise: maximal tensor norms, arbitrary ucp lifts, and soft
 commutation limits cannot be treated as uniform computable black boxes.
-

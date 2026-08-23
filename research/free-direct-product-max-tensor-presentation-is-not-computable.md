@@ -32,4 +32,3 @@ there is no computable ucp lift in the standard presentations.  This does
 not decide whether an abstract ucp lift exists: LP of `C^*(F_n x F_n)`
 remains open in the cited source.  It does prove that an LLP/LP-based Kleene
 compiler cannot take such a lift as a uniform effective black box.
-

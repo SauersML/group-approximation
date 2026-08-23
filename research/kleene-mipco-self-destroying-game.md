@@ -9,6 +9,7 @@ artifacts:
 distinct_from:
   perfect-lcs-gap-implies-nonhyperlinear: that is a group consequence of a perfect LCS gap; this is a self-referential construction of one general nonlocal game gap and performs no groupification.
   robust-locally-satisfiable-relator-code: that asks for normalized-HS group-word soundness plus sparse local satisfiability; this remains entirely at the nonlocal-game level.
+  lin-explicit-synchronous-bell-gap-game: that uses Lin's direct Bell-separation reduction on a syntactically nonhalting program; this older fixed-point consequence remains valid but is no longer the shortest way to name a separated game.
 ---
 
 Let the effective constant-gap orientation of `MIP^co=coRE` assign a finite
@@ -35,3 +36,8 @@ Lin, arXiv:2510.07162, proves `MIP^co=coRE` using recursive compression and
 tracially embeddable strategies.  The claim above is the recursion-theorem
 consequence of the resulting effective constant-gap compiler, not a claim that
 the paper has already converted the game into a finitely presented group.
+
+Lin's Bell-separation theorem gives the stronger direct source recorded in
+`lin-explicit-synchronous-bell-gap-game`: applying that effective reduction to
+an unconditional infinite loop removes the self-reference at game level.  The
+groupification boundary is unchanged.

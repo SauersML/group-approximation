@@ -31,6 +31,19 @@ variety.
 - Frozen-core induction is false: the `r`-exponent character gives constant
   section energy from `O(K^(-2))` relator energy.  Optimizing the exact core
   absorbs this family at the correct scale.
+- The stronger endpoint-conjugation counterpacket which refutes aggregate
+  Iwahori inverse energy is also absorbed exactly. For
+  `X_z=zXz^(-1)`, choose the competitor core
+  `(zRz^(-1),T)`. The hybrid tuple is a conjugate exact endpoint, so its
+  section energy is zero; the core-motion cost is
+  `||z-psi(z)||_2^2`. On the first-mode left regular family this is at most
+  `16 E_end` for sufficiently small amplitude. See
+  `optimized-core-absorbs-endpoint-conjugations`.
+  Infinitesimally, the apparently bad frozen-core endpoint tangent
+  `a-Ad(X)a` is paired with the core tangent
+  `(a-Ad(R)a,0)`. Together they are precisely a common-conjugation tangent
+  removed in `(GIT1)`, explaining why the gauge-only and frozen-core full
+  tangent gaps can decay while the optimized quotient gap does not.
 - Ordinary HS Newton integration is unavailable because operator-large
   rank-one directions have no dimension-free quadratic Taylor remainder.
 - Spectral thresholding isolates the operator-large residual on rank

@@ -57,8 +57,10 @@ constraint.
 
 - `s3-equivariant-edge-closes-common-marginals` supplies the constraint
   structurally, by closing all three transports into one `S_3`-semidirect
-  edge; its finite audit (`s3-equivariant-affine-clifford-return-edge`) must
-  close the full generated edge group and is still open.
+  edge.  The full generated-group and kernel audit is now closed by
+  `regular-clifford-edge-map-has-zero-kernel`; the remaining input in
+  `s3-equivariant-affine-clifford-return-edge` is the capacity-gated global
+  endpoint-word cell.
 - `three-chart-return-from-cross-context-relators` supplies it by quotient
   instead: the raw radical basis words are fixed zero-one packet words
   (SER1), so the two `(RNS1)` agreements can be imposed as two explicit

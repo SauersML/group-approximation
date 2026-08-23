@@ -15,4 +15,3 @@ C-star algebra failing property `max-U` for every cofinal ultrafilter under
 consideration, using Pisier's ultraproduct characterization of LP.  These
 statements give exactly the claim and include no hypothesis about
 hyperlinearity.
-

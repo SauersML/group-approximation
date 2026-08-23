@@ -31,6 +31,15 @@ residual copy.  One stable word therefore implements the whole orbit.  In
 finite matrices its six directional restrictions contain one common
 multiplicity unitary, rather than six independent commutant rotations.
 
+This is now a checked presentation statement, not only a restriction-table
+statement.  `regular-clifford-edge-map-has-zero-kernel` includes every Schur
+commutator, all three full-rank derivative word families, and the fresh
+balanced generators.  The sixfold source and fresh groups have orders
+`2^217` and `2^229` before adjoining `S_3`, and the semidirect map has zero
+kernel.  The same audit shows that identifying the six private residual
+packets would create a kernel of dimension `150`; only their common logical
+BCS products may be identified.
+
 This is exactly a **holonomy synchronization** theorem.  It does not say that
 the synchronized endpoint projections realize the two diagonal success
 events and the crossed failure event in `(RNS1)`.  Such a claim cannot follow

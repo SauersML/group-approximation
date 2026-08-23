@@ -14,4 +14,3 @@ embeddings.  Their Corollary 5.5 applies it to the standard presentations of
 presentation of `C^*(F_n)`.  Corollary 5.7 deduces that any ucp lift of a
 fixed quotient from `C^*(F_infinity)` cannot be computable.  The source
 explicitly keeps existence of such a lift, equivalently LP, open.
-

@@ -3,13 +3,14 @@ rg: 2
 id: iwahori-weyl-coboundary-admits-row-tame-target
 kind: claim
 title: The regular Weyl coboundary has a correcting gauge whose target remains in the two-row Iwahori basin
+refuted_by: endpoint-conjugation-refutes-iwahori-energy
 distinct_from:
   iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that asks for the final small-gauge or weighted-energy conclusion; this asks only for a possibly large exact coboundary gauge whose corrected endpoint retains small involution and first-cubic rows, after which global pairwise coercivity makes the gauge small automatically.
   bs14-relative-involution-extension-stability: that repairs an approximate extender all the way to an exact endpoint, with flexible padding; this asks only for another approximate endpoint over the same core and only controls two of its rows.
   regular-iwahori-relative-congruence-exactification: that authenticates congruence vertex representations in the regular sector; this is a direct same-core selection statement which does not prescribe a congruence level or exact endpoint type.
 ---
 
-Use the square-free Iwahori coordinates after exactifying the `BS(1,4)` core:
+**REFUTED.** Use the square-free Iwahori coordinates after exactifying the `BS(1,4)` core:
 
 ```text
 RTR^(-1)=T^4,
@@ -77,4 +78,11 @@ relative gauge remain small.
   moves the endpoint out of at least one of `X^2` or `(XT)^3` by order one.
   Neither scalar low modes, heterogeneous direct sums of exact endpoints,
   nor the canonical compressed Weil blocks have this property.
-
+- **Endpoint-conjugation counterpacket.** The surviving enemy exists even
+  on a single exact congruence endpoint. Conjugating `X` by a first
+  Koopman mode `z in {T}'` preserves the involution and first cubic exactly
+  and makes the other two rows `O(epsilon/L)`, but its projected Weyl
+  coboundary has minimum inverse size `Omega(epsilon)`. If `(RCT4)` held,
+  pairwise coercivity would produce an `O(epsilon/L)` inverse, a
+  contradiction. See
+  `endpoint-conjugation-refutes-iwahori-energy`.

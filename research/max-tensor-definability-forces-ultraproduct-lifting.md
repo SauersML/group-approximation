@@ -33,4 +33,3 @@ lifting or trace-promotion device.
 
 This is only a fence.  Failure of definability does not imply failure of LLP
 for any particular group, and it does not produce a non-hyperlinear group.
-

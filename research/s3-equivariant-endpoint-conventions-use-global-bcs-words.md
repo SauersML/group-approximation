@@ -35,6 +35,23 @@ endpoint mismatch.  The six-copy synchronization has already removed the
 independent multiplicity rotations; this claim is now solely the semantic
 success/failure attachment.
 
+The surviving attachment is narrower than an arbitrary use of global words.
+`s3-endpoints-need-capacity-gated-global-cell` proves three exact boundaries:
+
+- both raw endpoint words cannot be conjugated through the stable edge,
+  because the crossed reset commutant contains only their sum;
+- the six private residual Schur packets cannot be identified, because that
+  quotient gives the regular edge a `150`-dimensional kernel; and
+- an unconditional global conjugacy relation leaves the compressed error
+  term `v[Z,Q]` uncontrolled.
+
+Thus any direct proof must keep the residual factors private and decode the
+global BCS endpoint observables through one capacity-gated mixed covariance
+row on a literally common multiplicity source.  This is the endpoint version
+of the interface isolated in
+`capacity-gated-common-source-gram-word-cell`; context-private source
+projections do not suffice.
+
 ## Equal-rank bypass
 
 Direct realization of the rank-one marginal laws is no longer the only live

@@ -318,3 +318,23 @@ retaining full canonical compressed error.  Consequently the surviving
 infinite option must be quantitatively payload-coupled to
 `|e_4><e_0|`; a sterile Thompson/simple/direct-product attachment does not
 advance `(SPA12)`.
+
+The maximal normalizing-clock version of payload coupling is also closed.
+`b7-normalizing-conjugacy-clocks-are-residually-finite` proves that every
+one-clock finite-state actor acting through automorphisms of B7 is
+finite-by-cyclic, or finite after a bounded return relation, and hence has
+canonical quotient countermodels.  The concrete clock `(2 6)` implements
+the paid local/global conjugacy and has nonzero omitted-cap curvature, but
+fixes the oriented defect.  A surviving actor must therefore be
+non-automorphic on the compressed packet or make the analytic carrier depend
+on its multiplicity action; no finite conjugacy counter remains live.
+
+The first non-automorphic proper-corner actor has now been reduced to one
+sharp scalar.  `or3-fixed-proper-corner-return-hits-regular-firewall` sets
+`H=supp(D^*D)` for the oriented prefix, `F=P-H`, and proves that source
+fullness of `FUP` pays `||D||_2^2` with constant one.  The B7 witness attains
+the bound exactly.  Literal Leavitt, Halmos, Julia, or fixed block
+source-fullness is impossible: the regular trace forces `H=0` and destroys
+the positive packet/full-support source.  Therefore only the
+matrix-coordinate authentication of this one Gram deficiency remains; the
+proper-corner rank geometry itself is no longer open.

@@ -5,6 +5,7 @@ kind: route
 title: Check the class-two normal forms and induce the component map over the regular orbit
 target: regular-clifford-edge-map-has-zero-kernel
 requires:
+  - gauge-doubling-gives-selector-flip-symmetries
   - affine-selector-clifford-residual-packet
   - affine-selector-clifford-rank-swap-balanced
   - s3-reset-plane-has-common-invariant-selector-polarization

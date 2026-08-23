@@ -3,6 +3,7 @@ rg: 2
 id: weyl-defect-koopman-spectral-regularity
 kind: claim
 title: The Weyl defect has controlled Koopman spectral density at eigenvalue one
+refuted_by: endpoint-conjugation-refutes-iwahori-energy
 distinct_from:
   solenoid-absorption-cascade-converges: that assembles the Livsic/RPF/Gowers-Hatami machine and consumes this as its single remaining analytic input; this is that input, isolated as a first-class hole.
   bs14-exact-representation-variety-is-hs-locally-rigid: that is the proved local rigidity aligning exact skeletons; this is the transverse spectral regularity of the residual Weyl defect, a different quantity.
@@ -36,6 +37,18 @@ gluing, the far sector, and -- through
 `common-odd-model-from-skeleton-relative-stability`,
 `odd-congruence-vertex-sector-admits-no-exact-leak`, and the Iwahori
 route -- the goal.
+
+## Refuted by a transverse endpoint conjugation
+
+`endpoint-conjugation-refutes-iwahori-energy` gives
+regular-character finite quotient tuples for which all presentation rows
+have defect `O(epsilon/L)` but the left side of `(KSR)` is
+`Omega(epsilon^2)`. The obstruction is not an unrestricted BS cocycle:
+conjugating the exact first modular endpoint by a low mode preserves its
+involution and cubic rows identically, so transverse endpoint motion
+cancels the gauge-row price. Consequently neither the claimed HS spectral
+regularity nor any proof based only on the frozen five Iwahori row values
+can hold with a dimension-free linear constant.
 
 ## Fixed-regular split: the obstruction is free, only regular-sector BV remains
 

@@ -13,4 +13,3 @@ accuracy.  The preceding paragraph cites RFD and uniform computability of
 the positive softenings and identifies their inductive limit with
 `C^*(F_n x F_n)`.  Hence the conclusion is precisely a missing computable
 convergence modulus, not a failure of pointwise norm convergence.
-
