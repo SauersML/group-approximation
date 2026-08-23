@@ -145,3 +145,10 @@ with the full-torus prime-power theorem, advances the exact-endpoint gate.
 A divergent character block refutes it.  Controlling each block in its
 Hilbert norm is insufficient by itself, because Fourier recombination is
 not unconditional in `l_infinity`.
+
+`near-trivial-torus-characters-track-the-moving-kernel` rules out the
+simplest proposed divergent block.  Perturbing the trivial character moves
+its gradient kernel continuously; after Moore--Penrose projection and
+normalization the residual retains the nonzero Hilbert singular gap.  A
+bad infinity mode must therefore exploit genuinely dimension-dependent
+geometry rather than character continuity alone.
