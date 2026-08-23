@@ -354,6 +354,22 @@ tuple.
   the remaining question is whether the finite-support exact endpoint
   realization on that moving `o(d)` hull can be chosen with compatible
   integer/global type.
+- **Finite-rank Gram surgery leaves the exact BS core untouched.**
+  `low-rank-reflection-surgery-preserves-the-exact-bs-core` changes the
+  supplied reflection only on an at-most-`8r` support.  A word containing
+  `q` copies of `X` changes by rank at most `8qr` and Frobenius norm
+  `O(q sqrt r)`, while `(R,S)` remains literally exact.  Hence source/exit
+  reconstruction does not require an invariant hull merely to control the
+  four presentation rows.
+
+  The updated terminal gate is
+  `invariant-bs-block-cut-leaves-a-passive-coordinate-basin`: use the new
+  invariant `o(d)` hull to cut and replace the whole active block, then show
+  the complementary operator-small tuple enters the union of exact moving
+  congruence endpoint orbits.  The uniform tangent gap closes the repair
+  once that basin entry is known.  Block cutting makes the high-carrier
+  modification integrable, but does not by itself turn a small nonlinear
+  residual value into coordinate proximity.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
