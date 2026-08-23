@@ -43,3 +43,13 @@ Amitsur--Levitzki makes `s4(C)=0`, while the Pauli table and
 The almost-unitarity of `T` transfers this lower bound to `s4(D)T`,
 contradicting `(CPI2)`.  Spectator amplification tensors every term with the
 identity and leaves the argument unchanged.
+
+## Strength audit
+
+The almost-unitarity requirement is sufficient but not necessary.
+`positive-mass-four-pauli-intertwiner-forces-pi-gap` proves that any common
+contraction of fixed positive Hilbert--Schmidt mass already yields the same
+contradiction.  The preferred smaller frontier is now
+`compulsory-pauli-cross-gram-is-four-word-intertwiner`, which attempts to use
+the existing `5/64` overlap directly.  This full-support formulation remains
+a valid alternative but should not be treated as the minimal PI bridge.

@@ -148,6 +148,22 @@ cascade is therefore reduced to one common full-support almost-unitary
 intertwiner carrying all four words simultaneously.  This formulation is
 amplification-stable and bypasses mutual-bicommutant extraction.
 
+The full-support condition can be removed as well.  If a contraction `T`
+intertwines all four source and target words, then
+
+```text
+8||T||_2
+ <= ||s4(D)-8D_1D_2D_3D_4||_2
+    +24 sum_j||D_jT-TC_j||_2.
+```
+
+Thus any fixed positive HS mass suffices.  The packet already forces one
+ordered cross-Gram contraction of squared mass at least `5/64`.  The minimal
+PI frontier is now only to show that this **same compulsory overlap** carries
+all four mixed words.  If it does, the terminal lower bound is
+`8sqrt(5/64)=sqrt(5)`, with no polar completion, near-full overlap, scalar
+spectator gap, or mutual-bicommutant theorem.
+
 ## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,
