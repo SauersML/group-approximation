@@ -205,7 +205,7 @@ congruence quotients.  It does not establish `(RCE1)`.
   Torsion rounding converts `X` into exact modular `C_2*C_3` data, but
   modular extension does not imply congruence, so Selberg orbit retraction
   still begins only after this relative endpoint lift.
-  `authenticated-core-union-basin-is-relative-ultraproduct-liftability`
+  `authenticated-core-union-basin-is-relative-liftability`
   identifies this last assertion exactly as flexible coordinate lifting of
   the relative ultraproduct homomorphism; local Selberg coercivity does not
   supply that lift.

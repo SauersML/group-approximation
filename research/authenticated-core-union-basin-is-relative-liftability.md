@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: authenticated-core-union-basin-is-relative-ultraproduct-liftability
+id: authenticated-core-union-basin-is-relative-liftability
 kind: claim
 title: Retraction to the union of endpoint fibers is exactly relative ultraproduct liftability
 distinct_from:
@@ -59,4 +59,3 @@ fiber does not prove the global union-basin theorem.  A failed flexible
 union-basin sequence is precisely a non-liftable relative ultraproduct
 extension `(AUL2)`.  Excluding such extensions, or reconstructing their
 energy-controlled boundary carriers, is the remaining arithmetic theorem.
-

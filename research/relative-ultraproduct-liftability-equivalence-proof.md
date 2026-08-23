@@ -3,7 +3,7 @@ rg: 2
 id: relative-ultraproduct-liftability-equivalence-proof
 kind: route
 title: Translate flexible endpoint repair coordinatewise into a lift of the relative ultraproduct homomorphism
-target: authenticated-core-union-basin-is-relative-ultraproduct-liftability
+target: authenticated-core-union-basin-is-relative-liftability
 requires:
   - congruence-endpoint-orbits-are-restriction-ring-fibers
   - exact-torsion-frame-has-rank-one-strict-counterpackets
@@ -37,4 +37,3 @@ Finally, the compressed even-Weil sequence in
 the original dimension but has one after restoring a single deleted line.
 Thus replacing `D_n=d_n+o(d_n)` by `D_n=d_n` would make the equivalence
 false, while the stated flexible lift retains the known repair mechanism.
-

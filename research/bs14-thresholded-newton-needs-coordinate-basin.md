@@ -76,7 +76,7 @@ flexibly.  Without it, active/passive spectral thresholding is a ledger, not
 a reverse construction.
 
 The exact global meaning of this coordinate-basin assertion is now recorded
-in `authenticated-core-union-basin-is-relative-ultraproduct-liftability`.
+in `authenticated-core-union-basin-is-relative-liftability`.
 After the core has been authenticated, small defects give an exact relative
 homomorphism only in the matrix ultraproduct.  Entering the union of moving
 endpoint orbits is equivalent to lifting that homomorphism by coordinate
