@@ -138,6 +138,38 @@ escape floor to `9792`, whose equality group can only be `O_8^-(2)`.  This is
 still an exact-zero restriction; no sequence of finite-simple exclusions
 substitutes for the required dimension-free ultraproduct energy estimate.
 
+The attempted Atlas coefficient decoder has also reached a precise boundary
+before any rank computation is legitimate.  The six literal words, all 234
+boundary rows, the A4 packet, and the raw/comb source words are present, but
+`atlas-word-inventory-does-not-define-typed-channel-census` proves that they do
+not define the proposed mixed matrix `[C D]`.  The missing datum is a
+finite-matrix-only positive-mass common cut on which `W,R0,R1,L0,L1` become
+compressed literal paths, together with selected comb equations, bounded
+six-relator fillings, fixed recoupling paths, and the complete nuisance
+monomial inventory.  A universally algebraic common-cut authentication is
+impossible: it would also act in the exact Leavitt tracial countermodel and,
+combined with quotient-rank three, manufacture a false contradiction there.
+Thus `atlas-typed-hard-interior-comb-row-census` is not a request to parse
+more JSON.  Its load-bearing field is the same dimension-free, positive-mass
+finite-matrix selection that the decoder was meant to prove.  No surrogate
+minor may be used in its place.
+
+The character-rigid Kac--Moody lane has an equally sharp high-degree fence.
+`bounded-degree-holonomy-collapses-for-map-groups` kills bounded-degree and
+even tight trace-weighted mixtures of multiplicity holonomy, so every
+separated enemy must put a fixed positive mass above every fixed matrix
+degree.  This tail cannot be excluded from property `(T)`, character
+rigidity, canonical trace, or adjoint spectral gap.  The exact projective-
+plane augmentation representations of `SL_3(Z)` in
+`pt-rigidity-allows-nontight-regular-tails` have dimensions `p^2+p`,
+normalized characters converging to the regular character, coefficient
+algebra equal to the single block `M_(p^2+p)`, and one uniform Kazhdan gap on
+trace-zero matrices.  Their degree laws are therefore maximally non-tight.
+Minimal almost periodicity removes these exact representations for the
+simple Kac--Moody candidate, but excluding approximate one-block analogues is
+exactly the terminal regular-branch HS-stability/non-hyperlinearity theorem,
+not a consequence of the other rigidity inputs.
+
 The finite-depth ZPC groupoid shortcut has also been decided negatively.
 For the readable Boolean algebra `D_0` and unreadable actor words, put
 `D_n=join_(|w|<=n) wD_0w^(-1)`.  The established equivalence
