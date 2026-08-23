@@ -108,6 +108,14 @@ cohomological input.
   rank-two root combinatorics.  Writing out this complex is the
   concrete route to deciding Corollary E's last clause for Bernoulli
   actions.
+  A third route: malleability/deformation techniques (Popa--Sasyk
+  computed `H^1` of Bernoulli shifts of relative-(T) groups to be the
+  character group, arXiv:math/0310211); a degree-two analogue for
+  `L^0(X,R)`-coefficients, if true for Kazhdan groups, would reduce
+  Corollary E's clause to `H^2(Lambda;R) = 0` -- already established --
+  and kill the LAST known Ioana--Spaas--Wiersma mechanism at these
+  lattices, making the LP question fully mechanism-free in the failure
+  direction.
 - **ISW Corollary D: DEAD (established 2026-08-23).**
   `km-group-ring-h2-vanishes-for-the-lattices` proves
   `H^2(Lambda, Z Lambda) = 0` for the program's lattices in any
