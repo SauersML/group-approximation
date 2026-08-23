@@ -13,6 +13,7 @@ distinct_from:
   leavitt-branch-reynolds-return-has-rectangular-gap: that names the canonical reverse candidate `R_1 Ad(U_0) R_s` and computes its exact source leakage; this asks for the new full-presentation estimate which pays that leakage.
   leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the three-path range-sum/diagonal-return fold as the first native word outside the typed Morita language; this asks for its finite-matrix same-output-root decoding into the Reynolds leakage.
   leavitt-range-sum-fold-does-not-pay-reynolds: that satisfies the fold on independent central-character UT4 factors while retaining the rectangular Reynolds gap; this requires occurrence synchronization beyond scalar output equality.
+  leavitt-target-return-channel-count-firewall: that proves fewer than p squared supported target-return contractions cannot cover the source Reynolds range and that the threshold is sharp; this rules out aggregating the two native branch returns, while this claim requires one payload-coupled impossible return.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -142,3 +143,20 @@ outer occurrence and one literal middle unitary: a class-three
 Hence “occurrence synchronization” must be read as **payload-coupled**
 synchronization with the Weyl/Heisenberg packet, not merely equality,
 conjugacy, or a closed transporter graph among the fold occurrences.
+
+Nor can the two native branches be rescued by summing their return
+energies.  `leavitt-target-return-channel-count-firewall` proves for every
+pair of approximation-dependent contractions supported from `R_s` to
+`R_t` that
+
+```text
+tr_ad(X_0^*X_0+X_1^*X_1)<=2p^(-4)<p^(-2).             (ASR6)
+```
+
+More generally at least `p^2` unit-weight target-return channels are needed
+to cover the source trace, and at exactly `p^2` channels an abstract partial-
+isometry frame attains equality in the rectangular model.  Thus ordinary
+positive branch aggregation is either rank-deficient or, at the sharp
+threshold, vacuous.  The live checksum must make a payload-coupled returned
+channel pay the forbidden source mass; it cannot be assembled by adding the
+two range-sum branches.

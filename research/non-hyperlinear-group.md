@@ -64,6 +64,18 @@ forces a fixed bypass current through every disjoint radius shell.  This
 proves logarithmic Green divergence and closes the curved fiber-mean-zero
 sector in the negative direction.
 
+The shortest remaining one-gate affine-Leavitt route is
+`affine-leavitt-source-saturated-reynolds-checksum`, but its native
+two-branch aggregation is now closed as a shortcut.
+`leavitt-target-return-channel-count-firewall` proves that fewer than `p^2`
+contractions into the target Reynolds range cannot cover the source range;
+the two range-sum branches leave the fixed deficit
+`p^(-2)-2p^(-4)`.  At the sharp `p^2` threshold an abstract partial-isometry
+frame already saturates the rectangular countermodel, so mere positive
+multi-return aggregation is vacuous.  A completion must therefore extract
+one genuinely payload-coupled impossible return from the full presentation,
+not sum the visible branch returns.
+
 Two high-descendant alternatives have also been reclassified.  The five
 consumers of `projective-trace-square-transfer-for-sl3-pair` share one
 canonical-double relative-commutant gate, as recorded by
