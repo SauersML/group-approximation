@@ -153,6 +153,25 @@ the affine active Leavitt construction.
   kills the intended exact completeness model.  A viable odd coupling must
   therefore address the averaged/self-similar coefficient range rather than
   one reflection.
+- **A Reynolds range cannot be replaced by one physical carrier.**
+  `controlled-reynolds-density-has-no-fixed-physical-carrier` uses the two
+  pure controlled orientations and their balanced direct sum.  The adjoint
+  density is `1/16,1/16,1/32`, while every fixed group-algebra projection and
+  every ordinary word energy varies affinely under the same direct sum.
+  Thus one physicalized averaged coefficient has unavoidable error at least
+  `1/64`.  The self-similar decoder must control a genuine trace-square
+  overlap, or make one pure extension unavailable through payload-coupled
+  odd relations; a fixed returned corner is not enough.
+- **No finite packet supplies a pure odd-row anchor.**
+  `finite-marked-involution-anchor-has-one-third-wrong-mass` considers an
+  arbitrary finite group with central mark and a noncentral involution `a`.
+  Its marked Plancherel-average character is zero, so at most two-thirds of
+  the marked regular mass can have normalized trace `1/2`, the trace needed
+  for the literal controlled reflection.  At least one-third remains in
+  wrong orientation types (and a unique marked type has trace zero
+  everywhere off the center).  Hence the self-similar anchor must be
+  genuinely infinite/type-selective or coupled to the affine/Fano payload;
+  enlarging the finite router cannot orient the return.
 - **Exact depth pressure is now quantified.**
   `leavitt-prefixes-form-exponential-heisenberg-packet` gives `2^n` Pauli
   pairs over the active root, and

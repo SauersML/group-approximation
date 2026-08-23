@@ -4,6 +4,7 @@ id: rstar-private-tail-fiberwise-cap-collapse
 kind: claim
 title: Three occurrence-private R-star coordinates admit exact fiberwise cap collapse
 distinct_from:
+  isolated-rstar-context-determinizes-to-a-fano-cap: that is the local fibrewise operator construction with no compatibility assertion; this adds occurrence-privacy so the local replacements can be made simultaneously throughout an instance.
   culf-mastel-rstar-halt-model-has-fano-cap-support: that asks for the actual fixed hard family, whose target occurrences do not have three occurrence-private coordinates; this proves the selector only under that extra syntax.
   tracial-cap-menus-are-central-core-partitions: that rules out postselecting a supplied trace by noncentral compression; this changes occurrence-private generators inside the same algebra and performs no compression.
   rstar-cap-support-is-one-character-row: that characterizes cap support once obtained; this constructs cap support by retaining one binary observable and replacing three private ones.
@@ -60,3 +61,8 @@ Because the replaced variables are occurrence-private, `(PTC4)` may be
 performed simultaneously in every context without changing any shared
 observable.  Every modified generator belongs to the original algebra, so
 Connes embeddability passes to the generated subalgebra.
+
+The local construction and the `-I` character calculation are isolated in
+`isolated-rstar-context-determinizes-to-a-fano-cap`.  The only additional
+content here is that occurrence-privacy makes those local replacements
+simultaneously legal.

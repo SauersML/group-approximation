@@ -96,3 +96,12 @@ a literal normalizer of the finite Pauli group.  It must compare an averaged
 Reynolds range through a self-similar/infinite coefficient coordinate, so
 that the finite packet sees the checksum `(BCW6)` while the properly infinite
 model retains its outer action.
+
+Nor does replacing `r` by an involution from a larger finite marked packet
+provide the missing pure anchor.
+`finite-marked-involution-anchor-has-one-third-wrong-mass` proves that the
+marked regular trace gives average character zero to every noncentral
+involution.  At most two-thirds of its Plancherel mass can have normalized
+trace `1/2`, and at least one-third therefore has the wrong controlled
+orientation.  The required anchor must be genuinely infinite/type-selective
+or payload-coupled, not merely a more elaborate finite word.

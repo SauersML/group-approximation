@@ -69,3 +69,11 @@ The missing theorem is exactly `(BCW6)`.  The algebraic Whitehead covariance
 of the physical prefix selectors does not imply it: physical corner
 transport and adjoint commutant-range transport are different assertions.
 
+Nor can `(BCW1)` be replaced by one fixed physical carrier.
+`controlled-reynolds-density-has-no-fixed-physical-carrier` compares the two
+pure orientations with their balanced direct sum.  Physical traces and
+ordinary word energies average affinely, whereas `c_G` drops from `1/16` on
+each pure type to `1/32` on the mixture.  Any fixed physical coefficient
+misses one of these three values by at least `1/64`.  A successful odd cell
+must therefore control the quadratic checksum itself or prevent one pure
+orientation from extending.
