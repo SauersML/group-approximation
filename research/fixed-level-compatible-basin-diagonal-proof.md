@@ -13,6 +13,7 @@ requires:
   - regular-bs14-cores-admit-dyadic-one-power-shadows
   - bs14-one-power-level-is-a-native-short-commutator
   - native-bs-level-has-strict-square-root-counterpackets
+  - induced-rounding-needs-rms-section-fillings
   - repeated-squaring-and-tau-do-not-supply-the-moving-basin
 ---
 
