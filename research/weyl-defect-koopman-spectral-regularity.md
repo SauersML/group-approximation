@@ -246,15 +246,19 @@ solenoid skeleton alone cannot give the required constant.
   good spectrum, and polar repair cannot establish `(KSR)`.  The remaining
   full-group input must charge or split off the plateaux through the cubic
   relations.
-- **Compatible strata are not the frontier.**
-  `iwahori-uniform-infinitesimal-rigidity` already supplies the required
-  uniform Fox-Jacobian gap at exact congruence/compatible representations.
-  Consequently the missing spectral estimate is an outlier statement:
-  rule out long BS packets carrying the modes above unless the involution or
-  one of the two cubic words pays comparable normalized-HS energy.  This is
-  the same far-sector content as `iwahori-outlier-repair`, now reduced by
-  `iwahori-cubics-suppress-low-bs-orbit-modes` to a finite dyadic Fourier
-  inequality on explicit periodic packets.
+- **The entire congruence locus is no longer the frontier.**
+  The earlier input here was only the infinitesimal Fox-Jacobian gap.  The
+  stronger completed result
+  `congruence-repair-bypasses-koopman-cycle-firewalls` now gives global
+  normalized-HS repair for every mixed congruence pair, uniformly over all
+  odd labels and dyadic depths.  Hence both the delocalized first-mode and
+  concentrated two-jump periodic packets are already harmless on the
+  congruence locus, without Taylor expansion.  Any genuinely missing use
+  of `(KSR)` is an outlier/noncongruence statement: it must force a regular
+  modular-vertex pair into the congruence-repairable locus, or repair that
+  pair directly.  This is the same surviving arithmetic content as
+  `regular-iwahori-relative-congruence-exactification` and
+  `iwahori-outlier-repair`, not an unresolved estimate on congruence cycles.
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
   not give `(KSR)`: the weight `|1-lambda|^{-2}` blows up at the
