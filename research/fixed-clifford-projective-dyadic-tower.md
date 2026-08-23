@@ -73,3 +73,11 @@ inertia categories in `(FCT3)`, with their restriction multiplicities under
 the opposite embedding, have a uniform boundary or admit a Følner sequence.
 Neither the spatial Bruhat--Tits norm nor the regular Plancherel table decides
 that recursive twisted-category question.
+
+The first recursive matching test is nevertheless negative.
+`fixed-clifford-sectors-have-zero-adjacent-opposite-overlap` computes the
+opposite pullback of `L_(a+1)`: on a level-`a` fixed-sector representation
+it is the character `(0,1,0)`, not `(1,1,1)`.  Consequently successive
+fixed sectors have zero common Iwahori constituent.  Any surviving Folner
+sequence must move through the size-three inertia sectors as well; the
+canonical full-inertia projective categories cannot simply be stacked.

@@ -141,6 +141,14 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   fixed-word traces plus band masses cannot close the `K->infinity` gate;
   a new inequality must couple within-band character data to the actual
   upper/opposite branching labels.
+- **The canonical invariant-character projective tower does not stack.**
+  `fixed-clifford-sectors-have-zero-adjacent-opposite-overlap` shows that an
+  upper depth-`a` `(1,1,1)` Clifford sector and an opposite depth-`a+1`
+  `(1,1,1)` sector have literally zero common restriction.  Under the depth
+  shift the required newest-layer character is `(0,1,0)`, in a size-three
+  orbit with index-three inertia.  Thus a diffuse realization cannot recurse
+  only through the full-inertia multipliers `omega_a`; it must alternate
+  Clifford orbit and inertia types.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.
