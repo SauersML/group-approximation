@@ -129,3 +129,4 @@
 32629329031	2026-08-23T08:59:56Z	GroupApproximation/Sofic/NormalKazhdanCompressionObstruction.lean	not_isWeakMF_of_normalKazhdan_le_defect
 32631841763	2026-08-23T09:55:57Z	GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean	hom_eq_one_of_map_eq_one_of_normalClosure_eq_top
 32632650169	2026-08-23T10:05:49Z	GroupApproximation/Sofic/RealizationFromUniversalGroup.lean	construction_hypotheses
+32634506379	2026-08-23T10:43:29Z	GroupApproximation/Sofic/ThompsonFObstruction.lean	conjugateTerm_succ
