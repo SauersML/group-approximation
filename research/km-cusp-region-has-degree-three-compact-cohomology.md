@@ -30,6 +30,8 @@ model contractible; a negative answer would leave the LP question at
 the Kac--Moody lattices undecided by every Ioana--Spaas--Wiersma clause
 except the `L^0` one (`triangle-colimit-rational-h2-vanishes`).
 
+**REFUTED (2026-08-23): `km-group-ring-h2-vanishes-for-the-lattices` establishes the negation (the cusp induction ran once the twisted surjectivity was established).**
+
 ## Attempts
 
 - **Final status (2026-08-23): the refutation of the hypothesis was

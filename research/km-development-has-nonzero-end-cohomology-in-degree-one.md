@@ -26,6 +26,8 @@ exhibit a compactly supported integral 2-cochain on `X` that vanishes on
 every finite 2-cycle of `X` but is not the coboundary of a compactly
 supported 1-cochain.
 
+**REFUTED (2026-08-23): `km-group-ring-h2-vanishes-for-the-lattices` establishes the negation; the routes consuming this claim are invalidated there.**
+
 ## Attempts
 
 - **Retract route.**  A twin apartment `Sigma=(Sigma_+,Sigma_-)` gives
