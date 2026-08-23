@@ -145,3 +145,4 @@
 32655368424	2026-08-23T17:36:41Z	GroupApproximation/Analysis/PolarLiftingHypothesisFree.lean	signChange_endpoint0
 32656507829	2026-08-23T17:58:23Z	GroupApproximation/Criterion/ClosedEnvelopeCompression.lean	manuscriptEnvelopeCompressionBlind
 32659260539	2026-08-23T18:49:55Z	GroupApproximation/Sofic/ArithmeticSingleDefectEndpoint.lean	arithmeticMarkedCommutator_mem_defectNormal
+32661817678	2026-08-23T19:37:58Z	GroupApproximation/Criterion/FiniteQuotientBlindness.lean	manuscriptCardinalityInvariantSize
