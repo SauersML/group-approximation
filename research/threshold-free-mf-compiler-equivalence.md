@@ -5,6 +5,7 @@ kind: claim
 title: The bare threshold-free MF compiler is equivalent to a marked non-MF seed
 artifacts:
   - research/artifacts/seeded-self-aware-mf-switch-2026-08-23.md
+  - GroupApproximation/Computability/SeededSelfAwareMFCompiler.lean
 distinct_from:
   threshold-free-reverse-kleene-mf-higman: that proves compiler implies a finitely presented non-MF group; this adds the converse and identifies the exact logical strength of the compiler interface.
   authenticated-opnorm-challenge-compiler: that originally proposed one support-profile implementation; this classifies the extensional TFM1--TFM2 specification independently of any implementation.
@@ -27,3 +28,8 @@ reverse implication is reverse Kleene followed by effective Higman; the
 fixed-point word remains both nontrivial and MF-invisible under the embedding.
 Hence the bare compiler interface, by itself, cannot certify a seed-free or
 independent source of non-MF-ness.
+
+The fixed-point contradiction and semantic seed/self-aware-endpoint
+equivalence are machine-checked as `reverseKleene_fixedPoint_logic` and
+`logicalSelfAwareMFCompiler_iff_seed`. The effective compiler and recursion
+theorem remain the explicit computability layer of this Cairn claim.

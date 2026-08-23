@@ -164,7 +164,44 @@ A genuinely seed-free positive branch would need a nonmonotone compilation
 architecture or a different semantic interface; ordinary r.e. relator
 addition cannot provide it.
 
-## 6. Consequences for the Cairn graph
+## 6. Prime-coded literal self-awareness
+
+There is also a finite-presentation family which makes the compiler index
+visible without changing the obstruction. Let `p_e` be the `(e+1)`-st prime
+and put
+
+```text
+Gamma_e=H*C_(p_e),
+w_e=z.
+```
+
+Free-product normal form preserves `z!=1`, and MF-radical functoriality
+preserves its invisibility. The cyclic factor records `e` in one finite
+relator while the semantic carrier is constant. Thus the fixed-point program
+may literally print a presentation containing its own prime code. This is a
+Gödel-coded presentation of the seeded construction, not an independent
+analytic obstruction.
+
+## 7. Machine-checked logical core
+
+`GroupApproximation/Computability/SeededSelfAwareMFCompiler.lean` checks:
+
+- transport of a marked invisible seed through free products;
+- the constant-carrier and proof-triggered endpoint semantics;
+- the proposition-level reverse-Kleene contradiction
+  `halts <-> mark=1`, `HALT -> mark!=1`, `NONHALT -> invisible`;
+- equivalence between one marked MF-radical seed and the resulting logical
+  self-aware compiler endpoint;
+- the prime-coded free-product carrier and preservation of the mark;
+- the monotone same-mark no-go: if an invisible mark survives a quotient, the
+  quotient cannot be operator MF.
+
+The effective recursion theorem, enumeration of recursively enumerable group
+proofs, and presentation coding remain represented by Cairn's computability
+nodes rather than a Lean machine-code structure. The formal theorem is named
+`logicalSelfAwareMFCompiler_iff_seed` to keep that boundary explicit.
+
+## 8. Consequences for the Cairn graph
 
 1. `authenticated-opnorm-challenge-compiler` is established **as stated** by
    the marked switch, using the literal invisible mark as seed.

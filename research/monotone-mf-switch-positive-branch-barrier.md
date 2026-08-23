@@ -5,6 +5,7 @@ kind: claim
 title: A monotone append-on-halt switch cannot have an MF positive branch with a surviving mark
 artifacts:
   - research/artifacts/seeded-self-aware-mf-switch-2026-08-23.md
+  - GroupApproximation/Computability/SeededSelfAwareMFCompiler.lean
 distinct_from:
   post-candidate-nemesis-has-a-finality-dilemma: that is a temporal inconsistency for matrix-triggered moving presentations; this is a quotient-functoriality obstruction for proof-triggered recursively enumerable presentations.
   marked-mf-radical-seed-gives-proof-triggered-compiler: that constructs a valid seeded switch whose halting branch is necessarily still non-MF; this explains why no such switch can make that branch MF while preserving the mark.
@@ -27,3 +28,6 @@ Consequently a monotone append-on-halt compiler cannot simultaneously have a
 nonhalting MF-radical collapse, a surviving halting mark, and an MF halting
 branch. A seed-free compiler with a genuinely positive MF branch would need
 a nonmonotone architecture or a different semantic interface.
+
+The same-mark quotient implication is machine-checked as
+`quotient_not_isOperatorMF_of_invisible_mark_survives`.

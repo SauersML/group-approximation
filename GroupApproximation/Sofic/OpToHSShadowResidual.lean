@@ -161,6 +161,60 @@ theorem normMFResidual_eq_top_of_shadow_subgroup_saturation
   rw [← hsat]
   exact (Subgroup.map_mono hD).trans (map_opToHSShadowResidual_le f)
 
+/-! ## The logical Shadow--Kleene fixed point -/
+
+/-- The proof-search fixed point used by the Shadow--Kleene metatheorem.  The
+program halts exactly when its mark is provably trivial; HALT survival rules
+that out, and NONHALT shadow erasure then produces a nontrivial shadow bug.
+
+This is the logical core only.  Computable presentation codes and Kleene's
+recursion theorem remain the explicit external computability layer. -/
+theorem shadowKleene_fixedPoint_logic {w : G} {halts : Prop}
+    (hself : halts ↔ w = 1)
+    (hhalt : halts → w ≠ 1)
+    (hnonhalt : ¬ halts → w ∈ opToHSShadowResidual G) :
+    w ≠ 1 ∧ w ∈ opToHSShadowResidual G := by
+  have hnh : ¬ halts := by
+    intro hh
+    exact hhalt hh (hself.mp hh)
+  exact ⟨fun hw ↦ hnh (hself.mpr hw), hnonhalt hnh⟩
+
+/-- Existence of one nontrivial operator-to-HS shadow word. -/
+def HasNontrivialOpToHSShadowBug (G : Type) [Group G] : Prop :=
+  ∃ w : G, w ≠ 1 ∧ w ∈ opToHSShadowResidual G
+
+/-- The semantic endpoint produced by a self-aware Shadow--Kleene compiler. -/
+def HasLogicalShadowKleeneEndpoint (G : Type) [Group G] : Prop :=
+  ∃ (w : G) (halts : Prop),
+    (halts ↔ w = 1) ∧
+      (halts → w ≠ 1) ∧
+      (¬ halts → w ∈ opToHSShadowResidual G)
+
+/-- A nontrivial shadow bug gives the constant logical compiler endpoint. -/
+theorem hasLogicalShadowKleeneEndpoint_of_bug
+    (hbug : HasNontrivialOpToHSShadowBug G) :
+    HasLogicalShadowKleeneEndpoint G := by
+  obtain ⟨w, hne, hshadow⟩ := hbug
+  refine ⟨w, False, ?_, ?_, ?_⟩
+  · simp [hne]
+  · simp
+  · intro _
+    exact hshadow
+
+/-- Conversely, the self-aware endpoint contains a nontrivial shadow bug. -/
+theorem bug_of_hasLogicalShadowKleeneEndpoint
+    (hcompiler : HasLogicalShadowKleeneEndpoint G) :
+    HasNontrivialOpToHSShadowBug G := by
+  obtain ⟨w, halts, hself, hhalt, hnonhalt⟩ := hcompiler
+  exact ⟨w, shadowKleene_fixedPoint_logic hself hhalt hnonhalt⟩
+
+/-- At the semantic fixed-point level, a Shadow--Kleene compiler is exactly
+one nontrivial shadow bug. -/
+theorem logicalShadowKleeneEndpoint_iff_bug :
+    HasLogicalShadowKleeneEndpoint G ↔ HasNontrivialOpToHSShadowBug G :=
+  ⟨bug_of_hasLogicalShadowKleeneEndpoint,
+    hasLogicalShadowKleeneEndpoint_of_bug⟩
+
 /-! ## The explicit Fournier--Facio HNN shadow bug -/
 
 namespace FournierFacioDefectData

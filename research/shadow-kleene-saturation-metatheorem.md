@@ -10,6 +10,7 @@ distinct_from:
   single-shadow-word-saturation-compiler: that theorem consumes an already nontrivial shadow word; this theorem uses Kleene proof search to manufacture one from HALT/NONHALT compiler semantics.
 artifacts:
   - research/artifacts/shadow-kleene-saturation-compiler-2026-08-22.md
+  - GroupApproximation/Sofic/OpToHSShadowResidual.lean
 ---
 
 Suppose a total computable compiler sends a machine index `e` to a finite
@@ -26,3 +27,7 @@ acylindrically hyperbolic property-(T) group `Q` with
 `normMFResidual Q=top`.  The fixed-point machine searches only for a finite
 proof of `w_e=1`; it uses no matrix dimension, defect threshold, convergence
 rate, or soundness modulus.
+
+The proposition-level self-aware contradiction is machine-checked as
+`shadowKleene_fixedPoint_logic`; presentation computability and Kleene's
+recursion theorem remain the explicit external layer.

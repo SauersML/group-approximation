@@ -281,8 +281,9 @@ Kernel checked:
 * `GroupApproximation/Sofic/NormalKazhdanHyperlinearKilled.lean` -- the
   moving-corner detector;
 * `GroupApproximation/Sofic/OpToHSShadowResidual.lean` -- the shadow subgroup,
-  functoriality, normal closure, one-word saturation endpoint, and explicit
-  HNN bug extraction;
+  functoriality, normal closure, one-word saturation endpoint, the logical
+  Shadow--Kleene fixed-point contradiction and bug/endpoint equivalence, and
+  explicit HNN bug extraction;
 * `GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean` -- routed
   full-radical and quotient consequences.
 

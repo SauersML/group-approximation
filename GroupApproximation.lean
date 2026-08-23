@@ -184,6 +184,7 @@ import GroupApproximation.Sofic.LocallyFiniteMF
 import GroupApproximation.Sofic.CentralInvolutionFinite
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
+import GroupApproximation.Computability.SeededSelfAwareMFCompiler
 import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.ChosenMarkedPresentation
 import GroupApproximation.Sofic.ChosenNonMFTheorem
@@ -324,6 +325,7 @@ import GroupApproximation.Sofic.TorsionCompressionCollapse
 import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.MFTraceRecognition
 import GroupApproximation.Sofic.InvolutionRankMass
+import GroupApproximation.Sofic.NoRenormalizationCapacity
 import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Kazhdan.ApproximateCircumcenter
 import GroupApproximation.Sofic.InvolutionMicrostateTools
@@ -460,6 +462,7 @@ import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
+import GroupApproximation.Sofic.OpToHSShadowResidual
 import GroupApproximation.Sofic.CoronaImageNormalKazhdan
 import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical

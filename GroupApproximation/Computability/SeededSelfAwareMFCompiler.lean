@@ -1,5 +1,7 @@
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
+import Mathlib.Data.Nat.Prime.Nth
+import Mathlib.Data.ZMod.Basic
 
 /-!
 # A seeded self-aware compiler for operator-MF
@@ -18,9 +20,11 @@ in the free-product endpoint its MF-invisibility is transported by the
 canonical factor map.
 
 This file formalizes exactly the group-theoretic endpoint package.  The
-computability/Kleene argument is recorded in Cairn because the repository does
-not yet bundle machine-indexed recursively enumerable marked presentations as
-a Lean structure.
+computability/Kleene implementation remains recorded in Cairn because the
+repository does not yet bundle machine-indexed recursively enumerable marked
+presentations as a Lean structure.  The fixed-point contradiction itself, the
+seed/compiler logical equivalence, prime-coded carriers, and the monotone
+same-mark quotient obstruction are formalized below.
 
 The construction is intentionally labelled *seeded*: it does not supply an
 independent proof of the existence of non-MF groups.  It proves instead that
@@ -118,6 +122,112 @@ theorem literal_hasConstantCarrierMFCompiler (P : ℕ → Prop) :
   hasConstantCarrierMFCompiler_of_seed
     LiteralNonMFLinearWitness.literal_mark_ne_one
     literal_mark_normMFInvisible P
+
+/-! ## Literal self-reference and the seed/compiler equivalence -/
+
+/-- The proposition-level core of the reverse-Kleene argument.  `halts ↔
+trivial` is the self-aware proof-search program: it halts exactly when it finds
+a proof that its marked word is trivial.  The HALT survival clause rules that
+out, and the NONHALT clause then supplies invisibility. -/
+theorem reverseKleene_fixedPoint_logic
+    {halts trivial invisible : Prop}
+    (hself : halts ↔ trivial)
+    (hhalt : halts → ¬ trivial)
+    (hnonhalt : ¬ halts → invisible) :
+    ¬ halts ∧ ¬ trivial ∧ invisible := by
+  have hnh : ¬ halts := by
+    intro hh
+    exact hhalt hh (hself.mp hh)
+  exact ⟨hnh, fun ht ↦ hnh (hself.mpr ht), hnonhalt hnh⟩
+
+/-- A marked MF-radical seed, with no computability structure attached. -/
+def HasMarkedMFSeed : Prop :=
+  ∃ (K : Type) (_ : Group K) (w : K),
+    w ≠ 1 ∧ NormMFInvisible w
+
+/-- The logical endpoint of a self-aware marked compiler.  The computable
+compiler and recursion-theorem machinery produce exactly such a fixed point;
+this structure deliberately records only the semantic data checked here. -/
+def HasLogicalSelfAwareMFCompiler : Prop :=
+  ∃ (K : Type) (_ : Group K) (w : K) (halts : Prop),
+    (halts ↔ w = 1) ∧
+      (halts → w ≠ 1) ∧
+      (¬ halts → NormMFInvisible w)
+
+/-- One marked MF-radical seed gives a self-aware compiler endpoint: choose a
+fixed point which never halts. -/
+theorem hasLogicalSelfAwareMFCompiler_of_seed :
+    HasMarkedMFSeed → HasLogicalSelfAwareMFCompiler := by
+  rintro ⟨K, hK, w, hne, hinvisible⟩
+  letI : Group K := hK
+  refine ⟨K, inferInstance, w, False, ?_, ?_, ?_⟩
+  · simp [hne]
+  · simp
+  · intro _
+    exact hinvisible
+
+/-- Reverse Kleene extracts a nontrivial invisible word from the logical
+self-aware endpoint. -/
+theorem seed_of_hasLogicalSelfAwareMFCompiler :
+    HasLogicalSelfAwareMFCompiler → HasMarkedMFSeed := by
+  rintro ⟨K, hK, w, halts, hself, hhalt, hnonhalt⟩
+  letI : Group K := hK
+  obtain ⟨_, hne, hinvisible⟩ :=
+    reverseKleene_fixedPoint_logic hself hhalt hnonhalt
+  exact ⟨K, inferInstance, w, hne, hinvisible⟩
+
+/-- The bare self-aware MF compiler endpoint is logically equivalent to
+already possessing one marked MF-radical seed. -/
+theorem logicalSelfAwareMFCompiler_iff_seed :
+    HasLogicalSelfAwareMFCompiler ↔ HasMarkedMFSeed :=
+  ⟨seed_of_hasLogicalSelfAwareMFCompiler,
+    hasLogicalSelfAwareMFCompiler_of_seed⟩
+
+/-! ## Prime-coded finite presentations -/
+
+/-- The `(e+1)`-st prime, used to make the compiler index literal in its
+finite cyclic free factor.  `Nat.nth Nat.Prime` is zero-indexed. -/
+def primeCode (e : ℕ) : ℕ := Nat.nth Nat.Prime e
+
+/-- A carrier which records the compiler index in the order of a finite
+cyclic free factor. -/
+abbrev PrimeCodedGroup (K : Type u) [Group K] (e : ℕ) : Type u :=
+  K ∗ Multiplicative (ZMod (primeCode e))
+
+/-- The seed mark in the prime-coded carrier. -/
+def primeCodedMark (K : Type u) [Group K] (e : ℕ) (w : K) :
+    PrimeCodedGroup K e := Monoid.Coprod.inl w
+
+/-- Prime coding does not change survival or MF-invisibility of the seed. -/
+theorem primeCodedMark_blackHole {K : Type u} [Group K] {w : K}
+    (hne : w ≠ 1) (hinvisible : NormMFInvisible w) (e : ℕ) :
+    primeCodedMark K e w ≠ 1 ∧
+      NormMFInvisible (primeCodedMark K e w) := by
+  simpa [primeCodedMark] using
+    (freeProduct_seed_transport (H := Multiplicative (ZMod (primeCode e)))
+      hne hinvisible)
+
+/-- The prime-coded carrier is finitely presented whenever the seed carrier
+is. -/
+theorem primeCodedGroup_finitelyPresented {K : Type u} [Group K]
+    [Group.IsFinitelyPresented K] (e : ℕ) :
+    Group.IsFinitelyPresented (PrimeCodedGroup K e) := by
+  infer_instance
+
+/-! ## The monotone same-mark obstruction -/
+
+/-- If an MF-invisible mark survives a quotient, the quotient is not
+operator-MF.  This is the formal same-mark no-go for compilers whose HALT
+branch is obtained only by appending relators. -/
+theorem quotient_not_isOperatorMF_of_invisible_mark_survives
+    {K : Type u} {L : Type v} [Group K] [Group L] [Countable L]
+    {w : K} (hinvisible : NormMFInvisible w) (q : K →* L)
+    (hsurvives : q w ≠ 1) :
+    ¬ IsOperatorMF L := by
+  intro hMF
+  have hmem : q w ∈ normMFResidual L := hinvisible.map q
+  rw [normMFResidual_eq_bot_of_isOperatorMF hMF] at hmem
+  exact hsurvives (Subgroup.mem_bot.mp hmem)
 
 end SeededSelfAwareMFCompiler
 end GroupApproximation
