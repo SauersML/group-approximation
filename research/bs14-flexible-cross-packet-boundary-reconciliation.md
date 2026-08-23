@@ -155,6 +155,17 @@ the cross-packet multiplicity boundary for one `X`.
   directions and does not recover low-amplitude boundary spread over many
   packets.
 
+- **The square-free torsion frame does not make the restriction semigroup
+  finite rank.**
+  `iwahori-edge-restriction-image-has-continuous-type` gives an explicit
+  continuum of exact two-dimensional modular representations whose
+  restrictions to the index-three Iwahori edge are pairwise distinct.  The
+  continuously varying coordinate is already the trace of the parabolic
+  `t=xa`.  Thus the Gerasimova--Shchepin finite-edge restriction-matrix
+  criterion cannot be imported merely because `x,a,b` have exact orders
+  `2,3,3`; the regular/congruence hypothesis or an analytic edge-alignment
+  theorem remains indispensable.
+
 - **A block-free positive charge exists once the boundary corner is
   exposed.**
   `positive-fixed-corner-cubic-energy-charges-deleted-rank` treats an
