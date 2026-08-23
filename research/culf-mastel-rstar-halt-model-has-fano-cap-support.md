@@ -112,6 +112,15 @@ no-Fano-line support conclusion.
   `fano-maximal-cap-overlap-has-positive-sequential-mass` gives a profile of
   squared sequential mass at least `(4/7)^m`; such a product need not be a
   common reducing corner, so the central-core firewall still applies.
+- Allowing the cap label to be a local auxiliary quantum/classical output
+  also does not select a profile.  `dynamic-fano-cap-incidence-labels-are-a-reversible-dilation`
+  refines every atom `t` into the four incidences `(t,lambda)` with
+  `lambda(t)=1`, using one four-point classical ancilla per context.  This
+  lift exists trace preservingly for every perfect, CE, and finite matrix
+  model, and forgetting `lambda` recovers the original model.  It therefore
+  gives cap support only conditional on a nondeterministic local label.  The
+  `7^m` LCS OR still requires one label to be scalar at each context, which
+  is exactly `(FCC1)`.
 - The fiberwise auxiliary selector is valid only under a stronger syntax;
   its unconditional one-context core is
   `isolated-rstar-context-determinizes-to-a-fano-cap`, and its simultaneous
