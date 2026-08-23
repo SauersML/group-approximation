@@ -8,12 +8,20 @@ distinct_from:
   km-development-has-nonzero-end-cohomology-in-degree-one: that is the end-cohomology input for Corollary D; this is the finite combinatorial statement that makes the thick part 2-connected (type `F_3`) and identifies that input with `H^2_c` of the thick part, without deciding it.
 ---
 
-**AS STATED, EXPECTED FALSE; the `G_2` cases are REFUTED for the
-computed `q` (see `km-hexagon-level-cokernel-is-nonzero`, which
-establishes the negation there and expects it for all `q`), and the
-LIVE content is the restriction to grid and `B_2` levels: proved for
-grid (all `q`, computationally confirmed) and for `B_2` with `q >= 6`
-(rationally false at `q = 3`).**  For each twisted type of
+**OPEN, EXPECTED TRUE for the actual lattices (final status
+2026-08-23): the class-walk connectivity thresholds are governed by a
+rational normal curve in the radical's Frattini quotient
+(components number `q^(max(0, dim - k))` for `k` classes, dimension
+four for hexagon line-panels, three for `B_2` line-panels, two for the
+point-panels; characteristic-free, verified at `q = 2, 3, 4`), so the
+disjoint-class construction proves the surjectivity at grid levels
+(all `q`), `B_2` levels (`q >= 6`) and hexagon levels (`q >= 8`,
+needing four intermediate classes per side), any characteristic --
+pending only the single-slot bookkeeping below.  For `q <= 3` the
+hexagon levels genuinely fail (`km-hexagon-level-cokernel-is-nonzero`)
+and at `W(3)` a rational 24-dimensional cokernel appears below the
+`B_2` threshold; these small-`q` phenomena are vacuous for
+`q > 1764^3`.**  For each twisted type of
 `km-codistance-filtration-twisted-levels-are-rank-two-pairs` -- a pair
 of rank-two residues of types in `{A_1 x A_1, B_2, G_2}` of the
 `(2,4,6)` twin building over `F_q`, `q>1764^3`, twisted by a common
@@ -373,3 +381,28 @@ class is unavailable).
   classes whose connecting maps are the decisive objects -- candidate
   SOURCES for `H^2(Lambda;Z Lambda) != 0` and Corollary D, in every
   characteristic.
+- **Final uniform threshold picture and retraction (2026-08-23,
+  H(4)).**  The `H(4)` computation (experiments/
+  km_h4_opposition_connectivity.py) shows the full opposition geometry
+  and every one-deleted graph CONNECTED at `q = 4`, with deletion
+  ladder `[1024]`, `4 x 192`, `16 x 32` -- exactly
+  `q^(max(0,4-k))` components on `k` classes.  Mechanism: the class
+  stabilizers `S_c` are `q`-element subgroups whose Frattini images
+  are the points `(1, lambda, lambda^2, lambda^3)` of a rational
+  normal cubic (the Levi acts on the radical's Frattini quotient as
+  the length-four alpha-string), and Vandermonde gives any four of
+  them independent in every characteristic.  The earlier
+  characteristic-two collapse note is RETRACTED: it used the adjoint
+  structure constant `±2` where the seven-dimensional module's
+  two-string matrix element `±1` was required; the corrected sphere
+  `c^2 = ±(bd)`-type is nondegenerate in all characteristics, and the
+  `q = 2` disconnection is the `3 < 4` Vandermonde phenomenon, not a
+  characteristic one.  With one-deleted connectivity for `q >= 4` and
+  four-class connectivity for all `q`, the disjoint-class single-slot
+  construction (cycles through the base point with intermediate
+  point-classes in a fixed 4-set `C`, target cycles in a disjoint
+  4-set `C'`, `q + 1 >= 9`) applies verbatim at hexagon levels; what
+  remains before marking this claim established for `q >= 8` is the
+  careful write-up of that construction (local-vector realization with
+  prescribed classes, and the cross-slot cancellation), the same
+  bookkeeping already recorded for `B_2`.

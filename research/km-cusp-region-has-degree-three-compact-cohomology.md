@@ -32,15 +32,14 @@ except the `L^0` one (`triangle-colimit-rational-h2-vanishes`).
 
 ## Attempts
 
-- **Superseded the same day: the surjectivity fails at hexagon levels
-  (2026-08-23, final).**  The induction below is VALID but its
-  hypothesis is now known FALSE: every `(G_2,G_2)` twisted level has
-  nonzero relative `H_3` (component-indicator annihilators;
-  `km-twisted-level-product-cycles-surject`).  This claim is therefore
-  genuinely open, and its truth is equivalent to some hexagon-level
-  class having nonzero image under the connecting maps of the
-  filtration.  The bullet below is kept as the record of the valid
-  conditional mechanism.
+- **Final status (2026-08-23): the refutation of the hypothesis was
+  itself a small-`q` phenomenon.**  The hexagon-level annihilators
+  exist only for `q <= 3` (curve-span thresholds, `H(4)` verified
+  connected), so for the actual lattices the induction below is LIVE
+  and this claim is EXPECTED FALSE again: the twisted surjectivity for
+  `q >= 8` (pending bookkeeping) gives `H^3_c(cusp) = 0` and
+  `H^2(Lambda;Z Lambda) = 0`, killing Corollary D in any
+  characteristic.
 - **The twisted surjectivity REFUTES this claim (2026-08-23).**  Write
   `cusp_(<=R) = Z_(<=R) minus X^`, an increasing exhaustion of the cusp
   by open subsets with `C^*_c(cusp) = colim C^*_c(cusp_(<=R))`.  The

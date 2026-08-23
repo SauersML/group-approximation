@@ -96,35 +96,24 @@ cohomological input.
   many such identities at a time; deciding whether all sphere and
   non-sphere 2-cycle conditions can hold simultaneously with the
   non-degeneracy is the surviving content of Corollary E here.
-- **ISW Corollary D, exact input identified; the vanishing route died
-  the same day it was found (2026-08-23, final).**  The codistance
-  filtration analysis first suggested `H^2(Lambda, Z Lambda) = 0`
-  conditional on a finite surjectivity; that surjectivity holds at
-  grid and `B_2` levels but was then REFUTED at every `G_2` level
-  (the one-class-deleted opposition geometry of the hexagon is
-  disconnected -- computed at `q = 2, 3`, scripts in experiments/ --
-  and component-indicator annihilators give nonzero cokernel).  So
-  every hexagon level of the filtration carries explicit nonzero
-  relative `H_3` classes, in every characteristic, and
-  `H^2(Lambda, Z Lambda)` is genuinely OPEN in both directions: it is
-  nonzero iff some explicit hexagon-level class has nonzero connecting
-  map.  These classes are the first concrete candidate mechanism for
-  Corollary D at a group with no finite-dimensional representations.
- The same
-  spectral sequence with group-ring coefficients gives
-  `H^2(Lambda; Z Lambda) = ker( H^2_c(X;Z) -> H^2(X;Z) ) =
-  H^1_infty(X;Z)`, the degree-one end cohomology of the development
-  (`km-group-ring-h2-is-development-end-cohomology`); no contractible
-  model is needed.  Corollary D fires iff
-  `km-development-has-nonzero-end-cohomology-in-degree-one`, consumed
-  by the live route `km-lp-fails-via-development-end-cohomology`.  A
-  proper cellular retraction of the development onto an embedded twin
-  apartment would suffice (retract criterion in the same node); the
-  standard one-factor building retractions are NOT proper because the
-  set of chambers opposite a fixed chamber is infinite.  Caution: when
-  `H_2(X) != 0` (provably the case for affine rank-three type, by the
-  Bux--Köhl--Witzel finiteness length and Brown's criterion),
-  `H^2_c(X) != 0` alone does not suffice.
+- **ISW Corollary D: input identified, and EXPECTED DEAD (final
+  2026-08-23, after a day of reversals).**  `H^2(Lambda,Z Lambda)` is
+  the end cohomology of the development
+  (`km-group-ring-h2-is-development-end-cohomology`).  The codistance
+  filtration reduces its vanishing to a finite surjectivity
+  (`km-twisted-level-product-cycles-surject`); that input failed at
+  small `q` only (hexagon levels `q <= 3`, `B_2` at `q = 3`), by
+  rational-normal-curve span thresholds verified computationally at
+  `q = 2, 3, 4` and vacuous for `q > 1764^3`; an intermediate
+  characteristic-two collapse claim was retracted (structure-constant
+  bug).  For the actual lattices, in any characteristic, the
+  surjectivity is expected (`q >= 8` suffices, pending the
+  disjoint-class bookkeeping), whence `H^2(Lambda,Z Lambda) = 0`,
+  `Lambda` is type `F_3`, and Corollary D is DEAD alongside the
+  trivial-coefficient clause of Corollary E
+  (`triangle-colimit-rational-h2-vanishes`).  The `L^0` clause, with
+  its sphere-pairing obstruction system, is then the only known
+  Ioana--Spaas--Wiersma mechanism for LP failure here.
 - **Continuous-cohomology induction: inner fork DECIDED NEGATIVE
   (2026-08-21), by three independent blocks.**  (i) *The degree-2
   vanishing input does not exist.*  The DJ-framework vanishing for a

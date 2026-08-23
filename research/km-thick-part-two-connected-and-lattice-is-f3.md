@@ -9,11 +9,12 @@ distinct_from:
   simple-kazhdan-kac-moody-lattices-exist: that records finite presentability (type `F_2`) from Caprace--Rémy and Abramenko--Mühlherr; this is the next finiteness property `F_3`, not in the recorded literature for compact hyperbolic type.
 ---
 
-**OPEN (the reducing input `km-twisted-level-product-cycles-surject`
-was REFUTED at `G_2` levels for every computed `q` later the same day,
-so this claim currently has no live route; the hexagon levels carry
-explicit relative `H_3` classes and 2-connectivity of the thick part
-is equivalent to their connecting maps being injective).**  Let
+**OPEN (final status 2026-08-23: the reducing input
+`km-twisted-level-product-cycles-surject` failed only at small `q`
+(`q <= 3` for hexagon levels, `q = 3` for `B_2`), by curve-span
+thresholds vacuous for `q > 1764^3`; for the actual lattices the
+route through it is LIVE again and expected to close, in any
+characteristic, once the disjoint-class bookkeeping is written).**  Let
 `X^ = Z_(<=0)` be the union of the closed product cells `x x y` over
 opposite chamber pairs of the `(2,4,6)` twin building, a cocompact
 proper simply connected `Lambda`-complex of dimension four.  Then

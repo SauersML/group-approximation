@@ -120,15 +120,15 @@ supported 1-cochain.
   analogous computation is recorded for two places or for
   compact-hyperbolic type; both `H^2(Lambda;Z Lambda)=0` and `!=0`
   remain consistent with what is established.
-- **Status after the same-day refutation of the surjectivity
-  (2026-08-23, final).**  The twisted surjectivity holds at grid and
-  `B_2` levels (large `q` prime to six) but FAILS at every `G_2` level:
-  the one-class-deleted opposition geometry of the hexagon is
-  disconnected (computed at `q = 2, 3`) and component-indicator
-  annihilators give nonzero cokernel, hence nonzero relative `H_3` at
-  every hexagon level of the codistance filtration.  The earlier
-  same-day note deriving `H^2(Lambda;Z Lambda) = 0` from full
-  surjectivity is therefore MOOT: this claim is OPEN again, and the
-  explicit hexagon-level classes are candidate sources for its truth
-  through the connecting maps of the filtration -- the sharpest
-  remaining objects on both sides of the LP fork.
+- **Final status (2026-08-23).**  The surjectivity holds at grid
+  levels (all `q`), `B_2` levels (`q >= 6`) and hexagon levels
+  (`q >= 8`, any characteristic), pending the disjoint-class
+  bookkeeping: the class-walk thresholds are curve-span phenomena
+  (`km-twisted-level-product-cycles-surject`, final bullet), the
+  small-`q` refutations are vacuous for `q > 1764^3`, and the
+  intermediate same-day notes (characteristic-two collapse; hexagon
+  refutation for all `q`) are retracted/re-scoped.  Consequently this
+  claim is EXPECTED FALSE for the actual lattices: the cusp induction
+  gives `H^2(Lambda;Z Lambda) = H^2_c(X^) = 0` once the bookkeeping is
+  done, and the Corollary D route dead-ends, while `Lambda` becomes
+  type `F_3`.
