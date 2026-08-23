@@ -33,7 +33,7 @@ the finite game gap.
 - A literal group element cannot implement arbitrary matrices on the whole
   faithful Frobenius block; `finite-support-one-sided-stabilizers-are-torsion`
   gives the general support obstruction.  More sharply,
-  `distinct-literal-involutions-agree-on-at-most-half-the-canonical-mass`
+  `literal-involution-agreement-mass-at-most-half`
   shows that one distinct literal involution already spends deficit at least
   `1/2`.  The shared `B_x` must be a genuinely additive group-algebra unitary.
 - Direct orthogonal patching spends total trace at least one.  A common mask

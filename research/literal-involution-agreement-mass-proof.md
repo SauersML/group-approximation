@@ -3,7 +3,7 @@ rg: 2
 id: literal-involution-agreement-mass-proof
 kind: route
 title: Identify the agreement space with the fixed space of one cyclic translation
-target: distinct-literal-involutions-agree-on-at-most-half-the-canonical-mass
+target: literal-involution-agreement-mass-at-most-half
 requires:
   - finite-support-one-sided-stabilizers-are-torsion
 ---
