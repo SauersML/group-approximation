@@ -330,6 +330,21 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Mihailova mechanism must instead Fourier-mix the actor grades or solve the
   state-specific projective cross-stability problem already isolated in
   `mihailova-actor-liftable-ce-forces-q-hyperlinear`.
+- **Orthogonal bounded Fourier support reduces to a finite-range cocycle,
+  and does not collapse (proved, 2026-08-23).**
+  `orthogonal-finite-fourier-reps-are-orbit-cocycles` classifies every
+  candidate of the form `V_a=sum_g u_g p_(a,g)` with orthogonal source and
+  range projections.  Unitarity is exactly the pair of partition identities,
+  multiplication is the explicit finite cocycle equation `(OFC3)`, and the
+  canonical trace is the mass of the identity-labeled piece.  A three-grade
+  transposition supported on `{e,g,g^(-1)}` is already a nonhomogeneous exact
+  involution when `g` has infinite order.  Thus the hoped-for bounded-support
+  orthogonality collapse is false.  The live normalizer subproblem is now
+  sharp: construct or exclude a regular-trace finite-range cocycle for the
+  source multiplication table inside the Mihailova left-right Bernoulli
+  relation.  Nonnormalizing Fourier coefficients lie instead in the existing
+  Hadamard-cell assembly, which is equivalent to the full ambient-envelope
+  problem.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the

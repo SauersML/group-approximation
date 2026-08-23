@@ -112,3 +112,16 @@ and hence zero.  Thus the quotient `Q` cannot be installed by compressing the
 canonical actor unitaries, even with a non-base and non-Cartan projection.
 The projective cross-stability/state-specific promotion boundary is not a
 disguised quotient-corner construction.
+
+The first genuinely Fourier-mixed normalizer ansatz now has an exact normal
+form.  By `orthogonal-finite-fourier-reps-are-orbit-cocycles`, a unitary
+written as a finite orthogonal sum `sum_g u_g p_g` is a finite-valued
+full-group transformation, and a family of such unitaries obeys a source
+group multiplication table exactly when its source partitions satisfy the
+explicit cocycle equations `(OFC3)`.  Three grades already give a
+nonhomogeneous exact involution by swapping two measurable pieces, so support
+orthogonality cannot force collapse beyond the existing two-grade theorem.
+For the Mihailova candidate, the bounded-support normalizer problem is
+therefore precisely a regular-trace finite-range cocycle problem inside the
+left-right Bernoulli orbit relation.  Arbitrary nonnormalizing coefficients
+remain the separate Hadamard-cell branch.
