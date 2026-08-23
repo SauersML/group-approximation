@@ -8,6 +8,7 @@ distinct_from:
   two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse: that gives arbitrary high-girth Reynolds columns with a divergent inverse; this identifies the special arithmetic scalar matrices which must actually be bounded or shown divergent.
   right-displacement-reynolds-scalar-cb-complete: that proves this scalar condition is also sufficient for the full cb inverse at exact left-regular endpoints; the present claim only extracts the diagonal restriction.
   passive-iwahori-off-zero-cb-normal-splitting: that asks for the full noncommutative off-zero splitting; even after the exact-zero equivalence, nonlinear continuation away from the endpoint remains open.
+  fourth-power-mersenne-reynolds-levels-have-diagonal-crt-coupling: that gives an explicit composite family with growing torus index and reduces it to nontrivial right-unipotent harmonic blocks; this states the general prime and deeper-ring frontier.
 ---
 
 **ESTABLISHED; EXACT NECESSARY SCALAR CONDITION.**  Let `Q` be a finite
@@ -119,6 +120,13 @@ i_p=(p-1)/(2 ord_p(4)).                                (DSS9)
 
 The analogous label can become still larger on composite and prime-power
 levels.
+The family `M_n=4^n-1` makes this growth unconditional:
+`fourth-power-mersenne-reynolds-levels-have-diagonal-crt-coupling` proves
+that its split-torus index is `phi(M_n)/(4n)->infinity` in the quotient by
+global `{+-I}`.  It also proves that CRT leaves the cyclic fourth-power
+orbit diagonally coupled rather than tensoring the factor columns.  The
+resulting exact target is the infinity Green estimate on the nontrivial
+right-unipotent character blocks, not a factorwise lift.
 Moreover the deeper congruence layer does not simply tensor this
 residue-field column with an identity fiber.
 `prime-power-reynolds-column-does-not-tensor-over-reduction` proves this at
