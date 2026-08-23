@@ -51,3 +51,13 @@ defect is a suitable subgroup for the Bass--Serre action, and
 carrier inside that defect.  Hence the source and suitability stages of the
 fully formal torsion-free route are closed; the remaining formal seam is the
 small-cancellation routing quotient.
+
+**Property (T) lives next door (2026-08-23).**  This claim is bare on purpose,
+but the routed quotient's detector is not: the root-capture step of the kill
+theorem opens by extracting a spectral gap from property (T) of the *base*, as
+recorded in [[defect-forces-proper-self-embedding]].  The certificate for the
+literal source here — `P = Gamma(3) ltimes Z^3` is finitely presented,
+torsion-free and Kazhdan, so this bare datum upgrades to a full
+`KazhdanCompressionCore` — is [[affine-congruence-source-is-kazhdan]], via
+`LiteralAffineCongruenceBase.p_hasKazhdanPropertyT`.  Consumers that need the
+detector should require that node rather than this one.
