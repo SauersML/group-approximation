@@ -80,6 +80,22 @@ cohomological input.
   ones, whose equivariant extension to the development is a coboundary
   there.  Simplicity still kills the finite-index detour of ISW Example
   1.3(ii) and Remark 1.2.
+- **The `L^0` clause now has an explicit obstruction system
+  (2026-08-23).**  By `(RH2)/(RH3)` the class of a `T`-invariant
+  `f in L^0(Y,R)` survives to `H^2(Lambda;L^0)` iff the equivariant
+  cocycle `c_f` (value `g f` on the 2-cell `g sigma_0`) pairs to zero
+  with every 2-cycle of the development.  The explicit sphere family of
+  `km-development-has-nonzero-end-cohomology-in-degree-one` therefore
+  imposes the concrete identities
+
+      `sum_x eps_x ( g_(x,y_i) - g_(x,y_j) ) f = 0  in L^0(Y,R)`
+
+  over all panel/cone configurations, on top of
+  `f notin L^0(Y)^(P_1)+L^0(Y)^(P_2)+L^0(Y)^(P_3)`.  Any candidate
+  ergodic action (Bernoulli included) can now be tested against finitely
+  many such identities at a time; deciding whether all sphere and
+  non-sphere 2-cycle conditions can hold simultaneously with the
+  non-degeneracy is the surviving content of Corollary E here.
 - **ISW Corollary D, exact input identified and CONDITIONALLY DEAD
   (2026-08-23, updated same day).**  Later same-day analysis of the
   codistance filtration of the twin-building product
