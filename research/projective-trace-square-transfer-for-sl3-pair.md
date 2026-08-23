@@ -55,12 +55,65 @@ weakening consumed by the HNN marked word.
   decomposition `H=XZXC` holds, and the literal target coboundary
   `W=[U,H]` is a nonidentity three-cycle, hence has normalized trace zero.
   So retaining the original coboundary and decomposition data does not
-  improve the rank-one attack. Additional shared arithmetic structure is
-  indispensable. The earliest explicit omitted candidate is common-root
-  additivity `X=x(1)^2`, `Y=y(1)^(-2)`,
+  improve the rank-one attack. The first omitted arithmetic datum is the
+  common-root additivity `X=x(1)^2`, `Y=y(1)^(-2)`,
   `C=x(1)^(-1)y(1)x(1)^(-1)` together with its cross-root gluing; the
-  countermodel's transposition `X` has no square root in `S_3`. This does not
-  assert that root additivity alone suffices.
+  countermodel's transposition `X` has no square root in `S_3`. Any smallest
+  viable arithmetic transfer inequality must see that shared root carrier,
+  not just the five raw rank-one variables.
+
+- **Literal root additivity kills that smallest enemy, but only that
+  enemy.** `root-additivity-eliminates-the-s3-rank-one-leak` performs the
+  complete `S_3` case analysis after substituting
+  `X=a^2`, `Y=b^(-2)`, `C=a^(-1)b a^(-1)` and requiring `U` to centralize
+  `a,b`. If `U` is a transposition, its two-element centralizer makes the
+  denominator identity force `H` into the same centralizer. If `U` is a
+  three-cycle, its centralizer is `A_3`; a noncentral `H` would invert that
+  cyclic group, making the right side of the denominator identity lie in
+  `A_3`, impossible for a transposition. Thus `[U,H]=1` in every `S_3`
+  realization. This neither proves a matrix inequality nor rules out larger
+  finite groups. It says the next falsification test should first search the
+  two-root rank-one packet in larger finite groups; rank-two Steinberg gluing
+  is justified only if that stronger packet still leaks.
+
+- **The bottom two-primary root face satisfies an explicit HS transfer
+  inequality.** `involutory-opposite-root-face-obeys-projective-transfer`
+  proves, for the literal root variables `a=x_13(1)`, `b=y_31(1)`, that
+  the denominator identity has
+
+  ```text
+  ||[U,H]-I||_2
+   <=2(eta+||a^2-I||_2+||b^2-I||_2)
+      +2||Ua-aU||_2+||Ub-bU||_2.
+  ```
+
+  Indeed the two square terms reduce the recursive denominator word to
+  `H approximately a b a^(-1)`, which already centralizes `U`. Thus an
+  enemy cannot live on the exponent-two root stratum. It must carry deeper
+  two-power root order or pay a displayed defect. This is the first robust
+  positive inequality beyond the `S_3` no-go and explains the role of the
+  next rank-two layer: synchronize the deeper conductor strata across the
+  shared Steinberg root, rather than spend rank-two machinery on the already
+  closed involutory face.
+
+- **One genuine A2 relation supplies the involutory long-root input.**
+  `involutory-steinberg-simple-root-forces-long-root-involution` proves the
+  robust identity
+
+  ```text
+  ||a^2-I||_2
+   <=4||a-[p,q]||_2+||p a p^*-a||_2+2||p^2-I||_2.
+  ```
+
+  It is just the quantitative fact that conjugation by an involution
+  reverses its commutator. Using the upper A2 chamber
+  `a=[x_12(1),x_23(1)]` and the opposite chamber for `b=y_31(1)`, then
+  feeding both estimates into the preceding opposite-root inequality,
+  gives the first explicit rank-two-to-target cascade. It closes every
+  packet supported on the bottom exponent-two simple-root stratum. The
+  remaining enemy must put positive mass at deeper two-power conductor in
+  at least one opposite chamber, exactly where the full shared-root hexagon
+  synchronization remains necessary.
 
 - **Approximate perfectness removes the projective phases quantitatively.**
   This part of the exact proof survives presentation defect and is not the

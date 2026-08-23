@@ -59,6 +59,27 @@ second word-generated algebra and cannot exchange roles with the label factor.
   Gowers--Hatami uniqueness alone supplies only separate same-level
   intertwiners.
 
+- **The three-test analytic core does not imply the bicommutant conclusion.**
+  `three-gauge-tests-leave-a-tensor-spectator` gives an exact common-corner
+  countermodel with zero cross-Gram deficit and zero mixed Pauli commutators:
+  amplify `M_2 tensor M_m` by an unused `M_s` factor.  The named algebras see
+  only identities on that factor, so both relative-gauge lemmas are sharp
+  while both commutant equalities and joint generation fail.  What the two
+  lemmas actually prove together is the dimension-free estimate
+
+  ```text
+  ||T_1-T_2U||_2 <= sqrt(2Delta)+||[V,X]||_2+||[V,Z]||_2,
+  U in {X,Z}'.
+  ```
+
+  To reach `(CCMB1)`, the compressor must separately provide robust joint
+  fullness/spectator elimination for the two named algebras on that same
+  corner.  In the exact commuting finite-dimensional setting, joint fullness
+  alone implies the two mutual-commutant identities.  The repaired minimal
+  target is `common-corner-word-pair-has-uniform-spectator-gap`, and
+  `common-corner-bicommutant-from-gauge-and-spectator-gap` records the exact
+  three-lemma dependency chain.
+
 - **Nested Gowers--Hatami uniqueness does not expose the reservoir.**
   `gowers-hatami-uniqueness-does-not-lock-nested-pauli-reservoirs` gives the
   exact countermodel.  At fixed depth one may exactify the largest

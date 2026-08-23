@@ -5,6 +5,85 @@ date: 2026-08-22
 
 # Cairn cascade audit
 
+## Cascade triage after finite-multiplicity and spectator audits
+
+The raw Cairn frontier score now puts
+`projective-trace-square-transfer-for-sl3-pair` first: it has five direct
+consumers and six transitive consequences, including the goal, two arithmetic
+fold/collapse statements, a filtered actuator, and non-relative embeddability.
+This is the largest **honest reusable** cascade.  The exact `S_3` leak shows
+that a bare rank-one coboundary packet is insufficient, but the added root
+identities eliminate every `S_3` realization.  More strongly, the established
+bottom-`A_2` calculation proves dimension-free transfer on the two
+exponent-two chambers.  The surviving obstruction is now localized: a
+countermodel must carry positive mass in deeper dyadic conductor strata, and
+the next useful lemma is a six-chamber hexagon square-function which charges
+that deep-root mass to the original presentation defect.
+
+The smallest terminal inequality remains
+`atlas-five-row-operator-phase-lift`, but its proof mechanism is now sharply
+classified.  The exact Leavitt factor itself satisfies all six nonlinear
+cycle words while retaining a nontrivial chart bridge and positive five-row
+linear energy.  Consequently no universal group identity, tracial SOS, or
+`C*`-algebra inequality proves the lift.  Exact finite zeroes are finite
+quotients of the six-relator quotient with both `A_8` charts faithful and an
+`H` bridge retained; the natural `A_9` and `A_10` screens exclude the obvious
+examples but cannot yield a uniform gap.  The smallest genuinely
+finite-matrix-only replacement is the one-cut/Fredholm leakage target:
+extract a projection `P` and word operator `W` for which outgoing leakage is
+controlled by the six nonlinear defects while incoming leakage is bounded
+below by the five-row energy.  Finite matrices obey
+
+```text
+||(1-P)WP||_2^2 = ||PW(1-P)||_2^2,
+```
+
+whereas the infinite Leavitt/Hilbert-hotel model can have nonzero index.  A
+successful extraction would close the goal immediately.  Fixed PI degree,
+rank congruences, and regular-character margins are weaker: each either
+survives amplification or also holds in the exact infinite escape.
+
+The under-wired common-corner route has also compressed to one precise
+resource.  Cross-Gram polar alignment plus two mixed Pauli commutators do
+**not** imply mutual bicommutants.  The exact tensor model
+
+```text
+C^2 tensor C^m tensor C^s,
+A=M_2 tensor I tensor I,
+B=I tensor M_m tensor I,
+T_1=T_2=V=I
+```
+
+passes all three tests with zero defect while the `M_s` spectator remains.
+The repaired target is therefore
+`common-corner-word-pair-has-uniform-spectator-gap`: one word-visible joint
+fullness estimate on the same positive-density corner.  If proved together
+with the already established gauge estimates it yields the bicommutant
+extraction, the fixed-PI reservoir lock, and then the goal.  This is a smaller
+and more reusable target than the former bicommutant slogan.
+
+The resulting priority order is:
+
+1. arithmetic hexagon/conductor synchronization, because its parent transfer
+   has the largest independent downstream cascade and the bottom face is now
+   proved;
+2. Atlas one-cut finite-multiplicity extraction, because it is the shortest
+   terminal route and exploits the only known finite-versus-infinite invariant
+   specific to this packet;
+3. common-corner uniform spectator elimination, because it can unlock both
+   bicommutant and PI-degree routes and is reusable across several compiler
+   families;
+4. affine-Frobenius common negative carrier, still a five-claim exact
+   algebraic cascade, but with no comparable local analytic decomposition;
+5. the edgeful-OR3 coefficient link and whole-module exposure programs, both
+   demoted because their apparent finite cores already require canonical-HS
+   promotion or a no-moving-word theorem.
+
+This audit rules out treating descendant count alone as research leverage.
+The biggest useful nodes are those where the missing statement has become a
+single falsifiable finite-matrix inequality rather than a renamed universal
+compiler.
+
 ## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,
