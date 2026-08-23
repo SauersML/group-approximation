@@ -16,7 +16,7 @@ N_K <= product_(m=1)^K(4^m-1)
     =  4^(K(K+1)/2).                                  (PPP1)
 ```
 
-By `one-unipotent-iwahori-quotients-are-bounded-congruence-extensions`,
+By `one-unipotent-quotients-are-bounded-congruence`,
 
 ```text
 log |Q_K|=3 log N_K+O_Gamma(1).                        (PPP2)

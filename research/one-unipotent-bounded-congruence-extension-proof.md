@@ -3,7 +3,7 @@ rg: 2
 id: one-unipotent-bounded-congruence-extension-proof
 kind: route
 title: Compute the closed local normal closures and pull back through the finite congruence kernel
-target: one-unipotent-iwahori-quotients-are-bounded-congruence-extensions
+target: one-unipotent-quotients-are-bounded-congruence
 requires:
   - finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence
 ---
@@ -65,4 +65,3 @@ one; elementary matrices generate `SL_2(Z/N)`.  Finally
 Passing to the projective quotient changes this by a factor at most two.
 Since `product_p(1-p^(-2))=1/zeta(2)>0`, `(BCE2)--(BCE3)` and `(BCP4)`
 give `(BCE4)`.
-

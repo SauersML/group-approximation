@@ -6,10 +6,10 @@ title: The one-parameter bounded-cycle staircase reaches its finite congruence l
 distinct_from:
   bs14-long-cycles-admit-bounded-period-shadowing: that proves the error is O(K^-1/2); this expresses the same unavoidable staircase cost in terms of the imposed power level and finite quotient size.
   fixed-level-bs14-compatible-basin: that states the abstract radius-crossing condition; this quantifies the scale any proposed level-dependent radius estimate must beat.
-  one-unipotent-iwahori-quotients-are-bounded-congruence-extensions: that identifies the target quotient; this compares the target size with the preconditioning accuracy.
+  one-unipotent-quotients-are-bounded-congruence: that identifies the target quotient; this compares the target size with the preconditioning accuracy.
 requires:
   - bs14-long-cycles-admit-bounded-period-shadowing
-  - one-unipotent-iwahori-quotients-are-bounded-congruence-extensions
+  - one-unipotent-quotients-are-bounded-congruence
 ---
 
 For

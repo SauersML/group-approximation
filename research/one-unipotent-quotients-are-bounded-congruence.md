@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: one-unipotent-iwahori-quotients-are-bounded-congruence-extensions
+id: one-unipotent-quotients-are-bounded-congruence
 kind: claim
 title: A one-unipotent Iwahori quotient differs from PSL2 modulo N by only the fixed congruence kernel
 distinct_from:
@@ -45,4 +45,3 @@ uncontrolled exotic finite quotients.  Conversely, `(BCE2)` supplies no
 quantitative presentation-stability radius: congruence classification of
 exact representations begins only after an approximate tuple has been
 corrected.
-
