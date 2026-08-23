@@ -6,12 +6,12 @@ import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 /-!
 # Nonamenability of `E`, and the Lance debt
 
-The paragraph immediately after the proof of Theorem D in
-`non_mf_groups_exist.tex` (**navigate by the anchor string "The algebra is not
+The corresponding paragraph in `non_mf_group_notes.tex` (**navigate by the
+anchor string "The algebra is not
 nuclear"**, since concurrent sessions renumber the file continuously) reads
 
 > The algebra is not nuclear: the canonical map `\mathcal B → E` is injective
-> (Section `sec:witness`), so `E` contains an infinite Kazhdan group and is
+> (Section `sec:literal-presentation`), so `E` contains an infinite Kazhdan group and is
 > nonamenable, whence `\Cred(E)` is not nuclear [Lance].  The nuclear form of
 > the Blackadar--Kirchberg problem --- whether every stably finite separable
 > nuclear `C^*`-algebra is quasidiagonal --- therefore remains open.
@@ -25,7 +25,7 @@ why it is out of reach and exactly how little of the paragraph depends on it.
 `GroupApproximation.NuclearityBaseEmbedding.baseMap_injective` proves
 the manuscript's opening clause at the literal group, by the manuscript's own
 route: compose with the affine--Clifford witness `E → W` of Section
-`sec:witness`, observe that the composite is the level-zero inclusion of the
+`sec:literal-presentation`, observe that the composite is the level-zero inclusion of the
 exact affine matrix group, and use that the twenty relators present that group
 (`LiteralBaseCompleteness.affineQuotient_injective`) and that the level-zero
 map is injective (`MarkedCompression.iotaAmbient_injective`).

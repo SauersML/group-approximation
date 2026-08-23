@@ -12,12 +12,11 @@ import Mathlib.Analysis.Real.Sqrt
 # An infinite group with property `(T)` is not amenable
 
 This module discharges the first of the two classical literature inputs of the
-paragraph that immediately follows the proof of Theorem D in
-`non_mf_groups_exist.tex` (locate it by its opening words "The algebra is not
+paragraph in `non_mf_group_notes.tex` (locate it by its opening words "The algebra is not
 nuclear"; the file is under concurrent edit and line numbers drift):
 
 > The algebra is not nuclear: the canonical map `\mathcal B → E` is injective
-> (Section `\ref{sec:witness}`), so `E` contains an infinite Kazhdan group and is
+> (Section `\ref{sec:literal-presentation}`), so `E` contains an infinite Kazhdan group and is
 > nonamenable, whence `\Cred(E)` is not nuclear [Lance].  The nuclear form of
 > the Blackadar--Kirchberg problem --- whether every stably finite separable
 > nuclear `C^*`-algebra is quasidiagonal --- therefore remains open.
