@@ -233,7 +233,7 @@ and eight centrality relators. -/
 def relators : Finset (FreeGroup Generator) :=
   transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪ markedRelators
 
-/-- **The group `E`**: eight generators, forty-one relators. -/
+/-- The explicit group `E`. -/
 abbrev E : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
