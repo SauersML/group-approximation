@@ -312,3 +312,41 @@ supported 1-cochain.
   against `|Delta| ~ q^7` for `B_2`) leave surjectivity open.  The
   same computation for `A_2` residues must produce a nonzero `H_2`
   (affine sanity check), so it is the discriminating input.
+- **First level computations (2026-08-23).**  (i) Rank-`(2,2)`, type
+  `A_1 x A_1` (grid), `K={s}`: the class subgraphs `A_i` are stars
+  around the single-class points, `Omega` is the join `A * B` with
+  the matched-class point edges deleted, and Mayer--Vietoris gives
+  `H~_2(Omega)=coker(H_1(A) (x) H_1(B) -> (+)_i Z_1(K_(q,q)))`, which
+  is SURJECTIVE (single-slot rank-one tensors are differences of two
+  product cycles), so `H~_2(Omega)=0`.  (ii) Rank-`(2,2)`, type `B_2`,
+  `K={s}`: points off `ell_1` are single-class (collinear with one
+  point of `ell_1`), lines disjoint from `ell_1` meet every class once
+  (no triangles), `Omega` is again `A*B` with the `q^4(q+1)`
+  matched-class point edges deleted, and the same cokernel vanishes
+  provided the bipartite "two-class line graphs" are connected and
+  `q+1>=5`; `G_2` is expected to behave alike.  (iii) Rank-`(1,2)`
+  pairs with `K=J={s}` (`w` in the centralizer of `s`, panel against
+  rank-two residue): here the co-projection identifies the whole
+  panel with an `s`-panel `{y_i}` of the rank-two residue,
+  `Omega = B cup union_i Cone_(x_i)(Opp(y_i))` with `B=union_i
+  Opp(y_i)`, and
+
+      `H~_2(Omega) = ker( (+)_i H_1(Opp(y_i)) -> H_1(B) )`,
+
+  which is NONZERO for every polygon type as soon as `Opp(y_i) cap
+  Opp(y_j)` contains a cycle for two chambers of one panel (grid:
+  `K_(q-1,q)`, so `q>=3`; `B_2`, `G_2`, `A_2` similarly for large
+  `q`): the class `(z,-z)`.  Hence the codistance filtration has
+  nonzero relative `H_3` at every rank-`(1,2)` twisted level, for
+  compact hyperbolic and affine types alike.  This does not yet decide
+  `H_2(X)`: since `H_2(Z_(<=R+1))` is the quotient of `H_2(Z_(<=R))` by
+  the image of the connecting map, `H_2(X)!=0` iff some connecting map
+  `partial_R: H_3(Z_(<=R+1),Z_(<=R)) -> H_2(Z_(<=R))` is nonzero, i.e.
+  iff the explicit boundary 2-cycle
+  `beta = partial((x_i - x_j) x Cone(z))` (which lies in `Z_(<=R)`
+  because the `e_s`-terms cancel and all other faces are descending)
+  is NOT a boundary inside `Z_(<=R)`.  The cone `Cone(z)` is the unique
+  2-chain of `X_-` with its boundary (`H_2(X_-)=0`), so any filling of
+  `beta` in `Z_(<=R)` must use chamber pairs at strictly shorter
+  codistance on the `X_+` side.  Deciding this at the lowest twisted
+  level is the remaining finite step.
