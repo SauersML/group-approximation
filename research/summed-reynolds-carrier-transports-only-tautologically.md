@@ -7,6 +7,7 @@ distinct_from:
   summed-reynolds-cut-synchronizes-kernel-corners: that constructs one P_0-invariant spectral carrier and polar-corrects every compressed kernel word; this proves that the carrier and all of those polar corrections already extend to the full ambient corner with explicit dimension-free cost.
   triangle-kernel-relators-charge-authenticated-corner-leakage: that controls Julia leakage after a compressed word has been matched to native chart paths; this shows why the Reynolds construction by itself supplies only the tautological paths I and pi(n_a), not the independently exactified P_13 chart path needed for that match.
   relative-three-chart-correction-is-km-regular-stability: that identifies exact simultaneous overlap correction with the terminal global theorem; this closes the intervening projection-transport question and localizes the remaining content entirely in a comparison of corrected chart coefficients.
+  one-state-protected-coefficient-leaves-relative-gh-gauge: that proves one full-trace unitary coefficient would fix the relative P_13 gauge with constant one, whereas one faithful state-dependent coefficient leaves an asymptotically maximal amplified commutant gauge.
 ---
 
 **ESTABLISHED.**  In the notation of
@@ -86,3 +87,12 @@ partial isometry whose two `P_1`/`P_3` path coefficients are close to
 `tilde B_a` (or directly to each other) on positive regular mass.  Such a
 theorem is exactly where the native kernel relations must enter; another
 spectral cut or invariance argument cannot provide it.
+
+The strength of the required protection is now classified by
+`one-state-protected-coefficient-leaves-relative-gh-gauge`.  Since
+`tilde B_a` is a full ambient unitary, normalized-HS control of the single
+operator coefficient `Q_2 tilde B_a Q_1^*` fixes the relative gauge with
+constant one.  State-dependent control does not: even a faithful density can
+ignore a trace-large amplified complement.  Thus a relative exactification
+must protect this coefficient in ambient trace norm, or prove a uniform
+density domination which upgrades its state seminorm to that norm.
