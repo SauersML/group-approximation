@@ -6,7 +6,7 @@ title: Resetting a scalar BS source mode costs exactly its cyclic frequency
 distinct_from:
   bs14-long-packet-monodromy-reset-creates-fixed-sources: that chooses the principal return root and obtains a pi-over-m upper bound; this classifies every possible R-eigenmode reset and proves that one simple packet can supply at most one fixed source.
   bs14-trivial-boundary-inversion-forces-r-fixed-source: that makes R-fixedness necessary for a neutral boundary; this computes the exact core movement needed to make a selected cyclic mode satisfy that condition.
-  iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that asks the relator energy to pay the sum of inverse cyclic frequencies; this identifies the finite-packet source-selection operation whose cost that weighted estimate measures.
+  iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that pays the inverse-frequency cost of absorbing a residual by a same-core gauge; this computes the complementary direct-frequency cost of moving the exact core so a selected mode becomes a boundary source.
 ---
 
 Let `(R,S)` be a multiplicity-one exact BS packet on one fourth-power orbit
