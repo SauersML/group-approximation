@@ -22,11 +22,10 @@ simultaneous normalized-HS exactification does not add relations: feeding
 it the exact orthogonal-amalgam representation from the second required
 claim returns a zero-defect admissible representation.  The third required
 claim supplies the positive regular stationary multiplicities, including
-every rejected marked selector atom.  The restrictions to D8 are regular
-multiples, so their multiplicity-space intertwiner gauges may align the
-same character vector at every occurrence.  Consistency is then scalar and
-exact on that atom, proving
-`(PLV5)--(PLV6)`.
+every rejected marked selector atom.  Consistency is already exact on the
+whole source by `(PNF2)`, since every transported occurrence is the image
+of the same source selector.  This proves `(PLV5)--(PLV6)` without a
+state-dependent choice of atom or intertwiner.
 
 The fourth required claim says that Lin's spectral family for the Gram
 state is constantly `Q` almost everywhere, so applying Lin after this exact
