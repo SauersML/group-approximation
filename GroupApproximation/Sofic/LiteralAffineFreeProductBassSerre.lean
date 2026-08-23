@@ -131,6 +131,38 @@ theorem rightShift_not_mem_leftFactor :
   have hone : rightShift = 1 := by simpa using hinter
   exact inr_one_ne_one hone
 
+/-! A small reduced-word combinator used below.  `repeatThen u n v` spells
+`u^n v` without invoking normalization: the end of the cyclic word `u` is
+assumed different from its beginning, and `v` begins in the same factor as
+`u`. -/
+
+private def repeatThen {M : Bool → Type*} [∀ i, Group (M i)]
+    {i j k : Bool} (hji : j ≠ i) (u : CoprodI.NeWord M i j) :
+    (n : ℕ) → CoprodI.NeWord M i k → CoprodI.NeWord M i k
+  | 0, v => v
+  | n + 1, v => u.append hji (repeatThen hji u n v)
+
+private theorem repeatThen_prod {M : Bool → Type*} [∀ i, Group (M i)]
+    {i j k : Bool} (hji : j ≠ i) (u : CoprodI.NeWord M i j)
+    (n : ℕ) (v : CoprodI.NeWord M i k) :
+    (repeatThen hji u n v).prod = u.prod ^ n * v.prod := by
+  induction n with
+  | zero => simp [repeatThen]
+  | succ n ih =>
+      rw [repeatThen, CoprodI.NeWord.append_prod, ih, pow_succ']
+      simp only [mul_assoc]
+
+private theorem repeatThen_length {M : Bool → Type*} [∀ i, Group (M i)]
+    {i j k : Bool} (hji : j ≠ i) (u : CoprodI.NeWord M i j)
+    (n : ℕ) (v : CoprodI.NeWord M i k) :
+    (repeatThen hji u n v).toList.length =
+      n * u.toList.length + v.toList.length := by
+  induction n with
+  | zero => simp [repeatThen]
+  | succ n ih =>
+      simp only [repeatThen, CoprodI.NeWord.toList, List.length_append, ih]
+      omega
+
 /-- The explicit commutator between the right translation and the marked
 left-factor defect. -/
 def crossingDefect : Ambient :=

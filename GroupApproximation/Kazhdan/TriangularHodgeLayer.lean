@@ -1796,6 +1796,79 @@ theorem normalizedLink_pullback {Row : Type} [Fintype Row]
   field_simp [hd] at hid ⊢
   linarith
 
+theorem garlandDecomposition {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (regularDegree : ℕ) (gap : ℚ)
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (h : LinkCertificateChecks T regularDegree gap q) (i l : Generator) :
+    hodgeMatrix (generatorCoboundary (generator T))
+        (scaledBoundary T regularDegree) i l =
+      scalarMatrix (garlandGap regularDegree gap) i l +
+        (∑ a, adjoint (garlandGramRow T regularDegree gap q h a i) *
+          garlandGramRow T regularDegree gap q h a l) + 0 := by
+  classical
+  unfold hodgeMatrix
+  rw [sum_scaledBoundary_gram]
+  have hglobal := linkLaplacianPullback_eq_boundaryGram_add_diagonal
+    T regularDegree h.2.2.1 i l
+  rw [show (∑ j, adjoint (boundary T j i) * boundary T j l) =
+      linkLaplacianPullback T i l -
+        (if i = l then MonoidAlgebra.single 1 (regularDegree : ℚ) else 0) by
+    rw [hglobal]
+    noncomm_ring]
+  simp only [garlandGramRow, GarlandRow, Fintype.sum_sum_type]
+  rw [mul_sub]
+  rw [sum_liftedLinkRow_gram T regularDegree h.1 q i l,
+    sum_coboundaryFactor_gram h i l,
+    normalizedLink_pullback T regularDegree gap q h i l,
+    meanZeroProjector_pullback]
+  have hdQ : (regularDegree : ℚ) ≠ 0 := by
+    exact_mod_cast h.1.ne'
+  have hNQ :
+      (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) ≠ 0 := by
+    exact_mod_cast (Fintype.card_ne_zero :
+      Fintype.card (SignedGenerator (Generator := Generator)) ≠ 0)
+  have hmeanScalar :
+      ((1 : ℚ) / Fintype.card (SignedGenerator (Generator := Generator))) *
+          (gap / regularDegree) =
+        gap / (Fintype.card (SignedGenerator (Generator := Generator)) *
+          regularDegree) := by
+    field_simp [hdQ, hNQ]
+  have hdiagonalScalar :
+      (2 : ℚ) * (gap / regularDegree) -
+          ((1 : ℚ) / regularDegree ^ 2) * regularDegree =
+        (2 * gap - 1) / regularDegree := by
+    field_simp [hdQ]
+  have hGeneratorQ : (Fintype.card Generator : ℚ) ≠ 0 := by
+    exact_mod_cast (Fintype.card_ne_zero : Fintype.card Generator ≠ 0)
+  have hcardSigned :
+      (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) =
+        2 * (Fintype.card Generator : ℚ) := by
+    simp [SignedGenerator, Fintype.card_prod, mul_comm]
+  have hmeanExpanded :
+      (2 : ℚ)⁻¹ * (Fintype.card Generator : ℚ)⁻¹ *
+          (gap / regularDegree) =
+        gap / (2 * ((Fintype.card Generator : ℚ) * regularDegree)) := by
+    field_simp [hdQ, hGeneratorQ]
+  have hdiagonalExpanded :
+      (2 : ℚ) * (gap / regularDegree) -
+          ((regularDegree : ℚ) * regularDegree)⁻¹ * regularDegree =
+        (2 * gap - 1) / regularDegree := by
+    field_simp [hdQ]
+  by_cases hil : i = l
+  · subst l
+    simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
+      single_one_comm, hcardSigned, hmeanScalar, hmeanExpanded,
+      hdiagonalScalar, hdiagonalExpanded]
+    simp_rw [mul_assoc]
+    rw [nested_mul_single_pair, hmeanExpanded, hdiagonalExpanded]
+    noncomm_ring
+  · simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
+      single_one_comm, hil, hcardSigned, hmeanScalar, hmeanExpanded]
+    simp_rw [mul_assoc]
+    rw [nested_mul_single_pair, hmeanExpanded]
+    noncomm_ring
+
 /-- The exact Garland/Żuk certificate assembled entirely from finite link
 data.  There is no analytic or literature premise: all rows are explicit
 rational group-ring expressions. -/
@@ -1824,67 +1897,7 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
     rw [boundary_chain]
     simp
   · intro i l
-    unfold hodgeMatrix
-    rw [sum_scaledBoundary_gram]
-    have hglobal := linkLaplacianPullback_eq_boundaryGram_add_diagonal
-      T regularDegree h.2.2.1 i l
-    rw [show (∑ j, adjoint (boundary T j i) * boundary T j l) =
-        linkLaplacianPullback T i l -
-          (if i = l then MonoidAlgebra.single 1 (regularDegree : ℚ) else 0) by
-      rw [hglobal]
-      noncomm_ring]
-    simp only [garlandGramRow, GarlandRow, Fintype.sum_sum_type]
-    rw [mul_sub]
-    rw [sum_liftedLinkRow_gram T regularDegree h.1 q i l,
-      sum_coboundaryFactor_gram h i l,
-      normalizedLink_pullback T regularDegree gap q h i l,
-      meanZeroProjector_pullback]
-    simp_rw [nested_mul_single_pair]
-    have hdQ : (regularDegree : ℚ) ≠ 0 := by
-      exact_mod_cast h.1.ne'
-    have hNQ :
-        (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) ≠ 0 := by
-      exact_mod_cast (Fintype.card_ne_zero :
-        Fintype.card (SignedGenerator (Generator := Generator)) ≠ 0)
-    have hmeanScalar :
-        ((1 : ℚ) /
-            Fintype.card (SignedGenerator (Generator := Generator))) *
-            (gap / regularDegree) =
-          gap /
-            (Fintype.card (SignedGenerator (Generator := Generator)) *
-              regularDegree) := by
-      field_simp [hdQ, hNQ]
-    have hdiagonalScalar :
-        (2 : ℚ) * (gap / regularDegree) -
-            ((1 : ℚ) / regularDegree ^ 2) * regularDegree =
-          (2 * gap - 1) / regularDegree := by
-      field_simp [hdQ]
-    have hGeneratorQ : (Fintype.card Generator : ℚ) ≠ 0 := by
-      exact_mod_cast (Fintype.card_ne_zero : Fintype.card Generator ≠ 0)
-    have hcardSigned :
-        (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) =
-          2 * (Fintype.card Generator : ℚ) := by
-      simp [SignedGenerator, Fintype.card_prod, mul_comm]
-    have hmeanExpanded :
-        (2 : ℚ)⁻¹ * (Fintype.card Generator : ℚ)⁻¹ *
-            (gap / regularDegree) =
-          gap / (2 * ((Fintype.card Generator : ℚ) * regularDegree)) := by
-      field_simp [hdQ, hGeneratorQ]
-    have hdiagonalExpanded :
-        (2 : ℚ) * (gap / regularDegree) -
-            ((regularDegree : ℚ) * regularDegree)⁻¹ * regularDegree =
-          (2 * gap - 1) / regularDegree := by
-      field_simp [hdQ]
-    by_cases hil : i = l
-    · subst l
-      simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-        single_one_comm, hcardSigned,
-        hmeanScalar, hmeanExpanded, hdiagonalScalar, hdiagonalExpanded]
-      noncomm_ring
-    · simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-        single_one_comm, hil, hcardSigned,
-        hmeanScalar, hmeanExpanded]
-      noncomm_ring
+    exact garlandDecomposition T regularDegree gap q h i l
   · intro i
     simp [hl1zero]
   · intro l
@@ -1898,10 +1911,21 @@ theorem presented_hasKazhdanPropertyT_of_linkCertificate
     (regularDegree : ℕ) (gap : ℚ)
     (q : Row → SignedGenerator (Generator := Generator) → ℚ)
     (h : LinkCertificateChecks T regularDegree gap q) :
-    HasKazhdanPropertyT.{0, 0} (Presented T) :=
-  Certificate.hasKazhdanPropertyT (inferInstance : Nonempty Generator)
-    (generator T) (PresentedGroup.closure_range_of (relators T : Set _))
-    (garlandCertificate T regularDegree gap q h)
+    HasKazhdanPropertyT.{0, 0} (Presented T) := by
+  let C : Certificate
+      (generatorCoboundary (generator T))
+      (scaledBoundary T regularDegree)
+      (garlandGramRow T regularDegree gap q h)
+      (fun _ _ ↦ 0) (garlandGap regularDegree gap) 0 :=
+    garlandCertificate T regularDegree gap q h
+  exact Certificate.hasKazhdanPropertyT
+    (G := Presented T) (I := Generator) (J := TriangleIndex)
+    (K := GarlandRow regularDegree Row)
+    (B := scaledBoundary T regularDegree)
+    (q := garlandGramRow T regularDegree gap q h)
+    (R := fun _ _ ↦ 0) (c := garlandGap regularDegree gap) (r := 0)
+    (inferInstance : Nonempty Generator) (generator T)
+    (PresentedGroup.closure_range_of (relators T : Set _)) C
 
 end SpectralCertificate
 

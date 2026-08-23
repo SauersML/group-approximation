@@ -99,3 +99,12 @@ at sufficiently small atlas defect.
   rigidity than the contradiction needs.  A finite coherence certificate
   giving even `D_a+D_b<=1/1024` would close the explicit nonhyperlinear route
   through the packet-only 19243 lower wall.
+- **Five operator-valued phase rows suffice.**
+  `atlas-five-row-operator-phase-lift` removes the other 229 boundary rows.
+  The established global five-row coercivity already bounds `a^2+b^2` by
+  their linearized energy.  Thus it is enough to bound those five linear
+  rows by the five corresponding nonlinear word defects plus the single
+  interior commutator `c_19243`, uniformly in multiplicity.  Normal-closure
+  telescoping then gives an `O(delta^2)` ceiling and easily beats `1/128`.
+  The exact multiplicity-two local-network escape does not refute this
+  reduction because it does not satisfy this full-atlas six-word packet.
