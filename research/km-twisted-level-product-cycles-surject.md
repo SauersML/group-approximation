@@ -8,9 +8,12 @@ distinct_from:
   km-development-has-nonzero-end-cohomology-in-degree-one: that is the end-cohomology input for Corollary D; this is the finite combinatorial statement that makes the thick part 2-connected (type `F_3`) and identifies that input with `H^2_c` of the thick part, without deciding it.
 ---
 
-**OPEN (finite; scope corrected 2026-08-23: assert only for `q` large
-and coprime to six -- for `q=2` the `G_2` case is FALSE, see the
-computational bullet).**  For each twisted type of
+**AS STATED, EXPECTED FALSE; the `G_2` cases are REFUTED for the
+computed `q` (see `km-hexagon-level-cokernel-is-nonzero`, which
+establishes the negation there and expects it for all `q`), and the
+LIVE content is the restriction to grid and `B_2` levels: proved for
+grid (all `q`, computationally confirmed) and for `B_2` with `q >= 6`
+(rationally false at `q = 3`).**  For each twisted type of
 `km-codistance-filtration-twisted-levels-are-rank-two-pairs` -- a pair
 of rank-two residues of types in `{A_1 x A_1, B_2, G_2}` of the
 `(2,4,6)` twin building over `F_q`, `q>1764^3`, twisted by a common
