@@ -22,7 +22,7 @@ changes materially.
 | `triangle-relator-extension-admits-local-ucp-sections` | 2, including the goal | independent C*-lifting route with a concrete triangle extension |
 | `thompson-v-r5-coherent-carmichael-family` | 2, including the goal | finite word-combinatorics route; bounded one-cell and common-pivot variants are already excluded |
 | `tailored-checks-to-common-marked-group-extensions` | 2, including the goal | universal self-aware/QCA exit, but still essentially the ordinary-group trace-promotion compiler |
-| `iwahori-cubics-suppress-low-bs-orbit-modes` | 9, including the goal | huge formal cascade, but an active audit indicates the literal estimate retains a movable exact-swap gauge and is probably false as stated |
+| `iwahori-cubics-suppress-low-bs-orbit-modes` | formerly 9, including the goal | refuted by a movable exact-Weyl-gauge packet; replaced by the aggregate weighted-energy target below |
 | `hs-schur-packet-gap-amplification` | 11, including the goal | numerically huge but not compressed: its load-bearing statement is the perfect-completeness tracial quantum-PCP synchronization theorem |
 | `parity-charge-or-green-divergence-has-strict-descent` | 12, not yet the goal | large internal cascade, but it still ends at the multiplicity/coherence seam exposed by the terminal recycling example |
 | `central-adaptive-peeling-or-noncentral-stopping` | 12, not yet the goal | same caution: local low-gap stopping data do not preserve terminal character multiplicity |
@@ -39,15 +39,23 @@ does not refute this terminal.
 
 The Iwahori cubic estimate initially looked like the standout by descendant
 count: it would establish nine claims including relative HS stability and the
-goal.  A direct audit, however, exposes a likely missing gauge quotient.  On a
+goal.  A direct audit, however, exposes a missing gauge quotient.  On a
 long exact fourth-power cycle, change the exact Weyl swap by a commutant phase
 `c`; the residual is `c psi(c)^-1`.  A first Koopman mode has band mass of
 order `alpha^2 t^2`, while the fixed presentation defects remain of order
 `alpha`.  The claimed extra `t^epsilon` therefore cannot hold uniformly as
-written.  The viable replacement must minimize over the exact BS-core gauge,
-quotient `Range(1-psi)`, or estimate distance to an exact tuple rather than
-the raw projected residual.  This is being written as a formal Cairn
-refutation before the node is removed from the live cascade.
+written.  This is now the established refutation
+`movable-weyl-gauge-refutes-iwahori-cubic-low-mode-gain`.  The viable
+replacement `iwahori-cubics-control-aggregate-weighted-bs-orbit-energy` asks
+for the sharp sum
+
+```text
+sum_t t^(-2) ||P_t e'||_2^2 <= C delta^2,
+```
+
+or equivalently minimizes over a small exact BS-core gauge.  The
+counterpacket contributes only `Theta(delta^2)` to this aggregate, so it
+refutes the extra pointwise exponent without refuting the corrected route.
 
 The broadest honest arithmetic cut is the SL3 projective trace-square transfer.  Its exact
 finite-dimensional form is proved; the missing content is promotion across
@@ -109,8 +117,8 @@ noncoordinatewise operator construction.
 4. Construct or obstruct the cyclic subgroup-overlap carrier in the
    affine-Frobenius packet.
 5. Treat the triangle local-ucp section as the best independent route.
-6. Replace the false/raw Iwahori low-mode estimate by a gauge-optimized
-   spectral inequality before investing further in its nine-claim cascade.
+6. Attack the corrected aggregate Iwahori weighted-energy inequality; do not
+   reuse the refuted pointwise extra-exponent formulation.
 7. Keep Schur/PCP, TailoredMIP groupification, Fano FC-char, and universal
    canonical trace promotion as broad programs until a smaller intermediate
    inequality is isolated.
