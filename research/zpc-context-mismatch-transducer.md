@@ -103,6 +103,18 @@ additional odd selector characters.
   *matched selector allocations* across the verifier's differently labelled
   overlapping contexts; no further matrix-dimensional estimate is hidden
   after that mechanism.
+- **A projective cycle phase does not align the labels.**
+  `zpc-projective-cycle-gauge-cannot-glue-priority-decoders` gives a sharp
+  dimension-four countermodel.  Three exact covariance transports between
+  two maximally mismatched decoded involutions have Pauli `X,Z` fundamental
+  returns with commutator equal to the marked central sign `-I`.  All cycle
+  and covariance losses vanish while decoded mismatch is `4`.  More
+  generally, projective return relations are invariant under independent
+  context vertex gauges, whereas literal decoded mismatch is not.  Thus one
+  noncommutative central-sign cycle packet does not close the remaining
+  escape unless it directly authenticates a selector--payload coefficient or
+  selected proper corner; that is the still-open coupled incidence, not a
+  holonomy-only gadget.
 - **Do not globalize readable bits unnecessarily.**  The source ZPC hypotheses
   provide local commutation, not one global readable algebra.  The transducer
   should glue decoded unreadable observables across contexts rather than
