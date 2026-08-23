@@ -359,6 +359,19 @@ non-hyperlinear group `hat K rtimes Lambda`.
   the entire finite-valued normalizer ansatz is closed.  The surviving
   Mihailova route must use genuinely nonnormalizing Fourier coefficients and
   hence returns to the Hadamard-cell/full algebraic-envelope problem.
+- **Nonnormalizing finite cells also fail inside the pure left-right host
+  (proved, 2026-08-23).**
+  `regular-kazhdan-reps-avoid-haagerup-crossed-products` removes every support
+  and normalizer hypothesis.  An exact regular-character image of the
+  infinite property-`(T)` quotient `Q` would generate a diffuse relatively
+  rigid copy of `L(Q)`, whether or not `Q` is ICC.  Popa's relative-Haagerup
+  theorem forbids such a subalgebra in an abelian crossed product by the
+  Haagerup group `F_m times F_m`.  Consequently no finite Hadamard/matrix-cell
+  assembly can represent `Q` inside the simplified left-right Bernoulli
+  crossed product.  The caveat is exact and important: the full mixed actor
+  `Gamma_0 times SL_3(Z)` is non-Haagerup.  A surviving Mihailova construction
+  must use arithmetic grades outside the free left-right subgroup, or bypass
+  a regular representation of `Q` and embed the fixed non-CE factor directly.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the

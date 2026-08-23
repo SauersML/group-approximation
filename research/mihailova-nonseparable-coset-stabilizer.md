@@ -136,3 +136,15 @@ Such a relation has finite classes, contradicting freeness of the infinite
 group `Q`.  Therefore no regular-trace orthogonal finite-range cocycle exists,
 even with genuinely mixed left-right labels.  Only the nonnormalizing
 Hadamard-cell/full-envelope branch survives.
+
+Inside the simplified left-right crossed product, even that nonnormalizing
+branch is now closed for the property-`(T)` choice of `Q`.
+`regular-kazhdan-reps-avoid-haagerup-crossed-products` observes that any
+exact regular-trace unitary image of `Q`, with arbitrary Fourier
+coefficients, generates a diffuse relatively rigid copy of `L(Q)`.  Popa's
+relative-Haagerup exclusion forbids it because the base is abelian and
+`F_m times F_m` is Haagerup.  This does not dispose of the original full
+`Gamma_0 times SL_3(Z)` coset-module host: cells using arithmetic grades
+outside the free left-right subgroup see a non-Haagerup actor.  Those grades,
+or a direct embedding of the fixed non-CE factor which bypasses `Q`, are now
+load-bearing.
