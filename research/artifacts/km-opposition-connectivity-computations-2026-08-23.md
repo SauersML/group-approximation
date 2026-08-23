@@ -72,6 +72,18 @@ equals the disconnected-case prediction `(768 - 320) + 2 b_1 = 448 +
 36` exactly.  Both regimes of the level-complex formula are now
 confirmed by independent code paths.
 
+Addendum 5 (same day, experiments/km_grid_rank_check.py and
+km_w3_rank_modp.py): the grid-level product-cycle map at `q = 3` has
+FULL rank 16 of 16 mod two and mod five, confirming the integral
+surjectivity proof for grid levels; the `W(3)` map has rank 1272 of
+1296 mod two, five and seven, so its 24-dimensional cokernel is
+RATIONAL: small-`q` `B_2` levels genuinely obstruct, and the `B_2`
+surjectivity is a large-`q` (`q >= 6`) statement as its proof requires.
+Final per-level scoreboard: grid surjective (proved, verified); `B_2`
+surjective for `q >= 6` (proved), obstructed at `q = 3` (verified);
+`G_2` obstructed at every computed `q` (proved via component
+annihilators, verified), expected for all `q`.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
