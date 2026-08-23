@@ -19,6 +19,7 @@ from __future__ import annotations
 
 from fractions import Fraction
 from itertools import product
+from math import factorial
 
 
 Scalar = Fraction
@@ -107,6 +108,17 @@ def hs_squared(matrix: Matrix) -> Scalar:
 
 def is_zero(matrix: Matrix) -> bool:
     return all(entry == ZERO for row in matrix for entry in row)
+
+
+def is_signed_permutation(matrix: Matrix) -> bool:
+    return all(
+        sum(entry != ZERO for entry in row) == 1
+        and sum(abs(entry) for entry in row) == ONE
+        for row in matrix
+    ) and all(
+        sum(matrix[row][column] != ZERO for row in range(N)) == 1
+        for column in range(N)
+    )
 
 
 def assert_projection(matrix: Matrix) -> None:
@@ -230,6 +242,17 @@ for local, carrier, global_observable, _ in INCIDENCE_ROWS:
     row = subtract(multiply(local, carrier), multiply(carrier, global_observable))
     assert is_zero(row)
 
+# Every displayed involution, including each cap reflection and the eventual
+# source reflection, lies in the natural signed-permutation group B_7.
+for involution in (
+    B31,
+    B12,
+    B23,
+    *(local for local, _, _, _ in INCIDENCE_ROWS),
+    *(subtract(scale(2, carrier), identity()) for carrier in (Q1, Q2, Q3)),
+):
+    assert is_signed_permutation(involution)
+
 # Sequential Gram data.  X^*X=diag(1/2,1,0,...,0), so a=3/14 and the
 # threshold a/2=3/28 selects P=e0+e1.
 X = multiply(Q3, multiply(Q2, Q1))
@@ -242,6 +265,7 @@ A = trace(GRAM) / N
 assert A == Fraction(3, 14)
 P = add(E[0], E[1])
 assert_projection(P)
+assert is_signed_permutation(subtract(scale(2, P), identity()))
 
 Y3 = multiply(X, P)
 RAW_ROW = subtract(multiply(observable(C3, 0), Y3), multiply(Y3, B31))
@@ -259,6 +283,19 @@ NONINCIDENCE = multiply(
 assert RAW_ROW == NONINCIDENCE
 assert hs_squared(NONINCIDENCE) == Fraction(1, 7)
 
+# In the natural irreducible block of B_7, normalized canonical regular trace
+# is (7/|B_7|) times the ordinary matrix trace.
+B7_ORDER = (2**N) * factorial(N)
+CANONICAL_PROFILE_MASS = Fraction(N, B7_ORDER) * trace(GRAM)
+CANONICAL_SOURCE_MASS = Fraction(N, B7_ORDER) * trace(P)
+CANONICAL_RAW_HS2 = Fraction(N, B7_ORDER) * trace(
+    multiply(transpose(RAW_ROW), RAW_ROW)
+)
+assert B7_ORDER == 645120
+assert CANONICAL_PROFILE_MASS == Fraction(1, 61440)
+assert CANONICAL_SOURCE_MASS == Fraction(1, 46080)
+assert CANONICAL_RAW_HS2 == Fraction(1, 92160)
+
 
 def main() -> None:
     print("dimension=7 (minimal for a full-support seven-atom OR3 PVM)")
@@ -269,6 +306,10 @@ def main() -> None:
     print("threshold=a/2=3/28; source_rank=2")
     print(f"raw_prefix_covariance_hs2={hs_squared(RAW_ROW)}")
     print(f"nonincidence_commutator_term_hs2={hs_squared(NONINCIDENCE)}")
+    print(f"B7_order={B7_ORDER}")
+    print(f"canonical_selected_profile_mass={CANONICAL_PROFILE_MASS}")
+    print(f"canonical_selected_source_mass={CANONICAL_SOURCE_MASS}")
+    print(f"canonical_selected_raw_hs2={CANONICAL_RAW_HS2}")
 
 
 if __name__ == "__main__":
