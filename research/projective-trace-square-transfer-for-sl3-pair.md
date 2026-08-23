@@ -47,6 +47,27 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **Full HNN regularity supplies an exact quasiregular unitary frame, but
+  its projective energy has the wrong sign.**
+  `full-hnn-regularity-is-a-quasiregular-unitary-orbit` computes every mixed
+  stable-letter coefficient unavailable to `(CAN1)`.  In a hypothetical
+  full canonical HNN matrix ultraproduct, the conjugates
+  `pi(a)kpi(a)^*`, indexed by `A/C`, are an orthonormal unitary frame and
+  `tau(k^*pi(g)kpi(g)^*)=1_C(g)`.  Hence source energy is exactly zero while
+  the `h` target energy is exactly one.  Restricting `(PTS1)` to this branch
+  therefore turns it into the outright nonexistence of the microstates, not
+  a softer trace-conditioned inequality.  The same frame exists in the
+  exact group factor, so only a matrix-embeddability obstruction can refute
+  it.
+- **Dimension overflow needs an unavailable moving word window.**  Although
+  `M_d` contains at most `d^2` orthogonal frame vectors, canonical
+  regularity controls each fixed finite family of Britton words, whereas
+  overflow needs more than `d_n^2` cosets at coordinate `n` and Gram errors
+  `o(d_n^(-2))` on a moving family.  The precise rate firewall is
+  `quasiregular-frame-dimension-overflow-needs-a-moving-word-window`.
+  Thus the full stable-letter moments identify the correct nonlinear unitary
+  orbit but do not by themselves furnish a finite-dimensional contradiction.
+
 - **The full raw rank-one coboundary packet still has an exact leak.**
   `rank-one-self-commutator-coboundary-packet-has-s3-leak` strengthens the
   earlier derived-identity countermodel. In the regular representation of

@@ -42,6 +42,16 @@ arithmetic route to the root goal.
 
 ## Exact boundary and remaining gap
 
+Full HNN regularity has one exact formulation stronger than the scalar fold
+moment.  By `full-hnn-regularity-is-a-quasiregular-unitary-orbit`, the stable
+letter's conjugates form the quasiregular orthonormal unitary frame on
+`A/C`; the adjacent double sees its two-vertex restriction.  This is exactly
+the mixed payload absent from actor-only tensor camouflage.  It does not
+close `(RDF1)`: the frame exists in the regular HNN factor, and the naive
+`d^2` dimension overflow requires canonical trace control on a word window
+growing with the matrix dimension, which hyperlinearity does not provide.
+See `quasiregular-frame-dimension-overflow-needs-a-moving-word-window`.
+
 `sl3-arithmetic-double-finite-representations-fold` proves the zero-defect
 version with the much stronger conclusion that the whole fold kernel is
 killed.  The proof is the block-swap/co-density argument.  The unresolved
