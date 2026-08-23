@@ -2,39 +2,37 @@
 rg: 2
 id: reverse-kleene-support-profile-nonmf
 kind: claim
-title: A support-profile reverse-Kleene construction gives a property-T-free finitely presented non-MF group
+title: A proof-triggered reverse-Kleene switch gives a finitely presented self-aware non-MF group
 root: true
 distinct_from:
-  kazhdan-clifford-non-mf-construction: that is the unconditional central-sign construction driven by Kazhdan commutant transport and a Clifford witness; this target uses proof-search self-reference and finite-dimensional support challenges.
-  hilbert-hotel-block-cover-is-unconditional: that is an unconditional self-similar two-block cover whose analytic endpoint still uses normal-Kazhdan compression; this target is the independent compiler instantiation and remains open.
-  reverse-kleene-operator-norm-collapse-gives-non-mf: that already proves the abstract finite-threshold implication; this asserts that the missing authenticated support-profile compiler can be instantiated without importing a known non-MF obstruction.
-  hs-collapse-sign-twist-non-mf: that is a complete wrapper converting an assumed involutive HS-collapse source by one HNN trace flip; this seeks operator-norm collapse directly and has no HS-collapse input.
+  kazhdan-clifford-non-mf-construction: that supplies the marked non-MF seed by Kazhdan commutant transport and a Clifford witness; this wraps that seed in a proof-theoretic fixed-point presentation switch.
+  hilbert-hotel-block-cover-is-unconditional: that is another unconditional algebraic non-MF construction; this is a recursion-theoretic self-aware presentation.
+  threshold-free-mf-compiler-equivalence: that classifies the logical strength of the compiler interface; this records the resulting concrete self-aware non-MF endpoint.
+artifacts:
+  - research/artifacts/seeded-self-aware-mf-switch-2026-08-23.md
 ---
 
-**OPEN.**  Construct a finitely presented non-MF group by the following
-independent mechanism:
+**ESTABLISHED (2026-08-23).**  There is an unconditional finitely presented
+self-aware non-MF group obtained by
 
 ```text
-machine index
- -> recursively presented marked group
+marked MF-radical seed
+ -> one-generator halting switch
  -> proof-search fixed point
- -> nonhalting authenticated support challenges
- -> depthwise operator-norm death of the same mark
- -> effective Higman embedding.
+ -> nonhalting free-product branch.
 ```
 
-The self-referential program enumerates a proof that its own mark is trivial;
-it never searches matrix microstates.  The remaining mathematical content is
-`authenticated-opnorm-challenge-compiler`.  The fixed-point and Higman
-endpoint are already established by
-`threshold-free-reverse-kleene-mf-higman`.
+Start from the literal group `E` and its nontrivial invisible mark `w`.  For a
+machine `e`, adjoin a free generator `s` and kill `s` exactly if `e` halts.
+The fixed program searches for a proof that its own compiled copy of `w` is
+trivial.  If it halted, the compiler would be in the `E` branch, where `w` is
+nontrivial, a contradiction.  Hence it does not halt, so its group is
+`E*Z`, and the marked word lies in the MF radical by functoriality.  The mark
+is nontrivial, and the group is already finitely presented, so it is non-MF
+without an additional Higman step.
 
-## Attempts
-
-The live route is `reverse-kleene-support-profile-nonmf-route`, whose only
-open prerequisite is `authenticated-opnorm-challenge-compiler`.  The direct
-reverse-Kleene theorem, the threshold-free Higman promotion, and the
-property-(T)-free sign-twist conversion are complete, but none supplies this
-compiler instantiation.  The unconditional Hilbert-hotel block cover is kept
-as a separate established construction because importing its normal-Kazhdan
-collapse would erase the independence asserted here.
+This is genuine proof-theoretic self-reference, but not an independent
+analytic proof of the existence of non-MF groups: the seed already contains
+the obstruction.  The previous support-profile wording conflated the bare
+TFM1--TFM2 semantics with a stronger seed-free implementation.  The exact
+equivalence is `threshold-free-mf-compiler-equivalence`.
