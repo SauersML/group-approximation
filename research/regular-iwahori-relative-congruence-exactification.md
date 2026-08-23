@@ -95,6 +95,23 @@ congruence quotients.  It does not establish `(RCE1)`.
   alignment of the input gauge into the commutant of the same `S_0`.
   Regular trace, opposite-root orthogonality, and endpoint classification
   do not presently authenticate those data.
+- **The half-parabolic branch no longer has to be authenticated separately.**
+  `fourth-power-covariance-unfolds-square-root-branches` proves that two
+  exact BS cores satisfy
+
+  ```text
+  ||S-S'||_2<=2||S^2-S'^2||_2+2||R-R'||_2.
+  ```
+
+  Thus an endpoint decoder only has to align the congruence atom in the
+  coordinates `(R,S^2)`; the original half-parabolic root then follows with
+  a dimension-free linear bound.  This is genuinely stronger than choosing
+  the canonical odd root by an exponent depending on its conductor.  The
+  Hadamard firewall to independent first-triangle rounding is fully charged
+  by the missing `R` alignment: on that packet `S^2` moves by `O(1/p)` but
+  `R` must move by asymptotically at least `1/2`.  The remaining theorem is
+  therefore simultaneous `R`/first-parabolic endpoint authentication, not
+  root-branch selection after authentication.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that

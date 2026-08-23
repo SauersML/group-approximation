@@ -73,6 +73,23 @@ mixtures remain outside the authenticated calculation.
   root-lift/endpoint authentication theorem has selected the correct
   branch.
 
+- **Joint implementer alignment unfolds the branch with a linear bound.**
+  `fourth-power-covariance-unfolds-square-root-branches` proves for exact
+  BS cores
+
+  ```text
+  ||S-S'||_2<=2||S^2-S'^2||_2+2||R-R'||_2.
+  ```
+
+  Hence the wrong Hadamard root branch above is possible only because the
+  independently rounded vertex does not align `R`: its `R` displacement is
+  asymptotically at least `1/2`.  A coupled construction need not resolve
+  odd roots spectrally.  It is enough to authenticate the exact endpoint in
+  the coordinates `(R,S^2)` using the inversion and second-cubic rows; the
+  BS fourth-power relation then recovers `S` automatically.  Producing that
+  common two-coordinate alignment, rather than proving another square-root
+  selection theorem, is the surviving step.
+
 - **Strict repair fails, and one-dimensional flexible repair is sharp.**
   `even-weil-fixed-line-compression` removes the one `R,S`-invariant fixed
   line from the even Weil representation for every prime `p=1 mod 4` and

@@ -52,6 +52,20 @@ round the vertex together with a chosen lift of its product through the
 square map, and must use the inversion/second-cubic rows to forbid the wrong
 branch before changing the vertex.
 
+The necessary extra coordinate is now explicit.  By
+`fourth-power-covariance-unfolds-square-root-branches`, the Hadamard unitary
+in this example satisfies
+
+```text
+||URU^*-R||_2
+ >=(1/2)sqrt((p-1)/p)cos(pi/(2p))-2pi/p ->1/2.
+```
+
+Thus joint alignment of `R` and `S^2` forbids the branch with a
+dimension-free linear estimate and automatically returns `S`.  The
+firewall rules out independent vertex rounding, but it does not require a
+new spectral root selector once the BS implementer has been authenticated.
+
 ## Ultraproduct consequence
 
 The same example is a literal failure of the relative square-root lifting
