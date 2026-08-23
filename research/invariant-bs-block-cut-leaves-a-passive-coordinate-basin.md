@@ -39,6 +39,18 @@ small operator-norm residual values still do not formally imply proximity
 to a zero of a nonlinear word map.  A proof must use the moving congruence
 endpoint union, not a preselected regular orbit.
 
+One tempting change of coordinates is now ruled out sharply.
+`sl2-half-rational-h2-refutes-torsion-normalized-op-basin` computes
+`H^2(PSL_2(Z[1/2]),Q)=Q` from the one-edge amalgam and applies Dadarlat's
+matricial-stability obstruction.  Nearest-root normalization works in
+operator norm, so there are exact Iwahori torsion frames with structural
+defect tending to zero which stay outside every strict global
+operator-norm endpoint basin.  Thus exactifying the two triangles first and
+then invoking the tangent gap cannot prove item 4.  This does not refute the
+claim as stated: the surviving hypothesis is precisely the opposite normal
+form, with the BS core and inversion exact, together with flexible
+`o(d)` repair after the active cut.
+
 Full regular-quotient padding does not solve the `Q_n` block uniformly:
 `congruence-regular-padding-is-conductor-not-low-rank` proves both the
 restriction-lattice firewall and the rank-one Weil dimension blowup.  The
