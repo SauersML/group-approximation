@@ -92,3 +92,14 @@ in the lamp commutant while all covariance laws remain exact.
   fixed probability `1-(59/60)^|Z|`.  Thus centers expose rather than solve
   the finite-window boundary: they need an already coherent global packet or
   a new equivariant bundling theorem.
+- **Tensor several regular center packets.**  This does not create independent
+  Plancherel labels: `diagonal-tensor-powers-do-not-amplify-regular-lamp-center`
+  proves `lambda_Q^(tensor t)` is merely an amplification of `lambda_Q`.
+  The bad-fiber mass `(59/60)^|Z|` and the one-site `71/100` center gap are
+  unchanged.
+- **Absorb the actor gauge using residual-finite quotient packets.**  The
+  exact calculation in
+  `finite-quotient-fell-untwisting-leaves-kernel-cocycle` leaves a blockwise
+  section cocycle valued in the finite-index kernel.  That kernel is
+  nonamenable and carries the original arbitrary actor representation, so
+  amenable lamp classicalization cannot remove it.
