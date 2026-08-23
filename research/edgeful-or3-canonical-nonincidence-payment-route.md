@@ -12,6 +12,7 @@ requires:
   - raw-prefix-covariance-reduces-to-nonincidence-cap-commutators
   - canonical-fano-free-product-defeats-finite-actor-payment
   - canonical-b7-or3-corner-defeats-finite-prefix-actors
+  - b7-faithful-two-cell-retains-or3-prefix-defect
   - polar-correction-preserves-povm-covariance
   - common-source-partial-isometries-decode-one-game-state
   - canonical-or3-nonincidence-cap-commutator-payment

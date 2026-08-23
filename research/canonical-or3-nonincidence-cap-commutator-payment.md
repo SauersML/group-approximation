@@ -73,3 +73,25 @@ incidence covariance rows.
   not rescue a finite actor.  The sole remaining opening is a
   payload-sensitive non-Bass--Serre two-cell or an infinite actor which fails
   canonical extension while retaining the exact marked completion.
+- **Attach one non-Bass--Serre curvature/Clifford two-cell.**
+  `b7-faithful-two-cell-retains-or3-prefix-defect` removes the residually
+  finite loophole left by the Bass--Serre audit.  Any relative two-cell group
+  which is residually finite while retaining B7 has canonical finite-quotient
+  countermodels with prefix defect `1/92160`.  In the smallest
+  direct coupling, the paid local observable and global variable have the
+  same multiplicative commutator with the omitted cap reflection, but the
+  oriented additive corner remains `|e_4><e_0|`.  Thus scalar/projective
+  curvature and finite Clifford holonomy are insufficient.  A surviving
+  finite presentation must fail relative residual finiteness at B7 and must
+  authenticate the oriented source Gram without imposing universal exact
+  covariance; otherwise an infinite actor is necessary.
+- **Attach a non-residually-finite actor beside the prefix payload.**  Failure
+  of relative residual finiteness is necessary but not sufficient.
+  `exact-fd-wandering-reflection-promotion-can-remain-sofic` gives a finitely
+  presented sofic actor whose distinguished word dies in every exact finite
+  dimensional representation while its canonical compressed error stays at
+  full density.  Thus a Thompson-simple or exact-FD-invisible factor placed
+  beside `(BTF8)` does not pay it.  The infinite actor must enter the same
+  oriented source-to-target row with a dimension-independent HS modulus; an
+  uncoupled direct product, central product, or packet amalgam still leaves
+  the canonical B7 corner untouched.

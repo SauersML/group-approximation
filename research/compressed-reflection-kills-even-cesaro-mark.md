@@ -34,21 +34,16 @@ In particular, for each fixed even `t`, an `o(1)` compressed-reflection
 error gives an `o(1)` marked Cesaro norm.  No weighted-state Dirichlet
 comparison is additionally required.
 
-Applied to the Fanizza clock reflection, take `D` to be the clock-amplified
-native losing projection.  The established inequality
+This theorem does **not** apply directly to the native Fanizza uniform-clock
+carrier. As corrected in `uniform-clock-corner-is-not-a-reflection`, the
+full controlled operator `C` satisfies `C^2=1`, but
 
 ```text
-D <= C_m Q(1-V_m)Q
+Q C Q=(1-H_m) tensor Q
 ```
 
-is `(CRK1)`.  Therefore clauses 1--2 of
-`fanizza-coherent-verifier-wandering-promotion`, together with its normal
-form clause, already feed `wandering-mark-cesaro-amplifier`: choose one fixed
-even `t`, absorb the right side of `(CRK2)` into the microstate modulus, and
-use pairwise distinctness of `w^k` and `X_D^R w^k` for canonical norm
-`t/2`.
-
-The estimate also sharpens the remaining construction problem.  It is enough
-to produce the single corner approximation `QWQ approximately V_m`; one
-does not have to compare the Fanizza Hamiltonian with the Dirichlet form of
-`W` on the non-invariant Cesaro-weighted state.
+is not a unitary in the `Q` corner unless `H_m=0`. Its complementary
+leakage is exactly `H_m(2-H_m)`. Thus the Fanizza application still needs
+a genuinely reducing returned carrier, or an independent weighted-state
+argument controlling the excursions of powers of the prospective word.
+The abstract estimate `(CRK2)` remains valid under its displayed hypotheses.
