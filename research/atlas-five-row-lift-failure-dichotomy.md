@@ -7,6 +7,7 @@ distinct_from:
   atlas-six-relator-exact-phase-escape-is-a-finite-quotient-test: that classifies exact finite-dimensional zero-defect escapes by finite quotients; this proves that such exact zeros detect only the macroscopic branch and isolates a second vanishing-signal branch.
   atlas-six-relator-leavitt-tracial-countermodel: that supplies a macroscopic exact escape in the canonical Leavitt trace; this is a compactness dichotomy for finite regular-multiplicity sequences.
   atlas-aligned-quotient-spectrum-cannot-reach-low-defect: that rules out using the aligned local Hessian on low-defect frames; this identifies the normalized blow-up object which remains after exact-zero screening.
+  atlas-five-row-blowup-branch-is-impossible: that combines finite-H polar rounding with the 19243 zeroth-order gap and proves the blow-up alternative defined here cannot actually occur.
 ---
 
 For `U in U(20160k)` put
@@ -57,12 +58,13 @@ following two alternatives occurs.
    ||pi_(U_n)(c_19243)-1||_2/eta_n ->0.                (FPG6)
    ```
 
-In particular, excluding finite-dimensional exact zeros--even in every
-fixed multiplicity--does not reduce the five-row lift to a finite exact
-linear-algebra calculation.  It removes only alternative 1 when the exact
-ultraproduct escape lifts to a finite quotient.  A proof must additionally
-exclude the dimension-moving blow-up cone `(FPG4)--(FPG6)` with a uniform
-estimate.
+The second alternative is a logically possible failure mode for a general
+pair of energies.  In this Atlas packet it is now excluded by
+`atlas-five-row-blowup-branch-is-impossible`: five-row coercivity rounds such
+a sequence into the `H` commutant, where the 19243 word has a fixed
+zeroth-order defect.  Therefore the live five-row target is equivalent to
+excluding alternative 1 in matrix ultraproducts.  Exact finite quotient
+screens still do not decide that ultraproduct exclusion.
 
 ## Proof
 
@@ -97,11 +99,10 @@ respectively to a positive number and to zero.  This proves the dichotomy.
 The finite-quotient equivalence
 `atlas-six-relator-exact-phase-escape-is-a-finite-quotient-test` is therefore
 an exact test only for finite-dimensional instances of the macroscopic
-branch.  It cannot certify `(FPG2)` by itself.  Conversely, the favorable
-finite irrep-pair spectrum at an aligned frame does not certify the blow-up
-branch: `atlas-aligned-quotient-spectrum-cannot-reach-low-defect` proves that
-every low-six-relator-defect sequence stays at least `sqrt(2)/16` from the
-entire aligned commutant manifold.  The remaining certificate would have to
-be a global, multiplicity-uniform exclusion of `(FPG4)--(FPG6)` on that
-remote branch.  That exclusion is already the quantitative content of the
-open five-row lift, not a bounded exact-zero computation.
+branch.  It cannot certify `(FPG2)` by itself because an exact macroscopic
+escape may exist only in a genuinely dimension-moving matrix ultraproduct.
+The normalized blow-up branch needs no derivative calculation:
+`atlas-five-row-blowup-branch-is-impossible` excludes it by a zeroth-order
+commutant gap.  Hence the exact remaining certificate is qualitative but
+still unbounded-dimensional: exclude positive-energy exact six-relator
+solutions in every tracial matrix ultraproduct.

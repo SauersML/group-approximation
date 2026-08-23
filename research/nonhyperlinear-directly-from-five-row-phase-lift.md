@@ -24,10 +24,11 @@ implication.
 The certificate audit in `atlas-five-row-lift-failure-dichotomy` is
 load-bearing here.  Exact finite-quotient screening can refute the lift by
 finding a zero-defect bridge escape, but its failure to find one does not
-prove the lift: a normalized blow-up escape with both energies tending to
-zero would still defeat the required uniform constant.  Thus the direct
-route is genuinely a dimension-free matrix-microstate separation, not a
-finite exact quotient classification in disguise.
+prove the lift.  The apparent normalized blow-up branch is now excluded by
+`atlas-five-row-blowup-branch-is-impossible`; what remains is a macroscopic
+exact escape which may live only in a dimension-moving matrix ultraproduct.
+Thus the direct route is a dimension-free matrix-microstate separation, not
+a finite exact quotient classification in disguise.
 
 Indeed, the two marked `A8` charts in `Q` intersect trivially.  Hence, for
 some standard transvection `t` of

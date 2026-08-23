@@ -7,6 +7,7 @@ distinct_from:
   atlas-exact-matrix-zero-set-is-a-finite-quotient-test: that treats the thirty A4 rows and q19243; this treats the five saturated rows and the weaker centrality word c19243, and also requires the linear phase energy to be positive.
   atlas-six-relator-quotient-identifies-h-bridge: that false target asks the universal quotient to kill every bridge; this classifies exact finite-matrix escapes by its finite quotients.
   atlas-five-row-operator-phase-lift: that is a uniform inequality for approximate matrices in all dimensions; this concerns only exact zeros at one finite dimension.
+  atlas-six-relator-relative-small-cancellation-audit: that tests the literal relators against free-product small-cancellation criteria and finds a five-eighths mirror piece, blocking the standard residual-finiteness route to such a finite quotient.
 ---
 
 Let
@@ -38,3 +39,9 @@ In particular, absence of a finite quotient as in condition 2 would exclude
 exact finite-dimensional escapes but would not provide a dimension-uniform
 positive ratio in `(FPL4)`.
 
+The exact small-cancellation audit
+`atlas-six-relator-relative-small-cancellation-audit` does not produce the
+finite quotient in condition 2.  The literal symmetrized relators have
+five-syllable pieces in length eight, so the `C'(1/6)` cubulation/residual-
+finiteness theorem for free products is unavailable.  The weaker nonmetric
+`C(6)` condition does not imply residual finiteness.
