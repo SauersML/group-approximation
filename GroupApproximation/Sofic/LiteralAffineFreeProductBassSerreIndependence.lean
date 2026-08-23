@@ -621,8 +621,17 @@ theorem crossing_separated_independent :
         BassSerreHullGeometry.PathVertex Envelope) := by
   apply HullGeometry.independent_of_difference_lower bassSerre_isometric 1
   intro a b
-  have hga := crossingDefect_zpow_displacement_le a
-  have hhb := crossingDefect_zpow_displacement_le b
+  have hupper : ∀ z : ℤ,
+      dist (BassSerreFreeProduct.baseLeft Envelope :
+          BassSerreHullGeometry.PathVertex Envelope)
+        ((crossingDefect ^ z) •
+          (BassSerreFreeProduct.baseLeft Envelope :
+            BassSerreHullGeometry.PathVertex Envelope)) ≤ 4 * z.natAbs := by
+    intro z
+    rw [HullGeometry.dist_zpow_natAbs bassSerre_isometric]
+    exact crossingDefect_pow_displacement_le z.natAbs
+  have hga := hupper a
+  have hhb := hupper b
   rw [← separatedCrossing_zpow_displacement_eq b] at hhb
   have hmix := crossing_separated_mixed_displacement_lower a b
   norm_num only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat] at hga hhb hmix ⊢
