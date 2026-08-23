@@ -5,6 +5,7 @@ kind: claim
 title: A non-tensor-closed pointed source face authenticates the independent-set rank cells
 artifacts:
   - research/artifacts/hybrid-rank-router-tensor-closure-2026-08-23.md
+  - research/artifacts/seifert-coinvariant-router-2026-08-23.md
 distinct_from:
   hybrid-rank-router-authenticates-affine-overlap-blocks: that demanded exact extension for every zero-overlap pair and is refuted by tensor closure; this permits only one distinguished perfect source trace and a pointed canonical-microstate soundness face.
   fixed-mass-same-gram-mixed-word-certificate: that asks one common Gram word to carry the original BCS verifier energy; this starts after independent-set normalization and may use separate rank cells, but must condition them on one global source face.
