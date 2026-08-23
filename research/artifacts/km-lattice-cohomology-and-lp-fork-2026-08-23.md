@@ -672,3 +672,31 @@ MSI), exactly as in Addendum 18.  Both faithful zeros so far are
 CONSISTENT WITH EITHER outcome: they show only that the defect, if
 real, is a radical-depth phenomenon -- which matches where the
 lim^1 content (Addendum 10) actually lives.
+
+## Addendum 20: the 78-point computation is done -- defect 0, envelope-rigorously
+
+The G_2(2) unipotent was built from the Chevalley commutator
+presentation over ALL char-2 structure-constant ambiguities
+(`km_g2_unipotent_envelope.py`): of 256 candidate constant tuples,
+8 yield associative 64-element groups and 4 have the theory-forced
+center (highest root, order 2).  The string-length parities
+cross-check: the survivors force exactly the slots that Chevalley
+theory makes even (N = +-2) or odd (N = +-1, +-3), and Carter's
+C-constant values select tuple (1,1,0,0,1,1,1,1), which is among
+them.  The 78-point role-3 arena defect
+(`km_faithful_role3_78pt_defect.py`):
+
+```text
+all four consistent presentations:  DEFECT = 0
+(numerators 10/10/6/6, denominators equal them)
+```
+
+So the Addendum 18 computation is COMPLETE at q = 2, rigorous over
+the whole constants envelope: the first faithful pure-unipotent
+level contributes NO defect, extending the pattern (level-1 vacuous,
+Levi-level decoupled, unipotent-level 0).  Every faithful data point
+so far is 0; every rich-overlap surrogate is nonzero.  The remaining
+discriminating computations need arenas whose overlap is a whole
+Borel level -- Levi x| radical levels glued along T.U-levels
+(q = 2: unipotent times Levi), sizes in the thousands: an MSI job,
+now precisely specified with a validated envelope methodology.
