@@ -101,3 +101,39 @@ supported 1-cochain.
   dead, LP undecided by every Ioana--Spaas--Wiersma clause except the
   `L^0` one) and `!=0` (LP fails) remain consistent with what is
   established.
+- **Contractible case is decided positively; the obstruction is exactly
+  `H_2(X)`.**  Let `P` be the disjoint union of all twin-apartment
+  planes and `p: P -> X` the gluing map.  It is proper (an edge lies in
+  `q(q+1)` planes, a vertex in finitely many), bijective on 2-cells, and
+  `p^*: H^2_c(X) -> H^2_c(P) = Z^((planes))` records the total mass of a
+  compactly supported 2-cochain on each plane (coboundaries have zero
+  mass on every plane since each edge of a plane lies in two of its
+  triangles with opposite signs).  Hence the point class `[delta_sigma]`
+  of a single 2-cell is nonzero in `H^2_c(X)`.  It lies in
+  `H^1_infty(X)` iff no 2-cycle of `X` passes through `sigma`, and by
+  transitivity of `Lambda` on 2-cells this holds for one `sigma` iff
+  `H_2(X)=0`.  So: if the development is contractible then
+  `H^2(Lambda;Z Lambda)!=0` and Corollary D fires; if not, then EVERY
+  2-cell lies on some 2-cycle, and a class in `H^1_infty(X)` must be a
+  compactly supported cochain orthogonal to all of them.  The claim is
+  therefore decided by the structure of the restriction modules
+  `{z|_Sigma : z in Z_2(X)}` of 2-cycles to single planes: `(DE1)` fails
+  iff these restrictions span, rationally, all finite 2-chains of the
+  plane, for every plane.
+- **What two planes can share.**  Distinct twin apartments `Sigma,
+  Sigma'` share no 2-cell, and their shared edges are the opposite
+  panel pairs `(P_+,P_-)` with `P_+ <= Sigma_+ cap Sigma'_+`,
+  `P_- = op_Sigma(P_+) = op_Sigma'(P_+)`.  Since `op_Sigma(x) !=
+  op_Sigma'(x)` for every common chamber (an opposite chamber pair spans
+  a unique twin apartment) and a chamber of `Sigma_+` has a unique
+  opposite inside `Sigma_-`, a shared panel must contain a chamber of
+  `Sigma'_-` outside `Sigma_-`; when `Sigma_+=Sigma'_+` and
+  `Sigma_- cap Sigma'_-` is a half-plane bounded by a wall `M`, the
+  shared edges are exactly the panels on `M`, a bi-infinite geodesic,
+  never a closed curve.  So two-plane "bigon spheres" do not occur in
+  that configuration; any 2-cycle must be a closed polyhedral surface
+  with faces in many planes glued along wall segments.  Whether such
+  surfaces exist is the unrecorded `H_2(X)` question; the short cycles
+  in the links (`km-lattices-admit-no-cocompact-npc-model`) are where
+  small ones would have to live, but no 2-cycle is supported in a
+  single vertex star.

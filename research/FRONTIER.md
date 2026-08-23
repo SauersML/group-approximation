@@ -1386,7 +1386,7 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
             fanizza-heat-filter-has-uniform-cstar-decay [✓] The Fanizza game Hamiltonian gives a uniform rational heat-filter sequence
               (…already shown)
             fanizza-heat-return-is-one-cyclic-amplitude-product [✓] One cyclic amplitude product is enough to return the Fanizza heat filter
-            dimension-reported-julia-amplitude-return [OPEN] 🔒 A self-indexing matrix tape need only activate one Julia amplitude return
+            dimension-reported-julia-amplitude-return [OPEN] A self-indexing matrix tape need only activate one Julia amplitude return
           ├ julia-high-spectrum-rank-selector-closes-fanizza-return [OPEN] Bound authenticated cutoff rank by the Julia heat amplitude
             julia-dilation-packages-heat-as-one-cross-gram-moment [✓] The Julia dilation packages the Fanizza heat amplitude as one projection overlap
             julia-authenticated-high-spectrum-rank-selector [OPEN] Authenticate the marked rank inside a high-spectrum Julia overlap cutoff
@@ -3484,7 +3484,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **dimension-expander-two-matching-square-function** [1 live route(s) need it; toward: non-hyperlinear-group] [Turn dimension-expander matching defects into one orthogonal bridge square function](dimension-expander-two-matching-square-function.md) — ⚑ last missing for dimension-expander-robustifies-two-matching-blocks → two-matching-matrix-block-propagation — unclaimed
 - **dimension-reported-clifford-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Clifford table](dimension-reported-clifford-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-clifford-compiler → non-hyperlinear-group — unclaimed
 - **dimension-reported-hyperoctahedral-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output activates one low-dimensional hyperoctahedral predicate packet](dimension-reported-hyperoctahedral-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-hyperoctahedral-compiler → non-hyperlinear-group — unclaimed
-- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — 🔒 claimed (1m50s remaining)
+- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — unclaimed
 - **dimension-reported-schur-replica-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Schur-replica table](dimension-reported-schur-replica-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-schur-compiler → non-hyperlinear-group — unclaimed
 - **edge-pair-mixed-gap-collapse** [1 live route(s) need it; toward: non-hyperlinear-group] [Mixed-gap collapse for high-dimensional edge-irreducible pairs](edge-pair-mixed-gap-collapse.md) — ⚑ last missing for iwahori-outlier-localization → iwahori-outlier-repair — unclaimed
 - **effective-fixed-density-diagonal-retention-character** [1 live route(s) need it; toward: non-hyperlinear-group] [An effective non-CE character has fixed-density self-retention along its polarizing tensor powers](effective-fixed-density-diagonal-retention-character.md) — ⚑ last missing for nonhyperlinear-via-fixed-density-diagonal-retention → non-hyperlinear-group — unclaimed
@@ -3873,7 +3873,4 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-- 🔒 covariant-model-satisfies-cross-context-radical-relators — 1m48s remaining
-- 🔒 dimension-reported-julia-amplitude-return — 1m49s remaining
-- 🔒 edgeful-or3-coefficient-link-compiler — 1m49s remaining
-- 🔒 iwahori-cubics-control-aggregate-weighted-bs-orbit-energy — 1m49s remaining
+*(none)*
