@@ -3,7 +3,7 @@ rg: 2
 id: odd-label-stabilized-repair-proof
 kind: route
 title: Charge deep fibers by padding and transport bottom surplus through trivial blocks
-target: odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant
+target: odd-label-stabilization-has-uniform-repair
 requires:
   - mixed-crt-iwahori-repair-is-labeled-pure-dyadic-rounding
   - pure-dyadic-clifford-slots-have-a-uniform-one-third-gap

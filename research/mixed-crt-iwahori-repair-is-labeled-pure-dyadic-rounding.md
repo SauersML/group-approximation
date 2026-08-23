@@ -88,7 +88,7 @@ algebraic gate is therefore label-stability of the dyadic integer Hoffman
 bound, not an odd expansion or odd-irrep problem.
 
 That additional gate is now closed.
-`odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant` first
+`odd-label-stabilization-has-uniform-repair` first
 uses the uniform one-third Clifford-slot gap to charge every conductor-at-
 least-two summand, then uses the one-dimensional trivial representation in
 the fixed bottom diagram to transport the paid per-label dimension surplus.

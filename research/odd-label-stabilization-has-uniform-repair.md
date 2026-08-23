@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant
+id: odd-label-stabilization-has-uniform-repair
 kind: claim
 title: Odd-label stabilization adds only a fixed bottom-reservoir cost to dyadic Iwahori repair
 distinct_from:

@@ -21,6 +21,19 @@ invertible edge intertwiner after only `o(d_n)` padding
 (HIGHEST_YIELD 2026-08-14). Spectral sparsity alone is insufficient — even
 the scalar line contains invertible matrices.
 
+**Dependency audit after congruence closure (2026-08-23).**  Here “modular
+vertex” means `SL_2(Z)`, not a modular finite quotient.  Localization does
+not make either vertex representation congruence.  Indeed
+`modular-vertex-extension-does-not-force-congruence` gives arbitrarily
+high-dimensional infinite-image edge irreducibles extending through a
+modular vertex.  Thus the mixed-CRT and odd-label repair theorems close every
+pair already in the congruence locus but do not close this endpoint.  The
+sharp sufficient preprocessing statement is now
+`regular-iwahori-relative-congruence-exactification`; if it holds, the route
+`relative-congruence-exactification-closes-outlier` applies uniform exact
+congruence repair.  Canonical trace and property `(tau)` do not themselves
+supply that preprocessing.
+
 ## Attempts
 
 **2026-08-17, external pass (`research/artifacts/open-problem-attacks-2026-08-17.md`,

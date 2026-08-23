@@ -76,3 +76,10 @@ prime levels.  Every prescribed finite family of word and finite-support
 Hecke moments agrees exactly, and both cubic residual polar data vanish.
 Thus the required decoder must be level-agnostic or have complexity growing
 with the candidate conductor; finite scalar moments cannot name the atom.
+
+Even the marked root spectrum cannot bound the moving level uniformly.
+`full-iwahori-relations-do-not-bound-unipotent-torsion` uses the regular
+representations of the reductions modulo every odd `n`: all presentation
+relations vanish exactly while the marked unipotent has order exactly `n`.
+Thus BS exactification does yield finite odd torsion packetwise, but no
+fixed torsion alphabet or bounded-level congruence compiler can follow.

@@ -67,3 +67,19 @@ large reducible edge representations into such orthogonal pairs; that is
    high-dimensional algebraic strata from approaching each other while their
    actual intersection remains far away.  A quantitative transversality input
    is still required.
+4. **Round the `C_2*Z` projection--unitary coordinates directly.**  A
+   `Bbar`-representation is indeed just an involution `E` and an arbitrary
+   unitary `U`; the involution is equivalently one projection.  But the
+   representations which extend in the same dimension to
+   `Kbar=C_2*C_3` form the proper restriction locus `Ecal` inside that
+   projection--unitary space.  The opposite extensions form
+   `alpha^*Ecal`.  Spectral rounding keeps a point in the ambient
+   `Rep(Bbar)` but need not keep it near either extension locus, much less
+   their intersection.  Induction from the index-three subgroup always
+   extends a `Bbar`-representation only after tripling its dimension; that
+   is a positive-density change and cannot supply the required `o(r_n)`
+   stabilization.  Therefore a same-dimensional universal finite-index
+   repair theorem in these coordinates is exactly the transversality claim
+   above, not a consequence of the free-product presentations.  The
+   established bounded branching and the `3`-bi-Lipschitz Nielsen formula do
+   not control the angle between `Ecal` and `alpha^*Ecal`.

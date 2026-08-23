@@ -106,13 +106,10 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   joint edge quotient is `D_(a,b) x O`, Selberg averaging remains uniform at
   the mixed level, and the restriction matrices split over `Irr(O)` into
   copies of the pure dyadic diagram weighted by odd irreducible degrees.
-  Hence the exact mixed closure gate is the odd-label-stabilized integer
-  Hoffman bound for the dyadic tower.  The ordinary pure-dyadic bound is not
-  silently enough: the edge polar support need not reduce the full dyadic
-  vertices, and preserving the two global dimensions couples the inert
-  label fibers.
+  The former exact mixed closure gate was the odd-label-stabilized integer
+  Hoffman bound. It is now closed by the next theorem.
 - **Odd-label stabilization is uniformly repairable.**
-  `odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant`
+  `odd-label-stabilization-has-uniform-repair`
   pads unequal fibers only for the estimate, charges every deep summand by
   the uniform one-third Clifford-slot gap, and replaces that paid rank by
   bottom trivial blocks. Per-label dimension imbalance is itself bounded by
@@ -122,6 +119,15 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   constant under arbitrary odd weights. Thus exact mixed congruence pairs
   are uniformly repairable; the remaining question is vertex exactification
   of arbitrary approximate representations.
+- **Full exact cubics do not select a bounded odd level.**
+  `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
+  exact facts at the noncongruence frontier. BS covariance makes each finite
+  root spectrum odd torsion, and a full exact tuple factors through some odd
+  congruence quotient; nevertheless reductions modulo every odd `n` satisfy
+  all relations exactly with root order `n`. Hence no fixed torsion alphabet,
+  polynomial root constraint, or bounded list of congruence strata can be
+  the post-BS exactification step. The remaining compiler must authenticate
+  a moving level or avoid naming it.
 - **Regular pure-dyadic packets have a depth-uniform half loss.**
   `pure-dyadic-regular-iwahori-mixtures-have-a-uniform-half-loss` writes the
   upper level kernel `N_a` and opposite kernel `M_b` explicitly, then takes
