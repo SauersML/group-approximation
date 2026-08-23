@@ -194,3 +194,40 @@ three-cell orbits (`=1`).  For `V = L^0(Y)`: `V^F = L^0(Y/F)`.
 Sanity checks recorded: `H^0` of the complex is `V^Lambda` because the
 nine maximal Birkhoff intersections include the diagonal rank-two Levi
 pairs `(J,J)`, which generate `Lambda` (they contain every `U_(+-a_i)`).
+
+## Addendum 9: the double complex and the opposition-complex columns
+
+The `Delta^2 x Delta^2` identification makes the 49-orbit complex the
+TOTAL COMPLEX of a 3x3 double complex `C^(a,b) = sum over |J| = 2-a,
+|K| = 2-b of V^(P_J^+ cap P_K^-)` (horizontal = grow `J`, vertical =
+grow `K`).  Columns-first analysis of the fixed-`K` column:
+
+1. `P_K^-` is transitive on each cotype-`J` stratum of the
+   opposite-compatible set `O(sigma_K) = {sigma_+ : (sigma_+,
+   sigma_K) in X^}` (stabilizer transitivity on the `w = 1` Birkhoff
+   fiber), with finite cell stabilizers; so for divisible `V` the
+   column computes the equivariant cohomology
+   `H^*_(P_K^-)(O(sigma_K); V)`.
+
+2. For `K = {}` (a chamber `y`), `O = Opp(y)` is Abramenko's
+   opposition complex: under the thickness hypotheses of his
+   sphericity theorem (Twin buildings and applications, LNM 1641;
+   rank 3, so 1-connected with free `H_2`), the coefficient rows are
+   `q = 0` (`V`) and `q = 2` (`Hom(H_2 Opp, V)`) only.
+
+3. `B_- = T x| U_-` with `U_-` the INCREASING UNION of the finite
+   `U_w` (locally finite).  Milnor sequence for an increasing union,
+   with `H^q(finite, divisible) = 0` for `q > 0`:
+   `H^1(U_-, V) = lim^1_w V^(U_w)` and `H^2(U_-, V) = lim^1_w
+   H^1(U_w, V) = 0`; finite `T` then gives `H^2(B_-, V) = 0`,
+   `H^1(B_-, V) = (lim^1_w V^(U_w))^T`.
+
+So the chamber column's cohomology is: `V^(B_-)` in degree 0, the
+`T`-invariant `lim^1` of the unipotent invariants tower in degree 1,
+and a `B_-`-equivariant functional space on `H_2` of the opposition
+complex in degree 2 (up to the `d_3` edge).  The clause is therefore
+governed by exactly two kinds of quantities: derived-limit terms of
+invariant towers along the unipotent filtration, and equivariant
+functionals on opposition-complex `H_2` -- the same `H_2` whose
+sphere classes are the day's explicit `S_z` cycles.  The `|K| = 1, 2`
+columns are the face (panel / vertex) opposition analogues.

@@ -60,3 +60,17 @@ Three recorded routes (details on the LP node):
   `l^2` computation in either direction only bounds, never decides,
   the `L^0` clause; it selects which of the three recorded routes is
   live.
+
+- 2026-08-23 (double-complex scheme).  Via
+  `km-l0-cohomology-is-the-49-orbit-invariants-complex` the complex is
+  the total complex of a 3x3 double complex over `Delta^2 x Delta^2`;
+  the fixed-`K` columns compute `H^*_(P_K^-)(O(sigma_K); V)` with
+  `O(sigma_K)` the (face-)opposition complexes in `X_+`, spherical by
+  Abramenko.  Since the unipotent radicals are locally finite
+  (increasing unions of the finite `U_w`), `H^2(B_-, V) = 0` for every
+  divisible `V` by the Milnor `lim^1` sequence, and the clause reduces
+  to two computable kinds of terms: `lim^1` of unipotent invariant
+  towers (degree-1 column terms) and `B_-`-equivariant functionals on
+  `H_2` of opposition complexes (degree-2 column terms), coupled by
+  the second-page differentials.  Derivation: artifact Addendum 9.
+  This is the sharpest available formulation of route 1.
