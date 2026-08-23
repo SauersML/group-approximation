@@ -9,6 +9,7 @@ distinct_from:
   hyperlinear-to-mf-saturation-compiler: that extracts and renormalizes a Kazhdan moving corner after tracial saturation; this proof uses operator norm directly and performs no corner renormalization.
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
+  - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md
   - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
 ---
 

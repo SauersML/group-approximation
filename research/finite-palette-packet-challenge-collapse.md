@@ -7,6 +7,7 @@ distinct_from:
   bounded-area-high-chromatic-conjugacy-collapse: that colors a conjugacy orbit in normalized Hilbert--Schmidt metric and derives tracial word collapse; this colors arbitrary packet states in operator norm and applies the twisted packet collision detector.
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
+  - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md
   - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
 ---
 

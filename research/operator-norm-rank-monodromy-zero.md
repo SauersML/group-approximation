@@ -8,6 +8,7 @@ distinct_from:
   finite-schur-clifford-packet-flexible-hs-exactification: that rounds finite packets in normalized HS norm; this is the discrete rank endpoint after actual projections and operator-norm transport have been authenticated.
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
+  - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md
   - GroupApproximation/Sofic/InvolutionRankMass.lean
   - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
 ---
