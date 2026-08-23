@@ -26,9 +26,12 @@ obsolete `64^m` profile menu.
 The finite checks are replayable with
 `experiments/rstar_fano_geometry.py`.  Besides the cap and blocking-set
 census, it confirms that the only Boolean polymorphisms of `R_*` in arities
-one, two, and three are the coordinate projections.  This low-arity result
-is retained as a scoped computational observation, not promoted to an
-all-arities clone claim and not used by the compiler.
+one, two, and three are the coordinate projections.  Combined with the
+standard low-arity consequence of Post's Boolean clone classification, this
+is now promoted to the all-arities theorem
+`rstar-polymorphism-clone-consists-only-of-projections`.  It closes uniform
+coordinatewise postprocessing of finitely many models, but is not used by the
+conditional Fano compiler.
 
 ## Fiberwise-selector audit
 
