@@ -143,6 +143,27 @@ remain zero.  Consequently the acquisition record must identify a literal
 mixed cross-reservoir operator before invoking a polar or spectral common-cut
 step; separate block invariants cannot fill that field.
 
+The actual relative chart unitary gives a precise conditional bypass.
+`atlas-relative-block-polar-cut-reduction` shows that for any finite typed
+incidence menu `E`, a lower bound
+
+```text
+sum_((i,j) in E) ||P_i U Q_j||_2^2 >= alpha
+```
+
+produces a common polar cut of trace at least
+`alpha/(2|E|-alpha)` and inverse/HS-loss factor at most
+`sqrt(2|E|/alpha)`.  For the full block alphabet the sum is one, so an
+untyped one-edge cut is unconditional.  This does **not** yet authenticate
+the census: the selected block must belong to the hard/interior/comb typed
+incidence on which the same corner defines all five paths and all three
+desired columns.  Regular block margins permit exact permutation transports
+with mass outside a proper incidence set, and three separate positive polar
+cuts need not have a positive common meet.  Therefore the remaining selector
+datum is exactly one relation-sensitive typed mass-localization estimate;
+after it is supplied, the spectral selection and its uniform loss are no
+longer open.
+
 Only after this artifact exists is it meaningful to compute
 
 ```text

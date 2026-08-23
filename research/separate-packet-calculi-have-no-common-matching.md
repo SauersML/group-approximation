@@ -75,15 +75,20 @@ detect a dimension or create determinant lines in auxiliary spaces, but a
 natural matching returned on the original reservoirs still obeys `(SPC4)`.
 Spectator amplification and direct sums preserve the same obstruction.
 
-The conclusion changes only after the input contains a literal mixed block
+The conclusion changes only after the input contains an authenticated mixed
+block
 
 ```text
 T:H_0 -> H_1,       T |-> W_1 T W_0^*.                    (SPC7)
 ```
 
-Its polar partial isometry is covariant rather than invariant and can match
+For Atlas, the legal relative-coordinate compression `P_i U Q_j` is such a
+block even though `U` is a coordinate obtained after finite-chart
+exactification rather than a group word.  Its polar partial isometry is
+covariant rather than invariant and can match
 equal-rank spectral cuts of `T^*T` and `TT^*`.  Therefore any Atlas common-cut
 acquisition using these natural selector classes must name such a mixed word
-block, prove its source and target types from the same quotient relation, and
-prove a fixed lower bound on its selected Gram mass.  Separate regular
+block or relative-coordinate compression, prove its source and target types
+from the same quotient relation, and prove a fixed lower bound on its selected
+Gram mass.  Separate regular
 `A8`, `S4`, or `S3` carrier data cannot supply the matching.
