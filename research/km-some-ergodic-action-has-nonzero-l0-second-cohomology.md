@@ -146,3 +146,14 @@ Three recorded routes (details on the LP node):
   toward `H^2(Lambda, L^0) != 0`, i.e. Corollary E firing and LP
   FAILURE; the two-step completion program (faithful finite triples;
   quotient-tower char-function survival) is recorded in Addendum 16.
+
+- 2026-08-23 (stakes corrected, ISW full text re-read).  ISW's ONLY
+  LLP-refuting mechanism (Theorem A) requires finite-dimensional
+  projective representations (its condition (3)), which are trivial
+  at the simple non-linear lattices -- so THIS CLAIM DECIDES ONLY
+  THE LP, never the LLP, in either direction.  The forced-witness
+  fork's positive branch (LLP => non-hyperlinear) survives every
+  outcome of the defect computation, and a nonzero defect combined
+  with LLP would exhibit a full group C*-algebra with LLP but
+  without LP.  Source: isw-ddjmo-cr-cohomology-sources artifact,
+  2026-08-23 re-read section.
