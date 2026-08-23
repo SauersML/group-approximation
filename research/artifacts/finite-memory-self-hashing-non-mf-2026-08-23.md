@@ -18,10 +18,14 @@ no-renormalization results.
 * Projection-rank rigidity and cyclic rank monodromy are
   `NoRenormalizationCapacity.projection_rank_rigid` and
   `NoRenormalizationCapacity.rank_zero_of_power_monodromy`.
-* The proposed one-step self-copy detector is an instance of the stronger
-  machine-checked compression theorem
-  `map_marked_commutator_eq_one`, globalized as
-  `compressionCentralizerDefect_le_ker`.
+* The exact one-step self-copy detector is packaged directly by
+  `repCommutant_eq_map_sandwich_of_compression`,
+  `mem_repCommutant_of_commutes_compressed`, and
+  `map_commutator_eq_one_of_commutes_compressed`, with the representation-
+  theoretic wrapper
+  `map_commutator_eq_one_of_commutes_compressed_units`.  The older marked
+  compression endpoint `map_marked_commutator_eq_one` and its globalization
+  `compressionCentralizerDefect_le_ker` are recovered from the same argument.
 
 The last identification is worth making explicit.  If `B` embeds in an
 ascending HNN extension with stable letter `t` and child map `alpha`, and a
@@ -83,12 +87,15 @@ finite-dimensional copy contained in the parent.  Equal dimension forces
 equality.  Since the sibling belongs to the parent and centralizes the child,
 its two Pauli generators commute in the representation.
 
-This exact theorem is already subsumed by
-`compression-defect-dies-in-finite-dimensions`; no new Lean declaration is
-needed.  A Thompson--Clifford instantiation additionally needs a formal
-construction of its group, child embedding, sibling central-product packet,
-and Britton embedding.  Those data currently exist at the Cairn research
-level, not as a Lean carrier.
+The abstract exact detector is now a standalone unconditional Lean theorem:
+`map_commutator_eq_one_of_commutes_compressed`.  Its hypotheses are precisely
+the one-sided child inclusion, sibling/child commutation, and membership of
+the second sibling generator in the parent.  No literature theorem,
+property `(T)`, unitarity, trace, or asymptotic approximation principle enters
+this declaration.  A Thompson--Clifford instantiation additionally needs a
+formal construction of its group, child embedding, sibling central-product
+packet, and Britton embedding.  Those data currently exist at the Cairn
+research level, not as a Lean carrier.
 
 ## 4. Thompson even-lamp finite-state detector
 
