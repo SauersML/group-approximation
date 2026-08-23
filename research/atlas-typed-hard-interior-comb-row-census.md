@@ -7,6 +7,7 @@ distinct_from:
   atlas-word-inventory-does-not-define-typed-channel-census: that proves the current word-only artifacts stop before this target; this asks to acquire the missing typed data.
   atlas-hard-packet-authenticates-s4-extension-triple: that proves the common extension-labelled corner exists; this asks to materialize every literal equation after that authentication.
   atlas-authenticated-s3-extension-minor-decodes-pairings: that additionally asks the resulting matrix to have nuisance-quotient rank three; this claim makes the matrix auditable without asserting its rank.
+  separate-packet-calculi-have-no-common-matching: that rules out the natural spectral, Gram, PI, and exterior-power selectors when applied separately to the authenticated finite blocks; this census still permits a selector built from a literal mixed cross-reservoir word block.
 artifacts:
   - research/artifacts/atlas-typed-row-census-acquisition-2026-08-23.md
 ---
@@ -53,5 +54,16 @@ depends.
 - Record the finite-matrix selection rule and its mass/loss estimates.  A
   bare equality of carrier dimensions or a universally chosen multiplicity
   identification is not authentication.
+- **Separate finite-block selector calculi are now excluded.**
+  `separate-packet-calculi-have-no-common-matching` proves that spectral,
+  within-block Gram, PI, central-polynomial, tensor, or exterior-power data
+  formed separately from the regular `A8`/`S4`/`S3` carriers retain two
+  independent multiplicity gauges.  Any natural matching between their
+  selected cuts is zero; quantitatively a matching of normalized mass `mu`
+  has Haar-averaged gauge-covariance defect `2mu`, even when every packet
+  defect is zero.  Thus a valid census must first exhibit a literal mixed
+  word block between the two reservoirs and obtain the common cut from its
+  cross-Gram spectrum.  Packet-local cuts cannot be combined by an
+  unauthenticated polar identification.
 - Stop rather than emit a matrix if any term lacks a source/target type or a
   reduced monomial tag.  An incomplete nuisance list cannot test the decoder.

@@ -130,6 +130,19 @@ a universal star-ideal consequence.  Literal finite-carrier projectors are
 allowed; universally identifying their external multiplicity reservoirs is
 not.
 
+There is now a sharper selector fence.  By
+`separate-packet-calculi-have-no-common-matching`, two separately
+authenticated regular finite-packet reservoirs have independent full
+multiplicity-unitary gauges.  Every unitary-natural spectral, within-block
+Gram, PI, central-polynomial, tensor, or exterior-power construction leaves
+those gauges intact.  Its only multiplicity cuts are zero or full, and it
+cannot return any nonzero matching between the two reservoirs.  In the
+approximate form, a matching of normalized mass `mu` has Haar-averaged
+gauge-covariance residual exactly `2mu` while the separate packet defects
+remain zero.  Consequently the acquisition record must identify a literal
+mixed cross-reservoir operator before invoking a polar or spectral common-cut
+step; separate block invariants cannot fill that field.
+
 Only after this artifact exists is it meaningful to compute
 
 ```text
