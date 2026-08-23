@@ -15,8 +15,13 @@ distinct_from:
 `km-codistance-filtration-twisted-levels-proof`).**  Let `(X_+,X_-)` be the
 twin building of `Lambda=Lambda_(2,4,6)(q)`, `Z=X_+ x X_-` with the product
 cell structure, `f` the minimal codistance length on residue pairs, and
-`Z_(<=R)` the sublevel complexes, so `Z_(<=0)=X` is the Levi-triangle
-development and `Z=union Z_(<=R)` is contractible.  Let `q` be large enough
+`Z_(<=R)` the sublevel complexes, so `Z=union Z_(<=R)` is contractible
+and the bottom level `X^ := Z_(<=0)` is the union of the closed product
+cells `x x y` over opposite chamber pairs, a simply connected
+four-dimensional cocompact proper `Lambda`-complex (NOT the
+two-dimensional Levi-triangle development `X`, which is homotopy
+equivalent to `X^` minus its mixed-type 1-skeleton; see
+`km-development-has-nonzero-end-cohomology-in-degree-one`).  Let `q` be large enough
 that the opposition graph of every thick generalized `m`-gon residue
 (`m in {2,4,6}`) is connected.  Then:
 
@@ -66,17 +71,18 @@ that the opposition graph of every thick generalized `m`-gon residue
     rank-one data at each matched vertex pair.
 ```
 
-**Consequences.**  `H_2(X)=0` (the development is contractible, and
-`Lambda` is of type `F_infty` by Brown's criterion) iff the cokernel in
-`(d)` vanishes for every twisted type.  For the grid type `A_1 x A_1`
-it vanishes (computed in
+**Consequences.**  `H_1(X^)=H_2(X^)=0`, i.e. the thick part `X^` is
+2-connected and `Lambda` is of type `F_3` by Brown's criterion, iff the
+cokernel in `(d)` vanishes for every twisted type.  For the grid type
+`A_1 x A_1` it vanishes (computed in
 `km-development-has-nonzero-end-cohomology-in-degree-one`, attempts).
 The remaining finite statement is
-`km-twisted-level-product-cycles-surject`.  If it holds, then by
-`km-group-ring-h2-is-development-end-cohomology` the point class of a
-2-cell is a nonzero element of `H^2(Lambda;Z Lambda)=H^2_c(X)`, Corollary
-D of Ioana--Spaas--Wiersma fires, and `C^*(Lambda)` fails the lifting
-property.
+`km-twisted-level-product-cycles-surject`.  If it holds, then
+`H^2(Lambda;Z Lambda)=H^2_c(X^)` by universal coefficients, and
+Corollary D of Ioana--Spaas--Wiersma fires iff `H^2_c(X^)!=0`.  The
+development `X` itself is never contractible: it contains embedded
+2-spheres (two cone discs over a link cycle glued along their far-edge
+circle; same node), so no point-class argument is available.
 
 **Why the affine case is different.**  For `A~_2` all labels are odd,
 the simple reflections are conjugate, and rank-`(1,2)` twisted levels
@@ -84,5 +90,7 @@ DO occur; there the relative complex is `B cup union_i Cone(Opp(y_i))`
 over an `s`-panel `{y_i}` and carries the nonzero class `(z,-z)` for
 any cycle `z` opposite to two chambers of the panel, consistent with
 `SL_3(F_q[t,t^(-1)])` having finiteness length three
-(Bux--Köhl--Witzel) and a non-contractible development.  The even
-labels of compact hyperbolic type remove exactly these levels.
+(Bux--Köhl--Witzel), so that its thick part `X^` cannot be 3-connected.
+The even labels of compact hyperbolic type remove exactly these levels
+from the filtration (they survive only inside `X^` itself, as links of
+mixed edges, where they produce the 2-spheres of the development).

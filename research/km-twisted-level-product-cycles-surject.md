@@ -5,7 +5,7 @@ kind: claim
 title: At every twisted level of the (2,4,6) codistance filtration the product graph cycles surject onto the matched local cycle spaces
 distinct_from:
   km-codistance-filtration-twisted-levels-are-rank-two-pairs: that is the established structure theorem reducing the second homology of the development to this statement; this is the remaining finite combinatorial input.
-  km-development-has-nonzero-end-cohomology-in-degree-one: that is the end-cohomology consequence; this implies it through contractibility of the development and is strictly stronger (it also gives type `F_infty`).
+  km-development-has-nonzero-end-cohomology-in-degree-one: that is the end-cohomology input for Corollary D; this is the finite combinatorial statement that makes the thick part 2-connected (type `F_3`) and identifies that input with `H^2_c` of the thick part, without deciding it.
 ---
 
 **OPEN (finite).**  For each twisted type of
@@ -26,11 +26,13 @@ complex, equivalently the connecting maps of the filtration vanish at
 that level.
 
 If `(TLS1)` holds for all twisted types then, by the structure theorem,
-`H_2(X)=0`: the Levi-triangle development is contractible, `Lambda` is
-of type `F_infty`, `H^2(Lambda;Z Lambda)=H^2_c(X) != 0`, and
-`compact-hyperbolic-km-lattices-fail-lp` follows (route
-`km-lp-fails-via-development-end-cohomology` through
-`km-development-has-nonzero-end-cohomology-in-degree-one`).
+`H_1(X^)=H_2(X^)=0` for the bottom thick part `X^=Z_(<=0)` of the
+twin-building product: `X^` is 2-connected, `Lambda` is of type `F_3`
+(a new finiteness property for these lattices), and
+`H^2(Lambda;Z Lambda)=H^2_c(X^)`.  Corollary D then reduces to
+`H^2_c(X^)!=0`, equivalently `H^3_c` of the cusp region `Z minus X^`;
+this last step is open (the development `X` has `H_2!=0`, so its point
+class is unavailable).
 
 ## Attempts
 
