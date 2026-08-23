@@ -46,6 +46,10 @@ to `D`.  Hence the missing invariant must preserve canonical character
 multiplicity, impose a global boundary-minimizing cut selection, or replace
 fixed zero-signing by a coherent multicharacter kernel labeling.  It cannot
 be deduced from balanced relation energy and local cut admissibility.
+At exact zero defect, `exact-code-tuples-gauge-centralize-every-pvm` proves
+that the third option always works by an integer rank transport.  Thus the
+sharp alternative to this Carleson claim is a quantitative approximate
+version of that far-gauge transport, not another exact PVM theorem.
 
 ## Attempts
 
