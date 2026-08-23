@@ -53,13 +53,13 @@ from the primitive tight frames: indices `2,3,4` already give norms about
 `2.27, 3.45--3.91, 5.05`.  This is a falsification signal against a small
 arithmetic constant, not a proof of divergence or even monotonicity.
 
-## Right-unipotent fixed slice
+## Right-Borel fixed slice
 
 There is a much smaller exact reducing slice which tests whether the extra
 torus label alone explains this growth.  Since `(DSS3)` is built from left
-translations, it commutes with the right action of the upper unipotent
-subgroup `U`.  Its right-`U` fixed input consists of functions on
-`P^1(F_p)` satisfying
+translations, it commutes with the right action of the upper Borel
+subgroup `B`.  Its right-`B` fixed input consists of functions on
+`P^1(F_p)=G/B` satisfying
 
 ```text
 f(4z)=f(z),                 f(-1/z)=-f(z).
@@ -84,6 +84,12 @@ p      torus index   input dim   rank   ||C_U^dagger||_inf
 Thus the pure projective label slice grows much more slowly and does not
 account for the full norms at `p=31,73`.  Any divergent mode, if it exists,
 must use nontrivial right-`U` types or a subtler interaction among them.
+
+This is **not** the whole right-`U` fixed space.  The latter carries the
+right action of `T=B/U`, and the projective calculation is only its trivial
+`T`-character block.  The exact decomposition and the dimension
+`dim D^U=((p+1)/2)i_p` are proved in
+`right-unipotent-reynolds-space-decomposes-into-torus-hecke-blocks`.
 
 The sweep rules out the simplest prediction that the actual arithmetic
 column already behaves like the generic logarithmically bad cubic expander

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Right-unipotent fixed slice of the scalar Reynolds column (DSS3)."""
+"""Right-Borel fixed (trivial right-torus character) slice of (DSS3)."""
 
 import argparse
 import os
