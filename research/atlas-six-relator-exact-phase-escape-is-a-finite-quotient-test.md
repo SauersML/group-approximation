@@ -74,7 +74,10 @@ screens prove `atlas-six-relator-simple-index-is-at-least-991`: any finite quoti
 ```
 
 This is still a finite restriction and does not decide condition 2 for an
-arbitrary finite group: larger finite-simple marked overgroups remain.
+arbitrary finite group.  The next interval is now completely classified by
+`atlas-six-relator-next-simple-target-is-hs`: through index 2200 the only
+remaining candidate is one marked conjugator family in the Higman--Sims
+group.  That family has not yet been screened for the weaker six words.
 
 The blockwise consequence is stronger than a degree cutoff but still not a
 general exclusion.  By
