@@ -576,3 +576,21 @@ the fixed-depth nonhyperlinearity criterion.
   rank balancing nor common-source synchronization is still open.  The sole
   preceding input is construction of the six separate decoded chart PVMs
   with their root-chart covariance and denominator first exits controlled.
+- **Exact one-hot decoding and exact raw incidence still tensor-separate.**
+  `raw-incidence-and-one-hot-pvms-tensor-separate` puts an exact balanced
+  Bernoulli raw branch family and two exact one-hot/Fourier chart PVMs on
+  three finite coordinates. The same transitive actor covaries all three systems, every
+  section identity `a_i=b_i d_i` and raw deficit is exact, and both decoded
+  charts have equal atom ranks. Yet their saturation deficit is `41/42`.
+  The first quantity which sees the separation is precisely
+
+  ```text
+  sum_i ||(1-Q_i)T_iP_i||_2^2=41/42,
+  ```
+
+  the atomwise mixed section leakage `(EDA11)`. Therefore separate
+  one-hot/Fourier construction plus the raw denominator lemma cannot produce
+  one shell PVM. The smallest remaining Gram input is irreducibly mixed:
+  prove that the actual section transition applied to each decoded root atom
+  has leakage controlled by the conductor/root ledger. No marginal or raw
+  factor estimate can substitute for it.

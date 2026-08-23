@@ -84,3 +84,21 @@ universal-factor no-go results leave open.
   Gauss--Newton/Jacobian form of the five boundary holonomies and interior
   holonomy.  A positive construction must pin/quotient that gauge without
   losing the actual unitary, or use a different mixed form.
+- **One linear pin does not repair the Jacobian.**
+  `atlas-one-functional-gauge-pin-cannot-create-shrinkage` shows that the
+  honest phase slice `Im ell(T)=0` is real-linear; its complexification
+  contains the invertible radial matrix `U` and cannot shrink.  The complex
+  hyperplane `ell(T)=0` imposes an extra physical equation, while phase
+  normalization is either uniformly stable and energy-neutral or unstable
+  near `ell(U)=0`.  Any useful pin must therefore be authenticated by further
+  mixed relations and must output a complex relative space by a mechanism
+  stronger than deleting one scalar coefficient.
+- **Cross-Jacobians do not pay the missing mode.**
+  `atlas-cross-jacobian-cannot-pay-the-gauge-mode` shows that the nonlinear
+  Jacobian kills `iU`, so every nonlinear--additive bilinear cross term also
+  vanishes there.  A positive combined form either has no additive diagonal,
+  in which case positivity kills the cross block, or charges `iU` by a
+  quadratic expression in the additive circulation itself.  Controlling
+  that expression by nonlinear defect is already the missing five-row
+  inequality.  Thus a bilinear Hessian does not furnish an independent
+  shortcut.

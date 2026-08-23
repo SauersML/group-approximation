@@ -8,6 +8,7 @@ distinct_from:
   three-chart-loop-retains-free-multiplicity-holonomy: that exhibits the abstract free cycle gauge; this asks the native Kac-Moody two-cell relations to control it on the canonical regular branch.
   finite-face-flatness-stops-at-fundamental-group-holonomy: that classifies bare face-flat multiplicity connections and shows curvature repair is presentation stability; this can succeed only through additional native label--multiplicity coupling.
   fixed-finite-label-km-holonomy-is-scalar-or-gapped: that rules out every fixed projective-label Schur-product twist; this still permits growing or genuinely label--multiplicity-entangled overlap maps.
+  finite-multipath-average-coercivity-has-exact-julia-absorber: that proves finite additive paths coerce their pairwise Gram energy only after complementary leakage is controlled; this must construct that carrier control from native Kac--Moody relations.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
@@ -68,3 +69,28 @@ sum of at least two finite label paths, or an intertwiner which genuinely
 entangles label and multiplicity coordinates.  Its construction must be
 forced by a named Curtis--Tits relation; merely allowing its finite label
 alphabet to grow with the microstate would abandon fixed-scale extraction.
+
+## Additive multipath interface
+
+Allowing a coherent same-block sum does leave the projective-groupoid
+absorber, but addition alone is still insufficient.  The established identity
+`finite-multipath-average-coercivity-has-exact-julia-absorber` applies to any
+finite family of equal-source/equal-range corner unitaries, even when the
+paths entangle label and multiplicity coordinates.  Their average loses
+corner-isometry mass by exactly
+
+```text
+1/(2m^2) sum_(i,j)||A_i-A_j||_2^2.
+```
+
+If a native global unitary has this average as a nearly invariant corner,
+that identity is the desired finite coercivity lemma and forces path
+consensus with constants `2m^2` and `4m^2`.  Without invariance, the Julia
+dilation puts the average in the corner of an exact finite-dimensional
+unitary and sends precisely the same Gram energy into the complement.
+
+The first surviving construction target is therefore exact: identify one
+Curtis--Tits multipath block on a positive regular carrier and prove either
+small complementary leakage or an independent relator-energy charge for that
+leakage.  More paths and non-Schur coordinate entanglement do not remove this
+carrier obligation.
