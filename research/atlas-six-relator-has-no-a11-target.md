@@ -83,8 +83,13 @@ alternating target through degree eleven.  It does not exclude:
 
 * alternating targets of degree at least twelve;
 * other finite simple or almost-simple overgroups of `A8`;
-* finite extensions with a nontrivial solvable radical;
 * an unbounded sequence of finite images giving a matrix-ultraproduct escape.
+
+There is no longer an independent finite-extension or solvable-radical
+case: `atlas-six-relator-finite-escape-is-simple-test` sends every nontrivial
+finite quotient to a larger nonabelian simple marked-`A8` quotient retaining
+the bridge.  The unscreened exact target is therefore the finite-simple
+overgroup family, while the uniform approximate gap remains separate.
 
 Any one bridge-retaining finite target in those unscreened classes would
 still refute `atlas-five-row-operator-phase-lift` by the regular
