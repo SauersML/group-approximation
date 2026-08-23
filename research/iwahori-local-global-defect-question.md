@@ -182,9 +182,12 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   `(2/3)min(x_A,y_A)`.  Their sum is at most `2d/3`.  Exact conductor removes
   `O_0`, and the joint conductor table removes nonadjacent pairs, so this is
   a complete bound for arbitrary selected dyadic irreducibles and
-  multiplicities at conductor at least two.  Selberg `(tau)` gives the
-  uniform HS floor `kappa_B/sqrt(3)`; the remaining conductor-one diagram is
-  part of the already repaired bounded window.
+  multiplicities at conductor at least two. The bottom-corrected estimate
+  `C/d<=2/3+min(b_+,b_-)/(3d)` then shows that low edge defect forces all
+  but `O(def^2)` rank into the fixed conductor-at-most-one diagram.
+  `pure-dyadic-iwahori-pairs-have-uniform-linear-repair` discards that small
+  deep rank and applies fixed-diagram repair, giving one linear constant for
+  every exact pure-dyadic pair.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.

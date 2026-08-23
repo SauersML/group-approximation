@@ -52,12 +52,20 @@ character spaces used by a same-depth `O_B` match: respectively
 diagonal cells compete for one and the same physical eigenspace.  Its
 dimension is one third of that endpoint's `O_B` mass.
 
-Charge each adjacent match to its higher endpoint and charge each diagonal
-`O_B` match to either of its two endpoint slots.  Orthogonality of distinct
-common summands gives the aggregate bound
+Let `U,D,S_B` be as in `(DCS2a)`. The lower-plus/higher-minus cells and the
+diagonal cell compete in the minus `gamma=0` slot, while the reverse cells
+and the same diagonal cell compete in the plus `beta=0` slot. Orthogonality
+therefore gives
 
 ```text
-C_B <= x_B/3+y_B/3.                                    (DSP4)
+U+S_B<=y_B/3,                 D+S_B<=x_B/3.             (DSP4a)
+```
+
+Adding and subtracting the once-double-counted diagonal cell gives
+
+```text
+C_B=U+D+S_B <= (x_B+y_B)/3-S_B
+               <=x_B/3+y_B/3.                          (DSP4)
 ```
 
 All adjacent arrows, including those sourced in `O_F` or `O_A`, land in
@@ -79,3 +87,16 @@ unitary onto the exact intertwiner space leaves squared normalized
 Hilbert--Schmidt norm at most `2/3`, so its distance from that space is at
 least `1/sqrt(3)`.  The uniform Iwahori Poincare constant `kappa_B` gives
 `(DCS3)`.
+
+For `(DCS4)`, cells with both endpoints of conductor at most one contribute
+at most `min(b_+,b_-)`. By `(DSP1)`, a bottom band can meet the deep tower
+only across conductors one and two, and this adjacent cell is already
+charged to the conductor-two `O_B` root slot in `(DSP4)`. Hence
+
+```text
+C <= min(b_+,b_-)+(x_B+y_B)/3+(2/3)min(x_A,y_A).        (DSP6)
+```
+
+Now `x_A+x_B<=d-b_+` and `y_A+y_B<=d-b_-`. Repeating the
+two-case estimate `(DSP5)` bounds `(DSP6)` by
+`2d/3+min(b_+,b_-)/3`, proving `(DCS4)`.

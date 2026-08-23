@@ -37,6 +37,14 @@ satisfying
 C <= (x_B+y_B)/3 + (2/3)min(x_A,y_A) <= 2d/3.           (DCS2)
 ```
 
+If `U,D,S_B` denote lower-plus/higher-minus adjacent mass,
+higher-plus/lower-minus adjacent mass, and same-depth `O_B` mass, then
+
+```text
+U+S_B<=y_B/3,       D+S_B<=x_B/3,
+U+D+S_B<=(x_B+y_B)/3-S_B.                              (DCS2a)
+```
+
 The first term is a character-slot conservation law.  Every adjacent match
 is charged to the unique root-character slot of its higher-conductor `O_B`
 endpoint.  A same-depth `O_B` match consumes those same arrival slots, not
@@ -62,3 +70,14 @@ The conductor-one quotient is deliberately excluded: it is one fixed finite
 diagram and can contain fully compatible packets.  It is already covered by
 `bounded-dyadic-conductor-iwahori-pairs-have-uniform-repair`; the theorem
 above supplies the depth-independent obstruction on its complement.
+
+For arbitrary pure dyadic packets, let `b_+`,`b_-` be the physical
+dimensions of the conductor-at-most-one summands. The bottom-corrected
+estimate is
+
+```text
+C/d <= 2/3+(1/3)min(b_+,b_-)/d.                         (DCS4)
+```
+
+This permits compatible bottom packets while retaining the uniform gap on
+their complement.

@@ -25,10 +25,10 @@ Then there is an exactly compatible same-dimensional pair
 D(pi_+,pi_-)<=K_A def(pi_+,pi_-).                       (BDI2)
 ```
 
-Consequently a counterexample made from exact pure dyadic vertex packets
-must have unbounded two-adic conductor.  Together with the odd-congruence
-linear theorem, this rules out both growing odd level and every bounded
-pure dyadic window as the source of failure.
+This bounded-window statement is now subsumed by
+`pure-dyadic-iwahori-pairs-have-uniform-linear-repair`, which obtains one
+constant over the full unbounded two-adic tower from Clifford character-slot
+conservation.
 
 One unbounded family is now excluded without any conductor cutoff.
 `pure-dyadic-regular-iwahori-mixtures-have-a-uniform-half-loss` computes the
@@ -39,23 +39,19 @@ one-half common edge mass. Selberg `(tau)` turns this into a depth-uniform
 Iwahori defect floor. Thus the surviving unbounded tower must exploit
 selected non-Plancherel irreducibles, not regular cross-conductor routing.
 
-The dependence on `A` is the exact remaining issue.  Index-three branching
-alone does not make it uniform: fixed-degree integer incidence matrices can
-have Hoffman constants diverging along arbitrarily long paths (a unit-slope
-integer ramp has `L^1` distance quadratic in path length from the constant
-kernel while its edge residual is only linear).  For the actual Iwahori
-tower one must therefore control the restriction monoids coherently across
-depth, or exploit the conductor-shift relations; bounded branching and the
-three-coset core intersection do not supply that control.
+The former concern about dependence on `A` was genuine at the level of
+abstract bounded-degree incidence matrices: their Hoffman constants can
+diverge along long paths. The later Clifford slot theorem supplies the
+missing arithmetic input for this particular tower, rather than deriving
+uniformity from bounded branching alone.
 
-Even adding a uniform Hilbert-space angle does not close this gap.
+Adding a uniform Hilbert-space angle did not formally close this gap.
 `l2-angle-does-not-imply-l1-integer-hoffman` gives bounded-degree integral
 incidence maps with a uniform nonzero `L^2` singular value but logarithmically
-diverging real and integer `L^1` Hoffman constants.  Therefore the existing
-cuspidal/Eisenstein angle and Selberg `(tau)` cannot be converted formally
-into physical-rank rounding.  A positive depth-uniform theorem must prove an
-`L^1` flow bound using the specific dyadic restriction ring, not only its
-`L^2` spectrum.
+diverging real and integer `L^1` Hoffman constants. Thus the existing
+cuspidal/Eisenstein angle and Selberg `(tau)` could not be converted
+formally into physical-rank rounding. The later positive theorem uses the
+specific newest-layer character slots, not only the `L^2` spectrum.
 
 The failure of the tempting analytic replacement is already exact at level
 two.  `three-coset-frame-saturation-is-not-pair-functorial` gives the actual
