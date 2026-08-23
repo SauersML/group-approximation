@@ -120,3 +120,4 @@
 32606653347	2026-08-22T23:59:15Z	GroupApproximation/Sofic/FiniteNormalCoronaObstruction.lean	finiteNormal_le_coronaMFResidual
 32611769542	2026-08-23T02:01:33Z	GroupApproximation/Sofic/FreeProductRouterObstruction.lean	factorMap_bijective_of_surjective
 32614949385	2026-08-23T03:17:14Z	GroupApproximation/Sofic/KazhdanCliffordConstruction.lean	baseEval_surjective
+32616980504	2026-08-23T04:05:48Z	GroupApproximation/Sofic/KazhdanCliffordConstruction.lean	not_isOperatorMF
