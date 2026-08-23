@@ -102,11 +102,16 @@ inside permutation ultraproducts.
 For the Atlas quotient, `atlas-six-relator-has-no-a11-target` exhausts every
 labeled nontrivial pair of maps `A8 -> A11`.  Of `6,652,800` chart pairs,
 exactly one satisfies all five boundary relators and the interior `19243`
-relator kills it.  This rules out the whole natural alternating escape
-through degree eleven, but not larger alternating targets, other finite
-overgroups, or diffuse matrix-ultraproduct models.  It is therefore a finite
-restriction on the exact escape, not evidence sufficient to assert the
-five-row phase lift.
+relator kills it.  The blockwise refinement
+`atlas-six-relator-natural-orbit-mixing-floor` identifies that survivor as
+the aligned chart, where the collision word is an involution supported on
+all eight moving points; a component with either chart trivial already
+fails `s_0` or `s_11`.  Thus direct sums of natural eight-point blocks do not
+escape: any nontrivial permutation model must genuinely mix the two orbit
+partitions in a component of degree at least twelve.  Larger alternating
+targets, other finite overgroups, and diffuse matrix-ultraproduct models
+remain.  This is therefore a finite restriction on the exact escape, not
+evidence sufficient to assert the five-row phase lift.
 
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
