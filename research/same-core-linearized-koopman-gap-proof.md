@@ -5,19 +5,16 @@ kind: route
 title: Differentiate the same-core cubic identity and apply the exact Koopman gauge-distance formula
 target: same-core-gauge-rows-control-linearized-koopman-inverse-energy
 requires:
-  - same-core-involution-cubic-gauge-coercivity
   - koopman-weighted-energy-is-linearized-gauge-distance
 ---
 
-Put `B=X_0T` and `alpha=Ad(B)`.  Because `A` commutes with `T` and
-`X_0^2=1`,
+Put `B=XT` and `alpha=Ad(B)`.  Because `A` commutes with `T`,
 
 ```text
-alpha(A)=X_0AX_0.
+alpha(A)=Ad(X)(A).
 ```
 
-Moreover `B^3=1`, so `alpha^3=1`.  The two row differentials in `(SCK2)`
-are therefore
+The two left-trivialized row differentials in `(SCK2)` are therefore
 
 ```text
 L_2 A=A+alpha(A),
@@ -50,5 +47,6 @@ sum_t t^(-2)||P_t D A||_2^2
 Combining this with `(2)` proves `(SCK3)`.  The argument takes place in the
 whole finite tracial matrix algebra.  Direct sums, multiplicity blocks, and
 off-diagonal elements of `{T}'` therefore require no separate tensorization
-argument.
-
+argument.  Notice that neither `X^2=1` nor `(XT)^3=1` was used; the identity
+is a global Fox-row identity at every base point, although its conclusion is
+only differential.

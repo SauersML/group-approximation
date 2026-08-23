@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: fanizza-cross-context-radical-tuples-have-exact-stabilizer-shears
+id: fanizza-radical-tuples-have-stabilizer-shears
 kind: claim
 title: The two Fanizza endpoint tuples have exact all-sector S3 stabilizer alignments
 artifacts:
@@ -62,5 +62,5 @@ This removes the former satisfying-sector spectral/conjugacy risk from the
 cross-context-relator completeness problem.  It does not assert that two
 independent raw coordinates lie in one reset multiplicity commutant; the
 separate claim
-`two-raw-radical-endpoints-cannot-both-centralize-a-symplectic-reset`
+`two-raw-radicals-fail-common-symplectic-reset`
 shows that stronger statement is false.

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: two-raw-radical-endpoints-cannot-both-centralize-a-symplectic-reset
+id: two-raw-radicals-fail-common-symplectic-reset
 kind: claim
 title: Two independent raw radical endpoints cannot both lie in one chart reset commutant
 invalidates:

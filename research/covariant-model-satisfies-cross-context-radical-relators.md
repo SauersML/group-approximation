@@ -3,6 +3,8 @@ rg: 2
 id: covariant-model-satisfies-cross-context-radical-relators
 kind: claim
 title: The covariant completeness model satisfies both cross-context radical relators
+artifacts:
+  - experiments/cross_context_radical_relator_audit.py
 distinct_from:
   s3-radical-chart-returns-to-fresh-context: that demands the full return incidence with reset discipline and transport properties; this is one computation in one named representation after the return is quotiented by two explicit relators. It is also distinct from any equivariant-edge closure, which eliminates independent rotations structurally before any quotient.
   three-chart-affine-clifford-return-incidence: that is the target common-marginal statement for finite tuples; this is the single completeness-side obligation of the relator route into it.
@@ -40,11 +42,11 @@ representation satisfies every relator in `(CCR1)` **exactly**, and the
 quotiented presentation still admits an exact representation separating
 the marked base word.
 
-This is the only completeness-side obligation of the relator route
-`three-chart-return-from-cross-context-relators`.  Soundness needs
-nothing here: in any finite tuple the relators are part of the energy
-`E`, and violation of the common endpoint marginals is charged to `E`
-directly.
+This was proposed as the only completeness-side obligation of the relator
+route `three-chart-return-from-cross-context-relators`.  The present claim is
+still purely about completeness.  The route's separate soundness assertion
+is not automatic from adjoining the relators and is now invalidated by
+`two-raw-radicals-fail-common-symplectic-reset`.
 
 ## Why no edge can ever carry the bit
 
@@ -73,20 +75,22 @@ consequences of any legal edge enlargement.
    `(WDR3)`-type, and gauge flips fix logical products by
    `gauge-doubling-gives-selector-flip-symmetries`, so the gauge-orbit
    covariantization preserves whatever alignment the finite cells give.
-3. Use `finite-group-shared-overlap-polar-alignment` to choose the two
-   edge identifications of the paired contexts so that both send the
-   shared radical coordinate to the same fresh reading; `(CCR1)` then
-   holds exactly in the aligned covariant model, with the central
-   exponent `c_(a,j)` equal to the twist-functional difference.
+3. Use `fanizza-radical-tuples-have-stabilizer-shears` for the full finite
+   packet audit.  With `alpha=ell_1`, `beta=ell_3`, and `gamma=ell_2`, the
+   two opposite lifted `GL_2(F_2)` shears fix respectively every
+   `r_(a,0)` and every `r_(a,1)`.  Equivariant reset hyperplanes therefore
+   align the complete indexed outside-word tuples on every selector block,
+   including satisfying blocks, with zero central correction.
 4. Marked-base separation descends because the aligned model satisfies
    the relators exactly and already separates the marked word.
 
-The open step is 3: the polar alignment is currently proved for the type
-vectors of a shared overlap subgroup, and the radical bit is precisely not
-in the overlap subgroup (see above), so the alignment must be extended to
-one designated outside word per context pair — a strictly weaker demand
-than the full `S_3`-semidirect edge closure, since only two word images
-must be matched, not a whole group action.
+The former finite obstruction in step 3 is closed.  What remains before this
+claim itself may be established is to write the three complete context
+transport unitaries in the countably amplified HALT representation and check
+that their two relative loops are the two stabilizer shears supplied by that
+finite audit.  The regular-orbit reset construction is equivariant, but the
+current canonical presentation has not yet recorded this simultaneous choice
+of the three full installation/uninstallation composites.
 
 ## Attempts
 
@@ -108,18 +112,21 @@ must be matched, not a whole group action.
   recorded in `fresh-selector-renewal-after-symplectic-chart-reset`.
   `(CCR1)` imposes only the two agreements `(RNS1)` actually uses; the
   old selector characters stay private.
-- **Satisfying sectors are the live risk.**  A relator is global.  On a
+- **Satisfying sectors audited.**  A relator is global.  On a
   satisfying sector the words `r_(a,j)` are not sector-central (the form
   `A_f(x)` is nondegenerate there), so `(CCR2)` demands that the honest
-  comparison loop fix a *non-central* packet word.  Two mitigations are
-  in place but not yet a proof: the radical basis is independent of the
-  selector values (SER1), so no sector-dependent dephasing enters the
-  word itself; and the relator family is `S_3`-equivariant by `(SER2)`,
-  so the obligation reduces to one orbit representative per atom.  The
-  deferred step is to compute the honest loop `l_(alpha beta)` in the
-  gauge-orbit covariant model — it is a composition of one context
-  uninstallation and one installation over the same fresh carrier — and
-  check its action on the full packet, not only on the radical plane.
+  comparison loop fix a *non-central* packet word.
+  `fanizza-radical-tuples-have-stabilizer-shears` now checks exactly this:
+  64 satisfying comparison blocks, together with all forbidden blocks and
+  central-root corrections.  The deferred step is only to identify the
+  honest full comparison loops with those two audited shears.
+- **The consumer route has a separate soundness no-go.**  Exact outside-word
+  conjugacy does not put both endpoint words in the reset multiplicity
+  commutant.  `two-raw-radicals-fail-common-symplectic-reset` proves that a
+  nondegenerate codimension-one reset has only one commuting radical line.
+  It therefore invalidates the present `three-chart-return-from-cross-context-relators`
+  route even if the completeness choice in this claim is eventually written
+  down.
 - **Marked-base separation after the quotient.**  By
   `kleene-completeness-needs-only-a-nontrivial-exact-representation`,
   it suffices that the covariant model itself survives: if it satisfies

@@ -56,3 +56,11 @@ incidence covariance rows.
   canonical matrix types, using a cycle actuator coupled to the common mark.
   This is weaker than globally centralizing every cap and is the remaining
   opening not covered by either exact-completeness obstruction above.
+- **Finite Bass--Serre actor and canonical moment tests.**
+  `canonical-fano-free-product-defeats-finite-actor-payment` computes a free
+  Fano-cap commutator of canonical squared norm `1/2`.  Every finite
+  graph-of-groups actor extends on that same canonical base type with zero
+  actor defect.  Hence neither finite packet transport nor canonical side
+  tests can prove the uncompressed `(NCP1)`.  The live attack must use the
+  weaker prefix-compressed payload and a genuinely non-Bass--Serre two-cell
+  or infinite actor tied to it.

@@ -3,7 +3,7 @@ rg: 2
 id: fanizza-cross-context-radical-stabilizer-shear-proof
 kind: route
 title: Use the two opposite GL2 shears that fix the shared endpoint coordinates
-target: fanizza-cross-context-radical-tuples-have-exact-stabilizer-shears
+target: fanizza-radical-tuples-have-stabilizer-shears
 requires:
   - every-predicate-has-s3-equivariant-raw-radical-drop
   - fanizza-radical-charts-admit-common-symplectic-reset-subgroups

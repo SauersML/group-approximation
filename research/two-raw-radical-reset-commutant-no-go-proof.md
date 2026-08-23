@@ -3,7 +3,7 @@ rg: 2
 id: two-raw-radical-reset-commutant-no-go-proof
 kind: route
 title: Compute the orthogonal complement of a nondegenerate hyperplane in the odd chart form
-target: two-raw-radical-endpoints-cannot-both-centralize-a-symplectic-reset
+target: two-raw-radicals-fail-common-symplectic-reset
 requires:
   - every-predicate-has-s3-equivariant-raw-radical-drop
   - fanizza-radical-charts-admit-common-symplectic-reset-subgroups

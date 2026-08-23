@@ -10,6 +10,7 @@ requires:
   - ghost-completed-fano-naimark-wordizes-one-local-predicate
   - sequential-overlap-polar-aligns-carriers-not-contexts
   - raw-prefix-covariance-reduces-to-nonincidence-cap-commutators
+  - canonical-fano-free-product-defeats-finite-actor-payment
   - polar-correction-preserves-povm-covariance
   - common-source-partial-isometries-decode-one-game-state
   - canonical-or3-nonincidence-cap-commutator-payment

@@ -38,27 +38,28 @@ false pointwise Carleson gain supplies it.
 
 ## Same-core finite-cycle part is settled
 
-`same-core-gauge-rows-control-linearized-koopman-inverse-energy` proves that
-after an exact extender `X_0` over the **same** repaired `(R,T)` core is
-authenticated, the complete linearized weighted estimate has the universal
-constant `2`.  In fact the involution row and first cubic alone give
+`same-core-gauge-rows-control-linearized-koopman-inverse-energy` proves the
+complete linearized weighted estimate with universal constant `2` at
+**every** unitary over an exact `(R,T)` core, including nonextendable
+outliers.  In fact the involution row and first cubic alone give
 
 ```text
 sum_t t^(-2)||P_t D A||_2^2
  <=2(||L_(x^2)A||_2^2+||L_((xt)^3)A||_2^2).
 ```
 
-The proof is an exact order-three identity and covers arbitrary cycle
+The proof is an exact Fox-row identity and covers arbitrary cycle
 lengths, return multiplicities, heterogeneous direct sums, and cross-block
-commutant gauges.  The accompanying finite probe checks exact projective
-packets through fourth-power orbit length `53` and repeated/heterogeneous
-sums, with no loss.
+commutant gauges; it does not assume that either row vanishes at the base
+point.  The accompanying finite probe checks exact projective packets
+through fourth-power orbit length `53`, repeated/heterogeneous sums, and
+compressed even-Weil outliers, with no loss.
 
 Therefore the phrase "remaining arithmetic estimate" above must be read
-globally: the unresolved step is to authenticate a same-core exact endpoint
-(or perform the equivalent flexible outlier repair) before applying this
-coercivity.  It is not an unresolved generalized singular-value estimate on
-an already authenticated fourth-power cycle.  The compressed even-Weil
+nonlinearly: the unresolved step is to integrate this everywhere-coercive
+Fox differential in normalized HS while permitting flexible endpoint
+selection and boundary padding.  It is not an unresolved generalized
+singular-value estimate on fourth-power cycles.  The compressed even-Weil
 outliers have zero Weyl/inversion residual and hence do not challenge the
-weighted estimate; they locate the missing content in boundary padding and
-endpoint selection.
+weighted estimate; they locate the missing content in nonlinear boundary
+padding and endpoint selection.
