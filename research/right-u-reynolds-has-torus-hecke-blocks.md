@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: right-unipotent-reynolds-space-decomposes-into-torus-hecke-blocks
+id: right-u-reynolds-has-torus-hecke-blocks
 kind: claim
 title: The right-unipotent Reynolds space decomposes into torus-character Hecke blocks
 distinct_from:
   constrained-reynolds-column-has-a-diagonal-scalar-shadow: that identifies the whole sign-induced column; this gives its exact right-unipotent Mackey/Fourier decomposition and corrects the projective-slice dimension.
-  full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl: that resolves deeper root fibers when the cyclic dilation fills the torus; this isolates the additional proper-subtorus blocks already over the residue field.
+  full-torus-reynolds-is-multipartite-curl: that resolves deeper root fibers when the cyclic dilation fills the torus; this isolates the additional proper-subtorus blocks already over the residue field.
 ---
 
 **ESTABLISHED; EXACT REDUCTION, NOT A UNIFORM BOUND.**  Let
@@ -106,4 +106,3 @@ with the full-torus prime-power theorem, advances the exact-endpoint gate.
 A divergent character block refutes it.  Controlling each block in its
 Hilbert norm is insufficient by itself, because Fourier recombination is
 not unconditional in `l_infinity`.
-

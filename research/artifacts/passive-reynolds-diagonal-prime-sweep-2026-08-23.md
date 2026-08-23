@@ -89,7 +89,7 @@ This is **not** the whole right-`U` fixed space.  The latter carries the
 right action of `T=B/U`, and the projective calculation is only its trivial
 `T`-character block.  The exact decomposition and the dimension
 `dim D^U=((p+1)/2)i_p` are proved in
-`right-unipotent-reynolds-space-decomposes-into-torus-hecke-blocks`.
+`right-u-reynolds-has-torus-hecke-blocks`.
 
 The sweep rules out the simplest prediction that the actual arithmetic
 column already behaves like the generic logarithmically bad cubic expander
