@@ -108,3 +108,23 @@ whether the two copies of `P_3` inside the virtually free tree amalgam
 `P_13 *_(P_1) P_12 *_(P_2) P_23` can be made asymptotically equal in
 normalized Hilbert--Schmidt norm while every word nontrivial in `Lambda`
 keeps vanishing trace.
+
+## Final state (end of 2026-08-23 session)
+
+The finite surjectivity was REFUTED at every `G_2` twisted level: the
+one-class-deleted opposition geometry of the split Cayley hexagon is
+disconnected (computed at `q = 2` and `q = 3`; scripts in experiments/),
+and component-indicator annihilators give nonzero integral cokernel.
+Grid and `B_2` levels survive (their one-deleted graphs are connected;
+symplectic theorems verified at `q = 3`).  Consequently the conditional
+conclusions (type `F_3`; `H^2(Lambda;Z Lambda) = 0`; death of Corollary
+D) are all withdrawn: every hexagon level of the codistance filtration
+carries explicit nonzero relative `H_3` classes, in every
+characteristic, and the group-ring `H^2` -- hence ISW Corollary D and
+the LP fork -- is decided by whether some such class has nonzero
+connecting map.  What remains established unconditionally from today:
+`H^2(Lambda;Q) = 0`; the end-cohomology identification of
+`H^2(Lambda;Z Lambda)`; the 2-spheres in the development; the
+structure theorem for the filtration with its per-level homology
+formulas; the exact solution of the `B_2` class-graph geometry; and the
+triple-validated computational models.
