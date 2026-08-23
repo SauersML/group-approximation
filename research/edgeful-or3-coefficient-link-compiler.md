@@ -285,3 +285,16 @@ must pay the first cap skipped by each transported variable in canonical
 matrix types.  `edgeful-or3-canonical-nonincidence-payment-route` records the
 resulting complete route from that payment through coarea, polar correction,
 and the common-source POVM decoder.
+
+Two exact canonical countermodels now fence the actuator class.
+`canonical-fano-free-product-defeats-finite-actor-payment` gives one free
+Fano-cap commutator of canonical squared norm `1/2`, while every finite
+Bass--Serre actor extends with zero defect.  More sharply,
+`canonical-b7-or3-corner-defeats-finite-prefix-actors` lifts the complete
+seven-dimensional sequential witness into the rational natural block of
+`B_7`; its canonical selected prefix defect is `1/92160` and survives every
+finite actor extension.  Thus neither canonical side moments, finite packet
+transport, nor selected-type prefix compression can provide the payment.
+The remaining construction is exactly one payload-sensitive non-Bass--Serre
+two-cell, or an infinite actor which obstructs canonical extension while
+retaining the marked exact completion.

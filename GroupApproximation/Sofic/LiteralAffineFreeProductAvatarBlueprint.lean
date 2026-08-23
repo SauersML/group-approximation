@@ -182,9 +182,13 @@ theorem gamma3WitnessElements_not_commute :
     (fun A : ↥CongruenceSubgroup.gamma3 ↦
       (((A.1 : CongruenceSubgroup.SL3Z) : Matrix (Fin 3) (Fin 3) ℤ) 0 2)) h.eq
   simp only [gamma3Witness23, CongruenceTorsionFree.gamma3Witness] at hm
-  set_option maxRecDepth 10000 in
-    change (9 : ℤ) = 0 at hm
-  omega
+  have hne :
+      (((!![1, 3, 0; 0, 1, 0; 0, 0, 1] : Matrix (Fin 3) (Fin 3) ℤ) *
+          !![1, 0, 0; 0, 1, 3; 0, 0, 1]) 0 2) ≠
+        (((!![1, 0, 0; 0, 1, 3; 0, 0, 1] : Matrix (Fin 3) (Fin 3) ℤ) *
+          !![1, 3, 0; 0, 1, 0; 0, 0, 1]) 0 2) := by
+    norm_num [Matrix.mul_apply, Fin.sum_univ_succ]
+  exact hne hm
 
 /-- The concrete noncommuting pair consumed by `gamma3PartnerData`. -/
 def gamma3TieElements : Fin 2 → CongruenceSubgroup.gamma3Partner.B
