@@ -334,6 +334,22 @@ proper return `TET^*=F` exactly.  The next cell must therefore charge the
 oriented complement block `(1-E)TET^*` by a genuinely finite-matrix rule;
 making that containment universal again collapses `H` in the regular factor.
 
+Julia/Halmos dilation does not orient this complement block.
+`julia-colligation-is-neutral-to-the-asynchronous-mirror-exit` compresses the
+prefix unitary to `A=ETE` and forms its canonical Julia reflection.  The
+infinite proper shift has defect pair
+
+```text
+E-A^*A=0,                    E-AA^*=H,
+```
+
+but the exact finite mirror has `A=F` and both defects equal to `H`.  Its
+Julia matrix is still an exact self-adjoint involution, and all inside-corner
+packet tests remain exact.  Thus a literal Julia word plus its unitary
+relations cannot pay `(1-E)TET^*`; the packet must authenticate the specific
+initial-defect block as zero, equivalently the original finite-only
+source-Gram correlation.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
