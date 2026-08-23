@@ -88,6 +88,22 @@ congruence `(R,T)` core and align the extending involution.
   simultaneous two-structural-word quotient lift; separately rounding more
   torsion relations cannot improve it.
 
+- **Exact torsion does not permit strict structural rounding.**
+  `exact-torsion-frame-has-rank-one-strict-counterpackets` applies that
+  normalization to the compressed even Weil family.  In
+  `F=C_2*C_3*C_3`, the two residual words are explicitly
+
+  ```text
+  X A^2 X A^2 B X A^2 X A^2 B,
+  A^2 X A^2 B X A B^2 X A^2 X A^2 X.
+  ```
+
+  Their defects are `O(p^(-1/2))`, while the exact torsion-frame tuple stays
+  uniformly far from every exact quotient representation of the same
+  dimension.  One added Weil fixed line repairs it.  Hence no global
+  same-dimensional SOS/error-bound argument on the torsion-frame variety can
+  close this claim; a successful theorem must spend flexible boundary rank.
+
 - **The square-root firewall is bypassed by retaining the actual BS
   coordinates.**  Independent first-triangle rounding really does fail:
   `relative-first-triangle-rounding-has-an-odd-root-branch-firewall`
