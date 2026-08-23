@@ -5,6 +5,7 @@ kind: claim
 title: Every proper quotient of a regular-or-finite-dimensional character-rigid group has only CE factorial characters
 distinct_from:
   factor-universality-character-rigidity-implies-nonhyperlinear: that puts universality and rigidity on the same group; this transfers one named non-CE factorial character backward through a quotient and detects its kernel.
+  factor-universal-quotient-of-character-rigid-group-is-faithful: that assumes the whole quotient is factor-representation universal; this needs only one non-CE factorial character on the quotient and therefore identifies the sharp character-level obstruction.
   ah-groups-fail-regular-fd-character-rigidity: that pulls back the regular character of an infinite ICC quotient; this works for finite kernels, non-ICC quotients, and arbitrary nonregular non-CE factorial characters.
   standard-permanence-does-not-rigidify-the-cdi-image: that audits whether rigidity can be imported to one representation-dependent image; this classifies the entire quotient face of every genuinely character-rigid source.
 ---
