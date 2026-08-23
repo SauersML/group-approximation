@@ -1510,6 +1510,7 @@ import GroupApproximation.Sofic.GreendlingerCompositeWellPosed
 import GroupApproximation.Sofic.GreendlingerNoDeepCollapse
 import GroupApproximation.Sofic.GreendlingerEmptyConjCorner
 import GroupApproximation.Sofic.GreendlingerCollapseInduction
+import GroupApproximation.Sofic.GreendlingerCyclicTwoArc
 import GroupApproximation.Sofic.SymmetricDoubleMF
 import GroupApproximation.Sofic.LiteralAffineFreeProductSource
 import GroupApproximation.Sofic.LiteralAffineHullCommonQuotientInput
@@ -1585,6 +1586,7 @@ import GroupApproximation.Sofic.TerminalQuotientPresentation
 import GroupApproximation.Sofic.TerminalQuotientIso
 import GroupApproximation.Sofic.SigmaGroupMF
 import GroupApproximation.Sofic.SymmetricDoubleShulman
+import GroupApproximation.Sofic.PushedDefectSaturation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
