@@ -38,6 +38,11 @@ from atlas_universal_modular_group_algebra import (
 SELECTED = (0, 11, 30, 44, 55)
 
 
+def parity(value):
+    """Parity of an integer bitset, compatible with MSI's Python 3.6."""
+    return bin(value).count("1") & 1
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--max-seconds", type=float, default=120.0)
@@ -131,12 +136,12 @@ def main():
         functional = free_bit
         for pivot in sorted(basis):
             row, _row_id = basis[pivot]
-            if (row & functional).bit_count() & 1:
+            if parity(row & functional):
                 functional ^= 1 << pivot
-        if any((row & functional).bit_count() & 1
+        if any(parity(row & functional)
                for row, _row_id in basis.values()):
             raise AssertionError("dual witness does not annihilate ideal")
-        if not ((target & functional).bit_count() & 1):
+        if not parity(target & functional):
             raise AssertionError("dual witness does not detect bridge")
         return [index for index in range(len(elements))
                 if (functional >> index) & 1]
