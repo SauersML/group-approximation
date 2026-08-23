@@ -64,6 +64,20 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   `edge-pair-mixed-gap-collapse`.  Its residual obstruction is physical rank,
   not Hilbert-space dimension: an `o(d^2)` low-energy operator space can still
   contain an invertible matrix, the scalar line being the example.
+- **A Gerasimova--Shchepin finite-edge specialization remains unavailable
+  even on the regular face.**
+  `regular-iwahori-edge-types-have-moving-power-charge` gives explicit exact
+  modular vertex representations with regular limiting character whose
+  Iwahori restrictions are `O(1/m)`-close on fixed generators, yet cannot be
+  made equivalent by adding `o(d)` edge representations.  A moving word
+  `t^m` detects normalized character gap `2`.  Thus regular restriction does
+  not collapse the infinite edge to a finite representation module, and the
+  virtually-free integer-flow proof cannot be imported by sublinear padding.
+  The two vertex representations themselves are `O(1/m)`-close, so analytic
+  motion of continuous vertex types repairs this example; it does not
+  refute the present claim.  It proves that any extension must combine such
+  analytic motion with multiplicity reconciliation rather than use the
+  finite-edge semigroup argument alone.
 - **Spectral sparsity alone.**  Refuted for that reason; see the same node.
 - **Bounded branching.**  Index-three restriction/induction has uniformly
   bounded branching (`notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`)

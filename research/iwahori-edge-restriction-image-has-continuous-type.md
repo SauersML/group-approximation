@@ -46,3 +46,13 @@ is attached.  Any flexible quotient-lifting theorem must either align this
 continuous edge data analytically or first prove that the regular/congruence
 branch collapses it to a discrete moving-level packet.  Gerasimova--Shchepin's
 finite-edge integer-flow criterion cannot be applied directly.
+
+Regular trace and flexible padding do not restore that criterion.
+`regular-iwahori-edge-types-have-moving-power-charge` tensors this same
+angle family with separating finite-quotient regular representations.  The
+fixed-word characters become regular and two edge restrictions approach
+one another at rate `O(1/m)`, but their characters differ maximally on the
+moving kernel word `t^m`; no `o(d)` padding can make their exact edge types
+equivalent.  Continuous vertex motion can still repair this particular
+pair, so the result is a firewall against fixed-type integer-flow rounding,
+not a negative answer to Iwahori stability.
