@@ -11,6 +11,7 @@ requires:
   - actual-hard-prefix-generates-s4-over-raw-s3
   - separated-channel-identities-retain-rectangular-escape
   - atlas-hard-packet-authenticates-s4-extension-triple
+  - atlas-typed-hard-interior-comb-row-census
   - atlas-mixed-minor-needs-nuisance-quotient-rank
   - atlas-authenticated-s3-extension-minor-decodes-pairings
 ---
@@ -37,3 +38,10 @@ defects `(S3D2)`.  A nonzero minor of `C` alone is not a certificate.
 The separated rectangular no-go is an explicit falsification test: a carrier
 determinant followed by an independent coefficient argument is not this
 mixed system.
+
+The intervening data gate is now explicit:
+`atlas-typed-hard-interior-comb-row-census` requires a replayable row record
+with word provenance, bounded filling, common-corner typing, recoupling path,
+and every nuisance monomial.  The existing literal word files do not already
+satisfy that gate, by
+`atlas-word-inventory-does-not-define-typed-channel-census`.

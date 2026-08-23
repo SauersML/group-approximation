@@ -4,6 +4,7 @@ id: atlas-authenticated-s3-extension-minor-decodes-pairings
 kind: claim
 title: The authenticated S3 extension-channel rows have nuisance-quotient rank three on the Leavitt pairing monomials
 distinct_from:
+  atlas-typed-hard-interior-comb-row-census: that materializes the complete typed matrix without asserting its rank; this asks that exact matrix to pass the nuisance-quotient test.
   atlas-hard-packet-authenticates-s4-extension-triple: that constructs the common three-coordinate channel and ties it to literal words; this is the remaining exact rank calculation after authentication.
   s3-hard-cell-three-channel-data-is-nondegenerate: that proves three candidate finite transforms are invertible abstractly; this asks whether the actual projected atlas relators contain one of those transforms on the desired path monomials.
   atlas-hard-packet-s3-channel-decoder: that is the combined dimension-free decoder theorem; this isolates its finite coefficient-rank half.
@@ -44,6 +45,14 @@ the same term.  A scalar carrier matrix tensored with an independent
 coefficient equation is inadmissible by the separated rectangular no-go.
 
 ## Attempts
+
+- The literal-data boundary is now fully inventoried in
+  `research/artifacts/atlas-typed-row-census-acquisition-2026-08-23.md`.
+  `atlas-word-inventory-does-not-define-typed-channel-census` proves that the
+  six relator words and the raw/comb operator names do not yet determine
+  `[C D]`: the common-corner block definitions, selected equations, bounded
+  fillings, recoupling paths, and nuisance tags are missing.  Acquire
+  `atlas-typed-hard-interior-comb-row-census` before running this rank test.
 
 - The stored `atlas-boundary-11-30.json` records only the two boundary words
   and their factor projections.  It contains neither the full interior/comb
