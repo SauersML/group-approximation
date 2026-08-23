@@ -3862,6 +3862,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · non-rf-kazhdan-group-with-llp-full-c-star-algebra [OPEN] Some non-residually-finite Kazhdan group has a full C*-algebra with the local lifting property
 - 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes-proof [COMPLETE] Cartan-Leray spectral sequence of the development with finite stabilizers
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes [ESTABLISHED] Every colimit of a developable triangle of finite groups has vanishing rational second cohomology
@@ -3869,7 +3870,6 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-23 · km-group-ring-h2-is-development-end-cohomology-proof [COMPLETE] Compactly supported cochains, the universal coefficient theorem, and the sequence of the pair at infinity
 - 2026-08-23 · km-group-ring-h2-is-development-end-cohomology [ESTABLISHED] Group-ring second cohomology of a triangle colimit is the degree-one end cohomology of its development
 - 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
-- 2026-08-23 · arithmetic-single-defect-saturation [ESTABLISHED] One certified defect element saturates the routed quotient and forces its own survival
 
 ## Active claims
 
