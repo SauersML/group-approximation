@@ -48,14 +48,19 @@ After normalizing incidence by `q+1`, its nonconstant singular norm is
 Now restrict the complete native coefficient system to the tensor product
 of all spherical label lines with one common multiplicity algebra.  Every
 finite-label coefficient becomes a scalar, so the only nontrivial operators
-left are the multiplicity gauges and their cycle words.  The coset graph
+left are the multiplicity gauges and their overlap-coordinate cycle words.
+The coset graph
 description of the free kernel gives one basis cycle for each chord outside
 a spanning tree.  Its multiplicity holonomies are independent: gauge the
 tree and all but one chord by `I`, and put `Y_t=AD_tAD_t` on the remaining
 chord.  This changes no vertex representation or label coefficient.  The
-actual free-basis kernel coefficients are then `I,...,I,Y_t`.
+chosen fundamental-cycle overlap coefficients are then `I,...,I,Y_t`.
 
 On `V=span_R{B,C}`, conjugation by `Y_t` is rotation through `-8t`, so the
 only nonzero kernel square is `(NKC7)`.  Its positive eigenvectors are
 orthogonal to the exact fixed space.  This proves `(NKC8)`.  Amplification
 preserves the label density and the normalized Hilbert--Schmidt calculation.
+The actual represented kernel words remain identity on the trivial label
+summand by `(FKF2)` in `full-km-face-kills-no-spherical-gauge`; this is why
+the construction witnesses an ungauged spectral kernel but is freely
+correctable.

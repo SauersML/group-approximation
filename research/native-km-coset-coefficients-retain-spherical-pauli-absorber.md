@@ -7,6 +7,7 @@ distinct_from:
   three-reynolds-plus-kernel-energy-has-vanishing-gap: that scalarizes the three overlap maps to Reynolds expectations; this writes the actual finite coset-incidence coefficient maps for the (2,4,6) rank-three presentation and proves that their common spherical block reduces to the same Pauli operator.
   fixed-finite-label-km-holonomy-is-scalar-or-gapped: that excludes nonscalar fixed-label relator twists; this absorber is scalar on the finite label coordinate and noncommutative only in the growing multiplicity coordinate.
   finite-group-intertwiner-laplacian-gap: that gives a gap off the exact finite-group intertwiner space; this identifies a positive-density exact trivial-label intertwiner space on which every native coefficient map acts scalarly.
+  full-km-face-kills-no-spherical-gauge: that computes the actual native group-word face on this block and shows it is identically flat; the vanishing-gap chord below is an ungauged overlap-coordinate mode which can be reset at zero microstate cost.
 ---
 
 **ESTABLISHED.**  For the explicit Kac--Moody Cartan matrix with Coxeter
@@ -64,7 +65,8 @@ Thus the corresponding two-range angle Laplacian has gap at least
 Pauli fiber in every nonspherical finite-label sector, but says nothing on
 `(NKC3)`.
 
-There is a completely native way to insert the Pauli rotation.  Choose a
+There is a completely native way to insert the Pauli rotation into the
+**overlap-coordinate complex**.  Choose a
 spanning tree in the bipartite coset graph
 
 ```text
@@ -81,8 +83,8 @@ Y_t=AD_tAD_t.                                           (NKC6)
 
 All local `P_12,P_13,P_23` group tables remain exact regular tables, every
 unreduced coefficient map `(NKC2)` is satisfied exactly on the label
-coordinate, and the actual native free-kernel coefficients are `I` except
-for the selected basis coefficient `Y_t`.  On the multiplicity plane
+coordinate, and the chosen fundamental-cycle overlap coefficients are `I`
+except for the selected chord coefficient `Y_t`.  On the multiplicity plane
 `span_R{B,C}`, its positive word operator is exactly
 
 ```text
@@ -97,10 +99,12 @@ positive spectral value at most
 4sin^2(4t)->0.                                         (NKC8)
 ```
 
-This is a native-coefficient counterpacket: retaining the full finite coset
-maps improves the orthogonal label sectors but does **not** exclude the
-rotating Pauli fiber on the canonical regular chart.  Any surviving
-Kac--Moody coercive inequality must include an authenticated coefficient
-whose compression to the spherical label summand acts nontrivially on the
-multiplicity algebra.  No `P_ij`-equivariant finite-label restriction map
-can do this, by the one-dimensionality of the trivial representation.
+This is a counterpacket to an **ungauged spectral gap** for the native
+overlap-coordinate operator: retaining the full finite coset maps improves
+the orthogonal label sectors but does not exclude the rotating Pauli fiber.
+It is not a counterpacket to relative correction.  As
+`full-km-face-kills-no-spherical-gauge` proves, the actual group word
+`pi(n_a)` is already `I` on this trivial-label block, and the chord gauge may
+be reset to `I` without changing any generator matrix.  The correct coupled
+operator must quotient this spherical gauge kernel; no finite-label
+restriction coefficient can turn it into a coercive physical direction.
