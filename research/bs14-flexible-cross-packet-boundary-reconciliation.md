@@ -88,6 +88,22 @@ the cross-packet multiplicity boundary for one `X`.
   the sharp quadratic normalization, for this authenticated block-diagonal
   family.
 
+- **The charge survives transfer to the exact torsion frame on a full
+  arithmetic subfamily.**
+  `five-mod-eight-torsion-normalization-retains-a-padding-charge` performs
+  the cube-root normalization on every `p=5 mod 8` compressed Weil block.
+  The resulting `C_2*C_3*C_3` representation has only the two structural
+  residuals.  Its BS word has rank at most `46` and determinant `-1`, hence
+
+  ```text
+  ||u-1||_F^2+||v-1||_F^2 >= 2/23
+  ```
+
+  per missing line.  Orthogonal sums give `K<=(23/2)E_structural`, so the
+  sharp padding ledger is not an artifact of leaving the cubic rows
+  approximate.  The determinant-neutral and unauthenticated mixed sectors
+  remain open.
+
 - **Heterogeneous primes are not covered by determinant multiplication, but
   their canonical orthogonal sums are covered by positive cubic energy.**
   For `p=1 mod 8` the second compressed cubic has determinant `+1`; its

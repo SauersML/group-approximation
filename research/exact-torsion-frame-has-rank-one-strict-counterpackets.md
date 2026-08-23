@@ -55,6 +55,17 @@ Allowing one additional dimension removes the obstruction: the exact even
 Weil representation of dimension `(p+1)/2` is at generalized flexible
 distance `O(p^(-1/2))` from `rho_p`.
 
+On the subfamily `p=5 mod 8`,
+`five-mod-eight-torsion-normalization-retains-a-padding-charge` proves the
+matching post-normalization estimate
+
+```text
+||rho_p(u)-1||_F^2+||rho_p(v)-1||_F^2 >= 2/23.
+```
+
+Thus the restored line is paid by the structural energy even after every
+torsion row has been made exact.
+
 Thus no dimension-free global error bound on the exact torsion-frame variety
 can turn the two word defects into same-dimensional distance from the exact
 quotient, even qualitatively.  In particular a global SOS or cocycle
