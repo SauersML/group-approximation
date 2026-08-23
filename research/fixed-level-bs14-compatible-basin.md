@@ -10,11 +10,13 @@ distinct_from:
   bs14-exact-representation-variety-is-hs-locally-rigid: that aligns two exact BS cores with a uniform modulus; this concerns the extra involution over one preconditioned core.
   one-unipotent-quotients-are-bounded-congruence: that identifies every finite target up to the one fixed congruence kernel; this asks for the remaining quantitative repair across those moving congruence levels.
   regular-bs14-cores-admit-dyadic-one-power-shadows: that improves the regular-branch preconditioner to the single level 4^K-1 at square-root logarithmic cost; this states the basin comparison which remains after either preconditioner.
+  bs14-one-power-level-is-a-native-short-commutator: that replaces the exponentially written power row by one native BS commutator of length 2K+2; this asks for the quantitative repair basin after that exact syntactic compression.
 requires:
   - bs14-long-cycles-admit-bounded-period-shadowing
   - one-unipotent-quotients-are-bounded-congruence
   - bounded-cycle-level-has-only-polylogarithmic-error
   - regular-bs14-cores-admit-dyadic-one-power-shadows
+  - bs14-one-power-level-is-a-native-short-commutator
   - repeated-squaring-and-tau-do-not-supply-the-moving-basin
 ---
 
@@ -117,6 +119,19 @@ Hence a generic finite-group estimate losing any power of the level or group
 order cannot certify `(FLB5)` on either staircase; the needed input is a
 uniform/polylogarithmic congruence-family theorem or a special relative repair
 over the exact core.
+The power row in the sharper regular branch is not itself syntactically
+exponential: `bs14-one-power-level-is-a-native-short-commutator` identifies it,
+over the exact BS core, with
+
+```text
+[r^K,s]=1,                                             (FLB9)
+```
+
+a word of length `2K+2` which the dyadic shadow satisfies exactly.  This
+removes a presentation-length distraction, but not the basin comparison.
+Moving a perturbed core to an exact one changes `(FLB9)` by a bound linear in
+`K`, and deriving the equivalence from a raw defective BS row again incurs
+power-conditioning loss.
 Moreover `repeated-squaring-and-tau-do-not-supply-the-moving-basin` shows
 that compressing `s^N` to logarithmically many short rows and invoking
 property `(tau)` still does not produce that theorem.  Short rows can be
