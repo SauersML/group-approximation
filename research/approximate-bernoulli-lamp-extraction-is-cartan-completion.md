@@ -43,6 +43,15 @@ approximate-to-exact extraction.  Treating the approximate normalizers as a
 finite `H`-set assumes the principal open non-Cartan exclusion rather than
 proving it.
 
+There is now a sharp positive endpoint after such extraction.
+`finite-cylinder-mixed-traces-kill-normalizer-holonomy` proves that an exact
+finite transformation-group table satisfying the cylinder-resolved mixed
+canonical traces is simultaneously permutationizable.  The atomwise traces
+force each stabilizer representation to be regular, so arbitrary normalizer
+multiplicity fibers leave no holonomy.  Thus the unresolved step is strictly
+the production of one coherent finite actor/table action from the HS data;
+there is no further unitary-fiber obstruction once that step has succeeded.
+
 There is a related hardness boundary, but it must be stated with the correct
 permanence direction.  If `H` is hyperlinear, hyperlinearity of
 `(direct_sum_H C_2) rtimes H` is **not** supplied by the theorem that an
