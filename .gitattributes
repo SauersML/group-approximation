@@ -1,2 +1,2 @@
 # Public author metadata must not enter anonymous source archives.
-coderepo.tex export-ignore
+coderepo-private.tex export-ignore
