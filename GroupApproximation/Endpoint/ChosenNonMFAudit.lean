@@ -1,10 +1,13 @@
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Computability.SeededSelfAwareMFCompiler
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.NoRenormalizationCapacity
+import GroupApproximation.Sofic.OpToHSShadowResidual
 
 /-!
 # Lightweight axiom audit for the chosen non-MF endpoint
@@ -21,6 +24,13 @@ The literal eight-generator group is also printed below, but only at the
 boundary actually proved: its algebraic package, nontrivial mark, and
 finite-dimensional obstruction are unconditional.  No conditional analytic
 endpoint for that literal presentation is admitted to this audit surface.
+
+The final block audits the separately labelled compiler interfaces.  An
+axiom audit establishes that their proofs contain no hidden postulates; it
+does not erase their displayed hypotheses.  In particular, the shadow
+saturation theorem still requires a routing homomorphism and the
+no-renormalization diagonal still requires a uniformly authenticated
+challenge family.
 -/
 
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
@@ -48,3 +58,20 @@ endpoint for that literal presentation is admitted to this audit surface.
 #audit_axioms GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus
 #audit_axioms GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus
 #audit_axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.reverseKleene_fixedPoint_logic
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.logicalSelfAwareMFCompiler_iff_seed
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.primeCodedMark_blackHole
+#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.quotient_not_isOperatorMF_of_invisible_mark_survives
+#audit_axioms GroupApproximation.map_opToHSShadowResidual_le
+#audit_axioms GroupApproximation.normalClosure_le_opToHSShadowResidual
+#audit_axioms GroupApproximation.normalKazhdan_le_normMFResidual_of_le_opToHSShadowResidual
+#audit_axioms GroupApproximation.normMFResidual_eq_top_of_shadow_bug_saturation
+#audit_axioms GroupApproximation.shadowKleene_fixedPoint_logic
+#audit_axioms GroupApproximation.logicalShadowKleeneEndpoint_iff_bug
+#audit_axioms GroupApproximation.NoRenormalizationCapacity.collision_kills_phase
+#audit_axioms GroupApproximation.NoRenormalizationCapacity.phase_close_of_palette_overflow
+#audit_axioms GroupApproximation.NoRenormalizationCapacity.no_model_of_uniform_unbounded_capacity
+#audit_axioms GroupApproximation.NoRenormalizationCapacity.projection_rank_rigid
+#audit_axioms GroupApproximation.NoRenormalizationCapacity.rank_zero_of_power_monodromy
