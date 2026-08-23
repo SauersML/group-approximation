@@ -8,6 +8,7 @@ distinct_from:
   atlas-six-relator-quotient-identifies-h-bridge: that false target asks the universal quotient to kill every bridge; this classifies exact finite-matrix escapes by its finite quotients.
   atlas-five-row-operator-phase-lift: that is a uniform inequality for approximate matrices in all dimensions; this concerns only exact zeros at one finite dimension.
   atlas-six-relator-relative-small-cancellation-audit: that tests the literal relators against free-product small-cancellation criteria and finds a five-eighths mirror piece, blocking the standard residual-finiteness route to such a finite quotient.
+  atlas-six-relator-has-no-a11-target: that exhausts every labeled pair of nontrivial A8 maps into A11 and finds no six-relator survivor; this leaves arbitrary finite targets open.
 ---
 
 Let
@@ -45,3 +46,9 @@ finite quotient in condition 2.  The literal symmetrized relators have
 five-syllable pieces in length eight, so the `C'(1/6)` cubulation/residual-
 finiteness theorem for free products is unavailable.  The weaker nonmetric
 `C(6)` condition does not imply residual finiteness.
+
+The exact alternating screens now extend through `A11`.  The complete
+`11!/3!` labeled-pair census has no six-relator survivor, as proved in
+`atlas-six-relator-has-no-a11-target`.  This is still only a target-specific
+finite restriction and does not decide condition 2 for an arbitrary finite
+group.

@@ -1,0 +1,25 @@
+{
+  "ambient": "A11 natural eight-point-support geometry",
+  "candidate_classification": "all labeled nontrivial A8 -> A11 maps",
+  "conjugators": "S11 modulo pointwise source-chart S3",
+  "candidates_tested": 6652800,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "survivor_count": 0,
+  "survivors": [],
+  "first_failure_histogram": {
+    "s_0": 6650496,
+    "s_11": 2292,
+    "s_30": 8,
+    "s_44": 2,
+    "s_55": 1,
+    "c_19243": 1
+  },
+  "elapsed_seconds": 106.153
+}

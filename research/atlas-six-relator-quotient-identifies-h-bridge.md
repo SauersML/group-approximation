@@ -76,6 +76,13 @@ GAP iterator evaluates the `A10` census in nine seconds on one MSI core by
 rejecting on the first failed row.  These audits are finite evidence only and
 do not prove `(SXB2)` in the universal quotient.
 
+The next natural alternating degree is now also exhausted by
+`atlas-six-relator-has-no-a11-target`.  Every nontrivial `A8 -> A11` map has
+one natural eight-point orbit and three fixed points, so the complete labeled
+pair census has `11!/3!=6,652,800` cases.  Exactly one case satisfies the five
+boundary rows and it fails `c_19243`; hence there is no plus-centrality
+survivor in `A11` either.
+
 ## Falsification criterion
 
 A finite quotient `F` of `Gamma_6` in which both marked `A8` factors inject
