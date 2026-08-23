@@ -158,6 +158,33 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   Therefore a one-way recursive orbit packet loses geometrically; a diffuse
   enemy would still need label-sensitive replenishment inside the changing
   inertia categories.
+- **Even replenished adjacent Clifford flow loses one third.**
+  `adjacent-clifford-flow-has-one-third-rank-deficit` adds the target-side
+  inertia count omitted by the orbit-capacity graph.  Every lower-to-higher
+  match occupies the unique root-character eigenspace of an `O_B` target,
+  exactly one third of that target; the reverse direction has the same
+  bound.  Thus arbitrary `O_F` injections and recurrent `O_B` labels still
+  give at most `2d/3` adjacent common mass.  The abstract symmetric
+  nearest-neighbor flow is therefore not realizable; only same-depth or
+  deeper lower-conductor routing remains outside this obstruction.
+  `dyadic-ob-inertia-arrows-have-exact-induction-functors` shows sharpness
+  at the individual-arrow level: the actual quotient map constructs both
+  projective arrows, with physical-dimension factors three for `O_F->O_B`
+  and two for `O_B->O_B`.  Hence no additional cocycle incompatibility is
+  available at one arrow; the remaining issue is simultaneous compatibility
+  with the reverse and diagonal slots of the same projective label.
+- **Character-slot conservation closes the entire deep pure-dyadic tower.**
+  `pure-dyadic-clifford-slots-have-a-uniform-one-third-gap` observes that
+  the proposed diagonal `O_B` cell is not independent: it uses the same
+  one-third character slot as the adjacent arrival at each higher endpoint.
+  Charging adjacent and diagonal matches together gives
+  `(x_B+y_B)/3`; the only remaining diagonal cell is `O_A->O_A`, bounded by
+  `(2/3)min(x_A,y_A)`.  Their sum is at most `2d/3`.  Exact conductor removes
+  `O_0`, and the joint conductor table removes nonadjacent pairs, so this is
+  a complete bound for arbitrary selected dyadic irreducibles and
+  multiplicities at conductor at least two.  Selberg `(tau)` gives the
+  uniform HS floor `kappa_B/sqrt(3)`; the remaining conductor-one diagram is
+  part of the already repaired bounded window.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.

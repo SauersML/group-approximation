@@ -4,12 +4,13 @@ id: conjugacy-addressed-opnorm-challenges-are-lossless
 kind: claim
 title: Conjugacy-addressed operator-norm challenges have zero depth loss
 distinct_from:
+  conjugacy-compressed-dimension-trigger: that proves the same formal conjugacy invariance in normalized Hilbert--Schmidt norm and emphasizes the missing semantic-return cost; this records the operator-norm/MF version and its uniform supremum consequence for arbitrary addressed challenge families.
   opnorm-depthwise-same-mark-return: that must semantically return terminal challenge failure to one fixed marked word; this is the exact syntactic estimate showing that remote copies of one prototype discrepancy cost no operator-norm factor.
   fixed-mark-forbids-uniform-clifford-table-area: that rules out uniformly bounded van Kampen area for an entire growing Clifford multiplication table; this uses only literal free-word conjugates of finitely many prototype discrepancies and makes no bounded-area claim for cross-site products.
 ---
 
 Let `U_s` be arbitrary unitaries assigned to a finite alphabet. For every free
-word `r`, every free word `a`, and every integer `n`,
+word `r` and every free word `a`,
 
 ```text
 || (a^-1 r a)(U)-I ||_op = ||r(U)-I||_op.                    (COC1)
@@ -31,7 +32,7 @@ sup_q ||q(U)-I||_op
 
 Thus an HNN/self-similar address can move a fixed local challenge to
 arbitrarily large depth with **no dependence on address length** in operator
-norm. This is the fundamental MF advantage over HS proof-area propagation.
+norm. This is the fundamental MF advantage over proof-area propagation.
 
 The statement does not assert that a full rank-`N` multiplication table can
 be represented by such literal conjugates. Cross-address coherence remains a
