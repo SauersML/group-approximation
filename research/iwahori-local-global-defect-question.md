@@ -73,6 +73,9 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   `t^m` detects normalized character gap `2`.  Thus regular restriction does
   not collapse the infinite edge to a finite representation module, and the
   virtually-free integer-flow proof cannot be imported by sublinear padding.
+  The two restrictions actually define the same homomorphism in the matrix
+  ultraproduct, so qualitative equality there does not lift to stable
+  equivalence of their frozen coordinate types.
   The two vertex representations themselves are `O(1/m)`-close, so analytic
   motion of continuous vertex types repairs this example; it does not
   refute the present claim.  It proves that any extension must combine such

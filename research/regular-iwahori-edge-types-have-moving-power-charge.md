@@ -54,6 +54,14 @@ setting.  Two edge types can be arbitrarily close on every fixed edge
 generator while a moving kernel word detects a macroscopic stable type
 charge.
 
+In fact `(RPC3)` implies equality of the two edge representations in the
+tracial matrix ultraproduct: every fixed edge word differs by `o(1)` after
+bounded-word telescoping.  Hence even **exact equality of the limiting edge
+homomorphisms**, together with regular trace and exact coordinate vertex
+lifts, does not lift to coordinatewise stable equivalence of the frozen
+edge representation types after `o(d)` padding.  This is the precise
+relative-semiprojectivity failure behind the infinite-edge obstruction.
+
 This is not a counterexample to flexible Iwahori stability.  The two vertex
 representations in `(RPC2)` are themselves `O(1/m_n)`-close and may be made
 equal by changing their continuous angle.  The result instead rules out a
