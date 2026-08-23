@@ -52,9 +52,28 @@ approximate implementation which keeps the rank-`1/5` deleted planes must
 pay a fixed overlap before any private-pivot or packet-term bijection is
 examined.
 
+More explicitly, suppose every clause occurrence has its exact local kernel
+projection `K_(c,v)`, and proposed common projections `P_v` satisfy
+
+```text
+||P_v-K_(c,v)||_2 <= eta.                               (TSO5)
+```
+
+For the six-clique formula, every pair occurs in a clause, and the two local
+kernels there are orthogonal.  Hence `||P_vP_w||_2<=2 eta`.  Combining this
+with `(TSO3)` gives
+
+```text
+eta >= 1/sqrt(500).                                     (TSO6)
+```
+
+If the common data are root contractions `R_v` and the local root parts are
+`R_(c,v)`, then `K=1-R^2` and
+`||K-K'||_2<=2||R-R'||_2`.  Thus literal root-part alignment itself has
+defect at least `1/sqrt(2000)` in this normalized model.
+
 This does **not** refute `edgeful-or3-coefficient-link-compiler`, because
 that claim also permits the zero-root-diagonal four-cap packet.  It refutes
 the proposed ten-coordinate branch as a universal compiler and moves the
 live finite search entirely to the four-cap/noncentral-sector branch (or to
 a packet with a number of root slots growing with the source incidence).
-

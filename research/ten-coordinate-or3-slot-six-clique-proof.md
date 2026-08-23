@@ -71,3 +71,27 @@ sum_(i<j) ||P_iP_j||_2^2
 
 There are fifteen pairs, so one squared overlap is at least `1/125`.
 
+For `(TSO5)`, choose a clause containing each pair `v,w`.  Its local
+projections `K_(c,v),K_(c,w)` are orthogonal, and multiplication by a
+contraction does not increase normalized HS norm.  Therefore
+
+```text
+||P_vP_w||_2
+ <= ||(P_v-K_(c,v))P_w||_2
+    +||K_(c,v)(P_w-K_(c,w))||_2
+ <=2 eta.                                                (TSOP5)
+```
+
+Summing the squares over fifteen pairs and using `(TSO3)` yields
+`3/25<=60 eta^2`, or `eta>=1/sqrt(500)`.
+
+Finally, for self-adjoint contractions `R,R'`,
+
+```text
+||R^2-(R')^2||_2
+ <= ||R(R-R')||_2+||(R-R')R'||_2
+ <=2||R-R'||_2.                                         (TSOP6)
+```
+
+Applying this to `K=1-R^2` converts the kernel-alignment floor into the
+root-part floor `1/sqrt(2000)`.
