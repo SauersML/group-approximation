@@ -7,9 +7,9 @@ Spec document: `non_mf_group_notes.tex`. Formal development: `GroupApproximation
 | | |
 | --- | --- |
 | commit | the paper/notes split of 2026-08-22 |
-| `git hash-object non_mf_group_notes.tex` | `c60ff45c4aa4f3f8b42230c682c203b36ac79fe8` |
-| sha256 of the file | `d0ad5a62c510953028d6b36532350a13a1267b0f5a86326e246b395d4a7b1444` |
-| `wc -l` | 2942 |
+| `git hash-object non_mf_group_notes.tex` | `d8792642e773c045aa7c7768729a817135f7cb63` |
+| sha256 of the file | `e6f9a1084ca8e52f1429ebedb0de597e5a290a8e88526916379c0b2330230084` |
+| `wc -l` | 2952 |
 
 The three checkable rows are enforced by
 `scripts/check_non_mf_proof_ledger.py`. Re-pinning is deliberate and follows
