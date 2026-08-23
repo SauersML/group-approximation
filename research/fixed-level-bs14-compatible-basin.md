@@ -8,6 +8,7 @@ distinct_from:
   bs14-full-commutant-finite-period-preconditioner: that additionally quantizes return monodromy and imposes an `r`-power row; neither operation is needed to make the fixed-level Iwahori quotient finite.
   bs14-flexible-cross-packet-boundary-reconciliation: that asks for the final uniform repair; this gives an exact sufficient fixed-level formulation and the quantifier fence on a naive proof.
   bs14-exact-representation-variety-is-hs-locally-rigid: that aligns two exact BS cores with a uniform modulus; this concerns the extra involution over one preconditioned core.
+  one-unipotent-iwahori-quotients-are-bounded-congruence-extensions: that identifies every finite target up to the one fixed congruence kernel; this asks for the remaining quantitative repair across those moving congruence levels.
 ---
 
 For `K>=2`, set
@@ -83,6 +84,13 @@ qualitative flexible endpoint, not the sharper quadratic padding estimate
 
 Therefore the fixed-period strategy has isolated the sole surviving
 uniformity problem.  The whole short-support endpoint is finite and stable.
+In fact `one-unipotent-iwahori-quotients-are-bounded-congruence-extensions`
+shows that it is a bounded extension of `PSL_2(Z/N_K)`, and
+`bounded-cycle-level-has-only-polylogarithmic-error` shows that the injected
+error is only polylogarithmically small in the quotient size.  Hence a
+generic finite-group estimate losing any power of the level or group order
+cannot certify `(FLB5)`; the needed input is a uniform/polylogarithmic
+congruence-family theorem or a special relative repair over the exact core.
 What is still needed is either a lower bound on its basin and modulus in
 terms of `K`, or a preconditioner whose error is adapted to that basin.  The
 earlier monodromy parameter `M` and the row `r^L=1` do not address this
