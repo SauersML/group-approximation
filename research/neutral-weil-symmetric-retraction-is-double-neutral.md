@@ -41,14 +41,15 @@ E_structural
 ```
 
 All nonidentity spectrum in `(CNR4)` lies in the span of at most `34`
-word-translates of the two rank-two source/exit carriers.  Hence the final
-neutral computation is finite-rank and block-free: prove that this trace
-deficit stays uniformly positive, or exhibit its convergence to zero.
+word-translates of the two rank-two source/exit carriers.  The subsequent
+explicit mixed-carrier calculation
+`neutral-weil-mixed-carrier-energy-tends-to-355-over-64` sharpens both
+residual ranks to four and proves that their total Frobenius square tends
+to `355/64`.
 Neither strict separation nor determinant data decides between those two
 outcomes.
 
-The rank bounds improve the coarse sequential bounds but do not themselves
-give a Frobenius floor.  Conjugate eigenpairs can have determinant one and
-angles tending to zero.  Therefore a proof must use an actual mixed carrier
-matrix coefficient beyond the already known carrier ranks and principal
-angle.
+The rank and determinant bounds alone do not give that floor: conjugate
+eigenpairs can have determinant one and angles tending to zero.  The
+positive limit uses the actual signed projective-line mixed carrier, not
+only the ranks and principal angle.

@@ -53,4 +53,7 @@ For the canonical **symmetric** retraction which rounds `A_old` and `B_old`
 independently, `neutral-weil-symmetric-retraction-is-double-neutral`
 now proves that `det(u)=1` always.  Thus the alternative `(ONT3)` is useful
 for general/sequential retractions but never fires on that canonical neutral
-packet; the post-normalization trace deficit is the sole remaining scalar.
+packet.  The remaining scalar has now been evaluated in
+`neutral-weil-mixed-carrier-energy-tends-to-355-over-64`: its total
+unnormalized Frobenius square tends to `355/64`, so this canonical packet
+does not realize the abstract vanishing-angle firewall `(ONT5)`.
