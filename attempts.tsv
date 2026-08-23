@@ -124,3 +124,4 @@
 32618977723	2026-08-23T05:24:10Z	GroupApproximation/Sofic/KazhdanCliffordEpsilon.lean	kazhdanCliffordConstructionEps
 32621197783	2026-08-23T05:54:01Z	GroupApproximation/Sofic/KunThomShulmanDoubleConstruction.lean	construction_unconditional
 32622494513	2026-08-23T06:20:49Z	GroupApproximation/Sofic/LevelShiftObstruction.lean	levelShift_good_disjoint_top
+32624678071	2026-08-23T07:25:59Z	GroupApproximation/Sofic/LiteralRelatorObstruction.lean	inv_mul_mem_normalClosure
