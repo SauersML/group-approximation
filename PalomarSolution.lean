@@ -23,27 +23,9 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Proof of the advertised statement
 
-The declaration block below is byte-identical with the one in
-`Palomar/Challenge.lean`, and so is the statement of the compared theorem.
-Everything after it is the proof, which may use the whole development.
-
-The duplication is forced by the protocol rather than chosen.  Comparator
-compares the two exported statements structurally and then walks every
-constant they mention, requiring each to be identical in both environments;
-a constant present in only one file is a mismatch, not a match.  The block
-therefore cannot be shared by an import, and
-`scripts/check_palomar_submission.py` fails the build when the two copies
-drift.  `scripts/check_palomar_statement_match.sh` additionally compares the
-statement as elaborated, which text comparison cannot see.
-
-The bridge to the development is definitional, not propositional: the copied
-definitions elaborate to the same terms as
-`GroupApproximation.LiteralNonMFPresentation.relators`, `…MarkedGroup` and
-`…mark`, so the endpoints proved there apply directly.  `E_eq` and `w_eq`
-below pin that down and stop compiling the moment it stops being true.
-
-This module introduces no mathematics.  Every clause is discharged by an
-endpoint of the development, named at its bullet.
+The declaration block and theorem type match `Palomar/Challenge.lean`.
+`E_eq` and `w_eq` definitionally pin the copied presentation to the
+development; submission gates check source identity and elaborated closure.
 -/
 
 namespace ExplicitNonMF
@@ -375,11 +357,7 @@ abbrev w : E := wordInE markedWord
 
 -- END SHARED BLOCK
 
-/-! ## The bridge to the development
-
-These two `rfl`s are the gate.  If the copied block ever drifts from
-`GroupApproximation.LiteralNonMFPresentation`, this module stops compiling
-instead of silently proving something about a different group. -/
+/-! ## Bridge to the development -/
 
 open GroupApproximation
 
@@ -391,31 +369,11 @@ theorem w_eq : w = (LiteralNonMFPresentation.mark : E) := rfl
 
 /-- **An explicit finitely presented sofic group that is not MF.**
 
-For the group `E` displayed above, on eight generators and forty-one
-relators, and its distinguished word `w = [t c t⁻¹, v₁ (t c t⁻¹) v₁⁻¹]`:
-
-1. `E` is finitely presented;
-2. `w` is a nontrivial central involution of `E`;
-3. six elements generate `E`;
-4. `E` is sofic -- it has permutation models in the normalized Hamming
-   metric;
-5. `E` is hyperlinear -- it has unitary models in the normalized
-   Hilbert-Schmidt metric;
-6. every operator-norm asymptotic unitary representation of `E` sends `w` to
-   the identity, which is exactly the statement that every homomorphism from
-   `E` into the unitary group of a matrix quotient kills `w`;
-7. uniformly so: one positive defect budget and one finite test set force the
-   image of `w` inside the open operator-norm unit ball about the identity,
-   in every dimension;
-8. consequently `E` is **not** MF: no operator-norm models separate its
-   elements;
-9. every finite-dimensional linear representation of `E`, over every field,
-   also sends `w` to the identity, so none is injective;
-10. and so does every homomorphism from `E` to a finite group, so `E` is not
-    residually finite.
-
-Clauses 4, 5 and 8 together say that soficity and hyperlinearity do not imply
-the MF property.  Clause 2 is what makes 6 to 10 non-vacuous. -/
+The explicit group `E` is finitely presented, six-generated, sofic and
+hyperlinear but not MF.  Its marked word `w` is a nontrivial central
+involution killed by every operator-norm asymptotic unitary representation,
+uniformly on one finite test set, by every finite-dimensional linear
+representation over every field, and by every finite quotient. -/
 theorem explicit_fp_sofic_hyperlinear_not_MF :
     Group.IsFinitelyPresented E ∧
     (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
@@ -440,24 +398,19 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
   · exact LiteralNonMFLinearWitness.literal_mark_ne_one
   · exact LiteralNonMFPresentation.mark_sq
   · exact LiteralNonMFPresentation.mark_central
-  -- six generators: the rank bound, with `rank_spec` turning it into an
-  -- explicit generating set
   · obtain ⟨S, hcard, hclosure⟩ :=
       Group.rank_spec LiteralNonMFPresentation.MarkedGroup
     exact ⟨S, hcard.trans_le LiteralSixGenerator.literal_rank_le_six, hclosure⟩
-  -- soficity: repackage a `SoficModel` as the bare existential
   · intro F ε hε
     obtain ⟨m⟩ := LiteralSoficAssembly.markedGroup_isSofic F ε hε
     exact ⟨⟨m.carrier.carrier, m.carrier.fintype, m.carrier.decidableEq⟩,
       m.map, m.nonempty, m.multiplicative, m.separated⟩
-  -- hyperlinearity: likewise for a `HyperlinearModel`
   · intro F ε hε
     obtain ⟨m⟩ :=
       LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF.2.1
         F ε hε
     exact ⟨⟨m.carrier.carrier, m.carrier.fintype, m.carrier.decidableEq⟩,
       m.map, m.nonempty, m.isUnitary, m.multiplicative, m.separated⟩
-  -- every operator-norm asymptotic representation kills the mark
   · intro Y U hU hmul
     have main : ∀ ε : ℝ, 0 < ε →
         ∀ᶠ n in Filter.atTop, ‖U n w - 1‖ < ε := by
@@ -480,14 +433,10 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
     refine ⟨N, fun n hn ↦ ?_⟩
     rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
     exact hN n hn
-  -- the uniform obstruction, repackaged from bundled unitaries to a map
-  -- plus a unitarity hypothesis
   · obtain ⟨δ, F₀, hδ, hbound⟩ :=
       LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
     exact ⟨δ, F₀, hδ, fun Y φ hφ hmul ↦
       hbound ⟨Y.carrier, Y.fintype, Y.decidableEq⟩ (fun g ↦ ⟨φ g, hφ g⟩) hmul⟩
-  -- not MF: a local operator-norm model would be a `NormModel` at
-  -- separation `1`
   · intro hMF
     refine LiteralNonMFEndpoint.literal_not_isOperatorMF
       (OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one.mpr
@@ -500,28 +449,17 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
              isUnitary := hunit
              multiplicative := hmul
              separated := hsep }⟩
-  -- every finite-dimensional representation over every field kills the mark
-  -- the universes are pinned explicitly: the third one belongs to the
-  -- finite-quotient clause, which this bullet does not use, so inference has
-  -- nothing to determine it from.
+  -- Explicit universes include the later finite-quotient clause's universe.
   · intro K W _ _ _ _ π
     exact
       LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
         0, 0}.2.1 π
-  -- every finite quotient kills the mark, which is the third clause of the
-  -- same finite-dimensional endpoint
   · intro Q _ _ φ
     exact
       LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
         0, 0}.2.2 φ
 
-/-! ## Axiom closure
-
-The registry permits exactly `propext`, `Quot.sound` and `Classical.choice`,
-and Comparator enforces that on the exported proof.  `#audit_axioms` enforces
-the same thing here, at build time: it prints the report and then throws
-unless the closure is classical, so a submission can never be prepared
-against a tree in which this theorem has silently acquired another axiom. -/
+/-! The selected theorem uses only the permitted classical axioms. -/
 
 #audit_axioms ExplicitNonMF.explicit_fp_sofic_hyperlinear_not_MF
 
