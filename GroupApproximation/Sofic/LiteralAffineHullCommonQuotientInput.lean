@@ -24,4 +24,12 @@ theorem source_isPowerTorsionFree : IsPowerTorsionFree Source :=
   Higman.isPowerTorsionFree_coprod ambient_isPowerTorsionFree
     CongruenceSubgroup.gamma3Partner.torsionFree
 
+/-- The whole first-stage source is finitely presented as a free product of
+the two certified finitely presented factors. -/
+theorem source_isFinitelyPresented : Group.IsFinitelyPresented Source := by
+  letI : Group.IsFinitelyPresented Ambient := ambient_isFinitelyPresented
+  letI : Group.IsFinitelyPresented CongruenceSubgroup.gamma3Partner.B :=
+    CongruenceSubgroup.gamma3Partner.finitelyPresented
+  exact inferInstance
+
 end GroupApproximation.LiteralAffineHullCommonQuotientInput
