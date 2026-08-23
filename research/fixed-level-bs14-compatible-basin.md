@@ -91,6 +91,12 @@ error is only polylogarithmically small in the quotient size.  Hence a
 generic finite-group estimate losing any power of the level or group order
 cannot certify `(FLB5)`; the needed input is a uniform/polylogarithmic
 congruence-family theorem or a special relative repair over the exact core.
+Moreover `repeated-squaring-and-tau-do-not-supply-the-moving-basin` shows
+that compressing `s^N` to logarithmically many short rows and invoking
+property `(tau)` still does not produce that theorem.  Short rows can be
+exponentially ill-conditioned, while Selberg averaging controls an
+intertwiner only after the two congruence representations have already been
+authenticated.
 What is still needed is either a lower bound on its basin and modulus in
 terms of `K`, or a preconditioner whose error is adapted to that basin.  The
 earlier monodromy parameter `M` and the row `r^L=1` do not address this

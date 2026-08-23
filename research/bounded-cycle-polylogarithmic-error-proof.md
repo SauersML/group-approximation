@@ -28,8 +28,16 @@ The lower bound on `N_K` gives `K=O(log |Q_K|)`, hence
 `K^(-1/2)<=C(log |Q_K|)^(-1/4)`.  Multiplying by the fixed word-Lipschitz
 constant `C_*` proves `(PLE3)`.
 
+The sequence `u_m=4^m-1` is the nondegenerate Lucas sequence with recurrence
+
+```text
+u_(m+2)=5u_(m+1)-4u_m,
+```
+
+dominant root `4`.  Theorem 2 of Akiyama--Luca therefore gives `(PLE4)`.
+Combining it with `(PPP2)` and `alpha_K=C_*K^(-1/2)` proves `(PLE5)`.
+
 A power-law certificate such as `delta_K>=c|Q_K|^(-A)` or
 `delta_K>=cN_K^(-A)` is a positive lower bound, but it lies below
 `alpha_K` for large `K` and therefore cannot verify `alpha_K<delta_K/2`.
 No assertion about the unknown optimal `delta_K` follows.
-

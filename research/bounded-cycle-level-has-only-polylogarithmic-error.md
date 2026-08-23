@@ -35,6 +35,19 @@ c/(log |Q_K|)^(1/2)
  <= C/(log |Q_K|)^(1/4).                              (PLE3)
 ```
 
+In fact the Akiyama--Luca least-common-multiple theorem for Lucas
+sequences applies to `u_m=4^m-1` and gives
+
+```text
+log N_K=(3 log(4)/pi^2)K^2+O(K log K).                (PLE4)
+```
+
+Consequently the upper scale in `(PLE3)` is sharp:
+
+```text
+alpha_K asymp_Gamma (log |Q_K|)^(-1/4).               (PLE5)
+```
+
 Thus the bounded-cycle preconditioner approaches its moving finite target
 only at a polylogarithmic rate in the target size.  Any proposed proof that
 certifies a fixed-level stability basin merely by a negative power of
@@ -48,3 +61,6 @@ uniform or sufficiently polylogarithmic congruence-family repair theorem,
 or must exploit the exact BS core and the special four `x`-rows rather than
 expand them through a generic multiplication table.
 
+The external number-theory input is Shigeki Akiyama and Florian Luca,
+*On the least common multiple of Lucas subsequences*, Acta Arithmetica 161
+(2013), 327--349, Theorem 2, DOI `10.4064/aa161-4-2`.
