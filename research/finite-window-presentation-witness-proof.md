@@ -31,13 +31,16 @@ pi:K -> <F> <= G.                                             (FPW3)
 In particular, if `g!=h` in `F`, then `x_g!=x_h` in `K`, since an equality
 would remain an equality after applying `pi`.
 
-Suppose `K` were hyperlinear.  Apply its microstate property to the finite
-set `{x_g:g in F}` with accuracy smaller than `epsilon_0`.  Relabel the
-resulting matrices by `g`.  Relations `(FPW2)` give precisely the required
-multiplicativity conditions on every product visible in `F`, while the
-distinctness just proved gives the required normalized-HS separation after
-taking the microstate accuracy sufficiently small.  This is a forbidden
-microstate for the chosen window of `G`, a contradiction.  Hence `K` is
-nonhyperlinear.
+Suppose `K` were hyperlinear.  Apply its microstate property, with accuracy
+smaller than `epsilon_0`, to a finite window containing all the `x_g`, all
+differences `x_g^(-1)x_h` for `g!=h`, and the products needed to evaluate
+them.  (In the pairwise-separation definition of a microstate it is enough
+to use just the named elements.)  Relabel the matrices assigned to `x_g`
+by `g`.  Relations `(FPW2)` give precisely the required multiplicativity
+conditions on every product visible in `F`.  Since every named difference
+is nontrivial by `(FPW3)`, canonical trace separation gives the required
+normalized-HS separation of the relabelled matrices after taking the
+microstate accuracy sufficiently small.  This is a forbidden microstate for
+the chosen window of `G`, a contradiction.  Hence `K` is nonhyperlinear.
 
 The reverse implication in `(FPW1)` is immediate.
