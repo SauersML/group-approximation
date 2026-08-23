@@ -85,6 +85,29 @@ theorems do not apply.  These audits keep both lanes valid but prevent their
 apparent cascade size from displacing the more explicit arithmetic Green
 test.
 
+The two exact follow-up tests narrow those terminals without closing them.
+For the arithmetic double, congruence co-density and property `(T)` give the
+uniform exact-action firewall
+`sl3-dyadic-building-action-soficity-forces-p-instability`: every genuine
+finite action has type-zero orbit-atlas error at least
+`kappa^2/(2 kappa^2+8)`.  Hence a sofic model of
+`SL_3(Z[1/2])/SL_3(Z)` would have to be a genuinely noncorrectable almost
+action.  One-hot linearization does not let Garland cohomology exclude it:
+`sofic-coset-atlas-linearizes-to-exact-quasiregular-coboundary` shows that
+the marked displacement is already the exact coboundary
+`pi(a)delta_C-delta_C`, so degree-one cofilling is saturated rather than
+violated.  The surviving gate is relative invariant transfer specifically
+inside permutation ultraproducts.
+
+For the Atlas quotient, `atlas-six-relator-has-no-a11-target` exhausts every
+labeled nontrivial pair of maps `A8 -> A11`.  Of `6,652,800` chart pairs,
+exactly one satisfies all five boundary relators and the interior `19243`
+relator kills it.  This rules out the whole natural alternating escape
+through degree eleven, but not larger alternating targets, other finite
+overgroups, or diffuse matrix-ultraproduct models.  It is therefore a finite
+restriction on the exact escape, not evidence sufficient to assert the
+five-row phase lift.
+
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
 now records that fixed-window exactification of `A5^F` produces merely
