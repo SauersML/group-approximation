@@ -62,10 +62,31 @@ hub = conjugate(generators[4], frame) * generators[4]
 assert hub != identity
 assert hub**4 == identity and hub**2 != identity
 
+
+def lifted_transvection(row, column):
+    value = identity_matrix(GF(2), 4)
+    value[row, column] = 1
+    return lift(binary_matrix(value))
+
+
+raw_s3_opcodes = {}
+for name, row, column in (("t21", 2, 1), ("t12", 1, 2)):
+    generator = lifted_transvection(row, column)
+    opcode = conjugate(generator, frame) * generator
+    assert opcode != identity
+    assert opcode**4 == identity and opcode**2 != identity
+    raw_s3_opcodes[name] = {
+        "value": "".join(f"{int(entry):x}" for entry in opcode.list()),
+        "order": 4,
+        "regular_hs_defect_squared": 2,
+    }
+
 print({
     "escape_conjugator": f"{ESCAPE:016x}",
     "all_packet_contexts_are_A4": True,
     "collision_19243": "identity",
     "q14": "nonidentity",
     "hub_opcode_order": 4,
+    "raw_s3_covariance_opcodes": raw_s3_opcodes,
+    "raw_s3_covariance_energy_in_regular_representation": 4,
 })

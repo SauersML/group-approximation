@@ -3,6 +3,7 @@ rg: 2
 id: atlas-a4-holonomy-coherence-gap
 kind: claim
 title: Exact regular A4 holonomy networks with collision 19243 beat the S3 energy wall
+refuted_by: atlas-multiplicity-two-refutes-holonomy-coherence-gap
 distinct_from:
   atlas-two-s3-energy-ceiling-below-19243-floor: that asks for a uniform ceiling for arbitrary sufficiently-small finite atlas models; this claim only concerns the exact-regular context networks produced from the necessity direction of a hypothetical hyperlinear model.
 artifacts:
@@ -11,6 +12,13 @@ artifacts:
   - experiments/atlas_triangle_19243_packet.py
   - experiments/atlas_a4_packet_generation.py
 ---
+
+**REFUTED.**  The exact multiplicity-two frame, regularized in its finite
+generated group, is a constant sequence satisfying the stated regular A8/A4
+types, identity stable letters, all packet contexts, and `q_19243=1`.  Its
+two raw S3 covariance opcodes are nonidentity order-four elements, so the
+regular trace gives `a_n^2+b_n^2=4`.  See
+`atlas-multiplicity-two-refutes-holonomy-coherence-gap`.
 
 Let `sigma_n` be exact unitary representations of the fixed thirty-context
 A4 graph of groups from `atlas-a4-context-network-simultaneous-hs-exactification`
