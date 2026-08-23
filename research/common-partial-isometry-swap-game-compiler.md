@@ -283,6 +283,24 @@ possibly paid by `E_cons`, rather than contextwise saturation of all of
 `S_D8`.  No established common-source, exhaustive-type, D8, Hecke, or exact
 finite-frame node supplies `(CPS12)`.
 
+There is, however, an exact one-word colligation normal form for this last
+scalar.  `fano-uncovered-ghost-energy-is-one-julia-commutator` stacks the
+operators `sqrt(mu_c)(1-P_c)F_cS_D8` into one contraction `T` and constructs
+its Julia reflection `j_T`.  With the fixed source/role grading `z`,
+
+```text
+||z j_T z j_T-1||_2^2=8/(m+1)L_forb.
+```
+
+Thus one aggregate Julia-colligation authenticator would force `(CPS12)`
+(indeed `L_forb=o(1)`) with exact perfect completeness.  This does not solve
+the compiler: Julia functional calculus constructs `j_T` in the intended
+representation but ordinary group relations do not yet authenticate that
+its off-diagonal block is the representation-specific row `T`.  The value
+of the reduction is that the open finite syntax is now one shared
+off-diagonal correlation, rather than seven cap branches or one nonlinear
+predicate cell per context.
+
 ### The global marked-type cycle is a bypass, not a leakage proof
 
 The established `global-marked-type-cycle-selector-decoder` does not imply
