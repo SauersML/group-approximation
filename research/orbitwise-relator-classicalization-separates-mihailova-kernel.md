@@ -29,22 +29,23 @@ tr(A_j Ad(V_j(g))(A_j)) -> 1_(g in N)                  (ORC2)
 for every `g in L`, and, putting
 
 ```text
-O_j={Ad(V_j(l))(A_j):l in L},                          (ORC3)
+O_j^L={Ad(V_j(l))(A_j):l in L},
+O_j^E={Ad(V_j(e))(A_j):e in E}.                        (ORC3)
 ```
 
-every defining relator acts trivially on the **whole** orbit:
+every defining relator acts trivially on the whole **free-subgroup orbit**:
 
 ```text
-Ad(V_j(r))(B)=B       (r in R, B in O_j).              (ORC4)
+Ad(V_j(r))(B)=B       (r in R, B in O_j^E).            (ORC4)
 ```
 
 Then `N` is separable in `L`.
 
-The orbit finiteness needed here is automatic from the displayed exact
+The `L`-orbit finiteness needed here is automatic from the displayed exact
 projective format: `Ad V_j` is an exact finite-dimensional unitary
 representation of `SL_3(Z)`, hence has finite image by higher-rank
-superrigidity.  More abstractly the theorem needs only that `(ORC3)` is
-finite and that the resulting `L`-action is exact.
+superrigidity.  More abstractly the theorem needs only that `O_j^L` is finite
+and that the resulting `L`-action is exact.
 
 For the Mihailova choice with non-residually-finite `Q`, this is impossible:
 separability of `N` in `L` would imply separability in `E`, and because `N`
@@ -52,8 +53,11 @@ is normal it would make `Q=E/N` residually finite.  Thus any hypothetical
 hyperlinear model of `W_N` must fail at least one of exact projective actor
 lifting or orbitwise relator classicalization.
 
+The free-subgroup orbit is the weakest natural exact clause: it is precisely
+what holds in the canonical action because `N` is normal in `E`, while the
+relators generally do not fix lamp coordinates outside `E/N`.
+
 The word **orbitwise** is load-bearing.  Requiring each `r in R` to fix only
 the seed `A_j` does not suffice, even with zero actor defect and a finite
 permutation orbit.  Conjugates of `r` need not fix the seed, so the normal
 closure `N` need not lie in the finite action kernel.
-
