@@ -218,3 +218,20 @@ class is unavailable).
   Since the Kac--Moody candidate class is all `q > 1764^3`, it is
   legitimate to scope the whole `F_3`/Corollary-D-death chain to
   lattices with `q` coprime to six.
+- **The invalid part of the `G_2` sphere is a `1/q`-fraction
+  (2026-08-23).**  A within-class distance-four pair cannot have its
+  midpoint at a CLASS point of the geodesic line: if `P'` is collinear
+  with `x_d(t)P_0` then `x_d(-t)P'` is a class-`j_0` point collinear
+  with `P_0`, and the only such points are the geodesic slides (each
+  `A`-line meets the class only at `P_0` itself), forcing `P'` onto the
+  geodesic line and distance two.  So the only invalid midpoints are at
+  the single distance-three gate point, contributing `~q^2` of the
+  `~q^3` sphere.  Together with `c_4 = ±1` (spin-one string), the
+  sphere is `c^2 = ±2bd` and the valid part is all but a
+  `O(1/q)`-fraction: three independent valid directions exist for all
+  large `q` prime to six, and the remaining bookkeeping is (i) fibering
+  the sphere by midpoint class so the two cycle constructions can use
+  disjoint (or triangularly ordered) class sets, and (ii) the
+  characteristic-two degeneration `c^2 = 0`, which really does collapse
+  the two-step locus onto the subgroup `{c=0}` and makes even-`q`
+  behaviour a separate question.
