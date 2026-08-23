@@ -104,6 +104,19 @@ the cross-packet multiplicity boundary for one `X`.
   approximate.  The determinant-neutral and unauthenticated mixed sectors
   remain open.
 
+- **Independent torsion retraction shrinks the last neutral carrier.**
+  `iwahori-symmetric-two-cubic-torsion-retraction` rounds the two original
+  cubic products independently and reconstructs the square-free core.  On
+  the compressed Weil packet the resulting structural residuals have ranks
+  at most twenty and thirty, rather than the larger ranks introduced by the
+  sequential second rounding.  Their determinants are respectively a cube
+  root of unity and `det(X)`.  On the canonical `p=1 mod 8` progression,
+  `neutral-weil-symmetric-retraction-is-double-neutral` sharpens the ranks
+  to twelve and twenty-two and proves that both determinants are always
+  one.  Thus the last canonical calculation is exactly the mixed-carrier
+  eigenangle/trace on at most thirty-four dimensions.  Rank and determinant
+  alone cannot settle that branch.
+
 - **The determinant-neutral torsion frame now has one exact spectral
   residue.**  For `p=1 mod 8`,
   `one-mod-eight-torsion-charge-reduces-to-a-double-neutral-angle` proves
