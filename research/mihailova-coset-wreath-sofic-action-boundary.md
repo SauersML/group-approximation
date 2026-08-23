@@ -40,6 +40,17 @@ The precise GKP boundary is as follows.
    subgroup of the torsion-free group `E` is trivial.  Then `Q=E`, eliminating
    the nonsofic/nonhyperlinear quotient input.
 
+The later Gao--Patchell--Kunnawalkam Elayavalli graph-action theorem
+([arXiv:2408.15470](https://arxiv.org/abs/2408.15470), Theorem 2.20) does
+strengthen the positive stabilizer result from "locally finite" to
+"amenable" (and, by taking the empty graph, applies to set actions).  It
+still does not reach `(GSB1)`: for an infinite quotient `Q` the nontrivial
+normal subgroup `N` has infinite index in the nonabelian finite-rank free
+group `E`, hence is a free group of infinite rank and is nonamenable.  The
+same paper's Proposition 2.10 only extracts some `H` inside the action kernel
+with sofic quotient `L/H`; it neither permits taking `H=N` nor makes `Q`
+sofic.
+
 Consequently the published permanence theorem gives a sharp one-way test:
 proving `L curvearrowright L/N` sofic refutes the Mihailova nonhyperlinearity
 route, while proving it nonsofic would still not prove `W_N` nonhyperlinear.
@@ -47,4 +58,3 @@ Neither finite presentation nor property `(T)` of `Q` strengthens the free
 restriction into a quotient detector.  The unresolved datum is genuinely the
 ambient `SL_3(Z)` action (or directly the Connes embeddability of its Bernoulli
 crossed product), not the orbit seen by `E`.
-
