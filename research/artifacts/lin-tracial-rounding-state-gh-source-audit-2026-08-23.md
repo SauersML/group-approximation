@@ -1,0 +1,99 @@
+# Lin 2304.01940v3: tracial density, synchronous rounding, and state-dependent exactification
+
+Source: Junqiao Lin, *Tracially embeddable strategies: Lifting MIP* tricks to
+MIPco*, arXiv:2304.01940v3 (2023), especially Theorems 3.2, 4.1, and 5.1.
+The theorem pages were checked against the supplied PDF, not only against
+search snippets.
+
+## Theorem 3.2 is a closure theorem
+
+For finite question and answer sets, Lin proves
+
+```text
+closure_l1(C_qc^Tr(X,A)) = C_qc(X,A).
+```
+
+Here a tracially embeddable strategy has standard form
+`(L^2(A,tau), sigma|tau>, A_x^a, (B_y^b)^op)` for a finite tracial von
+Neumann algebra and a positive density `sigma`.  The paper explicitly notes
+that exact tracial embeddability of every commuting correlation is not
+proved and that the tracially embeddable set need not be closed.  Thus this
+result may replace a commuting correlation to arbitrary correlation error;
+it does not preserve exact word identities, a marked group element, a
+normal-closure condition, or a fixed carrier.
+
+## Theorem 4.1 gives a state-dependent family of corners
+
+For a `delta`-synchronous commuting correlation, Lin constructs a probability
+mixture of synchronous correlations at average correlation distance
+`O(delta^(1/8))`.  In the tracially embeddable case these symmetric
+strategies live in spectral corners `P_lambda A P_lambda`, with
+
+```text
+integral P_lambda d lambda = sigma^2,
+integral E_x sum_a ||(A_x^a-A_x^{lambda,a})P_lambda||_2^2 d lambda
+    <= O(delta^(1/4)+delta).                                      (L4.1)
+```
+
+Since `tau(sigma^2)=1`, put `m_lambda=tau(P_lambda)` and let `e_lambda`
+denote the row discrepancy in `(L4.1)`.  Then
+
+```text
+integral m_lambda d lambda = 1,
+integral e_lambda d lambda <= E,
+```
+
+so some positive-mass layer satisfies `e_lambda/m_lambda <= E`.  This is a
+real one-strategy common-corner selection: on one state-dependent corner the
+row error is controlled relative to that corner's normalized trace.
+
+There is no strategy-independent mass floor.  Take a projection `p` with
+`tau(p)=alpha` and density `sigma=alpha^(-1/2)p`.  Positivity of the layer
+integral forces almost every nonzero `P_lambda` to lie under `p`, hence its
+trace is at most `alpha`, while `alpha` is arbitrary.  The layers also depend
+on `sigma`; they are not canonical group words or a common algebraic source
+shared across independently selected states.
+
+## Theorem 5.1 preserves the complete commutant
+
+Let `G` be finite, `A` a finite tracial von Neumann algebra in standard form,
+`rho` a positive density, and `phi:G->U(A)` an average `(epsilon,rho)`
+representation.  Lin constructs an isometry
+
+```text
+V:H -> H tensor C^{|G|}
+```
+
+and an exact representation
+`phi':G->U(A tensor B(C^{|G|}))` such that
+
+```text
+V B = (B tensor I)V                         for every B in A',
+E_g ||phi(g)-V^*phi'(g)V||_rho^2 <= epsilon.             (L5.1)
+```
+
+The `A'`-linearity is the nonduplicate feature relative to the ordinary
+finite-matrix normalized-Hilbert--Schmidt stability import.  It means that a
+finite Alice packet may be exactified without changing the right/opposite
+algebra's action through the dilation.  This is directly suited to the
+standard-form left/right organization used in MIPco and to a state-dependent
+Pauli packet.
+
+It still does not lock a common payload carrier.  The exact object is on the
+amplification, while `V^*phi'(g)V` is only a compression on the original
+space and need not itself be multiplicative.  The estimate is only in the
+chosen `rho`-seminorm, the amplification carries flexible multiplicity, and
+neither `V` nor the support of `rho` is a group word.  Independently chosen
+densities may therefore select different corners and multiplicity gauges.
+
+## Cairn interface
+
+Theorems 4.1 and 5.1 provide an analytic one-state Pauli standardization
+interface: near-synchrony can select one positive state corner with relative
+row control, and any finite-group approximate representation already proved
+there can be dilated to an exact representation while preserving the
+opposite action.  They do not prove the missing groupification step in
+`common-partial-isometry-swap-game-compiler`: no theorem here supplies a
+word-visible carrier with a strategy-independent marked-mass floor, aligns
+the separately selected context types to that carrier, or removes the
+amplification/multiplicity gauge.
