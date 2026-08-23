@@ -62,4 +62,3 @@ at least one third of every opposite band strictly upward in the reverse
 coordinate, to upper depth `a>b`.  Thus it is necessarily a bidirectional,
 cross-conductor diffuse tower; a one-way chain of sparse local types cannot
 be the obstruction.
-

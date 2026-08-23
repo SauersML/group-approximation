@@ -131,6 +131,16 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   principal/supercuspidal type nor any uniformly sparse family is an enemy;
   the remaining non-Plancherel gate is an unbounded, bidirectional
   cross-conductor tower.
+- **Canonical trace forces escape, but does not close the diffuse tower.**
+  `regular-trace-allows-diffuse-dyadic-flow`
+  proves by positive root averages that the mass below every fixed dyadic
+  conductor tends to zero.  It also gives an exact scalar counterprofile:
+  a uniform window drifting to infinity with symmetric nearest-neighbor
+  coupling has mismatch `2/K`, satisfies both two-thirds flow inequalities,
+  and is compatible with every fixed regular-character test.  Therefore
+  fixed-word traces plus band masses cannot close the `K->infinity` gate;
+  a new inequality must couple within-band character data to the actual
+  upper/opposite branching labels.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.
@@ -141,6 +151,14 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   zero one-sided boundary. Any surviving expansion theorem must use the
   overlay with the opposite Nielsen-shifted decomposition and control its
   projective inertia data, not the spatial Bruhat--Tits adjacency.
+- **One shifted Clifford sector retains the full preceding category.**
+  `fixed-clifford-projective-dyadic-tower`
+  identifies the fixed newest-layer character `(1,1,1)`. Its inertia is all
+  of `G_a`, so Clifford theory labels the sector by the complete twisted
+  representation category of `G_(a-1)`, not by finite orbit data. The whole
+  sector has upper/opposite conductor pair `(a,a+1)`. Hence the remaining
+  Cheeger question is a recursion through projective inertia categories;
+  no depth-independent transition matrix on the four orbit labels exists.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes

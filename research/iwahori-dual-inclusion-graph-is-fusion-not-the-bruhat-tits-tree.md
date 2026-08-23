@@ -87,3 +87,12 @@ why that fact does not automatically extend to one selected Clifford sector.
 The remaining theorem must quantify how the anisotropic commensuration moves
 the full Clifford orbit together with its projective inertia representation;
 the spatial tree norm supplies no substitute.
+
+The first such inertia computation is now exact, and it shows why a finite
+orbit matrix cannot close the gate.
+`fixed-clifford-projective-dyadic-tower` proves
+that the fixed dual character `(1,1,1)` has full inertia `G_a`, so its label
+is the entire twisted category `Rep_(omega_a)(G_(a-1))`. Every constituent in
+that sector moves from upper conductor `a` to opposite conductor `a+1`.
+Thus the selected-irrep overlay is a recursive projective-category problem,
+not a finite four-orbit transition system.
