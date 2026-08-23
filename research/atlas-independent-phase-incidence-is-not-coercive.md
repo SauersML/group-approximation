@@ -40,6 +40,12 @@ H_0=H_11=H_30=H_44=H_55=H_int=I,
 ||L_11||_2=4.                                         (IPF2)
 ```
 
+Moreover every `P_x` in the assignment is a trace-zero self-adjoint
+involution.  In particular all phase vertices have the same spectrum and
+are individually unitarily conjugate.  The escape therefore survives every
+relaxation which remembers only the separate phase types; what fails is the
+coherent prescribed conjugacy between different vertices.
+
 Consequently there is no finite constant `C` for the independent-phase
 inequality
 
