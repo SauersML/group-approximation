@@ -170,3 +170,11 @@ no-Fano-line support conclusion.
   the eight-sector ghost projection has positive regular trace and is not a
   common reducing carrier across contexts.  It does, however, localize any
   matrix-specific long-code or packet attack to those eight sectors.
+- Tensoring finitely many supplied models and applying a coordinatewise
+  Boolean rule cannot select a cap either.
+  `rstar-polymorphism-clone-consists-only-of-projections` upgrades the
+  arity-three census using Post's clone classification and proves that every
+  finitary polymorphism of `R_*` is a coordinate projection.  Thus every
+  such postprocessing merely returns one input copy.  This does not address
+  noncoordinatewise operator dilations or the existence of a different
+  perfect trace.
