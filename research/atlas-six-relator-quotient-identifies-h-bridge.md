@@ -3,13 +3,14 @@ rg: 2
 id: atlas-six-relator-quotient-identifies-h-bridge
 kind: claim
 title: The five saturated boundary rows and 19243 centrality identify the two rank-three chart subgroups
+refuted_by: atlas-charts-overlap-trivially
 distinct_from:
   atlas-boundary-h-finite-quotient-scan: that excludes unequal copies only inside one A8 overgroup; this asks for equality in the universal six-relator quotient.
   atlas-a4-19243-parabolic-normal-closure: that computes the normal closure of one collision translation inside one chart; this concerns bridge elements between two chart factors.
   atlas-five-row-operator-phase-lift: that is the resulting normalized-HS inequality; this is its purely group-theoretic sufficient condition.
 ---
 
-**OPEN.**  Work in the coordinates obtained by transporting the second
+**REFUTED.**  The proposed target was the following.  Work in the coordinates obtained by transporting the second
 `A8` chart through the certified classical alignment.  Let
 
 ```text
@@ -35,6 +36,30 @@ This is a finite normal-closure problem.  Any proof supplies four finite van
 Kampen expressions in conjugates of the six displayed relators; no uniform
 family or asymptotic filling theorem is being requested.
 
+It cannot hold.  Every `s_j` is a genuine word in the kernel of
+
+```text
+A8_1*A8_2 -> L_(F2)(1,2)^x,
+```
+
+and `atlas-19243-centrality-is-bar-s-consequence` puts `c_19243` in the
+same kernel.  Hence the normal closure of the six relators is contained in
+that true kernel.  By `atlas-charts-overlap-trivially`, both chart maps into
+the Leavitt unit group are faithful and their images intersect trivially.
+For every nonidentity `t in H`, therefore,
+
+```text
+i_2(t)i_1(t)^-1 != 1
+```
+
+already in the exact Leavitt quotient, and thus also in `Gamma_6`.  No bridge
+in `(SXB2)` has a van Kampen filling by these six relators.
+
+This is the exact reason the six-relator ordinary-group compression cannot
+prove the phase lift.  The analytic claim concerns only finite regular-margin
+representations; the universal quotient has an infinite exact representation
+which retains the bridge.
+
 ## Exact finite audit
 
 In the natural `A9` overgroup, exhaustive evaluation of all `362880`
@@ -53,4 +78,3 @@ representation on either chart.  After a unitary identification of these two
 restrictions, all six nonlinear defects vanish.  A surviving bridge gives
 positive `H` covariance, and the established five-row linear coercivity then
 forces at least one of the five linear energies to be positive.
-
