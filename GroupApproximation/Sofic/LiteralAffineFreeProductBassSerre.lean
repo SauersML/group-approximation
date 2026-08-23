@@ -13,6 +13,7 @@ namespace GroupApproximation.LiteralAffineFreeProductBassSerre
 
 open scoped commutatorElement
 
+open Monoid Monoid.CoprodI
 open LiteralAffineCongruenceSource
 open LiteralAffineFreeProductSource
 
@@ -181,6 +182,65 @@ theorem crossingDefect_ne_one : crossingDefect ≠ 1 := by
   have hone := BassSerreHullGeometry.eq_one_of_fixes_distinct Envelope hvertices
     hfixBase hfixShift
   exact markedDefect_ne_one hone
+
+/-! ## Linear normal-form growth of the crossing defect -/
+
+/-- The explicit crossing commutator is loxodromic on the Bass--Serre tree.
+Its indexed normal form is a cyclically reduced four-syllable word, so its
+`n`-th power has exactly `4n` syllables. -/
+theorem crossingDefect_isLoxodromic :
+    HullGeometry.IsLoxodromic crossingDefect
+      (BassSerreFreeProduct.baseLeft Envelope :
+        BassSerreHullGeometry.PathVertex Envelope) := by
+  classical
+  let x : Envelope := Classical.choose markedDefect_mem_leftFactor
+  have hxEq : Monoid.Coprod.inl x = markedDefect :=
+    Classical.choose_spec markedDefect_mem_leftFactor
+  have hx : x ≠ 1 := by
+    intro hxone
+    apply markedDefect_ne_one
+    exact hxEq.symm.trans (by simp [hxone])
+  let y : BinaryCoprodNormalForm.factor Envelope true :=
+    MulEquiv.ulift.symm (Multiplicative.ofAdd (1 : ℤ))
+  have hy : y ≠ 1 := by
+    intro hyone
+    have hone' : Multiplicative.ofAdd (1 : ℤ) = 1 := by
+      calc
+        Multiplicative.ofAdd (1 : ℤ) = MulEquiv.ulift y := by simp [y]
+        _ = MulEquiv.ulift 1 := congrArg MulEquiv.ulift hyone
+        _ = 1 := map_one _
+    norm_num at hone'
+  have hxi : x⁻¹ ≠ 1 := inv_ne_one.mpr hx
+  have hyi : y⁻¹ ≠ 1 := inv_ne_one.mpr hy
+  let u : CoprodI.NeWord (BinaryCoprodNormalForm.factor Envelope) true false :=
+    ((CoprodI.NeWord.singleton y hy).append Bool.false_ne_true.symm
+      (CoprodI.NeWord.singleton
+        (M := BinaryCoprodNormalForm.factor Envelope) (i := false) x hx)).append
+          Bool.false_ne_true
+        ((CoprodI.NeWord.singleton y⁻¹ hyi).append Bool.false_ne_true.symm
+          (CoprodI.NeWord.singleton
+            (M := BinaryCoprodNormalForm.factor Envelope) (i := false) x⁻¹ hxi))
+  have huLength : u.toList.length = 4 := by
+    simp [u, CoprodI.NeWord.toList]
+  have huProd : u.prod =
+      BinaryCoprodNormalForm.toIndexed Envelope crossingDefect := by
+    rw [crossingDefect, map_mul, map_mul, map_mul, map_inv, map_inv]
+    simp only [rightShift, BinaryCoprodNormalForm.toIndexed_inr]
+    change u.prod = CoprodI.of y *
+      BinaryCoprodNormalForm.toIndexed Envelope markedDefect *
+        (CoprodI.of y)⁻¹ *
+          (BinaryCoprodNormalForm.toIndexed Envelope markedDefect)⁻¹
+    rw [← hxEq, BinaryCoprodNormalForm.toIndexed_inl]
+    simp [u, CoprodI.NeWord.append_prod, mul_assoc]
+  apply BassSerreHullGeometry.isLoxodromic_of_sylLength_pow_lower
+    Envelope crossingDefect 4 (by omega)
+  intro n
+  cases n with
+  | zero => simp [FreeProductCyclic.sylLength]
+  | succ n =>
+      rw [map_pow, ← huProd]
+      simpa [huLength] using
+        (FreeProductCyclic.sylLength_npow Bool.false_ne_true.symm u n).ge
 
 end
 
