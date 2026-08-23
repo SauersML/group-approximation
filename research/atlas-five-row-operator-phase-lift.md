@@ -10,6 +10,7 @@ distinct_from:
   atlas-boundary-tangent-covariance-coercivity: that bounds covariance by the five linearized rows and is already global in the chart unitary; this asks for the missing nonlinear-to-linear comparison for those rows.
   atlas-a4-holonomy-coherence-gap: that exact-regular local-network ceiling is refuted by the multiplicity-two frame; this includes the full-atlas interior consequence which the local frame does not satisfy.
   atlas-independent-phase-incidence-is-not-coercive: that frees the twenty-seven phase-edge occurrences from the common conjugation orbit and gives an exact private-edge counterexample; this retains the orbit identities and asks whether they restore coercivity.
+  atlas-five-row-lift-failure-dichotomy: that proves exact finite zero screening sees only the macroscopic failure branch and isolates the additional normalized blow-up branch; this asks to exclude both branches by one uniform inequality.
 ---
 
 **OPEN.**  Let
@@ -201,3 +202,12 @@ cancellations which survive the five boundary products.
    distance at least `sqrt(2)/16` from the whole aligned commutant manifold.
    Hence this favorable local spectrum cannot see the relevant sequence; a
    surviving singular invariant must be global on the remote nonlinear branch.
+7. **Classify exact zeros in finite quotients.**
+   `atlas-five-row-lift-failure-dichotomy` proves that this sees only the
+   macroscopic failure branch.  Even if every fixed multiplicity had no
+   exact positive-energy zero, `(FPL4)` could fail along a sequence with
+   additive energy `eta_n^2 -> 0` and nonlinear residual `o(eta_n)`.  After
+   dividing by `eta_n` this gives a unit vector in a Hilbert-ultraproduct
+   blow-up cone.  Excluding that cone requires a global multiplicity-uniform
+   estimate on the remote low-defect branch; it is not a finite exact
+   zero-set calculation.
