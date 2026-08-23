@@ -49,9 +49,9 @@ L=sum_(omega,lambda) dim(omega) dim(lambda)
   <= 2 kappa^(-2) epsilon^2 d.                            (MCR4)
 ```
 
-Consequently the mixed-congruence sector has a uniform linear HS repair
-constant if and only if the following **pure dyadic, inert-label-stabilized
-integer Hoffman constants** are uniform in `a,b` and in the joint odd
+Consequently the mixed-congruence sector reduces formally to the following
+**pure dyadic, inert-label-stabilized integer Hoffman problem** in `a,b` and
+the joint odd
 quotient `O`: for its finite label set `Irr(O)`, with weights
 `w_omega=dim(omega)`, and every pair of nonnegative multiplicity families
 of equal total weighted vertex dimension, the families can be changed,
@@ -86,3 +86,15 @@ pure-dyadic theorem: the polar support commutes with
 dimension preservation couples the odd fibers.  The sole additional
 algebraic gate is therefore label-stability of the dyadic integer Hoffman
 bound, not an odd expansion or odd-irrep problem.
+
+That additional gate is now closed.
+`odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant` first
+uses the uniform one-third Clifford-slot gap to charge every conductor-at-
+least-two summand, then uses the one-dimensional trivial representation in
+the fixed bottom diagram to transport the paid per-label dimension surplus.
+After balancing, the fixed bottom Hoffman repair applies independently in
+each label and its weight cancels. Therefore all exact mixed congruence
+vertex pairs have a uniform linear repair constant, independent of odd
+labels, degrees, and all levels. The remaining global issue is exactifying
+the approximate modular-vertex representations, not CRT multiplicity
+rounding.

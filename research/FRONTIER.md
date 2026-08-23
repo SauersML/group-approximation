@@ -3689,6 +3689,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant [ESTABLISHED] Odd-label stabilization adds only a fixed bottom-reservoir cost to dyadic Iwahori repair
+- 2026-08-23 · odd-label-stabilized-repair-proof [COMPLETE] Charge deep fibers by padding and transport bottom surplus through trivial blocks
 - 2026-08-23 · pure-dyadic-iwahori-pairs-have-uniform-linear-repair [ESTABLISHED] All exact pure-dyadic Iwahori pairs admit uniform linear repair
 - 2026-08-23 · pure-dyadic-iwahori-linear-repair-proof [COMPLETE] Use slot conservation to discard the deep mass and repair the bottom diagram
 - 2026-08-23 · pure-dyadic-clifford-slots-have-a-uniform-one-third-gap [ESTABLISHED] Pure dyadic Clifford packets have a uniform one-third common-rank gap

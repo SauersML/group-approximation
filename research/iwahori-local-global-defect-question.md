@@ -111,6 +111,17 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   silently enough: the edge polar support need not reduce the full dyadic
   vertices, and preserving the two global dimensions couples the inert
   label fibers.
+- **Odd-label stabilization is uniformly repairable.**
+  `odd-label-stabilization-does-not-enlarge-the-dyadic-repair-constant`
+  pads unequal fibers only for the estimate, charges every deep summand by
+  the uniform one-third Clifford-slot gap, and replaces that paid rank by
+  bottom trivial blocks. Per-label dimension imbalance is itself bounded by
+  edge `L^1` mismatch; the fixed conductor-one diagram has blocks of size at
+  most two, so its trivial representation transports all surplus at constant
+  rank cost. The fixed bottom Hoffman correction then sums with the same
+  constant under arbitrary odd weights. Thus exact mixed congruence pairs
+  are uniformly repairable; the remaining question is vertex exactification
+  of arbitrary approximate representations.
 - **Regular pure-dyadic packets have a depth-uniform half loss.**
   `pure-dyadic-regular-iwahori-mixtures-have-a-uniform-half-loss` writes the
   upper level kernel `N_a` and opposite kernel `M_b` explicitly, then takes
