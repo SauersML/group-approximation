@@ -122,3 +122,26 @@ The lack of mass is also relative to the mark.  In `M_N`, take a rank-one
 its trace divided by `tau(p)` tends to zero.  No uniform marked-mass floor
 can therefore be recovered by combining the spectral corner with the
 commutant-preserving dilation.
+
+## Projection-density exception for the D8 Gram state
+
+The intended common-swap Gram vector is more rigid than the arbitrary
+density above.  If `S` is a partial isometry, `q=S^*S`, and
+`s=tau(q)>0`, extend `S` to a unitary `U` and write
+
+```text
+s^(-1/2)S=U(s^(-1/2)q).
+```
+
+After conjugating the left observables by `U`, the same correlation has
+positive density `sigma=s^(-1/2)q`.  Lin's actual layers
+`P_lambda=chi_[sqrt(lambda),infinity)(sigma)` equal `q` for
+`0<lambda<=1/s` and vanish above `1/s`.  Thus every positive-measure layer
+has the full D8 source mass; the general relative-mass counterexample does
+not apply to this canonical one-Gram state.
+
+The polar completion `U` is not a fixed packet word.  It moves all left
+context observables, and the exact left-side formula above then Reynolds-
+twirls them unless they commute with the exactified packet.  Accordingly
+Lin removes the spectral mass-loss seam for the D8 Gram state but still
+does not authenticate its left payload in finite ordinary-group syntax.

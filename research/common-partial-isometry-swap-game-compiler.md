@@ -164,6 +164,19 @@ therefore yields neither `(CPS2)` nor `(CPS12)`: one needs both a
 canonical-trace mass input and a commutator/covariance estimate protecting
 the selected left carrier from the exactification twirl.
 
+There is one important specialization.  The intended one-Gram state is not
+an arbitrary density: `partial-isometry-gram-state-collapses-lin-corners`
+puts the normalized vector `S_D8` in positive standard form with density
+`tau(S_D8^*S_D8)^(-1/2)S_D8^*S_D8`.  Lin's spectral projections are then
+the single D8 source projection for almost every layer.  Consequently the
+D8 marked-mass floor survives Theorem 4.1 with no loss.  The actual Lin
+seam is narrower than the arbitrary-density no-go: the representation-
+dependent polar unitary conjugates every left context observable, and
+Theorem 5.1 Reynolds-twirls that conjugated payload unless its covariance
+with the exactified packet is separately wordized.  This still does not
+give `(CPS12)`, but it removes spectral-layer mass selection as an
+obstruction for the canonical Gram state.
+
 1. `common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
    the scalar deficit
 
