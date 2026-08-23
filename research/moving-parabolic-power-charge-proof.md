@@ -9,6 +9,21 @@ requires:
   - residual-finite-tensor-camouflages-iwahori-transfer-failures
 ---
 
+There is first a structural obstruction to applying the virtually-free
+theorem unchanged.  With rational group Euler characteristic,
+
+```text
+chi(V)=chi(C_2*C_3)=-1/6,
+chi(H)=chi(Z*C_2)=-1/2,
+chi(V *_H V)=2 chi(V)-chi(H)=1/6.                      (MPC0)
+```
+
+The amalgam `V *_H V=PSL_2(Z[1/2])` is infinite.  An infinite virtually
+free group has Euler characteristic at most zero (pass to a finite-index
+free subgroup), so this amalgam cannot be refined to a finite graph of
+finite groups.  The finite-edge Gerasimova--Shchepin theorem therefore does
+not apply by Bass--Serre subdivision.
+
 Use the two-dimensional family from
 `iwahori-continuous-restriction-family-proof`.  Reparameterize it by
 `phi in (0,pi/3)` so that
