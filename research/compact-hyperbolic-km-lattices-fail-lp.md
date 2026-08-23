@@ -96,6 +96,18 @@ cohomological input.
   many such identities at a time; deciding whether all sphere and
   non-sphere 2-cycle conditions can hold simultaneously with the
   non-degeneracy is the surviving content of Corollary E here.
+  Once the twisted-surjectivity chain closes (thick part 2-connected),
+  the `L^0` clause becomes FULLY FINITE-PRESENTED: `H^2(Lambda;L^0(Y))
+  = H^2_Lambda(X^;L^0)` is the second cohomology of the explicit
+  58-orbit equivariant cochain complex of the thick part's quotient
+  (orbit cells indexed by cotype pairs `(J,J')`: one 4-cell, six
+  3-cells, fifteen 2-cells, eighteen 1-cells, nine 0-cells, with
+  finite mixed stabilizers `P_J^+ cap P_(J')^-` -- torus times the
+  root subgroups fixing both residues), i.e. group-cohomology-of-an-
+  orbifold data with all stabilizers finite and listable from the
+  rank-two root combinatorics.  Writing out this complex is the
+  concrete route to deciding Corollary E's last clause for Bernoulli
+  actions.
 - **ISW Corollary D: input identified, and EXPECTED DEAD (final
   2026-08-23, after a day of reversals).**  `H^2(Lambda,Z Lambda)` is
   the end cohomology of the development
