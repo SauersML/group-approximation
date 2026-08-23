@@ -3,6 +3,8 @@ rg: 2
 id: algebraic-bcs-corner-has-relator-energy-decoder
 kind: claim
 title: An algebraic non-CE BCS corner automatically has a finite ordinary-relator energy decoder
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 distinct_from:
   nonce-bcs-unital-algebraic-corner-map-forces-nonhyperlinear: that pulls back the canonical corner trace qualitatively; this gives the finite-coordinate normalized-HS payment and shows that no additional analytic decoder is needed after the algebraic corner map exists.
   oracular-2csp-algebraic-corner-map-is-a-canonical-groupifier: that gives the ultraproduct decoder for arbitrary finite oracular games; this extracts a fixed finite relator menu and a dimension-independent quantitative defect floor for the fixed non-CE BCS.
@@ -64,4 +66,3 @@ relations, especially cross-context marginal equality, hold as algebraic
 identities.  Constructing that compatible atlas remains
 `signed-hecke-compatible-projection-atlas-for-nonce-bcs`; ordinary-word HS
 payment is not an additional hole beyond it.
-

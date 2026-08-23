@@ -3,6 +3,8 @@ rg: 2
 id: finite-one-hot-algebraic-corners-reduce-to-stabilizers
 kind: claim
 title: A finite one-hot algebraic truth-table corner is a matrix algebra over actor stabilizers
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 distinct_from:
   finite-pmp-actions-have-barren-haar-linear-compilers: that embeds a finite pmp action as a factor of a Haar algebraic action and proves CE when the actor is sofic; this identifies the exact group-factor structure of the more direct one-hot selector corner, without assuming the actor sofic.
   stone-multiplicative-locus-is-haar-null-in-additive-dual: that treats the full Stone multiplicative locus of an atomless Boolean algebra; this computes finite one-hot corners and their infinite independent-register limit.
@@ -14,6 +16,29 @@ Let `Q` be a finite set, let `p` be prime, and put
 ```text
 K=F_p^Q.
 ```
+
+For `p=2` this has the following exact rational group-algebra form. Write
+`a_f` for the group basis element indexed by `f in A=F_2^Q`, and for
+`q in Q` put
+
+```text
+e_q=2^(-|Q|) sum_(f in A) (-1)^(f(q)) a_f,
+z_Q=sum_(q in Q) e_q.                                  (FOH0)
+```
+
+The `e_q` are pairwise orthogonal central projections in `Q[A]`. Every
+Boolean truth table `f:Q->F_2` is already one group element on this
+authenticated corner:
+
+```text
+a_f e_q=(-1)^(f(q))e_q,             tau_A(z_Q)=|Q|/2^|Q|. (FOH0a)
+```
+
+Thus the finite corner exactly stores arbitrary nonlinear scalar predicates;
+the affine obstruction concerns expressing them as words in a smaller chosen
+selector basis, not their existence after adjoining the full finite lamp
+group. Under Fourier transform, `z_Q` is precisely the characteristic
+function of the one-hot locus used below.
 
 Suppose a countable group `Lambda` acts on `K` by the coordinate-permutation
 automorphisms coming from an action on `Q`.  Let
@@ -34,6 +59,13 @@ Then, with the canonical normalized traces,
 ```text
 z (L^infinity(K) rtimes Lambda) z
    ~= direct_sum_O M_|O|(L(H_O)).                       (FOH1)
+```
+
+In particular, when the actor is a finite permutation group `P`, Fourier
+transform gives the exact finite transformation-groupoid identity
+
+```text
+z_Q C[A rtimes P] z_Q ~= C^Q rtimes P.                 (FOH1a)
 ```
 
 (The trace on a summand has the scalar weight inherited from Haar measure on
@@ -69,3 +101,13 @@ projection in `L^infinity(K_I)`.  A direct one-hot compiler therefore has an
 exact dichotomy: finitely many registers give the stabilizer reduction
 `(FOH1)`, while infinitely many independent registers lose the positive
 trace corner required for trace promotion.
+
+There is a second, algebraic reason that the finite packet has no naive
+countable limit. For countably infinite `X` and
+`A_X=direct_sum_X C_2`, the evaluation characters `chi_x` converge to the
+trivial character as `x` escapes finite sets. Hence
+`{chi_x:x in X}` is not closed, therefore not clopen, in
+`dual(A_X)={plus-or-minus 1}^X`. Projections in `C[A_X]` have clopen Fourier
+support, so no single group-algebra projection selects exactly this infinite
+evaluation orbit. Recursive constructions must schedule finite local packets
+rather than sum them into one infinite truth-table idempotent.

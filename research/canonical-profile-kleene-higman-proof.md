@@ -5,6 +5,8 @@ kind: route
 title: Enumerate algebra-mark zero proofs, contradict canonical norm, and apply effective Higman
 target: canonical-profile-kleene-higman
 requires: []
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 ---
 
 Equality `p_e=0` in the recursively presented group algebra is recursively

@@ -46,6 +46,17 @@ The construction must be genuinely finite-matrix/canonical-profile: it must
 extend the perfect commuting model and keep its central mark nontrivial, but
 need not impose the forbidden cuts as universal group-algebra projections.
 
+The nonlinear-union part of this formulation is no longer load-bearing.
+`coordinate-phase-atoms-remove-nonlinear-forbidden-union` refines the
+coverage atom by atom and uses the original BCS coordinate involutions as a
+complete assignment phase code.  Moreover
+`schur-pauli-words-name-atomwise-half-quarter-flags` replaces the anonymous
+rank-rounded `e_omega,f_omega` by fixed spectral intersections of a relative
+and a baseline Pauli word.  The resulting last gate is
+`atomwise-schur-pauli-cycle-return`: a common finite-matrix return of one
+named half flag to one named quarter flag inside a fixed assignment and
+packet type.
+
 ## Attempts
 
 - Type authentication is no longer part of this claim.  Two-sided phase
@@ -76,3 +87,7 @@ need not impose the forbidden cuts as universal group-algebra projections.
   with the shared BCS observables in a genuinely source-dependent way.
 - The `K_(2,m)` rectangle cell removes the last multiplicity gauge.  Its
   remaining compressed leakage is the first concrete test case for `(WI1)`.
+- Treating the whole forbidden set as one spectral sign is unnecessary.
+  Assignment-by-assignment coordinate phase rows pay all cross-atom
+  population exactly.  What they cannot see is the relative-versus-baseline
+  Pauli split inside one joint atom.

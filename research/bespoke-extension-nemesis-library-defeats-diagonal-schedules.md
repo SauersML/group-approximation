@@ -3,6 +3,8 @@ rg: 2
 id: bespoke-extension-nemesis-library-defeats-diagonal-schedules
 kind: claim
 title: A pre-enumerated library of extension nemeses defeats every diagonal defect schedule
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 distinct_from:
   canonical-profile-collapse-compactness: that equates already known collapse with a finite local certificate; this gives a constructive decomposition of collapse into approximation-specific extension obstructions sharing one exact infinite model.
   post-candidate-nemesis-has-a-finality-dilemma: that rules out appending a nemesis after seeing a finite tuple; this repairs finality by enumerating all nemeses before any candidate is tested.
@@ -70,4 +72,3 @@ the represented base tuple.  Relative commutants, multiplicity reservoirs,
 Julia returns and transporter equations all live in this extension profile.
 The theorem says a bespoke attack on that richer fingerprint is rigorous if
 it is robust (`C_i` closed), exhaustive `(BEN1)`, and pre-enumerated.
-

@@ -5,6 +5,8 @@ kind: route
 title: Affine solution spaces remain affine under coordinate projection
 target: affine-auxiliary-control-flow-barrier
 requires: []
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 ---
 
 The full solution set
@@ -35,3 +37,7 @@ the relation contains
 
 but their ternary affine sum `(1,1,0)` is not in the AND graph. Therefore
 neither relation has an existential affine encoding.
+
+For controlled reflection, the valid points `000`, `010`, and `100` have
+ternary affine sum `110`, while `110` violates `y=cx`. The same projection
+argument therefore rules out arbitrary hidden commuting parity auxiliaries.

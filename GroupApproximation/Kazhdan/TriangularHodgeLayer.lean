@@ -563,6 +563,43 @@ theorem incidence_sum_rotate {A B C M : Type*}
       rw [Finset.sum_comm]
     _ = _ := by rw [Finset.sum_comm]
 
+theorem sum_single_indicator {S R : Type*}
+    [Fintype S] [DecidableEq S] [Semiring R]
+    (a b : S → R) (x : S) :
+    (∑ u, a u * (if x = u then 1 else 0) * b u) = a x * b x := by
+  have hterm (u : S) :
+      a u * (if x = u then 1 else 0) * b u =
+        if u = x then a u * b u else 0 := by
+    by_cases hu : u = x
+    · subst u
+      simp
+    · have hxu : x ≠ u := fun h ↦ hu h.symm
+      simp [hu, hxu]
+  simp_rw [hterm]
+  rw [Fintype.sum_ite_eq']
+
+theorem sum_double_indicator {S R : Type*}
+    [Fintype S] [DecidableEq S] [Semiring R]
+    (a b : S → R) (x y : S) :
+    (∑ u, ∑ v, a u * (if x = u ∧ y = v then 1 else 0) * b v) =
+      a x * b y := by
+  have hterm (u v : S) :
+      a u * (if x = u ∧ y = v then 1 else 0) * b v =
+        if u = x then if v = y then a u * b v else 0 else 0 := by
+    by_cases hu : u = x <;> by_cases hv : v = y
+    · subst u
+      subst v
+      simp
+    · have hy : y ≠ v := fun h ↦ hv h.symm
+      simp [hu, hv, hy]
+    · have hx : x ≠ u := fun h ↦ hu h.symm
+      simp [hu, hx]
+    · have hx : x ≠ u := fun h ↦ hu h.symm
+      simp [hu, hx]
+  simp_rw [hterm]
+  rw [Fintype.sum_ite_eq']
+  rw [Fintype.sum_ite_eq']
+
 /-- The source-diagonal part of incidence energy. -/
 theorem sourceDiagonal_incidence_core
     (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
@@ -591,7 +628,9 @@ theorem sourceDiagonal_incidence_core
   rw [hrhs]
   apply Finset.sum_congr rfl
   intro e he
-  simp [MonoidAlgebra.one_def]
+  exact sum_single_indicator
+    (fun u ↦ adjoint (orientedCoefficient T u i))
+    (fun u ↦ orientedCoefficient T u l) (T e.1 e.2)
 
 /-- The target-diagonal part of incidence energy. -/
 theorem targetDiagonal_incidence_core
@@ -630,7 +669,10 @@ theorem targetDiagonal_incidence_core
   rw [hrhs]
   apply Finset.sum_congr rfl
   intro e he
-  simp [MonoidAlgebra.one_def]
+  exact sum_single_indicator
+    (fun u ↦ adjoint (orientedCoefficient T u i))
+    (fun u ↦ orientedCoefficient T u l)
+    (inverseSigned (T e.1 (nextCorner e.2)))
 
 /-- The source-incidence count embedded on the diagonal of signed-link
 coordinates. -/
@@ -773,7 +815,10 @@ theorem forward_incidence
   rw [hrhs]
   apply Finset.sum_congr rfl
   intro e he
-  simp [MonoidAlgebra.one_def]
+  exact sum_double_indicator
+    (fun u ↦ adjoint (orientedCoefficient T u i))
+    (fun v ↦ orientedCoefficient T v l)
+    (T e.1 e.2) (inverseSigned (T e.1 (nextCorner e.2)))
 
 /-- The reverse directed cross-energy. -/
 theorem reverse_incidence
@@ -809,7 +854,10 @@ theorem reverse_incidence
   rw [hrhs]
   apply Finset.sum_congr rfl
   intro e he
-  simp [MonoidAlgebra.one_def]
+  exact sum_double_indicator
+    (fun u ↦ adjoint (orientedCoefficient T u i))
+    (fun v ↦ orientedCoefficient T v l)
+    (inverseSigned (T e.1 (nextCorner e.2))) (T e.1 e.2)
 
 /-- Number of literal occurrences of an underlying generator. -/
 def generatorOccurrenceCount
@@ -1663,6 +1711,7 @@ theorem single_mul_pulledScalarEntry
     MonoidAlgebra.single 1 a * pulledScalarEntry T i l u v c =
       pulledScalarEntry T i l u v (a * c) := by
   simp [pulledScalarEntry, single_one_comm, mul_assoc]
+  rw [mul_comm]
 
 theorem pulledScalarEntry_add
     (T : TriangleIndex → Triangle (Generator := Generator))

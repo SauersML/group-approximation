@@ -840,20 +840,23 @@ theorem edgeLabel_smul_baseLeft_eq_of_color_eq_false {v w : Vertex G}
 /-- The last label of a nonempty walk sends the left base vertex to the end
 whenever that end has left color.  Stating this with `getLastD` avoids a
 separate nonemptiness witness for the tail of the walk. -/
-theorem getLastD_walkLabels_smul_baseLeft_eq_end {u v w : Vertex G}
+theorem getLastD_walkLabels_smul_baseLeft_eq_end {u v w target : Vertex G}
     (h : (graph G).Adj u v) (p : (graph G).Walk v w)
-    (hw : color G (p.getVert p.length) = false) :
+    (hend : p.getVert p.length = target) (hw : color G target = false) :
     (walkLabels G p).getLastD (edgeLabel G h) • baseLeft G =
-      p.getVert p.length := by
-  induction p generalizing u with
+      target := by
+  induction p generalizing u target with
   | nil =>
-      simpa [SimpleGraph.Walk.getVert] using
-        (edgeLabel_smul_baseLeft_eq_of_color_eq_false G h (by
-          simpa [SimpleGraph.Walk.getVert] using hw))
+      have hv : _ = target := by
+        simpa [SimpleGraph.Walk.getVert] using hend
+      exact (edgeLabel_smul_baseLeft_eq_of_color_eq_false G h (by
+        rw [hv]
+        exact hw)).trans hv
   | @cons x y z h' p ih =>
       simp only [walkLabels_cons, List.getLastD_cons]
-      apply ih h'
-      simpa using hw
+      apply ih h' target
+      · simpa using hend
+      · exact hw
 
 /-- A binary-free-product element lying in the left factor has indexed
 syllable length at most one. -/
@@ -924,13 +927,10 @@ theorem sylLength_toIndexed_le_path_length_add_one {g : Ambient G}
         (smul_baseLeft_eq_iff G (edgeLabel G h)).mp hfirst
       let last := (walkLabels G q).getLastD (edgeLabel G h)
       have hlast : last • baseLeft G = g • baseLeft G := by
-        calc
-          last • baseLeft G = q.getVert q.length := by
-            apply getLastD_walkLabels_smul_baseLeft_eq_end G h q
-            change color G (baseLeft G) = false
-            rfl
-          _ = g • baseLeft G := by
-            simpa using hy
+        apply getLastD_walkLabels_smul_baseLeft_eq_end G h q
+          (target := g • baseLeft G)
+        · simpa using hy
+        · simp
       have hlastMem : last⁻¹ * g ∈ leftFactor G :=
         inv_mul_mem_leftFactor_of_smul_baseLeft_eq G hlast
       let t := (transitionsFrom G (edgeLabel G h) (walkLabels G q)).prod
@@ -966,7 +966,7 @@ theorem sylLength_toIndexed_le_path_length_add_one {g : Ambient G}
           gcongr
           exact sylLength_toIndexed_le_one_of_mem_leftFactor G hfirstMem
         _ = (SimpleGraph.Walk.cons h q).length + 1 := by
-          simp [SimpleGraph.Walk.length_cons, Nat.add_assoc, Nat.add_comm]
+          simp [SimpleGraph.Walk.length_cons, Nat.add_comm]
 
 /-- **Bass--Serre displacement lower bound.**  The graph displacement of the
 left base vertex is at least the indexed reduced syllable length minus one. -/

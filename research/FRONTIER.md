@@ -3558,14 +3558,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-22 · literal-involution-agreement-mass-proof [COMPLETE] Identify the agreement space with the fixed space of one cyclic translation
-- 2026-08-22 · literal-involution-agreement-mass-at-most-half [ESTABLISHED] Distinct literal group involutions agree on at most half of the canonical mass
-- 2026-08-22 · finite-support-one-sided-stabilizers-are-torsion [ESTABLISHED] A group element stabilizing a nonzero finite-support group-algebra element is torsion
-- 2026-08-22 · affine-frobenius-hecke-crt-shared-involution-interpolation [OPEN] Interpolate each shared BCS involution across the large affine Frobenius right ideals
-- 2026-08-22 · uniform-generated-adjoint-gap-rounds-to-central-code [ESTABLISHED] A uniform generated-adjoint gap rounds reflections to central code reflections
-- 2026-08-22 · uniform-fano-profile-via-central-mark-or [OPEN] Enumerate every cap profile and apply the exact finite LCS OR
-- 2026-08-22 · threshold-free-reverse-kleene-mf-higman [ESTABLISHED] Qualitative MF-radical collapse and effective Higman suffice for reverse Kleene
-- 2026-08-22 · threshold-free-kleene-mf-higman-proof [COMPLETE] Enumerate a word proof, take the fixed point, and embed the MF obstruction
+- 2026-08-22 · tailored-checks-to-common-marked-group-extensions [OPEN] Translate the finite tailored-game check library to common marked ordinary group extensions
+- 2026-08-22 · spherical-hs-average-pauli-metapixel-route [OPEN] Collapse the Pauli marked carrier with one spherical Hilbert--Schmidt orbit frame
+- 2026-08-22 · spherical-hs-average-bypasses-global-character-resolution [OPEN] One word-visible spherical Hilbert--Schmidt average collapses the marked seed without resolving the global character PVM
+- 2026-08-22 · scalable-socle-normalizer-reservoir-dichotomy [OPEN] A scalable product-socle normalizer reduces rectangular reservoir escape to a binary alternative
+- 2026-08-22 · same-orbit-closure-from-scalable-socle-normalizer [OPEN] Force the same reservoir by a scalable normalizer dichotomy and exclude its full branch by a PI fingerprint
+- 2026-08-22 · s3-standard-operator-fivefold-gauge-proof [COMPLETE] Decompose all nine S3 operator blocks under diagonal conjugation
+- 2026-08-22 · s3-standard-operator-channel-has-fivefold-reduced-gauge [ESTABLISHED] The standard conjugation channel of an arbitrary S3-relative operator has five reduced block sources
+- 2026-08-22 · relative-region-length-bound-from-fragment-slack [OPEN] Fragment slack transfers the strict region-versus-boundary length bound to free-product syllables
 
 ## Active claims
 

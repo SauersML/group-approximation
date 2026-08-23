@@ -3,6 +3,8 @@ rg: 2
 id: canonical-profile-kleene-higman
 kind: claim
 title: Reverse Kleene needs only qualitative group-algebra collapse on canonical microstates
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 distinct_from:
   threshold-free-reverse-kleene-higman-diagonal: that asks for group-word death in every tracial matrix-ultraproduct homomorphism; this asks only for canonical-delta microstate collapse and permits a rational group-algebra mark.
   group-algebra-mark-reverse-kleene-collapse: that uses a finite presentation and finitely specified trace side tests; this permits a uniformly recursively enumerable presentation and a wholly qualitative canonical-profile hypothesis before effective Higman embedding.

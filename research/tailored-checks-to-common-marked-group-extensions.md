@@ -3,6 +3,8 @@ rg: 2
 id: tailored-checks-to-common-marked-group-extensions
 kind: claim
 title: Translate the finite tailored-game check library to common marked ordinary group extensions
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
 distinct_from:
   one-round-v4-lamps-wordize-a-bcs-losing-projection: that wordizes one losing projection after its answer PVM and Bob observable have been selected; this must select the intended type in every marked canonical extension and keep all checks on one decoded strategy.
   bcs-projective-kernel-phase-compilation: that asks for one global projective phase with a quantitative BCS energy comparison; this permits a finite family of extension gadgets and only qualitative CE nonextendability.
@@ -23,6 +25,36 @@ mark `p`, and finite extension gadgets `E_c` such that:
 Then every marked CE base type is excluded by at least one `E_c`, while all
 gadgets share the perfect infinite completion.  This is exactly the missing
 ordinary-group transducer.
+
+## Canonical controlled-reflection router interface
+
+For one context, let `q=q_++q_-` be the rational truth-table corner from
+`finite-one-hot-algebraic-corners-reduce-to-stabilizers`, let `C` be the
+selector involution, and let `X` be an arbitrary reflection commuting with
+that context's readable algebra. A local router would expose a group element
+`Y` satisfying on the authenticated carrier
+
+```text
+qYq=q_+ + q_-X.                                         (TCG0)
+```
+
+The robust version may depend on a fixed lower bound `beta>0` for the carrier
+mass and need only hold on canonical-profile microstates: after finite-group
+and spectral rounding, vanishing ordinary relator defect must make the
+normalized corner-HS defect in `(TCG0)` vanish. No modulus uniform as `beta`
+tends to zero is needed. Running `beta=2^(-k)` and applying
+`canonical-profile-collapse-compactness` supplies qualitative mark collapse.
+
+This local controlled-reflection router is a useful sufficient *cell*, but is
+not by itself sufficient for the full TailoredMIP compilation. Different
+noncommuting contexts have different projections `q_c`; positive mass in each
+one does not produce one common decoded strategy, and products of the selected
+projections need not be projections or retain mass. The closure argument also
+requires the common-carrier/coherent-verifier clause already present in items
+1--3 above. This is the correction recorded by
+`finite-product-selected-type-mark-does-not-align-carriers` and by the
+remaining cross-context clause of
+`hyperoctahedral-router-interface-for-fanizza`.
 
 ## Attempts
 
