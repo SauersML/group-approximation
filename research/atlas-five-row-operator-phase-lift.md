@@ -3,6 +3,8 @@ rg: 2
 id: atlas-five-row-operator-phase-lift
 kind: claim
 title: Five saturated Atlas rows lift nonlinear phase defect to linear covariance energy
+artifacts:
+  - experiments/atlas_five_row_phase_finite_screen.py
 distinct_from:
   atlas-linear-energy-controlled-by-full-packet-defect: that asks to control the sum of all 234 linearized boundary rows by all 234 nonlinear defects plus the interior separator; this keeps only the five rows already certified to saturate the covariance tangent kernel.
   atlas-boundary-tangent-covariance-coercivity: that bounds covariance by the five linearized rows and is already global in the chart unitary; this asks for the missing nonlinear-to-linear comparison for those rows.
@@ -57,6 +59,68 @@ it kills all 234 boundary defects while retaining positive covariance, but
 the interior commutator is nontrivial.  Thus it proves that `e_int` cannot be
 deleted from `(FPL4)` and supplies a finite lower bound on any admissible
 constant; it does not make the right side vanish.
+
+## Exact 27-phase reduction
+
+Transport the second chart through the certified classical alignment.  For
+`x in A8` put
+
+```text
+Phi_x(U)=rho(x) U rho(x)^*.
+```
+
+If `(u_jr,v_jr)` are the prefix immediately before and after the `r`-th
+second-chart syllable of `s_j`, literal multiplication gives
+
+```text
+pi_U(s_j)=prod_r Phi_(u_jr)(U) Phi_(v_jr)(U)^*,
+rho(z_j)U=sum_r (Phi_(u_jr)(U)-Phi_(v_jr)(U)).          (FPL5)
+```
+
+The five rows have respectively `3,4,4,4,4` such phase edges, hence nineteen
+in total.  The transported interior commutator is an alternating
+sixteen-syllable word and contributes eight more.  Thus `(FPL4)` is exactly
+the following finite 27-phase assertion, uniformly over `k` and
+`U in U(20160k)`:
+
+```text
+sum_j ||sum_r (Phi_(u_jr)-Phi_(v_jr))||_2^2
+ <= C_5 [sum_j ||prod_r Phi_(u_jr)Phi_(v_jr)^*-1||_2^2
+          +||Q_int(U)-1||_2^2].                       (FPL6)
+```
+
+Here `Q_int` is the fixed eight-edge product read directly from
+`c_19243`.  Equivalently, the infimum of the right side of `(FPL6)` divided
+by its left side, over every multiplicity and every point with positive left
+side, must be positive.  An exact countermodel would therefore be five closed
+phase cycles and the closed interior cycle with at least one nonzero additive
+circulation.
+
+This reduction also isolates the important caveat: excluding common zeros
+in each fixed finite dimension does **not** prove the required uniform
+amplified gap.  The infimum could still tend to zero as `k` grows.
+
+## Bounded exact finite screen
+
+`experiments/atlas_five_row_phase_finite_screen.py` replays three exact
+screens over `F2` and uses coefficient collisions, not floating point, for
+regular-representation linear energies.
+
+* On the stored multiplicity-two `GL8(2)` frame, collision `19243` and hence
+  `c_19243` are identity, but all five boundary values are nonidentity; each
+  has `rank(w_j-1)=2`.  After regularization the five linear energies are
+  `6,8,8,8,8`, while the five nonlinear energies sum to `10`.  This gives the
+  exact calibration `C_5 >= 38/10=19/5`, not a countermodel.
+* The stored collision-zero `GL5(2)` fourteen-core frame fails all five rows.
+  The stored twenty-two-row frame kills row `0` and fails the other four.
+* Exhausting all `20,160` inner `A8` relative frames finds exactly one point
+  killing the five boundary rows: the classical frame, where all five linear
+  rows vanish.  Its interior commutator is nonidentity, so no inner frame
+  kills all six words.
+
+These computations are finite evidence only.  They neither exhaust arbitrary
+relative unitaries nor supply the multiplicity-uniform positive infimum in
+`(FPL6)`.
 
 ## Why this is still nonlinear
 
