@@ -241,6 +241,24 @@ tuple.
   capacity.  The remaining active/passive construction must discard this
   spectrally spread low-frequency mass by rank, or pay genuine packet-copy
   duplication through an additional integer carrier ledger.
+- **Within one authenticated scalar packet, inversion pays all excess source
+  rank.**  `cyclic-frequency-ledger-pays-excess-source-rank` applies Ky Fan
+  to the cyclic spectrum and proves that, if a common source has rank `k` in
+  a length-`m` multiplicity-one packet, then
+
+  ```text
+  ||(R-1)W||_F^2 >= (4/3)(k-1)^3/m^2.
+  ```
+
+  Thus after retaining the one mode permitted by the exact reset theorem,
+  all excess directions can be discarded at packet-normalized HS cost at
+  most `((3/4)F/m)^(1/6)`, already better than the qualitative
+  `e^(1/8)` target.  The rank-one adjacent-mode counterpacket survives, as
+  it must, but costs only the separate `m^(-1/2)` long-packet discard tax
+  and consumes no duplication capacity.  The unresolved step is now to
+  localize the common polar source into the moving packet decomposition,
+  select or discard that last direction, and round its fractional packet
+  weights; the scalar within-packet **excess-rank** ledger itself is closed.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
