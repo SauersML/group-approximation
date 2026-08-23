@@ -253,3 +253,14 @@ class is unavailable).
   and with it the whole even-`q` branch of the chain.  The odd/even
   dichotomy at `G_2` levels is thus a genuine phenomenon, not an
   artifact of the method.
+- **Rational vs integral split (2026-08-23).**  The downward induction
+  killing `H^3_c` of the cusp region uses only
+  `H^3(level) = Hom(H_3(cl O_w, D), Z)`, which vanishes as soon as
+  `H_3(cl O_w, D)` is TORSION.  So the RATIONAL form of `(TLS1)` --
+  vanishing of the cokernel after tensoring with `Q` -- already gives
+  `H^2(Lambda; Z Lambda) = 0` and the death of Ioana--Spaas--Wiersma
+  Corollary D, while the INTEGRAL form is needed only for
+  `H_2(X^) = 0`, i.e. for the 2-connectivity of the thick part and the
+  type `F_3` conclusion.  The genericity counts at the `B_2`/`G_2`
+  levels are naturally rational statements, so the LP-side consequence
+  is the more robust of the two.
