@@ -17,6 +17,8 @@ distinct_from:
   one-state-protected-coefficient-leaves-relative-gh-gauge: that proves a full-trace unitary coefficient pins the relative multiplicity gauge exactly, but a single state-dependent protected coefficient leaves an exact amplified counterpacket even for faithful states; this must obtain operator-level trace control for the Reynolds polar coefficient.
   common-gh-isometry-selects-the-two-overlap-cross-coefficient: that derives this operator-level cross coefficient by averaging the same normalized-HS Gowers--Hatami isometry over P_1 and P_3; this must turn two near coincident subgroup polar supports into one exactly simultaneous invariant source.
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
+  relative-finite-group-gh-cannot-fix-two-generating-subgroups: that supplies canonical-regular finite tables exact on two generating subgroups but with no nonzero exact simultaneous support, and an alternating-correction eigenvalue 1-delta^2/4; this forces any closure to use all native triangle relations rather than a generic relative finite-group lemma.
+  three-reynolds-plus-kernel-energy-has-vanishing-gap: that computes a three-leg canonical-regular Pauli benchmark in which the sum of all relative Reynolds Laplacians and all quotient kernel-word adjoint energies has gap tending to zero; this must use a coefficient identity specific to the native rank-two character tables, not only those abstract energies.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
   pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
@@ -298,6 +300,36 @@ into one exact intertwiner for both `P_1` and `P_3`, while making the analogous
 choice around the other two edges, is the nonlinear cochain correction in
 `relative-three-chart-correction-is-km-regular-stability`.  Quarantining
 `o(d)` dimensions does not make that full-rank near mismatch vanish.
+
+This residual cannot be discharged by a relative version of finite-group HS
+stability that freezes both exact overlap restrictions.  The amplified
+Pauli construction in
+`relative-finite-group-gh-cannot-fix-two-generating-subgroups` has exact
+regular `C_2` restrictions, exact regular character on their `C_2 x C_2`
+table, and defect `delta->0`, yet its commutator is `delta` times a unitary.
+Thus no nonzero old support carries the exact joint action.  Its alternating
+Reynolds correction has eigenvalue exactly `1-delta^2/4`, also excluding a
+uniform edgewise contraction.  The remaining possible bridge is therefore a
+coercive inequality coupling all three native Kac--Moody vertex charts; the
+generic two-overlap mechanism is now sharply ruled out.
+
+Even summing the three abstract overlap Laplacians with every kernel-word
+energy does not by itself create the missing coercivity.
+`three-reynolds-plus-kernel-energy-has-vanishing-gap` gives an exactly
+regular eight-point table with three regular involution legs, two perfectly
+flat pair relations, and one defect `delta->0`.  On an explicit trace-zero
+Pauli plane, the full positive diagram operator has least eigenvalue
+
+```text
+1-cos(2t)+4sin^2(4t)->0.
+```
+
+This remains true after arbitrary amplification.  Therefore a finite-matrix
+closure, if one exists for the chosen Kac--Moody lattice, must retain the
+actual rank-two vertex coefficient maps and prove that their character-table
+matrix excludes this rotating Pauli plane.  Replacing those maps by the
+three subgroup expectations and scalar/adjoint kernel defect energies loses
+exactly the information needed for a uniform angle.
 
 ## The kernel basis already builds the missing finite rank-two chart
 

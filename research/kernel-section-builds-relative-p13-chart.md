@@ -7,6 +7,8 @@ distinct_from:
   summed-reynolds-cut-synchronizes-kernel-corners: that cuts the kernel energy to obtain one P0-invariant carrier; this uses the finite quotient E/N=P13 to construct all P13 multiplication cells directly and agrees exactly with the tree chart on P1 and P3 before exactification.
   km-triangle-local-bimodules-have-finite-nonflat-models: that retains a nontrivial kernel word when no kernel relation is consumed; this estimate is proportional to the actual kernel-basis defects and therefore vanishes only on the flat branch.
   gowers-hatami-finite-group-hs-stability: that exactifies an arbitrary all-pairs finite-group table; this supplies that table from the native free kernel basis with a presentation-dependent but dimension-independent constant.
+  relative-finite-group-gh-cannot-fix-two-generating-subgroups: that shows finite-group exactification cannot in general preserve the exact P1 and P3 restrictions of the pre-correction table, even on a positive old support; this claim supplies exact agreement only before correction.
+  three-reynolds-plus-kernel-energy-has-vanishing-gap: that shows three regular subgroup expectations plus all quotient kernel-word adjoint energies still have vanishing diagram gap on an exactly regular approximate quotient table; this construction must preserve the native rank-two coefficient maps to seek coercivity.
 ---
 
 **ESTABLISHED.**  In the native triangle notation, put
@@ -50,3 +52,22 @@ exactification** problem: perturb the `P_12`, `P_23`, and newly obtained
 `P_13` charts so that all three overlap restrictions agree exactly while
 preserving the regular core.  An independent `P_13` chart or another
 carrier-positivity argument is no longer required.
+
+The word "relative" in the construction must not be transferred through
+ordinary finite-group exactification.  The section table satisfies `(KSP5)`
+before correction, but
+`relative-finite-group-gh-cannot-fix-two-generating-subgroups` gives
+arbitrarily accurate canonical-regular finite tables with exactly this
+two-subgroup property and no nonzero joint support on which an exactification
+can keep both subgroup actions literally fixed.  Thus the exactified
+`P_13` chart may perturb both restrictions by `o_2(1)`.  Synchronizing those
+perturbations with the other two vertex charts is the remaining native
+triangle problem.
+
+Nor is it enough to append the norms of the section cocycles to the three
+overlap projection energies.  The explicit matrix in
+`three-reynolds-plus-kernel-energy-has-vanishing-gap` has every abstract
+ingredient of that sum and gap tending to zero.  The only surviving spectral
+test is therefore the unreduced finite coefficient operator coming from the
+specific `P_12,P_13,P_23` restriction maps; passing first to Reynolds
+expectations and kernel-word adjoint norms discards too much information.
