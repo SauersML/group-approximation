@@ -1587,6 +1587,7 @@ import GroupApproximation.Sofic.TerminalQuotientIso
 import GroupApproximation.Sofic.SigmaGroupMF
 import GroupApproximation.Sofic.SymmetricDoubleShulman
 import GroupApproximation.Sofic.PushedDefectSaturation
+import GroupApproximation.Sofic.ArithmeticAmplifiedEndpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
