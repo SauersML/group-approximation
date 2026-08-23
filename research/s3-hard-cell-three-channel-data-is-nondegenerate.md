@@ -78,8 +78,11 @@ tau(P_lambda^A P_mu^B)
 Thus the three extension directions which bare standard-channel dimensions
 cannot distinguish do have nondegenerate coupled-channel and moment data.
 This is not a decoder theorem: it does not say that the actual atlas relators
-measure these three coordinates, and it does not exactify the cross-chart
-hard prefix as an `S4` representation.
+measure these three coordinates.  Exactification of the cross-chart prefix
+as an `S4` representation is now supplied separately by
+`actual-hard-prefix-generates-s4-over-raw-s3`; the relative external
+multiplicity geometry between two such extensions remains outside this
+finite carrier calculation.
 
 Nor does the equality of the two dimensions `3` canonically identify the
 Racah intermediate-channel space with the `2,3,3 epsilon` extension-label
