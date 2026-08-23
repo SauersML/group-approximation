@@ -17,7 +17,8 @@ d_KK(A_0,A) <= omega(epsilon)
 ```
 
 or directly forces the sibling Pauli generators simultaneously close to `A_0'`
-and to the transported parent algebra.  Together with the exact theorem at
+and to the transported parent algebra.  Together with the exact Lean endpoint
+`map_commutator_eq_one_of_commutes_compressed_units`, wired into
 `compression-defect-dies-in-finite-dimensions`, this would force the sibling
 commutator to collapse in every operator-norm microstate.
 

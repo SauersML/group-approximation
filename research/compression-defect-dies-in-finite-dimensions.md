@@ -57,11 +57,22 @@ because two division-ring extensions and one refutation all hang off it.
 
 ## One-step self-copy interpretation
 
-The proposed finite-memory HNN detector is not a new theorem and should not be
-duplicated.  If an ascending HNN letter conjugates a parent group into one
-child while a sibling packet centralizes that child, the sibling lamp is an
-element of the parent commutant and the HNN letter is a one-sided compressor.
-`map_marked_commutator_eq_one` then kills the sibling's transported marked
-commutator in every finite-dimensional representation.  Its proof is exactly
-the finite-algebra argument: an injective conjugate copy of the commutant is a
-same-dimensional subspace contained in it, hence equal to it.
+The proposed finite-memory HNN detector is the one-step specialization of this
+theorem, so it is wired here rather than duplicated as a second Cairn claim.
+Its exact interface is now separately machine-checked in
+`FiniteDimensionalKill.lean`:
+
+* `repCommutant_eq_map_sandwich_of_compression` proves that conjugation by a
+  one-sided compressor maps the finite-dimensional commutant onto itself;
+* `mem_repCommutant_of_commutes_compressed` transfers a sibling centralizer
+  from the child copy back to the parent;
+* `map_commutator_eq_one_of_commutes_compressed` kills the sibling commutator;
+* `map_commutator_eq_one_of_commutes_compressed_units` packages the result for
+  representations into `GL(V)`.
+
+Thus, if an ascending HNN letter conjugates a parent group into one child
+while a sibling packet centralizes that child, the sibling's marked
+commutator dies in every finite-dimensional representation.  This exact
+detector is unconditional and uses no property `(T)`, unitarity, trace, or
+literature axiom.  Formalizing a particular Thompson--Clifford carrier and
+the operator-norm approximate checksum remain separate obligations.
