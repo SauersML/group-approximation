@@ -49,8 +49,20 @@ degenerates the quotient to the sofic group `F_m`, so property `(T)` of the
 stabilizer cannot close the intended case.  Property `(T)` of `Q` changes
 none of the preceding free-action argument.
 
+There is one newer positive theorem to check.  Gao--Patchell--Kunnawalkam
+Elayavalli, *Sofic actions on graphs*, arXiv:2408.15470, Theorem 2.20 proves
+that a transitive action of a sofic group with amenable stabilizer is sofic;
+their Proposition 2.7(4) identifies the empty-graph specialization with the
+earlier set-action notion.  Here `N` is nontrivial (otherwise `Q=F_m`) and
+has infinite index because `Q` is infinite.  A nontrivial infinite-index
+normal subgroup of a finite-rank nonabelian free group is free of infinite
+rank, hence nonamenable.  Thus this improvement does not establish the
+ambient action.  Their Proposition 2.10 gives only a normal `H` contained in
+the total action kernel such that the actor quotient by `H` is sofic.  It
+cannot force the whole kernel to be removed; the free-actor example above
+shows why.
+
 GKP Theorem 3.8 has no converse, and even its sofic-group analogue is posed
 there as Question 4.4.  Hence nonsoficity of `alpha`, if later established,
 would only block this permanence proof; it would not decide hyperlinearity of
 `W_N`.
-
