@@ -75,6 +75,13 @@ genuinely non-character packet or a matrix-only/canonical-only return.
    hypothesis: orthogonal direct sums can put each local row on a different
    source, exactly the escape in
    `pairwise-cross-grams-do-not-supply-one-game-state`.
+5. **Use several noncommuting returns but prove one universal SOS bound.**
+   `regular-free-julia-atom-mass-is-uniform-or-affine` evaluates any such
+   tracially functorial bound in the regular representation.  The free-Julia
+   source is then either uniform on all context assignments or supported on
+   one affine halfspace.  For `R_*` the latter is precisely a maximal Fano
+   cap, so a universal multi-return identity merely reinstates the
+   deterministic-parity gate.
 
 The deferred attack is therefore a non-character predicate return whose
 positive payment is specific to canonical finite matrix models while its

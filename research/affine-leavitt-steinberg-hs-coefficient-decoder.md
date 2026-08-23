@@ -142,6 +142,17 @@ the affine active Leavitt construction.
   balanced marked double.  Thus more even Whitehead/Steinberg relations
   cannot force that checksum; the decoder must break the orientation grading
   or expose a genuinely finite-matrix coordinate.
+- **One odd selector row is still insufficient.**
+  `odd-selector-row-balances-or-kills-outer-action`
+  imposes the most direct grading-breaking equality `t=W r W^*`, with `r`
+  the coarse Pauli reflection.  An exact eight-dimensional marked model
+  absorbs it by taking `t=C tensor diag(1,-1)`; approximate satisfaction
+  forces `mu` toward zero and therefore strengthens, but does not return, the
+  `1/32` Reynolds gap.  Requiring `W` to normalize the whole packet removes
+  the countermodel only by making the controlled outer action inner, which
+  kills the intended exact completeness model.  A viable odd coupling must
+  therefore address the averaged/self-similar coefficient range rather than
+  one reflection.
 - **Exact depth pressure is now quantified.**
   `leavitt-prefixes-form-exponential-heisenberg-packet` gives `2^n` Pauli
   pairs over the active root, and

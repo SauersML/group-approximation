@@ -291,6 +291,30 @@ Thus further even Whitehead/Steinberg relations cannot force the checksum.
 The surviving return must break that grading through an odd selector
 coupling or use a finite-matrix-only coordinate estimate.
 
+The smallest such grading-breaking row has now also been eliminated.
+`odd-selector-row-balances-or-kills-outer-action`
+studies `t=W r W^*`, with `r` a coarse Pauli reflection.  There is an exact
+eight-dimensional marked model in which `t=C tensor diag(1,-1)` and `W`
+conjugates the two balanced involutions.  Quantitatively, defect `delta_W`
+in this row forces `|mu|<=2 delta_W`, so it drives the controller toward the
+maximal `1/32` superrank gap rather than toward a literal orientation.  If
+one additionally makes `W` normalize the full Pauli packet, the equality
+makes the controlled-Z outer action inner and destroys marked completeness.
+Thus the required odd coupling must act on an averaged/self-similar
+coefficient range, not on one packet reflection or a literal packet
+normalizer.
+
+There is no more elaborate escape inside the normalizer.
+`normal-pauli-extensions-retain-the-orientation-character` proves that every
+ambient group keeping the two-qubit Pauli packet normal automatically maps
+to `C_2`: the controlled transvection is odd under
+the product-sign character of
+`O_4^+(F_2)~=(S_3 x S_3) semidirect C_2`, while the packet is even.  The balanced-double firewall
+therefore applies to all normal extensions, finite or infinite.  A viable
+return must make the packet genuinely nonnormal by crossing the Leavitt
+scale and then control the averaged checksum without collapsing that
+self-similar exact model.
+
 There is one useful relaxation if several returned prefix cells can be linked
 cyclically.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` permits a
 different selected carrier `P_i` at every cell and proves

@@ -61,3 +61,16 @@ In particular, adding further even Steinberg triangles, even Whitehead
 loops, or covariance relations while leaving `(OGM1)` intact cannot prove
 the missing Reynolds return.
 
+Breaking the grading by the most obvious single odd equality does not evade
+the obstruction.  `odd-selector-row-balances-or-kills-outer-action`
+shows that `t=W r W^*` has an exact balanced marked countermodel and in fact
+forces `mu` toward zero in approximate models.  Strengthening it by making
+`W` a full packet normalizer instead destroys the controlled outer action.
+
+Moreover, `normal-pauli-extensions-retain-the-orientation-character` shows
+that `(OGM1)` is automatic in **every** ambient group in which the marked
+two-qubit Pauli packet remains normal: compose its symplectic outer action
+with the product-sign character of
+`O_4^+(F_2)~=(S_3 x S_3) semidirect C_2`.  Hence the successful Whitehead actuator
+must genuinely move the packet to another scale rather than live in any
+larger normalizer.

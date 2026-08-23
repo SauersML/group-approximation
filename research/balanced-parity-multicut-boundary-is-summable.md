@@ -50,6 +50,16 @@ quantum-expander decomposition is false by central mixtures of sparse
 Clifford cycles; the proof must charge the cut tree to the balanced parity
 and complete-pair Lyapunov energy.
 
+The tree-accounting part is now exact.  If signs are deferred until the
+terminal partition, `nested-common-cuts-have-exact-pythagorean-boundary-ledger`
+shows that the sum of all actual cut boundaries is precisely the movement
+under the one terminal pinching.  Separately,
+`adaptive-spike-quarantines-have-summable-trace` gives every recursively
+encountered spike a geometric trace allowance, so their union can have any
+prescribed `o(1)` trace.  Hence this claim is reduced to the sharper gate
+`terminal-common-pinching-displacement-vanishes`: construct terminal
+positive-gap blocks whose one common pinching moves the tuple by `o(1)`.
+
 ## Attempts
 
 Sequential balanced cutting gives no dimension-free estimate by itself.
@@ -61,3 +71,10 @@ block compression**, since orthogonal off-diagonal blocks are then counted
 only when first separated.  No proof currently shows that this drop
 dominates the sign/polar repair and the parity error created at every level.
 That domination, with a summable spike term, is exactly `(BPM1)`.
+
+Repeated sign/polar repair is not a safe potential: it destroys the
+orthogonality between boundaries from different levels.  Keeping compressed
+contractions through the tree and signing once at the terminal PVM makes all
+parity damage a one-shot function of the terminal displacement.  The
+remaining issue is proving that displacement vanishes, not preventing the
+same matrix block from being counted repeatedly.
