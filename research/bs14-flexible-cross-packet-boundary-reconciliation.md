@@ -464,6 +464,17 @@ the cross-packet multiplicity boundary for one `X`.
   alignment; no additional nonlinear inverse estimate for the gauge should
   be included in that target.
 
+- **The adaptive exact target is a restriction-ring fiber, not one orbit.**
+  `congruence-endpoint-orbits-are-restriction-ring-fibers` classifies the
+  core-commutant endpoint orbits over an authenticated finite quotient by
+  the nonnegative multiplicity vectors with the prescribed restricted core.
+  Uniform Selberg gap makes orbit distance equivalent to the square root of
+  weighted total-variation distance between these vectors.  Consequently a
+  correct reverse theorem may choose any nearby point of that fiber;
+  restriction-kernel directions are exact zero modes and must not be charged
+  as defect.  The unresolved step is level-uniform rounding to the **union**
+  of these moving fibers.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

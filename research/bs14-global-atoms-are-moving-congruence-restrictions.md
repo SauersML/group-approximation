@@ -53,6 +53,15 @@ trivial BS line and the long nonzero packets in one indivisible global
 cell.  This is the representation-semigroup formulation of
 `bs14-native-cells-cross-every-length-cutoff`.
 
+At one authenticated quotient and over one fixed core class, the remaining
+ambiguity is classified exactly by
+`congruence-endpoint-orbits-are-restriction-ring-fibers`: endpoint orbits are
+the nonnegative integral fiber of the restriction map, and their orbit
+distance is uniformly equivalent to the square root of weighted
+total-variation distance between multiplicity vectors.  Thus the moving
+global problem is specifically to round to **some** point of a moving
+restriction fiber, not to recover a preferred regular multiplicity vector.
+
 There is no exact noncongruence obstruction hiding here: `(GAR1)` follows
 from the finite-order unipotent argument, the normal subgroup theorem, and
 Serre CSP, as already established in
