@@ -386,6 +386,21 @@ non-hyperlinear group `hat K rtimes Lambda`.
   now a named one-orbit arithmetic action: prove its generalized wreath group
   hyperlinear to kill the Mihailova route, or prove it nonhyperlinear to solve
   the group goal directly.
+- **The GKP action-permanence test is sharp but the free restriction is
+  vacuous (proved, 2026-08-23).**
+  `mihailova-coset-wreath-sofic-action-boundary` applies GKP Theorem 3.8:
+  soficity of `SL_3(Z) curvearrowright SL_3(Z)/N` would make the isolated
+  wreath hyperlinear and kill the envelope route.  Restriction to the
+  Mihailova subgroup cannot refute this hypothesis.  Its orbit is
+  `F_m/N=Q`, but GKP Theorem 2.19 makes **every** free-group set action sofic,
+  including this one when `Q` is finitely presented, property `(T)`, and
+  nonsofic.  This gives an explicit failure of descent through the action
+  kernel: the `F_m`-action is sofic while the factored regular `Q`-action is
+  not.  Finite presentation merely makes `N` finitely normally generated,
+  and a property-`(T)` kernel is impossible here because `N<F_m` is free and
+  torsion-free.  Thus the residual really is the ambient arithmetic action;
+  nonsoficity of that action would only block GKP, not prove the wreath
+  nonhyperlinear.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
