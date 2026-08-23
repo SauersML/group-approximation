@@ -10,7 +10,6 @@ distinct_from:
   clopen-non-mf-cylinder: That is a topological statement about a nonempty clopen set of marked groups; this is a cardinality statement about abstract isomorphism types.
 artifacts:
   - notes/NON_MF_ARCHAEOLOGY.md
-  - notes/CREDIT_AND_PRIORITY_AUDIT.md
   - GroupApproximation/Sofic/ProductMultiplicity.lean
   - GroupApproximation/Sofic/ProductMultiplicityRank.lean
   - GroupApproximation/Algebra/TorsionFreeRank.lean
