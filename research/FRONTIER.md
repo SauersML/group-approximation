@@ -3439,7 +3439,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **dimension-expander-two-matching-square-function** [1 live route(s) need it; toward: non-hyperlinear-group] [Turn dimension-expander matching defects into one orthogonal bridge square function](dimension-expander-two-matching-square-function.md) — ⚑ last missing for dimension-expander-robustifies-two-matching-blocks → two-matching-matrix-block-propagation — unclaimed
 - **dimension-reported-clifford-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Clifford table](dimension-reported-clifford-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-clifford-compiler → non-hyperlinear-group — unclaimed
 - **dimension-reported-hyperoctahedral-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output activates one low-dimensional hyperoctahedral predicate packet](dimension-reported-hyperoctahedral-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-hyperoctahedral-compiler → non-hyperlinear-group — unclaimed
-- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — 🔒 claimed (170m41s remaining)
+- **dimension-reported-julia-amplitude-return** [1 live route(s) need it; toward: non-hyperlinear-group] [A self-indexing matrix tape need only activate one Julia amplitude return](dimension-reported-julia-amplitude-return.md) — ⚑ last missing for dimension-reported-julia-return-closes-fanizza → fanizza-heat-filter-one-sided-return — 🔒 claimed (169m59s remaining)
 - **dimension-reported-schur-replica-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Schur-replica table](dimension-reported-schur-replica-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-schur-compiler → non-hyperlinear-group — unclaimed
 - **edge-pair-mixed-gap-collapse** [1 live route(s) need it; toward: non-hyperlinear-group] [Mixed-gap collapse for high-dimensional edge-irreducible pairs](edge-pair-mixed-gap-collapse.md) — ⚑ last missing for iwahori-outlier-localization → iwahori-outlier-repair — unclaimed
 - **effective-fixed-density-diagonal-retention-character** [1 live route(s) need it; toward: non-hyperlinear-group] [An effective non-CE character has fixed-density self-retention along its polarizing tensor powers](effective-fixed-density-diagonal-retention-character.md) — ⚑ last missing for nonhyperlinear-via-fixed-density-diagonal-retention → non-hyperlinear-group — unclaimed
@@ -3818,7 +3818,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-- 🔒 covariant-model-satisfies-cross-context-radical-relators — 170m39s remaining
-- 🔒 dimension-reported-julia-amplitude-return — 170m40s remaining
-- 🔒 edgeful-or3-coefficient-link-compiler — 170m40s remaining
-- 🔒 iwahori-cubics-control-aggregate-weighted-bs-orbit-energy — 170m39s remaining
+- 🔒 covariant-model-satisfies-cross-context-radical-relators — 169m58s remaining
+- 🔒 dimension-reported-julia-amplitude-return — 169m59s remaining
+- 🔒 edgeful-or3-coefficient-link-compiler — 169m58s remaining
+- 🔒 iwahori-cubics-control-aggregate-weighted-bs-orbit-energy — 169m58s remaining
