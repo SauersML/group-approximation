@@ -1,9 +1,13 @@
 # Lin 2304.01940v3: tracial density, synchronous rounding, and state-dependent exactification
 
 Source: Junqiao Lin, *Tracially embeddable strategies: Lifting MIP* tricks to
-MIPco*, arXiv:2304.01940v3 (2023), especially Theorems 3.2, 4.1, and 5.1.
-The theorem pages were checked against the supplied PDF, not only against
-search snippets.
+MIPco*, arXiv:2304.01940v3 (15 September 2025; manuscript dated 17 September
+2025), especially Theorems 3.2, 4.1, and 5.1.  The supplied file
+`/Users/user/Downloads/2304.01940v3.pdf` has SHA-256
+`f6cd6e20db3d2b4db58a5f5fee8b5a3fee10a270ef7a06082c27a04fb36d69bd`.
+The theorem pages were checked against that exact PDF, not only against search
+snippets.  The `2304` arXiv identifier records the original 2023 submission;
+it is not the date of the audited v3 theorem statements.
 
 ## Theorem 3.2 is a closure theorem
 
