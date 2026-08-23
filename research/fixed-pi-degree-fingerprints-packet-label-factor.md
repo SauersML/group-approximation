@@ -48,6 +48,14 @@ trading label degree for spectator multiplicity.
   `M_(r^2)`, and on such a retreat the standard polynomial still vanishes.
   The load-bearing statement is that fixed transverse packet words generate
   the full target factor on positive trace; mere target dimension is useless.
+- **A common spectator is harmless.**  Tensoring both named tuples and their
+  carrier by an arbitrary identity factor preserves every normalized PI
+  evaluation.  Therefore the scalar spectator no-go does not force mutual
+  bicommutant extraction here.  The direct route
+  `nonhyperlinear-directly-from-fixed-pi-fingerprint` uses only the three
+  displayed PI conclusions of this claim.  What remains hard is making the
+  full transverse tuple and its transport word-visible on the same carrier,
+  not eliminating an anonymous common tensor factor.
 - **Addition is analytic, not a relator.** The signed sum defining
   `s_(2r)` is formed in the proof from finitely many word evaluations.  No
   group-ring addition compiler is needed, but every monomial must have a
