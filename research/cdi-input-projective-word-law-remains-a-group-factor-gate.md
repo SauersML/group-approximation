@@ -48,3 +48,24 @@ non-CE twisted group factor but leaves the torsion/finite-central gate open.
 Thus “choose better generators” is not a soft refinement of CDI: it is
 exactly the missing twisted-group-factor structure theorem.
 
+There is now an exact boundary statement for relation/group-measure-space
+inputs.  By
+`cdi-wreath-extension-preserves-projective-basis-gate`, if a relation factor
+`X` is already `L_omega(Gamma)`, Proposition 3.8 preserves that projective
+basis; if the phase group of `omega` is finite, its output has one canonical
+finite central sector of the same phase order.  For `omega=1` the output is
+an ordinary group factor.  Conversely the native CDI output satisfies the
+projective-word law exactly when the chosen input representation does, so
+applying CDI to a group-measure-space or relation presentation alone creates
+no such sector.  Producing it is equivalent to recognizing `X` itself as a
+twisted group factor (with finite phase in the central-corner version).
+
+In particular, essential freeness of an action does not fill the gap.  Its
+implementing group unitaries have regular trace but generate only the group
+unitary subalgebra; the diffuse Cartan coefficients are also needed to
+generate the full crossed product.  A countable unitary group which does
+generate the full factor and obeys the required zero-or-scalar word law is,
+by `projective-word-law-characterizes-twisted-group-factors`, precisely the
+missing twisted group basis.  The algebraic compact-abelian case is special
+because Fourier characters supply that basis, yielding an ordinary
+semidirect-product group factor.

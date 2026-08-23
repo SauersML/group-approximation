@@ -46,3 +46,15 @@ so no further verdict follows from the source.
 Primary source: Chifan--Drimbe--Ioana,
 [*Embedding universality for II1 factors with property (T)*](https://arxiv.org/abs/2205.07442),
 Proposition 3.8 and Lemma 5.1.
+
+For the group-factor specialization `(CDI-P4)`, the first formula in
+`(CDI-P2)` is the regular character of `G`; regularity makes the extended
+homomorphism faithful, and generation in Proposition 3.8 identifies its
+factor with `L(G)`.  For `(CDI-P6)--(CDI-P8)`, the honest central-extension
+representation has scalar kernel exactly `S` and vanishes elsewhere.
+Applying the already proved scalar-kernel and phase-group calculations shows
+that the output is a twisted group factor with the same phase group `S`.
+When `S` is finite, the usual central-character idempotent in the final
+central extension has canonical trace `1/|S|`; this is one global projection,
+not an infinite product of coordinate projections.  This proves the positive
+specialization added to the claim.
