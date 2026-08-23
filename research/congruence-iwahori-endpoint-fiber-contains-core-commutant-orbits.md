@@ -5,6 +5,7 @@ kind: claim
 title: Every congruence Iwahori endpoint fiber contains the full core-commutant conjugacy orbit
 distinct_from:
   fixed-packet-correction-retains-multiplicity-gauge: that is the abstract Schur-form gauge for an actuator implementing a packet automorphism; this identifies the gauge concretely in the Iwahori endpoint fiber and proves it can defeat T-commutant alignment even when the congruence group element is unique.
+  iwahori-square-root-odd-mode-is-amalgam-bending: that records abstract vertex bending and the odd square-root mode; this works in the square-free BS coordinates, identifies the exact endpoint-fiber quotient relevant after prime-power Weyl uniqueness, and gives an explicit regular congruence endpoint whose relative gauge is not T-central.
   p3-exact-iwahori-endpoints-refute-arbitrary-baseline-alignment: that uses two distinct endpoint group elements after the mod-three dilation collapses; this works at every finite congruence level by changing the representation embedding while the group-level Weyl label stays fixed.
   prime-power-iwahori-weyl-endpoint-is-unique-away-from-three: that removes group-element ambiguity; this proves why such uniqueness does not imply representation endpoint uniqueness.
 ---
@@ -49,5 +50,5 @@ exact endpoints over (R,T) / conjugacy by {R,T}' .     (CCO2)
 A flexible basin theorem must find a nearby point of this entire orbit (or
 choose a gauge representative jointly with the repaired core).  It cannot
 first freeze the canonical regular Weyl matrix and then try to collapse the
-relative gauge to one.
-
+relative gauge to one.  This is the square-free endpoint form of the
+bending freedom in `iwahori-square-root-odd-mode-is-amalgam-bending`.
