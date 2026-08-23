@@ -141,6 +141,23 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   fixed-word traces plus band masses cannot close the `K->infinity` gate;
   a new inequality must couple within-band character data to the actual
   upper/opposite branching labels.
+- **The canonical invariant-character projective tower does not stack.**
+  `fixed-clifford-sectors-have-zero-adjacent-opposite-overlap` shows that an
+  upper depth-`a` `(1,1,1)` Clifford sector and an opposite depth-`a+1`
+  `(1,1,1)` sector have literally zero common restriction.  Under the depth
+  shift the required newest-layer character is `(0,1,0)`, in a size-three
+  orbit with index-three inertia.  Thus a diffuse realization cannot recurse
+  only through the full-inertia multipliers `omega_a`; it must alternate
+  Clifford orbit and inertia types.
+- **The complete adjacent Clifford graph has one lossy recurrent orbit.**
+  `adjacent-clifford-orbit-transition-graph` computes all four orbit
+  transitions. Every exact upward edge lands in the size-three orbit
+  `O_B`; its self-edge has sharp source capacity `2/3` in either orientation.
+  The fixed orbit feeds it once with capacity one and the other size-three
+  orbit with capacity `1/3`, but neither supplies a recurrent source.
+  Therefore a one-way recursive orbit packet loses geometrically; a diffuse
+  enemy would still need label-sensitive replenishment inside the changing
+  inertia categories.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.
@@ -159,6 +176,27 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   sector has upper/opposite conductor pair `(a,a+1)`. Hence the remaining
   Cheeger question is a recursion through projective inertia categories;
   no depth-independent transition matrix on the four orbit labels exists.
+- **The fixed multiplier is nonsplit, but its root marginals recurse with
+  zero loss.**
+  `fixed-clifford-multiplier-is-nonsplit-root-double-cover`
+  identifies the multiplier with the central pushout
+  `G_a/ker(chi_a)`.  On either upper or lower root cycle this is the
+  nonsplit extension `C_(2^a)->C_(2^(a-1))`; negative-central
+  representations therefore have odd-root spectra.  The negative regular
+  blocks distribute uniformly over those roots, and squaring gives the
+  preceding odd-root marginal exactly.  Hence root conductors and separate
+  one-variable spectra cannot yield a uniform boundary.  Any positive
+  theorem must use joint noncommutative/cocycle information and the
+  size-three inertia sectors, not just refine the regular conductor ledger.
+- **The joint root cocycle has a stable, not conflicting, Heisenberg sign.**
+  `dyadic-invariant-cocycle-has-a-stable-heisenberg-sign` computes the next
+  joint invariant: commuting upper/lower root elements whose valuations sum
+  to `a-1` lift with central commutator `z`, forcing anticommutation and even
+  projective dimension.  But the Nielsen shift preserves that valuation sum
+  and hence the same sign; inversion also does nothing to an order-two
+  cocycle.  Thus cocycle parity itself creates no upper/opposite boundary.
+  A positive theorem must compare still finer projective inertia data across
+  the alternating size-three sectors.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes

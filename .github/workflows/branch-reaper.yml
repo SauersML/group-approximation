@@ -7,6 +7,12 @@ name: Retire finished agent branches
 # forever, so retire them here instead of by hand.
 
 on:
+  pull_request:
+    types: [closed]
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/branch-reaper.yml
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
@@ -37,14 +43,18 @@ jobs:
           gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 1000 \
             --json headRefName --jq '.[].headRefName' | sort -u > "$open"
           : > "$heads"
-          for prefix in heads/automation/leanstral- heads/grok/; do
+          for prefix in \
+            heads/automation/leanstral- \
+            heads/grok/ \
+            heads/codex/shadow-kleene-saturation \
+            heads/palomar-candidate-8b701fdd1; do
             gh api --paginate "repos/$GITHUB_REPOSITORY/git/matching-refs/$prefix" \
               --jq '.[].ref' >> "$heads" || true
           done
           sed -i 's|^refs/heads/||' "$heads"
           # Belt and braces: main and verified can never match these patterns, but
           # an explicit filter costs nothing and a mistake here is unrecoverable.
-          grep -E '^(automation/leanstral-[0-9]+|grok/.+)$' "$heads" \
+          grep -E '^(automation/leanstral-[0-9]+|grok/.+|codex/shadow-kleene-saturation|palomar-candidate-8b701fdd1)$' "$heads" \
             | grep -vxE 'main|verified' | sort -u > "$heads.f" || true
           mv "$heads.f" "$heads"
           cutoff="$(date -u -d "-$MIN_AGE_MINUTES minutes" +%s)"
@@ -54,11 +64,20 @@ jobs:
             if grep -Fxq "$b" "$open"; then
               echo "keep  (PR open)   $b"; kept=$((kept+1)); continue
             fi
-            iso="$(gh api "repos/$GITHUB_REPOSITORY/commits/$b" \
-              --jq '.commit.committer.date' 2>/dev/null || echo '')"
-            if [[ -n "$iso" ]] && (( $(date -u -d "$iso" +%s) > cutoff )); then
-              echo "keep  (too new)   $b"; kept=$((kept+1)); continue
-            fi
+            # The two named legacy branches are being retired deliberately after
+            # their content is incorporated. Do not apply the publisher grace
+            # period to them; it exists only to avoid racing fresh agent branches.
+            case "$b" in
+              codex/shadow-kleene-saturation|palomar-candidate-8b701fdd1)
+                ;;
+              *)
+                iso="$(gh api "repos/$GITHUB_REPOSITORY/commits/$b" \
+                  --jq '.commit.committer.date' 2>/dev/null || echo '')"
+                if [[ -n "$iso" ]] && (( $(date -u -d "$iso" +%s) > cutoff )); then
+                  echo "keep  (too new)   $b"; kept=$((kept+1)); continue
+                fi
+                ;;
+            esac
             if gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$b" >/dev/null 2>&1; then
               echo "reap  (no PR)     $b"; reaped=$((reaped+1))
             else

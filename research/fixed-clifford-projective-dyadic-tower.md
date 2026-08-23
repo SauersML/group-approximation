@@ -73,3 +73,21 @@ inertia categories in `(FCT3)`, with their restriction multiplicities under
 the opposite embedding, have a uniform boundary or admit a Følner sequence.
 Neither the spatial Bruhat--Tits norm nor the regular Plancherel table decides
 that recursive twisted-category question.
+
+The first recursive matching test is nevertheless negative.
+`fixed-clifford-sectors-have-zero-adjacent-opposite-overlap` computes the
+opposite pullback of `L_(a+1)`: on a level-`a` fixed-sector representation
+it is the character `(0,1,0)`, not `(1,1,1)`.  Consequently successive
+fixed sectors have zero common Iwahori constituent.  Any surviving Folner
+sequence must move through the size-three inertia sectors as well; the
+canonical full-inertia projective categories cannot simply be stacked.
+
+The multiplier itself is now explicit enough to exclude another cheap gap.
+`fixed-clifford-multiplier-is-nonsplit-root-double-cover` realizes
+it as the central pushout `G_a/ker(chi_a)`.  Its restriction to either root
+cycle is the nonsplit cover `C_(2^a)->C_(2^(a-1))`; on the `z=-1` block the
+root spectrum consists of the odd `2^a`-th roots.  These spectral marginals
+have an exact zero-loss square-root recursion.  Thus neither individual root
+cycle can supply the desired boundary.  The remaining target must couple
+the two roots through the full multiplier and the intervening size-three
+inertia sectors.
