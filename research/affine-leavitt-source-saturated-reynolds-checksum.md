@@ -11,6 +11,7 @@ distinct_from:
   canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
   leavitt-forward-morita-polar-misses-reynolds-return: that computes the polar of the native forward coefficient chart and shows it is either gauge-uncontrolled or the exact label-amplifying rectangular escape; this requires a reverse cross-typed return Gram instead.
   leavitt-branch-reynolds-return-has-rectangular-gap: that names the canonical reverse candidate `R_1 Ad(U_0) R_s` and computes its exact source leakage; this asks for the new full-presentation estimate which pays that leakage.
+  leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the three-path range-sum/diagonal-return fold as the first native word outside the typed Morita language; this asks for its finite-matrix same-output-root decoding into the Reynolds leakage.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -105,3 +106,22 @@ in the exact rectangular model.  Thus no search for a different polar
 formula is presently needed: the live assertion is precisely that the
 additional full affine-Leavitt relations pay the transverse leakage in
 `(ASR4)`.  The depth-one coefficient and packet tables do not.
+
+The smallest native relation capable of making that payment is also now
+isolated.  `leavitt-range-sum-fold-is-first-object-erasing-row` compares, in
+one long root, the two target range paths `s_0t_0+s_1t_1` with one source
+diagonal return `t_0s_0`.  All shorter/well-typed triangle pastings preserve
+the `E` versus `E direct_sum E` object distinction.  Thus the sharp remaining
+inequality may be stated as
+
+```text
+||(I-R_1)Ad(U_0)R_s||_(HS,ad)^2
+ <= omega_fold(||r_fold(U)-I||_2,packet defect),         (ASR5)
+```
+
+for a dimension-independent modulus tending to zero.  The group-word
+defect of `r_fold` is already paid by the fixed presentation.  What is not
+proved is the finite-matrix promotion from equality of that one long-root
+observable to equality of the multiplicity reservoir on which its three
+coefficient paths were decoded.  This is the exact same-output-root decoder
+gate; no further search through ordinary typed Steinberg loops is needed.
