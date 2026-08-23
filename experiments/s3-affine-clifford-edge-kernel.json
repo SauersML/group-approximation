@@ -1,0 +1,81 @@
+{
+  "component_fresh_order": 549755813888,
+  "component_map": {
+    "center_kernel_dimension": 0,
+    "center_map_rank": 5,
+    "commutator_failures": [],
+    "commutator_pairs_checked": 1024,
+    "quotient_kernel_dimension": 0,
+    "quotient_map_rank": 32
+  },
+  "component_source_order": 137438953472,
+  "derivative_word_span_ranks": [
+    15,
+    15,
+    15
+  ],
+  "one_copy_full_clifford_obstruction": {
+    "alternating_space_dimension": 30,
+    "inverse_primary_nullities": {
+      "x^2+x+1": 4,
+      "x^4+x+1": 0,
+      "x^9+x^4+x^3+x+1": 0
+    },
+    "shear_similarity": false,
+    "swap_similarity": false,
+    "transition_primary_nullities": {
+      "x^2+x+1": 4,
+      "x^4+x+1": 8,
+      "x^9+x^4+x^3+x+1": 0
+    },
+    "transition_rank": 30,
+    "translated_primary_nullities": {
+      "x^2+x+1": 4,
+      "x^4+x+1": 8,
+      "x^9+x^4+x^3+x+1": 18
+    },
+    "translated_transition_rank": 30
+  },
+  "regular_s3": {
+    "direction_multiplicities": {
+      "1": 2,
+      "2": 2,
+      "3": 2
+    },
+    "explicit_shared_kernel_word": "p[factor_0,0] p[factor_1,0]",
+    "factor_direction_labels": [
+      2,
+      3,
+      1,
+      3,
+      1,
+      2
+    ],
+    "fresh_group_order_exponent": 229,
+    "fresh_quotient_dimension": 204,
+    "fresh_semidirect_group_order": 5176309760092922840576066896707769089338331729127789916371893167849472,
+    "product_order_three_relation": true,
+    "regular_action_faithful": true,
+    "regular_center_kernel_dimension": 0,
+    "regular_center_map_rank": 25,
+    "regular_quotient_kernel_dimension": 0,
+    "regular_quotient_map_rank": 192,
+    "residual_only_shared_kernel_dimension": 150,
+    "s3_order": 6,
+    "shared_residual_quotient_kernel_dimension": 150,
+    "shared_residual_quotient_rank": 42,
+    "shear_relation": true,
+    "source_center_dimension": 25,
+    "source_group_order_exponent": 217,
+    "source_quotient_dimension": 192,
+    "source_semidirect_group_order": 1263747500022686240375016332204045187826741144806589335051731730432,
+    "swap_relation": true
+  },
+  "reset_plane_hex": [
+    "0x2ce6",
+    "0xb0eb",
+    "0x9c0d"
+  ],
+  "residual_dimension": 15,
+  "stacked_derivative_row_span_rank": 15
+}
