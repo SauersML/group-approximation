@@ -191,7 +191,7 @@ supported 1-cochain.
   two (types `A_1 x A_1`, `B_2`, `G_2`) the relative complex
   `(cl O_w, D)` has `H_3=0`.  This is a finite computation inside
   `GQ(q,q)`, `GH(q,q)` and grids, of Abramenko type; the affine sanity
-  check above says that for `A_2` residues (`SL_3(F_q[t,t^(-1)])`)
+  check in the next bullet says that for `A_2` residues (`SL_3(F_q[t,t^(-1)])`)
   some such `H_3` is NONZERO, so the answer is genuinely type-dependent
   and not decidable by the general formalism alone.
 - **Contractible case is decided positively; the obstruction is exactly
