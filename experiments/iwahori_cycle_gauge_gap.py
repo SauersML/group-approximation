@@ -267,6 +267,88 @@ def full_selector_linear_gap(
     }
 
 
+def conjugation_counterpacket_audit(
+    x: np.ndarray, r: np.ndarray, t: np.ndarray, target_operator_displacement: float = 1e-3
+) -> dict[str, float]:
+    """Probe the exact-first-vertex conjugation mechanism.
+
+    For a low nonfixed Koopman mode ``a in {T}'``, conjugating only the Weyl
+    endpoint by ``z=exp(i epsilon a)`` preserves ``X^2`` and ``(XT)^3``
+    exactly.  The other two rows pay only the failure of ``z`` to commute
+    with ``R``.  We project the resulting Weyl residual onto ``{T}'`` and
+    report the norm of its minimum linear coboundary preimage.  Growth of
+    preimage/row-defect is direct evidence against a dimension-free linear
+    selector estimate; this function does not assert exact nonlinear
+    coboundary solvability of the projected residual.
+    """
+    d = x.shape[0]
+    identity = np.eye(d, dtype=complex)
+    basis = spectral_commutant_basis(t)
+    z_basis = np.column_stack(
+        [(a / math.sqrt(d)).reshape(-1, order="F") for a in basis]
+    )
+    coboundary = operator_matrix(basis, lambda a: a - ad(r.conj().T, a))
+    _, singular, vh = np.linalg.svd(coboundary, full_matrices=False)
+    scale = max(1.0, float(singular[0]) if singular.size else 1.0)
+    positive = np.flatnonzero(singular > 1e-9 * scale)
+    if positive.size == 0:
+        raise ValueError("the model has no regular Koopman direction")
+    coordinates = vh.conj().T[:, positive[-1]]
+    raw = sum(coefficient * matrix for coefficient, matrix in zip(coordinates, basis))
+    hermitian_parts = ((raw + raw.conj().T) / 2.0, (raw - raw.conj().T) / (2.0j))
+    a = max(hermitian_parts, key=normalized_frobenius)
+    a = a / normalized_frobenius(a)
+    operator_norm = float(np.linalg.norm(a, 2))
+    epsilon = target_operator_displacement / max(1.0, operator_norm)
+    values, vectors = np.linalg.eigh(a)
+    z = (vectors * np.exp(1j * epsilon * values)) @ vectors.conj().T
+    x_moved = z @ x @ z.conj().T
+
+    defects = {
+        "x2": normalized_frobenius(x_moved @ x_moved - identity),
+        "xr2": normalized_frobenius(np.linalg.matrix_power(x_moved @ r, 2) - identity),
+        "xt3": normalized_frobenius(np.linalg.matrix_power(x_moved @ t, 3) - identity),
+        "xt2r3": normalized_frobenius(
+            np.linalg.matrix_power(x_moved @ t @ t @ r, 3) - identity
+        ),
+    }
+    total_row_defect = math.sqrt(sum(value * value for value in defects.values()))
+
+    weyl = x_moved @ r @ x_moved.conj().T @ r - identity
+    weyl_vector = (weyl / math.sqrt(d)).reshape(-1, order="F")
+    solution = np.linalg.pinv(coboundary, rcond=1e-10) @ weyl_vector
+    inverse_energy_norm = float(np.linalg.norm(solution))
+    projected = z_basis @ (z_basis.conj().T @ weyl_vector)
+    regular = coboundary @ solution
+    fixed_holonomy_norm = float(np.linalg.norm(projected - regular))
+
+    left_tangent = a - ad(x, a)
+    tangent_vector = (left_tangent / math.sqrt(d)).reshape(-1, order="F")
+    tangent_gauge_coordinates = z_basis.conj().T @ tangent_vector
+    _, _, coboundary_vh = np.linalg.svd(coboundary, full_matrices=False)
+    fixed_coordinates = coboundary_vh.conj().T[:, positive.size :]
+    if fixed_coordinates.size:
+        tangent_gauge_coordinates = tangent_gauge_coordinates - fixed_coordinates @ (
+            fixed_coordinates.conj().T @ tangent_gauge_coordinates
+        )
+    tangent_gauge_norm = float(np.linalg.norm(tangent_gauge_coordinates))
+
+    return {
+        "smallest_positive_koopman_gap": float(singular[positive[-1]]),
+        "mode_operator_norm_at_hs_norm_one": operator_norm,
+        "epsilon": epsilon,
+        "x2_defect": defects["x2"],
+        "xr2_defect": defects["xr2"],
+        "xt3_defect": defects["xt3"],
+        "xt2r3_defect": defects["xt2r3"],
+        "total_row_defect": total_row_defect,
+        "minimum_projected_coboundary_preimage_norm": inverse_energy_norm,
+        "preimage_to_row_ratio": inverse_energy_norm / max(total_row_defect, 1e-300),
+        "projected_fixed_holonomy_norm": fixed_holonomy_norm,
+        "linear_tangent_regular_gauge_norm": tangent_gauge_norm,
+    }
+
+
 def fourth_power_orbits(p: int) -> list[int]:
     unseen = set(range(p))
     lengths: list[int] = []
@@ -370,7 +452,9 @@ def analyze_matrices(
     }
 
 
-def analyze(primes: Sequence[int], full_selector: bool = False) -> dict[str, object]:
+def analyze(
+    primes: Sequence[int], full_selector: bool = False, conjugation_counterpacket: bool = False
+) -> dict[str, object]:
     endpoints = [endpoint(p) for p in primes]
     x = direct_sum([triple[0] for triple in endpoints])
     r = direct_sum([triple[1] for triple in endpoints])
@@ -387,6 +471,8 @@ def analyze(primes: Sequence[int], full_selector: bool = False) -> dict[str, obj
     )
     if full_selector:
         result["full_selector_linear_audit"] = full_selector_linear_gap(x, r, t)
+    if conjugation_counterpacket:
+        result["conjugation_counterpacket_audit"] = conjugation_counterpacket_audit(x, r, t)
     return result
 
 
@@ -435,13 +521,25 @@ def main() -> None:
         action="store_true",
         help="also eliminate arbitrary endpoint tangents in the linear selector audit",
     )
+    parser.add_argument(
+        "--conjugation-counterpacket",
+        action="store_true",
+        help="probe an exact-first-vertex low-Koopman conjugation packet",
+    )
     parser.add_argument("--output")
     args = parser.parse_args()
 
     payload = {
         "status": "finite diagnostic; algebraic floor is proved in Cairn",
         "normalization": "normalized Hilbert--Schmidt",
-        "rows": [analyze(block, full_selector=args.full_selector) for block in args.blocks]
+        "rows": [
+            analyze(
+                block,
+                full_selector=args.full_selector,
+                conjugation_counterpacket=args.conjugation_counterpacket,
+            )
+            for block in args.blocks
+        ]
         + [analyze_even_weil(p, full_selector=args.full_selector) for p in args.even_weil],
     }
     rendered = json.dumps(payload, indent=2, sort_keys=True)

@@ -98,6 +98,15 @@ def rotated_projection(left: int, right: int, sign: int) -> Matrix:
     return result
 
 
+def coordinate_transposition(left: int, right: int) -> Matrix:
+    result = identity()
+    result[left][left] = ZERO
+    result[right][right] = ZERO
+    result[left][right] = ONE
+    result[right][left] = ONE
+    return result
+
+
 def trace(matrix: Matrix) -> Scalar:
     return sum((matrix[index][index] for index in range(N)), ZERO)
 
@@ -303,6 +312,35 @@ assert LOCAL_CURVATURE == J04
 assert GLOBAL_CURVATURE == J04
 assert RAW_ROW == EXPECTED_ORIENTED_DEFECT
 
+# A maximal finite-state/conjugacy-clock attempt is already visible in B7.
+# The transposition T=(2 6) conjugates the global x31 observable to its paid
+# c3 local observable and fixes q3, P, and the oriented payload.  It is not a
+# sterile spectator: its curvature against R2 is the nontrivial sign J_26.
+# Nevertheless that curvature is confined to spectator coordinates and the
+# active |e4><e0| defect is invariant.
+T26 = coordinate_transposition(2, 6)
+J26 = diagonal([1, 1, -1, 1, 1, 1, -1])
+assert multiply(T26, multiply(B31, T26)) == A31_C3
+assert multiply(T26, multiply(Q3, T26)) == Q3
+assert multiply(T26, multiply(P, T26)) == P
+assert multiply(T26, multiply(RAW_ROW, T26)) == RAW_ROW
+assert multiply(T26, multiply(R2, multiply(T26, R2))) == J26
+
+# Smallest proper-corner ledger for the oriented defect.  Its source support
+# is H=e0 inside E=P=e0+e1, and F=E-H=e1.  The identity ambient unitary
+# already attains the finite-dimensional rank lower bound exactly:
+# X=F I E=F and X^*X-E=-H.
+H_SOURCE = multiply(transpose(RAW_ROW), RAW_ROW)
+F_SOURCE = subtract(P, H_SOURCE)
+X_PROPER_TEST = multiply(F_SOURCE, P)
+GRAM_DEFICIENCY = subtract(
+    multiply(transpose(X_PROPER_TEST), X_PROPER_TEST), P
+)
+assert H_SOURCE == E[0]
+assert F_SOURCE == E[1]
+assert GRAM_DEFICIENCY == scale(-ONE, H_SOURCE)
+assert hs_squared(GRAM_DEFICIENCY) == hs_squared(RAW_ROW)
+
 # In the natural irreducible block of B_7, normalized canonical regular trace
 # is (7/|B_7|) times the ordinary matrix trace.
 B7_ORDER = (2**N) * factorial(N)
@@ -329,6 +367,11 @@ def main() -> None:
     print("curvature_matching_two_cell=exact")
     print("local_curvature=global_curvature=diag(-1,1,1,1,-1,1,1)")
     print("oriented_prefix_defect=matrix_unit_e4_e0")
+    print("conjugacy_clock_T26_sends_B31_to_A31_and_fixes_q3_P_defect")
+    print("conjugacy_clock_curvature=diag(1,1,-1,1,1,1,-1)")
+    print("proper_corner_E_rank=2; H_rank=1; F_rank=1")
+    print("proper_corner_gram_floor_hs2=1/7")
+    print("canonical_proper_corner_gram_floor_hs2=1/92160")
     print(f"B7_order={B7_ORDER}")
     print(f"canonical_selected_profile_mass={CANONICAL_PROFILE_MASS}")
     print(f"canonical_selected_source_mass={CANONICAL_SOURCE_MASS}")

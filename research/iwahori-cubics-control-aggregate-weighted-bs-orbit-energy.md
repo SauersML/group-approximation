@@ -3,12 +3,13 @@ rg: 2
 id: iwahori-cubics-control-aggregate-weighted-bs-orbit-energy
 kind: claim
 title: The Iwahori rows control aggregate weighted BS-orbit energy after movable-gauge optimization
+refuted_by: endpoint-conjugation-refutes-iwahori-energy
 distinct_from:
   iwahori-cubics-suppress-low-bs-orbit-modes: that demanded an extra positive power of every individual band and is refuted by a single movable exact gauge; this asks only for the summed inverse energy which that family saturates harmlessly.
   weyl-defect-koopman-spectral-regularity: that is the global operator statement consumed by the absorption cascade; this is its explicit finite-cycle, gauge-aware inequality over exact BS packets.
 ---
 
-**OPEN CORRECTED FINITE INEQUALITY.**  In the exact-`BS(1,4)` setup of
+**REFUTED.** In the exact-`BS(1,4)` setup of
 `iwahori-cubics-suppress-low-bs-orbit-modes`, let `e'` be the centered,
 fixed-algebra-removed projected Weyl residual and let `P_t` be its dyadic
 Koopman bands.  Prove directly from the full Iwahori relator energy that
@@ -81,3 +82,20 @@ order `delta`.  Route `row-tame-weyl-correction-proves-aggregate-energy`
 then gives the desired small gauge with no Fourier, Taylor, or geodesic
 loss.  This selection claim allows an approximate target and is strictly
 weaker than full relative Iwahori repair.
+
+## Refutation by conjugating the exact first vertex
+
+`endpoint-conjugation-refutes-iwahori-energy`
+conjugates an exact endpoint as `X_epsilon=z_epsilon Xz_epsilon^(-1)` by a
+first Koopman mode in `{T}'`. This preserves `X^2` and `(XT)^3` exactly;
+the inversion and second-cubic rows are only `O(epsilon/L)`. Nevertheless
+the centered regular projected Weyl residual has weighted inverse energy
+`Omega(epsilon^2)`. Thus the ratio in `(IAG1)` grows as `L^2` even in left
+regular finite congruence quotients with regular limiting character.
+
+The all-endpoint Fox identity remains correct. It applies to **left gauge
+multiplication** `X -> cX` with `c in {T}'`; the counterpacket is a
+**conjugation** `X -> zXz^(-1)`, whose left tangent
+`a-Ad(X)a` has a large `{T}'` projection canceled by a transverse endpoint
+tangent. The earlier gauge-only singular-value calculation excluded
+exactly this cancellation.

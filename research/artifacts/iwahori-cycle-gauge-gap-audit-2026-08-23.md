@@ -1,8 +1,8 @@
 # Same-core fourth-power gauge-gap audit
 
 This audit reconstructs the finite model behind the proposed aggregate
-Iwahori estimate and distinguishes the proved Fox-differential calculation
-from the still-open nonlinear endpoint-selection problem.  The reproducible
+Iwahori estimate and distinguishes the proved gauge-only Fox calculation
+from the transverse endpoint motion which refutes the aggregate claim. The reproducible
 implementation is `experiments/iwahori_cycle_gauge_gap.py`; all reported
 runs used one BLAS thread through the MSI wrapper on `acn112`.
 
@@ -94,9 +94,54 @@ rank-one-boundary scale.  The quotient Jacobian does not decay with them.
 The outliers instead show why the missing global theorem is selection of an
 exact endpoint after flexible boundary padding.
 
-Thus the finite-cycle singular-value problem is completely controlled at
-every unitary over an exact core.  A counterexample to the global aggregate
-claim must exploit nonlinear normalized-HS geometry or flexible endpoint
-selection; it cannot arise as a degenerating Fox singular value along long
-Fourier cycles, heterogeneous direct sums, or the existing compressed Weil
-boundary packets.
+## Full endpoint cancellation and the refuting conjugation packet
+
+The preceding SVD restricts the tangent itself to `{T}'`. It therefore does
+not test whether a commutant component is canceled by a transverse endpoint
+tangent. The `--full-selector` audit prescribes the regular `{T}'`
+projection of an arbitrary matrix tangent, minimizes all row derivatives
+over its orthogonal complement, and reports the remaining quotient gap.
+The difference is decisive:
+
+| projective endpoint | max orbit | first two rows | three torsion rows | all four endpoint rows |
+|---|---:|---:|---:|---:|
+| `p=5` | 2 | 0 | 0.381966 | 2.526255 |
+| `p=7` | 3 | 0 | 0.635950 | 2.182619 |
+| `p=11` | 5 | 0 | 0.919431 | 1.544443 |
+| `p=19` | 9 | 0 | 0.475972 | 0.917944 |
+| `p=23` | 11 | 0 | 0.473472 | 0.767130 |
+| `p=31` | 5 | 0 | 0.736124 | 1.583378 |
+
+The zero in the first pair has an exact explanation. If `z in {T}'`, then
+
+```text
+X_z=zXz^(-1)
+```
+
+still has `X_z^2=(X_zT)^3=1`. The other two rows cost only the commutator
+of `z` with `R`. Choosing a first Koopman mode produces the following MSI
+values; the last column is the minimum projected coboundary-preimage norm
+divided by the root-sum-square of all four endpoint row defects.
+
+| `p` | max orbit `L` | Koopman gap | preimage/row ratio |
+|---:|---:|---:|---:|
+| 7 | 3 | 1.732051 | 0.278119 |
+| 11 | 5 | 1.175571 | 0.378926 |
+| 19 | 9 | 0.684040 | 0.640643 |
+| 23 | 11 | 0.563465 | 0.795483 |
+| 47 | 23 | 0.272333 | 1.641515 |
+| 59 | 29 | 0.216238 | 2.111657 |
+| 83 | 41 | 0.153099 | 2.912470 |
+| 107 | 53 | 0.118481 | 3.779510 |
+
+The ratio grows linearly in `L`; the preserved rows were below `5e-15` in
+every run. This numerical family is subsumed by the exact left-regular
+proof in `endpoint-conjugation-refutes-iwahori-energy`, which gives row
+energy at most `13 epsilon^2 g_L^2` and weighted inverse energy at least
+`epsilon^2/32`.
+
+Thus the gauge-only Fox floor remains correct, but the frozen-core aggregate
+claim and its row-tame selector are false. The strongest surviving
+finite-dimensional target is `uniform-gauge-optimized-induced-energy`:
+moving the exact core by the same conjugation makes this counterpacket an
+exact endpoint at cost `O(epsilon^2g_L^2)`.

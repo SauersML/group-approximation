@@ -95,3 +95,25 @@ incidence covariance rows.
   oriented source-to-target row with a dimension-independent HS modulus; an
   uncoupled direct product, central product, or packet amalgam still leaves
   the canonical B7 corner untouched.
+- **Use a finite-state conjugacy clock on the payload packet.**  This is now
+  excluded as a class by
+  `b7-normalizing-conjugacy-clocks-are-residually-finite`.  A clock which
+  normalizes B7 through a packet automorphism generates a finite-by-cyclic
+  group; adding any consistent bounded return makes the total actor finite.
+  Both cases are residually finite and retain the canonical defect.  The
+  exact clock `T=(2 6)` already conjugates the global variable to its paid c3
+  observable, fixes the source and carrier, and has nontrivial curvature
+  against the omitted cap, yet fixes `|e_4><e_0|`.  Thus the next actor must
+  be non-automorphic after compression or use a carrier depending on its
+  multiplicity action.
+- **Use the smallest proper-corner/Leavitt return.**  The analytic rank
+  mechanism is exact and optimal:
+  `or3-fixed-proper-corner-return-hits-regular-firewall` takes
+  `H=supp(D^*D)<=P`, `F=P-H`, and proves for every unitary `U` that
+  `||D||_2^2<=||(FUP)^*(FUP)-P||_2^2`.  In B7 this is the sharp ledger
+  `P=e_0+e_1`, `H=e_0`, `F=e_1`, with canonical floor `1/92160`.  But if
+  source fullness is a fixed Leavitt, Halmos, Julia, or group-algebra block
+  consequence, the regular trace forces `H=0`; applying it exhaustively also
+  violates full-support exact completeness.  Thus the proper-corner geometry
+  is solved, while the sole remaining step is a nonfunctorial finite-matrix
+  authentication of its source Gram.

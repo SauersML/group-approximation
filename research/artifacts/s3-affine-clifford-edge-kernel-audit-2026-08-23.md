@@ -174,3 +174,7 @@ Run
 
 The checked output is archived in
 `experiments/s3-affine-clifford-edge-kernel.json`.
+
+The archived run used `/usr/bin/python3.11` on MSI node `acn112`; the final
+exact replay completed in `4.9` seconds, including the `384` regular-action
+equivariance basis checks.

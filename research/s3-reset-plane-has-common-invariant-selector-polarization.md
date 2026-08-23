@@ -48,7 +48,8 @@ leaves the dummy qubit free, so both sides retain the same two-dimensional
 dummy spin before tensoring with the rank-fifteen residual.
 
 This removes direction-dependent Witt choices from the proposed `S_3`
-return.  It does not say that all residual derivative words are centralized
-by `L_new`; compatibility of `(SRP3)` with the generated residual edge group
-is the remaining finite audit in
-`s3-equivariant-affine-clifford-return-edge`.
+return.  It does not by itself say that all residual derivative words extend
+over the fresh generators.  That finite compatibility and its zero-kernel
+regular stabilization are now checked in
+`regular-clifford-edge-map-has-zero-kernel`; the remaining return problem is
+the global endpoint semantics, not selector symplectic geometry.
