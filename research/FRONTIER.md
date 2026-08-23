@@ -3815,8 +3815,6 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-23 · uniform-gauge-optimized-induced-energy [OPEN] Uniform induced edge energy after optimizing the exact BS core
 - 2026-08-23 · perfect-completeness-constant-soundness-lcs-compiler [OPEN] A computable LCS family with perfect commuting completeness on halting inputs and strict matrix soundness on nonhalting inputs
 - 2026-08-23 · optimized-core-endpoint-conjugation-proof [COMPLETE] Move the BS core by the same conjugation and use the projected inversion row for the lower price
-- 2026-08-23 · optimized-core-absorbs-endpoint-conjugations [ESTABLISHED] Exact-core optimization sharply absorbs the endpoint-conjugation counterpacket
-- 2026-08-23 · lin-ji-mastel-slofstra-stop-before-lcs [ESTABLISHED] Lin plus low-degree soundness and weighted BCS reductions stop before LCS syntax
 
 ## Active claims
 
