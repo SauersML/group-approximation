@@ -3862,8 +3862,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-23 · km-l0-orbit-complex-proof [COMPLETE] Equivariant spectral sequence collapse over finite stabilizers
 - 2026-08-23 · km-l0-cohomology-is-the-49-orbit-invariants-complex [ESTABLISHED] Low-degree cohomology of the lattice with any uniquely divisible coefficients is computed by the 49-orbit invariants complex
+- 2026-08-23 · km-l0-orbit-complex-proof [COMPLETE] Equivariant spectral sequence collapse over finite stabilizers
 - 2026-08-23 · km-some-ergodic-action-has-nonzero-l0-second-cohomology [OPEN] Some ergodic action of a simple Kazhdan Kac-Moody lattice has nonzero measurable-coefficient second cohomology
 - 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
 - 2026-08-23 · km-lp-fails-via-l0-clause [OPEN] Ioana-Spaas-Wiersma Corollary E through a measurable-coefficient class

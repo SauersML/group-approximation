@@ -42,6 +42,17 @@ full rank-two finite Levi (e.g. the `G_2(q)`-type group at
 `(J,K) = ({2,3},{2,3})`) on the diagonal.
 Only dimensions `<= 3` (48 orbits) enter `H^2`.
 
+Moreover the quotient CW-complex is a PRODUCT OF TWO 2-SIMPLICES:
+proper cotypes `J` of one building factor are the nonempty faces of a
+triangle (`7 = 3 + 3 + 1`), faces of a cell orbit `(J,K)` are exactly
+`(J cup {t}, K)` and `(J, K cup {t})` (drop one vertex type), each
+closed cell embeds in the quotient (type maps are cellwise
+homeomorphisms and stabilizers fix cells pointwise), so
+`X^/Lambda = Delta^2 x Delta^2` and the invariants complex is the
+standard cellular cochain complex of `Delta^2 x Delta^2` with the
+coefficient system `(J,K) |-> V^(P_J^+ cap P_K^-)` and its usual
+product signs.
+
 Consequence: the `L^0` clause of Ioana--Spaas--Wiersma Corollary E
 (`km-some-ergodic-action-has-nonzero-l0-second-cohomology`) is, for
 each fixed action, the exactness question of an explicit finite
