@@ -76,3 +76,15 @@ for every such tangent.  If the first cubic has operator defect below one,
 this forces `h=0`.  Therefore the surviving cb theorem must control the
 genuine non-`S`-central tangent directions directly; neither full-core
 centralization nor spectral reduction is available.
+
+At an exact endpoint,
+`exact-passive-jacobian-is-two-reynolds-expectations` identifies the
+remaining operator-space problem explicitly: after two unitary coordinate
+changes the derivative is the pair of order-three conditional expectations
+`3(E_(XS^2),E_(XRS))`, restricted to the fixed-`R`, `X`-odd tangent space.
+Thus the exact-zero part of `(PCB3)` is the uniform cb complementability of
+this constrained Reynolds column over all congruence levels and
+amplifications.  Ordinary expander diameter examples show that the known
+`L2` angle alone cannot prove that complementability, but they do not refute
+it until such a diameter subspace is embedded in the constrained tangent
+space.

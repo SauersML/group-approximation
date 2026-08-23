@@ -1,0 +1,93 @@
+---
+rg: 2
+id: exact-passive-jacobian-is-two-reynolds-expectations
+kind: claim
+title: The exact passive Jacobian is a pair of order-three Reynolds expectations
+distinct_from:
+  iwahori-uniform-infinitesimal-rigidity: that proves a uniform Hilbert-space quotient gap after assembling the two modular vertices; this identifies the concrete operator-space map whose cb inverse is still required.
+  full-core-central-relative-tangent-is-zero-near-first-cubic: that eliminates the overcentralized tangent sector; this computes the Jacobian on the genuine fixed-R tangent space.
+  passive-iwahori-off-zero-cb-normal-splitting: that asks for a uniform splitting throughout an operator-small neighborhood; this is the exact-zero finite-dimensional reduction only.
+---
+
+**ESTABLISHED.**  In the half-parabolic coordinates, fix an exact
+`BS(1,4)` core `(R,S)` and an exact extending involution `X`.  Put
+
+```text
+A=XS^2,                    B=XRS,
+A^3=B^3=I.                                              (EPJ1)
+```
+
+The genuine relative tangent space is
+
+```text
+E_(R,X)={h:h^*=-h, [h,R]=0, XhX=-h}.                   (EPJ2)
+```
+
+For the chart `X_h(t)=X exp(th)`, define
+
+```text
+k_1=Ad_(S^(-2))(h),             k_2=Ad_(S^(-1))(h).
+```
+
+Then
+
+```text
+X_h(t)S^2=A exp(tk_1),
+X_h(t)RS =B exp(tk_2),                                  (EPJ3)
+```
+
+where the second identity uses `[h,R]=0`.  Right-trivializing the two
+cubic residuals at `(EPJ1)` gives
+
+```text
+DF_X(h)=
+ (
+   (I+Ad_A+Ad_A^2) k_1,
+   (I+Ad_B+Ad_B^2) k_2
+ ).                                                     (EPJ4)
+```
+
+Since `A` and `B` have order three,
+
+```text
+E_A=(I+Ad_A+Ad_A^2)/3,
+E_B=(I+Ad_B+Ad_B^2)/3                                  (EPJ5)
+```
+
+are trace-preserving conditional expectations onto `{A}'` and `{B}'`.
+Thus, up to two unitary complete isometries, the exact passive Jacobian is
+the column map
+
+```text
+h |-> 3(E_A h,E_B h)                                   (EPJ6)
+```
+
+restricted to `(EPJ2)`.  Its cb norm is universally bounded.  The open
+operator-space content is exactly whether its gauge-normal inverse on its
+range has cb norm bounded uniformly over finite congruence endpoints and
+all multiplicity amplifications.
+
+This reduction also prevents an unjustified generic-expander refutation.
+A Hilbert `L2` gap for two conditional expectations does not in general
+bound the `L_infinity` norm of the associated Green operator: commutative
+expander gradients can have bounded `L2` inverse and sup-norm primitive
+cost comparable to graph diameter.  But that observation alone is not a
+counterexample here.  The domain `(EPJ2)` is the fixed-`R`, `X`-odd
+operator space, not the full scalar vertex-function space, and
+`full-core-central-relative-tangent-is-zero-near-first-cubic` shows that
+the obvious full-core-central scalar sector is zero.
+
+Accordingly the exact cb question is a finite operator-space inequality:
+
+```text
+sup_(q,rho,m)
+ || ( DF_(rho) | gauge-normal E_(rho) )^(-1) ||_cb
+ < infinity,                                             (EPJ7)
+```
+
+where `q` ranges over congruence quotients, `rho` over their endpoint
+representations, and `m` over amplifications.  A no-go must embed a growing
+diameter primitive problem into the constrained spaces `(EPJ2)` and the
+two expectations `(EPJ5)`; the finite Hecke `L2` angle by itself neither
+proves nor refutes `(EPJ7)`.
+
