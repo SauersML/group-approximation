@@ -58,12 +58,12 @@ def rank(value):
     rows = value[:]
     pivot = 0
     for column in range(8):
-        found = next((index for index in range(pivot, 8)
+        found = next((index for index in range(pivot, len(rows))
                       if (rows[index] >> column) & 1), None)
         if found is None:
             continue
         rows[pivot], rows[found] = rows[found], rows[pivot]
-        for index in range(8):
+        for index in range(len(rows)):
             if index != pivot and ((rows[index] >> column) & 1):
                 rows[index] ^= rows[pivot]
         pivot += 1
@@ -108,10 +108,21 @@ def main():
     assert all(rows[name]["order"] == 2 for name in RELATORS[:5])
     assert all(rows[name]["rank_value_minus_identity"] == 2
                for name in RELATORS[:5])
+    stacked = []
+    cumulative_ranks = {}
+    for name in RELATORS[:5]:
+        value = unpack(int(rows[name]["value"], 16))
+        stacked.extend(value[index] ^ IDENTITY[index] for index in range(8))
+        cumulative_ranks[name] = rank(stacked)
+    assert cumulative_ranks == {
+        "s_0": 2, "s_11": 4, "s_30": 6, "s_44": 6, "s_55": 7,
+    }
     print(json.dumps({
         "field": "GF(2)",
         "frame": f"{FRAME:016x}",
         "identity": f"{pack(IDENTITY):016x}",
+        "cumulative_boundary_residual_ranks": cumulative_ranks,
+        "common_boundary_fixed_space_dimension": 1,
         "rows": rows,
     }, indent=2, sort_keys=True))
 
