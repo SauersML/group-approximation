@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: free-direct-product-max-tensor-presentation-is-not-computable-citation
+id: free-direct-product-max-tensor-noncomputable-citation
 kind: route
 title: Import Goldbring--Sinclair qc-full computability obstruction and the free-group corollaries
 target: free-direct-product-max-tensor-presentation-is-not-computable
