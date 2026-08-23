@@ -143,6 +143,7 @@ import GroupApproximation.Sofic.ScalingFamilyLinearWitness
 import GroupApproximation.Sofic.ScalingFamilyEndpoint
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.WitnessVerticalResiduallyFinite
+import GroupApproximation.Sofic.AlternatingLampVisibleQuotient
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
