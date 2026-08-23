@@ -23,11 +23,15 @@ variable {Generator TriangleIndex : Type}
   [Fintype Generator] [DecidableEq Generator]
   [Fintype TriangleIndex] [DecidableEq TriangleIndex]
 
-abbrev SignedGenerator := Generator × Bool
-abbrev Triangle := Fin 3 → SignedGenerator
+abbrev SignedGenerator (Generator : Type) := Generator × Bool
+abbrev Triangle (Generator : Type) := Fin 3 → SignedGenerator Generator
 
 def letters (t : Triangle (Generator := Generator)) : SignedWord Generator :=
   List.ofFn t
+
+@[simp] theorem letters_eq_three (t : Triangle (Generator := Generator)) :
+    letters t = [t 0, t 1, t 2] := by
+  simp [letters, List.ofFn_succ]
 
 def relator (t : Triangle (Generator := Generator)) : FreeGroup Generator :=
   word (letters t)
@@ -55,8 +59,10 @@ theorem wordValue_triangle_eq_one
     (T : TriangleIndex → Triangle (Generator := Generator))
     (j : TriangleIndex) :
     wordValue (generator T) (letters (T j)) = 1 := by
-  rw [wordValue_freeGroup_map
-    (PresentedGroup.mk (relators T : Set (FreeGroup Generator)))]
+  change wordValue
+    (fun i ↦ PresentedGroup.mk (relators T : Set (FreeGroup Generator))
+      (FreeGroup.of i)) (letters (T j)) = 1
+  rw [wordValue_freeGroup_map]
   exact PresentedGroup.one_of_mem (relator_mem T j)
 
 /-- Every triangular Fox row satisfies the exact chain equation consumed by
@@ -65,9 +71,12 @@ theorem boundary_chain
     (T : TriangleIndex → Triangle (Generator := Generator))
     (j : TriangleIndex) :
     ∑ i, boundary T j i * generatorCoboundary (generator T) i = 0 := by
-  rw [FoxBoundary.sum_boundary_mul_coboundary,
-    wordValue_triangle_eq_one T j]
-  simp
+  change (∑ i, FoxBoundary.boundary (generator T) (letters (T j)) i *
+    generatorCoboundary (generator T) i) = 0
+  rw [FoxBoundary.sum_boundary_mul_coboundary]
+  rw [wordValue_triangle_eq_one T j]
+  rw [← MonoidAlgebra.one_def]
+  exact sub_self 1
 
 /-! ## Literal three-corner expansion of the Fox row -/
 
@@ -99,8 +108,8 @@ theorem cornerValue_mul_cornerValue_mul_cornerValue
     (T : TriangleIndex → Triangle (Generator := Generator))
     (j : TriangleIndex) :
     cornerValue T j 0 * cornerValue T j 1 * cornerValue T j 2 = 1 := by
-  simpa [cornerValue, letters, wordValue, List.ofFn] using
-    wordValue_triangle_eq_one T j
+  rw [mul_assoc]
+  simpa [cornerValue, wordValue] using wordValue_triangle_eq_one T j
 
 /-- The recursive Fox boundary is the sum of its three literal corner
 contributions. -/
@@ -114,8 +123,8 @@ theorem boundary_eq_sum_cornerBoundaryCoefficient
   rcases h2 : T j 2 with ⟨g2, s2⟩
   cases s0 <;> cases s1 <;> cases s2 <;>
     simp [boundary, FoxBoundary.boundary, FoxBoundary.boundaryFrom,
-      cornerBoundaryCoefficient, cornerPrefix, cornerValue, letters,
-      List.ofFn, h0, h1, h2, Fin.sum_univ_succ]
+      cornerBoundaryCoefficient, cornerPrefix, cornerValue,
+      h0, h1, h2, Fin.sum_univ_succ]
 
 /-! ## The finite undirected link multigraph -/
 
@@ -177,7 +186,8 @@ theorem linkLaplacian_comm
   by_cases h : u = v
   · subst v
     rfl
-  · simp [linkLaplacian, h, h.symm, adjacencyCount_comm]
+  · have h' : v ≠ u := fun hvu ↦ h hvu.symm
+    simp [linkLaplacian, h, h', adjacencyCount_comm]
 
 /-- Every row of the exact link Laplacian sums to zero. -/
 theorem linkLaplacian_row_sum
@@ -185,9 +195,7 @@ theorem linkLaplacian_row_sum
     (u : SignedGenerator (Generator := Generator)) :
     ∑ v, linkLaplacian T u v = 0 := by
   classical
-  simp only [linkLaplacian, Finset.sum_sub_distrib]
-  rw [Finset.sum_ite_eq' Finset.univ u]
-  simp [degree]
+  simp [linkLaplacian, degree, Finset.sum_sub_distrib]
 
 /-- Rational form used by exact spectral/Gram computations. -/
 def rationalLinkLaplacian
@@ -199,8 +207,9 @@ theorem rationalLinkLaplacian_row_sum
     (T : TriangleIndex → Triangle (Generator := Generator))
     (u : SignedGenerator (Generator := Generator)) :
     ∑ v, rationalLinkLaplacian T u v = 0 := by
-  rw [← Int.cast_sum, linkLaplacian_row_sum]
-  simp
+  have h := congrArg (fun z : ℤ ↦ (z : ℚ))
+    (linkLaplacian_row_sum T u)
+  simpa [rationalLinkLaplacian] using h
 
 /-! ## Pulling signed-link coordinates back to generator coordinates -/
 
@@ -240,9 +249,15 @@ theorem sum_orientedCoefficient
       -adjoint (generatorCoboundary (generator T) i) := by
   classical
   rw [Fintype.sum_prod_type]
-  simp_rw [Fintype.sum_bool, orientedCoefficient_pair_sum, add_comm]
-  rw [Finset.sum_ite_eq' Finset.univ i]
-  simp
+  simp only [Fintype.sum_bool]
+  have hpair (g : Generator) :
+      orientedCoefficient T (g, true) i +
+          orientedCoefficient T (g, false) i =
+        if g = i then -adjoint (generatorCoboundary (generator T) i) else 0 := by
+    rw [add_comm]
+    exact orientedCoefficient_pair_sum T g i
+  simp_rw [hpair]
+  rw [Fintype.sum_ite_eq']
 
 /-- The two orientations pull back the identity matrix to twice the identity.
 This is the second exact normalization used by the `2 * gap - 1` estimate. -/
@@ -256,8 +271,32 @@ theorem sum_adjoint_orientedCoefficient_mul
   simp only [Fintype.sum_bool]
   by_cases h : i = k
   · subst k
-    simp [orientedCoefficient]
-  · simp [orientedCoefficient, h, h.symm]
+    rw [if_pos rfl]
+    have hterm (g : Generator) :
+        adjoint (orientedCoefficient T (g, true) i) *
+              orientedCoefficient T (g, true) i +
+            adjoint (orientedCoefficient T (g, false) i) *
+              orientedCoefficient T (g, false) i =
+          if g = i then MonoidAlgebra.single 1 2 else 0 := by
+      by_cases hgi : g = i
+      · subst g
+        rw [if_pos rfl]
+        simp [orientedCoefficient, MonoidAlgebra.one_def,
+          ← MonoidAlgebra.single_add] <;> ring
+      · simp [orientedCoefficient, hgi]
+    simp_rw [hterm]
+    rw [Fintype.sum_ite_eq']
+  · have h' : k ≠ i := fun hki ↦ h hki.symm
+    rw [if_neg h]
+    apply Finset.sum_eq_zero
+    intro g hg
+    by_cases hgi : g = i
+    · subst g
+      simp [orientedCoefficient, h, h']
+    · by_cases hgk : g = k
+      · subst g
+        simp [orientedCoefficient, h, h']
+      · simp [orientedCoefficient, hgi, hgk]
 
 /-- Pullback of one directed link edge to generator coordinates. -/
 noncomputable def edgeDifference
@@ -275,6 +314,86 @@ noncomputable def edgeTranslationUnit
   -MonoidAlgebra.single
     (cornerPrefix T j k * cornerValue T j k)⁻¹ 1
 
+/-- Moving to the next corner extends the prefix by the present letter.  At
+the cyclic wrap this is exactly the defining triangular relation. -/
+theorem cornerPrefix_nextCorner
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (j : TriangleIndex) (k : Fin 3) :
+    cornerPrefix T j (nextCorner k) =
+      cornerPrefix T j k * cornerValue T j k := by
+  have hprod := cornerValue_mul_cornerValue_mul_cornerValue T j
+  fin_cases k
+  · simp [cornerPrefix, nextCorner]
+  · simp [cornerPrefix, nextCorner]
+  · simpa [cornerPrefix, nextCorner] using hprod.symm
+
+/-- The translating unit sends the current Fox corner to its oriented link
+coordinate. -/
+theorem edgeTranslationUnit_mul_corner
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (j : TriangleIndex) (k : Fin 3) (i : Generator) :
+    edgeTranslationUnit T j k * cornerBoundaryCoefficient T j k i =
+      orientedCoefficient T (T j k) i := by
+  rcases h : T j k with ⟨g, s⟩
+  cases s <;> by_cases hi : g = i
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      cornerValue, letterValue, h, MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      cornerValue, h, hi, hig, MonoidAlgebra.one_def]
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      cornerValue, letterValue, h, MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      cornerValue, h, hi, hig, MonoidAlgebra.one_def]
+
+/-- The same unit sends the successor Fox corner to minus the coordinate of
+the inverse successor letter. -/
+theorem edgeTranslationUnit_mul_nextCorner
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (j : TriangleIndex) (k : Fin 3) (i : Generator) :
+    edgeTranslationUnit T j k *
+        cornerBoundaryCoefficient T j (nextCorner k) i =
+      -orientedCoefficient T (inverseSigned (T j (nextCorner k))) i := by
+  have hp := cornerPrefix_nextCorner T j k
+  rcases hcurrent : T j k with ⟨gcurrent, scurrent⟩
+  rcases h : T j (nextCorner k) with ⟨g, s⟩
+  cases scurrent <;> cases s <;> by_cases hi : g = i
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, letterValue, hcurrent, h, hp,
+      MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, hcurrent, h, hi, hig, hp,
+      MonoidAlgebra.one_def]
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, letterValue, hcurrent, h, hp,
+      MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, hcurrent, h, hi, hig, hp,
+      MonoidAlgebra.one_def]
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, letterValue, hcurrent, h, hp,
+      MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, hcurrent, h, hi, hig, hp,
+      MonoidAlgebra.one_def]
+  · subst g
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, letterValue, hcurrent, h, hp,
+      MonoidAlgebra.one_def] <;> group
+  · have hig : i ≠ g := fun hgi ↦ hi hgi.symm
+    simp [edgeTranslationUnit, cornerBoundaryCoefficient, orientedCoefficient,
+      inverseSigned, cornerValue, hcurrent, h, hi, hig, hp,
+      MonoidAlgebra.one_def]
+
 /-- Local Garland identity before taking a Gram product: a pulled-back link
 edge difference is a unit translate of the sum of its adjacent Fox corners. -/
 theorem edgeDifference_eq_translation_mul_corner_sum
@@ -284,22 +403,16 @@ theorem edgeDifference_eq_translation_mul_corner_sum
       edgeTranslationUnit T j k *
         (cornerBoundaryCoefficient T j k i +
           cornerBoundaryCoefficient T j (nextCorner k) i) := by
-  classical
-  have hprod := cornerValue_mul_cornerValue_mul_cornerValue T j
-  rcases h0 : T j 0 with ⟨g0, s0⟩
-  rcases h1 : T j 1 with ⟨g1, s1⟩
-  rcases h2 : T j 2 with ⟨g2, s2⟩
-  fin_cases k <;> cases s0 <;> cases s1 <;> cases s2 <;>
-    simp_all [edgeDifference, edgeTranslationUnit, orientedCoefficient,
-      inverseSigned, nextCorner, cornerBoundaryCoefficient, cornerPrefix,
-      cornerValue, h0, h1, h2] <;> group
+  rw [mul_add, edgeTranslationUnit_mul_corner,
+    edgeTranslationUnit_mul_nextCorner]
+  simp [edgeDifference, sub_eq_add_neg]
 
 /-- The translating coefficient is unitary in the rational group ring. -/
 theorem adjoint_edgeTranslationUnit_mul_self
     (T : TriangleIndex → Triangle (Generator := Generator))
     (j : TriangleIndex) (k : Fin 3) :
     adjoint (edgeTranslationUnit T j k) * edgeTranslationUnit T j k = 1 := by
-  simp [edgeTranslationUnit]
+  simp [edgeTranslationUnit, MonoidAlgebra.one_def]
 
 /-- Taking a Gram product removes the translating unit. -/
 theorem adjoint_edgeDifference_mul_edgeDifference
@@ -312,7 +425,26 @@ theorem adjoint_edgeDifference_mul_edgeDifference
         cornerBoundaryCoefficient T j (nextCorner k) l) := by
   rw [edgeDifference_eq_translation_mul_corner_sum,
     edgeDifference_eq_translation_mul_corner_sum]
-  simp [adjoint_mul, mul_assoc, adjoint_edgeTranslationUnit_mul_self]
+  rw [ExactHodgeCertificate.adjoint_mul]
+  have hunit := adjoint_edgeTranslationUnit_mul_self T j k
+  rw [show
+      (adjoint
+          (cornerBoundaryCoefficient T j k i +
+            cornerBoundaryCoefficient T j (nextCorner k) i) *
+          adjoint (edgeTranslationUnit T j k)) *
+          (edgeTranslationUnit T j k *
+            (cornerBoundaryCoefficient T j k l +
+              cornerBoundaryCoefficient T j (nextCorner k) l)) =
+        adjoint
+          (cornerBoundaryCoefficient T j k i +
+            cornerBoundaryCoefficient T j (nextCorner k) i) *
+          ((adjoint (edgeTranslationUnit T j k) *
+              edgeTranslationUnit T j k) *
+            (cornerBoundaryCoefficient T j k l +
+              cornerBoundaryCoefficient T j (nextCorner k) l)) by
+        simp only [mul_assoc]]
+  rw [hunit]
+  simp
 
 /-- Sum of the three local edge energies.  Pure three-cycle algebra turns it
 into the Fox-row Gram term plus one diagonal term for each literal
@@ -340,8 +472,9 @@ theorem adjoint_cornerBoundaryCoefficient_mul
         cornerBoundaryCoefficient T j k l =
       if i = (T j k).1 ∧ l = (T j k).1 then 1 else 0 := by
   rcases h : T j k with ⟨g, s⟩
-  cases s <;>
-    simp [cornerBoundaryCoefficient, cornerValue, h, mul_assoc]
+  cases s <;> by_cases hi : i = g <;> by_cases hl : l = g <;>
+    simp [cornerBoundaryCoefficient, cornerValue, h, hi, hl, mul_assoc,
+      MonoidAlgebra.one_def]
 
 /-- Pullback of the exact rational link Laplacian along the signed-coordinate
 matrix. -/
@@ -353,22 +486,330 @@ noncomputable def linkLaplacianPullback
       MonoidAlgebra.single 1 (rationalLinkLaplacian T u v) *
         orientedCoefficient T v l
 
-/-- Incidence-matrix identity for the corrected link multigraph: its
-Laplacian pullback is the sum of the three literal edge-difference Gram
-matrices.  Exact directed multiplicities make this valid for loops and
-coincident orientations as well. -/
-theorem linkLaplacianPullback_eq_sum_edgeDifference
+theorem directedAdjacencyCount_eq_sum
     (T : TriangleIndex → Triangle (Generator := Generator))
-    (i l : Generator) :
-    linkLaplacianPullback T i l =
+    (u v : SignedGenerator (Generator := Generator)) :
+    directedAdjacencyCount T u v =
       ∑ j, ∑ k : Fin 3,
-        adjoint (edgeDifference T j k i) * edgeDifference T j k l := by
+        if T j k = u ∧ inverseSigned (T j (nextCorner k)) = v
+        then 1 else 0 := by
   classical
-  simp [linkLaplacianPullback, rationalLinkLaplacian, linkLaplacian,
-    degree, adjacencyCount, directedAdjacencyCount, edgeDifference,
-    Finset.card_eq_sum_ones, Finset.sum_filter, Finset.sum_add_distrib,
-    Finset.mul_sum, Finset.sum_mul, mul_add, add_mul, sub_eq_add_neg]
-  noncomm_ring
+  unfold directedAdjacencyCount
+  rw [Finset.card_eq_sum_ones, Finset.sum_filter,
+    Fintype.sum_prod_type]
+
+/-- Embed a finite natural indicator count as a scalar group-ring sum. -/
+theorem single_cast_indicator_sum {E : Type*} [Fintype E]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (p : E → Prop) [DecidablePred p] :
+    (MonoidAlgebra.single 1 ((↑(∑ e, if p e then 1 else 0) : ℚ)) :
+      RatGroupRing (Presented T)) =
+      ∑ e, if p e then 1 else 0 := by
+  classical
+  have hcast :
+      ((↑(∑ e, if p e then 1 else 0) : ℚ)) =
+        ∑ e, if p e then (1 : ℚ) else 0 := by
+    rfl
+  rw [hcast]
+  calc
+    (MonoidAlgebra.single 1
+        (∑ e, if p e then (1 : ℚ) else 0) :
+      RatGroupRing (Presented T)) =
+        ∑ e, MonoidAlgebra.single 1
+          (if p e then (1 : ℚ) else 0) := by
+            exact map_sum
+              (MonoidAlgebra.singleAddHom (R := ℚ) (M := Presented T) 1)
+              (fun e ↦ if p e then (1 : ℚ) else 0) Finset.univ
+    _ = ∑ e, if p e then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro e he
+      by_cases hp : p e
+      · simp only [hp, if_true]
+        exact MonoidAlgebra.one_def.symm
+      · simp only [hp, if_false]
+        exact MonoidAlgebra.single_zero (1 : Presented T)
+
+/-- Two nested finite indicator sums, flattened only at the scalar embedding
+boundary. -/
+theorem single_cast_nested_indicator_sum
+    {E F : Type*} [Fintype E] [Fintype F]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (p : E → F → Prop) [∀ e f, Decidable (p e f)] :
+    (MonoidAlgebra.single 1
+        ((↑(∑ e, ∑ f, if p e f then 1 else 0) : ℚ)) :
+      RatGroupRing (Presented T)) =
+      ∑ ef : E × F, if p ef.1 ef.2 then 1 else 0 := by
+  classical
+  calc
+    (MonoidAlgebra.single 1
+        ((↑(∑ e, ∑ f, if p e f then 1 else 0) : ℚ)) :
+      RatGroupRing (Presented T)) =
+        MonoidAlgebra.single 1
+          ((↑(∑ ef : E × F, if p ef.1 ef.2 then 1 else 0) : ℚ)) := by
+            congr 2
+            exact (Fintype.sum_prod_type
+              (f := fun ef : E × F ↦ if p ef.1 ef.2 then 1 else 0)).symm
+    _ = _ := single_cast_indicator_sum T
+      (fun ef : E × F ↦ p ef.1 ef.2)
+
+theorem incidence_sum_rotate {A B C M : Type*}
+    [Fintype A] [Fintype B] [Fintype C] [AddCommMonoid M]
+    (f : A → B → C → M) :
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ c, ∑ a, ∑ b, f a b c := by
+  calc
+    _ = ∑ a, ∑ c, ∑ b, f a b c := by
+      apply Finset.sum_congr rfl
+      intro a ha
+      rw [Finset.sum_comm]
+    _ = _ := by rw [Finset.sum_comm]
+
+/-- The source-diagonal part of incidence energy. -/
+theorem sourceDiagonal_incidence_core
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)) *
+        orientedCoefficient T u l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (T j k) i) *
+          orientedCoefficient T (T j k) l := by
+  classical
+  simp_rw [single_cast_nested_indicator_sum T]
+  simp_rw [Finset.mul_sum, Finset.sum_mul]
+  rw [Finset.sum_comm]
+  have hrhs :
+      (∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (T j k) i) *
+          orientedCoefficient T (T j k) l) =
+      ∑ e : TriangleIndex × Fin 3,
+        adjoint (orientedCoefficient T (T e.1 e.2) i) *
+          orientedCoefficient T (T e.1 e.2) l :=
+    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
+      adjoint (orientedCoefficient T (T e.1 e.2) i) *
+        orientedCoefficient T (T e.1 e.2) l)).symm
+  rw [hrhs]
+  apply Finset.sum_congr rfl
+  intro e he
+  simp [MonoidAlgebra.one_def]
+
+/-- The target-diagonal part of incidence energy. -/
+theorem targetDiagonal_incidence_core
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3,
+            if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)) *
+        orientedCoefficient T u l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) i) *
+          orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) l := by
+  classical
+  simp_rw [single_cast_nested_indicator_sum T]
+  simp_rw [Finset.mul_sum, Finset.sum_mul]
+  rw [Finset.sum_comm]
+  have hrhs :
+      (∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) i) *
+          orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) l) =
+      ∑ e : TriangleIndex × Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T e.1 (nextCorner e.2))) i) *
+          orientedCoefficient T
+            (inverseSigned (T e.1 (nextCorner e.2))) l :=
+    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
+      adjoint (orientedCoefficient T
+          (inverseSigned (T e.1 (nextCorner e.2))) i) *
+        orientedCoefficient T
+          (inverseSigned (T e.1 (nextCorner e.2))) l)).symm
+  rw [hrhs]
+  apply Finset.sum_congr rfl
+  intro e he
+  simp [MonoidAlgebra.one_def]
+
+/-- The source-incidence count embedded on the diagonal of signed-link
+coordinates. -/
+theorem sourceDiagonal_incidence
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          (if u = v then
+            (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+          else 0) *
+        orientedCoefficient T v l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (T j k) i) *
+          orientedCoefficient T (T j k) l := by
+  classical
+  have hrow (u : SignedGenerator (Generator := Generator)) :
+      (∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            (if u = v then
+              (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+            else 0) *
+          orientedCoefficient T v l) =
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            ((↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)) *
+          orientedCoefficient T u l := by
+    have hterm (v : SignedGenerator (Generator := Generator)) :
+        adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              (if u = v then
+                (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+              else 0) *
+            orientedCoefficient T v l =
+          if v = u then
+            adjoint (orientedCoefficient T u i) *
+              MonoidAlgebra.single 1
+                ((↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)) *
+              orientedCoefficient T v l
+          else 0 := by
+      by_cases hv : v = u
+      · subst v
+        simp only [if_pos]
+      · have huv : u ≠ v := fun h ↦ hv h.symm
+        simp only [hv, huv, if_false]
+        rw [MonoidAlgebra.single_zero, mul_zero, zero_mul]
+    simp_rw [hterm]
+    rw [Fintype.sum_ite_eq']
+  simp_rw [hrow]
+  exact sourceDiagonal_incidence_core T i l
+
+/-- The target-incidence count embedded on the diagonal of signed-link
+coordinates. -/
+theorem targetDiagonal_incidence
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          (if u = v then
+            (↑(∑ j, ∑ k : Fin 3,
+              if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+          else 0) *
+        orientedCoefficient T v l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) i) *
+          orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) l := by
+  classical
+  have hrow (u : SignedGenerator (Generator := Generator)) :
+      (∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            (if u = v then
+              (↑(∑ j, ∑ k : Fin 3,
+                if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+            else 0) *
+          orientedCoefficient T v l) =
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            ((↑(∑ j, ∑ k : Fin 3,
+              if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)) *
+          orientedCoefficient T u l := by
+    have hterm (v : SignedGenerator (Generator := Generator)) :
+        adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              (if u = v then
+                (↑(∑ j, ∑ k : Fin 3,
+                  if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+              else 0) *
+            orientedCoefficient T v l =
+          if v = u then
+            adjoint (orientedCoefficient T u i) *
+              MonoidAlgebra.single 1
+                ((↑(∑ j, ∑ k : Fin 3,
+                  if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)) *
+              orientedCoefficient T v l
+          else 0 := by
+      by_cases hv : v = u
+      · subst v
+        simp only [if_pos]
+      · have huv : u ≠ v := fun h ↦ hv h.symm
+        simp only [hv, huv, if_false]
+        rw [MonoidAlgebra.single_zero, mul_zero, zero_mul]
+    simp_rw [hterm]
+    rw [Fintype.sum_ite_eq']
+  simp_rw [hrow]
+  exact targetDiagonal_incidence_core T i l
+
+/-- The forward directed cross-energy. -/
+theorem forward_incidence
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3,
+            if T j k = u ∧ inverseSigned (T j (nextCorner k)) = v
+            then 1 else 0) : ℚ)) *
+        orientedCoefficient T v l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (T j k) i) *
+          orientedCoefficient T (inverseSigned (T j (nextCorner k))) l := by
+  classical
+  simp_rw [single_cast_nested_indicator_sum T]
+  simp_rw [Finset.mul_sum, Finset.sum_mul]
+  rw [incidence_sum_rotate]
+  have hrhs :
+      (∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T (T j k) i) *
+          orientedCoefficient T (inverseSigned (T j (nextCorner k))) l) =
+      ∑ e : TriangleIndex × Fin 3,
+        adjoint (orientedCoefficient T (T e.1 e.2) i) *
+          orientedCoefficient T
+            (inverseSigned (T e.1 (nextCorner e.2))) l :=
+    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
+      adjoint (orientedCoefficient T (T e.1 e.2) i) *
+        orientedCoefficient T
+          (inverseSigned (T e.1 (nextCorner e.2))) l)).symm
+  rw [hrhs]
+  apply Finset.sum_congr rfl
+  intro e he
+  simp [MonoidAlgebra.one_def]
+
+/-- The reverse directed cross-energy. -/
+theorem reverse_incidence
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3,
+            if T j k = v ∧ inverseSigned (T j (nextCorner k)) = u
+            then 1 else 0) : ℚ)) *
+        orientedCoefficient T v l) =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) i) *
+          orientedCoefficient T (T j k) l := by
+  classical
+  simp_rw [single_cast_nested_indicator_sum T]
+  simp_rw [Finset.mul_sum, Finset.sum_mul]
+  rw [incidence_sum_rotate]
+  have hrhs :
+      (∑ j, ∑ k : Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T j (nextCorner k))) i) *
+          orientedCoefficient T (T j k) l) =
+      ∑ e : TriangleIndex × Fin 3,
+        adjoint (orientedCoefficient T
+            (inverseSigned (T e.1 (nextCorner e.2))) i) *
+          orientedCoefficient T (T e.1 e.2) l :=
+    (Fintype.sum_prod_type (f := fun e : TriangleIndex × Fin 3 ↦
+      adjoint (orientedCoefficient T
+          (inverseSigned (T e.1 (nextCorner e.2))) i) *
+        orientedCoefficient T (T e.1 e.2) l)).symm
+  rw [hrhs]
+  apply Finset.sum_congr rfl
+  intro e he
+  simp [MonoidAlgebra.one_def]
 
 /-- Number of literal occurrences of an underlying generator. -/
 def generatorOccurrenceCount
@@ -376,6 +817,88 @@ def generatorOccurrenceCount
     (i : Generator) : ℕ :=
   ((Finset.univ : Finset (TriangleIndex × Fin 3)).filter fun p ↦
     (T p.1 p.2).1 = i).card
+
+theorem generatorOccurrenceCount_eq_sum
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i : Generator) :
+    generatorOccurrenceCount T i =
+      ∑ j, ∑ k : Fin 3, if (T j k).1 = i then 1 else 0 := by
+  classical
+  unfold generatorOccurrenceCount
+  rw [Finset.card_eq_sum_ones, Finset.sum_filter,
+    Fintype.sum_prod_type]
+
+/-- Expand a signed vertex degree as its outgoing occurrences plus the
+incoming occurrences at cyclic successors.  Keeping this bookkeeping lemma
+separate prevents the later three-corner argument from expanding nested
+finite filters repeatedly. -/
+theorem degree_eq_sum_signed_occurrences
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (u : SignedGenerator (Generator := Generator)) :
+    degree T u =
+      ∑ j, ∑ k : Fin 3,
+        ((if T j k = u then 1 else 0) +
+          if inverseSigned (T j (nextCorner k)) = u then 1 else 0) := by
+  classical
+  have hout :
+      (∑ v, directedAdjacencyCount T u v) =
+        ∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0 := by
+    unfold directedAdjacencyCount
+    simp only [Finset.card_eq_sum_ones, Finset.sum_filter]
+    rw [Finset.sum_comm, Fintype.sum_prod_type]
+    apply Finset.sum_congr rfl
+    intro j hj
+    apply Finset.sum_congr rfl
+    intro k hk
+    by_cases h : T j k = u <;> simp [h]
+  have hin :
+      (∑ v, directedAdjacencyCount T v u) =
+        ∑ j, ∑ k : Fin 3,
+          if inverseSigned (T j (nextCorner k)) = u then 1 else 0 := by
+    unfold directedAdjacencyCount
+    simp only [Finset.card_eq_sum_ones, Finset.sum_filter]
+    rw [Finset.sum_comm, Fintype.sum_prod_type]
+    apply Finset.sum_congr rfl
+    intro j hj
+    apply Finset.sum_congr rfl
+    intro k hk
+    by_cases h : inverseSigned (T j (nextCorner k)) = u <;> simp [h]
+  unfold degree adjacencyCount
+  rw [Finset.sum_add_distrib, hout, hin]
+  simp_rw [Finset.sum_add_distrib]
+
+/-- Cyclic successor merely permutes a sum over the three corners. -/
+theorem sum_nextCorner (f : Fin 3 → ℕ) :
+    (∑ k : Fin 3, f (nextCorner k)) = ∑ k : Fin 3, f k := by
+  simp [Fin.sum_univ_succ, nextCorner, add_assoc, add_left_comm, add_comm]
+
+/-- The two possible incidences at one signed literal partition the
+underlying-generator occurrence. -/
+theorem signed_occurrence_partition
+    (u : SignedGenerator (Generator := Generator))
+    (i : Generator) (sign : Bool) :
+    (if u = (i, sign) then 1 else 0) +
+        (if inverseSigned u = (i, sign) then 1 else 0) =
+      if u.1 = i then 1 else 0 := by
+  rcases u with ⟨g, s⟩
+  cases s <;> cases sign <;> by_cases h : g = i <;>
+    simp [inverseSigned, h]
+
+/-- On one cyclic triangle, the two signed incidence counts above a fixed
+underlying generator forget the sign and count exactly its literals. -/
+theorem sum_signed_occurrences_triangle
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (j : TriangleIndex) (i : Generator) (sign : Bool) :
+    (∑ k : Fin 3,
+      ((if T j k = (i, sign) then 1 else 0) +
+        if inverseSigned (T j (nextCorner k)) = (i, sign) then 1 else 0)) =
+      ∑ k : Fin 3, if (T j k).1 = i then 1 else 0 := by
+  rw [Finset.sum_add_distrib]
+  rw [sum_nextCorner (fun k ↦
+    if inverseSigned (T j k) = (i, sign) then 1 else 0)]
+  rw [← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro k hk
+  exact signed_occurrence_partition (T j k) i sign
 
 /-- The degree of either signed vertex is the total number of occurrences of
 its underlying generator.  Cyclic successor is a permutation of the three
@@ -385,9 +908,138 @@ theorem degree_eq_generatorOccurrenceCount
     (i : Generator) (sign : Bool) :
     degree T (i, sign) = generatorOccurrenceCount T i := by
   classical
-  simp [degree, adjacencyCount, directedAdjacencyCount,
-    generatorOccurrenceCount, Finset.card_eq_sum_ones, Finset.sum_filter,
-    inverseSigned, nextCorner, Fin.sum_univ_succ]
+  rw [degree_eq_sum_signed_occurrences, generatorOccurrenceCount_eq_sum]
+  apply Finset.sum_congr rfl
+  intro j hj
+  exact sum_signed_occurrences_triangle T j i sign
+
+/-- Pointwise decomposition of the rational link Laplacian into the two
+diagonal incidence counts and the two directed edge counts. -/
+theorem rationalLinkLaplacian_eq_incidence_components
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (u v : SignedGenerator (Generator := Generator)) :
+    rationalLinkLaplacian T u v =
+      (if u = v then
+        (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+      else 0) +
+      (if u = v then
+        (↑(∑ j, ∑ k : Fin 3,
+          if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+      else 0) -
+      (↑(∑ j, ∑ k : Fin 3,
+        if T j k = u ∧ inverseSigned (T j (nextCorner k)) = v
+        then 1 else 0) : ℚ) -
+      (↑(∑ j, ∑ k : Fin 3,
+        if T j k = v ∧ inverseSigned (T j (nextCorner k)) = u
+        then 1 else 0) : ℚ) := by
+  classical
+  unfold rationalLinkLaplacian linkLaplacian adjacencyCount
+  rw [degree_eq_sum_signed_occurrences]
+  simp_rw [directedAdjacencyCount_eq_sum]
+  push_cast
+  by_cases huv : u = v
+  · simp only [huv, if_true, Finset.sum_add_distrib]
+    ring
+  · simp only [huv, if_false, Finset.sum_add_distrib]
+    ring
+
+/-- Pulling back the pointwise incidence decomposition commutes with the two
+finite coordinate sums.  This deliberately isolates distributivity from the
+four combinatorial incidence lemmas. -/
+theorem linkLaplacianPullback_eq_incidenceEnergy
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator) :
+    linkLaplacianPullback T i l =
+      (∑ u, ∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            (if u = v then
+              (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+            else 0) *
+          orientedCoefficient T v l) +
+      (∑ u, ∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            (if u = v then
+              (↑(∑ j, ∑ k : Fin 3,
+                if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+            else 0) *
+          orientedCoefficient T v l) -
+      (∑ u, ∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            ((↑(∑ j, ∑ k : Fin 3,
+              if T j k = u ∧ inverseSigned (T j (nextCorner k)) = v
+              then 1 else 0) : ℚ)) *
+          orientedCoefficient T v l) -
+      (∑ u, ∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1
+            ((↑(∑ j, ∑ k : Fin 3,
+              if T j k = v ∧ inverseSigned (T j (nextCorner k)) = u
+              then 1 else 0) : ℚ)) *
+          orientedCoefficient T v l) := by
+  classical
+  unfold linkLaplacianPullback
+  calc
+    _ = ∑ u, ∑ v,
+        (adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              (if u = v then
+                (↑(∑ j, ∑ k : Fin 3, if T j k = u then 1 else 0) : ℚ)
+              else 0) * orientedCoefficient T v l +
+          adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              (if u = v then
+                (↑(∑ j, ∑ k : Fin 3,
+                  if inverseSigned (T j (nextCorner k)) = u then 1 else 0) : ℚ)
+              else 0) * orientedCoefficient T v l -
+          adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              ((↑(∑ j, ∑ k : Fin 3,
+                if T j k = u ∧ inverseSigned (T j (nextCorner k)) = v
+                then 1 else 0) : ℚ)) * orientedCoefficient T v l -
+          adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1
+              ((↑(∑ j, ∑ k : Fin 3,
+                if T j k = v ∧ inverseSigned (T j (nextCorner k)) = u
+                then 1 else 0) : ℚ)) * orientedCoefficient T v l) := by
+      apply Finset.sum_congr rfl
+      intro u hu
+      apply Finset.sum_congr rfl
+      intro v hv
+      rw [rationalLinkLaplacian_eq_incidence_components]
+      simp only [MonoidAlgebra.single_add, MonoidAlgebra.single_sub,
+        mul_add, mul_sub, add_mul, sub_mul]
+    _ = _ := by
+      simp only [Finset.sum_add_distrib, Finset.sum_sub_distrib]
+
+theorem sum_four_components {A B M : Type*}
+    [Fintype A] [Fintype B] [AddCommGroup M]
+    (a b c d : A → B → M) :
+    (∑ x, ∑ y, a x y) + (∑ x, ∑ y, b x y) -
+        (∑ x, ∑ y, c x y) - (∑ x, ∑ y, d x y) =
+      ∑ x, ∑ y, (a x y + b x y - c x y - d x y) := by
+  simp only [Finset.sum_add_distrib, Finset.sum_sub_distrib]
+
+/-- Incidence-matrix identity for the corrected link multigraph. -/
+theorem linkLaplacianPullback_eq_sum_edgeDifference
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator) :
+    linkLaplacianPullback T i l =
+      ∑ j, ∑ k : Fin 3,
+        adjoint (edgeDifference T j k i) * edgeDifference T j k l := by
+  classical
+  rw [linkLaplacianPullback_eq_incidenceEnergy]
+  rw [sourceDiagonal_incidence, targetDiagonal_incidence,
+    forward_incidence, reverse_incidence]
+  rw [sum_four_components]
+  apply Finset.sum_congr rfl
+  intro j hj
+  apply Finset.sum_congr rfl
+  intro k hk
+  simp only [edgeDifference, ExactHodgeCertificate.adjoint_sub]
+  noncomm_ring
 
 /-- The literal Fox diagonal terms count generator occurrences. -/
 theorem sum_adjoint_cornerBoundaryCoefficient_mul
@@ -402,9 +1054,66 @@ theorem sum_adjoint_cornerBoundaryCoefficient_mul
   simp_rw [adjoint_cornerBoundaryCoefficient_mul]
   by_cases h : i = l
   · subst l
-    simp [generatorOccurrenceCount, Finset.card_eq_sum_ones,
-      Finset.sum_filter, eq_comm]
-  · simp [h]
+    rw [if_pos rfl, generatorOccurrenceCount_eq_sum]
+    simp only [and_self]
+    have hcount :
+        (∑ j, ∑ k : Fin 3, if i = (T j k).1 then 1 else 0) =
+          ∑ j, ∑ k : Fin 3, if (T j k).1 = i then 1 else 0 := by
+      apply Finset.sum_congr rfl
+      intro j hj
+      apply Finset.sum_congr rfl
+      intro k hk
+      by_cases hik : i = (T j k).1
+      · rw [if_pos hik, if_pos hik.symm]
+      · have hki : (T j k).1 ≠ i := fun hki ↦ hik hki.symm
+        rw [if_neg hik, if_neg hki]
+    have hsingle :
+        (∑ j, ∑ k : Fin 3,
+          if i = (T j k).1 then (1 : RatGroupRing (Presented T)) else 0) =
+          MonoidAlgebra.single 1
+            ((↑(∑ j, ∑ k : Fin 3,
+              if i = (T j k).1 then 1 else 0) : ℚ)) := by
+      let e (j : TriangleIndex) (k : Fin 3) : ℚ :=
+        if i = (T j k).1 then 1 else 0
+      have hpoint (j : TriangleIndex) (k : Fin 3) :
+          (if i = (T j k).1 then
+              (1 : RatGroupRing (Presented T)) else 0) =
+            MonoidAlgebra.singleAddHom 1 (e j k) := by
+        by_cases hik : i = (T j k).1 <;>
+          simp [e, hik, MonoidAlgebra.one_def]
+      calc
+        (∑ j, ∑ k : Fin 3,
+          if i = (T j k).1 then
+            (1 : RatGroupRing (Presented T)) else 0) =
+          ∑ j, ∑ k : Fin 3,
+            MonoidAlgebra.singleAddHom 1 (e j k) := by
+              apply Finset.sum_congr rfl
+              intro j hj
+              apply Finset.sum_congr rfl
+              intro k hk
+              exact hpoint j k
+        _ = MonoidAlgebra.singleAddHom 1 (∑ j, ∑ k : Fin 3, e j k) := by
+              rw [map_sum]
+              apply Finset.sum_congr rfl
+              intro j hj
+              rw [map_sum]
+        _ = _ := by
+              congr 1
+    calc
+      _ = MonoidAlgebra.single 1
+          ((↑(∑ j, ∑ k : Fin 3,
+            if i = (T j k).1 then 1 else 0) : ℚ)) := hsingle
+      _ = _ := by
+        congr 1
+        exact_mod_cast hcount
+  · rw [if_neg h]
+    apply Finset.sum_eq_zero
+    intro j hj
+    apply Finset.sum_eq_zero
+    intro k hk
+    rw [if_neg]
+    rintro ⟨hi, hl⟩
+    exact h (hi.trans hl.symm)
 
 /-- **Exact global Fox/link identity.**  For a regular triangular link, the
 pullback of its integral Laplacian is `B⁺B + dI`. -/
@@ -490,12 +1199,14 @@ def LinkCertificateChecks {Row : Type} [Fintype Row]
     (∀ u, degree T u = regularDegree) ∧
     ∀ u v, linkGapResidual T regularDegree gap q u v = 0
 
-instance instDecidableLinkCertificateChecks {Row : Type}
+noncomputable instance instDecidableLinkCertificateChecks {Row : Type}
     [Fintype Row]
     (T : TriangleIndex → Triangle (Generator := Generator))
     (regularDegree : ℕ) (gap : ℚ)
     (q : Row → SignedGenerator (Generator := Generator) → ℚ) :
-    Decidable (LinkCertificateChecks T regularDegree gap q) := inferInstance
+    Decidable (LinkCertificateChecks T regularDegree gap q) := by
+  classical
+  infer_instance
 
 theorem linkGap_identity_of_checks {Row : Type} [Fintype Row]
     {T : TriangleIndex → Triangle (Generator := Generator)}
@@ -525,6 +1236,14 @@ noncomputable def scaledBoundary
     RatGroupRing (Presented T) :=
   MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) * boundary T j i
 
+/-- Pull one rational link-Gram row back to generator coordinates. -/
+noncomputable def unscaledLinkRow {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (row : Row) (i : Generator) : RatGroupRing (Presented T) :=
+  ∑ u, MonoidAlgebra.single 1 (q row u) *
+    orientedCoefficient T u i
+
 /-- Pull one rational link-Gram row back to generator coordinates, scaled by
 `1/d`.  Taking `d` identical copies produces the required coefficient `1/d`
 without a square root. -/
@@ -533,8 +1252,8 @@ noncomputable def liftedLinkRow {Row : Type} [Fintype Row]
     (regularDegree : ℕ)
     (q : Row → SignedGenerator (Generator := Generator) → ℚ)
     (row : Row) (i : Generator) : RatGroupRing (Presented T) :=
-  ∑ u, MonoidAlgebra.single 1 (q row u / regularDegree) *
-    orientedCoefficient T u i
+  MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
+    unscaledLinkRow T q row i
 
 /-- The scalar left after pulling back the mean-zero projector. -/
 def garlandCoboundaryCoefficient
@@ -557,20 +1276,27 @@ theorem garlandCoboundaryCoefficient_nonneg {Row : Type} [Fintype Row]
   let n := Fintype.card (SignedGenerator (Generator := Generator))
   have hd : (0 : ℚ) < regularDegree := by exact_mod_cast h.1
   have hnNat : 2 ≤ n := by
-    simp [n, Fintype.card_prod]
+    have hGenerator : 0 < Fintype.card Generator := Fintype.card_pos
+    have hcard := Nat.mul_le_mul_right 2 (Nat.succ_le_iff.mpr hGenerator)
+    simpa [n, Fintype.card_prod] using hcard
   have hn : (2 : ℚ) ≤ n := by exact_mod_cast hnNat
   have hP : (1 : ℚ) / 2 ≤ meanZeroProjector u u := by
-    simp [meanZeroProjector, n] at hn ⊢
-    have hnpos : (0 : ℚ) < n := lt_of_lt_of_le (by norm_num) hn
+    unfold meanZeroProjector
+    rw [if_pos rfl]
+    have hnpos : (0 : ℚ) < n :=
+      lt_of_lt_of_le (by norm_num : (0 : ℚ) < 2) hn
     have hinv := (div_le_div_iff_of_pos_left (by norm_num : (0 : ℚ) < 1)
       hnpos (by norm_num : (0 : ℚ) < 2)).2 hn
     linarith
   have hGram : 0 ≤ gramMatrix q u u := by
-    exact Finset.sum_nonneg fun row _ ↦ sq_nonneg (q row u)
+    unfold gramMatrix
+    exact Finset.sum_nonneg fun row _ ↦ mul_self_nonneg (q row u)
   have hLle : rationalLinkLaplacian T u u / regularDegree ≤ 1 := by
     unfold rationalLinkLaplacian linkLaplacian
     simp only [if_pos]
-    have ha : (0 : ℚ) ≤ adjacencyCount T u u := by positivity
+    rw [h.2.2.1 u]
+    have ha : (0 : ℚ) ≤ (adjacencyCount T u u : ℚ) := by
+      exact_mod_cast Nat.zero_le (adjacencyCount T u u)
     push_cast
     exact (div_le_iff₀ hd).2 (by linarith)
   have hid := linkGap_identity_of_checks h u u
@@ -647,6 +1373,15 @@ noncomputable def linkGramPullback {Row : Type} [Fintype Row]
       MonoidAlgebra.single 1 (gramMatrix q u v) *
         orientedCoefficient T v l
 
+/-- Rational scalars supported at the group identity are central. -/
+theorem single_one_comm
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (c : ℚ) (a : RatGroupRing (Presented T)) :
+    MonoidAlgebra.single 1 c * a = a * MonoidAlgebra.single 1 c := by
+  change algebraMap ℚ (RatGroupRing (Presented T)) c * a =
+    a * algebraMap ℚ (RatGroupRing (Presented T)) c
+  exact Algebra.commutes c a
+
 /-- Scaling every Fox row by `1/d` scales its Gram matrix by `1/d²`. -/
 theorem sum_scaledBoundary_gram
     (T : TriangleIndex → Triangle (Generator := Generator))
@@ -655,8 +1390,85 @@ theorem sum_scaledBoundary_gram
       scaledBoundary T regularDegree j l) =
       MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
         (∑ j, adjoint (boundary T j i) * boundary T j l) := by
-  simp [scaledBoundary, Finset.mul_sum, adjoint_mul, mul_assoc]
-  noncomm_ring
+  have hterm (j : TriangleIndex) :
+      adjoint (scaledBoundary T regularDegree j i) *
+          scaledBoundary T regularDegree j l =
+        MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+          (adjoint (boundary T j i) * boundary T j l) := by
+    simp [scaledBoundary, ExactHodgeCertificate.adjoint_mul,
+      single_one_comm, mul_assoc, pow_two]
+  simp_rw [hterm]
+  rw [← Finset.mul_sum]
+
+/-- Rotate three finite summations without asking the simplifier to use the
+permutative `sum_comm` rule globally. -/
+theorem sum_comm_three {A B C M : Type*}
+    [Fintype A] [Fintype B] [Fintype C] [AddCommMonoid M]
+    (f : A → B → C → M) :
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ b, ∑ c, ∑ a, f a b c := by
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro b hb
+  rw [Finset.sum_comm]
+
+theorem adjoint_unscaledLinkRow {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (row : Row) (i : Generator) :
+    adjoint (unscaledLinkRow T q row i) =
+      ∑ u, adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1 (q row u) := by
+  unfold unscaledLinkRow
+  rw [adjoint_sum]
+  apply Finset.sum_congr rfl
+  intro u hu
+  rw [ExactHodgeCertificate.adjoint_mul, adjoint_single]
+  simp only [inv_one]
+
+theorem unscaledLinkRow_gram_row {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (row : Row) (i l : Generator) :
+    adjoint (unscaledLinkRow T q row i) *
+        unscaledLinkRow T q row l =
+      ∑ u, ∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1 (q row u * q row v) *
+            orientedCoefficient T v l := by
+  rw [adjoint_unscaledLinkRow]
+  unfold unscaledLinkRow
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl
+  intro u hu
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro v hv
+  simp [single_one_comm, mul_assoc]
+  rw [mul_comm]
+
+/-- Expanding the pulled-back rational rows gives the link Gram pullback. -/
+theorem sum_unscaledLinkRow_gram {Row : Type} [Fintype Row]
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (q : Row → SignedGenerator (Generator := Generator) → ℚ)
+    (i l : Generator) :
+    (∑ row, adjoint (unscaledLinkRow T q row i) *
+      unscaledLinkRow T q row l) = linkGramPullback T q i l := by
+  classical
+  simp_rw [unscaledLinkRow_gram_row]
+  rw [sum_comm_three]
+  unfold linkGramPullback gramMatrix
+  apply Finset.sum_congr rfl
+  intro u hu
+  apply Finset.sum_congr rfl
+  intro v hv
+  rw [← Finset.sum_mul, ← Finset.mul_sum]
+  exact congrArg
+    (fun z : RatGroupRing (Presented T) ↦
+      adjoint (orientedCoefficient T u i) * z *
+        orientedCoefficient T v l)
+    ((map_sum
+      (MonoidAlgebra.singleAddHom (R := ℚ) (M := Presented T) 1)
+      (fun row ↦ q row u * q row v) Finset.univ).symm)
 
 /-- The `d` copies of rows scaled by `1/d` have total Gram coefficient
 `1/d`. -/
@@ -671,12 +1483,39 @@ theorem sum_liftedLinkRow_gram {Row : Type} [Fintype Row]
       MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
         linkGramPullback T q i l := by
   classical
-  rw [Fintype.sum_prod_type]
-  simp [liftedLinkRow, linkGramPullback, adjoint_sum, adjoint_mul,
-    Finset.mul_sum, Finset.sum_mul, mul_assoc, Fintype.card_fin]
   have hd : (regularDegree : ℚ) ≠ 0 := by exact_mod_cast hdegree.ne'
-  field_simp [hd]
-  noncomm_ring
+  have hterm (row : Row) :
+      adjoint (liftedLinkRow T regularDegree q row i) *
+          liftedLinkRow T regularDegree q row l =
+        MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+          (adjoint (unscaledLinkRow T q row i) *
+            unscaledLinkRow T q row l) := by
+    simp [liftedLinkRow, ExactHodgeCertificate.adjoint_mul,
+      single_one_comm, mul_assoc, pow_two]
+  rw [Fintype.sum_prod_type]
+  simp_rw [hterm]
+  calc
+    (∑ _copy : Fin regularDegree, ∑ row,
+        MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+          (adjoint (unscaledLinkRow T q row i) *
+            unscaledLinkRow T q row l)) =
+        ∑ _copy : Fin regularDegree,
+          MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+            linkGramPullback T q i l := by
+      apply Finset.sum_congr rfl
+      intro copy hcopy
+      rw [← Finset.mul_sum, sum_unscaledLinkRow_gram]
+    _ = MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
+          linkGramPullback T q i l := by
+      rw [← Finset.sum_mul]
+      congr 1
+      simp only [Finset.sum_const, Fintype.card_fin]
+      ext g
+      by_cases hg : g = 1
+      · subst g
+        simp [hd]
+        field_simp [hd]
+      · simp [hg]
 
 /-- The four internally chosen rows realize exactly the remaining multiple of
 `D D⁺`. -/
@@ -695,8 +1534,101 @@ theorem sum_coboundaryFactor_gram {Row : Type} [Fintype Row]
             (Generator := Generator) regularDegree gap) *
         (generatorCoboundary (generator T) i *
           adjoint (generatorCoboundary (generator T) l)) := by
-  simp [adjoint_mul, Finset.mul_sum, ← sum_sq_coboundaryFactor h, mul_assoc]
-  noncomm_ring
+  have hterm (k : Fin 4) :
+      adjoint (MonoidAlgebra.single 1 (coboundaryFactor h k) *
+          adjoint (generatorCoboundary (generator T) i)) *
+        (MonoidAlgebra.single 1 (coboundaryFactor h k) *
+          adjoint (generatorCoboundary (generator T) l)) =
+        MonoidAlgebra.single 1 ((coboundaryFactor h k) ^ 2) *
+          (generatorCoboundary (generator T) i *
+            adjoint (generatorCoboundary (generator T) l)) := by
+    simp [ExactHodgeCertificate.adjoint_mul, single_one_comm, mul_assoc,
+      pow_two]
+  simp_rw [hterm]
+  rw [← Finset.sum_mul]
+  have hsum : (∑ k : Fin 4,
+      (MonoidAlgebra.single 1 ((coboundaryFactor h k) ^ 2) :
+        RatGroupRing (Presented T))) =
+        (MonoidAlgebra.single 1
+          (garlandCoboundaryCoefficient
+            (Generator := Generator) regularDegree gap) :
+          RatGroupRing (Presented T)) := by
+    have hmap :
+        (∑ k : Fin 4,
+          (MonoidAlgebra.singleAddHom (R := ℚ)
+            (M := Presented T) 1) ((coboundaryFactor h k) ^ 2)) =
+          (MonoidAlgebra.singleAddHom (R := ℚ)
+            (M := Presented T) 1)
+            (∑ k : Fin 4, (coboundaryFactor h k) ^ 2) :=
+      (map_sum
+        (MonoidAlgebra.singleAddHom (R := ℚ) (M := Presented T) 1)
+        (fun k : Fin 4 ↦ (coboundaryFactor h k) ^ 2)
+        Finset.univ).symm
+    have hsquare := congrArg
+      (MonoidAlgebra.singleAddHom (R := ℚ) (M := Presented T) 1)
+      (sum_sq_coboundaryFactor h)
+    exact hmap.trans hsquare
+  exact congrArg (fun z : RatGroupRing (Presented T) ↦
+    z * (generatorCoboundary (generator T) i *
+      adjoint (generatorCoboundary (generator T) l))) hsum
+
+/-- Pullback of the identity matrix on signed-link coordinates. -/
+theorem signedIdentity_pullback
+    (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1 (if u = v then (1 : ℚ) else 0) *
+          orientedCoefficient T v l) =
+      if i = l then MonoidAlgebra.single 1 2 else 0 := by
+  classical
+  have hdiag := sum_adjoint_orientedCoefficient_mul T i l
+  have hrow (u : SignedGenerator (Generator := Generator)) :
+      (∑ v,
+        adjoint (orientedCoefficient T u i) *
+          MonoidAlgebra.single 1 (if u = v then (1 : ℚ) else 0) *
+            orientedCoefficient T v l) =
+        adjoint (orientedCoefficient T u i) *
+          orientedCoefficient T u l := by
+    have hterm (v : SignedGenerator (Generator := Generator)) :
+        adjoint (orientedCoefficient T u i) *
+            MonoidAlgebra.single 1 (if u = v then (1 : ℚ) else 0) *
+              orientedCoefficient T v l =
+          if v = u then
+            adjoint (orientedCoefficient T u i) *
+              orientedCoefficient T v l else 0 := by
+      by_cases hvu : v = u
+      · subst v
+        rw [if_pos rfl, if_pos rfl]
+        have hone :
+            (MonoidAlgebra.single 1 1 : RatGroupRing (Presented T)) = 1 := by
+          simp [MonoidAlgebra.one_def]
+        rw [hone, mul_one]
+      · have huv : u ≠ v := fun huv ↦ hvu huv.symm
+        simp [hvu, huv]
+    simp_rw [hterm]
+    rw [Fintype.sum_ite_eq']
+  simp_rw [hrow]
+  exact hdiag
+
+/-- Pullback of a constant scalar matrix factors as the product of the two
+signed-coordinate sums. -/
+theorem signedConstant_pullback
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (c : ℚ) (i l : Generator) :
+    (∑ u, ∑ v,
+      adjoint (orientedCoefficient T u i) *
+        MonoidAlgebra.single 1 c * orientedCoefficient T v l) =
+      MonoidAlgebra.single 1 c *
+        (generatorCoboundary (generator T) i *
+          adjoint (generatorCoboundary (generator T) l)) := by
+  classical
+  simp_rw [← Finset.mul_sum]
+  simp_rw [mul_assoc]
+  rw [← Finset.sum_mul]
+  rw [sum_orientedCoefficient]
+  rw [← adjoint_sum, sum_orientedCoefficient]
+  simp only [adjoint_neg, adjoint_adjoint, neg_mul, mul_neg, neg_neg]
+  rw [← mul_assoc, ← single_one_comm, mul_assoc]
 
 /-- Pullback of the mean-zero projector. -/
 theorem meanZeroProjector_pullback
@@ -712,10 +1644,55 @@ theorem meanZeroProjector_pullback
           (generatorCoboundary (generator T) i *
             adjoint (generatorCoboundary (generator T) l)) := by
   classical
-  simp [meanZeroProjector, Finset.sum_sub_distrib, adjoint_sum,
-    Finset.mul_sum, Finset.sum_mul, sum_orientedCoefficient,
-    sum_adjoint_orientedCoefficient_mul, adjoint_mul, mul_assoc]
-  noncomm_ring
+  simp only [meanZeroProjector, MonoidAlgebra.single_sub, mul_sub, sub_mul,
+    Finset.sum_sub_distrib]
+  rw [signedIdentity_pullback, signedConstant_pullback]
+
+noncomputable def pulledScalarEntry
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator)
+    (u v : SignedGenerator (Generator := Generator)) (c : ℚ) :
+    RatGroupRing (Presented T) :=
+  adjoint (orientedCoefficient T u i) *
+    MonoidAlgebra.single 1 c * orientedCoefficient T v l
+
+theorem single_mul_pulledScalarEntry
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator)
+    (u v : SignedGenerator (Generator := Generator)) (a c : ℚ) :
+    MonoidAlgebra.single 1 a * pulledScalarEntry T i l u v c =
+      pulledScalarEntry T i l u v (a * c) := by
+  simp [pulledScalarEntry, single_one_comm, mul_assoc]
+
+theorem pulledScalarEntry_add
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator)
+    (u v : SignedGenerator (Generator := Generator)) (a b : ℚ) :
+    pulledScalarEntry T i l u v a + pulledScalarEntry T i l u v b =
+      pulledScalarEntry T i l u v (a + b) := by
+  simp [pulledScalarEntry, MonoidAlgebra.single_add, mul_add, add_mul]
+
+theorem single_mul_pulledScalarSum
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (i l : Generator) (a : ℚ)
+    (m : SignedGenerator (Generator := Generator) →
+      SignedGenerator (Generator := Generator) → ℚ) :
+    MonoidAlgebra.single 1 a * (∑ u, ∑ v, pulledScalarEntry T i l u v (m u v)) =
+      ∑ u, ∑ v, pulledScalarEntry T i l u v (a * m u v) := by
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro u hu
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro v hv
+  exact single_mul_pulledScalarEntry T i l u v a (m u v)
+
+theorem sum_two_components {A B M : Type*}
+    [Fintype A] [Fintype B] [AddCommMonoid M]
+    (a b : A → B → M) :
+    (∑ x, ∑ y, a x y) + (∑ x, ∑ y, b x y) =
+      ∑ x, ∑ y, (a x y + b x y) := by
+  simp only [Finset.sum_add_distrib]
 
 /-- Pulling back the checked normalized link identity. -/
 theorem normalizedLink_pullback {Row : Type} [Fintype Row]
@@ -734,10 +1711,26 @@ theorem normalizedLink_pullback {Row : Type} [Fintype Row]
         linkGramPullback T q i l := by
   classical
   have hd : (regularDegree : ℚ) ≠ 0 := by exact_mod_cast h.1.ne'
-  simp [linkLaplacianPullback, linkGramPullback,
-    linkGap_identity_of_checks h, Finset.mul_sum, Finset.sum_mul, mul_assoc]
-  field_simp [hd]
-  noncomm_ring
+  change MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree ^ 2) *
+      (∑ u, ∑ v, pulledScalarEntry T i l u v
+        (rationalLinkLaplacian T u v)) =
+    MonoidAlgebra.single 1 (gap / regularDegree) *
+      (∑ u, ∑ v, pulledScalarEntry T i l u v
+        (meanZeroProjector u v)) +
+    MonoidAlgebra.single 1 ((1 : ℚ) / regularDegree) *
+      (∑ u, ∑ v, pulledScalarEntry T i l u v
+        (gramMatrix q u v))
+  rw [single_mul_pulledScalarSum, single_mul_pulledScalarSum,
+    single_mul_pulledScalarSum, sum_two_components]
+  apply Finset.sum_congr rfl
+  intro u hu
+  apply Finset.sum_congr rfl
+  intro v hv
+  rw [pulledScalarEntry_add]
+  apply congrArg (pulledScalarEntry T i l u v)
+  have hid := linkGap_identity_of_checks h u v
+  field_simp [hd] at hid ⊢
+  linarith
 
 /-- The exact Garland/Żuk certificate assembled entirely from finite link
 data.  There is no analytic or literature premise: all rows are explicit
@@ -753,7 +1746,10 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       (garlandGramRow T regularDegree gap q h)
       (fun _ _ ↦ 0) (garlandGap regularDegree gap) 0 := by
   classical
-  refine ⟨?_, ?_, ?_, by simp, by simp⟩
+  have hl1zero :
+      l1 (0 : RatGroupRing (Presented T)) = 0 := by
+    simp [l1]
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · have hd : (0 : ℚ) < regularDegree := by exact_mod_cast h.1
     have hg : (1 : ℚ) < 2 * gap := by linarith [h.2.1]
     simp [garlandGap]
@@ -779,8 +1775,13 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       sum_coboundaryFactor_gram h i l,
       normalizedLink_pullback T regularDegree gap q h i l,
       meanZeroProjector_pullback]
-    simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix]
+    simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
+      single_one_comm]
     noncomm_ring
+  · intro i
+    simp [hl1zero]
+  · intro l
+    simp [hl1zero]
 
 /-- A checked exact regular triangular-link table above the one-half threshold
 gives property `(T)` for its presented group. -/

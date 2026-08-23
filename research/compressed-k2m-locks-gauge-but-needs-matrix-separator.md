@@ -125,3 +125,36 @@ Connes-embedding separation. A positive ordinary-group compiler must make
 original shared non-CE BCS tuple. This is precisely the matrix-only
 compressed two-cell left by GTC4; finite packet squares cannot manufacture
 it.
+
+## Finite-phase Fourier test
+
+`fourier-normalizer-words-control-block-gram-leakage` gives a new exact test
+for the residual interface.  If the source and capacity cuts in `(CKR4)` can
+be embedded into a finite spectral partition for a phase word `D`, the
+ordinary words
+
+```text
+[P D^r P^*,D],                 1<=r<m,
+```
+
+exactly dominate every off-type block-Gram product of `P`.  Several phase
+tags arranged as an error-correcting code weight every pair of distinct
+types by a fixed positive amount.  Thus the Fourier words kill the
+cross-type Gram part of the compressed leakage once the analytic cuts have
+been authenticated.
+
+They do not by themselves control the scalar `ell`.  As
+`normalizer-phase-tests-leave-diagonal-type-transport` makes explicit, the
+Fourier commutators vanish when a source block is transported wholly into a
+wrong target phase: they see cross-block coherence, not diagonal type
+population.
+
+The exact scalar reduction is instead
+`compressed-k2m-deficit-is-one-aggregate-sign-row`.  If
+`S=sum_jB_jG_jB_j^*`, then the whole synchronized leakage is paid by the one
+binary covariance row between `I-2S` and `I-2C`.  Hence the remaining task is
+sharper than a general Gram separator: `finite-phase-tags-authenticate-forbidden-cuts`
+must authenticate the aggregate source and capacity signs and derive their
+**phase-matching covariance** from the shared BCS tuple only in finite
+canonical microstates.  Declaring those noncanonical cuts or the covariance
+as universal packet relations still hits the regular-trace firewall.

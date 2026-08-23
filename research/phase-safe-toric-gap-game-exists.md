@@ -136,3 +136,14 @@ finite-dimensional representations.  Locally, group-word eigenvalue equations
 see only the affine hull of a Boolean answer support, whereas the losing
 projection sees the nonlinear support itself.  This exact obstruction is
 proved in `non-ce-trace-does-not-promote-to-subgroup-character-gap`.
+
+**Finite-phase monomial linking algebra.**
+`finite-phase-monomial-game-algebra-dictionary` gives a narrower intermediate
+language than LCS: order-`s` quantum-reflection entries, their exact Fourier
+projection resolution, and one relation `uA=Bu`.  Harris first replaces the
+fixed synchronous non-CE game by an equal-size bisynchronous game without
+changing its algebra.  The live route
+`phase-safe-toric-via-monomial-game-compiler` then has exactly two new gates:
+realize that square game algebra as a finite-phase monomial matrix-pair
+algebra, and groupify its existing gap while proving phase-safe normal
+closure.  No classicalization of the monomial symmetry is used.

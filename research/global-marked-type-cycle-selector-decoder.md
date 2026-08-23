@@ -108,16 +108,29 @@ dominates the **sum of type-compressed mixed rows**.  `(GTC5)` is the global
 coverage gate.  Together they are sufficient, and neither can be replaced by
 finite packet restriction tables or a local context calculation.
 
-The coverage gate is now discharged at the analytic level.
+The rank-trimming part of the coverage gate is now discharged at the
+analytic level.
 `forbidden-weighted-type-carrier-coverage-is-rank-rounding` takes
 `P_omega` to be the largest four-divisible subprojection of the marked
 forbidden piece `F_cQ_omega`.  It loses at most three matrix dimensions per
-type, so `(GTC5)` holds with `alpha=1` and `zeta=o(1)` over the fixed menu.
+type, so it covers the marked forbidden mass with coefficient one and
+`zeta=o(1)` over the fixed menu.  To obtain `(GTC5)` as stated here, relative
+to the entire original shared BCS forbidden mass, one still needs
+an additional marked-menu concentration estimate.
 These carriers need not reduce the full context packet.  Requiring reducing
 carriers is an additional, generally false condition unless the forbidden
 projection acts only on the external multiplicity factor.  Consequently the
-sole unresolved gate in this criterion is `(GTC4)` for the analytic
-forbidden-weighted carriers.
+two unresolved instantiation gates are `(GTC4)` for the analytic
+forbidden-weighted carriers and the marked-type concentration estimate
+needed to compare their total mass with `E_forbid`.
+
+For the central-sign nonhyperlinearity route, the second gate can be omitted.
+`marked-corner-cycle-needs-no-full-mass-concentration` applies the robust BCS
+gap directly to the common negative central corner `Q=(1-y)/2`.  In that
+form the relevant forbidden mass is `sum_c tr(F_cQ)`, exactly the quantity
+covered by exhaustive marked types and rank trimming.  Full-space marked-menu
+concentration remains necessary only for `(GTC5)` in the stronger formulation
+above, or for architectures without one common reducing central sign.
 
 One natural aggregate actuator is now excluded.
 `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` takes the positive

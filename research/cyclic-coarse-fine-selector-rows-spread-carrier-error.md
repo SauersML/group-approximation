@@ -2,7 +2,7 @@
 rg: 2
 id: cyclic-coarse-fine-selector-rows-spread-carrier-error
 kind: claim
-title: A cycle of coarse-to-fine selector rows charges the total mass of arbitrarily mismatched carriers
+title: A cyclic selector ledger charges every fixed rank-ratio imbalance
 distinct_from:
   coarse-fine-selector-covariance-has-quarter-trace-floor: that compares a coarse and a fine selector under one common carrier identity; this permits a different carrier and arbitrary mass at every vertex, with the cyclic sum eliminating all reservoir mismatch
   even-partial-swap-star-has-canonical-trace-floor: that needs orthogonal ranges from one common source and reads a product-word trace; this uses no range orthogonality or swap-star product, only individual mixed selector rows around a cycle
@@ -14,9 +14,11 @@ distinct_from:
 indices in `Z/kZ`, let `P_i` be arbitrary projections, and let
 
 ```text
-e_i,f_i<=P_i,       tau(e_i)=tau(P_i)/2,
-                    tau(f_i)=tau(P_i)/4.               (CCS1)
+e_i,f_i<=P_i,       tau(e_i)=a tau(P_i),
+                    tau(f_i)=b tau(P_i)                 (CCS1)
 ```
+
+for fixed `a,b in [0,1]`.
 
 No equality, orthogonality, or common ambient packet identity is required
 among the `P_i`.  For arbitrary unitaries `U_i in M`, put
@@ -28,10 +30,11 @@ delta_i=||U_i e_i U_i^*-f_(i+1)||_2.                   (CCS2)
 Then
 
 ```text
-sum_i delta_i^2 >= (1/4) sum_i tau(P_i).               (CCS3)
+sum_i delta_i^2 >= |a-b| sum_i tau(P_i).               (CCS3)
 ```
 
-In particular, if the total decoded carrier mass is at least `beta`, at least
+The existing coarse/fine choice `a=1/2,b=1/4` recovers coefficient `1/4`.
+In that case, if the total decoded carrier mass is at least `beta`, at least
 one of the `k` rows pays squared error `beta/(4k)`, and the total row energy
 pays `beta/4`.  Every local multiplicity twist is already included: replacing
 `U_i` by `(physical prefix swap) tensor V_i` for arbitrary unitaries `V_i`
@@ -48,8 +51,12 @@ Then exactly
 
 ```text
 ||C_i-1||_2^2=4 delta_i^2,
-sum_i tau(P_i)<=sum_i ||C_i-1||_2^2.                  (CCS5)
+sum_i ||C_i-1||_2^2
+ >=4|a-b| sum_i tau(P_i).                              (CCS5)
 ```
+
+For `a=1/2,b=1/4`, this is the earlier
+`sum_i tau(P_i)<=sum_i||C_i-1||_2^2`.
 
 Thus a bounded cyclic family spreads error without choosing one common
 reservoir: local multiplicity can move mass between vertices, but going once

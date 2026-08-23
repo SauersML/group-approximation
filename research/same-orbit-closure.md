@@ -31,3 +31,21 @@ tr(P_0) <= 3 epsilon + ||P_m-P_0||_2/(2^m-1),
 
 with no factor of `m`.  Closure supplies the returned projection; cyclic trace
 then performs the entire contractive ledger automatically.
+
+## Two sharply scoped external lessons
+
+The positive alternative
+`same-orbit-closure-from-scalable-socle-normalizer` imports the logical shape
+of Li--Yang's product-socle argument: a maximal invariant local subgroup and a
+transitive coordinate actor reduce enlargement to a binary choice.  The
+packet must scale with the multiplicity reservoir, and the fixed-degree PI
+fingerprint must exclude the full transverse branch.  A fixed finite
+normalizer remains ruled out.
+
+Wróbel, *Orbit equivalence and total weak mixing of free group actions*
+([arXiv:2608.20165](https://arxiv.org/abs/2608.20165)), is only a diagnostic:
+one orbit-equivalence relation can support generating actions with radically
+different spectral dynamics.  Thus coarse orbit-equivalence information
+cannot supply the closure sought here.  The project needs the actual
+reservoir/factor support, exactly as `rectangular-escape` already shows in a
+finite matrix model.

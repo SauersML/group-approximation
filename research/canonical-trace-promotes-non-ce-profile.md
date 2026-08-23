@@ -8,6 +8,7 @@ distinct_from:
   trace-functorial-bcs-signal-groupification-impossible: that excludes a decoder functorial on every tracial representation; this decoder is required only on finite-dimensional canonical-trace microstates and must use rank, density, phase, or another matricial feature.
 artifacts:
   - research/artifacts/trace-promotion-renormalization-program-2026-08-20.md
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 For the explicit pair `(W_*,tilde tau_*)` of
@@ -31,6 +32,14 @@ The construction must not extend functorially to arbitrary tracial
 representations.  Its forcing observable must be invariant under tensor
 amplification: a trace profile, density, normalized multiplicity, or central
 phase, never an additive index or absolute rank.
+
+Equivalently at the rate-free level, it is enough to prove that every exact
+regular-trace realization of the finite `Gamma` packet in a tracial matrix
+ultraproduct decodes the forbidden finite moment profile.  By
+`finite-matrix-defect-zero-is-exact-ultraproduct-realizability`, exact
+ultraproduct impossibility then returns a positive finite-dimensional
+normalized-HS gap automatically; no dimension-dependent rounding modulus is
+an additional obligation.
 
 ## Attempts
 

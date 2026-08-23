@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.BassSerreFreeProductAction
+import GroupApproximation.GroupTheory.TreeGraphGeometry
 import GroupApproximation.Sofic.HullSuitabilityGeometry
 import Mathlib.Data.List.NodupEquivFin
 
@@ -25,12 +26,13 @@ must come from `middle`.  This is the finite-list core of the tree-overlap
 argument: bypassing can delete at most the two short end pieces before it
 reaches a central edge. -/
 private theorem mem_middle_of_sublist {A : Type*}
-    {l left middle right : List A} (hsub : l <+ left ++ middle ++ right)
+    {l left middle right : List A}
+    (hsub : List.Sublist l (left ++ (middle ++ right)))
     {i : ℕ} (hi : i < l.length) (hleft : left.length ≤ i)
     (hright : right.length < l.length - i) : l[i] ∈ middle := by
   obtain ⟨f, hf⟩ := List.sublist_iff_exists_orderEmbedding_getElem?_eq.mp hsub
   have hilast : i ≤ l.length - 1 := by omega
-  have hlast : f (l.length - 1) < (left ++ middle ++ right).length := by
+  have hlast : f (l.length - 1) < (left ++ (middle ++ right)).length := by
     have hlastlt : l.length - 1 < l.length := by omega
     have h := hf (l.length - 1)
     rw [List.getElem?_eq_getElem hlastlt, eq_comm,
@@ -44,14 +46,18 @@ private theorem mem_middle_of_sublist {A : Type*}
   have hmiddleUpper : f i < left.length + middle.length := by
     simp only [List.length_append] at hlast
     omega
-  have hopt := hf i
-  rw [List.getElem?_eq_getElem hi] at hopt
+  have hfi : f i < (left ++ (middle ++ right)).length := by
+    exact lt_of_le_of_lt (f.monotone hilast) hlast
+  have hget : (left ++ (middle ++ right))[f i]'hfi = l[i]'hi := by
+    have hopt := hf i
+    rw [List.getElem?_eq_getElem hfi, List.getElem?_eq_getElem hi] at hopt
+    exact (Option.some.inj hopt).symm
   have hidx : f i - left.length < middle.length := by omega
-  have hmidopt : middle[f i - left.length]? = some l[i] := by
-    rw [eq_comm] at hopt
-    simpa [List.getElem?_append, hmiddleLower.not_lt, hidx] using hopt
-  rw [List.getElem?_eq_some_iff] at hmidopt
-  rw [← hmidopt.2]
+  have hmid : middle[f i - left.length]'hidx = l[i]'hi := by
+    rw [← hget]
+    rw [List.getElem_append_right hmiddleLower]
+    rw [List.getElem_append_left hidx]
+  rw [← hmid]
   exact List.getElem_mem hidx
 
 /-- The `i`-th undirected edge of a walk joins its `i`-th and `(i+1)`-st
@@ -61,7 +67,7 @@ private theorem edges_getElem_eq_getVert {V : Type*} {H : SimpleGraph V}
     p.edges[i]'(by simpa only [SimpleGraph.Walk.length_edges] using hi) =
       s(p.getVert i, p.getVert (i + 1)) := by
   induction p generalizing i with
-  | nil => omega
+  | nil => simp at hi
   | @cons x z y hxz q ih =>
       cases i with
       | zero => simp
@@ -87,7 +93,8 @@ noncomputable instance pathVertexMetricSpace :
   dist_triangle x y z := by
     exact_mod_cast (BassSerreFreeProduct.graph_connected G).dist_triangle
       (u := x) (v := y) (w := z)
-  eq_of_dist_eq_zero x y hxy := by
+  eq_of_dist_eq_zero := by
+    intro x y hxy
     have hxy' : (BassSerreFreeProduct.graph G).dist x y = 0 := by
       exact_mod_cast hxy
     exact (BassSerreFreeProduct.graph_connected G).dist_eq_zero_iff.mp hxy'
@@ -114,8 +121,12 @@ theorem graph_dist_smul (a : BassSerreFreeProduct.Ambient G)
         (a • x) (a • y)
     have hle : (BassSerreFreeProduct.graph G).dist
         (a⁻¹ • (a • x)) (a⁻¹ • (a • y)) ≤ p.length := by
-      exact SimpleGraph.dist_le
+      have hmap := SimpleGraph.dist_le
         (p.map (BassSerreFreeProduct.actionHom G a⁻¹))
+      change (BassSerreFreeProduct.graph G).dist
+        (a⁻¹ • (a • x)) (a⁻¹ • (a • y)) ≤
+          (p.map (BassSerreFreeProduct.actionHom G a⁻¹)).length at hmap
+      simpa only [SimpleGraph.Walk.length_map] using hmap
     simpa only [inv_smul_smul, hp] using hle
 
 /-- **The Bass--Serre path-metric action is isometric.** -/
@@ -123,7 +134,116 @@ theorem isIsometricAction :
     HullGeometry.IsIsometricAction
       (BassSerreFreeProduct.Ambient G) (PathVertex G) := by
   intro a x y
+  rw [pathVertex_dist, pathVertex_dist]
   exact_mod_cast graph_dist_smul G a x y
+
+/-- A linear lower bound on indexed free-product syllable length gives a
+loxodromic Bass--Serre isometry.  This is the reusable normal-form-to-dynamics
+interface: concrete applications only need to compute the reduced lengths of
+the powers of their chosen word. -/
+theorem isLoxodromic_of_sylLength_pow_lower
+    (g : BassSerreFreeProduct.Ambient G) (c : ℕ) (hc : 0 < c)
+    (hpow : ∀ n : ℕ, n * c ≤
+      FreeProductCyclic.sylLength
+        (BinaryCoprodNormalForm.toIndexed G (g ^ n))) :
+    HullGeometry.IsLoxodromic g (baseLeft G : PathVertex G) := by
+  refine ⟨(c : ℝ), by exact_mod_cast hc, 1, by norm_num, ?_⟩
+  intro n
+  cases n with
+  | zero => simp
+  | succ n =>
+      let L := FreeProductCyclic.sylLength
+        (BinaryCoprodNormalForm.toIndexed G (g ^ (n + 1)))
+      have hword : (n + 1) * c ≤ L := hpow (n + 1)
+      have hLpos : 1 ≤ L := by omega
+      have hdisp :=
+        BassSerreFreeProduct.sylLength_toIndexed_sub_one_le_graph_dist G
+          (g ^ (n + 1))
+      have hdispReal : ((L - 1 : ℕ) : ℝ) ≤
+          dist (baseLeft G : PathVertex G)
+            ((g ^ (n + 1)) • (baseLeft G : PathVertex G)) := by
+        rw [pathVertex_dist]
+        exact_mod_cast hdisp
+      rw [Nat.cast_sub hLpos] at hdispReal
+      have hwordReal : (((n + 1) * c : ℕ) : ℝ) ≤ (L : ℝ) := by
+        exact_mod_cast hword
+      norm_num only [Nat.cast_mul, Nat.cast_add, Nat.cast_one] at hwordReal ⊢
+      linarith
+
+/-- The real path metric on the Bass--Serre tree satisfies Gromov's four-point
+condition with constant one. -/
+theorem isHyperbolicSpace :
+    HullGeometry.IsHyperbolicSpace 1 (PathVertex G) := by
+  intro w x y z
+  let w0 : BassSerreFreeProduct.Vertex G := w
+  let x0 : BassSerreFreeProduct.Vertex G := x
+  let y0 : BassSerreFreeProduct.Vertex G := y
+  let z0 : BassSerreFreeProduct.Vertex G := z
+  have hnat := TreeGraphGeometry.graphDist_fourPoint_one
+    (H := BassSerreFreeProduct.graph G) (BassSerreFreeProduct.graph_isTree G)
+      w0 x0 y0 z0
+  have hxy : (BassSerreFreeProduct.graph G).dist x0 y0 ≤
+      (BassSerreFreeProduct.graph G).dist x0 w0 +
+        (BassSerreFreeProduct.graph G).dist y0 w0 := by
+    calc
+      _ ≤ (BassSerreFreeProduct.graph G).dist x0 w0 +
+          (BassSerreFreeProduct.graph G).dist w0 y0 :=
+        (BassSerreFreeProduct.graph_connected G).dist_triangle
+          (u := x0) (v := w0) (w := y0)
+      _ = _ := by rw [SimpleGraph.dist_comm (u := w0) (v := y0)]
+  have hyz : (BassSerreFreeProduct.graph G).dist y0 z0 ≤
+      (BassSerreFreeProduct.graph G).dist y0 w0 +
+        (BassSerreFreeProduct.graph G).dist z0 w0 := by
+    calc
+      _ ≤ (BassSerreFreeProduct.graph G).dist y0 w0 +
+          (BassSerreFreeProduct.graph G).dist w0 z0 :=
+        (BassSerreFreeProduct.graph_connected G).dist_triangle
+          (u := y0) (v := w0) (w := z0)
+      _ = _ := by rw [SimpleGraph.dist_comm (u := w0) (v := z0)]
+  have hxz : (BassSerreFreeProduct.graph G).dist x0 z0 ≤
+      (BassSerreFreeProduct.graph G).dist x0 w0 +
+        (BassSerreFreeProduct.graph G).dist z0 w0 := by
+    calc
+      _ ≤ (BassSerreFreeProduct.graph G).dist x0 w0 +
+          (BassSerreFreeProduct.graph G).dist w0 z0 :=
+        (BassSerreFreeProduct.graph_connected G).dist_triangle
+          (u := x0) (v := w0) (w := z0)
+      _ = _ := by rw [SimpleGraph.dist_comm (u := w0) (v := z0)]
+  let nA := (BassSerreFreeProduct.graph G).dist x0 w0 +
+    (BassSerreFreeProduct.graph G).dist y0 w0 -
+      (BassSerreFreeProduct.graph G).dist x0 y0
+  let nB := (BassSerreFreeProduct.graph G).dist y0 w0 +
+    (BassSerreFreeProduct.graph G).dist z0 w0 -
+      (BassSerreFreeProduct.graph G).dist y0 z0
+  let nC := (BassSerreFreeProduct.graph G).dist x0 w0 +
+    (BassSerreFreeProduct.graph G).dist z0 w0 -
+      (BassSerreFreeProduct.graph G).dist x0 z0
+  have hnat' : min nA nB ≤ nC + 2 := by
+    simpa only [nA, nB, nC] using hnat
+  let A : ℝ := (((BassSerreFreeProduct.graph G).dist x0 w0 : ℝ) +
+    (BassSerreFreeProduct.graph G).dist y0 w0) -
+      (BassSerreFreeProduct.graph G).dist x0 y0
+  let B : ℝ := (((BassSerreFreeProduct.graph G).dist y0 w0 : ℝ) +
+    (BassSerreFreeProduct.graph G).dist z0 w0) -
+      (BassSerreFreeProduct.graph G).dist y0 z0
+  let C : ℝ := (((BassSerreFreeProduct.graph G).dist x0 w0 : ℝ) +
+    (BassSerreFreeProduct.graph G).dist z0 w0) -
+      (BassSerreFreeProduct.graph G).dist x0 z0
+  have hreal : min A B ≤ C + 2 := by
+    have hcast : ((min nA nB : ℕ) : ℝ) ≤ ((nC + 2 : ℕ) : ℝ) := by
+      exact_mod_cast hnat'
+    norm_num only [nA, nB, nC, Nat.cast_min, Nat.cast_add, Nat.cast_ofNat,
+      Nat.cast_sub hxy, Nat.cast_sub hyz, Nat.cast_sub hxz] at hcast
+    simpa only [A, B, C] using hcast
+  change min (A / 2) (B / 2) - 1 ≤ C / 2
+  by_cases hab : A ≤ B
+  · rw [min_eq_left (by linarith)]
+    rw [min_eq_left hab] at hreal
+    linarith
+  · have hba : B ≤ A := le_of_not_ge hab
+    rw [min_eq_right (by linarith)]
+    rw [min_eq_right hba] at hreal
+    linarith
 
 /-- The path-metric action is faithful: an element fixing every vertex fixes
 both endpoints of the base edge, whose pointwise stabilizer is trivial. -/
@@ -194,14 +314,21 @@ theorem eq_of_mem_geodesic_of_graph_dist_eq {x y z w : PathVertex G}
     (hw : w ∈ (geodesic G x y).support)
     (hd : (BassSerreFreeProduct.graph G).dist x z =
       (BassSerreFreeProduct.graph G).dist x w) : z = w := by
-  rw [SimpleGraph.Walk.mem_support_iff_exists_getVert] at hz hw
-  obtain ⟨i, rfl, hi⟩ := hz
-  obtain ⟨j, rfl, hj⟩ := hw
+  obtain ⟨i, rfl, hi⟩ :=
+    SimpleGraph.Walk.mem_support_iff_exists_getVert.mp hz
+  obtain ⟨j, rfl, hj⟩ :=
+    SimpleGraph.Walk.mem_support_iff_exists_getVert.mp hw
   have hi' : i ≤ (BassSerreFreeProduct.graph G).dist x y := by
-    simpa only [geodesic_length] using hi
+    calc
+      i ≤ (geodesic G x y).length := hi
+      _ = (BassSerreFreeProduct.graph G).dist x y := geodesic_length G x y
   have hj' : j ≤ (BassSerreFreeProduct.graph G).dist x y := by
-    simpa only [geodesic_length] using hj
-  rw [graph_dist_getVert_geodesic G hi', graph_dist_getVert_geodesic G hj'] at hd
+    calc
+      j ≤ (geodesic G x y).length := hj
+      _ = (BassSerreFreeProduct.graph G).dist x y := geodesic_length G x y
+  have hdi := graph_dist_getVert_geodesic G hi'
+  have hdj := graph_dist_getVert_geodesic G hj'
+  have hij : i = j := hdi.symm.trans (hd.trans hdj)
   subst j
   rfl
 
@@ -216,9 +343,11 @@ theorem centralEdge_mem_mapped_geodesic {x y : PathVertex G}
     (hx : (BassSerreFreeProduct.graph G).dist x (a • x) ≤ k)
     (hy : (BassSerreFreeProduct.graph G).dist y (a • y) ≤ k)
     (hxy : 2 * k + 1 ≤ (BassSerreFreeProduct.graph G).dist x y) :
-    (geodesic G x y).edges[k]'(by simpa only [geodesic_length] using
-      (show k < (BassSerreFreeProduct.graph G).dist x y by omega)) ∈
+    (geodesic G x y).edges[k]'(by
+      rw [SimpleGraph.Walk.length_edges, geodesic_length]
+      omega) ∈
       ((geodesic G x y).map (BassSerreFreeProduct.actionHom G a)).edges := by
+  classical
   let p := geodesic G x y
   let r := geodesic G x (a • x)
   let s := geodesic G (a • y) y
@@ -228,16 +357,33 @@ theorem centralEdge_mem_mapped_geodesic {x y : PathVertex G}
   have hbypass : W.bypass = p := congrArg Subtype.val
     ((BassSerreFreeProduct.graph_isAcyclic G).path_unique
       ⟨W.bypass, hWpath⟩ ⟨p, geodesic_isPath G x y⟩)
-  have hsub : p.edges <+ r.edges ++ m.edges ++ s.edges := by
+  have hsub : List.Sublist p.edges (r.edges ++ (m.edges ++ s.edges)) := by
     have := W.edges_bypass_sublist_edges
     rw [hbypass] at this
-    simpa [W, SimpleGraph.Walk.edges_append] using this
-  apply mem_middle_of_sublist hsub
-  · simpa only [geodesic_length] using
-      (show k < (BassSerreFreeProduct.graph G).dist x y by omega)
-  · simpa only [SimpleGraph.Walk.length_edges, geodesic_length] using hx
-  · simp only [SimpleGraph.Walk.length_edges, geodesic_length]
+    have hWedges : W.edges = r.edges ++ (m.edges ++ s.edges) := by
+      dsimp only [W]
+      rw [SimpleGraph.Walk.edges_append]
+      exact congrArg (r.edges ++ ·) (SimpleGraph.Walk.edges_append m s)
+    rw [hWedges] at this
+    exact this
+  have hk : k < p.edges.length := by
+    simp only [SimpleGraph.Walk.length_edges, p, geodesic_length]
     omega
+  have hcentral : p.edges[k]'hk ∈ m.edges := by
+    refine mem_middle_of_sublist hsub (hi := hk) (hleft := ?_) (hright := ?_)
+    · simpa only [SimpleGraph.Walk.length_edges, geodesic_length, r] using hx
+    · have hpLen : p.edges.length =
+          (BassSerreFreeProduct.graph G).dist x y := by
+        simp only [SimpleGraph.Walk.length_edges, p, geodesic_length]
+      have hsLen : s.edges.length =
+          (BassSerreFreeProduct.graph G).dist (a • y) y := by
+        simp only [SimpleGraph.Walk.length_edges, s, geodesic_length]
+      have hsBound : s.edges.length ≤ k := by
+        rw [hsLen, SimpleGraph.dist_comm]
+        exact hy
+      rw [hpLen]
+      omega
+  simpa only [p, m] using hcentral
 
 /-- The endpoints of the image of the central edge lie on the original
 geodesic.  Apply `centralEdge_mem_mapped_geodesic` to the inverse element and
@@ -251,22 +397,24 @@ theorem smul_central_getVert_mem_geodesic {x y : PathVertex G}
       a • (geodesic G x y).getVert (k + 1) ∈ (geodesic G x y).support := by
   let p := geodesic G x y
   have hxinv : (BassSerreFreeProduct.graph G).dist x (a⁻¹ • x) ≤ k := by
-    have h := graph_dist_smul G a (a⁻¹ • x) x
-    rw [smul_inv_smul] at h
     calc
       (BassSerreFreeProduct.graph G).dist x (a⁻¹ • x) =
           (BassSerreFreeProduct.graph G).dist (a⁻¹ • x) x :=
         SimpleGraph.dist_comm
-      _ = (BassSerreFreeProduct.graph G).dist x (a • x) := h.symm
+      _ = (BassSerreFreeProduct.graph G).dist (a • (a⁻¹ • x)) (a • x) :=
+        (graph_dist_smul G a (a⁻¹ • x) x).symm
+      _ = (BassSerreFreeProduct.graph G).dist x (a • x) := by
+        rw [smul_inv_smul]
       _ ≤ k := hx
   have hyinv : (BassSerreFreeProduct.graph G).dist y (a⁻¹ • y) ≤ k := by
-    have h := graph_dist_smul G a (a⁻¹ • y) y
-    rw [smul_inv_smul] at h
     calc
       (BassSerreFreeProduct.graph G).dist y (a⁻¹ • y) =
           (BassSerreFreeProduct.graph G).dist (a⁻¹ • y) y :=
         SimpleGraph.dist_comm
-      _ = (BassSerreFreeProduct.graph G).dist y (a • y) := h.symm
+      _ = (BassSerreFreeProduct.graph G).dist (a • (a⁻¹ • y)) (a • y) :=
+        (graph_dist_smul G a (a⁻¹ • y) y).symm
+      _ = (BassSerreFreeProduct.graph G).dist y (a • y) := by
+        rw [smul_inv_smul]
       _ ≤ k := hy
   have hedge := centralEdge_mem_mapped_geodesic G a⁻¹ k hxinv hyinv hxy
   have hklt : k < p.length := by
@@ -291,6 +439,22 @@ theorem smul_central_getVert_mem_geodesic {x y : PathVertex G}
       rw [← hva]
       exact smul_inv_smul a v
     rwa [hev]
+
+/-- An element fixing both endpoints of an edge is the identity.  This is the
+sharp zero-error case of the long-segment rigidity argument. -/
+theorem eq_one_of_fixes_adjacent {x y : PathVertex G}
+    (hxy : (BassSerreFreeProduct.graph G).Adj x y)
+    {a : BassSerreFreeProduct.Ambient G}
+    (hx : a • x = x) (hy : a • y = y) : a = 1 := by
+  have ha : a ∈ MulAction.stabilizer
+      (BassSerreFreeProduct.Ambient G) (x, y) := by
+    rw [MulAction.mem_stabilizer_iff]
+    exact Prod.ext hx hy
+  have hstab : MulAction.stabilizer
+      (BassSerreFreeProduct.Ambient G) (x, y) = ⊥ :=
+    BassSerreFreeProduct.adjacentPair_pointwiseStabilizer_eq_bot G hxy
+  have ha' : a ∈ (⊥ : Subgroup (BassSerreFreeProduct.Ambient G)) := hstab ▸ ha
+  exact Subgroup.mem_bot.mp ha'
 
 /-- Uniform counting for integral endpoint displacement.  The code of a mover
 is the pair of distances from `x` to the two endpoints of the translated
@@ -329,15 +493,37 @@ theorem boundedGraphDisplacement_finite_count (k : ℕ) {x y : PathVertex G}
     intro a
     have ht := (BassSerreFreeProduct.graph_connected G).dist_triangle
       (u := x) (v := a.1 • x) (w := a.1 • u)
-    have hi := graph_dist_smul G a.1 x u
-    omega
+    have hi : (BassSerreFreeProduct.graph G).dist (a.1 • x) (a.1 • u) =
+        (BassSerreFreeProduct.graph G).dist x u := graph_dist_smul G a.1 x u
+    have haBound : (BassSerreFreeProduct.graph G).dist x (a.1 • x) ≤ k := a.2.1
+    calc
+      (BassSerreFreeProduct.graph G).dist x (a.1 • u) ≤
+          (BassSerreFreeProduct.graph G).dist x (a.1 • x) +
+            (BassSerreFreeProduct.graph G).dist (a.1 • x) (a.1 • u) := ht
+      _ = (BassSerreFreeProduct.graph G).dist x (a.1 • x) +
+          (BassSerreFreeProduct.graph G).dist x u :=
+        congrArg ((BassSerreFreeProduct.graph G).dist x (a.1 • x) + ·) hi
+      _ = (BassSerreFreeProduct.graph G).dist x (a.1 • x) + k :=
+        congrArg ((BassSerreFreeProduct.graph G).dist x (a.1 • x) + ·) hku
+      _ < 2 * k + 1 := by omega
   have hvBound : ∀ a : S,
       (BassSerreFreeProduct.graph G).dist x (a.1 • v) < 2 * k + 2 := by
     intro a
     have ht := (BassSerreFreeProduct.graph_connected G).dist_triangle
       (u := x) (v := a.1 • x) (w := a.1 • v)
-    have hi := graph_dist_smul G a.1 x v
-    omega
+    have hi : (BassSerreFreeProduct.graph G).dist (a.1 • x) (a.1 • v) =
+        (BassSerreFreeProduct.graph G).dist x v := graph_dist_smul G a.1 x v
+    have haBound : (BassSerreFreeProduct.graph G).dist x (a.1 • x) ≤ k := a.2.1
+    calc
+      (BassSerreFreeProduct.graph G).dist x (a.1 • v) ≤
+          (BassSerreFreeProduct.graph G).dist x (a.1 • x) +
+            (BassSerreFreeProduct.graph G).dist (a.1 • x) (a.1 • v) := ht
+      _ = (BassSerreFreeProduct.graph G).dist x (a.1 • x) +
+          (BassSerreFreeProduct.graph G).dist x v :=
+        congrArg ((BassSerreFreeProduct.graph G).dist x (a.1 • x) + ·) hi
+      _ = (BassSerreFreeProduct.graph G).dist x (a.1 • x) + (k + 1) :=
+        congrArg ((BassSerreFreeProduct.graph G).dist x (a.1 • x) + ·) hkv
+      _ < 2 * k + 2 := by omega
   let code : S → Fin (2 * k + 1) × Fin (2 * k + 2) := fun a =>
     (⟨(BassSerreFreeProduct.graph G).dist x (a.1 • u), huBound a⟩,
       ⟨(BassSerreFreeProduct.graph G).dist x (a.1 • v), hvBound a⟩)
@@ -359,7 +545,7 @@ theorem boundedGraphDisplacement_finite_count (k : ℕ) {x y : PathVertex G}
       rw [mul_smul, hav, inv_smul_smul]
     have hone : b.1⁻¹ * a.1 = 1 := eq_one_of_fixes_adjacent G huv hfixu hfixv
     apply Subtype.ext
-    exact inv_mul_eq_one.mp hone
+    exact (inv_mul_eq_one.mp hone).symm
   letI : Finite S := Finite.of_injective code hcode
   refine ⟨Set.toFinite S, ?_⟩
   rw [← Nat.card_coe_set_eq]
@@ -402,19 +588,6 @@ theorem isAcylindrical :
   change T.Finite ∧ T.ncard ≤ (2 * k + 1) * (2 * k + 2)
   exact ⟨hTfinite, (Set.ncard_le_ncard hTS hSfinite).trans hScard⟩
 
-/-- An element fixing both endpoints of an edge is the identity.  This is the
-sharp zero-error case of the long-segment rigidity argument. -/
-theorem eq_one_of_fixes_adjacent {x y : PathVertex G}
-    (hxy : (BassSerreFreeProduct.graph G).Adj x y)
-    {a : BassSerreFreeProduct.Ambient G}
-    (hx : a • x = x) (hy : a • y = y) : a = 1 := by
-  have ha : a ∈ MulAction.stabilizer
-      (BassSerreFreeProduct.Ambient G) (x, y) := by
-    rw [MulAction.mem_stabilizer_iff]
-    exact Prod.ext hx hy
-  rw [BassSerreFreeProduct.adjacentPair_pointwiseStabilizer_eq_bot G hxy] at ha
-  simpa using ha
-
 /-- Fixing two distinct vertices of the Bass--Serre tree forces an element to
 be the identity.  Uniqueness of the path makes the element fix its first edge,
 where the algebraic edge-stabilizer computation applies. -/
@@ -438,11 +611,17 @@ theorem eq_one_of_fixes_distinct {x y : PathVertex G} (hxy : x ≠ y)
   cases p with
   | nil => exact (hxy rfl).elim
   | @cons x z y hxz q =>
-      have hs := congrArg SimpleGraph.Walk.support heq
-      have htail := congrArg List.tail hs
-      have hhead := congrArg List.head? htail
+      have hsecond : p'.getVert 1 =
+          (SimpleGraph.Walk.cons hxz q).getVert 1 := congrArg
+        (fun w : (BassSerreFreeProduct.graph G).Walk x y => w.getVert 1) heq.symm
+      have hpget : p'.getVert 1 = a • z := by
+        dsimp only [p']
+        rw [SimpleGraph.Walk.getVert_copy, SimpleGraph.Walk.getVert_map]
+        change a • (SimpleGraph.Walk.cons hxz q).getVert 1 = a • z
+        congr 1
+        simp
       have hz : a • z = z := by
-        simpa [p'] using hhead.symm
+        exact hpget.symm.trans (hsecond.trans (by simp))
       exact eq_one_of_fixes_adjacent G hxz hx hz
 
 /-- The simultaneous exact-displacement set at the endpoints of an edge is
@@ -455,7 +634,8 @@ theorem exactEdgeDisplacement_eq_singleton {x y : PathVertex G}
   constructor
   · intro ha
     have : a = 1 := eq_one_of_fixes_adjacent G hxy ha.1 ha.2
-    simpa [this]
+    subst a
+    simp
   · intro ha
     have : a = 1 := by simpa using ha
     subst a
@@ -477,7 +657,8 @@ theorem exactDistinctDisplacement_eq_singleton {x y : PathVertex G}
   constructor
   · intro ha
     have : a = 1 := eq_one_of_fixes_distinct G hxy ha.1 ha.2
-    simpa [this]
+    subst a
+    simp
   · intro ha
     have : a = 1 := by simpa using ha
     subst a

@@ -59,11 +59,28 @@ Nor is multiplicity-free fusion by itself enough: several input-channel
 pairs can feed the same output.  The theorem is precisely that the literal
 full packet separates enough of those sums to recover `(S3D2)`.
 
+There is an additional exact gauge count.  By
+`s3-standard-operator-channel-has-fivefold-reduced-gauge`, an arbitrary
+relative operator has five reduced sources in its diagonal-conjugation
+standard channel, not three.  The three Racah intermediate channels and the
+three `S4` extension labels are different spaces until the packet supplies an
+intertwiner between them.  The live decomposition is therefore
+`atlas-s3-decoder-authentication-and-minor-route`: authenticate the extension
+triple first, then compute the literal minor.
+
+The preferred authentication subroute is now
+`atlas-a4-s3-hybrid-extension-authentication-route`.  It uses one nontrivial
+`A4` line row and the trivial/sign `S3` rows, whose restriction fingerprint
+on `2,3,3 epsilon` is diagonal.  This avoids trying to authenticate extension
+labels from the five-source standard channel itself.  It does not remove the
+later multiplication-minor gate.
+
 ## Attempts
 
 - **Compile the literal packet, not a surrogate.** Start from
-  `experiments/atlas-boundary-11-30.json` and the exact full-comb relations
-  consumed by the current decoder lane.  Record for every projected row its
+  `experiments/atlas-boundary-11-30.json` and explicitly name every packet
+  relator or normal-closure consequence which constrains the comb word.  The
+  comb source word is an operator name, not itself an equation.  Record for every projected row its
   source word, bracketing, input channels, output channel, path monomial, and
   exact coefficient.
 - **Use the three established transforms as rank candidates.** Search the

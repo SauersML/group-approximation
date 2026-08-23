@@ -6,6 +6,9 @@ title: Approximate Bernoulli-lamp extraction still requires invariant diagonal c
 distinct_from:
   exact-bernoulli-lamp-trace-forces-actor-residual-finiteness: that succeeds because exact finite representations already permute the full character multiset; this records why the same proof does not apply to an arbitrary tracial matrix-ultraproduct embedding.
   invariant-cartan-completion: that states the open diagonal-completion theorem for the Kun--Thom crossed product; this identifies the proposed general Missing Lemma A with that gate rather than asserting it.
+  scalar-trace-of-diagonal-normalizer-is-permutation-blind: that gives the exact one-matrix phase counterexample; this identifies the global simultaneous diagonal-completion theorem still needed after that local firewall.
+artifacts:
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 **ESTABLISHED AUDIT / REDUCTION.**  Consider a trace-preserving embedding

@@ -6,6 +6,7 @@ title: Entrywise modulus squaring is doubly stochastic but forgets composition
 invalidates: [sofic-model-via-unistochastic-dephasing]
 artifacts:
   - research/artifacts/hyperlinear-divergent-strategies-2026-08-18.md
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 For `U ∈ U(d)` let `P_U(i,j) = |u_{ij}|^2`.  Then `P_U` is doubly stochastic,

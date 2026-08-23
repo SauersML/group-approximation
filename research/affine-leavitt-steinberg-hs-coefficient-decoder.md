@@ -130,6 +130,18 @@ the affine active Leavitt construction.
   descendant in the actual field characteristic `p>=5`.  What fails to
   follow from group-word defect is the common-carrier spectral-selector
   covariance, not the algebraic return itself.
+- **The mixed Reynolds endpoint is now one checksum, with a grading
+  firewall.**  `balanced-controlled-whitehead-return-checksum` specializes
+  the controlled fine-reflection packet to the signed Whitehead actuator:
+  canonical balanced orientation leaves at least `1/32-o(1)` normalized
+  adjoint leakage for every return, and one finite trace-square overlap
+  estimate at level `1/16-o(1)` would convert it immediately into ordinary
+  HS word energy.  But
+  `orientation-graded-mixed-returns-have-a-balanced-double` proves that any
+  enlarged exact cell retaining the stable-letter `C_2` grading admits a
+  balanced marked double.  Thus more even Whitehead/Steinberg relations
+  cannot force that checksum; the decoder must break the orientation grading
+  or expose a genuinely finite-matrix coordinate.
 - **Exact depth pressure is now quantified.**
   `leavitt-prefixes-form-exponential-heisenberg-packet` gives `2^n` Pauli
   pairs over the active root, and

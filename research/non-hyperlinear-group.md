@@ -57,6 +57,20 @@ twisted self-similar Clifford, projective phase, matricial separator, and
 quantum-index routes are compared in
 `research/artifacts/trace-promotion-renormalization-program-2026-08-20.md`.
 
+A new finite endpoint removes the common-carrier requirement from the BCS
+lane.  `independent-row-masks-transfer-bcs-gap-to-ambient-identity` shows
+that exact predicate and consistency rows may use unrelated masks: their
+weighted canonical codimensions only have to total less than the fixed game
+gap.  `finite-row-mask-group-algebra-certificate-forces-nonhyperlinear`
+then turns any such finite ordinary-group-algebra certificate into a
+dimension-free canonical normalized-HS obstruction.  The local storage and
+density ledger are exact via the almost-full simple block in
+`affine-frobenius-group-has-almost-full-simple-block`; the sole construction
+gate is `affine-frobenius-hecke-crt-shared-involution-interpolation`, which
+must produce one global involution per variable on several fixed,
+noncommuting large right ideals.  This is a conditional reduction, not yet
+an unconditional nonhyperlinear group.
+
 The breakout portfolio of 2026-08-21 is recorded in
 `research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md`. Its
 three main orthogonal moves are: weaken arithmetic RCC to the projective
@@ -193,6 +207,16 @@ two open inputs are a finite-matrix domination of the summed compressed rows
 and global forbidden-mass coverage. This avoids both universal-row collapse
 and the circular demand that one context already carry positive mass.
 
+The phase-coded refinement now separates the row-domination input exactly.
+`phase-covariance-words-exactly-measure-type-transport-leakage` charges every
+wrong-type population block by two-sided ordinary covariance words, while
+`finite-phase-codewords-weight-type-gram-leakage` charges off-type Gram
+coherence.  The projection inequality in
+`phase-tagged-row-defect-reduces-to-within-type-selector-mismatch` leaves only
+the selector mismatch compressed inside the already matched type.  Thus the
+live matrix-only gate is no longer generic type authentication: it is the
+word authentication of the nonlinear cut `F_cQ_omega` within that type.
+
 The self-referential gauge mechanism is also explicit.
 `recursive-clifford-tail-supplies-anchor-but-not-contraction` realizes every
 parent `CZ tensor V` with `V` equal to the product of its two child tail
@@ -201,10 +225,20 @@ Finite-depth Clifford regular models prove the recursion is stationary, so
 the remaining breakthrough must be a payload-dependent first-hit or
 proper-corner exposure inequality with contraction factor below one.
 
-Two analytic obligations have since closed. First,
-`forbidden-weighted-type-carrier-coverage-is-rank-rounding` proves global
-coverage with coefficient one and loss `3|Omega|/d`; hence the global
-marked-type criterion now has only its summed-row domination gate. Second,
+One analytic coverage obligation has closed only relative to the marked
+sector.  `forbidden-weighted-type-carrier-coverage-is-rank-rounding` covers
+`E_forbid^mark` with coefficient one and loss `3|Omega|/d`; comparison with
+the entire original shared BCS mass would require an additional marked-menu
+concentration estimate.  Thus the stronger full-space global criterion
+retains both marked-type concentration and summed-row domination.
+For the central-sign endpoint,
+`marked-corner-cycle-needs-no-full-mass-concentration` removes the comparison:
+the robust BCS gap is applied directly on the common negative sign corner,
+whose forbidden mass is exactly `E_forbid^mark`.  Consequently the
+phase-coded central-sign route has only the summed-row/authentication gate;
+marked-menu concentration remains a stronger full-space variant, not a
+load-bearing prerequisite for that route.
+Separately,
 `tail-wordized-child-surplus-collision-supplies-rct7` converts forbidden BCS
 surplus into the strict recursion
 

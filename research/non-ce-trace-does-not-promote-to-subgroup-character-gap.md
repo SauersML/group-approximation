@@ -7,6 +7,8 @@ distinct_from:
   toric-gap-is-a-relative-fd-central-word-face: that characterizes the desired face and its finite-dimensional separation; this proves why GNS-kernel extraction and Hahn-Banach separation do not construct such a face
   finite-group-selector-induction-barrier: that audits selector patterns across finite-group representations; this computes the maximal word-eigenvalue face of one trace and its local affine-hull loss
   bcs-projective-kernel-phase-compilation: that asks for an engineered projective-kernel phase word preserving source soundness; this shows that taking the raw projective kernel of a non-CE trace supplies phase safety but not soundness
+artifacts:
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 ESTABLISHED.  Let `tau` be a tracial state on `C*(G)`.  Define its projective
@@ -119,6 +121,34 @@ non-CE trace => subgroup-character face gap
 
 can hold without additional finite compiler structure, even before finite
 presentation issues arise.
+
+## Strong countercheck on a regular-CE group
+
+The ambient abstract group can itself have an embeddable regular trace.  Let
+
+```text
+G=*_(j>=1) C_2
+```
+
+and send its canonical involutions to a complete symmetry basis of a
+separable diffuse non-CE algebra `(M,tau)`.  The resulting character `tau_0`
+has GNS algebra `M`, hence is non-CE, while `G` is residually finite and its
+regular character is CE.  The set of CE traces on the separable `C*(G)` is
+weak-star closed, so for every sufficiently small `t>0`,
+
+```text
+tau_t=(1-t)tau_0+t tau_reg                              (NCT6)
+```
+
+remains non-CE.  For `g!=1`,
+
+```text
+|tau_t(g)|=(1-t)|tau_0(g)|<=1-t<1,                    (NCT7)
+```
+
+so its projective kernel is trivial.  Thus a projectively faithful non-CE
+character and an embeddable regular character can live on the same group.
+Projective-kernel data alone cannot distinguish them.
 
 ## Consequence
 

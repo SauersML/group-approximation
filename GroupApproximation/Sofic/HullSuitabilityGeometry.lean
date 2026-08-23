@@ -324,6 +324,7 @@ theorem isLoxodromic_mul_of_cross_backtracking {δ C L : ℝ}
           have hpnext : (p ^ k * A) * B = p ^ (k + 1) := by
             dsimp [p]
             rw [pow_succ]
+            group
           rw [← mul_smul, hpnext] at h
           rw [h]
           exact hB
@@ -463,7 +464,7 @@ theorem dist_zpow_difference (hiso : IsIsometricAction G X)
   have hd := hiso (g ^ a) z ((g ^ (-a) * h ^ b) • z)
   have hcancel : g ^ a * (g ^ (-a) * h ^ b) = h ^ b := by group
   rw [← mul_smul, hcancel] at hd
-  exact hd
+  exact hd.symm
 
 /-- Geometric form of `acylindrical_common_power_pigeonhole`: sufficiently
 many distinct exponent pairs whose two orbit maps fellow-travel at two distant
@@ -1060,7 +1061,7 @@ theorem isLoxodromic_pow {g : G} {x : X} (hg : IsLoxodromic g x)
   obtain ⟨l, hl, B, hB, hlin⟩ := hg
   refine ⟨l * k, by positivity, B, hB, ?_⟩
   intro n
-  rw [pow_mul]
+  rw [← pow_mul]
   have h := hlin (k * n)
   push_cast at h ⊢
   nlinarith
@@ -1075,7 +1076,10 @@ theorem isLoxodromic_zpow (hiso : IsIsometricAction G X) {g : G} {x : X}
         intro hn
         apply hk
         simp [hn])
-      simpa only [zpow_natCast] using isLoxodromic_pow hg hn
+      have hp : IsLoxodromic (g ^ n) x :=
+        isLoxodromic_pow (g := g) hg hn
+      change IsLoxodromic (g ^ (n : ℤ)) x
+      simpa only [zpow_natCast] using hp
   | negSucc n =>
       have hp : IsLoxodromic (g ^ (n + 1)) x :=
         isLoxodromic_pow hg (Nat.succ_pos n)
@@ -1099,8 +1103,9 @@ theorem isLoxodromic_of_pow_isLoxodromic (hiso : IsIsometricAction G X)
   let r : ℕ := n % k
   have hr : r < k := Nat.mod_lt n hk
   have hn : n = k * q + r := by
-    dsimp [q, r]
-    omega
+    calc
+      n = k * (n / k) + n % k := (Nat.div_add_mod n k).symm
+      _ = k * q + r := by rfl
   have hstep :
       dist ((g ^ (k * q)) • x) ((g ^ n) • x) = dist x ((g ^ r) • x) := by
     rw [hn, pow_add, mul_smul, hiso (g ^ (k * q)) x ((g ^ r) • x)]
@@ -1130,8 +1135,10 @@ theorem isLoxodromic_of_zpow_isLoxodromic (hiso : IsIsometricAction G X)
   cases k with
   | ofNat n =>
       have hn : 0 < n := Nat.pos_of_ne_zero (by simpa using hk)
-      exact isLoxodromic_of_pow_isLoxodromic hiso hn
-        (by simpa only [zpow_natCast] using hgk)
+      have hgk' : IsLoxodromic (g ^ n) x := by
+        change IsLoxodromic (g ^ (n : ℤ)) x at hgk
+        simpa only [zpow_natCast] using hgk
+      exact isLoxodromic_of_pow_isLoxodromic hiso hn hgk'
   | negSucc n =>
       have hinv : IsLoxodromic (g ^ (n + 1)) x := by
         have := isLoxodromic_inv hiso hgk
@@ -1166,9 +1173,8 @@ theorem isLoxodromic_conj (hiso : IsIsometricAction G X) {g a : G} {x : X}
         dist (a⁻¹ • x) ((g ^ n) • (a⁻¹ • x)) := by
     intro n
     have h := hiso a (a⁻¹ • x) ((g ^ n) • (a⁻¹ • x))
-    rw [← mul_smul, ← mul_smul, mul_inv_cancel, one_smul] at h
     rw [hpow]
-    exact h
+    simpa only [← mul_smul, mul_inv_cancel, one_smul, mul_assoc] using h
   obtain ⟨l, hl, B, hB, hlin⟩ := hgbase
   exact ⟨l, hl, B, hB, fun n => by rw [hdist]; exact hlin n⟩
 
@@ -1212,7 +1218,11 @@ theorem exists_loxodromic_commutator_of_independent_conjugate
   refine ⟨N, ?_, ?_⟩
   · exact S.mul_mem ((inferInstance : S.Normal).conj_mem c hcS (g ^ N))
       (S.inv_mem hcS)
-  · rw [← hpow]
+  · have heq : g ^ N * (c * g⁻¹ * c⁻¹) ^ N =
+        g ^ N * c * (g ^ N)⁻¹ * c⁻¹ := by
+      rw [hpow]
+      group
+    rw [← heq]
     exact hN
 
 /-! ### The translation length is a limit, and a seminorm on a centralizer
@@ -1338,7 +1348,9 @@ theorem exists_power_local_backtracking_gap
     have hMlk : (Ml : ℝ) ≤ k :=
       le_trans (le_max_right (Mu : ℝ) Ml)
         (le_trans (le_max_left _ _) (le_of_lt hklarge))
-    have hk2k : (k : ℝ) ≤ 2 * k := by positivity
+    have hk2k : (k : ℝ) ≤ 2 * k := by
+      have hk_nonneg : (0 : ℝ) ≤ k := by positivity
+      linarith
     exact_mod_cast le_trans hMlk hk2k
   have hk0 : 0 < k := by
     have hkR : (0 : ℝ) < k :=
@@ -1351,8 +1363,9 @@ theorem exists_power_local_backtracking_gap
   have hu := hMu k hkMu
   have hl := hMl (2 * k) hkMl
   rw [div_lt_iff₀ hkR] at hu
-  have h2kcast : ((2 * k : ℕ) : ℝ) = 2 * (k : ℝ) := by push_cast; ring
-  rw [div_lt_iff₀ h2kR, h2kcast] at hl
+  have hl' : 3 * τ / 4 * ((2 * k : ℕ) : ℝ) <
+      dist x ((g ^ (2 * k)) • x) := (lt_div_iff₀ h2kR).mp hl
+  push_cast at hl'
   have hkδ : 8 * δ / τ < (k : ℝ) :=
     lt_of_le_of_lt (le_max_left _ _) (lt_of_le_of_lt (le_max_right _ _) hklarge)
   have hδgrow : 2 * δ < τ * (k : ℝ) / 4 := by
@@ -1547,7 +1560,7 @@ theorem two_mul_gromovProduct_zpow_le
   have hright := (orbit_quasiIsometricEmbedding hiso g x j k).2
   have hopposite := (orbit_quasiIsometricEmbedding hiso g x i k).1
   unfold gromovProduct
-  rw [dist_comm ((g ^ i) • x) ((g ^ j) • x)]
+  rw [dist_comm ((g ^ k) • x) ((g ^ j) • x)]
   linarith
 
 /-- Ordered form of the excursion estimate.  Along an interval of integer
@@ -1672,7 +1685,7 @@ theorem isLoxodromic_of_local_backtracking {δ C : ℝ}
   have hall := chain_backtracking_and_progress hδ hCδ hgap y hedge hlocal
   refine ⟨dist x (p • x) - 2 * (C + δ), by linarith, 0, le_rfl, ?_⟩
   intro n
-  exact (hall n).1
+  simpa [y] using (hall n).1
 
 /-- **The chain lemma.**  If every consecutive Gromov product along a chain is
 at least `c`, the endpoints' Gromov product is at least `c` less one `δ` per
@@ -1902,7 +1915,7 @@ theorem gromovProduct_chain_le_pow_two {δ : ℝ}
     (hc : ∀ i, i < N → c ≤ gromovProduct (y i) (y (i + 1)) w)
     (hend : c ≤ dist (y N) w) :
     c - k * δ ≤ gromovProduct (y 0) (y N) w := by
-  let z : ℕ → X := fun i => y (min i N)
+  let z : ℕ → X := fun i => y (Nat.min i N)
   have hz : ∀ i, i < 2 ^ k → c ≤ gromovProduct (z i) (z (i + 1)) w := by
     intro i hi
     by_cases hiN : i < N
@@ -1914,7 +1927,7 @@ theorem gromovProduct_chain_le_pow_two {δ : ℝ}
       simpa [z, Nat.min_eq_right hNi, Nat.min_eq_right hNis,
         gromovProduct_self] using hend
   have h := gromovProduct_chain_pow_two hδ hδ0 w c k z hz
-  simpa [z, Nat.min_eq_left hN] using h
+  simpa [z, Nat.min_eq_right hN] using h
 
 /-- For a nonempty chain the endpoint-distance condition needed for padding is
 automatic: the Gromov product on its final edge is bounded above by the
@@ -2013,7 +2026,6 @@ theorem eventually_affine_lt_pow_two (A B : ℝ) :
     · funext k
       push_cast
       field_simp
-      ring
     · ring
   filter_upwards [ht.eventually_lt_const zero_lt_one] with k hklt
   have hpow : (0 : ℝ) < (2 : ℝ) ^ k := by positivity
@@ -2033,11 +2045,20 @@ theorem exists_nat_gt_const_add_mul_clog (A B c d : ℕ) :
   have hkc : c < k := lt_of_lt_of_le (Nat.lt_succ_self c) (le_max_right _ _)
   have hpR := hK k hkK
   have hp : A * ((d + 1) * k) + B < 2 ^ k := by
+    have hassoc : A * ((d + 1) * k) + B = (A * (d + 1)) * k + B := by
+      ring
+    rw [hassoc]
     exact_mod_cast hpR
   have hclog : Nat.clog 2 (A * ((d + 1) * k) + B) ≤ k :=
     Nat.clog_le_of_le_pow (Nat.le_of_lt hp)
   refine ⟨(d + 1) * k, ?_⟩
-  omega
+  calc
+    c + d * Nat.clog 2 (A * ((d + 1) * k) + B)
+        ≤ c + d * k := Nat.add_le_add_left (Nat.mul_le_mul_left d hclog) c
+    _ < k + d * k := Nat.add_lt_add_right hkc (d * k)
+    _ = (d + 1) * k := by
+      simp only [Nat.add_mul, Nat.one_mul]
+      omega
 
 /-- An affine function of the binary ceiling logarithm is eventually strictly
 smaller than its argument. -/
@@ -2050,8 +2071,9 @@ theorem eventually_const_add_mul_clog_lt (c d : ℕ) :
   have hclog : K + 1 < Nat.clog 2 N := by
     rw [Nat.lt_clog_iff_pow_lt (by norm_num)]
     exact hMN
-  have hN1 : 1 < N := lt_of_lt_of_le (by norm_num : 1 < 2 ^ (K + 1))
-    (Nat.le_of_lt hMN)
+  have hpow1 : 1 < 2 ^ (K + 1) :=
+    Nat.one_lt_pow (Nat.succ_ne_zero K) (by norm_num)
+  have hN1 : 1 < N := lt_of_lt_of_le hpow1 (Nat.le_of_lt hMN)
   let t : ℕ := (Nat.clog 2 N).pred
   have htK : K ≤ t := by
     dsimp [t]
@@ -2065,7 +2087,13 @@ theorem eventually_const_add_mul_clog_lt (c d : ℕ) :
     dsimp [t]
     have : 0 < Nat.clog 2 N := Nat.clog_pos (by norm_num) hN1
     omega
-  omega
+  calc
+    c + d * Nat.clog 2 N = c + d * (t + 1) := by rw [ht]
+    _ = d * t + (c + d) := by
+      simp only [Nat.mul_add, Nat.mul_one]
+      omega
+    _ < 2 ^ t := hp
+    _ < N := htN
 
 /-- Consequently, a positive linear function cannot be bounded by a constant
 plus `δ·clog₂` for arbitrarily large natural arguments. -/
@@ -2080,12 +2108,11 @@ theorem exists_bound_of_linear_le_add_clog {l D δ : ℝ} (hl : 0 < l) :
       3 * D / l + (2 * δ / l) * Nat.clog 2 N := by
     have hl0 : l ≠ 0 := ne_of_gt hl
     calc
-      (N : ℝ) = (2 / l) * (l * N / 2) := by field_simp; ring
+      (N : ℝ) = (2 / l) * (l * N / 2) := by field_simp
       _ ≤ (2 / l) * (3 * D / 2 + Nat.clog 2 N * δ) :=
         mul_le_mul_of_nonneg_left hlin (by positivity)
       _ = 3 * D / l + (2 * δ / l) * Nat.clog 2 N := by
         field_simp [hl0]
-        ring
   have hlog0 : (0 : ℝ) ≤ Nat.clog 2 N := by positivity
   have hupper : (N : ℝ) ≤ c + d * Nat.clog 2 N := by
     have hdmul := mul_le_mul_of_nonneg_right hd hlog0
@@ -2155,18 +2182,24 @@ theorem exists_right_excursion_boundary (q : ℕ → ℝ) {D R : ℝ} :
       intro j hend hj hstep
       by_cases hnext : R ≤ q (j + 1)
       · have hend' : q ((j + 1) + n) < R := by
-          convert hend using 1 <;> omega
+          have heq : (j + 1) + n = j + (n + 1) := by omega
+          rw [heq]
+          exact hend
         have hstep' : ∀ i, i < n →
             q ((j + 1) + i) ≤ q ((j + 1) + i + 1) + D := by
           intro i hi
-          convert hstep (i + 1) (by omega) using 1 <;> omega
+          have hs := hstep (i + 1) (by omega)
+          have heq0 : j + (i + 1) = (j + 1) + i := by omega
+          simpa only [heq0] using hs
         obtain ⟨b, hbn, hbR, hall⟩ := ih (j + 1) hend' hnext hstep'
         refine ⟨b + 1, by omega, ?_, fun i hi => ?_⟩
-        · convert hbR using 1 <;> omega
+        · have heq : (j + 1) + b = j + (b + 1) := by omega
+          rwa [← heq]
         · rcases Nat.eq_zero_or_pos i with rfl | hi0
           · simpa using hj
           · have := hall (i - 1) (by omega)
-            convert this using 1 <;> omega
+            have heq : (j + 1) + (i - 1) = j + i := by omega
+            rwa [heq] at this
       · refine ⟨0, by omega, ?_, fun i hi => ?_⟩
         · have hs := hstep 0 (by omega)
           simp only [add_zero] at hs ⊢
@@ -2207,6 +2240,20 @@ theorem IsGeodesicSegment.dist_endpoints {f : ℝ → X} {a b : ℝ} (hab : a �
   rw [h a ⟨le_refl a, hab⟩ b ⟨hab, le_refl b⟩,
     abs_of_nonpos (by linarith : a - b ≤ 0)]
   ring
+
+/-- Reversing an arclength geodesic on `[0,D]` gives an arclength geodesic
+with the opposite orientation. -/
+theorem IsGeodesicSegment.reverse_zero {f : ℝ → X} {D : ℝ}
+    (hD : 0 ≤ D) (h : IsGeodesicSegment f 0 D) :
+    IsGeodesicSegment (fun t => f (D - t)) 0 D := by
+  intro s hs t ht
+  have hs' : D - s ∈ Set.Icc (0 : ℝ) D := by
+    constructor <;> linarith [hs.1, hs.2]
+  have ht' : D - t ∈ Set.Icc (0 : ℝ) D := by
+    constructor <;> linarith [ht.1, ht.2]
+  rw [h (D - s) hs' (D - t) ht']
+  have he : D - s - (D - t) = -(s - t) := by ring
+  rw [he, abs_neg]
 
 /-- **The triangle equality along a geodesic.**  A point between `f a` and `f b`
 sees them with Gromov product zero.  This is the fact the Morse comparison is
@@ -2326,11 +2373,10 @@ theorem exists_loxodromic_mem_of_conj_zpow_eq_zpow_of_ne
   have hmemComm : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S := by
     have hconj : g ^ m * c⁻¹ * (g ^ m)⁻¹ ∈ S :=
       (inferInstance : S.Normal).conj_mem c⁻¹ (S.inv_mem hcS) (g ^ m)
-    exact S.mul_mem hcS hconj
+    simpa only [mul_assoc] using S.mul_mem hcS hconj
   have heq : c * g ^ m * c⁻¹ * (g ^ m)⁻¹ = g ^ (n - m) := by
     rw [hpower, ← zpow_neg, ← zpow_add]
     congr 1
-    ring
   have hmem : g ^ (n - m) ∈ S := by rwa [heq] at hmemComm
   exact ⟨g ^ (n - m), hmem, isLoxodromic_zpow hiso hg hdiff⟩
 
@@ -2421,6 +2467,37 @@ theorem gromovProduct_le_dist_of_mem_geodesic {f : ℝ → X} {a b s : ℝ}
   rw [dist_comm w (f s)]
   linarith
 
+/-- A finite family of strict real inequalities has a uniform positive
+margin.  This elementary compactness substitute is used when passing from
+`not (∃ i, q i ≤ E)` to a closed lower bound suitable for the dyadic chain
+estimate. -/
+theorem exists_pos_uniform_margin_fin (q : ℕ → ℝ) (E : ℝ) :
+    ∀ N : ℕ, (∀ i, i ≤ N → E < q i) →
+      ∃ eta : ℝ, 0 < eta ∧ ∀ i, i ≤ N → E + eta ≤ q i := by
+  intro N
+  induction N with
+  | zero =>
+      intro h
+      refine ⟨(q 0 - E) / 2, by linarith [h 0 le_rfl], ?_⟩
+      intro i hi
+      have hi0 : i = 0 := by omega
+      subst i
+      linarith [h 0 le_rfl]
+  | succ N ih =>
+      intro h
+      obtain ⟨eta, heta, hprev⟩ := ih (fun i hi => h i (by omega))
+      let eta' : ℝ := min eta ((q (N + 1) - E) / 2)
+      have hnew : E < q (N + 1) := h (N + 1) le_rfl
+      have heta' : 0 < eta' := lt_min heta (by linarith)
+      refine ⟨eta', heta', fun i hi => ?_⟩
+      by_cases hiN : i ≤ N
+      · have hetaLe : eta' ≤ eta := min_le_left _ _
+        linarith [hprev i hiN]
+      · have hieq : i = N + 1 := by omega
+        subst i
+        have hle : eta' ≤ (q (N + 1) - E) / 2 := min_le_right _ _
+        linarith
+
 /-- Every point of a geodesic spanning a bounded-step chain is logarithmically
 close to some vertex of the chain.  If all vertices avoided a slightly larger
 ball around that geodesic point, `radius_le_of_chain_avoids_ball` would force
@@ -2435,13 +2512,15 @@ theorem exists_chain_point_dist_le_of_mem_geodesic {δ D : ℝ}
     {s : ℝ} (hs : s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N))) :
     ∃ i : ℕ, i ≤ N ∧ dist (y i) (f s) ≤ D / 2 + k * δ := by
   by_contra hnone
-  have hfar : ∀ i : ℕ, i ≤ N →
-      D / 2 + k * δ + 1 ≤ dist (y i) (f s) := by
+  have hstrict : ∀ i : ℕ, i ≤ N →
+      D / 2 + k * δ < dist (y i) (f s) := by
     intro i hi
     have hnot : ¬ dist (y i) (f s) ≤ D / 2 + k * δ := by
       intro hle
       exact hnone ⟨i, hi, hle⟩
-    linarith
+    exact lt_of_not_ge hnot
+  obtain ⟨eta, heta, hfar⟩ := exists_pos_uniform_margin_fin
+    (fun i => dist (y i) (f s)) (D / 2 + k * δ) N hstrict
   have hend : gromovProduct (y 0) (y N) (f s) ≤ 0 := by
     have h := gromovProduct_le_dist_of_mem_geodesic
       (a := 0) (b := dist (y 0) (y N)) (s := s)
@@ -2571,11 +2650,353 @@ theorem exists_close_on_other_side_of_geodesic_triangle {δ : ℝ}
   · left
     obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hAB hAB0 hAB1
       (fAC t)
-    exact ⟨s, hs, by rw [dist_comm]; linarith⟩
+    exact ⟨s, hs, by linarith⟩
   · right
     obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hBC hBC0 hBC1
       (fAC t)
-    exact ⟨s, hs, by rw [dist_comm]; linarith⟩
+    exact ⟨s, hs, by linarith⟩
+
+/-- If a vertex is farther than `r + 3δ` from the opposite side, then the
+point distance `r` down either adjacent side is `3δ`-close to the other
+adjacent side.  This is the fellow-travelling form of thin triangles used to
+extract a detour from a large orbit excursion. -/
+theorem exists_close_on_adjacent_side_of_far_vertex {δ r : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    {A B C : X} {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist A B))
+    (hAB0 : fAB 0 = A) (hAB1 : fAB (dist A B) = B)
+    (hAC : IsGeodesicSegment fAC 0 (dist A C))
+    (hAC0 : fAC 0 = A) (hAC1 : fAC (dist A C) = C)
+    (hCB : IsGeodesicSegment fCB 0 (dist C B))
+    (hCB0 : fCB 0 = C) (hCB1 : fCB (dist C B) = B)
+    (hr0 : 0 ≤ r) (hrAB : r ≤ dist A B)
+    (hfar : ∀ s ∈ Set.Icc (0 : ℝ) (dist A C),
+      r + 3 * δ < dist B (fAC s)) :
+    ∃ s ∈ Set.Icc (0 : ℝ) (dist C B),
+      dist (fAB (dist A B - r)) (fCB s) ≤ 3 * δ := by
+  have ht : dist A B - r ∈ Set.Icc (0 : ℝ) (dist A B) := by
+    constructor <;> linarith [dist_nonneg (x := A) (y := B)]
+  have hBr : dist B (fAB (dist A B - r)) = r := by
+    have h := hAB (dist A B) ⟨dist_nonneg, le_rfl⟩
+      (dist A B - r) ht
+    rw [hAB1] at h
+    rw [h, abs_of_nonneg (by linarith)]
+    ring
+  have hthin := exists_close_on_other_side_of_geodesic_triangle hδ hδ0
+    hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1 ht
+  rcases hthin with hglobal | hadjacent
+  · obtain ⟨s, hs, hnear⟩ := hglobal
+    have htri := dist_triangle B (fAB (dist A B - r)) (fAC s)
+    rw [hBr] at htri
+    exact False.elim (by linarith [hfar s hs])
+  · exact hadjacent
+
+/-- Synchronous form of the far-vertex fellow-travelling lemma.  At equal
+distance `r` from the far vertex, the two adjacent sides are `6δ`-close. -/
+theorem dist_equal_radius_sides_le_of_far_vertex {δ r : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    {A B C : X} {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist A B))
+    (hAB0 : fAB 0 = A) (hAB1 : fAB (dist A B) = B)
+    (hAC : IsGeodesicSegment fAC 0 (dist A C))
+    (hAC0 : fAC 0 = A) (hAC1 : fAC (dist A C) = C)
+    (hCB : IsGeodesicSegment fCB 0 (dist C B))
+    (hCB0 : fCB 0 = C) (hCB1 : fCB (dist C B) = B)
+    (hr0 : 0 ≤ r) (hrAB : r ≤ dist A B) (hrCB : r ≤ dist C B)
+    (hfar : ∀ s ∈ Set.Icc (0 : ℝ) (dist A C),
+      r + 3 * δ < dist B (fAC s)) :
+    dist (fAB (dist A B - r)) (fCB (dist C B - r)) ≤ 6 * δ := by
+  obtain ⟨s, hs, hus⟩ := exists_close_on_adjacent_side_of_far_vertex
+    hδ hδ0 hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1 hr0 hrAB hfar
+  have hBr : dist B (fAB (dist A B - r)) = r := by
+    have ht : dist A B - r ∈ Set.Icc (0 : ℝ) (dist A B) := by
+      constructor <;> linarith [dist_nonneg (x := A) (y := B)]
+    have h := hAB (dist A B) ⟨dist_nonneg, le_rfl⟩
+      (dist A B - r) ht
+    rw [hAB1] at h
+    rw [h, abs_of_nonneg (by linarith)]
+    ring
+  have hBs : dist B (fCB s) = dist C B - s := by
+    have h := hCB (dist C B) ⟨dist_nonneg, le_rfl⟩ s hs
+    rw [hCB1] at h
+    rw [h, abs_of_nonneg (sub_nonneg.mpr hs.2)]
+  have hdiff : |(dist C B - s) - r| ≤ 3 * δ := by
+    have htri1 := dist_triangle B (fAB (dist A B - r)) (fCB s)
+    have htri2 := dist_triangle B (fCB s) (fAB (dist A B - r))
+    have hus' : dist (fCB s) (fAB (dist A B - r)) ≤ 3 * δ := by
+      rwa [dist_comm]
+    rw [hBr, hBs] at htri1 htri2
+    rw [abs_le]
+    constructor <;> linarith
+  have htCB : dist C B - r ∈ Set.Icc (0 : ℝ) (dist C B) := by
+    constructor <;> linarith [dist_nonneg (x := C) (y := B)]
+  have hside := hCB s hs (dist C B - r) htCB
+  have hside' : dist (fCB s) (fCB (dist C B - r)) ≤ 3 * δ := by
+    rw [hside]
+    have he : s - (dist C B - r) = -((dist C B - s) - r) := by ring
+    rw [he, abs_neg]
+    exact hdiff
+  exact le_trans (dist_triangle _ (fCB s) _) (by linarith)
+
+/-- Uniform initial-segment form of synchronous thinness.  If the whole
+opposite side avoids the open ball of radius `R` about `B`, then the two sides
+ending at `B` synchronously `6δ`-fellow-travel at every depth whose
+`3δ`-enlargement is at most `R`.
+
+This is deliberately phrased with the concrete geodesic parameters used by
+the excursion argument.  In a recursive subdivision, `B` is the far orbit
+vertex and `A--C` is the chord at the current scale; the conclusion can be
+reused at every smaller radius without choosing new comparison points. -/
+theorem dist_equal_radius_sides_le_until_opposite {delta R r : ℝ}
+    (hdelta : IsHyperbolicSpace delta X) (hdelta0 : 0 ≤ delta)
+    {A B C : X} {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist A B))
+    (hAB0 : fAB 0 = A) (hAB1 : fAB (dist A B) = B)
+    (hAC : IsGeodesicSegment fAC 0 (dist A C))
+    (hAC0 : fAC 0 = A) (hAC1 : fAC (dist A C) = C)
+    (hCB : IsGeodesicSegment fCB 0 (dist C B))
+    (hCB0 : fCB 0 = C) (hCB1 : fCB (dist C B) = B)
+    (hsep : ∀ s ∈ Set.Icc (0 : ℝ) (dist A C), R < dist B (fAC s))
+    (hr0 : 0 ≤ r) (hrAB : r ≤ dist A B) (hrCB : r ≤ dist C B)
+    (hrR : r + 3 * delta ≤ R) :
+    dist (fAB (dist A B - r)) (fCB (dist C B - r)) ≤ 6 * delta := by
+  apply dist_equal_radius_sides_le_of_far_vertex hdelta hdelta0
+    hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1 hr0 hrAB hrCB
+  intro s hs
+  exact lt_of_le_of_lt hrR (hsep s hs)
+
+/-- Set-valued version of the preceding lemma: the complete initial portions
+of the two adjacent sides, measured backwards from the separated vertex, are
+synchronously `6δ`-close.  Keeping the radius as an explicit member of an
+interval makes this directly usable when a dyadic recursion selects a natural
+or integer sampling radius. -/
+theorem adjacent_sides_fellow_travel_while_opposite_far {delta R T : ℝ}
+    (hdelta : IsHyperbolicSpace delta X) (hdelta0 : 0 ≤ delta)
+    {A B C : X} {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist A B))
+    (hAB0 : fAB 0 = A) (hAB1 : fAB (dist A B) = B)
+    (hAC : IsGeodesicSegment fAC 0 (dist A C))
+    (hAC0 : fAC 0 = A) (hAC1 : fAC (dist A C) = C)
+    (hCB : IsGeodesicSegment fCB 0 (dist C B))
+    (hCB0 : fCB 0 = C) (hCB1 : fCB (dist C B) = B)
+    (hsep : ∀ s ∈ Set.Icc (0 : ℝ) (dist A C), R < dist B (fAC s))
+    (hTAB : T ≤ dist A B) (hTCB : T ≤ dist C B)
+    (hTR : T + 3 * delta ≤ R) :
+    ∀ r ∈ Set.Icc (0 : ℝ) T,
+      dist (fAB (dist A B - r)) (fCB (dist C B - r)) ≤ 6 * delta := by
+  intro r hr
+  apply dist_equal_radius_sides_le_until_opposite hdelta hdelta0
+    hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1 hsep hr.1
+  · exact le_trans hr.2 hTAB
+  · exact le_trans hr.2 hTCB
+  · linarith [hr.2, hTR]
+
+/-- **Dyadic sampling across a far excursion vertex.**  Let `y 0,…,y N` be
+a bounded-step chain and let `y j` be far from the endpoint chord.  At depth
+`r` from `y j`, synchronous thinness gives two `6δ`-close points on the
+adjacent geodesics.  The logarithmic chain-density lemma then replaces those
+geodesic points by one chain vertex on each side of `j`.
+
+The conclusion records both estimates needed by the recursive Morse
+bootstrap: the sampled vertices are close to each other, while each is still
+almost distance `r` from the excursion vertex.  There is no Morse or
+local-to-global premise in this statement; all error terms are the explicit
+dyadic errors `D/2 + kδ`. -/
+theorem exists_chain_vertices_across_far_vertex {delta D r : ℝ}
+    (hdelta : IsHyperbolicSpace delta X) (hdelta0 : 0 ≤ delta)
+    (y : ℕ → X) {N j kL kR : ℕ} (hj0 : 0 < j) (hjN : j < N)
+    (hjpow : j ≤ 2 ^ kL) (hRpow : N - j ≤ 2 ^ kR)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist (y 0) (y j)))
+    (hAB0 : fAB 0 = y 0) (hAB1 : fAB (dist (y 0) (y j)) = y j)
+    (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
+    (hAC0 : fAC 0 = y 0) (hAC1 : fAC (dist (y 0) (y N)) = y N)
+    (hCB : IsGeodesicSegment fCB 0 (dist (y N) (y j)))
+    (hCB0 : fCB 0 = y N) (hCB1 : fCB (dist (y N) (y j)) = y j)
+    (hr0 : 0 ≤ r) (hrL : r ≤ dist (y 0) (y j))
+    (hrR : r ≤ dist (y N) (y j))
+    (hfar : ∀ s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)),
+      r + 3 * delta < dist (y j) (fAC s)) :
+    ∃ i q : ℕ,
+      i ≤ j ∧ q ≤ N - j ∧
+      dist (y i) (fAB (dist (y 0) (y j) - r)) ≤ D / 2 + kL * delta ∧
+      dist (y (j + q)) (fCB (dist (y N) (y j) - r)) ≤
+        D / 2 + kR * delta ∧
+      dist (y i) (y (j + q)) ≤
+        D + (kL + kR) * delta + 6 * delta ∧
+      r ≤ dist (y i) (y j) + (D / 2 + kL * delta) ∧
+      r ≤ dist (y (j + q)) (y j) + (D / 2 + kR * delta) := by
+  let z : ℕ → X := fun q => y (j + q)
+  let qCB : ℝ → X := fun t => fCB (dist (y N) (y j) - t)
+  have hNj0 : 0 < N - j := Nat.sub_pos_of_lt hjN
+  have hedgeL : ∀ i, i < j → dist (y i) (y (i + 1)) ≤ D := by
+    intro i hi
+    exact hedge i (lt_trans hi hjN)
+  have hedgeR : ∀ q, q < N - j → dist (z q) (z (q + 1)) ≤ D := by
+    intro q hq
+    have he := hedge (j + q) (by omega)
+    simpa only [z, Nat.add_assoc] using he
+  have hz0 : z 0 = y j := by simp [z]
+  have hzN : z (N - j) = y N := by
+    simp only [z]
+    congr 1
+    omega
+  have hqgeo : IsGeodesicSegment qCB 0 (dist (y j) (y N)) := by
+    have hrev := IsGeodesicSegment.reverse_zero
+      (dist_nonneg (x := y N) (y := y j)) hCB
+    dsimp only [qCB]
+    rw [dist_comm (y j) (y N)]
+    exact hrev
+  have hq0 : qCB 0 = y j := by simp [qCB, hCB1]
+  have hq1 : qCB (dist (y j) (y N)) = y N := by
+    simp [qCB, dist_comm (y j) (y N), hCB0]
+  have hqgeoZ : IsGeodesicSegment qCB 0 (dist (z 0) (z (N - j))) := by
+    rw [hz0, hzN]
+    exact hqgeo
+  have hq0Z : qCB 0 = z 0 := by rwa [hz0]
+  have hq1Z : qCB (dist (z 0) (z (N - j))) = z (N - j) := by
+    rw [hz0, hzN]
+    exact hq1
+  have hsL : dist (y 0) (y j) - r ∈
+      Set.Icc (0 : ℝ) (dist (y 0) (y j)) := by
+    constructor <;> linarith [dist_nonneg (x := y 0) (y := y j)]
+  have hsR : r ∈ Set.Icc (0 : ℝ) (dist (y j) (y N)) := by
+    constructor
+    · exact hr0
+    · rwa [dist_comm]
+  have hsRZ : r ∈ Set.Icc (0 : ℝ) (dist (z 0) (z (N - j))) := by
+    rw [hz0, hzN]
+    exact hsR
+  obtain ⟨i, hi, hiNear⟩ := exists_chain_point_dist_le_of_mem_geodesic
+    hdelta hdelta0 y j kL hj0 hjpow hedgeL hAB hAB0 hAB1 hsL
+  obtain ⟨q, hq, hqNear⟩ := exists_chain_point_dist_le_of_mem_geodesic
+    hdelta hdelta0 z (N - j) kR hNj0 hRpow hedgeR hqgeoZ hq0Z hq1Z hsRZ
+  have hsync := dist_equal_radius_sides_le_of_far_vertex
+    hdelta hdelta0 hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1
+    hr0 hrL hrR hfar
+  have hqNear' : dist (y (j + q))
+      (fCB (dist (y N) (y j) - r)) ≤ D / 2 + kR * delta := by
+    simpa [z, qCB] using hqNear
+  have hclose : dist (y i) (y (j + q)) ≤
+      D + (kL + kR) * delta + 6 * delta := by
+    have ht := dist_triangle4 (y i)
+      (fAB (dist (y 0) (y j) - r))
+      (fCB (dist (y N) (y j) - r)) (y (j + q))
+    rw [dist_comm (fCB (dist (y N) (y j) - r)) (y (j + q))] at ht
+    push_cast at ht ⊢
+    linarith
+  have hleftRadius : dist (y j)
+      (fAB (dist (y 0) (y j) - r)) = r := by
+    have ht := hAB (dist (y 0) (y j)) ⟨dist_nonneg, le_rfl⟩
+      (dist (y 0) (y j) - r) hsL
+    rw [hAB1] at ht
+    rw [ht, abs_of_nonneg (by linarith)]
+    ring
+  have hrightRadius : dist (y j)
+      (fCB (dist (y N) (y j) - r)) = r := by
+    have hs : dist (y N) (y j) - r ∈
+        Set.Icc (0 : ℝ) (dist (y N) (y j)) := by
+      constructor <;> linarith [dist_nonneg (x := y N) (y := y j)]
+    have ht := hCB (dist (y N) (y j)) ⟨dist_nonneg, le_rfl⟩
+      (dist (y N) (y j) - r) hs
+    rw [hCB1] at ht
+    rw [ht, abs_of_nonneg (by linarith)]
+    ring
+  refine ⟨i, q, hi, hq, hiNear, hqNear', hclose, ?_, ?_⟩
+  · have ht := dist_triangle (y j) (y i)
+      (fAB (dist (y 0) (y j) - r))
+    rw [hleftRadius, dist_comm (y j) (y i)] at ht
+    linarith
+  · have ht := dist_triangle (y j) (y (j + q))
+      (fCB (dist (y N) (y j) - r))
+    rw [hrightRadius, dist_comm (y j) (y (j + q))] at ht
+    linarith
+
+/-- The distance across `n` consecutive edges of a `D`-bounded chain is at
+most `nD`. -/
+theorem dist_chain_le_nat_mul {D : ℝ} (y : ℕ → X) {N a n : ℕ}
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (han : a + n ≤ N) :
+    dist (y a) (y (a + n)) ≤ n * D := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+      have ihan : a + n ≤ N := by omega
+      have hnN : a + n < N := by omega
+      have ht := dist_triangle (y a) (y (a + n)) (y (a + (n + 1)))
+      have he := hedge (a + n) hnN
+      have heq : a + n + 1 = a + (n + 1) := by omega
+      rw [heq] at he
+      have hi := ih ihan
+      push_cast at hi ht ⊢
+      linarith
+
+/-- **Quantitative recursive-detour inequality.**  For a chain with positive
+linear progress, a vertex whose endpoint chord stays farther than
+`r + 3δ` cannot have arbitrarily large depth `r`.  Dyadic sampling supplies a
+left/right pair separated from the vertex; bounded edge length gives a lower
+bound on their parameter separation, while positive progress and synchronous
+thinness give the opposing upper bound.
+
+This is the closed numerical output of one recursive subdivision step.  Its
+right-hand side depends only on the two dyadic depths `kL,kR`, not on the
+chosen sample vertices. -/
+theorem two_mul_progress_mul_far_radius_le {delta D l r : ℝ}
+    (hdelta : IsHyperbolicSpace delta X) (hdelta0 : 0 ≤ delta)
+    (hD0 : 0 ≤ D) (hl : 0 < l)
+    (y : ℕ → X) {N j kL kR : ℕ} (hj0 : 0 < j) (hjN : j < N)
+    (hjpow : j ≤ 2 ^ kL) (hRpow : N - j ≤ 2 ^ kR)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (hprogress : ∀ a b : ℕ, a ≤ b → b ≤ N →
+      l * ((b - a : ℕ) : ℝ) ≤ dist (y a) (y b))
+    {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist (y 0) (y j)))
+    (hAB0 : fAB 0 = y 0) (hAB1 : fAB (dist (y 0) (y j)) = y j)
+    (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
+    (hAC0 : fAC 0 = y 0) (hAC1 : fAC (dist (y 0) (y N)) = y N)
+    (hCB : IsGeodesicSegment fCB 0 (dist (y N) (y j)))
+    (hCB0 : fCB 0 = y N) (hCB1 : fCB (dist (y N) (y j)) = y j)
+    (hr0 : 0 ≤ r) (hrL : r ≤ dist (y 0) (y j))
+    (hrR : r ≤ dist (y N) (y j))
+    (hfar : ∀ s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)),
+      r + 3 * delta < dist (y j) (fAC s)) :
+    2 * l * r ≤
+      D * (D + (kL + kR) * delta + 6 * delta) +
+        l * (D + (kL + kR) * delta) := by
+  obtain ⟨i, q, hi, hq, hiNear, hqNear, hclose, hiRadius, hqRadius⟩ :=
+    exists_chain_vertices_across_far_vertex hdelta hdelta0 y hj0 hjN
+      hjpow hRpow hedge hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1
+      hr0 hrL hrR hfar
+  have hjqN : j + q ≤ N := by omega
+  have hiJq : i ≤ j + q := le_trans hi (Nat.le_add_right j q)
+  have hdiff : (j + q) - i = (j - i) + q := by omega
+  have hparam := hprogress i (j + q) hiJq hjqN
+  rw [hdiff] at hparam
+  have hparamUpper : l * (((j - i) + q : ℕ) : ℝ) ≤
+      D + (kL + kR) * delta + 6 * delta :=
+    le_trans hparam hclose
+  have hleft : dist (y i) (y j) ≤ ((j - i : ℕ) : ℝ) * D := by
+    have hiadd : i + (j - i) = j := Nat.add_sub_of_le hi
+    have h := dist_chain_le_nat_mul y hedge (a := i) (n := j - i) (by omega)
+    rw [hiadd] at h
+    exact h
+  have hright : dist (y (j + q)) (y j) ≤ (q : ℝ) * D := by
+    have h := dist_chain_le_nat_mul y hedge (a := j) (n := q) hjqN
+    rw [dist_comm]
+    exact h
+  have hradius : 2 * r ≤
+      D * (((j - i) + q : ℕ) : ℝ) +
+        (D + (kL + kR) * delta) := by
+    have hcast : (((j - i) + q : ℕ) : ℝ) =
+        ((j - i : ℕ) : ℝ) + (q : ℝ) := by push_cast; rfl
+    rw [hcast]
+    push_cast at hiRadius hqRadius ⊢
+    nlinarith
+  have hscaledRadius := mul_le_mul_of_nonneg_left hradius (le_of_lt hl)
+  have hscaledParam := mul_le_mul_of_nonneg_left hparamUpper hD0
+  push_cast at hscaledRadius hscaledParam ⊢
+  nlinarith
 
 /-- **Endpoint stability for a bounded-turn orbit.**  Under the strict local
 backtracking gap, the penultimate point of every finite orbit segment lies
@@ -2611,12 +3032,12 @@ theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
   have hNm : N - 1 + 1 = N := Nat.sub_add_cancel hN
   have hback := (hall (N - 1)).2
   rw [hNm] at hback
+  simp [y] at hback
   obtain ⟨f, hf, hf0, hf1⟩ := hgeo x ((p ^ N) • x)
   obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hf hf0 hf1
     ((p ^ (N - 1)) • x)
   refine ⟨f, s, hf, hf0, hf1, hs, ?_⟩
-  rw [dist_comm]
-  exact le_trans hnear (by linarith)
+  linarith [hnear, hback, hδ0]
 
 /-! ### Fellow-travelling of geodesics
 

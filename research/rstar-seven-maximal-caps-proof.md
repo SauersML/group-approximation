@@ -19,3 +19,16 @@ fourth.  It is nonzero and contains the cap in its one-fiber.
 Every `C_lambda` has four points, the maximum cap size, so the seven nonzero
 functionals give exactly the seven maximal caps.  Translating back from the
 ghost gives `(FMC3)` and the stated two-row affine branch.
+
+Every zero-, one-, or two-point subset is a cap.  Of the thirty-five triples,
+exactly the seven Fano lines fail to be caps, leaving twenty-eight cap
+triples.  The preceding classification gives exactly seven cap quadruples
+and none of greater size.  This proves `(FMC4)` and the total
+`1+7+21+28+7=64`.
+
+A subset is a line-blocking set exactly when its complement contains no
+line, hence exactly when that complement is a cap.  The maximum cap size four
+gives minimum blocking size three.  A three-point blocker has a four-point
+cap complement, so the complement is `C_lambda`; its complement is the
+kernel of `lambda` with zero removed, which is a Fano line.  Conversely every
+line has a maximal-cap complement.

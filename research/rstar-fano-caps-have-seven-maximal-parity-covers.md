@@ -3,6 +3,8 @@ rg: 2
 id: rstar-fano-caps-have-seven-maximal-parity-covers
 kind: claim
 title: Seven nonzero parity characters are the maximal Fano-cap cover menu
+artifacts:
+  - experiments/rstar_fano_geometry.py
 distinct_from:
   rstar-fano-ghost-affine-hull-criterion: that identifies affine safety with avoiding Fano lines; this classifies every safe support by one of seven maximal caps and compresses the branch menu.
   culf-mastel-rstar-uniform-fano-cap-profile: that conditionally selects and combines context profiles; this reduces its local choices to seven explicit parity rows without proving that a suitable model exists.
@@ -35,3 +37,30 @@ a_2 x_2+a_3 x_3+a_4 x_4=1,
 Together with `x_1+x_2+x_3+x_4=1`, this row excludes the unique ghost.
 Therefore an `m`-context cap-profile compiler needs only `7^m` branches,
 not all sixty-four local caps.
+
+The complete finite census has
+
+```text
+cap size       0   1   2   3   4
+number         1   7  21  28   7,                     (FMC4)
+```
+
+and no larger caps.  A set meets every Fano line exactly when its complement
+is a cap.  Hence the minimum blocking sets have size three; the seven minimum
+blocking sets are exactly the seven Fano lines, and their complements are
+the maximal caps above.
+
+Translated back to `R_*`, the seven rows and their four-point fibres are
+
+| `a` | extra row | surviving words |
+|---|---|---|
+| `001` | `x_4=1` | `0001, 0111, 1011, 1101` |
+| `010` | `x_3=1` | `0010, 0111, 1011, 1110` |
+| `011` | `x_3+x_4=1` | `0001, 0010, 1101, 1110` |
+| `100` | `x_2=1` | `0100, 0111, 1101, 1110` |
+| `101` | `x_2+x_4=1` | `0001, 0100, 1011, 1110` |
+| `110` | `x_2+x_3=1` | `0010, 0100, 1011, 1101` |
+| `111` | `x_2+x_3+x_4=1` | `0001, 0010, 0100, 0111` |
+
+`experiments/rstar_fano_geometry.py` independently exhausts all subsets,
+blocking sets, and character fibres.

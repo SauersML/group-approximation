@@ -90,3 +90,13 @@ orientation at all, and superrank sees only `mu^2`; neither turns the native
 odd Whitehead transport of one typed corner into an identification of these
 two adjoint Reynolds ranges.  The remaining same-reservoir/selector seam is
 therefore strictly a mixed-return theorem, not a missing PI calculation.
+
+The exact endpoint and the main algebraic firewall for that theorem are now
+isolated.  `balanced-controlled-whitehead-return-checksum` expresses the
+return as one finite trace-square overlap and shows that canonical balanced
+orientation forces `1/32-o(1)` leakage for **every** actuator.  Conversely,
+`orientation-graded-mixed-returns-have-a-balanced-double` proves that any
+larger exact presentation retaining the stable-letter `C_2` grading inherits
+an exact balanced marked double.  Hence an even-grade Whitehead return cannot
+select the missing range; the successful cell must break the orientation
+grading or invoke genuinely finite-matrix-only information.

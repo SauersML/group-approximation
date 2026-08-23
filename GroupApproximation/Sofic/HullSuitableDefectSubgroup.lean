@@ -359,46 +359,6 @@ end SuitableDefectSubgroup
 
 end HullSuitable
 
-/-! ## The normal defect of the slimmed source
-
-For the non-MF construction the embedded simple factor is unnecessary.  The
-normal subgroup fed to Osin is the compression defect itself.  Its chosen
-marked commutator is already a nonidentity member, so torsion-freeness makes
-that subgroup infinite; normality then makes it `s`-normal.  These are the
-exact algebraic hypotheses of the geometric argument and use only
-`BareDefectSourceData`. -/
-
-namespace BareDefectSourceData
-
-open HullSuitable
-
-variable {P : Type} {E : Type u} [Group P] [Group E]
-    (D : BareDefectSourceData P E)
-
-/-- The compression defect is infinite in a torsion-free ambient group,
-witnessed by the powers of its selected nontrivial marked commutator. -/
-theorem defectNormal_infinite (hE : IsPowerTorsionFree E) :
-    Infinite D.core.defectNormal :=
-  infinite_of_mem_of_not_isOfFinOrder D.witness_commutator_mem_defectNormal
-    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
-
-/-- The compression defect is `s`-normal: it is normal by construction and
-infinite by the selected marked commutator. -/
-theorem defectNormal_isSNormal (hE : IsPowerTorsionFree E) :
-    IsSNormal D.core.defectNormal :=
-  isSNormal_of_normal_of_mem_not_isOfFinOrder D.core.defectNormal
-    D.witness_commutator_mem_defectNormal
-    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
-
-/-- Hull's finite-normalizer clause for the bare defect is automatic from
-torsion-freeness of the ambient group. -/
-theorem defectNormal_normalizesNoNontrivialFinite
-    (hE : IsPowerTorsionFree E) :
-    NormalizesNoNontrivialFinite D.core.defectNormal :=
-  normalizesNoNontrivialFinite_of_torsionFree hE _
-
-end BareDefectSourceData
-
 /-! ## The instance at the Fournier--Facio defect datum -/
 
 namespace FournierFacioDefectData

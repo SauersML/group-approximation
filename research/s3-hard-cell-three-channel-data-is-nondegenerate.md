@@ -7,6 +7,7 @@ distinct_from:
   regular-subgroup-branching-is-hall-balanced: that proves bare regular-type incidence never has a Hall deficit; this retains coupled channel maps and proves three exact transforms are invertible.
   regular-chart-wedderburn-coefficient-compiler: that gives a general coefficient path-sum language for every finite group; this computes the specific three-dimensional local data for the S3/S4 hard cell.
   atlas-hard-packet-s3-channel-decoder: that asks whether the literal full hard packet exposes an invertible projected relation system; this claim establishes only the universal finite representation-theoretic matrices available to such a system.
+  s3-standard-operator-channel-has-fivefold-reduced-gauge: that counts five standard-channel sources for an arbitrary relative operator; the Racah matrix here acts only on the three intermediate carrier bracketings after an operator subchannel has been authenticated.
 artifacts:
   - notes/TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md
   - notes/FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md
@@ -79,3 +80,10 @@ cannot distinguish do have nondegenerate coupled-channel and moment data.
 This is not a decoder theorem: it does not say that the actual atlas relators
 measure these three coordinates, and it does not exactify the cross-chart
 hard prefix as an `S4` representation.
+
+Nor does the equality of the two dimensions `3` canonically identify the
+Racah intermediate-channel space with the `2,3,3 epsilon` extension-label
+space.  An arbitrary relative operator has the five standard-channel sources
+listed in `s3-standard-operator-channel-has-fivefold-reduced-gauge`.
+The packet must first isolate an extension-labelled triple inside that larger
+reduced operator channel.

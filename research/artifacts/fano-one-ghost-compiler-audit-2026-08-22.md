@@ -1,5 +1,56 @@
 # Fano one-ghost compiler audit (2026-08-22)
 
+## Seven-character integration delta
+
+The later full audit does not create a second compiler route.  Its genuine
+delta is integrated into the existing route as follows:
+
+- `rstar-fano-caps-have-seven-maximal-parity-covers` now records the exact
+  cap census, minimum blocking sets, and the table of all seven maximal
+  parity fibres;
+- `rstar-cap-support-is-one-character-row` records the missing operator
+  equivalence: cap support is exactly one identity `Y_a=-I` per context and
+  exactly factorization through one of the `7^m` affine LCS quotients;
+- `culf-mastel-rstar-halt-model-has-fano-cap-support` is now explicitly the
+  **FC-char** representation theorem and remains open;
+- `uniform-fano-profile-via-central-mark-or` consumes FC-char, enumerates the
+  `7^m` one-row profiles, and applies the already established exact LCS OR;
+- `perfect-lcs-via-rstar-fano-cap-profile` and
+  `re-oriented-lcs-compiler-gives-nonhyperlinear-group` remain the canonical
+  downstream conditional closure.
+
+Thus the audit changes neither the unconditional status nor the Kleene
+orientation.  It makes the open gate algebraically exact and removes the
+obsolete `64^m` profile menu.
+
+The finite checks are replayable with
+`experiments/rstar_fano_geometry.py`.  Besides the cap and blocking-set
+census, it confirms that the only Boolean polymorphisms of `R_*` in arities
+one, two, and three are the coordinate projections.  This low-arity result
+is retained as a scoped computational observation, not promoted to an
+all-arities clone claim and not used by the compiler.
+
+## Fiberwise-selector audit
+
+The proposed fiberwise replacement is retained in
+`rstar-private-tail-fiberwise-cap-collapse`, with two corrections.
+
+First, a common annihilator of the one or two selected tail vectors gives
+`lambda dot t=0` and operator sign `+I`.  This is not FC-char: the nonzero
+zero-fibre is a Fano line.  The construction still has a valid local finish,
+because its new support contains at most two nonzero Fano points; a different
+functional takes value one on both and gives the required `-I` character.
+
+Second, the simultaneous replacement needs all three tail variables to be
+private to each individual target occurrence.  That is not the privacy
+property in Culf--Mastel Corollary 6.7.  Their auxiliary sets are private
+between source contexts, while each `D_i` is an entire target CSP gadget and
+may reuse auxiliaries internally.  More decisively,
+`rstar-private-tail-instances-are-trivial` proves that the claimed target
+syntax is always classically satisfiable, so it cannot be the published
+perfect-gap family.  `culf-mastel-rstar-has-no-private-tail-form` connects
+this firewall to the fixed-language gap.  FC-char therefore remains open.
+
 ## Established from the supplied argument
 
 - For `R_*=\{x:sum x_i=1\}\setminus\{1000\}`, explicit closure failures

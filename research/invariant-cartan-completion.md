@@ -7,8 +7,10 @@ invalidates: [growing-fiber-models]
 distinct_from:
   fiber-masa-free-cocycle: that asks to CONSTRUCT a model with no invariant masa; this asserts that every model has one — they are the two sides of the same coin and the graph should carry both
   coordinate-action-not-sofic: that is the imported Kun–Thom fact about the coset action; this is the missing lifting theorem which converts an abstract embedding into one to which that fact applies
+  scalar-trace-of-diagonal-normalizer-is-permutation-blind: that shows why canonical scalar traces cannot substitute for expectation-preserving diagonal control even after exact normalization.
 artifacts:
   - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 Given a trace-preserving embedding `Θ : M_KT → ∏_𝒰 M_(d_n)`, prove that after

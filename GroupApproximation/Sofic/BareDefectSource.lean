@@ -176,10 +176,10 @@ theorem core_defectNormal_le_ker_of_iota_surjective
   apply MonoidHom.mem_ker.mpr
   rw [map_commutatorElement]
   apply commutatorElement_eq_one_iff_commute.mpr
-  obtain ⟨q, hq⟩ := hsurj (f D.u⁻¹ * f (D.iota p) * f D.u)
+  obtain ⟨q, hq⟩ := hsurj ((f D.u)⁻¹ * f (D.iota p) * f D.u)
   have hcompressed :
       f (D.u * D.iota q * D.u⁻¹) = f (D.iota p) := by
-    change f D.u * f (D.iota q) * (f D.u)⁻¹ = f (D.iota p)
+    simp only [map_mul, map_inv]
     change f (D.iota q) = _ at hq
     rw [hq]
     group
@@ -823,5 +823,35 @@ theorem isEmpty_bareDefectSourceData_multiplicative_int
     {E : Type u} [Group E] :
     IsEmpty (BareDefectSourceData (Multiplicative ℤ) E) :=
   ⟨fun D => not_hasKazhdanPropertyT_multiplicative_int D.kazhdan⟩
+
+/-! ## The normal defect of a slimmed source -/
+
+namespace BareDefectSourceData
+
+open HullSuitable
+
+variable {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+
+/-- The compression defect is infinite in a torsion-free ambient group. -/
+theorem defectNormal_infinite (hE : IsPowerTorsionFree E) :
+    Infinite D.core.defectNormal :=
+  infinite_of_mem_of_not_isOfFinOrder D.witness_commutator_mem_defectNormal
+    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
+
+/-- The compression defect is `s`-normal. -/
+theorem defectNormal_isSNormal (hE : IsPowerTorsionFree E) :
+    IsSNormal D.core.defectNormal :=
+  isSNormal_of_normal_of_mem_not_isOfFinOrder D.core.defectNormal
+    D.witness_commutator_mem_defectNormal
+    (hE.not_isOfFinOrder D.witness_commutator_ne_one)
+
+/-- Torsion-freeness supplies Hull's finite-normalizer clause. -/
+theorem defectNormal_normalizesNoNontrivialFinite
+    (hE : IsPowerTorsionFree E) :
+    NormalizesNoNontrivialFinite D.core.defectNormal :=
+  normalizesNoNontrivialFinite_of_torsionFree hE _
+
+end BareDefectSourceData
 
 end GroupApproximation

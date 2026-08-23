@@ -52,21 +52,21 @@ def fromIndexed :
 
 @[simp] theorem toIndexed_inl (g : G) :
     toIndexed G (Monoid.Coprod.inl g) = CoprodI.of (i := false) g := by
-  simp [toIndexed] <;> rfl
+  simp [toIndexed]; rfl
 
 @[simp] theorem toIndexed_inr (z : Multiplicative ℤ) :
     toIndexed G (Monoid.Coprod.inr z) =
       CoprodI.of (i := true) (MulEquiv.ulift.symm z) := by
-  simp [toIndexed] <;> rfl
+  simp [toIndexed]; rfl
 
 @[simp] theorem fromIndexed_of_false (g : G) :
     fromIndexed G (CoprodI.of (i := false) g) = Monoid.Coprod.inl g := by
-  simp [fromIndexed] <;> rfl
+  simp [fromIndexed]; rfl
 
 @[simp] theorem fromIndexed_of_true (z : ULift.{u} (Multiplicative ℤ)) :
     fromIndexed G (CoprodI.of (i := true) z) =
       Monoid.Coprod.inr (MulEquiv.ulift z) := by
-  simp [fromIndexed] <;> rfl
+  simp [fromIndexed]; rfl
 
 theorem fromIndexed_comp_toIndexed :
     (fromIndexed G).comp (toIndexed G) = MonoidHom.id _ := by

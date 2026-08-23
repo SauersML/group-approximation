@@ -6,6 +6,9 @@ title: Every nonhyperlinear countable group has a finite amplification-invariant
 distinct_from:
   canonical-profile-collapse-compactness: that gives finite windows forcing collapse of a specified rational mark for a finitely generated presentation; this gives the local microstate characterization of nonhyperlinearity for an arbitrary countable group, with no marked word.
   hyperlinear-radical-is-finitely-witnessed: that assumes a word dies in every matrix-ultraproduct representation and extracts a finite presentation prefix; this excludes the canonical delta character itself on one finite multiplication window.
+  finite-matrix-defect-zero-is-exact-ultraproduct-realizability: that is the general finite polynomial-and-trace compactness theorem; this specializes it to canonical group multiplication and identifies the resulting gap with nonhyperlinearity.
+artifacts:
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 **ESTABLISHED.**  Let `Gamma` be a countable group.  If `Gamma` is not
@@ -27,6 +30,26 @@ in any finite dimension simultaneously satisfies
 
 One may equivalently use pairwise separation conditions after enlarging
 `F` to contain the relevant quotients.
+
+Equivalently, for a finite `E subset Gamma` containing `1`, define
+
+```text
+kappa_Gamma(E)
+ = inf_(d>=1) inf_(theta:E->U(d), theta(1)=I)
+   max( max_(x,y,xy in E)||theta(x)theta(y)-theta(xy)||_(2,d),
+        max_(x in E\{1})|tr_d(theta(x))| ).             (NFW0)
+```
+
+Then
+
+```text
+Gamma is hyperlinear  iff  kappa_Gamma(E)=0 for every finite E,
+Gamma is nonhyperlinear iff kappa_Gamma(E)>0 for some finite E.          (NFW0')
+```
+
+This is the exact minimax formulation: `kappa_Gamma(E)` already optimizes
+over every matrix dimension and every possible tuple, so its positivity
+defeats every convergence schedule at once.
 
 Indeed, if no such finite obstruction existed, exhaust `Gamma` by finite
 symmetric windows and choose a `1/n`-microstate on the `n`th window.  Their

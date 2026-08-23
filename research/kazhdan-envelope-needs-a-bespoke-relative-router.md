@@ -73,3 +73,12 @@ be long enough for the slack condition, avoid proper powers, and still make the
 router's own avatar exponent code answers on the free lane.  The expected mode
 of failure is not that the argument breaks but that no family satisfies all
 three at once; that would be worth recording as a refutation.
+
+**Weaker region-length split.**
+`relative-region-length-bound-from-fragment-slack` records a cheaper possible
+proof of the `U`-embedding and protected-length part.  Its strict
+region-versus-boundary inequality uses exactly the `1/7`, length-`42`
+fragment slack above and does not require locating a more-than-half external
+arc.  Even if it closes, the tie-relator family and
+`cyclicTorsionIntoFactors_of_slack` remain necessary; the node is therefore a
+factorization of this gate, not a new complete route.

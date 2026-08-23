@@ -534,6 +534,19 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("original result with a substantive source", "the two alternatives are exclusive"),
 )
 
+YAML_CALIBRATIONS = {
+    "three arXiv classes",
+    "original result with a substantive source",
+}
+
+
+def yaml_available() -> bool:
+    try:
+        import yaml  # noqa: F401, PLC0415
+    except ModuleNotFoundError:
+        return False
+    return True
+
 
 def plant(name: str, root: Path) -> None:
     """Introduce exactly one defect into a copy of the submission surface."""
@@ -616,6 +629,9 @@ def copy_surface(destination: Path) -> None:
 
 def self_test() -> int:
     failures = 0
+    has_yaml = yaml_available()
+    calibrated = 0
+    skipped = 0
     with tempfile.TemporaryDirectory(prefix="palomar-clean-") as clean:
         root = Path(clean)
         copy_surface(root)
@@ -629,9 +645,14 @@ def self_test() -> int:
                   f"{len(f.rows)} finding(s); the gate is not calibrated")
             failures += 1
         else:
-            print("self-test: clean copy is silent")
+            print("self-test: clean copy has no findings (NOTE lines are advisory)")
 
     for name, marker in CALIBRATION:
+        if name in YAML_CALIBRATIONS and not has_yaml:
+            print(f"self-test: {name} -> SKIPPED (PyYAML is not importable)")
+            skipped += 1
+            continue
+        calibrated += 1
         with tempfile.TemporaryDirectory(prefix="palomar-plant-") as directory:
             root = Path(directory)
             copy_surface(root)
@@ -651,8 +672,8 @@ def self_test() -> int:
     if failures:
         print(f"palomar self-test: {failures} calibration failure(s)")
         return 1
-    print(f"palomar self-test: clean tree silent, {len(CALIBRATION)} planted "
-          "defects each reported")
+    print(f"palomar self-test: clean tree has no findings, {calibrated} planted "
+          f"defects each reported, {skipped} YAML-dependent calibration(s) skipped")
     return 0
 
 

@@ -3,6 +3,8 @@ rg: 2
 id: culf-mastel-rstar-halt-model-has-fano-cap-support
 kind: claim
 title: The halting Culf--Mastel R-star instance has a perfect CE model with Fano-cap local supports
+artifacts:
+  - research/artifacts/fano-one-ghost-compiler-audit-2026-08-22.md
 distinct_from:
   culf-mastel-rstar-uniform-fano-cap-profile: that compiles all possible cap profiles into one marked LCS; this is now the sole source-specific existence statement needed for that finite compilation.
   rstar-fano-cap-support-preserves-nonru-affine-relaxation: that proves soundness after a cap profile is given; this asks whether the published completeness construction supplies such a profile.
@@ -14,6 +16,22 @@ Culf--Mastel family over `R_*` such that, in every `R_*` context, its positive
 joint spectral support becomes a Fano cap after translation by the ghost.
 
 Equivalently, no local support contains all three points of a Fano line.
+By `rstar-cap-support-is-one-character-row`, this open assertion is exactly
+the following finite representation theorem, called **FC-char** in the
+2026-08-22 audit:
+
+```text
+for every HALT instance there is a perfect CE representation such that,
+for every nonlinear context c, some a_c != 0 satisfies
+
+X_(c,2)^(a_(c,2)) X_(c,3)^(a_(c,3)) X_(c,4)^(a_(c,4)) = -I.    (FCC1)
+```
+
+Equivalently, the representation factors through one of the `7^m` explicit
+two-row affine LCS profiles.  The character may depend on the representation
+and on the context; no computable canonical choice is required because the
+finite exact OR compiler enumerates every profile.
+
 This must be checked in the actual perfect-completeness reduction to the
 fixed language; NP-hardness of `R_*` alone does not preserve quantum support.
 `culf-mastel-rstar-reduction-is-support-blind` verifies that Theorem 6.8
@@ -86,13 +104,25 @@ no-Fano-line support conclusion.
   affine, a contradiction.  Radius-two commutation therefore supplies the
   operator step of joint pruning but cannot supply its required line-hitting
   combinatorics here.
-- `rstar-fano-caps-have-seven-maximal-parity-covers` reduces the conditional
-  branch menu to seven nonzero parity characters per context.  This makes the
-  downstream compiler smaller but does not select one character in the
-  HALT model.  Likewise
+- `rstar-cap-support-is-one-character-row` proves that cap support is exactly
+  one fixed nonzero character identity per context and exactly factorization
+  through one of the `7^m` affine LCS profiles.  This makes the downstream
+  compiler smaller and turns the present node into `(FCC1)`, but does not
+  select one character in the HALT model.  Likewise
   `fano-maximal-cap-overlap-has-positive-sequential-mass` gives a profile of
   squared sequential mass at least `(4/7)^m`; such a product need not be a
   common reducing corner, so the central-core firewall still applies.
+- The fiberwise auxiliary selector is valid only under a stronger syntax;
+  see `rstar-private-tail-fiberwise-cap-collapse`.  Its displayed common
+  annihilator gives the homogeneous row `lambda dot t=0`, whose three
+  nonzero solutions form a Fano line and whose operator sign is `+I`, not
+  FC-char's `-I`.  The local argument is repaired because the replacement
+  support has at most two points, so another functional takes value one on
+  both.  The global application nevertheless fails:
+  `culf-mastel-rstar-has-no-private-tail-form` proves that the published hard
+  family cannot have three occurrence-private auxiliary coordinates in every
+  target row.  Corollary 6.7 makes auxiliaries private between source
+  gadgets, not between the `R_*` occurrences inside one gadget.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

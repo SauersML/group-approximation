@@ -7,6 +7,9 @@ distinct_from:
   separable-finite-algebras-have-symmetry-bases: that supplies the countable orthonormal symmetry coordinates; this extracts a finite matrix-excluding moment window from non-embeddability.
   non-ce-bcs-has-finite-dimensional-forbidden-mass-gap: that gives an explicit finite BCS forbidden-projection energy; this applies to any separable diffuse non-CE finite algebra but yields only an abstract finite trace profile.
   projectively-closed-symmetry-bases-are-hyperfinite: that rules out a projective multiplication law for the whole basis; this needs no multiplicative closure and isolates finitely many spread moments.
+  finite-matrix-defect-zero-is-exact-ultraproduct-realizability: that is the abstract finite-defect compactness equivalence; this uses a complete symmetry basis to produce a forbidden finite moment packet from a specified non-CE algebra.
+artifacts:
+  - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
 ---
 
 **ESTABLISHED.**  Let `(M,tau)` be a diffuse finite von Neumann algebra with

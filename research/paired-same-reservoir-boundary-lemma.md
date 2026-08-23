@@ -276,6 +276,21 @@ Thus neither a standard-polynomial comparison nor bare superrank closes the
 selector seam; the surviving PI route is precisely a same-reservoir
 Reynolds-return theorem.
 
+That remaining theorem now has an exact scalar endpoint.
+`balanced-controlled-whitehead-return-checksum` shows that for **every**
+candidate Whitehead actuator `W`, the returned adjoint leakage on canonical
+packet microstates is at least `1/32-o(1)`.  Equivalently, it is enough for
+the mixed cell to force one finite trace-square checksum to within
+`o(1)` of the Pauli Reynolds rank `1/16`; the controlled rank ceiling is
+`1/32+o(1)`, so this immediately pays fixed HS energy.  However,
+`orientation-graded-mixed-returns-have-a-balanced-double` gives a sharp
+firewall: if the enlarged mixed presentation still maps to `C_2` by counting
+the controlled stable letter and the Whitehead actuator is even, tensoring
+with the two characters produces an exact balanced marked representation.
+Thus further even Whitehead/Steinberg relations cannot force the checksum.
+The surviving return must break that grading through an odd selector
+coupling or use a finite-matrix-only coordinate estimate.
+
 There is one useful relaxation if several returned prefix cells can be linked
 cyclically.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` permits a
 different selected carrier `P_i` at every cell and proves

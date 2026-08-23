@@ -6,6 +6,7 @@ title: Every separable diffuse finite von Neumann algebra has an orthonormal bas
 distinct_from:
   non-ru-bcs-is-satisfiable-in-a-group-factor: that asks for a non-CE algebra inside a canonical group factor; this supplies a unitary Hilbert-space basis inside the algebra itself, without multiplicative closure or a regular group trace.
   group-basis-actions-have-permutation-koopman-spectrum: that gives a necessary spectral condition when a basis is already indexed and permuted by a group action; this supplies no permutation or multiplication law on its basis.
+  relative-symmetry-norms-small-density-residual: that is the nonseparable relative one-step norming lemma under a strict density gap; this is the earlier complete separable basis theorem.
 artifacts:
   - research/artifacts/kadison-symmetry-basis-groupification-audit-2026-08-21.md
 ---

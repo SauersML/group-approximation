@@ -4,7 +4,8 @@ id: diagonal-tensor-trace-power-algebra-proof
 kind: route
 title: Compute the diagonal character and exhibit a strict finite-group tensor gap
 target: diagonal-tensor-trace-powers-forget-full-gns-tensor
-requires: []
+requires:
+  - non-ce-trace-does-not-promote-to-subgroup-character-gap
 ---
 
 The tensor product trace gives `(DTP1)` immediately, and faithfulness of the
@@ -22,3 +23,6 @@ summation gives the stated scalar repair but only replaces one diagonal
 algebra by a finite direct sum of them.  None of these identities supplies
 non-CE inheritance from the full tensor product.
 
+The required no-go claim supplies the sharp limiting counterexample: its
+projectively faithful non-CE character on `*_(j>=1) C_2` has powers
+converging pointwise to that residually finite group's CE regular character.

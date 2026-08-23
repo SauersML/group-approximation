@@ -4,7 +4,8 @@ id: raw-gns-kernel-does-not-create-character-gap-proof
 kind: route
 title: Mix with the regular trace to erase every nontrivial scalar stabilizer
 target: non-ce-trace-does-not-promote-to-subgroup-character-gap
-requires: []
+requires:
+  - separable-finite-algebras-have-symmetry-bases
 ---
 
 First, the projective GNS kernel of a trace gives phase consistency but no
@@ -30,8 +31,10 @@ states unrelated to `tau`.
 
 There is an exact counterexample to any automatic soundness implication.
 Let `tau_0` be a non-Connes-embeddable trace on `C*(G)`, and let `tau_reg` be
-the regular trace.  The closure `T_fd` of finite-dimensional traces is closed.
-Since its complement is open, for all sufficiently small `epsilon>0`,
+the regular trace.  The set `T_CE` of Connes-embeddable traces on a separable
+unital C-star algebra is weak-star closed, by diagonal selection of finite
+moment microstates.  Since its complement is open, for all sufficiently small
+`epsilon>0`,
 
 ```text
 tau_epsilon=(1-epsilon)tau_0+epsilon tau_reg
@@ -52,3 +55,9 @@ of `C*(G)`, so it contains the trivial one-dimensional representation even
 though `tau_epsilon` is non-Connes-embeddable.  Thus non-embeddability of one
 trace does not automatically produce a subgroup-character gap; additional
 compiler structure is indispensable.
+
+For the stronger same-group example, use the symmetry basis of a separable
+diffuse non-CE algebra to define `tau_0` on `*_(j>=1) C_2`.  Its GNS algebra
+is the source algebra, but the free product is residually finite, so its
+regular trace is CE.  The same mixture has trivial projective kernel and
+remains non-CE for small positive `epsilon`.

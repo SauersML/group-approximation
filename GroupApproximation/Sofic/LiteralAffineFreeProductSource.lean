@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.LiteralAffineCongruenceSource
 import GroupApproximation.Higman.CoprodTorsion
-import GroupApproximation.Algebra.BassSerreFreeProductAction
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 
 /-!
@@ -17,6 +16,7 @@ namespace GroupApproximation.LiteralAffineFreeProductSource
 
 open scoped Monoid.Coprod
 open LiteralAffineCongruenceSource
+open LiteralAffineCongruenceBase
 
 noncomputable section
 
@@ -52,24 +52,11 @@ theorem inr_one_ne_one :
     (Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) : Ambient) ≠ 1 := by
   intro h
   have h' :
-      Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) =
-        Monoid.Coprod.inr (1 : Multiplicative ℤ) := by
+      (Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) : Ambient) =
+        (Monoid.Coprod.inr (1 : Multiplicative ℤ) : Ambient) := by
     simpa using h
   have := Monoid.Coprod.inr_injective h'
   norm_num at this
-
-/-! ## Adapter to the generic Bass--Serre geometry -/
-
-abbrev BassSerreVertex := BassSerreFreeProduct.Vertex Envelope
-
-def bassSerreBaseEdge : BassSerreVertex × BassSerreVertex :=
-  BassSerreFreeProduct.baseEdge Envelope
-
-/-- The generic free-product action applies definitionally to the amplified
-ambient.  Its base edge has trivial pointwise stabilizer. -/
-theorem bassSerreBaseEdge_pointwiseStabilizer_eq_bot :
-    MulAction.stabilizer Ambient bassSerreBaseEdge = ⊥ :=
-  BassSerreFreeProduct.baseEdge_pointwiseStabilizer_eq_bot Envelope
 
 /-- The unconditional amplified source-stage deliverable. -/
 theorem amplifiedDefectData_package :
