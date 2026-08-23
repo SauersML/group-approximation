@@ -85,12 +85,19 @@ defeats the previous independent-label objection at the carrier stage,
 because `E` is a functorial spectral function of the raw nonedge packet, not
 an added tensor factor.
 
-No orthogonality is claimed. Stabilizer invariance alone does not control
-`(KCC8)`, and averaging the `E_i` cannot create it. The exact next target is
-to calculate or bound the pair intersections of the conjugate free
-subfactors `g_i K g_i^(-1)`. If their centered parts are pairwise
-trace-orthogonal, then `(KCC8)=41/42`, reproducing the independent-refinement
-floor and closing this route negatively. If the arithmetic orbital
-intersections instead force `(KCC8)=0` (or make it payable by section/root
-defect), `(KCC7)` supplies the missing chart PVM and can be fed directly to
-the existing EDA11 phase-tag ledger.
+The intersection calculation is now resolved far enough to close this route
+negatively.  `kesten-chart-carriers-have-a-twenty-five-over-forty-two-gram-floor`
+computes `m=16` and proves that `K_i cap K_j={1}` for the 1,050 ordered
+pairs outside the paired 16-valent arithmetic orbital.  Centered trace
+orthogonality on those pairs alone gives
+
+```text
+G_K>=25/42.
+```
+
+The 336 unordered exceptional pairs may have larger intersections (each
+already shares the anchor-pair commutator), but their projection overlaps
+are nonnegative and can only increase this floor.  Thus `(KCC7)` is not a
+chart PVM and cannot feed EDA11; stabilizer-invariant Kesten spectral
+calculus recreates a large independent-refinement error inside the native
+graph-product model.
