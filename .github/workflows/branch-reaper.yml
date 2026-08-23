@@ -9,6 +9,10 @@ name: Retire finished agent branches
 on:
   pull_request:
     types: [closed]
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/branch-reaper.yml
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
