@@ -346,3 +346,54 @@ needs the other vertices' relations tracked.  (iii) The
 `lambda`-annihilator existence at every level along cofinal chains
 needs the actual orbit counts (threshold-law computation on
 `M_k \\ M_(k+1)`).
+
+## Addendum 12: two lemmas collapse the endgame to one restriction map
+
+Derived 2026-08-23 late (needs a verification pass but each step is
+short).
+
+**Lemma 1 (obs kills joint data).**  For tower data `e_k` invariant
+under `M_k = <H_k^(2), H_k^(3)>` with both mid-averages zero, the two
+cocycles satisfy the COMMON formula `c(g) = (1-g) S_n` for all
+letters `g` at level `<= n`, so on any word `w` the glued cocycle
+telescopes to `c~(w) = (1-w) S_n`; a relator `n in N` acts trivially
+on `V`, hence `c~(n) = 0`.  By the collapsed five-term sequence the
+class EXTENDS to `P_23^-`: joint tower data always lands in `St_23`.
+The only possible content of `(St_2 cap St_3)/St_23` is the GAUGE
+MISMATCH: extensions with literally equal `B_-`-restrictions but
+different trivializing towers `v^(2), v^(3)`, measured by
+`w_n := v_n^(2) - v_n^(3) in V^(G_n)` with increments in
+`Sigma_n := V^(H_n^(2)) + V^(H_n^(3))`, i.e. by `lim^1 {Sigma_n}`.
+
+**Lemma 2 (six-term collapse).**  `0 -> V^(M_n) -> V^(H^(2)_n) (+)
+V^(H^(3)_n) -> Sigma_n -> 0` is an exact sequence of towers
+(intersection of invariants = invariants of the generated group),
+`lim^2 = 0` for towers, `union M_n = P_23^-`, and Milnor identifies
+each `lim^1` with the corresponding `H^1`; so
+
+```text
+(St_2 cap St_3)/St_23  ~=  lim^1 {Sigma_n}
+  ~=  coker( H^1(P_23^-, L^0(Y)) --res--> H^1(P_2^-, L^0(Y)) (+)
+             H^1(P_3^-, L^0(Y)) )
+```
+
+(consistent with Mayer--Vietoris for `P_2^- *_(B_-) P_3^-`, whose
+`H^2` with divisible coefficients is `H^1(B_-)/(St_2 + St_3)` since
+locally finite groups have `H^2(., divisible) = 0`).
+
+**The sharp residual question.**  Is the restriction
+`H^1(P_23^-, L^0) -> H^1(P_2^-, L^0) (+) H^1(P_3^-, L^0)`
+surjective?  NON-surjectivity produces a nonzero `(St_2 cap
+St_3)/St_23`, feeding `E_2^(1,1)` (modulo the other-vertex quotient
+bookkeeping, caveat (ii) of Addendum 11) and hence
+`H^2(Lambda, L^0(Y)) != 0` and the failure of LP.  Surjectivity for
+all three vertex pairs (plus vanishing of the (0,2) opposition
+entries) would kill the last known Corollary E mechanism at
+Bernoulli actions.  Candidate non-surjectivity witness: the pair
+`(alpha_2, 0)` with `alpha_2` a fresh-block class on `P_2^-` -- a
+vertex preimage needs `M`-tower data whose `P_3^-`-telescope
+trivializes while its `P_2^-`-telescope realizes `alpha_2`; whether
+the mixed averaging geometry of `B_2`/`G_2` Levis permits or forbids
+this is exactly a two-family generalization of the proved
+characteristic-function method (one averaging family helping, one
+hindering).

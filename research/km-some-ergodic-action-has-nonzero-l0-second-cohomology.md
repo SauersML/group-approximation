@@ -111,3 +111,17 @@ Three recorded routes (details on the LP node):
   If `obs != 0`: `H^2(Lambda, L^0) != 0` and C*(Lambda) has NO LP
   (Corollary E); the LLP consequence additionally needs an
   unverified `LLP => LP` bridge for (T) groups.
+
+- 2026-08-23 (final collapse of the day).  Two lemmas (artifact
+  Addendum 12): (1) the relator obstruction `obs` VANISHES on every
+  jointly-invariant tower datum (common telescoping formula
+  `c~(w) = (1-w) S_n`), so joint data always extends to the vertex;
+  (2) tower six-term + Milnor identifies
+  `(St_2 cap St_3)/St_23 ~= coker(H^1(P_23^-, L^0) ->
+  H^1(P_2^-, L^0) (+) H^1(P_3^-, L^0))`.  The clause's sharpest
+  remaining sub-question is therefore the SURJECTIVITY of one
+  vertex-to-edges restriction map on first L^0-cohomology of locally
+  finite parabolics; non-surjectivity feeds `E_2^(1,1)` and kills
+  LP, surjectivity at all three vertices (plus the (0,2) opposition
+  entries vanishing) kills the last known Corollary E mechanism for
+  Bernoulli actions.
