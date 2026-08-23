@@ -1,0 +1,85 @@
+{
+  "chart_index": 2200,
+  "chart_normalizer_order": 40320,
+  "chart_order": 20160,
+  "double_coset_records": [
+    {
+      "S8_intersection_order": 40320,
+      "first_failure_histogram": {
+        "c_19243": 1,
+        "s_0": 38016,
+        "s_11": 2292,
+        "s_30": 8,
+        "s_44": 2,
+        "s_55": 1
+      },
+      "size": 40320,
+      "survivor_count": 0
+    },
+    {
+      "S8_intersection_order": 64,
+      "first_failure_histogram": {
+        "c_19243": 0,
+        "s_0": 25337088,
+        "s_11": 64512,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "size": 25401600,
+      "survivor_count": 0
+    },
+    {
+      "S8_intersection_order": 120,
+      "first_failure_histogram": {
+        "c_19243": 2,
+        "s_0": 13510656,
+        "s_11": 36848,
+        "s_30": 12,
+        "s_44": 0,
+        "s_55": 2
+      },
+      "size": 13547520,
+      "survivor_count": 0
+    },
+    {
+      "S8_intersection_order": 384,
+      "first_failure_histogram": {
+        "c_19243": 0,
+        "s_0": 4178304,
+        "s_11": 55284,
+        "s_30": 12,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "size": 4233600,
+      "survivor_count": 0
+    },
+    {
+      "S8_intersection_order": 1440,
+      "first_failure_histogram": {
+        "c_19243": 0,
+        "s_0": 1126656,
+        "s_11": 2304,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "size": 1128960,
+      "survivor_count": 0
+    }
+  ],
+  "double_cosets": 5,
+  "first_survivor": null,
+  "overgroup": "HS",
+  "overgroup_order": 44352000,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "survivor_count": 0
+}

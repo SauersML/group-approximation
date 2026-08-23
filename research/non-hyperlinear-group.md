@@ -125,6 +125,36 @@ matrix-ultraproduct models remain.  This is therefore a structural finite
 restriction on the exact escape, not evidence sufficient to assert the
 five-row phase lift.
 
+The next exact Atlas boundary is now completely isolated.  The CFSG carrier
+screen in `atlas-six-relator-next-simple-target-is-hs` shows that the only
+simple group with an `A8` carrier in the entire index interval from `991`
+through `2200` is the Higman--Sims group `HS`, at index `2200`.  Its relevant
+`A8` comes from the unique maximal `S8` class, and its normalizer realizes the
+outer marking, so the weak six-word problem is one finite marked-conjugator
+family rather than two parity cases.  The previously computed full
+thirty-packet `HS` obstruction is strictly stronger and cannot be used as a
+substitute; the live exact test is the dedicated six-relator double-coset
+screen.  Even a negative answer there would only raise the exact finite-simple
+floor.  A dimension-free ultraproduct energy estimate would still be needed
+for non-hyperlinearity.
+
+The finite-depth ZPC groupoid shortcut has also been decided negatively.
+For the readable Boolean algebra `D_0` and unreadable actor words, put
+`D_n=join_(|w|<=n) wD_0w^(-1)`.  The established equivalence
+`finite-depth-readable-groupoid-closes-iff-full-orbit-is-finite` says that
+`D_n` is normalized by all unreadable generators exactly when
+`D_n=D_(n+1)`, equivalently when it already contains the full translate
+orbit.  Thus bounded verifier depth cannot close an infinite readable orbit
+into a finite monomial groupoid; completing the boundary introduces precisely
+the uncontrolled return holonomy.  The source audit
+`bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs` sharpens the
+special-case possibility: BCV HALT permutation strategies do have finite
+readable orbit, but Cairn's perfect-gap IRS is extracted from a NONHALT
+instance, and the canonical unreadable Pauli shifts move every readable atom.
+Any positive ZPC compiler must therefore prove finite-orbit or invariant-fiber
+structure directly for that maximizing IRS, or use a genuinely nonmonomial
+trace-promotion mechanism.
+
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
 now records that fixed-window exactification of `A5^F` produces merely
