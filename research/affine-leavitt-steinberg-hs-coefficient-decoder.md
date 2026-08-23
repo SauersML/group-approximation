@@ -7,6 +7,8 @@ distinct_from:
   finite-window-decoder: that asks for three multiplicative products on a fixed-density Pauli corner extracted from an outer-character atlas; this asks for the named affine active idempotent and one relative binary Leavitt cell inside the fixed group St_5(L_A(k[C_aff])).
   hs-steinberg-root-kernel-is-linear-sofic: that promotes the whole quotient by the common root kernel to a rank-metric matrix ultraproduct; this needs only one active coefficient and four named Leavitt operators, together with comparison to one root word.
   approximate-relative-leavitt-cell-kills-active-trace: that proves the terminal trace inequality after coefficient operators have been decoded; this is precisely the missing root-to-coefficient extraction.
+  affine-leavitt-decoder-interface-is-mark-collapse-equivalent: that audits the existential carrier formulation and proves it is equivalent to direct marked-root collapse; the present statement is retained as a correct endpoint, but not as a smaller independent decoder lemma.
+  affine-leavitt-prescribed-root-spectral-carrier-decoder: that repairs the interface by fixing the carrier from the exactified order-p marked root before the Leavitt contractions are chosen.
 ---
 
 OPEN. Fix the finite presentation of
@@ -50,6 +52,15 @@ dimension-free modulus. This is the exact remaining analytic interface for
 the affine active Leavitt construction.
 
 ## Attempts
+
+- **The existential carrier is logically vacuous as an intermediate
+  object.**  `affine-leavitt-decoder-interface-is-mark-collapse-equivalent`
+  proves that `(ALD1)--(ALD2)` imply direct marked-root collapse, while direct
+  collapse satisfies them with `P=S_i=T_i=0`.  Thus this claim remains a
+  correct sufficient endpoint but is not a compressed root-to-coefficient
+  lemma.  The nonvacuous replacement
+  `affine-leavitt-prescribed-root-spectral-carrier-decoder` fixes `P` to be
+  the nontrivial spectral carrier of the exactified order-`p` root word.
 
 - **Exact finite-dimensional decoding is closed.** Root subgroups have finite
   image, their common kernel generates a finite coefficient quotient, and
