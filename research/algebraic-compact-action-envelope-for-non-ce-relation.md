@@ -261,6 +261,29 @@ That semidirect product is finitely generated and recursively presented, so
 Higman places it in a finitely presented non-hyperlinear group.  Thus a mixed
 module cannot hide its obstruction in the infinite `SL_3`-module tail.
 
+There is a positive reduction for the native `SL_3` representation packet.
+`centralizer-aperiodic-haar-actor-marginals-force-regular-trace` shows that,
+for an abelian module on which every nontrivial actor centralizer has infinite
+orbits away from zero, exact covariance plus the two separate marginal laws
+
+```text
+tau(V_a)=1_(a=0),             tau(U_g)=1_(g=e)
+```
+
+already force every mixed coefficient `tau(V_aU_g)` to be canonical. The
+proof is a Bessel argument on an infinite orthonormal centralizer orbit.
+Passing first to the torsion-free finite-index congruence subgroup
+`Gamma(3)<SL_3(Z)` makes the condition concrete: it holds for every regular
+finite-field lamp module, since `<g>` is infinite and translates finite
+supports aperiodically. Coinduction can then return a successful algebraic
+packet to `SL_3(Z)`. The regular lamp example itself is sofic and hence not
+the desired envelope, but this removes a real analytic gate: a future
+nonsplit, non-homoclinically-dense module satisfying the same aperiodicity
+needs only Haar lamp moments and regular actor moments, not an independent
+infinite family of mixed Fourier checks. The remaining construction problem
+is the inclusion of `N` together with those two marginals and exact
+covariance.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a

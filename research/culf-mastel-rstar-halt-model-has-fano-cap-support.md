@@ -178,3 +178,13 @@ no-Fano-line support conclusion.
   such postprocessing merely returns one input copy.  This does not address
   noncoordinatewise operator dilations or the existence of a different
   perfect trace.
+- Arbitrary finite contextual quantum auxiliaries do not define a weaker
+  intermediate compiler target.  By
+  `contextual-fano-cap-compiler-is-equivalent-to-perfect-lcs`, any effective
+  contextual construction which guarantees a cap-supported HALT model and
+  preserves NONHALT ultraproduct soundness already yields a
+  perfect-completeness LCS compiler via the finite profile OR.  Conversely a
+  perfect LCS compiler can be encoded by cap-supported `R_*` contexts using
+  ternary parity caps, two-coordinate commutation sections, and a finite
+  signed-petal constant gadget.  Contextuality remains a possible proof
+  method for FC-char, but not a lower-strength endpoint.
