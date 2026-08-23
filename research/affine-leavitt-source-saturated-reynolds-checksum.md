@@ -12,6 +12,7 @@ distinct_from:
   leavitt-forward-morita-polar-misses-reynolds-return: that computes the polar of the native forward coefficient chart and shows it is either gauge-uncontrolled or the exact label-amplifying rectangular escape; this requires a reverse cross-typed return Gram instead.
   leavitt-branch-reynolds-return-has-rectangular-gap: that names the canonical reverse candidate `R_1 Ad(U_0) R_s` and computes its exact source leakage; this asks for the new full-presentation estimate which pays that leakage.
   leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the three-path range-sum/diagonal-return fold as the first native word outside the typed Morita language; this asks for its finite-matrix same-output-root decoding into the Reynolds leakage.
+  leavitt-range-sum-fold-does-not-pay-reynolds: that satisfies the fold on independent central-character UT4 factors while retaining the rectangular Reynolds gap; this requires occurrence synchronization beyond scalar output equality.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -107,8 +108,8 @@ formula is presently needed: the live assertion is precisely that the
 additional full affine-Leavitt relations pay the transverse leakage in
 `(ASR4)`.  The depth-one coefficient and packet tables do not.
 
-The smallest native relation capable of making that payment is also now
-isolated.  `leavitt-range-sum-fold-is-first-object-erasing-row` compares, in
+The smallest native relation which must participate in that payment is also
+now isolated.  `leavitt-range-sum-fold-is-first-object-erasing-row` compares, in
 one long root, the two target range paths `s_0t_0+s_1t_1` with one source
 diagonal return `t_0s_0`.  All shorter/well-typed triangle pastings preserve
 the `E` versus `E direct_sum E` object distinction.  Thus the sharp remaining
@@ -125,3 +126,12 @@ proved is the finite-matrix promotion from equality of that one long-root
 observable to equality of the multiplicity reservoir on which its three
 coefficient paths were decoded.  This is the exact same-output-root decoder
 gate; no further search through ordinary typed Steinberg loops is needed.
+
+But `(ASR5)` is false from the displayed arguments alone.
+`leavitt-range-sum-fold-does-not-pay-reynolds` makes the fold and packet
+defects zero on independent central-character UT4 path factors while the
+left side stays `p^(-2)-p^(-4)`.  The live hypothesis must therefore add
+**occurrence synchronization**: the `s_i,t_i` occurrences in `r_fold` must
+be decoded as the same finite-matrix coefficient maps which generate
+`R_s,R_0,R_1`.  A scalar long-root fold or common marked carrier does not
+authenticate that reuse.

@@ -7,6 +7,7 @@ distinct_from:
   outer-root-leavitt-table: that realizes the two diagonal and two crossed-zero coefficient products through commuting outer roots; this adds the two range products and compares their sum with one diagonal return in the identical long root.
   mixed-steinberg-loops-admit-morita-rectangular-model: that proves every well-typed triangle pasting survives in the two-object Morita model; this identifies the smallest native word which is not a well-typed pasting because it folds the source and target object units together.
   affine-leavitt-source-saturated-reynolds-checksum: that asks for a finite-matrix adjoint Gram estimate; this identifies the fixed group word whose same-output-root decoding would have to supply that estimate.
+  leavitt-range-sum-fold-does-not-pay-reynolds: that tensors independent central-character UT4 path packets with the rectangular Weyl cell and proves the fold word itself is still insufficient; this identifies the fold as the first necessary row, not as a standalone decoder.
 ---
 
 **ESTABLISHED ALGEBRAIC REDUCTION.**  Work in the relative Leavitt ring with
@@ -72,6 +73,13 @@ equivalently a lower bound on one explicit finite average of squared traces
 of the cross words `Y_hU_0S_gU_0^*`.  Thus the unresolved decoder has a
 finite scalar output; it need not reconstruct a basis of the growing
 multiplicity commutant.
+
+The output equality alone cannot provide that lower bound.
+`leavitt-range-sum-fold-does-not-pay-reynolds` constructs an exact
+packet-plus-fold model retaining the positive leakage `(LRF5)`.  Thus the
+missing decoder must also identify the fold's coefficient **occurrences**
+with the branch packet maps; it cannot treat the three long-root outputs as
+independent central-character gadgets.
 
 Without that matrix-coordinate decoding, `(LRF4)` is only equality of one
 long-root observable and does not identify its multiplicity reservoir.
