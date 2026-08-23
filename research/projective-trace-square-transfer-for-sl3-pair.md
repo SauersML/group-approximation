@@ -3,6 +3,8 @@ rg: 2
 id: projective-trace-square-transfer-for-sl3-pair
 kind: claim
 title: Projective trace-square transfer for the co-dense SL3 arithmetic pair
+artifacts:
+  - research/artifacts/projective-transfer-five-consumer-audit-2026-08-23.md
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forces an actual subgroup-central unitary into the ambient commutant; this asks only that its commutator with the one ambient generator become scalar in normalized Hilbert--Schmidt norm.
   no-spherical-leak-in-matrix-ultraproducts: that excludes every nontrivial spherical component and is equivalent to full relative-commutant collapse; this permits a leak whenever its ambient commutator is scalar, because scalarity already suffices for the HNN trace contradiction.
@@ -46,6 +48,20 @@ The claim is projective: `(PTS1)` concludes that `[U,rho(h)]` is close to
 weakening consumed by the HNN marked word.
 
 ## Attempts
+
+- **The five direct consumers contain only one independent root-goal
+  obstruction.**
+  `projective-transfer-five-consumer-cascade-has-one-root-obstruction`
+  audits all five routes.  The direct HNN route already reaches the goal
+  from this claim alone; the other four consumers are reusable interfaces,
+  not weaker independent paths around the same missing estimate.  The
+  narrowest trace profile actually consumed is the canonical arithmetic
+  double, whose fold-collapse statement is equivalent to
+  non-hyperlinearity of that fixed double.  The strongest nonvacuous
+  sufficient subterminal currently isolated is one correctable double
+  vertex, and that statement lies on the unresolved soficity fork for the
+  type-zero building action `A` on `A/C`.  Accordingly the raw five-route
+  cascade count should not be read as five independent breakthrough chances.
 
 - **Full HNN regularity supplies an exact quasiregular unitary frame, but
   its projective energy has the wrong sign.**
