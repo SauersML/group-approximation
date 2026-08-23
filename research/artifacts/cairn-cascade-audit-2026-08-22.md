@@ -5,6 +5,68 @@ date: 2026-08-22
 
 # Cairn cascade audit
 
+## Current leverage audit after the six-relator reduction
+
+At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,
+44 refutations, 3,384 routes, and 249 frontier holes.  Only thirteen frontier
+claims have raw graph impact at least two.  Raw impact is not the right
+priority by itself: several high-impact nodes simply rename the full
+canonical-trace promotion problem.  The useful ranking is by impact times
+mathematical compression.
+
+| priority | frontier | forced/reusable consequence | present assessment |
+|---:|---|---|---|
+| 1 | `atlas-six-relator-quotient-identifies-h-bridge` | proves the five-row phase lift, the strict two-S3 ceiling, and the goal | best immediate target: four exact bridge equalities in one fixed quotient; finite quotients can falsify it |
+| 2 | `projective-trace-square-transfer-for-sl3-pair` | six claims, including the goal, four arithmetic collapses, and a reusable filtered actuator | broadest honest reusable cascade; needs one arithmetic-specific approximate transfer theorem |
+| 3 | `affine-frobenius-common-negative-carrier` | five claims including the goal | exact common-carrier hinge after all generic tight-frame escapes were classified |
+| 4 | `affine-leavitt-steinberg-hs-coefficient-decoder` | direct goal route plus the p-Heisenberg graft | unusually compressed: recover one projection, four contractions, and three Leavitt products |
+| 5 | `finite-presentation-must-expose-whole-module-with-uniform-defect` | counterfactually feeds seven module/PVM/Pauli descendants | strongest reusable compiler primitive, but moving-word and uniform-area firewalls make it much broader than Atlas |
+| 6 | `edgeful-or3-coefficient-link-compiler` | a five-node chain to the goal through three compiler routes | finite-looking, but the six-clique obstruction and canonical-HS carrier promotion remain |
+| 7 | `fixed-pi-degree-fingerprints-packet-label-factor` | PI-reservoir and scalable-socle routes | amplification-blind finite separator; the missing positive-density transverse factor is the hard part |
+| 8 | `traffic-branching-rounding-hierarchy` | hyperlinear implies sofic, hence the goal from the known nonsofic group | enormous conceptual payoff but presently an overbroad positive-realization theorem |
+
+The most under-wired node is
+`common-corner-mutual-bicommutant-extraction`.  Cairn records only one
+direct consumer, but its mathematical payload—make the anonymous
+multiplicity reservoir observable using one cross-Gram overlap and two mixed
+Pauli commutators—would be reusable by the PI-degree, Pauli/Schur,
+affine-Leavitt, and Atlas compressor families.  It deserves treatment as a
+shared research primitive rather than a private lemma of one route.
+
+The Atlas target has now compressed once more.  Put
+
+```text
+Gamma_6=(A8_1*A8_2)/<<s_0,s_11,s_30,s_44,s_55,c_19243>>.
+```
+
+If the two labelled `H=GL_3(2)` subgroups agree in `Gamma_6`, four finite
+van Kampen fillings of standard `H)-bridges telescope to the
+multiplicity-independent five-row HS inequality.  All analytic consumers
+after that inequality are already established, so this exact finite normal
+closure statement proves the goal.  Conversely, a finite quotient of
+`Gamma_6` which keeps both `A8` factors injective and separates one
+`H)-bridge gives an exact regular-representation countermodel.  The complete
+natural `A9` screen checks 362,880 conjugators: exactly one chart kills the
+five boundary rows and `c_19243` kills that survivor.  Thus `A9` supplies
+no countermodel, although it is not a proof about the universal quotient.
+
+The companion firewall is equally sharp.  If the twenty-seven phase
+occurrences are freed from the common orbit
+`P_x=lambda(x)Ulambda(x)^*`, there is an exact assignment with all six
+multiplicative holonomies equal to one and row-11 additive circulation of
+norm four.  Every phase can even be a trace-zero self-adjoint involution of
+the same conjugacy type.  Hence incidence, generic cycle Poincare/SOS, and
+separate local type matching cannot prove the Atlas inequality.  The
+prescribed coherent orbit—not the six abstract cycles—is the entire remaining
+resource.
+
+This changes the work order.  First decide the six-relator bridge quotient
+structurally.  In parallel, retain projective trace-square transfer as the
+best reusable arithmetic theorem and the affine-Frobenius carrier as the best
+independent algebraic-corner theorem.  Do not spend effort on universal
+HS-PCP, canonical trace promotion, or hyperlinear-to-sofic nodes until they
+are decomposed into comparably finite, falsifiable statements.
+
 ## Re-audit after direct attacks
 
 At commit `59e7ee6c2`, Cairn has 3,350 claims, 2,793 established claims,
