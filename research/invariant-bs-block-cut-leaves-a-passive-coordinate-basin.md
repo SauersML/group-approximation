@@ -7,6 +7,7 @@ distinct_from:
   regular-short-low-frequency-bs-source-hull-is-sublinear: that constructs the invariant hull and proves its density vanishes; this asks to split the physical involution across it and identify the analytic problem on the complement.
   bs14-thresholded-newton-needs-coordinate-basin: that states the global high/low residual threshold problem before an integrable active carrier has been built; this starts after the active source and both exits lie in one invariant subcore.
   low-rank-reflection-surgery-preserves-the-exact-bs-core: that controls a non-invariant finite-rank reflection change; this asks for a block decomposition by the new invariant hull and a basin theorem on its passive complement.
+  sublinear-bs-block-surgery-is-invisible-to-relative-liftability: that proves the proposed block cut, polarization, and exact active-block replacement leave the relative ultraproduct lifting class unchanged; this remains the open coordinate lift on the passive representative.
 ---
 
 **OPEN; UPDATED TERMINAL REGULAR-FACE GATE.**  Let `Q_n` be the
@@ -43,3 +44,23 @@ Full regular-quotient padding does not solve the `Q_n` block uniformly:
 restriction-lattice firewall and the rank-one Weil dimension blowup.  The
 small block must be changed to an efficient native endpoint cell; it cannot
 be swallowed by a whole regular congruence packet.
+
+There is no contradiction/ultraproduct shortcut from items 1--3 to item 4.
+`sublinear-bs-block-surgery-is-invisible-to-relative-liftability` proves
+that the entire block cut and arbitrary exact replacement of `Q_n` change
+the tuple by `o(1)` in flexible normalized HS.  The original and passive
+tuples therefore define the same exact relative ultraproduct homomorphism,
+and one is flexibly liftable by coordinate congruence endpoints exactly
+when the other is.  Exact order-three rounding of
+
+```text
+A=X S^2,       B=X R S,       B=A(S^(-2)RS)
+```
+
+also remains inside that same ultraproduct class and does not preserve the
+fixed relative product at the coordinates.  Hence even granting that the
+active hull captures every high singular carrier, block cutting merely
+produces a cleaner representative of the already isolated relative-lift
+problem.  A proof of item 4 must add a coordinate arithmetic or relative
+semiprojectivity theorem; it cannot follow from ultraproduct exactness or
+the tangent quotient alone.
