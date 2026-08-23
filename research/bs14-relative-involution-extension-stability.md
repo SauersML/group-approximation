@@ -70,6 +70,24 @@ congruence `(R,T)` core and align the extending involution.
 
 ## Attempts
 
+- **Both triangle rows exactify in one common square-free tuple.**
+  `iwahori-two-triangle-torsion-normal-form` first rounds `A=XT` to order
+  three and sets `T_1=XA_0`; it then rounds
+  `B_1=XT_1^2R` to order three and sets `R_1=T_1^(-2)XB_0`.  The
+  perturbation and the two surviving defects are bounded linearly by the
+  original five defects, uniformly in dimension.  Hence every enemy may be
+  normalized so that
+
+  ```text
+  X^2=1,       (XT)^3=1,       (XT^2R)^3=1
+  ```
+
+  hold exactly and only `XRX=R^(-1)` and `RTR^(-1)=T^4` remain approximate.
+  Equivalently, all finite-order lifting is discharged inside the exact
+  `C_2*C_3*C_3` torsion frame.  The basin problem is now precisely the
+  simultaneous two-structural-word quotient lift; separately rounding more
+  torsion relations cannot improve it.
+
 - **The square-root firewall is bypassed by retaining the actual BS
   coordinates.**  Independent first-triangle rounding really does fail:
   `relative-first-triangle-rounding-has-an-odd-root-branch-firewall`

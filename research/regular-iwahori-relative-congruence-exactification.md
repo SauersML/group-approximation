@@ -102,6 +102,14 @@ congruence quotients.  It does not establish `(RCE1)`.
   `T` displacement is `O(1/p)` but its `R` displacement tends to at least
   `1/2`.  The remaining basin theorem must align `(R,T)` jointly; no
   square-root path lifting or conductor-dependent odd-root choice remains.
+- **The finite torsion frame can be made exact before basin capture.**
+  `iwahori-two-triangle-torsion-normal-form` changes `(R,T)` by a universal
+  linear multiple of the two cubic defects so that `X^2`, `(XT)^3`, and
+  `(XT^2R)^3` all hold exactly.  Only inversion and fourth-power covariance
+  remain approximate.  Thus a qualitative lifting/semiprojectivity attack
+  has been reduced to two fixed structural words over an exact
+  `C_2*C_3*C_3` representation; exact endpoint classification and spectral
+  rounding have no further role before those two words are synchronized.
 - **Same-core gauge coercivity makes the terminal boundary exact.**  Once a
   congruence endpoint `(X_0,R_0,T_0)` has been authenticated on the same
   square-free core, put `c=XX_0`.  The involution and inversion rows give
