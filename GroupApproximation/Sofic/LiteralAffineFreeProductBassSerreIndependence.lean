@@ -1,5 +1,11 @@
 import GroupApproximation.Sofic.LiteralAffineFreeProductBassSerreDisplacement
 
+set_option linter.unusedSimpArgs false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySeqFocus false
+set_option linter.unnecessarySimpa false
+
 /-!
 # Independent axes for the amplified affine source
 
