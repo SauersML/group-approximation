@@ -125,7 +125,7 @@ theorem blockSeq_neg (m N : ℤ) (entry : ℤ → ℤ → ℤ) (i : ℤ) (hi : i
   simp only [blockFun, if_neg hcon]
 
 theorem blockSeq_out (m N : ℤ) (entry : ℤ → ℤ → ℤ) (q d : ℤ) (hm : 0 < m)
-    (hq : N < q) (hd0 : 0 ≤ d) (hdm : d < m) :
+    (hq : N < q) (hd0 : 0 ≤ d) (_hdm : d < m) :
     blockSeq m N entry (m * q + d) = 0 := by
   have hge : m * (N + 1) ≤ m * q := mul_le_mul_of_nonneg_left (by omega) hm.le
   have hcon : ¬ (0 ≤ m * q + d ∧ m * q + d < m * (N + 1)) := by
@@ -166,12 +166,12 @@ theorem stepCoord_param (p k j : ℕ) (hj : j < p) : stepCoord p k j = 4 + (j : 
 
 theorem stepCoord_count (p k : ℕ) : stepCoord p k p = 3 := by
   have h1 : ¬ (p < p) := by omega
-  simp only [stepCoord, if_neg h1, if_pos rfl]
+  simp only [stepCoord, if_neg h1, if_true]
 
 theorem stepCoord_left (p k : ℕ) : stepCoord p k (p + 1) = (p : ℤ) + 4 := by
   have h1 : ¬ (p + 1 < p) := by omega
   have h2 : ¬ (p + 1 = p) := by omega
-  simp only [stepCoord, if_neg h1, if_neg h2, if_pos rfl]
+  simp only [stepCoord, if_neg h1, if_neg h2, if_true]
 
 theorem stepCoord_right (p k : ℕ) : stepCoord p k (p + 2) = (k : ℤ) + ((p : ℤ) + 4) := by
   have h1 : ¬ (p + 2 < p) := by omega
@@ -221,10 +221,10 @@ theorem stepCoord_injOn (p k : ℕ) (hk : p + 5 ≤ k) : ∀ i j : ℕ, i < p + 
 
 /-- The tracks a running step copies: everything but the value track, the
 counter, and the running value. -/
-def recCarried (p : ℕ) : Finset ℤ := (Finset.Icc (1 : ℤ) ((p : ℤ) + 3)).erase 3
+noncomputable def recCarried (p : ℕ) : Finset ℤ := (Finset.Icc (1 : ℤ) ((p : ℤ) + 3)).erase 3
 
 /-- The tracks a blank block must clear. -/
-def recActive (p : ℕ) : Finset ℤ := Finset.Icc (1 : ℤ) ((p : ℤ) + 4)
+noncomputable def recActive (p : ℕ) : Finset ℤ := Finset.Icc (1 : ℤ) ((p : ℤ) + 4)
 
 theorem mem_recCarried_iff (p : ℕ) (d : ℤ) :
     d ∈ recCarried p ↔ d ≠ 3 ∧ 1 ≤ d ∧ d ≤ (p : ℤ) + 3 := by
@@ -429,7 +429,7 @@ theorem mem_recStep_window (p k : ℕ) (hk : p + 5 ≤ k) (H : Set E) (g : E) (r
       windowAt (2 * k) ((k : ℤ) * r) g ((k : ℤ) + d) = g ((k : ℤ) * (r + 1) + d) :=
     fun d h1 h2 => window_right k g r d h1 h2
   constructor
-  · rintro (⟨⟨hcopy, hcnt⟩, hplace⟩ | ⟨⟨he1, he2⟩, hblank⟩) | hblank
+  · rintro ((⟨⟨hcopy, hcnt⟩, hplace⟩ | ⟨⟨he1, he2⟩, hblank⟩) | hblank)
     · refine Or.inl ⟨?_, ?_, ?_⟩
       · intro d hd
         obtain ⟨-, b1, b2⟩ := (mem_recCarried_iff p d).mp hd
@@ -750,7 +750,7 @@ theorem recWitness_neg (p k : ℕ) (f : E) (y z : ℤ) (v : ℤ → ℤ) (i : �
   blockSeq_neg (k : ℤ) (y + (p : ℤ) + 1) (recEntry p f y z v) i hi
 
 /-- A coordinate in a block at a negative index is itself negative. -/
-theorem block_coord_of_neg (k : ℕ) (q d : ℤ) (hk : 0 < (k : ℤ)) (hq : q < 0) (hd0 : 0 ≤ d)
+theorem block_coord_of_neg (k : ℕ) (q d : ℤ) (hk : 0 < (k : ℤ)) (hq : q < 0) (_hd0 : 0 ≤ d)
     (hdk : d < (k : ℤ)) : (k : ℤ) * q + d < 0 := by
   have hmul : (k : ℤ) * q ≤ (k : ℤ) * (-1) :=
     mul_le_mul_of_nonneg_left (by omega) (by omega)
@@ -762,9 +762,9 @@ builder reached it. -/
 theorem recWitness_blank (p k : ℕ) (f : E) (y z : ℤ) (v : ℤ → ℤ) (q d : ℤ)
     (hk : 0 < (k : ℤ)) (hq : y < q) (hd : d ≠ 0) (hd0 : 0 ≤ d) (hdk : d < (k : ℤ)) :
     recWitness p k f y z v ((k : ℤ) * q + d) = 0 := by
-  rcases lt_or_le q 0 with hneg | hpos
+  rcases lt_or_ge q 0 with hneg | hpos
   · exact recWitness_neg p k f y z v _ (block_coord_of_neg k q d hk hneg hd0 hdk)
-  · rcases le_or_lt q (y + (p : ℤ) + 1) with hin | hout
+  · rcases le_or_gt q (y + (p : ℤ) + 1) with hin | hout
     · rw [recWitness_in p k f y z v q d hk hpos hin hd0 hdk]
       exact recEntry_off p f y z v q d hq hd
     · exact blockSeq_out (k : ℤ) (y + (p : ℤ) + 1) (recEntry p f y z v) q d hk hout hd0 hdk
@@ -781,10 +781,10 @@ theorem recWitness_value_out (p k : ℕ) (f : E) (y z : ℤ) (v : ℤ → ℤ) (
     (i : ℤ) (h : ¬ (0 ≤ i ∧ i ≤ (p : ℤ) + 1)) :
     recWitness p k f y z v ((k : ℤ) * i) = 0 := by
   have e : (k : ℤ) * i = (k : ℤ) * i + 0 := by ring
-  rcases lt_or_le i 0 with hneg | hpos
+  rcases lt_or_ge i 0 with hneg | hpos
   · rw [e]
     exact recWitness_neg p k f y z v _ (block_coord_of_neg k i 0 hk hneg (by omega) (by omega))
-  · rcases le_or_lt i (y + (p : ℤ) + 1) with hin | hout
+  · rcases le_or_gt i (y + (p : ℤ) + 1) with hin | hout
     · rw [e, recWitness_in p k f y z v i 0 hk hpos hin (by omega) (by omega),
         recEntry_val_out p f y z v i h]
     · rw [e]
@@ -822,7 +822,7 @@ theorem recWitness_mem_anchor (p k : ℕ) (hk : p + 5 ≤ k) (G : Set E) (f : E)
       recEntry_C p f y z v 0 hy]
   · obtain ⟨w, hw, hwx, hwu⟩ := hbase
     refine ⟨w, hw, fun j hj => ?_⟩
-    rcases lt_or_le j p with h1 | h1
+    rcases lt_or_ge j p with h1 | h1
     · rw [baseCoord_param p j h1, hpar j h1]
       exact (hwx j h1).symm
     · have hjp : j = p := by omega
@@ -859,13 +859,13 @@ theorem recWitness_mem_transition (p k : ℕ) (hk : p + 5 ≤ k) (H : Set E) (f 
       recWitness_in p k f y z v q d hk0 h1 (by omega) (by omega) (by omega)
   intro r
   rw [mem_recStep_window p k hk]
-  rcases lt_or_le r 0 with hr | hr
+  rcases lt_or_ge r 0 with hr | hr
   · refine Or.inr (Or.inr ?_)
     intro d hd
     obtain ⟨b1, b2⟩ := (mem_recActive_iff p d).mp hd
     exact recWitness_neg p k f y z v _
       (block_coord_of_neg k r d hk0 hr (by omega) (by omega))
-  · rcases lt_or_le y r with hfar | hnear
+  · rcases lt_or_ge y r with hfar | hnear
     · refine Or.inr (Or.inr ?_)
       intro d hd
       obtain ⟨b1, b2⟩ := (mem_recActive_iff p d).mp hd
@@ -936,7 +936,7 @@ theorem recGraph_eq (p k : ℕ) (hk : p + 5 ≤ k) (G H : Set E) :
       by_cases hi : 0 ≤ i ∧ i ≤ (p : ℤ) + 1
       · rw [recWitness_value p k f (f (p : ℤ)) (f ((p : ℤ) + 1)) v hk0 hy0 i hi.1 hi.2]
       · rw [recWitness_value_out p k f (f (p : ℤ)) (f ((p : ℤ) + 1)) v hk0 i hi]
-        rcases lt_or_le i 0 with hneg | hpos
+        rcases lt_or_ge i 0 with hneg | hpos
         · exact hlo i hneg
         · exact hhi i (by omega)
     · rw [mem_windowSupport_iff, hcp]
