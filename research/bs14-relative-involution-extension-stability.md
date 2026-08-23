@@ -194,6 +194,17 @@ congruence `(R,T)` core and align the extending involution.
 - **Core exactification is available.**  The one-solenoid dense-periodic-
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
+- **On the regular face, the exact core is automatically congruence-
+  authenticatable.**
+  `regular-bs14-cores-align-with-congruence-endpoint-restrictions` uses
+  amenability of `BS(1,4)` and slowly growing regular congruence quotients to
+  show that every regular exact core is, after conjugacy, `o(1)`-close to the
+  restriction of a same-dimensional exact Iwahori endpoint.  This is
+  schedule-free and bypasses the moving packet-semigroup charge completely.
+  It does not control the supplied `X`: after core alignment, one still has
+  to prove that the almost-extender lies near the full core-commutant orbit
+  of exact congruence endpoints.  Thus the regular obstruction is now a
+  pure **relative involution-to-orbit** problem, not core authentication.
 - **The nonlinear same-core gauge is completely controlled.**  Suppose basin
   capture has produced an exact extender `X_0` over the **same** exact
   parabolic `T=S^2`, and the relative gauge has the commutant form

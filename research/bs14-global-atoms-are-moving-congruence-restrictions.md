@@ -38,6 +38,15 @@ possibly coupling many fourth-power packet lengths and phases.  At each
 fixed `n` this is a finitely generated affine monoid, but there is no fixed
 finite list of atoms as `n` varies.
 
+There is nevertheless a qualitative asymptotic converse on the regular
+character face.  `regular-bs14-cores-align-with-congruence-endpoint-restrictions`
+uses amenability of the whole BS core to show that any regular exact core is
+`o(1)`-close, after conjugacy and in the same dimension, to a restriction of
+slowly growing regular congruence models.  Hence the moving-cell monoid is
+not an obstruction to authenticating the **core** in regular microstates.
+What it does not recover is the supplied adjoining involution or its
+position relative to the exact core-commutant endpoint orbit.
+
 The full even-Weil representation at a prime `p=1 mod 4` is one such
 irreducible atom in `Rep_+(PSL_2(F_p))`.  Its restriction contains the
 trivial BS line and the long nonzero packets in one indivisible global

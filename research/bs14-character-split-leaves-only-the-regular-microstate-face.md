@@ -73,6 +73,15 @@ congruence tensors as in
 the regular character does not make the remaining analytic geometry
 artificially restrictive.
 
+The exact BS restriction on this face can now be authenticated without a
+level decoder.  By
+`regular-bs14-cores-align-with-congruence-endpoint-restrictions`, amenability
+of the BS subgroup makes every regular exact core asymptotically conjugate
+to restrictions of same-dimensional regular congruence representations.
+Thus the remaining geometry is narrower than core congruence extraction:
+it is the distance of the supplied approximate involution to the exact
+core-commutant endpoint orbit over such an authenticated core.
+
 The regular face does provide one extra spectral estimate.
 `bs14-regular-character-forces-sublinear-fixed-source` shows that the
 infinite-order diagonal generator has Haar spectral law, so `Fix(R)` has
