@@ -170,12 +170,14 @@ puts the normalized vector `S_D8` in positive standard form with density
 `tau(S_D8^*S_D8)^(-1/2)S_D8^*S_D8`.  Lin's spectral projections are then
 the single D8 source projection for almost every layer.  Consequently the
 D8 marked-mass floor survives Theorem 4.1 with no loss.  The actual Lin
-seam is narrower than the arbitrary-density no-go: the representation-
-dependent polar unitary conjugates every left context observable, and
-Theorem 5.1 Reynolds-twirls that conjugated payload unless its covariance
-with the exactified packet is separately wordized.  This still does not
-give `(CPS12)`, but it removes spectral-layer mass selection as an
-obstruction for the canonical Gram state.
+seam is narrower still: in the doubled packet, with
+`T=e_+ j e_-` and `Q=T^*T`, the literal D8 reflection obeys `jQ=T`.
+Therefore `j` is the polar completion and `j diag(A,I) j` is the
+word-visible conjugated left observable.  Mass, the common Lin corner, and
+polar naming are all solved for the canonical Gram state.  What is not
+solved is `(CPS12)`: Lin's analytic PVMs on `Q` do not force the selected
+predicate words to see `(1-P_c)F_cT`, and later exactification can still
+Reynolds-twirl left payload without a covariance estimate.
 
 1. `common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
    the scalar deficit

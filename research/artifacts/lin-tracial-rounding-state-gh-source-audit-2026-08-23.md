@@ -140,8 +140,15 @@ positive density `sigma=s^(-1/2)q`.  Lin's actual layers
 has the full D8 source mass; the general relative-mass counterexample does
 not apply to this canonical one-Gram state.
 
-The polar completion `U` is not a fixed packet word.  It moves all left
-context observables, and the exact left-side formula above then Reynolds-
-twirls them unless they commute with the exactified packet.  Accordingly
-Lin removes the spectral mass-loss seam for the D8 Gram state but still
-does not authenticate its left payload in finite ordinary-group syntax.
+In the doubled D8 packet the polar completion is fixed after all.  With
+copy projections `e_+,e_-`, put `T=e_+je_-` and `Q=T^*T`.  The literal
+reflection satisfies `jQ=T`, so the positive-standard-form left observable
+is the packet decode `j diag(A,I) j`.  This gives a word-visible common Lin
+corner and polar conjugacy with the full D8 source mass.
+
+The remaining failure is narrower: Lin's analytic rounded PVMs on `Q` do
+not make the selected predicate word see the uncovered operator
+`(1-P_c)F_cT`, and a later state-dependent exactification can Reynolds-
+twirl left payload without additional covariance.  Thus the input resolves
+mass/common-carrier/polar naming for the canonical Gram state, but not the
+forbidden-weighted return `(CPS12)`.

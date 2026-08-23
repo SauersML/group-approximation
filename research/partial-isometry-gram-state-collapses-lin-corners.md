@@ -61,12 +61,43 @@ passes unchanged through Lin's Theorem 4.1 when the rounded strategy is the
 normalized one-Gram strategy of `S_D8`.  This eliminates the arbitrary-
 density mass obstruction for the intended compiler state.
 
-It does not prove `(CPS9)` or `(CPS12)`.  The unitary completion `U` in
-`(LGS3)` is representation-dependent, and it conjugates the left context
-operators.  Theorem 5.1 protects the right/opposite algebra, while
-`lin-canonical-dilation-twirls-unprotected-left-carriers` shows that this
-conjugated left carrier is Reynolds-twirled unless an additional covariance
-estimate is supplied.  The remaining Lin-to-Cairn seam is therefore
-sharper: **mass and a common spectral corner are automatic for the D8 Gram
-state; finite-word authentication of the polar conjugacy and its left
-payload is not.**
+The polar unitary is also word-visible in the actual doubled D8 packet.  Let
+`e_+,e_-` be the two copy projections decoded from the grading word and put
+
+```text
+T=e_+ j e_-,        Q=T^*T,       t=tau_2(Q).          (LGS6)
+```
+
+The D8/Julia reflection itself satisfies
+
+```text
+jQ=T.                                                 (LGS7)
+```
+
+Thus `j`, not an arbitrary completion, may be used as `U` in `(LGS3)`.
+For
+
+```text
+Ahat=diag(A,I),       Bhat=diag(I,B),
+```
+
+one has the entirely packet-visible identity
+
+```text
+t^(-1)tau_2(T^* Ahat T Bhat)
+ =<t^(-1/2)Q,L_(j Ahat j) R_Bhat t^(-1/2)Q>.          (LGS8)
+```
+
+Both `Q` and the conjugated left observable in `(LGS8)` are fixed finite
+packet decodes.  Hence **the D8 Gram state has a word-visible common Lin
+corner, its marked-mass floor, and a literal polar conjugacy.**
+
+This still does not prove `(CPS9)` or `(CPS12)`.  Theorem 5.1 protects the
+right/opposite algebra, while
+`lin-canonical-dilation-twirls-unprotected-left-carriers` shows that a
+subsequent exactification Reynolds-twirls a conjugated left payload unless
+an additional covariance estimate is supplied.  More fundamentally, Lin's
+analytic PVMs on `Q` do not authenticate the selected predicate words on
+the uncovered part `(1-P_c)F_cT`.  The remaining seam is therefore only the
+finite-word selected-predicate saturation/covariance gate, not mass, common
+carrier, or polar naming.

@@ -31,6 +31,8 @@ positive sharpening.  By
 `partial-isometry-gram-state-collapses-lin-corners`, the normalized Gram
 vector of `S_D8` has projection density, so almost every Lin spectral layer
 is exactly the D8 source projection and inherits its marked-mass floor.
-What still stops groupification is not density loss for this state, but the
-representation-dependent polar conjugacy of the left observables and the
-Reynolds twirl above.
+In the doubled D8 packet the literal reflection `j` is also a unitary
+completion of the off-diagonal Gram block, so its conjugation of the left
+observables is word-visible.  What still stops groupification is neither
+density loss nor polar naming, but selected-predicate saturation on that
+carrier and the Reynolds covariance problem above.
