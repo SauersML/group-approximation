@@ -134,3 +134,4 @@
 32637034414	2026-08-23T11:37:24Z	GroupApproximation/Sofic/UltraproductModelConstruction.lean	vec_linearMap_ext
 32638092214	2026-08-23T11:59:48Z	GroupApproximation/Sofic/UltraproductModelConstructionAssembly.lean	dimWeight_nonneg
 32641206713	2026-08-23T13:04:10Z	GroupApproximation/Sofic/WeightedUltraproductModelConstruction.lean	nonempty_weightedUltraproductAdjointModel
+32643382102	2026-08-23T13:47:12Z	GroupApproximation/Sofic/OpToHSShadowResidual.lean	hasLogicalShadowKleeneEndpoint_of_bug
