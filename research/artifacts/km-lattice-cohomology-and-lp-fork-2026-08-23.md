@@ -630,3 +630,45 @@ levels (all vertex roles, growing levels) would be the first real
 step toward KILLING Corollary E at Bernoulli actions and thereby
 toward the LLP-positive branch; nonzero stable defect feeds the
 quotient-tower survival program of Addendum 16 toward LP failure.
+
+## Addendum 19: two faithful data points, both zero, and the depth diagnosis
+
+`km_faithful_role2_defect.py` (18-point level-1 arena) and
+`km_faithful_role2_levi_defect.py` (750-point Levi-level arena:
+`L_12 = SL_2(2) x SL_2(2)` glued to `L_13 = Sp_4(2)` along the
+long-root `SL_2(2)`, actions faithful via symplectic F_2 matrices --
+no exotic constants involved):
+
+```text
+level-1 arena  (18 pts):  numerator 0            DEFECT 0 (vacuous)
+Levi level    (750 pts):  numerator 2 (trivial)  DEFECT 0
+```
+
+DIAGNOSIS: at radical depth 0 every generator subgroup PRESERVES
+each block (the Levis normalize the pieces), so the arena decouples
+through the tiny overlap and the numerator contains only the two
+block-indicators.  Genuine coupling -- hence any chance of a nonzero
+defect -- requires RADICAL DEPTH >= 1: root subgroups such as
+`U_(-alpha_1-alpha_3)` that lie in a vertex level without preserving
+the other block, enlarging the overlap beyond a Levi.
+
+Depth-1 spec (role 2): enlarge the `L_12`-block to `<L_12,
+U_(-alpha_3)>`-levels.  The real-root closure of the
+`W_12`-orbit of `-alpha_3` under commutators is the 8-root set
+
+```text
+-a3, -a1-a3, -a2-a3, -a1-a2-a3,
+-a1-2a3, -a2-2a3, -a2-3a3, -2a2-3a3
+```
+
+(all verified real via the symmetrized form `d = (2,3,1)`; every
+further sum -- e.g. `a1+a2+3a3` (norm -2), `2a2+4a3` (norm 8),
+`a1+2a2+4a3` (norm -4), `a1+a2+2a3` (norm -2) -- is non-real), so
+the candidate unipotent has order `q^8` and the depth-1 arena is
+`(L_12 . q^8-group)` glued to `L_13`-side levels.  HAZARD: the mixed
+B_2/G_2 structure constants mod 2 (magnitude-2 constants vanish,
+magnitude-3 survive) must come from a verified source (GAP/Sage on
+MSI), exactly as in Addendum 18.  Both faithful zeros so far are
+CONSISTENT WITH EITHER outcome: they show only that the defect, if
+real, is a radical-depth phenomenon -- which matches where the
+lim^1 content (Addendum 10) actually lives.
