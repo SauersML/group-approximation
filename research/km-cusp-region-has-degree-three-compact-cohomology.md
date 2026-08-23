@@ -54,9 +54,10 @@ except the `L^0` one (`triangle-colimit-rational-h2-vanishes`).
   injectivity uses `H^1(X^;M)=0`, which follows from `H_1(X^)=0` by
   universal coefficients.)  So this claim is TRUE only if `(TLS1)`
   FAILS at some `G_2` or unforeseen twisted level; if `(TLS1)` holds --
-  it is proved for the grid type and reduced to a pencil computation
-  verified in the symplectic model for `B_2` -- then Ioana--Spaas--
-  Wiersma Corollary D is DEAD at the `(2,4,6)` lattices, alongside the
+  for `q` large coprime to six it is proved at grid and `B_2`-line
+  levels and open as a rank computation at `G_2` levels, while for
+  even `q` it is FALSE there (computational adjudication 2026-08-23)
+  -- then Ioana--Spaas--Wiersma Corollary D is DEAD at the `(2,4,6)` lattices, alongside the
   trivial-coefficient clause of Corollary E
   (`triangle-colimit-rational-h2-vanishes`).  The expected resolution
   is therefore the NEGATION of this claim and of
