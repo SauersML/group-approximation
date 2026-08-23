@@ -56,6 +56,14 @@ trading label degree for spectator multiplicity.
   displayed PI conclusions of this claim.  What remains hard is making the
   full transverse tuple and its transport word-visible on the same carrier,
   not eliminating an anonymous common tensor factor.
+- **Positive overlap suffices, but the local packet cannot couple it.**
+  `positive-mass-four-pauli-intertwiner-forces-pi-gap` removes the former
+  near-unitarity requirement: the existing `5/64` cross-Gram mass would be
+  enough.  However
+  `local-rectangular-packet-refutes-cross-gram-four-word-intertwining` shows
+  that all one-cell Pauli and canonical trace data admit an exact finite
+  countermodel.  The preferred frontier is therefore the full-kernel mixed
+  relation in `atlas-kernel-relators-couple-cross-gram-to-four-pauli`.
 - **Addition is analytic, not a relator.** The signed sum defining
   `s_(2r)` is formed in the proof from finitely many word evaluations.  No
   group-ring addition compiler is needed, but every monomial must have a

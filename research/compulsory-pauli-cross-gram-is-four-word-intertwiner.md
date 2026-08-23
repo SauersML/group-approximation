@@ -3,12 +3,14 @@ rg: 2
 id: compulsory-pauli-cross-gram-is-four-word-intertwiner
 kind: claim
 title: The compulsory Pauli cross-Gram overlap carries all four PI words
+refuted_by:
+  - local-rectangular-packet-refutes-cross-gram-four-word-intertwining
 distinct_from:
   pauli-overlap-yields-positive-spectral-corner: that proves only a positive cross-Gram mass and explicitly supplies no holonomy or common-word intertwining.
   one-common-intertwiner-carries-the-four-pauli-pi-bridge: that asks for a near-unitary full-corner map; this uses the already forced positive-mass cross-Gram contraction and requires no polar extension outside its support.
 ---
 
-**OPEN.**  In every sufficiently accurate canonical microstate of the fixed
+**REFUTED AS A LOCAL-PACKET CLAIM.**  In every sufficiently accurate canonical microstate of the fixed
 raw/comb Pauli packet, choose the heavier ordered overlap
 
 ```text
@@ -35,3 +37,8 @@ This is strictly weaker than recovering a full-support common unitary.  The
 fixed mass in `(PCG1)` is already enough for the terminal contradiction.
 The remaining content is one mixed-word identity coupling the compulsory
 overlap to both transverse Pauli pairs.
+
+The exact canonical rectangular model satisfies all of the local hypotheses
+but forbids every positive-mass common intertwiner.  The corrected frontier
+is `atlas-kernel-relators-couple-cross-gram-to-four-pauli`, which explicitly
+uses the full regular-Atlas kernel packet and requires a nonlocal mixed row.

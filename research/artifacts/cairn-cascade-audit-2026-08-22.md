@@ -164,6 +164,15 @@ all four mixed words.  If it does, the terminal lower bound is
 `8sqrt(5/64)=sqrt(5)`, with no polar completion, near-full overlap, scalar
 spectator gap, or mutual-bicommutant theorem.
 
+The local-packet version of that last sentence is false and has been
+separated from the viable claim.  The canonical finite rectangular model
+has the complete local Pauli/transport/trace packet and the positive overlap,
+yet the positive-mass PI inequality proves that its overlap cannot intertwine
+all four words.  Therefore the actual minimal frontier is: use one explicit
+relation from the **full regular-Atlas kernel packet**, outside the one-cell
+tables, to make the same `5/64` overlap carry the four mixed words.  This is
+`atlas-kernel-relators-couple-cross-gram-to-four-pauli`.
+
 ## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,
