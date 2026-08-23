@@ -23,40 +23,36 @@
 # checked against the printed sentence and the named ledger rows or declarations.
 
 # Assignments for the 2026-08-22 attribution and exact-residual theorem pass.
+0539bf97e26d	structural	-	routes the literal presentation and extended consequences to the companion notes
+e42e532005e1	attribution	-	credits Korchagin's uniform local MF formulations and adjoint-action amplification
+8196cd14dc0b	structural	-	explains why the alternative tensor-power proof is retained
+01fbd481610d	attribution	-	credits Korchagin's directed-colimit permanence theorem
+1839684dd4e1	structural	-	introduces the manuscript's short proof from the local criterion
 
 # Assignments for the 2026-08-22 reader-visible wave: verified citations,
 # the Theorem D restructure, and the transport-conjugator rename.
-009e942c53d2	ledger	BT.15	orthogonal representation to be complexified
-00b8fa1fb009	ledger	PA.04	setup for an arbitrary corona representation
 016ec4ab6d1a	ledger	AE.12	re-reviewed after the manuscript revision
 02593a8616f2	attribution		Haagerup-Thorbjornsen, credited
 02c82253eca2	attribution	-	re-reviewed after the manuscript revision
 03d8a577dffa	attribution	-	re-reviewed after the manuscript revision
-03fff41da67b	ledger	WI.09	the semidirect-product vertical group
 0652cd6a3755	ledger	KC.05	finite presentability from the relative presentation
 099b17e21698	definition	GroupApproximation.HasKazhdanPropertyTComplex	the standing complex-unitary formulation of property T
 0b22ca920419	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the spectral projection of the central involution is nonzero and central
 0baefd32e6b7	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.kt_06_ultraproduct_finite	finiteness forces equality of the fixed-space projections
 0bec2a2aa7d1	ledger	KC.15	anticommutation and marked-word image
 0c82831cd8ed	ledger	CS.04	contradiction setup from a representation detecting the central sign
-0d1141fc8a44	ledger	GP.09	the remaining redundant relations in the Tietze reduction
 1303068104ab	ledger	KT.11 KT.12	the Kazhdan set, average, and fixed subspace in subgroup notation
 146ef8963e60	formalized	GroupApproximation.compressedImage_eq GroupApproximation.compressedImage_eq'	the finite-quotient collapse: conjugation is onto in a finite image
 148351a0270b	attribution	-	credits the standard corona-lifting material
 14f4c2bcedf3	ledger	KT.19	the two projections, conjugator renamed to t
 155c4de679fb	ledger	PRE.01 PRE.16	the norm corona itself and its role as the target of an MF embedding
 15e8b1e886cc	ledger	ML.05	re-reviewed after the manuscript revision
-19a875abb319	ledger	AE.11	re-reviewed after the manuscript revision
-19f590f78a75	ledger	WI.10	distinct shifted sites and anticommuting Clifford generators
-1b6dc4230f88	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	nontriviality of the sign and the central-extension structure
 1c18d77dda40	ledger	KC.04	re-reviewed after the manuscript revision
 1c79c1b0d45a	attribution	-	re-reviewed after the manuscript revision
 1dad8c6136eb	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the transport conclusion applied to the chosen element
 1ede71f01a54	ledger	AE.12	re-reviewed after the manuscript revision
 1f1c1db7e0c3	ledger	KC.18	the surviving word makes every corona homomorphism nonfaithful
 1f4cc72275dc	ledger	KT.22 KT.23	finiteness turns domination into equality
-2186cd6463e8	ledger	PA.02	the conjugate is an involution
-22155701c90b	ledger	GP.08	the generator layout of the displayed presentation
 2249ea107a5d	ledger	KT.09	lead-in to the ultraproduct adjoint homomorphism
 229f26d94696	ledger	AE.06	re-reviewed after the manuscript revision
 25ba7dec2874	ledger	AE.08	re-reviewed after the manuscript revision
@@ -68,14 +64,11 @@
 28fa8ca1b22b	ledger	AE.09 AE.10	re-reviewed after the manuscript revision
 29351d1c19dc	ledger	KT.01	contradiction on the selected failing set
 2936839ff2b0	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the Hilbert--Schmidt conjugation representation in the transport theorem
-2c0c4c1de4ca	ledger	PA.05	application of the central-sign criterion at the printed subgroup data
 2c0f8dcd10ad	ledger	PA.11 PA.12	injective canonical group maps into the reduced and maximal algebras
 2f18fb1cc3eb	ledger	KT.19 KT.20	fixed vectors under the conjugated subgroup
 3049cff6796c	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	names the compressed commutator in subgroup form
 312cc83f2260	ledger	INT.20	the group commutator convention; the operator commutator is a notation declaration
-3215d0bbe2be	ledger	PA.02	the commutator factorization used by the square identity
 321fbda5cbe8	ledger	KT.27	the transported matrix as an adjoint-action vector, conjugator renamed to t
-32432adf90ca	ledger	GP.08	the six-generator thirty-two-relator Tietze presentation
 32be1b2ff8b9	structural	-	concise comparison of the three settings treated in the section
 33b66f6d861e	ledger	FD.04	the key commutant inclusion
 34e308556f5f	ledger	AE.02	re-reviewed after the manuscript revision
@@ -83,9 +76,7 @@
 35e66e29503a	ledger	AE.06	re-reviewed after the manuscript revision
 3733db9c03d0	attribution	-	re-reviewed after the manuscript revision
 37509fb6a0ce	ledger	PRE.07	the norm, trace, and unitary-invariance inequalities
-377e57d94f09	ledger	PA.08	centrality and involutivity from the defining relations
 38099bdb56cd	attribution	-	credits BDL specifically for the final operator--Hilbert--Schmidt compression argument
-3c3badaa1a60	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	lead-in to the displayed Clifford relations
 3d2c65c919d9	ledger	AE.09	re-reviewed after the manuscript revision
 3da05f023a43	ledger	FD.04	the printed commutation calculation
 3dde5cd629fb	ledger	KT.04	operator-norm asymptotic multiplicativity of the adjoint action
@@ -95,25 +86,21 @@
 402f4c0b8a6f	ledger	PRE.06	normalized trace, operator norm, and normalized Hilbert--Schmidt norm
 4094280d992d	ledger	PRE.15	the operator-norm asymptotic representation definition
 44cd7723d43e	ledger	ML.06	re-reviewed after the manuscript revision
-46448298f8aa	ledger	WI.14 WI.15	distinct sites make the marked commutator equal the Clifford sign
 46458125ba2e	ledger	AE.06	re-reviewed after the manuscript revision
 46e2b2b7bc11	ledger	KC.16	central sign makes the map respect all relations
 47671f5f5c11	attribution	-	credits the standard finite C*-algebra facts
 47b8cab0b3b4	ledger	AE.05	re-reviewed after the manuscript revision
 480b6d25a65f	attribution	-	comparative statement about the cited stronger conventions
 488b424e6abe	attribution	-	historical account of the three approximation problems left open by those results
-4945b1ac49fa	attribution	-	the classical-base identification, with the verified pinpoint citation
 4a9d1cf67212	ledger	AE.11	the stage model supplies the local data on F
 4b10e8b0997e	ledger	AE.12	re-reviewed after the manuscript revision
 4bb94bb81c8b	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse	the displayed vanishing, for every asymptotic representation
 4bf694c959f5	definition	GroupApproximation.NormMatrixCStarCorona	Blackadar-Kirchberg's definition for algebras, whose target is the formal corona type
-4d21c3594ca6	ledger	WI.06	conjugation by the dilation realizes the injective endomorphism
 4dfb1e69d088	ledger	FD.08 FD.09	conjugate equality and marked-commutator collapse
 4f3a5fcca238	definition	GroupApproximation.NormMatrixCStarCorona	the corona algebra, as the formal type defines it
 4f51689b3c10	ledger	KT.05 KT.06	the Hilbert-space and operator norm ultraproducts
 50122400703c	ledger	AE.05	re-reviewed after the manuscript revision
 5089d9ff3c27	ledger	KT.06 KT.10 KT.18	the norm ultraproduct, its finiteness, and the Kazhdan projection it contains
-511185faf367	ledger	GP.09	deleting the nine redundant relators leaves thirty-two
 512322372e81	ledger	AE.08	re-reviewed after the manuscript revision
 5257c265cf85	ledger	AE.12	re-reviewed after the manuscript revision
 5305f8455bc5	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	strictly increasing dimensions change nothing
@@ -121,13 +108,9 @@
 54ef75bc6259	ledger	AE.12	re-reviewed after the manuscript revision
 55338d7dc927	ledger	AE.12	re-reviewed after the manuscript revision
 5558d7d88ee4	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the conjugation action used in the operator-norm setting
-56b792c53616	ledger	WI.09	the coset space and base point
 5826b3768139	ledger	AE.01	the local approximate-unitary-representation definition
 590c2297bb1d	ledger	KT.13 KT.14 KT.15 KT.16 KT.17 KT.18	the spectral gap and fixed-space projection
-5a2cdaf8e20d	ledger	PA.09	the corona representation kills the marked word
-5b1d13f5367f	structural	-	points to the figure
 5ce25be69b6a	ledger	PRE.15	the equivalence between lifted asymptotic representations and corona homomorphisms
-5d5cf30b3a9a	attribution	-	property (T) of the base, with the verified lattice citation
 5e5c2234f838	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the specialization is the printed group E
 6077bda10287	ledger	KC.13	lead-in to the two displayed displaced lamp images
 612368db9684	ledger	KC.03	re-reviewed after the manuscript revision
@@ -136,7 +119,6 @@
 62c35467d4a5	ledger	AE.11	the directed-colimit conclusion, re-reviewed after the typography correction
 63bd08a3b586	attribution	-	describes the stability step in BDL Proposition 1.5
 63caeacc71e1	ledger	FD.02 FD.03	the commutant subspace and conjugation automorphism
-646e428149d5	ledger	AE.05 AE.06	the uniformization step the amplification lemma performs
 64c77fa0fba1	attribution	-	credits the CDE framework and its Abels-group example
 6592da4e3a5b	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the sign criterion
 66822ad2b8a1	ledger	TA.03	exhaustion used in the compactness contradiction
@@ -144,28 +126,22 @@
 67d50428ddcb	ledger	AE.12	re-reviewed after the manuscript revision
 deb525cfffa8	attribution	-	acknowledges Fournier-Facio's expository emphasis, small-cancellation suggestion, and norm discussions
 69903bb4ba28	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the convention on the dimension sequence, which the formal definition quantifies over
-6a0c67b5c6ad	ledger	WI.12	lead-in to the generator assignment
 6a3b3702fc0a	definition	GroupApproximation.HasKazhdanPropertyTComplex	recalls the Kazhdan-pair convention the lemma uses
 6b25d62ba04f	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	lead-in to the display specializing the construction
 6b3a638a0d8c	ledger	KT.01	the contradiction setup in subgroup notation
 6bc8d05e9dde	attribution	-	credited Alekseev--Thom result
-6d04838a0e64	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	lead-in to the linear presentation, which the literal presentation contains
 6e0fdd805f92	ledger	AE.12	re-reviewed after the manuscript revision
 6eacac004786	ledger	INT.11	amenable groups are MF via the cited Schafhauser embedding theorem
 6f15c7336536	ledger	KC.07	re-reviewed after the manuscript revision
 6f1809af142b	ledger	CS.04	the same element converges to both plus and minus the identity
 7090181cfe8e	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the Clifford convention, as the construction fixes it
 75f92d1fd950	formalized	GroupApproximation.AdjointMatrix.l2_opNorm_conjDouble_sub_le_two	operator norm controls the adjoint multiplicative defect
-76586863a315	ledger	PA.06	discharge of the Kazhdan, stable-letter, and commutation hypotheses
-77f789faa224	formalized	GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF	the Tietze-equivalent presentation, and that the distinguished word survives it
 78c5683def03	attribution	-	credits the Schatten-norm non-approximation results
 798dc1add25f	ledger	KC.14	distinctness of the two HNN cosets
 799758c0bb52	definition	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the hypotheses of the sign criterion, as its binders
 7d1eae27b434	ledger	KT.25	membership in the fixed subspace
 7e88a8ef0087	formalized	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction	compression to the negative corner
 7f37c347c80c	ledger	INT.18 INT.19	the fixed CDE convention and attributed notice of stronger conventions
-7fa2310d2b7c	ledger	PA.07	re-reviewed after the manuscript revision
-80cc5bad61e6	structural	-	re-reviewed after the manuscript revision
 80f777821e90	formalized	GroupApproximation.AffineSL3Doubling.alpha_injective GroupApproximation.AffineSL3Doubling.a_not_mem_range	doubling is injective and the first basis vector witnesses nonsurjectivity
 839d85b793a3	ledger	AE.06 AE.07	re-reviewed after the manuscript revision
 845e1e5d3151	formalized	GroupApproximation.AffineSL3Doubling.a_not_mem_range	the designated element is outside the endomorphism range
@@ -173,31 +149,24 @@ deb525cfffa8	attribution	-	acknowledges Fournier-Facio's expository emphasis, sm
 854dc7d2f733	attribution	-	credits BDL specifically for the corner reduction
 858f14cf409d	attribution		the negative solution of CEP, credited
 85cefe10c884	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	why separation is included in the definition
-860498e941e7	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the general construction instantiated by the preceding hypotheses
 878374400294	ledger	PRE.09	bounded lift at the start of the polar-correction proof
 888d41d311c7	ledger	CS.02 CS.03 CS.04	the marked-square relation conflicts with the negative-corner sign
 88d7a517f6b0	attribution	-	credits a colleague; asserts nothing mathematical
 89393701e0b5	ledger	AE.04	re-reviewed after the manuscript revision
 8a1635dbfe3c	ledger	PA.11 PA.12	complement correction for a possibly nonunital algebra embedding
 8abd6075a892	ledger	KC.17	nontriviality of the sign and injectivity of the base
-8b65cfd45c57	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the permutation action fixes the sign
 8be1a9a2b5f3	ledger	ML.06	re-reviewed after the manuscript revision
-8c49fecbebce	ledger	WI.14	lead-in to the two displaced lamp images
 8ca6854a5294	ledger	CS.04	every corona representation kills the sign
 8d61f6130e36	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	lead-in to the display whose data the literal presentation fixes
 8f0186ca069b	ledger	PRE.06	the trace-qualified two-norm notation
 90e0c8982059	ledger	AE.12	re-reviewed after the manuscript revision
 926161e3e354	ledger	TA.03	models contradicting a uniform obstruction
-96138f8153d4	ledger	TA.02	the relator test-set specialization of the uniform obstruction
 96885f9130de	ledger	AE.02	re-reviewed after the manuscript revision
 9702262f2dd8	ledger	KC.05	the finite quotient presentation
 97f691365f3a	ledger	AE.06	re-reviewed after the manuscript revision
-9957f21f1199	ledger	WI.12	the Clifford semidirect-product witness target
 9b9b97b2afaf	ledger	PRE.06	the corner's own normalized trace
 9ba0b39256c5	ledger	KC.03 KC.07	re-reviewed after the manuscript revision
 9bb2b8380ab2	ledger	KC.04 KC.18	the central-sign criterion kills the surviving central involution
-9e0b0df9fd3b	ledger	WI.07 WI.08	the half-integral inverse conjugate is outside the range
-9e56ff730a0c	ledger	WI.05	direct verification of the twenty base relators
 9e884e2787df	ledger	KC.03 KC.07	re-reviewed after the manuscript revision
 9ec1f0490ac5	attribution	-	credits the 2026 nonsofic constructions
 9fed9cfb8a4e	definition	GroupApproximation.NormMatrixCStarCorona	lead-in to the display defining the corona, which is the formal type
@@ -210,9 +179,7 @@ aada972c62a3	provenance	-	authorial checking and revision
 abaccf5b9b67	attribution	-	identifies BDL Proposition 1.5 as the source of the final analytic maneuver
 ac984969c125	definition	-	the standing discrete-countable convention on groups
 ad33a2ef4f52	ledger	AE.12	re-reviewed after the manuscript revision
-ae53c21cbc25	ledger	WI.07 WI.08	conclusion of the non-surjectivity calculation
 b162e8dcad5c	formalized	GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction	the two-norm contradiction on the corner
-b202ec455229	ledger	GP.09	the redundant x-action relation in the Tietze reduction
 b253c065d0ba	ledger	KT.24 KT.25	the bounded vector class and its fixedness
 b41519445c83	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the action used, named
 b7428f424dab	ledger	INT.28	for E both the group and reduced group C-star embeddings are ruled out
@@ -226,18 +193,15 @@ bcd0a8170d5d	ledger	KT.20	range inclusion gives projection domination
 bd88209bd9d0	ledger	AE.07	tensor powers multiply multiplicative defects by at most p
 be090c6906c9	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	lead-in to the three quotients, two of which are formal objects here
 be0ad5a3c458	attribution	-	re-reviewed after the manuscript revision
-bf4993b88f52	ledger	WI.08	integrality of generators and inverses
 c0318cdc0b8c	ledger	KT.03	the Hilbert--Schmidt adjoint model
 c16eca7d2f28	ledger	KC.12	the Clifford group used in the witness
 c20c97a57850	ledger	INT.09 INT.10	residually finite and LEF groups are MF
 c2bb32dbe2b2	attribution		Blackadar-Kirchberg's remark, credited
 c376f8c055fd	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the Clifford group and the permutation action on it
 c41237471a77	definition	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the transport theorem's subgroup-form hypotheses
-c69ab6050077	ledger	GP.08 GP.09	the six-generator thirty-two-relator Tietze presentation
 c744feda241a	definition	-	the nonunital star-homomorphism convention and unitary-group notation
 cb54c5dad3ed	ledger	PA.11 PA.12	an MF embedding of either algebra contradicts the group obstruction
 cc04e353c3cf	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the construction's data, as its binders
-cc2e9c3bac4d	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the commutator of two distinct generators is the sign
 ce4bc517ef28	attribution	-	re-reviewed after the manuscript revision
 ce6b65599177	ledger	KT.26	transported vector remains fixed
 ceed07aa91af	ledger	KC.04 KC.05	finite presentation is the only conclusion using finite presentation of the base
@@ -252,66 +216,44 @@ da8a4d2b6be9	formalized	GroupApproximation.UltraproductKazhdanProjection.manuscr
 db3d9adae16c	ledger	AE.06 AE.07	re-reviewed after the manuscript revision
 dbb8ebd0d2dd	attribution	-	describes the stability step in BDL Proposition 1.5
 debac9058dbe	ledger	AE.05	re-reviewed after the manuscript revision
-decba07ed25b	ledger	WI.08	containment in the integral linear group
-df14b33d75ac	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	names the base inclusion, which the base identification formalizes
-e15043385372	ledger	WI.16	centrality checks, extension to a homomorphism, and nontriviality of the marked word
 e2fd36c687cf	ledger	KT.09	conclusion that the adjoint classes form a homomorphism
 e3e74e1ca049	formalized	GroupApproximation.nonUnitalStarAlgHomUnitaryMap GroupApproximation.nonUnitalStarAlgHomUnitaryMap_injective	the complementary-corner correction for a nonunital algebra embedding
 e40a8557026c	ledger	CS.04	the triangle-inequality contradiction
 e4dce7888a5d	ledger	TA.04	the resulting corona representation contradicts Theorem A
 e52a8e80d7ac	ledger	KT.02	a free ultrafilter containing the failing set
-e7979d03ce61	definition	GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	lead-in to the base presentation, identified with the affine group
 e7a5ac2e4799	ledger	PRE.16	re-reviewed after the manuscript revision
 e7aa9d02f9a4	ledger	AE.06	re-reviewed after the manuscript revision
 e86d73190cb8	ledger	AE.12	re-reviewed after the manuscript revision
-e947a3d4f4a1	ledger	FD.02 FD.03	lead-in to the commutant and conjugation-automorphism definitions
 e9a446ce565d	attribution	-	credits Akemann--Walter and Drutu--Nowak for the Kazhdan projection
-e9c372b43306	ledger	WI.09	the injective level-zero map
-ebad74e0e846	ledger	BT.15	invariants and displacement norms under complexification
 ed2a6dce24e3	attribution	-	re-reviewed after the manuscript revision
 ed8c92207b68	ledger	KC.04 KC.05	re-reviewed after the manuscript revision
 ede935950094	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	names the sign
-edea397ce0fa	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	names the data of the display, which the literal presentation fixes
 efb9ec2fe1a2	provenance	-	origin of the non-MF construction
-effe3fb04b35	attribution	-	property (T) of the affine base, with the verified lattice citation
-f10d25b6bc7f	ledger	KC.12	the permutation action on the Clifford group
-f1785a147237	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the substitution yields the printed presentation
 f1e1436bdae2	ledger	ML.06	re-reviewed after the manuscript revision
-f3738b878e7a	ledger	WI.13	base and stable-letter relation checks
 f3d56dabbe0a	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the one-sided projection inequality
-f4b6d72c939a	ledger	PA.03	nontriviality clause of Theorem A from the witness construction
 f5a6d2f7709c	ledger	AE.11	the directed-colimit proof setup, re-reviewed after the typography correction
 f5acac04a813	structural	-	transition into the final obstruction
 f6c54ecf7142	ledger	FD.04	conclusion of the commutant inclusion
-f78eeb4eea6c	ledger	WI.13	lamp involution and base-commutation checks
 f796fb80b1c6	definition	GroupApproximation.NormMatrixCStarCorona	names the quotient map onto the corona type
 f911c774df47	definition	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the hypotheses of the section, as the criterion's binders
-f9ba7c2bd44d	ledger	WI.09	identification with the vertical group in the general construction
-fb0bc98e7b96	ledger	KC.05	lead-in to the relative finite presentation
 fb5125c776a5	ledger	PRE.06	the relation between normalized and unnormalized trace
 fbb25f95f817	ledger	KC.12	the permutation action and root lamp
 fbcf88aabd40	ledger	KT.27	ultrafilter convergence for every subgroup element
-fc5d7cfa220a	ledger	WI.09	the direct-limit telescope and its shift
-fd920f330354	ledger	BT.15	complexification of the orthogonal representation
-ff07de87680c	ledger	PA.10	the surviving word rules out group MF
 ff18e44efac5	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the two cosets are distinct in the ascending HNN extension
 ffdc409cf764	ledger	KC.04	re-reviewed after the manuscript revision
 715cf27aaed6	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	the principal example in the abstract
 b9c067f0f7a5	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the one-sided transport theorem summarized in the abstract
-ec240df065d5	structural		points readers to the companion notes
 991b67fc3fb0	formalized	GroupApproximation.NormModel.exists_hs_collapse GroupApproximation.l2_opNorm_cornerPad	identity padding preserves operator norm while diluting normalized Hilbert--Schmidt mass
 fb1979a03403	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD	the reduced group C-star consequence of the explicit example
 fa1145ad6309	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	distinguishes the three quotient ideals
 692253c912e7	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	operator-norm defects induce the Hilbert--Schmidt adjoint representation used by transport
 3f00927a7193	structural		proof setup before the displayed lift
-717556ed2e5b	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the exact finite-dimensional and finite-group consequences
 b24e47611a07	structural		announces the corner construction proved immediately below
 7d031748f2c6	definition	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	names the complementary corner projections in the sign proof
 f6937ab9fca7	structural		links the companion notes edition
 fa94bd32bf97	structural		explains the editorial purpose of the split
 671cb97c39c8	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	the headline existence theorem
 a8a29bb41ce6	formalized	GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	the two halves of the central-sign contradiction
-6197d8c5d40f	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	the explicit presentation and non-MF conclusion
 5af730719518	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the one-sided Hilbert--Schmidt rigidity input
 143776191ec1	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the two norms used by the transport theorem
 4241d38cbf7c	formalized	GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	the Clifford witness for nontriviality
@@ -332,3 +274,19 @@ e383d9696514	ledger	CS.11	the negative-corner sign estimate
 d8f951511c26	ledger	CS.12	centrality of the compressed root
 0486c4aeb2cb	ledger	CS.13	one-sided transport on the corner
 231a0ba9fe2c	ledger	CS.14	the Hilbert--Schmidt contradiction
+3eebb30f84e2	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the constructed affine specialization is non-MF
+0dff043e0efc	structural	-	conceptual description of the affine base and doubling endomorphism
+32c94e1e0cd7	structural	-	lead-in to the exact finite-dimensional theorem
+6d358e431450	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the finite-dimensional and finite-quotient consequences for the affine example
+f6cabd233673	structural	-	lead-in to the displayed Clifford relations
+a4175357c438	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	nontriviality and centrality of the Clifford sign
+b62060424365	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	permutation functoriality of the Clifford group
+227063f6ed08	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	permutation action used in the basic construction
+836f3374ea85	attribution	-	property T and finite presentability of the affine lattice, with BHV and Burger citations
+a85240b1c00b	ledger	KC.04	application of the basic construction to the verified affine data
+8daa7ed4a156	structural	-	lead-in to the relative presentation over the affine base
+f1693093932b	structural	-	lead-in to the distinguished central word
+831e3054f021	structural	-	declares the conceptual description used in the main paper
+26628e38baf5	structural	-	pointer to the literal presentation and matrix certificate in the notes
+a671ceb2f32c	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	finite presentability, nontrivial central sign, and corona annihilation from the conceptual construction
+7d15e2de5356	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the affine specialization is not MF

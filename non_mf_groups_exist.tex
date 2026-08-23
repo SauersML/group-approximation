@@ -2,9 +2,7 @@
 % kernels before 2025-06-01 (TeX Live 2024 and earlier abort with an unknown
 % `document/metadata/tagging` key), so the line below is guarded and the source
 % compiles either way: on a 2025 kernel the PDF is tagged, on an older one it
-% is not.  The four tagging commands around the figure in
-% Section~\ref{sec:group} are guarded by \providecommand there and degrade to
-% no-ops.  Release and draft workflows both use the digest-pinned TeX Live 2025
+% is not.  Release and draft workflows both use the digest-pinned TeX Live 2025
 % image -- TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml and
 % draft-non-mf-pdf.yml -- which is the reproducible environment for this
 % source.  The 2026 image is deliberately not used: its tagpdf aborts at
@@ -20,8 +18,6 @@
 \usepackage{enumitem}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 % Allow line breaks with stretch inside linked declaration names.
 \Urlmuskip=0mu plus 1mu\relax
@@ -109,14 +105,6 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
-\tikzset{
-  figbox/.style={draw, line width=.4pt, align=center, inner sep=4.5pt,
-    text width=3.05cm, font=\small},
-  figout/.style={figbox, line width=.8pt},
-  figarr/.style={-{Latex[length=2mm,width=1.4mm]}, line width=.4pt},
-  fignote/.style={font=\footnotesize, inner sep=2pt}
-}
-
 \begin{document}
 
 \title[A non-MF group]{A non-MF group}
@@ -166,11 +154,10 @@ operator-norm property of Carri\'on--Dadarlat--Eckhardt \cite{CDE};
 stronger conventions are discussed after
 Proposition~\ref{prop:mf-equivalences}.  To our knowledge no
 counterexample was previously known \cite{Schafhauser,Shulman}.  We
-construct an explicit eight-generator, forty-one-relator group that is
-not MF\@.  The presentation uses separate generators for the three
-translations and the three generators of the linear action.  The Tietze
-reduction in Section~\ref{sec:group} gives a six-generator,
-thirty-two-relator presentation.
+construct an explicit finitely presented group that is not MF\@.  Its
+base is the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and the
+construction uses the endomorphism that doubles the translation subgroup
+and fixes the linear part.
 
 Residually finite and LEF groups are MF \cite{CDE}.  Amenable groups are
 MF because their reduced group $C^*$-algebras embed into the universal UHF
@@ -190,12 +177,16 @@ used here.
 \subsection*{The result}
 
 \begin{mainthm}[an explicit finitely presented non-MF group]\label{thm:A}
-Let $E$ be the group on the eight generators
-$v_1,v_2,v_3,x,y,z,t,c$ with the forty-one relators displayed in
-Definition~\ref{def:E}, and put
+Let
 \[
- \hat c=tct^{-1},\qquad u=[\,\hat c,v_1],\qquad w=u^{2}
- =[\,\hat c,\,v_1\hat cv_1^{-1}].
+ \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
+ \alpha(v,A)=(2v,A),\qquad a=(e_1,I),
+\]
+and let $E=E(\Gamma,\alpha,a)$ be the group of
+Theorem~\ref{thm:kazhdan-clifford}.  Put
+\[
+ \hat c=tct^{-1},\qquad u=[\,\hat c,a],\qquad w=u^{2}
+ =[\,\hat c,\,a\hat ca^{-1}].
 \]
 The element $w$ is central and satisfies $w^2=1$.
 \begin{enumerate}
@@ -210,7 +201,8 @@ MF $C^*$-algebra.
 \leanverified{Sofic/LiteralTheoremAPackage}{GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package}
 \end{mainthm}
 
-Further variants and consequences are collected separately in
+A literal finite presentation, its Lean-facing affine certificate, and
+further variants and consequences are collected in the companion
 \emph{Non-MF group notes}.
 
 \subsection*{Outline of the proof}
@@ -512,9 +504,10 @@ equivalent to requiring the dimensions to be strictly increasing.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
 \end{proposition}
 
-The nontrivial point in this equivalence is that an element-dependent
-positive separation in the corona can be made uniform, by the following
-operator-norm amplification.
+Korchagin proved uniform local formulations of the MF property using an
+adjoint-action amplification \cite[Propositions~4--7]{Korchagin}.  For
+completeness, and because it is the version used in the formal development,
+we record the following tensor-power amplification.
 
 \begin{lemma}[tensor amplification]\label{lem:tensor-amplification}
 Let $u,v\in\U(d)$ and $\opnorm{u-v}\ge\delta>0$.  If
@@ -599,7 +592,9 @@ of these words gives the finite-radius formulation.
 \end{proof}
 
 \noindent\textbf{Directed-colimit permanence.}
-The class of countable MF groups is closed under directed colimits.
+Korchagin proved that the class of countable MF groups is closed under
+directed colimits \cite[Proposition~13]{Korchagin}.  The local criterion
+above also gives the following short proof.
 
 \begin{proof}
 Let $G=\varinjlim_iG_i$ with every $G_i$ MF\@.  Given finite
@@ -775,8 +770,8 @@ $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
 \]
 \end{proof}
 
-Every finite-dimensional linear representation of the group $E$ of
-Definition~\ref{def:E} below, over any field, maps $w$ to the identity;
+Every finite-dimensional linear representation of the affine group $E$ of
+Theorem~\ref{thm:A}, over any field, maps $w$ to the identity;
 consequently every homomorphism from $E$ to
 a finite group does as well.
 
@@ -1000,8 +995,8 @@ due to De~Chiffre--Glebsky--Lubotzky--Thom
 \cite[Proposition~1.4]{DGLT}.  The normalization of a distinguished central
 involution by passage to its negative eigenspace appears earlier in Slofstra
 \cite[Lemma~3.9]{SlofstraCorrelations} and Slofstra--Vidick
-\cite[proof of Proposition~2.7]{SlofstraVidick}.  The finite normal case,
-Their use here is specifically the normalization step; the obstruction
+\cite[proof of Proposition~2.7]{SlofstraVidick}.  Their use here is
+specifically the normalization step; the obstruction
 below is supplied by one-sided Kazhdan transport and the square relation.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
@@ -1073,6 +1068,20 @@ $H\to\U(\mathcal Q)$ has nontrivial kernel, so $H$ is not MF\@.
 \end{proof}
 
 \section{The basic non-MF construction}\label{sec:construction}
+
+\begin{construction}[Clifford groups]\label{con:clifford}
+For a set $X$, use the real Clifford-algebra convention generated by
+$(c_x)_{x\in X}$ with $c_x^2=1$ and $c_xc_y=-c_yc_x$ for $x\ne y$, and let
+$\Cl(X)$ be the subgroup of units generated by $-1$ and the $c_x$.
+Write $\zeta=-1$.  Then
+\[
+ \zeta^2=c_x^2=1,\qquad c_xc_y=\zeta c_yc_x\quad(x\ne y),
+\]
+and $\zeta$ is nontrivial and central.  Thus $[c_x,c_y]=\zeta$ for
+distinct $x,y\in X$.  Every permutation of $X$ acts on $\Cl(X)$ by
+permuting the $c_x$ and fixing $\zeta$.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction}
+\end{construction}
 
 \begin{theorem}[the basic construction]
 \label{thm:kazhdan-clifford}
@@ -1162,225 +1171,46 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
-The affine group $\Gamma$ is finitely presented, and it has
+The affine group $\Gamma$ is finitely presented and has
 property~\textup{(T)} because it is a lattice in
 $\mathbb R^3\rtimes\SL_3(\mathbb R)$
 \cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
-Moreover,
-Section~\ref{sec:group} identifies it with the presentation used below.
-The endomorphism $\alpha$ is injective because doubling is injective
-on $\mathbb Z^3$, and it is not surjective because
+The endomorphism $\alpha$ is injective because doubling is injective on
+$\mathbb Z^3$, and it is not surjective because
 $e_1\notin2\mathbb Z^3$.  The same observation gives
 $a\notin\alpha(\Gamma)$.  Hence Theorem~\ref{thm:kazhdan-clifford}
-applies.  Relative to $\Gamma$, the resulting group has the finite
-presentation
+applies to the group $E=E(\Gamma,\alpha,a)$.
+
+Relative to the affine base, this group is obtained by adjoining $t,c$
+with
 \[
- E=\left\langle\,\Gamma,t,c \ \middle|\
- \begin{gathered}
-  t\gamma t^{-1}=\alpha(\gamma),\quad
-  [c,\gamma]=1\quad(\gamma\in S_\Gamma),\\
-  c^2=1,\qquad [w,g]=1
- \end{gathered}\,\right\rangle,
+ t\gamma t^{-1}=\alpha(\gamma),\qquad
+ [c,\gamma]=1\quad(\gamma\in\Gamma),\qquad c^2=1,
 \]
-where $S_\Gamma$ is a finite generating set of $\Gamma$, $g$ runs over
-the generators, and $w=[\,tct^{-1},\,a\,(tct^{-1})\,a^{-1}]$.
-Substituting a standard presentation of the affine group in the
-generators $v_1,v_2,v_3$ for the translations and $x,y,z$ for the
-linear part yields the eight-generator, forty-one-relator presentation
-below.
-First define the \emph{linear presentation}
-\begin{equation}\label{eq:sl3presentation}
- \mathcal R=\left\langle x,y,z\ \middle|\
- \begin{gathered}
- x^3=y^3=z^2=(xz)^3=(yz)^3=1,\\
- (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
- \end{gathered}\right\rangle,
-\end{equation}
-and the \emph{base}
-\begin{equation}\label{eq:gamma-presentation}
-\mathcal B=\left\langle v_1,v_2,v_3,x,y,z\ \middle|\
-\begin{gathered}
-\text{the eight relations in \eqref{eq:sl3presentation}},\\
-[v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
-xv_1x^{-1}=v_3,\ xv_2x^{-1}=v_1,\
-xv_3x^{-1}=v_2,\\
-yv_1y^{-1}=v_1,\ yv_2y^{-1}=v_2^{-1}v_3,\
-yv_3y^{-1}=v_1v_2^{-1},\\
-zv_1z^{-1}=v_2v_3^{-1},\ zv_2z^{-1}=v_1v_3^{-1},\
-zv_3z^{-1}=v_3^{-1}
-\end{gathered}\right\rangle.
-\end{equation}
-Write $\iota\colon\mathcal B\to E$ for the homomorphism induced by the first
-six generators of the presentation below.
-
-\begin{definition}\label{def:E}
-Use the six base generators and the relations displayed in
-\eqref{eq:gamma-presentation}.  Define
-\begin{equation}\label{eq:E}
-  E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
-  \begin{gathered}
-   \textup{(B)}\quad\text{all relations in \eqref{eq:gamma-presentation}},\\
-   \textup{(T)}\quad tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
-   \phantom{\textup{(T)}\quad}
-     txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
-   \textup{(C)}\quad c^2=1,\\
-   \phantom{\textup{(C)}\quad}
-     [c,g]=1\ \ (g\in\{v_1,v_2,v_3,x,y,z\}),\\
-   \textup{(W)}\quad [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
-  \end{gathered}\right\rangle,
-\end{equation}
-where $w$ abbreviates the word
-$\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
-This is an explicit finite presentation with eight generators and
-forty-one relators: twenty in family~\textup{(B)}, six in
-family~\textup{(T)}, seven in family~\textup{(C)}, and eight in
-family~\textup{(W)}.
-Centrality of $w$ together with $c^2=1$ implies
-$w^2=1$ by \eqref{eq:involution-reversal}.  Families~\textup{(T)}
-and~\textup{(C)} give, respectively,
-\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
+and imposing centrality of
 \[
- t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
- \qquad [c,\iota(\mathcal B)]=1.
+ w=[\,tct^{-1},\,a(tct^{-1})a^{-1}].
 \]
-\end{definition}
-
-Figure~\ref{fig:compression-pattern} shows how the relation families
-enter the obstruction and the nontriviality witness.
-
-\begin{figure}[htbp]
-\centering
-% Tagging: the picture is one graphic, so it is a single marked-content unit
-% inside a Figure structure element carrying the alternative text.  Without
-% this the tagged PDF has an untagged drawing where the reader expects a
-% figure; the caption is a caption, not a substitute for /Alt.
-% Guards for the fallback build of the header comment: on a kernel without
-% the tagging commands these become no-ops, and on one with them they do
-% nothing at all.
-\providecommand{\tagstructbegin}[1]{}%
-\providecommand{\tagstructend}{}%
-\providecommand{\tagmcbegin}[1]{}%
-\providecommand{\tagmcend}{}%
-\tagstructbegin{tag=Figure,alt={Diagram in two parts.  On the left, a large
-  rounded rectangle is the image of the base group; a smaller rounded
-  rectangle inside it is the conjugate copy obtained by conjugating by t,
-  and an arrow between them is labelled by that conjugation.  The element
-  v1 is drawn in the base outside the conjugate copy.  Below them, a
-  circled c is joined by an arrow labelled ``conjugation by t'' to a
-  circled c-hat; c is linked to the base by the relation that c commutes
-  with the base, and c-hat is linked to the conjugate copy by the relation
-  that c-hat commutes with it.  On the right, a box gives the distinguished
-  word w as the commutator of c-hat with v1 c-hat v1 inverse, equal to the
-  square of the commutator of c-hat with v1 because c-hat squares to one.
-  Two arrows leave that box.  The first leads to a box saying that in every
-  matrix model the normalized Hilbert-Schmidt distance from the image of
-  that commutator to the identity tends to zero, so w goes to the identity.
-  The second leads to a box saying that in the Clifford quotient c-hat and
-  its conjugate by v1 are the generators at two distinct sites, which
-  anticommute, so w goes to the sign zeta, which is not the identity.}}%
-\tagmcbegin{}%
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
-  \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
-  \node[fignote] (iblab) at (1.05,2.7) {$\iota(\mathcal B)$};
-  \draw[rounded corners=2mm,line width=.4pt] (2.95,.45) rectangle (6.15,2.4);
-  \node (complab) at (4.55,1.62) {$t\iota(\mathcal B)t^{-1}$};
-  \node (v1) at (1.35,1.15) {$\iota(v_1)$};
-  \draw[figarr] (1.75,2.62) -- (3.35,2.62);
-  \node[fignote] (setconj) at (2.55,2.88) {$t(\,\cdot\,)t^{-1}$};
-  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (c) at (1.35,-1.5) {$c$};
-  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (chat) at (4.55,-1.5)
-    {$\hat c$};
-  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (chat);
-  \draw[line width=.4pt] (c) -- (1.35,0);
-  \node[fignote,anchor=east] (crel) at (1.17,-.68) {$[c,\iota(\mathcal B)]=1$};
-  \draw[line width=.4pt] (chat) -- (4.55,.45);
-  \node[fignote,anchor=west] (drel) at (4.73,-.68)
-    {$[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$};
-  \node[figout,text width=3.7cm] (mark) at (9.5,2.15)
-    {$w=[\,\hat c,\ \iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$\\[2pt]
-     {\footnotesize $=u^{2}$ for $u=[\,\hat c,\iota(v_1)]$, since
-      $\hat c^{2}=1$}};
-  \node[figbox,text width=3.7cm] (analytic) at (9.5,-.25)
-    {\footnotesize in every matrix model\\[2pt]
-     $\hsnorm{U_n(u)-1}\to0$\\[2pt]
-     so $w\mapsto1$
-     (Thm.~\ref{thm:sign-criterion})};
-  \node[figbox,text width=3.7cm] (algebraic) at (9.5,-2.55)
-    {\footnotesize in the Clifford quotient\\[2pt]
-     $\hat c\mapsto c_{\tau o},\quad
-      \iota(v_1)\hat c\iota(v_1)^{-1}\mapsto c_{j(\bar v_1)\tau o}$\\[2pt]
-     so $w\mapsto\zeta\ne1$
-     (Prop.~\ref{prop:witness})};
-  \draw[figarr] (chat) -| (mark);
-  \draw[figarr] (mark) -- (analytic);
-  \draw[figarr] (mark.east) -- ++(0.5,0) |- (algebraic.east);
-\end{tikzpicture}%
-\tagmcend\tagstructend
-\caption{The relations of \eqref{eq:E} give
-$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$ and
-$[c,\iota(\mathcal B)]=1$, hence
-$[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$.  Every
-homomorphism $\Theta\colon E\to\U(\mathcal Q)$ has $\Theta(w)=1$;
-the Clifford quotient of Section~\ref{sec:witness} maps $w$ to
-$\zeta\ne1$.}
-\label{fig:compression-pattern}
-\end{figure}
-
-
-\begin{lemma}[the distinguished word is a square]\label{lem:square}
-Let $H_1$ be a group and $x,y\in H_1$ with $x^2=1$.  Then
-\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
-\[
-  \bigl[\,x,\;y\,x\,y^{-1}\bigr]\;=\;[\,x,y\,]^{\,2} .
-\]
-\end{lemma}
-
-\begin{proof}
-Put $z=yxy^{-1}$, so $z^2=yx^2y^{-1}=1$; thus $z^{-1}=z$ and
-$x^{-1}=x$.  Then $[x,y]=xyx^{-1}y^{-1}=x\,(yxy^{-1})=xz$,
-and
-\[
-  [x,y]^2=(xz)^2=xz\,xz=x\,z\,x^{-1}z^{-1}=[x,z] . \qedhere
-\]
-\end{proof}
+This is the conceptual description used throughout the paper.  The
+companion notes record a literal finite presentation, the identification
+of its base with $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and an explicit
+rational-matrix certificate.
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
-The group $E$ is the specialization of
-Theorem~\ref{thm:kazhdan-clifford} to the data
-\eqref{eq:affine-data}, and $w\ne1$ by
-Proposition~\ref{prop:witness}.
+The preceding verification of the affine data and
+Theorem~\ref{thm:kazhdan-clifford} show that $E$ is finitely presented,
+that $w$ is a nontrivial central involution, and that every homomorphism
+$E\to\U(\mathcal Q)$ maps $w$ to $1$.  Thus $E$ is not MF.
 
-Let $(d_n)$ be given, write $\mathcal Q=\mathcal Q((d_n))$, and let
-$\Theta\colon E\to\U(\mathcal Q)$ be a homomorphism.  Apply the central
-involution obstruction (Theorem~\ref{thm:sign-criterion}) with
-$L=\iota(\mathcal B)\le E$, the elements $t,c\in E$, and
-$a=\iota(v_1)$.  The basic construction identifies $\mathcal B$ with
-$L$, so Proposition~\ref{prop:literal-base-T} gives
-property~\textup{(T)} of $L$, while families~\textup{(T)}
-and~\textup{(C)} give
-$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$ and
-$[c,\iota(\mathcal B)]=1$, respectively.  In $E$ we
-have $\hat c^2=(tct^{-1})^2=tc^2t^{-1}=1$, so Lemma~\ref{lem:square}
-with $x=\hat c$ and $y=\iota(v_1)$ gives
-\[
-  w=\bigl[\,\hat c,\;\iota(v_1)\,\hat c\,\iota(v_1)^{-1}\bigr]
-  =[\,\hat c,\iota(v_1)\,]^{\,2}=u^2 ,
-  \qquad u=[\,\hat c,\iota(v_1)\,].
-\]
-The defining relations make $w$ central, and $c^2=1$ then implies
-$w^2=1$ by \eqref{eq:involution-reversal}.  Hence $\Theta(w)=1$.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
-
-Every homomorphism $E\to\U(\mathcal Q)$ maps the nontrivial element
-$w$ to $1$, so none is injective and $E$ is not MF\@.  The canonical
-maps $E\to\U(\Cred(E))$ and $E\to\U(\Cmax(E))$ are injective, the
-first because $g\mapsto\lambda_g$ is and the second because the left
-regular representation factors through $\Cmax(E)$.  If
-$e\colon A\to\mathcal Q$ is an injective, possibly nonunital,
-$*$-homomorphism from a unital algebra, then $u\mapsto e(u)+1-e(1)$ is
-an injective homomorphism $\U(A)\to\U(\mathcal Q)$.  Hence an MF
-embedding of either $\Cred(E)$ or $\Cmax(E)$ would give an injective
-homomorphism $E\to\U(\mathcal Q)$, a contradiction.
+The canonical maps $E\to\U(\Cred(E))$ and $E\to\U(\Cmax(E))$ are
+injective, the first because $g\mapsto\lambda_g$ is and the second
+because the left regular representation factors through $\Cmax(E)$.
+If $e\colon A\to\mathcal Q$ is an injective, possibly nonunital,
+$*$-homomorphism from a unital algebra, then
+$u\mapsto e(u)+1-e(1)$ is an injective homomorphism
+$\U(A)\to\U(\mathcal Q)$.  Hence an MF embedding of either
+$\Cred(E)$ or $\Cmax(E)$ would give an injective homomorphism
+$E\to\U(\mathcal Q)$, a contradiction.
 \end{proof}
 
 \begin{corollary}[uniform finite operator-norm obstruction]\label{cor:uniform}
@@ -1401,197 +1231,10 @@ is a unitary-valued $\phi_n$ with multiplicative defect at most $1/n$
 on $F_n$ and $\opnorm{\phi_n(w)-1}\ge1$.  The sequence $(\phi_n)$ is an
 operator-norm asymptotic representation of $E$, so by
 Lemma~\ref{lem:unitarycorona} its class is a homomorphism
-$\Theta\colon E\to\U(\mathcal Q)$, and $\opnorm{\Theta(w)-1}\ge1$ gives
-$\Theta(w)\ne1$, contradicting Theorem~\ref{thm:A}.
+$\Theta\colon E\to\U(\mathcal Q)$, and
+$\opnorm{\Theta(w)-1}\ge1$ gives $\Theta(w)\ne1$, contradicting
+Theorem~\ref{thm:A}.
 \end{proof}
-
-Since $E$ is finitely presented, the forty-one relators of
-\eqref{eq:E} serve as the test set, and the hypothesis becomes a
-condition on an eight-tuple of unitaries.
-
-\begin{corollary}[a uniform obstruction on the presentation]
-\label{cor:relator-uniform}
-There is a $\delta>0$ with the following property.  For every $d\ge1$
-and every eight-tuple $V_1,\dots,V_8\in\U(d)$, if
-\[
- \opnorm{r(V_1,\dots,V_8)-1}\le\delta
- \qquad\text{for each of the forty-one relators $r$ of \eqref{eq:E},}
-\]
-then $\opnorm{w(V_1,\dots,V_8)-1}<1$.
-\leanverified{Sofic/LiteralRelatorObstruction}{GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction}
-\end{corollary}
-
-\begin{proof}
-If no such $\delta$ exists, then for every $n$ there are a dimension
-$d_n$ and a tuple $V^{(n)}$ satisfying every relator to within $1/n$
-and with $\opnorm{w(V^{(n)})-1}\ge1$.  Each tuple defines a
-homomorphism $\varphi_n\colon F_8\to\U(d_n)$, since $F_8$ is free, and
-by Lemma~\ref{lem:unitarycorona} the classes define a homomorphism
-$\Phi\colon F_8\to\U(\mathcal Q((d_n)))$.  Each of the forty-one
-relators lies in $\ker\Phi$, its images converging to $1$ in operator
-norm, so $\Phi$ factors as $\Theta\circ\pi$ through the quotient map
-$\pi\colon F_8\to E$.  Theorem~\ref{thm:A} gives $\Theta(w)=1$, that
-is $\opnorm{w(V^{(n)})-1}\to0$, contradicting the lower bound $1$.
-\end{proof}
-
-The compactness proof is ineffective.  An explicit value of $\delta$ and an
-explicit test set $F_0$ would require an effective Kazhdan constant for the
-base and effective compression estimates.
-
-\section{The base and a smaller presentation}\label{sec:group}
-
-The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
-group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, which has
-property~\textup{(T)} as a lattice in
-$\mathbb R^3\rtimes\SL_3(\mathbb R)$
-\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
-
-\paragraph{A six-generator presentation.}
-The group $E$ is generated by the six elements $v_1,x,y,z,t,c$, and has
-a Tietze-equivalent presentation on them with thirty-two relators.
-\leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
-\leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation}
-In \eqref{eq:E}, eliminate $v_3=xv_1x^{-1}$ and $v_2=x^2v_1x^{-2}$ by
-Tietze substitutions and delete the two defining relations.  The
-remaining $x$-action relation follows from $x^3=1$.  The stable-letter,
-$c$-commutation, and centrality relations for $v_2,v_3$ follow from
-those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
-Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
-
-After these Tietze transformations, the remaining relations still
-imply $[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$, and the
-distinguished word $[\,\hat c,\ \iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$, computed
-in the same group, is unchanged.
-
-\subsection{Property~\textup{(T)} of the base}
-
-\begin{proposition}\label{prop:literal-base-T}
-The twenty-relator group $\mathcal B$ has property~\textup{(T)}, in both
-the real-orthogonal and complex-unitary formulations.
-\leanverified{Sofic/LiteralBaseP13PropertyTBridge}{GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT}
-\end{proposition}
-
-\begin{proof}
-By Remark~\ref{rem:classical-base} the presentation
-\eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb
-Z)$, which has property~\textup{(T)}
-\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}.  Let $\rho$ be an
-orthogonal representation on a real Hilbert space $H_{\mathbb R}$.  Its
-complexification $H_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ has the unitary
-representation $\rho\otimes1$.  The invariant vectors and displacement
-norms are those of $\rho$ in each real coordinate, so every Kazhdan pair for
-the unitary formulation is also one for the orthogonal formulation.
-\end{proof}
-
-\begin{remark}[the classical identification]\label{rem:classical-base}
-The eight relations \eqref{eq:sl3presentation} present
-$\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW}; the corresponding matrices
-are also recorded in \cite{CLV}.  Hence
-$\mathcal B\cong\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and the
-surjection $\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto
-the matrix realization is an isomorphism.
-\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
-\end{remark}
-
-\section{An auxiliary Clifford witness}\label{sec:witness}
-
-\begin{construction}[Clifford groups]\label{con:clifford}
-For a set $X$, use the real Clifford-algebra convention generated by
-$(c_x)_{x\in X}$ with $c_x^2=1$ and $c_xc_y=-c_yc_x$ for $x\ne y$, and let
-$\Cl(X)$ be the subgroup of units generated by $-1$ and the $c_x$.
-Write $\zeta=-1$.  In this concrete group,
-\[
- \zeta^2=c_x^2=1,\qquad c_xc_y=\zeta c_yc_x\quad(x\ne y).
-\]
-The sign $\zeta$ is nontrivial.  Thus $\Cl(X)$ is a central extension
-of the elementary abelian $2$-group on $X$, with central kernel
-generated by $\zeta$.  For distinct $x,y\in X$, the commutator
-$[c_x,c_y]$ equals $\zeta$.  Every
-permutation of $X$ acts on this
-group by $c_x\mapsto c_{\sigma(x)}$ and fixes $\zeta$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction}
-\end{construction}
-
-\begin{lemma}[linear model]\label{lem:linear}
-For $M\in\GL_3(\mathbb Q)$ and $u\in\mathbb Q^3$, write
-\[
- A(M,u)=\begin{pmatrix}M&u\\0&1\end{pmatrix}.
-\]
-Assign $v_i\mapsto A(I_3,e_i)$ and
-\[
-\begin{aligned}
- x&\mapsto A\!\left(\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},0\right),
-&y&\mapsto A\!\left(\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},0\right),\\[3pt]
- z&\mapsto A\!\left(\begin{pmatrix}0&1&0\\1&0&0\\-1&-1&-1\end{pmatrix},0\right).
-\end{aligned}
-\]
-Let $\bar\Gamma\le\GL_4(\mathbb Q)$ be the subgroup generated by these six
-matrices, and put
-$D=\operatorname{diag}(2,2,2,1)$.  The six matrices satisfy all twenty
-relators of $\mathcal B$, and
-\[
- \bar\alpha(u)=DuD^{-1}
-\]
-is an injective endomorphism of $\bar\Gamma$ which squares the three
-translation generators and fixes $x,y,z$.  Moreover the matrix assigned to
-$v_1$ does not lie in $\operatorname{range}(\bar\alpha)$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel}
-\end{lemma}
-
-\begin{proof}
-Each of the twenty relators reduces to an equality between explicit
-$4\times4$ rational matrices.  Conjugation by $D$ gives the six stable-letter equations
-and is injective because it is conjugation by an invertible matrix.  Every
-displayed generator and its explicitly computed inverse has integral entries;
-equivalently, all six generators lie in $\GL_4(\mathbb Z)$.  Hence
-$\bar\Gamma\le\GL_4(\mathbb Z)$.  However $D^{-1}\bar v_1D$ has entry $1/2$
-in position $(1,4)$, so it is not in $\bar\Gamma$.  This proves the last
-assertion.
-\end{proof}
-
-Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$ and let
-$\tau$ denote its shift automorphism.  Set $\Sigma=T\rtimes\mathbb Z$.
-This is the group $G$ used in Theorem~\ref{thm:kazhdan-clifford} for
-the data \eqref{eq:affine-data}.  Let
-$j\colon\bar\Gamma\hookrightarrow\Sigma$ be the level-zero map.  Put
-$X=\Sigma/j(\bar\Gamma)$, with base point $o=j(\bar\Gamma)$.  Since
-$D^{-1}\bar v_1D\notin\bar\Gamma$ (Lemma~\ref{lem:linear}), we have
-$\tau o\ne j(\bar v_1)\tau o$, and the Clifford generators at these two
-points anticommute.
-
-\begin{proposition}\label{prop:witness}
-$w\neq1$ in $E$.
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
-\end{proposition}
-
-\begin{proof}
-Form $W:=\Cl(X)\rtimes\Sigma$ as in Construction~\ref{con:clifford}.
-Define a map on the generators of \eqref{eq:E} by
-\[
-\begin{gathered}
-  g\mapsto j(\bar g)\in\Sigma\quad
-  (g\in\{v_1,v_2,v_3,x,y,z\}),\\
-  t\mapsto\tau,\qquad c\mapsto c_o .
-\end{gathered}
-\]
-Lemma~\ref{lem:linear} gives the twenty base and six stable-letter
-relations.  The level-zero subgroup fixes $o$, so $c_o$
-commutes with every base generator, and $c_o^2=1$.
-Under this assignment,
-\[
-  tct^{-1}\mapsto c_{\tau o},\qquad
-  v_1(tct^{-1})v_1^{-1}\mapsto c_{j(\bar v_1)\tau o},
-\]
-and the two points are distinct by Lemma~\ref{lem:linear}, so
-\[
-  w\mapsto[c_{\tau o},c_{j(\bar v_1)\tau o}]=-1=\zeta .
-\]
-Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
-$g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
-assignment extends to a group homomorphism $E\to W$ sending $w$ to
-$\zeta\neq1$, and therefore $w\neq1$ in $E$.
-\end{proof}
-
 \section*{Further results}
 Further variants and consequences are collected in the companion
 \href{https://sauersml.github.io/group-approximation/notes/}
@@ -1689,19 +1332,6 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}, \arxiv{1210.4050}.
 
-\bibitem[CLV]{CLV}
-M.~D.~E. Conder, G.~Liversidge, and M.~R. Vsemirnov,
-\emph{Generating pairs for $\SL(n,\mathbb Z)$},
-J. Algebra \textbf{662} (2025), 123--137,
-\doi{10.1016/j.jalgebra.2024.08.008}.
-
-\bibitem[CRW]{CRW}
-M.~D.~E. Conder, E.~F. Robertson, and P.~Williams,
-\emph{Presentations for 3-dimensional special linear groups over integer
-rings},
-Proc. Amer. Math. Soc. \textbf{115} (1992), no.~1, 19--26,
-\doi{10.2307/2159559}.
-
 \bibitem[Dad]{Dadarlat}
 M.~Dadarlat,
 \emph{Obstructions to matricial stability of discrete groups and almost
@@ -1749,6 +1379,12 @@ Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
 Commun. ACM \textbf{64} (2021), no.~11, 131--138,
 \doi{10.1145/3485628}, \arxiv{2001.04383}.
+
+\bibitem[Kor]{Korchagin}
+A.~I. Korchagin,
+\emph{The MF-property for countable discrete groups},
+Math. Notes \textbf{102} (2017), no.~2, 198--211,
+\doi{10.1134/S0001434617070227}, \arxiv{1704.06906}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,

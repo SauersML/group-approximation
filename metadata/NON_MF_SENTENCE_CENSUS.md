@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 234 |
-| `formalized` | 116 |
+| `ledger` | 185 |
+| `formalized` | 95 |
 | `attribution` | 36 |
-| `definition` | 30 |
-| `structural` | 11 |
+| `definition` | 25 |
+| `structural` | 18 |
 | `provenance` | 6 |
-| **total** | **433** |
+| **total** | **365** |
 
-Carrying a declaration or a ledger row: **380/433** (87.8%).
+Carrying a declaration or a ledger row: **305/365** (83.6%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -27,20 +27,17 @@ Every sentence carries a declaration, a ledger row, or a reason no declaration a
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 6 | 0 |
-| Introduction | 14 | 0 |
-| The result | 6 | 0 |
+| Introduction | 13 | 0 |
+| The result | 8 | 0 |
 | Outline of the proof | 30 | 0 |
 | Relation to prior work | 26 | 0 |
-| Matrix quotients | 90 | 0 |
+| Matrix quotients | 92 | 0 |
 | One-sided conjugation in matrix models | 23 | 0 |
 | The exact case | 16 | 0 |
 | The asymptotic case | 41 | 0 |
 | The central involution obstruction | 48 | 0 |
-| The basic non-MF construction | 27 | 0 |
-| The explicit affine example | 49 | 0 |
-| The base and a smaller presentation | 7 | 0 |
-| Property~\textup{(T) | 7 | 0 |
-| An auxiliary Clifford witness | 32 | 0 |
+| The basic non-MF construction | 32 | 0 |
+| The explicit affine example | 19 | 0 |
 | Further results | 2 | 0 |
 | Acknowledgements | 3 | 0 |
 | AI and computational resource usage | 6 | 0 |

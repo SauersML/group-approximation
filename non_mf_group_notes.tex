@@ -2,9 +2,7 @@
 % kernels before 2025-06-01 (TeX Live 2024 and earlier abort with an unknown
 % `document/metadata/tagging` key), so the line below is guarded and the source
 % compiles either way: on a 2025 kernel the PDF is tagged, on an older one it
-% is not.  The four tagging commands around the figure in
-% Section~\ref{paper-sec:group} are guarded by \providecommand there and degrade to
-% no-ops.  Release and draft workflows both use the digest-pinned TeX Live 2025
+% is not.  Release and draft workflows both use the digest-pinned TeX Live 2025
 % image -- TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml and
 % draft-non-mf-pdf.yml -- which is the reproducible environment for this
 % source.  The 2026 image is deliberately not used: its tagpdf aborts at
@@ -20,8 +18,6 @@
 \usepackage{enumitem}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage{xr-hyper}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 % Allow line breaks with stretch inside linked declaration names.
@@ -105,14 +101,6 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
-\tikzset{
-  figbox/.style={draw, line width=.4pt, align=center, inner sep=4.5pt,
-    text width=3.05cm, font=\small},
-  figout/.style={figbox, line width=.8pt},
-  figarr/.style={-{Latex[length=2mm,width=1.4mm]}, line width=.4pt},
-  fignote/.style={font=\footnotesize, inner sep=2pt}
-}
-
 \externaldocument[paper-]{build/non_mf_groups_exist}[non_mf_groups_exist.pdf]
 
 \begin{document}
@@ -129,14 +117,238 @@ group constructed in \emph{A non-MF group}.  They include weighted
 Kazhdan transport, general obstruction criteria, MF-residual computations,
 the sign-free quotient, soficity and trace consequences, torsion-free
 examples, logical applications, limitations, and additional operator-algebraic
-consequences.  The central-sign construction and the proof that the explicit
-group is non-MF remain in the main paper.
+consequences.  They also record the literal presentation and affine certificate
+for the group defined conceptually in the main paper.  The central-sign
+construction and the proof that the group is non-MF remain there.
 \end{abstract}
 
 \maketitle
 \setcounter{tocdepth}{1}
 \tableofcontents
 \par\clearpage
+
+\section{A literal presentation and affine certificate}
+\label{sec:literal-presentation}
+
+The main paper defines $E$ conceptually from the affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and the doubling endomorphism.
+For reference, this section records the literal presentation used by the
+Lean development and an explicit matrix certificate for its affine base.
+
+First define the \emph{linear presentation}
+\begin{equation}\label{eq:sl3presentation}
+ \mathcal R=\left\langle x,y,z\ \middle|\
+ \begin{gathered}
+ x^3=y^3=z^2=(xz)^3=(yz)^3=1,\\
+ (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
+ \end{gathered}\right\rangle,
+\end{equation}
+and the \emph{base}
+\begin{equation}\label{eq:gamma-presentation}
+\mathcal B=\left\langle v_1,v_2,v_3,x,y,z\ \middle|\
+\begin{gathered}
+\text{the eight relations in \eqref{eq:sl3presentation}},\\
+[v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
+xv_1x^{-1}=v_3,\ xv_2x^{-1}=v_1,\
+xv_3x^{-1}=v_2,\\
+yv_1y^{-1}=v_1,\ yv_2y^{-1}=v_2^{-1}v_3,\
+yv_3y^{-1}=v_1v_2^{-1},\\
+zv_1z^{-1}=v_2v_3^{-1},\ zv_2z^{-1}=v_1v_3^{-1},\
+zv_3z^{-1}=v_3^{-1}
+\end{gathered}\right\rangle.
+\end{equation}
+Write $\iota\colon\mathcal B\to E$ for the homomorphism induced by the first
+six generators of the presentation below.
+
+\begin{definition}\label{def:E}
+Use the six base generators and the relations displayed in
+\eqref{eq:gamma-presentation}.  Define
+\begin{equation}\label{eq:E}
+  E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
+  \begin{gathered}
+   \textup{(B)}\quad\text{all relations in \eqref{eq:gamma-presentation}},\\
+   \textup{(T)}\quad tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
+   \phantom{\textup{(T)}\quad}
+     txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
+   \textup{(C)}\quad c^2=1,\\
+   \phantom{\textup{(C)}\quad}
+     [c,g]=1\ \ (g\in\{v_1,v_2,v_3,x,y,z\}),\\
+   \textup{(W)}\quad [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
+  \end{gathered}\right\rangle,
+\end{equation}
+where $w$ abbreviates the word
+$\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
+This is an explicit finite presentation with eight generators and
+forty-one relators: twenty in family~\textup{(B)}, six in
+family~\textup{(T)}, seven in family~\textup{(C)}, and eight in
+family~\textup{(W)}.
+Centrality of $w$ together with $c^2=1$ implies
+$w^2=1$ by \eqref{paper-eq:involution-reversal}.  Families~\textup{(T)}
+and~\textup{(C)} give, respectively,
+\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
+\[
+ t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
+ \qquad [c,\iota(\mathcal B)]=1.
+\]
+\end{definition}
+
+Under the identification of Remark~\ref{rem:classical-base}, the
+relations in families~\textup{(T)}, \textup{(C)}, and \textup{(W)}
+are exactly the relative construction of
+Theorem~\ref{paper-thm:kazhdan-clifford} for the affine data
+\eqref{paper-eq:affine-data}.  Thus this literal presentation defines
+the same group $E$ as the main paper.
+
+\subsection{Property~\textup{(T)} of the base}
+
+\begin{proposition}\label{prop:literal-base-T}
+The twenty-relator group $\mathcal B$ has property~\textup{(T)}, in both
+the real-orthogonal and complex-unitary formulations.
+\leanverified{Sofic/LiteralBaseP13PropertyTBridge}{GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT}
+\end{proposition}
+
+\begin{proof}
+By Remark~\ref{rem:classical-base} the presentation
+\eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb
+Z)$, which has property~\textup{(T)}
+\cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}.  Let $\rho$ be an
+orthogonal representation on a real Hilbert space $H_{\mathbb R}$.  Its
+complexification $H_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ has the unitary
+representation $\rho\otimes1$.  The invariant vectors and displacement
+norms are those of $\rho$ in each real coordinate, so every Kazhdan pair for
+the unitary formulation is also one for the orthogonal formulation.
+\end{proof}
+
+\begin{remark}[the classical identification]\label{rem:classical-base}
+The eight relations \eqref{eq:sl3presentation} present
+$\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW}; the corresponding matrices
+are also recorded in \cite{CLV}.  Hence
+$\mathcal B\cong\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and the
+surjection $\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto
+the matrix realization is an isomorphism.
+\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
+\end{remark}
+
+\begin{lemma}[linear model]\label{lem:linear}
+For $M\in\GL_3(\mathbb Q)$ and $u\in\mathbb Q^3$, write
+\[
+ A(M,u)=\begin{pmatrix}M&u\\0&1\end{pmatrix}.
+\]
+Assign $v_i\mapsto A(I_3,e_i)$ and
+\[
+\begin{aligned}
+ x&\mapsto A\!\left(\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},0\right),
+&y&\mapsto A\!\left(\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},0\right),\\[3pt]
+ z&\mapsto A\!\left(\begin{pmatrix}0&1&0\\1&0&0\\-1&-1&-1\end{pmatrix},0\right).
+\end{aligned}
+\]
+Let $\bar\Gamma\le\GL_4(\mathbb Q)$ be the subgroup generated by these six
+matrices, and put
+$D=\operatorname{diag}(2,2,2,1)$.  The six matrices satisfy all twenty
+relators of $\mathcal B$, and
+\[
+ \bar\alpha(u)=DuD^{-1}
+\]
+is an injective endomorphism of $\bar\Gamma$ which squares the three
+translation generators and fixes $x,y,z$.  Moreover the matrix assigned to
+$v_1$ does not lie in $\operatorname{range}(\bar\alpha)$.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel}
+\end{lemma}
+
+\begin{proof}
+Each of the twenty relators reduces to an equality between explicit
+$4\times4$ rational matrices.  Conjugation by $D$ gives the six stable-letter equations
+and is injective because it is conjugation by an invertible matrix.  Every
+displayed generator and its explicitly computed inverse has integral entries;
+equivalently, all six generators lie in $\GL_4(\mathbb Z)$.  Hence
+$\bar\Gamma\le\GL_4(\mathbb Z)$.  However $D^{-1}\bar v_1D$ has entry $1/2$
+in position $(1,4)$, so it is not in $\bar\Gamma$.  This proves the last
+assertion.
+\end{proof}
+
+Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$ and let
+$\tau$ denote its shift automorphism.  Set $\Sigma=T\rtimes\mathbb Z$.
+This is the group $G$ used in Theorem~\ref{paper-thm:kazhdan-clifford} for
+the data \eqref{paper-eq:affine-data}.  Let
+$j\colon\bar\Gamma\hookrightarrow\Sigma$ be the level-zero map.  Put
+$X=\Sigma/j(\bar\Gamma)$, with base point $o=j(\bar\Gamma)$.  Since
+$D^{-1}\bar v_1D\notin\bar\Gamma$ (Lemma~\ref{lem:linear}), we have
+$\tau o\ne j(\bar v_1)\tau o$, and the Clifford generators at these two
+points anticommute.
+
+\begin{proposition}\label{prop:witness}
+$w\neq1$ in $E$.
+\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
+\end{proposition}
+
+\begin{proof}
+Form $W:=\Cl(X)\rtimes\Sigma$ as in Construction~\ref{paper-con:clifford}.
+Define a map on the generators of \eqref{eq:E} by
+\[
+\begin{gathered}
+  g\mapsto j(\bar g)\in\Sigma\quad
+  (g\in\{v_1,v_2,v_3,x,y,z\}),\\
+  t\mapsto\tau,\qquad c\mapsto c_o .
+\end{gathered}
+\]
+Lemma~\ref{lem:linear} gives the twenty base and six stable-letter
+relations.  The level-zero subgroup fixes $o$, so $c_o$
+commutes with every base generator, and $c_o^2=1$.
+Under this assignment,
+\[
+  tct^{-1}\mapsto c_{\tau o},\qquad
+  v_1(tct^{-1})v_1^{-1}\mapsto c_{j(\bar v_1)\tau o},
+\]
+and the two points are distinct by Lemma~\ref{lem:linear}, so
+\[
+  w\mapsto[c_{\tau o},c_{j(\bar v_1)\tau o}]=-1=\zeta .
+\]
+Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
+$g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
+assignment extends to a group homomorphism $E\to W$ sending $w$ to
+$\zeta\neq1$, and therefore $w\neq1$ in $E$.
+\end{proof}
+
+\subsection{The presentation-level obstruction}
+
+Korchagin's local microstate criterion for finitely presented groups
+\cite[Proposition~8]{Korchagin} is the corresponding positive result.
+For the non-MF presentation here, the same viewpoint gives the following
+finite obstruction.
+
+Since $E$ is finitely presented, the forty-one relators of
+\eqref{eq:E} serve as the test set, and the hypothesis becomes a
+condition on an eight-tuple of unitaries.
+
+\begin{corollary}[a uniform obstruction on the presentation]
+\label{cor:relator-uniform}
+There is a $\delta>0$ with the following property.  For every $d\ge1$
+and every eight-tuple $V_1,\dots,V_8\in\U(d)$, if
+\[
+ \opnorm{r(V_1,\dots,V_8)-1}\le\delta
+ \qquad\text{for each of the forty-one relators $r$ of \eqref{eq:E},}
+\]
+then $\opnorm{w(V_1,\dots,V_8)-1}<1$.
+\leanverified{Sofic/LiteralRelatorObstruction}{GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction}
+\end{corollary}
+
+\begin{proof}
+If no such $\delta$ exists, then for every $n$ there are a dimension
+$d_n$ and a tuple $V^{(n)}$ satisfying every relator to within $1/n$
+and with $\opnorm{w(V^{(n)})-1}\ge1$.  Each tuple defines a
+homomorphism $\varphi_n\colon F_8\to\U(d_n)$, since $F_8$ is free, and
+by Lemma~\ref{paper-lem:unitarycorona} the classes define a homomorphism
+$\Phi\colon F_8\to\U(\mathcal Q((d_n)))$.  Each of the forty-one
+relators lies in $\ker\Phi$, its images converging to $1$ in operator
+norm, so $\Phi$ factors as $\Theta\circ\pi$ through the quotient map
+$\pi\colon F_8\to E$.  Theorem~\ref{paper-thm:A} gives $\Theta(w)=1$, that
+is $\opnorm{w(V^{(n)})-1}\to0$, contradicting the lower bound $1$.
+\end{proof}
+
+The compactness proof is ineffective.  An explicit value of $\delta$ and an
+explicit test set $F_0$ would require an effective Kazhdan constant for the
+base and effective compression estimates.
+
 
 \section{Consequences of the example}\label{sec:position}
 
@@ -203,7 +415,7 @@ Theorem~\ref{paper-thm:A}.
 The block normal form of Section~\ref{sec:algebras-sofic} shows in
 addition that $E$, and hence $\Cred(E)$, is exact.
 The canonical map $\mathcal B\to E$ is injective
-(Section~\ref{paper-sec:witness}), so $E$ contains an infinite Kazhdan group
+(Section~\ref{sec:literal-presentation}), so $E$ contains an infinite Kazhdan group
 and is nonamenable.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 By Lance's theorem, nonamenability of a discrete group is equivalent
@@ -226,7 +438,7 @@ Kazhdan projection (Proposition~\ref{rem:maxinfinite}).
 \subsection*{A sofic example}
 
 \begin{mainthm}[the explicit group is sofic]\label{thm:Esofic}
-The group $E$ of Definition~\ref{paper-def:E} is sofic.
+The group $E$ of Definition~\ref{def:E} is sofic.
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic}
 \end{mainthm}
 
@@ -785,7 +997,7 @@ $w$ to the identity (Theorem~\ref{paper-thm:exactfd} with $H=E$).
 Consequently finite-dimensional linear representations do not separate
 the points of $E$, and every finite quotient maps $w$ to the
 identity.  Since the
-Clifford quotient of Section~\ref{paper-sec:witness} sends $w$ to a
+Clifford quotient of Section~\ref{sec:literal-presentation} sends $w$ to a
 nontrivial element, that quotient is infinite.  The central involution
 $w$ lies in the kernel of every homomorphism to a finite group, so $E$
 is a group of \emph{Deligne type} in the terminology of
@@ -818,7 +1030,7 @@ $\mathfrak D(H,\Gamma)$ does as well.
 
 \begin{corollary}\label{cor:notRFD}
 Every finite-dimensional linear representation of the group $E$ of
-Definition~\ref{paper-def:E}, over any field, maps $w$ to the identity, and
+Definition~\ref{def:E}, over any field, maps $w$ to the identity, and
 every homomorphism from $E$ to a finite group does as well.  In
 particular $E$ admits no injective homomorphism into $\GL(V)$ for any
 finite-dimensional vector space $V$ over any field.
@@ -828,9 +1040,9 @@ finite-dimensional vector space $V$ over any field.
 \begin{proof}
 Apply Theorem~\ref{paper-thm:exactfd} with $H=E$, the image of $\mathcal B$, and the
 elements $t,c,v_1$; the hypotheses hold by the defining relations
-\eqref{paper-eq:E}.  Every finite-dimensional representation maps $w$ to the
+\eqref{eq:E}.  Every finite-dimensional representation maps $w$ to the
 identity, and
-$w\neq1$ by Proposition~\ref{paper-prop:witness}.  For a finite target,
+$w\neq1$ by Proposition~\ref{prop:witness}.  For a finite target,
 compose with its faithful left regular representation over
 $\mathbb Q$.  The composite is a finite-dimensional linear
 representation and hence maps $w$ to the identity; faithfulness of the
@@ -991,7 +1203,7 @@ and neither $\Cmax(E_m)$ nor $\Cred(E_m)$ is an MF $C^*$-algebra.
 \begin{proof}
 Replace the affine dilation $\operatorname{diag}(2,2,2,1)$ by
 $\operatorname{diag}(m,m,m,1)$ (both acting as in
-Lemma~\ref{paper-lem:linear}).  It conjugates each integral translation
+Lemma~\ref{lem:linear}).  It conjugates each integral translation
 $v_i$ to $v_i^m$ and fixes the three linear generators.  Conjugating
 $v_1$ by the inverse dilation gives translation by $e_1/m$, which is
 not integral.  Hence the two relevant cosets remain distinct, and the
@@ -1149,7 +1361,7 @@ $*$-homomorphism and let $\phi\colon E\to\U(A)$.  Define
 Then \(\widehat j\) is an injective homomorphism on \(\U(A)\), so
 \(\widehat j\circ\phi\) is a homomorphism \(E\to\U(\mathcal Q)\).
 By Theorem~\ref{paper-thm:A}, \((\widehat j\circ\phi)(w)=1\); injectivity
-of \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{paper-prop:witness} has
+of \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
 
@@ -1447,7 +1659,7 @@ Write $q\colon E\to E/\langle w\rangle$, $\bar c=q(\hat c)$, and
 $\bar L=q(\iota(\mathcal B))$.  The element $\bar c$ is an involution
 because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar c$
 because conjugating the relation $[c,\iota(\mathcal B)]=1$
-of \eqref{paper-eq:E} by $t$ gives
+of \eqref{eq:E} by $t$ gives
 $[\,t\iota(\mathcal B)t^{-1},\,\hat c\,]=1$ in $E$, where $\hat c=tct^{-1}$.  The
 subgroup that centralizes $\hat c$ is the conjugate one, which is why the
 relation is conjugated by $t$.  Property~\textup{(T)} passes to $\bar L$,
@@ -1479,7 +1691,7 @@ Theorem~\ref{thm:collapse}
 $[q(\iota(v_1)),\bar c]\in
 \operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$.
 
-The homomorphism $E\to W$ of Proposition~\ref{paper-prop:witness} sends
+The homomorphism $E\to W$ of Proposition~\ref{prop:witness} sends
 $[\iota(v_1),\hat c]$ to the
 product of the Clifford generators at the two distinct points $\tau o$
 and $j(\bar v_1)\tau o$, and sends $\langle w\rangle$ into
@@ -1521,7 +1733,7 @@ from $H$ to an MF group factors through it.
 \subsection{The exact residual of $E$}\label{sec:exact-residual}
 
 \begin{theorem}[the exact MF residual]\label{thm:exact-mf-residual}
-For the group $E$ of Definition~\ref{paper-def:E}, put $d=\hat c=tct^{-1}$,
+For the group $E$ of Definition~\ref{def:E}, put $d=\hat c=tct^{-1}$,
 $u=[d,v_1]$, and $D=\langle\!\langle u\rangle\!\rangle_E$.  Then
 \[
  \operatorname{Res}_{\mathrm{MF}}(E)=D=N_{\mathrm{conj}},
@@ -1639,12 +1851,12 @@ $y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
 
 \subsection{The Clifford quotient and permanence}
 
-The map $E\to W$ of Proposition~\ref{paper-prop:witness} is surjective: its image
+The map $E\to W$ of Proposition~\ref{prop:witness} is surjective: its image
 contains $\Sigma$ and the generator $c_o$ at the base point, hence
 every Clifford generator by transitivity of
-the $\Sigma$-action on $X$.  Since $E$ is generated by
-$v_1,x,y,z,t,c$ (Section~\ref{paper-sec:group}), their six
-images generate $W$.  The map sends
+the $\Sigma$-action on $X$.  Since $\Sigma$ is finitely generated,
+a finite generating set for $\Sigma$ together with $c_o$ generates $W$.
+The map sends
 $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ to the nontrivial sign
 $\zeta$, so $\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ by
 Lemma~\ref{lem:portable}.  Hence the finitely generated group $W$ is
@@ -1716,14 +1928,14 @@ subgroup, so simplicity makes it the whole group.  Every homomorphism to an MF g
 \subsection{Soficity of $E$}\label{sec:Esofic}
 
 Deleting the letter $c$ and the families \textup{(C)} and \textup{(W)}
-from \eqref{paper-eq:E} leaves the presentation
+from \eqref{eq:E} leaves the presentation
 $\langle\,\mathcal B,t\mid tut^{-1}=\bar\alpha(u)\,\rangle$ of the
 ascending HNN extension of the base along the doubling endomorphism.
-By Remark~\ref{paper-rem:classical-base} the base is $\bar\Gamma$, so
+By Remark~\ref{rem:classical-base} the base is $\bar\Gamma$, so
 \[
  E/\langle\!\langle c\rangle\!\rangle\;\cong\;\Sigma
 \]
-for the group $\Sigma=T\rtimes\Z$ of Section~\ref{paper-sec:witness}, with
+for the group $\Sigma=T\rtimes\Z$ of Section~\ref{sec:literal-presentation}, with
 its site set $X=\Sigma/B$, base point $o$, shift $\tau$ and level-zero
 base $B=j(\bar\Gamma)$.  The levels
 \[
@@ -1737,7 +1949,7 @@ $[K:B]$ elements.
 
 Let $\mathcal G$ be the graph on $X$ whose edges are the $\Sigma$-orbit
 of the pair $\{\tau o,\,j(\bar v_1)\tau o\}$, whose entries are
-distinct by Lemma~\ref{paper-lem:linear}.  Two sites are adjacent in
+distinct by Lemma~\ref{lem:linear}.  Two sites are adjacent in
 $\mathcal G$ exactly when they are distinct and lie in a common block.
 Adjacent sites share a block because the two sites are $gB$ and $hB$
 for the representatives $g=\tau$ and $h=j(\bar v_1)\tau$, and
@@ -1754,7 +1966,7 @@ $\bar\Gamma/\bar\alpha(\bar\Gamma)$ is transitive on the nontrivial
 cosets, so every pair of distinct sites of a block is the image of
 the generating pair.  Let $L=\langle x,y,z\rangle$ be the linear part,
 so $\bar\Gamma=\Z^3\rtimes L$.  Since $\bar\alpha$ squares the three
-translations and fixes $x,y,z$ (Lemma~\ref{paper-lem:linear}), its image is
+translations and fixes $x,y,z$ (Lemma~\ref{lem:linear}), its image is
 $(2\Z^3)\rtimes L$.  Reduction of the translation coordinate modulo~$2$
 identifies $\bar\Gamma/\bar\alpha(\bar\Gamma)$ with $(\Z/2)^3$.
 Under that identification left multiplication by an
@@ -1803,7 +2015,7 @@ finite orbits on $X$.
 \begin{proof}
 Send the six base letters and $t$ to the corresponding generators of
 $\Sigma$, and $c$ to $c_o$.  Families~\textup{(B)} and~\textup{(T)} of
-\eqref{paper-eq:E} hold in $\Sigma$ by construction.  For family~\textup{(C)}:
+\eqref{eq:E} hold in $\Sigma$ by construction.  For family~\textup{(C)}:
 $c_o^2=1$, and $B$ fixes $o$, so each base generator fixes $c_o$.  For
 family~\textup{(W)}: the pair $\{\tau o,\,j(\bar v_1)\tau o\}$ is an
 edge, so the image of $w$ is
@@ -1833,7 +2045,7 @@ $X=\Sigma/B$ finite.
 \end{proof}
 
 Composing the isomorphism with $C(\mathcal G)\to\Cl(X)$ gives the
-surjection $E\to W$ of Proposition~\ref{paper-prop:witness}.  The group
+surjection $E\to W$ of Proposition~\ref{prop:witness}.  The group
 $\Cl(X)$ is locally finite; $C(\mathcal G)$ is not, since two lamps at
 sites of different blocks generate an infinite dihedral group and three
 blocks give a nonabelian free subgroup.  For a finite set $S$ of sites
@@ -1899,7 +2111,7 @@ in $M_S\rtimes\bar\Gamma_n$.
 That group is residually finite.  Indeed $M_S$ is residually finite by
 Lemma~\ref{lem:window}, the level $\bar\Gamma_n\cong\bar\Gamma$ is
 residually finite through the congruence quotients of its matrix model
-(Lemma~\ref{paper-lem:linear}), and the action of $\bar\Gamma_n$ on $M_S$
+(Lemma~\ref{lem:linear}), and the action of $\bar\Gamma_n$ on $M_S$
 factors through a finite permutation group $F$ because $S$ is finite.
 The kernel of $\bar\Gamma_n\to F$ has finite index, and the
 corresponding finite-index subgroup of the semidirect product is
@@ -1945,7 +2157,7 @@ equivalent to exactness of its reduced group $C^*$-algebra
 
 The presentation of $E$ yields a finite quasi-identity ---
 equivalently, a universal Horn sentence --- satisfied by every MF
-group.  Write $R$ for the forty-one relators of \eqref{paper-eq:E},
+group.  Write $R$ for the forty-one relators of \eqref{eq:E},
 regarded as words in eight variables, and $w$ for the distinguished word in those
 variables.
 
@@ -2210,7 +2422,7 @@ has no nontrivial finite subgroup.
 
 \begin{remark}[a small-cancellation realization]
 \label{rem:ff-realization}
-The affine base of Sections~\ref{paper-sec:group}--\ref{paper-sec:witness} can be
+The affine base of Section~\ref{sec:literal-presentation} can be
 replaced by the small-cancellation construction of \cite[\S2]{FFF},
 which Fournier-Facio pointed out to us.  There a
 universal finitely presented torsion-free group --- one containing a
@@ -2570,6 +2782,12 @@ E.~Kirchberg and S.~Wassermann,
 \emph{Permanence properties of $C^*$-exact groups},
 Doc. Math. \textbf{4} (1999), 513--558,
 \doi{10.4171/DM/67}.
+
+\bibitem[Kor]{Korchagin}
+A.~I. Korchagin,
+\emph{The MF-property for countable discrete groups},
+Math. Notes \textbf{102} (2017), no.~2, 198--211,
+\doi{10.1134/S0001434617070227}, \arxiv{1704.06906}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,
