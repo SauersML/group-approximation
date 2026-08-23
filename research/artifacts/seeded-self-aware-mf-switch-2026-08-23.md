@@ -196,6 +196,13 @@ analytic obstruction.
 - the monotone same-mark no-go: if an invisible mark survives a quotient, the
   quotient cannot be operator MF.
 
+The literal instantiation is exported as the premise-free declarations
+`literal_hasMarkedMFSeed` and
+`literal_hasLogicalSelfAwareMFCompiler`.  Both are enforced by the build-time
+axiom gate in `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`; their
+transitive closure contains only Lean's standard `propext`,
+`Classical.choice`, and `Quot.sound` foundations.
+
 The effective recursion theorem, enumeration of recursively enumerable group
 proofs, and presentation coding remain represented by Cairn's computability
 nodes rather than a Lean machine-code structure. The formal theorem is named

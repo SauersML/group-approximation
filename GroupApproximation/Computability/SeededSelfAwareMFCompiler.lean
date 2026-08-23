@@ -182,6 +182,24 @@ theorem logicalSelfAwareMFCompiler_iff_seed :
   ⟨seed_of_hasLogicalSelfAwareMFCompiler,
     hasLogicalSelfAwareMFCompiler_of_seed⟩
 
+/-- The literal eight-generator group supplies a closed marked MF-radical
+seed.  Unlike `hasLogicalSelfAwareMFCompiler_of_seed`, this declaration has
+no caller-supplied construction datum: both survival and invisibility are
+theorems about the literal presentation. -/
+theorem literal_hasMarkedMFSeed : HasMarkedMFSeed :=
+  ⟨MarkedGroup, inferInstance, mark,
+    LiteralNonMFLinearWitness.literal_mark_ne_one,
+    literal_mark_normMFInvisible⟩
+
+/-- Closed semantic self-awareness endpoint obtained from the literal seed.
+
+This is deliberately the *logical* endpoint.  It does not claim that Lean has
+internalized Turing-machine codes, r.e. presentation enumerators, or Kleene's
+recursion theorem. -/
+theorem literal_hasLogicalSelfAwareMFCompiler :
+    HasLogicalSelfAwareMFCompiler :=
+  hasLogicalSelfAwareMFCompiler_of_seed literal_hasMarkedMFSeed
+
 /-! ## Prime-coded finite presentations -/
 
 /-- A carrier which records the compiler index in the order of a finite
