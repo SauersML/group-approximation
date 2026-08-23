@@ -78,3 +78,14 @@ selected context carriers overlap.  It is therefore a complete solution of
 the vector-versus-trace part of Property 2, not of the global phase or
 predicate compiler.
 
+There is now an exact audit of what would be required to use these central
+rows for the all-state zero face of
+`finite-normal-clause-orbit-bcs-compiler`.
+`centralized-clause-zero-face-is-exact-affine-bcs-quotient` shows that the
+zero-face implication holds if and only if every decoded BCS residual
+vanishes in the group quotient by the central row clauses. In particular,
+the regular quotient trace eliminates any selected-type interpretation: the
+surviving assignments in each commuting context must be the character group
+of an elementary abelian quotient, hence a linear subspace of the Boolean
+cube. The present theorem promotes an already proved trace gap, but it does
+not construct this exact affine sub-BCS quotient.
