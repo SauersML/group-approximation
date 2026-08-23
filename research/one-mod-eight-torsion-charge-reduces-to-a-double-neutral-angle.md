@@ -48,3 +48,9 @@ statement: a nontrivial eigenangle of `u` or `v` stays uniformly away from
 zero.  The pre-normalization positive first-cubic spectrum does not supply
 this automatically, because the cube-root rounding sets that cubic exactly
 to one and has determinant-neutral conjugate corrections.
+
+For the canonical **symmetric** retraction which rounds `A_old` and `B_old`
+independently, `neutral-weil-symmetric-retraction-is-double-neutral`
+now proves that `det(u)=1` always.  Thus the alternative `(ONT3)` is useful
+for general/sequential retractions but never fires on that canonical neutral
+packet; the post-normalization trace deficit is the sole remaining scalar.
