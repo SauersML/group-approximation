@@ -107,6 +107,13 @@ max(||C_(1,H_n)f_n||_infinity,||C_(2,H_n)f_n||_infinity)
 The base multipartite contraction settles none of `(PSE7)` because its
 entire image lies in the fiber-constant summand `(PSE3)`.
 
+`signed-orbit-averaging-does-not-divide-green-cost` also rules out a
+different shortcut based only on the large order of `H`.  The restricted
+Moore--Penrose inverse is the signed Reynolds compression of the full
+`A/B` Green operator, but that Reynolds projection has infinity norm one,
+not `1/|H|`.  A routing proof needs an additional arithmetic congestion
+estimate for the translated flows.
+
 Nor can divergence be attributed merely to a large deck group or to
 unitary character phases.  `flat-gain-multipartite-covers-have-uniform-green-bound`
 proves that every genuine flat gain cover of the multipartite clique
