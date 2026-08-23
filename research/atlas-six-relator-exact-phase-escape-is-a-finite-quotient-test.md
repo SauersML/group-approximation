@@ -64,13 +64,13 @@ finiteness theorem for free products is unavailable.  The weaker nonmetric
 `C(6)` condition does not imply residual finiteness.
 
 The exact finite-simple screen now extends through the complete `A8`-index
-interval below ninety-one.  The simple reduction, the small-simple carrier
-classification, and the exact `Sp_6(2)` census prove
-`atlas-six-relator-simple-index-is-at-least-91`: any finite quotient in
+interval below nine hundred ninety-one.  The simple reduction, the ambient
+carrier classifications, and the exact `Sp_6(2)`, `L5(2)`, `M23`, and `A11`
+screens prove `atlas-six-relator-simple-index-is-at-least-991`: any finite quotient in
 `(SXFQ3)` has a simple quotient `S` with
 
 ```text
-[S:A8] >= 91.
+[S:A8] >= 991.
 ```
 
 This is still a finite restriction and does not decide condition 2 for an
