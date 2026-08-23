@@ -121,6 +121,26 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   common edge mass at most `1/2`, and Selberg `(tau)` gives a uniform defect
   floor. The unbounded enemy is forced into selected non-Plancherel
   irreducibles; even global regular cross-conductor ramps are excluded.
+- **Selected dyadic packets must also spread over unboundedly many depths.**
+  `sparse-dyadic-iwahori-packets-have-a-uniform-boundary` uses the last
+  congruence layer `sl_2(F_2)` and its three nonzero dual orbits to show that
+  a root element fixes at most two thirds of every exact-conductor
+  irreducible.  A top-down coupling argument then gives normalized
+  restriction mismatch at least `2/(4^K-1)` for arbitrary packets supported
+  on at most `K` deep conductor values.  Thus neither a single moving
+  principal/supercuspidal type nor any uniformly sparse family is an enemy;
+  the remaining non-Plancherel gate is an unbounded, bidirectional
+  cross-conductor tower.
+- **The dual inclusion graph is not the spatial tree.**
+  `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
+  `R_a^*R_a` is fusion by the three-dimensional coset permutation object.
+  That object is inflated from `S_3` and is trivial on the principal
+  congruence kernel, so the irreducible graph splits into closed Clifford
+  orbit sectors. Each sector has its own eigenvalue-three Perron vector;
+  there is no nontrivial `2sqrt(2)<3` Kesten bound and selected sectors have
+  zero one-sided boundary. Any surviving expansion theorem must use the
+  overlay with the opposite Nielsen-shifted decomposition and control its
+  projective inertia data, not the spatial Bruhat--Tits adjacency.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes

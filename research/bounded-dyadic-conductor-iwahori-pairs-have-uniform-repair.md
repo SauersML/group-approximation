@@ -48,6 +48,15 @@ tower one must therefore control the restriction monoids coherently across
 depth, or exploit the conductor-shift relations; bounded branching and the
 three-coset core intersection do not supply that control.
 
+Even adding a uniform Hilbert-space angle does not close this gap.
+`l2-angle-does-not-imply-l1-integer-hoffman` gives bounded-degree integral
+incidence maps with a uniform nonzero `L^2` singular value but logarithmically
+diverging real and integer `L^1` Hoffman constants.  Therefore the existing
+cuspidal/Eisenstein angle and Selberg `(tau)` cannot be converted formally
+into physical-rank rounding.  A positive depth-uniform theorem must prove an
+`L^1` flow bound using the specific dyadic restriction ring, not only its
+`L^2` spectrum.
+
 The failure of the tempting analytic replacement is already exact at level
 two.  `three-coset-frame-saturation-is-not-pair-functorial` gives the actual
 opposite-Iwahori packet in which a common polar edge line saturates to zero
