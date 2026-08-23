@@ -72,11 +72,13 @@ def main():
     boundary = boundary_words()
     selected_words = [boundary[index] for index in SELECTED]
     interior, _q = interior_word(alignment, alignment_inverse)
-    words = selected_words + [interior]
     seeds = [
         aligned_derivative(word, alignment, alignment_inverse, index_by_key)
-        for word in words
+        for word in selected_words
     ]
+    # ``interior_word`` is already transported through the certified
+    # alignment, so its fold derivative is taken at the identity frame.
+    seeds.append(aligned_derivative(interior, I4, I4, index_by_key))
 
     h_targets = []
     for row, column in ((0, 1), (1, 0), (1, 2), (2, 1)):
