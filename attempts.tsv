@@ -140,3 +140,4 @@
 32647230984	2026-08-23T15:01:43Z	GroupApproximation/Algebra/ZariskiDescendingChain.lean	manuscriptZariskiEnvelopeCompressionBlind
 32649187530	2026-08-23T15:39:05Z	GroupApproximation/Analysis/CollapseDelormeEndpoint.lean	partialComplement_succ
 32650269756	2026-08-23T16:00:04Z	GroupApproximation/Analysis/CollapseTransportEndpoint.lean	omegaRep_mul
+32652596447	2026-08-23T16:44:48Z	GroupApproximation/Analysis/ExactnessGroupSideEndpoint.lean	ambient_hasPropertyA_of_vertical
