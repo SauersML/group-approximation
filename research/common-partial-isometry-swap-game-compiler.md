@@ -317,6 +317,23 @@ all-tracial/first-order shortcut again collapses the mark in the regular
 factor.  The surviving task is therefore the genuinely finite-coordinate
 source-Gram decoder itself.
 
+The first asynchronous prefix implementation still has an exact finite
+counterpacket.  `inside-corner-hecke-tests-miss-the-asynchronous-mirror-exit`
+takes `E=F+H`, adds an equal-rank `C<=1-E`, and chooses the prefix unitary to
+fix `F` and swap `H` with `C`.  Then
+
+```text
+TET^*=F+C,             ||(FTE)^*(FTE)-E||_2^2=tr(H),
+```
+
+while every coefficient `a,b` in an arbitrary finite D8/Hecke algebra
+supported inside `E` satisfies `a(TET^*)b=aFb`.  Hence every finite
+inside-corner incidence, Reynolds, selector, and predicate test is exact and
+cannot see the mirror exit.  Countable stabilization realizes the genuine
+proper return `TET^*=F` exactly.  The next cell must therefore charge the
+oriented complement block `(1-E)TET^*` by a genuinely finite-matrix rule;
+making that containment universal again collapses `H` in the regular factor.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
