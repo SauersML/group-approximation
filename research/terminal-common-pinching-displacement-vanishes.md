@@ -36,6 +36,16 @@ strong metric `(TCP1)`.  The Loewner parity inequality controls the
 coordinate distribution of each individual cut boundary but does not yet
 bound the final pinching displacement.
 
+The exact two-leaf gauge problem is now solved by
+`two-code-character-cut-recenters-to-one-coordinate`: a coordinate on which
+the two terminal characters differ supplies a spectral cut whose complete
+boundary is one commutator row, hence `O(E_com)`.  The remaining obstruction
+is genuinely multi-character.  Sequentially applying that lemma incurs the
+`log |D|` character decision-tree loss proved in
+`sequential-character-recentering-has-decision-tree-loss`.  The sharp final
+gate is therefore `multicharacter-pvm-alignment-modulo-simultaneous-gauge`,
+which asks for simultaneous rather than sequential CS alignment.
+
 ## Attempts
 
 1. **Entropy charging.**  Unnecessary but also insufficient: it introduces
