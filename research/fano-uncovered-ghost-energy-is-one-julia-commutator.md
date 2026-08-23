@@ -147,3 +147,19 @@ chosen type but retains the induced uncovered sector in another exact
 representation. Thus the colligation problem reduces to the established
 nonlinear hybrid-reflection authentication gate; a central-sign finite
 register does not evade it.
+
+That remaining literal-word target has a sharp infinite-actor firewall.
+`fano-hybrid-reflection-has-a-universal-regular-hs-gap` expands
+
+```text
+1-2(1-P_c)F_c=(1/2)(1+f_c-p_c+p_cf_c)
+```
+
+in the marked regular Fourier corner and proves squared normalized-HS
+distance at least `1` from every ordinary group word, even after arbitrary
+HNN, solution-group, or self-similar enlargement. Its odd-tensor argument
+also produces the wrong forbidden output whenever the three honest scalar
+sectors are separately realizable. Hence no further exact reflection-product
+identity can authenticate it. Any surviving use of the direct payment must
+replace literal wordization by a genuinely matrix-only, sector-entangled
+rank/type inference unavailable in the regular factor.

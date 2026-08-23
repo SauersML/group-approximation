@@ -72,3 +72,15 @@ central-sign finite register does not evade the firewall. The sole remaining
 target is to authenticate `1-2(1-P_c)F_c` by a non-finite-packet mechanism.
 The existing D8 anchor can fix its relative grading orientation once it
 exists; orientation itself is not missing.
+
+The direct infinite ordinary-group version is now also fenced.
+`fano-hybrid-reflection-has-a-universal-regular-hs-gap` computes in the
+faithful regular marked corner that every group word stays at squared
+normalized-HS distance at least `1` from the hybrid reflection. This applies
+to arbitrary HNN, self-similar, Leavitt-derived, or solution-group actors.
+Moreover, if the three honest scalar sectors `(P,F)=(0,0),(1,0),(1,1)` are
+separately finitely realizable with output `+1`, their odd tensor product is
+the exact wrong sector `(0,1,+1)`. Thus an infinite actuator can survive only
+as a matrix/canonical-trace-specific, sector-entangled mechanism: it must
+exclude the regular trace and cannot split completeness into independently
+tensorable scalar selector representations.

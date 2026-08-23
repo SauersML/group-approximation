@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: kesten-chart-carriers-have-a-twenty-five-over-forty-two-gram-floor
+id: kesten-chart-carriers-have-25-over-42-gram-floor
 kind: claim
 title: Kesten chart carriers have a twenty-five-over-forty-two Gram floor
 artifacts:

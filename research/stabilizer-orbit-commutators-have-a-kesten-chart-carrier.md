@@ -86,7 +86,7 @@ because `E` is a functorial spectral function of the raw nonedge packet, not
 an added tensor factor.
 
 The intersection calculation is now resolved far enough to close this route
-negatively.  `kesten-chart-carriers-have-a-twenty-five-over-forty-two-gram-floor`
+negatively.  `kesten-chart-carriers-have-25-over-42-gram-floor`
 computes `m=16` and proves that `K_i cap K_j={1}` for the 1,050 ordered
 pairs outside the paired 16-valent arithmetic orbital.  Centered trace
 orthogonality on those pairs alone gives

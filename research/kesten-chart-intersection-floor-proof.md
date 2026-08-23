@@ -3,7 +3,7 @@ rg: 2
 id: kesten-chart-intersection-floor-proof
 kind: route
 title: Count the opposite parahoric orbit and intersect graph-product parabolics
-target: kesten-chart-carriers-have-a-twenty-five-over-forty-two-gram-floor
+target: kesten-chart-carriers-have-25-over-42-gram-floor
 requires:
   - stabilizer-orbit-commutators-have-a-kesten-chart-carrier
   - native-sl3-edge-parahoric-has-index-forty-two

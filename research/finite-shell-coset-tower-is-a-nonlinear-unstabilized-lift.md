@@ -94,7 +94,7 @@ carrier.  That is precisely the external-or-folded seam, not a consequence
 of finite-group Rokhlin terminology.
 
 No nonexistence statement for `(FST1)` follows from the Kesten floor:
-`kesten-chart-carriers-have-a-twenty-five-over-forty-two-gram-floor` rules
+`kesten-chart-carriers-have-25-over-42-gram-floor` rules
 out one particular spectral projection, not all projections in `M^H`.
 Likewise, general outer-action Rokhlin results typically produce approximate
 or ultrapower towers under additional hypotheses; they do not by themselves
@@ -102,3 +102,18 @@ supply the exact projection `(FST2)` in this specified nonamenable factor.
 The exact residual is therefore the unstabilized equivariant embedding
 `(FST1)`.
 
+Even `(FST1)` would not by itself authenticate a nonlinear Fano payload.
+`coset-tower-hybrid-reflection-pays-exact-payload-leakage` proves that the
+block compression `R=sum_iE_iA_iE_i` satisfies
+
+```text
+tau(1-R^2)=1/2 sum_i||[E_i,A_i]||_2^2.
+```
+
+Hence a sharp tower must additionally reduce the assigned payload rows.
+The stabilized tower has this property because its atoms are external
+matrix coordinates.  Inside `L(W_S)`, requiring reduction of every native
+shell lamp would put every tower atom in the center and is impossible.
+Accordingly the unstabilized tower and the payload-authenticating
+commuting-square are two separate gates; solving the former alone does not
+solve the Fano hybrid-reflection problem.
