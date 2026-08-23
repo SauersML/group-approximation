@@ -312,6 +312,26 @@ compressed Weil packets.
   sources.  The remaining obstruction is operator-valued: recovering the
   two exits and their global congruence atom from an `o(d)` source carrier.
 
+- **Opposite-root orthogonality does not authenticate moving gauges on the
+  regular face.**
+  `opposite-root-orthogonality-charges-two-jump-gauges` gives the exact
+  nonlinear plateau charge inside a pure regular quotient, using
+  `U intersection U^-=1`. But
+  `regular-tensor-camouflage-preserves-moving-root-failures` raises the
+  amplified root to the order `N_n` of its regular quotient factor:
+
+  ```text
+  (pi(u) tensor lambda_n(u))^(N_n)=pi(u)^(N_n) tensor 1.
+  ```
+
+  Thus conductor-moving root polynomials recover arbitrary payload-only
+  geometry while the fixed-word character is canonical and the Iwahori
+  defect is unchanged. Central-regular localization plus edge compatibility
+  therefore cannot promote the regular-packet tensor isometry to the moving
+  coefficient gauges needed for atom authentication. The full cubic/Weyl
+  relations must repair or split that payload geometry; invoking opposite-
+  root orthogonality before this step is circular.
+
 - **Low-rank surgery removes an exposed boundary but stays regular.**
   `bs14-low-rank-boundary-surgery-preserves-the-regular-face` gives the
   block-free forward lemma.  A rank-`r` neutral boundary can be cut, and the

@@ -69,3 +69,14 @@ congruence quotients.  It does not establish `(RCE1)`.
   classification has no lifting implication. Thus `(RCE1)` is precisely the
   regular-face basin-capture theorem, not a missing representation-
   classification lemma.
+- **Moving root coefficients survive regular tensor camouflage.**
+  Pure regular congruence packets satisfy an exact opposite-root `L^2`
+  tensor isometry. This does not pass uniformly to conductor-dependent
+  gauges in a central-regular sequence. By
+  `regular-tensor-camouflage-preserves-moving-root-failures`, raising the
+  amplified root to the order of the regular quotient cancels that quotient
+  factor and recovers the original payload operator tensored with identity.
+  Hence every tensor-stable moving-coefficient obstruction survives with
+  unchanged norm after canonicalization. Opposite-root orthogonality can
+  close `(RCE1)` only after a theorem forces gauges into the authenticated
+  congruence root algebra; it cannot itself provide that authentication.

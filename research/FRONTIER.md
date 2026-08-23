@@ -3701,6 +3701,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · regular-tensor-camouflage-preserves-moving-root-failures [ESTABLISHED] Regular tensor camouflage preserves conductor-moving root geometry
+- 2026-08-23 · regular-tensor-moving-root-proof [COMPLETE] Raise the amplified roots to their quotient orders
 - 2026-08-23 · congruence-induction-cannot-reconstruct-a-low-rank-bs14-boundary [ESTABLISHED] Congruence induction has unbounded cost on a rank-one BS14 boundary
 - 2026-08-23 · congruence-induction-boundary-blowup-proof [COMPLETE] Compute the affine BS subgroup index in PSL2(Fp)
 - 2026-08-23 · standard-permanence-does-not-rigidify-the-cdi-image [ESTABLISHED] Standard group permanence operations do not rigidify the CDI image character

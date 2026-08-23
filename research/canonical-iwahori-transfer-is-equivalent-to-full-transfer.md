@@ -28,3 +28,11 @@ Therefore canonical character tests are valuable for selecting finite local
 types, but they do not make this terminal relative-commutant theorem easier:
 arbitrary failures can be hidden behind a regular tensor at zero normalized-
 HS cost.
+
+The same equivalence persists after adding moving root-polynomial tests.
+`regular-tensor-camouflage-preserves-moving-root-failures` observes that if
+`N_n` is the quotient order of a root, then its `N_n`-th power in the tensor
+amplification is the payload root power tensored with identity. Thus the
+regular factor cannot enforce the moving-coefficient opposite-root
+orthogonality enjoyed by a pure regular packet. Any proof using that
+orthogonality must first establish full relative congruence capture.
