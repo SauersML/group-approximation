@@ -10,6 +10,7 @@ distinct_from:
   balanced-controlled-whitehead-return-checksum: that computes a rank gap for the controlled-reflection extension of one two-qubit packet; this uses the actual source-versus-two-child Leavitt Weyl packets with superranks `p^(-2)` and `p^(-4)`.
   canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
   leavitt-forward-morita-polar-misses-reynolds-return: that computes the polar of the native forward coefficient chart and shows it is either gauge-uncontrolled or the exact label-amplifying rectangular escape; this requires a reverse cross-typed return Gram instead.
+  leavitt-branch-reynolds-return-has-rectangular-gap: that names the canonical reverse candidate `R_1 Ad(U_0) R_s` and computes its exact source leakage; this asks for the new full-presentation estimate which pays that leakage.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -81,3 +82,26 @@ algebra—the rectangular escape direction.  It does not map the larger source
 commutant into the smaller target commutant.  The live `X_U` must therefore
 come from a mixed **return** Gram which reverses the Morita arrow on the
 multiplicity coordinate, not from polarizing the forward `Phi` chart.
+
+The canonical reverse formula is now explicit.  With `U_0` the first branch
+transporter and `R_1` the transverse child Reynolds cut, put
+
+```text
+X_U=R_1 Ad(U_0) R_s.                                   (ASR3)
+```
+
+Branch covariance already places `Ad(U_0)R_s` in the first-child commutant,
+so `(ASR3)` lands in `R_0R_1=R_t` and has exactly the support required in
+`(ASR1)`.  However
+`leavitt-branch-reynolds-return-has-rectangular-gap` proves that the current
+packet relations give
+
+```text
+tr_(ad,P)(X_U^*X_U)=p^(-4),
+||(I-R_1)Ad(U_0)R_s||_(HS,ad)^2=p^(-2)-p^(-4)          (ASR4)
+```
+
+in the exact rectangular model.  Thus no search for a different polar
+formula is presently needed: the live assertion is precisely that the
+additional full affine-Leavitt relations pay the transverse leakage in
+`(ASR4)`.  The depth-one coefficient and packet tables do not.
