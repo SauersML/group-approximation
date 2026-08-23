@@ -23,6 +23,7 @@ open LiteralNonMFPresentation
 open LiteralBaseRelations
 open LiteralTorsionFreeRouterSource
 open SmallCancellationRouter
+open scoped commutatorElement
 
 noncomputable section
 
