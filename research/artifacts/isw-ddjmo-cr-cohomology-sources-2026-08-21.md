@@ -100,3 +100,31 @@ arXiv:1512.08188v2 (read this date)
   buildings (rank-3 compact hyperbolic Kac–Moody factors) the range
   is degree 1 only; degree 2 is the top degree of the factor's
   building — the DDJMO concentration/nonvanishing degree.
+
+## Re-read 2026-08-23 (full text, LLP vs LP tracks separated)
+
+- **Theorem A (verbatim in substance; the paper's ONLY LLP-refuting
+  mechanism).**  (Γ,Λ) with relative property (T), plus 2-cocycles
+  `c_n in Z^2(Γ,T)` with (1) `c_n|_Λ` not a coboundary, (2)
+  `c_n -> 1` pointwise, (3) each `c_n` realized by a
+  FINITE-DIMENSIONAL projective representation.  Then C*(Γ) fails
+  LLP.  Main example: `Z^2 < Z^2 x| SL_2(Z)`; Corollary B: SL_n(Z),
+  n >= 3, fails LLP.
+- **The LP track (verbatim in substance).**  "If the hypothesis of
+  Theorem A is relaxed by removing assumption (3), then by adapting
+  the proof of Theorem A we can show that C*(Γ) fails the LP."  The
+  measure-preserving generalization of this relaxed track is what
+  yields Corollaries D and E.  NO LLP=>LP bridge for (T) groups
+  appears anywhere in the paper: LLP failures need condition (3).
+- **Consequence at the simple Kac-Moody lattices.**  Condition (3)
+  is unsatisfiable: a finite-dimensional projective representation
+  of a simple group that is not linear over any field (Caprace-Remy,
+  simplicity/non-linearity of twin building lattices) has finite
+  image, hence factors through a finite quotient, hence is trivial
+  by simplicity -- so its cocycle class is realized trivially and
+  (1) fails.  Theorem A is VACUOUS at `Lambda_(2,4,6)(q)`: no ISW
+  mechanism can refute LLP there.  The L^0-defect computation
+  decides only the LP; the forced-witness fork's positive branch
+  (LLP => non-hyperlinear) survives every outcome, and a nonzero
+  defect combined with LLP would exhibit a full group C*-algebra
+  with LLP but not LP.
