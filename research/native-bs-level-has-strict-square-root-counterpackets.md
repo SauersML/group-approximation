@@ -5,6 +5,7 @@ kind: claim
 title: The native one-power BS level has strict counterpackets at the square-root scale
 distinct_from:
   exact-torsion-frame-has-rank-one-strict-counterpackets: that proves strict same-dimensional separation at prime dimension scale after exact torsion normalization; this places the same packets inside an exact native one-power BS quotient and translates their defect to the level-word parameter.
+  bs14-two-cubic-strict-repair-constants-diverge: that proves the strict repair constant grows like sqrt(p) over an exact BS core; this additionally imposes the native finite-level commutator exactly and converts p to its presentation parameter K=p-1.
   bs14-one-power-level-is-a-native-short-commutator: that shortens the moving level row exactly; this shows that the four remaining relative rows can still be strict-counterpacket defective at order K^-1/2.
   fixed-level-bs14-compatible-basin: that needs flexible finite-group repair and permits vanishing relative padding; this refutes only a same-dimensional strengthening and proves the square-root scale is a genuine boundary scale.
 ---

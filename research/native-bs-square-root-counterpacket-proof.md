@@ -6,6 +6,7 @@ title: Put compressed Weil packets at the Fermat one-power level
 target: native-bs-level-has-strict-square-root-counterpackets
 requires:
   - exact-torsion-frame-has-rank-one-strict-counterpackets
+  - bs14-two-cubic-strict-repair-constants-diverge
   - bs14-one-power-level-is-a-native-short-commutator
   - sl2-half-explicit-strict-flexible-separation
 ---
