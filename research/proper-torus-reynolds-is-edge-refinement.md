@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: proper-subtorus-reynolds-complex-is-an-edge-refinement-not-a-cover
+id: proper-torus-reynolds-is-edge-refinement
 kind: claim
 title: A proper-subtorus Reynolds complex refines edges but does not cover triangles
 distinct_from:

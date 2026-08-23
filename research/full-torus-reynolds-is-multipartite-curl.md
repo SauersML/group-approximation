@@ -6,7 +6,7 @@ title: Full-torus Reynolds columns are multipartite triangle curls
 distinct_from:
   prime-power-reynolds-column-does-not-tensor-over-reduction: that uses a rank certificate to refute passive tensoring at level 25; this identifies the exact coupled simplicial operator and proves that rank algebraically.
   constrained-reynolds-column-has-a-diagonal-scalar-shadow: that gives the signed Hecke column for arbitrary congruence quotients; this identifies it with a classical triangle coboundary in the full-torus, two-square-class family.
-  proper-subtorus-reynolds-complex-is-an-edge-refinement-not-a-cover: that proves a proper subtorus refines only the edge coordinates while retaining the same triangle rows; this is the full-torus base complex.
+  proper-torus-reynolds-is-edge-refinement: that proves a proper subtorus refines only the edge coordinates while retaining the same triangle rows; this is the full-torus base complex.
 ---
 
 **ESTABLISHED; EXACT CHARACTER-FIBER REDUCTION.**  Let
@@ -124,7 +124,7 @@ If `2` is square, the two prototypes in `(MTC2)` lie in the same square
 class, so the identification with the *full* triangle coboundary does not
 follow.  If `H` is a proper subtorus there is also the extra torus label
 from `(DSS9)`.  Neither case is claimed here.
-`proper-subtorus-reynolds-complex-is-an-edge-refinement-not-a-cover` proves
+`proper-torus-reynolds-is-edge-refinement` proves
 that this label refines the oriented edges by `T/H` but does not produce
 matching deck translates of the triangle rows.  Thus the bounded
 multipartite contraction controls exactly the fiber-constant summand and
