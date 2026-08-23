@@ -312,6 +312,40 @@ def regular_action_audit() -> dict:
                 ] = component[row][column]
     regular_rank = rank_matrix(regular_map)
 
+    equivariance_failures = []
+    for generator_name, permutation in (
+        ("swap", swap_permutation),
+        ("shear", shear_permutation),
+    ):
+        for factor in range(REGULAR_FACTORS):
+            for source_coordinate in range(SOURCE_QUOTIENT_DIMENSION):
+                source_vector = unit(
+                    source_quotient_dimension,
+                    factor * SOURCE_QUOTIENT_DIMENSION + source_coordinate,
+                )
+                permuted_source = unit(
+                    source_quotient_dimension,
+                    permutation[factor] * SOURCE_QUOTIENT_DIMENSION
+                    + source_coordinate,
+                )
+                map_then_permute = image_vector(regular_map, source_vector)
+                permute_then_map = image_vector(regular_map, permuted_source)
+                moved_map = [0 for _ in range(fresh_quotient_dimension)]
+                for target_factor in range(REGULAR_FACTORS):
+                    moved_factor = permutation[target_factor]
+                    for target_coordinate in range(FRESH_QUOTIENT_DIMENSION):
+                        moved_map[
+                            moved_factor * FRESH_QUOTIENT_DIMENSION
+                            + target_coordinate
+                        ] = map_then_permute[
+                            target_factor * FRESH_QUOTIENT_DIMENSION
+                            + target_coordinate
+                        ]
+                if moved_map != permute_then_map:
+                    equivariance_failures.append(
+                        [generator_name, factor, source_coordinate]
+                    )
+
     # Literal sharing of all six residual p/q packets sends corresponding
     # coordinates in every factor to one common 30-dimensional space.  Keep
     # the six dummy pairs separate, so this is the least destructive sharing
@@ -349,6 +383,10 @@ def regular_action_audit() -> dict:
         "fresh_quotient_dimension": fresh_quotient_dimension,
         "regular_quotient_map_rank": regular_rank,
         "regular_quotient_kernel_dimension": source_quotient_dimension - regular_rank,
+        "regular_equivariance_basis_vectors_checked": (
+            2 * source_quotient_dimension
+        ),
+        "regular_equivariance_failures": equivariance_failures,
         "regular_center_map_rank": source_center_dimension,
         "regular_center_kernel_dimension": 0,
         "source_group_order_exponent": source_center_dimension + source_quotient_dimension,
@@ -455,6 +493,7 @@ def main() -> None:
     assert report["one_copy_full_clifford_obstruction"]["shear_similarity"] is False
     assert report["regular_s3"]["regular_quotient_kernel_dimension"] == 0
     assert report["regular_s3"]["regular_center_kernel_dimension"] == 0
+    assert not report["regular_s3"]["regular_equivariance_failures"]
     assert report["regular_s3"]["residual_only_shared_kernel_dimension"] == 150
     print(json.dumps(report, indent=2, sort_keys=True))
 

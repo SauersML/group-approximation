@@ -126,7 +126,8 @@ the quotient, so its kernel is zero.  Consequently
 The exact regular permutations satisfy `s^2=u^2=(su)^3=1`, give a faithful
 group of order six, and label the six factors by the three reset directions
 with multiplicities `2,2,2`.  Simultaneous factor permutation commutes with
-the block component map.  Therefore the extension
+the block component map.  The audit verifies this equality on all `384`
+basis-vector and reset-generator pairs.  Therefore the extension
 
 ```text
 E_reg semidirect S_3  -->  E'_reg semidirect S_3        (KEA8)

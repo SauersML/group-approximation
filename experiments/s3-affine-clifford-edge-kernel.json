@@ -58,6 +58,8 @@
     "regular_action_faithful": true,
     "regular_center_kernel_dimension": 0,
     "regular_center_map_rank": 25,
+    "regular_equivariance_basis_vectors_checked": 384,
+    "regular_equivariance_failures": [],
     "regular_quotient_kernel_dimension": 0,
     "regular_quotient_map_rank": 192,
     "residual_only_shared_kernel_dimension": 150,
