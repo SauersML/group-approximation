@@ -103,10 +103,18 @@ cohomological input.
   `km-twisted-level-product-cycles-surject`,
   `km-cusp-region-has-degree-three-compact-cohomology`) shows that the
   finite twisted-level surjectivity -- proved for grid levels and
-  verified in the symplectic model for `B_2`, open only for `G_2` --
-  implies `H^2(Lambda, Z Lambda) = 0` outright (and type `F_3`), so
-  Corollary D is EXPECTED DEAD here, like the trivial-coefficient
-  clause of Corollary E.  The original identification follows.  The same
+  verified in the symplectic model for `B_2`, an open rank computation
+  at `G_2` levels for odd `q`, and computationally REFUTED at `G_2`
+  levels for `q = 2` (the opposite-line geometry of the even-`q`
+  hexagon is disconnected; artifact
+  km-opposition-connectivity-computations-2026-08-23.md) -- implies
+  `H^2(Lambda, Z Lambda) = 0` outright (and type `F_3`) where it
+  holds.  So Corollary D is EXPECTED DEAD at lattices with `q` odd
+  prime to three, like the trivial-coefficient clause of Corollary E,
+  while for CHARACTERISTIC-TWO lattices the `G_2` levels carry genuine
+  relative homology and the Corollary D fork is REOPENED there: the
+  first candidate mechanism distinguishing even from odd
+  characteristic in this program.  The original identification follows.  The same
   spectral sequence with group-ring coefficients gives
   `H^2(Lambda; Z Lambda) = ker( H^2_c(X;Z) -> H^2(X;Z) ) =
   H^1_infty(X;Z)`, the degree-one end cohomology of the development
