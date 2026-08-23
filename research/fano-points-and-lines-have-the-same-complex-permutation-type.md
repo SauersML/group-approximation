@@ -54,3 +54,9 @@ ghost orbit.  A successful return must retain extra incidence data from the
 normal mask subgroup, use a genuinely characteristic-two module invariant,
 or consume cross-context information.
 
+The equality is specifically a complex one.  The natural incidence
+intertwiner has determinant `24` and rank four modulo two by
+`fano-point-line-intertwiner-has-a-2-adic-defect`.  Hence integral
+multiplicity data can distinguish the two orbits, but only a recurrent
+fixed-scale return could make that bounded lattice defect visible in
+normalized Hilbert--Schmidt microstates.
