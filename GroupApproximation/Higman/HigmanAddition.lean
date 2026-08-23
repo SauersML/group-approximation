@@ -232,6 +232,7 @@ def addIdled (g : E) (r : ℤ) : Prop :=
   addY g r = 0 ∧ addZ g r = 0 ∧ addC g r = 0 ∧ addW g r = 0
 
 /-- **The step relation, read on the tracks.** -/
+set_option maxHeartbeats 800000 in
 theorem mem_addStep_window (g : E) (r : ℤ) :
     windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addStep ↔
       addRunning g r ∨ addStopped g r ∨ addIdled g r := by
