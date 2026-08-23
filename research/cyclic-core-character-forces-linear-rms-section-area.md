@@ -84,5 +84,5 @@ Thus property tau averaging after freezing the core necessarily magnifies a
 harmless `O(1/K)` continuous core motion into constant section energy.  A
 successful proof must first optimize over nearby exact core coordinates, or
 replace individual diagram telescoping by a gauge-optimized relative
-two-dimensional inequality.
-
+two-dimensional inequality.  The minimal such sufficient statement is
+`gauge-optimized-section-energy-controls-flexible-repair`.
