@@ -127,3 +127,4 @@
 32624678071	2026-08-23T07:25:59Z	GroupApproximation/Sofic/LiteralRelatorObstruction.lean	inv_mul_mem_normalClosure
 32626540678	2026-08-23T08:06:00Z	GroupApproximation/Sofic/LiteralUniformObstruction.lean	literal_uniform_operatorNorm_obstruction
 32629329031	2026-08-23T08:59:56Z	GroupApproximation/Sofic/NormalKazhdanCompressionObstruction.lean	not_isWeakMF_of_normalKazhdan_le_defect
+32631841763	2026-08-23T09:55:57Z	GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean	hom_eq_one_of_map_eq_one_of_normalClosure_eq_top
