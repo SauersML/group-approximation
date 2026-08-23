@@ -6,7 +6,7 @@ title: The exact passive Jacobian is a pair of order-three Reynolds expectations
 distinct_from:
   iwahori-uniform-infinitesimal-rigidity: that proves a uniform Hilbert-space quotient gap after assembling the two modular vertices; this identifies the concrete operator-space map whose cb inverse is still required.
   full-core-central-relative-tangent-is-zero-near-first-cubic: that eliminates the overcentralized tangent sector; this computes the Jacobian on the genuine fixed-R tangent space.
-  right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete: that decomposes this exact Jacobian over all right-displacement matrix diagonals and proves its full cb inverse norm equals the scalar diagonal norm.
+  right-displacement-reynolds-scalar-cb-complete: that decomposes this exact Jacobian over all right-displacement matrix diagonals and proves its full cb inverse norm equals the scalar diagonal norm.
   passive-iwahori-off-zero-cb-normal-splitting: that asks for a uniform splitting throughout an operator-small neighborhood; this is the exact-zero finite-dimensional reduction only.
 ---
 
@@ -91,7 +91,7 @@ uniformity in the split-torus index and in deeper congruence rings.
 
 At a left-regular endpoint, the apparent remaining matrix-coefficient issue
 also collapses.  By
-`right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete`,
+`right-displacement-reynolds-scalar-cb-complete`,
 `B(l2(Q))` is the orthogonal sum of right-displacement fibers
 `M_f rho(z)`, `(EPJ6)` is the identical scalar column on every fiber, and
 its Moore--Penrose inverse is a row of left convolutions.  The full cb norm

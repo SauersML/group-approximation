@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete
+id: right-displacement-reynolds-scalar-cb-complete
 kind: claim
 title: Right-displacement decomposition makes the scalar Reynolds shadow cb-complete at exact endpoints
 distinct_from:

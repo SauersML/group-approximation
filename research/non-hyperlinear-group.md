@@ -34,7 +34,7 @@ in `constrained-reynolds-column-has-a-diagonal-scalar-shadow`.  That explicit
 arithmetic Green family, rather than another abstract stability slogan, is
 the present bounded falsification/proof target.  The off-diagonal audit is
 now closed at exact endpoints by
-`right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete`:
+`right-displacement-reynolds-scalar-cb-complete`:
 right-displacement fibers are identical scalar copies and the full cb
 inverse norm equals the diagonal infinity norm.  At primitive prime levels
 the column is a highly redundant Hecke frame and the initial finite sweep is
