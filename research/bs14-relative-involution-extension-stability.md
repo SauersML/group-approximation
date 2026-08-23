@@ -52,6 +52,27 @@ mixtures remain outside the authenticated calculation.
 
 ## Attempts
 
+- **Independent first-triangle rounding has a constant square-root branch
+  firewall.**
+  `relative-first-triangle-rounding-has-an-odd-root-branch-firewall` uses the
+  left regular packet of `PSL_2(F_p)`.  Hadamard-rotating positive-density
+  pairs of nearly antipodal `S`-eigenspaces changes `S^2` by `O(1/p)` and
+  gives an exact nearby `C_2*C_3` vertex, while every square root of the
+  rounded product remains distance tending to one from `S`.  Thus a
+  staircase which first rounds `X^2,(XS^2)^3` and only afterward chooses a
+  square root and re-exactifies BS has no small-step estimate, even on odd
+  congruence packets.  The inversion and second-cubic rows must participate
+  in the branch choice before vertex rounding.
+- **Same-core coercivity and flexible cycle surgery do not cross this
+  firewall.**  Same-core coercivity assumes an authenticated extender over
+  the same `S` and a relative gauge in `{S}'`; the Hadamard branch rotation
+  is a constant distance from every root and does not commute with `S`.
+  Cycle surgery similarly starts with a gauge in the root commutant and an
+  exact coboundary.  Hence neither theorem supplies an alternating
+  contraction.  They remain valid terminal steps after a joint
+  root-lift/endpoint authentication theorem has selected the correct
+  branch.
+
 - **Strict repair fails, and one-dimensional flexible repair is sharp.**
   `even-weil-fixed-line-compression` removes the one `R,S`-invariant fixed
   line from the even Weil representation for every prime `p=1 mod 4` and

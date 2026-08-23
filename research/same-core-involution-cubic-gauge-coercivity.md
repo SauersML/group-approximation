@@ -41,3 +41,10 @@ Consequences:
    `regular-iwahori-relative-congruence-exactification` and
    `iwahori-outlier-repair`.
 
+The hypothesis that the relative gauge commute with the **same** root is
+essential, not a removable coordinate choice.
+`relative-first-triangle-rounding-has-an-odd-root-branch-firewall` produces
+exact rounded first vertices whose products converge to `S^2` while every
+square root stays a constant distance from `S`.  Its Hadamard rotation is
+outside `{S}'`, so `(SCG2)` cannot start an alternating repair from that
+independently rounded vertex.
