@@ -231,3 +231,49 @@ invariant towers along the unipotent filtration, and equivariant
 functionals on opposition-complex `H_2` -- the same `H_2` whose
 sphere classes are the day's explicit `S_z` cycles.  The `|K| = 1, 2`
 columns are the face (panel / vertex) opposition analogues.
+
+## Addendum 10: the (1,1) entry survives, and a lim^1 nonvanishing model
+
+Index the double complex spectral sequence by (a,b) = (K-degree,
+J-line degree), a,b in {0,1,2} (the base is a triangle, so a <= 2).
+
+1. **Degeneration at the (1,1) spot.**  d_2 : E_2^(1,1) -> E_2^(3,0)
+   = 0 (out of range) and E_2^(1,1) receives only from E_2^(-1,2) =
+   0.  So E_infty^(1,1) = E_2^(1,1) = H^1 over the K-triangle of the
+   coefficient system K |-> H^1(P_K^-, V), EXACTLY.  A nonzero value
+   here forces H^2(Lambda, V) != 0 -- no differential caveats.
+
+2. **The entries are lim^1 towers.**  H^1(P_K^-, V): P_K^- = L_K x|
+   U-part with the unipotent directions locally finite; by the Milnor
+   sequence (Addendum 9) these are derived limits of averaging-tower
+   invariants (lim^1_w V^(U_w))-type groups, `L_K`-twisted for K != {}.
+
+3. **Bottom row dies for Bernoulli.**  The (2,0) and (a,0) entries use
+   H^0(J-line at K) = V^(P_K^-) (the line's stabilizers generate
+   P_K^-).  The restriction of a Bernoulli shift to ANY infinite
+   subgroup is a Bernoulli shift with enlarged base, hence mixing and
+   ergodic, so V^(P_K^-) = R for all seven K and the bottom row is
+   the constant complex: H^* (Delta^2; R) = R in degree 0 only.
+
+4. **Model theorem (rigorous): the tail tower has lim^1 != 0.**  In
+   L^0(prod_(k>=0)[0,1]) let T_n = L^0 of the coordinates >= n.  Take
+   b_k = independent fair signs eps_k(x_k) in T_k.  A telescoping
+   solution a_n - a_(n+1) = b_n with a_n in T_n gives, for every n,
+   a_0 = (eps_0 + ... + eps_(n-1)) + a_n with a_n independent of the
+   first n coordinates; hence |phi_(a_0)(t)| <= |cos t|^n -> 0 for
+   t not in pi Z, so phi_(a_0) vanishes a.e. -- impossible for the
+   characteristic function of an a.e.-finite random variable
+   (continuity, phi(0) = 1).  So no solution exists and
+   lim^1 {T_n} != 0.
+
+5. **The honest gap.**  In the true tower A_w = L^0(Y)^(U_w),
+   solutions need only be INVARIANT, not tail-measurable: the
+   independence step fails, and richer a_n are available (e.g.
+   partial averages of earlier b's).  The sharp open subquestion is
+   therefore: is H^1(B_-, L^0(Y)) != 0 for the Bernoulli action
+   restricted to B_-?  (Equivalently: does the averaging tower of the
+   locally finite unipotent group have nonvanishing algebraic lim^1
+   against its Bernoulli L^0?)  A positive answer, if it also
+   survives the K-direction H^1 across the triangle, fails LP for
+   C*(Lambda) and resolves the forced-witness fork to its
+   LLP-failure branch.

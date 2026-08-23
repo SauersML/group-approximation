@@ -74,3 +74,20 @@ Three recorded routes (details on the LP node):
   `H_2` of opposition complexes (degree-2 column terms), coupled by
   the second-page differentials.  Derivation: artifact Addendum 9.
   This is the sharpest available formulation of route 1.
+
+- 2026-08-23 (lim^1 mechanism; sharpest state).  The (K-degree 1,
+  J-degree 1) entry of the double complex DEGENERATES (both adjacent
+  differentials leave the triangle range), so exactly:
+  `H^2(Lambda, L^0(Y))` contains as a filtration subquotient the `H^1`
+  over the `K`-triangle of `K |-> H^1(P_K^-, L^0(Y))`, and these are
+  derived limits (`lim^1`) of unipotent averaging towers by local
+  finiteness.  For BERNOULLI the bottom row vanishes (restriction to
+  any infinite subgroup is mixing, so parabolic invariants are
+  constants), and the model `lim^1` of the TAIL tower of an i.i.d.
+  sequence is PROVED nonzero by a characteristic-function argument
+  (artifact Addendum 10).  Remaining sharp subquestion:
+  `H^1(B_-, L^0(Y)) != 0`?  (invariance is weaker than
+  tail-measurability, so the model theorem does not yet transfer),
+  then survival across the `K`-direction `H^1`.  If both hold, LP
+  FAILS for `C*(Lambda)` and the fork resolves to the LLP-failure
+  branch.
