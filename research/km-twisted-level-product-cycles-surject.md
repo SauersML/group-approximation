@@ -235,3 +235,21 @@ class is unavailable).
   characteristic-two degeneration `c^2 = 0`, which really does collapse
   the two-step locus onto the subgroup `{c=0}` and makes even-`q`
   behaviour a separate question.
+- **Characteristic two: the collapse is PROVED (2026-08-23).**  For
+  even `q` the hexagon lives on the symplectic `V_6 = V_7/<e_0>` and
+  perpendicularity there still detects hexagon-distance `<= 4`.
+  Redoing the coefficient computation in the integral Chevalley lattice
+  and reducing: the `bd`-path dies (`N_(2alpha+beta,-alpha-beta) = ±2
+  = 0`), while the double `alpha+beta`-step survives the quotient by
+  the radical (`x_c(c) e_(-alpha-beta) = e_(-alpha-beta) + c N e_0 +
+  c^2 c_4 e_(alpha+beta)` with `c_4 = ±1`), and no new paths appear.
+  Hence the distance-`<= 4` translation locus is EXACTLY the subgroup
+  `{c = 0}` of order `q^4`, every multi-step class walk stays inside
+  one `q^3`-orbit, and the class graphs of the `G_2` line-panel levels
+  are disconnected for EVERY choice of intermediate classes.  The
+  constrained-cycle mechanism therefore provably fails for even `q`;
+  whether `(TLS1)` itself fails there (cycles are free to visit points
+  of arbitrary classes, so surjectivity is not yet refuted) is open,
+  and with it the whole even-`q` branch of the chain.  The odd/even
+  dichotomy at `G_2` levels is thus a genuine phenomenon, not an
+  artifact of the method.
