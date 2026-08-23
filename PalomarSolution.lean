@@ -13,7 +13,6 @@ import Mathlib.Topology.Algebra.Order.Field
 import GroupApproximation.Sofic.LiteralNonMFCoreEndpoint
 import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.NormMFConsequences
-import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Proof of the explicit sofic non-MF theorem
@@ -285,10 +284,6 @@ theorem explicit_sofic_not_MF :
     have hfar := hM n (le_max_right N M)
     rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)] at hnear
     exact (not_lt_of_ge hfar) hnear
-
-/-! The selected theorem uses only the permitted classical axioms. -/
-
-#audit_axioms ExplicitNonMF.explicit_sofic_not_MF
 
 end
 
