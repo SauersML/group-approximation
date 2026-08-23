@@ -132,3 +132,122 @@ retain their full `l_1` mass after normalized averaging.  Hence a putative
 generic `O(log|Q|)` routing cost is not reduced formally by `|H|`; a
 positive proof needs arithmetic cancellation or a genuinely new
 constrained routing.
+
+## Exact relative-girth theorem for the selected complex
+
+The selected incidence complex nevertheless has a strong real-space
+feature which was not visible in the edge-count comparison.  Work first in
+`PSL_2(Z[1/2])` and use
+
+```text
+x=w,       s=u(1/2),       r=h(2),
+A=xs^2,    B=xrs.
+```
+
+The two order-three groups appearing in the **normal operator** are
+
+```text
+K_1=s^2<A>s^(-2)=<a>,       a=u(1)w,
+K_2=s<B>s^(-1)=<b>,         b=u(1/2)wh(2).             (PSE8)
+```
+
+With determinant-one representatives,
+
+```text
+a=[[1,-1],[1,0]],          b=[[1,-1/2],[2,0]].         (PSE9)
+```
+
+Put `Lambda=<a,b>` and `N=<h(2),w>`.  Then
+
+```text
+Lambda = <a>*<b> ~= C_3*C_3,
+Lambda cap N={1}.                                      (PSE10)
+```
+
+Here is a proof.  In the Bruhat--Tits tree of `PGL_2(Q_2)`, `a` fixes the
+standard vertex and its reduction modulo `2` cyclically permutes the three
+incident edges.  If `d=diag(1,2)`, then
+
+```text
+b=dad^(-1),
+```
+
+so `b` has the same action at the adjacent vertex `d v_0`.  The Bass--Serre
+tree of `<a>*<b>` maps locally bijectively to the 3-regular Bruhat--Tits
+tree, hence isomorphically.  This proves the first assertion in `(PSE10)`.
+
+For the intersection assertion, set
+
+```text
+c=ab^(-1)=[[2,-1/2],[0,1/2]],       c(z)=4z-1.         (PSE11)
+```
+
+The element `c` is primitive hyperbolic of syllable length two.  The
+stabilizer in the free product `Lambda` of its boundary fixed point
+`infinity` is therefore exactly `<c>`.  Since `a^2(infinity)=0`, every
+element of `Lambda` carrying `infinity` to `0` has the form `a^2c^k`.
+But
+
+```text
+c^k(0)=(1-4^k)/3,
+a^2(z)=1/(1-z),                                        (PSE12)
+```
+
+so `a^2c^k(0)=infinity` would require `4^k=-2`, which is
+impossible.  Likewise, `c^k(0)=0` only for `k=0`.  Thus the only element of
+`Lambda` preserving the unordered pair `{0,infinity}` is the identity.
+The stabilizer of this pair inside `PSL_2(Z[1/2])` is exactly the split-
+torus normalizer `<h(2),w>` (the units of `Z[1/2]` are `+-2^k`).  This proves
+the second assertion of `(PSE10)`.
+
+This intersection statement has a quantitative congruence consequence.
+Let `M` be odd and let a nonempty reduced word `W` in the syllables
+`a^(+-1),b^(+-1)` have length `L`.  Replace each syllable matrix by twice
+that matrix.  The resulting integer matrix represents the same projective
+transformation and has every entry bounded in absolute value by `6^L`.
+If the reduction of `W` modulo `M` lies in the image `N_M`, then this
+integer matrix is projectively diagonal or antidiagonal modulo `M`.
+Accordingly, either both off-diagonal entries or both diagonal entries are
+divisible by `M`.  If `6^L<M`, those entries vanish over the integers, so
+`W` lies in the split-torus normalizer already over `Q`; because its entries
+belong to `Z[1/2]`, it lies in `N`.  Equation `(PSE10)` then forces `W=1`,
+contradicting reduced normal form.  Therefore
+
+```text
+W mod M in N_M, W nonempty   =>   L>=log_6 M.          (PSE13)
+```
+
+For `M_n=4^n-1`, this is a relative injectivity radius linear in `n`.
+Equivalently, in the bipartite `K_1/K_2` incidence graph, balls of radius
+less than `(1/2)log_6 M_n` around distinct edges in one `N_n`-orbit are
+pairwise disjoint.  Thus the arithmetic selected complex really does
+contain linearly deep disjoint tree neighborhoods; the missing-triangle
+geometry is not merely a counting artifact.
+
+This theorem still does not by itself prove the divergent alternative in
+`(PSE7)`.  Let `P_cut` be the Moore--Penrose cut projection for the
+unconstrained `K_1/K_2` incidence graph and let `P_chi` be the signed
+`N_n` Reynolds projection.  The exact compression identity is
+
+```text
+C_(H_n)^dagger C_(H_n)=P_chi P_cut
+```
+
+on the selected input space.  Relative girth separates the centers of the
+translated electrical rows, but electrical rows have global support.
+Their tails may enter the other orbit neighborhoods and cancel after the
+signed average.  Hence disjoint **balls** do not justify the disjoint-
+support equality `(SOG8)`.  To turn `(PSE13)` into divergence one still
+needs a quantitative off-diagonal decay/lower-current theorem strong enough
+to show
+
+```text
+||P_chi P_cut||_(infinity -> infinity)
+  >= c log M_n.                                        (PSE14)
+```
+
+Conversely, a uniform bound must exploit cancellation between precisely
+these globally supported translated electrical rows.  The exact frontier
+is therefore narrower than `(PSE7)`: prove or refute `(PSE14)` using the
+arithmetic Green kernel.  Neither a base simplicial contraction nor relative
+girth alone decides it.
