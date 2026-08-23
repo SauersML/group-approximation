@@ -187,6 +187,21 @@ Any positive ZPC compiler must therefore prove finite-orbit or invariant-fiber
 structure directly for that maximizing IRS, or use a genuinely nonmonomial
 trace-promotion mechanism.
 
+The proposed dynamic-selector bypass of the `R_*` Fano-cap compiler is now
+closed exactly.  For `T=F_2^3 minus {0}`, the incidence relation
+`a dot t=1` has all twenty-eight pairs but full affine hull `F_2^6`.
+`affine-fano-incidence-selector-exists-iff-cap-support` proves more sharply
+that a binary-LCS extension with a jointly classical visible selector exists
+on support `S subset T` exactly when `S` was already contained in one fixed
+maximal Fano cap.  Thus making the functional an output does not weaken the
+HALT support condition.  Merely commuting the selector labels across
+contexts also does not feed the exact LCS OR: conditional vector states need
+not be tracial, while requiring the profile projections to reduce the
+payload is precisely the central-core cap decomposition already excluded in
+a full-support factor.  The open Fano statement remains the existence of a
+HALT perfect trace with cap-supported contexts, not the choice or encoding of
+its seven possible characters.
+
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
 now records that fixed-window exactification of `A5^F` produces merely
