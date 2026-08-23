@@ -24,3 +24,12 @@ The route remains conditional on two independent gates: the actual
 cap-sector coefficient link, and the affine-Leavitt root-to-coefficient
 decoder inherited by the odd-sector blocker.  The fixed Heisenberg transfer
 itself is complete and loses only `(p-1)/2`.
+
+There is no passive-graft shortcut between these gates.
+`selected-odd-heisenberg-corner-is-native-matrix-amalgam` identifies the
+whole selected coefficient corner as
+`C[Gamma_A] *_(C[C_p]) M_p(C)`.  Amenable-edge permanence then shows that a
+no-CE atlas in this corner already proves `Gamma_A` nonhyperlinear.  Thus
+the coefficient link must genuinely use the native affine-Leavitt side; the
+finite Heisenberg matrix packet only supplies the local context block and
+the finite-dimensional-invisible selector.

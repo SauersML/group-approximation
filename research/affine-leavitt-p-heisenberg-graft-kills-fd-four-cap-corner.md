@@ -75,3 +75,10 @@ odd root with the binary sign and therefore avoids
 `odd-root-cannot-drive-central-d8-actuator`.  Unlike the Thompson actuator,
 its normalized-HS endpoint is genuinely the existing affine-Leavitt
 coefficient decoder.
+
+The selected odd corner itself is computed by
+`selected-odd-heisenberg-corner-is-native-matrix-amalgam`: it is exactly
+`C[Gamma_A] *_(C[C_p]) M_p(C)`.  Hence the graft supplies the necessary
+finite-dimensional-invisible packet type but does not create a new
+independent source of non-CE holonomy.  A no-CE BCS atlas in that corner
+would already force the native `Gamma_A` vertex to be nonhyperlinear.
