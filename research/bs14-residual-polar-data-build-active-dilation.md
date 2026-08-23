@@ -92,6 +92,17 @@ tuple.
   multiplier or same-support padding theorem can remove moving lattice
   charge.  The native BS operator data must force the correct lattice or
   pay for support-changing cells.
+- **Every authenticated neutral compression is already in the correct
+  lattice, and its support change is energy-paid.**
+  `neutral-boundary-compressions-have-zero-restriction-charge` writes the
+  compressed BS core class as the restriction of the full exact endpoint
+  minus copies of the extendible trivial boundary.  Its native lattice
+  charge is therefore zero without any packet decomposition.  Under the
+  positive-corner spectral hypothesis, the existing cubic identity also
+  bounds the restoring boundary rank by its Frobenius energy.  Hence the
+  moving-charge issue survives only before a dilation has been
+  authenticated: the reverse polar-data construction must prove that an
+  arbitrary near tuple belongs to this compression class.
 - `bs14-native-cell-padding-preserves-lattice-charge` shows that the phrase
   "pay such a hole by padding" must permit a controlled **change of cell
   type**.  Same-support padding preserves the incidence-lattice coset, so
