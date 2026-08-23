@@ -49,3 +49,16 @@ groups embed in one ambient group, `p_x` must lie in the group algebra of
 their literal finite subgroup intersection.  The required construction is
 therefore a finite-overlap cycle whose holonomy leaves the Bass--Serre class
 without collapsing a packet or the strict deficit.
+
+## Attempts
+
+- **Use the explicit diagonal Fourier PVMs.**  This branch is impossible for
+  a classically unsatisfiable source.  The theorem
+  `fourier-frobenius-common-carriers-classicalize-bcs` shows that a nonzero
+  common negative carrier forces the prime cyclic kernels of its incident
+  packets to agree literally.  Choosing one nontrivial character on each
+  resulting kernel component then reads compatible allowed assignments;
+  variables with zero negative carrier are constantly positive.  Hence all
+  local assignments glue to a classical solution.  A viable construction
+  must use nonabelian projections from the full `M_(p-1)` block and a
+  correspondingly richer literal subgroup overlap.

@@ -84,6 +84,42 @@ The biggest useful nodes are those where the missing statement has become a
 single falsifiable finite-matrix inequality rather than a renamed universal
 compiler.
 
+### Immediate follow-up firewalls
+
+Three follow-up attacks further narrow this ordering.
+
+First, the proposed scalar spectator gap is impossible for every
+amplification-natural word construction.  If the tuple and its canonical
+carrier are amplified by `I_l`, then `P tensor Z`, for any traceless
+`Z in M_l`, has positive centered HS norm and commutes with every named word.
+Thus `common-corner-word-pair-has-uniform-spectator-gap` is refuted as
+stated.  The amplification-stable replacement can only control distance to
+the **actual joint commutant**; mutual factors may be recovered only modulo a
+common spectator unless another non-scalar invariant is supplied.
+
+Second, the post-bottom-`A_2` conductor budget is exactly visible through
+
+```text
+D_>1 <= (1/4) sum_(j=1)^(N-1) |P^(2^j)-1|^2
+     <= (N-1)D_>1.
+```
+
+But the regular `2^N`-root packet can be optimally matched to its square with
+defect `2 sin^2(pi/2^N)` while its deep mass tends to one.  Therefore no
+single dyadic covariance edge can pay this budget uniformly.  The viable
+arithmetic target must use several root directions on one literal shared
+reservoir—the full six-wall seam—not a stronger one-root spectral estimate.
+
+Third, the explicit diagonal Fourier specialization of the
+affine-Frobenius common-carrier route is impossible for a classically
+unsatisfiable BCS.  A nonzero shared negative carrier forces the incident
+prime cyclic kernels to agree literally.  Choosing one nontrivial character
+on each resulting component reads compatible allowed local assignments;
+zero carriers give constantly positive variables.  Hence the carriers
+classicalize the source.  Any surviving Frobenius construction must use
+genuinely nonabelian projections in the full matrix block and richer packet
+intersections.
+
 ## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,

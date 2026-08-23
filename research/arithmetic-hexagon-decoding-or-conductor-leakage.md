@@ -60,6 +60,30 @@ the fixed-depth nonhyperlinearity criterion.
 
 ## Attempts
 
+- **The exact deep-root budget is a finite dyadic square function.** For a
+  root unitary with `P^(2^N)=1`,
+  `finite-dyadic-square-function-detects-deep-root-mass` proves
+
+  ```text
+  D_>1 <= (1/4)sum_(j=1)^(N-1)|P^(2^j)-1|^2
+        <=(N-1)D_>1,
+  ```
+
+  where `D_>1` is the spectral projection onto root order greater than two.
+  It also gives `||P^2-1||_2^2<=4tr(D_>1)`. Together with
+  `bottom-a2-dyadic-face-obeys-denominator-transfer`, this makes the
+  post-bottom-face escape precise: a target leak forces positive deep mass
+  in at least one opposite chamber, modulo the explicit local errors.
+- **One dyadic edge cannot pay that budget, optimally.**
+  `cyclic-doubling-matching-hides-full-deep-root-budget` takes the diagonal
+  clock of all `2^N`-th roots. Its deep mass is `1-2/2^N`, yet the optimal
+  permutation matching to its squared clock has defect exactly
+  `2 sin^2(pi/2^N)`. Thus no depth-independent inequality can charge deep
+  mass to one scaling edge. This exact finite counterpacket identifies the
+  missing synchronization: several root directions must be compared on one
+  shared reservoir so that the already established six-wall seam, rather
+  than a single cyclic covariance defect, pays the budget.
+
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
   no-leak branch with a dimension-independent modulus; this is
