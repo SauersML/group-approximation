@@ -23,6 +23,11 @@ makes the margin provable rather than assumed.
 * `sharedBound` — the caller's **small-cancellation datum**: the longest common
   cyclic subword of two distinct source relators, measured in generators.
 
+The common floor is imposed directly on the expanded router relators.  This is
+the invariant the metric proof consumes.  In particular a singleton abstract
+tie is intentionally allowed to expand to one long defect or partner avatar;
+no unrelated lower bound is imposed on its pre-substitution length.
+
 From these, `pieceCeil = sharedBound·avatarLen + 2·runCeil + 2`.  That shape is
 forced: a piece covers `sharedBound` complete shared avatars plus a partial
 avatar at each end, and each flank is at most `runCeil + 1` because two different
@@ -75,21 +80,31 @@ structure Inputs (D : BespokeRouter.AvatarWordFamily.Blueprint E N s B) where
   /-- The caller's small-cancellation datum: the longest common cyclic subword of
   two distinct source relators, in generators. -/
   sharedBound : ℕ
-  /-- A common lower bound on the source-alphabet lengths of every relator and
-  tying word — §1's padding floor, read before the rewrite. -/
+  /-- The number of avatars used to state the common expanded-relator floor. -/
   wordFloor : ℕ
   /-- Source avatars meet the common length. -/
   src_avatar_long : ∀ i, avatarLen ≤ (D.srcAvatarWord i).length
   /-- Partner avatars meet the common length. -/
   par_avatar_long : ∀ k, avatarLen ≤ (D.parAvatarWord k).length
-  /-- Every source relator meets the word floor. -/
-  src_long : ∀ r ∈ D.srcPres.rel, wordFloor ≤ r.length
-  /-- Every partner relator meets the word floor. -/
-  par_long : ∀ r ∈ D.parPres.rel, wordFloor ≤ r.length
-  /-- Every defect tying word meets the word floor. -/
-  defectTie_long : ∀ i, wordFloor ≤ (D.src.tieDefectWord i).length
-  /-- Every partner tying word meets the word floor. -/
-  partnerTie_long : ∀ i, wordFloor ≤ (D.par.tiePartnerWord i).length
+  /-- Every expanded source relator meets the common router-relator floor. -/
+  src_floor : ∀ r ∈ D.srcPres.rel,
+    wordFloor * avatarLen ≤ (avatarSubst D.srcAvatarWord r).length
+  /-- Every expanded partner relator meets the common router-relator floor. -/
+  par_floor : ∀ r ∈ D.parPres.rel,
+    wordFloor * avatarLen ≤ (avatarSubst D.parAvatarWord r).length
+  /-- Every *expanded* defect tie meets the common router-relator floor.
+
+  This is deliberately stated after avatar substitution.  A singleton
+  abstract tie is the useful multiplicity-free choice: its expansion contains
+  one full defect avatar and can be arbitrarily long even though the abstract
+  word has length one.  Requiring the pre-substitution word itself to meet
+  `wordFloor` made that valid construction arithmetically impossible and was
+  stronger than anything the metric argument consumes. -/
+  defectTie_floor : ∀ i,
+    wordFloor * avatarLen ≤ (D.defectTieWord i).length
+  /-- Every expanded partner tie meets the same router-relator floor. -/
+  partnerTie_floor : ∀ i,
+    wordFloor * avatarLen ≤ (D.partnerTieWord i).length
   /-- The designated defect words are nonempty, so the defect avatars are at
   least one avatar long. -/
   basis_ne_nil : ∀ k, 1 ≤ (D.basisWord k).length
@@ -162,46 +177,20 @@ def relatorFloor : ℕ := I.wordFloor * I.avatarLen
 theorem floor_le_src {r : List (Fin D.srcPres.card × Bool)}
     (hr : r ∈ D.srcPres.rel) :
     I.relatorFloor ≤ (avatarSubst D.srcAvatarWord r).length := by
-  have h1 := le_length_avatarSubst D.srcAvatarWord I.avatarLen I.src_avatar_long r
-  have h2 : I.wordFloor * I.avatarLen ≤ r.length * I.avatarLen :=
-    Nat.mul_le_mul (I.src_long r hr) (Nat.le_refl _)
-  exact le_trans h2 h1
+  exact I.src_floor r hr
 
 theorem floor_le_par {r : List (Fin D.parPres.card × Bool)}
     (hr : r ∈ D.parPres.rel) :
     I.relatorFloor ≤ (avatarSubst D.parAvatarWord r).length := by
-  have h1 := le_length_avatarSubst D.parAvatarWord I.avatarLen I.par_avatar_long r
-  have h2 : I.wordFloor * I.avatarLen ≤ r.length * I.avatarLen :=
-    Nat.mul_le_mul (I.par_long r hr) (Nat.le_refl _)
-  exact le_trans h2 h1
+  exact I.par_floor r hr
 
 theorem floor_le_defectTie (i : Fin 2) :
     I.relatorFloor ≤ (D.defectTieWord i).length := by
-  have h1 := le_length_avatarSubst D.defectAvatarWord I.avatarLen
-    (fun k => I.avatarLen_le_defectAvatarWord k) (D.src.tieDefectWord i)
-  have h2 : I.wordFloor * I.avatarLen
-      ≤ (D.src.tieDefectWord i).length * I.avatarLen :=
-    Nat.mul_le_mul (I.defectTie_long i) (Nat.le_refl _)
-  have h3 : (D.defectTieWord i).length
-      = 1 + (avatarSubst D.defectAvatarWord (D.src.tieDefectWord i)).length := by
-    simp [BespokeRouter.AvatarWordFamily.Blueprint.defectTieWord, Nat.add_comm]
-  rw [h3]
-  have h4 := le_trans h2 h1
-  omega
+  exact I.defectTie_floor i
 
 theorem floor_le_partnerTie (i : Fin 2) :
     I.relatorFloor ≤ (D.partnerTieWord i).length := by
-  have h1 := le_length_avatarSubst D.parAvatarWord I.avatarLen
-    I.par_avatar_long (D.par.tiePartnerWord i)
-  have h2 : I.wordFloor * I.avatarLen
-      ≤ (D.par.tiePartnerWord i).length * I.avatarLen :=
-    Nat.mul_le_mul (I.partnerTie_long i) (Nat.le_refl _)
-  have h3 : (D.partnerTieWord i).length
-      = 1 + (avatarSubst D.parAvatarWord (D.par.tiePartnerWord i)).length := by
-    simp [BespokeRouter.AvatarWordFamily.Blueprint.partnerTieWord, Nat.add_comm]
-  rw [h3]
-  have h4 := le_trans h2 h1
-  omega
+  exact I.partnerTie_floor i
 
 /-- **Every relator meets the floor.** -/
 theorem relators_long : ∀ r ∈ D.relators, I.relatorFloor ≤ r.length := by
