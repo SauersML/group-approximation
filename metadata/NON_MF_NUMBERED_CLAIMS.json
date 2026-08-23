@@ -6,7 +6,7 @@
     {
       "id": "thm:A",
       "environment": "mainthm",
-      "title": "an explicit finitely presented non-MF group",
+      "title": "an explicit non-MF group",
       "statement_sha256": "c5660134b135e2a867561e9e3bb21c7fa92fd6b1067329a7db2d0e157fa9deed",
       "status": "exact",
       "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declarations; the printed conclusions are invariant under that identification.",

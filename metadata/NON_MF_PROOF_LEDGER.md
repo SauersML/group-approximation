@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`. Formal development: `GroupApproximatio
 | | |
 | --- | --- |
 | commit | the paper/notes split of 2026-08-22 |
-| `git hash-object non_mf_groups_exist.tex` | `9b8e2e7d6e8d39ebfa478059b16d2c160fa0f99d` |
-| sha256 of the file | `6896c2f7f9b727142b49b19885131b34db6f982168bf56b56816b6f592a4860e` |
-| `wc -l` | 1479 |
+| `git hash-object non_mf_groups_exist.tex` | `28ee567a8005bc88e785d79dde47fd9ea782bb80` |
+| sha256 of the file | `06408c591d78d1f943a21f9d98eda10cec4de42e48c18e269449a199c9ce74f7` |
+| `wc -l` | 1486 |
 
 The three checkable rows are enforced by
 `scripts/check_non_mf_proof_ledger.py`. Re-pinning is deliberate and follows
@@ -20,8 +20,8 @@ a review of the rows touched by an edit.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 125 | 0 | 14 | 0 | 139 |
-| proof | 125 | 0 | 14 | 0 | 139 |
+| statement | 125 | 0 | 13 | 0 | 138 |
+| proof | 125 | 0 | 13 | 0 | 138 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -210,5 +210,4 @@ a review of the rows touched by an edit.
 | AE.09 | prop:mf-equivalences | conversely, local models with separation 1 for all $F$ and $\varepsilon$ make the group weakly MF | `OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | AE.10 | prop:mf-equivalences | weak MF makes the norm-MF radical trivial, and the block-sum diagonalization of Prop 11.6(2) assembles a single faithful corona representation | `isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot`; `manuscriptCoronaMFQuotient_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | the printed routing through the universal quotient is what Lean does |
 | AE.11 | prop:mf-equivalences | MF is closed under directed colimits | - | MISSING | MISSING | - | unconditional | Korchagin | NO | Korchagin proved this as Proposition 13.  The manuscript cites that result and also gives a proof from the uniform local formulation; no dedicated Lean theorem currently states directed-colimit permanence. |
-| AE.12 | thm:markedclosed | existence of an arbitrary non-MF group is equivalent to existence of a finitely generated, or finitely presented, non-MF group | - | MISSING | MISSING | - | unconditional | - | NO | Paper-level consequence of the finite local obstruction and openness of the non-MF locus. |
 <!-- END-LEDGER-STEPS -->
