@@ -111,3 +111,33 @@ for delc in set(cls.values()):
     cc2=comps([v for v in V if cls[v]!=delc]+list(Al),sa2)
     print("deleted one class -> point-components:", sorted(len([x for x in c if x[0]=='p']) for c in cc2 if any(x[0]=='p' for x in c))[:6])
     break
+
+# addendum: bridging statistics for one deleted class
+delc = sorted(set(cls.values()))[0]
+sa2=collections.defaultdict(set)
+for L in Al:
+    for p in adj[L]:
+        if p in cls and cls[p]!=delc: sa2[L].add(p); sa2[p].add(L)
+# components of the deleted graph, as sets containing lines
+seen=set(); pieces=[]
+for n in [v for v in V if cls[v]!=delc]+list(Al):
+    if n in seen: continue
+    c={n}; seen.add(n); dq=collections.deque([n])
+    while dq:
+        u=dq.popleft()
+        for w in sa2[u]:
+            if w not in seen: seen.add(w); c.add(w); dq.append(w)
+    pieces.append(c)
+pieces=[c for c in pieces if any(x[0]=='l' for x in c)]
+print("pieces: points/lines:", [(len([x for x in c if x[0]=='p']), len([x for x in c if x[0]=='l'])) for c in pieces])
+lpiece={}
+for i,c in enumerate(pieces):
+    for x in c:
+        if x[0]=='l': lpiece[x]=i
+from collections import Counter
+prof=Counter()
+for p in V:
+    if cls[p]==delc:
+        ps=tuple(sorted(Counter(lpiece[L] for L in adj[p] if L in lpiece).values()))
+        prof[ps]+=1
+print("bridging profiles of deleted-class points (piece multiplicities):", dict(prof))

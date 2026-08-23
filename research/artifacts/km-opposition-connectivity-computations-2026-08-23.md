@@ -34,6 +34,13 @@ Results, for a fixed line `ell_1`, far points classed by their foot:
   with the disjoint-class proof needing `q+1 >= 7`, and a warning that
   small-`q` levels can carry genuine (at least torsion) cokernel.
 
+Addendum (same day): the `H(3)` deleted-class pieces are `(81
+points, 81 lines)` each and EVERY deleted-class point is transversal --
+its three lines hit all three pieces, profile `(1,1,1)` for all 81
+points -- confirming the index-`q` grading predicted by the torsor
+analysis and making the component-indicator annihilator nonzero at
+every matched slot (`km-hexagon-level-cokernel-is-nonzero`).
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
