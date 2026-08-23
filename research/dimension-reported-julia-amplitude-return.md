@@ -122,14 +122,15 @@ exactly to the smallest known Fanizza scalar endpoint.
   terminal estimate not based on coefficientwise telescoping.
 - **Balanced partial sums keep every exact proof value bounded.**
   `balanced-amitsur-tree-has-bounded-isometric-gates` factors the normalized
-  standard polynomial through a closest-half binary tree.  Every partial
-  Fock sum is itself an isometry, every local row has arity three and
-  coefficients bounded independently of `k`, and the root is exactly the
-  normalized Amitsur instruction.  Thus factorial coefficient mass does not
-  force large auxiliary operators.  The unresolved cost is now exact:
-  `Theta((2k)!)` addressed gates and a distinguished root whose uniformly
-  sampled occurrence vanishes.  A positive compiler must self-hash or
-  delocalize that root; it need not repair proof-amplitude blowup.
+  standard polynomial through closest-half product and addition trees.  Every
+  intermediate Fock value is an isometry, every local row has bounded arity
+  and coefficients/factor norms independent of `k`, and the root is exactly
+  the normalized Amitsur instruction.  Thus factorial coefficient mass does
+  not force large auxiliary operators or one long leaf check.  The unresolved
+  cost is now exact: `Theta((2k)!(2k))` addressed gates and a distinguished
+  root whose uniformly sampled occurrence vanishes.  A positive compiler
+  must self-hash or delocalize that root; it need not repair proof-amplitude
+  blowup.
 - **A rooted linear PCPP would retain the whole marked gap.**
   `uniform-linear-pcpp-tensorizes-to-amitsur-hs` proves that a scalar
   probability-weighted local check map with rooted quotient singular value
