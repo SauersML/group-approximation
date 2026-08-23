@@ -166,9 +166,13 @@ congruence quotients.  It does not establish `(RCE1)`.
   On each exact regular finite block the orbit description is complete:
   equality of finite-group characters makes every other regular endpoint
   unitarily conjugate to the regular one, and agreement on `(R,T)` forces
-  the conjugator into `{R,T}'`.  The missing theorem is therefore precisely
-  **uniform approximate distance to this exact orbit** as the congruence
-  level and its multiplicity grow.
+  the conjugator into `{R,T}'`.  But the raw endpoint need not have that
+  finite-level character.  `cuspidal-redistribution-refutes-regular-core-orbit-basin`
+  gives exact same-core endpoints with asymptotically regular global
+  characters that remain uniformly outside the regular orbit.  The correct
+  zero set is the union of the orbits indexed by the nonnegative
+  restriction-ring fiber in
+  `congruence-endpoint-orbits-are-restriction-ring-fibers`.
   On already authenticated regular congruence blocks this distance problem
   is solved by
   `regular-congruence-endpoint-orbit-has-uniform-selberg-retraction`:
@@ -196,7 +200,12 @@ congruence quotients.  It does not establish `(RCE1)`.
   representations.  Hence this claim may be tested on tuples whose
   square-free `(R,T)` core is already an exact congruence restriction.  What
   remains is not core type extraction: it is proving that the supplied
-  almost-extending `X` lies near the exact core-commutant endpoint orbit.
+  almost-extending `X` lies near the **union** of exact core-commutant
+  endpoint orbits, with its global multiplicity type chosen adaptively.
   Torsion rounding converts `X` into exact modular `C_2*C_3` data, but
   modular extension does not imply congruence, so Selberg orbit retraction
   still begins only after this relative endpoint lift.
+  `authenticated-core-union-basin-is-relative-ultraproduct-liftability`
+  identifies this last assertion exactly as flexible coordinate lifting of
+  the relative ultraproduct homomorphism; local Selberg coercivity does not
+  supply that lift.

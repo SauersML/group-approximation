@@ -75,6 +75,15 @@ No current Iwahori or character-rigidity theorem proves this.  If supplied,
 flexibly.  Without it, active/passive spectral thresholding is a ledger, not
 a reverse construction.
 
+The exact global meaning of this coordinate-basin assertion is now recorded
+in `authenticated-core-union-basin-is-relative-ultraproduct-liftability`.
+After the core has been authenticated, small defects give an exact relative
+homomorphism only in the matrix ultraproduct.  Entering the union of moving
+endpoint orbits is equivalent to lifting that homomorphism by coordinate
+congruence representations, with `o(d)` boundary padding.  Selberg controls
+the normal coordinate **after** such a lift; it does not supply the lift by
+compactness.
+
 The tempting order-three spectral shortcut is now closed precisely by
 `bs14-cubic-rounding-leaves-relative-core-basin`: writing
 `A=XS^2`, `B=XRS`, each cubic rounds in operator norm with constant `1/2`,
