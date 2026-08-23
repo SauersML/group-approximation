@@ -83,3 +83,11 @@ representations of the reductions modulo every odd `n`: all presentation
 relations vanish exactly while the marked unipotent has order exactly `n`.
 Thus BS exactification does yield finite odd torsion packetwise, but no
 fixed torsion alphabet or bounded-level congruence compiler can follow.
+
+Nor can one use the classified quotient and induce the exposed BS boundary.
+`congruence-induction-cannot-reconstruct-a-low-rank-bs14-boundary` shows that
+the BS image in `PSL_2(F_p)` has index at least `(p+1)/2`. Induction turns a
+rank-one boundary into a packet of that dimension, whereas its native Weil
+completion costs one line. The required moving-level decomposition must
+therefore recover the ambient atom itself; identifying only its quotient and
+boundary restriction loses the energy-linear padding scale.

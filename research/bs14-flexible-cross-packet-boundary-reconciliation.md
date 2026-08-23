@@ -266,6 +266,17 @@ compressed Weil packets.
   polar data.  That extraction is the far-sector content of `(FBR2)`, not a
   consequence of exact congruence classification.
 
+- **Finite-quotient induction cannot reconstruct the exposed boundary.**
+  `congruence-induction-cannot-reconstruct-a-low-rank-bs14-boundary`
+  computes the BS core image `H_p=F_p semidirect <4>` inside
+  `PSL_2(F_p)`. Its index is `(p^2-1)/(2 ord_p(4))>=(p+1)/2`. Hence
+  inducing a rank-one BS boundary to the classified congruence quotient
+  adds `Omega(p)` dimensions. The native even-Weil atom restores the same
+  canonical compressed packet with one line and constant cubic energy.
+  Thus exact odd-congruence classification plus induction is quantitatively
+  unusable for `(FBR2)`; the reverse theorem must authenticate the native
+  global atom or an equally efficient cross-packet cell.
+
 - **Bounded moments cannot name the moving level.**
   `bs14-bounded-moments-cannot-extract-congruence-level` uses amplified
   regular representations of two deep prime quotients.  They can be made
