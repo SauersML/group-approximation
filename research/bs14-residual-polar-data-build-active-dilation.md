@@ -260,6 +260,24 @@ tuple.
   localize the common polar source into the moving packet decomposition,
   select or discard that last direction, and round its fractional packet
   weights; the scalar within-packet **excess-rank** ledger itself is closed.
+- **The entire long-packet source tail is frequency-small without packet
+  localization.**
+  `long-bs-packet-source-mass-is-frequency-small` applies a spectral counting
+  threshold directly to the positive contraction `P_L W W^* P_L`.  If
+  `e_L=d^(-1)||(R-1)P_LW||_F^2`, then
+
+  ```text
+  d^(-1)||P_LW||_F^2 <= M^(-1)+2e_L^(1/3),
+  d^(-1/2)||P_LW||_F <= M^(-1/2)+sqrt(2)e_L^(1/6).
+  ```
+
+  This is uniform in moving packet lengths, return phases, multiplicities,
+  and fractional/off-packet source localization.  Hence the whole
+  within-capacity long residual can be discarded, closing the long source
+  ledger.  What remains is genuinely global: exact native `X` has order-one
+  coupling across every short/long cutoff, so finite-level repair of the
+  short core cannot be spliced to this deletion without authenticating the
+  congruence atoms and reconstructing the cross-threshold `X` blocks.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
