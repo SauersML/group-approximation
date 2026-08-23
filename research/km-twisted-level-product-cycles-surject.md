@@ -325,3 +325,15 @@ class is unavailable).
   the connecting-map question and with it the LP fork specifically for
   characteristic-two lattices.  The G_2-level rank computation at
   `q in {3,5}` on MSI is the sharpest next step.
+- **Suggested route for the odd-`q` `G_2` rank computation.**  Either
+  run the raw sparse rank of the product-cycle map for `H(3)` (about
+  `165k x 105k` over a prime other than two and three; LinBox-sized,
+  an MSI job), or first apply the annihilator reduction: by the
+  different-class-slot analysis the line unknowns `G_l(p'')` are
+  constant modulo the local span on each component of the
+  `class(p'')`-deleted graph (three components, computed), which
+  shrinks the dual system to a few thousand structured unknowns --
+  small enough to solve locally IF the gauge bookkeeping (the
+  span-valued parts feeding back into same-class slots) is first
+  written out carefully; a wrong reduction silently flips the verdict,
+  so the raw rank should confirm any reduced answer at `q=3` once.
