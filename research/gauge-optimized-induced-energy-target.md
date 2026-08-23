@@ -43,20 +43,22 @@ G_N(X,b)=inf_(c in C_N(d)) {
                                                                (GOI4)
 ```
 
-The corrected relative two-dimensional estimate is
+The corrected relative two-dimensional estimate would be
 
 ```text
 G_N(X,b) <= C E_end(X,b)                               (GOI5)
 ```
 
-with `C` independent of `N`, `d`, and the exact supplied core.  If `(GOI5)`
+with `C` independent of `N`, `d`, and the exact supplied core.  The assertion
+that this estimate holds is the separate open claim
+`uniform-gauge-optimized-induced-energy`.  If `(GOI5)`
 holds for the dyadic one-power quotients (allowing the already established
 flexible rank convention), then the induced-projection argument gives the
 quadratic padding and square-root displacement required by
 `bs14-flexible-cross-packet-boundary-reconciliation`.
 
-This claim records the reduction and the correct target; it does **not**
-assert `(GOI5)`.
+This claim records the proved reduction and the correct functional; it does
+**not** assert `(GOI5)`.
 
 ## Why the reduction is sufficient
 
