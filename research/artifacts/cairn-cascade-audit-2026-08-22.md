@@ -5,6 +5,116 @@ date: 2026-08-22
 
 # Cairn cascade audit
 
+## Re-audit after direct attacks
+
+At commit `59e7ee6c2`, Cairn has 3,350 claims, 2,793 established claims,
+43 refutations, 3,378 routes, and 249 frontier holes.  Three candidates from
+the first ranking have now been attacked far enough that the priority order
+changes materially.
+
+| frontier | forced cascade | revised assessment |
+|---|---:|---|
+| `atlas-five-row-operator-phase-lift` | 2, including the goal | smallest finite operator inequality currently known to close the goal |
+| `affine-frobenius-common-negative-carrier` | 5, including the goal | exact surviving Frobenius hinge after classifying every tight-frame mechanism |
+| `sl3-joint-parahoric-loops-share-a-majority-carrier` | 3, including the goal | best restricted arithmetic carrier target; six chart PVMs are the only unresolved construction |
+| `sl3-canonical-double-has-a-correctable-vertex` | 2, including the goal | minimal one-vertex correction theorem on canonical double microstates |
+| `projective-trace-square-transfer-for-sl3-pair` | 6, including the goal | strongest arithmetic cut, but broader than the two preceding canonical-double terminals |
+| `triangle-relator-extension-admits-local-ucp-sections` | 2, including the goal | independent C*-lifting route with a concrete triangle extension |
+| `thompson-v-r5-coherent-carmichael-family` | 2, including the goal | finite word-combinatorics route; bounded one-cell and common-pivot variants are already excluded |
+| `tailored-checks-to-common-marked-group-extensions` | 2, including the goal | universal self-aware/QCA exit, but still essentially the ordinary-group trace-promotion compiler |
+| `iwahori-cubics-suppress-low-bs-orbit-modes` | 9, including the goal | huge formal cascade, but an active audit indicates the literal estimate retains a movable exact-swap gauge and is probably false as stated |
+| `hs-schur-packet-gap-amplification` | 11, including the goal | numerically huge but not compressed: its load-bearing statement is the perfect-completeness tracial quantum-PCP synchronization theorem |
+| `parity-charge-or-green-divergence-has-strict-descent` | 12, not yet the goal | large internal cascade, but it still ends at the multiplicity/coherence seam exposed by the terminal recycling example |
+| `central-adaptive-peeling-or-noncentral-stopping` | 12, not yet the goal | same caution: local low-gap stopping data do not preserve terminal character multiplicity |
+| `uniform-kazhdan-homogeneous-lcs-face-groups` | about 20 transitive descendants, none forced immediately | structurally central, but heavily fenced and not an actionable one-lemma closure |
+
+The word *cascade* should therefore be reserved for forced downstream
+establishments, not for a claim which merely packages a large unsolved
+compiler.  The Atlas five-row lift currently has the best ratio of finite
+attack surface to terminal leverage.  All its global coercivity and
+normal-closure consumers are established; only one multiplicity-independent
+operator inequality remains.  The known multiplicity-two Atlas escape does
+not satisfy exactly the five selected rows plus the interior word and hence
+does not refute this terminal.
+
+The Iwahori cubic estimate initially looked like the standout by descendant
+count: it would establish nine claims including relative HS stability and the
+goal.  A direct audit, however, exposes a likely missing gauge quotient.  On a
+long exact fourth-power cycle, change the exact Weyl swap by a commutant phase
+`c`; the residual is `c psi(c)^-1`.  A first Koopman mode has band mass of
+order `alpha^2 t^2`, while the fixed presentation defects remain of order
+`alpha`.  The claimed extra `t^epsilon` therefore cannot hold uniformly as
+written.  The viable replacement must minimize over the exact BS-core gauge,
+quotient `Range(1-psi)`, or estimate distance to an exact tuple rather than
+the raw projected residual.  This is being written as a formal Cairn
+refutation before the node is removed from the live cascade.
+
+The broadest honest arithmetic cut is the SL3 projective trace-square transfer.  Its exact
+finite-dimensional form is proved; the missing content is promotion across
+approximate arithmetic representations.  Establishing it would not only
+close the SL3 HNN route but also establish
+`type-filtered-proper-corner-return-actuator`, making it reusable by the
+matrix-only corner programs.  Its disadvantage is that compactness,
+perfectness, property (T), and exact co-density are all known to be
+insufficient without the specific denominator-generator arithmetic.
+
+Two narrower SL3 cuts should be tried first.  The joint-parahoric carrier
+route already has equal-rank reconciliation and the 251-edge propagation
+theorem; only six decoded chart PVMs with a controlled leakage ledger remain.
+The one-correctable-vertex route asks even less than stability: in a canonical
+microstate of `A *_C A`, correct either vertex.  Its exact conditional
+countermodel is informative—soficity of the 2-adic building action would
+refute the claim—so this is also a concrete decision problem rather than an
+unfalsifiable stability slogan.
+
+The affine-Frobenius route has also compressed, but in a different direction.
+The cubic scaled-partial-isometry equation is exactly a weighted tight
+fusion-frame identity.  At the intended high density it forces all negative
+incidence projections for one variable to be a single common carrier.  Hence
+column repetition, external Weyl/ETF stabilization, and universal polynomial
+Julia padding cannot solve the route.  Moreover a carrier lying in several
+finite context packet algebras lies in the algebra of their literal subgroup
+intersection.  The surviving construction is therefore a cyclic,
+non-Bass--Serre finite-subgroup-overlap holonomy problem.  Solving that one
+carrier problem still forces five downstream claims and the goal, but it is
+not a generic frame-design problem anymore.
+
+Two former priorities are demoted.  The ten-coordinate OR3 compiler has a
+dimension-ten six-clique obstruction with a quantitative alignment floor;
+the four-cap alternative still requires canonical-HS promotion, so it is no
+longer a bounded finite-certificate search.  The terminal Carleson route is
+not implied by balanced parity, complete-pair energy, balanced cuts, or local
+low-gap admissibility: an exact code character can be recycled to the trivial
+terminal character with zero relation energy.  The exact positive replacement
+is far-gauge integer rank transport of an arbitrary PVM into the code-character
+PVM.  Its viable frontier is quantitative approximate transport with coherent
+zero-kernel relabeling, not automatic Carleson control.
+
+The Fano route is likewise high-value but not a narrow hinge.  Cap support is
+equivalent to choosing one of seven nonzero character rows per context, yet
+every finitary polymorphism of `R_*` is merely a coordinate projection.
+Together with the central-core, empty-link, private-tail, and PCPP firewalls,
+this rules out the natural deterministic support-shrinking operations.  A
+positive proof must find a different perfect trace or a genuinely
+noncoordinatewise operator construction.
+
+### Revised work order
+
+1. Test the Atlas five-row inequality against all known exact finite escape
+   frames; if it survives, attack its single loop-phase estimate.
+2. Construct the six decoded SL3 parahoric chart PVMs, or decide the
+   correctable-vertex claim through the 2-adic building action.
+3. Seek the arithmetic denominator-generator estimate behind projective
+   trace-square transfer, preferably only on canonical double microstates.
+4. Construct or obstruct the cyclic subgroup-overlap carrier in the
+   affine-Frobenius packet.
+5. Treat the triangle local-ucp section as the best independent route.
+6. Replace the false/raw Iwahori low-mode estimate by a gauge-optimized
+   spectral inequality before investing further in its nine-claim cascade.
+7. Keep Schur/PCP, TailoredMIP groupification, Fano FC-char, and universal
+   canonical trace promotion as broad programs until a smaller intermediate
+   inequality is isolated.
+
 This audit ranks open claims by two different quantities:
 
 1. **forced cascade:** the number of currently open claims that become
