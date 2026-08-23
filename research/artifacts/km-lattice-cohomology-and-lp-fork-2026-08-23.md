@@ -174,12 +174,18 @@ subsystems and their positive roots:
 | {2,3} | G_2 (a_2 long, a_3 short) | a_3, a_2, a_2+a_3, a_2+2a_3, a_2+3a_3, 2a_2+3a_3 | 6 |
 
 Orbit `(J,K)` (proper subsets, dimension `4-|J|-|K|`) has stabilizer
-`P_J^+ cap P_K^- = T . <U_alpha : alpha in Phi_J^- cup Phi_K^+>`, of
-order `|T| . q^(N_J+N_K)` (`|T| = (q-1)^3` in the simply connected
-form).  The two root sets never meet (opposite signs), so the unipotent
-part is a semidirect-type product of the two finite unipotent radical
-complements; the largest stabilizer is the `(J,K) = ({2,3},{2,3})`
-vertex pair with `q^12 (q-1)^3`.
+`P_J^+ cap P_K^- = T . <U_alpha : alpha in Phi_J^- cup Phi_K^+>`, with
+EXACT root content `Phi_J^- cup Phi_K^+` (a root group lies in the
+intersection iff its root is in `(Phi^+ cup Phi_J^-) cap (Phi^- cup
+Phi_K^+)`).  CORRECTION (self-caught, same day): the two root sets
+meet in `-Phi_(J cap K)^+ cup Phi_(J cap K)^+` when `J cap K != {}`,
+so opposite pairs generate the finite Levi `L_(J cap K)(q)` and the
+order is `|L_(J cap K)(q)| . q^(N_J + N_K - 2 N_(J cap K))`, NOT
+`|T| . q^(N_J+N_K)` in general (that holds iff `J cap K = {}`).
+Largest stabilizers sit on the diagonal: `(J,J)` vertex pairs carry
+the full rank-two finite Levi groups, e.g. `G_2(q)`-type at
+`J = {2,3}`, `Sp_4(q)`-type at `J = {1,3}` (`|T| = (q-1)^3`, simply
+connected form).
 
 Invariant-module sizes for the `H^2` window (`C^1 -> C^2 -> C^3`):
 18 one-cell orbits (`|J|+|K|=3`), 15 two-cell orbits (`=2`), 6

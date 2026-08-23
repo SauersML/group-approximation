@@ -23,10 +23,14 @@ Three ingredients, each already in hand or classical.
    factor, hence fixes every product cell pointwise (no orientation
    twist), and every cell stabilizer is a FINITE Birkhoff intersection
    `P_J^+ cap P_K^- = T . <U_alpha : alpha in Phi_J^- cup Phi_K^+>`
-   (finiteness: properness of the diagonal action, or directly
-   `|T| . q^(N_J + N_K)` by the twin-BN-pair Birkhoff decomposition of
-   Abramenko--Remy; `Lambda`-transitivity on opposite chamber pairs is
-   the `w = 1` Birkhoff cell).  For a finite group `F` and uniquely
+   (finiteness: properness of the diagonal action; the root content
+   is exactly `Phi_J^- cup Phi_K^+` since `U_gamma <= P_J^+` iff
+   `gamma in Phi^+ cup Phi_J^-` and `U_gamma <= P_K^-` iff `gamma in
+   Phi^- cup Phi_K^+`, and the refined Birkhoff decomposition of the
+   RGD system (Abramenko--Remy) gives the Levi form `L_(J cap K) .
+   (unipotent of order q^(N_J + N_K - 2 N_(J cap K)))`;
+   `Lambda`-transitivity on opposite chamber pairs is the `w = 1`
+   Birkhoff cell).  For a finite group `F` and uniquely
    divisible `V`, `H^q(F; V)` is killed by `|F|` and divisible, so it
    vanishes for `q > 0`.  Hence the isotropy spectral sequence
    `E_1^(p,q) = product over p-orbits of H^q(Stab; V) =>

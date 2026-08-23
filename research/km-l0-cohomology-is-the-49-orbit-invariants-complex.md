@@ -31,8 +31,15 @@ is `w = 1`; `Lambda` is transitive on opposite chamber pairs), so the
 orbit counts in dimensions `0,1,2,3,4` are `9, 18, 15, 6, 1`, and the
 stabilizer of the standard `(J,K)` cell is the finite Birkhoff
 intersection `P_J^+ cap P_K^- = T . <U_alpha : alpha in Phi_J^- cup
-Phi_K^+>` of order `|T| . q^(N_J + N_K)` with `N_J = |Phi_J^+|`
-(`N = 1` for rank one, `2, 4, 6` for `A_1 x A_1`, `B_2`, `G_2`).
+Phi_K^+>` (the root content is EXACT: `U_gamma` lies in the
+intersection iff `gamma in (Phi^+ cup Phi_J^-) cap (Phi^- cup
+Phi_K^+) = Phi_J^- cup Phi_K^+`), with Levi decomposition
+`L_(J cap K) . (mixed unipotent part)` of order
+`|L_(J cap K)(q)| . q^(N_J + N_K - 2 N_(J cap K))`, `N_J = |Phi_J^+|`
+(`1` for rank one, `2, 4, 6` for `A_1 x A_1`, `B_2`, `G_2`); in
+particular order `|T| . q^(N_J + N_K)` when `J cap K` is empty, and a
+full rank-two finite Levi (e.g. the `G_2(q)`-type group at
+`(J,K) = ({2,3},{2,3})`) on the diagonal.
 Only dimensions `<= 3` (48 orbits) enter `H^2`.
 
 Consequence: the `L^0` clause of Ioana--Spaas--Wiersma Corollary E
