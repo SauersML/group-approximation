@@ -9,14 +9,14 @@ distinct_from:
   multicharacter-pvm-alignment-modulo-simultaneous-gauge: that asks for the final all-character pinching estimate; this is the sampled-hash realization step intended to prove it
 ---
 
-OPEN.  In the setting of
+ESTABLISHED.  In the setting of
 `multicharacter-pvm-alignment-modulo-simultaneous-gauge`, select
 `t=t(epsilon)->infinity` coordinates using
 `weighted-code-character-hash`, slowly
 enough that `t epsilon->0` and fixed-`t` normalized-HS stability can correct
 the sampled raw reflections to commuting reflections.
 
-Prove that their joint PVM may be chosen, modulo one simultaneous unitary
+Their joint PVM may be chosen, modulo one simultaneous unitary
 gauge, to implement the corresponding coordinate hash of the terminal
 character atoms up to `o(1)` weighted off-diagonal generator mass.
 Equivalently, after merging terminal atoms with the same sampled sign vector,
@@ -44,3 +44,10 @@ spectrum.
 3. **Demand exact separation of all labels.**  This recreates the
    `log |D|` firewall.  The random hash lemma shows only weighted matching is
    necessary, with `t` depending on the target error rather than `|D|`.
+4. **Use compression signs without their margin.**  Refuted by
+   `compression-signs-alone-do-not-fix-joint-multiplicity`: a conference
+   rotation has four odd compressed sign characters but only four even true
+   joint characters.  The surviving input is vanishing
+   contraction-to-sign error.  With that input,
+   `diagonal-sign-margin-controls-hash-overlap` bounds the Hall mismatch and
+   cancels the unknown physical boundary exactly in trace.

@@ -52,6 +52,13 @@ is the required shared finite-support involution.
 5. **Solve `(AFPC2)` in a finite graph of finite packets.**  Such a group is
    hyperlinear and its algebraic projections are stably vertex-induced; the
    existing Bass--Serre firewalls rule out the strict non-CE budget.
+6. **Force the defect row to be a scaled partial isometry.**  This is a
+   genuine algebraic escape: `tight-defect-column-solves-algebraic-projection-crt`
+   proves that the cubic identity `DD^*D=lambda D` makes
+   `p=lambda^(-1)DD^*` the required finite-support projection.  The new
+   frontier is `affine-frobenius-tight-defect-column-frame`: no packet is
+   yet known which enforces that identity while retaining compatibility and
+   the strict canonical deficit.
 
 The remaining viable construction must simultaneously correlate the fixed
 marginals and create a non-vertex-induced algebraic projection, through a

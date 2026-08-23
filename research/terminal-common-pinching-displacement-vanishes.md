@@ -46,6 +46,15 @@ is genuinely multi-character.  Sequentially applying that lemma incurs the
 gate is therefore `multicharacter-pvm-alignment-modulo-simultaneous-gauge`,
 which asks for simultaneous rather than sequential CS alignment.
 
+There is a separate prerequisite circularity.  The current terminal
+compression ledger bounds signed parity and pair energy only by
+`O(epsilon+D)`, where `D` is exactly `(TCP1)`.  High-gap rounding therefore
+gives only `eta=O((epsilon+D)/lambda_0)`, not `eta=o(1)` independently of
+the desired conclusion.  This is now isolated as
+`terminal-diagonal-code-error-without-pinching-displacement`.  Any route
+which feeds terminal code characters into multi-character alignment without
+first proving that claim is circular.
+
 ## Attempts
 
 1. **Entropy charging.**  Unnecessary but also insufficient: it introduces
