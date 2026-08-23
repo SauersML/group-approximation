@@ -20,27 +20,27 @@ The obstruction, if there is one, can only be stability.
 ## Current proof frontier (2026-08-23)
 
 The latest cascade audit leaves no certified unconditional witness.  The
-shortest concrete lane is the relative `PSL_2(Z[1/2])`/Iwahori problem after
-the regular microstate has been cut into an `o(d)` active block and a passive
-exact `BS(1,4)` core.  All algebraic and Hilbert-space parts of that reduction
-are now explicit.  The surviving analytic gate is
-`passive-iwahori-off-zero-cb-normal-splitting`.  At an exact congruence
-endpoint its Jacobian is the constrained pair of order-three Reynolds
-expectations in `exact-passive-jacobian-is-two-reynolds-expectations`.
-The generic implication from an `L2` gap to a cb inverse is false by
-`two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse`; the arithmetic
-claim already contains the scalar signed-incidence Green estimate isolated
-in `constrained-reynolds-column-has-a-diagonal-scalar-shadow`.  That explicit
-arithmetic Green family, rather than another abstract stability slogan, is
-the present bounded falsification/proof target.  The off-diagonal audit is
-now closed at exact endpoints by
-`right-displacement-reynolds-scalar-cb-complete`:
-right-displacement fibers are identical scalar copies and the full cb
-inverse norm equals the diagonal infinity norm.  At primitive prime levels
-the column is a highly redundant Hecke frame and the initial finite sweep is
-bounded; the unresolved exact-zero sectors are exactly unbounded split-torus
-index and deeper congruence rings.  Even a positive scalar result must still
-be continued nonlinearly through the operator-small off-zero passive region.
+relative `PSL_2(Z[1/2])`/Iwahori lane has now received a decisive negative
+answer at its exact congruence endpoints.  Its Jacobian is the constrained
+pair of order-three Reynolds expectations from
+`exact-passive-jacobian-is-two-reynolds-expectations`, and
+`right-displacement-reynolds-scalar-cb-complete` proves that the full cb
+inverse norm there equals its diagonal scalar infinity norm.  The
+square-free construction in `proper-torus-reynolds-is-edge-refinement`
+uses primitive prime divisors of `4^k-1`; relative girth, square-free
+super-approximation, and an exact shell-flux argument give
+
+```text
+||C_(H_n)^dagger||_(infinity -> infinity)
+ >=c log M_n -> infinity.
+```
+
+This divergence survives after removing the uniformly bounded full-torus
+fiber-constant block.  Hence the exact-zero scalar and cb gate is false on
+the required proper-torus sector.  Since a dimension-free off-zero Newton
+splitting would in particular be uniform at exact endpoints, nonlinear
+continuation cannot rescue this formulation.  The arithmetic Reynolds lane
+is therefore a certified no-go, not the current proof frontier.
 
 The first two natural transfers from the solved full-torus column are now
 closed as shortcuts.  `proper-torus-reynolds-is-edge-refinement` proves that
@@ -53,16 +53,16 @@ full `l1` cost; a positive proof needs genuine arithmetic cancellation on
 overlapping translates.  Flat gain systems and perturbatively near-trivial
 characters are also excluded as sources of divergence by
 `flat-gain-multipartite-covers-have-uniform-green-bound` and
-`near-trivial-torus-characters-track-the-moving-kernel`.  The unresolved
-sector is therefore the genuinely curved, fiber-mean-zero proper-torus
-geometry, not orbit cardinality or character continuity.
-The same proper-torus claim now proves that this geometry really contains
-linearly deep disjoint orbit neighborhoods along the levels `M_n=4^n-1`:
+`near-trivial-torus-characters-track-the-moving-kernel`.  The same
+proper-torus claim proves that the genuinely curved, fiber-mean-zero
+geometry contains linearly deep disjoint orbit neighborhoods:
 the two cubic normal-operator generators form `C3*C3`, intersect the signed
 torus normalizer trivially, and have relative girth at least `log_6(M_n)`.
-This still does not prove Green divergence, because the Moore--Penrose cut
-projection has global tails.  The exact remaining negative test is whether
-those tails can cancel the local current mass after signed compression.
+On the square-free primitive-divisor family, super-approximation makes the
+global electrical tails decay exponentially, while the shell-flux identity
+forces a fixed bypass current through every disjoint radius shell.  This
+proves logarithmic Green divergence and closes the curved fiber-mean-zero
+sector in the negative direction.
 
 Two high-descendant alternatives have also been reclassified.  The five
 consumers of `projective-trace-square-transfer-for-sl3-pair` share one

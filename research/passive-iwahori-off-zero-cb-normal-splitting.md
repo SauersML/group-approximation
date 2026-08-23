@@ -3,6 +3,8 @@ rg: 2
 id: passive-iwahori-off-zero-cb-normal-splitting
 kind: claim
 title: The passive Iwahori Jacobian has a uniform off-zero completely bounded normal splitting
+refuted_by:
+  - proper-torus-reynolds-is-edge-refinement
 distinct_from:
   gauge-optimized-target-has-uniform-congruence-tangent-gap: that gives a level-independent normalized-HS inverse only at exact congruence endpoints; this asks for a mixed L2/operator-norm splitting at the approximate passive tuple itself.
   bs14-thresholded-newton-needs-coordinate-basin: that assumes an operator-norm coordinate tube around a previously selected endpoint; this splitting would construct the endpoint by Newton without selecting it first.

@@ -133,18 +133,33 @@ block do not control the many nontrivial torus characters.  This exactly
 explains why the projective probe can remain small while the full scalar
 inverse grows.
 
-The reduction proves neither a uniform bound nor divergence.  It replaces
-the incorrect single-projective-slice target by the exact finite family
+The reduction replaces the incorrect single-projective-slice target by the
+exact finite family
 
 ```text
 sup_(p,theta) ||C_(G,theta)^dagger||_(infinity -> infinity). (RUB8)
 ```
 
 A uniform estimate for all the twisted orbit matrices `(RUB6)`, together
-with the full-torus prime-power theorem, advances the exact-endpoint gate.
-A divergent character block refutes it.  Controlling each block in its
+with the full-torus prime-power theorem, would advance the exact-endpoint
+gate; a divergent character block refutes it.  Controlling each block in its
 Hilbert norm is insufficient by itself, because Fourier recombination is
 not unconditional in `l_infinity`.
+
+`proper-torus-reynolds-is-edge-refinement` now decides `(RUB8)` negatively.
+On an explicit square-free family built from primitive divisors of
+`4^k-1`, relative girth, square-free super-approximation, and a shell-flux
+identity give
+
+```text
+||C_(H_n)^dagger||_(infinity -> infinity)
+ >=c log M_n -> infinity.                              (RUB9)
+```
+
+The full-torus/fiber-constant block remains uniformly bounded, so the
+growth in `(RUB9)` occurs in the nontrivial torus-character sector sought
+in `(RUB8)`.  Thus the proposed uniform exact-endpoint Reynolds inverse is
+false, rather than merely unproved.
 
 `torus-fourier-gram-is-compressed-two-cubic-reynolds` computes the exact
 normal block.  It is `9` times the signed-domain compression of the sum of

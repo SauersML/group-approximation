@@ -2,7 +2,7 @@
 rg: 2
 id: proper-torus-reynolds-is-edge-refinement
 kind: claim
-title: A proper-subtorus Reynolds complex refines edges but does not cover triangles
+title: A proper-subtorus Reynolds complex has an explicit divergent square-free Green family
 distinct_from:
   full-torus-reynolds-is-multipartite-curl: that identifies the full-torus column with an ordinary clique-complex curl; this compares a proper subtorus with the full-torus edge and triangle sets.
   multipartite-triangle-curl-has-uniform-infinity-green-bound: that constructs a uniformly bounded Green operator for the base clique complex; this proves why that operator does not lift to the extra-label sector.
@@ -12,7 +12,7 @@ distinct_from:
   signed-orbit-averaging-does-not-divide-green-cost: that proves averaging a generic electrical routing over the growing signed torus orbit has norm one rather than inverse-orbit-size cost; this identifies the labeled geometry.
 ---
 
-**ESTABLISHED; COVERING-TRANSFER NO-GO.**  Let `Q` be a finite congruence
+**ESTABLISHED; EXPLICIT LOGARITHMIC DIVERGENCE.**  Let `Q` be a finite congruence
 quotient with split projective torus `T`, let `H<T` be normalized by the
 Weyl involution `w`, and put `i=[T:H]`.  Use the sign character of
 `<H,w>` (respectively `<T,w>`) which is trivial on the torus and sends `w`
@@ -90,14 +90,10 @@ i_n=[T_n:H_n]=phi(M_n)/(4n) -> infinity.               (PSE6)
 
 Thus `(PSE2)--(PSE5)` are an explicit growing labeled-edge family with no
 corresponding growth in triangle lifts.  This is a rigorous obstruction to
-the proposed **covering-space** proof of a uniform Green bound.  It is not
-a divergent Green mode: the Moore--Penrose inverse may still be uniformly
-bounded because the selected label triples can couple the fiber-mean-zero
-sector efficiently.
-
-The exact remaining theorem is therefore finite and concrete.  On the
-orthogonal complement of `(PSE3)` and of `ker(C_(H_n))`, prove a uniform
-infinity Green bound, or construct `f_n` in that sector with
+the proposed **covering-space** proof of a uniform Green bound.  By itself
+the edge count does not decide whether the selected label triples couple
+the fiber-mean-zero sector efficiently.  The finite concrete alternative
+is to prove a uniform bound on that sector or construct `f_n` with
 
 ```text
 ||f_n||_infinity /
@@ -106,7 +102,8 @@ max(||C_(1,H_n)f_n||_infinity,||C_(2,H_n)f_n||_infinity)
 ```
 
 The base multipartite contraction settles none of `(PSE7)` because its
-entire image lies in the fiber-constant summand `(PSE3)`.
+entire image lies in the fiber-constant summand `(PSE3)`.  The square-free
+construction below resolves `(PSE7)` in the divergent direction.
 
 `signed-orbit-averaging-does-not-divide-green-cost` also rules out a
 different shortcut based only on the large order of `H`.  The restricted
@@ -130,8 +127,9 @@ the signed Reynolds projection onto `<H,w>`-equivariant functions has
 exact infinity and cb norm one, and that disjoint translated Green rows
 retain their full `l_1` mass after normalized averaging.  Hence a putative
 generic `O(log|Q|)` routing cost is not reduced formally by `|H|`; a
-positive proof needs arithmetic cancellation or a genuinely new
-constrained routing.
+positive proof would need arithmetic cancellation or a genuinely new
+constrained routing.  The relative-girth and super-approximation argument
+below proves that such cancellation does not occur uniformly.
 
 ## Exact relative-girth theorem for the selected complex
 
@@ -224,30 +222,205 @@ pairwise disjoint.  Thus the arithmetic selected complex really does
 contain linearly deep disjoint tree neighborhoods; the missing-triangle
 geometry is not merely a counting artifact.
 
-This theorem still does not by itself prove the divergent alternative in
-`(PSE7)`.  Let `P_cut` be the Moore--Penrose cut projection for the
-unconstrained `K_1/K_2` incidence graph and let `P_chi` be the signed
-`N_n` Reynolds projection.  The exact compression identity is
+Relative girth alone does not control the globally supported electrical
+tails.  On a square-free family, however, super-approximation supplies the
+missing decay and proves that `(PSE7)` **diverges**.
+
+For every `k>=2`, choose a primitive prime divisor
 
 ```text
-C_(H_n)^dagger C_(H_n)=P_chi P_cut
+ell_k | 4^k-1,
 ```
 
-on the selected input space.  Relative girth separates the centers of the
-translated electrical rows, but electrical rows have global support.
-Their tails may enter the other orbit neighborhoods and cancel after the
-signed average.  Hence disjoint **balls** do not justify the disjoint-
-support equality `(SOG8)`.  To turn `(PSE13)` into divergence one still
-needs a quantitative off-diagonal decay/lower-current theorem strong enough
-to show
+and put
 
 ```text
-||P_chi P_cut||_(infinity -> infinity)
-  >= c log M_n.                                        (PSE14)
+M_n=product_(k=2)^n ell_k,       L_n=lcm(2,...,n).      (PSE14)
 ```
 
-Conversely, a uniform bound must exploit cancellation between precisely
-these globally supported translated electrical rows.  The exact frontier
-is therefore narrower than `(PSE7)`: prove or refute `(PSE14)` using the
-arithmetic Green kernel.  Neither a base simplicial contraction nor relative
-girth alone decides it.
+Zsigmondy's theorem supplies `ell_k`; the primes are distinct and
+`ord_(ell_k)(4)=k`.  Hence `M_n` is odd and square free.  Moreover
+
+```text
+log M_n >= sum_(k=2)^n log(k+1)=n log n-O(n),
+|<h(2)> in Q_(M_n)| <=2L_n=exp(O(n)).                  (PSE15)
+```
+
+The second bound holds because `4^(L_n)=1` at every prime factor, so
+`h(2)^(2L_n)=1`; the standard Chebyshev estimate gives `log L_n=O(n)`.
+The split-torus index tends to infinity, since
+
+```text
+|T_(M_n)|/|<h(2)>|
+ >= product_(k=2)^n k /(4L_n) -> infinity.             (PSE16)
+```
+
+Let `Y_n` be the bipartite incidence graph with edge set `Q_(M_n)` and
+vertex sets
+
+```text
+K_1\Q_(M_n)       and       K_2\Q_(M_n).
+```
+
+It is 3-regular on every connected component.  Multiplying one vertex
+class by `-1` conjugates the two signless Reynolds rows to the ordinary
+oriented incidence operator; this changes neither the normal operator nor
+any infinity norm.  Write `P_(cut,n)` for its electrical cut projection.
+
+The group `Lambda` is Zariski dense in `PSL_2`: by `(PSE10)` it is a
+non-elementary free product, whereas every proper algebraic subgroup of
+`PSL_2` is finite or virtually solvable.  Super-approximation for finitely
+generated subgroups of `GL_2(Z[1/2])` with perfect connected Zariski closure,
+applied to the square-free moduli `(PSE14)`, gives a uniform Cayley spectral
+gap.  This is exactly the square-free case of Salehi Golsefidy,
+*Super-approximation II*, JEMS 21 (2019), Theorem 1: it covers every
+square-free modulus coprime to the localization integer `2`, not merely
+primes or moduli whose prime factors tend to infinity.  Equivalently, one
+may omit any finite initial set of primitive primes without changing
+`(PSE15)--(PSE16)`.
+
+Here is the transfer from that theorem to `Y_n`.  Every component is the
+incidence graph with edge set `Gamma_n=pi_(M_n)(Lambda)` and vertex sets
+
+```text
+<a>\Gamma_n       and       <b>\Gamma_n.
+```
+
+The edge-to-edge walk which chooses one of the two endpoints and then one
+of its three incident edges is
+
+```text
+(1/6)(2I+L_a+L_(a^2)+L_b+L_(b^2)),
+```
+
+an affine rescaling of the Cayley walk for the fixed symmetric generating
+set `{a,a^2,b,b^2}`.  Thus Cayley expansion gives a uniform gap for this
+walk, and the standard incidence singular-value correspondence gives a
+constant `rho<1` such that the lazy vertex walk on every component of
+`Y_n` has nonconstant spectrum in `[0,rho]`.
+
+This spectral gap gives the required off-diagonal electrical decay.  If
+`partial` is the oriented vertex-edge incidence and `P` is lazy random
+walk, then on a component
+
+```text
+(partial partial^*)^dagger
+  =(1/6) sum_(t>=0)(P^t-Pi),                            (PSE17)
+```
+
+where `Pi` projects onto constants.  The constant term cancels between
+the two endpoints of an edge.  Finite propagation and the spectral bound
+therefore give constants `C<infinity`, `rho<1`, independent of `n`, with
+
+```text
+|P_(cut,n)(e,f)|<=C rho^(dist(e,f))                    (PSE18)
+```
+
+for distinct edges in the same component; it is zero between components.
+
+Now let `N_n=<h(2),w>` and let `chi` be its Weyl sign.  Fix an edge `e` and
+form the unnormalized signed orbit source
+
+```text
+x_n=sum_(g in N_n) chi(g) delta_(ge),
+y_n=P_(cut,n)x_n.                                      (PSE19)
+```
+
+The orbit points are distinct.  By `(PSE13)`, two which lie in the same
+component have distance at least
+
+```text
+R_n=floor(log_6 M_n).
+```
+
+The diagonal leverage of `P_(cut,n)` is the same on all edges.  Indeed,
+right multiplication by `Q_(M_n)` acts transitively on edges and permutes
+the connected components.  If one component has `E` edges, it has `2E/3`
+vertices, so the cut space there has rank `2E/3-1`; hence
+
+```text
+P_(cut,n)(f,f)=(2E/3-1)/E=2/3-1/E.                    (PSE20)
+```
+
+Equations `(PSE15)`, `(PSE18)`, and `(PSE20)` imply, uniformly for every
+orbit edge `ge`,
+
+```text
+|chi(g)y_n(ge)-2/3|
+ <=o(1)+C|N_n|rho^(R_n)=o(1),                         (PSE21)
+```
+
+because `|N_n|<=4L_n=exp(O(n))` while
+`R_n=Omega(n log n)`.  In particular, for large `n`, at least `1/4` unit of
+the dipole at every orbit edge is carried away from that edge.
+
+The last step is a real-space flux identity, not a decay heuristic.  Fix an
+orbit edge `f=ge=(u,v)` and set `sigma_f=chi(g)=x_n(f)`.  Orient `f` from
+`u` to `v` after multiplying the orientation by `sigma_f`.  Remove `f`.
+For each integer `j<R_n/4`, sum
+
+```text
+partial(y_n-x_n)=0                                    (PSE22)
+```
+
+over the radius-`j` tree ball about `u` in `Y_n-f`.  Ordinary girth follows
+from `(PSE13)` by taking the identity element of `N_n`, so this ball is a
+tree.  No other orbit source lies in it.  The discrete divergence theorem
+then says that the current on the other boundary edges sums, with signs,
+to `sigma_f-y_n(f)`.  Therefore those edges have total absolute current at
+least
+
+```text
+|sigma_f-y_n(f)|=|1-sigma_f y_n(f)|>=1/4.              (PSE23)
+```
+
+The shell edge sets are disjoint as `j` varies.  The radius-`R_n/4`
+endpoint neighborhoods belonging to distinct orbit edges are also disjoint
+after decreasing the universal radius constant: otherwise a path joining
+them would contradict `(PSE13)`.  Summing `(PSE23)` first over shells and
+then over the orbit gives
+
+```text
+||y_n||_1 >= c |N_n| R_n.                              (PSE24)
+```
+
+Finally, `P_chi` commutes with `P_(cut,n)` by the reducing-space identity
+`(SOG3)`, and
+
+```text
+(P_chi P_(cut,n))delta_e=y_n/|N_n|.
+```
+
+The product is self-adjoint, so its infinity norm is the maximum `l_1`
+column norm.  Hence `(PSE24)` proves
+
+```text
+||P_chi P_(cut,n)||_(infinity -> infinity)
+ >=c R_n>=c' log M_n.                                  (PSE25)
+```
+
+On the selected space,
+
+```text
+C_(H_n)^dagger C_(H_n)=P_chi P_(cut,n).
+```
+
+Since the two Reynolds rows have a dimension-independent infinity norm,
+`(PSE25)` yields
+
+```text
+||C_(H_n)^dagger||_(infinity -> infinity)
+ >=c'' log M_n -> infinity.                            (PSE26)
+```
+
+The fiber-constant block `(PSE3)` has a uniformly bounded inverse by the
+full-torus theorem, and its projection is the norm-one average over
+`T_n/H_n`.  Splitting `C_(H_n)^dagger` with this projection shows that the
+fiber-mean-zero block has norm at least the left side of `(PSE26)` minus a
+fixed constant.  Thus the divergent alternative in `(PSE7)` occurs on the
+explicit square-free proper-subtorus family `(PSE14)`, not merely somewhere
+in the full selected space.  In view of
+`right-displacement-reynolds-scalar-cb-complete`, the exact-endpoint scalar
+and completely bounded inverse gate is false.  This does not address a
+different passive construction which avoids these congruence endpoints,
+but it closes the proposed uniform Reynolds/Newton route through them.
