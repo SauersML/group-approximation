@@ -1583,6 +1583,7 @@ import GroupApproximation.Sofic.GreendlingerReducedness
 import GroupApproximation.Sofic.AmalgamMFTrace
 import GroupApproximation.Sofic.TerminalQuotientPresentation
 import GroupApproximation.Sofic.TerminalQuotientIso
+import GroupApproximation.Sofic.SigmaGroupMF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
