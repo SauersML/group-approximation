@@ -5,7 +5,7 @@ kind: route
 title: Diagonalize the full three-leg diagram Laplacian on one Pauli plane
 target: three-reynolds-plus-kernel-energy-has-vanishing-gap
 requires:
-  - relative-c2-square-pauli-counterpacket-proof
+  - relative-finite-group-gh-cannot-fix-two-generating-subgroups
 ---
 
 The matrices `B,C` anticommute, square to the identity, and commute with
