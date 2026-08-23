@@ -130,3 +130,13 @@ would retain an affine family of characters rather than the single trivial
 character.  Thus the result removes the exponential coordinate-lamp packet
 and all SELECT gauge ambiguity, but it does not evade the affine-support
 barrier.
+
+The remaining character-idempotent HNN attempt is now also exact.
+`extraspecial-character-hnn-two-cycle-forces-global-parity` shows that, for
+the corrected involution `V=SC`, the Hecke compression of the authentic
+source character vanishes only when some payload product satisfies
+`U_a=JX_c`. In the intended tensor-spin completion this is `U_a=-1`, a
+global affine-hyperplane condition strictly stronger than absence of the
+trivial payload character for `k>1`. Thus replacing the literal two-grading
+source by an HNN transport of the full Pauli character does not compose the
+four positive cells.
