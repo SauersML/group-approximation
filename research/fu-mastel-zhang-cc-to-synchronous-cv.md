@@ -37,3 +37,34 @@ No commuting-operator completeness statement is imported here.  The paper
 explicitly formulates its strategy model as finite-dimensional tensor-product
 strategies.  The tracial completeness extension needed by Cairn is proved
 separately from the incidence pattern `(FMZ1)`.
+
+## Compiler audit of the full succinct-PZK construction
+
+Fu--Mastel--Zhang's Theorems 1.1 and 1.2 additionally give RE protocols with
+perfect **finite-dimensional** completeness, constant finite-dimensional
+soundness, and respectively `(polylog,O(1))` or `(O(1),polylog)`
+question/answer lengths.  Their compression is assembled from question
+reduction, oracularization, answer reduction, and parallel repetition.  This
+is a strong finite-game source theorem, but it does not strengthen the
+ordinary-group endpoint beyond `(FMZ1)--(FMZ2)`:
+
+1. succinctness changes the encoding and verifier distribution, not the fact
+   that the resulting BCS predicates are generally nonlinear;
+2. the PCC property only asserts compatibility for question pairs sampled by
+   the verifier.  It does not make unrelated context algebras commute and does
+   not provide a common reducing carrier for all contexts;
+3. perfect zero knowledge is a statement about simulation of the honest
+   transcript.  It supplies neither a canonical group trace nor ordinary
+   group-word equations implementing forbidden BCS projections;
+4. the paper explicitly excludes commuting-operator strategies from its
+   formal strategy model.  Consequently its perfect-completeness theorem
+   cannot by itself supply the perfect commuting side required by a
+   non-hyperlinear solution-group diagonal.
+
+Question sampling by the provers is therefore not a group-level substitute
+for sampling: once the verifier is compiled to a finite presentation, every
+positive-support check is simply a fixed relator/check, and all of them must
+hold in a perfect model.  The only reusable nontrivial bridge here is the
+symmetrized incidence geometry `(FMZ1)`, already used in
+`oracularizable-tracial-nonru-game-exists` together with an independent
+tracial BCS model.

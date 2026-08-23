@@ -20,6 +20,6 @@ soundness
 value(G^cv)>=1-epsilon  =>  value(G)>=1-poly(C,epsilon).
 ```
 
-The v2 official arXiv HTML was checked directly on 2026-08-20.  The citation
+The v2 official arXiv HTML was checked directly again on 2026-08-23.  The citation
 does not claim commuting-operator completeness; that extension is an internal
 tracial argument in `tracial-bcs-incidence-oracularization-proof`.
