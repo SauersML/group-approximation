@@ -39,6 +39,11 @@ variety.
   `||z-psi(z)||_2^2`. On the first-mode left regular family this is at most
   `16 E_end` for sufficiently small amplitude. See
   `optimized-core-absorbs-endpoint-conjugations`.
+  Infinitesimally, the apparently bad frozen-core endpoint tangent
+  `a-Ad(X)a` is paired with the core tangent
+  `(a-Ad(R)a,0)`. Together they are precisely a common-conjugation tangent
+  removed in `(GIT1)`, explaining why the gauge-only and frozen-core full
+  tangent gaps can decay while the optimized quotient gap does not.
 - Ordinary HS Newton integration is unavailable because operator-large
   rank-one directions have no dimension-free quadratic Taylor remainder.
 - Spectral thresholding isolates the operator-large residual on rank

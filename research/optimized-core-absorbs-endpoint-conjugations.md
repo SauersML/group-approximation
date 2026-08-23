@@ -11,26 +11,28 @@ distinct_from:
 
 Use `G_N` and `E_end` from
 `gauge-optimized-induced-energy-target`. Let `(X,R,T)` be any exact
-level-`N` square-free endpoint and let `z in {T}'` be any unitary. Put
+level-`N` square-free endpoint and let `z` be any unitary. Put
 
 ```text
 X_z=zXz^(-1),               b=(R,T),
-c_z=(zRz^(-1),T).                                      (OCA1)
+c_z=(zRz^(-1),zTz^(-1)).                               (OCA1)
 ```
 
 Then `c_z` is an exact BS core, the hybrid tuple
 
 ```text
-U_(c_z)=(X_z,zRz^(-1),T)=z(X,R,T)z^(-1)               (OCA2)
+U_(c_z)=(X_z,zRz^(-1),zTz^(-1))=z(X,R,T)z^(-1)        (OCA2)
 ```
 
 is an exact endpoint, and therefore
 
 ```text
-G_N(X_z,b)<=||zRz^(-1)-R||_2^2.                       (OCA3)
+G_N(X_z,b)<=||zRz^(-1)-R||_2^2
+             +||zTz^(-1)-T||_2^2.                    (OCA3)
 ```
 
-In particular, take the first-mode family from
+In particular, if `z in {T}'` the second term in `(OCA3)` vanishes. Take
+the first-mode family from
 `endpoint-conjugation-refutes-iwahori-energy`, with
 `z=exp(i epsilon a)` and `g_L=|1-exp(2 pi i/L)|`. Then
 
@@ -51,4 +53,3 @@ estimate with constant `16`, even though its frozen-core inverse-Koopman
 energy violates every dimension-free bound. The surviving target is thus
 genuinely the quotient by exact-core motion, not a reweighted version of
 the refuted frozen-core estimate.
-

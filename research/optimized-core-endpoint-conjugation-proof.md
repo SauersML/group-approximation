@@ -7,17 +7,17 @@ target: optimized-core-absorbs-endpoint-conjugations
 requires: []
 ---
 
-Because `z` commutes with `T`, conjugating the exact BS identity by `z`
-gives
+Conjugating the exact BS identity by `z` gives
 
 ```text
-(zRz^(-1))T(zR^(-1)z^(-1))=T^4.
+(zRz^(-1))(zTz^(-1))(zR^(-1)z^(-1))=(zTz^(-1))^4.
 ```
 
 Thus `c_z` belongs to the exact-core variety in `(GOI4)`. Equation `(OCA2)`
 shows that every induced section edge for this competitor vanishes. The
-`T` displacement is zero and the `R` displacement is the right side of
-`(OCA3)`, proving that inequality exactly.
+two core-displacement terms are exactly those on the right of `(OCA3)`,
+proving that inequality. For the first-mode specialization, `z` commutes
+with `T`, so its `T` term is zero.
 
 For `z=exp(i epsilon a)`, unitary-exponential Lipschitzness and `(LKP4)`
 give
@@ -48,4 +48,3 @@ necessary,
 ```
 
 The inversion row is one summand of `E_end`, so `(OCP2)` proves `(OCA5)`.
-

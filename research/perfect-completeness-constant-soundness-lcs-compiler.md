@@ -6,6 +6,7 @@ title: A computable LCS family with perfect commuting completeness on halting in
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
   - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
+  - research/artifacts/lin-ji-mastel-slofstra-bcs-lcs-boundary-2026-08-23.md
 distinct_from:
   taller-vidick-lcs-re-hardness: that theorem has completeness `1 - epsilon` and its decoder needs the noise; this asks for `epsilon = 0`, which the paper explicitly does not prove.
   hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for perfect commuting completeness on halting inputs and strict matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.

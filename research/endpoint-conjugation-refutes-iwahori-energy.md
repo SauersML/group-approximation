@@ -76,6 +76,28 @@ selected gauge `O(delta)=O(epsilon g_L)`. Linearizing its coboundary
 equation as `epsilon -> 0` would give an inverse preimage of norm `O(g_L)`,
 contradicting the lower bound above for large `L`.
 
+Concretely, fix such a large `L` and take a sequence `epsilon_k -> 0`.
+Pairwise coercivity would give selected gauges `c_k` with
+
+```text
+||c_k-1||_2<=C' epsilon_k g_L.
+```
+
+After a subsequence in this fixed finite dimension,
+`A_k=(c_k-1)/(i epsilon_k)` converges with `||A_k||_2<=C'g_L`.
+Divide the selected coboundary equation by `epsilon_k` and project away its
+allowed fixed/holonomy residual. The limit is
+
+```text
+(1-psi)A=(1-psi)h.
+```
+
+On the regular quotient this forces `P_reg A=h`, while the proof below
+gives `||h||_2>=1-N^(-1/2)`. Choosing `L` with
+`C'g_L<1-N^(-1/2)` is the contradiction. Thus the selector itself, not
+merely the route claiming its equivalence with `(IAG1)`, has the forbidden
+linearization.
+
 ## Surviving formulation
 
 The failure is a genuine endpoint-conjugation symmetry. A viable Iwahori
