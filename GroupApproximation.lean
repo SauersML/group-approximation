@@ -1480,6 +1480,7 @@ import GroupApproximation.Sofic.GreendlingerDeepThreeFactor
 import GroupApproximation.Sofic.GreendlingerDeepInduction
 import GroupApproximation.Sofic.GreendlingerDeepTailWindow
 import GroupApproximation.Sofic.GreendlingerSharpWindow
+import GroupApproximation.Sofic.GreendlingerSharpRigidity
 import GroupApproximation.Sofic.GreendlingerDeepInvariant
 import GroupApproximation.Sofic.GreendlingerLandingConfined
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
