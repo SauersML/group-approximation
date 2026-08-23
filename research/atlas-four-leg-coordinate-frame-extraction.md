@@ -8,10 +8,26 @@ artifacts:
   - notes/TRUE_RAW_PAULI_COEFFICIENT_CUT.md
   - notes/TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md
 distinct_from:
-  atlas-one-cut-finite-multiplicity-extraction: that states the terminal asymmetric cut directly; this names the smallest coordinate decoder and the exact four block identities which produce that cut.
+  atlas-one-cut-finite-multiplicity-extraction: that states the terminal asymmetric cut directly; the present formulation expands it into four blocks but, by atlas-four-leg-frame-is-terminal-defect-gap, is quantitatively terminal-equivalent rather than a smaller coordinate target.
   atlas-wedderburn-hall-deficient-support-certificate: that may aggregate many irreducible corners and a weighted min-cut; this asks for one four-leg frame and one retained upper block.
   pauli-block-tail-or-flat-rigidity-dichotomy: that splits according to singular values of the canonical sixteen-block Pauli table; this frame is necessarily noncanonical because the canonical table is Fourier-flat in every entry.
 ---
+
+**TERMINAL-EQUIVALENT, NOT A REDUCED COORDINATE TARGET.**  The established
+claim `atlas-four-leg-frame-is-terminal-defect-gap` shows that for every
+choice of the four legs and every unitary `W`, the retained block in `(FCF2)`
+is bounded above by the full forbidden row in `(FCF1)`.  Hence these two
+inequalities already force the uniform packet-defect floor
+
+```text
+delta >= (1/(128 C))^(1/c).
+```
+
+Conversely, an already-known uniform defect floor makes `(FCF1)--(FCF2)`
+hold with arbitrary coordinate legs after enlarging `C`.  The statement
+below may remain useful as a terminal formulation, but it is not a genuine
+decomposition of `atlas-one-cut-finite-multiplicity-extraction` and should
+not be presented as the first smaller missing coordinate identity.
 
 Let `delta` be the canonical regular-`A_8` atlas packet defect at external
 multiplicity `k`.  In a fixed matrix amplification `N_k` of `M_k(C)`, select
@@ -50,9 +66,9 @@ ambient group polynomial.  It asks that one selected upper block be matched,
 in the same gauge, to one of the already certified positive Pauli transition
 blocks.
 
-## Why this is the first missing identity
+## Previously proposed coordinate interpretation
 
-Three strictly weaker pieces are already available.
+Three pieces motivating this formulation are already available.
 
 1. `TRUE_RAW_PAULI_COEFFICIENT_CUT` supplies an honest trace-half projection
    after removing a fixed Pauli factor.
@@ -74,9 +90,10 @@ intrinsic finite-von-Neumann-algebra recipe.  The exact Leavitt factor model
 satisfies the atlas relations and admits an internal relative-chart
 conjugator.  Any such intrinsic recipe would give `(FCF1)--(FCF2)` in a
 finite tracial algebra, contradicting unitary one-cut balance.  The selection
-of this noncanonical finite frame is the theorem.
+of this noncanonical finite frame would already be the terminal gap theorem,
+not an upstream coordinate lemma.
 
-## Required proof shape
+## What a direct proof would still require
 
 A viable proof must use finite external multiplicity before passing to the
 tracial limit.  Equivalent formulations may use:
@@ -89,5 +106,7 @@ tracial limit.  Equivalent formulations may use:
 
 Positive Hilbert--Schmidt mass alone is insufficient: polar truncation must
 retain fixed mass and make the retained source and target dimensions match.
-This is exactly the operator-level coordinate-extraction identity absent from
-the five-row/collision data.
+Because the two estimates themselves force the terminal defect floor, such an
+argument would constitute a direct nonhyperlinearity proof expressed in
+coordinate language.  It cannot serve as a strictly reduced intermediate
+identity absent from the five-row/collision data.

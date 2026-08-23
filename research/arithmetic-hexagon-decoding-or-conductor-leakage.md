@@ -83,6 +83,25 @@ the fixed-depth nonhyperlinearity criterion.
   missing synchronization: several root directions must be compared on one
   shared reservoir so that the already established six-wall seam, rather
   than a single cyclic covariance defect, pays the budget.
+- **One transverse root on the same primitive reservoir is already enough.**
+  `same-reservoir-weyl-pair-has-fixed-depth-doubling-gap` supplies the
+  minimal multi-root seam. If `[P,Q]=zeta I` with `zeta` primitive of order
+  `d=2^N`--or, more generally, the common carrier is a direct sum of
+  primitive central-character fibers--no unitary `V` can simultaneously approximate
+  `P->P^2` and `Q->Q^2` without
+
+  ```text
+  ||VPV^*-P^2||_2^2+||VQV^*-Q^2||_2^2
+   >=2/(2^(N-1)+1)^2.
+  ```
+
+  Indeed the commutator of `P` with `Q^(d/2)` is `-I`, whereas after
+  doubling it is `I`. This is a positive constant for every fixed decoded
+  depth and is independent of multiplicity. Thus the analytic deep-band
+  problem needs only a primitive central-character fiber with two
+  transverse roots on one carrier. The still-open six-chamber work is the
+  matrix-coordinate extraction which prevents their individually cheap
+  cyclic matchings from living in different rectangular reservoirs.
 
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the

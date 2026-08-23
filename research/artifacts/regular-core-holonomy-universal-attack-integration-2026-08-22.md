@@ -35,6 +35,36 @@ choosing the same acylindrically hyperbolic source in the CDI theorem.  Such a
 source has a proper infinite ICC quotient, whose pulled-back regular
 character is already an extremal diffuse nonregular character.
 
+## Expanded-report deduplication
+
+The later expanded universal-attack report adds proofs and constants but no
+new independent dependency.  Its sections compact as follows.
+
+- The ultraproduct equivalence and qualitative-to-finite-gap arguments are
+  instances of the existing canonical-profile compactness layer.
+- Regular-branch liftability, the finite-dimensional residual kernel
+  contradiction, and the finitely generated residual-finiteness corollary
+  are all carried by
+  `regular-branch-liftability-plus-fd-kernel-forces-nonhyperlinear`.
+- The finite-subgroup character calculation is the proof content of
+  `finite-subgroup-near-regular-has-large-regular-core`.  Allowing a flexible
+  `o(d)` dimension change is sufficient and avoids adding a stronger
+  same-dimension stability assertion that the downstream route does not use.
+- Blindness of local character and multiplicity data to relative chart
+  position is already the multiplicity-commutant holonomy cluster cited in
+  the table above.  The proposed spanning-tree gauge normal form is a useful
+  description of the open node, not a new solution of it.
+- Fell absorption, the exposed-payload-word objection, and the non-CE
+  group-factor corner criterion remain exact duplicates of the earlier
+  trace-promotion nodes.
+
+Accordingly Cairn records one open Kac--Moody synchronization claim rather
+than duplicating the report's Definitions 2.1, 5.1, and finite-dimensional
+Holonomy Problem as parallel aliases.  A proof of that node would have large
+cascade value: simplicity supplies the finite-dimensional residual kernel,
+and regular-branch liftability then reaches the nonhyperlinear-group goal in
+one step.
+
 ## Source correction
 
 The report cited the June 2026 v1 abstract of arXiv:2606.27993.  The current
