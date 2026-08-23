@@ -50,6 +50,14 @@ All solutions of `e_L=c psi(c)^(-1)` differ from `c_L` by a
 Thus every correcting gauge has distance exactly `sqrt(2)` from `1`, even
 though the exact coboundary residual tends to zero.
 
+This cycle occurs inside the arithmetic BS packets used elsewhere in the
+lane.  For even `L`, take `N=4^L-1`; multiplication by four has an orbit of
+length exactly `L` on the exponent-one character of `C_N`.  The diagonal
+algebra on that orbit is a copy of `A_L`, and `psi=Ad(h)` is its cyclic
+shift.  Hence the packet is not an abstract automorphism pathology: it is
+present in exact odd congruence skeletons (where the completed global
+congruence repair theorem bypasses it using the other group relations).
+
 This is the nonlinear rank-concentration form of the normalized-HS Taylor
 failure.  Spectral rounding, taking logarithms on the good spectrum, or
 polar decomposition cannot produce a global gauge bound: the two bad
@@ -58,4 +66,3 @@ positive-trace plateaux.  A valid Iwahori estimate must therefore use the
 involution and cubic relators to charge those plateaux (or show they are an
 exact removable representation summand); it cannot be derived from the
 Weyl coboundary residual and its cycle holonomy alone.
-
