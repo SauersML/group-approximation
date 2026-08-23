@@ -76,3 +76,50 @@ defect(5, [(0,1),(2,3)], [(0,2),(1,3)], [(3,4)], "UT5 mixed")
 defect(6, [(0,1)], [(4,5)], [(1,2),(3,4)], "UT6 wide")
 defect(6, [(0,1),(3,4)], [(1,2),(4,5)], [(2,3)], "UT6 interleave"
        )
+
+# Refined defect: also quotient by the next-level gauge subspace
+# C^Gnext with Gnext = <M3, [M1,M3], [M2,M3]> (unipotent shadow of the
+# next B-chain level).
+def comm(X,Y): 
+    import numpy.linalg as la
+    Xi = np.round(la.inv(X)).astype(np.int8)%2; Yi = np.round(la.inv(Y)).astype(np.int8)%2
+    return (Xi@Yi@X@Y)%2
+
+def refined(n, e1, e2, e3, label):
+    M1,M2,M3 = mat(n,e1),mat(n,e2),mat(n,e3)
+    if not np.array_equal((M1@M2)%2,(M2@M1)%2): print(f"{label}: skip"); return
+    G = close([M1,M2,M3]); idx = {g.tobytes(): i for i,g in enumerate(G)}
+    E = np.eye(n,dtype=np.int8)
+    CA,CB,CC = (orbit_space(G,idx,[E,X]) for X in (M1,M2,M3))
+    AC, BC = close([M1,M3]), close([M2,M3])
+    CAC,CBC = orbit_space(G,idx,AC), orbit_space(G,idx,BC)
+    Gnext = close([M3, comm(M1,M3), comm(M2,M3)])
+    CGN = orbit_space(G,idx,Gnext)
+    AB = np.hstack([CA,CB]); dCC,dAB = rank(CC),rank(AB)
+    inter = dCC + dAB - rank(np.hstack([CC,AB]))
+    den0 = rank(np.hstack([CAC,CBC]))
+    denR_all = np.hstack([CAC,CBC,CGN])
+    # refined denominator: (C13+C23+CGnext) cap (C3 cap (C1+C2))
+    dDen, dNum = rank(denR_all), inter
+    # dim of intersection of denR span with the numerator space:
+    # numerator = CC cap span(AB); compute via joint kernel trick:
+    # dim(U cap W) = dim U + dim W - dim(U+W) with U=span(denR), W=numerator.
+    # numerator basis: get via nullspace pairing - approximate: numerator
+    # dim known; U+W <= span(CC, AB-part...) - use: W <= CC, so
+    # U cap W = (U cap CC) cap (U cap span AB)-superset... compute directly:
+    # basis of W: solve CC x = AB y; use SVD-based nullspace of [CC | -AB].
+    Mjoint = np.hstack([CC, -AB])
+    from numpy.linalg import svd
+    u,s,vt = svd(Mjoint); null = vt[(s>1e-8).sum():].T
+    Wbasis = CC @ null[:CC.shape[1],:]  # columns span numerator W
+    dW = rank(Wbasis); assert dW == inter, (dW, inter)
+    dU = rank(denR_all)
+    dUW = rank(np.hstack([denR_all, Wbasis]))
+    interUW = dU + dW - dUW
+    print(f"{label}: |G|={len(G)} |Gnext|={len(Gnext)} defect={inter-den0} "
+          f"REFINED defect = {dW - interUW}")
+
+refined(4, [(0,1)], [(2,3)], [(1,2)], "UT4 commuting-ends")
+refined(5, [(0,1)], [(3,4)], [(1,2),(2,3)], "UT5 spread")
+refined(5, [(0,1),(2,3)], [(0,2),(1,3)], [(3,4)], "UT5 mixed")
+refined(6, [(0,1)], [(4,5)], [(1,2),(3,4)], "UT6 wide")

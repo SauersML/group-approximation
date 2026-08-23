@@ -549,3 +549,34 @@ the char-function survival argument of
 `locally-finite-bernoulli-lim1-proof` adapted to quotient towers;
 (c) role-symmetry (the same module has three vertex descriptions)
 is a consistency check any candidate construction must pass.
+
+## Addendum 16: the gauge subspace eats nothing — refined defects equal full defects
+
+Tower survival (Addendum 15 caveat (b)) needs the per-level defect
+component `r_k` orthogonal not just to `C_13(k) + C_23(k)` but also
+to the next-level gauge space `C^(G_(k+1))` (functions invariant
+under the next B-chain level), since an adversary decomposition can
+push corrections into higher-invariance data whose telescoping is
+then a shifted-tower `lim^1` question.  Extended probe
+(`km_three_subspace_defect_probe.py`, refined): with
+`Gnext = <M3, [M1,M3], [M2,M3]>`,
+
+```text
+UT4 commuting-ends: defect 2,  refined 2
+UT5 spread:       defect 132,  refined 132
+UT5 mixed:          defect 2,  refined 2
+UT6 wide:           defect 2,  refined 2
+```
+
+The refined defect EQUALS the full defect in every model: the gauge
+subspace is entirely transverse.  Consequently the program for
+proving `H^2(Lambda, L^0(Y)) != 0` (hence NO LP) is two concrete
+steps, no longer a search: (1) verify the refined finite-level
+defect is nonzero for the TRUE `(2,4,6)` parabolic level triples
+(correct commutator constants; walk-graph/threshold methods); (2)
+adapt the established characteristic-function survival proof
+(`locally-finite-bernoulli-lim1-proof`) to the quotient-tower
+setting, using per-level refined-defect components as the fresh
+independent data and the orthogonality to absorb every adversary
+decomposition.  Role-symmetry (three vertex descriptions of the
+same module) is the consistency check.

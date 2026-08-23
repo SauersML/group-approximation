@@ -137,3 +137,12 @@ Three recorded routes (details on the LP node):
   finite mixed cycle stabilizers.  The Bernoulli instance of this
   claim is now a SINGLE equivariant computation, decidable in
   either direction.
+
+- 2026-08-23 (day end).  Finite-level probes: three-subspace defects
+  are NONZERO in every commuting-pair nilpotent model (2/132/2/2),
+  and the REFINED defects (also quotienting the next-level gauge
+  subspace) are EQUAL to the full defects -- the gauge is entirely
+  transverse (artifact Addenda 15-16).  Status: the evidence leans
+  toward `H^2(Lambda, L^0) != 0`, i.e. Corollary E firing and LP
+  FAILURE; the two-step completion program (faithful finite triples;
+  quotient-tower char-function survival) is recorded in Addendum 16.
