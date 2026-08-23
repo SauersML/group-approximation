@@ -63,11 +63,18 @@ five-syllable pieces in length eight, so the `C'(1/6)` cubulation/residual-
 finiteness theorem for free products is unavailable.  The weaker nonmetric
 `C(6)` condition does not imply residual finiteness.
 
-The exact alternating screens now extend through `A11`.  The complete
-`11!/3!` labeled-pair census has no six-relator survivor, as proved in
-`atlas-six-relator-has-no-a11-target`.  This is still only a target-specific
-finite restriction and does not decide condition 2 for an arbitrary finite
-group.
+The exact finite-simple screen now extends through the complete `A8`-index
+interval below ninety-one.  The simple reduction, the small-simple carrier
+classification, and the exact `Sp_6(2)` census prove
+`atlas-six-relator-simple-index-is-at-least-91`: any finite quotient in
+`(SXFQ3)` has a simple quotient `S` with
+
+```text
+[S:A8] >= 91.
+```
+
+This is still a finite restriction and does not decide condition 2 for an
+arbitrary finite group: larger finite-simple marked overgroups remain.
 
 The blockwise consequence is stronger than a degree cutoff but still not a
 general exclusion.  By
