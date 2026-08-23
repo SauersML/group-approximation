@@ -4,7 +4,7 @@ import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ExplicitNonMFBase
-import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.MarkedCompressionExplicitGroup
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 
