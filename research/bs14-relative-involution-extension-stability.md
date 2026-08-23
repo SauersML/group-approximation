@@ -216,6 +216,13 @@ congruence `(R,T)` core and align the extending involution.
   commutes with that same `T_0`.  Core stability by itself gives only
   `(R_0,T_0)` and does not manufacture or authenticate `X_0`; the inversion
   row and second cubic are still needed for that basin-capture/alignment.
+  The word **nearby** is load-bearing:
+  `p3-exact-iwahori-endpoints-refute-arbitrary-baseline-alignment` exhibits
+  two exact mod-three extenders over one identical core whose relative gauge
+  does not commute with `T`.  Therefore one cannot authenticate an arbitrary
+  canonical endpoint and expect the second cubic to align every other exact
+  endpoint to it.  The flexible repair must select the correct endpoint
+  component or optimize over the entire exact endpoint fiber.
 - **The matrix-monodromy obstruction disappears.**  The return unitary is
   diagonalizable, so the core is a sum of scalar-phase packets.  The phase
   coordinate remains essential, but no noncommutative `U(k)` matching

@@ -76,3 +76,12 @@ vertex changed the retained `(R,t)` core: by
 `fourth-power-covariance-unfolds-square-root-branches` its implementer `R`
 moves a constant distance.  The root-free presentation never performs this
 branch-losing step.
+
+There is also an exact endpoint-choice obstruction even after the core is
+held fixed.  `p3-exact-iwahori-endpoints-refute-arbitrary-baseline-alignment`
+gives two zero-defect extenders over the same mod-three `(r,t)` core whose
+relative gauge fails to commute with `t`.  Thus the second cubic cannot
+promote the gauge relative to an arbitrary preselected extender.  Basin
+capture must choose a nearby exact endpoint in the input's endpoint
+component (equivalently, minimize over the exact endpoint fiber) before
+`(SCG2)` is applied.

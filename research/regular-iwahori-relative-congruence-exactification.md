@@ -137,9 +137,15 @@ congruence quotients.  It does not establish `(RCE1)`.
   ```
 
   Thus after an endpoint is found there is no spectral-gap, root-selection,
-  or nonlinear Koopman problem.  The sole terminal alignment is promotion
-  from the `R_0` commutant to the `T_0` commutant using the common endpoint
-  and the second cubic.
+  or nonlinear Koopman problem **provided the endpoint was selected in the
+  correct component**.  The distinction is forced by
+  `p3-exact-iwahori-endpoints-refute-arbitrary-baseline-alignment`: over one
+  exact mod-three core there are two exact endpoints whose relative gauge is
+  `R_0`-central but not `T_0`-central, despite both cubics having zero
+  defect.  Hence the terminal operation is not promotion relative to an
+  arbitrary canonical endpoint.  Basin capture must jointly choose a nearby
+  congruence endpoint (or minimize over its exact endpoint fiber), after
+  which same-core coercivity applies.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that
