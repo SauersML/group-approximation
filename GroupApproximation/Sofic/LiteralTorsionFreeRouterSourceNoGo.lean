@@ -80,7 +80,8 @@ theorem defectNormal_le_ker_of_isPowerTorsionFree
   rw [D.core_defectNormal_eq]
   refine Subgroup.normalClosure_le_normal ?_
   rintro _ ⟨p, rfl⟩
-  rw [MonoidHom.mem_ker, map_commutatorElement]
+  change q ⁅D.s, D.iota p⁆ = 1
+  rw [map_commutatorElement]
   have hi := DFunLike.congr_fun
     (base_hom_eq_one_of_isPowerTorsionFree hQ (q.comp D.iota)) p
   simp only [MonoidHom.coe_comp, Function.comp_apply, MonoidHom.one_apply] at hi
@@ -90,7 +91,7 @@ theorem defectNormal_le_ker_of_isPowerTorsionFree
 `defect_top` says the killed defect fills the quotient, while protected-ball
 injectivity says the quotient is nontrivial. -/
 theorem not_routingLemmaData
-    {B : Type*} [Group B]
+    {B : Type} [Group B]
     (R : RoutingLemmaData Envelope
       literalBareDefectSourceData.core.defectNormal
       literalBareDefectSourceData.s B) : False := by
@@ -109,7 +110,7 @@ theorem not_routingLemmaData
 /-- Existential form used to rule out every attempted literal avatar
 certificate, independently of the partner. -/
 theorem not_nonempty_routingLemmaData
-    {B : Type*} [Group B] :
+    {B : Type} [Group B] :
     ¬ Nonempty (RoutingLemmaData Envelope
       literalBareDefectSourceData.core.defectNormal
       literalBareDefectSourceData.s B) := by
