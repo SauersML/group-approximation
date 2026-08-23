@@ -346,3 +346,13 @@ tuple.
   `s^N=1` alone already makes the augmented Iwahori group finite.  The
   remaining analytic statement is uniform basin entry across these moving
   finite quotients, equivalently the reverse carrier authentication above.
+- **Congruence regular blocks give conductors, but at the wrong flexible
+  scale.**  `congruence-regular-padding-is-conductor-not-low-rank` proves
+  that, on a fixed zero-charge support, a sufficiently large multiple of the
+  regular congruence cell vector absorbs every saturation point.  It cannot
+  alter a wrong restriction-lattice class.  More decisively, the rank-one
+  even-Weil boundary has ambient dimension `(p-1)/2`, whereas one compatible
+  regular block has dimension `p(p^2-1)/2`.  Thus regular padding is an exact
+  algebraic integralizer but not an `o(d)` dilation.  The same family has a
+  period-one source and unbounded-period exits, so choosing a slowly growing
+  short-source cutoff does not bound the required congruence level.
