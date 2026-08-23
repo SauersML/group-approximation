@@ -11,13 +11,6 @@ distinct_from:
   one-unipotent-quotients-are-bounded-congruence: that identifies every finite target up to the one fixed congruence kernel; this asks for the remaining quantitative repair across those moving congruence levels.
   regular-bs14-cores-admit-dyadic-one-power-shadows: that improves the regular-branch preconditioner to the single level 4^K-1 at square-root logarithmic cost; this states the basin comparison which remains after either preconditioner.
   bs14-one-power-level-is-a-native-short-commutator: that replaces the exponentially written power row by one native BS commutator of length 2K+2; this asks for the quantitative repair basin after that exact syntactic compression.
-requires:
-  - bs14-long-cycles-admit-bounded-period-shadowing
-  - one-unipotent-quotients-are-bounded-congruence
-  - bounded-cycle-level-has-only-polylogarithmic-error
-  - regular-bs14-cores-admit-dyadic-one-power-shadows
-  - bs14-one-power-level-is-a-native-short-commutator
-  - repeated-squaring-and-tau-do-not-supply-the-moving-basin
 ---
 
 For `K>=2`, set

@@ -7,8 +7,6 @@ distinct_from:
   bounded-period-iwahori-quotients-are-finite: that uses only the normal-subgroup theorem to prove finiteness; this identifies the finite quotient up to a kernel of uniformly bounded order.
   finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence: that classifies one representation through an unspecified odd level; this identifies the whole universal quotient obtained by killing one unipotent power.
   fixed-level-bs14-compatible-basin: that asks for a quantitative HS repair modulus as the level moves; this removes abstract finite-group structure from that question but does not prove the modulus.
-requires:
-  - sl2-s-arithmetic-noncentral-normal-subgroups-have-finite-index
 ---
 
 Put

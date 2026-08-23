@@ -7,7 +7,6 @@ distinct_from:
   bounded-cycle-level-has-only-polylogarithmic-error: that determines the accuracy which the moving Iwahori target must accept; this proves that shortening the large power row and citing Cayley expansion cannot establish such acceptance.
   regular-congruence-endpoint-orbit-has-uniform-selberg-retraction: that correctly applies Selberg averaging after two exact congruence representations are authenticated; this explains why the same argument cannot authenticate them from presentation defects.
   fixed-level-bs14-compatible-basin: that asks for the actual moving repair theorem; this rules out two generic quantitative substitutes without asserting that the theorem is false.
-requires: []
 ---
 
 There is no lower bound on normalized-HS presentation stability in terms of
@@ -75,4 +74,3 @@ Iwahori moving-basin statement.  A positive proof must exploit the exact BS
 core and its two correlated cubic rows, prove a genuine uniform
 presentation-to-congruence authentication theorem, or supply an independent
 2-dimensional filling/cocycle-expansion estimate.
-

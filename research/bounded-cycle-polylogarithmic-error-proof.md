@@ -4,7 +4,10 @@ id: bounded-cycle-polylogarithmic-error-proof
 kind: route
 title: Compare the lcm level and the cubic-order congruence quotient
 target: bounded-cycle-level-has-only-polylogarithmic-error
-requires: []
+requires:
+  - bs14-long-cycles-admit-bounded-period-shadowing
+  - one-unipotent-quotients-are-bounded-congruence
+  - regular-bs14-cores-admit-dyadic-one-power-shadows
 ---
 
 The left inequality in `(PLE2)` holds because `4^K-1` is one of the terms

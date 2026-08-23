@@ -8,10 +8,6 @@ distinct_from:
   regular-bs14-cores-admit-dyadic-one-power-shadows: that uses regular trace and a slow diagonal to replace the universal least-common-multiple level by the single level 4^K-1; this records the weaker uniform-all-cores baseline and its exact least-common-multiple tax.
   fixed-level-bs14-compatible-basin: that states the abstract radius-crossing condition; this quantifies the scale any proposed level-dependent radius estimate must beat.
   one-unipotent-quotients-are-bounded-congruence: that identifies the target quotient; this compares the target size with the preconditioning accuracy.
-requires:
-  - bs14-long-cycles-admit-bounded-period-shadowing
-  - one-unipotent-quotients-are-bounded-congruence
-  - regular-bs14-cores-admit-dyadic-one-power-shadows
 ---
 
 For

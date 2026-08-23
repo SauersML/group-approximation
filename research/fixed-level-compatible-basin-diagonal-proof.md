@@ -8,6 +8,11 @@ requires:
   - bs14-long-cycles-admit-bounded-period-shadowing
   - iwahori-square-root-presentation-is-bs14-plus-one-involution
   - bounded-period-iwahori-quotients-are-finite
+  - one-unipotent-quotients-are-bounded-congruence
+  - bounded-cycle-level-has-only-polylogarithmic-error
+  - regular-bs14-cores-admit-dyadic-one-power-shadows
+  - bs14-one-power-level-is-a-native-short-commutator
+  - repeated-squaring-and-tau-do-not-supply-the-moving-basin
 ---
 
 An orbit of length `m<=K` has `S`-eigenvalues of order dividing `4^m-1`,

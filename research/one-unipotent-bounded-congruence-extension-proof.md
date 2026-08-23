@@ -6,6 +6,7 @@ title: Compute the closed local normal closures and pull back through the finite
 target: one-unipotent-quotients-are-bounded-congruence
 requires:
   - finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence
+  - sl2-s-arithmetic-noncentral-normal-subgroups-have-finite-index
 ---
 
 Serre's congruence subgroup theorem gives a surjection
