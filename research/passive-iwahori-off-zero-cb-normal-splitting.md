@@ -63,3 +63,16 @@ off-zero `2 -> 2` splitting followed by spectral truncation is refuted by
 `relative-tangent-spectral-cuts-can-have-full-bs-hull`: a relative tangent
 commutes with `R`, but need not commute with `S`, and a rank-two high cut can
 generate the whole BS packet.
+
+Nor can one repair that failure by imposing `[h,S]=0` on the correction.
+`full-core-central-relative-tangent-is-zero-near-first-cubic` gives the
+sharp identity
+
+```text
+Ad_((XS^2)^3)(h)=-h
+```
+
+for every such tangent.  If the first cubic has operator defect below one,
+this forces `h=0`.  Therefore the surviving cb theorem must control the
+genuine non-`S`-central tangent directions directly; neither full-core
+centralization nor spectral reduction is available.
