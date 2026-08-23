@@ -56,6 +56,13 @@ characters are also excluded as sources of divergence by
 `near-trivial-torus-characters-track-the-moving-kernel`.  The unresolved
 sector is therefore the genuinely curved, fiber-mean-zero proper-torus
 geometry, not orbit cardinality or character continuity.
+The same proper-torus claim now proves that this geometry really contains
+linearly deep disjoint orbit neighborhoods along the levels `M_n=4^n-1`:
+the two cubic normal-operator generators form `C3*C3`, intersect the signed
+torus normalizer trivially, and have relative girth at least `log_6(M_n)`.
+This still does not prove Green divergence, because the Moore--Penrose cut
+projection has global tails.  The exact remaining negative test is whether
+those tails can cancel the local current mass after signed compression.
 
 Two high-descendant alternatives have also been reclassified.  The five
 consumers of `projective-trace-square-transfer-for-sl3-pair` share one
@@ -66,8 +73,17 @@ reuse rather than five independent chances to close the goal.  Likewise
 for the Leavitt unit group by
 `nonhyperlinear-directly-from-five-row-phase-lift`.  It is therefore
 goal-hard, not a routine finite packet estimate awaiting downstream
-bookkeeping.  These audits keep both lanes valid but prevent their apparent
-cascade size from displacing the more explicit arithmetic Green test.
+bookkeeping.  The later `atlas-five-row-lift-failure-dichotomy` audit does,
+however, remove one genuine analytic branch: finite-`H` averaging, polar
+rounding, and the fixed interior gap rule out every vanishing-energy
+normalized blow-up.  The five-row inequality is now equivalent to excluding
+a positive-energy exact six-relator model in every tracial matrix
+ultraproduct.  An exact relative small-cancellation screen does not decide
+that terminal: the six relators have maximum piece ratio `5/8`, so the
+standard `C'(1/6)`/`C'(1/4)` residual-finiteness and virtual-specialness
+theorems do not apply.  These audits keep both lanes valid but prevent their
+apparent cascade size from displacing the more explicit arithmetic Green
+test.
 
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
