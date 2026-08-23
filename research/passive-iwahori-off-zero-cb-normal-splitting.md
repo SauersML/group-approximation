@@ -10,11 +10,13 @@ distinct_from:
   normalized-hs-taylor-remainder-is-not-dimension-free: that proves an L2-only Newton argument is invalid; the operator-norm half of the splitting below is exactly what pays its mixed-norm remainder.
 ---
 
-**OPEN; MINIMAL PASSIVE-BASIN GATE.**  Work on the smooth constraint
-manifold `M_(R,S)` of involutions which invert one supplied exact
-`BS(1,4)` core `(R,S)`, modulo the genuine core-commutant gauge.  Let `F`
-be the pair of remaining cubic Iwahori rows, expressed in a fixed local
-unitary chart.  There should be constants
+**OPEN; STRONG SUFFICIENT PASSIVE CONDITION.**  Work on the smooth constraint
+manifold `M_(R,S)` of involutions satisfying `XRX=R^(-1)` over one supplied
+exact `BS(1,4)` core `(R,S)`, modulo the genuine gauge.  (There is no
+corresponding fixed-core relation forcing `X` to invert `S`; its interaction
+with `S` is carried by the cubic rows.)  Let `F` be the pair of remaining
+cubic Iwahori rows, expressed in a fixed local unitary chart.  There should
+be constants
 
 ```text
 theta_0>0,       C_2<infinity,       C_infinity<infinity,          (PCB1)
@@ -56,5 +58,8 @@ analytic content, not a restatement of the known tangent gap.
 The route `off-zero-cb-newton-closes-passive-iwahori` proves that this
 single assertion integrates the passive tuple to an exact moving endpoint
 with dimension-free normalized-HS cost.  In particular it bypasses, rather
-than assumes, prior operator-norm basin entry.
-
+than assumes, prior operator-norm basin entry.  The tempting weakening to an
+off-zero `2 -> 2` splitting followed by spectral truncation is refuted by
+`relative-tangent-spectral-cuts-can-have-full-bs-hull`: a relative tangent
+commutes with `R`, but need not commute with `S`, and a rank-two high cut can
+generate the whole BS packet.
