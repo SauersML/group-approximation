@@ -75,5 +75,28 @@ rephrases it as sub-square-root RMS section filling, or as a stronger
 square-function/cocycle-expansion inequality replacing the area triangle
 bound.
 
+The exact energy-level replacement needed for the flexible boundary theorem
+is especially concise.  If `D_U(t,a)` denotes the coordinate edge defect in
+the proof of `(IRF5)` and
+
+```text
+E_R(U)=sum_(r in R) ||r(U)-1||_2^2,
+```
+
+then a uniform inequality
+
+```text
+max_a (1/|T_N|) sum_t ||D_U(t,a)||_2^2
+ <= C E_R(U)                                           (IRF8)
+```
+
+would, after the same spectral-gap rounding, give relative padding
+`O(E_R(U))` and displacement `O(sqrt(E_R(U)))`.  This is exactly the
+quadratic padding scale in
+`bs14-flexible-cross-packet-boundary-reconciliation`.  Hence `(IRF8)` is a
+finite relative two-dimensional expansion/cochain-filling theorem which
+would close the flexible boundary step; one-dimensional property `(tau)`
+only performs the subsequent projection rounding.
+
 This is a sufficient reduction and a proof-method firewall.  It does not
 assert that the special Iwahori sections fail `(IRF7)`.

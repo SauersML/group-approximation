@@ -67,3 +67,21 @@ two-dimensional conditioning.  Any improvement from `A delta` to
 `sqrt(A)delta` would require a new orthogonality/square-function estimate for
 the relator errors; it is not a consequence of the Cayley spectral gap used
 in `(ISR4)`.
+
+More directly, if `(IRF8)` holds, the left side is the square of the
+intertwining error in `(ISR1)`, averaged over its orthogonal induced
+coordinates.  Equations `(ISR3)--(ISR4)` then give
+
+```text
+||P-Q||_(2,H)^2 <= C_kappa E_R(U).                    (ISR5)
+```
+
+The projection rank inequality used above turns `(ISR5)` into
+
+```text
+|rank(Q)-dim(H)|/dim(H) <= C_kappa E_R(U),            (ISR6)
+```
+
+which is the desired energy-paid flexible padding ledger.  Thus no further
+finite-group representation estimate is missing after `(IRF8)`; the whole
+gap is the uniform relative 2-cochain estimate itself.
