@@ -25,4 +25,6 @@ This is a conditional criterion, not an unconditional construction.  Its only
 open construction input is `uniform-power-return-self-hash`; the recurrence
 and contradiction after UPR are elementary and do not invoke property `(T)`,
 Hilbert--Schmidt norm, projections, finite central subgroups, or
-renormalization.
+renormalization.  The frozen-coordinate quantitative contradiction is
+kernel-checked as
+`NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`.
