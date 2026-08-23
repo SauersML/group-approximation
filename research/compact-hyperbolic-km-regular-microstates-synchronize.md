@@ -239,3 +239,22 @@ mass is projective normalized-HS stability itself. Thus building geometry,
 local regular cores, and property `(T)` do not yield an intermediate
 holonomy-collapse lemma unless an additional finite-matrix mechanism first
 scalarizes the native face relators.
+
+The obvious finite-matrix scalarization invariants do not provide that
+mechanism. `km-su-reservoir-defeats-discrete-scalarization`
+inserts a balanced `W_(m,t) in SU(m)` into one exact regular-parahoric
+multiplicity chord. All local regular tables, overlap intertwiners,
+divisibilities, determinants, and finite Schur-multiplier data remain exact,
+while the holonomy is nonscalar and
+
+```text
+||W_(m,t)-I||_2^2=2-2cos(t)->0.
+```
+
+At the same time `rank(W_(m,t)-I)=m`; a distinct-phase variant has no scalar
+reducing subspace of dimension above one. Thus determinant correction sees
+nothing, and rank/spectral quarantine can lose essentially all regular mass
+at arbitrarily small normalized-HS defect. This does not refute a genuinely
+analytic projective-stability theorem, but it proves that such a theorem
+must couple the growing multiplicity gauge across native relations rather
+than read a determinant, bounded Schur class, divisibility, or defect rank.

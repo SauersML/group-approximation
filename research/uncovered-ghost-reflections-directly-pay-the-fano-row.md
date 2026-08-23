@@ -84,3 +84,15 @@ the exact wrong sector `(0,1,+1)`. Thus an infinite actuator can survive only
 as a matrix/canonical-trace-specific, sector-entangled mechanism: it must
 exclude the regular trace and cannot split completeness into independently
 tensorable scalar selector representations.
+
+The apparent two-grading Stone--von Neumann repair is also insufficient.
+`two-grading-cz-gauge-has-a-balanced-intertwiner-absorber` grants the desired
+block form `R_+=CZ tensor V`, `R_-=I tensor V` with one shared involution
+`V`. For balanced `V` these two block involutions have identical `(4m,4m)`
+sign multiplicities. A Julia reflection can therefore intertwine them
+exactly, giving `RjRj=1`, while the negative-CZ row has normalized positive-
+half mass `1/4`. Thus the common `V` does not cancel through an arbitrary
+off-diagonal Gram block. One must separately force that block to commute with
+`V`, or construct and multiply out a literal identity-outer same-gauge
+anchor before the Julia row; the two-grading covariance relations alone do
+neither.
