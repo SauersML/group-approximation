@@ -74,3 +74,9 @@ localized: transport or eliminate the seven line sectors and the one full-set
 sector without destroying the exact marked model.  Treating all 63
 nonsingleton odd characters as independent cheats is unnecessary.
 
+The seven line sectors are not separated from the seven honest singleton
+sectors merely by adjoining the Fano automorphism group.  By
+`fano-points-and-lines-have-the-same-complex-permutation-type`, those two
+orbits carry the same complex `GL(3,2)` permutation character.  Thus a
+symmetry-only multiplicity return loses exactly the distinction it needs;
+the normal mask subgroup or cross-context incidence must remain visible.
