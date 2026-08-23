@@ -11,6 +11,7 @@ distinct_from:
   atlas-relative-block-polar-cut-reduction: that automatically supplies a positive common cut once the required typed incidence set has fixed relative-unitary block mass; this census must still derive that localization from literal hard/interior/comb relations.
   atlas-19243-forces-sign-or-standard-channel-mass: that obtains the strongest unconditional relation-sensitive localization presently available; this census must use the boundary rows to move its sign/extra-standard alternatives into the single extension-labelled incidence.
   atlas-six-relator-factor-retains-half-nontrivial-s3-mass: that proves all six universal rows may vanish while half the relative-unitary mass remains in the eight nontrivial S3 sources; this census therefore needs an explicitly finite-matrix transfer rather than universal charging.
+  atlas-fixed-rank-arithmetic-cannot-authenticate-s3-incidence: that removes fixed congruence, divisibility, and bounded rank rounding from any amplification-invariant sign/standard-to-incidence estimate; this census must find an extensive mixed-rank mechanism rather than an arithmetic residue.
 artifacts:
   - research/artifacts/atlas-typed-row-census-acquisition-2026-08-23.md
 ---
@@ -109,5 +110,15 @@ depends.
   finite-matrix rank/integrality selection which transfers positive mass to
   the admissible five-path incidence, with the exact factor retaining its
   mass in a different or nonselectable source.
+- **Fixed rank arithmetic does not restore the category boundary.**
+  `atlas-fixed-rank-arithmetic-cannot-authenticate-s3-incidence` tensor-
+  amplifies any proposed branchwise transfer until all homogeneous residues
+  vanish and every bounded `1/d` rounding term tends to zero, without
+  changing channel mass, incidence density, or packet defect.  Hence a
+  congruence-assisted positive-density bound is already the same real
+  homogeneous bound with the arithmetic deleted.  The remaining selection
+  must prove extensive mixed rank or singular-direction loss and must use a
+  specifically matricial inequality which does not extend to the exact
+  Leavitt factor.
 - Stop rather than emit a matrix if any term lacks a source/target type or a
   reduced monomial tag.  An incomplete nuisance list cannot test the decoder.
