@@ -2635,7 +2635,7 @@ within `3δ` of one of the other two sides.  At that point
 `(A|C)=0`; four-point hyperbolicity makes one of `(A|B)` and `(B|C)` at most
 `δ`, and the Gromov-product/geodesic dictionary costs another `2δ`. -/
 theorem exists_close_on_other_side_of_geodesic_triangle {δ : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
     {A B C : X}
     {fAC fAB fBC : ℝ → X}
     (hAC : IsGeodesicSegment fAC 0 (dist A C))

@@ -163,19 +163,25 @@ theorem exists_piece_length_ceiling {R : Set (List (α × Bool))}
   obtain ⟨C, hC⟩ := hlength
   refine ⟨C, ?_⟩
   intro p hp
-  obtain ⟨w₁, hw₁, -, -, hp₁, -⟩ := hp
+  rcases hp with ⟨w₁, hw₁, _, _, _, hp₁, _⟩
   obtain ⟨r, hr, _, hrot | hrot⟩ := hw₁
   · have hpLen : p.length ≤ w₁.length := by
-      obtain ⟨t, rfl⟩ := hp₁
-      simp
+      obtain ⟨t, ht⟩ := hp₁
+      have hlen := congrArg List.length ht
+      simp only [List.length_append] at hlen
+      omega
     have hwLen : w₁.length = r.length := by
       rw [hrot, List.length_rotate]
+    have hrLen := hC r hr
     omega
   · have hpLen : p.length ≤ w₁.length := by
-      obtain ⟨t, rfl⟩ := hp₁
-      simp
+      obtain ⟨t, ht⟩ := hp₁
+      have hlen := congrArg List.length ht
+      simp only [List.length_append] at hlen
+      omega
     have hwLen : w₁.length = r.length := by
       rw [hrot, List.length_rotate, FreeGroup.invRev_length]
+    have hrLen := hC r hr
     omega
 
 /-- The metric condition `C'(λ)`: every piece occupies less than a

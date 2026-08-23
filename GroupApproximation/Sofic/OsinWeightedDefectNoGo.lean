@@ -50,13 +50,13 @@ theorem exists_generator_not_mem_ker {k : ℕ} (gen : Fin k → B)
     (hb : D.partnerHom b ≠ 1) :
     ∃ j : Fin k, D.partnerHom (gen j) ≠ 1 := by
   by_contra h
-  push_neg at h
+  push Not at h
   have hle : Subgroup.closure (Set.range gen) ≤ D.partnerHom.ker := by
     rw [Subgroup.closure_le]
     rintro _ ⟨j, rfl⟩
-    exact (MonoidHom.mem_ker D.partnerHom).mpr (h j)
+    exact MonoidHom.mem_ker.mpr (h j)
   rw [hgen] at hle
-  exact hb ((MonoidHom.mem_ker D.partnerHom).mp (hle (Subgroup.mem_top b)))
+  exact hb (MonoidHom.mem_ker.mp (hle (Subgroup.mem_top b)))
 
 /-- **No defect saturation in the weighted relative router.**
 
@@ -112,7 +112,11 @@ theorem subgroup_map_ne_top_of_light_partner_generators
           (CoprodI.of (D.partnerEquiv (gen j)))⁻¹ ∈
         letterRelatorSubgroup D.relators := by
     rw [← QuotientGroup.eq_one_iff]
-    rw [map_mul, map_inv, heq, mul_inv_cancel]
+    have hquot : QuotientGroup.mk' (letterRelatorSubgroup D.relators)
+        (CoprodI.of (D.sourceEquiv u) *
+          (CoprodI.of (D.partnerEquiv (gen j)))⁻¹) = 1 := by
+      rw [map_mul, map_inv, heq, mul_inv_cancel]
+    exact hquot
   have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr
     exact le_trans (by decide) (D.relators_long r hr)
