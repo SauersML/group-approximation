@@ -575,7 +575,7 @@ variable {G : Type} [Group G] (P : WordPresentation G)
 def unbar (i : Fin P.card) : Fin (P.card + P.card) := Fin.castAdd P.card i
 
 /-- The barred half of the doubled alphabet. -/
-def bar (i : Fin P.card) : Fin (P.card + P.card) := Fin.natAdd P.card i
+def bar (i : Fin P.card) : Fin (P.card + P.card) := i.addNat P.card
 
 /-- Evaluation of the doubled alphabet: a barred generator evaluates to the
 inverse of its unbarred mate. -/
@@ -588,55 +588,78 @@ def positiveHom : FreeGroup (Fin (P.card + P.card)) →* G :=
 def positiveInclude : FreeGroup (Fin P.card) →* FreeGroup (Fin (P.card + P.card)) :=
   FreeGroup.map (Fin.castAdd P.card)
 
-theorem positiveHom_comp_positiveInclude : P.positiveHom.comp P.positiveInclude = P.hom := by
+theorem positiveHom_comp_positiveInclude :
+    (positiveHom P).comp (positiveInclude P) = P.hom := by
   refine FreeGroup.ext_hom _ _ fun i ↦ ?_
-  simp [positiveInclude, positiveHom, unbar]
+  simp [positiveInclude, positiveHom]
 
 /-- The doubled presentation map remains onto. -/
-theorem positiveHom_surjective : Function.Surjective P.positiveHom := by
+theorem positiveHom_surjective : Function.Surjective (positiveHom P) := by
   intro g
   obtain ⟨x, rfl⟩ := P.hom_surjective g
-  exact ⟨P.positiveInclude x,
-    DFunLike.congr_fun P.positiveHom_comp_positiveInclude x⟩
+  exact ⟨positiveInclude P x,
+    DFunLike.congr_fun (positiveHom_comp_positiveInclude P) x⟩
 
 /-- Positive words in the doubled alphabet which evaluate to the identity. -/
 def kernelWords : Set (List (Fin (P.card + P.card) × Bool)) :=
-  {w | (∀ c ∈ w, c.2 = true) ∧ P.positiveHom (FreeGroup.mk w) = 1}
+  {w | (∀ c ∈ w, c.2 = true) ∧ positiveHom P (FreeGroup.mk w) = 1}
 
 /-- The positive relation saying that `x̄ = x⁻¹`. -/
 def pairWord (i : Fin P.card) : List (Fin (P.card + P.card) × Bool) :=
-  [(P.unbar i, true), (P.bar i, true)]
+  [(unbar P i, true), (bar P i, true)]
 
-theorem pairWord_mem (i : Fin P.card) : P.pairWord i ∈ P.kernelWords := by
+private theorem mk_positive_singleton (j : Fin (P.card + P.card)) :
+    FreeGroup.mk [(j, true)] = FreeGroup.of j := rfl
+
+theorem mk_pairWord (i : Fin P.card) :
+    FreeGroup.mk (pairWord P i) =
+      FreeGroup.of (unbar P i) * FreeGroup.of (bar P i) := by
+  unfold pairWord
+  rw [show [(unbar P i, true), (bar P i, true)] =
+      [(unbar P i, true)] ++ [(bar P i, true)] by rfl,
+    ← FreeGroup.mul_mk, mk_positive_singleton, mk_positive_singleton]
+
+theorem positiveHom_unbar (i : Fin P.card) :
+    positiveHom P (FreeGroup.of (unbar P i)) = P.hom (FreeGroup.of i) := by
+  have h := DFunLike.congr_fun (positiveHom_comp_positiveInclude P) (FreeGroup.of i)
+  simpa [positiveInclude, unbar] using h
+
+theorem positiveHom_bar (i : Fin P.card) :
+    positiveHom P (FreeGroup.of (bar P i)) = (P.hom (FreeGroup.of i))⁻¹ := by
+  simp only [positiveHom, FreeGroup.lift_apply_of, bar]
+  rw [← Fin.natAdd_eq_addNat, Fin.addCases_right]
+
+theorem pairWord_mem (i : Fin P.card) : pairWord P i ∈ kernelWords P := by
   constructor
   · intro c hc
     simp [pairWord] at hc
     rcases hc with rfl | rfl <;> rfl
-  · simp [pairWord, positiveHom, unbar, bar]
+  · rw [mk_pairWord, map_mul, positiveHom_unbar, positiveHom_bar]
+    exact mul_inv_cancel _
 
 /-- Modulo all positive kernel words, the inverse of an unbarred generator is
 its barred mate. -/
 theorem quot_inv_unbar_eq_bar (i : Fin P.card) :
-    QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.unbar i))⁻¹ =
-      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.bar i)) := by
-  have hp : FreeGroup.mk (P.pairWord i) ∈ wordSubgroup P.kernelWords :=
-    mem_wordSubgroup (P.pairWord_mem i)
-  have hq : QuotientGroup.mk' (wordSubgroup P.kernelWords)
-      (FreeGroup.mk (P.pairWord i)) = 1 :=
+    QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.of (unbar P i))⁻¹ =
+      QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.of (bar P i)) := by
+  have hp : FreeGroup.mk (pairWord P i) ∈ wordSubgroup (kernelWords P) :=
+    mem_wordSubgroup (pairWord_mem P i)
+  have hq : QuotientGroup.mk' (wordSubgroup (kernelWords P))
+      (FreeGroup.mk (pairWord P i)) = 1 :=
     (QuotientGroup.eq_one_iff _).mpr hp
-  have hmul : QuotientGroup.mk' (wordSubgroup P.kernelWords)
-        (FreeGroup.of (P.unbar i)) *
-      QuotientGroup.mk' (wordSubgroup P.kernelWords)
-        (FreeGroup.of (P.bar i)) = 1 := by
-    simpa [pairWord] using hq
-  rw [map_inv]
-  exact inv_eq_of_mul_eq_one_left hmul
+  have hmul : QuotientGroup.mk' (wordSubgroup (kernelWords P))
+        (FreeGroup.of (unbar P i)) *
+      QuotientGroup.mk' (wordSubgroup (kernelWords P))
+        (FreeGroup.of (bar P i)) = 1 := by
+    rw [mk_pairWord, map_mul] at hq
+    exact hq
+  exact inv_eq_of_mul_eq_one_right hmul
 
 /-- The inverse of a barred generator is its unbarred mate. -/
 theorem quot_inv_bar_eq_unbar (i : Fin P.card) :
-    QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.bar i))⁻¹ =
-      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of (P.unbar i)) := by
-  have h := congrArg (fun z ↦ z⁻¹) (P.quot_inv_unbar_eq_bar i)
+    QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.of (bar P i))⁻¹ =
+      QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.of (unbar P i)) := by
+  have h := congrArg (fun z ↦ z⁻¹) (quot_inv_unbar_eq_bar P i)
   simpa using h.symm
 
 /-- Every element of the doubled free group has a positive spelling with the
@@ -644,30 +667,61 @@ same value in `G` and the same class modulo the positive kernel words. -/
 theorem exists_positive_spelling (x : FreeGroup (Fin (P.card + P.card))) :
     ∃ w : List (Fin (P.card + P.card) × Bool),
       (∀ c ∈ w, c.2 = true) ∧
-      P.positiveHom (FreeGroup.mk w) = P.positiveHom x ∧
-      QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.mk w) =
-        QuotientGroup.mk' (wordSubgroup P.kernelWords) x := by
+      positiveHom P (FreeGroup.mk w) = positiveHom P x ∧
+      QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.mk w) =
+        QuotientGroup.mk' (wordSubgroup (kernelWords P)) x := by
   induction x using FreeGroup.induction_on with
   | C1 =>
-      refine ⟨[], by simp, ?_, ?_⟩ <;> simp
+      refine ⟨[], by simp, ?_, ?_⟩
+      · exact congrArg (positiveHom P) FreeGroup.one_eq_mk.symm
+      · exact congrArg (QuotientGroup.mk' (wordSubgroup (kernelWords P)))
+          FreeGroup.one_eq_mk.symm
   | of j =>
-      refine ⟨[(j, true)], by simp, ?_, ?_⟩ <;> simp
+      refine ⟨[(j, true)], by simp, ?_, ?_⟩
+      · exact congrArg (positiveHom P) (mk_positive_singleton (P := P) j)
+      · exact congrArg (QuotientGroup.mk' (wordSubgroup (kernelWords P)))
+          (mk_positive_singleton (P := P) j)
   | inv_of j ih =>
       refine Fin.addCases (motive := fun j ↦
         ∃ w : List (Fin (P.card + P.card) × Bool),
           (∀ c ∈ w, c.2 = true) ∧
-          P.positiveHom (FreeGroup.mk w) = P.positiveHom (FreeGroup.of j)⁻¹ ∧
-          QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.mk w) =
-            QuotientGroup.mk' (wordSubgroup P.kernelWords) (FreeGroup.of j)⁻¹)
+          positiveHom P (FreeGroup.mk w) = positiveHom P (FreeGroup.of j)⁻¹ ∧
+          QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.mk w) =
+            QuotientGroup.mk' (wordSubgroup (kernelWords P)) (FreeGroup.of j)⁻¹)
         ?_ ?_ j
       · intro i
-        refine ⟨[(P.bar i, true)], by simp, ?_, ?_⟩
-        · simp [positiveHom, bar, unbar]
-        · simpa using (P.quot_inv_unbar_eq_bar i).symm
+        refine ⟨[(bar P i, true)], by simp, ?_, ?_⟩
+        · calc
+            positiveHom P (FreeGroup.mk [(bar P i, true)]) =
+                positiveHom P (FreeGroup.of (bar P i)) :=
+              congrArg (positiveHom P)
+                (mk_positive_singleton (P := P) (bar P i))
+            _ = (P.hom (FreeGroup.of i))⁻¹ := positiveHom_bar P i
+            _ = positiveHom P
+                (FreeGroup.of (Fin.castAdd P.card i))⁻¹ := by
+              rw [map_inv]
+              simpa only [unbar] using
+                congrArg Inv.inv (positiveHom_unbar P i).symm
+        · exact (congrArg (QuotientGroup.mk' (wordSubgroup (kernelWords P)))
+              (mk_positive_singleton (P := P) (bar P i))).trans
+            (quot_inv_unbar_eq_bar P i).symm
       · intro i
-        refine ⟨[(P.unbar i, true)], by simp, ?_, ?_⟩
-        · simp [positiveHom, bar, unbar]
-        · simpa using (P.quot_inv_bar_eq_unbar i).symm
+        refine ⟨[(unbar P i, true)], by simp, ?_, ?_⟩
+        · calc
+            positiveHom P (FreeGroup.mk [(unbar P i, true)]) =
+                positiveHom P (FreeGroup.of (unbar P i)) :=
+              congrArg (positiveHom P)
+                (mk_positive_singleton (P := P) (unbar P i))
+            _ = P.hom (FreeGroup.of i) := positiveHom_unbar P i
+            _ = positiveHom P
+                (FreeGroup.of (Fin.natAdd P.card i))⁻¹ := by
+              rw [map_inv]
+              simpa only [bar, Fin.natAdd_eq_addNat, inv_inv] using
+                (congrArg Inv.inv (positiveHom_bar P i)).symm
+        · exact (congrArg (QuotientGroup.mk' (wordSubgroup (kernelWords P)))
+              (mk_positive_singleton (P := P) (unbar P i))).trans
+            (by simpa only [bar, Fin.natAdd_eq_addNat] using
+              (quot_inv_bar_eq_unbar P i).symm)
   | mul x y hx hy =>
       obtain ⟨u, hu, hGu, hQu⟩ := hx
       obtain ⟨v, hv, hGv, hQv⟩ := hy
@@ -679,16 +733,16 @@ theorem exists_positive_spelling (x : FreeGroup (Fin (P.card + P.card))) :
 
 /-- The positive kernel words normally generate the entire kernel. -/
 theorem normalClosure_kernelWords :
-    wordSubgroup P.kernelWords = P.positiveHom.ker := by
+    wordSubgroup (kernelWords P) = (positiveHom P).ker := by
   apply le_antisymm
   · refine Subgroup.normalClosure_le_normal ?_
     rintro _ ⟨w, hw, rfl⟩
     exact MonoidHom.mem_ker.mpr hw.2
   · intro x hx
-    obtain ⟨w, hwpos, hwhom, hwquot⟩ := P.exists_positive_spelling x
-    have hw : w ∈ P.kernelWords := ⟨hwpos, hwhom.trans (MonoidHom.mem_ker.mp hx)⟩
-    have hwmem : FreeGroup.mk w ∈ wordSubgroup P.kernelWords := mem_wordSubgroup hw
-    have hwone : QuotientGroup.mk' (wordSubgroup P.kernelWords)
+    obtain ⟨w, hwpos, hwhom, hwquot⟩ := exists_positive_spelling P x
+    have hw : w ∈ kernelWords P := ⟨hwpos, hwhom.trans (MonoidHom.mem_ker.mp hx)⟩
+    have hwmem : FreeGroup.mk w ∈ wordSubgroup (kernelWords P) := mem_wordSubgroup hw
+    have hwone : QuotientGroup.mk' (wordSubgroup (kernelWords P))
         (FreeGroup.mk w) = 1 := (QuotientGroup.eq_one_iff _).mpr hwmem
     exact (QuotientGroup.eq_one_iff _).mp (hwquot.symm.trans hwone)
 
@@ -696,12 +750,12 @@ theorem normalClosure_kernelWords :
 kernel.  This is the compact Tietze step; no presentation positivity remains a
 caller hypothesis. -/
 theorem exists_finite_rel [Group.IsFinitelyPresented G] :
-    ∃ R₀ ⊆ P.kernelWords, R₀.Finite ∧ P.positiveHom.ker ≤ wordSubgroup R₀ := by
+    ∃ R₀ ⊆ kernelWords P, R₀.Finite ∧ (positiveHom P).ker ≤ wordSubgroup R₀ := by
   classical
   obtain ⟨T, hTfin, hTeq⟩ :=
-    Tietze.isFinitelyNormallyGenerated_ker P.positiveHom P.positiveHom_surjective
-  have hTsub : T ⊆ wordSubgroup P.kernelWords := by
-    rw [P.normalClosure_kernelWords]
+    Tietze.isFinitelyNormallyGenerated_ker (positiveHom P) (positiveHom_surjective P)
+  have hTsub : T ⊆ wordSubgroup (kernelWords P) := by
+    rw [normalClosure_kernelWords P]
     rw [← hTeq]
     exact Subgroup.subset_normalClosure
   obtain ⟨S, hSsub, hSfin, hTS⟩ :=
@@ -714,57 +768,56 @@ theorem exists_finite_rel [Group.IsFinitelyPresented G] :
   · rw [← hTeq]
     refine Subgroup.normalClosure_le_normal fun z hz ↦
       Subgroup.normalClosure_mono (fun y hy ↦ by
-      obtain ⟨s, hs, rfl⟩ := hy
-      exact ⟨w s, ⟨s, hs, rfl⟩, hwmk s hs⟩) (hTS hz)
+      exact ⟨w y, ⟨y, hy, rfl⟩, hwmk y hy⟩) (hTS hz)
 
 noncomputable def rel [Group.IsFinitelyPresented G] :
     Set (List (Fin (P.card + P.card) × Bool)) :=
-  (P.exists_finite_rel).choose
+  (exists_finite_rel P).choose
 
 theorem rel_subset_kernelWords [Group.IsFinitelyPresented G] :
-    P.rel ⊆ P.kernelWords := (P.exists_finite_rel).choose_spec.1
+    rel P ⊆ kernelWords P := (exists_finite_rel P).choose_spec.1
 
-theorem rel_finite [Group.IsFinitelyPresented G] : P.rel.Finite :=
-  (P.exists_finite_rel).choose_spec.2.1
+theorem rel_finite [Group.IsFinitelyPresented G] : (rel P).Finite :=
+  (exists_finite_rel P).choose_spec.2.1
 
 theorem ker_le_rel [Group.IsFinitelyPresented G] :
-    P.positiveHom.ker ≤ wordSubgroup P.rel :=
-  (P.exists_finite_rel).choose_spec.2.2
+    (positiveHom P).ker ≤ wordSubgroup (rel P) :=
+  (exists_finite_rel P).choose_spec.2.2
 
 /-- The unconditional positive Tietze transform of a word presentation. -/
 noncomputable def presentation [Group.IsFinitelyPresented G] : WordPresentation G where
   card := P.card + P.card
-  hom := P.positiveHom
-  hom_surjective := P.positiveHom_surjective
-  rel := P.rel
-  rel_finite := P.rel_finite
-  ker_le := P.ker_le_rel
+  hom := positiveHom P
+  hom_surjective := positiveHom_surjective P
+  rel := rel P
+  rel_finite := rel_finite P
+  ker_le := ker_le_rel P
 
 theorem presentation_rel_positive [Group.IsFinitelyPresented G] :
-    ∀ r ∈ P.presentation.rel, ∀ c ∈ r, c.2 = true := by
+    ∀ r ∈ (presentation P).rel, ∀ c ∈ r, c.2 = true := by
   intro r hr c hc
-  exact (P.rel_subset_kernelWords hr).1 c hc
+  exact (rel_subset_kernelWords P hr).1 c hc
 
 /-- Every group element has a positive word in the transformed presentation. -/
 theorem exists_positive_name [Group.IsFinitelyPresented G] (g : G) :
-    ∃ w : List (Fin P.presentation.card × Bool),
-      (∀ c ∈ w, c.2 = true) ∧ P.presentation.hom (FreeGroup.mk w) = g := by
-  obtain ⟨x, hx⟩ := P.positiveHom_surjective g
-  obtain ⟨w, hw, hval, -⟩ := P.exists_positive_spelling x
+    ∃ w : List (Fin (presentation P).card × Bool),
+      (∀ c ∈ w, c.2 = true) ∧ (presentation P).hom (FreeGroup.mk w) = g := by
+  obtain ⟨x, hx⟩ := positiveHom_surjective P g
+  obtain ⟨w, hw, hval, -⟩ := exists_positive_spelling P x
   exact ⟨w, hw, hval.trans hx⟩
 
 /-- A chosen positive name for an element, used for defect, protected and tie
 words without imposing positivity obligations on a caller. -/
 noncomputable def name [Group.IsFinitelyPresented G] (g : G) :
-    List (Fin P.presentation.card × Bool) :=
-  (P.exists_positive_name g).choose
+    List (Fin (presentation P).card × Bool) :=
+  (exists_positive_name P g).choose
 
 theorem name_positive [Group.IsFinitelyPresented G] (g : G) :
-    ∀ c ∈ P.name g, c.2 = true := (P.exists_positive_name g).choose_spec.1
+    ∀ c ∈ name P g, c.2 = true := (exists_positive_name P g).choose_spec.1
 
 theorem presentation_hom_name [Group.IsFinitelyPresented G] (g : G) :
-    P.presentation.hom (FreeGroup.mk (P.name g)) = g :=
-  (P.exists_positive_name g).choose_spec.2
+    (presentation P).hom (FreeGroup.mk (name P g)) = g :=
+  (exists_positive_name P g).choose_spec.2
 
 end PositivePresentation
 
@@ -1559,16 +1612,8 @@ what `router_conclusions_of_sharpGate` consumes. -/
 noncomputable def routingData [N.Normal] (H : D.Obligations)
     (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2)) :
     RoutingLemmaData E N s B :=
-  (D.design H).routerData_of_sharpGate hgate (le_refl ((1 : ℚ) / 8)) H.metric_eighth
-
-/-- Routed data from a sharp Greendlinger conclusion proved for this concrete
-avatar family.  This is the unconditional literal endpoint's consumption path;
-it does not quantify over unrelated relator families. -/
-noncomputable def routingDataOfSharp [N.Normal] (H : D.Obligations)
-    (hsharp : GreendlingerConclusionSharp D.relators (1 / 8)) :
-    RoutingLemmaData E N s B :=
-  (D.design H).routerData_of_sharp (le_refl ((1 : ℚ) / 8)) hsharp
-    H.metric_eighth
+  BespokeRouter.RouterRelatorDesign.routerData_of_sharpGate
+    (D.design H) hgate (le_refl ((1 : ℚ) / 8)) H.metric_eighth
 
 /-- Whoever exhibits a blueprint whose obligations hold has discharged the
 frozen endpoint's single hypothesis at that source, defect, protected element
@@ -1577,12 +1622,6 @@ theorem nonempty_routingLemmaData [N.Normal] (H : D.Obligations)
     (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2)) :
     Nonempty (RoutingLemmaData E N s B) :=
   ⟨D.routingData H hgate⟩
-
-/-- Existential form of `routingDataOfSharp`. -/
-theorem nonemptyRoutingLemmaDataOfSharp [N.Normal] (H : D.Obligations)
-    (hsharp : GreendlingerConclusionSharp D.relators (1 / 8)) :
-    Nonempty (RoutingLemmaData E N s B) :=
-  ⟨D.routingDataOfSharp H hsharp⟩
 
 end Blueprint
 
