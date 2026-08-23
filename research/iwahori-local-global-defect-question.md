@@ -167,6 +167,27 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   sector has upper/opposite conductor pair `(a,a+1)`. Hence the remaining
   Cheeger question is a recursion through projective inertia categories;
   no depth-independent transition matrix on the four orbit labels exists.
+- **The fixed multiplier is nonsplit, but its root marginals recurse with
+  zero loss.**
+  `fixed-clifford-multiplier-is-nonsplit-root-double-cover`
+  identifies the multiplier with the central pushout
+  `G_a/ker(chi_a)`.  On either upper or lower root cycle this is the
+  nonsplit extension `C_(2^a)->C_(2^(a-1))`; negative-central
+  representations therefore have odd-root spectra.  The negative regular
+  blocks distribute uniformly over those roots, and squaring gives the
+  preceding odd-root marginal exactly.  Hence root conductors and separate
+  one-variable spectra cannot yield a uniform boundary.  Any positive
+  theorem must use joint noncommutative/cocycle information and the
+  size-three inertia sectors, not just refine the regular conductor ledger.
+- **The joint root cocycle has a stable, not conflicting, Heisenberg sign.**
+  `dyadic-invariant-cocycle-has-a-stable-heisenberg-sign` computes the next
+  joint invariant: commuting upper/lower root elements whose valuations sum
+  to `a-1` lift with central commutator `z`, forcing anticommutation and even
+  projective dimension.  But the Nielsen shift preserves that valuation sum
+  and hence the same sign; inversion also does nothing to an order-two
+  cocycle.  Thus cocycle parity itself creates no upper/opposite boundary.
+  A positive theorem must compare still finer projective inertia data across
+  the alternating size-three sectors.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes
