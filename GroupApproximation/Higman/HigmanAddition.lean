@@ -231,7 +231,6 @@ def addStopped (g : E) (r : ℤ) : Prop :=
 def addIdled (g : E) (r : ℤ) : Prop :=
   addY g r = 0 ∧ addZ g r = 0 ∧ addC g r = 0 ∧ addW g r = 0
 
-set_option maxHeartbeats 800000 in
 /-- **The step relation, read on the tracks.** -/
 theorem mem_addStep_window (g : E) (r : ℤ) :
     windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addStep ↔
@@ -261,28 +260,27 @@ theorem mem_addStep_window (g : E) (r : ℤ) :
         addY g (r + 1) = addY g r ∧ addZ g (r + 1) = addZ g r ∧
           addC g (r + 1) = addC g r + 1 ∧ addW g (r + 1) = addW g r + 1 := by
     simp only [addRun, addY, addZ, addC, addW, eqCoord, succCoord,
-      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
-    tauto
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12,
+      and_assoc]
   have hback :
       windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addBack ↔
         addY g (r + 1) = addY g r ∧ addZ g (r + 1) = addZ g r ∧
           addC g r = addC g (r + 1) + 1 ∧ addW g r = addW g (r + 1) + 1 := by
     simp only [addBack, addY, addZ, addC, addW, eqCoord, succCoord,
-      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
-    tauto
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12,
+      and_assoc]
   have hstop :
       windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addStop ↔ addStopped g r := by
     simp only [addStop, addStopped, addY, addZ, addC, addW, eqCoord, pinAt,
-      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12]
-    tauto
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, h9, h10, h11, h12,
+      and_assoc]
   have hidle :
       windowAt (2 * 8) (((8 : ℕ) : ℤ) * r) g ∈ addIdle ↔ addIdled g r := by
     simp only [addIdle, addIdled, addY, addZ, addC, addW, pinAt,
-      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4]
-    tauto
+      Set.mem_inter_iff, Set.mem_setOf_eq, h1, h2, h3, h4, and_assoc]
   rw [addStep, Set.mem_union, Set.mem_union, Set.mem_union, hrun, hback, hstop, hidle,
     addRunning]
-  tauto
+  simp only [or_assoc]
 
 theorem addStep_cases {g : E} (hg : g ∈ transitionSet 8 addStep) (r : ℤ) :
     addRunning g r ∨ addStopped g r ∨ addIdled g r := (mem_addStep_window g r).mp (hg r)

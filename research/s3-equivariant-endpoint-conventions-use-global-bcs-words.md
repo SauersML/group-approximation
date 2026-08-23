@@ -3,6 +3,9 @@ rg: 2
 id: s3-equivariant-endpoint-conventions-use-global-bcs-words
 kind: claim
 title: The synchronized S3 reset orbit realizes the diagonal and crossed endpoint conventions through global BCS words
+artifacts:
+  - research/artifacts/s3-affine-clifford-edge-kernel-audit-2026-08-23.md
+  - experiments/s3-affine-clifford-edge-kernel.json
 distinct_from:
   regular-induced-affine-reset-synchronizes-s3-holonomy: that removes independent commutant rotations but leaves the transported binary events semantically unlabeled; this must identify them with the actual success and failure conventions.
   full-v4-latent-coordinate-has-an-operator-five-fourths-floor: that names all three failure projections inside one local packet; this must discharge them through the global context incidence without an exact local trace inequality.

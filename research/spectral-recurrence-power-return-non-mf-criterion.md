@@ -27,4 +27,6 @@ and contradiction after UPR are elementary and do not invoke property `(T)`,
 Hilbert--Schmidt norm, projections, finite central subgroups, or
 renormalization.  The frozen-coordinate quantitative contradiction is
 kernel-checked as
-`NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`.
+`NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`, and
+its composition with finite-dimensional recurrence is kernel-checked as
+`NoRenormalizationCapacity.no_model_of_uniform_power_return`.

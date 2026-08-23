@@ -171,6 +171,53 @@ construction uses the reducing free lamp-character orbit of a wreath packet;
 it therefore does not claim that SELECT normalizes the full control matrix
 algebra and is consistent with the normalizer no-go below.
 
+## Four-cell character-HNN composition audit
+
+The common-gauge, extraspecial, stabilizer-corrector, and marked two-cycle
+cells do not compose for a general commuting-context atom of rank `k>1`.
+The first three steps are compatible: after correcting the extraspecial
+controller one has an involution
+
+```text
+V=SC,       VX_iV=U_iX_i,       VU_iV=U_i,
+```
+
+and the authentic source is the character idempotent
+
+```text
+q=2^(-(k+1))(1-J) product_i(1+X_i).
+```
+
+The mismatch is at the fourth source interface. The literal source of
+`central-marked-two-cycle-zero-compression-cell` has canonical density
+`1/4`; `q` has density `2^(-(k+1))`, so the two projections cannot be
+identified when `k>1` while the Pauli subgroup embeds.
+
+Allowing a character-idempotent HNN source-target cell does not repair this.
+`extraspecial-character-hnn-two-cycle-forces-global-parity` computes the
+exact character-intersection criterion:
+
+```text
+qVq=0  iff  U_a=JX_c for some a,c.                    (TCG3)
+```
+
+In the intended tensor-spin completion `(TCG3)` forces `U_a=-1`. This says
+that every payload character lies in one affine hyperplane, whereas the
+desired Fourier zero test says only that the trivial character is absent.
+For `k>1`, the direct sum of all nontrivial payload characters has zero
+trivial-character projection but satisfies no global relation `U_a=-1`.
+It is an exact completion of the SELECT controller with `S=1`, and it cannot
+extend the proposed character-HNN two-cycle.
+
+This is a composition obstruction, not another rejection of common-gauge
+SELECT: the common gauge cancels exactly, and the Hermitian corrector can be
+chosen exactly. Nor does it merely reuse the finite-normalizer fixed-face
+countermodel: the calculation permits a nonnormal HNN target and shows that
+one sign-reversing source-target intersection is itself equivalent to the
+too-strong global parity. The surviving local transducer must authenticate
+the full small character carrier while enforcing zero trivial-character
+mass by something other than a single Hecke source-target intersection.
+
 A tempting repair is to allow one common unknown left orientation and seek
 one word with blocks `Aw_j`: the prepared compression would be
 `A(P/M)`, so its zero set and HS norm are correct.  However
