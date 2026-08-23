@@ -9,6 +9,8 @@ distinct_from:
   compact-hyperbolic-km-regular-microstates-synchronize: that states global regular-microstate correction; this gives its exact equivalent formulation in terms of the three finite rank-two charts.
   common-gh-isometry-selects-the-two-overlap-cross-coefficient: that coherently selects the P_1/P_3 overlap gauges near the identity on a 1-o(1) source; this proves the equivalence here begins only at exact simultaneous support invariance, not at an unresolved auxiliary gauge choice.
   relative-finite-group-gh-cannot-fix-two-generating-subgroups: that refutes the generic relative preprocessing theorem which freezes two exact subgroup actions and shows the corresponding alternating Reynolds gap is only quadratic in the local defect; this claim records the stronger Kac--Moody-specific correction still required.
+  native-km-coset-coefficients-retain-spherical-pauli-absorber: that tests the actual rank-two coset-incidence coefficients and finds a fixed-positive-density common spherical multiplicity block carrying an ungauged overlap-coordinate Pauli chord.
+  full-km-face-kills-no-spherical-gauge: that checks the actual group-word face on this block, proves it is already exactly flat, and resets every spherical chord at zero microstate cost; this removes the apparent absorber after quotienting gauge.
 ---
 
 **ESTABLISHED.**  Fix the simple Kac--Moody lattice and its native triangle
@@ -77,3 +79,19 @@ This does not refute a coercive estimate using all native Kac--Moody triangle
 relations.  It shows precisely that such an estimate cannot be obtained by
 applying a relative Gowers--Hatami lemma or alternating overlap projections
 edge by edge.
+
+The actual parabolic restriction coefficients do not supply the missing
+coercivity either.  Their `B_2` generalized-quadrangle block has a genuine
+gap away from the constant coset vector, but every `P_ij` restriction map
+preserves that vector.  The resulting spherical label line tensored with
+the growing multiplicity algebra contains one native free-kernel chord per
+fundamental coset-graph cycle.  As
+`native-km-coset-coefficients-retain-spherical-pauli-absorber` shows, one
+such chord can carry the near-flat Pauli word while all local coefficient
+equations remain exact.  However this is only an ungauged overlap-coordinate
+mode.  `full-km-face-kills-no-spherical-gauge` shows that every actual kernel
+word is identity on the trivial label summand and that all its overlap maps
+may be replaced by identity at zero generator cost.  The spherical mode must
+therefore be quotiented as gauge, not authenticated by a new coefficient.
+The unreduced finite-label diagram still leaves the coupled nonspherical
+regular-label correction.
