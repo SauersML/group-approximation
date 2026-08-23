@@ -53,3 +53,13 @@ the finite game gap.
 - A finite graph of finite groups remains virtually free and therefore
   cannot realize a strict row-mask budget.  At least one overlap cycle must
   use a non-Bass--Serre relation or infinite edge algebra.
+- `shared-involution-right-ideal-interpolation-criterion` gives the complete
+  operator answer.  The several prescriptions are compatible exactly when
+  the two row Gram identities `(SIC4)` hold.  In a finite von Neumann algebra
+  their sum/difference columns always produce a reflecting involution.
+  Finite support is strictly stronger: it is equivalent to one algebraic
+  projection `p_x` satisfying `p_xq_i=((1-A_i)/2)q_i` for every incidence.
+  Julia or matrix dilation only stabilizes this projection CRT, and compressed
+  agreement is equivalent to full agreement for the reducing Frobenius
+  masks.  The remaining algebraic target is isolated as
+  `affine-frobenius-algebraic-projection-crt`.
