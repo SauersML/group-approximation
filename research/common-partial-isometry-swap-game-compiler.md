@@ -179,6 +179,19 @@ solved is `(CPS12)`: Lin's analytic PVMs on `Q` do not force the selected
 predicate words to see `(1-P_c)F_cT`, and later exactification can still
 Reynolds-twirl left payload without a covariance estimate.
 
+Exactifying the whole finite context star **before** Lin does remove that
+last chronological twirl, but it does not close the scalar seam.
+`pre-lin-virtually-free-star-retains-forbidden-gram-kernel` proves that the
+exact star remains a freely amalgamated D8 multiplicity problem.  Every
+predicate-preserving selected carrier lies under the same allowed selector
+support and annihilates the source pullback `T^*F_cT`; exact orthogonal-
+amalgam/regular stationary models have `C_forb=E_cons=0` and `L_forb>0`.
+Lin then uses the unchanged projection-density corner `Q`.  A truly
+exhaustive central type sum covers `Q`, but exact predicate rows on all its
+types hit the induced-representation firewall.  Thus reordering
+exactification before rounding is rigorously neutral: a mixed two-cell or
+matrix-only return is still necessary.
+
 1. `common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
    the scalar deficit
 
