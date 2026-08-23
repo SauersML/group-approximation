@@ -42,6 +42,21 @@ bounded; the unresolved exact-zero sectors are exactly unbounded split-torus
 index and deeper congruence rings.  Even a positive scalar result must still
 be continued nonlinearly through the operator-small off-zero passive region.
 
+The first two natural transfers from the solved full-torus column are now
+closed as shortcuts.  `proper-torus-reynolds-is-edge-refinement` proves that
+the extra torus labels refine the edge set but not the triangle set, so the
+uniform multipartite contraction does not lift as a covering contraction.
+`signed-orbit-averaging-does-not-divide-green-cost` gives the exact remaining
+compression formula and shows that its signed Reynolds projection has
+infinity norm one.  In particular, disjoint translated routings retain their
+full `l1` cost; a positive proof needs genuine arithmetic cancellation on
+overlapping translates.  Flat gain systems and perturbatively near-trivial
+characters are also excluded as sources of divergence by
+`flat-gain-multipartite-covers-have-uniform-green-bound` and
+`near-trivial-torus-characters-track-the-moving-kernel`.  The unresolved
+sector is therefore the genuinely curved, fiber-mean-zero proper-torus
+geometry, not orbit cardinality or character continuity.
+
 Two high-descendant alternatives have also been reclassified.  The five
 consumers of `projective-trace-square-transfer-for-sl3-pair` share one
 canonical-double relative-commutant gate, as recorded by
@@ -53,6 +68,16 @@ for the Leavitt unit group by
 goal-hard, not a routine finite packet estimate awaiting downstream
 bookkeeping.  These audits keep both lanes valid but prevent their apparent
 cascade size from displacing the more explicit arithmetic Green test.
+
+The nonabelian-simple lamp alternative has likewise survived only in its
+honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`
+now records that fixed-window exactification of `A5^F` produces merely
+partial factor transport: no nonempty finite packet is invariant under the
+actor generators, and every boundary completion still has an arbitrary
+right-regular/external multiplicity fiber.  Thus intrinsic minimal normal
+factors do not by themselves yield coherent finite action charts; an
+equivariant boundary-completion or multiplicity-copy classicalization
+theorem is still load-bearing.
 
 ## Marked `goal`
 
