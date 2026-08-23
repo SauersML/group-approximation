@@ -7,12 +7,18 @@ target: fixed-level-bs14-compatible-basin
 requires:
   - bs14-full-commutant-finite-period-preconditioner
   - iwahori-square-root-presentation-is-bs14-plus-one-involution
+  - bounded-period-iwahori-quotients-are-finite
 ---
 
 An orbit of length `m<=K` has `S`-eigenvalues of order dividing `4^m-1`,
 which proves `S^N_K=1`.  Its scalar monodromy is an `M`th root, so
 `R^(mM)=1` on that packet; taking the least common multiple proves
 `R^L_(K,M)=1`.  This gives `(FLB2)--(FLB4)`.
+
+By `bounded-period-iwahori-quotients-are-finite`, the group in `(FLB4)` is
+finite.  Finite-group normalized-HS stability therefore supplies the
+fixed-level radius and flexible modulus used below; they are no longer
+hypotheses.  Their dependence on `(K,M)` is uncontrolled.
 
 Changing `R,S` by the preconditioner while leaving `x` fixed changes each
 of the four bounded-length relative words by at most a universal word-
