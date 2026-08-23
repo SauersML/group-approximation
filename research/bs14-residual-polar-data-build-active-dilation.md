@@ -303,6 +303,21 @@ tuple.
   physical `X` to pay this one mixed two-row moment.  Separate cubic polar
   decompositions cannot see it.  After this seam, moving congruence-atom
   authentication and integer cell support remain genuinely separate.
+- **A common physical exit row pays the mixed moment directly.**
+  `common-physical-reflection-pays-two-exit-gram-seam` expands
+
+  ```text
+  F_1^*H_2-H_1^*F_2
+  ```
+
+  by inserting the supplied `X`; its Frobenius norm is at most the two
+  individual errors `||XF_i-H_i||_F` plus `||X^2-1||_F`.  Therefore the
+  mixed `S^(-3)`/`S^6` moment is not an independent carrier.  The now
+  isolated claim
+  `bs14-polar-exits-retain-the-common-physical-reflection` asks the actual
+  residual polar extraction to preserve those two exit equations against
+  the same `X`.  Merely finding a separately compatible reflection for each
+  cubic row does not suffice.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
