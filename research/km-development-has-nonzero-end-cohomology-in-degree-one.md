@@ -275,3 +275,40 @@ supported 1-cochain.
   `(2,4,6)` twin building, this is a finite computation inside the
   generalized polygons `GQ(q,q)` and `GH(q,q)` and the panels, of
   Abramenko type.
+- **The twisted types are single reflections, and their level complexes
+  are explicit (2026-08-23).**  For `w != 1` the Kilmoyer intersection
+  `K = J cap wJ'w^(-1)` is never a full rank-two type: `K=J` would put
+  `w` in the centralizer of a finite rank-two parabolic, which inside
+  the hyperbolic triangle group is that parabolic itself (an isometry
+  fixing two distinct geodesics through a point fixes the point), so
+  `w in W_J`, contradicting `(J,J)`-reducedness.  Hence `K = {r}` for
+  one simple reflection `r in J cap J'` with `w in C_W(r)`, and the
+  co-projections identify the `r`-panels `P_+^1 <= R_+`, `P_-^1 <= R_-`
+  by a bijection `phi`.  Since `w_0` is central in each rank-two type
+  of `(2,4,6)` (`A_1 x A_1`, `B_2`, `G_2`), the allowed chambers are
+  exactly those opposite to SOME chamber of the panel, each such
+  chamber being opposite to `q` of the `q+1` panel chambers and
+  projecting to the remaining one.  Grading by that projection,
+  `Opp(P_+^1) = sqcup_i A_i`, `Opp(P_-^1) = sqcup_j B_j` (`q+1` classes
+  each, matched by `phi`), and
+
+      `O_w = union_(i != j) A_i x B_j`:
+
+  all pairs except those in `phi`-matched classes.  For rank-`(2,2)`
+  pairs the level complex is `Sigma(Omega)` with `Omega = union_(i!=j)
+  A_i * B_j` inside the join `A * B` of the opposition subgraphs of
+  the two polygons, and `H_3(cl O_w, D) = H_2(Omega)`.  Since `A * B`
+  has `H_2 = 0` and `H_3 = H_1(A) (x) H_1(B)` (both graphs connected
+  for large `q`), `H_2(Omega)` is the cokernel of the restriction of
+  product cycles to the matched-class flag pairs
+  `Delta = sqcup_i A_i x B_i`, modulo the correction from vertices all
+  of whose opposite flags lie in one class.  Rationally, if no such
+  single-class vertex exists, `H_2(Omega;Q)=0` iff no nonzero element
+  of `delta C^0(A) (x) C^1(B) + C^1(A) (x) delta C^0(B)` is supported
+  on `Delta`.  This is a finite linear-algebra statement about the
+  class structure of the panel-opposition subgraph of `GQ(q,q)`,
+  `GH(q,q)` and the `(q+1) x (q+1)` grid, with `r` each of the two
+  generators of the polygon's type; the ranks (`b_1(A)b_1(B) ~ q^8`
+  against `|Delta| ~ q^7` for `B_2`) leave surjectivity open.  The
+  same computation for `A_2` residues must produce a nonzero `H_2`
+  (affine sanity check), so it is the discriminating input.
