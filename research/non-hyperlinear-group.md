@@ -17,6 +17,39 @@ monotone size the compression collapses (invariant-size-collapse); the `II₁` b
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
 
+## Current proof frontier (2026-08-23)
+
+The latest cascade audit leaves no certified unconditional witness.  The
+shortest concrete lane is the relative `PSL_2(Z[1/2])`/Iwahori problem after
+the regular microstate has been cut into an `o(d)` active block and a passive
+exact `BS(1,4)` core.  All algebraic and Hilbert-space parts of that reduction
+are now explicit.  The surviving analytic gate is
+`passive-iwahori-off-zero-cb-normal-splitting`.  At an exact congruence
+endpoint its Jacobian is the constrained pair of order-three Reynolds
+expectations in `exact-passive-jacobian-is-two-reynolds-expectations`.
+The generic implication from an `L2` gap to a cb inverse is false by
+`two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse`; the arithmetic
+claim already contains the scalar signed-incidence Green estimate isolated
+in `constrained-reynolds-column-has-a-diagonal-scalar-shadow`.  That explicit
+arithmetic Green family, rather than another abstract stability slogan, is
+the present bounded falsification/proof target.  At primitive prime levels
+the column is a highly redundant Hecke frame and the initial finite sweep is
+bounded; the unresolved scalar sectors are exactly unbounded split-torus
+index and deeper congruence rings, before the remaining off-diagonal cb
+coefficients are addressed.
+
+Two high-descendant alternatives have also been reclassified.  The five
+consumers of `projective-trace-square-transfer-for-sl3-pair` share one
+canonical-double relative-commutant gate, as recorded by
+`sl3-projective-transfer-five-consumers-share-one-root-gate`; their count is
+reuse rather than five independent chances to close the goal.  Likewise
+`atlas-five-row-operator-phase-lift` is already a direct separation theorem
+for the Leavitt unit group by
+`nonhyperlinear-directly-from-five-row-phase-lift`.  It is therefore
+goal-hard, not a routine finite packet estimate awaiting downstream
+bookkeeping.  These audits keep both lanes valid but prevent their apparent
+cascade size from displacing the more explicit arithmetic Green test.
+
 ## Marked `goal`
 
 Flagged `goal: true` on 2026-08-18, taking the single goal flag over from
