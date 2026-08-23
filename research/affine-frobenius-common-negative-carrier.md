@@ -42,3 +42,10 @@ only their prescribed negative pieces, separately for each variable.  The
 remaining difficulty is the cycle holonomy/global compatibility of these
 variable-specific carriers with the fixed nonaffine context PVMs.  A tree or
 finite Bass--Serre gluing cannot meet the strict BCS budget.
+
+There is no hidden additive-overlap shortcut.  By
+`common-carrier-lives-in-packet-intersection`, once the finite context
+groups embed in one ambient group, `p_x` must lie in the group algebra of
+their literal finite subgroup intersection.  The required construction is
+therefore a finite-overlap cycle whose holonomy leaves the Bass--Serre class
+without collapsing a packet or the strict deficit.

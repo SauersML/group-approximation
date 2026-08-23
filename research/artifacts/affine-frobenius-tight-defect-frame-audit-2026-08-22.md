@@ -93,3 +93,11 @@ The last claim is the sharpened surviving frontier.  The route
 `tight-frame-via-common-negative-carrier` proves that it is sufficient for
 the original cubic target, while the high-density collapse proves it is
 also necessary at the intended asymptotic mask scale.
+
+Finally, `common-carrier-lives-in-packet-intersection` shows that this
+carrier belongs to the group algebra of the literal intersection of all
+incident finite context groups.  Hence the last construction is no longer
+an unspecified algebraic CRT: it is a cyclic finite-subgroup-overlap
+holonomy problem.  Tree gluing is Bass--Serre safe; the cycle must carry the
+non-hyperlinear obstruction without destroying the embedded context
+packets.
