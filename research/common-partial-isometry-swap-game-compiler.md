@@ -258,6 +258,19 @@ Imposing that word forces the forbidden source atom to vanish.  Thus even the
 minimal order-thirty-two Pauli frame is useful only as a residual wordizer,
 not as the universal lower-bound certificate required by `(CPS9)`.
 
+Nor can a phase-safe automorphic two-cell repair this failure.
+`two-qubit-pauli-automorphic-cell-has-collapse-or-stationary-flow` proves the
+exact dichotomy for finite packet tables, Clifford normalizers, and finite
+graphs of finite packet groups.  If their mixed rows really charge the
+forbidden Pauli atom, they collapse that atom universally and destroy the
+induced rejected type.  If the packet remains embedded, virtually-free
+finite quotient regular models retain `tr(F)=tau_K(F)>0` at zero relator and
+filtered-word defect; the edge multiplicities are exactly the stationary
+orthogonal-amalgam flow.  Thus the next CPS12 cell must be non-automorphic
+and finite-matrix-only: an unequal-index/proper-corner return, integer
+capacity gate, or self-similar arithmetic recurrence whose rank loss is not
+a universal group-algebra identity.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
