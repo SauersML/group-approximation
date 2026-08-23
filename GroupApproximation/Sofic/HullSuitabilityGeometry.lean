@@ -3011,7 +3011,7 @@ theorem two_mul_progress_mul_far_radius_le {delta D l r : ℝ}
 backtracking gap, the penultimate point of every finite orbit segment lies
 within `C + 3δ` of a geodesic joining the segment's endpoints. -/
 theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
     (hiso : IsIsometricAction G X) (hgeo : IsGeodesicSpace X)
     {p : G} {x : X} (hCδ : 0 ≤ C + δ)
     (hgap : 2 * (C + δ) < dist x (p • x))
@@ -3046,7 +3046,7 @@ theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
   obtain ⟨s, hs, hnear⟩ := exists_mem_geodesic_dist_le hδ hf hf0 hf1
     ((p ^ (N - 1)) • x)
   refine ⟨f, s, hf, hf0, hf1, hs, ?_⟩
-  linarith [hnear, hback, hδ0]
+  linarith [hnear, hback, _hδ0]
 
 /-! ### Fellow-travelling of geodesics
 
