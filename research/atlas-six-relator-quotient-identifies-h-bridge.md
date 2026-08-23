@@ -5,7 +5,6 @@ kind: claim
 title: The five saturated boundary rows and 19243 centrality identify the two rank-three chart subgroups
 refuted_by: atlas-charts-overlap-trivially
 distinct_from:
-  atlas-boundary-h-finite-quotient-scan: that excludes unequal copies only inside one A8 overgroup; this asks for equality in the universal six-relator quotient.
   atlas-a4-19243-parabolic-normal-closure: that computes the normal closure of one collision translation inside one chart; this concerns bridge elements between two chart factors.
   atlas-five-row-operator-phase-lift: that is the resulting normalized-HS inequality; this is its purely group-theoretic sufficient condition.
 ---

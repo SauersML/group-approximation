@@ -47,6 +47,21 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **The full raw rank-one coboundary packet still has an exact leak.**
+  `rank-one-self-commutator-coboundary-packet-has-s3-leak` strengthens the
+  earlier derived-identity countermodel. In the regular representation of
+  `S_3`, take `U=X=Y=(12)`, `H=(23)`, and `C=1`. Then `U` centralizes all
+  three lattice-word variables, `Z=HYH^*=(13)`, the literal denominator
+  decomposition `H=XZXC` holds, and the literal target coboundary
+  `W=[U,H]` is a nonidentity three-cycle, hence has normalized trace zero.
+  So retaining the original coboundary and decomposition data does not
+  improve the rank-one attack. Additional shared arithmetic structure is
+  indispensable. The earliest explicit omitted candidate is common-root
+  additivity `X=x(1)^2`, `Y=y(1)^(-2)`,
+  `C=x(1)^(-1)y(1)x(1)^(-1)` together with its cross-root gluing; the
+  countermodel's transposition `X` has no square root in `S_3`. This does not
+  assert that root additivity alone suffices.
+
 - **Approximate perfectness removes the projective phases quantitatively.**
   This part of the exact proof survives presentation defect and is not the
   remaining obstruction.  Put

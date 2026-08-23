@@ -5,7 +5,7 @@ date: 2026-08-22
 
 # Cairn cascade audit
 
-## Current leverage audit after the six-relator reduction
+## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,
 44 refutations, 3,384 routes, and 249 frontier holes.  Only thirteen frontier
@@ -16,10 +16,10 @@ mathematical compression.
 
 | priority | frontier | forced/reusable consequence | present assessment |
 |---:|---|---|---|
-| 1 | `atlas-six-relator-quotient-identifies-h-bridge` | proves the five-row phase lift, the strict two-S3 ceiling, and the goal | best immediate target: four exact bridge equalities in one fixed quotient; finite quotients can falsify it |
-| 2 | `projective-trace-square-transfer-for-sl3-pair` | six claims, including the goal, four arithmetic collapses, and a reusable filtered actuator | broadest honest reusable cascade; needs one arithmetic-specific approximate transfer theorem |
+| 1 | `projective-trace-square-transfer-for-sl3-pair` | six claims, including the goal, four arithmetic collapses, and a reusable filtered actuator | broadest honest reusable cascade; needs one arithmetic-specific approximate transfer theorem |
+| 2 | `atlas-five-row-operator-phase-lift` | strict two-S3 ceiling and the goal | smallest direct finite-matrix inequality, but exact bridge collapse and independent-phase SOS are now refuted |
 | 3 | `affine-frobenius-common-negative-carrier` | five claims including the goal | exact common-carrier hinge after all generic tight-frame escapes were classified |
-| 4 | `affine-leavitt-steinberg-hs-coefficient-decoder` | direct goal route plus the p-Heisenberg graft | unusually compressed: recover one projection, four contractions, and three Leavitt products |
+| 4 | `affine-leavitt-prescribed-root-spectral-carrier-decoder` | repairs the direct coefficient-decoder route and feeds the p-Heisenberg graft | genuinely nonvacuous: recover three Leavitt products on the root's prescribed nontrivial spectral carrier |
 | 5 | `finite-presentation-must-expose-whole-module-with-uniform-defect` | counterfactually feeds seven module/PVM/Pauli descendants | strongest reusable compiler primitive, but moving-word and uniform-area firewalls make it much broader than Atlas |
 | 6 | `edgeful-or3-coefficient-link-compiler` | a five-node chain to the goal through three compiler routes | finite-looking, but the six-clique obstruction and canonical-HS carrier promotion remain |
 | 7 | `fixed-pi-degree-fingerprints-packet-label-factor` | PI-reservoir and scalable-socle routes | amplification-blind finite separator; the missing positive-density transverse factor is the hard part |
@@ -33,22 +33,28 @@ Pauli commutators—would be reusable by the PI-degree, Pauli/Schur,
 affine-Leavitt, and Atlas compressor families.  It deserves treatment as a
 shared research primitive rather than a private lemma of one route.
 
-The Atlas target has now compressed once more.  Put
+The attempted exact Atlas compression puts
 
 ```text
 Gamma_6=(A8_1*A8_2)/<<s_0,s_11,s_30,s_44,s_55,c_19243>>.
 ```
 
-If the two labelled `H=GL_3(2)` subgroups agree in `Gamma_6`, four finite
-van Kampen fillings of standard `H)-bridges telescope to the
-multiplicity-independent five-row HS inequality.  All analytic consumers
-after that inequality are already established, so this exact finite normal
-closure statement proves the goal.  Conversely, a finite quotient of
-`Gamma_6` which keeps both `A8` factors injective and separates one
-`H)-bridge gives an exact regular-representation countermodel.  The complete
-natural `A9` screen checks 362,880 conjugators: exactly one chart kills the
-five boundary rows and `c_19243` kills that survivor.  Thus `A9` supplies
-no countermodel, although it is not a proof about the universal quotient.
+If the two labelled `H=GL_3(2)` subgroups agreed in `Gamma_6`, four finite
+van Kampen fillings would telescope to the multiplicity-independent
+five-row HS inequality.  This sufficient condition is **refuted**.  All six
+words lie in the genuine Leavitt kernel, while the faithful exact Leavitt
+charts intersect trivially.  Every nontrivial `H` bridge therefore survives
+`Gamma_6`.  The Atlas inequality, if true, is intrinsically a
+finite-dimensional/regular-margin statement and cannot be a consequence of
+ordinary group equalities.
+
+Conversely, any finite quotient of `Gamma_6` which keeps both `A8` factors
+injective and separates one `H` bridge gives an exact regular-representation
+countermodel.  The complete natural `A9` screen checks 362,880 conjugators:
+exactly one chart kills the five boundary rows and `c_19243` kills that
+survivor.  Thus `A9` supplies no countermodel; the unresolved problem is
+whether the exact infinite bridge escape can be approximated in finite
+regular-margin representations.
 
 The companion firewall is equally sharp.  If the twenty-seven phase
 occurrences are freed from the common orbit
@@ -60,12 +66,17 @@ separate local type matching cannot prove the Atlas inequality.  The
 prescribed coherent orbit—not the six abstract cycles—is the entire remaining
 resource.
 
-This changes the work order.  First decide the six-relator bridge quotient
-structurally.  In parallel, retain projective trace-square transfer as the
-best reusable arithmetic theorem and the affine-Frobenius carrier as the best
-independent algebraic-corner theorem.  Do not spend effort on universal
-HS-PCP, canonical trace promotion, or hyperlinear-to-sofic nodes until they
-are decomposed into comparably finite, falsifiable statements.
+This changes the work order.  Projective trace-square transfer is now the
+best reusable arithmetic theorem.  The Atlas route must seek a genuinely
+finite-matrix margin (rank, polynomial identity, or finite multiplicity Hall
+defect), not an exact quotient identity.  The affine-Frobenius carrier remains
+the best independent algebraic-corner theorem.  In the affine-Leavitt route,
+the old existential decoder is equivalent to direct marked collapse because
+the zero carrier is always allowed; its repaired target prescribes the
+nontrivial spectral carrier of the exactified order-p root.  Do not spend
+effort on universal HS-PCP, canonical trace promotion, or
+hyperlinear-to-sofic nodes until they are decomposed into comparably finite,
+falsifiable statements.
 
 ## Re-audit after direct attacks
 
