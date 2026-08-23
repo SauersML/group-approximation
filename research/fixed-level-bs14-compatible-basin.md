@@ -9,6 +9,13 @@ distinct_from:
   bs14-flexible-cross-packet-boundary-reconciliation: that asks for the final uniform repair; this gives an exact sufficient fixed-level formulation and the quantifier fence on a naive proof.
   bs14-exact-representation-variety-is-hs-locally-rigid: that aligns two exact BS cores with a uniform modulus; this concerns the extra involution over one preconditioned core.
   one-unipotent-quotients-are-bounded-congruence: that identifies every finite target up to the one fixed congruence kernel; this asks for the remaining quantitative repair across those moving congruence levels.
+  regular-bs14-cores-admit-dyadic-one-power-shadows: that improves the regular-branch preconditioner to the single level 4^K-1 at square-root logarithmic cost; this states the basin comparison which remains after either preconditioner.
+requires:
+  - bs14-long-cycles-admit-bounded-period-shadowing
+  - one-unipotent-quotients-are-bounded-congruence
+  - bounded-cycle-level-has-only-polylogarithmic-error
+  - regular-bs14-cores-admit-dyadic-one-power-shadows
+  - repeated-squaring-and-tau-do-not-supply-the-moving-basin
 ---
 
 For `K>=2`, set
@@ -87,10 +94,29 @@ uniformity problem.  The whole short-support endpoint is finite and stable.
 In fact `one-unipotent-quotients-are-bounded-congruence`
 shows that it is a bounded extension of `PSL_2(Z/N_K)`, and
 `bounded-cycle-level-has-only-polylogarithmic-error` shows that the injected
-error is only polylogarithmically small in the quotient size.  Hence a
-generic finite-group estimate losing any power of the level or group order
-cannot certify `(FLB5)`; the needed input is a uniform/polylogarithmic
-congruence-family theorem or a special relative repair over the exact core.
+error is only polylogarithmically small in the quotient size.
+
+For a regular microstate sequence there is a sharper, sequence-dependent
+choice.  By `regular-bs14-cores-admit-dyadic-one-power-shadows`, after a slow
+diagonal one may instead take
+
+```text
+K=2^q,             N=4^K-1,                          (FLB7)
+alpha_K=O(K^(-1/2))
+       =O((log |Gamma/<<s^N>>|)^(-1/2)).             (FLB8)
+```
+
+The compatibility condition `(FLB5)` then applies with these single-level
+quotients and the improved error `(FLB8)`.  This removes the universal LCM
+tax and changes the sharp regular-branch target from inverse fourth-root to
+inverse square-root logarithmic scale.  It does not manufacture a basin:
+even a radius `N^(-c)` or `|Gamma/<<s^N>>|^(-c)` is exponentially smaller
+than `(FLB8)`.
+
+Hence a generic finite-group estimate losing any power of the level or group
+order cannot certify `(FLB5)` on either staircase; the needed input is a
+uniform/polylogarithmic congruence-family theorem or a special relative repair
+over the exact core.
 Moreover `repeated-squaring-and-tau-do-not-supply-the-moving-basin` shows
 that compressing `s^N` to logarithmically many short rows and invoking
 property `(tau)` still does not produce that theorem.  Short rows can be

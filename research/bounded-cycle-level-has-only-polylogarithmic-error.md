@@ -5,11 +5,13 @@ kind: claim
 title: The one-parameter bounded-cycle staircase reaches its finite congruence level only at polylogarithmic HS accuracy
 distinct_from:
   bs14-long-cycles-admit-bounded-period-shadowing: that proves the error is O(K^-1/2); this expresses the same unavoidable staircase cost in terms of the imposed power level and finite quotient size.
+  regular-bs14-cores-admit-dyadic-one-power-shadows: that uses regular trace and a slow diagonal to replace the universal least-common-multiple level by the single level 4^K-1; this records the weaker uniform-all-cores baseline and its exact least-common-multiple tax.
   fixed-level-bs14-compatible-basin: that states the abstract radius-crossing condition; this quantifies the scale any proposed level-dependent radius estimate must beat.
   one-unipotent-quotients-are-bounded-congruence: that identifies the target quotient; this compares the target size with the preconditioning accuracy.
 requires:
   - bs14-long-cycles-admit-bounded-period-shadowing
   - one-unipotent-quotients-are-bounded-congruence
+  - regular-bs14-cores-admit-dyadic-one-power-shadows
 ---
 
 For
@@ -60,6 +62,21 @@ optimal stability radius.  A successful use of the staircase needs a
 uniform or sufficiently polylogarithmic congruence-family repair theorem,
 or must exploit the exact BS core and the special four `x`-rows rather than
 expand them through a generic multiplication table.
+
+On the regular-character branch relevant to hyperlinearity,
+`regular-bs14-cores-admit-dyadic-one-power-shadows` removes this particular
+least-common-multiple tax: after discarding a slowly growing finite spectrum,
+it uses the single level `N=4^K-1` with shadow cost `O(K^(-1/2))`, hence
+
+```text
+O((log |Q_(4^K-1)|)^(-1/2)).                         (PLE6)
+```
+
+Thus `(PLE5)` is not the sharp regular-branch target.  It is the cost of a
+preconditioner uniform over all exact BS cores.  Even the sharper
+regular-branch scale `(PLE6)` still does not cross an unknown moving stability
+radius: a radius polynomially small in `N` or `|Q_N|` remains exponentially
+smaller than the available shadow error.
 
 The external number-theory input is Shigeki Akiyama and Florian Luca,
 *On the least common multiple of Lucas subsequences*, Acta Arithmetica 161
