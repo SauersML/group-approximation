@@ -20,4 +20,6 @@ presentation and trace-window error.
 This route uses one scalar cross-typed checksum.  It does not require the
 full paired boundary recurrence, a physical common-factor decoder, the
 four-operator standard-polynomial bridge, or literal equality of Reynolds
-ranges.
+ranges.  The scalar actuator is necessarily extracted from the finite matrix
+coordinates; the canonical subgroup-intersection formula rules out every
+fixed group-word actuator.

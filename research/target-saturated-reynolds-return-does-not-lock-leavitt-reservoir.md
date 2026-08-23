@@ -80,11 +80,21 @@ eta>=p^(-2)-p^(-4).                                     (TSR8)
 ```
 
 After fixed finite-packet normalized-HS exactification the same conclusion
-holds with `o(1)` errors.  Moreover `(TSR3)` is a finite average of squared
-ordinary word traces by the Reynolds expansion, so `(TSR7)` is one scalar
-cross-typed target.  No equality of physical carriers, mutual bicommutant
+holds with `o(1)` errors.  If `T=Ad(U(w))` for one fixed group word, `(TSR3)`
+is a finite average of squared ordinary word traces by the Reynolds
+expansion.  This does **not** make `(TSR7)` a viable fixed-word relation:
+`canonical-marked-reynolds-return-is-subgroup-intersection` pins that average
+in canonical microstates to a quotient-subgroup intersection and hence to
+at most `c_t=p^(-4)`.  Thus every fixed word actuator lies on the wrong side
+of `(TSR7)` even before taking a matrix limit.
+
+Consequently the source-saturated overlap is the smallest *analytic*
+endpoint, but its actuator must be extracted nonlinearly from the finite
+matrix coordinates (for example as the polar part of a mixed Gram map).  It
+cannot be one fixed evaluated group word or a fixed convex average of such
+word checksums.  No equality of physical carriers, mutual bicommutant
 reconstruction, or pointwise transport of the packet tables is analytically
-needed after it is available.
+needed after such a coordinate actuator is available.
 
 This proves both minimality statements relevant to the Leavitt route:
 
@@ -95,5 +105,7 @@ This proves both minimality statements relevant to the Leavitt route:
 
 The remaining compiler problem is therefore directional.  It must make the
 returned *smaller target commutant* cover the larger source commutant up to
-word-paid leakage.  Merely returning every target invariant to some source
-invariant proves only `(TSR6)` and leaves the countermodel untouched.
+word-paid leakage using a matrix-coordinate-derived return.  Merely returning
+every target invariant to some source invariant proves only `(TSR6)` and
+leaves the countermodel untouched; using one fixed word cannot improve the
+overlap because canonical trace fixes its subgroup-intersection value.

@@ -286,6 +286,13 @@ ambiguous phrase “return the Reynolds range” by one exact directional
 checksum and rules out any actuator proof which only preserves target
 invariants.
 
+Nor can that source-saturated checksum come from one fixed group word.
+`canonical-marked-reynolds-return-is-subgroup-intersection` bounds every such
+canonical marked overlap by the target value `p^(-4)`.  The required return
+must be the polar/Gram actuator extracted from the finite coordinate model,
+with its extraction loss charged by ordinary word defects.  This is exactly
+the finite-matrix operation absent from the regular representation.
+
 That remaining theorem now has an exact scalar endpoint.
 `balanced-controlled-whitehead-return-checksum` shows that for **every**
 candidate Whitehead actuator `W`, the returned adjoint leakage on canonical

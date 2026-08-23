@@ -7,6 +7,7 @@ distinct_from:
   paired-same-reservoir-boundary-lemma: that asks for a branchwise reservoir-or-boundary decomposition through arbitrary fixed depth; this asks for one scalar first-refinement checksum and uses the fixed source/target superrank gap immediately.
   one-common-intertwiner-carries-the-four-pauli-pi-bridge: that transports four target operators through one almost-unitary physical intertwiner; this transports only one adjoint overlap scalar and does not reconstruct a physical factor or its spectator.
   balanced-controlled-whitehead-return-checksum: that computes a rank gap for the controlled-reflection extension of one two-qubit packet; this uses the actual source-versus-two-child Leavitt Weyl packets with superranks `p^(-2)` and `p^(-4)`.
+  canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
 ---
 
 **OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
@@ -16,11 +17,11 @@ of the marked order-`p` root.  Exactify on `P` the fixed depth-zero source
 Heisenberg packet and depth-one two-child packet, and let `R_s,R_t` be their
 adjoint Reynolds projections on `End(PH)`.
 
-Produce one evaluated mixed return actuator `T=Ad(U(w))`, or a bounded
-average of such actuators, for which
+From the finite matrix tuple construct an approximation-dependent unitary or
+partial-isometry actuator `T_U` on the adjoint carrier, for which
 
 ```text
-Theta=tr_(ad,P)(R_s T^* R_t T R_s)
+Theta=tr_(ad,P)(R_s T_U^* R_t T_U R_s)
       >=p^(-2)-omega(delta,sep),                        (ASR1)
 ```
 
@@ -38,8 +39,18 @@ Theta<=tr_(ad,P)(R_t)=p^(-4),                           (ASR2)
 ```
 
 so `(ASR1)--(ASR2)` contradict sufficiently small defect by the fixed amount
-`p^(-2)-p^(-4)`.  The overlap is a finite average of squared ordinary word
-traces, hence no pointwise reconstruction of either commutant is required.
+`p^(-2)-p^(-4)`.  No pointwise reconstruction of either commutant is
+required after `T_U` has been constructed.
+
+The actuator cannot be `Ad(U(w))` for a fixed word `w`, nor a fixed finite
+convex average of word actuators.  In that case the overlap expands into
+fixed squared word traces, and
+`canonical-marked-reynolds-return-is-subgroup-intersection` gives the
+canonical limit at most `p^(-4)`.  Thus `(ASR1)` specifically asks for a
+nonlinear finite-coordinate extraction—such as a polar factor of a returned
+mixed Gram operator—whose construction error is bounded by the named word
+defects.  This operation must have no functorial counterpart in the exact
+regular representation.
 
 The direction in `(ASR1)` is load bearing.  Replacing its right side by
 `p^(-4)-o(1)` gives target saturation, which is exactly realized by the
@@ -51,5 +62,5 @@ All presently named typed Steinberg triangles fail to imply `(ASR1)`:
 keeping the two object identities distinct.  Thus the missing compiler must
 extract source saturation from a genuinely finite-matrix feature of the
 full presentation, or pay its failure as boundary leakage.  More typed
-associativity loops, separate PI fingerprints, and preservation of every
-target invariant remain below the exact countermodel.
+associativity loops, separate PI fingerprints, fixed word returns, and
+preservation of every target invariant remain below the exact countermodel.
