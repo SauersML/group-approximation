@@ -2,7 +2,7 @@
 rg: 2
 id: full-torus-reynolds-is-multipartite-curl
 kind: claim
-title: Full-torus prime-power Reynolds columns are multipartite triangle curls
+title: Full-torus Reynolds columns are multipartite triangle curls
 distinct_from:
   prime-power-reynolds-column-does-not-tensor-over-reduction: that uses a rank certificate to refute passive tensoring at level 25; this identifies the exact coupled simplicial operator and proves that rank algebraically.
   constrained-reynolds-column-has-a-diagonal-scalar-shadow: that gives the signed Hecke column for arbitrary congruence quotients; this identifies it with a classical triangle coboundary in the full-torus, two-square-class family.
