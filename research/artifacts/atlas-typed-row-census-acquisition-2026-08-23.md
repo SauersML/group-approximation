@@ -162,7 +162,11 @@ with mass outside a proper incidence set, and three separate positive polar
 cuts need not have a positive common meet.  Therefore the remaining selector
 datum is exactly one relation-sensitive typed mass-localization estimate;
 after it is supplied, the spectral selection and its uniform loss are no
-longer open.
+longer open.  This polar selection extends verbatim to finite tracial von
+Neumann algebras, so it is not itself the finite-matrix-only ingredient.  A
+complete acquisition must additionally identify where matrix-specific
+rank/integrality enters; a universal typed mass estimate plus universal row
+algebra would still cross the exact-factor firewall.
 
 Only after this artifact exists is it meaningful to compute
 

@@ -52,7 +52,7 @@ alpha/|E| <= tau(T^*T) <= lambda(1-p)+p,
 and rearrangement is `(RBP2)`.  Polar decomposition on `R` gives
 `(RBP3)--(RBP4)` and `S=VRV^*`.
 
-This is an admissible finite-matrix selector.  Under the Atlas double gauge
+This is an equivariant finite-coordinate selector.  Under the Atlas double gauge
 `U |-> DUC`, every block mass is unchanged, `R` transforms by the source
 gauge, `S` by the target gauge, and `V` covariantly between them.  Compression
 and transport by `V` do not increase Hilbert--Schmidt error; if normalization
@@ -61,6 +61,16 @@ The amplitude `A` and all other transported path products may be retained as
 stable nuisance monomials.  No claim that `A` is a group word is needed: the
 relation terms remain compressed literal word paths, and `V` is only the
 chosen finite coordinate gauge.
+
+The spectral operation itself is **not** genuinely finite-matrix-only: the
+same polar cut exists in every finite tracial von Neumann algebra.  Thus it
+settles the mass and Hilbert--Schmidt-loss mechanics of the acquisition field,
+but it does not by itself cross the required category boundary.  That boundary
+must enter through a matrix-specific proof of `(RBP1)`, a subsequent
+rank/integrality argument, or another step which is false in the exact
+Leavitt factor.  A universal star-ideal proof of `(RBP1)` followed only by
+universal projected row algebra would remain subject to the exact-factor
+firewall.
 
 For the complete block alphabet, unitarity gives
 
@@ -88,11 +98,12 @@ the three polar corners merely gives three differently labelled unknown
 multiplicity reservoirs, so it cannot support one nuisance-quotient matrix
 in the same three variables.
 
-Consequently the load-bearing selector field reduces exactly to a typed
+Consequently the load-bearing mass/loss part of the selector field reduces to a typed
 localization estimate `(RBP1)` for one incidence set already carrying all
 required path labels.  Once such an estimate is derived from a literal mixed
 Atlas relation, the finite selection, positive mass, and dimension-independent
-Hilbert--Schmidt loss are automatic by `(RBP2)--(RBP4)`.  The existing
+Hilbert--Schmidt loss are automatic by `(RBP2)--(RBP4)`; whether the resulting
+argument is genuinely matrix-only must still be audited separately.  The existing
 positive-overlap/subcritical results do not refute this one-edge construction;
 they prove that it cannot substitute for the missing simultaneous typed
 localization.

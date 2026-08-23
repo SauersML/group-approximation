@@ -1,0 +1,43 @@
+{
+  "field": "GF(2)",
+  "frame": "401004080301c030",
+  "identity": "8040201008040201",
+  "rows": {
+    "c_19243": {
+      "is_identity": true,
+      "order": 1,
+      "rank_value_minus_identity": 0,
+      "value": "8040201008040201"
+    },
+    "s_0": {
+      "is_identity": false,
+      "order": 2,
+      "rank_value_minus_identity": 2,
+      "value": "8040201009070201"
+    },
+    "s_11": {
+      "is_identity": false,
+      "order": 2,
+      "rank_value_minus_identity": 2,
+      "value": "8040201028142211"
+    },
+    "s_30": {
+      "is_identity": false,
+      "order": 2,
+      "rank_value_minus_identity": 2,
+      "value": "8740291008040201"
+    },
+    "s_44": {
+      "is_identity": false,
+      "order": 2,
+      "rank_value_minus_identity": 2,
+      "value": "80402a1508040201"
+    },
+    "s_55": {
+      "is_identity": false,
+      "order": 2,
+      "rank_value_minus_identity": 2,
+      "value": "8040201038c4f231"
+    }
+  }
+}
