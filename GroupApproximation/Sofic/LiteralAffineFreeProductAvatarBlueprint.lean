@@ -203,6 +203,31 @@ theorem length_blueprint_defectTieWord (i : Fin 2) :
   rw [blueprint_defectTieWord]
   simp [Nat.add_comm]
 
+/-- The protected avatar has exactly the unreduced substitution length.  Both
+the chosen source name and every avatar are positive, so no free reduction is
+lost at an avatar seam.  This turns the protected-ball input into a concrete
+arithmetic bound on the chosen positive source name. -/
+theorem blueprint_protected_norm :
+    FreeGroup.norm (FreeGroup.lift blueprint.srcAvatar blueprint.protectedWord) =
+      (sourcePositiveName source.s).length * blueprint.avatarLength := by
+  let w := sourcePositiveName source.s
+  let out := avatarSubst blueprint.srcAvatarWord w
+  have hwpos : ∀ c ∈ w, c.2 = true := sourcePositiveName_positive source.s
+  have hapos : ∀ k, ∀ c ∈ blueprint.srcAvatarWord k, c.2 = true :=
+    fun k ↦ forall_positive_avatarWord blueprint.avatarCount blueprint.codeL (k : ℕ)
+  have houtpos : ∀ c ∈ out, c.2 = true :=
+    forall_positive_avatarSubst blueprint.srcAvatarWord hapos hwpos
+  have houtlen : out.length = w.length * blueprint.avatarLength :=
+    length_avatarSubst_eq blueprint.srcAvatarWord blueprint.avatarLength
+      blueprint.length_srcAvatarWord w
+  change FreeGroup.norm
+      (FreeGroup.lift blueprint.srcAvatar (FreeGroup.mk w)) =
+        w.length * blueprint.avatarLength
+  rw [lift_mk_eq_mk_avatarSubst blueprint.srcAvatarWord blueprint.srcAvatar
+    (fun _ ↦ rfl) w]
+  change (FreeGroup.mk out).toWord.length = w.length * blueprint.avatarLength
+  rw [AvatarMetricCheck.toWord_mk_of_forall_positive houtpos, houtlen]
+
 /-- The protected avatar remains nontrivial after amplification. -/
 theorem blueprint_protectedWord_ne_one :
     FreeGroup.lift blueprint.srcAvatar blueprint.protectedWord ≠ 1 := by
@@ -236,4 +261,3 @@ end
 
 end LiteralAffineFreeProductAvatarBlueprint
 end GroupApproximation
-
