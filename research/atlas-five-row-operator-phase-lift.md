@@ -101,6 +101,24 @@ This reduction also isolates the important caveat: excluding common zeros
 in each fixed finite dimension does **not** prove the required uniform
 amplified gap.  The infimum could still tend to zero as `k` grows.
 
+## Six-relator quotient compression
+
+All nineteen boundary phase endpoints lie in the transported copy of
+`H=GL_3(2)`.  Consequently the ordinary group-theoretic claim
+`atlas-six-relator-quotient-identifies-h-bridge` is sufficient for `(FPL4)`.
+Four fixed van Kampen fillings of the standard `H` bridges control every
+endpoint phase by telescoping; summing the at most four edges in each row
+gives the multiplicity-independent inequality.  This is recorded precisely
+in `atlas-six-relator-bridge-filling-proves-five-row-phase-lift`.
+
+The compression has an equally sharp negative side.  Any finite quotient of
+the six-relator group which injects both marked `A8` factors and separates an
+`H` bridge yields, in its left regular representation, an exact amplified
+countermodel: all six nonlinear defects vanish while five-row coercivity
+makes the linear energy positive.  Thus the remaining exact-algebra audit is
+an ordinary bridge-triviality-or-finite-quotient problem, not a search over
+twenty-seven independent phase variables.
+
 ## Bounded exact finite screen
 
 `experiments/atlas_five_row_phase_finite_screen.py` replays three exact

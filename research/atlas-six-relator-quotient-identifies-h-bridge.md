@@ -1,0 +1,56 @@
+---
+rg: 2
+id: atlas-six-relator-quotient-identifies-h-bridge
+kind: claim
+title: The five saturated boundary rows and 19243 centrality identify the two rank-three chart subgroups
+distinct_from:
+  atlas-boundary-h-finite-quotient-scan: that excludes unequal copies only inside one A8 overgroup; this asks for equality in the universal six-relator quotient.
+  atlas-a4-19243-parabolic-normal-closure: that computes the normal closure of one collision translation inside one chart; this concerns bridge elements between two chart factors.
+  atlas-five-row-operator-phase-lift: that is the resulting normalized-HS inequality; this is its purely group-theoretic sufficient condition.
+---
+
+**OPEN.**  Work in the coordinates obtained by transporting the second
+`A8` chart through the certified classical alignment.  Let
+
+```text
+Gamma_6=(A8_1*A8_2)/<<s_0,s_11,s_30,s_44,s_55,c_19243>>,       (SXB1)
+```
+
+where the five `s_j` are the saturated first-boundary words and
+`c_19243` is the transported interior commutator.  Both copies contain the
+literally labelled subgroup
+
+```text
+H=diag(GL_3(F2),1) ~= GL_3(2).
+```
+
+Prove that the two maps from `H` to `Gamma_6` agree.  Equivalently, for the
+four standard transvections `T` generating `H`, prove
+
+```text
+i_2(t)i_1(t)^-1=1 in Gamma_6                 (t in T).          (SXB2)
+```
+
+This is a finite normal-closure problem.  Any proof supplies four finite van
+Kampen expressions in conjugates of the six displayed relators; no uniform
+family or asymptotic filling theorem is being requested.
+
+## Exact finite audit
+
+In the natural `A9` overgroup, exhaustive evaluation of all `362880`
+conjugators finds exactly one solution of the five boundary rows, the
+diagonal labelled chart, and that solution fails `c_19243`.  Hence this
+overgroup supplies no six-relator solution.  The audit is finite evidence
+only and does not prove `(SXB2)` in the universal quotient.
+
+## Falsification criterion
+
+A finite quotient `F` of `Gamma_6` in which both marked `A8` factors inject
+and at least one bridge in `(SXB2)` survives refutes
+`atlas-five-row-operator-phase-lift`.  Indeed, the left regular
+representation of `F` restricts to `[F:A8]` copies of the regular
+representation on either chart.  After a unitary identification of these two
+restrictions, all six nonlinear defects vanish.  A surviving bridge gives
+positive `H` covariance, and the established five-row linear coercivity then
+forces at least one of the five linear energies to be positive.
+
