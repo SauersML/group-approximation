@@ -94,6 +94,16 @@ law now stands verified at `q = 2, 3, 4, 5` at every deletion depth,
 in characteristics two, three, four... i.e. both small characteristics
 and a prime `>= 5`.
 
+Addendum 7 (same day, experiments/km_w4_opposition_connectivity.py):
+`W(4)` completes the validation matrix for the threshold law on the
+quadrangle side (`d = 3`): connected at `k = 5, 4, 3` (the `k = 3`
+case is the quadrangle's first connected proper double deletion), and
+exactly `q = 4` components of `2q` points at `k = 2` -- the
+`q . K_(q,q)` pattern in even characteristic.  Totals: hexagon
+verified at `q = 2, 3, 4, 5`, quadrangle at `q = 3, 4`, grid by rank
+check; characteristics two, three, four and five all consistent with
+the characteristic-free law.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
