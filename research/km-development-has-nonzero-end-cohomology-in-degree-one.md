@@ -3,6 +3,8 @@ rg: 2
 id: km-development-has-nonzero-end-cohomology-in-degree-one
 kind: claim
 title: The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
+artifacts:
+  - research/artifacts/km-lattice-cohomology-and-lp-fork-2026-08-23.md
 distinct_from:
   compact-hyperbolic-km-lattices-fail-lp: that is the C*-algebraic LP conclusion; this is the single topological input, `H^1_infty(X;Z)!=0` for the development `X`, which by `km-group-ring-h2-is-development-end-cohomology` is literally `H^2(Lambda,Z Lambda)!=0`.
   km-lattices-admit-no-cocompact-npc-model: that shows the development is not CAT(0), so neither contractibility nor visual-boundary methods are available; this asks a weaker question about the development, which does not require contractibility and is insensitive to `H_2(X)` except through the pairing with compactly supported classes.
