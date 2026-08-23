@@ -450,6 +450,20 @@ non-hyperlinear group `hat K rtimes Lambda`.
   finite-dimensional **ambient lattice** approximants; finite normal
   generation inside `F_m` and the sparse free-actor packets do not provide
   them.
+- **The actual Mihailova kernel has a uniform profinite reverse gap (proved,
+  2026-08-23).**
+  `mihailova-kernel-has-profinite-reverse-tau-gap` closes the preceding Fell
+  construction for the no-finite-quotient choice of `Q`.  Profinite density
+  of `E` makes `N` dense in the profinite completion of `SL_3(Z)`.  Zariski
+  density, strong approximation, and a finite enlargement inside `N` then
+  produce a finitely generated profinitely dense subgroup `Gamma<N`.
+  Bourgain--Varju arbitrary-modulus expansion gives one finite `S<N` with a
+  uniform spectral gap on every finite-image ambient representation.  Hence
+  vectors whose coefficients tend to one on `N` approach the ambient
+  invariant subspace and have coefficient tending to one on all of `SL_3`,
+  never `1_N`.  Equivalently `lambda_(SL_3/N)` is not weakly contained in the
+  profinite Peter--Weyl representation.  This refutes the Gaussian/Fell model,
+  but not arbitrary nonliftable HS microstates of the wreath.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the

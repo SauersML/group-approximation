@@ -48,3 +48,11 @@ generation of `N` inside `F_m` supplies no induction theorem preserving
 finite dimensionality, and the sparse-orbit counterpacket supplies only
 free-actor permutations, not ambient lattice representations.  This is the
 strictly weaker finite-observable boundary left after action soficity.
+
+**Arithmetic verdict (closed later).**
+`mihailova-kernel-has-profinite-reverse-tau-gap` proves that `(FDC2)` fails
+for the actual no-finite-quotient Mihailova kernel.  It extracts a finitely
+generated profinitely dense subgroup inside `N` and applies Bourgain--Varju
+arbitrary-modulus expansion.  Approximate invariance under `N` then forces
+uniform proximity to the ambient invariant subspace in every finite-image
+representation, contradicting the coefficient value zero off `N`.
