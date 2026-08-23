@@ -39,6 +39,17 @@ dist_2(Q,{P,I-P})^2=m.                                  (R3)
 For `0<=x<=1`, one has `m/2<=x(1-x)<=m`, which proves
 `2m<=E<=4m`.
 
+There is also a useful block form.  Relative to `P H direct_sum (I-P)H`,
+unitarity and equality of the two block ranks give
+
+```text
+||PaP||_2^2=||(I-P)a(I-P)||_2^2=tr(PQ),
+||Pa(I-P)||_2^2=||(I-P)aP||_2^2=1/2-tr(PQ).              (R4)
+```
+
+Hence the total diagonal and off-diagonal masses are `D=x`, `O=1-x`, and
+`E=4DO`.
+
 We now compare failure sequences.  A sequence of balanced projections
 satisfying `(BPE1)` but violating `(BPE2)` gives trace-zero involutions
 `v_n=I-2P_n` which centralize `rho_n(C)` asymptotically and retain positive
@@ -61,11 +72,26 @@ are exact trace-half projections.  Ordinary asymptotic centrality of `v_n`
 is exactly `(BPE1)`, and `(R3)` makes their endpoint distance uniformly
 positive.  This violates `(BPE2)`.
 
-Finally, when endpoint transfer holds, `(R3)` gives vanishing projective
-target energy.  The explicit SL3 rank-one denominator estimate in
-`sl3-rank-one-denominator-self-commutator-removes-target-phase` upgrades the
-commutator from closeness to a scalar to closeness to `I`.  In projection
-language this excludes `Q_n=I-P_n+o(1)` and selects `Q_n=P_n+o(1)`.
+Finally the explicit SL3 rank-one denominator estimate gives more than
+asymptotic endpoint selection.  Since
+
+```text
+||[v,a]-I||_2^2=2-2tr([v,a])=4O,                         (R5)
+```
+
+its estimate, on a sequence with vanishing source and presentation defect,
+reads
+
+```text
+2 sqrt(O)<=2 sqrt(2E)+o(1)=4 sqrt(2DO)+o(1).             (R6)
+```
+
+If `O` does not vanish, division along a positive-mass subsequence gives
+`liminf D>=1/8`.  Therefore `E=4DO` is bounded below by
+`O/2-o(1)` on every possible enemy, while always `E<=4O`.  Projective
+transfer is consequently equivalent, for this SL3 presentation, to the
+one-sided balanced projection conclusion `||P-aPa^*||_2->0`; the
+complementary branch is quantitatively unavailable.
 
 The already established tensor-amplification linearization then converts
 this qualitative equivalence into the same dimension-free linear-modulus

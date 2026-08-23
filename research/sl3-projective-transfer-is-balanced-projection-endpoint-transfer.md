@@ -49,16 +49,37 @@ and hence, with `E=1-|tr([(I-2P),a])|^2`,
  <=4 dist_2(Q,{P,I-P})^2.                                 (BPE4)
 ```
 
+Relative to `P H direct_sum (I-P)H`, let `D` and `O` be the total
+normalized squared Hilbert--Schmidt mass of the two diagonal and the two
+off-diagonal blocks of `a`.  Then
+
+```text
+D=2 tr(PQ),       O=1-D,       E=4DO.                     (BPE5)
+```
+
 No commutation hypothesis on `P,Q` occurs in `(BPE3)`--`(BPE4)`.
 Consequently the full projective SL3 problem is a nonlinear endpoint
 selection problem for one half-rank projection, rather than a general
 unitary-orbit problem.  The existing rank-one denominator identity removes
-the complementary endpoint after projective energy has vanished: in the
-SL3 packet, `(BPE2)` plus vanishing source and presentation defect upgrades
-to `||Q_n-P_n||_2->0`.
+the projective ambiguity quantitatively.  In the SL3 packet, vanishing
+source and presentation defect give
+
+```text
+2 sqrt(O_n) <= 4 sqrt(2 D_n O_n)+o(1).                    (BPE6)
+```
+
+Thus every sequence with `liminf O_n>0` has
+`liminf D_n>=1/8`.  On every possible enemy, projective target energy and
+ordinary off-diagonal block mass are therefore comparable:
+
+```text
+(1/2)O_n-o(1) <= E_n <=4O_n.                              (BPE7)
+```
+
+Consequently the SL3 claim is equivalently the one-sided conclusion
+`||Q_n-P_n||_2->0`; the complementary endpoint cannot occur in an enemy.
 
 This does not establish `(BPE2)`.  It shows precisely why the native
 commuting-conjugate lamp is a genuine restriction: that route adds
 `[P_n,Q_n]=0`, whereas an arbitrary projective-transfer enemy obtained by
 the universal dilation need not have commuting endpoint charts.
-

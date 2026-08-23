@@ -206,8 +206,13 @@ weakening consumed by the HNN marked word.
 
   Thus `(PTS1)` is equivalent at the qualitative/linearized level to saying
   that every asymptotically `C`-invariant half-rank projection is sent by
-  `h` to either itself or its complement.  The rank-one denominator identity
-  then excludes the complementary endpoint and selects actual invariance.
+  `h` to either itself or its complement.  More sharply, if `D,O` are the
+  diagonal and off-diagonal block masses of `rho(h)` relative to `P`, then
+  the target energy is exactly `4DO`.  The rank-one denominator identity
+  forces `D>=1/8-o(1)` on every sequence with nonvanishing `O`, so target
+  energy is at least `O/2-o(1)`.  It therefore excludes the complementary
+  branch quantitatively and reduces the claim to actual invariance
+  `||rho(h)P rho(h)^*-P||_2->0`.
   This is sharper than the native commuting-conjugate lamp problem: the
   generic dilation produces no relation `[P,Q]=0`.  The remaining theorem is
   therefore a balanced projection endpoint-transfer statement for an
