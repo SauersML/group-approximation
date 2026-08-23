@@ -1539,7 +1539,7 @@ import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
 import GroupApproximation.Sofic.LiteralTorsionFreeRouterSourceNoGo
-import GroupApproximation.Sofic.AvatarDefectTieNoGo
+import GroupApproximation.Sofic.LiteralAffineFreeProductAvatarBlueprint
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerReducedness
