@@ -15,6 +15,7 @@ distinct_from:
   summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
   summed-reynolds-carrier-transports-only-tautologically: that transports the high-density projection and its polar corrections through every chart by replacing the projection with the full carrier, but shows that the resulting paths are only I and the original kernel word; this must compare the polar path with the independently exactified P_13 coefficient.
   one-state-protected-coefficient-leaves-relative-gh-gauge: that proves a full-trace unitary coefficient pins the relative multiplicity gauge exactly, but a single state-dependent protected coefficient leaves an exact amplified counterpacket even for faithful states; this must obtain operator-level trace control for the Reynolds polar coefficient.
+  common-gh-isometry-selects-the-two-overlap-cross-coefficient: that derives this operator-level cross coefficient by averaging the same normalized-HS Gowers--Hatami isometry over P_1 and P_3; this must turn two near coincident subgroup polar supports into one exactly simultaneous invariant source.
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
@@ -277,9 +278,26 @@ on a trace-`1-o(1)` complement; flipping that complement has vanishing state
 error and normalized-HS distance tending to two, while preserving every
 packet intertwining equation.  Lin's exact opposite-algebra preservation
 does not rescue this because the Reynolds polar coefficient commutes only
-with `P_0`, not with the whole `P_13` packet.  The open theorem must therefore
-protect `tilde B_a` in ambient trace norm, or establish a dimension-free
-lower density bound before applying state-dependent exactification.
+with `P_0`, not with the whole `P_13` packet.
+
+For the normalized-HS Gowers--Hatami exactification actually used here, the
+identity-gauge audit is positive.
+`common-gh-isometry-selects-the-two-overlap-cross-coefficient` averages the
+**same** comparison isometry over `P_1` and `P_3`.  The two polar
+intertwiners have a cross coefficient `I+o_2(1)` on a `1-o(1)` source, hence
+it is automatically close to every `tilde B_a=I+o_2(1)`.  A common target
+gauge cancels from this cross coefficient, so arbitrary-gauge examples do
+not refute existence of this coherent choice.  The approximate coefficient
+selection is therefore closed.
+
+The exact residual is support invariance.  Each polar source is invariant
+under its own overlap subgroup, but their large intersection need not be
+invariant under either; moreover a near-identity mismatch can have full rank
+and no literal fixed subspace.  Turning these selected near-coincident maps
+into one exact intertwiner for both `P_1` and `P_3`, while making the analogous
+choice around the other two edges, is the nonlinear cochain correction in
+`relative-three-chart-correction-is-km-regular-stability`.  Quarantining
+`o(d)` dimensions does not make that full-rank near mismatch vanish.
 
 ## The kernel basis already builds the missing finite rank-two chart
 

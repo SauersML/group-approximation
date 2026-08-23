@@ -8,6 +8,7 @@ distinct_from:
   lin-canonical-dilation-twirls-unprotected-left-carriers: that shows Lin's explicit isometry Reynolds-twirls an unprotected left operator; this gives an exact amplified counterpacket even when one nonzero coefficient is protected state-dependently.
   one-cross-gram-moment-extracts-the-common-polar-gauge: that extracts a relative commutant unitary after a full cross-Gram mass hypothesis; this identifies the equivalent operator-level unitary coefficient and proves that a one-state substitute is insufficient.
   summed-reynolds-carrier-transports-only-tautologically: that produces a full-carrier extension of the tree-side polar unitary; this determines exactly what form of protection would synchronize its gauge with the P_13 exactification.
+  common-gh-isometry-selects-the-two-overlap-cross-coefficient: that obtains the needed full-trace cross coefficient from one common normalized-HS exactification isometry; this counterpacket applies when only unrelated state-dependent protected intertwiners are supplied.
 ---
 
 **ESTABLISHED.**  Let `sigma:G->U(L)` be any finite-dimensional exact
@@ -85,3 +86,9 @@ The residual bridge is consequently exact and minimal: construct the
 dimension-free density domination which makes the state-dependent estimate
 equivalent to that operator equation.  Merely asking for commutant
 preservation or one faithful state does not suffice.
+This state-dependent obstruction does not survive the stronger hypothesis
+that both overlap comparisons come from the **same** normalized-HS
+Gowers--Hatami isometry.  In that setting
+`common-gh-isometry-selects-the-two-overlap-cross-coefficient` derives the
+full-trace cross coefficient directly.  Its remaining obstruction is exact
+simultaneous invariance, not multiplicity-gauge selection.
