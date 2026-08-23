@@ -563,7 +563,7 @@ def plant(name: str, root: Path) -> None:
     elif name == "signature edited on one side":
         path = solution(root)
         path.write_text(path.read_text().replace(
-            "    IsSoficGroup E ∧\n", "    IsSoficGroup E ∧ True ∧\n", 1))
+            "    IsSoficGroup E ∧ ¬", "    IsSoficGroup E ∧ True ∧ ¬", 1))
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":
