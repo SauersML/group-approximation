@@ -6,6 +6,7 @@ import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTheoremAPackage

@@ -1456,6 +1456,7 @@ import GroupApproximation.Analysis.ConvexUnitVectorRigidity
 import GroupApproximation.Sofic.GreendlingerMaxConjugator
 import GroupApproximation.Sofic.OrderPreservingDegeneracy
 import GroupApproximation.Sofic.BareDefectSource
+import GroupApproximation.Sofic.SingleDefectSaturation
 import GroupApproximation.Algebra.CongruenceTorsionFree
 import GroupApproximation.Kazhdan.SL3Certificate
 import GroupApproximation.Sofic.BespokeRouterConstruction
