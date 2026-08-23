@@ -1507,6 +1507,7 @@ import GroupApproximation.Sofic.GreendlingerSharpLandingProduction
 import GroupApproximation.Sofic.GreendlingerSharpHeadLanding
 import GroupApproximation.Sofic.GreendlingerCompositeWellPosed
 import GroupApproximation.Sofic.GreendlingerNoDeepCollapse
+import GroupApproximation.Sofic.GreendlingerEmptyConjCorner
 import GroupApproximation.Sofic.LiteralAffineFreeProductSource
 import GroupApproximation.Sofic.LiteralAffineHullCommonQuotientInput
 import GroupApproximation.Sofic.LiteralAffineFreeProductBassSerre
@@ -1577,6 +1578,7 @@ import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerReducedness
 import GroupApproximation.Sofic.AmalgamMFTrace
+import GroupApproximation.Sofic.TerminalQuotientPresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
