@@ -4,6 +4,118 @@
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: exact Lean counterpart, complete paper proof, or stated literature input. Exact claims carry exact-role margin declarations; paper and literature claims carry none.",
   "claims": [
     {
+      "id": "def:E",
+      "environment": "definition",
+      "title": "",
+      "statement_sha256": "070823e5404eaa431d532ea4c374e1abb883291f5cf40455ceb4bf6bcfb20f8b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFPresentation",
+          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:literal-base-T",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "4955bce3c162ac27864633e4c35dd3484798530f2190589df83653678709ee1e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBaseP13PropertyTBridge",
+          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:linear",
+      "environment": "lemma",
+      "title": "linear model",
+      "statement_sha256": "f475a90d8ab3f62179a6443d62dabf81057930a262c7200b329a4fd1c981ab68",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:witness",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "1a168e6eb3a8fb3233666b9fa5211468dedd08adba7dfcdacbb013dbffd59914",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "con:clifford",
+        "lem:linear",
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFLinearWitness",
+          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:relator-uniform",
+      "environment": "corollary",
+      "title": "a uniform obstruction on the presentation",
+      "statement_sha256": "3353f0f5c22fd78010a9dd91d718ef61d6ac17e8ec86ce87b24e75d9399521fb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "def:E",
+        "lem:unitarycorona"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralRelatorObstruction",
+          "declaration": "GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:signfree",
       "environment": "mainthm",
       "title": "the quotient of $E$ by $\\langle w\\rangle$",
@@ -70,7 +182,7 @@
       "id": "thm:Esofic",
       "environment": "mainthm",
       "title": "the explicit group is sofic",
-      "statement_sha256": "ec130627c7ca1db81ec606e539484e93d372a1cd4888b06d03cfbfe80dc6f462",
+      "statement_sha256": "883dcd02d25bf9aad0684941b5b50b0deaacc3c45b46f300dd684b98108697c3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -358,7 +470,7 @@
       "id": "cor:notRFD",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "3ab0c34ceeaabcade064f12a2a4c7f1ddb91763ec2b65ed0e9541da8f9f4b569",
+      "statement_sha256": "de48999e57c915773f2670e21c11043978cdbefcb63e206fc4a48b41e1e580ef",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -705,7 +817,7 @@
       "id": "thm:exact-mf-residual",
       "environment": "theorem",
       "title": "the exact MF residual",
-      "statement_sha256": "36dba347bdeda5e7b562699ec455a19e80e70b6ca5876595917c9aac130b68ff",
+      "statement_sha256": "97e3e895c912f5e5c512ce1b41b5201b36da50912b0b2dcc8080ae5271aa6620",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
       "dependencies": [

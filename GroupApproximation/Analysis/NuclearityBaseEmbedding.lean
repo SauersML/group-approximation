@@ -4,19 +4,16 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 /-!
 # The canonical map `𝓑 → E` is injective
 
-The nonnuclearity paragraph of `non_mf_groups_exist.tex` (navigate by the
+The nonnuclearity paragraph of `non_mf_group_notes.tex` (navigate by the
 anchor string "The algebra is not nuclear") opens with
 
-> the canonical map `\mathcal B → E` is injective (Section `sec:witness`)
+> the canonical map `\mathcal B → E` is injective (Section
+> `sec:literal-presentation`)
 
-and this module proves exactly that, by the route the manuscript names --- with
-one bookkeeping remark.  The printed pointer is to Section `sec:witness`
-alone, and that section supplies only half of what is needed: the witness
-homomorphism `E → W` and the injectivity of the level-zero map `j`.  The other
-half, that `\mathcal B → \bar\Gamma` is an *isomorphism* rather than merely a
-surjection, is Remark `rem:classical-base`.  The proof below uses both, which
-is what the sentence means and what the two badged declarations already
-supply; no step is used that the manuscript does not print somewhere.
+and this module proves exactly that by the route the notes name.  Section
+`sec:literal-presentation` contains both ingredients: the witness homomorphism
+`E → W` with its injective level-zero map `j`, and Remark
+`rem:classical-base`, which identifies `\mathcal B` with the affine group.
 
 The claim is not free.  Definition `def:E` introduces `ι : \mathcal B → E`
 with the explicit warning "This map is not assumed to be injective", and every
@@ -27,7 +24,7 @@ of the twenty-relator presentation.
 
 ## The route
 
-Section `sec:witness` builds `W = \Cl(X) ⋊ Σ` and a homomorphism `E → W`
+Section `sec:literal-presentation` builds `W = \Cl(X) ⋊ Σ` and a homomorphism `E → W`
 carrying the six base letters to the level-zero copy `j(\bar\Gamma)` of the
 exact affine matrix group.  Compose:
 
@@ -48,7 +45,7 @@ twice over:
   on the rotation factor and the exact translation normal form on the lattice
   factor.
 * `MarkedCompression.iotaAmbient_injective` --- the hooked arrow in Section
-  `sec:witness`'s "let `j : \bar\Gamma ↪ Σ` be the level-zero map".  In the
+  `sec:literal-presentation`'s "let `j : \bar\Gamma ↪ Σ` be the level-zero map".  In the
   telescope this is structural: the level-zero copy survives both the direct
   limit and the adjunction of the Clifford lamps.
 

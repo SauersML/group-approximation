@@ -245,7 +245,16 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 # Numbered claims whose formal counterpart intentionally uses different
 # binders are recorded here.  The current manuscript subgroup statements now
 # have literal subgroup-coordinate wrappers, so this table is empty.
-SPECIALIZATION_IDENTITIES: dict[str, str] = {}
+SPECIALIZATION_IDENTITIES: dict[str, str] = {
+    "thm:A": (
+        "The companion notes identify the printed affine construction with "
+        "the literal presented group used by the named declarations; the "
+        "printed conclusions are invariant under that identification."),
+    "cor:uniform": (
+        "The companion notes identify the printed affine construction with "
+        "the literal presented group used by the named declaration, carrying "
+        "the distinguished element and the local obstruction with it."),
+}
 
 
 # No single declaration states these enumerated claims as one conjunction;
@@ -260,11 +269,9 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:generaltransport": ["thm:kazhdan-transport"],
     "thm:compression-radical": ["thm:kazhdan-transport"],
     "thm:kazhdan-clifford": ["prop:mf-equivalences",
-                              "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
+                              "thm:sign-criterion", "thm:kazhdan-transport",
                               "con:clifford"],
-    "thm:A": ["def:E", "prop:mf-equivalences", "prop:literal-base-T",
-              "prop:witness", "thm:kazhdan-clifford",
-              "lem:unitarycorona", "lem:square"],
+    "thm:A": ["thm:kazhdan-clifford", "lem:unitarycorona"],
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "cor:uniform": ["thm:A"],
     "cor:relator-uniform": ["thm:A", "def:E", "lem:unitarycorona"],
@@ -374,8 +381,8 @@ def generate(tex: Path) -> dict:
             if claim.claim_id in SPECIALIZATION_IDENTITIES:
                 if (pm, pd) == (module, declaration):
                     return (
-                        "the complete printed proposition by the inclusion "
-                        "specialization recorded above")
+                        "the complete printed proposition under the "
+                        "specialization or identification recorded above")
                 return "a printed conclusion of the proposition"
             if claim.claim_id in COLLECTIVE_CLAIMS:
                 return "one printed clause; the listed declarations are collective"

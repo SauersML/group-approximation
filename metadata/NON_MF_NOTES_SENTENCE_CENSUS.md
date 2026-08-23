@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 477 |
-| `formalized` | 163 |
-| `structural` | 18 |
-| `definition` | 14 |
-| `attribution` | 9 |
+| `ledger` | 512 |
+| `formalized` | 176 |
+| `structural` | 26 |
+| `definition` | 16 |
+| `attribution` | 10 |
 | `open` | 1 |
 | `partial` | 1 |
-| **total** | **683** |
+| **total** | **742** |
 
-Carrying a declaration or a ledger row: **655/683** (95.9%).
+Carrying a declaration or a ledger row: **705/742** (95.0%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,16 +23,19 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`open`**, line 179 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`open`**, line 391 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 258 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 470 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 3 | 0 |
+| (front matter) | 4 | 0 |
+| A literal presentation and affine certificate | 13 | 0 |
+| Property~\textup{(T) | 33 | 0 |
+| The presentation-level obstruction | 12 | 0 |
 | Consequences of the example | 3 | 0 |
 | The quotient by the central involution | 6 | 0 |
 | A stably finite non-MF group algebra | 14 | 0 |

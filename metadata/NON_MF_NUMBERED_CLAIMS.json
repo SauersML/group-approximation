@@ -7,17 +7,12 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "42d22224247189d9fad0952a7de07d1d053ca7ad42a058cb93edf3c63d7ed95f",
+      "statement_sha256": "c5660134b135e2a867561e9e3bb21c7fa92fd6b1067329a7db2d0e157fa9deed",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declarations; the printed conclusions are invariant under that identification.",
       "dependencies": [
-        "def:E",
-        "prop:mf-equivalences",
-        "prop:literal-base-T",
-        "prop:witness",
         "thm:kazhdan-clifford",
-        "lem:unitarycorona",
-        "lem:square"
+        "lem:unitarycorona"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -27,7 +22,7 @@
           "role": "exact",
           "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
-          "covers": "the complete printed proposition"
+          "covers": "the complete printed proposition under the specialization or identification recorded above"
         },
         {
           "role": "exact",
@@ -299,144 +294,10 @@
       ]
     },
     {
-      "id": "thm:kazhdan-clifford",
-      "environment": "theorem",
-      "title": "the basic construction",
-      "statement_sha256": "afc58d4e7ad0f434fa306673ae1a876b8a9d065d6b737775943834e335fdbb66",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:mf-equivalences",
-        "thm:sign-criterion",
-        "thm:kazhdan-transport",
-        "lem:square",
-        "con:clifford"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/KazhdanCliffordConstruction",
-          "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "def:E",
-      "environment": "definition",
-      "title": "",
-      "statement_sha256": "e3cc332cc27791b46ad8d318d978536ee7b8aa376419e45c9d2e3b1a2318cbc8",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFPresentation",
-          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:square",
-      "environment": "lemma",
-      "title": "the distinguished word is a square",
-      "statement_sha256": "fee8f829203ad9be98d63f4adc6eaa6c18f21d8bc585e626d69a0b44fbac68f2",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/CompressionDefectSquare",
-          "declaration": "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:uniform",
-      "environment": "corollary",
-      "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:A"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralUniformObstruction",
-          "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:relator-uniform",
-      "environment": "corollary",
-      "title": "a uniform obstruction on the presentation",
-      "statement_sha256": "3353f0f5c22fd78010a9dd91d718ef61d6ac17e8ec86ce87b24e75d9399521fb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:A",
-        "def:E",
-        "lem:unitarycorona"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralRelatorObstruction",
-          "declaration": "GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:literal-base-T",
-      "environment": "proposition",
-      "title": "",
-      "statement_sha256": "4955bce3c162ac27864633e4c35dd3484798530f2190589df83653678709ee1e",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralBaseP13PropertyTBridge",
-          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford groups",
-      "statement_sha256": "aeebd5be01240d4047bbb0e7d14a73617b832cbe153fbbe307cdc67f39cb54b3",
+      "statement_sha256": "009265a7f2d936cde715f07e0a93b00cb3dbe737b5296fdc4fd9b7a53585013d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -453,14 +314,17 @@
       ]
     },
     {
-      "id": "lem:linear",
-      "environment": "lemma",
-      "title": "linear model",
-      "statement_sha256": "f475a90d8ab3f62179a6443d62dabf81057930a262c7200b329a4fd1c981ab68",
+      "id": "thm:kazhdan-clifford",
+      "environment": "theorem",
+      "title": "the basic construction",
+      "statement_sha256": "afc58d4e7ad0f434fa306673ae1a876b8a9d065d6b737775943834e335fdbb66",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:E"
+        "prop:mf-equivalences",
+        "thm:sign-criterion",
+        "thm:kazhdan-transport",
+        "con:clifford"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -468,23 +332,21 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel",
+          "module": "Sofic/KazhdanCliffordConstruction",
+          "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "prop:witness",
-      "environment": "proposition",
-      "title": "",
-      "statement_sha256": "1a168e6eb3a8fb3233666b9fa5211468dedd08adba7dfcdacbb013dbffd59914",
+      "id": "cor:uniform",
+      "environment": "corollary",
+      "title": "uniform finite operator-norm obstruction",
+      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declaration, carrying the distinguished element and the local obstruction with it.",
       "dependencies": [
-        "con:clifford",
-        "lem:linear",
-        "def:E"
+        "thm:A"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -492,9 +354,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFLinearWitness",
-          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
-          "covers": "the complete printed proposition"
+          "module": "Sofic/LiteralUniformObstruction",
+          "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
+          "covers": "the complete printed proposition under the specialization or identification recorded above"
         }
       ]
     }
