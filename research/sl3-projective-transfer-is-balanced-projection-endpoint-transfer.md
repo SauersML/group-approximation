@@ -83,3 +83,12 @@ This does not establish `(BPE2)`.  It shows precisely why the native
 commuting-conjugate lamp is a genuine restriction: that route adds
 `[P_n,Q_n]=0`, whereas an arbitrary projective-transfer enemy obtained by
 the universal dilation need not have commuting endpoint charts.
+
+There is no scalar overlap recurrence obtainable from the literal
+elementary-matrix relations alone.
+`full-arithmetic-bernoulli-projection-orbit-is-free-spherical` realizes the
+full actor `A` exactly in a tracial crossed product while the entire centered
+orbit of `P` is the orthonormal coset basis and `D=O=1/2` at `h`.  Thus the
+remaining one-sided projection theorem must use a matrix-coordinate premise;
+even all finite joint moments of the root/Iwahori projection orbit are
+compatible with maximal leakage in an exact tracial model.
