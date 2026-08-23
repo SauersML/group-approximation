@@ -113,3 +113,12 @@ operator-norm stability of `BS(1,4)` remains open in the cited primary
 literature.  Moreover separate core correction does not preserve the common
 involution, so even a positive answer to that open BS question would still
 need a joint or contractive relative step.
+
+The even earlier proposal to round only the first modular vertex and then
+take a square root of its product is ruled out quantitatively by
+`relative-first-triangle-rounding-has-an-odd-root-branch-firewall`.  On
+regular `PSL_2(F_p)` packets the square map folds positive-density pairs of
+nearly antipodal odd roots: the rounded product is `O(1/p)` from `S^2`, but
+all of its square roots are a constant distance from `S`.  Thus retaining
+the two exact vertex factors does not by itself retain the correct root
+branch.
