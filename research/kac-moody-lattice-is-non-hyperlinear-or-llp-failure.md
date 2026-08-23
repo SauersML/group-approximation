@@ -48,5 +48,9 @@ soficity permanence theorem).  Conversely, no LLP result reaches a
 Kazhdan group (`non-rf-kazhdan-group-with-llp-full-c-star-algebra`), and
 no LLP refutation reaches these lattices either:
 `twin-lattices-exclude-known-llp-fences` excludes every known
-LLP-failure group as a subgroup, and the direct cohomological mechanism
-is vacuous at simple groups.
+LLP-failure group as a subgroup, and — established 2026-08-23 —
+`km-lattices-escape-all-published-llp-refutations` shows every
+published refutation MECHANISM is also vacuous here (ISW Theorem A
+needs finite-dimensional projective representations, killed by
+Malcev + simplicity; Corollaries D/E refute only the LP, with D's
+hypothesis false by `km-group-ring-h2-vanishes-for-the-lattices`).
