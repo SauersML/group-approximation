@@ -53,9 +53,11 @@ identification: they leave arbitrary centralizer-valued fiber holonomy.
 
 Consequently the following literal fields do not yet exist:
 
-1. word-visible source and target projectors defining one common corner
-   `L2(P M Q)` for every selected term;
-2. explicit compressed-word definitions of `W,R0,R1,L0,L1` in that corner;
+1. word-visible finite-carrier projectors together with a finite-matrix-only
+   positive-mass selection rule defining one common corner `L2(P M Q)` for
+   every selected term;
+2. explicit compressed-word definitions of `W,R0,R1,L0,L1` on that selected
+   corner;
 3. a selected list of hard/interior/comb **equations** constraining those
    blocks (as opposed to the raw and comb operator names);
 4. for every selected normal-closure consequence, a fixed bounded filling in
@@ -89,6 +91,10 @@ source_projector_word
 target_projector_word
 common_source_corner_id
 common_target_corner_id
+finite_matrix_selection_rule
+selection_hypotheses
+selection_mass_lower_bound
+selection_HS_loss_bound
 intermediate_type_path              # S3/S4 labels at every multiplication
 clebsch_gordan_channel_path
 exact_coefficient_Q_sqrt2
@@ -102,12 +108,27 @@ Acceptance requires:
   fixed bounded normal-closure filling in them;
 * every operator term has the same declared source and target corner before
   scalar row operations are performed;
+* the common multiplicity cut is produced by a genuinely finite-matrix-only
+  rule (for example a spectral/Gram selection on regular microstates), with
+  a dimension-independent HS loss and a fixed positive normalized-trace
+  lower bound;
 * the three desired column tags are justified by the explicit compressed
   definitions of `W,R0,R1,L0,L1`;
 * every untagged reduced path monomial is retained as a distinct nuisance
   column unless an exact packet law identifies it;
 * replaying the declared recouplings reproduces every coefficient in
   `Q(sqrt(2))` exactly.
+
+The finite-matrix-only qualifier is load-bearing.  A purely algebraic
+word-visible cut would hold in the exact Leavitt tracial countermodel as
+well.  Combined with quotient-rank three and the spectral Leavitt endpoint,
+it would manufacture a contradiction inside that exact model.  Equivalently,
+`universal-atlas-ideal-cannot-force-hall-deficit` already rules out the
+analogous universal forbidden-block extraction.  The authentication must
+therefore use finite multiplicity/regular-microstate information that is not
+a universal star-ideal consequence.  Literal finite-carrier projectors are
+allowed; universally identifying their external multiplicity reservoirs is
+not.
 
 Only after this artifact exists is it meaningful to compute
 
@@ -123,9 +144,9 @@ statement about an invented model rather than the Atlas packet.
 ## 4. Why no census script was run
 
 The existing programs can safely regenerate word lists and finite quotient
-images.  They cannot infer the absent common-corner map or decide which
-radical-quotient arrow a path monomial represents.  Encoding either choice
-inside a script would silently assume
+images.  They cannot infer the absent finite-matrix selection/common-corner
+map or decide which radical-quotient arrow a path monomial represents.
+Encoding either choice inside a script would silently assume
 `atlas-hard-packet-authenticates-s4-extension-triple`, the principal open
 theorem upstream of the rank calculation.  The conservative outcome of this
 audit is therefore the acquisition schema above, not a surrogate matrix.

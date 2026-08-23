@@ -45,3 +45,6 @@ with word provenance, bounded filling, common-corner typing, recoupling path,
 and every nuisance monomial.  The existing literal word files do not already
 satisfy that gate, by
 `atlas-word-inventory-does-not-define-typed-channel-census`.
+The common corner must be selected by a finite-matrix-only positive-mass rule;
+a universal algebraic authentication would also act in the exact Leavitt
+tracial countermodel and cannot feed the contradictory endpoint.

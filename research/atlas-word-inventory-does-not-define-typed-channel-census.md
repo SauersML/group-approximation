@@ -24,9 +24,10 @@ R0^* W L0-W,   R1^* W L1-W,   R0^* W L1.
 ```
 
 A projected coefficient row is defined only after specifying an actual
-relator equation (or a bounded normal-closure consequence), fixed source and
-target projectors, a product bracketing with its intermediate channels, and
-the reduced multiplicity monomial of every term.  The source-word artifact
+relator equation (or a bounded normal-closure consequence), fixed finite
+carrier projectors, a finite-matrix-only common multiplicity cut, a product
+bracketing with its intermediate channels, and the reduced multiplicity
+monomial of every term.  The source-word artifact
 names the raw and comb operators but supplies no equation constraining them.
 The shallow mixed-collision artifact stores counts but not its collision
 normal forms or packet fillings.  Most importantly, the existing notes leave
@@ -40,6 +41,14 @@ in `FALSE_TWO_RAW_COMPRESSORS_DO_NOT_IDENTIFY_FIBERS.md`.  Such a choice is
 the holonomy the decoder is meant to force, so inserting it before the row
 census is circular.  Likewise, deleting unmatched monomials would violate
 `atlas-mixed-minor-needs-nuisance-quotient-rank`.
+
+The absent cut cannot be replaced by a universal word-polynomial projector.
+Such a projector would also exist in the exact Leavitt tracial model, where
+the resulting three pairing defects would contradict the exact model itself.
+The required authentication must instead be a finite-matrix-only selection
+with positive normalized mass and dimension-independent HS loss.  This is
+the same category boundary recorded by
+`universal-atlas-ideal-cannot-force-hall-deficit` for universal support cuts.
 
 Therefore literal word replay can presently enumerate group words and
 finite quotient images, but cannot soundly emit the typed matrices `C,D`.

@@ -27,3 +27,10 @@ defines `W,R0,R1,L0,L1` as compressed word blocks, `[C D]` is not yet a
 well-defined output of the repository data.  The acquisition artifact lists
 the finite fields which make it well-defined without assuming the desired
 holonomy collapse.
+
+Moreover a universal algebraic choice of the common cut would pass unchanged
+to the exact Leavitt tracial model and would force the forbidden pairing
+collapse there.  The missing declaration is therefore not merely another
+word projector: it must include a finite-matrix-only positive-mass selection
+and its uniform HS estimate.  This prevents the census schema from silently
+crossing the finite-multiplicity category boundary.
