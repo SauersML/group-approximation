@@ -8,6 +8,7 @@ distinct_from:
   multipartite-triangle-curl-has-uniform-infinity-green-bound: that constructs a uniformly bounded Green operator for the base clique complex; this proves why that operator does not lift to the extra-label sector.
   right-u-reynolds-has-torus-hecke-blocks: that decomposes the proper-subtorus domain into explicit torus-character blocks; this gives the global labeled-edge geometry and the obstruction to a covering-space contraction.
   fourth-power-mersenne-reynolds-levels-have-diagonal-crt-coupling: that produces an explicit unbounded-index composite family and isolates its right-unipotent blocks; this gives the exact edge-refinement model shared by all proper-subtorus levels.
+  flat-gain-multipartite-covers-have-uniform-green-bound: that proves every genuine flat gain cover is gauge-trivial and retains the base Green bound; this proves the Reynolds refinement is not such a cover.
 ---
 
 **ESTABLISHED; COVERING-TRANSFER NO-GO.**  Let `Q` be a finite congruence
@@ -105,3 +106,12 @@ max(||C_(1,H_n)f_n||_infinity,||C_(2,H_n)f_n||_infinity)
 
 The base multipartite contraction settles none of `(PSE7)` because its
 entire image lies in the fiber-constant summand `(PSE3)`.
+
+Nor can divergence be attributed merely to a large deck group or to
+unitary character phases.  `flat-gain-multipartite-covers-have-uniform-green-bound`
+proves that every genuine flat gain cover of the multipartite clique
+complex is gauge-trivial and has exactly the base Green norm, independently
+of the deck degree.  The arithmetic sector in `(PSE7)` is load-bearing
+precisely because `(PSE4)` omits the other deck translates of each
+triangle; it is an incomplete, curved label system rather than a flat
+local system.
