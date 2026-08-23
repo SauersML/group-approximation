@@ -31,10 +31,16 @@ slots are zero by definition of the target).
 At the matched-class slots `(p, p''_0)` with `class(p) = m`: `p` is
 deleted, its lines may bridge components, and if every class-`m` point
 had all its lines in one component then no path of the full graph could
-cross between components of the deleted graph, contradicting the
-connectedness of the full graph (`q = 3`; for `q = 2` even the full
-graph disconnects and one takes `c_0` a full-graph component, with the
-same collapse at surviving slots).  So some class-`m` point `p` has
+cross between components of the deleted graph, contradicting the fact
+that deletion strictly refines the components of the full graph: at
+`q = 3` the full graph is connected and deletion gives three pieces; at
+`q = 2` the full graph has two components and deletion refines them
+into four pieces (both computed), so within a full component some
+class-`m` point bridges two deleted-graph pieces.  (Note the full-graph
+components themselves would NOT work at `q = 2`: every point's lines
+stay in its own full component and the functional would vanish; the
+deleted-graph components within one full component are the correct
+choice, and `c_0` is taken among them.)  So some class-`m` point `p` has
 lines in `c_0` and outside it, and there `M_(p, p''_0) =
 (sum_(l in N(p) cap c_0) e_l^*) (x) xi`, a proper nonempty partial sum,
 nonzero on `Z_0(N p)`.  Thus `M` is a nonzero functional on the target
