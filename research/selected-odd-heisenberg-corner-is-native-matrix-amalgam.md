@@ -60,3 +60,10 @@ This is a reduction, not a no-go for `(OHM1)`.  A successful atlas there
 would be a proof of nonhyperlinearity.  It shows that merely attaching the
 finite Heisenberg packet, or tensoring an already chosen finite atlas by
 `e_chi`, cannot avoid the native analytic gate.
+
+There is also no literal-conjugate atlas shortcut inside this normal form.
+`native-conjugate-heisenberg-charts-share-only-edge-coefficients` proves that
+two distinct packet charts transported by native-vertex group words can
+share only coefficients supported on the cyclic amalgamating algebra.  Any
+live projection atlas must therefore use alternating multi-piece Hecke
+coefficients, rather than only conjugates of the finite `M_p` block.

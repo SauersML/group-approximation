@@ -33,3 +33,11 @@ no-CE atlas in this corner already proves `Gamma_A` nonhyperlinear.  Thus
 the coefficient link must genuinely use the native affine-Leavitt side; the
 finite Heisenberg matrix packet only supplies the local context block and
 the finite-dimensional-invisible selector.
+
+Literal native conjugation does not provide that use.
+`native-conjugate-heisenberg-charts-share-only-edge-coefficients` applies the
+amalgam normal form and shows that distinct conjugates of the `M_p` packet
+can identify only cyclic-edge-supported marginals.  Hence the surviving
+coefficient link must place its context projections themselves in
+alternating multi-piece Hecke support; conjugating one local packet per
+context cannot close the nonlinear atlas.
