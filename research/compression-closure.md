@@ -9,6 +9,7 @@ distinct_from:
   defect-saturation-full-mf-radical: That claim is a conditional single-group existence statement; this one is the unconditional definition-plus-soundness of the closure for every countable group.
   finite-normal-compression-obstruction: That claim is one sound rule — finite normal subgroups of the defect die; this one is the transfinite closure of all proven rules across all quotients.
   wreath-compression-mf-radical: That claim computes radical pieces in one wreath geometry; this one is the group-general closure of which such computations are stages.
+  radical-automorphization: That claim amplifies one radical kernel along a surjective self-map; this claim closes under arbitrary sound compression rules across quotients.
 ---
 
 For a countable group `H`, let `Delta_comp(H)` be the subgroup generated,
@@ -21,9 +22,9 @@ over ALL property-(T) subgroups `L <= H` and all one-sided compressors
   `k` whose represented spectrum is forced zero-dimensional (in
   particular every finite-order witness) — the projection rule.
 
-Both rule families are sound: `Delta_comp(H) <= Rad_MF(H)`.  Let
+Both rule families are sound: `Delta_comp(H) <= Rad_MF(H)`. Let
 `Cl_comp(H)` be the transfinite closure of the trivial subgroup under
-`N |-> q_N^{-1}(Delta_comp(H/N))` and unions.  Then
+`N |-> q_N^{-1}(Delta_comp(H/N))` and unions. Then
 
 ```text
 Cl_comp(H) <= Rad_MF(H);
@@ -31,12 +32,21 @@ Cl_comp(H) = Rad_MF(H)   whenever H/Cl_comp(H) is MF;
 Cl_comp(H) = H   forces   Hom(H, M) = 1 for every MF group M.
 ```
 
-**Why it matters.**  This is the witness-free formulation of the entire
+**Renormalization shortcut.** `radical-automorphization` adds a canonical
+amplifier that often avoids explicit transfinite quotient bookkeeping: if one
+compression rule proves `ker R <= Rad_MF(H)` for a surjective self-map, then all
+`ker(R^n)` enter the radical at once. `coset-compression-renormalization`
+constructs exactly such an `R` from every one-sided compressor on a torsion-lamp
+wreath. In the affine commuting-lamp test case its stable kernel is `L_0`, so
+the formerly designated test is now an exact computation.
+
+**Why it matters.** This is the witness-free formulation of the entire
 obstruction theory: the central sign, the Reynolds corner, the involution
 theorem, and the finite-`m` collapse are inference rules contributing
 relations to one canonical closure, and the research problem becomes
-computing when `Cl_comp = Rad_MF`
-(`commuting-lamp-mf-radical-is-level-even` is the first designated test).
-The two rule families cannot be merged into one: the diffuse walls of
-`infinite-cyclic-compression-lamp-mf` show the full compression defect is
-NOT sound, so the spectral/normality side conditions carry real content.
+computing when `Cl_comp = Rad_MF`.
+`commuting-lamp-mf-radical-is-level-even`, the first designated exactness test,
+is now established by the renormalization shortcut. The two rule families still
+cannot be merged into one: the diffuse walls of
+`infinite-cyclic-compression-lamp-mf` show the full compression defect is NOT
+sound, so the spectral/normality side conditions carry real content.
