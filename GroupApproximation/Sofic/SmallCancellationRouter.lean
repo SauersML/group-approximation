@@ -141,6 +141,39 @@ position. -/
 def IsPiece (S : Set (List (α × Bool))) (p : List (α × Bool)) : Prop :=
   ∃ w₁ ∈ S, ∃ w₂ ∈ S, w₁ ≠ w₂ ∧ p <+: w₁ ∧ p <+: w₂
 
+/-- A finite relator family has a strict uniform ceiling on the lengths of its
+pieces.  This is deliberately only a finiteness bound: obtaining a useful
+small-cancellation ratio still requires the ceiling to be small compared with
+the shortest relator. -/
+theorem exists_piece_length_ceiling {R : Set (List (α × Bool))}
+    (hR : R.Finite) :
+    ∃ C : ℕ, ∀ p, IsPiece (symmetrization R) p → p.length < C := by
+  classical
+  have hlength : ∃ C : ℕ, ∀ r ∈ R, r.length < C := by
+    induction R, hR using Set.Finite.induction_on with
+    | empty =>
+        exact ⟨1, by simp⟩
+    | @insert r R hr hR ih =>
+        obtain ⟨C, hC⟩ := ih
+        refine ⟨max (r.length + 1) C, ?_⟩
+        intro w hw
+        rcases Set.mem_insert_iff.mp hw with rfl | hw
+        · omega
+        · exact lt_of_lt_of_le (hC w hw) (Nat.le_max_right _ _)
+  obtain ⟨C, hC⟩ := hlength
+  refine ⟨C, ?_⟩
+  intro p hp
+  obtain ⟨w₁, hw₁, -, -, hp₁, -⟩ := hp
+  obtain ⟨r, hr, _, hrot | hrot⟩ := hw₁
+  · have hpLen : p.length ≤ w₁.length := hp₁.length_le
+    have hwLen : w₁.length = r.length := by
+      rw [hrot, List.length_rotate]
+    omega
+  · have hpLen : p.length ≤ w₁.length := hp₁.length_le
+    have hwLen : w₁.length = r.length := by
+      rw [hrot, List.length_rotate, FreeGroup.invRev_length]
+    omega
+
 /-- The metric condition `C'(λ)`: every piece occupies less than a
 `λ`-fraction of every symmetrized relator it prefixes.  For positive
 `λ` this in particular forces the relators to be nonempty, matching the

@@ -38,10 +38,34 @@ noncomputable def sourceWordPresentation : WordPresentation Ambient := by
   letI : Group.IsFinitelyPresented Ambient := ambient_isFinitelyPresented
   exact wordPresentation Ambient
 
-/-- Its unconditional positive Tietze transform. -/
+/-- Removing the empty relator does not change the presented normal subgroup.
+This normalization is necessary before any occurrence marker can be selected:
+the empty router word has no cyclic position at all. -/
+def withoutEmptyRelators {G : Type} [Group G]
+    (P : WordPresentation G) : WordPresentation G where
+  card := P.card
+  hom := P.hom
+  hom_surjective := P.hom_surjective
+  rel := {r | r ∈ P.rel ∧ r ≠ []}
+  rel_finite := P.rel_finite.subset fun _ hr ↦ hr.1
+  ker_le := by
+    intro x hx
+    have hle : wordSubgroup P.rel ≤ wordSubgroup {r | r ∈ P.rel ∧ r ≠ []} := by
+      refine Subgroup.normalClosure_le_normal ?_
+      rintro _ ⟨r, hr, rfl⟩
+      by_cases hnil : r = []
+      · subst r
+        rw [← FreeGroup.one_eq_mk]
+        exact one_mem _
+      · exact mem_wordSubgroup ⟨hr, hnil⟩
+    exact hle (P.ker_le hx)
+
+/-- Its unconditional positive Tietze transform, normalized to contain no
+empty relator. -/
 noncomputable def sourcePositiveWordPresentation : WordPresentation Ambient := by
   letI : Group.IsFinitelyPresented Ambient := ambient_isFinitelyPresented
-  exact PositivePresentation.presentation sourceWordPresentation
+  exact withoutEmptyRelators
+    (PositivePresentation.presentation sourceWordPresentation)
 
 /-- A positive name for an element of the amplified ambient. -/
 noncomputable def sourcePositiveName (g : Ambient) :
@@ -106,7 +130,8 @@ noncomputable def sourceData :
   pres := sourcePositiveWordPresentation
   rel_positive := by
     letI : Group.IsFinitelyPresented Ambient := ambient_isFinitelyPresented
-    exact PositivePresentation.presentation_rel_positive sourceWordPresentation
+    intro r hr
+    exact PositivePresentation.presentation_rel_positive sourceWordPresentation r hr.1
   basisOneWord := sourcePositiveName crossingDefect
   basisTwoWord := sourcePositiveName conjugateCrossing
   basisOneWord_positive := sourcePositiveName_positive crossingDefect
@@ -166,13 +191,27 @@ def gamma3TieElements : Fin 2 → CongruenceSubgroup.gamma3Partner.B
   | 0 => gamma3WitnessElement
   | 1 => gamma3WitnessElement23
 
+/-- The certified partner data with the same harmless empty-relator
+normalization as the source presentation. -/
+noncomputable def gamma3NonemptyPartnerData :
+    PartnerData CongruenceSubgroup.gamma3Partner.B where
+  pres := withoutEmptyRelators gamma3PositiveWordPresentation
+  rel_positive := by
+    intro r hr
+    exact PositivePresentation.presentation_rel_positive
+      gamma3WordPresentation r hr.1
+  tiePartnerWord := fun i ↦
+    PositivePresentation.name gamma3WordPresentation (gamma3TieElements i)
+  tiePartnerWord_positive := fun i ↦
+    PositivePresentation.name_positive gamma3WordPresentation (gamma3TieElements i)
+
 /-- The replacement blueprint, using the existing certified noncommuting
 `Gamma(3)` partner pair. -/
 noncomputable def blueprint :
-    Blueprint Ambient source.core.defectNormal source.s
+  Blueprint Ambient source.core.defectNormal source.s
       CongruenceSubgroup.gamma3Partner.B where
   src := sourceData
-  par := gamma3PartnerData gamma3TieElements
+  par := gamma3NonemptyPartnerData
 
 theorem blueprint_basis_ne_nil (k : Fin 2) :
     1 ≤ (blueprint.basisWord k).length := by
@@ -203,6 +242,17 @@ theorem length_blueprint_defectTieWord (i : Fin 2) :
   rw [blueprint_defectTieWord]
   simp [Nat.add_comm]
 
+/-- Finiteness gives an unconditional strict ceiling on every piece in the
+amplified router family.  The separate metric task is to make this ceiling at
+most one eighth of the shortest relator; arbitrary chosen presentations do not
+supply that ratio. -/
+theorem exists_blueprint_piece_length_ceiling :
+    ∃ C : ℕ, ∀ p,
+      SmallCancellationRouter.IsPiece
+        (SmallCancellationRouter.symmetrization blueprint.relators) p →
+      p.length < C :=
+  SmallCancellationRouter.exists_piece_length_ceiling blueprint.relators_finite
+
 /-- The protected avatar has exactly the unreduced substitution length.  Both
 the chosen source name and every avatar are positive, so no free reduction is
 lost at an avatar seam.  This turns the protected-ball input into a concrete
@@ -231,31 +281,18 @@ theorem blueprint_protected_norm :
 /-- The protected avatar remains nontrivial after amplification. -/
 theorem blueprint_protectedWord_ne_one :
     FreeGroup.lift blueprint.srcAvatar blueprint.protectedWord ≠ 1 := by
-  let w := sourcePositiveName source.s
-  let out := avatarSubst blueprint.srcAvatarWord w
-  have hwpos : ∀ c ∈ w, c.2 = true := sourcePositiveName_positive source.s
-  have hwne : w ≠ [] := sourcePositiveName_ne_nil source.s_ne_one
-  have hapos : ∀ k, ∀ c ∈ blueprint.srcAvatarWord k, c.2 = true :=
-    fun k ↦ forall_positive_avatarWord blueprint.avatarCount blueprint.codeL (k : ℕ)
-  have houtpos : ∀ c ∈ out, c.2 = true :=
-    forall_positive_avatarSubst blueprint.srcAvatarWord hapos hwpos
+  intro hone
+  have hnorm := blueprint_protected_norm
+  rw [hone] at hnorm
+  have hwpos : 0 < (sourcePositiveName source.s).length :=
+    List.length_pos_iff.mpr (sourcePositiveName_ne_nil source.s_ne_one)
   have havpos : 0 < blueprint.avatarLength :=
     lt_of_lt_of_le (by decide) blueprint.sixteen_le_avatarLength
-  have houtlen : out.length = w.length * blueprint.avatarLength :=
-    length_avatarSubst_eq blueprint.srcAvatarWord blueprint.avatarLength
-      blueprint.length_srcAvatarWord w
-  have houtne : out ≠ [] := by
-    apply List.ne_nil_of_length_pos
-    rw [houtlen]
-    exact Nat.mul_pos (List.length_pos_iff.mpr hwne) havpos
-  change FreeGroup.lift blueprint.srcAvatar (FreeGroup.mk w) ≠ 1
-  rw [lift_mk_eq_mk_avatarSubst blueprint.srcAvatarWord blueprint.srcAvatar
-    (fun _ ↦ rfl) w]
-  intro hone
-  have ht := congrArg FreeGroup.toWord hone
-  rw [AvatarMetricCheck.toWord_mk_of_forall_positive houtpos,
-    FreeGroup.toWord_one] at ht
-  exact houtne ht
+  have hprod : 0 <
+      (sourcePositiveName source.s).length * blueprint.avatarLength :=
+    Nat.mul_pos hwpos havpos
+  simp only [FreeGroup.norm_one] at hnorm
+  exact (Nat.ne_of_gt hprod) hnorm.symm
 
 end
 
