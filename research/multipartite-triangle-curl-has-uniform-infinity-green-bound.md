@@ -4,7 +4,7 @@ id: multipartite-triangle-curl-has-uniform-infinity-green-bound
 kind: claim
 title: Complete multipartite triangle curl has a uniform infinity Green bound
 distinct_from:
-  full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl: that identifies the arithmetic column with this simplicial operator; this constructs the dimension-free inverse estimate.
+  full-torus-reynolds-is-multipartite-curl: that identifies the arithmetic column with this simplicial operator; this constructs the dimension-free inverse estimate.
   scalar-reynolds-cb-norm-is-the-infinity-norm: that identifies scalar cb norm with infinity norm abstractly; this bounds that infinity norm for the multipartite family.
 ---
 
@@ -159,13 +159,13 @@ This decreases with `r>=3` and equals `7/3` at `r=3`, completing the
 uniform estimate.
 
 For the arithmetic family already identified in
-`full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl`,
+`full-torus-reynolds-is-multipartite-curl`,
 where `p>3` and hence `r=p+1>=6`, `(MTG2*)` is at most `22/15` (and is
 strictly smaller at every finite `m`).  The abstract estimate also covers
 `r=3,4`; no additional arithmetic square-class identification is asserted
 there.
 Combined with
-`full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl`,
+`full-torus-reynolds-is-multipartite-curl`,
 this proves a depth-independent scalar infinity/cb inverse bound for every
 full-torus prime-power column in the two-square-class case.  It does not
 cover proper subtori, the repeated-square-class case, or nonlinear

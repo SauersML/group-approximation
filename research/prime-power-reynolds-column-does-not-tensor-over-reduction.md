@@ -65,7 +65,7 @@ a contradiction.
 
 For this full-torus example the depth-two rank is now known exactly,
 without modular computation.
-`full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl`
+`full-torus-reynolds-is-multipartite-curl`
 identifies the domain with oriented edges of the complete six-partite
 graph with five vertices per part and the two Reynolds blocks with its
 triangle coboundary.  Its kernel is the `29`-dimensional gradient space,

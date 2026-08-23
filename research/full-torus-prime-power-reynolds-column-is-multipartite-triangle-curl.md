@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl
+id: full-torus-reynolds-is-multipartite-curl
 kind: claim
 title: Full-torus prime-power Reynolds columns are multipartite triangle curls
 distinct_from:
