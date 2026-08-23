@@ -19,3 +19,6 @@ For `(BRG6)`, write the retained Gram trace as
 `tr_ad(R_1VR_sV^*R_1)` and replace `VR_sV^*` by `R_0`; multiplication by
 orthogonal projections is HS-contractive.  Subtract the resulting upper
 bound from `tr_ad(R_s)=p^(-2)`.
+
+Expanding `R_1` and `R_s` as finite conjugation averages and using
+`tr_ad(Ad(W))=|tr_P(W)|^2` gives `(BRG5a)`.

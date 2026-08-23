@@ -70,6 +70,23 @@ in `(BRG1)--(BRG2)` is exact while the source leakage has the fixed value
 `p^(-2)-p^(-4)`.  In particular the child packets' group commutation does
 not imply that the **commutant** of one child is fixed by the other child.
 
+The leakage is already one finite trace-square observable.  If `H_s` and
+`H_1` denote the fixed source and transverse-child packet groups, with
+unitaries `S_g` and `Y_h` on the selected carrier, then
+
+```text
+||(I-R_1)V R_s||_(HS,ad)^2
+ =p^(-2)
+  -(1/(|H_s||H_1|)) sum_(g,h)
+       |tr_P(Y_h U_0 S_g U_0^*)|^2.                    (BRG5a)
+```
+
+This follows from `tr_ad(Ad(W))=|tr_P(W)|^2`.  Hence the missing payment is
+not an infinite basiswise assertion: it must raise one fixed cross-packet
+moment average from `p^(-4)` to `p^(-2)-o(1)`.  What is missing is the
+finite-matrix-only implication from the object-erasing range-sum fold to
+that moment increase.
+
 There is also a robust one-line reduction.  After exactifying the finite
 packets, suppose the branch covariance superoperator error is
 

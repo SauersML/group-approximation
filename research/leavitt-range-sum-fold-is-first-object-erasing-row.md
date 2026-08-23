@@ -67,6 +67,12 @@ the three occurrences in `(LRF2)` must make the fold defect charge
 ||(I-R_1) Ad(U_0) R_s||_(HS,ad)^2.                      (LRF5)
 ```
 
+By `leavitt-branch-reynolds-return-has-rectangular-gap`, `(LRF5)` is
+equivalently a lower bound on one explicit finite average of squared traces
+of the cross words `Y_hU_0S_gU_0^*`.  Thus the unresolved decoder has a
+finite scalar output; it need not reconstruct a basis of the growing
+multiplicity commutant.
+
 Without that matrix-coordinate decoding, `(LRF4)` is only equality of one
 long-root observable and does not identify its multiplicity reservoir.
 Accordingly the smallest native word has now been found; the unresolved
