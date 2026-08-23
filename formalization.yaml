@@ -2,9 +2,9 @@
 version: "v0.4"
 
 project:
-  name: "An explicit sofic group that is not MF"
+  name: "A non-MF group"
   description: >-
-    An explicit sofic group is not MF in the
+    There exists a countable group that is not MF in the
     Carrión-Dadarlat-Eckhardt operator-norm sense.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
@@ -15,7 +15,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "An explicit sofic group that is not MF"
+  - title: "A non-MF group"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."
@@ -55,20 +55,6 @@ sources:
     id: https://arxiv.org/abs/1711.10676
     relationship: background
 
-  - title: The set of quantum correlations is not closed
-    authors: [William Slofstra]
-    year: 2019
-    type: paper
-    id: https://doi.org/10.1017/fmp.2018.3
-    relationship: background
-
-  - title: A group with at least subexponential hyperlinear profile
-    authors: [William Slofstra]
-    year: 2019
-    type: paper
-    id: https://arxiv.org/abs/1806.05267
-    relationship: background
-
   - title: Nonsofic groups exist
     authors: [OpenAI]
     year: 2026
@@ -83,52 +69,11 @@ sources:
     id: https://arxiv.org/abs/2608.06222
     relationship: background
 
-  - title: On sofic groups
-    authors: [Gábor Elek, Endre Szabó]
-    year: 2006
-    type: paper
-    id: https://arxiv.org/abs/math/0305352
-    relationship: background
-
-  - title: Presentations for 3-dimensional special linear groups over integer rings
-    authors: [Marston D. E. Conder, Edmund F. Robertson, Peter Williams]
-    year: 1992
-    type: paper
-    id: https://doi.org/10.2307/2159559
-    relationship: background
-
-  - title: Kazhdan's property (T)
-    authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
-    year: 2008
-    type: book
-    relationship: background
-
 automation:
   methods:
     - method: agent
       models: [GPT-5.6 Sol, Claude Fable 5, Claude Opus 5]
       framework: Codex and Claude Code
-      tool_setup: >-
-        The named agents generated and revised the Lean development and prose
-        under maintainer direction.
-
-status:
-  scope: >-
-    Comparator selects the theorem that E is sofic and not MF. For this
-    countable group, the sequential operator-norm definition is equivalent to
-    the Carrión-Dadarlat-Eckhardt matrix-corona definition.
-  sorry_count: 0
-  sorry_in_definitions: 0
-  axioms: [propext, Quot.sound, Classical.choice]
-
-fidelity:
-  divergences: >-
-    The statement uses standard finite-set soficity and the equivalent
-    sequential definition of the MF property for countable groups.
-
-alignment: >-
-  ExplicitNonMF.explicit_sofic_not_MF states that the presented group E is
-  sofic and not MF.
 
 review:
   status: self-assessed

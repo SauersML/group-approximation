@@ -1,6 +1,6 @@
 {
   "challenge_module": "Palomar.Challenge",
   "solution_module": "PalomarSolution",
-  "theorem_names": ["ExplicitNonMF.explicit_sofic_not_MF"],
+  "theorem_names": ["NonMFExistence.exists_countable_not_MF"],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
 }
