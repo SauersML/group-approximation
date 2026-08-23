@@ -2,7 +2,7 @@
 rg: 2
 id: atlas-six-relator-phase-lift-has-an-exact-leavitt-tracial-countermodel
 kind: claim
-title: The six Atlas phase cycles have an exact positive-energy countermodel in a Leavitt HNN trace
+title: The six Atlas phase cycles have an exact positive-energy countermodel in the canonical Leavitt trace
 distinct_from:
   atlas-independent-phase-incidence-is-not-coercive: that frees the twenty-seven phase occurrences and gives a finite-dimensional private-edge countermodel; this retains the common conjugation orbit exactly but uses the infinite canonical Leavitt trace.
   atlas-six-relator-exact-phase-escape-is-a-finite-quotient-test: that classifies finite-dimensional exact escapes; this proves an unconditional exact tracial escape in the infinite Leavitt quotient.
@@ -16,7 +16,7 @@ Gamma_6=(A8_1*A8_2)/<<s_0,s_11,s_30,s_44,s_55,c_19243>>
 ```
 
 and let `Q` be the exact binary Leavitt Atlas quotient.  There is a tracial
-unitary model, obtained from a finite-subgroup HNN extension of `Q`, in which
+unitary model inside the canonical group factor `L(Q)` in which
 
 ```text
 e_0=e_11=e_30=e_44=e_55=e_int=0
