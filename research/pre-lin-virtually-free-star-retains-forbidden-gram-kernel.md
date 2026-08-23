@@ -74,11 +74,11 @@ groups, and its regular representation has
 tau(Qp_a)>0.                                           (PLV5)
 ```
 
-Choose the D8-multiplicity intertwiners so that the same character is used
-for each occurrence of every shared variable on this atom.  Then the
-literal consistency residual is zero on its Gram compression, while
-`P_vp_a=0` for every selected row and at least one context rejects `a`.
-Thus on this finite compressed Gram atom,
+The predicate-preserving transport hypothesis is the exact covariance
+`S_v a=phi_v(a)S_v` of `(PNF2)`, with one source selector algebra.  Hence
+the literal shared-variable consistency residual is zero on all of `Q`,
+not merely on the rejected atom.  Meanwhile `P_vp_a=0` for every selected
+row and at least one context rejects `a`.  Thus in this exact finite model,
 
 ```text
 C_forb=0,       E_cons=0,       L_forb>0.              (PLV6)
@@ -86,7 +86,10 @@ C_forb=0,       E_cons=0,       L_forb>0.              (PLV6)
 
 This is the zero-defect orthogonal-amalgam escape in the precise scalar
 form that contradicts `(CPS12)` if `(CPS12)` is claimed from the packet-star
-relations and predicate-preserving selected rows alone.
+relations and predicate-preserving selected rows alone.  The common
+selector covariance is already included, so the missing ingredient cannot
+be another unmixed consistency edge; it must cross the selector support
+wall.
 
 There is a sharp exhaustive-type dichotomy.
 
