@@ -54,6 +54,15 @@ arbitrarily small relative low-gap energy.  With the convention
 so its parity and complete-pair energy is again exactly zero.  The recycling
 is invisible to every balanced group relation: it changes the multiplicity
 of the original nonzero character into the trivial character.
+Moreover this fixed signed tuple cannot be repaired by a simultaneous
+gauge: since the identity is conjugacy-invariant and `tau(Q)=0`,
+
+```text
+inf_U (1/L)sum_i||B_i-U I U*||_2^2=2 delta.             (BRC4)
+```
+
+Thus coherent **relabeling** of the zero kernels, not conjugation of the
+already fixed all-positive sign, is essential.
 
 The conclusion is a no-go only for arguments using **local low-gap cut
 admissibility plus balanced relation energy**.  It does not say that every

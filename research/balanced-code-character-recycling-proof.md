@@ -59,5 +59,12 @@ terminal leaf contains only zero scalar compressions of `Q`, proving
 For `c_i=1`, therefore, `O_i=Q`; for `c_i=0`, `O_i=0`.  Since `Q^2=I`,
 the identities `(BRC3)` follow immediately.  Finally
 `sgn(Phi_F(B_i))=I` for every `i`, so the terminal signed tuple is the
-trivial code character and has zero balanced relation energy.
+trivial code character and has zero balanced relation energy.  Finally,
+for every unitary `U`, the signed coordinate stays `UIU*=I`; on
+`supp(c)`,
 
+```text
+||Q-I||_2^2=2-2 Re tau(Q)=2.
+```
+
+Averaging over the support of `c` proves `(BRC4)`.

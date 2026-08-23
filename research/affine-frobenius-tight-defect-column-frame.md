@@ -51,9 +51,28 @@ addition, and a scalar inverse, so it remains in the algebraic group ring.
    under the existing selector-mixing collapse.  What is required is a
    correlated, variable-specific frame whose columns are exactly `(AFT1)`.
 4. **Repeat columns to tune weights.**  This permits integer weighting and
-   may equalize the nonzero singular values, but no construction is known
-   which also preserves all pairwise compatibility equations and the strict
-   Frobenius deficit.
+   may equalize the nonzero singular values, but
+   `tight-defect-cubic-is-weighted-fusion-frame` shows that repetition is
+   exactly integer weighting of the existing negative incidence
+   projections.  With two incidences it works only when those projections
+   are equal or orthogonal.
+5. **Twirl in an external Weyl/ETF coordinate.**
+   `external-weyl-tightening-is-only-column-weighting` factors the external
+   frame operator out and recovers the same weighted internal equation.
+6. **Use a universal finite polynomial Julia padding.**
+   `polynomial-julia-padding-cannot-flatten-spectrum`
+   rules this out already on scalar Gram spectra.  A square root from
+   functional calculus is genuinely nonalgebraic in this sense.
+
+There is also a sharp high-density collapse.  By
+`high-density-tight-defect-frame-collapses-to-common-carrier`, if the total
+incidence-mask deficit for one variable is smaller than the trace of the
+negative defect carrier, every tight defect projection is the same
+projection `p_x`.  For `r` equal Frobenius deficits `1/P` and an oriented
+negative marginal of trace at least `1/2`, this occurs for `P>2(r+1)`.
+Thus the strict-budget regime admits no nontrivial distributed tight frame:
+the ansatz reduces to constructing one common algebraic carrier
+`e_(c,x)q_(c,x)=p_x` for all incidences.
 
 The remaining target is a finite packet relation that makes the prescribed
 incidence defect row a scaled partial isometry without forcing an affine
