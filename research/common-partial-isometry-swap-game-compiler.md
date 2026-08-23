@@ -282,6 +282,23 @@ the surviving recurrence must be genuinely non-level-preserving: an
 asynchronous unequal-prefix correspondence or capacity gate whose source
 containment is authenticated only in finite matrix coordinates.
 
+The unequal-index endpoint itself is now exact.
+`orthogonal-compressed-word-branches-have-cuntz-rank-floor` takes one marked
+source `E`, orthogonal child cuts `Q_i<=E`, and ambient unitary words, and
+proves
+
+```text
+sum_i ||(Q_iU_iE)^*(Q_iU_iE)-E||_2^2>=(k-1)tr(E).
+```
+
+Countable infinite stabilization realizes all source Grams exactly, so this
+has the correct perfect-completeness sign.  But if those source-fullness
+equations follow universally from the group relators, the same inequality in
+the regular factor forces `E=0` and collapses the marked packet.  Thus no
+further Cuntz/Leavitt trace arithmetic is missing: the sole surviving seam is
+a finite-coordinate decoder which makes the compressed source Grams small
+without turning them into universal group-algebra identities.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
