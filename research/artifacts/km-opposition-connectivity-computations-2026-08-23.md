@@ -84,6 +84,16 @@ surjective for `q >= 6` (proved), obstructed at `q = 3` (verified);
 `G_2` obstructed at every computed `q` (proved via component
 annihilators, verified), expected for all `q`.
 
+Addendum 6 (same day, experiments/km_h5_opposition_connectivity.py):
+`H(5)` verifies the curve-span law in the decisive new regime: on `k`
+classes the walk graph has `q^(max(0,4-k))` components -- connected at
+`k = 6, 5, 4` (the `k = 4` case is the first proper deletion that
+stays connected, exactly as four points of the rational normal cubic
+first span), five components at `k = 3`, twenty-five at `k = 2`.  The
+law now stands verified at `q = 2, 3, 4, 5` at every deletion depth,
+in characteristics two, three, four... i.e. both small characteristics
+and a prime `>= 5`.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
