@@ -83,8 +83,38 @@ def smoke_test_kernel() -> None:
     assert kernel == frozenset(dense) and not order
 
 
+def verify_affine_safe_profile_counterexample() -> None:
+    """Check the three-row certificate (ASC1)--(ASC5)."""
+    # Variable order is p,q,r,a,b,c,d.
+    rows = ((1, 0, 3, 4), (3, 5, 2, 1), (2, 1, 6, 4))
+    solutions: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
+    for assignment in product((0, 1), repeat=7):
+        if all(tuple(assignment[j] for j in row) in RSTAR for row in rows):
+            solutions.setdefault(assignment[:3], []).append(assignment)
+    assert set(solutions) == set(product((0, 1), repeat=3))
+
+    support = {visible for visible in solutions if visible[0] ^ visible[1] == 1}
+    assert len(support) == 4
+    witnesses = [solutions[visible] for visible in sorted(support)]
+    assert all(len(fibre) == 1 for fibre in witnesses)
+    first_row_range = {
+        tuple(fibre[0][j] for j in rows[0])
+        for fibre in witnesses
+    }
+    assert first_row_range == {(1, 0, 1, 1), (0, 1, 0, 0), (0, 1, 1, 1)}
+    translated = {word[1:] for word in first_row_range}
+    assert translated == {(0, 1, 1), (1, 0, 0), (1, 1, 1)}
+    assert (1, 1, 1) == tuple(x ^ y for x, y in zip((0, 1, 1), (1, 0, 0)))
+
+    contexts = {f"c{i}": tuple(f"v{j}" for j in row) for i, row in enumerate(rows)}
+    kernel, _ = two_tail_kernel(contexts, frozenset(("v0", "v1", "v2")))
+    assert kernel == frozenset(contexts)
+
+
 if __name__ == "__main__":
     verify_two_coordinate_sections()
     smoke_test_kernel()
+    verify_affine_safe_profile_counterexample()
     print("verified all retained coordinate sets of size at most two")
     print("verified peeling and dense-kernel smoke certificates")
+    print("verified the affine-safe three-row profile obstruction")

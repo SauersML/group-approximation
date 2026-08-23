@@ -148,6 +148,13 @@ no-Fano-line support conclusion.
   The published reduction neither fixes this cover nor proves that the HALT
   support selects one of its pieces.  This is the sharpened conservative
   frontier after leaf elimination.
+- Mere source affine safety cannot close that frontier.
+  `source-affine-safety-does-not-imply-rstar-profile-compatibility` gives an
+  explicit three-row pp gadget whose visible relation is all of `F_2^3` and
+  an affine four-point support whose witnesses force a Fano line in one
+  target row.  The positive proof must therefore choose and audit concrete
+  pp gadgets jointly with the actual HALT support; the hull condition alone
+  is insufficient.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

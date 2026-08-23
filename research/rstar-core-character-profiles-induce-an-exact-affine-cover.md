@@ -38,8 +38,9 @@ S subseteq A_beta                                         (RAC3)
 
 for at least one core profile `beta`.  Thus the exact compatibility problem
 is a finite affine-cover containment test on only the dense kernel.  The
-weaker condition `Aff(S) subseteq C` is necessary but need not identify one
-piece of the cover.
+weaker condition `Aff(S) subseteq C` is necessary but is not sufficient; see
+`source-affine-safety-does-not-imply-rstar-profile-compatibility` for a
+three-row certificate.
 
 For the constraintwise Culf--Mastel lift, the same criterion applies to the
 positive source support in each constant-size source context: containment in
@@ -47,4 +48,3 @@ one `A_beta` lets one choose witnesses below its positive source atoms and
 build a perfect cap-supported lifted trace.  Auxiliary sets for distinct
 source contexts are disjoint away from visible overlaps, so these local
 choices preserve the classical homomorphism's overlap agreement.
-
