@@ -8,6 +8,7 @@ distinct_from:
   congruence-endpoint-orbits-are-restriction-ring-fibers: that classifies and metrizes the exact zero set at every finite level; this proves that retraction to the union of those zero sets is an additional lifting property.
   bs14-thresholded-newton-needs-coordinate-basin: that states the mixed-norm local Newton theorem and its missing coordinate basin; this identifies that global basin with a relative lift of an ultraproduct homomorphism.
   exact-torsion-frame-has-rank-one-strict-counterpackets: that refutes same-dimensional lifting with a concrete boundary compression; this incorporates that example and leaves precisely the flexible lift.
+  one-core-endpoint-union-is-one-finite-restriction-fiber: that collapses the exact endpoint union over each coordinate core to one finite restriction fiber; this identifies the remaining uniform moving-level lift rather than the coordinatewise exact type space.
 ---
 
 Let `Q_n` be moving odd congruence quotients, let
@@ -46,6 +47,14 @@ by `congruence-endpoint-orbits-are-restriction-ring-fibers`.  Once a type
 `m_n` and a lift have been produced, the uniform Selberg gap controls the
 normal distance to its core-commutant orbit.  It does **not** produce
 `m_n` or the coordinate lift from the exact ultraproduct homomorphism.
+
+In fact the ambient finite quotient need not be guessed separately after
+the core is fixed.  If `N_n=ord(beta_n(s))`, then
+`one-core-endpoint-union-is-one-finite-restriction-fiber` puts **every**
+same-dimensional exact endpoint over `beta_n` in the finite quotient
+`A/<<s^(N_n)>>` and in one finite restriction fiber there.  The obstruction
+is therefore not an infinite choice at one coordinate; it is the lack of a
+uniform lift while `N_n` and the finite fibers move.
 
 This distinction is sharp.  Cuspidal restriction-kernel moves show that no
 preferred fiber point can be selected from the core or the limiting

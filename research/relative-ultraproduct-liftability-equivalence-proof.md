@@ -6,6 +6,7 @@ title: Translate flexible endpoint repair coordinatewise into a lift of the rela
 target: authenticated-core-union-basin-is-relative-liftability
 requires:
   - congruence-endpoint-orbits-are-restriction-ring-fibers
+  - one-core-endpoint-union-is-one-finite-restriction-fiber
   - exact-torsion-frame-has-rank-one-strict-counterpackets
 ---
 
