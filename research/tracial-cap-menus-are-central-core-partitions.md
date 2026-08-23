@@ -184,6 +184,50 @@ central selector ancillas and arbitrary noncentral projections in the
 multiplicity commutant.  A tracial dilation cannot refine a full-support
 factor model into cap branches while preserving that model's trace.
 
+## Exact LCS-OR interface
+
+This also settles the proposal to make the seven cap labels jointly
+classical and then feed their joint profiles into the finite exact LCS OR.
+Let `(z_(c,lambda))_lambda` be mutually commuting label PVMs and put
+
+```text
+q_alpha=product_c z_(c,alpha_c).                       (TCM15)
+```
+
+The nonzero `q_alpha` form a joint profile partition.  Mutual commutation of
+the labels alone is insufficient: the conditional functional
+`x |-> Tr(q_alpha x)/Tr(q_alpha)` need not be tracial or multiplicative on
+the old payload algebra.
+
+The product-sign LCS OR obtains an exact branch precisely because every
+activation projection commutes with that branch's payload.  If the dynamic
+profile projections in `(TCM15)` obey this same requirement and the local
+incidence equations give
+
+```text
+q_alpha pi(p_(c,t))=0    when alpha_c(t)=0,             (TCM16)
+```
+
+then the normalized corner traces are cap-supported tracial states.  The
+conditional-expectation argument above turns them into central densities in
+the old algebra, so `(TCM15)--(TCM16)` exist exactly when the central profile
+carriers already cover the identity.  Conversely a central partition
+`(w_alpha)` subordinate to those carriers defines the required commuting
+label PVMs by summing the `w_alpha` with a fixed coordinate.
+
+Thus there is no intermediate selector regime relevant to exact OR:
+
+```text
+labels commute only with each other
+    => joint outcomes exist but do not give tracial LCS branches;
+
+labels also reduce the payload, as exact OR requires
+    => the selector is exactly a central cap-profile decomposition.       (TCM17)
+```
+
+In particular, a full-support factor model cannot acquire an OR-compatible
+cap selector by adjoining a jointly classical register.
+
 ## Consequences for the R-star petals
 
 For `R_*`, take `P` to be any finite menu of Fano-cap profiles and let
@@ -204,7 +248,7 @@ do one of the following:
 ```text
 find a different perfect trace already having central cap carriers;
 or build a new representation not obtained by compressing the supplied one.
-                                                               (TCM15)
+                                                               (TCM18)
 ```
 
 The last alternative is a new compiler, not a decomposition theorem for

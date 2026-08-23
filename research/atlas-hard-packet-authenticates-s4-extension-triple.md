@@ -30,6 +30,14 @@ the intrinsic decompositions of two extensions and tying them to named
 raw/comb relators.  It may not identify their external multiplicity spaces
 merely because both restrict multiplicity-freely to `K`.
 
+The synchronization must contain a finite-matrix-only selection step with a
+fixed positive normalized mass and dimension-independent HS loss.  A purely
+algebraic word-visible identification would also hold in the exact Leavitt
+tracial countermodel and, once combined with the pairing minor, would force a
+contradiction in that valid exact model.  The intrinsic finite-carrier
+projectors are universal; the selected common external multiplicity cut
+cannot be.
+
 ## Attempts
 
 - **Boundary rows are insufficient.**  All 234 first-boundary relations have
@@ -45,6 +53,11 @@ merely because both restrict multiplicity-freely to `K`.
   proof whose S4 determinant acts on one tensor factor and whose Leavitt
   transports act on another retains the exact doubled rectangular model.
   A named quotient relator must mix the two in one operator equation.
+- **Universal authentication crosses the category boundary.**
+  `universal-atlas-ideal-cannot-force-hall-deficit` rules out the analogous
+  universal star-ideal support cut.  Here too the selected common reservoir
+  must use finite matrix multiplicity data; literal word projectors alone
+  cannot supply it.
 - **A source word is not a channel equation.**  The raw and comb artifacts
   give literal words of lengths 25 and 175 and their Leavitt values.  Their
   existence does not itself add a microstate relation.  A successful attack

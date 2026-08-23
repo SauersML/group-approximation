@@ -126,15 +126,49 @@ matrix-ultraproduct models remain.  This is therefore a structural finite
 restriction on the exact escape, not evidence sufficient to assert the
 five-row phase lift.
 
-The next exact Atlas boundary is now completely isolated.  The CFSG carrier
-screen in `atlas-six-relator-next-simple-target-is-o8p2` leaves no simple
-group with an `A8` carrier at indices `2201` through `8639`; the next target
-is `O_8^+(2)` at index `8640`.  Unlike the preceding unique-class cases, its
-finite screen has a genuine carrier fork: orthogonal `Sp_6(2)`, natural `A9`,
-and two affine-complement classes, including cross-carrier cells.  Excluding
-that finite family would raise the exact floor again, but no sequence of such
-exact exclusions substitutes for the required dimension-free ultraproduct
-energy estimate.
+The next triality boundary is now excluded as well.  The carrier classification
+for `O_8^+(2)` reduces its six ambient `A8` classes to ten marked pair screens.
+The exact `s_0`-fiber replay in
+`atlas-six-relator-o8p2-has-no-marked-pair` finds no six-relator survivor:
+eight screens die before the third word, and the two orthogonal screens plus
+one twisted natural diagonal each leave one five-row survivor which
+`c_19243` kills.  Consequently
+`atlas-six-relator-simple-index-is-at-least-9792` raises the exact finite-simple
+escape floor to `9792`, whose equality group can only be `O_8^-(2)`.  This is
+still an exact-zero restriction; no sequence of finite-simple exclusions
+substitutes for the required dimension-free ultraproduct energy estimate.
+
+The attempted Atlas coefficient decoder has also reached a precise boundary
+before any rank computation is legitimate.  The six literal words, all 234
+boundary rows, the A4 packet, and the raw/comb source words are present, but
+`atlas-word-inventory-does-not-define-typed-channel-census` proves that they do
+not define the proposed mixed matrix `[C D]`.  The missing datum is a
+finite-matrix-only positive-mass common cut on which `W,R0,R1,L0,L1` become
+compressed literal paths, together with selected comb equations, bounded
+six-relator fillings, fixed recoupling paths, and the complete nuisance
+monomial inventory.  A universally algebraic common-cut authentication is
+impossible: it would also act in the exact Leavitt tracial countermodel and,
+combined with quotient-rank three, manufacture a false contradiction there.
+Thus `atlas-typed-hard-interior-comb-row-census` is not a request to parse
+more JSON.  Its load-bearing field is the same dimension-free, positive-mass
+finite-matrix selection that the decoder was meant to prove.  No surrogate
+minor may be used in its place.
+
+The character-rigid Kac--Moody lane has an equally sharp high-degree fence.
+`bounded-degree-holonomy-collapses-for-map-groups` kills bounded-degree and
+even tight trace-weighted mixtures of multiplicity holonomy, so every
+separated enemy must put a fixed positive mass above every fixed matrix
+degree.  This tail cannot be excluded from property `(T)`, character
+rigidity, canonical trace, or adjoint spectral gap.  The exact projective-
+plane augmentation representations of `SL_3(Z)` in
+`pt-rigidity-allows-nontight-regular-tails` have dimensions `p^2+p`,
+normalized characters converging to the regular character, coefficient
+algebra equal to the single block `M_(p^2+p)`, and one uniform Kazhdan gap on
+trace-zero matrices.  Their degree laws are therefore maximally non-tight.
+Minimal almost periodicity removes these exact representations for the
+simple Kac--Moody candidate, but excluding approximate one-block analogues is
+exactly the terminal regular-branch HS-stability/non-hyperlinearity theorem,
+not a consequence of the other rigidity inputs.
 
 The finite-depth ZPC groupoid shortcut has also been decided negatively.
 For the readable Boolean algebra `D_0` and unreadable actor words, put
@@ -152,6 +186,21 @@ instance, and the canonical unreadable Pauli shifts move every readable atom.
 Any positive ZPC compiler must therefore prove finite-orbit or invariant-fiber
 structure directly for that maximizing IRS, or use a genuinely nonmonomial
 trace-promotion mechanism.
+
+The proposed dynamic-selector bypass of the `R_*` Fano-cap compiler is now
+closed exactly.  For `T=F_2^3 minus {0}`, the incidence relation
+`a dot t=1` has all twenty-eight pairs but full affine hull `F_2^6`.
+`affine-fano-incidence-selector-exists-iff-cap-support` proves more sharply
+that a binary-LCS extension with a jointly classical visible selector exists
+on support `S subset T` exactly when `S` was already contained in one fixed
+maximal Fano cap.  Thus making the functional an output does not weaken the
+HALT support condition.  Merely commuting the selector labels across
+contexts also does not feed the exact LCS OR: conditional vector states need
+not be tracial, while requiring the profile projections to reduce the
+payload is precisely the central-core cap decomposition already excluded in
+a full-support factor.  The open Fano statement remains the existence of a
+HALT perfect trace with cap-supported contexts, not the choice or encoding of
+its seven possible characters.
 
 The nonabelian-simple lamp alternative has likewise survived only in its
 honest global form.  `simple-lamp-hyperlinear-recovery-forces-action-sofic`

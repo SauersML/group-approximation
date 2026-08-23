@@ -130,3 +130,13 @@ the compiler must still force `(DFI9)`, find a different perfect trace which
 already satisfies it, or introduce genuinely global relations coupling the
 local labels.  The last option is not a local Fano selection theorem: its
 soundness and perfect completeness are the unresolved global compiler.
+
+There is no affine middle ground in which the label remains dynamic but its
+incidence is compiled directly into binary LCS rows.  By
+`affine-fano-incidence-selector-exists-iff-cap-support`, a jointly classical
+affine output-dependent incidence selector exists on a support `S` exactly
+when `S` was already contained in one fixed maximal cap.  On the full
+seven-point support the twenty-eight incidence pairs have full affine hull
+in six bits.  Thus the reversible dilation uses essentially nonlinear
+incidence; affine linearization either returns to FC-char or forgets
+incidence completely.

@@ -15,8 +15,11 @@ distinct_from:
   summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
+  bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
+  pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
+  - research/artifacts/high-cascade-holonomy-audit-2026-08-23.md
 ---
 
 **OPEN.**  Fix an infinite finitely presented simple Kazhdan
@@ -32,6 +35,38 @@ remaining multiplicity-commutant holonomies around the Curtis--Tits/chamber
 two-cells are `o(1)`-gauge-equivalent to an exact global representation.
 Neither property `(T)`, IRS rigidity, nor local finite-group stability proves
 this statement.
+
+## Bounded-degree holonomy is closed
+
+There is now one further uniform reduction.
+`bounded-degree-holonomy-collapses-for-map-groups` proves that an
+asymptotically flat holonomy tuple for a group with no nontrivial
+finite-dimensional representations collapses to the identity whenever its
+finite-dimensional coefficient algebras have a fixed subhomogeneity bound.
+The estimate is uniform in the number and multiplicities of the blocks: a
+weighted Markov argument discards the small mass of blocks with non-small
+relator defect, while compactness in the finitely many dimensions below the
+bound collapses every remaining block.
+
+The same proof treats every tight trace-weighted mixture of growing degrees.
+Consequently an enemy here must have a quantitatively non-tight degree
+distribution: a positive mass escapes beyond every fixed noncommutative
+block degree.  Repeated bounded labels or sectors cannot evade
+synchronization merely by increasing their multiplicity, nor can a
+vanishing high-degree tail carry the marked separation.  The unresolved
+relation-dependent common-core theorem must therefore act on a diffuse
+large-degree multiplicity regime itself.
+
+The escape cannot be removed by combining property `(T)`, character
+rigidity, canonical trace, and asymptotic adjoint spectral gap abstractly.
+`pt-rigidity-allows-nontight-regular-tails`
+constructs exact irreducible projective-plane representations of
+`SL_3(Z)` with all four properties and with degree distribution
+`delta_(p^2+p)`.  Thus these inputs are compatible with maximal degree
+escape.  The simple Kac--Moody lattice additionally has no nontrivial exact
+finite-dimensional representations, but promoting that qualitative fact to
+exclusion of high-degree approximate regular tuples is precisely the
+regular-branch stability assertion in this claim.
 
 ## Curtis--Tits face-gap audit
 

@@ -108,3 +108,13 @@ at sufficiently small atlas defect.
   telescoping then gives an `O(delta^2)` ceiling and easily beats `1/128`.
   The exact multiplicity-two local-network escape does not refute this
   reduction because it does not satisfy this full-atlas six-word packet.
+- **The authenticated channel minor is an alternative endpoint, not yet an
+  energy ceiling.**  `atlas-mixed-minor-needs-nuisance-quotient-rank` proves
+  that a typed literal system with `rank[C D]=rank(D)+3` controls the three
+  Leavitt pairing defects uniformly in multiplicity.  The spectral Leavitt
+  floor then contradicts atlas microstates directly.  It does not, from the
+  presently named coordinates alone, prove the pointwise numerical bound
+  `(A4-S3-CEIL)` on arbitrary relative chart unitaries.  Thus the channel
+  route and the five-row phase-lift route are two sufficient endpoints; one
+  should not cite the former as a proof of this claim without an additional
+  comparison to `a(U)^2+b(U)^2`.

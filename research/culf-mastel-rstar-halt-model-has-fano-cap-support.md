@@ -121,6 +121,18 @@ no-Fano-line support conclusion.
   gives cap support only conditional on a nondeterministic local label.  The
   `7^m` LCS OR still requires one label to be scalar at each context, which
   is exactly `(FCC1)`.
+- Nor can the dynamic incidence label be compiled into affine rows while
+  retaining output dependence.
+  `affine-fano-incidence-selector-exists-iff-cap-support` proves that a
+  jointly classical LCS extension with visible `(t,a)` and sound equation
+  `a dot t=1` exists on a support `S` exactly when `S` is already contained
+  in one fixed maximal cap.  The full twenty-eight-pair incidence relation
+  has affine hull `F_2^6`.  If local labels are instead made jointly
+  classical across contexts, mutual label commutation alone does not give
+  tracial branch states; requiring their profile projections to reduce the
+  payload, as the exact LCS OR requires, is precisely the central-core
+  decomposition classified by
+  `tracial-cap-menus-are-central-core-partitions`.
 - The fiberwise auxiliary selector is valid only under a stronger syntax;
   its unconditional one-context core is
   `isolated-rstar-context-determinizes-to-a-fano-cap`, and its simultaneous
