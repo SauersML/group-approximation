@@ -54,3 +54,12 @@ Consequently level dependence is fully separated:
    available.  This is precisely
    `regular-iwahori-relative-congruence-exactification`, not a deteriorating
    finite-level constant that property `(tau)` can repair.
+
+There is a stronger representation-type obstruction even after the BS core
+has been authenticated exactly.  In
+`cuspidal-redistribution-refutes-regular-core-orbit-basin`, redistributing
+the regular multiplicities among the equal-Borel-restriction cuspidal
+irreducibles leaves the core literally unchanged and all presentation
+defects zero.  The resulting global characters are asymptotically regular,
+but the endpoints remain uniformly outside the regular-character orbit.
+Selberg proves that separation; it cannot choose the correct endpoint type.

@@ -202,9 +202,14 @@ congruence `(R,T)` core and align the extending involution.
   restriction of a same-dimensional exact Iwahori endpoint.  This is
   schedule-free and bypasses the moving packet-semigroup charge completely.
   It does not control the supplied `X`: after core alignment, one still has
-  to prove that the almost-extender lies near the full core-commutant orbit
-  of exact congruence endpoints.  Thus the regular obstruction is now a
-  pure **relative involution-to-orbit** problem, not core authentication.
+  to select an exact global endpoint type compatible with the almost
+  extender.  Capture by the particular regular endpoint orbit is false:
+  `cuspidal-redistribution-refutes-regular-core-orbit-basin` gives exact
+  endpoints with the identical regular BS restriction and asymptotically
+  regular global characters, but uniformly separated global multiplicity
+  types.  Thus the regular obstruction is now an **adaptive endpoint-type
+  selection** problem, not core authentication or retraction to one fixed
+  orbit.
 - **The nonlinear same-core gauge is completely controlled.**  Suppose basin
   capture has produced an exact extender `X_0` over the **same** exact
   parabolic `T=S^2`, and the relative gauge has the commutant form

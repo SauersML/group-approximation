@@ -138,6 +138,17 @@ tuple.
   congruence atom has already been identified.  The remaining polar-data
   theorem is precisely a moving-level congruence-atom authentication with
   energy-controlled compression boundary.
+- **A regular authenticated core still does not select the global atom.**
+  `cuspidal-redistribution-refutes-regular-core-orbit-basin` redistributes a
+  positive-density family of cuspidal multiplicities in the regular
+  representation of `PSL_2(F_p)`.  Those cuspidals have identical Borel
+  restrictions, so the exact BS core remains the regular restriction and
+  the global characters are still asymptotically canonical, while Selberg
+  forces the new exact involution a fixed distance from the regular endpoint
+  orbit.  This is not a flexible-repair counterexample because the
+  redistributed tuple is exact.  It proves that the reverse construction
+  must choose an adaptive global endpoint type; authenticating the core and
+  retracting to a preselected regular-quotient orbit is false.
 - `bs14-bounded-moments-cannot-extract-congruence-level` rules out the
   simplest authentication interface.  Deep regular congruence
   representations at distinct prime levels, amplified to the same

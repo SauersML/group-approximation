@@ -59,6 +59,15 @@ an honest congruence endpoint in the **same dimension**.  Thus neither the
 moving affine-semigroup charge nor the one-parameter finite-level basin is
 an obstruction to authenticating the core itself.
 
+This authentication does not determine the global endpoint character, even
+asymptotically.  `cuspidal-redistribution-refutes-regular-core-orbit-basin`
+constructs exact congruence endpoints whose global normalized characters
+converge to the regular character, whose BS restrictions equal the regular
+congruence restriction exactly, but whose extending involutions remain a
+fixed distance from the regular-character endpoint orbit.  Thus `(RCA5)`
+cannot be followed by capture to the particular `pi_n` orbit.  The endpoint
+representation type must be selected adaptively.
+
 The theorem does not authenticate the supplied adjoining involution `X`.
 After conjugating by `W_n`, the input is merely an almost endpoint over an
 exact congruence restriction.  Proving that this `X` lies near the exact
