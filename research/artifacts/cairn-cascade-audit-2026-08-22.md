@@ -120,6 +120,34 @@ classicalize the source.  Any surviving Frobenius construction must use
 genuinely nonabelian projections in the full matrix block and richer packet
 intersections.
 
+Two surviving terminals have now been reduced further.
+
+For Atlas, `atlas-one-cut-finite-multiplicity-extraction` follows from one
+four-leg decoder.  It must recover equal-trace coefficient legs
+`E_1,...,E_4`, put `P=E_1+E_2+E_3`, and realize the comb word by a unitary
+`W` such that
+
+```text
+sum_(j<=3)||E_4 W E_j||_2^2 <= C delta^c,
+||E_1 W E_4||_2^2 >= 1/64-C delta^c.
+```
+
+Finite one-cut balance then contradicts the two estimates.  The canonical
+Pauli frame is excluded exactly: Fourier flatness gives forbidden lower-row
+mass `3/64`.  The missing operation is a noncanonical finite-multiplicity
+coordinate frame matching the algebraic comb zero row to one positive Pauli
+block.
+
+For the PI route, spectator elimination is unnecessary.  The exact
+rectangular packet already supplies the target tuple
+`(X tensor 1,Z tensor 1,1 tensor X,1 tensor Z)` with `s_4` norm eight.  But
+transporting the two child pairs separately is insufficient: identity on one
+pair and SWAP on the other transports every occurrence exactly from the
+duplicated source tuple `(X,Z,X,Z)`, whose `s_4` vanishes.  The entire PI
+cascade is therefore reduced to one common full-support almost-unitary
+intertwiner carrying all four words simultaneously.  This formulation is
+amplification-stable and bypasses mutual-bicommutant extraction.
+
 ## Current leverage audit after the six-relator firewall
 
 At commit `e4215a735`, Cairn has 3,356 claims, 2,797 established claims,

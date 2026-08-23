@@ -68,3 +68,12 @@ trading label degree for spectator multiplicity.
 - **Fast kill test.** Evaluate `s_(2r)` on candidate target tuples inside the
   exact rectangular model.  If all word-forced tuples are conjugate into an
   `M_r tensor I` subfactor, this route is blind and should be closed.
+- **The target tuple passes; separate transport fails.**  At `r=2`, the exact
+  first Leavitt cell contains the word-visible tuple
+  `(X_0,Z_0,X_1,Z_1)` with `||s4||_2=8` on its full carrier.  But
+  `separate-pauli-branch-transports-do-not-carry-s4` transports its two pairs
+  by `1` and `SWAP` and still has source `s4=0`: entry-dependent conjugation
+  does not carry an alternating polynomial.  The smallest surviving target
+  is `one-common-intertwiner-carries-the-four-pauli-pi-bridge`, and
+  `fixed-pi-from-one-common-pauli-intertwiner` records the resulting direct
+  route without a bicommutant hypothesis.
