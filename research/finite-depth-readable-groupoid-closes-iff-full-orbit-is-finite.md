@@ -46,3 +46,11 @@ positive construction for the special perfect-gap game must prove additional
 finite-orbit/invariant-fiber structure for its chosen strategy, or use a
 genuinely nonmonomial canonical-trace mechanism.
 
+The concrete BCV audit in
+`bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs` locates this
+boundary inside the source construction.  Its explicit HALT-side finite
+signed-permutation strategies automatically have finite readable orbit, but
+the perfect gap IRS is extracted on a NONHALT instance by compactness and does
+not inherit that geometry.  In the native Question Reduction packet, the
+unreadable Pauli-X variables moreover permute the readable `SamZ` atoms
+transitively, so finite orbit does not itself furnish a fixed positive atom.

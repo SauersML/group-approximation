@@ -37,3 +37,10 @@ The proof combines TailoredMIP*=RE with the computable decreasing hierarchy
 instance had ZPC-IRS value strictly below one, that decreasing hierarchy and
 the standard computable increasing quantum-value hierarchy would decide the
 halting problem by waiting for either `alpha_t^Z<1` or `beta_t>=1/2`.
+
+The witness extracted by this argument is necessarily a **non-halting**
+instance.  Therefore the finite readable-orbit property of BCV's explicit
+HALT-side perfect signed-permutation strategies cannot be imported into it;
+see `bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs`.  The
+value-one IRS is obtained by compactness of the pseudo-IRS hierarchy, whose
+fixed cylinder constraints contain no uniform bound on readable orbit size.

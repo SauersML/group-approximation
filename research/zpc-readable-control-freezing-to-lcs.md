@@ -69,3 +69,15 @@ The obstruction is deliberately explicit: unreadable variables commute with
 readable bits at their own and neighboring questions, but may move remote
 readable bits.  No other perfect-completeness or approximation theorem is
 missing on this route.
+
+The actual BCV perfect-completeness construction does not silently supply the
+missing invariant fiber.  By
+`bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs`, every HALT-side
+finite signed-permutation strategy does have a finite readable translate
+orbit, but the perfect gap IRS is extracted on a NONHALT instance and is not
+one of those strategies.  Moreover, in BCV Question Reduction the unreadable
+Pauli-X packet transitively permutes the readable `SamZ` atoms, so no nonzero
+readable atom is invariant even in the canonical finite completeness
+strategy.  Finite orbit and invariant fiber are therefore distinct resources;
+the former is on the wrong branch and the latter already fails in the native
+Pauli layer.
