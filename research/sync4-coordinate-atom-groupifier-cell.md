@@ -8,6 +8,7 @@ distinct_from:
   hyperoctahedral-reflection-q-overlap-groupifier: that balances a general BCS in a large irreducible signed packet; this uses a four-character commutative packet with arbitrary completeness-side atom multiplicities.
   three-chart-loop-retains-free-multiplicity-holonomy: that proves abstract full transports retain arbitrary multiplicity holonomy; SYNC4 reads only one atom per incidence, so this asks for selected-atom agreement without requiring full-chart holonomy collapse.
   literal-sync4-c2-amalgam-has-zero-selected-meet: that proves equality of the selected literal reflection leaves the two packet carriers disjoint already on one edge; this asks for the extra non-Bass--Serre carrier correlation.
+  one-hot-central-character-selector-forces-weight-three-ghost: that rules out repairing the one-edge meet by one common central-character selector while retaining arbitrary atom multiplicities; this permits a noncentral or genuinely coupled carrier.
 ---
 
 **OPEN.**  Input is a finite `SYNC_4` instance from
@@ -52,3 +53,10 @@ cycle return.  This return is verifier-blind and need not be consumed.
 Accordingly the load-bearing target has collapsed to the first job alone:
 create positive canonical packet overlap and impose the selected-reflection
 equalities there without restricting completeness-side atom multiplicities.
+
+A common finite central-character label is not enough.
+`one-hot-central-character-selector-forces-weight-three-ghost` shows that
+the character ratios required to realize the deterministic one-hot PVMs
+produce a weight-three character in the same selected sector.  The missing
+positive correlation must therefore be noncentral, representation-dependent,
+or implemented by a genuinely non-character corner coupling.

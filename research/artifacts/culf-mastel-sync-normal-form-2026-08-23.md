@@ -55,7 +55,15 @@ has canonical trace `1/4`, admits arbitrary atom multiplicities, and makes
 each atom reflection the restriction of one literal group generator.
 
 The local compiler is therefore complete.  The remaining group-level cell
-is global: identify these rank-free local corners on one surviving canonical
-carrier around every incidence cycle.  Independent transports retain an
-arbitrary multiplicity holonomy, so the missing return must be genuinely
-nontransport.
+begins already on one edge: identify these rank-free local corners on one
+surviving canonical carrier.  Literal amalgamation of the selected
+reflection makes the two local one-negative carriers have zero meet.  Once a
+common carrier and selected-atom equality exist, complementary `M_3`
+holonomy is verifier-blind and need not be removed.
+
+Nor can one repair the meet by placing all deterministic one-hot models in a
+single central-character sector.  Products of selector-trivial ratios of
+the one-hot characters create a weight-three character in that same sector.
+The remaining return must therefore be a genuinely noncentral/non-character
+packet correlation which preserves arbitrary completeness-side atom
+multiplicities.
