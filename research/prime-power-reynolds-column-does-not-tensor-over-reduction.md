@@ -63,6 +63,14 @@ rank(C_2)<=rank(C_1) dim(C^25)=250,
 
 a contradiction.
 
+For this full-torus example the depth-two rank is now known exactly,
+without modular computation.
+`full-torus-prime-power-reynolds-column-is-multipartite-triangle-curl`
+identifies the domain with oriented edges of the complete six-partite
+graph with five vertices per part and the two Reynolds blocks with its
+triangle coboundary.  Its kernel is the `29`-dimensional gradient space,
+so `rank(C_2)=375-29=346`.
+
 The algebra explains why reduction is not passive.  The kernel of
 `Q_2 -> Q_1` is the additive first congruence layer
 
