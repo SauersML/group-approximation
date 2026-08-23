@@ -372,6 +372,20 @@ non-hyperlinear group `hat K rtimes Lambda`.
   `Gamma_0 times SL_3(Z)` is non-Haagerup.  A surviving Mihailova construction
   must use arithmetic grades outside the free left-right subgroup, or bypass
   a regular representation of `Q` and embed the fixed non-CE factor directly.
+- **The arithmetic-grade survivor is one vertical coset wreath (proved,
+  2026-08-23).**  `mihailova-sl3-restriction-is-coset-amplification` computes
+  the restricted `SL_3(Z)`-set exactly:
+  `(Gamma_0 times SL_3(Z))/P_Q` is a disjoint union, indexed by
+  `Gamma_0/F_m`, of copies of `SL_3(Z)/N` with
+  `N=ker(F_m->Q)`.  The free/Manzoor direction supplies only multiplicity.
+  Then `mihailova-envelope-forces-one-sl3-coset-wreath` uses finite
+  `SL_3`-module extraction and the diagonal embedding
+  `(C^n rtimes SL_3) -> (C rtimes SL_3)^n` to show that a successful mixed
+  envelope would already make the single group
+  `(direct_sum_(SL_3/N) C_2) rtimes SL_3(Z)` nonhyperlinear.  The residual is
+  now a named one-orbit arithmetic action: prove its generalized wreath group
+  hyperlinear to kill the Mihailova route, or prove it nonhyperlinear to solve
+  the group goal directly.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the

@@ -148,3 +148,19 @@ relative-Haagerup exclusion forbids it because the base is abelian and
 outside the free left-right subgroup see a non-Haagerup actor.  Those grades,
 or a direct embedding of the fixed non-CE factor which bypasses `Q`, are now
 load-bearing.
+
+The arithmetic-grade survivor has one canonical form.
+`mihailova-sl3-restriction-is-coset-amplification` computes the restriction
+of `(Gamma_0 times SL_3(Z))/P` to `SL_3(Z)` as a disjoint union of copies of
+`SL_3(Z)/N`, where `N=ker(F_m->Q)` is the vertical Mihailova kernel.
+Moreover `mihailova-envelope-forces-one-sl3-coset-wreath` combines this with
+finite module extraction: if the mixed envelope worked, the single group
+
+```text
+(direct_sum_(SL_3(Z)/N) C_2) rtimes SL_3(Z)
+```
+
+would already be nonhyperlinear.  Finite orbit multiplicity cannot conceal
+the obstruction, since the `n`-copy diagonal semidirect product embeds in the
+`n`th power of the one-copy wreath.  Deciding this one vertical coset action
+is therefore the exact remaining Mihailova problem.
