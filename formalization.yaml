@@ -4,7 +4,7 @@ version: "v0.4"
 project:
   name: "An explicit sofic group that is not MF"
   description: >-
-    Lean proves that an explicit sofic group is not MF in the
+    An explicit sofic group is not MF in the
     Carrión-Dadarlat-Eckhardt operator-norm sense.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
@@ -33,13 +33,6 @@ sources:
     id: https://arxiv.org/abs/1704.06906
     relationship: background
 
-  - title: The MF property for amalgamated free products
-    authors: [Tatiana Shulman]
-    year: 2026
-    type: paper
-    id: https://arxiv.org/abs/2603.13564
-    relationship: background
-
   - title: On L^1-approximation of groups
     authors: [Benjamin Bachner, Alon Dogon, Alexander Lubotzky]
     year: 2026
@@ -66,13 +59,6 @@ sources:
     year: 2019
     type: paper
     id: https://doi.org/10.1017/fmp.2018.3
-    relationship: background
-
-  - title: A group with at least subexponential hyperlinear profile
-    authors: [William Slofstra]
-    year: 2018
-    type: paper
-    id: https://arxiv.org/abs/1806.05267
     relationship: background
 
   - title: Nonsofic groups exist
