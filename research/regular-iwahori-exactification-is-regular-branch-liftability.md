@@ -17,7 +17,7 @@ C_+=C_-=SL_2(Z),
 ```
 
 with the Iwahori identification used in
-`iwahori-local-global-defect-question`.  The following two properties are
+`iwahori-local-global-defect-question`.  The following three properties are
 equivalent.
 
 1. **Regular relative congruence exactification.**  Every sequence of exact
@@ -34,10 +34,36 @@ equivalent.
    rho_n:Gamma->U(d_n).
    ```
 
+3. **Congruence-core endpoint liftability.**  Let
+
+   ```text
+   sigma_n:Gamma->U(d_n)
+   ```
+
+   be exact odd-congruence representations whose characters tend to
+   `delta_e`, and retain only their exact square-free BS cores
+   `(R_n,T_n)`.  Every sequence of unitaries `X_n` for which
+
+   ```text
+   (X_n,R_n,T_n)
+   ```
+
+   is a regular-character microstate for the five square-free Iwahori words
+   is `o(1)`-close to genuine representations of `Gamma`.
+
 The equivalence uses three established inputs: same-dimensional HS stability
 of each modular vertex, uniform repair of arbitrary odd-congruence Iwahori
 pairs, and the classification of every finite-dimensional representation of
 `Gamma` as an odd-congruence representation.
+
+The implication from item 3 to item 2 additionally uses
+`regular-bs14-cores-align-with-congruence-endpoint-restrictions`.  First
+exactify the amenable BS core of an arbitrary regular microstate.  That
+theorem then conjugates the resulting exact core, in the same dimension and
+at `o(1)` cost, onto the restriction of slowly growing exact congruence
+representations.  Conjugate the supplied `X` by the same unitaries.  This is
+exactly the normal form in item 3.  The reverse implication is immediate
+because item 3 is a special regular-microstate family.
 
 Therefore the qualitative ultraproduct version of basin capture is not a
 weaker substitute for the missing quantitative theorem.  Exactifying the
@@ -53,3 +79,12 @@ regular; item 2 asks for the existence of those lifts.  The explicit
 odd-root branch firewall shows why exactness in the quotient alone cannot
 be used to manufacture them after an independent first-triangle rounding.
 
+The new normal form removes a different ambiguity: the core no longer needs
+to be decoded into congruence packets or moved across a finite-level basin.
+The entire unresolved statement is now the distance of `X_n` to the exact
+endpoint set over an authenticated congruence core, modulo its large core-
+commutant orbit.  The two cubic rows do produce exact `C_2*C_3` vertex data
+after torsion rounding, but they do not prove that this modular vertex is
+congruence; `modular-vertex-extension-does-not-force-congruence` is the
+firewall.  Thus amenable-core conjugacy transports the problem to a pure
+relative endpoint lift, rather than closing that lift silently.

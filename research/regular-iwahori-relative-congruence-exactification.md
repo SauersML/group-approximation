@@ -189,3 +189,14 @@ congruence quotients.  It does not establish `(RCE1)`.
   ultraproduct homomorphism does not weaken the missing theorem.  The two
   vertex restrictions always lift exactly; lifting their common Iwahori
   incidence is the entire problem.
+- **The amenable BS core can now be authenticated without a basin.**
+  `regular-bs14-cores-align-with-congruence-endpoint-restrictions` proves
+  that every exact regular BS core is asymptotically conjugate, in the same
+  dimension, to restrictions of slowly growing regular congruence endpoint
+  representations.  Hence this claim may be tested on tuples whose
+  square-free `(R,T)` core is already an exact congruence restriction.  What
+  remains is not core type extraction: it is proving that the supplied
+  almost-extending `X` lies near the exact core-commutant endpoint orbit.
+  Torsion rounding converts `X` into exact modular `C_2*C_3` data, but
+  modular extension does not imply congruence, so Selberg orbit retraction
+  still begins only after this relative endpoint lift.
