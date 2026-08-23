@@ -85,4 +85,3 @@ The residual bridge is consequently exact and minimal: construct the
 dimension-free density domination which makes the state-dependent estimate
 equivalent to that operator equation.  Merely asking for commutant
 preservation or one faithful state does not suffice.
-
