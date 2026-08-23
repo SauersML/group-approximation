@@ -51,6 +51,14 @@ source factor including its multiplicity reservoir** must identify their
 commutant projections and therefore their normalized supertraces, violating
 `(WCS4)`.
 
+There is a directional trap in the word “return.”  The smaller target
+commutant may return *into* the larger source commutant with full target
+overlap and no defect at all.  This happens in the exact rectangular model.
+`target-saturated-reynolds-return-does-not-lock-leavitt-reservoir` computes
+the two overlap normalizations: target saturation is the harmless value
+`p^(-4)`, while the sufficient scalar assertion is source saturation at
+`p^(-2)-o(1)`.  Their gap is exactly `(WCS4)`.
+
 This is a genuinely matrix-coordinate observable: normalized superrank has
 no analogue forcing equality in an arbitrary finite tracial von Neumann
 algebra, while in matrices it is unchanged by common spectator
@@ -65,7 +73,7 @@ sufficient endpoint forms:
 1. return the selected `2p` target Pauli words to the source factor and use
    the `s_(2p)` floor `(FWC6)`; or
 2. return the target commutant averaging projection to the source
-   commutant and contradict `(WCS4)`.
+   commutant with **source-saturated** overlap and contradict `(WCS4)`.
 
 The second form supplies the requested explicit multiplicity observable.
 What remains open is proving from the mixed rank-five/six Steinberg loops

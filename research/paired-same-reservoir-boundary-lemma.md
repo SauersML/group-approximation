@@ -3,6 +3,8 @@ rg: 2
 id: paired-same-reservoir-boundary-lemma
 kind: claim
 title: Paired Leavitt children either remain in one multiplicity reservoir or pay their full boundary mass
+requires:
+  - target-saturated-reynolds-return-does-not-lock-leavitt-reservoir
 artifacts:
   - research/artifacts/affine-leavitt-normalized-hs-decoder-audit-2026-08-21.md
 distinct_from:
@@ -275,6 +277,16 @@ pay ordinary HS holonomy energy.  It does not itself supply that return.
 Thus neither a standard-polynomial comparison nor bare superrank closes the
 selector seam; the surviving PI route is precisely a same-reservoir
 Reynolds-return theorem.
+
+That return must be source-saturated, not merely target-saturated.
+`target-saturated-reynolds-return-does-not-lock-leavitt-reservoir` shows that
+the rectangular model already returns the entire smaller target Reynolds
+range into the source range, with overlap `p^(-4)`.  The weakest scalar
+endpoint that actually excludes the escape is the reverse lower bound
+`Theta>=p^(-2)-o(1)`; finite rank gives `Theta<=p^(-4)`.  This replaces the
+ambiguous phrase “return the Reynolds range” by one exact directional
+checksum and rules out any actuator proof which only preserves target
+invariants.
 
 That remaining theorem now has an exact scalar endpoint.
 `balanced-controlled-whitehead-return-checksum` shows that for **every**

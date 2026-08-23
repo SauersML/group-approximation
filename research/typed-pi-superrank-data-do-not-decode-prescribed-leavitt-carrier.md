@@ -8,6 +8,7 @@ distinct_from:
   mixed-steinberg-loops-admit-morita-rectangular-model: that treats arbitrary typed commutator triangles; this shows that adjoining every typed PI identity and both normalized Reynolds ranks still does not turn the two object identities into one carrier.
   controlled-fine-reflection-superrank-orientation-law: that computes an orientation ambiguity inside one controlled Pauli extension; this is the source-versus-two-child Morita ambiguity before any controlled-reflection orientation is chosen.
   affine-leavitt-prescribed-root-spectral-carrier-decoder: that asks the full finite presentation to overcome the ambiguity; this is a firewall for the typed finite-coordinate language only, not a refutation of that decoder.
+  target-saturated-reynolds-return-does-not-lock-leavitt-reservoir: that computes the exact nesting of the two adjoint Reynolds ranges and distinguishes target saturation, which the countermodel satisfies, from the source saturation actually needed to exclude it.
 ---
 
 **ESTABLISHED FIREWALL.**  Fix the packet characteristic `p>=5`.  The
@@ -86,3 +87,13 @@ of the returned Reynolds ranges on one reservoir, or an HS-visible payment
 for failure of such a return.  This firewall does not refute the full
 decoder, because the exact rectangular model is not a representation of
 the full affine-Leavitt Steinberg presentation.
+
+The Reynolds formulation has a necessary direction.  By
+`target-saturated-reynolds-return-does-not-lock-leavitt-reservoir`, the
+rectangular model already has complete overlap of the smaller returned
+target commutant with the larger source commutant.  That overlap is
+`p^(-4)` and proves nothing.  The minimal scalar which excludes the model is
+instead **source saturation**: the same overlap must be at least
+`p^(-2)-o(1)`.  Its universal rank ceiling is `p^(-4)`, giving the fixed
+payment `p^(-2)-p^(-4)`.  Thus “equality of returned Reynolds ranges” must
+not be weakened to preservation of all target invariants under return.
