@@ -153,6 +153,99 @@ supported 1-cochain.
   unrecorded beyond `F_2` (Rémy's survey lists only finite
   presentability for `Lambda`; the higher results there concern facet
   fixators), so both outcomes remain open.
+- **Codistance Morse filtration reduces `H_2(X)` to finitely many
+  residue computations (2026-08-23).**  Filter the contractible product
+  `Z=X_+ x X_-` by `f(sigma_+,sigma_-)=min` length of the codistance
+  over chamber pairs in the residue pair; `Z_(<=0)=X`.  A product face
+  `(R_J(x),R_J'(y))` of a chamber pair at codistance `w` is descending
+  iff `J cap L(w)!=emptyset` or `J' cap R(w)!=emptyset` (`L,R` the
+  descent sets), since `w` is the unique shortest element of
+  `W_J w W_J'` exactly when it is `(J,J')`-reduced, and the minimal
+  codistance in a residue pair is attained (twin axiom Tw2 shortens
+  along every chamber of a panel).  Hence `Z_(<=R+1)/Z_(<=R)` is a wedge,
+  over residue pairs `(R_+,R_-)` of types `(J,J')=(S-L(w),S-R(w))`, of
+  the relative complexes `(cl O_w, D)`, where
+  `O_w={(x'',y'') in R_+ x R_-: delta^*(x'',y'')=w}` and `D` is the
+  union of the descending faces.  Writing `x_1=proj_(R_+)(y)`,
+  `y_1=proj_(R_-)(x)` for the twin co-projections (longest codistance)
+  and `K=J cap w J' w^(-1)` (Kilmoyer), the formula
+  `delta^*(x'',y'')=delta^*(x'',proj(x''))delta(proj(x''),y'')` gives
+
+      `O_w = {(x'',y''): x'' opposite x_1(y'') in R_+, y'' opposite
+      y_1(x'') in R_-}`,
+
+  with `x_1(.)`, `y_1(.)` the co-projections onto the `K`-residues of
+  `x_1`, `y_1`.  If `K=emptyset` the co-projections are constant, so
+  `O_w=Opp_(R_+)(x_1) x Opp_(R_-)(y_1)` is a PRODUCT and the relative
+  complex is the smash product of two suspended opposition graphs;
+  since the opposition graph of a thick generalized `m`-gon is
+  connected for `q` large, this contributes only in degree four.  If
+  `K!=emptyset` (possible only for `K <= J cap J'`, because the three
+  simple reflections of the `(2,4,6)` group are pairwise non-conjugate,
+  all edge labels being even), `O_w` is the "`K`-twisted opposition
+  relation" between the two residues; the rank-`(1,1)` case with
+  `K={s}` is the complete bipartite graph minus a perfect matching and
+  still has vanishing relative `H_3`.  THEREFORE: `H_2(X)=0`, i.e. the
+  development is contractible and `Lambda` is `F_infty`, iff for every
+  residue-pair type `(J,J',K)` with `K!=emptyset` and `J,J'` of rank
+  two (types `A_1 x A_1`, `B_2`, `G_2`) the relative complex
+  `(cl O_w, D)` has `H_3=0`.  This is a finite computation inside
+  `GQ(q,q)`, `GH(q,q)` and grids, of Abramenko type; the affine sanity
+  check above says that for `A_2` residues (`SL_3(F_q[t,t^(-1)])`)
+  some such `H_3` is NONZERO, so the answer is genuinely type-dependent
+  and not decidable by the general formalism alone.
+- **Contractible case is decided positively; the obstruction is exactly
+  `H_2(X)`.**  Let `P` be the disjoint union of all twin-apartment
+  planes and `p: P -> X` the gluing map.  It is proper (an edge lies in
+  `q(q+1)` planes, a vertex in finitely many), bijective on 2-cells, and
+  `p^*: H^2_c(X) -> H^2_c(P) = Z^((planes))` records the total mass of a
+  compactly supported 2-cochain on each plane (coboundaries have zero
+  mass on every plane since each edge of a plane lies in two of its
+  triangles with opposite signs).  Hence the point class `[delta_sigma]`
+  of a single 2-cell is nonzero in `H^2_c(X)`.  It lies in
+  `H^1_infty(X)` iff no 2-cycle of `X` passes through `sigma`, and by
+  transitivity of `Lambda` on 2-cells this holds for one `sigma` iff
+  `H_2(X)=0`.  So: if the development is contractible then
+  `H^2(Lambda;Z Lambda)!=0` and Corollary D fires; if not, then EVERY
+  2-cell lies on some 2-cycle, and a class in `H^1_infty(X)` must be a
+  compactly supported cochain orthogonal to all of them.  The claim is
+  therefore decided by the structure of the restriction modules
+  `{z|_Sigma : z in Z_2(X)}` of 2-cycles to single planes: `(DE1)` fails
+  iff these restrictions span, rationally, all finite 2-chains of the
+  plane, for every plane.
+- **What two planes can share.**  Distinct twin apartments `Sigma,
+  Sigma'` share no 2-cell, and their shared edges are the opposite
+  panel pairs `(P_+,P_-)` with `P_+ <= Sigma_+ cap Sigma'_+`,
+  `P_- = op_Sigma(P_+) = op_Sigma'(P_+)`.  Since `op_Sigma(x) !=
+  op_Sigma'(x)` for every common chamber (an opposite chamber pair spans
+  a unique twin apartment) and a chamber of `Sigma_+` has a unique
+  opposite inside `Sigma_-`, a shared panel must contain a chamber of
+  `Sigma'_-` outside `Sigma_-`; when `Sigma_+=Sigma'_+` and
+  `Sigma_- cap Sigma'_-` is a half-plane bounded by a wall `M`, the
+  shared edges are exactly the panels on `M`, a bi-infinite geodesic,
+  never a closed curve.  So two-plane "bigon spheres" do not occur in
+  that configuration; any 2-cycle must be a closed polyhedral surface
+  with faces in many planes glued along wall segments.  Whether such
+  surfaces exist is the unrecorded `H_2(X)` question; the short cycles
+  in the links (`km-lattices-admit-no-cocompact-npc-model`) are where
+  small ones would have to live, but no 2-cycle is supported in a
+  single vertex star.
+- **Contractibility of the development is the `F_infty` question
+  (2026-08-23).**  By Brown's criterion a proper cocompact action on a
+  contractible complex makes the group of type `F_infty`; conversely a
+  simply connected 2-complex with `H_2=0` is contractible.  So the
+  development `X` is contractible iff `Lambda` is of type `F_infty`
+  (equivalently, here, `F_3`: contractibility of a 2-dimensional
+  cocompact model is decided by `H_2`).  SANITY CHECK that decides the
+  affine analogue negatively: the affine rank-three Kac--Moody group
+  `SL_3(F_q[t,t^(-1)])` is 2-spherical, hence a Levi-triangle colimit
+  for `q>3` (Rémy, arXiv:math/0402300, Theorem 5), and has finiteness
+  length exactly three (Bux--Köhl--Witzel rank theorem:
+  `2+2-1`), so its development has `H_2!=0`.  For compact hyperbolic
+  `(2,4,6)` type the finiteness length of `Lambda` itself is
+  unrecorded beyond `F_2` (Rémy's survey lists only finite
+  presentability for `Lambda`; the higher results there concern facet
+  fixators), so both outcomes remain open.
 - **Codistance Morse filtration reduces `H_2(X)` to finite residue
   computations.**  Filter the contractible product `Z=X_+ x X_-` by
   `f(sigma_+,sigma_-)=min` length of the codistance over chamber pairs

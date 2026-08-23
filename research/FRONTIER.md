@@ -3863,13 +3863,13 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 ## Recently touched
 
 - 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
-- 2026-08-23 · non-rf-kazhdan-group-with-llp-full-c-star-algebra [OPEN] Some non-residually-finite Kazhdan group has a full C*-algebra with the local lifting property
-- 2026-08-23 · triangle-colimit-rational-h2-vanishes-proof [COMPLETE] Cartan-Leray spectral sequence of the development with finite stabilizers
-- 2026-08-23 · triangle-colimit-rational-h2-vanishes [ESTABLISHED] Every colimit of a developable triangle of finite groups has vanishing rational second cohomology
-- 2026-08-23 · km-lp-fails-via-development-end-cohomology [OPEN] Ioana-Spaas-Wiersma Corollary D through the end cohomology of the development
-- 2026-08-23 · km-group-ring-h2-is-development-end-cohomology-proof [COMPLETE] Compactly supported cochains, the universal coefficient theorem, and the sequence of the pair at infinity
-- 2026-08-23 · km-group-ring-h2-is-development-end-cohomology [ESTABLISHED] Group-ring second cohomology of a triangle colimit is the degree-one end cohomology of its development
-- 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
+- 2026-08-23 · spectral-recurrence-power-return-proof [COMPLETE] Freeze one MF coordinate and choose its recurrent power afterwards
+- 2026-08-23 · spectral-recurrence-power-return-non-mf-criterion [ESTABLISHED] Uniformly authenticated conjugacy-to-power returns force operator-norm non-MF
+- 2026-08-23 · self-hashed-adversarial-collision-forces-mf-collapse-proof [COMPLETE] Freeze one coordinate, choose its palette nemesis, and invoke the uniform capacity diagonal
+- 2026-08-23 · self-hashed-adversarial-collision-forces-mf-collapse [ESTABLISHED] Uniformly self-hashed unbounded packet challenges force operator-norm collapse of the marked phase
+- 2026-08-23 · opnorm-packet-collision-kills-phase-proof [COMPLETE] Insert the collided packet into the cross commutator and cancel the unitary tail
+- 2026-08-23 · opnorm-packet-collision-kills-phase [ESTABLISHED] One operator-norm packet collision forces the twisted phase close to the identity
+- 2026-08-23 · operator-norm-rank-monodromy-zero-proof [COMPLETE] Convert subunit projection error to rank equality and cancel the nonzero carrier
 
 ## Active claims
 
