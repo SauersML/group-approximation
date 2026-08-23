@@ -157,6 +157,7 @@ theorem primrec_intAdd : Primrec₂ ((· + ·) : ℤ → ℤ → ℤ) := by
   have h1 := zpos_sub_zneg p.1
   have h2 := zpos_sub_zneg p.2
   rw [natDiffZ_eq]
+  push_cast
   omega
 
 /-- **The order on `ℤ` is primitive recursive.** -/
@@ -294,13 +295,6 @@ def traceOK (x : TraceInput) : Prop :=
     traceRelOn x.2.1.1 x.2.1.2.1 x.2.1.2.2 x.2.2.1 x.2.2.2.1 x.2.2.2.2
       (evalCode x.1 0) (evalCode x.1 1) (evalCode x.1 2) (evalCode x.1 3)
       (evalCode x.1 4) (evalCode x.1 5) (evalCode x.1 6) (evalCode x.1 7)
-
-/-- Membership in `Seq.blockPairSet`, with the predicate applied.  `rw` and
-`simp` find no occurrence in the unapplied form. -/
-theorem mem_blockPairSet_iff (P : ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → ℤ → Prop) (f : E) :
-    f ∈ blockPairSet P ↔
-      f ∈ windowSupport 8 ∧ P (f 0) (f 1) (f 2) (f 3) (f 4) (f 5) (f 6) (f 7) :=
-  Iff.rfl
 
 /-- **The check is the membership.** -/
 theorem traceOK_iff (c : ℕ → List (ℤ × ℤ)) (l : List (ℤ × ℤ)) :

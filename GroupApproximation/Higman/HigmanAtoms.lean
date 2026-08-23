@@ -141,7 +141,7 @@ theorem exists_update (f : E) (c v : ℤ) :
   · rw [Finsupp.add_apply, Finsupp.single_eq_same]
     ring
   · intro i hi
-    simp [Finsupp.single_apply, hi]
+    simp [hi]
 
 /-! ## 2.  The three freeing operations, at an arbitrary threshold
 
@@ -332,7 +332,7 @@ theorem mem_succRel_iff (d : ℤ) (f : E) : f ∈ succRel d ↔ f (d + 1) = f d 
 /-- The members of `S` vanish away from the link `(0, 1)`. -/
 theorem succSeq_apply_off (a : ℤ) {i : ℤ} (h0 : i ≠ 0) (h1 : i ≠ 1) : succSeq a i = 0 := by
   unfold succSeq
-  simp [Finsupp.single_apply, h0, h1]
+  simp [h0, h1]
 
 /-- **`S` with its support condition removed is the successor relation at the
 origin.** -/
