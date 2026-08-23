@@ -207,7 +207,8 @@ tuple.
   finite-group flexible stability closes the short-support problem at each
   fixed level, including arbitrary multiplicity.  This does not by itself
   produce the required long/short staircase: the finite-group presentation
-  radius can still decay faster than the `O(K^(-1/2)+M^(-1))`
-  preconditioning error.  The remaining analytic statement is uniform basin
-  entry across these moving finite quotients, equivalently the reverse
-  carrier authentication above.
+  radius can still decay faster than the `O(K^(-1/2))` bounded-cycle
+  preconditioning error.  Quantizing return monodromy is unnecessary because
+  `s^N=1` alone already makes the augmented Iwahori group finite.  The
+  remaining analytic statement is uniform basin entry across these moving
+  finite quotients, equivalently the reverse carrier authentication above.

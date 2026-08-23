@@ -239,13 +239,15 @@ the cross-packet multiplicity boundary for one `X`.
   unipotent power has finite-index normal closure.  Hence its fixed-level
   flexible stability is unconditional.  If those finite-group stability
   radii and moduli dominate the explicit preconditioning error
-  `alpha_(K,M)=O(K^(-1/2)+M^(-1))` along a cofinal sequence, the staircase
+  `alpha_K=O(K^(-1/2))` along a cofinal sequence, the staircase
   closes the qualitative relative-stability endpoint, but does not itself
   give the sharp quadratic padding bound in the present claim.  Qualitative
-  stability separately for every fixed `(K,M)` is not enough: its radius may
+  stability separately for every fixed `K` is not enough: its radius may
   decay faster than `alpha`, so
   the preconditioned tuple never enters the local basin.  This is the exact
-  uniformity datum a finite-level packet proof must report.
+  uniformity datum a finite-level packet proof must report.  No return-
+  monodromy parameter or `r`-power row is required: the single `s^N=1` row
+  already makes the full endpoint finite.
 
 - **General scalar phases refute a uniform angle but obey an energy-angle
   dichotomy.**  `scalar-bs14-exit-angle-energy-dichotomy` computes the exit

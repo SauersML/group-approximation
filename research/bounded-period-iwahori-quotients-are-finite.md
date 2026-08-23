@@ -29,6 +29,8 @@ Consequently every fixed bounded-period presentation arising from the
 BS14 preconditioner is flexibly Hilbert--Schmidt stable.  In particular,
 the bounded-support side of the proposed long/short staircase has no
 remaining representation-semigroup or continuous-angle obstruction at a
-fixed level.  What remains is quantitative uniformity as `L,N` move: the
-finite-group stability radius may shrink faster than the preconditioning
-error tends to zero.
+fixed level.  More strongly, bounded-cycle shadowing of the base `s` alone
+already lands in a finite endpoint; quantizing return monodromy and adding
+`r^L=1` are unnecessary for this purpose.  What remains is quantitative
+uniformity as `N` moves: the finite-group stability radius may shrink faster
+than the bounded-cycle preconditioning error tends to zero.

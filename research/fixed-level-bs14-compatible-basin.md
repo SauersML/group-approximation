@@ -2,64 +2,60 @@
 rg: 2
 id: fixed-level-bs14-compatible-basin
 kind: claim
-title: Fixed Iwahori levels are finite and stable, but diagonalization needs a compatible basin
+title: One-parameter finite Iwahori shadows still need a compatible basin
 distinct_from:
-  bs14-full-commutant-finite-period-preconditioner: that constructs the bounded packet skeleton and its coboundary inverse; this audits whether qualitative stability at every bounded level can be diagonalized.
+  bs14-long-cycles-admit-bounded-period-shadowing: that constructs the bounded-cycle BS core in the same dimension; this observes that its single unipotent power row already makes the full Iwahori endpoint finite and audits whether the resulting pointwise stability can be diagonalized.
+  bs14-full-commutant-finite-period-preconditioner: that additionally quantizes return monodromy and imposes an `r`-power row; neither operation is needed to make the fixed-level Iwahori quotient finite.
   bs14-flexible-cross-packet-boundary-reconciliation: that asks for the final uniform repair; this gives an exact sufficient fixed-level formulation and the quantifier fence on a naive proof.
   bs14-exact-representation-variety-is-hs-locally-rigid: that aligns two exact BS cores with a uniform modulus; this concerns the extra involution over one preconditioned core.
 ---
 
-For `K,M>=2`, set
+For `K>=2`, set
 
 ```text
-N_K=lcm_(1<=m<=K)(4^m-1),
-L_(K,M)=M lcm(1,...,K).                                (FLB1)
+N_K=lcm_(1<=m<=K)(4^m-1).                             (FLB1)
 ```
 
-Every core produced by
-`bs14-full-commutant-finite-period-preconditioner` satisfies
+Every core produced by `bs14-long-cycles-admit-bounded-period-shadowing`
+satisfies
 
 ```text
-S^N_K=1,                 R^L_(K,M)=1.                 (FLB2)
+S_K^N_K=1.                                             (FLB2)
 ```
 
-Thus its image factors through the finite metacyclic group
+The fixed-level relative problem is therefore the arbitrary-multiplicity
+matrix representation problem for the one-power quotient
 
 ```text
-B_(K,M)=<r,s | r^L=1,s^N=1, r s r^(-1)=s^4>.         (FLB3)
+Gamma_K=<x,r,s | x^2,(xr)^2,(xs^2)^3,(xrs)^3,
+                   r s r^(-1)s^(-4),s^N_K>.           (FLB3)
 ```
 
-The remaining fixed-level relative problem is the arbitrary-multiplicity
-matrix representation problem for
-
-```text
-Gamma_(K,M)=<x,r,s | x^2,(xr)^2,(xs^2)^3,(xrs)^3,
-                       r s r^(-1)s^(-4),r^L,s^N>.     (FLB4)
-```
-
-The group `Gamma_(K,M)` is finite.  Indeed the full presentation before the
-two power rows is `PSL_2(Z[1/2])`, and the normal closure of the nontrivial
+The group `Gamma_K` is finite.  Indeed the full presentation before the
+power row is `PSL_2(Z[1/2])`, and the normal closure of the nontrivial
 unipotent power `s^N` has finite index by the S-arithmetic normal-subgroup
 theorem.  Therefore finite-group Hilbert--Schmidt stability supplies, for
-every fixed `(K,M)`, a flexible modulus `f_(K,M)` on some radius
-`delta_(K,M)>0`.  This closes the fixed-level arbitrary-multiplicity
-problem unconditionally; the modulus is not uniform in `(K,M)`.
+every fixed `K`, a flexible modulus `f_K` on some radius `delta_K>0`.  This
+closes the fixed-level arbitrary-multiplicity problem unconditionally; the
+modulus is not uniform in `K`.
 
 Let
 
 ```text
-alpha_(K,M)=C_0(sqrt(8/K)+pi/M)                       (FLB5)
+alpha_K
+ =C_0(sqrt(8/K)+pi sqrt(2/(9K)))
+ =C_*/sqrt(K)                                         (FLB4)
 ```
 
 be the word-Lipschitz defect introduced in the four `x`-relations by the
-preconditioning.  For the fixed-level moduli above, a cofinal sequence
-`(K_j,M_j)` proves
-`bs14-relative-involution-extension-stability` provided
+bounded-cycle shadowing.  For the fixed-level moduli above, a cofinal
+sequence `K_j` proves `bs14-relative-involution-extension-stability`
+provided
 
 ```text
 alpha_j < delta_j/2,
 alpha_j -> 0,
-f_j(2 alpha_j) -> 0.                                  (FLB6)
+f_j(2 alpha_j) -> 0.                                  (FLB5)
 ```
 
 Indeed, for an original defect `epsilon` small relative to `alpha_j`, word
@@ -67,27 +63,28 @@ Lipschitzness puts the preconditioned tuple inside the `2alpha_j` ball;
 fixed-level repair then costs `f_j(2alpha_j)`, and the preconditioning cost
 also tends to zero.
 
-However, the now-established flexible stability of every fixed
-`Gamma_(K,M)` does not imply `(FLB6)`.  It only says each `delta_(K,M)>0`
-and `f_(K,M)(t)->0` with `(K,M)` fixed.  Those radii may shrink faster than
-`alpha_(K,M)`; for example the abstract schedules
+However, the now-established flexible stability of every fixed `Gamma_K`
+does not imply `(FLB5)`.  It only says each `delta_K>0` and `f_K(t)->0`
+with `K` fixed.  Those radii may shrink faster than `alpha_K`; for example
+the abstract schedules
 
 ```text
-alpha_j=1/j,                 delta_j=exp(-j)           (FLB7)
+alpha_j=1/j,                 delta_j=exp(-j)           (FLB6)
 ```
 
 satisfy both pointwise statements and admit no usable diagonal.  The
 original microstate defect tending to zero cannot remove the fixed
 preconditioning error `alpha_j`.
 
-Under the compatibility hypotheses `(FLB6)`, this bypass would prove the
+Under the compatibility hypotheses `(FLB5)`, this bypass would prove the
 qualitative flexible endpoint, not the sharper quadratic padding estimate
 `(FBR2)` in `bs14-flexible-cross-packet-boundary-reconciliation`.  Without
-`(FLB6)`, no endpoint follows from the pointwise fixed-level statements.
+`(FLB5)`, no endpoint follows from the pointwise fixed-level statements.
 
 Therefore the fixed-period strategy has isolated the sole surviving
 uniformity problem.  The whole short-support endpoint is finite and stable.
 What is still needed is either a lower bound on its basin and modulus in
-terms of `K,M`, or a preconditioner whose error is adapted to that basin.
-Pointwise finite-group stability is logically insufficient for the moving
-staircase.
+terms of `K`, or a preconditioner whose error is adapted to that basin.  The
+earlier monodromy parameter `M` and the row `r^L=1` do not address this
+remaining comparison and may be deleted.  Pointwise finite-group stability
+is logically insufficient for the one-parameter moving staircase.
