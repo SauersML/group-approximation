@@ -52,3 +52,13 @@ The exact alternating screens now extend through `A11`.  The complete
 `atlas-six-relator-has-no-a11-target`.  This is still only a target-specific
 finite restriction and does not decide condition 2 for an arbitrary finite
 group.
+
+The blockwise consequence is stronger than a degree cutoff but still not a
+general exclusion.  By
+`atlas-six-relator-natural-orbit-mixing-floor`,
+every permutation realization in which both chart actions are sums of
+natural eight-point orbits has only trivial generated components through
+degree eleven.  Thus direct sums of the screened blocks cannot evade the
+sixth relator.  Any permutation escape must instead cross the two natural
+orbit partitions and create a mixed generated component of degree at least
+twelve; this is the first unscreened permutation stratum.

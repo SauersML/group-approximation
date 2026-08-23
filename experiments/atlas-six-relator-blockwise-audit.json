@@ -1,0 +1,161 @@
+{
+  "ambient": "natural A8 action on eight points plus three fixed points",
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "aligned_charts": {
+    "s_0": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_11": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_30": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_44": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_55": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "c_19243": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  "first_chart_trivial": {
+    "s_0": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "s_11": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_30": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "s_44": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_55": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "c_19243": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    }
+  },
+  "second_chart_trivial": {
+    "s_0": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_11": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "s_30": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "s_44": {
+      "identity": false,
+      "order": 2,
+      "support": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "s_55": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    },
+    "c_19243": {
+      "identity": true,
+      "order": 1,
+      "support": []
+    }
+  }
+}
