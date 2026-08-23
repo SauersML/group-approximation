@@ -49,6 +49,45 @@ C_(G,theta)=C_G P_theta,                                (RUB4)
 and the normal operator and Moore--Penrose inverse have the same orthogonal
 block decomposition.
 
+There is a completely explicit principal-series realization of each
+block.  The quotient `G/U` is the set of nonzero column vectors in
+`F_p^2`, modulo the central sign.  Right multiplication by `h(a)` scales
+the first column by `a`.  Thus the `theta` block consists of homogeneous
+functions
+
+```text
+F(av)=theta(a)F(v).                                    (RUB4a)
+```
+
+On the affine chart write `F(z,1)=phi(z)`.  Left `H` invariance and the
+left Weyl sign become
+
+```text
+phi(4z)=theta(2)phi(z),
+theta(z)phi(-1/z)=-phi(z)                              (RUB4b)
+```
+
+for nonzero `z`, together with the analogous `0,infinity` pair.  If
+`g=[[a,b],[c,d]]`, its block action is the weighted Mobius operator
+
+```text
+(T_g^theta phi)(z)
+ =theta(cz+d) phi((az+b)/(cz+d)),                      (RUB4c)
+```
+
+with the homogeneous interpretation when `cz+d=0`.  Hence the two rows
+are explicitly
+
+```text
+T_(S^2)^theta+T_(S^2A^(-1))^theta+T_(S^2A^(-2))^theta,
+T_S^theta+T_(SB^(-1))^theta+T_(SB^(-2))^theta.         (RUB4d)
+```
+
+After choosing one representative from each multiplication-by-`4` orbit,
+these are finite matrices with three character phases in every row.  They
+are circulant along each torus orbit, while the Mobius transitions couple
+the different orbits.
+
 This is a concrete finite Fourier/Hecke model.  The right-`T` orbits in
 `N\G/U` are the double cosets `N\G/B`, where `B=TU`.  For a representative
 `g`, the orbit is `T/T_g`, with
