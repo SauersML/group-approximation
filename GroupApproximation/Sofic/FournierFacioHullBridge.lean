@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.BareDefectSource
 import GroupApproximation.Sofic.HullPrescribedSaturation
+import GroupApproximation.Sofic.QuestionTwoReduction
 
 /-!
 # The exact bare-defect/Hull endpoint boundary
@@ -102,7 +103,8 @@ descends along the surjective composite from the auxiliary Kazhdan factor
 `A`. Protected-set injectivity is supplied one Hull stage at a time and
 composed here. -/
 def ofCommonQuotientAndHull
-    {A F M : Type*} {Q : Type} [Group A] [Group F] [Group M] [hQ : Group Q]
+    {A : Type} {F M : Type*} {Q : Type}
+    [Group A] [Group F] [Group M] [hQ : Group Q]
     [hQfp : Group.IsFinitelyPresented Q]
     (first : A →* M) (source : F →* M) (second : E →* M)
     (finish : M →* Q)
@@ -144,6 +146,45 @@ def ofCommonQuotientAndHull
     protected_injective :=
       HullPrescribedSaturation.injOn_comp second finish ({1, D.s} : Set E)
         hprotectedSecond hprotectedFinish }
+
+/-! ## Direct consumption of the bespoke router -/
+
+/-- The bespoke small-cancellation router already has exactly the concrete
+fields stored by `BareDefectHullQuotientData`.  This adapter makes that fact
+literal: torsion-freeness and finite presentation are carried by the router,
+property `(T)` descends from its surjective partner map, saturation is its
+`defect_top` conclusion, and protected-pair injectivity is unchanged.
+
+Unlike `ofCommonQuotientAndHull`, this constructor consumes the collapsed
+one-stage output after both quotient steps have been assembled.  It introduces
+no existence assumption and no endpoint property as a separate hypothesis. -/
+def _root_.GroupApproximation.SmallCancellationRouter.RoutingLemmaData.toBareDefectHullQuotientData
+    {B : Type} [Group B]
+    (R : SmallCancellationRouter.RoutingLemmaData
+      E D.core.defectNormal D.s B)
+    (hB : HasKazhdanPropertyT.{0, 0} B) :
+    BareDefectHullQuotientData D where
+  Quotient := R.Quotient
+  groupQuotient := R.groupQuotient
+  quotient := R.route
+  finitelyPresented := R.finitelyPresented
+  targetTorsionFree := R.torsionFree
+  targetKazhdan := R.kazhdan hB
+  defectNormal_maps_top := R.defect_top
+  protected_injective := R.protected_injOn
+
+/-- Existential form of
+`RoutingLemmaData.toBareDefectHullQuotientData`.  Thus an actual router at a
+bare source is now the sole construction datum needed by the torsion-free
+non-MF endpoint. -/
+theorem nonempty_of_routingLemmaData
+    {B : Type} [Group B]
+    (hB : HasKazhdanPropertyT.{0, 0} B)
+    (hR : Nonempty (SmallCancellationRouter.RoutingLemmaData
+      E D.core.defectNormal D.s B)) :
+    Nonempty (BareDefectHullQuotientData D) := by
+  obtain ⟨R⟩ := hR
+  exact ⟨R.toBareDefectHullQuotientData hB⟩
 
 /-- The ambient map is onto; this is derived from normal generation rather
 than stored as a second version of the same Hull conclusion. -/
@@ -223,6 +264,7 @@ theorem not_isCDEOperatorMF : ¬ IsCDEOperatorMF H.Quotient := by
   rw [isCDEOperatorMF_iff_isOperatorMF]
   exact H.not_isOperatorMF
 
+include H in
 /-- The exact existential endpoint obtained from one concrete two-stage
 output. There is no additional routing, Kazhdan, torsion-free, survival, or
 non-MF assumption: each is a theorem of `H`. -/
@@ -237,5 +279,28 @@ theorem to_exists_torsionFree_finitelyPresented_not_MF :
     H.finitelyPresented, H.not_isCDEOperatorMF, H.not_isOperatorMF⟩
 
 end BareDefectHullQuotientData
+
+namespace SmallCancellationRouter
+
+/-- An actual bespoke-router output over a bare compression source gives the
+exact torsion-free finitely presented non-MF existential.  All endpoint
+properties are derived: the only construction input is the router itself, and
+property `(T)` is transported from its certified partner. -/
+theorem exists_torsionFree_finitelyPresented_not_MF_of_routingLemmaData
+    {P : Type} {E : Type u} [Group P] [Group E]
+    (D : BareDefectSourceData P E)
+    {B : Type} [Group B]
+    (hB : HasKazhdanPropertyT.{0, 0} B)
+    (hR : Nonempty (RoutingLemmaData E D.core.defectNormal D.s B)) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
+      IsPowerTorsionFree Q ∧
+      Group.IsFinitelyPresented Q ∧
+      ¬ IsCDEOperatorMF Q ∧
+      ¬ IsOperatorMF Q := by
+  obtain ⟨H⟩ :=
+    BareDefectHullQuotientData.nonempty_of_routingLemmaData (D := D) hB hR
+  exact BareDefectHullQuotientData.to_exists_torsionFree_finitelyPresented_not_MF H
+
+end SmallCancellationRouter
 
 end GroupApproximation

@@ -466,6 +466,25 @@ theorem dist_zpow_difference (hiso : IsIsometricAction G X)
   rw [← mul_smul, hcancel] at hd
   exact hd.symm
 
+/-- A uniform bounded-cancellation estimate for difference words implies
+independence.  This is the direct interface used by normal-form arguments:
+after rewriting the distance between two orbit points as the displacement of
+`g⁻ᵃhᵇ`, the defining Gromov product is bounded by half the cancellation
+constant. -/
+theorem independent_of_difference_lower
+    (hiso : IsIsometricAction G X) {g h : G} {x : X} (C : ℝ)
+    (hdiff : ∀ a b : ℤ,
+      dist x ((g ^ a) • x) + dist x ((h ^ b) • x) - C ≤
+        dist x ((g ^ (-a) * h ^ b) • x)) :
+    Independent g h x := by
+  refine ⟨C / 2, ?_⟩
+  intro a b
+  have hlower := hdiff a b
+  rw [dist_zpow_difference hiso] at hlower
+  unfold gromovProduct
+  linarith [hlower, dist_comm ((g ^ a) • x) x,
+    dist_comm ((h ^ b) • x) x]
+
 /-- Geometric form of `acylindrical_common_power_pigeonhole`: sufficiently
 many distinct exponent pairs whose two orbit maps fellow-travel at two distant
 basepoints force a common nonzero power. -/
