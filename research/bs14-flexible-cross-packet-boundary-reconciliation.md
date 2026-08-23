@@ -104,6 +104,23 @@ the cross-packet multiplicity boundary for one `X`.
   approximate.  The determinant-neutral and unauthenticated mixed sectors
   remain open.
 
+- **The determinant-neutral torsion frame now has one exact spectral
+  residue.**  For `p=1 mod 8`,
+  `one-mod-eight-torsion-charge-reduces-to-a-double-neutral-angle` proves
+
+  ```text
+  rank(u-1)<=36, det(u) in mu_3,
+  rank(v-1)<=46, det(v)=1.
+  ```
+
+  If `det(u)` is nontrivial, then `||u-1||_F^2>=1/12`, so the missing line
+  is again energy-paid.  Only the branch `det(u)=det(v)=1` survives.  In
+  that branch rank and nonidentity are quantitatively insufficient:
+  conjugate eigenvalues `exp(+-i theta)` can approach one with fixed rank
+  and zero determinant charge.  The remaining authenticated-block
+  calculation is therefore an explicit post-normalization eigenangle bound
+  for `u` or `v`, not another determinant or carrier-rank estimate.
+
 - **Heterogeneous primes are not covered by determinant multiplication, but
   their canonical orthogonal sums are covered by positive cubic energy.**
   For `p=1 mod 8` the second compressed cubic has determinant `+1`; its
