@@ -50,3 +50,8 @@ packet must alternate between different Clifford orbits and their inertia
 categories; iterating only the canonical multipliers `omega_a` is
 algebraically impossible.
 
+The complete replacement for that failed recursion is
+`adjacent-clifford-orbit-transition-graph`: every exact adjacent transition
+lands in the size-three orbit `O_B`, whose only recurrent arrow has capacity
+`2/3`. Thus changing from the fixed orbit to `O_B` permits iteration but
+does not remove the quantitative leakage.

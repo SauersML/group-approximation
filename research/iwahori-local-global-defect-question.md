@@ -149,6 +149,15 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   orbit with index-three inertia.  Thus a diffuse realization cannot recurse
   only through the full-inertia multipliers `omega_a`; it must alternate
   Clifford orbit and inertia types.
+- **The complete adjacent Clifford graph has one lossy recurrent orbit.**
+  `adjacent-clifford-orbit-transition-graph` computes all four orbit
+  transitions. Every exact upward edge lands in the size-three orbit
+  `O_B`; its self-edge has sharp source capacity `2/3` in either orientation.
+  The fixed orbit feeds it once with capacity one and the other size-three
+  orbit with capacity `1/3`, but neither supplies a recurrent source.
+  Therefore a one-way recursive orbit packet loses geometrically; a diffuse
+  enemy would still need label-sensitive replenishment inside the changing
+  inertia categories.
 - **The dual inclusion graph is not the spatial tree.**
   `iwahori-dual-inclusion-graph-is-fusion-not-the-bruhat-tits-tree` proves
   `R_a^*R_a` is fusion by the three-dimensional coset permutation object.
