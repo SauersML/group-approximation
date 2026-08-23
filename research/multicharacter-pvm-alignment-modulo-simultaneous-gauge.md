@@ -32,6 +32,12 @@ The complete-pair linearized minor is uniformly coercive transverse to
 simultaneous conjugacy, so `(MCA1)` is the nonlinear/global version of that
 minor.  `sequential-character-recentering-has-decision-tree-loss` rules out
 obtaining it by paying one worst-case commutator row at every binary split.
+The surviving aggregation is weighted coordinate hashing:
+`weighted-code-character-hash` selects
+`O(log(1/eta))` rows with small total pair energy and only `eta` unresolved
+off-diagonal mass.  The remaining gate is to realize that hash as one
+gauge-aligned joint PVM, recorded in
+`sampled-coordinate-joint-pvm-tracks-terminal-character-hash`.
 
 ## Attempts
 
