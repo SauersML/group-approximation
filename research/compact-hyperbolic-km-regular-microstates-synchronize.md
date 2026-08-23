@@ -14,6 +14,7 @@ distinct_from:
   reynolds-defect-cut-gives-regular-relator-corner: that constructs a large regular-overlap carrier and polar two-path corner for one kernel word; the summed-Reynolds claim below supplies its finite-family upgrade.
   summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
   summed-reynolds-carrier-transports-only-tautologically: that transports the high-density projection and its polar corrections through every chart by replacing the projection with the full carrier, but shows that the resulting paths are only I and the original kernel word; this must compare the polar path with the independently exactified P_13 coefficient.
+  one-state-protected-coefficient-leaves-relative-gh-gauge: that proves a full-trace unitary coefficient pins the relative multiplicity gauge exactly, but a single state-dependent protected coefficient leaves an exact amplified counterpacket even for faithful states; this must obtain operator-level trace control for the Reynolds polar coefficient.
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
@@ -258,6 +259,27 @@ precise remaining bridge is a relative finite-group exactification which
 compares that corrected chart's two overlap-path coefficients to the
 Reynolds polar path on positive regular mass.  No further carrier-invariance
 estimate is needed.
+
+There is now a sharp gauge criterion for that bridge.
+`one-state-protected-coefficient-leaves-relative-gh-gauge` proves that the
+full ambient unitary extension `tilde B_a` is enough: if the two overlap
+gauges are `Q_1,Q_2`, then
+
+```text
+||Q_2 tilde B_a Q_1^*-tilde B_a||_2
+ =||Q_2-tilde B_a Q_1 tilde B_a^*||_2.
+```
+
+Thus one normalized-HS operator coefficient fixes the relative gauge with no
+loss.  But Lin-style one-state protection is strictly weaker.  On an
+amplified regular packet a faithful density can put total weight `O(m^(-2))`
+on a trace-`1-o(1)` complement; flipping that complement has vanishing state
+error and normalized-HS distance tending to two, while preserving every
+packet intertwining equation.  Lin's exact opposite-algebra preservation
+does not rescue this because the Reynolds polar coefficient commutes only
+with `P_0`, not with the whole `P_13` packet.  The open theorem must therefore
+protect `tilde B_a` in ambient trace norm, or establish a dimension-free
+lower density bound before applying state-dependent exactification.
 
 ## The kernel basis already builds the missing finite rank-two chart
 
