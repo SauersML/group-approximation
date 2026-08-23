@@ -45,7 +45,8 @@ X=B U_r                    for some B in U(L^infinity(K)), r in H. (CAT4)
 ```
 
 Thus a cyclic-aperiodic algebraic envelope has no genuine two-grade Fourier
-seam. The first possible nonhomogeneous finite-grade placement requires at
-least three actor grades. This is an exact statement and does not assert that
-three-grade unitaries exist with the required Manzoor moments.
+seam. The boundary is sharp: `three-actor-grades-support-an-exact-hadamard-cell`
+constructs a three-grade self-adjoint unitary which does not even normalize
+the abelian base. That local cell does not yet supply the required Manzoor
+moments or multiplication law.
 ---

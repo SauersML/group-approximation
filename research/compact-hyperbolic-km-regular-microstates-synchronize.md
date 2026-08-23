@@ -214,3 +214,28 @@ infinite simple, the exact compatible locus contains no triple retaining a
 nonzero regular vertex summand.  Thus rounding near-identity multiplicity
 holonomy to that locus is quantitatively the terminal regular-branch
 stability theorem itself.
+
+Property `(T)` supplies one sharp conditional endpoint, but it cannot cross
+this last gap. `km-kazhdan-holonomy-rounding-starts-after-projective-flatness`
+shows that if the free presentation matrices already send every
+Curtis--Tits relator to a scalar, their adjoint action is an exact
+representation of `Gamma`. The Kazhdan gap then polar-rounds any holonomy
+`W` to a unitary in the global commutant with the dimension-free estimate
+
+```text
+dist_2(W,U(rho(F)'))
+ <=sqrt(2) kappa^(-1) max_(s in S)||[W,rho(s)]||_2.
+```
+
+This is the highest-cascade qualitative commutant synchronization available
+from property `(T)`. For the simple lattice, however, exact scalar relators
+define a finite-dimensional projective representation of `Gamma`, which is
+trivial by simplicity and Malcev residual finiteness; all vertex images are
+then scalar and no regular finite-subgroup core survives. In a microstate the
+relators are only near the identity, so the adjoint maps are only an
+approximate `Gamma`-representation and the Kazhdan inequality has no object
+to act on. Promoting them to an exact adjoint action while retaining regular
+mass is projective normalized-HS stability itself. Thus building geometry,
+local regular cores, and property `(T)` do not yield an intermediate
+holonomy-collapse lemma unless an additional finite-matrix mechanism first
+scalarizes the native face relators.

@@ -318,6 +318,17 @@ this kernel sandwich; it is a homogeneous algebraic-cocycle problem, not a
 genuine Fourier mixture. At least three actor grades are required for a new
 finite-grade mechanism.
 
+That lower bound is sharp as a local operator statement.
+`three-actor-grades-support-an-exact-hadamard-cell` uses a height-two Rokhlin
+pair for one aperiodic actor `t` to construct an exact Hadamard reflection
+with Fourier support `{e,t,t^(-1)}`. The reflection does not normalize the
+base, so three grades need not collapse either to one grade or to a finite
+partition cocycle. Consequently there is no cyclic-aperiodicity theorem
+excluding all finite Fourier support. The surviving problem is constructive:
+assemble these three-grade matrix cells into images of the Manzoor generators
+while preserving their full multiplication table and IRS trace, rather than
+merely producing isolated mixed unitaries.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a
