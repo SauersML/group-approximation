@@ -11,6 +11,8 @@ distinct_from:
   finite-multipath-average-coercivity-has-exact-julia-absorber: that proves finite additive paths coerce their pairwise Gram energy only after complementary leakage is controlled; this must construct that carrier control from native Kac--Moody relations.
   triangle-kernel-relators-charge-authenticated-corner-leakage: that proves the native kernel words pay all complementary leakage on a positive carrier; this must still identify one compressed word with the desired finite-label multipath block.
   km-triangle-local-bimodules-have-finite-nonflat-models: that gives exact regular charts and pairwise overlap intertwiners with a nontrivial native kernel cycle; this must use the kernel relator itself to close the common carrier.
+  reynolds-defect-cut-gives-regular-relator-corner: that constructs a large regular-overlap carrier and polar two-path corner for one kernel word; the summed-Reynolds claim below supplies its finite-family upgrade.
+  summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
@@ -141,3 +143,39 @@ not weaken `(TKL3)`: once such a relation-dependent common carrier is built,
 the kernel defect pays its leakage.  It rules out a local-bimodule-only
 compiler and isolates the unresolved step as **relation-dependent common-core
 extraction**.
+
+## One relation-dependent carrier is available
+
+There is a positive construction beyond the local counterpacket.
+For one kernel word `Y=pi(n_a)` and one fixed finite overlap subgroup `H`,
+`reynolds-defect-cut-gives-regular-relator-corner` averages
+`(Y-I)^*(Y-I)` over `H` and spectrally cuts the result.  The projection `q`
+commutes with `H`; for `d=||Y-I||_2<1`, it satisfies
+
+```text
+tr(q)>=1-d,
+||qYq-(q+B)/2||_(2,q)<=sqrt(|H|d),
+```
+
+where `B` is a genuine unitary in `qM_Dq`.  If the ambient `H` chart is
+regular, `q` contains a regular summand of relative dimension at least
+`1-|H|d`.  Thus one native relation does produce both a uniformly positive
+regular carrier and a coherent two-path corner, with a dimension-free
+modulus.
+
+The finite-family issue is now settled by
+`summed-reynolds-cut-synchronizes-kernel-corners`: sum the Reynolds defect
+Laplacians before taking the spectral cut.  If
+`E=sum_a||pi(n_a)-I||_2^2`, one common `H`-invariant projection satisfies
+
+```text
+tr(q)>=1-sqrt(E),
+||q pi(n_a)q-K_a||_(2,q)<=sqrt(|H|)E^(1/4),
+||B_a-B_b||_(2,q)<=4sqrt(|H|)E^(1/4).
+```
+
+In a regular `H` chart it retains a regular summand of relative dimension at
+least `1-|H|sqrt(E)`.  The remaining carrier problem is no longer
+simultaneous kernel-word extraction: it is extending this one
+overlap-subgroup-invariant carrier through `P_1`, `P_3`, and the rank-two
+vertex charts without losing density or recreating the nonflat counterpacket.

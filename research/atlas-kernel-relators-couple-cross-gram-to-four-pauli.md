@@ -109,3 +109,22 @@ only their ranks or squared-HS masses.  On the positive side, any strict Hall
 deficit extracted from those ranges automatically has gap at least
 `1/20160`; the remaining difficulty is qualitative range deletion, not the
 size of the final constant.
+
+The ordinary full-word Jacobian cannot perform this deletion at an exact
+aligned frame.  `atlas-aligned-word-jacobian-has-full-multiplicity-absorber`
+shows that every actual word derivative factors as a finite
+representation-coordinate map tensored with the identity on the complete
+multiplicity matrix space.  The compulsory scalar-gauge tangent then expands
+to arbitrary multiplicity matrices on every aligned block.  Each surviving
+block has full collective range and the aligned support is Hall balanced.
+Therefore the remaining finite-only extraction must use nonlinear secant or
+singular-space data away from the aligned tangent stratum; stacking more
+kernel-relator differentials cannot establish `(AKC2)`.
+
+Even exact finite secants inside a common word-value fiber are insufficient.
+`atlas-word-fiber-secants-have-full-multiplicity-absorber` computes their
+span at an aligned frame as `U_0 rho_2(A8)'`.  It contains arbitrary
+multiplicity matrices on every compulsory aligned block and an invertible
+operator.  What remains is therefore a transverse quantitative singular
+invariant on the quotient by this exact commutant orbit, not a Jacobian or a
+same-fiber chord minor.

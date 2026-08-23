@@ -672,3 +672,20 @@ the fixed-depth nonhyperlinearity criterion.
   fixed finite-window covariant phase tag. Only growing affine-Weyl Folner
   windows evade the bound; a closing incidence must make that off-shell
   direction nonamenable rather than enlarge the window by a fixed amount.
+- **A global Schreier PVM is stronger than action soficity and would already
+  close the route.** `global-schreier-pvm-is-stronger-than-action-soficity`
+  formalizes the exact output needed from the HNN microstates. If finite-
+  support orthogonal atoms over `A/C` have total mass `mu`, their transport
+  energy is at least `2 gamma mu` by the existing Schreier gap. This is a
+  window-independent normalized-HS inequality. But soficity supplies only
+  local orbit charts, not a global label map into `A/C`; nonamenable regular
+  actions of sofic groups show the distinction is strict.
+
+  The exact Bernoulli crossed product is the firewall. Its raw lamp
+  projections are perfectly covariant but have pair overlap `1/4`, and any
+  exactly covariant orthogonal `A/C`-PVM of positive invariant mass would
+  push trace forward to an invariant probability on `A/C`, impossible by
+  non-coamenability. Thus no further Poincare estimate is missing. The live
+  arithmetic theorem is a genuinely nonlinear Cartan/PVM extraction from
+  overlapping raw lamps; proving or disproving soficity of the arithmetic
+  set action does not substitute for it.

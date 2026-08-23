@@ -82,6 +82,22 @@ scaling search.
 - **Exact finite falsification.** Replay the range-rank objective on archived
   finite boundary and natural-overgroup countermodels.  A candidate packet or
   cutoff which has no positive normalized deficit there should not be promoted.
+- **The aligned word Jacobian has no proper within-block ranges.**
+  `atlas-aligned-word-jacobian-has-full-multiplicity-absorber` applies to the
+  actual Atlas word list at every exact aligned regular frame.  Every surviving
+  minimal Fourier block of its joint kernel has full collective multiplicity
+  range, and the compulsory aligned-unitary support is Hall balanced.  Thus a
+  candidate `L_delta` cannot be the ordinary full-word Gauss--Newton form near
+  the aligned stratum.  It must use a genuinely nonlinear, finite secant or
+  singular-value selection which is not determined by the aligned derivative.
+- **Exact word-fiber secants retain the same reservoir.**
+  `atlas-word-fiber-secants-have-full-multiplicity-absorber` shows that the
+  span of finite chords `UC-U` inside the exact common relator-value fiber is
+  `U rho_2(A8)'`.  At an aligned frame this again supplies every multiplicity
+  matrix on every compulsory block and contains an invertible operator.  The
+  viable nonlinear target is therefore narrower than an arbitrary secant:
+  it must measure quantitative transverse singular variation after quotienting
+  the exact commutant fiber.
 - **Failure is informative.** If the minimum range-Hall objective stays
   nonnegative for every threshold compatible with `(ARH1)`, this route is
   dead but the full spectral shrunk-space target remains open at genuinely
