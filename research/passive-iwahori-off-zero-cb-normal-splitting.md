@@ -84,7 +84,12 @@ changes the derivative is the pair of order-three conditional expectations
 `3(E_(XS^2),E_(XRS))`, restricted to the fixed-`R`, `X`-odd tangent space.
 Thus the exact-zero part of `(PCB3)` is the uniform cb complementability of
 this constrained Reynolds column over all congruence levels and
-amplifications.  Ordinary expander diameter examples show that the known
-`L2` angle alone cannot prove that complementability, but they do not refute
-it until such a diameter subspace is embedded in the constrained tangent
-space.
+amplifications.  `two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse`
+proves that the known `L2` angle and the two order-three expectation
+structures alone cannot give that complementability.
+`constrained-reynolds-column-has-a-diagonal-scalar-shadow` extracts the
+precise arithmetic scalar obstruction: the full assertion already requires
+a uniform cb Green estimate for explicit signed-incidence matrices on the
+`X`-odd part of `Q/<R>`.  Whether those special scalar inverses stay bounded
+or diverge is open; until it is decided, neither a generic expander
+counterexample nor finite-dimensional bimodule structure closes `(PCB3)`.

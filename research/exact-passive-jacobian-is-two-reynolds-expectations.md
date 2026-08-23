@@ -67,15 +67,22 @@ operator-space content is exactly whether its gauge-normal inverse on its
 range has cb norm bounded uniformly over finite congruence endpoints and
 all multiplicity amplifications.
 
-This reduction also prevents an unjustified generic-expander refutation.
-A Hilbert `L2` gap for two conditional expectations does not in general
-bound the `L_infinity` norm of the associated Green operator: commutative
-expander gradients can have bounded `L2` inverse and sup-norm primitive
-cost comparable to graph diameter.  But that observation alone is not a
-counterexample here.  The domain `(EPJ2)` is the fixed-`R`, `X`-odd
-operator space, not the full scalar vertex-function space, and
+`two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse` makes the generic
+expander obstruction rigorous: even two order-three conditional
+expectations can have a uniform `L2` gap and logarithmically divergent cb
+normal inverse.  But that theorem alone is not a counterexample here.  The
+domain `(EPJ2)` is the fixed-`R`, `X`-odd operator space, not the full scalar
+edge-function space, and
 `full-core-central-relative-tangent-is-zero-near-first-cubic` shows that
 the obvious full-core-central scalar sector is zero.
+
+There is nevertheless an exact commutative test inside the arithmetic
+problem.  `constrained-reynolds-column-has-a-diagonal-scalar-shadow`
+restricts the left-regular congruence endpoint to its diagonal masa and
+obtains an explicit signed-incidence matrix `C_Q` on `Q/<R>`.  Uniform cb
+complementability in `(EPJ7)` implies a uniform cb Moore--Penrose inverse
+for every `C_Q`.  This is a necessary scalar arithmetic Green estimate,
+not a consequence of the Hilbert angle.
 
 Accordingly the exact cb question is a finite operator-space inequality:
 
@@ -90,4 +97,3 @@ representations, and `m` over amplifications.  A no-go must embed a growing
 diameter primitive problem into the constrained spaces `(EPJ2)` and the
 two expectations `(EPJ5)`; the finite Hecke `L2` angle by itself neither
 proves nor refutes `(EPJ7)`.
-
