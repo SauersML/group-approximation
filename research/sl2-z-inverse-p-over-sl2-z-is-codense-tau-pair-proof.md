@@ -9,11 +9,17 @@ artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 ---
 
-Finite order of the unitary image of a unipotent that is conjugate to its
-`p^2`-th power, the finite index of the normal closure of a unipotent power
+If `U` is the unitary image of the upper unipotent, conjugacy of `U` and
+`U^(p^2)` permutes the finite spectral multiset. Every eigenvalue `z`
+satisfies `z^(p^(2k)-1)=1` for some `k`, so one integer `N`, coprime to
+`p`, has `U^N=1`. The finite index of the normal closure of this unipotent
+power
 (Peterson--Thom after Bass--Milnor--Serre; now isolated as
 `sl2-s-arithmetic-noncentral-normal-subgroups-have-finite-index`, a
 Margulis-theorem import that is FALSE for `SL_2(Z)`), Serre's congruence subgroup
 property, reduction of `SL_2(Z)` modulo `m`, and Selberg's `3/16` theorem
 as property `(tau)` for the congruence quotients.  Section 12 of the
 artifact.
+
+For `p=2`, the resulting full representation classification is recorded at
+`finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence`.

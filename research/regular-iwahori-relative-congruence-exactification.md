@@ -58,3 +58,14 @@ congruence quotients.  It does not establish `(RCE1)`.
   tries to bypass congruence exactification by repairing an exact parabolic
   skeleton and its Weyl holonomy.  It is a route to the same Iwahori endpoint,
   not an established implication to `(RCE1)`.
+- **Exact endpoint classification does not give basin capture.**
+  `finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence` proves
+  directly from `huh^(-1)=u^4`, the S-arithmetic normal-subgroup theorem and
+  Serre CSP that every honest finite-dimensional endpoint has finite image
+  and odd congruence level. An asymptotically compatible vertex pair gives
+  such an endpoint only in a matrix ultraproduct. On its finite-character
+  central part, hyperfinite stability already supplies coordinatewise
+  congruence correction; on its regular central part, exact endpoint
+  classification has no lifting implication. Thus `(RCE1)` is precisely the
+  regular-face basin-capture theorem, not a missing representation-
+  classification lemma.

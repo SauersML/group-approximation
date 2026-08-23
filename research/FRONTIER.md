@@ -3694,6 +3694,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · finite-dimensional-dual-of-sl2-z-inverse-two-is-odd-congruence [ESTABLISHED] Every finite-dimensional unitary representation of SL2(Z[1/2]) is an odd-congruence representation
+- 2026-08-23 · finite-dimensional-odd-congruence-classification-proof [COMPLETE] Periodize the upper root and apply the S-arithmetic normal-subgroup and congruence theorems
 - 2026-08-23 · unbounded-unipotent-torsion-proof [COMPLETE] Reduce the arithmetic generators modulo every odd integer and use the regular action
 - 2026-08-23 · relative-congruence-exactification-closes-outlier [OPEN] Exactify the regular pair into congruence packets and apply uniform repair
 - 2026-08-23 · regular-iwahori-relative-congruence-exactification [OPEN] Regular Iwahori pairs are relatively congruence-exactifiable
