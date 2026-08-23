@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: leavitt-morita-coefficient-polar-points-in-wrong-reynolds-direction
+id: leavitt-forward-morita-polar-misses-reynolds-return
 kind: claim
 title: The natural Leavitt Morita coefficient polar points in the wrong Reynolds direction
 distinct_from:

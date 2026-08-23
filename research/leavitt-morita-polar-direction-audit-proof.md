@@ -3,7 +3,7 @@ rg: 2
 id: leavitt-morita-polar-direction-audit-proof
 kind: route
 title: Gauge the binary Morita coefficient chart and compute its Hilbert Gram
-target: leavitt-morita-coefficient-polar-points-in-wrong-reynolds-direction
+target: leavitt-forward-morita-polar-misses-reynolds-return
 requires:
   - mixed-steinberg-loops-admit-morita-rectangular-model
   - iterated-leavitt-self-similarity-is-dual-prefix-matrix-chart
