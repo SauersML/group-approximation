@@ -335,6 +335,25 @@ tuple.
   theorem.  The continuous finite-rank `X` seam is therefore closed at the
   qualitative flexible scale; exact Gram correction and the global
   congruence/integer cell realization remain.
+- **A two-parameter slow cut makes the whole remaining BS source hull
+  sublinear.**
+  It is false that a rank-`r` source in packets of length below `M` always
+  has hull dimension at most `Mr`: one vector may mix arbitrarily many
+  return phases.  `regular-short-low-frequency-bs-source-hull-is-sublinear`
+  first cuts to a shrinking low-`R`-frequency band.  Its ambient rank is
+  `o(d)` by the regular Haar spectral law, and the short-packet hull then
+  has dimension at most `M` times that ambient spectral rank.  Choosing
+  `M->infinity` sufficiently slowly makes the hull `o(d)`, while the long
+  and high-frequency discarded source masses also vanish.
+
+  Both exits `S^2V` and `RSV` lie in this same BS-invariant hull.  Therefore
+  the exact cross-cutoff Weil cell is not split: its long physical source is
+  discarded by the long-tail estimate, whereas every retained source and
+  both of its BS exits are rebuilt together inside one `o(d)` hull.  This
+  removes the invariant-hull obstruction qualitatively on the regular face;
+  the remaining question is whether the finite-support exact endpoint
+  realization on that moving `o(d)` hull can be chosen with compatible
+  integer/global type.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
