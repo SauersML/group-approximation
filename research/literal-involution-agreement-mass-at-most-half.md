@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: distinct-literal-involutions-agree-on-at-most-half-the-canonical-mass
+id: literal-involution-agreement-mass-at-most-half
 kind: claim
 title: Distinct literal group involutions agree on at most half of the canonical mass
 distinct_from:
