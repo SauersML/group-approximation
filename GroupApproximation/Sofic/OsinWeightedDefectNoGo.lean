@@ -115,7 +115,10 @@ theorem subgroup_map_ne_top_of_light_partner_generators
     have hquot : QuotientGroup.mk' (letterRelatorSubgroup D.relators)
         (CoprodI.of (D.sourceEquiv u) *
           (CoprodI.of (D.partnerEquiv (gen j)))⁻¹) = 1 := by
-      rw [map_mul, map_inv, heq, mul_inv_cancel]
+      change factorMap (letterRelatorSubgroup D.relators) false (D.sourceEquiv u) *
+          (factorMap (letterRelatorSubgroup D.relators) true
+            (D.partnerEquiv (gen j)))⁻¹ = 1
+      rw [heq, mul_inv_cancel]
     exact hquot
   have hfloor : ∀ r ∈ D.relators, 4 ≤ r.length := by
     intro r hr

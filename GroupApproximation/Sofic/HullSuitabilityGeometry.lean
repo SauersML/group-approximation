@@ -2635,7 +2635,7 @@ within `3δ` of one of the other two sides.  At that point
 `(A|C)=0`; four-point hyperbolicity makes one of `(A|B)` and `(B|C)` at most
 `δ`, and the Gromov-product/geodesic dictionary costs another `2δ`. -/
 theorem exists_close_on_other_side_of_geodesic_triangle {δ : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
     {A B C : X}
     {fAC fAB fBC : ℝ → X}
     (hAC : IsGeodesicSegment fAC 0 (dist A C))
@@ -3011,7 +3011,7 @@ theorem two_mul_progress_mul_far_radius_le {delta D l r : ℝ}
 backtracking gap, the penultimate point of every finite orbit segment lies
 within `C + 3δ` of a geodesic joining the segment's endpoints. -/
 theorem exists_geodesic_point_near_penultimate_orbit {δ C : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (_hδ0 : 0 ≤ δ)
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
     (hiso : IsIsometricAction G X) (hgeo : IsGeodesicSpace X)
     {p : G} {x : X} (hCδ : 0 ≤ C + δ)
     (hgap : 2 * (C + δ) < dist x (p • x))
