@@ -23,6 +23,7 @@ open LiteralNonMFPresentation
 open LiteralBaseRelations
 open LiteralTorsionFreeRouterSource
 open SmallCancellationRouter
+open scoped commutatorElement
 
 noncomputable section
 
@@ -80,7 +81,7 @@ theorem defectNormal_le_ker_of_isPowerTorsionFree
   rw [D.core_defectNormal_eq]
   refine Subgroup.normalClosure_le_normal ?_
   rintro _ ⟨p, rfl⟩
-  change q (commutatorElement D.s (D.iota p)) = 1
+  change q ⁅D.s, D.iota p⁆ = 1
   rw [map_commutatorElement]
   have hi := DFunLike.congr_fun
     (base_hom_eq_one_of_isPowerTorsionFree hQ (q.comp D.iota)) p
