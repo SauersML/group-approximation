@@ -277,3 +277,72 @@ J-line degree), a,b in {0,1,2} (the base is a triangle, so a <= 2).
    survives the K-direction H^1 across the triangle, fails LP for
    C*(Lambda) and resolves the forced-witness fork to its
    LLP-failure branch.
+
+## Addendum 11: the stable-element endgame for E_2^(1,1)
+
+All negative standard parabolics contain `B_-` with FINITE index
+(the chamber count of the K-residue), so on divisible coefficients
+every restriction in the K-direction complex is INJECTIVE (transfer:
+cores o res = index), and by Cartan--Eilenberg the image of
+`H^1(P_K^-, V) -> H := H^1(B_-, V)` is the subspace `St_K` of
+`P_K^-`-stable classes, with `St_K c St_K'` for `K' c K`.  The
+established theorem `locally-finite-bernoulli-first-l0-cohomology-
+nonzero` makes every one of these groups nonzero.
+
+**The obstruction map.**  Fix the edge pair `{2},{3}` with vertex
+`P_23^- = <P_2^-, P_3^->`.  For `alpha in St_2 cap St_3` the two
+extensions are UNIQUE as classes (injectivity), glue on the amalgam
+`P_2^- *_(B_-) P_3^-`, and the kernel `N` of the amalgam onto
+`P_23^-` is free (Bass--Serre) and acts TRIVIALLY on `V` (the action
+factors through `P_23^- <= Lambda`).  Hence `V^N = V`, the five-term
+sequence collapses, and
+
+```text
+alpha in St_23  <=>  obs(alpha) = 0,
+obs : St_2 cap St_3 -> Hom(N, V)^(P_23^-)
+```
+
+is a WELL-DEFINED linear map (coboundary ambiguities die on N since
+N acts trivially).  `obs(alpha)` is explicitly computable: my
+cocycles have `c(g) = (1-g) S_(n(g))` (finite block sums), so
+`obs(alpha)(n)` for a word `n = g_1 h_1 ...` is a finite signed sum
+of prefix-translated block functions.  Note the philosophical rhyme:
+`N` is exactly the same kind of free relator kernel as in the
+triangle-LLP reduction (TC2) -- the L^0-cohomology obstruction and
+the ucp-section obstruction live on the same relator data.
+
+**Joint data beyond the jointly-averaged.**  A class in
+`St_2 cap St_3` arises from any tower data `e_k` invariant under
+`M_k = <H_k^(2), H_k^(3)>` with BOTH next-level averages zero
+(`P^(2) e_k = P^(3) e_k = 0`); both restrictions are then literally
+the same `B_-`-cocycle.  On a fresh free `M_(k+1)`-block with
+sub-blocks `B_k = M_k \\ M_(k+1)` carrying iid fair signs `F_b`, the
+data `e = sum_b lambda_b F_b` qualifies iff `lambda` has mean zero
+on every `H^(2)_(k+1)`-orbit AND every `H^(3)_(k+1)`-orbit of `B_k`
+-- an annihilator-existence question of exactly the
+`km-opposition-class-walk-threshold-law` type: such `lambda != 0`
+exist iff the two orbit partitions' indicator span is a proper
+subspace, a walk-graph/threshold computation in the finite groups.
+The candidate certificate for `E_2^(1,1) != 0` (hence
+`H^2(Lambda, L^0(Y)) != 0`, hence NO LP by Ioana--Spaas--Wiersma
+Corollary E) is: such a `lambda`-class with `obs != 0`.
+
+**Precise stakes.**  Corollary E kills the LP (= global ucp
+splitting of the relator extension).  Whether LLP (= local
+splitting) also dies requires an `LLP => LP` bridge for property (T)
+groups that is NOT in the recorded source audit -- VERIFY against
+arXiv:2006.01874 before claiming the LLP side.  Independently of
+that bridge, `obs != 0` would already close the GLOBAL half of
+(TC4) and, per `kac-moody-lattice-is-non-hyperlinear-or-llp-failure`,
+sharpen the forced-witness alternative.
+
+**Caveats still open.**  (i) The J-line identification
+`H^1(J-line at K) = H^1(P_K^-, V)` needs connectivity and simple
+connectivity of the FACE opposition complexes `O(sigma_K)` (chamber
+case: Abramenko; face cases: to be verified).  (ii) The
+`E_2^(1,1)`-quotient involves all three vertices; `(St_2 cap
+St_3)/St_23` maps into it, and nonvanishing of the full quotient
+needs the other vertices' relations tracked.  (iii) The
+`lambda`-annihilator existence at every level along cofinal chains
+needs the actual orbit counts (threshold-law computation on
+`M_k \\ M_(k+1)`).

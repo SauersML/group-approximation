@@ -91,3 +91,23 @@ Three recorded routes (details on the LP node):
   then survival across the `K`-direction `H^1`.  If both hold, LP
   FAILS for `C*(Lambda)` and the fork resolves to the LLP-failure
   branch.
+
+- 2026-08-23 (stable-element endgame; state of the art).  PROVED
+  today (`locally-finite-bernoulli-first-l0-cohomology-nonzero`):
+  every negative parabolic has `H^1(P_K^-, L^0(Y)) != 0` on the
+  Bernoulli action.  Finite index of `B_-` in every `P_K^-` makes
+  all K-direction restrictions injective with Cartan--Eilenberg
+  stable-element images `St_K`, so `E_2^(1,1)` is the linear algebra
+  of the subspaces `St_K` of `H^1(B_-, L^0)`; `(St_2 cap St_3)/
+  St_23` maps into it and is measured by an explicit well-defined
+  obstruction `obs : St_2 cap St_3 -> Hom(N, L^0)^(P_23^-)` on the
+  free Bass--Serre kernel `N` of `P_2^- *_(B_-) P_3^- ->> P_23^-`
+  (trivial N-action collapses the five-term sequence).  Candidate
+  nonvanishing certificates: level data `e_k = sum_b lambda_b F_b`
+  with `lambda` mean-zero on both mid-parabolic orbit partitions of
+  `M_k \ M_(k+1)` -- an annihilator-existence question of the same
+  walk-graph type as `km-opposition-class-walk-threshold-law`.
+  Full derivation and the three open caveats: artifact Addendum 11.
+  If `obs != 0`: `H^2(Lambda, L^0) != 0` and C*(Lambda) has NO LP
+  (Corollary E); the LLP consequence additionally needs an
+  unverified `LLP => LP` bridge for (T) groups.
