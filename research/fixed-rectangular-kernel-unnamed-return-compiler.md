@@ -3,6 +3,7 @@ rg: 2
 id: fixed-rectangular-kernel-unnamed-return-compiler
 kind: claim
 title: Compile an unnamed return as the kernel of one fixed rectangular group-algebra pencil
+refuted_by: fixed-rectangular-kernel-return-factorization-is-impossible
 distinct_from:
   fanizza-matrix-coordinate-source-full-compression: that permits a matrix-coordinate decoder whose selected compression is not a fixed group-algebra factorization; this is the tempting strictly fixed rank-nullity specialization.
   fixed-rank-index-authenticator-has-gap-or-functoriality: that studies authentication by reading a hard rank; this asks rectangularity to force the rank automatically and uses a factorization to return the resulting unnamed kernel.

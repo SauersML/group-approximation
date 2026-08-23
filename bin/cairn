@@ -1,5 +1,6 @@
 #!/bin/sh
-# The Cairn 2.12.0 CLI (github.com/SauersML/Cairn) —
+# The Cairn 2.13.0 CLI (github.com/SauersML/Cairn), pinned from upstream
+# commit 2e4ab2b143d1ccac0f6c82f88636f26b033b9f58 —
 # one dependency-free implementation, committed at tools/cairn.py rather than
 # pulled in as a submodule. This launcher contains no Cairn logic.
 # A submodule is empty in every copy of this repo that is not a git clone
