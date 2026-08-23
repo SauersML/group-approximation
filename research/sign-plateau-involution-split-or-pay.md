@@ -51,3 +51,13 @@ noncongruence modular-vertex payloads.  On congruence packets the completed
 mixed repair theorem performs that rounding; regular tensor camouflage
 shows canonical fixed traces alone do not perform it.
 
+If the BS core already admits an exact extending involution `x_0` satisfying
+the first cubic, `same-core-involution-cubic-gauge-coercivity` supersedes the
+split alternative.  For `c=1-2P` and `x'=c x_0` it gives directly
+
+```text
+2||P||_2=||c-1||_2
+ <=||(x')^2-1||_2+||(x' s^2)^3-1||_2.                 (SPI5)
+```
+
+Thus sign plateaux are completely paid in every same-core exact basin.
