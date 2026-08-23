@@ -38,6 +38,20 @@ Leavitt model and cannot have a finite-trace Hall/one-cut deficit.
 
 ## Attempts
 
+- **Explicit four-leg reduction.**  The live coordinate identity is now
+  isolated as `atlas-four-leg-coordinate-frame-extraction`.  If
+  `E_1,...,E_4` are the selected coefficient legs, take
+  `P=E_1+E_2+E_3` and let `W` be the coefficient comb unitary.  Then the two
+  leakages are exactly the sums of the three lower-left and three upper-right
+  block masses.  A lower zero-row estimate together with one upper block of
+  canonical mass `1/64` proves `(ACE)` with `c0=1/64`.
+- **Canonical Pauli frame.**  Refuted as the desired frame:
+  `TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT` gives mass `1/64` to every one of
+  its sixteen blocks.  In particular its would-be forbidden lower row has
+  mass `3/64`, so it cannot satisfy the first inequality of `(ACE)`.
+  The missing operation is a noncanonical finite-multiplicity frame selection
+  which matches the algebraic comb zero row to one retained positive Pauli
+  block.
 - **Bare four-by-four comb support.** Insufficient by itself: the required
   coordinate projections are not given as ambient group words. They must be
   recovered from a fixed finite root-character or Pauli decomposition of the
