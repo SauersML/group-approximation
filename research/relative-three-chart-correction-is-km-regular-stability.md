@@ -11,6 +11,7 @@ distinct_from:
   relative-finite-group-gh-cannot-fix-two-generating-subgroups: that refutes the generic relative preprocessing theorem which freezes two exact subgroup actions and shows the corresponding alternating Reynolds gap is only quadratic in the local defect; this claim records the stronger Kac--Moody-specific correction still required.
   native-km-coset-coefficients-retain-spherical-pauli-absorber: that tests the actual rank-two coset-incidence coefficients and finds a fixed-positive-density common spherical multiplicity block carrying an ungauged overlap-coordinate Pauli chord.
   full-km-face-kills-no-spherical-gauge: that checks the actual group-word face on this block, proves it is already exactly flat, and resets every spherical chord at zero microstate cost; this removes the apparent absorber after quotienting gauge.
+  native-246-nonspherical-face-complex-has-explicit-gap: that computes the complete quotient incidence spectrum and proves a gap 1-sqrt(3q)/(q+1) for any common linear occurrence placement; this leaves construction of that placement as the nonlinear residual.
 ---
 
 **ESTABLISHED.**  Fix the simple Kac--Moody lattice and its native triangle
@@ -95,3 +96,13 @@ may be replaced by identity at zero generator cost.  The spherical mode must
 therefore be quotiented as gauge, not authenticated by a new coefficient.
 The unreduced finite-label diagram still leaves the coupled nonspherical
 regular-label correction.
+
+On that complement the finite matrix is now coercive.  The normalized
+`A_1 x A_1`, `B_2`, and `G_2` incidence radii are respectively `0`,
+`sqrt(2q)/(q+1)`, and `sqrt(3q)/(q+1)`, so
+`native-246-nonspherical-face-complex-has-explicit-gap` gives the global
+linear occurrence gap `1-sqrt(3q)/(q+1)`.  A compatible nonspherical Pauli
+mode is therefore impossible **after** the three exact charts share that
+occurrence decomposition.  Producing the decomposition by a controlled
+nonlinear change of their independently selected supports remains equivalent
+to the exact simultaneous-support residual recorded here.

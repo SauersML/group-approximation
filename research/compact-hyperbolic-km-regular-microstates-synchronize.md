@@ -21,6 +21,7 @@ distinct_from:
   three-reynolds-plus-kernel-energy-has-vanishing-gap: that computes a three-leg canonical-regular Pauli benchmark in which the sum of all relative Reynolds Laplacians and all quotient kernel-word adjoint energies has gap tending to zero; this must use a coefficient identity specific to the native rank-two character tables, not only those abstract energies.
   native-km-coset-coefficients-retain-spherical-pauli-absorber: that writes the actual (2,4,6) parabolic coset-incidence maps and computes a B2 gap off constants, but shows their common positive-density spherical multiplicity block carries an overlap-coordinate Pauli chord with vanishing spectral value.
   full-km-face-kills-no-spherical-gauge: that computes the actual native kernel words on this spherical block and finds them identically trivial, so the Pauli chord is freely reset without changing the microstate; this leaves only the nonspherical regular-label complement.
+  native-246-nonspherical-face-complex-has-explicit-gap: that diagonalizes all native A1xA1, B2, and G2 incidence maps and proves the fixed common occurrence complex has gap 1-sqrt(3q)/(q+1) modulo spherical gauge; this must place the independently exactified charts into that common linear model.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
   pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
@@ -362,6 +363,31 @@ formulated modulo this spherical gauge kernel.  The remaining coefficient
 problem is on the nonspherical regular-label complement, where the `B_2`
 gap is positive but compatible `A_1 x A_1` and `G_2` estimates have not yet
 been assembled.
+
+The compatible finite-label spectra are now assembled.
+`native-246-nonspherical-face-complex-has-explicit-gap` computes
+
+```text
+A_1 x A_1: {1,0},
+B_2:       {1,sqrt(2q)/(q+1),0},
+G_2:       {1,sqrt(3q)/(q+1),sqrt(q)/(q+1),0}
+```
+
+for the normalized incidence singular values.  The two-projection angle
+formula gives the dimension- and multiplicity-independent quotient gap
+
+```text
+kappa_246(q)=1-sqrt(3q)/(q+1)>0.
+```
+
+Any positive compatibility squares coupling shared rank-one occurrences can
+only improve this bound, provided their common zero space is the spherical
+gauge already removed.  Thus there is no nonspherical Pauli absorber inside
+the **fixed common linear occurrence complex**.  The precise surviving step
+is nonlinear: construct that common occurrence placement, with controlled
+HS change, from the three separately finite-group-exactified vertex charts.
+The local character tables and their spectral constants are no longer
+missing.
 
 ## The kernel basis already builds the missing finite rank-two chart
 
