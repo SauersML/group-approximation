@@ -9,6 +9,7 @@ distinct_from:
   julia-authenticated-high-spectrum-rank-selector: that asks directly for a finite-coordinate Hall matching into a spectral cutoff; this permits the dimension oracle to choose the cutoff depth endogenously and returns amplitude through cyclic trace instead of a rank matching theorem.
   scalar-trace-reflection-is-julia-root-target: that proves the scalar inequality is exactly equivalent to the former additive-commutator payload after a depth has been selected; this must endogenously select the depth and force that inequality from one finite presentation.
   symmetric-sign-packet-has-factorial-amitsur-density-loss: that rules out replacing the proof layer by the exact regular symmetric-group sign projection; this still permits a redundant nonlinear proof or a delocalized terminal observable.
+  minimal-multilinear-pi-has-full-factorial-support: that proves every degree-minimal multilinear identity has the same full factorial support and square-root coefficient mass; this still asks for a nonlinear proof layer, a higher-degree sparse identity, or a delocalized terminal.
 ---
 
 OPEN.  Fix the Fanizza instance and its accelerated contractions
@@ -110,6 +111,15 @@ exactly to the smallest known Fanizza scalar endpoint.
   ambient trace `1/(2k)!`.  Thus exact global Fourier packaging cannot
   replace the redundant proof layer or supply a bounded terminal
   normalization.
+- **No other minimal multilinear PI sparsifies the instruction.**
+  `minimal-multilinear-pi-has-full-factorial-support` uses uniqueness in the
+  minimal-identity theorem: every degree-`2k` multilinear identity of
+  `M_k(C)` is a scalar multiple of `s_(2k)`.  On the prefix-free Fock
+  boundary, unit normalization therefore forces all `(2k)!` coefficients to
+  have magnitude `1/sqrt((2k)!)`, so the coefficient `l1` mass is
+  `sqrt((2k)!)`.  The live construction cannot be a sparse rearrangement at
+  minimal degree; it must be nonlinear/discrete, higher-degree, or use a
+  terminal estimate not based on coefficientwise telescoping.
 - **A rooted linear PCPP would retain the whole marked gap.**
   `uniform-linear-pcpp-tensorizes-to-amitsur-hs` proves that a scalar
   probability-weighted local check map with rooted quotient singular value

@@ -64,3 +64,12 @@ incidence covariance rows.
   tests can prove the uncompressed `(NCP1)`.  The live attack must use the
   weaker prefix-compressed payload and a genuinely non-Bass--Serre two-cell
   or infinite actor tied to it.
+- **Prefix-compress inside a selected finite type.**
+  `canonical-b7-or3-corner-defeats-finite-prefix-actors` lifts the complete
+  seven-dimensional triangle, including its Gram cut, into the rational
+  natural block of `B_7`.  Its selected canonical source has mass `1/46080`
+  and its prefix defect has squared norm `1/92160`; every finite Bass--Serre
+  actor still extends with zero defect.  Thus selected-type compression does
+  not rescue a finite actor.  The sole remaining opening is a
+  payload-sensitive non-Bass--Serre two-cell or an infinite actor which fails
+  canonical extension while retaining the exact marked completion.

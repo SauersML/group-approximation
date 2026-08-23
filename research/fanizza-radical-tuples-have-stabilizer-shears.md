@@ -5,6 +5,7 @@ kind: claim
 title: The two Fanizza endpoint tuples have exact all-sector S3 stabilizer alignments
 artifacts:
   - experiments/cross_context_radical_relator_audit.py
+  - research/artifacts/cross-context-radical-relator-audit-2026-08-23.md
 distinct_from:
   covariant-model-satisfies-cross-context-radical-relators: that must choose the three complete context-transport unitaries simultaneously in the amplified HALT model; this closes the full finite packet and satisfying-sector obstruction which those choices must respect.
   fanizza-radical-charts-admit-common-symplectic-reset-subgroups: that finds independent nondegenerate complements for the three odd chart forms; this chooses the complements equivariantly and fixes all designated outside words, not only the overlap type.

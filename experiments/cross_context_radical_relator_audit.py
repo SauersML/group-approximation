@@ -253,6 +253,15 @@ def audit_predicate(name: str, predicate: Predicate) -> dict:
         source = comparison["source_chart"]
         target = comparison["target_chart"]
         transform = comparison["transform"]
+        fixed_basis = (
+            range(inner_size)
+            if coordinate == 0
+            else range(inner_size, 2 * inner_size)
+        )
+        for basis_index in fixed_basis:
+            basis = [0] * (vector_size + 1)
+            basis[basis_index] = 1
+            assert transform(basis) == basis
         sector_reports = []
         for assignment_index, assignment in enumerate(assignments):
             source_form = forms[source][assignment_index]

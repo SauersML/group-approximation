@@ -7,6 +7,7 @@ invalidates:
   - three-chart-return-from-cross-context-relators
 artifacts:
   - experiments/cross_context_radical_relator_audit.py
+  - research/artifacts/cross-context-radical-relator-audit-2026-08-23.md
 distinct_from:
   selector-free-spin-reset-leaves-contexts-independent: that proves a common spin restriction leaves old and fresh selector characters independently rotatable; this is a pointwise symplectic obstruction before any multiplicity rotation is chosen.
   covariant-model-satisfies-cross-context-radical-relators: that asks whether designated outside words can be matched by the exact completeness transports; this proves those words cannot simultaneously become operators in the reset multiplicity commutant required by the consumer route.

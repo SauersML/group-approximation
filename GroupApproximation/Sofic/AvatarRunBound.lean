@@ -264,7 +264,7 @@ def avatarExps (V L ν : ℕ) : List ℕ :=
 theorem blockFlatten_avatarWord (V L ν : ℕ) :
     avatarWord V L ν = blockFlatten (avatarExps V L ν) := by
   rw [avatarExps, blockFlatten_flatten]
-  simpa [avatarWord, pairWord, blockFlatten, List.map_map, Function.comp_def]
+  simp [avatarWord, pairWord, blockFlatten, List.map_map, Function.comp_def]
 
 /-- The avatar's exponents meet a ceiling as soon as both halves of the code do.
 The two hypotheses are exactly `codeLow_le_max` and `codeHigh_le_max` of the
@@ -402,6 +402,7 @@ theorem blockFlatten_incrLast (t : ℕ) : ∀ es : List ℕ, es ≠ [] →
           rw [hstep, blockFlatten_cons (e + t) [], blockFlatten_cons e [],
             blockFlatten_nil, List.append_nil, List.append_nil]
           rw [blockWord, blockWord, List.replicate_add]
+          rfl
       | cons f es' =>
           have hstep : incrLast t (e :: f :: es') = e :: incrLast t (f :: es') := rfl
           rw [hstep, blockFlatten_cons e (incrLast t (f :: es')),

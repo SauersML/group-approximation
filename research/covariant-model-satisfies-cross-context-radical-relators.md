@@ -5,6 +5,7 @@ kind: claim
 title: The covariant completeness model satisfies both cross-context radical relators
 artifacts:
   - experiments/cross_context_radical_relator_audit.py
+  - research/artifacts/cross-context-radical-relator-audit-2026-08-23.md
 distinct_from:
   s3-radical-chart-returns-to-fresh-context: that demands the full return incidence with reset discipline and transport properties; this is one computation in one named representation after the return is quotiented by two explicit relators. It is also distinct from any equivariant-edge closure, which eliminates independent rotations structurally before any quotient.
   three-chart-affine-clifford-return-incidence: that is the target common-marginal statement for finite tuples; this is the single completeness-side obligation of the relator route into it.

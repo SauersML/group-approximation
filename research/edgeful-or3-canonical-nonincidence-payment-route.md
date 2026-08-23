@@ -11,6 +11,7 @@ requires:
   - sequential-overlap-polar-aligns-carriers-not-contexts
   - raw-prefix-covariance-reduces-to-nonincidence-cap-commutators
   - canonical-fano-free-product-defeats-finite-actor-payment
+  - canonical-b7-or3-corner-defeats-finite-prefix-actors
   - polar-correction-preserves-povm-covariance
   - common-source-partial-isometries-decode-one-game-state
   - canonical-or3-nonincidence-cap-commutator-payment

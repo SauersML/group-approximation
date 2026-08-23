@@ -197,6 +197,33 @@ def fourth_power_orbits(p: int) -> list[int]:
     return sorted(lengths, reverse=True)
 
 
+def nonlinear_pairwise_audit(x: np.ndarray, t: np.ndarray) -> dict[str, float]:
+    """Check the exact finite-difference identity on one deterministic gauge."""
+    d = x.shape[0]
+    hermitian = (t + t.conj().T) / 2.0
+    values, vectors = np.linalg.eigh(hermitian)
+    phases = np.exp(1j * (0.37 * values + 0.19 * values * values))
+    c = (vectors * phases) @ vectors.conj().T
+    x_one = c @ x
+    u = x_one @ x_one @ np.linalg.matrix_power(x, -2)
+    v = (
+        np.linalg.matrix_power(x_one @ t, 3)
+        @ np.linalg.matrix_power(x @ t, -3)
+    )
+    alpha_u = ad(x @ t, u)
+    identity_error = normalized_frobenius(v - c @ alpha_u)
+    left = normalized_frobenius(c - np.eye(d, dtype=complex))
+    right = normalized_frobenius(u - np.eye(d, dtype=complex)) + normalized_frobenius(
+        v - np.eye(d, dtype=complex)
+    )
+    return {
+        "identity_error": identity_error,
+        "gauge_distance": left,
+        "relative_row_bound": right,
+        "metric_slack": right - left,
+    }
+
+
 def analyze_matrices(
     x: np.ndarray, r: np.ndarray, t: np.ndarray, metadata: dict[str, object]
 ) -> dict[str, object]:
@@ -252,6 +279,7 @@ def analyze_matrices(
         "koopman_regular_dimension": int(regular_basis.shape[1]),
         "word_defects": word_defects,
         "inverse_identity_operator_error": inverse_identity_error,
+        "nonlinear_pairwise_audit": nonlinear_pairwise_audit(x, t),
         "quotient_row_gaps": gaps,
         "proved_floor_involution_plus_first_cubic": 1.0 / math.sqrt(2.0),
     }

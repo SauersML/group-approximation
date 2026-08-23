@@ -2,31 +2,42 @@
 rg: 2
 id: same-core-involution-cubic-gauge-coercivity
 kind: claim
-title: One involution row and one cubic globally coerce every same-core gauge
+title: One involution row and one cubic globally coerce relative gauges between arbitrary same-core endpoints
 distinct_from:
-  iwahori-uniform-infinitesimal-rigidity: that is a differential estimate for the whole compatibility map; this is an exact global nonlinear identity for changing only the extending involution over one exact extendable BS core.
-  iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that asks for a Koopman inverse estimate before an exact extending core has been authenticated; this shows no spectral estimate is needed after such a core is available.
+  iwahori-uniform-infinitesimal-rigidity: that is a differential estimate for the whole compatibility map; this is an exact global finite-difference identity for changing only the extending unitary over one fixed BS core.
+  iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that asks for existence of a row-tame gauge which absorbs the Weyl residual; this proves that any such gauge is automatically small once both of its endpoints have small involution and first-cubic rows.
   sign-plateau-involution-split-or-pay: that treats sign gauges by projection rounding without assuming an exact cubic baseline; this handles every unitary gauge and uses the exact baseline cubic.
 ---
 
-Let `x_0,t` be unitaries with
+Let `x_0,t` be arbitrary unitaries, let `c` be a unitary commuting with `t`,
+and put `x_1=cx_0`.  Define the relative row increments
 
 ```text
-x_0^2=1,       (x_0 t)^3=1.                           (SCG1)
+u=x_1^2 x_0^(-2),
+v=(x_1t)^3(x_0t)^(-3).                                (SCG1)
 ```
 
-Let `c` be any unitary commuting with `t`, and put `x=c x_0`.  Then
+Then the exact pairwise estimate is
 
 ```text
 ||c-1||_2
- <= ||x^2-1||_2+||(x t)^3-1||_2.                     (SCG2)
+ <=||u-1||_2+||v-1||_2
+ <=||x_1^2-1||_2+||x_0^2-1||_2
+   +||(x_1t)^3-1||_2+||(x_0t)^3-1||_2.               (SCG2)
 ```
 
-The estimate is exact, dimension-free, and global: `c` need not be close
-to one in operator norm or normalized HS norm.  Hence every correction
-gauge lying in the `t` commutant is paid by just the involution row and the
-first cubic once an exact extending involution `x_0` over the same core has
-been identified.
+The estimate is exact, dimension-free, and global: neither endpoint need
+satisfy either row exactly, and `c` need not be close to one in operator norm
+or normalized HS norm.  In particular, if `x_0^2=(x_0t)^3=1`, `(SCG2)`
+reduces to the original one-endpoint estimate
+
+```text
+||c-1||_2<=||x_1^2-1||_2+||(x_1t)^3-1||_2.           (SCG2')
+```
+
+More generally, every relative gauge in `{t}'` between two `O(delta)`
+endpoints is itself `O(delta)`.  There is no Taylor remainder and no path
+integration: `(SCG2)` compares the finite word values directly.
 
 The old half-parabolic application is `t=s^2`; the proof only needs
 `[c,s^2]=0`, not `[c,s]=0`.  In the root-free Iwahori presentation of
@@ -52,20 +63,20 @@ globally.
 Consequences:
 
 1. The first Fourier-mode and two-jump Koopman packets cannot be nonlinear
-   escapes around an exact extendable core.
-2. No normalized-HS Taylor theorem, polar functional calculus, aggregate
-   Carleson estimate, or opposite-root trace orthogonality is needed in that
-   basin.
-3. The surviving global theorem is basin capture/authentication: flexibly
-   perturb the exactified BS core to one admitting an exact `x_0` near the
-   approximate involution.  This is the same noncongruence content as
-   `regular-iwahori-relative-congruence-exactification` and
-   `iwahori-outlier-repair`.
+   escapes between two row-tame endpoints over the same core.
+2. No normalized-HS Taylor theorem, geodesic integration, polar functional
+   calculus, aggregate Carleson estimate, or opposite-root trace
+   orthogonality is needed once the correction is known to end at another
+   row-tame point.
+3. The surviving global theorem is row-tame endpoint selection: choose a
+   Weyl-coboundary correction whose corrected endpoint still has small
+   involution and first-cubic rows.  Exact basin authentication is one
+   sufficient way to do this, but `(SCG2)` needs only a second approximate
+   endpoint.
 4. In square-free coordinates, the terminal analytic interface is exactly:
-   authenticate one extending endpoint on the same `(r,t)` core, then use
-   the second cubic to promote the automatically `r`-central relative gauge
-   into `{t}'`.  There is no root-selection or low-Koopman-mode step after
-   that promotion.
+   promote the correcting gauge into `{t}'` and keep its target endpoint in
+   the two-row basin.  Once both hold, there is no root-selection or
+   low-Koopman-mode step.
 
 The hypothesis that the relative gauge commute with the **same** `t` is
 essential, not a removable coordinate choice.
