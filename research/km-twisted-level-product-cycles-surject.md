@@ -317,7 +317,10 @@ class is unavailable).
   exceeds target `~q^11` for large `q`, so surjectivity remains
   plausible).  `W(3)`: two-class graphs are exactly `q` disjoint
   `K_(q,q)` and three classes connect -- both symplectic theorems
-  validated -- with mod-two rank 1272 of 1296, consistent with the
+  validated -- with rank 1272 of 1296 mod two, five and seven
+  (experiments/km_w3_rank_modp.py: a genuinely RATIONAL 24-dimensional
+  cokernel at `q = 3`, so small-`q` `B_2` levels also obstruct and all
+  surjectivity claims are large-`q` statements), consistent with the
   `q+1 >= 7` threshold and warning of small-`q` torsion.  NET: the
   claim as stated must be scoped to ODD `q` (indeed `q` coprime to
   six) and LARGE `q`; for even `q` its negation holds at `G_2` levels
