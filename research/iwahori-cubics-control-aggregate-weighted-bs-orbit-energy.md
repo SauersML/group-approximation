@@ -6,6 +6,7 @@ title: The Iwahori rows control aggregate weighted BS-orbit energy after movable
 distinct_from:
   iwahori-cubics-suppress-low-bs-orbit-modes: that demanded an extra positive power of every individual band and is refuted by a single movable exact gauge; this asks only for the summed inverse energy which that family saturates harmlessly.
   weyl-defect-koopman-spectral-regularity: that is the global operator statement consumed by the absorption cascade; this is its explicit finite-cycle, gauge-aware inequality over exact BS packets.
+  koopman-weighted-energy-is-linearized-gauge-distance: that identifies the weighted sum with the minimum linearized correcting-gauge norm; this asks the cubic relators to bound that norm by the full presentation defect.
 ---
 
 **OPEN CORRECTED FINITE INEQUALITY.**  In the exact-`BS(1,4)` setup of
@@ -35,3 +36,13 @@ On each finite fourth-power cycle `(IAG1)` is a weighted discrete Fourier
 inequality.  Proving it uniformly, including heterogeneous packet mixtures,
 is the remaining arithmetic estimate; neither bare BS dynamics nor the
 false pointwise Carleson gain supplies it.
+
+By `koopman-weighted-energy-is-linearized-gauge-distance`, the left side is
+equivalent within a factor four to the squared minimum norm of the
+linearized base-commutant gauge which absorbs `e'`.  Accordingly `(IAG1)`
+is more precisely a nonlinear metric-regularity/error-bound theorem for the
+full Iwahori relation map modulo exact gauges.  Its differential at exact
+congruence points is covered by `iwahori-uniform-infinitesimal-rigidity`;
+the live content is uniform nonlinear integration outside an operator-norm
+tube.  This rules out treating `(IAG1)` as a consequence of lacunary trace
+decay alone.
