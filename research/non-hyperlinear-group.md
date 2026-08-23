@@ -32,11 +32,15 @@ The generic implication from an `L2` gap to a cb inverse is false by
 claim already contains the scalar signed-incidence Green estimate isolated
 in `constrained-reynolds-column-has-a-diagonal-scalar-shadow`.  That explicit
 arithmetic Green family, rather than another abstract stability slogan, is
-the present bounded falsification/proof target.  At primitive prime levels
+the present bounded falsification/proof target.  The off-diagonal audit is
+now closed at exact endpoints by
+`right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete`:
+right-displacement fibers are identical scalar copies and the full cb
+inverse norm equals the diagonal infinity norm.  At primitive prime levels
 the column is a highly redundant Hecke frame and the initial finite sweep is
-bounded; the unresolved scalar sectors are exactly unbounded split-torus
-index and deeper congruence rings, before the remaining off-diagonal cb
-coefficients are addressed.
+bounded; the unresolved exact-zero sectors are exactly unbounded split-torus
+index and deeper congruence rings.  Even a positive scalar result must still
+be continued nonlinearly through the operator-small off-zero passive region.
 
 Two high-descendant alternatives have also been reclassified.  The five
 consumers of `projective-trace-square-transfer-for-sl3-pair` share one

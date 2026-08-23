@@ -6,6 +6,7 @@ title: The exact passive Jacobian is a pair of order-three Reynolds expectations
 distinct_from:
   iwahori-uniform-infinitesimal-rigidity: that proves a uniform Hilbert-space quotient gap after assembling the two modular vertices; this identifies the concrete operator-space map whose cb inverse is still required.
   full-core-central-relative-tangent-is-zero-near-first-cubic: that eliminates the overcentralized tangent sector; this computes the Jacobian on the genuine fixed-R tangent space.
+  right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete: that decomposes this exact Jacobian over all right-displacement matrix diagonals and proves its full cb inverse norm equals the scalar diagonal norm.
   passive-iwahori-off-zero-cb-normal-splitting: that asks for a uniform splitting throughout an operator-small neighborhood; this is the exact-zero finite-dimensional reduction only.
 ---
 
@@ -88,16 +89,27 @@ repeated over the whole growing torus orbit, it is not the bounded-degree
 graph in the generic expander counterexample; the surviving scalar issue is
 uniformity in the split-torus index and in deeper congruence rings.
 
-Accordingly the exact cb question is a finite operator-space inequality:
+At a left-regular endpoint, the apparent remaining matrix-coefficient issue
+also collapses.  By
+`right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete`,
+`B(l2(Q))` is the orthogonal sum of right-displacement fibers
+`M_f rho(z)`, `(EPJ6)` is the identical scalar column on every fiber, and
+its Moore--Penrose inverse is a row of left convolutions.  The full cb norm
+of that row equals its ordinary infinity norm on the diagonal fiber.
+Accordingly the exact cb question is the scalar arithmetic inequality:
 
 ```text
-sup_(q,rho,m)
- || ( DF_(rho) | gauge-normal E_(rho) )^(-1) ||_cb
+sup_(q,rho)
+ || ( C_(q,rho) |_(ker C_(q,rho))^perp )^dagger
+       ||_(linfinity^2 -> linfinity)
  < infinity,                                             (EPJ7)
 ```
 
-where `q` ranges over congruence quotients, `rho` over their endpoint
-representations, and `m` over amplifications.  A no-go must embed a growing
-diameter primitive problem into the constrained spaces `(EPJ2)` and the
-two expectations `(EPJ5)`; the finite Hecke `L2` angle by itself neither
-proves nor refutes `(EPJ7)`.
+where `q` ranges over congruence quotients and `rho` over their left-regular
+endpoint packets.  External amplifications cost nothing beyond the same
+scalar norm, and arbitrary quotient representations are reducing corners
+of an amplified regular representation, so they inherit the same bound.
+A no-go must therefore produce a divergent mode in these
+specific arithmetic scalar columns; the finite Hecke `L2` angle by itself
+neither proves nor refutes `(EPJ7)`.  This exact-zero reduction does not
+supply the off-zero continuation required for Newton iteration.

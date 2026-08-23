@@ -6,7 +6,8 @@ title: The passive Reynolds cb inverse contains an explicit diagonal signed-inci
 distinct_from:
   exact-passive-jacobian-is-two-reynolds-expectations: that identifies the two noncommutative conditional expectations; this extracts a reducing commutative test space in every left-regular congruence endpoint.
   two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse: that gives arbitrary high-girth Reynolds columns with a divergent inverse; this identifies the special arithmetic scalar matrices which must actually be bounded or shown divergent.
-  passive-iwahori-off-zero-cb-normal-splitting: that asks for the full noncommutative off-zero splitting; this is only a necessary exact-zero scalar condition.
+  right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete: that proves this scalar condition is also sufficient for the full cb inverse at exact left-regular endpoints; the present claim only extracts the diagonal restriction.
+  passive-iwahori-off-zero-cb-normal-splitting: that asks for the full noncommutative off-zero splitting; even after the exact-zero equivalence, nonlinear continuation away from the endpoint remains open.
 ---
 
 **ESTABLISHED; EXACT NECESSARY SCALAR CONDITION.**  Let `Q` be a finite
@@ -119,8 +120,13 @@ High girth of a bounded-degree graph does not decide this question.
 In particular, the congruence-level question cannot be settled merely by
 noting that each coefficient algebra is finite dimensional: `(DSS5)` is a
 uniform completely bounded Green-operator estimate for an explicit growing
-family of scalar signed-incidence matrices.  Conversely, `(DSS5)` alone is
-not sufficient for the full gate, because off-diagonal matrix coefficients
-remain.  The next bounded audit is therefore concrete: prove or refute
-`(DSS5)` for the arithmetic coset complexes, before attempting a general
-operator-space lifting theorem.
+family of scalar signed-incidence matrices.
+`right-displacement-decomposition-makes-the-scalar-reynolds-shadow-cb-complete`
+now proves the converse at every exact left-regular endpoint.  Every fixed
+right-displacement matrix diagonal is another identical copy of `(DSS3)`,
+and the Moore--Penrose inverse is a left-convolution row whose full cb norm
+equals its scalar infinity norm.  Thus there is no separate exact-endpoint
+off-diagonal audit: prove or refute `(DSS5)` for the arithmetic coset
+complexes.  Nonlinear continuation from the zero locus through arbitrary
+operator-small passive tuples remains a separate part of
+`passive-iwahori-off-zero-cb-normal-splitting`.
