@@ -12,7 +12,7 @@ project:
 
 classification:
   arxiv: [math.OA, math.GR]
-  msc2020: ["46L05", "20F05", "22D25", "20E26"]
+  msc2020: ["46L05"]
 
 sources:
   - title: "An explicit sofic group that is not MF"
@@ -61,6 +61,13 @@ sources:
     id: https://doi.org/10.1017/fmp.2018.3
     relationship: background
 
+  - title: A group with at least subexponential hyperlinear profile
+    authors: [William Slofstra]
+    year: 2019
+    type: paper
+    id: https://arxiv.org/abs/1806.05267
+    relationship: background
+
   - title: Nonsofic groups exist
     authors: [OpenAI]
     year: 2026
@@ -98,6 +105,14 @@ sources:
 automation:
   methods:
     - method: agent
+      models: [GPT-5.6 Sol, Claude Fable 5, Claude Opus 5]
+      framework: Codex and Claude Code
+
+status:
+  scope: "Comparator-selected theorem only."
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Quot.sound, Classical.choice]
 
 review:
   status: self-assessed

@@ -55,7 +55,8 @@ def IsSoficGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, hammingDist Y (σ (g * h)) (σ g * σ h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 - ε ≤ hammingDist Y (σ g) (σ h))
 
-/-- The sequential operator-norm form of the CDE matrix-corona MF property. -/
+/-- The sequential operator-norm form of the CDE matrix-corona MF property for
+countable groups. -/
 def IsSequentialOperatorMFGroup (G : Type) [Group G] : Prop :=
   ∃ (Y : ℕ → FiniteCarrier) (U : ∀ n, G → Matrix (Y n) (Y n) ℂ),
     (∀ n, 0 < Fintype.card (Y n)) ∧
@@ -68,10 +69,10 @@ def IsSequentialOperatorMFGroup (G : Type) [Group G] : Prop :=
 local instance literalDecidableEq {α : Type*} : DecidableEq α :=
   Classical.decEq α
 
-/-- The six base letters. -/
+/-- The base letters. -/
 abbrev BaseGenerator := Fin 6
 
-/-- The six base letters followed by `t` and `c`. -/
+/-- The base letters followed by `t` and `c`. -/
 abbrev Generator := BaseGenerator ⊕ Fin 2
 
 /-- Index of `v₁`. -/ abbrev v1Index : BaseGenerator := 0
@@ -122,7 +123,7 @@ def commutatorWord {G : Type*} [Group G] (g h : G) : G :=
 def embedBaseWord : FreeGroup BaseGenerator →* FreeGroup Generator :=
   FreeGroup.lift fun i ↦ vertexLetter i
 
-/-! The twenty affine-base relators. -/
+/-! The affine-base relators. -/
 
 /-- `x³ = 1`. -/
 abbrev baseRelXCube : FreeGroup BaseGenerator := bx ^ 3
@@ -172,7 +173,7 @@ abbrev baseRelZV2 : FreeGroup BaseGenerator :=
 abbrev baseRelZV3 : FreeGroup BaseGenerator :=
   bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹
 
-/-- Exactly the twenty base relators. -/
+/-- The base relators. -/
 def baseRelators : Finset (FreeGroup BaseGenerator) :=
   [baseRelXCube, baseRelYCube, baseRelZSq, baseRelXZCube,
    baseRelYZCube, baseRelXInvZXY, baseRelYInvZYX, baseRelXYSix,
@@ -181,7 +182,7 @@ def baseRelators : Finset (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3].toFinset
 
-/-! The remaining twenty-one relators. -/
+/-! The remaining relators. -/
 
 /-- Doubles translations and fixes the linear generators. -/
 def compressedBaseWord (i : BaseGenerator) : FreeGroup BaseGenerator :=
@@ -209,27 +210,26 @@ abbrev markedWord : FreeGroup Generator :=
   commutatorWord displacedLampWord
     (v1Word * displacedLampWord * v1Word⁻¹)
 
-/-- The twenty base relators, transported into the full alphabet. -/
+/-- The base relators, transported into the full alphabet. -/
 def transportedBaseRelators : Finset (FreeGroup Generator) :=
   baseRelators.image embedBaseWord
 
-/-- The six stable-letter relators, one for each base letter. -/
+/-- The stable-letter relators, one for each base letter. -/
 def stableRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image stableRelator
 
-/-- The relators `c²=1` and `[c,s]=1` for the six base letters. -/
+/-- The relators `c²=1` and `[c,s]=1` for the base letters. -/
 def lampRelators : Finset (FreeGroup Generator) :=
   {lampWord ^ 2} ∪
     Finset.univ.image (fun i : BaseGenerator ↦
       commutatorWord lampWord (vertexLetter i))
 
-/-- The eight relators making `w` central. -/
+/-- The relators making `w` central. -/
 def markedRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image (fun i : Generator ↦
     commutatorWord markedWord (FreeGroup.of i))
 
-/-- All forty-one relators of `E`: twenty base, six stable-letter, seven lamp,
-and eight centrality relators. -/
+/-- The defining relators of `E`. -/
 def relators : Finset (FreeGroup Generator) :=
   transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪ markedRelators
 
