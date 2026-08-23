@@ -70,3 +70,20 @@ Thus residual finiteness of the actor does not close
 `simple-lamp-hyperlinear-recovery-forces-action-sofic`.  It moves the
 arbitrary multiplicity gauge into the finite-index kernel cocycle without
 reducing its complexity.
+
+There is also no way to make the cocycle harmless on all lamp coordinates by
+choosing a better finite quotient.  For the coset action `X=G/Gamma`, a
+kernel element fixes the base coordinate exactly when it lies in `Gamma`, and
+it fixes a finite coordinate window `{g_i Gamma}` exactly when it lies in
+
+```text
+intersection_i g_i Gamma g_i^(-1).                       (FQF4)
+```
+
+If one finite quotient kernel were contained in `Gamma`, then `Gamma` would
+contain a finite-index normal subgroup and `G/Gamma` would be finite.  The
+Kun--Thom action is infinite and nonsofic, so this cannot happen.  Replacing
+global containment by approximate/windowwise containment is precisely the
+finite coset-action approximation problem one was trying to derive.  Thus
+kernel-cocycle triviality is not a weaker residual-finiteness input; at the
+site level it is the desired action classicalization in another form.
