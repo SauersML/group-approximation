@@ -278,6 +278,31 @@ tuple.
   coupling across every short/long cutoff, so finite-level repair of the
   short core cannot be spliced to this deletion without authenticating the
   congruence atoms and reconstructing the cross-threshold `X` blocks.
+- **The block-free finite-rank `X` seam is now an explicit joint Gram
+  identity.**
+  `two-exit-gram-swap-builds-low-rank-involution-surgery` proves that one
+  common reflection maps both forward exit maps `F_i` to their backward
+  maps `H_i` exactly iff
+
+  ```text
+  F^*F=H^*H,                 F^*H=H^*F.
+  ```
+
+  When this holds, the reflection may be changed from the supplied `X` on
+  a subspace of dimension at most eight times the source rank and left
+  literally unchanged outside it.  For the actual BS rows
+  `U_1=S^2,U_2=RS` over an `R`-fixed common source `V`, all cross blocks are
+  automatic from the individual cells except
+
+  ```text
+  V^*S^(-3)V=V^*S^6V.
+  ```
+
+  The new minimal continuous gate
+  `bs14-residual-polars-pay-mixed-minus-three-six-moment` asks the common
+  physical `X` to pay this one mixed two-row moment.  Separate cubic polar
+  decompositions cannot see it.  After this seam, moving congruence-atom
+  authentication and integer cell support remain genuinely separate.
 - **Every bounded-period target is now known to be finite.**
   `bounded-period-iwahori-quotients-are-finite` applies the S-arithmetic
   normal-subgroup theorem to the preconditioner's unipotent power row.  Thus
