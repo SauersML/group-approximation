@@ -137,3 +137,46 @@ supported 1-cochain.
   in the links (`km-lattices-admit-no-cocompact-npc-model`) are where
   small ones would have to live, but no 2-cycle is supported in a
   single vertex star.
+- **Contractibility of the development is the `F_infty` question
+  (2026-08-23).**  By Brown's criterion a proper cocompact action on a
+  contractible complex makes the group of type `F_infty`; conversely a
+  simply connected 2-complex with `H_2=0` is contractible.  So the
+  development `X` is contractible iff `Lambda` is of type `F_infty`
+  (equivalently, here, `F_3`: contractibility of a 2-dimensional
+  cocompact model is decided by `H_2`).  SANITY CHECK that decides the
+  affine analogue negatively: the affine rank-three Kac--Moody group
+  `SL_3(F_q[t,t^(-1)])` is 2-spherical, hence a Levi-triangle colimit
+  for `q>3` (Rémy, arXiv:math/0402300, Theorem 5), and has finiteness
+  length exactly three (Bux--Köhl--Witzel rank theorem:
+  `2+2-1`), so its development has `H_2!=0`.  For compact hyperbolic
+  `(2,4,6)` type the finiteness length of `Lambda` itself is
+  unrecorded beyond `F_2` (Rémy's survey lists only finite
+  presentability for `Lambda`; the higher results there concern facet
+  fixators), so both outcomes remain open.
+- **Codistance Morse filtration reduces `H_2(X)` to finite residue
+  computations.**  Filter the contractible product `Z=X_+ x X_-` by
+  `f(sigma_+,sigma_-)=min` length of the codistance over chamber pairs
+  in the residue pair; `Z_(<=0)=X`.  A product face `(R_J(x),R_J'(y))`
+  of a chamber pair at codistance `w` is descending iff
+  `J cap L(w)!=emptyset` or `J' cap R(w)!=emptyset` (`L,R` the descent
+  sets), since `w` is the unique shortest element of
+  `W_J w W_J'` exactly when it is `(J,J')`-reduced, and the minimal
+  codistance in a residue pair is attained (twin axiom Tw2 shortens
+  along every chamber of a panel).  Hence `Z_(<=R+1)/Z_(<=R)` is a wedge,
+  over residue pairs of types `(S-L(w),S-R(w))`, of the finite
+  "codistance-`w` opposition complexes" `O_w(R_+,R_-)={(x'',y''):
+  delta^*(x'',y'')=w}` (with the product cell structure on faces of
+  cotype inside `(S-L,S-R)`) modulo their descending faces.  WARNING:
+  `O_w` is NOT the product of the two one-sided sets `{x'':
+  delta^*(x'',y)=w}` and `{y'': delta^*(x,y'')=w}`; assuming it were
+  would make every relative group concentrated in degree four and
+  force contractibility, contradicting the affine sanity check above.
+  The honest statement: `H_2(X)=0` iff the relative groups
+  `H_3(O_w, desc)` vanish for every `w` (then `H_k(Z_(<=R))` is
+  constant in `k<=2` and equals `H_k(Z)=0`); a nonzero `H_3(O_w,desc)`
+  is exactly a 2-cycle of some `Z_(<=R)` killed at level `R+1`.  Since
+  `O_w` depends on `w` only through `(L(w),R(w))` and the
+  `w`-opposition relation between two rank-`<=2` residues of the
+  `(2,4,6)` twin building, this is a finite computation inside the
+  generalized polygons `GQ(q,q)` and `GH(q,q)` and the panels, of
+  Abramenko type.

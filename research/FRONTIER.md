@@ -3862,8 +3862,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-23 · non-rf-kazhdan-group-with-llp-full-c-star-algebra [OPEN] Some non-residually-finite Kazhdan group has a full C*-algebra with the local lifting property
 - 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
+- 2026-08-23 · non-rf-kazhdan-group-with-llp-full-c-star-algebra [OPEN] Some non-residually-finite Kazhdan group has a full C*-algebra with the local lifting property
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes-proof [COMPLETE] Cartan-Leray spectral sequence of the development with finite stabilizers
 - 2026-08-23 · triangle-colimit-rational-h2-vanishes [ESTABLISHED] Every colimit of a developable triangle of finite groups has vanishing rational second cohomology
 - 2026-08-23 · km-lp-fails-via-development-end-cohomology [OPEN] Ioana-Spaas-Wiersma Corollary D through the end cohomology of the development
