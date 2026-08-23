@@ -146,6 +146,15 @@ A divergent character block refutes it.  Controlling each block in its
 Hilbert norm is insufficient by itself, because Fourier recombination is
 not unconditional in `l_infinity`.
 
+`torus-fourier-gram-is-compressed-two-cubic-reynolds` computes the exact
+normal block.  It is `9` times the signed-domain compression of the sum of
+the two order-three Reynolds projections associated to
+`S^2AS^(-2)` and `SBS^(-1)`.  On free right-torus orbits its entries are
+Fourier transforms of explicit signed Hecke correlation sequences.  Parseval
+controls only their sum over all characters; a one-label correlation has the
+same magnitude in every character.  Thus character orthogonality by itself
+does not yield diagonal dominance or a uniform characterwise Green bound.
+
 `near-trivial-torus-characters-track-the-moving-kernel` rules out the
 simplest proposed divergent block.  Perturbing the trivial character moves
 its gradient kernel continuously; after Moore--Penrose projection and
