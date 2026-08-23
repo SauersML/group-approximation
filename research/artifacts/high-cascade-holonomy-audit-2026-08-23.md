@@ -38,12 +38,15 @@ irreducible degree, compactness on each bounded block plus a weighted
 bad-block estimate forces the entire holonomy to the identity, uniformly in
 the number of blocks and their multiplicities.
 
+The weighted argument also handles tight mixtures of growing block degrees.
 Therefore a genuine counter-microstate for the character-rigid simple
-Kac--Moody candidate must carry positive density in noncommutative holonomy
-blocks whose irreducible degree diverges.  Finite projective labels, bounded
-matrix-unit packets, repeated bounded sectors, and subhomogeneous
-coefficient groupoids are now excluded in one statement.  The remaining
-high-cascade theorem is correspondingly sharper:
+Kac--Moody candidate must have a quantitatively non-tight degree
+distribution: if its separation is `a`, at least `a^2/4` of the trace mass
+escapes beyond every fixed block degree along a subsequence.  Finite
+projective labels, bounded matrix-unit packets, repeated bounded sectors,
+subhomogeneous coefficient groupoids, and tight mixtures of these are now
+excluded in one statement.  The remaining high-cascade theorem is
+correspondingly sharper:
 
 > Couple the native Curtis--Tits relations to the growing multiplicity
 > algebra strongly enough to exclude positive-density unbounded-degree
@@ -51,4 +54,3 @@ high-cascade theorem is correspondingly sharper:
 
 This does not prove synchronization, but it removes every bounded-degree
 version without assuming a convergence rate or a bounded number of blocks.
-

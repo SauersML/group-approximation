@@ -87,9 +87,35 @@ Then the right side of `(BDP4)` is strictly below `epsilon^2/2`, proving
 `(BDH1)` with room to spare.  The estimate never uses the number of blocks
 or their multiplicities.
 
+For the tight-degree extension, fix `zeta>0` and choose `D` as in `(BDH2)`.
+Let `p_n` be the central sum of the blocks of degree at most `D`, and put
+`b_n=1-tau_n(p_n)`.  Along the tail under consideration, `b_n<zeta` and
+`tau_n(p_n)>1-zeta`.  In the normalized trace on `p_nA_np_n`, every fixed
+relator's squared defect is at most its ambient squared defect divided by
+`1-zeta`.  It therefore tends to zero.  The bounded-degree result makes
+every compressed generator tend to the identity, while
+
+```text
+||(1-p_n)(u_s-1)||_2^2 <=4b_n.                         (BDP6)
+```
+
+First let `n` tend to infinity and then let `zeta` tend to zero.  This proves
+collapse under `(BDH2)`.
+
+Conversely, suppose along a subsequence one fixed generator satisfies
+`||u_s-1||_2>=a`.  For each fixed `D`, the degree-at-most-`D` part collapses
+by the same conditional argument whenever it has nonzero limiting mass.
+The complementary part contributes at most four times its trace mass, so
+
+```text
+a^2 <=4 limsup_n mu_n({m>D}).                           (BDP7)
+```
+
+This is `(BDH3)` and proves that every surviving enemy has a quantitatively
+non-tight block-degree distribution.
+
 For the Kac--Moody specialization, infinite finite generation, simplicity,
 and Malcev residual finiteness of finitely generated linear groups imply
 that every finite-dimensional unitary representation is trivial.  Applying
 the theorem to a hypothetical regular-core holonomy sequence proves the
 stated unbounded-degree necessity.
-

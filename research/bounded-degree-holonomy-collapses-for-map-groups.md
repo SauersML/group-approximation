@@ -43,15 +43,34 @@ Equivalently, no normalized-Hilbert--Schmidt asymptotic representation of
 `Gamma` which remains inside algebras of uniformly bounded irreducible
 degree can retain nontrivial holonomy.
 
+The same conclusion holds under the strictly weaker **tight-degree**
+hypothesis.  If `A_n` is a sequence of finite-dimensional C-star algebras,
+`mu_n` is the trace-weighted distribution of its simple-block degrees, and
+
+```text
+for every zeta>0 there is D with
+limsup_n mu_n({m>D})<zeta,                              (BDH2)
+```
+
+then every asymptotically relator-flat tuple in `U(A_n)^S` converges to the
+trivial tuple in normalized Hilbert--Schmidt norm.
+
 The assertion is uniform in the number and multiplicities of the simple
 summands.  Thus it is stronger than fixed ambient-dimension compactness.
 Its proof is `bounded-degree-holonomy-compactness-proof`.
 
 For the infinite simple compact-hyperbolic Kac--Moody candidate, every
 finite-dimensional unitary representation is trivial.  Consequently any
-enemy to `compact-hyperbolic-km-regular-microstates-synchronize` must put a
-positive normalized trace mass, along a subsequence, in holonomy blocks of
-unbounded matrix degree.  Repeating bounded finite labels, bounded
-projective sectors, bounded matrix-unit packets, or any fixed
-subhomogeneous coefficient algebra cannot support the terminal enemy.
+enemy to `compact-hyperbolic-km-regular-microstates-synchronize` must have a
+**non-tight** trace-weighted block-degree distribution.  More quantitatively,
+if one generator stays at distance at least `a>0` from the identity, then
+for every fixed `D`, after passing to the same subsequence,
 
+```text
+limsup_n mu_n({m>D}) >= a^2/4.                          (BDH3)
+```
+
+Thus a positive mass must escape beyond every fixed matrix degree.
+Repeating bounded finite labels, bounded projective sectors, bounded
+matrix-unit packets, or even a tight mixture of growing coefficient blocks
+cannot support the terminal enemy.

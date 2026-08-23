@@ -47,11 +47,14 @@ weighted Markov argument discards the small mass of blocks with non-small
 relator defect, while compactness in the finitely many dimensions below the
 bound collapses every remaining block.
 
-Consequently an enemy here must carry positive trace mass in genuinely
-noncommutative holonomy blocks of unbounded irreducible degree.  Repeated
-bounded labels or sectors cannot evade synchronization merely by increasing
-their multiplicity.  The unresolved relation-dependent common-core theorem
-must therefore act on the growing multiplicity algebra itself.
+The same proof treats every tight trace-weighted mixture of growing degrees.
+Consequently an enemy here must have a quantitatively non-tight degree
+distribution: a positive mass escapes beyond every fixed noncommutative
+block degree.  Repeated bounded labels or sectors cannot evade
+synchronization merely by increasing their multiplicity, nor can a
+vanishing high-degree tail carry the marked separation.  The unresolved
+relation-dependent common-core theorem must therefore act on a diffuse
+large-degree multiplicity regime itself.
 
 ## Curtis--Tits face-gap audit
 
