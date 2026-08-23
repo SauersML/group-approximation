@@ -102,6 +102,24 @@ the fixed-depth nonhyperlinearity criterion.
   transverse roots on one carrier. The still-open six-chamber work is the
   matrix-coordinate extraction which prevents their individually cheap
   cyclic matchings from living in different rectangular reservoirs.
+- **The Weyl gap survives rectangular transport as a defect/leakage
+  dichotomy.**  `half-period-weyl-band-transport-is-defect-or-leakage`
+  allows distinct source and target root packets and a partial isometry `W`.
+  If its source lies in the negative half-period commutator sector and `F`
+  is the positive target sector, then, with `m=2^(N-1)`,
+
+  ```text
+  ||RW-WP||_2+m||SW-WQ||_2+||(1-F)W||_2>=||W||_2,
+  m||RW-WP||_2+||SW-WQ||_2+||(1-F)W||_2>=||W||_2.
+  ```
+
+  Thus arbitrary rectangular multiplicity does not weaken the fixed-depth
+  Weyl obstruction: it only exposes one explicit wrong-sector leakage term.
+  The remaining arithmetic step is now sharply localized. One must identify
+  that wrong half-period sector with a shallower-conductor/first-exit atom
+  while constructing each of the six separate chart PVMs; after that,
+  `finite-tree-first-exits-extract-an-equal-rank-global-pvm` synchronizes
+  their ranks and carriers.
 
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the

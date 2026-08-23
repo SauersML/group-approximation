@@ -7,6 +7,7 @@ distinct_from:
   compulsory-pauli-cross-gram-is-four-word-intertwiner: that incorrectly asks the local raw/comb packet alone to supply the coupling and is refuted by the canonical rectangular model.
   atlas-five-row-operator-phase-lift: that controls five global covariance energies; this asks only for four mixed intertwining residuals on the already forced positive overlap.
   four-pauli-cross-gram-exact-completeness-firewall: that proves ordinary quotient-algebra coupling is impossible; this retains only the finite-matrix rank/multiplicity extraction which can evade the exact regular model.
+  atlas-pauli-rank-ledger-has-finite-rectangular-model: that rules out bare carrier-rank divisibility and separate Pauli module degrees; this still asks whether mixed full-kernel relations select a non-functorial finite coordinate.
 ---
 
 **OPEN, FINITE-MATRIX-ONLY.**  Work in the regular-`A_8` microstate normal form of
@@ -63,3 +64,14 @@ finite-only extraction, the mixed hard/comb/interior relations may control
 the four residuals on the selected matrix carrier.  The load-bearing claim is
 now precisely this finite-multiplicity extraction; no fixed algebraic kernel
 identity can replace it.
+
+Bare integrality is already insufficient.
+`atlas-pauli-rank-ledger-has-finite-rectangular-model` computes that every
+fixed denominator through `64` clears in the canonical dimensions
+`20160 k`; on the trace-quarter carrier both the source `M_2` type and target
+`M_4` type occur with integral multiplicity.  It also gives exact finite
+rectangular Pauli models at every amplification.  Thus the remaining
+``finite-multiplicity'' operation cannot mean a divisibility check on the
+separate packet types.  It must extract a mixed singular subspace or relative
+multiplicity coordinate from full-kernel operators, with a uniform positive
+normalized-HS consequence.
