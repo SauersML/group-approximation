@@ -78,6 +78,18 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   refute the present claim.  It proves that any extension must combine such
   analytic motion with multiplicity reconciliation rather than use the
   finite-edge semigroup argument alone.
+- **A fixed regular endpoint type is not a substitute for that adaptive
+  reconciliation.**
+  `cuspidal-redistribution-refutes-regular-core-orbit-basin` gives exact
+  congruence endpoints with the same authenticated core restriction as the
+  regular quotient representation and with asymptotically regular global
+  character, yet uniformly outside its entire core-commutant endpoint orbit.
+  The input is already exact, so this does not refute flexible repair; it
+  proves the repair must select the input's global endpoint type rather than
+  retract to a canonical regular baseline.  Combined with the preceding
+  moving-power family, an infinite-edge analogue of Gerasimova--Shchepin
+  must handle both continuous vertex motion and adaptive global-type
+  redistribution.
 - **Spectral sparsity alone.**  Refuted for that reason; see the same node.
 - **Bounded branching.**  Index-three restriction/induction has uniformly
   bounded branching (`notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`)

@@ -7,6 +7,7 @@ distinct_from:
   iwahori-edge-restriction-image-has-continuous-type: that exhibits a continuum of fixed two-dimensional edge types; this tensor-regularizes that family and proves the continuum remains visible to a moving kernel word even when the fixed-word character is regular.
   residual-finite-tensor-camouflages-iwahori-transfer-failures: that preserves a hypothetical projection-transfer failure under regular tensor camouflage; this gives an unconditional explicit family and a stable-equivalence obstruction for the edge representations themselves.
   finite-graph-of-groups-representation-types-are-integer-flows: that rounds a fixed finite-rank restriction module when edge groups are finite; this proves regular trace and `o(d)` padding do not manufacture such a module for the infinite Iwahori edge.
+  cuspidal-redistribution-refutes-regular-core-orbit-basin: that keeps the core restriction exactly fixed while changing a positive-density global congruence type; this changes nearby continuous edge types and proves fixed-type padding cannot match them.
 ---
 
 Let
@@ -60,3 +61,12 @@ direct extension of the finite-edge proof which freezes vertex types and
 repairs incompatibility only by matching irreducible multiplicities and
 adding `o(d)` dimensions.  A successful infinite-edge theorem must use
 analytic motion inside the continuous modular representation variety.
+
+Nor may that analytic motion be targeted at one preselected regular-quotient
+endpoint type.  `cuspidal-redistribution-refutes-regular-core-orbit-basin`
+keeps an authenticated core restriction literally unchanged while
+redistributing a positive-density cuspidal global type; both global
+characters remain asymptotically regular.  The valid target must therefore
+be adaptive in two independent senses: move continuous vertex parameters
+and choose the global endpoint representation type from the full restriction
+fiber.
