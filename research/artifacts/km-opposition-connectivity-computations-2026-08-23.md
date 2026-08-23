@@ -41,6 +41,17 @@ points -- confirming the index-`q` grading predicted by the torsor
 analysis and making the component-indicator annihilator nonzero at
 every matched slot (`km-hexagon-level-cokernel-is-nonzero`).
 
+Addendum 2 (same day): the opposite lines of `H(3)` form a simply
+transitive torsor under the `q^5` radical, and the four class-gradings
+(piece index after deleting each class) are JOINTLY SURJECTIVE onto
+`(Z/3)^4` with fibers of size three -- pairwise independent (nine
+blocks of 27), triple-wise (27 of 9), quadruple-wise (81 of 3).  The
+class gradings thus canonically realize the full Frattini quotient
+`U/Phi = F_q^4` of the line-parabolic radical, one coordinate per
+panel class; for `q > 3` the `q+1` gradings must satisfy `q-3`
+relations.  This is the combinatorial skeleton any connecting-map
+computation will use.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and

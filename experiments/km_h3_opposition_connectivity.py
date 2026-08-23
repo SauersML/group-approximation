@@ -141,3 +141,30 @@ for p in V:
         ps=tuple(sorted(Counter(lpiece[L] for L in adj[p] if L in lpiece).values()))
         prof[ps]+=1
 print("bridging profiles of deleted-class points (piece multiplicities):", dict(prof))
+
+# addendum 2: joint structure of the gradings for two deleted classes
+def piece_map(delc):
+    sa2=collections.defaultdict(set)
+    for L in Al:
+        for p in adj[L]:
+            if p in cls and cls[p]!=delc: sa2[L].add(p); sa2[p].add(L)
+    seen=set(); pm={}; idx=0
+    for n in list(Al):
+        if n in seen: continue
+        c={n}; seen.add(n); dq=collections.deque([n])
+        while dq:
+            u=dq.popleft()
+            for w in sa2[u]:
+                if w not in seen: seen.add(w); c.add(w); dq.append(w)
+        for x in c:
+            if x[0]=='l': pm[x]=idx
+        idx+=1
+    return pm
+cl_list = sorted(set(cls.values()))
+pm0 = piece_map(cl_list[0]); pm1 = piece_map(cl_list[1]); pm2 = piece_map(cl_list[2]); pm3 = piece_map(cl_list[3])
+joint = Counter((pm0[L],pm1[L]) for L in Al)
+print("joint block sizes (classes 0,1):", sorted(joint.values()))
+joint3 = Counter((pm0[L],pm1[L],pm2[L]) for L in Al)
+print("triple blocks:", len(joint3), "sizes:", sorted(set(joint3.values())))
+joint4 = Counter((pm0[L],pm1[L],pm2[L],pm3[L]) for L in Al)
+print("quadruple blocks:", len(joint4), "sizes:", sorted(set(joint4.values())))
