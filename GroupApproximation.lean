@@ -1489,6 +1489,7 @@ import GroupApproximation.Sofic.GreendlingerSharpChunks
 import GroupApproximation.Sofic.GreendlingerSharpLandingAux
 import GroupApproximation.Sofic.GreendlingerSharpThreeFactor
 import GroupApproximation.Sofic.GreendlingerSharpInvariant
+import GroupApproximation.Sofic.GreendlingerSharpDehn
 import GroupApproximation.Sofic.GreendlingerDeepInvariant
 import GroupApproximation.Sofic.GreendlingerLandingConfined
 import GroupApproximation.Sofic.GreendlingerRelativeTransfer
