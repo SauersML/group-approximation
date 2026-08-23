@@ -147,3 +147,4 @@
 32659260539	2026-08-23T18:49:55Z	GroupApproximation/Sofic/ArithmeticSingleDefectEndpoint.lean	arithmeticMarkedCommutator_mem_defectNormal
 32661817678	2026-08-23T19:37:58Z	GroupApproximation/Criterion/FiniteQuotientBlindness.lean	manuscriptCardinalityInvariantSize
 32662929132	2026-08-23T19:58:54Z	GroupApproximation/Sofic/DoubleFiniteDimensionalRigidity.lean	to
+32665168827	2026-08-23T20:41:40Z	GroupApproximation/Sofic/FiniteIndexRigidity.lean	ker_le_of_finiteIndex
