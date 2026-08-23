@@ -1,4 +1,12 @@
 {
+  "common_boundary_fixed_space_dimension": 1,
+  "cumulative_boundary_residual_ranks": {
+    "s_0": 2,
+    "s_11": 4,
+    "s_30": 6,
+    "s_44": 6,
+    "s_55": 7
+  },
   "field": "GF(2)",
   "frame": "401004080301c030",
   "identity": "8040201008040201",

@@ -82,6 +82,19 @@ source menu therefore contains one source of mass at least
 coordinates, because those coordinates are not canonically three of the five
 operator sources.
 
+The sign channel similarly has the three orthogonal reduced sources
+
+```text
+(1,epsilon),   (epsilon,1),   (sigma,sigma)_epsilon.   (CSM8)
+```
+
+Thus in the sign branch one source has mass at least
+`gamma(delta)/48`.  Without choosing a branch, the eight nontrivial reduced
+sources contain one of mass at least `gamma(delta)/64`; asymptotically this
+is `1/8192` for packet defect and `1/2048` under the direct collision
+relation.  This is a fully typed `S3` source menu, but not yet the common
+`S4` extension-labelled incidence.
+
 The sign alternative is genuine.  In the exact continuous family from
 `atlas-19243-has-continuous-regular-s3-line-holonomy`, the relative rotation
 acts only on `triv direct_sum sign`, so `m_sigma=0`, while a nonzero angle has
