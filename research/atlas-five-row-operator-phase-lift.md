@@ -10,7 +10,6 @@ distinct_from:
   atlas-boundary-tangent-covariance-coercivity: that bounds covariance by the five linearized rows and is already global in the chart unitary; this asks for the missing nonlinear-to-linear comparison for those rows.
   atlas-a4-holonomy-coherence-gap: that exact-regular local-network ceiling is refuted by the multiplicity-two frame; this includes the full-atlas interior consequence which the local frame does not satisfy.
   atlas-independent-phase-incidence-is-not-coercive: that frees the twenty-seven phase-edge occurrences from the common conjugation orbit and gives an exact private-edge counterexample; this retains the orbit identities and asks whether they restore coercivity.
-  nonhyperlinear-directly-from-five-row-phase-lift: that spends this inequality directly against a separated rank-three bridge in canonical Leavitt microstates; this is the still-open finite operator inequality itself.
 ---
 
 **OPEN.**  Let
