@@ -163,7 +163,7 @@ Three recorded routes (details on the LP node):
   U_fin via `t |-> e^(itx)` into `U(L^infty[0,1])`) plus simplicity
   gives `H^1(Lambda, L^0(Y,R)) = 0` for Bernoulli -- equivalently
   `St_12 cap St_13 cap St_23 = 0` in the stable-subspace calculus
-  (SOURCE-VERIFY Popa Invent. 170 (2007) next session).  The
+  (Popa arXiv:math/0512646 SOURCE-VERIFIED at abstract level 2026-08-23; theorem-number check pending).  The
   Bernoulli instance of this claim is therefore exactly a DEGREE-TWO
   cocycle superrigidity question; all faithful finite-level defects
   computed today are ZERO (18, 750, and 78-point envelope), so the

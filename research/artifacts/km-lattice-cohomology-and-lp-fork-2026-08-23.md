@@ -703,9 +703,16 @@ now precisely specified with a validated envelope methodology.
 
 ## Addendum 21: Popa superrigidity enters -- H^1(Lambda, L^0) = 0 and the flipped lean
 
-(To be source-verified against Popa, "Cocycle and orbit equivalence
-superrigidity for malleable actions of w-rigid groups", Invent.
-Math. 170 (2007); the U_fin framework.)  `R` belongs to Popa's class
+(SOURCE-VERIFIED 2026-08-23 at abstract level, arXiv:math/0512646,
+Popa, "Cocycle and orbit equivalence superrigidity for malleable
+actions of w-rigid groups": verbatim, any V-valued measurable
+cocycle for a m.p. action weak mixing on H and s-malleable "(e.g.
+the Bernoulli action Gamma acting on [0,1]^Gamma)" is "cohomologous
+to a group morphism of Gamma into V", with V "a closed subgroup of
+the group of unitaries of a finite von Neumann algebra" and w-rigid
+meaning an infinite normal subgroup with relative property (T) --
+for Kazhdan Lambda take H = Lambda itself.  Full-text
+theorem-number check remains for the next session.)  `R` belongs to Popa's class
 `U_fin`: `t |-> e^(i t x)` is a closed embedding of `R` into
 `U(L^infty[0,1])`, the unitary group of a finite abelian von Neumann
 algebra (closedness: `e^(i t_n x) -> 1` in measure forces
