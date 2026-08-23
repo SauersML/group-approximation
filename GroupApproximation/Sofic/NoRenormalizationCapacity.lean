@@ -151,6 +151,49 @@ theorem no_model_of_uniform_unbounded_capacity
 
 /-! ## Spectral recurrence versus a uniformly authenticated power return -/
 
+/-- Every finite-dimensional unitary has a positive power arbitrarily close
+to the identity in operator norm.  Compactness of the bounded power orbit is
+enough here; the sharper explicit bound `m ≤ Q ^ d` used in the paper route is
+not needed by the Power-Return contradiction. -/
+theorem exists_positive_power_opNorm_sub_one_lt
+    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
+    {ε : ℝ} (hε : 0 < ε) :
+    ∃ m : ℕ, 0 < m ∧ ‖W ^ m - 1‖ < ε := by
+  have hpow_unitary : ∀ n : ℕ, W ^ n ∈ Matrix.unitaryGroup Y ℂ :=
+    fun n ↦ (Matrix.unitaryGroup Y ℂ).pow_mem hW n
+  have hpow_mem : ∀ n : ℕ, W ^ n ∈ Metric.closedBall (0 : Matrix Y Y ℂ) 1 := by
+    intro n
+    rw [Metric.mem_closedBall, dist_zero_right,
+      CStarRing.norm_of_mem_unitary (hpow_unitary n)]
+  obtain ⟨limit, _hlimit, φ, hφ, htend⟩ :=
+    (isCompact_closedBall (0 : Matrix Y Y ℂ) 1).tendsto_subseq hpow_mem
+  obtain ⟨N, hN⟩ := Metric.tendsto_atTop.1 htend (ε / 2) (by positivity)
+  let i := φ N
+  let j := φ (N + 1)
+  have hij : i < j := hφ (Nat.lt_succ_self N)
+  have hi : dist (W ^ i) limit < ε / 2 := hN N le_rfl
+  have hj : dist (W ^ j) limit < ε / 2 := hN (N + 1) (Nat.le_succ N)
+  have hd : dist (W ^ j) (W ^ i) < ε := by
+    calc
+      dist (W ^ j) (W ^ i) ≤ dist (W ^ j) limit + dist limit (W ^ i) :=
+        dist_triangle _ _ _
+      _ < ε / 2 + ε / 2 := add_lt_add hj (by simpa [dist_comm] using hi)
+      _ = ε := by ring
+  let m := j - i
+  have hm : 0 < m := Nat.sub_pos_of_lt hij
+  have hij_add : i + m = j := Nat.add_sub_of_le hij.le
+  have hfactor : W ^ j - W ^ i = W ^ i * (W ^ m - 1) := by
+    rw [← hij_add, pow_add]
+    noncomm_ring
+  refine ⟨m, hm, ?_⟩
+  calc
+    ‖W ^ m - 1‖ = ‖W ^ i * (W ^ m - 1)‖ :=
+      (CStarRing.norm_mem_unitary_mul _ (hpow_unitary i)).symm
+    _ = ‖W ^ j - W ^ i‖ := by rw [hfactor]
+    _ = dist (W ^ j) (W ^ i) := by rw [dist_eq_norm]
+    _ < ε := hd
+
 /-- A recurrent power cannot be close to a unitary conjugate of a cursor that
 stays separated from the identity.  This is the quantitative core of the
 Power-Return criterion: conjugation preserves the cursor's operator-norm
@@ -211,6 +254,26 @@ theorem no_model_of_recurrent_uniform_power_return
   have hlower : 3 * β / 4 ≤ ‖A * W * Aᴴ - W ^ m‖ :=
     recurrent_power_far_from_unitary_conjugate hA hsep hreturn
   linarith
+
+/-- **Spectral-recurrence Power-Return criterion at one coordinate.**  A
+finite-dimensional unitary cursor cannot stay `β`-separated while every
+positive conjugacy-to-power challenge is authenticated by the same root
+budget.  The recurrent exponent is selected by the proof after this finite
+coordinate is fixed; neither the challenge family nor a program has to read
+the dimension. -/
+theorem no_model_of_uniform_power_return
+    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
+    (A : ℕ → Matrix Y Y ℂ)
+    (hA : ∀ m, A m ∈ Matrix.unitaryGroup Y ℂ)
+    {β C defect : ℝ} (hβ : 0 < β)
+    (hsep : β ≤ ‖W - 1‖)
+    (hauth : ∀ m, 0 < m → ‖A m * W * (A m)ᴴ - W ^ m‖ ≤ C * defect)
+    (hbudget : C * defect < β / 2) : False := by
+  obtain ⟨m, hm, hreturn⟩ :=
+    exists_positive_power_opNorm_sub_one_lt hW (show 0 < β / 4 by positivity)
+  exact no_model_of_recurrent_uniform_power_return (hA m) hβ hsep hreturn.le
+    (hauth m hm) hbudget
 
 /-! ## Rank monodromy -/
 

@@ -22,3 +22,6 @@ quantifier order.  The operator-norm lower bound and its contradiction with a
 uniform root budget are formalized respectively as
 `NoRenormalizationCapacity.recurrent_power_far_from_unitary_conjugate` and
 `NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`.
+The full frozen-coordinate composition, including qualitative unitary
+recurrence, is
+`NoRenormalizationCapacity.no_model_of_uniform_power_return`.
