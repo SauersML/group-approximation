@@ -9,6 +9,7 @@ distinct_from:
   atlas-linear-energy-controlled-by-full-packet-defect: that asks to control the sum of all 234 linearized boundary rows by all 234 nonlinear defects plus the interior separator; this keeps only the five rows already certified to saturate the covariance tangent kernel.
   atlas-boundary-tangent-covariance-coercivity: that bounds covariance by the five linearized rows and is already global in the chart unitary; this asks for the missing nonlinear-to-linear comparison for those rows.
   atlas-a4-holonomy-coherence-gap: that exact-regular local-network ceiling is refuted by the multiplicity-two frame; this includes the full-atlas interior consequence which the local frame does not satisfy.
+  atlas-independent-phase-incidence-is-not-coercive: that frees the twenty-seven phase-edge occurrences from the common conjugation orbit and gives an exact private-edge counterexample; this retains the orbit identities and asks whether they restore coercivity.
 ---
 
 **OPEN.**  Let
@@ -145,3 +146,10 @@ cancellations which survive the five boundary products.
    three local phase sectors, but a multiplicity unitary remains free around
    a cycle.  The unresolved operation is to make `c_19243` pay that one
    operator-valued loop phase rather than only its scalar character.
+4. **Use only the six phase-cycle incidences.**  Refuted by
+   `atlas-independent-phase-incidence-is-not-coercive`.  Two private edges
+   of row `11` carry cancelling signs, while one private interior edge
+   absorbs the fixed interior fold.  All six multiplicative holonomies then
+   vanish but the row-11 additive circulation has norm four.  Hence a proof
+   must use the common-orbit identities `P_x=lambda(x)Ulambda(x)^*`, not just
+   unitarity and the cycle products.
