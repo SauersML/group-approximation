@@ -7,6 +7,7 @@ distinct_from:
   native-km-coset-coefficients-retain-spherical-pauli-absorber: that exhibits a collapsing eigenvalue for an ungauged overlap-holonomy operator on the common spherical label line; this computes the actual group-word face coefficient there and proves the apparent absorber is removable gauge, not a microstate obstruction.
   finite-face-flatness-stops-at-fundamental-group-holonomy: that identifies arbitrary face-flat overlap connections with presentation holonomy on a nontrivial common reservoir; here the reservoir carries the trivial representation of every vertex group, so the overlap connection may be replaced freely without changing any represented generator.
   relative-three-chart-correction-is-km-regular-stability: that identifies correction on the full regular branch with terminal stability; this removes only the common trivial-label gauge kernel and leaves the nonspherical regular mass problem unchanged.
+  native-246-nonspherical-face-complex-has-explicit-gap: that computes all three native incidence spectra and proves a gap 1-sqrt(3q)/(q+1) after quotienting the gauge kernel identified here.
 ---
 
 **ESTABLISHED.**  In the native triangle let
@@ -66,3 +67,11 @@ while its nonspherical `B_2` component is uniformly gapped.  What remains is
 to obtain compatible analogous estimates through the `A_1 x A_1` and `G_2`
 vertices on the nontrivial regular-label complement; the full face supplies
 no additional spherical actuator.
+
+That remaining finite linear calculation is now complete:
+`native-246-nonspherical-face-complex-has-explicit-gap` gives singular radii
+`0`, `sqrt(2q)/(q+1)`, and `sqrt(3q)/(q+1)` for the `A_1 x A_1`, `B_2`, and
+`G_2` faces respectively.  Hence the whole fixed occurrence complex has gap
+`1-sqrt(3q)/(q+1)` modulo `(FKF4)`.  The residual is no longer a missing
+character-table constant; it is the nonlinear placement of three separately
+exactified charts into that one occurrence complex.
