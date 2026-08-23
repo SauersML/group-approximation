@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.LiteralBaseP13RotationQuotient
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
-import GroupApproximation.Sofic.LiteralP13HodgeCertificate
 import GroupApproximation.Monsters.P13InvariantProjection
 
 /-!

@@ -1,5 +1,5 @@
 import GroupApproximation.Sofic.ChosenNonMFEndpoint
-import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.MarkedCompressionExplicitGroup
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
 /-!

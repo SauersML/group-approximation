@@ -2,9 +2,9 @@
 version: "v0.4"
 
 project:
-  name: "A non-MF group"
+  name: "An explicit sofic group that is not MF"
   description: >-
-    There exists a countable group that is not MF in the
+    The displayed finitely presented group is sofic and is not MF in the
     Carrión-Dadarlat-Eckhardt operator-norm sense.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
@@ -15,7 +15,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "A non-MF group"
+  - title: "An explicit sofic group that is not MF"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."
@@ -67,6 +67,26 @@ sources:
     year: 2026
     type: paper
     id: https://arxiv.org/abs/2608.06222
+    relationship: background
+
+  - title: On sofic groups
+    authors: [Gábor Elek, Endre Szabó]
+    year: 2006
+    type: paper
+    id: https://arxiv.org/abs/math/0305352
+    relationship: background
+
+  - title: Presentations for 3-dimensional special linear groups over integer rings
+    authors: [Marston D. E. Conder, Edmund F. Robertson, Peter Williams]
+    year: 1992
+    type: paper
+    id: https://doi.org/10.2307/2159559
+    relationship: background
+
+  - title: Kazhdan's property (T)
+    authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
+    year: 2008
+    type: book
     relationship: background
 
 automation:

@@ -1,7 +1,6 @@
 import GroupApproximation.Sofic.LiteralVerticalBridge
 import GroupApproximation.Sofic.LiteralAffineCosetTransitivity
 import GroupApproximation.Sofic.BlockCliffordTowerSofic
-import GroupApproximation.Sofic.LiteralSoficEndpoint
 
 /-!
 # The literal finitely presented non-MF group is sofic
@@ -407,43 +406,6 @@ theorem markedGroup_isSofic : IsSofic MarkedGroup := by
       towerAction teleSitePerm towerAction_sign towerAction_lamp
       finite_level_site_orbit
   exact (isSofic_mulEquiv_iff markedGroupEquivTelescopeTower).mpr htower
-
-/-- **The literal group is hyperlinear.** -/
-theorem markedGroup_isHyperlinear : IsHyperlinear MarkedGroup :=
-  isHyperlinear_of_isSofic markedGroup_isSofic
-
-/-! ## The printed separation
-
-`Sofic/LiteralSoficEndpoint.lean` packages the separation with soficity as its
-single premise, so that any route to soficity feeds the same endpoint.  This
-file has that premise, so the compositions below are premise-free and are the
-declarations a numbered manuscript theorem may cite. -/
-
-/-- **`E` is an explicit finitely presented sofic group that is not MF.**
-
-Premise-free: soficity is `markedGroup_isSofic` above, finite presentation and
-the failure of MF come from `LiteralSoficEndpoint`.  This is the unconditional
-form the endpoint module reserved for the moment soficity landed without a
-hypothesis. -/
-theorem markedGroup_finitelyPresented_sofic_nonMF :
-    Group.IsFinitelyPresented MarkedGroup ∧ IsSofic MarkedGroup ∧
-      ¬ IsCDEOperatorMF MarkedGroup :=
-  LiteralSoficEndpoint.markedGroup_finitelyPresented_sofic_not_isCDEOperatorMF
-    markedGroup_isSofic
-
-/-- **The hyperlinear form of the same separation.** -/
-theorem markedGroup_finitelyPresented_hyperlinear_nonMF :
-    Group.IsFinitelyPresented MarkedGroup ∧ IsHyperlinear MarkedGroup ∧
-      ¬ IsCDEOperatorMF MarkedGroup :=
-  LiteralSoficEndpoint.markedGroup_finitelyPresented_hyperlinear_not_isCDEOperatorMF
-    markedGroup_isSofic
-
-/-- **Sofic but not LEF, premise-free.**  The same finitely presented group
-separates soficity from local embeddability into finite groups. -/
-theorem markedGroup_sofic_not_isLEF_unconditional :
-    IsSofic MarkedGroup ∧ ¬ IsLEF MarkedGroup ∧
-      ¬ Group.ResiduallyFinite MarkedGroup :=
-  LiteralSoficEndpoint.markedGroup_sofic_not_isLEF markedGroup_isSofic
 
 end
 

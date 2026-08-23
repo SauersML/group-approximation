@@ -889,7 +889,7 @@ import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 -- module's own dependencies, listed rather than left implicit so that dropping
 -- one is a visible edit.  Every one of the four is tracked and fully proved.
 import GroupApproximation.Sofic.BlockCliffordTowerSofic
-import GroupApproximation.Sofic.LiteralSoficAssembly
+import GroupApproximation.Sofic.LiteralSoficConsequences
 import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.LiteralVerticalBridge
 

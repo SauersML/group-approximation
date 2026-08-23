@@ -9,8 +9,7 @@ import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.KazhdanSignCriterion
-import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
-import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFCoreEndpoint
 import GroupApproximation.Sofic.MFRepresentationVariants
 import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
 import GroupApproximation.Sofic.PrintedCentralSignCriterion
@@ -41,32 +40,6 @@ open ReducedGroupCStarTrace
 open scoped commutatorElement
 
 noncomputable section
-
-/-! ## The literal marked-compression datum -/
-
-/-- The exact marked-compression datum for the literal group.  Its
-property-`(T)` field is discharged by the premise-free P13 bridge. -/
-noncomputable def inclusionData :
-    MarkedCompressionInclusionData Base MarkedGroup where
-  iota := baseMap
-  t := stable
-  c := lamp
-  a := PresentedGroup.of v1Index
-  kazhdan := LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT
-  compresses gamma := by
-    obtain ⟨delta, hdelta⟩ := stable_conjugates_base_into_base gamma
-    exact ⟨delta, hdelta.symm⟩
-  comm_c := lamp_commutes_base
-  word_sq := by
-    rw [← mark_eq_markedCompressionWord]
-    exact mark_sq
-  word_central g := by
-    rw [← mark_eq_markedCompressionWord]
-    exact mark_central g
-
-@[simp] theorem inclusionData_word :
-    inclusionData.word = mark :=
-  mark_eq_markedCompressionWord.symm
 
 /-- The transported involution `d = t c t⁻¹`. -/
 abbrev compressionRoot : MarkedGroup :=
@@ -322,12 +295,6 @@ theorem literal_mark_mem_manuscriptCoronaMFResidual :
     mark ∈ manuscriptCoronaMFResidual MarkedGroup := by
   exact (mem_manuscriptCoronaMFResidual_iff (G := MarkedGroup)).2
     literal_mark_eq_one_in_CStarCorona
-
-/-- The mark also belongs to the basis-free unitary-sequence MF residual. -/
-theorem literal_mark_normMFInvisible : NormMFInvisible mark :=
-  KazhdanCompressionCore.defectSquare_centralInvolution_normMFInvisible
-    inclusionData.toKazhdanCompressionCore inclusionData.a mark
-    mark_eq_compressionDefect_sq mark_sq mark_central
 
 /-! ## Premise-free MF and C-star consequences -/
 

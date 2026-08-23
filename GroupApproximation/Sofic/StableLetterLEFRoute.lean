@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.LiteralSoficAssembly
+import GroupApproximation.Sofic.LiteralSoficConsequences
 import GroupApproximation.Sofic.SoficByAmenablePermanence
 
 /-!

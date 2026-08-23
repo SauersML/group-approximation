@@ -1,5 +1,5 @@
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
-import GroupApproximation.Sofic.LiteralSoficAssembly
+import GroupApproximation.Sofic.LiteralSoficConsequences
 
 /-!
 # Theorem A in one declaration
