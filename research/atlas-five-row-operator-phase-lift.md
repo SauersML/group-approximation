@@ -185,3 +185,10 @@ cancellations which survive the five boundary products.
    fixed source-target dimension difference.  Any finite-only invariant must
    therefore retain relative singular-subspace information rather than a
    determinant or index.
+6. **Quotient the gauge and use the aligned transverse Hessian.**
+   `atlas-aligned-quotient-spectrum-cannot-reach-low-defect` proves that the
+   nonzero aligned quotient spectrum is indeed a finite, multiplicity-uniform
+   irrep-pair calculation.  But `c_19243` keeps every low-defect frame at
+   distance at least `sqrt(2)/16` from the whole aligned commutant manifold.
+   Hence this favorable local spectrum cannot see the relevant sequence; a
+   surviving singular invariant must be global on the remote nonlinear branch.

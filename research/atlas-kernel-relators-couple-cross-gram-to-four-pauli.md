@@ -128,3 +128,12 @@ multiplicity matrices on every compulsory aligned block and an invertible
 operator.  What remains is therefore a transverse quantitative singular
 invariant on the quotient by this exact commutant orbit, not a Jacobian or a
 same-fiber chord minor.
+
+The aligned transverse quotient itself is not the answer.
+`atlas-aligned-quotient-spectrum-cannot-reach-low-defect` shows that its
+positive singular spectrum is automatically independent of multiplicity,
+but the actual `19243` centrality consequence keeps every low-defect frame a
+fixed distance `sqrt(2)/16` from that entire aligned quotient.  Therefore the
+remaining invariant must live globally on this remote nonlinear branch; a
+finite aligned irrep-pair Hessian, even with a strict spectral gap, cannot
+extract the carrier in `(AKC2)`.

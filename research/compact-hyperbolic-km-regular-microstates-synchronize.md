@@ -13,6 +13,7 @@ distinct_from:
   km-triangle-local-bimodules-have-finite-nonflat-models: that gives exact regular charts and pairwise overlap intertwiners with a nontrivial native kernel cycle; this must use the kernel relator itself to close the common carrier.
   reynolds-defect-cut-gives-regular-relator-corner: that constructs a large regular-overlap carrier and polar two-path corner for one kernel word; the summed-Reynolds claim below supplies its finite-family upgrade.
   summed-reynolds-cut-synchronizes-kernel-corners: that gives one overlap-subgroup regular carrier and mutually close polar corrections for the whole kernel basis; this must transport that carrier through the rank-two vertex charts.
+  relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
 artifacts:
   - research/artifacts/regular-core-holonomy-universal-attack-integration-2026-08-22.md
@@ -202,4 +203,14 @@ The frontier is now the relative simultaneous correction of the three
 finite rank-two charts: after exactifying `P_13`, perturb `P_12` and `P_23`
 on their large regular cores so that the `P_1`, `P_2`, and `P_3` overlap
 restrictions agree exactly.  That is a finite semisimple synchronization
-problem, rather than an unbounded kernel-word or carrier-density problem.
+formulation, rather than an unbounded kernel-word or carrier-density problem.
+
+It is not, however, a smaller final cleanup.
+`relative-three-chart-correction-is-km-regular-stability` proves that exact
+overlap agreement is, by the triangle colimit universal property, precisely
+a genuine finite-dimensional representation of `Gamma`.  Conversely every
+global correction restricts to such a compatible triple.  Since `Gamma` is
+infinite simple, the exact compatible locus contains no triple retaining a
+nonzero regular vertex summand.  Thus rounding near-identity multiplicity
+holonomy to that locus is quantitatively the terminal regular-branch
+stability theorem itself.

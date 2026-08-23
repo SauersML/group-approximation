@@ -709,3 +709,34 @@ the fixed-depth nonhyperlinearity criterion.
   close the arithmetic route. Any successful nonlinear Cartan extraction
   must use a genuinely additional mixed-root/conductor relation absent from
   the raw Bernoulli model, or matrix-dependent non-Cartan information.
+- **There is no genuine native relator of the former kind.**
+  `no-native-arithmetic-relator-breaks-the-bernoulli-quotient` uses the exact
+  graph-wreath identification to abelianize every lamp vertex and obtain
+
+  ```text
+  G_cc -> (direct_sum_(A/C) C_2) rtimes A.
+  ```
+
+  This map is the identity on the arithmetic actor. Hence every actual
+  Steinberg/root relation, conductor word, coset-section identity, native
+  lamp relation, and mixed consequence remains exact in the coset Bernoulli
+  crossed product. No relator-only HS estimate can force the site-PVM
+  covariance: its right side vanishes there while the decoder error is at
+  least the Schreier gap.
+
+  The first datum absent from the quotient is instead the canonical-trace
+  anti-relation
+
+  ```text
+  kappa=[h c h^(-1),h^(-1)c h],
+  tau_(G_cc)(kappa)=0,       tau_Bernoulli(kappa)=1.
+  ```
+
+  Thus canonical microstates keep `||kappa-I||_2^2 ->2`. But appending this
+  scalar separation to the old conductor/root ledger still does not imply
+  `(EDA11)`: independent chart refinement preserves every fixed raw-word
+  trace while retaining the `41/42` atomwise leakage floor. The only live
+  arithmetic extraction must make that nonedge separation act
+  functorially on chart atoms in the same raw algebra. Alternatively it must
+  be a genuinely matrix-only exclusion of the Bernoulli crossed product,
+  which already has non-Connes-embeddability/nonhyperlinearity strength.
