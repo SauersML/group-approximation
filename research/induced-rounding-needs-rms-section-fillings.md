@@ -9,6 +9,7 @@ distinct_from:
   regular-congruence-endpoint-orbit-has-uniform-selberg-retraction: that rounds inside one already authenticated endpoint orbit; this uses induction to formulate the prior relative lift from an exact core into some endpoint type.
   authenticated-core-union-basin-is-relative-liftability: that identifies the qualitative flexible lifting endpoint; this supplies one quantitative sufficient construction in terms of Schreier-section fillings and an exact finite induced representation.
   cyclic-core-character-forces-linear-rms-section-area: that refutes the required sub-square-root RMS bound, even on authenticated regular cores, while leaving gauge-optimized flexible repair open.
+  gauge-optimized-induced-energy-target: that replaces the refuted frozen-core estimate by minimization over nearby exact BS core coordinates.
 ---
 
 Let `A_N` be one finite one-power Iwahori quotient, let `B_N<A_N` be
@@ -108,3 +109,9 @@ fixed-core energy estimate `(IRF8)`.  The counterfamily is nevertheless
 target must optimize continuous core coordinates before forming the induced
 section, or use a gauge-optimized two-dimensional energy rather than frozen
 relative fillings.
+
+The precise corrected functional and its reduction to flexible repair are
+recorded in `gauge-optimized-induced-energy-target`.  The minimization there
+is over the full exact finite-level core variety; quotienting only the
+explicit scalar character is not enough because exact BS packets also carry
+slow commutant modes.
