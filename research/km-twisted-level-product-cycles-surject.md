@@ -63,3 +63,29 @@ class is unavailable).
   from the expansion of generalized polygons.
 - **Mixed types** (`J != J'`, e.g. grid against `B_2`) use the same
   argument with one side already settled.
+- **`B_2` via the symplectic quadrangle: two classes fail, three
+  suffice (2026-08-23).**  Model the `B_2` residue as `W(q)`: points of
+  `PG(3,q)`, lines the totally isotropic lines, `ell_1` a t.i. line,
+  classes indexed by its points `p_i`, class-`j` points forming the
+  affine plane `pi_j - ell_1` with `pi_j = p_j^perp`.  The two-class
+  graph is computed EXACTLY: the class-`k` neighbours of a class-`j`
+  point `P` are the line `(span(P,p_k))^perp = P^perp cap pi_k`, which
+  passes through `p_j`, and the two-step reachable set collapses onto
+  the single line `span(P,p_k)`: `G_(jk)` is a disjoint union of `q`
+  complete bipartite graphs `K_(q,q)` (components: a line through `p_k`
+  in `pi_j` paired with a line through `p_j` in `pi_k`).  So the
+  two-class path construction FAILS for `B_2`.  With a third class `l`
+  it succeeds: the class-`l` neighbours of `P` form a line through
+  `p_j` in `pi_l`, and as `Q` runs over it the lines
+  `Q^perp cap pi_k` run injectively over the whole pencil of lines
+  through `p_l` in `pi_k` (their common point is
+  `span(P,p_l) cap pi_k = {p_l}`), so every class-`k` point off a
+  plane's worth of exceptions is reachable from `P` in two steps.
+  Hence for `q` large the three-class graphs are connected with room to
+  avoid `ell_1`-meeting lines, prescribed local vectors at `p'_0` are
+  realized by cycles with intermediate classes in a 3-set `C`, and
+  disjoint 3-sets `C, C'` (available for `q+1 >= 7`) make `(TLS1)`
+  surjective for `B_2 x B_2` and mixed `B_2` levels, modulo the dual
+  quadrangle `Q(4,q)` for odd `q` (same computation in the orthogonal
+  model) and orientation bookkeeping.  The `G_2` case (split Cayley
+  hexagon) awaits the analogous pencil computation.
