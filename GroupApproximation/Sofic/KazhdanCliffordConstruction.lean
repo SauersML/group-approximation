@@ -551,8 +551,10 @@ theorem baseCountable : Countable Γ := by
 
 noncomputable local instance : Countable Γ := baseCountable (Γ := Γ)
 
-noncomputable local instance raw_countable : Countable (Raw Γ) :=
-  Monoid.Coprod.mk_surjective.countable
+noncomputable local instance raw_countable : Countable (Raw Γ) := by
+  letI : Countable (FreeMonoid (Γ ⊕ FreeGroup (Fin 2))) :=
+    inferInstanceAs (Countable (List (Γ ⊕ FreeGroup (Fin 2))))
+  exact Monoid.Coprod.mk_surjective.countable
 
 noncomputable instance extension_countable : Countable (Extension alpha a) :=
   (QuotientGroup.mk'_surjective (relations alpha a)).countable

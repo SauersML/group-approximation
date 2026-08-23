@@ -260,11 +260,13 @@ def metricData : AvatarMetricCheck.AvatarMetricData where
 
 /-- **The family's four obligations**, from the bundle.  Only nontriviality of
 the protected avatar is left, and it is not a metric-side fact. -/
+include I in
 theorem obligations
     (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1) : D.Obligations :=
   D.obligations_of_metricData I.metricData rfl hne I.protected_norm
 
 /-- **The router design**, fully assembled. -/
+include I in
 noncomputable def design
     (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1) :
     BespokeRouter.RouterRelatorDesign E N s B :=
@@ -279,6 +281,7 @@ theorem routerConclusions
     (I.design hne) I.metricData rfl h
 
 /-- **The endpoint.** -/
+include I in
 theorem nonempty_routingLemmaData [N.Normal]
     (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1)
     (h : SmallCancellationRouter.SharpResiduals (Fin 2)) :

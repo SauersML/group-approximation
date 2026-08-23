@@ -14,6 +14,18 @@ certified witness model keeps it nontrivial there.  Consequently
 subgroup of that radical: the Clifford sign is the cleanest certificate
 in Theorem A, but not the whole obstruction.
 
+This module is self-contained as a second non-MF construction: it does
+not import the central-sign endpoint, and it proves its own finite
+presentation rather than accepting one.  Centrality of the sign makes
+`⟨w⟩` equal to its own normal closure, so `E/⟨w⟩` is the literal finite
+presentation with the single relator `w = 1` adjoined
+(`markSubgroup_eq_normalClosure_singleton`,
+`signFreeQuotient_finitelyPresented`).  The endpoint
+`exists_finitelyPresented_signFree_not_isOperatorMF` is therefore a
+premise-free finitely presented non-MF existence theorem in its own
+right, whose obstruction is the surviving unsquared commutator and not
+the Clifford sign.
+
 The only new group theory is the commutation of the `B`-conjugates of
 `d` in the quotient.  Conjugates of `d` depend only on the translation
 parity class in `(ℤ/2)³`, because the rotation letters and the
