@@ -195,3 +195,26 @@ class is unavailable).
   `q = 3^k` need separate sphere computations -- TLS1 could genuinely
   differ there.  The point-panel dual (class-three radical, Frattini
   quotient `F_q^2`) remains to be run through the same dictionary.
+- **Point-panel cases by the same wall dictionary (2026-08-23).**  For
+  `G_2` point-panels (radical `q^(2+3)`, Frattini quotient the
+  `{alpha, alpha+beta}` plane): the stabilizer of the base class line
+  is `X_alpha`, and the pure `x_(alpha+beta)` translation is already a
+  valid two-step cone move (its midline sits at apartment position
+  seven with foot the other apartment class, met through the opposite
+  point), so stabilizer plus one visible translation span the Frattini
+  quotient: connected for `q` prime to three, two intermediate classes
+  suffice.  For `B_2` point-panels (Klingen `q^(1+2)`): the stabilizer
+  is `X_(alpha+beta)`, `X_alpha` gives within-class distance-four
+  moves, and among the `q+1` transversals of such a pair the apartment
+  one fails validity (one meeting point collinear with `p_1`) while
+  generic off-apartment transversals are valid, giving the missing
+  `alpha` direction: connected.  NET STATUS of `(TLS1)`: grid levels
+  proved; `B_2` line-panels proved via the symplectic model; `B_2`
+  point-panels, `G_2` point-panels and `G_2` line-panels reduced to
+  short genericity counts (exhibiting two independent valid sphere or
+  transversal points), all for `q` COPRIME TO SIX; characteristics two
+  and three are genuinely open (degenerate structure constants,
+  `G_2 <= Sp_6` in characteristic two, the special isogeny in three).
+  Since the Kac--Moody candidate class is all `q > 1764^3`, it is
+  legitimate to scope the whole `F_3`/Corollary-D-death chain to
+  lattices with `q` coprime to six.
