@@ -3,13 +3,12 @@ rg: 2
 id: lalonde-certificate-common-carrier-group-compiler
 kind: claim
 title: Compile Lalonde's tracial gap and nontracial perfect strategy onto one marked group carrier
-status: open
 artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 distinct_from:
   lalonde-certificate-gives-dimension-free-tracial-gap: that supplies the finite tracial soundness certificate before groupification; this is the missing state-aware group compiler.
   lalonde-perfect-fd-strategy-has-no-tracial-game-state: that warns that the perfect vector state cannot be silently tracialized; this target must preserve that state distinction.
-  common-source-game-state-proof: that transports a supplied common source state through a compiler; Lalonde deliberately has different completeness and soundness state faces.
+  common-source-partial-isometries-decode-one-game-state: that decodes a supplied common source state through context-dependent carriers; Lalonde deliberately has different completeness and soundness state faces.
 ---
 
 Construct a finite marked group presentation `(Gamma_L,J)` and a finite

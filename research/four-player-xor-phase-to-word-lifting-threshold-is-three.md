@@ -6,7 +6,6 @@ title: Four-player XOR phase refutations lift to group-word refutations exactly 
 artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 distinct_from:
-  commuting-finite-phase-gadgets-have-affine-scalar-shadows: that is a general scalar-shadow no-go for commuting finite-phase packets; this gives a sharp finite XOR threshold at which an abelian incidence obstruction does or does not lift to an ordered noncommutative word.
   affine-auxiliary-control-flow-barrier: that fences affine auxiliary control flow in a predicate compiler; this distinguishes an integer phase obstruction from a true free-word refutation even though the local observables need not commute.
 ---
 

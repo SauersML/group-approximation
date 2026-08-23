@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear
+id: llp-regular-dominating-completion-forces-nonhyperlinear
 kind: claim
 title: LLP of a nonamenable representation completion dominating the regular representation forces non-hyperlinearity
 artifacts:

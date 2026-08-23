@@ -6,7 +6,7 @@ title: Use LLP of one proper Brown-Guentner completion to obtain a non-hyperline
 target: non-hyperlinear-group
 requires:
   - explicit-proper-d-completion-with-llp-exists
-  - llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear
+  - llp-regular-dominating-completion-forces-nonhyperlinear
 artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 ---

@@ -6,9 +6,9 @@ title: LP of the explicit Harris system is equivalent to ambient LLP and can for
 artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 distinct_from:
-  llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear: that asks for LLP of the whole representation C-star algebra; this derives that LLP from LP of one explicit three-dimensional hyperrigid generator system.
+  llp-regular-dominating-completion-forces-nonhyperlinear: that asks for LLP of the whole representation C-star algebra; this derives that LLP from LP of one explicit three-dimensional hyperrigid generator system.
   llp-failure-has-three-dimensional-hyperrigid-witness: that states the same system is a universal negative witness when the ambient algebra fails LLP; this uses its positive LP to close non-hyperlinearity.
-  llp-hole-via-triangle-relator-local-sections: that asks for local sections on every finite-dimensional subsystem of a triangle quotient; this asks for the full lifting property of one concrete three-dimensional system.
+  triangle-colimit-llp-reduces-to-relator-local-splitting: that rewrites one triangle-colimit LLP problem as local splitting of a relator extension; this gives a universal three-dimensional normal form for LLP after a finitely generated algebra is fixed.
 ---
 
 **DERIVED THEOREM (Harris Theorem 2.4 and Proposition 3.4(2)).**  Let

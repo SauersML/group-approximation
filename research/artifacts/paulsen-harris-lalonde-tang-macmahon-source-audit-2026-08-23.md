@@ -38,7 +38,7 @@ G hyperlinear + pi nonamenable + lambda_G prec pi
 Thus LLP of an intermediate representation completion can close the group
 goal without property (T), non-residual-finiteness, or LLP of `C^*(G)`.
 This is integrated as
-`llp-of-regular-dominating-nonamenable-completion-forces-nonhyperlinear`.
+`llp-regular-dominating-completion-forces-nonhyperlinear`.
 
 Theorem 4.9 specializes `(A1)` to a Brown--Guentner ideal completion: `G`
 must be nonamenable, `D` must be an algebraic ideal of `ell^infinity(G)`

@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 distinct_from:
   triangle-colimit-llp-reduces-to-relator-local-splitting: that is a positive equivalence for one triangle-colimit quotient; this is a universal compression theorem for a NEGATIVE LLP witness after the candidate algebra is fixed.
-  llp-hole-via-triangle-relator-local-sections: that asks for local ucp sections proving LLP; this says how small a counterexample can be if those sections do not exist, but supplies no positive section.
+  non-rf-kazhdan-group-with-llp-full-c-star-algebra: that is a positive group-level LLP target; this is a universal three-dimensional normal form for either proving or refuting LLP after a finitely generated algebra is fixed.
 ---
 
 **THEOREM (Harris, arXiv:2607.11001v1, Theorem 2.4 and Corollary
