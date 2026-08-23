@@ -366,6 +366,26 @@ compressed Weil packets.
   spectral labels: the missing theorem is relative operator-norm basin
   entry uniformly over the exact periodic BS cores.
 
+- **Once a same-core exact extender is authenticated, there is no remaining
+  nonlinear gauge problem.**  If an exact endpoint `(X_0,R,S)` has been
+  found and `X=cX_0` with `[c,S]=0`, then
+  `same-core-involution-cubic-gauge-coercivity` proves the sharper identity-
+  based estimate
+
+  ```text
+  ||c-1||_2 <= ||X^2-1||_2+||(XS^2)^3-1||_2.
+  ```
+
+  This is global and independent of packet length, return phase,
+  multiplicity, dimension, and operator-norm distance.  It closes the
+  Koopman/Fourier and sign-plateau escape mechanisms **inside** an
+  authenticated same-core basin.  It does not expose the missing boundary
+  corner, choose the moving odd-congruence atom, or produce `X_0` from the
+  two residual carriers.  Accordingly the reverse low-rank theorem in
+  `(FBR2)` is now exactly atom/carrier authentication followed by same-core
+  alignment; no additional nonlinear inverse estimate for the gauge should
+  be included in that target.
+
 - **A possible counterexample must exhibit genuine boundary recycling.**
   To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
   those already satisfy the bound.  One must mix heterogeneous levels or

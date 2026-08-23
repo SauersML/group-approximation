@@ -55,3 +55,11 @@ coboundary can converge to one in normalized HS while every correcting
 gauge stays `sqrt(2)` away from the identity modulo fixed gauges.  Therefore
 the cubic rows must control the large phase plateaux themselves.  Removing
 the two small jump projections or taking a polar part cannot suffice.
+
+After an exact extending involution over the same BS core has been found,
+`same-core-involution-cubic-gauge-coercivity` gives a stronger conclusion
+than `(IAG1)`: the involution row plus the first cubic globally bound every
+unitary root-commutant gauge with constant one.  Hence the weighted spectral
+estimate is needed, if at all, only as a basin-capture device before such an
+exact extension is authenticated.  It is not a residual low-mode problem
+inside an exact extendable basin.

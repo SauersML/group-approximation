@@ -51,6 +51,26 @@ recursion terminates; the total correction is
 
 ## Attempts
 
+- **Flexible cycle surgery removes the inverse-norm problem after exact
+  solvability, but not the holonomy obstruction.**
+  `flexible-bs-cycle-surgery-absorbs-exact-coboundaries` proves that whenever
+  `e=c psi(c)^(-1)` already holds, one may perturb the exact BS core and
+  replace the possibly far low-mode gauge `c` by a nearby fixed-commutant
+  gauge, with a dimension-free modulus.  Its proof includes arbitrary
+  matrix multiplicities and return monodromy.  Therefore the shrinking
+  Koopman gap and the divergent norm of the minimum coboundary are no longer
+  obstructions to **flexible** repair.  The present claim still must prove
+  existence: on every finite cycle the holonomy of `e` must vanish (or be
+  paid by the other Iwahori relators).  Cycle surgery cannot manufacture a
+  coboundary when that invariant is nonzero.
+- **The advertised pure `K delta+K^(-1/2)` rate has a precise short-packet
+  caveat.**  It holds on long fourth-power cycles.  On length-one packets it
+  would imply an `O(delta^(1/3))` quantitative stability theorem for two
+  almost commuting unitaries; see
+  `pure-cycle-surgery-rate-contains-quantitative-z2-repair`.  The rigorous
+  all-packet estimate currently has the additional Glebsky term
+  `O((K delta)^(1/9))`, which is still sufficient for qualitative repair.
+
 - **The convergence is now ONE concrete inequality.**  On the odd
   model the level-`k` gaps `gamma_k` are spacings of odd roots of
   unity at the `k`-th fourth-root refinement, and the peeled

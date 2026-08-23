@@ -116,6 +116,28 @@ mixtures remain outside the authenticated calculation.
 - **Core exactification is available.**  The one-solenoid dense-periodic-
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
+- **The nonlinear same-core gauge is completely controlled.**  Suppose basin
+  capture has produced an exact extender `X_0` over the **same** exact root
+  operator `S`, and the relative gauge has the root-commutant form
+
+  ```text
+  X=c X_0,                 [c,S]=0.
+  ```
+
+  Then `same-core-involution-cubic-gauge-coercivity` gives the global,
+  dimension-free estimate
+
+  ```text
+  ||c-1||_2 <= ||X^2-1||_2+||(XS^2)^3-1||_2.
+  ```
+
+  Thus arbitrary Fourier modes, sign plateaux, and large operator-norm
+  gauges cannot escape after the extending core has been authenticated.
+  The remaining hypothesis is strictly earlier: find a nearby exact pair
+  `(X_0,R_0,S_0)` and align the repaired input so that its relative gauge
+  commutes with that same `S_0`.  Core stability by itself gives only
+  `(R_0,S_0)` and does not manufacture or authenticate `X_0`; the inversion
+  row and second cubic are still needed for that basin-capture/alignment.
 - **The matrix-monodromy obstruction disappears.**  The return unitary is
   diagonalizable, so the core is a sum of scalar-phase packets.  The phase
   coordinate remains essential, but no noncommutative `U(k)` matching
