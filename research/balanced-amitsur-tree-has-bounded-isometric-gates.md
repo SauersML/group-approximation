@@ -35,6 +35,17 @@ Then every auxiliary value is again an isometry:
 S_I^*S_I=I.                                            (BAT3)
 ```
 
+There is no hidden long leaf check in this notation.  For each `sigma`,
+factor the product in `(BAT1)` through a closest-half multiplication tree.
+Its leaves are the `W_j`, every internal row has the form
+
+```text
+M_(sigma,J)=M_(sigma,J_0) M_(sigma,J_1),              (BAT3a)
+```
+
+and every intermediate `M_(sigma,J)` is an isometry.  The product tree has
+depth `ceil(log_2 m)` and bounded local factor norms.
+
 Choose a binary partition tree on `S_m` by splitting every set of size at
 least two into children `I_0,I_1` whose sizes differ by at most one.  Every
 internal gate obeys the exact local row
@@ -49,7 +60,8 @@ coefficients lie in `[1/3,2/3]`; in particular every coefficient has modulus
 at most `sqrt(2/3)`, the row has arity three, and the sum of the two input
 coefficient moduli is at most `sqrt(2)`.  Thus the entire expanded identity
 has an exact proof assignment of operator norm one with uniformly bounded
-local coefficients and logarithmic depth.
+local coefficients/factor norms, bounded arity, and depth at most
+`ceil(log_2 m)+ceil(log_2 N)`.
 
 At the root,
 
@@ -58,7 +70,8 @@ S_(S_m)=N^(-1/2) s_m(W_1,...,W_m),                    (BAT5)
 ```
 
 the unit-normalized Amitsur instruction.  Conversely, in `M_n(C)` with
-`m=2n`, exact satisfaction of all tree rows forces the root to equal zero by
+`m=2n`, exact satisfaction of all multiplication rows `(BAT3a)`, singleton
+links, and addition rows `(BAT4)` forces the root to equal zero by
 Amitsur--Levitzki.  Hence adjoining the root normalization
 
 ```text
@@ -68,11 +81,10 @@ S_(S_m)^* S_(S_m)=I                                   (BAT6)
 has an exact unit residual at the dimension-matched finite instruction and
 an exact bounded Fock realization.
 
-This does not supply a finite group compiler.  There are still `Theta(N)`
+This does not supply a finite group compiler.  There are still `Theta(Nm)`
 auxiliary gates, and a uniformly sampled local row gives the distinguished
 root vanishing weight.  The gain is a precise narrowing: neither unbounded
-proof values nor unbounded local coefficients are intrinsic to the Amitsur
-instruction.  What remains is recursive addressing plus a nonlinear or
-delocalized authentication which gives `(BAT6)` constant normalized-HS
-weight without replaying the tree.
-
+proof values, long unfactored word checks, nor unbounded local coefficients
+are intrinsic to the Amitsur instruction.  What remains is recursive
+addressing plus a nonlinear or delocalized authentication which gives
+`(BAT6)` constant normalized-HS weight without replaying the circuit.
