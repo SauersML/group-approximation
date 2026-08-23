@@ -9,6 +9,7 @@ requires:
   - low-rank-reflection-surgery-preserves-the-exact-bs-core
   - right-displacement-reynolds-scalar-cb-complete
   - regular-reynolds-bad-levels-cannot-be-quarantined
+  - passive-core-quotient-has-relative-rational-h2
   - passive-iwahori-off-zero-cb-normal-splitting
 ---
 
