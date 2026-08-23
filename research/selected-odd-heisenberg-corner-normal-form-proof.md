@@ -71,3 +71,18 @@ hyperlinear, then `Gamma_A x C_p` and `H_p` would be hyperlinear and the
 edge `C_p^2` is amenable; the amenable-edge permanence theorem would make
 `Lambda_p` hyperlinear, a contradiction.  This proves `(OHM4)` and the
 claimed reduction.
+
+Amenable-edge permanence gives the first implication in `(OHM5)`, while
+hyperlinearity of `Lambda_p` makes `L(Lambda_p)` and every nonzero corner
+Connes embeddable.  Conversely define
+
+```text
+iota:L(Gamma_A)->e L(Lambda_p)e,
+iota(lambda(g))=e lambda(g).                            (OHN7)
+```
+
+Centrality of `e` makes `(OHN7)` a normal unital star homomorphism relative
+to the corner unit.  The trace computation `(OHM2)` makes it trace
+preserving, hence injective.  Connes embeddability of the selected corner
+therefore passes to `L(Gamma_A)`, proving hyperlinearity of `Gamma_A` and
+completing `(OHM5)`.

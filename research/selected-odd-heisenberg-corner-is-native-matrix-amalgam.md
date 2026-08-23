@@ -49,6 +49,19 @@ Amenable-edge hyperlinearity permanence therefore gives
 Gamma_A hyperlinear  => Lambda_p hyperlinear.           (OHM4)
 ```
 
+In fact the graft is analytically neutral in both directions:
+
+```text
+Gamma_A is hyperlinear
+  iff Lambda_p is hyperlinear
+  iff e_chi L(Lambda_p) e_chi is Connes embeddable.      (OHM5)
+```
+
+For the reverse implication, the normalized selected corner contains the
+trace-preserving copy `lambda(g) |-> e_chi lambda(g)` of `L(Gamma_A)`.
+Thus Connes embeddability of the corner passes back to the native group
+factor; no stability or finite-dimensional lifting theorem is used.
+
 Thus such a BCS corner map already implies that `Gamma_A` is
 nonhyperlinear.  The finite matrix vertex in `(OHM1)` can provide the local
 context packet and `e_chi` provides the necessary finite-dimensional
