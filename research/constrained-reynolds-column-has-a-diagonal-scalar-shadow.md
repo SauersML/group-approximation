@@ -71,6 +71,12 @@ It follows that the exact-zero assertion in
 sup_Q ||(C_Q|_(ker C_Q)^perp)^dagger||_cb < infinity.  (DSS5)
 ```
 
+`scalar-reynolds-cb-norm-is-the-infinity-norm` removes an apparent extra
+difficulty from this necessary scalar condition: because the inverse maps
+into a subspace of a commutative masa, its cb norm in `(DSS5)` equals its
+ordinary infinity norm.  The full off-diagonal passive inverse remains a
+genuine operator-space problem.
+
 For the prime-field quotient `Q=PSL_2(F_p)`, put
 
 ```text
@@ -111,6 +117,13 @@ i_p=(p-1)/(2 ord_p(4)).                                (DSS9)
 
 The analogous label can become still larger on composite and prime-power
 levels.
+Moreover the deeper congruence layer does not simply tensor this
+residue-field column with an identity fiber.
+`prime-power-reynolds-column-does-not-tensor-over-reduction` proves this at
+`5^2` by an exact rank obstruction: the residue column has rank `10`, while
+the depth-two column has rank at least `346`, exceeding the maximum `250`
+allowed by the `25`-dimensional input fiber.  The deeper root coordinates
+are genuinely coupled.
 Therefore the bounded arithmetic audit leaves one sharply located scalar
 frontier: prove a uniform infinity/cb Green estimate for the Hecke columns
 `(DSS3)` uniformly in the torus index `(DSS9)` and in the deeper-ring
