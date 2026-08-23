@@ -11,6 +11,7 @@ requires:
   - actual-hard-prefix-generates-s4-over-raw-s3
   - separated-channel-identities-retain-rectangular-escape
   - atlas-hard-packet-authenticates-s4-extension-triple
+  - atlas-mixed-minor-needs-nuisance-quotient-rank
   - atlas-authenticated-s3-extension-minor-decodes-pairings
 ---
 
@@ -20,13 +21,18 @@ projectors and exposes every operator block without choosing an external
 multiplicity basis.  For a second `S4` extension it retains the cross-products
 of the two canonical decompositions as noncommuting multiplicity variables.
 
-Project the full named quotient relators through those blocks.  Reject every
-candidate subsystem in which extra independent multiplicity words occur.
-The authentication claim must put one extension-labelled triple on a common
-finite cut; the minor claim must then yield scalar equations `C X=E` with the
-same three operator unknowns in every row and fixed
-`sigma_min(C)>0`.  Only then may the inverse-matrix estimate produce the
-three defects `(S3D2)`.
+Project the full named quotient relators through those blocks.  Retain every
+extra multiplicity word as a nuisance column `D`.  The authentication claim
+must put one extension-labelled triple on a common finite cut; the minor
+claim must then yield scalar equations `C X+D Y=E` with
+
+```text
+rank [C D]=rank D+3.
+```
+
+Equivalently, `P_(ran D)^perp C` must have positive least singular value.
+Only then may the nuisance-annihilating inverse estimate produce the three
+defects `(S3D2)`.  A nonzero minor of `C` alone is not a certificate.
 
 The separated rectangular no-go is an explicit falsification test: a carrier
 determinant followed by an independent coefficient argument is not this

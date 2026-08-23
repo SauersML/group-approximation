@@ -6,11 +6,12 @@ title: The full atlas hard packet exposes an invertible S3 channel decoder for t
 distinct_from:
   finite-window-decoder: that asks for the complete common-coordinate Leavitt decoder; this is the concrete sufficient rank gate obtained by projecting the literal hard packet into the localized S3 cell.
   atlas-two-s3-covariance-collapse: that asks for direct collapse of two fixed raw S3 covariance directions; this asks instead for the three common-coordinate pairing products used by the spectral Leavitt endpoint.
-  regular-chart-wedderburn-coefficient-compiler: that compiles arbitrary products into finite path sums without proving a rank condition; this asks for a nonzero minor in the particular class-11/class-30 channel system.
+  regular-chart-wedderburn-coefficient-compiler: that compiles arbitrary products into finite path sums without proving a rank condition; this asks for nuisance-quotient rank three in the particular class-11/class-30 channel system.
   regular-subgroup-branching-is-hall-balanced: that rules out every bare type-incidence Hall argument; this retains the actual multiplicity-operator products and their recoupling coefficients.
   universal-atlas-ideal-cannot-force-hall-deficit: that rules out a universal algebraic Hall certificate valid in the exact factor model; this is a finite-multiplicity extraction statement and must preserve that category boundary.
   actual-hard-prefix-generates-s4-over-raw-s3: that closes the quotient-level finite S4 recovery for each hard prefix; this asks the actual relators to synchronize two extension decompositions and solve the multiplicity path-products.
   separated-channel-identities-retain-rectangular-escape: that proves finite carrier identities and coefficient equivariance cannot work as separated inputs; this requires genuinely mixed projected relator equations.
+  atlas-mixed-minor-needs-nuisance-quotient-rank: that proves the amplification-uniform criterion for a mixed coefficient system; this asks the literal packet to satisfy it.
 artifacts:
   - experiments/atlas-boundary-11-30.json
   - notes/TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md
@@ -32,8 +33,17 @@ Resolve the literal class-11/class-30 hard-prefix, full interior, boundary,
 and comb relations into `S3` matrix-coefficient channels.  Multiplication
 must be compiled through the multiplicity-one Clebsch--Gordan maps, retaining
 every input pair which feeds a common output channel.  The resulting finite
-system has coefficients in `Q(sqrt(2))` and contains a fixed nonzero minor
-whose solved unknowns are exactly the path products producing
+system has coefficients in `Q(sqrt(2))`.  If `C` denotes the three desired
+path-product columns and `D` every other reduced multiplicity monomial in
+the selected rows, it satisfies
+
+```text
+rank [C D]=rank D+3.
+```
+
+By `atlas-mixed-minor-needs-nuisance-quotient-rank`, this is equivalent to a
+fixed nuisance-annihilating left inverse and solves exactly the path products
+producing
 
 ```text
 ||R0^* W L0-W||_2 -> 0,
@@ -42,7 +52,9 @@ whose solved unknowns are exactly the path products producing
 ```
 
 All arrows and `W` in `(S3D2)` act on one common finite multiplicity
-coordinate.  The coefficient-to-defect estimate is dimension-free.
+coordinate.  The coefficient-to-defect estimate is dimension-free.  A
+nonzero minor on the desired columns before quotienting by nuisance columns
+is not enough.
 
 The finite carrier recovery is now established by
 `actual-hard-prefix-generates-s4-over-raw-s3`: the cross-chart quotient word
