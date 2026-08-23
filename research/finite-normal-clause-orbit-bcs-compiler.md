@@ -83,6 +83,32 @@ affine sub-BCS inside the fixed nonlinear BCS, realized by the quotient
 relations `(FNO2)`, and then provide the toric two-player factorization. No
 current Gram-row or centralized-energy theorem constructs that quotient.
 
+## Genuinely noncentral orbit audit
+
+Allowing a finite noncentral conjugation orbit before normal closure does not
+weaken the affine quotient requirement.
+`noncentral-toric-orbits-have-affine-full-support-zero-face` removes the
+centrality hypothesis from the necessary half of `(FNO2)`: the regular trace
+of the normal clause quotient has `D=0` for every orbit, so Condition 3 still
+forces every BCS residual to vanish literally there. The toric quotient
+formula then makes every one-player clause component central after normal
+closure. Thus the orbit's noncentral action is erased exactly at the zero
+face on which soundness is asserted.
+
+This gives a sharp obstruction to the smallest proposed positive cell. If an
+exact perfect completion is required to retain every allowed assignment of
+one nonlinear context, then its context spectrum and the regular quotient
+spectrum coincide with the same linear character subspace. The allowed set
+itself would have to be linear, a contradiction. No orbit size, phase label,
+or noncentral reversible action changes this conclusion.
+
+The surviving positive lane may delete additional allowed types, but it must
+do so coherently: construct linear subspaces `Sigma_c subseteq Allowed_c`
+for all contexts which still support one perfect non-CE tracial model, then
+realize those subspaces in the phase-safe toric quotient. The finite orbit is
+useful only for quantitative energy away from that quotient face. It cannot
+be the source of nonlinear exact support at zero defect.
+
 ## Attempts
 
 - Making each predicate word central is stronger than Condition 2 and fails
@@ -103,3 +129,7 @@ current Gram-row or centralized-energy theorem constructs that quotient.
   clause quotient then forces the BCS relations as literal group-algebra
   identities. The surviving context assignments are a linear subspace, so
   trace-level Gram soundness cannot supply nonlinear whole-face semantics.
+- Making the orbit genuinely noncentral before quotienting does not help in
+  toric syntax: normal closure centralizes its player components, and the
+  quotient regular trace imposes the same affine context spectra. Retaining
+  all allowed types of a nonlinear predicate is therefore impossible.

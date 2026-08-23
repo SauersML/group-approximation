@@ -87,3 +87,10 @@ Condition 4. What remains of Conditions 1/3/4 after
 The first item preserves completeness and phase safety automatically. The
 second is the genuine nonlinear obstruction; a finite conjugation orbit or
 singleton central orbit supplies no selected-type escape from it.
+
+The necessary half does not actually require centrality.
+`noncentral-toric-orbits-have-affine-full-support-zero-face` applies the same
+regular-trace test to an arbitrary finite noncentral toric clause orbit and
+shows that normal closure erases its noncentral player action. Centrality is
+used here only for the converse GNS factorization, and hence for the exact
+equivalence in this claim.
