@@ -3862,12 +3862,12 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
 - 2026-08-23 · km-twisted-level-product-cycles-surject-proof [COMPLETE] Disjoint-class single-slot construction over the threshold law
 - 2026-08-23 · km-group-ring-h2-vanishes-proof [COMPLETE] The cusp induction over levels with cohomology in degree four only
 - 2026-08-23 · km-group-ring-h2-vanishes-for-the-lattices [ESTABLISHED] The simple Kazhdan Kac-Moody lattices have vanishing group-ring second cohomology
 - 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
 - 2026-08-23 · km-cusp-region-has-degree-three-compact-cohomology [OPEN] The positive-codistance cusp region of the (2,4,6) twin-building product has nonzero compactly supported cohomology in degree three
-- 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
 - 2026-08-23 · km-opposition-class-walk-threshold-proof [COMPLETE] Torsor transitivity, the alpha-string module, and Vandermonde on the rational normal curve
 - 2026-08-23 · km-opposition-class-walk-threshold-law [ESTABLISHED] Class-restricted walks in panel-opposition geometries have exactly q to the d minus k components
 

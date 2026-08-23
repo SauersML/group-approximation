@@ -108,8 +108,12 @@ cohomological input.
   rank-two root combinatorics.  Writing out this complex is the
   concrete route to deciding Corollary E's last clause for Bernoulli
   actions.
-- **ISW Corollary D: input identified, and EXPECTED DEAD (final
-  2026-08-23, after a day of reversals).**  `H^2(Lambda,Z Lambda)` is
+- **ISW Corollary D: DEAD (established 2026-08-23).**
+  `km-group-ring-h2-vanishes-for-the-lattices` proves
+  `H^2(Lambda, Z Lambda) = 0` for the program's lattices in any
+  characteristic, so Corollary D can never apply here; the route
+  through the development's end cohomology is invalidated.  History of
+  the day's analysis follows.  `H^2(Lambda,Z Lambda)` is
   the end cohomology of the development
   (`km-group-ring-h2-is-development-end-cohomology`).  The codistance
   filtration reduces its vanishing to a finite surjectivity
