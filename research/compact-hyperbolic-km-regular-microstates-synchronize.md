@@ -19,6 +19,7 @@ distinct_from:
   relative-three-chart-correction-is-km-regular-stability: that proves exact relative correction of the three finite vertex charts is equivalent to this terminal global synchronization target, not a smaller semisimple cleanup.
   relative-finite-group-gh-cannot-fix-two-generating-subgroups: that supplies canonical-regular finite tables exact on two generating subgroups but with no nonzero exact simultaneous support, and an alternating-correction eigenvalue 1-delta^2/4; this forces any closure to use all native triangle relations rather than a generic relative finite-group lemma.
   three-reynolds-plus-kernel-energy-has-vanishing-gap: that computes a three-leg canonical-regular Pauli benchmark in which the sum of all relative Reynolds Laplacians and all quotient kernel-word adjoint energies has gap tending to zero; this must use a coefficient identity specific to the native rank-two character tables, not only those abstract energies.
+  native-km-coset-coefficients-retain-spherical-pauli-absorber: that writes the actual (2,4,6) parabolic coset-incidence maps and computes a B2 gap off constants, but shows their common positive-density spherical multiplicity block carries one native free-kernel Pauli chord with vanishing spectral value.
   character-rigidity-equals-hyperfinite-hs-stability: that treats the hyperfinite character branch; this asks for correction of the nonamenable canonical regular branch.
   bounded-degree-holonomy-collapses-for-map-groups: that uniformly kills every holonomy algebra of bounded irreducible degree, regardless of the number or multiplicities of its blocks; this must exclude positive-density blocks whose degree tends to infinity.
   pt-rigidity-allows-nontight-regular-tails: that gives exact projective-plane representations of a higher-rank property-T character-rigid lattice whose characters tend to regular, whose adjoint gaps are uniform, and whose coefficient degree distributions are maximally non-tight; this proves those abstract inputs cannot remove the surviving tail.
@@ -330,6 +331,27 @@ actual rank-two vertex coefficient maps and prove that their character-table
 matrix excludes this rotating Pauli plane.  Replacing those maps by the
 three subgroup expectations and scalar/adjoint kernel defect energies loses
 exactly the information needed for a uniform angle.
+
+The unreduced finite coefficient audit is now also negative.
+`native-km-coset-coefficients-retain-spherical-pauli-absorber` writes the
+maps as normalized fiber sums
+
+```text
+ell^2(P_ij/P_0) -> ell^2(P_ij/P_i), ell^2(P_ij/P_j).
+```
+
+For the `B_2` vertex `P_13`, generalized-quadrangle incidence gives the
+explicit nonconstant singular coefficient `sqrt(2q)/(q+1)`, so all
+nonspherical label modes really are gapped.  But the normalized constant
+coset vector is fixed by every native map.  Tensoring this spherical line
+with the regular multiplicity algebra gives a fixed-positive-density
+reducing block.  After gauging a spanning tree of the native `P_13` coset
+graph, one free-kernel chord can carry `Y_t=AD_tAD_t` there while every local
+coefficient equation remains exact; its positive word square is only
+`4sin^2(4t)`.  Thus even the unreduced native maps do not exclude the Pauli
+fiber.  A successful relation-dependent coefficient must act nontrivially
+on this spherical multiplicity block; no equivariant finite-label
+restriction coefficient can do so.
 
 ## The kernel basis already builds the missing finite rank-two chart
 

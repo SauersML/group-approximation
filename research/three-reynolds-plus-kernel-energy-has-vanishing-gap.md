@@ -7,6 +7,7 @@ distinct_from:
   relative-finite-group-gh-cannot-fix-two-generating-subgroups: that gives the two-leg exact-support obstruction and the alternating-projection rate; this adds a third regular leg, an exactly regular eight-point character table, all three quotient kernel words, and computes the full positive diagram Laplacian.
   finite-group-intertwiner-laplacian-gap: that fixes the finite representations and obtains a gap off the exact intertwiner space; here the finite subgroup representations rotate by an amount tending to zero, making the angle between their exact intertwiner spaces collapse.
   km-kazhdan-holonomy-rounding-starts-after-projective-flatness: that applies a Kazhdan gap after every adjoint relator is exact; this shows that adding the squared adjoint relator errors to the local Reynolds Laplacians does not manufacture such exactness.
+  native-km-coset-coefficients-retain-spherical-pauli-absorber: that writes the unreduced P12/P13/P23 coset-incidence maps, computes the B2 orthogonal coefficient gap, and embeds the Pauli rotation in their common spherical multiplicity block; this supplies the scalarized benchmark.
 ---
 
 **ESTABLISHED.**  Let `A,B,C,F` be the three-qubit Pauli tensors
@@ -73,3 +74,10 @@ coefficient identity specific to its rank-two vertex character tables that
 excludes the Pauli rotation.  Treating the native kernel words only through
 their norms or adjoint Laplacians cannot provide the desired dimension-free
 constant.
+
+Passing back to the unreduced native coefficient maps does not remove the
+counterpacket.  `native-km-coset-coefficients-retain-spherical-pauli-absorber`
+computes their `B_2` incidence gap off constants, but shows that their common
+constant coset line tensored with multiplicity is reducing.  A single native
+free-kernel chord can carry `AD_tAD_t` in that block while every local
+coefficient equation remains exact.
