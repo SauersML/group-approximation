@@ -5,6 +5,7 @@ kind: claim
 title: Force one source-saturated cross-typed Reynolds checksum on the marked Leavitt carrier
 distinct_from:
   paired-same-reservoir-boundary-lemma: that asks for a branchwise reservoir-or-boundary decomposition through arbitrary fixed depth; this asks for one scalar first-refinement checksum and uses the fixed source/target superrank gap immediately.
+  one-coarse-to-fine-prefix-isometry-closes-the-reservoir: that asks for one physical rectangular coefficient between authenticated minimal prefix corners; this asks for one adjoint Gram contraction between packet commutant ranges and avoids wordizing the fine physical selector.
   one-common-intertwiner-carries-the-four-pauli-pi-bridge: that transports four target operators through one almost-unitary physical intertwiner; this transports only one adjoint overlap scalar and does not reconstruct a physical factor or its spectator.
   balanced-controlled-whitehead-return-checksum: that computes a rank gap for the controlled-reflection extension of one two-qubit packet; this uses the actual source-versus-two-child Leavitt Weyl packets with superranks `p^(-2)` and `p^(-4)`.
   canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
