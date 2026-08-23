@@ -255,6 +255,18 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Any surviving native Haar-linear `SL_3(Z)` construction must introduce
   nonsplit relations coupling arbitrarily late layers; its dual module cannot
   be a direct sum of finite invariant submodules.
+- **Nonsplit finite layers are still barren (proved, 2026-08-23).**  The
+  preceding direct-product fence extends to arbitrary inverse systems.
+  `inverse-finite-algebraic-actions-are-ce` dualizes an inverse limit of
+  finite invariant `H`-groups to a filtered colimit of finite `H`-modules.
+  The dual semidirect product is then the directed union of the finite-by-`H`
+  stages, hence sofic whenever `H` is sofic.  Neither injectivity nor an
+  equivariant splitting of the bonding maps is used.  Consequently coupling
+  arbitrarily late finite `SL_3(Z)` layers by nonsplit bonding relations does
+  **not** suffice: every such inverse-finite construction is CE.  A survivor
+  must contain a finitely generated dual submodule that is not contained in
+  the image of any finite invariant module, rather than merely fail to be a
+  direct sum of its finite layers.
 - **The published Manzoor witness has no exposed cylinder law
   (source audit, 2026-08-21).**
   `manzoor-separation-does-not-specify-haar-cylinders` expands the exact game
