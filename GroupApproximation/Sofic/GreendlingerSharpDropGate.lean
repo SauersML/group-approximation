@@ -154,6 +154,70 @@ theorem sharpGreendlingerGate_of_windowDropSharp_of_betaSharp [DecidableEq α]
       landingProductionSharp_of_betaSharp hmetric
         (hbeta R lam hcyc hRne hlam0 hlam hmetric)
 
+/-! ## 3.  The mildest pair: composite landing -/
+
+/-- **The sharp gate from a composite-landing family and the beta family.**
+
+`GreendlingerDeepInvariant.greendlingerConclusionSharp_of_lands_of_betaSharp`
+reaches the sharp conclusion from `DeepCompositeLandsSharp` together with
+`LandingProductionBetaSharp`; this lifts that to the gate, recovering the two
+side conditions the gate does not supply exactly as above.
+
+**This is the weakest deep obligation in the lane.**  Ranked by what the deep
+family is asked to produce:
+
+* `DeepOverrunArcSharp` --- an arc, plus an offset denominated in the head
+  rotation.  This is what `SharpResiduals` takes.
+* `DeepWindowDropSharp` --- a window, arc read at position `0`, no offset.
+* `DeepCompositeLandsSharp` --- **only a position**.  Its own docstring: it
+  "asks for no arc, no window, no offset against the head rotation and no ratio
+  between two relators: only a position, which is what the piece bound speaks
+  to."
+
+Each is weaker than the one above it, so this pair dominates both of the
+earlier assemblies.  Anything discharging them discharges this.
+
+Both arguments remain hypotheses; nothing here is proved about either. -/
+theorem sharpGreendlingerGate_of_compositeLandsSharp_of_betaSharp
+    [DecidableEq α]
+    (hdeep : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → DeepCompositeLandsSharp R lam)
+    (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → LandingProductionBetaSharp R lam) :
+    GreendlingerFreeGate.SharpGreendlingerGate α := by
+  intro R lam hcyc hlam hmetric
+  by_cases hex : ∃ r ∈ R, r ≠ []
+  · obtain ⟨s₁, hs₁, s₂, hs₂, hne⟩ := exists_two_distinct_symmetrization hcyc hex
+    obtain ⟨r, hr, hrne⟩ := hex
+    have hlam0 : 0 < lam :=
+      lam_pos_of_metric hmetric hs₁ hs₂ hne (subset_symmetrization R hr) hrne
+    have hRne : ∀ q ∈ R, q ≠ [] := fun q hq =>
+      ne_nil_of_metric_lam hmetric hs₁ hs₂ hne (subset_symmetrization R hq)
+    exact greendlingerConclusionSharp_of_lands_of_betaSharp hcyc hRne hlam0 hlam
+      hmetric (hdeep R lam hcyc hRne hlam0 hlam hmetric)
+      (hbeta R lam hcyc hRne hlam0 hlam hmetric)
+  · intro w hw hwne hmem
+    exfalso
+    push Not at hex
+    have hsub : FreeGroup.mk '' R ⊆
+        ((⊥ : Subgroup (FreeGroup α)) : Set (FreeGroup α)) := by
+      rintro _ ⟨r, hr, rfl⟩
+      have hone : FreeGroup.mk r = (1 : FreeGroup α) := by
+        rw [hex r hr, ← FreeGroup.one_eq_mk]
+      simp [hone]
+    have hb := Subgroup.normalClosure_le_normal hsub hmem
+    rw [Subgroup.mem_bot] at hb
+    have h1 : FreeGroup.mk w = FreeGroup.mk ([] : List (α × Bool)) := by
+      rw [hb]
+      exact FreeGroup.one_eq_mk
+    have h2 := FreeGroup.reduce.sound h1
+    rw [hw.reduce_eq, FreeGroup.IsReduced.nil.reduce_eq] at h2
+    exact hwne h2
+
 /-- The drop-route gate on the router's own alphabet, which is the instance
 every construction in this repository consumes. -/
 theorem sharpGreendlingerGate_fin_two_of_windowDropSharp_of_landingSharp
