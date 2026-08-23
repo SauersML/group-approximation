@@ -36,16 +36,21 @@ representation compiler:
 Thus the canonical representation of `Lambda` remembers only its regular
 group factor, not the coinduced non-CE payload, and does not generate `M`.
 
-The exact surviving target is a payload-generating cocycle: construct a
-`beta`-cocycle `c_g in U(A)` such that the genuine representation
+Twisting by a cocycle cannot repair the failure.  For every normalized
+`beta`-cocycle `c_g in U(A)`, the genuine representation
 
 ```text
 g |-> c_g u_g                                          (PCF4)
 ```
 
-generates a factor containing a tensor coordinate of `Q`.  A coboundary
-cocycle cannot work, since it only conjugates the canonical copy of
-`L(Lambda)`.  No such non-coboundary generation theorem follows from
-standard coinduction or from character rigidity.  If it were proved for a
-regular-or-finite-dimensional character-rigid host, the factor/character
-compiler would apply.
+has regular character, and its generated algebra `N_c` satisfies
+
+```text
+N_c isomorphic_to L(Lambda),       N_c intersection A=C1. (PCF5)
+```
+
+Indeed `c_g u_g` spans only one scalar Fourier line in group degree `g`.
+Thus no cocycle--coboundary or not--can recover even one supplied tensor
+coordinate.  An abstract embedding of `Q` into some corner or normal quotient
+of `N_c` is not excluded, but that is exactly the original group-factor
+compiler and is not furnished by coinduction.

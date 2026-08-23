@@ -36,6 +36,41 @@ c_g u_g=v u_g v^*,                                    (CFG2)
 ```
 
 so the representation in `(PCF4)` generates only the conjugate
-`vL(Lambda)v^*`.  A successful cocycle must therefore be genuinely
-nontrivial and must also satisfy the much stronger generation/recoverability
-condition.  Standard coinduction supplies the action but neither property.
+`vL(Lambda)v^*`.
+
+For an arbitrary `beta`-cocycle, the Fourier coefficient calculation gives
+
+```text
+tau_M(c_g u_g)=0                    (g!=e).             (CFG3)
+```
+
+The map `g |-> c_g u_g` is a homomorphism by the cocycle identity, and
+`(CFG3)` says its trace is the canonical group trace.  Its generated von
+Neumann algebra `N_c` is therefore trace-preservingly isomorphic to
+`L(Lambda)`.
+
+There is a stronger internal obstruction.  The unitaries
+
+```text
+v_g=c_g u_g
+```
+
+are an orthonormal group basis of `L^2(N_c)`.  Hence every `x in N_c` has,
+inside `L^2(M)`, a Fourier expansion
+
+```text
+x=sum_g a_g c_g u_g,                 a_g in C.         (CFG4)
+```
+
+If `x` also lies in `A`, crossed-product Fourier uniqueness makes every
+nonidentity coefficient zero.  Since each `c_g` is unitary, `(CFG4)` forces
+`a_g=0` for `g!=e`; normalization gives `c_e=1`, so `x=a_e1`.  Therefore
+
+```text
+N_c intersection A=C1.                                (CFG5)
+```
+
+In particular no coordinate copy of `Q` is contained in `N_c`.  A corner
+or abstract normal quotient retaining an isomorphic copy of `Q` would have
+to be produced by additional structure internal to `L(Lambda)`;
+coinduction and its cocycles supply no such structure.
