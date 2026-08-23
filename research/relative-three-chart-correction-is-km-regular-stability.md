@@ -7,6 +7,7 @@ distinct_from:
   kernel-section-builds-relative-p13-chart: that constructs an approximate P13 chart agreeing with the tree side before finite-group exactification; this proves that exactifying all three charts relatively is the terminal global correction problem.
   finite-face-flatness-stops-at-fundamental-group-holonomy: that classifies bare face-flat unitary connections; this uses the actual triangle-of-finite-groups universal property and the absence of nontrivial finite-dimensional representations.
   compact-hyperbolic-km-regular-microstates-synchronize: that states global regular-microstate correction; this gives its exact equivalent formulation in terms of the three finite rank-two charts.
+  common-gh-isometry-selects-the-two-overlap-cross-coefficient: that coherently selects the P_1/P_3 overlap gauges near the identity on a 1-o(1) source; this proves the equivalence here begins only at exact simultaneous support invariance, not at an unresolved auxiliary gauge choice.
 ---
 
 **ESTABLISHED.**  Fix the simple Kac--Moody lattice and its native triangle
@@ -50,3 +51,15 @@ already proves the terminal regular-branch stability statement and hence the
 nonhyperlinearity conclusion.  The remaining viable work must establish a
 uniform obstruction to such correction, not treat it as a routine last
 exactification step.
+
+The identity-gauge audit does remove one apparent preliminary issue.
+`common-gh-isometry-selects-the-two-overlap-cross-coefficient` uses the same
+normalized-HS Gowers--Hatami isometry to choose the two `P_13` overlap polar
+maps with cross coefficient `I+o_2(1)` on `1-o(1)` of the source.  Any far
+common target gauge cancels and can be globally conjugated away.  What this
+claim calls “relative simultaneous correction” is therefore exactly the
+next operation: replace two near-coincident subgroup-invariant supports by
+one support invariant under both, and do so consistently around the triangle.
+A full-rank scalar phase tending to one shows why deleting `o(d)` dimensions
+does not turn near equality into literal equality.  No multiplicity-gauge
+choice remains to be optimized before this terminal step.
