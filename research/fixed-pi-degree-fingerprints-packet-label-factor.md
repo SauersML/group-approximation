@@ -60,7 +60,7 @@ trading label degree for spectator multiplicity.
   `positive-mass-four-pauli-intertwiner-forces-pi-gap` removes the former
   near-unitarity requirement: the existing `5/64` cross-Gram mass would be
   enough.  However
-  `local-rectangular-packet-refutes-cross-gram-four-word-intertwining` shows
+  `local-rectangular-refutes-cross-gram-pi` shows
   that all one-cell Pauli and canonical trace data admit an exact finite
   countermodel.  The preferred frontier is therefore the full-kernel mixed
   relation in `atlas-kernel-relators-couple-cross-gram-to-four-pauli`.

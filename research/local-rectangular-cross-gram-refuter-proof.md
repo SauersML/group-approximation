@@ -3,7 +3,7 @@ rg: 2
 id: local-rectangular-cross-gram-refuter-proof
 kind: route
 title: Apply the positive-mass PI inequality to the exact rectangular model
-target: local-rectangular-packet-refutes-cross-gram-four-word-intertwining
+target: local-rectangular-refutes-cross-gram-pi
 requires:
   - first-leavitt-weyl-cell-has-exact-rectangular-model
   - positive-mass-four-pauli-intertwiner-forces-pi-gap

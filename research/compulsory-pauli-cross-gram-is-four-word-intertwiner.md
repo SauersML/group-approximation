@@ -4,7 +4,7 @@ id: compulsory-pauli-cross-gram-is-four-word-intertwiner
 kind: claim
 title: The compulsory Pauli cross-Gram overlap carries all four PI words
 refuted_by:
-  - local-rectangular-packet-refutes-cross-gram-four-word-intertwining
+  - local-rectangular-refutes-cross-gram-pi
 distinct_from:
   pauli-overlap-yields-positive-spectral-corner: that proves only a positive cross-Gram mass and explicitly supplies no holonomy or common-word intertwining.
   one-common-intertwiner-carries-the-four-pauli-pi-bridge: that asks for a near-unitary full-corner map; this uses the already forced positive-mass cross-Gram contraction and requires no polar extension outside its support.

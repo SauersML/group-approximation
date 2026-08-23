@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: local-rectangular-packet-refutes-cross-gram-four-word-intertwining
+id: local-rectangular-refutes-cross-gram-pi
 kind: claim
 title: The canonical rectangular packet refutes local cross-Gram four-word intertwining
 distinct_from:
