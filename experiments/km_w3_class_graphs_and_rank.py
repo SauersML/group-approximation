@@ -139,12 +139,12 @@ for ci in sub:
         bits=[]
         for (p,p2) in slots:
             f=locs_i[p]; g=locs_j[p2]
-            f0=f[Np[p][0]]; g0=g[Np[p2][0]]
+            pass_f0=0
             for l in Np[p][1:]:
-                a=(f[l]+f0)%2
+                a=f[l]%2
                 if a==0: continue
                 for l2 in Np[p2][1:]:
-                    b=(g[l2]+g0)%2
+                    b=g[l2]%2
                     if b==0: continue
                     bits.append(slotbase[(p,p2,l,l2)])
         r=0

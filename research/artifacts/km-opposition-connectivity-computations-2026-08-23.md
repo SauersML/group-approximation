@@ -62,6 +62,16 @@ the level complexes (`km-codistance-filtration-twisted-levels-are-rank-
 two-pairs` (d)) is thus numerically confirmed at a nontrivial
 instance.
 
+Addendum 4 (same day, experiments/km_h2_omega_h2_validation.py): the
+same two-path validation at the `H(2)` (disconnected) level, after
+fixing a coordinatization bug (difference coordinates on zero-sum
+vectors degenerate mod two exactly for even `q`; they are an
+isomorphism at `q = 3`, so the `W(3)` numbers stand): the product-cycle
+map has rank 320 mod two, and the simplicial `H_2(Omega;F_2) = 484`
+equals the disconnected-case prediction `(768 - 320) + 2 b_1 = 448 +
+36` exactly.  Both regimes of the level-complex formula are now
+confirmed by independent code paths.
+
 Net effect on the chain: the conditional results (type `F_3`,
 `H^2(Lambda;Z Lambda) = 0`, death of Ioana--Spaas--Wiersma Corollary D)
 now rest on an OPEN rank computation at the odd-`q` `G_2` levels, and
