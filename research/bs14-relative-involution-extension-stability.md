@@ -50,45 +50,51 @@ quadratic padding law.  The determinant-neutral `p=1 mod 8` canonical blocks
 are now charged by the explicit first-cubic spectrum, but arbitrary phase
 mixtures remain outside the authenticated calculation.
 
+## Equivalent half-root-free form
+
+The variable called `S` above was inherited from the square-root
+presentation.  `iwahori-square-free-bs14-presentation` shows that one may
+instead set `T=S^2` and eliminate `S=R^(-1)T^2R` exactly.  The core `(R,T)`
+again satisfies `RTR^(-1)=T^4`, and the relative equations become
+
+```text
+X^2=1,       X R X=R^(-1),
+(X T)^3=1,   (X T^2 R)^3=1.                           (BRI2)
+```
+
+This is an equivalent formulation, not an additional hypothesis.  It
+should be used for endpoint authentication: the odd square-root branch is
+absent, and the terminal same-core estimate applies directly to gauges
+commuting with `T`.  The surviving issue is to authenticate the exact
+congruence `(R,T)` core and align the extending involution.
+
 ## Attempts
 
-- **Independent first-triangle rounding has a constant square-root branch
-  firewall.**
-  `relative-first-triangle-rounding-has-an-odd-root-branch-firewall` uses the
-  left regular packet of `PSL_2(F_p)`.  Hadamard-rotating positive-density
-  pairs of nearly antipodal `S`-eigenspaces changes `S^2` by `O(1/p)` and
-  gives an exact nearby `C_2*C_3` vertex, while every square root of the
-  rounded product remains distance tending to one from `S`.  Thus a
-  staircase which first rounds `X^2,(XS^2)^3` and only afterward chooses a
-  square root and re-exactifies BS has no small-step estimate, even on odd
-  congruence packets.  The inversion and second-cubic rows must participate
-  in the branch choice before vertex rounding.
-- **Same-core coercivity and flexible cycle surgery do not cross this
-  firewall.**  Same-core coercivity assumes an authenticated extender over
-  the same `S` and a relative gauge in `{S}'`; the Hadamard branch rotation
-  is a constant distance from every root and does not commute with `S`.
-  Cycle surgery similarly starts with a gauge in the root commutant and an
-  exact coboundary.  Hence neither theorem supplies an alternating
-  contraction.  They remain valid terminal steps after a joint
-  root-lift/endpoint authentication theorem has selected the correct
-  branch.
-
-- **Joint implementer alignment unfolds the branch with a linear bound.**
-  `fourth-power-covariance-unfolds-square-root-branches` proves for exact
-  BS cores
+- **The square-root firewall is bypassed by retaining the actual BS
+  coordinates.**  Independent first-triangle rounding really does fail:
+  `relative-first-triangle-rounding-has-an-odd-root-branch-firewall`
+  Hadamard-rotates nearly antipodal `S` eigenspaces, moving `S^2` by
+  `O(1/p)` while every root of the rounded product stays distance tending to
+  one from `S`.  But `iwahori-square-free-bs14-presentation` makes that
+  operation unnecessary.  With `T=S^2`,
 
   ```text
-  ||S-S'||_2<=2||S^2-S'^2||_2+2||R-R'||_2.
+  S=R^(-1)T^2R,
+  R T R^(-1)=T^4,  X^2=1,  X R X=R^(-1),
+  (XT)^3=1,         (XT^2R)^3=1.
   ```
 
-  Hence the wrong Hadamard root branch above is possible only because the
-  independently rounded vertex does not align `R`: its `R` displacement is
-  asymptotically at least `1/2`.  A coupled construction need not resolve
-  odd roots spectrally.  It is enough to authenticate the exact endpoint in
-  the coordinates `(R,S^2)` using the inversion and second-cubic rows; the
-  BS fourth-power relation then recovers `S` automatically.  Producing that
-  common two-coordinate alignment, rather than proving another square-root
-  selection theorem, is the surviving step.
+  The word substitutions preserve vanishing HS defect with fixed linear
+  constants.  Quantitatively,
+  `fourth-power-covariance-unfolds-square-root-branches` gives
+
+  ```text
+  ||S-S'||_2<=2||T-T'||_2+2||R-R'||_2.
+  ```
+
+  Hence the wrong Hadamard branch pays `R` displacement tending to at least
+  `1/2`.  A coupled construction only has to authenticate `(R,T)` and `X`;
+  it never chooses a root.
 
 - **Strict repair fails, and one-dimensional flexible repair is sharp.**
   `even-weil-fixed-line-compression` removes the one `R,S`-invariant fixed
@@ -155,26 +161,26 @@ mixtures remain outside the authenticated calculation.
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
 - **The nonlinear same-core gauge is completely controlled.**  Suppose basin
-  capture has produced an exact extender `X_0` over the **same** exact root
-  operator `S`, and the relative gauge has the root-commutant form
+  capture has produced an exact extender `X_0` over the **same** exact
+  parabolic `T=S^2`, and the relative gauge has the commutant form
 
   ```text
-  X=c X_0,                 [c,S]=0.
+  X=c X_0,                 [c,T]=0.
   ```
 
   Then `same-core-involution-cubic-gauge-coercivity` gives the global,
   dimension-free estimate
 
   ```text
-  ||c-1||_2 <= ||X^2-1||_2+||(XS^2)^3-1||_2.
+  ||c-1||_2 <= ||X^2-1||_2+||(XT)^3-1||_2.
   ```
 
   Thus arbitrary Fourier modes, sign plateaux, and large operator-norm
   gauges cannot escape after the extending core has been authenticated.
   The remaining hypothesis is strictly earlier: find a nearby exact pair
-  `(X_0,R_0,S_0)` and align the repaired input so that its relative gauge
-  commutes with that same `S_0`.  Core stability by itself gives only
-  `(R_0,S_0)` and does not manufacture or authenticate `X_0`; the inversion
+  `(X_0,R_0,T_0)` and align the repaired input so that its relative gauge
+  commutes with that same `T_0`.  Core stability by itself gives only
+  `(R_0,T_0)` and does not manufacture or authenticate `X_0`; the inversion
   row and second cubic are still needed for that basin-capture/alignment.
 - **The matrix-monodromy obstruction disappears.**  The return unitary is
   diagonalizable, so the core is a sum of scalar-phase packets.  The phase

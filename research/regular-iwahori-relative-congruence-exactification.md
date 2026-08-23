@@ -80,38 +80,48 @@ congruence quotients.  It does not establish `(RCE1)`.
   unchanged norm after canonicalization. Opposite-root orthogonality can
   close `(RCE1)` only after a theorem forces gauges into the authenticated
   congruence root algebra; it cannot itself provide that authentication.
-- **Same-core gauge coercivity makes the authentication boundary exact.**
-  After a congruence endpoint `(X_0,R_0,S_0)` has been authenticated and the
-  repaired tuple has relative form `X=cX_0` with `[c,S_0]=0`,
-  `same-core-involution-cubic-gauge-coercivity` globally forces
+- **The square-free presentation removes the entire root-choice stage.**
+  `iwahori-square-free-bs14-presentation` replaces `S` by `T=S^2` and
+  recovers it by the fixed word `S=R^(-1)T^2R`.  The five relations are
 
   ```text
-  ||c-1||_2 <= ||X^2-1||_2+||(XS_0^2)^3-1||_2.
+  R T R^(-1)=T^4,  X^2=1,  X R X=R^(-1),
+  (XT)^3=1,         (XT^2R)^3=1.
   ```
 
-  Thus `(RCE1)` does not additionally require a spectral gap for the
-  root-commutant gauge.  What it must supply is precisely the antecedent:
-  a nearby exact moving congruence atom, a common exact extender `X_0`, and
-  alignment of the input gauge into the commutant of the same `S_0`.
-  Regular trace, opposite-root orthogonality, and endpoint classification
-  do not presently authenticate those data.
-- **The half-parabolic branch no longer has to be authenticated separately.**
-  `fourth-power-covariance-unfolds-square-root-branches` proves that two
-  exact BS cores satisfy
+  The word substitutions preserve vanishing normalized-HS defect with
+  dimension-independent constants.  Moreover
+  `fourth-power-covariance-unfolds-square-root-branches` gives
 
   ```text
-  ||S-S'||_2<=2||S^2-S'^2||_2+2||R-R'||_2.
+  ||S-S'||_2<=2||T-T'||_2+2||R-R'||_2,
   ```
 
-  Thus an endpoint decoder only has to align the congruence atom in the
-  coordinates `(R,S^2)`; the original half-parabolic root then follows with
-  a dimension-free linear bound.  This is genuinely stronger than choosing
-  the canonical odd root by an exponent depending on its conductor.  The
-  Hadamard firewall to independent first-triangle rounding is fully charged
-  by the missing `R` alignment: on that packet `S^2` moves by `O(1/p)` but
-  `R` must move by asymptotically at least `1/2`.  The remaining theorem is
-  therefore simultaneous `R`/first-parabolic endpoint authentication, not
-  root-branch selection after authentication.
+  so the coordinate change is quantitatively bi-Lipschitz on exact cores.
+  The Hadamard firewall is fully charged by the omitted `R` coordinate: its
+  `T` displacement is `O(1/p)` but its `R` displacement tends to at least
+  `1/2`.  The remaining basin theorem must align `(R,T)` jointly; no
+  square-root path lifting or conductor-dependent odd-root choice remains.
+- **Same-core gauge coercivity makes the terminal boundary exact.**  Once a
+  congruence endpoint `(X_0,R_0,T_0)` has been authenticated on the same
+  square-free core, put `c=XX_0`.  The involution and inversion rows give
+
+  ```text
+  ||[c,R_0]||_2
+  <=||X^2-1||_2+||XR_0X-R_0^(-1)||_2.
+  ```
+
+  If the joint authentication promotes this automatically `R_0`-central
+  gauge into `{T_0}'`, `same-core-involution-cubic-gauge-coercivity` gives
+
+  ```text
+  ||c-1||_2<=||X^2-1||_2+||(XT_0)^3-1||_2.
+  ```
+
+  Thus after an endpoint is found there is no spectral-gap, root-selection,
+  or nonlinear Koopman problem.  The sole terminal alignment is promotion
+  from the `R_0` commutant to the `T_0` commutant using the common endpoint
+  and the second cubic.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that

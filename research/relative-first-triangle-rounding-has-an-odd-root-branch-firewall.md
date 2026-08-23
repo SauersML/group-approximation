@@ -47,10 +47,12 @@ congruence packet because the square map nearly identifies antipodal odd
 roots.
 
 This does not refute full relative Iwahori stability.  It proves that the
-first triangle cannot be rounded independently.  A convergent scheme must
-round the vertex together with a chosen lift of its product through the
-square map, and must use the inversion/second-cubic rows to forbid the wrong
-branch before changing the vertex.
+first triangle cannot be rounded independently **and then returned to the
+old `S` coordinate by square-root selection**.  The stronger coordinate
+change `iwahori-square-free-bs14-presentation` bypasses that operation:
+write `T=S^2`, round the product directly as `T`, and recover `S` only after
+the coupled endpoint `(R,T)` has been authenticated.  The inversion and
+second-cubic rows remain necessary for that joint authentication.
 
 The necessary extra coordinate is now explicit.  By
 `fourth-power-covariance-unfolds-square-root-branches`, the Hadamard unitary
@@ -65,6 +67,12 @@ Thus joint alignment of `R` and `S^2` forbids the branch with a
 dimension-free linear estimate and automatically returns `S`.  The
 firewall rules out independent vertex rounding, but it does not require a
 new spectral root selector once the BS implementer has been authenticated.
+
+In fact `iwahori-square-free-bs14-presentation` eliminates this selector
+from the presentation entirely: with `T=S^2`, the old root is the word
+`S=R^(-1)T^2R`, and the relative cubics are `(XT)^3` and `(XT^2R)^3`.
+Thus the firewall is now best read as a no-go for discarding the `R`
+coordinate during rounding, not as a residual obstruction in the endpoint.
 
 ## Ultraproduct consequence
 
@@ -96,7 +104,6 @@ relative path-lifting assertion needed by the alternating scheme, where the
 first vertex has already been exactified and its product `Q_p` is held fixed.
 
 Consequently neither compactness of the tracial ultraproduct nor exactness
-of `(FTR5)` supplies the missing coordinate lift.  Any qualitative
-ultraproduct proof must retain the BS root branch while rounding the modular
-vertex; equivalently it must use the remaining Iwahori relations before the
-rounding, rather than afterwards.
+of `(FTR5)` supplies that particular coordinate lift.  This is a firewall
+for the square-root recovery scheme, not for the current square-free
+strategy: `(R,T)` endpoint authentication avoids asking for the lift at all.

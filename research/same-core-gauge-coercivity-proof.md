@@ -7,7 +7,7 @@ target: same-core-involution-cubic-gauge-coercivity
 requires: []
 ---
 
-Put `A=x_0 s^2` and `alpha=Ad(A)`.  Since `c` commutes with `s` and
+Put `A=x_0 t` and `alpha=Ad(A)`.  Since `c` commutes with `t` and
 `x_0^2=1`,
 
 ```text
@@ -23,7 +23,7 @@ x^2=c alpha(c).                                        (SCG3)
 Also `A^3=1`, so `alpha^3=1`, and
 
 ```text
-(x s^2)^3=(cA)^3=c alpha(c) alpha^2(c).                (SCG4)
+(x t)^3=(cA)^3=c alpha(c) alpha^2(c).                  (SCG4)
 ```
 
 Applying the trace-preserving isometry `alpha` to `(SCG3)` gives
@@ -35,10 +35,26 @@ Applying the trace-preserving isometry `alpha` to `(SCG3)` gives
 By `(SCG4)--(SCG5)`,
 
 ```text
-||(x s^2)^3-c||_2
+||(x t)^3-c||_2
  =||alpha(c) alpha^2(c)-1||_2
  =||x^2-1||_2.
 ```
 
 The triangle inequality with the first cubic defect proves `(SCG2)`.
 
+For `(SCG6)`, multiply the commutator on the right by `x_0` and use the
+exact baseline inversion:
+
+```text
+[c,r]x_0=xr^(-1)-rx.                                  (SCG7)
+```
+
+Put `D=xrx-r^(-1)`.  Then
+
+```text
+xr^(-1)-rx
+ =x(xrx-D)-rx
+ =(x^2-1)rx-xD.                                       (SCG8)
+```
+
+Unitary invariance and the triangle inequality give `(SCG6)`.

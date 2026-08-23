@@ -84,3 +84,16 @@ relative extension theorem: after repairing `(r,s)`, repair one involution
 still treats the dyadic parabolic alone as the obstruction is attacking a
 settled subproblem; the load-bearing datum is the simultaneous pair of
 triangle constraints in `(B2)`.
+
+There is a stronger final coordinate simplification.  Put `t=s^2`.  The BS
+row gives `s=r^(-1)t^2r`, so `s` is not an independent square-root choice at
+all once the implementer `r` is retained.  The reversible elimination in
+`iwahori-square-free-bs14-presentation` gives
+
+```text
+<x,r,t | x^2, (xr)^2, (xt)^3,
+           rtr^(-1)=t^4, (xt^2r)^3>.
+```
+
+Thus the relative endpoint may and should be attacked without ever taking
+a spectral square root.

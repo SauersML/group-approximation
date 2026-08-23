@@ -51,6 +51,23 @@ particular, the statement is deliberately stronger than merely permitting
 unspecified `o(d)` padding and is the sharp flexible target suggested by the
 compressed Weil packets.
 
+By `iwahori-square-free-bs14-presentation`, the same target can be stated
+without the half-parabolic `S`.  Set `T=S^2`; then
+
+```text
+S=R^(-1)T^2R,       RS=T^2R,       RTR^(-1)=T^4,
+```
+
+and the two cubic residuals in `(FBR1)` are exactly
+
+```text
+||(XT)^3-1||_F^2+||(XT^2R)^3-1||_F^2.                 (FBR4)
+```
+
+No square-root rounding is required in the boundary reconciliation.  Its
+remaining content is authentication of a common congruence `(R,T)` atom and
+the cross-packet multiplicity boundary for one `X`.
+
 ## Attempts
 
 - **Every canonical compressed even-Weil block obeys the exact ledger.**  If
