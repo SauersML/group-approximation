@@ -23,7 +23,7 @@
 # checked against the printed sentence and the named ledger rows or declarations.
 
 # Assignments for the 2026-08-22 attribution and exact-residual theorem pass.
-0539bf97e26d	structural	-	routes the literal presentation and extended consequences to the companion notes
+2cc5d6b17fa6	structural	-	routes presentation data and extended consequences to the companion notes
 e42e532005e1	attribution	-	credits Korchagin's uniform local MF formulations and adjoint-action amplification
 8196cd14dc0b	structural	-	explains why the alternative tensor-power proof is retained
 01fbd481610d	attribution	-	credits Korchagin's directed-colimit permanence theorem
