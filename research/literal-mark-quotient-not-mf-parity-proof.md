@@ -7,6 +7,7 @@ target: literal-mark-quotient-not-mf
 requires: []
 artifacts:
   - GroupApproximation/Sofic/LiteralSignFreeQuotient.lean
+  - GroupApproximation/Endpoint/SignFreeCompressionAudit.lean
   - non_mf_groups_exist.tex
 ---
 
@@ -53,7 +54,10 @@ sites and sends `<w>` into `<zeta>`, whose configuration coordinate is zero.
 
 Nothing external.  The Lean endpoints are
 `LiteralSignFreeQuotient.signFree_collapse`,
-`signFreeQuotient_not_isCDEOperatorMF`, and `commutator_not_zpow_mark`; the
+`signFreeQuotient_not_isCDEOperatorMF`,
+`signFreeQuotient_not_isOperatorMF`,
+`exists_finitelyPresented_signFree_not_isOperatorMF`, and
+`commutator_not_zpow_mark`; the
 base identification they consume, `LiteralBaseCompleteness.baseAffineEquiv`,
 is itself proved in-repo.
 

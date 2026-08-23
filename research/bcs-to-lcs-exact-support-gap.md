@@ -7,6 +7,7 @@ distinct_from:
   robust-locally-satisfiable-relator-code: that asks for sparse group-ball preservation with no ambient tracial witness; this target uses a tracial BCS witness to certify nontriviality of the central mark and asks for an exact LCS sub-menu that rejects every marked approximate profile.
 artifacts:
   - research/artifacts/lcs-exact-support-sparsification-2026-08-18.md
+  - research/artifacts/qutrit-moment-exact-psync-splice-2026-08-23.md
   - notes/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md
 ---
 
@@ -121,6 +122,20 @@ classical solution, even if some edge has the full nonlinear support
 `F_2^2 minus {g}`.  Thus the minimal NAND/implication fiber can be a local
 packet inside a common-corner construction, but cannot replace the global
 exact-support compiler.
+
+There is now one direct-group bypass which also clarifies this boundary.
+`non-ce-bcs-has-positive-one3-weighted-form` lowers the fixed source to
+positive ONE3 with exact global moments, and
+`positive-one3-is-one-qutrit-clock-context` identifies each **local** clause
+with `C[Z_3]`.  This avoids the Boolean affine-hull loss without producing a
+binary LCS: cross-context consistency becomes equality of only the
+`1`-eigenspace projections of two order-three clocks.  The apparently precise
+direct operation `qutrit-fixed-space-projector-synchronizer` is refuted by
+`qutrit-psync3-tensor-closure-obstruction`: complement-flexible exact
+extensions are not tensor compatible in one nontrivial central sector.  The
+qutrit route therefore neither proves nor refutes `(ESF3)`; its surviving
+output is a five-edge overlap normal form that joins the independent-set
+route at `hybrid-rank-router-authenticates-affine-overlap-blocks`.
 
 ## Extreme traces are without loss, but do not remove odd subsets
 

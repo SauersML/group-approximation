@@ -67,3 +67,14 @@ acquire unrelated `R^omega` representations.
   pair-dependent forbidden zero pattern by one finite matrix intertwiner
   without forcing nonsampled commutation or enlarging the tracial state
   space.
+- The Mastel--Slofstra PZK tableau gives a different narrowed source, recorded
+  in `pzk-tableau-private-s5-gauge-normal-form`: all `S5` gauge letters are
+  context-private, most local clauses are reversible finite-group word
+  equations, and an explicit separated trace can be answer-split to have
+  equal rational marginals.  This removes a trace-rank nuisance but not the
+  matrix-pair problem.  Trace equality does not give operator column sums,
+  the Boolean-to-instruction lookup is not a general group word equation,
+  and a completion of only the chosen correlation says nothing about extra
+  `R^omega` representations of the universal algebra.  The precise
+  source-specific remaining gate is
+  `pzk-tableau-gap-full-corner-monomial-realization`.

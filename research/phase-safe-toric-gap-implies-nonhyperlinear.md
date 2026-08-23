@@ -57,3 +57,14 @@ Two exact restrictions on any witness, also proved there: a toric
 `G`, because finite or finite-index clause subgroups admit an induced
 finite-dimensional representation whose distinguished vector satisfies every
 clause exactly.
+
+## Vacuity of the finite two-player antecedent
+
+`normal-phase-safe-toric-games-have-qa-one` subsequently proves that normal
+phase safety itself implies `omega_qa=1` for every finite two-player
+torically determined game.  Thus the conditional theorem above remains
+correct, but its advertised finite-game antecedent cannot occur.  In
+particular, a perfect tracial model of the full normal toric quotient cannot
+coexist with a strict `qc/qa` gap.  The still-live projective-kernel route must
+exclude **CE tracial states directly** and form a quotient without passing
+through a finite toric game.

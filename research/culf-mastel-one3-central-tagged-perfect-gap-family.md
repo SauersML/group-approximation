@@ -3,6 +3,8 @@ rg: 2
 id: culf-mastel-one3-central-tagged-perfect-gap-family
 kind: claim
 title: Preserve the Culf--Mastel perfect gap while globally centralizing one tag per ONE3 clause
+artifacts:
+  - research/artifacts/qutrit-moment-exact-psync-splice-2026-08-23.md
 distinct_from:
   culf-mastel-rstar-halt-model-has-fano-cap-support: that seeks affine-safe supports after a one-ghost reduction; this uses a different fixed NP-hard language whose two fibers are affine and asks for a central selector invariant.
   perfect-completeness-constant-soundness-lcs-compiler: that allows any LCS compiler; this isolates the sole completeness condition after the central ONE3 profile decomposition.
@@ -47,3 +49,16 @@ destroy perfect completeness.
 If `(C13)` is established, no support selection remains:
 `central-tagged-one-in-three-is-a-finite-lcs-or` decomposes every exact model
 into finitely many affine profile sectors.
+
+The qutrit-clock reduction is useful, but is not progress on `(C13)`.
+`positive-one3-is-one-qutrit-clock-context` removes the whole local ONE3
+predicate without centralizing any Boolean coordinate, while
+`non-ce-bcs-has-positive-one3-weighted-form` supplies the required fixed
+tracial/non-CE source.  The proposed separate incidence gadget
+`qutrit-fixed-space-projector-synchronizer` is refuted by tensor closure.
+The surviving qutrit compiler first expresses incidence consistency through
+the overlap defects of `qutrit-diamond-robustly-synchronizes-pvms`, then joins
+the independent-set compiler at the common hybrid rank-router endpoint.
+Thus the central-tag profile branch remains open exactly as stated; the
+qutrit reduction is a different semantic lowering, but no longer a distinct
+group terminal.

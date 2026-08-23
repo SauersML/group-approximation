@@ -98,7 +98,7 @@ selfadjoint elements, and every finite convex combination is one vector state
 in a finite direct sum of finite-dimensional representations.  Apply
 Theorem 1 to a perfect state.
 
-This does **not** give a no-go for the toric programme.  The one-player
+By itself this does **not** give a no-go for arbitrary toric clause faces.  The one-player
 groups `G_A,G_B` are virtually free and their full group C-star algebras are
 RFD, but
 
@@ -113,7 +113,14 @@ equivalence between Connes embedding and RFD of `C*(F_2 x F_2)` is recorded,
 for example, in Pestov--Uspenskij, arXiv:math/0601700, Theorem 10.  Hence
 separate one-player property FD/RFD cannot approximate a commuting two-player
 state.  The maximal-tensor obstruction is exactly where a toric gap could
-live.
+live without the normal phase-safe hypothesis.
+
+Normal phase safety removes that freedom.  Combining the central-product
+formula below with extension of abelian characters produces a perfect
+**product** state in the clause face; separate one-player RFD then
+approximates that state.  This is
+`normal-phase-safe-toric-games-have-qa-one`, and it rules out a strict gap
+under `(RTF7)`.
 
 ## 3. Exact structure after phase-safe normal closure
 
@@ -230,13 +237,13 @@ chosen representation type.  This does not yet give a toric compiler.
    soundness must therefore be proved on the relative state face `(RTF1)`, not
    inferred from the intended reversible circuit representation.
 
-The reversible/ancilla route is consequently **not disproved**, but its live
-target is now precise:
+The reversible/ancilla route to a finite normal phase-safe toric gap is
+consequently disproved.  The stronger direct quotient target remains:
 
-> Compile the fixed separated synchronous BCS state face into a face cut out
-> by finitely many centralizable player words, prove that this target face is
-> disjoint from the closure of finite-dimensional states, and exhibit one
-> full tracial target model for which `(RTF7)` holds.
+> Find a normal finite-phase projective-kernel face disjoint from all CE
+> **tracial** states and quotient directly, without asking those relators to
+> determine a finite two-player game.  This is
+> `monomial-finite-phase-ce-kernel-face-gap`.
 
 That is a state-dependent, central-word version of the perfect-LCS/projective-
 kernel compiler.  Separate property FD, ambient residual finiteness, a local

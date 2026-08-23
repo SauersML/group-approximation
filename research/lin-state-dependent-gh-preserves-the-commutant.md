@@ -5,9 +5,11 @@ kind: claim
 title: State-dependent finite-group exactification preserves the complete opposite algebra
 artifacts:
   - research/artifacts/lin-tracial-rounding-state-gh-source-audit-2026-08-23.md
+  - research/artifacts/lin-state-local-cross-gram-exactification-2026-08-23.md
 distinct_from:
   gowers-hatami-finite-group-hs-stability: that is a normalized-Hilbert--Schmidt finite-matrix theorem with dimension control; this is a density-seminorm theorem in a finite von Neumann algebra whose dilation intertwines the full commutant.
   one-state-protected-coefficient-leaves-relative-gh-gauge: that gives an exact faithful-density counterpacket to recovering the normalized-HS multiplicity gauge from this theorem, and proves the sharp positive replacement using one full-trace unitary coefficient.
+  lin-state-local-gh-is-an-intertwining-exactifier: that extracts the stronger uncompressed intertwining and left-carrier commutator identities from Lin's displayed isometry; this records the stated theorem-level exactification result.
 ---
 
 Let `G` be finite, let `A` be a finite tracial von Neumann algebra in
@@ -36,3 +38,10 @@ complement to move by distance tending to two while the `rho`-error tends to
 zero.  Promotion to normalized Hilbert--Schmidt control requires a uniform
 domination `rho>=(c/dim)I`, or direct protection of a full-support unitary
 coefficient in the ambient trace norm.
+
+The coordinatewise enhancement
+`lin-state-local-gh-is-an-intertwining-exactifier` identifies the exact
+positive interface inside this limitation. Once a fixed-mass Gram state and
+state-dependent covariance have been supplied, the dilation keeps the
+opposite packet exact and pays precisely the original multiplication and
+left-commutator errors. It still does not manufacture that Gram state.

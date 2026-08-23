@@ -3,6 +3,8 @@ rg: 2
 id: lin-one-state-pauli-standardization-stops-before-groupification
 kind: claim
 title: Lin's one-state Pauli standardization stops before a word-visible common carrier
+artifacts:
+  - research/artifacts/lin-state-local-cross-gram-exactification-2026-08-23.md
 ---
 
 Lin's tracial density, near-synchrony rounding, and state-dependent
@@ -36,3 +38,15 @@ completion of the off-diagonal Gram block, so its conjugation of the left
 observables is word-visible.  What still stops groupification is neither
 density loss nor polar naming, but selected-predicate saturation on that
 carrier and the Reynolds covariance problem above.
+
+The state-local/cross-Gram package gives the corresponding general positive
+statement. `lin-state-local-gh-is-an-intertwining-exactifier` proves that a
+left carrier already covariant with the packet moves by exactly its
+state-dependent commutator error.
+`two-transport-cross-gram-has-a-fixed-mass-reducing-corner` and
+`positive-cross-gram-state-rounds-to-common-pvm` show that one fixed-mass
+Gram carrying all mixed packet rows produces a common PVM corner of fixed
+trace. The residual groupification gate is therefore construction of that
+one word-controlled Gram and its genuinely mixed covariance. The spectral
+cut and polar gauge remain state-dependent operators rather than group
+words.

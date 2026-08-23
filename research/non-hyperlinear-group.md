@@ -19,6 +19,95 @@ The obstruction, if there is one, can only be stability.
 
 ## Current proof frontier (2026-08-23)
 
+A new static-game splice reduced one independent route to pairwise overlap
+geometry, but its first universal groupification endpoint is now closed in
+the negative.  The sharp synchronous independent-set reduction
+turns the fixed separated game into
+`fixed-nonru-independent-set-orthogonality-game-exists`, whose complete
+finite-dimensional loss is a weighted sum of pairwise projection overlaps.
+`outcome-count-free-subpovm-completion` and
+`independent-finite-clocks-round-to-arbitrary-row-pvms` extract arbitrary-
+multiplicity row PVMs without an answer-alphabet loss.  Most importantly,
+`rank-conjugacy-detects-projection-overlap` proves that
+
+```text
+R=diag(1-2P,1-2Q),       S=diag((1-2P)(1-2Q),1)
+```
+
+are unitarily conjugate exactly at zero overlap, while every approximate
+conjugacy pays at least `2||PQ||_2^2`.  Weighted Cauchy--Schwarz converts the
+fixed game loss into a fixed word-energy floor once the two blocks are
+available.  This removes the original nonlinear predicate selector and the
+analytic pairwise common-Gram requirement, but it does not make block
+routing functorial.  `hybrid-rank-router-tensor-closure-obstruction` refutes
+`hybrid-rank-router-authenticates-affine-overlap-blocks`: three exact
+zero-overlap scalar extensions in the negative marked sector tensor to
+`A=B=-1`, so universal routing gives `R=-I,S=I` while the conjugacy relator
+remains exact.  The corrected node is
+`source-specific-pointed-rank-router-face`.  It asks for routing only on one
+non-tensor-closed global moment face containing canonical microstates, with
+exact completeness for one distinguished perfect trace rather than every
+abstract zero-overlap pair.  If established,
+`nonhyperlinear-from-source-specific-rank-router-face` closes this root.
+This reconnects the branch to Lin's one-state localization: the analytic
+common corner may be selected state-locally, but the same pointed moment
+face must still become word-visible.
+
+A qutrit splice still removes the local CSP nonlinearity exactly, but its
+first proposed direct terminal is now closed in the negative.  Culf--Mastel's
+trace-dependent rounding preserves every global assignment moment and
+Connes embeddability inside the same tracial algebra, yielding a fixed
+tracial/non-CE positive-ONE3 system in
+`non-ce-bcs-has-positive-one3-weighted-form`.  Each clause is exactly one
+qutrit clock by `positive-one3-is-one-qutrit-clock-context`; repeated-variable
+consistency is only equality of one fixed-space projection.  Literal clock
+equality and commuting finite-phase auxiliaries are ruled out, while
+`qutrit-diamond-robustly-synchronizes-pvms` gives a five-edge, linear-defect
+PVM synchronizer.
+
+However, `qutrit-psync3-tensor-closure-obstruction` proves that no ordinary
+group gadget can combine sound fixed-projector synchronization with the
+requested complement-flexible exact completeness in one `J=omega` sector.
+Four admissible scalar exact extensions tensor back into that same sector
+with interfaces `(1,omega)`, turning the putative zero-defect inequality into
+`1<=0`.  Hence `qutrit-fixed-space-projector-synchronizer` and its conditional
+terminal are refuted as stated.  The universal rank router fails by the
+binary analogue of the same tensor-closure obstruction, so the qutrit and
+independent-set splices now meet at
+`source-specific-pointed-rank-router-face`.  Their robust overlap estimates
+remain useful semantic front ends, but neither can be promoted by a gadget
+whose exact extension is functorial for every locally admissible pair.
+
+The former finite-game toric branch has now been closed in the negative.
+`normal-phase-safe-toric-games-have-qa-one` proves that normal phase safety
+forces quantum-approximable value one for every finite two-player torically
+determined game: the normal quotient makes the clause factors playerwise
+central, their phase character splits, and residual finite-dimensionality
+approximates the resulting perfect product state.  Consequently both
+`phase-safe-toric-gap-game-exists` and
+`monomial-gap-phase-safe-toric-groupification` are refuted.  The stronger
+factor audit `factor-split-projective-kernel-face-meets-fd-closure` also
+refutes the finite-dimensional projective-kernel face separator.  Only a
+whole-face **CE-tracial** exclusion could still support a direct monomial
+quotient; finite-game testability cannot close that route.
+
+The SL3 arithmetic lane has simultaneously collapsed from a general
+projective transfer theorem to one explicit second-moment word.
+`canonical-arithmetic-swap-fold-gram-is-arcsine` proves that every
+hypothetical canonical microstate of the swap extension has
+
+```text
+mu_(QPQ) -> (1/2)delta_0+(1/2)Arcsine_[0,1],
+tau(QPQ-(QPQ)^2) -> 1/16.
+```
+
+Positive cross-Gram mass therefore cannot select an endpoint and every
+moving top spectral window has vanishing density.  The surviving terminal
+`sl3-swap-extension-has-defect-only-fold-square-rigidity` asks only for the
+defect-only estimate forcing `[hsh^(-1),s]` to one in normalized HS norm.
+If proved, it contradicts the forced `1/16` defect and
+`nonhyperlinear-from-sl3-swap-fold-square-rigidity` closes this root.
+
 The latest cascade audit leaves no certified unconditional witness.  The
 relative `PSL_2(Z[1/2])`/Iwahori lane has now received a decisive negative
 answer at its exact congruence endpoints.  Its Jacobian is the constrained
@@ -133,10 +222,21 @@ The exact `s_0`-fiber replay in
 eight screens die before the third word, and the two orthogonal screens plus
 one twisted natural diagonal each leave one five-row survivor which
 `c_19243` kills.  Consequently
-`atlas-six-relator-simple-index-is-at-least-9792` raises the exact finite-simple
-escape floor to `9792`, whose equality group can only be `O_8^-(2)`.  This is
-still an exact-zero restriction; no sequence of finite-simple exclusions
+`atlas-six-relator-simple-index-is-at-least-48960` raises the exact finite-simple
+escape floor to `48960`, whose equality group can only be `L_4(4)`.  Exact
+seed-fiber screens exclude `O_8^-(2)`, natural `A_12`, and both marked
+parities in `M24`; the intervening `G_2(4)` and `McL` endpoints contain no
+`A8`.  This is still an exact-zero restriction; no sequence of finite-simple exclusions
 substitutes for the required dimension-free ultraproduct energy estimate.
+
+At the equality endpoint, the exact projective seed replay excludes the
+standard subfield chart in both marking parities.  In inner parity, nine of
+`5529600` candidates reach `c_19243` and all nine fail; in graph parity every
+candidate fails already at `s_11`.  The characteristic-two Brauer audit now
+proves that `L4(4)` has exactly one `A8` class, with self-normalizer and two
+unabsorbed marking parities.  Hence this replay is exhaustive and
+`atlas-six-relator-simple-overgroup-index-exceeds-48960` raises the strict
+finite-simple floor beyond `48960`.
 
 The attempted Atlas coefficient decoder has also reached a precise boundary
 before any rank computation is legitimate.  The six literal words, all 234

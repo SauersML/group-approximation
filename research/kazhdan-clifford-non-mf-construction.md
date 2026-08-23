@@ -10,6 +10,8 @@ distinct_from:
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Sofic/KazhdanCliffordConstruction.lean
+  - GroupApproximation/Sofic/LiteralNonMFEndpoint.lean
+  - GroupApproximation/Endpoint/ChosenNonMFAudit.lean
 ---
 
 Every finitely presented property-(T) group with a proper injective
@@ -17,3 +19,13 @@ self-embedding yields, from any element outside the image, a finitely
 presented group with a nontrivial central involution killed by every
 norm-matrix-corona representation.  In particular the constructed group is
 not MF.
+
+**LEAN STATUS.**  The reusable formal headline is
+`KazhdanCliffordConstruction.kazhdanCliffordConstruction`.  The completely
+instantiated finite presentation is closed by
+`LiteralNonMFEndpoint.literal_not_isOperatorMF`; its marked sign is proved
+nontrivial, central and involutive, and every genuine norm-matrix-corona
+homomorphism is proved to kill it.  `Endpoint/ChosenNonMFAudit.lean` checks
+both declarations' axiom closure.  This is a premise-free Lean endpoint, not
+an informal invocation of a property-(T) or Clifford theorem from the
+literature.

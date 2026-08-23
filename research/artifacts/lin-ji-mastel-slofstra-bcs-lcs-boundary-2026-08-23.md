@@ -13,10 +13,12 @@ This audit uses the three primary files supplied by the user:
 - Kieran Mastel and William Slofstra, *Two Prover Perfect Zero Knowledge for
   MIPstar*, STOC 2024.
 
-The conclusion has two separate gates.  The first is whether Lin's separated
-synchronous game is supplied with the **oracularizable** perfect commuting
-strategy required by the Mastel--Slofstra BCS conversion.  The second is the
-strictly stronger passage from a general weighted BCS to parity/LCS syntax.
+The conclusion distinguishes two BCS conversions and one later gate.
+Mastel--Slofstra's generic finite synchronous-game-to-BCS construction is
+unconditional but exponentially enlarges answers.  Their oracularization is
+the efficient protocol-level conversion and needs an **oracularizable**
+perfect strategy.  After either conversion, the strictly stronger passage
+from a general weighted BCS to parity/LCS syntax remains absent.
 
 ## 1. What the low-individual-degree theorem actually supplies
 
@@ -41,7 +43,7 @@ embeddable soundness extension separately.  Thus the 2009 source is an
 analytic soundness input to Lin's verifier construction, not an algebraic
 BCS-to-LCS compiler.
 
-## 2. Lin's exact output and the oracularity hypothesis
+## 2. Lin's exact output and where oracularity matters
 
 Lin's Theorem 6.5 is the gap-compression theorem.  It produces synchronous
 seventh-level conditionally-linear verifiers and preserves a perfect
@@ -65,20 +67,43 @@ The statement of Theorem 6.15 itself records values and synchrony, not the
 existence of a perfect oracularizable commuting strategy.  Theorem 6.5 only
 preserves such a strategy **if the input already has one**.  Therefore a
 black-box citation of Theorem 6.15 does not by itself discharge the
-oracularity hypothesis below.  One may use the BCS conclusion whenever one
-has separately followed Lin's particular compression construction to a
-preserved oracularizable perfect strategy, but that extra fact must be named;
-it cannot be inferred merely from `omega_co(G)=1` for a synchronous game.
+hypothesis of the **efficient oracularization** below.  This does not block
+the unconditional fixed finite BCS construction in the next section.
 
 This distinction is real.  In the tracial realization of a synchronous
 commuting correlation, the projections for two different questions need not
 commute in the same one-player algebra.  Commuting left/right actions do not
 automatically give the joint one-player PVM needed for an edge context.
 
-## 3. The exact conditional BCS conversion
+## 3. Unconditional fixed BCS versus conditional efficient BCS
 
-Mastel--Slofstra Lemma 3.1 takes a synchronous game `G` to its
-oracularization `G_orac`.  It proves:
+Immediately before Lemma 3.1, Mastel--Slofstra recall the generic conversion
+of every synchronous game `G` to a BCS.  It introduces a Boolean variable
+`x_(i,a)` for every question/answer pair, a one-answer constraint for each
+question, and a constraint
+
+```text
+x_(i,a) and x_(j,b)=false
+```
+
+for every losing answer pair.  They state that the resulting game `G_raw`
+has a perfect quantum, quantum-approximable, or commuting strategy if and
+only if `G` does.  They also state an answer-size-dependent quantitative
+loss, exponential at the protocol level.  Since Lin's `G_loop` is one fixed
+finite effective game with `omega_q<=1/2`, the loss remains a strict,
+effectively determined constant:
+
+```text
+omega_co(G_raw)=1,
+omega_q (G_raw)<=1-delta_loop,       delta_loop>0.        (LJM4)
+```
+
+No oracularity assumption is used in `(LJM4)`.  The price is exponential
+answer blowup, irrelevant for this fixed object but unsuitable for a
+polynomial-size protocol-family conversion.
+
+For the efficient route, Mastel--Slofstra Lemma 3.1 takes a synchronous game
+`G` to its oracularization `G_orac`.  It proves:
 
 1. a perfect oracularizable synchronous strategy for `G` gives a perfect
    synchronous strategy for `G_orac`; and
@@ -86,25 +111,25 @@ oracularization `G_orac`.  It proves:
    `omega_q(G)>=1-poly(epsilon)`.
 
 Immediately after the lemma, the paper constructs a Boolean constraint system
-`B(G)` with
+`B_orac(G)` with
 
 ```text
-G(B(G),pi_orac) = G_orac.                                (LJM4)
+G(B_orac(G),pi_orac) = G_orac.                           (LJM5)
 ```
 
 Consequently, if the separated Lin game in `(LJM3)` is accompanied by a
-perfect oracularizable commuting strategy, then `(LJM4)` is a finite weighted
+perfect oracularizable commuting strategy, then `(LJM5)` is a finite weighted
 BCS with perfect commuting value and a dimension-independent quantum gap.
 Indeed Lemma 3.1 contraposed at `omega_q(G)<=1/2` supplies some absolute
 `delta>0` for which
 
 ```text
-omega_co(G(B(G),pi_orac))=1,
-omega_q (G(B(G),pi_orac))<=1-delta.                       (LJM5)
+omega_co(G(B_orac(G),pi_orac))=1,
+omega_q (G(B_orac(G),pi_orac))<=1-delta.                  (LJM6)
 ```
 
-The paper writes the loss only as `poly(epsilon)`, so these sources do not
-identify a numerical value of `delta`.
+The paper writes the efficient loss only as `poly(epsilon)`, so these sources
+do not identify a numerical value of `delta`.
 
 The weighted algebraic structure is genuine.  Definitions 4.1--4.2 define
 weighted star-algebras and the weighted BCS algebra; Lemma 4.3 identifies
@@ -116,7 +141,7 @@ strategies under subdivision, while Theorem 6.4 pulls a near-perfect
 subdivision strategy back with loss
 
 ```text
-poly(m,2^C,M,K) epsilon.                                  (LJM6)
+poly(m,2^C,M,K) epsilon.                                  (LJM7)
 ```
 
 Remark 5.8 applies Cook--Levin contextwise, and Propositions 8.4--8.5 preserve
@@ -125,16 +150,18 @@ through the 3SAT/tableau construction.  Theorem 8.8 says
 
 ```text
 PZK-BCS-MIPco(2,1,1,1-1/poly(n))
-  = BCS-MIPco(2,1,1,1-1/poly(n)).                         (LJM7)
+  = BCS-MIPco(2,1,1,1-1/poly(n)).                         (LJM8)
 ```
 
 It is an equivalence **inside the class of already existing BCS-MIPco
 protocols**.  It does not assert `MIPco=BCS-MIPco` and does not remove the
-oracularity gate in `(LJM5)`.
+oracularity gate for the efficient route `(LJM5)--(LJM6)`.  That gate is not
+needed for the fixed raw conversion `(LJM4)`.
 
 ## 4. Why the chain stops before LCS and a solution group
 
-The output of `(LJM4)--(LJM7)` has arbitrary Boolean predicates; after
+The output of either `(LJM4)` or `(LJM5)--(LJM8)` has arbitrary Boolean
+predicates; after
 Cook--Levin it has 3SAT predicates.  None of the three sources replaces those
 predicates by affine parity constraints while preserving the tracial defect
 gap.  The Mastel--Slofstra weighted homomorphisms apply only to the explicitly
@@ -149,17 +176,19 @@ or 3SAT satisfying set is nonaffine.  Thus the phrase "compile the BCS to its
 solution group" is not defined without a new nonabelian gadget and a
 dimension-independent defect decoder.
 
-The strongest rigorous conclusion from the three sources is therefore:
+The strongest rigorous fixed-game conclusion from the three sources is
+therefore:
 
 ```text
 Lin separated synchronous game
- + separately certified perfect oracularizable commuting strategy
- + Mastel--Slofstra Lemma 3.1
- => perfect-commuting / quantum-gap weighted BCS (and a 3SAT/tableau form),
+ + unconditional generic finite BCS conversion
+ => effectively named perfect-commuting / quantum-gap weighted BCS
+    (and a 3SAT/tableau form),
 
-but not an LCS and not a solution group.                  (LJM8)
+but not an LCS and not a solution group.                  (LJM9)
 ```
 
-At the theorem-statement level, without the separately certified
-oracularizable strategy, the chain stops one step earlier, at Lin's
-synchronous value separation `(LJM3)`.
+For a polynomial-size protocol-family conversion, the generic construction
+has exponential answer blowup; the efficient oracularized construction still
+requires the separately certified perfect oracularizable strategy.  This
+efficiency distinction does not weaken the fixed-object conclusion `(LJM9)`.

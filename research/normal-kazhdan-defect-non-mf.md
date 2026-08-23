@@ -11,9 +11,12 @@ distinct_from:
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanCompressionObstruction.lean
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
+  - GroupApproximation/Sofic/NormalKazhdanHyperlinearKilled.lean
+  - GroupApproximation/Sofic/QuestionTwoReduction.lean
   - GroupApproximation/Sofic/InternalRadicalGap.lean
   - GroupApproximation/Sofic/KazhdanCompressionCore.lean
   - GroupApproximation/Sofic/CoronaImageNormalKazhdan.lean
+  - GroupApproximation/Endpoint/ChosenNonMFAudit.lean
 ---
 
 Let `C : KazhdanCompressionCore Gamma E` with `E` countable — that is,
@@ -36,3 +39,20 @@ The root `torsion-free-finitely-presented-non-mf` therefore has no remaining
 analytic obstacle on this branch.  What it needs is a torsion-free finitely
 presented group whose compression defect contains a nontrivial normal
 Kazhdan subgroup — a question of combinatorial group theory.
+
+**LEAN STATUS.**  The moving-corner contradiction is
+`KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect`; the
+elementwise radical theorem is
+`KazhdanCompressionCore.normalKazhdan_le_normMFResidual`; and the direct
+standard-MF conclusion is
+`QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect`.
+The still more general theorem
+`normalKazhdan_le_normMFResidual_of_hyperlinear_killed` accepts an arbitrary
+tracial-shadow kill proof and assumes no compression structure.  All four are
+kernel checked and appear in `Endpoint/ChosenNonMFAudit.lean`.
+
+This completes the analytic route in Lean.  It deliberately does **not** claim
+that the separate Fournier--Facio--Hull torsion-free routing input has been
+constructed in Lean: `TorsionFreeFullMFRadical.lean` formalizes what follows
+from that routing datum, while the suitable-subgroup small-cancellation
+existence step remains outside the current formal library.

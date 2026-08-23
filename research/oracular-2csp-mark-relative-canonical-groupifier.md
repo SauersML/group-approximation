@@ -73,3 +73,13 @@ that reads only individual isotypic multiplicities cannot establish clause
   group-algebra operator whose kernel is equality of the two marginal sums.
   This is the qualitative canonical-profile version of the existing
   block-escaping signed-Hecke chord; no such operator is presently known.
+- **Rational PZK profile.**
+  `lin-pzk-tableau-rational-qc-not-qa-correlation` gives a completely
+  explicit rational non-CE pair table and, after finite answer splitting,
+  equal local marginal weights.  This is useful canonical target data and
+  removes denominator/rank balancing for the selected trace.  It does not
+  establish either clause here: pair probabilities are not algebraic
+  projections in `Q[Gamma_B]`, equality of their selected traces does not
+  identify incident marginal projections, and no mark or decoder on
+  arbitrary canonical-profile microstates is produced.  The incidence-cycle
+  holonomy remains the same nontransport operator-placement problem.

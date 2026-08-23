@@ -25,3 +25,8 @@ hyperlinear model is converted directly into a Connes-embeddable perfect
 trace on a central phase corner.  What it does need is exactness -- perfect
 completeness on the commuting side and an exact group relation -- which is
 precisely the ingredient generic `MIP^*=RE` separations do not supply.
+
+This route is now dead because its first prerequisite is refuted:
+`normal-phase-safe-toric-games-have-qa-one` shows that normal phase safety
+forces `omega_qa=1`.  The conditional implication remains valid but vacuous
+for finite two-player torically determined games.

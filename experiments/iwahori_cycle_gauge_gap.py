@@ -267,6 +267,25 @@ def full_selector_linear_gap(
     }
 
 
+def lowest_koopman_hermitian(
+    r: np.ndarray, t: np.ndarray
+) -> tuple[np.ndarray, float, float]:
+    """Return an HS-unit selfadjoint mode at the smallest positive Koopman gap."""
+    basis = spectral_commutant_basis(t)
+    coboundary = operator_matrix(basis, lambda a: a - ad(r.conj().T, a))
+    _, singular, vh = np.linalg.svd(coboundary, full_matrices=False)
+    scale = max(1.0, float(singular[0]) if singular.size else 1.0)
+    positive = np.flatnonzero(singular > 1e-9 * scale)
+    if positive.size == 0:
+        raise ValueError("the model has no regular Koopman direction")
+    coordinates = vh.conj().T[:, positive[-1]]
+    raw = sum(coefficient * matrix for coefficient, matrix in zip(coordinates, basis))
+    hermitian_parts = ((raw + raw.conj().T) / 2.0, (raw - raw.conj().T) / (2.0j))
+    mode = max(hermitian_parts, key=normalized_frobenius)
+    mode = mode / normalized_frobenius(mode)
+    return mode, float(singular[positive[-1]]), float(np.linalg.norm(mode, 2))
+
+
 def conjugation_counterpacket_audit(
     x: np.ndarray, r: np.ndarray, t: np.ndarray, target_operator_displacement: float = 1e-3
 ) -> dict[str, float]:
@@ -288,17 +307,7 @@ def conjugation_counterpacket_audit(
         [(a / math.sqrt(d)).reshape(-1, order="F") for a in basis]
     )
     coboundary = operator_matrix(basis, lambda a: a - ad(r.conj().T, a))
-    _, singular, vh = np.linalg.svd(coboundary, full_matrices=False)
-    scale = max(1.0, float(singular[0]) if singular.size else 1.0)
-    positive = np.flatnonzero(singular > 1e-9 * scale)
-    if positive.size == 0:
-        raise ValueError("the model has no regular Koopman direction")
-    coordinates = vh.conj().T[:, positive[-1]]
-    raw = sum(coefficient * matrix for coefficient, matrix in zip(coordinates, basis))
-    hermitian_parts = ((raw + raw.conj().T) / 2.0, (raw - raw.conj().T) / (2.0j))
-    a = max(hermitian_parts, key=normalized_frobenius)
-    a = a / normalized_frobenius(a)
-    operator_norm = float(np.linalg.norm(a, 2))
+    a, koopman_gap, operator_norm = lowest_koopman_hermitian(r, t)
     epsilon = target_operator_displacement / max(1.0, operator_norm)
     values, vectors = np.linalg.eigh(a)
     z = (vectors * np.exp(1j * epsilon * values)) @ vectors.conj().T
@@ -326,7 +335,10 @@ def conjugation_counterpacket_audit(
     tangent_vector = (left_tangent / math.sqrt(d)).reshape(-1, order="F")
     tangent_gauge_coordinates = z_basis.conj().T @ tangent_vector
     _, _, coboundary_vh = np.linalg.svd(coboundary, full_matrices=False)
-    fixed_coordinates = coboundary_vh.conj().T[:, positive.size :]
+    singular = np.linalg.svd(coboundary, compute_uv=False)
+    scale = max(1.0, float(singular[0]) if singular.size else 1.0)
+    positive_count = int(np.count_nonzero(singular > 1e-9 * scale))
+    fixed_coordinates = coboundary_vh.conj().T[:, positive_count:]
     if fixed_coordinates.size:
         tangent_gauge_coordinates = tangent_gauge_coordinates - fixed_coordinates @ (
             fixed_coordinates.conj().T @ tangent_gauge_coordinates
@@ -334,7 +346,7 @@ def conjugation_counterpacket_audit(
     tangent_gauge_norm = float(np.linalg.norm(tangent_gauge_coordinates))
 
     return {
-        "smallest_positive_koopman_gap": float(singular[positive[-1]]),
+        "smallest_positive_koopman_gap": koopman_gap,
         "mode_operator_norm_at_hs_norm_one": operator_norm,
         "epsilon": epsilon,
         "x2_defect": defects["x2"],
@@ -346,6 +358,47 @@ def conjugation_counterpacket_audit(
         "preimage_to_row_ratio": inverse_energy_norm / max(total_row_defect, 1e-300),
         "projected_fixed_holonomy_norm": fixed_holonomy_norm,
         "linear_tangent_regular_gauge_norm": tangent_gauge_norm,
+    }
+
+
+def core_slice_audit(
+    x: np.ndarray, r: np.ndarray, t: np.ndarray, target_operator_displacement: float = 1e-3
+) -> dict[str, float]:
+    """Move the exact BS implementer through a low ``{T}'`` mode.
+
+    ``R_q=qR`` remains an exact implementer of ``T -> T^4`` for every
+    ``q in {T}'``.  Holding the exact first modular vertex ``(X,T)`` fixed,
+    the inversion and second cubic are the genuinely transverse rows.  This
+    audit tests whether their ordinary HS energy loses the low Koopman gap
+    before any induced-section construction is considered.
+    """
+    d = x.shape[0]
+    identity = np.eye(d, dtype=complex)
+    a, koopman_gap, operator_norm = lowest_koopman_hermitian(r, t)
+    epsilon = target_operator_displacement / max(1.0, operator_norm)
+    values, vectors = np.linalg.eigh(a)
+    q = (vectors * np.exp(1j * epsilon * values)) @ vectors.conj().T
+    r_moved = q @ r
+    inversion = normalized_frobenius(np.linalg.matrix_power(x @ r_moved, 2) - identity)
+    second_cubic = normalized_frobenius(
+        np.linalg.matrix_power(x @ t @ t @ r_moved, 3) - identity
+    )
+    core_error = normalized_frobenius(
+        r_moved @ t @ r_moved.conj().T - np.linalg.matrix_power(t, 4)
+    )
+    displacement = normalized_frobenius(r_moved - r)
+    transverse_defect = math.sqrt(inversion * inversion + second_cubic * second_cubic)
+    return {
+        "smallest_positive_koopman_gap": koopman_gap,
+        "mode_operator_norm_at_hs_norm_one": operator_norm,
+        "epsilon": epsilon,
+        "exact_core_error": core_error,
+        "core_displacement": displacement,
+        "inversion_defect": inversion,
+        "second_cubic_defect": second_cubic,
+        "transverse_defect": transverse_defect,
+        "defect_to_core_displacement_ratio": transverse_defect
+        / max(displacement, 1e-300),
     }
 
 
@@ -453,7 +506,10 @@ def analyze_matrices(
 
 
 def analyze(
-    primes: Sequence[int], full_selector: bool = False, conjugation_counterpacket: bool = False
+    primes: Sequence[int],
+    full_selector: bool = False,
+    conjugation_counterpacket: bool = False,
+    core_slice: bool = False,
 ) -> dict[str, object]:
     endpoints = [endpoint(p) for p in primes]
     x = direct_sum([triple[0] for triple in endpoints])
@@ -473,6 +529,8 @@ def analyze(
         result["full_selector_linear_audit"] = full_selector_linear_gap(x, r, t)
     if conjugation_counterpacket:
         result["conjugation_counterpacket_audit"] = conjugation_counterpacket_audit(x, r, t)
+    if core_slice:
+        result["core_slice_audit"] = core_slice_audit(x, r, t)
     return result
 
 
@@ -526,6 +584,11 @@ def main() -> None:
         action="store_true",
         help="probe an exact-first-vertex low-Koopman conjugation packet",
     )
+    parser.add_argument(
+        "--core-slice",
+        action="store_true",
+        help="probe a low-Koopman exact-core motion with the first vertex fixed",
+    )
     parser.add_argument("--output")
     args = parser.parse_args()
 
@@ -537,6 +600,7 @@ def main() -> None:
                 block,
                 full_selector=args.full_selector,
                 conjugation_counterpacket=args.conjugation_counterpacket,
+                core_slice=args.core_slice,
             )
             for block in args.blocks
         ]

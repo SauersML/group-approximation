@@ -245,3 +245,25 @@ model, using residual finiteness of a finite free product of binary lamps.
 The genuinely missing datum is therefore the joint approximate extension by
 the arithmetic actor, not another canonical block-swap character
 decomposition.
+
+Lin's positive-cross-Gram compiler does not add that missing datum.
+`sl3-fold-positive-cross-gram-does-not-select-endpoint` observes that for the
+balanced swap projection `P` and its conjugate `Q`, the choice `G=PQ` has
+mass `tr(PQ)->1/4` and exactly zero binary-PVM intertwining error for purely
+algebraic reasons.  This coexists with the canonical fold distance
+`||P-Q||_2^2->1/2`.  In fact
+`canonical-arithmetic-swap-fold-gram-is-arcsine` proves within every
+hypothetical full canonical swap microstate that the spectrum of `QPQ` is
+asymptotically half-arcsine, has no macroscopic top-edge sector, and forces
+the Gram modulus
+
+```text
+tr(QPQ-(QPQ)^2)=(1/2)||[P,Q]||_2^2 ->1/16.
+```
+
+The next mixed arithmetic relation must force this scalar to zero, or
+directly control the original-coordinate polar return, thereby contradicting
+the canonical second fold moment.  This is isolated as
+`sl3-swap-extension-has-defect-only-fold-square-rigidity`.  Merely producing
+positive overlap and exactifying the binary labels cannot continue the fold
+cascade.

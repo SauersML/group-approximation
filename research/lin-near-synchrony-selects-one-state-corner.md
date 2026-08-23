@@ -5,6 +5,7 @@ kind: claim
 title: Near-synchrony rounding selects one state-dependent corner with relative row control
 artifacts:
   - research/artifacts/lin-tracial-rounding-state-gh-source-audit-2026-08-23.md
+  - research/artifacts/lin-state-local-cross-gram-exactification-2026-08-23.md
 ---
 
 For a `delta`-synchronous tracially embeddable correlation with density
@@ -44,3 +45,11 @@ bound `tau(P_lambda)>=gamma tau(p)` can be extracted from Theorem 4.1,
 even when the density is supported inside the marked sector.  Equivalently,
 declare the marked involution to be `J=I-2p`; then `p=(I-J)/2`, exactly the
 normalization used in `(CPS2)`.
+
+There is a sharp positive specialization. If the density is normalized from
+one contraction `G` with `||G||_2^2>=m_0`, then its spectral mass is no
+longer arbitrary relative to the relevant state.
+`positive-cross-gram-state-rounds-to-common-pvm` selects a layer of trace at
+least `m_0/2` and rounds both PVM packets on that layer. Thus this claim's
+no-uniform-mass warning applies before a positive Gram certificate is given;
+it is not an additional carrier-extraction gate after one is given.

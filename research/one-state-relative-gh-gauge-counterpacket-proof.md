@@ -47,4 +47,3 @@ The smallest eigenvalue in `(SPG2)` is `m^(-3)`, so the best such `c` is
 valid throughout the counterpacket because all multiplicity gauges commute
 with the label packet; it does not choose one of them.  This proves both the
 negative state-dependent assertion and the sharp full-unitary converse.
-

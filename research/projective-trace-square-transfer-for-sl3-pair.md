@@ -468,3 +468,34 @@ weakening consumed by the HNN marked word.
   compression boundary.  Constructing that `Z` from finite arithmetic
   incidence, or building a canonical enemy for which its cost stays
   positive, is now the exact polar-compression terminal.
+
+- **Positive cross-Gram PVM rounding is gauge-blind at the forbidden
+  midpoint.**  `sl3-fold-positive-cross-gram-does-not-select-endpoint`
+  proves that for any two projections `P,Q`, the contraction `G=PQ`
+  intertwines the complete binary packets `(P,I-P)` and `(Q,I-Q)` with
+  exactly zero error and mass `tr(PQ)`.  Thus at a canonical balanced fold,
+  where `tr(PQ)->1/4` but `||P-Q||_2^2->1/2`, Lin's positive-Gram theorem
+  applies perfectly without moving either original-coordinate endpoint.
+  More strongly, `canonical-arithmetic-swap-fold-gram-is-arcsine` proves that
+  every hypothetical canonical microstate of the full arithmetic swap
+  extension has the limiting Gram law
+
+  ```text
+  mu_(QPQ)=(1/2)delta_0+(1/2)Arcsine_[0,1],
+  ```
+
+  so its mass near singular value one tends to zero; a residually finite
+  `C_2*Z` tower gives an unconditional exact local calibration of the same
+  law.  The exact missing modulus is
+
+  ```text
+  tr(QPQ-(QPQ)^2)=(1/2)||[P,Q]||_2^2.                 (PTS5)
+  ```
+
+  Canonicality forces `(PTS5)->1/16`; if arithmetic forces it to zero, a top
+  spectral cut gives a positive near-common sector and simultaneously a
+  direct second-moment contradiction.  Positive Gram mass, packet
+  exactification, and polar alignment alone do not.  This narrows the
+  canonical-double use of Lin's machinery to the defect-only mixed terminal
+  `sl3-swap-extension-has-defect-only-fold-square-rigidity` and leaves the
+  full arbitrary-unitary endpoint problem open.

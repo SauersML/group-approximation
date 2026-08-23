@@ -36,6 +36,14 @@ for one dimension-independent modulus `omega(delta)->0`.
 The same orientation and the literal overlap `(AKC1)` must occur in all four
 rows.
 
+The Lin cross-Gram package removes a formerly separate analytic step after
+this point. By `two-transport-cross-gram-has-a-fixed-mass-reducing-corner`
+and `positive-cross-gram-state-rounds-to-common-pvm`, `(AKC1)--(AKC2)` would
+already produce a fixed-density common packet corner; near-full overlap and
+global carrier rounding are unnecessary. It does not help prove `(AKC2)`.
+The exact-factor and double-gauge firewalls below remain attacks on precisely
+that same-Gram mixed covariance certificate.
+
 ## Exact algebraic interpretation is refuted
 
 `four-pauli-cross-gram-exact-completeness-firewall` gives, already at zero

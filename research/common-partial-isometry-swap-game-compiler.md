@@ -8,6 +8,7 @@ distinct_from:
   block-encoded-acceptance-still-needs-corner-return: that packages all tests into a cyclic superoperator return and needs a Hecke-corner authentication; this asks instead for one common matrix partial-isometry swap and then uses one ordinary commutator per test.
   capacity-gated-common-corner-bcs-two-cell: that asks for one globally reducing common corner; this only asks for a common partial-isometry source and uses exact graph-swap commutator identities rather than intersection rounding.
   shared-multiplicity-commutator-builds-selected-hybrid-row: that constructs every nonlinear predicate row on one selected context type with exact multiplicity cancellation in the final D8 test; this still needs joint promotion of those selected types to the common source.
+  source-specific-pointed-rank-router-face: that applies the independent-set reduction before groupification and uses rank conservation only on one non-tensor-closed pointed source face; it avoids this compiler's universal common partial isometry but still requires global state selection.
 ---
 
 **OPEN.**  Fix the finite constraint-variable game `G_cv` from
@@ -64,6 +65,40 @@ context gives only a convex family of partial strategies and is defeated by
 `pairwise-cross-grams-do-not-supply-one-game-state`.  The nonlinear swap
 clause is also load-bearing: its truth table is an AND and cannot be forced
 inside an abelian parity packet.
+
+## The independent-set branch bypasses the rows but not pointed state selection
+
+The independent-set/rank-conjugacy branch does not try to repair this D8
+construction.  The established chain
+
+```text
+G_cv
+ -> fixed-nonru-independent-set-orthogonality-game-exists
+ -> independent-finite-clocks-round-to-arbitrary-row-pvms
+ -> rank-conjugacy-detects-projection-overlap
+```
+
+makes every rejection a pairwise overlap of projections from one global row
+PVM family.  The two-copy trace checksum charges that overlap using
+`diag(A,B)` versus `diag(AB,1)`.  Thus neither this compiler's common Gram
+row nor its finite-irrep nonlinear predicate selector survives at the
+analytic overlap interface.
+
+However, `hybrid-rank-router-tensor-closure-obstruction` refutes the proposed
+universal ordinary-group router.  Exact extensions of the three scalar
+zero-overlap pairs tensor inside the negative marked sector to a forbidden
+pair, while every group relator remains exact.  The surviving endpoint is
+therefore `source-specific-pointed-rank-router-face`: block inference must
+be conditioned on one global, non-tensor-closed source moment face and exact
+completeness is promised only for the distinguished perfect trace.
+
+This remains a bypass of the particular row identities `(CPS9)` and
+`(CPS12)`, not evidence for them.  But it is no longer a bypass of global
+state selection.  Lin's state-local corner and common-PVM results can help
+identify the pointed face on one Gram-selected state; they still do not make
+that face or its block words visible to an ordinary presentation.  The
+present claim remains the direct BCS compiler and its exact firewalls remain
+valid.
 
 ## Why these clauses are enough
 
@@ -163,6 +198,28 @@ relative marked mass tending to zero.  Combining Theorems 4.1 and 5.1
 therefore yields neither `(CPS2)` nor `(CPS12)`: one needs both a
 canonical-trace mass input and a commutator/covariance estimate protecting
 the selected left carrier from the exactification twirl.
+
+The stronger coordinatewise and cross-Gram consequences now make this
+boundary exact rather than qualitative.
+`lin-state-local-gh-is-an-intertwining-exactifier` says that the protected
+left-carrier cost is exactly the original state-dependent commutator energy.
+`two-transport-cross-gram-has-a-fixed-mass-reducing-corner`,
+`labelled-pvm-branch-gram-gives-lin-corner`, and
+`positive-cross-gram-state-rounds-to-common-pvm` say that any one fixed-mass
+Gram carrying all mixed rows yields a common PVM packet on a corner of at
+least half that mass. For labelled branches the single contraction
+
+```text
+G=sum_i F_iT_iE_i
+```
+
+has `F_iG=GE_i` identically, so branch-label synchronization costs zero.
+Accordingly there is no longer a separate near-full-overlap, polar-alignment,
+PVM-rounding, or finite-packet exactification target. The surviving content
+of `(CPS12)` is to force fixed mass and the genuinely mixed
+predicate/return covariance on this same word-controlled `G`. Lin does not
+make `G`, its spectral cut, or its polar gauge into ordinary presentation
+words, so the algebraic and canonical-trace firewalls below remain intact.
 
 There is one important specialization.  The intended one-Gram state is not
 an arbitrary density: `partial-isometry-gram-state-collapses-lin-corners`

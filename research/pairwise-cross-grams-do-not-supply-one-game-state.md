@@ -5,6 +5,7 @@ kind: claim
 title: Positive pairwise cross-Grams do not supply one state good for all contexts
 distinct_from:
   one-gram-vector-decodes-a-finite-bcs-strategy: that assumes one common low-energy Gram operator; this gives a different exact Gram state on every edge.
+  positive-cross-gram-state-rounds-to-common-pvm: that assumes one fixed positive-mass Gram operator carrying the complete packet and therefore is not subject to this edgewise-gluing counterexample.
   localized-non-ce-leakage-forces-cross-gram-overlap: that extracts one positive pair overlap; this proves it need not decode the full game.
   consistency-defect-is-state-dependent-distance: that works within one state; this prevents gluing different edge states.
 ---

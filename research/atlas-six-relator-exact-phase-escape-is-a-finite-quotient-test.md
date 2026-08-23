@@ -84,6 +84,22 @@ types.  Crossing the next empty carrier interval gives
 `atlas-six-relator-simple-index-is-at-least-9792`; any finite simple escape
 has `A8` index at least `9792`, with equality possible only in `O8-(2)`.
 
+The exact finite-simple screen now reaches much farther.  The minus-type
+orthogonal equality group, natural `A12`, and both marked parities in `M24`
+have zero six-relator survivors.  The intervening arithmetic endpoints
+`G2(4)` and `McL` contain no `A8`.  Consequently
+`atlas-six-relator-simple-index-is-at-least-48960` shows that every finite
+simple escape has `A8` index at least `48960`, with equality possible only
+in the subfield group `L4(4)`.
+
+The `L4(4)` equality endpoint is now excluded completely.
+`atlas-l44-has-one-a8-class-with-self-normalizer` proves that the standard
+subfield chart is the unique `A8` class, is self-normalizing, and has exactly
+two unabsorbed relative marking parities.  The existing inner/graph replay
+finds no survivor among `5529600` projective seed conjugators per parity.
+Consequently `atlas-six-relator-simple-overgroup-index-exceeds-48960` gives
+the strict simple-index bound.
+
 The blockwise consequence is stronger than a degree cutoff but still not a
 general exclusion.  By
 `atlas-six-relator-natural-orbit-mixing-floor`,

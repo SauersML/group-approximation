@@ -7,6 +7,7 @@ distinct_from:
   gowers-hatami-uniqueness-does-not-lock-nested-pauli-reservoirs: that leaves independent multiplicity gauges; this gives the scalar overlap that identifies one relative gauge.
   two-mixed-pauli-commutators-lock-the-relative-reservoir-gauge: that locks an exposed gauge; this constructs it.
   eight-slice-capacity-deficit-is-one-overlap-moment: that supplies a capacity target; this is the abstract polar lemma.
+  two-transport-cross-gram-has-a-fixed-mass-reducing-corner: that replaces near-full overlap by fixed positive mass plus same-packet covariance and extracts only a positive reducing subcorner, not almost-global gauge alignment.
 ---
 
 Two exact packet intertwiners with common source and target and cross-Gram

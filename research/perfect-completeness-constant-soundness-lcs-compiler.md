@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
   - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
   - research/artifacts/lin-ji-mastel-slofstra-bcs-lcs-boundary-2026-08-23.md
+  - research/artifacts/qutrit-moment-exact-psync-splice-2026-08-23.md
 distinct_from:
   taller-vidick-lcs-re-hardness: that theorem has completeness `1 - epsilon` and its decoder needs the noise; this asks for `epsilon = 0`, which the paper explicitly does not prove.
   hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for perfect commuting completeness on halting inputs and strict matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.
@@ -83,6 +84,30 @@ representation sequence of the solution group restricts, through the fixed
 embedding words, to one of `G_M`.  This mark-relative CSP-to-group
 ultraproduct decoder--equivalently a direct perfect LCS compiler--is the
 missing theorem.  None of the three cited published reductions supplies it.
+
+## A direct qutrit group route now bypasses, but does not solve, LIN
+
+There is now a strictly local alternative to binary affine lowering.
+`non-ce-bcs-has-positive-one3-weighted-form` specializes the Culf--Mastel
+machinery to a fixed positive-ONE3 system while preserving the tracial/non-CE
+separation and every selected global-variable moment.  Then
+`positive-one3-is-one-qutrit-clock-context` identifies each local clause
+algebra exactly with one order-three clock.  No local nonlinear predicate
+remains.
+
+This does **not** establish the present LCS claim.  Repeated occurrences of a
+Boolean variable now demand equality of one spectral projection of two
+qutrit clocks, not equality of the clocks themselves.  Literal group-algebra
+equality is too strong, commuting finite-phase auxiliaries remain affine,
+and `qutrit-psync3-tensor-closure-obstruction` refutes even the proposed
+noncommutative complement-flexible
+`qutrit-fixed-space-projector-synchronizer`.  The remaining qutrit output is
+the five-edge overlap normal form
+`qutrit-diamond-robustly-synchronizes-pvms`; wordizing those overlaps joins
+the independent-set route at
+`hybrid-rank-router-authenticates-affine-overlap-blocks`.  Thus this splice
+narrows groupification but should not be counted as either a proof of this
+machine-indexed binary LCS compiler or a separate direct terminal.
 
 ## Attempts
 

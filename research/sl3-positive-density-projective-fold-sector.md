@@ -93,3 +93,16 @@ macroscopic projective singular-sector estimate for one denominator element.
   `canonical-moments-bound-projective-fixed-carrier-density` shows that the
   first `N-1` vanishing moments force every such carrier to have density at
   most `1/N`, and the regular `C_N` clock attains that threshold exactly.
+- **Use a positive cross-Gram for the two binary swap packets.**  This
+  condition is automatic and loses the needed original-coordinate modulus.
+  By `sl3-fold-positive-cross-gram-does-not-select-endpoint`, `G=PQ` has
+  mass `tr(PQ)->1/4` and zero packet-intertwining error at the canonical
+  midpoint, even though `P,Q` remain distance squared `1/2`.
+  `canonical-arithmetic-swap-fold-gram-is-arcsine` proves in the hypothetical
+  full canonical class itself that the Gram spectrum is half-arcsine, so
+  every window tending to singular value one has vanishing density and
+  `tr(QPQ-(QPQ)^2)->1/16`.  Lin's polar rounding can align the packet only
+  after changing its gauge.  To obtain a carrier in the original fold
+  coordinates one must contradict this forced second moment by proving
+  `sl3-swap-extension-has-defect-only-fold-square-rigidity`, or establish an
+  equivalent arithmetic mixed-return estimate on that same Gram.

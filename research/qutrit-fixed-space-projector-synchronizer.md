@@ -3,6 +3,7 @@ rg: 2
 id: qutrit-fixed-space-projector-synchronizer
 kind: claim
 title: One trace-only group gadget synchronizes a qutrit fixed-space projector while preserving its complement
+refuted_by: qutrit-psync3-tensor-closure-obstruction
 distinct_from:
   central-tagged-one-in-three-is-a-finite-lcs-or: that makes one Boolean coordinate central and branches into binary affine profiles; this keeps all three qutrit positions symmetric and introduces no Boolean central tag.
   qutrit-psync3-tensor-closure-obstruction: that refutes this endpoint by tensoring four scalar exact extensions back into the same central sector.

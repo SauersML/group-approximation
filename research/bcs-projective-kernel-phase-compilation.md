@@ -171,3 +171,14 @@ valid.
   affine slice, not NAND or a general nonlinear predicate truth set.  The
   remaining infinite route must be a matrix-approximation/stability gap that
   tolerates the bad regular trace, not an exact central-character gate.
+- The PZK randomizing tableau does not create the missing marked phase.
+  `pzk-tableau-private-s5-gauge-normal-form` makes every tableau/randomizer
+  letter private and reduces its local menu mostly to reversible `S5` word
+  equations, while `lin-pzk-tableau-rational-qc-not-qa-correlation` supplies
+  one explicit rational separated trace.  But the private `S5` relations have
+  exact finite permutation models, the remaining Boolean-to-instruction
+  lookup carries no distinguished negative central word, and trace balance
+  in the simulator is not a universal-algebra relation.  The shared
+  obliviated-bit marginals therefore still need the payload-coupled decoder
+  `(PKP2)`; finite tableau gauge alone cannot exclude a forbidden marked
+  sector.

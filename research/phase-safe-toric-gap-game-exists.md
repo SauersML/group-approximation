@@ -3,6 +3,7 @@ rg: 2
 id: phase-safe-toric-gap-game-exists
 kind: claim
 title: Some finite two-player toric game has a commuting/finite-dimensional gap whose scalar phase survives normal closure
+refuted_by: normal-phase-safe-toric-games-have-qa-one
 artifacts:
   - research/artifacts/published-nonhyperlinear-shortcut-audit-2026-08-21.md
 distinct_from:
@@ -10,7 +11,7 @@ distinct_from:
   hyperlinear-nonsofic-group: that asks for a hyperlinear group failing soficity; a witness here goes the other way and produces a nonhyperlinear group
 ---
 
-OPEN.  The missing object of the toric lane: one finite two-player torically
+**REFUTED.**  The proposed missing object was one finite two-player torically
 determined game `Gcal` with
 
 1. finite phase group `B`;
@@ -22,6 +23,13 @@ By `phase-safe-toric-gap-implies-nonhyperlinear`, such a game gives an
 explicit finitely presented nonhyperlinear group.  Item 3 may be replaced by
 the sufficient certificate "a perfect tracial model of the *full* toric
 universal game algebra".
+
+`normal-phase-safe-toric-games-have-qa-one` proves that item 3 already forces
+`omega_qa=1`: normal closure centralizes the two player components of every
+clause, phase safety makes their scalar labels a consistent abelian
+character, and that character splits into a perfect product state which is
+approximable by one-player RFD models.  Thus the three requested properties
+cannot coexist.  The attempts below are retained as the historical audit.
 
 Two structural constraints are already proved and any candidate must satisfy
 them: `H = <h_i>` must be infinite, and its projection to the game group must
