@@ -176,3 +176,12 @@ cancellations which survive the five boundary products.
    vanish but the row-11 additive circulation has norm four.  Hence a proof
    must use the common-orbit identities `P_x=lambda(x)Ulambda(x)^*`, not just
    unitarity and the cycle products.
+5. **Use a determinant or Fredholm index of the common orbit.**  Refuted by
+   `atlas-phase-cycle-determinant-is-gauge-trivial`.  Every phase edge has
+   determinant one identically, and scalar rotation of the relative gauge
+   changes `det U` arbitrarily while leaving all multiplicative holonomies
+   and all singular values of the additive circulations unchanged.  Square
+   phase differences have index zero; rectangular stacking only records the
+   fixed source-target dimension difference.  Any finite-only invariant must
+   therefore retain relative singular-subspace information rather than a
+   determinant or index.

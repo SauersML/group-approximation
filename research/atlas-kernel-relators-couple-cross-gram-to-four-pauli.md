@@ -75,3 +75,12 @@ rectangular Pauli models at every amplification.  Thus the remaining
 separate packet types.  It must extract a mixed singular subspace or relative
 multiplicity coordinate from full-kernel operators, with a uniform positive
 normalized-HS consequence.
+
+Nor can that coordinate be a determinant phase or a Fredholm index of the
+phase-cycle operators.  `atlas-phase-cycle-determinant-is-gauge-trivial`
+shows that every phase edge has determinant one identically, while scalar
+rotation changes `det U` arbitrarily without changing any nonlinear cycle or
+any singular value of the additive rows.  The viable finite-only object has
+therefore narrowed to relative singular *spaces* (or an equivalent
+noncommutative-rank/shrunk-subspace certificate), not scalar determinant,
+index, or separate-rank data.

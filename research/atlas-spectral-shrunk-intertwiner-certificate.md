@@ -76,3 +76,11 @@ universal-factor no-go results leave open.
   threshold satisfying `(ASI1)` has only `o(d)` shrinkage, retire this route:
   the generic theorem shows no constant normalized-HS obstruction can then
   come from low-energy noncommutative rank alone.
+- **The phase-cycle Jacobian is not the required Laplacian.**
+  `atlas-phase-jacobian-has-invertible-gauge-kernel` differentiates the exact
+  scalar symmetry `U -> exp(it)U`.  The tangent `iU` lies in the Jacobian
+  kernel at every point and is invertible, so its complex operator space has
+  no shrunk subspace at all.  Thus `L_delta` cannot be the ordinary
+  Gauss--Newton/Jacobian form of the five boundary holonomies and interior
+  holonomy.  A positive construction must pin/quotient that gauge without
+  losing the actual unitary, or use a different mixed form.

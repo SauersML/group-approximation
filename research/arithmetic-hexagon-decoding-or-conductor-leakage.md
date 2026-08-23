@@ -120,6 +120,30 @@ the fixed-depth nonhyperlinearity criterion.
   while constructing each of the six separate chart PVMs; after that,
   `finite-tree-first-exits-extract-an-equal-rank-global-pvm` synchronizes
   their ranks and carriers.
+- **The wrong half-period sector is already inside the two-level exit
+  ledger, sharply.**  For an exact `2^N`-torsion central clock `T`,
+  `half-period-sector-sits-inside-two-level-exit`
+  identifies
+
+  ```text
+  F_<=N-1=(1+T^(2^(N-1)))/2,
+  F_<=N-2=(1/4)sum_(j=0)^3 T^(j*2^(N-2)).
+  ```
+
+  The negative half-period projection is exactly `F_=N`, while
+  `F_<=N-1-F_<=N-2=F_=N-1`. Hence for every transported piece `X`,
+
+  ```text
+  ||(1-F_<=N-2)X||_2^2
+   =||(1-F_<=N-1)X||_2^2+||F_=N-1 X||_2^2.
+  ```
+
+  Therefore the existing two-level first exit pays the Weyl wrong-sector
+  term with constant one. The reverse comparison is false on a scalar clock
+  of exact order `2^(N-1)`, and tensoring independent `42`-atom coordinate
+  PVMs leaves this entire identity unchanged. Thus the local spectral
+  bookkeeping is complete, but it cannot itself construct the six chart
+  PVMs; root-chart covariance remains the exact extraction input.
 
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
