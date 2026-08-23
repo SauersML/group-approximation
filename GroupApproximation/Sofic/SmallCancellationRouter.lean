@@ -5,10 +5,11 @@ import Mathlib.Data.List.Rotate
 /-!
 # The bespoke small-cancellation router, specification first
 
-The one-paper program reduces the Main Theorem — a two-generated,
-finitely presented, torsion-free property-(T) group equal to its own MF
-radical — to a single unconditional term of `DefectRoutingData`.  This
-module builds the router that is meant to produce that term, from the
+The one-paper program reduces the proposed torsion-free theorem — a
+two-generated, finitely presented, torsion-free property-(T) group equal to
+its own MF radical — to an inhabitant of `DefectRoutingData`.  No such
+inhabitant is constructed in this module.  Instead, this module builds the
+router interface that a future proof must produce, from the
 top down: the interface is frozen first, the reduction to
 `DefectRoutingData` is machine-checked second, and the word
 combinatorics is laid from normal forms upward, so that exactly one

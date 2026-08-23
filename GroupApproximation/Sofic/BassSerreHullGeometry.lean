@@ -273,6 +273,7 @@ theorem dist_eq_one_of_adj {x y : PathVertex G}
     (hxy : (BassSerreFreeProduct.graph G).Adj x y) : dist x y = 1 := by
   rw [pathVertex_dist, SimpleGraph.dist_eq_one_iff_adj.mpr hxy]
   norm_num
+
 /-! ## Short displacement upper bounds -/
 
 /-- Bass--Serre displacement is subadditive under multiplication. -/

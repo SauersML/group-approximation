@@ -30,8 +30,7 @@ representation of `S_3`. Consequently no projective-transfer estimate can
 follow from the rank-one Weyl decomposition, the coboundary form of the
 target, and the three lattice-word centralities alone, even at zero defect.
 
-This locates the earliest explicit candidate for additional arithmetic input
-omitted by that packet.
+This locates the first arithmetic-specific input omitted by that packet.
 The actual elements are not independent: if `a=x(1)` and `b=y(1)` in the
 `(1,3)` root copy, then
 
@@ -41,8 +40,8 @@ X=a^2,       Y=b^(-2),       C=a^(-1)b a^(-1).          (RCB3)
 
 Those root elements are also glued to the other four roots of `SL_3(Z)`.
 The `S_3` model below violates this shared root-additivity data: its `X` is
-a transposition and hence has no square root in `S_3`.  An inequality
-formulated only in the five raw variables of `(RCB1)--(RCB2)` is therefore
-false.  A viable estimate must use some additional arithmetic datum;
-common-root additivity and cross-root gluing are the first concrete omitted
-candidates, not assertions already known to suffice.
+a transposition and hence has no square root in `S_3`. Thus the smallest
+still-live arithmetic inequality must retain root-additivity or cross-root
+gluing on the same carrier; an inequality formulated only in the five raw
+variables of `(RCB1)--(RCB2)` is false.
+

@@ -1,4 +1,5 @@
 import GroupApproximation
+import GroupApproximation.Computability.MFRadicalComputer
 import Audit.Scan
 import Lean.Elab.Command
 import Lean.Util.CollectAxioms
@@ -69,6 +70,21 @@ example :
     ∃ (E : Type) (_ : Group E),
       Countable E ∧ Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
   ChosenNonMFTheorem.exists_countable_finitelyPresented_not_isOperatorMF
+
+example : SeededSelfAwareMFCompiler.HasMarkedMFSeed :=
+  SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed
+
+example : SeededSelfAwareMFCompiler.HasLogicalSelfAwareMFCompiler :=
+  SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler
+
+example :
+    Group.IsFinitelyPresented MFRadicalComputer.Carrier ∧
+      ¬ IsOperatorMF MFRadicalComputer.Carrier ∧
+      (∀ p, NormMFInvisible (MFRadicalComputer.word p)) ∧
+      (∀ p, MFRadicalComputer.word p = 1 ↔
+        MFRadicalComputer.controlMachine.Halts p) ∧
+      ¬ ComputablePred fun p : ℕ × ℕ => MFRadicalComputer.word p = 1 :=
+  MFRadicalComputer.closed_package
 
 example : ¬ (∀ (E : Type) [Group E] [Countable E], IsOperatorMF E) :=
   ChosenNonMFTheorem.not_every_countable_group_isOperatorMF
@@ -493,6 +509,10 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.not_every_countable_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed,
+   ``SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler,
+   ``MFRadicalComputer.closed_package,
+   ``MFRadicalComputer.promised_word_problem_not_computable,
    ``ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage,
    ``ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage,
    ``KazhdanCompressionCore.manuscriptCentralSignCriterion,
@@ -511,6 +531,8 @@ def headlineTheorems : List Name :=
    ``LiteralNonMFEndpoint.literal_reducedGroupCStar_not_hasMFEmbedding,
    ``LiteralNonMFEndpoint.literal_reducedGroupCStar_not_isMFAlgebra,
    ``LiteralNonMFEndpoint.manuscriptTheoremA,
+   ``LiteralTheoremAPackage.manuscriptTheoremA_package,
+   ``SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope,
    ``LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF,
    ``LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder,
    ``LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF,
@@ -635,6 +657,12 @@ def zeroInputEndpoints : List Name :=
   [``KazhdanCompressionCore.manuscriptCentralSignCriterion,
    ``KazhdanCliffordConstruction.kazhdanCliffordConstruction,
    ``LiteralNonMFEndpoint.manuscriptTheoremA,
+   ``LiteralTheoremAPackage.manuscriptTheoremA_package,
+   ``SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed,
+   ``SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler,
+   ``MFRadicalComputer.closed_package,
+   ``MFRadicalComputer.promised_word_problem_not_computable,
+   ``SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope,
    ``LiteralNonMFEndpoint.manuscriptTheoremD,
    ``LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF,
    ``LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder,

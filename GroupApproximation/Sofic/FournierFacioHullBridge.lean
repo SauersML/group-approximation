@@ -35,7 +35,6 @@ universe u
 
 Every field is a direct construction fact rather than an endpoint conclusion:
 
-* Hull adjoins finitely many relators, so the quotient is finitely presented;
 * the target is Kazhdan, derived by `ofCommonQuotientAndHull` from the
   auxiliary factor;
 * the target is torsion-free, derived by `ofCommonQuotientAndHull` from
@@ -57,8 +56,8 @@ structure BareDefectHullQuotientData
   [groupQuotient : Group Quotient]
   /-- The quotient map from the compression ambient group. -/
   quotient : E →* Quotient
-  /-- Only finitely many relators are adjoined. -/
-  [finitelyPresented : Group.IsFinitelyPresented Quotient]
+  /-- Countability is the only size condition used by the endpoint. -/
+  [quotientCountable : Countable Quotient]
   /-- Torsion-freeness of the final target, derived by the concrete constructor
   from the whole free-product source and the two finite-order lifting stages. -/
   targetTorsionFree : IsPowerTorsionFree Quotient
@@ -78,8 +77,8 @@ variable {P : Type} {E : Type u} [Group P] [Group E]
     (H : BareDefectHullQuotientData D)
 
 local instance hullQuotientGroup : Group H.Quotient := H.groupQuotient
-local instance hullQuotientFinitelyPresented :
-    Group.IsFinitelyPresented H.Quotient := H.finitelyPresented
+local instance hullQuotientCountable : Countable H.Quotient :=
+  H.quotientCountable
 
 /-! ## Direct input from the common quotient and Hull saturation -/
 
@@ -104,8 +103,7 @@ descends along the surjective composite from the auxiliary Kazhdan factor
 composed here. -/
 def ofCommonQuotientAndHull
     {A : Type} {F M : Type*} {Q : Type}
-    [Group A] [Group F] [Group M] [hQ : Group Q]
-    [hQfp : Group.IsFinitelyPresented Q]
+    [Group A] [Group F] [Group M] [hQ : Group Q] [hQcountable : Countable Q]
     (first : A →* M) (source : F →* M) (second : E →* M)
     (finish : M →* Q)
     (hfirst : Function.Surjective first)
@@ -133,7 +131,7 @@ def ofCommonQuotientAndHull
     Quotient := Q
     groupQuotient := hQ
     quotient := finish.comp second
-    finitelyPresented := hQfp
+    quotientCountable := hQcountable
     targetTorsionFree :=
       isPowerTorsionFree_of_orderReflecting hFtor (finish.comp source)
         (HullPrescribedSaturation.finiteOrder_lifts_comp source finish
@@ -149,10 +147,10 @@ def ofCommonQuotientAndHull
 
 /-! ## Direct consumption of the bespoke router -/
 
-/-- The bespoke small-cancellation router already has exactly the concrete
-fields stored by `BareDefectHullQuotientData`.  This adapter makes that fact
-literal: torsion-freeness and finite presentation are carried by the router,
-property `(T)` descends from its surjective partner map, saturation is its
+/-- The bespoke small-cancellation router already has the concrete fields
+stored by `BareDefectHullQuotientData`.  This adapter makes that fact literal:
+torsion-freeness is carried by the router, property `(T)` descends from its
+surjective partner map, saturation is its
 `defect_top` conclusion, and protected-pair injectivity is unchanged.
 
 Unlike `ofCommonQuotientAndHull`, this constructor consumes the collapsed
@@ -163,15 +161,26 @@ def _root_.GroupApproximation.SmallCancellationRouter.RoutingLemmaData.toBareDef
     (R : SmallCancellationRouter.RoutingLemmaData
       E D.core.defectNormal D.s B)
     (hB : HasKazhdanPropertyT.{0, 0} B) :
-    BareDefectHullQuotientData D where
-  Quotient := R.Quotient
-  groupQuotient := R.groupQuotient
-  quotient := R.route
-  finitelyPresented := R.finitelyPresented
-  targetTorsionFree := R.torsionFree
-  targetKazhdan := R.kazhdan hB
-  defectNormal_maps_top := R.defect_top
-  protected_injective := R.protected_injOn
+    BareDefectHullQuotientData D := by
+  letI : Countable R.Quotient := by
+    obtain ⟨n, f, hsurj, -⟩ := R.finitelyPresented.out
+    letI : Countable (FreeGroup (Fin n)) := by
+      have hfree : Function.Surjective
+          (FreeGroup.mk : List (Fin n × Bool) → FreeGroup (Fin n)) := by
+        intro g
+        obtain ⟨L, hL⟩ := Quot.exists_rep g
+        exact ⟨L, by rw [← FreeGroup.quot_mk_eq_mk, hL]⟩
+      exact hfree.countable
+    exact hsurj.countable
+  exact {
+    Quotient := R.Quotient
+    groupQuotient := R.groupQuotient
+    quotient := R.route
+    quotientCountable := inferInstance
+    targetTorsionFree := R.torsionFree
+    targetKazhdan := R.kazhdan hB
+    defectNormal_maps_top := R.defect_top
+    protected_injective := R.protected_injOn }
 
 /-- Existential form of
 `RoutingLemmaData.toBareDefectHullQuotientData`.  Thus an actual router at a
@@ -215,21 +224,6 @@ theorem protected_ne_one : H.quotient D.s ≠ 1 := by
     (Set.mem_insert _ _)
   simpa using hs
 
-/-- A finitely presented quotient is countable. -/
-theorem quotientCountable : Countable H.Quotient := by
-  obtain ⟨n, f, hsurj, -⟩ := H.finitelyPresented.out
-  letI : Countable (FreeGroup (Fin n)) := by
-    have hfree : Function.Surjective
-        (FreeGroup.mk : List (Fin n × Bool) → FreeGroup (Fin n)) := by
-      intro g
-      obtain ⟨L, hL⟩ := Quot.exists_rep g
-      exact ⟨L, by rw [← FreeGroup.quot_mk_eq_mk, hL]⟩
-    exact hfree.countable
-  exact hsurj.countable
-
-local instance hullQuotientCountable : Countable H.Quotient :=
-  H.quotientCountable
-
 /-- The quotient is nontrivial because the protected element survives. -/
 theorem quotientNontrivial : Nontrivial H.Quotient :=
   ⟨⟨H.quotient D.s, 1, H.protected_ne_one⟩⟩
@@ -251,7 +245,6 @@ theorem mapped_defectNormal_eq_top :
 
 /-- The verified normal-Kazhdan compression theorem applied at `K = ⊤`. -/
 theorem not_isOperatorMF : ¬ IsOperatorMF H.Quotient := by
-  letI : Countable H.Quotient := H.quotientCountable
   letI : Nontrivial H.Quotient := H.quotientNontrivial
   have hTtop : HasKazhdanPropertyT.{0, 0} (⊤ : Subgroup H.Quotient) :=
     HasKazhdanPropertyT.of_mulEquiv Subgroup.topEquiv H.quotient_kazhdan
@@ -268,25 +261,23 @@ include H in
 /-- The exact existential endpoint obtained from one concrete two-stage
 output. There is no additional routing, Kazhdan, torsion-free, survival, or
 non-MF assumption: each is a theorem of `H`. -/
-theorem to_exists_torsionFree_finitelyPresented_not_MF :
+theorem to_exists_torsionFree_not_MF :
     ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
       IsPowerTorsionFree Q ∧
-      Group.IsFinitelyPresented Q ∧
       ¬ IsCDEOperatorMF Q ∧
       ¬ IsOperatorMF Q := by
-  letI : Countable H.Quotient := H.quotientCountable
   exact ⟨H.Quotient, inferInstance, inferInstance, H.quotient_torsionFree,
-    H.finitelyPresented, H.not_isCDEOperatorMF, H.not_isOperatorMF⟩
+    H.not_isCDEOperatorMF, H.not_isOperatorMF⟩
 
 end BareDefectHullQuotientData
 
 namespace SmallCancellationRouter
 
 /-- An actual bespoke-router output over a bare compression source gives the
-exact torsion-free finitely presented non-MF existential.  All endpoint
+torsion-free non-MF existential.  All endpoint
 properties are derived: the only construction input is the router itself, and
 property `(T)` is transported from its certified partner. -/
-theorem exists_torsionFree_finitelyPresented_not_MF_of_routingLemmaData
+theorem exists_torsionFree_not_MF_of_routingLemmaData
     {P : Type} {E : Type u} [Group P] [Group E]
     (D : BareDefectSourceData P E)
     {B : Type} [Group B]
@@ -294,12 +285,11 @@ theorem exists_torsionFree_finitelyPresented_not_MF_of_routingLemmaData
     (hR : Nonempty (RoutingLemmaData E D.core.defectNormal D.s B)) :
     ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
       IsPowerTorsionFree Q ∧
-      Group.IsFinitelyPresented Q ∧
       ¬ IsCDEOperatorMF Q ∧
       ¬ IsOperatorMF Q := by
   obtain ⟨H⟩ :=
     BareDefectHullQuotientData.nonempty_of_routingLemmaData (D := D) hB hR
-  exact BareDefectHullQuotientData.to_exists_torsionFree_finitelyPresented_not_MF H
+  exact BareDefectHullQuotientData.to_exists_torsionFree_not_MF H
 
 end SmallCancellationRouter
 

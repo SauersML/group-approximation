@@ -83,6 +83,16 @@ theorem crossingDefect_pow_displacement_le (n : ℕ) :
         (Nat.cast_nonneg n)
     _ = 4 * n := by ring
 
+/-- The same upper estimate for arbitrary integer powers. -/
+theorem crossingDefect_zpow_displacement_le (a : ℤ) :
+    dist (BassSerreFreeProduct.baseLeft Envelope :
+        BassSerreHullGeometry.PathVertex Envelope)
+      ((crossingDefect ^ a) •
+        (BassSerreFreeProduct.baseLeft Envelope :
+          BassSerreHullGeometry.PathVertex Envelope)) ≤ 4 * a.natAbs := by
+  rw [HullGeometry.dist_zpow_natAbs bassSerre_isometric]
+  exact crossingDefect_pow_displacement_le a.natAbs
+
 end
 
 end GroupApproximation.LiteralAffineFreeProductBassSerre

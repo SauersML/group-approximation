@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.CoweightCoinvariants
+import GroupApproximation.Algebra.FaithfulRadicalCocycle
 import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Algebra.SemidirectProductAssoc
 import GroupApproximation.Algebra.TwoGeneratedFreeQuotient
@@ -45,6 +46,7 @@ import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
@@ -462,10 +464,10 @@ import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
-import GroupApproximation.Sofic.OpToHSShadowResidual
 import GroupApproximation.Sofic.CoronaImageNormalKazhdan
 import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+import GroupApproximation.Sofic.OpToHSShadowResidual
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport
@@ -1430,6 +1432,8 @@ import GroupApproximation.Analysis.QuasidiagonalCoronaCriterion
 import GroupApproximation.Analysis.QuasidiagonalMatricialTrace
 import GroupApproximation.Analysis.TikuisisWhiteWinterDerivation
 import GroupApproximation.Higman.HalfRowEndo
+import GroupApproximation.Higman.IntPrimrec
+import GroupApproximation.Higman.HigmanPrimitiveRecursion
 import GroupApproximation.Sofic.BlockInfix
 import GroupApproximation.Sofic.ConjExprMatching
 import GroupApproximation.Sofic.MatchingSpine
@@ -1483,7 +1487,6 @@ import GroupApproximation.Sofic.LiteralAffineFreeProductSource
 import GroupApproximation.Sofic.LiteralAffineFreeProductBassSerre
 import GroupApproximation.Sofic.LiteralAffineFreeProductBassSerreDisplacement
 import GroupApproximation.Sofic.LiteralAffineFreeProductBassSerreIndependence
-import GroupApproximation.Sofic.LiteralAffineHullCommonQuotientInput
 import GroupApproximation.Kazhdan.TriangularHodgeLayer
 import GroupApproximation.Sofic.OsinWeightedDefectNoGo
 import GroupApproximation.Sofic.OsinWeightedLeafNoGo
@@ -1542,6 +1545,9 @@ import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
 import GroupApproximation.Sofic.LiteralTorsionFreeRouterSourceNoGo
+import GroupApproximation.Sofic.LiteralAffineFreeProductAvatarBlueprint
+import GroupApproximation.Sofic.AvatarRouterInstance
+import GroupApproximation.Sofic.AvatarRunBound
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerReducedness

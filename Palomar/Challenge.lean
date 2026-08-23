@@ -16,6 +16,26 @@ import Mathlib.Topology.Algebra.Order.Field
 
 `IsSequentialOperatorMFGroup` is the sequential form of the
 Carrión--Dadarlat--Eckhardt matrix-corona definition for countable groups.
+
+The presentation below defines a group `E`.  The theorem proves that `E` is
+sofic and has no separating sequence of operator-norm asymptotic matrix
+representations.  For countable groups, the latter condition is equivalent to
+the standard MF property.
+
+The non-MF proof applies one-sided Kazhdan transport in normalized
+Hilbert--Schmidt norm and compresses an asymptotic representation to a spectral
+corner of a central involution.  A Clifford representation proves that this
+involution is nontrivial.  The soficity proof constructs finite approximations
+from a block-Clifford decomposition of `E`.
+
+Carrión--Dadarlat--Eckhardt and Korchagin provide the MF definitions and local
+criteria.  Bachner--Dogon--Lubotzky, De Chiffre--Glebsky--Lubotzky--Thom,
+Slofstra, and Slofstra--Vidick provide the matrix rounding, spectral corner,
+and central involution methods used in the proof.  The OpenAI and Kun--Thom
+papers contain related constructions using compression and lamp groups.
+The proof also uses standard results on sofic groups, affine groups, and
+property `(T)` from Elek--Szabó, Conder--Robertson--Williams, and
+Bekka--de la Harpe--Valette.
 -/
 
 namespace ExplicitNonMF
@@ -240,7 +260,8 @@ abbrev E : Type :=
 
 -- END SHARED BLOCK
 
-/-- The explicit group is sofic and not MF. -/
+/-- The explicitly presented group `E` is sofic in normalized Hamming distance
+and is not MF in the sequential operator-norm sense. -/
 theorem explicit_sofic_not_MF :
     IsSoficGroup E ∧ ¬ IsSequentialOperatorMFGroup E := by
   sorry

@@ -77,4 +77,7 @@ This does not refute the affine-Frobenius CRT route: the common carrier in
 that, at the strict high-density scale for which the route was introduced,
 the tight-frame ansatz is not a softer distributed substitute for the
 projection CRT.  It reduces to constructing one literal common algebraic
-negative carrier.
+negative carrier, now isolated as
+`affine-frobenius-common-negative-carrier`.  Conversely that claim makes
+the cubic automatic by `tight-frame-via-common-negative-carrier`.  Hence in
+the high-density regime the two construction targets are equivalent.

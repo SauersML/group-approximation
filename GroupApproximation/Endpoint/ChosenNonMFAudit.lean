@@ -1,4 +1,5 @@
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Computability.SeededSelfAwareMFCompiler
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.MarkedMFClosed
@@ -6,8 +7,10 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralTheoremAPackage
 import GroupApproximation.Sofic.NoRenormalizationCapacity
 import GroupApproximation.Sofic.OpToHSShadowResidual
+import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
 
 /-!
 # Lightweight axiom audit for the chosen non-MF endpoint
@@ -25,8 +28,8 @@ boundary actually proved: its algebraic package, nontrivial mark, and
 finite-dimensional obstruction are unconditional.  No conditional analytic
 endpoint for that literal presentation is admitted to this audit surface.
 
-The final block audits the separately labelled compiler interfaces.  An
-axiom audit establishes that their proofs contain no hidden postulates; it
+The final block audits the separately labelled compiler interfaces.  The
+closure report establishes that their proofs contain no hidden postulates; it
 does not erase their displayed hypotheses.  In particular, the shadow
 saturation theorem still requires a routing homomorphism and the
 no-renormalization diagonal still requires a uniformly authenticated
@@ -35,9 +38,9 @@ challenge family.
 
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
-#audit_axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+#audit_closed_axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.countableWitness_not_isOperatorMF
-#audit_axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+#audit_closed_axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
 #audit_axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 #audit_axioms GroupApproximation.ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage
@@ -60,8 +63,14 @@ challenge family.
 #audit_axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.reverseKleene_fixedPoint_logic
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.logicalSelfAwareMFCompiler_iff_seed
-#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed
-#audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler
+#audit_closed_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasMarkedMFSeed
+#audit_closed_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler
+#audit_closed_axioms GroupApproximation.MFRadicalComputer.closed_package
+#audit_closed_axioms GroupApproximation.MFRadicalComputer.promised_word_problem_not_computable
+#audit_closed_axioms GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package
+#audit_closed_axioms GroupApproximation.LiteralNonMFEndpoint.literal_not_isOperatorMF
+#audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope
+#audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope_no_torsionFree_image
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.primeCodedMark_blackHole
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.quotient_not_isOperatorMF_of_invisible_mark_survives
 #audit_axioms GroupApproximation.map_opToHSShadowResidual_le

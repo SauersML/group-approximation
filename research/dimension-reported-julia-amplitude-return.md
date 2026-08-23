@@ -8,6 +8,7 @@ distinct_from:
   constant-hs-sound-self-detecting-tape-groupification: that asks for a general runtime-independent semantic compiler; this isolates a strictly smaller payload sufficient for the Fanizza route.
   julia-authenticated-high-spectrum-rank-selector: that asks directly for a finite-coordinate Hall matching into a spectral cutoff; this permits the dimension oracle to choose the cutoff depth endogenously and returns amplitude through cyclic trace instead of a rank matching theorem.
   scalar-trace-reflection-is-julia-root-target: that proves the scalar inequality is exactly equivalent to the former additive-commutator payload after a depth has been selected; this must endogenously select the depth and force that inequality from one finite presentation.
+  symmetric-sign-packet-has-factorial-amitsur-density-loss: that rules out replacing the proof layer by the exact regular symmetric-group sign projection; this still permits a redundant nonlinear proof or a delocalized terminal observable.
 ---
 
 OPEN.  Fix the Fanizza instance and its accelerated contractions
@@ -101,6 +102,14 @@ exactly to the smallest known Fanizza scalar endpoint.
   has gap at most `L(q-1)/((2k)!-1)`.  A viable localization must encode and
   check a redundant proof of the global alternating sum; it cannot merely
   sample its monomials or pairs.
+- **The complete regular sign packet still loses factorial density.**
+  `symmetric-sign-packet-has-factorial-amitsur-density-loss` packages every
+  monomial into one exact controlled `S_(2k)` block and compresses from the
+  trivial type to the sign type.  That coefficient is the normalized
+  Amitsur root divided by `sqrt((2k)!)`, while the sign carrier itself has
+  ambient trace `1/(2k)!`.  Thus exact global Fourier packaging cannot
+  replace the redundant proof layer or supply a bounded terminal
+  normalization.
 - **A rooted linear PCPP would retain the whole marked gap.**
   `uniform-linear-pcpp-tensorizes-to-amitsur-hs` proves that a scalar
   probability-weighted local check map with rooted quotient singular value

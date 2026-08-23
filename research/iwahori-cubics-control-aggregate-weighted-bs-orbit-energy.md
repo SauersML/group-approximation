@@ -6,8 +6,6 @@ title: The Iwahori rows control aggregate weighted BS-orbit energy after movable
 distinct_from:
   iwahori-cubics-suppress-low-bs-orbit-modes: that demanded an extra positive power of every individual band and is refuted by a single movable exact gauge; this asks only for the summed inverse energy which that family saturates harmlessly.
   weyl-defect-koopman-spectral-regularity: that is the global operator statement consumed by the absorption cascade; this is its explicit finite-cycle, gauge-aware inequality over exact BS packets.
-  koopman-weighted-energy-is-linearized-gauge-distance: that identifies the weighted sum with the minimum linearized correcting-gauge norm; this asks the cubic relators to bound that norm by the full presentation defect.
-  two-jump-cycle-refutes-functional-calculus-gauge-bound: that rules out obtaining a nonlinear correcting-gauge modulus from small coboundary residual alone; this asks the full cubic energy to exclude or pay for the two-jump plateaux.
 ---
 
 **OPEN CORRECTED FINITE INEQUALITY.**  In the exact-`BS(1,4)` setup of
@@ -38,28 +36,29 @@ inequality.  Proving it uniformly, including heterogeneous packet mixtures,
 is the remaining arithmetic estimate; neither bare BS dynamics nor the
 false pointwise Carleson gain supplies it.
 
-By `koopman-weighted-energy-is-linearized-gauge-distance`, the left side is
-equivalent within a factor four to the squared minimum norm of the
-linearized base-commutant gauge which absorbs `e'`.  Accordingly `(IAG1)`
-is more precisely a nonlinear metric-regularity/error-bound theorem for the
-full Iwahori relation map modulo exact gauges.  Its differential at exact
-congruence points is covered by `iwahori-uniform-infinitesimal-rigidity`;
-the live content is uniform nonlinear integration outside an operator-norm
-tube.  This rules out treating `(IAG1)` as a consequence of lacunary trace
-decay alone.
+## Same-core finite-cycle part is settled
 
-The exact two-jump packet in
-`two-jump-cycle-refutes-functional-calculus-gauge-bound` also rules out a
-generic nonlinear upgrade by spectral functional calculus: an exact unitary
-coboundary can converge to one in normalized HS while every correcting
-gauge stays `sqrt(2)` away from the identity modulo fixed gauges.  Therefore
-the cubic rows must control the large phase plateaux themselves.  Removing
-the two small jump projections or taking a polar part cannot suffice.
+`same-core-gauge-rows-control-linearized-koopman-inverse-energy` proves that
+after an exact extender `X_0` over the **same** repaired `(R,T)` core is
+authenticated, the complete linearized weighted estimate has the universal
+constant `2`.  In fact the involution row and first cubic alone give
 
-After an exact extending involution over the same BS core has been found,
-`same-core-involution-cubic-gauge-coercivity` gives a stronger conclusion
-than `(IAG1)`: the involution row plus the first cubic globally bound every
-unitary root-commutant gauge with constant one.  Hence the weighted spectral
-estimate is needed, if at all, only as a basin-capture device before such an
-exact extension is authenticated.  It is not a residual low-mode problem
-inside an exact extendable basin.
+```text
+sum_t t^(-2)||P_t D A||_2^2
+ <=2(||L_(x^2)A||_2^2+||L_((xt)^3)A||_2^2).
+```
+
+The proof is an exact order-three identity and covers arbitrary cycle
+lengths, return multiplicities, heterogeneous direct sums, and cross-block
+commutant gauges.  The accompanying finite probe checks exact projective
+packets through fourth-power orbit length `53` and repeated/heterogeneous
+sums, with no loss.
+
+Therefore the phrase "remaining arithmetic estimate" above must be read
+globally: the unresolved step is to authenticate a same-core exact endpoint
+(or perform the equivalent flexible outlier repair) before applying this
+coercivity.  It is not an unresolved generalized singular-value estimate on
+an already authenticated fourth-power cycle.  The compressed even-Weil
+outliers have zero Weyl/inversion residual and hence do not challenge the
+weighted estimate; they locate the missing content in boundary padding and
+endpoint selection.

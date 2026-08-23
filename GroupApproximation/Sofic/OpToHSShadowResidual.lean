@@ -215,7 +215,7 @@ theorem logicalShadowKleeneEndpoint_iff_bug :
   ⟨bug_of_hasLogicalShadowKleeneEndpoint,
     hasLogicalShadowKleeneEndpoint_of_bug⟩
 
-/-! ## The explicit Fournier--Facio HNN shadow bug -/
+/-! ## A shadow bug extracted from supplied Fournier--Facio data -/
 
 namespace FournierFacioDefectData
 

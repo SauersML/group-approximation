@@ -81,7 +81,7 @@ theorem defectNormal_le_ker_of_isPowerTorsionFree
   rw [D.core_defectNormal_eq]
   refine Subgroup.normalClosure_le_normal ?_
   rintro _ ⟨p, rfl⟩
-  apply MonoidHom.mem_ker.mpr
+  change q ⁅D.s, D.iota p⁆ = 1
   rw [map_commutatorElement]
   have hi := DFunLike.congr_fun
     (base_hom_eq_one_of_isPowerTorsionFree hQ (q.comp D.iota)) p

@@ -2,9 +2,11 @@
 /docbuild/.lake/
 /tmp/
 /.pdf-preview/
+/build/
 /*.aux
 /*.log
 /*.out
+/*.toc
 scripts/msi-build.sh
 **/__pycache__/
 

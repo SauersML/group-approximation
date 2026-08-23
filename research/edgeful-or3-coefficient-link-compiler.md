@@ -261,3 +261,27 @@ and literally synchronizes shared coordinates, the corner is already a
 finite perfect source strategy.  Hence the missing coefficient link must be
 genuinely non-finite-packet and cross-context; another fixed label register
 cannot authenticate it.
+
+## Exact reduction of SPA12 to the first omitted context
+
+`raw-prefix-covariance-reduces-to-nonincidence-cap-commutators` now gives the
+complete algebraic telescope for `(SPA12)`.  An incidence row at context `j`
+already controls `[B_x,q_j]` whenever `x` occurs there.  A common spectral
+coarea threshold controls the source projection boundary with a
+dimension-independent vanishing modulus.  Therefore the only unpaid terms
+are commutators with cap layers belonging to contexts which omit the
+transported variable.
+
+This remainder is necessary, not an artifact of the estimate.  The same
+claim and its exact rational artifact construct a dimension-seven
+full-support OR3 Berge triangle, minimal among full-support models, in which
+all six incidence rows vanish, the sequential mass is `3/14`, but the raw
+prefix covariance and its sole nonincidence term both have squared norm
+`1/7`.  Thus no rearrangement of occurrence-local rows can prove `(SPA12)`.
+
+The live positive target is now
+`canonical-or3-nonincidence-cap-commutator-payment`: ordinary actuator words
+must pay the first cap skipped by each transported variable in canonical
+matrix types.  `edgeful-or3-canonical-nonincidence-payment-route` records the
+resulting complete route from that payment through coarea, polar correction,
+and the common-source POVM decoder.

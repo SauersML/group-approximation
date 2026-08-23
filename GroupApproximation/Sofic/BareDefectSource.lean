@@ -670,14 +670,15 @@ end SmallCancellationRouter
 
 namespace BareFullMFRadicalEndpoint
 
-/-- **The Main Theorem over a source with no simple factor.**  Routing data
-over a slimmed source yields a nontrivial two-generated finitely presented
-torsion-free property-`(T)` group whose literal CDE MF radical is
-everything.
+/-- **Conditional output package.**  Given an inhabitant of the still-open
+`BareRoutingData` interface, the routed group is nontrivial, two-generated,
+finitely presented, torsion-free, property-`(T)`, and has full literal CDE MF
+radical.
 
-This is the direct existential packaging of `BareRoutingData`'s proved
-consequences. No separate conditional endpoint wrapper is involved. -/
-theorem exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical :
+The routing datum is a genuine hypothesis.  This declaration is deliberately
+named `_of_bareRoutingData` and must not be cited as an unconditional existence
+theorem. -/
+theorem exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical_of_bareRoutingData :
     ∀ {P : Type} {E : Type u} [Group P] [Group E]
       {D : BareDefectSourceData P E}
       (_h : Nonempty (BareRoutingData.{u} D)),
@@ -696,11 +697,10 @@ theorem exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_ful
     R.finitelyPresented, R.torsionFree, R.kazhdan, R.quotientNontrivial,
     R.cdeMFResidual_eq_top⟩
 
-/-- **Hereditary form over the slimmed source.**  The same group has the
-property that every homomorphism from it to the unitary group of a genuine
-norm-matrix C-star corona is trivial, and that every nontrivial quotient of
-it fails to be MF. -/
-theorem exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF :
+/-- **Conditional hereditary output package.**  From the same supplied
+`BareRoutingData`, every genuine norm-matrix-corona representation of the
+output is trivial and every nontrivial quotient fails to be MF. -/
+theorem exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF_of_bareRoutingData :
     ∀ {P : Type} {E : Type u} [Group P] [Group E]
       {D : BareDefectSourceData P E}
       (_h : Nonempty (BareRoutingData.{u} D)),

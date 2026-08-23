@@ -891,5 +891,94 @@ theorem landsIn_of_forward_alignment [DecidableEq α]
       (hyE.trans (invRev_prefix_of_suffix hEsuf)) halign'
   exact ⟨c₃, t₃, f₃, A, N, i, hf₃, hcasc, ht₃, hredp₃, hmin₃, hpiece, hNi, hfit⟩
 
+/-- The forward intrusion bound at the actual small-cancellation constant.
+
+The `C'(1/6)` consequence first shows that `take i` has not saturated the
+landing relator.  It is then a genuine common-prefix piece, so the original
+`C'(λ)` hypothesis gives the sharp bound. -/
+theorem intrusion_lt_of_forward [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hlam : lam ≤ 1 / 6) (hmetric : MetricSmallCancellation R lam)
+    {c t c₃ t₃ dw y : List (α × Bool)} {i : ℕ}
+    {e₁ f : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f))) g)
+    (ht : t ∈ symmetrization R) (ht₃ : t₃ ∈ symmetrization R)
+    (hd : FreeGroup.mk dw = conjEval e₁ * FreeGroup.mk c₃)
+    (hcy : dw = c ++ y) (hy : y <+: FreeGroup.invRev t)
+    (halign : t₃.take i <+: (FreeGroup.invRev t).rotate y.length) :
+    (i : ℚ) < lam * (t₃.length : ℚ) := by
+  have h6 : 6 * i < t₃.length :=
+    six_mul_intrusion_lt_of_forward
+      (metricSmallCancellation_of_le hlam hmetric) hmin ht ht₃ hd hcy hy halign
+  have hi : i ≤ t₃.length := by omega
+  have hne : t₃ ≠ (FreeGroup.invRev t).rotate y.length :=
+    ne_rotate_invRev_of_minimal_forward hmin hd hcy hy
+  have hpiece : IsPiece (symmetrization R) (t₃.take i) :=
+    isPiece_of_prefix_two ht₃
+      (rotate_mem_symmetrization (invRev_mem_symmetrization ht) y.length)
+      hne (List.take_prefix i t₃) halign
+  have hbound := hmetric (t₃.take i) hpiece t₃ ht₃ (List.take_prefix i t₃)
+  rwa [List.length_take, Nat.min_eq_left hi] at hbound
+
+/-- The sharp landing site supplied by a forward-aligned cascade. -/
+theorem landsInSharp_of_forward_alignment [DecidableEq α]
+    {R : Set (List (α × Bool))} {lam : ℚ}
+    (hlam : lam ≤ 1 / 6) (hmetric : MetricSmallCancellation R lam)
+    {c t c₃ t₃ M E A Z : List (α × Bool)}
+    {e₁ f₃ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    {N i b : ℕ}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))) g)
+    (ht : t ∈ symmetrization R)
+    (hredp₃ : FreeGroup.IsReduced (palindrome c₃ t₃))
+    (hcasc : (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      = A ++ (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord.drop N)
+    (hc₃V : (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord = c₃ ++ Z)
+    (hN : N ≤ c₃.length) (hZ : t₃.take i <+: Z)
+    (hM : FreeGroup.invRev M = c ++ FreeGroup.invRev E) (hEsuf : E <:+ t)
+    (hMW : FreeGroup.invRev M
+      <+: (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord)
+    (hlow : c.length ≤ A.length + (c₃.length - N))
+    (hhigh : A.length + (c₃.length - N) + i ≤ M.length)
+    (hNi : N ≤ c₃.length + i)
+    (hfit : b + N ≤ A.length + c₃.length + i) :
+    LandsInSharp R lam b
+      (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃)).length := by
+  have ht₃ : t₃ ∈ symmetrization R := hmin.1 (FreeGroup.mk c₃, t₃) (by simp)
+  have hdrop : ((FreeGroup.mk c, t)
+      :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).drop (e₁.length + 1)
+      = (FreeGroup.mk c₃, t₃) :: f₃ := by
+    rw [List.drop_succ_cons, List.drop_left]
+  have hmin₃ := isMinimalConjExpr_drop (e₁.length + 1)
+    ((FreeGroup.mk c, t) :: (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))) g hmin
+  rw [hdrop] at hmin₃
+  have hf₃ : f₃.length < (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃)).length := by
+    simp only [List.length_append, List.length_cons]
+    omega
+  have hVc : (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord.take N
+      = c₃.take N := by
+    rw [hc₃V, take_append_of_le N c₃ Z hN]
+  have hPQ : FreeGroup.mk
+        (conjEval (e₁ ++ ((FreeGroup.mk c₃, t₃) :: f₃))).toWord
+      = conjEval e₁
+        * FreeGroup.mk (conjEval ((FreeGroup.mk c₃, t₃) :: f₃)).toWord := by
+    rw [FreeGroup.mk_toWord, FreeGroup.mk_toWord, conjEval_append]
+  have hd := mk_effectiveConjugator_of_split hcasc hVc rfl hPQ
+  obtain ⟨y, hy, hyE⟩ :=
+    exists_forward_containment hcasc hc₃V hN hM hMW hlow (by omega)
+  obtain ⟨y', hy', halign⟩ :=
+    exists_forward_alignment hcasc hc₃V hN hZ hM hEsuf hMW hlow hhigh
+  have hyy : y = y' := List.append_cancel_left (hy.symm.trans hy')
+  have halign' : t₃.take i <+: (FreeGroup.invRev t).rotate y.length := by
+    rw [hyy]
+    exact halign
+  have hpiece : (i : ℚ) < lam * (t₃.length : ℚ) :=
+    intrusion_lt_of_forward hlam hmetric hmin ht ht₃ hd hy
+      (hyE.trans (invRev_prefix_of_suffix hEsuf)) halign'
+  exact ⟨c₃, t₃, f₃, A, N, i, hf₃, hcasc, ht₃, hredp₃, hmin₃,
+    hpiece, hNi, hfit⟩
+
 end SmallCancellationRouter
 end GroupApproximation

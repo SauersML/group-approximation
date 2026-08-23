@@ -88,14 +88,6 @@ theorem RelatorLengthRatioTwo.apply {R : Set (List (α × Bool))}
     r.length ≤ 2 * s.length :=
   h r hr s hs
 
-/-- Every symmetrized relator has the length of a base relator. -/
-theorem exists_base_relator_length_eq {R : Set (List (α × Bool))}
-    {w : List (α × Bool)} (hw : w ∈ symmetrization R) :
-    ∃ r ∈ R, w.length = r.length := by
-  obtain ⟨r, hr, n, h | h⟩ := hw
-  · exact ⟨r, hr, by rw [h, List.length_rotate]⟩
-  · exact ⟨r, hr, by rw [h, List.length_rotate, FreeGroup.invRev_length]⟩
-
 /-- It is enough to balance the finite base family.  Rotation and formal
 inversion, the two operations used by `symmetrization`, preserve word length.
 -/
@@ -103,10 +95,26 @@ theorem relatorLengthRatioTwo_of_base {R : Set (List (α × Bool))}
     (h : ∀ r ∈ R, ∀ s ∈ R, r.length ≤ 2 * s.length) :
     RelatorLengthRatioTwo R := by
   intro r hr s hs
-  obtain ⟨r₀, hr₀, hlenr⟩ := exists_base_relator_length_eq hr
-  obtain ⟨s₀, hs₀, hlens⟩ := exists_base_relator_length_eq hs
-  rw [hlenr, hlens]
-  exact h r₀ hr₀ s₀ hs₀
+  obtain ⟨r₀, hr₀, n, hrot | hrot⟩ := hr
+  · have hlenr : r.length = r₀.length := by rw [hrot, List.length_rotate]
+    obtain ⟨s₀, hs₀, m, hsrot | hsrot⟩ := hs
+    · have hlens : s.length = s₀.length := by rw [hsrot, List.length_rotate]
+      rw [hlenr, hlens]
+      exact h r₀ hr₀ s₀ hs₀
+    · have hlens : s.length = s₀.length := by
+        rw [hsrot, List.length_rotate, FreeGroup.invRev_length]
+      rw [hlenr, hlens]
+      exact h r₀ hr₀ s₀ hs₀
+  · have hlenr : r.length = r₀.length := by
+      rw [hrot, List.length_rotate, FreeGroup.invRev_length]
+    obtain ⟨s₀, hs₀, m, hsrot | hsrot⟩ := hs
+    · have hlens : s.length = s₀.length := by rw [hsrot, List.length_rotate]
+      rw [hlenr, hlens]
+      exact h r₀ hr₀ s₀ hs₀
+    · have hlens : s.length = s₀.length := by
+        rw [hsrot, List.length_rotate, FreeGroup.invRev_length]
+      rw [hlenr, hlens]
+      exact h r₀ hr₀ s₀ hs₀
 
 /-! ## 1.  The overrun depth is bounded by the offset -/
 

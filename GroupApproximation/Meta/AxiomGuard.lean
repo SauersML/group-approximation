@@ -67,11 +67,38 @@ def auditAxiomsOf (constName : Name) : CommandElabM Unit := do
     throwError "'{constName}' depends on axioms outside the classical allowlist: \
 {bad.toList}\n  full closure: {closure.toList}\n  permitted: {classicalAxioms}"
 
+/-- Remove metadata wrappers without unfolding the advertised proposition. -/
+private def stripMData : Expr → Expr
+  | .mdata _ body => stripMData body
+  | body => body
+
+/-- Reject a declaration whose elaborated type starts with a caller-supplied
+binder, then apply the transitive axiom audit.
+
+This is intentionally stronger than `#audit_axioms`: a conditional theorem
+can have a perfectly clean proof term.  Advertised existence packages must
+instead state a closed proposition directly. -/
+def auditClosedAxiomsOf (constName : Name) : CommandElabM Unit := do
+  let env ← getEnv
+  let some ci := env.find? constName
+    | throwError "unknown declaration '{constName}'"
+  if (stripMData ci.type).isForall then
+    throwError "advertised closed endpoint '{constName}' has a leading input; \
+state and prove a closed proposition instead of accepting construction data"
+  auditAxiomsOf constName
+
 /-- `#audit_axioms foo` is `#print axioms foo` that fails the build when the
 closure of `foo` is not classical. -/
 elab "#audit_axioms " id:ident : command => withRef id do
   let names ← liftCoreM <| realizeGlobalConstWithInfos id
   names.forM auditAxiomsOf
+
+/-- `#audit_closed_axioms foo` additionally rejects leading declaration
+inputs, so a hypothesis-taking implication cannot masquerade as an
+unconditional endpoint merely because its axiom closure is clean. -/
+elab "#audit_closed_axioms " id:ident : command => withRef id do
+  let names ← liftCoreM <| realizeGlobalConstWithInfos id
+  names.forM auditClosedAxiomsOf
 
 end GroupApproximation.Meta
 
@@ -99,3 +126,17 @@ error: 'Lean.ofReduceBool' depends on axioms outside the classical allowlist: [L
 -/
 #guard_msgs in
 #audit_axioms Lean.ofReduceBool
+
+theorem closedAuditCalibration : True := True.intro
+
+theorem conditionalAuditCalibration (_h : True) : True := True.intro
+
+/-- info: 'closedAuditCalibration' depends on axioms: [] -/
+#guard_msgs in
+#audit_closed_axioms closedAuditCalibration
+
+/--
+error: advertised closed endpoint 'conditionalAuditCalibration' has a leading input; state and prove a closed proposition instead of accepting construction data
+-/
+#guard_msgs in
+#audit_closed_axioms conditionalAuditCalibration

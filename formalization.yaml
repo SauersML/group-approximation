@@ -18,6 +18,7 @@ sources:
   - title: "An explicit sofic group that is not MF"
     type: original-proof
     relationship: other
+    note: "The selected theorem is first presented in this project."
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
@@ -107,12 +108,31 @@ automation:
     - method: agent
       models: [GPT-5.6 Sol, Claude Fable 5, Claude Opus 5]
       framework: Codex and Claude Code
+      tool_setup: >-
+        The named agents generated and revised the Lean development and prose
+        under maintainer direction.
 
 status:
-  scope: "Comparator-selected theorem only."
+  scope: >-
+    Comparator selects the theorem that E is sofic and not MF. For this
+    countable group, the sequential operator-norm definition is equivalent to
+    the Carrión-Dadarlat-Eckhardt matrix-corona definition.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: [propext, Quot.sound, Classical.choice]
 
+fidelity:
+  divergences: >-
+    The statement uses standard finite-set soficity and the equivalent
+    sequential definition of the MF property for countable groups.
+
+alignment: >-
+  ExplicitNonMF.explicit_sofic_not_MF states that the presented group E is
+  sofic and not MF.
+
 review:
   status: self-assessed
+  notes: >-
+    The selected statement and its build were checked by the maintainer. An
+    earlier manuscript received external mathematical comments; the final Lean
+    formalization has not been independently peer-reviewed.

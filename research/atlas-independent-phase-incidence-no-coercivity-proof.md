@@ -96,7 +96,6 @@ P_r=RT,
 P_s=T,                                                (IPFP6)
 ```
 
-and leave every phase vertex not named in `(IPFP3)` or `(IPFP6)` equal to
 `Z`.  Every unaffected edge still contributes `ZZ^*=I`.  The interior
 private edge contributes
 
@@ -111,7 +110,7 @@ H_int=R^*R=I.                                         (IPFP7)
 ```
 
 Equations `(IPFP3)--(IPFP7)` prove `(IPF2)`.  Since the normalized
-Hilbert--Schmidt norm of `-4Z` is `4`, the left side of `(IPF3)` is at least
+Hilbert--Schmidt norm of `-4I` is `4`, the left side of `(IPF3)` is at least
 `16` while its right-hand bracket is zero.  This disproves `(IPF3)` for
 every finite `C`.
 

@@ -3,8 +3,6 @@ rg: 2
 id: projective-trace-square-transfer-for-sl3-pair
 kind: claim
 title: Projective trace-square transfer for the co-dense SL3 arithmetic pair
-artifacts:
-  - research/artifacts/projective-transfer-five-consumer-audit-2026-08-23.md
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forces an actual subgroup-central unitary into the ambient commutant; this asks only that its commutator with the one ambient generator become scalar in normalized Hilbert--Schmidt norm.
   no-spherical-leak-in-matrix-ultraproducts: that excludes every nontrivial spherical component and is equivalent to full relative-commutant collapse; this permits a leak whenever its ambient commutator is scalar, because scalarity already suffices for the HNN trace contradiction.
@@ -48,41 +46,6 @@ The claim is projective: `(PTS1)` concludes that `[U,rho(h)]` is close to
 weakening consumed by the HNN marked word.
 
 ## Attempts
-
-- **The five direct consumers contain only one independent root-goal
-  obstruction.**
-  `sl3-projective-transfer-five-consumers-share-one-root-gate`
-  audits all five routes.  The direct HNN route already reaches the goal
-  from this claim alone; the other four consumers are reusable interfaces,
-  not weaker independent paths around the same missing estimate.  The
-  narrowest trace profile actually consumed is the canonical arithmetic
-  double, whose fold-collapse statement is equivalent to
-  non-hyperlinearity of that fixed double.  The strongest nonvacuous
-  sufficient subterminal currently isolated is one correctable double
-  vertex, and that statement lies on the unresolved soficity fork for the
-  type-zero building action `A` on `A/C`.  Accordingly the raw five-route
-  cascade count should not be read as five independent breakthrough chances.
-
-- **Full HNN regularity supplies an exact quasiregular unitary frame, but
-  its projective energy has the wrong sign.**
-  `full-hnn-regularity-is-a-quasiregular-unitary-orbit` computes every mixed
-  stable-letter coefficient unavailable to `(CAN1)`.  In a hypothetical
-  full canonical HNN matrix ultraproduct, the conjugates
-  `pi(a)kpi(a)^*`, indexed by `A/C`, are an orthonormal unitary frame and
-  `tau(k^*pi(g)kpi(g)^*)=1_C(g)`.  Hence source energy is exactly zero while
-  the `h` target energy is exactly one.  Restricting `(PTS1)` to this branch
-  therefore turns it into the outright nonexistence of the microstates, not
-  a softer trace-conditioned inequality.  The same frame exists in the
-  exact group factor, so only a matrix-embeddability obstruction can refute
-  it.
-- **Dimension overflow needs an unavailable moving word window.**  Although
-  `M_d` contains at most `d^2` orthogonal frame vectors, canonical
-  regularity controls each fixed finite family of Britton words, whereas
-  overflow needs more than `d_n^2` cosets at coordinate `n` and Gram errors
-  `o(d_n^(-2))` on a moving family.  The precise rate firewall is
-  `quasiregular-frame-dimension-overflow-needs-a-moving-word-window`.
-  Thus the full stable-letter moments identify the correct nonlinear unitary
-  orbit but do not by themselves furnish a finite-dimensional contradiction.
 
 - **The full raw rank-one coboundary packet still has an exact leak.**
   `rank-one-self-commutator-coboundary-packet-has-s3-leak` strengthens the
@@ -207,32 +170,6 @@ weakening consumed by the HNN marked word.
   because `Ad rho|_C` need not be a representation; proving the needed robust
   projection/co-density statement is already the universal matrix-
   ultraproduct relative-commutant wall.
-
-- **The arbitrary-unitary wall is exactly one balanced-projection endpoint
-  problem.** `sl3-projective-transfer-is-balanced-projection-endpoint-transfer`
-  combines the trace-zero involution dilation with a projection calculation
-  that does not require the native commuting-lamp relation.  If
-  `P=(I-v)/2`, `tr(P)=1/2`, and `Q=rho(h)P rho(h)^*`, then
-
-  ```text
-  2 dist_2(Q,{P,I-P})^2
-   <=1-|tr([v,rho(h)])|^2
-   <=4 dist_2(Q,{P,I-P})^2.
-  ```
-
-  Thus `(PTS1)` is equivalent at the qualitative/linearized level to saying
-  that every asymptotically `C`-invariant half-rank projection is sent by
-  `h` to either itself or its complement.  More sharply, if `D,O` are the
-  diagonal and off-diagonal block masses of `rho(h)` relative to `P`, then
-  the target energy is exactly `4DO`.  The rank-one denominator identity
-  forces `D>=1/8-o(1)` on every sequence with nonvanishing `O`, so target
-  energy is at least `O/2-o(1)`.  It therefore excludes the complementary
-  branch quantitatively and reduces the claim to actual invariance
-  `||rho(h)P rho(h)^*-P||_2->0`.
-  This is sharper than the native commuting-conjugate lamp problem: the
-  generic dilation produces no relation `[P,Q]=0`.  The remaining theorem is
-  therefore a balanced projection endpoint-transfer statement for an
-  approximate arithmetic action, not correction of an arbitrary unitary.
 
 - **The native joint relation has a strictly smaller defect-only certificate.**
   `native-transfer-has-defect-only-certificate` proves that after restricting
@@ -383,24 +320,6 @@ weakening consumed by the HNN marked word.
   compositions of different arithmetic paths.  In particular a scalar
   metaplectic/Weil flux computation alone cannot close the projective
   transfer frontier.
-
-- **Localization at `2` creates no new stable Steinberg multiplier.**
-  `inverting-two-adds-no-stable-steinberg-projective-class` applies the exact
-  Quillen localization segment
-
-  ```text
-  K_2(F_2) -> K_2(Z) -> K_2(Z[1/2]) -> K_1(F_2)
-  ```
-
-  and the vanishing of both outside terms to prove that
-  `K_2(Z) -> K_2(Z[1/2])` is an isomorphism.  Hence restriction on
-  circle-valued projective multipliers is injective for the **stable**
-  elementary groups: a stable arithmetic multiplier which is trivial over
-  the integral core is already trivial globally.  This rules out a new
-  localization-born stable Schur clock as the missing mechanism.  It does
-  not prove `(PTS1)`: the target is rank three and approximate, and its inner
-  adjoint formulation has already removed scalar phases.  The unresolved
-  datum remains noncentral multiplicity transport on one common reservoir.
 
 - **Exact models now pass with a uniform quantitative gap.**
   `exact-projective-codensity-has-a-uniform-trace-square-gap` proves `(PTS1)`
