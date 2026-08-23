@@ -125,3 +125,14 @@ For the Mihailova candidate, the bounded-support normalizer problem is
 therefore precisely a regular-trace finite-range cocycle problem inside the
 left-right Bernoulli orbit relation.  Arbitrary nonnormalizing coefficients
 remain the separate Hadamard-cell branch.
+
+For the property-`(T)` Fournier--Facio choice of `Q`, in fact the entire
+orthogonal cocycle branch closes.  `kazhdan-finite-cocycles-cannot-enter-haagerup-actions`
+uses that `F_m times F_m` is Haagerup.  Adding its free Bernoulli shift
+preserves the partition equations and makes the represented `Q`-action free.
+Its relation would be a subrelation of a Haagerup orbit relation and hence
+Haagerup, while property `(T)` of `Q` makes it a property-`(T)` relation.
+Such a relation has finite classes, contradicting freeness of the infinite
+group `Q`.  Therefore no regular-trace orthogonal finite-range cocycle exists,
+even with genuinely mixed left-right labels.  Only the nonnormalizing
+Hadamard-cell/full-envelope branch survives.

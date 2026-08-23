@@ -345,6 +345,20 @@ non-hyperlinear group `hat K rtimes Lambda`.
   relation.  Nonnormalizing Fourier coefficients lie instead in the existing
   Hadamard-cell assembly, which is equivalent to the full ambient-envelope
   problem.
+- **The full orthogonal finite-range Mihailova branch is impossible (proved,
+  2026-08-23).**  Choose the finitely presented nonsofic quotient `Q` to be
+  the infinite property-`(T)` Fournier--Facio group.  Since
+  `F_m times F_m` is Haagerup,
+  `kazhdan-finite-cocycles-cannot-enter-haagerup-actions` excludes every
+  regular-trace solution of `(OFC1)`--`(OFC3)`, with arbitrary mixed finite
+  actor supports.  The proof freely Bernoulli-stabilizes the host, turning
+  the cocycle into a free `Q`-subrelation of a Haagerup relation.  Haagerup
+  passes to subrelations, whereas the resulting `Q`-relation has property
+  `(T)`; a relation with both properties has finite classes, contradicting
+  freeness of infinite `Q`.  Thus not only the one-coordinate attempt but
+  the entire finite-valued normalizer ansatz is closed.  The surviving
+  Mihailova route must use genuinely nonnormalizing Fourier coefficients and
+  hence returns to the Hadamard-cell/full algebraic-envelope problem.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
