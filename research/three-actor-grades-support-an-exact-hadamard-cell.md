@@ -83,3 +83,10 @@ This is a constructive local cell for the algebraic compact-action route,
 but it does not by itself embed the Manzoor relation algebra: a successful
 envelope must still assemble such cells so that all source-generator
 products and IRS traces are preserved.
+
+`countable-three-grade-cells-generate-the-whole-crossed-product` identifies
+the exact scope of that assembly: after the base is included, countably many
+cells recover every chosen actor unitary and hence exactly the crossed product
+of the actor directions. Thus local three-grade syntax is no longer a gate,
+but the global Manzoor inclusion remains precisely the algebraic-envelope
+problem.

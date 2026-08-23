@@ -329,6 +329,18 @@ assemble these three-grade matrix cells into images of the Manzoor generators
 while preserving their full multiplication table and IRS trace, rather than
 merely producing isolated mixed unitaries.
 
+There is an exact universality statement, but it is also a firewall.
+`countable-three-grade-cells-generate-the-whole-crossed-product` partitions
+each cyclic orbit graph into countably many matched pieces and proves that
+the corresponding Hadamard cells, together with the base, recover the actor
+unitary by strong summation. Repeating this over actor generators recovers
+the entire crossed product. Therefore a countable cell assembly embeds `N`
+exactly when that ambient algebraic crossed product embeds `N`; the cells do
+not create a smaller intermediate theorem. Amenable cell directions remain
+hyperfinite, the native virtually-free actor remains CE by
+`abelian-by-virtually-free-groups-are-sofic`, and Haagerup directions remain
+excluded by `haagerup-actors-cannot-host-property-t-algebraic-envelope`.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a
