@@ -135,3 +135,10 @@ left side stays `p^(-2)-p^(-4)`.  The live hypothesis must therefore add
 be decoded as the same finite-matrix coefficient maps which generate
 `R_s,R_0,R_1`.  A scalar long-root fold or common marked carrier does not
 authenticate that reuse.
+
+The countermodel can even assign one literal unitary to every `s_0/t_0`
+outer occurrence and one literal middle unitary: a class-three
+`UT_4(F_p)` calculation still makes `D=C_0` a prescribed nontrivial scalar.
+Hence “occurrence synchronization” must be read as **payload-coupled**
+synchronization with the Weyl/Heisenberg packet, not merely equality,
+conjugacy, or a closed transporter graph among the fold occurrences.

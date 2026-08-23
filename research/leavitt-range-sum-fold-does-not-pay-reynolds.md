@@ -68,3 +68,33 @@ with the branch coefficient maps whose multiplicity Reynolds ranges are
 being compared.  Equivalently, it needs a payload-coupled occurrence
 relation or finite-coordinate conditional map; equality of the scalar
 output root, even on a nontrivial common phase carrier, is insufficient.
+
+The duplication is not removed by literally reusing the fold occurrences.
+For `p>=5`, use the Lazard exponential model of the strictly upper triangular
+Lie algebra `n_4(F_p)`.  Put
+
+```text
+q=exp(E_12+E_34),             m=exp(E_23).
+```
+
+The two outer components of `q` commute, and the class-three commutator
+calculation gives
+
+```text
+[q,[m,q]]=exp(2E_14).                                  (FRN5)
+```
+
+Choose a nonzero central-character sector on which `exp(2E_14)` acts as
+`zeta I`.  Assign the **same** `q` to all four `s_0/t_0` outer occurrences
+in `D` and `C_0`, the same `m` to the middle occurrence, and make the second
+range path trivial.  Then again `D=C_0=zeta I`, `C_1=I`, and the fold is
+exact.  Thus even the strongest literal common-middle/common-outer reuse
+inside the fold leaves an auxiliary tensor factor completely independent of
+the rectangular packet.
+
+It follows that no finite reuse graph confined to the fold cell can be the
+missing assertion.  At least one relation must couple a reused occurrence
+to the **packet payload** whose Reynolds projection is being measured, and
+must prevent the occurrence from acquiring a tensor-independent nilpotent
+factor.  Ordinary equality or conjugacy of the fold occurrences does not do
+this.
