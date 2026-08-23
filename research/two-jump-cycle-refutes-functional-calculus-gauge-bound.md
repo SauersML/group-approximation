@@ -7,6 +7,7 @@ distinct_from:
   long-cycles-have-unbounded-l2-coboundary-inverse: that uses a delocalized first Fourier mode and is a linear inverse obstruction; this is an exact nonlinear unitary coboundary with residual supported on two cycle sites.
   normalized-hs-taylor-remainder-is-not-dimension-free: that gives a rank-one second-derivative obstruction for word maps; this gives the corresponding global obstruction for the exact unitary coboundary map.
   iwahori-cubics-control-aggregate-weighted-bs-orbit-energy: that may still hold because its right side is the full Iwahori relator energy; this proves that residual HS size plus functional calculus cannot prove it.
+  opposite-root-orthogonality-charges-two-jump-gauges: that proves the Weyl involution row detects these same plateaux in exact left regular congruence packets; this isolates what extra full-group information is needed.
 ---
 
 There is no dimension-free modulus `g(delta)->0` with the following
@@ -57,6 +58,10 @@ algebra on that orbit is a copy of `A_L`, and `psi=Ad(h)` is its cyclic
 shift.  Hence the packet is not an abstract automorphism pathology: it is
 present in exact odd congruence skeletons (where the completed global
 congruence repair theorem bypasses it using the other group relations).
+In fact `opposite-root-orthogonality-charges-two-jump-gauges` computes that
+the Weyl involution row has defect exactly `sqrt(2)` on this gauge in the
+left regular arithmetic packet.  Thus the example refutes residual-only
+functional calculus, not full-group coercivity.
 
 This is the nonlinear rank-concentration form of the normalized-HS Taylor
 failure.  Spectral rounding, taking logarithms on the good spectrum, or
