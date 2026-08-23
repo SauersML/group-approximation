@@ -88,6 +88,19 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   complements can both be replaced by the trivial representation.  Thus a
   surviving counterexample must use essential two-primary or noncongruence
   vertex mass; growing odd level by itself is now excluded.
+- **Every bounded pure dyadic window is uniformly repaired.**
+  `bounded-dyadic-conductor-iwahori-pairs-have-uniform-repair` proves a
+  linear bound `D<=K_A def` when both exact vertices factor through pure
+  `2`-power quotients of exponent at most `A`.  The proof treats each pair
+  of quotient maps as one fixed finite restriction diagram: edge energy
+  pays the finite branching-multiplicity mismatch, an integer Hoffman bound
+  rounds that mismatch to the compatible monoid, and polar alignment makes
+  the corrected restrictions literally equal.  Thus the exact-congruence
+  enemy is forced toward unbounded two-adic conductor (mixed odd/dyadic
+  packets still require separating the full odd factor).  The precise
+  missing uniformity is control of the restriction-monoid Hoffman constants
+  across the dyadic tower; index-three bounded branching alone does not
+  bound them.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes
