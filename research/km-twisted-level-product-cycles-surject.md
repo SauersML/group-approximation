@@ -159,3 +159,39 @@ class is unavailable).
   radical `X_beta X_(beta+alpha) X_(beta+2alpha) X_(beta+3alpha)`
   (center `X_(2beta+3alpha)`), with the usual care about structure
   constants in characteristics two and three.
+- **`G_2` line-panel sphere equation (2026-08-23).**  In the twelve-gon
+  apartment (lines even, points odd, `ell_1` at zero), take the base
+  class point `P_0` at position five, foot at position one.  The wall
+  dictionary gives: `X_(3alpha+beta)` is the stabilizer of `P_0` in the
+  radical, `X_(2alpha+beta)` slides along the geodesic line (staying in
+  the class), `X_beta` and the center move to distance four, and
+  `X_(alpha+beta)` to distance six.  Writing translations as
+  `x_beta(b) x_(alpha+beta)(c) x_(2alpha+beta)(d) x_Z(f)` and using
+  that hexagon-distance `<= 4` between points equals perpendicularity
+  in the seven-dimensional representation, the coefficient of
+  `e_(alpha+beta)` in `u e_(-alpha-beta)` computes the distance sphere:
+
+      `distance(u P_0, P_0) <= 4   iff   c_4 c^2 + c_2 c_7 b d = 0`,
+
+  with `c_7 = N_(beta,alpha) = ±1`, `c_2 = N_(2alpha+beta,-alpha-beta)
+  = ±2`, and `c_4` the divided-power double-step constant.  For odd
+  `q` prime to three this is a nondegenerate quadric `c^2 = lambda bd`:
+  it contains the `b`-axis, the `d`-axis, and curved points with
+  `c != 0`, so the distance-four translations span the Frattini
+  quotient together with the stabilizer direction.  Validity of
+  midpoints: the only distance-three neighbour of `P_0` is the single
+  apartment point on the geodesic line, because every `A`-line is
+  opposite `ell_1` and so carries only distance-five points; hence the
+  invalid (line-four-midpoint or intra-class) part of the sphere is a
+  proper positive-proportion subset, the pure `x_beta` moves have their
+  midpoint at apartment position seven with foot the OTHER apartment
+  class and connecting line `ell_1^op` (valid), and generic curved
+  sphere points with `d != 0` retain valid midpoints.  Remaining rigor
+  gaps: (i) exhibit two curved valid sphere points independent of the
+  `b`-axis (a genericity count over the midpoint-class function), and
+  (ii) CHARACTERISTIC 2 AND 3: `c_2 = ±2` kills the `bd` term in
+  characteristic two (where also `G_2 <= Sp_6`), and the char-3
+  special isogeny changes the radical's center, so even `q` and
+  `q = 3^k` need separate sphere computations -- TLS1 could genuinely
+  differ there.  The point-panel dual (class-three radical, Frattini
+  quotient `F_q^2`) remains to be run through the same dictionary.
