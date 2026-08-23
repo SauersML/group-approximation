@@ -605,3 +605,28 @@ defect for the true `(2,4,6)` parabolic levels with the B-level
 overlap -- a finite incidence-combinatorics computation (chamber
 systems of the B_2 and G_2 residues glued along a Borel level),
 within reach of the morning's polygon machinery.
+
+## Addendum 18: the decisive computation, fully specified
+
+The faithful first-level two-block defect needs NO global lattice
+multiplication: the arena is the abstract glued set
+
+```text
+U = U_(B_2)(q) u_(U_(-alpha_3)) U_(G_2)(q),    |U| = q^4 + q^6 - q
+(q = 2: 16 + 64 - 2 = 78 points),
+```
+
+with only the two unipotent groups' internal (left-coset) structures
+and the identification of the shared root subgroup.  Subgroups:
+`H^1 = U_(-alpha_1)`, `H^2 = U_(-alpha_2)`, `H^3 = U_(-alpha_3)`,
+adversary levels the two full unipotents.  The only construction
+hazard is the `G_2` unipotent in char 2 (structure constants of
+magnitude 2 vanish; magnitude 3 do not): build it from a VERIFIED
+source -- GAP/Sage `G2(2)` Sylow-2 on MSI, or the H(2) hexagon
+collineations -- not from memory.  Then rerun `two_block` (and the
+refined variant) on the 78-point arena; repeat at q = 3 (16 -> 81 +
+729 - 3 = 807 points) to see the q-trend.  Zero defect at faithful
+levels (all vertex roles, growing levels) would be the first real
+step toward KILLING Corollary E at Bernoulli actions and thereby
+toward the LLP-positive branch; nonzero stable defect feeds the
+quotient-tower survival program of Addendum 16 toward LP failure.
