@@ -29,6 +29,13 @@ lemma must be aggregated simultaneously--for example by a multiway
 complete-pair minor, a gauge-covariant square function, or a direct joint
 PVM construction--rather than summed along a character-query tree.
 
+Nor does it refute weighted random hashing.
+`weighted-code-character-hash` shows
+that `O(log(1/eta))` nonadaptive coordinates leave only an `eta` fraction of
+arbitrarily weighted distinct-character boundary, independently of the
+number of represented characters.  The entropy lower bound applies only to
+exact identification of every leaf.
+
 ## Attempts
 
 Choosing a balanced coordinate at every node attains logarithmic depth but
