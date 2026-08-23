@@ -125,6 +125,35 @@ theorem sharpGreendlingerGate_of_windowDropSharp_of_landingSharp [DecidableEq α
           (hwin R lam hcyc hRne hlam0 hlam hmetric))
         (hland R lam hcyc hRne hlam0 hlam hmetric)
 
+/-- **The gate from the window family and the beta family.**
+
+`GreendlingerSharpTwins.landingProductionSharp_of_betaSharp` turns the beta
+family into the landing family, so the drop route can be stated against the
+same two names the residual bundle uses.
+
+Stating it this way makes the comparison exact.  `SharpResiduals` asks for
+`DeepOverrunArcSharp` together with `LandingProductionBetaSharp'`; this asks
+for `DeepWindowDropSharp` together with `LandingProductionBetaSharp`.  The
+second components are the same obligation up to
+`landingProductionSharp'_of_landingProductionSharp`, while the first is
+strictly weaker here: the drop form carries no offset conjunct.  So the drop
+route dominates --- anything that discharges the residual bundle discharges
+this, and not conversely. -/
+theorem sharpGreendlingerGate_of_windowDropSharp_of_betaSharp [DecidableEq α]
+    (hwin : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → DeepWindowDropSharp R lam)
+    (hbeta : ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+      (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → (∀ r ∈ R, r ≠ []) →
+      0 < lam → lam ≤ 1 / 6 →
+      MetricSmallCancellation R lam → LandingProductionBetaSharp R lam) :
+    GreendlingerFreeGate.SharpGreendlingerGate α :=
+  sharpGreendlingerGate_of_windowDropSharp_of_landingSharp hwin
+    fun R lam hcyc hRne hlam0 hlam hmetric =>
+      landingProductionSharp_of_betaSharp hmetric
+        (hbeta R lam hcyc hRne hlam0 hlam hmetric)
+
 /-- The drop-route gate on the router's own alphabet, which is the instance
 every construction in this repository consumes. -/
 theorem sharpGreendlingerGate_fin_two_of_windowDropSharp_of_landingSharp
