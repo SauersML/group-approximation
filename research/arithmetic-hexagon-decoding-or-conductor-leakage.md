@@ -767,3 +767,36 @@ the fixed-depth nonhyperlinearity criterion.
   genuinely `D`-invariant, have orthogonal `C/D` translates, and make its
   section leakage enter `(EDA11)`. Naive orbit averaging fails because the
   conjugate cyclic algebras do not commute.
+- **The full stabilizer orbit does produce the missing base carrier.**
+  `stabilizer-orbit-commutators-have-a-kesten-chart-carrier` sets
+
+  ```text
+  O=D.h^(-1)C,
+  kappa_z=[c_(hC),c_z],
+  S=sum_(z in O)(kappa_z+kappa_z^(-1)).
+  ```
+
+  The orbit is finite and has at least two points. Since `hC` is nonadjacent
+  to every `z in O`, graph-product normal form shows that the `kappa_z`
+  freely generate `F_|O|`. Thus `S` has the continuous Kesten law and is
+  exactly `D`-invariant. Its `1/42` quantile cut `E` is a functorial raw-word
+  projection with `tau(E)=1/42`; unlike a one-`kappa` cut, it pays no chart
+  stabilizer defect. Its `42` conjugates
+
+  ```text
+  E_i=g_i E g_i^(-1),       g_i in C/D,
+  ```
+
+  are well-defined equal-trace covariant projections. They form the desired
+  chart PVM exactly when the now-single residual scalar
+
+  ```text
+  G_K=sum_(i!=j)tau(E_iE_j)=||sum_iE_i-I||_2^2
+  ```
+
+  vanishes. This resolves existence, trace, stabilizer descent, and
+  Bernoulli-quotient exclusion for the nonlinear carrier. The immediate
+  frontier is the exact pair-intersection/Gram calculation for the `42`
+  conjugate free subfactors. Pairwise centered independence would give the
+  negative value `G_K=41/42`; orthogonality or a native defect bound would
+  give the chart PVM and feed EDA11.

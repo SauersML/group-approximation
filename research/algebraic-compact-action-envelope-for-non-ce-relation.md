@@ -284,6 +284,20 @@ infinite family of mixed Fourier checks. The remaining construction problem
 is the inclusion of `N` together with those two marginals and exact
 covariance.
 
+The canonical Manzoor source generators cannot fill even this reduced packet
+homogeneously. `manzoor-irs-generators-cannot-be-single-actor-grade` uses the
+fact that the Manzoor stabilizer is infinite almost surely, so some
+nonidentity free-group word `w` has strictly positive IRS trace
+`mu({S:w in S})`. If the free generators were sent to arbitrary
+lamp-decorated homogeneous grades `B_s U_(theta(s))` along an injective
+`theta:F->Gamma(3)`, their word `w` would remain in the nonidentity grade
+`theta(w)` and hence have trace zero. Thus the direct exact covariant
+placement fails even when the lamp coefficients are arbitrary base
+unitaries. A surviving source inclusion must Fourier-mix actor grades in at
+least one canonical IRS generator, or scramble the canonical generator
+system nonhomogeneously; the obstruction does not rule out that sharper
+route.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a
