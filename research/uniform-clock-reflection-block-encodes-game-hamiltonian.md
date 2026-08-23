@@ -64,5 +64,8 @@ constant.
 
 This closes aggregation completely.  It does not promote `C_m` to an
 ordinary group word, nor make its selected clock/flag corner a fixed
-finite-matrix carrier.  Those two requirements are exactly the remaining
-wandering Hecke promotion.
+finite-matrix carrier. Moreover, as computed in
+`uniform-clock-corner-is-not-a-reflection`, the selected corner is `1-H_m`
+and has complementary squared leakage `H_m(2-H_m)`; it is not itself a
+reflection unless `H_m=0`. Thus aggregation alone supplies neither a
+wandering word nor the reducing return needed to control its powers.

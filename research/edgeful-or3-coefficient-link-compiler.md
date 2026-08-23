@@ -298,3 +298,23 @@ transport, nor selected-type prefix compression can provide the payment.
 The remaining construction is exactly one payload-sensitive non-Bass--Serre
 two-cell, or an infinite actor which obstructs canonical extension while
 retaining the marked exact completion.
+
+The first non-Bass--Serre refinement is now also excluded.
+`b7-faithful-two-cell-retains-or3-prefix-defect` proves that every residually
+finite two-cell group retaining the B7 packet has canonical quotient models
+with the exact prefix defect, whether or not the cell is Bass--Serre.  In
+particular the direct curvature cell equating the paid
+local and global commutators around the omitted cap is exact in the B7
+witness while the oriented defect remains the rank-one matrix unit
+`|e_4><e_0|`.  The finite-presentation branch must therefore fail relative
+residual finiteness at B7 and authenticate this oriented source-to-target
+corner; a finite total Clifford actor or an uncompressed scalar/projective
+holonomy cannot work.
+
+Nor is non-residual-finiteness alone the endpoint.  The sofic wrapper in
+`exact-fd-wandering-reflection-promotion-can-remain-sofic` shows that an
+actor word may vanish in every exact finite-dimensional representation while
+retaining full canonical compressed error.  Consequently the surviving
+infinite option must be quantitatively payload-coupled to
+`|e_4><e_0|`; a sterile Thompson/simple/direct-product attachment does not
+advance `(SPA12)`.

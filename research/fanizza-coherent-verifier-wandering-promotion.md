@@ -5,7 +5,7 @@ kind: claim
 title: Promote the coherent Fanizza verifier reflection to one wandering Hecke word
 distinct_from:
   balanced-router-pauli-holonomy-interface: that promotes two D8 packet reflections and asks a mixed return to trivialize their holonomy; this promotes one coherent-verifier reflection while retaining an infinite wandering normal form.
-  compressed-reflection-kills-even-cesaro-mark: that proves the complete analytic passage from the corner approximation here to a finite-matrix Cesaro ceiling; this remains the algebraic construction of the wandering ordinary word and its packet compression.
+  compressed-reflection-kills-even-cesaro-mark: that requires a reducing corner reflection; the native uniform zero-flag corner here is nonreducing and therefore does not satisfy that theorem's hypotheses.
 ---
 
 OPEN.  Let `V_m` and the finite clock/flag carrier `Q` be the explicit
@@ -24,21 +24,34 @@ finitely presented group extension and an ordinary word `w` such that:
    packet loss;
 3. the group normal form keeps `w^k` and `X_D^R w^k` pairwise distinct; and
 4. a countably amplified perfect HALT representation extends, even though
-   the selected compression of `w` is the finite-order reflection `V_m`.
+   `w` agrees on its first selected compression with the full finite-order
+   reflection `V_m`.
 
-By `compressed-reflection-kills-even-cesaro-mark`, `(FCW1)` itself gives an
-`o(1)` upper bound for every fixed even marked Cesaro sum.  Thus no separate
-weighted-state Dirichlet comparison is needed.  Clause 3 supplies canonical
-linear Cesaro growth, and `wandering-mark-cesaro-amplifier` finishes.
+## Dependency correction: the native corner is nonreducing
 
-There is now a sharper terminal audit.  By
-`compressed-finite-order-wandering-is-terminal`, clauses 1 and 3 already
-contradict hyperlinearity: compression to the reflection makes
-`(w(U)^2-1)Q_U=o(1)`, whereas infinite order and finite support make
-`(w^2-1)Q` nonzero in the regular group algebra.  Hence the Fanizza signal,
-marked translates, and Cesaro amplification are not load-bearing after
-`(FCW1)` has been established.  The strictly weaker live construction is
-`localized-square-return-wandering-promotion`.
+`uniform-clock-corner-is-not-a-reflection` corrects the former terminal
+reading of `(FCW1)`.  Although `V_m^2=1` on the full clock/flag space,
+
+```text
+Q_U V_m(U)Q_U=(1-H_m(U))Q_U,
+Q_U V_m(U)(1-Q_U)V_m(U)Q_U
+ =H_m(U)(2-H_m(U))Q_U.                                (FCW1a)
+```
+
+Thus the selected compression is generally a strict contraction, not a
+corner reflection.  Neither `compressed-reflection-kills-even-cesaro-mark`
+nor `compressed-finite-order-wandering-is-terminal` applies to `(FCW1)`.
+The routes `fanizza-wandering-dirichlet-return-route` and
+`fanizza-compression-implies-localized-square-return` are invalidated.
+
+Consequently the construction requested here, even if achieved, is only a
+one-step wordization.  To recover a nonhyperlinear route one must additionally
+construct a reducing returned carrier or prove a weighted-state estimate
+controlling all complementary excursions of the powers of `w`.  The direct
+finite-lamp construction in `uniform-clock-corner-is-not-a-reflection`
+wordizes `V_m` exactly, but its word has order two.  Making the normal form
+wandering while retaining robust excursion control is the actual missing
+input.
 
 There is now a further strict weakening which removes the named packet
 carrier itself.  `unnamed-positive-density-fixed-space-is-terminal` proves
@@ -55,12 +68,14 @@ needed.  The resulting minimal interface is
 
 The identity in `hnn-compressed-row-is-unnamed-fixed-carrier` turns this
 into the soft fixed carrier for the Britton word `a t b^(-1)t^(-1)`.
-Thus `(FCW1)` is no longer the weakest live endpoint; it remains useful only
-if the coherent verifier can be wordized directly.
+Thus `(FCW1)` is not the weakest live endpoint and is no longer terminal; it
+remains useful only as the first step of a stronger excursion-control
+construction.
 
 The exact tension is now explicit: `w` must be infinite and wandering in the
-group regular normal form but look like the fixed reflection `V_m` after one
-finite-dimensional packet compression.  A finite-edge graph-of-groups cell
+group regular normal form but have the same first corner as the fixed
+reflection `V_m`, while its powers control the nonzero excursion in
+`(FCW1a)`. A finite-edge graph-of-groups cell
 cannot suffice, because its regular finite models reproduce the Hecke
 compression.  The promotion must use a genuinely infinite-edge,
 non-Bass--Serre, or finite-multiplicity return mechanism.
@@ -97,27 +112,25 @@ wandering.
 
 ## Quantitative character-carrier audit
 
-When the finite clock/flag line is groupified as a one-dimensional character
-idempotent of a fixed packet `K`,
-`character-carrier-wandering-floor` gives,
-for every infinite-order candidate word,
+The former audit applied `character-carrier-wandering-floor` directly to the
+native verifier compression. That theorem assumes a corner unitary
+`V=QVQ`, `V^2=Q`, so it does not apply to `QV_mQ=(1-H_m)Q`. If a stronger
+construction first produces a genuinely reducing character carrier, then
+for every infinite-order candidate word it gives
 
 ```text
 ||Q w Q-V_m||_(2,regular)
  >= (1-1/sqrt(2))/sqrt(|K|).                           (FCW2)
 ```
 
-The proof has an exact dichotomy.  If `w` fails to preserve the packet
+The conditional proof has an exact dichotomy. If `w` fails to preserve the packet
 character, a proper character-Hecke intersection loses at least half the
 corner norm.  If it preserves the character, `w` reduces the corner, and
 the reflection equation exposes the nonzero square-return word
 `(w^2-1)Q`.  Hence every sufficiently canonical finite model has the same
-positive floor up to profile error.  This does not refute the target--the
-target is meant to exclude those canonical models and thereby prove
-nonhyperlinearity--but it shows precisely that neither positive packet
-density nor coherent reflection aggregation performs the promotion.  The
-missing input is a dimension-independent matrix-only rule which overcomes
-the explicit floor `(FCW2)` by making canonical microstates impossible.
+positive floor up to profile error. The native uniform carrier reaches this
+dichotomy only after the missing reduction/excursion-control step. Positive
+packet density and coherent reflection aggregation alone do not supply it.
 
 ## D16/Hadamard audit
 

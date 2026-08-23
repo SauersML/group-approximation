@@ -132,7 +132,3 @@ alignment: >-
 
 review:
   status: self-assessed
-  notes: >-
-    The selected statement and its build were checked by the maintainer. An
-    earlier manuscript received external mathematical comments; the final Lean
-    formalization has not been independently peer-reviewed.

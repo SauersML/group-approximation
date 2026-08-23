@@ -149,6 +149,69 @@ theorem no_model_of_uniform_unbounded_capacity
   obtain ⟨n, hn⟩ := hunbounded (dimension U)
   exact (not_lt_of_ge (hsound n (hall n))) hn
 
+/-! ## Spectral recurrence versus a uniformly authenticated power return -/
+
+/-- A recurrent power cannot be close to a unitary conjugate of a cursor that
+stays separated from the identity.  This is the quantitative core of the
+Power-Return criterion: conjugation preserves the cursor's operator-norm
+distance from `1`, while the selected power has returned close to `1`.
+
+The theorem deliberately assumes the recurrent exponent as input.  Producing
+such an exponent for every finite-dimensional unitary is the separate
+finite-spectrum recurrence lemma; compiling all corresponding word checks
+with one error budget is the open UPR interface. -/
+theorem recurrent_power_far_from_unitary_conjugate
+    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {A W : Matrix Y Y ℂ} {m : ℕ} {β : ℝ}
+    (hA : A ∈ Matrix.unitaryGroup Y ℂ)
+    (hsep : β ≤ ‖W - 1‖)
+    (hreturn : ‖W ^ m - 1‖ ≤ β / 4) :
+    3 * β / 4 ≤ ‖A * W * Aᴴ - W ^ m‖ := by
+  have hconj_matrix : A * W * Aᴴ - 1 = A * (W - 1) * Aᴴ := by
+    have hAA : A * Aᴴ = 1 := Unitary.mul_star_self_of_mem hA
+    calc
+      A * W * Aᴴ - 1 = A * W * Aᴴ - A * Aᴴ := by rw [hAA]
+      _ = A * (W - 1) * Aᴴ := by noncomm_ring
+  have hconj_norm : ‖A * W * Aᴴ - 1‖ = ‖W - 1‖ := by
+    have hAstar : Aᴴ ∈ Matrix.unitaryGroup Y ℂ := by
+      rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+        Matrix.conjTranspose_conjTranspose]
+      exact Unitary.star_mul_self_of_mem hA
+    rw [hconj_matrix, CStarRing.norm_mul_mem_unitary _ hAstar,
+      CStarRing.norm_mem_unitary_mul _ hA]
+  have htriangle :
+      ‖A * W * Aᴴ - 1‖ ≤
+        ‖A * W * Aᴴ - W ^ m‖ + ‖W ^ m - 1‖ := by
+    calc
+      ‖A * W * Aᴴ - 1‖ =
+          ‖(A * W * Aᴴ - W ^ m) + (W ^ m - 1)‖ := by
+            congr 1
+            noncomm_ring
+      _ ≤ ‖A * W * Aᴴ - W ^ m‖ + ‖W ^ m - 1‖ := norm_add_le _ _
+  rw [hconj_norm] at htriangle
+  linarith
+
+/-- **Frozen-coordinate Power-Return contradiction.**  If a cursor is
+`β`-separated, one of its powers has returned within `β/4`, the authenticated
+power-return check costs at most `C * defect`, and that root budget is below
+`β/2`, then the finite coordinate cannot exist.
+
+This is the formally checked post-coordinate argument used by the Cairn node
+`spectral-recurrence-power-return-non-mf-criterion`.  It has no trace,
+property-`(T)`, projection, central-sign, or literature hypothesis. -/
+theorem no_model_of_recurrent_uniform_power_return
+    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {A W : Matrix Y Y ℂ} {m : ℕ} {β C defect : ℝ}
+    (hA : A ∈ Matrix.unitaryGroup Y ℂ)
+    (hβ : 0 < β)
+    (hsep : β ≤ ‖W - 1‖)
+    (hreturn : ‖W ^ m - 1‖ ≤ β / 4)
+    (hauth : ‖A * W * Aᴴ - W ^ m‖ ≤ C * defect)
+    (hbudget : C * defect < β / 2) : False := by
+  have hlower : 3 * β / 4 ≤ ‖A * W * Aᴴ - W ^ m‖ :=
+    recurrent_power_far_from_unitary_conjugate hA hsep hreturn
+  linarith
+
 /-! ## Rank monodromy -/
 
 /-- The analytic edge of rank monodromy is already the rank-rigidity theorem:

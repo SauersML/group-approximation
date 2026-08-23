@@ -8,22 +8,24 @@ requires:
   - fanizza-coherent-verifier-wandering-promotion
 ---
 
-Use the group, carrier `Q`, and ordinary word `w` from the coherent Fanizza
-promotion.  Clause 1 gives
+**INVALIDATED BY `uniform-clock-corner-is-not-a-reflection`.** The proposed
+argument used the group, carrier `Q`, and ordinary word `w` from the coherent
+Fanizza promotion and then asserted
 
 ```text
-||Q_U w(U) Q_U-V_m(U)||_2=o(1),
-V_m(U)^2=Q_U.
+||Q_U w(U) Q_U-Q_U V_m(U)Q_U||_2=o(1),
+(Q_U V_m(U)Q_U)^2=Q_U.
 ```
 
-Equations `(CFP1)--(CFP4)` with `m=2` give
+The second line is false for the established controlled-clock reflection.
+The correct identities are
 
 ```text
-||(w(U)^2-1)Q_U||_2=o(1).
+Q_U V_m(U)Q_U=(1-H_m(U))Q_U,
+Q_U V_m(U)(1-Q_U)V_m(U)Q_U=H_m(U)(2-H_m(U))Q_U.
 ```
 
-The fixed packet has positive canonical mass, and clause 3 makes `w` have
-infinite order.  Clause 4 supplies the exact consistency/nontriviality
-witness.  These are precisely the localized square-return requirements.
-The native signal clause and the marked translates are not used.
-
+Thus squaring returns through the complementary carrier, and the leakage is
+generally positive. The finite-order compression telescope cannot be
+invoked. A new reducing carrier or a separate excursion-control theorem
+would be required to obtain the localized square return.

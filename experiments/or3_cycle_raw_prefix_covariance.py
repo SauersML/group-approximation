@@ -283,6 +283,26 @@ NONINCIDENCE = multiply(
 assert RAW_ROW == NONINCIDENCE
 assert hs_squared(NONINCIDENCE) == Fraction(1, 7)
 
+# The first genuinely coupled ordinary two-cell one can write only matches
+# multiplicative curvature across the paid c3 incidence:
+#
+#   [A_(c3,x31), 2q2-1] = [B_x31, 2q2-1].
+#
+# It is exact in this countermodel.  Both commutators are the same diagonal
+# sign J_04, even though the oriented prefix corner is the nonzero matrix
+# unit |e4><e0|.  Thus an uncompressed commutator/Clifford holonomy cell
+# forgets precisely the source-to-target orientation carried by RPC13.
+A31_C3 = observable(C3, 0)
+R2 = subtract(scale(2, Q2), identity())
+J04 = diagonal([-1, 1, 1, 1, -1, 1, 1])
+LOCAL_CURVATURE = multiply(A31_C3, multiply(R2, multiply(A31_C3, R2)))
+GLOBAL_CURVATURE = multiply(B31, multiply(R2, multiply(B31, R2)))
+EXPECTED_ORIENTED_DEFECT = zero()
+EXPECTED_ORIENTED_DEFECT[4][0] = ONE
+assert LOCAL_CURVATURE == J04
+assert GLOBAL_CURVATURE == J04
+assert RAW_ROW == EXPECTED_ORIENTED_DEFECT
+
 # In the natural irreducible block of B_7, normalized canonical regular trace
 # is (7/|B_7|) times the ordinary matrix trace.
 B7_ORDER = (2**N) * factorial(N)
@@ -306,6 +326,9 @@ def main() -> None:
     print("threshold=a/2=3/28; source_rank=2")
     print(f"raw_prefix_covariance_hs2={hs_squared(RAW_ROW)}")
     print(f"nonincidence_commutator_term_hs2={hs_squared(NONINCIDENCE)}")
+    print("curvature_matching_two_cell=exact")
+    print("local_curvature=global_curvature=diag(-1,1,1,1,-1,1,1)")
+    print("oriented_prefix_defect=matrix_unit_e4_e0")
     print(f"B7_order={B7_ORDER}")
     print(f"canonical_selected_profile_mass={CANONICAL_PROFILE_MASS}")
     print(f"canonical_selected_source_mass={CANONICAL_SOURCE_MASS}")

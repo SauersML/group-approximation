@@ -182,6 +182,91 @@ def koopman_regular_basis(d_matrix: np.ndarray, tolerance: float = 1e-9) -> tupl
     return vh.conj().T[:, :rank], d_matrix.shape[1] - rank
 
 
+def full_matrix_operator(unitary: np.ndarray) -> np.ndarray:
+    """Matrix of ``A -> Ad(unitary)(A)`` in column-major vectorization."""
+    return np.kron(unitary.conj(), unitary)
+
+
+def full_selector_linear_gap(
+    x: np.ndarray, r: np.ndarray, t: np.ndarray, tolerance: float = 1e-9
+) -> dict[str, object]:
+    """Audit the genuinely constrained linearized selector.
+
+    An arbitrary left tangent ``H`` changes the Weyl/inversion residual by
+    ``(1-Ad(R^-1))H``.  Its projected minimum coboundary preimage is the
+    regular part ``A`` of the conditional expectation of ``H`` onto
+    ``{T}'``.  Write ``H=A+B``, where ``B`` is otherwise unrestricted.  For
+    each prescribed ``A`` we eliminate the best possible ``B`` from the
+    Iwahori row derivatives and report the resulting quotient singular
+    value.  This detects cancellations that the gauge-only audit cannot see.
+
+    The calculation is over the complexification of the matrix tangent
+    space.  All row maps preserve the star decomposition, so this has the
+    same lower gap as the Hermitian/skew-Hermitian real tangent problem.
+    """
+    d = x.shape[0]
+    n = d * d
+    identity = np.eye(n, dtype=complex)
+
+    basis = spectral_commutant_basis(t)
+    coboundary_on_z = operator_matrix(basis, lambda a: a - ad(r.conj().T, a))
+    regular_coordinates, fixed_dimension = koopman_regular_basis(
+        coboundary_on_z, tolerance=tolerance
+    )
+    z_basis = np.column_stack(
+        [(a / math.sqrt(d)).reshape(-1, order="F") for a in basis]
+    )
+    regular_basis = z_basis @ regular_coordinates
+
+    def torsion_row(unitary: np.ndarray, order: int) -> np.ndarray:
+        conjugation = full_matrix_operator(unitary)
+        out = identity.copy()
+        power = identity.copy()
+        for _ in range(1, order):
+            power = power @ conjugation
+            out += power
+        return out
+
+    row_matrices = {
+        "x2": torsion_row(x, 2),
+        "xr2": torsion_row(x @ r, 2),
+        "xt3": torsion_row(x @ t, 3),
+        "xt2r3": torsion_row(x @ t @ t @ r, 3),
+    }
+    row_sets = {
+        "involution_plus_first_cubic": ("x2", "xt3"),
+        "three_torsion_rows": ("x2", "xt3", "xt2r3"),
+        "all_x_rows": ("x2", "xr2", "xt3", "xt2r3"),
+    }
+
+    gaps: dict[str, float] = {}
+    cancellation_dimensions: dict[str, int] = {}
+    for name, selected in row_sets.items():
+        full_rows = np.vstack([row_matrices[row] for row in selected])
+        prescribed = full_rows @ regular_basis
+
+        # The other tangent directions are ker(A-coordinate).  Avoid forming
+        # an explicit orthogonal-complement basis: L(I-BB*) has exactly the
+        # same range as L restricted to that complement.
+        cancellers = full_rows - prescribed @ regular_basis.conj().T
+        u, singular, _ = np.linalg.svd(cancellers, full_matrices=False)
+        scale = max(1.0, float(singular[0]) if singular.size else 1.0)
+        rank = int(np.count_nonzero(singular > tolerance * scale))
+        cancellation_dimensions[name] = rank
+        if rank:
+            effective = prescribed - u[:, :rank] @ (u[:, :rank].conj().T @ prescribed)
+        else:
+            effective = prescribed
+        gaps[name] = smallest_singular(effective, tolerance=tolerance)
+
+    return {
+        "regular_gauge_dimension": int(regular_basis.shape[1]),
+        "fixed_gauge_dimension": fixed_dimension,
+        "quotient_row_gaps_after_arbitrary_endpoint_cancellation": gaps,
+        "canceller_image_dimensions": cancellation_dimensions,
+    }
+
+
 def fourth_power_orbits(p: int) -> list[int]:
     unseen = set(range(p))
     lengths: list[int] = []
@@ -285,12 +370,12 @@ def analyze_matrices(
     }
 
 
-def analyze(primes: Sequence[int]) -> dict[str, object]:
+def analyze(primes: Sequence[int], full_selector: bool = False) -> dict[str, object]:
     endpoints = [endpoint(p) for p in primes]
     x = direct_sum([triple[0] for triple in endpoints])
     r = direct_sum([triple[1] for triple in endpoints])
     t = direct_sum([triple[2] for triple in endpoints])
-    return analyze_matrices(
+    result = analyze_matrices(
         x,
         r,
         t,
@@ -300,11 +385,14 @@ def analyze(primes: Sequence[int]) -> dict[str, object]:
             "fourth_power_orbit_lengths": {str(p): fourth_power_orbits(p) for p in primes},
         },
     )
+    if full_selector:
+        result["full_selector_linear_audit"] = full_selector_linear_gap(x, r, t)
+    return result
 
 
-def analyze_even_weil(p: int) -> dict[str, object]:
+def analyze_even_weil(p: int, full_selector: bool = False) -> dict[str, object]:
     x, r, t = even_weil_compression(p)
-    return analyze_matrices(
+    result = analyze_matrices(
         x,
         r,
         t,
@@ -314,6 +402,9 @@ def analyze_even_weil(p: int) -> dict[str, object]:
             "fourth_power_orbit_lengths": {str(p): fourth_power_orbits(p)},
         },
     )
+    if full_selector:
+        result["full_selector_linear_audit"] = full_selector_linear_gap(x, r, t)
+    return result
 
 
 def parse_prime_block(raw: str) -> list[int]:
@@ -339,14 +430,19 @@ def main() -> None:
         default=[],
         help="p = 1 mod 8 compressed even-Weil outliers",
     )
+    parser.add_argument(
+        "--full-selector",
+        action="store_true",
+        help="also eliminate arbitrary endpoint tangents in the linear selector audit",
+    )
     parser.add_argument("--output")
     args = parser.parse_args()
 
     payload = {
         "status": "finite diagnostic; algebraic floor is proved in Cairn",
         "normalization": "normalized Hilbert--Schmidt",
-        "rows": [analyze(block) for block in args.blocks]
-        + [analyze_even_weil(p) for p in args.even_weil],
+        "rows": [analyze(block, full_selector=args.full_selector) for block in args.blocks]
+        + [analyze_even_weil(p, full_selector=args.full_selector) for p in args.even_weil],
     }
     rendered = json.dumps(payload, indent=2, sort_keys=True)
     if args.output:
