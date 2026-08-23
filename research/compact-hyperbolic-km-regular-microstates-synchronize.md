@@ -179,3 +179,27 @@ least `1-|H|sqrt(E)`.  The remaining carrier problem is no longer
 simultaneous kernel-word extraction: it is extending this one
 overlap-subgroup-invariant carrier through `P_1`, `P_3`, and the rank-two
 vertex charts without losing density or recreating the nonflat counterpacket.
+
+## The kernel basis already builds the missing finite rank-two chart
+
+There is also a direct quotient-level gain.  Choose a finite section
+`sigma:P_13->E=P_1*_(P_0)P_3` which is the identity on `P_1 union P_3`.
+Every multiplication cocycle
+
+```text
+sigma(g)sigma(h)sigma(gh)^(-1)
+```
+
+is a fixed word in the free kernel basis.  Therefore
+`kernel-section-builds-relative-p13-chart` turns a tree-side representation
+whose kernel-basis defect is `d` into an all-pairs approximate `P_13` chart
+with defect at most `L_sigma d`.  Before finite-group exactification this
+chart agrees exactly with the existing `P_1` and `P_3` restrictions; on the
+regular branch its exactification has a `1-o(1)` regular core.
+
+This eliminates the need to guess or independently align a `P_13` chart.
+The frontier is now the relative simultaneous correction of the three
+finite rank-two charts: after exactifying `P_13`, perturb `P_12` and `P_23`
+on their large regular cores so that the `P_1`, `P_2`, and `P_3` overlap
+restrictions agree exactly.  That is a finite semisimple synchronization
+problem, rather than an unbounded kernel-word or carrier-density problem.
