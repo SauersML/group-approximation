@@ -120,3 +120,14 @@ supported 1-cochain.
   analogous computation is recorded for two places or for
   compact-hyperbolic type; both `H^2(Lambda;Z Lambda)=0` and `!=0`
   remain consistent with what is established.
+- **Expected FALSE (2026-08-23).**  Under
+  `km-twisted-level-product-cycles-surject` (proved for the grid type,
+  reduced to a verified symplectic pencil computation for `B_2`, open
+  only for `G_2`), the level-by-level induction in
+  `km-cusp-region-has-degree-three-compact-cohomology` gives
+  `H^2(Lambda;Z Lambda) = H^2_c(X^) = H^3_c(Z minus X^) = 0`.  Since
+  this claim's statement equals `H^2(Lambda;Z Lambda) != 0`, the
+  surjectivity would REFUTE it and dead-end the Corollary D route
+  `km-lp-fails-via-development-end-cohomology`: both cohomological
+  Ioana--Spaas--Wiersma clauses would then be dead at the Kac--Moody
+  lattices, while the same input makes `Lambda` type `F_3`.

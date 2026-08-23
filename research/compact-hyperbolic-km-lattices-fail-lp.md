@@ -80,7 +80,17 @@ cohomological input.
   ones, whose equivariant extension to the development is a coboundary
   there.  Simplicity still kills the finite-index detour of ISW Example
   1.3(ii) and Remark 1.2.
-- **ISW Corollary D, exact input identified (2026-08-23).**  The same
+- **ISW Corollary D, exact input identified and CONDITIONALLY DEAD
+  (2026-08-23, updated same day).**  Later same-day analysis of the
+  codistance filtration of the twin-building product
+  (`km-codistance-filtration-twisted-levels-are-rank-two-pairs`,
+  `km-twisted-level-product-cycles-surject`,
+  `km-cusp-region-has-degree-three-compact-cohomology`) shows that the
+  finite twisted-level surjectivity -- proved for grid levels and
+  verified in the symplectic model for `B_2`, open only for `G_2` --
+  implies `H^2(Lambda, Z Lambda) = 0` outright (and type `F_3`), so
+  Corollary D is EXPECTED DEAD here, like the trivial-coefficient
+  clause of Corollary E.  The original identification follows.  The same
   spectral sequence with group-ring coefficients gives
   `H^2(Lambda; Z Lambda) = ker( H^2_c(X;Z) -> H^2(X;Z) ) =
   H^1_infty(X;Z)`, the degree-one end cohomology of the development

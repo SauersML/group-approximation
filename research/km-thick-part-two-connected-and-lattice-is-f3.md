@@ -35,3 +35,11 @@ Route: `km-thick-part-two-connected-via-twisted-surjectivity`.  The
 Abramenko--Mühlherr) gives only finite presentability for these
 lattices; the affine analogue `SL_3(F_q[t,t^(-1)])` is `F_3` by the
 Bux--Köhl--Witzel rank theorem.
+
+**Warning on the sign of the consequence.**  The same input computes
+the right-hand side of `(TP2)` to be ZERO: every cusp level has
+cohomology only in degree four, so a downward induction gives
+`H^3_c(Z minus X^)=0` (details in
+`km-cusp-region-has-degree-three-compact-cohomology`).  So this claim,
+once established, REFUTES the nonvanishing claims downstream and kills
+the Corollary D route, rather than feeding it.

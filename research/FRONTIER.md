@@ -3862,14 +3862,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-23 · km-twisted-level-product-cycles-surject [OPEN] At every twisted level of the (2,4,6) codistance filtration the product graph cycles surject onto the matched local cycle spaces
-- 2026-08-23 · km-thick-part-two-connected-via-twisted-surjectivity [OPEN] Run the codistance filtration with vanishing twisted cokernels
 - 2026-08-23 · km-thick-part-two-connected-and-lattice-is-f3 [OPEN] The bottom thick part of the (2,4,6) twin-building product is 2-connected, so the lattice is of type F_3 and its group-ring H2 is the compactly supported H2 of the thick part
-- 2026-08-23 · km-end-cohomology-via-thick-part-compact-class [OPEN] Identify the group-ring H2 with the thick part's compactly supported H2 and show it is nonzero
 - 2026-08-23 · km-development-has-nonzero-end-cohomology-in-degree-one [OPEN] The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
 - 2026-08-23 · km-cusp-region-has-degree-three-compact-cohomology [OPEN] The positive-codistance cusp region of the (2,4,6) twin-building product has nonzero compactly supported cohomology in degree three
+- 2026-08-23 · compact-hyperbolic-km-lattices-fail-lp [OPEN] The full C*-algebras of the simple Kazhdan Kac-Moody lattices do not have the lifting property
+- 2026-08-23 · km-twisted-level-product-cycles-surject [OPEN] At every twisted level of the (2,4,6) codistance filtration the product graph cycles surject onto the matched local cycle spaces
+- 2026-08-23 · km-thick-part-two-connected-via-twisted-surjectivity [OPEN] Run the codistance filtration with vanishing twisted cokernels
+- 2026-08-23 · km-end-cohomology-via-thick-part-compact-class [OPEN] Identify the group-ring H2 with the thick part's compactly supported H2 and show it is nonzero
 - 2026-08-23 · km-codistance-filtration-twisted-levels-are-rank-two-pairs [ESTABLISHED] In the (2,4,6) twin building the only non-product levels of the codistance filtration are rank-two residue pairs twisted by one centralized reflection
-- 2026-08-23 · km-codistance-filtration-twisted-levels-proof [COMPLETE] Descent sets, Kilmoyer intersections, twin co-projections, and the wall geometry of the triangle group
 
 ## Active claims
 
