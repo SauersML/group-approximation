@@ -70,6 +70,52 @@ It follows that the exact-zero assertion in
 sup_Q ||(C_Q|_(ker C_Q)^perp)^dagger||_cb < infinity.  (DSS5)
 ```
 
+For the prime-field quotient `Q=PSL_2(F_p)`, put
+
+```text
+H=<h(2)>,       N_H=<H,w>,       chi|_H=1, chi(w)=-1. (DSS6)
+```
+
+Then `(DSS2)` is canonically the sign-induced module
+
+```text
+Ind_(N_H)^Q chi.                                        (DSS7)
+```
+
+The two output coordinates of `(DSS3)` lie in the trivial induced modules
+from the two order-three subgroups `<A>` and `<B>`.  This identifies the
+scalar problem as a finite Hecke/intertwining problem, but also gives an
+important firewall against the generic expander analogy.  One input basis
+vector is supported on a whole `N_H`-coset, of size `2|H|`; after the cubic
+average its incidence degree grows with `|H|`.  Thus `C_Q` is **not** the
+bounded-degree cubic coset graph used in
+`two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse`, even though both
+maps are built from order-three Reynolds averages.
+
+When
+
+```text
+ord_p(4)=(p-1)/2,                                      (DSS8)
+```
+
+`H` is the full projective split torus.  The cosets `H\Q` identify with
+ordered pairs of distinct points of `P^1(F_p)`, `w` reverses the pair, and
+`(DSS7)` is the alternating ordered-pair module (equivalently the
+alternating part of the off-diagonal permutation square).  If `(DSS8)`
+fails, the extra label has exact size
+
+```text
+i_p=(p-1)/(2 ord_p(4)).                                (DSS9)
+```
+
+The analogous label can become still larger on composite and prime-power
+levels.
+Therefore the bounded arithmetic audit leaves one sharply located scalar
+frontier: prove a uniform infinity/cb Green estimate for the Hecke columns
+`(DSS3)` uniformly in the torus index `(DSS9)` and in the deeper-ring
+analogues, or construct a divergent mode in those extra label sectors.
+High girth of a bounded-degree graph does not decide this question.
+
 In particular, the congruence-level question cannot be settled merely by
 noting that each coefficient algebra is finite dimensional: `(DSS5)` is a
 uniform completely bounded Green-operator estimate for an explicit growing
@@ -78,4 +124,3 @@ not sufficient for the full gate, because off-diagonal matrix coefficients
 remain.  The next bounded audit is therefore concrete: prove or refute
 `(DSS5)` for the arithmetic coset complexes, before attempting a general
 operator-space lifting theorem.
-

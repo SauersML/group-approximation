@@ -82,7 +82,11 @@ restricts the left-regular congruence endpoint to its diagonal masa and
 obtains an explicit signed-incidence matrix `C_Q` on `Q/<R>`.  Uniform cb
 complementability in `(EPJ7)` implies a uniform cb Moore--Penrose inverse
 for every `C_Q`.  This is a necessary scalar arithmetic Green estimate,
-not a consequence of the Hilbert angle.
+not a consequence of the Hilbert angle.  Its prime-field domain is the
+sign-induced module from `<h(2),w>`.  Because one scalar coordinate is
+repeated over the whole growing torus orbit, it is not the bounded-degree
+graph in the generic expander counterexample; the surviving scalar issue is
+uniformity in the split-torus index and in deeper congruence rings.
 
 Accordingly the exact cb question is a finite operator-space inequality:
 
