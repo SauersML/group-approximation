@@ -1880,10 +1880,12 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
         single_one_comm, hcardSigned,
         hmeanScalar, hmeanExpanded, hdiagonalScalar, hdiagonalExpanded]
+      rw [nested_mul_single_pair, hmeanExpanded, hdiagonalExpanded]
       noncomm_ring
     · simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
         single_one_comm, hil, hcardSigned,
         hmeanScalar, hmeanExpanded]
+      rw [nested_mul_single_pair, hmeanExpanded]
       noncomm_ring
   · intro i
     simp [hl1zero]
@@ -1898,10 +1900,21 @@ theorem presented_hasKazhdanPropertyT_of_linkCertificate
     (regularDegree : ℕ) (gap : ℚ)
     (q : Row → SignedGenerator (Generator := Generator) → ℚ)
     (h : LinkCertificateChecks T regularDegree gap q) :
-    HasKazhdanPropertyT.{0, 0} (Presented T) :=
-  Certificate.hasKazhdanPropertyT (inferInstance : Nonempty Generator)
-    (generator T) (PresentedGroup.closure_range_of (relators T : Set _))
-    (garlandCertificate T regularDegree gap q h)
+    HasKazhdanPropertyT.{0, 0} (Presented T) := by
+  let C : Certificate
+      (generatorCoboundary (generator T))
+      (scaledBoundary T regularDegree)
+      (garlandGramRow T regularDegree gap q h)
+      (fun _ _ ↦ 0) (garlandGap regularDegree gap) 0 :=
+    garlandCertificate T regularDegree gap q h
+  exact Certificate.hasKazhdanPropertyT
+    (G := Presented T) (I := Generator) (J := TriangleIndex)
+    (K := GarlandRow regularDegree Row)
+    (B := scaledBoundary T regularDegree)
+    (q := garlandGramRow T regularDegree gap q h)
+    (R := fun _ _ ↦ 0) (c := garlandGap regularDegree gap) (r := 0)
+    (inferInstance : Nonempty Generator) (generator T)
+    (PresentedGroup.closure_range_of (relators T : Set _)) C
 
 end SpectralCertificate
 
