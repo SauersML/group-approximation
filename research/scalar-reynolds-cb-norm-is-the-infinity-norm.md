@@ -33,7 +33,8 @@ the matrix-valued maps in `(DSS4)` are exactly its amplifications.
 Consequently the diagonal necessary condition `(DSS5)` is an ordinary
 uniform `l_infinity` Green estimate.  Matrix amplification introduces no
 additional obstruction on this commutative reducing sector.  This does
-not simplify the full passive Jacobian: its off-diagonal target is not a
-minimal operator space, so the full gate in `(EPJ7)` remains genuinely
-completely bounded.
-
+not by itself analyze the off-diagonal target.  The separate
+`right-displacement-reynolds-scalar-cb-complete` theorem does: at exact
+left-regular endpoints the same scalar convolution occurs on every matrix
+diagonal and its scalar infinity norm equals the full cb norm.  The
+off-zero nonlinear continuation remains outside the present scalar claim.

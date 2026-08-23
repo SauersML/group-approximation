@@ -74,8 +74,10 @@ sup_Q ||(C_Q|_(ker C_Q)^perp)^dagger||_cb < infinity.  (DSS5)
 `scalar-reynolds-cb-norm-is-the-infinity-norm` removes an apparent extra
 difficulty from this necessary scalar condition: because the inverse maps
 into a subspace of a commutative masa, its cb norm in `(DSS5)` equals its
-ordinary infinity norm.  The full off-diagonal passive inverse remains a
-genuine operator-space problem.
+ordinary infinity norm.  The later
+`right-displacement-reynolds-scalar-cb-complete` theorem proves that this
+same norm controls every exact-endpoint off-diagonal fiber as well; only
+the nonlinear off-zero continuation remains separate.
 
 For the prime-field quotient `Q=PSL_2(F_p)`, put
 
