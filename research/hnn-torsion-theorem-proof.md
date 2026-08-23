@@ -8,6 +8,7 @@ requires:
   - hnn-cyclic-reduction-lemma
 artifacts:
   - GroupApproximation/Algebra/HNNTorsionFree.lean
+  - GroupApproximation/GroupTheory/HNNBrittonCyclic.lean
 ---
 
 ## Why sufficient
@@ -31,11 +32,9 @@ Two kernel-checked halves and one named interface.
 - **Grading** (`lengthHom`, `t_pow_ne_one`): the stable-letter count
   homomorphism to the integers kills no torsion off its kernel.
 
-The single remaining input is the classical cyclic-reduction existence
-lemma (`ExistsCyclicConjugate`, the claim
-[[hnn-cyclic-reduction-lemma]]): every element is conjugate into
-the base or to a cyclic word.  The affine corollaries
-(`isPowerTorsionFree_sourceGroup_of_existsCyclicConjugate` and the
-integer instance) consume it explicitly, so the trust surface of the
-torsion theorem is exactly one combinatorial lemma wide.  Authored in
-the 2026-08-15 all-fronts wave.
+The formerly remaining cyclic-reduction interface is now discharged by
+`HNNBritton.existsCyclicConjugate`.  The unconditional theorem
+`HNNBritton.isPowerTorsionFree_hnn` applies the reduction to that witness;
+`HNNBritton.isPowerTorsionFree_sourceGroup` and the integer specialization
+close the affine source.  Thus this route has no open combinatorial or
+literature input.

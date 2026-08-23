@@ -8,16 +8,18 @@ distinct_from:
   concrete-compression-source: That claim constructs the compression source datum (compression relation, centralized witness, Britton nontriviality); this one is the torsion-freeness of the same skeleton, the recorded missing step for a fully torsion-free certified source.
 artifacts:
   - GroupApproximation/Algebra/HNNTorsionFree.lean
+  - GroupApproximation/GroupTheory/HNNBrittonCyclic.lean
 ---
 
-OPEN (reduced to one lemma).  If the base of an HNN extension is
+ESTABLISHED and machine-checked.  If the base of an HNN extension is
 torsion-free in the power sense, so is the whole extension; classically
 every finite-order element is conjugate into the base (Lyndon--Schupp
 IV.2).  For the routing program this is the single recorded step
 between `ConcreteCompressionSource.integerSource` and a fully
 torsion-free certified compression source.
 
-Machine-checked today (`GroupApproximation/Algebra/HNNTorsionFree.lean`):
+The proof is split across `GroupApproximation/Algebra/HNNTorsionFree.lean`
+and `GroupApproximation/GroupTheory/HNNBrittonCyclic.lean`:
 
 - the **Britton power theorem** — a cyclically reduced word with at
   least one stable letter has infinite order
@@ -33,27 +35,19 @@ Machine-checked today (`GroupApproximation/Algebra/HNNTorsionFree.lean`):
   `pow_ne_one_of_lengthHom_ne_one`, `t_pow_ne_one`): every element with
   a nonzero net stable-letter count has infinite order, so all torsion
   lives in the grading kernel;
-- the **skeleton corollaries**
-  (`isPowerTorsionFree_sourceGroup_of_existsCyclicConjugate`,
-  `isPowerTorsionFree_integerSourceGroup_of_existsCyclicConjugate`):
-  the affine source and the explicit integer instance are torsion-free
-  conditional on exactly [[hnn-cyclic-reduction-lemma]], the base side
-  being already certified.
+- the **cyclic-reduction theorem** (`HNNBritton.existsCyclicConjugate`): every
+  HNN element is conjugate into the base or to a cyclic word;
+- the **unconditional endpoint** (`HNNBritton.isPowerTorsionFree_hnn`), with
+  source corollaries `HNNBritton.isPowerTorsionFree_sourceGroup` and
+  `HNNBritton.isPowerTorsionFree_integerSourceGroup`.
 
-What remains is only [[hnn-cyclic-reduction-lemma]].
+There is no remaining hypothesis.  The affine-congruence source consumes the
+unconditional source corollary directly.
 
 ## Attempts
 
-The 2026-08-15 session (route
-[[hnn-torsion-theorem-proof]]) proved everything except
-cyclic-reduction existence, which is where the obvious attack dies
-today: it needs both an every-element-spelled-by-a-reduced-word
-statement (the built Mathlib environment exposes
-`ReducedWord.exists_normalWord_prod_eq` for words already given, but no
-existence-from-an-element statement — it would have to be extracted
-from the `NormalWord` action machinery) and the conjugation-shortening
-induction on stable-letter length, whose pinch step rewrites through
-`HNNExtension.equiv_eq_conj` with product bookkeeping on `ReducedWord`
-that the current API does not assist.  Both are elementary but
-genuinely new formal combinatorics; deferred, no obstruction
-identified.
+The earlier 2026-08-15 reduction stopped at cyclic-reduction existence.  That
+residual was subsequently closed in [[hnn-cyclic-reduction-lemma-proof]] by
+extracting normal words from Mathlib's action machinery and formalizing the
+conjugation-shortening pinch induction.  The conditional declarations remain
+useful as an abstract interface, but they are no longer on the trust surface.

@@ -7,6 +7,9 @@ target: concrete-compression-source
 requires: []
 artifacts:
   - GroupApproximation/Sofic/ConcreteCompressionSource.lean
+  - GroupApproximation/Sofic/LiteralAffineCongruenceSource.lean
+  - GroupApproximation/Sofic/LiteralAffineFreeProductSource.lean
+  - GroupApproximation/Sofic/LiteralAffineFreeProductBassSerreIndependence.lean
 ---
 
 ## Direct proof, formalized
@@ -38,8 +41,17 @@ minus simple subgroup and property (T)), the forgetful map
 (T) is supplied (with `core_transported`, `core_defectNormal_eq`,
 `witness_commutator_mem_defectNormal`), the generic `sourceData`, and
 the explicit `integerSource` at the doubling map with
-`base_isPowerTorsionFree`.  Torsion-freeness of the full skeleton
-awaits the HNN torsion theorem (finite-order elements conjugate into
-the base), recorded as the only missing step and NOT assumed anywhere.
-Authored in the 2026-08-15 generalization wave; the wave's closing
-validation build certifies the kernel check.
+`base_isPowerTorsionFree`.
+
+The later literal affine-congruence specialization closes every source-stage
+condition.  It restricts affine translation doubling to
+`P = ℤ³ ⋊ Γ(3)`, proves the first translation omitted from the range, invokes
+the now-unconditional HNN torsion theorem, and proves finite presentation.
+The zero-input endpoint is
+`LiteralAffineCongruenceSource.exists_literal_torsionFree_finitelyPresented_bareDefectSource`.
+Its free-product amplification and explicit independent crossing pair are
+proved in `LiteralAffineFreeProductSource` and
+`LiteralAffineFreeProductBassSerreIndependence`; in particular
+`amplifiedDefect_isSuitable` and `crossingSuitableCarrier_isSuitable` remove
+the formerly literature-shaped suitability input.  These declarations are
+audited in `GroupApproximation/Endpoint/Audit.lean`.

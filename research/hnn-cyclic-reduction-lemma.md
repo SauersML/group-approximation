@@ -7,32 +7,29 @@ distinct_from:
   hnn-torsion-theorem: That claim is the torsion-freeness conclusion; this is the word-combinatorial existence input (cyclic reduction), which has nothing to do with torsion and would also feed conjugacy and translation-length statements.
 artifacts:
   - GroupApproximation/Algebra/HNNTorsionFree.lean
+  - GroupApproximation/GroupTheory/HNNBrittonCyclic.lean
 ---
 
-OPEN.  In an HNN extension, every element is conjugate into the base
+ESTABLISHED and machine-checked.  In an HNN extension, every element is conjugate into the base
 copy or conjugate to a cyclically reduced word: formally, the interface
 `HNNTorsionFree.ExistsCyclicConjugate` — every `x` is either
 `g * of b * g⁻¹` or `g * c.elem φ * g⁻¹` for a `CyclicWord c`
 (nonempty letter list, Britton chain condition along the word and
 around the seam, head absorbed).  This is the classical
 cyclic-reduction existence lemma (Lyndon--Schupp IV.2), pure word
-combinatorics, independent of torsion; discharging it makes the HNN
-torsion theorem ([[hnn-torsion-theorem]]) unconditional, and with it
-the torsion-freeness of `ConcreteCompressionSource.integerSource`.
+combinatorics, independent of torsion.  It is proved as
+`HNNBritton.existsCyclicConjugate` in
+`GroupApproximation/GroupTheory/HNNBrittonCyclic.lean`.  Combining it with
+the Britton power theorem makes [[hnn-torsion-theorem]] unconditional and,
+in particular, proves torsion-freeness of every
+`ConcreteCompressionSource.SourceGroup` over a torsion-free base.
 
 ## Attempts
 
-Recorded attack (2026-08-15): (i) existence of a reduced spelling for
-every element — extract from Mathlib's `HNNExtension.NormalWord`
-action machinery (normal words form a group action with a
-product-compatible embedding; the environment's
-`ReducedWord.exists_normalWord_prod_eq` converts between the two
-shapes but does not by itself start from a bare element); (ii)
-induction on stable-letter length: if the seam condition fails, the
-word ends in a pinch `t^{-ε} a t^{ε}` against its first letter after
-rotation, and conjugating by the offending prefix plus one application
-of `HNNExtension.equiv_eq_conj` strictly shortens the letter list;
-formalizing the rotation-conjugation bookkeeping on `ReducedWord`
-products is the entire cost.  Dies today on the absence of any
-product-computation API for `ReducedWord` beyond its definition;
-elementary, no obstruction identified.
+The completed proof first extracts a reduced spelling from Mathlib's normal
+word action.  It then inducts on stable-letter length.  A bad cyclic seam is
+a Britton pinch; rotating it to the interior and applying the HNN relation
+strictly shortens the word.  A good seam is exactly the repository's
+`CyclicWord`.  The recursion is packaged by
+`HNNBritton.cyclicReduceLetters`, and the public theorem has no extra
+hypotheses.
