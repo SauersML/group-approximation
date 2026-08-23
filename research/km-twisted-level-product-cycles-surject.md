@@ -337,3 +337,33 @@ class is unavailable).
   span-valued parts feeding back into same-class slots) is first
   written out carefully; a wrong reduction silently flips the verdict,
   so the raw rank should confirm any reduced answer at `q=3` once.
+- **REFUTATION at hexagon levels, all computed q (2026-08-23, later
+  same day).**  The one-class-deleted disconnection yields an explicit
+  integral annihilator: fix for each class `m` a component `c_0(m)` of
+  the `m`-deleted opposition geometry and a nonzero
+  `xi(p'') in Z_0(N p'')^*`, and set
+  `G_l(p'') = [comp_(class p'')(l) = c_0] xi(p'')`, `H = 0`.  At a
+  different-class slot the lines through `p` all lie in the component
+  of `p` (they are incident to it), so the sum collapses against the
+  relation `sum_l e_l^* = 0` and vanishes; at a same-class slot the
+  deleted-class point `p` has its lines distributed over components --
+  and full-graph connectivity forces SOME deleted-class point to
+  bridge, since otherwise deletion could not disconnect -- giving a
+  single surviving term, nonzero.  Hence the cokernel is nonzero over
+  `Q` (and `Z`) at every `(G_2, G_2)` twisted level whose one-deleted
+  geometry is disconnected: verified for `q = 3` (components
+  `[81,81,81]`) and `q = 2`, and structurally expected for all `q`
+  (the deletion drops one Frattini direction).  By the same criterion
+  the `B_2` and grid levels survive (their one-deleted graphs are
+  connected, verified at `q = 3`).  NET: `(TLS1)` as stated is FALSE
+  for every `q`; the correct statement of what holds is
+  per-level (grid and `B_2` levels: cokernel zero for large `q` prime
+  to six; `G_2` levels: cokernel NONZERO with the explicit component
+  annihilators).  Consequently `H_3(Z_(<=R+1), Z_(<=R)) != 0` at every
+  hexagon level, the downward induction of
+  `km-cusp-region-has-degree-three-compact-cohomology` does NOT run,
+  and both the `F_3` conclusion and the vanishing of
+  `H^2(Lambda;Z Lambda)` return to OPEN, now with explicit relative
+  classes whose connecting maps are the decisive objects -- candidate
+  SOURCES for `H^2(Lambda;Z Lambda) != 0` and Corollary D, in every
+  characteristic.

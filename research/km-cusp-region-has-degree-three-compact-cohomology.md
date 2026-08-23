@@ -32,6 +32,15 @@ except the `L^0` one (`triangle-colimit-rational-h2-vanishes`).
 
 ## Attempts
 
+- **Superseded the same day: the surjectivity fails at hexagon levels
+  (2026-08-23, final).**  The induction below is VALID but its
+  hypothesis is now known FALSE: every `(G_2,G_2)` twisted level has
+  nonzero relative `H_3` (component-indicator annihilators;
+  `km-twisted-level-product-cycles-surject`).  This claim is therefore
+  genuinely open, and its truth is equivalent to some hexagon-level
+  class having nonzero image under the connecting maps of the
+  filtration.  The bullet below is kept as the record of the valid
+  conditional mechanism.
 - **The twisted surjectivity REFUTES this claim (2026-08-23).**  Write
   `cusp_(<=R) = Z_(<=R) minus X^`, an increasing exhaustion of the cusp
   by open subsets with `C^*_c(cusp) = colim C^*_c(cusp_(<=R))`.  The

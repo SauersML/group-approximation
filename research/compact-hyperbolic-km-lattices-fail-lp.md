@@ -96,25 +96,21 @@ cohomological input.
   many such identities at a time; deciding whether all sphere and
   non-sphere 2-cycle conditions can hold simultaneously with the
   non-degeneracy is the surviving content of Corollary E here.
-- **ISW Corollary D, exact input identified and CONDITIONALLY DEAD
-  (2026-08-23, updated same day).**  Later same-day analysis of the
-  codistance filtration of the twin-building product
-  (`km-codistance-filtration-twisted-levels-are-rank-two-pairs`,
-  `km-twisted-level-product-cycles-surject`,
-  `km-cusp-region-has-degree-three-compact-cohomology`) shows that the
-  finite twisted-level surjectivity -- proved for grid levels and
-  verified in the symplectic model for `B_2`, an open rank computation
-  at `G_2` levels for odd `q`, and computationally REFUTED at `G_2`
-  levels for `q = 2` (the opposite-line geometry of the even-`q`
-  hexagon is disconnected; artifact
-  km-opposition-connectivity-computations-2026-08-23.md) -- implies
-  `H^2(Lambda, Z Lambda) = 0` outright (and type `F_3`) where it
-  holds.  So Corollary D is EXPECTED DEAD at lattices with `q` odd
-  prime to three, like the trivial-coefficient clause of Corollary E,
-  while for CHARACTERISTIC-TWO lattices the `G_2` levels carry genuine
-  relative homology and the Corollary D fork is REOPENED there: the
-  first candidate mechanism distinguishing even from odd
-  characteristic in this program.  The original identification follows.  The same
+- **ISW Corollary D, exact input identified; the vanishing route died
+  the same day it was found (2026-08-23, final).**  The codistance
+  filtration analysis first suggested `H^2(Lambda, Z Lambda) = 0`
+  conditional on a finite surjectivity; that surjectivity holds at
+  grid and `B_2` levels but was then REFUTED at every `G_2` level
+  (the one-class-deleted opposition geometry of the hexagon is
+  disconnected -- computed at `q = 2, 3`, scripts in experiments/ --
+  and component-indicator annihilators give nonzero cokernel).  So
+  every hexagon level of the filtration carries explicit nonzero
+  relative `H_3` classes, in every characteristic, and
+  `H^2(Lambda, Z Lambda)` is genuinely OPEN in both directions: it is
+  nonzero iff some explicit hexagon-level class has nonzero connecting
+  map.  These classes are the first concrete candidate mechanism for
+  Corollary D at a group with no finite-dimensional representations.
+ The same
   spectral sequence with group-ring coefficients gives
   `H^2(Lambda; Z Lambda) = ker( H^2_c(X;Z) -> H^2(X;Z) ) =
   H^1_infty(X;Z)`, the degree-one end cohomology of the development
