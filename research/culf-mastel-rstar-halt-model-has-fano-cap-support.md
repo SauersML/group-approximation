@@ -161,3 +161,12 @@ no-Fano-line support conclusion.
   with full support `F_2^2 minus {00}`.  This identifies the nonlinear mass
   but does not globalize it: the line projection is not a reducing carrier,
   and a purely Boolean unary-binary tracial instance is classical.
+- The exact long-code version has a smaller bad-sector ledger than arbitrary
+  cap failure suggests.  By
+  `rstar-odd-character-ghost-fiber-is-eight-sectors`, 56 of the 64 marked odd
+  characters already xor-decode to an allowed `R_*` point; only the seven
+  Fano-line characters and the full-set character decode to the ghost.  Their
+  conditional canonical mass is exactly `1/8`.  This does not prove FC-char:
+  the eight-sector ghost projection has positive regular trace and is not a
+  common reducing carrier across contexts.  It does, however, localize any
+  matrix-specific long-code or packet attack to those eight sectors.
