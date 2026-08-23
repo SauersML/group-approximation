@@ -6,6 +6,8 @@ import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Leavitt.HilbertHotelCoverBlock
+import GroupApproximation.Leavitt.HilbertHotelModelNonMF
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
@@ -95,6 +97,15 @@ Fournier--Facio--Hull routing construction as a closed Lean witness.
 #audit_axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual
 #audit_axioms GroupApproximation.QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect
 #audit_axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual_of_hyperlinear_killed
+
+-- The normal-Kazhdan engine's own unconditional witnesses.  The detector
+-- lines above are implications and are audited with the weaker macro, which
+-- permits their hypotheses.  These two are closed propositions, so the
+-- stronger macro applies and rejects any leading input: it is the machine
+-- check that this engine reaches a witness with no hypothesis at all, not
+-- merely a criterion awaiting one.
+#audit_closed_axioms GroupApproximation.HilbertHotel.Cover.not_isOperatorMF_model
+#audit_closed_axioms GroupApproximation.HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical
 #audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope
 #audit_closed_axioms GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope_no_torsionFree_image
 #audit_axioms GroupApproximation.SeededSelfAwareMFCompiler.primeCodedMark_blackHole
