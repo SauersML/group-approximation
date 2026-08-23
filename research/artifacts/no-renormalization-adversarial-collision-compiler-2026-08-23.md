@@ -28,7 +28,7 @@ The open item is not promoted to an unconditional non-MF construction.
 Lean file:
 
 ```text
-GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ```
 
 ## 1. Packet collision

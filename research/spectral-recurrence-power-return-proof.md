@@ -6,7 +6,7 @@ title: Freeze one MF coordinate and choose its recurrent power afterwards
 target: spectral-recurrence-power-return-non-mf-criterion
 requires: [finite-spectrum-unitary-power-recurrence]
 artifacts:
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 If `w` survives a faithful norm-corona model, pass to coordinates with
@@ -20,8 +20,8 @@ The exponent is chosen by the proof after the coordinate is fixed.  The group
 does not read the matrix dimension; uniform authentication permits the
 quantifier order.  The operator-norm lower bound and its contradiction with a
 uniform root budget are formalized respectively as
-`NoRenormalizationCapacity.recurrent_power_far_from_unitary_conjugate` and
-`NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`.
+`CollisionCapacityDetectors.recurrent_power_far_from_unitary_conjugate` and
+`CollisionCapacityDetectors.no_model_of_recurrent_uniform_power_return`.
 The full frozen-coordinate composition, including qualitative unitary
 recurrence, is
-`NoRenormalizationCapacity.no_model_of_uniform_power_return`.
+`CollisionCapacityDetectors.no_model_of_uniform_power_return`.

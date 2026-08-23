@@ -25,7 +25,7 @@ statements.
 -/
 
 namespace GroupApproximation
-namespace NoRenormalizationCapacity
+namespace CollisionCapacityDetectors
 
 open Matrix KazhdanCornerMatrices
 open scoped Matrix.Norms.L2Operator
@@ -302,5 +302,5 @@ theorem rank_zero_of_power_monodromy {a b k r : ℕ}
   have hpowers : a ^ k = b ^ k := mul_right_cancel₀ hr hcycle
   exact hab (Nat.pow_left_injective (Nat.ne_of_gt hk) hpowers)
 
-end NoRenormalizationCapacity
+end CollisionCapacityDetectors
 end GroupApproximation

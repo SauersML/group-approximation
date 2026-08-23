@@ -16,7 +16,7 @@ matrix give the result.
 
 For the downstream criterion the explicit bound is unnecessary.  The
 kernel-checked theorem
-`NoRenormalizationCapacity.exists_positive_power_opNorm_sub_one_lt` obtains
+`CollisionCapacityDetectors.exists_positive_power_opNorm_sub_one_lt` obtains
 the required recurrent exponent from a convergent subsequence of the bounded
 unitary power orbit; this qualitative compactness proof has no literature
 input.

@@ -19,6 +19,6 @@ Diagonalize `W`, place the `Q^d+1` points `0 theta,...,Q^d theta` in the
 is an elementary finite-dimensional lemma with no literature input.  Lean now
 checks the qualitative form sufficient downstream—every finite-dimensional
 unitary has a positive power arbitrarily close to `1`—as
-`NoRenormalizationCapacity.exists_positive_power_opNorm_sub_one_lt`.
+`CollisionCapacityDetectors.exists_positive_power_opNorm_sub_one_lt`.
 The sharper numerical bound `m <= Q^d` remains paper-level; downstream UPR
 remains open regardless.

@@ -26,7 +26,7 @@ import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
 import GroupApproximation.Analysis.PrintedFiniteDimensionalUses
 import GroupApproximation.Analysis.PermutationICC
-import GroupApproximation.Analysis.ShiftIsometryNotFinite
+import GroupApproximation.Analysis.ShiftIsometry
 import GroupApproximation.Analysis.TwoSidedRegularCommutant
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Analysis.AmenableQuasidiagonal
@@ -328,7 +328,7 @@ import GroupApproximation.Sofic.TorsionCompressionCollapse
 import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.MFTraceRecognition
 import GroupApproximation.Sofic.InvolutionRankMass
-import GroupApproximation.Sofic.NoRenormalizationCapacity
+import GroupApproximation.Sofic.CollisionCapacityDetectors
 import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Kazhdan.ApproximateCircumcenter
 import GroupApproximation.Sofic.InvolutionMicrostateTools
@@ -681,7 +681,7 @@ import GroupApproximation.Sofic.LeavittTraceFloor
 import GroupApproximation.Sofic.ScalarCocycle
 import GroupApproximation.Sofic.CharacterCount
 import GroupApproximation.Sofic.NoRounding
-import GroupApproximation.Sofic.NoPointwiseUnitaryRounding
+import GroupApproximation.Sofic.RootableGroupFiniteImages
 import GroupApproximation.Sofic.PhaseCorrection
 import GroupApproximation.Sofic.ScalarClass
 import GroupApproximation.Sofic.RationalCharacter

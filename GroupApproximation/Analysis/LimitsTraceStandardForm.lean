@@ -1,6 +1,6 @@
 import GroupApproximation.Analysis.GroupStandardFormInstance
 import GroupApproximation.Analysis.PermutationICC
-import GroupApproximation.Analysis.ShiftIsometryNotFinite
+import GroupApproximation.Analysis.ShiftIsometry
 import Mathlib.LinearAlgebra.Dimension.Finite
 
 /-!

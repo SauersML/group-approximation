@@ -8,7 +8,7 @@ distinct_from:
   opnorm-coordinatewise-capacity-diagonal: that is the later abstract dimension diagonal; this supplies the local collision detector used to instantiate its finite-capacity premise.
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 Let `A,B_v,B_w,Z` be unitary matrices. If
@@ -27,4 +27,4 @@ then
 
 The estimate is independent of matrix dimension and support rank. It is
 machine-checked as
-`NoRenormalizationCapacity.collision_kills_phase`.
+`CollisionCapacityDetectors.collision_kills_phase`.

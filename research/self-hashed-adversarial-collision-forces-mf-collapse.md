@@ -10,7 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
   - research/artifacts/finite-memory-self-hashing-non-mf-2026-08-23.md
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 Let `Gamma=<S|R>` be finitely presented with marked word `z`. Suppose one

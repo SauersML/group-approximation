@@ -9,7 +9,7 @@ requires:
   - opnorm-coordinatewise-capacity-diagonal
 artifacts:
   - research/artifacts/no-renormalization-adversarial-collision-compiler-2026-08-23.md
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 Assume a corona image keeps the mark at operator distance at least `eta` on a

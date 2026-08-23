@@ -7,7 +7,7 @@ target: finite-palette-packet-challenge-collapse
 requires:
   - opnorm-packet-collision-kills-phase
 artifacts:
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 Compose the state assignment `v |-> B_v` with the palette coloring.  By the

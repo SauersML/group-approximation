@@ -7,7 +7,7 @@ target: operator-norm-rank-monodromy-zero
 requires: []
 artifacts:
   - GroupApproximation/Sofic/InvolutionRankMass.lean
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 `InvolutionRankMass.rank_eq_of_projections_close` proves that two orthogonal

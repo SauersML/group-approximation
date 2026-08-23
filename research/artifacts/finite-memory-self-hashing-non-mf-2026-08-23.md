@@ -10,14 +10,14 @@ This architecture does not create a second copy of the existing
 no-renormalization results.
 
 * Whole-packet collision is the machine-checked theorem
-  `NoRenormalizationCapacity.collision_kills_phase`.
+  `CollisionCapacityDetectors.collision_kills_phase`.
 * Finite-palette overflow is
-  `NoRenormalizationCapacity.phase_close_of_palette_overflow`.
+  `CollisionCapacityDetectors.phase_close_of_palette_overflow`.
 * Choosing the challenge after freezing a finite coordinate is
-  `NoRenormalizationCapacity.no_model_of_uniform_unbounded_capacity`.
+  `CollisionCapacityDetectors.no_model_of_uniform_unbounded_capacity`.
 * Projection-rank rigidity and cyclic rank monodromy are
-  `NoRenormalizationCapacity.projection_rank_rigid` and
-  `NoRenormalizationCapacity.rank_zero_of_power_monodromy`.
+  `CollisionCapacityDetectors.projection_rank_rigid` and
+  `CollisionCapacityDetectors.rank_zero_of_power_monodromy`.
 * The exact one-step self-copy detector is packaged directly by
   `repCommutant_eq_map_sandwich_of_compression`,
   `mem_repCommutant_of_commutes_compressed`, and

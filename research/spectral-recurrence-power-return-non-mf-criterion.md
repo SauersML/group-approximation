@@ -4,7 +4,7 @@ id: spectral-recurrence-power-return-non-mf-criterion
 kind: claim
 title: Uniformly authenticated conjugacy-to-power returns force operator-norm non-MF
 artifacts:
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 distinct_from:
   self-hashed-adversarial-collision-forces-mf-collapse: that is the general palette/collision capacity theorem; this specializes finite capacity to recurrence of one unitary's spectrum and needs no packet family.
   threshold-free-mf-compiler-equivalence: that extracts no analytic obstruction beyond a seed; this conditional criterion supplies a genuinely operator-norm obstruction if UPR is constructed.
@@ -27,6 +27,6 @@ and contradiction after UPR are elementary and do not invoke property `(T)`,
 Hilbert--Schmidt norm, projections, finite central subgroups, or
 renormalization.  The frozen-coordinate quantitative contradiction is
 kernel-checked as
-`NoRenormalizationCapacity.no_model_of_recurrent_uniform_power_return`, and
+`CollisionCapacityDetectors.no_model_of_recurrent_uniform_power_return`, and
 its composition with finite-dimensional recurrence is kernel-checked as
-`NoRenormalizationCapacity.no_model_of_uniform_power_return`.
+`CollisionCapacityDetectors.no_model_of_uniform_power_return`.

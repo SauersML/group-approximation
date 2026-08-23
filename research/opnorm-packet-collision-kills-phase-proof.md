@@ -6,7 +6,7 @@ title: Insert the collided packet into the cross commutator and cancel the unita
 target: opnorm-packet-collision-kills-phase
 requires: []
 artifacts:
-  - GroupApproximation/Sofic/NoRenormalizationCapacity.lean
+  - GroupApproximation/Sofic/CollisionCapacityDetectors.lean
 ---
 
 Split
