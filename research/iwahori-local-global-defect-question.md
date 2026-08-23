@@ -101,6 +101,26 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   missing uniformity is control of the restriction-monoid Hoffman constants
   across the dyadic tower; index-three bounded branching alone does not
   bound them.
+- **Mixed CRT packets add inert labels, not a new spectral gap.**
+  `mixed-crt-iwahori-repair-is-labeled-pure-dyadic-rounding` proves that the
+  joint edge quotient is `D_(a,b) x O`, Selberg averaging remains uniform at
+  the mixed level, and the restriction matrices split over `Irr(O)` into
+  copies of the pure dyadic diagram weighted by odd irreducible degrees.
+  Hence the exact mixed closure gate is the odd-label-stabilized integer
+  Hoffman bound for the dyadic tower.  The ordinary pure-dyadic bound is not
+  silently enough: the edge polar support need not reduce the full dyadic
+  vertices, and preserving the two global dimensions couples the inert
+  label fibers.
+- **Regular pure-dyadic packets have a depth-uniform half loss.**
+  `pure-dyadic-regular-iwahori-mixtures-have-a-uniform-half-loss` writes the
+  upper level kernel `N_a` and opposite kernel `M_b` explicitly, then takes
+  finite differences of `|B/(N_aM_b)|`. The resulting joint conductor table
+  is tridiagonal with off-diagonal weights `8^(n-1)`; its two alternating
+  rays have weighted Cheeger constant exactly `1/2`. Consequently every
+  equal-dimensional finite mixture of amplified regular vertex packets has
+  common edge mass at most `1/2`, and Selberg `(tau)` gives a uniform defect
+  floor. The unbounded enemy is forced into selected non-Plancherel
+  irreducibles; even global regular cross-conductor ramps are excluded.
 - **Tree-action falsification test.**  If the coset action
   `PSL_2(Z[1/2])` on `PSL_2(Z[1/2])/PSL_2(Z)` is sofic, finite-lamp action
   permanence makes its coset wreath product sofic and hence Connes

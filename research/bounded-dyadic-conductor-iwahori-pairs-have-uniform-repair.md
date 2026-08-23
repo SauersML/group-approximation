@@ -30,6 +30,15 @@ must have unbounded two-adic conductor.  Together with the odd-congruence
 linear theorem, this rules out both growing odd level and every bounded
 pure dyadic window as the source of failure.
 
+One unbounded family is now excluded without any conductor cutoff.
+`pure-dyadic-regular-iwahori-mixtures-have-a-uniform-half-loss` computes the
+complete upper/opposite joint conductor table. Its off-diagonal support is
+two exponentially weighted rays with Cheeger constant `1/2`, so even an
+arbitrary finite mixture of amplified regular congruence packets has at most
+one-half common edge mass. Selberg `(tau)` turns this into a depth-uniform
+Iwahori defect floor. Thus the surviving unbounded tower must exploit
+selected non-Plancherel irreducibles, not regular cross-conductor routing.
+
 The dependence on `A` is the exact remaining issue.  Index-three branching
 alone does not make it uniform: fixed-degree integer incidence matrices can
 have Hoffman constants diverging along arbitrarily long paths (a unit-slope
@@ -39,3 +48,11 @@ tower one must therefore control the restriction monoids coherently across
 depth, or exploit the conductor-shift relations; bounded branching and the
 three-coset core intersection do not supply that control.
 
+The failure of the tempting analytic replacement is already exact at level
+two.  `three-coset-frame-saturation-is-not-pair-functorial` gives the actual
+opposite-Iwahori packet in which a common polar edge line saturates to zero
+(or the whole standard plane) on one vertex and to the same line on the
+other.  Amplification makes the input defect tend to zero.  The fixed-level
+repair above succeeds by changing that one paid vertex block; separate
+conditional expectations or core intersections cannot avoid the joint
+multiplicity rounding step.
