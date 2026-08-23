@@ -17,12 +17,12 @@ of the marked order-`p` root.  Exactify on `P` the fixed depth-zero source
 Heisenberg packet and depth-one two-child packet, and let `R_s,R_t` be their
 adjoint Reynolds projections on `End(PH)`.
 
-From the finite matrix tuple construct an approximation-dependent unitary or
-partial-isometry actuator `T_U` on the adjoint carrier, for which
+From the finite matrix tuple construct an approximation-dependent contraction
+`X_U` between the two adjoint Reynolds ranges,
 
 ```text
-Theta=tr_(ad,P)(R_s T_U^* R_t T_U R_s)
-      >=p^(-2)-omega(delta,sep),                        (ASR1)
+X_U=R_t X_U R_s,            ||X_U||_op<=1,
+tr_(ad,P)(X_U^*X_U)>=p^(-2)-omega(delta,sep).           (ASR1)
 ```
 
 where `omega(delta,sep)->0` as the fixed presentation defect and fixed
@@ -31,26 +31,29 @@ normalized on `End(PH)`.  Equivalently one may use the ambient adjoint trace
 and multiply the right side by `tr(P)^2`; marked separation supplies a fixed
 positive lower bound for `tr(P)`.
 
-The endpoint is complete and dimension independent.  Finite rank always
+The endpoint is complete and dimension independent.  Since the range of
+`X_U` lies in `Ran(R_t)`, finite rank always
 gives
 
 ```text
-Theta<=tr_(ad,P)(R_t)=p^(-4),                           (ASR2)
+tr_(ad,P)(X_U^*X_U)<=tr_(ad,P)(R_t)=p^(-4),             (ASR2)
 ```
 
 so `(ASR1)--(ASR2)` contradict sufficiently small defect by the fixed amount
 `p^(-2)-p^(-4)`.  No pointwise reconstruction of either commutant is
-required after `T_U` has been constructed.
+required after `X_U` has been constructed.  This source-Gram trace is weaker
+than constructing an adjoint unitary: if such a unitary `T_U` is available,
+one simply takes `X_U=R_tT_UR_s`.
 
 The actuator cannot be `Ad(U(w))` for a fixed word `w`, nor a fixed finite
 convex average of word actuators.  In that case the overlap expands into
 fixed squared word traces, and
 `canonical-marked-reynolds-return-is-subgroup-intersection` gives the
 canonical limit at most `p^(-4)`.  Thus `(ASR1)` specifically asks for a
-nonlinear finite-coordinate extraction—such as a polar factor of a returned
-mixed Gram operator—whose construction error is bounded by the named word
-defects.  This operation must have no functorial counterpart in the exact
-regular representation.
+nonlinear finite-coordinate extraction—such as the compressed polar/Gram map
+of a returned mixed coefficient—whose construction error is bounded by the
+named word defects.  This operation must have no functorial counterpart in
+the exact regular representation.
 
 The direction in `(ASR1)` is load bearing.  Replacing its right side by
 `p^(-4)-o(1)` gives target saturation, which is exactly realized by the

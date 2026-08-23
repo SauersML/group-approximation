@@ -96,6 +96,22 @@ word checksums.  No equality of physical carriers, mutual bicommutant
 reconstruction, or pointwise transport of the packet tables is analytically
 needed after such a coordinate actuator is available.
 
+Even the actuator is dispensable.  For any contraction
+
+```text
+X=R_t X R_s,
+```
+
+one has `tr_ad(X^*X)<=c_t`.  Hence the single source-Gram assertion
+
+```text
+tr_ad(X^*X)>=c_s-eta                                  (TSR9)
+```
+
+already implies `(TSR8)`.  Taking `X=R_tTR_s` recovers `(TSR3)`.  Thus the
+minimal surviving compiler target is one coordinate-derived rectangular
+Gram contraction, not a returned unitary or a reconstructed commutant.
+
 This proves both minimality statements relevant to the Leavitt route:
 
 1. one source-saturated overlap checksum is sufficient to detect the
