@@ -102,3 +102,13 @@ exactly that its actor matrices obey the cross-commutation relations only
 modulo normalized Hilbert--Schmidt error, rather than merely scalar error,
 at each level; a diagonal Cartan does not by itself exactify those
 normalizers even projectively.
+
+There is also no shortcut through a canonical quotient corner.
+`infinite-kernel-canonical-compression-is-zero` shows that if a projection
+`p` anywhere in this full Bernoulli crossed product satisfied
+`p u_n p=p` for the infinite free-cover kernel, then `p`, viewed in the
+regular `L^2` space, would be an invariant vector for an infinite subgroup
+and hence zero.  Thus the quotient `Q` cannot be installed by compressing the
+canonical actor unitaries, even with a non-base and non-Cartan projection.
+The projective cross-stability/state-specific promotion boundary is not a
+disguised quotient-corner construction.

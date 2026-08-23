@@ -317,6 +317,19 @@ non-hyperlinear group `hat K rtimes Lambda`.
   but converting its random bundle into one group factor is exactly `(AAE1)`
   or an equally strong non-Cartan group-factor envelope; packet limits cannot
   perform that conversion.
+- **The Mihailova quotient has no canonical kernel-killing corner (proved,
+  2026-08-23).**  In the coset-lamp group factor, the free-cover kernels act
+  trivially on the lamp base but their canonical group unitaries remain in
+  the regular representation.  `infinite-kernel-canonical-compression-is-zero`
+  proves that no nonzero projection anywhere in the full crossed product can
+  satisfy `p u_n p=p` for every element of either infinite kernel: such a
+  projection would be a nonzero invariant vector for the restriction of the
+  regular representation to an infinite subgroup.  Hence one cannot recover
+  `Q` or its left-right algebra by compressing the canonical actor copy and
+  killing the kernel, even with a genuinely non-Cartan projection.  The live
+  Mihailova mechanism must instead Fourier-mix the actor grades or solve the
+  state-specific projective cross-stability problem already isolated in
+  `mihailova-actor-liftable-ce-forces-q-hyperlinear`.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
