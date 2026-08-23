@@ -63,3 +63,16 @@ asymptotically lossless diffuse scalar flow. Any realization must use
 additional within-inertia multiplicity transport and repeated cross-orbit
 replenishment not visible in a one-way adjacent chain.
 
+Target-side saturation is now also settled.
+`adjacent-clifford-flow-has-one-third-rank-deficit` uses the index-three
+inertia induction to show that the upward and downward target slots each
+occupy at most one third of total physical rank.  Hence even arbitrarily
+replenished adjacent flows have common mass at most `2/3`; the scalar
+nearest-neighbor profile is not liftable to these labels.
+
+Same-depth overlap does not restore the missing mass.
+`pure-dyadic-clifford-slots-have-a-uniform-one-third-gap` observes that a
+same-depth `O_B` cell and the corresponding adjacent arrival use the same
+character eigenspace.  Charging that shared slot only once, and adding the
+`O_A` diagonal capacity, bounds the complete deep pure-dyadic common rank by
+`2d/3`.
