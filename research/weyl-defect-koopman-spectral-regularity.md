@@ -236,6 +236,16 @@ solenoid skeleton alone cannot give the required constant.
   limit, and no lacunarity argument can prove `(KSR)`.  The only possible
   rescue is a uniform suppression of these modes by the remaining
   involution and two cubic relations in the full presentation.
+- **Functional calculus does not repair the normalized-HS Taylor gap.**
+  `two-jump-cycle-refutes-functional-calculus-gauge-bound` gives an exact
+  abelian coboundary on an even cycle which differs from one at only two
+  sites, so its HS residual tends to zero, while every correcting gauge is
+  exactly `sqrt(2)` from the identity modulo the fixed algebra.  The bad
+  sites have vanishing trace but separate two positive-trace phase
+  plateaux.  Hence thresholding the residual, taking a logarithm on its
+  good spectrum, and polar repair cannot establish `(KSR)`.  The remaining
+  full-group input must charge or split off the plateaux through the cubic
+  relations.
 - **Compatible strata are not the frontier.**
   `iwahori-uniform-infinitesimal-rigidity` already supplies the required
   uniform Fox-Jacobian gap at exact congruence/compatible representations.

@@ -7,6 +7,7 @@ distinct_from:
   iwahori-cubics-suppress-low-bs-orbit-modes: that demanded an extra positive power of every individual band and is refuted by a single movable exact gauge; this asks only for the summed inverse energy which that family saturates harmlessly.
   weyl-defect-koopman-spectral-regularity: that is the global operator statement consumed by the absorption cascade; this is its explicit finite-cycle, gauge-aware inequality over exact BS packets.
   koopman-weighted-energy-is-linearized-gauge-distance: that identifies the weighted sum with the minimum linearized correcting-gauge norm; this asks the cubic relators to bound that norm by the full presentation defect.
+  two-jump-cycle-refutes-functional-calculus-gauge-bound: that rules out obtaining a nonlinear correcting-gauge modulus from small coboundary residual alone; this asks the full cubic energy to exclude or pay for the two-jump plateaux.
 ---
 
 **OPEN CORRECTED FINITE INEQUALITY.**  In the exact-`BS(1,4)` setup of
@@ -46,3 +47,11 @@ congruence points is covered by `iwahori-uniform-infinitesimal-rigidity`;
 the live content is uniform nonlinear integration outside an operator-norm
 tube.  This rules out treating `(IAG1)` as a consequence of lacunary trace
 decay alone.
+
+The exact two-jump packet in
+`two-jump-cycle-refutes-functional-calculus-gauge-bound` also rules out a
+generic nonlinear upgrade by spectral functional calculus: an exact unitary
+coboundary can converge to one in normalized HS while every correcting
+gauge stays `sqrt(2)` away from the identity modulo fixed gauges.  Therefore
+the cubic rows must control the large phase plateaux themselves.  Removing
+the two small jump projections or taking a polar part cannot suffice.
