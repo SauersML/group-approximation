@@ -1575,6 +1575,7 @@ import GroupApproximation.Sofic.AvatarRunBound
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
 import GroupApproximation.Sofic.GreendlingerReducedness
+import GroupApproximation.Sofic.AmalgamMFTrace
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
