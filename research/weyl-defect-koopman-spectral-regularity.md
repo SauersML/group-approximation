@@ -226,6 +226,26 @@ solenoid skeleton alone cannot give the required constant.
 
 ## Attempts
 
+- **The exact BS dynamics alone are now decisively refuted.**
+  `bs14-periodic-koopman-modes-refute-skeleton-regularity` realizes the
+  abstract low-cycle mode inside an explicit exact `BS(1,4)` packet for
+  every length `L`: take base order `4^L-1`.  On its simple fourth-power
+  orbit the first cyclic Fourier mode has defect at most `2 pi/L` and
+  minimum coboundary norm one.  Direct sums give the diffuse version.  Thus
+  no property of the exact BS/Iwahori *skeleton*, no atomless weak spectral
+  limit, and no lacunarity argument can prove `(KSR)`.  The only possible
+  rescue is a uniform suppression of these modes by the remaining
+  involution and two cubic relations in the full presentation.
+- **Compatible strata are not the frontier.**
+  `iwahori-uniform-infinitesimal-rigidity` already supplies the required
+  uniform Fox-Jacobian gap at exact congruence/compatible representations.
+  Consequently the missing spectral estimate is an outlier statement:
+  rule out long BS packets carrying the modes above unless the involution or
+  one of the two cubic words pays comparable normalized-HS energy.  This is
+  the same far-sector content as `iwahori-outlier-repair`, now reduced by
+  `iwahori-cubics-suppress-low-bs-orbit-modes` to a finite dyadic Fourier
+  inequality on explicit periodic packets.
+
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
   not give `(KSR)`: the weight `|1-lambda|^{-2}` blows up at the
   Koopman eigenvalue `1` (the almost-`x4`-invariant modes of `e'`),
