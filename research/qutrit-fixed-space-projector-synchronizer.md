@@ -3,12 +3,7 @@ rg: 2
 id: qutrit-fixed-space-projector-synchronizer
 kind: claim
 title: One trace-only group gadget synchronizes a qutrit fixed-space projector while preserving its complement
-artifacts:
-  - research/artifacts/qutrit-moment-exact-psync-splice-2026-08-23.md
 distinct_from:
-  hybrid-rank-router-authenticates-affine-overlap-blocks: that asks a two-copy role packet to route `A,B,AB,1` and then uses rank conjugacy to charge one forbidden overlap; this asks directly for fixed-space synchronization of two order-three clocks and requires complement-flexible perfect extension.
-  qutrit-diamond-robustly-synchronizes-pvms: that supplies a linear tracial PVM estimate in terms of five same-colour overlap energies; this asks to replace those energies by a fixed finite list of ordinary group-word defects.
-  literal-c3-projector-equality-collapses-the-clock: that proves an exact central-character group-algebra identity is too strong; this requires a genuinely tracial certificate which does not identify the complementary eigenspaces.
   central-tagged-one-in-three-is-a-finite-lcs-or: that makes one Boolean coordinate central and branches into binary affine profiles; this keeps all three qutrit positions symmetric and introduces no Boolean central tag.
   qutrit-psync3-tensor-closure-obstruction: that refutes this endpoint by tensoring four scalar exact extensions back into the same central sector.
 ---

@@ -4,8 +4,6 @@ id: qutrit-psync3-tensor-closure-obstruction
 kind: claim
 title: Tensor closure refutes complement-flexible qutrit projector synchronization in one nontrivial central sector
 distinct_from:
-  literal-c3-projector-equality-collapses-the-clock: that rules out a literal group-algebra equality by support comparison; this rules out every finite or infinite ordinary-group gadget satisfying the stated exact extension and sector soundness axioms, regardless of how nonlinear or noncommutative its auxiliaries are.
-  commuting-finite-phase-gadgets-have-affine-scalar-shadows: that treats commuting finite-phase auxiliaries by affine scalar projection; this allows arbitrary noncommuting auxiliaries and uses closure of ordinary-group representations under tensor products.
   qutrit-fixed-space-projector-synchronizer: that proposed the now-refuted PSync_3 endpoint.
 ---
 
