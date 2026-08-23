@@ -3,7 +3,7 @@ rg: 2
 id: atlas-six-relator-leavitt-regular-trace-countermodel-proof
 kind: route
 title: Spend the internal Leavitt chart conjugator on the surviving rank-three bridge
-target: atlas-six-relator-phase-lift-has-an-exact-leavitt-tracial-countermodel
+target: atlas-six-relator-leavitt-tracial-countermodel
 requires:
   - atlas-charts-overlap-trivially
   - leavitt-factor-regular-charts-inner-conjugate

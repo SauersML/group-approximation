@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: atlas-six-relator-phase-lift-has-an-exact-leavitt-tracial-countermodel
+id: atlas-six-relator-leavitt-tracial-countermodel
 kind: claim
 title: The six Atlas phase cycles have an exact positive-energy countermodel in the canonical Leavitt trace
 distinct_from:
