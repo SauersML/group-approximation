@@ -264,3 +264,40 @@ class is unavailable).
   type `F_3` conclusion.  The genericity counts at the `B_2`/`G_2`
   levels are naturally rational statements, so the LP-side consequence
   is the more robust of the two.
+- **Duality reduction: surjectivity follows from one-class-deleted
+  connectivity (2026-08-23).**  A cycle of `A` is determined by its
+  point-local data, so `Z_1(A)` is exactly the tuples of zero-sum local
+  vectors satisfying one linear condition per line.  Dualizing, an
+  annihilator of the image decomposes as `sum_l lambda_l (x) G_l +
+  sum_(l'') H_(l'') (x) lambda'_(l'')` over line functionals; evaluating
+  at different-class slots and using that every line meets every class
+  once, the coefficients `gamma(l,l'',p'') + eta(l'',l,p)` reduce to
+  pure gauge whenever the differences `G_l(p'') - G_(l_2)(p'')` can be
+  forced into the local span -- which needs exactly that any two lines
+  through points of classes other than a fixed one are connected in the
+  incidence graph of the opposition geometry with that class deleted.
+  A three-point interpolation through different-class witnesses then
+  kills every same-class slot: the cokernel vanishes.  So `(TLS1)` at a
+  twisted level is implied by: for each class `m`, the graph on
+  (single-class vertices of classes `!= m`) and (lines of `A`) is
+  connected.  This removes the disjoint-class-set bookkeeping and most
+  of the genericity counting; for odd `q` the sphere span gives it away
+  from the deleted class, leaving only the midpoint-class distribution
+  detail.
+- **Characteristic-two cross-check (2026-08-23).**  The proved even-`q`
+  collapse says every point-line-point walk translation lies in the
+  NORMAL subgroup `{c=0}` (normality: the only nontrivial commutator
+  from conjugating its generators lands in the center), so the FULL
+  incidence graph of the opposite-line geometry `Gamma(ell_1)` of
+  `H(q)`, `q` even, would be disconnected with components in
+  `q^3`-blocks.  This is a finite, checkable statement -- for `H(2)`:
+  48 points, 32 lines, predicted components of at most 24 points --
+  and it either matches a known small-parameter exception list for
+  opposition geometries of Moufang hexagons (Abramenko--Van Maldeghem
+  treat flag-opposition; the single-element case for even `q` must be
+  checked against the literature or by direct computation on MSI), or
+  it locates an error in the `V_6` reduction (the candidate weak
+  points: the identification of the line parabolic, the wall
+  dictionary, and the surviving `c^2`-term in the quotient by the
+  radical -- each has been double-checked once).  Deciding `H(2)` is
+  the sharpest next test of the whole even-`q` branch.
