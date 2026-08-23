@@ -69,6 +69,21 @@ The missing theorem is exactly `(BCW6)`.  The algebraic Whitehead covariance
 of the physical prefix selectors does not imply it: physical corner
 transport and adjoint commutant-range transport are different assertions.
 
+There is now an exact firewall on the meaning of that missing theorem.
+`canonical-marked-reynolds-return-is-subgroup-intersection` evaluates
+`Theta_W` in the canonical marked regular trace as
+
+```text
+|Pbar intersect W^(-1)Gbar W|/(|Pbar||Gbar|)<=1/32.   (BCW8)
+```
+
+This holds for every group word `W`, including genuinely nonnormal and
+self-similar words.  Therefore `(BCW6)` cannot be a zero-defect consequence
+of ordinary group relations: the exact regular representation would violate
+it.  The word energies in a viable `(BCW6)` must encode an intrinsically
+finite-matrix obstruction (finite trace, multiplicity, or proper-corner
+return), rather than merely a longer algebraic Whitehead identity.
+
 Nor can `(BCW1)` be replaced by one fixed physical carrier.
 `controlled-reynolds-density-has-no-fixed-physical-carrier` compares the two
 pure orientations with their balanced direct sum.  Physical traces and

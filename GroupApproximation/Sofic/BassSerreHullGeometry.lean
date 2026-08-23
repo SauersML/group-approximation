@@ -274,6 +274,51 @@ theorem dist_eq_one_of_adj {x y : PathVertex G}
   rw [pathVertex_dist, SimpleGraph.dist_eq_one_iff_adj.mpr hxy]
   norm_num
 
+/-! ## Short displacement upper bounds -/
+
+/-- Bass--Serre displacement is subadditive under multiplication. -/
+theorem dist_mul_smul_baseLeft_le (a b : BassSerreFreeProduct.Ambient G) :
+    dist (baseLeft G : PathVertex G) ((a * b) • (baseLeft G : PathVertex G)) ≤
+      dist (baseLeft G : PathVertex G) (a • (baseLeft G : PathVertex G)) +
+        dist (baseLeft G : PathVertex G) (b • (baseLeft G : PathVertex G)) := by
+  calc
+    dist (baseLeft G : PathVertex G) ((a * b) • (baseLeft G : PathVertex G)) ≤
+        dist (baseLeft G : PathVertex G) (a • (baseLeft G : PathVertex G)) +
+          dist (a • (baseLeft G : PathVertex G))
+            ((a * b) • (baseLeft G : PathVertex G)) := dist_triangle _ _ _
+    _ = dist (baseLeft G : PathVertex G) (a • (baseLeft G : PathVertex G)) +
+        dist (baseLeft G : PathVertex G) (b • (baseLeft G : PathVertex G)) := by
+      rw [mul_smul, isIsometricAction G a]
+
+/-- A right-factor letter moves the left base vertex by at most two edges. -/
+theorem dist_fromIndexed_of_true_smul_baseLeft_le_two
+    (z : BinaryCoprodNormalForm.factor G true) :
+    dist (baseLeft G : PathVertex G)
+        (BinaryCoprodNormalForm.fromIndexed G (CoprodI.of z) •
+          (baseLeft G : PathVertex G)) ≤ 2 := by
+  let r : BassSerreFreeProduct.Ambient G :=
+    Monoid.Coprod.inr (MulEquiv.ulift z)
+  have hr : BinaryCoprodNormalForm.fromIndexed G (CoprodI.of z) = r := by
+    simp [r]
+  have hfix : r • BassSerreFreeProduct.baseRight G =
+      BassSerreFreeProduct.baseRight G :=
+    (BassSerreFreeProduct.smul_baseRight_eq_iff G r).mpr
+      ⟨MulEquiv.ulift z, rfl⟩
+  rw [hr]
+  calc
+    dist (baseLeft G : PathVertex G) (r • (baseLeft G : PathVertex G)) ≤
+        dist (baseLeft G : PathVertex G) (BassSerreFreeProduct.baseRight G) +
+          dist (BassSerreFreeProduct.baseRight G)
+            (r • (baseLeft G : PathVertex G)) := dist_triangle _ _ _
+    _ = 1 + dist (r • (BassSerreFreeProduct.baseRight G))
+          (r • (baseLeft G : PathVertex G)) := by
+      rw [hfix, dist_eq_one_of_adj G (BassSerreFreeProduct.base_adj G)]
+    _ = 1 + dist (BassSerreFreeProduct.baseRight G)
+          (baseLeft G : PathVertex G) := by rw [isIsometricAction G r]
+    _ = 2 := by
+      rw [dist_comm, dist_eq_one_of_adj G (BassSerreFreeProduct.base_adj G)]
+      norm_num
+
 /-- In a tree every simple path is the geodesic between its endpoints.  This
 small interface lemma is useful here because Mathlib's graph metric only
 states the converse (`length = dist` implies `IsPath`) directly. -/

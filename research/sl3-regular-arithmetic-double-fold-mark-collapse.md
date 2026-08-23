@@ -116,6 +116,16 @@ the canonical trace on the nonamenable amalgam.  Thus this terminal respects
 the trace firewall in `sl3-hnn-sits-in-shulman-symmetric-double` rather than
 reintroducing the invalid MF-to-hyperlinear implication.
 
+Exact folding plus canonical-double compactness is also insufficient as an
+abstract promotion principle.  The fixed finitely presented sofic
+calibration in
+`canonical-free-double-escapes-uniform-exact-projective-folding` has exact
+projective-transfer constant zero and every exact finite-dimensional double
+representation kills its fold word, while full canonical double microstates
+keep that word trace-zero.  Therefore the established exact SL3 gap can be
+promoted only by a specifically arithmetic approximate-coordinate theorem;
+compactness and the canonical character alone cannot do it.
+
 The canonical block-swap character decomposition also stops short.
 `finite-spherical-moments-do-not-fold-regular-double` identifies its
 restriction to the commutative `2`-adic spherical Hecke algebra with the
