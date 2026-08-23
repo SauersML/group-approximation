@@ -15,6 +15,14 @@ input is the ten-coordinate packet of
 diagonal at all.  Construct a finite coherent coefficient presentation with
 these properties.
 
+The phrase "finite certificate" below now refers only to its local packet
+data.  `edgeful-or3-finite-packet-search-reduces-to-hs-promotion` audits the
+subsequent firewalls: the ten-coordinate root branch has a finite six-clique
+obstruction, while every currently known four-cap completion either
+collapses the mark, retains a finite evaluator, or waits on a
+dimension-independent canonical-HS promotion theorem.  Thus bounded packet
+enumeration alone no longer closes this claim.
+
 1. Every clause context uses a conjugated assignment PVM: `(OBP4)` for the
    ten-coordinate input, or the direct sum of four conjugated cap PVMs for
    the Fourier input.  Thus predicate, star, idempotence, and partition
