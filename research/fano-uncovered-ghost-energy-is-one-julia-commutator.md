@@ -118,3 +118,32 @@ ghost countersector.  Scalar marked selector sectors cannot do it either:
 under odd tensor products and therefore restores the affine ghost.  Thus a
 successful authenticator must be genuinely non-scalar and cross-context;
 adding another local truth table is provably the wrong level.
+
+## Special-structure reduction beyond the aggregate colligation
+
+`uncovered-ghost-reflections-directly-pay-the-fano-row` shows that the
+aggregate Julia authenticator is not minimal. Put
+
+```text
+Q_c=(1-P_c)F_c,
+r_c=diag(1-2Q_c,1)
+```
+
+in the existing common D8 grading. Then
+
+```text
+4||Q_cS||_(2,H)^2<=||r_cjr_cj-1||_2^2,
+L_forb<=(1/4)sum_c mu_c||r_cjr_cj-1||_2^2.
+```
+
+No block encoding of `T`, coherent context amplitudes, controller
+orientation, or corner return is required. The remaining syntax is only to
+wordize the positive-block reflection `1-2(1-P_c)F_c`.
+
+That reflection is `-1` on exactly the joint sign sector
+`P_c=0,F_c=1`, so it is nonaffine and cannot be a word in commuting
+selector and central signs. A finite nonabelian router realizes it in one
+chosen type but retains the induced uncovered sector in another exact
+representation. Thus the colligation problem reduces to the established
+nonlinear hybrid-reflection authentication gate; a central-sign finite
+register does not evade it.

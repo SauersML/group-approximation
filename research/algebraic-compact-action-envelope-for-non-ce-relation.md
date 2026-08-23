@@ -298,6 +298,26 @@ least one canonical IRS generator, or scramble the canonical generator
 system nonhomogeneously; the obstruction does not rule out that sharper
 route.
 
+Allowing exactly two actor grades still does not open that route on the
+cyclic-aperiodic module branch. `cyclic-aperiodicity-collapses-two-actor-grade-unitaries`
+classifies a unitary `aU_g+bU_h`: unitarity makes `|a|^2` a projection
+invariant under `h g^(-1)`, and cyclic aperiodicity makes that automorphism
+ergodic, so the projection is zero or one. Thus the unitary was homogeneous
+after all. Applied simultaneously to the Manzoor generators,
+`manzoor-two-grade-placement-forces-a-kernel-sandwich` produces a grading
+homomorphism `theta:F->Gamma(3)` and forces the random stabilizer to satisfy
+
+```text
+[ker(theta),ker(theta)] <= S <= ker(theta)             almost surely.
+```
+
+The injective case contradicts Manzoor's almost-surely infinite isotropy, and
+the trivial case puts the whole non-CE algebra in the abelian base. The only
+residual two-grade case is a proper nontrivial actor quotient with precisely
+this kernel sandwich; it is a homogeneous algebraic-cocycle problem, not a
+genuine Fourier mixture. At least three actor grades are required for a new
+finite-grade mechanism.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a

@@ -101,3 +101,14 @@ are nonnegative and can only increase this floor.  Thus `(KCC7)` is not a
 chart PVM and cannot feed EDA11; stabilizer-invariant Kesten spectral
 calculus recreates a large independent-refinement error inside the native
 graph-product model.
+
+The finite-shell action still has a formal Rokhlin alternative, but it is
+strictly a different target.  By
+`finite-shell-coset-tower-is-a-nonlinear-unstabilized-lift`, an arbitrary
+`D`-fundamental projection is an equivariant embedding
+`l_infinity(Q/H)->L(W_S)`.  The required quasi-regular module is already
+present and the tower exists exactly after tensoring by the 42-dimensional
+quasi-regular matrix action.  What remains open is descent of that stabilized
+rank-one atom to the original factor.  The Kesten calculation neither proves
+nor refutes such an unrelated projection; it only proves that its canonical
+spectral candidate cannot be one.
