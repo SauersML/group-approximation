@@ -79,3 +79,10 @@ choose a gauge representative jointly with the repaired core).  It cannot
 first freeze the canonical regular Weyl matrix and then try to collapse the
 relative gauge to one.  This is the square-free endpoint form of the
 bending freedom in `iwahori-square-root-odd-mode-is-amalgam-bending`.
+
+Once two endpoint vertices are already authenticated as equal-character
+odd-congruence representations,
+`regular-congruence-endpoint-orbit-has-uniform-selberg-retraction` gives a
+uniform conditional-expectation retraction to this orbit.  The remaining
+open problem is therefore reaching the orbit's congruence basin, not its
+internal synchronization.

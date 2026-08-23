@@ -169,6 +169,16 @@ congruence quotients.  It does not establish `(RCE1)`.
   the conjugator into `{R,T}'`.  The missing theorem is therefore precisely
   **uniform approximate distance to this exact orbit** as the congruence
   level and its multiplicity grow.
+  On already authenticated regular congruence blocks this distance problem
+  is solved by
+  `regular-congruence-endpoint-orbit-has-uniform-selberg-retraction`:
+  conditional expectation, polar completion and equality of regular
+  characters give a `4/kappa` transporter bound independent of level.
+  `selberg-orbit-retraction-does-not-cross-square-free-basin` identifies the
+  exact remaining interface: the five square-free relations do not prove
+  that the second modular vertex is congruence, so using `kappa` before
+  `(RCE1)` is circular.  There is no additional deterioration after basin
+  authentication.
 - **Qualitative ultraproduct lifting is equivalent to the whole regular
   stability endpoint.**
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that
