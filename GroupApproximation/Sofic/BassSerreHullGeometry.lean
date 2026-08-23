@@ -21,6 +21,10 @@ universe u
 
 variable (G : Type u) [Group G]
 
+noncomputable local instance factorDecidableEq
+    (i : Bool) : DecidableEq (BinaryCoprodNormalForm.factor G i) :=
+  Classical.decEq _
+
 /-- A sufficiently central entry of a sublist of `left ++ middle ++ right`
 must come from `middle`.  This is the finite-list core of the tree-overlap
 argument: bypassing can delete at most the two short end pieces before it

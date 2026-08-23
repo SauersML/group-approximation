@@ -585,7 +585,7 @@ theorem sum_double_indicator {S R : Type*}
       a x * b y := by
   have hterm (u v : S) :
       a u * (if x = u ∧ y = v then 1 else 0) * b v =
-        if u = x then if v = y then a u * b v else 0 else 0 := by
+        if v = y then if u = x then a u * b v else 0 else 0 := by
     by_cases hu : u = x <;> by_cases hv : v = y
     · subst u
       subst v
@@ -597,7 +597,11 @@ theorem sum_double_indicator {S R : Type*}
     · have hx : x ≠ u := fun h ↦ hu h.symm
       simp [hu, hx]
   simp_rw [hterm]
-  rw [Fintype.sum_ite_eq']
+  have hinner (u : S) :
+      (∑ v, if v = y then if u = x then a u * b v else 0 else 0) =
+        if u = x then a u * b y else 0 := by
+    rw [Fintype.sum_ite_eq']
+  simp_rw [hinner]
   rw [Fintype.sum_ite_eq']
 
 /-- The source-diagonal part of incidence energy. -/
@@ -1824,9 +1828,14 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       sum_coboundaryFactor_gram h i l,
       normalizedLink_pullback T regularDegree gap q h i l,
       meanZeroProjector_pullback]
-    simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-      single_one_comm]
-    noncomm_ring
+    by_cases hil : i = l
+    · subst l
+      simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
+        single_one_comm]
+      noncomm_ring
+    · simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
+        single_one_comm, hil]
+      noncomm_ring
   · intro i
     simp [hl1zero]
   · intro l

@@ -92,3 +92,40 @@ out a packet-only implementation of the surrogate.  Any viable WI word must
 couple a packet phase to the shared source observables; simply adjoining the
 finite predicate 2-group would duplicate the already-fenced controlled-phase
 construction.
+
+## Atomwise Schur--Pauli reduction
+
+The within-type gate can nevertheless be narrowed further without asking a
+word to compute the nonlinear predicate.  The established claim
+`coordinate-phase-atoms-remove-nonlinear-forbidden-union` refines the marked
+forbidden carrier into literal joint eigenspaces of the original BCS
+coordinate involutions.  Its exact identity
+
+```text
+sum_i ||Z_iU-UW_i||_2^2
+ =4 sum_(a,b) Ham(a,b)||P_aUQ_b||_2^2
+```
+
+makes ordinary coordinate covariance words pay every cross-assignment block.
+The nonlinear forbidden set is now only a finite external sum.
+
+On each forbidden atom,
+`schur-pauli-words-name-atomwise-half-quarter-flags` combines the already
+named relative Pauli pair with one baseline Pauli pair.  The literal cuts
+
+```text
+e_a=C_a(I-Z_a)/2,
+f_a=C_a(I-Z_a)(I-Z_0)/4
+```
+
+have exactly half and quarter of the atom's trace in every packet
+multiplicity block.  This removes both the anonymous four-divisibility trim
+and the additive forbidden-selector surrogate from the active route.
+
+The route
+`finite-phase-forbidden-cuts-via-atomwise-schur-pauli-return` now has exactly
+one open input: `atomwise-schur-pauli-cycle-return`.  That claim asks the
+compressed global actuator to dominate the return of the named relative
+Pauli half to the named relative-plus-baseline Pauli quarter.  The surviving
+obstruction is therefore a common multiplicity-reservoir return, not
+nonlinear Boolean authentication.

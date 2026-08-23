@@ -837,6 +837,17 @@ theorem edgeLabel_smul_baseLeft_eq_of_color_eq_false {v w : Vertex G}
     have : color G v = true := by rw [hr.2]; rfl
     exact Bool.false_ne_true (hv.symm.trans this)
 
+/-- The corresponding statement when the left-colored endpoint is written
+second in the chosen traversal orientation. -/
+theorem edgeLabel_smul_baseLeft_eq_of_second_color_eq_false {v w : Vertex G}
+    (h : (graph G).Adj v w) (hw : color G w = false) :
+    edgeLabel G h • baseLeft G = w := by
+  rcases edgeLabel_spec G h with hf | hr
+  · exfalso
+    have : color G w = true := by rw [hf.2]; rfl
+    exact Bool.false_ne_true (hw.symm.trans this)
+  · exact hr.1.symm
+
 /-- The last label of a nonempty walk sends the left base vertex to the end
 whenever that end has left color.  Stating this with `getLastD` avoids a
 separate nonemptiness witness for the tail of the walk. -/
@@ -846,15 +857,16 @@ theorem getLastD_walkLabels_smul_baseLeft_eq_end {u v w target : Vertex G}
     (walkLabels G p).getLastD (edgeLabel G h) • baseLeft G =
       target := by
   induction p generalizing u target with
-  | nil =>
-      have hv : _ = target := by
+  | @nil v =>
+      have hv : v = target := by
         simpa [SimpleGraph.Walk.getVert] using hend
-      exact (edgeLabel_smul_baseLeft_eq_of_color_eq_false G h (by
+      have hvcolor : color G v = false := by
         rw [hv]
-        exact hw)).trans hv
+        exact hw
+      exact (edgeLabel_smul_baseLeft_eq_of_second_color_eq_false G h hvcolor).trans hv
   | @cons x y z h' p ih =>
       simp only [walkLabels_cons, List.getLastD_cons]
-      apply ih h' target
+      apply ih h' (target := target)
       · simpa using hend
       · exact hw
 
@@ -930,7 +942,7 @@ theorem sylLength_toIndexed_le_path_length_add_one {g : Ambient G}
         apply getLastD_walkLabels_smul_baseLeft_eq_end G h q
           (target := g • baseLeft G)
         · simpa using hy
-        · simp
+        · rfl
       have hlastMem : last⁻¹ * g ∈ leftFactor G :=
         inv_mul_mem_leftFactor_of_smul_baseLeft_eq G hlast
       let t := (transitionsFrom G (edgeLabel G h) (walkLabels G q)).prod

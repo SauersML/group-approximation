@@ -43,13 +43,13 @@ multiplicity.
 
 The flags in `(SPF2)` are finite star-polynomials in literal group words.
 Their normalized Hilbert--Schmidt perturbation after approximate packet
-exactification is bounded by the fixed packet stability modulus.  Summing
-them over the finitely many forbidden assignments gives the entire marked
-forbidden Schur-packet carrier; no four-divisibility trimming and no
-noncanonical choice in an anonymous multiplicity algebra is needed.
+exactification is bounded by the fixed packet stability modulus.  The
+underlying atoms `C_a`, over the finitely many forbidden assignments, sum to
+the entire marked forbidden Schur-packet carrier, while `(SPF3)` supplies its
+half and quarter flags.  No four-divisibility trimming and no noncanonical
+choice in an anonymous multiplicity algebra is needed.
 
 This does not supply the global actuator.  It replaces the old within-type
 authentication question by the narrower problem of returning these named
 Pauli flags through one common finite-matrix holonomy while preserving the
 perfect non-CE trace.
-
