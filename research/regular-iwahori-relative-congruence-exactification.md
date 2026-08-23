@@ -80,3 +80,18 @@ congruence quotients.  It does not establish `(RCE1)`.
   unchanged norm after canonicalization. Opposite-root orthogonality can
   close `(RCE1)` only after a theorem forces gauges into the authenticated
   congruence root algebra; it cannot itself provide that authentication.
+- **Same-core gauge coercivity makes the authentication boundary exact.**
+  After a congruence endpoint `(X_0,R_0,S_0)` has been authenticated and the
+  repaired tuple has relative form `X=cX_0` with `[c,S_0]=0`,
+  `same-core-involution-cubic-gauge-coercivity` globally forces
+
+  ```text
+  ||c-1||_2 <= ||X^2-1||_2+||(XS_0^2)^3-1||_2.
+  ```
+
+  Thus `(RCE1)` does not additionally require a spectral gap for the
+  root-commutant gauge.  What it must supply is precisely the antecedent:
+  a nearby exact moving congruence atom, a common exact extender `X_0`, and
+  alignment of the input gauge into the commutant of the same `S_0`.
+  Regular trace, opposite-root orthogonality, and endpoint classification
+  do not presently authenticate those data.

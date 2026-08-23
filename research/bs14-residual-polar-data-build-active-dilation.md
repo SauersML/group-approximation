@@ -159,3 +159,23 @@ tuple.
   singular matrix is not an integrable modification of `X`.  There is no
   tangent inverse blowup; the missing gate is global operator-norm basin
   entry after high-carrier realization.
+- The last gauge-integration step is now exact rather than perturbative.
+  If the polar-data construction authenticates an exact endpoint
+  `(X_0,R,S)` on the realized carrier and aligns the input as
+
+  ```text
+  X=cX_0,                 [c,S]=0,
+  ```
+
+  then `same-core-involution-cubic-gauge-coercivity` yields
+
+  ```text
+  ||c-1||_2 <= ||X^2-1||_2+||(XS^2)^3-1||_2.
+  ```
+
+  Hence active/passive thresholding no longer has to integrate a Koopman
+  equation for `c`.  Its irreducible task is to construct and authenticate
+  the exact common carrier/core and enforce the commutant alignment.  The
+  residual polar data alone do not imply either fact, and the second cubic
+  remains essential to select the common endpoint rather than an
+  independently rounded first-cubic baseline.
