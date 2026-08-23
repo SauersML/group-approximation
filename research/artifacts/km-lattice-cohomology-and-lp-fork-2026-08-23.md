@@ -397,3 +397,82 @@ the mixed averaging geometry of `B_2`/`G_2` Levis permits or forbids
 this is exactly a two-family generalization of the proved
 characteristic-function method (one averaging family helping, one
 hindering).
+
+## Addendum 13: the building spectral sequence and the three-subspace formula
+
+Late-day cascade; each step short, recorded for verification.
+
+1. **Use X_- itself.**  The negative building is CONTRACTIBLE and its
+   cell stabilizers are the negative parabolics -- all LOCALLY FINITE
+   (finite Levi x| locally finite radical).  For uniquely divisible
+   `V`, `H^q(locally finite, V) = 0` for `q >= 2` (Milnor +
+   finite-subgroup vanishing), and `H^1` is a `lim^1`.  The isotropy
+   spectral sequence of `Lambda` on `X_-` (type-preserving, quotient
+   one chamber `Delta^2`) therefore has, on the `n = 2` diagonal,
+   only the entry
+
+   ```text
+   H^2(Lambda, V) = E_2^(1,1)
+     = middle cohomology of
+       (+)_3 H^1(P_jk^-, V) -> (+)_3 H^1(P_i^-, V) -> H^1(B_-, V).
+   ```
+
+   The `(2,0)` entry dies because all parabolic invariants are `R`
+   (mixing) and `H^2(Delta^2; R) = 0`; the `(0,2)` entry dies by
+   local finiteness.  This SUPERSEDES the thick-part route for
+   divisible coefficients: no opposition-complex connectivity, no
+   face-case caveats.
+
+2. **Pairwise = joint (the polygon-cycle vanishing).**  All
+   restrictions are injective (finite index over `B_-`, transfer,
+   divisibility), so identify everything with stable subspaces
+   `St c H := H^1(B_-, V)`.  Five-term for `P_j^- *_(B_-) P_k^- ->>
+   P_jk^-` with free kernel `N`, trivial `N`-action, and
+   `H^2(P_jk^-, V) = 0` gives `(St_j cap St_k)/St_jk ~=
+   Hom(N, V)^(P_jk^-)`.  `N^ab = H_1` of the coset graph
+   `P_jk^-/P_j^- u P_jk^-/P_k^-` with edge set `P_jk^-/B_-`: the
+   INCIDENCE GRAPH of the rank-two polygon (digon / W(q) / split
+   Cayley hexagon H(q)) of the finite Levi, since the unipotent
+   radical acts trivially on it.  Equivariance forces values into
+   `V^(radical) = R` (mixing), so the Hom-space is
+   `((H_1(polygon; R))^Levi)*`; flag-transitivity leaves only the
+   all-ones edge vector, whose boundary is nonzero in the
+   `(q+1)`-biregular bipartite graph.  Hence
+
+   ```text
+   St_j cap St_k = St_jk   at all three vertices.
+   ```
+
+   (This also proves Addendum 12's obs map is ZERO on all of
+   `St_j cap St_k`, completing Lemma 1 there.)
+
+3. **Three-subspace master formula.**  With pairwise intersections
+   identified, the relation space of the `E_2^(1,1)` complex maps
+   isomorphically ((a1,a2,a3) -> a3, kernel = the {j,k}=12 diagonal)
+   onto
+
+   ```text
+   H^2(Lambda, L^0(Y))  ~=  ((St_1 + St_2) cap St_3) / (St_13 + St_23),
+   ```
+
+   a DISTRIBUTIVITY DEFECT of three stable subspaces of
+   `H^1(B_-, L^0)`.  Corollary E's clause holds at the Bernoulli
+   action iff this defect module is nonzero.
+
+4. **Where a nonzero defect must come from.**  Set `Gamma_3 :=
+   P_13^- *_(P_3^-) P_23^-` with its surjection onto `Lambda` (the
+   two maximal parabolics generate) and free kernel `N_3`
+   (Bass--Serre; vertex groups embed in `Lambda`).  Mayer--Vietoris
+   gives `H^2(Gamma_3, V) = St_3/(St_13 + St_23)`, and the
+   five-term for `Lambda = Gamma_3/N_3` exhibits `H^2(Lambda, V)`
+   as an extension of its image in that quotient by
+   `coker(H^1(Gamma_3, V) -> Hom(N_3, V)^Lambda)`, where `N_3^ab =
+   H_1` of the infinite subgraph of `X_-` on the two vertex types
+   with cotype-3 edges.  Unlike the polygon case the `Lambda`-orbits
+   of cycles have FINITE mixed stabilizers (Birkhoff intersections),
+   so equivariant maps take values in huge `V^(finite)` spaces --
+   the constants trick does NOT kill this.  Deciding
+   `Hom_Lambda(H_1(cotype-3 subgraph), L^0(Y))` -- concretely, the
+   existence of an equivariant assignment of measurable functions to
+   the cycles of one cotype-deleted building layer -- is the
+   surviving computation, in both directions.

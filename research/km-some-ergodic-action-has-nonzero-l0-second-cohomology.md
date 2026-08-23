@@ -125,3 +125,15 @@ Three recorded routes (details on the LP node):
   LP, surjectivity at all three vertices (plus the (0,2) opposition
   entries vanishing) kills the last known Corollary E mechanism for
   Bernoulli actions.
+
+- 2026-08-23 (endgame theorem).  ESTABLISHED
+  (`km-l0-h2-is-the-three-subspace-defect`): for the Bernoulli
+  action, `H^2(Lambda, L^0(Y))` IS the three-subspace defect
+  `((St_1+St_2) cap St_3)/(St_13+St_23)` inside `H^1(B_-, L^0)`;
+  the pairwise defects vanish (flag-transitivity kills the
+  Levi-invariant polygon cycles), the building spectral sequence
+  kills every other entry, and the surviving computation is
+  `Hom_Lambda(H_1(cotype-3 subgraph of X_-), L^0(Y))` against
+  finite mixed cycle stabilizers.  The Bernoulli instance of this
+  claim is now a SINGLE equivariant computation, decidable in
+  either direction.
