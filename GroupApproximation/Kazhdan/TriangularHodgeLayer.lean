@@ -1840,7 +1840,6 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       normalizedLink_pullback T regularDegree gap q h i l,
       meanZeroProjector_pullback]
     simp_rw [nested_mul_single_pair]
-    simp_rw [single_one_mul_single_one]
     have hdQ : (regularDegree : ℚ) ≠ 0 := by
       exact_mod_cast h.1.ne'
     have hNQ :
