@@ -68,8 +68,9 @@ this same literal presentation, \(E\) is an explicit finitely presented
 sofic (hence hyperlinear) group which is not MF. In particular its sofic
 radical is trivial, while its MF radical is nontrivial.
 
-The frozen manuscript still contains the sentence that soficity of \(E\) is
-open. The argument below resolves that question positively.
+An earlier manuscript snapshot left soficity of \(E\) open.  The argument
+below resolves that question positively and is now assembled unconditionally
+in `GroupApproximation/Sofic/LiteralSoficAssembly.lean`.
 
 ---
 

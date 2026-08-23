@@ -15,7 +15,7 @@
 \usepackage[T1]{fontenc}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{enumitem}
+\usepackage{enumitem,etoolbox}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -105,6 +105,16 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
+% Keep the AMS title-page abstract layout without printing a redundant
+% ``Abstract.'' label.
+\makeatletter
+\patchcmd{\abstract}
+  {\item[\hskip\labelsep\scshape\abstractname.]}
+  {\item[]}
+  {}
+  {\PackageError{non-mf}{Could not remove the abstract heading}{}}
+\makeatother
+
 \begin{document}
 
 \title[A non-MF group]{A non-MF group}
@@ -118,12 +128,11 @@ A countable discrete group is MF if it embeds in the unitary group of a
 norm matrix corona
 $\mathcal Q=\prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)$.
 We prove that non-MF groups exist, resolving in the negative the
-longstanding question of whether every countable group is MF\@.  Our principal example is an
-explicit finitely presented group.
+longstanding question of whether every countable group is MF\@.  Our principal
+example is explicit.
 
-At the final obstruction step, we adapt the operator--Hilbert--Schmidt
-compression argument of Bachner--Dogon--Lubotzky for Deligne-type groups.
-A key ingredient is a one-sided Kazhdan
+The proof begins its final obstruction step by passing to the negative
+spectral corner of a central involution.  A key ingredient is a one-sided Kazhdan
 transport theorem: in every operator-norm asymptotic representation,
 one-sided conjugation preserves the Hilbert--Schmidt asymptotic commutant
 of a property-\textup{(T)} subgroup.  This forces every homomorphism into
@@ -154,7 +163,7 @@ operator-norm property of Carri\'on--Dadarlat--Eckhardt \cite{CDE};
 stronger conventions are discussed after
 Proposition~\ref{prop:mf-equivalences}.  To our knowledge no
 counterexample was previously known \cite{Schafhauser,Shulman}.  We
-construct an explicit finitely presented group that is not MF\@.  Its
+construct an explicit group that is not MF\@.  Its
 base is the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and the
 construction uses the endomorphism that doubles the translation subgroup
 and fixes the linear part.
@@ -176,7 +185,7 @@ used here.
 
 \subsection*{The result}
 
-\begin{mainthm}[an explicit finitely presented non-MF group]\label{thm:A}
+\begin{mainthm}[an explicit non-MF group]\label{thm:A}
 Let
 \[
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
@@ -207,14 +216,13 @@ further variants and consequences are collected in the companion
 
 \subsection*{Outline of the proof}
 
-The final analytic maneuver is adapted from the
-operator--Hilbert--Schmidt compression argument of
-Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  Starting from a
-separated central involution, their proof passes to its negative spectral
-corner and uses operator--Hilbert--Schmidt stability to obtain nearby genuine
-finite-dimensional representations.  Here the same corner reduction is
-combined with a different source of Hilbert--Schmidt rigidity: one-sided
-conjugation of a property-\textup{(T)} subgroup.
+The final analytic maneuver starts with a negative-corner reduction that also
+appears in the operator--Hilbert--Schmidt argument of
+Bachner--Dogon--Lubotzky \cite[Proposition~1.5]{BDL}.  After that reduction the
+arguments diverge.  Their proof assumes operator--Hilbert--Schmidt stability
+and obtains nearby genuine finite-dimensional representations; here
+Hilbert--Schmidt rigidity instead comes from one-sided conjugation of a
+property-\textup{(T)} subgroup.
 
 Multiplicative defects are measured in operator norm; asymptotic-commutant
 estimates are measured in normalized Hilbert--Schmidt norm.  Let $L\le H$
@@ -892,8 +900,12 @@ and let $\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors
 fixed by every $\pi(\ell)$, $\ell\in L$.  By Lemma~\ref{lem:kazhdan-gap},
 $1$ is isolated in $\operatorname{sp}(h)$, so the spectral projection
 $P$ of $h$ at $1$ belongs to $B_\omega$ by continuous functional
-calculus; since $h=1$ exactly on $\mathrm{Fix}$, its range is
-$\mathrm{Fix}$.
+calculus.  If $h\xi=\xi$, equality in the average of the unitaries
+$\pi(s')$ forces $\pi(s')\xi=\xi$ for every $s'\in S$.  The Kazhdan
+inequality applied to the component of $\xi$ orthogonal to
+$\mathrm{Fix}$ then forces that component to vanish.  Thus the
+$1$-eigenspace of $h$ is exactly $\mathrm{Fix}$, and
+$\operatorname{ran}P=\mathrm{Fix}$.
 
 \emph{The two projections agree.}  Let $V=\pi(t)$ and $Q=VPV^*$.  Since
 $tLt^{-1}\subseteq L$, every vector of
@@ -924,9 +936,9 @@ contradicts $I\in\omega$.
 
 \section{The central involution obstruction}\label{sec:sign}
 
-We now isolate the final obstruction.  Its corner reduction is modeled on the
-operator--Hilbert--Schmidt compression argument of Bachner--Dogon--Lubotzky
-\cite[Proposition~1.5]{BDL}.  Their proof uses
+We now isolate the final obstruction.  The same corner reduction occurs in
+the operator--Hilbert--Schmidt argument of Bachner--Dogon--Lubotzky
+\cite[Proposition~1.5]{BDL}.  Their proof then uses
 operator--Hilbert--Schmidt stability to replace the compressed asymptotic
 representation by nearby genuine finite-dimensional representations.  Here
 Theorem~\ref{thm:kazhdan-transport} replaces that stability step: on the
@@ -938,8 +950,10 @@ homomorphism to $\U(\mathcal Q)$ with $\Theta(w)\ne1$.  Then
 $\Theta(w)$ is a self-adjoint unitary commuting with $\Theta(H)$, and
 $q=\tfrac12(1-\Theta(w))$ is a nonzero projection on whose corner
 $q\mathcal Q q$ the compression of $\Theta(w)$ is $-q$ exactly.  The
-argument below compresses a matrix model of $H$ to the corners cut out by coordinate
-lifts of such a projection.
+argument below compresses a matrix model of $H$ to the corners cut out by
+coordinate lifts of such a projection.  The next lemma is the operator-norm
+case of \cite[Proposition~2.4]{BDL}; its short proof is included for
+completeness.
 
 \begin{lemma}[compression to an asymptotically central corner]
 \label{lem:corner}
@@ -988,16 +1002,16 @@ which tends to $0$.  Adding the three polar corrections gives
 \]
 \end{proof}
 
-For the rounding, compression, and polar-correction implementation, we follow
-Bachner--Dogon--Lubotzky \cite[Lemmas~2.2--2.3, Proposition~2.4, and the
-proof of Proposition~1.5]{BDL}.  Their involution-rounding lemma, in turn, is
-due to De~Chiffre--Glebsky--Lubotzky--Thom
-\cite[Proposition~1.4]{DGLT}.  The normalization of a distinguished central
-involution by passage to its negative eigenspace appears earlier in Slofstra
-\cite[Lemma~3.9]{SlofstraCorrelations} and Slofstra--Vidick
-\cite[proof of Proposition~2.7]{SlofstraVidick}.  Their use here is
-specifically the normalization step; the obstruction
-below is supplied by one-sided Kazhdan transport and the square relation.
+The spectral repair of the central involution is the projection form of the
+exact-involution rounding lemma of De~Chiffre--Glebsky--Lubotzky--Thom
+\cite[Proposition~1.4]{DGLT}, also recorded in
+\cite[Lemma~2.2]{BDL}.  The standard polar-correction estimate is recorded in
+\cite[Lemma~2.3]{BDL}.  Normalization by passage to the negative eigenspace
+appears earlier in Slofstra \cite[Lemma~3.9]{SlofstraCorrelations} and
+Slofstra--Vidick \cite[proof of Proposition~2.7]{SlofstraVidick}.  These
+citations account for the local rounding and corner operations.  The
+obstruction below is instead supplied by one-sided Kazhdan transport and the
+square relation.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
 Let $H$ be a countable group, let $L\le H$ have
@@ -1019,7 +1033,7 @@ suppose $\Theta(w)\ne1$.
 
 \emph{The $(-1)$-spectral corner.}  Choose coordinate unitary lifts
 $(V_{g,n})$ of $\Theta$ (Lemma~\ref{lem:unitarycorona}) and put
-$p_n=\tfrac12(1+V_{w,n})$, the averaging operator of the
+$p_n=\tfrac12(1+V_{w,n})$, the approximate averaging operator of the
 two-element subgroup $F=\{1,w\}$.  Because the lifts are
 asymptotically multiplicative and $w^2=1$, we have
 $\opnorm{V_{w,n}^2-1}\to0$ and hence
@@ -1052,9 +1066,20 @@ $\tr_{r_n}$ and are independent of the ratio $r_n/d_n$.
 $L$, the sequence $(W_{c,n})$ centralizes
 $(W_{\ell,n})$, $\ell\in L$, asymptotically in operator norm, hence in
 normalized Hilbert--Schmidt norm.  By
-Theorem~\ref{thm:kazhdan-transport} applied to $x_n=W_{c,n}$, the
-conjugated sequence $(W_{\hat c,n})$ lies in the same asymptotic commutant.
-Therefore $\hsnorm{W_{u,n}-1}\to0$, and squaring gives
+Theorem~\ref{thm:kazhdan-transport} applied to $x_n=W_{c,n}$, the sequence
+$(W_{t,n}W_{c,n}W_{t,n}^*)$ lies in the same asymptotic commutant.
+Asymptotic multiplicativity and unitarity give
+\[
+ \opnorm{W_{\hat c,n}-W_{t,n}W_{c,n}W_{t,n}^*}\longrightarrow0,
+\]
+so $(W_{\hat c,n})$ lies there as well.
+Asymptotic multiplicativity and inversion also identify $W_{u,n}$ in
+operator norm with
+$W_{\hat c,n}W_{a,n}W_{\hat c,n}^*W_{a,n}^*$.  For unitaries $A,B$,
+\[
+ \hsnorm{ABA^*B^*-1}=\hsnorm{AB-BA}.
+\]
+Since $a\in L$, it follows that $\hsnorm{W_{u,n}-1}\to0$, and squaring gives
 $\hsnorm{W_{u,n}^2-1}\to0$.
 
 \emph{The contradiction.}  The relation $w=u^2$ gives
@@ -1138,8 +1163,13 @@ group $\Cl(X)$ is generated by a central involution $\zeta$ and
 involutions $c_x$, $x\in X$, subject to $[c_x,c_y]=\zeta$ for
 $x\ne y$ (Construction~\ref{con:clifford}).  Every permutation of $X$
 acts on $\Cl(X)$ by permuting the $c_x$ and fixing $\zeta$.  Let $G$ act
-in this way and map
-$c$ to $c_\Gamma$.  Then
+in this way.  Mapping the canonical copy of $G$ to the second factor and
+$c$ to $c_\Gamma$ defines a homomorphism
+\[
+ E(\Gamma,\alpha,a)\longrightarrow \Cl(X)\rtimes G.
+\]
+Indeed, the $G$-action fixes $\zeta$, so the sign remains central, and
+all the defining relations are respected.  Under this homomorphism,
 \[
  \hat c\longmapsto c_{t\Gamma},\qquad
  a\hat ca^{-1}\longmapsto c_{at\Gamma}.
@@ -1150,8 +1180,8 @@ Clifford generators anticommute and
 \[
  w\longmapsto(c_{t\Gamma}c_{at\Gamma})^2=\zeta\ne1 .
 \]
-The sign $\zeta$ is central, so the map respects every defining relation.
-It follows both that $w\ne1$ and that the canonical map of
+Thus $w\ne1$.  Moreover, projection of the target onto $G$ restricts to
+the identity on the image of $\Gamma$, proving that the canonical map of
 $\Gamma$ is injective.
 
 Thus $w=u^2$ is a nontrivial central involution, and by
@@ -1171,8 +1201,8 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z),\qquad
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
-The affine group $\Gamma$ is finitely presented and has
-property~\textup{(T)} because it is a lattice in
+The usual semidirect-product presentation shows that $\Gamma$ is finitely
+presented.  It has property~\textup{(T)} because it is a lattice in
 $\mathbb R^3\rtimes\SL_3(\mathbb R)$
 \cite[Corollary~1.4.16 and Theorem~1.7.1]{BHV}; see also \cite{Burger}.
 The endomorphism $\alpha$ is injective because doubling is injective on

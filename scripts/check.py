@@ -75,10 +75,6 @@ FORBIDDEN = [
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxRecDepth(?![A-Za-z0-9_])")),
 ]
 
-# The environment-scan calibration corpus must contain one real defect.  This
-# is the only exception to the repository-wide lexical prohibition, pinned to
-# its exact path, line, tag, and source text so it cannot become a general
-# escape hatch.
 # The environment-scan calibration corpus must contain one real defect, and
 # the Palomar challenge file must contain exactly one deliberate hole: the
 # `leanprover/comparator` protocol states the advertised theorem WITHOUT a
@@ -91,7 +87,7 @@ FORBIDDEN = [
 FORBIDDEN_ALLOWLIST = {
     ("hand-declared axiom", "scripts/Audit/Plants.lean", 28,
      "axiom plantedAxiom : True"),
-    ("sorry / sorryAx", "Palomar/Challenge.lean", 431, "sorry"),
+    ("sorry / sorryAx", "Palomar/Challenge.lean", 295, "sorry"),
 }
 
 # Strings known to have been fabricated in earlier edits and purged from the

@@ -35,21 +35,22 @@ as a refuted route.
 
 ## What is conditional, and what is not
 
-Everything about *non*-MF is unconditional and already in the repository.  What
-this file does **not** prove is soficity of the telescope core `E_T`; that is
-the deliverable of the block, amalgam and LEF lanes, and it is the sole premise
-of every conditional declaration below.
+Everything about *non*-MF is unconditional and already in the repository.
+This file isolates the conditional endpoint: soficity of the telescope core
+`E_T` is the sole premise of every conditional declaration below.  The later
+module `Sofic/LiteralSoficAssembly.lean` discharges that premise and proves
+`markedGroup_isSofic : IsSofic MarkedGroup` unconditionally.
 
 `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` flags `B ≅ Γ̄` (completeness of the
 eight-relator presentation of `SL₃(ℤ)`) as the one irreducible literature input,
-entering at its (S1) and at its Lemma 3.1.  That caveat is obsolete for the
-*splitting* half: `Monsters/LiteralBaseCompleteness.lean` proves
+entering at its (S1) and at its Lemma 3.1.  That caveat is now obsolete:
+`Monsters/LiteralBaseCompleteness.lean` proves
 `baseAffineEquiv : Base ≃* gammaBar` outright, so the split normal form
-`E = N_E ⋊ V` is premise-free inside this repository.  What remains open is the
-residual finiteness feeding Lemma 3.1 -- the finite sub-amalgams `M_J` and the
-telescope levels `Γ_n` -- which is where the trust surface now sits.  No
-declaration in this file asserts soficity of `E` outright, and the manuscript
-inherits whatever premises the core's soficity proof carries.
+`E = N_E ⋊ V` is premise-free inside this repository.  Residual finiteness of
+the finite block windows and telescope levels is proved in
+`BlockCliffordLamp.lean` and assembled by `LiteralSoficAssembly.lean`; it is no
+longer an open input.  No declaration in this file asserts soficity of `E`
+outright by design, because this module is the reusable conditional interface.
 
 ## Interface
 
