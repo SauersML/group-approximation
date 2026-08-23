@@ -432,6 +432,24 @@ non-hyperlinear group `hat K rtimes Lambda`.
   invariant defect-free branch.  Thus property `(T)`/Poincare control cannot
   turn averaged relator triviality into the orbitwise clause; a genuinely
   global stability input is necessary.
+- **One finite-dimensional coset coefficient is enough for hyperlinearity
+  (proved conditionally, 2026-08-23).**
+  `fd-fell-coset-observable-gaussianizes-wreath` isolates a strictly weaker
+  observable than an invariant branch or a sofic action chart.  If the
+  quasi-regular coefficient `1_N` is a pointwise limit of coefficients of
+  finite-dimensional ambient `SL_3(Z)` representations, Gaussian signs turn
+  their Gram matrices into all finite Bernoulli lamp moments.  The associated
+  Gaussian actions have finite image by superrigidity; their crossed products
+  are finite extensions of an amenable algebra tensored with a hyperlinear
+  finite-index subgroup factor, hence CE.  A diagonal moment argument then
+  makes the isolated coset wreath hyperlinear.  This coefficient condition
+  does not imply separability: for a free actor surjecting onto a sofic
+  non-residually-finite group it holds by freely extending permutation
+  microstates, while the kernel is nonseparable.  The remaining arithmetic
+  question is whether the specific coefficient `1_N` admits such
+  finite-dimensional **ambient lattice** approximants; finite normal
+  generation inside `F_m` and the sparse free-actor packets do not provide
+  them.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
