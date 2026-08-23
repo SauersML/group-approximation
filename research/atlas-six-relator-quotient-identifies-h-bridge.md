@@ -62,11 +62,20 @@ which retains the bridge.
 
 ## Exact finite audit
 
-In the natural `A9` overgroup, exhaustive evaluation of all `362880`
-conjugators finds exactly one solution of the five boundary rows, the
-diagonal labelled chart, and that solution fails `c_19243`.  Hence this
-overgroup supplies no six-relator solution.  The audit is finite evidence
-only and does not prove `(SXB2)` in the universal quotient.
+In the natural alternating overgroups, exact exhaustive evaluation gives
+
+```text
+ambient     conjugators     five-row survivors     plus-c survivors
+A9             362880               1                     0
+A10           3628800               2                     0.
+```
+
+The `A9` survivor is the diagonal labelled chart.  The two `A10` survivors
+differ by the order-two pointwise-chart centralizer and define the same
+second chart.  Thus neither overgroup supplies a six-relator solution.  A
+GAP iterator evaluates the `A10` census in nine seconds on one MSI core by
+rejecting on the first failed row.  These audits are finite evidence only and
+do not prove `(SXB2)` in the universal quotient.
 
 ## Falsification criterion
 
