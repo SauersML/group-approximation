@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: projective-transfer-five-consumer-cascade-has-one-root-obstruction
+id: sl3-projective-transfer-five-consumers-share-one-root-gate
 kind: claim
 title: The five-consumer projective-transfer cascade has one root-bearing obstruction
 artifacts:

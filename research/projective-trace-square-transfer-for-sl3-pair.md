@@ -51,7 +51,7 @@ weakening consumed by the HNN marked word.
 
 - **The five direct consumers contain only one independent root-goal
   obstruction.**
-  `projective-transfer-five-consumer-cascade-has-one-root-obstruction`
+  `sl3-projective-transfer-five-consumers-share-one-root-gate`
   audits all five routes.  The direct HNN route already reaches the goal
   from this claim alone; the other four consumers are reusable interfaces,
   not weaker independent paths around the same missing estimate.  The
