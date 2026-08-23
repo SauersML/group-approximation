@@ -226,6 +226,17 @@ solenoid skeleton alone cannot give the required constant.
 
 ## Attempts
 
+- **Flexible surgery makes the Koopman weighted bound sufficient but no
+  longer necessary.**  The exact theorem
+  `flexible-bs-cycle-surgery-absorbs-exact-coboundaries` cuts long BS cycles
+  and rounds short return monodromies.  Once the Weyl residual is an exact
+  coboundary, it replaces an arbitrarily large minimum solution by a small
+  change of the exact BS core and a gauge modulo the new core commutant.
+  Hence `(KSR)` is one sufficient fixed-core estimate, not the remaining
+  flexible obstruction.  The invariant survivor is the Livsic condition:
+  prove that the actual mixed Iwahori residual has vanishing cycle holonomy,
+  or charge its nonzero holonomy to the other relators.
+
 - **The exact BS dynamics alone are now decisively refuted.**
   `bs14-periodic-koopman-modes-refute-skeleton-regularity` realizes the
   abstract low-cycle mode inside an explicit exact `BS(1,4)` packet for
