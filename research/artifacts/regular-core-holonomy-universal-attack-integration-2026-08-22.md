@@ -12,7 +12,7 @@ second parallel programme.
 | qualitative synchronization compactifies to a finite gap | valid only if synchronization already excludes every canonical matrix-ultraproduct leak; this is `canonical-profile-word-collapse-one-window`, not a consequence of exact finite-dimensional collapse alone |
 | factor universality plus factor-character rigidity | sound conditional implication, now `factor-universality-character-rigidity-implies-nonhyperlinear` |
 | CDI supplies factor representation universality for every acylindrically hyperbolic source | correct; already audited in `cdi-property-t-envelope-has-nonabelian-base` |
-| CDI plus regular/fd factor-character rigidity | impossible in that source class: `ah-groups-fail-regular-fd-character-rigidity` |
+| CDI plus regular/fd factor-character rigidity | impossible in that source class, but stronger than needed: `ah-groups-fail-regular-fd-character-rigidity` |
 | Caprace--Thom character rigidity | stale v1 attribution; current v2 proves IRS rigidity and explicitly leaves character rigidity open, recorded in `caprace-thom-v2-leaves-km-character-rigidity-open` |
 | Kac--Moody regular-core synchronization | retained as the precise open candidate `compact-hyperbolic-km-regular-microstates-synchronize` |
 | Fell absorption erases a diagonally regularized payload | exact duplicate of `notes/FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` and `free-label-orthogonalization-erases-payload-trace` |
@@ -29,11 +29,17 @@ commutants, and cycle products survive as holonomy.  The new candidate route
 asks the native Kac--Moody two-cells to kill those holonomies on the regular
 branch.
 
-The factor route is also sharpened.  Universality plus factor-character
+The factor route is also sharpened.  Universality plus full factor-character
 rigidity would indeed be terminal, but it cannot be obtained by simply
 choosing the same acylindrically hyperbolic source in the CDI theorem.  Such a
 source has a proper infinite ICC quotient, whose pulled-back regular
-character is already an extremal diffuse nonregular character.
+character is already an extremal diffuse nonregular character.  The exact
+CDI bridge is weaker: after dividing by the actual representation kernel,
+its distinguished character is faithful, so it is enough to classify only
+**faithful** nonregular factorial characters.  The quotient-character
+counterexamples are nonfaithful and do not touch this restricted face.  This
+strict narrowing is recorded in
+`cdi-image-quotient-off-regular-characters-are-ce`.
 
 ## Expanded-report deduplication
 

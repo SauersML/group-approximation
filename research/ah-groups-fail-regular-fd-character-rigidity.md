@@ -28,3 +28,10 @@ consequence for acylindrically hyperbolic groups.  This strengthens the
 weaker observation that no currently cited group is known to satisfy both
 properties: the CDI source class and this rigidity hypothesis are
 structurally incompatible.
+
+This no-go does **not** exclude faithful factor-character rigidity.  Every
+character `(AHC1)` has kernel `ker(q) != {e}`.  The canonical-trace bridge for
+the actual CDI image has consequently been sharpened in
+`cdi-image-quotient-off-regular-characters-are-ce`: it needs to classify only
+faithful nonregular factorial characters.  Acylindrical-hyperbolic quotient
+characters disappear from that restricted face.

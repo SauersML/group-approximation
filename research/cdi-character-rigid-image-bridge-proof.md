@@ -15,9 +15,16 @@ The representation in `(CIQ1)` descends to a faithful homomorphism
 chi_Lambda(g)=tau_Q(pi_bar(g))                           (CIP1)
 ```
 
-is extremal because its GNS algebra is the factor `Q`.  The inclusion
+is faithful because `chi_Lambda(g)=1` implies
+
+```text
+||pi_bar(g)-1||_2^2=2-2 Re chi_Lambda(g)=0,
+```
+
+and hence `g=e`.  It is extremal because its GNS algebra is the factor `Q`.
+The inclusion
 `M_0 subset Q` makes `Q` non-CE, so `(CIP1)` cannot be one of the
-nonregular characters allowed by the hypothesis.  Hence
+faithful nonregular characters allowed by the hypothesis.  Hence
 
 ```text
 chi_Lambda=delta_e.                                     (CIP2)
@@ -33,4 +40,3 @@ representation only when `ker(q) subset ker(pi)`.  A finite factor has no
 nonzero proper weakly closed ideals, so one cannot impose the missing group
 relations afterward by taking a nontrivial von Neumann-algebra quotient of
 `Q`.  The quotient must already occur at the group-representation level.
-
