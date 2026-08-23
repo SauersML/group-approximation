@@ -689,3 +689,23 @@ the fixed-depth nonhyperlinearity criterion.
   arithmetic theorem is a genuinely nonlinear Cartan/PVM extraction from
   overlapping raw lamps; proving or disproving soficity of the arithmetic
   set action does not substitute for it.
+- **Finite nonlinear Bernoulli postprocessing cannot perform that
+  extraction.** `finite-bernoulli-site-decoder-has-schreier-error-floor`
+  turns any finite polynomial, spectral, or Borel cylinder decoder
+  `f:{0,1}^(A/C) -> A/C` into its one-hot PVM and proves the exact identity
+
+  ```text
+  sum_x||u_sE_xu_s^*-E_(sx)||_2^2
+    =2 Pr[f(s omega)!=s f(omega)].
+  ```
+
+  The Schreier Poincare inequality therefore forces the averaged decoder
+  failure probability to be at least `gamma`, independently of window
+  radius, polynomial degree, Boolean atom count, or output size. This is a
+  sharp raw-lamp firewall: in the exact Bernoulli crossed product every raw
+  lamp/commutation/actor-covariance relator has zero defect, while every
+  complete finite site decoder still pays this positive error. Consequently
+  exact spectral cuts and all finite Boolean Fourier postprocessing cannot
+  close the arithmetic route. Any successful nonlinear Cartan extraction
+  must use a genuinely additional mixed-root/conductor relation absent from
+  the raw Bernoulli model, or matrix-dependent non-Cartan information.
