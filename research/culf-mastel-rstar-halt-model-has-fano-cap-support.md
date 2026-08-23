@@ -123,6 +123,28 @@ no-Fano-line support conclusion.
   family cannot have three occurrence-private auxiliary coordinates in every
   target row.  Corollary 6.7 makes auxiliaries private between source
   gadgets, not between the `R_*` occurrences inside one gadget.
+- The selector does extend well beyond globally private tails.
+  `rstar-two-retained-coordinates-admit-a-fixed-cap-section` proves that any
+  row can be cap-completed while retaining an arbitrary set of at most two
+  coordinates.  Reversing the deletion order in
+  `rstar-two-tail-peeling-reduces-fc-char-to-a-dense-kernel` therefore makes
+  every row outside a computable incidence kernel cap-supported.  Every row
+  left in that kernel has at least three pinned-or-internally-shared
+  coordinates.  This is a genuine narrowing, but the paper does not choose
+  concrete pp gadgets whose kernels could be enumerated; see
+  `culf-mastel-rstar-two-tail-core-is-not-specified`.  Moreover every exact
+  gadget for a nonaffine source relation necessarily has a nonempty pinned
+  kernel.  Thus leaf peeling cannot by itself close FC-char; the remaining
+  theorem is a finite cap-profile compatibility result on a chosen dense
+  gadget core, together with source-specific control of the positive support.
+- `rstar-core-character-profiles-induce-an-exact-affine-cover` states that
+  compatibility result precisely for any fixed gadget.  Its `k` core rows
+  induce an effectively enumerable cover of the source relation by at most
+  `7^k` affine subrelations `A_beta`.  A positive source support admits a
+  cap-valued witness section exactly when it is contained in one `A_beta`.
+  The published reduction neither fixes this cover nor proves that the HALT
+  support selects one of its pieces.  This is the sharpened conservative
+  frontier after leaf elimination.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

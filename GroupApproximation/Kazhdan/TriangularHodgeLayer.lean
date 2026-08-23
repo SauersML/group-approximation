@@ -1430,6 +1430,21 @@ theorem single_one_comm
     a * algebraMap ℚ (RatGroupRing (Presented T)) c
   exact Algebra.commutes c a
 
+theorem single_one_mul_single_one
+    (T : TriangleIndex → Triangle (Generator := Generator)) (a b : ℚ) :
+    (MonoidAlgebra.single 1 a : RatGroupRing (Presented T)) *
+        MonoidAlgebra.single 1 b = MonoidAlgebra.single 1 (a * b) := by
+  rw [MonoidAlgebra.single_mul_single]
+  simp only [one_mul]
+
+theorem nested_mul_single_pair
+    (T : TriangleIndex → Triangle (Generator := Generator))
+    (x y : RatGroupRing (Presented T)) (a b : ℚ) :
+    x * (y * (MonoidAlgebra.single 1 a * MonoidAlgebra.single 1 b)) =
+      MonoidAlgebra.single 1 (a * b) * (x * y) := by
+  rw [← mul_assoc, single_one_mul_single_one]
+  exact (single_one_comm T (a * b) (x * y)).symm
+
 /-- Scaling every Fox row by `1/d` scales its Gram matrix by `1/d²`. -/
 theorem sum_scaledBoundary_gram
     (T : TriangleIndex → Triangle (Generator := Generator))
@@ -1824,13 +1839,52 @@ theorem garlandCertificate {Row : Type} [Fintype Row]
       sum_coboundaryFactor_gram h i l,
       normalizedLink_pullback T regularDegree gap q h i l,
       meanZeroProjector_pullback]
+    simp_rw [nested_mul_single_pair]
+    simp_rw [single_one_mul_single_one]
+    have hdQ : (regularDegree : ℚ) ≠ 0 := by
+      exact_mod_cast h.1.ne'
+    have hNQ :
+        (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) ≠ 0 := by
+      exact_mod_cast (Fintype.card_ne_zero :
+        Fintype.card (SignedGenerator (Generator := Generator)) ≠ 0)
+    have hmeanScalar :
+        ((1 : ℚ) /
+            Fintype.card (SignedGenerator (Generator := Generator))) *
+            (gap / regularDegree) =
+          gap /
+            (Fintype.card (SignedGenerator (Generator := Generator)) *
+              regularDegree) := by
+      field_simp [hdQ, hNQ]
+    have hdiagonalScalar :
+        (2 : ℚ) * (gap / regularDegree) -
+            ((1 : ℚ) / regularDegree ^ 2) * regularDegree =
+          (2 * gap - 1) / regularDegree := by
+      field_simp [hdQ]
+    have hGeneratorQ : (Fintype.card Generator : ℚ) ≠ 0 := by
+      exact_mod_cast (Fintype.card_ne_zero : Fintype.card Generator ≠ 0)
+    have hcardSigned :
+        (Fintype.card (SignedGenerator (Generator := Generator)) : ℚ) =
+          2 * (Fintype.card Generator : ℚ) := by
+      simp [SignedGenerator, Fintype.card_prod, mul_comm]
+    have hmeanExpanded :
+        (2 : ℚ)⁻¹ * (Fintype.card Generator : ℚ)⁻¹ *
+            (gap / regularDegree) =
+          gap / (2 * ((Fintype.card Generator : ℚ) * regularDegree)) := by
+      field_simp [hdQ, hGeneratorQ]
+    have hdiagonalExpanded :
+        (2 : ℚ) * (gap / regularDegree) -
+            ((regularDegree : ℚ) * regularDegree)⁻¹ * regularDegree =
+          (2 * gap - 1) / regularDegree := by
+      field_simp [hdQ]
     by_cases hil : i = l
     · subst l
       simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-        single_one_comm]
+        single_one_comm, hcardSigned,
+        hmeanScalar, hmeanExpanded, hdiagonalScalar, hdiagonalExpanded]
       noncomm_ring
     · simp [garlandCoboundaryCoefficient, garlandGap, scalarMatrix,
-        single_one_comm, hil]
+        single_one_comm, hil, hcardSigned,
+        hmeanScalar, hmeanExpanded]
       noncomm_ring
   · intro i
     simp [hl1zero]

@@ -54,3 +54,9 @@ would make every instance classically satisfiable.
 
 References: Culf--Mastel, arXiv:2410.21223v2, Proposition 6.2, Corollary 6.7,
 and Theorem 6.8 (especially the invocation of NP-completeness in its proof).
+
+The incidence-level freedom is also material.  The proof does not choose
+the internal rows of the constant `CSP(R_*)` gadgets, so it determines no
+canonical two-tail kernel or induced affine cover.  See
+`culf-mastel-rstar-two-tail-core-is-not-specified` and
+`rstar-core-character-profiles-induce-an-exact-affine-cover`.

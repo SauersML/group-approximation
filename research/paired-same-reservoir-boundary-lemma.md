@@ -315,6 +315,17 @@ return must make the packet genuinely nonnormal by crossing the Leavitt
 scale and then control the averaged checksum without collapsing that
 self-similar exact model.
 
+The averaged checksum cannot be materialized as one fixed physical corner.
+`controlled-reynolds-density-has-no-fixed-physical-carrier` proves an exact
+`1/64` direct-sum obstruction: both pure controller orientations have
+commutant density `1/16`, but their balanced sum has density `1/32`, while
+the trace of every fixed group-algebra carrier is the arithmetic mean of its
+two pure traces.  Likewise every ordinary row energy is affine under this
+sum.  Hence a nonnormal scale-change cell must either control the
+trace-square Reynolds overlap genuinely, or allow only one pure orientation
+to extend.  Merely naming a physical projection after the self-similar
+transport cannot pay the forbidden mass.
+
 There is one useful relaxation if several returned prefix cells can be linked
 cyclically.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` permits a
 different selected carrier `P_i` at every cell and proves
