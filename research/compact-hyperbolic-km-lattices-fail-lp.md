@@ -96,18 +96,18 @@ cohomological input.
   many such identities at a time; deciding whether all sphere and
   non-sphere 2-cycle conditions can hold simultaneously with the
   non-degeneracy is the surviving content of Corollary E here.
-  Once the twisted-surjectivity chain closes (thick part 2-connected),
-  the `L^0` clause becomes FULLY FINITE-PRESENTED: `H^2(Lambda;L^0(Y))
+  The twisted-surjectivity chain HAS closed and the reduction is now
+  ESTABLISHED (`km-l0-cohomology-is-the-49-orbit-invariants-complex`): `H^2(Lambda;L^0(Y))
   = H^2_Lambda(X^;L^0)` is the second cohomology of the explicit
-  58-orbit equivariant cochain complex of the thick part's quotient
+  49-orbit equivariant cochain complex of the thick part's quotient
   (orbit cells indexed by cotype pairs `(J,J')`: one 4-cell, six
   3-cells, fifteen 2-cells, eighteen 1-cells, nine 0-cells, with
   finite mixed stabilizers `P_J^+ cap P_(J')^-` -- torus times the
   root subgroups fixing both residues), i.e. group-cohomology-of-an-
   orbifold data with all stabilizers finite and listable from the
-  rank-two root combinatorics.  Writing out this complex is the
-  concrete route to deciding Corollary E's last clause for Bernoulli
-  actions.
+  rank-two root combinatorics.  Exactness analysis of this complex,
+  per action, is the concrete route to deciding Corollary E's last
+  clause.
   A third route: malleability/deformation techniques (Popa--Sasyk
   computed `H^1` of Bernoulli shifts of relative-(T) groups to be the
   character group, arXiv:math/0310211); a degree-two analogue for

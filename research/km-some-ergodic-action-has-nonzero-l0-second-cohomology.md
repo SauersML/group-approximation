@@ -22,15 +22,14 @@ Three recorded routes (details on the LP node):
 
 1. **Orbit complex.**  With the thick part 2-connected
    (`km-thick-part-two-connected-and-lattice-is-f3`),
-   `H^2(Lambda;L^0(Y)) = H^2` of the explicit 58-orbit equivariant
-   cochain complex of `X^/Lambda` with coefficients
-   `L^0(Y)^(stabilizer)`: one 4-cell (stabilizer the torus), six
-   3-cell, fifteen 2-cell, eighteen 1-cell and nine 0-cell orbits,
-   the mixed stabilizers being `T . <U_alpha : alpha in Phi_K^+ cup
-   Phi_J^->` for the cotype pair `(J,K)` -- finite by properness,
-   with root sets computable from the `(KM2)` generalized Cartan
-   matrix.  This makes the clause a concrete (if laborious) relative
-   cohomology computation per action.
+   the reduction is now ESTABLISHED
+   (`km-l0-cohomology-is-the-49-orbit-invariants-complex`):
+   `H^2(Lambda;L^0(Y))` IS the `H^2` of the finite 49-orbit
+   invariants complex of `X^/Lambda` (orbits = pairs of proper
+   cotypes `(J,K)`, stabilizers the Birkhoff intersections
+   `T . <U_alpha : alpha in Phi_J^- cup Phi_K^+>`), for ANY p.m.p.
+   action.  What remains is exactness analysis of that complex per
+   action.
 2. **Sphere pairings.**  The development's explicit 2-spheres impose
    the finite obstruction identities recorded on the LP node; testing
    Bernoulli actions against them is the quickest falsification path.
