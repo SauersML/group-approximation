@@ -401,6 +401,22 @@ non-hyperlinear group `hat K rtimes Lambda`.
   torsion-free.  Thus the residual really is the ambient arithmetic action;
   nonsoficity of that action would only block GKP, not prove the wreath
   nonhyperlinear.
+- **A regular classical branch would force the vertical kernel separable
+  (proved conditionally, 2026-08-23).**
+  `orbitwise-relator-classicalization-separates-mihailova-kernel` gives the
+  weakest direct profinite extraction currently visible.  If a hyperlinear
+  model lifts the `SL_3(Z)` actor projectively at each level and the finite
+  normal relators for `N=ker(F_m->Q)` act trivially on the **entire finite
+  orbit** of the seed lamp observable, then that orbit is a finite
+  `SL_3(Z)`-set with a point stabilizer containing `N`; the canonical lamp
+  coefficient separates every `g notin N`.  Hence `N` is subgroup separable,
+  contradicting the non-residual finiteness of `Q`.  Exact projective actor
+  lifting supplies finiteness of the observable orbit by higher-rank
+  superrigidity, but neither the SL3 projective trace-square transfer nor the
+  Kac--Moody overlap machinery supplies whole-orbit relator triviality.  A
+  zero-defect `S_3` permutation packet shows why fixing the seed alone cannot
+  be upgraded by any HS constant: a relator can fix one branch while a
+  conjugate moves it.
 - **The compact objects in Manzoor's primary construction do not already
   provide that envelope.**
   `manzoor-natural-subgroup-subshift-is-not-a-haar-envelope` audits the
