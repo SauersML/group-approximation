@@ -7,6 +7,7 @@ distinct_from:
   gowers-hatami-finite-group-hs-stability: that permits perturbing the whole approximate finite-group table; this gives canonical-regular approximate tables which are exact on two generating subgroups but have no nonzero exact joint restriction unless one subgroup action is perturbed.
   common-gh-isometry-selects-the-two-overlap-cross-coefficient: that selects the two subgroup polar comparisons near each other; this proves near equality need not contain any exact simultaneous support and computes the alternating-correction rate.
   finite-face-flatness-stops-at-fundamental-group-holonomy: that identifies global face correction with presentation stability; this is a four-dimensional fixed finite-group counterpacket to the proposed relative local preprocessing theorem.
+  three-reynolds-plus-kernel-energy-has-vanishing-gap: that adds a third regular leg and all three quotient kernel-word adjoint energies, then diagonalizes the resulting full positive diagram operator; this supplies the two-leg seed.
 ---
 
 **ESTABLISHED.**  Let
@@ -92,3 +93,11 @@ sector.  Any stronger simultaneous correction must use the native triangle
 relations to control how the three subgroup perturbations fit together; it
 does not follow from finite-group stability or alternating Reynolds
 projections alone.
+
+The three-leg extension is exact and quantitative:
+`three-reynolds-plus-kernel-energy-has-vanishing-gap` adds a commuting third
+regular involution so that the full eight-point table has exactly the regular
+character.  Even after summing all three Reynolds Laplacians and all three
+commuting quotient-kernel adjoint energies, the resulting finite matrix has
+gap at most `1-cos(2t)+4sin^2(4t)`.  Thus merely adding the relator energies
+to the alternating scheme does not repair its collapsing angle.
