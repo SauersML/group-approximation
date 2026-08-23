@@ -158,3 +158,33 @@ theorem with per-level formulas (validated numerically in both
 connected and disconnected regimes); the exact `B_2` class-graph
 geometry; the curve-span threshold law; and the small-`q` cokernel
 theorems.
+
+## Addendum 8: explicit stabilizer data for the 49-orbit invariants complex
+
+From the (KM2) generalized Cartan matrix `[[2,0,-1],[0,2,-1],[-2,-3,2]]`
+(`a_13 a_31 = 2`, `a_23 a_32 = 3`, `a_12 = a_21 = 0`), the rank-two
+subsystems and their positive roots:
+
+| J | type | Phi_J^+ | N_J |
+|---|------|---------|-----|
+| {} | -- | (empty) | 0 |
+| {i} | A_1 | a_i | 1 |
+| {1,2} | A_1 x A_1 | a_1, a_2 | 2 |
+| {1,3} | B_2 (a_1 long, a_3 short) | a_1, a_3, a_1+a_3, a_1+2a_3 | 4 |
+| {2,3} | G_2 (a_2 long, a_3 short) | a_3, a_2, a_2+a_3, a_2+2a_3, a_2+3a_3, 2a_2+3a_3 | 6 |
+
+Orbit `(J,K)` (proper subsets, dimension `4-|J|-|K|`) has stabilizer
+`P_J^+ cap P_K^- = T . <U_alpha : alpha in Phi_J^- cup Phi_K^+>`, of
+order `|T| . q^(N_J+N_K)` (`|T| = (q-1)^3` in the simply connected
+form).  The two root sets never meet (opposite signs), so the unipotent
+part is a semidirect-type product of the two finite unipotent radical
+complements; the largest stabilizer is the `(J,K) = ({2,3},{2,3})`
+vertex pair with `q^12 (q-1)^3`.
+
+Invariant-module sizes for the `H^2` window (`C^1 -> C^2 -> C^3`):
+18 one-cell orbits (`|J|+|K|=3`), 15 two-cell orbits (`=2`), 6
+three-cell orbits (`=1`).  For `V = L^0(Y)`: `V^F = L^0(Y/F)`.
+
+Sanity checks recorded: `H^0` of the complex is `V^Lambda` because the
+nine maximal Birkhoff intersections include the diagonal rank-two Levi
+pairs `(J,J)`, which generate `Lambda` (they contain every `U_(+-a_i)`).

@@ -36,3 +36,27 @@ Three recorded routes (details on the LP node):
 3. **Malleability.**  A degree-two Popa--Sasyk-type vanishing for
    Bernoulli `L^0`-coefficients over Kazhdan groups would reduce the
    clause to `H^2(Lambda;R) = 0`, already established, killing it.
+
+## Attempts
+
+- 2026-08-23 (post-reduction observations).  The established reduction
+  applies to EVERY uniquely divisible module, hence simultaneously to
+  `L^0(Y)`, `L^2_0(Y)` and `l^2(Lambda)`; the invariants are
+  `l^2(F\Lambda)` resp. `L^0(Y/F)`.  For the BERNOULLI action the
+  chaos decomposition writes `L^2_0(Y)` as a sum over `Lambda`-orbits
+  of nonempty finite subsets `A` of `Lambda` of modules induced from
+  the setwise stabilizers `{g : gA = A}`, which are FINITE (freeness
+  of left translation embeds them into `A`).  So the `L^2`-avatar of
+  the clause is governed by `H^2(Lambda; l^2(Lambda))`-type invariants
+  -- the second l^2-Betti number of `Lambda`, computable from the SAME
+  49-orbit complex with `l^2(F\Lambda)` entries.  Honest subquestion,
+  not settled today: is `beta_2^(2)(Lambda) = 0`?  (Heuristic:
+  Dymara--Januszkiewicz concentration of building L^2-cohomology in
+  top degree suggests the product concentrates in degree four, but
+  `Lambda` is cocompact only on the thick part, not on `Z`, so this
+  needs the cusp analysis rerun for reduced L^2 -- NOT automatic.)
+  Caution for the transfer: degree-one cocycle superrigidity
+  (Popa--Sasyk) shows `L^2`-nonvanishing can die in `L^0`, so an
+  `l^2` computation in either direction only bounds, never decides,
+  the `L^0` clause; it selects which of the three recorded routes is
+  live.
