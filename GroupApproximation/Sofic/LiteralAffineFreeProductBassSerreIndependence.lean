@@ -633,7 +633,17 @@ theorem amplifiedDefect_actsNonElementarily :
     bassSerre_isometric crossingDefect_mem crossingDefect_isLoxodromic
     crossing_separated_independent
 
+/-- The amplified compression defect is suitable for its Bass--Serre action. -/
+theorem amplifiedDefect_isSuitable :
+    HullGeometry.IsSuitable 1 amplifiedDefectData.core.defectNormal
+      (BassSerreFreeProduct.baseLeft Envelope :
+        BassSerreHullGeometry.PathVertex Envelope) where
+  isometric := bassSerre_isometric
+  hyperbolic := bassSerre_hyperbolic
+  acylindrical := bassSerre_acylindrical
+  nonElementary := amplifiedDefect_actsNonElementarily
+  normalizesNoNontrivialFinite := amplifiedDefect_normalizesNoNontrivialFinite
+
 end
 
 end GroupApproximation.LiteralAffineFreeProductBassSerre
-
