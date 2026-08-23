@@ -117,12 +117,14 @@ arXiv:1512.08188v2 (read this date)
   yields Corollaries D and E.  NO LLP=>LP bridge for (T) groups
   appears anywhere in the paper: LLP failures need condition (3).
 - **Consequence at the simple Kac-Moody lattices.**  Condition (3)
-  is unsatisfiable: a finite-dimensional projective representation
-  of a simple group that is not linear over any field (Caprace-Remy,
-  simplicity/non-linearity of twin building lattices) has finite
-  image, hence factors through a finite quotient, hence is trivial
-  by simplicity -- so its cocycle class is realized trivially and
-  (1) fails.  Theorem A is VACUOUS at `Lambda_(2,4,6)(q)`: no ISW
+  is unsatisfiable: the image of a finite-dimensional projective
+  representation lies in PU(n) < GL_(n^2), so it is a finitely
+  generated linear quotient of the simple lattice; by Malcev
+  (f.g. linear => residually finite) an infinite f.g. simple linear
+  group is impossible, so the image is trivial (already the recorded
+  route in simple-kazhdan-kac-moody-lattices-citation for honest
+  representations; the projective case adds only PU(n) < GL) -- the
+  cocycle class is realized trivially and (1) fails.  Theorem A is VACUOUS at `Lambda_(2,4,6)(q)`: no ISW
   mechanism can refute LLP there.  The L^0-defect computation
   decides only the LP; the forced-witness fork's positive branch
   (LLP => non-hyperlinear) survives every outcome, and a nonzero
