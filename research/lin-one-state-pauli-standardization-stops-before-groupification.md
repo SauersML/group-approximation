@@ -17,3 +17,11 @@ corner nor an algebraic name for it.  It also leaves the amplification's
 multiplicity gauge free.  Hence it advances state-dependent Pauli analysis
 but does not prove common-carrier saturation `(CPS9)`, the marked-mass floor
 `(CPS2)`, or a MIPco-to-ordinary-group compiler.
+
+More sharply, `lin-canonical-dilation-twirls-unprotected-left-carriers`
+computes the exact action of Lin's displayed isometry on the original left
+algebra.  It preserves `A'`, but compresses `a tensor I` to the Reynolds
+average of `a` under the packet.  A second unrelated left context can be
+annihilated by this twirl even at zero defect (the two Pauli matrices in
+`M_2` give the minimal example).  Thus opposite-algebra preservation is not
+a sequential left-context alignment theorem.

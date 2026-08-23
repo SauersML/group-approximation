@@ -97,3 +97,28 @@ opposite action.  They do not prove the missing groupification step in
 word-visible carrier with a strategy-independent marked-mass floor, aligns
 the separately selected context types to that carrier, or removes the
 amplification/multiplicity gauge.
+
+## Exact left-side formula and relative marked-mass no-go
+
+The proof of Theorem 5.1 uses
+`V xi=|G|^(-1/2) direct_sum_g phi(g^(-1))xi`.  Consequently
+
+```text
+V^*(a tensor I)V=|G|^(-1) sum_g phi(g^(-1))^*a phi(g^(-1)),
+||(p tensor I)V-Vp||_(2,rho)^2
+ =|G|^(-1) sum_g ||[p,phi(g^(-1))]||_(2,rho)^2.
+```
+
+This identifies the exact boundary of the `A'`-linear conclusion.  The
+opposite algebra is fixed because it commutes with every `phi(g)`; an
+original left carrier is instead Reynolds-twirled.  For `G=Z_2` in `M_2`,
+with `phi(s)=Z`, the compression of `X tensor I` is zero.  Hence the theorem
+conclusion itself does not preserve a second left context, even at zero
+defect.
+
+The lack of mass is also relative to the mark.  In `M_N`, take a rank-one
+`q` inside a rank-`floor(N/2)` marked projection `p` and density
+`sigma=sqrt(N)q`.  Every nonzero layer from Theorem 4.1 lies below `q`, so
+its trace divided by `tau(p)` tends to zero.  No uniform marked-mass floor
+can therefore be recovered by combining the spectral corner with the
+commutant-preserving dilation.
