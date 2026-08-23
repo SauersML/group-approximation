@@ -3,12 +3,13 @@ rg: 2
 id: iwahori-cubics-suppress-low-bs-orbit-modes
 kind: claim
 title: The two Iwahori cubics suppress low BS orbit-frequency defect
+refuted_by: movable-weyl-gauge-refutes-iwahori-cubic-low-mode-gain
 distinct_from:
   weyl-defect-koopman-spectral-regularity: that asks for the fully weighted inverse estimate; this is a dyadic finite-cycle estimate whose extra positive exponent makes the inverse sum converge.
   iwahori-uniform-infinitesimal-rigidity: that proves a Jacobian gap at compatible congruence representations; this asks for the corresponding low-mode bound uniformly on the far periodic BS packets.
 ---
 
-**OPEN REDUCED FINITE INEQUALITY.**  Use the exact `BS(1,4)` skeleton and
+**REFUTED.**  The proposed reduced finite inequality was the following.  Use the exact `BS(1,4)` skeleton and
 projected Weyl defect `e'` from
 `weyl-defect-koopman-spectral-regularity`.  Let `psi=Ad(h)` on the regular
 part of `Z={V}'`.  For dyadic `0<t<=1`, let
@@ -56,6 +57,22 @@ the correction.  It asks only for the dyadic Fourier-energy inequality
 `iwahori-uniform-infinitesimal-rigidity`; the open content is uniformity on
 the far/outlier packets.
 
+The extra positive exponent is false even arbitrarily close to compatible
+finite congruence representations.  Starting with an exact tuple, move only
+the Weyl swap by a small unitary `c` in the base commutant.  The documented
+correction equation makes the projected Weyl residual exactly
+`c psi(c)^(-1)`.  Choosing `c` in a first Fourier mode on a length-`L`
+fourth-power orbit gives band energy of order `delta^2 t^2`, while every
+fixed presentation relator--including both cubics--has defect `O(delta)`.
+Thus no uniform factor `t^epsilon_0` is possible.  The full construction and
+normalizations are proved in
+`movable-weyl-gauge-refutes-iwahori-cubic-low-mode-gain`.
+
+This does **not** refute the weighted aggregate estimate `(KSR)`.  The
+cubics may charge the *amplitude of the correcting gauge* even though they
+do not add pointwise Fourier decay to its coboundary.  The corrected finite
+target is `iwahori-cubics-control-aggregate-weighted-bs-orbit-energy`.
+
 ## Attempts
 
 - **Use the BS shift or atomless base trace alone.**  This is refuted exactly
@@ -66,4 +83,3 @@ the far/outlier packets.
   extend exactly in their own dimension.  A proof must evaluate the two
   cubic Fox rows directly on low cyclic modes while permitting flexible
   boundary coupling between heterogeneous packets.
-
