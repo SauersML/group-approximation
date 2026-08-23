@@ -384,6 +384,24 @@ weakening consumed by the HNN marked word.
   metaplectic/Weil flux computation alone cannot close the projective
   transfer frontier.
 
+- **Localization at `2` creates no new stable Steinberg multiplier.**
+  `inverting-two-adds-no-stable-steinberg-projective-class` applies the exact
+  Quillen localization segment
+
+  ```text
+  K_2(F_2) -> K_2(Z) -> K_2(Z[1/2]) -> K_1(F_2)
+  ```
+
+  and the vanishing of both outside terms to prove that
+  `K_2(Z) -> K_2(Z[1/2])` is an isomorphism.  Hence restriction on
+  circle-valued projective multipliers is injective for the **stable**
+  elementary groups: a stable arithmetic multiplier which is trivial over
+  the integral core is already trivial globally.  This rules out a new
+  localization-born stable Schur clock as the missing mechanism.  It does
+  not prove `(PTS1)`: the target is rank three and approximate, and its inner
+  adjoint formulation has already removed scalar phases.  The unresolved
+  datum remains noncentral multiplicity transport on one common reservoir.
+
 - **Exact models now pass with a uniform quantitative gap.**
   `exact-projective-codensity-has-a-uniform-trace-square-gap` proves `(PTS1)`
   with `eta(0)=0` and one dimension-independent `K` for every exact
