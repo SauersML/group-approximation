@@ -104,13 +104,37 @@ to `F_infinity`, giving continuum many splittings
 `K_infinity ~= F_infinity semidirectProduct K_infinity` and a normal-subgroup
 failure of MF-radical heredity inside one fixed group.
 
+No large partition is needed: every noninjective factor fold has kernel
+`F_infinity`.  A full-radical group has no proper finite-index subgroup, so
+the elementary two-factor fold already has countably infinite free rank;
+every other noninjective fold kernel retracts onto it.  Hence every
+noninjective endomorphism supplied by the universal transformation monoid and
+every nonzero partition kernel has exactly this kernel.
+
 The category of nonempty countable `Q`-sets embeds faithfully into split
 groups over `Q`, with injective and surjective maps detected exactly, while
 MF reflection collapses the entire category to the constant object `Q`.
-Equivariant quotients have free kernels.  In particular, there is an infinite
+Every noninjective equivariant quotient has kernel `F_infinity`.  In
+particular, there is an infinite
 tower of finitely presented non-MF groups with common universal MF quotient
 `F_2`, in which every bonding map has kernel `F_infinity` and induces an
 isomorphism on every outgoing Hom functor into an MF group.
+
+For every finite or countable generating set `X`, the one group
+`C_d(F_X)` is a universal presentation compiler.  Imposing a normal set of
+relations `R` only in its visible free factor gives `C_d(F_X/R)`; imposing
+the single additional fixed relation `d=1` gives `F_X/R`.  Thus one fixed
+finitely presented source at each finite generator rank produces every
+finitely presented MF group of that rank together with a non-MF group having
+the identical MF-target representation functor.  The kernel created by any
+nontrivial visible quotient `F_X->F_X/R` is exactly a split extension
+`F_infinity semidirectProduct R`.
+
+More generally, attaching a full-radical group `B` to an arbitrary group
+`G` along `C<=B` has MF reflection equal to the reflection of
+`G/normalClosure(C)`.  Finite or countable families of such attachments kill
+exactly the attached subgroups in MF semantics.  This gives an explicit
+relation-cell calculus beyond the split camouflage model.
 
 The zero class of this reflector is closed under quotients, extensions, and
 countable colimits.  For a connected graph of groups whose vertex groups lie

@@ -7,6 +7,7 @@ target: one-mf-black-hole-has-universal-endomorphism-monoid
 requires:
   - one-mf-black-hole-has-universal-outer-symmetry
   - permutation-camouflage-realizes-countable-actions
+  - every-noninjective-star-fold-has-kernel-f-infinity
 ---
 
 For each `x`, map `B_x` identically to `B_(f(x))`.  These maps agree on the
@@ -70,34 +71,10 @@ Finally, the quotient map of countable sets has a section; functoriality
 supplies a right inverse to the corresponding group quotient, so every
 self-quotient splits.
 
-The kernel `N_E` acts freely on the Bass--Serre tree of `K_X`.  Indeed, a
-vertex stabilizer is a conjugate of some `B_x`, and `Phi_q` is injective on
-every such conjugate.  Hence `N_E` intersects every vertex stabilizer
-trivially, and therefore also every edge stabilizer.  A group acting freely
-on a tree is free.
-
-The continuum family may be chosen with infinite free rank.  Identify `X`
-with `N x {0,1,2,3}`.  Always merge `(n,0)` with `(n,1)`, and independently
-merge or separate `(n,2)` and `(n,3)` according to a binary sequence.  Let
-
-```text
-P=B_0 *_D B_1 -> B
-```
-
-be the two-factor fold.  Its kernel `F` is a nontrivial free group: it acts
-freely on the Bass--Serre tree, and `b_0 b_1^(-1)` is a nonidentity kernel
-element for `b in B\D`.  Choose `u in F` with nonzero image under some
-homomorphism `lambda:F->Z`.
-
-Place a copy `u_n` of `u` on the permanently merged pair
-`{(n,0),(n,1)}`.  There is a retraction from `K_X` to that pair amalgam which
-is the identity on its two factors and sends every other factor identically
-to the first one.  On `N_E`, its image lies in `F`; it sends `u_n` to `u`
-and every `u_m`, `m!=n`, to the identity.  Composing with `lambda` gives
-homomorphisms `N_E->Z` which prove that the classes of the `u_n` are linearly
-independent in the abelianization of `N_E`.  Hence the free rank of `N_E` is
-infinite.  Since `N_E` is countable, `N_E~=F_infinity`.  Combining this with
-the split quotient gives `(UEM6)`.  Free groups are MF, so the final radical
-comparison follows.
+For every nontrivial equivalence relation `E`, the quotient map `X->X/E` is
+noninjective.  The star-fold kernel theorem therefore gives
+`N_E~=F_infinity` directly.  The same theorem applied to a noninjective
+self-map proves `(UEM5a)`.  Combining this with the split quotient gives
+`(UEM6)`.  Free groups are MF, so the final radical comparison follows.
 
 ---

@@ -423,6 +423,33 @@ def activeCoreLinearIsometryEquiv [Fintype I]
   LinearIsometryEquiv.ofSurjective (activeCoreLinearIsometry W i)
     (activeCoreLinearIsometry_surjective W i)
 
+/-- Forgetting the active-core subtype after applying the restricted action
+recovers the original matrix action. -/
+@[simp] theorem activeCoreLinearIsometryEquiv_coe [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (i : I)
+    (x : activeEuclideanSubspace W) :
+    ((activeCoreLinearIsometryEquiv W i x : activeEuclideanSubspace W) :
+        EuclideanSpace ℂ Y) =
+      Matrix.toEuclideanLin (W i : Matrix Y Y ℂ)
+        (x : EuclideanSpace ℂ Y) := rfl
+
+/-- The displacement of the restricted action is the restriction of the
+ambient matrix displacement. -/
+theorem activeCoreLinearIsometryEquiv_sub_one_coe [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (i : I)
+    (x : activeEuclideanSubspace W) :
+    ((((activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap -
+          (LinearMap.id : activeEuclideanSubspace W →ₗ[ℂ]
+            activeEuclideanSubspace W)) x : activeEuclideanSubspace W) :
+        EuclideanSpace ℂ Y) =
+      Matrix.toEuclideanLin ((W i : Matrix Y Y ℂ) - 1)
+        (x : EuclideanSpace ℂ Y) := by
+  ext j
+  change ((W i : Matrix Y Y ℂ) *ᵥ x.1.ofLp) j - x.1.ofLp j =
+    (((W i : Matrix Y Y ℂ) - 1) *ᵥ x.1.ofLp) j
+  rw [Matrix.sub_mulVec, Matrix.one_mulVec]
+  rfl
+
 /-- Canonical finite coordinates for the active core. -/
 abbrev ActiveCoreIndex [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) :=

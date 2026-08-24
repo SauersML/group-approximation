@@ -30,6 +30,40 @@ and in particular if marked separation forces `a_0 >= a_* > 0` then
 E >= a_*^2 / ( C^2 ( sum_(n>=0) lambda^n p(n) )^2 ) > 0.             (CCL3)
 ```
 
+**Marked-modulus interface.**  Suppose the level-zero carrier is extracted
+from a marked word `w` through
+
+```text
+a_0 >= f(||rho(w)-1||_2)-C_0 sqrt(E),                                (CCL4)
+```
+
+where `f:[0,2]->[0,infinity)` is uniformly positive away from zero:
+
+```text
+m_f(delta):=inf_(delta<=s<=2) f(s)>0             for every delta>0.  (CCL5)
+```
+
+Then for every fixed `delta>0`, the conjunction of `(CCL1)` and
+`||rho(w)-1||_2>=delta` gives
+
+```text
+m_f(delta)
+ <= (C_0+C sum_(n>=0) lambda^n p(n)) sqrt(E),                         (CCL6)
+```
+
+and hence a dimension-independent positive energy floor.  Pointwise
+positivity `f(s)>0` for `s>0` is not enough: without `(CCL5)`, a sequence
+bounded away from zero in marked distance could still have seed values
+tending to zero.  For a spectrally exact central involution `J` with
+`Q_-=(1-J)/2`, the natural modulus is
+
+```text
+tr(Q_-)=||J-1||_2^2/4,
+```
+
+so one may take `f(s)=s^2/4`; stable involution rounding only adds a
+dimension-independent relator-error term to `(CCL4)`.
+
 **Positive-density version.**  The contraction need not occur at every level.
 If a factor `lambda < 1` occurs on a set of levels of lower density `eta > 0`
 and the remaining levels have factor one, the product of transfer factors down

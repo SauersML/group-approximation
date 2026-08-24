@@ -46,10 +46,6 @@ quotients turn this support filtration into exact group kernels.
 
 Localized Pauli involutions make both inequalities sharp: multiplication
 realizes union of coordinate supports and commutators realize intersection.
-One fixed `2 x 2` matrix corona contains every countable graph as the exact
-commutation graph of a family of nonidentity involutions.
-Quotienting by selected pair-support ideals realizes every graph completion
-of that graph while preserving all vertex involutions.
 
 ### Hilbert-hotel consequences
 
@@ -61,12 +57,19 @@ infinitely many pairwise nonisomorphic finitely presented groups with the
 same complete MF reflection `Q`, the same MF-target representation functor,
 and the same compact and all-fields finite-dimensional visible quotient.
 
+One full-radical star kernel realizes every countable permutation action and
+the full transformation monoid of a countable set.  Every noninjective factor
+fold has kernel `F_infinity`, including a fold identifying just one pair.
+For each generating set `X`, the single group `C_d(F_X)` compiles every
+`X`-generated MF presentation: visible relators produce `C_d(Q)`, and one
+fixed final relation produces `Q`.  Arbitrary amalgamated attachments of the
+black-hole group compute semantic quotients by killing exactly the attached
+subgroups.
+
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
 
 The zero class of the reflector is closed under quotients, extensions, and
-countable colimits.  For a connected graph of full-radical vertex groups,
-the exact MF reflection of its Bass--Serre fundamental group is the free
-fundamental group of the underlying graph: tree gluings remain completely
-invisible, and each graph cycle contributes exactly one visible free
-generator.
+countable colimits.  Consequently these relation cells may be substituted
+inside arbitrary countable presentation constructions without changing any
+MF-visible consequence beyond the relations they are designed to impose.

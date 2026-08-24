@@ -11,14 +11,15 @@ requires:
   - mf-residual-topology-is-hausdorffized-by-reflection
   - mf-equivalences-form-a-colimit-stable-localization
   - full-mf-radical-groups-form-an-extension-colimit-class
-  - graphs-of-mf-black-holes-have-free-mf-reflection
   - mf-limits-are-created-and-colimits-are-reflected
   - matrix-corona-projection-ideal-and-corner-calculus
   - corona-representations-have-an-ideal-valued-support-length
   - pauli-support-realizes-boolean-word-calculus
-  - corona-quotients-program-countable-graph-completions
   - boolean-towers-of-simple-mf-black-holes
   - finitely-presented-grushko-towers-with-prescribed-mf-reflection
+  - every-noninjective-star-fold-has-kernel-f-infinity
+  - universal-camouflage-presentation-compiler
+  - black-hole-attachments-compute-semantic-quotients
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,

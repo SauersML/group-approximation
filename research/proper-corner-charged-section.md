@@ -10,6 +10,14 @@ distinct_from:
 
 # Expose Schur phase through a one-sided charged section into a proper corner
 
+**ESTABLISHED.**  The proper-corner support geometry is supplied by
+`index-two-reynolds-hnn-is-a-proper-corner-section`: for an index-two
+central-sign pair, the subgroup-Hecke HNN word is source-full and its unused
+target complement is exactly the assignment atom.  The phase incidence is
+supplied by `reynolds-proper-section-carries-payload-raw-lift`.  The route
+`proper-corner-charged-section-via-reynolds-raw-lift` records this
+decomposition and prevents the rank/support half from being requested again.
+
 Construct packet projections `p<q`, a group word `t`, and a raw charged return
 `W` on `p` such that finite-matrix correction yields
 
@@ -26,6 +34,12 @@ transverse ledger without extending `v` to a unitary equivalence of the full
 This is the only raw-lift geometry left by
 `projective-gauge-charge-forces-morita-or-corner`. Equal full carriers give
 Morita matrix units; neutral same-carrier expressions remain phase-blind.
+
+The global boundary is unchanged: the charged section must still be placed
+on the particular child branch of the Toeplitz/Fanizza recurrence, or in
+successive orthogonal first-hit layers.  This claim supplies the local
+source, phase, and exit ledger; it does not by itself authenticate that
+global reuse.
 
 ## Attempts
 

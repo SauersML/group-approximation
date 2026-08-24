@@ -320,6 +320,181 @@ theorem activeCoreMatrix_pow_eq_one
   ext j
   simp
 
+/-- **Active-rank retention.**  For a positive exact power relation, passing
+to the common active core loses none of the distinguished unitary's
+displacement rank.  The inverse on the displacement range is supplied by the
+finite geometric projector, so no spectral theorem is used. -/
+theorem rank_le_activeCoreMatrix_rank
+    {I : Type*} [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (i : I) (m : ℕ) (hm : 0 < m)
+    (hpow : (W i) ^ m = 1) :
+    (((W i : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) - 1).rank ≤
+      (((TorsionActiveCore.activeCoreMatrix W i :
+          Matrix.unitaryGroup (TorsionActiveCore.ActiveCoreIndex W) ℂ) :
+            Matrix (TorsionActiveCore.ActiveCoreIndex W)
+              (TorsionActiveCore.ActiveCoreIndex W) ℂ) - 1).rank := by
+  let D : Matrix Y Y ℂ := (W i : Matrix Y Y ℂ) - 1
+  let A : Matrix Y Y ℂ := torsionAverage (W i : Matrix Y Y ℂ) m
+  let Q : Matrix Y Y ℂ := torsionAntiderivative (W i : Matrix Y Y ℂ) m
+  let K := TorsionActiveCore.activeEuclideanSubspace W
+  let e := TorsionActiveCore.activeCoreLinearIsometryEquiv W i
+  let dK : K →ₗ[ℂ] K := e.toLinearEquiv.toLinearMap - LinearMap.id
+  have hpowM : (W i : Matrix Y Y ℂ) ^ m = 1 := by
+    change ((((W i) ^ m : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)) = 1
+    rw [hpow]
+    rfl
+  have hDA : D * A = 0 := by
+    exact sub_one_mul_torsionAverage (W i : Matrix Y Y ℂ) m hpowM
+  have hDfactor : D * (1 - A) = D := by
+    rw [Matrix.mul_sub, Matrix.mul_one, hDA, sub_zero]
+  have hQ : D * Q = A - 1 := by
+    exact sub_one_mul_torsionAntiderivative (W i : Matrix Y Y ℂ) m hm
+  have hPfactor : 1 - A = -D * Q := by
+    rw [Matrix.neg_mul, hQ]
+    abel
+  let toCore : LinearMap.range D.mulVecLin →ₗ[ℂ] K :=
+    { toFun := fun z ↦ ⟨(EuclideanSpace.equiv Y ℂ).symm z.1, by
+          change (EuclideanSpace.equiv Y ℂ).symm z.1 ∈
+            TorsionActiveCore.activeEuclideanSubspace W
+          rw [TorsionActiveCore.activeEuclideanSubspace]
+          refine ⟨z.1, ?_, rfl⟩
+          rcases z.2 with ⟨y, hy⟩
+          rw [← hy]
+          change (((W i : Matrix Y Y ℂ) - 1) *ᵥ y) ∈
+            TorsionActiveCore.activeSubspace W
+          exact TorsionActiveCore.displacement_mem_activeSubspace W i y⟩
+      map_add' := by
+        intro x y
+        apply Subtype.ext
+        exact (EuclideanSpace.equiv Y ℂ).symm.map_add x.1 y.1
+      map_smul' := by
+        intro c x
+        apply Subtype.ext
+        exact (EuclideanSpace.equiv Y ℂ).symm.map_smul c x.1 }
+  have htoCore_range (z : LinearMap.range D.mulVecLin) :
+      toCore z ∈ LinearMap.range dK := by
+    rcases z.2 with ⟨y, hy⟩
+    let xAlg : Y → ℂ := (1 - A) *ᵥ y
+    have hxAlg : xAlg ∈ TorsionActiveCore.activeSubspace W := by
+      have hx : xAlg = -(D *ᵥ (Q *ᵥ y)) := by
+        dsimp [xAlg]
+        rw [hPfactor, Matrix.neg_mul, Matrix.mulVec_mulVec,
+          Matrix.neg_mulVec]
+      rw [hx]
+      exact (TorsionActiveCore.activeSubspace W).neg_mem
+        (TorsionActiveCore.displacement_mem_activeSubspace W i (Q *ᵥ y))
+    let xCore : K := ⟨(EuclideanSpace.equiv Y ℂ).symm xAlg, by
+      change (EuclideanSpace.equiv Y ℂ).symm xAlg ∈
+        TorsionActiveCore.activeEuclideanSubspace W
+      rw [TorsionActiveCore.activeEuclideanSubspace]
+      exact ⟨xAlg, hxAlg, rfl⟩⟩
+    refine ⟨xCore, ?_⟩
+    apply Subtype.ext
+    rw [TorsionActiveCore.activeCoreLinearIsometryEquiv_sub_one_coe]
+    apply (EuclideanSpace.equiv Y ℂ).injective
+    change D *ᵥ xAlg = z.1
+    dsimp [xAlg]
+    rw [Matrix.mulVec_mulVec, hDfactor]
+    exact hy
+  let f : LinearMap.range D.mulVecLin →ₗ[ℂ] LinearMap.range dK :=
+    { toFun := fun z ↦ ⟨toCore z, htoCore_range z⟩
+      map_add' := by
+        intro x y
+        apply Subtype.ext
+        exact toCore.map_add x y
+      map_smul' := by
+        intro c x
+        apply Subtype.ext
+        exact toCore.map_smul c x }
+  have hf : Function.Injective f := by
+    intro x y hxy
+    apply Subtype.ext
+    apply (EuclideanSpace.equiv Y ℂ).symm.injective
+    have hcore : toCore x = toCore y := congrArg Subtype.val hxy
+    exact congrArg Subtype.val hcore
+  have hfinrank := LinearMap.finrank_le_finrank_of_injective hf
+  unfold TorsionActiveCore.activeCoreMatrix
+  rw [TorsionActiveCore.rank_orthonormalMatrix_sub_one]
+  change Module.finrank ℂ (LinearMap.range D.mulVecLin) ≤
+    Module.finrank ℂ (LinearMap.range dK)
+  exact hfinrank
+
+/-- **Quantitative active-core reblocking.**  A finite conjugate-word packet
+containing a nontrivial finite-order unitary compresses to a common invariant
+block whose dimension is at most `totalWordLength` times the original active
+rank.  On that block the distinguished unitary has a normalized squared
+Hilbert--Schmidt gap bounded uniformly away from zero, in the denominator-free
+form `1 ≤ m² L ‖R|K - 1‖₂²`. -/
+theorem activeCore_reblocking_dimension_and_hsGap
+    {I : Type*} [Fintype I]
+    (R : Matrix.unitaryGroup Y ℂ)
+    (words : I → List (Matrix.unitaryGroup Y ℂ × Bool))
+    (i₀ : I) (hi₀ : TorsionActiveCore.conjugateWord R (words i₀) = R)
+    (m : ℕ) (hm : 0 < m) (hpow : R ^ m = 1)
+    (hrank : 0 < (((R : Matrix Y Y ℂ) - 1).rank)) :
+    let W := TorsionActiveCore.conjugateWordPacket R words
+    Fintype.card (TorsionActiveCore.activeCoreModel W) ≤
+        TorsionActiveCore.totalWordLength words *
+          ((R : Matrix Y Y ℂ) - 1).rank ∧
+      1 ≤ (m : ℝ) ^ 2 * (TorsionActiveCore.totalWordLength words : ℝ) *
+        hsNormSq (TorsionActiveCore.activeCoreModel W)
+          (((TorsionActiveCore.activeCoreMatrix W i₀ :
+              Matrix.unitaryGroup (TorsionActiveCore.ActiveCoreIndex W) ℂ) :
+                Matrix (TorsionActiveCore.ActiveCoreIndex W)
+                  (TorsionActiveCore.ActiveCoreIndex W) ℂ) - 1) := by
+  let W := TorsionActiveCore.conjugateWordPacket R words
+  let S := TorsionActiveCore.activeCoreModel W
+  let U := TorsionActiveCore.activeCoreMatrix W i₀
+  let E : Matrix (TorsionActiveCore.ActiveCoreIndex W)
+      (TorsionActiveCore.ActiveCoreIndex W) ℂ :=
+    (U : Matrix (TorsionActiveCore.ActiveCoreIndex W)
+      (TorsionActiveCore.ActiveCoreIndex W) ℂ) - 1
+  have hWi : W i₀ = R := hi₀
+  have hdim : Fintype.card S ≤
+      TorsionActiveCore.totalWordLength words *
+        ((R : Matrix Y Y ℂ) - 1).rank := by
+    exact TorsionActiveCore.card_activeCoreModel_conjugateWordPacket_le R words
+  have hpowW : (W i₀) ^ m = 1 := by rw [hWi, hpow]
+  have hretain : ((R : Matrix Y Y ℂ) - 1).rank ≤ E.rank := by
+    have h := rank_le_activeCoreMatrix_rank W i₀ m hm hpowW
+    simpa [E, U, hWi] using h
+  have hEpos : 0 < E.rank := hrank.trans_le hretain
+  have hcardpos : 0 < Fintype.card S := by
+    exact hEpos.trans_le (Matrix.rank_le_card_width E)
+  letI : Nonempty (TorsionActiveCore.ActiveCoreIndex W) :=
+    Fintype.card_pos_iff.mp hcardpos
+  have hpowU : U ^ m = 1 := activeCoreMatrix_pow_eq_one W i₀ m hpowW
+  have hmass : (E.rank : ℝ) ≤
+      (m : ℝ) ^ 2 * ScaledKazhdanTransport.matMass E := by
+    exact rank_le_order_sq_mul_matMass U m hm hpowU
+  have hmassEq : ScaledKazhdanTransport.matMass E =
+      (Fintype.card S : ℝ) * hsNormSq S E := by
+    rw [UltraproductScaledTransport.hsNormSq_eq_matMass_div]
+    have hc : (Fintype.card S : ℝ) ≠ 0 := by exact_mod_cast hcardpos.ne'
+    field_simp
+  have hrankR : (((R : Matrix Y Y ℂ) - 1).rank : ℝ) ≤
+      (m : ℝ) ^ 2 * ((Fintype.card S : ℝ) * hsNormSq S E) := by
+    exact_mod_cast hretain
+    rw [← hmassEq]
+    exact (mod_cast hretain).trans hmass
+  have hdimR : (Fintype.card S : ℝ) ≤
+      (TorsionActiveCore.totalWordLength words : ℝ) *
+        (((R : Matrix Y Y ℂ) - 1).rank : ℝ) := by
+    exact_mod_cast hdim
+  have hhs : 0 ≤ hsNormSq S E := hsNormSq_nonneg S E
+  have hscaled : (((R : Matrix Y Y ℂ) - 1).rank : ℝ) ≤
+      (m : ℝ) ^ 2 *
+        (((TorsionActiveCore.totalWordLength words : ℝ) *
+          (((R : Matrix Y Y ℂ) - 1).rank : ℝ)) * hsNormSq S E) := by
+    refine hrankR.trans ?_
+    exact mul_le_mul_of_nonneg_left
+      (mul_le_mul_of_nonneg_right hdimR hhs) (sq_nonneg (m : ℝ))
+  refine ⟨hdim, ?_⟩
+  have hrankRpos : 0 < (((R : Matrix Y Y ℂ) - 1).rank : ℝ) := by
+    exact_mod_cast hrank
+  apply (mul_le_mul_left hrankRpos).mp
+  simpa [mul_assoc, mul_comm, mul_left_comm, S, E, U, W] using hscaled
+
 end
 
 end FiniteOrderRankMass

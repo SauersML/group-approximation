@@ -65,6 +65,12 @@ For a self-map `f`, one has
 ker(Phi_f)=N_(ker f),       im(Phi_f)=K_(f(X)).         (UEM5)
 ```
 
+Every noninjective self-map has the same abstract kernel:
+
+```text
+f noninjective  ==>  ker(Phi_f) ~= F_infinity.          (UEM5a)
+```
+
 The map `E |-> N_E` is an order embedding of the partition lattice of `X`
 into the normal-subgroup lattice of `K_X` and preserves arbitrary joins.  If
 `X` is countably infinite, continuum many distinct `N_E` satisfy
@@ -75,16 +81,17 @@ K_X/N_E ~= K_X,
 
 and every one of these quotient maps splits.
 
-Every `N_E` is a free group.  The continuum family can be chosen so that
+Every nonzero `N_E` is the free group of countably infinite rank.  In
+particular, the continuum family satisfies
 
 ```text
 N_E ~= F_infinity,
 K_infinity ~= F_infinity semidirectProduct K_infinity. (UEM6)
 ```
 
-Thus one full-MF-radical group has continuum many distinct normal free
-subgroups giving split self-quotients.  In particular, the MF radical is not
-hereditary even to normal subgroups: each `N_E` in `(UEM6)` is MF and has
+Thus one full-MF-radical group has continuum many distinct normal copies of
+`F_infinity` giving split self-quotients.  In particular, the MF radical is
+not hereditary even to normal subgroups: each nonzero `N_E` is MF and has
 trivial MF radical, while `K_infinity` has full MF radical.
 
 ---

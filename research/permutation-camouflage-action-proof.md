@@ -7,6 +7,7 @@ target: permutation-camouflage-realizes-countable-actions
 requires:
   - camouflage-kernel-is-a-regular-star-amalgam
   - one-universal-kernel-realizes-all-countable-mf-reflections
+  - every-noninjective-star-fold-has-kernel-f-infinity
 ---
 
 The universal property of the generalized amalgam `(PCA1)` extends every
@@ -61,12 +62,10 @@ identity on `Q`, so it is free.  Both source and target MF-target Hom functors
 identify naturally with `Hom(Q,M)`, under which precomposition with `P_p` is
 the identity.  This proves the categorical MF-equivalence statement.
 
-If there are infinitely many nontrivial fibers, choose disjoint pairs of
-indices within distinct fibers.  Retraction onto each corresponding
-two-factor fold, followed by a nonzero homomorphism from its nontrivial free
-kernel to `Z`, gives independent abelianization coordinates exactly as in
-the partition-kernel theorem.  The free kernel therefore has countably
-infinite rank, proving `(PCA7)`.
+If `p` is noninjective, the theorem that every noninjective star fold has
+kernel `F_infinity` applies directly to the restriction on `K_X`.  Since
+`P_p` is the identity on `Q`, this is also its kernel on the semidirect
+products, proving `(PCA7)`.
 
 For the finite-presentation assertion, choose finite presentations of `B`
 and `Q`, a finite generating set of `S`, and the base factor `B_S`.  Present
@@ -77,7 +76,7 @@ indexed by `Q/S`, and normal form shows that the displayed relations impose
 exactly their common amalgamation over `D`.  This is a finite presentation.
 
 Finally, `<a^(2^(n+1))>` is contained in `<a^(2^n)>`, giving a
-`Q`-equivariant surjection `X_(n+1)->X_n`.  It has infinitely many fibers of
-size two.  The free group `Q` is MF, so the radical formula makes the hidden
+`Q`-equivariant noninjective surjection `X_(n+1)->X_n`.  The free group `Q`
+is MF, so the radical formula makes the hidden
 star kernel the exact MF radical at every stage.  The finite-presentation
 result and `(PCA7)` finish `(PCA8)`.

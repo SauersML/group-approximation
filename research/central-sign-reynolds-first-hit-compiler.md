@@ -75,6 +75,21 @@ Bass--Serre actor and every canonical type extends it.  The remaining step is
 still the matrix-only shared-BCS selection which decides which transported
 atoms consume the first-hit capacity.
 
+The index-two edge has a stronger local interpretation which is useful for
+the phase-oriented branch lane.  By
+`index-two-reynolds-hnn-is-a-proper-corner-section`, its HNN word is a
+source-full partial isometry into `e_(H_a)`, and the unused target complement
+has trace exactly `tr(A_a)`.  Thus the proper-corner support and exit payment
+needed by `central-square-orients-transverse-ledger` are present.  The local
+phase incidence is now closed as well.  A second central sign splits each
+negative payload atom into balanced source and exit companions, while
+`schur-flip-square-exposes-payload-root-word` cancels the two packet
+implementers and exposes their external cocycle as a literal corner word.
+Together these establish `proper-corner-charged-section` without completing
+the two branches to a Morita equivalence.  The remaining compiler is only
+the global reuse problem: identify these local sources with the successive
+active child carriers and place their exits in summable first-hit layers.
+
 ## Attempts
 
 - **One generic HNN edge dies on regular orientation; the central-sign atom

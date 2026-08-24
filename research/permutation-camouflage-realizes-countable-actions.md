@@ -91,7 +91,7 @@ P_p is surjective  iff p is surjective.                (PCA6a)
 Its kernel is free, and precomposition with `P_p` is a bijection on
 homomorphisms into every MF group.  Thus MF reflection sends this entire
 functor to the constant object `Q` and sends every morphism to `id_Q`.  If
-`p` has infinitely many nontrivial fibers, then
+`p` is noninjective, even if it identifies only one pair, then
 
 ```text
 ker(P_p) ~= F_infinity.                                (PCA7)

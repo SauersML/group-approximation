@@ -39,6 +39,9 @@ requires:
   - permutation-camouflage-realizes-countable-actions
   - one-mf-black-hole-has-universal-outer-symmetry
   - one-mf-black-hole-has-universal-endomorphism-monoid
+  - every-noninjective-star-fold-has-kernel-f-infinity
+  - universal-camouflage-presentation-compiler
+  - black-hole-attachments-compute-semantic-quotients
   - full-mf-radical-groups-form-an-extension-colimit-class
   - graphs-of-mf-black-holes-have-free-mf-reflection
   - compression-defect-dies-in-mf-under-mark-stability

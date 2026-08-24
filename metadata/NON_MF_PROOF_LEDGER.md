@@ -1,6 +1,12 @@
 # Non-MF paper: exhaustive proof-step ledger
 
-Spec document: `non_mf_groups_exist.tex`. Formal development: `GroupApproximation/`.
+> **Version notice (2026-08-24).** This ledger audits only the historical
+> manuscript revision identified by the hashes below.  The current
+> `non_mf_groups_exist.tex` is a different manuscript, and this file is not
+> end-to-end verification of it.
+
+Historical spec document: `non_mf_groups_exist.tex`. Formal development:
+`GroupApproximation/`.
 
 ## Audited revision
 
