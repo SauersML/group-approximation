@@ -68,6 +68,15 @@ rational dual vector.  Failure of the dual certificate produces a compatible
 nonzero integer multiplicity assignment, proving that the chosen finite
 packet constraints alone do not annihilate that type.
 
+There is a sharp boundary on the input matrix `B`.
+`finite-packet-functoriality-has-positive-regular-profile` proves that if all
+rows of `B` come only from restriction, conjugacy, refinement, orthogonal
+decomposition and central isotypic cuts, then every base irreducible
+coordinate is positive on one compatible regular profile.  No certificate
+`(FPM1)` can then exist.  A successful packet certificate must include an
+additional relation on the intertwiner multiplicity spaces, such as a
+specified holonomy or a common-carrier return.
+
 For elementary groups over torsion coefficient rings, finite additive root
 windows and three-root Heisenberg windows supply the packets.  Their
 restriction matrices record addition and multiplication simultaneously, so

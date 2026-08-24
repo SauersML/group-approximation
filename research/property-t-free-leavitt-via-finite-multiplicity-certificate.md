@@ -10,6 +10,12 @@ requires:
   - full-leavitt-idempotent-defect-saturation
 ---
 
+**INVALIDATED.**  The required packet certificate cannot be obtained from
+the stated finite-group functoriality relations.  The strictly positive
+regular profile of
+`finite-packet-functoriality-has-positive-regular-profile` satisfies all of
+them while retaining every irreducible type.
+
 Let a norm-corona representation of the binary-Leavitt elementary group be
 given.  Exactify the finite depth-one/depth-two packet diagram from
 `leavitt-prefix-packet-pressure-certificate` on a
