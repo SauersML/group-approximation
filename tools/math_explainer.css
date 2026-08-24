@@ -1,6 +1,6 @@
 .math-symbol-help {
   cursor: help;
-  border-radius: 0.16em;
+  border-radius: 0;
   transition: background-color 100ms ease, box-shadow 100ms ease;
 }
 
@@ -12,7 +12,7 @@
 .math-symbol-help:focus-visible {
   outline: 2px solid #a33a1c;
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .math-help-prompt {
@@ -21,10 +21,10 @@
   margin: 0.8rem 0 1.4rem;
   padding: 0.42rem 0.7rem;
   border: 1px solid rgba(23, 23, 20, 0.22);
-  border-radius: 999px;
+  border-radius: 0;
   background: #fcfcfb;
   color: rgba(23, 23, 20, 0.76);
-  font: 600 0.78rem/1.25 Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  font: 600 0.78rem/1.25 var(--font-body);
 }
 
 .math-explainer {
@@ -39,11 +39,11 @@
   overscroll-behavior: contain;
   padding: 1rem 1.1rem 1.15rem;
   border: 1px solid rgba(23, 23, 20, 0.22);
-  border-radius: 12px;
+  border-radius: 0;
   background: #fff;
   color: #171714;
   box-shadow: 0 16px 48px rgba(23, 23, 20, 0.18), 0 3px 12px rgba(23, 23, 20, 0.10);
-  font: 0.94rem/1.5 Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  font: 0.94rem/1.5 var(--font-body);
 }
 
 .math-explainer[hidden] {
@@ -58,7 +58,7 @@
   border: 0;
   background: transparent;
   color: rgba(23, 23, 20, 0.6);
-  font: 1.35rem/1 Arial, Helvetica, sans-serif;
+  font: 1.35rem/1 var(--font-body);
   cursor: pointer;
 }
 
@@ -70,7 +70,7 @@
   border: 0;
   background: transparent;
   color: rgba(23, 23, 20, 0.6);
-  font: 1.25rem/1 Arial, Helvetica, sans-serif;
+  font: 1.25rem/1 var(--font-body);
   cursor: pointer;
 }
 
@@ -97,7 +97,7 @@
   padding: 0;
   border: 0;
   color: #171714;
-  font: 700 1.05rem/1.3 Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  font: 700 1.05rem/1.3 var(--font-body);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -131,7 +131,7 @@
     bottom: 0;
     width: 100%;
     max-height: 58dvh;
-    border-radius: 14px 14px 0 0;
+    border-radius: 0;
     border-width: 1px 0 0;
   }
 }

@@ -2,6 +2,7 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const katex = require('./paper_site/katex/katex.min.js');
 
 const tex = fs.readFileSync('non_mf_groups_exist.tex', 'utf8');
 global.window = { PAPER_EXPLANATION_SOURCE: tex };
@@ -27,10 +28,18 @@ for (const declaration of declarations) {
     `${declaration.name} needs a substantive explanation`);
 }
 
-assert.equal(source('Qd', '\\mathcal Q_{\\mathbf d}').name,
+const corona = source('Qd', '\\mathcal Q_{\\mathbf d}');
+assert.equal(corona.name,
   'the norm matrix corona used in the definition of MF');
-assert.match(source('Qd', '\\mathcal Q_{\\mathbf d}').explanation,
+assert.equal(corona.tex, '\\mathcal Q_{\\mathbf d}');
+assert.match(corona.explanation,
   /bounded sequences of matrices.*operator norm/);
+assert.match(corona.explanation, /\\\(\\mathbf d=.*\\\)/,
+  'math inside source explanations must be marked for KaTeX rendering');
+const coronaHtml = katex.renderToString(corona.tex, { throwOnError: true });
+assert.match(coronaHtml, /mathcal/);
+assert.match(coronaHtml, /msupsub/,
+  'the explainer formula must preserve the source subscript');
 assert.equal(source('Mdn', 'M_{d_n}(\\C)').name,
   'the matrices in the nth finite model');
 assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,

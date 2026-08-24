@@ -1,7 +1,7 @@
 :root {
   --ink-faint: #6d727a;
-  --font-ui: Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-ui: var(--font-body);
+  --font-mono: var(--font-body);
 }
 
 body { text-rendering: optimizeLegibility; }

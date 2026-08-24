@@ -36,6 +36,24 @@ def read(p):
     return Path(p).read_text(encoding='utf-8')
 
 
+def validate_authored_styles(css):
+    """Keep the site typography serif and every authored corner square."""
+    forbidden_fonts = re.findall(
+        r'\b(?:Arial|Helvetica|ui-sans-serif|system-ui|sans-serif|ui-monospace|'
+        r'SFMono-Regular|Menlo|Consolas|monospace)\b', css, re.I)
+    rounded = [
+        value.strip() for value in re.findall(r'border-radius\s*:\s*([^;}]+)', css, re.I)
+        if not re.fullmatch(r'0(?:px|rem|em|%)?', value.strip(), re.I)
+    ]
+    if forbidden_fonts or rounded:
+        details = []
+        if forbidden_fonts:
+            details.append('non-serif font stacks: ' + ', '.join(sorted(set(forbidden_fonts))))
+        if rounded:
+            details.append('rounded corners: ' + ', '.join(sorted(set(rounded))))
+        sys.exit('paper-site style rule violated: ' + '; '.join(details))
+
+
 DECL_HEAD = re.compile(
     r'^(?:@\[[^\]]*\]\s*)?'
     r'(?:(?:noncomputable|private|protected|nonrec|partial|unsafe|scoped)\s+)*'
@@ -409,6 +427,7 @@ def main():
     katex_js = read(HERE / 'katex' / 'katex.min.js')
     site_css = read(HERE / 'styles.css') + '\n' + read(REPO / 'tools' / 'math_explainer.css')
     polish_css = read(HERE / 'polish.css')
+    validate_authored_styles(site_css + '\n' + polish_css)
     parser_js = read(HERE / 'parser.js')
     ui_js = read(REPO / 'tools' / 'math_macros.js') + '\n' + read(HERE / 'ui.js')
     enhance_js = read(HERE / 'enhance.js') + '\n' + read(REPO / 'tools' / 'math_explainer.js')
@@ -424,6 +443,13 @@ def main():
         claim for claim in claims_data['claims'] if claim['id'] in labels
     ]
 
+    # The site never uses a sans face, including KaTeX's optional \mathsf and
+    # \textsf alphabets.  Map those classes to KaTeX_Main and discard the
+    # unused sans font files before embedding the remaining fonts.
+    katex_css = re.sub(
+        r'@font-face\{font-family:"?KaTeX_SansSerif"?[^}]*\}', '', katex_css)
+    katex_css = katex_css.replace('font-family:KaTeX_SansSerif', 'font-family:KaTeX_Main')
+
     # inline the woff2 fonts into the KaTeX css; drop the woff/ttf fallbacks
     def font_uri(m):
         data = (HERE / 'katex' / 'fonts' / f'{m.group(1)}.woff2').read_bytes()
@@ -434,6 +460,8 @@ def main():
     leftovers = re.findall(r'url\(fonts/[^)]*\)', katex_css)
     if leftovers:
         sys.exit(f'unresolved font urls remain: {leftovers[:4]}')
+    if re.search(r'KaTeX_SansSerif|sans-serif', katex_css, re.I):
+        sys.exit('KaTeX CSS still contains a sans-serif face')
 
     wanted = []
     for c in claims_data['claims']:

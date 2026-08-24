@@ -51,8 +51,8 @@
       'For a and b, the commutator is aba⁻¹b⁻¹. It equals the identity exactly when ab and ba are equal.')
   };
 
-  function entry(name, explanation) {
-    return { name: name, explanation: explanation };
+  function entry(name, explanation, tex) {
+    return { name: name, explanation: explanation, tex: tex || '' };
   }
 
   function clean(value) {
@@ -87,6 +87,7 @@
       result.push({
         object: attrs.object,
         when: compact(attrs.when),
+        tex: attrs.tex || attrs.when,
         group: group,
         name: attrs.title,
         explanation: explanation
@@ -114,7 +115,7 @@
       if (candidate.object !== object || formula.indexOf(candidate.when) < 0) continue;
       if (!best || candidate.when.length > best.when.length) best = candidate;
     }
-    return best ? entry(best.name, best.explanation) : null;
+    return best ? entry(best.name, best.explanation, best.tex) : null;
   }
 
   function texOf(math) {
@@ -126,25 +127,46 @@
     return TERMS[clean(term)] || null;
   }
 
+  function renderTex(node, tex) {
+    if (window.katex && typeof window.katex.render === 'function') {
+      window.katex.render(tex, node, {
+        macros: window.CAIRN_MATH_MACROS || {},
+        displayMode: false,
+        throwOnError: false,
+        strict: false,
+        trust: false
+      });
+      return;
+    }
+    node.textContent = tex;
+  }
+
   function setLinkedText(node, value, excludedTerm) {
     node.textContent = '';
     var text = String(value || '');
     var cursor = 0;
-    var pattern = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
+    var pattern = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]|\\\(([\s\S]*?)\\\)/g;
     var match;
     while ((match = pattern.exec(text))) {
       if (match.index > cursor) node.appendChild(document.createTextNode(text.slice(cursor, match.index)));
-      var canonical = clean(match[1]);
-      var label = clean(match[2] || match[1]);
-      if (!TERMS[canonical] || canonical === excludedTerm) {
-        node.appendChild(document.createTextNode(label));
+      if (match[3] != null) {
+        var math = document.createElement('span');
+        math.className = 'math-explainer-inline-math';
+        renderTex(math, match[3]);
+        node.appendChild(math);
       } else {
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'math-term-help';
-        button.setAttribute('data-term', canonical);
-        button.textContent = label;
-        node.appendChild(button);
+        var canonical = clean(match[1]);
+        var label = clean(match[2] || match[1]);
+        if (!TERMS[canonical] || canonical === excludedTerm) {
+          node.appendChild(document.createTextNode(label));
+        } else {
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'math-term-help';
+          button.setAttribute('data-term', canonical);
+          button.textContent = label;
+          node.appendChild(button);
+        }
       }
       cursor = pattern.lastIndex;
     }
@@ -174,7 +196,10 @@
   function render(state) {
     var box = ensurePanel();
     current = state;
-    box.querySelector('.math-explainer-symbol').textContent = state.symbol;
+    var symbol = box.querySelector('.math-explainer-symbol');
+    symbol.textContent = '';
+    if (state.info.tex) renderTex(symbol, state.info.tex);
+    else symbol.textContent = state.symbol;
     box.querySelector('#math-explainer-title').textContent = state.info.name;
     setLinkedText(box.querySelector('.math-explainer-meaning'),
       state.info.explanation, state.term || '');
