@@ -49,11 +49,29 @@ finite cycle admits stationary companion-type flows.  The missing theorem is
 therefore precisely a finite-matrix-only removal of the regular compensation,
 not another subgroup-average identity.
 
+The local rank orientation is now solved.
+`central-sign-assignment-atom-is-index-two-reynolds-surplus` proves
+
+```text
+e_(H_a)-e_<H_a,J>=e_(H_a)Q_-=A_a,
+```
+
+and the HNN actuator turns that exact index-two difference into an exit
+projection of trace `tr(A_a)`.  The compiler no longer needs surrogate
+finite groups or reverse order padding for one forbidden atom.  Its remaining
+work is global: arrange the level exits in summable first-hit layers and use
+the two-child/BCS recurrence to keep one active copy from shrinking.  The
+canonical regular model must still be allowed to send its companion flow
+down the tail.
+
 ## Attempts
 
-- **One HNN edge dies on regular orientation.**  Injectivity `K->H` forces
-  `1/|H|<=1/|K|`, so any desired negative-sector reverse gap is balanced by
-  companion types elsewhere.
+- **One generic HNN edge dies on regular orientation; the central-sign atom
+  is the exceptional aligned case.**  Injectivity `K->H` forces
+  `1/|H|<=1/|K|`.  For `H_a<<H_a,J>` this is exactly the useful direction and
+  the difference is the forbidden atom.  It supplies one exit, but its
+  positive regular trace prevents stationary repetition across arbitrarily
+  many orthogonal layers.
 - **A finite edge cycle is stationary.**  The companion multiplicities admit
   a nonnegative stationary flow around the cycle; repeating subgroup tables
   does not consume trace.

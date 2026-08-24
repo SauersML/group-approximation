@@ -50,6 +50,19 @@ quadratic padding law.  The determinant-neutral `p=1 mod 8` canonical blocks
 are now charged by the explicit first-cubic spectrum, but arbitrary phase
 mixtures remain outside the authenticated calculation.
 
+The formerly proposed operator-norm Newton completion is now closed in the
+negative.  At exact square-free congruence endpoints,
+`proper-torus-reynolds-is-edge-refinement` constructs a logarithmically
+divergent infinity Green family, and
+`right-displacement-reynolds-scalar-cb-complete` identifies that scalar norm
+with the full completely bounded normal-inverse norm.  Therefore
+`passive-iwahori-off-zero-cb-normal-splitting` is false and
+`off-zero-cb-newton-closes-passive-iwahori` is not a live route.  This does
+not refute flexible normalized-HS repair: the divergent modes may occupy a
+sublinear carrier.  It does show that a proof must perform an intrinsically
+flexible `L2` boundary/lift reconciliation rather than enter a uniform
+operator-norm basin.
+
 ## Equivalent half-root-free form
 
 The variable called `S` above was inherited from the square-root

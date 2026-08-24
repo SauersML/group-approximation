@@ -272,5 +272,99 @@ theorem opNorm_le_of_matrixSmall (d k : ℕ) (A : MatrixCode)
   rw [hcalc] at hop
   simpa [K] using hop
 
+theorem toRat_foldl (a : RatCode) : ∀ l : List RatCode,
+    toRat (l.foldl ratAdd a) = toRat a + (l.map toRat).sum
+  | [] => by simp
+  | q :: l => by
+      rw [List.foldl_cons, toRat_foldl]
+      simp
+      ring
+
+theorem vectorNormSq_semantics (d : ℕ) (v : VectorCode) :
+    (toRat (vectorNormSq d v) : ℝ) = ∑ i : Fin (dim d), ‖toVector d v i‖ ^ 2 := by
+  simp only [vectorNormSq]
+  have hfold : toRat ((List.range (dim d)).foldl
+      (fun q i => ratAdd q (complexNormSq (vectorEntry v i))) ratZero) =
+      ((List.range (dim d)).map fun i => toRat (complexNormSq (vectorEntry v i))).sum := by
+    rw [← List.foldl_map]
+    simpa only [toRat_zero, zero_add, List.map_map, Function.comp_def] using
+      (toRat_foldl ratZero ((List.range (dim d)).map fun i =>
+        complexNormSq (vectorEntry v i)))
+  have hrange :
+      ((List.range (dim d)).map fun i => toRat (complexNormSq (vectorEntry v i))).sum =
+        ∑ i : Fin (dim d), toRat (complexNormSq (vectorEntry v i)) := by
+    rw [← List.sum_toFinset _ List.nodup_range, List.toFinset_range, Finset.sum_range]
+  rw [hfold]
+  rw [hrange]
+  push_cast
+  simp only [toRat_complexNormSq, toVector]
+
+theorem mulVecEntry_semantics (d : ℕ) (A : MatrixCode) (v : VectorCode)
+    (i : Fin (dim d)) :
+    toComplex (mulVecEntry d A v i) =
+      ∑ j : Fin (dim d), (toMatrix d A) i j * toVector d v j := by
+  simp only [mulVecEntry, toComplex_complexSum, List.map_map]
+  rw [← List.sum_toFinset _ List.nodup_range, List.toFinset_range, Finset.sum_range]
+  simp [Function.comp_apply, toMatrix, toVector]
+
+theorem mulVecNormSq_semantics (d : ℕ) (A : MatrixCode) (v : VectorCode) :
+    (toRat (mulVecNormSq d A v) : ℝ) =
+      ∑ i : Fin (dim d),
+        ‖∑ j : Fin (dim d), (toMatrix d A) i j * toVector d v j‖ ^ 2 := by
+  simp only [mulVecNormSq]
+  have hfold : toRat ((List.range (dim d)).foldl
+      (fun q i => ratAdd q (complexNormSq (mulVecEntry d A v i))) ratZero) =
+      ((List.range (dim d)).map fun i => toRat (complexNormSq
+        (mulVecEntry d A v i))).sum := by
+    rw [← List.foldl_map]
+    simpa only [toRat_zero, zero_add, List.map_map, Function.comp_def] using
+      (toRat_foldl ratZero ((List.range (dim d)).map fun i =>
+        complexNormSq (mulVecEntry d A v i)))
+  have hrange :
+      ((List.range (dim d)).map fun i => toRat (complexNormSq
+        (mulVecEntry d A v i))).sum =
+        ∑ i : Fin (dim d), toRat (complexNormSq (mulVecEntry d A v i)) := by
+    rw [← List.sum_toFinset _ List.nodup_range, List.toFinset_range, Finset.sum_range]
+  rw [hfold]
+  rw [hrange]
+  push_cast
+  simp only [toRat_complexNormSq, mulVecEntry_semantics]
+
+/-- The vector test is a sound strict lower-bound certificate. -/
+theorem one_third_lt_opNorm_of_vectorWitness (d : ℕ) (A : MatrixCode)
+    (v : VectorCode) (h : vectorWitness d A v) : (1 : ℝ) / 3 < ‖toMatrix d A‖ := by
+  let x : EuclideanSpace ℂ (Fin (dim d)) :=
+    (EuclideanSpace.equiv (Fin (dim d)) ℂ).symm (toVector d v)
+  have hxcoord : ∀ i : Fin (dim d), x i = toVector d v i := by
+    intro i
+    simp [x]
+  have hxnorm : ‖x‖ ^ 2 = (toRat (vectorNormSq d v) : ℝ) := by
+    rw [EuclideanSpace.norm_sq_eq, vectorNormSq_semantics]
+    simp_rw [hxcoord]
+  have hAxnorm : ‖Matrix.toEuclideanCLM (n := Fin (dim d)) (𝕜 := ℂ)
+      (toMatrix d A) x‖ ^ 2 = (toRat (mulVecNormSq d A v) : ℝ) := by
+    rw [EuclideanSpace.norm_sq_eq, mulVecNormSq_semantics]
+    simp_rw [OperatorNormCertificate.apply_coord, hxcoord]
+  have hrat := (ratLt_iff _ _).1 h
+  rw [toRat_mul, toRat_ratOfNat] at hrat
+  have hsquare : ‖x‖ ^ 2 < 9 *
+      ‖Matrix.toEuclideanCLM (n := Fin (dim d)) (𝕜 := ℂ) (toMatrix d A) x‖ ^ 2 := by
+    rw [hxnorm, hAxnorm]
+    exact_mod_cast hrat
+  have hxpos : 0 < ‖x‖ := by
+    by_contra hn
+    have hxzero : ‖x‖ = 0 := le_antisymm (le_of_not_gt hn) (norm_nonneg _)
+    have hx : x = 0 := norm_eq_zero.mp hxzero
+    rw [hx] at hsquare
+    simp at hsquare
+  have happ := OperatorNormCertificate.norm_apply_le (toMatrix d A) x
+  by_contra hn
+  have hA : ‖toMatrix d A‖ ≤ (1 : ℝ) / 3 := le_of_not_gt hn
+  have happ' : ‖Matrix.toEuclideanCLM (n := Fin (dim d)) (𝕜 := ℂ)
+      (toMatrix d A) x‖ ≤ ((1 : ℝ) / 3) * ‖x‖ :=
+    happ.trans (mul_le_mul_of_nonneg_right hA (norm_nonneg _))
+  nlinarith [norm_nonneg
+    (Matrix.toEuclideanCLM (n := Fin (dim d)) (𝕜 := ℂ) (toMatrix d A) x)]
+
 end EffectiveMatrixCode
 end GroupApproximation

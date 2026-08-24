@@ -149,6 +149,114 @@ load-bearing ring data are the four displayed Leavitt elements.
 
 ## 5. Operator-norm reconstruction frontier
 
+### Full-support reblocking from a torsion normal generator
+
+There is a general reduction which removes all sparse-rank ambiguity from a
+normally generating torsion mark.  Let `G=<S>` be finitely generated, let
+`a in S` have finite order `m`, and express every generator in `S` as a
+product of conjugates of `a^(+1)` or `a^(-1)`.  If `L` is the total number of
+conjugate occurrences, then every corona representation which sees `a` can
+be reblocked, after an infinite coordinate restriction, as
+
+```text
+sigma_n directSum 1.
+```
+
+The active block has dimension `k_n`, while the nontrivial spectral
+projection of `sigma_n(a)` has rank `r_n` satisfying
+
+```text
+r_n<=k_n<=Lr_n.
+```
+
+Hence the marked spectral projection has normalized rank at least `1/L`, and
+the marked unitary has a dimension-independent normalized
+Hilbert--Schmidt gap.  The proof rounds the fixed torsion relation exactly,
+substitutes the rounded mark into the chosen normal-generation words, and
+spans the finitely many conjugate active ranges.  Every rewritten generator
+is the identity on the common orthogonal complement, so restriction to the
+active span preserves the operator-norm asymptotic relations.
+
+If a fixed `g!=1` normally generates `a` with length `N_g`, telescoping gives
+
+```text
+liminf ||sigma_n(g)-1||_2
+ >= eta_m/(N_g sqrt(L)),
+```
+
+where `eta_m` is the minimum distance from `1` to a nontrivial `m`th root of
+unity.  Thus for a simple group every nontrivial corona homomorphism reblocks
+to a faithful hyperlinear embedding.  Uniform simplicity gives a uniform
+Hilbert--Schmidt separation constant.
+
+For the binary-Leavitt elementary group, this proves that the
+property-`(T)`-free problem may be studied entirely in the full-support
+regime: the distinguished root is an involution and normally generates.
+The remaining difficulty is therefore coherence of the coefficient action,
+not loss of the root into a sparse matrix corner.
+
+There is a useful intrinsic dichotomy.  If `G` is nontrivial, finitely
+generated, simple, and contains torsion, its MF radical is either `1` or
+`G`.  In the first case any nontrivial corona map is faithful, and the
+active-core theorem turns it into an operator-norm asymptotic model satisfying
+
+```text
+liminf_n ||sigma_n(g)-1||_2>0
+```
+
+for every `g!=1`.  In the second case every corona map is trivial.  Hence
+standard operator-MF and pointwise Hilbert--Schmidt-separating operator-MF
+coincide for finitely generated simple groups with torsion.  If the group is
+uniformly simple, the separation can be chosen uniformly over all
+nonidentity elements.
+
+Let `R_(infinity->2)(G)` denote the elements which are
+Hilbert--Schmidt-null in every operator-norm asymptotic representation.  For
+the finite-order normal generator `a`, active-core reblocking gives the exact
+equivalence
+
+```text
+a in Rad_MF(G) iff a in R_(infinity->2)(G).
+```
+
+The forward implication is general; the reverse implication is the content
+of the active-core theorem.  Since both residuals are normal, they coincide
+on every nontrivial finitely generated simple group containing torsion.  The
+two residuals need not coincide for arbitrary groups.
+
+The active rank scale is independent of the chosen torsion mark.  More
+generally, let `a,b` have finite order in a fixed corona representation.  If
+`b` is a product of `N` conjugates of `a^(+1)` or `a^(-1)`, then their active
+spectral projections satisfy
+
+```text
+rank(p_(b,n))<=N rank(p_(a,n)) eventually,
+p_b <=_MvN p_a^(directSum N),
+Supp(b)<=Supp(a).
+```
+
+The first inequality follows by rounding both torsion relations exactly:
+the normal word for `b` differs from the identity on at most `N` conjugate
+copies of the active space of `a`, while the nonzero singular values of the
+rounded `b-1` have a fixed spectral floor.  Mutual normal generation gives
+mutual rank domination and equality of support ideals.  Thus all
+nonidentity torsion elements of a simple group define one canonical corona
+rank scale and Morita-equivalent active corners.
+
+On the reblocked core, the marked projection is a uniform Morita generator.
+Indeed `k_n<=Lr_n` gives
+
+```text
+1 <=_MvN p^(directSum L).
+```
+
+Every projection in `M_t(Q_k)` is therefore subequivalent to
+`p^(directSum tL)`.  All finite additive and Heisenberg packet carriers fit
+inside a stabilization bounded independently of the coordinate dimensions
+and of the finite window.
+
+### Coefficient reconstruction
+
 The exact missing theorem is:
 
 > If a specified elementary root survives in a norm-corona representation,
@@ -160,11 +268,12 @@ If this coefficient-module decoder holds and the root normally generates,
 the projective Hilbert-hotel theorem gives full MF radical without any
 property-`(T)` hypothesis.
 
-The obstruction is not finite multiplication.  That is already encoded by
-the Heisenberg windows.  The unresolved issue is bounded-stabilization
-coherence: window-by-window exactifications need not produce nested
-coordinate corners or four bounded coefficient operators on a common
-nonzero carrier.
+The obstruction is not finite multiplication or stabilization size.
+Multiplication is already encoded by the Heisenberg windows, and the uniform
+Morita-generator theorem places every finite packet in one bounded carrier.
+The unresolved issue is coherence of the packet intertwiners and coefficient
+products on a common nonzero summand: window-by-window exactifications need
+not select compatible nested actions or four bounded coefficient operators.
 
 ## 6. Macroscopic tracial self-copy theorem
 
@@ -223,6 +332,12 @@ Established:
 - generic binary-Leavitt full MF radical under the two property-`(T)`
   hypotheses;
 - equality of parent and conjugate-child macroscopic adjoint fixed sectors;
+- full-support reblocking for finite-order normal generators, with
+  quantitative propagation along normal-generation words;
+- the black-hole/macroscopic-MF dichotomy for finitely generated simple
+  groups with torsion;
+- equality of the MF and operator-to-Hilbert--Schmidt shadow residuals on
+  finitely generated simple groups with torsion;
 - the terminal implications from either missing decoder.
 
 Open:

@@ -6,6 +6,7 @@ title: Amplifying a surviving self-copy mark to positive adjoint density proves 
 distinct_from:
   unnamed-positive-density-fixed-space-is-terminal: That detects a positive-mass physical contraction fixed by a wandering word through scalar moments; this detects a positive-density projection of adjoint operator directions fixed by the compressed subgroup but moved by the parent.
   property-t-hs-positive-density-commutant-no-growth: That supplies a quantitative modulus under property (T); this is the qualitative terminal for any finitely generated one-sided self-copy.
+  left-rank-amplification-is-not-a-fixed-sector: That shows a positive-rank invariant projection obtained from a child-central packet word does not meet the pointwise fixed-range hypothesis imposed here.
 ---
 
 Let `G` contain `tLt^(-1)<=L`, with `L=<Q>` finitely generated, and let
@@ -24,3 +25,9 @@ nonidentity word, while
 `tracial-superoperator-self-copy-has-no-macroscopic-excess` makes the last
 two lines incompatible.
 
+The word “fixed” in the second line is load bearing.  It cannot be weakened
+to conjugation-invariance of `E_n`.  In particular, if a child-central
+packet matrix `X_n` has a positive-rank spectral cut `p_n`, then
+`E_n=L_(p_n)` has positive adjoint rank and commutes with the child adjoint
+action, but its range is generally not child fixed.  The exact counterexample
+is `left-rank-amplification-is-not-a-fixed-sector`.

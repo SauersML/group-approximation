@@ -7,7 +7,10 @@ title: Decode compatible finite root multiplicities into one finite projective c
 
 OPEN.  Let `R` be a countable ring with a binary Leavitt family and let
 `rho:E_n(R)->U(Q_d)` be a norm-corona representation in which a specified
-root `rho(x_ij(r_0))` survives.
+finite-order root `rho(x_ij(r_0))` survives.  By
+`torsion-normal-generator-has-full-support-corona-core`, one may assume that
+the active spectral projection of this root has normalized coordinate rank
+bounded below by one positive constant.
 
 Construct a nonzero finitely generated projective `Q_d`-module `P_rho` and a
 unital ring homomorphism
@@ -18,10 +21,14 @@ R -> End_(Q_d)(P_rho).
 
 The finite additive and Heisenberg multiplicity germs already provide exact
 finite restrictions of the desired action.  The missing content is a
-finite-projective compactness theorem assembling the compatible restrictions
-on one common nonzero module.
+finite-projective coherence theorem assembling the compatible restrictions
+on one common module of positive rank density.  Sparse escape of the marked
+root is no longer part of the problem.  Moreover the active corner is a
+uniform Morita generator: every finite packet projection embeds into one
+fixed finite amplification of it.  Growth of the stabilization size is no
+longer part of the problem either.
 
-## Attempts
+## Structural reductions
 
 - **Take the inverse limit of rank germs.**  Compatible scalar ranks do not
   determine compatible projection representatives or coefficient
@@ -32,12 +39,12 @@ on one common nonzero module.
   exactified on a tail, but the conjugating corrections depend on the window.
   Their selected projections can move through the matrix coordinates and
   have zero common rank germ despite compatible restriction multiplicities.
-- **Deferred live attack.**  Prove a compact-containment/tightness theorem in
-  the projection monoid of the norm corona: a surviving root must support one
-  nonzero rank-bounded subprojection invariant under all four fixed Leavitt
-  coefficient germs.  No such alignment follows from `K_0` data alone.
+- **Use the full active spectral corner as the carrier.**  Full-support
+  reblocking makes this corner macroscopically large, but general coefficient
+  roots move it.  The required theorem must coherently align finitely many
+  moved copies or construct an equivalent invariant projective carrier.
 
-## Attempts
+## Remaining failed shortcuts
 
 - **Use only the additive Fourier projections.**  This cannot recover the
   Leavitt arrows: one additive character can remain nontrivial on every
@@ -52,11 +59,12 @@ on one common nonzero module.
   a coherent type measure, not a finitely generated projective `Q_d`-module.
   It does not control a uniform stabilization size or provide bounded
   operators realizing the four Leavitt coefficients on a common carrier.
-- **Compress to the active spectral projection of the surviving root.**  The
-  projection is nonzero, but general coefficient roots move it.  Repeated
-  compression introduces boundary terms, and no operator-norm estimate is
-  presently known that makes the two inverse relations exact in the corona.
+- **Compress to the active spectral projection of the surviving root.**  Its
+  relative rank is now uniformly positive, but general coefficient roots
+  move it.  Repeated compression introduces boundary terms, and positive
+  density alone does not make the two inverse relations exact in the corona.
 
-The unresolved statement is a bounded-stabilization gluing theorem:
-compatible finite Heisenberg multiplicities with a surviving root must admit
-one nonzero projective carrier and one coherent coefficient-ring action.
+The unresolved statement is an intertwiner-coherence theorem: compatible
+finite Heisenberg multiplicities, already aligned inside one fixed Morita
+carrier, must admit a common summand on which the coefficient products act
+coherently.

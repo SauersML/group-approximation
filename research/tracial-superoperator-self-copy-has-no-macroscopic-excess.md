@@ -46,3 +46,10 @@ The conclusion is deliberately macroscopic.  A child-only asymptotic
 commutant carried by `o(d_n^2)` operator directions disappears in this
 tracial ultraproduct and is not excluded.
 
+In the canonical-profile case with `H` infinite, both sides of `(TSS1)` have
+trace zero by `canonical-infinite-subgroup-has-zero-adjoint-fixed-density`.
+The self-copy identity remains stronger because it applies to arbitrary
+asymptotic representations and can compare nonzero fixed projections.  For
+the non-hyperlinearity endpoint, however, an attempted positive-density
+child-fixed amplifier is already terminal before self-copy transport is
+used.

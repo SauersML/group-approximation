@@ -136,6 +136,24 @@ current argument.  Property-`(T)` groups can have nontrivial finite-dimensional
 unitary representations, and such a representation can be placed entirely
 in the lamp commutant while all covariance laws remain exact.
 
+## Two-site reduction
+
+Full action recovery is stronger than the contradiction actually needed.
+`two-point-approximation-fails` already forbids a permutation chart for the
+single marked pair `(Gamma,hGamma)`.  The established
+`two-site-a5-plancherel-center-separates-mark` supplies a canonical rational
+two-valued field on those sites with exclusive-or mass `35/72` and all
+pair-preserving covariance relations.  Thus the smaller open target
+`two-site-a5-center-classicalization` asks only to permutationize the actor
+multiplicity cocycle on that fixed separated carrier.  If it holds,
+`nonhyperlinear-via-two-site-a5-center` reaches the goal without proving the
+whole coordinate action sofic.
+
+This reduction removes global lamp-label recovery but not actor
+classicalization: approximate multiplication still has to be realized on a
+finite state carrier.  It is therefore a genuine weakening of `(SHA2)`, not
+a hidden invocation of the refuted two-point approximation.
+
 ## Attempts
 
 - **Classicalize the amenable lamp base.**  This succeeds on every fixed

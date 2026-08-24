@@ -14,6 +14,23 @@ requires:
   - passive-iwahori-off-zero-cb-normal-splitting
 ---
 
+**INVALIDATED.**  The required completely bounded normal splitting is false
+already at exact congruence endpoints.  The square-free proper-subtorus
+family in `proper-torus-reynolds-is-edge-refinement`, combined with
+`right-displacement-reynolds-scalar-cb-complete`, gives
+
+```text
+||C_(H_n)^dagger||_(infinity -> infinity)
+ >= c log(M_n) -> infinity.
+```
+
+Thus no dimension- and level-independent `C_infinity` in `(PCN5)` exists.
+The Newton calculation below remains a correct conditional implication, but
+it is not a live route to the passive basin or to Iwahori stability.  Any
+surviving proof must work directly in flexible normalized `L2`, allowing the
+divergent operator-norm Green modes to be discarded or absorbed on
+sublinear rank.
+
 After the established slow length-frequency cut, enlarge the active
 `BS(1,4)`-invariant hull by the two exits and the finite Gram-surgery
 support.  Its relative rank is `o(1)`.  Block cutting and polar reflection

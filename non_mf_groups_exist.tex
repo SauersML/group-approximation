@@ -69,9 +69,10 @@ Conjugation by an explicit Whitehead matrix maps a Kazhdan subgroup
 $L\cong\EL_4(L_{\F_2}(1,2))$ into itself.  If $c$ centralizes $L$, one-sided
 Kazhdan transport implies that the commutators $[ucu^{-1},\ell]$ converge to
 the identity in normalized Hilbert--Schmidt norm in every operator-norm
-asymptotic representation.  We prove that a normal Kazhdan subgroup generated
-by such commutators lies in the MF radical.  For our choice of $u,c$, and
-$\ell$, the commutator is an elementary matrix that normally generates $H$.
+asymptotic representation.  A finite-order active-core theorem shows that
+universal Hilbert--Schmidt triviality and MF invisibility coincide for a
+torsion normal generator.  For our choice of $u,c$, and $\ell$, the
+commutator is an involutory elementary matrix that normally generates $H$.
 Every finite-dimensional linear representation of $H$ over any field is also
 trivial.  The same group yields a general construction: for every countable
 group $Q$, there is a split epimorphism $\pi_Q\colon W_Q\to Q$ such that
@@ -109,6 +110,15 @@ The group $G$ is MF precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
 $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
 
+More generally, for $N\trianglelefteq G$ define its \emph{MF closure} by
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
+\]
+Thus $\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
+$G/N$ is MF precisely when
+$\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
+
 The existence of a countable non-MF group was open~\cite{Shulman}.
 Theorem~\ref{thm:headline} answers this question and proves the stronger equality
 $\Rad_{\mathrm{MF}}(H)=H$ for an explicit simple group.
@@ -138,13 +148,16 @@ Call an element of $G$
 identity in normalized Hilbert--Schmidt norm in every operator-norm
 asymptotic representation of $G$.
 
-\begin{mainthm}[normal Kazhdan subgroups]\label{thm:normal-kazhdan}
-Let $G$ be countable, let $D\le G$ be a subgroup of universally
-Hilbert--Schmidt trivial elements, and let $K\trianglelefteq G$ have
-property~\textup{(T)}.  If $K\le D$, then
+\begin{mainthm}[finite-order normal generators]\label{thm:torsion-bridge}
+Let $G$ be finitely generated and let $a\in G$ have finite order and normally
+generate $G$.  Then
 \[
- K\le\Rad_{\mathrm{MF}}(G).
+ a\in\Rad_{\mathrm{MF}}(G)
+ \quad\Longleftrightarrow\quad
+ a\in R_{\infty\to2}(G).
 \]
+Consequently, if $a$ is universally Hilbert--Schmidt trivial, then
+$\Rad_{\mathrm{MF}}(G)=G$.
 \end{mainthm}
 
 Suppose that $L\le G$ has property~\textup{(T)}, that $u\in G$ satisfies
@@ -162,9 +175,12 @@ centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
  d=e_{02}(s_1t_1).
 \]
 Two elementary commutator identities imply that $d$ normally generates
-$H$.  The universally Hilbert--Schmidt trivial elements form a normal
-subgroup, so every element of $H$ has this property.  Theorem
-\ref{thm:normal-kazhdan} then gives $\Rad_{\mathrm{MF}}(H)=H$.
+$H$.  Since the coefficient ring has characteristic two, $d$ is an
+involution.  Theorem~\ref{thm:torsion-bridge} then gives
+$\Rad_{\mathrm{MF}}(H)=H$.  Thus property~\textup{(T)} is used for the
+compressed subgroup $L$ in the transport step; the passage from the
+Hilbert--Schmidt obstruction to the MF radical uses only the finite order and
+normal generation of $d$.
 
 For an exact finite-dimensional representation, conjugation by a compressor
 defines an injective endomorphism of the commutant of $L$.  This endomorphism
@@ -192,6 +208,14 @@ Moreover, precomposition with $\pi_Q$ induces a bijection
  \operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)
 \]
 for every MF group $M$.
+For every $N\trianglelefteq W_Q$, this factorization determines the entire MF
+closure:
+\[
+ \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
+ =\pi_Q^{-1}\!\left(
+   \operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))
+  \right).
+\]
 \end{mainthm}
 
 \subsection*{Relation to prior work}
@@ -384,124 +408,162 @@ The subgroup $K_2(V)$ is normal, so it contains the normal closure of these
 elements.  Intersecting over $(V_n)$ proves the claim.
 \end{proof}
 
-\section{Normal Kazhdan subgroups and the MF radical}
+\section{Finite-order active cores and the MF radical}
 
-\begin{lemma}[asymptotically invariant corners]\label{lem:corner}
-Let $(V_n)$ be an operator-norm asymptotic representation of $G$, and let
-$q_n\in M_{d_n}(\C)$ be nonzero projections such that
+The normalized Hilbert--Schmidt norm can lose a fixed operator-norm defect
+when that defect occupies a vanishing fraction of the matrix dimension.  A
+finite-order normal generator prevents this loss after an intrinsic
+reblocking: the active spectral subspace of the generator expands, through
+fixed normal words, to an invariant subspace whose dimension is only a fixed
+multiple larger.
+
+\begin{theorem}[active-core reblocking]\label{thm:active-core}
+Let $G$ be generated by a finite symmetric set $S$ containing an element
+$a$ of order $m\ge2$, and suppose that $a$ normally generates $G$.  For each
+$s\in S$, fix an expression of $s$ as a product of conjugates of
+$a^{\pm1}$, taking the expression for $a$ to be the one-letter word $a$.
+Let $L$ be the total number of occurrences of $a^{\pm1}$ in these
+expressions.
+
+If $\rho\colon G\to\U(\mathcal Q_{\mathbf d})$ satisfies $\rho(a)\ne1$,
+then, after passing to an infinite coordinate subsequence, $\rho$ has unitary
+lifts of the form
 \[
- \opnorm{[q_n,V_n(g)]}\longrightarrow0\qquad(g\in G).
+ \sigma_n(g)\oplus 1_{d_n-k_n},
+ \qquad \sigma_n(g)\in\U(k_n),
 \]
-After identifying $q_nM_{d_n}(\C)q_n$ with
-$M_{\operatorname{rank}q_n}(\C)$, there is an operator-norm asymptotic
-representation $(W_n)$ of $G$ such that
+where $(\sigma_n)$ is an operator-norm asymptotic representation.  Moreover,
+$A_n=\sigma_n(a)$ satisfies $A_n^m=1$, and if
 \[
- \opnorm{W_n(g)-q_nV_n(g)q_n}\longrightarrow0
- \qquad(g\in G).
+ p_n=1_{\C\setminus\{1\}}(A_n),\qquad r_n=\operatorname{rank}p_n,
 \]
-\end{lemma}
+then
+\begin{equation}\label{eq:active-core-ranks}
+ 1\le r_n\le k_n\le Lr_n.
+\end{equation}
+Consequently, with
+\[
+ \eta_m=\min\{|1-\zeta|:\zeta^m=1,\ \zeta\ne1\}>0,
+\]
+one has
+\begin{equation}\label{eq:active-core-gap}
+ \hsnorm{\sigma_n(a)-1}\ge\frac{\eta_m}{\sqrt L}.
+\end{equation}
+If $a$ is a product of $N_g$ conjugates of $g^{\pm1}$, then also
+\begin{equation}\label{eq:propagated-gap}
+ \liminf_n\hsnorm{\sigma_n(g)-1}
+ \ge\frac{\eta_m}{N_g\sqrt L}.
+\end{equation}
+\end{theorem}
 
 \begin{proof}
-The compression $q_nV_n(g)q_n$ has multiplicative defect tending to zero,
-and its two Gram operators differ from $q_n$ by $o(1)$ in operator norm.
-For all sufficiently large $n$, define $W_n(g)$ to be its polar unitary in
-the corner.  This unitary differs from $q_nV_n(g)q_n$ by $o(1)$.  Set the
-finitely many exceptional coordinates equal to the corner identity.  The
-multiplicative estimates for the compressions then imply those for $(W_n)$.
+Choose unitary lifts $U_n(g)$ of $\rho(g)$.  They form an operator-norm
+asymptotic representation.  Since $\rho(a)^m=1$, finite-spectrum functional
+calculus replaces $U_n(a)$, within $o(1)$ in operator norm, by a unitary
+$B_n$ satisfying $B_n^m=1$.
+
+Write the chosen expression for $s\in S$ as
+\[
+ s=\prod_{j=1}^{L_s}h_{s,j}a^{\varepsilon_{s,j}}h_{s,j}^{-1},
+ \qquad \varepsilon_{s,j}\in\{1,-1\}.
+\]
+Define
+\[
+ \widetilde U_n(s)=
+ \prod_{j=1}^{L_s}
+ U_n(h_{s,j})B_n^{\varepsilon_{s,j}}U_n(h_{s,j})^*.
+\]
+For every $g\in G$, choose once and for all a word in $S$ representing $g$
+and define $\widetilde U_n(g)$ by substituting these matrices.  We use the
+one-letter word for $a$, so $\widetilde U_n(a)=B_n$.  The defining group
+identities and asymptotic multiplicativity give
+\[
+ \opnorm{\widetilde U_n(g)-U_n(g)}\longrightarrow0
+ \qquad(g\in G).
+\]
+Thus $(\widetilde U_n)$ is an operator-norm asymptotic representation and
+represents the same corona homomorphism.
+
+Let $P_n$ be the active spectral subspace of $B_n$, and let $K_n$ be the sum
+of the subspaces
+\[
+ U_n(h_{s,j})P_n
+ \qquad(s\in S,\ 1\le j\le L_s).
+\]
+Every factor in the displayed formula for $\widetilde U_n(s)$ is the
+identity on $K_n^\perp$, preserves $K_n$, and differs from the identity by
+an operator whose range lies in $K_n$.  Hence every $\widetilde U_n(g)$
+preserves $K_n$ and is the identity on $K_n^\perp$.  Since the one-letter
+expression for $a$ occurs in the family,
+\[
+ \dim P_n\le\dim K_n\le L\dim P_n.
+\]
+The assumption $\rho(a)\ne1$ makes $P_n$ nonzero on an infinite coordinate
+subsequence.  Retain that subsequence, put $k_n=\dim K_n$, and let
+$\sigma_n(g)$ be the restriction of $\widetilde U_n(g)$ to $K_n$.  This
+proves the lifting assertion and \eqref{eq:active-core-ranks}.
+
+Every nonidentity eigenvalue of $A_n$ is an $m$th root of unity, so
+\[
+ \hsnorm{A_n-1}^2
+ \ge \eta_m^2\frac{r_n}{k_n}
+ \ge\frac{\eta_m^2}{L},
+\]
+which proves \eqref{eq:active-core-gap}.  Finally, substitute the matrices
+$\sigma_n(g)$ into a fixed normal word of length $N_g$ expressing $a$ through
+$g^{\pm1}$.  Telescoping in normalized Hilbert--Schmidt norm and asymptotic
+multiplicativity give
+\[
+ \hsnorm{\sigma_n(a)-1}
+ \le N_g\hsnorm{\sigma_n(g)-1}+o(1).
+\]
+Together with \eqref{eq:active-core-gap}, this proves
+\eqref{eq:propagated-gap}.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:normal-kazhdan}]
-Suppose that a homomorphism
-$\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ is nontrivial on $K$.  Set
-$\bar G=\Theta(G)$ and $\bar K=\Theta(K)$.  Then $\bar G$ is a countable MF
-group, and $\bar K$ is a nontrivial normal Kazhdan subgroup of $\bar G$.
-If $(W_n)$ is an operator-norm asymptotic representation of $\bar G$, then
-$(W_n\circ\Theta)$ is an operator-norm asymptotic representation of $G$.
-Hence
-$\Theta(D)\le R_{\infty\to2}(\bar G)$.
+\begin{proof}[Proof of Theorem~\ref{thm:torsion-bridge}]
+For every group,
+\[
+ \Rad_{\mathrm{MF}}(G)\le R_{\infty\to2}(G):
+\]
+an operator-norm asymptotic representation defines a homomorphism to its
+norm matrix corona, and an element killed there converges to the identity in
+operator norm, hence in normalized Hilbert--Schmidt norm.
 
-Choose an operator-norm asymptotic representation $(V_n)$ of $\bar G$ that
-separates a fixed nonidentity element of $\bar K$ in operator norm.  Such a
-sequence is obtained by lifting the given embedding of $\bar G$ into a norm
-matrix corona and passing to a subsequence.  Write
-$\pi(g)=[V_n(g)]$ for the corresponding homomorphism to that corona.
-
-Choose a finite symmetric Kazhdan generating set $S\subseteq\bar K$, with
-$1\in S$, and put
-\[
- h=\frac1{|S|}\sum_{a\in S}\pi(a).
-\]
-There is $\theta<1$ such that
-$\sigma(h)\subseteq[-1,\theta]\cup\{1\}$.  The spectral projection
-\[
- P=1_{\{1\}}(h)
-\]
-is the image of the Kazhdan projection of $\bar K$.  Put $q=1-P$.  If $q=0$,
-then $P=1$; the identity $\pi(a)P=P$ for $a\in\bar K$ would imply
-$\pi(a)=1$ for every $a\in\bar K$, contrary to the chosen operator-norm
-separation.  Thus $q\ne0$.
-
-Every automorphism of $\bar K$ fixes its Kazhdan projection.  Since $\bar K$
-is normal in $\bar G$, conjugation by $g\in\bar G$ restricts to an
-automorphism of $\bar K$.  Therefore
-\[
- \pi(g)P\pi(g)^*=P\qquad(g\in\bar G),
-\]
-and $q$ commutes with $\pi(\bar G)$.
-Choose self-adjoint lifts of $q$ and round their spectra at $1/2$.  This gives
-projection lifts $q_n\in M_{d_n}(\C)$.  After passing to a diagonal
-subsequence, we may assume that every $q_n$ is nonzero,
-\[
- \opnorm{[q_n,V_n(g)]}\longrightarrow0\qquad(g\in\bar G),
-\]
-and, for the self-adjoint coordinate averages
-\[
- h_n=\frac1{2|S|}\sum_{a\in S}\bigl(V_n(a)+V_n(a)^*\bigr),
-\]
-that
-\begin{equation}\label{eq:corner-gap}
- \opnorm{(q_nh_nq_n-\theta q_n)_+}\longrightarrow0.
-\end{equation}
-The commutator estimates follow from the equality of $q$ with its conjugates
-in the corona.  Inequality~\eqref{eq:corner-gap} is the coordinate form of
-$qhq\le\theta q$ and follows from continuous functional calculus for the
-positive part.  Since $\bar G$ is countable, one diagonal subsequence suffices
-for all the estimates.
-
-Apply Lemma~\ref{lem:corner} and write $W_n$ for the resulting asymptotic
-representation on $q_n\C^{d_n}$.  Equip this space with its ordinary
-normalized matrix trace.  Taking traces in \eqref{eq:corner-gap}, and using
-that polar correction changes the compressed matrices by $o(1)$ in operator
-norm, gives
-\[
- \frac1{|S|}\sum_{a\in S}\operatorname{Re}\tr(W_n(a))
- \le\theta+o(1).
-\]
-Consequently, after passing to a subsequence, one fixed $a_0\in S$ satisfies
-\[
- \hsnorm{W_n(a_0)-1}^2
- =2-2\operatorname{Re}\tr(W_n(a_0))
- \ge 2(1-\theta)-o(1).
-\]
-But $a_0\in\bar K\le\Theta(D)\le R_{\infty\to2}(\bar G)$, so
-$\hsnorm{W_n(a_0)-1}\to0$.  This contradiction proves that $\Theta$ is
-trivial on $K$.
+Conversely, suppose $a\in R_{\infty\to2}(G)$ but
+$a\notin\Rad_{\mathrm{MF}}(G)$.  Some corona homomorphism sees $a$.
+Theorem~\ref{thm:active-core} produces an operator-norm asymptotic
+representation for which \eqref{eq:active-core-gap} holds, contradicting the
+definition of $R_{\infty\to2}(G)$.  Thus $a$ lies in the MF radical.  Since
+that radical is normal and $a$ normally generates $G$, it equals $G$.
 \end{proof}
 
-\begin{corollary}[normal Kazhdan compression defect]\label{cor:normal-defect}
-Let $L\le G$ have property~\textup{(T)}, and suppose that
-$K\trianglelefteq G$ has property~\textup{(T)} and satisfies
-$K\le D(G,L)$.  Then
+\begin{corollary}[simple torsion dichotomy]\label{cor:simple-torsion}
+Let $G$ be a nontrivial finitely generated simple group containing a
+finite-order nonidentity element.  Then
 \[
- K\le\Rad_{\mathrm{MF}}(G).
+ \Rad_{\mathrm{MF}}(G)=R_{\infty\to2}(G).
 \]
+Exactly one of the following holds:
+\begin{enumerate}
+ \item every homomorphism from $G$ to a norm matrix corona is trivial;
+ \item $G$ admits a faithful operator-norm asymptotic representation
+ $(\sigma_n)$ such that
+ \[
+  \liminf_n\hsnorm{\sigma_n(g)-1}>0
+  \qquad(g\ne1).
+ \]
+\end{enumerate}
 \end{corollary}
 
 \begin{proof}
-Corollary~\ref{cor:defect-hs} gives
-$D(G,L)\le R_{\infty\to2}(G)$, and
-Theorem~\ref{thm:normal-kazhdan} applies with
-$D=R_{\infty\to2}(G)$.
+Both displayed residuals are normal subgroups.  Simplicity and
+Theorem~\ref{thm:torsion-bridge}, applied to a nonidentity torsion element,
+give their equality.  If a corona homomorphism is nontrivial, it is injective.
+Apply Theorem~\ref{thm:active-core}; for each $g\ne1$, simplicity puts the
+chosen torsion element in the normal closure of $g$, so
+\eqref{eq:propagated-gap} gives the asserted pointwise separation.  The two
+alternatives are therefore exhaustive and mutually exclusive.
 \end{proof}
 
 \section{The binary Leavitt self-compression}
@@ -593,7 +655,8 @@ Let
 \]
 in $H$.  Then
 \[
- c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.
+ c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad d^2=1,
+ \qquad \normal d_H=H.
 \]
 \end{proposition}
 
@@ -609,6 +672,8 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 The second factor commutes with $\ell=e_{12}(1)$, and
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ gives
 $d=e_{02}(q)$.  This is nontrivial because $q\ne0$.
+Since $R$ has characteristic two and $E_{02}^2=0$, one also has
+$e_{02}(q)^2=1$.
 
 Let $N=\normal d_H$.  For arbitrary $a\in R$, two further elementary
 commutator identities give
@@ -630,13 +695,10 @@ rings~\cite{EJZ}; in particular $H$ is finitely generated.
 The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
 $L$, and Corollary~\ref{cor:defect-hs} give
 $d\in R_{\infty\to2}(H)$.  The subgroup $R_{\infty\to2}(H)$ is normal, and
-Proposition~\ref{prop:defect} gives $H=\normal d_H$.  Hence
-\[
- R_{\infty\to2}(H)=H.
-\]
-Apply Theorem~\ref{thm:normal-kazhdan} with $G=K=H$ and
-$D=R_{\infty\to2}(H)$.  Then
-$H\le\Rad_{\mathrm{MF}}(H)$, so $\Rad_{\mathrm{MF}}(H)=H$.
+Proposition~\ref{prop:defect} says that $d$ is an involution which normally
+generates $H$.  Theorem~\ref{thm:torsion-bridge} gives
+$d\in\Rad_{\mathrm{MF}}(H)$.  Normality of the MF radical now gives
+$\Rad_{\mathrm{MF}}(H)=H$.
 
 If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
 faithful homomorphism from $M$ to a norm matrix corona.  Since
@@ -726,6 +788,17 @@ is trivial, and the displayed equality becomes
 \[
  \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.
 \]
+
+For a normal subgroup $N\trianglelefteq W_Q$, a homomorphism
+$f\colon W_Q\to M$ to an MF group kills $N$ precisely when its unique factor
+$\bar f\colon Q\to M$ kills $\pi_Q(N)$.  Intersecting the corresponding
+kernels gives
+\[
+ \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
+ =\pi_Q^{-1}\!\left(
+   \operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))
+  \right).
+\]
 \end{proof}
 
 The same factorization applies to every target group $T$ for which all
@@ -746,6 +819,12 @@ In particular, for $Q=\mathbb Z$,
  W_{\mathbb Z}/N\text{ is MF}
  \quad\Longleftrightarrow\quad d\in N.
 \]
+Indeed, in this case the stronger identity
+\[
+ \operatorname{cl}_{\mathrm{MF}}^{W_{\mathbb Z}}(N)
+ =N\normal d_{W_{\mathbb Z}}
+\]
+holds for every normal subgroup $N$.
 \end{corollary}
 
 \begin{proof}
@@ -759,6 +838,13 @@ then proves the first implication.  The same isomorphism proves the converse.
 Every quotient of $\mathbb Z$ is MF, and
 $\ker\pi_{\mathbb Z}=\normal d_{W_{\mathbb Z}}$.  Since $N$ is normal, the
 condition $\ker\pi_{\mathbb Z}\le N$ is equivalent to $d\in N$.
+The MF-closure formula in Theorem~\ref{thm:prescribed-quotients} gives
+\[
+ \operatorname{cl}_{\mathrm{MF}}^{W_{\mathbb Z}}(N)
+ =\pi_{\mathbb Z}^{-1}(\pi_{\mathbb Z}(N))
+ =N\ker\pi_{\mathbb Z},
+\]
+which is the final assertion.
 \end{proof}
 
 \section*{AI and computational resource usage}
