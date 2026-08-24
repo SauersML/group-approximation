@@ -7,6 +7,7 @@ target: shared-bcs-carrier-localizes-free-compressor-quotient
 requires:
   - finite-inclusion-is-free-self-compressor-quotient
   - atlas-steinberg-context-absorption
+  - marked-hs-separation-forces-spectral-density
   - hs-steinberg-bcs-corner-kernel-is-linear-sofic
 ---
 
