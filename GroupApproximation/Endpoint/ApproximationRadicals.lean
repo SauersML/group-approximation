@@ -14,6 +14,7 @@ import GroupApproximation.Algebra.AlternatingLampNoncommensurable
 import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Sofic.FreeProductMFRadicalRetraction
 import GroupApproximation.Sofic.KazhdanCompressionLayers
+import GroupApproximation.Sofic.FullMFRadicalCore
 
 /-!
 # Approximation radicals: the reading path
@@ -234,6 +235,19 @@ export GroupApproximation.KazhdanCompressionLayers
     coronaMFResidual_eq_ker_limit)
 
 end Iterate
+
+/-! ### Extract the intrinsically full core -/
+
+namespace Internal
+
+export GroupApproximation
+  (fullMFRadicalCore le_fullMFRadicalCore
+    actualCoronaMFResidual_fullMFRadicalCore_eq_top
+    fullMFRadicalCore_le_actualCoronaMFResidual
+    actualCoronaMFResidual_map_eq_top map_fullMFRadicalCore_le
+    fullMFRadicalCore_eq_top_iff fullMFRadicalCore_idempotent)
+
+end Internal
 
 /-! ### Saturate -/
 
