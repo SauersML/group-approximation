@@ -107,7 +107,7 @@ relations.
 
 ### 3.3 Orbit transport is circular for non-closed tables
 
-New node: `orbit-transport-gauges-are-circular-for-open-tables`.
+New node: `orbit-transport-gauge-needs-a-closed-label-set`.
 
 The most natural constructive attack on the spherical gauge — transport the
 regular action along near-orbits — is proved here to work, with corrections of
