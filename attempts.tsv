@@ -163,3 +163,4 @@
 32702919814	2026-08-24T07:45:35Z	GroupApproximation/Sofic/AdjointOperatorNormRequirement.lean	permMatrix_entry
 32706646047	2026-08-24T08:30:48Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	image_badArcs_inverseDefectEquiv
 32711912615	2026-08-24T09:31:08Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	crossingEdges_decide_mem
+32716447923	2026-08-24T10:22:59Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	isLEF_of_cluster_models
