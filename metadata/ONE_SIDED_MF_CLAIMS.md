@@ -18,11 +18,11 @@ is never counted.
 | `thm:prescribed-quotients` | prescribed MF quotients | `manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` | finite-dimensional commutant rigidity | `manuscriptFiniteDimensionalCommutantRigidity` | closed |
 | `lem:stable-finite` | stable finiteness of norm matrix coronas | `manuscriptNormMatrixCoronaStableFinite` | closed |
-| `lem:kazhdan-projection-order` | one-sided order for the Kazhdan projection | `manuscriptOneSidedKazhdanProjectionOrder` | closed |
+| `lem:kazhdan-projection-order` | one-sided order for the Kazhdan projection | **printed carrier:** `manuscriptMaximalCStarKazhdanProjectionOrder` (projection in `C*_max(L)`, universal image in every target, literal `U* P U <= P`). **Surrogate:** `manuscriptOneSidedKazhdanProjectionOrder` — projection built from an existentially quantified Kazhdan pair, order as two absorption identities; its conclusion is satisfiable with `P = 0`, so it is not by itself the printed lemma | closed; read the printed carrier, not the surrogate |
 | `thm:transport` | one-sided Kazhdan transport | `manuscriptOneSidedKazhdanTransport`; reusable packages `manuscriptOneSidedKazhdanTransportPackage`, `manuscriptCompressionGroupKazhdanTransport`, and `manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` | Hilbert--Schmidt invisibility of defect generators | `manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` | central corona corners | `manuscriptCentralCoronaCorner` | closed |
-| `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanRadical` | closed |
+| `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanPrintedRadical` at the printed natural-dimension radical; `manuscriptNormalKazhdanRadical` at the basis-free one | closed |
 | `prop:defect-saturation` | defect functoriality and saturation for the exact direct-compressor defect | `manuscriptDefectSaturation` | closed |
 | `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.PropositionSimple`; reductions in `RankTwelveSimplicity.lean` | open: missing normal-subgroup/root-detection theorem |
 | `prop:defect` | explicit nontrivial saturating defect | `RankTwelveEndpoint.manuscriptPropositionDefect`; configuration `printedDefectConfiguration`; full-radical consequence `rankTwelve_actualCoronaMFResidual_eq_top` | closed in `RankTwelveAudit.lean` |
@@ -50,6 +50,18 @@ simplicity input.
   headline clause except `IsSimpleGroup H`. It must not be counted as full
   `thm:headline`; the full conclusion remains conditional on the unproved
   `NormalRootDetection` through `headlineConclusion_of_normalRootDetection`.
+- `CountableNonMF.lean` packages the hypothesis-free abstract consequences:
+  existence of a countable non-MF group, the negation of universal countable
+  MF-ness, the equivalent `IsOperatorMF` version, the countable Kazhdan
+  full-radical witness minus simplicity, and the general saturated-defect
+  consequence. These support the abstract/headline but do not supply the
+  missing simplicity conjunct or change 13/15.
+- `PrintedDefinitions.lean` closes the Introduction's corona-denominator,
+  unitary-model, and corona-image/MF-target descriptions without restating the
+  already audited MF-radical identities. `PrintedRemarks.lean` packages the
+  finite-dimensional commutant caveat, the finite-subgroup sterility chain,
+  the sofic/hyperlinear scope separation, and normality of intersections of
+  kernels. These are supporting prose rows and do not change 13/15.
 
 ## Audit-closed generic routes
 
@@ -110,6 +122,9 @@ Repository search found no derivation of simplicity for
 
 - `BinaryLeavitt.exists_mul_mul_eq_one`: every nonzero coefficient of the
   binary Leavitt ring admits a two-sided unit sandwich;
+- `BinaryLeavitt.center_eq_bot` and `BinaryLeavitt.central_units_trivial`:
+  the coefficient-ring centre is the base field and its units over `𝔽₂` are
+  trivial;
 - `elementaryGroup_normal_eq_top_of_elementaryRoot_mem`: a normal subgroup
   containing a sandwiched elementary root is the whole elementary group;
 - `HilbertHotel.normalClosure_elementaryRoot_eq_top`: at rank at least five,
