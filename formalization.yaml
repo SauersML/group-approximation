@@ -2,10 +2,23 @@
 version: "v0.4"
 
 project:
-  name: "An explicit sofic group that is not MF"
+  name: "MF radicals: saturation, total invisibility, and universal visible quotients"
   description: >-
-    The displayed finitely presented group is sofic and is not MF in the
-    Carrión-Dadarlat-Eckhardt operator-norm sense.
+    A calculus for what MF approximation forgets.  The MF radical of a group is
+    the intersection of the kernels of its matrix-corona representations, and
+    the quotient by it is the universal MF-visible quotient.  Formalized: the
+    semantic relation closure and its saturation calculus; an explicit finitely
+    presented sofic group carrying a nontrivial central relation that no
+    matrix-corona representation sees; a finitely presented property-(T) group
+    and a countable simple sofic group that each equal their own MF radical, so
+    that every homomorphism from them to an MF group is trivial; the exact MF
+    radical of a compression wreath product with a perfect torsion lamp group,
+    giving for every n at least 5 a sofic finitely generated non-MF group whose
+    MF, finite-dimensional unitary, finite and all-fields linear residuals all
+    coincide with its alternating lamp subgroup -- an infinite pairwise
+    noncommensurable family with one common universal MF-visible quotient; and
+    a fixed finitely presented group whose MF radical carries a computable
+    family of words with an undecidable triviality problem.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -15,10 +28,13 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "An explicit sofic group that is not MF"
+  - title: "MF radicals: saturation, total invisibility, and universal visible quotients"
     type: original-proof
     relationship: other
-    note: "The selected theorem is first presented in this project."
+    note: >-
+      The selected theorems are first presented in this project.  The explicit
+      sofic non-MF group of the earlier title is the seed statement of the
+      package, not its headline.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
