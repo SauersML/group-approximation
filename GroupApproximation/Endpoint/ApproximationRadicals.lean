@@ -246,7 +246,10 @@ export GroupApproximation
     fullMFRadicalCore_le_actualCoronaMFResidual
     actualCoronaMFResidual_map_eq_top map_fullMFRadicalCore_le
     fullMFRadicalCore_eq_top_iff fullMFRadicalCore_idempotent
-    fullMFRadicalCore_quotient_eq_bot)
+    fullMFRadicalCore_quotient_eq_bot
+    fullMFRadicalCore_le_ker_of_target_eq_bot
+    hom_eq_one_of_fullMFRadicalCore_eq_top_of_target_eq_bot
+    eq_fullMFRadicalCore_of_residual_eq_top_of_quotient_core_eq_bot)
 
 end Internal
 

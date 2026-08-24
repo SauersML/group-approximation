@@ -63,6 +63,21 @@ extension of the core by that subgroup and would therefore be intrinsically
 full-radical.  Maximality puts the preimage back inside the core, so the
 quotient subgroup is trivial.
 
+The quotient has the expected universal property.  If `Core_MF(H)=1`, then
+every homomorphism `f : G --> H` kills `Core_MF(G)` and therefore factors
+through `G/Core_MF(G)`.  In particular,
+
+```text
+Core_MF(G)=G and Core_MF(H)=1  =>  every f : G --> H is trivial.  (6)
+```
+
+Moreover, `Core_MF(G)` is characterized without referring to its definition:
+it is the unique normal subgroup `N` such that
+
+```text
+Rad_MF(N)=N  and  Core_MF(G/N)=1.                     (7)
+```
+
 The core is normal and characteristic.  It is the largest subgroup of `G`
 that is intrinsically full-radical, rather than merely a collection of elements
 that become invisible in the surrounding group.
@@ -70,13 +85,13 @@ that become invisible in the surrounding group.
 Finally,
 
 ```text
-Core_MF(G)=G  <=>  Rad_MF(G)=G.                       (6)
+Core_MF(G)=G  <=>  Rad_MF(G)=G.                       (8)
 ```
 
 Thus the intrinsic core recognizes full MF collapse exactly, while retaining
 strictly more internal information when the ambient radical is only partial.
 
-The construction and equations (1)--(5) are formalized in
+The construction and equations (1)--(8) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 

@@ -83,6 +83,19 @@ Both the kernel and target are full-radical, so closure under extensions makes
 C(G/C(G)) = 1.                                       (5)
 ```
 
+Functoriality now gives the universal property.  If `f : G --> H` and
+`C(H)=1`, then
+
+```text
+f(C(G)) ≤ C(H)=1,
+```
+
+so `C(G) ≤ ker(f)`.  If also `C(G)=G`, then `f` is trivial.
+
+For uniqueness, suppose `N` is normal, `Rad_MF(N)=N`, and `C(G/N)=1`.
+The first condition gives `N ≤ C(G)`.  Applying the universal property to
+the quotient map `G --> G/N` gives `C(G) ≤ N`.  Hence `N=C(G)`.
+
 Finally, (2) proves `C(G)=G => Rad_MF(G)=G`.  Conversely, if
 `Rad_MF(G)=G`, then the top subgroup of `G` is itself full-radical and occurs
 among the generators defining `C(G)`.  Hence

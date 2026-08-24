@@ -205,4 +205,48 @@ theorem fullMFRadicalCore_quotient_eq_bot :
   apply hPC
   exact hz
 
+/-- Every homomorphism to a group with trivial intrinsic core kills the source
+core.  Thus the quotient by `fullMFRadicalCore G` is universal among
+homomorphisms from `G` to core-free groups. -/
+theorem fullMFRadicalCore_le_ker_of_target_eq_bot
+    {H : Type v} [Group H] (f : G →* H)
+    (hH : fullMFRadicalCore H = ⊥) :
+    fullMFRadicalCore G ≤ f.ker := by
+  intro x hx
+  rw [MonoidHom.mem_ker]
+  have hfx : f x ∈ fullMFRadicalCore H :=
+    map_fullMFRadicalCore_le f (Subgroup.mem_map_of_mem f hx)
+  rw [hH] at hfx
+  exact Subgroup.mem_bot.mp hfx
+
+/-- A group with full intrinsic core has no nontrivial homomorphism to a
+core-free group. -/
+theorem hom_eq_one_of_fullMFRadicalCore_eq_top_of_target_eq_bot
+    {H : Type v} [Group H] (f : G →* H)
+    (hG : fullMFRadicalCore G = ⊤)
+    (hH : fullMFRadicalCore H = ⊥) :
+    f = 1 := by
+  ext x
+  have hx : x ∈ fullMFRadicalCore G := by
+    rw [hG]
+    exact Subgroup.mem_top x
+  exact MonoidHom.mem_ker.mp
+    (fullMFRadicalCore_le_ker_of_target_eq_bot f hH hx)
+
+/-- The intrinsic core is the unique normal intrinsically full subgroup whose
+quotient is core-free. -/
+theorem eq_fullMFRadicalCore_of_residual_eq_top_of_quotient_core_eq_bot
+    (N : Subgroup G) [N.Normal]
+    (hN : actualCoronaMFResidual N = ⊤)
+    (hquot : fullMFRadicalCore (G ⨸ N) = ⊥) :
+    N = fullMFRadicalCore G := by
+  apply le_antisymm
+  · exact le_fullMFRadicalCore N hN
+  · let q : G →* G ⨸ N := QuotientGroup.mk' N
+    have hker : fullMFRadicalCore G ≤ q.ker :=
+      fullMFRadicalCore_le_ker_of_target_eq_bot q hquot
+    intro x hx
+    apply (QuotientGroup.eq_one_iff x).mp
+    exact MonoidHom.mem_ker.mp (hker hx)
+
 end GroupApproximation
