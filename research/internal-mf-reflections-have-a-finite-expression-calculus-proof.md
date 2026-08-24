@@ -18,6 +18,9 @@ its simultaneous-residual theorem.  At a finite product node, apply the
 finite-product lift.  At a finite wreath node, apply the finite-wreath lift.
 Every step stays inside `U`, preserves the Hom factorization, and pulls back
 the complete MF semantic-closure operator.  This proves `(FEC1)--(FEC4)`.
+The leaf quotient has its actor section; product sections combine
+coordinatewise, and a wreath section is obtained by wreathing the preceding
+section with the identity on the finite actor.  Thus every `pi_Q` is split.
 
 Residual finiteness is preserved by finite products and by finite extensions;
 hence every group in `C` is residually finite.  Its finite quotients detect
