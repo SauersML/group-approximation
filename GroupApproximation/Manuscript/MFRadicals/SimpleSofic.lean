@@ -22,11 +22,15 @@ theorem manuscriptTheoremB :
     ∃ (𝒰 : Ultrafilter ℕ) (X : ℕ → FiniteModel)
       (E : Subgroup (UniversalSofic 𝒰 X)),
       Countable ↥E ∧ IsSimpleGroup ↥E ∧ IsSofic ↥E ∧
-        coronaMFResidual ↥E = ⊤ ∧ normMFResidual ↥E = ⊤ ∧
+        actualCoronaMFResidual ↥E = ⊤ ∧
         (∀ (H : Type) [Group H], IsOperatorMF H →
           ∀ (φ : ↥E →* H) (s : ↥E), φ s = 1) ∧
-        ¬ IsOperatorMF ↥E :=
-  SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope
+        ¬ IsOperatorMF ↥E := by
+  obtain ⟨U, X, E, hcount, hsimple, hsofic, hcorona, -, hhom, hnot⟩ :=
+    SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope
+  refine ⟨U, X, E, hcount, hsimple, hsofic, ?_, hhom, hnot⟩
+  rw [actualCoronaMFResidual_eq_coronaMFResidual]
+  exact hcorona
 
 end MFRadicals
 end Manuscript

@@ -17,16 +17,21 @@ namespace GroupApproximation
 namespace Manuscript
 namespace MFRadicals
 
-/-- **Theorem D.**  One finitely presented non-MF group carrying a computable
-family of MF-invisible words whose triviality problem is undecidable. -/
+/-- **Theorem D.**  There is *one* finitely presented non-MF group carrying a
+computable family of words, every one of them invisible to MF approximation,
+whose triviality problem is undecidable.
+
+Stated as the paper displays it -- an existential over the group and the family
+-- rather than as the concrete package of `Computability/MFRadicalComputer`,
+which additionally names the controller and its halting problem. -/
 theorem manuscriptTheoremD :
-    Group.IsFinitelyPresented MFRadicalComputer.Carrier ∧
-      ¬ IsOperatorMF MFRadicalComputer.Carrier ∧
-      (∀ p, NormMFInvisible (MFRadicalComputer.word p)) ∧
-      (∀ p, MFRadicalComputer.word p = 1 ↔
-        MFRadicalComputer.controlMachine.Halts p) ∧
-      ¬ ComputablePred fun p : ℕ × ℕ => MFRadicalComputer.word p = 1 :=
-  MFRadicalComputer.closed_package
+    ∃ (G : Type) (_ : Group G) (w : ℕ × ℕ → G),
+      Group.IsFinitelyPresented G ∧ ¬ IsOperatorMF G ∧
+        (∀ p, NormMFInvisible (w p)) ∧
+        ¬ ComputablePred fun p : ℕ × ℕ => w p = 1 := by
+  obtain ⟨hfp, hnot, hinv, -, hcomp⟩ := MFRadicalComputer.closed_package
+  exact ⟨MFRadicalComputer.Carrier, inferInstance, MFRadicalComputer.word,
+    hfp, hnot, hinv, hcomp⟩
 
 end MFRadicals
 end Manuscript

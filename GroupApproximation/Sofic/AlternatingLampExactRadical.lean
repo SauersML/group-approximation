@@ -6,6 +6,7 @@ import GroupApproximation.Sofic.FourRadicalsCoincide
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.PerfectLampCompressionRadical
 import GroupApproximation.Sofic.SoficPositiveControl
+import GroupApproximation.Sofic.TargetEquivalence
 import Mathlib.GroupTheory.SpecificGroups.Alternating.Simple
 
 /-!
@@ -216,6 +217,61 @@ theorem isEmpty_mulEquiv_finiteIndex_of_ne {m n : ℕ} (hm : 5 ≤ m) (hn : 5 �
       (finiteResidualEquivLamp hm)⟩
     ⟨(Subgroup.subgroupOfEquivOfLe (finiteResidual_le_of_finiteIndex B)).trans
       (finiteResidualEquivLamp hn)⟩
+
+/-! ## The Hom-set form of the factorization
+
+Equality of radicals is the computation; the memorable statement is what it does
+to `Hom`-sets.  The wreath projection is surjective and its kernel is the lamp
+subgroup, which every one of the target theories erases, so precomposition with
+it is a *bijection*: each of these theories sees `Wₙ` as exactly the group `V`.
+-/
+
+/-- The kernel of the wreath projection lies in the finite residual. -/
+theorem ker_rightHom_le_finiteResidual {n : ℕ} (hn : 5 ≤ n) :
+    (rightHom : WAlt n →* Vertical conjD conjD_injective).ker
+      ≤ finiteResidual (WAlt n) := by
+  rw [ker_rightHom_eq_lampRange, finiteResidual_eq_lampRange hn]
+
+/-- The kernel of the wreath projection lies in the all-fields linear
+residual. -/
+theorem ker_rightHom_le_linearResidual {n : ℕ} (hn : 5 ≤ n) :
+    (rightHom : WAlt n →* Vertical conjD conjD_injective).ker
+      ≤ linearResidual (WAlt n) := by
+  rw [ker_rightHom_eq_lampRange, (four_radicals_eq_lampRange hn).2.2.2]
+
+/-- **Hom-set bijection into residually finite targets.** -/
+theorem precomp_bijective_residuallyFinite {n : ℕ} (hn : 5 ≤ n) (T : Type)
+    [Group T] (hT : IsResiduallyFinite T) :
+    Function.Bijective
+      (precomp (rightHom : WAlt n →* Vertical conjD conjD_injective) T) :=
+  precomp_bijective _ rightHom_surjective
+    (invisibleTo_of_ker_le_finiteResidual _ (ker_rightHom_le_finiteResidual hn) hT)
+
+/-- **Hom-set bijection into finite targets.** -/
+theorem precomp_bijective_finite {n : ℕ} (hn : 5 ≤ n) (T : Type) [Group T]
+    [Finite T] :
+    Function.Bijective
+      (precomp (rightHom : WAlt n →* Vertical conjD conjD_injective) T) :=
+  precomp_bijective _ rightHom_surjective
+    (invisibleTo_finite_of_ker_le_finiteResidual _
+      (ker_rightHom_le_finiteResidual hn) T)
+
+/-- **Hom-set bijection into finite-dimensional linear targets, over every
+field.** -/
+theorem precomp_bijective_generalLinearGroup {n : ℕ} (hn : 5 ≤ n) (F : Type)
+    [Field F] (d : ℕ) :
+    Function.Bijective
+      (precomp (rightHom : WAlt n →* Vertical conjD conjD_injective)
+        (Matrix.GeneralLinearGroup (Fin d) F)) :=
+  precomp_bijective _ rightHom_surjective
+    (invisibleTo_generalLinearGroup_of_ker_le_linearResidual _
+      (ker_rightHom_le_linearResidual hn))
+
+/-- The residually finite case as an explicit `Equiv`: `Hom(V, T) ≃ Hom(Wₙ, T)`. -/
+noncomputable def homEquivOfResiduallyFinite {n : ℕ} (hn : 5 ≤ n) (T : Type)
+    [Group T] (hT : IsResiduallyFinite T) :
+    (Vertical conjD conjD_injective →* T) ≃ (WAlt n →* T) :=
+  Equiv.ofBijective _ (precomp_bijective_residuallyFinite hn T hT)
 
 /-! ## Soficity and the failure of MF -/
 

@@ -35,6 +35,7 @@ has an empty outer telescope and audits to `propext`, `Classical.choice`,
 | Cor. C.2 (common visible quotient) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient` | closed |
 | Cor. C.3 (pairwise noncommensurable) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable` | closed |
 | Cor. C.4 (Bohr column, one direction) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn` | closed |
+| Cor. C.5 (Hom-set factorization) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence` | closed |
 | Theorem suite (abstract) | `GroupApproximation.Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite` | closed |
 <!-- END-LEDGER-ROWS -->
 

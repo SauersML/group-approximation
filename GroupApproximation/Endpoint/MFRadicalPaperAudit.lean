@@ -48,6 +48,11 @@ from a caller.
 -- statement, so a leading hypothesis anywhere under it -- a Peter--Weyl
 -- binder in particular -- fails the gate rather than passing quietly.
 #audit_closed_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn
+
+-- The Hom-set form of the factorization: precomposition with the wreath
+-- projection is a bijection into every finite, residually finite and
+-- finite-dimensional linear target.
+#audit_closed_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence
 #audit_axioms GroupApproximation.AlternatingLampFamily.alternatingFamilyRadicalPackage
 #audit_axioms GroupApproximation.AlternatingLampFamily.bohrResidual_le_lampRange
 #audit_axioms GroupApproximation.AlternatingLampFamily.lampRange_le_ker_of_profinite

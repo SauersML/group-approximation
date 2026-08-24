@@ -457,6 +457,7 @@ import GroupApproximation.Manuscript.MFRadicals.SimpleSofic
 import GroupApproximation.Manuscript.MFRadicals.PerfectLampExact
 import GroupApproximation.Manuscript.MFRadicals.AlternatingFamily
 import GroupApproximation.Manuscript.MFRadicals.RadicalComputer
+import GroupApproximation.Manuscript.MFRadicals.TargetEquivalence
 import GroupApproximation.Manuscript.MFRadicals.MainTheorems
 import GroupApproximation.Endpoint.MFRadicalPaperAudit
 import GroupApproximation.Sofic.TelescopeLimitKernel

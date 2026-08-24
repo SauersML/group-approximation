@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.ActualCoronaMFRadical
 import GroupApproximation.Leavitt.HilbertHotelCoverBlock
 
 /-!
@@ -26,8 +27,12 @@ theorem manuscriptTheoremA :
     ∃ (G : Type) (_ : Group G),
       Group.IsFinitelyPresented G ∧ Countable G ∧ Nontrivial G ∧
         HasKazhdanPropertyT.{0, 0} G ∧
-        (∀ x : G, CoronaMFInvisible x) ∧ ¬ IsOperatorMF G :=
-  HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical
+        actualCoronaMFResidual G = ⊤ ∧ ¬ IsOperatorMF G := by
+  obtain ⟨G, _, hfp, hcount, hne, hT, hmf, hnot⟩ :=
+    HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical
+  refine ⟨G, inferInstance, hfp, hcount, hne, hT, ?_, hnot⟩
+  refine eq_top_iff.mpr fun x _ => ?_
+  exact actualCoronaMFInvisible_iff_coronaMFInvisible.mpr (hmf x)
 
 end MFRadicals
 end Manuscript

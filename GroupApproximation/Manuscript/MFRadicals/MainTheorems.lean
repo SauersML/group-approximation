@@ -7,6 +7,7 @@ import GroupApproximation.Manuscript.MFRadicals.PerfectLampExact
 import GroupApproximation.Manuscript.MFRadicals.RadicalComputer
 import GroupApproximation.Manuscript.MFRadicals.SemanticClosure
 import GroupApproximation.Manuscript.MFRadicals.SimpleSofic
+import GroupApproximation.Manuscript.MFRadicals.TargetEquivalence
 
 /-!
 # What MF approximation forgets: the theorem package
@@ -32,6 +33,8 @@ The paper's arc in one module.
 | Cor. C.1   | `manuscriptAlternatingFamilyExactRadicals`            |
 | Cor. C.2   | `manuscriptAlternatingFamilySameVisibleQuotient`      |
 | Cor. C.3   | `manuscriptAlternatingFamilyNoncommensurable`         |
+| Cor. C.4   | `manuscriptAlternatingFamilyBohrColumn`               |
+| Cor. C.5   | `manuscriptAlternatingFamilyTargetEquivalence`        |
 | Theorem D  | `manuscriptTheoremD`                                  |
 
 Every row is audited in `Endpoint/MFRadicalPaperAudit`.
@@ -39,7 +42,11 @@ Every row is audited in `Endpoint/MFRadicalPaperAudit`.
 What is deliberately *not* advertised here: the exact radical of the literal
 seed `E`, which still needs a specialised symmetric-double MF theorem
 (`Sofic/SymmetricDoubleMF` records the single remaining statement), and the
-fifth (Bohr) radical, which needs Peter--Weyl.  Neither is used by any row
+fifth (Bohr) radical as an *equality*.  Cor. C.4 claims only the half that
+needs no Peter--Weyl -- the Bohr residual is inside the lamp subgroup, and every
+profinite target kills that subgroup -- so on totally disconnected compact
+targets the fifth theory agrees with the other four and on general compact
+targets it sees at most what they see.  Neither omission is used by any row
 above.
 -/
 
@@ -53,14 +60,17 @@ def MFRadicalPaperSuite : Prop :=
   UniversalMFQuotient ∧ MFSemanticClosure ∧ MFSoundSaturation ∧
     KazhdanCompressionCollapse ∧ PerfectLampExactRadical ∧
     AlternatingFamilyExactRadicals ∧ AlternatingFamilySameVisibleQuotient ∧
-    AlternatingFamilyNoncommensurable
+    AlternatingFamilyNoncommensurable ∧ AlternatingFamilyBohrColumn ∧
+    AlternatingFamilyTargetEquivalence
 
 theorem manuscriptMFRadicalPaperSuite : MFRadicalPaperSuite :=
   ⟨manuscriptUniversalMFQuotient, manuscriptSemanticClosure,
     manuscriptSoundSaturation, manuscriptCompressionCollapse,
     manuscriptTheoremC, manuscriptAlternatingFamilyExactRadicals,
     manuscriptAlternatingFamilySameVisibleQuotient,
-    manuscriptAlternatingFamilyNoncommensurable⟩
+    manuscriptAlternatingFamilyNoncommensurable,
+    manuscriptAlternatingFamilyBohrColumn,
+    manuscriptAlternatingFamilyTargetEquivalence⟩
 
 end MFRadicals
 end Manuscript
