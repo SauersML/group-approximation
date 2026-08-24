@@ -653,6 +653,7 @@ def headlineTheorems : List Name :=
    ``MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF,
    ``MFRecognitionImpossible.exists_halting_reduction_to_operatorMF,
    ``MFRecognitionImpossible.mf_recognition_impossible,
+   ``MFMicrostate.microstateNormalForm,
    ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
    ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
    ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis,
@@ -727,7 +728,8 @@ def zeroInputEndpoints : List Name :=
    ``MFRecognitionImpossible.exists_nonMF_presentation,
    ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
    ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
-   ``MFRecognitionImpossible.mf_recognition_impossible]
+   ``MFRecognitionImpossible.mf_recognition_impossible,
+   ``MFMicrostate.microstateNormalForm]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool

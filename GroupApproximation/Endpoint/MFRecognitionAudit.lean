@@ -1,5 +1,6 @@
 import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Computability.MFRecognitionImpossible
+import GroupApproximation.Computability.MicrostateNormalForm
 
 /-!
 # Axiom audit for `NONMF ∉ RE` and the undecidability of MF recognition
@@ -38,3 +39,4 @@ rather than an advertised endpoint.
 #audit_closed_axioms GroupApproximation.Computability.not_computablePred_wordProblemPred
 #audit_closed_axioms GroupApproximation.WordProblemRE.not_rePred_compl_wordProblemPred
 #audit_axioms GroupApproximation.WordProblemRE.rePred_wordProblemPred
+#audit_closed_axioms GroupApproximation.MFMicrostate.microstateNormalForm
