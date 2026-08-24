@@ -498,6 +498,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedAudit
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveAudit
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveSimplicity
+import GroupApproximation.Manuscript.OneSidedMFRadical.CanonicalSector
+import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
 import GroupApproximation.Endpoint.MFRadicalPaperAudit
 import GroupApproximation.Sofic.TelescopeLimitKernel
 import GroupApproximation.Sofic.ProfiniteTwins
@@ -804,6 +806,7 @@ import GroupApproximation.Leavitt.OuterRootLeavittRouting
 import GroupApproximation.Leavitt.ElementaryStabilization
 import GroupApproximation.Leavitt.RankFourCompressors
 import GroupApproximation.Leavitt.RankTwelveCompressor
+import GroupApproximation.Leavitt.RankTwelveCorner
 import GroupApproximation.Leavitt.ElementaryNormalGeneration
 import GroupApproximation.Leavitt.RankTwelvePropertyT
 import GroupApproximation.Leavitt.UniversalLeavitt
