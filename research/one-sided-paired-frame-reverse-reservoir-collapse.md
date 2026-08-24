@@ -57,6 +57,10 @@ regular Bass--Serre reservoir.
   one of the 32 maps also sends `011` back to `101`.  Thus changing or
   alternating finite edge isomorphisms can never orient the hard pair; an
   infinite label is mandatory.
+- The one-bit BCS selector cannot serve as that infinite label.
+  `one-bit-selector-cannot-orient-paired-frame-hard-cycle` proves that its
+  Pauli flip puts `101` and `011` in equal-multiplicity halves of every
+  selector-reducing carrier, exactly cancelling the oriented overlap gap.
 - `alternating-free-ring-shears-have-strict-degree-drift` supplies a concrete
   label.  The product of the two elementary `F_2[x]` shears has leading degree
   `2n` at its `n`th iterate.  Coupling the forced two-cycle to this action

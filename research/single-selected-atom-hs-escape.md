@@ -54,6 +54,11 @@ on the shared-context atom itself.
   gives exact finite quotients in which a variable outside that context
   generates uncontrolled leakage, so no dimension-free form of `(SAE1)`
   follows.
+- **Reuse the selector bit as paired-frame orientation.**  This is also
+  stationary.  `one-bit-selector-cannot-orient-paired-frame-hard-cycle`
+  proves that the selector flip supplies the compulsory reverse character
+  with equal multiplicity.  Coupling the flip to the packet cancels the
+  oriented Reynolds gap; leaving it uncoupled authenticates no ownership.
 - **Start from the whole marked sector.**  Taking `Q_0=Q_-` makes escape
   impossible for a `J`-preserving word; allowing the word to cross the
   `J`-sector prevents reapplication of the BCS gap.  The conditional compiler

@@ -184,6 +184,13 @@ produces, for every `m>=1`, a finitely generated internal non-MF group with
 one normally generating radical word and visible quotient of virtual
 cohomological dimension exactly `m`.
 
+Finite-orbit subgroups of product reflections inherit the same exact
+calculus.  Applied to the Stallings--Bieri kernel in `F_2^n` and then to the
+cyclic symmetry of its factors, this gives for every `n>=2` a finitely
+generated internal non-MF group with one normally generating radical word
+and visible quotient of type `F_(n-1)` but not `F_n`.  All finite-dimensional
+residuals and completions remain exactly those of that quotient.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

@@ -34,6 +34,8 @@ requires:
   - finite-product-lift-of-internal-mf-reflections
   - internal-mf-reflections-have-a-finite-expression-calculus
   - one-word-internal-mf-reflections-realize-every-vcd
+  - finite-orbit-subgroups-inherit-internal-mf-reflections
+  - one-word-reflections-realize-every-finiteness-length
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,
