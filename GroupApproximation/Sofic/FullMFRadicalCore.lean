@@ -144,6 +144,9 @@ classical sense: it is functorial, idempotent, and its quotient is semisimple. -
 theorem fullMFRadicalCore_quotient_eq_bot :
     fullMFRadicalCore (G ⧸ fullMFRadicalCore G) = ⊥ := by
   let C : Subgroup G := fullMFRadicalCore G
+  letI : C.Normal := by
+    dsimp [C]
+    exact fullMFRadicalCore_normal
   let q : G →* G ⧸ C := QuotientGroup.mk' C
   have hq : Function.Surjective q := QuotientGroup.mk'_surjective C
   apply le_antisymm _ bot_le
@@ -154,18 +157,25 @@ theorem fullMFRadicalCore_quotient_eq_bot :
   have hCP : C ≤ P := by
     intro x hx
     change q x ∈ K.1
-    rw [(QuotientGroup.eq_one_iff x).mpr hx]
+    have hqx : q x = 1 := by
+      apply (QuotientGroup.eq_one_iff x).mpr
+      show x ∈ fullMFRadicalCore G
+      exact hx
+    rw [hqx]
     exact K.1.one_mem
   let φ : P →* P.map q := KazhdanCompressionCore.subgroupMapHom P q
   have hφ : Function.Surjective φ :=
     KazhdanCompressionCore.subgroupMapHom_surjective P q
-  let j : C →* φ.ker where
-    toFun x := ⟨⟨x, hCP x.property⟩, by
-      rw [MonoidHom.mem_ker]
-      apply Subtype.ext
-      exact (QuotientGroup.eq_one_iff x).mpr x.property⟩
-    map_one' := by ext; rfl
-    map_mul' _ _ := by ext; rfl
+  let j : C →* φ.ker :=
+    { toFun := fun x ↦ ⟨⟨x, hCP x.property⟩, by
+        rw [MonoidHom.mem_ker]
+        apply Subtype.ext
+        change q (x : G) = 1
+        apply (QuotientGroup.eq_one_iff (x : G)).mpr
+        show (x : G) ∈ fullMFRadicalCore G
+        exact x.property⟩
+      map_one' := by ext; rfl
+      map_mul' := by intro x y; ext; rfl }
   have hj : Function.Surjective j := by
     rintro ⟨⟨x, hxP⟩, hxker⟩
     have hqx : q x = 1 := by
