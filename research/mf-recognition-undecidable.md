@@ -67,6 +67,9 @@ Restated at `IsOperatorMF (PresentationCodes.Carrier c)`, and joined by the two
     MFRecognitionImpossible.no_nonMF_enumerator
       : no computable f : N -> Option PresentationCode prints only non-MF codes
         and eventually prints every one
+    MFRecognitionImpossible.no_nonMF_certificate_system
+      : no type of certificates with a computable checker is sound and complete
+        for non-MF-ness -- NONMF has no recursively checkable proof system
     MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF
       : W <=0 MF and W-complement <=0 NONMF by one computable transformation,
         i.e. NONMF is coRE-hard

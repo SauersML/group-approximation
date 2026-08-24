@@ -24,6 +24,9 @@ hypothesis and no construction datum accepted from a caller:
   presentations are not a recursively enumerable set;
 * `no_nonMF_enumerator` --- equivalently, no program prints non-MF
   presentations only and is guaranteed to eventually print every one of them.
+* `no_nonMF_certificate_system` --- equivalently again, no type of finite
+  certificates with a computable checker is both sound and complete for
+  non-MF-ness.
 
 `mf_recognition_impossible` packages all of it as a single proposition.
 
@@ -218,6 +221,23 @@ theorem no_nonMF_enumerator :
     obtain ⟨n, hn⟩ := hcomplete c hc
     exact ⟨n, decide_eq_true hn⟩
 
+/-- **There is no sound and complete recursively checkable certificate system
+for non-MF-ness.**
+
+A certificate system is a type of proofs together with a computable checker
+`V`.  Soundness and completeness together say that a presentation is non-MF
+exactly when some certificate passes the check.  No such system exists, for any
+type of certificates whatsoever: this is `nonMF_presentations_not_re` read as a
+statement about proof systems rather than about enumerations, and it is what
+rules out ever exhibiting non-MF-ness by a finite checkable witness. -/
+theorem no_nonMF_certificate_system :
+    ¬ ∃ (Cert : Type) (_ : Primcodable Cert) (V : PresentationCode → Cert → Bool),
+        Computable₂ V ∧
+        ∀ c, (∃ π, V c π = true) ↔ ¬ IsOperatorMF (Carrier c) := by
+  rintro ⟨Cert, hCert, V, hV, hspec⟩
+  exact nonMF_presentations_not_re
+    ((WordProblemRE.rePred_exists_eq_true hV).of_eq hspec)
+
 /-- **No program keeps printing non-MF presentations and eventually prints
 every one of them.**  The `Option`-free specialization of
 `no_nonMF_enumerator`, for a program that prints at every step. -/
@@ -244,8 +264,9 @@ proposition.**
 
 The clauses are, in order: MF is not decidable from a finite presentation; no
 `Bool`-valued program decides it; `NONMF ∉ RE`; no program enumerates the
-non-MF presentations; every code names a finitely presented group; and both
-sides are inhabited, so neither statement is about an empty set. -/
+non-MF presentations; every code names a finitely presented group; no
+certificate system is sound and complete for non-MF-ness; and both sides are
+inhabited, so neither statement is about an empty set. -/
 theorem mf_recognition_impossible :
     (¬ ComputablePred fun c : PresentationCode => IsOperatorMF (Carrier c)) ∧
       (¬ ∃ f : PresentationCode → Bool,
@@ -256,11 +277,15 @@ theorem mf_recognition_impossible :
           (∀ n c, f n = some c → ¬ IsOperatorMF (Carrier c)) ∧
           (∀ c, ¬ IsOperatorMF (Carrier c) → ∃ n, f n = some c)) ∧
       (∀ c : PresentationCode, Group.IsFinitelyPresented (Carrier c)) ∧
+      (¬ ∃ (Cert : Type) (_ : Primcodable Cert)
+          (V : PresentationCode → Cert → Bool),
+          Computable₂ V ∧
+          ∀ c, (∃ π, V c π = true) ↔ ¬ IsOperatorMF (Carrier c)) ∧
       (∃ c : PresentationCode, IsOperatorMF (Carrier c)) ∧
       (∃ c : PresentationCode, ¬ IsOperatorMF (Carrier c)) :=
   ⟨mf_recognition_not_computable, no_mf_decider, nonMF_presentations_not_re,
-    no_nonMF_enumerator, isFinitelyPresented_carrier, exists_mf_presentation,
-    exists_nonMF_presentation⟩
+    no_nonMF_enumerator, isFinitelyPresented_carrier, no_nonMF_certificate_system,
+    exists_mf_presentation, exists_nonMF_presentation⟩
 
 /-! ## The torsion-free refinement
 

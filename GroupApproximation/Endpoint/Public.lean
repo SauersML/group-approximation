@@ -626,7 +626,8 @@ so nothing on this surface accepts it from a caller. -/
 
 export GroupApproximation.MFRecognitionImpossible
   (mf_recognition_not_computable no_mf_decider nonMF_presentations_not_re
-    no_nonMF_enumerator no_total_nonMF_enumerator mf_recognition_impossible
+    no_nonMF_enumerator no_total_nonMF_enumerator no_nonMF_certificate_system
+    mf_recognition_impossible
     exists_manyOne_reduction_wordProblem_to_operatorMF
     exists_halting_reduction_to_operatorMF
     exists_mf_presentation exists_nonMF_presentation
