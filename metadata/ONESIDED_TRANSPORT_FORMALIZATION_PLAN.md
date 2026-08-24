@@ -245,9 +245,10 @@ P-6.1 if W9 runs.
 of W3/W5 — can run in parallel with them.
 
 **W9 — simplicity (optional, 2–4 weeks).** P-6.1 in full: a normal-subgroup
-theorem for `EL_n` over a simple exchange ring, plus `Z(R) = 𝔽₂` from the
-Leavitt normal form. Only run this if the printed "simple" clause must be
-machine-checked rather than cited. (§4.1)
+theorem for `EL_n` over a simple exchange ring.  The coefficient-ring input
+`Z(R) = 𝔽₂` is now closed by `BinaryLeavitt.center_eq_bot` and
+`BinaryLeavitt.central_units_trivial`. Only run the normal-structure work if
+the printed "simple" clause must be machine-checked rather than cited. (§4.1)
 
 ## 4. The three real risks
 
@@ -277,9 +278,10 @@ never invoked on the critical path.
 
 For P-6.1 itself there is no in-repo route: grep returns **no** Preusser, no
 congruence subgroup `C_n(R,I)`, no relative elementary subgroup, and no
-`IsSimpleGroup` for any elementary group. The center half (`Z(GL₁₂(R)) = 1`) is
-elementary and the manuscript writes the argument out; the sandwich
-classification is the whole cost.
+`IsSimpleGroup` for any elementary group. The coefficient-ring center is now
+formalized, but the matrix-centralizer-to-scalar step needed for
+`Z(GL₁₂(R)) = 1` is not.  Even closing that elementary step would leave the
+Preusser normal-structure/root-detection theorem as the decisive cost.
 
 ### 4.2 The defect discrepancy (printed vs. formalized)
 

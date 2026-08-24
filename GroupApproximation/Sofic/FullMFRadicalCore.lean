@@ -143,18 +143,18 @@ full-MF-radical subgroup.  Thus `fullMFRadicalCore` is a group radical in the
 classical sense: it is functorial, idempotent, and its quotient is semisimple. -/
 theorem fullMFRadicalCore_quotient_eq_bot :
     fullMFRadicalCore (G ⧸ fullMFRadicalCore G) = ⊥ := by
-  let C : Subgroup G := fullMFRadicalCore G
-  letI : C.Normal := by
-    dsimp [C]
-    exact fullMFRadicalCore_normal
-  let q : G →* G ⧸ C := QuotientGroup.mk' C
-  have hq : Function.Surjective q := QuotientGroup.mk'_surjective C
+  letI : (fullMFRadicalCore G).Normal := fullMFRadicalCore_normal
+  let q : G →* G ⧸ fullMFRadicalCore G :=
+    QuotientGroup.mk' (fullMFRadicalCore G)
+  have hq : Function.Surjective q :=
+    QuotientGroup.mk'_surjective (fullMFRadicalCore G)
   apply le_antisymm _ bot_le
-  unfold fullMFRadicalCore
+  change (⨆ K : {K : Subgroup (G ⧸ fullMFRadicalCore G) //
+      actualCoronaMFResidual K = ⊤}, K.1) ≤ ⊥
   apply iSup_le
   intro K
   let P : Subgroup G := K.1.comap q
-  have hCP : C ≤ P := by
+  have hCP : fullMFRadicalCore G ≤ P := by
     intro x hx
     change q x ∈ K.1
     have hqx : q x = 1 := by
@@ -166,7 +166,7 @@ theorem fullMFRadicalCore_quotient_eq_bot :
   let φ : P →* P.map q := KazhdanCompressionCore.subgroupMapHom P q
   have hφ : Function.Surjective φ :=
     KazhdanCompressionCore.subgroupMapHom_surjective P q
-  let j : C →* φ.ker :=
+  let j : fullMFRadicalCore G →* φ.ker :=
     { toFun := fun x ↦ ⟨⟨x, hCP x.property⟩, by
         rw [MonoidHom.mem_ker]
         apply Subtype.ext
@@ -181,7 +181,8 @@ theorem fullMFRadicalCore_quotient_eq_bot :
     have hqx : q x = 1 := by
       have hxone := MonoidHom.mem_ker.mp hxker
       exact congrArg Subtype.val hxone
-    have hxC : x ∈ C := (QuotientGroup.eq_one_iff x).mp hqx
+    have hxC : x ∈ fullMFRadicalCore G :=
+      (QuotientGroup.eq_one_iff x).mp hqx
     refine ⟨⟨x, hxC⟩, ?_⟩
     ext
     rfl
@@ -196,7 +197,7 @@ theorem fullMFRadicalCore_quotient_eq_bot :
     exact K.2
   have hP : actualCoronaMFResidual P = ⊤ :=
     actualCoronaMFResidual_eq_top_of_surjective_kernel φ hφ hker htarget
-  have hPC : P ≤ C := le_fullMFRadicalCore P hP
+  have hPC : P ≤ fullMFRadicalCore G := le_fullMFRadicalCore P hP
   intro z hz
   rw [Subgroup.mem_bot]
   obtain ⟨x, rfl⟩ := hq z

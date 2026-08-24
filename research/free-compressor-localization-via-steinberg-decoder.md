@@ -11,7 +11,7 @@ requires:
   - hs-steinberg-bcs-corner-kernel-is-linear-sofic
 ---
 
-Use the finite coefficient presentation `(BCL1)--(BCL2)`.  Context
+Use the finite coefficient presentation `(BCL0)--(BCL2)`.  Context
 absorption wordizes its two-sided ideal with finitely many rank-five
 Steinberg relators.  The root-kernel decoder turns every normalized-HS
 Steinberg microstate into a rank-metric coefficient model.  In that model,
@@ -23,3 +23,10 @@ perfect infinite BCS/HNN representation remains exact with its mark.
 
 The decoder is stated directly for the finite corner ring, so no unproved
 transfer from the different Toeplitz coefficient algebra is used.
+
+This route is invalid for the complete coefficient quotient just displayed.
+`agent-free-compressor-bcl-root-is-abstractly-zero` proves that its rows
+already force `P_f=0`, so the proposed payload root is trivial in the
+abstract group and no decoded positive carrier can exist.  The route can be
+revived only after replacing the complete BCL quotient by an abstractly
+nontrivial conditional coupling; a decoder alone does not make that repair.

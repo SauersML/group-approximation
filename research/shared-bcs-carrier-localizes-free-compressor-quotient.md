@@ -66,11 +66,21 @@ relations
 
 ```text
 [P_f,x_i]=0,                    [P_f,t]=0,
+(x_i-b_i)P_f=0                 (theta(x_i)=b_i in B_f), (BCL0)
 (r_j-1)P_f=0                    (1<=j<=s),              (BCL1)
 t x_i t^(-1)=alpha(x_i).                               (BCL2)
 ```
 
-In every honest coefficient-module representation, `(BCL1)` makes `P_fH`
+The identification rows `(BCL0)` are indispensable.  The kernel rows
+`(BCL1)` by themselves produce some representation of the abstract quotient
+`B_f` on `P_fH`, but do not identify it with the named predicate packet
+representation selected by `P_f`.  Without `(BCL0)`, the quotient action can
+remain on an independent multiplicity factor, exactly as in
+`agent-free-compressor-hnn-letter-preserves-product-split`.  With `(BCL0)`,
+`agent-free-compressor-minimal-nonretractive-corner` proves the exact
+coefficient-module rank contradiction.
+
+In every honest coefficient-module representation, `(BCL0)--(BCL1)` make `P_fH`
 reducing for the parent and stable letter, and `(FQS1b)` makes the parent
 action there factor through `B_f`.  The child action factors through the
 image `A_f`.  Hence the forbidden packet Reynolds difference is literally a
@@ -78,21 +88,41 @@ child-only adjoint sector.  If `P_f=0`, all conditional kernel relations are
 vacuous, so the exact perfect BCS representation retains the free HNN
 component and the marked central sign.
 
+There is a stronger algebraic obstruction to this exact compiler as written.
+By `agent-free-compressor-bcl-root-is-abstractly-zero`, `(BCL0)--(BCL2)`
+conjugate the surviving simple algebra `P_fk[B_f]` injectively into the
+strictly smaller algebra `P_fk[A_f]`.  Therefore the presented coefficient
+ring already has `P_f=0`.  The displayed rows do not localize a positive
+carrier; they erase it algebraically.  In particular their Steinberg payload
+root is abstractly trivial and cannot be an injected bridge edge.
+
 This finite ring presentation can be wordized by a rank-five Steinberg
-presentation: impose one root word for each relation in `(BCL1)--(BCL2)`, and
+presentation: impose one root word for each relation in `(BCL0)--(BCL2)`, and
 `atlas-steinberg-context-absorption` propagates it through the generated
 two-sided ideal.  Therefore additive corner syntax and finite
 presentability are not the remaining issue.
 
-The remaining issue is metric decoding.  An arbitrary unitary
+The actual HNN letter does not by itself authenticate this corner.
+`agent-free-compressor-hnn-letter-preserves-product-split` gives exact finite
+rank-five models of `[P_f,F]=[P_f,t]=0`, `(r_j-1)P_f=0`, and all HNN rows in
+which the payload root occupies one product-ring factor and the complete
+mapping-torus action occupies another.  Thus the surviving decoder must tie
+the physical `P_f` carrier to the prescribed nonstationary `B_f/A_f` packet
+type.  It cannot stop after showing that the stable letter preserves the
+root spectral support.
+
+Accordingly, metric decoding of this complete quotient is not the remaining
+issue: its root identity has a fixed finite derivation.  A surviving version
+must weaken or conditionalize the named/HNN rows so that `P_f` remains
+nonzero in the abstract coefficient ring, and only then solve the physical
+payload-to-root problem.  An arbitrary unitary
 normalized-HS microstate of the resulting Steinberg group need not arise
 from a coefficient-module representation.  Its exponent-character root
 spectra can be diffuse, and HS-small root errors can have full rank.  Thus a
-completion of this route needs the same kind of root-kernel-to-rank-model
-theorem isolated by `hs-steinberg-root-kernel-is-linear-sofic`, specialized
-to the finite corner ring above.  Once that decoder is supplied, `(BCL1)`
-gives the desired carrier localization without any further selector or
-infinite-kernel step.
+completion of a corrected, abstractly nontrivial compiler still needs a
+physical packet-to-root theorem such as
+`bcs-atom-detects-its-e5-central-root`; decoding the already-zero BCL root
+cannot supply it.
 
 ## Central-relator alternative and its density loss
 

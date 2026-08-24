@@ -54,6 +54,12 @@ counterexamples.
   precisely the nonlinear forbidden projections; any positive proof must
   use source-specific cross-context monomial relations rather than repeat
   the local projective-kernel calculation.
+- `agent-pk-affine-ghost-survives-quotient` strengthens
+  that observation at the canonical trace.  Every forbidden assignment in
+  the affine hull survives with equal positive mass in the twisted regular
+  trace of the **full** projective quotient.  Hence the known perfect-BCS
+  non-CE gap cannot be applied to that canonical trace.  Showing that it is
+  non-CE would already be a new global group-factor theorem.
 - The factorial left-right split does not add such relations.  It proves the
   reduction to `(APO2)` but supplies no reason for either player face to be
   CE-empty.

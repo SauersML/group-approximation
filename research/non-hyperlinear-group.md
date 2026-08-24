@@ -105,6 +105,27 @@ established `branching-plus-first-hit-exits-forces-hs-floor` then closes the
 normalized-HS contradiction.  The compiler explicitly cannot be
 trace-functorial, by `exact-first-hit-ladder-kills-regular-carrier`.
 
+Fresh BCS copies do not evade this requirement.
+`agent-first-hit-fresh-copy-reynolds-tree-is-contractive` computes the exact
+finite-depth ledger: if the next active layer is the orthogonal union of the
+transported forbidden atoms, then
+
+```text
+c q_n-O(sqrt(E)) <= q_(n+1) <= q_n+O(sqrt(E)),
+```
+
+so even pairwise orthogonal generations give only the bounded geometric sum
+`q_0 sum_n c^n`.  Keeping old layers cumulative merely returns to the address
+Kraft bound.  More decisively,
+`agent-first-hit-finite-fresh-tree-has-marked-matrix-model` constructs an
+exact finite-dimensional `J=-1` representation of every finite presentation
+assembled solely from fresh structural copies, finite role/address packets,
+and finite-subgroup amalgam/HNN covariance.  Abelianizing each structural
+copy and taking common multiples of the negative regular representations
+makes every edge restriction match.  Thus no finite fresh-copy Reynolds tree
+of this form has matrix soundness at all; an additional payload-sensitive
+relation among several intertwiners is indispensable.
+
 The latest shared-carrier audit removes one apparent shortcut in that
 compiler.  `prefix-central-reducing-hull-recombines-context-returns` is a
 valid way to discard external multiplicity gauges **after** all returned
@@ -240,6 +261,22 @@ capacity contradiction at any fixed depth with
 separate open gate.  The sole remaining operation on this lane is the
 payload-sensitive overlap loss itself.
 
+The first completely explicit escape row is now understood, including why
+it cannot renew.  `agent-aggregate-escape-forbidden-support-saturation`
+proves that `Q B_f` has full reducing support in every corrected shared-BCS
+carrier `Q`: any reducing complement avoiding it has zero forbidden mass and
+is therefore killed by the robust BCS gap.  Conjugating by the Pauli seed
+flip consequently moves `Q_+B_f` exactly to the orthogonal projection
+`Q_-B_f`, but its shared-algebra hull is all of `Q_-`.  Thus after one perfect
+escape the next carrier is already the full marked sector and no second
+fixed-fraction escape is possible.  The general form
+`agent-aggregate-escape-normalizer-erases-payload` shows that this is not a
+defect of the Pauli choice: every word normalizing the shared algebra carries
+full reducing support to full reducing support, so its successor is merely
+the orbit of the whole old carrier.  A successful row must therefore be a
+genuinely non-normalizing representation-type correspondence whose payload
+occupies only a proper set of target multiplicity slots.
+
 The shortest literal-word implementation of that loss is excluded.
 Although `central-marked-two-cycle-zero-compression-cell` groupifies a source
 named by literal grading involutions, the aggregate reflection is not such a
@@ -285,16 +322,271 @@ carrier-localized factorization is supplied, the established predicate
 Reynolds rank jump gives the positive-density child-only sector and the
 tracial self-copy theorem closes the route.
 
-At the coefficient-ring level this localization is now explicit.  If
-`r_1,...,r_s` normally generate the free quotient kernel and `P_f` is the
-forbidden packet idempotent, the finite relations
-`[P_f,F]=[P_f,t]=0` and `(r_j-1)P_f=0` make the parent factor through `B_f`
-and the child through `A_f` exactly on `P_f`.  Rank-five Steinberg context
-absorption wordizes the resulting finite ring presentation.  The only
-remaining gap in this subroute is normalized-HS coefficient decoding:
-arbitrary group microstates must be shown to induce the required
-rank-ultraproduct coefficient module, the same metric phenomenon isolated by
-`hs-steinberg-root-kernel-is-linear-sofic`.
+At the coefficient-ring level this localization can be written down, but a
+later algebraic audit shows that the **complete** localization is too strong.
+If `r_1,...,r_s` normally generate the free quotient kernel and `P_f` is the
+forbidden packet idempotent, the finite rows `[P_f,F]=[P_f,t]=0`,
+`(r_j-1)P_f=0`, and the named identifications
+`(u_i-b_i)P_f=0` do put the parent `B_f` and child `A_f` actions on one
+corner.  They do more than exclude finite coefficient modules.
+`agent-free-compressor-bcl-root-is-abstractly-zero` proves that they force
+`P_f=0` in the presented coefficient ring itself.  Indeed, if a primitive
+forbidden block survived, conjugation by the invertible stable letter would
+inject
+
+```text
+P_f k[B_f] = M_(2D)(k)
+```
+
+into the strictly smaller algebra
+
+```text
+P_f k[A_f] = M_D(k) tensor I_2,
+```
+
+which is impossible.  Hence every Steinberg word `x_ij(P_f)` is already the
+identity in the abstract group.  This is not a metric-decoding theorem and
+cannot furnish a marked cyclic amalgam edge.
+
+The free-compressor endpoint can in fact stop before decoding either finite
+packet.  `agent-free-compressor-payload-kernel-fixed-sector` asks only for a
+positive-density adjoint carrier which is almost fixed by the finite normal
+generators of the infinite kernel `ker(theta)` and almost reduces the free
+basis.  Telescoping then makes every fixed kernel element act trivially on
+that carrier, while
+`canonical-infinite-subgroup-has-zero-adjoint-fixed-density` makes such a
+macroscopic carrier impossible in canonical microstates.  The corresponding
+terminal implication is established by
+`agent-free-compressor-kernel-carrier-is-terminal`.
+
+Finite root tables and quotient covariance do not create this carrier.
+`agent-free-compressor-kernel-multiplicity-firewall` tensors an arbitrary
+finite representation of the free kernel onto every exact quotient-packet
+model and makes the fixed fraction of any chosen nontrivial kernel word as
+small as desired without changing the packet carrier density.  The surviving
+minimal statement is therefore the mixed one-row reflection
+`agent-free-compressor-one-row-kernel-reflection`: wordize only
+`[P,x_i]=0` and `(r_j-1)P=0`, and reflect those fixed coefficient rows to one
+Hilbert projection of mass comparable to the forbidden BCS mass.  Squaring
+that Hilbert corner would give the required adjoint sector, but the proposed
+reflection is false from those rows alone.
+`agent-free-compressor-one-row-product-ring-no-go` uses
+`F_p times F_p[F]`: the payload root has fixed positive spectral density in
+exact finite regular representations while a kernel diagonal lives in the
+independent product factor and has vanishing near-identity density.  All
+rank-five root identities and `(r_j-1)P=0` still hold exactly.  Thus the
+remaining free-compressor route again needs full module/corner
+authentication, or a non-retractive relation coupling the diagonal action
+to the payload spectral carrier; the single mixed coefficient row is not a
+valid shortcut.
+
+Adding the actual ascending-HNN letter without that identification still
+does not help.  `agent-free-compressor-hnn-letter-preserves-product-split`
+extends the same product-ring model through `[P,t]=0` and the complete table
+`t x_i t^{-1}=alpha(x_i)`: the stable letter acts entirely in the mapping-
+torus factor while the payload root remains in the other factor.  The finite
+coefficient-module obstruction is minimal and explicit in
+`agent-free-compressor-minimal-nonretractive-corner`.  Besides stable-corner
+invariance and the HNN table, imposing the named packet-identification rows
+`[P,u_(x_i)]=0` and `P(u_(x_i)-b_i)=0`.  On `PH` these three row families
+identify the parent free action with the prescribed `B` packet and conjugate
+its `B`-fixed space onto the `A`-fixed space.  Their ranks are equal, whereas
+the selected predicate packet has a fixed positive `A/B` Reynolds rank gap;
+hence every exact finite coefficient module has `P=0`.  The stronger
+abstract-collapse audit above shows why this cannot be promoted as a marked
+root construction: putting all three rows into one coefficient quotient has
+already erased the root before any representation is chosen.  It remains a
+valid endpoint after a physical corner has been independently authenticated,
+but it is not a source of such a corner.
+
+The earlier exact ordinary-group endpoint is therefore true but vacuous as a
+nontriviality witness.
+`agent-free-compressor-full-corner-root-is-fd-invisible` proves that every
+exact finite-dimensional unitary representation of this rank-five Steinberg
+group kills every payload root `x_ij(P_f)`.  Its common root kernel is a
+two-sided coefficient ideal, and the additive root image is a finite
+elementary abelian `p`-group, so the coefficient quotient is a finite ring.
+If `P_f` survived, that finite ring's left regular module would satisfy the
+three named corner rows with nonzero `P_f`, contradicting the Reynolds rank
+gap above.  Thus all exact finite quotient, stationary-type, and product-ring
+countermodels are exhausted.  But `P_f=0` already in the coefficient ring,
+so vanishing normalized-HS relator defect forces
+`||rho(x_ij(P_f))-1||_2` to vanish by fixed-word telescoping.  The old
+question `(FCI3)` is automatic, not the frontier.  Known
+2-Kazhdan/Frobenius-stability theorems would not have supplied a nontrivial
+version of this implication:
+they use the unnormalized Frobenius norm.  Since
+`||X||_F=sqrt(d)||X||_(2,d)`, a normalized-HS defect tending to zero may lie
+arbitrarily far outside their correction basin, and block amplification
+preserves the normalized defect while multiplying the Frobenius defect by
+the square root of the amplification.  What would finish this route is a
+native normalized-HS marked-root correction estimate, or a replica-
+homogeneous global Frobenius inequality strong enough to divide by
+`sqrt(d)`; neither follows from qualitative 2-Kazhdan stability.  That
+normalization warning remains relevant for any replacement using an
+abstractly nontrivial finite-dimensionally invisible root, such as the
+Toeplitz candidate, but it is no longer load-bearing for the collapsed BCL
+root.
+
+The physical-corner proof still cannot be split into “authenticate the
+corner” and then “pay the HNN mismatch.”
+`agent-free-compressor-authenticated-corner-pays-hs` proves the second step
+completely: on any physical projection where the named free generators agree
+approximately with the `B_f` packet and the stable letter preserves the
+carrier, telescoping the fixed Reynolds averages gives
+`gamma tau(e)<=C(delta+epsilon)` dimension-independently.  But
+`agent-free-compressor-named-row-retains-complement-gauge` gives exact
+rank-`N` product-ring models for every `N>=3` satisfying the full selected
+packet block and `P(u_i-b_i)=0`, with macroscopic `x_13(P)` spectrum while
+every near-agreement projection for `u_i,b_i` has vanishing trace.  Raising
+Steinberg rank leaves this countermodel intact.  Therefore any reusable
+corner theorem must use the named row, `[P,t]=0`, the HNN conjugacy, and the
+`B_f/A_f` rank gap simultaneously; neither root decoding nor HNN payment is
+valid as an independent first stage.  The complete coefficient quotient is
+not that theorem, because it simply sets the named corner to zero.
+
+There is now a finite ordinary-group front end for the missing payload
+coupling.  For each forbidden Reynolds atom `E=e_H Q_-`, attach an `A4`
+triangle with order-three generators `z_1,z_2` and
+`z_1z_2=hJ`, where `h in H`.  On `E` the product is `-1`, and hence
+
+```text
+||(z_1-1)z_2E||_2^2+||(z_2-1)E||_2^2 >= 2 tau(E).
+```
+
+Splitting the two order-three letters into their nontrivial Fourier
+projections shows that one of four fixed overlaps has trace at least
+`tau(E)/6`.  This is a genuine finite-menu scalar selection theorem.  It
+does **not** yet produce a fixed packet projection: the support of the
+compressed overlap `RAR` depends on the representation, and the ambient
+Bass--Serre bridge algebra is generally infinite dimensional.  The corrected
+`agent-aggregate-escape-a4-bridge-lands-at-bcl-root-gate` therefore stops at
+the four overlap numbers.  Turning one of them into one presentation-level
+coefficient idempotent is precisely the remaining payload compiler; taking
+central support inside a model is not such a compiler.
+
+Literal identification of an `A4` order-three letter with the complete BCL
+payload root is impossible more basically: that root is abstractly trivial,
+so the cyclic amalgam map is not injective and the quotient forces extra
+relations back onto the `A4`/BCS factor.  Conditional Fourier support avoids
+that literal collapse but lands at the same metric interface.
+Accordingly the surviving front-to-back statement is no longer an
+arbitrary Boolean router or a multi-type transport theorem.  It is the one
+local implication
+
+```text
+positive physical A4/BCS Fourier overlap
+    -> positive spectral mass of one fixed named coefficient root,
+```
+
+with a dimension-independent normalized-HS modulus.  This is the local
+claim `bcs-atom-detects-its-e5-central-root`.
+
+Nor can one first kill a root algebraically and then recover conditional
+meaning by adding mixed relators through it.
+`agent-aggregate-escape-trivial-root-erases-mixed-rows`
+proves a quantitative Tietze substitution theorem: if a word `w=1` has a
+fixed derivation from the base relators, every finite mixed row
+`r(S,Y,w)` is both algebraically and normalized-HS equivalent to
+`r(S,Y,1)`, with a dimension-independent telescoping constant.  Therefore
+the collapsed BCL root contributes nothing to a future coupling.  Either the
+root-free residue already excludes the forbidden physical character—in
+which case it alone is the desired compiler—or it admits an exact
+positive-payload countermodel.  A successful root route must start with an
+abstractly nontrivial payload word.
+
+Finite overgroups cannot supply that word conditionally.
+`agent-packet-root-finite-detectors-are-normal-quotient-selectors` gives the
+exact classification.  For a finite packet `H<=K`, an odd-order element
+`z in K`, and a packet idempotent `q in C[H]`, put
+`N=H intersect normal_closure_K(z)`.  A dimension-uniform inequality
+
+```text
+tr(rho(q)) <= C ||rho(z)-1||_2^2
+```
+
+for all finite-dimensional `K`-representations exists exactly when `q`
+already maps to zero in `C[H/N]`.  Necessity is witnessed by the regular
+representation of `K/normal_closure(z)` restricted to `H/N`; sufficiency is
+finite character theory.  Thus induction, a finite overgroup, or a finite
+Schur phase detects only an algebraic normal-quotient selector, never a
+trace-specific forbidden corner.  In an infinite replacement the quotient
+by the root must itself be quantitatively non-RFD relative to `H`; that is
+the same hard groupification input in a sharper form.
+
+Ordinary property `(T)` cannot upgrade exact root invisibility to this
+metric statement.  `agent-aggregate-escape-kazhdan-root-no-upgrade` records
+Thom's property-`(T)` LEF root construction: exact finite-dimensional
+representations kill the marked root while finite regular LEF models form a
+normalized-HS asymptotic representation keeping it at fixed distance from
+the identity.  Thus any successful estimate must use the actual mixed
+payload relations, not exact invisibility plus a generic Kazhdan wrapper.
+
+The projective-kernel compiler has also been reduced to its exact source
+gate.  `agent-projective-kernel-factor-face-is-playerwise` proves that for a
+factorial left--right game representation the full two-player scalar kernel
+is the product of the two one-player scalar kernels, and its CE trace face is
+nonempty exactly when both one-player faces are nonempty.
+`agent-projective-kernel-arbitrary-phase-face-compiler` then removes the
+finite-phase hypothesis: compactness reduces any CE-empty circle-valued
+one-player face to finitely many scalar equations, and Thom's central-corner
+criterion turns them into a finitely presented nonhyperlinear central
+extension.  What remains is not formal extraction from the known BCS trace.
+`agent-pk-affine-ghost-survives-quotient` computes that a context's full
+projective kernel cuts out precisely the affine hull of its perfect support;
+every forbidden affine-hull ghost reappears with equal positive mass in the
+canonical twisted-regular quotient trace.  Hence the fixed non-CE BCS gap
+does not prove the one-player face empty.  Establishing
+`agent-projective-kernel-one-player-monomial-face-gap` would itself be the
+new global group-factor theorem that closes this branch.
+
+The one-row central-support alternative has a corresponding exact firewall.
+`agent-aggregate-escape-central-support-orientation-terminal` shows that it
+would suffice to adjoin a central involution `K`, put `T=(1-K)/2`, and prove
+`||T B_f||_2^2=O(sqrt(E))`; the robust role-packed gap would then force the
+whole `K=-1` carrier to vanish.  But
+`agent-aggregate-escape-rfd-support-orientation-firewall` proves that the
+zero-defect case places every corner `T R_iP_i` in the finite-dimensional
+radical of the output group C-star algebra.  Any residually finite extension
+preserving the local finite packet, any finite Bass--Serre/Schur cell, and
+any spectator-amplifiable Kazhdan attachment therefore fails immediately.
+Nor can a stronger actor repair this while acting only by automorphisms of a
+fixed finite packet.  By
+`agent-aggregate-escape-finite-packet-actor-no-go`, the actor
+image lies in the finite group `Aut(F)`; summing any marked packet
+representation over that finite orbit gives an exact finite-dimensional
+covariant representation that retains positive marked forbidden support.
+This defeats nonamenable, property-`(T)`, simple, and finite-bi-index actors
+alike.  If the actor has no finite quotients its packet action is trivial.
+Thus a viable orientation mechanism must act on an infinite or
+representation-size-dependent coefficient object and directly provide the
+required normalized-HS radical modulus.
+Even a phase-sensitive relation between two packet intertwiners does not
+escape this conclusion when its holonomy is finite.
+`agent-aggregate-escape-two-intertwiner-clifford-dichotomy` identifies the
+exact obstruction by Clifford theory: on a packet irrep, the stabilizer
+intertwiners have a multiplier `omega`, and the multiplicity space carries
+the inverse twisted stabilizer algebra.  Finite holonomy is always absorbed
+by its inverse-twisted regular representation, after which orbit summing and
+direct-sum amplification retain the marked packet at zero defect.  A viable
+two-cell therefore requires an infinite holonomy central extension whose
+specified inverse central character lies in a quantitative projective
+finite-dimensional radical—again the same normalized-HS radical theorem,
+now in an explicit twisted stabilizer.
+The triangle ucp obstruction also has no normalized-HS density content until
+it is coupled to this same corner.  A successful support row must supply a
+genuine HS-radical modulus for the finite forbidden-corner list while the
+perfect tracial model survives.
+
+The most direct Schur-square attempt does not supply that modulus.
+`agent-aggregate-escape-global-schur-square-is-affine-wall` computes that the
+global payload word `d=PQuv` satisfies `d^2=[P,Q]`.  Imposing `d^2=1` is
+therefore one affine selector parity relation throughout the packet, even
+though its compression to the chosen forbidden simple has the desired
+central sign.  It kills an entire affine wall, so exact completeness requires
+the perfect context support already to avoid that wall.  This is precisely
+the perfect-completeness linearization gate in another form; the local
+proper-corner Schur identity cannot be promoted to a global support relator.
 
 For canonical microstates the boundary is sharper.
 `canonical-infinite-subgroup-has-zero-adjoint-fixed-density` averages any

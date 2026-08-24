@@ -18,11 +18,11 @@ is never counted.
 | `thm:prescribed-quotients` | prescribed MF quotients | `manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` | finite-dimensional commutant rigidity | `manuscriptFiniteDimensionalCommutantRigidity` | closed |
 | `lem:stable-finite` | stable finiteness of norm matrix coronas | `manuscriptNormMatrixCoronaStableFinite` | closed |
-| `lem:kazhdan-projection-order` | one-sided order for the Kazhdan projection | `manuscriptOneSidedKazhdanProjectionOrder` | closed |
+| `lem:kazhdan-projection-order` | one-sided order for the Kazhdan projection | **printed carrier:** `manuscriptMaximalCStarKazhdanProjectionOrder` (projection in `C*_max(L)`, universal image in every target, literal `U* P U <= P`). **Surrogate:** `manuscriptOneSidedKazhdanProjectionOrder` — projection built from an existentially quantified Kazhdan pair, order as two absorption identities; its conclusion is satisfiable with `P = 0`, so it is not by itself the printed lemma | closed; read the printed carrier, not the surrogate |
 | `thm:transport` | one-sided Kazhdan transport | `manuscriptOneSidedKazhdanTransport`; reusable packages `manuscriptOneSidedKazhdanTransportPackage`, `manuscriptCompressionGroupKazhdanTransport`, and `manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` | Hilbert--Schmidt invisibility of defect generators | `manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` | central corona corners | `manuscriptCentralCoronaCorner` | closed |
-| `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanRadical` | closed |
+| `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanPrintedRadical` at the printed natural-dimension radical; `manuscriptNormalKazhdanRadical` at the basis-free one | closed |
 | `prop:defect-saturation` | defect functoriality and saturation for the exact direct-compressor defect | `manuscriptDefectSaturation` | closed |
 | `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.PropositionSimple`; reductions in `RankTwelveSimplicity.lean` | open: missing normal-subgroup/root-detection theorem |
 | `prop:defect` | explicit nontrivial saturating defect | `RankTwelveEndpoint.manuscriptPropositionDefect`; configuration `printedDefectConfiguration`; full-radical consequence `rankTwelve_actualCoronaMFResidual_eq_top` | closed in `RankTwelveAudit.lean` |
@@ -50,6 +50,18 @@ simplicity input.
   headline clause except `IsSimpleGroup H`. It must not be counted as full
   `thm:headline`; the full conclusion remains conditional on the unproved
   `NormalRootDetection` through `headlineConclusion_of_normalRootDetection`.
+- `CountableNonMF.lean` packages the hypothesis-free abstract consequences:
+  existence of a countable non-MF group, the negation of universal countable
+  MF-ness, the equivalent `IsOperatorMF` version, the countable Kazhdan
+  full-radical witness minus simplicity, and the general saturated-defect
+  consequence. These support the abstract/headline but do not supply the
+  missing simplicity conjunct or change 13/15.
+- `PrintedDefinitions.lean` closes the Introduction's corona-denominator,
+  unitary-model, and corona-image/MF-target descriptions without restating the
+  already audited MF-radical identities. `PrintedRemarks.lean` packages the
+  finite-dimensional commutant caveat, the finite-subgroup sterility chain,
+  the sofic/hyperlinear scope separation, and normality of intersections of
+  kernels. These are supporting prose rows and do not change 13/15.
 
 ## Audit-closed generic routes
 
@@ -58,6 +70,11 @@ simplicity input.
   as in the manuscript.
 - `manuscriptOneSidedKazhdanProjectionOrder` and
   `manuscriptCentralCoronaCorner` pass the consolidated audit.
+- `CornerCoronaClass.lean` composes the two index-set-dependent conclusions of
+  `manuscriptCentralCoronaCorner` into the printed final corona-class equality
+  over the retained subsequence. Its closed wrapper is exported and listed in
+  the endpoint audit; it refines the existing lemma row and does not change
+  the 13/15 count.
 - The MF part and the arbitrary-field finite-dimensional part of
   `thm:compression-criterion` are separately exact and audit-listed. The
   convenience conjunction `manuscriptCompleteOneSidedCompressionCriterion`
@@ -110,6 +127,9 @@ Repository search found no derivation of simplicity for
 
 - `BinaryLeavitt.exists_mul_mul_eq_one`: every nonzero coefficient of the
   binary Leavitt ring admits a two-sided unit sandwich;
+- `BinaryLeavitt.center_eq_bot` and `BinaryLeavitt.central_units_trivial`:
+  the coefficient-ring centre is the base field and its units over `𝔽₂` are
+  trivial;
 - `elementaryGroup_normal_eq_top_of_elementaryRoot_mem`: a normal subgroup
   containing a sandwiched elementary root is the whole elementary group;
 - `HilbertHotel.normalClosure_elementaryRoot_eq_top`: at rank at least five,
@@ -123,10 +143,44 @@ Repository search found no derivation of simplicity for
   root is central; and
 - `RankTwelveEndpoint.isSimpleGroup_of_normal_root_detection`: the exact
   reduction from root detection to `IsSimpleGroup H`.
+- `ElementarySimplicity.normal_eq_top_of_colMatrix_mem` and
+  `normal_eq_top_of_double_commutator`: a normal subgroup is all of `EL_ι(R)`
+  once it contains a suitable nontrivial single-column perturbation, and the
+  latter theorem produces one from a double commutator under explicit scalar
+  vanishing/nonvanishing hypotheses;
+- `ElementarySimplicity.center_elementaryGroup_eq_bot`: the elementary-group
+  centre is trivial under the already isolated “central units are trivial”
+  coefficient hypothesis; and
+- `ElementarySimplicity.RootDetection` with
+  `isSimpleGroup_of_rootDetection`: the remaining normal-structure premise and
+  its exact generic reduction to simplicity.
+- `exists_elGen_mem_of_conjSingle_eq`: a line-preserving conjugation
+  configuration produces a nonzero elementary transvection in the normal
+  subgroup;
+- `exists_elGen_mem_of_inv_entry_zero`: an off-diagonal entry which is nonzero
+  in `g` and zero in `g⁻¹` produces a nonzero elementary transvection by a
+  double commutator and row extraction; and
+- `exists_noncommuting_single_of_not_central`: matrix noncentrality is already
+  detected on an off-diagonal single-entry matrix.
+- `relativeElementary_top` and `congruenceSubgroup_bot`: the two endpoint
+  calculations `ELₙ(R,R) = ELₙ(R)` and `Cₙ(R,0) = Z(GLₙ(R))` used in
+  the manuscript's level-ideal case split;
+- `center_eq_bot_of_central_units_trivial`: trivial central coefficient units
+  force the centre of the full linear group to be trivial; and
+- `isSimpleGroup_of_preusser_sandwich`: the complete generic assembly from an
+  explicitly supplied Preusser sandwich theorem to elementary-group
+  simplicity.
 
-These do not imply simplicity by themselves. The missing theorem must extract
-a nonzero elementary root from an arbitrary nontrivial normal subgroup. A
-sufficient exact signature at the manuscript endpoint is:
+These do not imply simplicity by themselves. In particular,
+neither `ElementarySimplicity.lean` nor
+`ElementaryTransvectionExtraction.lean` establishes the `RootDetection`
+premise.  The latter closes the line-preserving and inverse-entry-zero
+configurations, but deliberately leaves open the dense configuration in which
+the usable entries of both `g` and `g⁻¹` are nonzero.  The missing theorem must
+extract a nonzero elementary root from an arbitrary nontrivial normal subgroup.
+Alternatively, `CongruenceSubgroups.lean` reduces the entire printed argument
+to the still-explicit Preusser sandwich hypothesis; it does not prove that
+hypothesis.  A sufficient exact signature at the manuscript endpoint is:
 
 ```lean
 ∀ (N : Subgroup RankTwelveEndpoint.H) [N.Normal], N ≠ ⊥ →
@@ -136,8 +190,10 @@ sufficient exact signature at the manuscript endpoint is:
 
 The manuscript obtains this through Preusser's normal-subgroup theorem, ring
 simplicity/exchange structure, and triviality of the scalar center over
-`𝔽₂`. None of that normal-structure bridge is presently formalized in the
-repository. Root normal generation must not be cited as a substitute.
+`𝔽₂`. The ring simplicity and coefficient-centre inputs are now formalized;
+the Preusser normal-structure bridge (and, for the manuscript's central branch,
+the matrix-centralizer-to-scalar step) is not. Root normal generation must not
+be cited as a substitute.
 
 Displayed identities and proof steps will be added to the exhaustive proof
 ledger after their owning numbered statement has an exact endpoint. This

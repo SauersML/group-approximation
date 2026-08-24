@@ -35,13 +35,13 @@ Unless a fully qualified name is shown, declarations are in
 | 4 | `thm:prescribed-quotients` | `manuscriptPrescribedMFQuotients : PrescribedMFQuotients` | `PrescribedQuotients.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 5 | `thm:commutant` | `manuscriptFiniteDimensionalCommutantRigidity : FiniteDimensionalCommutantRigidity` | `FiniteDimensionalCommutant.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 6 | `lem:stable-finite` | `manuscriptNormMatrixCoronaStableFinite : NormMatrixCoronaStableFinite` | `StableFiniteness.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
-| 7 | `lem:kazhdan-projection-order` | `manuscriptOneSidedKazhdanProjectionOrder : OneSidedKazhdanProjectionOrder`. It quantifies the printed arbitrary target-algebra unitary `U` (not an ambient-group image), derives the symmetric generating Kazhdan pair from property `(T)`, and states `U⁎ P U ≤ P` as the two equivalent projection-absorption identities because a generic Lean `CStarAlgebra` has no global spectral-order instance. | `GroupApproximation/Manuscript/OneSidedMFRadical/KazhdanProjectionOrder.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
+| 7 | `lem:kazhdan-projection-order` | `manuscriptOneSidedKazhdanProjectionOrder : OneSidedKazhdanProjectionOrder` constructs the target-algebra projection and records order through projection absorption. The complementary `manuscriptMaximalCStarKazhdanProjectionOrder` constructs one projection in `C*_max(L)`, maps it universally to every target, and states the literal C*-order inequality. | `GroupApproximation/Manuscript/OneSidedMFRadical/KazhdanProjectionOrder.lean`, `GroupApproximation/Analysis/MaximalCStarKazhdanProjection.lean`; checks in `Endpoint/OneSidedTransportAudit.lean` | **Exact + audit-closed** |
 | 8 | `thm:transport` | `manuscriptOneSidedKazhdanTransport : OneSidedKazhdanTransport`; `TransportAssembly.lean` adds the closed reusable-hypotheses package, compression-group iteration, and arbitrary-ambient-universe form as `manuscriptOneSidedKazhdanTransportPackage`, `manuscriptCompressionGroupKazhdanTransport`, and `manuscriptOneSidedKazhdanTransportAnyAmbient` | `KazhdanTransport.lean`, `TransportAssembly.lean`; successfully checked by `Endpoint/OneSidedTransportAudit.lean` | **Exact + audit-closed** |
 | 9 | `cor:defect-hs` | `manuscriptCompressionDefectHSInvisible : CompressionDefectHSInvisible` | `DefectHS.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
-| 10 | `lem:central-corona-corner` | `manuscriptCentralCoronaCorner : CentralCoronaCorner`. From the literal `rho` and nonzero commuting projection `q`, it supplies a projection lift, a strict coordinate subsequence, nonzero corner models, and the polar-corrected `cornerRepresentation`; for each `g` it pairs the corona equality `[Q_n U_n(g) Q_n]=q rho(g)` with norm convergence of the corrected corner map to that compression. | `GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCorner.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
+| 10 | `lem:central-corona-corner` | `manuscriptCentralCoronaCorner : CentralCoronaCorner`. From the literal `rho` and nonzero commuting projection `q`, it supplies a projection lift, a strict coordinate subsequence, nonzero corner models, and the polar-corrected `cornerRepresentation`; for each `g` it pairs the corona equality `[Q_n U_n(g) Q_n]=q rho(g)` with norm convergence of the corrected corner map to that compression. `manuscriptCornerCoronaClass` composes those facts into the final printed equality of corona classes after restriction to the retained subsequence. | `GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCorner.lean`, `CornerCoronaClass.lean`; audit hooks in `Audit.lean` and `Endpoint/OneSidedTransportAudit.lean` | **Exact + audit-listed** |
 | 11 | `thm:normal-kazhdan` | `manuscriptNormalKazhdanRadical : NormalKazhdanRadical` | `NormalKazhdan.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 12 | `prop:defect-saturation` | `manuscriptDefectSaturation : DefectSaturation`. Its functoriality is proved directly for individual compressors, including the literal range-subtype target `f(G)`. | `DefectSaturation.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
-| 13 | `prop:simple` | Exact unresolved proposition: `RankTwelveEndpoint.PropositionSimple := IsSimpleGroup H`. `RankTwelveSimplicity.lean` closes every step after root detection: `normal_eq_top_of_nonzero_elementaryRoot_mem`, `properNormal_inf_elementaryRootSubgroup_eq_bot`, `elementaryRoot_mem_center_iff`, and the exact reduction `isSimpleGroup_of_normal_root_detection`. The remaining theorem must extract a nonzero elementary root from every nontrivial normal subgroup (or prove the central-or-root dichotomy and eliminate the scalar center branch). | Statement in `RankTwelveEndpoints.lean`; closed reductions in `RankTwelveSimplicity.lean`; normal-generation inputs in `Leavitt/ElementaryNormalGeneration.lean` and `Leavitt/HilbertHotelDefectNormal.lean` | **Gap: root detection / center branch** |
+| 13 | `prop:simple` | Exact unresolved proposition: `RankTwelveEndpoint.PropositionSimple := IsSimpleGroup H`. `RankTwelveSimplicity.lean` closes every step after root detection. `ElementarySimplicity.lean` adds the thin-matrix and centre reductions and the exact generic implication `RootDetection → IsSimpleGroup`. `ElementaryTransvectionExtraction.lean` closes two concrete root-extraction configurations and detects noncentrality on a single-entry matrix, while leaving the dense configuration open. `CongruenceSubgroups.lean` now defines the relative elementary and full congruence subgroups, proves both level endpoints and the `GL` centre calculation, and assembles simplicity from a single explicit Preusser sandwich hypothesis. It does not prove that hypothesis, so neither route yields unconditional `RootDetection` or `IsSimpleGroup H`. | Statement in `RankTwelveEndpoints.lean`; closed reductions in `RankTwelveSimplicity.lean`; generic reductions in `Leavitt/ElementarySimplicity.lean`, `Leavitt/ElementaryTransvectionExtraction.lean`, and `Leavitt/CongruenceSubgroups.lean`; normal-generation inputs in `Leavitt/ElementaryNormalGeneration.lean` and `Leavitt/HilbertHotelDefectNormal.lean` | **Gap: Preusser normal-subgroup sandwich / general root detection** |
 | 14 | `prop:defect` | `RankTwelveEndpoint.manuscriptPropositionDefect : PropositionDefect` is the exact unconditional endpoint. `printedDefectConfiguration` supplies the literal compressor and commutator package, while `rankTwelve_actualCoronaMFResidual_eq_top` records its full-radical consequence. All eight constituent/endpoint declarations in `RankTwelveAudit.lean` pass the closed-axiom audit. | `RankTwelveEndpoints.lean`, `RankTwelveConfiguration.lean`, `RankTwelveAudit.lean` | **Exact + audit-listed** |
 | 15 | `prop:universal-factorization` | `manuscriptUniversalFactorization : UniversalFactorization` | `UniversalFactorization.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 
@@ -63,7 +63,7 @@ simplicity conjunct of full Theorem B.
 | TeX label | Printed content | Lean declaration(s) | Status / exact remaining work |
 |---|---|---|---|
 | `eq:intrinsic-defect` | `D_G(L)` is the normal closure of `[ucu⁻¹,ℓ]` over individual `u ∈ Comp_G(L)` | `printedDefectSet`, `printedDefect`, `printedDefect_generator_mem` in `PrintedDefect.lean` | Exact definition. This is intentionally distinct from the older, larger `compressionCentralizerDefect` using `compressionGroup`. |
-| `eq:leavitt` | `t_i s_j = δ_ij` and `s₀t₀+s₁t₁=1` | fields of `GroupApproximation.LeavittFamily` in `Leavitt/Leavitt.lean`; canonical instance `UniversalLeavitt.family` | Exact algebraic data. No dedicated current-manuscript closed-audit endpoint packages just this display. |
+| `eq:leavitt` | `t_i s_j = δ_ij` and `s₀t₀+s₁t₁=1` | fields of `GroupApproximation.LeavittFamily` in `Leavitt/Leavitt.lean`; canonical instance `UniversalLeavitt.family`; concrete package `manuscriptPrintedLeavittAlgebraEquations` | Exact algebraic data, included in the closed-audited Section 5 equation package. |
 | `eq:basic-defect` | HS convergence of `V_n([ucu⁻¹,ℓ])` to `1` | `manuscriptCompressionDefectHSInvisible`; membership semantics from `mem_opToHSShadowResidual_iff` | Exact + audit-listed through `cor:defect-hs`. |
 | `eq:shadow-residual` | intersection of all operator-to-HS kernels | `hsKernel`, `mem_hsKernel_iff`, `opToHSShadowResidual_eq_iInf_hsKernel`, and closed endpoint `manuscriptShadowResidualIsIntersectionOfHSKernels` in `ShadowResidual.lean` | Exact ordinary-limit `K₂(V)` presentation and generic residual identification; audit hook in `Audit.lean`. |
 | `eq:defect-functoriality` | `f(D_G(L)) ≤ D_{f(G)}(f(L))` | `map_printedDefect_to_range_le`; ambient-target strengthening `map_printedDefect_le`; package `manuscriptDefectSaturation` | Exact + audit-listed, with direct individual-compressor proof. |
@@ -75,7 +75,7 @@ simplicity conjunct of full Theorem B.
 | `eq:compresses-L` | `τLτ⁻¹ ≤ L` | `RankTwelveEndpoint.tau_compresses_corner`; package `printedDefectConfiguration` | Exact; package audit-closed. |
 | `eq:moved-mark` | `τcτ⁻¹=e₀₁(q)e₃₄(1)` | `RankTwelveEndpoint.tau_conj_c`; resulting commutator `tau_c_commutator_ell` | Exact; commutator endpoint audit-closed. |
 | `eq:amalgam` | `W_Q=B *_A (Q×A)` | `MFCamouflage.Camouflage`, `Edge`, `blackHole`, and `productVertex`; packaged behavior in `manuscriptSplitPrescribedProjection` | Exact construction and vertex-map facts. The split-projection package itself is not currently audit-listed. |
-| `eq:closure-pullback` | MF closure is pulled back along `π_Q` | Existing camouflage endpoint `manuscriptPrescribedQuotientRelationCalculus`; literal general theorem `ClosurePullback.literalMFClosure_eq_comap_of_factors`; quotient equivalence `ClosurePullback.isCDEOperatorMF_quotient_iff_of_factors`; camouflage specializations; closed four-clause package `ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | Exact at both the general factorizing-epimorphism level and the printed camouflage instance; new audit hooks added, validation pending. |
+| `eq:closure-pullback` | MF closure is pulled back along `π_Q` | Existing camouflage endpoint `manuscriptPrescribedQuotientRelationCalculus`; literal general theorem `ClosurePullback.literalMFClosure_eq_comap_of_factors`; quotient equivalence `ClosurePullback.isCDEOperatorMF_quotient_iff_of_factors`; camouflage specializations; closed four-clause package `ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | Exact at both the general factorizing-epimorphism level and the printed camouflage instance; final endpoint audit passed. |
 
 ## Essential unlabelled displayed proof data
 
@@ -92,8 +92,12 @@ not attach an equation label to each of them.
 | Every printed defect generator is HS-shadow invisible, hence the whole printed defect is | `manuscriptCompressionDefectHSInvisible`; direct closed endpoint `manuscriptPrintedDefectShadowInclusion` | Exact + audit-listed in `Audit.lean`. |
 | The canonical-sector proof assembled link by link | `manuscriptNormalKazhdanPrintedRadical`, `manuscriptNormalKazhdanCoronaVanishing`, `manuscriptPrintedCriterionAssembly`, `manuscriptPrintedDefectCoronaVanishing` | Exact packages; `CanonicalSector.lean` passes standalone MSI validation. The defect containment reuses the direct generator-by-generator lemma. |
 | Every headline conclusion except simplicity | `manuscriptBinaryLeavittFullRadical : BinaryLeavittFullRadical` | Hypothesis-free and standalone MSI-validated, but intentionally not counted as full `thm:headline`. |
+| Abstract consequence “not every countable group is MF” | `manuscriptCountableNonMFGroupExists`, `manuscriptNotEveryCountableGroupIsMF`, and equivalent `manuscriptCountableNonOperatorMFGroupExists` | Closed supporting endpoints in `CountableNonMF.lean`; final endpoint audit passed. They do not assert simplicity or close full Theorem B. |
+| Abstract realisation and saturated-defect consequence, both minus simplicity | `manuscriptCountableKazhdanFullMFRadicalGroupExists`, `manuscriptSaturatedDefectKillsMFTargets` | Closed supporting endpoints in `CountableNonMF.lean`; final endpoint audit passed and numbered count remains 13/15. |
+| Introduction's checked definitions | `manuscriptCoronaDenominator`, `manuscriptMFUnitaryModels`, `manuscriptCoronaImagesAndTargets` | Closed supporting packages in `PrintedDefinitions.lean`; they reuse rather than duplicate the literal MF-closure/radical endpoints. |
+| Printed commutant, sterility, scope, and kernel-intersection remarks | `manuscriptCommutantFiniteDimensionalHypothesisIsEssential`, `manuscriptPrintedAmenableCaseChain`, `manuscriptSoficityIsNotObstructedByFullRadicals`, `manuscriptFullRadicalsDoNotEntailNonsoficity`, `manuscriptIntersectionOfKernelsIsNormal` | Closed supporting packages in `PrintedRemarks.lean`; no numbered-label overcount. |
 | A full MF radical kills maps to MF targets | `manuscriptFullRadicalKillsMFTargets : FullRadicalKillsMFTargets` | Exact + audit-listed in `PrintedAudit.lean`. |
-| The split map `π_Q`, its section, injective vertex maps, and survival of `d` in `W_Q` | `manuscriptSplitPrescribedProjection : SplitPrescribedProjection` | Exact endpoint; audit pending. |
+| The split map `π_Q`, its section, injective vertex maps, and survival of `d` in `W_Q` | `manuscriptSplitPrescribedProjection : SplitPrescribedProjection` | Exact endpoint; final endpoint audit passed. |
 
 ## Remaining work that blocks “everything formalized”
 
@@ -155,10 +159,21 @@ Preusser inclusions
 EL₁₂(R, level(N)) ≤ N ≤ C₁₂(R, level(N)).
 ```
 
-The repository currently has no definition/theorem implementing that normal
-structure for `elementaryGroup`.  In particular,
-`RankTwelveEndpoint.normal_eq_top_of_nonzero_elementaryRoot_mem` starts only
-*after* a root has been placed in `N`.
+`CongruenceSubgroups.lean` now defines both sides of this sandwich as
+`relativeElementary` and `congruenceSubgroup`, proves the full-level and
+zero-level endpoint calculations, and packages the remaining implication as
+`isSimpleGroup_of_preusser_sandwich`.  What is still absent is exactly the
+theorem producing a level ideal and the two sandwich inclusions for every
+normal subgroup.  In particular,
+`RankTwelveEndpoint.normal_eq_top_of_nonzero_elementaryRoot_mem` still starts
+only *after* a root has been placed in `N`.
+
+`ElementaryTransvectionExtraction.lean` now bridges noncentrality to a
+single-entry witness and extracts a root in the line-preserving and
+inverse-entry-zero configurations.  Its stated remaining case is precisely the
+dense configuration where the full double commutator is neither row- nor
+column-supported.  Thus these reductions narrow, but do not replace, the
+missing Preusser normal-structure input above.
 
 The ring-side theorem already available for simplifying a nonzero level is
 
@@ -172,14 +187,15 @@ sandwich algebra, but not the group normal-structure dichotomy.
 
 ### 2. Eliminate the center/scalar branch over `𝔽₂`
 
-The central branch requires two missing facts.  First, commuting with all
-elementary roots must force a central element of `H` to be a scalar matrix.
-Second, the scalar must come from the center of the binary Leavitt ring, which
-the manuscript identifies with `𝔽₂`; its only nonzero scalar is `1`.
-The closed theorem `RankTwelveEndpoint.elementaryRoot_mem_center_iff` proves
-the strictly weaker fact that no nontrivial elementary root is central; it
-does not classify an arbitrary central matrix.
-A compact final endpoint is
+The generic matrix-centralizer calculations are now available in two forms.
+`ElementarySimplicity.center_elementaryGroup_eq_bot` computes the centre of
+the elementary group, while
+`GroupApproximation.center_eq_bot_of_central_units_trivial` computes the
+centre of the full linear group in exactly the form used by the sandwich
+argument.  The coefficient-ring half is closed by
+`BinaryLeavitt.center_eq_bot` and `BinaryLeavitt.central_units_trivial`.
+What remains here is only a specialization wrapper at the manuscript's exact
+`H`, not a new mathematical normal-structure theorem.  A convenient endpoint is
 
 ```lean
 -- Missing: not currently declared in the repository.
@@ -190,28 +206,22 @@ An auditable decomposition of that endpoint would use the following theorem
 shapes:
 
 ```lean
--- Missing matrix-centralizer calculation.
-theorem central_element_is_scalar
-    (z : H) (hz : z ∈ Subgroup.center H) :
-    ∃ λ : R,
-      ((z : (Matrix (Fin 12) (Fin 12) R)ˣ) :
-          Matrix (Fin 12) (Fin 12) R) = Matrix.scalar (Fin 12) λ
+-- Existing generic matrix-centralizer calculation.
+ElementarySimplicity.center_elementaryGroup_eq_bot
 
--- Missing center computation for the universal binary Leavitt ring.
-theorem binaryLeavitt_center_is_base_scalar
-    (z : R) (hz : ∀ a : R, Commute z a) :
-    ∃ λ : ZMod 2, algebraMap (ZMod 2) R λ = z
+-- Existing full-linear-group center endpoint.
+center_eq_bot_of_central_units_trivial
+
+-- Existing coefficient-ring center computations.
+BinaryLeavitt.eq_smul_one_of_central
+BinaryLeavitt.center_eq_bot
+BinaryLeavitt.central_units_trivial
 ```
 
-The precise coercion used for the matrix value may be adjusted to the
-existing `elementaryGroup` subtype API; the mathematical content must remain
-the displayed scalar assertion.  The proof then uses invertibility of `z`
-to rule out `λ = 0` and the two-element field calculation to get `λ = 1`,
-hence `z = 1` and `Subgroup.center H = ⊥`.
-
-Repository search found no theorem computing the center of
-`UniversalLeavitt.BinaryLeavittAlgebra` and no theorem computing the center of
-this elementary group.  `UniversalLeavitt.BinaryLeavittAlgebra` is verified
+`center_elementaryGroup_eq_bot` already performs the scalar-matrix argument
+and uses invertibility to identify the scalar as `1`.  The specialization must
+package a central coefficient and its two-sided inverse as a unit before
+applying `central_units_trivial`.  `UniversalLeavitt.BinaryLeavittAlgebra` is verified
 to be the specialization
 `BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)` in
 `GroupApproximation/Leavitt/UniversalLeavitt.lean`; that is the existing base-
