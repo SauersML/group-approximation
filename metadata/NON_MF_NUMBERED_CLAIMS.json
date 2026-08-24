@@ -149,7 +149,7 @@
         },
         {
           "role": "exact",
-          "module": "Sofic/UniversalVisibleQuotient",
+          "module": "Sofic/TargetEquivalence",
           "declaration": "GroupApproximation.precomp_bijective",
           "covers": "one printed clause; the declarations are collective"
         }
