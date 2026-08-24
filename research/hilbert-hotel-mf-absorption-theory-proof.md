@@ -53,6 +53,8 @@ requires:
   - leavitt-unit-internal-wreath-universality
   - leavitt-unit-internal-shift-reflection
   - leavitt-unit-internal-mf-reflection-tower
+  - wandering-leavitt-corner-reflection-compiler
+  - leavitt-unit-internal-free-reflections
 ---
 
 The group, C-star, and dynamical assertions are the corresponding established

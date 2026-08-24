@@ -85,6 +85,14 @@ reflections are the iterated amenable wreath products
 therefore contains one-word non-MF thickenings of visible groups with
 unbounded derived length.
 
+More generally, one wandering Leavitt corner compiles any countable actor
+`Q<=U` into an internal group `U^(Q) semidirectProduct Q` whose MF reflection
+and complete semantic-closure operator are exactly those of `Q`.  Finite
+prefix ping-pong supplies every `F_r` as such an actor.  Hence the single
+group `U` contains finitely generated non-MF subgroups with reflection `F_r`,
+and their quotient lattices internalize the MF-closure problem for all
+finite-generator presentations.
+
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
 

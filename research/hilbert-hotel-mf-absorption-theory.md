@@ -128,6 +128,16 @@ every radical and classifies MF throughout every quotient lattice.  For
 `F=C_2`, the visible derived lengths tend to infinity, so the subgroups are
 pairwise nonisomorphic.
 
+All of these internal constructions are instances of one wandering-corner
+compiler.  Whenever a countable subgroup `Q<=U` moves one nonzero Leavitt
+corner through pairwise orthogonal conjugates, the internal restricted wreath
+product `U^(Q) semidirectProduct Q` has exactly the MF reflection of `Q`, and
+its entire MF semantic-closure operator is pulled back from `Q`.  Finite
+prefix ping-pong supplies such a wandering corner for every free group `F_r`.
+Consequently the same fixed simple Kazhdan MF black hole contains finitely
+generated non-MF subgroups with reflection `F_r`, and one such subgroup
+internalizes the MF-closure problem for all `r`-generated presentations.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

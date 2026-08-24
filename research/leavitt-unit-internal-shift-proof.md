@@ -5,7 +5,7 @@ kind: route
 title: Shift a bilateral antichain of Leavitt cylinders with one prefix-table unit
 target: leavitt-unit-internal-shift-reflection
 requires:
-  - binary-leavitt-all-ranks-full-mf-radical
+  - wandering-leavitt-corner-reflection-compiler
 artifacts:
   - GroupApproximation/Leavitt/PrefixCode.lean
 ---
@@ -62,6 +62,10 @@ The element `v` has infinite order because it translates the pairwise
 distinct projections `p_i`.  Moreover, `beta(U^(Z))` fixes every `p_i`, so
 no nonzero power of `v` belongs to the base.  Equations `(ISP4)`--`(ISP5)`
 therefore give the injective semidirect-product map `(IS1)`.
+
+The family `(p_i)` is precisely the wandering orbit required by the
+wandering-corner reflection compiler, which supplies the radical and
+representation-functor formulas below.
 
 The group `U` is finitely generated.  A finite generating set in coordinate
 zero together with `v` generates `W_Z`, since conjugation by powers of `v`

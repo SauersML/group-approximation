@@ -5,7 +5,7 @@ kind: route
 title: Put block-monomial wreath products through the Leavitt prefix-code isomorphisms
 target: leavitt-unit-internal-wreath-universality
 requires:
-  - binary-leavitt-all-ranks-full-mf-radical
+  - wandering-leavitt-corner-reflection-compiler
 artifacts:
   - GroupApproximation/Leavitt/PrefixCode.lean
 ---
@@ -37,6 +37,10 @@ GL_X(R) ~= U.
 ```
 
 Composing with this isomorphism embeds `W_F=U wr F` into `U`.
+
+Equivalently, the diagonal matrix corners form one finite wandering Leavitt
+corner orbit, so this is the finite instance of the wandering-corner
+reflection compiler.
 
 Every homomorphism from `W_F` to an MF group kills each coordinate copy of
 `U`, because `Rad_MF(U)=U`.  It therefore kills the base `U^F` and factors
