@@ -37,6 +37,176 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_2}
 \newcommand{\normal}[1]{\langle\!\langle #1\rangle\!\rangle}
+
+% Website-only explanations.  These comments do not alter the PDF.  Each
+% declaration names one complete rendered object and the TeX context in which
+% its explanation applies; the website exposes no undeclared fallback.
+%<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the norm matrix corona Q_d">
+% The bold d is the full sequence of matrix sizes d_1,d_2,d_3,....  The object
+% Q_d contains bounded sequences of matrices of those sizes and identifies two
+% sequences when their operator-norm difference tends to zero.  A group is MF
+% when it embeds faithfully into the unitary elements of some Q_d.
+%</webmath>
+%<webmath object="Mdn" when="M_{d_n}(\C)" title="the finite matrices used at stage n">
+% M_{d_n}(C) is the algebra of all d_n-by-d_n matrices with complex entries.
+% It is one finite coordinate in the sequence of matrix models; the sizes d_n
+% are allowed to grow.
+%</webmath>
+%<webmath object="∏n" when="\prod_nM_{d_n}(\C)" title="all bounded matrix sequences">
+% This product contains one matrix from M_{d_n}(C) for every n, with one bound
+% on all of their operator norms.  Addition and multiplication are performed
+% coordinate by coordinate.
+%</webmath>
+%<webmath object="⨁n" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences that vanish">
+% This direct sum consists exactly of matrix sequences whose operator norms
+% tend to zero.  The quotient defining Q_d declares every such sequence to be
+% zero, so errors that disappear uniformly leave no information in the corona.
+%</webmath>
+%<webmath object="C" when="M_{d_n}(\C)" title="the complex numbers">
+% C is the number system containing real and imaginary numbers.  The finite
+% matrix models use complex entries because the unitary matrices in the MF
+% definition naturally act on complex vector spaces.
+%</webmath>
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the MF radical of G">
+% This is the normal subgroup of G made of all elements sent to the identity by
+% every homomorphism from G into every norm matrix corona.  It is exactly the
+% part of G that no operator-norm finite-matrix limit can distinguish from the
+% identity.
+%</webmath>
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(H)" title="the MF radical of H">
+% This consists of all elements of H erased by every homomorphism into every
+% norm matrix corona.  The theorem proves that it equals H itself, so every
+% homomorphism from H to every MF group is trivial and H is not MF.
+%</webmath>
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(W_Q)" title="the MF radical of W_Q">
+% This is the part of W_Q erased by every finite-matrix-limit representation.
+% The quotient theorem computes it by pulling the MF radical of Q back through
+% pi_Q; when Q is MF, it is exactly the kernel of pi_Q.
+%</webmath>
+%<webmath object="⋂d" when="\bigcap_{\mathbf d}" title="the intersection over every sequence of matrix sizes">
+% The bold d ranges over every possible sequence of finite matrix sizes.  An
+% element remains in this intersection only if no choice of matrix sizes can
+% produce a corona representation that detects it.
+%</webmath>
+%<webmath object="⋂π:G→U(Qd)" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}" title="the intersection over every corona representation">
+% For the chosen matrix sizes, pi ranges over every homomorphism from G into the
+% unitary elements of Q_d.  Intersecting their kernels keeps exactly the
+% elements that all of those representations send to the identity.
+%</webmath>
+%<webmath object="ker" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi" title="what one representation erases">
+% The kernel of pi is the set of elements of G that this particular
+% representation sends to the identity.  Intersecting these kernels over every
+% pi produces the MF radical.
+%</webmath>
+%<webmath object="CompG" when="\operatorname{Comp}_G(L)" title="the elements of G that compress L">
+% Comp_G(L) consists of the elements u for which uLu^{-1} is contained in L.
+% Conjugation by such a u sends the whole subgroup L into a copy lying inside
+% L; it need not cover all of L.
+%</webmath>
+%<webmath object="DG" when="\mathfrak D_G(L)" title="the compression defect inside G">
+% For every allowed u, c, and ell, form the commutator
+% [ucu^{-1},ell]=ucu^{-1}ell uc^{-1}u^{-1}ell^{-1}.  The compression defect is
+% the smallest normal subgroup of G containing all those elements.  The main
+% criterion proves that suitable property-(T) subgroups inside it are erased by
+% every MF representation.
+%</webmath>
+%<webmath object="L" when="uLu^{-1}\le L" title="L, the subgroup sent into a copy of itself">
+% L is a subgroup with property (T).  The inclusion says that conjugation by u
+% sends every element of L back into L, possibly into a proper smaller copy.
+% The proof uses the fixed-vector rigidity of L across this inclusion.
+%</webmath>
+%<webmath object="K" when="K\le\Rad_{\mathrm{MF}}(G)" title="K, the subgroup erased by every MF representation">
+% K is assumed to be normal in G, to have property (T), and to lie in the
+% compression defect.  The conclusion says that every homomorphism from G into
+% every norm matrix corona sends every element of K to the identity.
+%</webmath>
+%<webmath object="LF2" when="L_{\F_2}(1,2)" title="the binary Leavitt algebra">
+% This algebra has four generators s_0,s_1,t_0,t_1.  The equations
+% t_i s_j=delta_{ij} and s_0t_0+s_1t_1=1 make s_0,s_1 split one free module
+% into two copies and make t_0,t_1 recombine those copies.  The paper uses
+% these identities to build the matrix tau that sends L into a smaller copy of
+% itself.
+%</webmath>
+%<webmath object="F2" when="L_{\F_2}(1,2)" title="the field with two elements">
+% F_2 contains only 0 and 1, with 1+1=0.  Its only nonzero scalar is 1.  That
+% last fact removes the possible scalar center in the proof that H is simple.
+%</webmath>
+%<webmath object="EL12" when="H=\EL_{12}(R)" title="the group H built from 12-by-12 elementary matrices">
+% EL_12(R) is generated by identity matrices with one extra off-diagonal entry
+% from R.  This is the concrete group H.  The paper proves that H is nontrivial
+% and simple, has property (T), and has no nontrivial homomorphism to any MF
+% group.
+%</webmath>
+%<webmath object="EL3" when="L=\EL_3(R)" title="the property-(T) subgroup L">
+% EL_3(R) is the upper-left 3-by-3 elementary-matrix subgroup of H.  The
+% explicit matrix tau conjugates it into a copy contained in itself.
+%</webmath>
+%<webmath object="eij" when="e_{ij}(a)" title="an elementary matrix with entry a">
+% e_{ij}(a) is the identity matrix with one additional entry a in row i and
+% column j.  Products and commutators of these matrices reproduce addition and
+% multiplication in R.
+%</webmath>
+%<webmath object="τ" when="\tau L\tau^{-1}\le L" title="tau, the matrix that compresses L">
+% Tau is an explicit invertible 12-by-12 elementary matrix.  Conjugating by tau
+% sends L=EL_3(R) into a copy contained in L.  It also sends c to an element
+% whose product with ell depends on the order, producing d.
+%</webmath>
+%<webmath object="d" when="d=e_{02}(q)" title="d, the nonidentity element that starts the proof">
+% The calculation gives d=e_{02}(q), an identity matrix with the nonzero entry
+% q added in row 0, column 2.  Thus d is not the identity.  It belongs to the
+% compression defect, and simplicity of H makes the normal subgroup generated
+% by d equal to all of H.
+%</webmath>
+%<webmath object="e02" when="d=e_{02}(q)" title="the elementary matrix e_02(q)">
+% This is the identity matrix with q added in row 0, column 2.  Because q is
+% nonzero, e_02(q) is not the identity.  The matrix calculation in the proof
+% shows that this is exactly the commutator d.
+%</webmath>
+%<webmath object="q" when="d=e_{02}(q)" title="q, the nonzero Leavitt coefficient">
+% Here q=s_1t_1.  The Leavitt relations imply t_1qs_1=1, so q cannot be zero.
+% Its appearance as the off-diagonal entry of e_02(q) proves that d is not the
+% identity.
+%</webmath>
+%<webmath object="WQ" when="W_Q=B*_A(Q\times A)" title="W_Q, the group built over the chosen quotient Q">
+% W_Q is formed by joining B and Q times A while identifying their copies of
+% A.  Every homomorphism from B to an MF group is trivial, so every homomorphism
+% from W_Q to an MF group ignores the attached B part and factors through Q.
+%</webmath>
+%<webmath object="∗A" when="B*_A(Q\times A)" title="joining the two groups along A">
+% This amalgamated free product identifies the copy of A in B with the copy of
+% A in Q times A.  It imposes that identification and no other relations
+% between the two groups.
+%</webmath>
+%<webmath object="B" when="B*_A(Q\times A)" title="B, the part invisible to every MF target">
+% B has full MF radical: every homomorphism from B to every MF group is trivial.
+% It supplies the non-MF part of W_Q, but finite-matrix-limit representations
+% can see only the quotient Q.
+%</webmath>
+%<webmath object="Q" when="B*_A(Q\times A)" title="Q, the group that remains visible">
+% Q is any chosen countable group.  The construction adds the invisible group
+% B without changing any homomorphism into an MF target; the quotient map pi_Q
+% recovers Q from W_Q.
+%</webmath>
+%<webmath object="A" when="B*_A(Q\times A)" title="A, the cyclic subgroup used to join the groups">
+% A is generated by d.  The construction identifies the same A inside B and
+% inside Q times A.  Declaring d to be the identity then collapses B and the A
+% coordinate, leaving exactly Q.
+%</webmath>
+%<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="pi_Q, the quotient map from W_Q onto Q">
+% Pi_Q sends the entire B part and the A coordinate to the identity and keeps
+% the Q coordinate.  It reaches every element of Q, and its kernel is exactly
+% the normal subgroup generated by d.
+%</webmath>
+%<webmath object="Hom" when="\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T)" title="all homomorphisms into T">
+% Hom(Q,T) is the collection of multiplication-preserving maps from Q to T.
+% The displayed bijection says that every map W_Q to T comes from exactly one
+% map Q to T, so T detects no additional information in W_Q beyond Q.
+%</webmath>
+%<webmath object="ker" when="\ker\pi_Q=\normal d_{W_Q}" title="the elements erased by pi_Q">
+% The kernel of pi_Q consists of all elements of W_Q sent to the identity in Q.
+% The proposition proves that this is exactly the smallest normal subgroup of
+% W_Q containing d.
+%</webmath>
 \makeatletter
 \patchcmd{\abstract}{\item[\hskip\labelsep\scshape\abstractname.]}{\item[]}{}{\PackageError{self-compression}{Could not remove abstract heading}{}}
 \makeatother

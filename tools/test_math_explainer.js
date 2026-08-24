@@ -3,90 +3,67 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 
-global.window = {};
-global.document = {
-  readyState: 'loading',
-  addEventListener() {},
-};
+const tex = fs.readFileSync('non_mf_groups_exist.tex', 'utf8');
+global.window = { PAPER_TEX: tex };
+global.document = { readyState: 'loading', addEventListener() {} };
 global.MutationObserver = function MutationObserver() {};
 
 require('./math_explainer.js');
-
 const api = window.__cairnMathExplainer;
 assert.ok(api, 'math explainer API was not installed');
 
-function object(text, tex, context = '') {
-  return api.explainObject(text, tex, context);
+function source(object, formula) {
+  return api.sourceExplanation(object, formula);
 }
 
-assert.equal(object('Qd', '\\mathcal Q_{\\mathbf d}').name,
+const declarations = api.parseSourceExplanations(tex);
+assert.ok(declarations.length >= 25, 'the TeX source should carry the explanation registry');
+for (const declaration of declarations) {
+  assert.ok(declaration.object);
+  assert.ok(declaration.when);
+  assert.ok(declaration.name);
+  assert.ok(declaration.explanation.length >= 80,
+    `${declaration.name} needs a substantive explanation`);
+}
+
+assert.equal(source('Qd', '\\mathcal Q_{\\mathbf d}').name,
   'the norm matrix corona Q_d');
-assert.match(object('Qd', '\\mathcal Q_{\\mathbf d}').explanation,
-  /whole sequence of matrix sizes/);
-assert.equal(object('Mdn', 'M_{d_n}(\\C)').name, 'the n-th matrix algebra');
-assert.match(object('d', 'd=e_{02}(q)').explanation,
-  /nonidentity element.*e_02\(q\)/);
-assert.match(object('q', 'd=e_{02}(q)').explanation, /q = s₁t₁/);
-assert.equal(object('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,
+assert.match(source('Qd', '\\mathcal Q_{\\mathbf d}').explanation,
+  /bounded sequences of matrices.*operator-norm difference/);
+assert.equal(source('Mdn', 'M_{d_n}(\\C)').name,
+  'the finite matrices used at stage n');
+assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,
   'the MF radical of G');
-assert.match(object('RadMF', '\\Rad_{\\mathrm{MF}}(G)').explanation,
-  /every homomorphism.*norm matrix corona/);
-assert.equal(object('EL12', 'H=\\EL_{12}(R)').name,
-  'the elementary group of rank 12');
-assert.equal(object('e02', 'd=e_{02}(q)').name,
-  'the elementary matrix e_02');
-assert.equal(object('WQ', 'W_Q=B*_A(Q\\times A)').name,
-  'the group W_Q built over Q');
-assert.equal(object('πQ', '\\pi_Q\\colon W_Q\\longrightarrow Q').name,
-  'the quotient map π_Q');
-assert.equal(object('⋂d', '\\bigcap_{\\mathbf d}').name,
-  'the intersection over every matrix-size sequence');
-assert.equal(object('⋂π:G→U(Qd)',
-  '\\bigcap_{\\pi\\colon G\\to\\U(\\mathcal Q_{\\mathbf d})}').name,
-  'the intersection over every corona representation');
-assert.equal(object('⨁n', '\\bigoplus_nM_{d_n}(\\C)').name,
-  'the sequences that vanish');
-assert.equal(object('∗A', 'B*_A(Q\\times A)').name,
-  'gluing the two groups along A');
-assert.equal(object('H', '\\Rad_{\\mathrm{MF}}(H)=H').name,
-  'H, the group proved non-MF');
-assert.equal(object('G', 'K\\trianglelefteq G').name,
-  'G, the group being tested');
-assert.equal(object('L', 'uLu^{-1}\\le L').name,
-  'L, the subgroup compressed into itself');
-assert.equal(object('N', 'N\\trianglelefteq G').name,
-  'N, the subgroup being collapsed');
+assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(H)=H').name,
+  'the MF radical of H');
+assert.match(source('LF2', 'L_{\\F_2}(1,2)').explanation,
+  /split one free module into two copies.*recombine/);
+assert.match(source('d', 'd=e_{02}(q)').explanation,
+  /row 0, column 2.*not the identity/);
+assert.equal(source('πQ', '\\pi_Q\\colon W_Q\\longrightarrow Q').name,
+  'pi_Q, the quotient map from W_Q onto Q');
+assert.equal(source('∗A', 'W_Q=B*_A(Q\\times A)').name,
+  'joining the two groups along A');
 
-for (const syntax of ['(', ')', '[', ']', '{', '}', '⟨', '⟩', '‖', ',', '.']) {
-  assert.equal(object(syntax, 'f(x)=x'), null, `${syntax} must not be clickable`);
+for (const syntax of ['=', '(', ')', '[', ']', '{', '}', '⟨', '⟩', '‖', ',', '.']) {
+  assert.equal(source(syntax, 'f(x)=x'), null,
+    `${syntax} must not be clickable without an explicit TeX declaration`);
 }
-for (const unknown of ['x', 'Y', 'n', 'i', 'j']) {
-  assert.equal(object(unknown, 'x+y=z'), null,
-    `${unknown} must not receive a generic explanation`);
+for (const unknown of ['π', 'x', 'Y', 'n', 'i', 'j', 'G']) {
+  assert.equal(source(unknown, 'x+y=z'), null,
+    `${unknown} must not receive an inferred explanation`);
 }
-assert.equal(object('π', '\\pi(x)=y'), null,
-  'a map symbol without an actual displayed source and target is not annotated');
-assert.match(object('π',
-  '\\bigcap_{\\pi\\colon G\\to\\U(\\mathcal Q_{\\mathbf d})}\\ker\\pi').explanation,
-  /any homomorphism from G/);
-
-assert.match(api.explainFormula(
-  '\\mathcal Q_{\\mathbf d}=\\prod_nM_{d_n}(\\C)\\big/\\bigoplus_nM_{d_n}(\\C)'),
-  /bounded sequence.*operator-norm difference/i);
-assert.match(api.explainFormula('\\Rad_{\\mathrm{MF}}(H)=H'),
-  /every homomorphism.*every MF group/i);
-assert.match(api.explainFormula('uLu^{-1}\\le L'), /one-sided self-compression/);
-assert.match(api.explainFormula('d=e_{02}(q)'), /q is nonzero.*not the identity/i);
-assert.equal(api.explainFormula('x=y'), '');
 
 assert.equal(api.explainTerm('homomorphisms').name, 'homomorphism');
 assert.equal(api.explainTerm('MF groups').name, 'MF group');
+assert.match(api.explainTerm('Leavitt algebra').explanation,
+  /split one free module into two copies/);
 
-const source = fs.readFileSync(require.resolve('./math_explainer.js'), 'utf8');
-assert.doesNotMatch(source,
-  /Plain-language math|What it means here|How to read the formula|In this sentence|grouping mark|subscript d|ambient group/);
-assert.doesNotMatch(source, /math\.setAttribute\('tabindex'/);
-assert.match(source, /math-term-help/);
-assert.match(source, /openTerm/);
+const sourceCode = fs.readFileSync(require.resolve('./math_explainer.js'), 'utf8');
+assert.doesNotMatch(sourceCode,
+  /formulaExplanation|compoundObject|namedObject|localRole|scriptItem|scriptedTokenInfo|nearbyDefinition|grouping mark|subscript d|ambient group|measures failure|measures whether/);
+assert.doesNotMatch(sourceCode, /math\.setAttribute\('tabindex'/);
+assert.match(sourceCode, /parseSourceExplanations/);
+assert.match(sourceCode, /math-term-help/);
 
-console.log('math explainer: contextual object explanations passed');
+console.log(`math explainer: ${declarations.length} TeX-native explanations passed`);
