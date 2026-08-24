@@ -52,6 +52,8 @@ theorem actualCoronaMFResidual_fullMFRadicalCore_eq_top :
       (rho.comp (Subgroup.inclusion hKC))
     refine ⟨⟨y, hKC hy⟩, MonoidHom.mem_ker.mpr ?_, rfl⟩
     convert hkill using 1
+    apply congrArg rho
+    exact Subtype.ext rfl
   obtain ⟨y, hy, hxy⟩ := hle x.property
   have hy' : rho y = 1 := MonoidHom.mem_ker.mp hy
   have hyx : (y : fullMFRadicalCore G) = x := Subtype.ext hxy
