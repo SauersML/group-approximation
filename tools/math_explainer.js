@@ -257,7 +257,7 @@
     if (!anchor || !document.querySelector('.math-symbol-help')) return;
     var prompt = document.createElement('p');
     prompt.className = 'math-help-prompt';
-    prompt.textContent = 'Highlighted mathematical objects are clickable for an explanation of what they are and what they do here.';
+    prompt.textContent = 'Click highlighted math.';
     anchor.insertAdjacentElement('afterend', prompt);
   }
 
