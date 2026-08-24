@@ -330,10 +330,11 @@ theorem false_of_shadow_of_visible_exact_packet
 normally generating a finitely generated countable group, operator-norm MF
 invisibility is exactly universal operator-to-Hilbert--Schmidt invisibility. -/
 theorem finiteOrder_normalGenerator_mem_normMFResidual_iff_mem_opToHSShadowResidual
-    [Group.FG G] [Countable G] {a : G}
+    [Group.FG G] {a : G}
     (ha : IsOfFinOrder a)
     (hgen : Subgroup.normalClosure ({a} : Set G) = ⊤) :
     a ∈ normMFResidual G ↔ a ∈ opToHSShadowResidual G := by
+  letI : Countable G := countable_of_fg (inferInstance : Group.FG G)
   constructor
   · exact fun h ↦ normMFResidual_le_opToHSShadowResidual h
   · intro hshadow

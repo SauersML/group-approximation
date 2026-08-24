@@ -56,9 +56,10 @@ countable simple group containing a nonidentity finite-order element is MF
 exactly when one operator-norm asymptotic model separates every nonidentity
 element in normalized Hilbert--Schmidt norm. -/
 theorem simple_torsion_isOperatorMF_iff_hasFaithfulOpToHSAsymptoticModel
-    [Group.FG G] [Countable G] [IsSimpleGroup G]
+    [Group.FG G] [IsSimpleGroup G]
     (htors : ∃ a : G, a ≠ 1 ∧ IsOfFinOrder a) :
     IsOperatorMF G ↔ HasFaithfulOpToHSAsymptoticModel G := by
+  letI : Countable G := countable_of_fg (inferInstance : Group.FG G)
   constructor
   · intro hMF
     obtain ⟨a, ha, hfin⟩ := htors
@@ -98,11 +99,12 @@ theorem simple_torsion_isOperatorMF_iff_hasFaithfulOpToHSAsymptoticModel
 /-- **Simple torsion dichotomy, negative side.**  If such a group is not MF,
 then every homomorphism to every norm-matrix corona is the trivial map. -/
 theorem normMatrixCoronaHom_eq_one_of_simple_torsion_not_isOperatorMF
-    [Group.FG G] [Countable G] [IsSimpleGroup G]
+    [Group.FG G] [IsSimpleGroup G]
     (_htors : ∃ a : G, a ≠ 1 ∧ IsOfFinOrder a)
     (hnot : ¬ IsOperatorMF G) (X : ℕ → FiniteModel)
     (hX : ∀ n, 0 < Fintype.card (X n))
     (rho : G →* NormMatrixCoronaUnitary X) : rho = 1 := by
+  letI : Countable G := countable_of_fg (inferInstance : Group.FG G)
   have htop : coronaMFResidual G = ⊤ := by
     rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal
         (coronaMFResidual G) inferInstance with hbot | htop
@@ -119,12 +121,13 @@ theorem normMatrixCoronaHom_eq_one_of_simple_torsion_not_isOperatorMF
 operator-to-HS asymptotic model; the non-MF branch says all norm-corona
 homomorphisms are trivial. -/
 theorem simple_torsion_MF_or_all_corona_homs_trivial
-    [Group.FG G] [Countable G] [IsSimpleGroup G]
+    [Group.FG G] [IsSimpleGroup G]
     (htors : ∃ a : G, a ≠ 1 ∧ IsOfFinOrder a) :
     (IsOperatorMF G ∧ HasFaithfulOpToHSAsymptoticModel G) ∨
       (¬ IsOperatorMF G ∧
         ∀ (X : ℕ → FiniteModel) (_hX : ∀ n, 0 < Fintype.card (X n))
           (rho : G →* NormMatrixCoronaUnitary X), rho = 1) := by
+  letI : Countable G := countable_of_fg (inferInstance : Group.FG G)
   by_cases hMF : IsOperatorMF G
   · exact Or.inl ⟨hMF,
       (simple_torsion_isOperatorMF_iff_hasFaithfulOpToHSAsymptoticModel htors).mp hMF⟩
