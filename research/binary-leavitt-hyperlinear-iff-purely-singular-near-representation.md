@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: binary-leavitt-hyperlinear-iff-purely-singular-near-representation
+id: binary-leavitt-hyperlinear-iff-singular-near
 kind: claim
 title: Binary Leavitt hyperlinearity is exactly existence of a purely singular essentially free near representation
 distinct_from:
