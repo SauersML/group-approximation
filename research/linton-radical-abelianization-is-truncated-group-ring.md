@@ -8,6 +8,7 @@ distinct_from:
   perfect-two-generator-relation-module-not-cyclic: that is a *negative* statement about the relation module of a two-generator perfect group, obstructing one-relator compression; this is a *positive* computation of the relation-module quotient inside a group that already is one-relator. Opposite directions of the same Lyndon machinery.
   leavitt-degree-kernel-normally-generated-by-one-word: that asks for a word normally generating a degree kernel over the Leavitt unit group and is open; this computes an abelianization in a one-relator group and is closed. The shared vocabulary is "normal closure of one element" and nothing else.
   linton-shell-sofic: that asks whether `R ⋊ F₀` is sofic and is open; this computes `R_ab` and is closed. The computation is an input to reasoning about the shell — it separates the `k = 1` and `k > 1` regimes — but decides nothing about soficity.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that upgrades this isolated module computation to an embedding of the whole quotient `G/R'` in a finite-lamp wreath product and proves `E/R'` residually finite; this node by itself contains no such embedding or approximation conclusion.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -51,7 +52,13 @@ exactly `kZH`.  Hence
 
 ## What it is good for
 
-Three things, none of them a soficity proof.
+This computation alone is not a soficity proof, but its relation module is now
+the first layer of the stronger theorem
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]].  The distinction
+matters: this node only identifies an amenable quotient of `R`, whereas that
+theorem uses purity inside the full Magnus module to embed `G/R'` itself.
+
+Three consequences remain useful here.
 
 - **It splits the unresolved case into two regimes.**  `k = 1` gives a perfect
   radical; `k > 1` gives one whose abelianization is `k`-torsion.  In the

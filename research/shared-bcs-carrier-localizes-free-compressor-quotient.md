@@ -93,3 +93,22 @@ theorem isolated by `hs-steinberg-root-kernel-is-linear-sofic`, specialized
 to the finite corner ring above.  Once that decoder is supplied, `(BCL1)`
 gives the desired carrier localization without any further selector or
 infinite-kernel step.
+
+## Central-relator alternative and its density loss
+
+Replacing the conditional equations by the relation-centralized extension
+`F/[F,ker(theta)]` does make the adjoint action factor through the finite
+packet on each central-character diagonal block.  It does not supply the
+required carrier.  By
+`centralized-quotient-shadow-density-dichotomy`,
+an infinite central relation module has canonical diagonal-block density
+`o(d^2)`, while a finite central relation module makes the base image finite
+and destroys the proper self-copy.  Shrinking spectral boxes trades quotient
+accuracy for vanishing density.  Thus projective kernel phases do not replace
+the prescribed positive-density conditional decoder.
+
+Adding a Kazhdan source cannot repair this alternative.  By
+`kazhdan-relation-centralized-quotient-is-finite`, centralizing a relation
+kernel with finite quotient in any property-`(T)` source makes the entire
+centralized quotient finite.  Hence a Kazhdan correction step leaves no
+proper injective compressor on which to run the return argument.

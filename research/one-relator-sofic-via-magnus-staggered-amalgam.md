@@ -26,14 +26,15 @@ route covers every case that matters.
 
 ## Why this is kept alongside the shell route
 
-The two are different descriptions of the same difficulty, and neither is known
-to translate into the other.  [[linton-shell-sofic]] presents it as a semidirect
-product coming from the rational derived series; this presents it as an amalgam
-coming from the Magnus hierarchy.  A proof through either would settle the
-question, and the artifact's own recommendation is that a successful proof will
-probably have to explain why the nonamenable free-edge obstruction visible here
-is invisible there — so keeping both routes in the graph is not redundancy, it
-is the comparison the problem is asking for.
+The two are different descriptions of the same difficulty.
+[[linton-shell-sofic]] presents it as a semidirect product coming from the
+rational derived series; this presents it as an amalgam coming from the Magnus
+hierarchy.  The new theorem
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] gives their first
+exact bridge: first-order Fox information closes the quotient modulo `R'`.
+No bridge for the remaining nonabelian derived core is known.  A proof through
+either open route would still settle the question, so keeping both is the
+second-order comparison the problem is now asking for.
 
 ## Where the route is already complete
 

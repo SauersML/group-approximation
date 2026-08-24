@@ -6,6 +6,7 @@ title: Soficity of a one-relator group is equivalent to soficity of a finite rat
 distinct_from:
   residually-rationally-solvable-one-relator-sofic: that is the positive corollary in the case where the finite term is free, and it closes a whole class outright; this is the underlying equivalence, which decides nothing on its own and holds for every one-relator group including the unresolved ones.
   linton-radical-abelianization-is-truncated-group-ring: that computes the first homology of the radical as a module; this locates *where in the group* the soficity question lives and says nothing about homology.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that starts from this shell and proves its quotient by `R'` residually finite; this produces the shell and proves only the equivalence `G` sofic iff `E` sofic, without descending through the radical.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -75,7 +76,9 @@ unusable.
 
 It buys the exact shape of any counterexample: not residually rationally
 solvable, nontrivial infinitely generated radical, and the nonsoficity already
-present in `E`.  It does **not** continue from `E` to `R`: passing from a sofic
-`R` to a sofic `R ⋊ F₀` is not a permanence property anyone has, and the
-generic form of it is false — see
-[[sofic-semidirect-product-closure-fails]].
+present in `E`.  The subsequent theorem
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] now continues
+through the entire abelianized radical: `E/R'` is residually finite and `G/R'`
+is sofic.  It does **not** continue across `R'`.  Passing from a sofic `R'` and
+a sofic quotient to the whole semidirect product is not a valid generic
+permanence argument — see [[sofic-semidirect-product-closure-fails]].

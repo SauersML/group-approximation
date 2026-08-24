@@ -31,7 +31,8 @@ Rad_MF(K)=ker(pi)=normalClosure_K(d)                   (MUR3)
 ```
 
 for one explicit involution `d`.  The visible group `T` is finitely
-generated, residually a finite `2`-group, and linear in characteristic zero.
+generated, torsion-free, residually a finite `2`-group, and linear in
+characteristic zero.
 
 Precomposition with `pi` gives natural bijections
 

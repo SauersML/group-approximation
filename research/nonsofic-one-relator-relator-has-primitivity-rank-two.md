@@ -10,6 +10,7 @@ distinct_from:
   torsion-free-finitely-presented-non-mf: that is an existence statement about non-MF groups and is a root of this graph; this is a necessary-condition statement about nonsofic one-relator groups. Neither soficity nor one-relator presentation figures there, and MF does not figure here.
   torsion-free-higman-embedding: that is an embedding theorem placing recursively presented torsion-free groups inside finitely presented ones; this constrains the relator of a hypothetical nonsofic one-relator group. Both mention torsion-freeness and nothing else.
   degree-one-assembly-surjective-torsion-free: that is a surjectivity statement about degree-one assembly holding for every torsion-free group; this derives torsion-freeness (among other things) for a hypothetical nonsofic one-relator group. Torsion-freeness is that one's hypothesis and this one's conclusion; no assembly map appears here.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that constrains a hypothetical counterexample by showing all elements outside its derived Linton radical survive in a sofic quotient; this independently constrains its relator by primitivity rank and supplies torsion-freeness and local indicability.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -62,3 +63,10 @@ finiteness — is unavailable by construction, and where the group is
 simultaneously forbidden the rigidity that every known nonsofic group uses.
 Those two facts pull in opposite directions and are the reason the question is
 hard rather than merely open.
+
+Combined with
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]], the target is
+sharper still: a hypothetical counterexample has `pi(w) = 2` and any
+obstruction must survive inside the derived subgroup of its infinitely
+generated, normally one-generated Linton radical.  In the `k = 1` case that
+radical is already perfect.

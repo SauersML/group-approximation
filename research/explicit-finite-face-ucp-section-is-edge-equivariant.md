@@ -2,55 +2,67 @@
 rg: 2
 id: explicit-finite-face-ucp-section-is-edge-equivariant
 kind: claim
-title: The finite face of the triangle relator extension has an explicit ucp section that is exact on one edge
+title: Finite group quotients have explicit averaged ucp sections, relatively exact on one lifted subgroup
 artifacts:
   - research/artifacts/finite-relator-reservoir-compactness-2026-08-23.md
 distinct_from:
   triangle-relator-extension-admits-local-ucp-sections: that asks for ucp lifts of every finite-dimensional operator system of the whole colimit algebra; this supplies one in closed form for the single finite face `C^*(P_13)` and proves nothing about any operator system meeting the rest of the group.
   triangle-colimit-llp-reduces-to-relator-local-splitting: that is the equivalence identifying LLP of the colimit with local splitting; this constructs one explicit section of that extension over a finite subalgebra and is a fragment of the positive side, not a reformulation of it.
   position-window-ucp-sections-collapse-to-folner-vectors: that proves the same averaging shape cannot be run over the infinite colimit; this exhibits it working on the finite face, and the two are the same computation read at a finite and an infinite index set.
+  kernel-relator-forces-two-edge-ucp-section-gap: that proves no section of the triangle's finite face quotient can be arbitrarily close to the canonical lifts on both generating edges; this constructs a section exactly on either one edge.
 ---
 
-**ESTABLISHED.**  Work in the triangle setting of
-`triangle-colimit-llp-reduces-to-relator-local-splitting`: `G_0=P_12 *_(P_2)
-P_23`, `E=<P_1 u P_3>=P_1 *_(P_0) P_3 <= G_0`, `q:C^*(G_0)->>C^*(Lambda)`, and
-the finite group `P:=P_13`, whose image in `Lambda` is `P` itself, so that
-`C^*(P) subset C^*(Lambda)` is a finite-dimensional operator system (indeed a
-subalgebra).  Let `sigma:P->E` be any set section of the surjection
-`q_E:E->>P` (`sigma(1)=1`).  Define
+**ESTABLISHED.**  Let `p:H->>F` be any surjective homomorphism with `F`
+finite.  Let `p_*:C^*(H)->>C^*(F)` be the induced full group C-star quotient,
+and choose any set section `sigma:F->H` with `sigma(1)=1`.  Define
 
 ```text
-Theta(u_p) := |P|^(-1) sum_(x in P) u_(sigma(x))^* u_(sigma(xp)),
-                                     p in P.                 (FF1)
+Theta_sigma(u_g) := |F|^(-1) sum_(x in F)
+                    u_(sigma(x))^* u_(sigma(xg)),
+                                     g in F.                 (FF1)
 ```
 
 Then
 
 ```text
-(a) Theta extends to a ucp map C^*(P) -> C^*(E) subset C^*(G_0);
-(b) q o Theta = incl : C^*(P) -> C^*(Lambda);                (FF2)
-(c) if sigma is right P_1-equivariant, i.e. sigma(xh)=sigma(x)h for
-    all x in P, h in P_1, then Theta is a right C^*(P_1)-module map:
-    Theta(a b)=Theta(a) b for all a in C^*(P), b in C^*(P_1);
-    in particular Theta(u_h)=u_h for every h in P_1.
+(a) Theta_sigma extends to a ucp map C^*(F) -> C^*(H);
+(b) p_* o Theta_sigma = id_(C^*(F));                          (FF2)
+(c) if L<=F has a subgroup lift L_tilde<=H on which p is an
+    isomorphism, sigma may be chosen right-L-equivariantly, and then
+    Theta_sigma is a right C^*(L)-module map (using the lifted copy in
+    the range); in particular Theta_sigma(u_l)=u_(l_tilde).
 ```
 
-Such a `sigma` exists: the right `P_1`-orbits on `P` are the left cosets
-`xP_1`, `P_1` acts freely on `P`, so choose one representative per coset and
-propagate.
+The relative section exists by choosing one representative of every right
+`L`-coset and propagating through the lifted subgroup.
 
 Proof: `explicit-finite-face-ucp-section-proof`.
 
-**Scope, stated honestly.**  Existence of *some* ucp section over `C^*(P)` is
-not new and is not the point: `C^*(P)` is finite-dimensional, hence nuclear,
+**Triangle specialization.**  In the setting of
+`triangle-colimit-llp-reduces-to-relator-local-splitting`, take
+
+```text
+H=E=P_1 *_(P_0) P_3,       F=P_13,       p=q_E.
+```
+
+Both `P_1` and `P_3` are subgroup lifts.  Hence the section can be chosen to
+fix `P_1` exactly, or instead to fix `P_3` exactly.  These choices cannot in
+general be combined: `kernel-relator-forces-two-edge-ucp-section-gap` gives a
+quantitative obstruction detected by every nontrivial `n in ker q_E`.
+
+**Scope, stated honestly.**  Existence of *some* ucp section over `C^*(F)` is
+not new and is not the point: `C^*(F)` is finite-dimensional, hence nuclear,
 so Choi--Effros already lifts every ucp map out of it.  The content is that the
-section is written in closed form from a set section, that its positivity proof
+section is written in closed form for every finite group quotient, that its
+positivity proof
 is a single Hilbert-module matrix coefficient rather than an abstract lifting
 theorem, and that `(c)` makes it **exact on one edge**: all of the
 incompatibility with the ambient algebra is pushed onto the `P_3` side.  This
 is the precise form of the "one-edge defect" idea, and it is the natural base
 case for any inductive attack on
-`triangle-relator-extension-admits-local-ucp-sections`.
+`triangle-relator-extension-admits-local-ucp-sections`.  The kernel-relator
+gap shows this base case is intrinsically one-sided, not merely presented that
+way for convenience.
 
 **Why it does not globalize, and why that is consistent.**  `(FF1)` is exactly
 an orthogonal-position/window section in the sense of

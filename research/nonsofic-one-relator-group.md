@@ -14,6 +14,7 @@ distinct_from:
   linton-shell-sofic: that is a positive statement about the shell of every one-relator group; this asks for a single one-relator group that is nonsofic. Establishing this refutes that; they are opposite answers reached through different objects.
   linton-radical-sofic: that concerns the radical alone and would be one input to a positive answer; this asks for the whole group to fail, and by the failure of semidirect closure a sofic radical does not prevent it.
   linton-radical-abelianization-is-truncated-group-ring: that is a closed homology computation inside such a group; this asks for the group to exist at all. The computation constrains any witness without producing one.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that proves every element outside `R'` survives in a concrete sofic quotient and `E/R'` is residually finite; this asks for a witness whose obstruction must evade all those first-order quotients.
   magnus-staggered-chain-sofic: that is the positive amalgamation theorem in the Magnus picture; this is the negative existence claim. Attempt 6 here proposes breaking exactly that chain, so they meet, but as opposite answers.
   boone-base-group-two-generator-one-relator: that identifies a specific base group of the Boone tower as one-relator (on three generators) and is established; this asks for a one-relator group with a nonsoficity property that base group does not have and cannot acquire from the tower, since the tower adds relators.
 artifacts:
@@ -34,6 +35,15 @@ rationally solvable, so its Linton radical `R = G_Q^(ω) = <<r>>_G` is nontrivia
 and (in the torsion-free case) infinitely generated; and by
 [[one-relator-soficity-localizes-at-rational-derived-stage]] the nonsoficity is
 already present in `E = G_Q^(n) ≅ R ⋊ F₀` for some `n <= |w|`.
+
+There is now one further exact constraint.  By
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]], `G/R'` is sofic,
+`E/R'` is residually finite, and every element outside `R'` is separated by a
+concrete sofic quotient.  Thus no candidate obstruction detectable by an
+abelian, solvable, rational-derived, or first-order Fox quotient can witness
+nonsoficity.  This does not assert that `R'` itself is nonsofic; it says the
+remaining failure, if any, must be action-sensitive and invisible after
+quotienting by `R'`.
 
 ## The structural tension that makes this hard
 
@@ -91,3 +101,8 @@ generated subgroup surjecting onto `Z`.
    but no candidate inequality is in hand, and the whole point of the local
    indicability constraint is that the Kun--Thom style of inequality is
    unavailable here.
+7. **Iterate relation modules or solvable lamps.**  *Closed as a route to the
+   perfect core.*  The mod-`k` Magnus map already has exact kernel `R'`.  When
+   `k = 1`, `R = R'` is perfect, so every solvable quotient of the radical is
+   trivial.  Any negative witness must therefore use genuinely nonabelian
+   second-order information and its coupling to the free shell action.

@@ -21,6 +21,37 @@ reduction package plus a set of obstructions:
   extension theorem and generic semidirect-product closure — are both
   unavailable, the second now provably false.
 
+## 2026-08-24 addendum — Fox--Magnus descent through the derived radical
+
+The follow-up argument now recorded in
+`one-relator-fox-magnus-descent-to-derived-linton-radical` is a genuine advance
+over this audit, but still not a resolution of Pestov 4.9.  With the same
+Linton data, the Magnus relation sequence
+
+    0 -> N/N' -> (ZH)^d -> I_H -> 0
+
+has torsion-free additive cokernel.  Consequently its relation submodule is
+`k`-pure, and reducing the Fox coordinate modulo `k` gives an exact kernel
+calculation
+
+    ker(F -> ((Z/kZ)[H])^d semidirect H) = N'W.
+
+After passage to `G`, the kernel is precisely `R'`.  Thus
+
+    G/R' embeds in ((Z/kZ)^d) wr H
+
+and is sofic, while restriction to the finite rational-derived shell gives a
+residually finite quotient `E/R'`.  The proof is written in full in the claim
+and its proof route; it uses the source-verified Linton and GKP inputs already
+present in this graph and no generic extension-closure assertion.
+
+This addendum also corrects the frontier described below.  The abelianized
+lamp analogy is no longer merely an obstruction calculation: it controls the
+whole quotient modulo `R'`.  The unresolved boundary is now exactly the
+nonabelian derived core, together with its free-shell action.  In particular,
+the `k = 1` case is the essential perfect-core regime, where `R = R'` and every
+solvable lamp quotient of the radical is trivial.
+
 ---
 
 ## A. Citation verification status

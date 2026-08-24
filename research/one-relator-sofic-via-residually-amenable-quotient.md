@@ -45,3 +45,10 @@ which is exactly why
 [[one-relator-soficity-localizes-at-rational-derived-stage]] stops at `E` and
 not at `R`.  The last step, from the finite stage down to the transfinite one, is
 the step this withdrawn theorem would have supplied and nothing else does.
+
+Fox--Magnus descent now gives a different, valid quotient:
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] embeds `G/R'` in
+a sofic wreath product and makes `E/R'` residually finite.  That advance does
+not revive this route: these quotients are sofic or residually finite, not
+amenable in general, so the only extension permanence available here still
+does not apply.

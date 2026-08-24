@@ -43,12 +43,15 @@ requirement is vacuous.
 It is enough to choose `N` once so that
 
 ```text
-(1+eta beta/M)^N/4>1.                                 (FAT2)
+(1+eta beta/M)^N/4>1/2.                               (FAT2)
 ```
 
 Canonical separation of the nontrivial involution gives
 `tau(Q_-)->1/2`; the Pauli `B`-half then gives `tau(Q_empty)->1/4` in the
-ambient normalized trace.  This is the factor in `(FAT2)`.  The Clifford
+ambient normalized trace.  Every actuator preserves `Q_-`, so every reached
+carrier has asymptotic trace at most `1/2`; this is the right side of
+`(FAT2)`.  Equivalently it is enough that
+`(1+eta beta/M)^N>2`.  The Clifford
 half-selector is unnecessary: `(MFA1a)` already names the maximal atom as
 an index-two Reynolds surplus and retains the stronger constant `beta/M`.
 Thus neither an infinite address register, a reusable escape word, nor a

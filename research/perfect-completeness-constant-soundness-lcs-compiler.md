@@ -54,16 +54,20 @@ tracial/non-`R^U` LIN instance itself with the existence of a finitely
 presented nonhyperlinear group; it is an endpoint equivalence, not a generic
 BCS-to-LCS reduction.
 
-Slofstra's solution-group embedding theorem (arXiv:1606.03140, Theorem 3.1)
-also starts one step too late.  Its input is a finitely presented **group**
-with a specified central involution, and its output is a solution group into
-which that group embeds while preserving the involution.  A 2-CSP/BCS algebra
+`slofstra-solution-group-embedding-preserves-marked-involutions` also starts
+one step too late.  Its input is a finitely presented **group** with a
+specified central involution, and its output is a solution group into which
+that group embeds while preserving the involution; selected source
+involutions may moreover be made literal LCS variables.  A 2-CSP/BCS algebra
 is presented instead by vanishing joint spectral projections.  The theorem
 does not convert those additive projection relations into group relators.
-Moreover, an embedding preserves exact nontriviality and lets exact target
-representations restrict to the source group, but by itself supplies no
-decoder from almost representations to a near-perfect CSP strategy.  Thus
-the Culf--Mastel soundness gap cannot be fed directly into the theorem.
+The fixed-word restriction argument in
+`marked-approximate-radical-survives-solution-group-embedding` shows exactly
+what approximation data the embedding *does* preserve: an approximate-radical
+property already proved for the source sign transfers to the solution-group
+sign.  It does not manufacture that property or decode almost group
+representations into near-perfect CSP strategies.  Thus the Culf--Mastel
+soundness gap cannot be fed directly into the theorem.
 
 The exact remaining bridge can therefore be stated without a uniform gap.
 For the Culf--Mastel instance `B_M`, construct effectively a finitely
@@ -81,7 +85,9 @@ soundness theorem, so `j_M` is trivial in approximate representations.
 Slofstra's effective embedding can then turn `(G_M,j_M)` into an LCS family
 satisfying `(PC1)--(PC2)`: a hypothetical separated approximate
 representation sequence of the solution group restricts, through the fixed
-embedding words, to one of `G_M`.  This mark-relative CSP-to-group
+embedding words, to one of `G_M`, precisely as formalized in
+`fixed-word-restriction-transfers-approximate-radical-proof`.  This
+mark-relative CSP-to-group
 ultraproduct decoder--equivalently a direct perfect LCS compiler--is the
 missing theorem.  None of the three cited published reductions supplies it.
 
@@ -99,7 +105,11 @@ This does **not** establish the present LCS claim.  Repeated occurrences of a
 Boolean variable now demand equality of one spectral projection of two
 qutrit clocks, not equality of the clocks themselves.  Literal group-algebra
 equality is too strong, commuting finite-phase auxiliaries remain affine,
-and `qutrit-psync3-tensor-closure-obstruction` refutes even the proposed
+and `fixed-central-phase-scalar-profiles-form-coset-subgroup` shows that
+arbitrary noncommuting finite-phase auxiliaries do not change the scalar
+boundary: exact profiles in one fixed central-character sector are still a
+coset subgroup.  In particular,
+`qutrit-psync3-tensor-closure-obstruction` refutes even the proposed
 noncommutative complement-flexible
 `qutrit-fixed-space-projector-synchronizer`.  The remaining qutrit output is
 the five-edge overlap normal form

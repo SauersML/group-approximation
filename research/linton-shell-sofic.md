@@ -8,6 +8,7 @@ distinct_from:
   linton-radical-sofic: that asks for soficity of the radical `R` alone; this asks for soficity of `R ⋊ F₀`, which does not follow from it, because semidirect closure fails in general.
   one-relator-soficity-localizes-at-rational-derived-stage: that is the established reduction producing this shell and is closed; this is the open statement about the shell it produces.
   residually-rationally-solvable-one-relator-sofic: that closes the case `R = 1`, where the shell is free and soficity is immediate; this is the statement in the remaining case, where the shell is a genuine semidirect product and nothing is immediate.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that proves the quotient shell `E/R'` residually finite and embeds `G/R'` in a finite-lamp wreath product; this asks for the full shell, including the nonabelian derived core.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -36,6 +37,11 @@ group".
   [[linton-radical-abelianization-is-truncated-group-ring]] gives
   `R_ab ≅ (Z/kZ)[G/R]`, splitting the problem into a perfect regime (`k = 1`)
   and a bounded-exponent regime (`k > 1`).
+- The entire first-order quotient is now controlled:
+  [[one-relator-fox-magnus-descent-to-derived-linton-radical]] proves
+  `E/R'` residually finite and embeds `G/R'` in
+  `((Z/kZ)^d) wr (G/R)`.  Thus the open shell problem begins exactly at the
+  derived core `R'`.
 - The splitting `α` comes from the rational derived series, not from an
   arbitrary choice, so it carries whatever coherence the one-relator origin
   imposes on the conjugates of `r`.
@@ -63,16 +69,23 @@ group".
    in the sense a semidirect-product theorem consumes.  No bridge between the
    two notions was found for Linton radicals, and inventing one is a research
    problem rather than a translation.
-4. **Realize `R` as a lamp group and use halo permanence.**  *Dies on support
-   coupling.*  `R = <<r>>_G` invites reading it as a restricted direct sum of
+4. **Realize `R` as a lamp group and use halo permanence.**  *Closed modulo
+   `R'`, and blocked beyond it.*  `R = <<r>>_G` invites reading it as a
+   restricted direct sum of
    conjugate copies indexed by `H = G/R`, with `H` permuting coordinates — the
    exact shape halo-product theorems want.  But the relator orbit couples the
-   coordinates: a finite set of orbit relations reproduces the staggered
-   multi-relator windows of Magnus theory, and the intersection/functoriality
-   axioms a halo product needs are not automatic for them.  The analogy
-   repackages [[magnus-staggered-chain-sofic]] rather than avoiding it.
+   coordinates nonabelianly.  Modulo `R'`, purity of the Magnus relation module
+   removes that coupling and gives the explicit finite-lamp embedding above.
+   No analogous second-order decomposition of `R'` is known, so applying the
+   lamp analogy to the whole radical still repackages
+   [[magnus-staggered-chain-sofic]] rather than avoiding it.
 5. **A local structure theorem on `R`.**  *Deferred.*  It would suffice that
    every finitely generated subgroup of `R` lie in a sofic subgroup drawn from a
    class closed under directed unions.  No such theorem is known, and the
    obvious candidate classes (free, residually finite) are not obviously
    available for a rationally perfect infinitely generated radical.
+
+The new quotient does not license an extension shortcut.  Even if `R'` were
+shown sofic abstractly, `E/R'` is residually finite rather than amenable, and
+sofic-by-sofic extension closure is false.  A completion must preserve the
+`F0`-action while approximating the nonabelian core.

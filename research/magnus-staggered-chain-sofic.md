@@ -4,7 +4,8 @@ id: magnus-staggered-chain-sofic
 kind: claim
 title: The staggered Magnus chain of a one-relator kernel is sofic
 distinct_from:
-  linton-shell-sofic: that is the rational-derived picture of the same difficulty — a semidirect product of the radical by a free group; this is the Magnus picture — a bi-infinite amalgam over free edge groups. They are two descriptions of the same complexity, and no translation between them is known, so a proof of either is not a proof of the other.
+  linton-shell-sofic: that is the rational-derived picture of the same difficulty — a semidirect product of the radical by a free group; this is the Magnus picture — a bi-infinite amalgam over free edge groups. Fox--Magnus descent now links their first-order quotients, but no second-order translation across `R'` is known, so a proof of either open claim is still not a proof of the other.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that uses the relation module to close the quotient modulo `R'`; this asks for soficity of the full bi-infinite nonabelian chain beyond exactly that first-order boundary.
   one-relator-groups-sofic: that is the question in full; this is the specific amalgamation theorem that would close it through the Magnus hierarchy, and is strictly weaker than closure under amalgamation over arbitrary free subgroups.
   sofic-radical-soficization: that identifies the sofic radical as the kernel of soficization, a construction applied to an arbitrary group; this is an amalgamation statement about a specific bi-infinite chain of one-relator pieces, and no radical or soficization appears in it.
 artifacts:
@@ -72,3 +73,10 @@ a much smaller class, and the one-relator origin is the only leverage available.
    amalgam violate a rigidity inequality — the shape of attack in
    [[nonsofic-one-relator-group]] attempt 6.  No candidate inequality exists, and
    local indicability rules out the Kun--Thom style of one.
+6. **Pass to first-order Fox lamps.**  *Completed, but not a completion of this
+   claim.*  [[one-relator-fox-magnus-descent-to-derived-linton-radical]] shows
+   that the mod-`k` Magnus map has kernel exactly `R'` in the Linton picture and
+   gives a finite-lamp wreath embedding of the quotient.  The free-edge
+   coupling that remains here is therefore genuinely second-order and cannot
+   be removed by iterating abelian relation modules in the `k = 1` perfect
+   regime.

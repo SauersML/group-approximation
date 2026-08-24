@@ -10,6 +10,7 @@ distinct_from:
   hyperlinear-implies-sofic: that is Pestov's Question 3.4 in the affirmative and concerns hyperlinear groups; this is his Question 4.9 and concerns one-relator presentations. Neither is known to bear on the other.
   pestov-question-5-3-negative: that is Pestov's Question 5.3, about essentially free near actions, and it is closed negatively by this development; this is his Question 4.9 and is untouched by it.
   q3-4-resolved: that is the program goal — Pestov's Question 3.4, resolved either way, about hyperlinear groups — and admits exactly two answer routes by construction; this is his Question 4.9, a single directional statement about one-relator groups, with ordinary routes and a separate negation claim. Neither question is known to bear on the other.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that proves every one-relator group sofic only after quotienting by the derived Linton radical and gives a new positive class when `R' = 1`; this asks for the remaining nonabelian core as well.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -29,14 +30,21 @@ claim [[nonsofic-one-relator-group]].
   one-relator group there is an `n <= |w|` with `G` sofic **iff** `E = G_Q^(n)`
   sofic, and `E` is free-by-(rationally perfect).  So the remaining content of
   this claim is exactly [[linton-shell-sofic]].
+- [[one-relator-fox-magnus-descent-to-derived-linton-radical]] — the whole
+  quotient `G/R'` embeds in a finite-lamp wreath product and is sofic, while
+  `E/R'` is residually finite.  In particular
+  [[one-relator-abelian-linton-radical-sofic]] closes the class `R' = 1`.
 - [[nonsofic-one-relator-relator-has-primitivity-rank-two]] — any
   counterexample has `π(w) = 2`, so is torsion-free and locally indicable.
 
 ## Attempts
 
-1. **Reduce to the Linton shell and prove the shell sofic.**  *Live*, recorded
+1. **Reduce to the Linton shell and prove the shell sofic.**  *Live, with its
+   first-order layer closed*, recorded
    as `one-relator-sofic-via-linton-shell`.  The reduction is done; the shell is
-   [[linton-shell-sofic]] and is where all the difficulty now sits.
+   [[linton-shell-sofic]].  Its quotient by `R'` is residually finite; all
+   remaining difficulty sits in an action-compatible, genuinely nonabelian
+   approximation of the derived core.
 2. **Magnus induction on relator length.**  *Stalls, and the stall is precise.*
    For `χ : G ↠ Z` with `t`-exponent-sum zero, `ker χ` is a bi-infinite amalgam
    of shorter one-relator pieces `B_i` over free Magnus subgroups `C_i`, and
@@ -68,3 +76,8 @@ claim [[nonsofic-one-relator-group]].
    operator-algebraic or homological approximation is not an approximation by
    symmetric groups, and treating a similarly-named theorem as a bridge would
    be exactly the error this graph exists to prevent.
+
+First-order Fox, abelian, solvable, and rational-derived iterations are no
+longer live completion strategies in the perfect-core regime.  Their maximal
+descent is the exact kernel `R'` computed above; when `k = 1`, `R = R'` is
+already perfect and every solvable lamp quotient is trivial.

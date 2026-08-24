@@ -36,6 +36,7 @@ d_(sigma,i)s_(sigma,i)=s_(sigma,i),
 a_(sigma,i)sbar_(sigma,i)=sbar_(sigma,i),
 sbar_(sigma,i)d_(sigma,i)=sbar_(sigma,i),
 d_(sigma,i)q_sigma=q_sigma d_(sigma,i)=0,               (FAR1)
+q_- d_(sigma,i)=d_(sigma,i)q_-=d_(sigma,i),
 q_(sigma i)=q_sigma+d_(sigma,i).                        (FAR2)
 ```
 
@@ -60,6 +61,11 @@ For the maximal type, `(MFA1)` turns `(FAR3)` into the exact supercritical
 tree recurrence.  Thus the coefficient presentation already contains all
 the desired payload-conditioned placement; no address register or
 simultaneous routing of the `M` types is needed.
+
+The extra support relation in `(FAR1)` keeps every child below `q_-`.
+Starting at trace `1/4`, the terminal contradiction therefore uses the
+marked-sector capacity `1/2`; the required fixed depth satisfies
+`(1+beta/M)^N>2` in the exact coefficient model.
 
 The presentation has the required exact finite-tracial consistency model.
 In the perfect BCS model every forbidden `P_i` is zero.  Set every

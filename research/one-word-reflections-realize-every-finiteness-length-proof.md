@@ -2,11 +2,11 @@
 rg: 2
 id: one-word-reflections-realize-every-finiteness-length-proof
 kind: route
-title: Symmetrize a Stallings-Bieri subdirect product and lift its finite coordinate orbits
+title: Lift a Stallings-Bieri subdirect product through its coordinate orbits
 target: one-word-reflections-realize-every-finiteness-length
 requires:
   - finite-orbit-subgroups-inherit-internal-mf-reflections
-  - finite-wreath-lift-of-internal-mf-reflection
+  - perfect-mf-reflection-over-residually-p-actor
 ---
 
 Let
@@ -30,29 +30,18 @@ arXiv:2506.19195, for the homotopical formulation).  The projection of `S_n`
 onto every `F_2` factor is onto: prescribe an element in one factor and cancel
 its `chi_n`-value with a power of a generator in a different factor.
 
-The cyclic group `C_n` permutes the factors of `R_n`, preserves `chi_n`, and
-therefore normalizes `S_n`.  Define
+Set
 
 ```text
-T_n=S_n semidirectProduct C_n.                           (FLP1)
+T_n=S_n.                                                 (FLP1)
 ```
 
-Finite-index invariance of `F_j` and `FP_j` shows that `T_n` is still of type
-`F_(n-1)` but not `FP_n`.  It is residually finite because `S_n` is a subgroup
-of the residually finite group `R_n` and `T_n` is a finite extension.
-The product `R_n` is linear in characteristic zero, hence so is `S_n`.
-Finite extensions of characteristic-zero linear groups are linear, for
-example by inducing a faithful representation from the finite-index
-subgroup, so `T_n` is linear in characteristic zero.
+The product `R_n` is torsion-free, residually `2`, and linear in
+characteristic zero, and all three properties pass to subgroups.  Hence
+`T_n` has these properties without any finite extension.
 
-Take the product of `n` internal free reflections and adjoin the cyclic block
-permutation.  This is the finite wreath lift with visible quotient
-
-```text
-R_n semidirectProduct C_n.
-```
-
-Let `K_n` be the preimage of `T_n`.  The finite-orbit subgroup theorem gives
+Take the product of `n` internal free reflections, with visible quotient
+`R_n`, and let `K_n` be the preimage of `T_n`.  The finite-orbit subgroup theorem gives
 all target-factorization, closure, residual, and completion formulas.  It
 also gives finite generation because `T_n` is finitely generated and its
 projection onto each free factor is surjective.
@@ -64,10 +53,13 @@ target-factorization bijections preserve both dimension and field, however,
 so its full finite-dimensional representation theory is exactly the pullback
 of that of the characteristic-zero linear group `T_n`.
 
-The actor `S_n` moves the identity coordinate through every coordinate inside
-each of the `n` base families.  The cyclic actor `C_n` permutes those
-families transitively.  Hence one seed involution normally generates the
-entire base, proving `(FL2)`.
+The actor `T_n` moves the identity coordinate through every coordinate inside
+each of the `n` base families.  The diagonal product of one seed involution
+from each family normally generates the entire base by the coordinate
+isolation argument in the finite-orbit theorem, proving `(FL2)` without
+altering the visible quotient.  The base is perfect, so
+`perfect-mf-reflection-over-residually-p-actor` with `p=2` gives the
+finite-`2`, nilpotent, solvable, lower-central, and derived-series assertions.
 
 An infinite virtually free group is of type `F_infinity`; thus `(FL3)` rules
 out virtual freeness.  Muller--Schupp then rules out a context-free word

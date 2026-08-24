@@ -9,6 +9,9 @@ distinct_from:
   non-rf-kazhdan-group-with-llp-full-c-star-algebra: that asks for existence of any non-RF Kazhdan group whose full algebra has the LLP; this asserts a local ucp-splitting property of one concrete C*-extension of a virtually free group's full algebra, mentions neither property (T) nor residual finiteness, and implies the hole only through the established equivalence node and the recorded lattice properties.
   triangle-colimit-llp-reduces-to-relator-local-splitting: that is the established equivalence (LLP of the colimit iff local splitting); this is the open positive side of that equivalence at the Kac--Moody instances, which the equivalence deliberately does not decide.
   maslov-sector-tracial-generator-ucp-liftability: that asks for tracial ucp lifts of generators across the nonchordal Deligne presentation in the Maslov sector; this asks for local ucp sections of a relator extension over a virtually free group, with no trace, no sector and no metaplectic data.
+  kernel-relator-forces-two-edge-ucp-section-gap: that quantitatively refutes the canonical-two-faces plus repaired-third-face strategy; this permits noncanonical kernel-ideal corrections on all faces and asks whether such simultaneous balancing exists.
+  point-norm-approximate-ucp-sections-close-to-exact: that is the general closure lemma allowing approximate local right inverses; this asks for those approximants for every finite-dimensional system of the concrete triangle quotient.
+  operator-system-face-colimit-need-not-have-concrete-group-order: that disproves a formal face-colimit identification already for the two-axis cross in Z^2; this asks whether the concrete triangle nevertheless has locally liftable matrix order by a nonformal balancing construction.
 ---
 
 OPEN CLAIM.  There is an infinite finitely presented simple Kazhdan
@@ -118,6 +121,62 @@ Ioana--Spaas--Wiersma mechanism), per
   and the boundary between the two cases is exactly finiteness of the
   index set.  Any surviving construction must use nonorthogonal,
   off-fibre interference.
+- **The finite third face is solved exactly, but cannot close the cycle by
+  itself (2026-08-24).**
+  `explicit-finite-face-ucp-section-is-edge-equivariant` now records the
+  general finite-quotient formula
+
+  ```text
+  Theta(u_g)=|P_13|^(-1) sum_x
+             u_(sigma(x))^* u_(sigma(xg)).
+  ```
+
+  It can fix `P_1` exactly, or fix `P_3` exactly.  This is the strongest
+  possible one-edge statement.  If `n=a_1...a_L` is any nontrivial reduced
+  word in `N`, then
+  `kernel-relator-forces-two-edge-ucp-section-gap` proves that every ucp
+  section `T:C^*(P_13)->C^*(E)` satisfies
+
+  ```text
+  max_j ||T(u_(q(a_j)))-u_(a_j)|| >= 2/L^2.                 (TL1)
+  ```
+
+  The proof accumulates Stinespring multiplicative-domain defects around the
+  kernel cycle and uses `||1-u_n||=2`.  Hence Boca amalgamation may close the
+  `P_12--P_13` side with `P_1` fixed or the `P_13--P_23` side with `P_3`
+  fixed, but no increasingly accurate choice of the finite-face section can
+  make the third edge compatible while the other two face lifts remain
+  canonical.  This eliminates the one-face completion, not the claim.
+- **The exact reduced analytic target is simultaneous triangular balancing.**
+  By `point-norm-approximate-ucp-sections-close-to-exact`, it is enough, for
+  every finite-dimensional operator system `S subset C^*(Lambda)` and every
+  `epsilon>0`, to construct a ucp map
+
+  ```text
+  s_epsilon:S->C^*(G_0),
+  ||q o s_epsilon-incl_S|| <= epsilon.                       (TL2)
+  ```
+
+  The point-norm closedness of liftable ucp maps then gives an exact local
+  section.  In view of `(TL1)`, a construction of `(TL2)` cannot keep the
+  `P_12` and `P_23` face lifts canonical and repair only `P_13`.  Its
+  kernel-ideal corrections must move the `P_12`, `P_23`, and `P_13` matrix
+  orders together while leaving their quotient images fixed.  This is the
+  **simultaneous three-face matrix-order balancing problem**.  The kernel
+  relator does not contradict such a section: its lifted edge values may be
+  `O(1)` away from the canonical group unitaries inside `I_N`, and complete
+  positivity can store the cyclic holonomy there.
+- **The operator-system colimit shortcut is also nonformal.**
+  `operator-system-face-colimit-need-not-have-concrete-group-order` records the
+  2026 operator-system calculation for the cross
+  `Delta={(0,0),(+-1,0),(0,+-1)} subset Z^2`: the universal coproduct of the
+  two one-axis sums-of-squares systems has C-star envelope `C^*(F_2)`, whereas
+  the concrete Fourier system has C-star envelope `C^*(Z^2)`.  Thus the
+  canonical universal-to-concrete map is not a complete order embedding; an
+  extra factorisation property is essential.  Consequently the triangle's
+  cyclic matrix order cannot be obtained merely by gluing the already known
+  finite face orders.  The required theorem must use the specific triangular
+  relator ideal, not only the categorical colimit.
 - **The hole now has one live route (2026-08-23).**
   `local-ucp-sections-from-finite-relator-reservoir` reduces it to
   `finite-relator-reservoir-repairs-every-fd-packet`: a bounded

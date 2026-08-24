@@ -5,6 +5,8 @@ kind: claim
 title: The Slofstra involution survives a sofic image
 invalidates: [slofstra-solution-group-collision]
 distinct_from:
+  slofstra-solution-group-embedding-preserves-marked-involutions: That is the general exact wagon-wheel embedding theorem and makes no approximation claim; this analyzes the particular older Higman-based source/output sign and proves that its exact finite-dimensional invisibility does not survive approximate permutation models.
+  marked-approximate-radical-survives-solution-group-embedding: That conditionally transfers an approximate-radical sign already present in the source; this proves the required hypothesis fails for the particular Slofstra sign used in the older Tsirelson separation.
   literal-clifford-ce-model: Same shape of elimination for a different candidate — that one shows the literal non-MF mark has a Connes-embeddable detector and is visible in a sofic group; this one shows Slofstra's involution J is visible in a permutation ultraproduct. Both remove a candidate from the sofic-radical half of a collision, by different constructions in different groups.
   sofic-radical-hyperlinear-survivor: That asks for a word IN the sofic radical with a hyperlinear detector; this proves one specific candidate word is NOT in the sofic radical, so it is an elimination rather than an instance.
   sofic-radical-soficization: That is a general structure theorem about Rad_sof of an arbitrary countable group — functoriality, soficity of the quotient, and Rad_sof trivial iff sofic — naming no group and asserting nothing about any particular element. This is a single explicit non-membership in one named group, proved by constructing one permutation-ultraproduct model. Note it does NOT follow from that theorem's third clause: Theta is not claimed faithful, so J is shown outside Rad_sof(S) without deciding whether S itself is sofic.
@@ -64,3 +66,9 @@ side.
 This says nothing about whether `S` is sofic, and nothing about
 `hyperlinear-nonsofic-group`. `Theta` is not asserted to be faithful — only
 `Theta(J) != 1` is needed and only that is proved. It removes one candidate.
+
+In particular, applying the exact wagon-wheel embedding theorem to the
+Higman/HNN source from the older Tsirelson-separation proof cannot satisfy the
+hypothesis of
+`marked-approximate-radical-survives-solution-group-embedding`: the resulting
+solution-group sign is explicitly separated in a permutation ultraproduct.

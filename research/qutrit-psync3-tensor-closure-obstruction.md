@@ -5,6 +5,7 @@ kind: claim
 title: Tensor closure refutes complement-flexible qutrit projector synchronization in one nontrivial central sector
 distinct_from:
   qutrit-fixed-space-projector-synchronizer: that proposed the now-refuted PSync_3 endpoint.
+  fixed-central-phase-scalar-profiles-form-coset-subgroup: that classifies every exact scalar order-three interface profile set as an affine coset; this records the explicit four-profile tensor product that refutes the particular qutrit synchronizer.
 ---
 
 **ESTABLISHED NO-GO.**  No ordinary-group gadget can satisfy both clauses of
@@ -54,3 +55,9 @@ that sector necessarily are.  Hence adding noncommuting auxiliaries, a finite
 packet, a cyclic sum-of-squares certificate, or more relators cannot repair
 the proposed endpoint without weakening its exact completeness or changing
 the carrier/sector architecture.
+
+This is also the concrete `m=3` instance of
+`fixed-central-phase-scalar-profiles-form-coset-subgroup`: the admissible
+scalar fixed-projector-equality profiles do not form a coset in `F_3^2`, so
+their exact group-representation closure necessarily contains a forbidden
+profile.

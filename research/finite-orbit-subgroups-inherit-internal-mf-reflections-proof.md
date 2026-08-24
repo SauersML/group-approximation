@@ -29,6 +29,23 @@ generating set of `U` there.  Conjugation by lifts of generators of `S`
 reaches every coordinate in the orbit.  Under `(FOS6)`, these finitely many
 base generators together with generators of `S` generate `K_S`.
 
-A fixed involution normally generates `U`.  One copy in each `S`-orbit
-therefore normally generates all coordinate groups in that orbit, giving
-the bound `(FOS7)`.
+A fixed involution `d` normally generates the nonabelian simple group `U`.
+Choose an orbit representative `x_O` for every `S`-orbit and put
+
+```text
+delta_S=product_O d_(x_O).
+```
+
+The factors have disjoint support, so they commute and `delta_S` is an
+involution.  For one orbit `O`, choose `h in U_(x_O)` with `[d,h]!=1`; such an
+`h` exists because the center of `U` is trivial.  Commuting `delta_S` with
+`h` cancels every other coordinate and gives
+
+```text
+[delta_S,h]=[d_(x_O),h]!=1
+```
+
+inside the single coordinate group `U_(x_O)`.  Simplicity makes the normal
+closure of this commutator contain that whole coordinate group.  Conjugation
+by `S` reaches every coordinate in `O`.  Repeating this isolation for each
+orbit proves `(FOS7)`.

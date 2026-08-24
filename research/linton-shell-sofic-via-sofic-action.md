@@ -41,9 +41,8 @@ only the regime that was already closed by
 
 It fixes the price of admission, in the same way `sofic-action-permanence` does
 on the wreath lane.  The acting side is free — no obstruction there — and the
-normal side has a completely computed abelianization
-([[linton-radical-abelianization-is-truncated-group-ring]]).  Everything hard is
-in the action, and specifically in supplying finite models of `R` compatible
-with conjugation by lifts of a free basis.  A route that made that explicit for
-one primitive-rank-2 family would be the first concrete data anyone has on the
-shell.
+first-order action is now completely modeled:
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] proves `E/R'`
+residually finite.  Everything still hard is in lifting those compatible
+models across the nonabelian core `R'`.  The route remains live because it asks
+for the full action on `R`, not the already-settled action on `R/R'`.

@@ -70,6 +70,7 @@ requires:
   - one-word-mf-reflection-has-undecidable-membership
   - perfect-mf-reflection-over-residually-p-actor
   - binary-leavitt-unit-word-problem-decidable
+  - free-subdirect-products-have-one-word-mf-reflections
 ---
 
 The group, C-star, and dynamical assertions are the corresponding established

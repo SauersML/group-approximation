@@ -54,6 +54,12 @@ closed, so `(PS3-1)` then reads `1<=0`.  This rules out arbitrary
 noncommuting auxiliaries and arbitrary finite relator lists, not merely the
 specific attempted implementations below.
 
+Equivalently, `fixed-central-phase-scalar-profiles-form-coset-subgroup` says
+that all scalar order-three profiles admitted in the `J=omega` sector must
+form an affine coset in `F_3^2`.  Equality of the two fixed-space projectors
+does not define such a coset.  The displayed four-profile tensor product is
+the shortest concrete witness needed here.
+
 `qutrit-diamond-robustly-synchronizes-pvms` shows that the analytic
 synchronization inequality already has a constant five-edge realization.
 What is missing is its ordinary-word implementation with `(PS3-2)`.

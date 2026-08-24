@@ -41,3 +41,9 @@ Kun--Thom's acting groups have property (T).  The live successors are therefore
 counterexamples put the failure, and — if anyone wants the stronger statement —
 a free-acting-group closure theorem, which would be at least as hard as Pestov's
 question itself and so is a target rather than a lemma.
+
+The explicit embedding in
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] does not revive
+this route.  It proves `E/R'` residually finite without extension closure; the
+passage back across `R'` would again require exactly the action-sensitive input
+that this invalidated shortcut omits.

@@ -27,9 +27,13 @@ central involution.  Their Lemma 5.7 gives the precise bridge used here:
 
 Thus a tracial/non-`R^U` gap makes `J` an actual nontrivial group element that
 is trivial in every approximate representation, so the solution group is
-nonhyperlinear.  Conversely they embed an arbitrary finitely presented
-nonhyperlinear witness into a solution group while preserving the marked
-central involution.
+nonhyperlinear.  Conversely they use
+`slofstra-solution-group-embedding-preserves-marked-involutions` to embed an
+arbitrary finitely presented nonhyperlinear witness into a solution group
+while preserving a marked central involution.  The approximation-theoretic
+part of this converse is not an extra robustness theorem for the wagon wheel:
+it is the fixed-word restriction argument recorded in
+`marked-approximate-radical-survives-solution-group-embedding`.
 
 This node is a source import, not a new proof.  It fixes the exact endpoint a
 BCS/LCS groupification programme must reach: a **tracial-vs-approximate** gap,

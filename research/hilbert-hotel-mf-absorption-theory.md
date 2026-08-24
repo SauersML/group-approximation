@@ -185,15 +185,22 @@ one normally generating radical word and visible quotient of virtual
 cohomological dimension exactly `m`.
 
 Finite-orbit subgroups of product reflections inherit the same exact
-calculus.  Applied to the Stallings--Bieri kernel in `F_2^n` and then to the
-cyclic symmetry of its factors, this gives for every `n>=2` a finitely
+calculus.  Applied directly to the Stallings--Bieri kernel in `F_2^n`, this
+gives for every `n>=2` a finitely
 generated internal non-MF group with one normally generating radical word
 and visible quotient of type `F_(n-1)` but not `FP_n`.  All finite-dimensional
 residuals and completions remain exactly those of that quotient.
 
+More generally, every finitely generated subdirect product of finite-rank
+free groups is realized internally with one normally generating radical
+involution and no change to the quotient.  These quotients are torsion-free,
+linear, and residually `p` for every prime, so all pro-`p`, nilpotent,
+solvable, finite-dimensional, compact, and MF data pull back through the
+same terminal perfect core.  Both sides have decidable word problem.
+
 The preimage construction is a complete subgroup-lattice embedding: the
 interval above the invisible base reproduces actor intersections, joins,
-normalizers, cores, indices, and quotients exactly.  A symmetric Mihailova
+normalizers, cores, indices, and quotients exactly.  A Mihailova
 fiber product in two free actors therefore yields a fixed finitely generated
 subgroup with undecidable membership in `U`, while its one-word MF radical,
 profinite completion, Bohr compactification, and all finite-dimensional
@@ -201,7 +208,7 @@ representations remain controlled by a residually-`2` linear quotient.  The
 same radical is intrinsically the terminal lower-central and derived core, so
 all nilpotent and solvable quotients are camouflaged by the same reflection.
 The Leavitt normal form gives decidable word problem for both the unit group
-and this ambient finite-wreath subgroup, making the fiber-product membership
+and this ambient product subgroup, making the fiber-product membership
 problem a genuine algorithmic obstruction rather than an ambient equality
 problem.
 

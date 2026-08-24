@@ -21,6 +21,13 @@ That is the whole route.  Its content is entirely in the prerequisite
 [[linton-shell-sofic]]; the second prerequisite is the already-established
 reduction that produces the shell and certifies the amenability of the quotient.
 
+The first derived quotient of the prerequisite is no longer open:
+[[one-relator-fox-magnus-descent-to-derived-linton-radical]] proves `E/R'`
+residually finite.  This does not complete the route, because arbitrary
+extensions of a sofic group by a residually finite group need not be sofic.
+What remains is an action-compatible approximation of the nonabelian core
+`R'`, with the `k = 1` perfect regime as the essential case.
+
 ## Why this is a genuine reduction rather than a restatement
 
 The two are equivalent — soficity of `G` implies soficity of its subgroup `E` —

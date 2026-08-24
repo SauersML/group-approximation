@@ -167,6 +167,22 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   geometry that might power it — links are generalized polygons with
   large girth, the complex is CAT(0) — is the same geometry that proved
   `twin-lattices-exclude-known-llp-fences`.
+- **The finite-face/Boca shortcut is now quantitatively closed
+  (2026-08-24).**  For the relator extension
+  `E=P_1*_(P_0)P_3 ->> P_13`,
+  `explicit-finite-face-ucp-section-is-edge-equivariant` gives a global
+  averaged ucp section that fixes either `P_1` or `P_3` exactly.  But
+  `kernel-relator-forces-two-edge-ucp-section-gap` proves that a length-`L`
+  nontrivial kernel word forces distance at least `2/L^2` from the canonical
+  lift on one of its letters.  Thus a Boca gluing proof cannot leave the two
+  tree faces canonical and repair only the finite third face.  The surviving
+  target is simultaneous three-face matrix-order balancing, formulated
+  precisely in `triangle-relator-extension-admits-local-ucp-sections` via
+  approximate local right inverses and
+  `point-norm-approximate-ucp-sections-close-to-exact`.  Nor is the balance a
+  formal operator-system colimit: the elementary `Z^2` cross in
+  `operator-system-face-colimit-need-not-have-concrete-group-order` already
+  separates the universal colimit order from the concrete group order.
 - **No known positive LLP theorem reaches a Kazhdan group.**  LLP is known
   for nuclear algebras, `C^*(F)` (Kirchberg), free products and amalgams
   over finite-dimensional subalgebras, and is inherited by quotients only

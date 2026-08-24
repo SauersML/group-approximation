@@ -20,6 +20,7 @@ nodes,
 ||Sbar_(sigma,i)S_(sigma,i)-A_(sigma,i)||_2=o(1),
 ||S_(sigma,i)Sbar_(sigma,i)-D_(sigma,i)||_2=o(1),
 ||D_(sigma,i)Q_sigma||_2=o(1),                         (HAT1)
+||D_(sigma,i)(1-Q_-)||_2=o(1),
 ```
 
 and the decoded `Q_(sigma i)` reduces the next shared BCS window.

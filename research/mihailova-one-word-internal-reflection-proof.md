@@ -2,12 +2,11 @@
 rg: 2
 id: mihailova-one-word-internal-reflection-proof
 kind: route
-title: Symmetrize a Mihailova fiber product inside two free reflections
+title: Lift a Mihailova fiber product through two free reflections
 target: one-word-mf-reflection-has-undecidable-membership
 requires:
   - novikov-boone-fp-group-undecidable-word-problem
   - internal-mf-reflection-subgroup-lattice
-  - finite-wreath-lift-of-internal-mf-reflection
   - perfect-mf-reflection-over-residually-p-actor
   - binary-leavitt-unit-word-problem-decidable
 ---
@@ -34,48 +33,37 @@ conjugates of the relators, diagonal conjugation produces
 (u,v)=(uv^(-1),1)(v,v).
 ```
 
-Both coordinate projections of `D` are onto, and `D` is invariant under the
-factor swap.  Membership is undecidable because
+Both coordinate projections of `D` are onto.  Membership is undecidable because
 
 ```text
 (w,1) in D  iff  p(w)=1 in Q.                           (MUP2)
 ```
 
 Let `W_F=U^(F) semidirectProduct F<=U` be the internal free reflection.
-The order-two finite wreath lift embeds
+The finite product lift embeds
 
 ```text
-P=W_F^2 semidirectProduct C_2<=U                        (MUP3)
+P=W_F x W_F<=U                                          (MUP3)
 ```
 
 with visible quotient
 
 ```text
-R=(F x F) semidirectProduct C_2.
+R=F x F.
 ```
 
 The free group has decidable word problem, so
 `binary-leavitt-unit-word-problem-decidable` gives decidable word problem for
 both `P` and `U`.
 
-The nontrivial element of `C_2` swaps both free actors and both base
-families.  Put
-
 ```text
-T=D semidirectProduct C_2<=R,
+T=D<=R,
 K=pi^(-1)(T)<=P.                                       (MUP4)
 ```
 
-The group `T` is finitely generated.  It is residually a finite `2`-group.
-Indeed, free groups are residually `2` through their characteristic lower
-`2`-central quotients.  For a nonidentity `(u,v) in F x F`, choose one such
-characteristic finite `2`-quotient detecting a nonidentity coordinate.  The
-product quotient is invariant under the swap, and its semidirect product by
-`C_2` is again a finite `2`-group.  Elements outside the base are already
-detected by the quotient to `C_2`.  The property passes to `T`.  It is linear
-in characteristic zero because `D<=F x F` is, and a finite extension of a
-characteristic-zero linear group is linear by the induced-representation
-construction.
+The group `T` is finitely generated and torsion-free.  It is residually a
+finite `2`-group because `F x F` is, and residual properties pass to
+subgroups.  It is linear in characteristic zero for the same reason.
 
 Every homomorphism from `K` to any stated target class kills every coordinate
 copy of `U`, hence kills the full base
@@ -87,9 +75,11 @@ B=U^(F) x U^(F)
 and factors uniquely through `T`.  Since `T` is residually finite, this gives
 `(MUR3)`--`(MUR6)` except for single normal generation.  The two projections
 `D->F` are onto, so `D` acts transitively on the coordinates within each base
-family.  The swap joins the two families into one orbit.  A single copy of
-the fixed normally generating involution of `U` therefore normally generates
-all of `B`, proving `(MUR3)`.  The same orbit calculation, using finite
+family.  Put one copy of the fixed involution of `U` at the identity
+coordinate of each family and multiply them.  The diagonal coordinate
+isolation argument in the finite-orbit theorem shows that this single
+involution normally generates all of `B`, proving `(MUR3)` without changing
+the visible quotient.  The same finite-orbit calculation, using finite
 generating sets of `U` and `T`, proves that `K` is finitely generated.
 
 The group `U` is perfect, hence so is the restricted direct-product base

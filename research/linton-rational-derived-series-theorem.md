@@ -6,6 +6,7 @@ title: Linton's theorem on the rational derived series of a one-relator group
 distinct_from:
   one-relator-soficity-localizes-at-rational-derived-stage: that is this graph's soficity consequence, proved here from the theorem below plus Elek--Szabó; this is the imported group-theoretic input itself, which mentions no approximation property at all.
   linton-radical-abelianization-is-truncated-group-ring: that computes the radical's first homology using Lyndon's identity theorem; this supplies the word `r` and the integer `k` that computation consumes, and computes nothing.
+  one-relator-fox-magnus-descent-to-derived-linton-radical: that uses the Linton data in a mod-`k` Magnus embedding and obtains a sofic quotient with kernel `R'`; this imports only the structural data from Linton and has no Fox or approximation content itself.
   residually-rationally-solvable-one-relator-sofic: that is a soficity theorem about a subclass; this is the structural characterization of that subclass, with no soficity content.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md

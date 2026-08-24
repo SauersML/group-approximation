@@ -4,6 +4,7 @@ id: perfect-lcs-gap-implies-nonhyperlinear
 kind: claim
 title: A perfect commuting LCS game with quantum value below one has a nonhyperlinear solution group
 distinct_from:
+  marked-approximate-radical-survives-solution-group-embedding: that transfers an approximate-radical marked involution already proved in an arbitrary source group through Slofstra's exact embedding; this derives the radical property directly from a strict finite-dimensional value gap of the output LCS game.
   phase-safe-toric-gap-implies-nonhyperlinear: that handles general torically determined games and needs a separate normal-phase-survival hypothesis; for LCS games the standard solution-group criterion and hyperlinear-profile correspondence give the implication directly.
   phase-safe-toric-gap-game-exists: that asks for a concrete toric witness; this is only the established conditional compiler once a perfect LCS gap is available.
 artifacts:
