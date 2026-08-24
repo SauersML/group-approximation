@@ -21,6 +21,43 @@ noncomputable section
 variable {G : Type} [Group G]
 variable {X : ℕ → FiniteModel}
 
+/-- Reindex coordinatewise unitary sequences along a pointwise cofinal map. -/
+def reindexUnitarySequenceHom (stage : ℕ → ℕ) :
+    (∀ n, Matrix.unitaryGroup (X n) ℂ) →*
+      (∀ n, Matrix.unitaryGroup (X (stage n)) ℂ) where
+  toFun u n := u (stage n)
+  map_one' := rfl
+  map_mul' _ _ := rfl
+
+theorem reindexUnitarySequenceHom_maps_null
+    (stage : ℕ → ℕ) (hstage : ∀ n, n ≤ stage n) :
+    (nullCofiniteOpSubgroup X).map (reindexUnitarySequenceHom stage) ≤
+      nullCofiniteOpSubgroup (fun n ↦ X (stage n)) := by
+  intro v hv
+  obtain ⟨u, hu, rfl⟩ := hv
+  intro ε hε
+  have hev := hu ε hε
+  rw [Nat.cofinite_eq_atTop, Filter.eventually_atTop] at hev ⊢
+  obtain ⟨N, hN⟩ := hev
+  exact ⟨N, fun n hn ↦ hN (stage n) (hn.trans (hstage n))⟩
+
+/-- Reindexing along a pointwise cofinal map descends to norm matrix
+coronas. -/
+def reindexCoronaHom (stage : ℕ → ℕ) (hstage : ∀ n, n ≤ stage n) :
+    NormMatrixCoronaUnitary X →*
+      NormMatrixCoronaUnitary (fun n ↦ X (stage n)) :=
+  QuotientGroup.map (nullCofiniteOpSubgroup X)
+    (nullCofiniteOpSubgroup (fun n ↦ X (stage n)))
+    (reindexUnitarySequenceHom stage)
+    (Subgroup.map_le_iff_le_comap.mp
+      (reindexUnitarySequenceHom_maps_null stage hstage))
+
+@[simp] theorem reindexCoronaHom_mk
+    (stage : ℕ → ℕ) (hstage : ∀ n, n ≤ stage n)
+    (u : ∀ n, Matrix.unitaryGroup (X n) ℂ) :
+    reindexCoronaHom stage hstage (QuotientGroup.mk u) =
+      QuotientGroup.mk (fun n ↦ u (stage n)) := rfl
+
 /-- Evaluation of an ambient packet word commutes with passage to the norm
 matrix corona. -/
 theorem quotient_mk_ambientWord
@@ -288,6 +325,117 @@ theorem false_of_shadow_of_visible_exact_packet
       Matrix (B.model n) (B.model n) ℂ) - 1)
   field_simp [hcne] at hn'
   nlinarith
+
+/-- **Finite-order normal-generator theorem.**  For a finite-order element
+normally generating a finitely generated countable group, operator-norm MF
+invisibility is exactly universal operator-to-Hilbert--Schmidt invisibility. -/
+theorem finiteOrder_normalGenerator_mem_normMFResidual_iff_mem_opToHSShadowResidual
+    [Group.FG G] [Countable G] {a : G}
+    (ha : IsOfFinOrder a)
+    (hgen : Subgroup.normalClosure ({a} : Set G) = ⊤) :
+    a ∈ normMFResidual G ↔ a ∈ opToHSShadowResidual G := by
+  constructor
+  · exact fun h ↦ normMFResidual_le_opToHSShadowResidual h
+  · intro hshadow
+    rw [← coronaMFResidual_eq_normMFResidual]
+    rw [mem_coronaMFResidual_iff]
+    intro X hX rho
+    by_contra hne
+    classical
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    obtain ⟨m, hm, ham⟩ := isOfFinOrder_iff_pow_eq_one.mp ha
+    obtain ⟨P⟩ := exists_normalGeneratorPacket a hgen
+    let F := Subgroup.zpowers a
+    letI : Fintype F := ha.finite_zpowers.fintype
+    let z : F := ⟨a, Subgroup.mem_zpowers a⟩
+    let rhoF : F →* NormMatrixCoronaUnitary X := rho.comp F.subtype
+    obtain ⟨tau, htau⟩ :=
+      FiniteGroupCoronaExactification.exists_exact_coordinate_lift
+        (F := F) (X := X) (fun n ↦ inferInstance) rhoF
+    let R₀ : ∀ n, Matrix.unitaryGroup (X n) ℂ := fun n ↦ tau n z
+    have hR₀ : QuotientGroup.mk R₀ = rho a := by
+      simpa [R₀, rhoF, z] using htau z
+    have hpow₀ : ∀ n, (R₀ n) ^ m = 1 := by
+      intro n
+      dsimp [R₀]
+      rw [← map_pow]
+      have hz : z ^ m = 1 := Subtype.ext ham
+      rw [hz, map_one]
+    choose raw hraw using fun g : G ↦ QuotientGroup.mk_surjective (rho g)
+    let C₀ : G → ∀ n, Matrix.unitaryGroup (X n) ℂ := fun g ↦
+      if g = 1 then 1 else raw g
+    have hC₀ : ∀ g, QuotientGroup.mk (C₀ g) = rho g := by
+      intro g
+      by_cases hg : g = 1
+      · subst g
+        simp [C₀]
+      · simpa [C₀, hg] using hraw g
+    have hC₀one : ∀ n, C₀ 1 n = 1 := by simp [C₀]
+    have hrhoFz : rhoF z ≠ 1 := by simpa [rhoF, z] using hne
+    obtain ⟨δ, hδ, hsep⟩ :=
+      normMatrixCorona_lift_frequently_marked_separated X rhoF
+        (fun g n ↦ tau n g) htau hrhoFz
+    have hsep' : ∃ᶠ n in Filter.cofinite,
+        δ ≤ ‖(R₀ n : Matrix (X n) (X n) ℂ) - 1‖ := by
+      simpa [R₀] using hsep
+    have hselect (n : ℕ) : ∃ k : ℕ, n ≤ k ∧
+        δ ≤ ‖(R₀ k : Matrix (X k) (X k) ℂ) - 1‖ := by
+      have hge : ∀ᶠ k in Filter.cofinite, n ≤ k := by
+        rw [Nat.cofinite_eq_atTop]
+        exact Filter.eventually_ge_atTop n
+      obtain ⟨k, hksep, hkge⟩ := (hsep'.and_eventually hge).exists
+      exact ⟨k, hkge, hksep⟩
+    let stage : ℕ → ℕ := fun n ↦ Classical.choose (hselect n)
+    have hstage : ∀ n, n ≤ stage n := fun n ↦ (Classical.choose_spec (hselect n)).1
+    have hstageSep : ∀ n, δ ≤
+        ‖(R₀ (stage n) : Matrix (X (stage n)) (X (stage n)) ℂ) - 1‖ :=
+      fun n ↦ (Classical.choose_spec (hselect n)).2
+    let X' : ℕ → FiniteModel := fun n ↦ X (stage n)
+    let rho' : G →* NormMatrixCoronaUnitary X' :=
+      (reindexCoronaHom stage hstage).comp rho
+    let R : ∀ n, Matrix.unitaryGroup (X' n) ℂ := fun n ↦ R₀ (stage n)
+    let C : G → ∀ n, Matrix.unitaryGroup (X' n) ℂ := fun g n ↦ C₀ g (stage n)
+    have hR : QuotientGroup.mk R = rho' a := by
+      change reindexCoronaHom stage hstage (QuotientGroup.mk R₀) =
+        reindexCoronaHom stage hstage (rho a)
+      rw [hR₀]
+    have hpow : ∀ n, (R n) ^ m = 1 := fun n ↦ hpow₀ (stage n)
+    have hrank : ∀ n, 0 < (((R n : Matrix.unitaryGroup (X' n) ℂ) :
+        Matrix (X' n) (X' n) ℂ) - 1).rank := by
+      intro n
+      have hneR : ((R n : Matrix.unitaryGroup (X' n) ℂ) :
+          Matrix (X' n) (X' n) ℂ) - 1 ≠ 0 := by
+        intro hz
+        have hnorm : ‖((R n : Matrix.unitaryGroup (X' n) ℂ) :
+            Matrix (X' n) (X' n) ℂ) - 1‖ = 0 := by rw [hz, norm_zero]
+        have := hstageSep n
+        dsimp [R, X'] at hnorm ⊢
+        rw [hnorm] at this
+        linarith
+      apply Nat.zero_lt_of_ne_zero
+      intro hzrank
+      apply hneR
+      let M : Matrix (X' n) (X' n) ℂ :=
+        ((R n : Matrix.unitaryGroup (X' n) ℂ) : Matrix (X' n) (X' n) ℂ) - 1
+      have hspan : Submodule.span ℂ (Set.range M.col) = ⊥ := by
+        apply Submodule.finrank_eq_zero.mp
+        rw [← Matrix.rank_eq_finrank_span_cols]
+        exact hzrank
+      apply Matrix.ext
+      intro i j
+      have hcol : M.col j ∈ Submodule.span ℂ (Set.range M.col) :=
+        Submodule.subset_span (Set.mem_range_self j)
+      rw [hspan] at hcol
+      exact congr_fun (show M.col j = 0 by simpa using hcol) i
+    have hC : ∀ g, QuotientGroup.mk (C g) = rho' g := by
+      intro g
+      change reindexCoronaHom stage hstage (QuotientGroup.mk (C₀ g)) =
+        reindexCoronaHom stage hstage (rho g)
+      rw [hC₀]
+    have hC1 : ∀ n, C 1 n = 1 := fun n ↦ hC₀one (stage n)
+    exact false_of_shadow_of_visible_exact_packet a hshadow P m hm rho'
+      R hR hpow hrank C hC hC1
 
 end
 
