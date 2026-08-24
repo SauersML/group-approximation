@@ -4,7 +4,7 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 ## A non-MF group
 
-[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every group is MF. [`non_mf_group_notes.tex`](non_mf_group_notes.tex) gives further notes on this.
+[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every group is MF. [`non_mf_group_notes.tex`](non_mf_group_notes.tex) is an archived research notebook for an earlier construction and is not a companion to the current manuscript.
 
 ## Lean library
 
