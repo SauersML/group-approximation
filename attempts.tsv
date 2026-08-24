@@ -167,3 +167,4 @@
 32720672991	2026-08-24T11:13:14Z	GroupApproximation/Sofic/AlternatingLampBohrResidual.lean	bohrResidual_le_lampRange
 32723467879	2026-08-24T11:45:45Z	GroupApproximation/Sofic/AlternatingLampExactRadical.lean	alternating_commutator_eq_top
 32726185668	2026-08-24T12:16:37Z	GroupApproximation/Sofic/AlternatingLampLiteralPackage.lean	sign_c5
+32731915988	2026-08-24T13:19:05Z	GroupApproximation/Sofic/AlternatingLampVisibleQuotient.lean	vertical_isCDEOperatorMF
