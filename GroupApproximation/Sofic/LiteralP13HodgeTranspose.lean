@@ -56,11 +56,14 @@ def inverseClassInvolutiveCheck (c : Fin 293) : Prop :=
 
 mk_kernel_batched_theorem 293 inverseClassInvolutiveCheck
 
+theorem inverseClass_involutive_all :
+    ∀ c : Fin 293, inverseClassInvolutiveCheck c :=
+  combine_kernel_batched_theorems% inverseClassInvolutiveCheck 293
+
 /-- Reversing product classes twice is the identity. -/
 theorem inverseClass_involutive (c : Fin 293) :
     inverseClass (inverseClass c) = c := by
-  exact (combine_kernel_batched_theorems%
-    inverseClassInvolutiveCheck 293) c
+  exact inverseClass_involutive_all c
 
 /-- Product-class inversion as a finite equivalence. -/
 def inverseClassEquiv : Fin 293 ≃ Fin 293 where
@@ -141,8 +144,16 @@ theorem hodgeNumerator_inverse (i k : Fin 6) (c : Fin 293) :
   apply congrArg₂ (fun a b : ℤ ↦ a + b)
   · apply Finset.sum_congr rfl
     intro relator _
+    change LiteralP13HodgeReplay.boundaryNumerator relator k pair.2 *
+        LiteralP13HodgeReplay.boundaryNumerator relator i pair.1 =
+      LiteralP13HodgeReplay.boundaryNumerator relator i pair.1 *
+        LiteralP13HodgeReplay.boundaryNumerator relator k pair.2
     rw [mul_comm]
-  · rw [mul_comm]
+  · change LiteralP13HodgeData.adjointCoboundaryNumerator k pair.2 *
+        LiteralP13HodgeData.adjointCoboundaryNumerator i pair.1 =
+      LiteralP13HodgeData.adjointCoboundaryNumerator i pair.1 *
+        LiteralP13HodgeData.adjointCoboundaryNumerator k pair.2
+    rw [mul_comm]
 
 /-- Off-diagonal residual coefficients are transposes under class inversion. -/
 theorem residualNumerator_inverse_of_ne (i k : Fin 6) (c : Fin 293)
