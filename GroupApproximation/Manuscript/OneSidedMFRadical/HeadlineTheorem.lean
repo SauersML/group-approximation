@@ -35,8 +35,9 @@ the failure of MF-ness are all obtained here with no simplicity input at all.
 Simplicity of `H` is a strictly different statement, and the manuscript's proof
 of it (`prop:simple`) runs on Preusser's normal-subgroup theorem, on pure
 infiniteness and the exchange property of `L_{𝔽₂}(1,2)`, and on the computation
-of the centre of that algebra.  None of those inputs exist in this repository,
-and **nothing in this file proves that `H` is simple.**
+of the centre of that algebra.  The ring-side simplicity and centre inputs are
+now formalized, but the Preusser normal-structure/root-detection bridge is not;
+**nothing in this file proves that `H` is simple.**
 
 What is recorded instead is `BinaryLeavittSimplicityClause`: an *implication*
 whose leading hypothesis `NormalRootDetection` names the missing input exactly
@@ -113,9 +114,10 @@ theorem of this development.
 
 This is what the manuscript extracts from Preusser's normal-subgroup theorem
 together with pure infiniteness, the exchange property, and the centre
-computation for `L_{𝔽₂}(1,2)`.  **It is an unproved assumption here.**  No
-declaration in this repository establishes it, and no unconditional statement
-in this file depends on it. -/
+computation for `L_{𝔽₂}(1,2)`.  The latter ring-side ingredients are now
+formalized; the normal-subgroup implication is still an unproved assumption
+here.  No declaration in this repository establishes it, and no unconditional
+statement in this file depends on it. -/
 def NormalRootDetection : Prop :=
   ∀ (N : Subgroup H), N.Normal → N ≠ ⊥ →
     ∃ (i j : Fin 12) (hij : i ≠ j) (a : R),

@@ -14,22 +14,29 @@ This is not yet simplicity.  The remaining group-theoretic input is a
 a nontrivial elementary root.  The manuscript obtains that implication from
 Preusser's normal-subgroup theorem together with pure infiniteness, the
 exchange property, and the centre computation for the binary Leavitt algebra.
-No formal counterpart of that implication is currently present in the
-repository, so no `IsSimpleGroup H` instance is asserted here.
+The ring-side simplicity and centre computations are now formalized, but no
+counterpart of Preusser's group normal-structure implication is present, so no
+`IsSimpleGroup H` instance is asserted here.
 
 The nearest ring-side declarations do not fill that gap:
 
 * `BinaryLeavitt.exists_mul_mul_eq_one` proves that a *previously detected*
   nonzero coefficient has a two-sided unit sandwich;
 * `LeavittMark.elGen_p1_ne_one` proves only that the particular printed mark is
-  nontrivial; and
+  nontrivial;
+* `BinaryLeavitt.center_eq_bot` and `BinaryLeavitt.central_units_trivial` close
+  the coefficient-ring centre computation, but do not show that an arbitrary
+  central matrix in `H` is scalar and do not detect roots in normal subgroups;
+  and
 * `LeavittFamily.centralClassGroup_le_stableUnits` collapses central unit
   classes modulo the diagonal class group, but does not classify normal
   subgroups of `EL₁₂` or force one of them to contain a root.
 
 Thus the absent API is specifically the Preusser level-ideal/congruence
-inclusion (or its central-or-nonzero-root consequence), not coefficient
-nontriviality, root normal generation, or the unit-class calculation.
+inclusion (or its central-or-nonzero-root consequence), together with the
+elementary matrix-centralizer-to-scalar bridge if one follows the manuscript's
+central branch.  Coefficient nontriviality, root normal generation, and the
+coefficient-ring centre are no longer gaps.
 -/
 
 namespace GroupApproximation
@@ -87,7 +94,7 @@ theorem properNormal_inf_elementaryRootSubgroup_eq_bot
 
 /-- No nontrivial elementary root is central in the rank-twelve group.  This
 uses only a third index and the Steinberg commutator relation; it does not need
-the unavailable computation of the full centre. -/
+the unavailable computation of the full group centre. -/
 theorem elementaryRoot_mem_center_iff
     (i j : Fin 12) (hij : i ≠ j) (a : R) :
     elementaryRoot i j hij a ∈ Subgroup.center H ↔ a = 0 := by

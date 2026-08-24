@@ -1,5 +1,7 @@
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Analysis.MaximalCStarKazhdanProjection
 import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefinitions
 import GroupApproximation.Manuscript.OneSidedMFRadical.ResidualCalculus
 import GroupApproximation.Manuscript.OneSidedMFRadical.FiniteDimensionalCommutant
 import GroupApproximation.Manuscript.OneSidedMFRadical.StableFiniteness
@@ -18,9 +20,14 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefectShadow
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
 import GroupApproximation.Leavitt.LeavittMarkNontrivial
 import GroupApproximation.Leavitt.LeavittMatrixCompression
+import GroupApproximation.Leavitt.BinaryLeavittSimple
 import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations
+import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
 import GroupApproximation.Manuscript.OneSidedMFRadical.CanonicalSector
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedRemarks
 import GroupApproximation.Kazhdan.AmenableKazhdanFinite
+import GroupApproximation.Kazhdan.KazhdanSeparableDescent
 
 /-!
 # Kernel audit for *One-sided Kazhdan transport and MF radicals*
@@ -76,6 +83,9 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptLiteralMFClosureIsQuotientPullback
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFRadicalIsLiteralClosureOfTrivial
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaDenominator
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFUnitaryModels
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets
 
 -- Theorem A, printed as one theorem with four clauses, and its two exact
 -- constituents.
@@ -93,6 +103,11 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonMFGroupExists
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonOperatorMFGroupExists
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableKazhdanFullMFRadicalGroupExists
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSaturatedDefectKillsMFTargets
 
 -- `eq:basic-defect`: the introduction's display of Corollary `cor:defect-hs`.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible
@@ -103,6 +118,11 @@ which reports the closure without the binder check:
 /-! ## Section 2: one-sided compression in finite dimension -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedAmenableCaseChain
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSoficityIsNotObstructedByFullRadicals
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptIntersectionOfKernelsIsNormal
 
 /-! ## Section 3: Kazhdan transport in normalized Hilbert--Schmidt norm -/
 
@@ -110,6 +130,7 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsNormal
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport
@@ -131,6 +152,17 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.corner_hasKazhdanPropertyT
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedLeavittAlgebraEquations
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCompressorEquations
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSectionFiveEquations
+
+-- Property `(T)` at every representation universe.  The first two are general
+-- transport results over caller-supplied data; the final profile is
+-- hypothesis-free but universe-polymorphic rather than a closed `Prop`
+-- package.  The ordinary audits are therefore intentional.
+#audit_axioms GroupApproximation.hasKazhdanPropertyT_type0_iff
+#audit_axioms GroupApproximation.HasKazhdanPropertyT.ofType0Model
+#audit_axioms GroupApproximation.rankTwelve_propertyT_universe_profile
 
 /-! ## Section 6: the full MF radical -/
 
@@ -194,6 +226,12 @@ only place their axiom closure is checked. -/
 -- `eq:pq`: the two Leavitt relations behind `q ≠ 0`.
 #audit_axioms GroupApproximation.LeavittFamily.p0_add_p1
 #audit_axioms GroupApproximation.LeavittFamily.t1_mul_p1_mul_s1
+
+-- The ring-side centre computation used by the manuscript's simplicity proof.
+-- These theorems quantify over a field or a unit, so they are support audits,
+-- not zero-input manuscript endpoints.
+#audit_axioms GroupApproximation.BinaryLeavitt.center_eq_bot
+#audit_axioms GroupApproximation.BinaryLeavitt.central_units_trivial
 
 -- `eq:matrix-compression`: unitality, multiplicativity, the recovery identity
 -- that gives injectivity, and the elementary-matrix formula.
