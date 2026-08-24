@@ -28,7 +28,7 @@ row is unconditional: the manuscript's quantifiers live inside a named `Prop`,
 and nothing is accepted as mathematical input from a caller.
 
 `conditional` — the declaration is printed with the weaker `#audit_axioms` and
-is **not** printed with the closed macro.  Its type begins with a binder.  Four
+is **not** printed with the closed macro.  Its type begins with a binder.  Six
 different things put a binder there, and this ledger separates them by name
 rather than by status, because the status vocabulary cannot:
 
@@ -58,6 +58,17 @@ rather than by status, because the status vocabulary cannot:
   quantifies over the central unit it classifies.  Both are unconditional
   support for the manuscript's ring-centre step; neither asserts group
   simplicity or discharges root detection.
+* **generic partial root-extraction support.**  The transvection-extraction
+  theorems quantify over the ring, index type, normal subgroup, and their
+  explicit matrix configurations.  They close the line-preserving and
+  inverse-entry-zero configurations and detect noncentrality on a single-entry
+  matrix, but do not cover the remaining dense configuration or establish
+  general root detection.
+* **generic congruence-subgroup support.**  The relative-elementary and
+  congruence endpoints, the `GL` centre computation, and the final simplicity
+  assembly quantify over the ring and index type.  The assembly retains
+  Preusser's normal-subgroup sandwich as an explicit leading hypothesis; it is
+  a precise reduction, not a proof of the manuscript's simplicity claim.
 
 `MISSING` — no declaration in the development proves the row.  A `MISSING`
 row's target may exist as a *statement* (a `def ... : Prop`); the gate refuses
@@ -65,9 +76,9 @@ to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 79 rows
--- 64 `closed`, 14 `conditional`, 1 `MISSING`, naming 78 distinct declarations.
-One row appears for each label, and fifty further rows either split a
+`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 88 rows
+-- 66 `closed`, 21 `conditional`, 1 `MISSING`, naming 87 distinct declarations.
+One row appears for each label, and fifty-nine further rows either split a
 printed theorem into separately audited constituents or cover an unnumbered
 printed sentence. One declaration appears twice, because the introduction
 displays a corollary that Section 3 then states.
@@ -130,8 +141,10 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `thm:transport` with arbitrary-universe ambient group and a `Type 0` Kazhdan source | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` defect generators lie in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` central corona corners | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner` | closed |
+| `lem:central-corona-corner`, final clause composed as one corona-class equality over the retained subsequence | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCornerCoronaClass` | closed |
 | `thm:normal-kazhdan` normal Kazhdan radical theorem, at the printed natural-dimension radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanPrintedRadical` | closed |
 | `thm:normal-kazhdan` again, at the basis-free radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical` | closed |
+| Support for the printed proof of `thm:normal-kazhdan`: the five corner/Kazhdan/trace/persistent-generator sentence-level steps, with the coordinate trace premise explicit | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdanCornerSteps` | closed |
 | Proof of `thm:normal-kazhdan`, closing sentence: every corona homomorphism kills `K` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanCoronaVanishing` | closed |
 | Proof of Theorem A, the four printed links in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCriterionAssembly` | closed |
 | Proof of Theorem A, first step: the printed defect lies in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion` | closed |
@@ -153,6 +166,13 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.PropositionSimple` | MISSING |
 | Support for `prop:simple`: the centre of the binary Leavitt algebra is its scalar field | `GroupApproximation.BinaryLeavitt.center_eq_bot` | conditional |
 | Support for `prop:simple`: every central unit over `ZMod 2` is trivial | `GroupApproximation.BinaryLeavitt.central_units_trivial` | conditional |
+| Support for `prop:simple`: line-preserving conjugation extracts a nonzero elementary transvection | `GroupApproximation.exists_elGen_mem_of_conjSingle_eq` | conditional |
+| Support for `prop:simple`: the inverse-entry-zero configuration extracts a nonzero elementary transvection | `GroupApproximation.exists_elGen_mem_of_inv_entry_zero` | conditional |
+| Support for `prop:simple`: a noncentral matrix fails to commute with an off-diagonal single-entry matrix | `GroupApproximation.exists_noncommuting_single_of_not_central` | conditional |
+| Support for `prop:simple`: the full-level relative elementary subgroup is the whole elementary group | `GroupApproximation.relativeElementary_top` | conditional |
+| Support for `prop:simple`: the level-zero congruence subgroup is the centre of the full linear group | `GroupApproximation.congruenceSubgroup_bot` | conditional |
+| Support for `prop:simple`: trivial central coefficient units imply a trivial full-linear-group centre | `GroupApproximation.center_eq_bot_of_central_units_trivial` | conditional |
+| Support for `prop:simple`: the exact reduction from Preusser's normal-subgroup sandwich to elementary-group simplicity | `GroupApproximation.isSimpleGroup_of_preusser_sandwich` | conditional |
 | `prop:defect` the explicit centralizer mark, commutator, and normal generation | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect` | closed |
 | `eq:moved-mark` `tau c tau^-1 = e01(q) e34(1)` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_conj_c` | closed |
 | `eq:amalgam` the amalgam `W_Q = B *_A (Q x A)` | `GroupApproximation.MFCamouflage.Camouflage` | conditional |
@@ -166,32 +186,74 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Closing prescribed-quotient paragraph, all four general closure-pullback clauses as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | closed |
 <!-- END-LEDGER-ROWS -->
 
+## Known gaps inside carried rows
+
+These are rows whose statement is carried but whose *printed proof* is not
+completely reproduced.  They are listed because the per-label ledger cannot
+show them: a row can be closed and unconditional while a sentence of its
+printed argument has no declaration.
+
+* **`thm:normal-kazhdan`, the coordinate passage.**  `PrintedSectorProof`
+  carries five of the six printed steps -- the corner Kazhdan projection
+  vanishing (both the algebraic and the fixed-vector reading), the corner
+  Kazhdan inequality `b >= (kappa^2/|S|) q`, its normalized-trace consequence,
+  the persistent-index selection, and the faithful-representation bridge
+  `le_of_le_in_faithful_rep`.  What is NOT derived is the manuscript's sentence
+  "the coordinate elements `b_n` represent `b`", i.e.
+
+  ```text
+  forall eps > 0, eventually in n, forall x,
+    (kappa^2 - eps) * ||x||^2 <= sum_(s in S) ||W_n(s) x - x||^2.
+  ```
+
+  This is not a scalar-restriction triviality: at the coordinate level `W_n` is
+  only an asymptotic representation, so no Kazhdan pair applies to it directly.
+  It needs the corona quotient together with restriction of scalars from the
+  complex corner to the real Hilbert spaces the repository's `IsKazhdanPair`
+  is stated over.  The theorem itself is closed by the moving-corner route
+  (`manuscriptNormalKazhdanRadical`), so this is a fidelity gap in the printed
+  argument, not a hole in the result.
+
+* **Order phrasing in the corner inequality.**  `b` is a positive element of the
+  corner, not a projection, so the absorption spelling used elsewhere for
+  projection order (`IsStarProjection.le_iff_mul_eq_right`) does not express
+  `b >= c q`.  The instance-free reading used instead is the quadratic form,
+  which is both what the printed proof produces and what the printed use
+  consumes.  No order instance is installed.
+
 ## Deliberately not claimed
 
 * **`prop:simple`, simplicity of `H = EL_12(L_F2(1,2))`.**  The manuscript
   proves it from Preusser's normal-subgroup theorem for general linear groups
   over exchange rings, together with pure infiniteness and simplicity of the
   binary Leavitt algebra and triviality of its unit-scalar center.  None of
-  that normal-structure bridge exists in the repository: there is no Preusser
-  theorem, no relative elementary subgroup, no congruence subgroup `C_n(R, I)`,
-  and no `IsSimpleGroup` for any elementary group.  The statement is kept as
-  the named proposition `RankTwelveEndpoint.PropositionSimple` so that no audit
-  can confuse it with what *is* proved, namely that every nonzero elementary
-  root normally generates `H`
+  the decisive normal-structure bridge exists in the repository: relative
+  elementary and congruence subgroups and both level endpoints are now
+  formalized, but there is no theorem which assigns to every normal subgroup a
+  level ideal satisfying Preusser's two sandwich inclusions.  Consequently
+  there is still no unconditional `IsSimpleGroup` instance for the manuscript's
+  elementary group.  The statement is kept as the named proposition
+  `RankTwelveEndpoint.PropositionSimple` so that no audit can confuse it with
+  what *is* proved, namely that every nonzero elementary root normally generates `H`
   (`RankTwelveEndpoint.normalClosure_defect_eq_top`).  Root normal generation
-  is strictly weaker and is not a substitute.
+  is strictly weaker and is not a substitute.  The generic extraction module
+  additionally handles the line-preserving and inverse-entry-zero
+  configurations and detects noncentrality on a single-entry matrix; it
+  explicitly leaves the dense all-usable-entries-nonzero configuration open,
+  so it does not discharge this row.
 
-  **One row, nine obligations.**  A sentence-level census
+  **One row, originally nine obligations.**  A sentence-level census
   (`metadata/ONESIDED_TRANSPORT_SENTENCE_CENSUS.md`) counted what this single
   row actually stands for.  `prop:simple`'s printed proof is five sentences
   long and each needs an object the repository does not have: pure infinite
   simplicity of `R`; the exchange property (the string "exchange ring" does not
   occur in the tree); Preusser's sandwich theorem; the `I = R` and `I = 0`
   endpoints of the case split; `Z(R) = F_2`; `z = lambda I`; `lambda` central;
-  and `Z(GL_12(R)) = 1`.  Reading "1 MISSING" as "one lemma away" would be
-  wrong by about a factor of nine.  Some of these have since been closed --
-  see `BinaryLeavitt.center_eq_bot` and `central_units_trivial` -- but the row
-  is a summary, not a measure of the work.
+  and `Z(GL_12(R)) = 1`.  The relative/congruence objects, level endpoints,
+  scalar-matrix calculation, and generic conditional assembly have since been
+  closed; see `CongruenceSubgroups.lean`.  The row remains missing because the
+  Preusser sandwich itself has not been proved, not because those support
+  declarations amount to an unconditional endpoint.
   The headline-minus-simplicity conclusions do not depend on it:
   `Rad_MF(H) = H` is a closed row above
   (`rankTwelve_actualCoronaMFResidual_eq_top`), proved through normal
@@ -261,6 +323,14 @@ at least as strong as the printed one.
   It is retained because it is the form the printed proof of `thm:transport`
   consumes, and because it needs no global order instance on the target.  It is
   not evidence for the printed lemma on its own.
+* **The printed-sector package is proof support, not a second
+  `thm:normal-kazhdan` endpoint.**
+  `manuscriptPrintedNormalKazhdanCornerSteps` bundles the five newly attached
+  corner, Kazhdan-inequality, trace, and persistent-generator implications.
+  Its trace clause assumes the coordinate quadratic-form inequality; it does
+  not claim the still-unformalized passage carrying the abstract corner order
+  inequality through the corona quotient to those coordinate representatives.
+  The theorem itself remains carried by the two normal-Kazhdan rows above.
 * **`lem:stable-finite`** states the projection comparison in ring form
   (`q * p = p` for `p <= q`), for the same reason.
 * **`cl_MF` has two spellings.**  `literalMFClosure` is the printed

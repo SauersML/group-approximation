@@ -21,10 +21,10 @@ algebras.
 ## What is proved
 
 * **Square-zero calculus.**  `sqZeroUnit A hA` is the unipotent `1 + A` attached
-  to a square-zero matrix.  `sqZeroUnit_commutator` computes
+  to a square-zero matrix.  `unipotent_commutator` computes
   `⁅1 + A, 1 + B⁆ = 1 + AB - BA + BAB - ABA + ABAB`, and the two one-sided
-  degenerations `commutator_of_left_annihilates` (`AB = 0`, giving `1 - BA`) and
-  `commutator_of_right_annihilates` (`BA = 0`, giving `1 + AB`) are the engine of
+  degenerations `unipotent_commutator_of_left_annihilates` (`AB = 0`, `1 - BA`) and
+  `unipotent_commutator_of_right_annihilates` (`BA = 0`, `1 + AB`) are the engine of
   the whole file.
 * **Conjugation.**  `conj_elementaryUnit` identifies `u e_{ij}(a) u⁻¹` with
   `1 + u E_{ij}(a) u⁻¹`, `conjSingle_apply` gives the entry formula
@@ -60,7 +60,7 @@ algebras.
 The remaining configuration is the one in which `g` has a nonzero off-diagonal
 entry but neither `g` nor `g⁻¹` has any zero entry at a usable position.  The
 double commutator `⁅g e_{ij}(a) g⁻¹, e_{kl}(b)⁆` is then the full six-term
-expression of `sqZeroUnit_commutator` with both `(g⁻¹)_{jk}` and `g_{li}` nonzero,
+expression of `unipotent_commutator` with both `(g⁻¹)_{jk}` and `g_{li}` nonzero,
 and it is neither row- nor column-supported; the classical treatment passes
 through the level ideal of `g` rather than through a single commutator.  No
 statement about that configuration is asserted here.
@@ -143,54 +143,61 @@ def sqZeroUnit (A : Matrix ι ι R) (hA : A * A = 0) : (Matrix ι ι R)ˣ where
 @[simp] theorem sqZeroUnit_val (A : Matrix ι ι R) (hA : A * A = 0) :
     (sqZeroUnit A hA : Matrix ι ι R) = 1 + A := rfl
 
-@[simp] theorem sqZeroUnit_inv (A : Matrix ι ι R) (hA : A * A = 0) :
-    (((sqZeroUnit A hA)⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) = 1 - A := rfl
-
 /-- The elementary root matrix is the square-zero unipotent of its single-entry
 matrix. -/
 theorem elementaryUnit_eq_sqZeroUnit (i j : ι) (h : i ≠ j) (a : R) :
     elementaryUnit i j h a =
       sqZeroUnit (Matrix.single i j a) (single_mul_self_eq_zero i j h a) := rfl
 
-/-- **The commutator of two square-zero unipotents.**  Six terms survive; the
-two degenerate cases below are the ones the extraction argument uses. -/
-theorem sqZeroUnit_commutator (A B : Matrix ι ι R) (hA : A * A = 0)
+/-- **The commutator of two square-zero unipotents.**  Six terms survive.
+
+The identity is stated on the underlying matrix products rather than on
+`⁅sqZeroUnit A hA, sqZeroUnit B hB⁆`: the coercion of a bracket to the base ring
+would have to be written `(⁅x, y⁆ : (Matrix ι ι R)ˣ)`, and giving `⁅x, y⁆` an
+expected type forces instance search for `Bracket ?L ((Matrix ι ι R)ˣ)` with `?L`
+still unknown.  Every user below reaches this form through `Units.ext` and a
+`show`, for which the two are definitionally equal. -/
+theorem unipotent_commutator (A B : Matrix ι ι R) (hA : A * A = 0)
     (hB : B * B = 0) :
-    ((⁅sqZeroUnit A hA, sqZeroUnit B hB⁆ : (Matrix ι ι R)ˣ) :
-      Matrix ι ι R) =
+    (1 + A) * (1 + B) * (1 - A) * (1 - B) =
       1 + A * B - B * A + B * A * B - A * B * A + A * B * A * B := by
   have e : (1 + A) * (1 + B) * (1 - A) * (1 - B)
       = 1 + A * B - B * A + B * A * B - A * B * A + A * B * A * B
         - A * A + A * A * B - B * B - A * (B * B) := by noncomm_ring
-  change (1 + A) * (1 + B) * (1 - A) * (1 - B) = _
   rw [e, hA, hB]
   simp
 
 /-- **Left degeneration.**  When `A` annihilates `B` on the left the commutator
 collapses to the single term `1 - BA`. -/
-theorem commutator_of_left_annihilates (A B : Matrix ι ι R) (hA : A * A = 0)
-    (hB : B * B = 0) (hAB : A * B = 0) :
-    ((⁅sqZeroUnit A hA, sqZeroUnit B hB⁆ : (Matrix ι ι R)ˣ) :
-      Matrix ι ι R) = 1 - B * A := by
+theorem unipotent_commutator_of_left_annihilates (A B : Matrix ι ι R)
+    (hA : A * A = 0) (hB : B * B = 0) (hAB : A * B = 0) :
+    (1 + A) * (1 + B) * (1 - A) * (1 - B) = 1 - B * A := by
   have e : (1 + A) * (1 + B) * (1 - A) * (1 - B)
       = 1 - B * A + A * B - A * A + A * A * B - B * B + B * (A * B)
         - A * B * A - A * B * B + A * B * A * B := by noncomm_ring
-  change (1 + A) * (1 + B) * (1 - A) * (1 - B) = _
   rw [e, hA, hB, hAB]
   simp
 
 /-- **Right degeneration.**  When `B` annihilates `A` on the left the commutator
 collapses to the single term `1 + AB`. -/
-theorem commutator_of_right_annihilates (A B : Matrix ι ι R) (hA : A * A = 0)
-    (hB : B * B = 0) (hBA : B * A = 0) :
-    ((⁅sqZeroUnit A hA, sqZeroUnit B hB⁆ : (Matrix ι ι R)ˣ) :
-      Matrix ι ι R) = 1 + A * B := by
+theorem unipotent_commutator_of_right_annihilates (A B : Matrix ι ι R)
+    (hA : A * A = 0) (hB : B * B = 0) (hBA : B * A = 0) :
+    (1 + A) * (1 + B) * (1 - A) * (1 - B) = 1 + A * B := by
   have e : (1 + A) * (1 + B) * (1 - A) * (1 - B)
       = 1 + A * B - A * A + A * A * B - B * A - B * B + B * A * B
         - A * (B * A) - A * (B * B) + A * (B * A) * B := by noncomm_ring
-  change (1 + A) * (1 + B) * (1 - A) * (1 - B) = _
   rw [e, hA, hB, hBA]
   simp
+
+omit [DecidableEq ι] in
+/-- The one-row defect produced by the left degeneration squares to zero:
+`(BA)(BA) = B(AB)A`. -/
+theorem neg_mul_sq_eq_zero_of_left_annihilates (A B : Matrix ι ι R)
+    (hAB : A * B = 0) : (-(B * A)) * (-(B * A)) = 0 := by
+  have e : (-(B * A)) * (-(B * A)) = B * (A * B) * A := by
+    rw [neg_mul_neg, mul_assoc B A (B * A), ← mul_assoc A B A,
+      ← mul_assoc B (A * B) A]
+  rw [e, hAB, mul_zero, zero_mul]
 
 /-! ### Conjugating an elementary root
 
@@ -341,11 +348,9 @@ theorem row_supported_commutator (v : Matrix ι ι R) {k : ι}
       = elementaryUnit k n (Ne.symm hnk) (v k m * c) := by
   apply Units.ext
   have hBA : Matrix.single m n c * v = 0 := single_mul_row_eq_zero v hv hnk c
-  show ((⁅sqZeroUnit v (hv.mul_self hd),
-      sqZeroUnit (Matrix.single m n c) (single_mul_self_eq_zero m n hmn c)⁆ :
-      (Matrix ι ι R)ˣ) : Matrix ι ι R) =
-        1 + Matrix.single k n (v k m * c)
-  rw [commutator_of_right_annihilates v (Matrix.single m n c)
+  show (1 + v) * (1 + Matrix.single m n c) * (1 - v) *
+      (1 - Matrix.single m n c) = 1 + Matrix.single k n (v k m * c)
+  rw [unipotent_commutator_of_right_annihilates v (Matrix.single m n c)
       (hv.mul_self hd) (single_mul_self_eq_zero m n hmn c) hBA,
     row_mul_single v hv m n c]
 
@@ -413,18 +418,24 @@ theorem doubleCommutator_mem (N : Subgroup (elementaryGroup ι R)) [N.Normal]
   commutator_conj_mem N hg _ _ (elGen_commute hij hkl hjk hli a b)
 
 /-- **The double commutator, computed.**  When the conjugated root annihilates
-the second root on the left, five of the six terms of `sqZeroUnit_commutator`
-vanish and what is left is a one-row unipotent. -/
-theorem doubleCommutator_val_row (u : (Matrix ι ι R)ˣ) {i j k l : ι}
+the second root on the left, five of the six terms of `unipotent_commutator`
+vanish and what is left is a one-row unipotent.  Stated as an equation between
+units, so that no bracket ever carries an expected type. -/
+theorem doubleCommutator_eq_sqZeroUnit (u : (Matrix ι ι R)ˣ) {i j k l : ι}
     (hij : i ≠ j) (hkl : k ≠ l) (a b : R)
     (hAB : conjSingle u i j a * Matrix.single k l b = 0) :
-    ((⁅u * elementaryUnit i j hij a * u⁻¹, elementaryUnit k l hkl b⁆ :
-        (Matrix ι ι R)ˣ) : Matrix ι ι R)
-      = 1 + -(Matrix.single k l b * conjSingle u i j a) := by
-  rw [conj_elementaryUnit u i j hij a, elementaryUnit_eq_sqZeroUnit k l hkl b,
-    commutator_of_left_annihilates (conjSingle u i j a) (Matrix.single k l b)
-      (conjSingle_mul_self u i j hij a) (single_mul_self_eq_zero k l hkl b) hAB,
-    sub_eq_add_neg]
+    ⁅u * elementaryUnit i j hij a * u⁻¹, elementaryUnit k l hkl b⁆
+      = sqZeroUnit (-(Matrix.single k l b * conjSingle u i j a))
+          (neg_mul_sq_eq_zero_of_left_annihilates (conjSingle u i j a)
+            (Matrix.single k l b) hAB) := by
+  rw [conj_elementaryUnit u i j hij a, elementaryUnit_eq_sqZeroUnit k l hkl b]
+  apply Units.ext
+  show (1 + conjSingle u i j a) * (1 + Matrix.single k l b) *
+      (1 - conjSingle u i j a) * (1 - Matrix.single k l b)
+    = 1 + -(Matrix.single k l b * conjSingle u i j a)
+  rw [unipotent_commutator_of_left_annihilates (conjSingle u i j a)
+      (Matrix.single k l b) (conjSingle_mul_self u i j hij a)
+      (single_mul_self_eq_zero k l hkl b) hAB, sub_eq_add_neg]
 
 /-! ### Configuration 1: conjugation preserves the line of `E_{ij}`
 
@@ -511,23 +522,21 @@ theorem exists_elGen_mem_of_row_supported (hcard : 3 ≤ Fintype.card ι)
     (N : Subgroup (elementaryGroup ι R)) [N.Normal]
     {z : elementaryGroup ι R} (hz : z ∈ N) {v : Matrix ι ι R} {k : ι}
     (hv : IsRowSupported v k) (hd : v k k = 0)
-    (hzv : ((z : (Matrix ι ι R)ˣ) : Matrix ι ι R) = 1 + v)
+    (hzv : (z : (Matrix ι ι R)ˣ) = sqZeroUnit v (hv.mul_self hd))
     {m : ι} (hvm : v k m ≠ 0) :
     ∃ (p q : ι) (hpq : p ≠ q) (x : R), x ≠ 0 ∧ elGen p q hpq x ∈ N := by
   obtain ⟨n, hnk, hnm⟩ := exists_third_index hcard k m
   refine ⟨k, n, Ne.symm hnk, v k m * 1, ?_, ?_⟩
   · rw [mul_one]
     exact hvm
-  · have hzu : (z : (Matrix ι ι R)ˣ) = sqZeroUnit v (hv.mul_self hd) :=
-      Units.ext hzv
-    have hmem : ⁅z, elGen m n (Ne.symm hnm) (1 : R)⁆ ∈ N :=
+  · have hmem : ⁅z, elGen m n (Ne.symm hnm) (1 : R)⁆ ∈ N :=
       commutator_mem_left N hz _
     have heq : ⁅z, elGen m n (Ne.symm hnm) (1 : R)⁆
         = elGen k n (Ne.symm hnk) (v k m * 1) := by
       apply Subtype.ext
       show ⁅(z : (Matrix ι ι R)ˣ), elementaryUnit m n (Ne.symm hnm) (1 : R)⁆
           = elementaryUnit k n (Ne.symm hnk) (v k m * 1)
-      rw [hzu]
+      rw [hzv]
       exact row_supported_commutator v hv hd hnk (Ne.symm hnm) 1
     rw [heq] at hmem
     exact hmem
@@ -553,13 +562,20 @@ theorem exists_elGen_mem_of_inv_entry_zero (hcard : 3 ≤ Fintype.card ι)
     by_cases ht : t = j
     · rw [if_pos ht, conjSingle_apply, hzero, mul_zero, zero_mul]
     · rw [if_neg ht]
-  have hz : ⁅g * elGen k j hkj (1 : R) * g⁻¹, elGen k j hkj (1 : R)⁆ ∈ N :=
-    doubleCommutator_mem N hg hkj hkj hjk hjk 1 1
-  have hzv : (((⁅g * elGen k j hkj (1 : R) * g⁻¹, elGen k j hkj (1 : R)⁆ :
-          elementaryGroup ι R) : (Matrix ι ι R)ˣ) : Matrix ι ι R) =
-      1 + -(Matrix.single k j (1 : R) *
-        conjSingle (g : (Matrix ι ι R)ˣ) k j (1 : R)) :=
-    doubleCommutator_val_row (g : (Matrix ι ι R)ˣ) hkj hkj 1 1 hAB
+  obtain ⟨z, hzdef⟩ :
+      ∃ z, z = ⁅g * elGen k j hkj (1 : R) * g⁻¹, elGen k j hkj (1 : R)⁆ :=
+    ⟨_, rfl⟩
+  have hz : z ∈ N := by
+    rw [hzdef]
+    exact doubleCommutator_mem N hg hkj hkj hjk hjk 1 1
+  have hzv : (z : (Matrix ι ι R)ˣ) =
+      sqZeroUnit (-(Matrix.single k j (1 : R) *
+          conjSingle (g : (Matrix ι ι R)ˣ) k j (1 : R)))
+        (neg_mul_sq_eq_zero_of_left_annihilates
+          (conjSingle (g : (Matrix ι ι R)ˣ) k j (1 : R))
+          (Matrix.single k j (1 : R)) hAB) := by
+    rw [hzdef]
+    exact doubleCommutator_eq_sqZeroUnit (g : (Matrix ι ι R)ˣ) hkj hkj 1 1 hAB
   have hrow : IsRowSupported (-(Matrix.single k j (1 : R) *
       conjSingle (g : (Matrix ι ι R)ˣ) k j (1 : R))) k :=
     isRowSupported_single_mul _ k j 1
