@@ -50,12 +50,11 @@ namespace Endpoint
 /-! ## The model `EL₁₆(L_{𝔽₂}(1,2))` -/
 
 /-- **Every element of the model is corona-invisible.**  The elementwise form
-of `Cover.coronaMFResidual_model_eq_top`, read straight off the normal-Kazhdan
-criterion at `K = ⊤`. -/
+of `Cover.coronaMFResidual_model_eq_top`. -/
 theorem model_coronaMFInvisible (x : Cover.Model) : CoronaMFInvisible x :=
-  QuestionTwoReduction.coronaMFInvisible_of_mem_normal_kazhdan_defect
-    Cover.modelCore ⊤ Cover.top_hasKazhdanPropertyT_model
-    Cover.top_le_defectNormal (Subgroup.mem_top x)
+  show x ∈ coronaMFResidual Cover.Model from by
+    rw [Cover.coronaMFResidual_model_eq_top]
+    exact Subgroup.mem_top x
 
 /-- **The model endpoint.**  An explicit countable Kazhdan group which is equal
 to its own MF radical, and therefore not operator MF in either the corona or

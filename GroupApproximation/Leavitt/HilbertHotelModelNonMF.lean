@@ -1,7 +1,7 @@
 import GroupApproximation.Leavitt.HilbertHotelCover
 import GroupApproximation.Leavitt.GeneralCornerTheorem
 import GroupApproximation.Algebra.GroupTorsionFree
-import GroupApproximation.Sofic.NormalKazhdanMFRadical
+import GroupApproximation.Sofic.FiniteOrderNormalGenerator
 import GroupApproximation.Sofic.CDEMFRadical
 
 /-!
@@ -36,10 +36,12 @@ identity, and `Tunit_conj_corner` is its restriction to elementary generators.
 ## The staging endpoint
 
 With those two clauses the compression core `⟨ι, τ, c, (T), compresses, comm⟩`
-exists on the model, its defect contains the Hilbert-hotel defect `e₀₂(q)` by
-`defect_from_conjugated_mark`, and `normalClosure_defectModel_eq_top` makes the
-defect all of the model.  The normal-Kazhdan criterion at `K = ⊤` then gives
-`¬ IsOperatorMF Model`, together with the full-radical forms.
+exists on the model, and its Hilbert-hotel defect `e₀₂(q)` is universally
+Hilbert--Schmidt invisible.  That defect is an involution and normally
+generates the model.  The finite-order normal-generator theorem therefore
+upgrades its HS invisibility directly to full MF invisibility.  Property `(T)`
+is used only for the compressed rank-four group `Gamma` in `modelCore`, not as
+a hypothesis on the ambient model in the MF-radical conversion.
 
 What the model does **not** have is finite presentability: `Model` is
 `EL₁₆(L_{𝔽₂}(1,2))`, which the development gives as a matrix group, not by a
@@ -228,24 +230,17 @@ theorem defectModel_mem_defectNormal : defectModel ∈ modelCore.defectNormal :=
   rw [← transported_commutator_eq_defect]
   exact modelCore.defect_mem_defectNormal cornerGenerator
 
-/-- **The defect is everything.**  Unlike the cover, the model *does* inherit
-saturation, because `normalClosure_defectModel_eq_top` is a statement about the
-model and no surjection is crossed. -/
-theorem top_le_defectNormal : (⊤ : Subgroup Model) ≤ modelCore.defectNormal := by
-  have hsub : ({defectModel} : Set Model) ⊆ (modelCore.defectNormal : Set Model) := by
-    intro x hx
-    rw [Set.mem_singleton_iff] at hx
-    subst hx
-    exact defectModel_mem_defectNormal
-  calc (⊤ : Subgroup Model) = Subgroup.normalClosure ({defectModel} : Set Model) :=
-        normalClosure_defectModel_eq_top.symm
-    _ ≤ modelCore.defectNormal := Subgroup.normalClosure_le_normal hsub
-
 /-! ## The staging endpoint -/
 
-/-- The model is countable: property `(T)` supplies a finite generating set. -/
-instance model_countable : Countable Model :=
-  GeneralCornerTheorem.countable_of_hasKazhdanPropertyT model_hasKazhdanPropertyT
+/-- The rank-sixteen elementary model is finitely generated directly from its
+finite-type coefficient algebra.  No ambient property-`(T)` input is used. -/
+theorem model_fg : Group.FG Model :=
+  elementaryGroup_finitelyGenerated 16 (by omega)
+
+noncomputable local instance model_fg_instance : Group.FG Model := model_fg
+
+/-- The model is countable because it is finitely generated. -/
+instance model_countable : Countable Model := countable_of_fg model_fg
 
 /-- The model is nontrivial, because the defect is. -/
 theorem model_nontrivial : Nontrivial Model :=
@@ -256,6 +251,10 @@ the characteristic-two elementary-root relation, recorded here because it
 completely determines what happens under maps to torsion-free groups. -/
 theorem defectModel_sq : defectModel ^ 2 = 1 := by
   exact elementaryRoot_pow_char 2 (0 : Fin 16) 2 (by decide) Binary.L.p1
+
+/-- The nontrivial Hilbert-hotel defect has finite order (indeed order two). -/
+theorem defectModel_isOfFinOrder : IsOfFinOrder defectModel :=
+  isOfFinOrder_iff_pow_eq_one.mpr ⟨2, by decide, defectModel_sq⟩
 
 /-- **The Hilbert-hotel model has no nontrivial torsion-free image.**  Its
 normally generating defect has order two, so every map to a torsion-free
@@ -289,30 +288,48 @@ theorem model_not_isPowerTorsionFree : ¬ IsPowerTorsionFree Model := by
   exact defectModel_ne_one (by
     simpa using DFunLike.congr_fun htrivial defectModel)
 
-/-- Property `(T)` for the whole model, read as a subgroup. -/
-theorem top_hasKazhdanPropertyT_model :
-    HasKazhdanPropertyT.{0, 0} ↥(⊤ : Subgroup Model) :=
-  HasKazhdanPropertyT.of_mulEquiv Subgroup.topEquiv model_hasKazhdanPropertyT
+/-- The compression core kills the distinguished defect in every normalized
+Hilbert--Schmidt ultraproduct arising from an operator-norm almost
+representation. -/
+theorem defectModel_mem_opToHSShadowResidual :
+    defectModel ∈ opToHSShadowResidual Model := by
+  rw [mem_opToHSShadowResidual_iff]
+  intro B U hcof
+  exact modelCore.defectNormal_hyperlinear_killed
+    B U hcof defectModel defectModel_mem_defectNormal
 
-/-- **The model is not operator MF.**  Unconditional: the compression core is
-assembled from proved facts, its defect is all of the model, and the model is
-countable and nontrivial. -/
-theorem not_isOperatorMF_model : ¬ IsOperatorMF Model := by
-  haveI : Nontrivial Model := model_nontrivial
-  exact QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect
-    modelCore ⊤ top_hasKazhdanPropertyT_model top_le_defectNormal top_ne_bot
-
-/-- **Full MF radical.**  Every element of the model is invisible in every
-standard cofinite norm-matrix corona. -/
-theorem coronaMFResidual_model_eq_top : coronaMFResidual Model = ⊤ :=
-  top_unique
-    (KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual modelCore ⊤
-      top_hasKazhdanPropertyT_model top_le_defectNormal)
+/-- **The finite-order bridge at the Hilbert-hotel defect.**  Universal HS
+triviality upgrades directly to full MF invisibility because the involution
+normally generates the finitely generated ambient model. -/
+theorem defectModel_mem_normMFResidual : defectModel ∈ normMFResidual Model :=
+  (FiniteOrderNormalGenerator.finiteOrder_normalGenerator_mem_normMFResidual_iff_mem_opToHSShadowResidual
+      defectModel_isOfFinOrder normalClosure_defectModel_eq_top).mpr
+    defectModel_mem_opToHSShadowResidual
 
 /-- The ultraproduct-language form of the full-radical theorem. -/
 theorem normMFResidual_model_eq_top : normMFResidual Model = ⊤ := by
-  rw [← coronaMFResidual_eq_normMFResidual]
-  exact coronaMFResidual_model_eq_top
+  apply top_unique
+  rw [← normalClosure_defectModel_eq_top]
+  apply Subgroup.normalClosure_le_normal
+  intro x hx
+  rw [Set.mem_singleton_iff] at hx
+  subst x
+  exact defectModel_mem_normMFResidual
+
+/-- **Full MF radical.**  Every element of the model is invisible in every
+standard cofinite norm-matrix corona. -/
+theorem coronaMFResidual_model_eq_top : coronaMFResidual Model = ⊤ := by
+  rw [coronaMFResidual_eq_normMFResidual]
+  exact normMFResidual_model_eq_top
+
+/-- **The model is not operator MF.**  Its nontrivial normally generating
+involution lies in the MF residual, so that residual is the whole group. -/
+theorem not_isOperatorMF_model : ¬ IsOperatorMF Model := by
+  haveI : Nontrivial Model := model_nontrivial
+  intro hMF
+  have hbot := normMFResidual_eq_bot_of_isOperatorMF hMF
+  rw [normMFResidual_model_eq_top] at hbot
+  exact top_ne_bot hbot
 
 /-- **The literal Carrión--Dadarlat--Eckhardt full radical.**  Every
 homomorphism of the model into the unitary group of a genuine norm-matrix
