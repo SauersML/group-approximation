@@ -78,6 +78,29 @@ coordinates commute, hypothesis (3) because `sΓs⁻¹` fixes `x₀`, and
 hypothesis (1) because `k ∈ K` is torsion.  None of the wreath structure
 enters the proof.
 
+### Fixed noncommutative packets
+
+The separate note `FINITE_PACKET_SELF_COPY_COLLAPSE.md` closes a different
+finite-memory branch.  If `K ≤ W` is one fixed finite subgroup normalized by
+`Λ`, and the compressed copy `sΛs⁻¹` fixes `k ∈ K`, then pairwise
+commutation of the `Λ`-orbit is unnecessary.  Exactify the whole finite
+packet once on a cofinite tail, correct generator covariance by finite
+averaging and polar decomposition, and set
+
+```text
+w_n = sum_(a in S) rank(V_n(a k a^-1) - V_n(k)).
+```
+
+The fixed representation theory of `K` supplies a positive spectral floor,
+so nonzero marked displacement has Frobenius mass comparable to the integer
+weight `w_n`.  Exact covariance and rank subadditivity give the word bound
+needed to build the `w_n`-scaled cocycle, while
+`ScaledKazhdanTransport.scaled_transport_both` returns its child-fixed
+primitive to the whole parent.  This is the established Cairn route
+`finite-noncommutative-packet-compression-collapse`; unlike the commuting
+torsion route in this note, its new exactification, covariance, and weighted
+cocycle layers are still paper-level rather than Lean-kernel checked.
+
 ## 2. Proof of Theorem 1
 
 Fix `π`, lift it: choose unitaries `U_{g,n} ∈ U(d_n)` representing `π(g)`,
@@ -595,6 +618,13 @@ family's RF quotient (`GL₄(ℤ[1/2])` congruence reductions —
 `IntegralLinearResiduallyFinite` is the ℤ-precedent); (iii) the
 FF-inspired saturation plumbing of §5½ (defect normal closure `= ⊤` plus
 ambient `(T)` ⟹ full MF radical, via `normalKazhdan_le_normMFResidual`).
+
+The fixed noncommutative-packet branch has its own local Lean ladder, tracked
+in `FINITE_PACKET_SELF_COPY_COLLAPSE.md`: finite-group corona tail
+exactification, near-identity polar covariance correction, noncommuting rank
+word bounds and weighted cocycle assembly, followed by the arithmetic
+`S_9`-packet/amalgam carrier.  It reuses the already kernel-checked arbitrary
+weight transport theorem rather than duplicating that analysis.
 
 ## 10. Manuscript promotion (2026-08-15)
 

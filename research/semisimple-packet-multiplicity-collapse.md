@@ -42,6 +42,15 @@ finite-dimensional module type of a packet* — the commuting/anticommuting
 distinction stops being fundamental, and the central sign `u^2 = -1`
 becomes one small example.
 
+**Closed fixed-packet boundary.**  The special case in which every window is
+contained in one fixed finite subgroup is now the established claim
+`finite-noncommutative-packet-compression-collapse`.  There a single
+operator-norm tail exactification makes the packet exact, and the integer
+sum of generator displacement ranks is the self-normalizing multiplicity
+scale.  This claim remains open only for genuinely growing
+finite-dimensional orbit algebras, where one must synchronize a sequence of
+window exactifications and their covariance corrections.
+
 **K_0 reading and a trap.**  The multiplicity vector is a positive
 K_0-type invariant: a rank-one projection has normalized trace `1/d_n` but
 rank `1`, which is what dimension-normalized trace forgets.  It is NOT the
