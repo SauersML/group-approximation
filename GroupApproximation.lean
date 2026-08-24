@@ -1596,6 +1596,8 @@ import GroupApproximation.Sofic.MatchingBoundaryBlock
 import GroupApproximation.Sofic.MatchingRunPiece
 import GroupApproximation.Sofic.MatchingStemContraction
 import GroupApproximation.Sofic.CurvatureAssembly
+import GroupApproximation.Sofic.MatchingRunGap
+import GroupApproximation.Sofic.ShellSingleRegion
 import GroupApproximation.Sofic.SigmaCompressionPair
 
 /-!
