@@ -78,6 +78,57 @@ theorem ambientWordsRespectGroup_of_corona
   rw [norm_sub_rev]
   exact this.le
 
+omit [Group G] in
+/-- Conjugate-product evaluation commutes with passage to the norm matrix
+corona. -/
+theorem quotient_mk_conjugateWord
+    [∀ n, Nonempty (X n)]
+    (R : ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (C : G → ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (l : List (G × Bool)) :
+    (QuotientGroup.mk (fun n ↦ TorsionActiveCore.conjugateWord (R n)
+        (l.map fun p ↦ (C p.1 n, p.2))) : NormMatrixCoronaUnitary X) =
+      ConjWord.conjWord
+        (QuotientGroup.mk R : NormMatrixCoronaUnitary X)
+        (l.map fun p ↦
+          ((QuotientGroup.mk (C p.1) : NormMatrixCoronaUnitary X), p.2)) := by
+  induction l with
+  | nil =>
+      change QuotientGroup.mk (1 : ∀ n, Matrix.unitaryGroup (X n) ℂ) = 1
+      exact map_one (QuotientGroup.mk' (nullCofiniteOpSubgroup X))
+  | cons p l ih =>
+      obtain ⟨c, positive⟩ := p
+      simp only [List.map_cons]
+      rw [ConjWord.conjWord_cons]
+      change QuotientGroup.mk
+        ((fun n ↦ TorsionActiveCore.conjugateFactor (R n) (C c n) positive) *
+          (fun n ↦ TorsionActiveCore.conjugateWord (R n)
+            (l.map fun p ↦ (C p.1 n, p.2)))) = _
+      rw [QuotientGroup.mk_mul, ih]
+      unfold TorsionActiveCore.conjugateFactor
+      cases positive <;> rfl
+
+/-- A conjugate-word packet built from coordinate lifts represents the chosen
+finite generating packet in the corona. -/
+theorem quotient_mk_conjugateWordPacket
+    [∀ n, Nonempty (X n)] (S : Finset G) (a : G)
+    (words : S → List (G × Bool))
+    (hwords : ∀ i : S, ConjWord.conjWord a (words i) = i)
+    (rho : G →* NormMatrixCoronaUnitary X)
+    (R : ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (hR : QuotientGroup.mk R = rho a)
+    (C : G → ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (hC : ∀ g, QuotientGroup.mk (C g) = rho g) (i : S) :
+    QuotientGroup.mk (fun n ↦
+        TorsionActiveCore.conjugateWordPacket (R n)
+          (fun j : S ↦ (words j).map fun p ↦ (C p.1 n, p.2)) i) = rho i := by
+  change QuotientGroup.mk (fun n ↦ TorsionActiveCore.conjugateWord (R n)
+      ((words i).map fun p ↦ (C p.1 n, p.2))) = rho i
+  rw [quotient_mk_conjugateWord R C (words i), hR]
+  simp_rw [hC]
+  rw [← ConjWord.map_conjWord]
+  rw [hwords]
+
 end
 
 end FiniteOrderNormalGenerator
