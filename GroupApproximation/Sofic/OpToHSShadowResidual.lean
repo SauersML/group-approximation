@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+import GroupApproximation.Sofic.UltraproductAdjointAmbient
 
 /-!
 # The operator-to-Hilbert--Schmidt shadow residual
@@ -26,7 +27,7 @@ group-theoretic boundary.
 
 namespace GroupApproximation
 
-open scoped commutatorElement
+open scoped commutatorElement Matrix.Norms.L2Operator
 
 variable {G H : Type} [Group G] [Group H]
 
@@ -92,6 +93,60 @@ theorem normalClosure_le_opToHSShadowResidual {w : G}
   rw [Set.mem_singleton_iff] at hx
   subst x
   exact hw
+
+/-- Operator-norm MF invisibility always implies normalized-Hilbert--Schmidt
+shadow invisibility.  This direction uses only `‖X‖₂ ≤ ‖X‖`; finite order
+and normal generation enter only in the reverse active-core argument. -/
+theorem normMFResidual_le_opToHSShadowResidual [Countable G] :
+    normMFResidual G ≤ opToHSShadowResidual G := by
+  intro x hx
+  rw [mem_opToHSShadowResidual_iff]
+  intro B U hcof
+  letI : ∀ n, Nonempty (B.model n) :=
+    fun n ↦ Fintype.card_pos_iff.mp (B.modelNonempty n)
+  let e := normMatrixCoronaUnitaryEquiv B.model
+  let rhoNorm : G →* NormMatrixCoronaUnitary B.model :=
+    e.symm.toMonoidHom.comp (opAlmostRepCoronaHom B)
+  have hxCorona : CoronaMFInvisible x :=
+    NormMFInvisible.toCoronaMFInvisible (show NormMFInvisible x from hx)
+  have hrho : rhoNorm x = 1 :=
+    hxCorona B.model B.modelNonempty rhoNorm
+  have hCStar : opAlmostRepCoronaHom B x = 1 := by
+    have := congrArg e hrho
+    simpa [rhoNorm, e] using this
+  have hOpQuot :
+      QuotientGroup.mk (fun n ↦ B.map n x) =
+        (1 : NormMatrixCoronaUnitary B.model) := by
+    apply unitaryCoronaToCStarCoronaUnitary_injective B.model
+    simpa [unitaryCoronaToCStarCoronaUnitary_mk] using hCStar
+  have hOpNull : (fun n ↦ B.map n x) ∈
+      nullCofiniteOpSubgroup B.model :=
+    (@QuotientGroup.eq_one_iff _ _ (nullCofiniteOpSubgroup B.model) _
+      (fun n ↦ B.map n x)).mp hOpQuot
+  let S := KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B
+  have hHSNull : (fun n ↦ S.map n x) ∈
+      nullUnitarySubgroup U S.model S.modelNonempty := by
+    intro ε hε
+    have hsqrt : 0 < Real.sqrt ε := Real.sqrt_pos.2 hε
+    have hsmall := hOpNull (Real.sqrt ε) hsqrt
+    filter_upwards [hcof hsmall] with n hn
+    change hsLengthSq (B.model n) (B.map n x) < ε
+    have hdom := hsDistSq_le_sq_l2_opNorm (B.model n)
+      ((B.map n x : Matrix (B.model n) (B.model n) ℂ) - 1) 0
+    have hop : ‖(B.map n x : Matrix (B.model n) (B.model n) ℂ) - 1‖ <
+        Real.sqrt ε := by
+      simpa [opLength] using hn
+    have hsq : ‖(B.map n x : Matrix (B.model n) (B.model n) ℂ) - 1‖ ^ 2 <
+        ε := by
+      nlinarith [norm_nonneg
+        ((B.map n x : Matrix (B.model n) (B.model n) ℂ) - 1),
+        Real.sq_sqrt hε.le]
+    exact lt_of_le_of_lt
+      (by simpa [hsLengthSq, hsDistSq, hsNormSq] using hdom) hsq
+  change QuotientGroup.mk (fun n ↦ S.map n x) = 1
+  exact (@QuotientGroup.eq_one_iff _ _
+    (nullUnitarySubgroup U S.model S.modelNonempty) _
+    (fun n ↦ S.map n x)).2 hHSNull
 
 /-- A normal Kazhdan subgroup of the shadow residual lies in the norm-MF
 residual.  This is the named shadow-radical interface to the moving-corner
