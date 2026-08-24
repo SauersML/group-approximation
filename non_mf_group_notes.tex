@@ -122,14 +122,14 @@
 group $C^*$-algebras, sofic groups}
 
 \begin{abstract}
-These notes collect further results and variants surrounding the explicit
-group constructed in \emph{A non-MF group}.  They include weighted
+These notes collect further results and variants from the non-MF project.
+They include weighted
 Kazhdan transport, general obstruction criteria, MF-residual computations,
 the sign-free quotient, soficity and trace consequences, torsion-free
 examples, logical applications, limitations, and additional operator-algebraic
-consequences.  They also record the literal presentation and affine certificate
-for the group defined conceptually in the main paper.  The central-sign
-construction and the proof that the group is non-MF remain there.
+consequences.  They also record spectral-component rigidity, exact visible
+quotients for finite lamps, the sharp abelian-lamp boundary, and the literal
+presentation and affine certificate for the original central-sign group.
 \end{abstract}
 
 \maketitle
@@ -1814,6 +1814,164 @@ the collapse defect gives the two identities downstairs.  Explicitly,
 $q(u)^{-1}=[q(\iota(v_1)),\bar c]$ is one of the generators of
 $D_{\mathrm{coll}}$, so $D/\langle w\rangle\le D_{\mathrm{coll}}$; the
 reverse inclusion follows from the residual calculation just proved.
+\end{proof}
+
+\section{Spectral components and exact finite-lamp quotients}
+\label{sec:spectral-visible-notes}
+
+The projection theorem above has a functional-calculus form which is both
+stronger and easier to apply.  It also identifies the exact quotient detected
+by finite-dimensional approximation in the affine-doubling wreath family.
+These results are retained here rather than in the self-compression paper
+because their proofs use commuting projection orbits and rank-normalized
+Hilbert--Schmidt geometry.
+
+\subsection{Spectral-component rigidity}
+
+\begin{theorem}[spectral-component motion]\label{thm:notes-spectral-motion}
+Let $L\le H$ have property~\textup{(T)}, let $sLs^{-1}\le L$, and let
+$\pi\colon H\to\U(\mathcal Q)$ be a homomorphism to a norm matrix corona.
+Suppose that $v\in\mathcal Q$ is normal, commutes with
+$\pi(sLs^{-1})$, and has pairwise commuting $L$-conjugates.  Then every
+clopen spectral projection of $v$ commutes with $\pi(L)$ and, for
+$\gamma\in L$,
+\[
+ \opnorm{\pi(\gamma)v\pi(\gamma)^*-v}
+ \le
+ \sup\{\operatorname{diam}(C):
+ C\text{ is a connected component of }\sigma(v)\}.
+\]
+In particular, if every connected component of $\sigma(v)$ is a singleton,
+then $v$ commutes with $\pi(L)$.
+\leanverified{Manuscript/SpectralPaper/MainTheorems}{GroupApproximation.SpectralPaper.spectralCompressionTheorem}
+\leanverified{Manuscript/SpectralPaper/MainTheorems}{GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem}
+\end{theorem}
+
+\begin{proof}
+For a clopen set $U\subseteq\sigma(v)$, continuous functional calculus gives
+the projection $p_U=1_U(v)$.  Functional calculus is equivariant under
+unitary conjugation, so the hypotheses on $v$ imply the hypotheses of
+Theorem~\ref{thm:projection-collapse} for $p_U$.  Hence every $p_U$ commutes
+with $\pi(L)$.
+
+Fix $\gamma\in L$ and put $w=\pi(\gamma)v\pi(\gamma)^*$.  The algebra
+$C^*(1,v,w)$ is commutative.  If $\chi$ is a character of this algebra, then
+$\chi(v)$ and $\chi(w)$ belong to exactly the same clopen subsets of
+$\sigma(v)$.  In a compact Hausdorff space, points which cannot be separated
+by a clopen set lie in the same connected component.  Thus
+\[
+ |\chi(w)-\chi(v)|
+ \le \sup_C\operatorname{diam}(C).
+\]
+Taking the supremum over all characters proves the norm estimate.  If all
+components are singletons, the right-hand side is zero.
+\end{proof}
+
+\subsection{The heightwise abelian quotient}
+
+Let
+\[
+ \Gamma_* = \mathbb Z^3\rtimes\SL_3(\mathbb Z),
+ \qquad \alpha(v,A)=(2v,A),
+\]
+let $G_*$ be the ascending HNN extension of $\Gamma_*$ along $\alpha$, and
+put $X=G_*/\Gamma_*$.  The height homomorphism $h\colon G_*\to\mathbb Z$
+induces a map $\eta\colon X\to\mathbb Z$.  For a finite group $K$, put
+\[
+ W_K=K^{(X)}\rtimes G_*.
+\]
+Writing $K_{\mathrm{ab}}=K/[K,K]$, define
+\[
+ \Phi_K\colon W_K\longrightarrow
+ P_K:=K_{\mathrm{ab}}^{(\mathbb Z)}\rtimes G_*
+\]
+by summing the abelianized lamp values over each height fibre.
+
+\begin{theorem}[exact finite-lamp quotient]
+\label{thm:notes-visible-quotient}
+For every finite group $K$, every homomorphism from $W_K$ to a norm matrix
+corona factors uniquely through $\Phi_K$.  Moreover
+\[
+ \begin{aligned}
+ \ker\Phi_K
+ &=\operatorname{Rad}_{\mathrm{MF}}(W_K)
+  =\operatorname{Rad}_{\mathrm{fd}}(W_K)
+  =\operatorname{Res}_{\mathrm{fin}}(W_K)\\
+ &=\operatorname{Rad}_{\mathrm{lin}}(W_K)
+  =\operatorname{Rad}_{\mathrm{Bohr}}(W_K).
+ \end{aligned}
+\]
+Equivalently, precomposition with $\Phi_K$ is a bijection on homomorphisms
+into norm matrix coronas, residually finite groups, finite-dimensional linear
+groups over arbitrary fields, and compact Hausdorff groups.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:notes-spectral-motion}, applied to finite-order one-site
+lamps, identifies the images of lamps lying in a common height fibre.  Lamps
+at distinct sites commute, so the common image of a site copy of $K$ is
+abelian.  Every corona representation therefore retains only the total
+abelianized lamp value on each fibre and factors through $\Phi_K$.
+
+The group $P_K$ is residually finite.  This gives the reverse containment for
+the finite residual and hence for the MF residual.  The finite-dimensional
+unitary equality follows from the same factorization.  If
+$\rho\colon W_K\to\GL_d(F)$, the finitely generated image of $\rho$ is
+residually finite by Mal'cev's theorem, so $\rho$ also factors through
+$\Phi_K$.  Finally, Peter--Weyl point separation gives the compact-target
+statement.  Unique factorization is equivalent to $\ker\Phi_K\le\ker\rho$
+because $\Phi_K$ is surjective.
+\end{proof}
+
+\begin{corollary}[one relation changes the MF property]
+\label{cor:notes-a5-relation}
+Take $K=A_5$ and let $r$ be the one-site lamp with value $(12)(34)$.  Then
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(W_{A_5})
+ =A_5^{(X)}
+ =\langle\!\langle r\rangle\!\rangle_{W_{A_5}},
+ \qquad
+ W_{A_5}/\langle\!\langle r\rangle\!\rangle\cong G_*.
+\]
+Thus $W_{A_5}$ is sofic and non-MF, while the quotient is residually finite
+and MF, although every homomorphism from $W_{A_5}$ to a norm matrix corona
+already maps $r$ to $1$.
+\end{corollary}
+
+\begin{proof}
+The group $A_5$ is perfect, so $P_{A_5}=G_*$.  It is also simple, hence the
+normal closure of any nonidentity element in one site is the entire site
+copy.  Transitivity of the $G_*$-action on $X$ then gives the displayed
+normal-closure identity.  Theorem~\ref{thm:notes-visible-quotient} computes
+the MF radical.  Telescope-window approximations make $W_{A_5}$ sofic, while
+congruence quotients make $G_*$ residually finite.
+\end{proof}
+
+\subsection{The abelian boundary}
+
+\begin{theorem}\label{thm:notes-abelian-boundary}
+For every countable abelian group $A$,
+\[
+ A^{(X)}\rtimes G_*\text{ is MF}
+ \quad\Longleftrightarrow\quad
+ A\text{ is torsion-free}.
+\]
+\end{theorem}
+
+\begin{proof}
+If $A$ has nontrivial torsion, a finite-order one-site lamp has
+zero-dimensional spectrum in every corona representation.  Theorem
+\ref{thm:notes-spectral-motion} identifies its image with a distinct-site
+translate, producing a nontrivial word killed by every such representation.
+
+If $A$ is torsion-free, it admits a separating family of characters which can
+be joined to the trivial character by paths.  Evaluate these paths against a
+slowly varying height function on finite telescope windows for the
+$G_*$-action.  The variation across every prescribed finite set tends to
+zero, while an appropriate character remains separated on each prescribed
+nonidentity lamp.  Combining these diagonal lamp models with the finite
+quotients of $G_*$ gives operator-norm microstates separating every finite
+subset of $A^{(X)}\rtimes G_*$.
 \end{proof}
 
 \section{Group algebras, soficity, and permanence}

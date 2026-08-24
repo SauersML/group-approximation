@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={Self-compression and finite-dimensional invisibility},pdfauthor={\paperauthor},pdfsubject={One-sided compression in elementary groups over the binary Leavitt algebra},pdfkeywords={finite-dimensional representations, Leavitt algebra, property (T), Bohr compactification}}
+\hypersetup{pdftitle={A group with full MF radical},pdfauthor={\paperauthor},pdfsubject={A group invisible to all MF representations},pdfkeywords={MF groups, norm matrix coronas, property (T), Leavitt algebra, MF radical}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \setlist[enumerate]{leftmargin=2.35em}
 \allowdisplaybreaks
@@ -36,35 +36,39 @@
 \newcommand{\C}{\mathbb C}
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\EL}{\operatorname{EL}}
+\newcommand{\U}{\mathcal U}
 \newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_2}
 \newcommand{\normal}[1]{\langle\!\langle #1\rangle\!\rangle}
 \makeatletter
 \patchcmd{\abstract}{\item[\hskip\labelsep\scshape\abstractname.]}{\item[]}{}{\PackageError{self-compression}{Could not remove abstract heading}{}}
 \makeatother
 
 \begin{document}
-\title[Self-compression]{Self-compression and finite-dimensional invisibility}
+\title[Full MF radical]{A group with full MF radical}
 \author{\paperauthor}
-\subjclass[2020]{Primary 20C07; Secondary 16S50, 20G35, 22D10}
-\keywords{finite-dimensional representations, Leavitt algebra, elementary group, property~(T), Bohr compactification}
+\subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
+\keywords{MF groups, norm matrix coronas, property~(T), Leavitt algebra, elementary group}
 
 \begin{abstract}
-We construct a finitely generated Kazhdan group $H$ for which every
-finite-dimensional linear representation over every field is trivial.  The
-group is the concrete elementary matrix group
+We construct a nontrivial finitely generated Kazhdan group $H$ such that
+every homomorphism from $H$ to an MF group is trivial.  Equivalently, the MF
+radical of $H$ is all of $H$.  In particular, $H$ and every nontrivial
+quotient of $H$ are non-MF.  The group is the concrete elementary matrix group
 \[
  H=\EL_{16}\bigl(L_{\F_2}(1,2)\bigr).
 \]
-Its Bohr compactification is trivial, and every homomorphism from $H$ to a
-residually finite group is trivial as well.
-
-The proof has two ingredients.  First, one-sided compression of a subgroup
-forces a commutator to vanish in every finite-dimensional representation: an
-injective endomorphism of a finite-dimensional commutant is surjective.
-Second, an explicit Whitehead matrix over the binary Leavitt algebra produces
-one such commutator which normally generates $H$.  Thus a single relation
-forced by finite-dimensionality annihilates every representation of the
-group.
+An explicit Whitehead matrix compresses a Kazhdan corner subgroup of $H$ into
+itself.  Ordinary normalized Hilbert--Schmidt Kazhdan transport makes the
+resulting compression defect tracially trivial in every operator-norm
+asymptotic representation.  A spectral-corner argument then shows that every
+matrix-corona homomorphism is trivial on normal Kazhdan subgroups contained
+in the defect.  Finally, two Steinberg commutator identities show that one explicit
+defect normally generates $H$.  We also prove the exact finite-dimensional
+analogue over every field.
 \end{abstract}
 
 \maketitle
@@ -73,13 +77,26 @@ group.
 
 \section{Introduction}
 
-Finite-dimensional representations often retain enough information to
-separate a group.  This happens for residually finite groups, for finitely
-generated linear groups by Mal'cev's theorem~\cite{Malcev}, and for maximally
-almost periodic groups by definition.  The opposite extreme is a
-\emph{minimally almost periodic} group: one admitting no nontrivial
-finite-dimensional unitary representation.  We give a concrete Kazhdan group
-at a still stronger extreme.
+A countable group is \emph{MF} if it embeds in the unitary group of a norm
+matrix corona
+\[
+ \mathcal Q_{\mathbf d}
+ =\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).
+\]
+Equivalently, it admits finite-dimensional unitary models whose
+multiplicative defects tend to zero in operator norm and which asymptotically
+separate its nonidentity elements.  This is the convention of
+Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.
+
+For a countable group $G$, define its MF radical by
+\[
+ \Rad_{\mathrm{MF}}(G)
+ =\bigcap_{\mathbf d}
+   \bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.
+\]
+Thus $G$ is MF precisely when its MF radical is trivial.  At the opposite
+extreme, $\Rad_{\mathrm{MF}}(G)=G$ means that every homomorphism from $G$ to
+every MF group is trivial.
 
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
@@ -93,34 +110,37 @@ $e_{ij}(a)$, $i\ne j$.
 
 \begin{mainthm}\label{thm:headline}
 Put $R=L_{\F_2}(1,2)$ and $H=\EL_{16}(R)$.  Then $H$ is nontrivial,
-finitely generated, and has property~\textup{(T)}.  For every field $k$,
-every finite-dimensional $k$-vector space $V$, and every homomorphism
+finitely generated, and has property~\textup{(T)}, and
 \[
- \rho\colon H\longrightarrow\GL(V),
+ \Rad_{\mathrm{MF}}(H)=H.
 \]
-one has $\rho(H)=\{1\}$.
+Equivalently, every homomorphism from $H$ to an MF group is trivial.
+Consequently every nontrivial quotient of $H$ is non-MF and has full MF
+radical.
 \end{mainthm}
 
-The conclusion is simultaneous over all characteristics.  In particular,
-$H$ has no nontrivial finite quotient.  Peter--Weyl point separation gives
-the compact-group form of the result.
+The analytic input is a general theorem.  Call an element of $G$
+\emph{universally Hilbert--Schmidt trivial} if its value converges to the
+identity in normalized Hilbert--Schmidt norm in every operator-norm
+asymptotic representation of $G$.
 
-\begin{mainthm}\label{thm:targets}
-Every homomorphism from $H$ to a compact Hausdorff group or to a residually
-finite group is trivial.  Equivalently, the Bohr compactification and the
-profinite completion of $H$ are both trivial.
+\begin{mainthm}[normal-Kazhdan upgrade]\label{thm:normal-kazhdan}
+Let $G$ be countable, let $D\le G$ consist of universally
+Hilbert--Schmidt trivial elements, and let $K\trianglelefteq G$ have
+property~\textup{(T)} with $K\le D$.  Then
+\[
+ K\le\Rad_{\mathrm{MF}}(G).
+\]
 \end{mainthm}
 
-The mechanism is intrinsic and elementary.  Suppose $L\le G$, an element
+One-sided Kazhdan compression supplies the subgroup $D$.  Suppose $L\le G$
+has property~\textup{(T)}, an element
 $u\in G$ satisfies $uLu^{-1}\le L$, and $c$ centralizes $L$.  Every
-finite-dimensional representation of $G$ kills
+operator-norm asymptotic representation makes
 \begin{equation}\label{eq:basic-defect}
- [ucu^{-1},\ell],\qquad \ell\in L.
+ [ucu^{-1},\ell],\qquad \ell\in L,
 \end{equation}
-Indeed, conjugation by the inverse of the representing matrix for $u$ maps
-the commutant of the image of $L$ injectively into itself.  Finite
-dimensionality makes this map surjective, so conjugation by $u$ preserves the
-commutant in both directions.
+converge to the identity in ordinary normalized Hilbert--Schmidt norm.
 
 The binary Leavitt relations realize this configuration inside $H$.  A
 $4\times4$ corner subgroup $L\cong\EL_4(R)$ is compressed into itself by an
@@ -131,12 +151,14 @@ corner, and for a suitable $\ell\in L$ the commutator in
  d=e_{02}(s_1t_1).
 \]
 The coefficient $s_1t_1$ is full, and two Steinberg commutator identities
-show that $d$ normally generates $H$.  Thus every finite-dimensional
-representation kills one normal generator and is consequently trivial.
+show that $d$ normally generates $H$.  Hence the entire group is contained in
+its compression defect.  Since $H$ itself is Kazhdan and normal, Theorem
+\ref{thm:normal-kazhdan} gives Theorem~\ref{thm:headline}.
 
-The result concerns genuine finite-dimensional representations.  Passing from
-exact finite dimension to operator-norm asymptotic finite dimension is a
-separate problem, and the argument below does not address it.
+In exact finite dimension, the same algebraic configuration has a one-line
+proof: an injective endomorphism of a finite-dimensional commutant is
+surjective.  We retain this argument because it isolates what one-sided
+compression does before asymptotic finite-dimensionality enters.
 
 \subsection*{Relation to prior work}
 
@@ -144,18 +166,13 @@ Leavitt introduced the algebras $L_K(1,n)$ to exhibit modules of nonunique
 rank~\cite{Leavitt}.  Their matrix and elementary groups retain the resulting
 self-similarity.  Property~\textup{(T)} for elementary groups over finitely
 generated rings follows from the work of Ershov and Jaikin-Zapirain
-\cite{EJZ}; see also the account in~\cite{BHV}.  Minimally almost periodic
-groups and the von Neumann radical have a long history in abstract harmonic
-analysis; our result strengthens minimal almost periodicity by treating
-linear representations over arbitrary fields.
-
-The proof is also adjacent to classical rigidity of finite-dimensional
-linear images.  Mal'cev proved that finitely generated linear groups are
-residually finite~\cite{Malcev}, while Peter--Weyl shows that
-finite-dimensional unitary representations separate points of compact
-groups~\cite{PeterWeyl}.  These theorems turn the all-fields conclusion of
-Theorem~\ref{thm:headline} into the target-group statements of
-Theorem~\ref{thm:targets}.
+\cite{EJZ}; see also~\cite{BHV}.  The operator-norm MF problem and its
+relationship with quasidiagonal group $C^*$-algebras are discussed in
+\cite{CDE,Shulman}.  Property~\textup{(T)} has also played a central role in
+rigidity results for metric approximations and their centralizers; see
+\cite{KT19,AlekseevThom,Dadarlat}.  The present argument combines the
+ordinary normalized Hilbert--Schmidt geometry of matrix traces with the
+algebraic self-similarity of the Leavitt ring.
 
 \section{One-sided compression in finite dimension}
 
@@ -217,6 +234,240 @@ $G^+(L)$, and every generator in \eqref{eq:defect-subgroup} lies in
 $\ker\rho$.  Normality of the kernel gives the result.
 \end{proof}
 
+\section{Kazhdan transport in normalized Hilbert--Schmidt norm}
+
+For $a\in M_d(\C)$ write
+\[
+ \hsnorm{a}=\tr_d(a^*a)^{1/2},
+ \qquad \tr_d=\frac1d\operatorname{Tr}.
+\]
+An \emph{operator-norm asymptotic representation} of a countable group $G$
+is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
+\[
+ \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
+ \qquad(g,h\in G).
+\]
+For such a sequence put
+\[
+ K_2(V)=\{g\in G:\hsnorm{V_n(g)-1}\longrightarrow0\}.
+\]
+The operator-norm defects also tend to zero in normalized
+Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
+\begin{equation}\label{eq:shadow-residual}
+ R_{\infty\to2}(G)=\bigcap_V K_2(V),
+\end{equation}
+where $V$ ranges over all operator-norm asymptotic representations of $G$.
+Thus the elements called universally Hilbert--Schmidt trivial in the
+introduction are precisely the elements of $R_{\infty\to2}(G)$.
+
+We use the following elementary finiteness observation.  If $(m_n)$ is any
+sequence, the norm matrix corona
+\[
+ \prod_nM_{m_n}(\C)\big/\bigoplus_nM_{m_n}(\C)
+\]
+is stably finite.  Indeed, if $v^*v=1$ in such a corona and $(x_n)$ is a
+bounded lift of $v$, then $x_n^*x_n\to1$ in norm.  For all sufficiently large
+$n$, the square matrix $x_n$ is invertible and its polar unitary
+$x_n(x_n^*x_n)^{-1/2}$ differs from $x_n$ by $o(1)$.  Thus $v$ is represented
+by unitaries and $vv^*=1$.  The same argument in matrix amplifications proves
+stable finiteness.  In particular, two unitarily equivalent projections in a
+norm matrix corona cannot be properly contained one in the other.
+
+\begin{theorem}[one-sided Kazhdan transport]\label{thm:transport}
+Let $L\le G$ have property~\textup{(T)}, and let $u\in G$ satisfy
+$uLu^{-1}\le L$.  Let $(V_n)$ be an operator-norm asymptotic
+representation of $G$, and let $(x_n)$ be uniformly bounded in operator
+norm.  If
+\[
+ \hsnorm{V_n(\ell)x_nV_n(\ell)^*-x_n}\longrightarrow0
+ \qquad(\ell\in L),
+\]
+then both sequences
+\[
+ V_n(u)x_nV_n(u)^*,
+ \qquad V_n(u)^*x_nV_n(u)
+\]
+have the same asymptotic commutation property with $L$.
+\end{theorem}
+
+\begin{proof}
+Let $\omega$ be a free ultrafilter.  Regard $M_{d_n}(\C)$ as a Hilbert
+space with its normalized Hilbert--Schmidt inner product, and form the
+Hilbert-space ultraproduct $\mathcal K_\omega$.  Conjugation by the $V_n(g)$
+defines a unitary representation $\sigma$ of $G$ on $\mathcal K_\omega$.
+The class $\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
+
+The operators $\sigma(g)$ belong to the norm matrix corona
+\[
+ B_\omega=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)).
+\]
+Let $P\in B_\omega$ be the image of the Kazhdan projection of $L$ under
+$\sigma|_L$; its range is $\operatorname{Fix}\sigma(L)$
+\cite[Chapter~3]{BHV}.  Since
+$uLu^{-1}\le L$, the unitary $U=\sigma(u)$ satisfies
+\[
+ U^*PU\le P.
+\]
+The two projections are unitarily equivalent.  Stable finiteness of
+$B_\omega$ therefore gives $U^*PU=P$.  Hence both $U$ and $U^*$ preserve
+$\operatorname{Fix}\sigma(L)$, so $U\xi$ and $U^*\xi$ are fixed by
+$\sigma(L)$.  This is exactly the asserted convergence along $\omega$.
+As the argument applies to every free ultrafilter, the convergence is
+ordinary.
+\end{proof}
+
+\begin{corollary}[compression defects are tracially trivial]
+\label{cor:defect-hs}
+Let $L\le G$ have property~\textup{(T)}.  Then
+\[
+ D(G,L)\le R_{\infty\to2}(G).
+\]
+\end{corollary}
+
+\begin{proof}
+Let $(V_n)$ be an operator-norm asymptotic representation.  If
+$c\in C_G(L)$, the sequence $(V_n(c))$ asymptotically commutes with
+$V_n(L)$ in operator norm and hence in normalized Hilbert--Schmidt norm.
+Repeated application of Theorem~\ref{thm:transport} shows that the same is
+true of $(V_n(gcg^{-1}))$ for every $g\in G^+(L)$.  Therefore
+\[
+ \hsnorm{V_n([gcg^{-1},\ell])-1}\longrightarrow0
+ \qquad(\ell\in L).
+\]
+The subgroup $K_2(V)$ is normal, so it contains the normal closure of these
+elements.  Intersecting over $(V_n)$ proves the claim.
+\end{proof}
+
+\section{From tracial triviality to the MF radical}
+
+We now prove the normal-Kazhdan upgrade stated in the introduction.  The
+argument passes to a single invariant spectral corner.  After compression,
+that corner is regarded as a matrix algebra in its own right and is equipped
+with its ordinary normalized trace.
+
+\begin{lemma}[asymptotically invariant corners]\label{lem:corner}
+Let $(V_n)$ be an operator-norm asymptotic representation of $G$, and let
+$q_n\in M_{d_n}(\C)$ be nonzero projections such that
+\[
+ \opnorm{[q_n,V_n(g)]}\longrightarrow0\qquad(g\in G).
+\]
+After identifying $q_nM_{d_n}(\C)q_n$ with
+$M_{\operatorname{rank}q_n}(\C)$, there is an operator-norm asymptotic
+representation $(W_n)$ of $G$ such that
+\[
+ \opnorm{W_n(g)-q_nV_n(g)q_n}\longrightarrow0
+ \qquad(g\in G).
+\]
+\end{lemma}
+
+\begin{proof}
+The compression $q_nV_n(g)q_n$ has multiplicative defect tending to zero,
+and its two Gram operators differ from $q_n$ by $o(1)$ in operator norm.
+For all sufficiently large $n$, its polar part is therefore a unitary in the
+corner and differs from the compression by $o(1)$.  Use that polar part for
+$W_n(g)$, setting the finitely many exceptional coordinates equal to the
+corner identity.  The asserted multiplicative estimates follow from the
+corresponding estimates for the compressions.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:normal-kazhdan}]
+Suppose that a homomorphism
+$\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ is nontrivial on $K$.
+Replace $G$ by the countable MF group $\bar G=\Theta(G)$ and $K$ by its
+nontrivial image $\bar K$.  The group $\bar K$ is normal in $\bar G$, is
+Kazhdan, and is contained in the image of $D$.  Every operator-norm
+asymptotic representation of $\bar G$, composed with $\Theta$, shows that
+each element of the image of $D$ is universally Hilbert--Schmidt trivial.
+
+Choose an operator-norm asymptotic representation $(V_n)$ of $\bar G$ which
+separates a fixed nonidentity element of $\bar K$ in operator norm.  Such a
+sequence is obtained by lifting the given embedding of $\bar G$ into a norm
+matrix corona and passing to a subsequence.  Fix a free ultrafilter and let
+$\pi$ be the resulting representation of $\bar G$ on the Hilbert-space
+ultraproduct of the coordinate spaces.
+
+Choose a finite symmetric Kazhdan generating set $S\subseteq\bar K$, with
+$1\in S$, and put
+\[
+ h=\frac1{|S|}\sum_{a\in S}\pi(a).
+\]
+There is $\theta<1$ such that
+$\sigma(h)\subseteq[-1,\theta]\cup\{1\}$ in every unitary
+representation.  Hence the spectral projection
+\[
+ P=1_{\{1\}}(h)
+\]
+belongs to the norm matrix corona and has range
+$\operatorname{Fix}\pi(\bar K)$.  Put $q=1-P$.  The projection $q$ is
+nonzero, since otherwise every element of $\bar K$ would act trivially,
+contrary to the chosen operator-norm separation.
+
+Normality of $\bar K$ implies
+\[
+ \pi(g)P\pi(g)^*=P\qquad(g\in\bar G),
+\]
+because both sides are the orthogonal projection onto
+$\operatorname{Fix}\pi(\bar K)$.  Thus $q$ commutes with $\pi(\bar G)$.
+Lift $q$ to projections $q_n\in M_{d_n}(\C)$.  After passing to a diagonal
+subsequence, we may assume that every $q_n$ is nonzero,
+\[
+ \opnorm{[q_n,V_n(g)]}\longrightarrow0\qquad(g\in\bar G),
+\]
+and, for the self-adjoint coordinate averages
+\[
+ h_n=\frac1{2|S|}\sum_{a\in S}\bigl(V_n(a)+V_n(a)^*\bigr),
+\]
+that
+\begin{equation}\label{eq:corner-gap}
+ \opnorm{(q_nh_nq_n-\theta q_n)_+}\longrightarrow0.
+\end{equation}
+To justify these lifts explicitly, start with self-adjoint representatives of
+$q$ and round their spectra at $1/2$; their idempotence defects tend to zero,
+so the resulting projections represent $q$.  Exact commutation in the corona
+gives the displayed commutator estimates.  The last assertion is the
+coordinate form of $qhq\le\theta q$ and follows by continuous functional
+calculus for the positive part.  Countability of $\bar G$ permits one
+diagonal subsequence on which all these estimates hold ordinarily.
+
+Apply Lemma~\ref{lem:corner} and write $W_n$ for the resulting asymptotic
+representation on $q_n\C^{d_n}$.  Equip this space with its ordinary
+normalized matrix trace.  Taking traces in \eqref{eq:corner-gap}, and using
+that polar correction changes the compressed matrices by $o(1)$ in operator
+norm, gives
+\[
+ \frac1{|S|}\sum_{a\in S}\operatorname{Re}\tr(W_n(a))
+ \le\theta+o(1).
+\]
+Consequently, after passing to a subsequence, one fixed $a_0\in S$ satisfies
+\[
+ \hsnorm{W_n(a_0)-1}^2
+ =2-2\operatorname{Re}\tr(W_n(a_0))
+ \ge 2(1-\theta)-o(1).
+\]
+But $a_0$ belongs to the image of $D$, and $(W_n)$ is an operator-norm
+asymptotic representation of $\bar G$.  Universal Hilbert--Schmidt
+triviality therefore says that the left-hand side tends to zero, a
+contradiction.  Thus $\Theta$ is trivial on $K$.
+\end{proof}
+
+Combining the two analytic results gives the form used below.
+
+\begin{corollary}[normal Kazhdan compression defect]\label{cor:normal-defect}
+Let $L\le G$ have property~\textup{(T)}, and suppose that
+$K\trianglelefteq G$ has property~\textup{(T)} and satisfies
+$K\le D(G,L)$.  Then
+\[
+ K\le\Rad_{\mathrm{MF}}(G).
+\]
+\end{corollary}
+
+\begin{proof}
+Corollary~\ref{cor:defect-hs} gives
+$D(G,L)\le R_{\infty\to2}(G)$, and
+Theorem~\ref{thm:normal-kazhdan} applies with
+$D=R_{\infty\to2}(G)$.
+\end{proof}
+
 \section{The binary Leavitt self-compression}
 
 Throughout this section $R=L_{\F_2}(1,2)$ and
@@ -253,6 +504,8 @@ The Whitehead factorization of $\operatorname{diag}(U,U^{-1})$ expresses
 $\tau$ as a product of elementary matrices, so $\tau\in\EL_{16}(R)$.
 
 Let $H=\EL_{16}(R)$ and let $L=\EL_4(R)\le H$ be the upper-left corner.
+Both groups have property~\textup{(T)} by the theorem of Ershov and
+Jaikin-Zapirain~\cite{EJZ}.
 Block multiplication yields
 \begin{equation}\label{eq:corner-conjugation}
  \tau\,\operatorname{diag}(A,I_{12})\,\tau^{-1}
@@ -280,7 +533,7 @@ Let
 \]
 in $H$.  Then
 \[
- c\in C_H(L),\qquad d=e_{02}(q)\ne1,qquad \normal d_H=H.
+ c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.
 \]
 \end{proposition}
 
@@ -314,57 +567,53 @@ is finitely generated, and $H$ has property~\textup{(T)} by the
 Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
 rings~\cite{EJZ}; in particular $H$ is finitely generated.
 
-Let $k$ be a field and let $\rho\colon H\to\GL(V)$ with
-$\dim_kV<\infty$.  The containment \eqref{eq:compresses-L}, the centrality of
-$c$ relative to $L$, and Theorem~\ref{thm:commutant} give $\rho(d)=1$.
-Proposition~\ref{prop:defect} gives $H=\normal d_H$, so $\rho$ is trivial.
+The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
+$L$, and Corollary~\ref{cor:defect-hs} give
+$d\in R_{\infty\to2}(H)$.  This residual is normal, while
+Proposition~\ref{prop:defect} gives $H=\normal d_H$.  Hence
+\[
+ R_{\infty\to2}(H)=H.
+\]
+Apply Theorem~\ref{thm:normal-kazhdan} with $G=K=H$ and
+$D=R_{\infty\to2}(H)$.  It follows that
+$H\le\Rad_{\mathrm{MF}}(H)$, and the reverse inclusion is automatic.
+
+If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
+faithful homomorphism from $M$ to a norm matrix corona.  The preceding
+paragraph makes the composition trivial, so $f$ is trivial.  Finally, let
+$q\colon H\twoheadrightarrow Q$ be a quotient map.  Every homomorphism from
+$Q$ to an MF group becomes trivial after composition with $q$, and is
+therefore trivial because $q$ is surjective.  Thus $Q$ has full MF radical;
+if $Q$ is nontrivial, its identity homomorphism shows that it is not MF.
 \end{proof}
 
-\section{Universal consequences}
+\section{The exact finite-dimensional analogue}
 
-\begin{proposition}\label{prop:factorization}
-Let $T$ be a finite-dimensional linear group over a field, a residually
-finite group, or a compact Hausdorff group.  Then $\Hom(H,T)$ consists only
-of the trivial homomorphism.
-\end{proposition}
+The full MF-radical theorem required the two analytic steps above.  For
+genuine finite-dimensional representations the commutant theorem gives a
+shorter and stronger all-fields statement.
 
-\begin{proof}
-The linear case is Theorem~\ref{thm:headline}.  If a homomorphism to a
-residually finite group were nontrivial, some finite quotient of its image
-would be nontrivial.  Every finite group has a faithful complex regular
-representation, contradicting the linear case.
-
-If $T$ is compact Hausdorff and $f(H)$ is nontrivial, Peter--Weyl point
-separation supplies a finite-dimensional unitary representation of $T$
-nontrivial on $f(H)$.  Its composition with $f$ again contradicts the linear
-case.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:targets}]
-Apply Proposition~\ref{prop:factorization} and the universal properties of
-the Bohr compactification and profinite completion.
-\end{proof}
-
-\begin{corollary}\label{cor:cstar}
-Every finite-dimensional $*$-representation of $C^*_{\max}(H)$ factors
-through the augmentation $C^*_{\max}(H)\to\C$.  In particular,
-$C^*_{\max}(H)$ is not residually finite-dimensional.
+\begin{corollary}\label{cor:exact-fd}
+For every field $k$ and every finite-dimensional $k$-vector space $V$, every
+homomorphism $H\to\GL(V)$ is trivial.
 \end{corollary}
 
 \begin{proof}
-Such a representation restricts on the canonical group unitaries to a
-finite-dimensional unitary representation of $H$, hence to the trivial
-representation.  Since $H$ is nontrivial, finite-dimensional
-$*$-representations do not separate the canonical image of $H$.
+Let $\rho\colon H\to\GL(V)$.  The containment
+\eqref{eq:compresses-L}, the centrality of $c$ relative to $L$, and
+Theorem~\ref{thm:commutant} give $\rho(d)=1$.  Since
+$H=\normal d_H$ by Proposition~\ref{prop:defect}, the homomorphism $\rho$ is
+trivial.
 \end{proof}
 
-\begin{remark}[the approximation boundary]\label{rem:boundary}
-The proof uses equality inside genuine finite-dimensional commutants.  In a
-norm matrix corona the relative commutant can be strictly larger than its
-finite-stage antecedents.  Consequently Theorem~\ref{thm:headline} does not
-by itself determine whether $H$ is MF.  Establishing or refuting a faithful
-corona representation requires an additional argument.
-\end{remark}
+In particular, every homomorphism from $H$ to a finite group, a residually
+finite group, or a compact Hausdorff group is trivial.  For finite and
+residually finite targets this follows by the regular representation of a
+finite quotient; for compact targets it follows from Peter--Weyl point
+separation.  Thus the same concrete group has no nontrivial exact
+finite-dimensional representation over any field.  The MF statement is the
+stronger conclusion supplied by Kazhdan transport and the spectral-corner
+argument.
 
 \section*{Acknowledgements}
 The authors thank colleagues who discussed finite-dimensional rigidity,
@@ -377,9 +626,28 @@ and all external references were reviewed by the authors.
 
 \begin{thebibliography}{99}
 \frenchspacing
+\bibitem[AT]{AlekseevThom}
+V.~Alekseev and A.~Thom,
+\emph{Centralizers of sofic approximations of Kazhdan groups},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.05362}{arXiv:2608.05362}.
+
 \bibitem[BHV]{BHV}
 B.~Bekka, P.~de la Harpe, and A.~Valette,
 \emph{Kazhdan's Property (T)}, Cambridge University Press, 2008.
+
+\bibitem[CDE]{CDE}
+J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
+\emph{On groups with quasidiagonal $C^*$-algebras},
+J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
+\doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[Dad]{Dadarlat}
+M.~Dadarlat,
+\emph{Obstructions to matricial stability of discrete groups and almost
+flat $K$-theory},
+Adv. Math. \textbf{384} (2021), Paper No.~107722,
+\doi{10.1016/j.aim.2021.107722}.
 
 \bibitem[EJZ]{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
@@ -393,12 +661,11 @@ The module type of a ring,
 \emph{Trans. Amer. Math. Soc.} \textbf{103} (1962), 113--130,
 \doi{10.1090/S0002-9947-1962-0132764-6}.
 
-\bibitem[Mal]{Malcev}
-A.~I.~Mal'cev,
-On isomorphic matrix representations of infinite groups,
-\emph{Mat. Sb.} \textbf{8(50)} (1940), 405--422;
-English translation in \emph{Amer. Math. Soc. Transl.} (2) \textbf{45}
-(1965), 1--18.
+\bibitem[KT]{KT19}
+G.~Kun and A.~Thom,
+\emph{Inapproximability of actions and Kazhdan's property~\textup{(T)}},
+preprint, 2019,
+\href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
 
 \bibitem[PW]{PeterWeyl}
 F.~Peter and H.~Weyl,
@@ -406,5 +673,11 @@ Die Vollst\"andigkeit der primitiven Darstellungen einer geschlossenen
 kontinuierlichen Gruppe,
 \emph{Math. Ann.} \textbf{97} (1927), 737--755,
 \doi{10.1007/BF01447892}.
+
+\bibitem[Sh]{Shulman}
+T.~Shulman,
+\emph{The MF property for amalgamated free products},
+preprint, 2026,
+\href{https://arxiv.org/abs/2603.13564}{arXiv:2603.13564}.
 \end{thebibliography}
 \end{document}
