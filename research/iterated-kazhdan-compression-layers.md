@@ -1,4 +1,5 @@
 ---
+rg: 2
 id: iterated-kazhdan-compression-layers
 kind: claim
 title: MF radicals absorb successive Kazhdan compression layers in quotient towers
