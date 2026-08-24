@@ -21,7 +21,7 @@ Run with `scripts/remote-build.sh --run scripts/PalomarChallengeType.lean`.
 
 open Lean Meta in
 #eval show MetaM Unit from do
-  let target : Name := `NonMFExistence.exists_countable_not_MF
+  let target : Name := `ExplicitNonMF.explicit_sofic_not_MF
   let env ← getEnv
   let some info := env.find? target
     | throwError "declaration {target} is not in this environment"
