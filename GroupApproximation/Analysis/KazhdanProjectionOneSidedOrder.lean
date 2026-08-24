@@ -211,6 +211,25 @@ theorem re_inner_conjProjection_le (K : Submodule 𝕜 E)
   rw [sub_apply, inner_sub_left, map_sub, sub_nonneg] at hx
   exact hx
 
+/-- **Absorption upgrades to the order, on a Hilbert space.**  For star
+projections of `E →L[𝕜] E` the algebraic identity `P Q = Q` — the
+order-instance-free form in which
+`Sofic/UltraproductKazhdanProjection.lean` and
+`Analysis/MaximalCStarProperCompression.lean` state their conclusions, in an
+arbitrary unital `C*`-algebra — is the Loewner inequality `Q ≤ P`.
+
+So any consumer that instantiates those abstract results at `B = B(H)` gets the
+printed `≤` from this lemma, with no extra analytic input. -/
+theorem le_of_isStarProjection_mul_eq [CompleteSpace E] {P Q : E →L[𝕜] E}
+    (hP : IsStarProjection P) (hQ : IsStarProjection Q) (h : P * Q = Q) :
+    Q ≤ P := by
+  rw [← ContinuousLinearMap.coe_le_coe_iff]
+  refine ((ContinuousLinearMap.IsStarProjection.isSymmetricProjection
+    hQ).le_iff_range_le_range
+      (ContinuousLinearMap.IsStarProjection.isSymmetricProjection hP)).mpr ?_
+  rintro _ ⟨x, rfl⟩
+  exact ⟨Q x, congrArg (fun T : E →L[𝕜] E => T x) h⟩
+
 end Core
 
 /-! ## The printed hypothesis: `U π(Γ) U* ⊆ π(Γ)` -/
@@ -308,10 +327,10 @@ theorem invariantProjection_eq_starProjection (rho : Γ →* (E ≃ₗᵢ[ℝ] E
     KazhdanProjection.invariantProjection rho
       = (KazhdanOrthogonal.invariantSubmodule rho).starProjection := rfl
 
+omit [CompleteSpace E] in
 /-- `U*` preserves the invariant subspace of a one-sidedly compressed
 subgroup.  This is `FixedSpaceCompression.exists_invariant_preimage`, read in
 the direction the projection order needs. -/
-omit [CompleteSpace E] in
 theorem symm_mem_invariantSubmodule_of_compresses
     (rho : H →* (E ≃ₗᵢ[ℝ] E)) (iota : Γ →* H) (t : H)
     (compresses : ∀ gamma : Γ, ∃ delta : Γ,

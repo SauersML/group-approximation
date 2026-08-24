@@ -492,6 +492,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.Audit
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
 import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.ShadowResidual
 import GroupApproximation.Manuscript.OneSidedMFRadical.DefectSaturation
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrescribedQuotients
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedAudit

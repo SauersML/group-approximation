@@ -136,7 +136,7 @@ theorem isHSNull_iff_forall_ultrafilter (B : OpAlmostRepresentation G) (g : G) :
       (nullUnitarySubgroup U S.model S.modelNonempty) _ (fun n ↦ S.map n g)).2 hnull
   · intro h ε hε
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     set T : Set ℕ :=
       {n : ℕ | ε ≤ hsLengthSq (B.model n)
         ((B.map n g : Matrix (B.model n) (B.model n) ℂ))}
