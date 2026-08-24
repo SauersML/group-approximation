@@ -4,7 +4,7 @@
 
 For every declaration a manuscript margin note names, the number of **repository-local** constants its statement transitively depends on, and the number of source lines those constants occupy.  Mathlib and core constants are not counted; definitions are unfolded and theorem proofs are not.  See `scripts/StatementClosure.lean` for what the number is for and why it is the first half of the `leanprover/comparator` protocol.
 
-Whole development: **1186 local constants, 7737 source lines** in the union of every mapped statement's closure.
+Whole development: **1124 local constants, 7487 source lines** in the union of every mapped statement's closure.
 
 ## Soficity manuscript
 
@@ -437,29 +437,28 @@ GroupApproximation.window_defect_eq                                             
 
 ## Non-MF manuscript
 
-Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (110 declarations).  Union of all statement closures: **716 local constants, 3902 source lines**.
+Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (90 declarations).  Union of all statement closures: **653 local constants, 3649 source lines**.
 
 ```
 declaration                                                                                            constants  lines
-GroupApproximation.AdianRabinVariantTransform.correct                                                  119        497
 GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem           22         136
 GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem        22         136
+GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage                                      87         503
+GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp                    65         287
 GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow                            12         41
-GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable                         0          0
+GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear                                        65         190
 GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis                         71         360
 GroupApproximation.Computability.not_computablePred_wordProblemPred                                    8          40
 GroupApproximation.Computability.operatorMF_recognition_not_computable                                 19         116
 GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity                               73         317
 GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package                              57         237
 GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo                6          70
+GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub                                 79         447
+GroupApproximation.FinitePerfectLamp.finitePerfectPackage                                              87         501
 GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar                                  5          18
 GroupApproximation.IsOperatorMF.subgroup                                                               9          63
 GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse              14         73
 GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse                 25         205
-GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport                               7          43
-GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse                   7          43
-GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction                             46         273
-GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse                   20         173
 GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive                                35         67
 GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv                                             75         156
 GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT                     40         84
@@ -474,29 +473,23 @@ GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension
 GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure                              77         283
 GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder                        77         211
 GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target               79         288
-GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA                                             108        464
 GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD                                             91         365
-GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction                  58         115
 GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one                                       57         107
 GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation                              61         126
 GroupApproximation.LiteralProductMultiplicity.manuscriptInfiniteMultiplicity_literal                   70         184
+GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction                       57         110
 GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark                                    65         131
 GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF                        79         282
 GroupApproximation.LiteralSignFreeQuotient.signFree_collapse                                           88         303
-GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF                    65         170
 GroupApproximation.LiteralSoficAssembly.lampEquiv                                                      106        357
 GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF                76         282
 GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF                      76         279
 GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic                                            57         116
 GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional                      59         125
-GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package                                   113        499
-GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation                67         125
-GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction                  60         118
 GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn                                 66         181
 GroupApproximation.LiteralVerticalBridge.verticalEquiv                                                 147        614
 GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF                 86         406
 GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction                  33         334
-GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction                              16         85
 GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction                          28         229
 GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient                 20         188
 GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness                  13         107
@@ -507,46 +500,33 @@ GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadic
 GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse                                25         210
 GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern                         3          17
 GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel                                       76         131
-GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences                          29         234
 GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical                                         19         178
 GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse                  8          54
 GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse              23         189
 GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability                                77         295
 GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient                        20         177
 GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB                                          4          13
-GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence                          30         266
-GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting                                    23         208
 GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient                               21         192
-GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus              18         98
-GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus                                           16         87
-GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus                                       16         87
-GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF                         9          63
-GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable                             20         129
-GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary                                 9          63
+GroupApproximation.ManuscriptExactWrappers.manuscriptWeightedTransportSubgroup                         12         66
 GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses     50         378
 GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional                       89         418
 GroupApproximation.NormModel.exists_hs_collapse                                                        4          20
 GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds                             64         167
 GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse                            20         164
 GroupApproximation.QuasiRegularWitness.baseVector_apply_base                                           6          44
-GroupApproximation.ScaledKazhdanTransport.scaled_transport_both                                        10         62
 GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily                                       108        467
 GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope                     29         197
 GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient               4          28
+GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces                0          0
+GroupApproximation.SpectralCompression.corona_clopen_projection_collapse                               30         218
 GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness                   22         180
 GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan  29         234
 GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan  25         209
-GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse                      10         62
-GroupApproximation.WordProblemRE.not_rePred_compl_wordProblemPred                                      8          40
 GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re                                       19         116
 GroupApproximation.WordProblemRE.rePred_wordProblemPred                                                8          40
-GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one                                  0          0
-GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree                                           0          0
-GroupApproximation.hasKazhdanPropertyT_of_finite                                                       2          16
+GroupApproximation.compressionCentralizerDefect_le_ker                                                 4          13
 GroupApproximation.isOperatorMF_of_locallyFinite                                                       10         68
 GroupApproximation.isOperatorMF_of_residuallyFinite                                                    9          63
-GroupApproximation.kt_06_ultraproduct_finite                                                           18         148
-GroupApproximation.kt_10_finiteness_reverses                                                           1          10
 GroupApproximation.manuscriptMFTraceGroupBridge                                                        38         275
 GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty                                        13         99
 GroupApproximation.manuscriptProperIsometryStrictOrder                                                 1          12
