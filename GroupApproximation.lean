@@ -406,6 +406,7 @@ import GroupApproximation.Algebra.GraphProduct
 import GroupApproximation.Algebra.GraphProductAction
 import GroupApproximation.Analysis.PeterWeylProfinite
 import GroupApproximation.Analysis.CompactHaar
+import GroupApproximation.Analysis.CompactIntegralOperator
 import GroupApproximation.Algebra.TietzeFinitePresentation
 import GroupApproximation.Algebra.FinitePresentationKernel
 import GroupApproximation.Sofic.FiniteIndexRigidity
