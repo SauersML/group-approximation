@@ -29,8 +29,8 @@ pairwise.  For unitary `v`, the starred hypotheses follow from the unstarred
 ones, so the manuscript's unitary statement is an immediate specialization.
 -/
 theorem corona_clopen_projection_collapse :
-    ∀ (L : Subgroup E) (hT : HasKazhdanPropertyT.{u, u} ↥L)
-      {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+    ∀ (L : Subgroup E) (_hT : HasKazhdanPropertyT.{u, u} ↥L)
+      {s : E} (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
       (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)],
     ∀
     (pi : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
@@ -65,8 +65,7 @@ theorem corona_clopen_projection_collapse :
           NormMatrixCStarCorona (fun n ↦ X n)))
         (projection v U hU) := by
   classical
-  intro L hT s hcomp X _
-  intro pi v hv hcompressed hcompressedStar horbit horbitStar U hU
+  intro L hT s hcomp X _ pi v hv hcompressed hcompressedStar horbit horbitStar U hU
   have hpcompressed : ∀ γ ∈ L,
       ((pi (s * γ * s⁻¹) :
           unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
