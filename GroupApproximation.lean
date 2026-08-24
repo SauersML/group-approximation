@@ -1610,6 +1610,7 @@ import GroupApproximation.Sofic.MatchingFactorPair
 import GroupApproximation.Sofic.NonCrossingEdgeBound
 import GroupApproximation.Sofic.NonCrossingDegreeBound
 import GroupApproximation.Sofic.MatchingChordGraph
+import GroupApproximation.Sofic.CurvatureStemThreshold
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
