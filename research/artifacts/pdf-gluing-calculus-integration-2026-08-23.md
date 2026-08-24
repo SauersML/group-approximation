@@ -143,15 +143,33 @@ estimate is attempted. Integral cokernel checksums are disqualified twice over.
   route set into `non-hyperlinear-group` is much wider than the two
   architectures the dossier examined; asserting completeness over it would be a
   false claim of exhaustiveness.
+- **A property-(T) "o(d^2) residual wall" node.** Already recorded, in
+  `iwahori-unitary-commutant-transfer` and `iwahori-local-global-defect-question`:
+  an `o(d^2)` low-energy operator space can still contain the needed unitary,
+  which is exactly the dossier's section 5.2.
 - **The `p=12 l_0-4 l_1-3 l_2` analogy and every other quantitative statement
   imported from the source PDF.** None of it is a fact about this program, and
   the literature-quarantine gate forbids carrying an unverified external
   computation into canonical nodes.
-- **Proposals 5, 6, 7 as authored experiments.** They are numerical programs
-  for other sessions' lanes (SL3 Fox linearization, projective tower
-  primitivity, Kac-Moody incidence). The Smith-form component of 4 and 7 is
-  covered by 3.1; the rest is not refuted, merely not this session's lane, and
-  no node was written for work not done.
+- **Proposals 5, 6 and 7, each for a different reason, all now recorded.**
+  - *5, SL3 Fox linearization.* Recorded in
+    `sl3-swap-extension-has-defect-only-fold-square-rigidity` as unable to
+    support `(SFS1)`: a first-order estimate is valid near the exact locus,
+    but `canonical-arithmetic-swap-fold-gram-is-arcsine` puts the microstates
+    `(SFS1)` must control at `tr(QPQ-(QPQ)^2)=1/16-o(1)` against `0` on every
+    exact representation, and that quantity is norm continuous, so they lie at
+    fixed positive distance from any such neighbourhood. It survives as a
+    diagnostic whose positive answer carries no weight.
+  - *6, projective-tower primitivity.* No live target. `Sat(Y/X)` appears
+    nowhere in `research/`; the tower saturation reduction lives only in
+    `notes/TRUE_PROJECTIVE_TOWER_SATURATION_REDUCTION.md`, which is
+    noncanonical. Wiring it would mean importing a dormant lane, not
+    advancing one.
+  - *7, Kac-Moody incidence Smith form.* Recorded in
+    `km-l0-h2-is-the-three-subspace-defect` as inapplicable: the coefficients
+    `V=L^0(Y,R)` are uniquely divisible, the pairwise part is a rational cycle
+    space, and clause (d) already reduces the defect to the kernel of one
+    explicit Shapiro map, which is sharper than the suggestion.
 
 ## 5a. Parallel lane on the same source
 
