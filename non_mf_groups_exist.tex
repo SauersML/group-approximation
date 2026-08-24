@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] A simple non-MF group},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: an explicit simple Kazhdan group that is not MF},pdfkeywords={draft, MF groups, norm matrix coronas, simple groups, property (T), Leavitt algebra}}
+\hypersetup{pdftitle={[DRAFT] One-sided Kazhdan transport and MF radicals},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -52,27 +52,31 @@
   \medskip}
 
 \begin{document}
-\title{A simple non-MF group}
+\title{One-sided Kazhdan transport and MF radicals}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
-\keywords{MF groups, norm matrix coronas, simple groups, property~(T), Leavitt algebra, elementary group}
+\keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-A countable group is MF if it embeds in the unitary group of a norm matrix
-corona.  We construct an explicit simple group with
-property~\textup{(T)} that is not MF, answering negatively the longstanding
-question of whether every countable group is MF.  Namely, we prove that
+We study homomorphisms into norm matrix coronas.  If a
+property-\textup{(T)} subgroup is conjugated into itself,
+one-sided Kazhdan transport preserves its Hilbert--Schmidt asymptotic
+commutant.  Consequently, commutators between the transported commutant and
+the subgroup are universally Hilbert--Schmidt trivial in operator-norm
+asymptotic representations.  We prove that every normal
+property-\textup{(T)} subgroup contained in the resulting defect subgroup
+lies in the MF radical.  In particular, when the defect subgroup is the
+ambient Kazhdan group, every homomorphism to an MF group is trivial.  For the
+binary Leavitt algebra this gives
 \[
- H=\EL_{12}\bigl(L_{\F_2}(1,2)\bigr)
+ \Rad_{\mathrm{MF}}\!\left(\EL_{12}
+   \bigl(L_{\F_2}(1,2)\bigr)\right)
+ =\EL_{12}\bigl(L_{\F_2}(1,2)\bigr),
 \]
-has no nontrivial homomorphism to any MF group.  The proof uses an explicit
-Whitehead matrix that compresses a Kazhdan subgroup into itself.  One-sided
-Kazhdan transport makes a distinguished involution invisible in normalized
-Hilbert--Schmidt norm in every operator-norm asymptotic representation.  A
-finite-order invariant-support reduction then converts this tracial collapse
-into an operator-norm obstruction.  Simplicity propagates the obstruction to
-the whole group.  The same example also has no nontrivial finite-dimensional
-linear representation over any field.
+which answers negatively the question of whether every countable group is
+MF.  We also show that arbitrary countable MF groups arise as prescribed
+universal MF quotients while the complete MF-target representation functor
+is preserved.
 \end{abstract}
 
 \maketitle
@@ -152,10 +156,41 @@ intersection of the kernels of all MF-target maps killing $N$ is $N$, which
 is the asserted closure criterion.
 \end{proof}
 
-The existence of a countable non-MF group was open~\cite{Shulman}.
-Theorem~\ref{thm:headline} answers this question with an explicit simple
-Kazhdan group.  For a nontrivial simple group the MF radical is either trivial
-or the whole group, so full MF radical is equivalent here to failure of MF.
+The obstruction is captured by the following criterion.
+
+\begin{mainthm}[one-sided compression criterion]
+\label{thm:compression-criterion}
+Let $G$ be countable, let $L\le G$ have property~\textup{(T)}, and suppose
+that
+\[
+ uLu^{-1}\le L,\qquad c\in C_G(L).
+\]
+Put
+\[
+ D=\normal{[ucu^{-1},\ell]:\ell\in L}_G.
+\]
+If $K\trianglelefteq G$ has property~\textup{(T)} and $K\le D$, then
+\[
+ K\le\Rad_{\mathrm{MF}}(G).
+\]
+In particular, a nontrivial such $K$ makes $G$ non-MF; if $G$ has
+property~\textup{(T)} and $D=G$, then
+$\Rad_{\mathrm{MF}}(G)=G$.  Every finite-dimensional linear representation
+of $G$ over every field kills $D$.
+\end{mainthm}
+
+One-sided Kazhdan transport puts every generator of $D$ in the universal
+Hilbert--Schmidt kernel of operator-norm asymptotic representations.
+Normality of $K$ makes its Kazhdan fixed-space projection invariant under the
+ambient group; the complementary corner detects any surviving image of
+$K$ and contradicts that Hilbert--Schmidt collapse.  In exact finite
+dimension, the corresponding commutant argument works over every field and
+does not require property~\textup{(T)}.
+
+The existence of a countable non-MF group was open~\cite{Shulman}.  For the
+binary Leavitt algebra, Theorem~\ref{thm:compression-criterion} answers the
+question.  For a nontrivial simple group the MF radical is either trivial or
+the whole group, so full MF radical is equivalent here to failure of MF.
 
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
@@ -167,7 +202,7 @@ For a unital ring $R$, write $e_{ij}(a)=1+aE_{ij}$ and let
 $\EL_n(R)$ be the subgroup of $\GL_n(R)$ generated by the elements
 $e_{ij}(a)$, $i\ne j$.
 
-\begin{mainthm}\label{thm:headline}
+\begin{mainthm}[the binary Leavitt group]\label{thm:headline}
 Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is nontrivial, simple,
 has property~\textup{(T)}, and
 \[
@@ -192,12 +227,9 @@ centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
  d=e_{02}(s_1t_1).
 \]
 The element $d$ is nontrivial and $H$ is simple, so $d$ normally generates
-$H$.  Since the coefficient ring has characteristic two, $d$ is an
-involution.  The finite-order invariant-support theorem then gives
-$\Rad_{\mathrm{MF}}(H)=H$.  Thus property~\textup{(T)} is used for the
-compressed subgroup $L$ in the transport step; the passage from the
-Hilbert--Schmidt obstruction to the MF radical uses only the finite order and
-normal generation of $d$.
+$H$.  Hence the compression defect is the ambient Kazhdan group, and
+Theorem~\ref{thm:compression-criterion} gives
+$\Rad_{\mathrm{MF}}(H)=H$.
 
 For an exact finite-dimensional representation, conjugation by a compressor
 defines an injective endomorphism of the commutant of $L$.  This endomorphism
@@ -210,12 +242,17 @@ that $H$ is nonsofic or nonhyperlinear: normalized Hilbert--Schmidt
 approximations do not provide the operator-norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
 
-The group $H$ also gives non-MF groups with prescribed MF quotients.  The
-following theorem is proved in Section~\ref{sec:prescribed-quotients}.
+Full MF radicals determine prescribed MF quotients as follows.
 
 \begin{mainthm}[prescribed MF quotients]\label{thm:prescribed-quotients}
-For every countable group $Q$, there are a countable group $W_Q$ and a split
-epimorphism $\pi_Q\colon W_Q\to Q$ such that
+Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
+$1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$ and, for a
+countable group $Q$, define
+\[
+ W_Q=B*_A(Q\times A).
+\]
+Then the map $\pi_Q\colon W_Q\to Q$ which kills $B$ and projects the second
+vertex group onto $Q$ is a split epimorphism, and
 \[
  \Rad_{\mathrm{MF}}(W_Q)
  =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
@@ -224,7 +261,6 @@ The group $W_Q$ is non-MF.  If $Q$ is MF, then
 \[
  \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q},
 \]
-where $d$ is the element in Proposition~\ref{prop:defect}.
 Moreover, precomposition with $\pi_Q$ induces a bijection
 \[
  \operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)
@@ -242,8 +278,8 @@ Schatten norms.  Bachner--Dogon--Lubotzky emphasize the interaction between
 operator-norm defects and Hilbert--Schmidt rigidity as a possible route to
 the MF problem~\cite{BDL}.  Our mechanism uses that interaction differently:
 one-sided compression of a Kazhdan subgroup forces Hilbert--Schmidt collapse,
-and the finite-order invariant-support reduction discards the common trivial
-summand of the resulting finite-dimensional models.
+while a normal Kazhdan subgroup inside the resulting defect converts that
+collapse into MF-radical membership.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -317,18 +353,6 @@ Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
 where $V$ ranges over all operator-norm asymptotic representations of $G$.
 An element is universally Hilbert--Schmidt trivial precisely when it belongs
 to $R_{\infty\to2}(G)$.
-
-\begin{theorem}[finite-order normal generators]\label{thm:torsion-bridge}
-Let $G$ be finitely generated and let $a\in G$ have finite order and normally
-generate $G$.  Then
-\[
- a\in\Rad_{\mathrm{MF}}(G)
- \quad\Longleftrightarrow\quad
- a\in R_{\infty\to2}(G).
-\]
-Consequently, if $a$ is universally Hilbert--Schmidt trivial, then
-$\Rad_{\mathrm{MF}}(G)=G$.
-\end{theorem}
 
 \begin{lemma}\label{lem:stable-finite}
 For every sequence $(m_n)$, the norm matrix corona
@@ -458,206 +482,119 @@ sequence in operator norm with $(V_n(ucu^{-1}))$.  Therefore
 Intersecting over $(V_n)$ proves the claim.
 \end{proof}
 
-\section{Finite-order invariant supports and the MF radical}
+\section{Normal Kazhdan subgroups in the MF radical}
 
-The normalized Hilbert--Schmidt norm can lose a fixed operator-norm defect
-when the model contains a large trivial summand.  For a finite-order normal
-generator, fixed normal words enlarge its nontrivial spectral subspace to an
-invariant representation space whose dimension is only a fixed multiple
-larger.  Restricting to this invariant space simply deletes the trivial
-summand and produces another finite-dimensional unitary model.
-
-\begin{lemma}[unitary lifting]\label{lem:unitary-lifting}
-Every unitary in $\mathcal Q_{\mathbf d}$ has a representative
-$(U_n)$ with $U_n\in\U(d_n)$ for every $n$.
+\begin{lemma}[central corona corners]\label{lem:central-corona-corner}
+Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
+countable group, and let \(q\in\mathcal Q_{\mathbf d}\) be a nonzero
+projection commuting with \(\rho(G)\).  Then, after passing to an infinite
+coordinate subsequence, there are nonzero projections
+\(q_n\in M_{d_n}(\C)\) and an operator-norm asymptotic representation
+\[
+ W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
+\]
+whose corona class is the corner representation \(g\mapsto q\rho(g)\).
 \end{lemma}
 
 \begin{proof}
-Let $(x_n)$ be a bounded lift of a corona unitary.  Then
-$x_n^*x_n\to1$ and $x_nx_n^*\to1$ in operator norm.  For all sufficiently
-large $n$, the matrix $x_n$ is invertible and
-\[
- U_n=x_n(x_n^*x_n)^{-1/2}
-\]
-is unitary with $\opnorm{U_n-x_n}\to0$.  Define the finitely many remaining
-coordinates arbitrarily.
-\end{proof}
-
-\begin{lemma}[finite-spectrum rounding]\label{lem:finite-spectrum-rounding}
-Let $U_n\in\U(d_n)$ and suppose $\opnorm{U_n^m-1}\to0$ for some $m\ge2$.
-Then there are $B_n\in\U(d_n)$ such that
-\[
- B_n^m=1,
- \qquad
- \opnorm{B_n-U_n}\longrightarrow0.
-\]
-\end{lemma}
-
-\begin{proof}
-Round each point of the spectrum of $U_n$ to a nearest $m$th root of unity
-and apply the resulting function by finite-dimensional functional calculus.
-The rounded unitary has $m$th power one.  Compactness of the unit circle
+Lift \(q\) to projections \(q_n\), and lift each \(\rho(g)\) to unitaries
+\(U_n(g)\).  Projection lifting follows by spectral rounding.  Unitary
+lifting follows by polar-correcting any lift, since its two unitarity defects
+converge to zero in operator norm.  The commutation relation in the corona
 gives
 \[
- \sup\{\operatorname{dist}(z,\mu_m):|z|=1, |z^m-1|\le\varepsilon\}
- \longrightarrow0
- \quad(\varepsilon\downarrow0),
+ \opnorm{q_nU_n(g)-U_n(g)q_n}\longrightarrow0
+ \qquad(g\in G).
 \]
-which proves the norm convergence.
+Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity
+defects converging to zero.  Its polar correction \(W_n(g)\) is unitary and
+satisfies
+\[
+ \opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
+\]
+The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator-norm
+asymptotic representation.  Since \(q\ne0\), infinitely many \(q_n\) are
+nonzero; retain those coordinates.
 \end{proof}
 
-\begin{theorem}[invariant-support reduction]\label{thm:invariant-support}
-Let $G$ be generated by a finite symmetric set $S$ containing an element
-$a$ of order $m\ge2$, and suppose that $a$ normally generates $G$.  For each
-$s\in S$, fix an expression of $s$ as a product of conjugates of
-$a^{\pm1}$, taking the expression for $a$ to be the one-letter word $a$.
-Let $L$ be the total number of occurrences of $a^{\pm1}$ in these
-expressions.
-
-If $\rho\colon G\to\U(\mathcal Q_{\mathbf d})$ satisfies $\rho(a)\ne1$,
-then, after passing to an infinite coordinate subsequence and changing the
-chosen representatives by $o(1)$ in operator norm, the same corona
-homomorphism has representatives of the form
+\begin{theorem}[normal Kazhdan radical theorem]\label{thm:normal-kazhdan}
+Let \(G\) be countable, let \(D\le R_{\infty\to2}(G)\), and let
+\(K\trianglelefteq G\) have property~\textup{(T)} with \(K\le D\).  Then
 \[
- \sigma_n(g)\oplus 1_{d_n-k_n},
- \qquad \sigma_n(g)\in\U(k_n),
+ K\le\Rad_{\mathrm{MF}}(G).
 \]
-where $(\sigma_n)$ is an operator-norm asymptotic representation.  Moreover,
-$A_n=\sigma_n(a)$ satisfies $A_n^m=1$, and if
-\[
- p_n=1_{\C\setminus\{1\}}(A_n),\qquad r_n=\operatorname{rank}p_n,
-\]
-then
-\begin{equation}\label{eq:invariant-support-ranks}
- 1\le r_n\le k_n\le Lr_n.
-\end{equation}
-Consequently, with
-\[
- \eta_m=\min\{|1-\zeta|:\zeta^m=1,\ \zeta\ne1\}>0,
-\]
-one has
-\begin{equation}\label{eq:invariant-support-gap}
- \hsnorm{\sigma_n(a)-1}\ge\frac{\eta_m}{\sqrt L}.
-\end{equation}
-If $a$ is a product of $N_g$ conjugates of $g^{\pm1}$, then also
-\begin{equation}\label{eq:propagated-gap}
- \liminf_n\hsnorm{\sigma_n(g)-1}
- \ge\frac{\eta_m}{N_g\sqrt L}.
-\end{equation}
 \end{theorem}
 
 \begin{proof}
-By Lemma~\ref{lem:unitary-lifting}, choose unitary lifts $U_n(g)$ of
-$\rho(g)$.  They form an operator-norm asymptotic representation.  Since
-$\rho(a)^m=1$, Lemma~\ref{lem:finite-spectrum-rounding} replaces $U_n(a)$,
-within $o(1)$ in operator norm, by a unitary $B_n$ satisfying $B_n^m=1$.
+Suppose that a homomorphism
+\(\Theta\colon G\to\U(\mathcal Q_{\mathbf d})\) is nontrivial on \(K\).
+Replace \(G\) by its image and \(K\) by the image of \(K\).  The latter
+remains a nontrivial normal property-\textup{(T)} subgroup, and every one of
+its elements is universally Hilbert--Schmidt trivial: any operator-norm
+asymptotic representation of the image composes with \(\Theta\) to one of
+the original group.
 
-Write the chosen expression for $s\in S$ as
+Let \(p_K\in C^*_{\max}(K)\) be the Kazhdan projection and let \(p\) be its
+image in \(\mathcal Q_{\mathbf d}\).  Thus \(p\) is the projection onto the
+\(K\)-fixed vectors in every faithful representation of the corona.
+Normality of \(K\) gives
 \[
- s=\prod_{j=1}^{L_s}h_{s,j}a^{\varepsilon_{s,j}}h_{s,j}^{-1},
- \qquad \varepsilon_{s,j}\in\{1,-1\}.
-\]
-Define
-\[
- \widetilde U_n(s)=
- \prod_{j=1}^{L_s}
- U_n(h_{s,j})B_n^{\varepsilon_{s,j}}U_n(h_{s,j})^*.
-\]
-For every $g\in G$, choose once and for all a word in $S$ representing $g$
-and define $\widetilde U_n(g)$ by substituting these matrices.  We use the
-one-letter word for $a$, so $\widetilde U_n(a)=B_n$.  The defining group
-identities and asymptotic multiplicativity give
-\[
- \opnorm{\widetilde U_n(g)-U_n(g)}\longrightarrow0
+ \Theta(g)p\Theta(g)^*=p
  \qquad(g\in G).
 \]
-Thus $(\widetilde U_n)$ is an operator-norm asymptotic representation and
-represents the same corona homomorphism.
+Put \(q=1-p\).  The projection \(q\) is nonzero, since \(p=1\) would imply
+that every element of \(K\) has trivial image.  Lemma~\ref{lem:central-corona-corner}
+gives an operator-norm asymptotic representation \((W_n)\) on nonzero
+corners \(q_nM_{d_n}(\C)q_n\).
 
-Let $P_n$ be the active spectral subspace of $B_n$, and let $K_n$ be the sum
-of the subspaces
+Choose a finite symmetric Kazhdan set \(S\subseteq K\) and a Kazhdan
+constant \(\kappa>0\).  In the corner \(q\mathcal Q_{\mathbf d}q\), the
+Kazhdan projection is zero.  Hence the positive element
 \[
- U_n(h_{s,j})P_n
- \qquad(s\in S,\ 1\le j\le L_s).
+ b=\frac1{|S|}\sum_{s\in S}
+       (q\Theta(s)q-q)^*(q\Theta(s)q-q)
 \]
-Every factor in the displayed formula for $\widetilde U_n(s)$ is the
-identity on $K_n^\perp$, preserves $K_n$, and differs from the identity by
-an operator whose range lies in $K_n$.  Hence every $\widetilde U_n(g)$
-preserves $K_n$ and is the identity on $K_n^\perp$.  Since the one-letter
-expression for $a$ occurs in the family,
+satisfies
 \[
- \dim P_n\le\dim K_n\le L\dim P_n.
+ b\ge\frac{\kappa^2}{|S|}\,q.
 \]
-The assumption $\rho(a)\ne1$ makes $P_n$ nonzero on an infinite coordinate
-subsequence.  Retain that subsequence, put $k_n=\dim K_n$, and let
-$\sigma_n(g)$ be the restriction of $\widetilde U_n(g)$ to $K_n$.  This
-proves the lifting assertion and \eqref{eq:invariant-support-ranks}.
+Indeed, in every representation of the corner there are no \(K\)-fixed
+vectors, so the defining Kazhdan inequality gives this operator inequality.
 
-Every nonidentity eigenvalue of $A_n$ is an $m$th root of unity, so
+The coordinate elements
 \[
- \hsnorm{A_n-1}^2
- \ge \eta_m^2\frac{r_n}{k_n}
- \ge\frac{\eta_m^2}{L},
+ b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*(W_n(s)-q_n)
 \]
-which proves \eqref{eq:invariant-support-gap}.  This is the ordinary
-normalized Hilbert--Schmidt norm on $M_{k_n}(\C)$, applied to the restricted
-unitary representation.  Finally, substitute the matrices
-$\sigma_n(g)$ into a fixed normal word of length $N_g$ expressing $a$ through
-$g^{\pm1}$.  Telescoping in normalized Hilbert--Schmidt norm and asymptotic
-multiplicativity give
+represent \(b\).  Taking the normalized trace on
+\(q_nM_{d_n}(\C)q_n\) yields
 \[
- \hsnorm{\sigma_n(a)-1}
- \le N_g\hsnorm{\sigma_n(g)-1}+o(1).
+ \frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}
+ \ge \frac{\kappa^2}{|S|}-o(1).
 \]
-Together with \eqref{eq:invariant-support-gap}, this proves
-\eqref{eq:propagated-gap}.
+Here the Hilbert--Schmidt norms use the normalized trace of the corner.  The
+order inequality for $b$ says that the negative part of
+$b_n-(\kappa^2/|S|)q_n$ converges to zero in operator norm, which gives the
+displayed trace inequality.
+After passing to a subsequence, one fixed \(s_0\in S\) therefore stays a
+positive Hilbert--Schmidt distance from the corner identity.  This
+contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).  Thus every corona
+homomorphism kills \(K\), as required.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:torsion-bridge}]
-For every group,
+\begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
+Corollary~\ref{cor:defect-hs} and normality of
+\(R_{\infty\to2}(G)\) give
 \[
- \Rad_{\mathrm{MF}}(G)\le R_{\infty\to2}(G):
+ D\le R_{\infty\to2}(G).
 \]
-an operator-norm asymptotic representation defines a homomorphism to its
-norm matrix corona, and an element killed there converges to the identity in
-operator norm, hence in normalized Hilbert--Schmidt norm.
+Theorem~\ref{thm:normal-kazhdan} now gives
+\(K\le\Rad_{\mathrm{MF}}(G)\).  The two stated consequences follow by taking
+\(K\ne1\), or \(K=G=D\), respectively.
 
-Conversely, suppose $a\in R_{\infty\to2}(G)$ but
-$a\notin\Rad_{\mathrm{MF}}(G)$.  Some corona homomorphism sees $a$.
-Theorem~\ref{thm:invariant-support} produces an operator-norm asymptotic
-representation for which \eqref{eq:invariant-support-gap} holds, contradicting the
-definition of $R_{\infty\to2}(G)$.  Thus $a$ lies in the MF radical.  Since
-that radical is normal and $a$ normally generates $G$, it equals $G$.
+For a finite-dimensional linear representation over an arbitrary field,
+Theorem~\ref{thm:commutant} kills every generator
+\([ucu^{-1},\ell]\) of \(D\).  Its kernel is normal, so it contains \(D\).
 \end{proof}
-
-\begin{corollary}[simple torsion dichotomy]\label{cor:simple-torsion}
-Let $G$ be a nontrivial finitely generated simple group containing a
-finite-order nonidentity element.  Then
-\[
- \Rad_{\mathrm{MF}}(G)=R_{\infty\to2}(G).
-\]
-Exactly one of the following holds:
-\begin{enumerate}
- \item every homomorphism from $G$ to a norm matrix corona is trivial;
- \item $G$ admits a faithful operator-norm asymptotic representation
- $(\sigma_n)$ such that
- \[
-  \liminf_n\hsnorm{\sigma_n(g)-1}>0
-  \qquad(g\ne1).
- \]
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-Both displayed residuals are normal subgroups.  Simplicity and
-Theorem~\ref{thm:torsion-bridge}, applied to a nonidentity torsion element,
-give their equality.  If a corona homomorphism is nontrivial, it is injective.
-Apply Theorem~\ref{thm:invariant-support}; for each $g\ne1$, simplicity puts the
-chosen torsion element in the normal closure of $g$, so
-\eqref{eq:propagated-gap} gives the asserted pointwise separation.  The two
-alternatives are therefore exhaustive and mutually exclusive.
-\end{proof}
-
 \section{The binary Leavitt self-compression}
 
 Throughout this section $R=L_{\F_2}(1,2)$ and
@@ -760,7 +697,7 @@ Let
 \]
 in $H$.  Then
 \[
- c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad d^2=1,
+ c\in C_H(L),\qquad d=e_{02}(q)\ne1,
  \qquad \normal d_H=H.
 \]
 \end{proposition}
@@ -776,9 +713,8 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 \end{equation}
 The second factor commutes with $\ell=e_{12}(1)$, and
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ gives
-$d=e_{02}(q)$.  This is nontrivial because $q\ne0$.
-Since $R$ has characteristic two and $E_{02}^2=0$, one also has
-$e_{02}(q)^2=1$.  Finally, $d$ is nontrivial and $H$ is simple by
+$d=e_{02}(q)$.  This is nontrivial because $q\ne0$.  Finally, $d$ is
+nontrivial and $H$ is simple by
 Proposition~\ref{prop:simple}, so its normal closure is all of $H$.
 \end{proof}
 
@@ -788,12 +724,12 @@ ring $R$ is finitely generated, and $H$ has property~\textup{(T)} by the
 Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
 rings~\cite{EJZ}.
 
-The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
-$L$, and Corollary~\ref{cor:defect-hs} give
-$d\in R_{\infty\to2}(H)$.  The subgroup $R_{\infty\to2}(H)$ is normal, and
-Proposition~\ref{prop:defect} says that $d$ is an involution which normally
-generates $H$.  Theorem~\ref{thm:torsion-bridge} gives
-$d\in\Rad_{\mathrm{MF}}(H)$.  Normality of the MF radical now gives
+Let $D$ be the defect subgroup in
+Theorem~\ref{thm:compression-criterion}, with $u=\tau$.  The containment
+\eqref{eq:compresses-L}, the centrality of $c$ relative to $L$, and
+Proposition~\ref{prop:defect} show that $d\in D$.  Since $d$ normally
+generates $H$, one has $D=H$.  The group $H$ has property~\textup{(T)}, so
+Theorem~\ref{thm:compression-criterion}, applied with $K=H$, gives
 $\Rad_{\mathrm{MF}}(H)=H$.
 
 If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
@@ -858,13 +794,14 @@ isomorphisms give the result for every $\GL_n(R)$.
 
 \section{Prescribed MF quotients}\label{sec:prescribed-quotients}
 
-Let $A=\langle d\rangle\le H$, where $d$ is the element in
-Proposition~\ref{prop:defect}.  For a countable group $Q$, define
+Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
+$1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
+countable group $Q$, define
 \begin{equation}\label{eq:amalgam}
- W_Q=H*_A(Q\times A),
+ W_Q=B*_A(Q\times A),
 \end{equation}
 where $A\to Q\times A$ is the inclusion into the second factor.  The maps
-from $H$ and $Q\times A$ to $Q$ that are respectively trivial and the
+from $B$ and $Q\times A$ to $Q$ that are respectively trivial and the
 projection onto $Q$ agree on $A$.  They therefore define an epimorphism
 \[
  \pi_Q\colon W_Q\longrightarrow Q.
@@ -874,7 +811,7 @@ theorem for amalgamated free products shows that both vertex maps in
 \eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
 
 \begin{proposition}[universal factorization]\label{prop:universal-factorization}
-Let $T$ be a group such that every homomorphism $H\to T$ is trivial.  Then
+Let $T$ be a group such that every homomorphism $B\to T$ is trivial.  Then
 precomposition with $\pi_Q$ is a bijection
 \[
  \operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).
@@ -886,7 +823,7 @@ Furthermore,
 \end{proposition}
 
 \begin{proof}
-Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $H$ is
+Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $B$ is
 trivial, so its restriction to the amalgamated subgroup $A$ is trivial.  For
 $(q,a)\in Q\times A$, we then have
 \[
@@ -898,14 +835,15 @@ factors through $\pi_Q$.  The factorization is unique because $\pi_Q$ is
 surjective.
 
 The element $d$ belongs to $\ker\pi_Q$.  Conversely, quotienting $W_Q$ by
-$\normal d_{W_Q}$ kills $H$, since $\normal d_H=H$, and kills the second
+$\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the second
 factor $A$ in $Q\times A$.  The resulting quotient is $Q$, with quotient map
 induced by $\pi_Q$.  Hence $\ker\pi_Q=\normal d_{W_Q}$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:prescribed-quotients}]
-Every homomorphism from $H$ to an MF group is trivial by
-Theorem~\ref{thm:headline}.  Proposition~\ref{prop:universal-factorization}
+Every homomorphism from $B$ to an MF group is trivial: compose it with a
+faithful corona embedding of the target and use
+$\Rad_{\mathrm{MF}}(B)=B$.  Proposition~\ref{prop:universal-factorization}
 therefore gives the asserted bijection for every MF group $M$.  In
 particular, every homomorphism from $W_Q$ to a norm matrix corona factors
 uniquely through $\pi_Q$.  Intersecting their kernels gives
@@ -923,10 +861,11 @@ is trivial, and the displayed equality becomes
 \end{proof}
 
 The same factorization applies to every target group $T$ for which all
-homomorphisms $H\to T$ are trivial.  Corollary~\ref{cor:exact-fd} and
-Peter--Weyl point separation therefore give the corresponding bijections for
-finite-dimensional linear groups over arbitrary fields, residually finite
-groups, and compact Hausdorff groups.
+homomorphisms $B\to T$ are trivial.  Taking $B=H$ and the element $d$ from
+Proposition~\ref{prop:defect}, Corollary~\ref{cor:exact-fd} and Peter--Weyl
+point separation give the corresponding bijections for finite-dimensional
+linear groups over arbitrary fields, residually finite groups, and compact
+Hausdorff groups.
 
 \section*{AI and computational resource usage}
 AI systems were used extensively for proof exploration, literature
