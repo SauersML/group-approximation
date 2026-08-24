@@ -4,6 +4,15 @@
 
 One entry per declaration named by a manuscript margin note, in the order of `metadata/NON_MF_CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
+## `GroupApproximation.AdianRabinVariantTransform.correct`
+
+```lean
+∀ (x : PresentationCodes.PresentationCode × List (ℕ × Bool)),
+  MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics
+      (AdianRabinVariantTransform.transform x) ↔
+    AdianRabinWordProblem.WordProblem x.1 x.2
+```
+
 ## `GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem`
 
 ```lean
@@ -18,20 +27,17 @@ One entry per declaration named by a manuscript margin note, in the order of `me
   ¬ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)
 ```
 
-## `GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp`
-
-```lean
-SemidirectProduct.rightHom.ker =
-  Subgroup.normalClosure
-    {MarkedCompression.witnessLamp ExplicitLinearModel.conjD ExplicitLinearModel.conjD_injective
-        AlternatingLampLiteral.a5}
-```
-
 ## `GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow`
 
 ```lean
 ∀ (J : Type) (C : J → Type) [(j : J) → DecidableEq (C j)] [(j : J) → Fintype (C j)]
   (S : Finset ((j : J) × C j)), Group.ResiduallyFinite ↥(BlockCliffordTowerSofic.window J C S)
+```
+
+## `GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable`
+
+```lean
+∃ G x, Group.IsFinitelyPresented G ∧ ∃ g, ¬ComputablePred fun m => g m = 1
 ```
 
 ## `GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear`
@@ -107,21 +113,6 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
 ¬FaithfullyTracedCoordinates.FaithfullyTracedCoordinateTransport
 ```
 
-## `GroupApproximation.FinitePerfectLamp.finitePerfectPackage`
-
-```lean
-∀ (K' : Type) [inst : Group K'] [inst_1 : Finite K'] [Nontrivial K'],
-  commutator K' = ⊤ →
-    IsSofic (FinitePerfectLamp.WFin K') ∧
-      ¬IsCDEOperatorMF (FinitePerfectLamp.WFin K') ∧
-        Group.FG (FinitePerfectLamp.WFin K') ∧
-          actualCoronaMFResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K' ∧
-            MatricialStabilityRadical.fdUnitaryResidual (FinitePerfectLamp.WFin K') =
-                FinitePerfectLamp.lampSub K' ∧
-              finiteResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K' ∧
-                linearResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K'
-```
-
 ## `GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`
 
 ```lean
@@ -169,6 +160,87 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
               H →*
                 ↥(unitary (NormMatrixCStarCorona fun n => (naturalFiniteModel (d n)).carrier))),
             F ≤ rho.ker
+```
+
+## `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`
+
+```lean
+∀ {Γ : Type} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* H) (s : H),
+      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
+        ∀ (d : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d n) →
+            ∀ (U : (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d n)).carrier ℂ)),
+              (∀ (g h : H) (ε : ℝ),
+                  0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U n (g * h)) - ↑(U n g) * ↑(U n h)‖ ≤ ε) →
+                ∀
+                  (x :
+                    (n : ℕ) →
+                      Matrix (naturalFiniteModel (d n)).carrier
+                        (naturalFiniteModel (d n)).carrier ℂ),
+                  (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
+                    (∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U x
+                          (iota γ)) →
+                      ∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U
+                          (fun n => ↑(U n s) * x n * (↑(U n s)).conjTranspose) (iota γ)
+```
+
+## `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse`
+
+```lean
+∀ {Γ : Type w} {H : Type u'} [inst : Group Γ] [inst_1 : Group H],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* H) (s : H),
+      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
+        ∀ (d : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d n) →
+            ∀ (U : (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d n)).carrier ℂ)),
+              (∀ (g h : H) (ε : ℝ),
+                  0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U n (g * h)) - ↑(U n g) * ↑(U n h)‖ ≤ ε) →
+                ∀
+                  (x :
+                    (n : ℕ) →
+                      Matrix (naturalFiniteModel (d n)).carrier
+                        (naturalFiniteModel (d n)).carrier ℂ),
+                  (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
+                    (∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U x
+                          (iota γ)) →
+                      ∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U
+                          (fun n => ↑(U n s) * x n * (↑(U n s)).conjTranspose) (iota γ)
+```
+
+## `GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction`
+
+```lean
+KazhdanCliffordConstruction.KazhdanCliffordConstructionStatement
+```
+
+## `GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse`
+
+```lean
+∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E] [inst_2 : Countable E],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* E) (t c : E),
+      (∀ (γ : Γ), ∃ δ, t * iota γ * t⁻¹ = iota δ) →
+        (∀ (γ : Γ), Commute c (iota γ)) →
+          ∀ (a : Γ) (z : E),
+            z = ⁅t * c * t⁻¹, iota a⁆ ^ 2 →
+              z ≠ 1 →
+                z ^ 2 = 1 →
+                  (∀ (g : E), Commute z g) →
+                    (∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n)
+                        (rho :
+                          E →*
+                            ↥(unitary
+                                (NormMatrixCStarCorona fun n =>
+                                  (naturalFiniteModel (d n)).carrier))),
+                        rho z = 1) ∧
+                      ¬IsCDEOperatorMF E
 ```
 
 ## `GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive`
@@ -346,6 +418,25 @@ LiteralMarkedCylinder.literalCylinder.Nonempty ∧
     ∀ (rho : LiteralNonMFPresentation.MarkedGroup →* ↥(unitary A)), ¬Function.Injective ⇑rho
 ```
 
+## `GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA`
+
+```lean
+(LiteralNonMFPresentation.mark ≠ 1 ∧
+    LiteralNonMFPresentation.mark ^ 2 = 1 ∧
+      ∀ (g : LiteralNonMFPresentation.MarkedGroup), Commute LiteralNonMFPresentation.mark g) ∧
+  (∀ (d : ℕ → ℕ),
+      (∀ (n : ℕ), 0 < d n) →
+        ∀
+          (Theta :
+            LiteralNonMFPresentation.MarkedGroup →*
+              NormMatrixCoronaUnitary fun n => naturalFiniteModel (d n)),
+          Theta LiteralNonMFPresentation.mark = 1) ∧
+    ¬IsCDEOperatorMF LiteralNonMFPresentation.MarkedGroup ∧
+      ¬IsMFAlgebra (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+        ¬IsMFAlgebra
+            ↥(ReducedGroupCStarTrace.ReducedGroupCStar LiteralNonMFPresentation.MarkedGroup)
+```
+
 ## `GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD`
 
 ```lean
@@ -364,6 +455,16 @@ TopologicalSpace.SeparableSpace
             star v * v = 1 → v * star v = 1) ∧
       ¬IsMFAlgebra
           ↥(ReducedGroupCStarTrace.ReducedGroupCStar LiteralNonMFPresentation.MarkedGroup)
+```
+
+## `GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction`
+
+```lean
+∀
+  (_A :
+    MarkedOpAlmostRepresentation LiteralNonMFPresentation.MarkedGroup
+      LiteralNonMFPresentation.mark),
+  False
 ```
 
 ## `GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one`
@@ -574,6 +675,14 @@ ActualCoronaMFInvisible
     1
 ```
 
+## `GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF`
+
+```lean
+Group.rank LiteralNonMFPresentation.MarkedGroup ≤ 6 ∧
+  Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
+    ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
+```
+
 ## `GroupApproximation.LiteralSoficAssembly.lampEquiv`
 
 ```lean
@@ -608,6 +717,57 @@ IsSofic LiteralNonMFPresentation.MarkedGroup
 IsSofic LiteralNonMFPresentation.MarkedGroup ∧
   ¬IsLEF LiteralNonMFPresentation.MarkedGroup ∧
     ¬Group.ResiduallyFinite LiteralNonMFPresentation.MarkedGroup
+```
+
+## `GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package`
+
+```lean
+(Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
+    LiteralNonMFPresentation.relators.card = 41 ∧
+      LiteralNonMFPresentation.MarkedGroup = PresentedGroup ↑LiteralNonMFPresentation.relators ∧
+        Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup) ∧
+  (IsSofic LiteralNonMFPresentation.MarkedGroup ∧
+      IsHyperlinear LiteralNonMFPresentation.MarkedGroup) ∧
+    (LiteralNonMFPresentation.mark =
+          LiteralNonMFPresentation.wordInMarkedGroup LiteralNonMFPresentation.markedWord ∧
+        LiteralNonMFPresentation.mark ≠ 1 ∧
+          LiteralNonMFPresentation.mark ^ 2 = 1 ∧
+            ∀ (g : LiteralNonMFPresentation.MarkedGroup),
+              Commute LiteralNonMFPresentation.mark g) ∧
+      (∀ (d : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d n) →
+            ∀
+              (Theta :
+                LiteralNonMFPresentation.MarkedGroup →*
+                  NormMatrixCoronaUnitary fun n => naturalFiniteModel (d n)),
+              Theta LiteralNonMFPresentation.mark = 1) ∧
+        ¬IsCDEOperatorMF LiteralNonMFPresentation.MarkedGroup ∧
+          ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup ∧
+            ¬IsMFAlgebra (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+              ¬IsMFAlgebra
+                  ↥(ReducedGroupCStarTrace.ReducedGroupCStar
+                      LiteralNonMFPresentation.MarkedGroup)
+```
+
+## `GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation`
+
+```lean
+∃ L,
+  L.length = 32 ∧
+    ∃ e,
+      ∀ (i : LiteralSixGenerator.SixGenerator),
+        e (PresentedGroup.of i) = LiteralSixGenerator.sixGenerator i
+```
+
+## `GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction`
+
+```lean
+∃ δ F₀,
+  0 < δ ∧
+    ∀ (Y : FiniteModel)
+      (φ : LiteralNonMFPresentation.MarkedGroup → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
+      (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ (g * h)) - ↑(φ g) * ↑(φ h)‖ ≤ δ) →
+        ‖↑(φ LiteralNonMFPresentation.mark) - 1‖ < 1
 ```
 
 ## `GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn`
@@ -660,6 +820,40 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
             let X := fun n => naturalFiniteModel (d n);
             ∀ (Theta : H →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier))),
               K ≤ Theta.ker
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction`
+
+```lean
+∀ (X : Type u),
+  (CliffordAlgebraLamp.euclidQ X =
+        LinearMap.BilinMap.toQuadraticMap (CliffordAlgebraLamp.dotForm X) ∧
+      (∀ (x : X),
+          ↑(CliffordAlgebraLamp.lampUnit X x) =
+            (CliffordAlgebra.ι (CliffordAlgebraLamp.euclidQ X)) (Finsupp.single x 1)) ∧
+        CliffordAlgebraLamp.lampGroup X =
+            Subgroup.closure
+              (Set.range (CliffordAlgebraLamp.lampUnit X) ∪ {CliffordAlgebraLamp.zUnit X}) ∧
+          (∀ (x : X), ↑(CliffordAlgebraLamp.lampGen X x) = CliffordAlgebraLamp.lampUnit X x) ∧
+            ↑(CliffordAlgebraLamp.zGen X) = CliffordAlgebraLamp.zUnit X ∧
+              ↑(CliffordAlgebraLamp.zUnit X) = -1 ∧
+                CliffordAlgebraLamp.zGen X ^ 2 = 1 ∧
+                  CliffordAlgebraLamp.zGen X ≠ 1 ∧
+                    CliffordAlgebraLamp.zGen X ∈
+                        Subgroup.center ↥(CliffordAlgebraLamp.lampGroup X) ∧
+                      (∀ (x : X), CliffordAlgebraLamp.lampGen X x ^ 2 = 1) ∧
+                        ∀ (x y : X),
+                          x ≠ y →
+                            CliffordAlgebraLamp.lampGen X x * CliffordAlgebraLamp.lampGen X y =
+                              CliffordAlgebraLamp.zGen X *
+                                (CliffordAlgebraLamp.lampGen X y *
+                                  CliffordAlgebraLamp.lampGen X x)) ∧
+    (∀ (σ : Equiv.Perm X) (x : X),
+        ((CliffordAlgebraLamp.permHom X) σ) (CliffordAlgebraLamp.lampGen X x) =
+          CliffordAlgebraLamp.lampGen X (σ x)) ∧
+      ∀ (σ : Equiv.Perm X),
+        ((CliffordAlgebraLamp.permHom X) σ) (CliffordAlgebraLamp.zGen X) =
+          CliffordAlgebraLamp.zGen X
 ```
 
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction`
@@ -828,6 +1022,14 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
                                       Set.range ⇑ExplicitLinearModel.conjD
 ```
 
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences`
+
+```lean
+∀ (G : Type u) [inst : Group G] [inst_1 : Countable G],
+  (IsCDEOperatorMF G ↔ IsOperatorMF G) ∧
+    (IsOperatorMF G ↔ IsNormApproximable G 1) ∧ (IsOperatorMFIncreasing G ↔ IsOperatorMF G)
+```
+
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical`
 
 ```lean
@@ -905,6 +1107,24 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
     (π : H →* (Module.End k V)ˣ) (Γ : Subgroup H), compressionCentralizerDefect Γ ≤ π.ker
 ```
 
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence`
+
+```lean
+∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n),
+  ∃ kappa,
+    (kappa.toMonoidHom = unitaryCoronaToCStarCoronaUnitary fun n => naturalFiniteModel (d n)) ∧
+      ∀ (u : (n : ℕ) → ↥(Matrix.unitaryGroup (naturalFiniteModel (d n)).carrier ℂ)),
+        kappa ↑u = (unitarySequenceToCorona fun n => naturalFiniteModel (d n)) u
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting`
+
+```lean
+∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n)
+  (x : ↥(unitary (NormMatrixCStarCorona fun n => (naturalFiniteModel (d n)).carrier))),
+  ∃ u, (unitarySequenceToCorona fun n => naturalFiniteModel (d n)) u = x
+```
+
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient`
 
 ```lean
@@ -917,22 +1137,47 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
         (IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥)
 ```
 
-## `GroupApproximation.ManuscriptExactWrappers.manuscriptWeightedTransportSubgroup`
+## `GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus`
 
 ```lean
-∀ {H : Type u} [inst : Group H] (B : OpAlmostRepresentation H) (weight : ℕ → ℝ),
-  (∀ (n : ℕ), 0 ≤ weight n) →
-    ∀ (L : Subgroup H),
-      HasKazhdanPropertyT ↥L →
-        ∀ (s : H),
-          (∀ gamma ∈ L, s * gamma * s⁻¹ ∈ L) →
-            ∀ (x : (n : ℕ) → Matrix (B.model n).carrier (B.model n).carrier ℂ),
-              ScaledKazhdanTransport.IsScaledAsymptoticCommutantOf B weight L.subtype x →
-                ScaledKazhdanTransport.IsScaledMassBounded B weight x →
-                  ScaledKazhdanTransport.IsScaledAsymptoticCommutantOf B weight L.subtype
-                      (KazhdanAsymptoticCommutant.adjointSequence B s x) ∧
-                    ScaledKazhdanTransport.IsScaledAsymptoticCommutantOf B weight L.subtype
-                      (KazhdanAsymptoticCommutant.coadjointSequence B s x)
+∀ {k : ℕ} (M : MarkedGroupSpace k),
+  ¬IsOperatorMF M.Quotient →
+    ∃ R, M.cylinder (MarkedGroupSpace.wordBall k R) ⊆ (MarkedGroupSpace.operatorMFLocus k)ᶜ
+```
+
+## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
+```
+
+## `GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsOpen (MarkedGroupSpace.operatorMFLocus k)ᶜ
+```
+
+## `GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF`
+
+```lean
+∃ G x, Group.IsFinitelyPresented G ∧ ¬IsOperatorMF G
+```
+
+## `GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable`
+
+```lean
+∀ {Source : Type u} [inst : Primcodable Source] {sourceProperty : Source → Prop}
+  (_reduction :
+    MarkovMFConsequences.AdianRabinReduction sourceProperty
+      (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)),
+  ¬ComputablePred sourceProperty →
+    ¬ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)
+```
+
+## `GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary`
+
+```lean
+∀ {G : Type u} [inst : Group G], IsOperatorMF G → ∀ (H : Subgroup G), IsOperatorMF ↥H
 ```
 
 ## `GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses`
@@ -1000,6 +1245,20 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
         ¬Amenability.HasInvariantMean LiteralNonMFPresentation.MarkedGroup
 ```
 
+## `GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation`
+
+```lean
+∀ {G : Type u_2} [inst : Group G] {model : ℕ → FiniteModel}
+  (D : PrintedCornerCompression.PrintedCornerData G model),
+  ∃ W,
+    W.model = D.cornerModel ∧
+      (∀ (n : ℕ), 0 < Fintype.card (D.cornerModel n).carrier) ∧
+        (∀ (n : ℕ) (g : G), W.map n g ≍ D.cornerMap n g) ∧
+          ∀ (g : G),
+            Filter.Tendsto (fun n => ‖↑(D.cornerMap n g) - D.compress n g‖) Filter.atTop
+              (nhds 0)
+```
+
 ## `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse`
 
 ```lean
@@ -1007,7 +1266,7 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
   HasKazhdanPropertyT ↥L →
     ∀ {s : E},
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
-        ∀ (X : ℕ → FiniteModel) [inst_1 : ∀ (n : ℕ), Nonempty (X n).carrier]
+        ∀ (X : ℕ → FiniteModel) (hX : ∀ (n : ℕ), 0 < Fintype.card (X n).carrier)
           (pi : E →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))
           (p : NormMatrixCStarCorona fun n => (X n).carrier),
           star p = p →
@@ -1033,6 +1292,22 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
           (QuasiRegularWitness.quasiRegularOperator G K a)
               (QuasiRegularWitness.baseVector G K) ≠
             QuasiRegularWitness.baseVector G K
+```
+
+## `GroupApproximation.ScaledKazhdanTransport.scaled_transport_both`
+
+```lean
+∀ {Γ : Type} {E : Type u} [inst : Group Γ] [inst_1 : Group E] (B : OpAlmostRepresentation E)
+  (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B.model n).carrier (B.model n).carrier ℂ),
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C x →
+        ScaledKazhdanTransport.IsScaledMassBounded B w x →
+          (ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              ↑(B.map n C.t) * x n * (↑(B.map n C.t)).conjTranspose) ∧
+            ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              (↑(B.map n C.t)).conjTranspose * x n * ↑(B.map n C.t)
 ```
 
 ## `GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily`
@@ -1080,78 +1355,6 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
   Function.Surjective ⇑f → IsSofic ↥f.ker → Amenability.IsAmenable Q → IsSofic G
 ```
 
-## `GroupApproximation.SpectralPaper.a5UniversalInvisibility`
-
-```lean
-(∀ (X : ℕ → FiniteModel) (hX : ∀ (n : ℕ), 0 < Fintype.card (X n).carrier),
-    Function.Bijective
-      (precomp AlternatingLampLiteral.qA
-        ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))) ∧
-  (∀ (T : Type) [inst : Group T],
-      IsResiduallyFinite T → Function.Bijective (precomp AlternatingLampLiteral.qA T)) ∧
-    (∀ (T : Type) [inst : Group T] [Finite T],
-        Function.Bijective (precomp AlternatingLampLiteral.qA T)) ∧
-      (∀ (Y : FiniteModel),
-          Function.Bijective
-            (precomp AlternatingLampLiteral.qA ↥(Matrix.unitaryGroup Y.carrier ℂ))) ∧
-        (∀ (F : Type) [inst : Field F] (d : ℕ),
-            Function.Bijective (precomp AlternatingLampLiteral.qA (GL (Fin d) F))) ∧
-          ∀ (T : Type) [inst : Group T] [inst_1 : TopologicalSpace T] [IsTopologicalGroup T]
-            [CompactSpace T] [TotallyDisconnectedSpace T],
-            Function.Bijective (precomp AlternatingLampLiteral.qA T)
-```
-
-## `GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility`
-
-```lean
-SpectralPaper.FinitePerfectUniversalInvisibility
-```
-
-## `GroupApproximation.SpectralPaper.oneInvisibleRelationPackage`
-
-```lean
-AlternatingLampLiteral.qA.ker = Subgroup.normalClosure {AlternatingLampLiteral.rA} ∧
-  AlternatingLampLiteral.rA ≠ 1 ∧
-    AlternatingLampLiteral.rA * AlternatingLampLiteral.rA = 1 ∧
-      AlternatingLampLiteral.qA.comp AlternatingLampLiteral.sectionA =
-          MonoidHom.id
-            (MarkedCompression.Vertical ExplicitLinearModel.conjD
-              ExplicitLinearModel.conjD_injective) ∧
-        IsSofic AlternatingLampLiteral.WA ∧
-          ¬IsCDEOperatorMF AlternatingLampLiteral.WA ∧
-            IsResiduallyFinite
-                (MarkedCompression.Vertical ExplicitLinearModel.conjD
-                  ExplicitLinearModel.conjD_injective) ∧
-              IsOperatorMF
-                  (MarkedCompression.Vertical ExplicitLinearModel.conjD
-                    ExplicitLinearModel.conjD_injective) ∧
-                IsLocallyFiniteGroup ↥AlternatingLampLiteral.qA.ker ∧
-                  Amenability.IsAmenable ↥AlternatingLampLiteral.qA.ker ∧
-                    IsResiduallyFinite ↥AlternatingLampLiteral.qA.ker ∧
-                      IsOperatorMF ↥AlternatingLampLiteral.qA.ker ∧
-                        actualCoronaMFResidual AlternatingLampLiteral.WA =
-                            AlternatingLampLiteral.qA.ker ∧
-                          MatricialStabilityRadical.fdUnitaryResidual
-                                AlternatingLampLiteral.WA =
-                              AlternatingLampLiteral.qA.ker ∧
-                            finiteResidual AlternatingLampLiteral.WA =
-                                AlternatingLampLiteral.qA.ker ∧
-                              linearResidual AlternatingLampLiteral.WA =
-                                AlternatingLampLiteral.qA.ker
-```
-
-## `GroupApproximation.SpectralPaper.spectralCompressionTheorem`
-
-```lean
-SpectralPaper.SpectralCompressionTheorem
-```
-
-## `GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem`
-
-```lean
-SpectralPaper.ZeroDimensionalSpectralCollapseTheorem
-```
-
 ## `GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness`
 
 ```lean
@@ -1185,6 +1388,28 @@ SpectralPaper.ZeroDimensionalSpectralCollapseTheorem
         TorsionCompressionCollapse.torsionCollapseDefect L s ≤ actualCoronaMFResidual E
 ```
 
+## `GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse`
+
+```lean
+∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E] (B : OpAlmostRepresentation E)
+  (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B.model n).carrier (B.model n).carrier ℂ),
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C x →
+        ScaledKazhdanTransport.IsScaledMassBounded B w x →
+          (ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              ↑(B.map n C.t) * x n * (↑(B.map n C.t)).conjTranspose) ∧
+            ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              (↑(B.map n C.t)).conjTranspose * x n * ↑(B.map n C.t)
+```
+
+## `GroupApproximation.WordProblemRE.not_rePred_compl_wordProblemPred`
+
+```lean
+¬REPred fun x => ¬AdianRabinWordProblem.wordProblemPred x
+```
+
 ## `GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re`
 
 ```lean
@@ -1197,12 +1422,22 @@ SpectralPaper.ZeroDimensionalSpectralCollapseTheorem
 REPred AdianRabinWordProblem.wordProblemPred
 ```
 
-## `GroupApproximation.compressionCentralizerDefect_le_ker`
+## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
 
 ```lean
-∀ {H' : Type u_4} {k' : Type u_5} {V' : Type u_6} [inst : Group H'] [inst_1 : Field k']
-  [inst_2 : AddCommGroup V'] [inst_3 : _root_.Module k' V'] [FiniteDimensional k' V']
-  (π : H' →* V' ≃ₗ[k'] V') (L : Subgroup H'), compressionCentralizerDefect L ≤ π.ker
+∀ {G : Type u_1} [inst : Group G] (d a : G), d ^ 2 = 1 → ⁅d, a * d * a⁻¹⁆ = ⁅d, a⁆ ^ 2
+```
+
+## `GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree`
+
+```lean
+∀ (G : Type u) [inst : Group G] [IsMulTorsionFree G] (F : Subgroup G) [Finite ↥F], F = ⊥
+```
+
+## `GroupApproximation.hasKazhdanPropertyT_of_finite`
+
+```lean
+∀ (G : Type u) [inst : Group G] [Finite G], HasKazhdanPropertyT G
 ```
 
 ## `GroupApproximation.isOperatorMF_of_locallyFinite`
@@ -1215,6 +1450,23 @@ REPred AdianRabinWordProblem.wordProblemPred
 
 ```lean
 ∀ {K : Type u} [inst : Group K] [Countable K] [Group.ResiduallyFinite K], IsOperatorMF K
+```
+
+## `GroupApproximation.kt_06_ultraproduct_finite`
+
+```lean
+∀ (Z : ℕ → FiniteModel) [inst : ∀ (n : ℕ), Nonempty (Z n).carrier]
+  {sigma : NormMatrixCStarCorona fun n => (Z n).carrier},
+  star sigma * sigma = 1 → sigma * star sigma = 1
+```
+
+## `GroupApproximation.kt_10_finiteness_reverses`
+
+```lean
+∀ {A : Type u} [inst : CStarAlgebra A] [inst_1 : PartialOrder A] [StarOrderedRing A],
+  (∀ (x : A), star x * x = 1 → x * star x = 1) →
+    ∀ {p q : A},
+      IsStarProjection p → IsStarProjection q → p ≤ q → MurrayVonNeumannEquiv p q → p = q
 ```
 
 ## `GroupApproximation.manuscriptMFTraceGroupBridge`

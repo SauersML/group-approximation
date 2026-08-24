@@ -1,11 +1,5 @@
 import GroupApproximation
-import GroupApproximation.Analysis.SpectralComponentDiameter
-import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Endpoint.Audit
-import GroupApproximation.Sofic.AlternatingLampExactRadical
-import GroupApproximation.Sofic.FinitePerfectLampExactRadical
-import GroupApproximation.Sofic.SpectralCompression
-import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 import Audit.DeclFilter
 import Lean.Elab.Command
 

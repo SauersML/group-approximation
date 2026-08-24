@@ -6,41 +6,38 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 83 |
-| `formalized` | 16 |
-| `structural` | 8 |
-| `attribution` | 6 |
-| `provenance` | 4 |
-| `partial` | 3 |
-| `definition` | 1 |
-| **total** | **121** |
+| `ledger` | 181 |
+| `formalized` | 95 |
+| `attribution` | 36 |
+| `definition` | 25 |
+| `structural` | 19 |
+| `provenance` | 6 |
+| **total** | **362** |
 
-Carrying a declaration or a ledger row: **103/121** (85.1%).
+Carrying a declaration or a ledger row: **301/362** (83.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
-These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
-
-* **`partial`**, line 58 --- The same quotient is invisible to finite, compact, and finite-dimensional linear targets.
-  * finite and linear targets are formalized; compact targets use classical Peter--Weyl
-* **`partial`**, line 168 --- By Peter--Weyl separation, every homomorphism from $W_K$ to a compact Hausdorff group also kills $L_K$.
-  * compact-target clause uses classical Peter--Weyl
-* **`partial`**, line 168 --- Thus precomposition is bijective for compact targets and $\Rad_{\mathrm{Bohr}}(W_K)=L_K$.
-  * Bohr equality uses classical Peter--Weyl
+Every sentence carries a declaration, a ledger row, or a reason no declaration applies.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 8 | 0 |
-| Introduction | 37 | 0 |
-| Exact finite-dimensional compression | 11 | 0 |
-| Spectral rigidity in norm coronas | 18 | 0 |
-| The affine compression geometry | 13 | 0 |
-| The exact visible quotient | 16 | 0 |
-| One invisible relation | 11 | 0 |
-| Formal verification | 3 | 0 |
-| Acknowledgements | 1 | 0 |
-| AI and computational resource usage | 3 | 0 |
+| (front matter) | 6 | 0 |
+| Introduction | 13 | 0 |
+| The result | 8 | 0 |
+| Outline of the proof | 30 | 0 |
+| Relation to prior work | 26 | 0 |
+| Matrix quotients | 79 | 0 |
+| One-sided conjugation in matrix models | 23 | 0 |
+| The exact case | 16 | 0 |
+| The asymptotic case | 44 | 0 |
+| The central involution obstruction | 54 | 0 |
+| The basic non-MF construction | 33 | 0 |
+| The explicit affine example | 19 | 0 |
+| Further results | 2 | 0 |
+| Acknowledgements | 3 | 0 |
+| AI and computational resource usage | 6 | 0 |

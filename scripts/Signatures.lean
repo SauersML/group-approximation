@@ -4,19 +4,13 @@ import GroupApproximation
 -- against freshly built manuscript modules even while an older root olean is
 -- still warming in a development iteration.
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
-import GroupApproximation.Analysis.SpectralComponentDiameter
 import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
-import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Monsters.AffineSL3Scaling
-import GroupApproximation.Sofic.AlternatingLampExactRadical
-import GroupApproximation.Sofic.FinitePerfectLampExactRadical
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.RadicalSeparation
-import GroupApproximation.Sofic.SpectralCompression
-import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 import GroupApproximation.Endpoint.Audit
 import Lean.Elab.Command
 
