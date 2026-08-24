@@ -34,13 +34,24 @@ giving Corollary 3.5.
 Thus every negative answer to either the full-completion LLP frontier or
 `explicit-proper-d-completion-with-llp-exists` has a three-dimensional
 operator-system witness after one fixed matrix amplification.  This
-materially narrows symbolic and numerical refutation searches.  More
-importantly, the converse is exact for this system: ambient LLP restricts
-to LP on the finite-dimensional subsystem, while Proposition 3.4(2) and
-matrix/corner permanence give **LP of `S` implies LLP of `A`**.  Thus
-`LP(S) <=> LLP(A)`.  Combined with Paulsen--Rahaman--Samei, this gives the
-positive three-dimensional closing criterion in
+materially narrows symbolic and numerical refutation searches.  In the
+positive direction, Proposition 3.4(2) with matrix/corner permanence gives
+**LP of `S` implies LLP of `A`**, and combined with Paulsen--Rahaman--Samei
+this is the three-dimensional closing criterion in
 `lp-of-harris-generator-system-forces-nonhyperlinear`.
+
+**CORRECTED 2026-08-23.**  An earlier version of this paragraph continued
+"the converse is exact for this system: ambient LLP restricts to LP on the
+finite-dimensional subsystem", concluding `LP(S) <=> LLP(A)`.  That
+justification is invalid and the equivalence is withdrawn; see
+`harris-lp-to-llp-implication-is-one-directional`.  LLP of `A` constrains
+only ucp maps whose domain is `A` or `M_k(A)`, while LP of `S` quantifies
+over every ucp map out of `S` into a quotient, and such a map need not
+extend to the ambient algebra; hyperrigidity gives uniqueness of extensions
+of representations, not existence of an extension of an arbitrary ucp map
+into a prescribed quotient.  Only `LP(S) => LLP(A)` is available.  No route
+in this graph consumed the withdrawn direction, so nothing downstream
+changes status.
 
 It does **not** make LLP decidable and does not provide a uniform finite
 semidefinite certificate for failure: the LP failure of `S` still

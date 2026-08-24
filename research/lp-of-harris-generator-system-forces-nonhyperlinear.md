@@ -2,7 +2,7 @@
 rg: 2
 id: lp-of-harris-generator-system-forces-nonhyperlinear
 kind: claim
-title: LP of the explicit Harris system is equivalent to ambient LLP and can force non-hyperlinearity
+title: LP of the explicit Harris system implies ambient LLP and can force non-hyperlinearity
 artifacts:
   - research/artifacts/paulsen-harris-lalonde-tang-macmahon-source-audit-2026-08-23.md
 distinct_from:
@@ -22,13 +22,21 @@ S_A=span{I,D,G_H} subset M_(n+2)(A)                  (HLP1)
 be Harris's explicit three-dimensional hyperrigid generator system.  Then
 
 ```text
-S_A has LP  <=>  A has LLP.                           (HLP2)
+S_A has LP  =>  A has LLP.                            (HLP2)
 ```
 
-For the forward implication, Harris Proposition 3.4(2) gives LLP of
-`M_(n+2)(A)` and matrix/corner permanence gives LLP of `A`.  Conversely,
-LLP passes to matrix amplifications and, by definition, gives the lifting
-property on every finite-dimensional operator subsystem, including `S_A`.
+Harris Proposition 3.4(2) gives LLP of `M_(n+2)(A)` and matrix/corner
+permanence gives LLP of `A`.
+
+**CORRECTED 2026-08-23.**  `(HLP2)` was previously written as an
+equivalence, justified by "LLP passes to matrix amplifications and, by
+definition, gives the lifting property on every finite-dimensional operator
+subsystem, including `S_A`".  That justification is invalid: the LLP
+concerns ucp maps *defined on* the algebra, while LP of `S_A` quantifies
+over all ucp maps *out of* `S_A`, which need not extend to the ambient
+algebra.  The converse is withdrawn; see
+`harris-lp-to-llp-implication-is-one-directional`.  Everything below uses
+only the surviving implication.
 
 Now let `G` be a finitely generated discrete group and let `pi` be a
 unitary representation such that
@@ -47,10 +55,12 @@ lambda_G prec pi + pi nonamenable + LP(S_pi)
 ```
 
 In particular, if `G` is finitely generated and nonamenable, set
-`pi=lambda_G`.  Then `LP(S_lambda)` is equivalent to `LLP(C^*_r(G))`, and
-`LP(S_lambda)` forces `G` non-hyperlinear.
+`pi=lambda_G`.  Then `LP(S_lambda)` implies `LLP(C^*_r(G))` and forces `G`
+non-hyperlinear.
 
-Thus Harris gives an exact three-dimensional normal form for the LLP
-target, not a logically weaker lifting hypothesis.  The target still
-quantifies over all quotient ucp lifting problems, so three-dimensionality
-does not make it a finite SDP check.
+Thus Harris gives a three-dimensional *sufficient* normal form for the LLP
+target.  It is not a logically weaker lifting hypothesis -- and, after the
+2026-08-23 correction, it is not known to be an equivalent one either, so it
+may be strictly stronger than the ambient LLP it abbreviates.  The target
+still quantifies over all quotient ucp lifting problems, so
+three-dimensionality does not make it a finite SDP check.
