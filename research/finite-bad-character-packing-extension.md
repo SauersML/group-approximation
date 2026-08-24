@@ -9,6 +9,7 @@ distinct_from:
   finite-depth-adaptive-selected-atom-escape-tree: That asks for node-dependent overlap escape on reached reducing carriers; this asks for a static root packing and a prescribed trace extension.
   abelian-matrix-hnns-have-marked-finite-quotients: That seeks finite quotients for families of matrix HNNs; this requires quantitative nonintertwining of one character idempotent and exact realization of one restriction distribution.
   finite-character-hecke-intersection-formula: That computes the exact regular norm of every proposed overlap; this asks for finite overgroups whose transported bad-character intersection labels are all incompatible while the prescribed trace still extends.
+  finite-character-packing-extension-is-clique-lp: That decides both clauses for each fixed finite candidate group; this asks for the construction of some candidate passing those finite tests at the required threshold.
 ---
 
 **OPEN FINITE PACKING--EXTENSION LEMMA.** For every forbidden type `i` of
@@ -50,6 +51,12 @@ to disagreement of the transported bad characters on every pairwise
 intersection of transported context subgroups.  It is therefore a finite
 labelled-intersection problem, but condition 3 must hold simultaneously. No
 construction satisfying all three conditions is currently known.
+
+For any proposed finite `G_i`,
+`finite-character-packing-extension-is-clique-lp` makes the audit exact:
+condition 2 is a coloured-clique search in the transported-character
+intersection graph, and condition 3 is a rational linear feasibility
+problem over `Irr(G_i)`.
 
 ## Surviving route
 
