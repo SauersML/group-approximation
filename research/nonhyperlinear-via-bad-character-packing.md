@@ -12,6 +12,10 @@ requires:
   - finite-bad-character-packing-extension
 ---
 
+**INVALIDATED.**  Its packing prerequisite is refuted by
+`canonical-trace-forbids-supercritical-character-packing`: the canonical
+trace gives `K<=2M/beta`, while the route requires a strictly larger `K`.
+
 Adjoin the finite overgroups supplied for the finitely many forbidden types,
 identifying each `H_i` with its seed-context words. Their prescribed trace
 extensions agree with the perfect contextual trace on the amalgamated

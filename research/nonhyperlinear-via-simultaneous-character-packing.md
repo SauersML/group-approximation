@@ -11,6 +11,10 @@ requires:
   - simultaneous-bad-character-packing-extension
 ---
 
+**INVALIDATED.**  Its packing prerequisite is refuted by
+`canonical-trace-forbids-supercritical-character-packing`: the canonical
+trace gives `K<=2/beta`, while the route requires a strictly larger `K`.
+
 Use the exact tracial representation from
 `simultaneous-bad-character-packing-extension` to see that the central mark
 `J` is nontrivial.  In hypothetical canonical matrix microstates,

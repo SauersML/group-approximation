@@ -12,7 +12,18 @@ distinct_from:
   finite-character-packing-extension-is-clique-lp: That decides both clauses for each fixed finite candidate group; this asks for the construction of some candidate passing those finite tests at the required threshold.
 ---
 
-**OPEN FINITE PACKING--EXTENSION LEMMA.** For every forbidden type `i` of
+**REFUTED.**  `canonical-trace-forbids-supercritical-character-packing`
+proves that the requested threshold is impossible whenever the finite
+seed-context packet subgroups embed.  The canonical trace gives
+
+```text
+K<=2M/beta,
+```
+
+whereas `(FBE1)` asks for the next integer.  Exact extension of a selected
+tracial distribution cannot alter this canonical trace obstruction.
+
+The former target asked: for every forbidden type `i` of
 the fixed robust shared BCS, let
 
 ```text
@@ -50,7 +61,8 @@ By `finite-character-hecke-intersection-formula`, condition 2 is equivalent
 to disagreement of the transported bad characters on every pairwise
 intersection of transported context subgroups.  It is therefore a finite
 labelled-intersection problem, but condition 3 must hold simultaneously. No
-construction satisfying all three conditions is currently known.
+construction can satisfy all three conditions at `(FBE1)` while the packet
+subgroups embed.
 
 For any proposed finite `G_i`,
 `finite-character-packing-extension-is-clique-lp` makes the audit exact:
@@ -58,14 +70,12 @@ condition 2 is a coloured-clique search in the transported-character
 intersection graph, and condition 3 is a rational linear feasibility
 problem over `Irr(G_i)`.
 
-## Surviving route
+## Consequence
 
-Finite graphs of finite groups may allow conjugate context subgroups with
-controlled intersections: transported bad characters can disagree on every
-pairwise intersection even when no global automorphism permutes one fixed
-context subgroup. The allowed characters in the support of `mu_i` must at
-the same time extend through the finite graph. This is the concrete finite
-character-table design problem left by the audit.
+Finite overgroups and finite graphs of groups cannot solve this target while
+retaining the context packet embeddings.  A different presentation would
+have to impose a joint relation that changes those embeddings while
+preserving the marked exact model.
 
 ## Attempts
 

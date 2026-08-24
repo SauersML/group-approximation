@@ -10,7 +10,18 @@ distinct_from:
   finite-character-hecke-intersection-formula: that gives the exact finite test for pairwise orthogonality of proposed transports; this asks for a joint presentation whose complete intersection-label system passes that test while retaining the prescribed trace.
 ---
 
-**OPEN.**  Fix the robust shared contextual system, its finite Pauli seed,
+**REFUTED.**  `canonical-trace-forbids-supercritical-character-packing`
+gives the universal ceiling
+
+```text
+K<=2/beta
+```
+
+for the requested simultaneous family whenever the seed-context packet
+subgroups embed.  The value in `(SBP2)` is strictly larger, so no such
+ordinary group-algebra packing exists.
+
+The former target fixed the robust shared contextual system, its finite Pauli seed,
 and forbidden character idempotents
 
 ```text
@@ -42,16 +53,17 @@ such that:
    p_(i,r) p_(j,s)=0              whenever (i,r)!=(j,s). (SBP3)
    ```
 
-By `simultaneous-character-packing-removes-max-loss`, these conditions imply
-nonhyperlinearity immediately.  There is no maximal-type selection and no
-factor `M` in the packing threshold.
+Had these conditions been consistent, `simultaneous-character-packing-removes-max-loss`
+would have implied nonhyperlinearity immediately.  The canonical trace shows
+that the stated strict threshold is already inconsistent.
 
 The relation `(SBP3)` must couple the different context transports on their
 multiplicity spaces.  Separate finite overgroups amalgamated independently
 along the context groups do not impose cross-family orthogonality.  A
-solution therefore requires one joint holonomy or collision relation whose
+solution would have required one joint holonomy or collision relation whose
 perfect tracial representation is supported entirely away from the
-forbidden family.
+forbidden family.  The ceiling theorem shows that such a relation cannot
+retain the finite context packet embeddings assumed here.
 
 By `finite-character-hecke-intersection-formula`, clause 3 is equivalent to
 the following finite condition for every two distinct indices `(i,r)` and
