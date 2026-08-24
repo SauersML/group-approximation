@@ -12,6 +12,7 @@ distinct_from:
   novikov-boone-fp-group-undecidable-word-problem: that exhibits a finitely presented group whose word problem is undecidable, which is the other side of the same dividing line; this is about the groups on the decidable side and where they can be embedded.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -45,7 +46,7 @@ either direction, and no node here pretends otherwise.
 
 ## What a certificate must contain
 
-*Proof.*  It suffices to close any one of the four live routes.  The shortest
+*Proof.*  It suffices to close any one of the live routes.  The shortest
 is `boone-higman-via-ck-maximal-kernel`: by
 `boone-higman-thompson-simple-envelope` and
 `chatterji-kassabov-normal-generator-embedding` one already has, for every
@@ -60,6 +61,20 @@ proper normal subgroup of `Gamma` meets `S` trivially, so every maximal
 proper normal quotient is simple and still contains `G`.  A certificate is
 then exactly a finite normal generating set for one maximal proper normal
 subgroup of `Gamma`.
+
+Two routes added 2026-08-24 avoid the normal-lattice machinery entirely and
+never require any group to be shown simple, because simplicity is produced at
+the end by `type-a-action-gives-boone-higman-for-subgroups`.  A certificate
+for either is a construction and nothing else:
+`universal-fiber-product-data-for-word-problem-groups` asks for a finitely
+presented overgroup with a finitely generated normal subgroup having trivial
+centralizer, finitely many conjugacy classes and an `F_3` quotient;
+`shift-higman-compiler` asks for finite presentability of one explicit
+permutation group built from a chosen enumeration.  Both are shown to force
+their input to have solvable word problem
+(`compilers-cannot-drop-the-decidability-hypothesis`), so neither can be
+proved by an argument uniform in a finite presentation.  See
+`research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md`.
 
 *Disproof.*  A finitely generated group with solvable word problem together
 with a proof that it embeds in no finitely presented simple group.  No
