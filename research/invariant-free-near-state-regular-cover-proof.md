@@ -3,7 +3,7 @@ rg: 2
 id: invariant-free-near-state-regular-cover-proof
 kind: route
 title: Pass the near map through its tracial null ideal
- target: invariant-free-near-state-is-amenable-regular-cover
+target: invariant-free-near-state-is-amenable-regular-cover
 requires: []
 ---
 
