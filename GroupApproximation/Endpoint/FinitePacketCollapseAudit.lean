@@ -1,0 +1,29 @@
+import GroupApproximation.Sofic.FinitePacketCovariance
+import GroupApproximation.Sofic.FiniteGroupUlamStep
+import GroupApproximation.Sofic.FiniteGroupUlamIteration
+import GroupApproximation.Sofic.FiniteGroupCoronaExactification
+import GroupApproximation.Sofic.FinitePacketRankWeight
+import GroupApproximation.Sofic.StarTranspositionRankMass
+import GroupApproximation.Sofic.FinitePacketCollapseCore
+
+/-!
+# Kernel audit for the formalized finite-packet collapse layers
+
+These are the new unconditional declarations.  The full corona-collapse and
+concrete `S₉` carrier are intentionally absent until their remaining inputs
+are formalized.
+-/
+
+#print axioms GroupApproximation.FinitePacketCovariance.exists_near_identity_exact_covariance
+#print axioms GroupApproximation.FiniteGroupUlamStep.multiplicationError_cocycle
+#print axioms GroupApproximation.FiniteGroupUlamStep.norm_averagedError_le
+#print axioms GroupApproximation.FiniteGroupUlamStep.norm_correctedTable_sub_le
+#print axioms GroupApproximation.FiniteGroupUlamStep.correctedTable_multiplicativeDefectAtMost
+#print axioms GroupApproximation.FiniteGroupUlamIteration.exactifiedRepresentation
+#print axioms GroupApproximation.FiniteGroupUlamIteration.norm_exactifiedRepresentation_sub_le
+#print axioms GroupApproximation.FiniteGroupCoronaExactification.exists_exact_coordinate_lift
+#print axioms GroupApproximation.FinitePacketRankWeight.displacementRank_le_wordNorm_mul
+#print axioms GroupApproximation.FinitePacketRankWeight.displacementMass_le_four_mul_wordNorm_mul_weight
+#print axioms GroupApproximation.StarTranspositionRankMass.matMass_sub_eq_three_mul_rank
+#print axioms GroupApproximation.FinitePacketCollapseCore.eventually_packetRankWeight_eq_zero_of_scaled_vanishing
+#print axioms GroupApproximation.FinitePacketCollapseCore.eventually_generator_eq_base_of_scaled_vanishing

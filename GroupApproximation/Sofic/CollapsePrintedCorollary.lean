@@ -126,6 +126,7 @@ private theorem mul_one_sub_comm_of_half {v u : A}
 
 end ScalarHelpers
 
+omit [Countable E] in
 /-- **The printed proof of `thm:collapse`, one corona representation at a
 time.**  Given the involutive witness data, every norm-matrix C\*-corona
 representation kills every collapse commutator — proved by forming
@@ -266,6 +267,7 @@ theorem coronaRep_commutator_eq_one_printed
   rw [map_commutatorElement]
   exact commutatorElement_eq_one_iff_commute.mpr hcommU
 
+omit [Countable E] in
 /-- **The element-level `thm:collapse`, by the printed route.**  Statement
 identical to `CollapseUniverseScope.actualCoronaMFInvisible_of_involutiveWitness`;
 the proof is the printed derivation through `thm:projection-collapse` rather
@@ -281,6 +283,7 @@ theorem actualCoronaMFInvisible_of_involutiveWitness_printed
   intro rho
   exact coronaRep_commutator_eq_one_printed L hT hcomp hk X hX rho γ hγ
 
+omit [Countable E] in
 /-- **`thm:collapse`, by the printed route.**  "Kernels are normal, so `Θ` is
 trivial on `D_coll(L,s)`": the collapse defect is the normal closure of the
 marked commutators, each of which the printed derivation kills. -/
@@ -298,12 +301,12 @@ theorem involutiveCollapseDefect_le_actualCoronaMFResidual_printed
 identical to `ManuscriptExactWrappers.manuscriptInvolutiveCollapse`, proved as
 the manuscript proves it: through `thm:projection-collapse`. -/
 theorem manuscriptInvolutiveCollapse_printed :
-    ∀ {H : Type u} [Group H] [Countable H]
+    ∀ {H : Type u} [Group H]
       (L : Subgroup H), HasKazhdanPropertyT.{u, u} ↥L →
       ∀ (s : H), (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
       CollapseUniverseScope.involutiveCollapseDefect L s ≤
         actualCoronaMFResidual H := by
-  intro H _ _ L hT s hcomp
+  intro H _ L hT s hcomp
   exact involutiveCollapseDefect_le_actualCoronaMFResidual_printed hT hcomp
 
 end
