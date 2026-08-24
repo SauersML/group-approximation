@@ -475,6 +475,9 @@ import GroupApproximation.Manuscript.MFRadicals.RadicalComputer
 import GroupApproximation.Manuscript.MFRadicals.FinitePerfectLamp
 import GroupApproximation.Manuscript.MFRadicals.TargetEquivalence
 import GroupApproximation.Manuscript.MFRadicals.MainTheorems
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedAudit
 import GroupApproximation.Endpoint.MFRadicalPaperAudit
 import GroupApproximation.Sofic.TelescopeLimitKernel
 import GroupApproximation.Sofic.ProfiniteTwins
