@@ -76,4 +76,28 @@ theorem five_radicals_eq_profinite {P : Type u} [Group P] (Φ : G →* P)
   intro C _ _ _ _ _ f
   exact le_trans (le_of_eq h3.symm) (finiteResidual_le_ker_of_profinite f)
 
+/-- **The strongest unconditional form, for an arbitrary visible quotient.**
+Four radicals equal the kernel outright; the Bohr residual is trapped inside it,
+because finite groups are compact targets; and every homomorphism into a
+profinite group kills it, van Dantzig supplying the separation.  No hypothesis
+beyond those of the four-way theorem, and in particular no Peter--Weyl.
+
+This is `five_radicals_eq` with the one classical input removed and the Bohr
+clause weakened to exactly what survives without it: an upper bound in general,
+an equality on totally disconnected targets. -/
+theorem four_radicals_eq_and_bohr_bounds [Group.FG G] {P : Type u} [Group P]
+    (Φ : G →* P) (hP : IsResiduallyFinite P)
+    (hMF : Φ.ker ≤ actualCoronaMFResidual G) :
+    actualCoronaMFResidual G = Φ.ker ∧ fdUnitaryResidual G = Φ.ker ∧
+      finiteResidual G = Φ.ker ∧ linearResidual G = Φ.ker ∧
+      bohrResidual G ≤ Φ.ker ∧
+      (∀ {C : Type u} [Group C] [TopologicalSpace C] [IsTopologicalGroup C]
+        [CompactSpace C] [TotallyDisconnectedSpace C] (f : G →* C),
+          Φ.ker ≤ f.ker) := by
+  obtain ⟨h1, h2, h3, h4⟩ := four_radicals_eq Φ hP hMF
+  refine ⟨h1, h2, h3, h4, ?_, ?_⟩
+  · rw [← h3]; exact bohrResidual_le_finiteResidual
+  · intro C _ _ _ _ _ f
+    exact le_trans (le_of_eq h3.symm) (finiteResidual_le_ker_of_profinite f)
+
 end GroupApproximation
