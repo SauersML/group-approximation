@@ -1629,6 +1629,7 @@ import GroupApproximation.Sofic.MatchingFoldObstruction
 import GroupApproximation.Sofic.MatchingBlockOrder
 import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.MicrostateNormalForm
+import GroupApproximation.Analysis.OperatorNormCertificate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
