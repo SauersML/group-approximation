@@ -15,7 +15,7 @@
 \usepackage[T1]{fontenc}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{enumitem,etoolbox}
+\usepackage{enumitem}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage{xr-hyper}
@@ -29,20 +29,9 @@
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
   \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
-\newif\ifanonymous
-\anonymousfalse
-% Public author metadata is kept out of the anonymous source archive.  For a
-% public build, set \anonymousfalse above; coderepo.tex then supplies the
-% author name and is required to be present.
-\ifanonymous
-  \newcommand{\paperauthor}{Anonymous}
-\else
-  \input{coderepo.tex}
-  \newcommand{\paperauthor}{\paperauthorname}
-\fi
 \hypersetup{
   pdftitle={[DRAFT] Non-MF group notes},
-  pdfauthor={\paperauthor},
+  pdfauthor={},
   pdfsubject={Draft notes: further results and variants concerning non-MF groups},
   pdfkeywords={draft, MF groups, approximate unitary representations, property (T), group C*-algebras, sofic groups}
 }
@@ -101,15 +90,6 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
-% Keep the AMS title-page abstract layout without printing a redundant
-% ``Abstract.'' label.
-\makeatletter
-\patchcmd{\abstract}
-  {\item[\hskip\labelsep\scshape\abstractname.]}
-  {\item[]}
-  {}
-  {\PackageError{non-mf-notes}{Could not remove the abstract heading}{}}
-\makeatother
 \newcommand{\draftnotice}{%
   \begin{center}
   \fcolorbox{red!70!black}{red!5}{%
@@ -126,21 +106,9 @@
 \begin{document}
 
 \title[Non-MF group notes]{Non-MF group notes}
-\author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
 \keywords{MF groups, approximate unitary representations, property~(T),
 group $C^*$-algebras, sofic groups}
-
-\begin{abstract}
-These notes collect further results and variants from the non-MF project.
-They include weighted
-Kazhdan transport, general obstruction criteria, MF-residual computations,
-the sign-free quotient, soficity and trace consequences, torsion-free
-examples, logical applications, limitations, and additional operator-algebraic
-consequences.  They also record spectral-component rigidity, exact visible
-quotients for finite lamps, the sharp abelian-lamp boundary, and the literal
-presentation and affine certificate for the original central-sign group.
-\end{abstract}
 
 \maketitle
 \draftnotice
