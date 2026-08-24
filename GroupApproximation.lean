@@ -1631,6 +1631,7 @@ import GroupApproximation.Sofic.MatchingBlockOrder
 import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Analysis.OperatorNormCertificate
+import GroupApproximation.Analysis.CayleyUnitary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
