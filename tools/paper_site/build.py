@@ -410,7 +410,7 @@ def main():
     site_css = read(HERE / 'styles.css') + '\n' + read(REPO / 'tools' / 'math_explainer.css')
     polish_css = read(HERE / 'polish.css')
     parser_js = read(HERE / 'parser.js')
-    ui_js = read(HERE / 'ui.js')
+    ui_js = read(REPO / 'tools' / 'math_macros.js') + '\n' + read(HERE / 'ui.js')
     enhance_js = read(HERE / 'enhance.js') + '\n' + read(REPO / 'tools' / 'math_explainer.js')
     freshness_js = read(HERE / 'freshness.js').replace(
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))

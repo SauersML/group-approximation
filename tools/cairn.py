@@ -1767,6 +1767,7 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 # loaded (it re-runs on the script's load event) and never throws on a bad
 # expression -- a malformed formula in one node must not blank the page.
 KATEX_OPTS_JS = """
+window.CAIRN_MATH_MACROS=window.CAIRN_MATH_MACROS||{};
 window.KATEX_DELIMS=[{left:"$$",right:"$$",display:true},
  {left:"\\\\[",right:"\\\\]",display:true},
  {left:"\\\\(",right:"\\\\)",display:false},
@@ -1782,7 +1783,8 @@ window.cairnTypeset=function(el){
    if(n.getAttribute('data-done'))continue;
    n.setAttribute('data-done','1');
    try{katex.render(n.textContent,n,{displayMode:n.classList.contains('texd'),
-    throwOnError:true,strict:false,trust:false});}
+    throwOnError:true,strict:false,trust:false,
+    macros:Object.assign({},window.CAIRN_MATH_MACROS)});}
    catch(e){n.textContent=n.getAttribute('data-src')||n.textContent;
     n.className='texfail';}
   }
@@ -1791,7 +1793,7 @@ window.cairnTypeset=function(el){
  if(typeof renderMathInElement==='function'){
   try{renderMathInElement(el,{delimiters:window.KATEX_DELIMS,throwOnError:false,
    ignoredTags:["script","noscript","style","textarea","pre","code","option"],
-   errorColor:"#a33a1c"});}catch(e){}
+   errorColor:"#a33a1c",macros:Object.assign({},window.CAIRN_MATH_MACROS)});}catch(e){}
  }
 };
 window.addEventListener('DOMContentLoaded',function(){
@@ -1928,8 +1930,11 @@ KATEX = (
     '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
     'katex.min.js" crossorigin="anonymous"></script>'
     '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
-    'contrib/auto-render.min.js" crossorigin="anonymous"></script>'
-    '<script>' + KATEX_OPTS_JS + '</script>')
+    'contrib/auto-render.min.js" crossorigin="anonymous"></script>')
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "math_macros.js"), encoding="utf-8") as _math_macros:
+    KATEX += '<script>' + _math_macros.read() + '</script>'
+KATEX += '<script>' + KATEX_OPTS_JS + '</script>'
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "math_explainer.js"), encoding="utf-8") as _math_js:
     KATEX += '<script>' + _math_js.read() + '</script>'

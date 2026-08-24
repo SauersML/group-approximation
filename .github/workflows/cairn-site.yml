@@ -18,6 +18,7 @@ on:
       - 'tools/cairn.py'
       - 'tools/math_explainer.js'
       - 'tools/math_explainer.css'
+      - 'tools/math_macros.js'
       - 'bin/cairn'
       - 'non_mf_groups_exist.tex'
       - 'non_mf_groups_exist.pdf'
@@ -117,6 +118,7 @@ jobs:
           paper_built=false
           if node tools/paper_site/test_inline.js \
             && node tools/test_math_explainer.js \
+            && node tools/test_math_macros.js \
             && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html; then
             paper_built=true
             echo "paper edition built"

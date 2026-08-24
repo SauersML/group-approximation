@@ -6,16 +6,9 @@
 
 /* ---------- KaTeX ---------- */
 
-const MACROS = {
-  '\\C': '\\mathbb{C}', '\\Z': '\\mathbb{Z}', '\\R': '\\mathbb{R}', '\\N': '\\mathbb{N}',
-  '\\SL': '\\operatorname{SL}', '\\GL': '\\operatorname{GL}', '\\U': '\\mathcal{U}',
-  '\\Fix': '\\operatorname{Fix}', '\\tr': '\\operatorname{tr}', '\\Ad': '\\operatorname{Ad}',
-  '\\End': '\\operatorname{End}', '\\Cl': '\\operatorname{Cl}',
-  '\\Cmax': 'C^*_{\\mathrm{max}}', '\\Cred': 'C^*_{\\mathrm{r}}',
-  '\\opnorm': '\\left\\lVert #1\\right\\rVert', '\\hsnorm': '\\left\\lVert #1\\right\\rVert_{2}',
-  '\\varinjlim': '\\mathop{\\underset{\\longrightarrow}{\\lim}}',
-  '\\textup': '\\text{#1}',
-};
+const MACROS = typeof window !== 'undefined'
+  ? window.CAIRN_MATH_MACROS
+  : require('../math_macros.js');
 
 function resolveMathRefs(src) {
   src = src.replace(/\\qedhere\b/g, '');
