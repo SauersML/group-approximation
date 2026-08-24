@@ -101,3 +101,13 @@ pair correction into a difference `Q_jQ_i^(-1)` of vertex gauges; their
 product around a directed cycle freely reduces to the empty word.  This has
 zero area but also no matrix content.  Collective cancellation can help only
 if it retains a positive quantity such as a sum of squared edge defects.
+
+An aggregate alternative now exists and does **not** supersede this target.
+`subquadratic-carmichael-energy-collapse` collapses the same mark from the
+merely subquadratic total squared edge energy `E_M=o(M^2)`, with no per-edge
+bound at all, and `r5-subquadratic-carmichael-energy` is the corresponding
+compiler target.  By `carmichael-energy-uniform-criteria-incomparable` the two
+hypotheses are incomparable — `(CCF)` gives only `E_M=Theta(M^2)` at positive
+defect, and a packet with a sublinear-density bad edge set satisfies the energy
+criterion while violating `(CCF)` outright.  Neither target may be retired in
+favour of the other.
