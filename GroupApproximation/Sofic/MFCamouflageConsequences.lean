@@ -1,7 +1,11 @@
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.CliffordBSAmenableMF
+import GroupApproximation.Sofic.CommensurabilityInvariance
+import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Sofic.MFCamouflageRadical
+import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.UniversalFactorization
+import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 /-!
 # Quotient phase transitions and two-tier invisibility
@@ -42,7 +46,9 @@ theorem comap_map_eq_sup_ker (f : B →* Q) (N : Subgroup B) :
       exact mul_inv_cancel _
     have hxprod : x = (x * y⁻¹) * y := by group
     rw [hxprod]
-    exact (N ⊔ f.ker).mul_mem (le_sup_right hk) (le_sup_left hy)
+    exact (N ⊔ f.ker).mul_mem
+      ((le_sup_right : f.ker ≤ N ⊔ f.ker) hk)
+      ((le_sup_left : N ≤ N ⊔ f.ker) hy)
   · refine sup_le ?_ ?_
     · intro x hx
       exact ⟨x, hx, rfl⟩
@@ -55,6 +61,32 @@ local instance consequenceQuotientCountable
     (Q : Type) [Group Q] [Countable Q] (M : Subgroup Q) [M.Normal] :
     Countable (Q ⧸ M) :=
   Function.Surjective.countable (QuotientGroup.mk'_surjective M)
+
+local instance multiplicativeIntCountable : Countable (Multiplicative ℤ) :=
+  Countable.of_equiv ℤ Multiplicative.toAdd
+
+/-- Every countable cyclic group is operator-MF: Mathlib identifies it with
+`Multiplicative (ZMod n)`; `n = 0` is the integers and `n ≠ 0` is finite. -/
+theorem isCDEOperatorMF_of_isCyclic (G : Type) [Group G] [Countable G]
+    [IsCyclic G] : IsCDEOperatorMF G := by
+  apply (isCDEOperatorMF_iff_isOperatorMF G).mpr
+  let e : Multiplicative (ZMod (Nat.card G)) ≃* G :=
+    zmodCyclicMulEquiv (inferInstance : IsCyclic G)
+  apply CommensurabilityInvariance.isOperatorMF_of_mulEquiv e
+  by_cases hcard : Nat.card G = 0
+  · rw [hcard]
+    exact LiteralLEFExtension.integerQuotient_isOperatorMF
+  · letI : NeZero (Nat.card G) := ⟨hcard⟩
+    exact isOperatorMF_of_finite_standard (Multiplicative (ZMod (Nat.card G)))
+
+/-- Every quotient of the infinite cyclic group is MF. -/
+theorem multiplicativeInt_quotient_isCDEOperatorMF
+    (M : Subgroup (Multiplicative ℤ)) [M.Normal] :
+    IsCDEOperatorMF (Multiplicative ℤ ⧸ M) := by
+  letI : IsCyclic (Multiplicative ℤ ⧸ M) :=
+    isCyclic_of_surjective (QuotientGroup.mk' M)
+      (QuotientGroup.mk'_surjective M)
+  exact isCDEOperatorMF_of_isCyclic _
 
 /-- If every quotient of `Q` is MF, the closure of any relation set is exactly
 that relation set joined with the hidden kernel. -/
@@ -100,7 +132,8 @@ theorem Hotel.closure_eq_sup_ker_of_all_quotients_mf
     (N : Subgroup (Hotel.Camouflage Q)) [N.Normal] :
     actualCoronaMFClosure N =
       N ⊔ (projection Hotel.sourceDefect Q).ker :=
-  closure_eq_sup_ker_of_all_quotients_mf Hotel.sourceDefect Q
+  GroupApproximation.MFCamouflage.closure_eq_sup_ker_of_all_quotients_mf
+    Hotel.sourceDefect Q
     Hotel.source_actualCoronaMFResidual_eq_top hall N
 
 /-- Hilbert-hotel specialization of the one-word phase transition. -/
@@ -110,9 +143,52 @@ theorem Hotel.quotient_isCDEOperatorMF_iff_defect_mem
     (N : Subgroup (Hotel.Camouflage Q)) [N.Normal] :
     IsCDEOperatorMF (Hotel.Camouflage Q ⧸ N) ↔
       defect Hotel.sourceDefect Q ∈ N :=
-  quotient_isCDEOperatorMF_iff_defect_mem Hotel.sourceDefect Q
+  GroupApproximation.MFCamouflage.quotient_isCDEOperatorMF_iff_defect_mem
+    Hotel.sourceDefect Q
     Hotel.source_actualCoronaMFResidual_eq_top
     Hotel.sourceDefect_normallyGenerates hall N
+
+/-- The concrete cyclic camouflage group. -/
+noncomputable abbrev Hotel.Cyclic : Type :=
+  Hotel.Camouflage (Multiplicative ℤ)
+
+/-- For every normal relation subgroup of the concrete cyclic camouflage,
+MF semantic closure is obtained by adjoining the one hidden kernel. -/
+theorem Hotel.cyclic_closure_eq_sup_ker
+    (N : Subgroup Hotel.Cyclic) [N.Normal] :
+    actualCoronaMFClosure N =
+      N ⊔ (projection Hotel.sourceDefect (Multiplicative ℤ)).ker :=
+  Hotel.closure_eq_sup_ker_of_all_quotients_mf (Multiplicative ℤ)
+    multiplicativeInt_quotient_isCDEOperatorMF N
+
+/-- The same formula with the hidden kernel expanded as the normal closure of
+the one fixed defect word. -/
+theorem Hotel.cyclic_closure_eq_sup_normalClosure
+    (N : Subgroup Hotel.Cyclic) [N.Normal] :
+    actualCoronaMFClosure N =
+      N ⊔ Subgroup.normalClosure
+        ({defect Hotel.sourceDefect (Multiplicative ℤ)} : Set Hotel.Cyclic) := by
+  rw [Hotel.cyclic_closure_eq_sup_ker,
+    Hotel.projection_ker_eq_normalClosure]
+
+/-- A single fixed word classifies every MF quotient of the concrete cyclic
+camouflage group. -/
+theorem Hotel.cyclic_quotient_isCDEOperatorMF_iff_defect_mem
+    (N : Subgroup Hotel.Cyclic) [N.Normal] :
+    IsCDEOperatorMF (Hotel.Cyclic ⧸ N) ↔
+      defect Hotel.sourceDefect (Multiplicative ℤ) ∈ N :=
+  Hotel.quotient_isCDEOperatorMF_iff_defect_mem (Multiplicative ℤ)
+    multiplicativeInt_quotient_isCDEOperatorMF N
+
+/-- **Fixed-relation classification of all MF quotients of `W_ℤ`.**
+The quotient by `N` is operator-MF exactly when `N` contains the single
+distinguished defect, independently of every other relation in `N`. -/
+theorem Hotel.cyclic_quotient_isOperatorMF_iff_defect_mem
+    (N : Subgroup Hotel.Cyclic) [N.Normal] :
+    IsOperatorMF (Hotel.Cyclic ⧸ N) ↔
+      defect Hotel.sourceDefect (Multiplicative ℤ) ∈ N := by
+  rw [← isCDEOperatorMF_iff_isOperatorMF]
+  exact Hotel.cyclic_quotient_isCDEOperatorMF_iff_defect_mem N
 
 /-! ## Exact versus asymptotic visibility -/
 
@@ -129,7 +205,10 @@ theorem projection_ker_le_linearResidual
     hlinear F hF n _
   have hfactor := factor_through_projection d Q rho hkill
   have heval := DFunLike.congr_fun hfactor x
-  simpa [hx] using heval.symm
+  have hx1 := MonoidHom.mem_ker.mp hx
+  change rho (visible d Q (projection d Q x)) = rho x at heval
+  rw [hx1, map_one, map_one] at heval
+  exact heval.symm
 
 /-- The all-fields linear residual is transplanted whenever the hidden vertex
 is linearly invisible. -/
