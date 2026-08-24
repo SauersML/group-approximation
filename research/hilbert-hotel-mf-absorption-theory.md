@@ -148,6 +148,14 @@ finitely generated non-MF groups with every such virtually free MF
 reflection, a singly normally generated radical, and an MF-closed quotient
 lattice canonically identical to that of the actor.
 
+In fact the exact scope is all countable virtually free actors.  A
+demonstration node for their prefix action is a wandering Leavitt corner, so
+the compiler realizes `U wr Q<=U` with reflection `Q` and pulls back the
+entire MF closure operator.  Among finitely generated prefix-table actors,
+virtual freeness is also necessary; hence this is a classification, not only
+an existence family.  By Muller--Schupp, the same class is characterized by
+context-free word problem.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

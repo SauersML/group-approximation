@@ -42,10 +42,12 @@ requirement is vacuous.
 It is enough to choose `N` once so that
 
 ```text
-(1+eta beta/(2M))^N/2>1.                              (FAT2)
+(1+eta beta/(2M))^N/4>1.                              (FAT2)
 ```
 
-The factor `1/2` is the exact seed density in the marked `J=-1` sector.
+Canonical separation of the nontrivial involution gives
+`tau(Q_-)->1/2`; the Pauli `B`-half then gives `tau(Q_empty)->1/4` in the
+ambient normalized trace.  This is the factor in `(FAT2)`.
 Thus neither an infinite address register, a reusable escape word, nor a
 modulus uniform in depth is required.  What remains is finite but genuinely
 payload-conditioned: the target placement must depend on the original

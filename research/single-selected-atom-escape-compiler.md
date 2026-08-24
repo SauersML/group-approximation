@@ -60,7 +60,8 @@ construction for `(SEC1)`; all forbidden selected pieces vanish, so the
 escape extension remains consistent and `J=-1` survives.
 
 For the canonical trace-separating microstates used in hyperlinearity,
-`||rho(J)-1||_2^2->2`, so `tau(Q_0)->1/2`.  Consequently the proof consumes
+`||rho(J)-1||_2^2->2`, so `tau(Q_-)->1/2` and
+`tau(Q_0)->1/4`.  Consequently the proof consumes
 only the bounded adaptive version recorded in
 `finite-depth-adaptive-selected-atom-escape-tree`: node-dependent words are
 allowed and no escape statement outside the finite reached tree is needed.

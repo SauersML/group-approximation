@@ -12,8 +12,9 @@ requires:
 
 In a canonical hyperlinear approximation the central involution `J` must
 have trace tending to zero, hence normalized-HS distance tending to
-`sqrt(2)` from the identity.  The Pauli seed therefore has asymptotic trace
-`1/2`, not merely an unspecified positive trace.
+`sqrt(2)` from the identity.  Thus `Q_-` has asymptotic trace `1/2`, and the
+Pauli `B`-half used for the seed has asymptotic ambient trace `1/4`, not
+merely an unspecified positive trace.
 
 At each reached node, `(MFA2)` and `(FAT1)` give
 

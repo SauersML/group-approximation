@@ -98,6 +98,11 @@ proper free self-embedding.
 Finite-factor ping-pong further realizes every reflection
 `F_r*G_1*...*G_k` with finite `G_i`, together with its complete lattice of
 MF-closed normal subgroups.
+The demonstrative-subgroup characterization upgrades this to every countable
+virtually free `Q`, and proves that virtual freeness is exactly the
+finitely-generated prefix-dynamical range of the wandering-corner compiler.
+Equivalently, this range consists precisely of the groups with context-free
+word problem.
 
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.

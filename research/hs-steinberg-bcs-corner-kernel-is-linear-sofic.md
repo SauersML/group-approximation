@@ -75,3 +75,9 @@ corners, and `independent-address-capacity-cannot-drive-selected-atom-growth`
 prevents replacing that coherence by a separate address factor.  It does,
 however, remove any need for a decoder uniform over all coefficient words or
 all recursion depths.
+
+The exact bounded coefficient object behind this weakening is now explicit
+in `finite-adaptive-selected-atom-ring-tree`.  Its isolated analytic residue
+is `hs-finite-adaptive-ring-tree-decoder`.  A proof of the present full
+linear-sofic quotient decoder would imply that smaller claim, but the
+bounded-tree route does not require abstract injectivity of `R_BCL/K_Phi`.
