@@ -1655,6 +1655,7 @@ import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.CodedWordTriviality
 import GroupApproximation.Computability.RationalComplexCode
+import GroupApproximation.Computability.EffectiveMatrixCode
 import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Analysis.CayleyUnitary
 import GroupApproximation.Analysis.UnitaryPerturbation

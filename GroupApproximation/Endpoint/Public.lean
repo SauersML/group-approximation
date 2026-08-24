@@ -22,6 +22,7 @@ import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
+import GroupApproximation.Computability.EffectiveMatrixCode
 import GroupApproximation.Analysis.RatComplexSubfield
 import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Criterion.CompressionCentralizerDefect
@@ -676,6 +677,12 @@ export GroupApproximation.RationalComplexCode
   (RatCode ComplexCode toRat toComplex RatEq RatLt ComplexEq
     primrec_ratAdd primrec_ratMul primrecRel_ratEq primrecRel_ratLt
     primrec_complexAdd primrec_complexMul primrecRel_complexEq)
+export GroupApproximation.EffectiveMatrixCode
+  (MatrixCode VectorCode dim entry matrixMul identity conjTranspose matrixSub
+    matrixEq isUnitary generator letterMatrix wordMatrix vectorNormSq
+    mulVecNormSq generatorsUnitary entrySmall matrixSmall vectorWitness
+    toMatrix toVector matrixEq_iff isUnitary_iff entrySmall_iff
+    opNorm_le_of_matrixSmall)
 export GroupApproximation.FreeProductMFRadicalRetraction
   (inr_mem_normMFResidual_iff_of_residual_eq_bot
     inr_mem_normMFResidual_iff_of_isOperatorMF
