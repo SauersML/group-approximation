@@ -5050,12 +5050,12 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 - 2026-08-24 · wandering-leavitt-corner-reflection-proof [COMPLETE] Install the black-hole base in orthogonal conjugate corners and pull back all kernels
 - 2026-08-24 · wandering-leavitt-corner-reflection-compiler [ESTABLISHED] A wandering Leavitt corner internalizes the complete MF reflection of its actor
+- 2026-08-24 · leavitt-unit-internal-free-reflections-proof [COMPLETE] Use prefix ping-pong to create a wandering free orbit of Leavitt corners
+- 2026-08-24 · leavitt-unit-internal-free-reflections [ESTABLISHED] The binary Leavitt MF black hole internally realizes every finite-rank free MF reflection
 - 2026-08-24 · one-bit-clifford-selector-half-proof [COMPLETE] Flip the selector spectrum on the marked assignment atom
 - 2026-08-24 · mf-reflection-and-corona-support-calculus-proof [COMPLETE] Assemble the reflection, support, and Hilbert-hotel tower theorems
 - 2026-08-24 · mf-reflection-and-corona-support-calculus [ESTABLISHED] MF reflection and matrix-corona support form a complete algebraic calculus
 - 2026-08-24 · leavitt-unit-internal-wreath-proof [COMPLETE] Put block-monomial wreath products through the Leavitt prefix-code isomorphisms
-- 2026-08-24 · leavitt-unit-internal-shift-proof [COMPLETE] Shift a bilateral antichain of Leavitt cylinders with one prefix-table unit
-- 2026-08-24 · leavitt-unit-internal-free-reflections-proof [COMPLETE] Use prefix ping-pong to create a wandering free orbit of Leavitt corners
 
 ## Active claims
 

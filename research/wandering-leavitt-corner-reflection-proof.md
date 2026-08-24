@@ -54,10 +54,22 @@ The same bijection restricted to maps killing a normal subgroup `N` matches
 them with the MF-target maps from `Q` killing `pi(N)`.  Intersecting kernels
 again gives `(WC5)`.
 
+The quotient `W(Q,p)/N` is MF exactly when `N` equals its semantic closure.
+By `(WC5)`, that equality first forces `ker(pi)=U^(Q)<=N`; it then becomes
+
+```text
+N=pi^(-1)(cl_MF^Q(pi(N))),
+```
+
+which is equivalent to `Q/pi(N)` being MF.  This proves `(WC6)`.  It also
+shows that the MF-closed normal subgroups on the two sides correspond under
+inverse image and image, and these operations preserve arbitrary meets and
+joins.
+
 If `Q` is MF, `(WC2)` is the base.  If `d` normally generates `U`, it
 normally generates the identity coordinate of the base; conjugation by `Q`
 then reaches every coordinate.  If every quotient of `Q` is MF, its semantic
-closure operator is the identity, so `(WC5)` reduces to `(WC6)`, and the
+closure operator is the identity, so `(WC5)` reduces to `(WC7)`, and the
 quotient criterion follows.
 
 Finally, if `S_U` and `S_Q` are finite generating sets, the copy of `S_U` in

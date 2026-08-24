@@ -102,4 +102,8 @@ For a normal subgroup `N` of `W_r`, MF-target maps killing `N` correspond
 exactly to MF-target maps from `F_r` killing `q_r(N)`.  Intersecting kernels
 and pulling back proves `(IF4)`.  The final quotient and nonisomorphism
 statements follow immediately from the universal property of the MF
-reflection.
+reflection.  A fixed nonidentity involution normally generates `U`; place it
+in the identity coordinate.  Its `F_r`-conjugates reach every coordinate, so
+it normally generates the full base.  Finally, `(IF4)` says that `N` is
+MF-closed exactly when it contains the base and `q_r(N)` is MF-closed in
+`F_r`, which proves `(IF5)` and the lattice statement.

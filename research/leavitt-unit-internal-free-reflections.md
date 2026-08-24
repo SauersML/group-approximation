@@ -38,7 +38,17 @@ For every normal subgroup `N` of `W_r`, the complete semantic closure is
 cl_MF^(W_r)(N)=q_r^(-1)(cl_MF^(F_r)(q_r(N))).            (IF4)
 ```
 
-In particular, if `S` is normal in `F_r`, then
+The radical `U^(F_r)` is normally generated in `W_r` by one fixed involution
+in the identity coordinate.  Moreover,
+
+```text
+W_r/N is MF
+ iff U^(F_r)<=N and F_r/q_r(N) is MF.                    (IF5)
+```
+
+Thus pullback along `q_r` identifies the lattice of MF-closed normal
+subgroups of `F_r` with that of `W_r`.  In particular, if `S` is normal in
+`F_r`, then
 
 ```text
 W_r/q_r^(-1)(S) ~= F_r/S

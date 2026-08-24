@@ -49,13 +49,25 @@ cl_MF^(W(Q,p))(N)
   =pi^(-1)(cl_MF^Q(pi(N))).                              (WC5)
 ```
 
+Consequently
+
+```text
+W(Q,p)/N is MF
+ iff U^(Q)<=N and Q/pi(N) is MF.                         (WC6)
+```
+
+Pullback along `pi` is therefore a lattice isomorphism from the MF-closed
+normal subgroups of `Q` onto the MF-closed normal subgroups of `W(Q,p)`.
+Equivalently, every MF quotient of the internal wreath product is obtained
+uniquely from an MF quotient of its actor.
+
 If `Q` is MF, the radical is exactly the base `U^(Q)`.  If every quotient of
 `Q` is MF and `d!=1` normally generates `U`, then the copy of `d` in the
 identity coordinate normally generates the radical and
 
 ```text
-cl_MF^(W(Q,p))(N)=N normalClosure_(W(Q,p))(d),           (WC6)
-W(Q,p)/N is MF  iff  d belongs to N.                     (WC7)
+cl_MF^(W(Q,p))(N)=N normalClosure_(W(Q,p))(d),           (WC7)
+W(Q,p)/N is MF  iff  d belongs to N.                     (WC8)
 ```
 
 If `Q` is finitely generated, then `W(Q,p)` is finitely generated.  The same
