@@ -176,3 +176,4 @@
 32765721140	2026-08-24T19:02:32Z	GroupApproximation/Sofic/ApproxInvolutionCorner.lean	hermitianPart_conjTranspose
 32770070901	2026-08-24T19:46:53Z	GroupApproximation/Sofic/ApproxInvolutionCorner.lean	roundedInvolution_commute_map_vanishing
 32772562210	2026-08-24T20:12:58Z	GroupApproximation/Sofic/AscendingHNNCosetActionSofic.lean	exists_common_level_finset
+32776139137	2026-08-24T20:51:04Z	GroupApproximation/Sofic/AscendingHNNDiagonalOrbits.lean	right_eq_one_of_smul_ray_zero
