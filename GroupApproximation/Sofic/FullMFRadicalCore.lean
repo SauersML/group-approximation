@@ -42,28 +42,26 @@ theorem actualCoronaMFResidual_fullMFRadicalCore_eq_top :
     fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro rho
   have hle : fullMFRadicalCore G ≤
-      rho.ker.comap (fullMFRadicalCore G).subtype := by
+      rho.ker.map (fullMFRadicalCore G).subtype := by
     unfold fullMFRadicalCore
     apply iSup_le
-    intro K
-    intro y hy
+    intro K y hy
     have hKC : K.1 ≤ fullMFRadicalCore G := le_fullMFRadicalCore K.1 K.2
     have hkill := forall_eq_one_of_actualCoronaMFResidual_eq_top
       K.2 (⟨y, hy⟩ : K.1) X hX
       (rho.comp (Subgroup.inclusion hKC))
-    rw [Subgroup.mem_comap, MonoidHom.mem_ker]
+    refine ⟨⟨y, hKC hy⟩, MonoidHom.mem_ker.mpr ?_, rfl⟩
     simpa using hkill
-  have hx := hle x.property
-  rw [Subgroup.mem_comap, MonoidHom.mem_ker] at hx
-  simpa using hx
+  obtain ⟨y, hy, hxy⟩ := hle x.property
+  have hy' : rho y = 1 := MonoidHom.mem_ker.mp hy
+  simpa only [Subgroup.coe_subtype, hxy] using hy'
 
 /-- The intrinsic core lies inside the ambient MF residual. -/
 theorem fullMFRadicalCore_le_actualCoronaMFResidual :
     fullMFRadicalCore G ≤ actualCoronaMFResidual G := by
   unfold fullMFRadicalCore
   apply iSup_le
-  intro K
-  intro x hx
+  intro K x hx
   have hx' : (⟨x, hx⟩ : K.1) ∈ actualCoronaMFResidual K.1 := by
     rw [K.2]
     exact Subgroup.mem_top _

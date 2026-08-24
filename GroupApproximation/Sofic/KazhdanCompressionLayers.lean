@@ -116,7 +116,8 @@ theorem ker_stage_le_coronaMFResidual
       intro x hx
       rw [hpull, Subgroup.mem_comap]
       apply hstepResidual n
-      rw [MonoidHom.mem_ker, ← T.stage_succ_apply n x]
+      rw [MonoidHom.mem_ker,
+        ← TelescopeRadicalInduction.stage_succ_apply T n x]
       exact MonoidHom.mem_ker.mp hx
 
 /-- Norm-ultraproduct form of the stage theorem. -/
@@ -203,8 +204,10 @@ theorem coronaMFResidual_eq_ker_limit
     coronaMFResidual W = limit.ker := by
   have hstages := ker_stage_le_coronaMFResidual
     T hbase hsurj C K hnormal hT hK hstep
-  have hker := T.ker_limit_le_coronaMFResidual limit hstages hunion
-  exact T.coronaMFResidual_eq_ker_limit limit hker hlimit
+  have hker := TelescopeRadicalInduction.ker_limit_le_coronaMFResidual
+    T limit hstages hunion
+  exact TelescopeRadicalInduction.coronaMFResidual_eq_ker_limit
+    T limit hker hlimit
     ((isOperatorMF_iff_coronaMFResidual_eq_bot).mp hMF)
 
 end KazhdanCompressionLayers
