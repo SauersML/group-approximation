@@ -45,20 +45,21 @@ components of that spectrum bounds `‖a - b‖`.
 
 The hypothesis `spectrum ℂ b ⊆ spectrum ℂ a` is exactly what unitary
 conjugacy supplies in the spectral-compression application. -/
-theorem norm_sub_le_of_same_clopen_spectral_pieces
-    {A : Type u} [CommCStarAlgebra A] (a b : A) {δ : ℝ}
-    (hδ : 0 ≤ δ)
-    (hspectrum : spectrum ℂ b ⊆ spectrum ℂ a)
-    (hclopen : ∀ χ : characterSpace ℂ A,
-      ∀ U : Set (spectrum ℂ a), IsClopen U →
-        ((⟨χ a, (CharacterSpace.mem_spectrum_iff_exists).2 ⟨χ, rfl⟩⟩ :
-            spectrum ℂ a) ∈ U ↔
-          (⟨χ b, hspectrum
-            ((CharacterSpace.mem_spectrum_iff_exists).2 ⟨χ, rfl⟩)⟩ :
-            spectrum ℂ a) ∈ U))
-    (hdiam : ∀ z : spectrum ℂ a,
-      Metric.diam (connectedComponent z) ≤ δ) :
-    ‖a - b‖ ≤ δ := by
+theorem norm_sub_le_of_same_clopen_spectral_pieces :
+    ∀ {A : Type u} [CommCStarAlgebra A] (a b : A) {δ : ℝ},
+      0 ≤ δ →
+      ∀ (hspectrum : spectrum ℂ b ⊆ spectrum ℂ a),
+        (∀ χ : characterSpace ℂ A,
+          ∀ U : Set (spectrum ℂ a), IsClopen U →
+            ((⟨χ a, (CharacterSpace.mem_spectrum_iff_exists).2 ⟨χ, rfl⟩⟩ :
+                spectrum ℂ a) ∈ U ↔
+              (⟨χ b, hspectrum
+                ((CharacterSpace.mem_spectrum_iff_exists).2 ⟨χ, rfl⟩)⟩ :
+                spectrum ℂ a) ∈ U)) →
+        (∀ z : spectrum ℂ a,
+          Metric.diam (connectedComponent z) ≤ δ) →
+        ‖a - b‖ ≤ δ := by
+  intro A _ a b δ hδ hspectrum hclopen hdiam
   rw [← (gelfandTransform_isometry A).norm_map_of_map_zero
       (map_zero (gelfandTransform ℂ A)) (a - b)]
   apply (ContinuousMap.norm_le ((gelfandTransform ℂ A) (a - b)) hδ).2
