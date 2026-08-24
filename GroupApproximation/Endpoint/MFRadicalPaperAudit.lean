@@ -43,3 +43,11 @@ from a caller.
 #audit_axioms GroupApproximation.PerfectLampRadical.lampRange_le_actualCoronaMFResidual
 #audit_axioms GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage
 #audit_axioms GroupApproximation.AlternatingLampFamily.four_radicals_eq_lampRange
+
+-- The Bohr column, added 2026-08-23.  The closed row is audited as a closed
+-- statement, so a leading hypothesis anywhere under it -- a Peter--Weyl
+-- binder in particular -- fails the gate rather than passing quietly.
+#audit_closed_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn
+#audit_axioms GroupApproximation.AlternatingLampFamily.alternatingFamilyRadicalPackage
+#audit_axioms GroupApproximation.AlternatingLampFamily.bohrResidual_le_lampRange
+#audit_axioms GroupApproximation.AlternatingLampFamily.lampRange_le_ker_of_profinite

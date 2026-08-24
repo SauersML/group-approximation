@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.AlternatingLampExactRadical
+import GroupApproximation.Sofic.AlternatingLampBohrResidual
 
 /-!
 # Infinitely many invisible differences
@@ -38,6 +39,28 @@ def AlternatingFamilyExactRadicals : Prop :=
 theorem manuscriptAlternatingFamilyExactRadicals :
     AlternatingFamilyExactRadicals :=
   fun _ hn => alternatingFamilyPackage hn
+
+/-- **The Bohr column, with nothing assumed.**  For every member the Bohr
+residual -- the elements invisible to *every* compact Hausdorff target -- is
+contained in the lamp subgroup, and every homomorphism into a profinite group
+kills that subgroup outright.  So on totally disconnected compact targets the
+fifth approximation theory agrees with the other four, and on general compact
+targets it can see at most what they see.
+
+The one direction still missing is `lampSub n ≤ bohrResidual (WAlt n)` for a
+*connected* compact target, which is Peter--Weyl and is not assumed anywhere in
+this development. -/
+def AlternatingFamilyBohrColumn : Prop :=
+  ∀ n : ℕ, 5 ≤ n →
+    PeterWeyl.bohrResidual (WAlt n) ≤ lampSub n ∧
+      ∀ (C : Type) [Group C] [TopologicalSpace C] [IsTopologicalGroup C]
+        [CompactSpace C] [TotallyDisconnectedSpace C] (f : WAlt n →* C),
+          lampSub n ≤ f.ker
+
+theorem manuscriptAlternatingFamilyBohrColumn :
+    AlternatingFamilyBohrColumn :=
+  fun _ hn => ⟨bohrResidual_le_lampRange hn,
+    fun _ _ _ _ _ _ f => lampRange_le_ker_of_profinite hn f⟩
 
 /-- **The same visible quotient for every member.** -/
 def AlternatingFamilySameVisibleQuotient : Prop :=
