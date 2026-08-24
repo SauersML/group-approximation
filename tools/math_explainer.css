@@ -107,16 +107,6 @@
   max-width: none;
 }
 
-.math-explainer-formula {
-  margin-top: 0.75rem !important;
-}
-
-.math-explainer-formula {
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(23, 23, 20, 0.12);
-  font-weight: 600;
-}
-
 .math-term-help {
   display: inline;
   margin: 0;

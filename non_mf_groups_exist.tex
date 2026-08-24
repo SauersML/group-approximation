@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] One-sided Kazhdan transport and MF radicals},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] Groups invisible to finite-matrix limits},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -53,27 +53,24 @@
   \medskip}
 
 \begin{document}
-\title{One-sided Kazhdan transport and MF radicals}
+\title{Groups invisible to finite-matrix limits}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-We prove that not every countable group is MF.  We organize the obstruction
-through the MF radical, the intersection of the kernels of all homomorphisms
-into norm matrix coronas, and give a mechanism that can force this radical to
-be the whole group.  The mechanism begins with a one-sided compression of a
-Kazhdan subgroup.  Property~\textup{(T)} produces its invariant-vector
-projection inside the corona, while stable finiteness turns the resulting
-one-sided projection comparison into equality.  The commutators measuring
-the discrepancy between the original and compressed centralizers are
-therefore annihilated by every MF representation.  We collect these
-commutators in an intrinsic compression defect and prove that every normal
-Kazhdan subgroup contained in this defect lies in the MF radical.  The
-analytic problem is thereby separated from an algebraic saturation problem:
-if the defect fills the ambient group, every homomorphism to an MF group is
-trivial.  For an elementary group over the binary Leavitt algebra this
-saturation is complete, yielding a simple Kazhdan group with full MF radical.
+Finite-dimensional unitary matrices do not model every countable group in
+the operator-norm limit.  We study this failure through the MF radical: the
+elements sent to the identity by every homomorphism into every norm matrix
+corona.  We prove that a one-sided self-compression of a property~\textup{(T)}
+subgroup forces a canonically defined normal subgroup into the MF radical.
+Normal generation can then force the MF radical to be the whole group.  We
+realize this situation for an elementary group over the binary Leavitt
+algebra.  The resulting group is simple, has property~\textup{(T)}, and every
+homomorphism from it to an MF group is trivial.  In particular, not every
+countable group is MF.  Finally, an amalgamated-product construction realizes
+any chosen countable group as the quotient detected by all homomorphisms to MF
+groups.
 \end{abstract}
 
 \maketitle
@@ -86,8 +83,8 @@ matrix corona
 %<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the norm matrix corona used in the definition of MF">
 % Here bold d means the chosen sequence of matrix sizes d_1,d_2,d_3,....
 % The quotient contains bounded sequences of matrices of those sizes.  It
-% treats two sequences as the same when their operator-norm difference tends
-% to zero.  Embedding a group here means representing every group element by
+% treats two sequences as the same when their [[operator norm|operator-norm]] difference tends
+% to zero.  Embedding a [[group]] here means representing every group element by
 % such a matrix sequence without losing the identity of any element.
 %</webmath>
 %<webmath object="Mdn" when="M_{d_n}(\C)" title="the matrices in the nth finite model">
@@ -129,8 +126,8 @@ Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}.
 
 For a countable group $G$, define its MF radical by
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G invisible to every finite-matrix limit">
-% This is a subgroup of G.  An element belongs to it when every homomorphism
-% from G into every norm matrix corona sends that element to the identity.
+% This is a [[subgroup]] of G.  An element belongs to it when every [[homomorphism]]
+% from G into every [[norm matrix corona]] sends that element to the [[identity]].
 % Thus the MF radical records precisely what operator-norm finite-matrix
 % representations can never distinguish from doing nothing.
 %</webmath>
@@ -145,7 +142,7 @@ For a countable group $G$, define its MF radical by
 % only the group elements erased by every one of those maps.
 %</webmath>
 %<webmath object="ker" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi" title="the elements that one representation sends to the identity">
-% The kernel of pi is the set of elements of G represented by the identity.
+% The [[kernel]] of pi is the set of elements of G represented by the [[identity]].
 % Intersecting these kernels over every pi and every matrix-size sequence gives
 % the MF radical.
 %</webmath>
@@ -247,8 +244,8 @@ $K\trianglelefteq G$ has property~\textup{(T)} and
 $K\le\mathfrak D_G(L)$, then
 %<webmath object="K" when="K\le\Rad_{\mathrm{MF}}(G)" title="the normal property-(T) subgroup forced to disappear in every MF target">
 % K is the normal subgroup assumed above to have property (T) and to lie in
-% the compression defect.  This conclusion says that every homomorphism from
-% G into every norm matrix corona sends every element of K to the identity.
+% the compression defect.  This conclusion says that every [[homomorphism]] from
+% G into every [[norm matrix corona]] sends every element of K to the [[identity]].
 %</webmath>
 \[
  K\le\Rad_{\mathrm{MF}}(G).
@@ -276,7 +273,7 @@ remained open~\cite{CDE,Korchagin,Thom,Shulman}.  For the binary Leavitt
 algebra, Theorem~\ref{thm:compression-criterion} answers the question.
 
 %<webmath object="LF2" when="L_{\F_2}(1,2)" title="the binary Leavitt algebra used to build the group">
-% This is an algebra generated by four symbols s_0,s_1,t_0,t_1 subject to the
+% This [[Leavitt algebra|algebra]] is generated by four symbols s_0,s_1,t_0,t_1 subject to the
 % two displayed families of equations.  Those equations let s_0 and s_1 put
 % two copies of a free module inside one copy, while t_0 and t_1 recover the
 % two inputs.  The proof uses this exact self-copying algebra to construct the
@@ -293,13 +290,13 @@ $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
  t_i s_j=\delta_{ij},
  \qquad s_0t_0+s_1t_1=1.
 \end{equation}
-For a unital ring $R$, write $e_{ij}(a)=1+aE_{ij}$ and let
-$\EL_n(R)$ be the subgroup of $\GL_n(R)$ generated by the elements
 %<webmath object="eij" when="e_{ij}(a)" title="an elementary matrix carrying the coefficient a">
 % The matrix e_ij(a) has 1 on every diagonal position, the ring element a in
 % row i and column j, and 0 in every other off-diagonal position.  Products
 % and commutators of these matrices encode addition and multiplication in R.
 %</webmath>
+For a unital ring $R$, write $e_{ij}(a)=1+aE_{ij}$ and let
+$\EL_n(R)$ be the subgroup of $\GL_n(R)$ generated by the elements
 $e_{ij}(a)$, $i\ne j$.
 
 \begin{mainthm}[the binary Leavitt group]\label{thm:headline}
@@ -332,12 +329,12 @@ representation $(V_n)$ of $G$ satisfies
  \qquad(\ell\in L).
 \end{equation}
 
-Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
 %<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the explicit matrix that sends L into a copy inside L">
 % Tau is a particular invertible 12-by-12 elementary matrix constructed later.
 % Conjugating every element of L by tau gives another element of L.  This is
 % the one-sided inclusion used by the property-(T) argument.
 %</webmath>
+Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
 the upper-left subgroup $L\cong\EL_3(R)$.  The element $c=e_{34}(1)$
 centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
 %<webmath object="d" when="d=e_{02}(s_1t_1)" title="the concrete nonidentity commutator inside H">
@@ -864,7 +861,7 @@ Let $H=\EL_{12}(R)$ and let
 %<webmath object="EL3" when="L=\EL_3(R)" title="the upper-left elementary subgroup used for property (T)">
 % L is the copy of the 3-by-3 elementary group occupying the first three rows
 % and columns of H.  It has property (T).  The explicit matrix tau sends this
-% whole subgroup into another copy contained in L.
+% whole [[subgroup]] into another copy contained in L.
 %</webmath>
 $L=\EL_3(R)\le H$ be the upper-left corner.
 Both groups have property~\textup{(T)} by the theorem of Ershov and

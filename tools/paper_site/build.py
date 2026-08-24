@@ -25,7 +25,7 @@ EDITIONS = {
         'claims': 'metadata/NON_MF_NUMBERED_CLAIMS.json',
         'ledger': 'metadata/NON_MF_PROOF_LEDGER.md',
         'census': 'metadata/NON_MF_SENTENCE_CENSUS.tsv',
-        'title': 'A non-MF group',
+        'title': 'Groups invisible to finite-matrix limits',
         'tab': 'Paper',
         'links': '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>',
     },
@@ -415,7 +415,8 @@ def main():
     freshness_js = read(HERE / 'freshness.js').replace(
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
-    tex = strip_tex_comments(read(REPO / edition['source']))
+    explanation_source = read(REPO / edition['source'])
+    tex = strip_tex_comments(explanation_source)
     claims_data = json.loads(read(REPO / edition['claims']))
     labels = set(re.findall(r'\\label\{([^}]*)\}', tex))
     claims_data['manuscript'] = edition['source']
@@ -474,6 +475,7 @@ def main():
             lean_sigs[key] = {'sig': sig, 'line': line}
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
+        'window.PAPER_EXPLANATION_SOURCE = ' + json.dumps(explanation_source).replace('</', '<\\/') + ';\n'
         'window.CLAIMS = ' + json.dumps(claims_data).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'

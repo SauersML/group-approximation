@@ -16,6 +16,14 @@ non-fatally — a failure here warns and publishes the rest of the site.
 The one TikZ figure is hand-mirrored in `ui.js` (`renderFigure`); if the
 figure in the tex changes, that function must follow by hand.
 
+Website math explanations are authored beside the exact formula they explain
+in `non_mf_groups_exist.tex`.  One or more consecutive `%<webmath ...>` comment
+blocks apply only to the next matching rendered formula.  Undeclared symbols
+receive no explanation.  A nested term is linked only when its explanation
+marks it explicitly as `[[term]]` or `[[term|visible words]]`; the site does
+not infer links from spelling or symbol shape.  These comments are omitted
+from the PDF but embedded as source metadata in the web build.
+
 `build.py` also embeds the full Lean source of every declaration the
 manifest or an in-tex `\leanverified` marker names — statement and proof,
 split at the top-level `:=`, with the source line for a GitHub deep link.
