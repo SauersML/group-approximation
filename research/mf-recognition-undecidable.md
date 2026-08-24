@@ -12,6 +12,8 @@ artifacts:
   - GroupApproximation/Computability/WordProblemRE.lean
   - GroupApproximation/Computability/MarkovMFConsequences.lean
   - GroupApproximation/Computability/AdianRabinMarkovProperty.lean
+  - GroupApproximation/Computability/MFRecognitionImpossible.lean
+  - GroupApproximation/Endpoint/MFRecognitionAudit.lean
 ---
 
 ESTABLISHED (2026-08-17), via `mf-recognition-undecidable-via-adian-rabin` once
@@ -23,10 +25,18 @@ all four of its prerequisites closed.  Manuscript `cor:undecidable`, in
 > construction, the set of finite presentations of non-MF groups is not even
 > recursively enumerable.
 
-Two assertions, and the second is strictly stronger than the first: the
-positive side (MF presentations) is recursively enumerable by way of the r.e.
-word problem, and if the negative side were r.e. too, the property would be
-decidable — which the first assertion forbids.
+Two assertions, and the second is strictly stronger than the first.  The
+recursively enumerable set in the argument is the **uniform word problem** `W`,
+at the *source* of the reduction, not the set of MF presentations: `W` is r.e.
+because a positive instance carries a finite certificate, and Post's theorem
+against the undecidability of `W` gives `Wᶜ ∉ RE`.  The Adian--Rabin
+transformation `Δ` is computable with `MF(Δ x) ↔ W x`, so `Wᶜ ≤₀ NONMF`, and an
+enumeration of `NONMF` would pull back along `Δ` to one of `Wᶜ`.  Nothing here
+establishes that `MF` itself is r.e., and the second assertion does not need
+it.  The manuscript's `cor:undecidable` states this correctly ("$W$ is
+recursively enumerable, whereas its complement and the set of presentation
+codes of non-MF groups are not"); the sentence that stood here did not, and is
+replaced.
 
 ## Status: both assertions, unconditionally
 
@@ -43,6 +53,35 @@ both with axiom closure `[propext, Classical.choice, Quot.sound]`, both cited
 by `cor:undecidable` in the manuscript with `\leanverified`, and neither taking
 a hypothesis.  `notes/NON_MF_UNCONDITIONAL_BASELINE.txt` is empty, so the
 unconditionality gate agrees.
+
+Restated at `IsOperatorMF (PresentationCodes.Carrier c)`, and joined by the two
+"no program" forms and the reduction that names the hardness, in
+`GroupApproximation/Computability/MFRecognitionImpossible.lean`:
+
+    MFRecognitionImpossible.mf_recognition_not_computable
+      : not ComputablePred (fun c => IsOperatorMF (Carrier c))
+    MFRecognitionImpossible.no_mf_decider
+      : not exists f, Computable f and (forall c, f c = true <-> IsOperatorMF (Carrier c))
+    MFRecognitionImpossible.nonMF_presentations_not_re          -- NONMF not in RE
+      : not REPred (fun c => not IsOperatorMF (Carrier c))
+    MFRecognitionImpossible.no_nonMF_enumerator
+      : no computable f : N -> Option PresentationCode prints only non-MF codes
+        and eventually prints every one
+    MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF
+      : W <=0 MF and W-complement <=0 NONMF by one computable transformation,
+        i.e. NONMF is coRE-hard
+    MFRecognitionImpossible.exists_halting_reduction_to_operatorMF
+      : a fixed modular machine with undecidable configuration-halting, and a
+        computable compiler p |-> presentation that is MF iff p halts, so
+        Halt <=0 MF and Halt-complement <=0 NONMF.  This fixes no level of the
+        arithmetical hierarchy for MF; it is the hardness direction only
+    MFRecognitionImpossible.mf_recognition_impossible
+      : all of the above as one proposition, plus both sides inhabited
+
+Every one of these is audited with `#audit_closed_axioms` in
+`GroupApproximation/Endpoint/MFRecognitionAudit.lean`, which rejects a leading
+declaration input as well as an axiom outside the classical three --- the check
+that distinguishes a proved Adian--Rabin transform from an accepted one.
 
 ## How it was conditional, and what removed each condition
 
@@ -75,7 +114,7 @@ construction and not a retraction.  It arrived in three pieces:
   reduction structure does not supply and which
   [[novikov-boone-fp-group-undecidable-word-problem]] does not give in usable
   form;
-- enumerability of the positive side,
+- enumerability of the positive side *of the word problem*,
   [[word-problem-of-finite-presentation-is-re]], which is what Post's theorem
   needs against the previous item to reach the second assertion.  The route
   into this claim argued for that input in prose while omitting it from its

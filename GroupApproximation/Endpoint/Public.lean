@@ -18,6 +18,7 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
@@ -610,12 +611,40 @@ export GroupApproximation
     compressionCentralizerDefect_le_ker
     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
 
-/-! ### Conditional computability interface and algebraic consequences -/
+/-! ### MF recognition: `NONMF` is not recursively enumerable
+
+The four names in the first block are the closed endpoints: MF-ness of a
+finite presentation is not decidable, no `Bool`-valued program decides it,
+`NONMF ∉ RE`, and no program enumerates the non-MF presentations.
+`exists_manyOne_reduction_wordProblem_to_operatorMF` names the reduction that
+makes `NONMF` coRE-hard, and `mf_recognition_impossible` packages the lot.
+
+The second block is the reduction *interface* those endpoints are built from.
+It is machinery: `AdianRabinReduction` is the data an Adian--Rabin
+construction produces, and `AdianRabinVariantTransform.reduction` inhabits it,
+so nothing on this surface accepts it from a caller. -/
+
+export GroupApproximation.MFRecognitionImpossible
+  (mf_recognition_not_computable no_mf_decider nonMF_presentations_not_re
+    no_nonMF_enumerator no_total_nonMF_enumerator mf_recognition_impossible
+    exists_manyOne_reduction_wordProblem_to_operatorMF
+    exists_halting_reduction_to_operatorMF
+    exists_mf_presentation exists_nonMF_presentation
+    isFinitelyPresented_carrier
+    torsionFreeMF_recognition_not_computable
+    torsionFreeMF_negative_side_not_re)
+export GroupApproximation.Computability
+  (not_computablePred_wordProblemPred operatorMF_recognition_not_computable)
+export GroupApproximation.WordProblemRE
+  (rePred_wordProblemPred not_rePred_compl_wordProblemPred
+    operatorMF_negative_side_not_re)
+
+/-! ### The reduction interface, and algebraic consequences -/
 
 export GroupApproximation.MarkovMFConsequences
   (MarkovWitness FinitePresentationSemantics operatorMFProperty
     AdianRabinReduction recognition_undecidable negative_side_not_re
-    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
+    operatorMF_recognition_undecidable
     operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
 export GroupApproximation (isOperatorMF_of_finite_standard
   not_isOperatorMF_of_subgroup)

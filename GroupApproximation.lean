@@ -1601,6 +1601,8 @@ import GroupApproximation.Sofic.ShellSingleRegion
 import GroupApproximation.Sofic.MatchingSameBlock
 import GroupApproximation.Sofic.MatchingRunStructure
 import GroupApproximation.Sofic.SigmaCompressionPair
+import GroupApproximation.Computability.MFRecognitionImpossible
+import GroupApproximation.Endpoint.MFRecognitionAudit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

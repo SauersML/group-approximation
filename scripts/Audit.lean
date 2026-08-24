@@ -640,6 +640,20 @@ def headlineTheorems : List Name :=
    ``WordProblemRE.rePred_wordProblemPred,
    ``WordProblemRE.not_rePred_compl_wordProblemPred,
    ``WordProblemRE.operatorMF_negative_side_not_re,
+   -- `NONMF is not r.e.` and MF-undecidability, restated at
+   -- `IsOperatorMF (Carrier c)` and as the nonexistence of a decider and of an
+   -- enumerator.  Same closure as the two rows above by construction; the rows
+   -- exist so the CI log states it of the sentences the manuscript prints.
+   ``MFRecognitionImpossible.mf_recognition_not_computable,
+   ``MFRecognitionImpossible.no_mf_decider,
+   ``MFRecognitionImpossible.nonMF_presentations_not_re,
+   ``MFRecognitionImpossible.no_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_total_nonMF_enumerator,
+   ``MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF,
+   ``MFRecognitionImpossible.exists_halting_reduction_to_operatorMF,
+   ``MFRecognitionImpossible.mf_recognition_impossible,
+   ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
+   ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
    ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis,
    -- The two analytic engines' own summits.  Both were already inside the
    -- namespace sweep and the nanoda closure via their consumers; these rows
@@ -692,7 +706,26 @@ def zeroInputEndpoints : List Name :=
    -- strongest statement of its kind in the tree: an explicit sofic group
    -- that is not MF.
    ``CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF,
-   ``CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF]
+   ``CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF,
+   -- MF recognition.  A corollary of this shape is where an Adian--Rabin
+   -- theorem would be smuggled in as a premise, and an axiom report cannot
+   -- tell an accepted premise from a proved one.  The binder check can.
+   ``Computability.operatorMF_recognition_not_computable,
+   ``WordProblemRE.operatorMF_negative_side_not_re,
+   ``Computability.not_computablePred_wordProblemPred,
+   ``WordProblemRE.not_rePred_compl_wordProblemPred,
+   ``MFRecognitionImpossible.mf_recognition_not_computable,
+   ``MFRecognitionImpossible.no_mf_decider,
+   ``MFRecognitionImpossible.nonMF_presentations_not_re,
+   ``MFRecognitionImpossible.no_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_total_nonMF_enumerator,
+   ``MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF,
+   ``MFRecognitionImpossible.exists_halting_reduction_to_operatorMF,
+   ``MFRecognitionImpossible.exists_mf_presentation,
+   ``MFRecognitionImpossible.exists_nonMF_presentation,
+   ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
+   ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
+   ``MFRecognitionImpossible.mf_recognition_impossible]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool
