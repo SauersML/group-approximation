@@ -110,3 +110,14 @@ claimed reduction has merely hidden the whole open problem in a local lemma.
   overlap confined to a bounded list of shared-word curvature terms.  A
   stationary regular solution falsifies that candidate wiring; a strict dual
   certificate supplies the coefficients for `(VGC5)`.
+
+- **Why the scalar restriction is structural, not stylistic.**  The node's own
+  requirement that the proof of `(GVC2)` "may not factor through the scalar
+  list `(tau(P_c))_c`" is the router row of
+  `local-exactification-invariants-cannot-close-gluing-holes`: independent
+  local rounding determines each context only up to its own conjugating
+  isometry, so the per-context scalar list is precisely the invariant part of
+  the data and cannot see a witness manufactured in that direction.  The
+  useful consequence is a one-line screening test — a candidate cross-context
+  observable is dead as soon as it is checked to be unchanged by independent
+  per-context conjugation, before any capacity estimate is attempted.

@@ -426,3 +426,14 @@ made universal identities in the group algebra.
   `tensor-independent-child-carrier-gap` pays a fixed amount.  Extracting the
   word-defined **same** carrier, rather than two unrelated carriers with the
   same trace, is the deferred step.
+
+- **The hidden `V` is a named residual gauge, and forcing `V=1` locally is the
+  wrong target.**  `local-exactification-invariants-cannot-close-gluing-holes`
+  lists `t=R_f tensor V` as one of four instances of the same mechanism: the
+  covariance relations see conjugation only, so `V` generates a direction along
+  which every locally computed observable is constant.  This says the missing
+  statement is not a stronger local identification of the reservoir but an
+  overlap-supported one; it also disqualifies, by inspection, any proposed
+  observable invariant under `Ad(1 tensor V)`.  Equally, no rank or
+  multiplicity checksum can supply the quantitative half, by
+  `gauge-cokernel-checksums-cannot-produce-a-normalized-hs-gap`.

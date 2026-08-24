@@ -182,3 +182,17 @@ all-representations decoder `(ALD1)--(ALD2)`.
   Involutivity was a characteristic-two convenience, not a requirement.
   The surviving gap is solely decoding the two selector projections on one
   finite-matrix carrier (or paying failure of that authentication).
+
+- **A discrete boundary-flow checksum cannot replace the estimate.**  The
+  natural quotient-first attack — build the integer parent/child/return/
+  reservoir flow matrix at fixed depth `N`, quotient by every locally legal
+  rectangular refactorization, and read a primitive escape invariant off the
+  Smith normal form — is excluded as a completion route by
+  `gauge-cokernel-checksums-cannot-produce-a-normalized-hs-gap`.  A torsion
+  detector is annihilated by the amplification that fixes every normalized
+  profile, and a free detector's normalized value is driven to zero both by
+  `(APA2)` profile density and explicitly by direct sum with amplified copies
+  of the source.  The computation is still worth running as a *refutation*:
+  a vanishing cokernel, or equality of the source and rectangular-escape
+  classes in it, would show the chosen rank vocabulary can never separate
+  them, killing this line before more Hilbert-Schmidt estimates are attempted.

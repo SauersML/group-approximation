@@ -153,6 +153,35 @@ estimate is attempted. Integral cokernel checksums are disqualified twice over.
   covered by 3.1; the rest is not refuted, merely not this session's lane, and
   no node was written for work not done.
 
+## 5a. Parallel lane on the same source
+
+A second session ingested the same manuscript the same day and landed
+`research/artifacts/seifert-coinvariant-router-2026-08-23.md` with two exact
+claims, `seifert-coinvariant-defect-router` and
+`two-cone-central-router-determinant`. Those are source-backed algebra and
+topology, correctly credited, with no approximation content; nothing here
+duplicates them and nothing here contradicts them.
+
+The two lanes do interact at one point, and the interaction is a rule-out.
+That artifact's section 4 suggests reading the surviving router coordinate
+`gamma` as "the only statistic invariant under all permitted local
+source-gauge moves". Taken literally that is self-defeating, and the dichotomy
+is sharp: if the permitted moves include the tensor extension that builds
+`(HRT1)--(HRT3)` then every invariant statistic is tensor-blind and the face
+fails the exclusion it exists for; if they exclude it, the quotient does not
+annihilate that direction and the architecture's promise is not delivered
+where it is needed. Separately, its question 2 — move the final predicate into
+a determinant/Smith-form condition — is blocked on the microstate side by 3.1.
+Neither bound touches the presentation-design side, where the twists are chosen
+by the compiler rather than read off a microstate, and where the
+`(3,4,infinity)` gadget remains a correct model. This is recorded in the body
+of `source-specific-pointed-rank-router-face`.
+
+Four of that lane's nodes and its artifact had been landed by plumbing push and
+were absent from the shared working tree; they were materialized from
+`origin/main` here, byte-identical, so the local graph compiles against the
+same corpus everyone else has.
+
 ## 5. Net effect on the frontier
 
 No frontier hole was closed and none was opened. Three screening no-gos and one

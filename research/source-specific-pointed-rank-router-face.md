@@ -37,3 +37,42 @@ a genuinely matrix-only proper-corner localization may do this; ordinary
 central-character selection alone cannot.  Solving `(SPR1)` on this one
 face, rather than in every exact marked representation, is the precise rank
 router endpoint left by the tensor-closure refutation.
+
+
+## The quotient-first router architecture does not supply the face
+
+`seifert-coinvariant-router-2026-08-23` proposes reading the surviving
+coordinate `gamma` as "the only statistic invariant under all permitted local
+source-gauge moves".  Taken literally that is self-defeating, and the
+dichotomy is sharp.
+
+- If the permitted moves include the tensor extension that builds
+  `(HRT1)--(HRT3)`, then every invariant statistic is tensor-blind, so
+  `gamma(source)=gamma(tensor witness)` and the face fails exactly the
+  exclusion it was introduced for.  This is the screening test of
+  `local-exactification-invariants-cannot-close-gluing-holes` applied to the
+  router row of its table.
+- If the permitted moves exclude the tensor extension, then the relation
+  closure does not annihilate that direction, so the architecture's promise —
+  that the quotient kills every locally movable coordinate — is not delivered
+  where it is needed.
+
+Independently, the quantitative half of `(SPR1)` cannot come from the
+arithmetic of the quotient at all: by
+`gauge-cokernel-checksums-cannot-produce-a-normalized-hs-gap`, an integral
+checksum on the cokernel of the locally realizable repair directions is
+annihilated by amplification in its torsion part and driven to zero by
+normalized-profile density in its free part.  A Smith-normal-form computation
+on the router coordinates can still *refute* a moment vocabulary cheaply —
+`coker=0`, or source and tensor witness equal in the cokernel — but it cannot
+complete this node.
+
+Both bounds leave the node's own reading intact and sharpen it: the surviving
+`gamma` must be simultaneously non-invariant under tensor extension and not a
+function of fixed packet rank arithmetic, i.e. a nonmultiplicative analytic
+row-PVM moment or a matrix-only proper-corner localization.  The exact
+`(3,4,infinity)` gadget of `seifert-coinvariant-defect-router` and
+`two-cone-central-router-determinant` remains a correct and useful model of
+the *presentation-design* side, where these two obstructions do not apply
+because the twists are chosen by the compiler rather than read off a
+microstate.

@@ -20,3 +20,17 @@ where `F_n` is the comb-transported Pauli carrier.  The proof must use the
 cross-root multiplication and compressor synchronization relations; the
 regular representation shows that no abstract finite-von-Neumann-algebra
 bicommutant theorem can suffice.
+
+## Why the abstract route was never going to be enough
+
+`local-exactification-invariants-cannot-close-gluing-holes` identifies
+`Alg(rho_n(K))'` as this lane's residual gauge group: exactifying the packet
+determines the microstate only up to conjugation by that commutant, and the
+witness of `full-raw-packet-commutant-witness` is produced by Haar averaging
+over exactly that group, with `||[V_n,F_n]||_2^2>=3/8-o(1)`.  Any observable
+built inside `Alg(rho_n(K))` is therefore constant along the very direction
+that has to be detected, which is the structural reason a bicommutant theorem
+about one packet cannot substitute for the cross-root relations already
+required above.  The reformulation this suggests is to classify which
+commutant modes survive the cross-root transition relations, rather than to
+quantify `||[V,F]||_2` over all `V` in the commutant at once.

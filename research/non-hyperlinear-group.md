@@ -340,6 +340,32 @@ factors do not by themselves yield coherent finite action charts; an
 equivariant boundary-completion or multiplicity-copy classicalization
 theorem is still load-bearing.
 
+The imported "quotient the local gauge first, then read the residual
+obstruction" calculus has now been run against the whole surviving frontier,
+and it closes attacks rather than opening routes.  Three screening results
+came out of it.  `gauge-cokernel-checksums-cannot-produce-a-normalized-hs-gap`
+shows that a Smith-normal-form invariant of the cokernel of locally realizable
+repair directions can refute a moment vocabulary but can never quantify one:
+its torsion part is annihilated by the amplification that fixes every
+normalized profile, and its free part is driven to zero by `(APA2)` density and
+by direct sum with the source.  `local-exactification-invariants-cannot-close-gluing-holes`
+identifies one named residual gauge group behind four different open endpoints
+— per-context transport, the multiplicity involution `t=R_f tensor V`,
+tensoring with exact zero-overlap sectors, and the relative commutant
+`Alg(rho_n(K))'` — each of whose recorded witnesses was manufactured by
+exercising exactly that freedom, so invariance under the named group is a
+one-line disqualification for candidate observables.  And on the soficity side,
+`spherical-displacement-length-is-not-conjugation-invariant` together with
+`orbit-transport-gauge-needs-a-closed-label-set` closes both natural attacks on
+`spherical-short-holonomies-admit-local-gauge`: the cloud displacement length
+fails the coefficient hypothesis of every conjugation-invariant metric cone,
+and transporting the regular action along near-orbits — which does make every
+tested relation hold exactly, at correction radius `5 rho+zeta` — requires a
+Folner subset of the label chunk and is therefore circular off the amenable
+case.  The net effect is that forcing canonical local gauges is now known to be
+the wrong expenditure everywhere in this frontier; what remains is unchanged
+and overlap-supported.
+
 ## Marked `goal`
 
 Flagged `goal: true` on 2026-08-18, taking the single goal flag over from
