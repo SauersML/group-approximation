@@ -9,6 +9,7 @@ distinct_from:
   phase-safe-toric-gap-game-exists: that asks directly for a toric game witness; this uses the stronger semilinear structure now known to exist and asks only to eliminate the readable control.
 artifacts:
   - research/artifacts/perfect-zpc-irs-gap-2026-08-18.md
+  - notes/NONHYPERLINEAR_CHARACTER_REYNOLDS_INTEGRATION_2026-08-24.md
 ---
 
 Let `G` be a finite tailored game satisfying

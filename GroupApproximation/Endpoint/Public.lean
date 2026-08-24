@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.ApproximationRadicals
 import GroupApproximation.Endpoint.NonMFImpact
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Endpoint.SimultaneousStability
@@ -18,6 +19,11 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.MFRecognitionImpossible
+import GroupApproximation.Computability.MicrostateNormalForm
+import GroupApproximation.Computability.RationalComplexCode
+import GroupApproximation.Analysis.RatComplexSubfield
+import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
@@ -364,6 +370,19 @@ the most weight, as theorems rather than as caveats.
   quantified over every universe.
 * `isLEF_iff_textbook` -- likewise for local embeddability.
 
+## The approximation-radical calculus
+
+The results above are instances of a reusable mechanism, and
+`Endpoint/ApproximationRadicals` is that mechanism's own reading path:
+produce one relation the approximation theory cannot see, renormalize it
+across every scale of a surjective self-map, saturate it until its normal
+closure is the whole group, and separate the quotient that survives.  The two
+extremes of the calculus are `normMFResidual_eq_top_of_shadow_bug_saturation`
+(nothing at all is visible) and
+`coronaMFResidual_eq_of_le_and_quotient_isOperatorMF` (exactly this is
+invisible, and no more).  `RadicalAutomorphization.stableKernel_le_of_comap_le`
+is the middle step, whose only hypothesis is one inclusion of subgroups.
+
 ## Trust surface
 
 `GroupApproximation.Audit` prints the axiom report for these on an ordinary
@@ -610,12 +629,64 @@ export GroupApproximation
     compressionCentralizerDefect_le_ker
     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
 
-/-! ### Conditional computability interface and algebraic consequences -/
+/-! ### MF recognition: `NONMF` is not recursively enumerable
+
+The four names in the first block are the closed endpoints: MF-ness of a
+finite presentation is not decidable, no `Bool`-valued program decides it,
+`NONMF ∉ RE`, and no program enumerates the non-MF presentations.
+`exists_manyOne_reduction_wordProblem_to_operatorMF` names the reduction that
+makes `NONMF` coRE-hard, and `mf_recognition_impossible` packages the lot.
+
+The second block is the reduction *interface* those endpoints are built from.
+It is machinery: `AdianRabinReduction` is the data an Adian--Rabin
+construction produces, and `AdianRabinVariantTransform.reduction` inhabits it,
+so nothing on this surface accepts it from a caller. -/
+
+export GroupApproximation.MFRecognitionImpossible
+  (mf_recognition_not_computable no_mf_decider nonMF_presentations_not_re
+    no_nonMF_enumerator no_total_nonMF_enumerator no_nonMF_certificate_system
+    mf_recognition_impossible
+    exists_manyOne_reduction_wordProblem_to_operatorMF
+    exists_halting_reduction_to_operatorMF
+    exists_mf_presentation exists_nonMF_presentation
+    isFinitelyPresented_carrier
+    torsionFreeMF_recognition_not_computable
+    torsionFreeMF_negative_side_not_re)
+export GroupApproximation.Computability
+  (not_computablePred_wordProblemPred operatorMF_recognition_not_computable)
+export GroupApproximation.WordProblemRE
+  (rePred_wordProblemPred not_rePred_compl_wordProblemPred
+    operatorMF_negative_side_not_re)
+
+/-! ### Analytic core of the MF arithmetical upper bound
+
+The normal form and area bound are closed Lean theorems.  The rational density
+and norm-certificate exports are the remaining checker's ingredients; no
+closed `Pi^0_2` theorem is claimed on this surface yet. -/
+
+export GroupApproximation.MFMicrostate
+  (Microstate Passes Answers MicrostateNormalForm microstateNormalForm
+    isOperatorMF_iff_forall_answers exists_area_bound exists_area_bound_list)
+export GroupApproximation.RatComplexSubfield
+  (IsRat ratSubfield exists_rat_cayley exists_rat_unitary_close)
+export GroupApproximation.OperatorNormCertificate
+  (opNorm_lt_of_certificate exists_certificate_of_opNorm_lt
+    opNorm_gt_of_certificate exists_certificate_of_lt_opNorm)
+export GroupApproximation.RationalComplexCode
+  (RatCode ComplexCode toRat toComplex RatEq RatLt ComplexEq
+    primrec_ratAdd primrec_ratMul primrecRel_ratEq primrecRel_ratLt
+    primrec_complexAdd primrec_complexMul primrecRel_complexEq)
+export GroupApproximation.FreeProductMFRadicalRetraction
+  (inr_mem_normMFResidual_iff_of_residual_eq_bot
+    inr_mem_normMFResidual_iff_of_isOperatorMF
+    finitelyPresented_not_isOperatorMF)
+
+/-! ### The reduction interface, and algebraic consequences -/
 
 export GroupApproximation.MarkovMFConsequences
   (MarkovWitness FinitePresentationSemantics operatorMFProperty
     AdianRabinReduction recognition_undecidable negative_side_not_re
-    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
+    operatorMF_recognition_undecidable
     operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
 export GroupApproximation (isOperatorMF_of_finite_standard
   not_isOperatorMF_of_subgroup)

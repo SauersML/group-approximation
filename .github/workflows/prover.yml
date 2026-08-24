@@ -615,6 +615,12 @@ jobs:
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.
           bin/cairn check
+          # The MF-radical paper package: every ledger row must name a real
+          # declaration that the paper audit prints, and every closed endpoint
+          # the audit prints must appear in the ledger.  Both directions
+          # matter -- a row for a renamed theorem and an advertised endpoint
+          # the ledger omits are equally invisible in a green build.
+          python3 scripts/check_mf_radical_ledger.py
 
       # The non-MF paper has its own generated roster and numbered-claim
       # manifest.  Every visible badge is exact, and the two load-bearing
@@ -1098,6 +1104,9 @@ jobs:
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.
           bin/cairn check
+          # Same MF-radical ledger gate as the full source scan: the ledger
+          # and the paper audit must name exactly the same closed endpoints.
+          python3 scripts/check_mf_radical_ledger.py
 
       # The unconditionality gate, exactly as in the `prove` job above: badge
       # source-closure is a property of the printed header, and this reads the

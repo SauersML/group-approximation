@@ -640,6 +640,22 @@ def headlineTheorems : List Name :=
    ``WordProblemRE.rePred_wordProblemPred,
    ``WordProblemRE.not_rePred_compl_wordProblemPred,
    ``WordProblemRE.operatorMF_negative_side_not_re,
+   -- `NONMF is not r.e.` and MF-undecidability, restated at
+   -- `IsOperatorMF (Carrier c)` and as the nonexistence of a decider and of an
+   -- enumerator.  Same closure as the two rows above by construction; the rows
+   -- exist so the CI log states it of the sentences the manuscript prints.
+   ``MFRecognitionImpossible.mf_recognition_not_computable,
+   ``MFRecognitionImpossible.no_mf_decider,
+   ``MFRecognitionImpossible.nonMF_presentations_not_re,
+   ``MFRecognitionImpossible.no_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_total_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_nonMF_certificate_system,
+   ``MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF,
+   ``MFRecognitionImpossible.exists_halting_reduction_to_operatorMF,
+   ``MFRecognitionImpossible.mf_recognition_impossible,
+   ``MFMicrostate.microstateNormalForm,
+   ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
+   ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
    ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis,
    -- The two analytic engines' own summits.  Both were already inside the
    -- namespace sweep and the nanoda closure via their consumers; these rows
@@ -647,7 +663,40 @@ def headlineTheorems : List Name :=
    -- on, rather than what its consumer rests on.
    ``QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect,
    ``InvolutionCollapseEndpoint.no_marked_model,
-   ``InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual]
+   ``InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual,
+   -- The MF-radical paper package.  One row per numbered statement of
+   -- `Manuscript/MFRadicals`, so the paper-facing roster carries the same
+   -- surface as `Endpoint/MFRadicalPaperAudit` rather than a subset of it.
+   ``Manuscript.MFRadicals.manuscriptUniversalMFQuotient,
+   ``Manuscript.MFRadicals.manuscriptMFIffRadicalTrivial,
+   ``Manuscript.MFRadicals.manuscriptSemanticClosure,
+   ``Manuscript.MFRadicals.manuscriptSoundSaturation,
+   ``Manuscript.MFRadicals.manuscriptCompressionCollapse,
+   ``Manuscript.MFRadicals.manuscriptExplicitSeed,
+   ``Manuscript.MFRadicals.manuscriptTheoremA,
+   ``Manuscript.MFRadicals.manuscriptTheoremB,
+   ``Manuscript.MFRadicals.manuscriptTheoremC,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily,
+   ``Manuscript.MFRadicals.manuscriptTheoremD,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyExactRadicals,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals,
+   ``Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite,
+   -- The Hilbert-hotel full-radical results.  These were audited only in the
+   -- lightweight chosen-witness file; the paper advertises them, so they
+   -- belong on the paper-facing roster too.
+   ``HilbertHotel.Cover.not_isOperatorMF_model,
+   ``HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical,
+   -- The exact-radical implementation endpoints behind Theorem C.  These take
+   -- their construction data as inputs, so they are headline rows only; the
+   -- closed forms are the `Manuscript.MFRadicals` rows above.
+   ``PerfectLampRadical.lampRange_le_actualCoronaMFResidual,
+   ``PerfectLampRadical.actualCoronaMFResidual_eq_lampRange,
+   ``AlternatingLampFamily.four_radicals_eq_lampRange,
+   ``AlternatingLampFamily.alternatingFamilyPackage]
 
 /-- Advertised closed endpoints.  A declaration on this list must have an
 empty outer telescope.  Universally quantified mathematics belongs inside a
@@ -692,7 +741,53 @@ def zeroInputEndpoints : List Name :=
    -- strongest statement of its kind in the tree: an explicit sofic group
    -- that is not MF.
    ``CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF,
-   ``CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF]
+   ``CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF,
+   -- MF recognition.  A corollary of this shape is where an Adian--Rabin
+   -- theorem would be smuggled in as a premise, and an axiom report cannot
+   -- tell an accepted premise from a proved one.  The binder check can.
+   ``Computability.operatorMF_recognition_not_computable,
+   ``WordProblemRE.operatorMF_negative_side_not_re,
+   ``Computability.not_computablePred_wordProblemPred,
+   ``WordProblemRE.not_rePred_compl_wordProblemPred,
+   ``MFRecognitionImpossible.mf_recognition_not_computable,
+   ``MFRecognitionImpossible.no_mf_decider,
+   ``MFRecognitionImpossible.nonMF_presentations_not_re,
+   ``MFRecognitionImpossible.no_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_total_nonMF_enumerator,
+   ``MFRecognitionImpossible.no_nonMF_certificate_system,
+   ``MFRecognitionImpossible.exists_manyOne_reduction_wordProblem_to_operatorMF,
+   ``MFRecognitionImpossible.exists_halting_reduction_to_operatorMF,
+   ``MFRecognitionImpossible.exists_mf_presentation,
+   ``MFRecognitionImpossible.exists_nonMF_presentation,
+   ``MFRecognitionImpossible.torsionFreeMF_recognition_not_computable,
+   ``MFRecognitionImpossible.torsionFreeMF_negative_side_not_re,
+   ``MFRecognitionImpossible.mf_recognition_impossible,
+   ``MFMicrostate.microstateNormalForm,
+   -- The MF-radical paper package.  Every printed headline of the paper is
+   -- required to have an empty outer telescope, which is the machine check
+   -- that none of them is carrying an unproved analytic input -- a symmetric
+   -- double MF theorem, a routing homomorphism, or Peter--Weyl -- as a
+   -- manuscript parameter.  The universally quantified ones are advertised
+   -- through named propositions, as this list's own doc string requires.
+   ``Manuscript.MFRadicals.manuscriptUniversalMFQuotient,
+   ``Manuscript.MFRadicals.manuscriptMFIffRadicalTrivial,
+   ``Manuscript.MFRadicals.manuscriptSemanticClosure,
+   ``Manuscript.MFRadicals.manuscriptSoundSaturation,
+   ``Manuscript.MFRadicals.manuscriptCompressionCollapse,
+   ``Manuscript.MFRadicals.manuscriptExplicitSeed,
+   ``Manuscript.MFRadicals.manuscriptTheoremA,
+   ``Manuscript.MFRadicals.manuscriptTheoremB,
+   ``Manuscript.MFRadicals.manuscriptTheoremC,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily,
+   ``Manuscript.MFRadicals.manuscriptTheoremD,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyExactRadicals,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn,
+   ``Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence,
+   ``Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite,
+   ``HilbertHotel.Cover.not_isOperatorMF_model,
+   ``HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool

@@ -5,6 +5,7 @@ kind: claim
 title: A radical-kernel surjective endomorphism forces its stable kernel
 artifacts:
   - research/artifacts/radical-renormalization-2026-08-23.md
+  - GroupApproximation/Sofic/RadicalAutomorphization.lean
   - GroupApproximation/Sofic/UniversalFactorization.lean
 ---
 

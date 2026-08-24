@@ -7,6 +7,7 @@ distinct_from:
   oracular-2csp-mark-relative-canonical-groupifier: that asks for an arbitrary mark-relative decoder of the full projection atlas; this is a narrower analytic compiler using only the already established cyclic acceptance contraction.
   fanizza-heat-filter-one-sided-return: that returns a polynomial heat-filter sequence tied to the native Fanizza signal; this returns powers of one fixed finite-game acceptance contraction and uses orbit-capacity rather than signal collapse.
   dimension-reported-julia-amplitude-return: that activates one dimension-selected Julia amplitude; this asks for every fixed depth on a canonical carrier and never reads the matrix dimension.
+  arithmetic-star-packet-hs-plancherel-anchor: that proves a fixed S9 mark and its internal Reynolds gap have positive canonical density, but it supplies no matrix-only strict contraction or repeated group-word return; this claim couples all three ingredients.
 ---
 
 From the finite Culf--Mastel game `B_m`, construct computably a recursively
@@ -69,6 +70,13 @@ algebraic survival input for reverse Kleene.  Hence this claim, together with
 the Culf--Mastel source and `canonical-profile-kleene-higman`, yields a
 finitely presented nonhyperlinear group.
 
+This is the program's canonical **positive-density finite-memory** interface.
+A finite packet by itself only authenticates local type and density.  The
+matrix-specific acceptance gap supplies `rho<1`, and the repeated scalar
+group-word overlaps make that strictness consume more finite-dimensional
+capacity than exists.  Neither ingredient alone distinguishes canonical
+matrix microstates from the perfect infinite tracial model.
+
 ## Attempts
 
 - **One finite dilation register of the required depth.**  This realizes
@@ -87,3 +95,11 @@ finitely presented nonhyperlinear group.
   is needed.  The coupling must still be matrix-only: a literal collection
   of too many orthogonal equal-trace conjugates would already contradict the
   canonical regular trace.
+- **Static sibling route.**
+  `canonical-positive-density-pairwise-game-overlap-packing` avoids coherent
+  powers altogether.  It asks for finitely many unrelated translates of the
+  same `q_m`, with every pairwise relative corner charged by the same game
+  gap.  This does not prove the present power-return claim, but the existing
+  `marked-copy-collision-forces-overlap-mass` theorem then gives a separate
+  route to the root.  The remaining burden becomes triangle consistency
+  rather than a no-return tail.

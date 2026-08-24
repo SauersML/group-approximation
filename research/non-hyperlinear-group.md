@@ -17,6 +17,109 @@ monotone size the compression collapses (invariant-size-collapse); the `II₁` b
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
 
+## Positive-density finite-memory frontier (2026-08-24)
+
+The strongest currently isolated matrix-only endpoint is
+`culf-mastel-positive-density-power-return`.  Cairn already proves both the
+coherent-dilation capacity theorem and its sharper scalar form
+`positive-density-hs-power-overlaps-force-finite-depth`.  For a projection
+of canonical density `alpha>0`, a unitary word `u`, and a strict
+finite-matrix acceptance constant `rho<1`, finitely many bounds
+
+```text
+||q u^(kL) q||_2^2 <= (alpha+o(1))rho^(2kL)+o(1)
+```
+
+force
+
+```text
+(N+1)alpha <= 1+2rho^(2L)/(1-rho^(2L)).
+```
+
+Fixed large `L` and then fixed `N>1/alpha` contradict this inequality.  The
+remaining theorem is therefore semantic compilation, not a new matrix
+inequality: `canonical-positive-density-hs-power-overlap-return` must turn
+the Culf--Mastel finite-matrix game gap into those group-word overlaps on one
+authenticated positive-density head while preserving a perfect infinite
+tracial representation.
+
+There is now a strictly weaker static sibling.  Apply the already established
+`marked-copy-collision-forces-overlap-mass` theorem to arbitrary word
+translates `v_iqv_i^*`.  If every relative corner has squared normalized-HS
+norm at most `alpha epsilon`, its lower and upper overlap bounds give
+
+```text
+M alpha <= 1+(M-1)epsilon
+```
+
+Thus `canonical-positive-density-pairwise-game-overlap-packing` would also
+close the root, without any no-return tail.  Its exact remaining issue is
+the one-edge theorem
+`canonical-positive-density-amplified-acceptance-corner-actuator`.  Attaching
+that actuator to the actual ratios `v_i^*v_j` makes finite cycle consistency
+automatic; the load-bearing step is amplifying the selected acceptance
+corner without diluting its canonical trace and without imposing a global
+block-encoder equality.
+
+The arithmetic `S_9` packet lane is now closed rather than merely calibrated.
+Canonical trace does make its marked displacement linear-rank and its internal
+`GL(3,2)<AGL(3,2)` Reynolds gap have adjoint density `1/192`, but the inner
+packet action leaves a full source representation in the multiplicity
+commutant.  `arithmetic-star-packet-is-sofic` globalizes that gauge: diagonal
+conjugacy embeds the twisted Bass--Serre packet kernel into finite clique
+fibers over `E/ker(theta)`, and Cairn's exact telescope-orbit plus cyclic-stack
+models make the resulting graph action sofic.  Graph-wreath permanence makes
+the carrier sofic and hyperlinear, refuting
+`arithmetic-star-packet-hs-wall-placement`.
+
+Thus **positive-density finite memory is necessary but not sufficient**.  It
+must be coupled to a matrix-only semantic return or overlap payment which is
+absent from the pure finite packet relations.  The live target remains the
+Culf--Mastel compiler into `positive-density-hs-power-overlaps-force-finite-depth`.
+
+A second live positive-density interface now removes one earlier logical
+router.  For commuting context involutions `x_i` and a central involution
+`J`, every assignment atom on the `J=-1` sector is exactly
+
+```text
+e_<x_i J^(a_i)> (1-J)/2.
+```
+
+Thus `central-sign-bcs-atoms-are-subgroup-reynolds-projections` names every
+forbidden nonlinear atom by an ordinary finite-subgroup average.
+`central-sign-reynolds-atoms-have-fixed-canonical-density` further shows that
+an embedded `k`-variable atom already has canonical trace `2^(-(k+1))`.
+Accordingly the non-CE gap is not needed to create the initial density; it
+must be used to select or charge multiplicity in a way available only in
+finite matrices.
+`subgroup-hecke-hnn-is-a-regular-safe-rank-actuator` can pay a correctly
+oriented Reynolds rank gap.  The remaining gate is not predicate decoding:
+`central-sign-reynolds-first-hit-compiler` must route the compulsory
+regular-trace companion sectors through matrix-only first-hit exits.  The
+established `branching-plus-first-hit-exits-forces-hs-floor` then closes the
+normalized-HS contradiction.  The compiler explicitly cannot be
+trace-functorial, by `exact-first-hit-ladder-kills-regular-carrier`.
+
+Independently, `tracial-superoperator-self-copy-has-no-macroscopic-excess`
+proves the qualitative adjoint projection theorem with no property `(T)`:
+parent and compressed-child zero-energy projections agree in every adjoint
+tracial ultraproduct.  This reduces the generic finite-memory route to the
+single open amplifier `marked-self-copy-forces-macroscopic-adjoint-excess`.
+It does not replace the Kazhdan quantitative theorem or detect microscopic
+`o(d^2)` excess sectors.
+
+A third positive-density lane now has the correct Hilbert--Schmidt local
+input.  `hs-finite-heisenberg-windows-have-compatible-density-measures`
+proves that every fixed additive/three-root window of an affine-Leavitt
+Steinberg microstate has exact normalized irreducible multiplicity densities
+and exact branching maps in the tracial ultraproduct.  This replaces the
+inapplicable operator-norm rank-germ argument.  The remaining node
+`affine-leavitt-prescribed-root-spectral-carrier-decoder` is precisely the
+cross-window tightness step: align those local types and the four fixed
+coefficient roots on a uniformly positive part of the prescribed marked-root
+carrier.  Once aligned, `approximate-relative-leavitt-cell-kills-active-trace`
+gives the dimension-free contradiction immediately.
+
 ## Current proof frontier (2026-08-23)
 
 A new static-game splice reduced one independent route to pairwise overlap
@@ -339,6 +442,32 @@ right-regular/external multiplicity fiber.  Thus intrinsic minimal normal
 factors do not by themselves yield coherent finite action charts; an
 equivariant boundary-completion or multiplicity-copy classicalization
 theorem is still load-bearing.
+
+The imported "quotient the local gauge first, then read the residual
+obstruction" calculus has now been run against the whole surviving frontier,
+and it closes attacks rather than opening routes.  Three screening results
+came out of it.  `gauge-cokernel-checksums-cannot-produce-a-normalized-hs-gap`
+shows that a Smith-normal-form invariant of the cokernel of locally realizable
+repair directions can refute a moment vocabulary but can never quantify one:
+its torsion part is annihilated by the amplification that fixes every
+normalized profile, and its free part is driven to zero by `(APA2)` density and
+by direct sum with the source.  `local-exactification-invariants-cannot-close-gluing-holes`
+identifies one named residual gauge group behind four different open endpoints
+— per-context transport, the multiplicity involution `t=R_f tensor V`,
+tensoring with exact zero-overlap sectors, and the relative commutant
+`Alg(rho_n(K))'` — each of whose recorded witnesses was manufactured by
+exercising exactly that freedom, so invariance under the named group is a
+one-line disqualification for candidate observables.  And on the soficity side,
+`spherical-displacement-length-is-not-conjugation-invariant` together with
+`orbit-transport-gauge-needs-a-closed-label-set` closes both natural attacks on
+`spherical-short-holonomies-admit-local-gauge`: the cloud displacement length
+fails the coefficient hypothesis of every conjugation-invariant metric cone,
+and transporting the regular action along near-orbits — which does make every
+tested relation hold exactly, at correction radius `5 rho+zeta` — requires a
+Folner subset of the label chunk and is therefore circular off the amenable
+case.  The net effect is that forcing canonical local gauges is now known to be
+the wrong expenditure everywhere in this frontier; what remains is unchanged
+and overlap-supported.
 
 ## Marked `goal`
 

@@ -148,3 +148,13 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `fanizza-via-s3-radical-fixed-scale-return` has one remaining input:
   return those two fixed-scale types to the next context while resetting the
   old selectors and preserving the marked carrier.
+- **Central-sign Reynolds front end.**  There is now a packet-independent
+  way to name each forbidden atom before transport.  After adjoining one
+  central involution `J`,
+  `central-sign-bcs-atoms-are-subgroup-reynolds-projections` writes the atom
+  for assignment `a` as `e_<x_i J^(a_i)>(1-J)/2`.  This removes the nonlinear
+  truth-table router from the local syntax and feeds ordinary subgroup
+  averages to `subgroup-hecke-hnn-is-a-regular-safe-rank-actuator`.  It does
+  not close this target: the actuator's regular companion characters still
+  have to be routed into genuinely matrix-only first-hit layers.  That exact
+  alternate interface is `central-sign-reynolds-first-hit-compiler`.

@@ -7,6 +7,7 @@ distinct_from:
   factor-universality-character-rigidity-implies-nonhyperlinear: that asks one fixed group to have both factor-representation universality and character rigidity; this asks only about the representation-dependent faithful image of one CDI envelope.
   character-rigid-signed-bcs-quotient: that seeks a character-rigid finite signed sector carrying a BCS quotient; this concerns the untwisted image quotient of the CDI factor representation.
   caprace-thom-v2-leaves-km-character-rigidity-open: that records an absent theorem for a proposed Kac--Moody source; this is the exact quotient-specific statement needed regardless of source family.
+  faithful-irs-blocks-naive-ah-character-rigidity: that constructs faithful nonregular IRS characters on the acylindrically hyperbolic source but does not prove they are extremal; this asks for the faithful factorial face of the actual image quotient.
   cdi-image-central-wreath-retains-the-regularity-gate: that computes the actual image and shows its distinguished character is regular exactly when the input image character already is; this asks for classification of all other factorial characters after a special choice has somehow crossed that gate.
 ---
 
@@ -84,6 +85,12 @@ construction presently supplies no control of `ker(pi)` that would identify
   refute regular-or-finite-dimensional rigidity of the source group, but
   they are nonfaithful and therefore do not refute `(CIF1)`.  The faithful
   restriction is the surviving classification problem.
+- **Use faithful IRS characters as a no-go.**  Glasner--Hase give every
+  acylindrically hyperbolic source a faithful nonregular fixed-point
+  character.  This refutes a statement about all faithful characters, but
+  does not establish that the fixed-point character is extremal.  It
+  therefore does not refute the factorial condition `(CIF1)` for the actual
+  representation image.
 - **Use a simple Kazhdan Kac--Moody group.**  It lies outside the CDI
   acylindrically hyperbolic source class, and the current Caprace--Thom
   theorem establishes IRS rigidity rather than the required character

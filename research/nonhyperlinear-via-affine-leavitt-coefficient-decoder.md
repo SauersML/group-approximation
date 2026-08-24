@@ -7,6 +7,7 @@ target: non-hyperlinear-group
 requires:
   - affine-active-corner-has-faithful-binary-leavitt-envelope
   - affine-leavitt-steinberg-mark-is-fd-invisible
+  - hs-finite-heisenberg-windows-have-compatible-density-measures
   - approximate-relative-leavitt-cell-kills-active-trace
   - affine-leavitt-steinberg-hs-coefficient-decoder
 ---

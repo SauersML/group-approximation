@@ -93,6 +93,16 @@ unless that factor is payload-coupled, its regular companion types restore a
 stationary flow.  Constructing surrogates satisfying `(SHA7)` on allowed and
 forbidden sectors is therefore the precise remaining compiler.
 
+For arbitrary Boolean contexts,
+`central-sign-bcs-atoms-are-subgroup-reynolds-projections` supplies a second
+exact input interface: every assignment atom in the negative central sector
+is `e_(H_a)Q_-` for an elementary abelian subgroup `H_a`.  This solves atom
+naming but not orientation.  Equation `(SHA6)` still forces all selected
+reverse mass to be accompanied by regular compensation elsewhere.  The open
+`central-sign-reynolds-first-hit-compiler` asks to make finite-dimensional
+soundness route that compensation into summable first-hit layers without
+asserting the same lower bound in the regular representation.
+
 ## Literal involution spectral projections do not suffice
 
 Let `a,b` be nontrivial involutions and

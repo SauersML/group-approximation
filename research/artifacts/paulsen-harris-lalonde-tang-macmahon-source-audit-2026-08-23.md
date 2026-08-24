@@ -71,20 +71,34 @@ lambda_G prec pi + pi nonamenable + LP(S_pi)
   => G non-hyperlinear.                                (A2)
 ```
 
-Conversely, LLP of the ambient algebra passes to the matrix amplification
-and restricts to LP on this finite-dimensional subsystem.  Therefore the
-Harris system gives the exact equivalence
+**CORRECTED 2026-08-23.**  This section originally continued: "Conversely,
+LLP of the ambient algebra passes to the matrix amplification and restricts
+to LP on this finite-dimensional subsystem.  Therefore the Harris system
+gives the exact equivalence `LP(S_A) <=> LLP(A)`  (A3)."  That converse is
+**withdrawn**.  LLP of `A` is a statement about ucp maps defined on `A` (or
+on `M_k(A)`); LP of `S_A` quantifies over every ucp map out of `S_A` into a
+quotient, and such a map need not extend to the ambient algebra.
+Hyperrigidity supplies uniqueness of extensions of representations, not
+existence of an extension of an arbitrary ucp map into a prescribed
+quotient.  Only
 
 ```text
-LP(S_A) <=> LLP(A).                                    (A3)
+LP(S_A) => LLP(A)                                      (A3')
 ```
 
-For a finitely generated nonamenable group, taking `pi=lambda_G` makes
-`LP(S_G)` equivalent to `LLP(C^*_r(G))`, and its positive side already
-forces non-hyperlinearity by Paulsen--Rahaman--Samei.  This does not make
-LP/LLP decidable and does not output a generic finite SDP dual.  The exact
-two-sided scope is recorded in
-`llp-failure-has-three-dimensional-hyperrigid-witness`.
+is available, which is Proposition 3.4(2) plus matrix/corner permanence, and
+is the same implication as Corollary 3.5 read contrapositively.  For a
+finitely generated nonamenable group, taking `pi=lambda_G` makes `LP(S_G)`
+*sufficient* for `LLP(C^*_r(G))`, and its positive side already forces
+non-hyperlinearity by Paulsen--Rahaman--Samei.  This does not make LP/LLP
+decidable and does not output a generic finite SDP dual.  The correction and
+its (nil) cascade effect are recorded in
+`harris-lp-to-llp-implication-is-one-directional`; the negative normal form
+is recorded in `llp-failure-has-three-dimensional-hyperrigid-witness`, whose
+own equivalence paragraph is corrected to match.  Note this section's own
+"Net cascade change" paragraph below already said "a sufficient target, not
+an equivalence with ambient LLP" -- the two halves of this audit disagreed,
+and the sufficient reading is the correct one.
 
 Scherer's `span{1,D,K} subset M_4(C^*_r(F_2))` is the explicit precursor.
 The Scherer and Harris introductions give incompatible descriptions of the

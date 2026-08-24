@@ -43,3 +43,15 @@ Consequence: Ioana--Spaas--Wiersma Corollary E fires at the Bernoulli
 action (hence `C*(Lambda)` fails the LP) IF AND ONLY IF this defect
 module is nonzero -- the clause is now a single equivariant
 computation, not a search over mechanisms.
+
+
+## Not an integral Smith-form computation
+
+An imported suggestion is to materialize `((St_1+St_2) cap St_3)/(St_13+St_23)`
+as a signed integer incidence complex and read a nonzero certificate off its
+Smith normal form.  That tool does not apply here: the coefficients
+`V=L^0(Y,R)` are uniquely divisible, the identification of the `St_K` already
+uses that divisibility, and the pairwise part (b) is a *rational* cycle space.
+The reduction in (d) is also strictly sharper than the suggestion — the defect
+is already the kernel of one explicit Shapiro map — so the remaining work is
+that equivariant computation, not an integral normal form.

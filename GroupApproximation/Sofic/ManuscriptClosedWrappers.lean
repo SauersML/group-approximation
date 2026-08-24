@@ -229,7 +229,7 @@ theorem manuscriptStabilityNonMFCriterion :
 
 /-- Closed form of the corona projection collapse. -/
 theorem manuscriptProjectionCollapse :
-    ∀ {E : Type} [Group E] [Countable E]
+    ∀ {E : Type} [Group E]
       (L : Subgroup E), HasKazhdanPropertyT.{0, 0} L →
       ∀ s : E, (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
       ∀ (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)),
@@ -261,7 +261,7 @@ theorem manuscriptProjectionCollapse :
               NormMatrixCStarCorona (fun n ↦ X n)) * p =
             p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) := by
-  intro E _ _ L hT s hcomp X hX
+  intro E _ L hT s hcomp X hX
   exact ProjectionCompressionCollapse.corona_projection_collapse L hT
     (s := s) hcomp X hX
 

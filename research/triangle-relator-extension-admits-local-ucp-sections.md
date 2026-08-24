@@ -97,3 +97,39 @@ Ioana--Spaas--Wiersma mechanism), per
   representations), so no known positive criterion applies — the
   claim sits strictly beyond the published local-splitting
   technology, which is the point of the hole.
+- **The averaging bullet above is now sharp, in both directions
+  (2026-08-23).**  "Crude averaging is suspicious under property (T)"
+  has become a theorem with an exact scope.
+  `position-window-ucp-sections-collapse-to-folner-vectors` proves
+  that *any* section of orthogonal-position/window shape —
+  coefficients `c_g in C*(G_0)` indexed by group positions, middle
+  factors arbitrary group words, `sum_g c_g^* c_g = 1` — collapses
+  under the trivial character to a finitely supported
+  right-translation-invariant `l^2(Lambda)` vector, which cannot
+  exist; with a Kazhdan constant `kappa` the approximate form already
+  costs `delta >= kappa^2/2`.  Positivity is never used, so the kill
+  is of the shape and not of any estimate, and it applies to *local*
+  sections too, since local splitting must in particular handle the
+  system spanned by a finite generating set.  The same computation
+  over the finite face succeeds —
+  `explicit-finite-face-ucp-section-is-edge-equivariant` gives a
+  closed-form ucp section of `C*(P_13)` into `C*(E)` which is a right
+  `C*(P_1)`-module map, so the defect is concentrated on one edge —
+  and the boundary between the two cases is exactly finiteness of the
+  index set.  Any surviving construction must use nonorthogonal,
+  off-fibre interference.
+- **The hole now has one live route (2026-08-23).**
+  `local-ucp-sections-from-finite-relator-reservoir` reduces it to
+  `finite-relator-reservoir-repairs-every-fd-packet`: a bounded
+  word-depth statement about corrections drawn from the native relator
+  span `span{u_a(u_n-1)u_b}`, upgraded to an exact section by the RFD
+  compactness lemma
+  `finite-reservoir-compactness-lifts-ucp-repairs`.  Two facts frame
+  what that leaf can cost.  By
+  `fd-representation-packets-never-obstruct-ucp-sections` every finite
+  packet of finite-dimensional representations is repairable
+  unconditionally, so no finite-dimensional computation can decide the
+  leaf, and none can decide this claim either; and the leaf's own
+  Attempts show the packetwise statement is already a theorem once the
+  reservoir is allowed to depend on the packet.  The whole open
+  content is uniformity of the relator depth in the packet.

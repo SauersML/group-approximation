@@ -6,10 +6,14 @@ title: Pull back quotient characters and audit induction across finite index
 target: standard-permanence-does-not-rigidify-the-cdi-image
 requires:
   - ah-groups-fail-regular-fd-character-rigidity
+  - faithful-irs-blocks-naive-ah-character-rigidity
   - cdi-character-cannot-be-promoted-by-regular-corners
   - cdi-character-rigid-image-quotient-is-an-exact-bridge
   - caprace-thom-v2-leaves-km-character-rigidity-open
+  - orthogonal-kac-moody-forms-are-acylindrically-hyperbolic
   - simple-kazhdan-kac-moody-lattices-exist
+artifacts:
+  - notes/NONHYPERLINEAR_CHARACTER_REYNOLDS_INTEGRATION_2026-08-24.md
 ---
 
 If `q:G->K` is a proper quotient with `K` infinite ICC, then
@@ -44,5 +48,10 @@ does not produce the finite factorial character required by the bridge.
 Finally, simplicity of the Caprace--Remy group contradicts the proper
 infinite quotient consequence of non-elementary acylindrical hyperbolicity,
 and the current character theorem is absent by the cited Caprace--Thom
-audit.  These facts prove the Kac--Moody assertions and complete the
+audit.  Caprace--Hume's positive acylindrical-hyperbolicity theorem applies
+to orthogonal Kac--Moody forms, not by nomenclature to every Kac--Moody
+lattice.  The Glasner--Hase faithful IRS gives another precise warning: it
+produces a faithful nonregular character on every acylindrically hyperbolic
+source, although it does not automatically produce a factorial one.  These
+facts prove the source-class and character-scope assertions and complete the
 permanence audit.

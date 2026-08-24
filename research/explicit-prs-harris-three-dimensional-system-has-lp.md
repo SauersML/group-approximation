@@ -26,6 +26,14 @@ This is a three-dimensional normal form for the positive LLP-family
 target, with `D` diagonal and `G_H` a fixed sparse matrix labeled by the
 chosen group generators.  By
 `lp-of-harris-generator-system-forces-nonhyperlinear`, LP of this special
-system is actually equivalent to LLP of the ambient representation
-completion.  It is therefore smaller syntactically, but not a logically
-weaker lifting requirement.
+system implies LLP of the ambient representation completion.  It is
+therefore smaller syntactically, but not a logically weaker lifting
+requirement.
+
+**CORRECTED 2026-08-23.**  This paragraph previously said LP of the system
+is *equivalent* to ambient LLP.  The converse is withdrawn
+(`harris-lp-to-llp-implication-is-one-directional`), so the target here is
+sufficient and potentially strictly stronger than ambient LLP.  The claim
+and its consuming route are unaffected -- both use only the sufficient
+direction -- but this node should no longer be preferred to the ambient LLP
+targets on the ground that it is the same problem in fewer dimensions.

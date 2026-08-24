@@ -1,0 +1,9 @@
+import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
+
+/-! Axiom surface for the closed endpoints of the spectral-compression paper. -/
+
+#print axioms GroupApproximation.SpectralComponentMotion.norm_sub_le_of_clopen_projections_eq
+#print axioms GroupApproximation.SpectralCompression.corona_spectral_component_motion_supremum
+#print axioms GroupApproximation.SpectralCompression.corona_zero_dimensional_spectral_collapse
+#print axioms GroupApproximation.SpectralPaper.spectralCompressionTheorem
+#print axioms GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem

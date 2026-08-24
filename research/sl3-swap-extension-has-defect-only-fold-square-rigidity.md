@@ -85,3 +85,18 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   models refute `(SFS1)`.  Thus the defect-only word estimate would also
   prove nonsoficity of this explicit nonamenable-stabilizer action; ordinary
   sofic-action approximation cannot be used to prove it.
+
+- **Linearizing the fold word against a Fox Jacobian cannot support the
+  estimate.**  A first-order coercivity test — perturb an exact representation
+  by `rho(g)exp(i X_g)`, quotient the infinitesimal conjugation and exact
+  correction directions, and compare the derivative of the fold word against
+  the linearized relator operator — is valid only in a neighbourhood of the
+  exact locus.  But `canonical-arithmetic-swap-fold-gram-is-arcsine` puts
+  `tr(QPQ-(QPQ)^2)` at `1/16-o(1)` on exactly the microstates `(SFS1)` has to
+  control, while every exact finite-dimensional representation gives `0`, and
+  that quantity is norm-continuous in the assignment.  So those microstates sit
+  at a fixed positive normalized-HS distance from the exact locus and no
+  neighbourhood estimate reaches them.  A linearized computation can still be
+  run as a *diagnostic* — rapid degeneration of the smallest singular value
+  would be evidence against any local coercivity mechanism — but a positive
+  answer would carry no weight toward `(SFS1)`.

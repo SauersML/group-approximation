@@ -6,6 +6,8 @@ title: Factor representation universality plus factor-character rigidity forces 
 distinct_from:
   cdi-property-t-envelope-has-nonabelian-base: that supplies factor representation universality for acylindrically hyperbolic sources but no character rigidity; this is the exact conditional bridge if both properties occur in one group.
   nonce-factor-in-group-factor-corner-forces-nonhyperlinear: that starts with the desired canonical group-factor corner; this explains one way character rigidity would force the universal representation envelope to be the canonical group factor.
+artifacts:
+  - notes/NONHYPERLINEAR_CHARACTER_REYNOLDS_INTEGRATION_2026-08-24.md
 ---
 
 Suppose a countable group `H` has both properties below.
