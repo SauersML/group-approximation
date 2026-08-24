@@ -35,8 +35,8 @@ finite-dimensional quotient.  Consequences:
 - for matricially stable groups the MF radical is computable by
   finite-dimensional representation theory alone.
 
-The known positive stability classes do not presently contain a finitely
-presented group with nontrivial finite-dimensional residual, so this is an
-obstruction *principle* on a separate axis from Kazhdan compression, not yet
-a construction; the wall is the same one recorded on
-`map-matricial-stability-non-mf`.
+`mf-camouflage-surgery-preserves-matricial-stability` now supplies concrete
+finitely presented stable groups with nontrivial finite-dimensional
+residual.  Starting from a stable MF group such as a finite-rank free group
+or `Z`, the camouflage group remains stable while its finite-dimensional
+residual becomes the nontrivial singly normally generated hidden kernel.
