@@ -517,6 +517,11 @@ noncomputable def activeCoreWord [Fintype I]
     Matrix.unitaryGroup (ActiveCoreIndex W) ℂ :=
   (l.map fun i ↦ activeCoreMatrix W i).prod
 
+@[simp] theorem activeCoreWord_append [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (l₁ l₂ : List I) :
+    activeCoreWord W (l₁ ++ l₂) = activeCoreWord W l₁ * activeCoreWord W l₂ := by
+  simp [activeCoreWord]
+
 /-- The same packet word in the original coordinates. -/
 def ambientWord [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) (l : List I) :
