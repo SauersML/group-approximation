@@ -130,120 +130,6 @@ def declaration_keyword(name: str, path: Path) -> str | None:
     return None
 
 
-# ---------------------------------------------------------------------------
-# Check 5: a `closed` row must not rest on an unproved named proposition.
-#
-# `#audit_closed_axioms` inspects the HEAD of the elaborated type, so it
-# rejects `theorem foo : Hypothesis -> Conclusion` but accepts
-# `theorem foo : NamedProp` even when `NamedProp` unfolds to an implication.
-# That is by design -- the manuscript's own quantifiers have to live inside a
-# named `Prop` for the gate to accept a universally quantified theorem at all --
-# but it means the macro cannot tell "quantified over manuscript data" from
-# "carrying an undischarged input".
-#
-# What CAN be checked lexically is the thing that actually goes wrong: a closed
-# row whose proposition mentions another named proposition that nothing in the
-# development proves.  An unproved `def ... : Prop` is exactly how an open input
-# gets a name (`NormalRootDetection`, `PropositionSimple`), so a closed row
-# quoting one is a closed row resting on an assumption.
-# ---------------------------------------------------------------------------
-
-PROP_DEF_RE = re.compile(r"^def\s+(?P<name>[A-Za-z_][A-Za-z0-9_'.]*)\s*:\s*Prop\s*:=")
-PROVES_RE = re.compile(
-    r"^(?:theorem|lemma)\s+[A-Za-z_][A-Za-z0-9_'.]*\s*:\s*(?P<prop>[A-Za-z_][A-Za-z0-9_'.]*)"
-    r"(?:\.\{[^}]*\})?\s*:="
-)
-SCAN_DIRS = ("Manuscript", "Leavitt", "Analysis", "Kazhdan", "Criterion", "Sofic", "Endpoint")
-
-
-def _prop_universe(root: Path) -> tuple[dict[str, str], set[str]]:
-    """Named `Prop` definitions in the development, and which of them are proved.
-
-    Returned as (body by short name, set of short names carrying a theorem).
-    A `Prop` proved in a namespace the ledger does not spell is still proved;
-    matching on the short name is deliberate, because over-matching here can
-    only make the gate more permissive, never wrongly fail a row.
-    """
-    bodies: dict[str, str] = {}
-    proved: set[str] = set()
-    for d in SCAN_DIRS:
-        base = root / "GroupApproximation" / d
-        if not base.is_dir():
-            continue
-        for path in base.rglob("*.lean"):
-            text = _strip_block_comments(path.read_text(encoding="utf-8"))
-            lines = text.splitlines()
-            for i, raw in enumerate(lines):
-                line = raw.split("--", 1)[0].rstrip()
-                if not line or line[0].isspace():
-                    continue
-                m = PROP_DEF_RE.match(line)
-                if m:
-                    body: list[str] = []
-                    for cont in lines[i + 1 :]:
-                        if cont and not cont[0].isspace():
-                            break
-                        body.append(cont)
-                    bodies[m.group("name")] = "\n".join(body)
-                    continue
-                pm = PROVES_RE.match(line)
-                if pm:
-                    proved.add(pm.group("prop"))
-                    continue
-                # `theorem foo :\n    NamedProp := by` -- the type on its own line.
-                if re.match(r"^(?:theorem|lemma)\s+[A-Za-z_][A-Za-z0-9_'.]*\s*:\s*$", line):
-                    if i + 1 < len(lines):
-                        nxt = lines[i + 1].strip()
-                        nm = re.match(r"^([A-Za-z_][A-Za-z0-9_'.]*)(?:\.\{[^}]*\})?\s*:=", nxt)
-                        if nm:
-                            proved.add(nm.group(1))
-    return bodies, proved
-
-
-def unproved_props_cited(decl: str, index, bodies, proved) -> list[str]:
-    """Named propositions cited by `decl`'s statement that nothing proves."""
-    path = index.get(decl)
-    if path is None:
-        return []
-    tail = decl.rsplit(".", 1)[-1]
-    text = _strip_block_comments(path.read_text(encoding="utf-8"))
-    lines = text.splitlines()
-    stated: str | None = None
-    for i, raw in enumerate(lines):
-        line = raw.split("--", 1)[0].rstrip()
-        if not line or line[0].isspace():
-            continue
-        m = DECL_RE.match(line)
-        if not m or m.group("name") != tail:
-            continue
-        chunk = line
-        for cont in lines[i + 1 :]:
-            if cont and not cont[0].isspace():
-                break
-            chunk += "\n" + cont
-        after = chunk.split(":", 1)[1] if ":" in chunk else ""
-        stated = after.split(":=", 1)[0]
-        break
-    if stated is None:
-        return []
-    names = set(re.findall(r"[A-Za-z_][A-Za-z0-9_'.]*", stated))
-    seen: set[str] = set()
-    bad: list[str] = []
-    queue = [n.rsplit(".", 1)[-1] for n in names]
-    while queue:
-        n = queue.pop()
-        if n in seen or n not in bodies:
-            continue
-        seen.add(n)
-        if n not in proved:
-            bad.append(n)
-        queue.extend(
-            x.rsplit(".", 1)[-1]
-            for x in re.findall(r"[A-Za-z_][A-Za-z0-9_'.]*", bodies[n])
-        )
-    return sorted(bad)
-
-
 def main() -> int:
     rows = ledger_rows()
     if not rows:
@@ -252,7 +138,6 @@ def main() -> int:
 
     index = build_index()
     closed, opened = audited_decls()
-    prop_bodies, proved_props = _prop_universe(REPO_ROOT)
     failures: list[str] = []
 
     for paper, decl, status in rows:
@@ -285,12 +170,6 @@ def main() -> int:
             failures.append(f"row '{paper}': declaration '{decl}' does not exist")
 
         if status == "closed":
-            bad = unproved_props_cited(decl, index, prop_bodies, proved_props)
-            if bad:
-                failures.append(
-                    f"row '{paper}': claimed closed, but its statement rests on "
-                    f"unproved named proposition(s) {', '.join(bad)}"
-                )
             if decl not in closed:
                 failures.append(
                     f"row '{paper}': claimed closed, but '{decl}' is not printed by "

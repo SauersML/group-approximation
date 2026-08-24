@@ -13,6 +13,7 @@ import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.AlternatingLampNoncommensurable
 import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Sofic.FreeProductMFRadicalRetraction
+import GroupApproximation.Sofic.KazhdanCompressionLayers
 
 /-!
 # Approximation radicals: the reading path
@@ -218,6 +219,21 @@ export GroupApproximation.UniversalFactorization
     corona_comp_bijective exists_comp_eq)
 
 end Renormalize
+
+/-! ### Iterate through quotient layers -/
+
+namespace Iterate
+
+export GroupApproximation.KazhdanCompressionLayers
+  (comap_normalKazhdanLayer_le_coronaMFResidual
+    comap_normalKazhdanLayer_le_normMFResidual
+    coronaMFResidual_eq_top_of_full_quotient_layer
+    ker_stage_le_coronaMFResidual ker_stage_le_normMFResidual
+    coronaMFResidual_eq_top_of_exhaustive_layers
+    normMFResidual_eq_top_of_exhaustive_layers
+    coronaMFResidual_eq_ker_limit)
+
+end Iterate
 
 /-! ### Saturate -/
 

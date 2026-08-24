@@ -135,11 +135,8 @@ end TypeZeroConsequence
 configuration cannot occur when `G` has a faithful finite-dimensional linear
 representation, when `G` is residually finite, or — the group-theoretic half
 of the amenable case — when `L` is finite.  The amenable case's analytic
-input, that an amenable group's property-`(T)` subgroup is finite, is *not*
-proved in this module; it is proved in
-`Kazhdan.AmenableKazhdanFinite.finite_subgroup_of_isAmenable_of_kazhdan`, so
-the manuscript's citation to `BHV` for it is discharged in the development.
-What this module supplies is only the finite-`L` conclusion. -/
+input, that an amenable group's property-`(T)` subgroup is finite, is the
+cited `BHV` fact and is *not* proved here; only the finite-`L` conclusion is. -/
 
 section Sterility
 
