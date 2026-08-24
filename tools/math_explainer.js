@@ -22,7 +22,11 @@
     var host = math.closest(
       'p,li,.thm-stmt,.claim-stmt,.abstract,.panel,.body,.routebody');
     if (!host) host = math.parentElement;
-    var value = clean(host && host.textContent);
+    if (!host) return '';
+    var copy = host.cloneNode(true);
+    var formulas = copy.querySelectorAll('.katex,.tex,.texd,.dmath,.mathblock');
+    for (var i = 0; i < formulas.length; i++) formulas[i].remove();
+    var value = clean(copy.textContent);
     if (!value) return '';
     if (value.length > 260) value = value.slice(0, 257).replace(/\s+\S*$/, '') + '…';
     return value;
@@ -370,15 +374,9 @@
     if (document.querySelector('.math-help-prompt')) return;
     var anchor = document.querySelector('.paper-key, .paper-head, nav.top, header');
     if (!anchor || !document.querySelector('.katex')) return;
-    var prompt = document.createElement('button');
-    prompt.type = 'button';
+    var prompt = document.createElement('p');
     prompt.className = 'math-help-prompt';
     prompt.textContent = 'Math is interactive — click any symbol for plain English.';
-    prompt.addEventListener('click', function () {
-      var math = document.querySelector('.katex.math-help-ready');
-      var atom = math && math.querySelector('.math-symbol-help');
-      if (math && atom) openExplanation(atom, math);
-    });
     if (anchor.classList.contains('paper-key')) anchor.insertAdjacentElement('afterend', prompt);
     else anchor.insertAdjacentElement('afterend', prompt);
   }

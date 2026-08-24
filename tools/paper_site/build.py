@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble a self-contained web edition of the paper or its notes.
+"""Assemble the self-contained web edition of the paper.
 
 The page embeds the raw TeX and the claims manifest verbatim; a client-side
 renderer (parser.js + ui.js) typesets them with an inlined KaTeX, so the
@@ -27,24 +27,7 @@ EDITIONS = {
         'census': 'metadata/NON_MF_SENTENCE_CENSUS.tsv',
         'title': 'A non-MF group',
         'tab': 'Paper',
-        'links': (
-            '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>\n'
-            '<a href="../notes/">Read the supplementary notes</a>\n'
-            '<a href="../non_mf_group_notes.pdf">Download the notes (PDF)</a>'
-        ),
-    },
-    'notes': {
-        'source': 'non_mf_group_notes.tex',
-        'claims': 'metadata/NON_MF_NOTES_NUMBERED_CLAIMS.json',
-        'ledger': 'metadata/NON_MF_NOTES_PROOF_LEDGER.md',
-        'census': 'metadata/NON_MF_NOTES_SENTENCE_CENSUS.tsv',
-        'title': 'Non-MF group notes',
-        'tab': 'Notes',
-        'links': (
-            '<a href="../paper/">Read the main paper</a>\n'
-            '<a href="../non_mf_group_notes.pdf">Download the notes (PDF)</a>\n'
-            '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>'
-        ),
+        'links': '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>',
     },
 }
 
@@ -433,10 +416,6 @@ def main():
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
     tex = strip_tex_comments(read(REPO / edition['source']))
-    external_paper_tex = (
-        strip_tex_comments(read(REPO / 'non_mf_groups_exist.tex'))
-        if args.edition == 'notes' else ''
-    )
     claims_data = json.loads(read(REPO / edition['claims']))
     labels = set(re.findall(r'\\label\{([^}]*)\}', tex))
     claims_data['manuscript'] = edition['source']
@@ -495,7 +474,6 @@ def main():
             lean_sigs[key] = {'sig': sig, 'line': line}
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
-        'window.EXTERNAL_PAPER_TEX = ' + json.dumps(external_paper_tex).replace('</', '<\\/') + ';\n'
         'window.CLAIMS = ' + json.dumps(claims_data).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'

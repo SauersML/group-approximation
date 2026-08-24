@@ -21,14 +21,9 @@ on:
       - 'bin/cairn'
       - 'non_mf_groups_exist.tex'
       - 'non_mf_groups_exist.pdf'
-      - 'non_mf_group_notes.tex'
-      - 'non_mf_group_notes.pdf'
       - 'metadata/NON_MF_NUMBERED_CLAIMS.json'
-      - 'metadata/NON_MF_NOTES_NUMBERED_CLAIMS.json'
       - 'metadata/NON_MF_PROOF_LEDGER.md'
-      - 'metadata/NON_MF_NOTES_PROOF_LEDGER.md'
       - 'metadata/NON_MF_SENTENCE_CENSUS.tsv'
-      - 'metadata/NON_MF_NOTES_SENTENCE_CENSUS.tsv'
       - 'tools/paper_site/**'
       # the paper edition embeds Lean sources, so Lean-only pushes must
       # republish it too
@@ -120,7 +115,6 @@ jobs:
       - name: Build the paper edition
         run: |
           paper_built=false
-          notes_built=false
           if node tools/paper_site/test_inline.js \
             && node tools/test_math_explainer.js \
             && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html; then
@@ -131,23 +125,11 @@ jobs:
             echo "::warning::paper edition build failed; publishing the research graph without /paper"
           fi
 
-          if node tools/paper_site/test_editions.js \
-            && python3 tools/paper_site/build.py --edition notes --out .cairn/site/notes/index.html; then
-            notes_built=true
-            echo "notes edition built"
-            install -m 0644 non_mf_group_notes.pdf .cairn/site/non_mf_group_notes.pdf
-          else
-            echo "::warning::notes edition build failed; publishing without /notes"
-          fi
-
-          # Cross-link only editions that passed their own build.  This edits
+          # Cross-link the edition after a successful build.  This edits
           # the generated page, not bin/cairn or tools/cairn.py.
           edition_links=""
           if [ "$paper_built" = true ]; then
             edition_links='<a href="paper/">paper</a>'
-          fi
-          if [ "$notes_built" = true ]; then
-            edition_links="${edition_links}<a href=\"notes/\">notes</a>"
           fi
           if [ -n "$edition_links" ]; then
             sed -i "s|<header><span class=\"stats\">|<header>${edition_links}<span class=\"stats\">|" .cairn/site/index.html

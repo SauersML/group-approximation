@@ -25,13 +25,6 @@
   background: #fcfcfb;
   color: rgba(23, 23, 20, 0.76);
   font: 600 0.78rem/1.25 Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
-  cursor: pointer;
-}
-
-.math-help-prompt:hover,
-.math-help-prompt:focus-visible {
-  color: #a33a1c;
-  border-color: #a33a1c;
 }
 
 .math-explainer {

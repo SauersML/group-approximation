@@ -1321,17 +1321,6 @@ function setupLeanPanels(root) {
 function init() {
   const t0 = performance.now();
   document.body.dataset.view = 'paper';
-  if (window.EXTERNAL_PAPER_TEX) {
-    parsePaper(window.EXTERNAL_PAPER_TEX);
-    const external = {};
-    for (const [label, rec] of Object.entries(LABELS)) {
-      external['paper-' + label] = Object.assign({}, rec, {
-        href: '../paper/#' + rec.anchor,
-      });
-      delete LABELS[label];
-    }
-    Object.assign(LABELS, external);
-  }
   const parsed = parsePaper(PAPER_TEX);
   BIB = parsed.bib;
 
