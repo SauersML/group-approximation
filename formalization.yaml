@@ -26,14 +26,24 @@ project:
     the complete MF reflection of a finitely presented non-MF group.  Its
     semantic-closure formula controls every quotient, and a cyclic
     specialization makes one word decide MF throughout the whole quotient
-    lattice.  Stable corona projections and finite projective modules are
+    lattice.  Countable MF groups form an epireflective subcategory: limits
+    are created in groups, colimits are reflected, and the inverted maps form
+    a countable-colimit-stable localization class.  The intrinsic MF residual
+    topology is Hausdorffized by the radical quotient.  Stable corona
+    projections and finite projective modules are
     classified by eventual rank germs, giving exact Hilbert-hotel
     cancellation and vanishing of every finite projective corona module with
-    a binary Leavitt action.  Finite root and Heisenberg windows retain exact
+    a binary Leavitt action.  Eventual rank domination also classifies
+    projection-generated ideals and full corners, and every corona
+    representation acquires a conjugacy-invariant ideal-valued support
+    length.  Finite root and Heisenberg windows retain exact
     additive and multiplicative multiplicity germs.  Faithful tracial
     dimension gives the parallel finite-projective Hilbert-hotel
     cancellation theorem.  The tracial self-copy theorem then identifies the
     macroscopic adjoint fixed sectors of a parent and its conjugate child.
+    Boolean restricted-sum towers and finitely presented Grushko towers give
+    infinitely many pairwise nonisomorphic groups with any prescribed MF
+    reflection while retaining identical MF-target representation functors.
     Two precise coherence goals remain: a finite-projective corona decoder
     that removes the Kazhdan hypotheses, and a positive-density tracial
     decoder that would close the nonhyperlinearity route.

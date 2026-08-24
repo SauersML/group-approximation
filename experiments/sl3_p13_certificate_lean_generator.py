@@ -258,6 +258,28 @@ def emit_block(output, module_prefix, residual, i, k):
         "  norm_num\n" + MODULE_END)
 
 
+def emit_transposed_block(output, module_prefix, residual, i, k):
+    """Reuse the checked upper-triangular block for a lower-triangular one."""
+    if not i > k:
+        raise ValueError("transposed residual block must be strictly lower triangular")
+    total = sum(abs(value) for value in residual[i][k])
+    transposed_total = sum(abs(value) for value in residual[k][i])
+    if total != transposed_total:
+        raise ValueError("residual block totals are not transpose-symmetric")
+    output.write_text(
+        "import GroupApproximation.Sofic.%s%d%d\n" %
+        (module_prefix, k, i) +
+        "\nnamespace GroupApproximation\n" +
+        "namespace LiteralP13HodgeCertificate\n\n" +
+        "theorem residual_block_natAbs_%d_%d :\n" % (i, k) +
+        "    ∑ c : Fin 293, (residualNumerator %d %d c).natAbs = %d := by\n" %
+        (i, k, total) +
+        "  rw [sum_residual_natAbs_transpose_of_ne %d %d (by decide)]\n" %
+        (k, i) +
+        "  exact residual_block_natAbs_%d_%d\n" % (k, i) +
+        MODULE_END)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--certificate", type=Path, required=True)
@@ -272,16 +294,20 @@ def main():
 
     for i in range(ROOTS):
         for k in range(ROOTS):
-            for part in range(4):
-                emit_part(
-                    args.output_directory /
-                    ("%s%d%dPart%d.lean" %
-                     (args.residual_prefix, i, k, part)),
-                    args.core_module, residual, i, k, part)
-            emit_block(
-                args.output_directory /
-                ("%s%d%d.lean" % (args.residual_prefix, i, k)),
-                args.residual_prefix, residual, i, k)
+            block_output = args.output_directory / (
+                "%s%d%d.lean" % (args.residual_prefix, i, k))
+            if i <= k:
+                for part in range(4):
+                    emit_part(
+                        args.output_directory /
+                        ("%s%d%dPart%d.lean" %
+                         (args.residual_prefix, i, k, part)),
+                        args.core_module, residual, i, k, part)
+                emit_block(
+                    block_output, args.residual_prefix, residual, i, k)
+            else:
+                emit_transposed_block(
+                    block_output, args.residual_prefix, residual, i, k)
 
     imports = "".join(
         "import GroupApproximation.Sofic.%s%d%d\n" %
@@ -298,7 +324,7 @@ def main():
                    for k in range(ROOTS)]
     if row_sums != column_sums or max(row_sums) != 11670886519714:
         raise ValueError("unexpected residual row/column bounds")
-    print("wrote 144 direct parts, 36 blocks, and one aggregator")
+    print("wrote 84 direct parts, 15 transposed blocks, 36 blocks, and one aggregator")
 
 
 if __name__ == "__main__":

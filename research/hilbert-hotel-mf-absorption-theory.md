@@ -72,3 +72,12 @@ its parent has exactly the same macroscopic adjoint fixed-sector projection.
 The remaining tracial frontier is the coherent positive-density module
 decoder, which is recorded separately as an open implication rather than as
 a claimed nonhyperlinearity theorem.
+
+The radical quotient is moreover an epireflector onto countable MF groups.
+MF limits are created inside groups, MF colimits are ordinary group colimits
+followed by reflection, and MF-equivalences are stable under countable
+colimits.  Rank germs classify projection-generated corona ideals and give
+every corona representation an ideal-valued support length.  These calculi
+produce Boolean full-radical towers and, over every finitely presented MF
+base, infinitely many pairwise nonisomorphic finitely presented Grushko
+thickenings with exactly the same MF-visible quotient.

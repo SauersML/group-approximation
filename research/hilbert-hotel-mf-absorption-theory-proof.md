@@ -27,6 +27,7 @@ requires:
   - generic-leavitt-self-compression-full-mf-radical
   - tracial-projective-hilbert-hotel-cancellation
   - tracial-superoperator-self-copy-has-no-macroscopic-excess
+  - mf-reflection-and-corona-support-calculus
 ---
 
 The group, C-star, and dynamical assertions are the corresponding established
