@@ -161,3 +161,4 @@
 32693447435	2026-08-24T05:25:33Z	GroupApproximation/Sofic/ActionFormMoverEstimate.lean	inv_mem_stabilizer_union_movers
 32697233406	2026-08-24T06:25:37Z	GroupApproximation/Sofic/AdjointMatrix.lean	rowVec_rowMat
 32702919814	2026-08-24T07:45:35Z	GroupApproximation/Sofic/AdjointOperatorNormRequirement.lean	permMatrix_entry
+32706646047	2026-08-24T08:30:48Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	image_badArcs_inverseDefectEquiv
