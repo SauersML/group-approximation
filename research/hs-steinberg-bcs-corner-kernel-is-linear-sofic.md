@@ -1,0 +1,49 @@
+---
+rg: 2
+id: hs-steinberg-bcs-corner-kernel-is-linear-sofic
+kind: claim
+title: Decode the shared-BCS conditional corner ring from matricial-HS Steinberg roots
+distinct_from:
+  hs-steinberg-root-kernel-is-linear-sofic: That asks for the Toeplitz coefficient quotient carrying the defect idempotent; this asks for the finite conditional corner ring `(BCL1)--(BCL2)` carrying the free-compressor quotient kernel.
+  shared-bcs-carrier-localizes-free-compressor-quotient: That is the representation-theoretic carrier conclusion; this is only the rank-metric coefficient decoder needed to make its exact ring proof apply to arbitrary group microstates.
+---
+
+**OPEN METRIC DECODER.**  Let `R_BCL` be the finitely presented
+characteristic-`p` coefficient ring defined by the shared BCS packet, the
+free compressor, and relations `(BCL1)--(BCL2)`.  Let `G_BCL` be its
+rank-five Steinberg group together with the named compressor unit, and let
+
+```text
+Phi:G_BCL->U(product_omega(M_(d_n),tr_(d_n)))
+```
+
+be a homomorphism.  For the common root kernel
+
+```text
+K_Phi={a in R_BCL: Phi(x_ij(a))=1 for every i!=j},
+```
+
+prove that `R_BCL/K_Phi`, when nonzero, embeds unitally in a rank-metric
+ultraproduct of finite matrix algebras over the splitting field.  The
+embedding must retain the named packet densities: for every forbidden
+idempotent `P_f` there is a packet-dependent `c_f>0` such that
+
+```text
+rank_density(iota(P_f))
+ >=c_f ||Phi(x_12(P_f))-1||_2^2,                       (BCK1)
+```
+
+and the finite packet Reynolds ranks computed after restriction to
+`iota(P_f)` agree with their representation-theoretic values.  Mere abstract
+injectivity with a vanishing image density is insufficient.
+
+Root additivity, Weyl conjugacy, and two spare Steinberg indices already make
+`K_Phi` a two-sided ideal.  The missing assertion is the metric conversion:
+assemble the finite root-character spectra into compatible left and right
+coefficient actions without converting HS-small full-rank errors directly to
+rank-small errors.
+
+Once this density-compatible decoder is available, stable finiteness and the
+exact conditional corner equations recover the carrier factorization in
+`shared-bcs-carrier-localizes-free-compressor-quotient`.  No further
+determinant, multiplicity, or infinite-kernel argument is required.

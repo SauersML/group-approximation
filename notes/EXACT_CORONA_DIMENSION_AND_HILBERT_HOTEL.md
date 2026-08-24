@@ -338,12 +338,24 @@ Established:
   groups with torsion;
 - equality of the MF and operator-to-Hilbert--Schmidt shadow residuals on
   finitely generated simple groups with torsion;
-- the terminal implications from either missing decoder.
+- the terminal implications from either missing decoder;
+- promotion of the entire compression defect from the finite-dimensional
+  residual to the MF radical under point-norm matricial stability;
+- promotion of one exact-invisible mark under correction at that mark alone;
+- the sharp operator-norm identity that every unitary from a larger source
+  projection to a smaller target projection has leakage exactly one;
+- the stronger singular-value plateau: the leakage has at least the full
+  rank deficit many unit singular values, with a quantitative
+  `sqrt(1-eps)` version for approximate isometries;
+- the resulting one-row authenticated-return criterion for MF collapse on an
+  arbitrarily small nonzero finite carrier.
 
 Open:
 
 - the finite-projective norm-corona coefficient-module decoder;
-- the positive-density Hilbert--Schmidt coefficient-module decoder.
+- the positive-density Hilbert--Schmidt coefficient-module decoder;
+- the first-prefix finite-multiplicity return supplying the authenticated
+  operator-norm support row for the binary Leavitt packet.
 
 No nonhyperlinear group is claimed by this package.  The graph routes expose
 the precise missing implications rather than treating them as established.

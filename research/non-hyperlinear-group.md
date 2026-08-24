@@ -113,6 +113,30 @@ single open amplifier `marked-self-copy-forces-macroscopic-adjoint-excess`.
 It does not replace the Kazhdan quantitative theorem or detect microscopic
 `o(d^2)` excess sectors.
 
+The abstract quotient orientation of that amplifier is no longer open.
+`finite-inclusion-is-free-self-compressor-quotient` constructs, for every
+finite packet inclusion `A<B`, a proper injective endomorphism of a
+finite-rank free group whose parent quotient image is `B` and whose child
+image is `A`.  The route
+`macroscopic-self-copy-via-localized-free-quotient` therefore isolates the
+remaining payload seam exactly: on the BCS forbidden carrier, force the free
+compressor kernel to vanish with a dimension-independent HS bound, while it
+remains unconstrained in the perfect infinite model.  If that
+carrier-localized factorization is supplied, the established predicate
+Reynolds rank jump gives the positive-density child-only sector and the
+tracial self-copy theorem closes the route.
+
+At the coefficient-ring level this localization is now explicit.  If
+`r_1,...,r_s` normally generate the free quotient kernel and `P_f` is the
+forbidden packet idempotent, the finite relations
+`[P_f,F]=[P_f,t]=0` and `(r_j-1)P_f=0` make the parent factor through `B_f`
+and the child through `A_f` exactly on `P_f`.  Rank-five Steinberg context
+absorption wordizes the resulting finite ring presentation.  The only
+remaining gap in this subroute is normalized-HS coefficient decoding:
+arbitrary group microstates must be shown to induce the required
+rank-ultraproduct coefficient module, the same metric phenomenon isolated by
+`hs-steinberg-root-kernel-is-linear-sofic`.
+
 For canonical microstates the boundary is sharper.
 `canonical-infinite-subgroup-has-zero-adjoint-fixed-density` averages any
 finite list of distinct subgroup elements and proves that every pointwise
@@ -758,6 +782,37 @@ the shared BCS tuple. A single ordinary Hecke holonomy
 cannot provide the alternative global row domination:
 `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` closes it by a
 last-edge multiplicity-gauge countermodel.
+
+The aggregate reflection is no longer the minimal collision gate.
+`partitioned-child-surplus-collision-supplies-contraction` proves that a
+fixed finite family of genuine child pieces, returned into pairwise
+orthogonal pieces of the next carrier, supplies the same strict contraction
+after summing support leakage.  This removes the need to multiply
+noncommuting context cuts or to encode their nonlinear sum as one word.  The
+new last interface on that lane is
+`typewise-schur-tail-partition-compiler`: install the already groupified
+corrected-child type menu as an orthogonal recursive-tail partition while
+retaining the robust gap on the original shared BCS tuple.
+
+The purely local portion of that interface is now explicit.
+`index-two-reynolds-atoms-have-orthogonal-hnn-transports`
+shows that an HNN conjugacy of both levels of an index-two finite-subgroup
+flag transports its Reynolds difference exactly, and that distinct
+characters of one elementary-abelian packet give orthogonal target atoms.
+Accordingly neither nonlinear atom reflection wordization nor local target
+orthogonality remains open.  Cairn's
+`canonical-types-extend-every-finite-bass-serre-actor` prevents overclaiming:
+the unresolved step is the shared-BCS, finite-matrix-only selection of a
+supercritical active family, not more finite subgroup covariance.
+
+Cairn now records that residue directly as
+`shared-bcs-matrix-only-supercritical-atom-selection`.  It must consume a
+cross-context operator observable of the original non-CE BCS tuple; scalar
+forbidden mass and every pure finite Bass--Serre actor are already ruled out.
+If it is established, the new pair-HNN router closes
+`typewise-schur-tail-partition-compiler`, and the existing dependency chain
+continues through fixed-scale holonomy and the multiplicity-return
+transducer to this root claim.
 
 The stability interface was consolidated on 2026-08-21.  For Kazhdan
 groups, Dogon's weak ucp-stability coincides with flexible HS-stability on

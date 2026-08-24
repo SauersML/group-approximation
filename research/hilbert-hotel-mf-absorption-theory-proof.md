@@ -32,6 +32,20 @@ requires:
   - simple-torsion-groups-have-a-macroscopic-mf-dichotomy
   - torsion-normal-generator-mf-shadow-equivalence
   - finite-order-normal-generation-controls-corona-rank-scale
+  - camouflage-kernel-is-a-regular-star-amalgam
+  - mf-camouflage-is-a-faithful-split-extension-functor
+  - one-universal-kernel-realizes-all-countable-mf-reflections
+  - hereditarily-mf-quotients-have-principal-camouflage-closure
+  - permutation-camouflage-realizes-countable-actions
+  - one-mf-black-hole-has-universal-outer-symmetry
+  - one-mf-black-hole-has-universal-endomorphism-monoid
+  - full-mf-radical-groups-form-an-extension-colimit-class
+  - graphs-of-mf-black-holes-have-free-mf-reflection
+  - compression-defect-dies-in-mf-under-mark-stability
+  - fd-mark-stability-forces-mf-invisibility
+  - rank-deficient-return-row-has-operator-norm-one
+  - authenticated-coarse-fine-return-forces-mf-collapse
+  - rank-deficient-return-has-a-singular-value-plateau
   - mf-reflection-and-corona-support-calculus
 ---
 

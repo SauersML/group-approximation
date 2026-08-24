@@ -30,6 +30,14 @@ charge the spectator multiplicity itself.
 - **Formal recursion does not amplify support.**  Applying more fixed words to
   a reducing sublinear summand preserves its normalized invisibility, exactly
   as proved by `word-recursion-cannot-amplify-sublinear-summands`.
+- **Prescribed parent/child packet shadows are algebraically available.**
+  `finite-inclusion-is-free-self-compressor-quotient` realizes every finite
+  inclusion `A<B` as the quotient images of a free group and its proper
+  injective self-copy.  Thus the obstacle is not constructing an infinite
+  one-sided compressor with the right local packet orientation.  The live
+  route `macroscopic-self-copy-via-localized-free-quotient` isolates the
+  remaining operation as shared-BCS carrier-localized annihilation of the
+  quotient kernel.
 - **Live attack.**  Make every spectator multiplicity sector carry a new
   authenticated packet or first-hit exit, and prove that survival of the mark
   forces a fixed fraction of the complete adjoint space to enter before the

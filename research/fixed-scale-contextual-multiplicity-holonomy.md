@@ -137,3 +137,12 @@ floor.
   fixed-scale return must be a one-sided charged compression into a proper
   larger corner; another equal chart or a higher-degree projective moment
   cannot work.
+- **Aggregate-child wordization is not necessary.**
+  `partitioned-child-surplus-collision-supplies-contraction` keeps the finite
+  corrected-child type menu separate and returns its members into orthogonal
+  pieces of the next recursive carrier.  The sum of their support leakages
+  gives the same `(1+beta)^(-1)` contraction as one aggregate reflection.
+  This bypasses `aggregate-child-wordization-three-route-no-go`.  The exact
+  remaining groupification is `typewise-schur-tail-partition-compiler`: make
+  the already groupified child type table into that target partition without
+  forgetting that the surplus came from one shared noncommuting BCS tuple.

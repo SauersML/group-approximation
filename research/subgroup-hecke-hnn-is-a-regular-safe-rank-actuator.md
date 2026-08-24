@@ -107,6 +107,13 @@ soundness route those exits into summable first-hit layers while a branching
 recurrence preserves the active matrix carrier; the exact regular model must
 be allowed to drain instead.
 
+Conjugating the whole marked index-two pair, rather than only its lower
+subgroup, gives the exact difference transport in
+`index-two-reynolds-atoms-have-orthogonal-hnn-transports`.
+That closes local assignment-atom routing and supplies arbitrarily many
+orthogonal character destinations.  It remains a finite Bass--Serre actor,
+so it cannot perform the matrix-only companion selection required globally.
+
 ## Literal involution spectral projections do not suffice
 
 Let `a,b` be nontrivial involutions and
