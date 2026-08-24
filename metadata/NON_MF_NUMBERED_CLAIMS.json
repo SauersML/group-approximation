@@ -78,12 +78,6 @@
           "module": "Sofic/FinitePerfectLampExactRadical",
           "declaration": "GroupApproximation.FinitePerfectLamp.finitePerfectPackage",
           "covers": "one printed clause; the declarations are collective"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/UniversalVisibleQuotient",
-          "declaration": "GroupApproximation.comp_mk'_bijective",
-          "covers": "one printed clause; the declarations are collective"
         }
       ]
     },
@@ -145,12 +139,6 @@
           "role": "exact",
           "module": "Sofic/FinitePerfectLampExactRadical",
           "declaration": "GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub",
-          "covers": "one printed clause; the declarations are collective"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TargetEquivalence",
-          "declaration": "GroupApproximation.precomp_bijective",
           "covers": "one printed clause; the declarations are collective"
         }
       ]
