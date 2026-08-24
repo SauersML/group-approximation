@@ -17,6 +17,9 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefectShadow
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
 import GroupApproximation.Leavitt.LeavittMarkNontrivial
 import GroupApproximation.Leavitt.LeavittMatrixCompression
+import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
+import GroupApproximation.Manuscript.OneSidedMFRadical.CanonicalSector
+import GroupApproximation.Kazhdan.AmenableKazhdanFinite
 
 /-!
 # Kernel audit for *One-sided Kazhdan transport and MF radicals*
@@ -42,12 +45,15 @@ supposed to find them, and not in front.
 Three groups of declarations are printed with the weaker `#audit_axioms`,
 which reports the closure without the binder check:
 
-* the **one genuinely conditional endpoint**, `headlineConclusion_of`.  Its
-  leading hypothesis is `PropositionSimple`, that is `IsSimpleGroup H`, which
-  the repository does not prove; the manuscript obtains it from Preusser's
-  normal-subgroup theorem.  A green build here says its *proof* contains no
-  hidden postulate.  It does not erase the displayed hypothesis, and no closed
-  endpoint above or below depends on it -- in particular
+* the **conditional simplicity/headline declarations**.  The older
+  `headlineConclusion_of` takes `PropositionSimple` directly; the exact
+  current wrappers `manuscriptBinaryLeavittSimplicityClause` and
+  `headlineConclusion_of_normalRootDetection` expose the weaker named
+  `NormalRootDetection` premise.  The repository proves neither premise; the
+  manuscript obtains the missing root-detection input from Preusser's
+  normal-subgroup theorem.  A green build here checks only the implications'
+  proof dependencies.  It does not erase their displayed hypotheses, and no
+  closed endpoint above or below depends on them -- in particular
   `rankTwelve_actualCoronaMFResidual_eq_top`, the displayed conclusion
   `Rad_MF(H) = H` of Theorem B, is closed and is proved through normal
   generation of the single element `d = e02(q)`, not through simplicity.
@@ -85,6 +91,7 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.leavittFamily
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical
 
 -- `eq:basic-defect`: the introduction's display of Corollary `cor:defect-hs`.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible
@@ -132,15 +139,15 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedQuotientRelationCalculus
 
-/-! ## The one conditional endpoint
+/-! ## The conditional simplicity and headline endpoints
 
-`prop:simple` has no proof in this repository, so Theorem B is available only
-as an implication.  The hypothesis is deliberately left in front, where the
-binder check can see it, rather than folded into a named proposition where it
-could not.  The second hypothesis of this implication is discharged in-repo by
-`rankTwelve_actualCoronaMFResidual_eq_top`, which is closed above; the first
-is not discharged anywhere. -/
+`prop:simple` has no proof in this repository.  The ordinary audit deliberately
+prints both the exact root-detection reduction and the resulting conditional
+headline, so the missing premise remains visible.  The older direct
+`PropositionSimple` wrapper is retained as a second view of the same gap. -/
 
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.headlineConclusion_of_normalRootDetection
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.headlineConclusion_of
 
 /-! ## Printed definitions and statements over arbitrary manuscript data
@@ -205,3 +212,16 @@ only place their axiom closure is checked. -/
 #audit_axioms GroupApproximation.MFCamouflage.blackHole_injective
 #audit_axioms GroupApproximation.MFCamouflage.productVertex_injective
 #audit_axioms GroupApproximation.MFCamouflage.defect_ne_one
+
+/-! ## Rows added by the consolidation pass -/
+
+-- Section 4, on the printed defect and the printed natural-dimension radical.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanPrintedRadical
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanCoronaVanishing
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCriterionAssembly
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectCoronaVanishing
+
+-- The Introduction's amenable clause.  `finite_of_isAmenable_of_kazhdan` proves
+-- the Bekka--de la Harpe--Valette step the manuscript cites, so this row carries
+-- no literature dependence.
+#audit_closed_axioms GroupApproximation.manuscriptAmenableKazhdanSterility

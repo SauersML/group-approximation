@@ -198,9 +198,13 @@ def main() -> int:
                 f"audit prints closed endpoint '{decl}' but the ledger does not list it"
             )
 
-    papers = "\n".join(paper for paper, _, _ in rows)
+    # A label counts as covered only when a row quotes it as a whole token.
+    # Substring matching would let `eq:moved-markX` cover `eq:moved-mark`.
+    covered = {
+        token for paper, _, _ in rows for token in re.findall(r"`([^`]+)`", paper)
+    }
     for label in manuscript_labels():
-        if label not in papers:
+        if label not in covered:
             failures.append(
                 f"manuscript label '{label}' has no row in "
                 f"{LEDGER.relative_to(REPO_ROOT)}"

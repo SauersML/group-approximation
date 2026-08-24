@@ -36,11 +36,11 @@ containment `K ⊆ N_comp`, whereas the hypothesis here is the abstract one
 Theorem~A link by link on the exact printed defect `printedDefect`: the
 generators `[ucu⁻¹, ℓ]` land in `R_{∞→2}(G)` by `cor:defect-hs`; the residual
 is normal; hence the normal closure `𝔇_G(L)` of those generators is inside it;
-and `thm:normal-kazhdan` closes.  The third link is *derived here from the
-first two*, along the printed route, rather than imported from
-`printedDefect_le_opToHSShadowResidual`, which reaches the same containment by
-passing through the development's larger `compressionCentralizerDefect`.  Both
-routes are available; this one is the printed one.
+and `thm:normal-kazhdan` closes.  The third link is supplied by the shared
+`printedDefect_le_opToHSShadowResidual_direct` lemma, which derives it from the
+first two links along the printed route and never passes through the
+development's larger `compressionCentralizerDefect`.  This assembly reuses
+that lemma rather than reconstructing the same normal-closure argument.
 
 `PrintedDefectCoronaVanishing` is the composite of the assembly with the
 unfolded conclusion, and is the most concrete printed form of Theorem~A: a
@@ -148,9 +148,7 @@ theorem manuscriptPrintedCriterionAssembly : PrintedCriterionAssembly := by
     exact manuscriptCompressionDefectHSInvisible G L hL u
       (mem_compressionSet_iff.mp hu) c hc ℓ hℓ
   have hdef : printedDefect L ≤ opToHSShadowResidual G :=
-    Subgroup.normalClosure_le_normal (by
-      rintro x ⟨u, hu, c, hc, ℓ, hℓ, rfl⟩
-      exact hgen u hu c hc ℓ hℓ)
+    printedDefect_le_opToHSShadowResidual_direct (G := G) L hL
   refine ⟨hgen, opToHSShadowResidual_normal, hdef, ?_⟩
   intro K _ hK hKD
   exact manuscriptNormalKazhdanPrintedRadical G (printedDefect L) hdef K hK hKD

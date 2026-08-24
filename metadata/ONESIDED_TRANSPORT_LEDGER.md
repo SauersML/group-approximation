@@ -32,10 +32,10 @@ is **not** printed with the closed macro.  Its type begins with a binder.  Two
 different things put a binder there, and this ledger separates them by name
 rather than by status, because the status vocabulary cannot:
 
-* **an undischarged mathematical hypothesis.**  There is exactly one such row:
-  `thm:headline`, whose carrier takes `PropositionSimple` (`IsSimpleGroup H`).
-  That hypothesis has no proof in the repository; see *Deliberately not
-  claimed*.
+* **an undischarged mathematical hypothesis.**  Two rows expose the same gap:
+  the explicit simplicity reduction and `thm:headline`.  Their exact wrappers
+  take `NormalRootDetection`, which has no proof in the repository; see
+  *Deliberately not claimed*.
 * **manuscript data the statement is universally quantified over** — the
   ambient group, the coefficient ring, the Leavitt family, the homomorphism.
   Rows `eq:intrinsic-defect`, `eq:matrix-compression`,
@@ -56,9 +56,12 @@ to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62…d8d7a778a`, 29 labelled statements (26 closed, 6 conditional
-and 1 `MISSING` row over 43 rows -- several rows share a carrier, and a few
-printed sentences that are not numbered also get a row).  Re-pin after
+`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 45 rows
+-- 37 `closed`, 7 `conditional`, 1 `MISSING`, naming 44 distinct declarations.
+One row per label, and sixteen further rows: some split a printed theorem into
+the constituents that are separately audited, the rest cover a printed
+sentence that carries no number.  One declaration appears twice, because the
+introduction displays a corollary that Section 3 then states.  Re-pin after
 reviewing the rows an edit to the `.tex` touches.
 
 ## Rows
@@ -76,23 +79,30 @@ reviewing the rows an edit to the `.tex` touches.
 | Theorem A, the three MF-radical clauses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion` | closed |
 | Theorem A, fourth clause: every finite-dimensional linear representation over every field kills the defect | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility` | closed |
 | `eq:leavitt` the binary Leavitt relations, at the manuscript's ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.leavittFamily` | closed |
-| Theorem B `thm:headline`, every printed clause | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.headlineConclusion_of` | conditional |
+| `prop:simple`, exact reduction from the missing root-detection input | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause` | conditional |
+| Theorem B `thm:headline`, every printed clause, simplicity included | `GroupApproximation.Manuscript.OneSidedMFRadical.headlineConclusion_of_normalRootDetection` | conditional |
+| Theorem B minus the simplicity clause, hypothesis-free | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical` | closed |
 | Theorem B, displayed conclusion `Rad_MF(H) = H` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top` | closed |
-| Theorem B, structural clauses: nontrivial, countable, finitely generated, property (T) | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile` | closed |
+| Theorem B, structural clauses: nontrivial, countable, finitely generated, property (T), and `d` nontrivial and normally generating | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile` | closed |
 | `eq:basic-defect` the Hilbert--Schmidt display of `cor:defect-hs` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |
 | Sec. 1, faithful finite-dimensional, residually finite and finite-`L` sterility | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility` | closed |
+| Sec. 1, the amenable clause: property (T) plus amenable gives finite, hence a trivial defect | `GroupApproximation.manuscriptAmenableKazhdanSterility` | closed |
 | Theorem C `thm:prescribed-quotients` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` finite-dimensional commutant rigidity | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity` | closed |
-| `eq:shadow-residual` `R_inf-to-2(G)` as the intersection of the `K_2(V)` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsIntersectionOfHSKernels` | closed |
-| Sec. 3, `K_2(V)` is normal and `R_inf-to-2(G)` is normal and fully invariant | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsNormal` | closed |
+| `eq:shadow-residual` `R_inf-to-2(G)` as the intersection of the `K_2(V)`, with `K_2(V)` in its printed ordinary-limit form and normal | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsIntersectionOfHSKernels` | closed |
+| Sec. 3, `R_inf-to-2(G)` is normal and fully invariant | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsNormal` | closed |
 | `lem:stable-finite` stable finiteness and projection comparison | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite` | closed |
 | `lem:kazhdan-projection-order` one-sided order for the Kazhdan projection | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder` | closed |
 | `thm:transport` one-sided Kazhdan transport, both conjugation directions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport` | closed |
 | `cor:defect-hs` defect generators lie in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` central corona corners | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner` | closed |
-| `thm:normal-kazhdan` normal Kazhdan radical theorem | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical` | closed |
+| `thm:normal-kazhdan` normal Kazhdan radical theorem, at the printed natural-dimension radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanPrintedRadical` | closed |
+| `thm:normal-kazhdan` again, at the basis-free radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical` | closed |
+| Proof of `thm:normal-kazhdan`, closing sentence: every corona homomorphism kills `K` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanCoronaVanishing` | closed |
+| Proof of Theorem A, the four printed links in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCriterionAssembly` | closed |
 | Proof of Theorem A, first step: the printed defect lies in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion` | closed |
 | Proof of Theorem A, second step: normal Kazhdan subgroups of the printed defect | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectNormalKazhdanRadical` | closed |
+| Theorem A unfolded: such a subgroup is killed by every natural-dimension corona representation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectCoronaVanishing` | closed |
 | `prop:defect-saturation` functoriality and saturation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation` | closed |
 | `eq:defect-functoriality` the image inequality itself | `GroupApproximation.Manuscript.OneSidedMFRadical.map_printedDefect_to_range_le` | conditional |
 | `eq:pq` `q` is nonzero at the manuscript's ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.q_ne_zero` | closed |

@@ -14,7 +14,7 @@ is never counted.
 | --- | --- | --- | --- |
 | `prop:mf-residual-calculus` | MF residual calculus | `manuscriptMFResidualCalculus` | closed |
 | `thm:compression-criterion` | one-sided compression criterion | `manuscriptOneSidedCompressionCriterion` plus `manuscriptPrintedDefectFiniteDimensionalSterility` | closed (two exact audited constituents) |
-| `thm:headline` | the binary Leavitt group | `RankTwelveEndpoint.HeadlineConclusion`; conditional `headlineConclusion_of_configuration_and_simplicity` | open only at `prop:simple`; the complete rank-12 configuration and full-radical clause are closed |
+| `thm:headline` | the binary Leavitt group | exact full target `RankTwelveEndpoint.HeadlineConclusion`; hypothesis-free theorem-minus-simplicity `manuscriptBinaryLeavittFullRadical`; conditional full assembly `headlineConclusion_of_normalRootDetection` | open only at the printed simplicity clause; the standalone-validated hypothesis-free theorem is not full Theorem B |
 | `thm:prescribed-quotients` | prescribed MF quotients | `manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` | finite-dimensional commutant rigidity | `manuscriptFiniteDimensionalCommutantRigidity` | closed |
 | `lem:stable-finite` | stable finiteness of norm matrix coronas | `manuscriptNormMatrixCoronaStableFinite` | closed |
@@ -31,6 +31,25 @@ is never counted.
 Current closed count: **13/15**. The only open numbered statements are
 `prop:simple` and `thm:headline`; the headline is blocked solely by the same
 simplicity input.
+
+## Current validation evidence
+
+- `GroupApproximation/Endpoint/OneSidedTransportAudit.lean` has passed its
+  complete endpoint audit. Its `#audit_closed_axioms` checks cover the closed
+  current-manuscript endpoints and enforce the standard axiom whitelist; its
+  deliberately weaker `#audit_axioms` check on `headlineConclusion_of` does
+  not discharge that theorem's leading simplicity hypothesis.
+- `CanonicalSector.lean` passes standalone MSI validation. Its reusable closed
+  packages include `manuscriptNormalKazhdanPrintedRadical`,
+  `manuscriptNormalKazhdanCoronaVanishing`,
+  `manuscriptPrintedCriterionAssembly`, and
+  `manuscriptPrintedDefectCoronaVanishing`. The assembly reuses the exact
+  generator-by-generator shadow-containment lemma.
+- `HeadlineTheorem.lean` passes standalone MSI validation.
+  `manuscriptBinaryLeavittFullRadical` is hypothesis-free and proves every
+  headline clause except `IsSimpleGroup H`. It must not be counted as full
+  `thm:headline`; the full conclusion remains conditional on the unproved
+  `NormalRootDetection` through `headlineConclusion_of_normalRootDetection`.
 
 ## Audit-closed generic routes
 

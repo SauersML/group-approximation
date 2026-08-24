@@ -234,13 +234,21 @@ theorem naturalizeCoordinates_model (A : OpAlmostRepresentation G)
 /-- On matrix units the map is still the same matrix, reindexed. -/
 theorem coe_naturalizeCoordinates_map (A : OpAlmostRepresentation G) (n : ℕ)
     (g : G) :
-    ((A.naturalizeCoordinates.map n g :
+    HEq
+      ((A.naturalizeCoordinates.map n g :
+          Matrix.unitaryGroup (A.naturalizeCoordinates.model n) ℂ) :
+          Matrix (A.naturalizeCoordinates.model n)
+            (A.naturalizeCoordinates.model n) ℂ)
+      (MatrixReindexHS.naturalize A.model n
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ)) := by
+  change HEq
+    ((naturalizeUnitary A.model A.map n g :
         Matrix.unitaryGroup (naturalizedModel A.model n) ℂ) :
         Matrix (naturalizedModel A.model n)
           (naturalizedModel A.model n) ℂ)
-      = MatrixReindexHS.naturalize A.model n
-          (A.map n g : Matrix (A.model n) (A.model n) ℂ) :=
-  coe_naturalizeUnitary A.model A.map n g
+    (MatrixReindexHS.naturalize A.model n
+      (A.map n g : Matrix (A.model n) (A.model n) ℂ))
+  exact heq_of_eq (coe_naturalizeUnitary A.model A.map n g)
 
 /-! ## The coordinate sizes are `d_n²` -/
 
@@ -266,14 +274,25 @@ matrix itself is `conjDouble (V_n g) = V_n(g) ⊗ conj V_n(g)`, by
 `OpAlmostRepresentation.adjoint_map`. -/
 theorem coe_adjoint_naturalizeCoordinates_map (A : OpAlmostRepresentation G)
     (n : ℕ) (g : G) :
-    ((A.adjoint.naturalizeCoordinates.map n g :
+    HEq
+      ((A.adjoint.naturalizeCoordinates.map n g :
+          Matrix.unitaryGroup
+            (A.adjoint.naturalizeCoordinates.model n) ℂ) :
+          Matrix (A.adjoint.naturalizeCoordinates.model n)
+            (A.adjoint.naturalizeCoordinates.model n) ℂ)
+      (MatrixReindexHS.naturalize A.adjoint.model n
+        (A.adjoint.map n g :
+          Matrix (A.adjoint.model n) (A.adjoint.model n) ℂ)) := by
+  change HEq
+    ((naturalizeUnitary A.adjoint.model A.adjoint.map n g :
         Matrix.unitaryGroup (naturalizedModel A.adjoint.model n) ℂ) :
         Matrix (naturalizedModel A.adjoint.model n)
           (naturalizedModel A.adjoint.model n) ℂ)
-      = MatrixReindexHS.naturalize A.adjoint.model n
-          (A.adjoint.map n g :
-            Matrix (A.adjoint.model n) (A.adjoint.model n) ℂ) :=
-  coe_naturalizeUnitary A.adjoint.model A.adjoint.map n g
+    (MatrixReindexHS.naturalize A.adjoint.model n
+      (A.adjoint.map n g :
+        Matrix (A.adjoint.model n) (A.adjoint.model n) ℂ))
+  exact heq_of_eq
+    (coe_naturalizeUnitary A.adjoint.model A.adjoint.map n g)
 
 /-! ## The two sub-steps, as one statement -/
 
