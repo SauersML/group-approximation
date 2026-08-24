@@ -8,6 +8,7 @@ distinct_from:
   finite-selector-gadget-induction-barrier: That says every character of a finite selector subgroup survives in some representation of every finite overgroup; this asks for a chosen tracial mixture avoiding the bad character while the character idempotent remains nonzero and has many conjugates.
   finite-depth-adaptive-selected-atom-escape-tree: That asks for node-dependent overlap escape on reached reducing carriers; this asks for a static root packing and a prescribed trace extension.
   abelian-matrix-hnns-have-marked-finite-quotients: That seeks finite quotients for families of matrix HNNs; this requires quantitative nonintertwining of one character idempotent and exact realization of one restriction distribution.
+  finite-character-hecke-intersection-formula: That computes the exact regular norm of every proposed overlap; this asks for finite overgroups whose transported bad-character intersection labels are all incompatible while the prescribed trace still extends.
 ---
 
 **OPEN FINITE PACKING--EXTENSION LEMMA.** For every forbidden type `i` of
@@ -44,9 +45,11 @@ Equivalently, condition 3 says that `mu_i` lies in the convex hull of the
 normalized `H_i`-weight multiplicity distributions of the irreducible
 representations of `G_i`.
 
-Mackey's criterion makes condition 2 a finite nonintertwining problem, but
-condition 3 must hold simultaneously. No construction satisfying all three
-conditions is currently known.
+By `finite-character-hecke-intersection-formula`, condition 2 is equivalent
+to disagreement of the transported bad characters on every pairwise
+intersection of transported context subgroups.  It is therefore a finite
+labelled-intersection problem, but condition 3 must hold simultaneously. No
+construction satisfying all three conditions is currently known.
 
 ## Surviving route
 
