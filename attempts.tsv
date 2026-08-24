@@ -158,3 +158,4 @@
 32681521362	2026-08-24T01:59:21Z	GroupApproximation/Endpoint/MFRecognitionAudit.lean	as
 32685957389	2026-08-24T03:18:11Z	GroupApproximation/Sofic/MatchingFoldObstruction.lean	fold_witness_matching_noncrossing
 32690241251	2026-08-24T04:30:29Z	GroupApproximation/Analysis/ReducedGroupCStarMFObstruction.lean	reducedLeftRegular_mul
+32693447435	2026-08-24T05:25:33Z	GroupApproximation/Sofic/ActionFormMoverEstimate.lean	inv_mem_stabilizer_union_movers
