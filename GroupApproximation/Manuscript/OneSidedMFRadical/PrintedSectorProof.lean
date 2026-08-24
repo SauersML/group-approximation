@@ -429,6 +429,34 @@ theorem exists_persistent_index_atTop {ι : Type*} (S : Finset ι)
     exact hno ⟨n, not_lt.mp hlt, hn⟩
   exact hinf (Set.Finite.subset (Set.finite_lt_nat N) hsubset)
 
+/-- **The same, as a literal subsequence.**  The manuscript says "after passing
+to a subsequence, one fixed `s₀ ∈ S` stays a positive Hilbert--Schmidt distance
+from the corner identity", so record the strictly monotone reindexing rather
+than only its tail form. -/
+theorem exists_persistent_subsequence {ι : Type*} (S : Finset ι)
+    (hS : S.Nonempty) (f : ℕ → ι → ℝ) (c : ℝ)
+    (h : ∀ n : ℕ, c ≤ (S.card : ℝ)⁻¹ * ∑ s ∈ S, f n s) :
+    ∃ s₀ ∈ S, ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ k : ℕ, c ≤ f (φ k) s₀ := by
+  classical
+  obtain ⟨s₀, hs₀, htail⟩ := exists_persistent_index_atTop S hS f c h
+  choose g hgle hgc using htail
+  refine ⟨s₀, hs₀, fun k ↦ Nat.rec (motive := fun _ ↦ ℕ) (g 0)
+    (fun _ prev ↦ g (prev + 1)) k, ?_, ?_⟩
+  · refine strictMono_nat_of_lt_succ fun n ↦ ?_
+    have hstep :
+        (Nat.rec (motive := fun _ ↦ ℕ) (g 0) (fun _ prev ↦ g (prev + 1))
+            (n + 1) : ℕ)
+          = g ((Nat.rec (motive := fun _ ↦ ℕ) (g 0)
+              (fun _ prev ↦ g (prev + 1)) n : ℕ) + 1) := rfl
+    rw [hstep]
+    have hle := hgle ((Nat.rec (motive := fun _ ↦ ℕ) (g 0)
+      (fun _ prev ↦ g (prev + 1)) n : ℕ) + 1)
+    omega
+  · intro k
+    cases k with
+    | zero => exact hgc 0
+    | succ n => exact hgc _
+
 /-! ## The faithful-representation bridge of `lem:kazhdan-projection-order`
 
 > Faithfulness of the representation gives the same projection inequality in
