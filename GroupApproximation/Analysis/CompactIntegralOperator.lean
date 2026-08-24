@@ -176,5 +176,103 @@ theorem norm_integralOp_sub_le (k₁ k₂ : C(C.carrier × C.carrier, ℂ)) :
   rw [← integralOp_sub]
   exact norm_integralOp_le C _
 
+
+/-! ## Elementary kernels give rank-one operators
+
+`k (x, y) = f₀ x * g₀ y` makes `T_k f = ⟪w, f⟫ • f₀` with `w` the `L²` class of
+`conj ∘ g₀`, so the range lies in a line.  Rank-one operators are compact by the
+ball criterion, the image of the unit ball landing in a dilate of a single
+vector by a bounded scalar.
+-/
+
+/-- The elementary kernel `(x, y) ↦ f₀ x * g₀ y`. -/
+noncomputable def elemKernel (f₀ g₀ : C(C.carrier, ℂ)) :
+    C(C.carrier × C.carrier, ℂ) :=
+  ⟨fun p => f₀ p.1 * g₀ p.2,
+    (f₀.continuous.comp continuous_fst).mul (g₀.continuous.comp continuous_snd)⟩
+
+/-- The `L²` vector an elementary kernel pairs against. -/
+noncomputable def elemVec (g₀ : C(C.carrier, ℂ)) : Lp ℂ 2 C.haar :=
+  ContinuousMap.toLp (E := ℂ) 2 C.haar ℂ (conjCM.comp g₀)
+
+theorem kernelL2_elemKernel (f₀ g₀ : C(C.carrier, ℂ)) (x : C.carrier) :
+    kernelL2 C (elemKernel C f₀ g₀) x
+      = (starRingEnd ℂ) (f₀ x) • elemVec C g₀ := by
+  have h : kernelCurried C (elemKernel C f₀ g₀) x
+      = (starRingEnd ℂ) (f₀ x) • (conjCM.comp g₀) := by
+    ext y; simp [kernelCurried, conjCM, elemKernel]
+  rw [kernelL2, h, map_smul]
+  rfl
+
+theorem applyCM_elemKernel (f₀ g₀ : C(C.carrier, ℂ)) (f : Lp ℂ 2 C.haar) :
+    applyCM C (elemKernel C f₀ g₀) f = ⟪elemVec C g₀, f⟫_ℂ • f₀ := by
+  ext x
+  rw [applyCM_apply, kernelL2_elemKernel, inner_smul_left]
+  simp [mul_comm]
+
+theorem integralOp_elemKernel (f₀ g₀ : C(C.carrier, ℂ)) (f : Lp ℂ 2 C.haar) :
+    integralOp C (elemKernel C f₀ g₀) f
+      = ⟪elemVec C g₀, f⟫_ℂ • ContinuousMap.toLp (E := ℂ) 2 C.haar ℂ f₀ := by
+  rw [integralOp_apply, applyCM_elemKernel, map_smul]
+
+/-- **Rank-one operators built from an inner product are compact.** -/
+theorem isCompactOperator_elemKernel (f₀ g₀ : C(C.carrier, ℂ)) :
+    IsCompactOperator (integralOp C (elemKernel C f₀ g₀)) := by
+  set w := elemVec C g₀ with hw
+  set v := ContinuousMap.toLp (E := ℂ) 2 C.haar ℂ f₀ with hv
+  have key : IsCompactOperator
+      ((integralOp C (elemKernel C f₀ g₀)).toLinearMap) := by
+    refine (isCompactOperator_iff_image_ball_subset_compact
+      (integralOp C (elemKernel C f₀ g₀)).toLinearMap one_pos).mpr ?_
+    refine ⟨(fun c : ℂ => c • v) '' Metric.closedBall 0 ‖w‖,
+      (isCompact_closedBall _ _).image (continuous_id.smul continuous_const), ?_⟩
+    rintro _ ⟨f, hf, rfl⟩
+    refine ⟨⟪w, f⟫_ℂ, ?_, ?_⟩
+    · have hfle : ‖f‖ ≤ 1 := le_of_lt (by simpa using Metric.mem_ball.mp hf)
+      have hcs : ‖(⟪w, f⟫_ℂ : ℂ)‖ ≤ ‖w‖ * ‖f‖ := by
+        simpa using norm_inner_le_norm (𝕜 := ℂ) w f
+      simpa using hcs.trans (by
+        simpa using mul_le_mul_of_nonneg_left hfle (norm_nonneg w))
+    · simpa [hw, hv] using (integralOp_elemKernel C f₀ g₀ f).symm
+  exact key
+
+
+/-! ## Compactness for every continuous kernel
+
+The kernels whose operator is compact form a closed set, by the Lipschitz bound
+of `norm_integralOp_sub_le` together with `isCompactOperator_of_tendsto`.  With
+the elementary kernels inside it, Stone--Weierstrass will finish the job.
+-/
+
+theorem kernelCurried_add (k₁ k₂ : C(C.carrier × C.carrier, ℂ)) (x : C.carrier) :
+    kernelCurried C (k₁ + k₂) x = kernelCurried C k₁ x + kernelCurried C k₂ x := by
+  ext y; simp [kernelCurried, conjCM]
+
+theorem kernelL2_add (k₁ k₂ : C(C.carrier × C.carrier, ℂ)) (x : C.carrier) :
+    kernelL2 C (k₁ + k₂) x = kernelL2 C k₁ x + kernelL2 C k₂ x := by
+  rw [kernelL2, kernelCurried_add, map_add]
+  rfl
+
+theorem integralOp_add (k₁ k₂ : C(C.carrier × C.carrier, ℂ)) :
+    integralOp C (k₁ + k₂) = integralOp C k₁ + integralOp C k₂ := by
+  ext f
+  have h : applyCM C (k₁ + k₂) f = applyCM C k₁ f + applyCM C k₂ f := by
+    ext x; simp [applyCM_apply, kernelL2_add, inner_add_left]
+  simp [integralOp_apply, h, map_add]
+
+/-- **The compact-kernel set is closed.** -/
+theorem isClosed_compactKernels :
+    IsClosed {k : C(C.carrier × C.carrier, ℂ) | IsCompactOperator (integralOp C k)} := by
+  refine IsSeqClosed.isClosed ?_
+  intro kn k hmem hlim
+  have h1 : Filter.Tendsto (fun n => ‖kn n - k‖) Filter.atTop (nhds 0) :=
+    tendsto_iff_norm_sub_tendsto_zero.mp hlim
+  have h2 : Filter.Tendsto (fun n => ‖integralOp C (kn n) - integralOp C k‖)
+      Filter.atTop (nhds 0) :=
+    squeeze_zero (fun n => norm_nonneg _)
+      (fun n => norm_integralOp_sub_le C (kn n) k) h1
+  exact isCompactOperator_of_tendsto
+    (tendsto_iff_norm_sub_tendsto_zero.mpr h2) (Filter.Eventually.of_forall hmem)
+
 end PeterWeyl
 end GroupApproximation
