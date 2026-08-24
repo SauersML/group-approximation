@@ -191,10 +191,10 @@ theorem manuscriptSaturatedDefectKillsMFTargets :
     SaturatedDefectKillsMFTargets := by
   intro G _ _ L hL hG hD
   have hfull : manuscriptCoronaMFResidual G = ⊤ :=
-    (manuscriptOneSidedCompressionCriterion G L hL).2.2 hG hD
+    (manuscriptOneSidedCompressionCriterion (G := G) L hL).2.2 hG hD
   refine ⟨hfull, ?_, ?_⟩
   · intro M _ _ hM f x
-    exact manuscriptFullRadicalKillsMFTargets G M hfull hM f x
+    exact manuscriptFullRadicalKillsMFTargets (G := G) (M := M) hfull hM f x
   · intro hne
     haveI : Nontrivial G := hne
     have hactual : actualCoronaMFResidual G = ⊤ := by
