@@ -24,6 +24,9 @@ import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
 import GroupApproximation.Computability.EffectiveMatrixCode
 import GroupApproximation.Sofic.PropertyTFreeMFCollapse
+import GroupApproximation.Sofic.FiniteOrderNormalGenerator
+import GroupApproximation.Sofic.SimpleTorsionDichotomy
+import GroupApproximation.Sofic.MFCamouflageConsequences
 import GroupApproximation.Analysis.RatComplexSubfield
 import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Criterion.CompressionCentralizerDefect
@@ -703,6 +706,25 @@ export GroupApproximation.PropertyTFreeMFCollapse
     authenticatedRectangularReturn_totalCollapse
     actualCoronaMFResidual_eq_top_of_stable_of_normalGeneratingSubset
     stable_compression_criterion unconditionalPropertyTFreeMFCollapsePackage)
+
+/-! ### Finite-order active-core bridge and its semantic consequences -/
+
+export GroupApproximation.FiniteOrderRankMass
+  (activeCore_reblocking_dimension_and_hsGap)
+export GroupApproximation.FiniteOrderNormalGenerator
+  (finiteOrder_normalGenerator_mem_normMFResidual_iff_mem_opToHSShadowResidual)
+export GroupApproximation
+  (HasFaithfulOpToHSAsymptoticModel
+    faithful_opToHS_model_of_simple_of_detects
+    simple_torsion_isOperatorMF_iff_hasFaithfulOpToHSAsymptoticModel
+    normMatrixCoronaHom_eq_one_of_simple_torsion_not_isOperatorMF
+    simple_torsion_MF_or_all_corona_homs_trivial)
+export GroupApproximation.MFCamouflage.Hotel
+  (actualCoronaMFClosure_eq_comap
+    cyclic_closure_eq_sup_ker
+    cyclic_closure_eq_sup_normalClosure
+    cyclic_quotient_isCDEOperatorMF_iff_defect_mem
+    cyclic_quotient_isOperatorMF_iff_defect_mem)
 
 /-! ### The reduction interface, and algebraic consequences -/
 

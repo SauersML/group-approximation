@@ -662,6 +662,13 @@ def headlineTheorems : List Name :=
    -- add the per-theorem log line that states what each engine itself rests
    -- on, rather than what its consumer rests on.
    ``QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect,
+   ``FiniteOrderRankMass.activeCore_reblocking_dimension_and_hsGap,
+   ``FiniteOrderNormalGenerator.finiteOrder_normalGenerator_mem_normMFResidual_iff_mem_opToHSShadowResidual,
+   ``simple_torsion_isOperatorMF_iff_hasFaithfulOpToHSAsymptoticModel,
+   ``simple_torsion_MF_or_all_corona_homs_trivial,
+   ``MFCamouflage.Hotel.actualCoronaMFClosure_eq_comap,
+   ``MFCamouflage.Hotel.cyclic_quotient_isOperatorMF_iff_defect_mem,
+   ``PropertyTFreeMFCollapse.stable_compression_criterion,
    ``InvolutionCollapseEndpoint.no_marked_model,
    ``InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual,
    -- The MF-radical paper package.  One row per numbered statement of
