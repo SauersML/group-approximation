@@ -1712,6 +1712,9 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedRemarks
 import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
 import GroupApproximation.Leavitt.ElementarySimplicity
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaClass
+import GroupApproximation.Leavitt.CongruenceSubgroups
+import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedSectorProof
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

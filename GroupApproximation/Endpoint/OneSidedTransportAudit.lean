@@ -23,6 +23,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
 import GroupApproximation.Leavitt.LeavittMarkNontrivial
 import GroupApproximation.Leavitt.LeavittMatrixCompression
 import GroupApproximation.Leavitt.BinaryLeavittSimple
+import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
+import GroupApproximation.Leavitt.CongruenceSubgroups
 import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations
 import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
@@ -236,6 +238,23 @@ only place their axiom closure is checked. -/
 -- not zero-input manuscript endpoints.
 #audit_axioms GroupApproximation.BinaryLeavitt.center_eq_bot
 #audit_axioms GroupApproximation.BinaryLeavitt.central_units_trivial
+
+-- Generic partial root extraction.  The first two theorems close the
+-- line-preserving and inverse-entry-zero configurations, and the third
+-- detects noncentrality on an off-diagonal single-entry matrix.  They do not
+-- cover the remaining dense configuration and therefore do not prove the
+-- manuscript's `NormalRootDetection` premise.
+#audit_axioms GroupApproximation.exists_elGen_mem_of_conjSingle_eq
+#audit_axioms GroupApproximation.exists_elGen_mem_of_inv_entry_zero
+#audit_axioms GroupApproximation.exists_noncommuting_single_of_not_central
+
+-- The two congruence-level endpoints, the full-linear-group centre
+-- computation, and the exact reduction of simplicity to Preusser's sandwich.
+-- The final theorem retains that sandwich as a visible leading hypothesis.
+#audit_axioms GroupApproximation.relativeElementary_top
+#audit_axioms GroupApproximation.congruenceSubgroup_bot
+#audit_axioms GroupApproximation.center_eq_bot_of_central_units_trivial
+#audit_axioms GroupApproximation.isSimpleGroup_of_preusser_sandwich
 
 -- `eq:matrix-compression`: unitality, multiplicativity, the recovery identity
 -- that gives injectivity, and the elementary-matrix formula.
