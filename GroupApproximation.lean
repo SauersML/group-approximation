@@ -350,6 +350,7 @@ import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 import GroupApproximation.Manuscript.SpectralPaper.Audit
 import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.TorsionActiveCore
+import GroupApproximation.Sofic.FiniteOrderRankMass
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.PropertyTFreeMFCollapse
 import GroupApproximation.Sofic.CommutingLampCollapse
