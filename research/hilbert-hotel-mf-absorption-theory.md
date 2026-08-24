@@ -156,6 +156,13 @@ virtual freeness is also necessary; hence this is a classification, not only
 an existence family.  By Muller--Schupp, the same class is characterized by
 context-free word problem.
 
+For these virtually free reflections, the MF radical, finite residual, Bohr
+kernel, finite-dimensional unitary residual, and linear residual over every
+field are all the same restricted base.  Their profinite and Bohr
+completions are therefore exactly those of the actor.  In the finitely
+generated case the internal group is Kazhdan exactly when the actor is
+finite.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

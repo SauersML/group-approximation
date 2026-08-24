@@ -103,6 +103,10 @@ virtually free `Q`, and proves that virtual freeness is exactly the
 finitely-generated prefix-dynamical range of the wandering-corner compiler.
 Equivalently, this range consists precisely of the groups with context-free
 word problem.
+For every such actor, the MF, finite, compact, unitary finite-dimensional,
+and all-field linear residuals of the internal group coincide with one
+restricted base; its profinite and Bohr completions are exactly those of the
+actor.
 
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.

@@ -28,6 +28,7 @@ requires:
   - one-free-reflection-contains-all-finite-free-reflections
   - leavitt-unit-internal-virtually-free-reflections
   - leavitt-unit-internal-all-virtually-free-reflections
+  - virtually-free-reflections-share-all-residuals
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,
