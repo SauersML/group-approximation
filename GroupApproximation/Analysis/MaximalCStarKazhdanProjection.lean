@@ -1,3 +1,4 @@
+import Mathlib.Analysis.CStarAlgebra.Projection
 import GroupApproximation.Analysis.MaximalCStarAllUniverses
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.KazhdanGenerators
@@ -80,6 +81,21 @@ soon as the same gap holds in `B` (it does whenever `B` carries a Kazhdan pair
 at its own universe, which is the hypothesis those consumers already assume),
 the image of the `Cmax` projection *is* the spectral projection built in `B`.
 It is proved from the two resolvent factorisations, again with no naturality.
+
+## Non-vacuity
+
+An existential over projections is worth nothing until `0` is excluded, so `p`
+is pinned down inside `Cmax(Λ)`, before any target algebra is mentioned:
+
+* `KazhdanData.projection_mul_eq_of_generator_mul_eq` is `Fix ⊆ ran p`, the
+  reverse of `generator_mul_projection`, so the two together say `ran p = Fix`;
+* `KazhdanData.eq_projection_of_absorbs` turns that pair of properties into a
+  characterisation — `p` is the *unique* self-adjoint element with them, which
+  is the printed definite article;
+* `image_projection_eq_one` says every `⋆`-homomorphism trivialising `Λ` sends
+  `p` to `1` (the Kazhdan projection is the identity on the trivial
+  representation), and `projection_ne_zero` reads off `p ≠ 0` from it by
+  extending the trivial representation into the reduced group `C*`-algebra.
 
 ## What is not claimed
 
@@ -251,6 +267,67 @@ theorem one_sub_projection_eq :
   one_sub_spectralProjection_eq K.average K.isSelfAdjoint_average
     K.rate_lt_one K.gap
 
+/-! ### `ran p = Fix`, and the definite article
+
+`generator_mul_projection` is the inclusion `ran p ⊆ Fix`.  The two lemmas below
+are the reverse inclusion `Fix ⊆ ran p` — the manuscript's "`P` … projects onto
+`Fix`" — in the algebra-internal form "`p` absorbs every group-fixed element",
+and they pin `p` uniquely, which is what the printed definite article in *the*
+Kazhdan projection asserts. -/
+
+/-- An element fixed by every canonical unitary is fixed by the orbit
+average. -/
+theorem average_mul_eq_of_generator_mul_eq {x : MaximalGroupCStar Λ}
+    (hx : ∀ gamma : Λ, maximalGroupCStarGenerator Λ gamma * x = x) :
+    K.average * x = x := by
+  have hcard : ((K.S.card : ℂ)) ≠ 0 := by
+    exact_mod_cast Finset.card_ne_zero.mpr ⟨1, K.one_mem⟩
+  have hterm : ∀ gamma ∈ K.S,
+      maximalGroupCStarGenerator Λ gamma * x = x := fun gamma _ => hx gamma
+  show (((K.S.card : ℂ))⁻¹ • ∑ gamma ∈ K.S,
+      maximalGroupCStarGenerator Λ gamma) * x = x
+  rw [smul_mul_assoc, Finset.sum_mul, Finset.sum_congr rfl hterm,
+    Finset.sum_const, ← Nat.cast_smul_eq_nsmul ℂ K.S.card x, smul_smul,
+    inv_mul_cancel₀ hcard, one_smul]
+
+/-- **`Fix ⊆ ran p`, spectral step.**  An element fixed by the orbit average is
+fixed by the Kazhdan projection: the resolvent factorisation sends it through
+`1 - average`, which annihilates it. -/
+theorem projection_mul_eq_of_average_mul_eq {x : MaximalGroupCStar Λ}
+    (hx : K.average * x = x) : K.projection * x = x := by
+  have h : ((1 : MaximalGroupCStar Λ) - K.projection) * x = 0 := by
+    rw [K.one_sub_projection_eq, mul_assoc, sub_mul, one_mul, hx, sub_self,
+      mul_zero]
+  rw [sub_mul, one_mul] at h
+  exact (sub_eq_zero.mp h).symm
+
+/-- **`Fix ⊆ ran p`.**  The Kazhdan projection absorbs every element fixed by
+every canonical unitary. -/
+theorem projection_mul_eq_of_generator_mul_eq {x : MaximalGroupCStar Λ}
+    (hx : ∀ gamma : Λ, maximalGroupCStarGenerator Λ gamma * x = x) :
+    K.projection * x = x :=
+  K.projection_mul_eq_of_average_mul_eq (K.average_mul_eq_of_generator_mul_eq hx)
+
+/-- **The definite article.**  A self-adjoint element that is fixed by every
+canonical unitary and absorbs every such element *is* the Kazhdan projection.
+
+Both clauses are needed and neither is idle: `0` satisfies the first and fails
+the second, `1` satisfies the second and fails the first whenever `Λ` is
+nontrivial. -/
+theorem eq_projection_of_absorbs {q : MaximalGroupCStar Λ}
+    (hqsa : IsSelfAdjoint q)
+    (hqfix : ∀ gamma : Λ, maximalGroupCStarGenerator Λ gamma * q = q)
+    (hqabs : ∀ x : MaximalGroupCStar Λ,
+      (∀ gamma : Λ, maximalGroupCStarGenerator Λ gamma * x = x) → q * x = x) :
+    q = K.projection := by
+  have h1 : K.projection * q = q :=
+    K.projection_mul_eq_of_generator_mul_eq hqfix
+  have h2 : q * K.projection = K.projection :=
+    hqabs K.projection K.generator_mul_projection
+  have h3 := congrArg star h1
+  rw [star_mul, hqsa.star_eq, K.isSelfAdjoint_projection.star_eq] at h3
+  exact h3.symm.trans h2
+
 end KazhdanData
 
 /-! ## Conjugated absorption from an abstract resolvent factorisation
@@ -303,6 +380,23 @@ theorem conj_absorbs_of_factorisation {m p r u : B}
   exact (sub_eq_zero.mp hqp).symm
 
 end Absorption
+
+/-! ## The trivial representation
+
+The Kazhdan projection acts as the identity on the trivial representation:
+every orbit average is `1` there, so the projection is too.  That is what makes
+`p` nonzero, and it is the classical characterisation of the Kazhdan projection
+as the projection onto the trivial-representation isotypic part. -/
+
+/-- The trivial unitary representation of `Λ` in a unital `C*`-algebra. -/
+def trivialRep (Λ : Type u) [Group Λ] (B : Type v) [CStarAlgebra B] :
+    Λ →* unitary B where
+  toFun _ := 1
+  map_one' := rfl
+  map_mul' _ _ := (mul_one (1 : unitary B)).symm
+
+theorem trivialRep_coe (Λ : Type u) [Group Λ] (B : Type v) [CStarAlgebra B]
+    (gamma : Λ) : ((trivialRep Λ B gamma : unitary B) : B) = 1 := rfl
 
 /-! ## The image of the Kazhdan projection in an arbitrary target -/
 
@@ -358,6 +452,53 @@ theorem one_sub_image_eq (K : KazhdanData Λ)
   have h := congrArg f K.one_sub_projection_eq
   rw [map_sub, map_one, map_mul, map_sub, map_one] at h
   exact h
+
+/-! ### Non-vacuity: `P = 1` on the trivial representation -/
+
+/-- **The orbit average is `1` on a trivialising target.**  If `f` sends every
+canonical unitary to `1`, it sends the orbit average `|S|⁻¹ Σ_{s ∈ S} u_s` to
+`|S|⁻¹ Σ_{s ∈ S} 1 = 1`. -/
+theorem image_average_eq_one (K : KazhdanData Λ)
+    (f : MaximalGroupCStar Λ →⋆ₐ[ℂ] B)
+    (hf : ∀ gamma : Λ, f (maximalGroupCStarGenerator Λ gamma) = 1) :
+    f K.average = 1 := by
+  have hcard : ((K.S.card : ℂ)) ≠ 0 := by
+    exact_mod_cast Finset.card_ne_zero.mpr ⟨1, K.one_mem⟩
+  have hsum : ∑ gamma ∈ K.S, f (maximalGroupCStarGenerator Λ gamma)
+      = ∑ _gamma ∈ K.S, (1 : B) :=
+    Finset.sum_congr rfl fun gamma _ => hf gamma
+  show f (((K.S.card : ℂ))⁻¹ • ∑ gamma ∈ K.S,
+      maximalGroupCStarGenerator Λ gamma) = (1 : B)
+  rw [map_smul, map_sum, hsum, Finset.sum_const,
+    ← Nat.cast_smul_eq_nsmul ℂ K.S.card (1 : B), smul_smul,
+    inv_mul_cancel₀ hcard, one_smul]
+
+/-- **`P = 1` on the trivial representation.**  Any `⋆`-homomorphism out of
+`Cmax(Λ)` that trivialises the group carries the Kazhdan projection to `1`.
+
+This is the clause that makes the projection a *definite* object: it fails for
+`p = 0`, and together with `eq_projection_of_absorbs` it says that `p` is the
+projection onto the trivial-representation isotypic part.  The proof is one
+line of the transported resolvent factorisation: `1 - P = R (1 - 1) = 0`. -/
+theorem image_projection_eq_one (K : KazhdanData Λ)
+    (f : MaximalGroupCStar Λ →⋆ₐ[ℂ] B)
+    (hf : ∀ gamma : Λ, f (maximalGroupCStarGenerator Λ gamma) = 1) :
+    f K.projection = 1 := by
+  have h := one_sub_image_eq K f
+  rw [image_average_eq_one K f hf, sub_self, mul_zero] at h
+  exact (sub_eq_zero.mp h).symm
+
+/-- **The Kazhdan projection is nonzero.**  Extend the trivial representation of
+`Λ` in the reduced group `C*`-algebra — which is nontrivial — across `Cmax(Λ)`;
+it carries `p` to `1`, and it would carry `0` to `0`. -/
+theorem projection_ne_zero (K : KazhdanData Λ) : K.projection ≠ 0 := by
+  obtain ⟨f, hf, -⟩ := maximalGroupCStar_existsUnique_lift_allUniverses Λ
+    (trivialRep Λ (ReducedGroupCStarTrace.ReducedGroupCStar Λ))
+  have hf1 : ∀ gamma : Λ, f (maximalGroupCStarGenerator Λ gamma) = 1 := hf
+  intro h0
+  have h1 : f K.projection = 1 := image_projection_eq_one K f hf1
+  rw [h0, map_zero] at h1
+  exact one_ne_zero h1.symm
 
 /-- **The printed computation, algebraically.**  If `U π(γ) U*` always lies in
 `π(Λ)`, then the conjugated orbit average absorbs `P`, because each
@@ -515,7 +656,7 @@ Kazhdan projection.  Under the printed inclusion `U π(Λ) U* ⊆ π(Λ)` the pr
 inequality `U* P U ≤ P` holds in the Loewner order of `B`.
 
 For star projections the Loewner order is the absorption identity
-`Q P = Q` (`IsStarProjection.le_iff_mul_eq_left`), so the whole content is
+`Q P = Q` (`IsStarProjection.le_iff_mul_eq_left`), which is exactly
 `star_conj_image_mul_image`. -/
 theorem star_conj_image_le (K : KazhdanData Λ) (pi : Λ →* unitary B)
     (f : MaximalGroupCStar Λ →⋆ₐ[ℂ] B)
@@ -617,10 +758,28 @@ the image of the Kazhdan projection under `C*_max(L) → B`.**
 > projection under the extension `C*_max(L) → B`.  If `U ∈ U(B)` satisfies
 > `U π(L) U* ⊆ π(L)`, then `U* P U ≤ P`.
 
-The proposition names a single `p ∈ C*_max(L)` — self-adjoint, idempotent, and
-fixed by every canonical unitary, so it is the Kazhdan projection and not merely
-some projection — and then asserts, for every unital `C*`-algebra `B` in every
-universe:
+The proposition names a single `p ∈ C*_max(L)` and pins it down before ever
+mentioning `B`, so that the existential cannot be satisfied vacuously.  In
+order, the clauses say that `p` is
+
+1. self-adjoint;
+2. idempotent;
+3. **nonzero**;
+4. fixed by every canonical unitary — `ran p ⊆ Fix`;
+5. absorbing on every element fixed by every canonical unitary — `Fix ⊆ ran p`;
+6. **the unique** self-adjoint element with properties 4 and 5, which is the
+   printed definite article in *the* Kazhdan projection;
+7. carried to `1` by every `⋆`-homomorphism that trivialises `L` — the Kazhdan
+   projection acts as the identity on the trivial representation.
+
+`p = 0` satisfies 1, 2 and 4 and makes every displayed inequality read `0 ≤ 0`,
+so with those clauses alone the existential would be satisfiable with no
+content.  Clause 3 excludes it outright; clause 7 excludes it again and
+independently, since a `⋆`-homomorphism carries `0` to `0` and never to `1`;
+and clause 6 says that no other element can take `p`'s place either.
+
+The last clause is the printed lemma itself, for every unital `C*`-algebra `B`
+in every universe:
 
 * the extension exists and is unique (`prop:maximal-cstar`, which is what makes
   "the image of the Kazhdan projection" a definite description);
@@ -635,8 +794,17 @@ used. -/
 def MaximalCStarKazhdanProjectionOrder : Prop :=
   ∀ (L : Type u) [Group L], HasKazhdanPropertyT.{u, u} L →
     ∃ p : MaximalGroupCStar L,
-      IsSelfAdjoint p ∧ p * p = p ∧
+      IsSelfAdjoint p ∧ p * p = p ∧ p ≠ 0 ∧
         (∀ l : L, maximalGroupCStarGenerator L l * p = p) ∧
+        (∀ x : MaximalGroupCStar L,
+          (∀ l : L, maximalGroupCStarGenerator L l * x = x) → p * x = x) ∧
+        (∀ q : MaximalGroupCStar L, IsSelfAdjoint q →
+          (∀ l : L, maximalGroupCStarGenerator L l * q = q) →
+          (∀ x : MaximalGroupCStar L,
+            (∀ l : L, maximalGroupCStarGenerator L l * x = x) → q * x = x) →
+          q = p) ∧
+        (∀ (B : Type v) [CStarAlgebra B] (f : MaximalGroupCStar L →⋆ₐ[ℂ] B),
+          (∀ l : L, f (maximalGroupCStarGenerator L l) = 1) → f p = 1) ∧
         ∀ (B : Type v) [CStarAlgebra B] [PartialOrder B] [StarOrderedRing B]
           (pi : L →* unitary B),
           (∃! f : MaximalGroupCStar L →⋆ₐ[ℂ] B,
@@ -654,12 +822,23 @@ theorem manuscriptMaximalCStarKazhdanProjectionOrder :
   intro L _ hT
   obtain ⟨K⟩ := exists_kazhdanData L hT
   refine ⟨K.projection, K.isSelfAdjoint_projection,
-    K.projection_mul_projection, K.generator_mul_projection, ?_⟩
-  intro B _ _ _ pi
-  refine ⟨maximalGroupCStar_existsUnique_lift_allUniverses L pi, ?_⟩
-  intro U hcomp f hf
-  exact star_conj_image_le K pi f hf ((U : unitary B) : B) U.property.1
-    U.property.2 (compresses_coe pi U hcomp)
+    K.projection_mul_projection, ?_⟩
+  refine ⟨projection_ne_zero K, ?_⟩
+  refine ⟨K.generator_mul_projection, ?_⟩
+  refine ⟨?_, ?_⟩
+  · intro x hx
+    exact K.projection_mul_eq_of_generator_mul_eq hx
+  refine ⟨?_, ?_⟩
+  · intro q hqsa hqfix hqabs
+    exact K.eq_projection_of_absorbs hqsa hqfix hqabs
+  refine ⟨?_, ?_⟩
+  · intro B _ f hf
+    exact image_projection_eq_one K f hf
+  · intro B _ _ _ pi
+    refine ⟨maximalGroupCStar_existsUnique_lift_allUniverses L pi, ?_⟩
+    intro U hcomp f hf
+    exact star_conj_image_le K pi f hf ((U : unitary B) : B) U.property.1
+      U.property.2 (compresses_coe pi U hcomp)
 
 end OneSidedMFRadical
 end Manuscript
