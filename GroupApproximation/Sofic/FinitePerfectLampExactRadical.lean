@@ -45,8 +45,9 @@ variable (K : Type) [Group K] [Finite K]
 /-- **Theorem C over the concrete datum.**  For a finite perfect lamp group the
 MF radical of the compression wreath product is exactly the lamp subgroup. -/
 theorem actualCoronaMFResidual_eq_lampSub :
-    commutator K = ⊤ → actualCoronaMFResidual (WFin K) = lampSub K := by
-  intro hK
+    ∀ (K' : Type) [Group K'] [Finite K'],
+      commutator K' = ⊤ → actualCoronaMFResidual (WFin K') = lampSub K' := by
+  intro K' _ _ hK
   exact PerfectLampRadical.actualCoronaMFResidual_eq_lampRange conjD
     conjD_injective CommutingLampCollapse.gammaBar_hasKazhdanPropertyT
     (fun k => PerfectLampRadical.exists_pow_eq_one_of_finite k) hK
@@ -115,17 +116,17 @@ theorem not_isCDEOperatorMF_WFin [Nontrivial K] (hK : commutator K = ⊤) :
 four radicals exactly the lamp subgroup -- for every nontrivial finite perfect
 lamp group over the one concrete doubling datum. -/
 theorem finitePerfectPackage :
-    ∀ [Nontrivial K], commutator K = ⊤ →
-      IsSofic (WFin K) ∧ ¬ IsCDEOperatorMF (WFin K) ∧ Group.FG (WFin K) ∧
-        actualCoronaMFResidual (WFin K) = lampSub K ∧
-        fdUnitaryResidual (WFin K) = lampSub K ∧
-        finiteResidual (WFin K) = lampSub K ∧
-        linearResidual (WFin K) = lampSub K := by
-  intro _ hK
-  exact ⟨isSofic_WFin K, not_isCDEOperatorMF_WFin K hK, inferInstance,
-    (four_radicals_eq_lampSub K hK).1, (four_radicals_eq_lampSub K hK).2.1,
-    (four_radicals_eq_lampSub K hK).2.2.1,
-    (four_radicals_eq_lampSub K hK).2.2.2⟩
+    ∀ (K' : Type) [Group K'] [Finite K'] [Nontrivial K'], commutator K' = ⊤ →
+      IsSofic (WFin K') ∧ ¬ IsCDEOperatorMF (WFin K') ∧ Group.FG (WFin K') ∧
+        actualCoronaMFResidual (WFin K') = lampSub K' ∧
+        fdUnitaryResidual (WFin K') = lampSub K' ∧
+        finiteResidual (WFin K') = lampSub K' ∧
+        linearResidual (WFin K') = lampSub K' := by
+  intro K' _ _ _ hK
+  exact ⟨isSofic_WFin K', not_isCDEOperatorMF_WFin K' hK, inferInstance,
+    (four_radicals_eq_lampSub K' hK).1, (four_radicals_eq_lampSub K' hK).2.1,
+    (four_radicals_eq_lampSub K' hK).2.2.1,
+    (four_radicals_eq_lampSub K' hK).2.2.2⟩
 
 /-! ## The fifth column, conditionally
 

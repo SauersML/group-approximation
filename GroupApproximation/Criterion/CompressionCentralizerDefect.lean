@@ -113,9 +113,10 @@ theorem map_compressionCentralizerDefect_generator_eq_one
 finite-dimensional representation of `H`, over every field, kills the entire
 intrinsic compression--centralizer defect `𝔇(H,L)`. -/
 theorem compressionCentralizerDefect_le_ker :
-    ∀ [FiniteDimensional k V] (π : H →* (V ≃ₗ[k] V)) (L : Subgroup H),
+    ∀ {H' k' V' : Type*} [Group H'] [Field k'] [AddCommGroup V'] [Module k' V']
+      [FiniteDimensional k' V'] (π : H' →* (V' ≃ₗ[k'] V')) (L : Subgroup H'),
       compressionCentralizerDefect L ≤ π.ker := by
-  intro _ π L
+  intro H' k' V' _ _ _ _ _ π L
   apply Subgroup.normalClosure_le_normal
   rintro x ⟨g, hg, z, hz, ℓ, hℓ, rfl⟩
   exact MonoidHom.mem_ker.mpr
