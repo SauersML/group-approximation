@@ -25,6 +25,7 @@ requires:
   - leavitt-unit-internal-mf-reflection-tower
   - wandering-leavitt-corner-reflection-compiler
   - leavitt-unit-internal-free-reflections
+  - one-free-reflection-contains-all-finite-free-reflections
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,

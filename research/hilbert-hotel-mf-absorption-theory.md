@@ -137,6 +137,10 @@ prefix ping-pong supplies such a wandering corner for every free group `F_r`.
 Consequently the same fixed simple Kazhdan MF black hole contains finitely
 generated non-MF subgroups with reflection `F_r`, and one such subgroup
 internalizes the MF-closure problem for all `r`-generated presentations.
+Already the single finitely generated subgroup `U wr F_2` contains the
+subgroups with reflection `F_r` for every finite `r`; it also contains a
+strict descending chain of isomorphic copies obtained from a proper
+self-embedding of `F_2`.
 
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so

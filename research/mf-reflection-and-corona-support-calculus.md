@@ -92,6 +92,9 @@ prefix ping-pong supplies every `F_r` as such an actor.  Hence the single
 group `U` contains finitely generated non-MF subgroups with reflection `F_r`,
 and their quotient lattices internalize the MF-closure problem for all
 finite-generator presentations.
+One group `U wr F_2` already contains all finite-rank free-reflection
+subgroups and a strict descending chain of isomorphic copies induced by a
+proper free self-embedding.
 
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
