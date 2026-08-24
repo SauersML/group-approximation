@@ -783,6 +783,7 @@ import GroupApproximation.Leavitt.ElementaryRoots
 import GroupApproximation.Leavitt.OuterRootLeavittRouting
 import GroupApproximation.Leavitt.ElementaryStabilization
 import GroupApproximation.Leavitt.RankFourCompressors
+import GroupApproximation.Leavitt.RankTwelveCompressor
 import GroupApproximation.Leavitt.UniversalLeavitt
 import GroupApproximation.Leavitt.UniversalRankFour
 import GroupApproximation.Leavitt.UniversalPropertyT
