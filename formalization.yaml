@@ -34,6 +34,13 @@ sources:
     id: https://arxiv.org/abs/1704.06906
     relationship: background
 
+  - title: The MF property for amalgamated free products
+    authors: [Tatiana Shulman]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/2603.13564
+    relationship: background
+
   - title: On L^1-approximation of groups
     authors: [Benjamin Bachner, Alon Dogon, Alexander Lubotzky]
     year: 2026
