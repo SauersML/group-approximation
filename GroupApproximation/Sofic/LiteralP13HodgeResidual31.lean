@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.LiteralP13HodgeResidual13
+import GroupApproximation.Sofic.LiteralP13HodgeTranspose
 
 namespace GroupApproximation
 namespace LiteralP13HodgeCertificate

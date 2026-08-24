@@ -269,6 +269,7 @@ def emit_transposed_block(output, module_prefix, residual, i, k):
     output.write_text(
         "import GroupApproximation.Sofic.%s%d%d\n" %
         (module_prefix, k, i) +
+        "import GroupApproximation.Sofic.LiteralP13HodgeTranspose\n" +
         "\nnamespace GroupApproximation\n" +
         "namespace LiteralP13HodgeCertificate\n\n" +
         "theorem residual_block_natAbs_%d_%d :\n" % (i, k) +
