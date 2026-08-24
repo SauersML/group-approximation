@@ -11,10 +11,10 @@ requires:
 ---
 
 Take the contextual group skeleton and perfect tracial representation from
-`non-ce-bcs-has-locally-separating-perfect-kernel`.  Choose one kernel
-witness detected by each forbidden character and quotient by the normal
-closure of those finitely many witnesses.  The central sign survives, while
-every forbidden context character idempotent vanishes by `(FKQ5)`.  A
+`non-ce-bcs-has-locally-separating-perfect-kernel`.  Choose a basis for the
+kernel inside each finite context group and quotient by the normal closure
+of those bases.  The central sign survives, while every forbidden context
+character idempotent vanishes by `(FKQ5)`.  A
 hypothetical hyperlinear embedding of the quotient would yield, in its
 central `J=-1` corner, a Connes-embeddable perfect trace for the original
 BCS.  This contradicts `mipstar-bcs-tracial-nonru-exists`.

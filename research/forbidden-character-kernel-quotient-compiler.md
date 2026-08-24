@@ -72,16 +72,19 @@ chi_i|_(ker(theta) intersect H_i) is nontrivial
 for every forbidden i.                                (FKQ6)
 ```
 
-Because there are only finitely many forbidden types, `(FKQ6)` has a finite
-form.  Choose one witness
+Because there are only finitely many context groups, `(FKQ6)` has a much
+smaller finite form.  Put `K_i=ker(theta) intersect H_i`, choose a finite
+generating set `W_i` for each `K_i`, and set
 
 ```text
-k_i in ker(theta) intersect H_i,       chi_i(k_i)!=1, (FKQ7)
+N=normalClosure_Gamma(union_i W_i).                    (FKQ7)
 ```
 
-for each `i`, and take `N` to be their normal closure.  Then `(FKQ3)` holds.
-If `Gamma` is finitely presented, this quotient is finitely presented as
-well: it is obtained by adjoining the finitely many relations `k_i=1`.
+Then `(FKQ3)` holds for every forbidden type at once.  If `Gamma` is
+finitely presented, this quotient is finitely presented as well.  For
+binary contexts one needs only `dim_(F_2) K_i` relations from context `i`,
+which is optimal locally by
+`local-kernel-bases-optimally-annihilate-character-types`.
 
 The remaining construction problem is therefore purely algebraic: arrange
 one perfect non-CE contextual representation whose group kernel locally

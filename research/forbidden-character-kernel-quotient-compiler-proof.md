@@ -49,7 +49,8 @@ N intersect H_i <= ker(theta) intersect H_i.          (FKP3)
 
 If `chi_i` is trivial on the right side, no smaller `N` can separate it.  If
 all restrictions in `(FKQ6)` are nontrivial, taking `N=ker(theta)` satisfies
-`(FKQ3)`.  Alternatively choose witnesses `k_i` as in `(FKQ7)`.  Their
-normal closure lies in `ker(theta)` and intersects each `H_i` in an element
-detected by `chi_i`, proving the finite form and the finite-presentation
-clause.
+`(FKQ3)`.  Alternatively take `(FKQ7)`.  Its normal closure lies in
+`ker(theta)` and contains every `K_i`, so each forbidden `chi_i` remains
+nontrivial on `N intersect H_i`.  The optimal local relation count is
+`local-kernel-bases-optimally-annihilate-character-types`; this proves the
+finite form and the finite-presentation clause.
