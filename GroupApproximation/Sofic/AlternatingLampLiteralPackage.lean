@@ -29,7 +29,7 @@ abstract endpoint.
 namespace GroupApproximation
 namespace AlternatingLampLiteral
 
-open MarkedCompression ExplicitLinearModel LiteralDoublingWreath
+open SemidirectProduct MarkedCompression ExplicitLinearModel LiteralDoublingWreath
 
 /-! ## An involution in `A₅` -/
 
@@ -64,6 +64,36 @@ extension. -/
 abbrev WA : Type := WreathV (K := alternatingGroup (Fin 5)) conjD conjD_injective
 
 instance : Countable WA := inferInstance
+
+/-- The split quotient in the paper's headline theorem. -/
+abbrev qA : WA →* Vertical conjD conjD_injective := SemidirectProduct.rightHom
+
+/-- The canonical section of the headline quotient. -/
+abbrev sectionA : Vertical conjD conjD_injective →* WA := SemidirectProduct.inr
+
+/-- The single invisible relation: the double transposition at the witness
+site. -/
+noncomputable def rA : WA := witnessLamp conjD conjD_injective a5
+
+theorem rA_ne_one : rA ≠ 1 := by
+  intro h
+  have hlamp : Lamp.single (tSite conjD conjD_injective) a5 = 1 :=
+    inl_injective (by simpa [rA, witnessLamp] using h)
+  have hvalue := congrArg
+    (fun f : Lamp (alternatingGroup (Fin 5)) (Cosets conjD conjD_injective) =>
+      f.toFun (tSite conjD conjD_injective)) hlamp
+  exact a5_ne_one (by simpa using hvalue)
+
+theorem rA_mul_self : rA * rA = 1 := by
+  simpa [rA, pow_two] using
+    witnessLamp_pow conjD conjD_injective a5 2 (by simpa [pow_two] using a5_mul_self)
+
+theorem qA_comp_sectionA : qA.comp sectionA = MonoidHom.id _ := by
+  apply MonoidHom.ext
+  intro g
+  change (SemidirectProduct.rightHom :
+      WA →* Vertical conjD conjD_injective) (SemidirectProduct.inr g) = g
+  exact SemidirectProduct.rightHom_inr g
 
 /-! ## The package -/
 

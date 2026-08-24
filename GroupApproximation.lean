@@ -12,6 +12,7 @@ import GroupApproximation.Analysis.QuasiRegularWitness
 import GroupApproximation.Analysis.StateExtension
 import GroupApproximation.Analysis.SpectralStateWitness
 import GroupApproximation.Analysis.SpectralComponentDiameter
+import GroupApproximation.Analysis.SpectralComponentMotion
 import GroupApproximation.Analysis.ClopenSpectralProjection
 import GroupApproximation.Analysis.GNSEigenvector
 import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
@@ -345,6 +346,8 @@ import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.InvolutionCollapseEndpoint
 import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.SpectralCompression
+import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
+import GroupApproximation.Manuscript.SpectralPaper.Audit
 import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.CommutingLampCollapse

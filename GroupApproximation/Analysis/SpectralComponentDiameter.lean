@@ -24,6 +24,32 @@ open WeakDual
 
 universe u
 
+/-- The supremum of the diameters of the connected components of the spectrum
+of `a`.  The range is bounded because the spectrum is compact. -/
+noncomputable def spectralComponentDiameter
+    {A : Type u} [CStarAlgebra A] (a : A) : ℝ :=
+  sSup (Set.range fun z : spectrum ℂ a ↦ Metric.diam (connectedComponent z))
+
+theorem componentDiameters_bddAbove
+    {A : Type u} [CStarAlgebra A] (a : A) :
+    BddAbove
+      (Set.range fun z : spectrum ℂ a ↦ Metric.diam (connectedComponent z)) := by
+  refine ⟨Metric.diam (Set.univ : Set (spectrum ℂ a)), ?_⟩
+  rintro _ ⟨z, rfl⟩
+  exact Metric.diam_mono (Set.subset_univ _) isCompact_univ.isBounded
+
+theorem component_diameter_le_spectralComponentDiameter
+    {A : Type u} [CStarAlgebra A] (a : A) (z : spectrum ℂ a) :
+    Metric.diam (connectedComponent z) ≤ spectralComponentDiameter a :=
+  le_csSup (componentDiameters_bddAbove a) ⟨z, rfl⟩
+
+theorem spectralComponentDiameter_nonneg
+    {A : Type u} [CStarAlgebra A] (a : A) :
+    0 ≤ spectralComponentDiameter a := by
+  apply Real.sSup_nonneg
+  rintro _ ⟨z, rfl⟩
+  exact Metric.diam_nonneg
+
 /-! ## The compact-Hausdorff topology lemma -/
 
 /-- Two points of a compact Hausdorff space which belong to exactly the same
