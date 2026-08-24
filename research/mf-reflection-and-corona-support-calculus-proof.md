@@ -20,6 +20,9 @@ requires:
   - every-noninjective-star-fold-has-kernel-f-infinity
   - universal-camouflage-presentation-compiler
   - black-hole-attachments-compute-semantic-quotients
+  - leavitt-unit-internal-wreath-universality
+  - leavitt-unit-internal-shift-reflection
+  - leavitt-unit-internal-mf-reflection-tower
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,

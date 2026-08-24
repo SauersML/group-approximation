@@ -66,6 +66,25 @@ fixed final relation produces `Q`.  Arbitrary amalgamated attachments of the
 black-hole group compute semantic quotients by killing exactly the attached
 subgroups.
 
+The binary Leavitt unit group realizes the opposite phenomenon internally:
+for every finite group `F`, one block-monomial subgroup `U wr F<=U` has MF
+reflection exactly `F`, although the ambient simple group `U` has zero MF
+reflection.  All these subgroups are finitely generated Kazhdan groups.  A
+single ambient full-radical group therefore contains every finite MF
+reflection, and the reflection functor loses maximal information under these
+subgroup inclusions.
+
+The same ambient group contains a finitely generated bilateral wreath
+subgroup `U wr Z` whose MF reflection is infinite cyclic.  Its entire
+semantic closure operator is principal at one base involution, so killing
+one fixed word is equivalent to making any quotient MF.
+
+Iterating that bilateral shift produces an internal tower whose MF
+reflections are the iterated amenable wreath products
+`F`, `F wr Z`, `(F wr Z) wr Z`, and so on.  The same ambient simple group
+therefore contains one-word non-MF thickenings of visible groups with
+unbounded derived length.
+
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
 

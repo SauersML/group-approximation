@@ -50,6 +50,9 @@ requires:
   - authenticated-coarse-fine-return-forces-mf-collapse
   - rank-deficient-return-has-a-singular-value-plateau
   - mf-reflection-and-corona-support-calculus
+  - leavitt-unit-internal-wreath-universality
+  - leavitt-unit-internal-shift-reflection
+  - leavitt-unit-internal-mf-reflection-tower
 ---
 
 The group, C-star, and dynamical assertions are the corresponding established

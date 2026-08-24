@@ -37,4 +37,15 @@ BCS representation must extend with every forbidden local source zero.
 - Amalgamating the complete selector centers forces all context atoms to
   commute and turns the BCS into a classical global assignment.  Only the
   repeated one-variable marginals may be amalgamated.
-
+- A polynomially authenticated infinite address register is already
+  available from `baumslag-torsion-host-is-a-quadratic-hs-address-register`.
+  Its relations tensor independently of the contextual tuple, so it cannot
+  make forbidden mass choose an address or identify the returned
+  shared-variable marginals.  The missing statement is payload-sensitive
+  recombination, not the availability of finite-state address names.
+- There is now a separate one-type alternative.  By
+  `maximal-forbidden-atom-has-a-named-positive-half`, one maximal forbidden
+  atom already carries a fixed fraction of the current common carrier.
+  `single-selected-atom-hs-escape` asks for one mixed word to move that piece
+  beyond the current reducing hull.  If that route closes, simultaneous
+  return and recombination of all context charts is unnecessary.

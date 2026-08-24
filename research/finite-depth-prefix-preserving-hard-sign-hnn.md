@@ -62,3 +62,9 @@ marked density and exit fraction are fixed, choose one finite
 all-depth clock is needed for a machine-indexed family, not for one witness
 group.
 
+The destination signs need not be listed as `N` unrelated generators.
+`baumslag-torsion-host-is-a-quadratic-hs-address-register` realizes them as
+the first `N` lamps in one three-generator finitely presented metabelian
+group, with quadratic normalized-HS authentication cost.  This compresses
+the address register only; the source signs and the `N` payload-carrying HNN
+rows remain part of the fixed-depth witness.

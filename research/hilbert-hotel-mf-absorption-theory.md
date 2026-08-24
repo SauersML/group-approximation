@@ -104,6 +104,30 @@ to `F_infinity`, giving continuum many splittings
 `K_infinity ~= F_infinity semidirectProduct K_infinity` and a normal-subgroup
 failure of MF-radical heredity inside one fixed group.
 
+The binary Leavitt unit group has a complementary intrinsic universality.
+It contains `U wr F` for every finite group `F`, and the exact MF radical of
+this subgroup is the base `U^F`; hence every finite group is the universal MF
+quotient of a finitely generated Kazhdan subgroup of one fixed simple
+Kazhdan MF black hole.  It also contains
+`U^(N) semidirectProduct Sym_fin(N)`, whose radical is exactly `U^(N)`.
+Thus subgroup heredity fails internally even with both the ambient group and
+the finite-level subgroup Kazhdan.
+
+A three-leaf prefix table also creates a bilateral cylinder shift inside the
+same unit group.  The resulting finitely generated subgroup is `U wr Z`; its
+radical is the restricted base `U^(Z)`, its complete MF reflection is `Z`,
+and one base involution again classifies MF throughout the quotient lattice.
+All MF-target, profinite, Bohr, and exact finite-dimensional representation
+functors of this subgroup are exactly those of `Z`.
+
+The shift can be iterated without leaving the unit group.  Starting from any
+finite `F`, this gives finitely generated subgroups `K_m<=U` whose exact MF
+reflections are the iterated amenable wreath products
+`Q_0=F`, `Q_(m+1)=Q_m wr Z`.  One original involution normally generates
+every radical and classifies MF throughout every quotient lattice.  For
+`F=C_2`, the visible derived lengths tend to infinity, so the subgroups are
+pairwise nonisomorphic.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;
