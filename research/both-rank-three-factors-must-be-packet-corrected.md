@@ -9,6 +9,7 @@ distinct_from:
   leavitt-corner-one-sided-lift-exists: that permits arbitrary corner corrections; this pins the minimal correction architecture forced on the explicit rank-three pair.
 artifacts:
   - research/artifacts/one-nonnormal-packet-corner-correction-2026-08-21.md
+  - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
 Let `A=e t~e`, `B=e s~e`, `Delta=AB+e`, and
@@ -37,3 +38,10 @@ Taking either packet zero reduces to a forbidden one-sided inverse for the
 other fixed rank-three factor.  No explicit pair `(x,y)` solving the full
 bilinear equation is currently known.
 
+The search now has a global necessary condition.  The two linear terms have
+zero identity coefficient for every conjugator, while `tau(Delta)=1`, so
+`tau(P_xP_y)=1`: the packet supports must meet oddly, and `x=y` is impossible.
+Among independent genuinely mixed words through length four in the eight
+elementary `s/t` roots, this removes all but 1,394 of 1,572,516 ordered pairs;
+exact evaluation of those survivors gives no solution.  This bounded result
+does not exclude longer or arbitrary conjugators.

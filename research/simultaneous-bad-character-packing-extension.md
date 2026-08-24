@@ -3,6 +3,7 @@ rg: 2
 id: simultaneous-bad-character-packing-extension
 kind: claim
 title: One finite presentation simultaneously packs every forbidden character family
+refuted_by: [canonical-trace-forbids-supercritical-character-packing]
 distinct_from:
   single-selected-atom-hs-escape: that chooses one maximal forbidden type inside a reached reducing carrier; this asks for one joint root-level orthogonality system and only more than 2/beta copies per type.
   finite-packet-functoriality-has-positive-regular-profile: that proves ordinary packet multiplicity relations retain a positive regular profile; this asks for literal products of transported idempotents to vanish, which constrains the intertwiners rather than only their multiplicities.

@@ -3,6 +3,7 @@ rg: 2
 id: finite-bad-character-packing-extension
 kind: claim
 title: Bad BCS characters admit large trace-compatible finite-overgroup packings
+refuted_by: [canonical-trace-forbids-supercritical-character-packing]
 distinct_from:
   simultaneous-bad-character-packing-extension: That asks for one joint cross-type orthogonality system at threshold 2/beta; this asks for separate trace-compatible finite overgroups and pays the maximal-type factor M.
   finite-selector-gadget-induction-barrier: That says every character of a finite selector subgroup survives in some representation of every finite overgroup; this asks for a chosen tracial mixture avoiding the bad character while the character idempotent remains nonzero and has many conjugates.

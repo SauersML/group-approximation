@@ -2,7 +2,7 @@
 rg: 2
 id: canonical-trace-forbids-supercritical-character-packing-proof
 kind: route
-title: Proof of the canonical character-packing ceiling
+title: Prove the canonical character-packing ceiling
 target: canonical-trace-forbids-supercritical-character-packing
 requires: []
 ---

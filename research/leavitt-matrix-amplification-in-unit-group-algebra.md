@@ -2,7 +2,7 @@
 rg: 2
 id: leavitt-matrix-amplification-in-unit-group-algebra
 kind: claim
-title: Every matrix algebra of two-power size over the Leavitt unit group algebra sits inside it as a corner
+title: Every two-power matrix algebra over the Leavitt unit group algebra embeds into a supported corner
 distinct_from:
   leavitt-corner-idempotent-unital-surjection: that builds the corner `eAe` and its unital evaluation onto `R`, and is about a map out of the corner; this says what sits *inside* the same corner — a full matrix algebra over the whole group algebra — and it uses that node's idempotent as its starting point.
   leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(R)` with `EL_n(R)` and is a statement about groups over the Leavitt algebra; this is a statement about matrix rings over the *group algebra* `F_2[R^x]`, one level up, and neither transports to the other.
@@ -19,11 +19,16 @@ Let `R = L_(F_2)(1,2)`, `G = R^x`, `S = F_2[G]`.  For every `k >= 0` and
 
     j_N : M_N(S) -> S
 
-whose image is `E_N S E_N` for an idempotent `E_N = j_N(I_N)` of `S`, with
-`E_1 = 1` and `E_2 = e = [g] + [g^2]`, the idempotent of
+whose image is contained in `E_N S E_N` for the idempotent
+`E_N = j_N(I_N)` of `S`, with `E_1 = 1` and
+`E_2 = e = [g] + [g^2]`, the idempotent of
 `leavitt-corner-idempotent-unital-surjection`.
 
 In particular `e S e` contains a copy of `M_2(S)`.
+
+No assertion is made that the image equals all of `E_N S E_N`.  The
+construction proves an embedding supported by the corner, and that is exactly
+what its direct/stable-finiteness consumer needs.
 
 ## Where the room comes from
 

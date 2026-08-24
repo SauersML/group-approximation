@@ -63,14 +63,16 @@ factor, so it commutes with the image of `S`, and
 
     M_2(S) ~= S (x) M_2(F_2) ~= S (x) e F_2[H] e  ->  e S e
 
-is an injective ring map `j_2` with `j_2(I_2) = e`.
+is an injective ring map `j_2` with `j_2(I_2) = e`.  This shows only that its
+image is a subring of `eSe`; no surjectivity onto `eSe` follows from the
+tensor-factor construction.
 
 **Step 5 — induction.**  Given an injective ring map `j : M_2(S) -> S` with
 `j(I_2)` idempotent, `M_2(j) : M_4(S) = M_2(M_2(S)) -> M_2(S)` is injective
 and carries `I_4` to `j(I_2) I_2`, an idempotent of `M_2(S)`.  So
 `j . M_2(j) : M_4(S) -> S` is injective and carries `I_4` to an idempotent of
 `S`.  Iterating gives `j_N` for every `N = 2^k`, with
-`E_N = j_N(I_N)` idempotent and image `E_N S E_N`.
+`E_N = j_N(I_N)` idempotent and image contained in `E_N S E_N`.
 
 ## Note on the source's version
 

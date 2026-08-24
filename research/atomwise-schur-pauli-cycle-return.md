@@ -55,7 +55,12 @@ Pauli formulas alone do not prove `(ASR1)`.
   packet words in every representation and fail the regular-trace firewall.
   The comparison must occur only after the matrix-coordinate `K_(2,m)`
   compression or an equivalent reservoir lock.
+- Twisting the commutator of the two Schur packet flips does create a genuine
+  payload-conditioned multiplicity law, but
+  `twisted-flip-square-shifts-multiplicity-cocycle` shows that it only moves a
+  fixed parity divisor between allowed and forbidden sectors. Its defect is
+  `O(1/m)` on multiplicity `m`, so it cannot pay `(ASR1)` without an
+  independent positive-density or supercritical-rank amplifier.
 - Fixed PI degree is a possible detector only after the transported target
   words are forced to generate the full transverse factor on positive
   trace.  That fullness is not a consequence of the named Pauli pair.
-

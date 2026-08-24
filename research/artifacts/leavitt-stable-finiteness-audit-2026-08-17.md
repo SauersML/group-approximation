@@ -374,10 +374,12 @@ injective.  Group-algebra elements have finite support, so there is no
 infinite sum to absorb the tail.  This is a genuine Eilenberg-swindle failure,
 not an unfinished computation.
 
-The source also names and rejects three tempting shortcuts, all correctly: a
-Murray--von Neumann equivalence compressing the primitive corner to the whole
-corner would already be close to the desired failure and is additionally
-blocked by augmentation; a nonzero kernel idempotent is not by itself a defect
+The source also names three tempting shortcuts.  Two are correctly rejected,
+while the first is now the exact open target: a Murray--von Neumann equivalence
+`e~f` from the whole order-three corner to its primitive subcorner would give
+the desired failure.  Augmentation blocks equivalence of either augmentation-
+zero idempotent with `1`, but does not block `e~f`.  No such equivalence or
+obstruction is known.  A nonzero kernel idempotent is not by itself a defect
 `1 - ab`, since `ba = 1` constrains that defect associatively; and a nonunital
 corner self-embedding does not imply direct infiniteness (directly finite
 non-Noetherian rings can have proper corner self-embeddings and infinitely

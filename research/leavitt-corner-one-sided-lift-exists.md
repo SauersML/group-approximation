@@ -9,6 +9,7 @@ distinct_from:
   leavitt-rank-three-lift-inverse-support-thirteen: that is a support bound for a factor of the rank-three lift in the whole group algebra; this asks for a pair inside the corner, where the identity is e and the support bound is not known to apply.
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
+  - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
 With `A = F_2[R^x]`, `e = [g] + [g^2]` and `pi_e : eAe ->> R` as in
@@ -58,6 +59,13 @@ second, bypassing this claim entirely via a different route into the same
 conclusion — `leavitt-corner-kernel-is-jacobson-radical` — and it is now
 refuted (`leavitt-corner-kernel-not-jacobson-radical`), so the corner lane
 runs through this claim alone.
+
+A sharper sufficient target is now explicit:
+`leavitt-e-f-murray-von-neumann-equivalence`.  It asks only for `e~f`, where
+`f<e` is the primitive idempotent already constructed in the group algebra.
+If `xy=e` and `yx=f`, then `pi_e(yx)=s_0t_0!=1` automatically.  This is weaker
+than lifting the full Leavitt family and pins the missing finite-support
+identity to one exact equivalence problem.
 
 ## Attempts
 
@@ -113,7 +121,7 @@ the only kernel element this graph owned, which is why restricting it was
 never going to work.
 
 The larger question it gated — is `ker(pi_e) != 0` — also has the answer
-**no**, reached from a different direction.
+**yes**, reached from a different direction.
 `leavitt-primitive-corner-recursive-extension` embeds the whole extension
 `S ->> R` into a primitive subcorner compatibly with evaluation, carrying
 `ker(pi)` injectively into `ker(pi_e)`; the image of `z = [1]+[g]+[g^2]` is an
@@ -145,3 +153,13 @@ support generating a subgroup whose group algebra is not known to be directly
 finite — in particular not a sofic one.  A search that enumerates by support
 size inside `K` is therefore provably wasted, and the cheapest useful next
 step is to find candidates whose support leaves `K`.
+
+*(2026-08-24.)*  The first two-sided conjugated-packet correction is no longer
+an unconstrained bounded search.  `two-packet-linear-trace-vanishes` proves
+that both linear correction terms have zero identity coefficient for arbitrary
+conjugators, so every solution has odd packet-support intersection and
+distinct parameters (`two-packet-solutions-have-odd-intersection`).  The exact
+independent mixed-root search through word length four leaves 1,394 of
+1,572,516 ordered pairs after this filter and finds no solution
+(`mixed-root-two-packet-radius-four-has-no-solution`).  Longer and non-root
+conjugators remain open.

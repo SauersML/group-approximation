@@ -5,7 +5,7 @@ kind: claim
 title: A degree-m word normally generating the kernel over the Leavitt unit group
 distinct_from:
   kl-violating-equation-over-leavitt-unit-group: that asks for any nonsingular equation over the same group killing some coefficient; this asks for the specific maximal form -- a word whose ambient normal closure is the whole degree-m kernel, which kills every coefficient at once. It is sufficient for that claim and strictly stronger.
-  uniform-normal-rank-certificate-for-degree-kernels: that asks for a uniform reason no word ever normally generates such a kernel, which would prove the conjecture; this asks for one word over one group that does. Opposite answers to the same question.
+  kl-holds-over-two-generator-simple-groups: that asks for nontriviality of every canonical orbit quotient over two-generator infinite simple groups, which would prove the conjecture; this asks for one word over the Leavitt unit group whose orbit quotient is trivial. Opposite answers to the same normal-generation question, over different coefficient classes.
   leavitt-group-algebra-not-stably-finite: that asks for a one-sided inverse pair of matrices over the group algebra of the same group, a ring-theoretic finiteness failure; this asks for a word in the group's free product with an infinite cyclic group, and neither statement supplies or excludes the other.
   leavitt-unit-group-nonsurjunctive: that asks for an injective non-surjective cellular automaton over the same group, refuting Gottschalk; this asks for a normal-generation identity refuting Kervaire--Laudenbach. Same group, unrelated conjectures, and no implication is known in either direction.
 artifacts:

@@ -11,9 +11,16 @@ artifacts:
 ---
 
 `InvolutionRankMass.rank_eq_of_projections_close` proves that two orthogonal
-projection matrices at operator distance below one have equal rank.  Apply it
-edge by edge to obtain the cyclic integer ledger.  If the initial rank `r`
-were nonzero, cancellation in
+projection matrices at operator distance below one have equal rank.  Applied
+to the general edge it gives
+
+```text
+alpha_i r_i=beta_(i+1) r_(i+1).
+```
+
+Multiplying around the cycle and cancelling the positive integer product
+`prod_i r_i` proves `(ORM1)`.  In the constant-ratio specialization, if the
+initial rank `r` were nonzero, cancellation in
 
 ```text
 a^k r=b^k r

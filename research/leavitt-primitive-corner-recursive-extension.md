@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - research/artifacts/verify-s3-corner-2026-08-17.py
+  - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
 Let `S = F_2[G]`, `G = L_(F_2)(1,2)^x`, `pi : S ->> R` the evaluation,
@@ -66,9 +67,11 @@ is available to absorb the tail.  This is a genuine failure of the swindle,
 not an unfinished computation.
 
 Two further shortcuts are also closed.  Compressing `T` back to `eSe` by a
-Murray--von Neumann equivalence would already be close to producing the
-desired direct-finiteness failure, and is additionally blocked by the
-augmentation, which forbids equating an augmentation-zero corner idempotent
-with `1` by a one-sided equivalence.  And the set-theoretic surjectivity
-witness `r |-> f [h_r] f`, `h_r = Theta_2 [[r,1],[1,0]]`, is neither additive
-nor multiplicative; it witnesses that `rho` is onto and nothing more.
+Murray--von Neumann equivalence is now isolated as the exact open claim
+`leavitt-e-f-murray-von-neumann-equivalence`: it would produce the desired
+direct-finiteness failure because `f<e` and both have augmentation zero.  The
+augmentation blocks equivalence with `1`, but does **not** block `e~f`; no
+proof or refutation of that equivalence is known.  And the set-theoretic
+surjectivity witness `r |-> f [h_r] f`,
+`h_r = Theta_2 [[r,1],[1,0]]`, is neither additive nor multiplicative; it
+witnesses that `rho` is onto and nothing more.

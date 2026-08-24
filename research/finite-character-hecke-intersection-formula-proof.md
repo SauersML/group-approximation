@@ -2,7 +2,7 @@
 rg: 2
 id: finite-character-hecke-intersection-formula-proof
 kind: route
-title: Proof of the finite character Hecke intersection formula
+title: Prove the finite character Hecke intersection formula
 target: finite-character-hecke-intersection-formula
 requires: []
 ---

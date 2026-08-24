@@ -197,3 +197,12 @@ is OPEN again: its global statement fails for sources with non-extendable
 local assignments (`odd-subset-relaxation-needs-local-extendability`);
 any "encodings cannot create LCS hardness" / "dies by the odd-subset
 cheat" reasoning here holds only under local extendability of the source.
+
+**Exact scalar-language audit.**
+`finite-phase-scalar-groupification-iff-coset-subgroup` shows that this
+barrier is sharp: finite ordinary-group presentations realize precisely
+cosets of finite phase groups as independently realizable scalar profiles.
+Noncommuting auxiliary generators do not enlarge that scalar language.
+Accordingly, a successful perfect-completeness compiler for a non-affine
+source must retain genuinely pointed non-scalar data (or a non-reducing
+corner); searching for a richer scalar phase gadget is exhausted.

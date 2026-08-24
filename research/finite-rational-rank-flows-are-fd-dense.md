@@ -39,6 +39,22 @@ matching edge/restriction ranks.  Thus no positive normalized-HS obstruction
 can depend only on a finite rational representation-ring/rank flow: every
 tracial zero of that data is a limit of finite-dimensional stationary zeros.
 
+The unnormalized cone form is sharper and is often the right no-go test.
+For rational matrices `A,B`, put
+
+```text
+C={m in R_(>=0)^N:A m=0, Bm>=0}.
+```
+
+If `C` contains a nonzero real point, then it contains a nonzero rational
+point and, after clearing denominators, a nonzero integer point.  Therefore
+any fixed finite semisimple packet proof that ends entirely in homogeneous
+rational-linear multiplicity constraints cannot separate finite matrices
+from a nonzero tracial realization.  A successful exit must constrain the
+chosen multiplicity intertwiners nonlinearly, close an integral rank cycle,
+use moving-depth integrality/self-reference, or return actual coefficient
+operators to a selected matrix corner.
+
 ## Precise missing hypothesis
 
 The conclusion stops when a return cell constrains the **chosen multiplicity
@@ -57,4 +73,3 @@ Without `(RFD3)`, rationalizing ranks says nothing about simultaneous
 finite-dimensional realization of the holonomy.  This is exactly why the
 regular stationary-flow theorem leaves two-cells and cycle holonomy as the
 only possible finite-packet obstruction.
-

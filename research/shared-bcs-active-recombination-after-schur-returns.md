@@ -23,17 +23,32 @@ by `C sqrt(E)`.  Its trace must contain one persistent copy of the preceding
 common carrier after subtracting at most the single exit copy in the Schur
 branch ledger.
 
+The returned ranges need not coincide.  If a group-word transport first puts
+all retained ranges under one common next survivor prefix, then their common
+reducing hull, after correcting the finite pulse packet and aligning the
+literal shared variables, retains at least one full baseline copy.
+`prefix-central-reducing-hull-recombines-context-returns` proves precisely
+this conditional analytic step.  It does not prove the required survivor
+incidence.  That missing incidence is isolated as
+`shared-schur-retained-children-have-common-next-tag-prefix`.
+
 The assertion may not identify all context selector centers: that would
 classicalize the contextual model.  It must identify only the shared
 variable marginals and the common carrier, while allowing the context
-algebras to remain noncommuting off their overlaps.  The perfect infinite
-BCS representation must extend with every forbidden local source zero.
+algebras to remain noncommuting off their overlaps.  Exact completeness for
+the nonhyperlinearity terminal is supplied by embedding the original marked
+base through the finite amalgams and HNN extensions.  Extending the chosen
+perfect BCS trace across every return edge is stronger than necessary and is
+not used.
 
 ## Attempts
 
 - Transporting each full child chart separately preserves its complete type
   vector but leaves independent external multiplicity gauges, so the ranges
-  need not coincide.
+  need not coincide.  The pulse-central reducing hull removes this gauge
+  problem only after the images have been placed under the same new survivor
+  prefix.  Padding by the pulse packet preserves the old prefix character; it
+  does not create the required new positive character.
 - Amalgamating the complete selector centers forces all context atoms to
   commute and turns the BCS into a classical global assignment.  Only the
   repeated one-variable marginals may be amalgamated.

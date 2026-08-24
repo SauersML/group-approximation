@@ -9,6 +9,7 @@ distinct_from:
   coherent-heisenberg-multiplicity-decoder: that asks a positive-density normalized-HS microstate to carry a coherent Leavitt multiplicity module and feeds the tracial Hilbert-hotel endpoint; this asks for no module, no coherence across depths and no density, only that two adjacent packets share one carrier.
   corona-coefficient-module-decoder: that assembles finite root multiplicity germs into a finitely generated projective corona module over the coefficient ring; this reconstructs no part of the coefficient ring and stays inside one finite coordinate.
   self-copy-kadison-kastler-checksum: that asks for a Kadison-Kastler-type proximity between the parent and child generated algebras; this asks only that two matrix-unit packets have approximately the same identity, which is an additive statement about two operators rather than a proximity of algebras.
+  binary-leavitt-atomic-morita-return: that bypasses exact M2/M4 packet ranks and asks for four coefficient operators satisfying two inverse rows plus completeness on the prescribed root atom; this asks for two exact packets on one carrier and one vanishing support row.
 ---
 
 **OPEN.**  Work in the binary-Leavitt Steinberg presentation `<S|R>` of

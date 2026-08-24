@@ -6,6 +6,7 @@ title: The degree-m kernel of a perfect coefficient group has infinite cyclic ab
 invalidates: [simple-kl-via-abelianized-relation-module, leavitt-kl-violation-via-fox-calculus]
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
+  - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
 ---
 
 Let `G` be any group, `m >= 1`, and `N_m = ker(G * <t> -> C_m)` as in
@@ -47,9 +48,13 @@ condition in the form that is actually tested.
 
 ## Where an obstruction can still live
 
-Anything that sees more than `H_1` of the kernel: a Peiffer quotient or
-crossed module, identities among relations, a second relation module or an
-explicit `pi_2` class, or — most concretely — a finite **nonabelian**
-quotient of `N_m`, compatible with the ambient conjugation action, in which
-the image of `w` has proper normal closure.  That is the open target
-`uniform-normal-rank-certificate-for-degree-kernels`.
+`kl-cyclic-orbit-perfect-kernel` identifies the canonical obstruction:
+
+    Q_w = N_m/<<w, alpha(w), ..., alpha^(m-1)(w)>>_(N_m).
+
+It is itself perfect and has no nontrivial finite quotient.  Thus the
+surviving obstruction cannot merely be nonabelian: it must prove that this
+specific infinite, finite-quotient-invisible group is nontrivial.  Possible
+languages include a Peiffer quotient or crossed module, identities among
+relations, a second relation module, or an explicit `pi_2` class, but a
+finite nonabelian quotient is now ruled out as well.

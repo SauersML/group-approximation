@@ -68,10 +68,16 @@ normalized-HS holonomy.
 - **Fixed parity as the floor. Dead.**  One multiplicity copy can be repaired
   inside a large block at vanishing normalized-HS cost.  This is the same
   amplification fence as `fixed-depth-rank-mesh-has-zero-hs-density`.
+- **Central commutator twist. Closed at fixed scale.**
+  `twisted-flip-square-shifts-multiplicity-cocycle` computes the tempting
+  relation `[u,v]=J`: it cancels the forbidden packet cocycle and transfers
+  anticommutation to the allowed orbit. More generally a fixed twist only
+  changes the quotient root of unity, whose entire defect can be placed on
+  `O(1)` multiplicity dimensions. It is therefore not the missing
+  positive-density holonomy.
 - **Positive-density holonomy. Active.**  The live certificates are the
   contextual exit cross-Gram curvature of
   `global-v4-exit-capacity-is-cross-gram-curvature` and the property-`(T)`
   adjoint wall of `schur-wall-in-property-t-compressor-pays-hs-energy`.  Either
   must be coupled to the controlled flip squares before local packet copies
   are separated.
-

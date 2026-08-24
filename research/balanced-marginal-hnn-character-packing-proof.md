@@ -2,7 +2,7 @@
 rg: 2
 id: balanced-marginal-hnn-character-packing-proof
 kind: route
-title: Proof of balanced marginal HNN character packing
+title: Prove balanced marginal HNN character packing
 target: balanced-marginal-hnn-character-packing
 requires: []
 ---

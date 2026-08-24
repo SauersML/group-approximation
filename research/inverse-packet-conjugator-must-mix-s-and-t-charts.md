@@ -9,6 +9,7 @@ distinct_from:
   both-rank-three-factors-must-be-packet-corrected: that requires two packet parameters in general; this specializes to the natural inverse-pair ansatz and gives its exact remaining domain.
 artifacts:
   - research/artifacts/one-nonnormal-packet-corner-correction-2026-08-21.md
+  - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
 In the ansatz `y=x^-1`, the correction equation is
@@ -31,3 +32,9 @@ permutation, scalar self-similar, pure `t`-root, and pure `s`-root candidate
 is excluded.  A viable inverse-pair conjugator must contain both coefficient
 halves and satisfy the relative double-coset folding condition.
 
+The later global trace obstruction strengthens the diagonal conclusion:
+`two-packet-solutions-have-odd-intersection` rules out `x=y` for arbitrary
+conjugators.  It does not by itself rule out the inverse-pair specialization
+`y=x^(-1)` unless `x` is an involution.  The independent mixed-root search
+through length four, which does not impose `y=x^(-1)`, finds no solution in its
+stated finite family.

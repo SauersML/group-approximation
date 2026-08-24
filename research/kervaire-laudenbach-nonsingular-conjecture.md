@@ -10,6 +10,7 @@ distinct_from:
   weak-kervaire-transfers-only-at-unimodular-degree: that is the scope statement about what the weak conjecture does and does not deliver; this is the strong statement itself, and the point of that node is that it is not a route into this one.
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
+  - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
 ---
 
 For every group `G` and every `w in G * <t>` with `deg_t(w) = m != 0`, the
@@ -52,12 +53,18 @@ not hyperlinear.
 
 *Proof.*  By `kl-via-simple-envelope-reduction` it is enough to prove it for
 two-generator nonabelian simple coefficient groups, and by
-`kl-simple-failure-leaves-only-the-cyclic-quotient` that case is exactly:
-for every such `S`, every `m >= 1` and every `w` of exponent sum `m` in
-`N_m = ker(S * <t> -> C_m)`, the ambient normal closure `<<w>>_{S*<t>}` is a
-proper subgroup of `N_m`.  A certificate must therefore be a uniform source
-of proper quotients, and by
-`degree-kernel-abelianization-is-infinite-cyclic` it cannot be abelian.
+`kl-cyclic-orbit-perfect-kernel` that case is exactly the assertion that
+
+    Q_w = N_m/<<w, alpha(w), ..., alpha^(m-1)(w)>>_(N_m)
+
+is nontrivial for every such `S`, `m` and `w`.  Here
+`N_m = (*_{i=0}^{m-1} t^i S t^{-i}) * <t^m>` and `alpha` is conjugation by
+`t`.  This is sharper than merely asking for a proper quotient: `Q_w` is
+forced before any certificate is chosen, is perfect, and has no nontrivial
+finite quotient.  When `S` is two-generated it is finitely generated and has
+no nontrivial finite-dimensional linear representation.  Thus homology,
+finite quotients, residual finiteness and exact finite-dimensional linear
+separation cannot detect the required survivor.
 
 *Disproof.*  A group `G`, a word `w in G * <t>` with `deg_t(w) != 0`, a
 nontrivial `a in G`, and an explicit finite identity
@@ -105,6 +112,25 @@ carries the arguments.
    rather than as a node: they preserve homology, and the missing statement —
    that every finite set of coefficient inequations survives imposing
    `w = 1` — is the conjecture itself.
+
+Three further lanes were resolved on 2026-08-24 by the cyclic-orbit kernel
+calculation.
+
+7. **Finite nonabelian normal-rank certificate.**  *Dies* at
+   `kl-cyclic-orbit-perfect-kernel`: any such certificate would leave a
+   nontrivial finite quotient of `Q_w`, but no such quotient exists.  Recorded
+   as `simple-kl-via-finite-quotient-certificate`.
+8. **First `l2`-Betti number in place of finite quotients.**  *Dies* at
+   `torsion-breaks-l2-normal-rank-bound`: Osin--Thom construct simple torsion
+   groups with arbitrarily large first `l2`-Betti number, although every
+   nontrivial element normally generates a simple group.  Recorded as
+   `simple-kl-via-l2-betti-normal-rank`.
+9. **Chen's universal one-half surface estimate.**  *Dies as a numerical
+   endgame* at `chen-half-complexity-does-not-force-injectivity`.  For a
+   minimal identity using `k` conjugates, Chen's bound only gives
+   `k - 1 >= k/2`, compatible with every `k >= 2`; the contradiction needs
+   coefficient one, which is exactly the torsion-free/`infinity`-RF regime.
+   Recorded as `simple-kl-via-chen-half-complexity`.
 
 A seventh non-attempt worth writing down because it looks tempting from
 inside this program: nonsoficity and non-MF-ness of a group are not evidence

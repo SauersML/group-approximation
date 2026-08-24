@@ -24,11 +24,11 @@ copy of `S^ab`, leaving `N_m^ab = Z` with trivial `C_m`-action, on which
 condition is satisfied by all of them, so the test excludes nothing.
 
 **What survives the demolition.**  The failure is specific to `H_1` of the
-kernel, and it is informative rather than merely negative: it says the
-obstruction, if one exists, is nonabelian or higher-dimensional.  That is
-the content of `uniform-normal-rank-certificate-for-degree-kernels`, and the
-route through it (`simple-kl-via-normal-rank-certificate`) is the live
-successor to this one.
+kernel, and it is informative rather than merely negative.  The later
+calculation `kl-cyclic-orbit-perfect-kernel` identifies the exact surviving
+object `Q_w`: it is perfect and has no nontrivial finite quotient.  Thus the
+obstruction, if one exists, is not only nonabelian or higher-dimensional; it
+must detect a genuinely infinite finite-quotient-invisible quotient.
 
 **Where the same computation is still worth doing.**  Over a *presentation*
 source `P ->> Q`, the kernel's abelianization `R/[R,R]` as a `ZQ`-module is a

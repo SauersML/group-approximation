@@ -46,3 +46,6 @@ therefore applies before any proposed robustification: if perfect scalar
 completeness and exact soundness specify a non-coset profile, tensor products
 already manufacture a zero-defect forbidden profile.
 
+Together with `coset-profile-finite-abelian-presentation-proof`, this
+necessity theorem is sharp: `finite-phase-scalar-groupification-iff-coset-subgroup`
+classifies the exact scalar expressive power of ordinary group presentations.

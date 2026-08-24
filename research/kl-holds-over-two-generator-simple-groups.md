@@ -7,20 +7,31 @@ distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that is the statement over all coefficient groups; this restricts to two-generator nonabelian simple ones, where the failure mode is rigid enough to be written as a single normal-generation problem. The two are equivalent, and that equivalence is the content of kl-via-simple-envelope-reduction rather than a duplication.
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
+  - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
 ---
 
-For every two-generator nonabelian simple group `S`, every `m >= 1` and every
-`w in N_m = ker(S * <t> -> C_m)` with `deg_t(w) = m`, the ambient normal
-closure `<<w>>_{S*<t>}` is a **proper** subgroup of `N_m`.
+For every two-generator infinite nonabelian simple group `S`, every `m >= 1`
+and every `w in N_m = ker(S * <t> -> C_m)` with `deg_t(w) = m`, put
 
-By `kl-simple-failure-leaves-only-the-cyclic-quotient` this is exactly
-Kervaire--Laudenbach over such `S`, and by
+    alpha = Ad(t)|_(N_m),
+    Q_w = N_m/<<w, alpha(w), ..., alpha^(m-1)(w)>>_(N_m).
+
+Then
+
+    Q_w != 1.
+
+By `kl-cyclic-orbit-perfect-kernel`, the denominator is exactly the ambient
+normal closure `<<w>>_(S*<t>)`, and `Q_w != 1` is equivalent to injectivity
+of `S -> (S*<t>)/<<w>>`.  Thus this is exactly Kervaire--Laudenbach over such
+`S`; by
 `kl-counterexample-can-be-two-generator-simple` it is exactly
 `kervaire-laudenbach-nonsingular-conjecture`.  At `m = 1` it says `S * Z`
 does not have weight one.
 
-This is the sharpest form the 2026-08-17 audit reached, and the point at
-which a genuinely new theorem is needed.
+The infinite qualifier loses nothing: every nonabelian finite simple group is
+finite and hence hyperlinear, so `kervaire-laudenbach-holds-for-hyperlinear`
+settles that case.  This is now the exact surviving core, not merely a route
+to it.
 
 ## Attempts
 
@@ -29,22 +40,34 @@ which a genuinely new theorem is needed.
    `N_m^ab = Z` for perfect `S` and every degree-`m` word already generates
    it, so the condition is vacuous rather than restrictive.  Recorded as
    `simple-kl-via-abelianized-relation-module`.
-2. **Nonabelian normal-rank certificate.**  The live lane:
-   `uniform-normal-rank-certificate-for-degree-kernels`, via
-   `simple-kl-via-normal-rank-certificate`.  Nothing here decides it; what
-   attempt 1 establishes is only that the certificate cannot be abelian.
-3. **Case analysis on `S`.**  *Deferred, and probably hopeless.*  There is no
+2. **Finite nonabelian normal-rank certificate.**  *Dies* at
+   `kl-cyclic-orbit-perfect-kernel`.  Any finite action-compatible witness
+   with proper orbit-normal closure would descend to a nontrivial finite
+   quotient of `Q_w`, while `Q_w` has no such quotient.  Recorded as
+   `simple-kl-via-finite-quotient-certificate`.
+3. **First `l2`-Betti number.**  *Dies* at
+   `torsion-breaks-l2-normal-rank-bound`: simple torsion groups can have
+   arbitrarily large first `l2`-Betti number and normal rank one.  Positivity
+   cannot obstruct one-element normal generation in this torsion setting.
+4. **Chen's surface complexity.**  *The universal estimate is too weak.*
+   Each orbit relator is unimodular in
+   `N_m = (*_{i<m} S_i) * <z>`, but the unconditional coefficient `1/2`
+   gives only `k-1 >= k/2` for a minimal `k`-conjugate collapse identity.
+   The contradiction `k-1 >= k` requires torsion-freeness or the corresponding
+   `infinity`-RF turn-label hypotheses.  See
+   `chen-half-complexity-does-not-force-injectivity`.
+5. **Case analysis on `S`.**  *Deferred, and probably hopeless.*  There is no
    classification of two-generator nonabelian simple groups to run over, and
    `kl-counterexample-absorbs-any-countable-group` shows the class cannot be
    cut down by subgroup structure — any countable group can be forced inside a
    counterexample.
 
-## Why the restriction is not a simplification of the problem
+## What a surviving certificate has to see
 
-It removes every parameter except the word.  There is no coefficient element
-to protect, no choice of which element dies, and no degree bookkeeping beyond
-`deg_t(w) = m`; the entire conjecture is the single question of whether one
-element can normally generate `N_m`.  That is a gain in clarity and a loss of
-handles: the usual tools for showing a normal closure is proper — a quotient
-in which the element dies, a homology class it misses, a length or area
-estimate — must now be produced uniformly in `S`, `m` and `w`.
+It must keep the canonical `Q_w` nontrivial.  That survivor is already known
+to be perfect and invisible to every finite quotient; because it is finitely
+generated here, it is also invisible to every exact finite-dimensional
+linear representation.  A successful construction therefore has to be
+genuinely infinite and nonlinear, or use a geometric/higher-dimensional
+invariant that proves nontriviality without separating an element in one of
+those forbidden target classes.

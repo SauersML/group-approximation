@@ -246,3 +246,20 @@ and with the double cosets of `x` and `x^-1` folding nontrivially over
 `Gamma_0`.  In concrete terms `x` must contain both an `s`-coefficient and a
 `t`-coefficient.  No identity among the currently recorded short mixed words
 proves (8); (8)+(11) is the exact next constructive target.
+
+## 2026-08-24 update: global trace filter
+
+The later theorem in
+`leavitt-packet-trace-and-compression-2026-08-24.md` proves, for arbitrary
+conjugators rather than a bounded family,
+
+```text
+tau(A P_x)=tau(P_x B)=0.
+```
+
+Since `tau(Delta)=1`, every solution of the two-parameter equation has
+`tau(P_xP_y)=1`, equivalently odd intersection of the two packet supports;
+the diagonal `x=y` is impossible.  Exact independent mixed-root enumeration
+through length four leaves 1,394 of 1,572,516 ordered pairs after this filter
+and finds no solution.  The inverse-pair and arbitrary-conjugator problems
+beyond that bounded family remain open.

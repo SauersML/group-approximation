@@ -105,6 +105,152 @@ established `branching-plus-first-hit-exits-forces-hs-floor` then closes the
 normalized-HS contradiction.  The compiler explicitly cannot be
 trace-functorial, by `exact-first-hit-ladder-kills-regular-carrier`.
 
+The latest shared-carrier audit removes one apparent shortcut in that
+compiler.  `prefix-central-reducing-hull-recombines-context-returns` is a
+valid way to discard external multiplicity gauges **after** all returned
+ranges lie under one common successor prefix; padding an HNN chart by the
+pulse packet does not supply that incidence.  The missing placement is now
+`shared-schur-retained-children-have-common-next-tag-prefix`.
+The local S3 endpoint square does not close it directly:
+`schur-commutator-tag-is-not-fresh-under-selector-transport` proves that
+transporting the literal Schur selector tuple forces the first target tag to
+remain the corresponding affine selector word.  Transporting only the
+endpoint table keeps a fresh tag but loses the shared successor context.
+Thus the S3 mechanism solves the one-atom active/exit split, not the common
+shared-BCS return.  A completion must transport a larger intrinsic type sum
+and add a genuinely nonstationary relation on its multiplicity space;
+finite packet functoriality alone retains the positive regular profile of
+`finite-packet-functoriality-has-positive-regular-profile`.
+
+The bounded coefficient-ring route has been narrowed in parallel.  A single
+payload-coupled finite PVM with oriented subsets would already supply the
+missing scalar Morita trace:
+`common-oriented-character-table-gives-morita-trace` proves that disjoint
+subset union gives carrier additivity and the fixed Steinberg arrow words
+give equality of source and range mass.  At one adaptive edge this
+orientation is explicit.  After writing `q=b+a` and stabilizing the three
+orthogonal coefficient lines `b,a,d`,
+`three-line-first-hit-solves-local-morita-edge` uses the arrow involution to
+swap the `a` and `d` character coordinates and takes the `d` mass in the
+first-hit fiber where the two old coordinates are trivial.  This proves the
+two local Morita equations exactly.
+
+That calculation does **not** finish the decoder.  The selected BCS mass must
+still be forced into the double-spectator-trivial source fiber, and all
+outgoing edge tables must assign one common mass to their shared parent
+carrier.  Both clauses are genuine.  The exact one-dimensional model in
+`three-line-first-hit-has-invariant-spectator-escape` puts equal nonzero
+character charge on the source and destination coordinates, is fixed by the
+arrow swap, sees the full source root, and gives zero mass to the oriented
+source fiber.  Thus additive root tables and their inner normalizers cannot
+prove the missing estimate.  The live theorem is a matrix-only transverse
+multiplication/contextual coupling which both suppresses this spectator
+escape and aligns the parent measure across the finite adaptive menu.  This
+is the sharpened content of
+`hs-steinberg-morita-trace-additivity-on-adaptive-blocks`, not a Fourier or
+finite-packet bookkeeping problem.
+
+The transverse finite-packet part of that live theorem is now explicit.
+`e5-idempotent-root-has-two-pair-extraspecial-cell` observes that the four
+roots `x_12(a),x_23(a),x_14(a),x_43(a)` form two commuting Heisenberg pairs
+with common center `x_13(a)`.  On every nontrivial central-character sector,
+Stone--von Neumann forces the two commuting spectator coordinates to have
+uniform joint multiplicity; their double-trivial fiber therefore retains
+exactly `p^(-2)` of any packet-reducing source.  This eliminates the local
+simultaneous-source/destination character escape **after the source root has
+been detected**.  The remaining analytic wall is sharper still: prove that
+the selected BCS projection has dimension-independent mass in the
+nontrivial spectral support of `x_13(a)`, on the prescribed carrier and
+compatibly for all adaptive branches.  That is the BCS-to-root support
+transfer, not another Heisenberg or extraspecial representation theorem.
+The local transfer is isolated as
+`bcs-atom-detects-its-e5-central-root`: for
+`E=Q_sigma P_i` and `Z=x_13(a_(sigma,i))`, prove that a fixed fraction of
+`E` lies in the nontrivial spectral support of `Z`.  Its conclusion followed
+by the two-pair cell retains `c_root p^(-2)` of `E` in a canonical
+spectator-trivial fiber.  This is strictly weaker than reconstructing the
+whole coefficient quotient, but it is not implied by the abstract root
+relations; it is the finite-menu root-kernel reflection estimate.
+
+An independent finite role register does not bypass this interface.
+`role-multiplexing-is-minimax-max-selection` proves
+that role atoms do turn the arbitrary noncommuting forbidden family into one
+literal orthogonal projection, but the optimal worst-case retained trace is
+exactly `M^(-1)` of the total forbidden mass.  This equals the guarantee from
+selecting one maximal type and cannot be improved because the role weights
+sum to at most one.  Hence arbitrary-list SELECT is unnecessary for
+orthogonal bookkeeping, but the proposed replacement produces neither a
+mass gain nor a payload-conditioned exit.  The live theorem remains the
+mixed BCS-to-root/first-hit placement rather than a larger finite role
+packet.
+
+The same calculation nevertheless removes the finite branching coherence
+from the coefficient-ring route.  `role-packed-bcs-gap-is-one-idempotent`
+uses a unique-spin role packet to form
+
+```text
+B_f=sum_i R_iP_i,
+tau(QB_f)>=(beta/m)tau(Q)-O(sqrt(E)),
+```
+
+on every packet-and-BCS reducing carrier.  The summands are orthogonal even
+across noncommuting contexts, and `B_f=0` in the perfect tracial model.  One
+may therefore run the finite coefficient compiler as a unary ladder with
+`a_n=q_nB_f`; a depth satisfying `(1+beta/m)^N>2` is enough.  This trades the
+representation-dependent maximal-type tree for one fixed aggregate source
+and eliminates incompatible outgoing orientations at a parent.  It does
+not solve normalized-HS group decoding: the remaining statement must still
+place `q_nB_f` on its E5 root carrier and carry the resulting oriented
+physical carrier consistently to level `n+1`.
+
+That reduced coefficient-ring statement is isolated as
+`hs-unary-role-packed-ring-decoder`, with the complete implication recorded
+by `nonhyperlinear-via-unary-role-packed-decoder`.  There is now a strictly
+smaller direct endpoint.  `reducing-hull-carry-forward-after-aggregate-escape`
+proves that once `U_n(Q_nB_f)U_n^*` loses a fixed fraction of overlap with
+`Q_n`, the reducing hull of their join automatically is the next valid
+shared-variable carrier and has the required trace gain.  No prescribed
+coefficient projection has to decode as that hull.
+
+Accordingly `finite-depth-role-packed-aggregate-escape` is the current
+one-row target: for finitely many reached carriers, force
+
+```text
+tau(Q_n U_n(Q_nB_f)U_n^* Q_n)
+ <=(1-eta)tau(Q_nB_f)+O(sqrt(E)).
+```
+
+The route `nonhyperlinear-via-role-packed-aggregate-escape` then gives
+`tau(Q_(n+1))>=(1+eta beta/m)tau(Q_n)-O(sqrt(E))` and closes the marked-sector
+capacity contradiction at any fixed depth with
+`(1+eta beta/m)^N>2`.  Thus successive-carrier compatibility is no longer a
+separate open gate.  The sole remaining operation on this lane is the
+payload-sensitive overlap loss itself.
+
+The shortest literal-word implementation of that loss is excluded.
+Although `central-marked-two-cycle-zero-compression-cell` groupifies a source
+named by literal grading involutions, the aggregate reflection is not such a
+word.  `role-packed-forbidden-reflection-is-not-a-group-word` computes
+
+```text
+0<tau_G(B_f)<=1/4,
+```
+
+whereas the negative projection of a nonidentity literal involution has
+canonical trace `1/2`.  Thus adjoining a generator and declaring it equal to
+`1-2B_f` cannot preserve the embedded packet group algebra.  The surviving
+aggregate escape must be a multi-piece Hecke corner or a genuinely
+matrix-only compressed authentication, not a disguised third grading bit.
+
+One tempting proof of its first clause is now excluded.
+`root-scaling-covariance-does-not-detect-bcs-atom` gives an exact marked
+one-dimensional model in which all coefficient-eigenvalue conjugation rows
+hold, the desired BCS joint character survives, and the corresponding E5
+root is trivial.  The transverse Heisenberg packet also collapses in that
+model.  Thus the required aggregate payload-to-root transfer must prevent
+the root-kernel quotient by a genuinely mixed corner relation; assignment
+sign covariance alone is insufficient.
+
 Independently, `tracial-superoperator-self-copy-has-no-macroscopic-excess`
 proves the qualitative adjoint projection theorem with no property `(T)`:
 parent and compressed-child zero-energy projections agree in every adjoint

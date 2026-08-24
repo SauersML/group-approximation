@@ -6,7 +6,7 @@ title: Every finite or solvable quotient test of a Leavitt degree kernel is cycl
 distinct_from:
   degree-kernel-abelianization-is-infinite-cyclic: That computes only the first homology of the degree kernel for an arbitrary perfect coefficient group; this controls every finite and solvable quotient using the stronger fact that the Leavitt unit group has no finite quotients.
   perfect-two-generator-relation-module-not-cyclic: That obstructs one-relator presentations of perfect quotients of free groups; this concerns the degree kernel inside a free product with a cyclic group, where the abelianized relation-module test is vacuous.
-  uniform-normal-rank-certificate-for-degree-kernels: That asks for a certificate proving no single word normally generates a degree kernel; this proves that no such certificate can live in a finite or solvable quotient for the Leavitt coefficient group.
+  kl-cyclic-orbit-perfect-kernel: That proves finite-quotient invisibility of the canonical orbit quotient for every infinite simple coefficient group; this controls every finite and solvable image of the degree kernel for the Leavitt coefficient group, which is not known here to be simple.
   leavitt-degree-kernel-normally-generated-by-one-word: That asks for a positive normal-generation identity; this identifies the exact kind of infinite perfect quotient that would have to witness failure, without deciding whether such a quotient exists.
 ---
 
@@ -38,4 +38,3 @@ to normal generation is an **infinite perfect group with no finite
 quotients**.  Finite quotient enumeration, nilpotent quotients, derived
 quotients, and all other solvable relation-module tests are provably blind to
 the distinction.
-

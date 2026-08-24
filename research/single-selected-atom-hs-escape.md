@@ -49,6 +49,15 @@ on the shared-context atom itself.
   lamplighter or elementary-abelian character cylinder.  This authenticates
   the destination but not its position relative to the invariant hull of the
   shared BCS tuple: tensor-product exact models make the overlap arbitrary.
+- **Orthogonal role copies.**  A finite matrix/extraspecial role packet does
+  turn the noncommuting forbidden family into the genuine projection
+  `sum_i R_i P_i`.  However
+  `role-multiplexing-is-minimax-max-selection`
+  proves that its optimal worst-case trace is exactly
+  `M^(-1)sum_i tau(P_i)`, the same guarantee as choosing the maximal type.
+  It removes the adaptive choice but supplies neither extra mass nor an
+  outside-carrier destination; additional independent role atoms pay for
+  themselves by trace dilution.
 - **Context-local HNN transport.**  Preserve the selected context chart while
   moving its half-selector.  `context-local-fanizza-exits-do-not-control-global-leakage`
   gives exact finite quotients in which a variable outside that context

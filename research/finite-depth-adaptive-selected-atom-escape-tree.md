@@ -3,6 +3,8 @@ rg: 2
 id: finite-depth-adaptive-selected-atom-escape-tree
 kind: claim
 title: A fixed finite adaptive tree makes one selected BCS atom leave its current carrier
+artifacts:
+  - research/artifacts/finite-adaptive-hs-escape-audit-2026-08-24.md
 distinct_from:
   single-selected-atom-hs-escape: That asks one fixed menu to work for every reducing carrier and hence supports indefinite iteration; this asks only for the finitely many carriers generated along one bounded decision tree.
   branching-plus-first-hit-exits-forces-hs-floor: That requires a uniform first-hit ladder and a simultaneous exit ledger; this permits the maximal forbidden type to be chosen adaptively and stops after one fixed depth.
@@ -80,3 +82,29 @@ remaining attack must couple the transport to the selected shared-context
 atom itself, for example through a common source Gram projection whose failed
 covariance is charged to the fixed BCS residual menu.  Establishing that
 payload-conditioned row at the finitely many reached nodes is deferred.
+
+Replacing the adaptive maximum by an orthogonal finite role register is
+exactly neutral.  `role-multiplexing-is-minimax-max-selection`
+shows that `sum_i R_iP_i` is a genuine projection even for noncommuting
+cross-context atoms, but its optimal representation-uniform trace is
+`M^(-1)sum_i tau(P_i)`.  Thus it pays precisely the factor already paid by
+the maximal-type choice and still needs the same payload-conditioned
+outside-carrier placement.  In particular no arbitrary-list SELECT
+controller is required for bookkeeping, but avoiding SELECT does not close
+`(FAT1)`.
+
+Generic mixing cannot supply it either.
+`isotropic-mixing-has-only-logistic-carrier-growth` proves that `(FAT1)`
+forces a hole of size at least `eta tau(A_sigma)-O(sqrt(E))` in every reached
+carrier. Even exact depolarization only gives escape fraction
+`1-tau(Q_sigma)/tau(Q_-)`, producing logistic growth toward capacity rather
+than a fixed-factor overshoot. A valid actuator must therefore consume the
+forbidden-character semantics, not merely mix a projection of the same rank.
+
+There is also a strictly shorter sufficient route which does not establish
+this claim: `finite-bad-character-packing-extension` asks for enough static
+orthogonal conjugates of the maximal root character idempotent.
+`simultaneous-character-packing-removes-max-loss` shows that more than
+`2M/beta` copies of one maximal type already contradict the marked-sector
+capacity, with no adaptive hulls; simultaneous packing of all types sharpens
+the threshold to `2/beta`.

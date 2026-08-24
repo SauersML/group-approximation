@@ -64,6 +64,37 @@ exact conditional corner equations recover the carrier factorization in
 `shared-bcs-carrier-localizes-free-compressor-quotient`.  No further
 determinant, multiplicity, or infinite-kernel argument is required.
 
+## Finite-root subgroup shortcut: payment yes, localization no
+
+On the conditional corner, the finite parent and child packet algebras
+generate fixed finite elementary/root subgroups.  The compressor conjugacy
+compares their restrictions, so after their common physical carrier is
+known, `finite-group-multiplicity-mismatch-pays-hs-energy` (or the adjoint
+Reynolds version) already charges the predicate rank jump.  Thus reconstructing
+the whole coefficient quotient is not needed for the final finite-group
+payment.
+
+This observation does **not** prove `(BCK1)`.  A tracial-HS representation
+supplies compatible multiplicity measures on every fixed root/Heisenberg
+window by
+`hs-finite-heisenberg-windows-have-compatible-density-measures`, but those
+measures do not make root spectral support additive on orthogonal coefficient
+idempotents.  The exact countermodel
+`orthogonal-steinberg-root-spectral-support-is-not-additive` has two
+orthogonal idempotents and their sum all occupying the same Plancherel root
+support.  Consequently the finite BCS mass of `P_f` does not, without an
+additional coupling theorem, lower-bound the physical mass on which the
+finite parent/child root subgroup mismatch is seen.
+
+The minimal surviving decoder can therefore be stated more narrowly than a
+full rank-ultraproduct embedding: on the prescribed seed-root carrier, prove
+a common-source coupling which assigns additive physical mass to the finite
+family of BCS idempotents and is compatible with the parent/child root
+subgroups.  Once that single carrier coupling is supplied, fixed finite-group
+exactification completes the rest.  For the bounded adaptive compiler this
+is exactly the scalar face
+`hs-steinberg-morita-trace-additivity-on-adaptive-blocks`.
+
 For the nonhyperlinear endpoint the full quotient embedding is stronger than
 the bounded contradiction formally requires.  By
 `finite-depth-adaptive-selected-atom-escape-tree`, it would suffice to decode

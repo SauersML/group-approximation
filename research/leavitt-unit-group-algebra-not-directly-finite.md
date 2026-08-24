@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
   - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
+  - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its
@@ -93,6 +94,18 @@ finiteness at any matrix size compresses back to this scalar claim
 `leavitt-group-algebra-not-stably-finite` are interderivable, and Kaplansky
 for `F_2[R^x]` and Gottschalk for `R^x` are now the same problem.
 
+**Two exact reformulations now isolate the live finite-support target.**
+
+* `padic-c0-direct-finiteness-equivalence` proves that replacing `F_2[G]` by
+  `c_0(G,Z_2)` is equivalent, at scalar and every matrix size.  The completion
+  supplies no escape hatch; `leavitt-padic-convolution-not-directly-finite`
+  is the same open problem.
+* With the explicit idempotents `f<e` of
+  `leavitt-primitive-corner-recursive-extension`, it is enough to prove
+  `leavitt-e-f-murray-von-neumann-equivalence`: finite-support `x in eSf`,
+  `y in fSe` with `xy=e`, `yx=f`.  Evaluation fixes the reverse product at
+  `s_0t_0<1`, and the existing corner-padding route finishes the witness.
+
 On the corner lanes, one should be precise about why the corner.  The
 `F_2`-augmentation excludes a full **Leavitt family** from `A` itself and from
 every corner of augmentation one, so the *family* lifting problem has nowhere
@@ -165,9 +178,23 @@ the new structure makes natural has been tried and fails — the telescoping
 tail `lambda^m(error)` is nonzero at every finite depth, and group-algebra
 elements have finite support.
 
-**Still not attempted.**  No machine search has been run at any support size
-in this repository, and no presentation of `e A e` exists to search inside.
-Two 2026-08-17 attempts both declined to search below the bound in Liu's
-Zenodo preprint, which neither could retrieve; that bound is still unknown
-here.  By `leavitt-stable-finiteness-equals-direct-finiteness` any such search
-may fix `n = 1`.
+**The first genuinely nonlinear packet correction is now sharply fenced.**
+For `A=e t~e`, `B=e s~e`, and the conjugated constant packet `P_x`, the live
+equation is
+
+```text
+A P_y + P_x B + P_x P_y = Delta.
+```
+
+`two-packet-linear-trace-vanishes` proves globally that the identity
+coefficient of each linear term is zero.  Since `tau(Delta)=1`, every solution
+must have odd packet-support intersection
+(`two-packet-solutions-have-odd-intersection`), and `x=y` is impossible.
+The exact independent-conjugator exhaustion
+`mixed-root-two-packet-radius-four-has-no-solution` checks all 1,572,516
+ordered pairs of genuinely mixed eight-root elements through word length four:
+only 1,394 survive the trace filter and none solves the equation.  This is a
+bounded family result, not a global no-go.
+
+The current target is therefore precise: prove `e~f`, or solve the two-packet
+equation subject to odd intersection.  Neither direction is completed.

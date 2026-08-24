@@ -3,6 +3,8 @@ rg: 2
 id: independent-address-capacity-cannot-drive-selected-atom-growth
 kind: claim
 title: Independent finite address cylinders cannot drive supercritical selected-atom growth
+artifacts:
+  - research/artifacts/finite-adaptive-hs-escape-audit-2026-08-24.md
 distinct_from:
   finite-packet-graph-atlases-have-a-regular-stationary-flow: That treats stationary multiplicity flows in arbitrary finite graphs of finite groups; this is the direct trace-capacity obstruction for an independent address factor attached to one selected BCS atom.
   single-selected-atom-hs-escape: That asks for payload-conditioned movement relative to the shared-variable hull; this rules out proving it with tensor-independent address cylinders.
@@ -38,3 +40,14 @@ strict growth required by `(FAT1)` or `(SAE1)`.  A successful row must make
 the placement itself depend on the forbidden shared-context payload (or
 charge failure of that dependence to relator energy).  This is a capacity
 no-go, not a moving-address problem.
+
+Equivalently, refining one payload by `m` unconstrained commuting selector
+bits divides its guaranteed maximal atom mass by `2^m`. The new selector
+coordinates provide at most `2^m` distinct character destinations, so
+
+```text
+(guaranteed refined mass) times (available orbit size)
+```
+
+does not increase. Selector duplication can encode a finite adaptive choice,
+but it is not quantitative amplification.

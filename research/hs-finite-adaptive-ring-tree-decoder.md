@@ -67,3 +67,11 @@ tracial contradiction.
   `independent-address-capacity-cannot-drive-selected-atom-growth` shows
   that this conserves exactly the trace one is trying to amplify.  The
   decoder has to retain the conditional payload product, not just its rank.
+- **Use only the finite parent/child root subgroups.**  Once a selected
+  coefficient corner is physically located, their restriction mismatch is
+  paid by `finite-group-multiplicity-mismatch-pays-hs-energy`.  But fixed
+  root-window density measures do not locate that corner:
+  `orthogonal-steinberg-root-spectral-support-is-not-additive` shows that
+  orthogonal coefficient idempotents and their sum can have the same root
+  support.  Thus the finite-group shortcut solves the terminal payment, not
+  the prescribed-carrier additivity in `(HAT1)`.
