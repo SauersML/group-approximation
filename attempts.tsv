@@ -175,3 +175,4 @@
 32758679976	2026-08-24T17:48:13Z	GroupApproximation/Sofic/ActiveCoreAlmostRepresentation.lean	chosenGeneratorWord_value
 32765721140	2026-08-24T19:02:32Z	GroupApproximation/Sofic/ApproxInvolutionCorner.lean	hermitianPart_conjTranspose
 32770070901	2026-08-24T19:46:53Z	GroupApproximation/Sofic/ApproxInvolutionCorner.lean	roundedInvolution_commute_map_vanishing
+32772562210	2026-08-24T20:12:58Z	GroupApproximation/Sofic/AscendingHNNCosetActionSofic.lean	exists_common_level_finset
