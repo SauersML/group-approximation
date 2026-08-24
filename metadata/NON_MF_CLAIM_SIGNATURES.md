@@ -126,24 +126,24 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
 ## `GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub`
 
 ```lean
-∀ (K : Type) [inst : Group K] [Finite K],
-  commutator K = ⊤ →
-    actualCoronaMFResidual (FinitePerfectLamp.WFin K) = FinitePerfectLamp.lampSub K
+∀ (K' : Type) [inst : Group K'] [Finite K'],
+  commutator K' = ⊤ →
+    actualCoronaMFResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K'
 ```
 
 ## `GroupApproximation.FinitePerfectLamp.finitePerfectPackage`
 
 ```lean
-∀ (K : Type) [inst : Group K] [inst_1 : Finite K] [Nontrivial K],
-  commutator K = ⊤ →
-    IsSofic (FinitePerfectLamp.WFin K) ∧
-      ¬IsCDEOperatorMF (FinitePerfectLamp.WFin K) ∧
-        Group.FG (FinitePerfectLamp.WFin K) ∧
-          actualCoronaMFResidual (FinitePerfectLamp.WFin K) = FinitePerfectLamp.lampSub K ∧
-            MatricialStabilityRadical.fdUnitaryResidual (FinitePerfectLamp.WFin K) =
-                FinitePerfectLamp.lampSub K ∧
-              finiteResidual (FinitePerfectLamp.WFin K) = FinitePerfectLamp.lampSub K ∧
-                linearResidual (FinitePerfectLamp.WFin K) = FinitePerfectLamp.lampSub K
+∀ (K' : Type) [inst : Group K'] [inst_1 : Finite K'] [Nontrivial K'],
+  commutator K' = ⊤ →
+    IsSofic (FinitePerfectLamp.WFin K') ∧
+      ¬IsCDEOperatorMF (FinitePerfectLamp.WFin K') ∧
+        Group.FG (FinitePerfectLamp.WFin K') ∧
+          actualCoronaMFResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K' ∧
+            MatricialStabilityRadical.fdUnitaryResidual (FinitePerfectLamp.WFin K') =
+                FinitePerfectLamp.lampSub K' ∧
+              finiteResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K' ∧
+                linearResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K'
 ```
 
 ## `GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`
@@ -1118,12 +1118,12 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
 ## `GroupApproximation.SpectralCompression.corona_clopen_projection_collapse`
 
 ```lean
-∀ {E : Type u} [inst : Group E] [Countable E] (L : Subgroup E),
+∀ {E' : Type u} [inst : Group E'] [Countable E'] (L : Subgroup E'),
   HasKazhdanPropertyT ↥L →
-    ∀ {s : E},
+    ∀ {s : E'},
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
         ∀ (X : ℕ → FiniteModel) [inst_2 : ∀ (n : ℕ), Nonempty (X n).carrier]
-          (pi : E →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))
+          (pi : E' →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))
           (v : NormMatrixCStarCorona fun n => (X n).carrier),
           IsStarNormal v →
             (∀ γ ∈ L, Commute v ↑(pi (s * γ * s⁻¹))) →
@@ -1203,9 +1203,9 @@ REPred AdianRabinWordProblem.wordProblemPred
 ## `GroupApproximation.compressionCentralizerDefect_le_ker`
 
 ```lean
-∀ {H : Type u_1} {k : Type u_2} {V : Type u_3} [inst : Group H] [inst_1 : Field k]
-  [inst_2 : AddCommGroup V] [inst_3 : _root_.Module k V] [FiniteDimensional k V]
-  (π : H →* V ≃ₗ[k] V) (L : Subgroup H), compressionCentralizerDefect L ≤ π.ker
+∀ {H' : Type u_4} {k' : Type u_5} {V' : Type u_6} [inst : Group H'] [inst_1 : Field k']
+  [inst_2 : AddCommGroup V'] [inst_3 : _root_.Module k' V'] [FiniteDimensional k' V']
+  (π : H' →* V' ≃ₗ[k'] V') (L : Subgroup H'), compressionCentralizerDefect L ≤ π.ker
 ```
 
 ## `GroupApproximation.isOperatorMF_of_locallyFinite`
