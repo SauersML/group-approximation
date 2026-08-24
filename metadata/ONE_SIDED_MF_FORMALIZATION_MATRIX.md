@@ -1,6 +1,6 @@
 # Current one-sided MF manuscript: Lean formalization matrix
 
-Scope: **only** `non_mf_groups_exist.tex` as it stands at **1056 lines** on
+Scope: **only** `non_mf_groups_exist.tex` as it stands at **1234 lines** on
 2026-08-24.  This matrix does not describe the older 1486-line revision and
 does not inherit closure claims from `NON_MF_PROOF_LEDGER.md` or
 `NON_MF_SENTENCE_CENSUS.md`.
@@ -36,7 +36,7 @@ Unless a fully qualified name is shown, declarations are in
 | 5 | `thm:commutant` | `manuscriptFiniteDimensionalCommutantRigidity : FiniteDimensionalCommutantRigidity` | `FiniteDimensionalCommutant.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 6 | `lem:stable-finite` | `manuscriptNormMatrixCoronaStableFinite : NormMatrixCoronaStableFinite` | `StableFiniteness.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 7 | `lem:kazhdan-projection-order` | `manuscriptOneSidedKazhdanProjectionOrder : OneSidedKazhdanProjectionOrder`. It quantifies the printed arbitrary target-algebra unitary `U` (not an ambient-group image), derives the symmetric generating Kazhdan pair from property `(T)`, and states `U⁎ P U ≤ P` as the two equivalent projection-absorption identities because a generic Lean `CStarAlgebra` has no global spectral-order instance. | `GroupApproximation/Manuscript/OneSidedMFRadical/KazhdanProjectionOrder.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
-| 8 | `thm:transport` | `manuscriptOneSidedKazhdanTransport : OneSidedKazhdanTransport` | `KazhdanTransport.lean`; successfully checked by `Endpoint/OneSidedTransportAudit.lean` | **Exact + audit-closed** |
+| 8 | `thm:transport` | `manuscriptOneSidedKazhdanTransport : OneSidedKazhdanTransport`; `TransportAssembly.lean` adds the closed reusable-hypotheses package, compression-group iteration, and arbitrary-ambient-universe form as `manuscriptOneSidedKazhdanTransportPackage`, `manuscriptCompressionGroupKazhdanTransport`, and `manuscriptOneSidedKazhdanTransportAnyAmbient` | `KazhdanTransport.lean`, `TransportAssembly.lean`; successfully checked by `Endpoint/OneSidedTransportAudit.lean` | **Exact + audit-closed** |
 | 9 | `cor:defect-hs` | `manuscriptCompressionDefectHSInvisible : CompressionDefectHSInvisible` | `DefectHS.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 10 | `lem:central-corona-corner` | `manuscriptCentralCoronaCorner : CentralCoronaCorner`. From the literal `rho` and nonzero commuting projection `q`, it supplies a projection lift, a strict coordinate subsequence, nonzero corner models, and the polar-corrected `cornerRepresentation`; for each `g` it pairs the corona equality `[Q_n U_n(g) Q_n]=q rho(g)` with norm convergence of the corrected corner map to that compression. | `GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCorner.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
 | 11 | `thm:normal-kazhdan` | `manuscriptNormalKazhdanRadical : NormalKazhdanRadical` | `NormalKazhdan.lean`; audit hook in `Audit.lean` | **Exact + audit-listed** |
@@ -75,7 +75,7 @@ simplicity conjunct of full Theorem B.
 | `eq:compresses-L` | `τLτ⁻¹ ≤ L` | `RankTwelveEndpoint.tau_compresses_corner`; package `printedDefectConfiguration` | Exact; package audit-closed. |
 | `eq:moved-mark` | `τcτ⁻¹=e₀₁(q)e₃₄(1)` | `RankTwelveEndpoint.tau_conj_c`; resulting commutator `tau_c_commutator_ell` | Exact; commutator endpoint audit-closed. |
 | `eq:amalgam` | `W_Q=B *_A (Q×A)` | `MFCamouflage.Camouflage`, `Edge`, `blackHole`, and `productVertex`; packaged behavior in `manuscriptSplitPrescribedProjection` | Exact construction and vertex-map facts. The split-projection package itself is not currently audit-listed. |
-| `eq:closure-pullback` | MF closure is pulled back along `π_Q` | `manuscriptPrescribedQuotientRelationCalculus : PrescribedQuotientRelationCalculus` | Exact endpoint, including the quotient-MF equivalence and `N=π⁻¹π(N)` clause; audit pending. |
+| `eq:closure-pullback` | MF closure is pulled back along `π_Q` | Existing camouflage endpoint `manuscriptPrescribedQuotientRelationCalculus`; literal general theorem `ClosurePullback.literalMFClosure_eq_comap_of_factors`; quotient equivalence `ClosurePullback.isCDEOperatorMF_quotient_iff_of_factors`; camouflage specializations; closed four-clause package `ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | Exact at both the general factorizing-epimorphism level and the printed camouflage instance; new audit hooks added, validation pending. |
 
 ## Essential unlabelled displayed proof data
 

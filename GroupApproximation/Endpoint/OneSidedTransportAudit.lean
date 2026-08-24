@@ -5,8 +5,9 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FiniteDimensionalCommutan
 import GroupApproximation.Manuscript.OneSidedMFRadical.StableFiniteness
 import GroupApproximation.Manuscript.OneSidedMFRadical.UniversalFactorization
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrescribedQuotients
+import GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback
 import GroupApproximation.Manuscript.OneSidedMFRadical.DefectHS
-import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanTransport
+import GroupApproximation.Manuscript.OneSidedMFRadical.TransportAssembly
 import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdan
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanProjectionOrder
 import GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCorner
@@ -110,6 +111,9 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportAnyAmbient
 
 /-! ## Section 4: the canonical Kazhdan sector and the MF radical -/
 
@@ -138,6 +142,7 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSplitPrescribedProjection
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedQuotientRelationCalculus
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization
 
 /-! ## The conditional simplicity and headline endpoints
 
@@ -161,6 +166,10 @@ which is why the closed macro cannot accept them. -/
 #audit_axioms GroupApproximation.LeavittFamily.matrixCompression
 #audit_axioms GroupApproximation.RankTwelve.tau_fullCorner_tauInv
 #audit_axioms GroupApproximation.MFCamouflage.Camouflage
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.literalMFClosure_eq_comap_of_factors
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.isCDEOperatorMF_quotient_iff_of_factors
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_literalMFClosure_eq_comap
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_isCDEOperatorMF_quotient_iff
 
 /-! ## Implementation lemmas
 
@@ -176,6 +185,11 @@ only place their axiom closure is checked. -/
 -- The ordinary-limit `K_2(V)` and the printed MF closure.
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.hsKernel
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.literalMFClosure
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.FactorsMFTargets
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.factorsMFTargets_iff_ker_le
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptCoronaMFResidual_eq_comap_of_factors
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.factorsMFTargets_projection
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_manuscriptCoronaMFResidual_eq_comap
 
 -- `eq:pq`: the two Leavitt relations behind `q ≠ 0`.
 #audit_axioms GroupApproximation.LeavittFamily.p0_add_p1

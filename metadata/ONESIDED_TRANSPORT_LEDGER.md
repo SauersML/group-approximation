@@ -56,13 +56,20 @@ to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 45 rows
--- 37 `closed`, 7 `conditional`, 1 `MISSING`, naming 44 distinct declarations.
-One row per label, and sixteen further rows: some split a printed theorem into
-the constituents that are separately audited, the rest cover a printed
-sentence that carries no number.  One declaration appears twice, because the
-introduction displays a corollary that Section 3 then states.  Re-pin after
-reviewing the rows an edit to the `.tex` touches.
+`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 59 rows
+-- 47 `closed`, 11 `conditional`, 1 `MISSING`, naming 58 distinct declarations.
+One row appears for each label, and thirty further rows either split a
+printed theorem into separately audited constituents or cover an unnumbered
+printed sentence. One declaration appears twice, because the introduction
+displays a corollary that Section 3 then states.
+
+Among the manuscript's **15 numbered statements**, exactly **13 are closed**.
+The two exceptions are `prop:simple`, whose target is `MISSING`, and full
+Theorem B `thm:headline`, whose exact wrapper is `conditional` on the same
+root-detection/simplicity input. The separate closed row
+`manuscriptBinaryLeavittFullRadical` proves every headline clause except
+simplicity and therefore does not increase the numbered-statement count.
+Re-pin after reviewing the rows an edit to the `.tex` touches.
 
 ## Rows
 
@@ -94,6 +101,9 @@ reviewing the rows an edit to the `.tex` touches.
 | `lem:stable-finite` stable finiteness and projection comparison | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite` | closed |
 | `lem:kazhdan-projection-order` one-sided order for the Kazhdan projection | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder` | closed |
 | `thm:transport` one-sided Kazhdan transport, both conjugation directions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport` | closed |
+| Proof of `thm:transport`, both transported sequences again satisfy the bounded asymptotic-commutant hypotheses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage` | closed |
+| Proof of `thm:transport`, transport iterated along every word in the compression group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport` | closed |
+| `thm:transport` with arbitrary-universe ambient group and a `Type 0` Kazhdan source | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` defect generators lie in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` central corona corners | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner` | closed |
 | `thm:normal-kazhdan` normal Kazhdan radical theorem, at the printed natural-dimension radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanPrintedRadical` | closed |
@@ -120,6 +130,11 @@ reviewing the rows an edit to the `.tex` touches.
 | Sec. 7, the projection is a split epimorphism, both vertex maps are injective, and `d` survives | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSplitPrescribedProjection` | closed |
 | `prop:universal-factorization` universal factorization through the projection | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization` | closed |
 | `eq:closure-pullback` MF closure pulls back, and the MF-quotient criterion for the amalgam | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedQuotientRelationCalculus` | closed |
+| `eq:closure-pullback`, general printed-closure identity along an MF-target-factorizing epimorphism | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.literalMFClosure_eq_comap_of_factors` | conditional |
+| `eq:closure-pullback`, general MF-quotient equivalence along such an epimorphism | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.isCDEOperatorMF_quotient_iff_of_factors` | conditional |
+| `eq:closure-pullback` for the camouflage projection, at the literal printed MF closure | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_literalMFClosure_eq_comap` | conditional |
+| `eq:closure-pullback` quotient equivalence for the camouflage projection | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_isCDEOperatorMF_quotient_iff` | conditional |
+| Closing prescribed-quotient paragraph, all four general closure-pullback clauses as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Deliberately not claimed
@@ -136,11 +151,14 @@ reviewing the rows an edit to the `.tex` touches.
   root normally generates `H`
   (`RankTwelveEndpoint.normalClosure_defect_eq_top`).  Root normal generation
   is strictly weaker and is not a substitute.
-  The headline does not depend on it: `Rad_MF(H) = H` is a closed row above
+  The headline-minus-simplicity conclusions do not depend on it:
+  `Rad_MF(H) = H` is a closed row above
   (`rankTwelve_actualCoronaMFResidual_eq_top`), proved through normal
   generation of the single element `d = e02(q)` rather than through simplicity.
-  Only the printed adjective *simple*, and the sentence deriving triviality of
-  every homomorphism to an MF group from it, remain conditional.
+  Triviality of every homomorphism to a countable MF group is also an
+  unconditional conjunct of `manuscriptBinaryLeavittFullRadical`, derived from
+  the full radical. What remains conditional is the simplicity conjunct and
+  hence the full Theorem B conjunction containing it.
 * **The amenable clause of the Section 1 sterility paragraph.**  "If `G` is
   amenable, its property-(T) subgroup `L` is finite" is Bekka--de la
   Harpe--Valette and is not in the repository.  The group-theoretic half that

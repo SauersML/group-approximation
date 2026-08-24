@@ -48,3 +48,20 @@ can contain unrelated CE traces unless scalar word equations recover that
 ideal on every tracial state.  Establishing exactly that recovery is the
 remaining source-specific problem.
 
+## Playerwise reduction
+
+`agent-projective-kernel-factor-face-is-playerwise` sharpens this endpoint.
+In the factorial left-right representation the full two-player projective
+kernel is the product of the two one-player projective kernels, and its CE
+trace face is nonempty exactly when both one-player faces are nonempty.
+Therefore any subgroup `K,chi` satisfying `(MCE3)` already forces a CE-empty
+**full projective-kernel face on one player**.  This smaller missing theorem
+is recorded as `agent-projective-kernel-one-player-monomial-face-gap`.
+
+Finite phase is not needed after that reduction.
+`agent-projective-kernel-arbitrary-phase-face-compiler` uses Thom's criterion
+for arbitrary central subgroups to turn any CE-empty circle-valued
+one-player face into a finitely presented nonhyperlinear central extension.
+Thus the two-player monomial linking structure and cancellation of player
+phases provide no shortcut: the source-specific burden is already the
+one-player projective-kernel Diracization theorem.

@@ -1,6 +1,6 @@
 # One-sided Kazhdan transport and MF radicals: current claim inventory
 
-Source of truth: `non_mf_groups_exist.tex`, the 1,056-line manuscript headed
+Source of truth: `non_mf_groups_exist.tex`, the 1,234-line manuscript headed
 *One-sided Kazhdan transport and MF radicals*.
 
 This inventory is intentionally separate from `NON_MF_PROOF_LEDGER.md`, which
@@ -19,7 +19,7 @@ is never counted.
 | `thm:commutant` | finite-dimensional commutant rigidity | `manuscriptFiniteDimensionalCommutantRigidity` | closed |
 | `lem:stable-finite` | stable finiteness of norm matrix coronas | `manuscriptNormMatrixCoronaStableFinite` | closed |
 | `lem:kazhdan-projection-order` | one-sided order for the Kazhdan projection | `manuscriptOneSidedKazhdanProjectionOrder` | closed |
-| `thm:transport` | one-sided Kazhdan transport | `manuscriptOneSidedKazhdanTransport` | closed |
+| `thm:transport` | one-sided Kazhdan transport | `manuscriptOneSidedKazhdanTransport`; reusable packages `manuscriptOneSidedKazhdanTransportPackage`, `manuscriptCompressionGroupKazhdanTransport`, and `manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` | Hilbert--Schmidt invisibility of defect generators | `manuscriptCompressionDefectHSInvisible` | closed |
 | `lem:central-corona-corner` | central corona corners | `manuscriptCentralCoronaCorner` | closed |
 | `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanRadical` | closed |
@@ -86,6 +86,11 @@ simplicity input.
   elementary generator; `RankTwelveCorner.lean` upgrades the canonical corner
   map to an isomorphism `EL₃(R) ≃* corner`. Both live modules are exported by
   `GroupApproximation.lean` and feed the rank-12 manuscript construction.
+- `ClosurePullback.lean` supplies the literal MF-closure pullback and quotient
+  equivalence for a general MF-target-factorizing epimorphism, specializes
+  them to the camouflage projection, and packages the four printed clauses as
+  `manuscriptMFClosurePullbackAlongFactorization`. These are supporting rows
+  for the existing `eq:closure-pullback` label and do not change 13/15.
 
 ## Remaining open work
 
