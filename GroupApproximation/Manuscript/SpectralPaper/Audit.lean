@@ -11,3 +11,4 @@ import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 #print axioms GroupApproximation.FinitePerfectLamp.precomp_bijective_profinite
 #print axioms GroupApproximation.SpectralPaper.oneInvisibleRelationPackage
 #print axioms GroupApproximation.SpectralPaper.a5UniversalInvisibility
+#print axioms GroupApproximation.SpectralPaper.invisibleKernelTame
