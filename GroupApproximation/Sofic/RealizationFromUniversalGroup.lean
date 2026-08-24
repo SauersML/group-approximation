@@ -11,7 +11,7 @@ import GroupApproximation.Sofic.KazhdanCliffordConstruction
 > in [FFF].  His finitely presented torsion-free property-(T) group `P` contains
 > every finitely presented torsion-free group, in particular a direct product
 > `P₁ × P₂` with `Pᵢ ≅ P`.  Choosing an isomorphism `α : P → P₁ ≤ P` and any
-> `a ∈ P₂ ∖ {1}` gives the input required by Theorem `thm:kazhdan-clifford`.
+> `a ∈ P₂ ∖ {1}` gives the input required by the Kazhdan--Clifford construction.
 > The group `E(P,α,a)` has torsion even though `P` does not, since the
 > construction adjoins the involution `c`.
 
@@ -211,7 +211,7 @@ end ContainsSquare
 /-! ## The reduction -/
 
 /-- **`KC.22`.**  The printed data supply exactly the two hypotheses
-`thm:kazhdan-clifford` asks of `(α, a)`: injectivity, and an element outside
+the Kazhdan--Clifford construction asks of `(α, a)`: injectivity, and an element outside
 the image.  Properness is recorded alongside because the manuscript's abstract
 states the hypothesis in that form.
 
@@ -258,7 +258,7 @@ witness (ledger row `KC.23`).  An external audit found that reason to be a
 non-sequitur in its own right — a presentation relation `c ^ 2 = 1` does not
 show `c ≠ 1`, since the presented quotient may collapse `c` — and
 `\ref{rem:ff-realization}` now attributes the torsion to the nontrivial central
-involution `w` that `\ref{thm:kazhdan-clifford}` produces.  That `w` is exactly
+involution `w` that the Kazhdan--Clifford construction produces.  That `w` is exactly
 the marked word exhibited below, so the printed witness and this one are the
 same element and `KC.23` is `EXACT` in both columns.
 -/

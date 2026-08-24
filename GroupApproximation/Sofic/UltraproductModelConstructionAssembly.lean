@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.UltraproductModelConstruction
 # The constructor for the manuscript's ultraproduct ambient (KT.01--KT.09)
 
 `Sofic/UltraproductKazhdanTransport.lean` states the printed proof of
-`\label{thm:kazhdan-transport}` in `non_mf_groups_exist.tex` relative to a
+the Kazhdan transport result in `non_mf_groups_exist.tex` relative to a
 bundled ambient `UltraproductAdjointModel`, one field per sentence of manuscript
 steps KT.01--KT.09, and proves KT.10 and KT.11 against it.  Until this file
 nothing constructed such an ambient, so the printed proof was formalized only
@@ -24,7 +24,7 @@ This file discharges it.  It assembles
   (KT.07--KT.09)
 
 into `ultraproductAdjointModel`, which takes exactly the hypotheses of
-`thm:kazhdan-transport` itself -- property `(T)` for `Γ`, the compression
+the Kazhdan transport result itself -- property `(T)` for `Γ`, the compression
 `s ι(Γ) s⁻¹ ⊆ ι(Γ)`, positivity of the dimensions, and operator-norm asymptotic
 multiplicativity of `U` -- plus the free ultrafilter the printed proof fixes.
 Nothing else is assumed.
@@ -160,7 +160,7 @@ abbrev natModels (d : ℕ → ℕ) : ℕ → FiniteModel :=
   fun n ↦ naturalFiniteModel (d n)
 
 /-- Positive dimensions make the coordinate models nonempty; this is the only
-place the hypothesis `0 < d n` of `thm:kazhdan-transport` is consumed by the
+place the hypothesis `0 < d n` of the Kazhdan transport result is consumed by the
 construction. -/
 theorem nonempty_natModels {d : ℕ → ℕ} (hd : ∀ n, 0 < d n) (n : ℕ) :
     Nonempty (natModels d n) :=
@@ -255,7 +255,7 @@ by a hypothesis:
 * `P_mul_conjugate`, `conjugate_mul_P` are `Fix ⊆ V·Fix` read as `P ≤ Q`
   (KT.09).
 
-The hypotheses are exactly those of `thm:kazhdan-transport` -- property `(T)`,
+The hypotheses are exactly those of the Kazhdan transport result -- property `(T)`,
 the compression, positive dimensions, operator-norm asymptotic multiplicativity
 -- together with the free ultrafilter the printed proof fixes.  `hω` is the
 freeness the printed proof asks for; it is what lets the cofinite corona act on
@@ -365,7 +365,7 @@ theorem nonempty_ultraproductAdjointModel
 /-- **The ambient of manuscript steps KT.01--KT.09, as a term.**
 
 This is the constructor whose absence made the printed proof of
-`\label{thm:kazhdan-transport}` conditional.  With it,
+the Kazhdan transport result conditional.  With it,
 `ultraproductKazhdanTransport` and `manuscriptKazhdanTransport_ultraproduct`
 become unconditional, and the manuscript's printed proof -- the adjoint model,
 the ultraproduct, the Kazhdan projection, one-sided compression and finiteness

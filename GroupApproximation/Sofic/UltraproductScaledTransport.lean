@@ -8,7 +8,7 @@ This file replays Theorem `\ref{thm:transport-variants}`
 ("one-sided conjugation at an arbitrary weight") of `non_mf_groups_exist.tex`,
 inside `\section{Transport at an arbitrary weight}` (`\ref{supp:transport-variants}`).
 The route is the one the manuscript prints: "the ultraproduct proof of Theorem
-`\ref{thm:kazhdan-transport}` applies with `\tr_{d_n}` replaced by
+the Kazhdan transport result applies with `\tr_{d_n}` replaced by
 `\operatorname{Tr}(\,\cdot\,)/\nu_n`".
 
 The manuscript writes the weight `\nu_n` where this file writes `w`.  It also
@@ -48,7 +48,7 @@ KT.10 and KT.11 at an arbitrary weight in both directions.
 
 ## The printed statement
 
-Let `Γ`, `H`, `ι`, `s` be as in `\ref{thm:kazhdan-transport}`, let
+Let `Γ`, `H`, `ι`, `s` be as in the Kazhdan transport result, let
 `(U_n)` be as there, let `(w_n)` be nonnegative weights, suppose there is `C`
 with `Tr(x_n* x_n) ≤ C w_n` for all `n`, and suppose that for every `γ ∈ Γ`
 and every `ε > 0`, eventually
@@ -69,7 +69,7 @@ squared Frobenius mass `matMass` of `Sofic.ScaledKazhdanTransport`; that file's
 > `⟨x,y⟩ = Tr(y* x)/w_n`; an index with `w_n = 0` forces `x_n = 0`.
 > Conjugation by a unitary is unitary for every weight, and both hypotheses
 > and both conclusions concern only the renormalized norms, so the
-> ultraproduct proof of `thm:kazhdan-transport` applies verbatim: the mass
+> ultraproduct proof of the Kazhdan transport result applies verbatim: the mass
 > bound defines the ultraproduct vector, the adjoint actions remain
 > operator-norm almost multiplicative, and finiteness reverses the one-sided
 > compression in both directions.
@@ -84,7 +84,7 @@ Each clause is a declaration below.
 * "both hypotheses and both conclusions concern only the renormalized norms"
   is the pair of predicates `WeightBounded` and `WeightNull`, which are the
   printed conditions verbatim.
-* "the ultraproduct proof of `thm:kazhdan-transport` applies verbatim" is the
+* "the ultraproduct proof of the Kazhdan transport result applies verbatim" is the
   interface `WeightedUltraproductAdjointModel`, which is
   `UltraproductAdjointModel` of `Sofic.UltraproductKazhdanTransport` with the
   dimension normalization `hsNormSq` replaced by the weight `w`.
@@ -119,7 +119,7 @@ null at `w` when `w n ≪ card (Y n)`; there is a natural map
 dimension weight and retrofitting would build it twice.  Equivalently, and this
 was the manuscript's own closing remark until `fd45b050` deleted it, the
 dimension weight recovers
-`\ref{thm:kazhdan-transport}` *with the operator-norm bound relaxed to mass
+the Kazhdan transport result *with the operator-norm bound relaxed to mass
 boundedness*, so the weighted statement is strictly stronger and cannot be got
 from the unweighted one by rescaling: `y_n = x_n √(d_n/w_n)` is
 Hilbert--Schmidt bounded but not operator-norm bounded.
@@ -385,7 +385,7 @@ one-sided containment `P ≤ Q` of KT.09 and finiteness of `B_ω` force `Q = P`.
 Neither the statement nor the proof mentions `w`: `B_ω`, `π`, `P` and the
 absorption identities are the same objects at every weight, which is exactly
 why the printed proof of (1) can say that the ultraproduct proof of
-`thm:kazhdan-transport` applies verbatim. -/
+the Kazhdan transport result applies verbatim. -/
 theorem kt_10_conjugate_eq : D.pi s * D.P * star (D.pi s) = D.P :=
   ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
     D.P_star D.P_mul_P (D.star_pi_mul_pi s) (D.pi_mul_star_pi s)
@@ -537,7 +537,7 @@ end WeightedUltraproductAdjointModel
 
 /-! ## The manuscript's contradiction skeleton, at the weight
 
-The printed proof of `thm:kazhdan-transport` assumes the conclusion fails on an
+The printed proof of the Kazhdan transport result assumes the conclusion fails on an
 infinite set `I`, fixes a free ultrafilter `ω` with `I ∈ ω`, derives the
 vanishing along `ω`, and contradicts `I ∈ ω`.  At the weight `w` the failing
 set is `{n | ε w n < Tr|y_n|²}`, and the same skeleton runs. -/
@@ -591,7 +591,7 @@ theorem weightNull_atTop_of_forall_free_ultrafilter
 `non_mf_groups_exist.tex`, Theorem `\ref{thm:transport-variants}`, part (1),
 with its printed proof.
 
-Let `Γ`, `H`, `ι`, `s` be as in `thm:kazhdan-transport`, let `(U_n)` be as
+Let `Γ`, `H`, `ι`, `s` be as in the Kazhdan transport result, let `(U_n)` be as
 there, let `(w_n)` be nonnegative weights, suppose `Tr(x_n* x_n) ≤ C w_n` for
 all `n`, and suppose that for every `γ` and every `ε > 0`, eventually
 `Tr |x_n - U_n(ι γ) x_n U_n(ι γ)*|² ≤ ε w_n`.  Then `U_n(s) x_n U_n(s)*` **and**
@@ -600,7 +600,7 @@ all `n`, and suppose that for every `γ` and every `ε > 0`, eventually
 
 The proof is the printed one.  The mass bound is preserved because conjugation
 by a unitary is unitary for every weight; the defect condition is transported
-by the ultraproduct proof of `thm:kazhdan-transport` run at the weight `w`,
+by the ultraproduct proof of the Kazhdan transport result run at the weight `w`,
 whose ambient is `WeightedUltraproductAdjointModel`; and both directions come
 out because finiteness of `B_ω` reverses the one-sided compression
 (`kt_10_conjugate_eq`), giving `V P V* = P` and hence commutation of `P` with
@@ -779,18 +779,18 @@ theorem hsNormSq_displacement_eq_commutator (Z : FiniteModel)
   have h2 : A - W * A * Wᴴ = -(W * A * Wᴴ - A) := by abel
   rw [← h1, h2, hsNormSq_neg]
 
-/-- **The dimension weight recovers `\ref{thm:kazhdan-transport}`, with the
+/-- **The dimension weight recovers the Kazhdan transport result, with the
 uniform operator-norm bound relaxed to mass boundedness.**  Not a printed
 statement: see the note under `## The dimension weight` above.
 
 Taking `w n = card (Y n)` in `transport_variants_one` gives back the conclusion
-of `thm:kazhdan-transport` --- normalized Hilbert--Schmidt vanishing of the
+of the Kazhdan transport result --- normalized Hilbert--Schmidt vanishing of the
 conjugated commutators --- from a hypothesis that only bounds the normalized
 Hilbert--Schmidt norms of `x_n`, not their operator norms.
 
 This is also the reason the weighted statement cannot be obtained from the
 unweighted one by rescaling: `y_n = x_n √(d_n / w_n)` is Hilbert--Schmidt
-bounded but not operator-norm bounded, so `thm:kazhdan-transport` does not
+bounded but not operator-norm bounded, so the Kazhdan transport result does not
 apply to it.  The ultraproduct argument has to be run at the weight, which is
 what this file does.
 

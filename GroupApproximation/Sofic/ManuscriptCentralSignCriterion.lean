@@ -8,22 +8,22 @@ import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 /-!
 # The central-sign criterion along its printed proof
 
-`non_mf_groups_exist.tex`, Theorem `\label{thm:sign-criterion}` in
-`\section{The central-sign obstruction}` (`\label{sec:sign}`).  Anchored on
+`non_mf_groups_exist.tex`, the central-sign criterion in
+`\section{The central-sign obstruction}` (the central-sign argument).  Anchored on
 labels: the manuscript is under concurrent revision.
 
 The printed proof is by contradiction from a surviving corona representation,
 in three named paragraphs:
 
 * *The negative corner.*  Coordinate unitary lifts `(V_{g,n})` of `Θ`
-  (`lem:unitarycorona`); the Reynolds average `p_n = ½(1 + V_{ε,n})` of the
+  (the unitary-corona lifting result); the Reynolds average `p_n = ½(1 + V_{ε,n})` of the
   two-element subgroup `F = {1, ε}`; rounding its Hermitian part at `½` by
   continuous functional calculus; the complements `q_n`, nonzero along
   infinitely many coordinates; compression and polar correction, giving an
   operator-norm asymptotic representation `(W_{g,n})` on nonzero blocks with
   `‖W_{ε,n} + 1‖ → 0`.
 * *Transport on the corner.*  `c` centralizes `ι(Γ)`, so `(W_{c,n})` lies in
-  the asymptotic commutant; `thm:kazhdan-transport` applied to `x_n = W_{c,n}`
+  the asymptotic commutant; the Kazhdan transport result applied to `x_n = W_{c,n}`
   puts the conjugated sequence `(W_{d,n})`, `d = t c t⁻¹`, in the same
   commutant; hence `‖W_{u,n} - 1‖_HS → 0` for `u = [d, ι(a)]`, and squaring.
 * *The contradiction.*  `ε = u²` and `W_{ε,n} → -1` are incompatible with
@@ -39,7 +39,7 @@ printed route, on two counts: the manuscript proves the sign criterion
 *first and directly* and only afterwards replaces `F = {1, ε}` by an arbitrary
 finite normal subgroup ("The argument used the finiteness of `F = {1,ε}` only
 through the Reynolds average"), and the printed engine on the corner is
-`thm:kazhdan-transport`, not root capture.
+the Kazhdan transport result, not root capture.
 
 This file supplies the declaration whose *proof route* is the printed one:
 `cs_01_negative_corner`, `cs_02_transport_on_the_corner`,

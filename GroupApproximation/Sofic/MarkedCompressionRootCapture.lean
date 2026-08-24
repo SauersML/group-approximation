@@ -497,7 +497,7 @@ Statement and consumers are unchanged; the proof now names the transport step
 it uses, which is the Appendix-B one.  Rows `INT.03` and `INT.04` are about
 that choice, and the alternative is
 `UltraproductRigidityRoute.compressionDefect_hsDistSq_vanishing_literal`,
-which proves this same statement through `\ref{thm:kazhdan-transport}`.
+which proves this same statement through the Kazhdan transport result.
 
 That name is corrected, not renamed: this sentence used to promise the
 alternative as `KazhdanAsymptoticCommutant.compressionDefect_hsDistSq_vanishing_literal`,

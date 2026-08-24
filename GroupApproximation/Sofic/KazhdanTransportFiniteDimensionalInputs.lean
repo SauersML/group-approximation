@@ -4,14 +4,14 @@ import GroupApproximation.Sofic.UltraproductDedekindFinite
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
 /-!
-# Where `thm:kazhdan-transport` uses finite dimensionality, and why twice
+# Where the Kazhdan transport result uses finite dimensionality, and why twice
 
 Question 5 of the manuscript's questions subsection (grep the tex for
 `"by other building blocks"`; probe `p:q5`, row `LI.19` of
 `metadata/NON_MF_PROOF_LEDGER.md`) reads:
 
 > Does the obstruction survive when the matrix blocks are replaced by other
-> building blocks?  The proof of Theorem~\ref{thm:kazhdan-transport} uses
+> building blocks?  The proof of the Kazhdan transport result uses
 > finite dimensionality of `M_{d_n}(ℂ)` for the conjugation action on
 > `L²(M_{d_n}(ℂ), tr_{d_n})` and for finiteness of the norm ultraproduct;
 > faithful traces alone do not replace these inputs.

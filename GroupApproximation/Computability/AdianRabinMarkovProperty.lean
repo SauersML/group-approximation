@@ -23,7 +23,7 @@ reduction is needed, only its undecidability".
 
 The paragraph opening the subsection, immediately before the corollary, reads:
 
-> Lemma~\ref{lem:permanence}(1) and Theorem~\ref{thm:A} make MF a Markov
+> Lemma~\ref{lem:permanence}(1) and the earlier non-MF endpoint make MF a Markov
 > property of finitely presented groups: the trivial group is MF, and by
 > subgroup heredity the finitely presented group $E$ embeds in no MF
 > group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
@@ -633,7 +633,7 @@ theorem operatorMF_isoInvariant (G H : Type) [instG : Group G] [instH : Group H]
 
 /-- **Manuscript sentence opening
 `\subsection{Undecidability of MF recognition}`:** Lemma `lem:permanence`(1)
-and Theorem `thm:A` make MF a Markov property of finitely presented groups ---
+and the earlier non-MF endpoint make MF a Markov property of finitely presented groups ---
 the trivial group is MF, and by subgroup heredity the finitely presented group
 `E` embeds in no MF group.
 

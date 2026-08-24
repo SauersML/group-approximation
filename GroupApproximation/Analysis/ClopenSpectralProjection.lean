@@ -190,4 +190,3 @@ theorem spectrum_conj_eq (u : unitary A) (v : A) :
 
 end ClopenSpectralProjection
 end GroupApproximation
-

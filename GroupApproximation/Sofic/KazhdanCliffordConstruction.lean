@@ -515,7 +515,7 @@ tends to `-1`; Kazhdan transport makes its compression-defect square tend to
 This is `p:constr-tietze`'s sentence "rigidity forces `u ~₂ 1` while the
 Clifford model makes `u² = -1`", and the rigidity is now the printed one: the
 pinning comes from `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`,
-whose transport step is `\ref{thm:kazhdan-transport}` by the §3 ultraproduct
+whose transport step is the Kazhdan transport result by the §3 ultraproduct
 proof.  The finite-stage
 `KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation` proves the same
 statement and is left standing. -/
@@ -624,7 +624,7 @@ theorem kazhdanCliffordConstruction :
   --
   -- **By the printed route.**  The criterion used here is
   -- `PrintedCentralSign.manuscriptCentralSignCriterionPrinted`, whose one
-  -- transport step is `\ref{thm:kazhdan-transport}` by the printed §3
+  -- transport step is the Kazhdan transport result by the printed §3
   -- ultraproduct argument.  It used to be
   -- `KazhdanCompressionCore.manuscriptCentralSignCriterion`, which inhabits the
   -- same closed proposition through the finite-stage corner; that route is

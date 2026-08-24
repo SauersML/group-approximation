@@ -1,5 +1,7 @@
 import GroupApproximation.Sofic.AlternatingLampExactRadical
 import GroupApproximation.Sofic.FiveRadicalsCoincide
+import GroupApproximation.Sofic.TargetEquivalence
+import GroupApproximation.Analysis.PeterWeylProfinite
 
 /-!
 # Every nontrivial finite perfect lamp, over the concrete doubling datum
@@ -44,10 +46,12 @@ variable (K : Type) [Group K] [Finite K]
 
 /-- **Theorem C over the concrete datum.**  For a finite perfect lamp group the
 MF radical of the compression wreath product is exactly the lamp subgroup. -/
-theorem actualCoronaMFResidual_eq_lampSub (hK : commutator K = ⊤) :
-    actualCoronaMFResidual (WFin K) = lampSub K :=
-  PerfectLampRadical.actualCoronaMFResidual_eq_lampRange conjD conjD_injective
-    CommutingLampCollapse.gammaBar_hasKazhdanPropertyT
+theorem actualCoronaMFResidual_eq_lampSub :
+    ∀ (K' : Type) [Group K'] [Finite K'],
+      commutator K' = ⊤ → actualCoronaMFResidual (WFin K') = lampSub K' := by
+  intro K' _ _ hK
+  exact PerfectLampRadical.actualCoronaMFResidual_eq_lampRange conjD
+    conjD_injective CommutingLampCollapse.gammaBar_hasKazhdanPropertyT
     (fun k => PerfectLampRadical.exists_pow_eq_one_of_finite k) hK
     v1G_not_mem_range
     ((isCDEOperatorMF_iff_isOperatorMF _).mpr
@@ -113,15 +117,98 @@ theorem not_isCDEOperatorMF_WFin [Nontrivial K] (hK : commutator K = ⊤) :
 /-- **The finite-perfect package.**  Sofic, finitely generated, not MF, with all
 four radicals exactly the lamp subgroup -- for every nontrivial finite perfect
 lamp group over the one concrete doubling datum. -/
-theorem finitePerfectPackage [Nontrivial K] (hK : commutator K = ⊤) :
-    IsSofic (WFin K) ∧ ¬ IsCDEOperatorMF (WFin K) ∧ Group.FG (WFin K) ∧
-      actualCoronaMFResidual (WFin K) = lampSub K ∧
-      fdUnitaryResidual (WFin K) = lampSub K ∧
-      finiteResidual (WFin K) = lampSub K ∧
-      linearResidual (WFin K) = lampSub K :=
-  ⟨isSofic_WFin K, not_isCDEOperatorMF_WFin K hK, inferInstance,
-    (four_radicals_eq_lampSub K hK).1, (four_radicals_eq_lampSub K hK).2.1,
-    (four_radicals_eq_lampSub K hK).2.2.1, (four_radicals_eq_lampSub K hK).2.2.2⟩
+theorem finitePerfectPackage :
+    ∀ (K' : Type) [Group K'] [Finite K'] [Nontrivial K'], commutator K' = ⊤ →
+      IsSofic (WFin K') ∧ ¬ IsCDEOperatorMF (WFin K') ∧ Group.FG (WFin K') ∧
+        actualCoronaMFResidual (WFin K') = lampSub K' ∧
+        fdUnitaryResidual (WFin K') = lampSub K' ∧
+        finiteResidual (WFin K') = lampSub K' ∧
+        linearResidual (WFin K') = lampSub K' := by
+  intro K' _ _ _ hK
+  exact ⟨isSofic_WFin K', not_isCDEOperatorMF_WFin K' hK, inferInstance,
+    (four_radicals_eq_lampSub K' hK).1, (four_radicals_eq_lampSub K' hK).2.1,
+    (four_radicals_eq_lampSub K' hK).2.2.1,
+    (four_radicals_eq_lampSub K' hK).2.2.2⟩
+
+/-! ## The universal visible quotient
+
+The radical identities above are equivalently universal statements: restriction
+along the split wreath projection is a bijection on Hom-sets for every target
+in the finite-dimensional approximation classes used by the paper. -/
+
+/-- Every genuine norm-matrix-corona representation factors uniquely through
+the wreath projection. -/
+theorem precomp_bijective_actualCorona (hK : commutator K = ⊤)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective)
+        (unitary (NormMatrixCStarCorona (fun n ↦ X n)))) := by
+  letI : ∀ n, Nonempty (X n) :=
+    fun n ↦ Fintype.card_pos_iff.mp (hX n)
+  apply precomp_bijective _ SemidirectProduct.rightHom_surjective
+  intro ρ x hx
+  rw [MonoidHom.mem_ker]
+  have hxrad : x ∈ actualCoronaMFResidual (WFin K) := by
+    rw [actualCoronaMFResidual_eq_lampSub K hK]
+    simpa only [lampSub, ker_rightHom_eq_lampRange] using hx
+  exact hxrad X hX ρ
+
+/-- Hom-sets into every residually finite target are unchanged. -/
+theorem precomp_bijective_residuallyFinite (hK : commutator K = ⊤)
+    (T : Type) [Group T] (hT : IsResiduallyFinite T) :
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective) T) := by
+  apply precomp_bijective _ SemidirectProduct.rightHom_surjective
+  apply invisibleTo_of_ker_le_finiteResidual
+  · rw [ker_rightHom_eq_lampRange, (four_radicals_eq_lampSub K hK).2.2.1]
+  · exact hT
+
+/-- Hom-sets into every finite target are unchanged. -/
+theorem precomp_bijective_finite (hK : commutator K = ⊤)
+    (T : Type) [Group T] [Finite T] :
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective) T) :=
+  precomp_bijective_residuallyFinite K hK T (isResiduallyFinite_of_finite T)
+
+/-- Hom-sets into every finite-dimensional unitary group are unchanged. -/
+theorem precomp_bijective_fdUnitary (hK : commutator K = ⊤)
+    (Y : FiniteModel) :
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective)
+        (Matrix.unitaryGroup Y ℂ)) := by
+  apply precomp_bijective _ SemidirectProduct.rightHom_surjective
+  intro ρ x hx
+  rw [MonoidHom.mem_ker]
+  have hxrad : x ∈ fdUnitaryResidual (WFin K) := by
+    rw [(four_radicals_eq_lampSub K hK).2.1]
+    simpa only [lampSub, ker_rightHom_eq_lampRange] using hx
+  exact mem_fdUnitaryResidual_iff.mp hxrad Y ρ
+
+/-- Hom-sets into `GL_d(F)` are unchanged for every field and every finite
+dimension. -/
+theorem precomp_bijective_generalLinearGroup (hK : commutator K = ⊤)
+    (F : Type) [Field F] (d : ℕ) :
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective)
+        (Matrix.GeneralLinearGroup (Fin d) F)) := by
+  apply precomp_bijective _ SemidirectProduct.rightHom_surjective
+  apply invisibleTo_generalLinearGroup_of_ker_le_linearResidual
+  rw [ker_rightHom_eq_lampRange, (four_radicals_eq_lampSub K hK).2.2.2]
+
+/-- Every homomorphism into a profinite group kills the lamp kernel, hence
+precomposition with the wreath projection is bijective. -/
+theorem precomp_bijective_profinite (hK : commutator K = ⊤)
+    (T : Type) [Group T] [TopologicalSpace T] [IsTopologicalGroup T]
+    [CompactSpace T] [TotallyDisconnectedSpace T] :
+    Function.Bijective
+      (precomp (rightHom : WFin K →* Vertical conjD conjD_injective) T) := by
+  apply precomp_bijective _ SemidirectProduct.rightHom_surjective
+  intro ρ
+  have hfinite := PeterWeyl.finiteResidual_le_ker_of_profinite ρ
+  rw [(four_radicals_eq_lampSub K hK).2.2.1] at hfinite
+  simpa only [lampSub, ker_rightHom_eq_lampRange] using hfinite
 
 /-! ## The fifth column, conditionally
 

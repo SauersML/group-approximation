@@ -313,13 +313,15 @@ theorem not_isCDEOperatorMF_alternatingWreath {n : ℕ} (hn : 5 ≤ n) :
 /-- **The family package.**  For every `n ≥ 5` the degree-`n` member is sofic,
 not MF, finitely generated, and has exactly computable radicals, all equal to
 its lamp subgroup. -/
-theorem alternatingFamilyPackage {n : ℕ} (hn : 5 ≤ n) :
-    IsSofic (WAlt n) ∧ ¬ IsCDEOperatorMF (WAlt n) ∧ Group.FG (WAlt n) ∧
-      actualCoronaMFResidual (WAlt n) = lampSub n ∧
-      fdUnitaryResidual (WAlt n) = lampSub n ∧
-      finiteResidual (WAlt n) = lampSub n ∧
-      linearResidual (WAlt n) = lampSub n :=
-  ⟨isSofic_alternatingWreath n, not_isCDEOperatorMF_alternatingWreath hn,
+theorem alternatingFamilyPackage :
+    ∀ {n : ℕ}, 5 ≤ n →
+      IsSofic (WAlt n) ∧ ¬ IsCDEOperatorMF (WAlt n) ∧ Group.FG (WAlt n) ∧
+        actualCoronaMFResidual (WAlt n) = lampSub n ∧
+        fdUnitaryResidual (WAlt n) = lampSub n ∧
+        finiteResidual (WAlt n) = lampSub n ∧
+        linearResidual (WAlt n) = lampSub n := by
+  intro n hn
+  exact ⟨isSofic_alternatingWreath n, not_isCDEOperatorMF_alternatingWreath hn,
     inferInstance, (four_radicals_eq_lampRange hn).1,
     (four_radicals_eq_lampRange hn).2.1, (four_radicals_eq_lampRange hn).2.2.1,
     (four_radicals_eq_lampRange hn).2.2.2⟩

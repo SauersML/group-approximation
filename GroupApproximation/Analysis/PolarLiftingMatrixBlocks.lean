@@ -4,7 +4,7 @@ import GroupApproximation.Analysis.PolarLiftingGeneralCStar
 /-!
 # The printed lifting step at the printed blocks
 
-`\label{lem:lift}` opens its proof with
+the unitary lifting result opens its proof with
 
 > lift to a bounded sequence; unitarity gives `‖xₙ*xₙ − 1‖ → 0`.
 
@@ -69,8 +69,8 @@ variable (X : ℕ → Type) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
 
 > lift to a bounded sequence; unitarity gives `‖xₙ*xₙ − 1‖ → 0`.
 
-The printed step, for the matrix coordinates `lem:lift` is stated about, at an
-arbitrary filter — the `cofinite` case being the printed one, where the
+The printed step, in the matrix coordinates of the unitary lifting result and
+at an arbitrary filter — the `cofinite` case being the printed one, where the
 denominator is the operator-norm `c₀` ideal.  Both Gram defects, which are the
 printed sentence's two halves.  The remainder of the printed paragraph —
 invertibility for large `n`, unitarity of the polar correction, and its

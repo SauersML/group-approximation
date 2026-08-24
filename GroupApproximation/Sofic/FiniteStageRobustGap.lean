@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.KazhdanCornerMatrices
 /-!
 # Finite-stage quantitative estimates for the robust spectral gap
 
-`non_mf_groups_exist.tex` used to prove `\ref{thm:kazhdan-transport}` a second
+`non_mf_groups_exist.tex` used to prove the Kazhdan transport result a second
 time, in a section titled "The finite-stage transport proof",
 "quantitatively at each single coordinate `n` and with no
 ultrafilter", with a remark ("The ultrafilter gives no
@@ -17,7 +17,7 @@ each stage*.
 ("Editorial pass: rewrite orbit collapse, cut what nothing uses") deleted both,
 after the rewritten collapse step stopped consuming the finite-stage route.
 What the manuscript prints is the single ultraproduct proof inside
-`\ref{sec:transport}`.  Nothing in this file depended on that text, and nothing
+the former transport argument.  Nothing in this file depended on that text, and nothing
 in it changed; it is now a Lean-side second route with no printed counterpart
 and no badge owed.
 

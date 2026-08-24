@@ -18,10 +18,10 @@ records at row `KT.05`, that
 > diagonal argument and no `CompleteSpace` instance is claimed below.
 
 This file supplies that missing property, so that the printed sentence of
-`\label{thm:kazhdan-transport}`,
+the Kazhdan transport result,
 
 > *The ultraproduct.*  Let `K_ω` and `B_ω = ∏_ω B(K_n)` be as in
-> Section~\ref{sec:transport},
+> the former transport argument,
 
 names a genuine Hilbert space: `K_ω` carries `InnerProductSpace ℂ` from
 `KOmegaHilbert` and `CompleteSpace` from `kOmegaCompleteSpace` below, so the
@@ -395,7 +395,7 @@ theorem exists_tendsto_sum_of_summable_norm (hw : ∀ n, 0 ≤ w n)
 
 With `KOmegaHilbert.kOmegaInnerProductSpace` this makes the manuscript's `K_ω` a
 Hilbert space in mathlib's sense, so that the orthogonal complements, orthogonal
-projections and spectral theory the printed proof of `thm:kazhdan-transport`
+projections and spectral theory the printed proof of the Kazhdan transport result
 uses on it are all available. -/
 instance kOmegaCompleteSpace (hw : ∀ n, 0 ≤ w n) :
     CompleteSpace (KOmega Y w ω hw) :=

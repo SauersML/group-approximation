@@ -263,7 +263,7 @@ theorem manuscriptProjectionCollapse :
               NormMatrixCStarCorona (fun n ↦ X n)) := by
   intro E _ L hT s hcomp X hX
   exact ProjectionCompressionCollapse.corona_projection_collapse L hT
-    (s := s) hcomp X hX
+    (s := s) hcomp X
 
 /-- Closed form: torsion witnesses have invisible commutators. -/
 theorem manuscriptTorsionWitnessInvisible :

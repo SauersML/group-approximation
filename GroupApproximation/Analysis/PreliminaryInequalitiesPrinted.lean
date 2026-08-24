@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.PrintedPreliminaryEstimates
 /-!
 # The three inequalities of the notation paragraph, in the printed shape
 
-`non_mf_groups_exist.tex`, `\section{Matrix quotients}` (`\label{sec:prelim}`),
+`non_mf_groups_exist.tex`, `\section{Matrix quotients}` (the preliminary matrix estimates),
 fixes the notation `tr_r`, `‖·‖`, `‖x‖₂ = tr_r(x*x)^{1/2}` on `M_r(ℂ)` and then
 closes the paragraph with
 
@@ -104,7 +104,7 @@ printed statement carries them.  This structure is that statement.  Each field
 is discharged by one of the named theorems above, separately: the façade
 composes nothing and proves nothing on its own. -/
 
-/-- The three inequalities the notation paragraph of `sec:prelim` declares it
+/-- The three inequalities the notation paragraph of the preliminary matrix estimates declares it
 will use without comment, in the printed order. -/
 structure PrelimNotationInequalities (Y : FiniteModel) : Prop where
   /-- `‖x‖₂ ≤ ‖x‖`. -/

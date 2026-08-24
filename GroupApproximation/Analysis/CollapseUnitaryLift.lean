@@ -7,8 +7,8 @@ import GroupApproximation.Sofic.OpAlmostRepresentation
 Proof-ledger row `CO.04`.  The printed proof of `thm:projection-collapse`
 opens its analytic half with
 
-> Choose unitary coordinate lifts `U_n(h)` of `Θ(h)` (Lemma
-> \ref{lem:unitarycorona}).
+> Choose unitary coordinate lifts `U_n(h)` of `Θ(h)` using the
+> unitary-corona lifting result.
 
 Everything downstream of that sentence is now in the corpus and is stated for
 an `OpAlmostRepresentation` — the cocycle
@@ -20,7 +20,7 @@ missing is the sentence itself: the passage from a homomorphism
 `Θ : E →* 𝓤(𝒬)` into the corona's unitary group to an almost representation.
 
 `coronaAlmostRep` is that passage, and `unitarySequenceToCorona_surjective` is
-`lem:unitarycorona` in the form it needs.
+the unitary-corona lifting result in the form it needs.
 
 ## Why the lift is only asymptotically multiplicative, and why that is enough
 
@@ -49,10 +49,10 @@ noncomputable section
 
 variable (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
 
-/-! ## `lem:unitarycorona`, in sequence form -/
+/-! ## the unitary-corona lifting result, in sequence form -/
 
 /-- **Every unitary of the corona is the class of a coordinatewise unitary
-sequence.**  This is `lem:unitarycorona`; the polar-corrected patched sequence
+sequence.**  This is the unitary-corona lifting result; the polar-corrected patched sequence
 of `PrintedLiftingSteps` is the witness. -/
 theorem unitarySequenceToCorona_surjective :
     Function.Surjective (unitarySequenceToCorona X) := by

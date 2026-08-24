@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.OmegaKazhdanCompression
 # KT.19 and KT.21 on `B_ω` and `K_ω`
 
 Ledger rows `KT.19` and `KT.21` are the two halves of the paragraph
-*The two projections agree* of `\label{thm:kazhdan-transport}`:
+*The two projections agree* of the Kazhdan transport result:
 
 > Let `V = π(s)` and `Q = V P V*`.  Since `s ι(Γ) s⁻¹ ⊆ ι(Γ)`, every vector of
 > `Fix` is fixed by each `π(s ι(γ) s⁻¹)`; and `η` is fixed by all
@@ -56,8 +56,8 @@ variable {B : Type*} [Ring B] [StarRing B]
 /-- **KT.21, the four printed identities of `r = V* Q`.**
 
 With `Q = V P V*` and `r = V* Q`, the manuscript's `r* r = Q` and `r r* = P`
-hold, and so do the two absorption identities `r Q = r` and `Q r = r` that the
-comparison lemma `lem:finitecompare` consumes.  The hypotheses are exactly the
+hold, and so do the two absorption identities `r Q = r` and `Q r = r` consumed
+by the finite-algebra comparison result.  The hypotheses are exactly the
 printed ones: `V` is unitary, `P` is a projection, and `Q P = P`, which is the
 printed `P ≤ Q`. -/
 theorem isometry_identities_of {V P : B}

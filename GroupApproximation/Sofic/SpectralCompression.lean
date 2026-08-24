@@ -264,4 +264,3 @@ theorem corona_zero_dimensional_spectral_collapse
 
 end SpectralCompression
 end GroupApproximation
-

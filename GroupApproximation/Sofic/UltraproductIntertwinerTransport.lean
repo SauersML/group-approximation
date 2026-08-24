@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 # Ultraproduct Kazhdan transport of asymptotic intertwiners
 
 This file proves the intertwiner transport variant by the block reduction
-feeding the **ultraproduct** proof of `thm:kazhdan-transport`.  **The printed
+feeding the **ultraproduct** proof of the Kazhdan transport result.  **The printed
 clause was cut from the manuscript on 2026-08-18**: `thm:transport-variants`
 now states the weighted variant alone, and neither the intertwiner statement
 nor its six-step proof is printed any more (see the change-history table of
@@ -27,7 +27,7 @@ IT.03  it_03_defect_is_offDiagBlock             the commutator of the embedded c
                                                carries exactly the denominator d¹_n + d²_n.
 IT.04  it_04_blockConjugation_on_corner         conjugation by W_n(s) acts on the embedded
                                                corner by x_n ↦ U¹_n(s) x_n U²_n(s)*.
-IT.05  it_05_intertwiner_transport              apply `thm:kazhdan-transport` — the
+IT.05  it_05_intertwiner_transport              apply the Kazhdan transport result — the
                                                ultraproduct proof — to W_n, transporting the
                                                embedded sequence.
 IT.06  it_06_scaled_intertwiner_transport       the same reduction through part (1) gives the
@@ -79,15 +79,15 @@ open Matrix KazhdanCornerMatrices KazhdanAsymptoticCommutant
 open ScaledKazhdanTransport IntertwinerKazhdanTransport
 open scoped Matrix.Norms.L2Operator
 
-/-! ## The interface to the ultraproduct proof of `thm:kazhdan-transport` -/
+/-! ## The interface to the ultraproduct proof of the Kazhdan transport result -/
 
 /-- **The IT.05 input — an UNPROVED hypothesis, not a theorem of this file.**
-The conclusion of the manuscript's `thm:kazhdan-transport` for the ambient
+The conclusion of the manuscript's Kazhdan transport result for the ambient
 group `E` and the Kazhdan source `Γ`: a one-sided compressor of a Kazhdan
 image preserves every uniformly operator-norm-bounded normalized
 Hilbert--Schmidt asymptotic commutant.
 
-This is the statement whose *printed* proof, inside `\ref{sec:transport}`, is
+This is the statement whose *printed* proof, inside the former transport argument, is
 the ultraproduct argument: the adjoint model, the norm ultraproduct `B_ω`, the
 projection onto the fixed subspace, the agreement of the two projections, and
 the conclusion.
@@ -110,7 +110,7 @@ abbrev UltraproductTransportFor (Γ E : Type) [Group Γ] [Group E] : Prop :=
 /-- **The IT.06 input — an UNPROVED hypothesis, not a theorem of this file.**
 Part (1) of `\ref{thm:transport-variants}`: the same transport at an arbitrary
 nonnegative Hilbertian weight `w`, again by the ultraproduct argument --- "the
-ultraproduct proof of Theorem `\ref{thm:kazhdan-transport}` applies with
+ultraproduct proof of the Kazhdan transport result applies with
 `\tr_{d_n}` replaced by `\operatorname{Tr}(\,\cdot\,)/\nu_n`", in the printed
 proof of part (1).
 
@@ -281,14 +281,14 @@ theorem it_04_blockConjugation_on_corner (B₁ B₂ : OpAlmostRepresentation E)
 
 /-- **IT.05 — NOT CLOSED.  This is a reduction, not a proof of the step.**
 
-What is proved: *if* `thm:kazhdan-transport` holds (hypothesis `hUP`), then
+What is proved: *if* the Kazhdan transport result holds (hypothesis `hUP`), then
 applying it to the block sum `W_n` and reading the corner back off gives the
 transport of asymptotic intertwiners.  The reduction itself is complete and
 rests only on the closed steps IT.01--IT.04.
 
 What is *not* proved: `hUP`.  The manuscript discharges it by the
-ultraproduct argument printed under `\ref{thm:kazhdan-transport}` in
-`\ref{sec:transport}`, which is not yet available in this
+ultraproduct argument printed under the Kazhdan transport result in
+the former transport argument, which is not yet available in this
 repository.  Until it is, this declaration does not certify
 `\ref{thm:transport-variants}`(2) and must not be badged. -/
 theorem it_05_intertwiner_transport
@@ -380,10 +380,10 @@ universe uK
 the ultraproduct route — NOT CLOSED.  Do not badge this declaration.**
 
 It carries the hypothesis `_hUP`, the unproved statement of
-`thm:kazhdan-transport`; see the STATUS block at the head of this file.  What
+the Kazhdan transport result; see the STATUS block at the head of this file.  What
 is established is the manuscript's block reduction (IT.01--IT.05) in the
 literal `M_{d¹_n × d²_n}` coordinates, i.e. that part (2) follows from
-`thm:kazhdan-transport`.  The statement is otherwise identical to
+the Kazhdan transport result.  The statement is otherwise identical to
 `IntertwinerKazhdanTransport.manuscriptIntertwinerTransport`, which *is*
 closed, by the finite-stage route.
 
@@ -401,7 +401,7 @@ The proof is the printed block reduction IT.01--IT.05: the block sum
 embeds isometrically as an off-diagonal corner whose block-normalized
 Hilbert--Schmidt defect is the hypothesis with its `d¹_n + d²_n`
 denominator, conjugation by `W_n(s)` acts on the corner by the asserted
-formula, and `thm:kazhdan-transport` — by its printed ultraproduct proof,
+formula, and the Kazhdan transport result — by its printed ultraproduct proof,
 supplied as `hUP` — transports the embedded sequence. -/
 theorem manuscriptUltraproductIntertwinerTransport :
     ∀ {Γ H : Type} [Group Γ] [Group H]

@@ -123,4 +123,3 @@ theorem norm_sub_le_of_clopen_projections_eq
 
 end SpectralComponentMotion
 end GroupApproximation
-

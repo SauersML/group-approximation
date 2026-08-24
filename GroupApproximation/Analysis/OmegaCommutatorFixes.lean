@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.OmegaAlmostRepresentation
 /-!
 # KT.25 and KT.27: the conclusion paragraph, on `B_ω` and `K_ω`
 
-The printed proof of `\label{thm:kazhdan-transport}` ends:
+The printed proof of the Kazhdan transport result ends:
 
 > *Conclusion.*  Let `ξ = [x_n]_ω ∈ K_ω`; the uniform operator-norm bound makes
 > this class well defined.  By unitary invariance of the normalized

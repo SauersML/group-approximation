@@ -3,7 +3,7 @@ import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 /-!
 # The printed proof of the lifting lemma, step by step
 
-`non_mf_groups_exist.tex`, `\begin{lemma}[lifting]\label{lem:lift}`, prints
+The former manuscript's lemma captioned ``lifting'' prints
 
 > Every unitary `u ∈ 𝒬` lifts to a sequence of unitaries.
 
@@ -34,7 +34,7 @@ and `PRE.11` record that two of the four moves are not located anywhere:
 
 `polarPatch` is the printed sequence itself — polar correction where the Gram
 defect is at most `1/2`, the identity elsewhere — as a named definition rather
-than a `let` inside a proof, and `exists_boundedLift_polarPatch` is `lem:lift`
+than a `let` inside a proof, and `exists_boundedLift_polarPatch` is the unitary lifting result
 routed through all four moves in the printed order, exposing the bounded lift,
 the cofinite set on which the correction is defined, and the patched sequence.
 
@@ -57,7 +57,7 @@ noncomputable section
 /-! ## `PRE.09`, first move: choose a bounded lift -/
 
 /-- **"Lift `u` to a bounded sequence `(xₙ)`."**  The opening move of the
-printed proof of `lem:lift`, as a statement rather than a step: every element
+printed proof of the unitary lifting result, as a statement rather than a step: every element
 of the corona — in particular every unitary of it — is the class of a
 uniformly operator-norm-bounded sequence of matrices. -/
 theorem exists_boundedLift (x : NormMatrixCStarCorona (fun n ↦ X n)) :
@@ -155,7 +155,7 @@ theorem quotientMk_eq_of_eventuallyEq
       QuotientGroup.mk v = 1 := hquot
   exact div_eq_one.mp hdiv
 
-/-! ## The printed sequence, and `lem:lift` routed through the four moves -/
+/-! ## The printed sequence, and the unitary lifting result routed through the four moves -/
 
 /-- **The printed patched sequence.**  At an index where the Gram defect of the
 chosen bounded lift is at most `1/2`, the coordinate is the printed polar
@@ -199,7 +199,7 @@ theorem polarPatch_eq_one
             (fun _ ↦ 1) from rfl]
   exact dif_neg hn
 
-/-- **`lem:lift`, through the four printed moves.**  Every unitary of the
+/-- **the unitary lifting result, through the four printed moves.**  Every unitary of the
 corona is `q((uₙ))` for the patched polar correction of some bounded lift.
 The four conjuncts are the four moves of the printed sentence: `a` is the
 bounded lift, the eventual bound is the Gram defect tending to zero, the

@@ -9,7 +9,7 @@ import GroupApproximation.Sofic.KazhdanCornerModel
 
 > Fix a free ultrafilter `ω`, let `H_ω` be the Hilbert-space ultraproduct of the
 > coordinate spaces `ℂ^{d_n}`, and let `B_ω = ∏_ω B(ℂ^{d_n})` act on it as in
-> Section~\ref{sec:transport}, so that the classes `π(g) = [V_{g,n}]_ω` define a
+> the former transport argument, so that the classes `π(g) = [V_{g,n}]_ω` define a
 > unitary representation of `H̄` on `H_ω`.
 
 `Analysis/VectorHilbertUltraproduct.lean` built `H_ω` and gave it its inner

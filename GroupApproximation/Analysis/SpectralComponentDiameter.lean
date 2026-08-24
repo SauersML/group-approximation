@@ -129,4 +129,3 @@ theorem eq_of_same_clopen_spectral_pieces
 
 end SpectralComponentDiameter
 end GroupApproximation
-
