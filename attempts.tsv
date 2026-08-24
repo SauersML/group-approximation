@@ -156,3 +156,4 @@
 32674108204	2026-08-23T23:37:04Z	GroupApproximation/Sofic/SymmetricDoubleShulman.lean	manuscriptExactRadical_of_isMFTrace_symmetricDouble
 32675188897	2026-08-23T23:59:09Z	GroupApproximation/Sofic/ArithmeticAmplifiedEndpoint.lean	markedCommutator_mapAmbient
 32681521362	2026-08-24T01:59:21Z	GroupApproximation/Endpoint/MFRecognitionAudit.lean	as
+32685957389	2026-08-24T03:18:11Z	GroupApproximation/Sofic/MatchingFoldObstruction.lean	fold_witness_matching_noncrossing
