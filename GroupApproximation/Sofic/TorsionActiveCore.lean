@@ -509,6 +509,141 @@ noncomputable def activeCoreModelMatrix [Fintype I]
     Matrix.unitaryGroup (activeCoreModel W) ℂ :=
   activeCoreMatrix W i
 
+/-! ## Operator-norm control of restricted words -/
+
+/-- A word in the packet, evaluated on the active-core matrices. -/
+noncomputable def activeCoreWord [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (l : List I) :
+    Matrix.unitaryGroup (ActiveCoreIndex W) ℂ :=
+  (l.map fun i ↦ activeCoreMatrix W i).prod
+
+/-- The same packet word in the original coordinates. -/
+def ambientWord [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (l : List I) :
+    Matrix.unitaryGroup Y ℂ :=
+  (l.map W).prod
+
+/-- Orthonormal coordinates of a restricted linear map have operator norm at
+most that of an ambient matrix inducing it. -/
+theorem norm_toMatrix_le_ambient
+    {K : Submodule ℂ (EuclideanSpace ℂ Y)}
+    (f : K →ₗ[ℂ] K) (A : Matrix Y Y ℂ)
+    (hcoe : ∀ x : K, ((f x : K) : EuclideanSpace ℂ Y) =
+      Matrix.toEuclideanLin A (x : EuclideanSpace ℂ Y)) :
+    ‖LinearMap.toMatrix (stdOrthonormalBasis ℂ K).toBasis
+        (stdOrthonormalBasis ℂ K).toBasis f‖ ≤ ‖A‖ := by
+  let b := stdOrthonormalBasis ℂ K
+  let M := LinearMap.toMatrix b.toBasis b.toBasis f
+  rw [← Matrix.l2_opNorm_toEuclideanCLM M]
+  refine ContinuousLinearMap.opNorm_le_bound
+    (f := (Matrix.toEuclideanCLM (n := Fin (Module.finrank ℂ K))
+      (𝕜 := ℂ)).toFun M) (norm_nonneg A) ?_
+  intro x
+  let y : K := b.repr.symm x
+  have hcoord : (Matrix.toEuclideanCLM
+      (n := Fin (Module.finrank ℂ K)) (𝕜 := ℂ)).toFun M x =
+        b.repr (f y) := by
+    ext j
+    change (M *ᵥ x.ofLp) j = (b.repr (f y)).ofLp j
+    have hmat := LinearMap.toMatrix_mulVec_repr
+      b.toBasis b.toBasis f y
+    have hrepr : b.toBasis.repr y = x.ofLp := by
+      ext k
+      change (b.repr y).ofLp k = x.ofLp k
+      simp [y]
+    rw [hrepr] at hmat
+    simpa [M, b] using congrFun hmat j
+  rw [hcoord, b.repr.norm_map]
+  calc
+    ‖f y‖ = ‖((f y : K) : EuclideanSpace ℂ Y)‖ := rfl
+    _ = ‖Matrix.toEuclideanLin A (y : EuclideanSpace ℂ Y)‖ := by rw [hcoe]
+    _ ≤ ‖A‖ * ‖(y : EuclideanSpace ℂ Y)‖ := Matrix.l2_opNorm_mulVec A y
+    _ = ‖A‖ * ‖x‖ := by
+      congr 1
+      calc
+        ‖(y : EuclideanSpace ℂ Y)‖ = ‖y‖ := rfl
+        _ = ‖b.repr y‖ := (b.repr.norm_map y).symm
+        _ = ‖x‖ := by simp [y]
+
+/-- Restriction to the active core does not increase the operator-norm
+displacement of any word in the packet. -/
+theorem norm_activeCoreWord_sub_one_le [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (l : List I) :
+    ‖((activeCoreWord W l : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) - 1‖ ≤
+      ‖((ambientWord W l : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) - 1‖ := by
+  let K := activeEuclideanSubspace W
+  let b := (stdOrthonormalBasis ℂ K).toBasis
+  let f : K →ₗ[ℂ] K :=
+    (l.map fun i ↦ (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap).prod -
+      LinearMap.id
+  let A : Matrix Y Y ℂ :=
+    ((ambientWord W l : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) - 1
+  have hword :
+      ((activeCoreWord W l : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) =
+        LinearMap.toMatrix b b
+          (l.map fun i ↦
+            (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap).prod := by
+    induction l with
+    | nil =>
+        simp only [activeCoreWord, List.map_nil, List.prod_nil]
+        exact (LinearMap.toMatrix_id b).symm
+    | cons i l ih =>
+        change ((activeCoreMatrix W i : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+              Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) *
+            ((activeCoreWord W l : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+              Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) = _
+        rw [ih]
+        change LinearMap.toMatrix b b
+              (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap *
+            LinearMap.toMatrix b b
+              (l.map fun j ↦
+                (activeCoreLinearIsometryEquiv W j).toLinearEquiv.toLinearMap).prod = _
+        rw [← LinearMap.toMatrix_comp]
+        rfl
+  have hmatrix :
+      (((activeCoreWord W l : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) - 1) =
+        LinearMap.toMatrix b b f := by
+    rw [hword, map_sub, LinearMap.toMatrix_id]
+  have haction (q : List I) (x : K) :
+      ((((q.map fun i ↦
+          (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap).prod x : K) :
+            EuclideanSpace ℂ Y)) =
+        Matrix.toEuclideanLin
+          ((ambientWord W q : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)
+          (x : EuclideanSpace ℂ Y) := by
+    induction q with
+    | nil => simp [ambientWord]
+    | cons i q ih =>
+        simp only [List.map_cons, List.prod_cons, Module.End.mul_apply]
+        change (((activeCoreLinearIsometryEquiv W i
+          ((q.map fun j ↦
+            (activeCoreLinearIsometryEquiv W j).toLinearEquiv.toLinearMap).prod x) : K) :
+              EuclideanSpace ℂ Y)) = _
+        rw [activeCoreLinearIsometryEquiv_coe, ih]
+        ext j
+        change (((W i : Matrix Y Y ℂ) *ᵥ
+          (((ambientWord W q : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *ᵥ
+            x.1.ofLp)) j) = _
+        rw [Matrix.mulVec_mulVec]
+        rfl
+  rw [hmatrix]
+  apply norm_toMatrix_le_ambient f A
+  intro x
+  change ((((l.map fun i ↦
+      (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap).prod x : K) :
+        EuclideanSpace ℂ Y) - x.1) = Matrix.toEuclideanLin A x.1
+  rw [haction]
+  ext j
+  change ((((ambientWord W l : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *ᵥ
+      x.1.ofLp) j - x.1.ofLp j) = (A *ᵥ x.1.ofLp) j
+  rw [show A =
+    ((ambientWord W l : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) - 1 by rfl,
+    Matrix.sub_mulVec, Matrix.one_mulVec]
+  rfl
+
 /-- The matrix size of the active block is exactly its Euclidean dimension. -/
 @[simp] theorem card_activeCoreModel [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) :
