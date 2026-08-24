@@ -1,18 +1,13 @@
-import GroupApproximation.Sofic.LiteralP13HodgeResidual41Part0
-import GroupApproximation.Sofic.LiteralP13HodgeResidual41Part1
-import GroupApproximation.Sofic.LiteralP13HodgeResidual41Part2
-import GroupApproximation.Sofic.LiteralP13HodgeResidual41Part3
-import GroupApproximation.Sofic.LiteralP13HodgeResidualComposition
+import GroupApproximation.Sofic.LiteralP13HodgeResidual14
+import GroupApproximation.Sofic.LiteralP13HodgeTranspose
 
 namespace GroupApproximation
 namespace LiteralP13HodgeCertificate
 
 theorem residual_block_natAbs_4_1 :
     ∑ c : Fin 293, (residualNumerator 4 1 c).natAbs = 6701810124 := by
-  refine (sum_natAbs_eq_of_part_sums 4 1
-    residual_part_sum_4_1_0 residual_part_sum_4_1_1
-    residual_part_sum_4_1_2 residual_part_sum_4_1_3).trans ?_
-  norm_num
+  rw [sum_residual_natAbs_transpose_of_ne 1 4 (by decide)]
+  exact residual_block_natAbs_1_4
 
 end LiteralP13HodgeCertificate
 end GroupApproximation

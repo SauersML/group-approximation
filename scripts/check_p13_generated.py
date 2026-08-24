@@ -83,7 +83,8 @@ def generated_residual_names() -> list[str]:
     for left in range(6):
         for right in range(6):
             prefix = f"LiteralP13HodgeResidual{left}{right}"
-            names.extend(f"{prefix}Part{part}.lean" for part in range(4))
+            if left <= right:
+                names.extend(f"{prefix}Part{part}.lean" for part in range(4))
             names.append(f"{prefix}.lean")
     names.append("LiteralP13HodgeResidual.lean")
     return names

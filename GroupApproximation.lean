@@ -1566,6 +1566,9 @@ import GroupApproximation.Leavitt.HilbertHotelCoverDischarges
 import GroupApproximation.Leavitt.HilbertHotelModelNonMF
 import GroupApproximation.Leavitt.HilbertHotelCoverBlock
 import GroupApproximation.Leavitt.HilbertHotelEndpoint
+import GroupApproximation.Sofic.MFCamouflage
+import GroupApproximation.Sofic.MFCamouflageRadical
+import GroupApproximation.Sofic.MFCamouflageConsequences
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure

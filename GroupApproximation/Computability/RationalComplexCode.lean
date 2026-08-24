@@ -146,6 +146,20 @@ theorem ratLt_iff (q r : RatCode) : RatLt q r ↔ toRat q < toRat r := by
       linarith
     exact_mod_cast hc
 
+/-- Every rational number has a natural-number-only code. -/
+theorem exists_toRat (q : ℚ) : ∃ c : RatCode, toRat c = q := by
+  have hden : q.den - 1 + 1 = q.den := Nat.sub_add_cancel q.den_pos
+  rw [← q.num_div_den]
+  cases hnum : q.num with
+  | ofNat n =>
+      refine ⟨((n, 0), q.den - 1), ?_⟩
+      simp only [toRat, numeratorPos, numeratorNeg, denominator, hden]
+      norm_num
+  | negSucc n =>
+      refine ⟨((0, n + 1), q.den - 1), ?_⟩
+      simp only [toRat, numeratorPos, numeratorNeg, denominator, hden]
+      norm_num
+
 /-! ## Primitive recursiveness -/
 
 theorem primrec_numeratorPos : Primrec numeratorPos :=
@@ -294,6 +308,13 @@ theorem complexEq_iff (z w : ComplexCode) : ComplexEq z w ↔ toComplex z = toCo
       simpa [toComplex] using this
     · have := congrArg Complex.im h
       simpa [toComplex] using this
+
+/-- Every Gaussian rational pair is represented by executable code. -/
+theorem exists_toComplex_of_ratPair (q : ℚ × ℚ) :
+    ∃ z : ComplexCode, toComplex z = RationalHermitian.ofRatPair q := by
+  obtain ⟨a, ha⟩ := exists_toRat q.1
+  obtain ⟨b, hb⟩ := exists_toRat q.2
+  exact ⟨(a, b), by simp [toComplex, RationalHermitian.ofRatPair, ha, hb]⟩
 
 theorem primrec_complexAdd : Primrec₂ complexAdd := by
   apply Primrec₂.mk
