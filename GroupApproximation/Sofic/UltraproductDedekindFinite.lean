@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.Matrix.SemiringInverse
 # KT.06: the norm ultraproduct `B_ω` is finite
 
 This file certifies step **KT.06** of the ultraproduct proof printed in
-`non_mf_groups_exist.tex` for the theorem labelled the Kazhdan transport result,
+`non_mf_groups_exist.tex` for the Kazhdan transport result,
 captioned *Kazhdan transport of Hilbert--Schmidt asymptotic commutants*.  The
 step lives in the paragraph of that proof beginning `\emph{The ultraproduct.}`
 (grep for the sentence "The algebra $B_\omega$ is \emph{finite}").  Line
@@ -351,8 +351,8 @@ theorem kt_06_polar_correction
 unitary.  Proved exactly as printed, through the polar correction of the
 previous theorem.
 
-**What this certifies, and the two residual differences.**  The lemma this
-declaration is badged at, the corona finiteness result, asserts exactly one thing:
+**What this certifies, and the two residual differences.**  The former
+corona-finiteness lemma asserts exactly one thing:
 that
 
     `B_c = ∏_n B(K_n) / ⊕_n B(K_n)`,

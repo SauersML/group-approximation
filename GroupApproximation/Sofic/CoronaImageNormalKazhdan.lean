@@ -109,14 +109,14 @@ theorem nk_02_countable_mf_image [Countable H]
 
 /-! ## Step 3 — the separated finite models -/
 
-/-- **Step 3 (separated finite models).**  "Proposition~MF model-equivalence result,
+/-- **Step 3 (separated finite models).**  "The MF model-equivalence result,
 applied along an exhaustion of `H̄`, gives an operator-norm asymptotic
 representation `(V_{g,n})` in which every fixed nontrivial element eventually
 stays at operator-norm distance at least `1` from the identity."
 
-The first component is the separation-normalization clause of
-the MF model-equivalence result: local operator-norm models with separation constant
-exactly `1`.  The second is the sequence `(V_{g,n})` itself, obtained from
+The first component is the result's separation-normalization clause: local
+operator-norm models with separation constant exactly `1`.  The second is the
+sequence `(V_{g,n})` itself, obtained from
 those local models by exhausting the countable group `H̄` — the finite test
 sets `F n` of `exists_weakMFApproximation` are that exhaustion, and the
 resulting `WeakMFApproximation` carries the separation constant `1` of the

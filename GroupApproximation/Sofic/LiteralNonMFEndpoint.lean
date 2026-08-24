@@ -264,7 +264,7 @@ This is part (2) of the literal verification of the earlier non-MF endpoint, by 
 printed argument: "let
 `Θ : E → 𝒰cor((d_n))` be given and pass to the corona representation
 `κ_{(d_n)} ∘ Θ : E → 𝒰(𝒬)` of the unitary-corona lifting result.  Apply the
-central-sign criterion (the central-sign criterion) ... The criterion
+central-sign criterion.  The criterion
 therefore sends `w` to the identity under every corona representation of `E`.
 Since `κ_{(d_n)}` is injective, `Θ(w) = 1`."
 

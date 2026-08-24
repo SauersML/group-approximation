@@ -83,7 +83,7 @@ def NaturalHSCommutatorVanishing
 
 /-- **The ultraproduct route to Kazhdan transport.**
 
-This replays the proof set under the Kazhdan transport result in
+This replays the proof of the Kazhdan transport result from
 `non_mf_groups_exist.tex`, in the exact manuscript coordinates.  It is stated
 relative to `ambient`, the bundle of manuscript steps KT.01--KT.09, because
 that is how the printed proof is organized: the ambient is an intermediate

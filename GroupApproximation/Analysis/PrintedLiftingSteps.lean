@@ -3,7 +3,7 @@ import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 /-!
 # The printed proof of the lifting lemma, step by step
 
-`non_mf_groups_exist.tex`, `\begin{lemma}[lifting]unitary lifting result`, prints
+The former manuscript's lemma captioned ``lifting'' prints
 
 > Every unitary `u ∈ 𝒬` lifts to a sequence of unitaries.
 
