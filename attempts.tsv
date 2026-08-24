@@ -160,3 +160,4 @@
 32690241251	2026-08-24T04:30:29Z	GroupApproximation/Analysis/ReducedGroupCStarMFObstruction.lean	reducedLeftRegular_mul
 32693447435	2026-08-24T05:25:33Z	GroupApproximation/Sofic/ActionFormMoverEstimate.lean	inv_mem_stabilizer_union_movers
 32697233406	2026-08-24T06:25:37Z	GroupApproximation/Sofic/AdjointMatrix.lean	rowVec_rowMat
+32702919814	2026-08-24T07:45:35Z	GroupApproximation/Sofic/AdjointOperatorNormRequirement.lean	permMatrix_entry
