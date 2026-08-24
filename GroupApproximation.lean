@@ -1606,6 +1606,7 @@ import GroupApproximation.Sofic.SigmaCompressionPair
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Endpoint.MFRecognitionAudit
 import GroupApproximation.Sofic.PalindromicMinimalExpr
+import GroupApproximation.Sofic.MatchingFactorPair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
