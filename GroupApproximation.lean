@@ -1642,6 +1642,7 @@ import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Analysis.CayleyUnitary
 import GroupApproximation.Analysis.UnitaryPerturbation
 import GroupApproximation.Analysis.RationalHermitian
+import GroupApproximation.Analysis.RatComplexSubfield
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
