@@ -41,10 +41,10 @@
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
 \hypersetup{
-  pdftitle={Non-MF group notes},
+  pdftitle={[DRAFT] Non-MF group notes},
   pdfauthor={\paperauthor},
-  pdfsubject={Further results and variants concerning non-MF groups},
-  pdfkeywords={MF groups, approximate unitary representations, property (T), group C*-algebras, sofic groups}
+  pdfsubject={Draft notes: further results and variants concerning non-MF groups},
+  pdfkeywords={draft, MF groups, approximate unitary representations, property (T), group C*-algebras, sofic groups}
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
@@ -110,6 +110,16 @@
   {}
   {\PackageError{non-mf-notes}{Could not remove the abstract heading}{}}
 \makeatother
+\newcommand{\draftnotice}{%
+  \begin{center}
+  \fcolorbox{red!70!black}{red!5}{%
+    \parbox{0.88\linewidth}{\centering\bfseries\color{red!70!black}
+      DRAFT --- NOT READY FOR PUBLIC CONSUMPTION\par
+      \smallskip
+      \normalfont\color{black}These notes are actively being revised and
+      have not been released for public consumption.}}
+  \end{center}
+  \medskip}
 
 \externaldocument[paper-]{build/non_mf_groups_exist}[non_mf_groups_exist.pdf]
 
@@ -133,6 +143,7 @@ presentation and affine certificate for the original central-sign group.
 \end{abstract}
 
 \maketitle
+\draftnotice
 \setcounter{tocdepth}{1}
 \tableofcontents
 \par\clearpage
