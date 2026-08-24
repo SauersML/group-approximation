@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 /-!
 # Exact compressions normalize for free
 
-The transport theorem of `\ref{sec:transport}` ("One-sided conjugation in
+The transport theorem of the former transport argument ("One-sided conjugation in
 matrix models") spends its length forcing a *two-sided* comparison out of the
 one-sided hypothesis: a compressor `t` satisfies only
 `tΓt⁻¹ ≤ Γ`, and the median normalization, the co-area inequality and the

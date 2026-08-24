@@ -76,7 +76,7 @@ normalized Hilbert--Schmidt distance in every operator-norm almost
 representation.
 
 **By the printed route.**  The transport step is
-`\ref{thm:kazhdan-transport}` itself, through
+the Kazhdan transport result itself, through
 `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal` and
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is the proof
 `\ref{thm:criterion}` prints: "apply Theorem 3.1 with `x_n = U_{c,n}` to put
@@ -97,7 +97,7 @@ transport and the identity `mark = compressionDefect²`.
 **By the printed route.**  The transport half is the pinning above, so this
 declaration and `kazhdanPinning` travel the same step,
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is
-`\ref{thm:kazhdan-transport}` by the printed §3 ultraproduct proof.  What the
+the Kazhdan transport result by the printed §3 ultraproduct proof.  What the
 negative corner adds is the printed "hence `w ~₂ 1`": the mark is the square of
 the pinned compression defect, and squaring at most quadruples the normalized
 Hilbert--Schmidt displacement.  It used to travel
@@ -223,7 +223,7 @@ mathematical clauses of Theorem A are read off from its conclusion. -/
 
 **By the printed route.**  The criterion instantiated here is
 `PrintedCentralSign.manuscriptCentralSignCriterionPrinted`, whose one transport
-step is `\ref{thm:kazhdan-transport}` by the printed §3 ultraproduct proof.  It
+step is the Kazhdan transport result by the printed §3 ultraproduct proof.  It
 used to be `KazhdanCompressionCore.manuscriptCentralSignCriterion`, which
 inhabits the *same* closed proposition through the finite-stage corner; that
 route is unchanged and still proves the same statement.  What is instantiated,
@@ -260,11 +260,11 @@ theorem literal_mark_eq_one_in_CStarCorona
 /-- The unitary-sequence-corona clause of the printed theorem, in literal
 natural-number dimensions.
 
-This is part (2) of the literal verification of Theorem~`\ref{thm:A}`, by its
+This is part (2) of the literal verification of the earlier non-MF endpoint, by its
 printed argument: "let
 `Θ : E → 𝒰cor((d_n))` be given and pass to the corona representation
-`κ_{(d_n)} ∘ Θ : E → 𝒰(𝒬)` of Lemma~`\ref{lem:unitarycorona}`.  Apply the
-central-sign criterion (Theorem~`\ref{thm:sign-criterion}`) ... The criterion
+`κ_{(d_n)} ∘ Θ : E → 𝒰(𝒬)` of the unitary-corona lifting result.  Apply the
+central-sign criterion (the central-sign criterion) ... The criterion
 therefore sends `w` to the identity under every corona representation of `E`.
 Since `κ_{(d_n)}` is injective, `Θ(w) = 1`."
 

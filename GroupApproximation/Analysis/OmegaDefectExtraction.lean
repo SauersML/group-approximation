@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.UltraproductModelConstruction
 /-!
 # KT.01: the contradiction opening, at the printed commutator
 
-The printed proof of `\label{thm:kazhdan-transport}` opens:
+The printed proof of the Kazhdan transport result opens:
 
 > Suppose the conclusion fails: there are `γ₀ ∈ Γ`, `δ > 0`, and an infinite set
 > `I ⊆ ℕ` with `‖[U_n(s)x_nU_n(s)*, U_n(ι(γ₀))]_-‖ ≥ δ` for `n ∈ I`.  Fix a free

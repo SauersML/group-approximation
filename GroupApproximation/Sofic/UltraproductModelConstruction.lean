@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.UltraproductScaledTransport
 # KT.02 and KT.04: the Hilbert-space ultraproduct `K_ω` and the action of `B_ω`
 
 This module builds the object that the ultraproduct proof of
-`\label{thm:kazhdan-transport}` in `non_mf_groups_exist.tex` calls `K_ω`, and
+the Kazhdan transport result in `non_mf_groups_exist.tex` calls `K_ω`, and
 the action of the norm ultraproduct `B_ω` on it.  Anchors are by label and by
 the italicized paragraph headings of the printed proof
 (`\emph{The adjoint model.}`, `\emph{The ultraproduct.}`,

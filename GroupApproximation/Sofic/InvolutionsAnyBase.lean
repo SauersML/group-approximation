@@ -15,7 +15,7 @@ This is proof-ledger row `KC.23`, whose text is "E(P, α, a) contains
 involutions whatever the base".  The remark is printed about
 Fournier-Facio's group `P`, but nothing in the sentence is about that group:
 the involution is adjoined by the construction of
-`\ref{thm:kazhdan-clifford}`, so the assertion holds over *every* base
+the Kazhdan--Clifford construction, so the assertion holds over *every* base
 satisfying that theorem's hypotheses.  That is what is proved here — the
 generality is the content, not a weakening, and no hypothesis about the base
 beyond the printed ones is used.
@@ -40,10 +40,10 @@ beyond the printed ones is used.
   the printed clause "since the construction adjoins the involution `c`"
   asserts and what a reader would otherwise have to take on faith.
 * `manuscriptFFRealizationTorsion` — the remark's sentence, with the printed
-  hypotheses of `\ref{thm:kazhdan-clifford}` and torsion-freeness of the base.
+  hypotheses of the Kazhdan--Clifford construction and torsion-freeness of the base.
 
 Property `(T)` of the base is carried in that last statement because the
-remark inherits it from the hypotheses of `\ref{thm:kazhdan-clifford}`; it is
+remark inherits it from the hypotheses of the Kazhdan--Clifford construction; it is
 named `_hT` because none of these statements consume it.  The construction's
 own hypotheses that *are* consumed are injectivity of `α` and `a ∉ α(Γ)`,
 both only through `mark_ne_one`.
@@ -162,7 +162,7 @@ theorem lamp_notMem_range_iota {Γ : Type} [Group Γ]
 /-! ## The printed remark -/
 
 /-- **`\label{rem:ff-realization}`, over an arbitrary base.**  Under exactly
-the hypotheses of `\ref{thm:kazhdan-clifford}` together with torsion-freeness
+the hypotheses of the Kazhdan--Clifford construction together with torsion-freeness
 of the base — which is what the remark's `P` supplies — the constructed group
 `E(Γ,α,a)` has torsion, the torsion is witnessed by the adjoined letter `c`
 of order two, and that letter is not in the image of the base.

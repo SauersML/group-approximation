@@ -16,12 +16,12 @@ in the manuscript: natural matrix dimensions, raw unitary-valued
 operator-norm almost representations, and normalized Hilbert--Schmidt
 commutators.
 
-`non_mf_groups_exist.tex` prints one proof of `\ref{thm:kazhdan-transport}`;
+`non_mf_groups_exist.tex` prints one proof of the Kazhdan transport result;
 this file certifies two, and it is worth being explicit about which is which:
 
 * `manuscriptKazhdanTransport_ultraproduct` -- the *printed* proof, the one set
   under the theorem in `\section{One-sided conjugation in matrix models}`
-  (`\ref{sec:transport}`): the adjoint model, the norm ultraproduct `B_ω`,
+  (the former transport argument): the adjoint model, the norm ultraproduct `B_ω`,
   the Kazhdan projection, one-sided compression, and finiteness of `B_ω`.  Its
   machinery lives in `Sofic/UltraproductKazhdanTransport.lean`, and the ambient
   it consumes is now built, from the theorem's own hypotheses and nothing else,
@@ -83,7 +83,7 @@ def NaturalHSCommutatorVanishing
 
 /-- **The ultraproduct route to Kazhdan transport.**
 
-This replays the proof set under `\label{thm:kazhdan-transport}` in
+This replays the proof set under the Kazhdan transport result in
 `non_mf_groups_exist.tex`, in the exact manuscript coordinates.  It is stated
 relative to `ambient`, the bundle of manuscript steps KT.01--KT.09, because
 that is how the printed proof is organized: the ambient is an intermediate
@@ -237,7 +237,7 @@ theorem finiteStageKazhdanTransport
     Real.sqrt_sq hε.le] using hsqrt
 
 /-- **Kazhdan transport in the exact manuscript coordinates**
-(`non_mf_groups_exist.tex`, `\ref{thm:kazhdan-transport}`).
+(`non_mf_groups_exist.tex`, the Kazhdan transport result).
 
 This is the theorem statement.  The printed proof is
 `manuscriptKazhdanTransport_ultraproduct`

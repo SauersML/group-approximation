@@ -3,9 +3,9 @@ import GroupApproximation.Sofic.HyperlinearScalar
 import GroupApproximation.Sofic.UltrafilterSubsequence
 
 /-!
-# The printed opening of `thm:kazhdan-transport`, where the proof can consume it
+# The printed opening of the Kazhdan transport result, where the proof can consume it
 
-The printed proof of `\label{thm:kazhdan-transport}` begins by contradiction:
+The printed proof of the Kazhdan transport result begins by contradiction:
 
 > Suppose the conclusion fails: there are `γ₀ ∈ Γ`, `δ > 0`, and an infinite set
 > `I ⊆ ℕ` with `‖[Uₙ(s)xₙUₙ(s)*, Uₙ(ι(γ₀))]‖₂ ≥ δ` for `n ∈ I`.  Fix a free
@@ -29,7 +29,7 @@ statement from this one, so there is one proof and not two.
 
 `UltrafilterSubsequence.exists_index_infinite_defect` proves the extraction for
 an arbitrary finite index set, with a pigeonhole choosing the offending index.
-The conclusion of `thm:kazhdan-transport` is universally quantified over `Γ`, so
+The conclusion of the Kazhdan transport result is universally quantified over `Γ`, so
 its failure names a single `γ₀` and there is nothing to choose between: the
 instantiation below is at the singleton `{γ₀}`, and the pigeonhole is trivial.
 The finite Kazhdan set and its genuine pigeonhole belong to the spectral-gap

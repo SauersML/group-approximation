@@ -20,7 +20,7 @@ proof*.  `ManuscriptKazhdanTransport.finiteStageKazhdanTransport` is built on
 `transport` (search that module for `have hy_sq := transport B C x hx_sq`).
 Rewiring `transport` onto the
 ultraproduct route would therefore leave the corpus with one proof of
-`\ref{thm:kazhdan-transport}` wearing two names.  That is the exact defect
+the Kazhdan transport result wearing two names.  That is the exact defect
 class this audit exists to catch, so the finite-stage engine is left alone and
 the literal route is added beside it.
 
@@ -29,7 +29,7 @@ remark and print it as an appendix, and both are gone -- commit `3a45fa60` cut
 them once the ultraproduct reading of the collapse step became their only
 consumer.  So the "two independent printed proofs" the paragraph above guards
 against is now a Lean-side fact only: what is printed is the single
-ultraproduct proof inside `\ref{sec:transport}`.
+ultraproduct proof inside the former transport argument.
 
 The two are deliberately interchangeable: identical statement, identical
 hypotheses, different proof.  A consumer picks its route by picking its name.

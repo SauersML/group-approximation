@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 # Kazhdan transport over an arbitrary finite-model family
 
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport` is the literal
-Section-3 theorem (`non_mf_groups_exist.tex`, `\label{thm:kazhdan-transport}`),
+Section-3 theorem (`non_mf_groups_exist.tex`, the Kazhdan transport result),
 proved by the printed route: the norm ultraproduct `B_ω`, the Kazhdan
 projection, one-sided compression, and finiteness.  It is stated in the
 manuscript's own coordinates, so its models are the literal matrix algebras
@@ -103,7 +103,7 @@ theorem naturalize_commutator (Y : ℕ → FiniteModel)
 /-! ## The statement over a general model family -/
 
 /-- The Hilbert--Schmidt commutator-vanishing predicate of
-`\label{thm:kazhdan-transport}`, over an arbitrary finite-model family.  At
+the Kazhdan transport result, over an arbitrary finite-model family.  At
 `Y = fun n ↦ naturalFiniteModel (d n)` it is
 `KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing`. -/
 def GeneralHSCommutatorVanishing

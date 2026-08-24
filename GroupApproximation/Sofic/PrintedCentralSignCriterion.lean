@@ -42,7 +42,7 @@ the kill as a hypothesis -- that is the seam.  Its supplier is
 
 So exchanging the route costs exactly one substantive proof: the same
 ultraproduct-hom kill, with `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`
--- hence `\ref{thm:kazhdan-transport}` by the printed §3 argument -- in place
+-- hence the Kazhdan transport result by the printed §3 argument -- in place
 of the finite-stage corner.  The rest of this file is that one exchange carried
 up the chain, each declaration statement-identical to the one it shadows.
 
@@ -272,12 +272,12 @@ processes `.thmInfo` only), so this declaration adds no finding of its own. -/
 def ManuscriptCentralSignCriterionPrinted : Prop :=
   KazhdanCompressionCore.ManuscriptCentralSignCriterion.{u, w}
 
-/-- **`thm:sign-criterion`, on the printed transport.**
+/-- **the central-sign criterion, on the printed transport.**
 
 The same closed proposition `KazhdanCompressionCore.ManuscriptCentralSignCriterion`
 that `manuscriptCentralSignCriterion` inhabits -- reached here through the alias
 above, which changes the type's spelling and not the proposition -- proved
-through `\ref{thm:kazhdan-transport}` instead of the finite-stage corner.  The
+through the Kazhdan transport result instead of the finite-stage corner.  The
 proof is that one, step for step: the `Type 0` transfer of the datum is
 unchanged, because the printed pinning is available at every compression core,
 so nothing has to be carried across the isomorphism that was not carried

@@ -7,8 +7,8 @@ import Mathlib.Tactic.NoncommRing
 
 This file formalizes the *generic* finiteness principle printed in
 `non_mf_groups_exist.tex` as the lemma captioned
-*comparison in a finite algebra* (`\label{lem:finitecompare}`), in the
-`\section{One-sided Kazhdan transport}` (`\label{sec:transport}`).  Grep the
+*comparison in a finite algebra* (the finite-algebra comparison result), in the
+`\section{One-sided Kazhdan transport}` (the former transport argument).  Grep the
 manuscript for the sentence "In the right-hand column, $p\sim q$ is
 Murray--von Neumann equivalence"; line numbers are deliberately not cited
 because the manuscript is under concurrent edit.  The printed statement is
@@ -155,7 +155,7 @@ theorem isStarProjection_isometry_conjugate {A : Type*} [Ring A] [StarRing A]
 /-! ## The comparison lemma -/
 
 /-- **Comparison in a finite algebra, the star-ring core.**  This is
-`\label{lem:finitecompare}` of `non_mf_groups_exist.tex` with the two C-star
+the finite-algebra comparison result of `non_mf_groups_exist.tex` with the two C-star
 inputs it actually uses isolated as hypotheses:
 
 * `hproper`: `x*x = 0 → x = 0`.  In a C-star algebra this is
@@ -276,7 +276,7 @@ theorem cstar_eq_of_murrayVonNeumannEquiv_of_absorbs {A : Type*}
     (fun x hx ↦ (CStarRing.star_mul_self_eq_zero_iff x).mp hx) hfinite hp hq
     hqp hmvn
 
-/-- **`\label{lem:finitecompare}` verbatim.**  Let `A` be a finite unital
+/-- **the finite-algebra comparison result verbatim.**  Let `A` be a finite unital
 C-star algebra and let `p, q ∈ A` be projections with `p ≤ q` and `p ∼ q`.
 Then `p = q`.
 

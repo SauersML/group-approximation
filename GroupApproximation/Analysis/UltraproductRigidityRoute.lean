@@ -20,8 +20,8 @@ through the **finite-stage** proof: `INT.03` reads
 rewrite orbit collapse, cut what nothing uses") deleted the finite-stage
 transport appendix and the remark announcing it, on the ground that the
 ultraproduct reading of the collapse step had become its only consumer.  The
-manuscript now proves `\ref{thm:kazhdan-transport}` once, inside
-`\ref{sec:transport}`.  The Lean chain below is unaffected -- it was never a
+manuscript now proves the Kazhdan transport result once, inside
+the former transport argument.  The Lean chain below is unaffected -- it was never a
 transcription of that appendix, and the two routes remain interchangeable --
 but "Appendix B" in the ledger rows above names a passage the reader will not
 find, and is kept only because those rows are quoted verbatim.
@@ -65,7 +65,7 @@ statement*, so that the route can be exchanged without touching any endpoint.
   normalized Hilbert--Schmidt norm.  This is the printed "Since `c` centralizes
   `ι(Γ)`, the sequence `(W_{c,n})` centralizes `(W_{ι(γ),n})` asymptotically in
   operator norm, hence in normalized Hilbert--Schmidt norm" of
-  `\label{thm:sign-criterion}`.
+  the central-sign criterion.
 * `transportedRoot_displacement_of_hsCommutator` -- the drop-in: from the
   printed transport conclusion at `x_n = V_c` and `s = t`, the statement of
   `transportedRoot_displacement_hsDistSq_vanishing` follows.  The lamp
@@ -134,7 +134,7 @@ normalized Hilbert--Schmidt norm:
 `‖V A V* − A‖₂ = ‖A V − V A‖₂`,
 
 because `A V − V A = (A − V A V*) V` and right multiplication by a unitary is a
-`‖·‖₂`-isometry.  The printed proof of `\ref{thm:kazhdan-transport}` states its
+`‖·‖₂`-isometry.  The printed proof of the Kazhdan transport result states its
 conclusion as a commutator; the corner chain of the finite-stage route (Lean
 only, since `3a45fa60` cut the appendix that printed it) states its as a
 displacement; this is the identity that makes them one statement. -/
@@ -161,7 +161,7 @@ variable {Γ : Type} [Group Γ] {E : Type u} [Group E]
 /-- **The root microstate asymptotically commutes with the Kazhdan image, in
 operator norm.**  This is the printed sentence "Since `c` centralizes `ι(Γ)`,
 the sequence `(W_{c,n})` centralizes `(W_{ι(γ),n})` asymptotically in operator
-norm", and it is the hypothesis `thm:kazhdan-transport` is applied with.
+norm", and it is the hypothesis the Kazhdan transport result is applied with.
 
 Only `comm_c` and asymptotic multiplicativity are used: the commutator of the
 two microstates is the difference of the two multiplicative defects at
@@ -450,7 +450,7 @@ theorem transportedRoot_displacement_ultraproduct
 `transportedRoot_displacement_ultraproduct` above is the only transport step in
 the chain, so exchanging it exchanges the route of everything downstream.  The
 two declarations here are that chain re-formed on the printed proof: same
-statements, same corner bookkeeping, `\ref{thm:kazhdan-transport}` in place of
+statements, same corner bookkeeping, the Kazhdan transport result in place of
 the finite-stage appendix.
 
 `Sofic/MarkedCompressionRootCapture.lean` promised this under the name
@@ -461,7 +461,7 @@ declaration -- it named one that did not exist. -/
 
 /-- **The compression defect vanishes, by the printed route.**  Statement
 character-for-character `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing`,
-with its one transport step supplied by `\ref{thm:kazhdan-transport}` rather
+with its one transport step supplied by the Kazhdan transport result rather
 than by the finite-stage appendix.  The corner bookkeeping is shared: both go
 through `compressionDefect_hsDistSq_vanishing_of`, which takes the transport as
 a hypothesis and is the seam the two routes meet at. -/

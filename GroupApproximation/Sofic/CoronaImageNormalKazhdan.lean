@@ -18,9 +18,9 @@ The manuscript proves the normal-Kazhdan obstruction by contradiction, along
 one specific chain:
 
 1. a corona representation `Θ` **survives** on `K` — pass to its coordinate
-   model in the unitary-sequence corona (`lem:unitarycorona`);
+   model in the unitary-sequence corona (the unitary-corona lifting result);
 2. the **image** `H̄ = Θ(H)` is **countable, hence MF**;
-3. `prop:mf-equivalences`, applied along an **exhaustion of `H̄`**, gives an
+3. the MF model-equivalence result, applied along an **exhaustion of `H̄`**, gives an
    operator-norm asymptotic representation `(V_{g,n})` with separation `1`
    for fixed nontrivial elements — *separated finite models*;
 4. the **moving corner** built on those models contradicts the
@@ -70,7 +70,7 @@ variable {Gamma H : Type} [Group Gamma] [Group H]
 representation `Θ` is nontrivial on `K`."
 
 A corona representation is a homomorphism into `U(𝒬)` for the genuine
-norm-matrix C-star corona `𝒬`.  Lemma~\ref{lem:unitarycorona} — the polar
+norm-matrix C-star corona `𝒬`.  the unitary-corona lifting result — the polar
 correction isomorphism `κ_{(d_n)}` of the manuscript, here
 `normMatrixCoronaUnitaryEquiv` — canonically identifies it with its
 *coordinate model*, a homomorphism into the unitary-sequence corona, and the
@@ -109,13 +109,13 @@ theorem nk_02_countable_mf_image [Countable H]
 
 /-! ## Step 3 — the separated finite models -/
 
-/-- **Step 3 (separated finite models).**  "Proposition~\ref{prop:mf-equivalences},
+/-- **Step 3 (separated finite models).**  "Proposition~MF model-equivalence result,
 applied along an exhaustion of `H̄`, gives an operator-norm asymptotic
 representation `(V_{g,n})` in which every fixed nontrivial element eventually
 stays at operator-norm distance at least `1` from the identity."
 
 The first component is the separation-normalization clause of
-`prop:mf-equivalences`: local operator-norm models with separation constant
+the MF model-equivalence result: local operator-norm models with separation constant
 exactly `1`.  The second is the sequence `(V_{g,n})` itself, obtained from
 those local models by exhausting the countable group `H̄` — the finite test
 sets `F n` of `exists_weakMFApproximation` are that exhaustion, and the

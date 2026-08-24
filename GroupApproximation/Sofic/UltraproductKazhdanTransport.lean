@@ -11,7 +11,7 @@ import Mathlib.Order.Filter.Ultrafilter.Defs
 # The printed ultraproduct proof of Kazhdan transport: steps KT.10 and KT.11
 
 This file certifies the last two steps of the **printed** proof of
-`\ref{thm:kazhdan-transport}` in `non_mf_groups_exist.tex`, together with
+the Kazhdan transport result in `non_mf_groups_exist.tex`, together with
 the by-contradiction skeleton that the printed proof runs.  A second,
 quantitative finite-stage proof is formalized in
 `Sofic/ManuscriptKazhdanTransport.lean`; the manuscript printed it as an
@@ -19,8 +19,8 @@ appendix until commit `3a45fa60` cut it, and what is replayed here is the
 ultraproduct proof, which is the one still in print.
 
 Anchors in the TeX, in decreasing stability: the label
-`thm:kazhdan-transport`; the enclosing
-`\section{One-sided conjugation in matrix models}` (`\ref{sec:transport}`); and
+the Kazhdan transport result; the enclosing
+`\section{One-sided conjugation in matrix models}` (the former transport argument); and
 the five italicized paragraph headings of the printed proof, which are the
 step boundaries used below --
 `\emph{The adjoint model.}`, `\emph{The ultraproduct.}`,
@@ -71,7 +71,7 @@ proof are the same argument and not merely the same theorem.
 
 **Status, stated plainly.**  `UltraproductAdjointModel` now has a constructor:
 `Sofic/UltraproductModelConstructionAssembly.lean` builds one at every free
-ultrafilter from the hypotheses of `thm:kazhdan-transport` itself, assembling
+ultrafilter from the hypotheses of the Kazhdan transport result itself, assembling
 the vector ultraproduct and the action of
 `Sofic/UltraproductModelConstruction.lean`, the finiteness of
 `Sofic/UltraproductDedekindFinite.lean`, and the Kazhdan projection of
@@ -97,7 +97,7 @@ anything in this file.
   `ω`-null ideal, so `∏_∞ B(K_n) ↠ ∏_ω B(K_n)`; `π` and `P` are lifts of the
   manuscript's objects and the identity `Q = P` proved upstairs descends.  That
   is why the substitution costs the *transport theorem* nothing.  It is not a
-  construction of `∏_ω B(K_n)`.  Note that `\label{lem:ultrafinite}` no longer
+  construction of `∏_ω B(K_n)`.  Note that the corona finiteness result no longer
   asserts anything about `∏_ω`: as printed it is finiteness of the `c₀`-quotient
   `B_c = ∏_n B(K_n)/⊕_n B(K_n)`, which is exactly
   `Sofic/UltraproductDedekindFinite.kt_06_ultraproduct_finite`.  The passage to
@@ -119,7 +119,7 @@ anything in this file.
   the Hilbert structure.  No declaration in this development calls `Vec` a
   Hilbert space.
 
-`\label{lem:finitecompare}`, the third item the earlier audit recorded as a
+the finite-algebra comparison result, the third item the earlier audit recorded as a
 mismatch, *is* closed: `kt_10_finiteness_reverses` below is now the printed
 generic comparison lemma, not the unitary-conjugation special case.
 
@@ -131,7 +131,7 @@ KT.10 additionally lands on the real objects, with nothing assumed:
 `normMatrixCStarCorona_isDedekindFiniteMonoid` rather than a hypothesis.
 
 `kt_10_finiteness_reverses` is the *generic* comparison lemma the manuscript
-factors out as `\label{lem:finitecompare}` -- finite unital C-star algebra,
+factors out as the finite-algebra comparison result -- finite unital C-star algebra,
 projections `p ≤ q` with `p ∼ q` in the Murray--von Neumann sense, conclusion
 `p = q` -- and it is proved by the printed `σ = r + (1 - q)` calculation in
 `Analysis/FiniteCStarMurrayVonNeumann.lean`.  It is deliberately *not* stated
@@ -282,7 +282,7 @@ theorem kt_10_isometry_identities
   · rw [D.isometry_mul_star_isometry]
     abel
 
-/-- **`\label{lem:finitecompare}`, the manuscript's comparison lemma.**  Let `A`
+/-- **the finite-algebra comparison result, the manuscript's comparison lemma.**  Let `A`
 be a finite unital C-star algebra and let `p, q ∈ A` be projections with
 `p ≤ q` and `p ∼ q`.  Then `p = q`.
 
@@ -508,7 +508,7 @@ Each field is one sentence of the printed proof:
 Every field is an intermediate object of the manuscript's own proof; none is a
 hypothesis about the *theorem*, and each is discharged by
 `UltraproductModelConstruction.ultraproductAdjointModel` from the hypotheses of
-`thm:kazhdan-transport` alone. -/
+the Kazhdan transport result alone. -/
 structure UltraproductAdjointModel
     {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ)
@@ -736,7 +736,7 @@ theorem kt_11_descend (hd : ∀ n, 0 < d n) (C : ℝ) (x : ∀ n, NatMatrix d n)
 
 end UltraproductAdjointModel
 
-/-! ## The printed proof of `thm:kazhdan-transport` -/
+/-! ## The printed proof of the Kazhdan transport result -/
 
 /-- **KT.24.**  The class `ξ = [ξ_n]_ω` is well defined, and this is the one
 place the *operator-norm* bound on `(x_n)` is used: it gives the normalized
@@ -750,7 +750,7 @@ theorem hsNormSq_le_of_opNorm_le {d : ℕ → ℕ} (hd : ∀ n, 0 < d n)
 
 /-- **Kazhdan transport, by the manuscript's ultraproduct proof.**
 
-`non_mf_groups_exist.tex`, `\label{thm:kazhdan-transport}` and the proof
+`non_mf_groups_exist.tex`, the Kazhdan transport result and the proof
 printed under it.  Given the ambient of steps
 KT.01--KT.09 for every free ultrafilter on `ℕ`, the printed contradiction
 runs: if the conclusion fails there are `γ₀`, `δ > 0` and an infinite
@@ -767,7 +767,7 @@ manuscript uses it -- to make the class `ξ = [ξ_n]_ω` well defined -- via
 `UltraproductModelConstruction.ultraproductAdjointModel`, which builds the
 KT.01--KT.09 bundle at every free ultrafilter out of property `(T)`, the
 compression, positive dimensions and asymptotic multiplicativity -- that is,
-out of the hypotheses of `thm:kazhdan-transport` and nothing else.  The badged
+out of the hypotheses of the Kazhdan transport result and nothing else.  The badged
 statement of the theorem,
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, is proved through this
 declaration, so the printed proof is the one its badge certifies. -/

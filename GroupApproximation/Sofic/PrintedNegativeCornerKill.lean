@@ -31,7 +31,7 @@ The same contradiction, with `u ~₂ 1` taken from the pinning seam
 the finite stage.  The seam is the one `LiteralNonMFEndpoint.kazhdanPinning`
 already travels: `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`,
 whose transport step is `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`
--- that is, `\ref{thm:kazhdan-transport}` proved by the printed §3 ultraproduct
+-- that is, the Kazhdan transport result proved by the printed §3 ultraproduct
 argument.
 
 The step the printed sentence adds on top of pinning is "hence `w ~₂ 1`", and
@@ -251,7 +251,7 @@ theorem false_of_markedOpAlmostRepresentation_of_pinned
 
 /-- **The printed route, assembled.**  The pinning is supplied by
 `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`, whose one
-transport step is `\ref{thm:kazhdan-transport}` by the printed §3 ultraproduct
+transport step is the Kazhdan transport result by the printed §3 ultraproduct
 proof.  This is the declaration the two endpoints consume; the finite-stage
 `KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation` proves the same
 statement and is untouched. -/
