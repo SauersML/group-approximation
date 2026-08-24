@@ -142,6 +142,18 @@ def compressedAlmostRepresentation
       TorsionActiveCore.activeCoreMatrix (W n) i₀ := by
   simp [compressedAlmostRepresentation, TorsionActiveCore.activeCoreWord]
 
+@[simp] theorem compressedAlmostRepresentation_map_mark_model
+    [∀ n, Fintype (Y n)] [∀ n, DecidableEq (Y n)]
+    (S : Finset G) (hgen : Subgroup.closure (S : Set G) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (a : G) (i₀ : S) (hi₀ : (i₀ : G) = a)
+    (W : ∀ n, S → Matrix.unitaryGroup (Y n) ℂ)
+    (hcore : ∀ n, 0 < Fintype.card (TorsionActiveCore.activeCoreModel (W n)))
+    (hrespect : AmbientWordsRespectGroup S W) (n : ℕ) :
+    (compressedAlmostRepresentation S hgen hsymm a i₀ hi₀ W hcore hrespect).map n a =
+      TorsionActiveCore.activeCoreModelMatrix (W n) i₀ := by
+  simp [compressedAlmostRepresentation, TorsionActiveCore.activeCoreWord,
+    TorsionActiveCore.activeCoreModelMatrix]
+
 end
 
 end ActiveCoreAlmostRepresentation

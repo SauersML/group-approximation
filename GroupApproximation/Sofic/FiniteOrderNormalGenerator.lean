@@ -183,6 +183,112 @@ theorem exists_normalGeneratorPacket [Group.FG G] (a : G)
       exact Classical.choose_spec (hex i)
   · simp [words]
 
+/-- The decisive active-core contradiction for an already selected sequence
+of visible exact torsion coordinates. -/
+theorem false_of_shadow_of_visible_exact_packet
+    (a : G) (haShadow : a ∈ opToHSShadowResidual G)
+    (P : NormalGeneratorPacket G a)
+    (m : ℕ) (hm : 0 < m)
+    [∀ n, Nonempty (X n)]
+    (rho : G →* NormMatrixCoronaUnitary X)
+    (R : ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (hR : QuotientGroup.mk R = rho a)
+    (hpow : ∀ n, (R n) ^ m = 1)
+    (hrank : ∀ n, 0 < (((R n : Matrix.unitaryGroup (X n) ℂ) :
+      Matrix (X n) (X n) ℂ) - 1).rank)
+    (C : G → ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (hC : ∀ g, QuotientGroup.mk (C g) = rho g)
+    (hC1 : ∀ n, C 1 n = 1) : False := by
+  classical
+  let matrixWords : ∀ n, P.S →
+      List (Matrix.unitaryGroup (X n) ℂ × Bool) := fun n i ↦
+    (P.words i).map fun p ↦ (C p.1 n, p.2)
+  let W : ∀ n, P.S → Matrix.unitaryGroup (X n) ℂ := fun n ↦
+    TorsionActiveCore.conjugateWordPacket (R n) (matrixWords n)
+  have hmark (n : ℕ) : W n P.mark = R n := by
+    rw [show W n P.mark = TorsionActiveCore.conjugateWord (R n)
+      (matrixWords n P.mark) by rfl]
+    rw [show matrixWords n P.mark = [(1, true)] by
+      simp [matrixWords, P.mark_word, hC1]]
+    simp [TorsionActiveCore.conjugateWord, TorsionActiveCore.conjugateFactor]
+  have hW : ∀ i : P.S, QuotientGroup.mk (fun n ↦ W n i) = rho i := by
+    intro i
+    exact quotient_mk_conjugateWordPacket P.S a P.words P.word_value rho
+      R hR C hC i
+  have hrespect :
+      ActiveCoreAlmostRepresentation.AmbientWordsRespectGroup P.S W :=
+    ambientWordsRespectGroup_of_corona P.S rho W hW
+  have hcore : ∀ n,
+      0 < Fintype.card (TorsionActiveCore.activeCoreModel (W n)) := by
+    intro n
+    rw [TorsionActiveCore.card_activeCoreModel,
+      TorsionActiveCore.finrank_activeEuclideanSubspace]
+    exact (hrank n).trans_le
+      (TorsionActiveCore.rank_le_finrank_activeSubspace_of_eq
+        (W n) (R n) P.mark (hmark n))
+  let B : OpAlmostRepresentation G :=
+    ActiveCoreAlmostRepresentation.compressedAlmostRepresentation
+      P.S P.generates P.symmetric a P.mark P.mark_value W hcore hrespect
+  have hlength (n : ℕ) :
+      TorsionActiveCore.totalWordLength (matrixWords n) =
+        ∑ i : P.S, (P.words i).length := by
+    simp [TorsionActiveCore.totalWordLength, matrixWords]
+  have hgap (n : ℕ) :
+      1 ≤ (m : ℝ) ^ 2 *
+          ((∑ i : P.S, (P.words i).length : ℕ) : ℝ) *
+        hsNormSq (TorsionActiveCore.activeCoreModel (W n))
+          (((TorsionActiveCore.activeCoreModelMatrix (W n) P.mark :
+              Matrix.unitaryGroup (TorsionActiveCore.activeCoreModel (W n)) ℂ) :
+            Matrix (TorsionActiveCore.activeCoreModel (W n))
+              (TorsionActiveCore.activeCoreModel (W n)) ℂ) - 1) := by
+    have hq := (FiniteOrderRankMass.activeCore_reblocking_dimension_and_hsGap
+      (R n) (matrixWords n) P.mark (hmark n) m hm (hpow n) (hrank n)).2
+    rw [hlength] at hq
+    simpa [W] using hq
+  have hL : 0 < ∑ i : P.S, (P.words i).length := by
+    have hone : 1 ≤ ∑ i : P.S, (P.words i).length := by
+      have hsingle := Finset.single_le_sum
+        (s := Finset.univ) (f := fun i : P.S ↦ (P.words i).length)
+        (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ P.mark)
+      simpa [P.mark_word] using hsingle
+    exact Nat.zero_lt_of_lt hone
+  let c : ℝ := (m : ℝ) ^ 2 *
+    ((∑ i : P.S, (P.words i).length : ℕ) : ℝ)
+  have hc : 0 < c := by
+    dsimp [c]
+    positivity
+  let U : Ultrafilter ℕ := Ultrafilter.of Filter.cofinite
+  have hcof : ((U : Ultrafilter ℕ) : Filter ℕ) ≤ Filter.cofinite :=
+    Ultrafilter.of_le Filter.cofinite
+  have hkill := (mem_opToHSShadowResidual_iff a).mp haShadow B U hcof
+  let A := KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B
+  have hnull : (fun n ↦ A.map n a) ∈
+      nullUnitarySubgroup U A.model A.modelNonempty := by
+    exact (@QuotientGroup.eq_one_iff _ _
+      (nullUnitarySubgroup U A.model A.modelNonempty) _
+      (fun n ↦ A.map n a)).mp hkill
+  have heps : 0 < (2 * c)⁻¹ := inv_pos.mpr (mul_pos (by norm_num) hc)
+  have hev := hnull ((2 * c)⁻¹) heps
+  obtain ⟨n, hn⟩ := hev.exists
+  change hsLengthSq (B.model n) (B.map n a) < (2 * c)⁻¹ at hn
+  rw [hsLengthSq] at hn
+  have hn' := hn
+  have hg := hgap n
+  have hmarkB := ActiveCoreAlmostRepresentation.compressedAlmostRepresentation_map_mark_model
+    P.S P.generates P.symmetric a P.mark P.mark_value W hcore hrespect n
+  rw [← hmarkB] at hg
+  change 1 ≤ c * hsNormSq (B.model n)
+      (((B.map n a : Matrix.unitaryGroup (B.model n) ℂ) :
+        Matrix (B.model n) (B.model n) ℂ) - 1) at hg
+  have hcne : 2 * c ≠ 0 := ne_of_gt (mul_pos (by norm_num) hc)
+  have hinv : (2 * c)⁻¹ = 1 / (2 * c) := by rw [one_div]
+  rw [hinv] at hn'
+  have := hsNormSq_nonneg (B.model n)
+    (((B.map n a : Matrix.unitaryGroup (B.model n) ℂ) :
+      Matrix (B.model n) (B.model n) ℂ) - 1)
+  field_simp [hcne] at hn'
+  nlinarith
+
 end
 
 end FiniteOrderNormalGenerator
