@@ -7,6 +7,7 @@ distinct_from:
   mipstar-bcs-tracial-nonru-exists: that supplies a finite BCS with a perfect tracial model and no CE perfect model; this asks for the additional exact local structure of the chosen model's group kernel.
   perfect-completeness-constant-soundness-lcs-compiler: that seeks a machine-indexed binary linear-constraint compilation with a quantitative gap; this is a one-instance algebraic kernel-separation statement and requires no gap constant.
   character-rigid-signed-bcs-quotient: that promotes a quotient trace using uniqueness; this asks instead for exact annihilation of the forbidden local character idempotents by the perfect model's group kernel.
+  locally-affine-support-bcs-is-exactly-the-lcs-boundary: that proves this condition is equivalent to the existence of a tracial non-CE LCS and hence to a nonhyperlinear group; this retains the condition as the concrete local-kernel formulation consumed by the quotient compiler.
 ---
 
 **OPEN.**  Choose the finite tracially satisfiable, non-CE Boolean
@@ -46,3 +47,7 @@ affineHull(S_i) subseteq Allowed_i.                   (LSP4)
 
 The unresolved issue is to preserve the global non-CE trace while arranging
 these locally kernel-separable supports.
+
+`locally-affine-support-bcs-is-exactly-the-lcs-boundary` shows that this is
+an exact reformulation of the binary LCS endpoint, not a weaker consequence
+of the presently known non-CE BCS source.
