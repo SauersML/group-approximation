@@ -8,8 +8,8 @@ Spec document: `non_mf_groups_exist.tex`. Formal development:
 | | |
 | --- | --- |
 | commit | spectral-compression rewrite of 2026-08-24 |
-| `git hash-object non_mf_groups_exist.tex` | `af70869fb0d0a19ae81955df4a702132b4410c42` |
-| sha256 of the file | `fed635ca55f9e8fe65b8c52a0015e9ed0e3cb0ca13c28208ce2894c2809734d4` |
+| `git hash-object non_mf_groups_exist.tex` | `b4545db9d820a7c63882f0adb3ab7cee800415de` |
+| sha256 of the file | `6885172a8839b00c2829f586cf67e1c3737dce5dec4e591d1bcfd5350696d46a` |
 | `wc -l` | 376 |
 
 ## Status counts
