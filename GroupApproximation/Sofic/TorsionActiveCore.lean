@@ -445,6 +445,29 @@ noncomputable def orthonormalMatrixOfLinearIsometryEquiv
     stdOrthonormalBasis ℂ E
   refine ⟨e.toMatrix b.toBasis b.toBasis, e.toMatrix_mem_unitaryGroup b b⟩
 
+/-- Matrix rank of the displacement is the dimension of the range of the
+underlying linear displacement. -/
+theorem rank_orthonormalMatrix_sub_one
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    [FiniteDimensional ℂ E] (e : E ≃ₗᵢ[ℂ] E) :
+    (((orthonormalMatrixOfLinearIsometryEquiv e :
+        Matrix.unitaryGroup (Fin (Module.finrank ℂ E)) ℂ) :
+          Matrix (Fin (Module.finrank ℂ E)) (Fin (Module.finrank ℂ E)) ℂ) - 1).rank =
+      Module.finrank ℂ
+        (LinearMap.range (e.toLinearEquiv.toLinearMap - LinearMap.id)) := by
+  let b : Module.Basis (Fin (Module.finrank ℂ E)) ℂ E :=
+    (stdOrthonormalBasis ℂ E).toBasis
+  rw [Matrix.rank_eq_finrank_range_toLin _ b b]
+  have hlin : Matrix.toLin b b
+      (((orthonormalMatrixOfLinearIsometryEquiv e :
+          Matrix.unitaryGroup (Fin (Module.finrank ℂ E)) ℂ) :
+            Matrix (Fin (Module.finrank ℂ E))
+              (Fin (Module.finrank ℂ E)) ℂ) - 1) =
+        e.toLinearEquiv.toLinearMap - LinearMap.id := by
+    ext x
+    simp [orthonormalMatrixOfLinearIsometryEquiv, b]
+  rw [hlin]
+
 /-- A packet unitary compressed to its common invariant active block. -/
 noncomputable def activeCoreMatrix [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) (i : I) :

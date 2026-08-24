@@ -275,6 +275,51 @@ theorem rank_le_order_sq_mul_matMass
   exact hbase.trans (mul_le_mul_of_nonneg_right hsq
     (ScaledKazhdanTransport.matMass_nonneg _))
 
+/-! ## Finite order survives active-core restriction -/
+
+/-- Restricting and orthonormally coordinatizing a packet unitary preserves
+every exact power relation. -/
+theorem activeCoreMatrix_pow_eq_one
+    {I : Type*} [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (i : I) (m : ℕ)
+    (hpow : (W i) ^ m = 1) :
+    (TorsionActiveCore.activeCoreMatrix W i) ^ m = 1 := by
+  let K := TorsionActiveCore.activeEuclideanSubspace W
+  let b : Module.Basis (Fin (Module.finrank ℂ K)) ℂ K :=
+    (stdOrthonormalBasis ℂ K).toBasis
+  let e := TorsionActiveCore.activeCoreLinearIsometryEquiv W i
+  have hepow_apply : ∀ (k : ℕ) (x : K),
+      ((((e.toLinearEquiv.toLinearMap) ^ k) x : K) : EuclideanSpace ℂ Y) =
+        Matrix.toEuclideanLin ((((W i) ^ k : Matrix.unitaryGroup Y ℂ) :
+          Matrix Y Y ℂ)) (x : EuclideanSpace ℂ Y) := by
+    intro k
+    induction k with
+    | zero => intro x; simp
+    | succ k ih =>
+        intro x
+        rw [pow_succ, Module.End.mul_apply, ih]
+        change Matrix.toEuclideanLin ((W i : Matrix Y Y ℂ) ^ k)
+            (Matrix.toEuclideanLin (W i : Matrix Y Y ℂ) x) =
+          Matrix.toEuclideanLin (((W i : Matrix.unitaryGroup Y ℂ) ^ (k + 1) :
+            Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) x
+        ext j
+        change ((((W i : Matrix Y Y ℂ) ^ k) *ᵥ
+          ((W i : Matrix Y Y ℂ) *ᵥ x.1.ofLp)) j) = _
+        rw [Matrix.mulVec_mulVec, ← pow_succ]
+        rfl
+  apply Subtype.ext
+  change (LinearMap.toMatrix b b e.toLinearEquiv.toLinearMap) ^ m = 1
+  rw [LinearMap.toMatrix_pow]
+  rw [← LinearMap.toMatrix_id b]
+  apply congrArg (LinearMap.toMatrix b b)
+  apply LinearMap.ext
+  intro x
+  apply Subtype.ext
+  rw [hepow_apply]
+  rw [hpow]
+  ext j
+  simp
+
 end
 
 end FiniteOrderRankMass
