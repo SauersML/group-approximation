@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] A finitely generated simple non-MF group},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: an explicit simple Kazhdan group that is not MF},pdfkeywords={draft, MF groups, norm matrix coronas, simple groups, property (T), Leavitt algebra}}
+\hypersetup{pdftitle={[DRAFT] One-sided Kazhdan transport and Leavitt self-compression},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: one-sided Kazhdan transport and an explicit simple Kazhdan group},pdfkeywords={draft, approximate representations, simple groups, property (T), Leavitt algebra}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -32,7 +32,6 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\EL}{\operatorname{EL}}
 \newcommand{\U}{\mathcal U}
-\newcommand{\Rad}{\operatorname{Rad}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_2}
@@ -52,27 +51,24 @@
   \medskip}
 
 \begin{document}
-\title[A simple non-MF group]{A finitely generated simple non-MF group}
+\title[One-sided Kazhdan transport]{One-sided Kazhdan transport and Leavitt self-compression}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
-\keywords{MF groups, norm matrix coronas, simple groups, property~(T), Leavitt algebra, elementary group}
+\keywords{approximate representations, simple groups, property~(T), Leavitt algebra, elementary group}
 
 \begin{abstract}
 A countable group is MF if it embeds in the unitary group of a norm matrix
-corona.  We construct an explicit finitely generated simple group with
-property~\textup{(T)} that is not MF, answering negatively the longstanding
-question of whether every countable group is MF.  Namely, we prove that
+corona.  We prove a one-sided Kazhdan transport theorem for operator-norm
+asymptotic representations and apply it to the explicit group
 \[
  H=\EL_{12}\bigl(L_{\F_2}(1,2)\bigr)
 \]
-has no nontrivial homomorphism to any MF group.  The proof uses an explicit
-Whitehead matrix that compresses a Kazhdan subgroup into itself.  One-sided
-Kazhdan transport makes a distinguished involution invisible in normalized
-Hilbert--Schmidt norm in every operator-norm asymptotic representation.  A
-finite-order active-core argument then converts this tracial collapse into an
-operator-norm obstruction.  Simplicity propagates the obstruction to the
-whole group.  The same example also has no nontrivial finite-dimensional
-linear representation over any field.
+over the binary Leavitt algebra.  The group is nontrivial, finitely generated,
+simple, and has property~\textup{(T)}.  An explicit Whitehead matrix compresses
+a Kazhdan subgroup into itself, and the resulting distinguished involution
+converges to the identity in normalized Hilbert--Schmidt norm in every
+operator-norm asymptotic representation.  Every finite-dimensional linear
+representation of $H$ over every field is trivial.
 \end{abstract}
 
 \maketitle
@@ -99,63 +95,10 @@ Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}.  A stronger
 regular-norm approximation property is also called MF in parts of the recent
 literature~\cite{GKEMP}; it is not the convention used here.
 
-For a countable group $G$, define its MF radical by
-\[
- \Rad_{\mathrm{MF}}(G)
- =\bigcap_{\mathbf d}
-   \bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.
-\]
-The group $G$ is MF precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
-$\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
-trivial.
-
-More generally, for $N\trianglelefteq G$ define its \emph{MF closure} by
-\[
- \operatorname{cl}_{\mathrm{MF}}^G(N)
- =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
-\]
-Thus $\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
-$G/N$ is MF precisely when
-$\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
-
-\begin{proposition}[MF residual calculus]\label{prop:mf-residual-calculus}
-For every countable group $G$, the subgroup $\Rad_{\mathrm{MF}}(G)$ is fully
-invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and
-\[
- G/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- \operatorname{cl}_{\mathrm{MF}}^G(N)=N
- \qquad(N\trianglelefteq G).
-\]
-In particular, $G$ is MF if and only if its MF radical is trivial.
-\end{proposition}
-
-\begin{proof}
-An intersection of kernels is normal.  If $f\colon G\to K$ is a
-homomorphism and $x\in\Rad_{\mathrm{MF}}(G)$, then every corona homomorphism
-of $K$, composed with $f$, kills $x$; hence
-$f(x)\in\Rad_{\mathrm{MF}}(K)$.  This proves functoriality and, for
-endomorphisms, full invariance.
-
-Put $R=\Rad_{\mathrm{MF}}(G)$ and enumerate the nonidentity elements of
-$G/R$.  For each one, the definition of $R$ supplies a corona homomorphism
-that detects a representative.  A diagonal direct sum of coordinate models
-produces one operator-norm asymptotic representation that detects them all:
-at stage $n$, take the direct sum of sufficiently late coordinates of the
-first $n$ models, chosen so that the first $n$ multiplication defects are at
-most $1/n$ and each of the first $n$ marked elements retains a fixed positive
-operator-norm separation on its designated summand.  Its corona homomorphism
-is faithful on $G/R$.  Thus $G/R$ is MF.
-
-Applied to $G/N$, the same argument says that $G/N$ is MF exactly when the
-intersection of the kernels of all MF-target maps killing $N$ is $N$, which
-is the asserted closure criterion.
-\end{proof}
-
-The existence of a countable non-MF group was open~\cite{Shulman}.
-Theorem~\ref{thm:headline} answers this question with an explicit simple
-Kazhdan group.  For a nontrivial simple group the MF radical is either trivial
-or the whole group, so full MF radical is equivalent here to failure of MF.
+The existence of a countable non-MF group remains a central operator-norm
+approximation problem~\cite{Shulman}.  The results below isolate an exact
+one-sided transport phenomenon relevant to that problem.  We do not infer an
+operator-norm obstruction from the normalized Hilbert--Schmidt conclusion.
 
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
@@ -169,12 +112,14 @@ $e_{ij}(a)$, $i\ne j$.
 
 \begin{mainthm}\label{thm:headline}
 Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is nontrivial, simple,
-finitely generated, and has property~\textup{(T)}, and
+finitely generated, and has property~\textup{(T)}.  There is a nonidentity
+involution $d\in H$ such that every operator-norm asymptotic representation
+$(V_n)$ of $H$ satisfies
 \[
- \Rad_{\mathrm{MF}}(H)=H.
+ \hsnorm{V_n(d)-1}\longrightarrow0.
 \]
-Equivalently, every homomorphism from $H$ to an MF group is trivial.
-In particular, $H$ is non-MF.
+Moreover, every finite-dimensional linear representation of $H$ over every
+field is trivial.
 \end{mainthm}
 
 Suppose that $L\le G$ has property~\textup{(T)}, that $u\in G$ satisfies
@@ -193,11 +138,7 @@ centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
 \]
 The element $d$ is nontrivial and $H$ is simple, so $d$ normally generates
 $H$.  Since the coefficient ring has characteristic two, $d$ is an
-involution.  The finite-order active-core theorem then gives
-$\Rad_{\mathrm{MF}}(H)=H$.  Thus property~\textup{(T)} is used for the
-compressed subgroup $L$ in the transport step; the passage from the
-Hilbert--Schmidt obstruction to the MF radical uses only the finite order and
-normal generation of $d$.
+involution.
 
 For an exact finite-dimensional representation, conjugation by a compressor
 defines an injective endomorphism of the commutant of $L$.  This endomorphism
@@ -210,28 +151,6 @@ that $H$ is nonsofic or nonhyperlinear: normalized Hilbert--Schmidt
 approximations do not provide the operator-norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
 
-The group $H$ also gives non-MF groups with prescribed MF quotients.  The
-following theorem is proved in Section~\ref{sec:prescribed-quotients}.
-
-\begin{mainthm}[prescribed MF quotients]\label{thm:prescribed-quotients}
-For every countable group $Q$, there are a countable group $W_Q$ and a split
-epimorphism $\pi_Q\colon W_Q\to Q$ such that
-\[
- \Rad_{\mathrm{MF}}(W_Q)
- =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
-\]
-The group $W_Q$ is non-MF.  If $Q$ is MF, then
-\[
- \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q},
-\]
-where $d$ is the element in Proposition~\ref{prop:defect}.
-Moreover, precomposition with $\pi_Q$ induces a bijection
-\[
- \operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)
-\]
-for every MF group $M$.
-\end{mainthm}
-
 \subsection*{Relation to prior work}
 
 The group-MF framework used here is developed by
@@ -240,10 +159,9 @@ permanence results are due to Shulman~\cite{Shulman}.  The operator-norm case
 remained open after non-approximability had been established for the finite
 Schatten norms.  Bachner--Dogon--Lubotzky emphasize the interaction between
 operator-norm defects and Hilbert--Schmidt rigidity as a possible route to
-the MF problem~\cite{BDL}.  Our mechanism uses that interaction differently:
-one-sided compression of a Kazhdan subgroup forces Hilbert--Schmidt collapse,
-and the finite-order active core prevents the collapse from being hidden in a
-vanishing-rank summand.
+the MF problem~\cite{BDL}.  The transport theorem below concerns that
+interaction, but its normalized Hilbert--Schmidt conclusion is not promoted
+to an operator-norm conclusion here.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -305,30 +223,6 @@ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
  \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
  \qquad(g,h\in G).
 \]
-For such a sequence put
-\[
- K_2(V)=\{g\in G:\hsnorm{V_n(g)-1}\longrightarrow0\}.
-\]
-The operator-norm defects also tend to zero in normalized
-Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
-\begin{equation}\label{eq:shadow-residual}
- R_{\infty\to2}(G)=\bigcap_V K_2(V),
-\end{equation}
-where $V$ ranges over all operator-norm asymptotic representations of $G$.
-An element is universally Hilbert--Schmidt trivial precisely when it belongs
-to $R_{\infty\to2}(G)$.
-
-\begin{theorem}[finite-order normal generators]\label{thm:torsion-bridge}
-Let $G$ be finitely generated and let $a\in G$ have finite order and normally
-generate $G$.  Then
-\[
- a\in\Rad_{\mathrm{MF}}(G)
- \quad\Longleftrightarrow\quad
- a\in R_{\infty\to2}(G).
-\]
-Consequently, if $a$ is universally Hilbert--Schmidt trivial, then
-$\Rad_{\mathrm{MF}}(G)=G$.
-\end{theorem}
 
 \begin{lemma}\label{lem:stable-finite}
 For every sequence $(m_n)$, the norm matrix corona
@@ -437,10 +331,10 @@ converge ordinarily.
 
 \begin{corollary}\label{cor:defect-hs}
 Let $L\le G$ have property~\textup{(T)}, let $uLu^{-1}\le L$, and let
-$c\in C_G(L)$.  Then
+$c\in C_G(L)$.  For every operator-norm asymptotic representation $(V_n)$
+of $G$ and every $\ell\in L$,
 \[
- [ucu^{-1},\ell]\in R_{\infty\to2}(G)
- \qquad(\ell\in L).
+ \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0.
 \]
 \end{corollary}
 
@@ -455,205 +349,6 @@ sequence in operator norm with $(V_n(ucu^{-1}))$.  Therefore
  \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
  \qquad(\ell\in L).
 \]
-Intersecting over $(V_n)$ proves the claim.
-\end{proof}
-
-\section{Finite-order active cores and the MF radical}
-
-The normalized Hilbert--Schmidt norm can lose a fixed operator-norm defect
-when that defect occupies a vanishing fraction of the matrix dimension.  A
-finite-order normal generator prevents this loss after an intrinsic
-reblocking: the active spectral subspace of the generator expands, through
-fixed normal words, to an invariant subspace whose dimension is only a fixed
-multiple larger.
-
-\begin{lemma}[unitary lifting]\label{lem:unitary-lifting}
-Every unitary in $\mathcal Q_{\mathbf d}$ has a representative
-$(U_n)$ with $U_n\in\U(d_n)$ for every $n$.
-\end{lemma}
-
-\begin{proof}
-Let $(x_n)$ be a bounded lift of a corona unitary.  Then
-$x_n^*x_n\to1$ and $x_nx_n^*\to1$ in operator norm.  For all sufficiently
-large $n$, the matrix $x_n$ is invertible and
-\[
- U_n=x_n(x_n^*x_n)^{-1/2}
-\]
-is unitary with $\opnorm{U_n-x_n}\to0$.  Define the finitely many remaining
-coordinates arbitrarily.
-\end{proof}
-
-\begin{lemma}[finite-spectrum rounding]\label{lem:finite-spectrum-rounding}
-Let $U_n\in\U(d_n)$ and suppose $\opnorm{U_n^m-1}\to0$ for some $m\ge2$.
-Then there are $B_n\in\U(d_n)$ such that
-\[
- B_n^m=1,
- \qquad
- \opnorm{B_n-U_n}\longrightarrow0.
-\]
-\end{lemma}
-
-\begin{proof}
-Round each point of the spectrum of $U_n$ to a nearest $m$th root of unity
-and apply the resulting function by finite-dimensional functional calculus.
-The rounded unitary has $m$th power one.  Compactness of the unit circle
-gives
-\[
- \sup\{\operatorname{dist}(z,\mu_m):|z|=1, |z^m-1|\le\varepsilon\}
- \longrightarrow0
- \quad(\varepsilon\downarrow0),
-\]
-which proves the norm convergence.
-\end{proof}
-
-\begin{theorem}[active-core reblocking]\label{thm:active-core}
-Let $G$ be generated by a finite symmetric set $S$ containing an element
-$a$ of order $m\ge2$, and suppose that $a$ normally generates $G$.  For each
-$s\in S$, fix an expression of $s$ as a product of conjugates of
-$a^{\pm1}$, taking the expression for $a$ to be the one-letter word $a$.
-Let $L$ be the total number of occurrences of $a^{\pm1}$ in these
-expressions.
-
-If $\rho\colon G\to\U(\mathcal Q_{\mathbf d})$ satisfies $\rho(a)\ne1$,
-then, after passing to an infinite coordinate subsequence and changing the
-chosen representatives by $o(1)$ in operator norm, the same corona
-homomorphism has representatives of the form
-\[
- \sigma_n(g)\oplus 1_{d_n-k_n},
- \qquad \sigma_n(g)\in\U(k_n),
-\]
-where $(\sigma_n)$ is an operator-norm asymptotic representation.  Moreover,
-$A_n=\sigma_n(a)$ satisfies $A_n^m=1$, and if
-\[
- p_n=1_{\C\setminus\{1\}}(A_n),\qquad r_n=\operatorname{rank}p_n,
-\]
-then
-\begin{equation}\label{eq:active-core-ranks}
- 1\le r_n\le k_n\le Lr_n.
-\end{equation}
-Consequently, with
-\[
- \eta_m=\min\{|1-\zeta|:\zeta^m=1,\ \zeta\ne1\}>0,
-\]
-one has
-\begin{equation}\label{eq:active-core-gap}
- \hsnorm{\sigma_n(a)-1}\ge\frac{\eta_m}{\sqrt L}.
-\end{equation}
-If $a$ is a product of $N_g$ conjugates of $g^{\pm1}$, then also
-\begin{equation}\label{eq:propagated-gap}
- \liminf_n\hsnorm{\sigma_n(g)-1}
- \ge\frac{\eta_m}{N_g\sqrt L}.
-\end{equation}
-\end{theorem}
-
-\begin{proof}
-By Lemma~\ref{lem:unitary-lifting}, choose unitary lifts $U_n(g)$ of
-$\rho(g)$.  They form an operator-norm asymptotic representation.  Since
-$\rho(a)^m=1$, Lemma~\ref{lem:finite-spectrum-rounding} replaces $U_n(a)$,
-within $o(1)$ in operator norm, by a unitary $B_n$ satisfying $B_n^m=1$.
-
-Write the chosen expression for $s\in S$ as
-\[
- s=\prod_{j=1}^{L_s}h_{s,j}a^{\varepsilon_{s,j}}h_{s,j}^{-1},
- \qquad \varepsilon_{s,j}\in\{1,-1\}.
-\]
-Define
-\[
- \widetilde U_n(s)=
- \prod_{j=1}^{L_s}
- U_n(h_{s,j})B_n^{\varepsilon_{s,j}}U_n(h_{s,j})^*.
-\]
-For every $g\in G$, choose once and for all a word in $S$ representing $g$
-and define $\widetilde U_n(g)$ by substituting these matrices.  We use the
-one-letter word for $a$, so $\widetilde U_n(a)=B_n$.  The defining group
-identities and asymptotic multiplicativity give
-\[
- \opnorm{\widetilde U_n(g)-U_n(g)}\longrightarrow0
- \qquad(g\in G).
-\]
-Thus $(\widetilde U_n)$ is an operator-norm asymptotic representation and
-represents the same corona homomorphism.
-
-Let $P_n$ be the active spectral subspace of $B_n$, and let $K_n$ be the sum
-of the subspaces
-\[
- U_n(h_{s,j})P_n
- \qquad(s\in S,\ 1\le j\le L_s).
-\]
-Every factor in the displayed formula for $\widetilde U_n(s)$ is the
-identity on $K_n^\perp$, preserves $K_n$, and differs from the identity by
-an operator whose range lies in $K_n$.  Hence every $\widetilde U_n(g)$
-preserves $K_n$ and is the identity on $K_n^\perp$.  Since the one-letter
-expression for $a$ occurs in the family,
-\[
- \dim P_n\le\dim K_n\le L\dim P_n.
-\]
-The assumption $\rho(a)\ne1$ makes $P_n$ nonzero on an infinite coordinate
-subsequence.  Retain that subsequence, put $k_n=\dim K_n$, and let
-$\sigma_n(g)$ be the restriction of $\widetilde U_n(g)$ to $K_n$.  This
-proves the lifting assertion and \eqref{eq:active-core-ranks}.
-
-Every nonidentity eigenvalue of $A_n$ is an $m$th root of unity, so
-\[
- \hsnorm{A_n-1}^2
- \ge \eta_m^2\frac{r_n}{k_n}
- \ge\frac{\eta_m^2}{L},
-\]
-which proves \eqref{eq:active-core-gap}.  Finally, substitute the matrices
-$\sigma_n(g)$ into a fixed normal word of length $N_g$ expressing $a$ through
-$g^{\pm1}$.  Telescoping in normalized Hilbert--Schmidt norm and asymptotic
-multiplicativity give
-\[
- \hsnorm{\sigma_n(a)-1}
- \le N_g\hsnorm{\sigma_n(g)-1}+o(1).
-\]
-Together with \eqref{eq:active-core-gap}, this proves
-\eqref{eq:propagated-gap}.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:torsion-bridge}]
-For every group,
-\[
- \Rad_{\mathrm{MF}}(G)\le R_{\infty\to2}(G):
-\]
-an operator-norm asymptotic representation defines a homomorphism to its
-norm matrix corona, and an element killed there converges to the identity in
-operator norm, hence in normalized Hilbert--Schmidt norm.
-
-Conversely, suppose $a\in R_{\infty\to2}(G)$ but
-$a\notin\Rad_{\mathrm{MF}}(G)$.  Some corona homomorphism sees $a$.
-Theorem~\ref{thm:active-core} produces an operator-norm asymptotic
-representation for which \eqref{eq:active-core-gap} holds, contradicting the
-definition of $R_{\infty\to2}(G)$.  Thus $a$ lies in the MF radical.  Since
-that radical is normal and $a$ normally generates $G$, it equals $G$.
-\end{proof}
-
-\begin{corollary}[simple torsion dichotomy]\label{cor:simple-torsion}
-Let $G$ be a nontrivial finitely generated simple group containing a
-finite-order nonidentity element.  Then
-\[
- \Rad_{\mathrm{MF}}(G)=R_{\infty\to2}(G).
-\]
-Exactly one of the following holds:
-\begin{enumerate}
- \item every homomorphism from $G$ to a norm matrix corona is trivial;
- \item $G$ admits a faithful operator-norm asymptotic representation
- $(\sigma_n)$ such that
- \[
-  \liminf_n\hsnorm{\sigma_n(g)-1}>0
-  \qquad(g\ne1).
- \]
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-Both displayed residuals are normal subgroups.  Simplicity and
-Theorem~\ref{thm:torsion-bridge}, applied to a nonidentity torsion element,
-give their equality.  If a corona homomorphism is nontrivial, it is injective.
-Apply Theorem~\ref{thm:active-core}; for each $g\ne1$, simplicity puts the
-chosen torsion element in the normal closure of $g$, so
-\eqref{eq:propagated-gap} gives the asserted pointwise separation.  The two
-alternatives are therefore exhaustive and mutually exclusive.
 \end{proof}
 
 \section{The binary Leavitt self-compression}
@@ -720,7 +415,7 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
  \tau L\tau^{-1}\le L.
 \end{equation}
 
-\section{The full MF radical}
+\section{The Leavitt group}
 
 \begin{proposition}\label{prop:simple}
 The group $H=\EL_{12}(R)$ is simple.
@@ -787,30 +482,17 @@ Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
 rings~\cite{EJZ}; in particular $H$ is finitely generated.
 
 The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
-$L$, and Corollary~\ref{cor:defect-hs} give
-$d\in R_{\infty\to2}(H)$.  The subgroup $R_{\infty\to2}(H)$ is normal, and
-Proposition~\ref{prop:defect} says that $d$ is an involution which normally
-generates $H$.  Theorem~\ref{thm:torsion-bridge} gives
-$d\in\Rad_{\mathrm{MF}}(H)$.  Normality of the MF radical now gives
-$\Rad_{\mathrm{MF}}(H)=H$.
+$L$, and Corollary~\ref{cor:defect-hs} show that every operator-norm
+asymptotic representation $(V_n)$ of $H$ satisfies
+\[
+ \hsnorm{V_n(d)-1}\longrightarrow0.
+\]
 
-If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
-faithful homomorphism from $M$ to a norm matrix corona.  Since
-$\Rad_{\mathrm{MF}}(H)=H$, this composition and hence $f$ are trivial.  If
-$H$ were MF, its identity homomorphism would contradict this conclusion.
-\end{proof}
-
-\begin{corollary}\label{cor:exact-fd}
-For every field $k$ and every finite-dimensional $k$-vector space $V$, every
-homomorphism $H\to\GL(V)$ is trivial.
-\end{corollary}
-
-\begin{proof}
-Let $\rho\colon H\to\GL(V)$.  The containment
+Now let $k$ be a field, let $V$ be finite-dimensional over $k$, and let
+$\rho\colon H\to\GL(V)$ be a homomorphism.  The containment
 \eqref{eq:compresses-L}, the centrality of $c$ relative to $L$, and
-Theorem~\ref{thm:commutant} give $\rho(d)=1$.  Since
-$H=\normal d_H$ by Proposition~\ref{prop:defect}, the homomorphism $\rho$ is
-trivial.
+Theorem~\ref{thm:commutant} give $\rho(d)=1$.  Proposition~\ref{prop:defect}
+says that $d$ normally generates $H$, so $\rho$ is trivial.
 \end{proof}
 
 In particular, every homomorphism from $H$ to a finite group, a residually
@@ -818,113 +500,6 @@ finite group, or a compact Hausdorff group is trivial.  For finite and
 residually finite targets this follows by the regular representation of a
 finite quotient; for compact targets it follows from Peter--Weyl point
 separation~\cite{PeterWeyl}.
-
-\begin{corollary}[unit groups and all matrix ranks]
-\label{cor:unit-group-non-mf}
-Put $R=L_{\F_2}(1,2)$.  Then the unit group $R^\times$ and
-$\GL_n(R)$ for every $n\ge1$ are non-MF.
-\end{corollary}
-
-\begin{proof}
-For $n\ge2$, the complete binary prefix code
-\[
- \mathcal C_n=\{1^j0:0\le j\le n-2\}\cup\{1^{n-1}\}
-\]
-(and $\mathcal C_1$ consisting of the empty word) gives a ring isomorphism
-\begin{equation}\label{eq:prefix-matrix-isomorphism}
- \Theta_n\colon M_n(R)\longrightarrow R,
- \qquad
- (a_{uv})\longmapsto
- \sum_{u,v\in\mathcal C_n}s_u a_{uv}t_v.
-\end{equation}
-Here $s_{i_1\cdots i_r}=s_{i_1}\cdots s_{i_r}$ and
-$t_{i_1\cdots i_r}=t_{i_r}\cdots t_{i_1}$.  Indeed,
-\[
- t_us_v=\delta_{uv},
- \qquad
- \sum_{u\in\mathcal C_n}s_ut_u=1,
-\]
-so the inverse of \eqref{eq:prefix-matrix-isomorphism} is
-$r\mapsto(t_ur s_v)_{u,v}$.
-
-Taking units gives $\GL_n(R)\cong R^\times$ for every $n$.  For $n=12$,
-the subgroup $H=\EL_{12}(R)\le\GL_{12}(R)$ therefore embeds in $R^\times$.
-If $R^\times$ were MF, then its subgroup $H$ would be MF, contrary to
-Theorem~\ref{thm:headline}.  Hence $R^\times$ is non-MF, and the displayed
-isomorphisms give the result for every $\GL_n(R)$.
-\end{proof}
-
-\section{Prescribed MF quotients}\label{sec:prescribed-quotients}
-
-Let $A=\langle d\rangle\le H$, where $d$ is the element in
-Proposition~\ref{prop:defect}.  For a countable group $Q$, define
-\begin{equation}\label{eq:amalgam}
- W_Q=H*_A(Q\times A),
-\end{equation}
-where $A\to Q\times A$ is the inclusion into the second factor.  The maps
-from $H$ and $Q\times A$ to $Q$ that are respectively trivial and the
-projection onto $Q$ agree on $A$.  They therefore define an epimorphism
-\[
- \pi_Q\colon W_Q\longrightarrow Q.
-\]
-It is split by the inclusion $Q\to Q\times A\to W_Q$.  The normal-form
-theorem for amalgamated free products shows that both vertex maps in
-\eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
-
-\begin{proposition}[universal factorization]\label{prop:universal-factorization}
-Let $T$ be a group such that every homomorphism $H\to T$ is trivial.  Then
-precomposition with $\pi_Q$ is a bijection
-\[
- \operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).
-\]
-Furthermore,
-\[
- \ker\pi_Q=\normal d_{W_Q}.
-\]
-\end{proposition}
-
-\begin{proof}
-Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $H$ is
-trivial, so its restriction to the amalgamated subgroup $A$ is trivial.  For
-$(q,a)\in Q\times A$, we then have
-\[
- f(q,a)=f(q,1)f(1,a)=f(q,1).
-\]
-Thus the restriction of $f$ to $Q\times A$ factors uniquely through the
-projection onto $Q$.  The universal property of the amalgam shows that $f$
-factors through $\pi_Q$.  The factorization is unique because $\pi_Q$ is
-surjective.
-
-The element $d$ belongs to $\ker\pi_Q$.  Conversely, quotienting $W_Q$ by
-$\normal d_{W_Q}$ kills $H$, since $\normal d_H=H$, and kills the second
-factor $A$ in $Q\times A$.  The resulting quotient is $Q$, with quotient map
-induced by $\pi_Q$.  Hence $\ker\pi_Q=\normal d_{W_Q}$.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:prescribed-quotients}]
-Every homomorphism from $H$ to an MF group is trivial by
-Theorem~\ref{thm:headline}.  Proposition~\ref{prop:universal-factorization}
-therefore gives the asserted bijection for every MF group $M$.  In
-particular, every homomorphism from $W_Q$ to a norm matrix corona factors
-uniquely through $\pi_Q$.  Intersecting their kernels gives
-\[
- \Rad_{\mathrm{MF}}(W_Q)
- =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
-\]
-The kernel of $\pi_Q$ belongs to this radical, and it contains the
-nonidentity element $d$.  Thus $W_Q$ is non-MF.  If $Q$ is MF, its MF radical
-is trivial, and the displayed equality becomes
-\[
- \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.
-\]
-
-\end{proof}
-
-The same factorization applies to every target group $T$ for which all
-homomorphisms $H\to T$ are trivial.  Corollary~\ref{cor:exact-fd} and
-Peter--Weyl point separation therefore give the corresponding bijections for
-finite-dimensional linear groups over arbitrary fields, residually finite
-groups, and compact Hausdorff groups.
 
 \section*{AI and computational resource usage}
 AI systems were used extensively for proof exploration, literature
