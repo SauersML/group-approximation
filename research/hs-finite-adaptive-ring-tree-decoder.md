@@ -42,6 +42,12 @@ packets named by `Q_sigma`, `D_(sigma,i)`, and
 their decoded traces add.  Separate typed carriers, even with exactly equal
 source/range spectral data, do not suffice.
 
+For the terminal contradiction, actual corner operators are stronger than
+necessary.  `hs-steinberg-morita-trace-additivity-on-adaptive-blocks`
+isolates the scalar remnant: the fixed conjugacy witnesses already prove all
+algebraic equivalences, and only additivity of physical mass across a
+stabilized diagonal block remains.
+
 Establishing `(HAT1)` yields `(FAT1)` with `eta=1-o(1)` along every reached
 branch.  Conversely, the exact perfect BCS model has all `A_(sigma,i)=0`, so
 the decoder is allowed to return zero arrows there and creates no universal

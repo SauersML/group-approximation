@@ -171,6 +171,19 @@ radicals remain singly normally generated, all classical residuals still
 coincide, and from the first wreath layer onward the reflections are neither
 virtually free nor context-free.
 
+Block diagonals also combine heterogeneous internal reflections.  Therefore
+the class realized inside `U` is closed under arbitrary finite direct
+products as well as finite wreath layers.  Starting from countable virtually
+free leaves gives a finite expression calculus of residually finite MF
+reflections; every expression retains an exact semantic-closure pullback,
+matching profinite and Bohr completions, and a finitely normally generated
+radical.
+
+The dimension spectrum is exact: wreathing the free reflection by `C_m`
+produces, for every `m>=1`, a finitely generated internal non-MF group with
+one normally generating radical word and visible quotient of virtual
+cohomological dimension exactly `m`.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

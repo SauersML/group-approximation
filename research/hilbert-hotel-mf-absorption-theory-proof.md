@@ -61,6 +61,9 @@ requires:
   - virtually-free-reflections-share-all-residuals
   - finite-wreath-lift-of-internal-mf-reflection
   - finite-wreath-reflection-tower-has-unbounded-vcd
+  - finite-product-lift-of-internal-mf-reflections
+  - internal-mf-reflections-have-a-finite-expression-calculus
+  - one-word-internal-mf-reflections-realize-every-vcd
 ---
 
 The group, C-star, and dynamical assertions are the corresponding established
