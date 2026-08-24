@@ -165,3 +165,4 @@
 32711912615	2026-08-24T09:31:08Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	crossingEdges_decide_mem
 32716447923	2026-08-24T10:22:59Z	GroupApproximation/Sofic/AlmostAutomorphism.lean	isLEF_of_cluster_models
 32720672991	2026-08-24T11:13:14Z	GroupApproximation/Sofic/AlternatingLampBohrResidual.lean	bohrResidual_le_lampRange
+32723467879	2026-08-24T11:45:45Z	GroupApproximation/Sofic/AlternatingLampExactRadical.lean	alternating_commutator_eq_top
