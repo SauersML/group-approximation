@@ -170,11 +170,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Sofic/FinitePerfectLampExactRadical \
+              GroupApproximation.FinitePerfectLamp.finitePerfectPackage \
             --require-verified \
-              Sofic/KazhdanCliffordConstruction \
-              GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction
+              Sofic/AlternatingLampLiteralPackage \
+              GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \

@@ -1,18 +1,17 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: exact Lean counterpart, complete paper proof, or stated literature input. Exact claims carry exact-role margin declarations; paper and literature claims carry none.",
+  "status_policy": "Every numbered theorem-like environment has exact Lean coverage. The classical Peter--Weyl upgrade appears only in unnumbered prose and is identified explicitly as an external theorem.",
   "claims": [
     {
-      "id": "thm:A",
+      "id": "thm:headline",
       "environment": "mainthm",
-      "title": "an explicit non-MF group",
-      "statement_sha256": "c5660134b135e2a867561e9e3bb21c7fa92fd6b1067329a7db2d0e157fa9deed",
+      "title": "one invisible relation changes MF",
+      "statement_sha256": "ada1b1066736438aba9c5d1ce02c66e109035d888a8d970dda51df4c942ef29d",
       "status": "exact",
-      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declarations; the printed conclusions are invariant under that identification.",
+      "object_identity": "The margin declarations collectively cover every printed clause on the same literal groups and maps.",
       "dependencies": [
-        "thm:kazhdan-clifford",
-        "lem:unitarycorona"
+        "thm:visible"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -20,25 +19,81 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
-          "covers": "the complete printed proposition under the specialization or identification recorded above"
+          "module": "Sofic/AlternatingLampExactRadical",
+          "declaration": "GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage",
+          "covers": "one printed clause; the declarations are collective"
         },
         {
           "role": "exact",
-          "module": "Sofic/LiteralTheoremAPackage",
-          "declaration": "GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package",
-          "covers": "a printed conclusion of the proposition"
+          "module": "Sofic/AlternatingLampLiteralPackage",
+          "declaration": "GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp",
+          "covers": "one printed clause; the declarations are collective"
         }
       ]
     },
     {
-      "id": "lem:lift",
-      "environment": "lemma",
-      "title": "lifting",
-      "statement_sha256": "721a3d635e21456fb92cb1f55c7480387a6e636dafd15a55eb2ccaad6ad3a5fc",
+      "id": "thm:spectral",
+      "environment": "mainthm",
+      "title": "spectral compression",
+      "statement_sha256": "6b3603c0f5c93354334870cee9007efe0e0a3e1a442da43548c38bf201fd5c3e",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "object_identity": "The margin declarations collectively cover every printed clause on the same literal groups and maps.",
+      "dependencies": [
+        "thm:projection-collapse"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/SpectralComponentDiameter",
+          "declaration": "GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces",
+          "covers": "one printed clause; the declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/SpectralCompression",
+          "declaration": "GroupApproximation.SpectralCompression.corona_clopen_projection_collapse",
+          "covers": "one printed clause; the declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "thm:visible",
+      "environment": "mainthm",
+      "title": "the universal visible quotient",
+      "statement_sha256": "9d8dc14801bdbf8b9d08557a19215be271df3bb8cd63b60b02d387136db8e18a",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause on the same literal groups and maps.",
+      "dependencies": [
+        "thm:spectral"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/FinitePerfectLampExactRadical",
+          "declaration": "GroupApproximation.FinitePerfectLamp.finitePerfectPackage",
+          "covers": "one printed clause; the declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/UniversalVisibleQuotient",
+          "declaration": "GroupApproximation.comp_mk'_bijective",
+          "covers": "one printed clause; the declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "thm:fd-defect",
+      "environment": "theorem",
+      "title": "",
+      "statement_sha256": "4d08a7f21f00ab491874976d5149a89b52cf6ec2ed4fee79fb5841842b885751",
+      "status": "exact",
+      "object_identity": "The printed environment and named declaration use the same literal objects and proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -46,44 +101,41 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting",
+          "module": "Criterion/CompressionCentralizerDefect",
+          "declaration": "GroupApproximation.compressionCentralizerDefect_le_ker",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "lem:unitarycorona",
-      "environment": "lemma",
-      "title": "unitaries in the quotient",
-      "statement_sha256": "da8c086325c912abb1442b5253c1868ff3598bf556a67d67f1cbed5ae4c6731b",
+      "id": "thm:projection-collapse",
+      "environment": "theorem",
+      "title": "projection collapse",
+      "statement_sha256": "9401a78ef377739553784fdd94744b965620adca08362f4ce198360176d9a08e",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:lift"
-      ],
+      "object_identity": "The printed environment and named declaration use the same literal objects and proposition.",
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
+          "module": "Sofic/ProjectionCompressionCollapse",
+          "declaration": "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "prop:mf-equivalences",
+      "id": "prop:factor",
       "environment": "proposition",
-      "title": "Equivalent formulations of the MF property",
-      "statement_sha256": "f68097942772b0116101c4c168a193858c02dba053eee4c0f9ad4d5f4ecce8d6",
+      "title": "",
+      "statement_sha256": "ba0a35527c658c238f46f89e2cccf2f4669de983f9d1573e9275054b4021a38e",
       "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "object_identity": "The margin declarations collectively cover every printed clause on the same literal groups and maps.",
       "dependencies": [
-        "lem:unitarycorona",
-        "lem:tensor-amplification"
+        "thm:spectral"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -91,272 +143,15 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:tensor-amplification",
-      "environment": "lemma",
-      "title": "tensor amplification",
-      "statement_sha256": "0bcd5e6c6b4e59321ef54c0e7e3e4218fee352021bcec8cce456c8d6a1d60ea3",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTensorAmplification",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:markedclosed",
-      "environment": "theorem",
-      "title": "the MF locus is closed",
-      "statement_sha256": "28fac97c4cd092bf99386ebce5706bc705ba0af963c19675dcb2ca14c077b527",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
-          "covers": "the complete printed proposition"
+          "module": "Sofic/FinitePerfectLampExactRadical",
+          "declaration": "GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub",
+          "covers": "one printed clause; the declarations are collective"
         },
         {
           "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:finitecompare",
-      "environment": "lemma",
-      "title": "comparison in a finite algebra",
-      "statement_sha256": "fc2a55b505fb0455b75447b10bb9399a687fed72fda340b9483e12f1fede066c",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductKazhdanTransport",
-          "declaration": "GroupApproximation.kt_10_finiteness_reverses",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:ultrafinite",
-      "environment": "lemma",
-      "title": "finiteness of a norm quotient of matrix blocks",
-      "statement_sha256": "18a9bd515024e111bf781e608fc7e1df56453a4e5eb1608c5e417424dfe46102",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductDedekindFinite",
-          "declaration": "GroupApproximation.kt_06_ultraproduct_finite",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:exactfd",
-      "environment": "theorem",
-      "title": "the finite-dimensional case",
-      "statement_sha256": "1b89b962cc94424bacc8737d008a28d45400b0a7962507a89f5b6cff78c55bc1",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:kazhdan-gap",
-      "environment": "lemma",
-      "title": "Kazhdan spectral gap",
-      "statement_sha256": "88edd2899a12ce01718448347b8325c62c025e7b24913be49df7763b8370ba33",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductKazhdanProjection",
-          "declaration": "GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:kazhdan-transport",
-      "environment": "theorem",
-      "title": "one-sided conjugation preserves asymptotic commutants",
-      "statement_sha256": "2a1d4bc0a7b826678a9fb23945b163e259c821f3b37720ff8237434b6932316a",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptSubgroupSpecializations",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptKazhdanTransportSubgroup",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:corner",
-      "environment": "lemma",
-      "title": "compression to an asymptotically central corner",
-      "statement_sha256": "5d32374145f307f1ec760709387ef933965f2f541a27ea3a1192a5f8004498bd",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:lift"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/PrintedCornerCompression",
-          "declaration": "GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:sign-criterion",
-      "environment": "theorem",
-      "title": "central involution obstruction",
-      "statement_sha256": "8094b24bda7ec03f6f620acad8b198bdd18aabd624e6129a5881a90d532c2a5b",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:kazhdan-transport"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptSubgroupSpecializations",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCentralSignCriterionSubgroup",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "con:clifford",
-      "environment": "construction",
-      "title": "Clifford groups",
-      "statement_sha256": "009265a7f2d936cde715f07e0a93b00cb3dbe737b5296fdc4fd9b7a53585013d",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:kazhdan-clifford",
-      "environment": "theorem",
-      "title": "the basic construction",
-      "statement_sha256": "afc58d4e7ad0f434fa306673ae1a876b8a9d065d6b737775943834e335fdbb66",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:mf-equivalences",
-        "thm:sign-criterion",
-        "thm:kazhdan-transport",
-        "con:clifford"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/KazhdanCliffordConstruction",
-          "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:uniform",
-      "environment": "corollary",
-      "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
-      "status": "exact",
-      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declaration, carrying the distinguished element and the local obstruction with it.",
-      "dependencies": [
-        "thm:A"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralUniformObstruction",
-          "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
-          "covers": "the complete printed proposition under the specialization or identification recorded above"
+          "module": "Sofic/UniversalVisibleQuotient",
+          "declaration": "GroupApproximation.precomp_bijective",
+          "covers": "one printed clause; the declarations are collective"
         }
       ]
     }

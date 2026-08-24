@@ -624,9 +624,8 @@ jobs:
 
       # The non-MF paper has its own generated roster and numbered-claim
       # manifest.  Every visible badge is exact, and the two load-bearing
-      # literal endpoints below are required explicitly: the unconditional
-      # eight-generator counterexample and the unconditional property-(T)
-      # theorem for its literal base presentation.
+      # endpoints below are required explicitly: the finite-perfect exact
+      # radical package and the one-relation identity for the A5 witness.
       - name: Non-MF counterpart contract [outcome masked -- read the verdict]
         id: non-mf-contract
         continue-on-error: true
@@ -643,11 +642,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Sofic/FinitePerfectLampExactRadical \
+              GroupApproximation.FinitePerfectLamp.finitePerfectPackage \
             --require-verified \
-              Sofic/LiteralBaseP13PropertyTBridge \
-              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+              Sofic/AlternatingLampLiteralPackage \
+              GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
@@ -1142,11 +1141,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Sofic/FinitePerfectLampExactRadical \
+              GroupApproximation.FinitePerfectLamp.finitePerfectPackage \
             --require-verified \
-              Sofic/LiteralBaseP13PropertyTBridge \
-              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+              Sofic/AlternatingLampLiteralPackage \
+              GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
