@@ -819,6 +819,41 @@ residually finite targets this follows by the regular representation of a
 finite quotient; for compact targets it follows from Peter--Weyl point
 separation~\cite{PeterWeyl}.
 
+\begin{corollary}[unit groups and all matrix ranks]
+\label{cor:unit-group-non-mf}
+Put $R=L_{\F_2}(1,2)$.  Then the unit group $R^\times$ and
+$\GL_n(R)$ for every $n\ge1$ are non-MF.
+\end{corollary}
+
+\begin{proof}
+For $n\ge2$, the complete binary prefix code
+\[
+ \mathcal C_n=\{1^j0:0\le j\le n-2\}\cup\{1^{n-1}\}
+\]
+(and $\mathcal C_1$ consisting of the empty word) gives a ring isomorphism
+\begin{equation}\label{eq:prefix-matrix-isomorphism}
+ \Theta_n\colon M_n(R)\longrightarrow R,
+ \qquad
+ (a_{uv})\longmapsto
+ \sum_{u,v\in\mathcal C_n}s_u a_{uv}t_v.
+\end{equation}
+Here $s_{i_1\cdots i_r}=s_{i_1}\cdots s_{i_r}$ and
+$t_{i_1\cdots i_r}=t_{i_r}\cdots t_{i_1}$.  Indeed,
+\[
+ t_us_v=\delta_{uv},
+ \qquad
+ \sum_{u\in\mathcal C_n}s_ut_u=1,
+\]
+so the inverse of \eqref{eq:prefix-matrix-isomorphism} is
+$r\mapsto(t_ur s_v)_{u,v}$.
+
+Taking units gives $\GL_n(R)\cong R^\times$ for every $n$.  For $n=12$,
+the subgroup $H=\EL_{12}(R)\le\GL_{12}(R)$ therefore embeds in $R^\times$.
+If $R^\times$ were MF, then its subgroup $H$ would be MF, contrary to
+Theorem~\ref{thm:headline}.  Hence $R^\times$ is non-MF, and the displayed
+isomorphisms give the result for every $\GL_n(R)$.
+\end{proof}
+
 \section{Prescribed MF quotients}\label{sec:prescribed-quotients}
 
 Let $A=\langle d\rangle\le H$, where $d$ is the element in
