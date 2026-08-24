@@ -8,6 +8,7 @@ requires:
   - finite-adaptive-selected-atom-ring-tree
   - atlas-steinberg-context-absorption
   - marked-hs-separation-forces-spectral-density
+  - murray-von-neumann-arrow-has-a-steinberg-conjugacy-witness
   - hs-finite-adaptive-ring-tree-decoder
 ---
 

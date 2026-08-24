@@ -33,6 +33,15 @@ finite-window multiplicity data are insufficient: the source and range
 products have to be realized on one physical carrier.  Full-rank
 small-singular-value defects also prohibit a direct HS-to-rank-kernel cut.
 
+`murray-von-neumann-arrow-has-a-steinberg-conjugacy-witness` removes one
+apparent part of `(HAT1)`: each source and range root packet is already
+exactly conjugate in every abstract group representation.  The irreducible
+residue is **orthogonal-sum localization**.  The decoder must show that the
+packets named by `Q_sigma`, `D_(sigma,i)`, and
+`Q_(sigma i)=Q_sigma+D_(sigma,i)` occupy one common matrix reservoir, so
+their decoded traces add.  Separate typed carriers, even with exactly equal
+source/range spectral data, do not suffice.
+
 Establishing `(HAT1)` yields `(FAT1)` with `eta=1-o(1)` along every reached
 branch.  Conversely, the exact perfect BCS model has all `A_(sigma,i)=0`, so
 the decoder is allowed to return zero arrows there and creates no universal

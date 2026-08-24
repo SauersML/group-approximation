@@ -108,6 +108,12 @@ and all-field linear residuals of the internal group coincide with one
 restricted base; its profinite and Bohr completions are exactly those of the
 actor.
 
+Finite block wreathing is a second closure operation on internal reflections:
+`K->Q` lifts to `K wr F->Q wr F` for every finite `F`.  Iterating the binary
+case from `F_2` produces reflections of virtual cohomological dimension
+`2^n`, strictly beyond the context-free class, while preserving one-word
+radicals and equality of all classical finite-dimensional residuals.
+
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
 

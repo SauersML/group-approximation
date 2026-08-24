@@ -31,6 +31,10 @@ and a projection `d_(sigma,i)` with
 ```text
 sbar_(sigma,i)s_(sigma,i)=a_(sigma,i),
 s_(sigma,i)sbar_(sigma,i)=d_(sigma,i),
+s_(sigma,i)a_(sigma,i)=s_(sigma,i),
+d_(sigma,i)s_(sigma,i)=s_(sigma,i),
+a_(sigma,i)sbar_(sigma,i)=sbar_(sigma,i),
+sbar_(sigma,i)d_(sigma,i)=sbar_(sigma,i),
 d_(sigma,i)q_sigma=q_sigma d_(sigma,i)=0,               (FAR1)
 q_(sigma i)=q_sigma+d_(sigma,i).                        (FAR2)
 ```
@@ -69,3 +73,12 @@ wordization and `atlas-steinberg-context-absorption` can encode their
 generated two-sided ideal with finitely many ordinary group relators.  What
 that wordization does not provide is a metric coefficient interpretation of
 an arbitrary normalized-HS microstate.
+
+The equal-source/range part is nevertheless group-visible.  By
+`murray-von-neumann-arrow-has-a-steinberg-conjugacy-witness`, the explicit
+two-by-two involution built from each arrow conjugates the stabilized source
+idempotent to its stabilized range.  Hence every unitary representation of
+the wordized group gives the two associated root words identical spectral
+data.  The remaining decoder is not equality of their sizes; it is placing
+the orthogonal sum `q_sigma+d_(sigma,i)` on the same physical carrier as the
+decoded BCS corner.

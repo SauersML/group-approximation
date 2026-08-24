@@ -163,6 +163,14 @@ completions are therefore exactly those of the actor.  In the finitely
 generated case the internal group is Kazhdan exactly when the actor is
 finite.
 
+Finite block wreathing lifts any already-computed internal reflection
+`K->Q` to `K wr F->Q wr F` without leaving `U`.  Beginning with reflection
+`F_2` and iterating `F=C_2` gives finitely generated internal groups whose
+MF reflections have virtual cohomological dimensions `1,2,4,8,...`.  Their
+radicals remain singly normally generated, all classical residuals still
+coincide, and from the first wreath layer onward the reflections are neither
+virtually free nor context-free.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;
