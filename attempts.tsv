@@ -169,3 +169,4 @@
 32726185668	2026-08-24T12:16:37Z	GroupApproximation/Sofic/AlternatingLampLiteralPackage.lean	sign_c5
 32731915988	2026-08-24T13:19:05Z	GroupApproximation/Sofic/AlternatingLampVisibleQuotient.lean	vertical_isCDEOperatorMF
 32738728532	2026-08-24T14:27:32Z	GroupApproximation/Sofic/AmenableActionSofic.lean	preservesFullMeasure_mulLeft
+32744527749	2026-08-24T15:23:42Z	GroupApproximation/Sofic/AmplifiedBlockNorms.lean	l2_opNorm_monomialBlocks_le
