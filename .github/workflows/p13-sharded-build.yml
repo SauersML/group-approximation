@@ -97,11 +97,10 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
-      # Three blocks (twelve large kernel computations) per runner.  Twelve-way
-      # bounded parallelism avoids both the old six long serial jobs and a
-      # 36-job fan-out.  Eight at a time keeps the twenty-runner account
-      # pool from saturating when a second pipeline overlaps.
-      max-parallel: 8
+      # Three direct blocks (twelve large kernel computations) per runner.
+      # Seven shards cover the 21 diagonal/upper-triangular blocks; four at a
+      # time leaves capacity when another pipeline overlaps.
+      max-parallel: 4
       matrix:
         shard:
           - 0
@@ -111,11 +110,6 @@ jobs:
           - 4
           - 5
           - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
 
     steps:
       - name: Check out repository

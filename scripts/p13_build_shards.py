@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """Build and transport the expensive canonical P13 certificate in bounded shards.
 
-The generated residual certificate has 36 blocks, each split into four large
-kernel computations.  Asking Lake to build their common aggregator exposes all
-144 computations to its scheduler at once.  This helper instead builds one
-module target per Lake invocation and fixes Lean's worker pool at one thread.
+The generated residual certificate has 21 diagonal/upper-triangular blocks,
+each split into four large kernel computations.  The 15 lower-triangular blocks
+reuse those results through a checked transpose theorem.  Asking Lake to build
+their common aggregator exposes all 84 direct computations to its scheduler at
+once.  This helper instead builds one module target per Lake invocation and
+fixes Lean's worker pool at one thread.
 
-CI divides the blocks among twelve shards.  Each bounded job owns three blocks
+CI divides the direct blocks among seven shards.  Each bounded job owns three blocks
 (twelve large part modules and their wrappers), and the workflow limits
 concurrent shards explicitly.  This keeps peak memory bounded without creating
-dozens of short-lived jobs or making six runners each perform 24 large kernel
+dozens of short-lived jobs or making a few runners perform many large kernel
 replays serially.  The resulting Lake artifacts are archived with their trace
-files so a later job can merge the twelve disjoint shards and finish the
+files so a later job can merge the seven disjoint shards and finish the
 ordinary project build without recompiling an expensive leaf.
 """
 
@@ -28,8 +30,13 @@ from typing import Iterable, Sequence
 
 
 BLOCK_WIDTH = 6
-SHARD_COUNT = 12
+SHARD_COUNT = 7
 PART_COUNT = 4
+DIRECT_BLOCKS = tuple(
+    f"{row}{column}"
+    for row in range(BLOCK_WIDTH)
+    for column in range(row, BLOCK_WIDTH)
+)
 MODULE_PREFIX = "GroupApproximation.Sofic.LiteralP13HodgeResidual"
 FOUNDATION_CORE_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeCertificateCore"
@@ -53,6 +60,9 @@ RESIDUAL_AGGREGATOR_MODULE = (
 )
 FINAL_CERTIFICATE_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeCertificate"
+)
+TRANSPOSE_MODULE = (
+    "GroupApproximation.Sofic.LiteralP13HodgeTranspose"
 )
 FOUNDATION_ARCHIVE = "p13-foundation.tar.gz"
 CACHE_KEY_FILES = (
@@ -81,10 +91,9 @@ def block_names(shard: int) -> tuple[str, ...]:
     if not 0 <= shard < SHARD_COUNT:
         raise ValueError(f"shard must be in [0, {SHARD_COUNT}), got {shard}")
     return tuple(
-        f"{row}{column}"
-        for row in range(BLOCK_WIDTH)
-        for column in range(BLOCK_WIDTH)
-        if (row * BLOCK_WIDTH + column) % SHARD_COUNT == shard
+        block
+        for index, block in enumerate(DIRECT_BLOCKS)
+        if index % SHARD_COUNT == shard
     )
 
 
@@ -514,11 +523,13 @@ def seal_restored_shards(root: Path) -> None:
     or stale part) without compiling anything.  Only after that succeeds may
     the tiny common aggregator itself be built.
     """
-    assert_sources(root, (RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE))
+    assert_sources(
+        root,
+        (RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE, TRANSPOSE_MODULE),
+    )
     blocks = tuple(
-        f"{MODULE_PREFIX}{row}{column}"
-        for row in range(BLOCK_WIDTH)
-        for column in range(BLOCK_WIDTH)
+        f"{MODULE_PREFIX}{block}"
+        for block in DIRECT_BLOCKS
     )
     run_lake(
         root,
@@ -559,13 +570,11 @@ def seal_restored_shards(root: Path) -> None:
 
 def self_test(root: Path) -> None:
     blocks = [block for shard in range(SHARD_COUNT) for block in block_names(shard)]
-    expected_blocks = [f"{row}{column}" for row in range(BLOCK_WIDTH)
-                       for column in range(BLOCK_WIDTH)]
-    if sorted(blocks) != expected_blocks or len(set(blocks)) != BLOCK_WIDTH**2:
+    if sorted(blocks) != sorted(DIRECT_BLOCKS) or len(set(blocks)) != len(DIRECT_BLOCKS):
         raise RuntimeError("P13 shard partition is not exhaustive and disjoint")
     modules = [module for shard in range(SHARD_COUNT)
                for module in modules_for_shard(shard)]
-    if len(modules) != BLOCK_WIDTH**2 * (PART_COUNT + 1):
+    if len(modules) != len(DIRECT_BLOCKS) * (PART_COUNT + 1):
         raise RuntimeError("P13 shard module roster has the wrong size")
     if len(set(modules)) != len(modules):
         raise RuntimeError("P13 shard module roster contains duplicates")
@@ -577,7 +586,11 @@ def self_test(root: Path) -> None:
             for path in source_closure(root, roots)
         }
 
-    wrappers = {RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE}
+    wrappers = {
+        RESIDUAL_AGGREGATOR_MODULE,
+        FINAL_CERTIFICATE_MODULE,
+        TRANSPOSE_MODULE,
+    }
     generated_modules = set(modules)
     foundation_closure = closure_modules(FOUNDATION_MODULES)
     unexpected_foundation = sorted(
@@ -617,8 +630,8 @@ def self_test(root: Path) -> None:
     if len({key for _, key in keys}) != len(keys):
         raise RuntimeError("P13 cache scopes produced duplicate content keys")
     print(
-        f"P13 shard roster: {BLOCK_WIDTH**2 * PART_COUNT} part modules and "
-        f"{BLOCK_WIDTH**2} block modules across {SHARD_COUNT} disjoint shards; "
+        f"P13 shard roster: {len(DIRECT_BLOCKS) * PART_COUNT} part modules and "
+        f"{len(DIRECT_BLOCKS)} direct block modules across {SHARD_COUNT} disjoint shards; "
         f"cache closures: {len(foundation_closure)} foundation modules and "
         f"{min(shard_closure_sizes)}--{max(shard_closure_sizes)} modules per shard"
     )
