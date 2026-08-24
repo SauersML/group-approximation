@@ -44,6 +44,11 @@ Supp_rho(g)=Ideal(rho(g)-1),
 with subadditivity under products and a meet bound under commutators.  Corona
 quotients turn this support filtration into exact group kernels.
 
+Localized Pauli involutions make both inequalities sharp: multiplication
+realizes union of coordinate supports and commutators realize intersection.
+One fixed `2 x 2` matrix corona contains every countable graph as the exact
+commutation graph of a family of nonidentity involutions.
+
 ### Hilbert-hotel consequences
 
 The explicit simple Hilbert-hotel group generates Boolean restricted-sum

@@ -13,6 +13,7 @@ requires:
   - mf-limits-are-created-and-colimits-are-reflected
   - matrix-corona-projection-ideal-and-corner-calculus
   - corona-representations-have-an-ideal-valued-support-length
+  - pauli-support-realizes-boolean-word-calculus
   - boolean-towers-of-simple-mf-black-holes
   - finitely-presented-grushko-towers-with-prescribed-mf-reflection
 ---

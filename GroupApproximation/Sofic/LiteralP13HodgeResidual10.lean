@@ -10,4 +10,3 @@ theorem residual_block_natAbs_1_0 :
 
 end LiteralP13HodgeCertificate
 end GroupApproximation
-
