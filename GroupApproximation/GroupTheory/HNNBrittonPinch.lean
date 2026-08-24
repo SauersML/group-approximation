@@ -10,7 +10,7 @@ a Britton-reduced word whose product lands in the base copy carries no
 stable letter at all.  What Mathlib does *not* provide is the shape in
 which the classical applications consume the lemma — the Novikov--Boone
 construction, and hence the Adian--Rabin corollary quoted at
-`non_mf_groups_exist.tex:3256-3282`,
+the companion notes' undecidability section,
 argue about an explicit alternating product
 
   `g₀ · t^{e₁} g₁ · t^{e₂} g₂ ⋯ t^{eₙ} gₙ`

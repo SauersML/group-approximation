@@ -30,8 +30,7 @@ is `φ g`, and goodness is exactly the statement that it is still in `A'`.
 Britton's Lemma then forces the syllable list of an element of the base
 copy to be empty, leaving the head, which lies in `A'`.
 
-Supporting the undecidability corollary at
-`non_mf_groups_exist.tex:3256-3282`.
+This supports the undecidability corollary retained in the companion notes.
 -/
 
 namespace GroupApproximation
