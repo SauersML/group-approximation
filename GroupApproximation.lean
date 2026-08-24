@@ -1589,6 +1589,7 @@ import GroupApproximation.Sofic.SymmetricDoubleShulman
 import GroupApproximation.Sofic.PushedDefectSaturation
 import GroupApproximation.Sofic.ArithmeticAmplifiedEndpoint
 import GroupApproximation.Sofic.MinimalNoCancellingPair
+import GroupApproximation.Sofic.MinimalPalindromePair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
