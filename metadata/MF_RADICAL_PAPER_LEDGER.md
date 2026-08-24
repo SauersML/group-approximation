@@ -19,6 +19,13 @@ the weaker `#audit_axioms` macro and is **not** printed with the closed one --
 so "conditional" can neither hide a real hypothesis nor understate a theorem
 that is actually closed.  Exactly one row is conditional.
 
+**When Peter--Weyl lands.**  `PeterWeyl.SeparatesPoints` is being discharged in
+`Analysis/CompactHaar` (step 1 done; steps 2 and 5 outstanding).  On the day it
+closes, do NOT edit the Cor. C.6 row: add an unconditional corollary, print it
+with `#audit_closed_axioms`, add it as a new `closed` row, and leave the
+conditional theorem and its row in place as the record of what the package
+proved without that input.
+
 ## Rows
 
 <!-- LEDGER-ROWS -->
