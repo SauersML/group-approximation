@@ -170,3 +170,4 @@
 32731915988	2026-08-24T13:19:05Z	GroupApproximation/Sofic/AlternatingLampVisibleQuotient.lean	vertical_isCDEOperatorMF
 32738728532	2026-08-24T14:27:32Z	GroupApproximation/Sofic/AmenableActionSofic.lean	preservesFullMeasure_mulLeft
 32744527749	2026-08-24T15:23:42Z	GroupApproximation/Sofic/AmplifiedBlockNorms.lean	l2_opNorm_monomialBlocks_le
+32749879615	2026-08-24T16:17:15Z	GroupApproximation/Sofic/AntipodalRadicalCollision.lean	AsymptoticUnitaryRepresentation.antipodal_detects
