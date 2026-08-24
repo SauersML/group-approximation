@@ -1636,6 +1636,7 @@ import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Analysis.CayleyUnitary
+import GroupApproximation.Analysis.UnitaryPerturbation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
