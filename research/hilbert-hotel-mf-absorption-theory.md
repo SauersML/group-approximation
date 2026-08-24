@@ -142,6 +142,12 @@ subgroups with reflection `F_r` for every finite `r`; it also contains a
 strict descending chain of isomorphic copies obtained from a proper
 self-embedding of `F_2`.
 
+The same prefix construction realizes every actor
+`F_r*G_1*...*G_k` with finite `G_i`.  Hence `U` internally contains
+finitely generated non-MF groups with every such virtually free MF
+reflection, a singly normally generated radical, and an MF-closed quotient
+lattice canonically identical to that of the actor.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

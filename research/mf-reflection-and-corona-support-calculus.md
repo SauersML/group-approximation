@@ -95,6 +95,9 @@ finite-generator presentations.
 One group `U wr F_2` already contains all finite-rank free-reflection
 subgroups and a strict descending chain of isomorphic copies induced by a
 proper free self-embedding.
+Finite-factor ping-pong further realizes every reflection
+`F_r*G_1*...*G_k` with finite `G_i`, together with its complete lattice of
+MF-closed normal subgroups.
 
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.

@@ -34,6 +34,15 @@ lamplighter transport cannot prove `(SAE1)`: exact finite Bass--Serre models
 retain those relations while allowing leakage against variables outside the
 chosen context.
 
+An indefinite reusable cell is more than the terminal contradiction needs.
+`finite-depth-adaptive-selected-atom-escape-tree` isolates the strictly
+weaker target: finitely many node-dependent words on the bounded decision
+tree forced by the canonical half-density seed.  Conversely,
+`independent-address-capacity-cannot-drive-selected-atom-growth` shows that
+even this bounded target cannot be obtained by tensoring the payload with
+disjoint affine address cylinders; the strict surplus has to be conditional
+on the shared-context atom itself.
+
 ## Attempts
 
 - **Independent address transport.**  Conjugate `A_*` into a fresh

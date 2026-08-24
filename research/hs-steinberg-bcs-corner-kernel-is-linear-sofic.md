@@ -63,3 +63,15 @@ Once this density-compatible decoder is available, stable finiteness and the
 exact conditional corner equations recover the carrier factorization in
 `shared-bcs-carrier-localizes-free-compressor-quotient`.  No further
 determinant, multiplicity, or infinite-kernel argument is required.
+
+For the nonhyperlinear endpoint the full quotient embedding is stronger than
+the bounded contradiction formally requires.  By
+`finite-depth-adaptive-selected-atom-escape-tree`, it would suffice to decode
+only the finitely many conditional kernel rows occurring on one fixed
+adaptive tree, retaining their prescribed root carriers and cross-row
+products.  This does not remove the analytic obstruction: independent
+finite-window exactifications can still choose incompatible physical
+corners, and `independent-address-capacity-cannot-drive-selected-atom-growth`
+prevents replacing that coherence by a separate address factor.  It does,
+however, remove any need for a decoder uniform over all coefficient words or
+all recursion depths.
