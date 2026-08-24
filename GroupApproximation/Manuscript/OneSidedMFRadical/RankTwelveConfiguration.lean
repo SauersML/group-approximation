@@ -188,16 +188,12 @@ theorem flatCornerUnits_mem_elementary
   | mul x y _ _ hx hy => simpa using (elementaryGroup (Fin 12) R).mul_mem hx hy
   | inv x _ hx => simpa using (elementaryGroup (Fin 12) R).inv_mem hx
 
-/-- The flattened corner map, with its range restricted to the ambient
-elementary group. -/
-noncomputable def flatCornerToH :
-    (RankTwelve.Cell R)ˣ →* H :=
-  flatCornerUnits.codRestrict (elementaryGroup (Fin 12) R)
-    flatCornerUnits_mem_elementary
-
 noncomputable def cornerEmbedding :
     BinaryLeavittSteinberg.ElementaryBase 3 →* H :=
-  flatCornerToH.comp (elementaryGroup (Fin 3) R).subtype
+  ((flatCornerUnits.comp
+      (elementaryGroup (Fin 3) R).subtype).codRestrict
+    (elementaryGroup (Fin 12) R)) fun g ↦
+      flatCornerUnits_mem_elementary g g.property
 
 @[simp] theorem cornerEmbedding_elementaryRoot
     (i j : Fin 3) (hij : i ≠ j) (a : R) :
@@ -210,14 +206,22 @@ noncomputable def cornerEmbedding :
 theorem cornerEmbedding_range : cornerEmbedding.range = corner := by
   apply le_antisymm
   · have hle : elementaryGroup (Fin 3) R ≤
-        corner.comap flatCornerToH := by
+        (corner.map (elementaryGroup (Fin 12) R).subtype).comap
+          flatCornerUnits := by
       rw [elementaryGroup, Subgroup.closure_le]
       rintro _ ⟨i, j, hij, a, rfl⟩
-      change flatCornerToH (elementaryUnit i j hij a) ∈ corner
+      change flatCornerUnits (elementaryUnit i j hij a) ∈
+        corner.map (elementaryGroup (Fin 12) R).subtype
       rw [flatCornerUnits_elementaryUnit]
-      exact Subgroup.subset_closure ⟨i, j, hij, a, rfl⟩
+      exact ⟨elementaryRoot (cornerIndex i) (cornerIndex j)
+        (cornerIndex_injective.ne hij) a,
+        Subgroup.subset_closure ⟨i, j, hij, a, rfl⟩, rfl⟩
     rintro _ ⟨g, rfl⟩
-    exact hle g.property
+    obtain ⟨x, hx, hflat⟩ := hle g.property
+    have hxg : x = cornerEmbedding g := by
+      apply Subtype.ext
+      exact hflat
+    rwa [← hxg]
   · rw [corner, Subgroup.closure_le]
     rintro x ⟨i, j, hij, a, rfl⟩
     exact ⟨elementaryRoot i j hij a,

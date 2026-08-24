@@ -51,21 +51,6 @@
       'For a and b, the commutator is aba⁻¹b⁻¹. It equals the identity exactly when ab and ba are equal.')
   };
 
-  var ALIASES = {
-    'groups': 'group', 'subgroups': 'subgroup', 'mf groups': 'MF group',
-    'homomorphisms': 'homomorphism', 'representations': 'representation',
-    'kernels': 'kernel', 'quotient': 'quotient group',
-    'quotients': 'quotient group', 'norm matrix coronas': 'norm matrix corona',
-    'unitary matrices': 'unitary matrix', 'projections': 'projection',
-    'kazhdan property': 'property (T)', 'binary leavitt algebra': 'Leavitt algebra',
-    'elementary matrices': 'elementary matrix', 'commutators': 'commutator'
-  };
-  Object.keys(TERMS).forEach(function (term) { ALIASES[term.toLowerCase()] = term; });
-
-  var TERM_PATTERN = new RegExp(
-    '\\b(' + Object.keys(ALIASES).sort(function (a, b) { return b.length - a.length; })
-      .map(escapePattern).join('|') + ')\\b', 'gi');
-
   function entry(name, explanation) {
     return { name: name, explanation: explanation };
   }
@@ -76,10 +61,6 @@
 
   function compact(value) {
     return String(value || '').replace(/\s+/g, '');
-  }
-
-  function escapePattern(value) {
-    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   function parseAttributes(source) {
@@ -94,7 +75,10 @@
     var result = [];
     var re = /^\s*%<webmath\s+([^>]+)>\s*$([\s\S]*?)^\s*%<\/webmath>\s*$/gm;
     var match;
+    var group = -1;
+    var previousEnd = 0;
     while ((match = re.exec(String(source || '')))) {
+      if (group < 0 || String(source || '').slice(previousEnd, match.index).trim()) group++;
       var attrs = parseAttributes(match[1]);
       var explanation = match[2].split('\n').map(function (line) {
         return line.replace(/^\s*%\s?/, '');
@@ -103,21 +87,30 @@
       result.push({
         object: attrs.object,
         when: compact(attrs.when),
+        group: group,
         name: attrs.title,
         explanation: explanation
       });
+      previousEnd = re.lastIndex;
     }
     return result;
   }
 
-  var SOURCE_EXPLANATIONS = parseSourceExplanations(window.PAPER_TEX || '');
+  var SOURCE_EXPLANATIONS = parseSourceExplanations(window.PAPER_EXPLANATION_SOURCE);
+  var SOURCE_GROUPS = [];
+  var sourceGroupCursor = 0;
+  SOURCE_EXPLANATIONS.forEach(function (item) {
+    if (!SOURCE_GROUPS[item.group]) SOURCE_GROUPS[item.group] = [];
+    SOURCE_GROUPS[item.group].push(item);
+  });
 
-  function sourceExplanation(text, tex) {
+  function sourceExplanation(text, tex, candidates) {
     var object = clean(text);
     var formula = compact(tex);
     var best = null;
-    for (var i = 0; i < SOURCE_EXPLANATIONS.length; i++) {
-      var candidate = SOURCE_EXPLANATIONS[i];
+    var pool = candidates || SOURCE_EXPLANATIONS;
+    for (var i = 0; i < pool.length; i++) {
+      var candidate = pool[i];
       if (candidate.object !== object || formula.indexOf(candidate.when) < 0) continue;
       if (!best || candidate.when.length > best.when.length) best = candidate;
     }
@@ -129,35 +122,31 @@
     return annotation ? annotation.textContent : '';
   }
 
-  function canonicalTerm(term) {
-    return ALIASES[clean(term).toLowerCase()] || '';
-  }
-
   function explainTerm(term) {
-    var canonical = canonicalTerm(term);
-    return canonical ? TERMS[canonical] : null;
+    return TERMS[clean(term)] || null;
   }
 
   function setLinkedText(node, value, excludedTerm) {
     node.textContent = '';
     var text = String(value || '');
     var cursor = 0;
-    TERM_PATTERN.lastIndex = 0;
+    var pattern = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
     var match;
-    while ((match = TERM_PATTERN.exec(text))) {
+    while ((match = pattern.exec(text))) {
       if (match.index > cursor) node.appendChild(document.createTextNode(text.slice(cursor, match.index)));
-      var canonical = canonicalTerm(match[0]);
-      if (!canonical || canonical === excludedTerm) {
-        node.appendChild(document.createTextNode(match[0]));
+      var canonical = clean(match[1]);
+      var label = clean(match[2] || match[1]);
+      if (!TERMS[canonical] || canonical === excludedTerm) {
+        node.appendChild(document.createTextNode(label));
       } else {
         var button = document.createElement('button');
         button.type = 'button';
         button.className = 'math-term-help';
         button.setAttribute('data-term', canonical);
-        button.textContent = match[0];
+        button.textContent = label;
         node.appendChild(button);
       }
-      cursor = TERM_PATTERN.lastIndex;
+      cursor = pattern.lastIndex;
     }
     if (cursor < text.length) node.appendChild(document.createTextNode(text.slice(cursor)));
   }
@@ -194,7 +183,7 @@
   }
 
   function openTerm(term) {
-    var canonical = canonicalTerm(term);
+    var canonical = clean(term);
     var info = explainTerm(canonical);
     if (!info) return;
     if (current) history.push(current);
@@ -214,7 +203,7 @@
   }
 
   function openObject(node, math) {
-    var info = sourceExplanation(clean(node.textContent), texOf(math));
+    var info = node.__mathExplanation;
     if (!info) return;
     history = [];
     render({ symbol: clean(node.textContent), info: info, term: '' });
@@ -237,14 +226,21 @@
       if (!visual) continue;
       math.classList.add('math-help-ready');
       var tex = texOf(math);
+      var group = SOURCE_GROUPS[sourceGroupCursor] || [];
+      var matchesGroup = group.some(function (candidate) {
+        return compact(tex).indexOf(candidate.when) >= 0;
+      });
+      if (!matchesGroup) continue;
+      sourceGroupCursor++;
       var bases = visual.querySelectorAll('.base');
       for (var j = 0; j < bases.length; j++) {
         var children = bases[j].children;
         for (var k = 0; k < children.length; k++) {
           var node = children[k];
           if (!isTopLevelMathObject(node)) continue;
-          var info = sourceExplanation(clean(node.textContent), tex);
+          var info = sourceExplanation(clean(node.textContent), tex, group);
           if (!info) continue;
+          node.__mathExplanation = info;
           node.classList.add('math-symbol-help');
           node.setAttribute('tabindex', '0');
           node.setAttribute('role', 'button');

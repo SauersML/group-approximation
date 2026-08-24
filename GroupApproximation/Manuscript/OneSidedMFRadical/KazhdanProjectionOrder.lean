@@ -15,6 +15,16 @@ projections, the two absorption identities below are the algebraic
 (order-instance-free) spelling of
 
 `shift⁎ * proj * shift ≤ proj`.
+
+`Analysis/KazhdanProjectionOneSidedOrder.lean` proves the printed fixed-space
+argument and literal Loewner inequality after passing to a Hilbert-space
+representation.  It deliberately leaves the abstract `C*`-algebra bridge as
+a hypothesis.  This wrapper therefore reuses the complementary existing
+abstract-algebra route `KazhdanCompressionRep.kt_09_*`: that is what identifies
+the spectral Kazhdan projection and proves the absorption identities inside
+the manuscript's arbitrary target algebra `B`.  The two modules are not
+duplicate endpoints; they formalize the two sides of the faithful-
+representation passage used in the printed proof.
 -/
 
 namespace GroupApproximation

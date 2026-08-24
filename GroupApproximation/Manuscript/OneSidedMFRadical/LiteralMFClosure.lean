@@ -1,5 +1,4 @@
-import GroupApproximation.Sofic.MFRelationClosure
-import GroupApproximation.Sofic.RadicalFunctoriality
+import GroupApproximation.Manuscript.OneSidedMFRadical.ResidualCalculus
 
 /-!
 # The literal MF closure of a normal subgroup
@@ -261,12 +260,15 @@ def LiteralMFResidualCalculus : Prop :=
 clause read through the printed intersection of MF-target kernels. -/
 theorem manuscriptMFResidualCalculusLiteral : LiteralMFResidualCalculus := by
   intro G _ _
-  refine ⟨?_, manuscriptCoronaMFQuotient_isCDEOperatorMF, ?_,
-    isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot⟩
-  · intro f
-    exact map_manuscriptCoronaMFResidual_le f
-  · intro N _
-    exact isCDEOperatorMF_quotient_iff_literalMFClosure_eq N
+  obtain ⟨hInvariant, hQuotient, hClosure, hTrivial⟩ :=
+    manuscriptMFResidualCalculus G
+  rw [← manuscriptCoronaMFResidual_eq_actualCoronaMFResidual] at
+    hInvariant hQuotient hTrivial
+  refine ⟨hInvariant, hQuotient, ?_, hTrivial⟩
+  intro N _
+  have hN := hClosure N
+  rw [← literalMFClosure_eq_actualCoronaMFClosure N] at hN
+  exact hN
 
 end
 

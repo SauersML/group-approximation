@@ -1,16 +1,14 @@
-import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefectShadow
 
 /-!
 # `thm:compression-criterion`, on the printed defect
 
 `non_mf_groups_exist.tex`, Theorem~`thm:compression-criterion` (Theorem~A).
 
-The development already proves the criterion for its own, larger, defect
-subgroup: `ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadicalType0`
-takes `K ≤ compressionCentralizerDefect ι.range`.  Since
-`printedDefect L ≤ compressionCentralizerDefect L`
-(`PrintedDefect.printedDefect_le_compressionCentralizerDefect`) the printed
-hypothesis is the stronger one, so the printed theorem follows immediately.
+`PrintedDefectShadow` follows the manuscript's proof route: the exact printed
+defect lies in the operator-to-Hilbert--Schmidt shadow residual, and the
+normal-Kazhdan theorem then puts every normal Kazhdan subgroup of that defect
+inside the MF radical.  This module assembles the remaining consequences.
 
 The radical here is `manuscriptCoronaMFResidual`, the manuscript's literal
 natural-dimension object: the intersection of the kernels of all
@@ -44,12 +42,9 @@ theorem manuscriptOneSidedCompressionCriterion : OneSidedCompressionCriterion :=
   have key : ∀ (K : Subgroup G) [K.Normal], HasKazhdanPropertyT.{0, 0} ↥K →
       K ≤ printedDefect L → K ≤ manuscriptCoronaMFResidual G := by
     intro K _ hK hKD
-    have hle : K ≤ compressionCentralizerDefect (L.subtype).range := by
-      rw [L.range_subtype]
-      exact hKD.trans (printedDefect_le_compressionCentralizerDefect L)
     have hres : K ≤ actualCoronaMFResidual G :=
-      ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadicalType0
-        L.subtype hL K hK hle
+      normalKazhdan_le_actualCoronaMFResidual_of_le_printedDefect
+        L hL K hK hKD
     rwa [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual]
   refine ⟨key, ?_, ?_⟩
   · intro K _ hK hKD hne hMF

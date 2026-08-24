@@ -23,7 +23,7 @@ and is named by `#audit_closed_axioms` in `Audit.lean` or the dedicated
 | `lem:central-corona-corner` | central corona corners | `manuscriptCentralCoronaCorner` | closed |
 | `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanRadical` | closed |
 | `prop:defect-saturation` | defect functoriality and saturation for the exact direct-compressor defect | `manuscriptDefectSaturation` | closed |
-| `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.PropositionSimple` (statement only) | open: missing normal-subgroup/root-extraction theorem |
+| `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.PropositionSimple`; reductions in `RankTwelveSimplicity.lean` | open: missing normal-subgroup/root-detection theorem |
 | `prop:defect` | explicit nontrivial saturating defect | candidate `RankTwelveEndpoint.printedDefectConfiguration` and constituent theorems | compile pending; not closed |
 | `prop:universal-factorization` | universal factorization through `pi_Q` | `manuscriptUniversalFactorization` | closed |
 
@@ -66,7 +66,16 @@ Repository search found no derivation of simplicity for
 - `elementaryGroup_normal_eq_top_of_elementaryRoot_mem`: a normal subgroup
   containing a sandwiched elementary root is the whole elementary group;
 - `HilbertHotel.normalClosure_elementaryRoot_eq_top`: at rank at least five,
-  every nonzero elementary root normally generates the whole elementary group.
+  every nonzero elementary root normally generates the whole elementary group;
+- `RankTwelveEndpoint.normal_eq_top_of_nonzero_elementaryRoot_mem`: the
+  preceding result specialized to an arbitrary normal subgroup of the exact
+  rank-twelve group;
+- `RankTwelveEndpoint.properNormal_inf_elementaryRootSubgroup_eq_bot`: every
+  proper normal subgroup meets each elementary root subgroup trivially;
+- `RankTwelveEndpoint.elementaryRoot_mem_center_iff`: no nontrivial elementary
+  root is central; and
+- `RankTwelveEndpoint.isSimpleGroup_of_normal_root_detection`: the exact
+  reduction from root detection to `IsSimpleGroup H`.
 
 These do not imply simplicity by themselves. The missing theorem must extract
 a nonzero elementary root from an arbitrary nontrivial normal subgroup. A
