@@ -482,6 +482,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FiniteDimensionalCommutan
 import GroupApproximation.Manuscript.OneSidedMFRadical.StableFiniteness
 import GroupApproximation.Manuscript.OneSidedMFRadical.UniversalFactorization
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrescribedQuotients
+import GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback
 import GroupApproximation.Manuscript.OneSidedMFRadical.DefectHS
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanTransport
 import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdan
@@ -1695,6 +1696,14 @@ import GroupApproximation.Analysis.CayleyUnitary
 import GroupApproximation.Analysis.UnitaryPerturbation
 import GroupApproximation.Analysis.RationalHermitian
 import GroupApproximation.Analysis.RatComplexSubfield
+import GroupApproximation.Analysis.AdjointDefectEstimate
+import GroupApproximation.Manuscript.OneSidedMFRadical.TransportAssembly
+import GroupApproximation.Manuscript.OneSidedMFRadical.CanonicalSector
+import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
+import GroupApproximation.Endpoint.OneSidedTransportAudit
+import GroupApproximation.Leavitt.RankTwelveCorner
+import GroupApproximation.Leavitt.LeavittMarkNontrivial
+import GroupApproximation.Kazhdan.AmenableKazhdanFinite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
