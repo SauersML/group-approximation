@@ -1,11 +1,17 @@
 ---
 rg: 2
-id: split-corona-equivalences-preserve-matricial-stability-proof
+id: split-mf-equivalences-preserve-matricial-stability-proof
 kind: route
-title: Prove stability invariance under split norm-corona equivalence
-target: split-corona-equivalences-preserve-matricial-stability
-requires: []
+title: Prove stability invariance under split MF-equivalence
+target: split-mf-equivalences-preserve-matricial-stability
+requires:
+  - mf-equivalences-form-a-colimit-stable-localization
 ---
+
+Given `Phi:G->U(Q_d)`, let `M=Phi(G)`.  The group `M` is countable and MF
+because it is a subgroup of a norm-corona unitary group.  Apply the defining
+Hom-bijection of an MF-equivalence to the map `G->M`; composing the resulting
+map `Q->M` with `M<=U(Q_d)` gives `(SCE2)`.
 
 Assume first that `G` is point-norm matricially stable.  Let
 `alpha_n:Q->U(d_n)` be asymptotically multiplicative and put

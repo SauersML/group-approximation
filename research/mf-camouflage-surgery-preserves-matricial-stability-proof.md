@@ -6,7 +6,7 @@ title: Apply split corona stability to camouflage surgery
 target: mf-camouflage-surgery-preserves-matricial-stability
 requires:
   - mf-camouflage-surgery
-  - split-corona-equivalences-preserve-matricial-stability
+  - split-mf-equivalences-preserve-matricial-stability
   - matricial-stability-identifies-radicals
 ---
 
