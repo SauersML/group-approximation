@@ -9,9 +9,9 @@
   box-shadow: 0 0 0 0.12em rgba(163, 58, 28, 0.12);
 }
 
-.katex.math-help-ready:focus-visible {
+.math-symbol-help:focus-visible {
   outline: 2px solid #a33a1c;
-  outline-offset: 4px;
+  outline-offset: 2px;
   border-radius: 3px;
 }
 
@@ -107,7 +107,6 @@
   max-width: none;
 }
 
-.math-explainer-local,
 .math-explainer-formula {
   margin-top: 0.75rem !important;
 }

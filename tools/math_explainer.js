@@ -4,76 +4,98 @@
   if (window.__cairnMathExplainerInstalled) return;
   window.__cairnMathExplainerInstalled = true;
 
-  var ATOM_SELECTOR = '.mord,.mbin,.mrel,.mop,.mpunct,.mopen,.mclose';
   var panel;
-  var lastFormula;
-  var explanationHistory = [];
-  var currentExplanation;
+  var lastObject;
+  var history = [];
+  var current;
 
-  var TERM_INFO = {
-    'group': item('group',
-      'A collection of reversible operations that can be combined. There is an identity operation that does nothing, and every operation has an inverse that undoes it.'),
-    'subgroup': item('subgroup',
-      'A smaller collection inside a group that is itself a group under the same operation.'),
-    'normal subgroup': item('normal subgroup',
-      'A subgroup that the whole group preserves under conjugation. This is exactly the kind of subgroup that can be collapsed to form a quotient group.'),
-    'MF group': item('MF group',
-      'A group that can be represented faithfully by finite unitary matrices in the limit, with multiplication errors tending to zero in operator norm.'),
-    'homomorphism': item('homomorphism',
-      'A map between groups that preserves multiplication and the identity. It translates operations in one group into operations in another without changing their algebraic relationships.'),
-    'representation': item('representation',
-      'A homomorphism that turns abstract group elements into concrete matrices or operators.'),
-    'identity': item('identity',
-      'The do-nothing element of a group. Sending an element to the identity means the representation cannot distinguish that element from doing nothing.'),
-    'kernel': item('kernel',
-      'The elements that a homomorphism sends to the identity. The kernel measures exactly what information the map erases.'),
-    'quotient group': item('quotient group',
-      'A group formed by treating every element of a chosen normal subgroup as the identity. It keeps the structure that remains after those elements are collapsed.'),
-    'quotient map': item('quotient map',
-      'The natural homomorphism from a group to a quotient group. Its kernel is exactly the normal subgroup being collapsed.'),
-    'norm matrix corona': item('norm matrix corona',
-      'A single algebraic object built from an infinite sequence of finite matrix algebras. Two matrix sequences count as the same when their operator-norm difference tends to zero.'),
-    'operator norm': item('operator norm',
-      'The largest factor by which a matrix can stretch a vector. An error tending to zero in operator norm is small in every direction.'),
-    'unitary matrix': item('unitary matrix',
+  /* These entries are used only when a reader follows a word inside an
+     explanation. Formula clicks are handled by the contextual rules below. */
+  var TERMS = {
+    'group': entry('group',
+      'A collection of reversible operations. The operations can be combined, there is a do-nothing operation, and every operation can be undone.'),
+    'subgroup': entry('subgroup',
+      'A collection of operations inside a larger group that is itself a group.'),
+    'normal subgroup': entry('normal subgroup',
+      'A subgroup that remains the same when the larger group changes coordinates by conjugation. Exactly these subgroups can be collapsed to form quotient groups.'),
+    'MF group': entry('MF group',
+      'A group that can be represented faithfully by larger and larger finite unitary matrices, with every multiplication error tending to zero in operator norm.'),
+    'homomorphism': entry('homomorphism',
+      'A map that preserves multiplication and the do-nothing element. It translates one group into another without changing the group laws.'),
+    'representation': entry('representation',
+      'A homomorphism that realizes abstract group operations as concrete matrices or operators.'),
+    'identity': entry('identity',
+      'The do-nothing element. A representation erases an element when it sends that element to the identity.'),
+    'kernel': entry('kernel',
+      'All elements erased by a homomorphism—that is, all elements sent to the identity.'),
+    'quotient group': entry('quotient group',
+      'The group left after every element of a chosen normal subgroup is declared to be the identity.'),
+    'norm matrix corona': entry('norm matrix corona',
+      'An object made from sequences of finite matrices. Two sequences represent the same object when their operator-norm difference tends to zero.'),
+    'operator norm': entry('operator norm',
+      'The greatest amount by which a matrix can stretch a vector. Small operator norm means small in every direction.'),
+    'unitary matrix': entry('unitary matrix',
       'A matrix that preserves lengths and angles. Its inverse is its conjugate transpose.'),
-    'projection': item('projection',
-      'A linear operation that keeps one subspace and sends the complementary directions to zero.'),
-    'trace': item('trace',
-      'The sum of a matrix’s diagonal entries. For projections, the trace records dimension.'),
-    'rank': item('rank',
-      'The number of independent output directions of a matrix; equivalently, the dimension of its image.'),
-    'conjugation': item('conjugation',
-      'Replacing an element x by gxg⁻¹. It changes the point of view inside the group without changing the element’s intrinsic group-theoretic behavior.'),
-    'MF radical': item('MF radical',
-      'The normal subgroup consisting of every element that every homomorphism into every norm matrix corona sends to the identity.')
+    'projection': entry('projection',
+      'An operator that keeps one chosen subspace and sends all perpendicular directions to zero.'),
+    'trace': entry('trace',
+      'The sum of a matrix’s diagonal entries. On a projection, it measures the dimension of the selected subspace.'),
+    'rank': entry('rank',
+      'The dimension of the output space of a matrix: the number of independent directions that survive.'),
+    'conjugation': entry('conjugation',
+      'Replacing x by gxg⁻¹. This changes coordinates inside a group while preserving the group-theoretic nature of x.'),
+    'property (T)': entry('property (T)',
+      'A rigidity property: if a unitary action has vectors that are almost fixed by a suitable finite test set, then it has a genuinely fixed vector.'),
+    'MF radical': entry('MF radical',
+      'The normal subgroup made of all elements erased by every homomorphism into every norm matrix corona.'),
+    'Leavitt algebra': entry('Leavitt algebra',
+      'An algebra containing algebraic maps that identify one free module with two copies of itself. This self-copy structure supplies the compression in the paper.'),
+    'elementary matrix': entry('elementary matrix',
+      'The identity matrix with one extra off-diagonal entry. Such matrices generate the elementary linear group.')
   };
 
-  var TERM_ALIASES = {
+  var ALIASES = {
     'groups': 'group',
     'subgroups': 'subgroup',
     'mf groups': 'MF group',
     'homomorphisms': 'homomorphism',
     'representations': 'representation',
-    'finite-matrix models': 'representation',
+    'kernels': 'kernel',
     'quotient': 'quotient group',
     'quotients': 'quotient group',
+    'norm matrix coronas': 'norm matrix corona',
     'unitary matrices': 'unitary matrix',
     'projections': 'projection',
-    'conjugates': 'conjugation'
+    'ranks': 'rank',
+    'conjugates': 'conjugation',
+    'kazhdan property': 'property (T)',
+    'binary leavitt algebra': 'Leavitt algebra',
+    'elementary matrices': 'elementary matrix'
   };
 
-  Object.keys(TERM_INFO).forEach(function (term) {
-    TERM_ALIASES[term.toLowerCase()] = term;
+  Object.keys(TERMS).forEach(function (term) {
+    ALIASES[term.toLowerCase()] = term;
   });
 
   var TERM_PATTERN = new RegExp(
-    '\\b(' + Object.keys(TERM_ALIASES)
+    '\\b(' + Object.keys(ALIASES)
       .sort(function (a, b) { return b.length - a.length; })
       .map(escapePattern).join('|') + ')\\b', 'gi');
 
+  function entry(name, explanation, detail) {
+    return { name: name, explanation: explanation, detail: detail || '' };
+  }
+
   function clean(value) {
-    return String(value || '').replace(/\s+/g, ' ').trim();
+    return String(value || '').replace(/\u200b/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function compact(value) {
+    return String(value || '').replace(/\s+/g, '');
+  }
+
+  function escapePattern(value) {
+    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   function texOf(math) {
@@ -91,375 +113,300 @@
     var formulas = copy.querySelectorAll('.katex,.tex,.texd,.dmath,.mathblock');
     for (var i = 0; i < formulas.length; i++) formulas[i].remove();
     var value = clean(copy.textContent);
-    if (!value) return '';
-    if (value.length > 260) value = value.slice(0, 257).replace(/\s+\S*$/, '') + '…';
+    if (value.length > 360) value = value.slice(0, 357).replace(/\s+\S*$/, '') + '…';
     return value;
   }
 
-  function escapePattern(value) {
-    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  function nearbyDefinition(token, context) {
-    if (!token || !context || token.length > 3) return '';
-    var escaped = escapePattern(token);
-    var patterns = [
-      new RegExp('(?:let|write|put|set|denote(?: by)?)\\s+' + escaped +
-        '\\s+(?:be|for|:=|=)\\s+([^.;:]{3,150})', 'i'),
-      new RegExp(escaped + '\\s+(?:is|denotes|means)\\s+([^.;:]{3,150})', 'i')
-    ];
-    for (var i = 0; i < patterns.length; i++) {
-      var match = context.match(patterns[i]);
-      if (match) return clean(match[1]);
-    }
-    return '';
-  }
-
-  function localRole(token, tex, context, info, atom) {
-    var t = clean(token).replace(/\u200b/g, '');
-    var s = tex || '';
-    if (scriptedTokenInfo(t, s, atom)) return '';
-    var definition = nearbyDefinition(t, context);
-    if (definition) {
-      return 'Here, “' + t + '” is the name introduced for ' + definition + '.';
-    }
-
-    if ((t === 'G' || t === 'H' || t === 'W') && isFullRadicalFormula(s)) {
-      return 'Here, ' + t + ' is the entire group under study.';
-    }
-
-    if (t === 'H' && /H\s*=\s*\\(?:operatorname\s*\{)?(?:EL|E)/.test(s)) {
-      return 'Here, H is the group constructed from elementary matrices; it is the group whose MF behavior the statement determines.';
-    }
-    if (t === 'L' && /L\s*=\s*\\(?:operatorname\s*\{)?(?:EL|E)/.test(s)) {
-      return 'Here, L is the elementary-matrix subgroup that is conjugated into a smaller copy of itself.';
-    }
-    if (t === 'Q' && /W_?\{?Q\}?|\\pi_?\{?Q\}?/.test(s)) {
-      return 'Here, Q is the quotient that remains visible after the hidden group is attached.';
-    }
-    if (t === 'Q' && /\\mathcal\s*\{?Q\}?|Q_?\{?\\mathbf/.test(s)) {
-      return 'Here, Q denotes the norm matrix corona that receives the representation.';
-    }
-    if (t === 'd' && /d\s*=/.test(s)) {
-      return 'Here, d names the concrete defect element defined by the expression to the right of the equals sign.';
-    }
-    if (t === 'D' && /D\s*\(\s*[A-Z]/.test(s)) {
-      return 'Here, D packages all commutators created by the displayed compression and centralizer data.';
-    }
-    if (t === 'N' && /\\trianglelefteq|\\triangleleft/.test(s)) {
-      return 'Here, N is the normal subgroup whose elements are treated as the identity when the quotient is formed.';
-    }
-    if ((t === 'π' || t === 'ρ' || t === 'Θ' || t === 'V') &&
-        /(?:\\to|\\longrightarrow|→)/.test(s)) {
-      return 'Here, “' + t + '” names the map shown by the arrow; the expression before the arrow is its source and the expression after it is its target.';
-    }
-    if ((t === 'i' || t === 'j' || t === 'n') &&
-        new RegExp('[_^]\\{?' + escapePattern(t) + '\\}?').test(s)) {
-      return 'Here, “' + t + '” is an index: it selects the particular entry, term, or stage named by the symbol it is attached to.';
-    }
-    if (/^[A-Za-zΑ-Ωα-ω]$/.test(t) &&
-        new RegExp(escapePattern(t) + '\\s*(?:=|:=)').test(s)) {
-      return 'Here, “' + t + '” is being defined by the expression on the other side of the equals sign.';
-    }
-    if (/^[A-Za-zΑ-Ωα-ω]$/.test(t) &&
-        new RegExp(escapePattern(t) + '\\s*(?:\\le|\\subset|≤|⊆)').test(s)) {
-      return 'Here, “' + t + '” is the object being asserted to lie inside the object written to its right.';
-    }
-    if (/^[A-Za-zΑ-Ωα-ω]$/.test(t)) {
-      return '';
-    }
-    return '';
-  }
-
-  function item(name, meaning) {
-    return { name: name, meaning: meaning };
-  }
-
-  function sourceHas(tex, pattern) {
+  function has(tex, pattern) {
     return pattern.test(tex || '');
   }
 
-  function adjacentScript(atom) {
-    if (!atom) return null;
-    var next = atom.nextElementSibling;
-    return next && next.classList && next.classList.contains('msupsub') ? next : null;
-  }
-
-  function scriptKind(tex, token) {
-    var source = compactTex(tex);
-    var t = clean(token).replace(/−/g, '-');
-    if (t === '-1' && /\^\{?-1\}?/.test(source)) return 'superscript';
-    if (t === '*' && /\^\{?(?:\\ast|\*)\}?/.test(source)) return 'superscript';
-    if (new RegExp('\\^\\{?' + escapePattern(t) + '\\}?').test(source)) return 'superscript';
-    return 'subscript';
-  }
-
-  function scriptItem(token, base, kind, tex, scriptText) {
-    var t = clean(token).replace(/\u200b/g, '');
-    var b = clean(base).replace(/\u200b/g, '');
-    var script = clean(scriptText).replace(/\u200b/g, '');
-
-    if (kind === 'superscript') {
-      if (t === '−1' || t === '-1') return item('inverse',
-        'The exponent −1 means “undo this operation.” For a group element or invertible matrix, it denotes the inverse.');
-      if (t === '*' || t === '∗') return item('adjoint',
-        'The star in the upper-right denotes the adjoint: transpose the matrix and complex-conjugate its entries.');
-      return item('exponent ' + t,
-        'An upper-right exponent records a power or another operation applied to the base symbol.');
-    }
-
-    if (b === 'Rad' && t === 'MF') return item('the MF subscript',
-      'The subscript specifies which target representations define the radical. Here only homomorphisms into norm matrix coronas are used.');
-    if (b === 'W' && t === 'Q') return item('the quotient label Q',
-      'The subscript says which visible quotient was prescribed when the group W_Q was constructed.');
-    if (b === 'π' && t === 'Q') return item('the quotient label Q',
-      'The subscript identifies π_Q as the canonical quotient map onto Q.');
-    if (b === 'd' && t === 'n') return item('the stage n',
-      'The subscript selects the n-th matrix size in the sequence d₁,d₂,d₃,….');
-    if (b === 'M' && (t === 'd' || /^d\s*n?$/.test(t + script))) return item('the matrix size',
-      'The subscript gives the size of the square matrix algebra. M_{d_n} consists of all d_n-by-d_n complex matrices.');
-    if (b === 'F' && t === '2') return item('the two-element field',
-      'The subscript 2 says this field has exactly two elements, 0 and 1, with 1 + 1 = 0.');
-    if (b === 'EL' && /^\d+$/.test(t)) return item('the matrix rank',
-      'This subscript gives the number of rows and columns in the elementary matrices that generate the group.');
-    if ((t === 'G' || t === 'H' || t === 'W') && /\\normal[^_]*_/.test(tex)) {
-      return item('the ambient-group subscript',
-        'This subscript says that the normal closure is taken inside ' + t + ', using conjugation by elements of ' + t + '.');
-    }
-    if (b === 'tr') return item('the trace normalization',
-      'The subscript specifies the matrix dimension used to normalize the trace.');
-    return item('subscript ' + t,
-      'A lower-right subscript labels which member of a family is meant; it is not multiplication.');
-  }
-
-  function scriptedTokenInfo(token, tex, atom) {
-    if (!atom || !atom.closest) return null;
-    var scriptBox = atom.closest('.msupsub');
-    if (scriptBox) {
-      var baseNode = scriptBox.previousElementSibling;
-      var base = baseNode ? baseNode.textContent : '';
-      return scriptItem(token, base, scriptKind(tex, token), tex, scriptBox.textContent);
-    }
-
-    var attached = adjacentScript(atom);
-    if (!attached) return null;
-    var attachedText = clean(attached.textContent);
-    if (token === 'M') return item('matrix algebra',
-      'M with a size in the subscript denotes all square complex matrices of that size.');
-    if (token === 'd' && /n/.test(attachedText)) return item('matrix dimension',
-      'The symbol d_n is the size of the finite matrices used at stage n.');
-    return null;
-  }
-
-  function compactTex(tex) {
-    return String(tex || '').replace(/\s+/g, '');
+  function formulaGroup(tex, fallback) {
+    var match = compact(tex).match(/(?:\\Rad|\\operatorname\{Rad\})_\{?\\mathrm\{MF\}\}?\(([^()]+)\)/);
+    return match ? match[1].replace(/[{}\\]/g, '') : fallback;
   }
 
   function isFullRadicalFormula(tex) {
-    var match = compactTex(tex).match(
+    var match = compact(tex).match(
       /(?:\\Rad|\\operatorname\{Rad\})_\{?\\mathrm\{MF\}\}?\(([^()]+)\)=([^=]+)$/);
     return !!match && match[1] === match[2];
   }
 
-  function explainToken(token, tex, atom) {
-    var t = clean(token).replace(/\u200b/g, '');
-    var scripted = scriptedTokenInfo(t, tex, atom);
-    if (scripted) return scripted;
-
-    if (t === '=') return item('equals',
-      'The expressions on the two sides name the same mathematical object or quantity.');
-    if (t === '≠' || t === '=/=') return item('is not equal to',
-      'The two sides are different.');
-    if (t === '∈') return item('belongs to',
-      'The object on the left is one of the elements collected by the object on the right.');
-    if (t === '∉') return item('does not belong to',
-      'The object on the left is not an element of the object on the right.');
-    if (t === '≤' || t === '⊆') return item('is contained in',
-      'Everything in the object on the left also lies in the object on the right. For groups, this means “is a subgroup of.”');
-    if (t === '⊴' || t === '◁') return item('is a normal subgroup of',
-      'The subgroup on the left is preserved when elements of the larger group conjugate it.');
-    if (t === '→' || t === '⟶') return item('maps to',
-      'This arrow introduces a structure-preserving function from the object on the left to the object on the right.');
-    if (t === '↪') return item('embeds into',
-      'This is an injective map: distinct inputs remain distinct in the target.');
-    if (t === '↠') return item('maps onto',
-      'This is a surjective map: every element of the target is reached.');
-    if (t === '⇒' || t === '⟹') return item('implies',
-      'Whenever the statement on the left is true, the statement on the right must also be true.');
-    if (t === '⇔' || t === '↔') return item('if and only if',
-      'Each statement implies the other, so the two conditions are equivalent.');
-    if (t === '≅' || t === '≃') return item('is isomorphic to',
-      'The two objects may be presented differently but have the same mathematical structure.');
-    if (t === '×') return item('direct product',
-      'An element consists of one choice from each factor, with operations performed coordinate by coordinate.');
-    if (t === '⊕') return item('direct sum',
-      'The object is assembled from independent pieces placed side by side.');
-    if (t === '⊗') return item('tensor product',
-      'This combines two linear objects so that bilinear interactions become ordinary linear ones.');
-    if (t === '⋊' || t === '⋉') return item('semidirect product',
-      'This builds a group from two groups while allowing one of them to act on the other.');
-    if ((t === '*' || t === '∗') && sourceHas(tex, /\*\s*_\s*(?:\{|[A-Za-z])|\\ast\s*_/)) {
-      return item('amalgamated free product',
-        'Two groups are joined while identifying the subgroup written beneath the star. No other relations are added.');
+  function formulaExplanation(tex) {
+    var s = compact(tex);
+    if (/\\mathcalQ_\{?\\mathbfd\}?=.*\\prod.*\\bigoplus/.test(s)) {
+      return 'For each stage n, choose a size d_n and take a complex matrix of that size. The product keeps every bounded sequence of those matrices. Dividing by the direct sum declares two sequences equivalent when their operator-norm difference tends to zero. The result records exactly the matrix behavior that persists in the limit.';
     }
-    if (t === '*' && sourceHas(tex, /\^\s*\*|\^\{\\ast\}/)) return item('adjoint',
-      'For a matrix or operator, this means transpose and complex conjugate.');
-    if (t === '∩') return item('intersection',
-      'This keeps exactly the elements shared by both collections.');
-    if (t === '∪') return item('union',
-      'This collects the elements that appear in either collection.');
-    if (t === '∑') return item('sum',
-      'Add the indicated family of terms. The limits written above and below say which terms are included.');
-    if (t === '∏') return item('product',
-      'Multiply or assemble the indicated family of factors.');
-    if (t === '∞') return item('infinity',
-      'There is no finite upper bound in the direction being discussed.');
-    if (t === '⊥') return item('orthogonal',
-      'The two directions have zero inner product; geometrically, they meet at a right angle.');
-    if (t === '‖' || t === '∥') return item('norm',
-      'The double bars measure the size of a vector, matrix, operator, or error.');
-    if (t === '[' || t === ']') {
-      if (sourceHas(tex, /\[[^\]]*,[^\]]*\]/)) return item('commutator bracket',
-        'The bracket measures failure to commute. For group elements, [a,b] is trivial exactly when a and b commute.');
-      return null;
+    if (/\\bigoplus_nM_\{d_n\}.*=\\\{.*\\opnorm\{x_n\}\\longrightarrow0/.test(s)) {
+      return 'This is the part discarded in the matrix corona: sequences of matrices whose operator norms tend to zero. Such a sequence becomes zero in the quotient because it disappears uniformly in every direction.';
     }
-    if (t === '⟨' || t === '⟩') {
-      if (sourceHas(tex, /\\langle\s*[^,]+\\rangle/)) return item('generated subgroup',
-        'The angle brackets mean the smallest subgroup containing the listed element or elements.');
-      return null;
+    if (/\\Rad_\{\\mathrm\{MF\}\}\([^)]*\)=\\bigcap/.test(s)) {
+      return 'Take every possible sequence of matrix sizes and every homomorphism into the corresponding norm matrix corona. Each kernel is what one such finite-matrix model erases. Their intersection is what all finite-matrix models erase.';
     }
-    if (t === '(' || t === ')' || t === '{' || t === '}' || t === ',') return null;
-    if (t === '1') return item('identity element',
-      'For groups and matrices, 1 is the do-nothing element: multiplying by it changes nothing.');
-    if (t === '0') return item('zero',
-      'This is the additive identity: adding it changes nothing. For a map or projection it can also mean the trivial one.');
-
-    if (/^Rad$/i.test(t)) return item('MF radical',
-      'The MF radical is the set of group elements sent to the identity by every homomorphism into every norm matrix corona.');
-    if (t === 'MF') return item('MF',
-      'MF means “matricial field.” An MF group can be faithfully modeled by finite unitary matrices whose multiplication errors vanish in operator norm.');
-    if (t === 'EL') return item('elementary linear group',
-      'This group is generated by matrices that differ from the identity in one off-diagonal entry.');
-    if (t === 'GL') return item('general linear group',
-      'The group of all invertible matrices of the stated size over the stated coefficient system.');
-    if (t === 'U') return item('unitary group',
-      'The group of matrices or operators that preserve lengths and angles.');
-    if (t === 'Hom') return item('homomorphisms',
-      'Hom collects every structure-preserving map from the first object to the second.');
-    if (t === 'ker') return item('kernel',
-      'The kernel consists of exactly the elements that a map sends to the identity.');
-    if (t === 'Fix') return item('fixed vectors',
-      'These are the vectors left unchanged by every operator in the indicated group.');
-    if (t === 'tr' || t === 'Tr') return item('trace',
-      'The trace adds the diagonal entries of a matrix. Here it is used as a dimension-like measurement.');
-    if (t === 'rank') return item('rank',
-      'The rank is the dimension of the range: the number of independent output directions.');
-    if (t === 'span') return item('linear span',
-      'The smallest linear space containing the listed vectors or subspaces.');
-    if (t === 'supp') return item('support',
-      'The part of the space or function on which the object is nonzero.');
-    if (t === 'Aut') return item('automorphisms',
-      'All invertible structure-preserving maps from an object to itself.');
-    if (t === 'End') return item('endomorphisms',
-      'All structure-preserving maps from an object to itself, whether invertible or not.');
-    if (t === 'Ad') return item('conjugation action',
-      'Ad describes the operation x ↦ uxu⁻¹: change coordinates by u, apply x, then change back.');
-
-    if (t === 'C' && sourceHas(tex, /\\mathbb\s*\{?C\}?|\\C\b/)) return item('the complex numbers',
-      'Numbers with a real part and an imaginary part. Complex matrices are the finite models used here.');
-    if (t === 'C' && sourceHas(tex, /C_\{?G|C_\{?[A-Z]\}?\s*\(/)) return item('centralizer',
-      'The centralizer of a subgroup is the collection of elements that commute with every element of that subgroup.');
-    if (t === 'F' && sourceHas(tex, /\\F\s*_?\s*\{?2\}?|\\mathbb\s*\{F\}/)) return item('the field with two elements',
-      'This number system contains only 0 and 1, with 1 + 1 = 0.');
-    if (t === 'N' && sourceHas(tex, /\\mathbb\s*\{N\}|\\N\b/)) return item('the natural numbers',
-      'The counting numbers 0,1,2,3,… (or, by some conventions, starting at 1).');
-    if (t === 'N' && sourceHas(tex, /N\s*(?:\\trianglelefteq|\\triangleleft)|\/[{]?N[}]?/)) return item('the normal subgroup N',
-      'This is the subgroup being collapsed to the identity in the quotient. Normality ensures that the quotient multiplication is well-defined.');
-    if (t === 'Q' && sourceHas(tex, /\\mathcal\s*\{?Q\}?|Q_\{?\\mathbf/)) return item('a norm matrix corona',
-      'A norm matrix corona records infinite sequences of finite matrices while treating any sequence converging to zero as negligible.');
-    if (t === 'L' && sourceHas(tex, /L_\{?\\F|L_\{?\\mathbb/)) return item('the binary Leavitt algebra',
-      'A coefficient algebra containing two algebraic copies of itself. It supplies the self-compression used in the construction.');
-    if (t === 'e' && sourceHas(tex, /e_\{?[ij0-9]/)) return item('an elementary matrix',
-      'This is the identity matrix with one additional off-diagonal entry, specified by the lower indices.');
-    if ((t === 's' || t === 't') && sourceHas(tex, /s_[01]|t_[01]/)) return item('a Leavitt generator',
-      'One of four coefficient-algebra elements whose relations split one algebraic module into two copies of itself.');
-    if (t === 'q' && sourceHas(tex, /q\s*=\s*s_?\{?1\}?\s*t_?\{?1\}?/)) return item('the complementary Leavitt idempotent',
-      'This element behaves like a projection onto the second algebraic copy created by the Leavitt relations.');
-
-    var named = {
-      G: ['the ambient group', 'The group currently being studied. A group is a collection of reversible operations with an associative multiplication and an identity.'],
-      H: ['the main group', 'The particular group to which the main theorem is applied. In this paper it is the elementary group built from the binary Leavitt algebra.'],
-      L: ['the compressed subgroup', 'A subgroup with property (T) that a group element conjugates into a copy lying inside itself.'],
-      K: ['a normal Kazhdan subgroup', 'A property-(T) subgroup preserved by conjugation from the whole ambient group.'],
-      B: ['the hidden seed group', 'A group whose every map into an MF group is trivial; it supplies the invisible part of the construction.'],
-      Q: ['the visible quotient group', 'The group that remains visible to MF targets after the hidden part is attached.'],
-      W: ['the constructed group', 'The group obtained by attaching the hidden seed to the prescribed visible quotient.'],
-      M: ['an MF target group', 'A group that admits faithful finite-matrix models in operator norm.'],
-      T: ['a target group', 'The group receiving a homomorphism; its stated property determines what the source map can remember.'],
-      A: ['the shared cyclic subgroup', 'The subgroup identified in both pieces of the amalgamated product.'],
-      R: ['the coefficient ring', 'The arithmetic system whose elements appear as matrix entries.'],
-      D: ['the compression defect', 'The normal subgroup generated by commutators that measure what one-sided compression changes.'],
-      d: ['the defect element', 'A concrete nonidentity element forced to become the identity in every MF target.'],
-      c: ['a centralizing element', 'An element that commutes with every element of the subgroup L.'],
-      u: ['the compressing element', 'Conjugation by this element sends the subgroup L into a copy contained in L.'],
-      τ: ['the compression matrix', 'The explicit invertible matrix whose conjugation places the Kazhdan subgroup inside itself.'],
-      ℓ: ['an element of L', 'A generic member of the compressed subgroup.'],
-      π: ['a homomorphism', 'A structure-preserving map between groups. When written π with a subscript Q here, it is the quotient map onto Q.'],
-      ρ: ['a representation', 'A homomorphism that realizes abstract group elements as concrete matrices or operators.'],
-      Θ: ['a corona representation', 'A homomorphism from the group into the unitary group of a norm matrix corona.'],
-      V: ['a finite-matrix model', 'A sequence of unitary matrices intended to approximate the group multiplication law.'],
-      p: ['a projection', 'An operator satisfying p² = p; it selects a subspace.'],
-      q: ['a complementary projection or quotient label', 'In projection formulas it selects a complementary invariant sector; as a subscript it can label a quotient.'],
-      n: ['an index', 'Usually the stage of a matrix sequence or a matrix dimension.'],
-      i: ['an index', 'A label selecting a row, column, generator, or term.'],
-      j: ['an index', 'A second label selecting a row, column, generator, or term.'],
-      x: ['an element', 'A generic member of a group, ring, or space.'],
-      g: ['a group element', 'A generic reversible operation in the group.'],
-      h: ['a subgroup element', 'A generic element of the subgroup under discussion.']
-    };
-    if (named[t]) return item(named[t][0], named[t][1]);
-
-    return null;
-  }
-
-  function explainFormula(tex) {
-    var s = tex || '';
-    if (isFullRadicalFormula(s)) return 'Every homomorphism from this group to every MF group sends every element to the identity. Thus, if the group is nontrivial, it is not MF.';
-    if (/\\Rad_/.test(s) && /\\ker/.test(s) && /\\normal/.test(s)) return 'This computes exactly what finite-matrix models cannot detect: the kernel of the quotient map, which is also the normal subgroup generated by the displayed element. The quotient is everything that remains visible to MF groups.';
-    if (/\\Rad_/.test(s) && /=/.test(s)) return 'The MF radical consists of the elements erased by every homomorphism into every norm matrix corona. This equation identifies that invisible subgroup exactly.';
-    if (/\\operatorname\s*\{Hom\}|\\Hom\b/.test(s)) return 'This compares complete collections of structure-preserving maps. The assertion says that a map from one group contains exactly the same target-visible information as a map from the other.';
-    if (/\\ker\b/.test(s)) return 'This identifies exactly which elements are erased by the displayed map.';
-    if (/u\s*L\s*u\^\{-?1\}|uLu/.test(s)) return 'Conjugating the subgroup L by u produces a copy that lies inside L. This one-sided self-compression is the starting point of the argument.';
-    if (/\\trianglelefteq|\\triangleleft/.test(s)) return 'This states that one group is a normal subgroup of another, so conjugation by the larger group preserves it.';
-    if (/\[[^\]]*,[^\]]*\]/.test(s)) return 'The displayed bracket is a commutator. It records whether two operations commute; a value of 1 means that their order does not matter.';
-    if (/\\cong|\\simeq|\\equiv/.test(s)) return 'This says the two displayed objects carry the same mathematical structure, even if their descriptions look different.';
-    if (/\\hookrightarrow/.test(s)) return 'This states that the object on the left embeds faithfully into the object on the right.';
-    if (/\\twoheadrightarrow/.test(s)) return 'This states that the map reaches every element of the object on the right.';
-    if (/\\to|\\longrightarrow|\\mapsto/.test(s)) return 'This formula describes a map and, when an arrow with an input is shown, what the map does to that input.';
-    if (/\\le|\\subset/.test(s)) return 'This is a containment statement: every object represented on the left also belongs to the object on the right.';
-    if (/=/.test(s)) return 'This equality says that the constructions on the two sides produce the same mathematical object.';
+    if (isFullRadicalFormula(s)) {
+      var group = formulaGroup(s, 'the group');
+      return 'The MF radical is all of ' + group + '. Therefore every homomorphism from ' + group + ' to every MF group sends every element to the identity; if ' + group + ' is nontrivial, it is not MF.';
+    }
+    if (/\\Rad_\{\\mathrm\{MF\}\}\(W_Q\)=\\pi_Q\^\{-1\}/.test(s)) {
+      return 'An element of W_Q is invisible to every finite-matrix limit exactly when its image in Q is already invisible there. The construction adds no new MF-visible information beyond Q.';
+    }
+    if (/\\Rad_\{\\mathrm\{MF\}\}\(W_Q\)=\\ker\\pi_Q=\\normal/.test(s)) {
+      return 'When Q is MF, the only elements invisible to finite-matrix limits are those killed by the quotient map. They form exactly the normal subgroup generated by d.';
+    }
+    if (/uLu\^\{-1\}\\leL|\\tauL\\tau\^\{-1\}\\leL/.test(s)) {
+      return 'Conjugation by the displayed element carries L onto a copy contained inside L. This one-sided self-compression is what turns a centralizing element into the obstruction used later.';
+    }
+    if (/\\operatorname\{Comp\}_G\(L\)/.test(s)) {
+      return 'Comp_G(L) collects exactly the elements of G whose conjugation sends L into L. They are the available one-sided compressions of L.';
+    }
+    if (/\\mathfrakD_G\(L\)=\\normal/.test(s)) {
+      return 'This defines the compression defect. Start with every commutator obtained by compressing an element that originally commutes with L, then include every conjugate and product needed to make a normal subgroup. The result measures everything that the compression can force finite-matrix models to erase.';
+    }
+    if (/K\\trianglelefteqG/.test(s) && /K\\le\\Rad_\{\\mathrm\{MF\}\}\(G\)/.test(s)) {
+      return 'If the normal property-(T) subgroup K lies inside the compression defect, then every finite-matrix-limit representation sends every element of K to the identity.';
+    }
+    if (/t_is_j=\\delta_\{ij\}/.test(s) || /s_0t_0\+s_1t_1=1/.test(s)) {
+      return 'These are the binary Leavitt relations. The first makes t_i reverse the corresponding s_i and annihilate the other branch. The second says the two branch projections together fill the whole algebra. Algebraically, one copy of the module has been split into two complete copies.';
+    }
+    if (/H=\\EL_\{?12\}?\(R\)/.test(s)) {
+      return 'H is generated by 12-by-12 elementary matrices with entries in the binary Leavitt algebra R. This is the paper’s concrete simple property-(T) group whose entire MF radical is H.';
+    }
+    if (/L=\\EL_\{?3\}?\(R\)/.test(s)) {
+      return 'L is the 3-by-3 elementary-matrix subgroup in the upper-left corner of H. It has property (T), and the matrix τ conjugates it into a smaller copy of itself.';
+    }
+    if (/d=\[\\tau.*c.*\\tau\^\{-1\}.*\\ell\]/.test(s)) {
+      return 'The element d measures the failure of the moved element τcτ⁻¹ to commute with ℓ. Before c is moved it commutes with all of L; after the one-sided compression, this commutator becomes the nontrivial obstruction.';
+    }
+    if (/d=e_\{?02\}?\(q\)/.test(s)) {
+      return 'The commutator d is computed explicitly as the elementary matrix e_02(q). Since the Leavitt coefficient q is nonzero, d is not the identity.';
+    }
+    if (/W_Q=B\*_A\(Q\\timesA\)/.test(s)) {
+      return 'W_Q glues B to Q × A by identifying their copies of A. The B part is invisible to all MF targets, while Q is the prescribed part that remains visible.';
+    }
+    if (/\\pi_Q\\colonW_Q\\longrightarrowQ/.test(s)) {
+      return 'The map π_Q deletes the attached B part and the A coordinate, leaving Q. It is onto, and Q sits back inside W_Q, so the quotient is split.';
+    }
+    if (/\\operatorname\{Hom\}\(Q,T\).*\\operatorname\{Hom\}\(W_Q,T\)/.test(s)) {
+      return 'Every homomorphism from W_Q to T is obtained in exactly one way from a homomorphism Q → T. Thus T cannot detect any additional information in W_Q beyond Q.';
+    }
+    if (/\\ker\\pi_Q=\\normald_\{?W_Q\}?/.test(s)) {
+      return 'The quotient map erases exactly the normal subgroup generated by d. Killing d kills the whole attached group B and leaves precisely Q.';
+    }
     return '';
   }
 
-  function addsFormulaInformation(token, explanation) {
-    var t = clean(token).replace(/\u200b/g, '');
-    if (!explanation) return false;
-    if ((t === '⊴' || t === '◁') && /normal subgroup/.test(explanation)) return false;
-    if ((t === '≤' || t === '⊆') && /containment statement/.test(explanation)) return false;
-    if ((t === '≅' || t === '≃') && /same mathematical structure/.test(explanation)) return false;
-    if ((t === '↪') && /embeds faithfully/.test(explanation)) return false;
-    if ((t === '↠') && /reaches every element/.test(explanation)) return false;
-    if ((t === '→' || t === '⟶') && /describes a map/.test(explanation)) return false;
-    return true;
+  function compoundObject(text, tex) {
+    var t = clean(text);
+    var s = compact(tex);
+    if (/^RadMF$/.test(t)) {
+      var group = formulaGroup(s, 'the group inside the parentheses');
+      return entry('the MF radical of ' + group,
+        'This is the normal subgroup of ' + group + ' consisting of every element that every homomorphism into every norm matrix corona sends to the identity. It is precisely the part of ' + group + ' that all operator-norm finite-matrix limits fail to detect.');
+    }
+    if (/^Qd$/.test(t) && /\\mathcalQ_\{?\\mathbfd\}?/.test(s)) {
+      return entry('the norm matrix corona Q_d',
+        'The bold d is the whole sequence of matrix sizes d₁,d₂,d₃,…. Q_d packages bounded sequences of matrices of those sizes and treats a sequence as zero when its operator norm tends to zero. A group is MF when it embeds faithfully into the unitary elements of some Q_d.');
+    }
+    if (/^Mdn$/.test(t) || (/^Md/.test(t) && /M_\{d_n\}/.test(s))) {
+      return entry('the n-th matrix algebra',
+        'M_{d_n}(C) is the algebra of all d_n-by-d_n matrices with complex entries. It is the finite matrix model used at stage n; the sizes d_n may grow with n.');
+    }
+    if (/^dn$/.test(t) && /d_n/.test(s)) {
+      return entry('the matrix size d_n',
+        'This positive integer is the number of rows and columns in the finite matrices used at stage n. The sequence of all these sizes is written in bold as d.');
+    }
+    if (/^EL\d+$/.test(t)) {
+      var size = t.replace('EL', '');
+      return entry('the elementary group of rank ' + size,
+        'This group is generated by ' + size + '-by-' + size + ' identity matrices with one extra off-diagonal entry from R. Multiplying these elementary matrices encodes addition and multiplication in the coefficient algebra R.');
+    }
+    if (/^GL\d+$/.test(t)) {
+      var rank = t.replace('GL', '');
+      return entry('the invertible ' + rank + '-by-' + rank + ' matrices',
+        'GL_' + rank + '(R) is the group of every invertible ' + rank + '-by-' + rank + ' matrix with entries in R. The elementary group EL_' + rank + '(R) is the subgroup generated by elementary matrices.');
+    }
+    if (/^e\d\d$/.test(t) || /^eij$/.test(t)) {
+      var indices = t.slice(1);
+      return entry('the elementary matrix e_' + indices,
+        'This is the identity matrix with one extra off-diagonal entry in the position named by the two indices. In e_02(q), that extra entry is q; because q is nonzero, this matrix is not the identity.');
+    }
+    if (/^WQ$/.test(t)) {
+      return entry('the group W_Q built over Q',
+        'W_Q is formed by attaching the MF-invisible group B to the chosen group Q along the cyclic subgroup generated by d. Every homomorphism from W_Q to an MF group factors through Q, so Q contains all of the information that finite-matrix limits can see.');
+    }
+    if (/^πQ$/.test(t)) {
+      return entry('the quotient map π_Q',
+        'This homomorphism sends W_Q onto Q. It deletes the attached invisible part, and its kernel is exactly the normal subgroup generated by d.');
+    }
+    if (/^(?:CompG|CompGL)$/.test(t) || (/\\operatorname\{Comp\}_G\(L\)/.test(s) && /^Comp/.test(t))) {
+      return entry('the elements that compress L',
+        'Comp_G(L) consists of those elements u in G for which conjugation sends L into L. Such a u need not carry L onto all of L; the one-sided inclusion is the source of the obstruction.');
+    }
+    if (/^[D𝔇]G$/.test(t) && /\\mathfrakD_G/.test(s)) {
+      return entry('the compression defect inside G',
+        'This normal subgroup is generated by commutators created when a one-sided compression moves elements that originally commute with L. The theorem proves that normal property-(T) subgroups lying here are erased by every MF representation.');
+    }
+    if (/^pK$/.test(t) && /p_K/.test(s)) {
+      return entry('the Kazhdan projection of K',
+        'This projection selects exactly the vectors fixed by every element of K. Property (T) makes this fixed-vector selector an actual element of the maximal group C*-algebra rather than a projection chosen separately in each representation.');
+    }
+    if (/^[∏Π]n$/.test(t) && /\\prod_nM_\{d_n\}/.test(s)) {
+      return entry('all bounded matrix sequences',
+        'The product contains one matrix from M_{d_n}(C) at every stage n, with a uniform bound on their operator norms. Multiplication and addition are performed coordinate by coordinate.');
+    }
+    if (/^[⊕⨁]n$/.test(t) && /\\bigoplus_nM_\{d_n\}/.test(s)) {
+      return entry('the sequences that vanish',
+        'This direct sum consists of matrix sequences whose operator norms tend to zero. The quotient removes exactly these vanishing errors.');
+    }
+    if ((t === '*' || /^[*∗]A$/.test(t)) && /B\*_A\(Q\\timesA\)/.test(s)) {
+      return entry('gluing the two groups along A',
+        'The amalgamated free product joins B and Q × A while identifying the copy of A in each. Apart from that identification, it adds no relations between the two sides.');
+    }
+    if (/^⋂d$/.test(t) && /\\bigcap_\{?\\mathbfd\}?/.test(s)) {
+      return entry('the intersection over every matrix-size sequence',
+        'The bold d ranges over every possible sequence of finite matrix sizes. An element survives this intersection only if every choice of matrix sizes fails to detect it.');
+    }
+    if (/^⋂π/.test(t) && /\\bigcap_\{?\\pi\\colonG\\to\\U\(\\mathcalQ/.test(s)) {
+      return entry('the intersection over every corona representation',
+        'For the chosen matrix sizes, π ranges over every homomorphism from G into the unitary elements of the matrix corona. Intersecting their kernels keeps exactly the elements that all of these representations erase.');
+    }
+    if (t === '×' && /Q\\timesA/.test(s)) {
+      return entry('the product Q × A',
+        'An element is a pair: one element of Q and one element of A. The two coordinates multiply independently. The quotient map π_Q keeps the Q coordinate and discards A.');
+    }
+    if (/^Hom$/.test(t)) {
+      return entry('all homomorphisms to the target',
+        'Hom(source,target) is the complete collection of multiplication-preserving maps from the source group to the target group. The displayed bijection says the two sources have exactly the same maps into T.');
+    }
+    if (/^ker$/.test(t)) {
+      return entry('the kernel of the map',
+        'The kernel is every group element sent to the identity. It records exactly which information the map erases.');
+    }
+    if (/^U$/.test(t) && /\\U\(\\mathcalQ/.test(s)) {
+      return entry('the unitary elements of the matrix corona',
+        'These are the elements represented by sequences of finite unitary matrices. They form a group under multiplication, and MF representations take their values here.');
+    }
+    if (t === 'C' && /\\C/.test(s)) {
+      return entry('the complex numbers',
+        'These are numbers with real and imaginary parts. The finite matrix algebras in the MF definition use complex entries because unitary matrices naturally live over the complex numbers.');
+    }
+    if (/^F2$/.test(t) && /\\F_?\{?2\}?/.test(s)) {
+      return entry('the two-element field F₂',
+        'This number system contains only 0 and 1, with 1 + 1 = 0. Its only nonzero scalar is 1; that fact makes the center of the concrete elementary group trivial in the simplicity proof.');
+    }
+    if (/^LF2$/.test(t) && /L_\{?\\F_?\{?2\}?\}?/.test(s)) {
+      return entry('the binary Leavitt algebra',
+        'L_{F₂}(1,2) is the algebra generated by s₀,s₁,t₀,t₁ with the displayed Leavitt relations. Those relations algebraically identify one free module with two copies of itself, which makes the one-sided matrix compression possible.');
+    }
+    return null;
+  }
+
+  function namedObject(text, tex, context) {
+    var t = clean(text);
+    var s = compact(tex);
+    if (t === 'd' && !/d_n|\\mathbfd/.test(s)) {
+      return entry('d, the explicit obstruction element',
+        'Here d is the nonidentity element [τcτ⁻¹,ℓ], later computed as the elementary matrix e_02(q). It lies in the compression defect. Because H is simple, the normal subgroup generated by d is all of H, so proving that every MF representation erases d forces every such representation of H to be trivial.');
+    }
+    if (t === 'q' && /e_\{?02\}?\(q\)|q=s_?\{?1\}?t_?\{?1\}?/.test(s)) {
+      return entry('q, the second Leavitt corner',
+        'Here q = s₁t₁. It is a nonzero idempotent in the binary Leavitt algebra. It is the coefficient in d = e_02(q), so its nonzero value proves that d is not the identity.');
+    }
+    if (t === 'H') {
+      return entry('H, the group proved non-MF',
+        'H is EL_12(R), generated by 12-by-12 elementary matrices over the binary Leavitt algebra R. The paper proves that H is nontrivial and simple, has property (T), and that every homomorphism from H to every MF group is trivial.');
+    }
+    if (t === 'G') {
+      return entry('G, the group being tested',
+        'G denotes the countable group whose finite-matrix behavior this statement studies. The nearby hypotheses specify subgroups and compression data inside G; the conclusion determines which elements every MF representation of G must erase.');
+    }
+    if (t === 'L') {
+      return entry('L, the subgroup compressed into itself',
+        'L is a property-(T) subgroup of G. A chosen element conjugates L into a copy contained in L. Its fixed-vector rigidity lets the proof transfer commutation information across that one-sided compression.');
+    }
+    if (t === 'K') {
+      return entry('K, the normal rigid subgroup',
+        'K is assumed to be a normal subgroup with property (T) and to lie inside the compression defect. The theorem concludes that every homomorphism from G into every norm matrix corona sends all of K to the identity.');
+    }
+    if (t === 'B' && /W_Q|Q\\timesA|B\*_A/.test(s)) {
+      return entry('B, the part invisible to MF groups',
+        'B is a group for which every homomorphism into every MF group is trivial. It is attached to Q to build W_Q, but no MF target can detect the attached B part.');
+    }
+    if (t === 'Q' && /W_Q|\\pi_Q|Q\\timesA|\\Rad.*\(Q\)/.test(s)) {
+      return entry('Q, the quotient that remains visible',
+        'Q is any chosen countable group. The construction W_Q adds an MF-invisible part to Q without changing any homomorphism into an MF target; the map π_Q recovers Q from W_Q.');
+    }
+    if (t === 'A' && /B\*_A|Q\\timesA|A=\\langle/.test(s)) {
+      return entry('A, the cyclic subgroup used for gluing',
+        'A is the subgroup generated by d. The construction identifies this same subgroup inside B and inside Q × A, which makes killing d collapse the attached B part and leave Q.');
+    }
+    if (t === 'R' && (/L_\{\\F_2\}\(1,2\)|\\EL_\{?(?:3|12)\}?\(R\)/.test(s) || /Leavitt/i.test(context))) {
+      return entry('R, the binary Leavitt algebra',
+        'R is the coefficient algebra L_{F₂}(1,2). Its generators split one algebraic copy into two complete copies. That self-copy structure is used to build the matrix τ that compresses L into itself.');
+    }
+    if (t === 'τ') {
+      return entry('τ, the matrix that performs the compression',
+        'τ is an explicit invertible 12-by-12 elementary matrix. Conjugating by τ sends L = EL_3(R) into a copy contained in L. It also moves c so that the commutator with ℓ becomes the nontrivial element d.');
+    }
+    if (t === 'u') {
+      return entry('u, an element that compresses L',
+        'Conjugating by u sends every element of L back into L. The image may be a proper copy, so this operation can preserve more commutation after compression than before it.');
+    }
+    if (t === 'c') {
+      return entry('c, an element that initially commutes with L',
+        'Every element of L commutes with c. After c is moved by the compressing element, that commutation can fail; the resulting commutators generate the compression defect.');
+    }
+    if (t === 'ℓ') {
+      return entry('ℓ, a test element of L',
+        'The element ℓ is chosen from L and compared with the moved element ucu⁻¹. Their commutator measures whether the original commutation with L survived the one-sided compression.');
+    }
+    if (t === 'π' && /\\pi\\colonG\\to\\U\(\\mathcalQ/.test(s)) {
+      return entry('π, one possible finite-matrix-limit representation',
+        'Here π is any homomorphism from G into the unitary elements of a norm matrix corona. Its kernel is the part of G erased by this particular representation; the MF radical intersects those kernels over every possible π.');
+    }
+    if (t === 'π' && /\\pi\\colonL\\to\\U\(B\)/.test(s)) {
+      return entry('π, the unitary representation of L',
+        'This homomorphism realizes each element of L as a unitary element of B. It extends to the maximal group C*-algebra, where the Kazhdan projection selects the vectors fixed by L.');
+    }
+    if (t === 'ρ' && /\\rho\\colonG\\to\\GL\(V\)/.test(s)) {
+      return entry('ρ, a finite-dimensional linear representation',
+        'ρ turns every element of G into an invertible linear map on the finite-dimensional space V. The commutant argument proves that every such ρ erases the compression defect.');
+    }
+    if (t === 'ρ' && /\\rho\\colonG\\to\\U\(\\mathcalQ/.test(s)) {
+      return entry('ρ, a representation in the matrix corona',
+        'ρ assigns to every element of G a sequence of finite unitary matrices, considered up to errors that vanish in operator norm. Because ρ preserves multiplication in the quotient, its coordinates are asymptotic finite-matrix models of G.');
+    }
+    if (t === 'Θ' && /\\Theta\\colonG\\to\\U\(\\mathcalQ/.test(s)) {
+      return entry('Θ, the hypothetical representation that detects K',
+        'The proof assumes that Θ is a homomorphism into a norm matrix corona and that some element of K is not sent to the identity. The complementary Kazhdan corner is then used to derive a contradiction.');
+    }
+    if (t === 'N' && /N\\trianglelefteqG|G\/N|\\operatorname\{cl\}.*\(N\)/.test(s)) {
+      return entry('N, the subgroup being collapsed',
+        'N is any normal subgroup of G. Forming G/N declares every element of N to be the identity. The MF-closure statement asks whether finite-matrix representations force any additional elements to disappear.');
+    }
+    if (t === 'M' && /M\\text\{MF\}|G\\toM|W_Q.*M/.test(s)) {
+      return entry('M, an arbitrary MF target',
+        'M can be any MF group. Proving that every homomorphism into every such M is trivial means that finite-matrix limits cannot see any nonidentity element of the source group.');
+    }
+    if (t === 'T' && /\\operatorname\{Hom\}.*T|B\\toT/.test(s)) {
+      return entry('T, the target group',
+        'T is the group receiving the homomorphisms in this statement. The hypothesis that B has no nontrivial maps to T forces every map from W_Q to T to ignore B and pass uniquely through Q.');
+    }
+    return null;
+  }
+
+  function explainObject(text, tex, context) {
+    if (!text || /^[(){}\[\],.;:|‖∥⟨⟩⌈⌉⌊⌋]+$/.test(clean(text))) return null;
+    return compoundObject(text, tex) || namedObject(text, tex, context || '');
   }
 
   function canonicalTerm(term) {
-    return TERM_ALIASES[clean(term).toLowerCase()] || '';
+    return ALIASES[clean(term).toLowerCase()] || '';
   }
 
   function explainTerm(term) {
     var canonical = canonicalTerm(term);
-    return canonical ? TERM_INFO[canonical] : null;
+    return canonical ? TERMS[canonical] : null;
   }
 
   function setLinkedText(node, value, excludedTerm) {
@@ -469,9 +416,7 @@
     TERM_PATTERN.lastIndex = 0;
     var match;
     while ((match = TERM_PATTERN.exec(text))) {
-      if (match.index > cursor) {
-        node.appendChild(document.createTextNode(text.slice(cursor, match.index)));
-      }
+      if (match.index > cursor) node.appendChild(document.createTextNode(text.slice(cursor, match.index)));
       var canonical = canonicalTerm(match[0]);
       if (!canonical || canonical === excludedTerm) {
         node.appendChild(document.createTextNode(match[0]));
@@ -488,46 +433,6 @@
     if (cursor < text.length) node.appendChild(document.createTextNode(text.slice(cursor)));
   }
 
-  function renderExplanation(state) {
-    var box = ensurePanel();
-    currentExplanation = state;
-    box.querySelector('.math-explainer-symbol').textContent = state.symbol;
-    box.querySelector('#math-explainer-title').textContent = state.info.name;
-    setLinkedText(box.querySelector('.math-explainer-meaning'),
-      state.info.meaning, state.term || '');
-
-    var localBox = box.querySelector('.math-explainer-local');
-    setLinkedText(localBox, state.local || '', state.term || '');
-    localBox.hidden = !state.local;
-
-    var formulaBox = box.querySelector('.math-explainer-formula');
-    setLinkedText(formulaBox, state.formula || '', state.term || '');
-    formulaBox.hidden = !state.showFormula;
-
-    box.querySelector('.math-explainer-back').hidden = explanationHistory.length === 0;
-    box.hidden = false;
-  }
-
-  function openTerm(term) {
-    var canonical = canonicalTerm(term);
-    var info = explainTerm(canonical);
-    if (!info) return;
-    if (currentExplanation) explanationHistory.push(currentExplanation);
-    renderExplanation({
-      symbol: canonical,
-      info: info,
-      local: '',
-      formula: '',
-      showFormula: false,
-      term: canonical
-    });
-  }
-
-  function goBack() {
-    if (!explanationHistory.length) return;
-    renderExplanation(explanationHistory.pop());
-  }
-
   function ensurePanel() {
     if (panel) return panel;
     panel = document.createElement('aside');
@@ -542,7 +447,6 @@
       '<div class="math-explainer-symbol" aria-hidden="true"></div>' +
       '<h2 id="math-explainer-title"></h2>' +
       '<p class="math-explainer-meaning"></p>' +
-      '<p class="math-explainer-local"></p>' +
       '<p class="math-explainer-formula"></p>';
     document.body.appendChild(panel);
     panel.querySelector('.math-explainer-back').addEventListener('click', goBack);
@@ -550,32 +454,55 @@
     return panel;
   }
 
-  function openExplanation(atom, math) {
-    var token = clean(atom && atom.textContent) || 'formula';
-    var tex = texOf(math);
-    var info = explainToken(token, tex, atom);
+  function render(state) {
+    var box = ensurePanel();
+    current = state;
+    box.querySelector('.math-explainer-symbol').textContent = state.symbol;
+    box.querySelector('#math-explainer-title').textContent = state.info.name;
+    setLinkedText(box.querySelector('.math-explainer-meaning'),
+      state.info.explanation, state.term || '');
+    var detail = state.info.detail || state.formula || '';
+    var detailBox = box.querySelector('.math-explainer-formula');
+    setLinkedText(detailBox, detail, state.term || '');
+    detailBox.hidden = !detail || detail === state.info.explanation;
+    box.querySelector('.math-explainer-back').hidden = history.length === 0;
+    box.hidden = false;
+  }
+
+  function openTerm(term) {
+    var canonical = canonicalTerm(term);
+    var info = explainTerm(canonical);
     if (!info) return;
-    var context = nearbyText(math);
-    var local = localRole(token, tex, context, info, atom);
-    var formula = explainFormula(tex);
-    explanationHistory = [];
-    renderExplanation({
-      symbol: token,
-      info: info,
-      local: local,
-      formula: formula,
-      showFormula: addsFormulaInformation(token, formula),
-      term: ''
-    });
-    lastFormula = math;
+    if (current) history.push(current);
+    render({ symbol: canonical, info: info, formula: '', term: canonical });
+  }
+
+  function goBack() {
+    if (history.length) render(history.pop());
   }
 
   function closePanel() {
     if (!panel) return;
     panel.hidden = true;
-    explanationHistory = [];
-    currentExplanation = null;
-    if (lastFormula && lastFormula.focus) lastFormula.focus({ preventScroll: true });
+    history = [];
+    current = null;
+    if (lastObject && lastObject.focus) lastObject.focus({ preventScroll: true });
+  }
+
+  function openObject(node, math) {
+    var tex = texOf(math);
+    var info = explainObject(clean(node.textContent), tex, nearbyText(math));
+    if (!info) return;
+    history = [];
+    render({ symbol: clean(node.textContent), info: info,
+      formula: formulaExplanation(tex), term: '' });
+    lastObject = node;
+  }
+
+  function isTopLevelMathObject(node) {
+    if (!node.classList) return false;
+    return node.classList.contains('mord') || node.classList.contains('mop') ||
+      node.classList.contains('mbin') || node.classList.contains('mrel');
   }
 
   function decorate(root) {
@@ -587,17 +514,22 @@
       var visual = math.querySelector('.katex-html');
       if (!visual) continue;
       math.classList.add('math-help-ready');
-      math.setAttribute('tabindex', '0');
-      math.setAttribute('title', 'Click any symbol for a plain-language explanation');
-      math.setAttribute('data-math-help', 'true');
-      var atoms = visual.querySelectorAll(ATOM_SELECTOR);
       var tex = texOf(math);
-      for (var j = 0; j < atoms.length; j++) {
-        var atom = atoms[j];
-        if (!clean(atom.textContent)) continue;
-        if (atom.querySelector(ATOM_SELECTOR)) continue;
-        if (!explainToken(clean(atom.textContent), tex, atom)) continue;
-        atom.classList.add('math-symbol-help');
+      var context = nearbyText(math);
+      var bases = visual.querySelectorAll('.base');
+      for (var j = 0; j < bases.length; j++) {
+        var children = bases[j].children;
+        for (var k = 0; k < children.length; k++) {
+          var node = children[k];
+          if (!isTopLevelMathObject(node)) continue;
+          var info = explainObject(clean(node.textContent), tex, context);
+          if (!info) continue;
+          node.classList.add('math-symbol-help');
+          node.setAttribute('tabindex', '0');
+          node.setAttribute('role', 'button');
+          node.setAttribute('aria-label', 'Explain ' + info.name);
+          node.setAttribute('title', info.name);
+        }
       }
     }
   }
@@ -605,12 +537,11 @@
   function addPrompt() {
     if (document.querySelector('.math-help-prompt')) return;
     var anchor = document.querySelector('.paper-key, .paper-head, nav.top, header');
-    if (!anchor || !document.querySelector('.katex')) return;
+    if (!anchor || !document.querySelector('.math-symbol-help')) return;
     var prompt = document.createElement('p');
     prompt.className = 'math-help-prompt';
-    prompt.textContent = 'Math is interactive — click any symbol for plain English.';
-    if (anchor.classList.contains('paper-key')) anchor.insertAdjacentElement('afterend', prompt);
-    else anchor.insertAdjacentElement('afterend', prompt);
+    prompt.textContent = 'Highlighted mathematical objects are clickable for an explanation of what they are and what they do here.';
+    anchor.insertAdjacentElement('afterend', prompt);
   }
 
   document.addEventListener('click', function (event) {
@@ -622,12 +553,12 @@
       return;
     }
     if (event.target.closest && event.target.closest('.math-explainer')) return;
-    var atom = event.target.closest && event.target.closest('.math-symbol-help');
-    var math = atom && atom.closest('.katex');
-    if (atom && math) {
+    var object = event.target.closest && event.target.closest('.math-symbol-help');
+    var math = object && object.closest('.katex');
+    if (object && math) {
       event.preventDefault();
       event.stopPropagation();
-      openExplanation(atom, math);
+      openObject(object, math);
       return;
     }
     if (panel && !panel.hidden && !event.target.closest('.math-help-prompt')) closePanel();
@@ -640,11 +571,11 @@
       return;
     }
     if ((event.key === 'Enter' || event.key === ' ') &&
-        event.target.classList && event.target.classList.contains('math-help-ready')) {
-      var atom = event.target.querySelector('.math-symbol-help');
-      if (atom) {
+        event.target.classList && event.target.classList.contains('math-symbol-help')) {
+      var math = event.target.closest('.katex');
+      if (math) {
         event.preventDefault();
-        openExplanation(atom, event.target);
+        openObject(event.target, math);
       }
     }
   });
@@ -657,8 +588,7 @@
         for (var j = 0; j < records[i].addedNodes.length; j++) {
           var node = records[i].addedNodes[j];
           if (node.nodeType !== 1) continue;
-          if (node.matches && node.matches('.katex')) decorate(node.parentElement || node);
-          else decorate(node);
+          decorate(node.matches && node.matches('.katex') ? node.parentElement || node : node);
         }
       }
       addPrompt();
@@ -670,15 +600,9 @@
   else start();
 
   window.__cairnMathExplainer = {
-    explainToken: function (token, tex) { return explainToken(token, tex, null); },
-    explainFormula: explainFormula,
+    explainObject: explainObject,
+    explainFormula: formulaExplanation,
     explainTerm: explainTerm,
-    scriptInfo: function (token, base, kind, tex, scriptText) {
-      return scriptItem(token, base, kind, tex, scriptText || token);
-    },
-    localRole: function (token, tex, context) {
-      return localRole(token, tex, context, explainToken(token, tex, null), null);
-    },
     decorate: decorate
   };
 }());

@@ -15,46 +15,78 @@ require('./math_explainer.js');
 const api = window.__cairnMathExplainer;
 assert.ok(api, 'math explainer API was not installed');
 
-assert.equal(api.explainToken('MF', '').name, 'MF');
-assert.equal(api.explainToken('Rad', '\\Rad_{\\mathrm{MF}}(G)').name, 'MF radical');
-assert.equal(api.explainToken('∈', 'x \\in G').name, 'belongs to');
-assert.equal(api.explainToken('*', 'B*_D(Q \\times D)').name, 'amalgamated free product');
-assert.equal(api.explainToken('C', 'C_G(L)').name, 'centralizer');
-assert.equal(api.explainToken('Q', '\\mathcal Q_{\\mathbf d}').name, 'a norm matrix corona');
-assert.equal(api.explainToken('e', 'e_{12}(a)').name, 'an elementary matrix');
-assert.equal(api.explainToken('N', 'N\\trianglelefteq G').name, 'the normal subgroup N');
-assert.equal(api.explainToken('Y', 'Y=G'), null);
-assert.equal(api.explainToken('(', 'f(x)=x'), null);
-assert.equal(api.explainTerm('homomorphisms').name, 'homomorphism');
-assert.equal(api.explainTerm('MF groups').name, 'MF group');
-assert.equal(api.scriptInfo('MF', 'Rad', 'subscript', '\\Rad_{\\mathrm{MF}}(G)').name,
-  'the MF subscript');
-assert.equal(api.scriptInfo('Q', 'W', 'subscript', 'W_Q').name,
-  'the quotient label Q');
-assert.equal(api.scriptInfo('n', 'd', 'subscript', 'd_n').name, 'the stage n');
-assert.equal(api.scriptInfo('G', '⟨⟨d⟩⟩', 'subscript', '\\normal{d}_G').name,
-  'the ambient-group subscript');
+function object(text, tex, context = '') {
+  return api.explainObject(text, tex, context);
+}
+
+assert.equal(object('Qd', '\\mathcal Q_{\\mathbf d}').name,
+  'the norm matrix corona Q_d');
+assert.match(object('Qd', '\\mathcal Q_{\\mathbf d}').explanation,
+  /whole sequence of matrix sizes/);
+assert.equal(object('Mdn', 'M_{d_n}(\\C)').name, 'the n-th matrix algebra');
+assert.match(object('d', 'd=e_{02}(q)').explanation,
+  /nonidentity element.*e_02\(q\)/);
+assert.match(object('q', 'd=e_{02}(q)').explanation, /q = s₁t₁/);
+assert.equal(object('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,
+  'the MF radical of G');
+assert.match(object('RadMF', '\\Rad_{\\mathrm{MF}}(G)').explanation,
+  /every homomorphism.*norm matrix corona/);
+assert.equal(object('EL12', 'H=\\EL_{12}(R)').name,
+  'the elementary group of rank 12');
+assert.equal(object('e02', 'd=e_{02}(q)').name,
+  'the elementary matrix e_02');
+assert.equal(object('WQ', 'W_Q=B*_A(Q\\times A)').name,
+  'the group W_Q built over Q');
+assert.equal(object('πQ', '\\pi_Q\\colon W_Q\\longrightarrow Q').name,
+  'the quotient map π_Q');
+assert.equal(object('⋂d', '\\bigcap_{\\mathbf d}').name,
+  'the intersection over every matrix-size sequence');
+assert.equal(object('⋂π:G→U(Qd)',
+  '\\bigcap_{\\pi\\colon G\\to\\U(\\mathcal Q_{\\mathbf d})}').name,
+  'the intersection over every corona representation');
+assert.equal(object('⨁n', '\\bigoplus_nM_{d_n}(\\C)').name,
+  'the sequences that vanish');
+assert.equal(object('∗A', 'B*_A(Q\\times A)').name,
+  'gluing the two groups along A');
+assert.equal(object('H', '\\Rad_{\\mathrm{MF}}(H)=H').name,
+  'H, the group proved non-MF');
+assert.equal(object('G', 'K\\trianglelefteq G').name,
+  'G, the group being tested');
+assert.equal(object('L', 'uLu^{-1}\\le L').name,
+  'L, the subgroup compressed into itself');
+assert.equal(object('N', 'N\\trianglelefteq G').name,
+  'N, the subgroup being collapsed');
+
+for (const syntax of ['(', ')', '[', ']', '{', '}', '⟨', '⟩', '‖', ',', '.']) {
+  assert.equal(object(syntax, 'f(x)=x'), null, `${syntax} must not be clickable`);
+}
+for (const unknown of ['x', 'Y', 'n', 'i', 'j']) {
+  assert.equal(object(unknown, 'x+y=z'), null,
+    `${unknown} must not receive a generic explanation`);
+}
+assert.equal(object('π', '\\pi(x)=y'), null,
+  'a map symbol without an actual displayed source and target is not annotated');
+assert.match(object('π',
+  '\\bigcap_{\\pi\\colon G\\to\\U(\\mathcal Q_{\\mathbf d})}\\ker\\pi').explanation,
+  /any homomorphism from G/);
+
+assert.match(api.explainFormula(
+  '\\mathcal Q_{\\mathbf d}=\\prod_nM_{d_n}(\\C)\\big/\\bigoplus_nM_{d_n}(\\C)'),
+  /bounded sequence.*operator-norm difference/i);
 assert.match(api.explainFormula('\\Rad_{\\mathrm{MF}}(H)=H'),
   /every homomorphism.*every MF group/i);
-assert.match(
-  api.explainFormula('\\Rad_{\\mathrm{MF}}(W_Q)=\\ker\\pi_Q=\\normal{d}_{W_Q}'),
-  /kernel.*normal subgroup/i);
-assert.match(api.explainFormula('uLu^{-1}\\le L'), /self-compression/);
-assert.match(api.localRole('H', 'H=\\operatorname{EL}_{12}(R)', ''),
-  /group constructed from elementary matrices/);
-assert.match(api.localRole('Q', 'W_Q=B*_D(Q\\times D)', ''),
-  /quotient that remains visible/);
-assert.match(api.localRole('x', 'x\\in G', 'Let x be a nonidentity element of G.'),
-  /nonidentity element of G/);
-assert.match(api.localRole('i', 'e_{ij}(a)', ''), /index/);
-assert.match(api.localRole('G', '\\Rad_{\\mathrm{MF}}(G)=G', ''),
-  /entire group under study/);
-assert.equal(api.localRole('⊴', 'N\\trianglelefteq G', ''), '');
+assert.match(api.explainFormula('uLu^{-1}\\le L'), /one-sided self-compression/);
+assert.match(api.explainFormula('d=e_{02}(q)'), /q is nonzero.*not the identity/i);
+assert.equal(api.explainFormula('x=y'), '');
+
+assert.equal(api.explainTerm('homomorphisms').name, 'homomorphism');
+assert.equal(api.explainTerm('MF groups').name, 'MF group');
 
 const source = fs.readFileSync(require.resolve('./math_explainer.js'), 'utf8');
 assert.doesNotMatch(source,
-  /Plain-language math|What it means here|How to read the formula|whole-formula explanation/);
+  /Plain-language math|What it means here|How to read the formula|In this sentence|grouping mark|subscript d|ambient group/);
+assert.doesNotMatch(source, /math\.setAttribute\('tabindex'/);
 assert.match(source, /math-term-help/);
 assert.match(source, /openTerm/);
 
-console.log('math explainer: symbol and formula vocabulary passed');
+console.log('math explainer: contextual object explanations passed');
