@@ -58,16 +58,17 @@
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-We study homomorphisms into norm matrix coronas.  If a
-property-\textup{(T)} subgroup is conjugated into itself,
-one-sided Kazhdan transport preserves its Hilbert--Schmidt asymptotic
-commutant.  Consequently, commutators between the transported commutant and
-the subgroup are universally Hilbert--Schmidt trivial in operator-norm
-asymptotic representations.  We prove that every normal
-property-\textup{(T)} subgroup contained in the resulting defect subgroup
-lies in the MF radical.  In particular, when the defect subgroup is the
-ambient Kazhdan group, every homomorphism to an MF group is trivial.  For the
-binary Leavitt algebra this gives
+We study homomorphisms into norm matrix coronas.  Suppose that a
+property-\textup{(T)} subgroup $L\le G$ satisfies $uLu^{-1}\le L$ and that
+$c$ centralizes $L$.  In every operator-norm asymptotic representation
+$(V_n)$ of $G$, one has
+\[
+ \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
+ \qquad(\ell\in L).
+\]
+If a normal property-\textup{(T)} subgroup is contained in the normal closure
+of these commutators, then it lies in the MF radical of $G$.  For the binary
+Leavitt algebra this gives
 \[
  \Rad_{\mathrm{MF}}\!\left(\EL_{12}
    \bigl(L_{\F_2}(1,2)\bigr)\right)
@@ -118,7 +119,9 @@ More generally, for $N\trianglelefteq G$ define its \emph{MF closure} by
  \operatorname{cl}_{\mathrm{MF}}^G(N)
  =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
 \]
-Thus $\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
+The image of a corona homomorphism from $G$ is countable and is itself MF;
+conversely, every MF target embeds in a norm matrix corona.  Thus
+$\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
 $G/N$ is MF precisely when
 $\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
 
@@ -135,21 +138,25 @@ In particular, $G$ is MF if and only if its MF radical is trivial.
 \end{proposition}
 
 \begin{proof}
-An intersection of kernels is normal.  If $f\colon G\to K$ is a
-homomorphism and $x\in\Rad_{\mathrm{MF}}(G)$, then every corona homomorphism
-of $K$, composed with $f$, kills $x$; hence
-$f(x)\in\Rad_{\mathrm{MF}}(K)$.  This proves functoriality and, for
-endomorphisms, full invariance.
+An intersection of kernels is normal.  If $\alpha$ is an endomorphism of
+$G$, $x\in\Rad_{\mathrm{MF}}(G)$, and $\pi$ is a corona homomorphism of $G$,
+then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
+which proves full invariance.
 
 Put $R=\Rad_{\mathrm{MF}}(G)$ and enumerate the nonidentity elements of
-$G/R$.  For each one, the definition of $R$ supplies a corona homomorphism
-that detects a representative.  A diagonal direct sum of coordinate models
-produces one operator-norm asymptotic representation that detects them all:
-at stage $n$, take the direct sum of sufficiently late coordinates of the
-first $n$ models, chosen so that the first $n$ multiplication defects are at
-most $1/n$ and each of the first $n$ marked elements retains a fixed positive
-operator-norm separation on its designated summand.  Its corona homomorphism
-is faithful on $G/R$.  Thus $G/R$ is MF.
+$G/R$ as $(x_j)_{j\ge1}$, and enumerate the pairs in $(G/R)^2$.  For each
+$x_j$, the definition of $R$ supplies a corona homomorphism whose value at
+$x_j$ has positive distance from the identity.  Every such homomorphism
+kills $R$ and therefore descends to $G/R$.  Choose coordinate unitary lifts,
+using polar correction as in Lemma~\ref{lem:central-corona-corner}.  At stage
+$n$, take a direct
+sum of one coordinate from each of the first $n$ models.  Choose each
+coordinate far enough out that the first $n$ multiplication defects are at
+most $1/n$ and the designated value at $x_j$ retains at least half of its
+corona-norm separation.  Such coordinates exist arbitrarily far out: the
+defects converge to zero, while the quotient norm is a limsup.  The resulting
+operator-norm asymptotic representation detects every $x_j$, so its corona
+homomorphism is faithful on $G/R$.  Thus $G/R$ is MF.
 
 Applied to $G/N$, the same argument says that $G/N$ is MF exactly when the
 intersection of the kernels of all MF-target maps killing $N$ is $N$, which
@@ -179,18 +186,20 @@ $\Rad_{\mathrm{MF}}(G)=G$.  Every finite-dimensional linear representation
 of $G$ over every field kills $D$.
 \end{mainthm}
 
-One-sided Kazhdan transport puts every generator of $D$ in the universal
-Hilbert--Schmidt kernel of operator-norm asymptotic representations.
-Normality of $K$ makes its Kazhdan fixed-space projection invariant under the
-ambient group; the complementary corner detects any surviving image of
-$K$ and contradicts that Hilbert--Schmidt collapse.  In exact finite
-dimension, the corresponding commutant argument works over every field and
-does not require property~\textup{(T)}.
+Corollary~\ref{cor:defect-hs} shows that every generator of $D$ converges to
+the identity in normalized Hilbert--Schmidt norm in every operator-norm
+asymptotic representation.  If the image of $K$ in a norm matrix corona were
+nontrivial, normality would make the projection onto the $K$-fixed vectors
+commute with the image of $G$.  Compression to its complementary corner
+would give another operator-norm asymptotic representation, while the
+Kazhdan inequality would keep some element of $K$ a fixed positive
+Hilbert--Schmidt distance from the identity.  This contradiction proves the
+criterion.  In finite dimension, Theorem~\ref{thm:commutant} proves the
+corresponding statement over every field without property~\textup{(T)}.
 
-The existence of a countable non-MF group was open~\cite{Shulman}.  For the
-binary Leavitt algebra, Theorem~\ref{thm:compression-criterion} answers the
-question.  For a nontrivial simple group the MF radical is either trivial or
-the whole group, so full MF radical is equivalent here to failure of MF.
+Whether every countable group is MF was asked in the group-MF literature and
+remained open~\cite{CDE,Korchagin,Thom,Shulman}.  For the binary Leavitt
+algebra, Theorem~\ref{thm:compression-criterion} answers the question.
 
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
@@ -212,9 +221,9 @@ Equivalently, every homomorphism from $H$ to an MF group is trivial.
 In particular, $H$ is non-MF.
 \end{mainthm}
 
-Suppose that $L\le G$ has property~\textup{(T)}, that $u\in G$ satisfies
-$uLu^{-1}\le L$, and that $c$ centralizes $L$.  For every operator-norm
-asymptotic representation $(V_n)$ of $G$,
+The analytic input is Corollary~\ref{cor:defect-hs}: under the hypotheses of
+Theorem~\ref{thm:compression-criterion}, every operator-norm asymptotic
+representation $(V_n)$ of $G$ satisfies
 \begin{equation}\label{eq:basic-defect}
  \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
  \qquad(\ell\in L).
@@ -231,11 +240,15 @@ $H$.  Hence the compression defect is the ambient Kazhdan group, and
 Theorem~\ref{thm:compression-criterion} gives
 $\Rad_{\mathrm{MF}}(H)=H$.
 
-For an exact finite-dimensional representation, conjugation by a compressor
-defines an injective endomorphism of the commutant of $L$.  This endomorphism
-is surjective because the commutant is finite-dimensional.  Consequently,
-every finite-dimensional linear representation of $H$ over every field is
-trivial.
+If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
+conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ injectively into
+itself, hence bijectively.  Thus $\rho$ kills $D$.  This also shows that the
+configuration cannot occur in several familiar settings: if $G$ has a
+faithful finite-dimensional linear representation or is residually finite,
+then $D=1$.  If $G$ is amenable, its
+property-\textup{(T)} subgroup $L$ is finite~\cite{BHV}; then
+$uLu^{-1}=L$, so
+$ucu^{-1}$ centralizes $L$ and again $D=1$.
 
 The argument is specific to operator-norm approximation.  It does not prove
 that $H$ is nonsofic or nonhyperlinear: normalized Hilbert--Schmidt
@@ -259,7 +272,7 @@ vertex group onto $Q$ is a split epimorphism, and
 \]
 The group $W_Q$ is non-MF.  If $Q$ is MF, then
 \[
- \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q},
+ \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal{d}_{W_Q}.
 \]
 Moreover, precomposition with $\pi_Q$ induces a bijection
 \[
@@ -273,13 +286,14 @@ for every MF group $M$.
 The group-MF framework used here is developed by
 Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}; recent
 permanence results are due to Shulman~\cite{Shulman}.  The operator-norm case
-remained open after non-approximability had been established for the finite
-Schatten norms.  Bachner--Dogon--Lubotzky emphasize the interaction between
-operator-norm defects and Hilbert--Schmidt rigidity as a possible route to
-the MF problem~\cite{BDL}.  Our mechanism uses that interaction differently:
-one-sided compression of a Kazhdan subgroup forces Hilbert--Schmidt collapse,
-while a normal Kazhdan subgroup inside the resulting defect converts that
-collapse into MF-radical membership.
+remained open after non-approximability had been established for finite
+Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
+Bachner--Dogon--Lubotzky study an operator--Hilbert--Schmidt stability
+condition as a possible source of non-MF groups~\cite{BDL}.  Here the
+operator norm makes conjugation into a representation in a second norm
+matrix corona.  The Kazhdan projection in that corona then controls the
+normalized Hilbert--Schmidt commutant, and the normal Kazhdan subgroup
+argument of Section~4 turns this control into MF-radical membership.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -288,7 +302,8 @@ infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
 and its center is the base field~\cite{ArandaCrow}.  Preusser's
 normal-subgroup theorem implies simplicity of the elementary group
 \cite{Preusser}, while Ershov--Jaikin-Zapirain give property~\textup{(T)} for
-$\EL_n(R)$ whenever $n\ge3$ and $R$ is finitely generated~\cite{EJZ}.
+$\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
+associative ring~\cite[Theorem~1.1]{EJZ}.
 Related rigidity results for metric approximations of Kazhdan groups appear
 in~\cite{KT19,AlekseevThom,Dadarlat}.
 
@@ -327,6 +342,12 @@ If $c\in C_G(L)$, then $\rho(c)\in C$, hence
 $\rho(ucu^{-1})\in C$.  It commutes with every $\rho(\ell)$,
 $\ell\in L$, which proves the last assertion.
 \end{proof}
+
+The finite-dimensional hypothesis is essential here.  On an
+infinite-dimensional space an injective endomorphism of the commutant need
+not be surjective.  In Section~3 the Kazhdan projection places the analogous
+endomorphism inside a norm matrix corona, where stable finiteness supplies
+the missing surjectivity at the level of fixed-space projections.
 
 \section{Kazhdan transport in normalized Hilbert--Schmidt norm}
 
@@ -368,9 +389,11 @@ Suppose that $v^*v=1$ in the corona, and let $(x_n)$ be a bounded lift of
 $v$.  Then $x_n^*x_n\to1$ in norm.  For all sufficiently large $n$, the matrix
 $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from
 $x_n$ by $o(1)$.  Thus $v$ is represented by unitaries and $vv^*=1$.  The
-same argument applies to every matrix amplification of the corona.  In a
-stably finite unital $C^*$-algebra, equivalent projections $p\le q$ satisfy
-$p=q$.
+same argument applies to every matrix amplification of the corona.  If $A$
+is a stably finite unital $C^*$-algebra, equivalent projections $p\le q$ satisfy
+$p=q$: if $w^*w=q$ and $ww^*=p$, then $w\in qAq$ is an isometry in the
+corner.  The corner is finite because $w+(1-q)$ is an isometry in $A$.
+Consequently $ww^*=q$, and hence $p=q$.
 \end{proof}
 
 \begin{lemma}[one-sided order for the Kazhdan projection]
@@ -441,13 +464,17 @@ operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
 \[
  \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)).
 \]
+After choosing matrix units on each $M_{d_n}(\C)$, this is a norm matrix
+corona with coordinate sizes $d_n^2$.
 The preceding estimate shows directly that
 $g\mapsto\widetilde\sigma(g)$ is an exact homomorphism
 $G\to\U(\mathcal B)$.  Its restriction to $L$ therefore extends to a
 $*$-homomorphism $C^*_{\max}(L)\to\mathcal B$.  Let $P\in\mathcal B$ be the
-image of the Kazhdan projection.  Under the natural representation of
-$\mathcal B$ on $\mathcal K_\omega$, its range is
-$\operatorname{Fix}\sigma(L)$~\cite[Chapter~3]{BHV}.  Since
+image of the Kazhdan projection~\cite{AkemannWalter}.  Under the natural
+representation of $\mathcal B$ on $\mathcal K_\omega$, its range is
+$\operatorname{Fix}\sigma(L)$.  This representation of $\mathcal B$ need
+not be faithful; it is used only after the following projection identity has
+been proved inside $\mathcal B$.  Since
 $uLu^{-1}\le L$, the unitary $U=\widetilde\sigma(u)$ satisfies the
 hypothesis of Lemma~\ref{lem:kazhdan-projection-order}, and hence
 $U^*PU\le P$ inside $\mathcal B$.
@@ -474,7 +501,11 @@ $c\in C_G(L)$, the sequence $(V_n(c))$ asymptotically commutes with
 $V_n(L)$ in operator norm and hence in normalized Hilbert--Schmidt norm.
 Theorem~\ref{thm:transport} shows that the same is true of
 $(V_n(u)V_n(c)V_n(u)^*)$.  Asymptotic multiplicativity identifies this
-sequence in operator norm with $(V_n(ucu^{-1}))$.  Therefore
+sequence in operator norm with $(V_n(ucu^{-1}))$; explicitly,
+\[
+ \opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\longrightarrow0.
+\]
+Therefore
 \[
  \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
  \qquad(\ell\in L).
@@ -528,11 +559,13 @@ Let \(G\) be countable, let \(D\le R_{\infty\to2}(G)\), and let
 \begin{proof}
 Suppose that a homomorphism
 \(\Theta\colon G\to\U(\mathcal Q_{\mathbf d})\) is nontrivial on \(K\).
-Replace \(G\) by its image and \(K\) by the image of \(K\).  The latter
-remains a nontrivial normal property-\textup{(T)} subgroup, and every one of
-its elements is universally Hilbert--Schmidt trivial: any operator-norm
-asymptotic representation of the image composes with \(\Theta\) to one of
-the original group.
+Replace \(G\) by \(\Theta(G)\), replace \(K\) by \(\Theta(K)\), and denote
+the resulting inclusion into the corona again by \(\Theta\).  The new \(K\)
+is a nontrivial normal property-\textup{(T)} subgroup.  Every one of its
+elements remains in the universal Hilbert--Schmidt kernel, because any
+operator-norm asymptotic representation of \(\Theta(G)\), precomposed with
+the quotient map from the original group, is such a representation of the
+original group.
 
 Let \(p_K\in C^*_{\max}(K)\) be the Kazhdan projection and let \(p\) be its
 image in \(\mathcal Q_{\mathbf d}\).  Thus \(p\) is the projection onto the
@@ -542,6 +575,9 @@ Normality of \(K\) gives
  \Theta(g)p\Theta(g)^*=p
  \qquad(g\in G).
 \]
+Indeed, in a faithful representation of the corona the two projections have
+ranges \(\Theta(g)\operatorname{Fix}\Theta(K)\) and
+\(\operatorname{Fix}\Theta(K)\); these agree because \(gKg^{-1}=K\).
 Put \(q=1-p\).  The projection \(q\) is nonzero, since \(p=1\) would imply
 that every element of \(K\) has trivial image.  Lemma~\ref{lem:central-corona-corner}
 gives an operator-norm asymptotic representation \((W_n)\) on nonzero
@@ -621,20 +657,20 @@ for unitality because the map $A\mapsto s_0At_0$ sends $I_3$ to $pI_3$.
 
 Set
 \[
- U=\begin{pmatrix}s_0I_3&s_1t_0I_3\\0&t_1I_3\end{pmatrix},
+ X=\begin{pmatrix}s_0I_3&s_1t_0I_3\\0&t_1I_3\end{pmatrix},
  \qquad
- V=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.
+ Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.
 \]
-A direct calculation using \eqref{eq:leavitt} gives $UV=VU=I_6$.  Put
+A direct calculation using \eqref{eq:leavitt} gives $XY=YX=I_6$.  Put
 \begin{equation}\label{eq:tau}
- \tau=\operatorname{diag}(U,V)\in\GL_{12}(R).
+ \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R).
 \end{equation}
 Writing $I=I_6$, the Whitehead factorization is
 \begin{align}\label{eq:whitehead-factorization}
- \operatorname{diag}(U,U^{-1})
- &=\begin{pmatrix}I&U\\0&I\end{pmatrix}
-   \begin{pmatrix}I&0\\-U^{-1}&I\end{pmatrix}
-   \begin{pmatrix}I&U\\0&I\end{pmatrix}
+ \operatorname{diag}(X,X^{-1})
+ &=\begin{pmatrix}I&X\\0&I\end{pmatrix}
+   \begin{pmatrix}I&0\\-X^{-1}&I\end{pmatrix}
+   \begin{pmatrix}I&X\\0&I\end{pmatrix}
    \begin{pmatrix}I&0\\I&I\end{pmatrix}
    \begin{pmatrix}I&-I\\0&I\end{pmatrix}
    \begin{pmatrix}I&0\\I&I\end{pmatrix}.
@@ -642,12 +678,12 @@ Writing $I=I_6$, the Whitehead factorization is
 Each block-unipotent factor is a product of elementary $12\times12$
 matrices: its off-diagonal $6\times6$ block may be inserted one entry at a
 time, and the corresponding matrix units have pairwise zero products.
-Since $V=U^{-1}$, \eqref{eq:whitehead-factorization} proves
+Since $Y=X^{-1}$, \eqref{eq:whitehead-factorization} proves
 $\tau\in\EL_{12}(R)$.
 
 Let $H=\EL_{12}(R)$ and let $L=\EL_3(R)\le H$ be the upper-left corner.
 Both groups have property~\textup{(T)} by the theorem of Ershov and
-Jaikin-Zapirain~\cite{EJZ}.
+Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
 Block multiplication yields
 \begin{equation}\label{eq:corner-conjugation}
  \tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}
@@ -658,6 +694,11 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
 \begin{equation}\label{eq:compresses-L}
  \tau L\tau^{-1}\le L.
 \end{equation}
+
+The field $\F_2$ is used in the simplicity argument below: its unit group is
+trivial, so the central subgroup left by the normal-subgroup theorem
+vanishes.  The size $12$ records the $3\times3$ Kazhdan corner and the
+standard Whitehead doubling above; no minimality assertion is intended.
 
 \section{The full MF radical}
 
@@ -722,7 +763,7 @@ Proposition~\ref{prop:simple}, so its normal closure is all of $H$.
 The group $H$ is nontrivial and simple by Proposition~\ref{prop:simple}.  The
 ring $R$ is finitely generated, and $H$ has property~\textup{(T)} by the
 Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
-rings~\cite{EJZ}.
+rings~\cite[Theorem~1.1]{EJZ}.
 
 Let $D$ be the defect subgroup in
 Theorem~\ref{thm:compression-criterion}, with $u=\tau$.  The containment
@@ -736,60 +777,6 @@ If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
 faithful homomorphism from $M$ to a norm matrix corona.  Since
 $\Rad_{\mathrm{MF}}(H)=H$, this composition and hence $f$ are trivial.  If
 $H$ were MF, its identity homomorphism would contradict this conclusion.
-\end{proof}
-
-\begin{corollary}\label{cor:exact-fd}
-For every field $k$ and every finite-dimensional $k$-vector space $V$, every
-homomorphism $H\to\GL(V)$ is trivial.
-\end{corollary}
-
-\begin{proof}
-Let $\rho\colon H\to\GL(V)$.  The containment
-\eqref{eq:compresses-L}, the centrality of $c$ relative to $L$, and
-Theorem~\ref{thm:commutant} give $\rho(d)=1$.  Since
-$H=\normal d_H$ by Proposition~\ref{prop:defect}, the homomorphism $\rho$ is
-trivial.
-\end{proof}
-
-In particular, every homomorphism from $H$ to a finite group, a residually
-finite group, or a compact Hausdorff group is trivial.  For finite and
-residually finite targets this follows by the regular representation of a
-finite quotient; for compact targets it follows from Peter--Weyl point
-separation~\cite{PeterWeyl}.
-
-\begin{corollary}[unit groups and all matrix ranks]
-\label{cor:unit-group-non-mf}
-Put $R=L_{\F_2}(1,2)$.  Then the unit group $R^\times$ and
-$\GL_n(R)$ for every $n\ge1$ are non-MF.
-\end{corollary}
-
-\begin{proof}
-For $n\ge2$, the complete binary prefix code
-\[
- \mathcal C_n=\{1^j0:0\le j\le n-2\}\cup\{1^{n-1}\}
-\]
-(and $\mathcal C_1$ consisting of the empty word) gives a ring isomorphism
-\begin{equation}\label{eq:prefix-matrix-isomorphism}
- \Theta_n\colon M_n(R)\longrightarrow R,
- \qquad
- (a_{uv})\longmapsto
- \sum_{u,v\in\mathcal C_n}s_u a_{uv}t_v.
-\end{equation}
-Here $s_{i_1\cdots i_r}=s_{i_1}\cdots s_{i_r}$ and
-$t_{i_1\cdots i_r}=t_{i_r}\cdots t_{i_1}$.  Indeed,
-\[
- t_us_v=\delta_{uv},
- \qquad
- \sum_{u\in\mathcal C_n}s_ut_u=1,
-\]
-so the inverse of \eqref{eq:prefix-matrix-isomorphism} is
-$r\mapsto(t_ur s_v)_{u,v}$.
-
-Taking units gives $\GL_n(R)\cong R^\times$ for every $n$.  For $n=12$,
-the subgroup $H=\EL_{12}(R)\le\GL_{12}(R)$ therefore embeds in $R^\times$.
-If $R^\times$ were MF, then its subgroup $H$ would be MF, contrary to
-Theorem~\ref{thm:headline}.  Hence $R^\times$ is non-MF, and the displayed
-isomorphisms give the result for every $\GL_n(R)$.
 \end{proof}
 
 \section{Prescribed MF quotients}\label{sec:prescribed-quotients}
@@ -860,18 +847,33 @@ is trivial, and the displayed equality becomes
 
 \end{proof}
 
-The same factorization applies to every target group $T$ for which all
-homomorphisms $B\to T$ are trivial.  Taking $B=H$ and the element $d$ from
-Proposition~\ref{prop:defect}, Corollary~\ref{cor:exact-fd} and Peter--Weyl
-point separation give the corresponding bijections for finite-dimensional
-linear groups over arbitrary fields, residually finite groups, and compact
-Hausdorff groups.
+The factorization also determines all MF consequences of additional
+relations.  If $N\trianglelefteq W_Q$, then
+\begin{equation}\label{eq:closure-pullback}
+ \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
+ =\pi_Q^{-1}\!\left(
+   \operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))
+  \right).
+\end{equation}
+Indeed, an MF-target homomorphism from $W_Q$ kills $N$ exactly when its
+unique factor through $Q$ kills $\pi_Q(N)$.  Proposition~\ref{prop:mf-residual-calculus}
+and \eqref{eq:closure-pullback} give
+\[
+ W_Q/N\text{ is MF}
+ \quad\Longleftrightarrow\quad
+ \ker\pi_Q\le N
+ \text{ and }
+ Q/\pi_Q(N)\text{ is MF}.
+\]
+Here, if $\ker\pi_Q\le N$, then
+$N=\pi_Q^{-1}(\pi_Q(N))$; this is the only additional observation needed
+for the displayed equivalence.
 
 \section*{AI and computational resource usage}
 AI systems were used extensively for proof exploration, literature
-navigation, formalization, and editorial revision.  Selected supporting
-lemmas and related variants have been formalized in Lean; this does not
-constitute an end-to-end formal verification of the present manuscript.
+navigation, formalization, and editorial revision.  Some supporting lemmas
+and related variants have been formalized in Lean; the main results of this
+manuscript have not been verified end to end.
 The author checked and revised the mathematical arguments and citations.
 
 \begin{thebibliography}{99}
@@ -881,6 +883,11 @@ G.~Abrams and G.~Aranda Pino,
 \emph{Purely infinite simple Leavitt path algebras},
 J. Pure Appl. Algebra \textbf{207} (2006), no.~3, 553--563,
 \doi{10.1016/j.jpaa.2005.10.010}.
+
+\bibitem[AW]{AkemannWalter}
+C.~A. Akemann and M.~E. Walter,
+\emph{Unbounded negative definite functions},
+Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
 
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
@@ -924,9 +931,15 @@ flat $K$-theory},
 Adv. Math. \textbf{384} (2021), Paper No.~107722,
 \doi{10.1016/j.aim.2021.107722}.
 
+\bibitem[DGLT]{DGLT}
+M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
+\emph{Stability, cohomology vanishing, and nonapproximable groups},
+Forum Math. Sigma \textbf{8} (2020), Paper No.~e18,
+\doi{10.1017/fms.2020.5}.
+
 \bibitem[EJZ]{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
-Property~\textup{(T)} for noncommutative universal lattices,
+\emph{Property~\textup{(T)} for noncommutative universal lattices},
 \emph{Invent. Math.} \textbf{179} (2010), 303--347,
 \doi{10.1007/s00222-009-0218-2}.
 
@@ -945,22 +958,21 @@ Math. Notes \textbf{102} (2017), no.~2, 198--211,
 
 \bibitem[Lev]{Leavitt}
 W.~G.~Leavitt,
-The module type of a ring,
+\emph{The module type of a ring},
 \emph{Trans. Amer. Math. Soc.} \textbf{103} (1962), 113--130,
 \doi{10.1090/S0002-9947-1962-0132764-6}.
+
+\bibitem[LO]{LubotzkyOppenheim}
+A.~Lubotzky and I.~Oppenheim,
+\emph{Non $p$-norm approximated groups},
+J. Anal. Math. \textbf{141} (2020), no.~1, 305--321,
+\doi{10.1007/s11854-020-0119-2}.
 
 \bibitem[KT]{KT19}
 G.~Kun and A.~Thom,
 \emph{Inapproximability of actions and Kazhdan's property~\textup{(T)}},
 preprint, 2019,
 \href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
-
-\bibitem[PW]{PeterWeyl}
-F.~Peter and H.~Weyl,
-Die Vollst\"andigkeit der primitiven Darstellungen einer geschlossenen
-kontinuierlichen Gruppe,
-\emph{Math. Ann.} \textbf{97} (1927), 737--755,
-\doi{10.1007/BF01447892}.
 
 \bibitem[Pre]{Preusser}
 R.~Preusser,
@@ -973,5 +985,12 @@ T.~Shulman,
 \emph{The MF property for amalgamated free products},
 preprint, 2026,
 \href{https://arxiv.org/abs/2603.13564}{arXiv:2603.13564}.
+
+\bibitem[Th]{Thom}
+A.~Thom,
+\emph{Finitary approximations of groups and their applications},
+Proceedings of the International Congress of Mathematicians---Rio de
+Janeiro 2018,
+\href{https://arxiv.org/abs/1712.01052}{arXiv:1712.01052}.
 \end{thebibliography}
 \end{document}
