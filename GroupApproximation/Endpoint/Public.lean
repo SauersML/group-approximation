@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.ApproximationRadicals
 import GroupApproximation.Endpoint.NonMFImpact
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Endpoint.SimultaneousStability
@@ -364,6 +365,19 @@ the most weight, as theorems rather than as caveats.
   property `(T)` used throughout is the textbook complex-unitary property
   quantified over every universe.
 * `isLEF_iff_textbook` -- likewise for local embeddability.
+
+## The approximation-radical calculus
+
+The results above are instances of a reusable mechanism, and
+`Endpoint/ApproximationRadicals` is that mechanism's own reading path:
+produce one relation the approximation theory cannot see, renormalize it
+across every scale of a surjective self-map, saturate it until its normal
+closure is the whole group, and separate the quotient that survives.  The two
+extremes of the calculus are `normMFResidual_eq_top_of_shadow_bug_saturation`
+(nothing at all is visible) and
+`coronaMFResidual_eq_of_le_and_quotient_isOperatorMF` (exactly this is
+invisible, and no more).  `RadicalAutomorphization.stableKernel_le_of_comap_le`
+is the middle step, whose only hypothesis is one inclusion of subgroups.
 
 ## Trust surface
 

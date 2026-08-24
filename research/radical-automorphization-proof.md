@@ -7,6 +7,7 @@ target: radical-automorphization
 requires: []
 artifacts:
   - research/artifacts/radical-renormalization-2026-08-23.md
+  - GroupApproximation/Sofic/RadicalAutomorphization.lean
   - GroupApproximation/Sofic/UniversalFactorization.lean
 ---
 
@@ -24,3 +25,13 @@ surjective.  Any quotient through which `R` descends and becomes injective must
 kill every `ker(R^n)`, so this quotient is maximal among such quotients.  Finally
 the existing exact-quotient criterion gives equality with the MF radical
 whenever the automorphization quotient is MF.
+
+Lean carries the whole step in `Sofic/RadicalAutomorphization`.  The engine is
+`stableKernel_le_of_comap_le`, whose only hypothesis is `Rad.comap R <= Rad` --
+no surjectivity, no target class, no countability -- so the four instantiations
+`stableKernel_le_coronaMFResidual`, `stableKernel_le_fdUnitaryResidual`,
+`stableKernel_le_finiteResidual` and `stableKernel_le_linearResidual` differ
+only in which factorization theorem discharges that inclusion.  Maximality is
+the same lemma with the radical replaced by an arbitrary subgroup
+(`stableKernel_le_of_injective_descent`), the automorphism is `descendEquiv`,
+and the exact form is `coronaMFResidual_eq_stableKernel`.

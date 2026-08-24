@@ -1599,6 +1599,7 @@ import GroupApproximation.Sofic.CurvatureAssembly
 import GroupApproximation.Sofic.MatchingRunGap
 import GroupApproximation.Sofic.ShellSingleRegion
 import GroupApproximation.Sofic.RadicalAutomorphization
+import GroupApproximation.Endpoint.ApproximationRadicals
 import GroupApproximation.Sofic.MatchingSameBlock
 import GroupApproximation.Sofic.MatchingRunStructure
 import GroupApproximation.Sofic.SigmaCompressionPair
