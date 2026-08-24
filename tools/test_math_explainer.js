@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const katex = require('./paper_site/katex/katex.min.js');
 
 const tex = fs.readFileSync('non_mf_groups_exist.tex', 'utf8');
-global.window = { PAPER_EXPLANATION_SOURCE: tex };
+global.window = { PAPER_EXPLANATION_SOURCE: tex, katex };
 global.document = { readyState: 'loading', addEventListener() {} };
 global.MutationObserver = function MutationObserver() {};
 
@@ -40,6 +40,22 @@ const coronaHtml = katex.renderToString(corona.tex, { throwOnError: true });
 assert.match(coronaHtml, /mathcal/);
 assert.match(coronaHtml, /msupsub/,
   'the explainer formula must preserve the source subscript');
+const formulaNode = { innerHTML: '' };
+api.renderTex(formulaNode, corona.tex);
+assert.match(formulaNode.innerHTML, /class="katex"/,
+  'the card must contain rendered KaTeX rather than the TeX source as text');
+assert.match(formulaNode.innerHTML, /msupsub/,
+  'the rendered card must preserve the bold sequence subscript');
+assert.ok(formulaNode.innerHTML.startsWith('<span class="katex">'),
+  'the card must replace the raw TeX with KaTeX markup');
+const inlineSource = /\\\(([\s\S]*?)\\\)/.exec(corona.explanation);
+assert.ok(inlineSource, 'the explanation must carry its notation as TeX');
+const inlineNode = { innerHTML: '' };
+api.renderTex(inlineNode, inlineSource[1]);
+assert.match(inlineNode.innerHTML, /class="mord mathbf/,
+  'bold d in the explanation must be typeset as mathematics');
+assert.match(inlineNode.innerHTML, /msub/,
+  'the matrix-size sequence in the explanation must preserve its subscripts');
 assert.equal(source('Mdn', 'M_{d_n}(\\C)').name,
   'the matrices in the nth finite model');
 assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,

@@ -128,17 +128,16 @@
   }
 
   function renderTex(node, tex) {
-    if (window.katex && typeof window.katex.render === 'function') {
-      window.katex.render(tex, node, {
-        macros: window.CAIRN_MATH_MACROS || {},
-        displayMode: false,
-        throwOnError: false,
-        strict: false,
-        trust: false
-      });
-      return;
+    if (!window.katex || typeof window.katex.renderToString !== 'function') {
+      throw new Error('KaTeX is required for mathematical explanations');
     }
-    node.textContent = tex;
+    node.innerHTML = window.katex.renderToString(tex, {
+      macros: window.CAIRN_MATH_MACROS || {},
+      displayMode: false,
+      throwOnError: false,
+      strict: false,
+      trust: false
+    });
   }
 
   function setLinkedText(node, value, excludedTerm) {
@@ -335,6 +334,7 @@
     parseSourceExplanations: parseSourceExplanations,
     sourceExplanation: sourceExplanation,
     explainTerm: explainTerm,
+    renderTex: renderTex,
     decorate: decorate
   };
 }());
