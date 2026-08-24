@@ -16,8 +16,8 @@ requires:
 ---
 
 Start from the canonical Pauli seed of ambient density `1/4`.  At the
-maximal type of every reached node, `(MTA3)` and `(MFA2)` give source mass at
-least `beta/(2M)` times the current carrier mass.  Equations `(MTA1)--(MTA2)`
+maximal type of every reached node, `(MTA3)` and `(MFA1)` give source mass at
+least `beta/M` times the current carrier mass.  Equations `(MTA1)--(MTA2)`
 add that mass to the child.  Choose the fixed depth so that the resulting
 geometric growth exceeds one.  The finite sum of microstate errors vanishes,
 contradicting total normalized mass one.  The perfect tracial BCS model sends

@@ -59,8 +59,12 @@ on the shared-context atom itself.
   proves that the selector flip supplies the compulsory reverse character
   with equal multiplicity.  Coupling the flip to the packet cancels the
   oriented Reynolds gap; leaving it uncoupled authenticates no ownership.
-- **Start from the whole marked sector.**  Taking `Q_0=Q_-` makes escape
-  impossible for a `J`-preserving word; allowing the word to cross the
-  `J`-sector prevents reapplication of the BCS gap.  The conditional compiler
-  repairs initialization with a Pauli half-sector, but does not construct the
-  mixed escape row.
+- **Start from the whole marked sector.**  For `Q=Q_-`, a `J`-preserving
+  word has full overlap with the carrier.  As
+  `full-marked-sector-single-escape-is-direct-atom-collapse` records,
+  `(SAE1)` then becomes the direct estimate
+  `eta tau(A_*)<=C sqrt(E)`.  This does not formally refute the claim—the
+  perfect completion has `A_*=0`—but it shows that the universal formulation
+  already contains the final matrix-only atom-collapse theorem rather than a
+  reusable geometric escape argument.  The Pauli half-sector and finite
+  reachable tree isolate the genuinely weaker placement target.

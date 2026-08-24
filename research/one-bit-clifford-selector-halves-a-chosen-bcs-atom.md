@@ -67,3 +67,8 @@ Then `p,q` are involutions, commute with the context variables, and
 gadgets simultaneously.  Every forbidden `P_(c,a)` is zero in the perfect
 model, so all selected pieces vanish there.
 
+The selected half is not merely a spectral polynomial.
+`clifford-selected-half-is-an-index-two-reynolds-surplus` identifies it with
+the difference of two explicit finite-subgroup Reynolds projections.  Hence
+local subgroup-HNN transport is already available whenever a later cell
+really needs the balanced half.

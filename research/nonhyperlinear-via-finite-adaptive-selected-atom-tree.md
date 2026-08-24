@@ -16,11 +16,11 @@ have trace tending to zero, hence normalized-HS distance tending to
 Pauli `B`-half used for the seed has asymptotic ambient trace `1/4`, not
 merely an unspecified positive trace.
 
-At each reached node, `(MFA2)` and `(FAT1)` give
+At each reached node, `(MFA1)` and `(FAT1)` give
 
 ```text
 tau(Q_(sigma i))
- >=(1+eta beta/(2M))tau(Q_sigma)-C' sqrt(E).
+ >=(1+eta beta/M)tau(Q_sigma)-C' sqrt(E).
 ```
 
 There are only `N` steps, so all accumulated constants are fixed.  With

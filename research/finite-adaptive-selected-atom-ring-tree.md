@@ -11,7 +11,7 @@ distinct_from:
 
 **ESTABLISHED ALGEBRAIC COMPILER.**  Fix a depth `N`.  Work over a fixed
 characteristic-zero splitting ring containing `1/2`.  Start with the shared
-BCS involutions, the one-bit selector packet, and the Pauli seed.  For every
+BCS involutions and the Pauli seed.  For every
 node `sigma in {1,...,M}^{<N}` name a projection `q_sigma`; put
 
 ```text
@@ -21,7 +21,7 @@ q_empty=q_-(1+B)/2.
 For every node and forbidden type `i`, put
 
 ```text
-a_(sigma,i)=q_sigma P_i R_i,
+a_(sigma,i)=q_sigma P_i,
 ```
 
 and impose the finite commutation relations which make this a projection.
@@ -39,8 +39,8 @@ d_(sigma,i)q_sigma=q_sigma d_(sigma,i)=0,               (FAR1)
 q_(sigma i)=q_sigma+d_(sigma,i).                        (FAR2)
 ```
 
-Finally impose that every `q_(sigma i)` commute with the shared BCS and
-selector letters needed to form the next family of assignment projections.
+Finally impose that every `q_(sigma i)` commute with the shared BCS letters
+needed to form the next family of assignment projections.
 There are only
 
 ```text
@@ -56,7 +56,7 @@ invariant under the two products in `(FAR1)`.  Therefore
 tr(q_(sigma i))=tr(q_sigma)+tr(a_(sigma,i)).             (FAR3)
 ```
 
-For the maximal type, `(MFA2)` turns `(FAR3)` into the exact supercritical
+For the maximal type, `(MFA1)` turns `(FAR3)` into the exact supercritical
 tree recurrence.  Thus the coefficient presentation already contains all
 the desired payload-conditioned placement; no address register or
 simultaneous routing of the `M` types is needed.

@@ -191,6 +191,20 @@ generated internal non-MF group with one normally generating radical word
 and visible quotient of type `F_(n-1)` but not `F_n`.  All finite-dimensional
 residuals and completions remain exactly those of that quotient.
 
+The preimage construction is a complete subgroup-lattice embedding: the
+interval above the invisible base reproduces actor intersections, joins,
+normalizers, cores, indices, and quotients exactly.  A symmetric Mihailova
+fiber product in two free actors therefore yields a fixed finitely generated
+subgroup with undecidable membership in `U`, while its one-word MF radical,
+profinite completion, Bohr compactification, and all finite-dimensional
+representations remain controlled by a residually-`2` linear quotient.  The
+same radical is intrinsically the terminal lower-central and derived core, so
+all nilpotent and solvable quotients are camouflaged by the same reflection.
+The Leavitt normal form gives decidable word problem for both the unit group
+and this ambient finite-wreath subgroup, making the fiber-product membership
+problem a genuine algorithmic obstruction rather than an ambient equality
+problem.
+
 No large partition is needed: every noninjective factor fold has kernel
 `F_infinity`.  A full-radical group has no proper finite-index subgroup, so
 the elementary two-factor fold already has countably infinite free rank;

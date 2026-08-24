@@ -75,6 +75,21 @@ Bass--Serre actor and every canonical type extends it.  The remaining step is
 still the matrix-only shared-BCS selection which decides which transported
 atoms consume the first-hit capacity.
 
+Only one type is needed at a given level.  By
+`maximal-forbidden-atom-has-a-named-positive-half`, the maximal forbidden
+atom is already a named index-two Reynolds surplus of mass at least
+`(beta/M)q_n-error`.  The optional Clifford half-selector is unnecessary on
+this lane and would only replace that constant by `beta/(2M)`.  This removes
+simultaneous type routing from the open compiler: the unresolved operation
+is placement of one representation-selected Reynolds surplus into the next
+first-hit layer while preserving the active child.
+
+If a downstream branch specifically needs the balanced Clifford child,
+`clifford-selected-half-is-an-index-two-reynolds-surplus` shows that this
+half is itself an index-two Reynolds difference.  Its local HNN exit and HS
+payment therefore require no additional projection decoder.  The same
+regular-companion obstruction remains, now with half the selected mass.
+
 The index-two edge has a stronger local interpretation which is useful for
 the phase-oriented branch lane.  By
 `index-two-reynolds-hnn-is-a-proper-corner-section`, its HNN word is a

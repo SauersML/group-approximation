@@ -19,7 +19,7 @@ mu(d_(sigma,i))=mu(a_(sigma,i)),                       (MTA1)
 mu(q_sigma+d_(sigma,i))
  =mu(q_sigma)+mu(d_(sigma,i)),                         (MTA2)
 mu(a_(sigma,i))
- >=tau(Q_sigma P_i R_i)-o(1).                         (MTA3)
+ >=tau(Q_sigma P_i)-o(1).                             (MTA3)
 ```
 
 The assignment must use the prescribed seed spectral carrier and the same
@@ -37,7 +37,7 @@ can put the two diagonal root packets on overlapping multiplicity
 reservoirs, so conjugacy and finite-window spectral measures alone do not
 give `(MTA2)`.
 
-Once `(MTA1)--(MTA3)` hold, `(MFA2)` gives the same supercritical scalar
+Once `(MTA1)--(MTA3)` hold, `(MFA1)` gives the same supercritical scalar
 recurrence as `(FAR3)`.  The fixed depth then contradicts total mass one.
 
 ## Attempts

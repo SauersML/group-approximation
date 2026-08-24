@@ -22,7 +22,7 @@ nodes,
 ||D_(sigma,i)Q_sigma||_2=o(1),                         (HAT1)
 ```
 
-and the decoded `Q_(sigma i)` reduces the next shared BCS/selector window.
+and the decoded `Q_(sigma i)` reduces the next shared BCS window.
 The error modulus may depend on the fixed BCS and depth `N`, but not on the
 matrix dimension.
 

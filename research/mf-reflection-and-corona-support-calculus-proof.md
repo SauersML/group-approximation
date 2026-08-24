@@ -36,6 +36,10 @@ requires:
   - one-word-internal-mf-reflections-realize-every-vcd
   - finite-orbit-subgroups-inherit-internal-mf-reflections
   - one-word-reflections-realize-every-finiteness-length
+  - internal-mf-reflection-subgroup-lattice
+  - one-word-mf-reflection-has-undecidable-membership
+  - perfect-mf-reflection-over-residually-p-actor
+  - binary-leavitt-unit-word-problem-decidable
 ---
 
 The reflection statements are the adjunction, its limit/colimit formulas,
