@@ -803,6 +803,9 @@ import GroupApproximation.Leavitt.ElementaryRoots
 import GroupApproximation.Leavitt.OuterRootLeavittRouting
 import GroupApproximation.Leavitt.ElementaryStabilization
 import GroupApproximation.Leavitt.RankFourCompressors
+import GroupApproximation.Leavitt.RankTwelveCompressor
+import GroupApproximation.Leavitt.ElementaryNormalGeneration
+import GroupApproximation.Leavitt.RankTwelvePropertyT
 import GroupApproximation.Leavitt.UniversalLeavitt
 import GroupApproximation.Leavitt.UniversalRankFour
 import GroupApproximation.Leavitt.UniversalPropertyT
@@ -1254,6 +1257,7 @@ import GroupApproximation.Analysis.MFAlgebraDimensionNormalization
 import GroupApproximation.Analysis.PolarLiftingHypothesisFree
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
+import GroupApproximation.Analysis.CoronaProjectionOrder
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction
@@ -1673,7 +1677,6 @@ import GroupApproximation.Sofic.SigmaCompressionPair
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Endpoint.MFRecognitionAudit
 import GroupApproximation.Sofic.PropertyTFreeMFCollapse
-import GroupApproximation.Endpoint.PropertyTFreeMFCollapseAudit
 import GroupApproximation.Sofic.PalindromicMinimalExpr
 import GroupApproximation.Sofic.MatchingFactorPair
 import GroupApproximation.Sofic.NonCrossingEdgeBound
