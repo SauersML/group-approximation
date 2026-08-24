@@ -75,6 +75,21 @@ def kap (a : A) : Cell A := Matrix.diagonal fun _ ↦ a
 @[simp] theorem scalarDiagonal_eq_kap (a : A) :
     LeavittFamily.scalarDiagonal (ι := Fin 3) a = kap a := rfl
 
+/-- The manuscript's `a ↦ aI₃`, bundled as a ring homomorphism.  `kap` is the
+bare function; this is the same map with its ring structure, for callers that
+need `map_mul` / `map_add` rather than the `simp` normal form. -/
+def kappa : A →+* Cell A where
+  toFun := kap
+  map_one' := kap_one
+  map_mul' a b := (kap_mul a b).symm
+  map_zero' := kap_zero
+  map_add' a b := (kap_add a b).symm
+
+@[simp] theorem kappa_apply (a : A) : (kappa a : Cell A) = kap a := rfl
+
+theorem kappa_eq_scalarDiagonal (a : A) :
+    (kappa a : Cell A) = LeavittFamily.scalarDiagonal (ι := Fin 3) a := rfl
+
 /-! ## `X` and `Y` -/
 
 variable (L : LeavittFamily A)
