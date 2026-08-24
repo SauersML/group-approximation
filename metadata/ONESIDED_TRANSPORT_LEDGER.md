@@ -28,7 +28,7 @@ row is unconditional: the manuscript's quantifiers live inside a named `Prop`,
 and nothing is accepted as mathematical input from a caller.
 
 `conditional` — the declaration is printed with the weaker `#audit_axioms` and
-is **not** printed with the closed macro.  Its type begins with a binder.  Two
+is **not** printed with the closed macro.  Its type begins with a binder.  Four
 different things put a binder there, and this ledger separates them by name
 rather than by status, because the status vocabulary cannot:
 
@@ -49,6 +49,15 @@ rather than by status, because the status vocabulary cannot:
   `RankTwelveEndpoint.printedDefectConfiguration`, and `eq:amalgam` by
   `manuscriptPrescribedMFQuotients`.  So none of the five can be wrong without
   a closed row failing.
+* **a universe-polymorphic support theorem.**  Lean propositions cannot bind a
+  universe level, so `rankTwelve_propertyT_universe_profile` is audited as a
+  theorem at arbitrary `v`.  It has no mathematical hypothesis: it strengthens
+  the already closed property-`(T)` clauses and does not add a numbered claim.
+* **generic coefficient-ring support.**  `BinaryLeavitt.center_eq_bot` is
+  stated over an arbitrary field, and `BinaryLeavitt.central_units_trivial`
+  quantifies over the central unit it classifies.  Both are unconditional
+  support for the manuscript's ring-centre step; neither asserts group
+  simplicity or discharges root detection.
 
 `MISSING` — no declaration in the development proves the row.  A `MISSING`
 row's target may exist as a *statement* (a `def ... : Prop`); the gate refuses
@@ -56,9 +65,9 @@ to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 59 rows
--- 47 `closed`, 11 `conditional`, 1 `MISSING`, naming 58 distinct declarations.
-One row appears for each label, and thirty further rows either split a
+`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 79 rows
+-- 64 `closed`, 14 `conditional`, 1 `MISSING`, naming 78 distinct declarations.
+One row appears for each label, and fifty further rows either split a
 printed theorem into separately audited constituents or cover an unnumbered
 printed sentence. One declaration appears twice, because the introduction
 displays a corollary that Section 3 then states.
@@ -81,6 +90,9 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Sec. 1 display, `cl_MF^G(N)` as the intersection of MF-target kernels, and as the quotient pullback | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptLiteralMFClosureIsQuotientPullback` | closed |
 | Sec. 1 display, `Rad_MF(G) = cl_MF^G(1)` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFRadicalIsLiteralClosureOfTrivial` | closed |
 | Sec. 1, a full radical kills every homomorphism to an MF group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets` | closed |
+| Introduction, the norm matrix corona denominator is exactly the operator-norm `c₀` direct sum | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaDenominator` | closed |
+| Introduction, MF is equivalent to finite-dimensional asymptotically multiplicative and separating unitary models | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFUnitaryModels` | closed |
+| Introduction, corona images are countable MF groups and MF targets embed in norm matrix coronas | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets` | closed |
 | `eq:intrinsic-defect` the compression-centralizer defect | `GroupApproximation.Manuscript.OneSidedMFRadical.printedDefect` | conditional |
 | Theorem A `thm:compression-criterion`, all four printed clauses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteOneSidedCompressionCriterion` | closed |
 | Theorem A, the three MF-radical clauses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion` | closed |
@@ -89,17 +101,29 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `prop:simple`, exact reduction from the missing root-detection input | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause` | conditional |
 | Theorem B `thm:headline`, every printed clause, simplicity included | `GroupApproximation.Manuscript.OneSidedMFRadical.headlineConclusion_of_normalRootDetection` | conditional |
 | Theorem B minus the simplicity clause, hypothesis-free | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical` | closed |
+| Abstract headline, existence of a countable non-MF group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonMFGroupExists` | closed |
+| Abstract headline, refutation of “every countable group is MF” | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF` | closed |
+| Abstract headline at the equivalent `IsOperatorMF` predicate | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonOperatorMFGroupExists` | closed |
+| Abstract realisation minus simplicity: a countable nontrivial Kazhdan group with full MF radical | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableKazhdanFullMFRadicalGroupExists` | closed |
+| Abstract criterion: a saturated printed defect kills all MF-target maps and obstructs MF-ness | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSaturatedDefectKillsMFTargets` | closed |
 | Theorem B, displayed conclusion `Rad_MF(H) = H` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top` | closed |
 | Theorem B, structural clauses: nontrivial, countable, finitely generated, property (T), and `d` nontrivial and normally generating | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile` | closed |
+| Support for the existing Theorem B and `eq:compresses-L` property-`(T)` clauses: the rank-twelve group and its corner have real and complex property `(T)` at every representation universe | `GroupApproximation.rankTwelve_propertyT_universe_profile` | conditional |
 | `eq:basic-defect` the Hilbert--Schmidt display of `cor:defect-hs` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |
 | Sec. 1, faithful finite-dimensional, residually finite and finite-`L` sterility | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility` | closed |
 | Sec. 1, the amenable clause: property (T) plus amenable gives finite, hence a trivial defect | `GroupApproximation.manuscriptAmenableKazhdanSterility` | closed |
 | Theorem C `thm:prescribed-quotients` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` finite-dimensional commutant rigidity | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity` | closed |
+| Remark after `thm:commutant`, finite dimensionality is essential | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential` | closed |
+| Introduction's finite-subgroup chain: onto conjugation, transported centralizer, and trivial defect | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedAmenableCaseChain` | closed |
+| Scope remark, a sofic and hyperlinear witness can have full MF and shadow residuals | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSoficityIsNotObstructedByFullRadicals` | closed |
+| Scope remark, full MF or shadow residual does not entail nonsoficity or nonhyperlinearity | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity` | closed |
+| Opening proof step of `prop:mf-residual-calculus`, intersections of kernels are normal | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptIntersectionOfKernelsIsNormal` | closed |
 | `eq:shadow-residual` `R_inf-to-2(G)` as the intersection of the `K_2(V)`, with `K_2(V)` in its printed ordinary-limit form and normal | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsIntersectionOfHSKernels` | closed |
 | Sec. 3, `R_inf-to-2(G)` is normal and fully invariant | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptShadowResidualIsNormal` | closed |
 | `lem:stable-finite` stable finiteness and projection comparison | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite` | closed |
 | `lem:kazhdan-projection-order` one-sided order for the Kazhdan projection | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder` | closed |
+| Support for `lem:kazhdan-projection-order`: one projection in `C*_max(L)`, its universal image in every target, and the literal C*-order inequality | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder` | closed |
 | `thm:transport` one-sided Kazhdan transport, both conjugation directions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport` | closed |
 | Proof of `thm:transport`, both transported sequences again satisfy the bounded asymptotic-commutant hypotheses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage` | closed |
 | Proof of `thm:transport`, transport iterated along every word in the compression group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport` | closed |
@@ -121,9 +145,14 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `eq:whitehead-factorization` the six block-unipotent factors | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tauUnit_eq_six_elementary` | closed |
 | Sec. 5, `tau` belongs to the elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem` | closed |
 | Sec. 5, the upper-left corner has property (T) | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.corner_hasKazhdanPropertyT` | closed |
+| Section 5, all concrete ring-and-matrix equations in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedLeavittAlgebraEquations` | closed |
+| Section 5, all concrete compressor equations in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCompressorEquations` | closed |
+| Section 5, combined printed-equation fidelity package | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSectionFiveEquations` | closed |
 | `eq:corner-conjugation` `tau diag(A, I) tau^-1 = diag(Psi(A), I)` | `GroupApproximation.RankTwelve.tau_fullCorner_tauInv` | conditional |
 | `eq:compresses-L` `tau L tau^-1` is contained in `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration` | closed |
 | `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.PropositionSimple` | MISSING |
+| Support for `prop:simple`: the centre of the binary Leavitt algebra is its scalar field | `GroupApproximation.BinaryLeavitt.center_eq_bot` | conditional |
+| Support for `prop:simple`: every central unit over `ZMod 2` is trivial | `GroupApproximation.BinaryLeavitt.central_units_trivial` | conditional |
 | `prop:defect` the explicit centralizer mark, commutator, and normal generation | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect` | closed |
 | `eq:moved-mark` `tau c tau^-1 = e01(q) e34(1)` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_conj_c` | closed |
 | `eq:amalgam` the amalgam `W_Q = B *_A (Q x A)` | `GroupApproximation.MFCamouflage.Camouflage` | conditional |
@@ -151,6 +180,18 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
   root normally generates `H`
   (`RankTwelveEndpoint.normalClosure_defect_eq_top`).  Root normal generation
   is strictly weaker and is not a substitute.
+
+  **One row, nine obligations.**  A sentence-level census
+  (`metadata/ONESIDED_TRANSPORT_SENTENCE_CENSUS.md`) counted what this single
+  row actually stands for.  `prop:simple`'s printed proof is five sentences
+  long and each needs an object the repository does not have: pure infinite
+  simplicity of `R`; the exchange property (the string "exchange ring" does not
+  occur in the tree); Preusser's sandwich theorem; the `I = R` and `I = 0`
+  endpoints of the case split; `Z(R) = F_2`; `z = lambda I`; `lambda` central;
+  and `Z(GL_12(R)) = 1`.  Reading "1 MISSING" as "one lemma away" would be
+  wrong by about a factor of nine.  Some of these have since been closed --
+  see `BinaryLeavitt.center_eq_bot` and `central_units_trivial` -- but the row
+  is a summary, not a measure of the work.
   The headline-minus-simplicity conclusions do not depend on it:
   `Rad_MF(H) = H` is a closed row above
   (`rankTwelve_actualCoronaMFResidual_eq_top`), proved through normal
@@ -159,13 +200,17 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
   unconditional conjunct of `manuscriptBinaryLeavittFullRadical`, derived from
   the full radical. What remains conditional is the simplicity conjunct and
   hence the full Theorem B conjunction containing it.
-* **The amenable clause of the Section 1 sterility paragraph.**  "If `G` is
-  amenable, its property-(T) subgroup `L` is finite" is Bekka--de la
-  Harpe--Valette and is not in the repository.  The group-theoretic half that
-  the manuscript then uses -- `L` finite implies `u L u^-1 = L` implies a
-  trivial defect -- is proved and is the third conjunct of the closed row
-  `manuscriptPrintedDefectSterility`.  The row does not claim the amenable
-  hypothesis.
+* ~~**The amenable clause of the Section 1 sterility paragraph.**~~
+  **No longer withheld.**  "If `G` is amenable, its property-(T) subgroup `L`
+  is finite" is cited to Bekka--de la Harpe--Valette in the manuscript and is
+  now *proved* in the development:
+  `Kazhdan.AmenableKazhdanFinite.finite_of_isAmenable_of_kazhdan` and
+  `finite_subgroup_of_isAmenable_of_kazhdan`, packaged as the closed row
+  `manuscriptAmenableKazhdanSterility`.  `Algebra.Amenable.IsAmenable` is the
+  von Neumann invariant-mean definition, and the Folner extraction it needs is
+  the Tarski--Hall argument in `Sofic/NearActionFolner.lean`, so this is not a
+  definitional shortcut.  The manuscript's `\cite{BHV}` for this sentence is
+  now decorative.
 * **Property (T) for `EL_n` over a finitely generated ring** is cited to
   Ershov--Jaikin-Zapirain in the manuscript but is *not* a citation here: the
   two property-(T) rows above are proved in the development from
@@ -186,15 +231,36 @@ at least as strong as the printed one.
   runs in the favourable direction: an obstruction theorem for the larger
   subgroup implies the printed one.  Every row above is stated on
   `printedDefect`.
-* **`lem:kazhdan-projection-order` does not route through `C*_max(L)`.**  The
-  printed lemma takes `P` to be the image of the Kazhdan projection under
-  `C*_max(L) -> B`.  The Lean endpoint constructs the projection directly in
-  the target algebra as the spectral projection of the orbit average at the
-  isolated point `1`, which is what the printed proof of `thm:transport`
-  actually consumes.  The order `U* P U <= P` is stated as its two absorption
-  identities, because a general `CStarAlgebra` carries no global order
-  instance; the module documents the one-line rewrite to the displayed
-  inequality once a caller installs `CStarAlgebra.spectralOrder`.
+* **`lem:kazhdan-projection-order`: read the `C*_max` carrier, not the
+  surrogate.**  The printed lemma is
+  `manuscriptMaximalCStarKazhdanProjectionOrder`: it constructs one projection
+  in `C*_max(L)`, maps it through the universal extension to every target, and
+  concludes the manuscript's literal `U* P U <= P` in any compatible C*-order.
+  That is the row a reader should look at.
+
+  The other carrier, `manuscriptOneSidedKazhdanProjectionOrder`, is a
+  *surrogate* and is weaker than the print in three separate ways, recorded
+  here because the status word `closed` cannot show them:
+
+  1. it never mentions `C*_max(L)`; its projection is the spectral projection
+     of a chosen finite orbit average at the isolated point `1`, and nothing
+     identifies that with the image of the Kazhdan projection;
+  2. the Kazhdan pair `(S, kappa)` is existentially quantified *inside* the
+     conclusion, so the statement is "for some symmetric generating Kazhdan
+     pair, the projection built from it satisfies ...", whereas the printed `P`
+     is canonical;
+  3. nothing forces that projection to be nonzero, so both absorption
+     identities are satisfiable by `P = 0`.
+
+  A fourth, pointed out by the sentence census: the Kazhdan set and constant
+  are existentially quantified *inside* the conclusion, so the projection whose
+  order is proved depends on that choice and no theorem says the conclusion is
+  independent of it.  The printed `P` is a canonical object; the surrogate's is
+  not.
+
+  It is retained because it is the form the printed proof of `thm:transport`
+  consumes, and because it needs no global order instance on the target.  It is
+  not evidence for the printed lemma on its own.
 * **`lem:stable-finite`** states the projection comparison in ring form
   (`q * p = p` for `p <= q`), for the same reason.
 * **`cl_MF` has two spellings.**  `literalMFClosure` is the printed
