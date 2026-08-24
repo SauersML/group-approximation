@@ -11,6 +11,8 @@ import GroupApproximation.Analysis.MaximalCStarKazhdanAverage
 import GroupApproximation.Analysis.QuasiRegularWitness
 import GroupApproximation.Analysis.StateExtension
 import GroupApproximation.Analysis.SpectralStateWitness
+import GroupApproximation.Analysis.SpectralComponentDiameter
+import GroupApproximation.Analysis.ClopenSpectralProjection
 import GroupApproximation.Analysis.GNSEigenvector
 import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
 import GroupApproximation.Analysis.AbstractSpectralGap
