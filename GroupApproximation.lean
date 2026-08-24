@@ -1710,6 +1710,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefinitions
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedRemarks
 import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
+import GroupApproximation.Leavitt.ElementarySimplicity
+import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaClass
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

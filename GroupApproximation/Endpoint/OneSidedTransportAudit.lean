@@ -13,6 +13,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.TransportAssembly
 import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdan
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanProjectionOrder
 import GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCorner
+import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaClass
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedSectorProof
 import GroupApproximation.Manuscript.OneSidedMFRadical.CompressionCriterion
 import GroupApproximation.Manuscript.OneSidedMFRadical.DefectSaturation
 import GroupApproximation.Manuscript.OneSidedMFRadical.ShadowResidual
@@ -139,6 +141,8 @@ which reports the closure without the binder check:
 /-! ## Section 4: the canonical Kazhdan sector and the MF radical -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCornerCoronaClass
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdanCornerSteps
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectNormalKazhdanRadical
