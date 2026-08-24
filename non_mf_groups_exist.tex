@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] Groups invisible to finite-matrix limits},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] One-sided Kazhdan compression and MF radicals},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -53,19 +53,20 @@
   \medskip}
 
 \begin{document}
-\title{Groups invisible to finite-matrix limits}
+\title{One-sided Kazhdan compression and MF radicals}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-Not every countable group is MF in the operator-norm sense.  We prove a
-criterion which puts normal property~\textup{(T)} subgroups arising from
-one-sided subgroup compression into the MF radical.  An elementary group
-over the binary Leavitt algebra satisfies the criterion and has full MF
-radical; it is also simple and has property~\textup{(T)}.  We further show
-that any countable group can occur as the part of a larger group detected by
-all homomorphisms to MF groups.
+Not every countable group can be faithfully approximated, in operator norm,
+by finite-dimensional unitary matrices.  We prove this by identifying a
+structural obstruction: a one-sided self-compression of a property~\textup{(T)}
+subgroup can force a normal property~\textup{(T)} subgroup to disappear in
+every norm matrix corona.  If the associated commutators normally generate
+the group, every homomorphism from that group to an MF group is trivial.  A
+construction over the binary Leavitt algebra realizes these hypotheses in a
+simple property~\textup{(T)} group.
 \end{abstract}
 
 \maketitle
@@ -210,8 +211,6 @@ intersection of the kernels of all MF-target maps killing $N$ is $N$, which
 is the asserted closure criterion.
 \end{proof}
 
-The obstruction is captured by the following criterion.
-
 For a subgroup $L\le G$, put
 %<webmath object="CompG" when="\operatorname{Comp}_G(L)" title="the elements of G that send L back inside itself">
 % Comp_G(L) consists of those u in G for which conjugation sends every element
@@ -241,8 +240,6 @@ and define its \emph{compression--centralizer defect} by
    u\in\operatorname{Comp}_G(L),\ c\in C_G(L),\ \ell\in L
  }_G.
 \end{equation}
-This subgroup depends only on the pair $(G,L)$.
-
 \begin{mainthm}[one-sided compression criterion]
 \label{thm:compression-criterion}
 Let $G$ be countable and let $L\le G$ have property~\textup{(T)}.  If
@@ -258,21 +255,18 @@ $K\le\mathfrak D_G(L)$, then
 \]
 In particular, a nontrivial such $K$ makes $G$ non-MF; if $G$ has
 property~\textup{(T)} and $\mathfrak D_G(L)=G$, then
-$\Rad_{\mathrm{MF}}(G)=G$.  Every finite-dimensional linear representation
-of $G$ over every field kills $\mathfrak D_G(L)$.
+$\Rad_{\mathrm{MF}}(G)=G$.
 \end{mainthm}
 
-Corollary~\ref{cor:defect-hs} shows that every generator of
-$\mathfrak D_G(L)$ converges to
-the identity in normalized Hilbert--Schmidt norm in every operator-norm
-asymptotic representation.  If the image of $K$ in a norm matrix corona were
-nontrivial, normality would make the projection onto the $K$-fixed vectors
-commute with the image of $G$.  Compression to its complementary corner
-would give another operator-norm asymptotic representation, while the
-Kazhdan inequality would keep some element of $K$ a fixed positive
-Hilbert--Schmidt distance from the identity.  This contradiction proves the
-criterion.  In finite dimension, Theorem~\ref{thm:commutant} proves the
-corresponding statement over every field without property~\textup{(T)}.
+Corollary~\ref{cor:defect-hs} puts $\mathfrak D_G(L)$ in the kernel detected
+by normalized Hilbert--Schmidt norm.  If a corona representation were
+nontrivial on $K$, normality of $K$ would make its Kazhdan projection commute
+with the image of $G$.  The complementary corner would then contain no
+$K$-fixed vectors.  A Kazhdan inequality gives an element of $K$ whose
+Hilbert--Schmidt distance from the identity is bounded below there, contrary
+to the first conclusion.  Independently, Theorem~\ref{thm:commutant} shows
+that every finite-dimensional linear representation over every field kills
+$\mathfrak D_G(L)$.
 
 Whether every countable group is MF was asked in the group-MF literature and
 remained open~\cite{CDE,Korchagin,Thom,Shulman}.  Applying
@@ -328,14 +322,6 @@ Equivalently, every homomorphism from $H$ to an MF group is trivial.
 In particular, $H$ is non-MF.
 \end{mainthm}
 
-The analytic input is Corollary~\ref{cor:defect-hs}: under the hypotheses of
-Theorem~\ref{thm:compression-criterion}, every operator-norm asymptotic
-representation $(V_n)$ of $G$ satisfies
-\begin{equation}\label{eq:basic-defect}
- \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
- \qquad(\ell\in L).
-\end{equation}
-
 %<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the explicit matrix that sends L into a copy inside L">
 % Tau is a particular invertible 12-by-12 elementary matrix constructed later.
 % Conjugating every element of L by tau gives another element of L.  This is
@@ -364,10 +350,11 @@ $\Rad_{\mathrm{MF}}(H)=H$.
 
 If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
 conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ injectively into
-itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.  This also
-shows that the configuration cannot occur in several familiar settings: if
-$G$ has a faithful finite-dimensional linear representation or is residually
-finite, then $\mathfrak D_G(L)=1$.  If $G$ is amenable, its
+itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
+Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
+linear representation.  The same conclusion holds if $G$ is residually
+finite, because every nonidentity element then survives in a finite
+permutation representation.  If $G$ is amenable, its
 property-\textup{(T)} subgroup $L$ is finite~\cite{BHV}; then
 $uLu^{-1}=L$, so
 $ucu^{-1}$ centralizes $L$ for every
@@ -420,11 +407,12 @@ semidirect products~\cite{Shulman}.  The operator-norm case
 remained open after non-approximability had been established for finite
 Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
 Bachner--Dogon--Lubotzky study an operator--Hilbert--Schmidt stability
-condition as a possible source of non-MF groups~\cite{BDL}.  Here the
-operator norm makes conjugation into a representation in a second norm
-matrix corona.  The Kazhdan projection in that corona then controls the
-normalized Hilbert--Schmidt commutant, and the normal Kazhdan subgroup
-argument of Section~4 turns this control into MF-radical membership.
+condition as a possible source of non-MF groups~\cite{BDL}.  Here
+operator-norm control implies that coordinatewise conjugation defines a
+representation in a second norm matrix corona.  Its Kazhdan projection makes
+the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
+compressor.  Section~4 then proves that a normal property-\textup{(T)} subgroup
+contained in the defect lies in the MF radical.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -784,16 +772,21 @@ If $f\colon G\to Q$ is a homomorphism, then
 \end{equation}
 If $S\le G$ is a nontrivial simple subgroup and $D\cap S\ne1$, then
 $S\le D$.  If in addition the normal closure of $S$ in $G$ is all of $G$,
-then $D=G$.  In this direct case, if $G$ is countable and both $L$ and $G$
-have property~\textup{(T)}, then
+then $D=G$.  If moreover $G$ is countable and both $L$ and $G$ have
+property~\textup{(T)}, then
 \[
  \Rad_{\mathrm{MF}}(G)=G.
 \]
 
-More generally, suppose $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
+Suppose instead that $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
 $f(S)$ normally generates $Q$.  Then
 \[
  \mathfrak D_Q(f(L))=Q.
+\]
+If, in addition, $G$ is countable and both $L$ and $G$ have
+property~\textup{(T)}, then
+\[
+ \Rad_{\mathrm{MF}}(Q)=Q.
 \]
 \end{proposition}
 
@@ -807,12 +800,16 @@ $D$ into a defining generator of $\mathfrak D_{f(G)}(f(L))$.  This proves
 The subgroup $D$ is normal in $G$, so $D\cap S$ is normal in $S$.
 Simplicity and $D\cap S\ne1$ give $D\cap S=S$, hence $S\le D$.  Since $D$
 is normal in $G$, it then contains the normal closure of $S$.  Under the
-second hypothesis this is $G$.
+second hypothesis this is $G$.  The direct radical assertion is
+Theorem~\ref{thm:compression-criterion} with $K=G$.
 
 For the image statement, \eqref{eq:defect-functoriality} gives
 $f(S)\le\mathfrak D_Q(f(L))$.  The latter subgroup is normal in $Q$, so it
-contains the normal closure of $f(S)$ and is therefore all of $Q$.  The last
-radical assertion is Theorem~\ref{thm:compression-criterion} with $K=G$.
+contains the normal closure of $f(S)$ and is therefore all of $Q$.  Property
+\textup{(T)} passes to quotients, so the final hypotheses give property
+\textup{(T)} for both $f(L)$ and $Q$.  Applying
+Theorem~\ref{thm:compression-criterion} inside $Q$, with $K=Q$, proves the
+last assertion.
 \end{proof}
 \section{The binary Leavitt self-compression}
 
@@ -886,8 +883,9 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
 
 The field $\F_2$ is used in the simplicity argument below: its unit group is
 trivial, so the central subgroup left by the normal-subgroup theorem
-vanishes.  The size $12$ records the $3\times3$ Kazhdan corner and the
-standard Whitehead doubling above; no minimality assertion is intended.
+vanishes.  The dimension $12$ comes from applying the $6\times6$ Whitehead
+factorization to the $3\times3$ Kazhdan corner.  We do not claim that $12$ is
+minimal.
 
 \section{The full MF radical}
 
@@ -984,7 +982,6 @@ $\normal d_H=H$ directly.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
-The group $H$ is nontrivial and simple by Proposition~\ref{prop:simple}.
 The finitely generated $\F_2$-algebra $R$ is countable, and hence so is $H$.
 The ring $R$ is finitely generated, and $H$ has property~\textup{(T)} by the
 Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
@@ -997,6 +994,8 @@ Proposition~\ref{prop:defect} gives $\normal d_H=H$, so
 $\mathfrak D_H(L)=H$.  The group $H$ has property~\textup{(T)}, so
 Theorem~\ref{thm:compression-criterion}, applied with $K=H$, gives
 $\Rad_{\mathrm{MF}}(H)=H$.
+Independently of this radical calculation, Proposition~\ref{prop:simple}
+shows that $H$ is nontrivial and simple.
 
 If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
 faithful homomorphism from $M$ to a norm matrix corona.  Since
@@ -1117,8 +1116,7 @@ is trivial, and the displayed equality becomes
 
 \end{proof}
 
-The factorization also determines all MF consequences of additional
-relations.  If $N\trianglelefteq W_Q$, then
+If $N\trianglelefteq W_Q$, the same factorization gives
 \begin{equation}\label{eq:closure-pullback}
  \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
  =\pi_Q^{-1}\!\left(
