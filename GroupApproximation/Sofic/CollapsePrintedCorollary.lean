@@ -246,7 +246,7 @@ theorem coronaRep_commutator_eq_one_printed
     exact smul_one_sub_mul_comm (2 : ℂ)⁻¹ hw
   -- Projection collapse applies: `p` commutes with the full image of `L`.
   have hcollapse :=
-    ProjectionCompressionCollapse.corona_projection_collapse L hT hcomp X hX
+    ProjectionCompressionCollapse.corona_projection_collapse L hT hcomp X
       rho ((2 : ℂ)⁻¹ • (1 - u)) hsa hproj hpcomm horb
   -- Hence `u = 1 − 2p` commutes with `Θ(L)`, and the commutator dies.
   intro γ hγ

@@ -159,6 +159,30 @@ theorem conj_projection_eq_cfc (u : unitary A) {v : A}
     (spectralIndicator v U hU) v
     (spectralIndicator_continuousOn hU) hcont
 
+/-- Pairwise commutation of two unitary conjugates, together with the two
+starred commutation relations, passes to every clopen spectral projection.
+This is the functional-calculus step used before projection collapse. -/
+theorem commute_conj_projections (u₁ u₂ : unitary A) {v : A}
+    (hv : IsStarNormal v) {U : Set (spectrum ℂ v)} (hU : IsClopen U)
+    (hcomm : Commute
+      (Unitary.conjStarAlgAut ℂ A u₁ v)
+      (Unitary.conjStarAlgAut ℂ A u₂ v))
+    (hstar : Commute
+      (star (Unitary.conjStarAlgAut ℂ A u₁ v))
+      (Unitary.conjStarAlgAut ℂ A u₂ v))
+    (hstarSwap : Commute
+      (star (Unitary.conjStarAlgAut ℂ A u₂ v))
+      (Unitary.conjStarAlgAut ℂ A u₁ v)) :
+    Commute
+      (Unitary.conjStarAlgAut ℂ A u₁ (projection v U hU))
+      (Unitary.conjStarAlgAut ℂ A u₂ (projection v U hU)) := by
+  rw [conj_projection_eq_cfc u₁ hv hU,
+    conj_projection_eq_cfc u₂ hv hU]
+  have hpcomm := hcomm.cfc hstar (spectralIndicator v U hU)
+  have hpstar := hstarSwap.symm.cfc hcomm.star_star
+    (spectralIndicator v U hU)
+  exact (hpcomm.symm.cfc hpstar.symm (spectralIndicator v U hU)).symm
+
 /-- Unitary conjugation preserves the spectrum exactly. -/
 theorem spectrum_conj_eq (u : unitary A) (v : A) :
     spectrum ℂ (Unitary.conjStarAlgAut ℂ A u v) = spectrum ℂ v :=

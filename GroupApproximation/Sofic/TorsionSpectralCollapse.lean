@@ -425,7 +425,7 @@ theorem actualCoronaMFInvisible_of_torsionWitness :
             NormMatrixCStarCorona (fun n ↦ X n)) := by
     intro j
     refine ProjectionCompressionCollapse.corona_projection_collapse L hT
-      hcomp X hX rho (fourierIdem ζ m v j)
+      hcomp X rho (fourierIdem ζ m v j)
       (star_fourierIdem hζM hζnorm hvmem hvM j)
       (fourierIdem_mul_self hζM hvM j) ?_ ?_
     · intro δ hδ

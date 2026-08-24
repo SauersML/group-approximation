@@ -262,8 +262,9 @@ theorem manuscriptProjectionCollapse :
             p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) := by
   intro E _ _ L hT s hcomp X hX
+  letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
   exact ProjectionCompressionCollapse.corona_projection_collapse L hT
-    (s := s) hcomp X hX
+    (s := s) hcomp X
 
 /-- Closed form: torsion witnesses have invisible commutators. -/
 theorem manuscriptTorsionWitnessInvisible :
