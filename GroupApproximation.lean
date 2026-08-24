@@ -1609,6 +1609,7 @@ import GroupApproximation.Sofic.PalindromicMinimalExpr
 import GroupApproximation.Sofic.MatchingFactorPair
 import GroupApproximation.Sofic.NonCrossingEdgeBound
 import GroupApproximation.Sofic.NonCrossingDegreeBound
+import GroupApproximation.Sofic.MatchingChordGraph
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
