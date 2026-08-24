@@ -1760,6 +1760,9 @@ pre.src .ln{display:inline-block;width:4.2em;padding-right:1.1em;text-align:righ
 color:var(--mut2);user-select:none}
 pre.src .ln:target{color:var(--accent);font-weight:700}
 """.replace("SANS", SANS).replace("MONO", MONO).replace("PALETTE", PALETTE)
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "math_explainer.css"), encoding="utf-8") as _math_css:
+    SITE_CSS += "\n" + _math_css.read()
 # Typeset on demand: `cairnTypeset(el)` is safe to call before KaTeX has
 # loaded (it re-runs on the script's load event) and never throws on a bad
 # expression -- a malformed formula in one node must not blank the page.
@@ -1927,6 +1930,9 @@ KATEX = (
     '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
     'contrib/auto-render.min.js" crossorigin="anonymous"></script>'
     '<script>' + KATEX_OPTS_JS + '</script>')
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "math_explainer.js"), encoding="utf-8") as _math_js:
+    KATEX += '<script>' + _math_js.read() + '</script>'
 
 
 # ---------------------------------------------------------------------------

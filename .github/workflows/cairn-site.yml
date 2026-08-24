@@ -16,6 +16,8 @@ on:
     paths:
       - 'research/**'
       - 'tools/cairn.py'
+      - 'tools/math_explainer.js'
+      - 'tools/math_explainer.css'
       - 'bin/cairn'
       - 'non_mf_groups_exist.tex'
       - 'non_mf_groups_exist.pdf'
@@ -117,18 +119,38 @@ jobs:
       # warning annotation on the run.
       - name: Build the paper edition
         run: |
+          paper_built=false
+          notes_built=false
           if node tools/paper_site/test_inline.js \
-            && node tools/paper_site/test_editions.js \
-            && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html \
-            && python3 tools/paper_site/build.py --edition notes --out .cairn/site/notes/index.html; then
-            echo "paper and notes editions built"
+            && node tools/test_math_explainer.js \
+            && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html; then
+            paper_built=true
+            echo "paper edition built"
             install -m 0644 non_mf_groups_exist.pdf .cairn/site/non_mf_groups_exist.pdf
-            install -m 0644 non_mf_group_notes.pdf .cairn/site/non_mf_group_notes.pdf
-            # Cross-link: a "paper" entry in the graph header.  This edits the
-            # generated page only -- bin/cairn and tools/cairn.py stay untouched.
-            sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><a href="notes/">notes</a><span class="stats">|' .cairn/site/index.html
           else
-            echo "::warning::paper edition build failed; publishing without /paper"
+            echo "::warning::paper edition build failed; publishing the research graph without /paper"
+          fi
+
+          if node tools/paper_site/test_editions.js \
+            && python3 tools/paper_site/build.py --edition notes --out .cairn/site/notes/index.html; then
+            notes_built=true
+            echo "notes edition built"
+            install -m 0644 non_mf_group_notes.pdf .cairn/site/non_mf_group_notes.pdf
+          else
+            echo "::warning::notes edition build failed; publishing without /notes"
+          fi
+
+          # Cross-link only editions that passed their own build.  This edits
+          # the generated page, not bin/cairn or tools/cairn.py.
+          edition_links=""
+          if [ "$paper_built" = true ]; then
+            edition_links='<a href="paper/">paper</a>'
+          fi
+          if [ "$notes_built" = true ]; then
+            edition_links="${edition_links}<a href=\"notes/\">notes</a>"
+          fi
+          if [ -n "$edition_links" ]; then
+            sed -i "s|<header><span class=\"stats\">|<header>${edition_links}<span class=\"stats\">|" .cairn/site/index.html
           fi
 
       - name: Fold in the latest API docs, if published
