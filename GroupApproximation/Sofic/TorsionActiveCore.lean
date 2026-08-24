@@ -502,6 +502,13 @@ noncomputable def activeCoreMatrix [Fintype I]
   orthonormalMatrixOfLinearIsometryEquiv
     (E := activeEuclideanSubspace W) (activeCoreLinearIsometryEquiv W i)
 
+/-- The active-core matrix with its index presented through the canonical
+`FiniteModel`, for direct use with normalized matrix norms. -/
+noncomputable def activeCoreModelMatrix [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (i : I) :
+    Matrix.unitaryGroup (activeCoreModel W) ℂ :=
+  activeCoreMatrix W i
+
 /-- The matrix size of the active block is exactly its Euclidean dimension. -/
 @[simp] theorem card_activeCoreModel [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) :

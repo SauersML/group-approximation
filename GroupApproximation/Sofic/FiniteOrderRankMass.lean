@@ -438,10 +438,10 @@ theorem activeCore_reblocking_dimension_and_hsGap
           ((R : Matrix Y Y ℂ) - 1).rank ∧
       1 ≤ (m : ℝ) ^ 2 * (TorsionActiveCore.totalWordLength words : ℝ) *
         hsNormSq (TorsionActiveCore.activeCoreModel W)
-          (((TorsionActiveCore.activeCoreMatrix W i₀ :
-              Matrix.unitaryGroup (TorsionActiveCore.ActiveCoreIndex W) ℂ) :
-                Matrix (TorsionActiveCore.ActiveCoreIndex W)
-                  (TorsionActiveCore.ActiveCoreIndex W) ℂ) - 1) := by
+          (((TorsionActiveCore.activeCoreModelMatrix W i₀ :
+              Matrix.unitaryGroup (TorsionActiveCore.activeCoreModel W) ℂ) :
+                Matrix (TorsionActiveCore.activeCoreModel W)
+                  (TorsionActiveCore.activeCoreModel W) ℂ) - 1) := by
   let W := TorsionActiveCore.conjugateWordPacket R words
   let S := TorsionActiveCore.activeCoreModel W
   let U := TorsionActiveCore.activeCoreMatrix W i₀
@@ -471,12 +471,16 @@ theorem activeCore_reblocking_dimension_and_hsGap
       (Fintype.card S : ℝ) * hsNormSq S E := by
     rw [UltraproductScaledTransport.hsNormSq_eq_matMass_div]
     have hc : (Fintype.card S : ℝ) ≠ 0 := by exact_mod_cast hcardpos.ne'
-    field_simp
+    field_simp [hc]
+    rfl
   have hrankR : (((R : Matrix Y Y ℂ) - 1).rank : ℝ) ≤
       (m : ℝ) ^ 2 * ((Fintype.card S : ℝ) * hsNormSq S E) := by
-    exact_mod_cast hretain
-    rw [← hmassEq]
-    exact (mod_cast hretain).trans hmass
+    calc
+      (((R : Matrix Y Y ℂ) - 1).rank : ℝ) ≤ (E.rank : ℝ) := by
+        exact_mod_cast hretain
+      _ ≤ (m : ℝ) ^ 2 * ScaledKazhdanTransport.matMass E := hmass
+      _ = (m : ℝ) ^ 2 * ((Fintype.card S : ℝ) * hsNormSq S E) := by
+        rw [hmassEq]
   have hdimR : (Fintype.card S : ℝ) ≤
       (TorsionActiveCore.totalWordLength words : ℝ) *
         (((R : Matrix Y Y ℂ) - 1).rank : ℝ) := by
@@ -492,8 +496,19 @@ theorem activeCore_reblocking_dimension_and_hsGap
   refine ⟨hdim, ?_⟩
   have hrankRpos : 0 < (((R : Matrix Y Y ℂ) - 1).rank : ℝ) := by
     exact_mod_cast hrank
-  apply (mul_le_mul_left hrankRpos).mp
-  simpa [mul_assoc, mul_comm, mul_left_comm, S, E, U, W] using hscaled
+  have hmul : (((R : Matrix Y Y ℂ) - 1).rank : ℝ) * 1 ≤
+      (((R : Matrix Y Y ℂ) - 1).rank : ℝ) *
+        ((m : ℝ) ^ 2 * (TorsionActiveCore.totalWordLength words : ℝ) *
+          hsNormSq S E) := by
+    simpa [mul_assoc, mul_comm, mul_left_comm] using hscaled
+  have hgap : 1 ≤
+      (m : ℝ) ^ 2 * (TorsionActiveCore.totalWordLength words : ℝ) *
+        hsNormSq S E :=
+    le_of_mul_le_mul_left hmul hrankRpos
+  change 1 ≤
+    (m : ℝ) ^ 2 * (TorsionActiveCore.totalWordLength words : ℝ) *
+      hsNormSq S E
+  exact hgap
 
 end
 
