@@ -173,3 +173,4 @@
 32749879615	2026-08-24T16:17:15Z	GroupApproximation/Sofic/AntipodalRadicalCollision.lean	AsymptoticUnitaryRepresentation.antipodal_detects
 32753967804	2026-08-24T17:04:56Z	GroupApproximation/Sofic/AntipodalTraceExtraction.lean	normTrace_unitary_conj
 32758679976	2026-08-24T17:48:13Z	GroupApproximation/Sofic/ActiveCoreAlmostRepresentation.lean	chosenGeneratorWord_value
+32765721140	2026-08-24T19:02:32Z	GroupApproximation/Sofic/ApproxInvolutionCorner.lean	hermitianPart_conjTranspose
