@@ -7,6 +7,70 @@
   var ATOM_SELECTOR = '.mord,.mbin,.mrel,.mop,.mpunct,.mopen,.mclose';
   var panel;
   var lastFormula;
+  var explanationHistory = [];
+  var currentExplanation;
+
+  var TERM_INFO = {
+    'group': item('group',
+      'A collection of reversible operations that can be combined. There is an identity operation that does nothing, and every operation has an inverse that undoes it.'),
+    'subgroup': item('subgroup',
+      'A smaller collection inside a group that is itself a group under the same operation.'),
+    'normal subgroup': item('normal subgroup',
+      'A subgroup that the whole group preserves under conjugation. This is exactly the kind of subgroup that can be collapsed to form a quotient group.'),
+    'MF group': item('MF group',
+      'A group that can be represented faithfully by finite unitary matrices in the limit, with multiplication errors tending to zero in operator norm.'),
+    'homomorphism': item('homomorphism',
+      'A map between groups that preserves multiplication and the identity. It translates operations in one group into operations in another without changing their algebraic relationships.'),
+    'representation': item('representation',
+      'A homomorphism that turns abstract group elements into concrete matrices or operators.'),
+    'identity': item('identity',
+      'The do-nothing element of a group. Sending an element to the identity means the representation cannot distinguish that element from doing nothing.'),
+    'kernel': item('kernel',
+      'The elements that a homomorphism sends to the identity. The kernel measures exactly what information the map erases.'),
+    'quotient group': item('quotient group',
+      'A group formed by treating every element of a chosen normal subgroup as the identity. It keeps the structure that remains after those elements are collapsed.'),
+    'quotient map': item('quotient map',
+      'The natural homomorphism from a group to a quotient group. Its kernel is exactly the normal subgroup being collapsed.'),
+    'norm matrix corona': item('norm matrix corona',
+      'A single algebraic object built from an infinite sequence of finite matrix algebras. Two matrix sequences count as the same when their operator-norm difference tends to zero.'),
+    'operator norm': item('operator norm',
+      'The largest factor by which a matrix can stretch a vector. An error tending to zero in operator norm is small in every direction.'),
+    'unitary matrix': item('unitary matrix',
+      'A matrix that preserves lengths and angles. Its inverse is its conjugate transpose.'),
+    'projection': item('projection',
+      'A linear operation that keeps one subspace and sends the complementary directions to zero.'),
+    'trace': item('trace',
+      'The sum of a matrix’s diagonal entries. For projections, the trace records dimension.'),
+    'rank': item('rank',
+      'The number of independent output directions of a matrix; equivalently, the dimension of its image.'),
+    'conjugation': item('conjugation',
+      'Replacing an element x by gxg⁻¹. It changes the point of view inside the group without changing the element’s intrinsic group-theoretic behavior.'),
+    'MF radical': item('MF radical',
+      'The normal subgroup consisting of every element that every homomorphism into every norm matrix corona sends to the identity.')
+  };
+
+  var TERM_ALIASES = {
+    'groups': 'group',
+    'subgroups': 'subgroup',
+    'mf groups': 'MF group',
+    'homomorphisms': 'homomorphism',
+    'representations': 'representation',
+    'finite-matrix models': 'representation',
+    'quotient': 'quotient group',
+    'quotients': 'quotient group',
+    'unitary matrices': 'unitary matrix',
+    'projections': 'projection',
+    'conjugates': 'conjugation'
+  };
+
+  Object.keys(TERM_INFO).forEach(function (term) {
+    TERM_ALIASES[term.toLowerCase()] = term;
+  });
+
+  var TERM_PATTERN = new RegExp(
+    '\\b(' + Object.keys(TERM_ALIASES)
+      .sort(function (a, b) { return b.length - a.length; })
+      .map(escapePattern).join('|') + ')\\b', 'gi');
 
   function clean(value) {
     return String(value || '').replace(/\s+/g, ' ').trim();
@@ -51,12 +115,17 @@
     return '';
   }
 
-  function localRole(token, tex, context, info) {
+  function localRole(token, tex, context, info, atom) {
     var t = clean(token).replace(/\u200b/g, '');
     var s = tex || '';
+    if (scriptedTokenInfo(t, s, atom)) return '';
     var definition = nearbyDefinition(t, context);
     if (definition) {
       return 'Here, “' + t + '” is the name introduced for ' + definition + '.';
+    }
+
+    if ((t === 'G' || t === 'H' || t === 'W') && isFullRadicalFormula(s)) {
+      return 'Here, ' + t + ' is the entire group under study.';
     }
 
     if (t === 'H' && /H\s*=\s*\\(?:operatorname\s*\{)?(?:EL|E)/.test(s)) {
@@ -77,6 +146,9 @@
     if (t === 'D' && /D\s*\(\s*[A-Z]/.test(s)) {
       return 'Here, D packages all commutators created by the displayed compression and centralizer data.';
     }
+    if (t === 'N' && /\\trianglelefteq|\\triangleleft/.test(s)) {
+      return 'Here, N is the normal subgroup whose elements are treated as the identity when the quotient is formed.';
+    }
     if ((t === 'π' || t === 'ρ' || t === 'Θ' || t === 'V') &&
         /(?:\\to|\\longrightarrow|→)/.test(s)) {
       return 'Here, “' + t + '” names the map shown by the arrow; the expression before the arrow is its source and the expression after it is its target.';
@@ -94,9 +166,9 @@
       return 'Here, “' + t + '” is the object being asserted to lie inside the object written to its right.';
     }
     if (/^[A-Za-zΑ-Ωα-ω]$/.test(t)) {
-      return 'Here, “' + t + '” is the local name used in this formula. The whole-formula explanation and the quoted sentence below determine its role without assuming that the same letter means the same thing elsewhere.';
+      return '';
     }
-    return 'Here, this symbol has its ordinary mathematical role—' + info.name + '—inside the complete statement explained below.';
+    return '';
   }
 
   function item(name, meaning) {
@@ -107,10 +179,92 @@
     return pattern.test(tex || '');
   }
 
+  function adjacentScript(atom) {
+    if (!atom) return null;
+    var next = atom.nextElementSibling;
+    return next && next.classList && next.classList.contains('msupsub') ? next : null;
+  }
+
+  function scriptKind(tex, token) {
+    var source = compactTex(tex);
+    var t = clean(token).replace(/−/g, '-');
+    if (t === '-1' && /\^\{?-1\}?/.test(source)) return 'superscript';
+    if (t === '*' && /\^\{?(?:\\ast|\*)\}?/.test(source)) return 'superscript';
+    if (new RegExp('\\^\\{?' + escapePattern(t) + '\\}?').test(source)) return 'superscript';
+    return 'subscript';
+  }
+
+  function scriptItem(token, base, kind, tex, scriptText) {
+    var t = clean(token).replace(/\u200b/g, '');
+    var b = clean(base).replace(/\u200b/g, '');
+    var script = clean(scriptText).replace(/\u200b/g, '');
+
+    if (kind === 'superscript') {
+      if (t === '−1' || t === '-1') return item('inverse',
+        'The exponent −1 means “undo this operation.” For a group element or invertible matrix, it denotes the inverse.');
+      if (t === '*' || t === '∗') return item('adjoint',
+        'The star in the upper-right denotes the adjoint: transpose the matrix and complex-conjugate its entries.');
+      return item('exponent ' + t,
+        'An upper-right exponent records a power or another operation applied to the base symbol.');
+    }
+
+    if (b === 'Rad' && t === 'MF') return item('the MF subscript',
+      'The subscript specifies which target representations define the radical. Here only homomorphisms into norm matrix coronas are used.');
+    if (b === 'W' && t === 'Q') return item('the quotient label Q',
+      'The subscript says which visible quotient was prescribed when the group W_Q was constructed.');
+    if (b === 'π' && t === 'Q') return item('the quotient label Q',
+      'The subscript identifies π_Q as the canonical quotient map onto Q.');
+    if (b === 'd' && t === 'n') return item('the stage n',
+      'The subscript selects the n-th matrix size in the sequence d₁,d₂,d₃,….');
+    if (b === 'M' && (t === 'd' || /^d\s*n?$/.test(t + script))) return item('the matrix size',
+      'The subscript gives the size of the square matrix algebra. M_{d_n} consists of all d_n-by-d_n complex matrices.');
+    if (b === 'F' && t === '2') return item('the two-element field',
+      'The subscript 2 says this field has exactly two elements, 0 and 1, with 1 + 1 = 0.');
+    if (b === 'EL' && /^\d+$/.test(t)) return item('the matrix rank',
+      'This subscript gives the number of rows and columns in the elementary matrices that generate the group.');
+    if ((t === 'G' || t === 'H' || t === 'W') && /\\normal[^_]*_/.test(tex)) {
+      return item('the ambient-group subscript',
+        'This subscript says that the normal closure is taken inside ' + t + ', using conjugation by elements of ' + t + '.');
+    }
+    if (b === 'tr') return item('the trace normalization',
+      'The subscript specifies the matrix dimension used to normalize the trace.');
+    return item('subscript ' + t,
+      'A lower-right subscript labels which member of a family is meant; it is not multiplication.');
+  }
+
+  function scriptedTokenInfo(token, tex, atom) {
+    if (!atom || !atom.closest) return null;
+    var scriptBox = atom.closest('.msupsub');
+    if (scriptBox) {
+      var baseNode = scriptBox.previousElementSibling;
+      var base = baseNode ? baseNode.textContent : '';
+      return scriptItem(token, base, scriptKind(tex, token), tex, scriptBox.textContent);
+    }
+
+    var attached = adjacentScript(atom);
+    if (!attached) return null;
+    var attachedText = clean(attached.textContent);
+    if (token === 'M') return item('matrix algebra',
+      'M with a size in the subscript denotes all square complex matrices of that size.');
+    if (token === 'd' && /n/.test(attachedText)) return item('matrix dimension',
+      'The symbol d_n is the size of the finite matrices used at stage n.');
+    return null;
+  }
+
+  function compactTex(tex) {
+    return String(tex || '').replace(/\s+/g, '');
+  }
+
+  function isFullRadicalFormula(tex) {
+    var match = compactTex(tex).match(
+      /(?:\\Rad|\\operatorname\{Rad\})_\{?\\mathrm\{MF\}\}?\(([^()]+)\)=([^=]+)$/);
+    return !!match && match[1] === match[2];
+  }
+
   function explainToken(token, tex, atom) {
     var t = clean(token).replace(/\u200b/g, '');
-    var rel = atom && atom.classList.contains('mrel');
-    var bin = atom && atom.classList.contains('mbin');
+    var scripted = scriptedTokenInfo(t, tex, atom);
+    if (scripted) return scripted;
 
     if (t === '=') return item('equals',
       'The expressions on the two sides name the same mathematical object or quantity.');
@@ -167,18 +321,14 @@
     if (t === '[' || t === ']') {
       if (sourceHas(tex, /\[[^\]]*,[^\]]*\]/)) return item('commutator bracket',
         'The bracket measures failure to commute. For group elements, [a,b] is trivial exactly when a and b commute.');
-      return item('bracket', 'Brackets group part of the expression so it is read as one unit.');
+      return null;
     }
     if (t === '⟨' || t === '⟩') {
       if (sourceHas(tex, /\\langle\s*[^,]+\\rangle/)) return item('generated subgroup',
         'The angle brackets mean the smallest subgroup containing the listed element or elements.');
-      return item('angle bracket',
-        'Depending on context, angle brackets denote a generated subgroup, an inner product, or a pairing.');
+      return null;
     }
-    if (t === '(' || t === ')' || t === '{' || t === '}') return item('grouping mark',
-      'These marks keep the enclosed expression together, just as parentheses do in ordinary arithmetic.');
-    if (t === ',') return item('separator',
-      'The comma separates inputs, elements, or conditions that are being listed together.');
+    if (t === '(' || t === ')' || t === '{' || t === '}' || t === ',') return null;
     if (t === '1') return item('identity element',
       'For groups and matrices, 1 is the do-nothing element: multiplying by it changes nothing.');
     if (t === '0') return item('zero',
@@ -221,6 +371,10 @@
       'The centralizer of a subgroup is the collection of elements that commute with every element of that subgroup.');
     if (t === 'F' && sourceHas(tex, /\\F\s*_?\s*\{?2\}?|\\mathbb\s*\{F\}/)) return item('the field with two elements',
       'This number system contains only 0 and 1, with 1 + 1 = 0.');
+    if (t === 'N' && sourceHas(tex, /\\mathbb\s*\{N\}|\\N\b/)) return item('the natural numbers',
+      'The counting numbers 0,1,2,3,… (or, by some conventions, starting at 1).');
+    if (t === 'N' && sourceHas(tex, /N\s*(?:\\trianglelefteq|\\triangleleft)|\/[{]?N[}]?/)) return item('the normal subgroup N',
+      'This is the subgroup being collapsed to the identity in the quotient. Normality ensures that the quotient multiplication is well-defined.');
     if (t === 'Q' && sourceHas(tex, /\\mathcal\s*\{?Q\}?|Q_\{?\\mathbf/)) return item('a norm matrix corona',
       'A norm matrix corona records infinite sequences of finite matrices while treating any sequence converging to zero as negligible.');
     if (t === 'L' && sourceHas(tex, /L_\{?\\F|L_\{?\\mathbb/)) return item('the binary Leavitt algebra',
@@ -255,31 +409,24 @@
       Θ: ['a corona representation', 'A homomorphism from the group into the unitary group of a norm matrix corona.'],
       V: ['a finite-matrix model', 'A sequence of unitary matrices intended to approximate the group multiplication law.'],
       p: ['a projection', 'An operator satisfying p² = p; it selects a subspace.'],
-      q: ['a complementary projection or quotient label', 'Its exact role is fixed by the nearby sentence; in projection formulas it selects the complementary invariant sector.'],
+      q: ['a complementary projection or quotient label', 'In projection formulas it selects a complementary invariant sector; as a subscript it can label a quotient.'],
       n: ['an index', 'Usually the stage of a matrix sequence or a matrix dimension.'],
       i: ['an index', 'A label selecting a row, column, generator, or term.'],
       j: ['an index', 'A second label selecting a row, column, generator, or term.'],
-      x: ['an element', 'A generic element of the group, ring, or space named nearby.'],
+      x: ['an element', 'A generic member of a group, ring, or space.'],
       g: ['a group element', 'A generic reversible operation in the group.'],
       h: ['a subgroup element', 'A generic element of the subgroup under discussion.']
     };
     if (named[t]) return item(named[t][0], named[t][1]);
 
-    if (/^\d+$/.test(t)) return item('a number or index',
-      'This number specifies a size, stage, exponent, or count. The nearby sentence determines which.');
-    if (/^[A-Za-zΑ-Ωα-ω]$/.test(t)) return item('a locally named object',
-      'This letter is a label introduced by the nearby sentence or theorem. Read the context shown below to see its exact role here.');
-    if (rel) return item('a relation',
-      'This symbol states how the expression on its left is related to the expression on its right.');
-    if (bin) return item('an operation',
-      'This symbol combines the objects immediately to its left and right.');
-    return item('part of the notation',
-      'This mark helps name or organize an object in the formula. Its precise local role is given by the surrounding sentence.');
+    return null;
   }
 
   function explainFormula(tex) {
     var s = tex || '';
-    if (/\\Rad_/.test(s) && /=/.test(s)) return 'This says the MF radical is exactly the group written on the other side. In plain language, every MF-target representation erases every element of that group.';
+    if (isFullRadicalFormula(s)) return 'Every homomorphism from this group to every MF group sends every element to the identity. Thus, if the group is nontrivial, it is not MF.';
+    if (/\\Rad_/.test(s) && /\\ker/.test(s) && /\\normal/.test(s)) return 'This computes exactly what finite-matrix models cannot detect: the kernel of the quotient map, which is also the normal subgroup generated by the displayed element. The quotient is everything that remains visible to MF groups.';
+    if (/\\Rad_/.test(s) && /=/.test(s)) return 'The MF radical consists of the elements erased by every homomorphism into every norm matrix corona. This equation identifies that invisible subgroup exactly.';
     if (/\\operatorname\s*\{Hom\}|\\Hom\b/.test(s)) return 'This compares complete collections of structure-preserving maps. The assertion says that a map from one group contains exactly the same target-visible information as a map from the other.';
     if (/\\ker\b/.test(s)) return 'This identifies exactly which elements are erased by the displayed map.';
     if (/u\s*L\s*u\^\{-?1\}|uLu/.test(s)) return 'Conjugating the subgroup L by u produces a copy that lies inside L. This one-sided self-compression is the starting point of the argument.';
@@ -291,7 +438,94 @@
     if (/\\to|\\longrightarrow|\\mapsto/.test(s)) return 'This formula describes a map and, when an arrow with an input is shown, what the map does to that input.';
     if (/\\le|\\subset/.test(s)) return 'This is a containment statement: every object represented on the left also belongs to the object on the right.';
     if (/=/.test(s)) return 'This equality says that the constructions on the two sides produce the same mathematical object.';
-    return 'This formula records a precise relationship among the objects named in the nearby sentence. Click another symbol to unpack it one piece at a time.';
+    return '';
+  }
+
+  function addsFormulaInformation(token, explanation) {
+    var t = clean(token).replace(/\u200b/g, '');
+    if (!explanation) return false;
+    if ((t === '⊴' || t === '◁') && /normal subgroup/.test(explanation)) return false;
+    if ((t === '≤' || t === '⊆') && /containment statement/.test(explanation)) return false;
+    if ((t === '≅' || t === '≃') && /same mathematical structure/.test(explanation)) return false;
+    if ((t === '↪') && /embeds faithfully/.test(explanation)) return false;
+    if ((t === '↠') && /reaches every element/.test(explanation)) return false;
+    if ((t === '→' || t === '⟶') && /describes a map/.test(explanation)) return false;
+    return true;
+  }
+
+  function canonicalTerm(term) {
+    return TERM_ALIASES[clean(term).toLowerCase()] || '';
+  }
+
+  function explainTerm(term) {
+    var canonical = canonicalTerm(term);
+    return canonical ? TERM_INFO[canonical] : null;
+  }
+
+  function setLinkedText(node, value, excludedTerm) {
+    node.textContent = '';
+    var text = String(value || '');
+    var cursor = 0;
+    TERM_PATTERN.lastIndex = 0;
+    var match;
+    while ((match = TERM_PATTERN.exec(text))) {
+      if (match.index > cursor) {
+        node.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+      }
+      var canonical = canonicalTerm(match[0]);
+      if (!canonical || canonical === excludedTerm) {
+        node.appendChild(document.createTextNode(match[0]));
+      } else {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'math-term-help';
+        button.setAttribute('data-term', canonical);
+        button.textContent = match[0];
+        node.appendChild(button);
+      }
+      cursor = TERM_PATTERN.lastIndex;
+    }
+    if (cursor < text.length) node.appendChild(document.createTextNode(text.slice(cursor)));
+  }
+
+  function renderExplanation(state) {
+    var box = ensurePanel();
+    currentExplanation = state;
+    box.querySelector('.math-explainer-symbol').textContent = state.symbol;
+    box.querySelector('#math-explainer-title').textContent = state.info.name;
+    setLinkedText(box.querySelector('.math-explainer-meaning'),
+      state.info.meaning, state.term || '');
+
+    var localBox = box.querySelector('.math-explainer-local');
+    setLinkedText(localBox, state.local || '', state.term || '');
+    localBox.hidden = !state.local;
+
+    var formulaBox = box.querySelector('.math-explainer-formula');
+    setLinkedText(formulaBox, state.formula || '', state.term || '');
+    formulaBox.hidden = !state.showFormula;
+
+    box.querySelector('.math-explainer-back').hidden = explanationHistory.length === 0;
+    box.hidden = false;
+  }
+
+  function openTerm(term) {
+    var canonical = canonicalTerm(term);
+    var info = explainTerm(canonical);
+    if (!info) return;
+    if (currentExplanation) explanationHistory.push(currentExplanation);
+    renderExplanation({
+      symbol: canonical,
+      info: info,
+      local: '',
+      formula: '',
+      showFormula: false,
+      term: canonical
+    });
+  }
+
+  function goBack() {
+    if (!explanationHistory.length) return;
+    renderExplanation(explanationHistory.pop());
   }
 
   function ensurePanel() {
@@ -303,22 +537,15 @@
     panel.setAttribute('aria-modal', 'false');
     panel.setAttribute('aria-labelledby', 'math-explainer-title');
     panel.innerHTML =
-      '<div class="math-explainer-head">' +
-        '<span>Plain-language math</span>' +
-        '<button type="button" class="math-explainer-close" aria-label="Close explanation">×</button>' +
-      '</div>' +
+      '<button type="button" class="math-explainer-back" aria-label="Back to previous explanation">←</button>' +
+      '<button type="button" class="math-explainer-close" aria-label="Close explanation">×</button>' +
       '<div class="math-explainer-symbol" aria-hidden="true"></div>' +
       '<h2 id="math-explainer-title"></h2>' +
       '<p class="math-explainer-meaning"></p>' +
-      '<div class="math-explainer-section">What it means here</div>' +
       '<p class="math-explainer-local"></p>' +
-      '<div class="math-explainer-section">How to read the formula</div>' +
-      '<p class="math-explainer-formula"></p>' +
-      '<div class="math-explainer-context-wrap">' +
-        '<div class="math-explainer-section">In this sentence</div>' +
-        '<p class="math-explainer-context"></p>' +
-      '</div>';
+      '<p class="math-explainer-formula"></p>';
     document.body.appendChild(panel);
+    panel.querySelector('.math-explainer-back').addEventListener('click', goBack);
     panel.querySelector('.math-explainer-close').addEventListener('click', closePanel);
     return panel;
   }
@@ -327,24 +554,27 @@
     var token = clean(atom && atom.textContent) || 'formula';
     var tex = texOf(math);
     var info = explainToken(token, tex, atom);
+    if (!info) return;
     var context = nearbyText(math);
-    var box = ensurePanel();
-    box.querySelector('.math-explainer-symbol').textContent = token;
-    box.querySelector('#math-explainer-title').textContent = info.name;
-    box.querySelector('.math-explainer-meaning').textContent = info.meaning;
-    box.querySelector('.math-explainer-local').textContent =
-      localRole(token, tex, context, info);
-    box.querySelector('.math-explainer-formula').textContent = explainFormula(tex);
-    var wrap = box.querySelector('.math-explainer-context-wrap');
-    wrap.hidden = !context;
-    box.querySelector('.math-explainer-context').textContent = context;
-    box.hidden = false;
+    var local = localRole(token, tex, context, info, atom);
+    var formula = explainFormula(tex);
+    explanationHistory = [];
+    renderExplanation({
+      symbol: token,
+      info: info,
+      local: local,
+      formula: formula,
+      showFormula: addsFormulaInformation(token, formula),
+      term: ''
+    });
     lastFormula = math;
   }
 
   function closePanel() {
     if (!panel) return;
     panel.hidden = true;
+    explanationHistory = [];
+    currentExplanation = null;
     if (lastFormula && lastFormula.focus) lastFormula.focus({ preventScroll: true });
   }
 
@@ -361,10 +591,12 @@
       math.setAttribute('title', 'Click any symbol for a plain-language explanation');
       math.setAttribute('data-math-help', 'true');
       var atoms = visual.querySelectorAll(ATOM_SELECTOR);
+      var tex = texOf(math);
       for (var j = 0; j < atoms.length; j++) {
         var atom = atoms[j];
         if (!clean(atom.textContent)) continue;
         if (atom.querySelector(ATOM_SELECTOR)) continue;
+        if (!explainToken(clean(atom.textContent), tex, atom)) continue;
         atom.classList.add('math-symbol-help');
       }
     }
@@ -382,6 +614,13 @@
   }
 
   document.addEventListener('click', function (event) {
+    var term = event.target.closest && event.target.closest('.math-term-help');
+    if (term) {
+      event.preventDefault();
+      event.stopPropagation();
+      openTerm(term.getAttribute('data-term'));
+      return;
+    }
     if (event.target.closest && event.target.closest('.math-explainer')) return;
     var atom = event.target.closest && event.target.closest('.math-symbol-help');
     var math = atom && atom.closest('.katex');
@@ -433,8 +672,12 @@
   window.__cairnMathExplainer = {
     explainToken: function (token, tex) { return explainToken(token, tex, null); },
     explainFormula: explainFormula,
+    explainTerm: explainTerm,
+    scriptInfo: function (token, base, kind, tex, scriptText) {
+      return scriptItem(token, base, kind, tex, scriptText || token);
+    },
     localRole: function (token, tex, context) {
-      return localRole(token, tex, context, explainToken(token, tex, null));
+      return localRole(token, tex, context, explainToken(token, tex, null), null);
     },
     decorate: decorate
   };
