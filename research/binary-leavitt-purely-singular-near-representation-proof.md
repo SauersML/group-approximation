@@ -3,7 +3,7 @@ rg: 2
 id: binary-leavitt-purely-singular-near-representation-proof
 kind: route
 title: Specialize Kahl--Schneider and eliminate the normal state component
-target: binary-leavitt-hyperlinear-iff-purely-singular-near-representation
+target: binary-leavitt-hyperlinear-iff-singular-near
 requires:
   - hyperlinear-near-representation-criterion
   - binary-leavitt-unit-group-is-minimally-almost-periodic
