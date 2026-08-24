@@ -14,7 +14,10 @@ three things mechanically:
 There is no "proof is analogous" row and no prose claim stronger than the
 declaration receiving the badge. A row is `closed` only when the declaration
 has an empty outer telescope and audits to `propext`, `Classical.choice`,
-`Quot.sound`.
+`Quot.sound`.  A row is `conditional` only when the declaration is printed with
+the weaker `#audit_axioms` macro and is **not** printed with the closed one --
+so "conditional" can neither hide a real hypothesis nor understate a theorem
+that is actually closed.  Exactly one row is conditional.
 
 ## Rows
 
@@ -30,12 +33,14 @@ has an empty outer telescope and audits to `propext`, `Classical.choice`,
 | Theorem A (f.p. Kazhdan full radical) | `GroupApproximation.Manuscript.MFRadicals.manuscriptTheoremA` | closed |
 | Theorem B (simple sofic full radical) | `GroupApproximation.Manuscript.MFRadicals.manuscriptTheoremB` | closed |
 | Theorem C (perfect-lamp exact radical) | `GroupApproximation.Manuscript.MFRadicals.manuscriptTheoremC` | closed |
+| Theorem C' (concrete datum, every finite perfect lamp) | `GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily` | closed |
 | Theorem D (radical computer) | `GroupApproximation.Manuscript.MFRadicals.manuscriptTheoremD` | closed |
 | Cor. C.1 (alternating family, four radicals) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyExactRadicals` | closed |
 | Cor. C.2 (common visible quotient) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient` | closed |
 | Cor. C.3 (pairwise noncommensurable) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable` | closed |
 | Cor. C.4 (Bohr column, one direction) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn` | closed |
 | Cor. C.5 (Hom-set factorization) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence` | closed |
+| Cor. C.6 (five radicals, needs Peter--Weyl) | `GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals` | conditional |
 | Theorem suite (abstract) | `GroupApproximation.Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite` | closed |
 <!-- END-LEDGER-ROWS -->
 

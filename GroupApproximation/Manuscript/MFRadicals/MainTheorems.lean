@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.MFRadicals.AlternatingFamily
 import GroupApproximation.Manuscript.MFRadicals.Compression
 import GroupApproximation.Manuscript.MFRadicals.Definitions
+import GroupApproximation.Manuscript.MFRadicals.FinitePerfectLamp
 import GroupApproximation.Manuscript.MFRadicals.ExplicitSeed
 import GroupApproximation.Manuscript.MFRadicals.FullRadical
 import GroupApproximation.Manuscript.MFRadicals.PerfectLampExact
@@ -30,14 +31,19 @@ The paper's arc in one module.
 | Theorem A  | `manuscriptTheoremA`                                  |
 | Theorem B  | `manuscriptTheoremB`                                  |
 | Theorem C  | `manuscriptTheoremC`                                  |
+| Theorem C' | `manuscriptFinitePerfectLampFamily`                   |
 | Cor. C.1   | `manuscriptAlternatingFamilyExactRadicals`            |
 | Cor. C.2   | `manuscriptAlternatingFamilySameVisibleQuotient`      |
 | Cor. C.3   | `manuscriptAlternatingFamilyNoncommensurable`         |
 | Cor. C.4   | `manuscriptAlternatingFamilyBohrColumn`               |
 | Cor. C.5   | `manuscriptAlternatingFamilyTargetEquivalence`        |
+| Cor. C.6*  | `manuscriptFinitePerfectLampFiveRadicals` (conditional)|
 | Theorem D  | `manuscriptTheoremD`                                  |
 
-Every row is audited in `Endpoint/MFRadicalPaperAudit`.
+Every row is audited in `Endpoint/MFRadicalPaperAudit`.  Exactly one row --
+Cor. C.6, marked `*` -- is **not** closed: it carries `PeterWeyl.SeparatesPoints`
+as a leading hypothesis and is printed with the weaker audit macro.  Nothing
+else in the table depends on it.
 
 What is deliberately *not* advertised here: the exact radical of the literal
 seed `E`, which still needs a specialised symmetric-double MF theorem
@@ -59,6 +65,7 @@ paper as a single closed proposition. -/
 def MFRadicalPaperSuite : Prop :=
   UniversalMFQuotient ∧ MFSemanticClosure ∧ MFSoundSaturation ∧
     KazhdanCompressionCollapse ∧ PerfectLampExactRadical ∧
+    FinitePerfectLampFamily ∧
     AlternatingFamilyExactRadicals ∧ AlternatingFamilySameVisibleQuotient ∧
     AlternatingFamilyNoncommensurable ∧ AlternatingFamilyBohrColumn ∧
     AlternatingFamilyTargetEquivalence
@@ -66,7 +73,8 @@ def MFRadicalPaperSuite : Prop :=
 theorem manuscriptMFRadicalPaperSuite : MFRadicalPaperSuite :=
   ⟨manuscriptUniversalMFQuotient, manuscriptSemanticClosure,
     manuscriptSoundSaturation, manuscriptCompressionCollapse,
-    manuscriptTheoremC, manuscriptAlternatingFamilyExactRadicals,
+    manuscriptTheoremC, manuscriptFinitePerfectLampFamily,
+    manuscriptAlternatingFamilyExactRadicals,
     manuscriptAlternatingFamilySameVisibleQuotient,
     manuscriptAlternatingFamilyNoncommensurable,
     manuscriptAlternatingFamilyBohrColumn,

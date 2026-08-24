@@ -451,6 +451,7 @@ import GroupApproximation.Sofic.AscendingHNNFullTelescopeRadical
 import GroupApproximation.Sofic.PerfectLampCompressionRadical
 import GroupApproximation.Sofic.CompressionWreathFinitelyGenerated
 import GroupApproximation.Sofic.AlternatingLampExactRadical
+import GroupApproximation.Sofic.FinitePerfectLampExactRadical
 import GroupApproximation.Sofic.AlternatingLampBohrResidual
 import GroupApproximation.Manuscript.MFRadicals.Definitions
 import GroupApproximation.Manuscript.MFRadicals.SemanticClosure
@@ -461,6 +462,7 @@ import GroupApproximation.Manuscript.MFRadicals.SimpleSofic
 import GroupApproximation.Manuscript.MFRadicals.PerfectLampExact
 import GroupApproximation.Manuscript.MFRadicals.AlternatingFamily
 import GroupApproximation.Manuscript.MFRadicals.RadicalComputer
+import GroupApproximation.Manuscript.MFRadicals.FinitePerfectLamp
 import GroupApproximation.Manuscript.MFRadicals.TargetEquivalence
 import GroupApproximation.Manuscript.MFRadicals.MainTheorems
 import GroupApproximation.Endpoint.MFRadicalPaperAudit

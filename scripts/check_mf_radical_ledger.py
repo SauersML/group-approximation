@@ -31,6 +31,7 @@ AUDIT = REPO_ROOT / "GroupApproximation" / "Endpoint" / "MFRadicalPaperAudit.lea
 
 ROW_RE = re.compile(r"^\|(?P<paper>[^|]+)\|\s*`(?P<decl>[^`]+)`\s*\|(?P<status>[^|]+)\|\s*$")
 AUDIT_RE = re.compile(r"^#audit_closed_axioms\s+(?P<decl>\S+)\s*$")
+AUDIT_OPEN_RE = re.compile(r"^#audit_axioms\s+(?P<decl>\S+)\s*$")
 
 
 def ledger_rows() -> list[tuple[str, str, str]]:
@@ -51,15 +52,25 @@ def ledger_rows() -> list[tuple[str, str, str]]:
     return rows
 
 
-def audited_decls() -> list[str]:
+def audited_decls() -> tuple[list[str], list[str]]:
+    """Declarations printed by the paper audit, split by which macro prints them.
+
+    The first list is the closed endpoints (`#audit_closed_axioms`, which also
+    rejects a leading binder); the second is those printed with the weaker
+    `#audit_axioms`, which permits a displayed hypothesis.
+    """
     if not AUDIT.exists():
         raise SystemExit(f"missing audit file: {AUDIT}")
-    out = []
+    closed, opened = [], []
     for line in AUDIT.read_text(encoding="utf-8").splitlines():
         m = AUDIT_RE.match(line.strip())
         if m:
-            out.append(m.group("decl"))
-    return out
+            closed.append(m.group("decl"))
+            continue
+        m = AUDIT_OPEN_RE.match(line.strip())
+        if m:
+            opened.append(m.group("decl"))
+    return closed, opened
 
 
 def main() -> int:
@@ -69,22 +80,40 @@ def main() -> int:
         return 1
 
     index = build_index()
-    audited = audited_decls()
+    closed, opened = audited_decls()
     failures: list[str] = []
 
     for paper, decl, status in rows:
         if decl not in index:
             failures.append(f"row '{paper}': declaration '{decl}' does not exist")
-        if status != "closed":
-            failures.append(f"row '{paper}': status '{status}' is not 'closed'")
-        if decl not in audited:
+        if status == "closed":
+            if decl not in closed:
+                failures.append(
+                    f"row '{paper}': claimed closed, but '{decl}' is not printed by "
+                    f"#audit_closed_axioms in {AUDIT.relative_to(REPO_ROOT)}"
+                )
+        elif status == "conditional":
+            # A conditional row must be printed with the weaker macro AND must
+            # not be printed with the closed one: a statement that passes the
+            # binder check is not conditional, and calling it conditional in
+            # the ledger would understate what is proved.
+            if decl not in opened:
+                failures.append(
+                    f"row '{paper}': claimed conditional, but '{decl}' is not printed by "
+                    f"#audit_axioms in {AUDIT.relative_to(REPO_ROOT)}"
+                )
+            if decl in closed:
+                failures.append(
+                    f"row '{paper}': claimed conditional, but '{decl}' passes "
+                    f"#audit_closed_axioms, so it is closed"
+                )
+        else:
             failures.append(
-                f"row '{paper}': '{decl}' is not printed by "
-                f"{AUDIT.relative_to(REPO_ROOT)}, so nothing checks its axioms"
+                f"row '{paper}': status '{status}' is neither 'closed' nor 'conditional'"
             )
 
     listed = {decl for _, decl, _ in rows}
-    for decl in audited:
+    for decl in closed:
         if decl not in listed:
             failures.append(
                 f"audit prints closed endpoint '{decl}' but the ledger does not list it"
@@ -96,7 +125,12 @@ def main() -> int:
             print(f"  - {f}", file=sys.stderr)
         return 1
 
-    print(f"mf-radical ledger: OK ({len(rows)} rows, all closed and audited)")
+    n_closed = sum(1 for _, _, st in rows if st == "closed")
+    n_cond = len(rows) - n_closed
+    print(
+        f"mf-radical ledger: OK ({len(rows)} rows audited: "
+        f"{n_closed} closed, {n_cond} conditional)"
+    )
     return 0
 
 

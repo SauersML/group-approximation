@@ -676,12 +676,14 @@ def headlineTheorems : List Name :=
    ``Manuscript.MFRadicals.manuscriptTheoremA,
    ``Manuscript.MFRadicals.manuscriptTheoremB,
    ``Manuscript.MFRadicals.manuscriptTheoremC,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily,
    ``Manuscript.MFRadicals.manuscriptTheoremD,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyExactRadicals,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals,
    ``Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite,
    -- The Hilbert-hotel full-radical results.  These were audited only in the
    -- lightweight chosen-witness file; the paper advertises them, so they
@@ -776,6 +778,7 @@ def zeroInputEndpoints : List Name :=
    ``Manuscript.MFRadicals.manuscriptTheoremA,
    ``Manuscript.MFRadicals.manuscriptTheoremB,
    ``Manuscript.MFRadicals.manuscriptTheoremC,
+   ``Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily,
    ``Manuscript.MFRadicals.manuscriptTheoremD,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilyExactRadicals,
    ``Manuscript.MFRadicals.manuscriptAlternatingFamilySameVisibleQuotient,
