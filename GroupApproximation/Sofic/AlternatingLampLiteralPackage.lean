@@ -67,6 +67,22 @@ instance : Countable WA := inferInstance
 
 /-! ## The package -/
 
+/-- **One relation is exactly the lamp kernel.**  The forward inclusion is
+simplicity and transitivity of the coset action.  The reverse inclusion is
+formal: the witness lamp belongs to the kernel of the wreath projection, and
+that kernel is normal. -/
+theorem ker_rightHom_eq_normalClosure_witnessLamp :
+    (SemidirectProduct.rightHom : WA →* Vertical conjD conjD_injective).ker
+      = Subgroup.normalClosure {witnessLamp conjD conjD_injective a5} := by
+  apply le_antisymm
+  · exact ker_le_normalClosure_witnessLamp conjD conjD_injective a5_ne_one
+  · apply Subgroup.normalClosure_le_normal
+    rw [Set.singleton_subset_iff]
+    change (SemidirectProduct.rightHom :
+      WA →* Vertical conjD conjD_injective)
+        (witnessLamp conjD conjD_injective a5) = 1
+    rfl
+
 /-- **The `A₅` endpoint.**  The concrete group is not MF, unconditionally. -/
 theorem not_isCDEOperatorMF_WA : ¬ IsCDEOperatorMF WA :=
   not_isCDEOperatorMF_wreath conjD conjD_injective
