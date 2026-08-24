@@ -24,11 +24,15 @@ variable {B Q : Type} [Group B] [Group Q]
 the black-hole group is trivial. -/
 theorem actualCoronaHom_eq_one_of_residual_eq_top
     (hfull : actualCoronaMFResidual B = ⊤)
-    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
-    (f : B →* unitary (NormMatrixCStarCorona (fun n ↦ X n))) : f = 1 := by
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    ∀ f : B →* unitary (NormMatrixCStarCorona (fun n ↦ X n)), f = 1 := by
   letI : ∀ n, Nonempty (X n) :=
     fun n ↦ Fintype.card_pos_iff.mp (hX n)
-  ext b
+  intro f
+  apply MonoidHom.ext
+  intro b
   have hb : b ∈ actualCoronaMFResidual B := by
     rw [hfull]
     exact Subgroup.mem_top b
@@ -48,7 +52,10 @@ theorem projection_ker_le_actualCoronaMFResidual (d : B) (Q : Type)
     actualCoronaHom_eq_one_of_residual_eq_top hfull X hX _
   have hfactor := factor_through_projection d Q rho hkill
   have heval := DFunLike.congr_fun hfactor x
-  simpa [hx] using heval.symm
+  have hx1 := MonoidHom.mem_ker.mp hx
+  change rho (visible d Q (projection d Q x)) = rho x at heval
+  rw [hx1, map_one, map_one] at heval
+  exact heval.symm
 
 /-- **Exact MF radical transplantation.**  The radical of the camouflage
 group is the inverse image of the radical of its visible quotient. -/
@@ -91,6 +98,8 @@ target, at every positive dimension sequence. -/
 theorem actualCorona_precomp_bijective (d : B) (Q : Type) [Group Q]
     (hfull : actualCoronaMFResidual B = ⊤)
     (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
     Function.Bijective
       (fun f : Q →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) ↦
         f.comp (projection d Q)) := by
@@ -98,27 +107,6 @@ theorem actualCorona_precomp_bijective (d : B) (Q : Type) [Group Q]
     fun n ↦ Fintype.card_pos_iff.mp (hX n)
   exact precomp_bijective d Q
     (actualCoronaHom_eq_one_of_residual_eq_top hfull X hX)
-
-/-- Any target which embeds faithfully in a matrix corona is equally unable
-to see the black-hole factor.  This is the categorical form consumed by MF
-target groups. -/
-theorem precomp_bijective_of_corona_embedding
-    (d : B) (Q : Type) [Group Q]
-    (hfull : actualCoronaMFResidual B = ⊤)
-    {T : Type} [Group T]
-    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
-    (j : T →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
-    (hj : Function.Injective j) :
-    Function.Bijective (fun f : Q →* T ↦ f.comp (projection d Q)) := by
-  letI : ∀ n, Nonempty (X n) :=
-    fun n ↦ Fintype.card_pos_iff.mp (hX n)
-  apply precomp_bijective d Q
-  intro f
-  ext b
-  apply hj
-  have htrivial : j.comp f = 1 :=
-    actualCoronaHom_eq_one_of_residual_eq_top hfull X hX _
-  simpa using DFunLike.congr_fun htrivial b
 
 /-- Every CDE/operator-MF target is invisible to the black-hole vertex, so
 the projection is the reflection map on all such targets. -/
@@ -128,8 +116,23 @@ theorem cdeMF_precomp_bijective
     {T : Type} [Group T] [Countable T] (hT : IsCDEOperatorMF T) :
     Function.Bijective (fun f : Q →* T ↦ f.comp (projection d Q)) := by
   obtain ⟨dims, hdims, _hmono, j, hj⟩ := hT
-  exact precomp_bijective_of_corona_embedding d Q hfull
-    (fun n ↦ naturalFiniteModel (dims n)) (by simpa using hdims) j hj
+  apply precomp_bijective d Q
+  intro f
+  ext b
+  apply hj
+  have htrivial : j.comp f = 1 :=
+    actualCoronaHom_eq_one_of_residual_eq_top hfull
+      (fun n ↦ naturalFiniteModel (dims n)) (by simpa using hdims) _
+  simpa using DFunLike.congr_fun htrivial b
+
+/-- Equivalent operator-MF spelling of the reflection theorem. -/
+theorem operatorMF_precomp_bijective
+    (d : B) (Q : Type) [Group Q]
+    (hfull : actualCoronaMFResidual B = ⊤)
+    {T : Type} [Group T] [Countable T] (hT : IsOperatorMF T) :
+    Function.Bijective (fun f : Q →* T ↦ f.comp (projection d Q)) :=
+  cdeMF_precomp_bijective d Q hfull
+    ((isCDEOperatorMF_iff_isOperatorMF T).mpr hT)
 
 /-- Normality of the direct image used by semantic closure transplantation. -/
 instance mapProjection_normal (d : B) (Q : Type) [Group Q]
@@ -256,12 +259,12 @@ theorem sourceDefect_ne_one : sourceDefect ≠ 1 :=
 
 theorem sourceDefect_normallyGenerates :
     Subgroup.normalClosure ({sourceDefect} : Set BlackHole) = ⊤ :=
-  hotelGroup_defect_normallyGenerates
+  Endpoint.hotelGroup_defect_normallyGenerates
 
 theorem source_actualCoronaMFResidual_eq_top :
     actualCoronaMFResidual BlackHole = ⊤ := by
   rw [actualCoronaMFResidual_eq_coronaMFResidual]
-  exact hotelGroup_coronaMFResidual_eq_top
+  exact Endpoint.hotelGroup_coronaMFResidual_eq_top
 
 theorem camouflage_defect_ne_one (Q : Type) [Group Q] :
     MFCamouflage.defect sourceDefect Q ≠ 1 :=
@@ -281,6 +284,20 @@ theorem actualCoronaMFResidual_eq_comap (Q : Type) [Group Q] :
   MFCamouflage.actualCoronaMFResidual_eq_comap sourceDefect Q
     source_actualCoronaMFResidual_eq_top
 
+/-- **Full MF-semantic closure formula for the prescribed-quotient
+construction.**  For every normal relation subgroup `N` of `W_Q`, its MF
+root is exactly the inverse image of the MF root of its prescribed image in
+`Q`. -/
+theorem actualCoronaMFClosure_eq_comap
+    (Q : Type) [Group Q]
+    (N : Subgroup (Camouflage Q)) [N.Normal] :
+    actualCoronaMFClosure N =
+      (actualCoronaMFClosure
+        (N.map (MFCamouflage.projection sourceDefect Q))).comap
+          (MFCamouflage.projection sourceDefect Q) :=
+  MFCamouflage.actualCoronaMFClosure_eq_comap sourceDefect Q
+    source_actualCoronaMFResidual_eq_top N
+
 theorem actualCoronaMFResidual_eq_normalClosure
     (Q : Type) [Group Q] [Countable Q] (hQ : IsCDEOperatorMF Q) :
     actualCoronaMFResidual (Camouflage Q) =
@@ -290,9 +307,41 @@ theorem actualCoronaMFResidual_eq_normalClosure
       source_actualCoronaMFResidual_eq_top hQ,
     projection_ker_eq_normalClosure]
 
+/-- The compiler output is not MF whenever the visible group is MF: its
+nontrivial distinguished relation lies in the exact MF radical. -/
+theorem not_isCDEOperatorMF
+    (Q : Type) [Group Q] [Countable Q] (hQ : IsCDEOperatorMF Q) :
+    ¬ IsCDEOperatorMF (Camouflage Q) := by
+  intro hW
+  have hbot : actualCoronaMFResidual (Camouflage Q) = ⊥ :=
+    (isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp hW)
+  have hmem : MFCamouflage.defect sourceDefect Q ∈
+      actualCoronaMFResidual (Camouflage Q) := by
+    rw [actualCoronaMFResidual_eq_normalClosure Q hQ]
+    exact Subgroup.subset_normalClosure (Set.mem_singleton _)
+  rw [hbot] at hmem
+  exact camouflage_defect_ne_one Q (Subgroup.mem_bot.mp hmem)
+
+theorem not_isOperatorMF
+    (Q : Type) [Group Q] [Countable Q] (hQ : IsOperatorMF Q) :
+    ¬ IsOperatorMF (Camouflage Q) := by
+  rw [← isCDEOperatorMF_iff_isOperatorMF]
+  exact not_isCDEOperatorMF Q
+    ((isCDEOperatorMF_iff_isOperatorMF Q).mpr hQ)
+
+/-- The concrete projection is the reflection arrow into every countable
+operator-MF target. -/
+theorem operatorMF_precomp_bijective
+    (Q : Type) [Group Q] {T : Type} [Group T] [Countable T]
+    (hT : IsOperatorMF T) :
+    Function.Bijective
+      (fun f : Q →* T ↦
+        f.comp (MFCamouflage.projection sourceDefect Q)) :=
+  MFCamouflage.operatorMF_precomp_bijective sourceDefect Q
+    source_actualCoronaMFResidual_eq_top hT
+
 theorem isFinitelyPresented (Q : Type) [Group Q]
-    [Group.IsFinitelyPresented Q]
-    [Group.IsFinitelyPresented (Edge sourceDefect)] :
+    [Group.IsFinitelyPresented Q] :
     Group.IsFinitelyPresented (Camouflage Q) :=
   MFCamouflage.isFinitelyPresented sourceDefect Q
 

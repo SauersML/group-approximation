@@ -1,5 +1,6 @@
 import GroupApproximation.Algebra.ProductFinitePresentation
 import GroupApproximation.Higman.AmalgamPushout
+import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 /-!
 # The camouflage amalgam
@@ -200,11 +201,14 @@ theorem projection_ker_eq_normalClosure (d : B) (Q : Type) [Group Q]
         refine Subgroup.normalClosure_le_normal (Set.singleton_subset_iff.mpr ?_)
         apply MonoidHom.mem_ker.mpr
         exact (QuotientGroup.eq_one_iff (defect d Q)).mpr
-          (Subgroup.subset_closure (Set.mem_singleton _))
+          (Subgroup.subset_normalClosure (Set.mem_singleton _))
       exact MonoidHom.mem_ker.mp (hle hb)
     have hfactor := factor_through_projection d Q qN hkill
     apply (QuotientGroup.eq_one_iff x).mp
-    rw [← DFunLike.congr_fun hfactor x, MonoidHom.comp_apply, hx, map_one]
+    change qN x = 1
+    have heval := DFunLike.congr_fun hfactor x
+    rw [MonoidHom.comp_apply, hx, map_one] at heval
+    exact heval.symm
   · refine Subgroup.normalClosure_le_normal (Set.singleton_subset_iff.mpr ?_)
     exact MonoidHom.mem_ker.mpr (projection_blackHole d Q d)
 
@@ -238,11 +242,51 @@ instance instCountable (d : B) (Q : Type) [Group Q]
     Con.mk'_surjective.countable
   exact Con.mk'_surjective.countable
 
+/-- The canonical generator of the cyclic edge group. -/
+def edgeGenerator (d : B) : Edge d :=
+  ⟨d, Subgroup.subset_closure (Set.mem_singleton d)⟩
+
+/-- The edge group is cyclic, internally rather than merely as a subgroup of
+the black-hole vertex. -/
+instance edgeIsCyclic (d : B) : IsCyclic (Edge d) := by
+  apply isCyclic_iff_exists_zpowers_eq_top.mpr
+  refine ⟨edgeGenerator d, ?_⟩
+  rw [Subgroup.zpowers_eq_closure]
+  have hpre := Subgroup.closure_preimage_eq_top ({d} : Set B)
+  have hset : (Edge d).subtype ⁻¹' ({d} : Set B) = {edgeGenerator d} := by
+    ext z
+    simp only [Set.mem_preimage, Set.mem_singleton_iff]
+    constructor
+    · intro hz
+      exact Subtype.ext hz
+    · intro hz
+      subst z
+      rfl
+  rw [← hset]
+  exact hpre
+
+/-- A cyclic edge group is finitely presented.  Mathlib identifies it with
+`Multiplicative (ZMod n)`; the `n = 0` case is `ℤ`, and every nonzero case is
+finite. -/
+instance edgeIsFinitelyPresented (d : B) :
+    Group.IsFinitelyPresented (Edge d) := by
+  let e : Multiplicative (ZMod (Nat.card (Edge d))) ≃* Edge d :=
+    zmodCyclicMulEquiv (inferInstance : IsCyclic (Edge d))
+  by_cases hcard : Nat.card (Edge d) = 0
+  · rw [hcard] at e
+    letI : Group.IsFinitelyPresented (Multiplicative (ZMod 0)) := by
+      change Group.IsFinitelyPresented (Multiplicative ℤ)
+      infer_instance
+    exact Group.IsFinitelyPresented.equiv e
+  · letI : NeZero (Nat.card (Edge d)) := ⟨hcard⟩
+    letI : Group.IsFinitelyPresented
+        (Multiplicative (ZMod (Nat.card (Edge d)))) := inferInstance
+    exact Group.IsFinitelyPresented.equiv e
+
 /-- The compiler preserves finite presentability when the visible group is
 finitely presented. -/
 theorem isFinitelyPresented (d : B) (Q : Type) [Group Q]
-    [Group.IsFinitelyPresented B] [Group.IsFinitelyPresented Q]
-    [Group.IsFinitelyPresented (Edge d)] :
+    [Group.IsFinitelyPresented B] [Group.IsFinitelyPresented Q] :
     Group.IsFinitelyPresented (Camouflage d Q) := by
   letI : Group.FG (Edge d) :=
     (Group.fg_iff_subgroup_fg _).mpr
