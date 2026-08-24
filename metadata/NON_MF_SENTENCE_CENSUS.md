@@ -25,9 +25,9 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`partial`**, line 58 --- The same quotient is invisible to finite, compact, and finite-dimensional linear targets.
   * finite and linear targets are formalized; compact targets use classical Peter--Weyl
-* **`partial`**, line 166 --- By Peter--Weyl separation, every homomorphism from $W_K$ to a compact Hausdorff group also kills $L_K$.
+* **`partial`**, line 168 --- By Peter--Weyl separation, every homomorphism from $W_K$ to a compact Hausdorff group also kills $L_K$.
   * compact-target clause uses classical Peter--Weyl
-* **`partial`**, line 166 --- Thus precomposition is bijective for compact targets and $\Rad_{\mathrm{Bohr}}(W_K)=L_K$.
+* **`partial`**, line 168 --- Thus precomposition is bijective for compact targets and $\Rad_{\mathrm{Bohr}}(W_K)=L_K$.
   * Bohr equality uses classical Peter--Weyl
 
 ## By section

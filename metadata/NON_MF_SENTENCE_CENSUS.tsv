@@ -14,111 +14,111 @@ e26d36ed0053	87	Introduction			definition	GroupApproximation.IsCDEOperatorMF	Equ
 7cc90bce2c55	87	Introduction			attribution	-	This is the group property of Carri\'on--Dadarlat--Eckhardt \cite{CDE}.
 f9b82c457245	87	Introduction			attribution	-	Residually finite and LEF groups are MF, and amenable groups are MF \cite{CDE,SchafhauserAF}.
 0dd6435deb3c	87	Introduction			attribution	-	Whether every countable group is MF had remained open \cite{Schafhauser,Shulman}.
-5adf422751d3	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	There are explicit finitely generated groups $W$ and $G$, a split epimorphism $q\colon W\twoheadrightarrow G$, and an involution $r\in W\setminus\{1\}$ such that $\ker q=\langle\!\langle r\rangle\!\rangle_W$.
-f4c2cc04aea1	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	The group $W$ is sofic and non-MF, whereas $G$ is residually finite and MF.
-1ff4b77e08f8	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	For every norm matrix corona, precomposition gives a bijection
-4ec1dc4fccf9	105	Introduction	mainthm	thm:headline	formalized	GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	The analogous bijection holds for finite groups, residually finite groups, finite-dimensional linear groups over every field, finite-dimensional unitary groups, and profinite groups.
-f60dbcd1f716	112	Introduction		thm:headline	ledger	SC.00	Thus adding the single relation $r=1$, which every MF representation already satisfies, changes a non-MF group into an MF group.
-e66dc7453e4e	112	Introduction		thm:headline	ledger	SC.07	The relation is not intrinsically pathological: its normal closure is locally finite, amenable, residually finite, and MF.
-99a99e3aae5c	112	Introduction		thm:headline	ledger	SC.06	What fails is extension of its finite models through the compressed Kazhdan action.
-75c2a2cdb343	112	Introduction		thm:headline	attribution	-	The classical Peter--Weyl point-separation theorem upgrades the last target list from profinite groups to all compact Hausdorff groups.
-dc0186abae3a	121	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces GroupApproximation.SpectralCompression.corona_clopen_projection_collapse	Let $L\le H$ have property~\textup{(T)}, let $sLs^{-1}\le L$, and let $\pi\colon H\to\U(\mathcal Q_{\mathbf d})$ be a homomorphism.
-14e2dd8ac4a2	121	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces GroupApproximation.SpectralCompression.corona_clopen_projection_collapse	Suppose that $v\in\U(\mathcal Q_{\mathbf d})$ commutes with $\pi(sLs^{-1})$ and that its $L$-conjugates commute pairwise.
-8e046b11056f	121	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces GroupApproximation.SpectralCompression.corona_clopen_projection_collapse	Then, for $\gamma\in L$,
-507012dd65a3	129	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces GroupApproximation.SpectralCompression.corona_clopen_projection_collapse	In particular, if every connected component of $\sigma(v)$ is a singleton, then $v$ commutes with $\pi(L)$.
-b6514923d58c	135	Introduction		thm:spectral	ledger	SC.03 SC.04	Finite spectrum, Cantor spectrum, and every zero-dimensional compact spectrum therefore collapse.
-11aea9086e98	135	Introduction		thm:spectral	structural	-	The proof uses clopen spectral projections, not Fourier decomposition.
-f0e88dad7400	135	Introduction		thm:spectral	structural	-	Fourier idempotents remain a useful special case but are no longer part of the architecture.
-e947a3d4f4a1	140	Introduction		thm:spectral	structural	-	Let
-55eccb8876bf	144	Introduction		thm:spectral	ledger	SC.05	let $G_*$ be the ascending HNN extension of $\Gamma_*$ along $\alpha$, and put $X=G_*/\Gamma_*$.
-801e11cd4370	144	Introduction		thm:spectral	ledger	SC.05	The height map $h\colon G_*\twoheadrightarrow\Z$ induces $X\to\Z$.
-41ae2d8c1d10	144	Introduction		thm:spectral	ledger	SC.06	For a nontrivial finite group $K$, set $W_K=K^{(X)}\rtimes G_*$.
-4bc547fbad55	144	Introduction		thm:spectral	ledger	SC.06	Write $L_K=K^{(X)}$ for its lamp subgroup and $q_K\colon W_K\twoheadrightarrow G_*$ for the wreath projection.
-5faae940548a	151	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	For every nontrivial finite perfect group $K$, every matrix-corona representation of $W_K$ factors uniquely through $q_K$.
-17540dcb9791	151	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	Moreover
-e380c9fa6fb6	158	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	The quotient $G_*$ is residually finite, while $W_K$ is finitely generated, sofic, and non-MF.
-414302584151	158	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	Precomposition with $q_K$ is a bijection on homomorphisms into every norm matrix corona, finite or residually finite group, and finite-dimensional linear group over every field, as well as every profinite group.
-66fee18e03ab	166	Introduction		thm:visible	partial	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	By Peter--Weyl separation, every homomorphism from $W_K$ to a compact Hausdorff group also kills $L_K$.
-b7459f3d324f	166	Introduction		thm:visible	partial	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	Thus precomposition is bijective for compact targets and $\Rad_{\mathrm{Bohr}}(W_K)=L_K$.
-c2a1047d3c71	166	Introduction		thm:visible	structural	-	The formal development isolates precisely this classical point-separation input.
-6ea59450ac14	171	Introduction		thm:visible	ledger	SC.07	Theorem~\ref{thm:headline} is the specialization $K=A_5$.
-49b72cf93e53	171	Introduction		thm:visible	ledger	SC.06	Perfectness, not $A_5$ itself, makes the entire lamp subgroup invisible.
-acc1f3835ba7	171	Introduction		thm:visible	ledger	SC.07	Simplicity makes any nonidentity one-site lamp normally generate that subgroup, and the choice $(12)(34)$ makes the generator an involution.
-8d8a1df4c166	171	Introduction		thm:visible	ledger	SC.06 SC.07	Thus $A_5$ is not essential to the collapse or to the existence of non-MF groups.
-59bb3e5e8937	171	Introduction		thm:visible	ledger	SC.07	It is the smallest standard choice that packages the sharper one-relation statement.
-8a3922f2871e	180	Exact finite-dimensional compression		sec:fd	ledger	SC.01	For $L\le H$, put
-45c1f4a0dc90	185	Exact finite-dimensional compression		sec:fd	ledger	SC.01	and define
-4d08a7f21f00	193	Exact finite-dimensional compression	theorem	thm:fd-defect	formalized	GroupApproximation.compressionCentralizerDefect_le_ker	For every field $F$, finite-dimensional $F$-vector space $V$, and homomorphism $\rho\colon H\to\GL_F(V)$, one has $D(H,L)\le\ker\rho$.
-76296ae03495	199	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Let $C$ be the commutant of $\rho(L)$ in $\operatorname{End}_F(V)$.
-64d4e303d727	199	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	If $sLs^{-1}\le L$, conjugation by $\rho(s)$ sends $C$ injectively into $C$.
-03acce9476e9	199	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Finite dimension makes it surjective.
-095399da9695	199	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Thus every compressor, and hence $G_{\mathrm{comp}}(L)$, normalizes $C$.
-22fc5c179ccf	199	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	It follows that each displayed commutator, and therefore its normal closure, is killed by $\rho$.
-a7bd2d53c6b5	206	Exact finite-dimensional compression		thm:fd-defect	ledger	SC.01	No property~\textup{(T)}, trace, or unitarity occurs here.
-4732752dd419	206	Exact finite-dimensional compression		thm:fd-defect	ledger	SC.01	The only use of finite dimension is injective implies surjective.
-92f5f49b62f7	206	Exact finite-dimensional compression		thm:fd-defect	structural	-	A norm corona is not finite dimensional and its commutants can grow; the next section gives the rigidity that survives there.
-12a58889cfb0	214	Spectral rigidity in norm coronas	theorem	thm:projection-collapse	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	Let $L\le H$ have property~\textup{(T)}, let $sLs^{-1}\le L$, and let $\pi\colon H\to\U(\mathcal Q_{\mathbf d})$.
-3831403ee6d1	214	Spectral rigidity in norm coronas	theorem	thm:projection-collapse	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	If a projection $p$ commutes with $\pi(sLs^{-1})$ and the projections $\pi(\gamma)p\pi(\gamma)^*$, $\gamma\in L$, commute pairwise, then $p$ commutes with $\pi(L)$.
-1c15ea9de41d	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Lift the data to bounded matrix sequences.
-c674255a8421	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	On the finite von Neumann algebra generated by the asymptotic commuting orbit, the join of the displacement supports carries a normalized rank trace.
-36c990203fd8	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	The displacements form a Hilbert-space cocycle for $L$.
-20f0a86e929a	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Compressed centrality makes its restriction to $sLs^{-1}$ vanish, while one-sided compression makes the invariant projection subordinate to a unitarily equivalent projection.
-989cce1cba74	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Finiteness forces equality.
-b57cda8bb978	222	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Property~\textup{(T)} then makes the cocycle a coboundary, and support normalization forces that coboundary to vanish.
-2cf71171197e	232	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	Let $v$ be normal and $U\subseteq\sigma(v)$ clopen.
-0229b7cc2bd6	232	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	Continuous functional calculus gives $p_U=1_U(v)$.
-2b94178b688a	232	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	It is functorial under unitary conjugation, so Theorem~\ref{thm:projection-collapse} gives
-1fa869fc8fc0	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Put $w=\pi(\gamma)v\pi(\gamma)^*$.
-11b128b7d60d	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Since $v,w$ commute, $A=C^*(1,v,w)$ is commutative.
-bdcb7ccd9c3f	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	For a character $\chi$ of $A$, put $z=\chi(v)$ and $z'=\chi(w)$.
-87ceea336422	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03 SC.04	Evaluating (3.1) says that $z$ and $z'$ lie in exactly the same clopen subsets of $\sigma(v)$.
-fc2d2861f12d	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	In a compact Hausdorff space, quasi-components equal connected components.
-fd15b69db3b9	239	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Gelfand duality therefore gives
-fd311a20858d	248	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	proving Theorem~\ref{thm:spectral}.
-7821a8b567b2	252	The affine compression geometry		sec:geometry	ledger	SC.05	Use the affine $4\times4$ matrix representation of $\Gamma_*=\Z^3\rtimes\SL_3(\Z)$ and put $D=\operatorname{diag}(2,2,2,1)$.
-bd4a094984e6	252	The affine compression geometry		sec:geometry	ledger	SC.05	Conjugation by $D$ is $\alpha$, with $[\Gamma_*:\alpha(\Gamma_*)]=8$.
-e058f143f80d	252	The affine compression geometry		sec:geometry	ledger	SC.05	The group $\Gamma_*$ has property~\textup{(T)} by relative property~\textup{(T)} for the translation subgroup and property~\textup{(T)} of $\SL_3(\Z)$ \cite{BHV,Burger}.
-d9b3437dd0a3	252	The affine compression geometry		sec:geometry	ledger	SC.05	It is residually finite by reduction modulo primes.
-2e0e960ab320	260	The affine compression geometry		sec:geometry	ledger	SC.05	Form
-31cc20219075	264	The affine compression geometry		sec:geometry	ledger	SC.05	Sending $t$ to $D$ embeds $G_*$ in $\GL_4(\Z[1/2])$: the direct-limit kernel is the union of $D^{-n}\Gamma_*D^n$, and determinant separates height.
-02bb8dc98666	264	The affine compression geometry		sec:geometry	ledger	SC.05	Reduction modulo odd primes makes $G_*$ residually finite, hence MF.
-859171d5afed	268	The affine compression geometry		sec:geometry	ledger	SC.05	Put $X=G_*/\Gamma_*$.
-cf79f8f23586	268	The affine compression geometry		sec:geometry	ledger	SC.05	The proper inclusion $t\Gamma_*t^{-1}<\Gamma_*$ supplies compression.
-cadc7e961887	268	The affine compression geometry		sec:geometry	ledger	SC.05	The height homomorphism $h(t)=1$, $h(\Gamma_*)=0$ induces $X\to\Z$.
-059abc38aae7	268	The affine compression geometry		sec:geometry	ledger	SC.05	For finite $K$, $W_K=K^{(X)}\rtimes G_*$ is finitely generated because the action is transitive.
-61b689e1de4c	268	The affine compression geometry		sec:geometry	ledger	SC.05	It is sofic: finite-index compression gives finite telescope windows for the coset action, and generalized wreath approximations over those windows give sofic models.
-66c9781be738	268	The affine compression geometry		sec:geometry	ledger	SC.05	This is the only use of the index $8$.
-ba0a35527c65	279	The exact visible quotient	proposition	prop:factor	formalized	GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub	If $K$ is finite and perfect, every norm-corona representation of $W_K$ kills $L_K$ and therefore factors uniquely through $q_K$.
-155099e14f1f	285	The exact visible quotient	proof	prop:factor	structural	-	Fix $k\in K$.
-99b67c372c20	285	The exact visible quotient	proof	prop:factor	ledger	SC.06	A one-site lamp with value $k$ is centralized by the compressed copy $t\Gamma_*t^{-1}$, while its $\Gamma_*$-conjugates commute whenever they occupy distinct sites.
-44f0ab4e56e0	285	The exact visible quotient	proof	prop:factor	ledger	SC.03 SC.06	Since $K$ is finite, the lamp has finite spectrum.
-318260734a32	285	The exact visible quotient	proof	prop:factor	ledger	SC.03 SC.06	Theorem~\ref{thm:spectral} therefore makes the images of the relevant conjugate lamps coincide.
-ea6945f0fdb8	285	The exact visible quotient	proof	prop:factor	ledger	SC.06	Copies supported at distinct sites commuted before this identification, so the resulting image of the one-site copy of $K$ is abelian.
-eb4e8bdb6a75	285	The exact visible quotient	proof	prop:factor	ledger	SC.06	It kills $[K,K]$, which equals $K$ by perfectness.
-02936a2a8163	285	The exact visible quotient	proof	prop:factor	ledger	SC.06	Transitivity of the $G_*$-action then kills every one-site copy and hence $L_K$.
-a84048c6d0e2	285	The exact visible quotient	proof	prop:factor	ledger	SC.06	Uniqueness of the factorization follows from surjectivity of $q_K$.
-25495cddb103	296	The exact visible quotient		prop:factor	ledger	SC.06	Since $q_K$ lands in the residually finite group $G_*$, no element outside $L_K=\ker q_K$ can lie in the finite residual. On the other hand every finite target is a finite-dimensional unitary target, and every finite-dimensional unitary target embeds in a norm matrix corona by constant sequences.
-9e9d160ad762	296	The exact visible quotient		prop:factor	ledger	SC.06	Together with Proposition~\ref{prop:factor}, these containments identify the MF, finite-dimensional unitary, and finite residuals with $L_K$.
-82530b0330a7	303	The exact visible quotient		prop:factor	ledger	SC.06	If $\rho\colon W_K\to\GL_d(F)$, its image is finitely generated and linear, hence residually finite by Mal'cev's theorem, so it also kills $L_K$.
-9025ace7d4db	303	The exact visible quotient		prop:factor	ledger	SC.06	Conversely finite groups have faithful complex regular representations.
-d120c905f731	303	The exact visible quotient		prop:factor	ledger	SC.06	This identifies the all-fields linear radical as well.
-5e360abdc52e	303	The exact visible quotient		prop:factor	ledger	SC.06	The abstract factorization lemma for a surjection now gives all the stated Hom-set bijections.
-950a6f996494	303	The exact visible quotient		prop:factor	attribution	-	Finally, Peter--Weyl separation says that a nonidentity element of a compact Hausdorff group is detected by a finite-dimensional unitary representation; it therefore identifies the Bohr radical with the finite-dimensional unitary radical. This proves Theorem~\ref{thm:visible}.
-53fa2ed66083	315	One invisible relation		sec:a5	ledger	SC.07	Take $K=A_5$.
-c546ece54ba6	315	One invisible relation		sec:a5	ledger	SC.07	Since $A_5$ is perfect, $\ker q_{A_5}=A_5^{(X)}$ is the exact common invisible subgroup.
-f2fa4eb39b91	315	One invisible relation		sec:a5	ledger	SC.07	Let $r$ be the one-site lamp with value $(12)(34)$.
-24f4093da123	315	One invisible relation		sec:a5	ledger	SC.07	It is an involution.
-e4fa8540c4e3	315	One invisible relation		sec:a5	ledger	SC.07	Simplicity of $A_5$ makes its conjugates inside one site normally generate that copy; transitivity spreads the normal closure to every site.
-fabbb0b657ff	315	One invisible relation		sec:a5	ledger	SC.07	Hence
-a462b2b519b1	325	One invisible relation		sec:a5	ledger	SC.07	Every corona representation already imposes $r=1$.
-5163849ddc85	325	One invisible relation		sec:a5	ledger	SC.07	Nevertheless the kernel is nontrivial, so $W_{A_5}$ is not MF, while $G_*$ is residually finite and MF.
-fad08e6ce0a7	325	One invisible relation		sec:a5	ledger	SC.07	This proves Theorem~\ref{thm:headline}.
-6f18e894220d	329	One invisible relation		sec:a5	ledger	SC.07	The invisible subgroup $A_5^{(X)}$ is locally finite and residually finite, hence MF on its own.
-d1fdab484c3d	329	One invisible relation		sec:a5	ledger	SC.07	Its ambient invisibility is an extension phenomenon created by the compressed action, not intrinsic non-approximability.
-703863480ab8	334	Formal verification			structural	-	The arguments specific to this paper are formalized in Lean~4: the finite-dimensional defect theorem over every field; projection collapse; clopen spectral functional calculus; the compact-Hausdorff component lemma and Gelfand norm estimate; the affine compression pair; the exact MF, finite, unitary, and all-fields linear residuals for every finite perfect lamp; universal factorization; and the $A_5$ one-relation specialization.
-d20cb62c549d	334	Formal verification			structural	-	The formal Bohr statement is reduced to the point-separation conclusion of the classical Peter--Weyl theorem, which is isolated as an explicit hypothesis.
-26c938f8bdaa	334	Formal verification			provenance	-	The source contains no admitted propositions.
-5e017a7526d9	345	Acknowledgements			attribution	-	We thank Caleb Eckhardt, Francesco Fournier-Facio, and Alon Dogon for helpful discussions about finite-dimensional approximation and one-sided compression.
-c5aadffd6357	349	AI and computational resource usage			provenance	-	Large language models were used extensively for mathematical exploration, proof development, Lean formalization, and editing.
-36edb4191788	349	AI and computational resource usage			provenance	-	The author checked and revised the arguments and citations.
-fe5eb4f49d11	349	AI and computational resource usage			provenance	-	Computational resources were used for formal verification; the mathematical proofs do not depend on numerical experiments.
+5adf422751d3	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.SpectralPaper.oneInvisibleRelationPackage GroupApproximation.SpectralPaper.a5UniversalInvisibility GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	There are explicit finitely generated groups $W$ and $G$, a split epimorphism $q\colon W\twoheadrightarrow G$, and an involution $r\in W\setminus\{1\}$ such that $\ker q=\langle\!\langle r\rangle\!\rangle_W$.
+f4c2cc04aea1	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.SpectralPaper.oneInvisibleRelationPackage GroupApproximation.SpectralPaper.a5UniversalInvisibility GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	The group $W$ is sofic and non-MF, whereas $G$ is residually finite and MF.
+1ff4b77e08f8	95	Introduction	mainthm	thm:headline	formalized	GroupApproximation.SpectralPaper.oneInvisibleRelationPackage GroupApproximation.SpectralPaper.a5UniversalInvisibility GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	For every norm matrix corona, precomposition gives a bijection
+4ec1dc4fccf9	105	Introduction	mainthm	thm:headline	formalized	GroupApproximation.SpectralPaper.oneInvisibleRelationPackage GroupApproximation.SpectralPaper.a5UniversalInvisibility GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp	The analogous bijection holds for finite groups, residually finite groups, finite-dimensional linear groups over every field, finite-dimensional unitary groups, and profinite groups.
+f60dbcd1f716	113	Introduction		thm:headline	ledger	SC.00	Thus adding the single relation $r=1$, which every MF representation already satisfies, changes a non-MF group into an MF group.
+e66dc7453e4e	113	Introduction		thm:headline	ledger	SC.07	The relation is not intrinsically pathological: its normal closure is locally finite, amenable, residually finite, and MF.
+99a99e3aae5c	113	Introduction		thm:headline	ledger	SC.06	What fails is extension of its finite models through the compressed Kazhdan action.
+75c2a2cdb343	113	Introduction		thm:headline	attribution	-	The classical Peter--Weyl point-separation theorem upgrades the last target list from profinite groups to all compact Hausdorff groups.
+dc0186abae3a	122	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralPaper.spectralCompressionTheorem GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem	Let $L\le H$ have property~\textup{(T)}, let $sLs^{-1}\le L$, and let $\pi\colon H\to\U(\mathcal Q_{\mathbf d})$ be a homomorphism.
+14e2dd8ac4a2	122	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralPaper.spectralCompressionTheorem GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem	Suppose that $v\in\U(\mathcal Q_{\mathbf d})$ commutes with $\pi(sLs^{-1})$ and that its $L$-conjugates commute pairwise.
+8e046b11056f	122	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralPaper.spectralCompressionTheorem GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem	Then, for $\gamma\in L$,
+507012dd65a3	130	Introduction	mainthm	thm:spectral	formalized	GroupApproximation.SpectralPaper.spectralCompressionTheorem GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem	In particular, if every connected component of $\sigma(v)$ is a singleton, then $v$ commutes with $\pi(L)$.
+b6514923d58c	136	Introduction		thm:spectral	ledger	SC.03 SC.04	Finite spectrum, Cantor spectrum, and every zero-dimensional compact spectrum therefore collapse.
+11aea9086e98	136	Introduction		thm:spectral	structural	-	The proof uses clopen spectral projections, not Fourier decomposition.
+f0e88dad7400	136	Introduction		thm:spectral	structural	-	Fourier idempotents remain a useful special case but are no longer part of the architecture.
+e947a3d4f4a1	141	Introduction		thm:spectral	structural	-	Let
+55eccb8876bf	145	Introduction		thm:spectral	ledger	SC.05	let $G_*$ be the ascending HNN extension of $\Gamma_*$ along $\alpha$, and put $X=G_*/\Gamma_*$.
+801e11cd4370	145	Introduction		thm:spectral	ledger	SC.05	The height map $h\colon G_*\twoheadrightarrow\Z$ induces $X\to\Z$.
+41ae2d8c1d10	145	Introduction		thm:spectral	ledger	SC.06	For a nontrivial finite group $K$, set $W_K=K^{(X)}\rtimes G_*$.
+4bc547fbad55	145	Introduction		thm:spectral	ledger	SC.06	Write $L_K=K^{(X)}$ for its lamp subgroup and $q_K\colon W_K\twoheadrightarrow G_*$ for the wreath projection.
+5faae940548a	152	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility	For every nontrivial finite perfect group $K$, every matrix-corona representation of $W_K$ factors uniquely through $q_K$.
+17540dcb9791	152	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility	Moreover
+e380c9fa6fb6	159	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility	The quotient $G_*$ is residually finite, while $W_K$ is finitely generated, sofic, and non-MF.
+414302584151	159	Introduction	mainthm	thm:visible	formalized	GroupApproximation.FinitePerfectLamp.finitePerfectPackage GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility	Precomposition with $q_K$ is a bijection on homomorphisms into every norm matrix corona, finite or residually finite group, and finite-dimensional linear group over every field, as well as every profinite group.
+66fee18e03ab	168	Introduction		thm:visible	partial	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	By Peter--Weyl separation, every homomorphism from $W_K$ to a compact Hausdorff group also kills $L_K$.
+b7459f3d324f	168	Introduction		thm:visible	partial	GroupApproximation.FinitePerfectLamp.finitePerfectPackage	Thus precomposition is bijective for compact targets and $\Rad_{\mathrm{Bohr}}(W_K)=L_K$.
+c2a1047d3c71	168	Introduction		thm:visible	structural	-	The formal development isolates precisely this classical point-separation input.
+6ea59450ac14	173	Introduction		thm:visible	ledger	SC.07	Theorem~\ref{thm:headline} is the specialization $K=A_5$.
+49b72cf93e53	173	Introduction		thm:visible	ledger	SC.06	Perfectness, not $A_5$ itself, makes the entire lamp subgroup invisible.
+acc1f3835ba7	173	Introduction		thm:visible	ledger	SC.07	Simplicity makes any nonidentity one-site lamp normally generate that subgroup, and the choice $(12)(34)$ makes the generator an involution.
+8d8a1df4c166	173	Introduction		thm:visible	ledger	SC.06 SC.07	Thus $A_5$ is not essential to the collapse or to the existence of non-MF groups.
+59bb3e5e8937	173	Introduction		thm:visible	ledger	SC.07	It is the smallest standard choice that packages the sharper one-relation statement.
+8a3922f2871e	182	Exact finite-dimensional compression		sec:fd	ledger	SC.01	For $L\le H$, put
+45c1f4a0dc90	187	Exact finite-dimensional compression		sec:fd	ledger	SC.01	and define
+4d08a7f21f00	195	Exact finite-dimensional compression	theorem	thm:fd-defect	formalized	GroupApproximation.compressionCentralizerDefect_le_ker	For every field $F$, finite-dimensional $F$-vector space $V$, and homomorphism $\rho\colon H\to\GL_F(V)$, one has $D(H,L)\le\ker\rho$.
+76296ae03495	201	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Let $C$ be the commutant of $\rho(L)$ in $\operatorname{End}_F(V)$.
+64d4e303d727	201	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	If $sLs^{-1}\le L$, conjugation by $\rho(s)$ sends $C$ injectively into $C$.
+03acce9476e9	201	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Finite dimension makes it surjective.
+095399da9695	201	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	Thus every compressor, and hence $G_{\mathrm{comp}}(L)$, normalizes $C$.
+22fc5c179ccf	201	Exact finite-dimensional compression	proof	thm:fd-defect	ledger	SC.01	It follows that each displayed commutator, and therefore its normal closure, is killed by $\rho$.
+a7bd2d53c6b5	208	Exact finite-dimensional compression		thm:fd-defect	ledger	SC.01	No property~\textup{(T)}, trace, or unitarity occurs here.
+4732752dd419	208	Exact finite-dimensional compression		thm:fd-defect	ledger	SC.01	The only use of finite dimension is injective implies surjective.
+92f5f49b62f7	208	Exact finite-dimensional compression		thm:fd-defect	structural	-	A norm corona is not finite dimensional and its commutants can grow; the next section gives the rigidity that survives there.
+12a58889cfb0	216	Spectral rigidity in norm coronas	theorem	thm:projection-collapse	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	Let $L\le H$ have property~\textup{(T)}, let $sLs^{-1}\le L$, and let $\pi\colon H\to\U(\mathcal Q_{\mathbf d})$.
+3831403ee6d1	216	Spectral rigidity in norm coronas	theorem	thm:projection-collapse	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	If a projection $p$ commutes with $\pi(sLs^{-1})$ and the projections $\pi(\gamma)p\pi(\gamma)^*$, $\gamma\in L$, commute pairwise, then $p$ commutes with $\pi(L)$.
+1c15ea9de41d	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Lift the data to bounded matrix sequences.
+c674255a8421	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	On the finite von Neumann algebra generated by the asymptotic commuting orbit, the join of the displacement supports carries a normalized rank trace.
+36c990203fd8	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	The displacements form a Hilbert-space cocycle for $L$.
+20f0a86e929a	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Compressed centrality makes its restriction to $sLs^{-1}$ vanish, while one-sided compression makes the invariant projection subordinate to a unitarily equivalent projection.
+989cce1cba74	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Finiteness forces equality.
+b57cda8bb978	224	Spectral rigidity in norm coronas	proof	thm:projection-collapse	ledger	SC.02	Property~\textup{(T)} then makes the cocycle a coboundary, and support normalization forces that coboundary to vanish.
+2cf71171197e	234	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	Let $v$ be normal and $U\subseteq\sigma(v)$ clopen.
+0229b7cc2bd6	234	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	Continuous functional calculus gives $p_U=1_U(v)$.
+2b94178b688a	234	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03	It is functorial under unitary conjugation, so Theorem~\ref{thm:projection-collapse} gives
+1fa869fc8fc0	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Put $w=\pi(\gamma)v\pi(\gamma)^*$.
+11b128b7d60d	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Since $v,w$ commute, $A=C^*(1,v,w)$ is commutative.
+bdcb7ccd9c3f	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	For a character $\chi$ of $A$, put $z=\chi(v)$ and $z'=\chi(w)$.
+87ceea336422	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.03 SC.04	Evaluating (3.1) says that $z$ and $z'$ lie in exactly the same clopen subsets of $\sigma(v)$.
+fc2d2861f12d	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	In a compact Hausdorff space, quasi-components equal connected components.
+fd15b69db3b9	241	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	Gelfand duality therefore gives
+fd311a20858d	250	Spectral rigidity in norm coronas		thm:projection-collapse	ledger	SC.04	proving Theorem~\ref{thm:spectral}.
+7821a8b567b2	254	The affine compression geometry		sec:geometry	ledger	SC.05	Use the affine $4\times4$ matrix representation of $\Gamma_*=\Z^3\rtimes\SL_3(\Z)$ and put $D=\operatorname{diag}(2,2,2,1)$.
+bd4a094984e6	254	The affine compression geometry		sec:geometry	ledger	SC.05	Conjugation by $D$ is $\alpha$, with $[\Gamma_*:\alpha(\Gamma_*)]=8$.
+e058f143f80d	254	The affine compression geometry		sec:geometry	ledger	SC.05	The group $\Gamma_*$ has property~\textup{(T)} by relative property~\textup{(T)} for the translation subgroup and property~\textup{(T)} of $\SL_3(\Z)$ \cite{BHV,Burger}.
+d9b3437dd0a3	254	The affine compression geometry		sec:geometry	ledger	SC.05	It is residually finite by reduction modulo primes.
+2e0e960ab320	262	The affine compression geometry		sec:geometry	ledger	SC.05	Form
+31cc20219075	266	The affine compression geometry		sec:geometry	ledger	SC.05	Sending $t$ to $D$ embeds $G_*$ in $\GL_4(\Z[1/2])$: the direct-limit kernel is the union of $D^{-n}\Gamma_*D^n$, and determinant separates height.
+02bb8dc98666	266	The affine compression geometry		sec:geometry	ledger	SC.05	Reduction modulo odd primes makes $G_*$ residually finite, hence MF.
+859171d5afed	270	The affine compression geometry		sec:geometry	ledger	SC.05	Put $X=G_*/\Gamma_*$.
+cf79f8f23586	270	The affine compression geometry		sec:geometry	ledger	SC.05	The proper inclusion $t\Gamma_*t^{-1}<\Gamma_*$ supplies compression.
+cadc7e961887	270	The affine compression geometry		sec:geometry	ledger	SC.05	The height homomorphism $h(t)=1$, $h(\Gamma_*)=0$ induces $X\to\Z$.
+059abc38aae7	270	The affine compression geometry		sec:geometry	ledger	SC.05	For finite $K$, $W_K=K^{(X)}\rtimes G_*$ is finitely generated because the action is transitive.
+61b689e1de4c	270	The affine compression geometry		sec:geometry	ledger	SC.05	It is sofic: finite-index compression gives finite telescope windows for the coset action, and generalized wreath approximations over those windows give sofic models.
+66c9781be738	270	The affine compression geometry		sec:geometry	ledger	SC.05	This is the only use of the index $8$.
+ba0a35527c65	281	The exact visible quotient	proposition	prop:factor	formalized	GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility	If $K$ is finite and perfect, every norm-corona representation of $W_K$ kills $L_K$ and therefore factors uniquely through $q_K$.
+155099e14f1f	287	The exact visible quotient	proof	prop:factor	structural	-	Fix $k\in K$.
+99b67c372c20	287	The exact visible quotient	proof	prop:factor	ledger	SC.06	A one-site lamp with value $k$ is centralized by the compressed copy $t\Gamma_*t^{-1}$, while its $\Gamma_*$-conjugates commute whenever they occupy distinct sites.
+44f0ab4e56e0	287	The exact visible quotient	proof	prop:factor	ledger	SC.03 SC.06	Since $K$ is finite, the lamp has finite spectrum.
+318260734a32	287	The exact visible quotient	proof	prop:factor	ledger	SC.03 SC.06	Theorem~\ref{thm:spectral} therefore makes the images of the relevant conjugate lamps coincide.
+ea6945f0fdb8	287	The exact visible quotient	proof	prop:factor	ledger	SC.06	Copies supported at distinct sites commuted before this identification, so the resulting image of the one-site copy of $K$ is abelian.
+eb4e8bdb6a75	287	The exact visible quotient	proof	prop:factor	ledger	SC.06	It kills $[K,K]$, which equals $K$ by perfectness.
+02936a2a8163	287	The exact visible quotient	proof	prop:factor	ledger	SC.06	Transitivity of the $G_*$-action then kills every one-site copy and hence $L_K$.
+a84048c6d0e2	287	The exact visible quotient	proof	prop:factor	ledger	SC.06	Uniqueness of the factorization follows from surjectivity of $q_K$.
+25495cddb103	298	The exact visible quotient		prop:factor	ledger	SC.06	Since $q_K$ lands in the residually finite group $G_*$, no element outside $L_K=\ker q_K$ can lie in the finite residual. On the other hand every finite target is a finite-dimensional unitary target, and every finite-dimensional unitary target embeds in a norm matrix corona by constant sequences.
+9e9d160ad762	298	The exact visible quotient		prop:factor	ledger	SC.06	Together with Proposition~\ref{prop:factor}, these containments identify the MF, finite-dimensional unitary, and finite residuals with $L_K$.
+82530b0330a7	305	The exact visible quotient		prop:factor	ledger	SC.06	If $\rho\colon W_K\to\GL_d(F)$, its image is finitely generated and linear, hence residually finite by Mal'cev's theorem, so it also kills $L_K$.
+9025ace7d4db	305	The exact visible quotient		prop:factor	ledger	SC.06	Conversely finite groups have faithful complex regular representations.
+d120c905f731	305	The exact visible quotient		prop:factor	ledger	SC.06	This identifies the all-fields linear radical as well.
+5e360abdc52e	305	The exact visible quotient		prop:factor	ledger	SC.06	The abstract factorization lemma for a surjection now gives all the stated Hom-set bijections.
+950a6f996494	305	The exact visible quotient		prop:factor	attribution	-	Finally, Peter--Weyl separation says that a nonidentity element of a compact Hausdorff group is detected by a finite-dimensional unitary representation; it therefore identifies the Bohr radical with the finite-dimensional unitary radical. This proves Theorem~\ref{thm:visible}.
+53fa2ed66083	317	One invisible relation		sec:a5	ledger	SC.07	Take $K=A_5$.
+c546ece54ba6	317	One invisible relation		sec:a5	ledger	SC.07	Since $A_5$ is perfect, $\ker q_{A_5}=A_5^{(X)}$ is the exact common invisible subgroup.
+f2fa4eb39b91	317	One invisible relation		sec:a5	ledger	SC.07	Let $r$ be the one-site lamp with value $(12)(34)$.
+24f4093da123	317	One invisible relation		sec:a5	ledger	SC.07	It is an involution.
+e4fa8540c4e3	317	One invisible relation		sec:a5	ledger	SC.07	Simplicity of $A_5$ makes its conjugates inside one site normally generate that copy; transitivity spreads the normal closure to every site.
+fabbb0b657ff	317	One invisible relation		sec:a5	ledger	SC.07	Hence
+a462b2b519b1	327	One invisible relation		sec:a5	ledger	SC.07	Every corona representation already imposes $r=1$.
+5163849ddc85	327	One invisible relation		sec:a5	ledger	SC.07	Nevertheless the kernel is nontrivial, so $W_{A_5}$ is not MF, while $G_*$ is residually finite and MF.
+fad08e6ce0a7	327	One invisible relation		sec:a5	ledger	SC.07	This proves Theorem~\ref{thm:headline}.
+6f18e894220d	331	One invisible relation		sec:a5	ledger	SC.07	The invisible subgroup $A_5^{(X)}$ is locally finite and residually finite, hence MF on its own.
+d1fdab484c3d	331	One invisible relation		sec:a5	ledger	SC.07	Its ambient invisibility is an extension phenomenon created by the compressed action, not intrinsic non-approximability.
+db93e1f98a67	336	Formal verification			structural	-	The arguments specific to this paper are formalized in Lean~4: the finite-dimensional defect theorem over every field; projection collapse; clopen spectral functional calculus; the passage to the commutative C-star-algebra generated by two commuting normal elements; the compact-Hausdorff component lemma and Gelfand norm estimate; the affine compression pair; the exact MF, finite, unitary, and all-fields linear residuals for every finite perfect lamp; universal factorization; and the $A_5$ one-relation specialization.
+d20cb62c549d	336	Formal verification			structural	-	The formal Bohr statement is reduced to the point-separation conclusion of the classical Peter--Weyl theorem, which is isolated as an explicit hypothesis.
+26c938f8bdaa	336	Formal verification			provenance	-	The source contains no admitted propositions.
+5e017a7526d9	349	Acknowledgements			attribution	-	We thank Caleb Eckhardt, Francesco Fournier-Facio, and Alon Dogon for helpful discussions about finite-dimensional approximation and one-sided compression.
+c5aadffd6357	353	AI and computational resource usage			provenance	-	Large language models were used extensively for mathematical exploration, proof development, Lean formalization, and editing.
+36edb4191788	353	AI and computational resource usage			provenance	-	The author checked and revised the arguments and citations.
+fe5eb4f49d11	353	AI and computational resource usage			provenance	-	Computational resources were used for formal verification; the mathematical proofs do not depend on numerical experiments.

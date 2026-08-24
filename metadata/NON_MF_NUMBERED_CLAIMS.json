@@ -19,8 +19,14 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/AlternatingLampExactRadical",
-          "declaration": "GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.oneInvisibleRelationPackage",
+          "covers": "one printed clause; the declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.a5UniversalInvisibility",
           "covers": "one printed clause; the declarations are collective"
         },
         {
@@ -47,14 +53,14 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/SpectralComponentDiameter",
-          "declaration": "GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.spectralCompressionTheorem",
           "covers": "one printed clause; the declarations are collective"
         },
         {
           "role": "exact",
-          "module": "Sofic/SpectralCompression",
-          "declaration": "GroupApproximation.SpectralCompression.corona_clopen_projection_collapse",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem",
           "covers": "one printed clause; the declarations are collective"
         }
       ]
@@ -77,6 +83,12 @@
           "role": "exact",
           "module": "Sofic/FinitePerfectLampExactRadical",
           "declaration": "GroupApproximation.FinitePerfectLamp.finitePerfectPackage",
+          "covers": "one printed clause; the declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility",
           "covers": "one printed clause; the declarations are collective"
         }
       ]
@@ -137,8 +149,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/FinitePerfectLampExactRadical",
-          "declaration": "GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility",
           "covers": "one printed clause; the declarations are collective"
         }
       ]

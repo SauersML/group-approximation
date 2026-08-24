@@ -18,17 +18,16 @@ REPO = Path(__file__).resolve().parent.parent
 # look live to the audit.
 CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:headline": (
-        "Sofic/AlternatingLampExactRadical",
-        "GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage",
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.oneInvisibleRelationPackage",
     ),
     "thm:spectral": (
-        "Analysis/SpectralComponentDiameter",
-        "GroupApproximation.SpectralComponentDiameter."
-        "norm_sub_le_of_same_clopen_spectral_pieces",
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.spectralCompressionTheorem",
     ),
     "thm:visible": (
-        "Sofic/FinitePerfectLampExactRadical",
-        "GroupApproximation.FinitePerfectLamp.finitePerfectPackage",
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility",
     ),
     "thm:fd-defect": (
         "Criterion/CompressionCentralizerDefect",
@@ -40,9 +39,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "corona_projection_collapse",
     ),
     "prop:factor": (
-        "Sofic/FinitePerfectLampExactRadical",
-        "GroupApproximation.FinitePerfectLamp."
-        "actualCoronaMFResidual_eq_lampSub",
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility",
     ),
 }
 

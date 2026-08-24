@@ -4,7 +4,7 @@
 
 For every declaration a manuscript margin note names, the number of **repository-local** constants its statement transitively depends on, and the number of source lines those constants occupy.  Mathlib and core constants are not counted; definitions are unfolded and theorem proofs are not.  See `scripts/StatementClosure.lean` for what the number is for and why it is the first half of the `leanprover/comparator` protocol.
 
-Whole development: **1124 local constants, 7487 source lines** in the union of every mapped statement's closure.
+Whole development: **1129 local constants, 7571 source lines** in the union of every mapped statement's closure.
 
 ## Soficity manuscript
 
@@ -437,13 +437,12 @@ GroupApproximation.window_defect_eq                                             
 
 ## Non-MF manuscript
 
-Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (90 declarations).  Union of all statement closures: **653 local constants, 3649 source lines**.
+Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (91 declarations).  Union of all statement closures: **658 local constants, 3733 source lines**.
 
 ```
 declaration                                                                                            constants  lines
 GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem           22         136
 GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem        22         136
-GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage                                      87         503
 GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp                    65         287
 GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow                            12         41
 GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear                                        65         190
@@ -453,7 +452,6 @@ GroupApproximation.Computability.operatorMF_recognition_not_computable          
 GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity                               73         317
 GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package                              57         237
 GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo                6          70
-GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub                                 79         447
 GroupApproximation.FinitePerfectLamp.finitePerfectPackage                                              87         501
 GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar                                  5          18
 GroupApproximation.IsOperatorMF.subgroup                                                               9          63
@@ -517,8 +515,11 @@ GroupApproximation.QuasiRegularWitness.baseVector_apply_base                    
 GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily                                       108        467
 GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope                     29         197
 GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient               4          28
-GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces                0          0
-GroupApproximation.SpectralCompression.corona_clopen_projection_collapse                               30         218
+GroupApproximation.SpectralPaper.a5UniversalInvisibility                                               80         424
+GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility                                    77         453
+GroupApproximation.SpectralPaper.oneInvisibleRelationPackage                                           107        602
+GroupApproximation.SpectralPaper.spectralCompressionTheorem                                            29         231
+GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem                                23         219
 GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness                   22         180
 GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan  29         234
 GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan  25         209

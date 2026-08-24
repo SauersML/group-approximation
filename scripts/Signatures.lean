@@ -16,6 +16,7 @@ import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.RadicalSeparation
 import GroupApproximation.Sofic.SpectralCompression
+import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 import GroupApproximation.Endpoint.Audit
 import Lean.Elab.Command
 

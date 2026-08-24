@@ -18,22 +18,6 @@ One entry per declaration named by a manuscript margin note, in the order of `me
   ¬ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)
 ```
 
-## `GroupApproximation.AlternatingLampFamily.alternatingFamilyPackage`
-
-```lean
-∀ {n : ℕ},
-  5 ≤ n →
-    IsSofic (AlternatingLampFamily.WAlt n) ∧
-      ¬IsCDEOperatorMF (AlternatingLampFamily.WAlt n) ∧
-        Group.FG (AlternatingLampFamily.WAlt n) ∧
-          actualCoronaMFResidual (AlternatingLampFamily.WAlt n) =
-              AlternatingLampFamily.lampSub n ∧
-            MatricialStabilityRadical.fdUnitaryResidual (AlternatingLampFamily.WAlt n) =
-                AlternatingLampFamily.lampSub n ∧
-              finiteResidual (AlternatingLampFamily.WAlt n) = AlternatingLampFamily.lampSub n ∧
-                linearResidual (AlternatingLampFamily.WAlt n) = AlternatingLampFamily.lampSub n
-```
-
 ## `GroupApproximation.AlternatingLampLiteral.ker_rightHom_eq_normalClosure_witnessLamp`
 
 ```lean
@@ -121,14 +105,6 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
 
 ```lean
 ¬FaithfullyTracedCoordinates.FaithfullyTracedCoordinateTransport
-```
-
-## `GroupApproximation.FinitePerfectLamp.actualCoronaMFResidual_eq_lampSub`
-
-```lean
-∀ (K' : Type) [inst : Group K'] [Finite K'],
-  commutator K' = ⊤ →
-    actualCoronaMFResidual (FinitePerfectLamp.WFin K') = FinitePerfectLamp.lampSub K'
 ```
 
 ## `GroupApproximation.FinitePerfectLamp.finitePerfectPackage`
@@ -1104,55 +1080,76 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
   Function.Surjective ⇑f → IsSofic ↥f.ker → Amenability.IsAmenable Q → IsSofic G
 ```
 
-## `GroupApproximation.SpectralComponentDiameter.norm_sub_le_of_same_clopen_spectral_pieces`
+## `GroupApproximation.SpectralPaper.a5UniversalInvisibility`
 
 ```lean
-∀ {A : Type u} [inst : CommCStarAlgebra A] (a b : A) {δ : ℝ},
-  0 ≤ δ →
-    ∀ (hspectrum : spectrum ℂ b ⊆ spectrum ℂ a),
-      (∀ (χ : ↑(WeakDual.characterSpace ℂ A)) (U : Set ↑(spectrum ℂ a)),
-          IsClopen U → (⟨χ a, ⋯⟩ ∈ U ↔ ⟨χ b, ⋯⟩ ∈ U)) →
-        (∀ (z : ↑(spectrum ℂ a)), Metric.diam (connectedComponent z) ≤ δ) → ‖a - b‖ ≤ δ
+(∀ (X : ℕ → FiniteModel) (hX : ∀ (n : ℕ), 0 < Fintype.card (X n).carrier),
+    Function.Bijective
+      (precomp AlternatingLampLiteral.qA
+        ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))) ∧
+  (∀ (T : Type) [inst : Group T],
+      IsResiduallyFinite T → Function.Bijective (precomp AlternatingLampLiteral.qA T)) ∧
+    (∀ (T : Type) [inst : Group T] [Finite T],
+        Function.Bijective (precomp AlternatingLampLiteral.qA T)) ∧
+      (∀ (Y : FiniteModel),
+          Function.Bijective
+            (precomp AlternatingLampLiteral.qA ↥(Matrix.unitaryGroup Y.carrier ℂ))) ∧
+        (∀ (F : Type) [inst : Field F] (d : ℕ),
+            Function.Bijective (precomp AlternatingLampLiteral.qA (GL (Fin d) F))) ∧
+          ∀ (T : Type) [inst : Group T] [inst_1 : TopologicalSpace T] [IsTopologicalGroup T]
+            [CompactSpace T] [TotallyDisconnectedSpace T],
+            Function.Bijective (precomp AlternatingLampLiteral.qA T)
 ```
 
-## `GroupApproximation.SpectralCompression.corona_clopen_projection_collapse`
+## `GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility`
 
 ```lean
-∀ {E' : Type u} [inst : Group E'] [Countable E'] (L : Subgroup E'),
-  HasKazhdanPropertyT ↥L →
-    ∀ {s : E'},
-      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
-        ∀ (X : ℕ → FiniteModel) [inst_2 : ∀ (n : ℕ), Nonempty (X n).carrier]
-          (pi : E' →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))
-          (v : NormMatrixCStarCorona fun n => (X n).carrier),
-          IsStarNormal v →
-            (∀ γ ∈ L, Commute v ↑(pi (s * γ * s⁻¹))) →
-              (∀ γ ∈ L, Commute (star v) ↑(pi (s * γ * s⁻¹))) →
-                (∀ γ₁ ∈ L,
-                    ∀ γ₂ ∈ L,
-                      Commute
-                        (((Unitary.conjStarAlgAut ℂ
-                              (NormMatrixCStarCorona fun n => (X n).carrier))
-                            (pi γ₁))
-                          v)
-                        (((Unitary.conjStarAlgAut ℂ
-                              (NormMatrixCStarCorona fun n => (X n).carrier))
-                            (pi γ₂))
-                          v)) →
-                  (∀ γ₁ ∈ L,
-                      ∀ γ₂ ∈ L,
-                        Commute
-                          (star
-                            (((Unitary.conjStarAlgAut ℂ
-                                  (NormMatrixCStarCorona fun n => (X n).carrier))
-                                (pi γ₁))
-                              v))
-                          (((Unitary.conjStarAlgAut ℂ
-                                (NormMatrixCStarCorona fun n => (X n).carrier))
-                              (pi γ₂))
-                            v)) →
-                    ∀ {U : Set ↑(spectrum ℂ v)} (hU : IsClopen U),
-                      ∀ γ ∈ L, Commute (↑(pi γ)) (ClopenSpectralProjection.projection v U hU)
+SpectralPaper.FinitePerfectUniversalInvisibility
+```
+
+## `GroupApproximation.SpectralPaper.oneInvisibleRelationPackage`
+
+```lean
+AlternatingLampLiteral.qA.ker = Subgroup.normalClosure {AlternatingLampLiteral.rA} ∧
+  AlternatingLampLiteral.rA ≠ 1 ∧
+    AlternatingLampLiteral.rA * AlternatingLampLiteral.rA = 1 ∧
+      AlternatingLampLiteral.qA.comp AlternatingLampLiteral.sectionA =
+          MonoidHom.id
+            (MarkedCompression.Vertical ExplicitLinearModel.conjD
+              ExplicitLinearModel.conjD_injective) ∧
+        IsSofic AlternatingLampLiteral.WA ∧
+          ¬IsCDEOperatorMF AlternatingLampLiteral.WA ∧
+            IsResiduallyFinite
+                (MarkedCompression.Vertical ExplicitLinearModel.conjD
+                  ExplicitLinearModel.conjD_injective) ∧
+              IsOperatorMF
+                  (MarkedCompression.Vertical ExplicitLinearModel.conjD
+                    ExplicitLinearModel.conjD_injective) ∧
+                IsLocallyFiniteGroup ↥AlternatingLampLiteral.qA.ker ∧
+                  Amenability.IsAmenable ↥AlternatingLampLiteral.qA.ker ∧
+                    IsResiduallyFinite ↥AlternatingLampLiteral.qA.ker ∧
+                      IsOperatorMF ↥AlternatingLampLiteral.qA.ker ∧
+                        actualCoronaMFResidual AlternatingLampLiteral.WA =
+                            AlternatingLampLiteral.qA.ker ∧
+                          MatricialStabilityRadical.fdUnitaryResidual
+                                AlternatingLampLiteral.WA =
+                              AlternatingLampLiteral.qA.ker ∧
+                            finiteResidual AlternatingLampLiteral.WA =
+                                AlternatingLampLiteral.qA.ker ∧
+                              linearResidual AlternatingLampLiteral.WA =
+                                AlternatingLampLiteral.qA.ker
+```
+
+## `GroupApproximation.SpectralPaper.spectralCompressionTheorem`
+
+```lean
+SpectralPaper.SpectralCompressionTheorem
+```
+
+## `GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem`
+
+```lean
+SpectralPaper.ZeroDimensionalSpectralCollapseTheorem
 ```
 
 ## `GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness`
