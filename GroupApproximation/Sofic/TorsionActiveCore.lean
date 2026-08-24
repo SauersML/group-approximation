@@ -644,6 +644,85 @@ theorem norm_activeCoreWord_sub_one_le [Fintype I]
     Matrix.sub_mulVec, Matrix.one_mulVec]
   rfl
 
+/-- Two restricted packet words are no farther apart in operator norm than
+the corresponding ambient words. -/
+theorem norm_activeCoreWord_sub_le [Fintype I]
+    (W : I → Matrix.unitaryGroup Y ℂ) (l₁ l₂ : List I) :
+    ‖((activeCoreWord W l₁ : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) -
+        (activeCoreWord W l₂ : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ)‖ ≤
+      ‖((ambientWord W l₁ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) -
+        (ambientWord W l₂ : Matrix.unitaryGroup Y ℂ)‖ := by
+  let K := activeEuclideanSubspace W
+  let b := (stdOrthonormalBasis ℂ K).toBasis
+  let maps := fun q : List I ↦
+    (q.map fun i ↦
+      (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap).prod
+  let f : K →ₗ[ℂ] K := maps l₁ - maps l₂
+  let A : Matrix Y Y ℂ :=
+    ((ambientWord W l₁ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) -
+      (ambientWord W l₂ : Matrix.unitaryGroup Y ℂ)
+  have hword (q : List I) :
+      ((activeCoreWord W q : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) =
+        LinearMap.toMatrix b b (maps q) := by
+    induction q with
+    | nil =>
+        simp only [activeCoreWord, maps, List.map_nil, List.prod_nil]
+        exact (LinearMap.toMatrix_id b).symm
+    | cons i q ih =>
+        change ((activeCoreMatrix W i : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+              Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) *
+            ((activeCoreWord W q : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+              Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) = _
+        rw [ih]
+        change LinearMap.toMatrix b b
+              (activeCoreLinearIsometryEquiv W i).toLinearEquiv.toLinearMap *
+            LinearMap.toMatrix b b (maps q) = _
+        rw [← LinearMap.toMatrix_comp]
+        rfl
+  have hmatrix :
+      (((activeCoreWord W l₁ : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ) :
+          Matrix (ActiveCoreIndex W) (ActiveCoreIndex W) ℂ) -
+        (activeCoreWord W l₂ : Matrix.unitaryGroup (ActiveCoreIndex W) ℂ)) =
+          LinearMap.toMatrix b b f := by
+    rw [hword, hword, map_sub]
+  have haction (q : List I) (x : K) :
+      (((maps q x : K) : EuclideanSpace ℂ Y)) =
+        Matrix.toEuclideanLin
+          ((ambientWord W q : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) x.1 := by
+    induction q with
+    | nil => simp [ambientWord, maps]
+    | cons i q ih =>
+        simp only [maps, List.map_cons, List.prod_cons, Module.End.mul_apply]
+        change (((activeCoreLinearIsometryEquiv W i
+          ((q.map fun j ↦
+            (activeCoreLinearIsometryEquiv W j).toLinearEquiv.toLinearMap).prod x) : K) :
+              EuclideanSpace ℂ Y)) = _
+        rw [activeCoreLinearIsometryEquiv_coe, ih]
+        ext j
+        change (((W i : Matrix Y Y ℂ) *ᵥ
+          (((ambientWord W q : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *ᵥ
+            x.1.ofLp)) j) = _
+        rw [Matrix.mulVec_mulVec]
+        rfl
+  rw [hmatrix]
+  apply norm_toMatrix_le_ambient f A
+  intro x
+  change (((maps l₁ x : K) : EuclideanSpace ℂ Y) -
+      ((maps l₂ x : K) : EuclideanSpace ℂ Y)) = Matrix.toEuclideanLin A x.1
+  rw [haction, haction]
+  ext j
+  change ((((ambientWord W l₁ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *ᵥ
+      x.1.ofLp) j -
+    (((ambientWord W l₂ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *ᵥ
+      x.1.ofLp) j) = (A *ᵥ x.1.ofLp) j
+  rw [show A =
+    ((ambientWord W l₁ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) -
+      (ambientWord W l₂ : Matrix.unitaryGroup Y ℂ) by rfl,
+    Matrix.sub_mulVec]
+  rfl
+
 /-- The matrix size of the active block is exactly its Euclidean dimension. -/
 @[simp] theorem card_activeCoreModel [Fintype I]
     (W : I → Matrix.unitaryGroup Y ℂ) :
