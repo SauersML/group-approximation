@@ -12,3 +12,6 @@ import GroupApproximation.Manuscript.SpectralPaper.MainTheorems
 #print axioms GroupApproximation.SpectralPaper.oneInvisibleRelationPackage
 #print axioms GroupApproximation.SpectralPaper.a5UniversalInvisibility
 #print axioms GroupApproximation.SpectralPaper.invisibleKernelTame
+#print axioms GroupApproximation.SpectralPaper.spectralCompressionTheorem
+#print axioms GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem
+#print axioms GroupApproximation.SpectralPaper.finitePerfectUniversalInvisibility
