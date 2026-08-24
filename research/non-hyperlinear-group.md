@@ -759,6 +759,37 @@ cannot provide the alternative global row domination:
 `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` closes it by a
 last-edge multiplicity-gauge countermodel.
 
+The aggregate reflection is no longer the minimal collision gate.
+`partitioned-child-surplus-collision-supplies-contraction` proves that a
+fixed finite family of genuine child pieces, returned into pairwise
+orthogonal pieces of the next carrier, supplies the same strict contraction
+after summing support leakage.  This removes the need to multiply
+noncommuting context cuts or to encode their nonlinear sum as one word.  The
+new last interface on that lane is
+`typewise-schur-tail-partition-compiler`: install the already groupified
+corrected-child type menu as an orthogonal recursive-tail partition while
+retaining the robust gap on the original shared BCS tuple.
+
+The purely local portion of that interface is now explicit.
+`index-two-reynolds-atoms-have-orthogonal-hnn-transports`
+shows that an HNN conjugacy of both levels of an index-two finite-subgroup
+flag transports its Reynolds difference exactly, and that distinct
+characters of one elementary-abelian packet give orthogonal target atoms.
+Accordingly neither nonlinear atom reflection wordization nor local target
+orthogonality remains open.  Cairn's
+`canonical-types-extend-every-finite-bass-serre-actor` prevents overclaiming:
+the unresolved step is the shared-BCS, finite-matrix-only selection of a
+supercritical active family, not more finite subgroup covariance.
+
+Cairn now records that residue directly as
+`shared-bcs-matrix-only-supercritical-atom-selection`.  It must consume a
+cross-context operator observable of the original non-CE BCS tuple; scalar
+forbidden mass and every pure finite Bass--Serre actor are already ruled out.
+If it is established, the new pair-HNN router closes
+`typewise-schur-tail-partition-compiler`, and the existing dependency chain
+continues through fixed-scale holonomy and the multiplicity-return
+transducer to this root claim.
+
 The stability interface was consolidated on 2026-08-21.  For Kazhdan
 groups, Dogon's weak ucp-stability coincides with flexible HS-stability on
 hyperlinear approximations

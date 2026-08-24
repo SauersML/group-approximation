@@ -62,6 +62,13 @@ dimension.  The matrix-only return must exploit the shared non-CE tuple or a
 one-sided actuator; it cannot be obtained by merely promoting the book bits
 to finite tag types.
 
+For a recurrent rather than one-scale use of separate child pieces,
+`partitioned-child-surplus-collision-supplies-contraction` is the relevant
+analytic endpoint.  It shows that no aggregate nonlinear reflection is
+needed, but its `typewise-schur-tail-partition-compiler` has the same global
+fence as `(SBR2)`: orthogonality must be extracted from the shared BCS
+operator data and may not be imposed by an exact finite tag atlas.
+
 A strictly weaker sufficient replacement is now isolated as
 `shared-bcs-eight-slice-full-overlap-actuator`.  Because the three sources are
 orthogonal, their sum is one projection `S`; the entire capacity deficit is

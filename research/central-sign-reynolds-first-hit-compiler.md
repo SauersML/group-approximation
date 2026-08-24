@@ -64,6 +64,17 @@ the two-child/BCS recurrence to keep one active copy from shrinking.  The
 canonical regular model must still be allowed to send its companion flow
 down the tail.
 
+Local atom transport and finite target orthogonality are also solved.
+`index-two-reynolds-atoms-have-orthogonal-hnn-transports`
+conjugates both levels of the marked index-two pair, so their Reynolds
+difference moves exactly; distinct characters of one elementary-abelian
+target packet provide pairwise orthogonal destinations.  This removes the
+need for a nonlinear atom reflection or a separate partial-isometry word.
+It does not supply active persistence: literal finite-pair covariance is a
+Bass--Serre actor and every canonical type extends it.  The remaining step is
+still the matrix-only shared-BCS selection which decides which transported
+atoms consume the first-hit capacity.
+
 ## Attempts
 
 - **One generic HNN edge dies on regular orientation; the central-sign atom

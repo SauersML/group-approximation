@@ -99,3 +99,12 @@ finite-matrix-only selected-sector or multiplicity operation which both
 orthogonalizes the menu and proves its coverage from the original shared
 BCS tuple. Exact perfect-model compatibility of the recursive tail remains
 untouched.
+
+The aggregate reflection is no longer an analytically necessary target.
+`partitioned-child-surplus-collision-supplies-contraction` proves that the
+finite child menu may remain separate: returning its pieces into an
+orthogonal partition of the next carrier yields the same strict recurrence
+after summing support leakages.  The corresponding smaller syntax gate is
+`typewise-schur-tail-partition-compiler`.  This does not refute the no-go
+above; it bypasses the object that the three failed operations were trying to
+construct.

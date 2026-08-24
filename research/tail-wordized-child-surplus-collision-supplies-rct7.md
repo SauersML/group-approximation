@@ -177,3 +177,11 @@ presentation, while `St_5(R_f)` is finitely presented but injectivity of
 `sigma^n(P_f)`, not yet the aggregate corrected child `C_n` in `(TSC3)`.
 Thus the smallest algebraic target is Steinberg shift injectivity, followed
 by one coefficient identity realizing the corrected-child reflection.
+
+There is now a second, strictly weaker presentation interface.
+`partitioned-child-surplus-collision-supplies-contraction` obtains the same
+factor `(1+beta)^(-1)` from finitely many child pieces returned into an
+orthogonal partition of the next carrier.  It never forms `R_(C,n)`.
+Accordingly failure of the aggregate wordization in `(TSC7)` does not force
+the whole collision strategy through the Steinberg fork; the live bypass is
+`typewise-schur-tail-partition-compiler`.

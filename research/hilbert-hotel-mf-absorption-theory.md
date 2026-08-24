@@ -61,6 +61,15 @@ corona module carrying a binary Leavitt action must vanish.  Finite additive
 root windows and three-root Heisenberg windows carry compatible rank-germ
 multiplicities recording finite addition and multiplication.
 
+Exact finite-dimensional compression has two further robustness promotions.
+Point-norm matricial stability promotes the whole intrinsic compression
+defect to the MF radical, while correction at one marked element promotes
+that element alone.  Separately, a rank-decreasing finite-coordinate return
+has an exact operator-norm obstruction: if `rank(e)>rank(f)`, then
+`||(1-f)Je||=1` for every unitary `J`.  Hence one authenticated
+coarse-to-fine support row on any nonzero finite carrier forces MF collapse;
+no ambient density bound is required.
+
 The Whitehead calculation also holds over every countable ring with an
 explicit binary Leavitt family: property `(T)` for the four-coordinate source
 and the ambient elementary group forces the ambient group to have full MF
@@ -81,3 +90,10 @@ every corona representation an ideal-valued support length.  These calculi
 produce Boolean full-radical towers and, over every finitely presented MF
 base, infinitely many pairwise nonisomorphic finitely presented Grushko
 thickenings with exactly the same MF-visible quotient.
+
+The zero class of this reflector is closed under quotients, extensions, and
+countable colimits.  For a connected graph of groups whose vertex groups lie
+in the zero class, the exact MF reflection of its fundamental group is the
+free fundamental group of the underlying graph: tree edges remain invisible,
+and each independent graph cycle contributes exactly one free visible
+generator.
