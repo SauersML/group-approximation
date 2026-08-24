@@ -2387,6 +2387,8 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
             finite-inclusion-is-free-self-compressor-quotient [✓] Every finite subgroup inclusion is the quotient shadow of a proper free-group self-compressor
               (…already shown)
             atlas-steinberg-context-absorption [✓] Steinberg relations absorb their own ring-relation contexts, which is where the rank-four threshold lives
+            marked-hs-separation-forces-spectral-density [✓] Hilbert-Schmidt separation of a unitary word forces a positive-density spectral carrier
+              (…already shown)
             hs-steinberg-bcs-corner-kernel-is-linear-sofic [OPEN] Decode the shared-BCS conditional corner ring from matricial-HS Steinberg roots
         predicate-rank-jump-forces-adjoint-reynolds-gap [✓] Forbidden Schur-Clifford mass creates a quadratic-density adjoint Reynolds gap
           (…already shown)
