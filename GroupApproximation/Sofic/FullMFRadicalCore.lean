@@ -51,10 +51,12 @@ theorem actualCoronaMFResidual_fullMFRadicalCore_eq_top :
       K.2 (⟨y, hy⟩ : K.1) X hX
       (rho.comp (Subgroup.inclusion hKC))
     refine ⟨⟨y, hKC hy⟩, MonoidHom.mem_ker.mpr ?_, rfl⟩
-    simpa using hkill
+    convert hkill using 1
   obtain ⟨y, hy, hxy⟩ := hle x.property
   have hy' : rho y = 1 := MonoidHom.mem_ker.mp hy
-  simpa only [Subgroup.coe_subtype, hxy] using hy'
+  have hyx : (y : fullMFRadicalCore G) = x := Subtype.ext hxy
+  rw [← hyx]
+  exact hy'
 
 /-- The intrinsic core lies inside the ambient MF residual. -/
 theorem fullMFRadicalCore_le_actualCoronaMFResidual :
