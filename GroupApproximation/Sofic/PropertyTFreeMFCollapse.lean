@@ -1,5 +1,6 @@
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.MatricialStabilityRadical
+import GroupApproximation.Sofic.MatricialStabilityInstances
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.FiniteStageRobustGap
 import GroupApproximation.Sofic.MFTraceRecognition
@@ -117,9 +118,160 @@ theorem rectangular_leakage_eq_one {e f U : Matrix Y Y ℂ}
       _ = 1 := by norm_num
   exact le_antisymm hupper (le_of_not_gt hnot)
 
-/-! ## Compression plus stability -/
+/-- The binary-refinement form: a coarse atom of twice the fine atom's rank
+has unit operator-norm leakage through every unitary return. -/
+theorem binary_rectangular_leakage_eq_one {e f U : Matrix Y Y ℂ}
+    (he : IsOrthogonalProjectionMatrix e) (hf : IsOrthogonalProjectionMatrix f)
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) (hbinary : e.rank = 2 * f.rank)
+    (hfpos : 0 < f.rank) : ‖(1 - f) * U * e‖ = 1 := by
+  apply rectangular_leakage_eq_one he hf hU
+  omega
+
+/-! ## Authentication and the local robustness bridge -/
 
 universe u
+
+/-- A mark has an authenticated rectangular return when every standard
+matrix-corona representation which detects it exposes, in one actual finite
+coordinate, a larger source projection, a smaller target projection, and a
+unitary return with leakage below one.
+
+This is the exact interface required from a concrete finite-coordinate
+Leavitt decoder.  It is deliberately a property, not an axiom and not a
+purported construction: a concrete presentation must prove this predicate. -/
+def HasAuthenticatedRectangularReturn {G : Type u} [Group G] (z : G) : Prop :=
+  ∀ (X : ℕ → FiniteModel), (∀ n, 0 < Fintype.card (X n)) →
+    ∀ rho : G →* NormMatrixCoronaUnitary X, rho z ≠ 1 →
+      ∃ (n : ℕ) (e f U : Matrix (X n) (X n) ℂ),
+        IsOrthogonalProjectionMatrix e ∧
+        IsOrthogonalProjectionMatrix f ∧
+        U ∈ Matrix.unitaryGroup (X n) ℂ ∧
+        f.rank < e.rank ∧
+        ‖(1 - f) * U * e‖ < 1
+
+/-- One authenticated rectangular return makes the marked element invisible
+in every standard norm-matrix corona. -/
+theorem mem_coronaMFResidual_of_authenticatedRectangularReturn
+    {G : Type u} [Group G] {z : G}
+    (hauth : HasAuthenticatedRectangularReturn z) :
+    z ∈ coronaMFResidual G := by
+  rw [mem_coronaMFResidual_iff]
+  intro X hX rho
+  by_contra hne
+  obtain ⟨n, e, f, U, he, hf, hU, hrank, hlt⟩ := hauth X hX rho hne
+  have hone := rectangular_leakage_eq_one he hf hU hrank
+  linarith
+
+/-- The authenticated return places the mark in the manuscript's literal
+genuine-C-star-corona radical as well. -/
+theorem mem_actualCoronaMFResidual_of_authenticatedRectangularReturn
+    {G : Type u} [Group G] {z : G}
+    (hauth : HasAuthenticatedRectangularReturn z) :
+    z ∈ actualCoronaMFResidual G := by
+  rw [actualCoronaMFResidual_eq_coronaMFResidual]
+  exact mem_coronaMFResidual_of_authenticatedRectangularReturn hauth
+
+/-- Normal generation turns one authenticated rank-decreasing return into
+total MF collapse. -/
+theorem actualCoronaMFResidual_eq_top_of_authenticatedRectangularReturn
+    {G : Type u} [Group G] {z : G}
+    (hauth : HasAuthenticatedRectangularReturn z)
+    (hgen : Subgroup.normalClosure ({z} : Set G) = ⊤) :
+    actualCoronaMFResidual G = ⊤ := by
+  apply top_unique
+  rw [← hgen]
+  exact Subgroup.normalClosure_le_normal
+    (Set.singleton_subset_iff.mpr
+      (mem_actualCoronaMFResidual_of_authenticatedRectangularReturn hauth))
+
+/-- A nontrivial authenticated mark obstructs operator-MF, before any normal
+generation argument is used. -/
+theorem not_isOperatorMF_of_authenticatedRectangularReturn
+    {G : Type u} [Group G] [Countable G] {z : G} (hz : z ≠ 1)
+    (hauth : HasAuthenticatedRectangularReturn z) : ¬ IsOperatorMF G := by
+  intro hMF
+  have hbot : coronaMFResidual G = ⊥ :=
+    isOperatorMF_iff_coronaMFResidual_eq_bot.mp hMF
+  have hmem := mem_coronaMFResidual_of_authenticatedRectangularReturn hauth
+  rw [hbot, Subgroup.mem_bot] at hmem
+  exact hz hmem
+
+/-- **Structural Property-(T)-free collapse theorem.**  One authenticated
+finite-coordinate return with a rank drop kills the mark; if that mark
+normally generates, the literal MF radical is the whole group. -/
+theorem authenticatedRectangularReturn_totalCollapse
+    {G : Type u} [Group G] [Countable G] {z : G} (hz : z ≠ 1)
+    (hauth : HasAuthenticatedRectangularReturn z)
+    (hgen : Subgroup.normalClosure ({z} : Set G) = ⊤) :
+    actualCoronaMFResidual G = ⊤ ∧ ¬ IsOperatorMF G :=
+  ⟨actualCoronaMFResidual_eq_top_of_authenticatedRectangularReturn hauth hgen,
+    not_isOperatorMF_of_authenticatedRectangularReturn hz hauth⟩
+
+/-- Exactification only at one marked element.  No approximation is required
+at any other group element. -/
+def IsFDStableAtMark {G : Type u} [Group G] (z : G) : Prop :=
+  ∀ B : OpAlmostRepresentation G,
+    ∃ pi : ∀ n, G →* Matrix.unitaryGroup (B.model n) ℂ,
+      ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+        ‖(B.map n z : Matrix (B.model n) (B.model n) ℂ) -
+          (pi n z : Matrix (B.model n) (B.model n) ℂ)‖ ≤ ε
+
+/-- **Marked stability transfer.**  Finite-dimensional blindness plus
+point-norm exactification at the marked element alone implies MF
+invisibility.  Approximate multiplicativity automatically pins the image of
+the identity, so stability at `1` is not part of the hypothesis. -/
+theorem mem_coronaMFResidual_of_mem_fdUnitaryResidual_of_stableAtMark
+    {G : Type u} [Group G] [Countable G] {z : G}
+    (hfd : z ∈ MatricialStabilityRadical.fdUnitaryResidual G)
+    (hstable : IsFDStableAtMark z) : z ∈ coronaMFResidual G := by
+  rw [mem_coronaMFResidual_iff]
+  intro X hX rho
+  by_contra hne
+  obtain ⟨A⟩ :=
+    exists_markedOpAlmostRepresentation_of_normMatrixCorona_ne_one X rho hne
+  obtain ⟨pi, hpi⟩ := hstable A.toOpAlmostRepresentation
+  have hδ := A.separation_pos
+  obtain ⟨Nz, hNz⟩ := hpi (A.separation / 3) (by linarith)
+  obtain ⟨N1, hN1⟩ :=
+    MatricialStabilityInstances.eventually_norm_map_one_sub_one_le
+      A.toOpAlmostRepresentation (by linarith : 0 < A.separation / 3)
+  set n := max Nz N1
+  have hz := hNz n (le_max_left _ _)
+  have hmapOne := hN1 n (le_max_right _ _)
+  have hπz : pi n z = 1 :=
+    MatricialStabilityRadical.mem_fdUnitaryResidual_iff.mp hfd (A.model n) (pi n)
+  have hsep := A.marked_separated n
+  have htri :
+      ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖ ≤
+        ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) -
+          (pi n z : Matrix (A.model n) (A.model n) ℂ)‖ +
+        ‖(A.map n 1 : Matrix (A.model n) (A.model n) ℂ) - 1‖ := by
+    calc
+      ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖ =
+          dist (A.map n z : Matrix (A.model n) (A.model n) ℂ)
+            (A.map n 1 : Matrix (A.model n) (A.model n) ℂ) :=
+        (dist_eq_norm _ _).symm
+      _ ≤ dist (A.map n z : Matrix (A.model n) (A.model n) ℂ)
+            (pi n z : Matrix (A.model n) (A.model n) ℂ) +
+          dist (pi n z : Matrix (A.model n) (A.model n) ℂ)
+            (A.map n 1 : Matrix (A.model n) (A.model n) ℂ) :=
+        dist_triangle _ _ _
+      _ = ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) -
+            (pi n z : Matrix (A.model n) (A.model n) ℂ)‖ +
+          ‖(A.map n 1 : Matrix (A.model n) (A.model n) ℂ) - 1‖ := by
+        rw [dist_eq_norm, dist_eq_norm, hπz]
+        congr 1
+        exact norm_sub_rev _ _
+  have hlt :
+      ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖ <
+        A.separation := by
+    calc
+      _ ≤ _ := htri
+      _ ≤ A.separation / 3 + A.separation / 3 := add_le_add hz hmapOne
+      _ < A.separation := by linarith
+  exact absurd hsep (not_le_of_gt hlt)
+
+/-! ## Compression plus stability -/
 
 /-- A unitary matrix representation, read as a linear representation. -/
 def unitaryLinearEquivHom {G : Type u} [Group G] (Y : FiniteModel)
@@ -191,6 +343,20 @@ theorem actualCoronaMFResidual_eq_top_of_stable_of_compressionDefect_eq_top
   rw [← hfull]
   exact compressionCentralizerDefect_le_actualCoronaMFResidual hstab L
 
+/-- It is enough that an arbitrary set inside the compression defect normally
+generates the group; equality of the defect with `⊤` is not an extra input. -/
+theorem actualCoronaMFResidual_eq_top_of_stable_of_normalGeneratingSubset
+    {G : Type u} [Group G] [Countable G]
+    (hstab : IsPointNormMatriciallyStable G) (L : Subgroup G) (S : Set G)
+    (hS : S ⊆ compressionCentralizerDefect L)
+    (hgen : Subgroup.normalClosure S = ⊤) :
+    actualCoronaMFResidual G = ⊤ := by
+  apply top_unique
+  rw [← hgen]
+  apply Subgroup.normalClosure_le_normal
+  intro x hx
+  exact compressionCentralizerDefect_le_actualCoronaMFResidual hstab L (hS hx)
+
 /-- **Stable compression criterion.**  Point-norm matricial stability puts
 the intrinsic compression defect in the literal MF radical.  A nontrivial
 defect obstructs operator-MF, and a full defect makes every genuine matrix
@@ -206,6 +372,44 @@ theorem stable_compression_criterion
     not_isOperatorMF_of_stable_of_compressionDefect_ne_bot hstab L,
     actualCoronaMFResidual_eq_top_of_stable_of_compressionDefect_eq_top
       hstab L⟩
+
+/-! ## Closed audit package -/
+
+/-- The unconditional theorem package proved in this file.  The authenticated
+return clause is a universal implication: this package does not assert the
+still-open concrete Leavitt decoder. -/
+def UnconditionalPropertyTFreeMFCollapsePackage : Prop :=
+  (∀ (Y : FiniteModel) (e f U : Matrix Y Y ℂ),
+      IsOrthogonalProjectionMatrix e →
+      IsOrthogonalProjectionMatrix f →
+      U ∈ Matrix.unitaryGroup Y ℂ → f.rank < e.rank →
+      ‖(1 - f) * U * e‖ = 1) ∧
+  (∀ {G : Type} [Group G] [Countable G] {z : G},
+      z ∈ fdUnitaryResidual G → IsFDStableAtMark z →
+      z ∈ coronaMFResidual G) ∧
+  (∀ {G : Type} [Group G] [Countable G] {z : G},
+      z ≠ 1 → HasAuthenticatedRectangularReturn z →
+      Subgroup.normalClosure ({z} : Set G) = ⊤ →
+      actualCoronaMFResidual G = ⊤ ∧ ¬ IsOperatorMF G) ∧
+  (∀ {G : Type} [Group G] [Countable G] (L : Subgroup G) (S : Set G),
+      IsPointNormMatriciallyStable G →
+      S ⊆ compressionCentralizerDefect L →
+      Subgroup.normalClosure S = ⊤ →
+      actualCoronaMFResidual G = ⊤)
+
+/-- Closed, axiom-auditable witness for the complete unconditional package. -/
+theorem unconditionalPropertyTFreeMFCollapsePackage :
+    UnconditionalPropertyTFreeMFCollapsePackage := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro Y e f U he hf hU hrank
+    exact rectangular_leakage_eq_one he hf hU hrank
+  · intro G _ _ z hfd hstable
+    exact mem_coronaMFResidual_of_mem_fdUnitaryResidual_of_stableAtMark hfd hstable
+  · intro G _ _ z hz hauth hgen
+    exact authenticatedRectangularReturn_totalCollapse hz hauth hgen
+  · intro G _ _ L S hstable hS hgen
+    exact actualCoronaMFResidual_eq_top_of_stable_of_normalGeneratingSubset
+      hstable L S hS hgen
 
 end PropertyTFreeMFCollapse
 end GroupApproximation

@@ -1644,6 +1644,8 @@ import GroupApproximation.Sofic.MatchingStemFold
 import GroupApproximation.Sofic.SigmaCompressionPair
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Endpoint.MFRecognitionAudit
+import GroupApproximation.Sofic.PropertyTFreeMFCollapse
+import GroupApproximation.Endpoint.PropertyTFreeMFCollapseAudit
 import GroupApproximation.Sofic.PalindromicMinimalExpr
 import GroupApproximation.Sofic.MatchingFactorPair
 import GroupApproximation.Sofic.NonCrossingEdgeBound

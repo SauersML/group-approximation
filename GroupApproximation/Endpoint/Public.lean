@@ -23,6 +23,7 @@ import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
 import GroupApproximation.Computability.EffectiveMatrixCode
+import GroupApproximation.Sofic.PropertyTFreeMFCollapse
 import GroupApproximation.Analysis.RatComplexSubfield
 import GroupApproximation.Analysis.OperatorNormCertificate
 import GroupApproximation.Criterion.CompressionCentralizerDefect
@@ -688,6 +689,20 @@ export GroupApproximation.FreeProductMFRadicalRetraction
   (inr_mem_normMFResidual_iff_of_residual_eq_bot
     inr_mem_normMFResidual_iff_of_isOperatorMF
     finitelyPresented_not_isOperatorMF)
+export GroupApproximation.PropertyTFreeMFCollapse
+  (HasAuthenticatedRectangularReturn IsFDStableAtMark
+    rank_le_of_norm_one_sub_mul_lt_one rectangular_leakage_eq_one
+    binary_rectangular_leakage_eq_one
+    mem_coronaMFResidual_of_authenticatedRectangularReturn
+    mem_actualCoronaMFResidual_of_authenticatedRectangularReturn
+    mem_coronaMFResidual_of_mem_fdUnitaryResidual_of_stableAtMark
+    compressionCentralizerDefect_le_fdUnitaryResidual
+    compressionCentralizerDefect_le_actualCoronaMFResidual
+    actualCoronaMFResidual_eq_top_of_authenticatedRectangularReturn
+    not_isOperatorMF_of_authenticatedRectangularReturn
+    authenticatedRectangularReturn_totalCollapse
+    actualCoronaMFResidual_eq_top_of_stable_of_normalGeneratingSubset
+    stable_compression_criterion unconditionalPropertyTFreeMFCollapsePackage)
 
 /-! ### The reduction interface, and algebraic consequences -/
 
