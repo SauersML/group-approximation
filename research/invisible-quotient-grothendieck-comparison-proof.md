@@ -25,10 +25,20 @@ the finite quotient maps, giving `W_K^ = P_K^`.  The only input is the value of
 
 Clause 3.  The universal inclusions: a finite group embeds in some `U(d)`, so
 `Rad_fd  subset  Res_fin`; a finite group is MF and `U(d)` is MF, so
-`Rad_MF  subset  Rad_fd`; Peter--Weyl gives every compact Hausdorff group
-enough finite-dimensional unitary representations, so a homomorphism into a
-compact group is separated by finite-dimensional unitaries and
-`Rad_Bohr = Rad_fd`.  Likewise a finitely generated linear image is residually
+`Rad_MF  subset  Rad_fd`; and a finitely generated linear image is residually
 finite by Malcev, hence MF, so `Rad_MF  subset  Rad_lin  subset  Res_fin`.  The
 first prerequisite asserts equality throughout, which is exactly the collapse
 of this chain.
+
+**The Bohr column is the one clause that is not free here.**
+`bohrResidual <= finiteResidual` is unconditional -- a finite group with the
+discrete topology is compact Hausdorff.  The converse for general compact
+targets is what Peter--Weyl supplies classically, but in this repository it is
+an isolated named hypothesis, not a background fact: `five_radicals_eq` in
+`Sofic/FiveRadicalsCoincide.lean` carries a leading binder
+`(hPW : SeparatesPoints)`, and the unconditional companion
+`five_radicals_eq_profinite` restricts the targets to profinite ones, where
+`bohr-residual-equals-finite-residual-for-profinite-targets` closes the gap
+with no analysis.  So the collapse is unconditional for the finite,
+finite-dimensional-unitary, all-fields-linear and MF columns, and conditional
+on that one classical input for the compact column.

@@ -29,41 +29,57 @@ So the proposed §5, §6 and §7 rest on established nodes, not on aspiration.  
 plan is buildable as written.  Six live routes already consume the five-radicals
 node, so it is load-bearing well beyond this paper.
 
-## The opening theorem states one clause the graph refutes
+## CORRECTION: the opening theorem's soficity clause is right, and my first reading was wrong
 
-The plan boxes:
+An earlier pass of this audit asserted that the plan's box -- "`W` is sofic,
+hyperlinear, and non-MF" -- was refuted by the graph, and landed an ESTABLISHED
+claim `a5-compression-wreath-is-not-sofic` saying so.  **That was a group
+mismatch and has been withdrawn.**  The claim and its route are removed and
+replaced by `wreath-soficity-is-decided-by-the-base-pair`.
 
-> `W` is sofic, hyperlinear, and non-MF.
+The graph carries the wreath construction over **two different compression
+pairs**, and the soficity verdict flips between them:
 
-**The soficity clause is false in the graph, and the hyperlinearity clause is an
-open target being attacked in the opposite direction.**
+* **Kun--Thom Laurent pair** -- `Gamma = EL_r(R_+)`,
+  `G = EL_r(R) x| SL_d(Z)`.  `wreath-not-sofic` is established here, and
+  `a5-wreath-contains-binary-kun-thom-wreath` extends it to `A_5` lamps.  Its
+  body says "for the pinned Kun--Thom action", so its scope is this pair.
+* **Affine doubling pair** -- `G* = (Z[1/2]^3 x| SL_3(Z)) x| Z` with the
+  doubling stable letter.  This is the pair every radical theorem uses:
+  `wreath-compression-mf-radical` says "the doubling family",
+  `doubling-quotient-residually-finite` writes `G*` out, and
+  `compression-wreath-five-radicals-coincide` is stated over `G*/Gamma*`.  Over
+  this pair the telescope-window structure **restores soficity**:
+  `wreath-sofic-not-mf` is established, and its own body draws the contrast --
+  "the same wreath construction over the Laurent pair is NOT sofic, while over
+  the affine/doubling pair the telescope structure restores soficity ...
+  soficity of the wreath is a property of the base pair's finite-window
+  geometry, not of the wreath shape."
 
-* `wreath-not-sofic` is ESTABLISHED from Kun--Thom (arXiv:2608.06222, Theorem A:
-  `Gamma` infranormal but not normal in `G`, both Kazhdan, gives a nonsofic
-  generalized wreath product) -- and `G*/Gamma*` is exactly such a pair.
-* `a5-wreath-contains-binary-kun-thom-wreath` is ESTABLISHED: the `A_5`
-  generalized wreath contains the binary Kun--Thom wreath, sitewise by an
-  involution.  Soficity passes to subgroups, so `W_(A_5)` is **not sofic**.
-* `simple-lamp-hyperlinear-recovery-forces-action-sofic` is OPEN, and the live
-  route `nonhyperlinear-via-simple-lamp-action-recovery` aims to combine it with
-  the established `coordinate-action-not-sofic` to prove `W_(A_5)` is
-  **non-hyperlinear** -- which would answer the program goal.  Asserting
-  hyperlinearity asserts the negation of a live target.
+The flagship `W` lives over the affine pair.  Moreover the established
+`simple-lamp-radical-one-relation` states the plan's sentence outright: adding
+`r = 1` turns "a **sofic** non-MF group into a residually finite MF group", with
+`r` the lamp carrying `(1 2)(3 4)` at the base site.  **So the plan's soficity
+clause is the graph's own established reading, and the correction was the
+error.**
 
-The likely source of the error is a genuine neighbouring node:
-`wreath-sofic-not-mf` is ESTABLISHED and reads "sofic and not MF", but its
-subject is the **sign-free mod-two quotient**, a different group.  Wired the
-correction as `a5-compression-wreath-is-not-sofic`.
+Two residual notes that survive the withdrawal, and are the useful part:
 
-**This is upside, not damage.**  Nothing in the invisible-quotient theorem uses
-soficity; deleting the clause costs the paper nothing.  The true status --
-non-sofic, non-MF, hyperlinearity open -- makes the invisible kernel more
-dramatic, and if the open route closes, `W_(A_5)` becomes the program's answer
-group rather than a sideshow, which would change which paper this is.
+* *Hyperlinearity is still not background.*  The open target
+  `simple-lamp-hyperlinear-recovery-forces-action-sofic` and the route
+  `nonhyperlinear-via-simple-lamp-action-recovery` are stated over the
+  **Kun--Thom** pair, so they are not aimed at the flagship group and do not
+  contradict the plan.  But they are also not evidence *for* the plan's
+  hyperlinearity clause, which needs its own citation over the affine pair
+  before it is boxed.
+* *The trap is real and now has a node.*  `wreath-not-sofic` warns in its own
+  body against "exactly the kind of group-mismatch the doctrine exists to
+  prevent", and this audit committed it anyway, on main, inside fifteen
+  minutes.  The distinction previously lived only in `distinct_from` prose;
+  `wreath-soficity-is-decided-by-the-base-pair` makes it a first-class object.
 
-The non-MF clause needs no separate citation: `Rad_MF(W) = A_5^(X) != 1` and an
-MF group has trivial MF radical, so non-MF-ness is immediate from the flagship
-theorem itself.
+The non-MF clause still needs no separate citation: `Rad_MF(W) = A_5^(X) != 1`
+and an MF group has trivial MF radical.
 
 ## The Grothendieck positioning: the second message corrects the first
 
@@ -84,9 +100,17 @@ The content is that the universally valid chain
 Rad_MF  subset  Rad_fd = Rad_Bohr  subset  Res_fin
 ```
 
-collapses.  The inclusions are free (finite groups sit in `U(d)` and are MF;
-Peter--Weyl equates the Bohr and finite-dimensional radicals; Malcev makes
-finitely generated linear images residually finite hence MF).  The theorem is
+collapses.  Most inclusions are free (finite groups sit in `U(d)` and are MF;
+Malcev makes finitely generated linear images residually finite hence MF).  The
+Bohr column is the exception and is worth knowing before drafting: in this
+repository `five_radicals_eq` carries a leading binder
+`(hPW : SeparatesPoints)`, and the unconditional companion
+`five_radicals_eq_profinite` restricts to profinite targets.  So the compact
+column of the boxed five-radical equality is currently **conditional on one
+named classical input**, exactly the Peter--Weyl separation statement the plan
+already says it is willing to formalize -- and the repo has isolated which
+statement that is (`research/artifacts/peter-weyl-separation-core.md`).  The
+theorem is
 that for `W_K` the smallest equals the largest -- i.e. the operator-norm corona
 sees no more than a finite quotient does.  That is the sentence the abstract
 should carry.  Wired as `invisible-quotient-is-not-a-grothendieck-pair`.
