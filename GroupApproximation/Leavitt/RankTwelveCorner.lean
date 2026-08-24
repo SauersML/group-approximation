@@ -140,13 +140,6 @@ noncomputable def cornerEquiv :
 @[simp] theorem cornerEquiv_apply (g : BinaryLeavittSteinberg.ElementaryBase 3) :
     (cornerEquiv g : H) = cornerEmbedding g := rfl
 
-/-- Consequently the corner is nontrivial: it contains the printed
-`ell = e₁₂(1)`, and it is a faithful copy of `EL₃(R)`. -/
-theorem cornerEquiv_symm_apply_cornerEmbedding
-    (g : BinaryLeavittSteinberg.ElementaryBase 3) :
-    cornerEquiv.symm (cornerEmbeddingToCorner g) = g :=
-  cornerEquiv.symm_apply_apply g
-
 end RankTwelveEndpoint
 end OneSidedMFRadical
 end Manuscript

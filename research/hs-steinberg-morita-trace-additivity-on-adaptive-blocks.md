@@ -49,6 +49,15 @@ recurrence as `(FAR3)`.  The fixed depth then contradicts total mass one.
   `orthogonal-steinberg-root-spectral-support-is-not-additive` gives an
   exact full elementary-group countermodel: both coordinate idempotents and
   their sum have the same Plancherel support density `1-1/p`.
+- **Use the full coefficient-multiplication shear rather than one root.**
+  `steinberg-shear-fixed-labels-recover-ideal-dimension` shows that this
+  stronger table does recover `dim(Ae)` exactly: the proportion of
+  pointwise-fixed Fourier labels is `p^(-dim(Ae))`.  For orthogonal
+  idempotents those fixed-label projections intersect and their traces
+  multiply.  Only the negative logarithm is additive.  Thus the full shear
+  table remembers algebraic ideal dimension, but still does not furnish the
+  additive *physical carrier mass* required by `(MTA2)` or couple it to the
+  representation-dependent BCS source in `(MTA3)`.
 - **Use only the stabilized conjugacy.**  It proves equality between the
   sum packet and the block packet, but it does not make the two diagonal
   block packets orthogonal as operators in an arbitrary representation.

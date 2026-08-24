@@ -1,4 +1,5 @@
-import GroupApproximation.Manuscript.OneSidedMFRadical.ResidualCalculus
+import GroupApproximation.Sofic.MFRelationClosure
+import GroupApproximation.Sofic.RadicalFunctoriality
 
 /-!
 # The literal MF closure of a normal subgroup
@@ -35,6 +36,8 @@ therefore cannot shrink the intersection further.
 Contents:
 
 * `literalMFClosure` — the printed intersection;
+* `mem_literalMFClosure_iff` and `literalMFClosure_normal` — the reusable
+  membership/elimination API and normality instance for that intersection;
 * `literalMFClosure_bot` — the printed identity `Rad_MF(G) = cl_MF^G(1)`;
 * `literalMFClosure_eq_actualCoronaMFClosure` — the printed closure and the
   development's pullback closure are the same subgroup;
@@ -260,15 +263,11 @@ def LiteralMFResidualCalculus : Prop :=
 clause read through the printed intersection of MF-target kernels. -/
 theorem manuscriptMFResidualCalculusLiteral : LiteralMFResidualCalculus := by
   intro G _ _
-  obtain ⟨hInvariant, hQuotient, hClosure, hTrivial⟩ :=
-    manuscriptMFResidualCalculus G
-  rw [← manuscriptCoronaMFResidual_eq_actualCoronaMFResidual] at
-    hInvariant hQuotient hTrivial
-  refine ⟨hInvariant, hQuotient, ?_, hTrivial⟩
+  refine ⟨fun f ↦ map_manuscriptCoronaMFResidual_le f,
+    manuscriptCoronaMFQuotient_isCDEOperatorMF, ?_,
+    isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot⟩
   intro N _
-  have hN := hClosure N
-  rw [← literalMFClosure_eq_actualCoronaMFClosure N] at hN
-  exact hN
+  exact isCDEOperatorMF_quotient_iff_literalMFClosure_eq N
 
 end
 

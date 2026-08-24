@@ -1,5 +1,5 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoints
-import GroupApproximation.Leavitt.ElementaryNoFiniteQuotients
+import GroupApproximation.Leavitt.LeavittMarkNontrivial
 
 /-!
 # Rank-twelve simplicity: exact reductions
@@ -16,6 +16,20 @@ Preusser's normal-subgroup theorem together with pure infiniteness, the
 exchange property, and the centre computation for the binary Leavitt algebra.
 No formal counterpart of that implication is currently present in the
 repository, so no `IsSimpleGroup H` instance is asserted here.
+
+The nearest ring-side declarations do not fill that gap:
+
+* `BinaryLeavitt.exists_mul_mul_eq_one` proves that a *previously detected*
+  nonzero coefficient has a two-sided unit sandwich;
+* `LeavittMark.elGen_p1_ne_one` proves only that the particular printed mark is
+  nontrivial; and
+* `LeavittFamily.centralClassGroup_le_stableUnits` collapses central unit
+  classes modulo the diagonal class group, but does not classify normal
+  subgroups of `EL₁₂` or force one of them to contain a root.
+
+Thus the absent API is specifically the Preusser level-ideal/congruence
+inclusion (or its central-or-nonzero-root consequence), not coefficient
+nontriviality, root normal generation, or the unit-class calculation.
 -/
 
 namespace GroupApproximation
@@ -27,13 +41,8 @@ namespace RankTwelveEndpoint
 is zero. -/
 theorem elementaryRoot_eq_one_iff (i j : Fin 12) (hij : i ≠ j) (a : R) :
     elementaryRoot i j hij a = 1 ↔ a = 0 := by
-  constructor
-  · intro hroot
-    apply elementaryUnit_injective i j hij
-    have hval := congrArg Subtype.val hroot
-    simpa [elementaryRoot_val] using hval
-  · rintro rfl
-    exact elementaryRoot_zero i j hij
+  change elGen i j hij a = 1 ↔ a = 0
+  exact LeavittMark.elGen_eq_one_iff i j hij a
 
 /-- Any normal subgroup containing a nonzero elementary root is the whole
 rank-twelve group.  This is the strongest existing normal-generation theorem

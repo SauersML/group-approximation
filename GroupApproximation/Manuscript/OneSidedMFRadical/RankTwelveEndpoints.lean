@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.RankTwelveCompressor
 import GroupApproximation.Leavitt.HilbertHotelDefectNormal
+import GroupApproximation.Leavitt.LeavittMarkNontrivial
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
 import GroupApproximation.Sofic.FullRadicalClosureProperties
 import GroupApproximation.Sofic.SimpleFullMFRadical
@@ -59,15 +60,12 @@ noncomputable def defect : H :=
 
 /-- The printed coefficient is nonzero. -/
 theorem q_ne_zero : q ≠ 0 := by
-  exact HilbertHotel.q_ne_zero leavittFamily
+  exact leavittFamily.p1_ne_zero
 
 /-- The printed elementary defect is nontrivial. -/
 theorem defect_ne_one : defect ≠ 1 := by
-  intro hd
-  apply q_ne_zero
-  apply elementaryUnit_injective (0 : Fin 12) 2 (by decide)
-  have hval := congrArg Subtype.val hd
-  simpa [defect, elementaryRoot_val] using hval
+  change elGen (0 : Fin 12) 2 (by decide) leavittFamily.p1 ≠ 1
+  exact LeavittMark.elGen_p1_ne_one leavittFamily 0 2 (by decide)
 
 /-- **The normal-generation clause of `prop:defect`, closed at rank twelve.**
 The proof is the Steinberg root-normal-generation theorem pushed through the

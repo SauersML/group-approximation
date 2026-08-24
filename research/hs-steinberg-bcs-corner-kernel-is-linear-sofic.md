@@ -95,6 +95,17 @@ exactification completes the rest.  For the bounded adaptive compiler this
 is exactly the scalar face
 `hs-steinberg-morita-trace-additivity-on-adaptive-blocks`.
 
+Using the complete multiplication shear does reveal more than an individual
+root support, but not the missing coupling.
+`steinberg-shear-fixed-labels-recover-ideal-dimension` proves that, for a
+fixed finite coefficient algebra, the fraction of pointwise-fixed
+Plancherel labels is `p^(-dim(Ar))`.  Orthogonal coefficient ideals therefore
+give intersecting fixed-label sets whose traces multiply; algebraic
+dimension becomes additive only after applying `-log_p`.  This scalar is
+fixed by the coefficient table and cannot serve as the additive normalized
+matrix mass of the prescribed BCS carrier.  Thus passing from roots to full
+shears removes coefficient-rank blindness but leaves source coupling intact.
+
 For the nonhyperlinear endpoint the full quotient embedding is stronger than
 the bounded contradiction formally requires.  By
 `finite-depth-adaptive-selected-atom-escape-tree`, it would suffice to decode

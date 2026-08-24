@@ -172,6 +172,19 @@ spectator-trivial fiber.  This is strictly weaker than reconstructing the
 whole coefficient quotient, but it is not implied by the abstract root
 relations; it is the finite-menu root-kernel reflection estimate.
 
+Using the entire multiplication shear rather than one root does recover a
+genuine coefficient invariant, but it still does not cross this interface.
+`steinberg-shear-fixed-labels-recover-ideal-dimension` computes the common
+row-root Fourier table for a finite-dimensional coefficient algebra `A`:
+the proportion of character labels fixed pointwise by multiplication with
+`r` is exactly `p^(-dim(Ar))`.  Thus orthogonal idempotent ideals have
+additive dimensions, but their fixed-label projections intersect and their
+ordinary traces multiply; additivity appears only after `-log_p`.  This
+closes the algebraic-rank-blindness question for full shear tables and shows
+precisely why it is not the required Morita trace.  The remaining datum is
+still linear physical mass on the representation-dependent BCS carrier,
+not coefficient dimension in a fixed Plancherel window.
+
 An independent finite role register does not bypass this interface.
 `role-multiplexing-is-minimax-max-selection` proves
 that role atoms do turn the arbitrary noncommuting forbidden family into one
