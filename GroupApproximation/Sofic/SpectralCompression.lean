@@ -101,10 +101,8 @@ theorem corona_clopen_projection_collapse :
       (horbit γ₁ hγ₁ γ₂ hγ₂)
       (horbitStar γ₁ hγ₁ γ₂ hγ₂)
       (horbitStar γ₂ hγ₂ γ₁ hγ₁)
-  have hX : ∀ n, 0 < Fintype.card (X n) := fun n ↦
-    Fintype.card_pos_iff.mpr (inferInstance : Nonempty (X n))
   exact ProjectionCompressionCollapse.corona_projection_collapse
-    L hT hcomp X hX pi (projection v U hU)
+    L hT hcomp X pi (projection v U hU)
       (star_projection_eq hU) (projection_mul_self hU)
       hpcompressed hporbit
 

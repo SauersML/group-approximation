@@ -372,8 +372,9 @@ theorem isCompactOperator_of_mem_elemAlg {k : C(C.carrier × C.carrier, ℂ)}
   · rintro x ⟨f₀, g₀, rfl⟩
     exact isCompactOperator_elemKernel C f₀ g₀
   · rw [integralOp_zero]
-    simpa only [ContinuousLinearMap.coe_zero] using
-      isCompactOperator_zero (M₁ := Lp ℂ 2 C.haar) (M₂ := Lp ℂ 2 C.haar)
+    change IsCompactOperator
+      (fun _ : Lp ℂ 2 C.haar ↦ (0 : Lp ℂ 2 C.haar))
+    exact isCompactOperator_zero
   · intro x y _ _ hx hy
     rw [integralOp_add]
     exact hx.add hy
