@@ -56,8 +56,10 @@ finitely presented outright), and the data collapses to:
 > classes.
 
 That is a complete statement of a sufficient condition for Boone--Higman in
-one line, with no auxiliary object.  It is recorded here rather than as its
-own route because it strictly implies the displayed claim and a second route
+one line, with no auxiliary object.  It is carried as its own claim,
+`every-wp-group-embeds-in-fp-conjugacy-finite-group`, feeding this one
+through `fiber-product-data-from-conjugacy-finite-overgroup` -- a route into
+*this* claim rather than a second route into `boone-higman-conjecture`, which
 would prove the same target by the same argument.
 
 The special case is also where the difficulty is visible.  A finitely
@@ -108,8 +110,17 @@ number, and `T` may be much larger than `N`.
    pays for it by needing finite presentability of the *quotient*, which is
    its open input.  So the move is not new, it is the standard one, and it
    relocates the difficulty rather than removing it.
-5. **Wreath and Houghton-style envelopes for clause 6.**  An ordinary wreath
-   product with a finitary top group kills positional invariants of pairs
-   but leaves the base-group labels as invariants, so pair orbits stay
-   infinite.  Deferred rather than refuted, but no repair was found: the
-   labels are what the construction is for.
+5. **Wreath and Houghton-style envelopes for clause 6.**  *Dies* at
+   `wreath-base-conjugacy-classes-are-finite-multisets`: in
+   `B wr_S Sym_fin(S)` the conjugacy classes of the base are exactly the
+   finite multisets of nontrivial `B`-classes, so support size alone is an
+   unbounded invariant and the count is infinite for every nontrivial `B`.
+   The finitary top group kills positional invariants and nothing else.
+   Recorded as `fiber-product-data-via-permutational-wreath`.
+6. **Buy clause 6 with transitivity instead.**  By
+   `two-transitive-action-reduces-type-a-to-two-clauses` a 2-transitive
+   faithful action satisfies the pair-orbit clause for free, so one could
+   drop the fiber-product action entirely and look for a 2-transitive one.
+   Deferred, and it is a different problem rather than a repair of this one:
+   what remains is finite presentation of the acting group, which is where
+   `boone-higman-via-bffhz-action-image` is already stuck.
