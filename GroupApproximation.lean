@@ -353,6 +353,7 @@ import GroupApproximation.Sofic.TorsionActiveCore
 import GroupApproximation.Sofic.FiniteOrderRankMass
 import GroupApproximation.Sofic.ActiveCoreAlmostRepresentation
 import GroupApproximation.Sofic.FiniteOrderNormalGenerator
+import GroupApproximation.Sofic.SimpleTorsionDichotomy
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.PropertyTFreeMFCollapse
 import GroupApproximation.Sofic.CommutingLampCollapse
