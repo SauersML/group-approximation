@@ -1591,6 +1591,12 @@ import GroupApproximation.Sofic.ArithmeticAmplifiedEndpoint
 import GroupApproximation.Sofic.MinimalNoCancellingPair
 import GroupApproximation.Sofic.MinimalPalindromePair
 import GroupApproximation.Sofic.MatchingReduced
+import GroupApproximation.Sofic.MatchingPositions
+import GroupApproximation.Sofic.MatchingBoundaryBlock
+import GroupApproximation.Sofic.MatchingRunPiece
+import GroupApproximation.Sofic.MatchingStemContraction
+import GroupApproximation.Sofic.CurvatureAssembly
+import GroupApproximation.Sofic.SigmaCompressionPair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
