@@ -898,7 +898,7 @@ hilbert-hotel-mf-absorption-theory [✓] Hilbert-hotel absorption controls MF-vi
               (…already shown)
             finite-product-lift-of-internal-mf-reflections [✓] Finite block diagonals lift heterogeneous internal MF reflections
               (…already shown)
-        one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homotopical finiteness length
+        one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homological finiteness length
           ├ one-word-reflections-realize-every-finiteness-length-proof [✓] Symmetrize a Stallings-Bieri subdirect product and lift its finite coordinate orbits
             finite-orbit-subgroups-inherit-internal-mf-reflections [✓] Finite-orbit subgroups of product reflections inherit exact internal MF reflections
               (…already shown)
@@ -956,7 +956,7 @@ hilbert-hotel-mf-absorption-theory [✓] Hilbert-hotel absorption controls MF-vi
       (…already shown)
     finite-orbit-subgroups-inherit-internal-mf-reflections [✓] Finite-orbit subgroups of product reflections inherit exact internal MF reflections
       (…already shown)
-    one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homotopical finiteness length
+    one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homological finiteness length
       (…already shown)
     internal-mf-reflection-subgroup-lattice [✓] Internal MF reflections contain complete actor subgroup lattices
       (…already shown)
@@ -1624,7 +1624,7 @@ mf-reflection-and-corona-support-calculus [✓] MF reflection and matrix-corona 
           (…already shown)
         finite-product-lift-of-internal-mf-reflections [✓] Finite block diagonals lift heterogeneous internal MF reflections
           (…already shown)
-    one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homotopical finiteness length
+    one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homological finiteness length
       ├ one-word-reflections-realize-every-finiteness-length-proof [✓] Symmetrize a Stallings-Bieri subdirect product and lift its finite coordinate orbits
         finite-orbit-subgroups-inherit-internal-mf-reflections [✓] Finite-orbit subgroups of product reflections inherit exact internal MF reflections
           (…already shown)
@@ -4399,10 +4399,10 @@ one-word-mf-reflection-has-undecidable-membership [✓] A one-word internal MF r
           (…already shown)
 ```
 
-## one-word-reflections-realize-every-finiteness-length — Singly generated internal MF radicals realize every finite homotopical finiteness length   [ESTABLISHED] (root)
+## one-word-reflections-realize-every-finiteness-length — Singly generated internal MF radicals realize every finite homological finiteness length   [ESTABLISHED] (root)
 
 ```text
-one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homotopical finiteness length
+one-word-reflections-realize-every-finiteness-length [✓] Singly generated internal MF radicals realize every finite homological finiteness length
   ├ one-word-reflections-realize-every-finiteness-length-proof [✓] Symmetrize a Stallings-Bieri subdirect product and lift its finite coordinate orbits
     finite-orbit-subgroups-inherit-internal-mf-reflections [✓] Finite-orbit subgroups of product reflections inherit exact internal MF reflections
       ├ finite-orbit-subgroups-inherit-internal-mf-reflections-proof [✓] Restrict the visible actor and count its coordinate orbits
@@ -5621,14 +5621,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-24 · one-word-reflections-realize-every-finiteness-length-proof [COMPLETE] Symmetrize a Stallings-Bieri subdirect product and lift its finite coordinate orbits
+- 2026-08-24 · one-word-reflections-realize-every-finiteness-length [ESTABLISHED] Singly generated internal MF radicals realize every finite homological finiteness length
+- 2026-08-24 · mf-reflection-and-corona-support-calculus [ESTABLISHED] MF reflection and matrix-corona support form a complete algebraic calculus
+- 2026-08-24 · hilbert-hotel-mf-absorption-theory [ESTABLISHED] Hilbert-hotel absorption controls MF-visible groups, C-star quotients, and asymptotic dynamics
 - 2026-08-24 · single-selected-atom-hs-escape [OPEN] One selected forbidden atom escapes every current shared-variable reducing hull by fixed HS mass
 - 2026-08-24 · perfect-reflection-lower-central-calculus-proof [COMPLETE] Pull commutator series through a quotient with perfect kernel
 - 2026-08-24 · perfect-mf-reflection-over-residually-p-actor [ESTABLISHED] A perfect MF-invisible kernel over a residually-p actor is every classical residual at once
 - 2026-08-24 · one-word-mf-reflection-has-undecidable-membership [ESTABLISHED] A one-word internal MF reflection has undecidable subgroup membership
-- 2026-08-24 · one-bit-clifford-selector-halves-a-chosen-bcs-atom [ESTABLISHED] A two-involution Clifford selector cuts a canonical half from any chosen BCS assignment atom
-- 2026-08-24 · nonhyperlinear-via-finite-adaptive-selected-atom-tree [OPEN] Iterate the bounded selected-atom decision tree past total trace one
-- 2026-08-24 · mihailova-one-word-internal-reflection-proof [COMPLETE] Symmetrize a Mihailova fiber product inside two free reflections
-- 2026-08-24 · mf-reflection-and-corona-support-calculus-proof [COMPLETE] Assemble the reflection, support, and Hilbert-hotel tower theorems
 
 ## Active claims
 

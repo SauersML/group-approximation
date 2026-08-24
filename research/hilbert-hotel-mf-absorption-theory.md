@@ -188,7 +188,7 @@ Finite-orbit subgroups of product reflections inherit the same exact
 calculus.  Applied to the Stallings--Bieri kernel in `F_2^n` and then to the
 cyclic symmetry of its factors, this gives for every `n>=2` a finitely
 generated internal non-MF group with one normally generating radical word
-and visible quotient of type `F_(n-1)` but not `F_n`.  All finite-dimensional
+and visible quotient of type `F_(n-1)` but not `FP_n`.  All finite-dimensional
 residuals and completions remain exactly those of that quotient.
 
 The preimage construction is a complete subgroup-lattice embedding: the

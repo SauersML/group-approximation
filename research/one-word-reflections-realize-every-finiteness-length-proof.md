@@ -23,8 +23,10 @@ S_n=ker(chi_n).
 ```
 
 The classical Stallings--Bieri theorem says that `S_n` is of type `F_(n-1)`
-but not `F_n` (see also Mihalik, `Stallings' Group is Simply Connected at
-Infinity`, arXiv:2506.19195, for this formulation).  The projection of `S_n`
+but not `FP_n`; the failure is witnessed by non-finite generation of the
+relevant integral homology module.  In particular it is not of type `F_n`
+(see also Mihalik, `Stallings' Group is Simply Connected at Infinity`,
+arXiv:2506.19195, for the homotopical formulation).  The projection of `S_n`
 onto every `F_2` factor is onto: prescribe an element in one factor and cancel
 its `chi_n`-value with a power of a generator in a different factor.
 
@@ -35,9 +37,9 @@ therefore normalizes `S_n`.  Define
 T_n=S_n semidirectProduct C_n.                           (FLP1)
 ```
 
-Finite-index invariance of the properties `F_j` shows that `T_n` is still of
-type `F_(n-1)` but not `F_n`.  It is residually finite because `S_n` is a
-subgroup of the residually finite group `R_n` and `T_n` is a finite extension.
+Finite-index invariance of `F_j` and `FP_j` shows that `T_n` is still of type
+`F_(n-1)` but not `FP_n`.  It is residually finite because `S_n` is a subgroup
+of the residually finite group `R_n` and `T_n` is a finite extension.
 The product `R_n` is linear in characteristic zero, hence so is `S_n`.
 Finite extensions of characteristic-zero linear groups are linear, for
 example by inducing a faithful representation from the finite-index
