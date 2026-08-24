@@ -6,11 +6,8 @@ title: Canonical trace gives the sharp ceiling for character packing
 root: true
 artifacts:
   - research/canonical-trace-forbids-supercritical-character-packing-proof.md
-invalidates:
-  - finite-bad-character-packing-extension
-  - simultaneous-bad-character-packing-extension
 distinct_from:
-  finite-overgroup-character-packing-is-hyperlinearity-conservative: that proves hyperlinearity permanence after finite Bass--Serre attachment; this gives a direct numerical impossibility theorem at exactly the proposed packing thresholds.
+  finite-packing-preserves-hyperlinearity: that proves hyperlinearity permanence after finite Bass--Serre attachment; this gives a direct numerical impossibility theorem at exactly the proposed packing thresholds.
   finite-packet-functoriality-has-positive-regular-profile: that gives a positive regular solution to homogeneous multiplicity equations; this applies the canonical trace directly to conjugate character projections and proves the optimal packing ceiling.
   balanced-marginal-hnn-character-packing: that constructs capacity-sharp local packings; this proves no ordinary group-algebra packing can cross the soundness threshold.
 ---

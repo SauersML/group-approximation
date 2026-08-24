@@ -1,10 +1,10 @@
 ---
 rg: 2
 id: finite-character-hecke-intersection-formula-proof
-kind: proof
+kind: route
 title: Proof of the finite character Hecke intersection formula
-proves:
-  - finite-character-hecke-intersection-formula
+target: finite-character-hecke-intersection-formula
+requires: []
 ---
 
 Expand

@@ -9,7 +9,6 @@ artifacts:
 distinct_from:
   forbidden-character-kernel-quotient-compiler: that proves nonhyperlinearity once every forbidden type is detected by the perfect-model kernel; this gives the smallest local relation package implementing that quotient.
   locally-affine-support-bcs-is-exactly-the-lcs-boundary: that identifies the surviving affine character packet; this computes the optimal number of group relators defining it.
-  finite-phase-scalar-groupification-iff-coset-subgroup: that characterizes scalar profiles in one central-character sector; this gives the exact annihilator presentation and its minimality for a specified subgroup kernel.
 ---
 
 Let `H` be a finite abelian group, let `J in H` be an involution, and let

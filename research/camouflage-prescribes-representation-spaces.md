@@ -1,18 +1,14 @@
 ---
 rg: 2
-id: stable-camouflage-groups-have-prescribed-representation-spaces
+id: camouflage-prescribes-representation-spaces
 kind: claim
 title: Stable camouflage groups have prescribed finite-dimensional representation spaces
 root: true
 artifacts:
-  - research/stable-camouflage-groups-have-prescribed-representation-spaces-proof.md
-requires:
-  - mf-camouflage-surgery
-  - mf-camouflage-surgery-preserves-matricial-stability
+  - research/camouflage-prescribes-representation-spaces-proof.md
 distinct_from:
   two-tier-matricial-invisibility: that separates exact and asymptotic visibility of two marked words; this identifies every exact representation space and, under stability, shows all asymptotic models approach those prescribed spaces.
   mf-camouflage-surgery: that gives targetwise Hom-bijections as sets; this adds topology, direct-sum and tensor compatibility, irreducible classifications, and the asymptotic consequence.
-  same-bohr-and-profinite-completions-but-mf-differs: that identifies two compact completions; this identifies the entire family of finite-dimensional unitary representation spaces before completion.
 ---
 
 Let `C_d(Q)` be the camouflage group and `pi_Q:C_d(Q)->Q` its split

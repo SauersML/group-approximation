@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: stable-camouflage-groups-have-prescribed-representation-spaces-proof
+id: camouflage-prescribes-representation-spaces-proof
 kind: route
 title: Identify the finite-dimensional representation spaces of stable camouflage groups
-target: stable-camouflage-groups-have-prescribed-representation-spaces
+target: camouflage-prescribes-representation-spaces
 requires:
   - mf-camouflage-surgery
   - mf-camouflage-surgery-preserves-matricial-stability

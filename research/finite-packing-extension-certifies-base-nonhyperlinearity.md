@@ -7,7 +7,7 @@ root: true
 artifacts:
   - research/finite-packing-extension-certifies-base-nonhyperlinearity-proof.md
 distinct_from:
-  finite-overgroup-character-packing-is-hyperlinearity-conservative: that proves the permanence fence; this combines it with the packing contradiction and identifies the base, rather than the auxiliary amalgam, as the actual witness.
+  finite-packing-preserves-hyperlinearity: that proves the permanence fence; this combines it with the packing contradiction and identifies the base, rather than the auxiliary amalgam, as the actual witness.
   simultaneous-character-packing-removes-max-loss: that proves one sharp packing contradiction for an extended presentation; this descends any such contradiction to the original contextual base.
 ---
 

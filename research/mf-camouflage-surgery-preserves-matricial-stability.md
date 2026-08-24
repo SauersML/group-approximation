@@ -6,9 +6,6 @@ title: MF camouflage surgery preserves matricial stability exactly
 root: true
 artifacts:
   - research/mf-camouflage-surgery-preserves-matricial-stability-proof.md
-requires:
-  - mf-camouflage-surgery
-  - split-mf-equivalences-preserve-matricial-stability
 distinct_from:
   mf-camouflage-surgery: that identifies all outgoing MF and norm-corona representations and computes the hidden kernel; this derives the new approximation-repair property of the resulting group.
   matricially-stable-groups-exist: that proves stability of free groups and the integers; this converts every such visible group into a stable non-MF group with a prescribed one-word radical.

@@ -1,10 +1,10 @@
 ---
 rg: 2
 id: canonical-trace-forbids-supercritical-character-packing-proof
-kind: proof
+kind: route
 title: Proof of the canonical character-packing ceiling
-proves:
-  - canonical-trace-forbids-supercritical-character-packing
+target: canonical-trace-forbids-supercritical-character-packing
+requires: []
 ---
 
 Choose `i_0` with maximal `tau(e_i)`.  From `(CTP2)`,

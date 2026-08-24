@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: finite-overgroup-character-packing-is-hyperlinearity-conservative-proof
+id: finite-packing-preserves-hyperlinearity-proof
 kind: route
 title: Apply amenable-edge permanence to the finite packet graph
-target: finite-overgroup-character-packing-is-hyperlinearity-conservative
+target: finite-packing-preserves-hyperlinearity
 requires:
   - amenable-edge-graph-corners-cannot-groupify-a-nonce-game
   - canonical-types-extend-every-finite-bass-serre-actor

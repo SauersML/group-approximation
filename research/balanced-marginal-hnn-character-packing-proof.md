@@ -1,10 +1,10 @@
 ---
 rg: 2
 id: balanced-marginal-hnn-character-packing-proof
-kind: proof
+kind: route
 title: Proof of balanced marginal HNN character packing
-proves:
-  - balanced-marginal-hnn-character-packing
+target: balanced-marginal-hnn-character-packing
+requires: []
 ---
 
 Put `chi_A=chi|A`.  For `r!=s`, set

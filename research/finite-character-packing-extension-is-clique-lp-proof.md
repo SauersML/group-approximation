@@ -1,10 +1,11 @@
 ---
 rg: 2
 id: finite-character-packing-extension-is-clique-lp-proof
-kind: proof
+kind: route
 title: Proof that finite character packing-extension is a clique and linear program
-proves:
-  - finite-character-packing-extension-is-clique-lp
+target: finite-character-packing-extension-is-clique-lp
+requires:
+  - finite-character-hecke-intersection-formula
 ---
 
 For each pair `(i,g)` put

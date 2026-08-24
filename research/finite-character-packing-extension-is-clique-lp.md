@@ -6,8 +6,6 @@ title: Finite character packing-extension is a colored clique and rational feasi
 root: true
 artifacts:
   - research/finite-character-packing-extension-is-clique-lp-proof.md
-requires:
-  - finite-character-hecke-intersection-formula
 distinct_from:
   finite-bad-character-packing-extension: that asks for ambient finite groups satisfying packing and trace extension; this gives a complete decision procedure and exact certificates once a candidate finite group is specified.
   finite-packet-multiplicity-certificates-detect-mf-radicals: that certifies vanishing consequences of homogeneous packet equations; this decides simultaneous conjugate orthogonality and a prescribed inhomogeneous trace restriction.

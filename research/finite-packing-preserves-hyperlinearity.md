@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: finite-overgroup-character-packing-is-hyperlinearity-conservative
+id: finite-packing-preserves-hyperlinearity
 kind: claim
 title: Finite-overgroup character packing cannot create nonhyperlinearity from a hyperlinear base
 root: true
 artifacts:
-  - research/finite-overgroup-character-packing-is-hyperlinearity-conservative-proof.md
+  - research/finite-packing-preserves-hyperlinearity-proof.md
 distinct_from:
   finite-selector-gadget-induction-barrier: that shows every marked selector character occurs in some representation of one finite overgroup; this proves preservation for the entire group obtained by attaching any finite family of such overgroups.
   simultaneous-character-packing-removes-max-loss: that is the valid matrix-capacity contradiction once a sufficiently large simultaneous packing exists; this locates exactly why finite Bass--Serre attachments cannot supply such a contradiction over a hyperlinear base.
