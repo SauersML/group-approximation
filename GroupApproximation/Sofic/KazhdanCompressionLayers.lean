@@ -207,7 +207,7 @@ theorem coronaMFResidual_eq_ker_limit
   have hker := TelescopeRadicalInduction.ker_limit_le_coronaMFResidual
     T limit hstages hunion
   exact TelescopeRadicalInduction.coronaMFResidual_eq_ker_limit
-    T limit hker hlimit
+    limit hker hlimit
     ((isOperatorMF_iff_coronaMFResidual_eq_bot).mp hMF)
 
 end KazhdanCompressionLayers
