@@ -301,5 +301,107 @@ theorem norm_cayley_sub_cayley {H H' : Matrix n n ℂ}
       norm_nonneg ((denom H)⁻¹), norm_nonneg ((denom H')⁻¹)]
   linarith
 
+/-! ## Surjectivity
+
+The image of `cayley` is exactly the unitaries `U` for which `1 + U` is
+invertible: solving `2 • A⁻¹ - 1 = U` for `A` gives `A = 2 • (1 + U)⁻¹`, and the
+Hermitian parameter is read off from `A = 1 + I • H`. -/
+
+/-- For a unitary the conjugate transpose is the inverse. -/
+theorem conjTranspose_eq_inv {U : Matrix n n ℂ}
+    (hU : U ∈ Matrix.unitaryGroup n ℂ) : Uᴴ = U⁻¹ := by
+  have h : U * Uᴴ = 1 := by
+    have h' := Matrix.mem_unitaryGroup_iff.1 hU
+    rwa [Matrix.star_eq_conjTranspose] at h'
+  exact (Matrix.inv_eq_right_inv h).symm
+
+theorem isUnit_det_of_mem_unitaryGroup {U : Matrix n n ℂ}
+    (hU : U ∈ Matrix.unitaryGroup n ℂ) : IsUnit U.det := by
+  have h : U * Uᴴ = 1 := by
+    have h' := Matrix.mem_unitaryGroup_iff.1 hU
+    rwa [Matrix.star_eq_conjTranspose] at h'
+  refine isUnit_iff_exists_inv.2 ⟨(Uᴴ).det, ?_⟩
+  rw [← Matrix.det_mul, h, Matrix.det_one]
+
+/-- The inverse of `1 + U⁻¹`, for an invertible `U` with `1 + U` invertible. -/
+theorem inv_one_add_inv {U : Matrix n n ℂ} (hUdet : IsUnit U.det)
+    (hinv : IsUnit ((1 : Matrix n n ℂ) + U).det) :
+    ((1 : Matrix n n ℂ) + U⁻¹)⁻¹ = (1 + U)⁻¹ * U := by
+  refine Matrix.inv_eq_right_inv ?_
+  have hfac : (1 : Matrix n n ℂ) + U⁻¹ = U⁻¹ * (1 + U) := by
+    rw [Matrix.mul_add, Matrix.mul_one, Matrix.nonsing_inv_mul _ hUdet]
+    abel
+  rw [hfac, Matrix.mul_assoc, ← Matrix.mul_assoc ((1 : Matrix n n ℂ) + U),
+    Matrix.mul_nonsing_inv _ hinv, Matrix.one_mul,
+    Matrix.nonsing_inv_mul _ hUdet]
+
+/-- The two resolvents of `1 + U` add to one. -/
+theorem inv_mul_add_inv {U : Matrix n n ℂ}
+    (hinv : IsUnit ((1 : Matrix n n ℂ) + U).det) :
+    (1 + U)⁻¹ * U + (1 + U)⁻¹ = 1 := by
+  have hstep : ((1 : Matrix n n ℂ) + U)⁻¹ * U + (1 + U)⁻¹
+      = (1 + U)⁻¹ * (1 + U) := by
+    rw [Matrix.mul_add, Matrix.mul_one]
+    abel
+  rw [hstep, Matrix.nonsing_inv_mul _ hinv]
+
+/-- The Hermitian parameter of a unitary without eigenvalue `-1`. -/
+noncomputable def param (U : Matrix n n ℂ) : Matrix n n ℂ :=
+  (-Complex.I) • ((2 : ℂ) • (1 + U)⁻¹ - 1)
+
+/-- The bracket is anti-Hermitian. -/
+theorem star_bracket {U : Matrix n n ℂ} (hU : U ∈ Matrix.unitaryGroup n ℂ)
+    (hinv : IsUnit ((1 : Matrix n n ℂ) + U).det) :
+    star ((2 : ℂ) • (1 + U)⁻¹ - 1) = -((2 : ℂ) • (1 + U)⁻¹ - 1) := by
+  have hUdet := isUnit_det_of_mem_unitaryGroup hU
+  have hUinv : star U = U⁻¹ := by
+    rw [Matrix.star_eq_conjTranspose]; exact conjTranspose_eq_inv hU
+  have hstarinv : star (((1 : Matrix n n ℂ) + U)⁻¹) = (star (1 + U))⁻¹ := by
+    rw [Matrix.star_eq_conjTranspose, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_nonsing_inv]
+  have hs1U : star ((1 : Matrix n n ℂ) + U) = 1 + U⁻¹ := by
+    rw [star_add, star_one, hUinv]
+  rw [star_sub, star_one, star_smul, hstarinv, hs1U,
+    inv_one_add_inv hUdet hinv, show star ((2 : ℂ)) = (2 : ℂ) by simp]
+  have hsum := inv_mul_add_inv hinv
+  have h2 : (2 : ℂ) • (((1 : Matrix n n ℂ) + U)⁻¹ * U)
+      + (2 : ℂ) • ((1 : Matrix n n ℂ) + U)⁻¹ = 1 + 1 := by
+    rw [← smul_add, hsum]
+    exact two_smul ℂ (1 : Matrix n n ℂ)
+  refine sub_eq_zero.1 ?_
+  have hrewrite : (2 : ℂ) • (((1 : Matrix n n ℂ) + U)⁻¹ * U) - 1
+        - -((2 : ℂ) • ((1 : Matrix n n ℂ) + U)⁻¹ - 1)
+      = ((2 : ℂ) • (((1 : Matrix n n ℂ) + U)⁻¹ * U)
+          + (2 : ℂ) • ((1 : Matrix n n ℂ) + U)⁻¹) - (1 + 1) := by abel
+  rw [hrewrite, h2, sub_self]
+
+theorem isHermitian_param {U : Matrix n n ℂ} (hU : U ∈ Matrix.unitaryGroup n ℂ)
+    (hinv : IsUnit ((1 : Matrix n n ℂ) + U).det) :
+    Matrix.IsHermitian (param U) := by
+  have hstar : star (param U) = param U := by
+    rw [param, star_smul, star_bracket hU hinv,
+      show star (-Complex.I) = Complex.I by simp, smul_neg, ← neg_smul]
+  rw [Matrix.star_eq_conjTranspose] at hstar
+  exact hstar
+
+theorem denom_param {U : Matrix n n ℂ} :
+    denom (param U) = (2 : ℂ) • ((1 : Matrix n n ℂ) + U)⁻¹ := by
+  have hI : Complex.I * (-Complex.I) = 1 := by
+    rw [mul_neg, Complex.I_mul_I, neg_neg]
+  rw [denom, param, smul_smul, hI, one_smul]
+  abel
+
+/-- **Every unitary without eigenvalue `-1` is a Cayley transform.** -/
+theorem cayley_param {U : Matrix n n ℂ}
+    (hinv : IsUnit ((1 : Matrix n n ℂ) + U).det) :
+    cayley (param U) = U := by
+  have hres : (denom (param U))⁻¹ = ((1 : ℂ) / 2) • ((1 : Matrix n n ℂ) + U) := by
+    refine Matrix.inv_eq_right_inv ?_
+    rw [denom_param, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+      Matrix.nonsing_inv_mul _ hinv]
+    norm_num
+  rw [cayley, hres, smul_smul]
+  norm_num
+
 end CayleyUnitary
 end GroupApproximation
