@@ -117,6 +117,26 @@ classified by the eventual growth class of its coordinate ranks.
 
 This replaces a yes/no visibility mark by a continuum-valued ideal geometry.
 
+The calculus is sharp already in the constant `2 x 2` corona.  If `X` and
+`Z` are Pauli involutions localized on coordinate sets `S` and `T`, then
+
+```text
+Supp(X_S Z_T)=J_(S union T),
+Supp([X_S,Z_T])=J_(S intersection T).
+```
+
+Thus multiplication realizes union and commutators realize intersection.
+Support sets modulo finite error also give continuum many conjugacy classes
+of involutions.  By allocating a disjoint infinite coordinate set to every
+nonedge, every countable graph becomes the exact commutation graph of a
+family of nonidentity involutions in this single corona.
+
+The pairwise support blocks may be chosen disjoint.  Quotienting by the ideal
+supported on any selected union of blocks kills exactly those commutators.
+For a graph with infinitely many nonedges, the quotient lattice therefore
+contains the full power-set lattice of its nonedges, and one fixed family of
+involutions realizes every graph completion across those quotients.
+
 ## 6. Boolean towers
 
 Let `H=EL_16(L_(F_2)(1,2))`, the explicit infinite simple group with full MF

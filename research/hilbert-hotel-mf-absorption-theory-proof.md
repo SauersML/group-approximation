@@ -27,6 +27,11 @@ requires:
   - generic-leavitt-self-compression-full-mf-radical
   - tracial-projective-hilbert-hotel-cancellation
   - tracial-superoperator-self-copy-has-no-macroscopic-excess
+  - torsion-normal-generator-has-full-support-corona-core
+  - torsion-active-core-is-a-uniform-morita-generator
+  - simple-torsion-groups-have-a-macroscopic-mf-dichotomy
+  - torsion-normal-generator-mf-shadow-equivalence
+  - finite-order-normal-generation-controls-corona-rank-scale
   - mf-reflection-and-corona-support-calculus
 ---
 

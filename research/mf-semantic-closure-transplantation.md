@@ -8,6 +8,7 @@ distinct_from:
   full-mf-radical-absorber: That theorem computes only the radical at the trivial relation; this formula applies at every normal subgroup and identifies the complete lattice of MF quotients.
 artifacts:
   - research/mf-semantic-closure-transplantation-proof.md
+  - non_mf_groups_exist.tex
 ---
 
 For a normal subgroup `N normal G`, define

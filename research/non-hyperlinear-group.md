@@ -93,9 +93,14 @@ Accordingly the non-CE gap is not needed to create the initial density; it
 must be used to select or charge multiplicity in a way available only in
 finite matrices.
 `subgroup-hecke-hnn-is-a-regular-safe-rank-actuator` can pay a correctly
-oriented Reynolds rank gap.  The remaining gate is not predicate decoding:
+oriented Reynolds rank gap.  The central-sign front end now has exactly that
+orientation: `central-sign-assignment-atom-is-index-two-reynolds-surplus`
+identifies every forbidden atom as
+`e_(H_a)-e_<H_a,J>` and produces a one-edge exit of equal trace.  The
+remaining gate is not predicate decoding or local rank payment:
 `central-sign-reynolds-first-hit-compiler` must route the compulsory
-regular-trace companion sectors through matrix-only first-hit exits.  The
+regular-trace exit flow through summable first-hit layers while the
+finite-matrix BCS recurrence preserves one active copy.  The
 established `branching-plus-first-hit-exits-forces-hs-floor` then closes the
 normalized-HS contradiction.  The compiler explicitly cannot be
 trace-functorial, by `exact-first-hit-ladder-kills-regular-carrier`.
@@ -107,6 +112,16 @@ tracial ultraproduct.  This reduces the generic finite-memory route to the
 single open amplifier `marked-self-copy-forces-macroscopic-adjoint-excess`.
 It does not replace the Kazhdan quantitative theorem or detect microscopic
 `o(d^2)` excess sectors.
+
+For canonical microstates the boundary is sharper.
+`canonical-infinite-subgroup-has-zero-adjoint-fixed-density` averages any
+finite list of distinct subgroup elements and proves that every pointwise
+fixed adjoint projection for an infinite subgroup has density zero.  Hence
+the two-site `A5` center's physical `35/72` carrier cannot be promoted by
+left multiplication: it gives a positive-density invariant range, while its
+fixed part is canonically null.  The remaining `A5` classicalization gate
+must retain actor boundary memory or otherwise charge multiplicity; it cannot
+be closed by a macroscopic self-copy shortcut.
 
 A third positive-density lane now has the correct Hilbert--Schmidt local
 input.  `hs-finite-heisenberg-windows-have-compatible-density-measures`
@@ -442,6 +457,26 @@ right-regular/external multiplicity fiber.  Thus intrinsic minimal normal
 factors do not by themselves yield coherent finite action charts; an
 equivariant boundary-completion or multiplicity-copy classicalization
 theorem is still load-bearing.
+
+The full-action conclusion is no longer the smallest live version of that
+gate.  `two-site-a5-plancherel-center-separates-mark` exactifies only the two
+marked `A5` lamps and uses the rational five-dimensional central idempotent
+
+```text
+z=(1/12)(5*1+C_2-C_3)
+```
+
+to obtain a canonical exclusive-or carrier of trace `35/72`, with every
+pair-preserving actor covariance already controlled by fixed word defects.
+Since `two-point-approximation-fails` forbids even a permutation chart for
+that marked pair, `nonhyperlinear-via-two-site-a5-center` now reaches the
+goal from the strictly smaller
+`two-site-a5-center-classicalization`.  The only surviving operation is to
+turn the actor's joint unitary multiplicity cocycle on this fixed two-valued
+field into approximately multiplicative finite permutations.  No recovery
+of remote lamp labels is required, although the remaining operation is still
+a genuine hyperlinear-to-sofic classicalization theorem rather than finite
+packet rounding.
 
 The imported "quotient the local gauge first, then read the residual
 obstruction" calculus has now been run against the whole surviving frontier,

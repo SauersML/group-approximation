@@ -97,11 +97,15 @@ For arbitrary Boolean contexts,
 `central-sign-bcs-atoms-are-subgroup-reynolds-projections` supplies a second
 exact input interface: every assignment atom in the negative central sector
 is `e_(H_a)Q_-` for an elementary abelian subgroup `H_a`.  This solves atom
-naming but not orientation.  Equation `(SHA6)` still forces all selected
-reverse mass to be accompanied by regular compensation elsewhere.  The open
-`central-sign-reynolds-first-hit-compiler` asks to make finite-dimensional
-soundness route that compensation into summable first-hit layers without
-asserting the same lower bound in the regular representation.
+naming.  The stronger identity
+`central-sign-assignment-atom-is-index-two-reynolds-surplus` also solves the
+one-edge orientation: with `C=<H_a,J>`, one has
+`e_(H_a)-e_C=e_(H_a)Q_-`.  What `(SHA6)` still forces is positive regular
+exit mass under repetition.  The open
+`central-sign-reynolds-first-hit-compiler` must make finite-dimensional
+soundness route those exits into summable first-hit layers while a branching
+recurrence preserves the active matrix carrier; the exact regular model must
+be allowed to drain instead.
 
 ## Literal involution spectral projections do not suffice
 

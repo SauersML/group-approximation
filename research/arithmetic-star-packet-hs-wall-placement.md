@@ -7,6 +7,7 @@ refuted_by: arithmetic-star-packet-is-sofic
 distinct_from:
   property-t-hs-positive-density-commutant-no-growth: That theorem forbids any already-placed positive-density wall; this must place the concrete packet Reynolds gap into its two spectral cutoffs.
   arithmetic-star-packet-hs-plancherel-anchor: That computes internal packet density; this must overcome the external P multiplicity gauge and connect that density to the HNN source Laplacians.
+  left-rank-amplification-is-not-a-fixed-sector: That rules out converting the linear-rank marked packet matrix into an external fixed sector merely by left multiplication; this records the stronger multiplicity-gauge obstruction for the actual S9 carrier.
 artifacts:
   - notes/ARITHMETIC_STAR_PACKET_HYPERLINEAR_AUDIT.md
 ---
@@ -44,6 +45,14 @@ single marked matrix difference, is insufficient.
   `V(theta(p)) C_p` with `C_p` in the packet commutant.  Thus
   `R_(Q_0)-R_Q` need not be low for the external compressed action or high
   for the external parent action.
+- **Left-multiplication is not a placement theorem.**  The marked packet
+  displacement has linear physical rank, so left multiplication by one of
+  its spectral cuts gives a projection of positive adjoint rank.  But
+  `left-rank-amplification-is-not-a-fixed-sector`
+  proves that this projection only commutes with the child adjoint action;
+  its range need not consist of child-fixed operator directions.  The fixed
+  part can still have density `o(1)`.  Iterating adjoints repeats the same
+  invariant-versus-fixed error.
 - **Decisive escape.**  The multiplicity gauge globalizes to a sofic envelope.
   The amalgam kernel is a twisted free product of packet copies over `E/P`.
   Diagonal conjugacy embeds each copy into the `K^Q` clique fiber over

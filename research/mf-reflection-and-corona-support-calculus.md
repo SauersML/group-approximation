@@ -48,6 +48,8 @@ Localized Pauli involutions make both inequalities sharp: multiplication
 realizes union of coordinate supports and commutators realize intersection.
 One fixed `2 x 2` matrix corona contains every countable graph as the exact
 commutation graph of a family of nonidentity involutions.
+Quotienting by selected pair-support ideals realizes every graph completion
+of that graph while preserving all vertex involutions.
 
 ### Hilbert-hotel consequences
 
@@ -61,3 +63,10 @@ and the same compact and all-fields finite-dimensional visible quotient.
 
 These results turn MF invisibility into a functorial localization calculus
 and matrix-corona visibility into an exact ideal-valued geometry.
+
+The zero class of the reflector is closed under quotients, extensions, and
+countable colimits.  For a connected graph of full-radical vertex groups,
+the exact MF reflection of its Bass--Serre fundamental group is the free
+fundamental group of the underlying graph: tree gluings remain completely
+invisible, and each graph cycle contributes exactly one visible free
+generator.
