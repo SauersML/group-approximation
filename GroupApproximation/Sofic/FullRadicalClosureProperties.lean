@@ -145,6 +145,20 @@ theorem actualCoronaMFResidual_eq_top_of_extension (N : Subgroup G) [N.Normal]
     (QuotientGroup.mk' N x) X hX (QuotientGroup.lift N rho hker)
   simpa using h2
 
+/-- **A surjection with full kernel and full target has full source.**
+
+This is the homomorphism form of closure under extensions.  It avoids making
+callers identify the quotient by the kernel by hand. -/
+theorem actualCoronaMFResidual_eq_top_of_surjective_kernel
+    {H : Type v} [Group H] (f : G →* H) (hf : Function.Surjective f)
+    (hker : actualCoronaMFResidual f.ker = ⊤)
+    (hH : actualCoronaMFResidual H = ⊤) :
+    actualCoronaMFResidual G = ⊤ := by
+  have hquot : actualCoronaMFResidual (G ⧸ f.ker) = ⊤ :=
+    actualCoronaMFResidual_eq_top_of_mulEquiv
+      (QuotientGroup.quotientKerEquivOfSurjective f hf).symm hH
+  exact actualCoronaMFResidual_eq_top_of_extension f.ker hker hquot
+
 /-! ## The same two closure properties for torsion-freeness -/
 
 /-- **An extension of a torsion-free group by a torsion-free group is

@@ -67,12 +67,28 @@ C(C(G)) = C(G),                                       (4)
 
 where the formal subgroup statement is `fullMFRadicalCore C(G) = top`.
 
+For the quotient statement, let `q : G --> G/C(G)` and suppose
+`K ≤ G/C(G)` is full-radical.  Its preimage `P=q^{-1}(K)` fits into an exact
+sequence
+
+```text
+1 --> C(G) --> P --> K --> 1.
+```
+
+Both the kernel and target are full-radical, so closure under extensions makes
+`P` full-radical.  Its defining maximality gives `P ≤ C(G)`.  Every element of
+`K` has a lift in `P`, hence is trivial.  Therefore
+
+```text
+C(G/C(G)) = 1.                                       (5)
+```
+
 Finally, (2) proves `C(G)=G => Rad_MF(G)=G`.  Conversely, if
 `Rad_MF(G)=G`, then the top subgroup of `G` is itself full-radical and occurs
 among the generators defining `C(G)`.  Hence
 
 ```text
-C(G)=G  <=>  Rad_MF(G)=G.                             (5)
+C(G)=G  <=>  Rad_MF(G)=G.                             (6)
 ```
 
-The Lean proof follows these five steps directly.
+The Lean proof follows these six steps directly.

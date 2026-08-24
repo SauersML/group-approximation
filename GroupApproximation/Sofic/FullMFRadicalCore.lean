@@ -52,8 +52,7 @@ theorem actualCoronaMFResidual_fullMFRadicalCore_eq_top :
       (rho.comp (Subgroup.inclusion hKC))
     refine ⟨⟨y, hKC hy⟩, MonoidHom.mem_ker.mpr ?_, rfl⟩
     convert hkill using 1
-    apply congrArg rho
-    exact Subtype.ext rfl
+    rfl
   obtain ⟨y, hy, hxy⟩ := hle x.property
   have hy' : rho y = 1 := MonoidHom.mem_ker.mp hy
   have hyx : (y : fullMFRadicalCore G) = x := Subtype.ext hxy
@@ -138,5 +137,61 @@ theorem fullMFRadicalCore_idempotent :
     fullMFRadicalCore (fullMFRadicalCore G) = ⊤ :=
   fullMFRadicalCore_eq_top_iff.mpr
     actualCoronaMFResidual_fullMFRadicalCore_eq_top
+
+/-- The quotient by the intrinsic core has no nontrivial intrinsically
+full-MF-radical subgroup.  Thus `fullMFRadicalCore` is a group radical in the
+classical sense: it is functorial, idempotent, and its quotient is semisimple. -/
+theorem fullMFRadicalCore_quotient_eq_bot :
+    fullMFRadicalCore (G ⧸ fullMFRadicalCore G) = ⊥ := by
+  let C : Subgroup G := fullMFRadicalCore G
+  let q : G →* G ⧸ C := QuotientGroup.mk' C
+  have hq : Function.Surjective q := QuotientGroup.mk'_surjective C
+  apply le_antisymm _ bot_le
+  unfold fullMFRadicalCore
+  apply iSup_le
+  intro K
+  let P : Subgroup G := K.1.comap q
+  have hCP : C ≤ P := by
+    intro x hx
+    change q x ∈ K.1
+    rw [(QuotientGroup.eq_one_iff x).mpr hx]
+    exact K.1.one_mem
+  let φ : P →* P.map q := KazhdanCompressionCore.subgroupMapHom P q
+  have hφ : Function.Surjective φ :=
+    KazhdanCompressionCore.subgroupMapHom_surjective P q
+  let j : C →* φ.ker where
+    toFun x := ⟨⟨x, hCP x.property⟩, by
+      rw [MonoidHom.mem_ker]
+      apply Subtype.ext
+      exact (QuotientGroup.eq_one_iff x).mpr x.property⟩
+    map_one' := by ext; rfl
+    map_mul' _ _ := by ext; rfl
+  have hj : Function.Surjective j := by
+    rintro ⟨⟨x, hxP⟩, hxker⟩
+    have hqx : q x = 1 := by
+      have hxone := MonoidHom.mem_ker.mp hxker
+      exact congrArg Subtype.val hxone
+    have hxC : x ∈ C := (QuotientGroup.eq_one_iff x).mp hqx
+    refine ⟨⟨x, hxC⟩, ?_⟩
+    ext
+    rfl
+  have hker : actualCoronaMFResidual φ.ker = ⊤ :=
+    actualCoronaMFResidual_eq_top_of_surjective j hj
+      actualCoronaMFResidual_fullMFRadicalCore_eq_top
+  have hPK : P.map q = K.1 := by
+    dsimp [P]
+    exact Subgroup.map_comap_eq_self_of_surjective hq K.1
+  have htarget : actualCoronaMFResidual (P.map q) = ⊤ := by
+    rw [hPK]
+    exact K.2
+  have hP : actualCoronaMFResidual P = ⊤ :=
+    actualCoronaMFResidual_eq_top_of_surjective_kernel φ hφ hker htarget
+  have hPC : P ≤ C := le_fullMFRadicalCore P hP
+  intro z hz
+  rw [Subgroup.mem_bot]
+  obtain ⟨x, rfl⟩ := hq z
+  apply (QuotientGroup.eq_one_iff x).mpr
+  apply hPC
+  exact hz
 
 end GroupApproximation

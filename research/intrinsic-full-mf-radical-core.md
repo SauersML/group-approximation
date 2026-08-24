@@ -42,7 +42,8 @@ Then:
 Rad_MF(Core_MF(G)) = Core_MF(G),                       (1)
 Core_MF(G) ≤ Rad_MF(G),                                (2)
 f(Core_MF(G)) ≤ Core_MF(H) for every f : G --> H,      (3)
-Core_MF(Core_MF(G)) = Core_MF(G).                      (4)
+Core_MF(Core_MF(G)) = Core_MF(G),                      (4)
+Core_MF(G / Core_MF(G)) = 1.                          (5)
 ```
 
 Equation (1) uses the closure of full-radical groups under arbitrary
@@ -56,6 +57,12 @@ internally as
 fullMFRadicalCore (fullMFRadicalCore G) = top.
 ```
 
+Equation (5) is the semisimple-quotient theorem.  If a subgroup of the
+quotient were intrinsically full-radical, its preimage in `G` would be an
+extension of the core by that subgroup and would therefore be intrinsically
+full-radical.  Maximality puts the preimage back inside the core, so the
+quotient subgroup is trivial.
+
 The core is normal and characteristic.  It is the largest subgroup of `G`
 that is intrinsically full-radical, rather than merely a collection of elements
 that become invisible in the surrounding group.
@@ -63,7 +70,7 @@ that become invisible in the surrounding group.
 Finally,
 
 ```text
-Core_MF(G)=G  <=>  Rad_MF(G)=G.                       (5)
+Core_MF(G)=G  <=>  Rad_MF(G)=G.                       (6)
 ```
 
 Thus the intrinsic core recognizes full MF collapse exactly, while retaining
