@@ -1,12 +1,30 @@
-# Non-MF paper: exhaustive proof-step ledger
+# Non-MF paper: exhaustive proof-step ledger (RETIRED 2026-08-25)
 
-> **Version notice (2026-08-24).** This ledger audits only the historical
-> manuscript revision identified by the hashes below.  The current
-> `non_mf_groups_exist.tex` is a different manuscript, and this file is not
-> end-to-end verification of it.
+> **Retired.** This ledger graded the manuscript *A non-MF group* at the
+> revision pinned below.  That manuscript no longer exists in the repository:
+> `non_mf_groups_exist.tex` is now *Limits of Matrix Approximation of Groups
+> in Operator Norm*, whose main theorem is the binary Leavitt group
+> `EL_12(L_{F_2}(1,2))` rather than the Clifford construction on
+> `Z^3 : SL_3(Z)`.  All 36 anchors below occur exactly once in the pinned
+> revision and zero times in either live source, so no row can be re-read
+> against current text and re-pinning is undefined, not merely unwise:
+> `--repin-digests` matches no label and rewrites nothing, and
+> `--repin-header` would silence the three header rows while leaving all
+> thirty-six anchors dead.  The hashes below are deliberately left at the
+> audited revision; they identify what was checked.
+>
+> The paper's live proof-level gate is `scripts/sentence_census.py` over
+> `metadata/NON_MF_SENTENCE_MAP.tsv`, which grades every sentence, re-keys
+> itself on every edit, and is enforced three ways in `build-non-mf-pdf.yml`.
+> No census row carries the `ledger` status, so nothing defers to this file.
+>
+> Retained as a record, not as verification.  What remains true of it: the
+> 154 Lean declarations its 138 steps name all still exist in the tree, and
+> its gradings were accurate for the revision named below.  What it does not
+> do: certify any sentence of the current manuscript.
 
-Historical spec document: `non_mf_groups_exist.tex`. Formal development:
-`GroupApproximation/`.
+Historical spec document: `non_mf_groups_exist.tex` at the revision below.
+Formal development: `GroupApproximation/`.
 
 ## Audited revision
 
@@ -17,9 +35,12 @@ Historical spec document: `non_mf_groups_exist.tex`. Formal development:
 | sha256 of the file | `06408c591d78d1f943a21f9d98eda10cec4de42e48c18e269449a199c9ce74f7` |
 | `wc -l` | 1486 |
 
-The three checkable rows are enforced by
-`scripts/check_non_mf_proof_ledger.py`. Re-pinning is deliberate and follows
-a review of the rows touched by an edit.
+The three checkable rows were enforced by
+`scripts/check_non_mf_proof_ledger.py` while this ledger was live.  They are
+now frozen: they name the revision that was audited, and re-pinning them to
+any later revision would assert a re-reading that cannot be performed.  The
+script itself remains in use for `metadata/NON_MF_NOTES_PROOF_LEDGER.md`,
+which is live.
 
 ## Status counts
 

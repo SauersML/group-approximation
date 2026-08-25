@@ -273,6 +273,58 @@ def check_required_verified(
     return problems
 
 
+def load_graded_declarations(path: Path) -> tuple[set[str], str | None]:
+    """Read the declarations a sentence-census overlay grades by hand.
+
+    The overlay is `key<TAB>status<TAB>decls<TAB>note`, comment lines start
+    with `#`, and `decls` is a space-separated list.  Only the hand-edited
+    overlay is read, never the generated census: a badge that certified itself
+    through the census join would otherwise satisfy a check whose whole purpose
+    is to demand an independent human grading.
+    """
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as error:
+        return set(), f"cannot read grading record {path}: {error}"
+    graded: set[str] = set()
+    for line in text.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        fields = line.split("\t")
+        if len(fields) < 3:
+            continue
+        for declaration in fields[2].split():
+            graded.add(declaration if declaration.startswith("GroupApproximation.")
+                       else f"GroupApproximation.{declaration}")
+    return graded, None
+
+
+def check_badge_grading(
+    references: list[Reference], graded: set[str]
+) -> list[str]:
+    """Every `\\leanverified` badge needs a recorded human grading.
+
+    This is the badge-coverage invariant that `check_non_mf_proof_ledger.py`
+    enforced for the paper until that ledger was retired on 2026-08-25: a
+    newly badged claim may not enter the manuscript without a grading somebody
+    recorded.  The ledger's step rows were the record; for the paper the record
+    is now the sentence-census overlay, so the invariant is repointed rather
+    than dropped.  The other five statuses are deliberately exempt -- they
+    already say the printed claim is *not* fully proved, which is the disclosure
+    this check exists to force.
+    """
+    problems: list[str] = []
+    for ref in references:
+        if ref.status != "verified":
+            continue
+        if ref.full_name not in graded:
+            problems.append(
+                f"line {ref.line}: \\leanverified badge {ref.full_name} has no "
+                "grading in the census overlay; assign the sentence it badges"
+            )
+    return problems
+
+
 def check_required_status(
     references: list[Reference], required: list[tuple[str, str, str]]
 ) -> list[str]:
@@ -469,6 +521,13 @@ def main() -> int:
         metavar=("STATUS", "MODULE", "DECLARATION"), default=[],
         help="require a citation carrying exactly the named certification status",
     )
+    parser.add_argument(
+        "--require-graded", type=Path, default=None,
+        metavar="OVERLAY",
+        help=("require every \\leanverified badge to name a declaration the "
+              "sentence-census overlay grades by hand; this is the "
+              "badge-coverage invariant the retired proof ledger used to carry"),
+    )
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -489,6 +548,14 @@ def main() -> int:
         [tuple(entry) for entry in args.require_status
          if entry[0] in STATUSES],
     ))
+    if args.require_graded is not None:
+        overlay = (args.require_graded if args.require_graded.is_absolute()
+                   else REPO / args.require_graded)
+        graded, error = load_graded_declarations(overlay)
+        if error is not None:
+            problems.append(error)
+        else:
+            problems.extend(check_badge_grading(references, graded))
 
     rendered_names = set(render_declarations(references).splitlines())
     for manifest_arg in args.extra_declarations_from:

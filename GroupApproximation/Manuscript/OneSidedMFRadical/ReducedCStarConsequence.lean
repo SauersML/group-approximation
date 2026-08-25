@@ -71,6 +71,19 @@ questions, and so does this module.
   property, unconditionally.  `Infinite H` there is `RankTwelve.infinite`,
   which transports `Infinite` on the coefficient ring through the elementary
   root `e₀₁`; no MF fact enters, and this module claims no other route to it.
+
+  The step from that profile to non-nuclearity depends on which nuclearity
+  predicate is meant, and the two answers differ.  At the translation-tested
+  property of `Analysis.LanceNuclearity` the profile *is* the failure, so
+  non-nuclearity is unconditional.  At the corpus-wide
+  `CStarExactness.IsNuclearCStarAlgebra` it is not: `ReducedCStarNotNuclear`'s
+  endpoint `manuscriptReducedCStarNotNuclear` carries
+  `TranslationCPAPReductionInput` as a leading binder — the hard direction of
+  Lance's theorem, which this repository does not prove — and is accordingly
+  audited with `#audit_axioms` rather than `#audit_closed_axioms`.  So "it is
+  not nuclear" above should be read as unconditional in the first sense and
+  conditional in the second.  Either way it is inert here: no proposition in
+  this module has a nuclearity hypothesis, and none uses one.
 * **The 1997 question, and what is and is not new.**  Their 1997 paper
   introduced MF C⋆-algebras and observed that no separable stably finite
   C⋆-algebra was then known not to be MF; the question whether every separable

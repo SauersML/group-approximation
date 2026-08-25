@@ -650,11 +650,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
             --require-verified \
-              Sofic/LiteralBaseP13PropertyTBridge \
-              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
@@ -1149,11 +1149,11 @@ jobs:
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
             --require-verified \
-              Sofic/LiteralBaseP13PropertyTBridge \
-              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
