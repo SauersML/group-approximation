@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] MF Radicals and Non-MF Groups},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: MF radicals and non-MF groups},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] Not Every Group Is MF},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: non-MF groups and the MF radical},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -53,7 +53,7 @@
   \medskip}
 
 \begin{document}
-\title{MF Radicals and Non-MF Groups}
+\title{Not Every Group Is MF}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
@@ -1147,6 +1147,24 @@ conditions give
 The final equivalence now follows from
 Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 \end{proof}
+
+Thus image under $f$ and inverse image under $f$ give mutually inverse,
+inclusion-preserving correspondences between the normal subgroups that define
+MF quotients of $G$ and of $Q$.  The map induced by $f$ on the largest
+MF-visible quotients is an isomorphism:
+%<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="removing an MF-invisible kernel leaves the largest MF-visible quotient unchanged">
+% The quotient on each side removes exactly the elements erased by every
+% finite-matrix-limit representation of that group.  The assumption on the
+% kernel of f makes every such representation descend through f, so the two
+% quotients contain exactly the same group information and the map induced by
+% f is an isomorphism.
+%</webmath>
+\[
+ G/\Rad_{\mathrm{MF}}(G)
+ \cong Q/\Rad_{\mathrm{MF}}(Q).
+\]
+These correspondences respect composition of surjective homomorphisms with
+MF-invisible kernels.
 
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a

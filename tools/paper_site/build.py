@@ -25,7 +25,7 @@ EDITIONS = {
         'claims': 'metadata/NON_MF_NUMBERED_CLAIMS.json',
         'ledger': 'metadata/NON_MF_PROOF_LEDGER.md',
         'census': 'metadata/NON_MF_SENTENCE_CENSUS.tsv',
-        'title': 'MF Radicals and Non-MF Groups',
+        'title': 'Not Every Group Is MF',
         'tab': 'Paper',
         'links': '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>',
     },

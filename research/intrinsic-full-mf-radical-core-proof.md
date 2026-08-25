@@ -14,6 +14,8 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
   - GroupApproximation/Sofic/FullMFRadicalPullback.lean
   - GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalQuotientLattice.lean
+  - GroupApproximation/Sofic/FullMFRadicalVisibleLocalization.lean
 ---
 
 # Proof
@@ -252,5 +254,39 @@ Cl_MF^G(N)=N  <=>  G/N is MF
 ```
 
 on both sides of (22) proves (23).
+
+For (24), regard an MF-closed normal subgroup together with its normality and
+closure equation as one ordered object.  Formula (22) shows that image along
+`f` and inverse image along `f` preserve these objects.  The subgroup identities
+
+```text
+f(f^(-1)(M)) = M,
+f^(-1)(f(N)) = N  when ker(f) <= N
+```
+
+show that the two operations are mutually inverse.  The same identities show
+that they preserve and reflect inclusion.
+
+For (25), apply the radical pullback formula to `f`.  If `g(f(x))=1`, then
+`f(x)` lies in `ker(g)`, hence in `Rad_MF(H)`.  Pulling this membership back
+along `f` puts `x` in `Rad_MF(G)`.  Images of subgroups satisfy
+
+```text
+(g o f)(N) = g(f(N)),
+```
+
+so the two order isomorphisms compose.
+
+Every homomorphism `f : G --> H` induces a map
+
+```text
+G/Rad_MF(G) --> H/Rad_MF(H)
+```
+
+by functoriality of the radical.  Under the hypotheses above, surjectivity of
+`f` makes this map onto.  If the class of `x` maps to the identity, then
+`f(x)` lies in `Rad_MF(H)`; the pullback formula puts `x` in `Rad_MF(G)`, so
+its original class was already the identity.  The induced map is therefore
+bijective and hence an isomorphism, proving (26).
 
 The Lean proof follows these steps directly.

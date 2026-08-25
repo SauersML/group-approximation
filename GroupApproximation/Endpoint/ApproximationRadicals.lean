@@ -19,6 +19,8 @@ import GroupApproximation.Sofic.FullMFRadicalExactness
 import GroupApproximation.Sofic.FullMFRadicalReflection
 import GroupApproximation.Sofic.FullMFRadicalPullback
 import GroupApproximation.Sofic.FullMFRadicalClosurePullback
+import GroupApproximation.Sofic.FullMFRadicalQuotientLattice
+import GroupApproximation.Sofic.FullMFRadicalVisibleLocalization
 
 /-!
 # Approximation radicals: the reading path
@@ -282,8 +284,21 @@ export GroupApproximation
     actualCoronaMFResidual_eq_ker_of_kernel_eq_top_of_target_eq_bot
     actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
     actualCoronaMFClosure_eq_comap_map_of_surjective_of_kernel_eq_top
+    actualCoronaMFResidual_eq_comap_of_surjective_of_ker_le
     actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
-    isCDEOperatorMF_quotient_iff_map_of_surjective_of_ker_le)
+    isCDEOperatorMF_quotient_iff_map_of_surjective_of_ker_le
+    MFClosedNormalSubgroup
+    ker_comp_le_actualCoronaMFResidual
+    surjective_monoidHom_comp
+    actualCoronaMFVisibleQuotientMap
+    actualCoronaMFVisibleQuotientMap_mk
+    actualCoronaMFVisibleQuotientMap_comp
+    actualCoronaMFVisibleQuotientMap_bijective_of_invisibleKernel
+    actualCoronaMFVisibleQuotientEquivOfInvisibleKernel)
+export GroupApproximation.MFClosedNormalSubgroup
+  (mapOfInvisibleKernel comapOfInvisibleKernel
+    orderIsoOfInvisibleKernel map_le_map_iff_of_invisibleKernel
+    mapOfInvisibleKernel_comp)
 
 end Internal
 
