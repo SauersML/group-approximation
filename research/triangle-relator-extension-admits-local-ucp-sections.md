@@ -257,9 +257,24 @@ Ioana--Spaas--Wiersma mechanism), per
   maps whose two tree restrictions are scalar is a singleton: compatibility
   makes the closing restriction scalar on `P_1` and `P_3`, and the
   multiplicative domain then makes it scalar on all of `P_13`.  Thus a
-  closing correction necessarily moves a tree face.  The open residual is a
-  quantitative modulus for how that singleton face opens under small tree
-  perturbations.
+  closing correction necessarily moves a tree face.
+- **The scalar-tree singleton has an explicit square-root modulus
+  (2026-08-25).**
+  `scalar-tree-perturbations-force-square-root-closing-control` proves that if
+  both tree restrictions of a ucp triangle map are within `eta<=1` in cb norm
+  of scalar augmentation, then finite word diameter of `P_13`, together with
+  the Stinespring multiplicative-domain estimate, gives
+
+  ```text
+  ||Phi_13-E_epsilon||_cb<=C_Delta sqrt(eta).
+  ```
+
+  Equivalently, closing movement `r` costs at least
+  `min{1,(r/C_Delta)^2}` on one tree face.  This is a literal finite Choi
+  optimization for every finite-dimensional codomain.  It does not yet force
+  the centered separator's **dual** closing value onto a tree component: that
+  last inference would require a complementary-slackness/primal-selection
+  theorem not supplied by the present separation argument.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
