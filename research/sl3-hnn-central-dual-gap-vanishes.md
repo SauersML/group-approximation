@@ -116,6 +116,16 @@ positive matrix-range separator for the selected lattice tuple.
   must be a genuinely noncorrectable coherent approximate deck-cocycle
   atlas.  Ruling out precisely those outliers is the remaining dynamical
   obstruction.
+- **The permutation fork reduces to stability in finite actions, not full
+  flexible P-stability.**
+  `sl3-prime-stable-finite-actions-excludes-coset-soficity` proves that the
+  weakest standard modulus presently available already kills every positive
+  coset atlas: weak containment of sofic-approximation limits in finite
+  actions contradicts the exact Kazhdan/co-density atlas gap.  This is still
+  open for `SL_3(Z[1/p])`; current quotient-inheritance results require a
+  normal Kazhdan kernel and do not apply to the nonnormal integral lattice.
+  Thus the actor-covariant enemy is now reduced to one named permutation
+  stability statement, but no published theorem supplies it.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

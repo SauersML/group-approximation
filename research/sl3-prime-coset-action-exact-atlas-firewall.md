@@ -42,9 +42,9 @@ The standard general criteria do not settle this sector:
 
 - the GKP locally-finite-stabilizer theorem does not apply because
   `Lambda` is infinite (indeed finitely generated and Kazhdan);
-- proposed amenable-stabilizer extensions would not apply because
-  `Lambda` is nonamenable, and GKP explicitly records even the general
-  amenable-stabilizer case as open;
+- the later Gao--Patchell--Kunnawalkam Elayavalli graph-action theorem does
+  prove soficity for sofic actors with amenable stabilizers, but it does not
+  apply because `Lambda` is nonamenable;
 - LERF/subgroup-separability methods fail maximally:
   `sl3-prime-permutation-codensity` says the profinite closure of `Lambda`
   is all of `Gamma`, so the only finite equivariant quotient of `X` is a
@@ -57,6 +57,12 @@ The standard general criteria do not settle this sector:
 None of these failures proves nonsoficity.  Equation `(PAF1)` says exactly
 what remains to be overcome: the action-soficity fork is an outlier-atlas
 problem, not a search for better exact arithmetic quotients.
+
+There is, however, a strictly weaker closure target than flexible
+P-stability: `sl3-prime-stable-finite-actions-excludes-coset-soficity` shows
+that stability in finite actions of the actor already rules out the outlier
+atlases.  That named modulus is not currently known for this residually
+finite S-arithmetic group.
 
 DERIVATION
 sl3-prime-coset-action-exact-atlas-firewall-proof

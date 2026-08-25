@@ -11,6 +11,7 @@ distinct_from:
   projective-row-data-do-not-authenticate-hecke-polars: that proves squares, supports, and separate conjugation covariances retain an independent balanced spectator gauge; this claim can only be closed by a mixed odd-parity occurrence anchor which removes that gauge.
   tracial-word-authentication-is-regular-firewalled: that proves an odd literal occurrence anchor is still insufficient when the proposed quantitative estimate uses only dimension-free tracial operations; the surviving step must be genuinely finite-coordinate.
   fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall: that rules out two nominally finite-coordinate escapes, namely a matrix-dependent subset of whole types from one fixed native packet and activation by raw dimension, kernel rank, or anonymous multiplicity; this claim still permits an authenticated mixed-word kernel or a genuinely growing relation-controlled packet.
+  mark-fixed-relative-words-do-not-coerce-native-hecke-kernel: that audits the two newly established relative-word identities and proves that their commutator kernels are trivial selectors; a common spectator gauge cancels from the full relative word while keeping every near-full native row far from its Hecke map.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -127,3 +128,16 @@ two polar-square identities.
   survivor is a normalized kernel/spectral selector built from a named mixed
   native occurrence, with a coercivity estimate derived from relations, or
   a genuinely growing packet whose level is itself relation-controlled.
+- **Use the newly established mark-fixed relative words as the mixed
+  kernel.**  Both the center-chain word and every literal prefix-Whitehead
+  relative word centralize the marked root.  Their commutator kernel is
+  therefore the whole marked carrier, not a representation-dependent cut.
+  `mark-fixed-relative-words-do-not-coerce-native-hecke-kernel` gives the
+  sharper zero-defect countermodel: tensor both native rows by one balanced
+  spectator involution.  The common gauge cancels from their relative word
+  and preserves its order/braid data, but removing it costs at least half
+  the Hecke source.  The precise surviving target is the spectral-mass
+  estimate `(MFK6)` there for the positive individual-row discrepancy
+  operator.  It must come from a new odd occurrence relation coupling an
+  individual native row to an unequal-scale Hecke word; neither mark-fixing
+  identity supplies it.

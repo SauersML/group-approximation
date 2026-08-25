@@ -143,3 +143,16 @@ for the two coarse parents.  Thus a mixed R3 proof must authenticate both
 the common parent and the complementary child.  Once both are known, unitary
 cancellation is already the desired seam estimate; R3 has not produced a
 weaker occurrence problem than mixed R2.
+
+The direct analytic reading of the canonical occurrence has now also been
+normalized.  `canonical-mixed-r2-is-the-thompson-mark-obstruction` proves
+that its boundary is one fixed conjugate of the marked three-cycle `b`, and
+that their normalized-HS defects differ by at most `A delta`.  Hence proving
+the canonical mixed residual `O(delta)`—even after corrections which are
+themselves `O(delta)`-close to the raw occurrences—is already the full linear
+marked-word collapse.  It cannot be obtained as a weaker seam estimate from
+fixed-group Gowers--Hatami repair: the exact shared-`S_5` multiplicity gauge
+makes the common face, both private tables, every private R2 cell, and every
+R4/R5 cell exact while retaining a positive abstract mixed mismatch.  The
+only survivor is a genuinely global Bleak--Quick coercivity argument which
+uses enough overlapping-support relator energy to collapse the mark itself.
