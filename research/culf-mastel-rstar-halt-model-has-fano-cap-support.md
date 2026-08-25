@@ -238,6 +238,22 @@ no-Fano-line support conclusion.
   unproved theorem is exactly the existence of those source-specific HALT
   supports and coherent affine proof sections (or the direct viewwise
   affine-safety conclusion).
+- The canonical JNVWY completeness chain does not supply that input once a
+  genuine recursive compression is used.
+  `jnvwy-canonical-halt-strategy-is-affine-unsafe` follows the honest strategy
+  from the fixed-zero accepting level and finds an explicit odd-xor violation
+  in the first `Intro--Sample` graph test.  It comes from the axis-line CL map,
+  before any PCPP witness is chosen, and later answer reduction reflects it.
+  This leaves open a different perfect HALT strategy, but closes the tempting
+  route of simply making Claim 12.7's standard completeness choices coherent.
+- Conditioning that axis-line map on `chi(s)` makes one coordinate affine,
+  but `revealing-cl-controls-breaks-compression` proves that the repeated
+  sampler has `2^K` distinguishable control profiles.  Affine safety forces
+  them into separate question fibers, costing at least `K` bits; at source
+  index `2^n`, `K` is exponential in `n`, contradicting the polynomial-time
+  sampler bound in the Introspection Theorem.  The required positive input is
+  therefore a genuinely new affine-fiber introspection lemma or a different
+  perfect strategy, not a small control-label patch.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

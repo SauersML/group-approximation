@@ -88,17 +88,27 @@ def OneSidedKazhdanProjectionOrder : Prop :=
             = star D.shift * D.proj * D.shift
 
 /-!
-There is deliberately no unconditional `≤` corollary in this module.
-Mathlib exposes projection order through
-`IsStarProjection.le_iff_mul_eq_left/right`, but those theorems require local
-`[PartialOrder B] [StarOrderedRing B]` instances.  A general `CStarAlgebra B`
-does not install them globally (doing so would conflict with the existing
-order on `ℂ`).  Once a caller installs `CStarAlgebra.spectralOrder` and
-`CStarAlgebra.spectralOrderedRing`, the two identities in
-`OneSidedKazhdanProjectionOrder` rewrite immediately to the literal displayed
-inequality `U⁎ P U ≤ P`.  Keeping the closed endpoint in absorption form
-therefore records the same projection order without adding non-manuscript
-typeclass assumptions.
+This module states the order in absorption form.  Mathlib exposes projection
+order through `IsStarProjection.le_iff_mul_eq_left/right`, which require local
+`[PartialOrder B] [StarOrderedRing B]` instances, and a general `CStarAlgebra B`
+does not install them globally (doing so would conflict with the existing order
+on `ℂ`).
+
+**Superseded 2026-08-25.**  This note used to say there was "deliberately no
+unconditional `≤` corollary", on the reasoning that stating one would force
+those instances on the caller.  That reasoning was wrong: the instances do not
+have to come from the caller.  `Manuscript/OneSidedMFRadical/KazhdanProjectionOrderLiteral.lean`
+installs `CStarAlgebra.spectralOrder B` inside the proposition with `letI` and
+`CStarAlgebra.spectralOrderedRing B` inside the proof, and states the literal
+printed inequality `U⁎ P U ≤ P` over `[CStarAlgebra B]` and nothing else --
+`manuscriptLiteralOneSidedKazhdanProjectionOrder` for the projection built
+inside `B`, and `manuscriptLiteralMaximalCStarKazhdanProjectionOrder` for the
+manuscript's own `P`, the image of the Kazhdan projection of `C*_max(L)`.
+
+Both forms are kept.  They are not the same claim: the literal endpoints fix
+one order, the Loewner order of that algebra, which is what `≤` means in the
+printed lemma; `MaximalCStarKazhdanProjectionOrder` quantifies over whatever
+compatible order a caller supplies.  Neither implies the other.
 -/
 
 /-- Closed proof of the manuscript's one-sided Kazhdan-projection order. -/
