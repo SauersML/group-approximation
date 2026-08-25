@@ -188,7 +188,7 @@ theorem MFClosedNormalSubgroup.mapOfInvisibleKernel_comp
     (N : MFClosedNormalSubgroup G) :
     MFClosedNormalSubgroup.mapOfInvisibleKernel
         (g.comp f) (surjective_monoidHom_comp f g hf hg)
-        (ker_comp_le_actualCoronaMFResidual f g hf hkerF hkerG) =
+        (ker_comp_le_actualCoronaMFResidual f g hf hkerF hkerG) N =
       MFClosedNormalSubgroup.mapOfInvisibleKernel g hg hkerG
         (MFClosedNormalSubgroup.mapOfInvisibleKernel f hf hkerF N) := by
   apply MFClosedNormalSubgroup.ext
