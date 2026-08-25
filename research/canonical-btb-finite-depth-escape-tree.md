@@ -157,6 +157,24 @@ remains in this modified route.
   Clifford/projective/triangle-face holonomy only synchronizes a prepaid
   finite orbit.
 
+- **Replace the finite holonomy by a finitely presented infinite active
+  stabilizer.**
+  `reusable-s3-renewal-is-twisted-radical-or-proper-corner` classifies this
+  residual.  If the return remains automorphic and supplies an indefinitely
+  reusable supercritical recurrence, iteration followed by division by its
+  growth factor makes the polynomial depth errors summable and yields a
+  dimension-uniform HS-radical estimate on the active packet corner.  Clifford
+  reduction then identifies the radical with the inverse twisted stabilizer
+  character, while twisted-regular microstates would contradict that estimate.
+  Thus this branch has already produced a non-CE twisted group algebra; it is
+  not a weaker infinite-gauge trick.  If the return is instead genuinely
+  nonautomorphic, equal-rank compression is trace-flat and unequal-rank
+  compression is the existing trace-cyclic proper-corner gate.  A universal
+  or tracially functorial implementation collapses its marked complement in
+  the regular factor.  The sole remaining exception is therefore the
+  matrix-coordinate source-Gram authentication asked for by the native
+  proper-corner nodes.
+
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity
   part of this idea.  For a fixed menu size `L` with
