@@ -340,16 +340,27 @@ property~\textup{(T)} and $\mathfrak D_G(L)=G$, then
 $\Rad_{\mathrm{MF}}(G)=G$.
 \end{mainthm}
 
-Corollary~\ref{cor:defect-hs} puts $\mathfrak D_G(L)$ in the kernel detected
-by normalized Hilbert--Schmidt norm.  If a corona representation were
-nontrivial on $K$, normality of $K$ would make its Kazhdan projection commute
-with the image of $G$.  The complementary corner would then contain no
-$K$-fixed vectors.  A Kazhdan inequality gives an element of $K$ whose
-Hilbert--Schmidt distance from the identity is bounded below there.  This
-contradicts the Hilbert--Schmidt triviality of the defect elements.
-Independently, Theorem~\ref{thm:commutant} shows
-that every finite-dimensional linear representation over every field kills
-$\mathfrak D_G(L)$.
+We sketch the argument.  Corollary~\ref{cor:defect-hs} gives
+$\mathfrak D_G(L)\le R_{\infty\to2}(G)$.  Equivalently, if $(V_n)$ is any
+operator norm asymptotic representation of $G$, then
+$\hsnorm{V_n(d)-1}\to0$ for every $d\in\mathfrak D_G(L)$.  To upgrade this
+conclusion to corona triviality on $K$, fix a homomorphism
+$\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ and suppose, toward a
+contradiction, that $\Theta$ is nontrivial on $K$.  Let $p$ be the image in
+$\mathcal Q_{\mathbf d}$ of the Kazhdan projection of $K$.  Because
+$K\trianglelefteq G$, the projection $p$ commutes with $\Theta(G)$; hence
+$q=1-p$ defines a $G$-invariant complementary corner.
+Lemma~\ref{lem:central-corona-corner} realizes the action on this corner by an
+operator norm asymptotic representation $(W_n)$ on matrix corners with
+identities $q_n$.  The corner has no nonzero $K$-fixed vectors, so the Kazhdan
+inequality yields a single $s_0\in K$ and a subsequence along which
+$\hsnorm{W_n(s_0)-q_n}$ stays bounded below by a positive constant.  This
+contradicts $s_0\in K\le\mathfrak D_G(L)$ and the preceding convergence.
+Thus every corona homomorphism kills $K$, as required.
+
+Theorem~\ref{thm:commutant} gives a separate finite-dimensional vanishing
+result: every finite-dimensional linear representation of $G$ over any field
+kills $\mathfrak D_G(L)$.
 
 We next apply Theorem~\ref{thm:compression-criterion} to the binary Leavitt
 construction that produces the group $H$ announced above.
