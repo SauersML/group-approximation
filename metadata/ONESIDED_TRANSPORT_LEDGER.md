@@ -261,6 +261,7 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Proof of `prop:mf-residual-calculus`: the resulting asymptotic representation detects every marked class, so its corona homomorphism is faithful on `G/R` and `G/R` is MF | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedQuotientDetectedAndMF` | closed |
 | Proof of `prop:mf-residual-calculus`, closing sentence: the same argument applied to `G/N` is the printed closure criterion | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedClosureCriterion` | closed |
 | The complete printed proof of `prop:mf-residual-calculus`, sentence by sentence, as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedResidualCalculusProof` | closed |
+| Printed proof of `thm:normal-kazhdan`: "in every representation of the corner there are no `K`-fixed vectors, so the defining Kazhdan inequality gives this operator inequality", in the norm form the coordinate passage consumes | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
