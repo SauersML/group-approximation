@@ -81,5 +81,18 @@ trace, centers, or the individual local standard invariants.  Since `B` is
 nonamenable, uniqueness of embeddings of an amenable algebra into `R^omega`
 is unavailable; the stable-unitary-equivalence problem in `(RIG3)` is real.
 
+## Attempt after the reduction
+
+- **Use the compact right-translation permutations already present in the
+  profinite models.**  Refuted by
+  `noncompact-right-holonomy-is-not-compact-profinite`.  In the stabilized
+  translation factor, right translation gives an injection
+  `L/Z(L)->Out(P)`.  A nontrivial torsion-free lattice element is not compact,
+  so its outer class differs from every compact `K`-translation even after an
+  arbitrary inner correction.  The finite quotients `K/K_m` therefore
+  implement exactly the wrong holonomies.  This does not exclude a new
+  embedding into `R^omega` in which the genuine noncompact returns become
+  spatial.
+
 DERIVATION
 iwahori-ultraproduct-gluing-boundary-proof
