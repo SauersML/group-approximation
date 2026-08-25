@@ -52,3 +52,13 @@ off-diagonal loops through the depth-one chart and test whether finitely many
 loop discrepancies control the operator sum of the returned range
 projections on `p_U`.
 
+Nodewise recursion of the two inner Morita branches does not provide the
+missing capacity by itself.
+`local-morita-sibling-cells-have-a-two-qubit-periodic-absorber` assigns the
+two tensor-factor Pauli groups alternately by address parity.  Every parent
+has two conjugate commuting marked children and every local sibling cell is
+exact at every depth, but cousins reuse the same two factors and the ambient
+dimension remains four.  Thus a viable off-diagonal loop must use the
+coefficient range-sum/parent-generation occurrence to detect cousin reuse;
+another locally conjugated sibling Pauli check cannot control the
+completeness row in `(BAC1)`.
