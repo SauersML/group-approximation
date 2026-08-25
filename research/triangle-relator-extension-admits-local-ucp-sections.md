@@ -367,6 +367,25 @@ Ioana--Spaas--Wiersma mechanism), per
   that positivity alone cannot correlate the certificate with a soft
   relator vector.  Any triangle-specific completion must use a new identity
   coupling the native relator coefficients to the affine Choi defect.
+- **Square-closing the reservoir only equalizes diagonal Choi energies
+  (2026-08-25).**
+  `choi-diagonal-annihilation-equalizes-not-softens`
+  performs the full finite-face matrix-unit calculation.  For a positive
+  face component which annihilates every unit-zero correction, all diagonal
+  Choi functionals agree on the represented reservoir and its off-diagonal
+  Choi coefficients vanish there.  The global three-face witness only
+  annihilates after summing its components, so it can provide even less.
+  After adjoining `x^*x`, this says that every diagonal density has the same
+  nonnegative `x`-energy; it gives no upper bound on that common number.  The
+  limitation is realized with gap exactly two inside an actual irreducible
+  finite-dimensional packet satisfying `rho(I_N)=M_d`: a self-adjoint native
+  relator coefficient `y` is chosen with `rho(y)=I_d`, the reservoir is
+  `span_C{y,y^2}`, and two diagonal Choi vectors both have `y`-energy one.
+  The raw lift is the image of a genuine quotient section.  Thus positivity,
+  native support, matrix units, product enlargement, unit-zero annihilation,
+  and a nondegenerate affine gap still do not select a soft vector.  Any live
+  completion must use a cross-face identity tied to one preselected lift,
+  not another diagonal-moment argument.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

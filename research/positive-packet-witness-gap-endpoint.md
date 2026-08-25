@@ -7,6 +7,7 @@ distinct_from:
   ideal-block-infeasibility-has-positive-reservoir-witness: that constructs a uniformly bounded positive Choi witness for one failed packet and one reservoir; this controls an exhausting sequence and identifies the only numerical datum which can survive the moving packet and moving ideal block.
   exhausting-ideal-reservoirs-have-lift-or-quotient-separator: that uses global reservoir-to-ucp distances and arbitrary signed Hahn--Banach functionals; this starts with the positive native ideal-block certificates themselves and proves that a persistent packet gap already descends to the unit-zero quotient map space.
   positive-tree-separator-has-fd-low-ideal-moment-packets: that starts from an already existing quotient separator and approximates its positive state by finite-dimensional packets; this runs in the opposite direction, from packetwise affine infeasibility to a quotient obstruction.
+  choi-diagonal-annihilation-equalizes-not-softens: that computes the additional matrix-unit identities obtained after closing the native reservoir under products x^*x and proves, with a fixed-gap actual-triangle packet, that those identities equalize rather than soften diagonal relator moments.
 ---
 
 **ESTABLISHED (gap-or-degeneration endpoint).**  Let
