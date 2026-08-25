@@ -71,3 +71,11 @@ Ordinary packet dressing cannot prove `(SGS2)` because it shares gauges only
 inside one outer-automorphism class.  The two unequal-scale selectors must be
 coupled by a Whitehead/Leavitt occurrence, a common coefficient Gram row, or
 another matrix-only holonomy theorem.
+
+The scalar trace-cyclic triangle lemmas do not weaken this last requirement.
+As recorded in
+`trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence`, their
+third balance edge must already decode the two native gauge projections on
+equal normalized carriers.  That is the same missing occurrence coupling in
+scalar form, while the common-hidden-projection two-orientation lemma assumes
+still more alignment.

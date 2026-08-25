@@ -138,3 +138,13 @@ Consequently none of these three established Pauli results closes the live
 claim.  A valid proof must still exhibit a word-visible row that couples the
 two actual scale-changing occurrences, or calculate strict capacity for
 their own prescribed common target.
+
+Abstract trace cyclicity does not supply that coupling either.
+`trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
+a third balance pair can equate the two gauge ranks only after its cyclic
+products have been authenticated as the two actual gauge projections on
+equal normalized carriers.  That authentication is itself an object-erasing
+native occurrence row; the typed Morita model continues to realize all
+coefficient triangles while leaving it absent.  The two-oriented version
+assumes an even stronger input, namely one literal hidden gauge projection
+shared by both returns.

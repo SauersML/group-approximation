@@ -28,6 +28,7 @@ artifacts:
   - research/two-scale-cross-gram-implies-shared-gauge-compiler.md
   - research/active-core-density-keeps-rectangular-capacity-critical.md
   - research/positive-density-critical-capacity-proof.md
+  - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -270,6 +271,11 @@ Positive-density reblocking also does not create the required overlap:
 `active-core-density-keeps-rectangular-capacity-critical` embeds
 the coherent nested packet in the entire active core while keeping every
 two-branch capacity inequality critical and every sibling cross Gram zero.
+The alternative trace-cyclic triangle bookkeeping does not bypass this leaf:
+`trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` proves
+that its third balance edge must first authenticate the two actual gauge
+projections on equal normalized carriers, which is itself the missing
+object-erasing occurrence coupling.
 
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
