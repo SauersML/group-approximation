@@ -132,5 +132,13 @@ candidate must add a genuinely payload-sensitive two-cell beyond covariance;
 that extra cell, not the infinite-index self-copy, would carry the whole
 matrix-only burden.
 
+The first broad two-letter extension is fenced as well.
+`rf-amenable-two-cell-retains-coefficient` replaces the cyclic interval by a
+joint right Følner set.  It retains the same exact coefficient norm through
+every amenable compression-semigroup relation, including commuting and
+nilpotent/Hall--Witt tables.  Therefore adding a second stable letter helps
+only when its joint holonomy is genuinely nonamenable or its
+coefficient-valued cocycle escapes amenable-extension permanence.
+
 DERIVATION
 rf-hnn-coefficient-telescope-proof

@@ -27,6 +27,21 @@ on the recovered label cardinalities.  The estimate must explicitly exclude
 `rectangular-escape`: increasing the child Weyl-label factor while shrinking
 its multiplicity is not a closed branch and must enter the leakage term.
 
+There is now a weaker sufficient local endpoint than literal same-reservoir
+closure.  By `rectangular-three-row-cell-forces-double-target-capacity`, if
+the two diagonal returns and one crossed-zero row are decoded as rectangular
+maps through a common source `E` and target `F`, it is enough to prove
+
+```text
+tau(F)<=(2-kappa)tau(E)+controlled error               (PSR0)
+```
+
+for any fixed `kappa>0`.  The three rows then give a quadratic HS floor on
+`tau(E)`.  The native Morita escape has `tau(F)=2tau(E)` exactly, so `(PSR0)`
+is the sharp capacity statement which a boundary payment must create.  Full
+identification `F=E` is one sufficient way to obtain it, but is no longer the
+minimal target.
+
 Once branch (1) holds, no further near-bijection theorem is needed:
 `bistochastic-diagonal-return-forces-aligned-permutation` rounds the square
 forward/return pair, and the robust paired `1/36` floor charges the crossed

@@ -597,6 +597,17 @@ problem; it removes the range-sum arithmetic from the endpoint and isolates
 the sole missing operation as same-object, payload-coupled coefficient
 decoding.
 
+The newest rectangular estimate weakens that last phrase.
+`rectangular-three-row-cell-forces-double-target-capacity` proves that if the
+same three rows are decoded between one source `E` and one target `F`, then
+they force `tau(F)>=2tau(E)` with an explicit robust HS error.  Therefore
+literal same-object decoding is unnecessary: it is enough to couple the
+occurrences to a target whose conditional capacity is at most
+`(2-kappa)tau(E)` for one fixed `kappa>0`.  The typed Morita model saturates
+the threshold exactly at `tau(F)=2tau(E)`.  The remaining finite-presentation
+task is consequently a strict payload-conditioned target-capacity deficit,
+not full recovery of an identical reservoir.
+
 The most direct finite orientation pin for that mixed row also fails.
 `packet-controller-orbit-products-have-orientation-dichotomy` considers a
 product of packet conjugates of the rank-one controlled phase and compares

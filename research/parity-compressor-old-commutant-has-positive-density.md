@@ -188,3 +188,12 @@ part of the remaining hole.
   candidate is not an ascending HNN relation itself; it is an additional
   payload-sensitive two-cell which destroys these regular telescope models
   while remaining vacuous in the exact perfect trace.
+- A second stable letter and an amenable closed two-cell do not destroy the
+  telescope.  `rf-amenable-two-cell-retains-coefficient` chooses the regular
+  quotient only after a joint Følner window for the compression semigroup.
+  Every iterate of `z(1-a)` retains its canonical norm, while commuting,
+  nilpotent/Hall--Witt, and Heisenberg stable-letter relations fail only on
+  the vanishing Følner boundary.  Even a coefficient-valued automorphic
+  commutator is fenced by hyperlinear-by-amenable permanence.  Thus the
+  first live two-cell must have genuinely nonamenable joint holonomy, or a
+  proper-endomorphism cocycle outside every amenable telescope.

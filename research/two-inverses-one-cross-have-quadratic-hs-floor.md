@@ -65,5 +65,13 @@ so their ordinary Steinberg root rows alone cannot imply the common-corner
 hypothesis.  The remaining group theorem is exactly an object-erasing,
 payload-coupled decoder for this three-row cell.
 
+The common-corner hypothesis can now be weakened sharply.
+`rectangular-three-row-cell-forces-double-target-capacity` proves that for
+rectangular coefficients `s_i:E->F`, `t_i:F->E`, the same three rows force
+`tau(F)>=2tau(E)`, robustly with an explicit normalized-HS ledger.  Hence the
+missing decoder need not prove `F=E`: any fixed conditional target-capacity
+deficit below `2tau(E)` suffices.  The exact Morita countermodel is the sharp
+equality case `tau(F)=2tau(E)`.
+
 DERIVATION
 two-inverses-one-cross-hs-proof

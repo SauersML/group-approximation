@@ -174,6 +174,22 @@ model realizes them exactly with different source and target objects.
 Accordingly the unresolved content remains the same-object/payload decoder,
 now for this strictly smaller three-row cell.
 
+Even literal same-object identification is stronger than the endpoint needs.
+`rectangular-three-row-cell-forces-double-target-capacity` keeps the two
+objects `E,F` distinct and proves from these same rows that
+
+```text
+tau(F)>=2tau(E)-10sqrt(tau(E))epsilon_0
+                    -2sqrt(tau(E))epsilon_1-4eta^2.    (ASR5b)
+```
+
+Thus it is enough to make the three named occurrences act through one common
+source/target pair and obtain any payload-conditional estimate
+`tau(F)<=(2-kappa)tau(E)+o(1)`.  The rectangular Morita model is sharp at
+`kappa=0`, so a pure typed-root argument still cannot provide this datum.
+This reformulates the remaining object-erasure as a strict target-capacity
+deficit, not necessarily equality of source and target reservoirs.
+
 Nor can the two native branches be rescued by summing their return
 energies.  `leavitt-target-return-channel-count-firewall` proves for every
 pair of approximation-dependent contractions supported from `R_s` to
