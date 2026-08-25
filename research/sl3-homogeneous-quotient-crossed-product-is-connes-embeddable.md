@@ -96,3 +96,17 @@ union of level-`(m + O(1))` cells.
   face analysis of the collapse lane then applies verbatim to `M`.  So
   `(SH1)` together with flexible HS-stability of `SL_3(Z)` would force the
   one-unitary system to be unstable; nothing is known about either.
+- **Flat towers cannot be vertex-orbit permutation towers (2026-08-25).**
+  `homogeneous-quotient-near-genuine-microstates-are-deep` proves that any
+  near-genuine microstate sequence is a flat congruence tower of depth
+  `Omega(1/epsilon)`.  The natural candidates, direct sums of the
+  permutation representations of `C` on its vertex orbits
+  `Omega_lambda = C . (lambda-translate of o)` (`lambda` a dominant coweight,
+  `|Omega_lambda| ~ p^(<2 rho, lambda>)`), fail the flatness requirement:
+  `h` maps the `C_0`-orbit of the base point of `Omega_lambda` bijectively
+  onto the `C_1`-orbit of the base point of `Omega_(lambda + lambda_h)`, so
+  exact `C_0`-isotypic matching level by level forces equal multiplicities
+  along `h`-shifts, whereas flat level weights need multiplicities
+  `~ p^(-<2 rho, lambda>)`.  Any flat tower must therefore match isotypic
+  components across different orbit types; see the tree-case computation on
+  `sl2-homogeneous-quotient-crossed-product-is-connes-embeddable`.

@@ -104,3 +104,30 @@ produces a nonhyperlinear group directly.
   neither a local return nor a separate choice of vertex microstates can
   decide the problem; the live datum is the common embedding for the entire
   free-lattice packet.
+- **Vertex-orbit permutation towers are top-heavy, so they cannot be the
+  flat towers that `homogeneous-quotient-near-genuine-microstates-are-deep`
+  requires (2026-08-25).**  Write `o` for the vertex fixed by `K`,
+  `v_(-1) = h^-1 o`, `C_0 = Stab_A(o) cap Stab_A(v_(-1))`, and let
+  `D_o(l)`, `D_v(l)` be the depth-`l` vertices of the two half-trees at
+  the edge `(v_(-1), o)` (`p^l` vertices each; `C_0` is transitive on both
+  because it is dense in the Iwahori subgroup).  The `C`-orbit of the
+  vertex `h^l o` is the sphere `S(o, l) = D_o(l) sqcup D_v(l-1)` and, as a
+  `C_0`-set with `C_0` acting through `Ad_h`, it becomes
+  `S(v_(-1), l) = D_v(l) sqcup D_o(l-1)`.  So for a tower
+  `rho' = (+)_l m_l . l^2(S(o,l))` the two `C_0`-restrictions of the
+  deep-tower theorem are `(+)_l m_l [D_o(l) + D_v(l-1)]` and
+  `(+)_l m_l [D_v(l) + D_o(l-1)]`.  Exact matching forces `m_l = m_(l+1)`
+  (the point stabilisers of `D_o(l)` and `D_v(l)` in `C_0` are not
+  conjugate: the closure of one moves the mirror vertex), i.e. constant
+  multiplicities on orbits of size `p^l`, whose level weights grow like
+  `p^l`: the tower is dominated by its top level, which is entirely
+  boundary.  Flatness instead needs `m_l ~ p^(-l)`.  Hence a flat tower
+  cannot be built from vertex-orbit permutation representations matched
+  level by level; it must match `C_0`-isotypic components across
+  different orbit types, and the concrete open computation is the total
+  variation distance between the irreducible weight measures of the
+  `C_0`-sets `D_o(l)` and `D_v(l)` (equivalently, how far the two
+  half-tree actions of the Iwahori subgroup are from each other in the
+  Plancherel sense): if it is bounded below uniformly in `l`, no
+  near-genuine microstates of `(S2H1)` exist at all and the exact face is
+  empty, leaving only outliers.
