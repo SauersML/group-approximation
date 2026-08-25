@@ -80,3 +80,25 @@ in finite canonical microstates, not imposed as literal packet identities.
 - Fixed PI degree is a possible detector only after the transported target
   words are forced to generate the full transverse factor on positive
   trace.  That fullness is not a consequence of the named Pauli pair.
+- Replacing the rectangular occurrences by Pauli/Clifford normalizers cannot
+  exploit the new dyadic deficit.  By
+  `two-affine-half-rows-pay-deleted-dyadic-atom`, the two diagonal Gram losses
+  plus the crossed Gram have squared sum at least the mass of the deleted
+  deepest flag atom.  Thus every affine flag routing pays the exact deficit
+  it was meant to hide.  At least one live row must be a genuinely
+  nonnormalizing coefficient occurrence coupled to the same payload atom.
+- A finite typed opposite-root/Whitehead chart still does not suffice.
+  `finite-bass-serre-dyadic-cell-has-exact-countermodel` passes any
+  finite graph-of-finite-groups packet attachment to one exact finite regular
+  quotient.  The named dyadic pair keeps its strict capacity deficit there,
+  so the three compressed rows have a fixed positive floor although all
+  defining relators are exact.  The surviving occurrence must therefore use
+  a genuinely non-semisimple coefficient vertex, not merely the order-four
+  Whitehead product or a finite cyclic/HNN interface.
+- The full signed affine-Leavitt vertex is the first remaining candidate, but
+  its use is already nonhyperlinearity-strength.
+  `ordinary-leavitt-quotient-fences-whitehead-active-floor` shows that a
+  dimension-uniform active occurrence profile would make the explicit
+  ordinary Leavitt quotient nonhyperlinear.  Thus the unresolved actuator is
+  a noncentral payload-to-coefficient coupling beyond the finite edge, not a
+  missing local Whitehead multiplication identity.

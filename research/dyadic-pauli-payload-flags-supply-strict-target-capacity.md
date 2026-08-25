@@ -116,5 +116,52 @@ microstate must decode the two inverse maps and crossed product through the
 the typed rectangular maps on its saturated doubled target instead.  More
 finite Pauli bits only tune `kappa`; they cannot supply that synchronization.
 
+The entire affine-normalizer subclass is now quantitatively closed.
+`two-affine-half-rows-pay-deleted-dyadic-atom` shows that if the two row
+occurrences act on the flag packet by Pauli, Clifford, or affine-HNN
+normalizers, then after compression to `F_n` their two diagonal Gram defects
+and crossed Gram defect have squared sum at least
+
+```text
+2^(-n)tau(C).
+```
+
+The missing mass is exactly the deleted deepest atom: complementary image
+halves put it in one diagonal-loss term, while noncomplementary image halves
+pay an intersection term.  Hence the surviving row must be genuinely
+nonnormalizing on the flag algebra, for example a payload-coupled
+non-semisimple opposite-root/Whitehead coefficient occurrence.
+
+That example must use the non-semisimple coefficient vertex itself, not only
+a finite typed specialization of its rows.
+`finite-bass-serre-dyadic-cell-has-exact-countermodel` proves that every
+finite graph-of-finite-groups attachment of a local signed Whitehead chart
+has an exact finite regular model.  On the named pair `(E,F_n)`, the
+three-row squared defect is bounded below while every defining relator has
+zero defect.  Thus sharing the order-four Whitehead product, finite
+opposite-root charts, finite cyclic holonomy, or finite HNN packet edges
+still does not synchronize the occurrences.
+
+Replacing the finite typed chart by the **full** signed affine-Leavitt
+occurrence system crosses that exact-countermodel boundary, but not a known
+normalized-HS boundary.  By
+`ordinary-leavitt-quotient-fences-whitehead-active-floor`, the system has a
+quotient through
+
+```text
+Q=EL_5(M_3(L_2(k)))
+```
+
+in which the Whitehead edge still has order four.  If `Q` is hyperlinear,
+amalgamation over that finite cyclic edge supplies canonical microstates;
+after exactifying the finite payload packet, `(DPF3)` and the rectangular
+three-row theorem force a fixed positive semantic row defect although the
+presentation defects vanish.  Consequently a full-occurrence decoder on
+the named pair `(E,F_n)` would itself prove this explicit ordinary Leavitt
+group nonhyperlinear.  The remaining route is therefore not another local
+opposite-root identity: it is a noncentral payload coupling which goes
+beyond the finite edge, or the unresolved normalized-HS rigidity of the
+full non-semisimple coefficient vertex.
+
 DERIVATION
 dyadic-pauli-payload-capacity-proof
