@@ -14,11 +14,11 @@ namespace GroupApproximation
 
 noncomputable section
 
-universe u v
+universe u v w
 
 variable {G : Type u} [Group G] {H : Type v} [Group H]
 
-local instance quotientCountable {K : Type} [Group K]
+local instance quotientCountable {K : Type w} [Group K]
     (N : Subgroup K) [hN : N.Normal] [Countable K] : Countable (K ⧸ N) :=
   Function.Surjective.countable (@QuotientGroup.mk'_surjective K _ N hN)
 
