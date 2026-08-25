@@ -59,6 +59,17 @@ positive matrix-range separator for the selected lattice tuple.
   Any positive proof must use the S-arithmetic extension, concretely a
   coupling between the `T` blocks and the conjugate-letter blocks of
   `phi(h)Tphi(h)^*`, not the commutant of `T` alone.
+- **Two conjugate letters plus the overlap still do not couple the Choi
+  cones.**  `two-conjugate-letter-overlap-data-is-morita-neutral` uses
+  finite regular quotients of `C_k*Z` to realize arbitrary canonical windows
+  of `T` and `phi(h)Tphi(h)^*`, while tensoring an arbitrary separator on a
+  common `C=Lambda cap hLambda h^(-1)` multiplicity actor.  The gap is
+  unchanged.  This invalidates
+  `sl3-central-dual-via-two-letter-iwahori-blocks`.  Therefore the exact
+  surviving arithmetic datum is narrower: one must use the nontrivial
+  transport by `phi(h)` of the full endpoint generators outside `C`, not
+  merely the two spectral block systems, their canonical pair moments, or
+  their common Iwahori actor.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

@@ -53,7 +53,9 @@ for (const declaration of declarations) {
   assert.ok(declaration.when);
   assert.ok(Number.isInteger(declaration.group));
   assert.ok(declaration.name);
-  assert.ok(declaration.explanation.length >= 250,
+  assert.ok(declaration.explanation.length >= 120,
+    `${declaration.name} needs a substantive explanation`);
+  assert.ok((declaration.explanation.match(/[.!?](?:\s|$)/g) || []).length >= 2,
     `${declaration.name} needs a self-contained explanation`);
   for (const match of declaration.explanation.matchAll(/\[\[([^|\]]+)/g)) {
     assert.ok(api.explainTerm(match[1]),

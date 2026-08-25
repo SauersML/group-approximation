@@ -111,6 +111,16 @@ theorem then gives full MF collapse of `Delta`.
   the required infinite-chromatic graph.  Bounded-area consequences must use
   more than finitely many pure conjugacy differences, or the address actor
   must escape that residual-finiteness argument.
+* **Put each finite shift graph in a fresh Leavitt cylinder.**  This removes
+  the literally persistent column used by
+  `leavitt-chromatic-tables-have-area-divergence`, but it does not remove the
+  obstruction if all block columns are uniformly conjugate to one prototype.
+  Unbounded chromatic number forces unbounded degree; normalizing one
+  high-degree column then produces arbitrarily many bounded-area centralizer
+  cosets inside that single block.  This is
+  `one-column-orbit-bounded-area-codes-have-bounded-chromatic-number`.
+  A block construction must therefore vary the normalized column type or
+  make many neighbors coincide modulo its cyclic subgroup.
 
 The next viable attack must construct a bounded-area orbit section directly,
 or replace representative coherence by a finite-coordinate selector whose
