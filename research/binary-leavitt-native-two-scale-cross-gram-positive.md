@@ -207,3 +207,15 @@ native occurrence row; the typed Morita model continues to realize all
 coefficient triangles while leaving it absent.  The two-oriented version
 assumes an even stronger input, namely one literal hidden gauge projection
 shared by both returns.
+
+## Direct hyperlinearity endpoint
+
+Although this claim also feeds the property-`(T)`-free MF compiler, its norm
+and density quantifiers are already the ones needed for hyperlinearity.  In a
+canonical-trace microstate of `St_20(L_2(F_2))`, the fixed nonzero involutory
+root mark has a nontrivial spectral carrier of trace `1/2+o(1)`.  Applying
+`(NCG1)` on that carrier, the established cross-Gram cutoff, mixed-Pauli
+gauge lock, and affine rank floor give a fixed normalized-HS relator defect.
+Thus `nonhyperlinear-from-binary-leavitt-native-cross-gram` sends this single
+open scalar holonomy claim directly to `non-hyperlinear-group`; no
+operator-norm return row, MF radical, or Property `(T)` argument intervenes.
