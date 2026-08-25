@@ -32,6 +32,7 @@ artifacts:
   - research/local-morita-sibling-cells-have-a-two-qubit-periodic-absorber.md
   - research/commuting-double-commutator-has-direct-mark-overlap.md
   - research/involution-normal-product-forces-one-factor-overlap.md
+  - research/root-valued-relative-transport-forces-cross-gram.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -210,12 +211,24 @@ The same four-conjugate formula now gives more than rank comparison.
 `k` involutions on the output's nontrivial spectral carrier.  In the specific
 binary-Leavitt double commutator, the output commutes with both conjugating
 roots, so `commuting-double-commutator-has-direct-mark-overlap` makes all four
-factor overlaps equal.  Every nonzero root carrier therefore puts at least
-`1/16` of its own mass, and at least `1/64` of the marked mass, directly in
-the original marked carrier, robustly for matrix microstates.  This removes
-the conjugate-selection ambiguity.  It still does not force the two native
-root slices to meet each other inside the larger marked carrier, so it
-strengthens rather than closes the scalar holonomy leaf.
+factor overlaps equal.  Every nonzero coefficient in a root position
+disjoint from the marked indices—canonically `x_42(a)`—therefore puts at
+least `1/16` of its own mass, and at least `1/64` of the marked mass, directly
+in the original marked carrier, robustly for matrix microstates.  This
+removes the conjugate-selection ambiguity on the disjoint root rectangle.
+It still does not force two native root slices to meet each other inside the
+larger marked carrier, so it strengthens rather than closes the scalar
+holonomy leaf.
+
+This direct floor also yields a concrete terminal interface.
+`root-valued-relative-transport-forces-cross-gram` rewrites the cross-Gram
+energy of two marked-root restrictions `g_1P_z,g_2P_z` as the overlap between
+`P_z` and its translate by `g_1^(-1)g_2`.  If that relative word conjugates
+`z` to a nonzero marked-index-disjoint root such as `x_42(a)`, the new direct
+floor proves `(NCG1)` with `gamma=1/16`.  What remains is therefore an exact
+occurrence-typing question: the two native stabilized selector maps must be
+those full-unitary restrictions.  The rectangular countermodel shows that
+coefficient-path equality without this typing is insufficient.
 
 The seventh route supplies a concrete moving-coefficient family, but is now
 also refuted by fixed-centralizer properness after an exponent-two triangle

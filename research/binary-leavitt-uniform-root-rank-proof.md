@@ -72,4 +72,7 @@ Steinberg root positions show `[r,A]=[r,B]=[r,z]=1`, while `(URP1)` says
 `tau(p_a p_q)>=tau(p_a)/16`.  The reverse rank inequality in `(URR3)` gives
 `tau(p_a)>=tau(p_q)/4`, proving `(URR5)`.  Rounded matrix representatives
 have `o(1)` double-commutator and commutation discrepancies, so the robust
-form gives the same two inequalities up to `o(1)`.
+form gives the same two inequalities up to `o(1)`.  Permutations fixing the
+marked indices `1,3` give the identical conclusion for every output root
+position whose two indices avoid `{1,3}`.  No such claim is made here for
+root positions sharing an index with the mark.
