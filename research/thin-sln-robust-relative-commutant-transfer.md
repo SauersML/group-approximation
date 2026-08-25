@@ -111,3 +111,17 @@ finite-dimensional norm has a uniform `C`-gap.  Hence that selected module
 is not profinitely continuous.  A hypothetical hyperlinear embedding of the
 thin centralizer HNN group is therefore exactly a matrix-origin failure of
 the new modulus, not merely an abstract infinite-representation exception.
+
+The whole-module continuity hypothesis can be reduced once more.
+`thin-leak-has-universal-fd-null-laplacian-witness` gives explicit elements
+
+```text
+y_N=(r-1)(1-Delta_C/L)^N
+```
+
+whose finite-dimensional norms decay exponentially and whose value on any
+selected `C`-central unitary is exactly its `r`-commutator.  Hence the route
+`thin-fd-null-cutoff-gives-commutant-transfer` needs only the single-sequence
+upper-semicontinuity claim
+`thin-selected-fd-null-cutoff-cannot-survive-matrices`, not weak containment
+of the full cyclic module.

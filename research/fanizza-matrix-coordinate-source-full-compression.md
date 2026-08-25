@@ -215,3 +215,13 @@ Full-label chord normalization detects this model but destroys the proper
 infinite return.  Hence the remaining decoder must introduce a new
 finite-coordinate incidence; it cannot be obtained by recombining the
 existing chord--reset relations.
+
+Nor is an arbitrarily sophisticated multiplicity selector by itself enough.
+`multiplicity-only-fanizza-row-selection-leaves-a-mirror` permits the decoder
+to inspect the complete integer packet profile, use congruences, Hall data,
+first-hit rules, or even the matrix dimension to choose a positive-density
+reducing block.  Once that block is announced, the free scalar chord
+coordinate swaps its guarded slice into an equal-rank complement and leaves
+all existing relations exact.  The new finite-coordinate ingredient must
+therefore be a **row-sensitive mixed incidence on the selected block**, not
+only a rule selecting which block to test.

@@ -77,3 +77,10 @@ matrix presentation coordinates to that one selected quotient.
   any sofic atlas for `A curvearrowright A/C` outright refutes `(SPC1)`.
 
 **Status: OPEN.**
+
+For the terminal transfer theorem this claim is stronger than necessary.
+`thin-leak-has-universal-fd-null-laplacian-witness` constructs one explicit
+sequence `(y_N)` with exponentially vanishing finite-dimensional norm which
+detects every leak.  The smaller open claim
+`thin-selected-fd-null-cutoff-cannot-survive-matrices` asks for continuity
+only on that sequence and that selected vector.
