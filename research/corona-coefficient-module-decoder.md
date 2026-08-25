@@ -7,10 +7,7 @@ title: Decode compatible finite root multiplicities into one finite projective c
 
 OPEN.  Let `R` be a countable ring with a binary Leavitt family and let
 `rho:E_n(R)->U(Q_d)` be a norm-corona representation in which a specified
-finite-order root `rho(x_ij(r_0))` survives.  By
-`torsion-normal-generator-has-full-support-corona-core`, one may assume that
-the active spectral projection of this root has normalized coordinate rank
-bounded below by one positive constant.
+finite-order root `rho(x_ij(r_0))` survives.
 
 Let `P_rho Q_d` be the common nonzero reducing projective carrier supplied by
 `finite-root-windows-share-one-reducing-corona-carrier`.  Construct on that
@@ -31,17 +28,13 @@ the problem.
 
 - **Take the inverse limit of rank germs.**  Compatible scalar ranks do not
   determine compatible projection representatives or coefficient
-  intertwiners.  The resulting inverse-limit object can be countably
-  generated while the cancellation theorem requires one nonzero finitely
-  generated projective corona module.
-- **Diagonalize coordinate exactifications.**  Each finite window can be
-  exactified on a tail, but the conjugating corrections depend on the window.
-  Their selected projections can move through the matrix coordinates and
-  have zero common rank germ despite compatible restriction multiplicities.
-- **Use the full active spectral corner as the carrier.**  Full-support
-  reblocking makes this corner macroscopically large, but general coefficient
-  roots move it.  The required theorem must coherently align finitely many
-  moved copies or construct an equivalent invariant projective carrier.
+  intertwiners.  The common projection `P_rho` is already a nonzero finitely
+  generated projective module, but an inverse limit of multiplicity vectors
+  still does not define operators on it.
+- **Diagonalize the finite-window intertwiners independently.**  Every window
+  now lies in `P_rho Q_d P_rho`, but its exactifying conjugator and irreducible
+  matrix units may rotate inside that corner as the window grows.  Sharing
+  the ambient projection does not make those internal matrix units nested.
 
 ## Remaining failed shortcuts
 
@@ -50,28 +43,22 @@ the problem.
   prefix idempotent, so binary prefix projections do not split the active
   mass into two equivalent copies.
 - **Exactify each finite Heisenberg window separately.**  This recovers each
-  finite multiplication table, but the correcting unitaries and isotypic
-  corners may depend on the window.  Branching compatibility of rank germs
-  does not by itself produce nested coordinate projections in one fixed
-  matrix amplification.
+  finite multiplication table on `P_rho`, but the correcting unitaries and
+  isotypic corners may depend on the window.  Branching compatibility of rank
+  germs does not make those internal decompositions nested or produce common
+  coefficient operators.
 - **Take an inverse limit of multiplicity vectors.**  The inverse limit gives
-  a coherent type measure, not a finitely generated projective `Q_d`-module.
-  It does not control a uniform stabilization size or provide bounded
-  operators realizing the four Leavitt coefficients on a common carrier.
-- **Compress to the active spectral projection of the surviving root.**  Its
-  relative rank is now uniformly positive, but general coefficient roots
-  move it.  Repeated compression introduces boundary terms, and positive
-  density alone does not make the two inverse relations exact in the corona.
+  a coherent type measure on the already fixed projective module, not bounded
+  operators realizing the four Leavitt coefficients on that module.
 
 - **Choose one nonzero irreducible summand at each growing finite window.**
   A rank-one projection on infinitely many coordinates already defines a
   nonzero finitely generated projective `Q_d`-module, so vanishing normalized
   density is not the obstruction here.  The obstruction is algebraic: an
   irreducible representation of one finite Heisenberg window supplies root
-  unitaries and their multiplicity, but it does not canonically supply a
-  unital map `R -> End_(Q_d)(P)` on the selected summand.  The exactifying
-  conjugator and the selected summand may change with the window, and the
-  coefficient arrows need not preserve their diagonal selection.
+  unitaries and their multiplicity, but its summand need not be preserved by
+  later coefficient arrows.  Selecting a new irreducible summand at each
+  stage discards the common-carrier invariance just established.
 
 - **Use both branch character labels to remove the marginal ambiguity.**
   `binary-leavitt-two-branch-character-restriction-is-faithful` proves that
