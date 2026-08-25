@@ -2,9 +2,11 @@
 version: "v0.4"
 
 project:
-  name: "An explicit sofic group that is not MF"
+  name: "Kazhdan self-compression obstructs operator-norm approximation"
   description: >-
-    The displayed finitely presented group is sofic and is not MF in the
+    The project formalizes the one-sided Kazhdan compression criterion, its
+    normal property-(T) MF-radical consequence, the rank-twelve Leavitt
+    compression, and the resulting non-MF group in the
     Carrión-Dadarlat-Eckhardt operator-norm sense.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
@@ -15,7 +17,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "An explicit sofic group that is not MF"
+  - title: "Kazhdan self-compression obstructs operator-norm approximation"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."
