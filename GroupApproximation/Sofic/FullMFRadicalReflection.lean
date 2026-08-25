@@ -54,9 +54,8 @@ theorem fullMFRadicalCoreQuotientMap_mk
 theorem fullMFRadicalCoreQuotientMap_id :
     fullMFRadicalCoreQuotientMap (MonoidHom.id G) =
       MonoidHom.id (fullMFRadicalCoreQuotient G) := by
-  ext q
-  obtain ⟨g, rfl⟩ :=
-    QuotientGroup.mk'_surjective (fullMFRadicalCore G) q
+  apply comp_mk'_injective (fullMFRadicalCore G)
+  ext g
   rfl
 
 /-- The quotient construction preserves composition. -/
@@ -66,9 +65,8 @@ theorem fullMFRadicalCoreQuotientMap_comp
     fullMFRadicalCoreQuotientMap (g.comp f) =
       (fullMFRadicalCoreQuotientMap g).comp
         (fullMFRadicalCoreQuotientMap f) := by
-  ext q
-  obtain ⟨x, rfl⟩ :=
-    QuotientGroup.mk'_surjective (fullMFRadicalCore G) q
+  apply comp_mk'_injective (fullMFRadicalCore G)
+  ext x
   rfl
 
 /-- The canonical quotient is core-free. -/
