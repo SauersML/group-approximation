@@ -42,8 +42,8 @@ Then:
    gamma_m ->0.                                           (PGC4)
    ```
 
-2. If `limsup_m gamma_m>0`, a tail subsequence of the pulled-back witnesses
-   has a bounded weak-star limit on the fixed unit-zero map space
+2. If `limsup_m gamma_m>0`, a tail subnet of the pulled-back witnesses has a
+   bounded weak-star limit on the fixed unit-zero map space
 
    ```text
    X_0={h in L_sa(E,A):h(1)=0}                            (PGC5)
