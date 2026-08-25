@@ -195,3 +195,4 @@
 32839280252	2026-08-25T10:51:32Z	GroupApproximation/Sofic/AscendingHNNWreathWitness.lean	mem_baseSub_iff
 32843945274	2026-08-25T11:45:58Z	GroupApproximation/Sofic/Asymptotics.lean	eventually_pos
 32846702483	2026-08-25T12:17:12Z	GroupApproximation/Sofic/AugmentationExtension.lean	reducedDifference_ne_zero
+32852351077	2026-08-25T13:17:08Z	GroupApproximation/Sofic/AuxiliaryClassSeparation.lean	exists_auxiliary_witness_outside_of_separation
