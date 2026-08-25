@@ -29,6 +29,20 @@ model-side mechanism is available: `compressor-fixed-site-growth-infinite`
 shows both candidate compressors gain infinitely many `Gamma`-fixed sites,
 for every invariant graph.
 
+## Pointed-energy firewall
+
+The bare scalar energy of the named Clifford element does not retain the
+full difficulty.  For `x_Cl=c_(t Gamma)` and
+`gamma_0 in Gamma minus t Gamma t^(-1)`, one has
+`||[x_Cl,u_(gamma_0)]||_2^2=2`; however
+`kt-pointed-clifford-energy-one-compressor-no-go` constructs
+canonical permutation microstates of the one-compressor binary wreath with
+the same trace-zero involution, stabilizer, scalar overlap, and energy
+profile.  Hence no transfer modulus using only one-compressor actor defect,
+`Lambda`-centrality and this pointed second moment can work.  A proof here
+must use the anticommutation operator relation itself or genuinely
+multi-compressor/full-actor data.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends
