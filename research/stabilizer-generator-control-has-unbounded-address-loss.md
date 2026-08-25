@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 Let `G` be a group, let `H=<T>` be a finitely generated subgroup, and let
-`U:G -> U(d)` be a unitary representation.  Transport a root observable
+`U:G -> U(d)` be a unitary representation.  The statements below hold for
+either operator norm or normalized Hilbert--Schmidt norm.  Transport a root observable
 `A in U(d)` to the left-coset cell `gH` by
 
 ```text
@@ -41,7 +42,7 @@ the generator defects.  Already take `H=Z=<t>` on `C^2`, put
 A=sigma_z,                  U_t=exp(i theta sigma_x/2).
 ```
 
-With normalized Hilbert--Schmidt norm,
+With either norm in this two-dimensional example,
 
 ```text
 ||A-Ad(U_t)(A)||_2       =2|sin(theta/2)|,
@@ -66,3 +67,9 @@ finite order,
 proves that such a filling bound forces the entire stabilizer to be finite.
 This remains false for infinite stabilizers which have property `(T)` and
 bounded generation: those properties do not bound ambient van Kampen area.
+
+In particular, a two-transitive or three-transitive address action does not
+by itself instantiate `infinite-chromatic-commutator-code-kills-mf-mark`.
+Finitely many orbits on ordered pairs control exact group identities, but the
+choice of orbit representatives can still carry this unbounded stabilizer
+cocycle.

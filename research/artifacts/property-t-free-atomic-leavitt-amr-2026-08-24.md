@@ -193,3 +193,164 @@ Open:
 
 No node created by this integration claims an unconditional
 property-`(T)`-free non-MF group.
+
+## 7. Exact finite-dimensional character mechanism and its precise boundary
+
+The global Heisenberg argument is represented by:
+
+- `leavitt-heisenberg-branch-doubles-character-multiplicity`;
+- `leavitt-heisenberg-branch-doubles-character-multiplicity-proof`.
+
+For branch pullback `F` and the transverse shear character `eta`, the exact
+finite-dimensional multiplicities satisfy
+
+```text
+m(F chi) >= p m(chi).
+```
+
+Finite support then contradicts maximal multiplicity.  This is an exact-only
+result: `leavitt-character-mass-escapes-to-finer-characters` records that a
+finite window sees two marginals of a joint character distribution, not one
+global multiplicity function.
+
+Two further statements now sharpen that boundary.
+
+- `finite-branch-closure-erases-transverse-character` proves that an
+  injective branch on a finite invariant coefficient packet is automatically
+  surjective, so every dual character killed by branch pullback is zero.
+  Closing the finite window destroys the transverse direction.
+- `norm-corona-sparse-global-character-atom` proves that a surviving element
+  of a countable elementary abelian `2`-group nevertheless has a nonzero
+  global character projection in the norm corona.  The projection may be
+  rank one and have zero normalized mass.  The remaining failure is not lack
+  of an atom: it is that the returned copies can lie in a larger multiplicity
+  sector rather than inside the selected atom itself.
+
+Thus the exact boundary is:
+
+```text
+global sparse atom                         established;
+same-reservoir multiplicity return        open.
+```
+
+## 8. Bounded-area chromatic compactness
+
+The second finite-coordinate endpoint added by the full audit is:
+
+- `bounded-relator-area-controls-opnorm-word-defect`;
+- `infinite-chromatic-commutator-code-kills-mf-mark`.
+
+If a finite presentation exposes an infinite-chromatic graph of words with
+diagonal commutator `z` up to uniformly bounded relator area and off-diagonal
+edge commutator `1` with the same kind of bound, a finite operator-norm cover
+of `U(d)` colors the vertices.  A monochromatic edge makes the two first
+commutator entries arbitrarily close.  The commutator map is `2`-Lipschitz,
+so
+
+```text
+||z(U)-I||_op <= (A_Delta+A_0) Def_R(U).
+```
+
+The theorem therefore kills `z` in every norm matrix corona.  Its finite
+version uses the covering number `N_d(delta)` and gives
+
+```text
+||z(U)-I||_op
+ <= (A_Delta+A_0) Def_R(U)+2 delta
+```
+
+whenever the graph chromatic number exceeds `N_d(delta)`.
+
+The literal Leavitt compiler is the new open node
+`binary-leavitt-bounded-area-chromatic-code`, connected to the top goal by
+`property-t-free-leavitt-via-chromatic-code`.  It is distinct from Atomic
+Morita Return: no coefficient projection is decoded.
+
+The obstruction to the naive two-transitive wreath/Thompson realization is
+already captured by:
+
+- `stabilizer-generator-control-has-unbounded-address-loss`;
+- `two-transitive-occurrence-sections-have-unbounded-pair-holonomy`.
+
+Finitely many orbits on pairs do not give uniformly bounded presentation
+area.  Different names for one address differ by an arbitrary stabilizer
+word, and generator-wise covariance telescopes with its word length.  Passing
+from two- to three-transitivity merely moves the same problem to a smaller
+stabilizer.
+
+## 9. Exact branching, recurrence, and firewalls already in Cairn
+
+The remaining major theorems and no-go statements in the full report were
+already represented and are not duplicated.
+
+| Mathematical content | Cairn node |
+|---|---|
+| supercritical finite-state projective branching vanishes in a matrix corona | `exact-corona-branching-dimension-collapse` |
+| cyclic rational rank monodromy forces zero carrier | `operator-norm-rank-monodromy-zero` |
+| rank-deficient return has operator norm one | `rank-deficient-return-row-has-operator-norm-one` |
+| a uniformly authenticated conjugacy-to-power return kills the mark | `spectral-recurrence-power-return-non-mf-criterion` |
+| fixed rational homogeneous multiplicity flow scales to an integer model | `finite-rational-rank-flows-are-fd-dense` |
+| ordinary HNN conjugacy cannot remove Schur multiplicity | `hnn-conjugacy-cannot-return-schur-morita-multiplicity` |
+| a fixed finite packet retains an arbitrary multiplicity gauge | `fixed-packet-correction-retains-multiplicity-gauge` |
+| orthogonal root self-copy and normal generation can remain MF | `orthogonal-root-self-copy-is-mf-compatible` |
+| full dual-prefix growth needs two Morita branches | `dual-prefix-growth-needs-two-morita-branches` |
+| bounded high-chromatic Carmichael area gives the tracial analogue | `bounded-area-high-chromatic-conjugacy-collapse` |
+
+The regular-trace firewall in
+`universal-block-return-violates-the-regular-firewall` now includes the
+marked-involution specialization.  For a nontrivial involution `z`, the left
+regular spectral projection `(1-lambda(z))/2` has trace `1/2`; two orthogonal
+copies of it cannot lie under itself.  Hence no representation-functorial
+group-algebra formula can manufacture the desired Cuntz/Leavitt corner.  A
+successful selector must use finite-coordinate information.
+
+The one-shift recurrence shortcut is excluded algebraically: if `[T,B]=1`,
+then
+
+```text
+[TAT^(-1),B]=T[A,B]T^(-1).
+```
+
+Requiring the left side to be `1` while `[A,B]=Z` already forces `Z=1`.
+This is not a missing estimate but an inconsistent marked presentation.
+
+The Bott and unnormalized Schatten routes remain contextual exclusions, not
+open Cairn dependencies.  Survival of a group element does not force a
+nonzero Bott class in the small-commutator regime, and
+`||E||_p <= d^(1/p)||E||_op` prevents unnormalized Schatten
+non-approximability from following from operator-norm microstates.
+
+## 10. Final integrated frontier
+
+For
+
+```text
+Delta=St_20(L_(F_2)(1,2)),            z=x_13(s_1t_1),
+```
+
+the following are established:
+
+1. `z` is a nontrivial involution and normally generates `Delta`;
+2. the Atomic Leavitt Gap and rank-deficient return are dimension-free;
+3. exact Heisenberg character multiplicity doubles and therefore vanishes;
+4. finite-window closure cannot retain its transverse character;
+5. sparse global norm-corona character atoms can be selected;
+6. exact supercritical projective branching collapses;
+7. a bounded-area infinite-chromatic commutator code kills its mark.
+
+The unconditional statement
+
+```text
+Rad_MF(Delta)=Delta
+```
+
+remains open.  It would follow from either of two concrete finite-presentation
+compilers:
+
+1. return the three binary Leavitt rows to the prescribed nonzero spectral
+   atom (`binary-leavitt-three-row-atomic-compiler`); or
+2. realize the marked root as a bounded-area infinite-chromatic commutator
+   code (`binary-leavitt-bounded-area-chromatic-code`).
+
+The exact unresolved object is therefore a finite-coordinate authenticated
+return, not another exact finite-dimensional contradiction.
