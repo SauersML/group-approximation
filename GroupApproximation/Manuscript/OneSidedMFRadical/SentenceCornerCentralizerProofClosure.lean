@@ -42,6 +42,21 @@ theorem manuscriptCornerGenerator_commutator_eq_one
     (cornerIndex i) (cornerIndex j) (3 : Fin 12) 4
     (cornerIndex_injective.ne hij) (by decide) hj3 hi4.symm a 1
 
+/-- Closed packaging of the calculation for every literal corner root. -/
+def PrintedCornerGeneratorCommutatorCalculation : Prop :=
+  ∀ (i j : Fin 3) (hij : i ≠ j) (a : R),
+    cornerIndex j ≠ (3 : Fin 12) ∧
+      cornerIndex i ≠ (4 : Fin 12) ∧
+      ⁅elementaryRoot (cornerIndex i) (cornerIndex j)
+          (cornerIndex_injective.ne hij) a, c⁆ = 1
+
+/-- Every binder in the printed corner-generator calculation is internal to
+the proposition, so this is the closed sentence-level endpoint. -/
+theorem manuscriptCornerGeneratorCommutatorCalculation :
+    PrintedCornerGeneratorCommutatorCalculation := by
+  intro i j hij a
+  exact manuscriptCornerGenerator_commutator_eq_one i j hij a
+
 /-- The roots quantified in the preceding theorem are exactly the generating
 set used to define the manuscript's upper-left subgroup `L`. -/
 theorem manuscriptCornerRoots_generate :
@@ -58,7 +73,7 @@ theorem manuscriptC_mem_cornerCentralizer :
 
 #audit_closed_axioms manuscriptCornerRoots_generate
 #audit_closed_axioms manuscriptC_mem_cornerCentralizer
-#audit_axioms manuscriptCornerGenerator_commutator_eq_one
+#audit_closed_axioms manuscriptCornerGeneratorCommutatorCalculation
 
 end RankTwelveEndpoint
 end OneSidedMFRadical

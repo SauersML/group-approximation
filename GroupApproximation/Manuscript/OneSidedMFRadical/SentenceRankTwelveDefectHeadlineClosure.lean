@@ -33,8 +33,11 @@ theorem manuscriptSentence255_defectProposition : PropositionDefect :=
 
 /-- **Sentence 256.**  The disjoint upper-left generators, and hence their
 generated corner, commute with `c=e₃₄(1)`. -/
+def Sentence256CentralizesCorner : Prop :=
+  ∀ gamma ∈ corner, Commute c gamma
+
 theorem manuscriptSentence256_centralizesCorner :
-    ∀ gamma ∈ corner, Commute c gamma :=
+    Sentence256CentralizesCorner :=
   c_commutes_corner
 
 /-- **Sentence 257.**  The moved mark is the exact product printed in

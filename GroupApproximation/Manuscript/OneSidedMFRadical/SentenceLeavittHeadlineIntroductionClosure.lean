@@ -88,8 +88,11 @@ theorem manuscriptSentence61_basicDefect_HS_vanishing :
 
 /-- **Sentence 62.**  The explicit element `tau` compresses the upper-left
 corner one-sidedly. -/
+def Sentence62TauCompressesCorner : Prop :=
+  ∀ gamma ∈ corner, tau * gamma * tau⁻¹ ∈ corner
+
 theorem manuscriptSentence62_tau_compresses_corner :
-    ∀ gamma ∈ corner, tau * gamma * tau⁻¹ ∈ corner :=
+    Sentence62TauCompressesCorner :=
   tau_compresses_corner
 
 /-- **Sentence 63.**  The upper-left corner is exactly the range of the
@@ -102,8 +105,11 @@ theorem manuscriptSentence63_corner_is_rankThree_image :
 
 /-- **Sentence 64.**  The printed element `c=e₃₄(1)` centralizes the
 entire upper-left corner. -/
+def Sentence64CCentralizesCorner : Prop :=
+  ∀ gamma ∈ corner, Commute c gamma
+
 theorem manuscriptSentence64_c_centralizes_corner :
-    ∀ gamma ∈ corner, Commute c gamma :=
+    Sentence64CCentralizesCorner :=
   c_commutes_corner
 
 /-- **Sentence 65.**  The explicit defect is the printed elementary root

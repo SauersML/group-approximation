@@ -35,6 +35,7 @@ import GroupApproximation.Analysis.TwoSidedRegularCommutant
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Analysis.AmenableQuasidiagonal
 import GroupApproximation.Analysis.CStarExactness
+import GroupApproximation.Analysis.NFAlgebra
 import GroupApproximation.Analysis.CStarMatrixFactorization
 import GroupApproximation.Analysis.LanceMatrixSubalgebra
 import GroupApproximation.Analysis.LanceBlockOperator
