@@ -161,7 +161,8 @@ theorem isCDEOperatorMF_of_limsup_separating_unitary_models (G : Type) [Group G]
   have hquot : (QuotientGroup.mk (fun n ↦ V n g) :
       NormMatrixCoronaUnitary X) = 1 := hg
   have hmem : IsNullCofiniteOpSeq X (fun n ↦ V n g) :=
-    (QuotientGroup.eq_one_iff _).mp hquot
+    (QuotientGroup.eq_one_iff (N := nullCofiniteOpSubgroup X)
+      (fun n ↦ V n g)).mp hquot
   exact (limsup_norm_sub_one_pos_iff_not_isNullCofiniteOpSeq X hX
     (fun n ↦ V n g)).mp (hsep g hgne) hmem
 
@@ -202,6 +203,7 @@ theorem exists_limsup_separating_unitary_models_of_isCDEOperatorMF (G : Type)
   have hev : ∀ᶠ n in Filter.atTop,
       delta / 2 ≤ ‖(V n g : Matrix (X n) (X n) ℂ) - 1‖ := by
     filter_upwards [Filter.eventually_ge_atTop (max N₁ N₂)] with n hn
+    show delta / 2 ≤ ‖(V n g : Matrix (X n) (X n) ℂ) - 1‖
     have h₁ := hN₁ n (le_trans (le_max_left N₁ N₂) hn)
     have h₂ := hN₂ n (le_trans (le_max_right N₁ N₂) hn)
     have hsplit : (V n g : Matrix (X n) (X n) ℂ) - V n 1 =
@@ -226,8 +228,8 @@ theorem exists_limsup_separating_unitary_models_of_isCDEOperatorMF (G : Type)
       (1 : Matrix (X n) (X n) ℂ)
     rw [hv, hid] at htri
     linarith
-  have hle := Filter.le_limsup_of_frequently_le hev.frequently hbdd
-  linarith
+  exact lt_of_lt_of_le (by linarith : (0 : ℝ) < delta / 2)
+    (Filter.le_limsup_of_frequently_le hev.frequently hbdd)
 
 /-- **The printed "equivalently" sentence, as printed.**  A countable group is
 MF exactly when it admits finite-dimensional unitary models on nonzero

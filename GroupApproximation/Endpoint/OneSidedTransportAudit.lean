@@ -36,6 +36,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedOneWordQuotientTes
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedResidualCalculusProof
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureQuotients
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureAnalysis
+import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureAnalysisTwo
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedModelSeparationConverse
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureLeavitt
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaKazhdanOrder
 import GroupApproximation.Manuscript.OneSidedMFRadical.FaithfulCornerCoronaRepresentation
@@ -724,3 +726,13 @@ resting on a `sorry`. -/
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaCommutationVanishing
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBothCornerUnitarityDefects
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBinaryLeavittPurelyInfiniteSimple
+
+-- The last printed sentences the sentence audit graded partial: the limsup
+-- separation form of the MF characterization, the faithful nondegenerate
+-- representation, the representing coordinate sequence, the closing
+-- contradiction of the corner proof, and the polar-correction step.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedMFModelSeparation
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFaithfulNondegenerateRepresentation
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoordinateGramRepresents
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerFinalContradiction
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedEventualInvertibilityAndPolarDistance

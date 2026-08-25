@@ -24,12 +24,16 @@ it.
   (`faithfulRep : B →⋆ₐ[ℂ] (E →L[ℂ] E)` together with its injectivity); no
   declaration *produced* one, and
   `Analysis/MaximalCStarKazhdanProjection.lean` says so explicitly under
-  *Not claimed*.  The statement below produces it: for every nontrivial unital
-  complex C-star algebra there **exist** a complete complex inner-product
-  space and a faithful unital `⋆`-homomorphism into its bounded operators.
-  Nondegeneracy is included, in the form it takes for a unital
-  representation: `π(1) = 1`, hence every vector is `π(b)η` for some `b, η`,
-  so `π(B)H = H` and a fortiori is dense.
+  *Not claimed*.  The statement below produces it: every nontrivial unital
+  complex C-star algebra is represented, faithfully and unitally, on the
+  Hilbert `ℓ²`-sum of the GNS spaces of all its states, which the statement
+  also records as complete.  Nondegeneracy is included, in the form it takes
+  for a unital representation: `π(1) = 1`, hence every vector is `π(b)η` for
+  some `b, η`, so `π(B)H = H` and a fortiori is dense.  The space is *named*
+  rather than existentially quantified, for the elaboration reason recorded in
+  the declaration's own docstring; the analytic content is
+  `CStarState.universalGNSStarAlgHom_injective`, and what this row adds is
+  that the representation is produced, unital and nondegenerate.
 
 * **`lem:central-corona-corner` / `thm:normal-kazhdan`, "The coordinate
   elements `b_n = |S|⁻¹ ∑_s (W_n(s) - q_n)^*(W_n(s) - q_n)` represent `b`."**
@@ -120,6 +124,7 @@ namespace OneSidedMFRadical
 
 open Filter
 open PrintedCornerCompression
+open MaximalCStarKazhdanProjection
 open scoped Matrix.Norms.L2Operator
 
 attribute [local instance] matrixBlockCStarAlgebra
@@ -142,15 +147,16 @@ GNS spaces of all states, with `B` acting diagonally. -/
 section FaithfulRepresentation
 
 /-- **"Represent `B` faithfully and nondegenerately on a Hilbert space `ℋ`."**
-For every nontrivial unital complex C-star algebra `B` there are a complex
-inner-product space `E`, complete for its norm, and a `⋆`-algebra
-homomorphism `π : B → 𝔅(E)` which is
+Every nontrivial unital complex C-star algebra `B` is represented on the
+Hilbert `ℓ²`-sum of the GNS spaces of all its states, and the representation
+is
 
-* **faithful**: `π` is injective;
-* **unital**: `π 1 = 1`;
-* **nondegenerate**: every vector of `E` is of the form `π(b)η`, so the
-  action of `B` on `E` has no degenerate part -- `π(B)E = E`, hence a fortiori
-  `π(B)E` is dense.
+* **on a Hilbert space**: `CStarState.UniversalGNSSpace B` is complete for its
+  norm, and it carries a complex inner product by construction;
+* **faithful**: the representation is injective;
+* **unital**: it sends `1` to `1`;
+* **nondegenerate**: every vector is of the form `π(b)η`, so `π(B)ℋ = ℋ` and
+  a fortiori `π(B)ℋ` is dense.
 
 Nondegeneracy is included rather than left open: for a *unital*
 representation of a unital algebra it is a consequence of `π 1 = 1`, which is
@@ -159,23 +165,34 @@ representation is unital).  What the statement does *not* assert is that an
 arbitrary, possibly non-unital, representation can be cut down to a
 nondegenerate one.
 
+**Named rather than existentially quantified.**  The printed sentence reads
+"represent `B` on *a* Hilbert space", and the natural Lean form would be
+`∃ (E) (_ : NormedAddCommGroup E) (_ : InnerProductSpace ℂ E)
+(_ : CompleteSpace E) (π : B →⋆ₐ[ℂ] (E →L[ℂ] E)), …`.  That form does not
+elaborate here: the `Star` structure on `E →L[ℂ] E` is the adjoint, and the
+instances needed for it are not resolved from `∃`-bound instance hypotheses in
+this position.  The statement therefore names the space the construction
+produces.  Nothing is lost about *production* -- which is what the audit
+flagged, both previously attached declarations having taken the faithful
+representation as an input binder -- only about the packaging.
+
 Nontriviality of `B` is a hypothesis because the universal GNS space is built
 from the states of `B`, and a trivial algebra has none. -/
 def PrintedFaithfulNondegenerateRepresentation : Prop :=
   ∀ (B : Type) [CStarAlgebra B] [Nontrivial B],
-    ∃ (E : Type) (_ : NormedAddCommGroup E) (_ : InnerProductSpace ℂ E)
-      (_ : CompleteSpace E) (pi : B →⋆ₐ[ℂ] (E →L[ℂ] E)),
-        Function.Injective pi ∧ pi 1 = 1 ∧
-          ∀ xi : E, ∃ (b : B) (eta : E), pi b eta = xi
+    CompleteSpace (CStarState.UniversalGNSSpace B) ∧
+      Function.Injective (CStarState.universalGNSStarAlgHom (A := B)) ∧
+      CStarState.universalGNSStarAlgHom (A := B) 1 = 1 ∧
+      ∀ xi : CStarState.UniversalGNSSpace B,
+        ∃ (b : B) (eta : CStarState.UniversalGNSSpace B),
+          CStarState.universalGNSStarAlgHom b eta = xi
 
 /-- Closed proof that every nontrivial unital complex C-star algebra has a
 faithful nondegenerate Hilbert-space representation. -/
 theorem manuscriptPrintedFaithfulNondegenerateRepresentation :
     PrintedFaithfulNondegenerateRepresentation := by
   intro B _ _
-  refine ⟨CStarState.UniversalGNSSpace B, inferInstance, inferInstance,
-    inferInstance, CStarState.universalGNSStarAlgHom,
-    CStarState.universalGNSStarAlgHom_injective,
+  refine ⟨inferInstance, CStarState.universalGNSStarAlgHom_injective,
     map_one (CStarState.universalGNSStarAlgHom (A := B)), ?_⟩
   intro xi
   refine ⟨1, xi, ?_⟩

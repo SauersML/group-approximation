@@ -6,11 +6,11 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 254 |
+| `formalized` | 259 |
 | `definition` | 39 |
 | `structural` | 21 |
 | `attribution` | 11 |
-| `partial` | 9 |
+| `partial` | 4 |
 | `provenance` | 1 |
 | **total** | **335** |
 
@@ -22,8 +22,6 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 120 --- Equivalently, an MF group admits finite-dimensional unitary models whose multiplicative defects tend to zero in operator norm and which asymptotically separate its nonidentity elements: for each $g\ne1$, the quantity $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend on $g$.
-  * the equivalence is proved only with all-pairs, eventually-delta separation; the printed nonidentity/limsup form is delivered forward-only and its converse is explicitly not proved
 * **`partial`**, line 193 --- Choose each coordinate far enough out that the first $n$ multiplication defects are at most $1/n$ and the designated value at $x_j$ retains at least half of its corona-norm separation.
   * the far-out choice and the 1/n defect bound are literal, but the quantity retained is half the marked model's own separation constant, not half the corona norm ||pi(x_j)-1||; the arithmetic link between the two is explicitly not asserted
 * **`partial`**, line 260 --- A Kazhdan inequality gives an element of $K$ whose Hilbert--Schmidt distance from the identity is bounded below there, contrary to the first conclusion.
@@ -32,14 +30,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
 * **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * proved only for R = the binary Leavitt algebra over F_2 (all ranks >= 2, universe 0); the printed 'n >= 3 and any finitely generated unital associative R' is not in the tree
-* **`partial`**, line 516 --- For all sufficiently large $n$, the matrix $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from $x_n$ by $o(1)$.
-  * the o(1) estimate needs only the one-sided Gram bound, but the invertibility and unitarity clauses are proved only when BOTH Gram defects vanish, whereas the printed sentence derives them from x_n^* x_n -> 1 alone by finite dimension
-* **`partial`**, line 543 --- Represent $B$ faithfully and nondegenerately on a Hilbert space $\mathcal H$.
-  * WEAKENING: the faithful representation is an INPUT in both (`faithfulRep : B ->*_alg (E ->L[C] E)` plus injectivity), never produced. No Gelfand-Naimark instance for an arbitrary unital C*-algebra exists in the tree (Analysis/MaximalCStarKazhdanProjection.lean:106 states this explicitly), and 'nondegenerately' is nowhere stated. Closing statement needed: `forall (B) [CStarAlgebra B], exists (E) (_ : InnerProductSpace C E) (pi : B ->*_alg (E ->L[C] E)), Function.Injective pi`.
-* **`partial`**, line 739 --- represent \(b\).
-  * WEAKENING: nothing proves that the class of (b_n) equals the printed b built from Theta. In the corrected-corner route the corona element is DEFINED as the class of (b_n) (correctedCornerGramClass), so 'represent b' is definitional there and carries no content; the identification with unitaryGram S (q Theta(s) q) is taken as the HYPOTHESIS hclass of GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder clause 3. The missing lemma would push manuscriptCornerCoronaClass's corona-class equation through the Gram expression: filterMatrixCStarCoronaMk (correctedCornerSectorGramSequence D S) = unitaryGram S (coronaRep ... ).
-* **`partial`**, line 745 --- This contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).
-  * WEAKENING: no declaration derives False on the PRINTED corner route. mem_opToHSShadowResidual_iff gives the membership half (s0 in R_{inf->2}(G) forces the HS ultraproduct image to be 1 for every OpAlmostRepresentation, and D.cornerRepresentation is one), and manuscriptSentence182_correctedCorner... gives the positive lower bound, but nothing puts them together; grep shows no module mentions both cornerRepresentation and opToHSShadowResidual. The unconditional contradiction in the repository is the moving-corner one behind manuscriptNormalKazhdanRadical.
 
 ## By section
 

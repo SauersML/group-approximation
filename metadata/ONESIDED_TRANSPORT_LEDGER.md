@@ -283,6 +283,11 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Proof of `thm:normal-kazhdan`: "The commutation relation in the corona gives" the vanishing displacement | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaCommutationVanishing` | closed |
 | Proof of `thm:normal-kazhdan`: both unitarity defects of the compressed corner converge to zero | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBothCornerUnitarityDefects` | closed |
 | Sec. 5: the binary Leavitt algebra is purely infinite simple, proved in-repo rather than cited | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBinaryLeavittPurelyInfiniteSimple` | closed |
+| Introduction: the printed `limsup` separation form of the MF model characterization, both directions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedMFModelSeparation` | closed |
+| Proof of `lem:kazhdan-projection-order`: "Represent `B` faithfully and nondegenerately on a Hilbert space" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFaithfulNondegenerateRepresentation` | closed |
+| Proof of `thm:normal-kazhdan`: the printed coordinate elements `b_n` represent the corona element `b` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoordinateGramRepresents` | closed |
+| Proof of `thm:normal-kazhdan`, closing sentence: "This contradicts `s_0\in K\le D\le R_{\infty\to2}(G)`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerFinalContradiction` | closed |
+| Proof of `lem:stable-finite`: eventual invertibility of `x_n` and the `o(1)` polar distance | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedEventualInvertibilityAndPolarDistance` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
