@@ -6,6 +6,7 @@ title: Source affine safety does not imply compatibility with one R-star cap pro
 distinct_from:
   fano-cap-witness-sections-force-source-affine-safety: that proves affine safety is necessary for a cap-valued lift; this explicit three-row gadget proves it is not sufficient.
   rstar-core-character-profiles-induce-an-exact-affine-cover: that gives the exact affine-piece containment criterion; this exhibits an affine-safe support crossing all of its pieces.
+  affine-safe-support-admits-a-tailored-rstar-cap-pp-lift: that is allowed to replace the pp gadget while preserving its visible relation; this counterexample concerns compatibility with the one fixed gadget in (ASC1).
 ---
 
 **ESTABLISHED FINITE COUNTEREXAMPLE.**  Let the visible variables be
@@ -41,3 +42,10 @@ All three rows survive pinned two-tail peeling with `p,q,r` pinned: `c` and
 while `a,b` are shared.  Thus `(ASC1)` is a small explicit certificate that
 the dense-core compatibility problem is strictly stronger than source
 affine safety.
+
+This qualification is sharp: the statement concerns the **fixed** gadget
+`(ASC1)`.  By `affine-safe-support-admits-a-tailored-rstar-cap-pp-lift`, the
+same affine support admits a cap-valued section through a different pp
+presentation of the same visible relation.  Thus `(ASC1)` is a
+fixed-presentation compatibility obstruction, not an obstruction to a
+support-tailored lift.

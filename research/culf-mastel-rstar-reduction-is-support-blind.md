@@ -68,3 +68,11 @@ Hadamard protocol by pinned xor gadgets whose rows lie in `x_4=1`.  Thus the
 unspecified pp-core issue can be confined to PCPP `Verify` contexts; it is no
 longer present in the equality, consistency, cross-check, or Hadamard
 code/subset rows.
+
+More generally, `affine-safe-support-admits-a-tailored-rstar-cap-pp-lift`
+shows that profile compatibility is not intrinsically stronger than affine
+safety when the pp presentation may be chosen after the positive support is
+fixed.  Its protected forbidden-point presentation still defines the full
+source relation and has cap-valued witnesses on that support.  The published
+reduction remains support-blind because it neither proves affine safety of
+the PCPP `Verify` supports nor selects these trace-tailored gadgets uniformly.

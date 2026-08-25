@@ -200,13 +200,22 @@ no-Fano-line support conclusion.
   The published reduction neither fixes this cover nor proves that the HALT
   support selects one of its pieces.  This is the sharpened conservative
   frontier after leaf elimination.
-- Mere source affine safety cannot close that frontier.
+- Mere source affine safety cannot select a profile in an **already fixed**
+  gadget.
   `source-affine-safety-does-not-imply-rstar-profile-compatibility` gives an
   explicit three-row pp gadget whose visible relation is all of `F_2^3` and
   an affine four-point support whose witnesses force a Fano line in one
-  target row.  The positive proof must therefore choose and audit concrete
-  pp gadgets jointly with the actual HALT support; the hull condition alone
-  is insufficient.
+  target row.
+- The freedom to choose the pp gadget removes exactly that extra obstacle.
+  `affine-safe-support-admits-a-tailored-rstar-cap-pp-lift` proves that for
+  every source relation `C` and positive support `S`, the hull condition
+  `Aff(S) subseteq C` is necessary and sufficient for **some** exact `R_*`
+  pp presentation to have cap-valued witnesses on `S`.  Its protected-clause
+  construction defines all of `C`, so matrix soundness is unchanged.  Thus
+  the local algebraic pp seam is closed once the source support is known;
+  what remains is proving affine safety for the actual PCPP `Verify`
+  supports and, for a uniform HALT family, selecting the support-tailored
+  gadgets effectively rather than after the trace is known.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities
