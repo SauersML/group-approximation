@@ -230,6 +230,19 @@ construction must therefore use a duplicated arm, a nonliteral Whitehead
 composite, or another occurrence compiler rather than merely changing the
 root indices in `(NCG3)`.
 
+The first two named escapes are now fenced at their minimal algebraic form.
+`duplicate-selector-transports-retain-occurrence-seam` proves that one common
+transport of duplicated arms preserves their original zero cross commutator,
+whereas two separate transports leave an uncontrolled relative word equal
+to the missing occurrence holonomy.  Building the coefficient directly by
+its three-elementary Whitehead word avoids the center chain, but authenticates
+only equal typed prefix corners.  Cutting those full words by a disjoint
+compatible Hecke atom makes their Gram maximal for the tautological reason
+that both reduce the atom; it still does not identify the native `1/4` and
+`1/8` selector rows.  Hence any duplicated-arm repair must control the
+relative transporter on a matrix-dependent reducing subcorner, rather than
+only add fixed Weyl words and a finite character cut.
+
 There is a useful partial salvage of that chained model.
 `center-chain-character-atom-gives-scalar-gram` cuts the nonabelian
 `UT_4(F_2)` center chain by the one-dimensional character which is negative
@@ -240,6 +253,38 @@ nonzero cross roots.  Thus the scalar overlap is no longer the obstruction
 in the literal chained model; the missing datum is precisely simultaneous
 Pauli reduction and hence the mixed-commutator/selector-label authentication
 required by `(NCG1)`.
+
+The existing polar-cut machinery cannot repair this carrier after the fact.
+`center-chain-scalar-gram-polar-cut-returns-moving-atom` computes that the
+positive cross-Gram square is exactly `e_chi`, so every nonzero spectral cut
+is again `e_chi`.  Moreover the two relevant arm commutator costs are the
+fixed values `3/128` and `1/64` in squared normalized HS norm.  Thus the
+shared-packet covariance hypothesis of
+`two-transport-cross-gram-has-a-fixed-mass-reducing-corner` fails by a fixed
+amount, while applying that theorem without the Pauli packet merely returns
+the same moving atom.  The mixed-Pauli gauge theorem also starts after a
+common reducing carrier has been authenticated and cannot create one from
+this scalar overlap.  A valid chained-center repair must therefore supply a
+different positive subcorner whose mass is not obtained as a spectral cut of
+this scalar Gram operator.
+
+The moving-arm Hecke coefficients themselves now exhibit the two target
+dyadic masses.  By `center-chain-hecke-arms-have-native-masses`, on the same
+nonabelian character atom
+
+```text
+||eA_1e||_2^2=(1/4)tau(e),
+||eA_2A_1e||_2^2=(1/8)tau(e).
+```
+
+The index-four and index-eight values come from three explicit vanished
+unitriangular coordinates, not from an assumed selector tensor factor.  This
+does not yet close `(NCG1)`: Hilbert--Schmidt mass does not determine polar
+support rank or authenticate the two controlled label actions.  It does,
+however, reduce the remaining chained-arm question to a concrete spectral
+one—polarize these two named Hecke operators on one positive subcorner and
+control the mixed Pauli commutators—rather than searching for the dyadic
+fractions abstractly.
 
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that

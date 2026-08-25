@@ -8,6 +8,7 @@ distinct_from:
   thompson-v-r5-coherent-alternating-packet: that asks for all swap names and the full symmetric-group multiplication table; this asks only for adjacent A5 charts in the common-pivot Carmichael star.
   thompson-v-r5-uniform-common-pivot-centralizers: that false claim asks for bounded fillings of the individual escaping endpoint-centralizer loops; this permits one interacting R5 seam comparison and does not split it into separately filled centralizer corrections.
   a5-a4-overlap-has-two-seam-charges: that theorem shows why A4 restriction agreement alone is insufficient; this asks R5 to eliminate those two private seam directions quantitatively.
+  bare-r5-a6-collision-does-not-synchronize-shared-labels: that exact five-dimensional countermodel shows that two local A5 packets plus the lone nonshared R5 collision do not control the shared contextual labels; this claim must additionally exploit a label-sensitive Bleak--Quick transport or split anchor coming from the fact that all occurrences are words in one approximate model.
 ---
 
 In the Bleak--Quick presentation of Thompson `V`, put
@@ -64,3 +65,14 @@ the corrections around chart cycles does not repair this:
 resulting boundary freely telescopes and retains no matrix error.  The next
 viable attack must therefore keep the two nonshared occurrences together in
 one R5 collision channel and prove `(A6S2)` before separating endpoint gauges.
+
+The bare collision channel is still insufficient.  In
+`bare-r5-a6-collision-does-not-synchronize-shared-labels`, the standard
+five-dimensional `A6` module gives two exact adjacent A5 charts and an exact
+nonshared R5 relation, while the two common contextual labels are interchanged
+and remain at squared normalized-HS distance `6/5`.  Thus the next attack
+must retain at least one **label-sensitive** occurrence anchor across the
+seam.  The concrete candidates in the Bleak--Quick presentation are R2,
+`(1 01)^(1 00)=(00 01)`, and R3,
+`(1 00)=(10 000)(11 001)`; R5 itself is only the disjoint-support commutator
+`[(000 010),(10 110)]=1` and cannot distinguish the two shared labels.
