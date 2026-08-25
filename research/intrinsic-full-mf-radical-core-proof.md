@@ -209,9 +209,18 @@ If the target is core-free, functoriality first gives `C(G) <= ker(f)`.  When
 the kernel is intrinsically full, maximality gives the reverse inclusion.
 This proves (18) without requiring `f` to be onto.
 
-For the genuine corona residual, the upper inclusion in (19) follows by
-mapping `Rad_MF(G)` into the trivial target residual.  For the lower inclusion,
-the inclusion `ker(f) --> G` maps the full residual of the kernel into
-`Rad_MF(G)`.  Hence the two subgroups are equal.
+For the genuine corona residual, intrinsic fullness of the kernel first puts
+`ker(f)` inside `Rad_MF(G)`.  Every corona representation of `G` therefore
+factors uniquely through the surjection `f`.  Intersecting kernels before and
+after factorization gives
+
+```text
+Rad_MF(G) = f^(-1)(Rad_MF(H)).
+```
+
+This proves (19).  If the target residual is trivial, functoriality gives the
+upper inclusion in (20).  For the reverse inclusion, the inclusion
+`ker(f) --> G` maps the full residual of the kernel into `Rad_MF(G)`.  Hence
+the residual equals the kernel, without a surjectivity assumption.
 
 The Lean proof follows these steps directly.

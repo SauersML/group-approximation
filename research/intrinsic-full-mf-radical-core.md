@@ -194,18 +194,25 @@ Core_MF(H)=1 and Core_MF(ker(f))=ker(f)
     => Core_MF(G)=ker(f).                             (18)
 ```
 
-Surjectivity is not needed in (18).  At the level of the genuine norm-matrix
-corona residual, the same argument gives the exact formula
+Surjectivity is not needed in (18).  The genuine norm-matrix-corona residual
+obeys the full pullback formula as well.  Under the hypotheses of (17),
+
+```text
+Rad_MF(G) = f^(-1)(Rad_MF(H)).                        (19)
+```
+
+For a core-free target, the resulting exact kernel formula does not require
+surjectivity:
 
 ```text
 Rad_MF(H)=1 and Rad_MF(ker(f))=ker(f)
-    => Rad_MF(G)=ker(f).                              (19)
+    => Rad_MF(G)=ker(f).                              (20)
 ```
 
 Thus a homomorphism with an intrinsically invisible kernel and a fully visible
 target computes the invisible part of its source exactly.
 
-The construction and equations (1)--(19) are formalized in
+The construction and equations (1)--(20) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
