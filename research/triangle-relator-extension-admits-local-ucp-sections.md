@@ -204,6 +204,17 @@ Ioana--Spaas--Wiersma mechanism), per
   least one tree-face component of norm at least one quarter of the separator
   gap.  This rules out the hoped-for one-face dual contradiction and isolates
   a quantitatively essential tree correction.
+- **The essential tree component has a positive Choi representative
+  (2026-08-25).**
+  `tree-face-separator-signedness-is-removable-modulo-the-unit` uses the
+  finite-dimensionality of each face algebra.  Under the Choi transform, the
+  negative Jordan part of any Hermitian tree functional is dominated by a
+  fixed multiple of its unit marginal.  Adding that marginal does not change
+  the functional on differences of unital maps, so the tree component can be
+  made Choi-positive while preserving its `delta/2` defect value.  The
+  resulting positive GNS witness need not be finite-dimensional or supported
+  in a fixed relator reservoir; positivity is no longer the missing step,
+  but representation/support control remains open.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
