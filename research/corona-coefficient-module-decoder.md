@@ -82,6 +82,18 @@ the problem.
   coordinates.  A coefficient-module decoder must turn their uniquely
   labelled joint action into the four Leavitt arrows on this carrier.
 
+- **Treat common-carrier Heisenberg absorption as an exact firewall.**
+  `orthogonal-heisenberg-self-copy-skeleton-has-marked-microstates` realizes
+  both branch actors, every finite Heisenberg multiplication window, all
+  transverse shears, and the nontrivial common central sign on the identity
+  carrier of a matrix sequence.  The even/odd coordinate split also has the
+  same faithful pair of branch character restrictions proved above.  Hence
+  no theorem whose hypotheses stop at the common carrier, branch-label
+  faithfulness, or Heisenberg-window compatibility can establish this node.
+  The remaining intertwiner must be charged to a named cross-root Steinberg
+  occurrence which is absent from that exact UHF calibration and which
+  erases the rectangular source/target object distinction.
+
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
   the form
