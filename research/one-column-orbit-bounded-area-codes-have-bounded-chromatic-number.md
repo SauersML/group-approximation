@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: one-column-orbit-bounded-area-codes-have-bounded-chromatic-number
+id: one-column-orbit-codes-have-bounded-chromatic-number
 kind: claim
 title: One uniformly typed finite-order column orbit cannot support bounded-area graphs of unbounded chromatic number
 artifacts:

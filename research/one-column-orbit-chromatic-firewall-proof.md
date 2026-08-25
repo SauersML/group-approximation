@@ -3,7 +3,7 @@ rg: 2
 id: one-column-orbit-chromatic-firewall-proof
 kind: route
 title: Normalize a high-degree column and apply centralizer-area properness
-target: one-column-orbit-bounded-area-codes-have-bounded-chromatic-number
+target: one-column-orbit-codes-have-bounded-chromatic-number
 requires:
   - finite-mark-centralizer-commutator-area-is-proper
 ---

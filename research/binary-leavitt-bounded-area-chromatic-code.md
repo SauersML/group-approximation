@@ -118,7 +118,7 @@ theorem then gives full MF collapse of `Delta`.
   Unbounded chromatic number forces unbounded degree; normalizing one
   high-degree column then produces arbitrarily many bounded-area centralizer
   cosets inside that single block.  This is
-  `one-column-orbit-bounded-area-codes-have-bounded-chromatic-number`.
+  `one-column-orbit-codes-have-bounded-chromatic-number`.
   A block construction must therefore vary the normalized column type or
   make many neighbors coincide modulo its cyclic subgroup.
 
