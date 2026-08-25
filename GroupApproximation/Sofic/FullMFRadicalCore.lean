@@ -238,11 +238,11 @@ quotient is core-free. -/
 theorem eq_fullMFRadicalCore_of_residual_eq_top_of_quotient_core_eq_bot
     (N : Subgroup G) [N.Normal]
     (hN : actualCoronaMFResidual N = ⊤)
-    (hquot : fullMFRadicalCore (G ⨸ N) = ⊥) :
+    (hquot : fullMFRadicalCore (G ⧸ N) = ⊥) :
     N = fullMFRadicalCore G := by
   apply le_antisymm
   · exact le_fullMFRadicalCore N hN
-  · let q : G →* G ⨸ N := QuotientGroup.mk' N
+  · let q : G →* G ⧸ N := QuotientGroup.mk' N
     have hker : fullMFRadicalCore G ≤ q.ker :=
       fullMFRadicalCore_le_ker_of_target_eq_bot q hquot
     intro x hx
