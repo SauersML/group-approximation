@@ -26,7 +26,8 @@ theorem actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
     (hker : f.ker ≤ actualCoronaMFResidual G)
     (N : Subgroup G) [N.Normal] :
     actualCoronaMFClosure N =
-      (actualCoronaMFClosure (N.map f)).comap f := by
+      (@actualCoronaMFClosure H _ (N.map f)
+        (Subgroup.Normal.map inferInstance f hf)).comap f := by
   letI : (N.map f).Normal :=
     Subgroup.Normal.map inferInstance f hf
   ext x
@@ -69,7 +70,8 @@ theorem actualCoronaMFClosure_eq_comap_map_of_surjective_of_kernel_eq_top
     (hker : actualCoronaMFResidual f.ker = ⊤)
     (N : Subgroup G) [N.Normal] :
     actualCoronaMFClosure N =
-      (actualCoronaMFClosure (N.map f)).comap f := by
+      (@actualCoronaMFClosure H _ (N.map f)
+        (Subgroup.Normal.map inferInstance f hf)).comap f := by
   apply actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le f hf
   intro x hx
   have hx' : (⟨x, hx⟩ : f.ker) ∈ actualCoronaMFResidual f.ker := by
