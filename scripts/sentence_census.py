@@ -80,6 +80,35 @@ DISPLAY_ENVS = {
     "gathered", "split", "subequations", "smallmatrix", "tikzcd", "CD",
 }
 
+INLINE_ENV_RE = re.compile(
+    r"\\begin\{([A-Za-z][A-Za-z0-9]*\*?)\}"
+    r"((?:(?!\\begin\{|\\end\{).)*?)"
+    r"\\end\{\1\}", re.S)
+
+
+def collapse_inline_envs(line: str) -> str:
+    """Remove environments that open and close on the same line.
+
+    Only *balanced* pairs go: the regex matches an innermost pair, one whose
+    body contains no further `\\begin{`/`\\end{`, so repeating to a fixpoint
+    unwinds nesting from the inside out and handles several pairs on one line.
+    A pair that is only opened here, or only closed here, is left alone for the
+    stack dispatch to see.
+
+    A display environment's body is display material, so it is replaced by a
+    space -- keeping it would inject matrix entries into the surrounding
+    sentence, which is what the stack skip does for a multi-line display.  Any
+    other environment keeps its body, because there the braces are markup
+    around prose that still belongs to the sentence.
+    """
+    while True:
+        collapsed = INLINE_ENV_RE.sub(
+            lambda m: " " if m.group(1) in DISPLAY_ENVS else m.group(2), line)
+        if collapsed == line:
+            return line
+        line = collapsed
+
+
 CLAIM_ENVS = {
     "theorem", "lemma", "proposition", "corollary", "definition", "mainthm",
     "question", "remark", "example", "conjecture", "notation", "convention",
@@ -145,6 +174,20 @@ def split_sentences(paragraph: str) -> list[str]:
 BADGE_VERIFIED = re.compile(r"\\leanverified\{([^}]*)\}\{([^}]*)\}")
 BADGE_STEP = re.compile(r"\\leanstep\{([^}]*)\}")
 
+# `check_non_mf_refs.py` defines six two-argument certification macros, not
+# one.  The census used to strip only `\leanverified`, so a `\leanequivalent`,
+# `\leansupporting`, `\leanconditional`, `\leanpartial` or
+# `\leandifferentwitness` survived into the sentence text -- and because the
+# key is the sha256 of the normalized sentence, badging a sentence with any of
+# the other five silently *rekeyed* it and expired its overlay row.  A badge is
+# metadata about a sentence, not part of it: stripping all six keeps the key a
+# function of the prose alone, so adding or restatusing a badge never churns
+# the overlay.  Keep this list in step with `check_non_mf_refs.STATUSES`.
+BADGE_STATUSES = ("verified", "equivalent", "supporting", "conditional",
+                  "partial", "differentwitness")
+BADGE_ANY = re.compile(
+    r"\\lean(?:" + "|".join(BADGE_STATUSES) + r")\{([^}]*)\}\{([^}]*)\}")
+
 # Front-matter macros that carry no mathematical assertion.
 FRONT_MATTER = re.compile(
     r"^\s*\\(title|author|subjclass|keywords|thanks|date|dedicatory|address|"
@@ -196,7 +239,7 @@ def extract(path: str) -> list[dict]:
             for b in badges:
                 for lst in env_badges:
                     lst.append(b)
-            clean = BADGE_VERIFIED.sub("", s)
+            clean = BADGE_ANY.sub("", s)
             clean = BADGE_STEP.sub("", clean)
             clean = normalize(clean)
             if not re.search(r"[A-Za-z]", clean):
@@ -226,6 +269,21 @@ def extract(path: str) -> list[dict]:
         # stays open to the end of the document, and every paragraph from
         # there on is skipped as display material.
         line = re.sub(r"\\\\\[[^\]]*\]", " ", line)
+
+        # An environment that opens and closes on the SAME line changes no
+        # nesting and must not touch the stack.  The dispatch below tests
+        # `\begin` before `\end` and returns early for a display environment,
+        # so `\begin{pmatrix}I&0\\-X^{-1}&I\end{pmatrix}` used to push
+        # `pmatrix` and never pop it.  Five such lines in
+        # `eq:whitehead-factorization` left four `pmatrix` on the stack at end
+        # of file; `\end{align}` popped one of them instead of the `align`, and
+        # because a display environment on top of the stack skips every line
+        # under it, the rest of the document after line 1528 was dropped --
+        # not marked `unassigned`, but never keyed at all, so `--check` stayed
+        # green over roughly the last third of the manuscript.  Collapsing
+        # balanced pairs first fixes both halves: nothing spurious is pushed,
+        # and `\end` again meets the environment it closes.
+        line = collapse_inline_envs(line)
 
         # An unnumbered display that spans a paragraph break cannot be removed
         # by a regex over one paragraph, so it is tracked here instead.
@@ -446,7 +504,8 @@ def load_map(path: str) -> dict[str, dict]:
 
 
 def join(records: list[dict], assignments: dict[str, dict],
-         rows: dict[str, list[str]] | None = None) -> list[dict]:
+         rows: dict[str, list[str]] | None = None,
+         badges_need_rows: bool = False) -> list[dict]:
     """Overlay first, then the manuscript's own badges, then unassigned.
 
     A `\\leanverified` badge inside a claim environment is the manuscript
@@ -455,6 +514,22 @@ def join(records: list[dict], assignments: dict[str, dict],
     assignments the manuscript already carries, so the census reads them rather
     than asking a human to retype them; the overlay wins where it speaks,
     because a hand assignment is a judgement and a badge is a pin.
+
+    Under `badges_need_rows` a badge stops being an assignment.  A badge is the
+    manuscript certifying itself, and while the proof ledger was live that
+    self-certification was harmless because `check_badge_coverage` separately
+    demanded a recorded human grading for every `\\leanverified`.  The paper's
+    ledger was retired on 2026-08-25, so for the paper a badge would otherwise
+    be the *only* grading a claim ever receives.  A badged sentence with no
+    overlay row therefore reads `unassigned` -- the status `--check` rejects --
+    and keeps the badge's declarations in `decls` so whoever assigns it can see
+    what the manuscript claims.  `verify_decls` skips unassigned rows, so those
+    names are recorded without being counted as verified; `check_non_mf_refs.py`
+    is what checks that they resolve.
+
+    The flag is off by default because the notes census legitimately leans on
+    badge assignment (214 of its sentences at the time of writing), and its
+    proof ledger is still live and still carries the badge obligation.
     """
     rows = rows or {}
     for r in records:
@@ -463,7 +538,12 @@ def join(records: list[dict], assignments: dict[str, dict],
             r.update(a)
             r.setdefault("note", "")
             continue
-        if r.get("steps"):
+        if badges_need_rows and (r.get("steps") or r.get("badges")):
+            r["status"] = "unassigned"
+            r["decls"] = " ".join(r.get("badges") or r.get("steps"))
+            r["note"] = ("printed badge recorded; an overlay assignment is "
+                         "owed because the paper's proof ledger is retired")
+        elif r.get("steps"):
             r["status"] = "ledger"
             r["decls"] = " ".join(r["steps"])
             r["note"] = "from the printed \\leanstep badge"
@@ -676,13 +756,18 @@ def main() -> int:
     ap.add_argument("--ledger", default=LEDGER)
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--out-md", default=OUT_MD)
+    ap.add_argument("--badges-need-rows", action="store_true",
+                    help=("a printed badge no longer assigns a sentence; every "
+                          "badged sentence needs an overlay row.  Required for "
+                          "the paper, whose proof ledger is retired and whose "
+                          "badges would otherwise certify themselves"))
     args = ap.parse_args()
 
     rows, probes = load_ledger(args.ledger)
     records = extract(args.tex)
     attach_anchors(records, args.tex, probes)
     overlay = load_map(args.map_path)
-    records = join(records, overlay, rows)
+    records = join(records, overlay, rows, args.badges_need_rows)
 
     record_keys = {r["key"] for r in records}
     ledger_ids = {row for anchor_rows in rows.values() for row in anchor_rows}

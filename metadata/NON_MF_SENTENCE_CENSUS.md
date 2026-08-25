@@ -6,15 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 277 |
-| `definition` | 51 |
-| `structural` | 26 |
-| `attribution` | 7 |
-| `partial` | 3 |
+| `formalized` | 260 |
+| `unassigned` | 72 |
+| `definition` | 52 |
+| `structural` | 19 |
+| `attribution` | 13 |
+| `partial` | 4 |
 | `provenance` | 1 |
-| **total** | **365** |
+| **total** | **421** |
 
-Carrying a declaration or a ledger row: **331/365** (90.7%).
+Carrying a declaration or a ledger row: **316/421** (75.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -22,23 +23,102 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 571 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
+* **`unassigned`**, line 581 --- Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let $1\ne d\in B$ normally generate $B$.
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`partial`**, line 652 --- Their 1997 paper introduced MF $C^*$-algebras; for separable nuclear algebras, the MF and NF properties are equivalent~\cite{BK}.
+  * TWO clauses. Clause 1, 'Their 1997 paper introduced MF C*-algebras', is attribution: it credits Blackadar-Kirchberg and asserts nothing of ours. Clause 2, 'for separable nuclear algebras, the MF and NF properties are equivalent', is UNPROVED and is why this row is partial rather than attribution: it is a mathematical assertion, and the census rule admits attribution only for a sentence that makes no assertion of its own. It is a cited theorem of Blackadar-Kirchberg \cite{BK}, not a result of this paper, and it is NOT formalized anywhere in the corpus -- there is no NF predicate in the tree at all, so no declaration can be named without laundering the citation. Nothing downstream consumes it: `grep -n "NF\b" non_mf_groups_exist.tex` returns only lines 615-616, this passage itself. Inertness makes the gap harmless, not absent.
+* **`partial`**, line 662 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
   * NOT proved in-repo. The sentence states a specific theorem -- G MF implies the double G *_H G is MF -- so it is not bare attribution, but nothing in the corpus establishes it: metadata/LITERATURE_QUARANTINE.md lists the Shulman amalgamated-double theorem as an unproved input, and Sofic/SymmetricDoubleShulman.lean proves only that IsOperatorMF (SymmetricDouble SigmaGroup sigmaBase) is EQUIVALENT to the exact-radical endpoint, explicitly declining to prove it. No declaration may be named without laundering that input
-* **`partial`**, line 571 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
+* **`partial`**, line 662 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
   * one clause is a dated status claim with no mathematical content -- 'the operator norm case remained open' -- and the paper closes it. The other clause reports the DGLT / Lubotzky-Oppenheim / Thom non-approximability theorems for finite Schatten norms, which IS a proposition and is NOT formalized: grep over GroupApproximation finds no Schatten-norm stability content at all
-* **`partial`**, line 589 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+* **`unassigned`**, line 689 --- Preusser classified the subgroups of $\GL_n$ over an exchange ring that are normalized by $\EL_n$~\cite{Preusser}.
+* **`unassigned`**, line 689 --- In the present case, every nontrivial normal subgroup of $\EL_{12}(R)$ contains some $e_{ij}(x)$ with $i\ne j$ and $x\ne0$ (Proposition~\ref{prop:simple}).
+* **`partial`**, line 689 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * generalRankFiniteFieldElementaryPropertyT now proves the printed statement for every rank n >= 3 over every finite-type algebra over every finite field, hence for every ring of prime characteristic -- via the identity-padding homomorphism EL_3 -> EL_n (Steinberg.ElementaryIndexPadding), which was the entire blocker. STILL PARTIAL, and this is the residue: characteristic zero, and positive characteristic that is not prime. The Kazhdan-subset half is characteristic-free, but the control half needs a coefficient FIELD (CharacterMass.gap and the finite-dual sum), and in characteristic zero the finite character sum becomes a Haar integral over a torus needing an equidistribution estimate. Ershov--Jaikin-Zapirain do not prove that half either: they import Kassabov's relative (T) for (EL_2(R) semidirect R^2, R^2), which is not in this tree or in Mathlib
+* **`unassigned`**, line 1508 --- The matrix $\tau$ defined in \eqref{eq:tau} belongs to $\EL_{12}(R)$.
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 1513 --- Put $I=I_6$.
+* **`unassigned`**, line 1513 --- The Whitehead factorization gives
+* **`unassigned`**, line 1532 --- If $B=(b_{rs})_{r,s=0}^5\in M_6(R)$, then
+* **`unassigned`**, line 1540 --- In either product, distinct off-diagonal matrix units have product zero, so no cross-terms occur.
+* **`unassigned`**, line 1540 --- Every factor on the right-hand side of \eqref{eq:whitehead-factorization} therefore belongs to $\EL_{12}(R)$.
+* **`unassigned`**, line 1540 --- Since $Y=X^{-1}$, its left-hand side is $\tau$, and the result follows.
+* **`unassigned`**, line 1546 --- Set $H=\EL_{12}(R)$, and let
+* **`unassigned`**, line 1554 --- $L=\EL_3(R)\le H$ denote the image of the embedding $A\mapsto\operatorname{diag}(A,I_9)$.
+* **`unassigned`**, line 1558 --- The groups $H$ and $L$ have property~\textup{(T)}, and $\tau\in H$ satisfies
+* **`unassigned`**, line 1574 --- The ring $R$ is generated by $s_0,s_1,t_0,t_1$ as a unital ring.
+* **`unassigned`**, line 1574 --- The theorem of Ershov and Jaikin-Zapirain therefore gives property~\textup{(T)} for $\EL_{12}(R)$ and $\EL_3(R)$~\cite[Theorem~1.1]{EJZ}.
+* **`unassigned`**, line 1574 --- Lemma \ref{lem:tau-elementary} gives $\tau\in H$.
+* **`unassigned`**, line 1579 --- For $i\ne j$ and $a\in R$, equations \eqref{eq:corner-conjugation} and \eqref{eq:matrix-compression} give
+* **`unassigned`**, line 1584 --- where the elementary matrices are viewed in the embedded copy of $L$.
+* **`unassigned`**, line 1584 --- These matrices generate $L$, so \eqref{eq:compresses-L} follows.
+* **`unassigned`**, line 1610 --- Let $S$ be a unital ring, let $n\ge3$, and let $N\trianglelefteq\EL_n(S)$.
+* **`unassigned`**, line 1610 --- Suppose that $e_{ij}(x)\in N$ and that $axb=1$ for some $a,b\in S$.
+* **`unassigned`**, line 1610 --- Then $N=\EL_n(S)$.
+* **`unassigned`**, line 1616 --- Choose $k$ different from $i$ and $j$.
+* **`unassigned`**, line 1616 --- Normality of $N$ and the elementary commutator relations give
+* **`unassigned`**, line 1631 --- so $e_{jk}(1)\in N$.
+* **`unassigned`**, line 1633 --- Products of the generalized permutation matrices
+* **`unassigned`**, line 1637 --- conjugate $e_{jk}(1)$ to $e_{uv}(1)$ or its inverse for any $u\ne v$.
+* **`unassigned`**, line 1637 --- Normality of $N$, and taking inverses if necessary, therefore gives $e_{uv}(1)\in N$ for every $u\ne v$.
+* **`unassigned`**, line 1637 --- Given $r\in S$ and $u\ne v$, choose $h$ different from $u$ and $v$.
+* **`unassigned`**, line 1637 --- Then
+* **`unassigned`**, line 1644 --- Thus $N$ contains every elementary generator of $\EL_n(S)$.
+* **`unassigned`**, line 1648 --- If $r,s\in R$ are nonzero, then there exist $a,b\in R$ such that
+* **`unassigned`**, line 1662 --- By \eqref{eq:two-sided-sandwich}, choose $u,v,c,d\in R$ such that
+* **`unassigned`**, line 1666 --- and set
+* **`unassigned`**, line 1676 --- The Leavitt relation $t_1s_0=0$ gives
+* **`unassigned`**, line 1680 --- On the other hand,
+* **`unassigned`**, line 1684 --- If this element were zero, then
+* **`unassigned`**, line 1688 --- contrary to $t_0(s_0t_1)s_1=1$.
+* **`unassigned`**, line 1692 --- The group $H=\EL_{12}(R)$ is nontrivial and simple.
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 1702 --- If $g$ commutes with every $e_{ij}(a)$, then the relations with $a=1$ give $\lambda_i=\lambda_j$ for all $i\ne j$.
+* **`unassigned`**, line 1702 --- Hence $g=\lambda I_{12}$ for some unit $\lambda\in R$.
+* **`unassigned`**, line 1702 --- The relations for arbitrary $a\in R$ then give $\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.
+* **`unassigned`**, line 1863 --- For $i,j\in\{0,1,2\}$ with $i\ne j$ and $a\in R$, we have $j\ne3$ and $i\ne4$.
+* **`unassigned`**, line 1863 --- Hence the Steinberg relations give
+* **`unassigned`**, line 1883 --- Since $t_1qs_1=1$, Lemma~\ref{lem:normal-generation-transvection}, applied to $e_{02}(q)$, gives $\normal d_H=H$.
+* **`unassigned`**, line 1919 --- The MF radical is exact across every surjection whose kernel is already invisible to MF.
+* **`unassigned`**, line 2004 --- Thus image under $f$ and inverse image under $f$ give mutually inverse correspondences, preserving inclusion between the normal subgroups with MF quotient in $G$ and in $Q$.
+* **`unassigned`**, line 2004 --- The map induced by $f$ on the largest quotients visible to MF is an isomorphism:
+* **`unassigned`**, line 2021 --- These correspondences respect composition of surjective homomorphisms with kernels invisible to MF.
+* **`unassigned`**, line 2024 --- Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let $1\ne d\in B$ normally generate $B$.
+* **`unassigned`**, line 2024 --- Put $A=\langle d\rangle$.
+* **`unassigned`**, line 2024 --- For a countable group $Q$, define
+* **`unassigned`**, line 2066 --- where $A\to Q\times A$ is the inclusion into the second factor.
+* **`unassigned`**, line 2066 --- The trivial map $B\to Q$ and the projection $Q\times A\to Q$ agree on $A$.
+* **`unassigned`**, line 2066 --- They therefore define an epimorphism
+* **`unassigned`**, line 2080 --- It is split by the inclusion $Q\to Q\times A\to W_Q$.
+* **`unassigned`**, line 2080 --- The normal-form theorem for amalgamated free products shows that both vertex maps in \eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
+* **`unassigned`**, line 2180 --- If $N\trianglelefteq W_Q$, the same factorization gives
+* **`unassigned`**, line 2196 --- Indeed, a homomorphism from $W_Q$ to an MF group kills $N$ exactly when its unique factor through $Q$ kills $\pi_Q(N)$.
+* **`unassigned`**, line 2196 --- Proposition~\ref{prop:mf-residual-calculus} and \eqref{eq:closure-pullback} give
+* **`unassigned`**, line 2216 --- Here, if $\ker\pi_Q\le N$, then $N=\pi_Q^{-1}(\pi_Q(N))$.
+* **`unassigned`**, line 2219 --- Taking $Q=\mathbb Z$ makes the quotient criterion especially concrete: for every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
+* **`unassigned`**, line 2235 --- Indeed, every quotient of $\mathbb Z$ is MF, while $\ker\pi_{\mathbb Z}=\normal d_{W_{\mathbb Z}}$.
+* **`unassigned`**, line 2240 --- The author thanks Francesco Fournier-Facio for early advice and detailed comments on earlier drafts, and Alon Dogon for organizing the ensuing discussion and for comments on the surrounding literature.
+* **`unassigned`**, line 2240 --- The author also thanks Tatiana Shulman for clarifying the terminology and historical context of the MF question, and Caleb Eckhardt for discussions of MF representations and matrix norms.
+* **`unassigned`**, line 2249 --- Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical exploration, proof development, manuscript drafting, literature navigation, Lean formalization, and editorial revision.
+* **`unassigned`**, line 2249 --- The Lean development verifies the one-sided transport theorem and the normal property-\textup{(T)} radical criterion.
+* **`unassigned`**, line 2249 --- It also verifies the rank 12 compression and commutator calculations and the resulting full MF radical conclusion.
+* **`unassigned`**, line 2249 --- For Proposition~\ref{prop:simple}, the formalization proves that every nontrivial normal subgroup contains an elementary matrix $e_{ij}(x)$ with $x\ne0$.
+* **`unassigned`**, line 2249 --- It treats diagonal matrices separately and divides the nondiagonal case according to whether the relevant entry of the inverse matrix is zero.
+* **`unassigned`**, line 2249 --- The formalized simplicity proof uses the concrete two-sided sandwich and the fact that every central unit of the binary Leavitt algebra over $\F_2$ equals $1$.
+* **`unassigned`**, line 2249 --- It does not formalize Preusser's general theorem about normal subgroups or a general theory of pure infiniteness.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 10 | 0 |
-| Introduction | 74 | 0 |
-| Relation to prior work | 14 | 0 |
+| (front matter) | 11 | 0 |
+| Introduction | 79 | 1 |
+| Relation to prior work | 24 | 2 |
 | One-sided compression in finite dimension | 14 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
 | Normal Kazhdan subgroups and the MF radical | 68 | 0 |
-| The binary Leavitt self-compression | 17 | 0 |
-| The binary Leavitt group has full MF radical | 75 | 0 |
-| Quotients visible to MF | 32 | 0 |
+| The binary Leavitt self-compression | 30 | 16 |
+| Simplicity and the full MF radical | 75 | 26 |
+| Quotients visible to MF | 50 | 18 |
+| Acknowledgments | 2 | 2 |
+| Use of AI and formal methods | 7 | 7 |
