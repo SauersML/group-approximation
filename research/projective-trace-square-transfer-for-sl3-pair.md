@@ -526,3 +526,21 @@ weakening consumed by the HNN marked word.
   canonical-double use of Lin's machinery to the defect-only mixed terminal
   `sl3-swap-extension-has-defect-only-fold-square-rigidity` and leaves the
   full arbitrary-unitary endpoint problem open.
+
+- **Explicit falsification gate via a compact homogeneous quotient
+  (2026-08-25).**  `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`
+  shows that `(PTS1)` fails as soon as
+  `M = L^infinity(SL_3(Q_2)/Lambda') rtimes A` is Connes embeddable, for any
+  torsion-free cocompact lattice `Lambda' < SL_3(Q_2)` with at least two
+  `SL_3(Z_2)`-orbits on the quotient: the `+-1` indicator of one orbit is
+  `C`-central (`C` acts profinitely, through `SL_3(Z_2)`), and its commutator
+  with `rho(h)` has trace of modulus `< 1` in every microstate sequence, so
+  no constant `K` and modulus `eta` can hold.  The embeddability question is
+  parked as `sl3-homogeneous-quotient-crossed-product-is-connes-embeddable`.
+  Consequently any proof of `(PTS1)` must be an argument that this explicit
+  crossed product has no matrix microstates.  In particular it cannot use
+  only the finite-image representations of `A`, on which `(PTS1)` does hold
+  with `K = O(1/kappa^2)` by property (T) of `C` and `rho(C) = rho(A)`; and
+  it must see the difference between the congruence filtration of
+  `SL_3(Z_2)` and its `h`-conjugate, which is exactly what the profinite
+  restriction of `M` to `C` erases.
