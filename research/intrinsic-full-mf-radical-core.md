@@ -10,6 +10,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
+  - GroupApproximation/Sofic/FullMFRadicalPullback.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -178,13 +179,40 @@ is an isomorphism.  Thus adjoining or removing an intrinsically full kernel
 does not change the core-free image.  Full-kernel extensions become
 equivalences after applying the core-free reflection.
 
-The construction and equations (1)--(16) are formalized in
+The core itself satisfies the corresponding pullback formula.  If `f : G --> H`
+is onto and `ker(f)` is intrinsically full, then
+
+```text
+Core_MF(G) = f^(-1)(Core_MF(H)).                     (17)
+```
+
+Consequently, if the target is core-free, the source core is exactly the
+kernel:
+
+```text
+Core_MF(H)=1 and Core_MF(ker(f))=ker(f)
+    => Core_MF(G)=ker(f).                             (18)
+```
+
+Surjectivity is not needed in (18).  At the level of the genuine norm-matrix
+corona residual, the same argument gives the exact formula
+
+```text
+Rad_MF(H)=1 and Rad_MF(ker(f))=ker(f)
+    => Rad_MF(G)=ker(f).                              (19)
+```
+
+Thus a homomorphism with an intrinsically invisible kernel and a fully visible
+target computes the invisible part of its source exactly.
+
+The construction and equations (1)--(19) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
 `GroupApproximation/Sofic/FullMFRadicalProducts.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExtensions.lean` and
-`GroupApproximation/Sofic/FullMFRadicalLocalization.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalLocalization.lean` and
+`GroupApproximation/Sofic/FullMFRadicalPullback.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION

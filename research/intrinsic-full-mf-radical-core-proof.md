@@ -12,6 +12,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
+  - GroupApproximation/Sofic/FullMFRadicalPullback.lean
 ---
 
 # Proof
@@ -191,5 +192,26 @@ H --> G/C(G).
 The target is core-free, so the universal property factors this map through
 `H/C(H)`.  The resulting map is a left inverse to the map induced by `f`.
 Surjectivity of `f` makes the induced map onto, hence it is an isomorphism.
+
+The same hypotheses determine the source core before quotienting.  Functoriality
+gives
+
+```text
+C(G) <= f^(-1)(C(H)).
+```
+
+For the reverse inclusion, take `x` with `f(x)` in `C(H)`.  Exactness of the
+core image supplies `c in C(G)` with `f(c)=f(x)`.  Then `x c^(-1)` lies in the
+kernel, hence in `C(G)`, and therefore `x` lies in `C(G)`.  This proves the
+pullback formula (17).
+
+If the target is core-free, functoriality first gives `C(G) <= ker(f)`.  When
+the kernel is intrinsically full, maximality gives the reverse inclusion.
+This proves (18) without requiring `f` to be onto.
+
+For the genuine corona residual, the upper inclusion in (19) follows by
+mapping `Rad_MF(G)` into the trivial target residual.  For the lower inclusion,
+the inclusion `ker(f) --> G` maps the full residual of the kernel into
+`Rad_MF(G)`.  Hence the two subgroups are equal.
 
 The Lean proof follows these steps directly.

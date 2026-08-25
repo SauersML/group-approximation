@@ -2,7 +2,7 @@
 version: "v0.4"
 
 project:
-  name: "Kazhdan Self-Compression and Non-MF Groups"
+  name: "One-Sided Kazhdan Compression and the Failure of MF Approximation"
   description: >-
     The project formalizes the one-sided Kazhdan compression criterion, its
     normal property-(T) MF-radical consequence, the rank-twelve Leavitt
@@ -17,7 +17,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "Kazhdan Self-Compression and Non-MF Groups"
+  - title: "One-Sided Kazhdan Compression and the Failure of MF Approximation"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."
