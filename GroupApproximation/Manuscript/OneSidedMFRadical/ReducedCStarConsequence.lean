@@ -34,6 +34,27 @@ printed sentence.
   group forgotten: some separable stably finite C⋆-algebra is not MF.
 * `NotEverySeparableStablyFiniteCStarAlgebraIsMF` — the same sentence written
   as the refutation of the universal statement it denies.
+* `PrintedHeadline` — the whole of `thm:headline` as printed, which is the
+  clause above conjoined with the clauses proved upstream.
+
+## Why `PrintedHeadline` exists
+
+`RankTwelveEndpoint.HeadlineConclusion` was the exact printed theorem before
+the reduced-C⋆ sentence was added to it, and it is now a proper subclaim: it
+carries nontriviality, simplicity, property `(T)`, `Rad_MF(H) = H`, triviality
+of every MF-target homomorphism, and failure of MF-ness, but says nothing about
+`C*_r(H)`.  The printed theorem also opens with "`H` is countable", which
+`HeadlineConclusion` does not assert either.
+
+`PrintedHeadline` restores both, so that the label `thm:headline` again has a
+single declaration stating exactly what it prints.  It is a conjunction of
+already-proved propositions and introduces no new mathematics; the reason to
+name it is that a printed label with no single Lean target is a gap a reader
+cannot check, not that anything further is being claimed.
+
+This module is where the conjunction has to live: it is the first point in the
+import graph at which `HeadlineConclusion` and `ReducedCStarConsequence` are
+both in scope.
 
 ## Which Blackadar--Kirchberg question this answers, and which it does not
 
@@ -43,41 +64,55 @@ questions, and so does this module.
 * **The 1994 Oberwolfach suggestion is untouched.**  Blackadar and Kirchberg
   suggested there that every separable **nuclear** stably finite C⋆-algebra
   might be NF.  `C*_r(H)` is the reduced group C⋆-algebra of a non-amenable
-  group — `H` has property `(T)` and is infinite, since a finite group embeds
-  in a single matrix algebra and is therefore MF, whereas `H` is not — so by
-  Lance's theorem it is not nuclear.  That non-nuclearity is *not* formalized
-  in this repository and is *not* used anywhere below; it is recorded only to
-  make the scope explicit.  Nothing in this module asserts, uses, or bears on
-  the nuclear question, and none of the three propositions below should be
-  read as touching it.
-* **The broader MF question is the one answered.**  Their 1997 paper
+  group, so it is not nuclear, and nothing here bears on that suggestion.  The
+  non-amenability is proved, in `ReducedCStarNotNuclear`:
+  `manuscriptRankTwelveNonNuclearityProfile` gives `Infinite H`,
+  `¬ IsAmenable H` and failure of the translation-tested approximation
+  property, unconditionally.  `Infinite H` there is `RankTwelve.infinite`,
+  which transports `Infinite` on the coefficient ring through the elementary
+  root `e₀₁`; no MF fact enters, and this module claims no other route to it.
+* **The 1997 question, and what is and is not new.**  Their 1997 paper
   introduced MF C⋆-algebras and observed that no separable stably finite
-  C⋆-algebra was known not to be MF; the question whether every separable
+  C⋆-algebra was then known not to be MF; the question whether every separable
   stably finite C⋆-algebra is MF became known as the Blackadar--Kirchberg MF
-  problem.  `NotEverySeparableStablyFiniteCStarAlgebraIsMF` is exactly the
-  negation of that universal statement, at the repository's reading of the
-  predicates (`Analysis.MFAlgebra.IsMFAlgebra` and
-  `Analysis.ReducedGroupCStarStablyFinite.IsStablyFiniteCStarAlgebra`).
+  problem.  `NotEverySeparableStablyFiniteCStarAlgebraIsMF` is the negation of
+  that universal statement, at the repository's reading of the predicates
+  (`Analysis.MFAlgebra.IsMFAlgebra` and
+  `Analysis.ReducedGroupCStarStablyFinite.IsStablyFiniteCStarAlgebra`).  It is
+  **not** claimed here that this manuscript is what settles that question: the
+  negative solution of the Connes embedding problem already produced stably
+  finite non-MF C⋆-algebras in general.  The manuscript's own wording is the
+  accurate one — `thm:headline` "provides such an example **among reduced
+  group C⋆-algebras**" — and that is `ReducedCStarConsequence`, not the
+  forgetful existential below.
 
 ## No priority is claimed for the bare existence statement
 
 Separable stably finite C⋆-algebras that are not MF are already known: the
 negative solution of the Connes embedding problem produced them in general.
-`SeparableStablyFiniteNonMFCStarAlgebraExists` is therefore *not* offered as a
-new theorem, and the manuscript does not present it as one — it is stated here
-only because it is the literal existential form of the printed sentence, and
-because it is the shape the Blackadar--Kirchberg question is asked in.  What is
-new in `thm:headline` is that such an example occurs among **reduced group**
-C⋆-algebras, which is `ReducedCStarConsequence`, and that is the proposition
-carrying the content.
+`SeparableStablyFiniteNonMFCStarAlgebraExists` and
+`NotEverySeparableStablyFiniteCStarAlgebraIsMF` are therefore *not* offered as
+new theorems, and the manuscript does not present them as such — they are
+stated here because they are the literal existential and refutation forms of
+the printed sentence, and because that is the shape in which the
+Blackadar--Kirchberg question is asked.  What is new in `thm:headline` is that
+such an example occurs among **reduced group** C⋆-algebras, which is
+`ReducedCStarConsequence`, and that is the proposition carrying the content.
+No docstring in this module should be read as saying that this work settles
+the Blackadar--Kirchberg MF problem.
 
 ## What "stably finite" means here
 
 `IsStablyFiniteCStarAlgebra` is the operator-algebraic reading — every isometry
 in every finite matrix amplification is a unitary — and deliberately not
-mathlib's `IsStablyFiniteRing`.  The two are equivalent for C⋆-algebras by a
-polar-decomposition argument that this repository does not formalize; see the
-docstring of `IsStablyFiniteCStarAlgebra` itself.
+mathlib's `IsStablyFiniteRing`.  The polar-decomposition argument carrying the
+former to the latter *is* formalized, in
+`Analysis.ReducedGroupCStarDedekindFinite`
+(`IsStablyFiniteCStarAlgebra.isStablyFiniteRing`, and the instance
+`reducedGroupCStar_isStablyFiniteRing` for `C*_r(G)` itself), so the printed
+"stably finite" holds in both readings.  The propositions below are stated at
+the operator-algebraic one because that is what the Blackadar--Kirchberg
+literature means; see the docstring of `IsStablyFiniteCStarAlgebra` itself.
 -/
 
 namespace GroupApproximation
@@ -166,6 +201,33 @@ theorem manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF :
   intro hall
   obtain ⟨hsep, hsf, hnot⟩ := manuscriptReducedCStarConsequence
   exact hnot (hall (ReducedGroupCStar H) hsep hsf)
+
+/-! ## The printed theorem, whole -/
+
+/-- **`thm:headline` exactly as printed, as one proposition.**  With
+`R = L_{𝔽₂}(1,2)` and `H = EL₁₂(R)`: `H` is countable, nontrivial, simple, has
+property `(T)`, and `Rad_MF(H) = H` — equivalently every homomorphism from `H`
+to an MF group is trivial, so in particular `H` is not MF — and its reduced
+group C⋆-algebra `C*_r(H)` is separable and stably finite but is not MF.
+
+The three conjuncts are, in order, countability, the six clauses of
+`RankTwelveEndpoint.HeadlineConclusion`, and the reduced-C⋆ clause
+`ReducedCStarConsequence`.  Countability is a separate conjunct because
+`HeadlineConclusion` does not carry it, though the printed sentence states it
+first; the reduced-C⋆ clause is separate because `HeadlineConclusion` predates
+it.  Nothing here is proved that was not already proved upstream — see the
+module docstring for why the conjunction is nevertheless worth a name. -/
+def PrintedHeadline : Prop :=
+  Countable H ∧ HeadlineConclusion ∧ ReducedCStarConsequence
+
+/-- **The printed theorem, proved, hypothesis-free.**  Each conjunct is
+discharged by the endpoint that already owns it: `RankTwelveEndpoint.countable`,
+`manuscriptBinaryLeavittHeadline` — which is where simplicity enters, via
+`RankTwelveEndpoint.manuscriptPropositionSimple` — and
+`manuscriptReducedCStarConsequence`. -/
+theorem manuscriptPrintedHeadline : PrintedHeadline :=
+  ⟨RankTwelveEndpoint.countable, manuscriptBinaryLeavittHeadline,
+    manuscriptReducedCStarConsequence⟩
 
 end OneSidedMFRadical
 end Manuscript

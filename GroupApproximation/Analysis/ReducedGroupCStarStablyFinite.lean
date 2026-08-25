@@ -36,10 +36,12 @@ Blackadar–Kirchberg MF literature, where every MF algebra is stably finite.
 This is deliberately *not* mathlib's `IsStablyFiniteRing` (`Mathlib/Data/
 Matrix/Mul.lean`), which asks that every matrix ring `Matrix (Fin n) (Fin n) A`
 be Dedekind-finite and mentions neither the star operation nor the norm.  For
-C⋆-algebras the two notions are equivalent, by a standard polar-decomposition
-argument that turns a one-sided ring inverse into an isometry; that argument is
-*not* formalized in this repository, and no such equivalence is claimed or used
-anywhere below.  The two predicates are kept separate on purpose. -/
+C⋆-algebras the forward implication holds, by a polar-decomposition argument
+that turns a one-sided ring inverse into an isometry.  That argument *is* now
+formalized, in `Analysis.ReducedGroupCStarDedekindFinite`, as
+`IsStablyFiniteCStarAlgebra.isStablyFiniteRing`; nothing in the present module
+uses it, and the two predicates are kept separate so that the trace argument
+below stands on its own. -/
 def IsStablyFiniteCStarAlgebra (A : Type u) [CStarAlgebra A] : Prop :=
   ∀ k : ℕ, ∀ v : CStarMatrix (Fin (k + 1)) (Fin (k + 1)) A,
     star v * v = 1 → v * star v = 1

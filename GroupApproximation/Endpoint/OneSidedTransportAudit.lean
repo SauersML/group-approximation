@@ -95,6 +95,8 @@ import GroupApproximation.PropertyT.A2MagicExponentFree
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEJZInstance
 import GroupApproximation.PropertyT.FinitelyGeneratedRing
 import GroupApproximation.Analysis.KOmegaHilbertSpaceEndpoint
+import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarConsequence
+import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarNotNuclear
 
 /-!
 # Kernel audit for *One-sided Kazhdan transport and MF radicals*
@@ -802,3 +804,41 @@ resting on an unfinished proof placeholder. -/
 #audit_axioms GroupApproximation.mem_congruenceSubgroup_iff_entries
 #audit_axioms GroupApproximation.map_le_congruenceSubgroup_of_entries
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.correctedCornerProvenance_printedDetection
+
+-- The reduced-C* clause of `thm:headline`, stated against the
+-- Blackadar--Kirchberg MF question rather than settling it: separable stably
+-- finite non-MF C*-algebras were already known in general from the negative
+-- solution of the Connes embedding problem, and what is new here is an example
+-- among reduced group C*-algebras.  `manuscriptReducedCStarConsequence` is the printed
+-- clause at `H = EL12(L_F2(1,2))` itself; the other two forget the group, and
+-- the last one is the printed universal statement written as the refutation it
+-- is.  None of the three carries a nuclearity hypothesis, so none of them bears
+-- on the 1994 Oberwolfach nuclear suggestion.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
+
+-- `thm:headline` exactly as printed, in one proposition: countability, the six
+-- clauses of `HeadlineConclusion` (simplicity included), and the reduced-C*
+-- clause.  It proves nothing new -- every conjunct is discharged by the
+-- endpoint that already owns it -- and exists so that the printed label has a
+-- single Lean target again, which it lost when the reduced-C* sentence was
+-- added to the theorem.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline
+
+-- The scope boundary of the reduced-C* answer.  The PROFILE is unconditional:
+-- `H` is infinite, is not amenable, has no invariant mean, and its reduced
+-- algebra fails the translation-tested approximation property -- every clause a
+-- theorem of this repository.  Non-nuclearity ITSELF is not proved here: the
+-- endpoint below takes `TranslationCPAPReductionInput` as a leading binder, so
+-- it is printed with the weaker macro on purpose.  Both are recorded because
+-- together they are the manuscript's caveat -- the witness is non-nuclear, so
+-- the 1994 Oberwolfach suggestion about separable NUCLEAR stably finite
+-- algebras is untouched by the negative answer to the broad MF problem.
+--
+-- These names are written on one line each deliberately: the ledger gate's
+-- AUDIT_RE requires the declaration on the same line as the macro, so the
+-- continuation-line form used inside ReducedCStarNotNuclear.lean itself is
+-- invisible to it.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptRankTwelveNonNuclearityProfile
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarNotNuclear

@@ -9,9 +9,12 @@ import GroupApproximation.Meta.AxiomGuard
 
 ## What this module is for
 
-`non_mf_groups_exist.tex` answers the **broad** Blackadar--Kirchberg MF problem
-negatively, with `H = EL₁₂(L_{𝔽₂}(1,2))`: `C⋆_r(H)` is separable, stably finite
-and not MF.  The manuscript's "Relation to prior work" recalls a strictly older
+`non_mf_groups_exist.tex` exhibits, with `H = EL₁₂(L_{𝔽₂}(1,2))`, a separable
+stably finite C⋆-algebra that is not MF -- and does so **among reduced group
+C⋆-algebras**, which is what is new.  Such algebras were already known in
+general from the negative solution of the Connes embedding problem, so this
+module does not say the manuscript settles the Blackadar--Kirchberg MF
+problem.  The manuscript's "Relation to prior work" recalls a strictly older
 and strictly narrower question -- the 1994 Oberwolfach suggestion of Blackadar
 and Kirchberg that every separable **nuclear** stably finite C⋆-algebra might be
 NF -- and this module is the machine-checked reason that question is left
