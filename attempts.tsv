@@ -199,3 +199,4 @@
 32857705307	2026-08-25T14:09:52Z	GroupApproximation/Sofic/AvatarMetricCheck.lean	length_le_of_runs_bounded
 32863833782	2026-08-25T15:08:24Z	GroupApproximation/Sofic/AvatarMetricCheck.lean	reduceCyclically_eq_self
 32869503061	2026-08-25T16:02:59Z	GroupApproximation/Sofic/AvatarRouterInstance.lean	avatarLength_le_srcAvatarWord
+32875009653	2026-08-25T16:58:05Z	GroupApproximation/Sofic/AvatarRunBound.lean	infix_cons_cases
