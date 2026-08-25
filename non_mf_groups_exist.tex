@@ -17,6 +17,17 @@
 \fi
 \hypersetup{pdftitle={[DRAFT] Limits of Matrix Approximation of Groups in Operator Norm},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: limits of matrix approximation of groups in operator norm},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
+% Machine-readable source metadata attaching a printed statement to an
+% accompanying Lean~4 declaration.  The macro is intentionally invisible in
+% the PDF; the web edition and audit scripts consume its two arguments.
+% \leanverified is the strongest of the six certification statuses accepted by
+% scripts/check_non_mf_refs.py, and is reserved for an object-level proof of
+% the printed claim.  It is the only status used here: the sentence census
+% strips \leanverified and \leanstep before hashing a sentence, so a badge
+% carrying any other status would be extracted as prose.  This record does not
+% assert that the surrounding prose proof is a line-by-line transcription;
+% route-level correspondence is tracked separately.
+\newcommand{\leanverified}[2]{\ignorespaces}
 \allowdisplaybreaks
 \raggedbottom
 \emergencystretch=1.5em
@@ -87,7 +98,9 @@ satisfying $Q/P$ MF.
 
 \section{Introduction}
 
-Not every countable group is MF.  Our counterexample is
+Not every countable group is MF.
+\leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
+Our counterexample is
 %<webmath object="whole" when="H=\EL_{12}(L_{\F_2}(1,2))" title="the matrix group that provides the counterexample">
 % This equation names the counterexample H.  The expression
 % \(L_{\F_2}(1,2)\) is the binary [[Leavitt algebra]], and
@@ -121,8 +134,11 @@ Not every countable group is MF.  Our counterexample is
 \]
 The group $H$ is countable, nontrivial, simple, and has
 property~\textup{(T)}, but every homomorphism from $H$ to an MF group is
-trivial.  In particular, $H$ is not MF.  Its reduced group $C^*$-algebra
+trivial.  In particular, $H$ is not MF.
+\leanverified{Manuscript/OneSidedMFRadical/HeadlineTheorem}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline}
+Its reduced group $C^*$-algebra
 $C^*_{\mathrm r}(H)$ is separable and stably finite, but is not MF.
+\leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence}
 
 More precisely, a countable group $G$ is \emph{MF} if there are positive
 integers $d_n$ and maps $V_n\colon G\to\U(d_n)$, with $V_n(1)=1$, such that
@@ -250,6 +266,7 @@ Proposition~\ref{prop:mf-residual-calculus} shows that $G$ is MF
 precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
 $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedCriterion}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets}
 
 More generally, for $N\trianglelefteq G$ define its \emph{MF kernel closure}
 by
@@ -267,10 +284,13 @@ by
  =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
 \]
 The image of a corona homomorphism from $G$ is countable and is itself MF;
-conversely, every MF target embeds in a norm matrix corona.  Thus
+conversely, every MF target embeds in a norm matrix corona.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
+Thus
 $\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
 $G/N$ is MF precisely when
 $\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
+\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFRadicalIsLiteralClosureOfTrivial}
 This is a closure operation on the normal subgroups of one fixed group; it is
 unrelated to topological closure of classes of marked groups.
 
@@ -294,6 +314,7 @@ invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and
  \qquad(N\trianglelefteq G).
 \]
 In particular, $G$ is MF if and only if its MF radical is trivial.
+\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
 \end{proposition}
 
 \begin{proof}
@@ -378,10 +399,13 @@ $K\le\mathfrak D_G(L)$, then
 In particular, a nontrivial such $K$ makes $G$ non-MF.  If $G$ has
 property~\textup{(T)} and $\mathfrak D_G(L)=G$, then
 $\Rad_{\mathrm{MF}}(G)=G$.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedCriterion}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion}
 \end{mainthm}
 
 We sketch the argument.  Corollary~\ref{cor:defect-hs} gives
-$\mathfrak D_G(L)\le R_{\infty\to2}(G)$.  Equivalently, if $(V_n)$ is any
+$\mathfrak D_G(L)\le R_{\infty\to2}(G)$.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedDefectShadow}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion}
+Equivalently, if $(V_n)$ is any
 operator norm asymptotic representation of $G$, then
 $\hsnorm{V_n(d)-1}\to0$ for every $d\in\mathfrak D_G(L)$.  To upgrade this
 conclusion to corona triviality on $K$, fix a homomorphism
@@ -401,6 +425,7 @@ Thus every corona homomorphism kills $K$, as required.
 Theorem~\ref{thm:commutant} gives a separate finite-dimensional vanishing
 result: every finite-dimensional linear representation of $G$ over any field
 kills $\mathfrak D_G(L)$.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedDefect}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility}
 
 We next apply Theorem~\ref{thm:compression-criterion} to the binary Leavitt
 construction that produces the group $H$ announced above.
@@ -483,8 +508,11 @@ nontrivial, simple, has property~\textup{(T)}, and
  \Rad_{\mathrm{MF}}(H)=H.
 \]
 Equivalently, every homomorphism from $H$ to an MF group is trivial.
-In particular, $H$ is non-MF.  Its reduced group $C^*$-algebra
+In particular, $H$ is non-MF.
+\leanverified{Manuscript/OneSidedMFRadical/HeadlineTheorem}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline}
+Its reduced group $C^*$-algebra
 $C^*_{\mathrm r}(H)$ is separable and stably finite, but is not MF.
+\leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence}
 \end{mainthm}
 
 %<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the matrix tau that carries L back inside L">
@@ -497,8 +525,11 @@ $C^*_{\mathrm r}(H)$ is separable and stably finite, but is not MF.
 % needs.
 %</webmath>
 Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
-the subgroup $L\cong\EL_3(R)$ in the upper left.  The element $c=e_{34}(1)$
+the subgroup $L\cong\EL_3(R)$ in the upper left.
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_compresses_corner}
+The element $c=e_{34}(1)$
 centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_c_commutator_ell}
 %<webmath object="d" when="d=e_{02}(s_1t_1)" title="a concrete nonidentity element of H">
 % The letter d names a [[commutator]] comparing the products
 % \(\tau c\tau^{-1}\ell\) and \(\ell\tau c\tau^{-1}\).  The equality says d
@@ -513,11 +544,14 @@ centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
 d=e_{02}(s_1t_1).
 \]
 The relation $t_1(s_1t_1)s_1=1$ and the elementary commutator relations show
-directly that $d$ normally generates $H$.  Since
+directly that $d$ normally generates $H$.
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveEndpoints}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.normalClosure_defect_eq_top}
+Since
 $d\in\mathfrak D_H(L)$ and $\mathfrak D_H(L)$ is normal, it follows that
 $\mathfrak D_H(L)=H$.  Therefore
 Theorem~\ref{thm:compression-criterion} gives
 $\Rad_{\mathrm{MF}}(H)=H$.
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top}
 
 If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
 conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ injectively into
@@ -525,7 +559,9 @@ itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
 Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
 linear representation.  The same conclusion holds if $G$ is residually
 finite, because every nonidentity element then survives in a finite
-permutation representation.  If $G$ is amenable, its
+permutation representation.
+\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility}
+If $G$ is amenable, its
 property-\textup{(T)} subgroup $L$ is finite~\cite{BHV}; then
 $uLu^{-1}=L$, so
 $ucu^{-1}$ centralizes $L$ for every
@@ -535,6 +571,7 @@ The argument is specific to operator norm approximation and gives no
 conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt
 approximations do not provide the operator norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
 
 A full MF radical also lets us prescribe the quotient visible to MF.
 
@@ -605,6 +642,7 @@ Moreover, precomposition with $\pi_Q$ induces a bijection
  \operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)
 \]
 for every MF group $M$.
+\leanverified{Manuscript/OneSidedMFRadical/PrescribedQuotients}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients}
 \end{mainthm}
 
 \subsection*{Relation to prior work}
@@ -626,7 +664,10 @@ Kirchberg~\cite{LubotzkyOppenheim,Thom}.  The negative solution of the Connes
 embedding problem also produced stably finite non-MF $C^*$-algebras in
 general~\cite{MIPRE}.  Theorem~\ref{thm:headline} provides such an example
 among reduced group $C^*$-algebras and answers the operator norm group
-approximation question negatively.  Korchagin subsequently developed
+approximation question negatively.
+\leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
+\leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
+Korchagin subsequently developed
 permanence and local approximation results for MF groups~\cite{Korchagin}.
 Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
 Separately, Shulman proves MF full group $C^*$-algebra results for several
@@ -692,6 +733,7 @@ Consequently, if $c\in C_G(L)$, then
  \rho([ucu^{-1},\ell])=1
  \qquad(\ell\in L).
 \]
+\leanverified{Manuscript/OneSidedMFRadical/FiniteDimensionalCommutant}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity}
 \end{theorem}
 
 \begin{proof}
@@ -724,7 +766,9 @@ $\rho([ucu^{-1},\ell])=1$ for every $\ell\in L$.
 
 The finite-dimensional hypothesis is essential here.  On an
 infinite-dimensional space an injective endomorphism of the commutant need
-not be surjective.  In Section~3 the Kazhdan projection places the analogous
+not be surjective.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential}
+In Section~3 the Kazhdan projection places the analogous
 endomorphism inside a norm matrix corona, where stable finiteness supplies
 the missing surjectivity for projections onto fixed vectors.
 
@@ -828,6 +872,7 @@ For every sequence $(m_n)$, the norm matrix corona
 \]
 is stably finite.  Consequently, unitarily equivalent projections in a norm
 matrix corona are equal whenever one is dominated by the other.
+\leanverified{Manuscript/OneSidedMFRadical/StableFiniteness}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite}
 \end{lemma}
 
 \begin{proof}
@@ -873,6 +918,7 @@ then
 \[
  U^*PU\le P.
 \]
+\leanverified{Analysis/MaximalCStarKazhdanProjection}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder}
 \end{lemma}
 
 \begin{proof}
@@ -917,6 +963,7 @@ representation of $G$.  Then
  \operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)
  =\mathcal C_2(V,L).
 \]
+\leanverified{Manuscript/OneSidedMFRadical/KazhdanTransport}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport}
 \end{theorem}
 
 \begin{proof}
@@ -996,6 +1043,7 @@ $c\in C_G(L)$.  Then
  [ucu^{-1},\ell]\in R_{\infty\to2}(G)
  \qquad(\ell\in L).
 \]
+\leanverified{Manuscript/OneSidedMFRadical/DefectHS}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible}
 \end{corollary}
 
 \begin{proof}
@@ -1061,6 +1109,7 @@ coordinate subsequence, there are nonzero projections
  W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
 \]
 whose corona class is the corner representation \(g\mapsto q\rho(g)\).
+\leanverified{Manuscript/OneSidedMFRadical/CentralCoronaCorner}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner}
 \end{lemma}
 
 \begin{proof}
@@ -1117,6 +1166,7 @@ Let \(G\) be countable, let \(D\le R_{\infty\to2}(G)\), and let
 \[
  K\le\Rad_{\mathrm{MF}}(G).
 \]
+\leanverified{Manuscript/OneSidedMFRadical/NormalKazhdan}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical}
 \end{theorem}
 
 \begin{proof}
@@ -1327,6 +1377,8 @@ property~\textup{(T)}, then
 \[
  \Rad_{\mathrm{MF}}(Q)=Q.
 \]
+\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation}
+\leanverified{Manuscript/OneSidedMFRadical/CompleteDefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation}
 \end{proposition}
 
 \begin{proof}
@@ -1452,6 +1504,7 @@ A direct block multiplication gives
 
 \begin{lemma}\label{lem:tau-elementary}
 The matrix $\tau$ defined in \eqref{eq:tau} belongs to $\EL_{12}(R)$.
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem}
 \end{lemma}
 
 \begin{proof}
@@ -1635,6 +1688,7 @@ contrary to $t_0(s_0t_1)s_1=1$.
 
 \begin{proposition}\label{prop:simple}
 The group $H=\EL_{12}(R)$ is nontrivial and simple.
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveSimplicity}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple}
 \end{proposition}
 
 \begin{proof}
@@ -1800,6 +1854,7 @@ in $H$.  Then
  c\in C_H(L),\qquad d=e_{02}(q)\ne1,
  \qquad \normal d_H=H.
 \]
+\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect}
 \end{proposition}
 
 \begin{proof}
@@ -1880,6 +1935,7 @@ $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
 \]
 In particular, the conclusion holds whenever
 $\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel}
 More generally, for every normal subgroup $N\trianglelefteq G$,
 %<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="how relations forced in G are read from Q">
 % \(\operatorname{cl}_{\mathrm{MF}}^G(N)\) is an MF [[closure operation]] on
@@ -1909,6 +1965,7 @@ Consequently,
  \quad\Longleftrightarrow\quad
  \ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.
 \]
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback}
 \end{proposition}
 
 \begin{proof}
@@ -2047,6 +2104,7 @@ Furthermore,
 \[
  \ker\pi_Q=\normal d_{W_Q}.
 \]
+\leanverified{Manuscript/OneSidedMFRadical/UniversalFactorization}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization}
 \end{proposition}
 
 \begin{proof}
