@@ -26,12 +26,16 @@ Positive-definiteness is genuine, not assumed: `definite` is discharged by
 `uinner_self_eq_zero_iff`, which is why the quotient is by the null families
 and not by anything coarser.
 
-**Completeness is not proved.**  `K_ω` is a Hilbert space -- the ultraproduct
-of Hilbert spaces along an ultrafilter is complete -- but that is a separate
-diagonal argument and no `CompleteSpace` instance is claimed below.  Every
-statement here is about an inner product space, and the manuscript steps that
-need only the inner product, the norm, and orthogonality are available; a step
-that needs completeness is not.
+**Completeness is proved, one file above.**  `K_ω` is a Hilbert space, and that
+is not a naming: `Analysis/OmegaHilbertComplete.lean` registers
+`kOmegaCompleteSpace` for the type introduced below, and
+`Analysis/KOmegaHilbertSpaceEndpoint.lean` states the two halves together as the
+closed proposition `KOmegaIsHilbertSpace`.  No `CompleteSpace` instance is
+claimed *in this file*, and nothing here uses one: every statement below is
+about an inner product space, so the completeness argument sits strictly above
+this module and the import runs one way only.  Until 2026-08-25 this paragraph
+said completeness was not proved at all, which had been false since the
+instance landed.
 
 `K_ω` is introduced as an opaque type synonym of `Vec` rather than as
 instances on `Vec` itself, because `Vec` is a reducible abbreviation for a
@@ -186,8 +190,10 @@ noncomputable instance kOmegaNormedAddCommGroup (hw : ∀ n, 0 ≤ w n) :
   (kOmegaCore Y w ω hw).toNormedAddCommGroup
 
 /-- **NEW.UF.04.**  `K_ω` is a complex inner product space, with the
-ultralimit of the renormalized Frobenius pairings as its inner product.  What
-is still open is completeness, which no statement here uses. -/
+ultralimit of the renormalized Frobenius pairings as its inner product.
+Completeness is not proved here and no statement in this file uses it; it is
+`OmegaHilbertComplete.kOmegaCompleteSpace`, in a module that imports this
+one. -/
 noncomputable instance kOmegaInnerProductSpace (hw : ∀ n, 0 ≤ w n) :
     InnerProductSpace ℂ (KOmega Y w ω hw) :=
   .ofCore _

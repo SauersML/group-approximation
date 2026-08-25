@@ -29,6 +29,7 @@ artifacts:
   - research/active-core-density-keeps-rectangular-capacity-critical.md
   - research/positive-density-critical-capacity-proof.md
   - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
+  - research/local-morita-sibling-cells-have-a-two-qubit-periodic-absorber.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---

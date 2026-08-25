@@ -227,8 +227,12 @@ compressor conjugates `L` *onto* `L`; consequently `ucu⁻¹` centralizes `L` fo
 every `u ∈ Comp_G(L)` and every `c ∈ C_G(L)`; consequently `𝔇_G(L) = 1`.
 
 The analytic input of the printed case --- that an amenable group's
-property-`(T)` subgroup is finite --- is the cited `BHV` fact and is *not*
-proved here; the hypothesis `Finite ↥L` is where it would enter. -/
+property-`(T)` subgroup is finite --- enters through the hypothesis `Finite ↥L`.
+
+It is **not** a literature input: `Kazhdan/AmenableKazhdanFinite.finite_subgroup_of_isAmenable_of_kazhdan`
+proves it in this repository, so the `BHV` citation is credit rather than an
+assumption.  (This note previously said it was "*not* proved here"; that was
+true of this file and false of the tree, which is the confusing reading.) -/
 def PrintedAmenableCaseChain : Prop :=
   ∀ (G : Type u) [Group G] (L : Subgroup G), Finite ↥L →
     (∀ u ∈ compressionSet L,

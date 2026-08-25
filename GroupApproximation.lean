@@ -499,6 +499,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedAudit
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
+import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEJZInstance
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveAudit
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveSimplicity
 import GroupApproximation.Endpoint.MFRadicalPaperAudit
@@ -1737,6 +1738,7 @@ import GroupApproximation.Steinberg.GeneralRankElementaryPropertyT
 import GroupApproximation.Steinberg.ElementaryIndexPadding
 import GroupApproximation.Steinberg.GeneralRankFiniteFieldPropertyT
 import GroupApproximation.PropertyT.A2MagicExponentFree
+import GroupApproximation.PropertyT.FinitelyGeneratedRing
 import GroupApproximation.Leavitt.RowAnnihilatorAlternate
 import GroupApproximation.PropertyT.IntegralCharacterMass
 import GroupApproximation.PropertyT.ExponentFreeClassTwoOrthogonality
@@ -1749,6 +1751,7 @@ import GroupApproximation.Sofic.SplitMFStability
 import GroupApproximation.Sofic.MFBlackHoleAttachment
 import GroupApproximation.Sofic.InvisibleExtensions
 import GroupApproximation.Endpoint.InvisibleExtensionsAudit
+import GroupApproximation.Analysis.KOmegaHilbertSpaceEndpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

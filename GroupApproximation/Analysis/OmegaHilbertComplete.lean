@@ -10,15 +10,16 @@ import Mathlib.Topology.Algebra.InfiniteSum.NatInt
 
 `Sofic/KOmegaHilbert.lean` descends the ultralimit pairing to the manuscript's
 `K_ω` and registers mathlib's `InnerProductSpace ℂ` on it, positive
-definiteness included.  Its own docstring then says, and the proof ledger
-records at row `KT.05`, that
+definiteness included.  Until 2026-08-25 its own docstring said, and the proof
+ledger said at row `KT.05`, that
 
 > **Completeness is not proved.**  `K_ω` is a Hilbert space -- the ultraproduct
 > of Hilbert spaces along an ultrafilter is complete -- but that is a separate
 > diagonal argument and no `CompleteSpace` instance is claimed below.
 
-This file supplies that missing property, so that the printed sentence of
-the Kazhdan transport result,
+Both statements were stale from the moment this file landed, and both now point
+here instead.  This file supplies the missing property, so that the printed
+sentence of the Kazhdan transport result,
 
 > *The ultraproduct.*  Let `K_ω` and `B_ω = ∏_ω B(K_n)` be as in
 > the former transport argument,
