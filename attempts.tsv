@@ -196,3 +196,4 @@
 32843945274	2026-08-25T11:45:58Z	GroupApproximation/Sofic/Asymptotics.lean	eventually_pos
 32846702483	2026-08-25T12:17:12Z	GroupApproximation/Sofic/AugmentationExtension.lean	reducedDifference_ne_zero
 32852351077	2026-08-25T13:17:08Z	GroupApproximation/Sofic/AuxiliaryClassSeparation.lean	exists_auxiliary_witness_outside_of_separation
+32857705307	2026-08-25T14:09:52Z	GroupApproximation/Sofic/AvatarMetricCheck.lean	length_le_of_runs_bounded
