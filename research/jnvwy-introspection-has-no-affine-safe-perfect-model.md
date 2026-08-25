@@ -11,9 +11,9 @@ distinct_from:
 
 **ESTABLISHED AT THE INTROSPECTION STAGE.**  In every genuine recursive
 compression using the unchanged `ComputeSampler(lambda)`, the typed JNVWY
-introspection verifier has no perfect PCC strategy, perfect synchronous
-commuting strategy, or perfect CE tracial model whose positive support is
-affine-safe on every sampled edge.
+introspection verifier has no perfect tensor-product strategy, perfect
+commuting-operator strategy, or perfect CE tracial model whose positive
+support is affine-safe on every sampled edge.
 
 The obstruction is strategy-independent.  One role marginal of
 `ComputeSampler(lambda)` has three seeds violating the odd affine identity.

@@ -13,9 +13,9 @@ distinct_from:
 **ESTABLISHED.**  Consider the typed JNVWY introspection verifier of
 arXiv:2001.04383v3, Figure 16, before oracularization and answer reduction.
 Let `V` be the binary seed space of its source sampler and let `L:V->V` be
-one role marginal.  In every perfect PCC strategy, and in every perfect
-synchronous commuting or Connes-embeddable tracial model, the marginal of
-the `(Sample,role)` measurement has
+one role marginal.  In every perfect tensor-product or commuting-operator
+strategy, and in every perfect Connes-embeddable tracial model, the marginal
+of the `(Sample,role)` measurement has
 
 ```text
 tau(S_z)=1/|V|  for every z in V.                       (PIS1)
@@ -38,10 +38,14 @@ Thus choosing a noncanonical perfect HALT strategy cannot repair the
 nonlinear `ComputeSampler` graph isolated in
 `jnvwy-canonical-halt-strategy-is-affine-unsafe`.
 
-## Reduce a PCC strategy to a faithful tracial model
+## Reduce every perfect strategy to a faithful tracial model
 
 For completeness, this argument does not assume that the strategy is the
-honest EPR strategy.  In a finite-dimensional PCC strategy, consistency of
+honest EPR strategy.  Every question type has a positive self-loop carrying
+the equality test, so every perfect tensor-product or commuting-operator
+correlation is synchronous.  The standard synchronous-correlation
+representation is tracial and projective; equivalently, in a
+finite-dimensional PCC realization, consistency of
 a projection `E` on a Schmidt vector `vec(D)` gives
 
 ```text
