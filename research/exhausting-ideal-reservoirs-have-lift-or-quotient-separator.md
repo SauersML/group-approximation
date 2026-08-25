@@ -103,15 +103,16 @@ do exist, but for the independent reason proved in
 on both sides of `(ERD4)` and therefore cannot serve as a diagnostic for
 failure of uniform reservoir depth.
 
-On the concrete three-face system, the complementary separator branch is
-further constrained by
+On the concrete finite-dimensional three-face system, the complementary
+separator branch is further constrained by
 `three-face-quotient-separators-are-not-one-face-local`: compatible
 symmetry averaging preserves the separation gap, but no resulting separator
 can factor boundedly through one face.  In particular it cannot collapse to the
 closing-face prefix Gram/cyclic-holonomy witness, because the closing-face
 Fourier expectation has an explicit ucp lift.  No bounded decomposition into
-face components follows: the three-face operator system is
-infinite-dimensional.
+The finite-dimensional face-sum admits a bounded splitting, and every such
+face decomposition retains a tree-face component of norm at least
+`delta/4`.
 
 DERIVATION
 exhausting-reservoir-distance-dichotomy-proof

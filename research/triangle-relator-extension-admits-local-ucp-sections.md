@@ -189,7 +189,8 @@ Ioana--Spaas--Wiersma mechanism), per
   into such a positive vector witness without an additional theorem.
 - **Symmetry averaging cannot reduce a quotient separator to the kernel-cycle face.**
   `three-face-quotient-separators-are-not-one-face-local` starts from a
-  persistent-distance separator `(ERD3)` on `S_Delta` and averages it over any
+  persistent-distance separator `(ERD3)` on the finite-dimensional
+  `S_Delta` and averages it over any
   finite compatible triangle symmetries.  The gap survives unchanged.  But
   every subgroup Fourier expectation onto `P_12`, `P_23`, or `P_13` is ucp
   and liftable; for `P_13` the lift is exactly the explicit finite-face
@@ -198,10 +199,11 @@ Ioana--Spaas--Wiersma mechanism), per
   prefix Gram/cyclic-holonomy functional is `P_13`-local and cannot be the
   averaged separator.  At the `(3,3,4)` diagram, compatible inner averaging
   reduces to the common `P_0` action (up to diagram automorphisms), and every
-  diagram symmetry fixes the unique type-`4` closing face.  This rules out
-  the hoped-for one-face dual contradiction.  It does not yield a bounded
-  face-component normal form: `S_Delta` is infinite-dimensional, and no
-  bounded splitting of its face restrictions has been proved.
+  diagram symmetry fixes the unique type-`4` closing face.  A bounded
+  finite-dimensional face splitting shows more: every decomposition has at
+  least one tree-face component of norm at least one quarter of the separator
+  gap.  This rules out the hoped-for one-face dual contradiction and isolates
+  a quantitatively essential tree correction.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

@@ -2,7 +2,7 @@
 rg: 2
 id: three-face-quotient-separators-are-not-one-face-local
 kind: claim
-title: Three-face quotient separators are not local to any one face
+title: Three-face quotient separators have a quantitatively essential tree-face component
 distinct_from:
   exhausting-ideal-reservoirs-have-lift-or-quotient-separator: that produces an abstract quotient-level separator when exhausting reservoir distance stays positive; this analyzes such a separator on the concrete three-face system and proves that symmetry averaging cannot concentrate it on one face.
   explicit-finite-face-ucp-section-is-edge-equivariant: that constructs a ucp section on the closing finite face; this uses that section, after the subgroup Fourier expectation, to rule out every closing-face-supported separator.
@@ -10,7 +10,7 @@ distinct_from:
   equal-difference-gram-averaging-fails-at-four-free-words: that shows truncated equal-difference averaging need not preserve positivity; this averages a linear separator only over genuine compatible automorphisms, for which the ucp comparison class is invariant.
 ---
 
-**ESTABLISHED (scoped averaging no-go).**  In the explicit `(3,3,4)`
+**ESTABLISHED (quantitative finite-dimensional normal form).**  In the explicit `(3,3,4)`
 Kac--Moody triangle put
 
 ```text
@@ -19,8 +19,9 @@ S_Delta=C^*(P_12)+C^*(P_23)+C^*(P_13) subset Q,
 q:A->>Q.                                                    (SQS1)
 ```
 
-Suppose a bounded real functional `ell` on the self-adjoint map space
-`L_sa(S_Delta,Q)` is a quotient separator of the type supplied by `(ERD3)`:
+Each `P_ij` is finite, so `S_Delta` is finite-dimensional.  Suppose a bounded
+real functional `ell` on `L_sa(S_Delta,Q)` is a quotient separator of the
+type supplied by `(ERD3)`:
 
 ```text
 ell(id_(S_Delta)-q phi)>=delta>0
@@ -44,8 +45,8 @@ For each face `H in {P_12,P_23,P_13}`, let
 M_H(u_g)=1_H(g)u_g,             g in Lambda,               (SQS4)
 ```
 
-be the subgroup Fourier expectation, restricted to `S_Delta`.  It is ucp,
-and `M_H|_(C^*(H))=id`.  Moreover `M_H` is liftable through `q`:
+be the subgroup Fourier expectation, restricted to `S_Delta`.  It is ucp
+and is the identity on `C^*(H)`.  Moreover it is liftable through `q`:
 
 - for `H=P_12,P_23`, compose `M_H` with the canonical face embedding into
   `A`;
@@ -86,6 +87,53 @@ functional.  The explicit one-face section does not contradict a genuine
 separator; it proves that a genuine separator must retain information
 transverse to that face.
 
+There is also a bounded quantitative face normal form.  Because `S_Delta` is
+finite-dimensional and is the sum of its three face algebras, choose bounded
+real self-adjoint linear maps
+
+```text
+R_ij:S_Delta->C^*(P_ij),       R_12+R_23+R_13=id.          (SQS7)
+```
+
+For example, choose a real self-adjoint basis of `S_Delta` from the union of
+bases of the three face algebras, assign each basis vector to one face, and
+let `R_ij` be the corresponding coordinate projection.  For
+`psi:C^*(P_ij)->Q`, put
+
+```text
+ell_ij(psi)=ell(psi o R_ij).                               (SQS8)
+```
+
+Then each `ell_ij` is bounded and
+
+```text
+ell(psi)=sum_(ij) ell_ij(psi|_(C^*(P_ij))).                (SQS9)
+```
+
+This is a genuine bounded splitting: composition with each fixed `R_ij` is
+bounded on the map space, and `(SQS9)` follows from `sum R_ij=id`.
+
+Set `D_13=id-M_(P_13)`.  Since `D_13` vanishes on `C^*(P_13)`, `(SQS5)` and
+`(SQS9)` give
+
+```text
+ell_12(D_13|_(C^*(P_12)))
+ +ell_23(D_13|_(C^*(P_23))) >= delta.                     (SQS10)
+```
+
+Therefore, for **every** bounded face decomposition obtained from `(SQS7)`,
+at least one tree-face term has value at least `delta/2` on its canonical
+defect.  Since `||D_13||<=2`, that component satisfies
+
+```text
+max(||ell_12||,||ell_23||)>=delta/4.                       (SQS11)
+```
+
+If the compatible symmetry group contains an automorphism swapping the two
+tree faces while fixing the closing face, average the splitting `(SQS7)` as
+well as `ell`.  The two summands in `(SQS10)` are then equal, so **both** are
+at least `delta/2` and both component norms are at least `delta/4`.
+
 Finally, there is no larger independent parabolic averaging hidden here.
 The common standard inner conjugations which preserve all three marked face
 algebras factor through `P_0`; up to actual diagram automorphisms, the
@@ -96,19 +144,12 @@ comparison problem `(SQS2)`.
 
 Proof: `symmetrize-separator-and-test-liftable-face-expectations`.
 
-**Scope warning.**  The result does not supply a bounded decomposition of
-`ell` into three face functionals.  The operator system `S_Delta` and its face
-algebras are infinite-dimensional; choosing a Hamel basis from the union of
-face bases does not give a bounded splitting of the restriction map.  Thus
-`(SQS6)` proves only that the separator does not factor boundedly through one
-face.  It does **not** by itself prove the existence of a bounded or
-quantitatively nonzero tree-face component.
-
-The result therefore does not rule out `(SQS2)` and does not prove local
-splitting.  It rules out the hoped-for reduction to a functional of one face,
-including the finite closing-face cyclic-holonomy witness.  Any stronger
-face-component normal form requires a separate Banach/operator-space
-closed-range or complementation theorem.
+**What survives.**  The result does not rule out `(SQS2)` and does not prove
+local splitting.  It rules out the hoped-for reduction to a functional of
+one face, including the closing-face cyclic-holonomy witness, and proves that
+every face decomposition retains a tree component of norm at least
+`delta/4`.  Without an actual tree-swap symmetry it does not force both named
+tree components separately; it forces at least one of them.
 
 DERIVATION
 symmetrize-separator-and-test-liftable-face-expectations
