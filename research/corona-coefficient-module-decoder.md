@@ -90,9 +90,35 @@ the problem.
   same faithful pair of branch character restrictions proved above.  Hence
   no theorem whose hypotheses stop at the common carrier, branch-label
   faithfulness, or Heisenberg-window compatibility can establish this node.
-  The remaining intertwiner must be charged to a named cross-root Steinberg
-  occurrence which is absent from that exact UHF calibration and which
-  erases the rectangular source/target object distinction.
+  The remaining intertwiner must be charged to a named mixed/opposite-root
+  Steinberg occurrence which is absent from that exact UHF calibration and
+  which erases the rectangular source/target object distinction.
+
+- **Use the object-erasing range-sum fold on the common carrier.**
+  `leavitt-range-sum-fold-is-first-object-erasing-row` identifies the first
+  positive-root word which compares the source and doubled-target identities
+  in one long-root coordinate.  This still cannot be the missing occurrence.
+  `leavitt-range-sum-fold-does-not-pay-reynolds` keeps the fold exact on an
+  auxiliary central-character factor while the packet payload remains
+  rectangular.  More decisively,
+  `finite-positive-root-fragments-have-marked-regular-models` uses the
+  literal Leavitt coefficients and every shared occurrence: every finite
+  positive-root fragment, including the fold, has an exact finite regular
+  model with the marked root surviving.  Taking its full identity projection
+  already gives a nonzero common reducing carrier.  Thus neither sparse
+  carrier selection nor literal occurrence reuse promotes the fold to a
+  coefficient module.  The first possible decoder row must leave the
+  positive unipotent radical.
+
+- **Add one non-scalar signed Whitehead cell.**
+  This crosses to opposite roots but is still too small.
+  `partial-whitehead-cell-has-marked-finite-model` specializes the complete
+  prefix partial-equivalence table to the finite scalar Weyl cell while
+  retaining the mark.  Hence the first possible payload return must couple
+  both binary branches, destroy that scalar specialization, and tie the
+  resulting mixed-root occurrence to the Heisenberg multiplicity being
+  returned.  This is a strictly narrower target than an unspecified
+  coefficient-intertwiner coherence theorem.
 
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
@@ -113,7 +139,9 @@ the problem.
   `binary-leavitt-three-row-atomic-compiler` and
   `opnorm-leavitt-coarse-fine-return-row`.
 
-The unresolved statement is an intertwiner-coherence theorem: compatible
-finite Heisenberg multiplicities, already aligned inside one fixed Morita
-carrier, must admit a common summand on which the coefficient products act
-coherently.
+The unresolved statement is now a two-branch mixed-root return theorem:
+compatible finite Heisenberg multiplicities, already aligned inside one
+fixed Morita carrier, must admit a common summand on which a non-scalar
+opposite-root/Whitehead occurrence authenticates the coefficient products.
+All-positive-root coherence, even with the object-erasing fold, is below the
+proved finite-regular-model firewall.
