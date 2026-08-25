@@ -7,7 +7,7 @@ artifacts:
   - research/adjacent-prefix-whitehead-braid-proof.md
 distinct_from:
   two-mixed-pauli-commutators-lock-the-relative-reservoir-gauge: that starts from a positive cross-Gram polar corner and moves a relative unitary into the packet commutant; this obtains conjugacy of the two reservoir involutions from an exact Coxeter braid on a common carrier.
-  binary-leavitt-native-two-scale-cross-gram-positive: that needs gauge sharing for label fractions one quarter and one eighth; this shares the gauges of the two adjacent partial-Whitehead words, whose label fractions are both one quarter.
+  binary-leavitt-native-two-scale-cross-gram-positive: that needs cross-Gram overlap for the two actual coefficient transports; this gives the stronger exact conjugacy of their reservoir factors after the common-carrier occurrence typing.
 ---
 
 Use the common carrier, three Pauli pairs, and adjacent partial-Whitehead
@@ -40,13 +40,12 @@ V_2=(V_1V_2)V_1(V_1V_2)^(-1).                         (APB4)
 ```
 
 Thus the literal Leavitt prefix chain already contains an exact, entirely
-Property-T-free same-gauge mechanism.  Its failure to close the native
-two-scale compiler is not reservoir holonomy: by the preceding claim, the
-second fixed label operator is `SWAP_(2,3)` and has negative fraction
-`1/4`, rather than the required controlled fraction `1/8`.  Any successful
-repair must change that fixed label action while retaining a relation that
-still implies `(APB4)`; adding an unrelated one-eighth selector reopens an
-independent reservoir gauge.
+Property-T-free same-gauge mechanism.  The adjacent swaps in `(APB2)` are
+the fixed label normalizations of the **coefficient transports**, not the
+controlled selector reflections.  The latter retain their separate
+`C_(1/4)` and `C_(1/8)` label factors while inheriting the conjugate external
+gauges `(APB4)`.  In particular the braid is an exact strengthening of the
+positive cross-Gram/polar comparison, not a competing selector-rank model.
 
 DERIVATION
 adjacent-prefix-whitehead-braid-proof
