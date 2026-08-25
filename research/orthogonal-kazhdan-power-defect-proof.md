@@ -61,12 +61,13 @@ and no `k delta` operator telescope is used.
 the orthogonal projection above, and `T^D` intertwines the restriction to
 `C^((D))` with its `Ad(h^D)`-twist.  Multiplication by `rho'(J)` is unitary,
 so it does not change its Hilbert--Schmidt norm.  The orbit calculation in
-Steps 3--5 of that route identifies weight at least `c_p(1-nu_0)` on
+Steps 3--5 of that route identify weight at least
+`b_p(1-nu_0)`, `b_p=min(c_p,1/3)`, on
 twisted isotypic types absent from the untwisted restriction.  This is a
 one-sided overlap deficit, hence is at most `Delta`, and `(QK4)` gives
 
 ```text
-c_p(1-nu_0) <= D delta_0^2.
+b_p(1-nu_0) <= D delta_0^2.
 ```
 
 The Kazhdan estimate `delta_0<=epsilon/kappa_0` proves `(QK5)`.  At depth

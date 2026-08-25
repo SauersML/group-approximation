@@ -4,89 +4,83 @@ id: p-divisible-lambda-exact-mass-vanishes-at-large-primes
 kind: claim
 title: At large primes the p-divisible weight of a near-genuine microstate of the SL3 pair vanishes with the defect, independently of depth
 distinct_from:
-  lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible: that bounds the p-divisible weight by depth times defect and leaves ultra-deep towers alive; this bounds it by the defect alone, with no depth, once the Clifford constant exceeds 3/4, and so empties the whole p-divisible sector at primes p >= 11.
-  odd-congruence-lambda-exact-sector-collapses: that closes the coprime-level sector using the exact slot for h; this shows that at large primes every near-genuine microstate is asymptotically of coprime level, so that sector is the whole Lambda-exact face.
-  homogeneous-quotient-near-genuine-microstates-are-deep: that forces microstates of the homogeneous-quotient crossed product to be p-adically deep; combined with this theorem it shows that algebra has no near-genuine microstates at all for p >= 11.
+  lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible: that bounds the p-divisible weight by depth times defect and leaves ultra-deep towers alive; this bounds it by the defect alone, with no depth, once the deep-level Clifford constant exceeds 3/4.
+  odd-congruence-lambda-exact-sector-collapses: that closes the coprime-level sector using the exact slot for h; this shows that at large primes every near-genuine microstate is asymptotically of coprime level.
+  homogeneous-quotient-near-genuine-microstates-are-deep: that forces homogeneous-quotient microstates to be p-adically deep; combined with this theorem it shows that algebra has no near-genuine microstates at p >= 11.
 ---
 
 **THEOREM (established here; proof in
-`p-divisible-mass-vanishes-depth-free-proof`).**  Notation of
-`lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible`: `C = SL_3(Z)`,
-`h = diag(p,1,1/p)`, `C_0 = C cap h^-1 C h` with Kazhdan constant `kappa_0`,
+`p-divisible-mass-vanishes-depth-free-proof`).**  Use the notation of
+`lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible`: `C=SL_3(Z)`,
+`h=diag(p,1,1/p)`, `C_0=C cap h^-1 C h` with Kazhdan constant `kappa_0`,
 `rho'` a genuine representation of `C` of level `p^D m'`, `nu_0` the weight
-of its trivial-`p`-part, `H` a unitary with `h`-twist defect at most
-`epsilon` on the generators of `C_0`, and
+of its trivial-`p` part, and `H` a unitary with `h`-twist defect at most
+`epsilon` on the generators of `C_0`.  Put
 
 ```text
-c_p = 1 - (p^2 + p - 2)/(p^3 - 1) - 1/(p + 1).
+c_p = 1 - (p^2+p-2)/(p^3-1) - 1/(p+1),
+a_p = min(4 c_p-3,1/3).
 ```
 
-Then, for every prime `p` and every depth `D`,
+For every `p>=11` and every depth `D`, if `w_1` is the isotypic weight
+measure of `rho'|_(C_0)` and `w_2` that of its `Ad(Jh)`-twist, then
 
 ```text
-(4 c_p - 3) (1 - nu_0)  <=  12 epsilon / kappa_0.                        (PV1)
+a_p(1-nu_0) <= TV(w_1,w_2) <= 12 epsilon/kappa_0.                         (PV1)
 ```
 
-Since `c_p > 3/4` for `p >= 11` (`c_11 ~ 0.819`, `c_13 ~ 0.842`,
-`c_p -> 1`), at those primes the `p`-divisible weight of any near-genuine
-microstate is at most `12 epsilon/((4 c_p - 3) kappa_0)`, **whatever its
-depth**.
-
-**Mechanism.**  Give every irreducible constituent `sigma` of `rho'|_(C_0)` an
-upper depth `beta(sigma)` (least `b >= 0` with `sigma` trivial on
-`e_12(p^b m')` and `e_23(p^b m')`) and a lower depth `gamma(sigma)` (least
-`g >= 1` with `sigma` trivial on `e_21(p^g m')` and `e_32(p^g m')`; these lie
-in `C_0` for `g >= 1`).  The twist `sigma |-> sigma o Ad(g)^-1`, `g = J h`,
-acts on types by
+With the Kazhdan-constant normalization in `(UD1)`, orthogonality of the
+Kazhdan projection sharpens the upper bound to
 
 ```text
-(beta, gamma)  |->  (gamma - 1, beta + 1),                               (PV2)
+TV(w_1,w_2) <= epsilon^2/kappa_0^2.                                      (PV1-square)
 ```
 
-because `Ad(g)` carries `e_12(x), e_23(x)` to `e_32(+-px), e_21(+-px)` and
-`e_21(x), e_32(x)` to `e_23(+-x/p), e_12(+-x/p)`.  So the twist sends every
-diagonal type `(a, a)` to the off-diagonal type `(a-1, a+1)`.  On the other
-hand a level-`a` irreducible of `C` has at least `c_p` of its restricted mass
-at upper depth exactly `a` and, by Weyl symmetry, at least `c_p` at lower
-depth exactly `a`, hence at least `2 c_p - 1` on the diagonal and at most
-`2(1 - c_p)` off it.  The level-`0` part is twist-invariant.  Comparing the
-off-diagonal masses of the weight measure and its twist gives
-`TV >= (4 c_p - 3)(1 - nu_0)`, while one Kazhdan projection gives
-`TV <= 12 epsilon/kappa_0`.
+Since `c_p>3/4` exactly for `p>=11`, `a_p>0`.  Hence the `p`-divisible
+weight tends to zero with the defect, independently of depth.
+
+**Mechanism.**  Give each irreducible constituent of `rho'|_(C_0)` its
+upper and lower simple-root depths `(beta,gamma)`.  The twist by `g=Jh`
+acts by
+
+```text
+(beta,gamma) |-> (gamma-1,beta+1),                                      (PV2)
+```
+
+so `(a,a)` maps to `(a-1,a+1)`.  For levels `a>=2`, Clifford theory on the
+last congruence layer puts at least `2c_p-1` of the restricted mass on
+`(a,a)` and at most `2(1-c_p)` on all off-diagonal types.
+
+Level one is not a Lie layer.  The three conjugate transvection subgroups
+`U_12,U_23,U_31` generate `SL_3(F_p)`.  Their common fixed space in a
+nontrivial irreducible is zero, so subadditivity of codimension puts at
+least `1/3` of level-one mass on `(1,1)`.  For
+
+```text
+S = {(a-1,a+1) : a>=1},
+```
+
+level zero and level one give no mass to `w_1(S)`, while every contribution
+from levels at least two is off diagonal.  Therefore
+
+```text
+TV(w_1,w_2) >= (4c_p-3) sum_(a>=2) nu_a + (1/3)nu_1
+             >= a_p(1-nu_0),
+```
+
+proving the depth-free lower bound.  A single Kazhdan projection gives the
+two upper bounds.
 
 **Consequences.**
-- For `p >= 11` the `p`-divisible `Lambda`-exact sector of the collapse for
-  the pair `(SL_3(Z), SL_3(Z[1/p]))` is empty in the limit: ultra-deep towers
-  are excluded along with everything shallower.  Together with the closure
-  of the coprime sector (`odd-congruence-lambda-exact-sector-collapses`),
-  the entire `Lambda`-exact face of the collapse at `p >= 11` reduces to
-  microstates that are prime-to-`p` up to weight `O(epsilon)`; what remains
-  to close the face is a robust form of the coprime theorem tolerating that
-  admixture (`coprime-sector-collapse-is-robust-to-small-p-admixture`), and
-  what remains beyond the face is the outlier sector
-  (`sl3-z-weakly-ucp-stable`).  See
-  `sl3-large-prime-pair-relative-commutant-collapse`.
-- For `p >= 11` the homogeneous-quotient crossed product
-  `L^infinity(SL_3(Q_p)/Lambda') rtimes SL_3(Z[1/p])` has **no** microstates
-  whose `SL_3(Z)`-part is near a genuine representation: its cell structure
-  forces `nu_0 -> 0` (`homogeneous-quotient-near-genuine-microstates-are-deep`,
-  `(DT2)` at `j = 0`), while `(PV1)` forces `nu_0 -> 1`.  Any Connes
-  embedding of that algebra at such primes must be built from outliers.
-- Nothing is claimed at `p <= 7`, where `c_p <= 3/4`; there the ultra-deep
-  bound is the only one.  Sharper Clifford constants (the true maximal fixed
-  fraction of a level-`(a-1)` root subgroup in a level-`a` irreducible of
-  `SL_3(Z/p^a)`, about `2/p`) would lower the threshold to `p >= 11` again,
-  so the prime `11` is where the crude and the sharp counts agree.
-- **Possible extension to `p = 5, 7` (not proved).**  Twisting by `J h^k`
-  instead of `J h` shifts types by `k`, `(beta, gamma) |-> (gamma - k, beta + k)`,
-  and the twisted diagonal mass then lands on types whose upper depth is
-  `k` below their level; those carry at most the fixed fraction of the
-  `k`-deep root subgroup `<e_12(p^(a-k) m')>`, which is contained in the
-  fixed space of `e_12(p^(a-1) m')` and plausibly decays like `(1 - c_p)^k`.
-  If it does, `TV >= (2 c_p - 1 - 2 (1 - c_p)^k)(1 - nu_0)` against
-  `12 k epsilon/kappa_0`, which is positive at `p = 7` for `k = 2` and at
-  `p = 5` for `k = 3`.  It cannot reach `p = 2, 3`: there `c_p < 1/2`, so
-  no diagonal mass is guaranteed at all (for `SL_3(F_2)` the `6`-dimensional
-  irreducible has fixed fraction `2/3` for the involution `e_12(1)`), and a
-  different mechanism is needed -- consistent with the graph's older
-  observation that the enemy is pinned to the smallest primes.
+
+- At `p>=11` ultra-deep towers are excluded along with all shallower
+  `p`-divisible towers.  Together with
+  `coprime-sector-collapse-is-robust-to-small-p-admixture`, this closes the
+  entire `Lambda`-exact face.  Only uniformly non-correctable lattice
+  microstates remain.
+- The homogeneous-quotient crossed product at `p>=11` has no microstates
+  whose `SL_3(Z)` part is near a genuine representation: its cell structure
+  forces `nu_0->0`, while `(PV1)` forces `nu_0->1`.
+- Nothing is claimed at `p<=7`.  The separate level-one argument is
+  essential because `Gamma(1)/Gamma(p)=SL_3(F_p)`, whereas the additive Lie
+  layer description begins only at level two.

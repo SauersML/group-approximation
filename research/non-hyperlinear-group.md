@@ -17,7 +17,7 @@ monotone size the compression collapses (invariant-size-collapse); the `II₁` b
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
 
-## Arithmetic exact face confined to ultra-deep towers (2026-08-25)
+## Arithmetic exact face closed at large primes (2026-08-25)
 
 The top frontier hole (`projective-trace-square-transfer-for-sl3-pair`) and
 the collapse claims now have an explicit refutation gate: Connes
@@ -28,9 +28,11 @@ more concrete enemy than the coset wreath because every compact-subgroup
 piece acts profinitely.  On the affirmative side the Lambda-exact face of
 `(RC3)` is now confined: coprime levels were already closed, and
 `lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` proves
-`c_p (1 - nu_0) <= 12 D epsilon/kappa_0` (Atkin--Lehner-type twist `J h^D`,
-one Kazhdan projection, Clifford count over `sl_3(F_p)`), so p-divisible
-levels are invisible unless the tower is deeper than `1/epsilon`.  The
+`b_p (1 - nu_0) <= D epsilon^2/kappa_0^2`, `b_p=min(c_p,1/3)`,
+(Atkin--Lehner-type twist `J h^D`,
+one orthogonal Kazhdan projection, Clifford count over `sl_3(F_p)`), so
+p-divisible levels are invisible unless the tower is deeper than
+`1/epsilon^2`.  The
 surviving exact-face enemy was the ultra-deep tower; the other survivor is the
 outlier sector (`sl3-z-weakly-ucp-stable`).
 
@@ -39,10 +41,12 @@ Later the same day the ultra-deep tower fell too, at large primes:
 constituent of the restriction to `C_0 = SL_3(Z) cap h^-1 SL_3(Z) h` by its
 (upper, lower) simple-root depths, the twist by `J h` acts as
 `(beta, gamma) |-> (gamma - 1, beta + 1)` and so moves every diagonal type
-off the diagonal, while Clifford balancing over `sl_3(F_p)` puts at least
-`2 c_p - 1` of every positive level on the diagonal; hence
-`(4 c_p - 3)(1 - nu_0) <= 12 epsilon/kappa_0` with no depth dependence, and
-for `p >= 11` the `p`-divisible `Lambda`-exact sector is empty.  With the
+off the diagonal.  Clifford balancing over `sl_3(F_p)` puts at least
+`2 c_p - 1` of every level at least two on the diagonal, while three
+conjugate transvection subgroups give the separate level-one bound `1/3`.
+Thus, for `a_p=min(4c_p-3,1/3)`,
+`a_p(1-nu_0) <= epsilon^2/kappa_0^2` with no depth dependence, and for
+`p >= 11` the `p`-divisible `Lambda`-exact sector is empty.  With the
 coprime closure (`odd-congruence-lambda-exact-sector-collapses`, made robust
 by `coprime-sector-collapse-is-robust-to-small-p-admixture`), the whole
 `Lambda`-exact face of the collapse at `p >= 11` is closed, and

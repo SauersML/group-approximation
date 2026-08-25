@@ -36,14 +36,15 @@ the state of the `Lambda`-exact face.
 
 `p-divisible-lambda-exact-mass-vanishes-at-large-primes` gives, for a
 microstate whose `Lambda`-part is a genuine representation of level
-`p^D m'`, the depth-free inequality `(4 c_p - 3)(1 - nu_0) <= 12 epsilon/kappa_0`
-with `c_p > 3/4` exactly when `p >= 11`.  So on the `Lambda`-exact face the
-`p`-divisible weight is `O(epsilon)`, and `odd-congruence-lambda-exact-sector-collapses`
-closes the coprime sector.  Two things remain:
+`p^D m'`, the depth-free inequality
+`a_p(1-nu_0) <= epsilon^2/kappa_0^2`, where
+`a_p=min(4c_p-3,1/3)>0` exactly when `p >= 11`.  So on the
+`Lambda`-exact face the `p`-divisible weight is `O(epsilon^2)`, and
+`odd-congruence-lambda-exact-sector-collapses` closes the coprime sector.
+The vanishing admixture is absorbed by
+`coprime-sector-collapse-is-robust-to-small-p-admixture`.  One thing remains:
 
-1. **Robustness of the coprime closure** to an `O(epsilon)` `p`-divisible
-   admixture (`coprime-sector-collapse-is-robust-to-small-p-admixture`).
-2. **The outlier sector**: microstates whose `Lambda`-part is uniformly far
+1. **The outlier sector**: microstates whose `Lambda`-part is uniformly far
    from every genuine representation.  Under `sl3-z-weakly-ucp-stable`,
    `kazhdan-subgroup-weak-ucp-exactifies-microstates` removes it.
 
@@ -52,8 +53,11 @@ resulting conditional closure.
 
 ## Attempts
 
-- **Exact face.**  Closed up to the robustness lemma by the two theorems
-  above; the ultra-deep towers that survive at `p <= 7` do not exist here.
+- **Exact face.**  Closed by the depth-free and robust coprime theorems;
+  the ultra-deep towers that survive at `p <= 7` do not exist here.  The
+  level-one input is the fixed-codimension bound from three conjugate
+  transvection subgroups, not the last-layer Clifford argument (which starts
+  only at level two).
 - **Outliers.**  Nothing beyond the reduction to `sl3-z-weakly-ucp-stable`
   is known.  What is established (`infinite-hyperlinear-kazhdan-group-is-not-hs-stable`)
   is that `SL_3(Z)` is not STRICTLY HS-stable; flexible and weak ucp

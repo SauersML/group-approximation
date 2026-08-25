@@ -16,7 +16,8 @@ distinct_from:
 generating set of `C_0` with Kazhdan constant `kappa_0`, and
 
 ```text
-c_p := 1 - (p^2 + p - 2)/(p^3 - 1) - 1/(p + 1)      (c_2 = 2/21, c_3 ~ 0.365, c_5 ~ 0.607, c_p -> 1).
+c_p := 1 - (p^2 + p - 2)/(p^3 - 1) - 1/(p + 1),
+b_p := min(c_p,1/3)                                  (b_p > 0 for every prime).
 ```
 
 Let `rho' : C -> U(d)` be a genuine representation, factoring through
@@ -32,28 +33,25 @@ the fixed space of `rho'(Gamma(m'))`).  Let `H in U(d)` satisfy
 Then
 
 ```text
-c_p . (1 - nu_0)  <=  12 D epsilon / kappa_0.                            (UD2)
+b_p . (1 - nu_0)  <=  12 D epsilon / kappa_0.                            (UD2)
 ```
 
 The orthogonality sharpening gives the stronger estimate, under the
 Kazhdan-constant normalization of the proof route,
 
 ```text
-c_p . (1 - nu_0)  <=  D epsilon^2 / kappa_0^2.                           (UD2-square)
+b_p . (1 - nu_0)  <=  D epsilon^2 / kappa_0^2.                           (UD2-square)
 ```
 
 **Reading.**  A near-genuine microstate of `SL_3(Z[1/p])` whose
 `SL_3(Z)`-part has congruence level `p^D m'` carries weight at most
-`D epsilon^2/(c_p kappa_0^2)` on constituents of positive `p`-level.  So
+`D epsilon^2/(b_p kappa_0^2)` on constituents of positive `p`-level.  So
 either the microstate is asymptotically of level coprime to `p` -- the sector
 closed by `odd-congruence-lambda-exact-sector-collapses` -- or its `p`-adic
-depth is at least `c_p kappa_0^2 (1 - nu_0) / epsilon^2`: an **ultra-deep
-tower**, deeper than the inverse-square defect.  The same count at depth one gives
-the balancing inequality `nu_(>= a+1) >= (c_p/(1 - c_p)) nu_a - 12 epsilon/(c_p kappa_0)`
-for every `a >= 1`: the mass strictly above any positive level dominates the
-mass at that level, geometrically once `c_p > 1/2` (`p >= 5`).  So the
-`p`-divisible mass of a near-genuine microstate is pushed toward its deepest
-levels, and `(UD2-square)` says those levels lie beyond `1/epsilon^2`.  No
+depth is at least `b_p kappa_0^2 (1 - nu_0) / epsilon^2`: an **ultra-deep
+tower**, deeper than the inverse-square defect.  Thus the `p`-divisible
+mass of a near-genuine microstate can survive only at depths beyond
+`1/epsilon^2`.  No
 contradiction is claimed: ultra-deep towers with such a profile are not
 excluded, in line with `fixed-shift-invariance-does-not-force-flat-profile`.
 For the pair `(SL_3(Z),
@@ -69,9 +67,11 @@ signed Weyl permutation `(1 3)`, `J h J^-1 = h^-1`) normalizes
 intertwiner `T`.  Because this is the orthogonal Hilbert--Schmidt projection
 of `H`, Pythagoras and the contraction-defect identity bound the overlap
 deficit for `rho'(J)T^k` by `k epsilon^2/kappa_0^2`.  A constituent of exact
-`p`-level `a >= 1` has, by Clifford
-theory over `Gamma(p^(a-1))/Gamma(p^a) = sl_3(F_p)`, at least `c_p` of its
-mass nontrivial on `e_12(p^(a-1) m')`; the twist by `g_D` of such a
+`p`-level `a>=2` has, by Clifford theory over
+`Gamma(p^(a-1))/Gamma(p^a) = sl_3(F_p)`, at least `c_p` of its mass
+nontrivial on `e_12(p^(a-1)m')`.  At level one, three conjugate
+transvection subgroups generating `SL_3(F_p)` give the lower bound `1/3`.
+Thus every positive level has at least `b_p` such mass; the twist by `g_D` of such a
 constituent is nontrivial on `e_32(+-p^(a-1+D) m') in Gamma(N)`, on which the
 whole of `rho'` is trivial, so that twisted mass is absent and counts fully
 toward the overlap deficit.  The factor `k` is sharp for powers of one

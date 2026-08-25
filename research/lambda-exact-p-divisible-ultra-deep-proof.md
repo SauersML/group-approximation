@@ -34,7 +34,7 @@ as in `(UD1)` the constant is at most `12 k epsilon/kappa_0`.)
 `SL_3(Z/p^D) x SL_3(Z/m')` and every irreducible constituent is
 `pi' = pi'_p (x) pi'_(m')`.  Call `a >= 0` the level of `pi'_p` (least `a`
 with `pi'_p` trivial on `Gamma(p^a)`), and let `nu_a` be the total weight of
-constituents of level `a`, so `nu_0 + nu_1 + ... + nu_D = 1`.  For `a >= 1`,
+constituents of level `a`, so `nu_0 + nu_1 + ... + nu_D = 1`.  For `a >= 2`,
 `pi'_p` is nontrivial on `N_a = Gamma(p^(a-1))/Gamma(p^a) = sl_3(F_p)`, and by
 Clifford theory `pi'_p|_(N_a)` is a multiple of the sum of the characters in
 one `SL_3(F_p)`-orbit of a nonzero `Y in pgl_3(F_p)` (characters of
@@ -56,6 +56,14 @@ constituent of `pi'|_(C^((k)))` that is trivial on `u_a in C^((k))` lies in
 that fixed subspace, so constituents nontrivial on `u_a` carry weight at
 least `c_p nu_a` in total over the level-`a` part.
 
+At level `a=1`, the quotient is `SL_3(F_p)`, not the additive Lie layer.
+Use instead the conjugate root subgroups `U_12,U_23,U_31`.  They generate
+`SL_3(F_p)`, so their common fixed space in a nontrivial irreducible is
+zero.  Their fixed-space codimensions are equal, and subadditivity of
+codimension makes each normalized codimension at least `1/3`.  Thus level
+one contributes at least `(1/3)nu_1` of mass nontrivial on `u_1`.  Put
+`b_p=min(c_p,1/3)`; every positive level contributes at least `b_p nu_a`.
+
 **Step 5 (the twisted mass is absent).**  `Ad(g_k)(e_12(x)) = J e_12(p^k x) J^-1 = e_32(+-p^k x)`,
 so if `sigma` is nontrivial on `u_a` then `sigma^iota = sigma o Ad(g_k)^-1`
 is nontrivial on `e_32(+-p^(a-1+k) m')`.  Take `k = D`: for `a >= 1` this
@@ -63,14 +71,5 @@ element lies in `Gamma(p^D m') = Gamma(N)`, on which all of `rho'` is trivial,
 so `sigma^iota` is not a constituent of `rho'|_(C^((D)))` and
 `w_1(sigma^iota) = 0` while `w_2(sigma^iota) = w_1(sigma)`.  Since `iota` is a
 bijection, summing over all such `sigma` gives
-`TV(w_1, w_2) >= sum_(a>=1) c_p nu_a = c_p (1 - nu_0)`.  With Step 2 at
+`TV(w_1, w_2) >= sum_(a>=1) b_p nu_a = b_p (1 - nu_0)`.  With Step 2 at
 `k = D` this is `(UD2)`.
-
-**Depth-one balancing (remark).**  The same count at `k = 1` shows that the
-twisted level-`a` mass, at least `c_p nu_a`, is nontrivial on
-`e_32(+-p^a m')`, hence (up to the total-variation error `12 epsilon/kappa_0`)
-must be carried by constituents of `rho'|_(C_0)` coming from levels
-`>= a + 1` that are trivial on `e_12(p^a m')`; by Step 4 applied at level
-`a + 1` those carry at most a `1 - c_p` fraction of `nu_(>= a+1)`.  Hence
-`(1 - c_p) nu_(>= a+1) >= c_p nu_a - 12 epsilon/kappa_0`, the balancing
-inequality quoted in the target.

@@ -20,7 +20,8 @@ genuine representations `rho'_n`, finite-image by superrigidity, hence of
 congruence level `p^(D_n) m'_n` by the congruence subgroup property, and the
 `h`-twist defect `epsilon_n` on the generators of `C_0 = Lambda cap h^-1 Lambda h`
 tends to zero.  `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
-gives `(4 c_p - 3)(1 - nu_(0,n)) <= 12 epsilon_n/kappa_0` with `c_p > 3/4`,
+gives `a_p(1 - nu_(0,n)) <= epsilon_n^2/kappa_0^2`, where
+`a_p=min(4c_p-3,1/3)>0`,
 so the `p`-divisible weight `delta_n = 1 - nu_(0,n)` tends to zero, whatever
 the depths `D_n`.  Write `rho'_n = rho'_(n,0) (+) rho'_(n,p)` accordingly.
 `odd-congruence-lambda-exact-sector-collapses` proves the collapse when
@@ -28,7 +29,7 @@ the depths `D_n`.  Write `rho'_n = rho'_(n,0) (+) rho'_(n,p)` accordingly.
 extends it to `delta_n -> 0`.  Hence `(RC3-p)`.
 
 The route consumes weak ucp-stability of the SUBGROUP only, never of the
-host, in line with `no-published-unconditional-codense-stable-host`.  Its
-two open inputs are of different kinds: `sl3-z-weakly-ucp-stable` is the
-Dogon--Vigdorovich-type stability question for `SL_3(Z)`, and the robustness
-lemma is bookkeeping around an established argument.
+host, in line with `no-published-unconditional-codense-stable-host`.  After
+the depth-free theorem and the robust coprime lemma, its only open input is
+`sl3-z-weakly-ucp-stable`, the Dogon--Vigdorovich-type stability question
+for `SL_3(Z)`.

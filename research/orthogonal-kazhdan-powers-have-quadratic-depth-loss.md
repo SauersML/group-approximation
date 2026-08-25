@@ -48,10 +48,11 @@ Consequently the two arithmetic tower estimates sharpen as follows.
    The Atkin--Lehner missing-mass count gives
 
    ```text
-   c_p(1-nu_0) <= D delta_0^2 <= D epsilon^2/kappa_0^2.                  (QK5)
+   b_p(1-nu_0) <= D delta_0^2 <= D epsilon^2/kappa_0^2,                  (QK5)
    ```
 
-   Here the last inequality uses the Kazhdan-constant convention of
+   where `b_p=min(c_p,1/3)`.  Here the last inequality uses the
+   Kazhdan-constant convention of
    `lambda-exact-p-divisible-ultra-deep-proof`; with a different normalization
    only the absolute constant changes.
 

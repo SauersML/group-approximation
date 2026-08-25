@@ -56,12 +56,13 @@ perturbation-stable, so this describes only the congruence sub-face there.
 ## 4. Rank two: the p-divisible Lambda-exact sector is ultra-deep or negligible
 
 For genuine `rho'` of level `p^D m'` and `H` epsilon-intertwining the
-`h`-twist on `C_0`: `c_p (1 - nu_0) <= D epsilon^2/kappa_0^2`, with
-`c_p = 1 - (p^2+p-2)/(p^3-1) - 1/(p+1) > 0` for every prime (uniform
-coadjoint-orbit count of `Y_21 = 0`).  Together with the graph's
+`h`-twist on `C_0`: `b_p (1 - nu_0) <= D epsilon^2/kappa_0^2`, with
+`c_p = 1 - (p^2+p-2)/(p^3-1) - 1/(p+1)` and
+`b_p=min(c_p,1/3)>0` for every prime (coadjoint-orbit count from level two,
+and the three-transvection bound at level one).  Together with the graph's
 coprime-level closure (`odd-congruence-lambda-exact-sector-collapses`), the
 Lambda-exact face of `(RC3)` is confined to towers of depth
-`>= c_p kappa_0^2 (1 - nu_0)/epsilon^2`.  Nodes:
+`>= b_p kappa_0^2 (1 - nu_0)/epsilon^2`.  Nodes:
 `lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` and
 `orthogonal-kazhdan-powers-have-quadratic-depth-loss`.
 
@@ -69,11 +70,13 @@ Lambda-exact face of `(RC3)` is confined to towers of depth
 
 Track each `C_0`-constituent by `(beta, gamma)` = (upper, lower) simple-root
 depths.  The twist by `J h` acts as `(beta, gamma) |-> (gamma - 1, beta + 1)`
-and moves every diagonal type off the diagonal; Clifford balancing over
-`sl_3(F_p)` (plus Weyl symmetry) puts `>= 2 c_p - 1` of each positive level
-on the diagonal and `<= 2(1 - c_p)` off it.  Hence
-`(4 c_p - 3)(1 - nu_0) <= 12 epsilon/kappa_0` with NO depth: for `p >= 11`
-the `p`-divisible weight of any near-genuine microstate is `O(epsilon)`,
+and moves every diagonal type off the diagonal.  Clifford balancing over
+`sl_3(F_p)` puts `>=2c_p-1` of every level `a>=2` on the diagonal and
+`<=2(1-c_p)` off it.  Level one is not a Lie layer; three conjugate
+transvection subgroups generate `SL_3(F_p)` and put at least `1/3` of its
+mass on `(1,1)`.  Hence, for `a_p=min(4c_p-3,1/3)`,
+`a_p(1-nu_0) <= epsilon^2/kappa_0^2` with NO depth: for `p >= 11`
+the `p`-divisible weight of any near-genuine microstate is `O(epsilon^2)`,
 ultra-deep towers included, and the homogeneous-quotient crossed product has
 no near-genuine microstates at all.  The coprime closure is robust to an
 `o(1)` admixture (a vanishing-weight summand is invisible in the tracial
