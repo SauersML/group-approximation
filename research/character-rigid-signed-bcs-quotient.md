@@ -44,6 +44,26 @@ monotraciality.  Before the signed quotient can be built, one must therefore
 either produce a finite unique-trace non-CE BCS algebra or a finite BCS
 quotient retaining non-CE while making the trace unique.
 
+There is no longer an **abstract** monotracial source-algebra obstruction.
+`finitely-generated-monotracial-nonce-cstar-exists` applies Avitzour
+averaging to a reduced free product containing the faithful GNS image of the
+non-CE BCS trace and produces a finitely generated simple C-star algebra with
+one non-CE trace.  Thus, if `(CRQ1)` is relaxed from a finite BCS target to an
+arbitrary finitely generated target, the source is available.  What remains
+is the group-theoretic part: construct the generating sector representation
+`(CRQ2)` without losing character rigidity.  The reduced free-product
+construction does not give a finite BCS presentation or such a group
+representation.
+
+There is no hidden analytic-quotient flexibility in that relaxation.
+`faithful-monotracial-target-is-canonical-reduced-sector` shows
+that any surjection from the unique-trace character sector onto this simple
+monotracial target has kernel exactly the canonical trace GNS kernel.  Hence
+the target would have to be isomorphic to the corresponding reduced twisted
+group C-star sector.  Constructing `(CRQ2)` for this target has therefore
+already realized its non-CE trace as a canonical reduced group-sector trace
+and already solved the group problem.
+
 ## Exact signed-sector face audit
 
 Conditions 1 and 2 do give the claimed uniqueness once the objects exist.

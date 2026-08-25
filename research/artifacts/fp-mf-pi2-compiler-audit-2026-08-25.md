@@ -171,6 +171,21 @@ and the coordinate-isolation argument.
 
 ## 7. Status
 
+### Two subsequent refinements
+
+The positive half-row benign witness is MF-safe.  In the standard tower the
+endomorphisms satisfy `xi_1=Ad(c^-1) o xi_0`.  If `t_0,t_1` are the two stable
+letters, then `z=t_0^-1 c t_1` centralizes the base free group.  The first
+tower is a residually finite free-group mapping torus, and the second is
+therefore a central HNN extension of a regularly MF-realized group.  This is
+recorded in `higman-half-row-has-regular-mf-benign-witness`.
+
+The most direct symmetrization of `(R3)` does not work.  Two opposite quotient
+coordinates make the graph embeddings conjugate by a coordinate swap, but in
+the finite pre-quotient presentation the HNN letter then only swaps `(n,1)`
+and `(1,n)` for `n in N`.  It never forces `n=1`.  See
+`coordinate-swap-rope-does-not-compress-kernel`.
+
 No unconditional proof of `(R2)` was found in the repository or in the
 literature search.  Consequently the finite-presentation `Pi^0_2`-completeness
 claim remains open.  Any proof claiming closure from symmetric doubles,

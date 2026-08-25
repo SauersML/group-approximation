@@ -148,6 +148,16 @@ core-commutant/restriction-fiber gauge before declaring a cross-atom block
 incompatible.  The open component is cross mixing transverse to that exact
 kernel gauge, not arbitrary off-diagonal packet mass.
 
+`core-commutant-quotient-normal-gap-is-relative-liftability` gives the exact
+form of that transverse component.  A positive quotient distance at
+vanishing energy is equivalent to a relative ultraproduct representation
+with no almost-full congruence coordinate lift.  Selberg/property `(tau)`
+cannot choose the lift: its bimodule inequality requires two genuine
+representations and becomes available only after an endpoint type has been
+selected.  If qualitative lifts do exist, the remaining quantitative step
+is the legal core-preserving removal of the operator-hard, energy-paid tails
+isolated by the tangent analysis.
+
 That failure cannot be repaired by a core-level coarea/Poincare step.
 `bs-core-coarea-cuts-have-full-legalization-cost` uses one irreducible
 length-`m` fourth-power packet and a half-interval spectral projection.
@@ -183,3 +193,13 @@ quotient endpoint intertwiner space, which presupposes the atom/type that
 `(GOS1)` must select.  The correct target is therefore distance to the
 nonlinear union of restriction-ring endpoint fibers, not transverse norm
 to any fixed core algebra.
+
+Distinct authenticated fibers themselves require no separation theorem.
+`restriction-fiber-orbits-have-optimal-common-dilation` proves that two
+types `m,n` over the same core merge exactly after cross-padding their
+unmatched irreducible parts.  The optimal added fraction is
+`mu/(1+mu)`, and orbit distance is uniformly comparable to `sqrt(mu)`.
+Thus close fibers merge at quadratic flexible cost.  A relator-energy floor
+between distinct fibers is impossible because both fibers consist of exact
+zero-energy points.  The only unresolved nonlinear-union step is selecting
+a nearby fiber/type from the raw rows.

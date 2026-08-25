@@ -28,6 +28,20 @@ variety.
 
 ## Attempts
 
+- The fixed index-three Q-system removes section length but does not prove
+  `(UGO1)`.  `index-three-qsystem-rounding-is-relative-repair` sends each
+  modular extension to a rank-`d` invariant flat projection in
+  `Ind_B^V(sigma)` on `3d`; edge mismatch gives projection commutator
+  `O(sqrt(E_end))` with a constant independent of level.  Jointly rounding
+  the two projections after optimizing `sigma` is quantitatively reversible
+  to relative Iwahori repair itself.  In particular it may bypass the
+  chosen growing-section functional, but it supplies no inequality comparing
+  that fixed three-coordinate defect with `G_N`.  Separate averaging is
+  already ruled out by the opposite mod-two three-coset packet.  Thus a
+  positive Q-system route must prove the joint flat-projection theorem; the
+  words “finite index” or “finite Q-system” do not provide its missing
+  uniform angle.
+
 - Frozen-core induction is false: the `r`-exponent character gives constant
   section energy from `O(K^(-2))` relator energy.  Optimizing the exact core
   absorbs this family at the correct scale.

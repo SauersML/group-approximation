@@ -7,6 +7,7 @@ target: bs14-relative-involution-extension-stability
 requires:
   - induced-rounding-needs-rms-section-fillings
   - gauge-optimized-section-energy-controls-flexible-repair
+  - core-commutant-quotient-normal-gap-is-relative-liftability
 ---
 
 Choose `(M,beta')` within a factor two of the infimum in `(GOS1)`.  Replace
@@ -20,4 +21,3 @@ the `1/2` spectral cut from
 `d+O(E_Rd)` and carries an exact endpoint representation; its compression is
 `O(sqrt(E_R))` from `U[beta']`.  Add the initial core displacement.  This is
 the required generalized flexible repair with one dimension-free modulus.
-

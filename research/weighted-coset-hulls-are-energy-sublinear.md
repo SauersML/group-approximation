@@ -59,5 +59,12 @@ three-cycle residuals overlap and can cancel.  A general legal-truncation
 theorem must either decompose such packed data into odd-parity cells or
 prove a replacement energy lower bound before applying `(WCH4)`.
 
+That proposed extension is now false.  The packed construction in
+`packed-d-coset-flip-has-full-bs-hull` chooses one coordinate `D`-coset in
+every `B-D` double coset of a single regular block.  Its flip rank and
+normalized cubic energy are `O(1/p)`, but its legal `B`-hull is the whole
+block.  Thus `(WCH4)` is a theorem about externally separated canonical
+rank-one cells, not the first step of a general packed-support estimate.
+
 DERIVATION
 weighted-coset-hull-concavity-proof

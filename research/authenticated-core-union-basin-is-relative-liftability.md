@@ -80,3 +80,16 @@ section has nonuniform RMS filling cost.  Once a lift supplies such a table,
 uniform Reynolds/polar repair is already available.  Thus central averaging
 does not insert an intermediate theorem between `(AUL2)` and its coordinate
 lift.
+
+The intrinsic metric here must quotient the entire exact core-commutant
+fiber, not a preselected cyclic-packet splitting.
+`exact-cuspidal-hadamard-mixing-has-macroscopic-cross-blocks` gives exact
+zero-energy extenders with fixed positive off-diagonal packet mass, produced
+by a core-commuting Hadamard between duplicate restrictions.  After this
+quotient, `core-commutant-quotient-normal-gap-is-relative-liftability`
+records the quantitative remainder.  Property `(tau)` repairs the normal
+part only after a coordinate endpoint lift is selected; before selection
+there is no genuine second representation on which to apply its bimodule
+gap.  Even qualitative liftability still needs a legal core-preserving
+truncation of operator-hard, rank-paid normal tails to yield a uniform
+linear modulus.

@@ -6,6 +6,7 @@ title: Replace an effective asymmetric HNN identification by MF-safe finite-pres
 root: true
 artifacts:
   - research/artifacts/fp-mf-pi2-compiler-audit-2026-08-25.md
+  - research/coordinate-swap-rope-does-not-compress-kernel.md
 distinct_from:
   symmetric-double-weak-mf: that handles two identical copies and one common subalgebra; this must simulate two different embeddings used by effective Higman compilation.
   hnn-extension-finite-presentation-permanence: that preserves finite presentability, not the MF property.
@@ -77,6 +78,19 @@ narrower than the claim's original generic formulation.
   but a finite orbit of lamp generators cannot distinguish infinitely many
   obligations without conjugating their normal closures together.  No finite
   presentation gadget avoiding this collapse was found.
+- **Opposite quotient coordinates solve compatibility but destroy
+  compression.**  Putting the quotient maps in opposite coordinates makes
+  the two graph edges conjugate by coordinate swap, so block-swap
+  symmetrization gives exact matrix-corona compatibility.  But the lifted
+  finite relations merely make the stable letter swap `(n,1)` and `(1,n)`
+  for `n in N`; they do not force `n=1`.  The exact calculation is
+  [[coordinate-swap-rope-does-not-compress-kernel]].
+
+There is nevertheless a new positive input before the final rope edge:
+[[higman-half-row-has-regular-mf-benign-witness]] proves that Higman's
+two-letter positive half-row witness has a regularly operator-MF ambient
+group.  This enlarges the MF-safe benign library but does not by itself prove
+`(R2)`.
 
 The exact open analytic/group-theoretic subproblem is therefore `(GH1)` for
 the rope data, not generic MF preservation under arbitrary HNN extensions.

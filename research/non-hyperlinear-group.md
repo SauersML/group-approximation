@@ -1434,6 +1434,64 @@ allowed support.  If that structural word is instead already one in the
 perfect trace, it is precisely the residual literal packet detector demanded
 by the HNN-substitution reduction.
 
+There is a broader exact obstruction behind every finite iteration of these
+nonlinear packets.  `finite-bs-selectors-have-marked-fd-countermodels`
+shows that the shared right-angled Coxeter base remains residually finite
+after adjoining any finite collection of one-bit Clifford selector groups,
+finite auxiliary packets, and finite-subgroup amalgam/HNN Reynolds edges.
+The selector group is finite even though it is noncommutative: every word
+reduces to `c p^epsilon q^delta`.  Residual finiteness gives one finite
+quotient which preserves `J` and injects every named packet simultaneously.
+Its regular representation is an exact matrix model in which every
+central-sign assignment Reynolds atom has positive Plancherel trace and every
+selector half remains nonzero.  Thus going nonlinear genuinely removes the
+affine truth-table barrier, but finite Bass--Serre transport still cannot
+create the required HS collapse.  The load-bearing attachment must be a
+payload-sensitive global two-cell outside this residually finite class.
+
+Passing immediately to an infinite proper self-copy does not bypass the
+firewall.  `finite-selector-cannot-support-infinite-child-fixedness` proves
+that the projective left stabilizer of every nonzero finite-support
+coefficient is finite.  The selected coefficient
+`e_(H_a)Q_-(1+p_a)/2` therefore cannot carry an infinite child on which the
+action is scalar, nor can an infinite finite-quotient kernel act trivially on
+it: either condition collapses the child or erases the coefficient in the
+group algebra.  Replacing fixedness by normalization avoids collapse but
+leaves the full Schur multiplicity action, whose adjoint commutant density
+can vanish in finite regular gauges.  Thus a self-copy terminal still needs
+an approximation-dependent macroscopic fixed projection extracted by a
+global matrix-only payload relation; the literal Reynolds--Pauli atom cannot
+be that projection.
+
+The phase-coded global-cycle alternative now has an equally sharp endpoint.
+`phase-cycle-return-needs-active-typed-hs-floor` substitutes every
+authenticated finite outer packet matrix into an arbitrary finite menu of
+phase, rectangle, curvature, and multiplicity two-cells.  If the resulting
+typed multiplicity equations have any asymptotic matrix models, tensoring
+them behind the outer packet makes all actuator defects vanish while the
+literal half-to-quarter flags retain the rank lower bound
+`sum_i ||U_i e_iU_i^*-f_(i+1)||_2^2 >=
+(1/4)sum_i tr(P_i)`.  Therefore the global row can work only if its active
+typed specialization has a dimension-independent HS defect floor.  Phase
+fingerprints remove wrong types, but they do not create that floor; RF or
+hyperlinear fibers, projective clocks, and Toeplitz/Foelner shifts all give
+the countermodel.  The surviving nonlinear construction must activate an
+HS-unsatisfiable multiplicity presentation only on the forbidden source
+fiber, which is absent in the exact perfect trace.
+
+The obvious attempt to source that typed floor from the original non-CE BCS
+is now reduced without ambiguity.  `bcs-gap-compression-is-the-groupifier`
+defines the localized shared-BCS energy `E_B(Z;F)`.  The known corner theorem
+gives `E_B(Z;F)>=beta_B tr(F)`, but this says nothing about ordinary relator
+energy.  If one proves the missing reverse comparison
+`E_B(Z;F)<=C E_pres+o(1)` together with positive fiber mass from the mark,
+the two inequalities already give a presentation-energy floor and prove
+nonhyperlinearity directly; no phase cycle or self-copy is then needed.
+Without that comparison, a nested BCS remains a star-algebra verifier
+unconnected to `E_act`.  Thus “compress the BCS gap into the active fiber” is
+not an extra shortcut: it is exactly the shared BCS-to-group-word compiler in
+corner form.
+
 The smallest two-edge compressed comparison is also now fenced.
 `two-reynolds-edges-absorb-selector-holonomy-at-one-range` dresses one
 Reynolds HNN word as `U_0=Up_a` and `U_1=Uq_a`.  Their relative holonomy is
@@ -2406,6 +2464,18 @@ Producing that different algebraic action would already exhibit the non-
 hyperlinear dual semidirect product and is not hidden Bernoulli structure in
 the published construction.
 
+Changing the actor does not rescue the most literal Feldman--Moore
+construction.  `fm-stone-lamp-corners-are-singular` starts from any countable
+atomless Boolean generator of the Cartan and its symmetric-difference lamp
+group.  If the source event signs are mapped to compressed literal lamps in
+any nonzero corner, their unitarity forces that corner to reduce the entire
+lamp algebra.  The corner spectral law is then Haar-absolutely-continuous,
+whereas the source Stone law is concentrated on the Haar-null ultrafilter
+locus.  This rules out the canonical Boolean-lamp compiler for every graphing
+actor and every actor enlargement, including initially noncentral corners.
+Only a genuinely non-Cartan embedding or nonlinear multi-grade images of the
+Cartan signs remain.
+
 **Frontier map after the 2026-08-21 evening RE pass.**  The three
 independent standing routes each bottleneck at a core that is
 equivalent-to-or-harder-than a recognized open problem, and the by-hand
@@ -2616,6 +2686,16 @@ adaptive distance to the nonlinear union of restriction-ring fibers; a
 commutant-plus-transverse decomposition around one arbitrary baseline
 cannot prove it.
 
+After the endpoint types are known, this nonlinear union has an exact
+stable metric.  `restriction-fiber-orbits-have-optimal-common-dilation`
+splits two multiplicity vectors into their common and unmatched parts and
+cross-pads the latter.  The endpoints become the same exact larger
+representation with optimal added rank `mu d`; property `(tau)` identifies
+`sqrt(mu)` with orbit distance.  Close exact fibers therefore merge at
+quadratic padding cost.  They cannot have a relator-energy separation floor,
+since every fiber is already zero energy.  Raw atom selection, rather than
+inter-fiber geometry, remains the global gate.
+
 After authentication, neither cross-packet mixing nor the first
 cross-stratum substitution remains open.
 `congruence-cross-type-mixing-has-uniform-polar-repair` applies property
@@ -2641,6 +2721,21 @@ arithmetic gate is now accurately stated as **adaptive moving-core relative
 liftability**, or equivalently the gauge-optimized two-dimensional section
 energy estimate.  It is not conductor guessing, parity repair, packet
 mixing, or passive-type selection from the active residuals.
+
+The fixed index-three induction viewpoint gives a cleaner equivalent form,
+but not a free rounding theorem.  By
+`index-three-qsystem-rounding-is-relative-repair`, an extension of an exact
+Iwahori fiber `sigma` is exactly a rank-`d` invariant projection in
+`Ind_B^V(sigma)` on `3d` whose three coordinate compressions are `1/3`.
+For merely close edge restrictions the canonical projections remain exactly
+flat and have commutator defect bounded by a fixed constant times the edge
+defect—there is no growing Schreier area.  However jointly rounding the two
+flat projections over one optimized fiber is quantitatively reversible to
+the original relative Iwahori repair.  Separate three-coset saturation is
+already false on the mod-two packet.  Hence the Q-system may furnish an
+alternative attack on adaptive liftability, but it neither proves the
+stronger `G_N<=C E_end` functional nor turns finite-index permanence into
+the missing joint projection angle.
 
 The 2-adic tower residual is the `Lambda`-exact sub-case of CORE A; the
 weak-ucp outlier residual is the non-exact sub-case; the cusp computation
@@ -3026,3 +3121,31 @@ Conditional on a coherent finite actor table on one common PVM,
 dimension-uniform `1-o(1)` permutation core.  Producing that table is exactly
 the active invariant-Cartan/action-soficity gate; neither the finite lamp
 algebra nor property `(T)` supplies it.
+
+**Packed regular-block truncation audit (2026-08-25).**  The tempting repair
+of the Iwahori moving-core basin by invariantizing every high-displacement
+projection is now sharply false.  `packed-d-coset-flip-has-full-bs-hull`
+works in one left-regular `PSL_2(F_p)` endpoint.  It selects one coordinate
+`D=<r,x>`-coset from every `B=<r,s>`--`D` double coset and reflects on their
+union.  The selected projection has density at most `2/p`, is exactly the
+nonzero displacement support, preserves involution and inversion, and has
+two-cubic energy at most `48/p`.  Nevertheless its `B`-reducing hull is the
+entire regular block, because the chosen double-coset representatives have
+`B`-orbit equal to all of `G_p`.  Thus no positive-power energy estimate can
+pay the legal hull, even before possible parity cancellations.  Selberg
+gap, binary cocycle rounding, and post-authentication polar repair do not
+alter this support fact.  A surviving moving-core proof must use the special
+geometry of its decoded source or perform support-changing endpoint repair
+without taking the raw BS hull.
+
+**Monotracial source audit (2026-08-25).**  The lack of a unique-trace MIP-star
+BCS is not an abstract C-star obstruction.  By
+`finitely-generated-monotracial-nonce-cstar-exists`, pass to the faithful GNS
+image of a non-CE BCS trace, tensor with `C(T)`, and take its reduced free
+product with `C*_r(F_2)`.  Avitzour averaging gives a finitely generated
+simple algebra with unique trace, and restriction to the original factor
+shows that trace is non-CE.  Therefore the character-rigid quotient route no
+longer needs monotracialization at the level of abstract finitely generated
+C-star algebras.  Its real missing operation is a generating representation
+of a finitely presented character-rigid group into that algebra (or a finite
+BCS replacement); the free-product construction itself supplies neither.

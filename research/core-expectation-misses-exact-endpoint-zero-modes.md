@@ -50,3 +50,11 @@ A global distance-to-union theorem must select a nearby orbit/type before
 using property `(tau)`; decomposing relative to an arbitrary baseline and
 then applying same-core gauge coercivity is false even at zero defect.
 
+The nonlinear union is nevertheless metrically explicit after
+authentication.  `restriction-fiber-orbits-have-optimal-common-dilation`
+cross-adds the unmatched positive and negative irreducible multiplicities
+of any two endpoint types.  It merges them into one exact larger endpoint
+with optimal added rank `mu d`, while property `(tau)` makes orbit distance
+comparable to `sqrt(mu)`.  Hence the mod-three zero modes and every other
+exact pair merge at quadratic flexible cost.  This does not select a fiber
+for a raw tuple.

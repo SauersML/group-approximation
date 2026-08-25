@@ -25,6 +25,24 @@ non-hyperlinear group `hat K rtimes Lambda`.
 
 ## Attempts
 
+- **The canonical Feldman--Moore/Stone-lamp compiler fails for every actor
+  and every nonzero corner (proved, 2026-08-25).**  Start with any countable
+  invariant atomless Boolean generator of the source Cartan and forget
+  intersection, retaining its symmetric-difference lamp group.  One might
+  hope that a noncentral corner of the resulting algebraic Haar crossed
+  product recovers the Stone probability algebra.  It cannot.
+  `fm-stone-lamp-corners-are-singular` proves that if the compressed literal
+  lamps are the images of the Cartan sign unitaries, their being unitaries
+  already forces the corner to reduce every lamp.  Its lamp spectral law is
+  then Haar-absolutely-continuous, whereas the source Stone law is supported
+  on the Haar-null Boolean-multiplicative locus.  Fourier uniqueness gives a
+  contradiction.  This is actor-independent and includes countable
+  full-group graphings and arbitrary actor enlargements.  Thus
+  Feldman--Moore plus a countable Boolean/lamp group does not supply `(AAE1)`
+  through its canonical Cartan coordinates.  The remaining envelope must be
+  genuinely non-Cartan or send source signs to nonlinear multi-grade
+  operators; that residual possibility is the original hard problem.
+
 - **Correlated one-hot Haar registers do not give a cheaper compiler
   (2026-08-22).**  `correlated-haar-onehot-dichotomy` computes the exact
   finite-marginal density for every linear code/subshift.  High rank forces

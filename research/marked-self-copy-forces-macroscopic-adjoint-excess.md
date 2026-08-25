@@ -48,6 +48,16 @@ charge the spectator multiplicity itself.
   stabilizer.  Normalizer rows therefore create an invariant left ideal, not
   a pointwise-fixed positive-density adjoint sector; the external kernel
   multiplicity remains arbitrary.
+- **The nonlinear one-bit selector is locally Fejer-subcritical.**
+  `one-bit-selector-local-words-are-fejer-subcritical` reduces every word in
+  the complete context-plus-selector subgroup to one of four Clifford forms
+  on the selected atom.  The visible selected half is fixed only by an
+  order-two word and has at most one-eighth canonical density; the raw
+  selector product is an order-four clock whose phase carriers have the same
+  bound.  Hence neither the selector involution, its commutator, its square
+  root, nor multiplication by context signs can feed even the weaker unnamed
+  Fejer terminal.  The amplifier must authenticate a genuinely nonlocal
+  wandering word on the same nonlinear carrier.
 - **Live attack.**  Make every spectator multiplicity sector carry a new
   authenticated packet or first-hit exit, and prove that survival of the mark
   forces a fixed fraction of the complete adjoint space to enter before the

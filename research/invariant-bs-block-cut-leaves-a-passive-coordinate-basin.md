@@ -96,6 +96,20 @@ one congruence block: without a decomposition into odd three-cycle cells,
 small total cubic energy need not count the number of source flips to which
 the concavity estimate would apply.
 
+The hoped-for packed replacement estimate is false even without cubic
+cancellation.  `packed-d-coset-flip-has-full-bs-hull` takes one coordinate
+`D=<r,x>`-coset from every `B=<r,s>`--`D` double coset in a single regular
+`PSL_2(F_p)` block.  Reflection across their union preserves involution and
+inversion exactly, has displacement and normalized cubic energy `O(1/p)`,
+but the selected coordinate vectors have `B`-orbit equal to the whole
+regular block.  Hence the smallest legal BS hull has density one.  No bound
+`density(Hull_B Q)<=C E^alpha`, for any positive `alpha`, can turn an
+arbitrary coordinate high-displacement cut into an affordable reducing
+cut.  The slow-cut theorem must therefore exploit additional structure of
+its specifically decoded source (or repair it without invariantizing its
+raw support); property-`(tau)` or parity rounding alone cannot fill this
+gap.
+
 One tempting change of coordinates is now ruled out sharply.
 `sl2-half-rational-h2-refutes-torsion-normalized-op-basin` computes
 `H^2(PSL_2(Z[1/2]),Q)=Q` from the one-edge amalgam and applies Dadarlat's
