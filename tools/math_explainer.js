@@ -152,7 +152,7 @@
     'infinite-dimensional': entry('infinite-dimensional',
       'Requiring infinitely many independent [[coordinate|coordinates]] rather than any fixed finite list. This allows behavior impossible in finite-dimensional spaces.'),
     'group': entry('group',
-      'A collection of reversible moves. Two moves can be performed in succession, there is a do-nothing move, and every move can be undone.'),
+      'A [[set]] with a rule for combining any two elements. The result stays in the set; regrouping three elements does not change the result; there is an [[identity]] element that changes nothing; and every element has an [[inverse]]. Group elements can represent symmetries or actions, but they do not have to.'),
     'commute': entry('commute',
       'Two moves commute when doing the first and then the second gives the same result as doing them in the opposite order.'),
     'nontrivial': entry('nontrivial',
@@ -386,7 +386,7 @@
     'property (T)': entry('property (T)',
       'A [[rigidity]] feature of a [[group]]. Roughly, if the group moves some [[vector|vectors]] only a tiny amount, then some [[nonzero]] vector must be left completely fixed.'),
     'corona': entry('corona',
-      'Here “corona” is a conventional name for a [[quotient]] of [[sequence|sequences]]: it keeps their long-run behavior but treats two sequences as equal [[modulo c0|when their difference tends to zero]]. It has nothing to do with the Sun.'),
+      'A conventional name here for a [[quotient]] of [[sequence|sequences]] that keeps their long-run behavior but treats two sequences as equal [[modulo c0|when their difference tends to zero]].'),
     'norm matrix corona': entry('norm matrix corona',
       'A [[corona]] made from [[bounded sequence|bounded sequences]] of finite [[matrix|matrices]]. Two sequences count as the same when the [[operator norm]] of their difference has [[limit]] zero.'),
     'corona norm': entry('corona norm',
@@ -394,13 +394,13 @@
     'c0-direct sum': entry('c0-direct sum',
       'The [[direct sum]] of matrix [[sequence|sequences]] whose [[operator norm|operator norms]] approach zero. The “c-zero” label is the conventional name for sequences that vanish in the long run.'),
     'MF': entry('MF',
-      'MF stands for “matricial field,” the historical name for this finite-matrix [[approximation]] rule. To pass the MF test, [[multiplication error|multiplication errors]] must shrink to zero and different [[group]] elements must remain distinguishable.'),
+      'MF stands for “matricial field,” the historical name for this finite-matrix [[approximation]] property. A countable [[group]] is MF when its elements can be assigned finite-dimensional [[unitary matrix|unitary matrices]] at successive stages so that every [[multiplication error]] tends to zero in [[operator norm]], while each [[nonidentity]] element stays a positive operator-norm distance from the [[identity]] along infinitely many stages. Equivalently, the group embeds in the unitary group of a [[norm matrix corona]].'),
     'MF group': entry('MF group',
       'A [[group]] that has a [[faithful]] [[representation]] by sequences of finite [[unitary matrix|unitary matrices]] in a [[norm matrix corona]]. Equivalently, its [[multiplication error|multiplication errors]] approach zero in [[operator norm]] without merging distinct group elements.'),
     'MF radical': entry('MF radical',
-      'The [[radical]] for the MF test: the [[normal subgroup]] of elements erased by every [[homomorphism]] from the group into every [[norm matrix corona]]. This subgroup is [[fully invariant]].'),
+      'The [[normal subgroup]] of elements sent to the [[identity]] by every [[homomorphism]] from the group into every [[norm matrix corona]]. This subgroup is [[fully invariant]].'),
     'radical': entry('radical',
-      'In this paper, “radical” means the largest part of a [[group]] that all allowed tests erase. It is unrelated to a square-root sign.'),
+      'In this paper, the [[normal subgroup]] containing exactly the elements that every allowed target [[homomorphism]] sends to the [[identity]].'),
     'Leavitt algebra': entry('Leavitt algebra',
       'A particular [[algebra]] built from four named elements \\(s_0,s_1,t_0,t_1\\) and two families of equations. Those equations let one [[free module]] behave like two copies of itself.'),
     'direct product': entry('direct product',
@@ -1142,7 +1142,7 @@
     if (!anchor || !document.querySelector('.math-symbol-help')) return;
     var prompt = document.createElement('p');
     prompt.className = 'math-help-prompt';
-    prompt.textContent = 'Click underlined vocabulary or highlighted math for plain-language explanations.';
+    prompt.textContent = 'Hover over vocabulary or highlighted math for plain-language explanations. You can also click or use the keyboard.';
     anchor.insertAdjacentElement('afterend', prompt);
   }
 
@@ -1160,6 +1160,24 @@
       event.preventDefault(); event.stopPropagation(); openObject(object, math); return;
     }
     if (panel && !panel.hidden && !event.target.closest('.math-help-prompt')) closePanel();
+  }, true);
+
+  function previewPaperTerm(node) {
+    if (!node) return;
+    var canonical = clean(node.getAttribute('data-term'));
+    var info = explainTerm(canonical);
+    if (!info) return;
+    lastObject = node;
+    history = [];
+    render({ symbol: canonical, info: info, term: canonical });
+  }
+
+  document.addEventListener('mouseover', function (event) {
+    previewPaperTerm(event.target.closest && event.target.closest('.paper-term-help'));
+  }, true);
+
+  document.addEventListener('focusin', function (event) {
+    previewPaperTerm(event.target.closest && event.target.closest('.paper-term-help'));
   }, true);
 
   document.addEventListener('keydown', function (event) {

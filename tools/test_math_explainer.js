@@ -203,8 +203,16 @@ for (const term of [
 }
 assert.match(glossaryByTerm.get('MF').explanation, /matricial field/,
   'the initials MF must be expanded');
-assert.match(glossaryByTerm.get('corona').explanation, /nothing to do with the Sun/,
-  'corona must be disambiguated from the everyday meaning');
+assert.doesNotMatch(glossaryByTerm.get('MF').explanation, /MF test/,
+  'MF must be defined precisely rather than called an undefined test');
+assert.match(glossaryByTerm.get('MF').explanation,
+  /multiplication error.*operator norm.*nonidentity.*identity.*norm matrix corona/,
+  'MF must state both approximation and separation requirements');
+assert.doesNotMatch(glossaryByTerm.get('corona').explanation, /Sun/,
+  'definitions must omit irrelevant disambiguation');
+assert.match(glossaryByTerm.get('group').explanation,
+  /combining any two elements.*regrouping.*identity.*inverse/,
+  'group must be defined by its axioms rather than only by a moves analogy');
 
 assert.deepEqual(
   api.termMatches(
@@ -248,5 +256,7 @@ const sourceCode = fs.readFileSync(require.resolve('./math_explainer.js'), 'utf8
 assert.match(sourceCode, /parseSourceExplanations/);
 assert.match(sourceCode, /math-formula-help/);
 assert.match(sourceCode, /math-term-help/);
+assert.match(sourceCode, /mouseover/,
+  'paper vocabulary must reveal explanations on mouseover');
 
 console.log(`math explainer: ${declarations.length} in-place TeX explanations passed`);
