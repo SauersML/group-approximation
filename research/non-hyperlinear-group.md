@@ -3163,3 +3163,21 @@ longer needs monotracialization at the level of abstract finitely generated
 C-star algebras.  Its real missing operation is a generating representation
 of a finitely presented character-rigid group into that algebra (or a finite
 BCS replacement); the free-product construction itself supplies neither.
+
+**Aperiodic covariance-bimodule audit (2026-08-25).**  The proposed exact
+relative-Kazhdan correction is not merely circular; on the intended
+augmentation module it is impossible.  If the Hilbert--Schmidt `M`-action
+
+```text
+X |-> rho(s m) X rho(m)^*
+```
+
+extends to a finite-dimensional representation of `M rtimes A`, its finite
+character support must be `A`-invariant.  Aperiodicity leaves only the trivial
+character, so evaluating at `X=1` gives `rho(s m)=rho(m)`.  Requiring this for
+the actor generators forces the entire rounded module representation to be
+trivial.  Thus `aperiodic-module-forbids-prescribed-hs-bimodule-extension`
+refutes `lamp-coupled-relative-bimodule-correction` and invalidates the
+relative-Kazhdan correction route.  Any surviving character-actor proof must
+use an infinite dilation or a different positive-definite kernel, and still
+must connect its displacement back to the original finite presentation.
