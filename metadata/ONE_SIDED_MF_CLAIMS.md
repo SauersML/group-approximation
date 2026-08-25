@@ -7,14 +7,14 @@ This inventory is intentionally separate from `NON_MF_PROOF_LEDGER.md`, which
 states that it covers a historical 1,486-line revision. A row becomes
 `closed` only after its exact manuscript endpoint has passed MSI validation
 and is named by `#audit_closed_axioms` in `Audit.lean`, `PrintedAudit.lean`,
-or the dedicated `RankTwelveAudit.lean`. Source code that is still compiling
-is never counted.
+`RankTwelveAudit.lean`, or `Endpoint/OneSidedTransportAudit.lean`. Source code
+that is still compiling is never counted.
 
 | TeX label | Printed statement | Lean endpoint | Status |
 | --- | --- | --- | --- |
 | `prop:mf-residual-calculus` | MF residual calculus | `manuscriptMFResidualCalculus` | closed |
 | `thm:compression-criterion` | one-sided compression criterion | `manuscriptOneSidedCompressionCriterion` plus `manuscriptPrintedDefectFiniteDimensionalSterility` | closed (two exact audited constituents) |
-| `thm:headline` | the binary Leavitt group | exact full target `RankTwelveEndpoint.HeadlineConclusion`; hypothesis-free theorem-minus-simplicity `manuscriptBinaryLeavittFullRadical`; conditional full assembly `headlineConclusion_of_normalRootDetection` | open only at the printed simplicity clause; the standalone-validated hypothesis-free theorem is not full Theorem B |
+| `thm:headline` | the binary Leavitt group | `manuscriptBinaryLeavittHeadline : RankTwelveEndpoint.HeadlineConclusion` | closed, including simplicity |
 | `thm:prescribed-quotients` | prescribed MF quotients | `manuscriptPrescribedMFQuotients` | closed |
 | `thm:commutant` | finite-dimensional commutant rigidity | `manuscriptFiniteDimensionalCommutantRigidity` | closed |
 | `lem:stable-finite` | stable finiteness of norm matrix coronas | `manuscriptNormMatrixCoronaStableFinite` | closed |
@@ -24,21 +24,20 @@ is never counted.
 | `lem:central-corona-corner` | central corona corners | `manuscriptCentralCoronaCorner` | closed |
 | `thm:normal-kazhdan` | normal Kazhdan radical theorem | `manuscriptNormalKazhdanPrintedRadical` at the printed natural-dimension radical; `manuscriptNormalKazhdanRadical` at the basis-free one | closed |
 | `prop:defect-saturation` | defect functoriality and saturation for the exact direct-compressor defect | `manuscriptDefectSaturation` | closed |
-| `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.PropositionSimple`; reductions in `RankTwelveSimplicity.lean` | open: missing normal-subgroup/root-detection theorem |
+| `prop:simple` | simplicity of `EL_12(L_F2(1,2))` | `RankTwelveEndpoint.manuscriptPropositionSimple : PropositionSimple` | closed in the endpoint audit |
 | `prop:defect` | explicit nontrivial saturating defect | `RankTwelveEndpoint.manuscriptPropositionDefect`; configuration `printedDefectConfiguration`; full-radical consequence `rankTwelve_actualCoronaMFResidual_eq_top` | closed in `RankTwelveAudit.lean` |
 | `prop:universal-factorization` | universal factorization through `pi_Q` | `manuscriptUniversalFactorization` | closed |
 
-Current closed count: **13/15**. The only open numbered statements are
-`prop:simple` and `thm:headline`; the headline is blocked solely by the same
-simplicity input.
+Current closed count: **15/15**. Every numbered statement has an exact closed
+endpoint.
 
 ## Current validation evidence
 
 - `GroupApproximation/Endpoint/OneSidedTransportAudit.lean` has passed its
   complete endpoint audit. Its `#audit_closed_axioms` checks cover the closed
-  current-manuscript endpoints and enforce the standard axiom whitelist; its
-  deliberately weaker `#audit_axioms` check on `headlineConclusion_of` does
-  not discharge that theorem's leading simplicity hypothesis.
+  current-manuscript endpoints and enforce the standard axiom whitelist,
+  including `manuscriptPropositionSimple` and
+  `manuscriptBinaryLeavittHeadline`.
 - `CanonicalSector.lean` passes standalone MSI validation. Its reusable closed
   packages include `manuscriptNormalKazhdanPrintedRadical`,
   `manuscriptNormalKazhdanCoronaVanishing`,
@@ -46,22 +45,20 @@ simplicity input.
   `manuscriptPrintedDefectCoronaVanishing`. The assembly reuses the exact
   generator-by-generator shadow-containment lemma.
 - `HeadlineTheorem.lean` passes standalone MSI validation.
-  `manuscriptBinaryLeavittFullRadical` is hypothesis-free and proves every
-  headline clause except `IsSimpleGroup H`. It must not be counted as full
-  `thm:headline`; the full conclusion remains conditional on the unproved
-  `NormalRootDetection` through `headlineConclusion_of_normalRootDetection`.
+  `manuscriptBinaryLeavittHeadline` is the hypothesis-free full Theorem B;
+  `manuscriptBinaryLeavittFullRadical` remains the independently useful package
+  of every headline clause except simplicity.
 - `CountableNonMF.lean` packages the hypothesis-free abstract consequences:
   existence of a countable non-MF group, the negation of universal countable
   MF-ness, the equivalent `IsOperatorMF` version, the countable Kazhdan
-  full-radical witness minus simplicity, and the general saturated-defect
-  consequence. These support the abstract/headline but do not supply the
-  missing simplicity conjunct or change 13/15.
+  full-radical witness, and the general saturated-defect consequence.  The
+  full simple headline is supplied separately by `manuscriptBinaryLeavittHeadline`.
 - `PrintedDefinitions.lean` closes the Introduction's corona-denominator,
   unitary-model, and corona-image/MF-target descriptions without restating the
   already audited MF-radical identities. `PrintedRemarks.lean` packages the
   finite-dimensional commutant caveat, the finite-subgroup sterility chain,
   the sofic/hyperlinear scope separation, and normality of intersections of
-  kernels. These are supporting prose rows and do not change 13/15.
+  kernels. These are supporting prose rows; the numbered count remains 15/15.
 
 ## Audit-closed generic routes
 
@@ -74,7 +71,7 @@ simplicity input.
   `manuscriptCentralCoronaCorner` into the printed final corona-class equality
   over the retained subsequence. Its closed wrapper is exported and listed in
   the endpoint audit; it refines the existing lemma row and does not change
-  the 13/15 count.
+  the 15/15 count.
 - The MF part and the arbitrary-field finite-dimensional part of
   `thm:compression-criterion` are separately exact and audit-listed. The
   convenience conjunction `manuscriptCompleteOneSidedCompressionCriterion`
@@ -107,23 +104,24 @@ simplicity input.
   equivalence for a general MF-target-factorizing epimorphism, specializes
   them to the camouflage projection, and packages the four printed clauses as
   `manuscriptMFClosurePullbackAlongFactorization`. These are supporting rows
-  for the existing `eq:closure-pullback` label and do not change 13/15.
+  for the existing `eq:closure-pullback` label and do not change 15/15.
 
-## Remaining open work
+## Closed simplicity and headline
 
 The rank-12 flattening, `printedTauGL_mem`, corner property `(T)`,
 `tau_compresses_corner`, `tau_conj_c`, `tau_c_commutator_ell`, and
 `printedDefectConfiguration` have passed standalone MSI compilation and the
-dedicated closed-axiom audit. Consequently there is no remaining
-configuration or defect-saturation blocker for `thm:headline`.
+dedicated closed-axiom audit. There is no remaining configuration,
+defect-saturation, or simplicity blocker for `thm:headline`.
 
-The sole missing headline input is the independent simplicity proposition
-`RankTwelveEndpoint.PropositionSimple`.
+`RankTwelveEndpoint.manuscriptPropositionSimple` proves the exact simplicity
+proposition, and `manuscriptBinaryLeavittHeadline` packages the complete
+headline unconditionally.
 
-## Exact simplicity gap
+## Direct simplicity proof
 
-Repository search found no derivation of simplicity for
-`BinaryLeavittSteinberg.ElementaryBase 12`. The strongest nearby results are:
+The closed derivation of simplicity for
+`BinaryLeavittSteinberg.ElementaryBase 12` uses the following chain:
 
 - `BinaryLeavitt.exists_mul_mul_eq_one`: every nonzero coefficient of the
   binary Leavitt ring admits a two-sided unit sandwich;
@@ -152,8 +150,8 @@ Repository search found no derivation of simplicity for
   centre is trivial under the already isolated “central units are trivial”
   coefficient hypothesis; and
 - `ElementarySimplicity.RootDetection` with
-  `isSimpleGroup_of_rootDetection`: the remaining normal-structure premise and
-  its exact generic reduction to simplicity.
+  `isSimpleGroup_of_rootDetection`: the generic root-detection predicate and
+  its exact reduction to simplicity.
 - `exists_elGen_mem_of_conjSingle_eq`: a line-preserving conjugation
   configuration produces a nonzero elementary transvection in the normal
   subgroup;
@@ -171,16 +169,18 @@ Repository search found no derivation of simplicity for
   explicitly supplied Preusser sandwich theorem to elementary-group
   simplicity.
 
-These do not imply simplicity by themselves. In particular,
-neither `ElementarySimplicity.lean` nor
-`ElementaryTransvectionExtraction.lean` establishes the `RootDetection`
-premise.  The latter closes the line-preserving and inverse-entry-zero
-configurations, but deliberately leaves open the dense configuration in which
-the usable entries of both `g` and `g⁻¹` are nonzero.  The missing theorem must
-extract a nonzero elementary root from an arbitrary nontrivial normal subgroup.
-Alternatively, `CongruenceSubgroups.lean` reduces the entire printed argument
-to the still-explicit Preusser sandwich hypothesis; it does not prove that
-hypothesis.  A sufficient exact signature at the manuscript endpoint is:
+`ElementaryTransvectionExtraction.lean` now contains a source-level closure of
+the previously open usable dense-entry configuration.  In that case,
+`exists_annihilate_preserve_reverse` uses the Leavitt relations to kill the
+obstruction while retaining a nonzero reversed coefficient, and
+`exists_elGen_mem_of_dense_entries` completes the row extraction.
+`DiagonalNormalExtraction.rootDetection_of_leavittFamily` then proves the
+exhaustive case split: diagonal elements use the centre calculation, while a
+nonzero off-diagonal `g_{li}` is handled according as the matching inverse
+entry is zero or nonzero.  This unconditional endpoint and its exact
+rank-twelve wrapper have passed MSI and the closed endpoint audit.  The independent
+`CongruenceSubgroups.lean` route continues to expose the Preusser sandwich as
+an explicit hypothesis.
 
 ```lean
 ∀ (N : Subgroup RankTwelveEndpoint.H) [N.Normal], N ≠ ⊥ →
@@ -188,12 +188,11 @@ hypothesis.  A sufficient exact signature at the manuscript endpoint is:
     a ≠ 0 ∧ elementaryRoot i j hij a ∈ N
 ```
 
-The manuscript obtains this through Preusser's normal-subgroup theorem, ring
-simplicity/exchange structure, and triviality of the scalar center over
-`𝔽₂`. The ring simplicity and coefficient-centre inputs are now formalized;
-the Preusser normal-structure bridge (and, for the manuscript's central branch,
-the matrix-centralizer-to-scalar step) is not. Root normal generation must not
-be cited as a substitute.
+The manuscript obtains this through Preusser's normal-subgroup theorem.  The
+formalization instead uses Leavitt coefficient separation and the
+matching-entry case split described above.  The exact root-detection theorem,
+simplicity wrapper, and full headline have passed the closed audit, giving the
+strict count 15/15.
 
 Displayed identities and proof steps will be added to the exhaustive proof
 ledger after their owning numbered statement has an exact endpoint. This

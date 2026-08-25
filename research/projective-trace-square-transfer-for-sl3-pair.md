@@ -411,6 +411,19 @@ weakening consumed by the HNN marked word.
   The exact regular HNN factor is a simultaneous tracial countermodel, so
   neither branch can be removed by dimension-blind tracial/SOS methods.
 
+- **Every fixed-depth Clifford refinement is still amenable.**
+  `every-fixed-dyadic-clifford-window-is-finite-fiber-folner` strengthens the
+  last-two-layer calculation to an arbitrary fixed number `k` of deepest
+  congruence layers.  Once `a>=2k`, the principal kernel is the additive
+  group `sl_3(Z/2^k Z)` and its conjugation action factors through the fixed
+  group `SL_3(Z/2^k Z)`.  Hence all depth-`k` Clifford labels form a fixed
+  finite fiber over the `A_2` coweight lattice, and every bounded-range type
+  graph remains amenable.  Thus increasing the local congruence window from
+  two layers to any other fixed depth cannot close the dyadic branch by
+  expansion.  The required input must see depth growing with conductor or a
+  genuinely same-carrier interference relation.  This is a proof-architecture
+  no-go, not a full arithmetic countermodel.
+
 - **Arbitrary codimension does not rescue leakage-small polar enemies.**
   `leakage-small-polar-compressions-obey-projective-transfer` strengthens the
   vanishing-codimension fence.  If a tuple is obtained by polar-compressing

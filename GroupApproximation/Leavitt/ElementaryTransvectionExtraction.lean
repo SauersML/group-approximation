@@ -60,15 +60,15 @@ two-sided division property as explicit inputs.
   (`exists_noncommuting_single_of_not_central`), which is the hypothesis the two
   configurations above consume.
 
-## What is *not* proved
+## Scope boundary
 
 The dense scalar obstruction is no longer a gap: Leavitt coefficient
 separation makes the double commutator row-supported even when the relevant
-entries are nonzero.  What is not supplied here is the final exhaustive index
-case split for an arbitrary noncentral matrix, especially sparse patterns for
-which the available nonzero entries do not satisfy the four commuting-root
-inequalities simultaneously.  Consequently no unconditional `RootDetection`
-or `IsSimpleGroup` theorem is asserted.
+entries are nonzero.  This module provides the extraction branches; the final
+exhaustive case split for an arbitrary nontrivial normal-subgroup element is
+carried out in `DiagonalNormalExtraction`.  That companion module proves
+unconditional `RootDetection` and `IsSimpleGroup` theorems for the manuscript's
+Leavitt-family setting.
 -/
 
 namespace GroupApproximation

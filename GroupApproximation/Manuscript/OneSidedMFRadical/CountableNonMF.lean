@@ -27,24 +27,21 @@ can `#check` one name against one printed sentence.
   `thm:compression-criterion` composed with the closure sentence that follows
   the displayed conclusion of Theorem~A.
 
-## Simplicity is not claimed anywhere below
+## Simplicity is proved separately
 
 The abstract's realisation sentence begins "The resulting group is simple".
-That clause has no proof in this development: the manuscript obtains it from
-Preusser's normal-subgroup theorem, from pure infiniteness and the exchange
-property of `L_{𝔽₂}(1,2)`, and from the centre computation for that algebra,
-and none of those inputs exist in this repository.  `HeadlineTheorem` records
-the exact missing input as `NormalRootDetection` and the implication it would
-buy as `BinaryLeavittSimplicityClause`; that implication is an assumption in
-leading position and is proved only as an implication.
+That clause is now proved by
+`RankTwelveEndpoint.manuscriptPropositionSimple`, via the exhaustive direct
+root-extraction theorem, and the complete conjunction is
+`manuscriptBinaryLeavittHeadline`.
 
-`CountableKazhdanFullMFRadicalGroupExists` therefore omits the simplicity
-clause and claims only what is proved — countable, nontrivial, property `(T)`,
-full MF radical.  Nothing in this module mentions `IsSimpleGroup`, and nothing
-in this module uses simplicity: the route from the printed defect `d = e₀₂(q)`
-to `Rad_MF(H) = H` runs through `normalClosure_defect_eq_top`, not through a
-normal-subgroup theorem.  Reading any statement below as evidence that `H` is
-simple would be a mistake.
+The abstract consequences below remain intentionally projected to the clauses
+their names advertise.  In particular,
+`CountableKazhdanFullMFRadicalGroupExists` records countability,
+nontriviality, property `(T)`, and full MF radical without redundantly adding a
+simplicity conjunct.  Its proof still does not need simplicity: the route from
+the printed defect `d = e₀₂(q)` to `Rad_MF(H) = H` runs through
+`normalClosure_defect_eq_top`.
 
 ## This is not the soficity headline
 
@@ -129,16 +126,16 @@ theorem manuscriptCountableNonOperatorMFGroupExists :
   intro hMF
   exact hnot ((isCDEOperatorMF_iff_isOperatorMF H).mpr hMF)
 
-/-! ## The abstract's realisation sentence, minus simplicity -/
+/-! ## The simplicity-free projection of the abstract's realisation sentence -/
 
 /-- **A countable Kazhdan group whose MF radical is the whole group.**  The
 four clauses are countability, nontriviality, property `(T)`, and
 `Rad_MF(G) = G` at the manuscript's literal natural-dimension radical
 `manuscriptCoronaMFResidual`.
 
-The printed adjective *simple* is deliberately absent from this list; see the
-module docstring for what it would take to add it, and for why no statement in
-this module needs it. -/
+The printed adjective *simple* is deliberately absent from this projected
+list because it is already present in the complete closed headline; see the
+module docstring. -/
 def CountableKazhdanFullMFRadicalGroupExists : Prop :=
   ∃ (G : Type) (_ : Group G),
     Countable G ∧ Nontrivial G ∧ HasKazhdanPropertyT.{0, 0} G ∧

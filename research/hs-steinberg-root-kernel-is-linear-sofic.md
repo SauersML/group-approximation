@@ -63,6 +63,13 @@ representation while retaining every coefficient outside `K_Phi`.
   perturbation can have arbitrarily small HS norm.  Sending the original
   coordinate matrices to a rank ultraproduct therefore does not define a
   homomorphism.
+- **Exact finite-von-Neumann data are insufficient.**
+  `finite-vn-toeplitz-coefficient-reconstruction-fails` gives the regular
+  model with `K_Phi=0` inside `L(H_f)`.  Thus no analogous theorem holds for
+  arbitrary finite-von-Neumann targets.  This does not refute `(SRK3)`, whose
+  target is specifically a tracial **matrix ultraproduct**; it proves that
+  the decoder must use its matricial lifts and cannot be internal to the
+  limiting finite von Neumann algebra.
 - **Finite root-table rounding is insufficient by itself.**  Any fixed
   elementary abelian root table can be exactified, with constants depending
   on that finite table.  Closing a coefficient set under arbitrary left and

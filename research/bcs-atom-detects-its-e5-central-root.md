@@ -62,6 +62,66 @@ imply `(BZR2)`.  A successful estimate must use a mixed row which prevents
 the coefficient `a` from entering the root kernel on the physical BCS
 carrier.
 
+There is one exact canonical-trace subcase.  By
+`coprime-root-reynolds-prefix-overlap`, if
+`E` is itself a character idempotent of a fixed finite two-group and `Z`
+has exact odd prime order `p`, then coprimality gives
+
+```text
+tr(E S_Z)=(1-p^(-1))tr(E)+o(1).                       (BZR4)
+```
+
+This closes `(BZR2)` at the initial Pauli/BCS Reynolds seed.  It also closes
+it after any genuinely literal product of independent commuting prefix-sign
+cuts, because the resulting `E` is again one finite-two-group character
+idempotent.  It does **not** cover the `Q_sigma` needed by the adaptive ring
+decoder when that carrier is an analytic reducing hull or a decoded
+coefficient corner.  Such a `Q_sigma P_i` is not a fixed group-algebra
+Fourier polynomial, so canonical word moments do not determine its overlap
+with the trivial `Z`-sector.  Moreover the literal-prefix alternative cannot
+amplify: `companion-free-prefix-return-has-exponential-regular-capacity`
+forces its canonical mass to decay as `2^(-|sigma|)`.
+
+There is a separate algebraic typing prerequisite.  The compiler
+`finite-adaptive-selected-atom-ring-tree` is presently stated over a
+characteristic-zero splitting ring, whereas `(BZR1)--(BZR3)` use an
+exactified root of odd prime order.  The latter is automatic only after an
+explicit odd-characteristic version has been chosen: over a ring of
+characteristic `p`, a nonzero coefficient `a` gives
+
+```text
+x_13(a)^p=1,
+x_13(a)!=1 in E_5(R),                                  (BZR5)
+```
+
+the second assertion following from the elementary-matrix image
+`1+aE_13`.  In characteristic zero the same root is generally infinite
+order, so the finite Fourier projection in `(BZR1)` is not available.
+The required base change and nonvanishing audit are now supplied by
+`odd-characteristic-adaptive-tree-wordization`.  Thus exact root order is no
+longer part of this open claim, but it must be imported through that node
+rather than silently from the characteristic-zero compiler.  The only open
+content here is the metric payload reflection on nonliteral carriers.
+
+There is now a useful exact control experiment showing that **analyticity of
+the carrier is not by itself the obstruction**.
+`a4-role-atom-has-flat-c3-root-overlap` uses
+`A4=V4 semidirect C3`.  On the three-dimensional block, every nontrivial
+`V4` character atom has compression `1/3` against the trivial `C3` Fourier
+projection.  The identity remains exact after multiplication by an arbitrary
+projection in the `A4` commutant, so it applies to analytic reducing hulls
+and decoded multiplicity corners without canonical trace moments.
+
+What it does not do is make the auxiliary `C3` generator equal to the root
+`x_13(a)`.  In the perfect model `a=0` and the latter root is `1`, whereas
+the auxiliary generator remains nontrivial on the selected `A4` block.
+Literal identification therefore breaks perfect completeness.  Making the
+finite block collapse conditionally with `a` merely restates the missing
+Steinberg payload reflection.  The remaining obstruction is consequently
+not "nonliteral carrier versus finite Fourier polynomial"; it is the
+**conditional identity of the detected odd root with the coefficient root
+that vanishes when the payload vanishes**.
+
 Even `(BZR2)` is not by itself the final theorem: the edgewise oriented
 tables must still assign one common mass to the same parent carrier across
 all outgoing types.  It separates the two remaining issues cleanly:

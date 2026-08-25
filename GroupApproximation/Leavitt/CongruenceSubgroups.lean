@@ -9,13 +9,13 @@ import Mathlib.Tactic.NoncommRing
 /-!
 # Relative elementary groups, congruence subgroups, and the centre of `GL`
 
-Proposition `prop:simple` of the manuscript is the one printed statement the
-development does not prove.  Its five-sentence proof quotes Preusser's
-normal-subgroup theorem for `GL_n` and then runs an elementary case split on
-the level ideal.  This file supplies **everything in that proof except the
-citation**: the two objects the sandwich is stated with, the two endpoints of
-the case split, and the manuscript's own two-step computation of the centre of
-`GL_ι(R)`.
+The manuscript's five-sentence proof of Proposition `prop:simple` quotes
+Preusser's normal-subgroup theorem for `GL_n` and then runs an elementary case
+split on the level ideal.  This file formalizes that cited route up to its
+upper-sandwich hypothesis: the two objects the sandwich is stated with, the two
+endpoints of the case split, and the manuscript's own two-step computation of
+the centre of `GL_ι(R)`.  The exact proposition is proved unconditionally
+elsewhere by the direct root-extraction route in `DiagonalNormalExtraction`.
 
 ## The two objects
 
@@ -54,11 +54,11 @@ Leavitt algebra the input is available inside this library.
 
 `isSimpleGroup_of_preusser_sandwich` assembles the four pieces.  It carries a
 single explicit hypothesis, `hpreusser`, which is Preusser's normal-subgroup
-theorem in the exact shape the printed proof quotes it.  Nothing else in the
-printed argument remains unformalized: after this file the citation surface of
-`prop:simple` is that one named hypothesis, together with the ring-side
-simplicity and centre facts that are already in the library.  No claim of
-`IsSimpleGroup` is asserted unconditionally here.
+theorem in the exact shape the printed proof quotes it.  The general upper
+sandwich therefore remains visible and unformalized in this optional route.
+It is not an assumption of the repository's final result:
+`DiagonalNormalExtraction.isSimpleGroup_of_leavittFamily_root_extraction`
+proves the needed simplicity directly from the Leavitt-family inputs.
 -/
 
 namespace GroupApproximation

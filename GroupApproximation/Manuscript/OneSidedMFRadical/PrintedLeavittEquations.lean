@@ -59,11 +59,12 @@ Everything is bundled into the two closed propositions
 Section 5 ends by pointing forward to the simplicity argument.  The two
 statements the manuscript defers to Section 6 — `prop:simple`
 (`RankTwelveEndpoint.PropositionSimple`) and the centre computation of
-`R` quoted from `ArandaCrow` — are *not* proved in this printed-equation layer.
-The latter is now proved separately as `BinaryLeavitt.center_eq_bot` and
-`BinaryLeavitt.central_units_trivial` in `Leavitt/BinaryLeavittSimple.lean`;
-it still does not supply the missing Preusser normal-subgroup theorem needed
-for `prop:simple`.
+`R` quoted from `ArandaCrow` — are outside this printed-equation layer.  The
+centre is proved as `BinaryLeavitt.center_eq_bot` and
+`BinaryLeavitt.central_units_trivial`; the exact rank-twelve simplicity claim
+is proved unconditionally in `RankTwelveSimplicity` by direct root extraction.
+The general Preusser upper sandwich is retained only as an optional parallel
+formalization route.
 -/
 
 namespace GroupApproximation

@@ -148,7 +148,10 @@ matrix assignment of the full double; exact extension is where finite
 co-density folds.
 
 Nor does adjoining every bounded-depth dyadic Clifford type create the
-missing extension by itself.  The exact tensor escape in
+missing extension by itself.  The theorem
+`every-fixed-dyadic-clifford-window-is-finite-fiber-folner` shows that this
+is not special to the last two layers: every fixed number of deepest layers
+is still a finite fiber over the amenable coweight lattice.  The exact tensor escape in
 `spherical-quadrature-tensors-through-clifford-folner-windows` combines each
 finite spherical quadrature with a conjugate-doubled coweight Folner box.
 Every fixed local Clifford cycle and every cross-commutation relation then

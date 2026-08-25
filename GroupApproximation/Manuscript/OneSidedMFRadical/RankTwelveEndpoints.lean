@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.FullRadicalClosureProperties
 import GroupApproximation.Sofic.SimpleFullMFRadical
 
 /-!
-# The exact rank-twelve endpoint: closed algebra and remaining gaps
+# The exact rank-twelve endpoint: definitions and closed algebra
 
 This module fixes the group used in `non_mf_groups_exist.tex`:
 
@@ -22,17 +22,14 @@ rank:
 
 The raw matrices `X`, `Y`, and `τ = diag(X,Y)`, their inverse identities,
 Whitehead factorization, and the corner-conjugation calculation are in
-`Leavitt.RankTwelveCompressor`.  What is not yet supplied there is the
-group-level lift showing that this particular `τ` belongs to `EL₁₂` and that
-the printed `c = e₃₄(1)` and `ell = e₁₂(1)` give the printed commutator after
-flattening the nested block indices.  That missing lift is isolated below as
-`PrintedDefectConfiguration`.
+`Leavitt.RankTwelveCompressor`.  This file names the required group-level lift
+as `PrintedDefectConfiguration`; `RankTwelveConfiguration` constructs it by
+flattening the nested block indices and proving elementary-group membership.
 
-The other genuinely missing input is the normal-subgroup theorem needed for
-`IsSimpleGroup H`.  The in-repo Steinberg argument proves normal generation of
-every nonzero elementary root, which is enough for the printed defect but does
-not imply that every nontrivial element normally generates.  Accordingly this
-file does not manufacture a simplicity theorem from the weaker root result.
+Likewise this file names the exact simplicity proposition without reproving
+it.  `RankTwelveSimplicity.manuscriptPropositionSimple` closes it
+unconditionally via exhaustive direct root extraction and elementary-root
+normal generation, independently of the optional Preusser upper sandwich.
 -/
 
 namespace GroupApproximation
@@ -96,7 +93,7 @@ local instance rankTwelveCountable : Countable H := countable
 theorem hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} H :=
   BinaryLeavittSteinberg.elementaryBase_hasKazhdanPropertyT (n := 12) (by omega)
 
-/-- All presently closed structural clauses for the group in the headline. -/
+/-- The closed simplicity-free structural profile used by the defect route. -/
 theorem closedStructuralProfile :
     Countable H ∧ Group.FG H ∧ Nontrivial H ∧
       HasKazhdanPropertyT.{0, 0} H ∧
@@ -104,7 +101,7 @@ theorem closedStructuralProfile :
   ⟨countable, finitelyGenerated, nontrivial, hasKazhdanPropertyT,
     defect_ne_one, normalClosure_defect_eq_top⟩
 
-/-! ## Exact statements of the two missing inputs -/
+/-! ## Exact interfaces for the two inputs closed by companion modules -/
 
 /-- The manuscript's block ordering
 `((a,b),i) ↦ 6a+3b+i` after matrix-composition has produced the associated
@@ -211,8 +208,9 @@ def PrintedDefectConfiguration : Prop :=
       (∀ gamma ∈ corner, tau * gamma * tau⁻¹ ∈ corner) ∧
       ⁅tau * c * tau⁻¹, ell⁆ = defect
 
-/-- The exact unresolved content of `prop:simple`.  It is kept as a named
-proposition so audits cannot confuse root normal generation with simplicity. -/
+/-- The exact content of `prop:simple`, kept as a named proposition so audits
+can distinguish the final simplicity theorem from its root-normal-generation
+support.  It is proved by `RankTwelveSimplicity.manuscriptPropositionSimple`. -/
 def PropositionSimple : Prop := IsSimpleGroup H
 
 /-- The group-level printed configuration makes the printed defect equal to
@@ -263,7 +261,7 @@ def HeadlineConclusion : Prop :=
       IsCDEOperatorMF M → ∀ (f : H →* M) (x : H), f x = 1) ∧
     ¬ IsCDEOperatorMF H
 
-/-! ## The headline after the two missing inputs are discharged -/
+/-! ## Assembling the headline from the two named inputs -/
 
 /-- A nontrivial countable group with full actual corona MF residual is not
 MF in the literal CDE sense. -/

@@ -45,3 +45,10 @@ retained level-zero logical involutions.
 - **Context-atom tag table.**  Transporting the fixed context tuple through
   the same finite elementary-abelian edge puts the live mass in the matching
   child atom.  Separate ladders avoid every cross-context commutator.
+- **Add an identity baseline child.**  This closes the scalar two-child
+  equation but not the recurrence.  As proved in
+  `identity-baseline-does-not-install-tagged-s3-survivor`, an identity copy of
+  the same carrier retains the charged exit, while a genuinely separate
+  baseline child is not under the next survivor prefix.  Putting that child
+  there by an exact trace-neutral chart is the exponential regular-capacity
+  firewall, not a next-carrier theorem.

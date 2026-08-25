@@ -65,8 +65,16 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   `sl3-arithmetic-double-finite-representations-fold`.
 - If either arithmetic vertex of the corresponding double is uniformly near
   an exact representation, the established one-near-vertex correction
-  cascade makes both vertices jointly near exact and forces `(SFS1)`.  Every
-  enemy is therefore in the simultaneous two-outlier sector.
+  cascade makes both vertices jointly near exact.  Projective folding then
+  gives `|tr(V)|->1` for `V=rho(h)S rho(h)^*S`.  Because `tr(V)` is real for a
+  product of involutions,
+
+  ```text
+  min_(sigma in {+1,-1}) ||V-sigma I||_2^2=2-2|tr(V)|,
+  ```
+
+  so `||V^2-I||_2->0` dimension-independently.  Every enemy is therefore in
+  the simultaneous two-outlier sector.
 - Positive-cross-Gram rounding supplies no estimate: `G=PQ` has exact packet
   covariance for every `P,Q`.  In a canonical enemy its Gram law is forced
   to be half-arcsine and its left side is exactly asymptotic to `1/16`.
@@ -85,6 +93,23 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   models refute `(SFS1)`.  Thus the defect-only word estimate would also
   prove nonsoficity of this explicit nonamenable-stabilizer action; ordinary
   sofic-action approximation cannot be used to prove it.
+
+- A narrower sufficient terminal is isolated in
+  `regular-actor-balanced-swap-has-positive-second-fold-bias`.  On assignments
+  whose `A`-restriction already has the regular character and whose swap is
+  balanced, it asks only for `liminf Re tr(V^2)>0`, equivalently for the Gram
+  defect to stay a fixed amount below `1/16`.  This is weaker in conclusion
+  than `(SFS1)` but is still endpoint-equivalent on canonical microstates;
+  it must not be treated as an already available stability theorem.
+
+- Fixed-depth arithmetic type refinement does not reach that narrower
+  terminal.  Every fixed-depth Clifford graph is finite-fiber Folner, and
+  spherical quadratures tensor through its Folner windows while preserving a
+  nonfolded scalar witness.  This rules out separated arguments using only
+  finitely many spherical moments, bounded-depth Clifford cycles, and cross
+  commutation.  It is not a countermodel to the full presentation: the first
+  surviving input must be a non-tensorial actor/swap incidence on the same
+  carrier or depth growing with conductor.
 
 - **Linearizing the fold word against a Fox Jacobian cannot support the
   estimate.**  A first-order coercivity test — perturb an exact representation

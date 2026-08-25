@@ -42,3 +42,42 @@ positive-density carrier on which all four coefficient operators coexist.
 The remaining theorem is a positive-density gluing result, not another trace
 inequality: compatible finite Heisenberg branching data must yield nested
 coordinate carriers and coherent Leavitt operators.
+
+`finite-tags-do-not-atomize-heisenberg-schrodinger-tower` makes the remaining
+quantifier sharper.  There is an explicit coherent Schrödinger tower in
+which the marked central carrier has trace one and all finite Heisenberg
+branching identities hold exactly, while each level-`N` polarized coordinate
+atom has trace `p^(-N)`.  Tensoring any fixed finite tag packet, including an
+`S3` selector, leaves that decay unchanged.  Therefore the decoder cannot
+select a bounded menu of fine types and cannot be repaired by a fixed tag.
+Indeed a carrier of trace `alpha` requires at least `alpha p^N` level-`N`
+characters.  It must aggregate this exponentially wide family while
+controlling the coefficient maps between its members, or obtain a genuinely
+growing/matrix-only return from additional presentation relations.  The
+common central-root carrier itself is already literal; the missing object is
+the coherent polarized aggregation inside it.
+
+Nor is reuse of the branch implementers on all windows enough by itself.
+`orthogonal-heisenberg-self-copy-skeleton-has-marked-microstates` constructs
+one coherent marked microstate sequence for the complete two-branch
+Heisenberg HNN skeleton: both child copies commute and generate the parent,
+the same two stable letters implement every fixed-depth covariance table,
+and all transverse shears are present.  Finite coordinate permutations absorb
+the injections at a boundary escaping to infinity.  The missing relation must
+therefore come from the coefficient-return part of the full elementary group,
+not from more finite Heisenberg self-copy consistency.
+
+The full-presentation check identifies the exact surviving gate.  The
+Leavitt identities already give the two orthogonal branch embeddings and the
+exponential prefix Heisenberg packet, all reproduced by the calibration
+above.  What the coordinate-permutation models avoid is a **same-object
+return**: label dimension grows from the source Weyl factor to the two-child
+factor while spectator multiplicity shrinks, and no relation returns both to
+one physical multiplicity reservoir.  On a reservoir already identified,
+`same-reservoir-weyl-pair-has-fixed-depth-doubling-gap` supplies the required
+dimension-free defect floor.  In the current affine normalized-HS route, the
+precise missing finite-matrix theorem is
+`paired-same-reservoir-boundary-lemma`: either authenticate that common
+reservoir or charge all mass leaving it to the paired Steinberg triangle
+defects.  Proving such a return/payment theorem, rather than strengthening
+the scalar Heisenberg densities, is the remaining gate.

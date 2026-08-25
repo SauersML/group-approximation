@@ -6,7 +6,7 @@ title: Tensor atomic Hecke quadrature with a conjugate-doubled coweight Folner b
 target: spherical-quadrature-tensors-through-clifford-folner-windows
 requires:
   - finite-spherical-moments-do-not-fold-regular-double
-  - depth-two-clifford-types-form-a-finite-fiber-folner-graph
+  - every-fixed-dyadic-clifford-window-is-finite-fiber-folner
   - finite-projective-sector-groupoids-have-conjugate-absorbers
   - clifford-covariance-atlases-have-regular-flow
 ---

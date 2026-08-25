@@ -68,9 +68,10 @@ proposition.**  For `R = L_{𝔽₂}(1,2)` and `H = EL₁₂(R)`:
 * every homomorphism from `H` to a countable MF group is trivial; and
 * `H` is not MF.
 
-The printed simplicity clause is deliberately absent.  It is not used by any of
-the clauses above, and it is not proved in this development; see
-`BinaryLeavittSimplicityClause`. -/
+The printed simplicity clause is deliberately absent from this intermediate
+package because none of the clauses above uses it.  It is proved separately by
+`RankTwelveEndpoint.manuscriptPropositionSimple`, and joined to this package in
+the complete `manuscriptBinaryLeavittHeadline` theorem below. -/
 def BinaryLeavittFullRadical : Prop :=
   Countable H ∧
     Nontrivial H ∧

@@ -16,10 +16,10 @@ artifacts:
 Produce a word-hyperbolic group that is not residually finite, or prove that
 none exists.
 
-This is the long-standing question usually attributed to Gromov.  It is open:
-Cui--Wan, arXiv:2604.04007 (5 April 2026), read from source 2026-08-17, say in
-their §1.2 "It is an open conjecture that every hyperbolic group is residually
-finite."
+This is the long-standing question usually attributed to Gromov.  It remains
+open as of 2026-08-24: Cui--Wan, arXiv:2604.04007 (5 April 2026), say in their
+§1.2 that residual finiteness of every hyperbolic group is still an open
+conjecture.  None of the constructions recorded below changes that status.
 
 ## Why it sits in this program
 
@@ -43,7 +43,16 @@ residually finite groups are sofic.
 
 ## Attempts
 
-Four live routes, none of which this graph can walk:
+Five live routes, none of which this graph can yet walk:
+
+- `non-rf-hyperbolic-via-periodic-higman` — the explicit singular-on-`H_1`
+  endomorphism `x_i |-> [x_i,x_(i-1)]` has a hyperbolic mapping torus, and its
+  sufficiently deep torsion fillings retain the base mark.  Every finite
+  image of a filling has a perfect base image governed by one finite-order
+  automorphism.  The route is reduced exactly to
+  `periodic-higman-large-prime-period-gap`: one prime above the filling
+  threshold must be absent from the resulting Higman period spectrum.  That
+  finite-group statement is open here.
 
 - `non-rf-hyperbolic-from-nonsofic-hyperbolic` — inherit it from a non-sofic
   hyperbolic group.  Blocked exactly where `nonsofic-hyperbolic-group` is
@@ -65,7 +74,7 @@ Four live routes, none of which this graph can walk:
   condition is `rips-kernel-without-finite-quotients`, which is open and
   adjacent to circularity.
 
-Four attacks are recorded dead, each with its own route and its own
+Four older attacks are recorded dead, each with its own route and its own
 obstruction: transplanting this program's finite-residual compression witness
 into a hyperbolic ambient group
 (`non-rf-hyperbolic-via-compression-transplant`), its free-lamp repair
@@ -74,6 +83,15 @@ graph-wreath products (`non-rf-hyperbolic-via-oyakawa-graph-wreath`), and
 routing a known non-residually-finite group through Hull's small-cancellation
 theorem (`non-rf-hyperbolic-via-hull-routing`).
 
-Conservatively modeled as OPEN with no expectation of resolution here.  This
-node exists to hold the reductions and the kills, not because the program has
-an attack on it.
+The strongest natural shortcut inside the new periodic-Higman route is also
+dead.  `periodic-higman-spectrum-contains-three` gives an exact
+`PSL_2(11)` certificate with period three, refuting
+`periodic-higman-spectrum-has-no-odd-primes` and invalidating
+`non-rf-hyperbolic-via-odd-period-exclusion`.  Borisov--Sapir's residual
+finiteness theorem for the *unfilled* injective free-group mapping torus is a
+second consistency check: the torsion filling is indispensable, not a
+cosmetic step.
+
+Conservatively modeled as OPEN.  The periodic-Higman construction is a real
+reduction to a sharply isolated finite-group lemma, not a solution; claiming
+otherwise would erase the only unproved implication in the construction.

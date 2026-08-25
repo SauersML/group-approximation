@@ -23,6 +23,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveConfiguration
 import GroupApproximation.Leavitt.LeavittMarkNontrivial
 import GroupApproximation.Leavitt.LeavittMatrixCompression
 import GroupApproximation.Leavitt.BinaryLeavittSimple
+import GroupApproximation.Leavitt.ExchangePrerequisite
 import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
 import GroupApproximation.Leavitt.CongruenceSubgroups
 import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
@@ -89,8 +90,9 @@ which reports the closure without the binder check:
 -- group-theoretic half, `L` finite, is proved.  See the ledger.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility
 
--- Theorem B.  The displayed conclusion and the structural clauses are closed;
--- the printed adjective "simple" is not, and is audited below.
+-- Theorem B.  The displayed conclusion, structural clauses, and the printed
+-- adjective "simple" are closed; the simplicity and full headline audits
+-- appear below.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.leavittFamily
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile
@@ -220,9 +222,16 @@ only place their axiom closure is checked. -/
 -- not zero-input manuscript endpoints.
 #audit_axioms GroupApproximation.BinaryLeavitt.center_eq_bot
 #audit_axioms GroupApproximation.BinaryLeavitt.central_units_trivial
+#audit_axioms GroupApproximation.BinaryLeavitt.hasRightExchange
 
--- Generic root extraction support.  The dense-entry theorem and exhaustive
--- Leavitt-family case split close the branch that was formerly missing.
+-- The four new Section 6 displays and generic root extraction support.  The
+-- exact coefficient ring has closed single-sandwich division; coefficient
+-- separation and the two reusable double-commutator facts are generic, so
+-- their ordinary audits intentionally retain caller-supplied data.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.coefficientRing_hasSingleSandwichDivision
+#audit_axioms GroupApproximation.exists_annihilate_preserve_reverse
+#audit_axioms GroupApproximation.doubleCommutator_mem
+#audit_axioms GroupApproximation.doubleCommutator_eq_sqZeroUnit
 #audit_axioms GroupApproximation.exists_elGen_mem_of_conjSingle_eq
 #audit_axioms GroupApproximation.exists_elGen_mem_of_inv_entry_zero
 #audit_axioms GroupApproximation.exists_elGen_mem_of_dense_entries
@@ -230,8 +239,10 @@ only place their axiom closure is checked. -/
 #audit_axioms GroupApproximation.rootDetection_of_leavittFamily
 
 -- The two congruence-level endpoints, the full-linear-group centre
--- computation, and the exact reduction of simplicity to Preusser's sandwich.
--- The final theorem retains that sandwich as a visible leading hypothesis.
+-- computation, and the optional reduction of simplicity to Preusser's
+-- sandwich.  That final support theorem retains the general upper sandwich as
+-- a visible leading hypothesis; the exact manuscript simplicity theorem above
+-- instead uses the unconditional direct root-extraction route.
 #audit_axioms GroupApproximation.relativeElementary_top
 #audit_axioms GroupApproximation.congruenceSubgroup_bot
 #audit_axioms GroupApproximation.center_eq_bot_of_central_units_trivial

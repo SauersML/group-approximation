@@ -34,4 +34,41 @@ unitary between the retained child and the next source.
 - Identifying only the central child sign leaves the external multiplicity
   unitary arbitrary.  The balanced raw-lift section must be reused as the
   actual chart edge, not attached as a tensor-independent local cell.
-
+- **The remaining gauge and the weakest sufficient identity are explicit.**
+  `agent-free-compressor-chart-edge-has-multiplicity-gauge` shows that even
+  conjugacy of the complete simple chart leaves an arbitrary `U(m)` on its
+  multiplicity space, which can rotate the intended next prefix to zero
+  overlap at zero relator defect. The same edge must additionally conjugate
+  one non-scalar prefix involution. Its spectral projections then satisfy the
+  required incidence with exactly one half of the conjugacy-word HS defect.
+  The construction problem is now to impose that mixed conjugacy without
+  constraining the inactive sectors or recreating the Schur `M_2` cancellation.
+- **The one-source mixed edge is now exact.**
+  `full-index-two-hnn-edge-creates-own-prefix-split` extends an index-two
+  Reynolds edge over the full source pair and sends its source sign to the
+  literal next pulse sign.  The retained Reynolds range is then exactly the
+  positive-prefix fixed space and its unused companion is exactly the
+  negative first-hit space, with a dimension-free HS estimate.  What remains
+  in this node is the simultaneous source ledger: realize the complete
+  retained Schur family by such full-pair sources sharing one target sign,
+  while returning allowed/inactive sectors without losing a baseline copy.
+- **Routing the whole baseline through those cells is impossible.**
+  `full-pair-routing-of-complete-baseline-has-a-prefix-capacity-gap` proves
+  that if the `T` retained baseline types are all full-pair sources sharing
+  `B`, then every successor carrier under the positive `B` prefix loses at
+  least `1/T` of the current baseline trace.  This contradicts the lossless
+  return required in the perfect model, where the forbidden surplus is zero.
+  Thus the remaining construction must be hybrid: return the complete
+  allowed/inactive baseline without an index-two companion, and apply the
+  full-pair split only to the forbidden surplus.
+- **Exact companion-free chart return also has an exponential firewall.**
+  `companion-free-prefix-return-has-exponential-regular-capacity` applies in
+  the canonical group trace to the complete sum of returned baseline types.
+  Typewise full-chart HNN transport, auxiliary central-sign changes, paired
+  source halves with orthogonal target tags, and shared-variable amalgams all
+  preserve that total trace.  If their returned sum lies under the `n`-bit
+  positive pulse prefix, its trace is at most `2^(-n)`.  Therefore no such
+  functorial hybrid can satisfy the finite first-hit threshold
+  `N eta q_0>1`.  The companion-free seam must itself contain a genuinely
+  matrix-only multiplicity selection (false in the regular factor), not just
+  an exact finite-chart incidence.

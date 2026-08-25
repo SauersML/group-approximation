@@ -54,12 +54,13 @@ rather than by status, because the status vocabulary cannot:
   quantifies over the central unit it classifies.  Both are unconditional
   support for the manuscript's ring-centre step; neither asserts group
   simplicity or discharges root detection.
-* **generic partial root-extraction support.**  The transvection-extraction
-  theorems quantify over the ring, index type, normal subgroup, and their
-  explicit matrix configurations.  Together with the separately proved dense
-  and diagonal branches they feed the closed generic root-detection theorem;
-  these individual configuration lemmas remain conditional only because their
-  arbitrary input data occur as leading binders.
+* **generic partial root-extraction support.**  The coefficient-separation,
+  double-commutator, and transvection-extraction theorems quantify over the
+  ring, index type, normal subgroup, and their explicit matrix configurations.
+  Together with the separately proved dense and diagonal branches they feed
+  the closed generic root-detection theorem; these individual configuration
+  lemmas remain conditional only because their arbitrary input data occur as
+  leading binders.
 * **generic congruence-subgroup support.**  The relative-elementary and
   congruence endpoints, the `GL` centre computation, and the final simplicity
   assembly quantify over the ring and index type.  The assembly retains
@@ -73,13 +74,15 @@ to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 88 rows
--- 69 `closed`, 19 `conditional`, 0 `MISSING`, naming 86 distinct declarations.
-One row appears for each label, and fifty-nine further rows either split a
+`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 94 rows
+-- 70 `closed`, 24 `conditional`, 0 `MISSING`, naming 90 distinct declarations.
+One row appears for each label, and sixty-five further rows either split a
 printed theorem into separately audited constituents or cover an unnumbered
-printed sentence. Two declarations each appear twice: the introduction repeats
-a Section 3 corollary, and the simplicity input is recorded both where Theorem
-B consumes it and where Proposition `prop:simple` is printed.
+printed sentence. Four declarations each appear twice: the introduction repeats
+a Section 3 corollary, the simplicity input is recorded both where Theorem B
+consumes it and where Proposition `prop:simple` is printed, and the same generic
+double-commutator computation and membership lemma instantiate both the sparse
+and dense displayed equations.
 
 All **15 of the manuscript's 15 numbered statements are closed**.
 `RankTwelveEndpoint.manuscriptPropositionSimple` proves `prop:simple`, and
@@ -161,6 +164,12 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `eq:corner-conjugation` `tau diag(A, I) tau^-1 = diag(Psi(A), I)` | `GroupApproximation.RankTwelve.tau_fullCorner_tauInv` | conditional |
 | `eq:compresses-L` `tau L tau^-1` is contained in `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration` | closed |
 | `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple` | closed |
+| `eq:two-sided-sandwich` every nonzero coefficient in the manuscript's exact ring has `a * x * b = 1` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.coefficientRing_hasSingleSandwichDivision` | closed |
+| `eq:coefficient-separation` Leavitt coefficient separation gives `a * r * b = 0` while `b * s * a * r ≠ 0` | `GroupApproximation.exists_annihilate_preserve_reverse` | conditional |
+| `eq:row-unipotent-sparse`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
+| `eq:row-unipotent-sparse`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
+| `eq:row-unipotent-dense`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
+| `eq:row-unipotent-dense`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
 | Support for `prop:simple`: the centre of the binary Leavitt algebra is its scalar field | `GroupApproximation.BinaryLeavitt.center_eq_bot` | conditional |
 | Support for `prop:simple`: every central unit over `ZMod 2` is trivial | `GroupApproximation.BinaryLeavitt.central_units_trivial` | conditional |
 | Support for `prop:simple`: line-preserving conjugation extracts a nonzero elementary transvection | `GroupApproximation.exists_elGen_mem_of_conjSingle_eq` | conditional |

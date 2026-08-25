@@ -1,8 +1,11 @@
 # One-sided transport: sentence-level formalization census
 
 An exhaustive, sentence-level sweep of `non_mf_groups_exist.tex`
-(*Groups invisible to finite-matrix limits*, 1238 lines) from `\begin{abstract}`
-to `\section*{Acknowledgments}`, against the Lean development.
+(*Groups invisible to finite-matrix limits*) from `\begin{abstract}` to
+`\section*{Acknowledgments}`, against the Lean development.  The current
+manuscript has 1362 lines; the direct simplicity proof and every later row have
+been re-keyed to the current text, and every status and declaration below has
+been rechecked against the current Lean tree.
 
 This is **not** `ONESIDED_TRANSPORT_LEDGER.md`.  That file has one row per
 `\label{...}` (44 rows) and answers "is the numbered statement carried?".  This
@@ -37,35 +40,38 @@ uncarried while the ledger stays green.
 
 | Status | Rows |
 | --- | --- |
-| `CARRIED` | 213 |
-| `PARTIAL` | 26 |
-| `MISSING` | 20 |
-| `CITED` | 15 |
-| **Total** | **274** |
+| `CARRIED` | 242 |
+| `PARTIAL` | 34 |
+| `MISSING` | 12 |
+| `CITED` | 6 |
+| **Total** | **294** |
 
 **Snapshot.**  Counts are as of the working tree containing
 `Manuscript/OneSidedMFRadical/{PrintedDefinitions, PrintedLeavittEquations,
-PrintedRemarks, ClosurePullback, TransportAssembly, CountableNonMF}.lean`.
-Those six modules landed *during* this sweep and closed six rows an earlier
-snapshot reported open: #78, #102, #105, #210 and #272 moved to `CARRIED`, and
-#222 moved from `MISSING` to `PARTIAL`.  Re-run before quoting these numbers.
+PrintedRemarks, ClosurePullback, TransportAssembly, CountableNonMF,
+RankTwelveSimplicity, HeadlineTheorem}.lean`, together with
+`Leavitt/{BinaryLeavittSimple, ElementaryTransvectionExtraction,
+DiagonalNormalExtraction, CongruenceSubgroups, ExchangePrerequisite}.lean`.
+The direct root-extraction route now closes the exact rank-twelve simplicity
+claim and the complete headline, and the manuscript itself prints that direct
+proof.  The separate congruence-subgroup development is retained as an
+optional formalization around Preusser's general theorem; the printed
+simplicity proof no longer uses it.
 
-Counted by the row's leading status word.  Two rows carry a compound status:
-#96 and #139 are `PARTIAL` *and* name a citation, and are counted as `PARTIAL`;
-both appear in the **CITED** section below.  Rows #74 and #254 name a citation
-that the repository discharges, and are counted as `CARRIED`; they too appear
-below, marked as discharged.
+Counted by the row's leading status word.  Six rows carry a compound status:
+#91, #92, #95, #96, #139, and #227 are `PARTIAL` *and* name a citation, and are
+counted as `PARTIAL`; they are represented in the **CITED** section below.
+Several rows name a citation whose manuscript-specialized mathematical content
+is discharged in-repo, notably #74, #93, #94, #218, #228, and #274.
 
-Of the 20 `MISSING` rows, **6 are proof-internal to a numbered statement that is
-itself `CARRIED` by a different Lean route** (#31, #35, #36, #141, #173, #223),
-and **14 are load-bearing**: 8 in the simplicity chain (#6, #56,
-#224, #228, #229, #231, #232, #233) and 6 in the printed
-corner-Kazhdan-inequality proof of `thm:normal-kazhdan` plus the faithful-
-representation bridge (#129, #177, #178, #179, #180, #181).  The four further
-inputs the simplicity chain needs (pure infiniteness, the exchange property, the
-centre of `R`, and Preusser's theorem — #225, #226, #227, #230) are classified
-`CITED` rather than `MISSING`, but they are equally absent from the repository.
-See the ranked list after the table.
+All 15 numbered manuscript statements are now `CARRIED`.  Of the 12 `MISSING`
+rows, **6 are proof-internal to a numbered statement carried by a different
+Lean route** (#31, #35, #36, #141, #173, #224), and **6 belong only to the
+printed corner-Kazhdan-inequality proof of `thm:normal-kazhdan` plus its
+faithful-representation bridge** (#129, #177, #178, #179, #180, #181).  The
+theorem itself is carried by the moving-corner/`WeakMF` route.  Preusser appears
+only as historical context in #95; direct Leavitt coefficient separation
+proves simplicity without his theorem.  See the ranked list after the table.
 
 ---
 
@@ -78,7 +84,7 @@ See the ranked list after the table.
 | 3 | 65–67 | "a one-sided self-compression of a property (T) subgroup forces a canonically defined normal subgroup into the MF radical" | `manuscriptOneSidedCompressionCriterion` (clause 1) | CARRIED |
 | 4 | 67 | "Normal generation can then force the MF radical to be the whole group." | `manuscriptOneSidedCompressionCriterion` (clause 3) | CARRIED |
 | 5 | 67–69 | "We realize this situation for an elementary group over the binary Leavitt algebra." | `manuscriptBinaryLeavittFullRadical` | CARRIED |
-| 6 | 69 | "The resulting group is simple" | `RTE.PropositionSimple` — statement only, no proof | MISSING |
+| 6 | 69 | "The resulting group is simple" | `RTE.manuscriptPropositionSimple` | CARRIED |
 | 7 | 69 | "…has property (T)" | `RTE.hasKazhdanPropertyT` | CARRIED |
 | 8 | 69–70 | "every homomorphism from it to an MF group is trivial" | `manuscriptBinaryLeavittFullRadical` (clause 6) | CARRIED |
 | 9 | 70–71 | "In particular, not every countable group is MF." | `manuscriptBinaryLeavittFullRadical` cl. 7; `CountableNonMF.manuscriptNotEveryCountableGroupIsMF`, `manuscriptCountableNonMFGroupExists` | CARRIED |
@@ -163,7 +169,7 @@ See the ranked list after the table.
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
 | 55 | 313 | `H = EL_12(R)` is nontrivial. | `RTE.nontrivial` | CARRIED |
-| 56 | 313 | `H` is **simple**. | `RTE.PropositionSimple` — statement only | MISSING (load-bearing) |
+| 56 | 313 | `H` is **simple**. | `RTE.manuscriptPropositionSimple`; `manuscriptBinaryLeavittHeadline` | CARRIED |
 | 57 | 313–314 | `H` has property (T). | `RTE.hasKazhdanPropertyT` (`Steinberg.BinaryLeavitt.elementaryBase_hasKazhdanPropertyT`) | CARRIED |
 | 58 | 321–323 | `Rad_MF(H) = H`. | `RTE.rankTwelve_actualCoronaMFResidual_eq_top` | CARRIED |
 | 59 | 324 | "Equivalently, every homomorphism from `H` to an MF group is trivial." | `manuscriptBinaryLeavittFullRadical` cl. 6 | CARRIED (from the full radical, *not* from simplicity as the printed "equivalently" suggests) |
@@ -179,8 +185,8 @@ See the ranked list after the table.
 | 64 | 342–343 | "The element `c = e_34(1)` centralizes `L`." | `RTE.c_commutes_corner` | CARRIED |
 | 65 | 351–353 | Display: `d = e_02(s_1t_1)`. | `RTE.defect`, `RTE.tau_c_commutator_ell` | CARRIED |
 | 66 | 354 | "The element `d` is nontrivial" | `RTE.defect_ne_one` | CARRIED |
-| 67 | 354–355 | "and `H` is simple, so `d` normally generates `H`" | `RTE.normalClosure_defect_eq_top` | PARTIAL — proved from the Steinberg root normal-generation theorem, **not** from simplicity; the printed derivation is unavailable |
-| 68 | 355–356 | "Since `d ∈ 𝔇_H(L)`, simplicity first gives `H ≤ 𝔇_H(L)`" | `RTE.printedDefect_eq_top_of_configuration` | PARTIAL — same substitution: normal generation of `d`, not simplicity |
+| 67 | 354–355 | "and `H` is simple, so `d` normally generates `H`" | `RTE.manuscriptPropositionSimple`; `RTE.normalClosure_defect_eq_top` | PARTIAL — both premise and conclusion are proved, but the named normal-closure proof uses the stronger Steinberg root theorem rather than separately encoding this printed inference |
+| 68 | 355–356 | "Since `d ∈ 𝔇_H(L)`, simplicity first gives `H ≤ 𝔇_H(L)`" | `RTE.manuscriptPropositionSimple`; `RTE.printedDefect_eq_top_of_configuration` | PARTIAL — the endpoint is proved using the independently available normal generation of `d`; this exact proof-internal inference is not separately named |
 | 69 | 356–359 | "thus the compression defect is the ambient Kazhdan group, and Theorem A gives `Rad_MF(H)=H`" | `RTE.residual_eq_top_of_configuration`, `RTE.rankTwelve_actualCoronaMFResidual_eq_top` | CARRIED |
 | 70 | 361–363 | "If `ρ : G → GL(V)` with `V` finite-dimensional, conjugation by `ρ(u)` maps the commutant of `ρ(L)` injectively into itself, hence bijectively." | `Criterion.fixedSubmodule_map_eq` | CARRIED |
 | 71 | 363 | "Thus `ρ` kills `𝔇_G(L)`." | `manuscriptPrintedDefectFiniteDimensionalSterility` | CARRIED |
@@ -204,22 +210,22 @@ See the ranked list after the table.
 | 84 | 398–401 | "If `Q` is MF, then `Rad_MF(W_Q)=ker π_Q = ⟨⟨d⟩⟩_{W_Q}`." | `MFCamouflage.actualCoronaMFResidual_eq_ker`, `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
 | 85 | 402–406 | "precomposition with `π_Q` induces a bijection `Hom(Q,M) → Hom(W_Q,M)` for every MF group `M`" | `MFCamouflage.cdeMF_precomp_bijective` | CARRIED |
 
-## §1 Relation to prior work (ll. 409–433)
+## §1 Relation to prior work (ll. 400–437)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 86 | 411–413 | "The group-MF framework used here is developed by Carrión–Dadarlat–Eckhardt and Korchagin; recent permanence results are due to Shulman." | — | CITED (CDE; Korchagin; Shulman) |
-| 87 | 413–415 | "The operator-norm case remained open after non-approximability had been established for finite Schatten norms." | — | CITED (DGLT; LubotzkyOppenheim; Thom) |
-| 88 | 416–417 | "Bachner–Dogon–Lubotzky study an operator–Hilbert–Schmidt stability condition as a possible source of non-MF groups." | — | CITED (BDL) |
-| 89 | 417–419 | "Here the operator norm makes conjugation into a representation in a second norm matrix corona." | `Analysis.AdjointDefectEstimate.adConj_asymptoticallyMultiplicative`, `printedAdjointParagraph` | CARRIED |
-| 90 | 419–421 | "The Kazhdan projection in that corona then controls the normalized Hilbert–Schmidt commutant, and the normal Kazhdan subgroup argument of Section 4 turns this control into MF-radical membership." | `Sofic.UltraproductKazhdanProjection.kt_08_kazhdan_projection`; `Sofic.ultraproductKazhdanTransport`; `manuscriptNormalKazhdanRadical` | CARRIED |
-| 91 | 423–424 | "Leavitt introduced the algebras `L_K(1,n)` as examples of rings with nonunique module rank." | — | CITED (Leavitt) |
-| 92 | 425–426 | "The binary Leavitt algebra is purely infinite simple." | — no `PurelyInfinite`/`IsSimpleRing` for the Leavitt algebra anywhere in the tree | CITED (AbramsAranda) |
-| 93 | 426 | "hence an exchange ring" | — no `ExchangeRing` in the tree | CITED (AraExchange) |
-| 94 | 426–427 | "and its center is the base field" | — no centre computation for `BinaryLeavittAlgebra` | CITED (ArandaCrow) |
-| 95 | 427–429 | "Preusser's normal-subgroup theorem implies simplicity of the elementary group." | — no Preusser theorem, no relative elementary subgroup, no congruence subgroup | CITED (Preusser) |
-| 96 | 429–431 | "Ershov–Jaikin-Zapirain give property (T) for `EL_n(R)` whenever `n ≥ 3` and `R` is a finitely generated unital associative ring." | `Steinberg.BinaryLeavitt.elementaryBase_hasKazhdanPropertyT` proves the case actually used (binary Leavitt coefficients, `n ≥ 2`) with no external input | PARTIAL — the general statement over an arbitrary f.g. unital ring is not in the tree; the citation as printed is not discharged |
-| 97 | 432–433 | "Related rigidity results for metric approximations of Kazhdan groups appear in …" | — | CITED (KT19; AlekseevThom; Dadarlat) |
+| 86 | 402–406 | "The group-MF framework used here is developed by Carrión–Dadarlat–Eckhardt and Korchagin; permanence results are due to Shulman." | — | CITED (CDE; Korchagin; Shulman) |
+| 87 | 406–408 | "The operator-norm case remained open after non-approximability had been established for finite Schatten norms." | — | CITED (DGLT; LubotzkyOppenheim; Thom) |
+| 88 | 409–410 | "Bachner–Dogon–Lubotzky study an operator–Hilbert–Schmidt stability condition as a possible source of non-MF groups." | — | CITED (BDL) |
+| 89 | 411–412 | Operator-norm control makes coordinatewise conjugation a representation in a second norm matrix corona. | `Analysis.AdjointDefectEstimate.adConj_asymptoticallyMultiplicative`, `printedAdjointParagraph` | CARRIED |
+| 90 | 412–415 | Its Kazhdan projection controls the Hilbert–Schmidt asymptotic commutant, and Section 4 puts a normal Kazhdan subgroup in the MF radical. | `Sofic.UltraproductKazhdanProjection.kt_08_kazhdan_projection`; `Sofic.ultraproductKazhdanTransport`; `manuscriptNormalKazhdanRadical` | CARRIED |
+| 91 | 417–423 | Tseng's related result makes the Kazhdan projection infinite under a proper one-sided compression and obstructs MF-ness of the full group `C*`-algebra; the present proof instead uses corona stable finiteness to obstruct the group-MF property. | `manuscriptNormMatrixCoronaStableFinite`; `manuscriptOneSidedKazhdanTransport`; `manuscriptNormalKazhdanRadical` | PARTIAL / CITED (Tseng) — the present comparison endpoint is formalized; Tseng's literature theorem is not |
+| 92 | 425–428 | Leavitt introduced `L_K(1,n)` as nonunique-rank rings; the binary algebra is purely infinite simple. | `LeavittFamily.rankSuccEquiv`; `BinaryLeavitt.hasSingleSandwichDivision`; `HasSingleSandwichDivision.isSimpleRing` | PARTIAL / CITED (Leavitt; AbramsAranda) — related positive-rank equivalences, the exact sandwich property, and ring simplicity are formalized; the historical module-rank statement and a general pure-infiniteness predicate are not |
+| 93 | 428 | "hence an exchange ring" | `ExchangePrerequisite.HasRightExchange`; `BinaryLeavitt.hasRightExchange` | CARRIED |
+| 94 | 429 | "and its center is the base field" | `BinaryLeavitt.center_eq_bot`, `eq_smul_one_of_central` | CARRIED |
+| 95 | 429–432 | Preusser gives general normal-subgroup theorems over exchange rings; this proof instead extracts an elementary root directly. | `rootDetection_of_leavittFamily`; `RTE.normalRootDetection`; `RTE.manuscriptPropositionSimple` | PARTIAL / CITED (Preusser) — the direct route is formalized; the general literature attribution is not |
+| 96 | 433–435 | Ershov–Jaikin-Zapirain give property (T) for `EL_n(R)` when `n≥3` and `R` is finitely generated unital associative. | `Steinberg.BinaryLeavitt.elementaryBase_hasKazhdanPropertyT` proves the case used | PARTIAL / CITED (EJZ) — the general statement is not in the tree |
+| 97 | 436–437 | Related rigidity results for metric approximations of Kazhdan groups appear in the cited literature. | — | CITED (KT19; AlekseevThom; Dadarlat) |
 
 ## §2 `thm:commutant` (ll. 437–450) and its proof (ll. 452–469)
 
@@ -379,182 +385,172 @@ See the ranked list after the table.
 | 199 | 808–810 | "`f(S) ≤ 𝔇_Q(f(L))`. The latter subgroup is normal in `Q`, so it contains the normal closure of `f(S)` and is therefore all of `Q`." | `printedDefect_map_eq_top_of_simple_image_normalClosure_eq_top` | CARRIED |
 | 200 | 810–812 | "The last assertion is `thm:compression-criterion` with `K=G`." | `manuscriptOneSidedCompressionCriterion` cl. 3 | CARRIED |
 
-## §5 The binary Leavitt self-compression (ll. 814–889)
+## §5 The binary Leavitt self-compression (ll. 824–898)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 201 | 816–818 | "`R = L_{F2}(1,2)` and `p = s_0t_0`, `q = s_1t_1`." | `RTE.R`, `RTE.q`; `LeavittFamily.p0`, `LeavittFamily.p1` | CARRIED |
-| 202 | 821–822 | `eq:pq` first half: `p + q = 1`. | `LeavittFamily.p0_add_p1` | CARRIED |
-| 203 | 822 | `eq:pq` second half: `t_1 q s_1 = 1`. | `LeavittFamily.t1_mul_p1_mul_s1` | CARRIED |
-| 204 | 824 | "In particular `q ≠ 0`." | `RTE.q_ne_zero`; `LeavittFamily.p1_ne_zero` | CARRIED |
-| 205 | 826–828 | "We use indices `0,…,11`, and identify `GL_3(R)` with the matrices `diag(A,I_9)` in `GL_12(R)`." | `RankTwelve.fullCorner`, `RankTwelve.halfCorner`; `RTE.frame12`, `RTE.flat12`, `RTE.cornerIndex` | CARRIED |
-| 206 | 828–832 | `eq:matrix-compression`: `Ψ(A) = qI_3 + s_0At_0`, "the unital injective endomorphism". | `LeavittFamily.matrixCompression` | CARRIED |
-| 207 | 833 | "Here `s_0At_0` denotes the matrix `(s_0a_{ij}t_0)_{ij}`." | `LeavittFamily.matrixCompression_apply` | CARRIED |
-| 208 | 833–834 | "The relations `qs_0 = t_0q = 0` and `t_0s_0 = 1` show that `Ψ` is multiplicative and unital." | `LeavittFamily.p1_mul_s0`, `t0_mul_p1`, `t0_s0`; `PrintedLeavittEquations.printed_q_mul_s0`, `printed_t0_mul_q`; `matrixCompression_mul`, `matrixCompression_one` | CARRIED |
-| 209 | 835 | "The identity `t_0Ψ(A)s_0 = A` proves injectivity." | `LeavittFamily.matrixCompression_recover`, `matrixCompressionHom_injective`; `PrintedLeavittEquations.printed_matrixCompression_injective` | CARRIED |
-| 210 | 835–836 | "The term `qI_3` is needed for unitality because the map `A ↦ s_0At_0` sends `I_3` to `pI_3`." | `PrintedLeavittEquations.printed_scalarDiagonal_image_of_one` (`s_0I_3t_0 = pI_3`), `printed_p0_ne_one`, `printed_scalarDiagonal_p0_ne_one`; unitality is `matrixCompression_one` | CARRIED |
-| 211 | 838–843 | Display: `X` and `Y` as `2×2` block matrices over `M_3(R)`. | `RankTwelve.shift`, `RankTwelve.shiftInv` | CARRIED |
-| 212 | 844 | "A direct calculation using `eq:leavitt` gives `XY = YX = I_6`." | `RankTwelve.shift_mul_shiftInv`, `RankTwelve.shiftInv_mul_shift` | CARRIED |
-| 213 | 845–847 | `eq:tau`: `τ = diag(X,Y) ∈ GL_12(R)`. | `RankTwelve.tau`, `RankTwelve.tauUnit`; `RTE.printedTauGL` | CARRIED |
-| 214 | 848–857 | `eq:whitehead-factorization`: the six-factor Whitehead product for `diag(X,X^{-1})`. | `RankTwelve.tau_eq_whitehead_product`; `RTE.tauUnit_eq_six_elementary` | CARRIED |
-| 215 | 858–860 | "Each block-unipotent factor is a product of elementary `12×12` matrices: its off-diagonal `6×6` block may be inserted one entry at a time, and the corresponding matrix units have pairwise zero products." | `RTE.flat12Units_elementary_single_mem`, `RTE.flat12Units_elementary_mem`, `RTE.flat12_single` | CARRIED |
-| 216 | 861–862 | "Since `Y = X^{-1}`, the factorization proves `τ ∈ EL_12(R)`." | `RTE.printedTauGL_mem`, `RTE.printedTauGL_eq_flat12Units` | CARRIED |
-| 217 | 864–870 | "Let `H = EL_12(R)` and let `L = EL_3(R) ≤ H` be the upper-left corner." | `RTE.H`, `RTE.corner`, `RTE.cornerRootSet` | CARRIED |
-| 218 | 871–872 | "Both groups have property (T) by the theorem of Ershov and Jaikin-Zapirain." | `RTE.hasKazhdanPropertyT`, `RTE.corner_hasKazhdanPropertyT` (proved in-repo from `Steinberg.BinaryLeavitt.elementaryBase_hasKazhdanPropertyT`, no citation consumed) | CARRIED — but see #96: the printed *general* EJZ statement is not in the tree |
-| 219 | 873–877 | `eq:corner-conjugation`: `τ diag(A,I_9) τ^{-1} = diag(Ψ(A), I_9)`. | `RankTwelve.tau_fullCorner_tauInv`, `RankTwelve.shift_halfCorner_shiftInv` | CARRIED |
-| 220 | 878–879 | "For every `i≠j` and `a ∈ R`, `Ψ(e_ij(a)) = e_ij(s_0at_0)`." | `LeavittFamily.matrixCompression_elementaryUnit` | CARRIED |
-| 221 | 880–883 | `eq:compresses-L`: `τLτ^{-1} ≤ L`. | `RTE.tau_compresses_corner`, `RTE.tau_conj_corner_elementaryRoot`; `PrintedLeavittEquations.printed_tau_conj_corner_subset` | CARRIED |
-| 222 | 885–887 | "The field `F_2` is used in the simplicity argument below: its unit group is trivial, so the central subgroup left by the normal-subgroup theorem vanishes." | `PrintedLeavittEquations.printed_f2_unit_eq_one`, `printed_f2_units_subsingleton` prove the first half (`F_2` has trivial unit group) | PARTIAL — the second half, "so the central subgroup left by the normal-subgroup theorem vanishes", still needs Preusser (#227) and `Z(GL_12(R))=1` (#231, #233) |
-| 223 | 887–889 | "The size 12 records the `3×3` Kazhdan corner and the standard Whitehead doubling above; no minimality assertion is intended." | — | MISSING (disclaimer; nothing to formalize) |
+| 201 | 826–829 | "`R = L_{F2}(1,2)` and `p = s_0t_0`, `q = s_1t_1`." | `RTE.R`, `RTE.q`; `LeavittFamily.p0`, `LeavittFamily.p1` | CARRIED |
+| 202 | 830–833 | `eq:pq` first half: `p + q = 1`. | `LeavittFamily.p0_add_p1` | CARRIED |
+| 203 | 830–833 | `eq:pq` second half: `t_1 q s_1 = 1`. | `LeavittFamily.t1_mul_p1_mul_s1` | CARRIED |
+| 204 | 834 | "In particular `q ≠ 0`." | `RTE.q_ne_zero`; `LeavittFamily.p1_ne_zero` | CARRIED |
+| 205 | 836–839 | "We use indices `0,…,11`, and identify `GL_3(R)` with the matrices `diag(A,I_9)` in `GL_12(R)`." | `RankTwelve.fullCorner`, `RankTwelve.halfCorner`; `RTE.frame12`, `RTE.flat12`, `RTE.cornerIndex` | CARRIED |
+| 206 | 838–842 | `eq:matrix-compression`: `Ψ(A) = qI_3 + s_0At_0`, "the unital injective endomorphism". | `LeavittFamily.matrixCompression` | CARRIED |
+| 207 | 843 | "Here `s_0At_0` denotes the matrix `(s_0a_{ij}t_0)_{ij}`." | `LeavittFamily.matrixCompression_apply` | CARRIED |
+| 208 | 843–845 | "The relations `qs_0 = t_0q = 0` and `t_0s_0 = 1` show that `Ψ` is multiplicative and unital." | `LeavittFamily.p1_mul_s0`, `t0_mul_p1`, `t0_s0`; `PrintedLeavittEquations.printed_q_mul_s0`, `printed_t0_mul_q`; `matrixCompression_mul`, `matrixCompression_one` | CARRIED |
+| 209 | 845 | "The identity `t_0Ψ(A)s_0 = A` proves injectivity." | `LeavittFamily.matrixCompression_recover`, `matrixCompressionHom_injective`; `PrintedLeavittEquations.printed_matrixCompression_injective` | CARRIED |
+| 210 | 845–846 | "The term `qI_3` is needed for unitality because the map `A ↦ s_0At_0` sends `I_3` to `pI_3`." | `PrintedLeavittEquations.printed_scalarDiagonal_image_of_one`, `printed_p0_ne_one`, `printed_scalarDiagonal_p0_ne_one`; `matrixCompression_one` | CARRIED |
+| 211 | 848–853 | Display: `X` and `Y` as `2×2` block matrices over `M_3(R)`. | `RankTwelve.shift`, `RankTwelve.shiftInv` | CARRIED |
+| 212 | 854 | "A direct calculation using `eq:leavitt` gives `XY = YX = I_6`." | `RankTwelve.shift_mul_shiftInv`, `RankTwelve.shiftInv_mul_shift` | CARRIED |
+| 213 | 855–857 | `eq:tau`: `τ = diag(X,Y) ∈ GL_12(R)`. | `RankTwelve.tau`, `RankTwelve.tauUnit`; `RTE.printedTauGL` | CARRIED |
+| 214 | 858–867 | `eq:whitehead-factorization`: the six-factor Whitehead product for `diag(X,X^{-1})`. | `RankTwelve.tau_eq_whitehead_product`; `RTE.tauUnit_eq_six_elementary` | CARRIED |
+| 215 | 868–870 | "Each block-unipotent factor is a product of elementary `12×12` matrices: its off-diagonal `6×6` block may be inserted one entry at a time, and the corresponding matrix units have pairwise zero products." | `RTE.flat12Units_elementary_single_mem`, `RTE.flat12Units_elementary_mem`, `RTE.flat12_single` | CARRIED |
+| 216 | 871–872 | "Since `Y = X^{-1}`, the factorization proves `τ ∈ EL_12(R)`." | `RTE.printedTauGL_mem`, `RTE.printedTauGL_eq_flat12Units` | CARRIED |
+| 217 | 874–880 | "Let `H = EL_12(R)` and let `L = EL_3(R) ≤ H` be the upper-left corner." | `RTE.H`, `RTE.corner`, `RTE.cornerRootSet` | CARRIED |
+| 218 | 881–882 | "Both groups have property (T) by the theorem of Ershov and Jaikin-Zapirain." | `RTE.hasKazhdanPropertyT`, `RTE.corner_hasKazhdanPropertyT` | CARRIED — but see #96 for the more general cited theorem |
+| 219 | 883–887 | `eq:corner-conjugation`: `τ diag(A,I_9) τ^{-1} = diag(Ψ(A), I_9)`. | `RankTwelve.tau_fullCorner_tauInv`, `RankTwelve.shift_halfCorner_shiftInv` | CARRIED |
+| 220 | 888–889 | "For every `i≠j` and `a ∈ R`, `Ψ(e_ij(a)) = e_ij(s_0at_0)`." | `LeavittFamily.matrixCompression_elementaryUnit` | CARRIED |
+| 221 | 890–892 | `eq:compresses-L`: `τLτ^{-1} ≤ L`. | `RTE.tau_compresses_corner`, `RTE.tau_conj_corner_elementaryRoot`; `PrintedLeavittEquations.printed_tau_conj_corner_subset` | CARRIED |
+| 222 | 894–895 | "The field `F_2` is used in the diagonal branch: the only central unit of `R` is `1`." | `BinaryLeavitt.central_units_trivial` | CARRIED |
+| 223 | 895–897 | "The dimension 12 comes from applying the `6×6` Whitehead factorization to the `3×3` Kazhdan corner." | `RTE.corner_hasKazhdanPropertyT`; `RTE.tauUnit_eq_six_elementary` | PARTIAL — both construction components are formalized, but this explanatory provenance is not a named assertion |
+| 224 | 897–898 | "We do not claim that 12 is minimal." | — | MISSING (disclaimer; nothing to formalize) |
 
-## §6 `prop:simple` (ll. 893–917)
-
-| # | tex line | Claim | Lean declaration | Status |
-| --- | --- | --- | --- | --- |
-| 224 | 895 | "The group `H = EL_12(R)` is simple." | `RTE.PropositionSimple` (statement); `RTE.isSimpleGroup_of_normal_root_detection` and `manuscriptBinaryLeavittSimplicityClause` prove only the *implication* from the unproved `NormalRootDetection` | MISSING (load-bearing) |
-| 225 | 899–900 | "The ring `R = L_{F2}(1,2)` is purely infinite simple." | — | CITED (AbramsAranda) |
-| 226 | 900 | "and therefore an exchange ring" | — | CITED (AraExchange) |
-| 227 | 901–904 | "Preusser's normal-subgroup theorem gives an ideal `I ⊴ R` such that `EL_12(R,I) ≤ N ≤ C_12(R,I)`." | — no relative elementary subgroup `EL_n(R,I)`, no congruence subgroup `C_n(R,I)`, no Preusser theorem | CITED (Preusser) |
-| 228 | 905–907 | "Since `R` is simple, either `I=R` or `I=0`. In the first case `EL_12(R,I)=H`, so `N=H`." | — | MISSING |
-| 229 | 907–910 | "In the second case `N ≤ C_12(R,0) = Z(GL_12(R))`." | — | MISSING |
-| 230 | 911 | "The center of `R` is `F_2`." | — | CITED (ArandaCrow) |
-| 231 | 911–913 | "suppose `z ∈ Z(GL_12(R))`. Commuting `z` with the elementary matrices `e_ij(1)` shows that `z = λI_12`." | nearest: `RTE.elementaryRoot_mem_center_iff` (about *roots* in `Z(H)`, not scalars in `Z(GL_12(R))`) | MISSING |
-| 232 | 913–915 | "Commuting with `e_ij(a)` for arbitrary `a` then gives `λa = aλ`, so `λ ∈ Z(R)^× = F_2^× = {1}`." | — | MISSING |
-| 233 | 915–916 | "Thus `Z(GL_12(R))` is trivial, and `N=1` when `I=0`." | — | MISSING |
-| 234 | 916 | "Finally, `e_01(1) ≠ 1`, so `H` is nontrivial." | `RTE.elementaryRoot_eq_one_iff` (with `1 ≠ 0` in `R`); `RTE.nontrivial` | CARRIED |
-
-## §6 `prop:defect` (ll. 918–961)
+## §6 `prop:simple` and its direct proof (ll. 902–1020)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 235 | 919–923 | "`c = e_34(1)`, `ℓ = e_12(1)`, `d = [τcτ^{-1}, ℓ]` in `H`." | `RTE.c`, `RTE.ell`, `RTE.defect`, `RTE.tau` | CARRIED |
-| 236 | 940–942 | Display: `c ∈ C_H(L)`, `d = e_02(q) ≠ 1`, `⟨⟨d⟩⟩_H = H`. | `RTE.PropositionDefect` / `RTE.manuscriptPropositionDefect` | CARRIED |
-| 237 | 946–949 | "Every elementary generator of the upper-left `3×3` corner has both indices in `{0,1,2}`. The elementary commutator relations show that it commutes with `c = e_34(1)`, so `c ∈ C_H(L)`." | `RTE.c_commutes_corner` (via `Leavitt.elementaryRoot_commute_of_ne`) | CARRIED |
-| 238 | 951–955 | `eq:moved-mark`: `τcτ^{-1} = e_01(q)e_34(1)`. | `RTE.tau_conj_c` (with `RTE.tau_conj_rawC`, `RTE.flat12_rawMovedC`) | CARRIED |
-| 239 | 955–957 | "The second factor commutes with `ℓ = e_12(1)`, and `[e_ij(a), e_jk(b)] = e_ik(ab)` gives `d = e_02(q)`." | `Leavitt.elementaryRoot_commutator`; `RTE.tau_c_commutator_ell` | CARRIED |
-| 240 | 957–958 | "This is nontrivial because `q ≠ 0`." | `RTE.defect_ne_one` (via `LeavittMark.elGen_p1_ne_one`) | CARRIED |
-| 241 | 958–960 | "Finally, `d` is nontrivial and `H` is simple by `prop:simple`, so its normal closure is all of `H`." | `RTE.normalClosure_defect_eq_top` | PARTIAL — proved from `HilbertHotel.normalClosure_elementaryRoot_eq_top` (Steinberg root normal generation), not from simplicity |
+| 225 | 902–904 | "The group `H = EL_12(R)` is simple." | `RTE.normalRootDetection`; `RTE.manuscriptPropositionSimple` | CARRIED |
+| 226 | 907–911 | `eq:two-sided-sandwich`: every `0 ≠ x ∈ R` admits `a,b` with `axb=1`. | `BinaryLeavitt.exists_mul_mul_eq_one`; `BinaryLeavitt.hasSingleSandwichDivision`; `RTE.coefficientRing_hasSingleSandwichDivision` | CARRIED |
+| 227 | 912 | "This is the form of pure infiniteness needed here." | `HasSingleSandwichDivision`; `BinaryLeavitt.hasSingleSandwichDivision` | PARTIAL / CITED (AbramsAranda) — the exact operative property is proved; no general pure-infiniteness predicate is introduced |
+| 228 | 913–915 | "The only central unit of `R` is `1`, because `Z(R)=F_2` and `F_2^×={1}`." | `BinaryLeavitt.center_eq_bot`, `eq_smul_one_of_central`, `central_units_trivial`; `PrintedLeavittEquations.printed_f2_units_subsingleton` | CARRIED |
+| 229 | 917–920, 935–937 | "A normal subgroup containing a nonzero elementary root whose coefficient sandwiches to `1` is the whole elementary group; hence simplicity reduces to root detection." | `elementaryGroup_normal_eq_top_of_elGen_mem`; `normalClosure_elGen_eq_top`; `isSimpleGroup_of_rootDetection` | CARRIED |
+| 230 | 920–926 | The two displayed commutators turn `e_ij(x)` and `axb=1` into a unit root. | `elGen_commutator`; `elGen_map_eq_one_of_left`, `elGen_map_eq_one_of_right`, `elGen_map_eq_one_of_unit_sandwich` | CARRIED |
+| 231 | 926–934 | The two displayed source/target commutators move a unit root and attach an arbitrary coefficient `r`. | `elGen_commutator`; `elGen_map_eq_one_source_step`, `elGen_map_eq_one_target_step` | CARRIED |
+| 232 | 933–935 | "Repeating these moves … gives every elementary generator." | `elGen_map_one_eq_one_all_pairs`, `elGen_map_eq_one_all`, `elementaryGroup_hom_eq_one_of_gens` | CARRIED |
+| 233 | 939–943 | `eq:coefficient-separation`: for nonzero `r,s`, there are `a,b` with `arb=0` and `bsar≠0`. | `exists_annihilate_preserve_reverse` | CARRIED |
+| 234 | 944–945 | "For every `w∈R` there are `x,y` with `xwy=0` and `yx≠0`." | `exists_reversing_zero_product` | CARRIED |
+| 235 | 945 | "For `w=0`, take `x=y=1`." | inside `exists_reversing_zero_product` | PARTIAL — exact proof branch, not a separately named assertion |
+| 236 | 946–947 | For `w≠0`, choose `c,d` with `cwd=1`, then put `x=t_1c`, `y=ds_0`; this gives `xwy=0`. | inside `exists_reversing_zero_product`; `LeavittFamily.t1_s0` | PARTIAL — exact witness calculation is internal to the named theorem |
+| 237 | 947–950 | `s_0t_1≠0`, since `1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1`. | inside `exists_reversing_zero_product` | PARTIAL — the displayed contradiction is formalized inside the theorem, not separately named |
+| 238 | 951–955 | If `yx=ds_0t_1c=0`, sandwiching it by `cw` and `wd` forces `s_0t_1=0`. | inside `exists_reversing_zero_product` | PARTIAL — proof-internal calculation |
+| 239 | 956–964 | The four sandwich factorizations and the displayed definitions of `a,b` produce the coefficient-separation witnesses. | inside `exists_annihilate_preserve_reverse` | PARTIAL — exact witness construction is internal to the named theorem |
+| 240 | 965–966 | `arb=0`, while `bsar=0` would imply `yx=0`. | `exists_annihilate_preserve_reverse` | CARRIED |
+| 241 | 968 | For nontrivial normal `N`, choose `1≠g∈N`. | inside `rootDetection_of_leavittFamily`; `Subgroup.ne_bot_iff_exists_ne_one` | PARTIAL — proof-internal choice |
+| 242 | 969–970 | The inverse of a diagonal invertible matrix is diagonal. | `matrixUnit_inv_offDiag_eq_zero` | CARRIED |
+| 243 | 970–973 | If diagonal `g` commutes with every elementary root, it is a scalar central unit and hence `g=1`. | `ElementarySimplicity.center_elementaryGroup_eq_bot_of_units`; `exists_elGen_mem_of_diagonal` | CARRIED |
+| 244 | 973–978 | Some elementary root is sent by conjugation to the same root line with a different coefficient, so its commutator with `g` is a nonzero root in `N`. | `conjSingle_eq_single_of_concentrated`; `exists_elGen_mem_of_conjSingle_eq`; `exists_elGen_mem_of_diagonal` | CARRIED |
+| 245 | 980–981 | If `g` is not diagonal, choose `ℓ≠i` with `g_{ℓi}≠0` and put `r=(g⁻¹)_{ℓi}`. | inside `rootDetection_of_leavittFamily` | PARTIAL — exhaustive case selection is internal to the root-detection theorem |
+| 246 | 981–989 | If `r=0`, the matrices `A=gE_{iℓ}g⁻¹`, `B=E_{iℓ}` satisfy `AB=0`, and the displayed double commutator is `1-BA∈N`. | `doubleCommutator_mem`, `doubleCommutator_eq_sqZeroUnit`; `exists_elGen_mem_of_inv_entry_zero` | CARRIED |
+| 247 | 989–994 | The sparse defect `-BA` is square-zero, row-supported, and has a nonzero entry in that row. | `neg_mul_sq_eq_zero_of_left_annihilates`, `isRowSupported_single_mul`, `exists_mul_inv_entry_ne_zero`; `exists_elGen_mem_of_inv_entry_zero` | CARRIED |
+| 248 | 996–1001 | If `r≠0`, coefficient separation supplies `a,b` with `arb=0`, `bsar≠0`, and defines the dense-case `A,B`. | `exists_annihilate_preserve_reverse`; `exists_elGen_mem_of_dense_entries` | CARRIED |
+| 249 | 1002–1006 | In the dense case `AB=0`; the commuting elementary roots and reduction modulo `N` give the displayed double commutator `1-BA∈N`. | `elGen_commute`, `doubleCommutator_mem`, `doubleCommutator_eq_sqZeroUnit`; `exists_elGen_mem_of_annihilating_coefficients` | CARRIED |
+| 250 | 1007–1008 | The dense defect is square-zero and row-supported, with `(i,i)` entry `-bsar≠0`. | `neg_mul_sq_eq_zero_of_left_annihilates`, `isRowSupported_single_mul`; `exists_elGen_mem_of_annihilating_coefficients` | CARRIED |
+| 251 | 1010–1016 | A row-supported square-zero unipotent with nonzero `v_im` yields the displayed row-extraction commutator `e_in(v_im)∈N`. | `row_supported_commutator_of_sq_zero`; `exists_elGen_mem_of_row_supported_sq_zero` | CARRIED |
+| 252 | 1017–1018 | The extracted nonzero root normally generates, so `N=H`; every normal subgroup is trivial or all of `H`. | `elementaryGroup_normal_eq_top_of_elGen_mem`; `rootDetection_of_leavittFamily`; `isSimpleGroup_of_leavittFamily_root_extraction` | CARRIED |
+| 253 | 1019 | `e_01(1)≠1`, so `H` is nontrivial. | `RTE.elementaryRoot_eq_one_iff`; `RTE.nontrivial` | CARRIED |
 
-## §6 Proof of Theorem B (ll. 962–982)
-
-| # | tex line | Claim | Lean declaration | Status |
-| --- | --- | --- | --- | --- |
-| 242 | 963–964 | "The group `H` is nontrivial and simple by `prop:simple`." | `RTE.nontrivial` (nontrivial); simplicity is #224 | PARTIAL |
-| 243 | 964–967 | "The ring `R` is finitely generated, and `H` has property (T) by the Ershov–Jaikin-Zapirain theorem for elementary groups over finitely generated rings." | `RTE.finitelyGenerated`, `RTE.hasKazhdanPropertyT` | CARRIED |
-| 244 | 969–972 | "The containment `eq:compresses-L`, the centrality of `c` relative to `L`, and `prop:defect` show that `d ∈ 𝔇_H(L)`." | `RTE.printedDefectConfiguration` + `printedDefect_generator_mem` | CARRIED |
-| 245 | 972–974 | "Since `H` is simple and `d ≠ 1`, `prop:defect-saturation` gives `𝔇_H(L) = H`." | `RTE.printedDefect_eq_top_of_configuration` | PARTIAL — uses normal generation of `d`, not the simplicity clause of `prop:defect-saturation` |
-| 246 | 974–976 | "The group `H` has property (T), so `thm:compression-criterion` with `K=H` gives `Rad_MF(H)=H`." | `RTE.residual_eq_top_of_configuration`, `RTE.rankTwelve_actualCoronaMFResidual_eq_top` | CARRIED |
-| 247 | 978–981 | "If `M` is MF and `f : H → M`, compose `f` with a faithful homomorphism from `M` to a norm matrix corona. Since `Rad_MF(H)=H`, this composition and hence `f` are trivial." | `manuscriptFullRadicalKillsMFTargets` | CARRIED |
-| 248 | 981–982 | "If `H` were MF, its identity homomorphism would contradict this conclusion." | `Sofic.not_isCDEOperatorMF_of_actualCoronaMFResidual_eq_top`; `RTE.not_isCDEOperatorMF_of_residual_eq_top` | CARRIED |
-
-## §7 Prescribed MF quotients (ll. 984–1028)
-
-| # | tex line | Claim | Lean declaration | Status |
-| --- | --- | --- | --- | --- |
-| 249 | 986–988 | "`B` countable with `Rad_MF(B)=B`, `1 ≠ d ∈ B` normally generating `B`. Put `A = ⟨d⟩`." | `MFCamouflage.Edge`, `MFCamouflage.edgeIsCyclic`, `MFCamouflage.edgeGenerator` | CARRIED |
-| 250 | 1013–1015 | `eq:amalgam`: `W_Q = B *_A (Q × A)`, "where `A → Q × A` is the inclusion into the second factor". | `MFCamouflage.Camouflage`, `MFCamouflage.leftEdge`, `MFCamouflage.rightEdge` | CARRIED |
-| 251 | 1015–1017 | "The maps from `B` and `Q × A` to `Q` that are respectively trivial and the projection onto `Q` agree on `A`." | `MFCamouflage.projectionFamily`, `MFCamouflage.projection` | CARRIED |
-| 252 | 1017–1024 | "They therefore define an epimorphism `π_Q : W_Q → Q`." | `MFCamouflage.projection`, `projection_surjective` | CARRIED |
-| 253 | 1025–1026 | "It is split by the inclusion `Q → Q × A → W_Q`." | `MFCamouflage.visible`, `projection_comp_visible`; `SplitPrescribedProjection` cl. 4 | CARRIED |
-| 254 | 1026–1028 | "The normal-form theorem for amalgamated free products shows that both vertex maps in `eq:amalgam` are injective." | `MFCamouflage.blackHole_injective`, `productVertex_injective` (from `Higman.Amalgam.of_injective_push` = `Monoid.PushoutI.of_injective`) | CARRIED |
-| 255 | 1028 | "in particular, `d ≠ 1` in `W_Q`" | `MFCamouflage.defect_ne_one` | CARRIED |
-
-## §7 `prop:universal-factorization` (ll. 1030–1046) and its proof (ll. 1048–1066)
+## §6 `prop:defect` (ll. 1022–1063)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 256 | 1030–1038 | "`T` with every homomorphism `B → T` trivial ⟹ precomposition with `π_Q` is a bijection `Hom(Q,T) → Hom(W_Q,T)`." | `manuscriptUniversalFactorization` cl. 1; `MFCamouflage.precomp_bijective` | CARRIED |
-| 257 | 1039–1046 | Display: `ker π_Q = ⟨⟨d⟩⟩_{W_Q}`. | `manuscriptUniversalFactorization` cl. 2; `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
-| 258 | 1049–1051 | "Its restriction to `B` is trivial, so its restriction to the amalgamated subgroup `A` is trivial." | inside `MFCamouflage.factor_through_projection` | PARTIAL — no separately named step |
-| 259 | 1051–1055 | "For `(q,a) ∈ Q × A`, `f(q,a) = f(q,1)f(1,a) = f(q,1)`." | `MFCamouflage.productVertex_eq_visible_mul_blackHole`, `product_edge_eq_blackHole` | CARRIED |
-| 260 | 1055–1057 | "Thus the restriction of `f` to `Q × A` factors uniquely through the projection onto `Q`." | `MFCamouflage.factor_through_projection` | CARRIED |
-| 261 | 1057–1058 | "The universal property of the amalgam shows that `f` factors through `π_Q`." | `MFCamouflage.factor_through_projection` (built on `Higman.Amalgam` / `Monoid.PushoutI.lift`) | CARRIED |
-| 262 | 1058–1059 | "The factorization is unique because `π_Q` is surjective." | `MFCamouflage.projection_surjective` + injectivity half of `precomp_bijective` | CARRIED |
-| 263 | 1061 | "The element `d` belongs to `ker π_Q`." | `MFCamouflage.projection_blackHole` | CARRIED |
-| 264 | 1061–1065 | "Conversely, quotienting `W_Q` by `⟨⟨d⟩⟩_{W_Q}` kills `B`, since `⟨⟨d⟩⟩_B = B`, and kills the second factor `A` in `Q × A`. The resulting quotient is `Q`, with quotient map induced by `π_Q`." | `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
+| 254 | 1022–1028 | "`c = e_34(1)`, `ℓ = e_12(1)`, `d = [τcτ^{-1}, ℓ]` in `H`." | `RTE.c`, `RTE.ell`, `RTE.defect`, `RTE.tau` | CARRIED |
+| 255 | 1043–1046 | Display: `c ∈ C_H(L)`, `d = e_02(q) ≠ 1`, `⟨⟨d⟩⟩_H = H`. | `RTE.PropositionDefect`; `RTE.manuscriptPropositionDefect` | CARRIED |
+| 256 | 1049–1052 | The upper-left generators commute with `c=e_34(1)`, so `c∈C_H(L)`. | `RTE.c_commutes_corner` | CARRIED |
+| 257 | 1054–1057 | `eq:moved-mark`: `τcτ^{-1}=e_01(q)e_34(1)`. | `RTE.tau_conj_c`, `RTE.tau_conj_rawC`, `RTE.flat12_rawMovedC` | CARRIED |
+| 258 | 1058–1060 | The second factor commutes with `ℓ`, and the elementary commutator relation gives `d=e_02(q)`. | `Leavitt.elementaryRoot_commutator`; `RTE.tau_c_commutator_ell` | CARRIED |
+| 259 | 1060 | `d` is nontrivial because `q≠0`. | `RTE.defect_ne_one` | CARRIED |
+| 260 | 1060–1062 | Since `t_1qs_1=1`, the sandwiched-root argument gives `⟨⟨d⟩⟩_H=H` directly. | `normalClosure_elementaryRoot_eq_top_of_unit_sandwich`; `RTE.normalClosure_defect_eq_top` | CARRIED |
 
-## §7 Proof of Theorem C (ll. 1068–1088)
+## §6 Proof of Theorem B (ll. 1065–1085)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 265 | 1069–1072 | "Every homomorphism from `B` to an MF group is trivial: compose it with a faithful corona embedding of the target and use `Rad_MF(B)=B`." | `MFCamouflage.actualCoronaHom_eq_one_of_residual_eq_top`; `manuscriptFullRadicalKillsMFTargets` | CARRIED |
-| 266 | 1072–1074 | "`prop:universal-factorization` therefore gives the asserted bijection for every MF group `M`." | `MFCamouflage.cdeMF_precomp_bijective` | CARRIED |
-| 267 | 1074–1076 | "In particular, every homomorphism from `W_Q` to a norm matrix corona factors uniquely through `π_Q`." | `MFCamouflage.actualCorona_precomp_bijective` | CARRIED |
-| 268 | 1076–1080 | "Intersecting their kernels gives `Rad_MF(W_Q) = π_Q^{-1}(Rad_MF(Q))`." | `MFCamouflage.actualCoronaMFResidual_eq_comap` | CARRIED |
-| 269 | 1081–1082 | "The kernel of `π_Q` belongs to this radical, and it contains the nonidentity element `d`. Thus `W_Q` is non-MF." | `MFCamouflage.projection_ker_le_actualCoronaMFResidual`; `manuscriptPrescribedMFQuotients` cl. 3 | CARRIED |
-| 270 | 1082–1086 | "If `Q` is MF, its MF radical is trivial, and the displayed equality becomes `Rad_MF(W_Q)=ker π_Q=⟨⟨d⟩⟩_{W_Q}`." | `MFCamouflage.actualCoronaMFResidual_eq_ker`, `projection_ker_eq_normalClosure` | CARRIED |
+| 261 | 1066 | "The finitely generated `F_2`-algebra `R` is countable, and hence so is `H`." | the `Countable (BinaryLeavittAlgebra k)` instance in `UniversalLeavittOver`; `RTE.countable` | CARRIED |
+| 262 | 1067–1069 | "The ring `R` is finitely generated, and `H` has property (T)." | the `Algebra.FiniteType k (BinaryLeavittAlgebra k)` instance in `UniversalLeavittOver`; `RTE.hasKazhdanPropertyT` | CARRIED |
+| 263 | 1071–1073 | Compression, centrality of `c`, and `prop:defect` give `d∈𝔇_H(L)`. | `RTE.printedDefectConfiguration`; `printedDefect_generator_mem` | CARRIED |
+| 264 | 1073–1075 | Normality of `𝔇_H(L)` and `⟨⟨d⟩⟩_H=H` give `𝔇_H(L)=H`. | `RTE.printedDefect_eq_top_of_configuration` | CARRIED |
+| 265 | 1075–1077 | The compression criterion with `K=H` gives `Rad_MF(H)=H`. | `RTE.residual_eq_top_of_configuration`; `RTE.rankTwelve_actualCoronaMFResidual_eq_top` | CARRIED |
+| 266 | 1078–1079 | Independently, `prop:simple` shows that `H` is nontrivial and simple. | `RTE.nontrivial`; `RTE.manuscriptPropositionSimple` | CARRIED |
+| 267 | 1081–1084 | Every homomorphism from `H` to an MF group is trivial. | `manuscriptFullRadicalKillsMFTargets`; `manuscriptBinaryLeavittHeadline` | CARRIED |
+| 268 | 1083–1084 | If `H` were MF, its identity homomorphism would contradict the preceding conclusion. | `Sofic.not_isCDEOperatorMF_of_actualCoronaMFResidual_eq_top`; `RTE.not_isCDEOperatorMF_of_residual_eq_top` | CARRIED |
 
-## §7 Closing relation calculus (ll. 1090–1109)
+## §7 Prescribed MF quotients (ll. 1087–1134)
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 271 | 1090–1097 | `eq:closure-pullback`: `cl_MF^{W_Q}(N) = π_Q^{-1}(cl_MF^Q(π_Q(N)))`. | `MFCamouflage.actualCoronaMFClosure_eq_comap`; `manuscriptPrescribedQuotientRelationCalculus` cl. 1 | CARRIED |
-| 272 | 1098–1099 | "Indeed, an MF-target homomorphism from `W_Q` kills `N` exactly when its unique factor through `Q` kills `π_Q(N)`." | `ClosurePullback.factorsMFTargets_iff_ker_le`, `literalMFClosure_eq_comap_of_factors`, `manuscriptMFClosurePullbackAlongFactorization` | CARRIED |
-| 273 | 1099–1106 | "`W_Q/N` is MF `⟺ ker π_Q ≤ N` and `Q/π_Q(N)` is MF." | `MFCamouflage.quotient_isCDEOperatorMF_iff`; `manuscriptPrescribedQuotientRelationCalculus` cl. 2 | CARRIED |
-| 274 | 1106–1109 | "if `ker π_Q ≤ N`, then `N = π_Q^{-1}(π_Q(N))`; this is the only additional observation needed" | `manuscriptPrescribedQuotientRelationCalculus` cl. 3 (`Subgroup.comap_map_eq_self`) | CARRIED |
+| 269 | 1089–1090 | "`B` countable with `Rad_MF(B)=B`, `1≠d∈B` normally generating `B`; put `A=⟨d⟩`." | `MFCamouflage.Edge`, `MFCamouflage.edgeIsCyclic`, `MFCamouflage.edgeGenerator` | CARRIED |
+| 270 | 1118–1121 | `eq:amalgam`: `W_Q=B*_A(Q×A)`, with `A` included in the second factor. | `MFCamouflage.Camouflage`, `MFCamouflage.leftEdge`, `MFCamouflage.rightEdge` | CARRIED |
+| 271 | 1121–1123 | The trivial map from `B` and projection `Q×A→Q` agree on `A`. | `MFCamouflage.projectionFamily`, `projection` | CARRIED |
+| 272 | 1123–1131 | They define an epimorphism `π_Q:W_Q→Q`. | `MFCamouflage.projection`, `projection_surjective` | CARRIED |
+| 273 | 1132 | It is split by `Q→Q×A→W_Q`. | `MFCamouflage.visible`, `projection_comp_visible`; `SplitPrescribedProjection` cl. 4 | CARRIED |
+| 274 | 1132–1134 | Both vertex maps are injective by the amalgam normal-form theorem. | `MFCamouflage.blackHole_injective`, `productVertex_injective` | CARRIED |
+| 275 | 1134 | In particular, `d≠1` in `W_Q`. | `MFCamouflage.defect_ne_one` | CARRIED |
+
+## §7 `prop:universal-factorization` and its proof (ll. 1136–1175)
+
+| # | tex line | Claim | Lean declaration | Status |
+| --- | --- | --- | --- | --- |
+| 276 | 1136–1147 | Maps `B→T` all trivial imply precomposition with `π_Q` bijects `Hom(Q,T)` with `Hom(W_Q,T)`. | `manuscriptUniversalFactorization` cl. 1; `MFCamouflage.precomp_bijective` | CARRIED |
+| 277 | 1148–1156 | `ker π_Q=⟨⟨d⟩⟩_{W_Q}`. | `manuscriptUniversalFactorization` cl. 2; `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
+| 278 | 1160–1161 | The restriction to `B`, hence to the amalgamated `A`, is trivial. | inside `MFCamouflage.factor_through_projection` | PARTIAL — no separately named step |
+| 279 | 1162–1165 | `f(q,a)=f(q,1)f(1,a)=f(q,1)`. | `MFCamouflage.productVertex_eq_visible_mul_blackHole`, `product_edge_eq_blackHole` | CARRIED |
+| 280 | 1166–1167 | The restriction to `Q×A` factors uniquely through projection to `Q`. | `MFCamouflage.factor_through_projection` | CARRIED |
+| 281 | 1167–1168 | The amalgam universal property makes `f` factor through `π_Q`. | `MFCamouflage.factor_through_projection` | CARRIED |
+| 282 | 1168–1169 | Uniqueness follows from surjectivity of `π_Q`. | `projection_surjective`; injectivity half of `precomp_bijective` | CARRIED |
+| 283 | 1171 | `d∈ker π_Q`. | `MFCamouflage.projection_blackHole` | CARRIED |
+| 284 | 1171–1174 | Quotienting by `⟨⟨d⟩⟩` kills `B` and the second factor `A`, leaving `Q`. | `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
+
+## §7 Proof of Theorem C (ll. 1177–1198)
+
+| # | tex line | Claim | Lean declaration | Status |
+| --- | --- | --- | --- | --- |
+| 285 | 1178–1180 | Every homomorphism from `B` to an MF group is trivial. | `MFCamouflage.actualCoronaHom_eq_one_of_residual_eq_top`; `manuscriptFullRadicalKillsMFTargets` | CARRIED |
+| 286 | 1180–1181 | Universal factorization gives the bijection for every MF target. | `MFCamouflage.cdeMF_precomp_bijective` | CARRIED |
+| 287 | 1182–1186 | Every corona homomorphism from `W_Q` factors uniquely through `π_Q`. | `MFCamouflage.actualCorona_precomp_bijective` | CARRIED |
+| 288 | 1186–1190 | Intersecting kernels gives `Rad_MF(W_Q)=π_Q⁻¹(Rad_MF(Q))`. | `MFCamouflage.actualCoronaMFResidual_eq_comap` | CARRIED |
+| 289 | 1191–1192 | The radical contains `ker π_Q` and its nonidentity `d`, so `W_Q` is non-MF. | `MFCamouflage.projection_ker_le_actualCoronaMFResidual`; `manuscriptPrescribedMFQuotients` cl. 3 | CARRIED |
+| 290 | 1192–1196 | If `Q` is MF, `Rad_MF(W_Q)=ker π_Q=⟨⟨d⟩⟩_{W_Q}`. | `MFCamouflage.actualCoronaMFResidual_eq_ker`, `MFCamouflage.projection_ker_eq_normalClosure` | CARRIED |
+
+## §7 Closing relation calculus (ll. 1200–1219)
+
+| # | tex line | Claim | Lean declaration | Status |
+| --- | --- | --- | --- | --- |
+| 291 | 1200–1206 | `eq:closure-pullback`: `cl_MF^{W_Q}(N)=π_Q⁻¹(cl_MF^Q(π_Q(N)))`. | `MFCamouflage.actualCoronaMFClosure_eq_comap`; `manuscriptPrescribedQuotientRelationCalculus` cl. 1 | CARRIED |
+| 292 | 1207–1208 | An MF-target map from `W_Q` kills `N` iff its unique factor through `Q` kills `π_Q(N)`. | `ClosurePullback.factorsMFTargets_iff_ker_le`, `literalMFClosure_eq_comap_of_factors`, `manuscriptMFClosurePullbackAlongFactorization` | CARRIED |
+| 293 | 1208–1216 | `W_Q/N` is MF iff `ker π_Q≤N` and `Q/π_Q(N)` is MF. | `MFCamouflage.quotient_isCDEOperatorMF_iff`; `manuscriptPrescribedQuotientRelationCalculus` cl. 2 | CARRIED |
+| 294 | 1217–1219 | If `ker π_Q≤N`, then `N=π_Q⁻¹(π_Q(N))`. | `manuscriptPrescribedQuotientRelationCalculus` cl. 3 | CARRIED |
 
 ---
 
-# MISSING, ranked by how much the paper leans on it
+# MISSING, ranked by how much the printed proof leans on it
 
-## Tier 1 — load-bearing: the printed Theorem B is not available without these
+There is no missing numbered statement: the strict claim count is 15/15.
+In particular, `RTE.normalRootDetection` and
+`RTE.manuscriptPropositionSimple` close the rank-twelve simplicity endpoint by
+direct root extraction.  The rows below are proof-internal assertions whose
+enclosing theorems are carried by different formal routes.
 
-1. **#224 / #56 / #6 — `IsSimpleGroup H` for `H = EL_12(L_{F2}(1,2))`.**  The
-   abstract, Theorem B, and `prop:simple` all print "simple".  Nothing in the
-   tree proves it.  `RTE.isSimpleGroup_of_normal_root_detection` proves only
-   `NormalRootDetection → IsSimpleGroup H`, and `NormalRootDetection` is an
-   assumption.  Needed:
-   `theorem RTE.normalRootDetection : ∀ (N : Subgroup H), N.Normal → N ≠ ⊥ → ∃ (i j : Fin 12) (hij : i ≠ j) (a : R), a ≠ 0 ∧ elementaryRoot i j hij a ∈ N`.
-2. **#227 — Preusser's normal-subgroup theorem.**  Needed:
-   `theorem preusser_normal_structure {n} (hn : 3 ≤ n) (R) [ExchangeRing R] (N : Subgroup (elementaryGroup (Fin n) R)) [N.Normal] : ∃ I : Ideal R, relativeElementary (Fin n) I ≤ N ∧ N ≤ congruenceSubgroup (Fin n) I`.
-   This requires two objects that do not exist: `relativeElementary` (i.e.
-   `EL_n(R,I)`) and `congruenceSubgroup` (i.e. `C_n(R,I)`).
-3. **#225 — `L_{F2}(1,2)` is purely infinite simple.**  Needed:
-   `theorem UniversalLeavitt.binaryLeavitt_isSimpleRing : IsSimpleRing BinaryLeavittAlgebra`
-   together with the purely-infinite clause
-   `∀ a ≠ 0, ∃ x y, x * a * y = 1`.  (Note: `BinaryLeavitt.exists_mul_mul_eq_one`
-   exists but takes a *detected* nonzero coefficient, so it is not this.)
-4. **#226 — `L_{F2}(1,2)` is an exchange ring.**  Needed: a definition
-   `IsExchangeRing` and `theorem : IsExchangeRing BinaryLeavittAlgebra`.  Nothing
-   in the tree mentions exchange rings.
-5. **#230 / #232 — `Z(L_{F2}(1,2)) = F_2`, hence `Z(R)^× = {1}`.**  Needed:
-   `theorem UniversalLeavitt.center_eq_bot : Subring.center BinaryLeavittAlgebra = ⊥` (the image of `ZMod 2`), and
-   `theorem : ∀ u : (Subring.center BinaryLeavittAlgebra)ˣ, u = 1`.
-6. **#231 / #233 — `Z(GL_12(R))` is trivial.**  Needed:
-   `theorem : ∀ z : (Matrix (Fin 12) (Fin 12) R)ˣ, (∀ w, Commute z w) → z = 1`,
-   via the printed two-step argument (commute with `e_ij(1)` to force
-   `z = λ • 1`, then with `e_ij(a)` to force `λ` central).
-   `RTE.elementaryRoot_mem_center_iff` is about roots inside `Z(H)` and is not a
-   substitute.
-7. **#222 — "`F_2` has trivial unit group, so the central subgroup left by the
-   normal-subgroup theorem vanishes."**  Downstream of 5 and 6; it is the
-   sentence that closes `prop:simple`.
-8. **#228 / #229 — the `I = R` / `I = 0` case split.**  Needed after 2:
-   `theorem : relativeElementary (Fin 12) (⊤ : Ideal R) = ⊤` and
-   `theorem : congruenceSubgroup (Fin 12) (⊥ : Ideal R) = Subgroup.center _`.
-
-## Tier 2 — load-bearing for the *printed proof route* of `thm:normal-kazhdan`
+## Tier 1 — load-bearing for the *printed proof route* of `thm:normal-kazhdan`
 
 The theorem itself (#167) is closed, but by the moving-corner/`WeakMF` route.
 The printed §4 proof — the one a referee will read — turns on five sentences
 with no declaration.  A reader checking the paper against the Lean cannot verify
 them.
 
-9. **#177 — "In the corner `qQ_dq`, the Kazhdan projection is zero."**  Needed:
+1. **#177 — "In the corner `qQ_dq`, the Kazhdan projection is zero."**  Needed:
    `theorem : (KazhdanCompressionRep.proj D) * (1 - p) = 0` in the corner
    algebra, i.e. the image of the Kazhdan projection under the corner
    compression vanishes.
-10. **#178 / #179 — the corner Kazhdan inequality
+2. **#178 / #179 — the corner Kazhdan inequality
     `b = (1/|S|)Σ(qΘ(s)q − q)*(qΘ(s)q − q) ≥ (κ²/|S|)q`.**  Needed:
     `theorem corner_kazhdan_lower_bound (D : KazhdanCompressionRep …) (S : Finset K) (kappa : ℝ) (h : IsKazhdanPair K S kappa) (hq : q * proj = 0) : (κ^2 / S.card) • q ≤ (1/S.card) • ∑ s ∈ S, star (q * Θ s * q - q) * (q * Θ s * q - q)`
     (with the order relation spelled as absorption, as in
     `manuscriptNormMatrixCoronaStableFinite`).
-11. **#180 / #181 — the trace consequence.**  Needed:
+3. **#180 / #181 — the trace consequence.**  Needed:
     `theorem : Filter.liminf (fun n ↦ (1/S.card) * ∑ s ∈ S, hsLengthSq (cornerModel n) (W n s - q n)) atTop ≥ κ^2 / S.card`,
     derived from 10 via "the negative part of `b_n − (κ²/|S|)q_n` tends to zero
     in operator norm" — which itself needs a named lemma
     `theorem negPart_tendsto_zero_of_corona_le`.
-12. **#129 — "Faithfulness of the representation gives the same projection
+4. **#129 — "Faithfulness of the representation gives the same projection
     inequality in `B`."**  This is the one place `lem:kazhdan-projection-order`
     as *printed* is not closed: `Analysis/KazhdanProjectionOneSidedOrder.lean`
     proves the Hilbert-space half and leaves the `C*`-algebra bridge as a
@@ -562,17 +558,42 @@ them.
     by rebuilding `P` spectrally in `B`.  Needed:
     `theorem le_of_le_in_faithful_rep {B} [CStarAlgebra B] (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)) (hπ : Function.Injective π) {p q : B} (hp : IsStarProjection p) (hq : IsStarProjection q) : π q ≤ π p → q * p = q`.
 
-## Tier 3 — proof-internal to a `CARRIED` theorem; the paper does not lean on them
+## Tier 2 — proof-internal to a `CARRIED` theorem; the paper does not lean on them
 
-13. #35, #36, #31 — the diagonal-sum construction inside the proof of
+5. #35, #36, #31 — the diagonal-sum construction inside the proof of
     `prop:mf-residual-calculus` (defects `≤ 1/n`, half separation retained, the
     quotient norm as a limsup, the enumeration).  `G/R` is MF is closed by an
     ultraproduct route.
-14. #173 — "in a faithful representation the two ranges agree because
+6. #173 — "in a faithful representation the two ranges agree because
     `gKg^{-1}=K`"; `nk_07_conjugate_proj` is algebraic.
-15. #141 — "this representation of `B` need not be faithful; it is used only
+7. #141 — "this representation of `B` need not be faithful; it is used only
     after the projection identity has been proved inside `B`".
-16. #223 — "no minimality assertion is intended" (disclaimer).
+8. #224 — "We do not claim that 12 is minimal" (disclaimer).
+
+## Historical Preusser route — optional development only
+
+The current manuscript mentions Preusser's general normal-subgroup theorems
+only as historical context in #95 and immediately says that the proof instead
+extracts a root directly.  `rootDetection_of_leavittFamily` proves the required
+root detection.  The repository additionally retains an optional development
+around the stronger Preusser sandwich:
+
+* `relativeElementary` and `congruenceSubgroup` are the printed `EL_n(R,I)` and
+  `C_n(R,I)`;
+* `normalLevel` and `relativeElementary_normalLevel_le` give a canonical level
+  and its lower inclusion;
+* `relativeElementary_top`, `congruenceSubgroup_bot`,
+  `exists_central_scalar_of_mem_center`, and
+  `center_eq_bot_of_central_units_trivial` prove the two case-split endpoints;
+  and
+* `isSimpleGroup_of_preusser_sandwich` packages the complete implication from
+  the one remaining cited upper-sandwich hypothesis to simplicity.
+
+The exchange prerequisite and coefficient-ring inputs are also internal:
+`BinaryLeavitt.hasRightExchange`,
+`BinaryLeavitt.hasSingleSandwichDivision`,
+`HasSingleSandwichDivision.isSimpleRing`, `BinaryLeavitt.center_eq_bot`, and
+`BinaryLeavitt.central_units_trivial`.
 
 *#105 and #78 were on this list until `PrintedRemarks.lean` landed mid-sweep.*
 `manuscriptCommutantFiniteDimensionalHypothesisIsEssential` now supplies the
@@ -587,35 +608,36 @@ soficity/hyperlinearity separation with a nontriviality guard.  Both are
 # CITED
 
 Every literature dependence in the manuscript, with the exact claim and the
-paper.  Rows 92–95 and 230 are the ones that are simultaneously `MISSING` in the
-repository and *load-bearing*; the rest are context or are discharged in-repo.
+paper.  No citation is load-bearing for a numbered endpoint.  In particular,
+the simplicity proof uses the internally proved sandwich, central-unit, and
+direct root-extraction statements rather than Preusser's general theorem.
 
 | # | tex line | Claim | Paper | In-repo status |
 | --- | --- | --- | --- | --- |
 | 16 | 127–129 | "*MF group* means this operator-norm notion." | Carrión–Dadarlat–Eckhardt (`CDE`); Korchagin (`Korchagin`) | Definition is formalized (`Sofic.IsCDEOperatorMF`); the citation is attribution only |
 | 52 | 275–277 | "Whether every countable group is MF … remained open." | `CDE`; `Korchagin`; Thom (`Thom`); Shulman (`Shulman`) | Historical claim; nothing to formalize |
-| 86 | 411–413 | Framework and permanence results. | `CDE`; `Korchagin`; `Shulman` | Attribution only |
-| 87 | 413–415 | Non-approximability for finite Schatten norms. | `DGLT`; `LubotzkyOppenheim`; `Thom` | Not in repo; not used by any proof |
-| 88 | 416–417 | Operator–Hilbert–Schmidt stability as a possible source of non-MF groups. | Bachner–Dogon–Lubotzky (`BDL`) | Not in repo; not used |
-| 91 | 423–424 | `L_K(1,n)` as rings with nonunique module rank. | Leavitt (`Leavitt`) | Rank non-uniqueness is in `Leavitt/LeavittRankEquivalence.lean`; the historical attribution is not formalized |
-| 92 | 425–426 | "The binary Leavitt algebra is purely infinite simple." | Abrams–Aranda Pino (`AbramsAranda`) | **MISSING** — no `PurelyInfinite`, no `IsSimpleRing` for the Leavitt algebra |
-| 93 | 426 | "hence an exchange ring" | Ara (`AraExchange`) | **MISSING** — no `ExchangeRing` anywhere |
-| 94 / 230 | 426–427, 911 | "its center is the base field" / "The center of `R` is `F_2`." | Aranda Pino–Crow (`ArandaCrow`) | **MISSING** — no centre computation |
-| 95 / 227 | 427–429, 901–904 | "Preusser's normal-subgroup theorem implies simplicity of the elementary group" / the `EL_12(R,I) ≤ N ≤ C_12(R,I)` sandwich. | Preusser (`Preusser`, Thm 3) | **MISSING** — no relative elementary subgroup, no congruence subgroup, no theorem |
-| 96 / 218 | 429–431, 871–872 | "Ershov–Jaikin-Zapirain give property (T) for `EL_n(R)`, `n ≥ 3`, `R` f.g. unital associative." | Ershov–Jaikin-Zapirain (`EJZ`, Thm 1.1) | **PARTIAL** — the case used is proved in-repo without citation (`Steinberg.BinaryLeavitt.elementaryBase_hasKazhdanPropertyT`, `RTE.corner_hasKazhdanPropertyT`); the general statement is not |
-| 97 | 432–433 | Related rigidity for metric approximations of Kazhdan groups. | `KT19`; Alekseev–Thom (`AlekseevThom`); Dadarlat (`Dadarlat`) | Not in repo; not used |
+| 86 | 402–406 | Framework and permanence results. | `CDE`; `Korchagin`; `Shulman` | Attribution only |
+| 87 | 406–408 | Non-approximability for finite Schatten norms. | `DGLT`; `LubotzkyOppenheim`; `Thom` | Not in repo; not used by any proof |
+| 88 | 409–410 | Operator–Hilbert–Schmidt stability as a possible source of non-MF groups. | Bachner–Dogon–Lubotzky (`BDL`) | Not in repo; not used |
+| 91 | 417–423 | One-sided compression makes a Kazhdan projection infinite in the full group `C*`-algebra; comparison with the present corona argument. | Tseng (`Tseng`) | **PARTIAL** — the present stable-finite corona route is formalized; Tseng's theorem is not |
+| 92 / 227 | 425–428, 912 | Leavitt rank behavior and pure infinite simplicity / the operative sandwich form. | Leavitt (`Leavitt`); Abrams–Aranda Pino (`AbramsAranda`) | **PARTIAL** — positive-rank equivalences, `BinaryLeavitt.hasSingleSandwichDivision`, and `HasSingleSandwichDivision.isSimpleRing` are proved; the historical module-rank statement and a general `PurelyInfinite` predicate are not |
+| 93 | 428 | "hence an exchange ring" | Ara (`AraExchange`) | **DISCHARGED IN-REPO** — `BinaryLeavitt.hasRightExchange` proves the standard one-element right-ideal exchange-ring property |
+| 94 / 228 | 429, 913–915 | The center is the base field; over `F_2` the only central unit is `1`. | Aranda Pino–Crow (`ArandaCrow`) | **DISCHARGED IN-REPO** — `BinaryLeavitt.center_eq_bot`, `eq_smul_one_of_central`, and `central_units_trivial` |
+| 95 | 429–432 | Preusser gives general normal-subgroup theorems over exchange rings; the present proof extracts a root directly. | Preusser (`Preusser`) | **PARTIAL** — the direct alternative is fully formalized; the general literature attribution is not |
+| 96 / 218 / 262 | 433–435, 881–882, 1067–1069 | General property-(T) theorem for elementary groups over finitely generated rings. | Ershov–Jaikin-Zapirain (`EJZ`, Thm 1.1) | **PARTIAL** — the binary Leavitt cases used are proved in-repo; the general theorem is not |
+| 97 | 436–437 | Related rigidity for metric approximations of Kazhdan groups. | `KT19`; Alekseev–Thom (`AlekseevThom`); Dadarlat (`Dadarlat`) | Not in repo; not used |
 | 74 | 366–367 | "If `G` is amenable, its property-(T) subgroup `L` is finite." | Bekka–de la Harpe–Valette (`BHV`) | **DISCHARGED IN-REPO** — `Kazhdan.finite_of_isAmenable_of_kazhdan`, `finite_subgroup_of_isAmenable_of_kazhdan`; the citation is no longer load-bearing |
 | 139 | 597–598 | "Let `P` be the image of the Kazhdan projection." | Akemann–Walter (`AkemannWalter`) | **PARTIAL** — the repo constructs `P` as a spectral projection of the orbit average (`KazhdanCompressionRep.proj`, `kt_08_kazhdan_projection`) rather than as the Akemann–Walter projection in `C*_max` |
-| 254 | 1026–1028 | "The normal-form theorem for amalgamated free products shows that both vertex maps are injective." | folklore / Serre; used via mathlib | **DISCHARGED IN-REPO** — `Higman.Amalgam.of_injective_push` = `Monoid.PushoutI.of_injective` |
+| 274 | 1132–1134 | "The normal-form theorem for amalgamated free products shows that both vertex maps are injective." | folklore / Serre; used via mathlib | **DISCHARGED IN-REPO** — `Higman.Amalgam.of_injective_push` = `Monoid.PushoutI.of_injective` |
 
 ---
 
 # Notes on the census method
 
-* Rows are keyed to line numbers in the working copy of
-  `non_mf_groups_exist.tex` at 1238 lines.  `%`-comment lines (the `webmath`
-  annotation blocks) are excluded: they are not printed, and their claims are
-  restatements of the printed ones.  Re-key after any edit that moves lines.
+* Rows are keyed to the current 1362-line `non_mf_groups_exist.tex`; the direct
+  simplicity proof and every later row were re-keyed in this revision.
+  `%`-comment lines (the `webmath` annotation blocks) are excluded: they are not
+  printed, and their claims are restatements of the printed ones.
 * Every declaration name in the "Lean declaration" column was grep-verified to
   exist.  Where a row cites a *clause* of a packaged `Prop` (e.g.
   `manuscriptOneSidedCompressionCriterion` cl. 2), the clause index refers to the

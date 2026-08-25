@@ -5,7 +5,7 @@ kind: claim
 title: Spherical quadratures tensor through every finite-depth Clifford Folner window
 distinct_from:
   finite-spherical-moments-do-not-fold-regular-double: This claim keeps the spherical quadrature and adds every bounded-depth Clifford transition test.
-  depth-two-clifford-types-form-a-finite-fiber-folner-graph: That claim proves amenability of the type graph; this claim couples its windows to the spherical nonfolding witness.
+  every-fixed-dyadic-clifford-window-is-finite-fiber-folner: That claim proves amenability of every fixed-depth type graph; this claim couples its windows to the spherical nonfolding witness.
   finite-projective-sector-groupoids-have-conjugate-absorbers: That claim cancels a finite projective cocycle; this claim uses the cancellation inside a tensor escape.
 ---
 
@@ -38,8 +38,10 @@ its values arbitrarily well, including the lazy-average value `43/168`.
 Choose their error to tend to zero with `R`, and call the corresponding
 carrier `H_sph(R)`.
 
-The bounded-depth Clifford type graph is a fixed finite fiber over the
-coweight lattice `Z^2`.  Restrict it to a full fiber over a box `B_R`.  Each
+For the chosen depth `k`,
+`every-fixed-dyadic-clifford-window-is-finite-fiber-folner` identifies the
+Clifford type graph with a fixed finite fiber `F_k` over the coweight lattice
+`Z^2`.  Restrict it to a full fiber over a box `B_R`.  Each
 prescribed groupoid bisection has bounded range.  On the interior it is the
 native permutation; complete it arbitrarily to a permutation on the boundary.
 If `r` is one of the selected local relations, its word permutation is the

@@ -254,6 +254,19 @@ one of the following equivalent matrix-coordinate inputs:
 Further typed Steinberg triangles or Clifford covariance relations cannot
 provide this input: both admit the exact arbitrary-`V` models above.
 
+Nor can one pin `V` by multiplying finitely many packet conjugates of the
+controlled reflection and equating the product to a literal packet word.
+`packet-controller-orbit-products-have-orientation-dichotomy`
+proves a sharp dichotomy, valid for both the two-qubit controller and the
+odd-prime Weyl analogue.  If the total controller exponent is zero modulo
+the packet characteristic, the multiplicity factor cancels and the row is
+independent of `V`.  If it is nonzero, the label determinant is a nontrivial
+root of unity whereas every packet word has determinant one, so the row
+already fails in the intended pure model.  Thus an orbit-product anchor is
+either gauge-blind or incompatible with exact completeness.  A surviving
+odd coupling must genuinely change Leavitt scale, not merely traverse a
+finite packet orbit.
+
 The remaining finite-dimensional PI option has now been audited exactly in
 `controlled-fine-reflection-superrank-orientation-law`.  On the marked
 two-qubit packet, adjoining the twisted fine reflection
@@ -408,6 +421,18 @@ made universal identities in the group algebra.
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
   `V direct_sum V` satisfy every four pairing identity while shrinking
   multiplicity; this is `rectangular-escape`.
+- **The complete Heisenberg self-copy skeleton still pays no boundary.**
+  `heisenberg-self-copy-relators-do-not-pay-reservoir-loss` specializes the
+  coherent Schrödinger countermodels to one fixed source window of rank `L`
+  and its paired even/odd child window of rank `2L`.  Both branch HNN
+  covariance tables, the common marked center, every finite Heisenberg table,
+  and all transverse coordinate shears are exact, but the adjoint commutant
+  density drops from `p^(-2L)` to `p^(-4L)`.  Hence the reservoir loss
+  `p^(-2L)-p^(-4L)` occurs at zero defect, unchanged by any fixed tag packet.
+  The desired payment cannot use the Heisenberg/self-copy skeleton as its
+  error term; it must use a genuinely mixed same-object coefficient return
+  or one of the paired Steinberg multiplication triangles absent from that
+  calibration.
 - **The canonical stabilized Whitehead repair fails.**  The tempting repair
   is to Whitehead-compress `g` into the first child, conjugate by the branch
   swap to obtain the second child, and multiply.  This does exactly produce

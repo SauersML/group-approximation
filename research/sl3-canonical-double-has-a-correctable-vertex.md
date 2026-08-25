@@ -27,10 +27,22 @@ max_(x in S_A)||pi_(n,j_n)(x)-alpha_n(x)||_2 -> 0.           (CDV1)
 ```
 
 The index may vary with `n`; passing to a subsequence makes it constant.
-This is the minimal correction statement left by the arithmetic-double
+This was the minimal correction statement suggested by the arithmetic-double
 reduction.  Once `(CDV1)` supplies an anchor,
 `sl3-double-one-near-vertex-forces-joint-near-exactness` corrects the other
 vertex to the same representation, and the fold mark collapses.
+
+There is now a decisive logical warning.  The established claim
+`canonical-sl3-double-microstates-are-uniform-two-vertex-outliers` proves the
+opposite conclusion for every canonical sequence that actually exists: both
+vertices stay a fixed normalized-HS distance from the exact representation
+variety.  Hence `(CDV1)` can hold only when there is no canonical microstate
+sequence at all.  Equivalently, `(CDV1)` is already an existence-level
+certificate that this fixed arithmetic double is non-hyperlinear; the exact
+equivalence is recorded in
+`sl3-correctable-vertex-is-equivalent-to-double-nonhyperlinearity`.  It is not
+a smaller correction lemma that can first be proved inside a hypothetical
+hyperlinear model.
 
 The current 2-Kazhdan/Frobenius-stability literature does not prove
 `(CDV1)`.  `sl3-canonical-double-replication-escapes-every-frobenius-basin`

@@ -8,6 +8,7 @@ requires:
   - non-ce-bcs-has-robust-approximate-energy-gap
   - agent-free-compressor-full-corner-root-is-fd-invisible
   - agent-packet-root-finite-detectors-are-normal-quotient-selectors
+  - agent-packet-root-bridge-is-perfect-kernel-separation
 ---
 
 The exact estimate is the displayed two-term telescoping identity

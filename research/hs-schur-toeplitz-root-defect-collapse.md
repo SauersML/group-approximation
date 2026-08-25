@@ -30,7 +30,7 @@ satisfies `Phi(w_f)=1`. A sufficient stronger form is a finite-window modulus
 `epsilon`-representation on that window satisfies
 
 ```text
-||phi(w_f)-1||_2 <= omega(epsilon).                         (HST1)
+||phi(w_f)-1||_2 <= omega(epsilon),                         (HST1)
 ```
 
 The exact proof intersects finite-index kernels of exponent-`p` root groups
@@ -60,8 +60,8 @@ through roots. The unresolved step is a dimension-free weighted substitute
 for intersecting all root kernels, or equivalently a first-hit decomposition
 whose discarded root-character masses are summable.
 
-The qualitative statement already makes `H_f` nonhyperlinear: hyperlinearity would give
-microstates converging to the canonical delta trace, while the nontrivial
+The qualitative statement already makes `H_f` nonhyperlinear: hyperlinearity
+would give microstates converging to the canonical delta trace, while the nontrivial
 order-`p` word `w_f` has fixed positive delta-trace distance from the
 identity. Higman's embedding theorem then puts this finitely generated
 recursively presented nonhyperlinear group inside a finitely presented
@@ -82,6 +82,39 @@ ultraproducts kills `P_f` immediately; this implication is the route
 work into a metric decoder, rather than mixing it with Toeplitz algebra.
 
 ## Attempts
+
+- **A finite-head exact model preserves the root, but its soficity is the
+  wrong extension-permanence direction.**
+  `toeplitz-finite-head-extension-preserves-root` represents the packet by an
+  infinite augmentation tail and one finite copy of every other simple.  The
+  forbidden idempotent is a nonzero finite head projection, the image ring
+  is finitary-by-`k[z,z^-1]`, and the self-embedding descends.  Its ascending
+  HNN group therefore satisfies the complete coefficient and shift relations
+  with the marked root nontrivial.  The elementary base is
+  locally-finite-by-residually-finite.  This does not make it sofic: the
+  standard permanence theorem has amenable quotient, whereas here the
+  amenable group is the kernel.  A direct LEF/sofic approximation retaining
+  the root would refute `(HST1)`; until that is proved, the construction is an
+  exact stress model rather than an ultraproduct counterexample.
+
+- **Finite-von-Neumann reconstruction is impossible.**
+  `finite-vn-toeplitz-coefficient-reconstruction-fails` applies the faithful
+  left regular representation of `H_f`.  Its target `L(H_f)` is finite
+  tracial and satisfies the complete rank-five root table and stable-letter
+  covariance, but its common root kernel is zero, so the decoded quotient is
+  the original non-directly-finite ring `R_f`.  Thus ambient direct
+  finiteness cannot be pulled back through the root words.  This does not
+  refute the matrix-ultraproduct target: it shows that the proof must use its
+  matricial lifts, not merely exact group relations in the limiting finite
+  von Neumann algebra.
+
+- **Canonical finite root windows are completely balanced.**
+  `steinberg-root-shear-plancherel-covariance` already proves the stronger
+  fixed-window statement: all Fourier atoms have Plancherel mass, and named
+  multiplier roots permute them by the exact dual shear.  The canonical
+  regular representation has these same balanced tables, so the live issue
+  is coherence across growing multiplication windows in one matricial lift,
+  not another fixed-window Fourier calculation.
 
 - **Intersect rounded root kernels.** For a fixed finite root window, the
   exponent-`p` commuting families can be rounded and jointly diagonalized.
@@ -179,3 +212,17 @@ work into a metric decoder, rather than mixing it with Toeplitz algebra.
   distance from the identity. A countermodel must therefore decouple root
   phase mass from coefficient-defect rank; locating or excluding precisely
   that decoupling is the root-character transport problem above.
+- **All contractive coefficient truncations are now excluded.**
+  `agent-free-compressor-contractive-toeplitz-no-go` proves
+  dimension-freely that contractive matrices with `YX=I+o_2(1)` satisfy
+  `XY=I+o_2(1)`. Thus unilateral, cyclic, Følner, quasidiagonal, and direct-sum
+  coefficient models cannot retain a positive-HS Toeplitz defect. A genuine
+  countermodel would have to exploit an abstract root representation which
+  does not decode to contractive coefficient operators.
+- **The cell-shift subsystem is residually finite.**
+  `agent-free-compressor-toeplitz-cell-shift-window-is-lef` constructs exact
+  cyclic finite models of every bounded Heisenberg-cell/shift window with the
+  base center at distance `sqrt(2)` from the identity. Hence the independent
+  cells, exponential representation cost, and stable-letter transport alone
+  cannot prove `(HST1)`. The full transverse coefficient multiplication at
+  the one-sided boundary is logically indispensable.

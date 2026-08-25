@@ -4,14 +4,14 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Closed-axiom audit for the rank-twelve defect
 
-This is the audit backing the `prop:defect` row of
-`metadata/ONE_SIDED_MF_CLAIMS.md`.  It deliberately stops before
-`prop:simple`: the declarations below cover only the explicit `EL₁₂`
-compressor, its nontrivial normally generating defect, and the consequent full
-MF radical.  No simplicity hypothesis or normal-subgroup theorem enters these
-checks.  Every audited name is defined by `RankTwelveEndpoints` or
-`RankTwelveConfiguration`; there are no conditional endpoint declarations in
-this list.
+This is the focused audit backing the `prop:defect` row of
+`metadata/ONE_SIDED_MF_CLAIMS.md`.  The declarations below cover only the
+explicit `EL₁₂` compressor, its nontrivial normally generating defect, and
+the consequent full MF radical.  No simplicity hypothesis or normal-subgroup
+theorem enters these checks.  The separately closed `prop:simple` and headline
+audits live in `PrintedAudit` and `Endpoint/OneSidedTransportAudit`.  Every name
+in this focused list is defined by `RankTwelveEndpoints` or
+`RankTwelveConfiguration`; there are no conditional endpoint declarations.
 -/
 
 open GroupApproximation

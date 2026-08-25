@@ -426,9 +426,11 @@ Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
 internal compression used here.  The binary Leavitt algebra is purely
 infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
-and its center is the base field~\cite{ArandaCrow}.  Preusser's
-normal-subgroup theorem implies simplicity of the elementary group
-\cite{Preusser}, while Ershov--Jaikin-Zapirain give property~\textup{(T)} for
+and its center is the base field~\cite{ArandaCrow}.  Preusser's work gives
+general normal-subgroup theorems for linear groups over exchange
+rings~\cite{Preusser}; the simplicity proof below instead extracts an
+elementary root directly from a nonidentity normal element.
+Ershov--Jaikin-Zapirain give property~\textup{(T)} for
 $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
 Related rigidity results for metric approximations of Kazhdan groups appear
@@ -889,9 +891,9 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
  \tau L\tau^{-1}\le L.
 \end{equation}
 
-The field $\F_2$ is used in the simplicity argument below: its unit group is
-trivial, so the central subgroup left by the normal-subgroup theorem
-vanishes.  The dimension $12$ comes from applying the $6\times6$ Whitehead
+The field $\F_2$ is used in the diagonal branch of the simplicity argument
+below: the only central unit of $R$ is then $1$.  The dimension $12$ comes
+from applying the $6\times6$ Whitehead
 factorization to the $3\times3$ Kazhdan corner.  We do not claim that $12$ is
 minimal.
 
@@ -902,49 +904,120 @@ The group $H=\EL_{12}(R)$ is simple.
 \end{proposition}
 
 \begin{proof}
-The ring $R=L_{\F_2}(1,2)$ is purely infinite simple
-\cite{AbramsAranda} and therefore an exchange ring~\cite{AraExchange}.
-Let $N\trianglelefteq H$.  Preusser's normal-subgroup theorem
-\cite[Theorem~3]{Preusser} gives an ideal $I\trianglelefteq R$ such that
-\[
- \EL_{12}(R,I)\le N\le C_{12}(R,I),
-\]
-where $C_{12}(R,I)$ is the full congruence subgroup of level $I$.
-Indeed, $N\trianglelefteq\EL_{12}(R)$ is normalized by \(\EL_{12}(R)\), as
-required in that theorem.
-Since $R$ is simple, either $I=R$ or $I=0$.  In the first case
-$\EL_{12}(R,I)=H$, so $N=H$.  In the second case
-\[
- N\le C_{12}(R,0)=Z(\GL_{12}(R)).
-\]
+We use two concrete ring facts.  First, for every $0\ne x\in R$ there are
+$a,b\in R$ such that
+\begin{equation}\label{eq:two-sided-sandwich}
+ axb=1.
+\end{equation}
+This is the form of pure infiniteness needed here~\cite{AbramsAranda}.
+Second, the only central unit of $R$ is $1$: indeed
+$Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow} and
+$\F_2^\times=\{1\}$.
 
-The center of $R$ is $\F_2$ by~\cite[Corollary~4.3]{ArandaCrow}.  For
-completeness, suppose that $z\in Z(\GL_{12}(R))$.  Commuting $z$ with the
-elementary matrices $e_{ij}(1)$ shows that $z=\lambda I_{12}$ for some
-$\lambda\in R$.  Commuting with $e_{ij}(a)$ for arbitrary $a\in R$ then gives
-$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times=\F_2^\times=\{1\}$.
-Thus $Z(\GL_{12}(R))$ is trivial, and $N=1$ when $I=0$.  Finally,
-$e_{01}(1)\ne1$, so $H$ is nontrivial.
-\end{proof}
-
-We use the following elementary observation.  Let $S$ be a unital ring, let
-$n\ge3$, and suppose $a,x,b\in S$ satisfy $axb=1$.  Then every
-$e_{ij}(x)$ with $i\ne j$ normally generates $\EL_n(S)$.  Indeed, let
-$N\trianglelefteq\EL_n(S)$ contain $e_{ij}(x)$, and choose an index
-$k$ different from $i$ and $j$.  The elementary commutator relations give
+We first record that a nonzero root normally generates the elementary group.
+More generally, let $S$ be a unital ring, let $n\ge3$, and suppose
+$a,x,b\in S$ satisfy $axb=1$.  If a normal subgroup of $\EL_n(S)$ contains
+$e_{ij}(x)$, choose $k$ different from $i$ and $j$.  The elementary
+commutator relations give
 \[
  [e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad
  [e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),
 \]
-so $N$ contains a unit root.  From any $e_{uv}(1)\in N$ and any third index
+so the normal subgroup contains a unit root.  From any $e_{uv}(1)$ in the
+normal subgroup and any third index
 $w$, the relations
 \[
  [e_{wu}(r),e_{uv}(1)]=e_{wv}(r),\qquad
  [e_{uv}(1),e_{vw}(r)]=e_{uw}(r)
 \]
 put the corresponding source and target moves, with arbitrary coefficient
-$r\in S$, in $N$.  Repeating these moves, using a third index when needed,
-puts every elementary generator in $N$.  Hence $N=\EL_n(S)$.
+$r\in S$, in the normal subgroup.  Repeating these moves, using a third
+index when needed, gives every elementary generator.  Thus, by
+\eqref{eq:two-sided-sandwich}, it remains to prove that every nontrivial
+normal subgroup $N\trianglelefteq H$ contains a nonzero elementary root.
+
+We also need the following coefficient-separation consequence of the Leavitt
+relations.  If $r,s\in R$ are nonzero, then there are $a,b\in R$ such that
+\begin{equation}\label{eq:coefficient-separation}
+ arb=0,\qquad bsar\ne0.
+\end{equation}
+Here is a direct proof.  For every $w\in R$ there are $x,y\in R$ with
+$xwy=0$ and $yx\ne0$.  This is immediate with $x=y=1$ if $w=0$.
+Otherwise choose $c,d$ with $cwd=1$ and put $x=t_1c$, $y=ds_0$.
+Then $xwy=t_1s_0=0$.  Moreover $s_0t_1\ne0$, since
+\[
+ 1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1,
+\]
+and $yx=ds_0t_1c=0$ would imply
+\[
+ s_0t_1=(cwd)(s_0t_1)(cwd)
+       =(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.
+\]
+To obtain \eqref{eq:coefficient-separation}, choose factorizations
+\[
+ c_r\,r\,d_r=1,\quad e_d\,d_r\,f_d=1,\quad
+ e_s\,s\,f_s=1,\quad e_t(c_r r)f_t=1,
+\]
+apply the preceding construction to $w=e_tf_d$, and set
+\[
+ a=f_s x e_t c_r,\qquad b=d_r f_d y e_s.
+\]
+Then $arb=0$.  If $bsar=0$, multiplication on the left by $e_d$ and on the
+right by $f_t$ gives $yx=0$, a contradiction.
+
+Now let $N\trianglelefteq H$ be nontrivial and choose $1\ne g\in N$.
+Suppose first that $g$ is diagonal.  Its inverse is
+also diagonal.  If $g$ commuted with every $e_{ij}(a)$, then commuting with
+the $e_{ij}(1)$ would force $g=\lambda I_{12}$, and commuting with arbitrary
+$e_{ij}(a)$ would make $\lambda$ a central unit.  Hence $g=1$, a
+contradiction.  Thus for some $i\ne j$ and $a\in R$, conjugation by $g$ sends
+$e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.  Consequently
+\[
+ [g,e_{ij}(a)]=e_{ij}(y-a)\in N
+\]
+is a nonzero root.
+
+Suppose next that $g$ is not diagonal, and choose $\ell\ne i$ with
+$g_{\ell i}\ne0$.  Put $r=(g^{-1})_{\ell i}$.  If $r=0$, set
+\[
+ A=gE_{i\ell}g^{-1},\qquad B=E_{i\ell}.
+\]
+Then $AB=0$, and the double commutator
+\begin{equation}\label{eq:row-unipotent-sparse}
+ [g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA
+\end{equation}
+belongs to $N$.  Its defect $-BA$ is square-zero and supported in row $i$.
+There is an $m$ for which
+$g_{\ell i}(g^{-1})_{\ell m}\ne0$: otherwise the
+$(\ell,\ell)$ entry of $g^{-1}g=1$ would give $g_{\ell i}=0$.
+Thus the $(i,m)$ entry of the defect in
+\eqref{eq:row-unipotent-sparse} is nonzero.
+
+It remains to treat $r\ne0$.  Apply \eqref{eq:coefficient-separation} to
+$r$ and $s=g_{\ell i}$, obtaining $a,b$ with
+$arb=0$ and $bsar\ne0$.  This time put
+\[
+ A=g(aE_{i\ell})g^{-1},\qquad B=bE_{i\ell}.
+\]
+Again $AB=0$, because its potentially nonzero coefficient contains $arb$.
+As the two elementary roots commute, reduction modulo $N$ shows that
+\begin{equation}\label{eq:row-unipotent-dense}
+ [g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA\in N.
+\end{equation}
+The defect is square-zero and supported in row $i$, while its $(i,i)$ entry
+is $-bsar\ne0$.
+
+Both off-diagonal cases therefore produce an element $1+v\in N$ with
+$v^2=0$, supported in a single row $i$, and with some $v_{im}\ne0$.
+Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
+$m=i$).  Direct multiplication gives the row-extraction identity
+\[
+ [1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.
+\]
+This is a nonzero root, so the normal-generation argument above gives
+$N=H$.  Hence every normal subgroup of $H$ is trivial or all of $H$.
+Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+\end{proof}
 
 \begin{proposition}\label{prop:defect}
 Let
@@ -1160,9 +1233,13 @@ exploration, proof development, manuscript drafting, literature navigation,
 Lean formalization, and editorial revision.  The Lean development checks the
 one-sided transport theorem, the normal property-\textup{(T)} radical
 criterion, the rank-twelve compression and commutator calculation, direct
-normal generation by the displayed elementary root, and the resulting full
-MF-radical conclusion.  The literature-dependent simplicity theorem is not
-part of that formalized conclusion.
+normal generation by a nonzero elementary root, the exhaustive
+diagonal/inverse-entry-zero/dense-entry root-extraction proof of
+Proposition~\ref{prop:simple}, and the resulting full MF-radical conclusion.
+The formalized simplicity proof uses the concrete two-sided sandwich and
+central-unit statements for the binary Leavitt algebra; it does not formalize
+Preusser's general normal-subgroup theorem or a general pure-infiniteness
+theory.
 
 \begin{thebibliography}{99}
 \frenchspacing

@@ -2,14 +2,17 @@ import Mathlib.GroupTheory.Subgroup.Simple
 import GroupApproximation.Leavitt.ElementaryNormalGeneration
 
 /-!
-# Towards simplicity of `EL_ι(R)`: root detection from thin matrices
+# Foundational root extraction for simplicity of `EL_ι(R)`
 
 Proposition `prop:simple` of `non_mf_groups_exist.tex` asserts that
 `H = EL₁₂(L_{𝔽₂}(1,2))` is simple.  The manuscript gets that from Preusser's
 normal-subgroup theorem (the sandwich classification
 `EL_n(R, I) ≤ N ≤ C_n(R, I)`) together with `Z(R) = 𝔽₂`.  The Preusser
-normal-structure input is not in this repository; the coefficient-ring centre
-and its central units are formalized separately in `BinaryLeavittSimple`.
+upper-sandwich theorem itself is not formalized in this repository.  The
+coefficient-ring centre and its central units are formalized separately in
+`BinaryLeavittSimple`, while `DiagonalNormalExtraction` closes the manuscript's
+exact simplicity claim by a direct exhaustive root-extraction argument that
+does not require the upper sandwich.
 
 What *is* in the repository is the strongest possible statement **after** a
 root has been detected: `elementaryGroup_normal_eq_top_of_elGen_mem`
@@ -24,7 +27,9 @@ that sandwich for *every* nonzero coefficient of `L_k(1,2)`.  So simplicity of
          elementary root.
 
 This file supplies concrete post-detection routes and isolates `(P)` as an
-explicit hypothesis.  It does not prove `(P)`.
+explicit generic hypothesis.  The separate Leavitt-family specialization in
+`DiagonalNormalExtraction` proves that hypothesis and applies the reduction
+below unconditionally.
 
 ## What is proved here
 
@@ -57,13 +62,16 @@ explicit hypothesis.  It does not prove `(P)`.
   known to contain a nonzero elementary root, the existing normal-generation
   theorem gives `IsSimpleGroup`.
 
-## What is *not* proved here
+## Scope of this foundational file
 
-Nothing here verifies `RootDetection`: the double-commutator theorem still
-requires the caller to choose indices and coefficients satisfying its
-vanishing and nonvanishing conditions.  Consequently the file does not prove
-the manuscript's `prop:simple`.  The missing Preusser-style normal-structure
-bridge remains explicit rather than being replaced by root normal generation.
+The generic `RootDetection` definition and reduction below remain useful on
+their own: the double-commutator theorem in this file asks the caller to choose
+indices and coefficients satisfying explicit vanishing and nonvanishing
+conditions.  For a Leavitt family, those choices and the remaining case split
+are supplied in `ElementaryTransvectionExtraction` and
+`DiagonalNormalExtraction`.  Thus the general Preusser upper sandwich remains
+an optional, separately recorded route; it is not a missing premise of the
+unconditional manuscript theorem.
 -/
 
 namespace GroupApproximation
@@ -741,11 +749,12 @@ theorem center_elementaryGroup_eq_bot_of_units [Nontrivial ι]
   obtain ⟨mu, h1, h2⟩ := hinv
   exact congrArg Units.val (hunits ⟨lam, mu, h1, h2⟩ hlam)
 
-/-! ## The residual statement and the reduction it feeds -/
+/-! ## The generic statement and the reduction it feeds -/
 
-/-- **Root detection**, the one layer of `(P)` this file does not close: every
-nontrivial normal subgroup of `EL_ι(R)` contains a nonzero elementary root.
-This is what the manuscript imports from Preusser's normal-subgroup theorem. -/
+/-- **Root detection:** every nontrivial normal subgroup of `EL_ι(R)`
+contains a nonzero elementary root.  This file treats it as a generic
+interface; `DiagonalNormalExtraction.rootDetection_of_leavittFamily` proves it
+from the Leavitt-family inputs used by the manuscript. -/
 def RootDetection (J S : Type*) [Fintype J] [DecidableEq J] [Ring S] : Prop :=
   ∀ N : Subgroup (elementaryGroup J S), N.Normal → N ≠ ⊥ →
     ∃ (i j : J) (hij : i ≠ j) (x : S), x ≠ 0 ∧ elGen i j hij x ∈ N
