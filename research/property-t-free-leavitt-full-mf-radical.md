@@ -30,6 +30,7 @@ artifacts:
   - research/positive-density-critical-capacity-proof.md
   - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
   - research/local-morita-sibling-cells-have-a-two-qubit-periodic-absorber.md
+  - research/commuting-double-commutator-has-direct-mark-overlap.md
   - research/involution-normal-product-forces-one-factor-overlap.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
@@ -206,14 +207,15 @@ fold.
 
 The same four-conjugate formula now gives more than rank comparison.
 `involution-normal-product-forces-one-factor-overlap` telescopes a product of
-`k` involutions on the output's nontrivial spectral carrier and proves that
-one input carrier has at least a `1/k^2` share of its trace there.  Thus every
-nonzero binary-Leavitt root carrier has at least `1/16` of its mass in one
-addressed conjugate of the marked carrier, robustly for matrix microstates.
-This is a genuine fixed positive overlap, but the selected conjugate depends
-on the coefficient/normal word.  It does not yet identify the two prescribed
-native scale transports, so it strengthens rather than closes the scalar
-holonomy leaf.
+`k` involutions on the output's nontrivial spectral carrier.  In the specific
+binary-Leavitt double commutator, the output commutes with both conjugating
+roots, so `commuting-double-commutator-has-direct-mark-overlap` makes all four
+factor overlaps equal.  Every nonzero root carrier therefore puts at least
+`1/16` of its own mass, and at least `1/64` of the marked mass, directly in
+the original marked carrier, robustly for matrix microstates.  This removes
+the conjugate-selection ambiguity.  It still does not force the two native
+root slices to meet each other inside the larger marked carrier, so it
+strengthens rather than closes the scalar holonomy leaf.
 
 The seventh route supplies a concrete moving-coefficient family, but is now
 also refuted by fixed-centralizer properness after an exponent-two triangle
