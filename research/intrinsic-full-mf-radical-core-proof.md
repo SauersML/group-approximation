@@ -9,6 +9,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalCore.lean
   - GroupApproximation/Sofic/FullMFRadicalExactness.lean
   - GroupApproximation/Sofic/FullMFRadicalReflection.lean
+  - GroupApproximation/Sofic/FullMFRadicalProducts.lean
 ---
 
 # Proof
@@ -144,5 +145,18 @@ G --> H --> H/C(H)
 defines the map induced by an arbitrary homomorphism `G --> H`.  Equality of
 induced maps can be checked after precomposition with the quotient map; this
 proves preservation of identity maps and composition.
+
+For products, the two coordinate projections carry `C(G × H)` into `C(G)`
+and `C(H)`.  This gives one implication in
+
+```text
+(g,h) ∈ C(G × H)  <=>  g ∈ C(G) and h ∈ C(H).
+```
+
+For the converse, the two coordinate inclusions carry `C(G)` and `C(H)` into
+`C(G × H)`.  The elements `(g,1)` and `(1,h)` therefore lie in the product
+core, and their product is `(g,h)`.  The full-core and core-free product
+criteria follow by setting the three cores equal to the top or bottom
+subgroups.
 
 The Lean proof follows these steps directly.
