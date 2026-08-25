@@ -118,6 +118,7 @@ theorem fullMFRadicalCore_eq_top_iff_maps_to_coreFree_eq_one :
     apply top_unique
     intro x hx
     apply (QuotientGroup.eq_one_iff x).mp
+    change q x = 1
     rw [hq]
     rfl
 
