@@ -140,6 +140,24 @@ stabilizer-rounding portion no longer requires an unspecified packet.  What
 remains is exactly the KRE actor exactification and the subsequent control of
 the action of `pi(h)` on the multiplicity commutant.
 
+For a genuine representation of the **complete** actor, that subsequent
+control is also automatic.  By
+`kt-full-kazhdan-majorana-return-collapses-in-fd`, finite-dimensional
+compression invisibility gives `pi(h) in pi(Gamma)`, and therefore
+
+```text
+||[X,pi(h)]||_2
+ <= (2/kappa_K) max_(s in K)||[X,pi(s)]||_2.
+```
+
+In particular the full packet and the mixed return cannot support an exact
+finite-dimensional Majorana pair.  This does not remove `(KRE2)`: the
+finite-image inclusion has not been proved quantitatively for an approximate
+actor.  It does show that there is no further exact multiplicity-algebra
+obstruction after actor exactification; the live gap is precisely the
+normalized-HS passage from approximate actor relations to this genuine-actor
+inequality.
+
 Gamma-only exactification does not bypass this gate through polar rounding.
 `kt-kazhdan-polar-compressor-rounding-is-directional` applies property `(T)`
 to the Hom representation for one strict compressor and obtains a partial

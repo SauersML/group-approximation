@@ -53,6 +53,22 @@ energy two.  Thus the smallest surviving interface is the Majorana pair
 together with a full finite Kazhdan generating packet of stabilizer rows and
 the mixed `A,B` return; the one visible root cannot replace that packet.
 
+The full packet does kill the exact finite-dimensional endpoint.
+`kt-full-kazhdan-majorana-return-collapses-in-fd` proves that for every
+genuine finite-dimensional representation of the complete actor,
+
+```text
+||[c,rho(h)]||_2
+ <= (2/kappa_K) max_(s in K)||[c,rho(s)]||_2.
+```
+
+Finite-image compression invisibility puts `rho(h)` inside `rho(Gamma)`,
+while the Kazhdan packet rounds `c` into `rho(Gamma)'`.  Consequently exact
+packet centrality forces the returned Majorana to equal the original one,
+making anticommutation maximally false.  The remaining issue is now sharply
+approximate: prove this inequality with an additional term controlled by the
+normalized-HS actor relator defect, without assuming actor stability.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends

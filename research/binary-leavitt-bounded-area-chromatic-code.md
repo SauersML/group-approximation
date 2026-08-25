@@ -46,6 +46,44 @@ theorem then gives full MF collapse of `Delta`.
   exact orthogonal Heisenberg pairs, but their pair relations occur at
   unbounded presentation area.  This is exact Clifford growth, not a bounded
   compiler.
+* **Two-address shift-graph fold.**
+  `binary-leavitt-shift-graph-has-exact-marked-commutator-table` improves the
+  complete prefix table substantially.  On the shift-graph vertex `(i,j)` it
+  uses `c_(i,j)=x_12(T_j)` and
+  `h_(i,j)=x_23(S_i+S_j)`.  The diagonal product is exactly the prescribed
+  corner mark, while `(i,j)->(j,k)` is zero because `T_k` kills both source
+  addresses.  The finite shift graphs have chromatic number at least
+  `ceil(log_2 M)`, so their disjoint union is an exact infinite-chromatic
+  marked table with canonical vertex words and no diagonal conjugators.  The
+  remaining question is sharply reduced to uniform filling area for these
+  pair and triple identities.  Pair-dependent prefix-code normalization does
+  not by itself pay that area, but unlike the complete table the compiler now
+  needs coherence only on the shift incidence pattern.
+* **Cumulative-row complete-graph fold.**
+  `binary-leavitt-cumulative-complete-graph-table` removes
+  the pair-indexed vertex charts altogether.  With orthogonal corner pairs
+  `A_rB_s=delta_(rs)q`, use
+  `C_j=A_0+...+A_j` and `H_j=B_j+B_(j+1)`.  Then `C_jH_j=q`, while
+  `C_kH_j=0` for every `j!=k` (later rows see `q+q`; earlier rows see zero).
+  The resulting one-indexed canonical words realize every finite complete
+  graph, with the prescribed mark on the diagonal and no diagonal
+  conjugator.  The cumulative rows and adjacent columns are one pair of dual
+  triangular bases, so a single finite-chart basis change normalizes the
+  whole table simultaneously.  This strictly sharpens the live wordization
+  gate: it is enough to give a uniform-area global triangular basis fold.
+  Pair-dependent endpoint sections are no longer part of the proposed
+  compiler.  What remains unproved is whether the growing triangular basis
+  change can be folded by a fixed number of presentation cells; ordinary
+  elementary-row telescoping costs `M` and is not sufficient.
+* **The coefficient table has only two stabilized unit orbits.**
+  `dual-prefix-heisenberg-table-has-two-simultaneous-unit-orbits` proves that
+  one prefix-code unit simultaneously takes `(t_alpha,s_beta)` to
+  `(t_0,s_0)` or `(t_0,s_1)`, according only to whether `alpha=beta`.  Thus
+  long coefficient cancellation is not an algebraic obstruction.  The unit,
+  however, depends on the ordered pair.  Replacing the fixed vertex words by
+  that pair-dependent chart separately on each edge destroys the compactness
+  coloring.  The live gate is to wordize the two simultaneous orbits while
+  choosing each `c_alpha,h_alpha` only once and paying bounded area.
 * **Finite literal conjugacy prototypes in a residually finite actor.**
   `rf-conjugacy-difference-graphs-finitely-colorable`
   supplies one finite quotient coloring, so this template cannot even produce
