@@ -43,6 +43,16 @@ profile.  Hence no transfer modulus using only one-compressor actor defect,
 must use the anticommutation operator relation itself or genuinely
 multi-compressor/full-actor data.
 
+Anticommutation plus two named compressors is still not sufficient if only
+one stabilizer row is retained.  The explicit mixed return
+`h=L e_12(x_1)L^(-1)` is a word in `A=CB`, `B`, and one root of `Gamma`.
+`kt-single-root-majorana-return-finite-countermodels` Cliffordizes its
+finite arithmetic coset models, preserving every finite actor relation,
+`[c,e_12(x_1)]=1`, and `c(hch^(-1))=-(hch^(-1))c` exactly, with pointed
+energy two.  Thus the smallest surviving interface is the Majorana pair
+together with a full finite Kazhdan generating packet of stabilizer rows and
+the mixed `A,B` return; the one visible root cannot replace that packet.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends
