@@ -55,8 +55,13 @@ resulting conditional closure.
 - **Exact face.**  Closed up to the robustness lemma by the two theorems
   above; the ultra-deep towers that survive at `p <= 7` do not exist here.
 - **Outliers.**  Nothing beyond the reduction to `sl3-z-weakly-ucp-stable`
-  is known; the graph's remark that infinite hyperlinear Kazhdan groups are
-  never flexibly stable is unsourced and is not used.  Note that the
+  is known.  What is established (`infinite-hyperlinear-kazhdan-group-is-not-hs-stable`)
+  is that `SL_3(Z)` is not STRICTLY HS-stable; flexible and weak ucp
+  stability on regular-type hyperlinear approximations are open, and both
+  this route and the earlier thin-subgroup edge
+  `non-hyperlinear-from-sl3-z-weak-ucp-stability` hinge on exactly that
+  hypothesis, so the goal is one hypothesis away along two independent
+  mechanisms.  Note that the
   `Lambda`-exact analysis needs only that the `Lambda`-part be near a
   genuine representation of `SL_3(Z)` (finite image by superrigidity,
   congruence by the congruence subgroup property), which is exactly what

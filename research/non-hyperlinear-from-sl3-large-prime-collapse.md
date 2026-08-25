@@ -24,5 +24,14 @@ not hyperlinear as soon as `(RC3-p)` holds for the restrictions of its
 hyperlinear approximations, which is `sl3-large-prime-pair-relative-commutant-collapse`.
 The difference from `non-hyperlinear-from-sl3-relative-commutant-collapse`
 is only the prime: at `p >= 11` the depth-free Atkin--Lehner bound empties
-the `p`-divisible `Lambda`-exact sector, so this edge carries the sharpest
-current reduction of the goal to `sl3-z-weakly-ucp-stable`.
+the `p`-divisible `Lambda`-exact sector.  Through
+`sl3-large-prime-collapse-from-weak-ucp-stability` this edge reduces the
+goal to the single hypothesis `sl3-z-weakly-ucp-stable`, independently of
+the earlier edge `non-hyperlinear-from-sl3-z-weak-ucp-stability`: that one
+consumes stability of the HOST `SL_3(Z)` over a thin co-dense subgroup
+through `hnn-over-codense-kazhdan-subgroup-not-hyperlinear`, whereas this
+one consumes stability of the SUBGROUP `SL_3(Z)` inside the S-arithmetic
+host through the established exactification
+`kazhdan-subgroup-weak-ucp-exactifies-microstates`, and closes the
+resulting exact face by the coprime and depth-free theorems.  The two
+reductions share their hypothesis and nothing else.
