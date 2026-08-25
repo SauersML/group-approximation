@@ -85,7 +85,7 @@ places that want the instance. -/
 noncomputable def norm (x : E.carrier) : ℝ := Real.sqrt ‖E.inner x x‖
 
 omit [PartialOrder B] [StarOrderedRing B] in
-theorem norm_def (x : E.carrier) : E.norm x = Real.sqrt ‖E.inner x x‖ := rfl
+@[simp] theorem norm_def (x : E.carrier) : E.norm x = Real.sqrt ‖E.inner x x‖ := rfl
 
 omit [PartialOrder B] [StarOrderedRing B] in
 protected theorem norm_nonneg (x : E.carrier) : 0 ≤ E.norm x :=
@@ -291,7 +291,7 @@ theorem norm_sum_le {ι : Type*} (s : Finset ι) (f : ι → E.carrier) :
     E.norm (∑ i ∈ s, f i) ≤ ∑ i ∈ s, E.norm (f i) := by
   classical
   refine Finset.induction_on s ?_ ?_
-  · simp
+  · simp only [Finset.sum_empty, E.norm_zero_vector, le_refl]
   · intro i s hi ih
     rw [Finset.sum_insert hi, Finset.sum_insert hi]
     exact le_trans (E.norm_add_le _ _) (add_le_add_right ih _)

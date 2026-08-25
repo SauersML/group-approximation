@@ -97,7 +97,7 @@ omit [PartialOrder B] [StarOrderedRing B] in
 /-- The adjoint of an adjointable operator is an involution, as an equality of
 operators and not merely of underlying maps: the adjoint field is determined,
 and the adjoint relation is a proposition. -/
-theorem adjoint_adjoint_eq (T : Adjointable E F) :
+@[simp] theorem adjoint_adjoint_eq (T : Adjointable E F) :
     Adjointable.adjoint (Adjointable.adjoint T) = T := rfl
 
 /-! ## Boundedness -/
@@ -254,8 +254,10 @@ theorem norm_apply_le_opNorm {T : Adjointable E F} (hT : T.IsBounded)
   rcases eq_or_lt_of_le (E.norm_nonneg x) with hx | hx
   · have hx0 : x = 0 := (E.norm_eq_zero_iff x).mp hx.symm
     have hT0 : T.toFun x = 0 := by rw [hx0, T.map_zero]
-    rw [hT0, hx0]
-    simp
+    have hL : F.norm (T.toFun x) = 0 := by rw [hT0, F.norm_zero_vector]
+    have hR : T.opNorm * E.norm x = 0 := by
+      rw [hx0, E.norm_zero_vector, mul_zero]
+    exact le_of_eq (hL.trans hR.symm)
   · rw [← div_le_iff₀ hx]
     refine le_csInf (boundSet_nonempty hT) ?_
     rintro C ⟨-, hCb⟩
