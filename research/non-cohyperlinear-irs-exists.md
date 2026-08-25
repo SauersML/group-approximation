@@ -37,3 +37,10 @@ induction of the regular character of `N_Gamma(H)/H`; non-CE then forces that
 quotient group to be non-hyperlinear.  Thus every Manzoor witness is either
 nonatomic or already terminal.  The cited existence theorem does not decide
 which side occurs.
+
+Moreover `ergodic-nonce-irs-fg-support-is-terminal` shows that finite
+generation of the random subgroup on any positive-measure part of an
+ergodic witness is already terminal.  In the genuinely unresolved branch,
+the IRS is therefore nonatomic and almost surely supported on infinitely
+generated subgroups; resolving all finite-quotient images need not atomize
+such a law.

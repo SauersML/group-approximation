@@ -55,3 +55,11 @@ if its subgroup law has an atom, then
 witness is nonatomic.  An atom merely in a finite readable partition is
 weaker and only gives the finite-index fiber IRS of
 `finite-invariant-partition-only-reduces-irs-to-fiber-irs`.
+
+There is a further intrinsic dichotomy.  By
+`ergodic-nonce-irs-fg-support-is-terminal`, if the ergodic witness gives
+positive mass to finitely generated stabilizers, its subgroup law is atomic
+and already produces a non-hyperlinear quotient.  Thus, unless the endpoint
+is already reached, almost every stabilizer in this witness is infinitely
+generated.  Finite-quotient image partitions can then pin only profinite
+closure data and need not resolve the subgroup itself.
