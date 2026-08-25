@@ -317,6 +317,22 @@ Ioana--Spaas--Wiersma mechanism), per
   next theorem must use precisely those missing global features—RFD plus
   native-ideal/support control—rather than another combination of overlap and
   kernel-cycle estimates.
+- **Even maximal native-ideal support has zero fixed-reservoir spectral angle
+  (2026-08-25).**
+  `native-relator-soft-modes-persist-in-simple-ideal-blocks` uses RFD and the
+  actual native ideal, then passes from the known full-support soft packet to
+  one irreducible summand.  The result has
+
+  ```text
+  rho(I_N)=M_d,
+  ```
+
+  yet arbitrarily small Rayleigh energy for every fixed native relator
+  reservoir.  Thus the split-summand loophole is gone, but support alone still
+  supplies no transversality: even a simple full ideal block can be spectrally
+  tangent to the relator-zero locus.  The live middle problem is consequently
+  narrower again—the required estimate must couple the **specific affine
+  Choi discrepancy** to positivity, not merely to `z_rho=1`.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

@@ -83,6 +83,20 @@ genuine failure of local splitting must take.
   to finite-dimensional packets.  Conversely, these packets exist
   independently of whether `(RR2)` or local splitting holds, so their mere
   existence is not a counterexample to the Choi-slice intersection.
+- **Central-support dilution is not the source of the soft spectrum.**
+  `native-relator-soft-modes-persist-in-simple-ideal-blocks` selects one
+  irreducible summand from the full-support packet while retaining arbitrarily
+  small combined relator Rayleigh energy.  On that summand
+
+  ```text
+  rho(I_N)=M_d,
+  ```
+
+  so the ideal support is the identity in a simple matrix algebra.  Hence no
+  support-projection estimate, even restricted to irreducible packets, can
+  give the uniform angle needed for `(RR2)`.  A successful argument must use
+  the particular Choi discrepancy and positivity, rather than only maximal
+  native-ideal support.
 - **The reservoir cannot act only by independent inner gauges on the tree
   faces.**  In the explicit `(3,3,4)` Kac--Moody triangle,
   `kernel-inner-tree-face-balancing-collapses` proves that conjugating the two
