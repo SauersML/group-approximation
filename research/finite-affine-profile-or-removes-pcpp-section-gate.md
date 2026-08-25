@@ -7,6 +7,7 @@ distinct_from:
   dfnqxy-mie-pcpp-has-no-global-affine-replacement: that forbids one ambient-affine PCPP for every source verifier; this first narrows each fixed question-pair predicate to one affine subspace and uses a separate linear PCPP in each finite profile branch.
   affine-halt-support-and-pcpp-section-close-nonhyperlinear-chain: that assumes both affine-safe source supports and coherent affine perfect-proof sections; this derives the latter after a finite OR and therefore leaves only source affine safety.
   finite-lcs-product-sign-is-exact-or: that supplies the final marked OR once a finite menu of LCS branches is given; this constructs the finite menu without knowing the HALT strategy's support.
+  oracular-affine-support-replacement-has-no-intermediate-regime: that compiles affine profile branches directly to LCS and proves this endpoint is goal-equivalent; this audits the proposed intervening linear-PCPP/Hadamard route and its compatibility with DFNQXY.
 ---
 
 **ESTABLISHED PROFILE COMPILER.**  Let `V` be one finite two-prover
@@ -168,6 +169,15 @@ low-degree answer reductions in DFNQXY Theorem 6.10 are needed for
 polynomial-time parameters, not for mere finite effectivity, and may be
 skipped.  Thus those two layers introduce no additional gate **after**
 `(FAP2)` has been proved for the final finite source verifier.
+
+There is also a shorter downstream route.  Because every narrowed predicate
+`A_q` is already affine, one may impose its equations and the prescribed
+within-question and cross-question commutators directly and apply
+`finite-linear-commutation-system-to-lcs`; this is the construction in
+`oracular-affine-support-replacement-has-no-intermediate-regime`.  Hence the
+linear-PCPP path proved here is valid but is not needed merely to obtain a
+finite LCS.  Its separate content is that the exact DFNQXY constant-answer
+interface can be retained without an affine proof-section hypothesis.
 
 This does not yet propagate a deterministic base strategy through the
 self-referential JNVWY compression theorem.  In the published compression
