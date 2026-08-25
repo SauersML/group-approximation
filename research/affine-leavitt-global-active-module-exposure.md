@@ -119,6 +119,14 @@ finite-support PVM.  Then
   character-orbit gap acts on counting measure, not on this invariant Haar
   measure.  Thus the decoder must retain finite atomic coordinate PVMs and
   their boundary energy before taking the limit.
+- **Hide anti-diffusion in one fixed mixed-word or spherical energy.**
+  `fixed-word-hs-energies-cannot-detect-atomic-to-diffuse-escape` rules this
+  out at the moment level.  Every fixed word-polynomial Hilbert--Schmidt
+  energy, finite Gram/SOS packet, and finitely supported conjugation average
+  converges to its value in the diffuse regular representation along
+  canonical microstates.  Such an energy may aggregate a boundary only after
+  matrix-only reasoning has authenticated discontinuous coordinate domains;
+  it cannot construct the domains or detect their atom weights by itself.
 - **Close only one source/two-child Weyl cell.**
   `first-leavitt-weyl-cell-has-exact-rectangular-model` realizes the source
   pair as `M_p tensor 1`, the two children as the full `M_(p^2)`, and the

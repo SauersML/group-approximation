@@ -102,4 +102,15 @@ input is not exact commutation of the root family; it is a uniform
 coefficient-vertex estimate preventing all marked mass from escaping through
 ever finer atoms.
 
+There is also no fixed word-energy detector for that escape.
+`fixed-word-hs-energies-cannot-detect-atomic-to-diffuse-escape` proves that
+every fixed mixed-word, Gram/SOS, or finitely supported spherical
+Hilbert--Schmidt energy is continuous under canonical tracial-moment
+convergence.  Coordinatewise atomic root PVMs therefore give exactly their
+diffuse regular values in the limit.  The anti-diffusion input must precede
+the energy estimate by authenticating a discontinuous finite-coordinate
+domain (common multiplicity reservoir, matrix-identity carrier, or a growing
+depth returned by a fixed-density recurrence); it cannot be hidden in a more
+elaborate fixed word polynomial.
+
 Proof: `ordinary-leavitt-parabolic-atomic-spectrum-proof`.

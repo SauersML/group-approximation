@@ -68,6 +68,19 @@ is refuted.  A surviving construction must exhibit the exact actor word which
 moves or separates the exchanged domains.  Merely replacing a finite family
 of diagonal probes by their average is not new information.
 
+There is a more general continuity fence on the most literal orbit frame.
+By `fixed-word-hs-energies-cannot-detect-atomic-to-diffuse-escape`, if `X_U`
+and the frame vectors are fixed functorial word polynomials, then the norms
+and Gram matrix in `(SHA1)--(SHA3)` pass unchanged to every tracial
+ultraproduct limit.  In the ordinary-Leavitt application this is the diffuse
+regular model.  Thus **word-authenticated sector** cannot mean only a fixed
+polynomial span, or a spectral cut of a fixed polynomial protected by a
+uniform gap (such a cut is uniformly polynomial-approximable).  It must
+include a genuinely finite-coordinate domain authentication not preserved by
+tracial moment convergence; an uncontrolled discontinuous spectral cut could
+be part of that missing authentication.  After that step the spherical
+contraction may still be a valid aggregator.
+
 ## Why this is a bypass, not a hidden PVM theorem
 
 This claim does not establish `(ISC2)` in
