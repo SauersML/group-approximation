@@ -118,17 +118,24 @@ remains in this modified route.
   Therefore the return needs a cross-edge or payload-sensitive two-cell
   with nonzero multiplicity charge.
 
-  The path-specific qualification is now closed for this edge-local class,
-  not merely for arbitrary reducing subcarriers.
+  The path-specific qualification is now closed for the
+  **seed-support-preserving** part of this edge-local class, not merely for
+  arbitrary reducing subcarriers.
   `canonical-btb-tree-local-returns-have-stationary-reached-carrier` starts
   with the full protected seed `e_0`, aligns the first edge gauge so its
   return lies below `e_0`, and observes that the prescribed minimal reducing
   hull is then again exactly `e_0`.  Induction gives the same full reached
   carrier at every node and an exact finite-dimensional stationary
-  specialization of all tree-local packet/covariance/return rows.  Thus a
+  specialization of all such tree-local packet/covariance/return rows.  The
+  hypothesis is essential: the complete irreducible `S_3` outer action can
+  move the selected protected-sign type before the multiplicity gauge is
+  chosen and hence forces one genuine outer-type escape.  Its orbit then
+  saturates, as recorded in
+  `btb-three-line-tree-retains-multiplicity-return-gauge`.  Thus a reusable
   successful finite gadget must contain a genuine cross-edge or
-  payload-multiplicity row; another separate edge actuator cannot exploit
-  canonical reachability.
+  payload-multiplicity row, or a non-prepaid renewal mechanism for such an
+  outer-type escape; another seed-support-preserving edge actuator cannot
+  exploit canonical reachability.
 
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity

@@ -2,20 +2,35 @@
 rg: 2
 id: canonical-btb-tree-local-returns-have-stationary-reached-carrier
 kind: claim
-title: Tree-local protected BTB returns admit an exact stationary canonical reached carrier
+title: Seed-support-preserving tree-local BTB returns admit an exact stationary canonical reached carrier
 distinct_from:
-  btb-three-line-tree-retains-multiplicity-return-gauge: That aligns the Schur multiplicity gauge on arbitrary packet-reducing carriers; this applies the alignment to the fixed protected seed and proves inductively that the actual minimal-hull recursion stays stationary.
-  hyperlinear-fiber-cannot-orient-btb-return: That uses a proper spectator subcarrier and therefore leaves a path-specific loophole; this uses the full canonical seed itself and closes that loophole for the tree-local return language.
-  canonical-btb-finite-depth-escape-tree: That still permits cross-edge or payload-sensitive two-cells; this refutes only packets whose return rows separate edge by edge and have no multiplicity-charged cross-edge relation.
+  btb-three-line-tree-retains-multiplicity-return-gauge: That aligns the Schur multiplicity gauge on arbitrary packet-reducing carriers and records the complete-S3 outer exception; this applies the alignment to the fixed protected seed only when the authenticated outer factor preserves its selected type support.
+  hyperlinear-fiber-cannot-orient-btb-return: That uses a proper spectator subcarrier and therefore leaves a path-specific loophole; this uses the full canonical seed itself and closes that loophole only for seed-support-preserving tree-local returns.
+  canonical-btb-finite-depth-escape-tree: That still permits cross-edge or payload-sensitive two-cells and one-shot outer-type escape; this refutes only seed-support-preserving returns whose rows separate edge by edge and have no multiplicity-charged cross-edge relation.
 ---
 
-**ESTABLISHED TREE-LOCAL NO-GO.**  Fix any finite protected adaptive BTB
-tree.  Suppose every proposed return is in the edge-local language of
+**ESTABLISHED SEED-SUPPORT-PRESERVING NO-GO.**  Fix any finite protected
+adaptive BTB tree.  Suppose every proposed return is in the edge-local
+Schur-gauge language of
 `btb-three-line-tree-retains-multiplicity-return-gauge`: finite packet and
 finite-subgroup covariance, one stabilized three-line/Murray--von Neumann
 swap, and relations involving that edge intertwiner alone, with no word
 containing two adaptive-edge intertwiners and no payload operator acting
 nontrivially on their common multiplicity space.
+
+There is one necessary outer-support hypothesis.  On every authenticated
+packet type carrying the conditioned source in `e_0`, the fixed outer
+intertwiner must admit its matching target object in the same `e_0`-selected
+protected-sign support.  In Schur notation, if
+
+```text
+W_lambda=C_lambda tensor U_lambda,                    (CTS0)
+```
+
+then the finite outer factor `C_lambda` must send the source cut occurring
+in `e_0` to a target cut which also occurs in `e_0`; only the anonymous
+multiplicity reservoir may remain to be chosen.  Call such a return
+**seed-support-preserving**.
 
 Then the resulting packet/covariance/return subsystem has an exact
 finite-dimensional specialization in which the protected seed
@@ -41,9 +56,9 @@ tau(Q_sigma D_sigma Q_sigma)=tau(F_sigma).              (CTS3)
 ```
 
 Thus no positive overlap loss `(CBR3)` follows from any finite ordinary-group
-gadget in this tree-local language, even when `(CBR3)` is required only on
-the prescribed minimal-hull path rather than on arbitrary reducing
-subcarriers.
+gadget in this seed-support-preserving tree-local language, even when
+`(CBR3)` is required only on the prescribed minimal-hull path rather than on
+arbitrary reducing subcarriers.
 
 To see this, use the positive regular stationary packet multiplicities at
 all vertices and choose a scalar shared-BCS assignment which makes one
@@ -58,7 +73,9 @@ On each packet type, the edge return has Schur form
 W_lambda=C_lambda tensor U_lambda.                     (CTS4)
 ```
 
-The rectangular three-line model places matching source and range objects
+By the seed-support-preserving hypothesis, `C_lambda` does not move the
+conditioned source outside the finite outer support selected by `e_0`.  The
+rectangular three-line model places its matching source and range objects
 over the same multiplicity projection.  Choose `U_lambda` to preserve the
 `e_0` multiplicity reservoir.  The tree has no cross-edge holonomy row, so
 these choices can be made independently from the root outward while all
@@ -77,13 +94,26 @@ It evaluates the recursion on its full fixed seed, and every child is the
 minimal reducing hull specified by the construction.
 
 The result does not refute `canonical-btb-finite-depth-escape-tree` itself.
-It proves that its oriented return must leave the tree-local class.  A live
-candidate must contain a multiplicity-charged word coupling at least two
-adaptive edges or a genuinely payload-sensitive proper-corner row.  By
+In particular, it does **not** cover the complete irreducible `S_3` outer
+action singled out in
+`btb-three-line-tree-retains-multiplicity-return-gauge`: its second
+reflection can send an `e_0`-selected outer type to an unselected type, and
+no choice of `U_lambda` repairs that finite outer displacement.  That packet
+can force one genuine outer-type escape.  Its complete two-dimensional
+orbit is then contained in the next reducing hull, so the same palette does
+not renew the escape; independent fresh palettes return to the prepaid
+character-capacity obstruction.  The present theorem neither reproves nor
+strengthens that separate one-shot analysis.
+
+It proves only that an oriented return cannot come from another
+seed-support-preserving Schur-gauge edge.  A reusable live candidate must
+instead contain a multiplicity-charged word coupling at least two adaptive
+edges, a genuinely payload-sensitive proper-corner row, or a finite outer
+action together with a non-prepaid renewal mechanism.  By
 `coupled-reflections-reduce-to-the-active-gauge-profile`, such a row must
 then be audited on its active gauge presentation; merely adding another
-finite packet, torsion clause, or separate HNN edge remains inside the exact
-countermodel above.
+seed-support-preserving packet, torsion clause, or separate HNN edge remains
+inside the exact countermodel above.
 
 DERIVATION
 canonical-btb-tree-local-stationary-seed-proof
