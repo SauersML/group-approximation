@@ -64,3 +64,13 @@ neither property for the NONHALT perfect-gap IRS selected by the undecidability
 argument.  Closing `zpc-readable-control-freezing-to-lcs` still requires a new
 theorem about that maximizing IRS itself: either a uniformly bounded finite
 readable orbit, or a positive invariant readable fiber.
+
+Even a newly proved finite readable orbit would not, by itself, make the
+isotropy trace canonical.  By
+`finite-invariant-partition-only-reduces-irs-to-fiber-irs`, compression to one
+readable object atom transfers the non-CE character to a finite-index
+stabilizer action on that atom.  The fiber can still have a genuinely random
+stabilizer.  To obtain a group directly one additionally needs the fiber
+fixed-point character to be regular (possibly after quotienting its a.e.
+kernel); to obtain the frozen LCS branch one needs the stronger operator
+invariance used in `zpc-readable-control-freezing-to-lcs`.

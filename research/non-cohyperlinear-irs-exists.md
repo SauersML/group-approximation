@@ -29,3 +29,11 @@ This is an action/character endpoint, not Cairn's goal
 [[non-hyperlinear-group]].  Taking a normal core or independent intersections
 can erase the non-embeddability information; [[diracization-gap-equals-nonhyperlinear-group]]
 records the exact missing normal-Dirac step.
+
+There is one stronger finite-orbit endpoint.  By
+[[atomic-noncohyperlinear-irs-forces-nonhyperlinear]], if an ergodic choice of
+the IRS has even one atom, its finite conjugacy orbit is a finite-index
+induction of the regular character of `N_Gamma(H)/H`; non-CE then forces that
+quotient group to be non-hyperlinear.  Thus every Manzoor witness is either
+nonatomic or already terminal.  The cited existence theorem does not decide
+which side occurs.

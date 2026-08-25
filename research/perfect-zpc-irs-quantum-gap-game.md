@@ -44,3 +44,14 @@ HALT-side perfect signed-permutation strategies cannot be imported into it;
 see `bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs`.  The
 value-one IRS is obtained by compactness of the pseudo-IRS hierarchy, whose
 fixed cylinder constraints contain no uniform bound on readable orbit size.
+
+The perfect witness may nevertheless be chosen ergodic.  In an ergodic
+decomposition, the game loss and every ZPC forbidden cylinder are
+nonnegative functions with integral zero, hence vanish on almost every
+component.  Such a component still has value one and cannot have a CE
+character because `omega*(G)<1/2`.  This gives the exact atomicity dichotomy:
+if its subgroup law has an atom, then
+`atomic-noncohyperlinear-irs-forces-nonhyperlinear` finishes; otherwise the
+witness is nonatomic.  An atom merely in a finite readable partition is
+weaker and only gives the finite-index fiber IRS of
+`finite-invariant-partition-only-reduces-irs-to-fiber-irs`.
