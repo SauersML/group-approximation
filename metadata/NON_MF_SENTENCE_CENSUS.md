@@ -6,16 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 246 |
-| `definition` | 38 |
-| `unassigned` | 33 |
-| `structural` | 12 |
-| `attribution` | 3 |
+| `formalized` | 274 |
+| `definition` | 45 |
+| `structural` | 21 |
+| `attribution` | 7 |
+| `partial` | 3 |
 | `provenance` | 1 |
-| `partial` | 1 |
-| **total** | **334** |
+| **total** | **351** |
 
-Carrying a declaration or a ledger row: **285/334** (85.3%).
+Carrying a declaration or a ledger row: **322/351** (91.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,52 +22,23 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`unassigned`**, line 62 --- Not every countable group is MF in the operator norm approximation sense.
-* **`unassigned`**, line 62 --- We also prove exact pullback formulas showing that an a kernel invisible to MF preserves the complete family of MF quotients above it.
-* **`unassigned`**, line 134 --- Throughout, \emph{MF group} means the operator norm notion introduced by Carri\'on--Dadarlat--Eckhardt~\cite[Definition~2.7]{CDE}.
-* **`unassigned`**, line 183 --- More generally, for $N\trianglelefteq G$ define its \emph{MF kernel closure} by
-* **`unassigned`**, line 215 --- Choose each coordinate far enough out that the first $n$ multiplication defects are at most $1/n$ and the designated value at $x_j$ retains at least half of its corona norm separation.
-* **`unassigned`**, line 215 --- The resulting operator norm asymptotic representation detects every $x_j$, so its corona homomorphism is faithful on $G/R$.
-* **`unassigned`**, line 230 --- Applied to $G/N$, the same argument says that $G/N$ is MF exactly when the intersection of the kernels of all maps into MF groups that kill $N$ is $N$, which is the asserted closure criterion.
-* **`unassigned`**, line 303 --- Whether every countable group is MF was asked in the literature on MF groups and remained open~\cite{CDE,Korchagin,Thom,Shulman}.
-* **`unassigned`**, line 398 --- Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for the subgroup $L\cong\EL_3(R)$ in the upper left.
-* **`unassigned`**, line 433 --- The argument is specific to operator norm approximation and gives no conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt approximations do not provide the operator norm control used to construct the conjugation representation in Theorem~\ref{thm:transport}.
-* **`unassigned`**, line 438 --- Full MF radicals determine prescribed quotients visible to MF as follows.
-* **`unassigned`**, line 475 --- Carri\'on--Dadarlat--Eckhardt introduced the framework for MF groups used here~\cite{CDE}; Korchagin subsequently developed permanence and local approximation results for MF groups~\cite{Korchagin}.
-* **`unassigned`**, line 475 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
-* **`unassigned`**, line 475 --- Bachner--Dogon--Lubotzky study stability between the operator and Hilbert--Schmidt norms as a possible source of non-MF groups~\cite{BDL}.
-* **`unassigned`**, line 475 --- Here operator norm control implies that coordinatewise conjugation defines a representation in a second norm matrix corona.
-* **`unassigned`**, line 491 --- Preusser's work gives general theorems about normal subgroups of linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
-* **`partial`**, line 491 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
-  * the rank-three theorem is proved in-repo for EVERY finite-type algebra over EVERY finite field, the binary Leavitt case for all ranks >= 2, and charTwoGeneralRankElementaryPropertyT now gives property (T) for EL_n(R) in EVERY rank n >= 3 over EVERY finite-type ZMod 2-algebra, via the rectangular block A_2 system inside the elementary group. STILL PARTIAL: the printed statement's residue is characteristic zero and a general finitely generated coefficient ring, which is a research programme, not a gap in this paper
-* **`unassigned`**, line 541 --- In Section~3 the Kazhdan projection places the analogous endomorphism inside a norm matrix corona, where stable finiteness supplies the missing surjectivity for projections onto fixed vectors.
-* **`unassigned`**, line 554 --- An \emph{operator norm asymptotic representation} of a countable group $G$ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
-* **`unassigned`**, line 564 --- The operator norm defects also tend to zero in normalized Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.
-* **`unassigned`**, line 569 --- where $V$ ranges over all operator norm asymptotic representations of $G$.
-* **`unassigned`**, line 639 --- Let $(V_n)$ be an operator norm asymptotic representation of $G$.
-* **`unassigned`**, line 649 --- Regard $M_{d_n}(\C)$ as a Hilbert space with its normalized Hilbert--Schmidt inner product, and form the ultraproduct of Hilbert spaces $\mathcal K_\omega$.
-* **`unassigned`**, line 659 --- so the operator norm multiplicative defects of $(V_n)$ also make the conjugation actions multiplicative modulo $c_0$.
-* **`unassigned`**, line 700 --- Let $(V_n)$ be an operator norm asymptotic representation.
-* **`unassigned`**, line 725 --- Then, after passing to an infinite coordinate subsequence, there are nonzero projections \(q_n\in M_{d_n}(\C)\) and an operator norm asymptotic representation
-* **`unassigned`**, line 737 --- Unitary lifting follows by applying polar correction to any lift, since its two unitarity defects converge to zero in operator norm.
-* **`unassigned`**, line 753 --- The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator norm asymptotic representation.
-* **`unassigned`**, line 767 --- Every one of its elements remains in the universal Hilbert--Schmidt kernel, because any operator norm asymptotic representation of \(\Theta(G)\), precomposed with the quotient map from the original group, is such a representation of the original group.
-* **`unassigned`**, line 786 --- Lemma~\ref{lem:central-corona-corner} gives an operator norm asymptotic representation \((W_n)\) on nonzero corners \(q_nM_{d_n}(\C)q_n\).
-* **`unassigned`**, line 1085 --- Direct multiplication gives the identity that extracts one row,
-* **`unassigned`**, line 1092 --- This is a nonzero root, so the argument about normal generation above gives $N=H$.
-* **`unassigned`**, line 1133 --- Every elementary generator of the $3\times3$ corner in the upper left has both indices in $\{0,1,2\}$.
-* **`unassigned`**, line 1141 --- Since $t_1qs_1=1$, the preceding argument using a root sandwiched on both sides gives $\normal d_H=H$ directly.
+* **`partial`**, line 535 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
+  * NOT proved in-repo. The sentence states a specific theorem -- G MF implies the double G *_H G is MF -- so it is not bare attribution, but nothing in the corpus establishes it: metadata/LITERATURE_QUARANTINE.md lists the Shulman amalgamated-double theorem as an unproved input, and Sofic/SymmetricDoubleShulman.lean proves only that IsOperatorMF (SymmetricDouble SigmaGroup sigmaBase) is EQUIVALENT to the exact-radical endpoint, explicitly declining to prove it. No declaration may be named without laundering that input
+* **`partial`**, line 535 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
+  * one clause is a dated status claim with no mathematical content -- 'the operator norm case remained open' -- and the paper closes it. The other clause reports the DGLT / Lubotzky-Oppenheim / Thom non-approximability theorems for finite Schatten norms, which IS a proposition and is NOT formalized: grep over GroupApproximation finds no Schatten-norm stability content at all
+* **`partial`**, line 553 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+  * generalRankFiniteFieldElementaryPropertyT now proves the printed statement for every rank n >= 3 over every finite-type algebra over every finite field, hence for every ring of prime characteristic -- via the identity-padding homomorphism EL_3 -> EL_n (Steinberg.ElementaryIndexPadding), which was the entire blocker. STILL PARTIAL, and this is the residue: characteristic zero, and positive characteristic that is not prime. The Kazhdan-subset half is characteristic-free, but the control half needs a coefficient FIELD (CharacterMass.gap and the finite-dual sum), and in characteristic zero the finite character sum becomes a Haar integral over a torus needing an equidistribution estimate. Ershov--Jaikin-Zapirain do not prove that half either: they import Kassabov's relative (T) for (EL_2(R) semidirect R^2, R^2), which is not in this tree or in Mathlib
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 5 | 2 |
-| Introduction | 62 | 9 |
-| Relation to prior work | 13 | 5 |
-| One-sided compression in finite dimension | 14 | 1 |
-| Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 7 |
-| Normal Kazhdan subgroups and the MF radical | 66 | 5 |
-| The binary Leavitt self-compression | 12 | 0 |
-| The binary Leavitt group has full MF radical | 70 | 4 |
-| Quotients visible to MF | 31 | 0 |
+| (front matter) | 5 | 0 |
+| Introduction | 65 | 0 |
+| Relation to prior work | 14 | 0 |
+| One-sided compression in finite dimension | 14 | 0 |
+| Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
+| Normal Kazhdan subgroups and the MF radical | 68 | 0 |
+| The binary Leavitt self-compression | 17 | 0 |
+| The binary Leavitt group has full MF radical | 75 | 0 |
+| Quotients visible to MF | 32 | 0 |

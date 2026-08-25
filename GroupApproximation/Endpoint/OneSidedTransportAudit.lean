@@ -91,6 +91,7 @@ import GroupApproximation.Kazhdan.KazhdanSeparableDescent
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanProjectionOrderLiteral
 import GroupApproximation.Steinberg.GeneralRankFiniteFieldPropertyT
 import GroupApproximation.Leavitt.PreusserNormalizedBy
+import GroupApproximation.PropertyT.A2MagicExponentFree
 
 /-!
 # Kernel audit for *One-sided Kazhdan transport and MF radicals*
@@ -189,6 +190,7 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses
 #audit_closed_axioms GroupApproximation.PreusserNormalizedBy.manuscriptPreusserNormalizedByTheorem
 #audit_closed_axioms GroupApproximation.generalRankFiniteFieldElementaryPropertyT
+#audit_closed_axioms GroupApproximation.generalCoefficientBlockRootSetKazhdan
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport

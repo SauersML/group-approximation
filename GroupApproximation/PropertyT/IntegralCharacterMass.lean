@@ -91,8 +91,20 @@ not of the mathematics, and removing it is a mechanical re-derivation rather
 than a new idea.  The module was outside the root import closure until
 2026-08-25 and had never compiled, which is why its availability went unnoticed.
 
+**Updated again, same day.**  The re-derivation described above has now been
+done: `PropertyT/A2MagicExponentFree.lean` carries the whole magic-graph chain
+with the exponent deleted, and its
+`A2MagicExponentFree.exists_rootSet_isKazhdan` takes an `A2System` and nothing
+else -- no exponent, no characteristic, no finiteness.  That is the graded-group
+theorem in the generality Ershov and Jaikin-Zapirain state it.  So the
+`IsKazhdanSubset` half is no longer merely available, it is spent:
+`A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`
+carries ONE hypothesis where the version below carries two.
+
 So the genuinely open half over `ℤ` is the character-mass half described above,
-and only that half.
+and only that half.  It is exactly the input Ershov and Jaikin-Zapirain
+themselves import rather than prove -- Kassabov's relative property (T) for
+`(EL₂(R) ⋉ R², R²)` -- and it is in neither this repository nor Mathlib.
 -/
 
 namespace GroupApproximation

@@ -141,8 +141,8 @@ These models asymptotically separate its nonidentity elements:
 for each $g\ne1$, the quantity
 $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend
 on $g$.
-Throughout, \emph{MF group} means the operator norm notion introduced by
-Carri\'on--Dadarlat--Eckhardt~\cite[Definition~2.7]{CDE}.
+This is the operator norm notion of MF group introduced by
+Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.
 
 For a countable group $G$, define its MF radical by
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G that every allowed matrix model erases">
@@ -1306,42 +1306,67 @@ $qs_0=t_0q=0$ and $t_0s_0=1$ show that $\Psi$ is multiplicative and unital.
 The identity $t_0\Psi(A)s_0=A$ proves injectivity.  The term $qI_3$ is needed
 for unitality because the map $A\mapsto s_0At_0$ sends $I_3$ to $pI_3$.
 
-Set
+We now realize the algebraic compression $A\mapsto\Psi(A)$ as conjugation by
+an elementary matrix.  The following matrices provide the required change of
+coordinates.  Set
+
 %<webmath object="whole" when="X=\begin{pmatrix}s_0I_3" title="the block matrices X and Y that implement the compression">
-% X and Y are 6-by-6 matrices written as 2-by-2 arrays of 3-by-3 blocks.
-% Each occurrence of \(I_3\) is the 3-by-3 [[identity matrix]], and 0 is the
-% 3-by-3 zero matrix.  The Leavitt elements multiply those identity blocks.
-% Direct block multiplication using \(t_is_j=\delta_{ij}\) and
-% \(s_0t_0+s_1t_1=1\) gives \(XY=YX=I_6\).  Therefore Y is the inverse of X,
-% which makes the later block-diagonal matrix tau invertible.
+% X and Y are 6-by-6 [[block matrix|block matrices]], written as 2-by-2 arrays
+% of 3-by-3 blocks.  They are not arbitrary.  The entries involving
+% \(s_0\) and \(t_0\) place A in the compressed p part, while the entries
+% involving \(s_1\) and \(t_1\) supply the complementary q part.  The
+% Leavitt relations make X and Y mutual inverses.  More importantly,
+% multiplying \(X\operatorname{diag}(A,I_3)Y\) produces
+% \(\operatorname{diag}(\Psi(A),I_3)\).  Thus X is a change of coordinates
+% that performs the compression \(A\mapsto\Psi(A)\).
 %</webmath>
 \[
  X=\begin{pmatrix}s_0I_3&s_1t_0I_3\\0&t_1I_3\end{pmatrix},
  \qquad
  Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.
 \]
-A direct calculation using \eqref{eq:leavitt} gives $XY=YX=I_6$.  Put
+A block multiplication using \eqref{eq:leavitt} gives $XY=YX=I_6$, so
+$Y=X^{-1}$.  Put
 %<webmath object="whole" when="\tau=\operatorname{diag}(X,Y)" title="tau places X and its inverse on the block diagonal">
-% The matrix \(\tau\) is defined to be block diagonal, with the 6-by-6 matrix
-% X in the first diagonal block and the 6-by-6 matrix Y in the second.  This
-% produces a 12-by-12 matrix over R.  Since \(Y=X^{-1}\), the block diagonal
-% matrix is invertible, so it belongs to the [[general linear group]]
-% \(\operatorname{GL}_{12}(R)\).  The next factorization proves the stronger
-% fact that it belongs to the [[elementary group]].
+% The matrix \(\tau\) puts the 6-by-6 change-of-coordinates matrix X and its
+% inverse Y on two diagonal blocks.  The doubling is deliberate: X by itself
+% need not belong to an [[elementary group]], but the standard Whitehead
+% construction makes \(\operatorname{diag}(X,X^{-1})\) a product of
+% [[elementary matrix|elementary matrices]].  Thus the extra six coordinates
+% turn the desired change of coordinates into an allowed element of
+% \(\operatorname{EL}_{12}(R)\).
 %</webmath>
 \begin{equation}\label{eq:tau}
  \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R).
 \end{equation}
+
+The purpose of $\tau$ is the identity
+%<webmath object="whole" when="\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}" title="tau turns A into its compressed copy Psi(A)">
+% The middle matrix places A in the first 3-by-3 block and acts as the
+% [[identity matrix]] on the other nine coordinates.  Conjugating it by tau
+% applies X and its inverse to the first six coordinates.  Direct block
+% multiplication gives \(qI_3+s_0At_0=\Psi(A)\) in the first block and
+% leaves the other blocks equal to the identity.  This is the central payoff
+% of the construction: the abstract compression map Psi is now performed by
+% conjugation inside a matrix group.
+%</webmath>
+\begin{equation}\label{eq:corner-conjugation}
+ \tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}
+ =\operatorname{diag}(\Psi(A),I_9).
+\end{equation}
+
+In fact, $\tau$ lies in the elementary group, not merely in the general
+linear group.
+\begin{proof}[Elementary membership of $\tau$]
 Writing $I=I_6$, the Whitehead factorization is
 %<webmath object="whole" when="\operatorname{diag}(X,X^{-1})" title="the block diagonal matrix is factored into six elementary block matrices">
-% The left side is block diagonal with X and its inverse as 6-by-6 diagonal
-% blocks.  The right side multiplies six 12-by-12 block matrices, each having
-% identity blocks on its diagonal and only one possibly nonzero off-diagonal
-% block.  Multiplying the six factors gives the left side; this identity is
-% called the Whitehead factorization.  Each factor can in turn be written as
-% a product of [[elementary matrix|elementary matrices]], so the equality
-% proves that \(\operatorname{diag}(X,X^{-1})\) lies in
-% \(\operatorname{EL}_{12}(R)\).
+% This display is a membership certificate, not another compression formula.
+% Its left side is tau because \(Y=X^{-1}\).  Every factor on the right has
+% identity blocks on the diagonal and a single off-diagonal block.  Such a
+% [[block-unipotent]] matrix is a product of ordinary [[elementary
+% matrix|elementary matrices]], one for each entry of that off-diagonal
+% block.  Therefore the six factors prove that tau is built entirely from
+% elementary matrices and hence belongs to \(\operatorname{EL}_{12}(R)\).
 %</webmath>
 \begin{align}\label{eq:whitehead-factorization}
  \operatorname{diag}(X,X^{-1})
@@ -1352,11 +1377,11 @@ Writing $I=I_6$, the Whitehead factorization is
    \begin{pmatrix}I&-I\\0&I\end{pmatrix}
    \begin{pmatrix}I&0\\I&I\end{pmatrix}.
 \end{align}
-Each unipotent block factor is a product of elementary $12\times12$
-matrices.  Its off-diagonal $6\times6$ block may be inserted one entry at a
-time because the corresponding matrix units have pairwise zero products.
-Since $Y=X^{-1}$, \eqref{eq:whitehead-factorization} proves
-$\tau\in\EL_{12}(R)$.
+Each factor is a product of elementary $12\times12$ matrices: its
+off-diagonal $6\times6$ block can be inserted one entry at a time because the
+corresponding matrix units have pairwise zero products.  Since $Y=X^{-1}$,
+\eqref{eq:whitehead-factorization} proves $\tau\in\EL_{12}(R)$.
+\end{proof}
 
 Let $H=\EL_{12}(R)$ and let
 %<webmath object="EL3" when="L=\EL_3(R)" title="the 3-by-3 matrix collection L">
@@ -1370,20 +1395,6 @@ Let $H=\EL_{12}(R)$ and let
 $L=\EL_3(R)\le H$ be the corner in the upper left.
 Both groups have property~\textup{(T)} by the theorem of Ershov and
 Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
-Block multiplication yields
-%<webmath object="whole" when="\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}" title="conjugating the upper-left A block applies the compression Psi">
-% The middle matrix places the 3-by-3 matrix A in the first diagonal block
-% and the 9-by-9 identity in the remaining coordinates.  Multiplication by
-% \(\tau\) and \(\tau^{-1}\) performs [[conjugation]].  The equality says that
-% this conjugation changes A exactly to its compressed image \(\Psi(A)\) and
-% leaves the remaining nine coordinates unchanged.  This calculation is the
-% bridge between the explicit 12-by-12 matrix tau and the algebra
-% endomorphism Psi.
-%</webmath>
-\begin{equation}\label{eq:corner-conjugation}
- \tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}
- =\operatorname{diag}(\Psi(A),I_9).
-\end{equation}
 For every $i\ne j$ and $a\in R$,
 $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
 %<webmath object="whole" when="\tau L\tau^{-1}\le L" title="tau sends every element of L back inside L">
@@ -1430,6 +1441,7 @@ Second, the only central unit of $R$ is $1$: indeed
 $Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow} and
 $\F_2^\times=\{1\}$.
 
+\paragraph{Normal generation from one root.}
 We first record that a nonzero root normally generates the elementary group.
 More generally, let $S$ be a unital ring, let $n\ge3$, and suppose
 $a,x,b\in S$ satisfy $axb=1$.  If a normal subgroup of $\EL_n(S)$ contains
@@ -1470,8 +1482,11 @@ index when needed, gives every elementary generator.  Thus, by
 \eqref{eq:two-sided-sandwich}, it remains to prove that every nontrivial
 normal subgroup $N\trianglelefteq H$ contains a nonzero elementary root.
 
+\paragraph{Separating two coefficients.}
 We also need the following coefficient-separation consequence of the Leavitt
-relations.  If $r,s\in R$ are nonzero, then there are $a,b\in R$ such that
+relations.  Its purpose is to make one matrix product vanish while the
+reverse product retains a nonzero entry.  If $r,s\in R$ are nonzero, then
+there are $a,b\in R$ such that
 %<webmath object="whole" when="arb=0" title="a and b kill one ordered product but keep the reversed product nonzero">
 % The first relation says that inserting a before r and b after r makes the
 % product zero.  The second relation reverses the central order to bsar and
@@ -1512,7 +1527,10 @@ shows that $s_0t_1\ne0$.  If $yx=ds_0t_1c$ were zero, then
  s_0t_1=(cwd)(s_0t_1)(cwd)
        =(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.
 \]
-To obtain \eqref{eq:coefficient-separation}, choose factorizations
+To obtain \eqref{eq:coefficient-separation}, we choose four sandwich
+factorizations.  They serve one bookkeeping purpose: if the desired reverse
+product $bsar$ were zero, the outer factors below would reduce that equality
+to the contradiction $yx=0$.
 %<webmath object="whole" when="c_r\,r\,d_r=1" title="four sandwich factorizations prepare the coefficient-separation construction">
 % Each equality uses the sandwich property to turn a specified nonzero ring
 % element into the identity by multiplying it on the left and right.  The
@@ -1542,6 +1560,7 @@ Apply the preceding construction to $w=e_tf_d$.  Set
 Then $arb=0$.  If $bsar=0$, multiplication on the left by $e_d$ and on the
 right by $f_t$ gives $yx=0$, a contradiction.
 
+\paragraph{Extracting a root from a normal subgroup.}
 Now let $N\trianglelefteq H$ be nontrivial and choose $1\ne g\in N$.
 Suppose first that $g$ is diagonal.  If $g$ commuted with every $e_{ij}(a)$,
 then commuting with the $e_{ij}(1)$ would force $g=\lambda I_{12}$.
@@ -1564,7 +1583,12 @@ $e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.  Consequently
 is a nonzero root.
 
 Suppose next that $g$ is not diagonal, and choose $\ell\ne i$ with
-$g_{\ell i}\ne0$.  Put $r=(g^{-1})_{\ell i}$.  If $r=0$, set
+$g_{\ell i}\ne0$.  In both remaining cases, the goal is to manufacture an
+element $1+v\in N$ whose nonzero square-zero defect $v$ is supported in one
+row; one final commutator will then extract a nonzero elementary root.  Put
+$r=(g^{-1})_{\ell i}$.
+
+If $r=0$, set
 %<webmath object="whole" when="A=gE_{i\ell}g^{-1}" title="A is a conjugated matrix unit and B is the original matrix unit">
 % The symbol \(E_{i\ell}\) is the matrix unit having 1 in row i, column
 % \(\ell\), and zero elsewhere.  The matrix A is obtained from it by
@@ -1597,7 +1621,7 @@ $(\ell,\ell)$ entry of $g^{-1}g=1$ would give $g_{\ell i}=0$.
 Thus the $(i,m)$ entry of the defect in
 \eqref{eq:row-unipotent-sparse} is nonzero.
 
-It remains to treat $r\ne0$.  Apply \eqref{eq:coefficient-separation} to
+If $r\ne0$, apply \eqref{eq:coefficient-separation} to
 $r$ and $s=g_{\ell i}$, obtaining $a,b$ with
 $arb=0$ and $bsar\ne0$.  This time put
 %<webmath object="whole" when="A=g(aE_{i\ell})g^{-1}" title="scaled matrix units prepare the dense case while forcing AB to vanish">
