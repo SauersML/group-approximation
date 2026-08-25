@@ -281,6 +281,24 @@ Ioana--Spaas--Wiersma mechanism), per
   feasible Choi point keeps that coordinate scalar.  Thus generic finite
   Choi duality cannot provide the missing inference; the remaining estimate
   must use triangle-specific transversality of the liftable Choi image.
+- **Approximate lifts avoid both elementary tree anchors at a fixed scale
+  (2026-08-25).**
+  `triangle-lifts-avoid-both-tree-anchor-faces` combines the linear overlap
+  modulus with the kernel-cycle Gram floor.  If `Phi:S_Delta->A` is ucp and
+  `zeta=||q Phi-id||_cb`, then
+
+  ```text
+  dist_cb(Phi,{both tree faces scalar})
+      >=max{0,r_0-zeta}/C_Delta,
+  max_j||Phi(v_j)-w_j||>=2/L^2.
+  ```
+
+  Hence sufficiently accurate local lifts cannot approach either the
+  scalar-tree Choi face or the canonical tree-word lift.  This supplies a
+  triangle-specific metric error bound and rules out tangent approaches to
+  both anchors.  It still leaves a genuinely noncanonical middle region of
+  the Choi cone, which is exactly where a successful uniform-reservoir repair
+  would have to live.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
