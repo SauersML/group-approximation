@@ -269,13 +269,30 @@ congruence `(R,T)` core and align the extending involution.
   ||c-1||_2 <= ||X^2-1||_2+||(XT)^3-1||_2.
   ```
 
+  Exact commutation is no longer needed for this terminal step.
+  `almost-root-central-gauges-have-global-row-coercivity` proves the robust
+  estimate
+
+  ```text
+  ||c-1||_2
+   <=||X^2-1||_2+||(XT)^3-1||_2+||[c,T]||_2.          (BRI3)
+  ```
+
+  Hence the entire almost-root-central spectral regime has a uniform linear
+  strict repair once a compatible exact endpoint over the same core is
+  selected.  On a scalar cycle the last term is the explicit weighted
+  off-diagonal frequency energy
+  `(1/d) sum_(i,j)|mu_i-mu_j|^2|c_ij|^2`; no minimum root spacing enters.
+
   Thus arbitrary Fourier modes, sign plateaux, and large operator-norm
   gauges cannot escape after the extending core has been authenticated.
   The remaining hypothesis is strictly earlier: find a nearby exact pair
   `(X_0,R_0,T_0)` and align the repaired input so that its relative gauge
-  commutes with that same `T_0`.  Core stability by itself gives only
+  almost commutes with that same `T_0`.  Core stability by itself gives only
   `(R_0,T_0)` and does not manufacture or authenticate `X_0`; the inversion
-  row and second cubic are still needed for that basin-capture/alignment.
+  row and second cubic are still needed for that basin-capture and for
+  proving that one adaptively selected relative gauge has small root
+  commutator.
   The word **nearby** is load-bearing:
   `p3-exact-iwahori-endpoints-refute-arbitrary-baseline-alignment` exhibits
   two exact mod-three extenders over one identical core whose relative gauge
