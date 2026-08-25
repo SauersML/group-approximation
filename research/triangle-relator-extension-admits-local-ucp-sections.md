@@ -185,8 +185,11 @@ Ioana--Spaas--Wiersma mechanism), per
   relator reservoir.  This closes the finite-dimensionality caveat in the
   earlier spectral no-go.  It does not refute the target: these packets exist
   independently of whether the exhausting-reservoir distance tends to zero
-  or stays positive, and a general signed Choi separator cannot be converted
-  into such a positive vector witness without an additional theorem.
+  or stays positive, and their varying signed Choi certificates have no
+  uniformly controlled positive finite-dimensional realization.  The later
+  positive-Choi conversion applies only after a bounded quotient separator
+  and a fixed finite-face component have been obtained; its GNS
+  representation need not be finite-dimensional.
 - **Symmetry averaging cannot reduce a quotient separator to the kernel-cycle face.**
   `three-face-quotient-separators-are-not-one-face-local` starts from a
   persistent-distance separator `(ERD3)` on the finite-dimensional
