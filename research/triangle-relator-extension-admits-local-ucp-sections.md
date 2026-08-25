@@ -218,6 +218,17 @@ Ioana--Spaas--Wiersma mechanism), per
   resulting positive GNS witness need not be finite-dimensional or supported
   in a fixed relator reservoir; positivity is no longer the missing step,
   but representation/support control remains open.
+- **The positive tree witness has correlated finite-dimensional low-ideal
+  packets (2026-08-25).**
+  `positive-tree-separator-has-fd-low-ideal-moment-packets` pulls the positive
+  Choi state back to a matrix amplification of `C^*(G_0)`.  RFD implies that
+  every state is weak-star approximable by finite-dimensional vector states,
+  so for every fixed relator reservoir the same finite-dimensional packet
+  retains a fixed tree-defect value and makes all prescribed ideal vector
+  moments arbitrarily small.  This still does not decide uniform Choi repair:
+  the control is on one vector rather than the whole packet, and a trivial
+  quotient summand cannot be removed because the tree defect need not have
+  zero augmentation.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
