@@ -83,6 +83,28 @@ positive matrix-range separator for the selected lattice tuple.
   input is narrower still: the canonical **mixed Britton-word** moments
   tying the stable-letter multiplicity to the base actor, not canonical
   base moments or full endpoint transport in a separate tensor factor.
+- **A fixed quasiregular lamp frame is still neutral.**
+  `finite-lamp-frame-is-matrix-range-neutral` realizes every prescribed
+  finite collection of reduced words in the conjugates
+  `phi(a)Tphi(a)^*` by a finite regular quotient of `C_k*F_q`, and tensors
+  an arbitrary separator through the frame with its support function and
+  gap unchanged.  This invalidates
+  `sl3-central-dual-via-finite-lamp-frame` and strengthens the moving-window
+  firewall: even all noncommutative cross-Grams in one fixed lamp window
+  do not help.  The surviving mixed moment must retain **actor covariance**:
+  the same arithmetic matrices must permute the lamp frame and transport
+  the lattice coordinates.  After forgetting that common actor, Britton
+  reduction leaves only a Morita-neutral free-lamp law.
+- **Actor covariance is exactly the coset-action soficity fork.**
+  `centralizer-hnn-is-free-generalized-wreath` identifies the full group as
+  `Z wr^*_(Gamma curvearrowright Gamma/Lambda) Gamma`.  By
+  `sofic-coset-action-refutes-sl3-central-dual`, a sofic atlas for this
+  coset action produces canonical finite-coordinate enemies and forces
+  `(LCG3)` to fail.  Therefore proving `(LCG3)` necessarily proves that the
+  large-prime type-zero building-vertex action is nonsofic.  The remaining
+  task is no longer “add more mixed moments”: it is a matrix-order
+  obstruction to every coherent finite atlas for that action, or an
+  equivalent specifically arithmetic failure of actor/lamp covariance.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

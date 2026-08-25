@@ -9,6 +9,7 @@ distinct_from:
   center-chain-mixed-hecke-polars-share-a1-tail: that identifies the two polar-word squares with the literal coefficient roots; a square-root identity alone does not identify the selector source and controlled-target projections.
   vanishing-loss-center-chain-authentication-hits-affine-firewall: that proves any successful vanishing-loss comparison converges to the fixed regular corner and hence immediately contradicts the affine rank equations; this leaf must derive that impossible comparison from the ordinary relation defects.
   projective-row-data-do-not-authenticate-hecke-polars: that proves squares, supports, and separate conjugation covariances retain an independent balanced spectator gauge; this claim can only be closed by a mixed odd-parity occurrence anchor which removes that gauge.
+  tracial-word-authentication-is-regular-firewalled: that proves an odd literal occurrence anchor is still insufficient when the proposed quantitative estimate uses only dimension-free tracial operations; the surviving step must be genuinely finite-coordinate.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -98,3 +99,14 @@ two polar-square identities.
   the incompatible gauge fractions `1/2` and `5/6`.  Any surviving proof
   must therefore extract its comparison only in finite matrix coordinates
   and charge every discarded direction to the microstate defect.
+- **Add the full literal odd Whitehead occurrence and argue tracially.**
+  The full signed occurrence table removes the independent spectator sign
+  from the preceding projective countermodel, but it still does not yield
+  the desired estimate by dimension-free `L^2` reasoning.
+  `tracial-word-authentication-is-regular-firewalled` evaluates any such
+  finite-word derivation in the regular finite von Neumann algebra: every
+  relator defect is zero there, so vanishing loss would give the forbidden
+  fixed authentication.  The analogous full Whitehead graft has exact
+  canonical support leakage `1/16`.  Hence the remaining anchor must be
+  coupled to a genuinely matricial kernel, rank, or moving representation-
+  type selection; a larger tracial word menu is not enough.

@@ -117,3 +117,13 @@ mixed triangle still fails.  Hence the surviving interpretation of
 two contextual matrix occurrences to collapse.  There is no remaining exact
 finite-permutation word splice which proves the claim first and then transfers
 it to matrices.
+
+Adding more disjoint-support energy after finite-group exactification also
+cannot help.  `shared-s5-gauge-is-invisible-to-all-r4-r5-cells` proves that
+for two `S_6` representations agreeing on the common point stabilizer, every
+label-valid R4/R5 commutator remains exact under the full residual
+multiplicity rotation—even if its two arms are read from different charts.
+Thus the only surviving global energy must overlap the missing letter across
+the two extensions.  A cross R2 cell does exactly that; a cross R3 split
+could do so only after authenticating a common child.  Disjointness cells
+cannot replace the analytic occurrence theorem.
