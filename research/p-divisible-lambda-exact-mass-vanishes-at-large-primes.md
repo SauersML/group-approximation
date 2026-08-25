@@ -77,3 +77,16 @@ off-diagonal masses of the weight measure and its twist gives
   fraction of a level-`(a-1)` root subgroup in a level-`a` irreducible of
   `SL_3(Z/p^a)`, about `2/p`) would lower the threshold to `p >= 11` again,
   so the prime `11` is where the crude and the sharp counts agree.
+- **Possible extension to `p = 5, 7` (not proved).**  Twisting by `J h^k`
+  instead of `J h` shifts types by `k`, `(beta, gamma) |-> (gamma - k, beta + k)`,
+  and the twisted diagonal mass then lands on types whose upper depth is
+  `k` below their level; those carry at most the fixed fraction of the
+  `k`-deep root subgroup `<e_12(p^(a-k) m')>`, which is contained in the
+  fixed space of `e_12(p^(a-1) m')` and plausibly decays like `(1 - c_p)^k`.
+  If it does, `TV >= (2 c_p - 1 - 2 (1 - c_p)^k)(1 - nu_0)` against
+  `12 k epsilon/kappa_0`, which is positive at `p = 7` for `k = 2` and at
+  `p = 5` for `k = 3`.  It cannot reach `p = 2, 3`: there `c_p < 1/2`, so
+  no diagonal mass is guaranteed at all (for `SL_3(F_2)` the `6`-dimensional
+  irreducible has fixed fraction `2/3` for the involution `e_12(1)`), and a
+  different mechanism is needed -- consistent with the graph's older
+  observation that the enemy is pinned to the smallest primes.
