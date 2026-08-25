@@ -206,6 +206,21 @@ Ioana--Spaas--Wiersma mechanism), per
   The claim remains open because a ucp face restriction need not be
   multiplicative: at least one tree-face restriction in a successful balance
   must be genuinely nonmultiplicative.
+- **Even unspecified group-word face homomorphisms collapse under a clean
+  Bass--Serre criterion (2026-08-25).**
+  `group-word-tree-face-balancing-collapses` removes the assumption that the
+  two tree-face embeddings are presented in advance as kernel conjugates.
+  If the two finite vertex groups are nonconjugate self-normalizing maximal
+  finite subgroups of the quotient and
+  `K intersect C_(G_0)(P_2)={1}`, then every group-word-valued star-homomorphic
+  lift of a tree face is automatically a kernel conjugate of the canonical
+  face.  Agreement on `P_2` collapses the two conjugators to one and the cycle
+  Gram floor applies.  Thus a successful balance cannot be obtained by
+  searching over more elaborate group-word lifts of the two finite faces;
+  at least one face must use non-group-unitary operator values or be genuinely
+  nonmultiplicative.  Verifying the stated maximal-finite and normalizer
+  hypotheses for a chosen Kac--Moody triangle is a separate finite-subgroup
+  task; the theorem does not assume that verification for every candidate.
 - **A uniform finite-relator Laplacian cannot provide the required
   nonmultiplicative movement (2026-08-24).**
   `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal

@@ -6,7 +6,6 @@ title: Permute the root-column atoms and exclude every nontrivial finite charact
 target: ordinary-leavitt-parabolic-atomic-spectrum-is-trivial
 requires:
   - affine-whitehead-has-leavitt-quotient-character-face
-  - steinberg-cover-fd-triviality
 ---
 
 The proof uses the full non-semisimple coefficient vertex, rather than the

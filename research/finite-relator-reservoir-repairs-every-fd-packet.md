@@ -83,6 +83,16 @@ genuine failure of local splitting must take.
   one corrected tree-face restriction genuinely nonmultiplicative while
   preserving compatibility on the shared `P_2` algebra.  This is the
   sharpest live positive subproblem inside `(RR2)`.
+- **Nor can it hide a more general group-word-valued multiplicative gauge.**
+  `group-word-tree-face-balancing-collapses` proves, under the checkable
+  maximal-finite/self-normalizer/edge-centralizer conditions `(GW1)--(GW3)`,
+  that every star-homomorphic tree-face lift taking canonical finite-group
+  unitaries to group unitaries is already an inner kernel gauge.  Hence the
+  preceding no-go is not evaded by choosing unrelated word-valued copies of
+  the two finite vertex groups.  A successful `d_R` must create genuinely
+  non-group-unitary operator values or destroy multiplicativity on at least
+  one tree face.  This does not refute `(RR2)`, which allows exactly that
+  operator-algebraic behavior.
 - **The packetwise statement is already a theorem; only uniformity in the
   packet is open.**  Fix a finite packet `R` and put `rho=(+)_(rho in R) rho`,
   a finite-dimensional representation.  Then `rho(I_N)` is a

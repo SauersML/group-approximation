@@ -91,4 +91,15 @@ full coefficient-vertex returns, or supply a matrix-only anti-diffusion
 estimate; bounded semisimple tags cannot bridge the atomic theorem to HS
 collapse.
 
+Nor does exact coordinatewise abelian rounding bridge that gap.
+`corona-commuting-torsion-lifts` shows, in the stronger norm-corona setting,
+that a countable commuting torsion family may be represented at every matrix
+coordinate by an exact finite joint PVM.  Its shell construction allows the
+number of joint atoms to grow with the coordinate.  It therefore gives no
+positive lower bound for any atom trace, and is fully compatible with those
+finite PVMs converging to the diffuse Haar algebra in `(OPA9)`.  The missing
+input is not exact commutation of the root family; it is a uniform
+coefficient-vertex estimate preventing all marked mass from escaping through
+ever finer atoms.
+
 Proof: `ordinary-leavitt-parabolic-atomic-spectrum-proof`.
