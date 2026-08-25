@@ -137,6 +137,26 @@ remains in this modified route.
   outer-type escape; another seed-support-preserving edge actuator cannot
   exploit canonical reachability.
 
+- **Couple two complete `S_3` outer escapes by a finite projective
+  holonomy/two-cell.**
+  `finite-s3-cross-edge-holonomy-cannot-renew-saturated-escape` closes this
+  finite two-level class.  After the first genuine outer escape, the
+  prescribed packet hull contains the complete irreducible local `S_3`
+  type.  A relation between the two edge gauges restricts on its stabilizer
+  to a projective multiplicity relation.  Whenever that holonomy factors
+  through a finite quotient, the inverse-twisted regular module cancels the
+  packet multiplier and induces to an exact finite-dimensional orbit-sum
+  model.  Stabilizer returns have full overlap with the post-escape carrier.
+  A return moving to another packet type can escape again, but each such
+  move consumes one equal finite-orbit summand; the initial type had only
+  `1/|O|` of that orbit capacity.  Fresh palettes likewise either start with
+  their full orbit or pay the primitive-line factor before use.  Thus a
+  non-prepaid reusable cross-edge cell must instead have an infinite
+  stabilizer twist with a quantitative finite-dimensional-radical floor, or
+  be a genuinely nonautomorphic proper-corner incidence.  Finite
+  Clifford/projective/triangle-face holonomy only synchronizes a prepaid
+  finite orbit.
+
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity
   part of this idea.  For a fixed menu size `L` with
