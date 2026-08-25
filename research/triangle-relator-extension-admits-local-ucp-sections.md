@@ -386,6 +386,28 @@ Ioana--Spaas--Wiersma mechanism), per
   and a nondegenerate affine gap still do not select a soft vector.  Any live
   completion must use a cross-face identity tied to one preselected lift,
   not another diagonal-moment argument.
+- **The exact cross-face identity is only a positive scalar partition
+  (2026-08-25).**
+  `cross-face-choi-annihilation-is-scalar-partition` dualizes every rank-one
+  native correction against the three positive face components.  For each
+  represented square `rho(x)^*rho(x)` it produces positive input marginals
+  `K_12,K_23,K_13` in the three finite face algebras, but global unit-zero
+  annihilation says exactly
+
+  ```text
+  K_12+K_23+K_13=c_x 1.
+  ```
+
+  Shared edges are already included in this equality inside the concrete
+  operator system.  The scalar `c_x` need not be small.  In the actual
+  triangle packet counterexample, put the two-outcome test projection in the
+  common edge `C^*(P_2)`, use one global quotient section on all faces, and
+  take three nonzero positive face witnesses.  The affine gap is exactly
+  four, all compatibility is exact, and for a native `y` with `rho(y)=I`
+  one has `K_12=K_23=K_13=1`; every density vector has energy one.  Thus no
+  finite-packet shared-edge/unit identity forces a soft moment.  The live
+  gate is genuinely asymptotic: control one section chosen independently of
+  the exhausting representation packets.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

@@ -7,6 +7,7 @@ distinct_from:
   positive-packet-witness-gap-endpoint: that gives an abstract two-outcome positivity counterexample and the exact gap-compactness dichotomy; this computes the matrix-unit consequences of annihilating a square-enlarged native reservoir and gives a fixed-gap counterexample inside an actual finite-dimensional packet of the triangle relator ideal.
   native-relator-soft-modes-persist-in-simple-ideal-blocks: that proves low-energy vectors exist in irreducible full-ideal packets independently of Choi infeasibility; this shows the diagonal vectors selected by a positive affine witness need not be any of those soft vectors.
   ideal-block-infeasibility-has-positive-reservoir-witness: that constructs the positive witness for an actual failed affine packet slice; this proves that positivity and annihilation, even together with all matrix-unit and square-moment identities they imply, do not by themselves correlate its diagonal densities with the soft spectrum.
+  cross-face-choi-annihilation-is-scalar-partition: that computes the exact identity obtained when only the sum of three positive face components annihilates the reservoir and gives a common-edge hard-energy realization; this treats the stronger facewise-annihilating diagonal special case.
 ---
 
 **ESTABLISHED (exact diagonal identity and native-packet no-go).**  Let `B`
