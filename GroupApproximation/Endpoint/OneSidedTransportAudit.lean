@@ -31,6 +31,10 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations
 import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
 import GroupApproximation.Manuscript.OneSidedMFRadical.CanonicalSector
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedRemarks
+import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceIntroClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceTransportClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceNormalKazhdanClosure
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedFullKernelPullback
 import GroupApproximation.Kazhdan.AmenableKazhdanFinite
 import GroupApproximation.Kazhdan.KazhdanSeparableDescent
 
@@ -292,3 +296,20 @@ only place their axiom closure is checked. -/
 -- the Bekka--de la Harpe--Valette step the manuscript cites, so this row carries
 -- no literature dependence.
 #audit_closed_axioms GroupApproximation.manuscriptAmenableKazhdanSterility
+
+/-! ## Section 7, `prop:full-kernel-pullback` and its closing paragraph
+
+The general statements live in `Sofic/FullMFRadicalClosurePullback.lean`,
+`Sofic/FullMFRadicalQuotientLattice.lean` and
+`Sofic/FullMFRadicalVisibleLocalization.lean` with the group, the surjection
+and the normal subgroup in front; the printed sentences are restated with
+those quantifiers inside a named `Prop` in
+`Manuscript/OneSidedMFRadical/PrintedFullKernelPullback.lean`, which is what
+makes the closed macro applicable. -/
+
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedMFQuotientCorrespondence
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedVisibleQuotientIsomorphism
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrespondenceRespectsComposition
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph

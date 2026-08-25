@@ -191,6 +191,12 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `eq:closure-pullback` quotient equivalence for the camouflage projection | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_isCDEOperatorMF_quotient_iff` | conditional |
 | Closing prescribed-quotient paragraph, all four general closure-pullback clauses as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | closed |
 <!-- END-LEDGER-ROWS -->
+| `prop:full-kernel-pullback`, the three printed displays for a surjection with MF-invisible kernel | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback` | closed |
+| `prop:full-kernel-pullback`, the "in particular" clause for an intrinsically full kernel | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel` | closed |
+| Sec. 7, image and inverse image are mutually inverse inclusion-preserving correspondences of MF-quotient kernels | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedMFQuotientCorrespondence` | closed |
+| Sec. 7, the induced map on largest MF-visible quotients is an isomorphism | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedVisibleQuotientIsomorphism` | closed |
+| Sec. 7, the correspondences respect composition of such surjections | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrespondenceRespectsComposition` | closed |
+| Sec. 7, the complete full-kernel-pullback paragraph as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph` | closed |
 
 ## Known gaps inside carried rows
 

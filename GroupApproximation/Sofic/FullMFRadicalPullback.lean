@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.FullMFRadicalLocalization
+import GroupApproximation.Sofic.UniversalFactorization
 
 /-!
 # Pullback formulas for the intrinsic MF core
@@ -52,6 +53,23 @@ theorem fullMFRadicalCore_eq_ker_of_kernel_eq_top_of_target_eq_bot
   · exact fullMFRadicalCore_le_ker_of_target_eq_bot f hH
   · exact le_fullMFRadicalCore f.ker
       ((fullMFRadicalCore_eq_top_iff (G := f.ker)).mp hker)
+
+/-- A full-kernel surjection computes the genuine corona residual as the
+inverse image of the target residual. -/
+theorem actualCoronaMFResidual_eq_comap_of_surjective_of_kernel_eq_top
+    (f : G →* H) (hf : Function.Surjective f)
+    (hker : actualCoronaMFResidual f.ker = ⊤) :
+    actualCoronaMFResidual G = (actualCoronaMFResidual H).comap f := by
+  rw [actualCoronaMFResidual_eq_coronaMFResidual,
+    actualCoronaMFResidual_eq_coronaMFResidual]
+  apply UniversalFactorization.coronaMFResidual_eq_comap f hf
+  intro x hx
+  rw [← actualCoronaMFResidual_eq_coronaMFResidual]
+  have hx' : (⟨x, hx⟩ : f.ker) ∈ actualCoronaMFResidual f.ker := by
+    rw [hker]
+    exact Subgroup.mem_top _
+  exact map_actualCoronaMFResidual_le f.ker.subtype
+    (Subgroup.mem_map_of_mem f.ker.subtype hx')
 
 /-- If a homomorphism has intrinsically full kernel and target with trivial
 genuine-corona residual, then that kernel is the exact source residual. -/
