@@ -2,35 +2,38 @@
 rg: 2
 id: binary-leavitt-elementary-group-is-simple-proof
 kind: route
-title: Collapse the normal-subgroup sandwich to its two extreme levels
+title: Detect a nonzero elementary root inside every nontrivial normal subgroup
 target: binary-leavitt-elementary-group-is-simple
 requires:
-  - leavitt-gl-equals-el-and-perfect-unit-group
   - leavitt-center-is-coefficient-field
+artifacts:
+  - GroupApproximation/Leavitt/RootDetectionBinary.lean
 ---
 
-The binary Leavitt algebra `R` is purely infinite simple.  In particular it
-is a simple exchange ring.  The normal-subgroup theorem for general linear
-groups over exchange rings says that, for `n>=3`, every subgroup `N` of
-`GL_n(R)` normalized by `EL_n(R)` has a uniquely determined two-sided ideal
-`I` with
+Use the internal root-detection argument formalized in
+`Leavitt/RootDetectionBinary.lean`; no exchange-ring normal-subgroup theorem
+is needed.
+
+Let `N` be a nontrivial normal subgroup of `EL_n(R)` with `n>=3`, and choose
+`g in N`, `g!=1`.  Commutators of `g` with elementary transvections and spare
+indices reduce, by explicit matrix identities, to an element of `N` whose
+defect is supported in one row.  The binary Leavitt family supplies split
+annihilators for the possible nonzero inverse matrix entry.  Strong
+two-sided division in `R` then converts a nonzero coefficient of that row
+into a root element
 
 ```text
-EL_n(R,I) <= N <= C_n(R,I).
+e_ij(x) in N,                  x!=0.                    (BLS1)
 ```
 
-Here `C_n(R,I)` is the inverse image of the center of `GL_n(R/I)`.
+The only exceptional reduction would make `g` a scalar central unit.  The
+internal kill-word center calculation
+`leavitt-center-is-coefficient-field` says that the only such unit over
+`F_2` is one, contradicting `g!=1`.
 
-Now let `N` be normal in `EL_n(R)`.  The identity
-`EL_n(R)=GL_n(R)` lets us apply the sandwich theorem to `N`.  Simplicity of
-`R` leaves only `I=0` and `I=R`.
-
-If `I=R`, then `EL_n(R,I)=EL_n(R)`, so `N=EL_n(R)`.  If `I=0`, then
-`N<=C_n(R,0)=Z(GL_n(R))`.  A matrix commuting with all elementary
-transvections is a scalar matrix whose scalar belongs to `Z(R)^x`; this is a
-direct matrix-entry calculation for `n>=2`.  Since `Z(R)=F_2`, its only
-central unit is `1`.  Thus `Z(GL_n(R))={1}` and `N={1}`.
-
-Both levels have therefore collapsed to the trivial and whole subgroups,
-which proves simplicity.
-
+Finally, if `(BLS1)` holds, strong two-sided division gives `a,b` with
+`axb=1`.  Two elementary commutator identities and index conjugacy put every
+elementary generator in `N`; hence `N=EL_n(R)`.  Thus every normal subgroup
+is trivial or the whole group.  The Lean theorem
+`isSimpleGroup_elementaryGroup_binaryLeavitt` discharges every hypothesis
+internally.
