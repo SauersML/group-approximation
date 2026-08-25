@@ -444,3 +444,16 @@ must consequently correlate the infinite translate registers by genuine
 linear subgroup relations while retaining nonlinear context holonomy; the
 naive one-hot/Fourier construction has no intermediate positive-density
 regime.
+
+The random-coset lamp bundle likewise has a canonical countable
+algebraization, and it is terminal rather than a solution.
+`random-coset-lamp-quotient-is-regular-iff-irs-is-dirac` forms the quotient
+of `directSum_Gamma C_2` by all lamp configurations which vanish in almost
+every random coset space, then takes its semidirect product with `Gamma`.
+The measurable bundle representation has canonical trace exactly when every
+IRS membership is zero or one, equivalently when the IRS is already a Dirac
+mass at a normal subgroup.  In the genuine Manzoor case the constructed
+group is abelian-by-free and sofic, while its bundle representation carries
+a noncanonical positive trace on a nonidentity two-lamp element.  Thus even
+allowing all countably many coset-lamp Fourier grades does not algebraize the
+IRS unless the normal-Dirac quotient has already solved the problem.

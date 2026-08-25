@@ -82,3 +82,12 @@ group-factor construction one must either:
 The lamp equality itself performs neither step.  It is nevertheless the
 exact positive local formula any successful envelope must preserve.
 
+There is a canonical way to assemble all of these measurable lamp fields
+into one countable semidirect product, but it does not repair
+multiplicativity of the IRS trace.
+`random-coset-lamp-quotient-is-regular-iff-irs-is-dirac` quotients the
+universal binary lamp module by every almost-sure coset-folding relation and
+computes the resulting field trace exactly.  That trace is the canonical
+group trace if and only if the IRS is a Dirac mass at a normal subgroup.  For
+the nonatomic Manzoor IRS the resulting abelian-by-free group is sofic and
+its canonical factor cannot contain the non-CE source.
