@@ -81,6 +81,11 @@ in a perfect tracial model, the variable PVM on an incidence edge is exactly
 the corresponding marginal of the constraint PVM, so the two algebras
 commute on every sampled pair.
 
+The self-edges also make the game synchronous.  Thus a perfect commuting
+strategy has the standard tracial realization on its synchronous game
+algebra, and the argument below covers perfect commuting strategies as well
+as CE/tracial ones; it is not restricted to a trace chosen in advance.
+
 Conversely, faithful zero-loss semantics on an incidence edge gives
 
 ```text
