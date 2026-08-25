@@ -179,7 +179,8 @@ theorem MFClosedNormalSubgroup.orderIsoOfInvisibleKernel_comp
         (ker_comp_le_actualCoronaMFResidual f g hf hkerF hkerG) =
       (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hkerF).trans
         (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel g hg hkerG) := by
-  ext N
+  apply OrderIso.ext
+  intro N
   apply MFClosedNormalSubgroup.ext
   simp only [MFClosedNormalSubgroup.mapOfInvisibleKernel_carrier,
     OrderIso.trans_apply, MFClosedNormalSubgroup.orderIsoOfInvisibleKernel]
