@@ -573,6 +573,30 @@ rectangular change of coefficient object.  The full signed Whitehead
 occurrence table does eliminate exact marked matrix models, but its uniform
 HS version remains precisely the unresolved same-reservoir payment.
 
+The first non-scalar Whitehead cell is now fenced too.
+`partial-whitehead-cell-has-marked-finite-model` observes that its complete
+local coefficient table admits the finite-field specialization
+`e=f=x=y=1`.  The active root remains nontrivial, the signed Whitehead word
+has order four, and the finite controlled-packet cyclic amalgam is virtually
+free and residually finite, with finite quotients faithful on both vertex
+packets.  Thus one prefix partial equivalence cannot be the missing row.
+The first possible payment must use both binary branches to destroy this
+collapse specialization and must couple that collapse-killing occurrence
+table to the same Reynolds/multiplicity payload.  The scalar range-sum fold
+alone has an independent nilpotent-factor countermodel, so this is exactly
+the still-open payload-coupled range-sum return.
+
+The post-decoding endpoint is correspondingly smaller.
+`two-inverses-one-cross-have-quadratic-hs-floor` shows that, on one decoded
+matrix corner, the two diagonal inverse rows and a single crossed-zero row
+already imply
+`sqrt(tau(P))<=2epsilon_0+2epsilon_1+eta`.  This three-row package is
+support-minimal for killing a marked finite coefficient algebra.  It remains
+exact in the typed rectangular Morita model, so it does not solve the group
+problem; it removes the range-sum arithmetic from the endpoint and isolates
+the sole missing operation as same-object, payload-coupled coefficient
+decoding.
+
 The most direct finite orientation pin for that mixed row also fails.
 `packet-controller-orbit-products-have-orientation-dichotomy` considers a
 product of packet conjugates of the rank-one controlled phase and compares
@@ -1835,6 +1859,20 @@ unabsorbed marking parities.  Hence this replay is exhaustive and
 `atlas-six-relator-simple-overgroup-index-exceeds-48960` raises the strict
 finite-simple floor beyond `48960`.
 
+The remaining Atlas enemy is now split exactly into finite and diffuse
+branches.  `atlas-chart-elements-normally-generate-six-relator-group` proves
+that every nonidentity element of either embedded `A8` chart normally
+generates `Gamma_6`; hence the matrix-ultraproduct question is the survival
+of one fixed chart transvection.  Moreover
+`atlas-hyperlinear-enemy-is-map-or-large-simple` applies Malcev residual
+finiteness to any nontrivial finite-dimensional shadow.  Such a shadow would
+produce one of the finite-simple marked models above, necessarily with `A8`
+index greater than `48960`.  Apart from that unbounded finite-simple branch,
+every hypothetical hyperlinear quotient is minimally almost periodic and
+every factorial witness is diffuse type `II_1`.  This is a reduction, not an
+exclusion: the unsolved case is precisely the dimension-growing diffuse
+character seen by the five-row zero set.
+
 The attempted Atlas coefficient decoder has also reached a precise boundary
 before any rank computation is legitimate.  The six literal words, all 234
 boundary rows, the A4 packet, and the raw/comb source words are present, but
@@ -1866,6 +1904,17 @@ Minimal almost periodicity removes these exact representations for the
 simple Kac--Moody candidate, but excluding approximate one-block analogues is
 exactly the terminal regular-branch HS-stability/non-hyperlinearity theorem,
 not a consequence of the other rigidity inputs.
+
+The bounded-type coefficient variant has a matching finite-index firewall.
+`high-type-irreducibles-retain-finite-packet-mass` extracts growing
+irreducibles which retain a fixed packet projection, and
+`finite-index-covariance-retains-coefficient-residual` induces them across
+every finite-index overgroup.  On the identity coset they keep a fixed lower
+bound for `||z(1-a)||_2`, while every overgroup relator is exact.  Therefore
+no finite automorphism/projective covariance table, or any other finite-index
+attachment, can turn the bounded-type coefficient into presentation energy.
+The surviving compiler must be genuinely infinite-index or payload-conditional
+enough to exclude all of these induced high-type blocks.
 
 The factor-universality splice has been reduced to one character and then
 closed as a proper-quotient construction.  If a group with the

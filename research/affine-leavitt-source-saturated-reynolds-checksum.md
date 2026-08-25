@@ -144,6 +144,36 @@ Hence “occurrence synchronization” must be read as **payload-coupled**
 synchronization with the Weyl/Heisenberg packet, not merely equality,
 conjugacy, or a closed transporter graph among the fold occurrences.
 
+The first genuinely non-scalar occurrence is also below the payment
+threshold.  `partial-whitehead-cell-has-marked-finite-model` takes the full
+local table for `x=s_(00)t_0`, `y=s_0t_(00)`, including all support/product
+relations and the signed Whitehead word, and specializes
+`e=f=x=y=1` in the finite splitting field.  The active root survives and the
+Whitehead word becomes the standard order-four Weyl matrix.  Even the finite
+controlled-packet cyclic graft has faithful finite quotients.  Therefore the
+live occurrence synchronization in `(ASR5)` must use enough of the **second
+branch** to destroy this collapse specialization, and must couple that
+collapse-killing row to `R_s,R_0,R_1`.  One non-scalar partial equivalence,
+even with its complete local root authentication, cannot source-saturate the
+Reynolds return.
+
+The post-decoding coefficient payment can be reduced at the same time.
+`two-inverses-one-cross-have-quadratic-hs-floor` proves that contractions on
+one decoded carrier obey
+
+```text
+sqrt(tau(P))
+ <=2||t_0s_0-P||_2+2||t_1s_1-P||_2+||t_0s_1||_2.     (ASR5a)
+```
+
+Thus one does not need the range-sum row after the coefficient maps are on
+one object: two diagonal returns and one crossed-zero product already give a
+quadratic carrier collapse.  These three rows are support-minimal for
+excluding marked finite coefficient algebras, but the rectangular Morita
+model realizes them exactly with different source and target objects.
+Accordingly the unresolved content remains the same-object/payload decoder,
+now for this strictly smaller three-row cell.
+
 Nor can the two native branches be rescued by summing their return
 energies.  `leavitt-target-return-channel-count-firewall` proves for every
 pair of approximation-dependent contractions supported from `R_s` to

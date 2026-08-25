@@ -254,6 +254,31 @@ one of the following equivalent matrix-coordinate inputs:
 Further typed Steinberg triangles or Clifford covariance relations cannot
 provide this input: both admit the exact arbitrary-`V` models above.
 
+Nor does the first non-scalar prefix partial equivalence provide it by
+itself.  `partial-whitehead-cell-has-marked-finite-model` specializes its
+complete local occurrence table by `e=f=x=y=1` in the finite base field.
+This keeps the active root nontrivial, sends the signed Whitehead word to an
+order-four Weyl matrix, and survives the finite controlled-packet graft in a
+faithful finite quotient.  Thus a valid support/payment row must couple both
+binary branches so as to forbid that collapse character; local
+coarse-to-fine Whitehead authentication alone is still exact-matrix safe.
+
+Once a same-object coefficient corner is recovered, the analytic endpoint is
+smaller than the binary range-sum ledger.
+`two-inverses-one-cross-have-quadratic-hs-floor` uses only
+`t_0s_0=P`, `t_1s_1=P`, and `t_0s_1=0`, with approximate normalized-HS
+defects, to prove
+
+```text
+sqrt(tau(P))<=2epsilon_0+2epsilon_1+eta.               (PSR17)
+```
+
+The three identities are a support-minimal obstruction in every finite
+coefficient algebra.  They nevertheless remain exact in the two-object
+rectangular Morita model.  Hence the missing lemma may target this smaller
+three-row cell, but it must still erase the source/target object distinction;
+no additional finite-trace inequality is needed afterward.
+
 Nor can one pin `V` by multiplying finitely many packet conjugates of the
 controlled reflection and equating the product to a literal packet word.
 `packet-controller-orbit-products-have-orientation-dichotomy`

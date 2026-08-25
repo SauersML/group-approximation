@@ -93,6 +93,18 @@ partial equivalence, or equivalent data) and must prevent the typed Morita
 object change.  This is exactly the boundary between the harmless active
 Weyl shell and the full signed Whitehead occurrence system.
 
+The first non-scalar step still does not cross that boundary.
+`partial-whitehead-cell-has-marked-finite-model` sends the complete local
+table of the prefix coefficients `x=s_(00)t_0`, `y=s_0t_(00)` to the base
+finite field by `e=f=x=y=1`.  The active root survives and the signed
+Whitehead word becomes the standard order-four Weyl matrix; even its finite
+controlled-packet amalgam has faithful finite quotients.  Hence the first
+possible payment must couple **both** Leavitt branches and destroy this
+collapse specialization, not merely introduce one non-scalar partial
+equivalence.  The range-sum/crossed-zero package is the first native source
+of that distinction, and its occurrences must still be tied to the measured
+packet payload.
+
 The full-presentation check identifies the exact surviving gate.  The
 Leavitt identities already give the two orthogonal branch embeddings and the
 exponential prefix Heisenberg packet, all reproduced by the calibration

@@ -157,3 +157,19 @@ part of the remaining hole.
   ordinary presentation-word energy without imposing it as an exact regular
   relation.  Merely naming the coefficient would assume the matrix-only
   instability the route is meant to prove.
+- Finite covariance cannot pay that residual, even after discarding all
+  regular multiplicity.  `finite-index-covariance-retains-coefficient-residual`
+  induces the packet-bearing high irreducibles across every
+  finite-index overgroup.  The resulting exact representations kill
+  `p_<=K` on the identity-coset block, retain packet trace at least
+  `q/(2m)`, and satisfy
+
+  ```text
+  ||z(1-a)||_2 >= (1-epsilon)sqrt(q/(2m))
+  ```
+
+  while every overgroup relator has zero defect.  Hence no crossed product by
+  a finite automorphism group, corresponding finite projective table, or any
+  other finite-index attachment can be the matrix-only coefficient cell.
+  The remaining search must be genuinely infinite-index or
+  payload-conditional in a way that excludes these induced high-type orbits.

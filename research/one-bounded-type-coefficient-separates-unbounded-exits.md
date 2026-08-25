@@ -62,3 +62,16 @@ packet and old group remain embedded.  Compiling its finite-matrix residual
 into ordinary-word energy, while retaining the regular marked completion, is
 already the sought matrix-only instability/nonhyperlinearity step.
 
+There is also a strict finite-covariance fence.  By
+`finite-index-covariance-retains-coefficient-residual`, if the
+old group has index `m` in the proposed coefficient overgroup, then
+packet-bearing high irreducibles induce to exact overgroup representations
+with
+
+```text
+eta >= (1-epsilon)sqrt(q/(2m))
+```
+
+and zero overgroup-relator energy.  Thus the missing compiler cannot use any
+finite-index attachment, including a finite automorphism crossed product or
+its finite projective variant; it must escape finite-index induction.
