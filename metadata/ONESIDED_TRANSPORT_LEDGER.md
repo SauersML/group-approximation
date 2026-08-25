@@ -190,13 +190,16 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `eq:closure-pullback` for the camouflage projection, at the literal printed MF closure | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_literalMFClosure_eq_comap` | conditional |
 | `eq:closure-pullback` quotient equivalence for the camouflage projection | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.camouflage_isCDEOperatorMF_quotient_iff` | conditional |
 | Closing prescribed-quotient paragraph, all four general closure-pullback clauses as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization` | closed |
-<!-- END-LEDGER-ROWS -->
 | `prop:full-kernel-pullback`, the three printed displays for a surjection with MF-invisible kernel | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback` | closed |
 | `prop:full-kernel-pullback`, the "in particular" clause for an intrinsically full kernel | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel` | closed |
 | Sec. 7, image and inverse image are mutually inverse inclusion-preserving correspondences of MF-quotient kernels | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedMFQuotientCorrespondence` | closed |
 | Sec. 7, the induced map on largest MF-visible quotients is an isomorphism | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedVisibleQuotientIsomorphism` | closed |
 | Sec. 7, the correspondences respect composition of such surjections | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrespondenceRespectsComposition` | closed |
 | Sec. 7, the complete full-kernel-pullback paragraph as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph` | closed |
+| `eq:one-word-quotient-test` at the visible group `Z`: the quotient is MF exactly when the relation subgroup contains `d` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOneWordQuotientTest` | closed |
+| `eq:one-word-quotient-test`, its printed justification: every quotient of `Z` is MF and the projection kernel is the normal closure of `d` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOneWordQuotientJustification` | closed |
+| Sec. 7 closing paragraph, the one-word test with its justification as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOneWordQuotientParagraph` | closed |
+<!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
 
