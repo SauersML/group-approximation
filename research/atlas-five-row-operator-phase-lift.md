@@ -100,3 +100,20 @@ which injects both marked `A8` factors and retains one of the four fixed
 standard `H`-bridge words.  In particular this claim, by itself, makes the
 finitely presented group `Gamma_6` nonhyperlinear; no separate passage
 through the full Leavitt packet is required.
+
+The complete common-orbit audit also gives a shorter exact operator target.
+`atlas-five-row-energy-equals-h-bridge-energy` proves that the five linear
+row energy is uniformly equivalent to the total normalized-HS displacement
+of the four literal standard-`H` bridge words
+
+```text
+b_ell=i_2(t_ell)i_1(t_ell)^(-1).
+```
+
+Hence it is enough--and in fact equivalent up to fixed constants--to prove
+`atlas-six-relator-relative-h-bridge-gap`: the six nonlinear relator defects
+uniformly control those four short bridge defects.  This retains all
+common-orbit identities and removes the large integral rows from the live
+analytic statement.  Exact bridge filling remains false in the Leavitt
+quotient; the required estimate is specifically a finite regular-margin
+relative-HS stability theorem.
