@@ -59,6 +59,28 @@ is the required shared finite-support involution.
    frontier is `affine-frobenius-tight-defect-column-frame`: no packet is
    yet known which enforces that identity while retaining compatibility and
    the strict canonical deficit.
+7. **Solve one noncommuting two-context cell first.**  This local problem is
+   completely soluble and sharply calibrated by
+   `projection-crt-deficit-forces-common-meet`.  Rank-one omissions from one
+   common projection give noncommuting masks of deficit `1/d` and a
+   finite-support reflection agreeing with both marginals.  Conversely every
+   projection CRT solution forces the meet of all prescribed negative pieces
+   to have trace at least `tau(p)-sum_i tau(1-q_i)`.  Hence a strict
+   high-density certificate already contains a large literal common negative
+   core, even without the tight-frame cubic.  The missing step is not a
+   two-ideal algebraic formula; it is correlating all fixed nonaffine context
+   PVMs around those variable-specific cores.  In a finite packet that global
+   correlation would itself be the forbidden finite-dimensional BCS
+   certificate.
+8. **Scale the rational cells while retaining the BCS predicates.**  The
+   exact dimension-independent obstruction is
+   `bcs-gap-blocks-vanishing-crt-mask-budget`.  If the consistency-cell
+   deficits tend to zero, the fixed BCS gap forces weighted forbidden mass at
+   least `Delta-o(1)`.  Predicate masks which annihilate that mass have deficit
+   at least the same amount, so the total mask budget is never `o(1)` and can
+   never cross the strict `<Delta` threshold in finite dimensions.  This
+   rules out a global finite-packet scaling of the sharp rank-one cell while
+   leaving the intended infinite canonical group-algebra construction open.
 
 The remaining viable construction must simultaneously correlate the fixed
 marginals and create a non-vertex-induced algebraic projection, through a

@@ -2,21 +2,23 @@
 rg: 2
 id: near-representation-amenability-dichotomy
 kind: claim
-title: A near-representation analogue of the Bekka–Valette dichotomy
+title: A charge-visible near-representation analogue of the Bekka–Valette dichotomy
 root: true
 invalidates: [amenable-charge-route]
 distinct_from:
-  amenable-rep-of-kazhdan-has-fd-subrep: that is the genuine-representation statement, proved; this asks whether the same conclusion survives replacing homomorphisms by near representations, and is open
-  bekka-valette-amenable-t-dichotomy: that is the published genuine-representation dichotomy recorded by citation; this is the unpublished near-representation question it raises
+  amenable-rep-of-kazhdan-has-fd-subrep: that is the genuine-representation existence statement, proved; this asks for a positive-charge remnant after replacing homomorphisms by near representations, which the bare existence statement cannot supply
+  bekka-valette-amenable-t-dichotomy: that is the published genuine-representation dichotomy recorded by citation; this is the stronger charge-visible near-representation question needed by the wreath route
   wreath-flexible-hs-stability: that asks whether almost-representations of the acting group are close to genuine ones in normalized HS; this asks whether a rigidity CONCLUSION transfers to near representations, which is not the same as the perturbation being small
 ---
 
-**Open.** Does the Bekka–Valette dichotomy have an analogue for near
-representations? Concretely, in the direction that matters: if `G` has property
-(T) and `π : G → U(H)` is an *amenable near representation* in the sense of
-Kahl–Schneider — multiplicativity holding only `μ`-almost everywhere, to within
-every `ε`, for the invariant charge `μ` — must `π` admit some approximate
-substitute for a nonzero finite-dimensional subrepresentation?
+**Open, in its corrected charge-visible form.**  Suppose `G` has property
+(T) and `pi:G -> U(H)` is an amenable near representation in the sense of
+Kahl--Schneider, with invariant charge `mu`.  Must `pi` admit an approximate
+finite-dimensional or invariant sector of **positive `mu`-charge**?  Bare
+existence of a nonzero finite-dimensional subrepresentation is insufficient:
+`kun-thom-compression-survives-amenable-near-model` supplies an essentially
+free amenable genuine representation in which every finite-rank projection
+has charge zero.
 
 ## Why this is the pivot
 
@@ -26,13 +28,25 @@ representation. The lane's value rests on that criterion being independent of
 the rigidity branch, and the independence rests entirely on this question being
 open.
 
-For **genuine** representations the collapse is complete and proved
+For **genuine** representations the existence statement is complete and proved
 (`amenable-rep-of-kazhdan-has-fd-subrep`, and published as
 `bekka-valette-amenable-t-dichotomy`): a Kazhdan group's amenable
 representations all contain finite-dimensional subrepresentations, which is
-where `commutant_no_growth` and the `finrank` invariant size bite. If any
-near-representation analogue held, the same collapse would reach the charge
-lane and it would die with the rest of the flexible side.
+where `commutant_no_growth` and the `finrank` invariant size can bite in a
+normal finite-dimensional model.  But a bare near-representation analogue is
+not enough for the Kahl--Schneider lane: it must produce a remnant of
+**positive invariant charge**.
+
+`kun-thom-compression-survives-amenable-near-model` proves this correction on
+the actual residually finite Kazhdan actor.  Its residual finite regular
+representation is genuine, faithful, amenable and essentially free for a
+singular invariant charge.  Bekka--Valette finite-dimensional summands are
+present, but every finite-rank projection has charge zero.  Moreover the
+strict compressed subgroup and its parent have identical fixed spaces, and
+their common fixed projection has charge zero.  Consequently even the genuine
+dichotomy does not by itself close the charge lane.  The needed open statement
+is a **charge-visible** near-representation dichotomy, or an invariant Cartan
+completion which makes the lamp sector visible to the charge.
 
 ## Two reasons it is not merely a technicality
 
@@ -103,14 +117,15 @@ So the question is not really about amenability. It is:
 
 > Is there a property (T) for charge-almost-everywhere near representations —
 > that is, does a Kazhdan group's near representation with almost invariant
-> vectors have a genuine (or approximately genuine) invariant vector, when
-> multiplicativity is only assumed `μ`-a.e. pointwise?
+> vectors have a genuine (or approximately genuine) invariant sector of
+> **positive `mu`-charge**, when multiplicativity is only assumed `mu`-a.e.
+> pointwise?
 
-A positive answer at that level would give the dichotomy and evaporate the
-charge lane. A negative answer at a single Kazhdan group would prove the gap
-real. This is a question about property (T) itself rather than about `W`, which
-is what makes it worth owning: it can be attacked without touching the wreath
-candidate, and either answer is a theorem about Kazhdan groups.
+A positive answer at that level would give the dichotomy needed by the charge
+lane.  The residual finite countermodel proves that “nonzero” cannot replace
+“positive charge,” even for a genuine representation.  The remaining question
+is about property (T) together with the specified charge, rather than ordinary
+property (T) alone.
 
 **A construction hazard, for whoever tries the negative direction.** The
 tempting witness is a genuine representation perturbed on a charge-null set of

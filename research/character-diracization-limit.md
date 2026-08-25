@@ -64,6 +64,16 @@ hyperlinearity is about.  Two facts fix its scope.
   perturbation: `K_tau` is a closed condition on an open set of characters, so
   arbitrarily small perturbations of `tau` can collapse `K_tau` to `{e}`.
 
+There is also no automatic payload-retention upgrade hidden in Haar tags.
+`haar-tag-cancellation-retention-is-group-realizability` proves that for an
+arbitrary group-valued tag homomorphism, the tagged trace is canonical exactly
+when its tag-zero kernel already acts with the regular character.  Faithful
+tags erase all payload moments; nonfaithful tags either destroy canonicity or
+place every exactly cancelled payload in an already present kernel group
+factor.  For balanced tensor powers, conditional expectation onto one retained
+payload coordinate is `pi(g)|tau(g)|^(2k)`, hence becomes scalar on every
+fixed finite-word decoder.
+
 ## The IRS instance
 
 For an invariant random subgroup `mu` on `Gamma`, the function

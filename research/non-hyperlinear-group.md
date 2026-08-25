@@ -77,6 +77,17 @@ must be coupled to a matrix-only semantic return or overlap payment which is
 absent from the pure finite packet relations.  The live target remains the
 Culf--Mastel compiler into `positive-density-hs-power-overlaps-force-finite-depth`.
 
+The aggregate Thompson--`V` Carmichael-energy shortcut is now refuted.
+`scalar-phase-refutes-r5-subquadratic-energy` uses the fact that the marked
+three-cycle `b=(01 10 11)` is literally a Bleak--Quick presentation
+generator.  Mapping `b` to a small scalar phase and every other generator to
+`1` gives arbitrarily small relator defect, while every word conjugate of
+`U(b)` remains the same scalar.  Its all-pairs Carmichael energy is therefore
+exactly `binom(M,2)|U(b)^4-1|^2`, never subquadratic.  This also kills the
+proposed Hodge square-function bound.  The conditional energy-collapse
+theorem remains correct, and the separate uniform-per-edge Carmichael lane is
+unaffected.
+
 A second live positive-density interface now removes one earlier logical
 router.  For commuting context involutions `x_i` and a central involution
 `J`, every assignment atom on the `J=-1` sector is exactly
@@ -142,6 +153,20 @@ shared-BCS return.  A completion must transport a larger intrinsic type sum
 and add a genuinely nonstationary relation on its multiplicity space;
 finite packet functoriality alone retains the positive regular profile of
 `finite-packet-functoriality-has-positive-regular-profile`.
+
+This remains true after inserting the established local charged section at
+every level.  `balanced-schur-finite-depth-reuse-is-regular-absorbed` puts
+each Schur square and auxiliary companion flip inside its finite semidirect
+vertex packet.  Reynolds proper sections, full-child reuse edges, and finite
+first-hit transports are then all finite-subgroup HNN covariance rows.  At
+every fixed depth, common negative regular multiples extend across the
+entire graph and give an exact finite-dimensional model with payload sign
+`-I` and all forbidden/child/address types present.  Therefore the global
+reuse gate cannot be closed by simply concatenating the local cells, even
+when one HNN edge is enlarged to carry the next prefix.  A genuine relation
+between distinct edge intertwiners, or an equivalent matrix-only support
+constraint on their common multiplicity space, is now the minimal missing
+object.
 
 The residual prefix gauge is now split into a solved local cell and an open
 global ledger.  `agent-free-compressor-chart-edge-has-multiplicity-gauge`
@@ -222,33 +247,250 @@ Stone--von Neumann forces the two commuting spectator coordinates to have
 uniform joint multiplicity; their double-trivial fiber therefore retains
 exactly `p^(-2)` of any packet-reducing source.  This eliminates the local
 simultaneous-source/destination character escape **after the source root has
-been detected**.  The remaining analytic wall is sharper still: prove that
-the selected BCS projection has dimension-independent mass in the
-nontrivial spectral support of `x_13(a)`, on the prescribed carrier and
-compatibly for all adaptive branches.  That is the BCS-to-root support
-transfer, not another Heisenberg or extraspecial representation theorem.
-The local transfer is isolated as
+been detected**.  For the bare wordization the remaining analytic wall is
+the BCS-to-root support transfer isolated as
 `bcs-atom-detects-its-e5-central-root`: for
 `E=Q_sigma P_i` and `Z=x_13(a_(sigma,i))`, prove that a fixed fraction of
 `E` lies in the nontrivial spectral support of `Z`.  Its conclusion followed
 by the two-pair cell retains `c_root p^(-2)` of `E` in a canonical
 spectator-trivial fiber.  This is strictly weaker than reconstructing the
 whole coefficient quotient, but it is not implied by the abstract root
-relations; it is the finite-menu root-kernel reflection estimate.
+relations; it is the finite-menu root-kernel reflection estimate.  The bare
+statement remains open, but the extended canonical-microstate version is
+now closed as follows.
 
 The nonliteral-carrier part of this interface is now separated from the
-conditional-root part.  `a4-role-atom-has-flat-c3-root-overlap` proves that
+finite-root part.  `a4-role-atom-has-flat-c3-root-overlap` proves that
 on the three-dimensional block of `A4=V4 semidirect C3`, a nontrivial `V4`
 role atom has exactly `2/3` of its mass on the nontrivial `C3` spectrum even
 after an arbitrary analytic cut in the full `A4` commutant.  Products of
 these packets supply a complete finite role menu.  Thus analytic reducing
-hulls do not inherently defeat a genuinely mixed finite row.  The row is
-still auxiliary, however: in the perfect model the coefficient root
-`x_13(a)` becomes `1` when `a=0`, while the fixed `A4` root does not.
-Identifying them literally destroys the perfect model, and making the `A4`
-block vanish conditionally with `a` is precisely the payload-reflection
-gate.  The surviving question is conditional coefficient-root identity,
-not flat overlap on a nonliteral carrier.
+hulls do not inherently defeat a genuinely mixed finite row.  A cyclic
+amalgam may identify the `C3` word with an exact order-three coefficient
+root: the perfect model simply represents the entire auxiliary factor
+trivially when that root maps to one.  The remaining bare-`A4` issue is
+coherent selection of its three-dimensional block along every reached
+carrier.  `binary-tetrahedral-conditional-e5-root-bridge` replaces that
+block by one common central-sign sector and is the sharper local compiler.
+Specifically, attach
+
+```text
+(B times <ell>) *_(H times C3 times <ell>)
+                    (H times (Q8 semidirect C3))
+```
+
+to each source root, sharing the fresh central involution `ell`.  Every
+negative-center irreducible of `Q8 semidirect C3 congruent SL_2(F_3)` is
+two-dimensional and its order-three complement has fixed-space dimension
+at most one.  Hence every analytic packet-reducing source has at least half
+its mass on the nontrivial spectrum of its **actual coefficient root**.
+`canonical-bcs-root-detection-via-binary-tetrahedral-bridge` applies this to
+the whole fixed menu and establishes the local root-overlap inequality.
+However, `binary-tetrahedral-packet-hull-saturates-unprotected-seed-sign`
+now rules out the first version of its carrier accounting.  One quaternion
+element conjugates the independent Pauli seed sign to a free involution, so
+the common reducing hull of the raw trace-`1/8` seed under the attached
+packets is already the full `J=-1,ell=-1` sector of trace `1/4` in canonical
+microstates.  The local detected fiber is valid, but the unprotected amalgam
+has no remaining carrier budget.  In the perfect model all source roots,
+`ell`, and the auxiliary packets still map to one, so the old marked word
+survives.
+
+The protected half of the direct endpoint is now closed by
+`protected-adaptive-btb-wordization-preserves-canonical-budget`.  Add
+`[q_sigma,B]=[d_(sigma,i),B]=0`, but deliberately do not centralize the
+arrow letters.  For each source use the finite edge two-group
+`K_i=<H_i,J,B>`; including `J` is necessary to preserve the marked central
+sector through the amalgam.  Characteristic-three partial-bijection models
+prove consistency and source nonvanishing, context absorption makes the
+presentation finite, and coprimality makes
+`K_i times <Z_(sigma,i)> times <ell>` an injected edge group.  All attached
+packets then centralize `J,B`.  The initial common hull is exactly the
+canonical `J=-1,B=+1,ell=-1` seed of trace `1/8`, while every later carrier
+stays below the `J=-1,ell=-1` capacity of trace `1/4`; arrows may and must
+switch `B`-sectors.  The perfect model kills each BTB component and retains
+the old marked packet.  Thus `canonical-btb-finite-depth-escape-tree` now
+has only one missing row: an oriented (or unoriented analytic) return must
+move a fixed fraction of the conditioned `1/18` source fiber outside the
+current carrier.  That row alone would restore the factor-two contradiction
+recorded by `nonhyperlinear-via-canonical-btb-finite-tree`.
+
+Property `(T)` and finite-packet stability do not by themselves close that
+final row.  `hyperlinear-fiber-cannot-orient-btb-return` gives a local-carrier
+obstruction.  After substituting the authenticated finite
+BTB--E5 outer matrices, any finite actor/cross-edge system leaves a typed
+presentation on the anonymous multiplicity factor.  If that presentation
+has asymptotically exact matrix models, tensoring one with an identity
+spectator produces a common invariant half and defeats estimates uniform over
+all reducing carriers.  But that half is not automatically a carrier reached
+from the canonical seed: `e_0` and every prescribed minimal hull amplify with
+the full spectator identity.  Thus path-specific `(CBR3)` remains open.  Its
+live exits are a typed multiplicity presentation with a dimension-uniform HS
+floor, or a seed/minimal-hull coupling which prevents block-diagonal placement
+on the actual reached carrier.  A Kazhdan estimate merely corrects into the
+exact intertwiner algebra and does not supply either exit by itself.
+
+That observation also yields a shorter endpoint.
+`payload-conditioned-btb-active-fiber-floor` asks for ordinary relators whose
+compression to the single positive root fiber pays
+`kappa tau(F)`.  On the protected canonical seed, the maximal forbidden atom
+has mass at least `beta/(8M)-o(1)`, and the BTB--E5 cell retains one
+eighteenth, so the active fiber has mass at least
+`beta/(144M)-o(1)`.  The route
+`nonhyperlinear-via-one-btb-fiber-floor` then obtains a global defect floor
+immediately.  This bypasses oriented return and all finite-depth growth.
+Its remaining interface is exactly the same one exposed by the no-go:
+compile the non-CE projection-algebra gap into a payload-conditioned typed
+ordinary-word floor.  A fiberwise hyperlinear actor or cross-edge system
+cannot do so.
+
+The obvious static shortcut is now closed.  A literal order-three detected
+character projection is a fixed group-algebra element, and
+`canonical-btb-static-packing-has-capacity-ceiling` computes its exact
+canonical mass using the coprime formula: the nontrivial root cut retains
+`2/3`, not merely the representation-uniform `1/2`, of the literal source.
+Under the common `J=-1,ell=-1` capacity, separate packing is bounded by
+`3M/beta` conjugates and simultaneous packing by `3/beta`.  These ceilings
+already exclude the strict counts that the static trace contradiction would
+need.  Finitely many extra binary-tetrahedral or Heisenberg refinements do
+not improve the ratio: orthogonal atoms partition source trace, while
+overlapping atoms cannot be counted.  The analytic projection
+`Q_sigma P_iS_(Z_i)` from the actual bridge is different: `Q_sigma` is a
+representation-dependent reducing-hull projection, not a word or finite
+Fourier idempotent.  Making a word transport respond to it is exactly the
+open carrier-return row `(CBR3)`.  Thus static HNN packing does not bypass
+the oriented-return gate.
+
+The finite-tree version of that shortcut is closed at its exact boundary.
+`btb-three-line-tree-retains-multiplicity-return-gauge` decomposes the
+protected BTB--E5 conditioned fiber on every packet type.  The outer finite
+coordinates retain the `1/18` mass, but an edgewise three-line return is
+still `C_lambda tensor U_lambda` on multiplicity space.  With no relation
+containing two adaptive-edge intertwiners, these gauges can be aligned
+recursively so every returned fiber remains inside its reached carrier,
+without changing fixed packet moments.  An `S_3` root-controlled reflection
+can force one outer-coordinate escape only; its finite orbit then saturates,
+while fresh palettes pay the independent-address capacity.  The repaired
+route therefore needs one genuinely mixed cross-edge or payload two-cell
+with nonzero multiplicity charge.  More protected signs or separate Morita
+swaps do not prove `(CBR3)`.
+
+There is now a sharp analytic candidate for that two-cell.
+`compressed-antiphase-menu-implies-btb-escape` fixes a finite branch menu
+`u_1,...,u_L`, with `L beta/(18M)>=4`, and asks for pairwise opposite phases
+only on the compressed contractions `T_k=Q u_k F`.  The existing antiphase
+cross-Gram estimate and contraction-capacity inequality then force one branch
+to move at least `tau(A)/36-O(sqrt(E))` outside `Q`; hence `(CBR3)` follows
+with `eta=1/36`.  This condition is automatically vacuous in the perfect
+marked model, where the forbidden fiber `F` vanishes.  The companion firewall
+`literal-antiphase-branches-recreate-regular-character-packing` proves that
+ordinary full-source conjugacy cannot authenticate the condition: opposite
+characters make the entire Reynolds translates orthogonal, so canonical trace
+restores the finite-character packing ceiling in every tracial model, and an
+oversized palette collapses the source already in the regular representation.
+Thus the remaining groupification problem has an exact form: a finite
+payload-sensitive cross-edge cell must control the phases of `Q u_k F`
+without controlling the whole literal translate `u_k e_chi`.
+The reached-hull localization itself has also been audited.
+`cyclic-hull-antiphase-has-propagation-or-radius-firewall` proves that
+centralizing the finite reducer makes a phase preserve the analytic cyclic
+hull, but a seed phase then propagates to the entire cyclic component and
+loses the proper contextual cut.  Conversely, no fixed support polynomial or
+tight frame names that hull dimension-uniformly: explicit dihedral cycle
+models have full cyclic hull and arbitrarily small fixed-radius orbit support.
+The surviving cell must therefore be a genuinely mixed Reynolds/reducer
+corner loop or an equivalent finite-dimensional matrix-coordinate identity.
+The additive version of that loop has now been fenced as well.
+`btb-balanced-loops-stop-at-same-object-reflection` tensors
+the exact finite Morita rectangular model with an inverse Weyl gauge: all
+fixed exponent-balanced Steinberg triangle pastings and one fixed projective
+phase remain exact while the detected source returns inside the same carrier.
+The first row outside this countermodel is the same-object support reflection
+`(1-2f)W(1-2e)W^*=1`.  Current Clifford completion leaves an arbitrary
+multiplicity involution on `1-2f`, exactly where this row needs it removed.
+So the constructive target is no longer an unspecified holonomy: it is a
+literal same-object reflection or a matrix-only support-leakage theorem with
+the same consequence.
+The residual twist cannot be removed by merely coupling more finite
+reflections.  `coupled-reflections-reduce-to-the-active-gauge-profile`
+exactifies the packet and writes every normalizer as `C_j tensor V_j`; all
+finite covariance, determinant, parity, projective, and mixed reducer rows
+then become one typed presentation on the multiplicity gauges.  The required
+controlled/identity-outer cancellation is precisely `VA=1`.  Any matrix model
+of that active presentation with `VA` separated tensors back to a local
+countermodel, while a uniform estimate forcing `VA` is already the missing
+nonhyperlinear HS profile in the gauge presentation.  Thus a successful
+path-specific construction must force this equation through actual reached-
+carrier incidence, not through another finite packet invariant.
+There is now a uniform exact countermodel for the whole affine residual
+subclass, not only the original two-bit example.
+`affine-reflection-normalizers-have-quarter-overlap`
+collects every finitely named commuting support sign into a Boolean vector
+space `V` and every finite connector action into `K<=GL(V)`.  The regular
+representation of `V rtimes K` satisfies all reflection-product and
+normalizer rows exactly.  Distinct support halves nevertheless have overlap
+and two-sided mismatch `1/4`; after tensoring with the selected payload fiber
+the unpaid corner is `tau(F)/4`.  Extra finite XOR levels, affine normalizers,
+and finite Clifford phases only enlarge this same stationary affine model.
+Thus the same-object route must use a genuinely non-semisimple global
+coefficient occurrence or solve the separated active gauge HS profile; no
+finite affine reflection presentation can be the missing row.
+There is nevertheless a regular-safe positive alternative to literal
+reflection.  `balanced-hnn-conditional-gap-forces-carrier-escape` shows that
+an equal-global-trace HNN transport `p_s -> p_t` moves at least
+`tau(Qp_s)-tau(Qp_t)` outside an analytic carrier reducing both atoms.  This
+gives CBR3 immediately from a payload-conditioned character imbalance and
+has the correct `O(sqrt(E))` robustness.  For the native controlled-Clifford
+pair the imbalance is `(tau(Qz_+)-tau(Qz_-))/4`; canonical orientation balance
+makes it zero.  The remaining one-edge target is therefore sharply scalar:
+couple forbidden payload mass to a nonstationary orientation profile, rather
+than authenticate a globally unequal literal corner.
+`finite-packet-flow-keeps-payload-orientation-balanced` now fences the finite
+packet realization of that scalar target.  Every finite diagram of packet
+restrictions, selector cuts, conjugacies and balanced HNN edges has a common
+regular stationary multiplicity profile.  On its full protected carrier each
+balanced source/target pair has equal conditional trace.  Tensoring with a
+structural shared BCS tuple can keep a forbidden Reynolds atom positive, so
+payload detection alone does not disturb this equality.  Orientation doubles,
+finite orientation permutations and the odd selector do not remove the
+countermodel.  The surviving construction must therefore force a genuinely
+nonstationary payload/orientation coordinate on the canonical reached hull,
+or implement a proper-corner return; enlarging the finite packet atlas cannot
+do it.
+The infinite address side is now separated just as sharply.  In
+`baumslag-binomial-prefix-centralizer`, the
+Baumslag relation `a^c=a^b a` gives a binomial basis for the negative lamp
+ray.  Two centralizer relators therefore authenticate every earlier-lamp
+commutator of every translated transporter, with polynomial HS cost.  So a
+finite presentation really can name and preserve the whole first-hit prefix.
+However, `baumslag-address-geometric-stationary-profile` gives
+unbounded finite-field affine quotients in which the first `m` lamps are
+independent and the regular prefix carrier has mass `2^(-n)`.  A positive
+structural forbidden atom tensors into this exact model but decays down the
+same geometric prefix.  Summability survives and carrier persistence fails.
+The selector phase does not repair this.  In
+`selector-baumslag-orbits-overlap-or-prepay`, the Pauli selector product has
+square `-1` on the positive forbidden atom in those same exact finite-field
+models.  Raw orbit halves keep mass `tau(A)/2` but have pairwise overlap
+`tau(A)/4`; the first-hit refinement makes them orthogonal only with mass
+`2^(-(n+1))tau(A)`.  More generally `N` orthogonal conjugate supports force
+`N tau(A)<=1`.  Hence even the genuine payload-corner square-root cannot
+turn infinite orbit naming into unprepaid capacity.
+Thus the remaining row must be payload-dependent and supercritical: it must
+install a full active child or proper-corner return on the actual reached
+carrier, not merely authenticate an infinite first-hit address tail.
+The most economical two-edge version has now been audited explicitly.
+`two-orientation-hnn-packet-prepays-escape` adjoins one letter conjugating
+`Z_1` to `s=t` and another conjugating it to `Js`.  On a carrier contained in
+the matching primitive type, the source Pauli half has twice the target
+overlap, so half of the selected source really leaves that primitive carrier.
+The global HNN balance stores the missing corner as the rank-three complement
+in the sibling orientation.  Exact balanced spin modules can route the whole
+apparent exit there.  Keeping fresh future packets in a primitive type costs
+one factor two in seed trace per level, and each later packet hull only
+releases that prepaid factor.  Thus the construction is a valid one-use
+conditional actuator but not a first-hit ladder; a cross-orientation
+payload-conditioned row is still necessary.
 
 Two qualifications are now explicit.  First,
 `coprime-root-reynolds-prefix-overlap` proves the sharp local estimate
@@ -260,8 +502,10 @@ tau(E(1-P_(Z,1)))=(1-p^(-1))tau(E)+o(1)
 whenever `E` is a literal character idempotent of a finite two-group and
 `Z` has exact odd prime order.  Hence root detection is already closed at
 the initial Pauli/BCS Reynolds seed and along literal commuting-sign prefix
-atoms.  It remains open only for the analytic reducing hulls or decoded
-coefficient corners needed by a supercritical recurrence; literal prefixes
+atoms.  Once a packet-reducing carrier is available, the
+binary-tetrahedral extension also closes the local overlap estimate for an
+analytic reducing hull in canonical microstates; the unprotected packet
+hull itself saturates the capacity as above.  Literal prefixes alone still
 have exponentially shrinking canonical capacity.  Second, the adaptive
 ring compiler is currently stated in characteristic zero, while the E5
 Fourier/Stone--von Neumann step requires characteristic `p`.
@@ -325,6 +569,146 @@ and `1/4`, so every unitary coarse-to-fine return pays a quarter-block HS
 floor.  A Whitehead scale change can avoid the floor only by moving mass out
 of the primitive block.  Thus the remaining theorem is unambiguously a
 mixed **type-return/leakage payment**, not local Clifford orientation.
+
+That payment now has a smaller exact endpoint.
+`odd-row-unoriented-fine-return-has-quarter-floor` shows that the Whitehead
+word need not preserve the positive primitive type.  It is enough to place
+the positive coarse half atom inside the **union** of the positive and
+negative fine quarter atoms.  This union has the same canonical trace
+`1/8` as the source, so it is compatible with rectangular finite geometry.
+The odd relation `t=W r W^*` then charges the negative-orientation fine
+piece, and an exact projection decomposition gives a `1/16-o(1)` ambient HS
+floor.  The sole live estimate is the unoriented typed-support incidence.
+
+The corresponding finite-group audit is exact.
+`primitive-clifford-balanced-atoms-have-hnn-obstruction` identifies the
+source and target as signed Reynolds projections of two explicit isomorphic
+`C_2^3` subgroups, each of trace `1/8`; a separate regular-safe HNN letter
+can transport them.  It cannot be the odd Whitehead transporter: the target
+contains a trace-`1/16` negative-orientation block on which the required
+controller eigenvalue is wrong.  Thus abstract subgroup matching is solved,
+while identifying that HNN transport with the native coefficient word is
+precisely the remaining matrix-only theorem.
+
+Keeping the HNN letter separate and comparing it to the native word by a
+polar/Gram construction gives no intermediate gain.
+`separate-balanced-hnn-cross-gram-is-typed-overlap` proves that, if `h`
+transports the signed source atom `p_s` to the balanced target atom `p_t`,
+then
+
+```text
+G=p_s h^*W p_s,
+tau(p_s)-tau(G^*G)=||(1-p_t)Wp_s||_2^2.
+```
+
+Thus source saturation of the cross-Gram is exactly the still-open typed
+support estimate, before taking its polar part.  The equality is sharp: the
+balanced eight-dimensional controlled packet extends by the full
+character-preserving HNN edge and an exact odd-row unitary while making
+`p_tWp_s=0`.  After four scalar twists this unitary has regular `C_4` type,
+so it can be amalgamated with the order-four signed Whitehead word in the
+finite typed rectangular coefficient chart.  Hence even literal reuse of the
+native word and all relations in that isolated chart retains zero overlap.
+Only additional relations from the **full** affine-Leavitt occurrence system
+can possibly supply the missing incidence; a freely adjoined balanced
+transporter cannot authenticate them.
+
+The full-occurrence audit now has a sharp exact conclusion.
+`full-signed-whitehead-amalgam-has-fd-invisible-clifford-mark` lists the
+entire coefficient table used by the signed three-root word, adds the one
+harmless fourth-power relation needed to make its Steinberg lift an honest
+`C_4` edge, and amalgamates it with the explicit controlled-Pauli monomial
+packet.  Bass--Serre normal form keeps the packet mark nontrivial.  In every
+exact finite-dimensional representation, however, the affine active
+kernel-ideal argument kills the three Whitehead factors; the odd row then
+forces `t=Z_1`, and two Clifford covariance rows force `J=1`.  Thus the full
+relations genuinely eliminate the isolated `UT_4`/rectangular marked
+countermodel.  What they do **not** provide is the normalized-HS promotion:
+intersecting exact root kernels creates a finite coefficient quotient, while
+an arbitrarily small HS error can have full rank.  Consequently the remaining
+typed-support row is exactly a dimension-uniform kernel-ideal/MF-radical
+theorem, not an omitted finite occurrence identity.
+
+Nor does the full packet graft make that theorem weaker.
+`whitehead-clifford-graft-hyperlinear-iff-base` proves
+
+```text
+Gamma_FWA hyperlinear  iff  Gamma_A' hyperlinear.
+```
+
+One direction is subgroup permanence and the other is hyperlinearity
+permanence for the finite `C_4` amalgam.  In the left regular representation
+of `Gamma_FWA`, all full occurrence and odd rows are exact, the finite packet
+has its canonical regular type weights, and the established odd-row
+decomposition gives
+
+```text
+||(1-p_t)W p_s||_2^2 >= 1/16.
+```
+
+This rules out property `(T)` spectral gap, fixed-root exactification, and
+any other finite-tracial Gram/SOS promotion as sources of the missing
+support estimate.  LLP, weak ucp stability, or flexible HS stability would
+close it, but each is already a nonhyperlinearity-strength assertion for
+this non-residually-finite Kazhdan base.  The robustness gate is therefore
+the original MF-radical problem in a precise finite-edge disguise.
+
+More sharply, the canonical asymptotic form of the typed-support estimate is
+equivalent to nonhyperlinearity of this graft, hence—by finite-edge
+permanence—to nonhyperlinearity of the affine-Leavitt base.  If canonical
+microstates exist, their fixed leakage polynomial converges to the regular
+value at least `1/16`; if they do not exist, the universally quantified
+asymptotic estimate is vacuous.  Therefore the full `(OUF8)` endpoint cannot
+be treated as an intermediate robustness lemma without extra quantitative
+content: in its present canonical-sequence form it simply restates the main
+open branch.
+
+The active-gauge obstruction persists through a proper ordinary-Leavitt
+quotient.  `ordinary-leavitt-quotient-fences-whitehead-active-floor` shows
+that one coefficient coordinate sends the Whitehead edge to an element of
+exact order four in `Q=EL_5(M_3(L_2(k)))`, and hence gives a quotient graft
+`D *_(C_4) Q`.  If `Q` is hyperlinear, canonical microstates of this quotient
+pull back to asymptotically exact models of every full affine occurrence row
+while keeping the Clifford mark separated; tensoring an exact positive outer
+payload fiber defeats any compressed active-floor estimate.  Thus using the
+full signed occurrence system to prove BAF3 would already prove this explicit
+ordinary Leavitt quotient nonhyperlinear.  This is stronger than an omitted
+affine-root stability lemma and explains why neither exact finite-dimensional
+collapse nor current character rigidity closes the gauge profile.
+
+A finite noncommuting control action does not repair this defect.
+`finite-packet-actions-have-positive-fiber-microstates` explicitly induces
+each canonical actor microstate over the regular orbit of a finite packet
+`P`: on the block `p`, the actor tuple is precomposed by the automorphism
+`alpha_(p^(-1))`, while `P` permutes the blocks.  Every crossed covariance
+row is then asymptotically exact, and every nonzero packet Reynolds fiber has
+its fixed positive regular trace.  Tensoring the outer forbidden atom gives
+zero compressed energy on a positive active fiber.  Hence the load-bearing
+relation cannot be a finite automorphism coupling or finite projective
+occurrence chart; it must leave the finite-extension class through a genuine
+global/noninvertible coefficient incidence, or already force the actor to be
+nonhyperlinear.
+
+There is now also a clean regular-lamp consequence of the same simple
+Leavitt actor.  `leavitt-regular-a5-wreath-is-minimally-almost-periodic`
+proves that
+
+```text
+Q=EL_4(L_(F_2)(1,2)),
+W=(directSum_Q A5) semidirect Q
+```
+
+are both finitely generated, nonsofic and minimally almost periodic.  The
+proof for `W` is exact: every finite-dimensional actor image is trivial by
+simplicity plus Malcev, covariance identifies all coordinate-lamp images,
+and commutation of distinct coordinates makes that common `A5` image
+abelian, hence trivial.  This removes finite-dimensional actor gauges from
+the simple-lamp route for this specific actor.  It does not yet classicalize
+normalized-HS microstates: on the branch where `Q` is hyperlinear, its
+canonical asymptotic representations can occupy the lamp multiplicity
+commutant even though no nontrivial exact representation can.  The remaining
+upgrade is therefore precisely dimension-uniform asymptotic multiplicity
+classicalization, not an exact representation-theoretic issue.
 
 Using the entire multiplication shear rather than one root does recover a
 genuine coefficient invariant, but it still does not cross this interface.
@@ -410,6 +794,30 @@ the orbit of the whole old carrier.  A successful row must therefore be a
 genuinely non-normalizing representation-type correspondence whose payload
 occupies only a proper set of target multiplicity slots.
 
+Using two full structural edges does not create that correspondence.
+`two-edge-holonomy-erases-role-packed-payload` composes two parallel
+shared-algebra intertwiners and obtains a normalizer automatically.  If the
+edge maps agree and the holonomy preserves the reached carrier, it fixes
+`Q_nB_f` exactly, so the overlap loss is zero.  If the maps differ, the
+returned forbidden aggregate has full reducing hull `WQ_nW^*`, and the
+quantitative payload density is replaced by payload-independent whole-carrier
+orbit growth.  Thus the minimal cross-edge loop is fenced as well: one edge
+must be genuinely partial on the shared algebra and its ordinary relators
+must authenticate that partial incidence specifically on the role-packed
+corner.
+
+Listing the forbidden Reynolds atoms under one stable letter does not create
+such partiality.  `one-letter-reynolds-rows-globalize-structurally` observes
+that all assignment atoms of a context are characters of the same finite
+context subgroup.  One conjugation map must agree on all shared-variable
+overlaps, so the listed rows extend automatically to the subgroup generated
+by every context and the common role diagonal.  Adding the transverse role
+covariance makes the letter a full structural intertwiner and returns the
+whole translated carrier; omitting it leaves the spin multiplicity gauge
+uncontrolled.  Thus the surviving unary arrow cannot be one common
+finite-subgroup HNN transporter.  It needs a multi-piece coefficient
+recombination or a non-conjugacy incidence visible only on `Q_nB_f`.
+
 The shortest literal-word implementation of that loss is excluded.
 Although `central-marked-two-cycle-zero-compression-cell` groupifies a source
 named by literal grading involutions, the aggregate reflection is not such a
@@ -454,6 +862,22 @@ remains unconstrained in the perfect infinite model.  If that
 carrier-localized factorization is supplied, the established predicate
 Reynolds rank jump gives the positive-density child-only sector and the
 tracial self-copy theorem closes the route.
+
+There is now a minimal signed-Reynolds calibration of that seam.
+`finite-reynolds-carriers-have-only-finite-pointwise-stabilizer` takes
+`H=F(x,y)`, the proper square embedding `x->x^2,y->y^2`, and a `C_2^2`
+packet on which `x` swaps two orthogonal character atoms while the child
+centralizes the packet.  Multiplying one atom by the forbidden selector
+projection makes the motion vacuous in the perfect trace and gives squared
+displacement `2tau(F)` on an active packet.  This supplies exactly the
+finitely generated self-copy and finite parent/child shadow one might want.
+It does not supply the fixed sector: a nonzero finite-support Reynolds
+coefficient has only a finite pointwise stabilizer.  Child normalizer rows
+make the resulting positive-rank left ideal invariant, not pointwise fixed,
+and the multiplicity action can have vanishing commutant density.  Thus a
+signed Reynolds atom cannot replace conditional kernel annihilation; the
+needed relation remains the additive payload row `(alpha(s)-1)F=0` (or a
+genuinely equivalent matrix-only decoder).
 
 At the coefficient-ring level this localization can be written down, but a
 later algebraic audit shows that the **complete** localization is too strong.
@@ -616,6 +1040,24 @@ must use specifically matricial/Connes-embeddable lift data and a quantitative
 decoder which has no analogue for the regular representation; limiting
 finite trace by itself cannot close the argument.
 
+The binary child refinement does not strengthen that exact-tracial input.
+`binary-toeplitz-root-refinement-has-a-bernoulli-haar-fixed-point` computes
+the complete joint law in the faithful regular model.  The roots
+`w_j=x_12(x^jP_fy^j)` form iid commuting Haar `C_p` variables, yet the binary
+stable letter satisfies
+
+```text
+t^n w_0 t^-n=product_(j<2^n)w_j.
+```
+
+Thus even an exact identification of one parent with the product of two
+independent, transverse children yields only the idempotent spectral equation
+`mu=mu star mu`.  Besides the trivial solution it has the uniform Haar
+solution, realized here with `||w_0-1||_2^2=2`.  Consequently no trace or
+spectral functional equation extracted from binary covariance can choose the
+trivial root.  The live Schur--Toeplitz endpoint is still specifically a
+matrix-lift/direct-finiteness decoder or an oriented payment for one child.
+
 The concrete finite-head quotient does, however, remove the ascending HNN
 letter from the approximation question.  In
 `toeplitz-finite-head-hnn-approximation-is-base-equivalent`, if
@@ -751,6 +1193,36 @@ trace with locally affine support, which
 `locally-affine-support-bcs-is-exactly-the-lcs-boundary` proves equivalent to
 the perfect non-CE LCS endpoint and hence to the desired group theorem.
 
+The obvious ways of changing the supplied trace cannot create that support.
+`affine-ghosts-survive-recoverable-tracial-dilations` observes that affine
+hull commutes with every affine decoder back to the old assignments.  Matrix
+amplification, central/direct sums, classical polarization, and tagged tensor
+products all retain such a decoder, so every old forbidden affine ghost
+survives.  Untagged tensoring evades the invariant only by losing the
+recoverable copy of the non-CE source algebra.  A support-pruning compression
+is tracial only on a central summand.  Thus the precise surviving choice is a
+non-CE central/factor component already having locally affine-safe support,
+or a genuinely global nonrecoverable compiler whose non-CE output is proved
+from scratch.
+
+There is nevertheless no quantitative loss hidden in the **restriction**
+direction of Slofstra's embedding.  The strengthened
+`marked-approximate-radical-survives-solution-group-embedding` gives explicit,
+dimension-independent constants `A,B` with
+
+```text
+kappa_Gamma(delta) <= kappa_G(A delta)+B delta.
+```
+
+They are read from the finite wagon-wheel pictures: a collegial relator of
+length `l` has an explicit `3l`-vertex filling.  Thus any marked approximate
+radical already constructed in the source transfers robustly to the solution
+group.  What the embedding does not do is create that source radical, extend
+arbitrary source microstates to the wagon wheel, or remove the locally affine
+ghosts identified above.  A quantitative constellation-stability theorem is
+therefore unnecessary for the one implication that would be useful here, and
+would not solve the missing source gate.
+
 Ordinary property `(T)` cannot upgrade exact root invisibility to this
 metric statement.  `agent-aggregate-escape-kazhdan-root-no-upgrade` records
 Thom's property-`(T)` LEF root construction: exact finite-dimensional
@@ -758,6 +1230,47 @@ representations kill the marked root while finite regular LEF models form a
 normalized-HS asymptotic representation keeping it at fixed distance from
 the identity.  Thus any successful estimate must use the actual mixed
 payload relations, not exact invisibility plus a generic Kazhdan wrapper.
+
+The stability literature audit now identifies the maximal unconditional
+positive result for the full Whitehead construction.
+`affine-whitehead-hyperfinite-stability-misses-canonical-mark` proves that
+every **hyperfinite** asymptotic representation of `Gamma_A'` kills `W`, and
+every hyperfinite asymptotic representation of `Gamma_FWA` consequently
+kills `J`.  This uses property `(T)`, the fact that amenable factorial
+representations of Kazhdan groups are finite-dimensional, and
+Dogon--Vigdorovich's exact hyperfinite-HS character criterion.  But a
+canonical approximation of either group, if it exists, converges to its
+nonamenable regular von Neumann algebra, so it is excluded by the definition
+of that theorem.  Strict or flexible normalized-HS stability would close the
+mark but is itself branch-selecting; cohomological stability is in
+unnormalized Frobenius norm; higher-rank character rigidity assumes a
+commutative Noetherian coefficient ring; and Slofstra supplies an embedding,
+but no retract or approximate-extension functor.  Thus the exact remaining
+hypothesis mismatch is **nonhyperfinite marked correction on the affine
+vertex**.  No currently established stability theorem turns the exact
+kernel-ideal collapse into that statement.
+
+The character-rigidity audit is now sharper than this hypothesis mismatch.
+`affine-whitehead-has-leavitt-quotient-character-face` centralizes the active
+head and projects its two Wedderburn blocks to obtain
+
+```text
+Gamma_A' -> Q times Q,       Q=EL_5(M_3(L_2(k))).
+```
+
+The map survives the `W^4` quotient.  Each coordinate kernel is infinite,
+and `Q/Z(Q)` is infinite simple and ICC.  Pulling back its regular character
+therefore gives an extremal character of `Gamma_A'` which is neither regular
+nor finite dimensional.  Hence the standard character dichotomy and the
+Margulis normal-subgroup property are not merely unavailable: they are false
+for this base, even after discarding the finite inactive direct factor.  A
+CE-only character collapse would already prove the ordinary Leavitt quotient
+nonhyperlinear.  The faithful canonical character remains in the regular
+branch, and relative `(T)` cannot make its diffuse root algebra finite.  The
+broader induced-character classification does not help either: this quotient
+character is already induced from the trivial representation of its
+infinite-index kernel.  The smallest live input is still the nonhyperfinite
+canonical lifting/kernel-ideal estimate.
 
 The projective-kernel compiler has also been reduced to its exact source
 gate.  `agent-projective-kernel-factor-face-is-playerwise` proves that for a
@@ -846,6 +1359,110 @@ cross-window tightness step: align those local types and the four fixed
 coefficient roots on a uniformly positive part of the prescribed marked-root
 carrier.  Once aligned, `approximate-relative-leavitt-cell-kills-active-trace`
 gives the dimension-free contradiction immediately.
+
+On the unary role-packed lane, the smallest non-conjugacy coefficient cell
+has now been completely audited.  If `p=B_f`, the two-coordinate Whitehead
+quarter-turn
+
+```text
+x_12(p)x_21(-p)x_12(p)
+```
+
+conjugates `diag(p,0)` to `diag(0,p)` exactly, and root addition recombines
+all orthogonal forbidden summands without selecting a type.  However,
+`split-steinberg-conditional-swap-has-root-kernel-countermodel` proves that
+the split ordinary-group compiler has a canonical retraction killing every
+root and fixing the BCS/role packet.  Its finite uniform-assignment model has
+positive `B_f` and separated mark but makes the quarter-turn the identity,
+so no HS escape follows even from arbitrarily many finite 2-by-2/3-by-3
+sum/product charts.  Together with the common-HNN globalization fence, this
+isolates the live unary gate sharply: one load-bearing root-to-payload
+relation must destroy the root-kernel quotient while remaining vacuous in
+the perfect `B_f=0` trace.  Supplying that relation would close
+`finite-depth-role-packed-aggregate-escape`; no such relation is presently
+proved.
+
+The smallest load-bearing attachment has also been closed in the negative.
+The same quarter-turn satisfies the exact conditional antiphase law
+
+```text
+W_p z W_p^(-1)=W_p^2z,
+```
+
+so one can identify it with the order-four rotation in a dihedral or Clifford
+actor.  `finite-cyclic-actor-root-kernel-dichotomy`
+shows that this never authenticates the payload when the actor shares only
+the protected central signs.  Killing `W_p` factors the actor by its cyclic
+generator.  If that quotient destroys the protected marked seed character,
+the perfect `B_f=0` model cannot extend.  If the character survives, the
+finite quotient representation tensors with the uniform positive-`B_f`
+structural model and gives exact zero escape.  Hence the unary lane now
+requires a genuinely noncentral root-to-payload incidence; finite-order,
+cyclic-amalgam, and finite Clifford load-bearing rows are exhausted.
+
+The analogous HNN repair also reduces rather than solves the gate.
+`load-bearing-hnn-substitution-is-an-ordinary-packet-detector` proves that
+after setting the Steinberg root normal subgroup to one, a row
+`tW_pt^(-1)=gV` is simply `g=1`; the stable letter disappears.  Homogeneous
+HNN power rows retain the exact positive-payload root-kernel model.  A
+nonhomogeneous row succeeds only if its residual packet word `g` already has
+a robust finite-matrix defect on positive `B_f` while vanishing in the
+perfect trace.  Thus HNN syntax has reduced the missing theorem to an
+ordinary-word nonlinear-predicate detector and has not provided that
+detector.
+
+The one-bit selector does nevertheless remove one narrower phase ambiguity.
+`selector-product-is-a-payload-corner-square-root` proves that for the
+selector involutions `p_a,q_a`, the literal word `d_a=p_aq_a` satisfies
+
+```text
+P_aQ_- d_a^2=J P_aQ_-.
+```
+
+Globally, `d_a^2 h_(a,v)=J` for the assignment-subgroup generator
+`h_(a,v)=x_vJ^(a(v))`.  Hence the selected atom carries a genuine raw odd
+lift, not only a PGL class, and the Pauli construction gives exact perfect
+consistency.  This does not yet pay the binary Schur child: tensoring with
+the stationary equal-child Schur model keeps every selector row exact while
+both child multiplicities remain unpaid.  A full-carrier identification
+recreates the Morita `M_2`; the precise surviving row is a compressed
+proper-corner incidence making this selector word the actual Schur return.
+Direct cyclic identification with the coefficient Whitehead word is ruled
+out: `B_f=0` makes that word one in the perfect trace, whereas the selector
+word squares globally to `J^(1-a(v))x_v`, which can remain negative on
+allowed support.  If that structural word is instead already one in the
+perfect trace, it is precisely the residual literal packet detector demanded
+by the HNN-substitution reduction.
+
+The smallest two-edge compressed comparison is also now fenced.
+`two-reynolds-edges-absorb-selector-holonomy-at-one-range` dresses one
+Reynolds HNN word as `U_0=Up_a` and `U_1=Uq_a`.  Their relative holonomy is
+the raw selector square root, and both its square and its commutator detect
+the odd marked phase on the forbidden atom.  Nevertheless the two edge words
+carry the source Reynolds projection to exactly the same final support.  A
+finite uniform-assignment/Pauli packet realizes positive forbidden mass and
+all these cycle rows at zero defect.  Accordingly, an odd external
+multiplicity holonomy is not the missing payment: the next row must read a
+noncentral target-support observable, while distinct finite target atoms
+reintroduce the already-proved regular companion flow.
+
+The minimal noncentral target packet makes that last boundary quantitative.
+`smallest-target-sign-split-is-regularly-absorbed` uses the three nontrivial
+characters of `C_2^2` and its `S_3` automorphism group.  Two actor words send
+one source character atom to orthogonal targets, and a target involution
+distinguishes them with squared HS gap `tau(F)/2` on payload `F`.  This is a
+genuine dimension-free one-step escape.  The same finite affine packet's
+regular representation contains all three atoms equally and saturates their
+orbit at trace `3/4` with zero relator defect; fresh packets prepay
+`4^(-N)` source density.  Hence finite target support is completely audited:
+the remaining incidence must carry a nonstationary label not closed under a
+finite regular orbit.  The first natural infinite label is also now fenced:
+`selector-baumslag-orbits-overlap-or-prepay` tensors the raw selector phase
+with unbounded Baumslag finite-field quotients.  The raw orbit cuts overlap
+at the stationary `1/4` value, while first-hit orthogonalization pays the
+exact geometric prefix.  The surviving nonstationarity must therefore be
+payload-dependent enough to exclude these exact active finite models, not
+merely infinite in its address orbit.
 
 ## Current proof frontier (2026-08-23)
 
@@ -951,8 +1568,28 @@ or equivalently that the Gram defect stay a fixed amount below `1/16`.
 The canonical arcsine law forces this second moment to zero, so
 `nonhyperlinear-from-regular-actor-second-fold-bias` would also close the
 root.  This is weaker than fold-square rigidity in its conclusion but has
-narrower hypotheses; it remains endpoint-equivalent on canonical
-microstates and is not a proved shortcut.
+narrower written hypotheses.  However,
+`congruence-tensor-regularizes-sl3-swap-profile` shows that those hypotheses
+cost nothing: tensor any approximate model with an exact finite-quotient
+regular actor and an external balanced bit, preserving the fold's second
+trace exactly.  Hence the terminal is equivalent to a defect-only uniform
+positive second-fold bias over all approximate assignments.  Finally,
+`positive-second-fold-bias-amplifies-to-full-rigidity` takes slowly growing
+tensor powers: relator defects grow only linearly while any positive
+second-fold trace bounded below one decays exponentially; a nonpositive
+trace already violates the bias.  Therefore this positive-bias terminal is
+equivalent to full fold-square rigidity.  It is a clean scalar
+reformulation, not a genuinely weaker shortcut.
+
+The exact scope of that shortcut is now fenced.
+`free-coset-swap-factor-has-zero-second-fold-bias` computes in the canonical
+group factor of the full swap extension that the actor is regular, the swap
+is balanced, and the fold is Haar, so its second-fold bias is exactly zero
+and its Gram defect is exactly `1/16`.  All arithmetic relators hold there
+with zero defect.  Therefore neither the positive-bias terminal nor full
+fold-square rigidity can follow from a dimension-blind tracial/SOS identity;
+the missing theorem must exclude this exact packet specifically from matrix
+ultraproducts.
 
 The dyadic representation-theoretic refinement of this lane now has a sharp
 depth boundary.  `every-fixed-dyadic-clifford-window-is-finite-fiber-folner`
@@ -1215,6 +1852,14 @@ factors do not by themselves yield coherent finite action charts; an
 equivariant boundary-completion or multiplicity-copy classicalization
 theorem is still load-bearing.
 
+For the regular action of the explicit Leavitt actor, the exact part of that
+obstruction is absent: `leavitt-regular-a5-wreath-is-minimally-almost-periodic`
+shows that neither the actor nor its `A5` wreath has a nontrivial
+finite-dimensional representation.  Thus an exact commutant gauge cannot
+survive there.  The hyperlinear branch still supplies genuinely asymptotic
+commutant gauges, so the statement does not prove action recovery; it narrows
+the remaining theorem to correction of those asymptotic gauges alone.
+
 The full-action conclusion is no longer the smallest live version of that
 gate.  `two-site-a5-plancherel-center-separates-mark` exactifies only the two
 marked `A5` lamps and uses the rational five-dimensional central idempotent
@@ -1234,6 +1879,72 @@ field into approximately multiplicative finite permutations.  No recovery
 of remote lamp labels is required, although the remaining operation is still
 a genuine hyperlinear-to-sofic classicalization theorem rather than finite
 packet rounding.
+
+The fixed-character shortcut to that operation is now ruled out in finite
+matrices.  `two-site-a5-center-has-exact-boundary-countermodel` uses four
+`A5` sites and an involution carrying the marked pair to a disjoint pair and
+back.  Its finite regular representation has the exact canonical character,
+all rational-center identities, and exact shared conjugation, yet composing
+the mover's compressed four-atom coupling with its inverse misses the
+identity coupling by total variation `3815/5184`.  Thus no dimension-uniform
+equivariant multiplicity table follows from the fixed two-site character
+identity alone.  The surviving target must remember transported boundary
+labels or obtain a coherent actor action independently; the countermodel
+does not refute such path-enlarged constructions.
+
+The path-enlarged option has now been separated into a solved interior and an
+unsolved closure.  `full-a5-path-memory-kills-holonomy-but-not-reiter-boundary`
+transports an atomwise A5-center basis along every retained actor word; all
+internal arrows then become block permutations with dimension-free HS loss.
+For an arbitrary weighted word packet, the unmatched mass of generator `s`
+is exactly `(1/2)||s mu-mu||_1`.  Hence near-total word-path tables would form
+a Reiter sequence, impossible for the pinned nonamenable property-`(T)`
+actor.  Boundary memory is therefore useful but not self-closing: the live
+classicalization theorem must extract a non-path finite chart carrier from
+the matrices, rather than enlarge a prefix packet.
+
+Exact expander carriers do not supply that alternative.
+`exact-expander-a5-carriers-collapse-marked-center` projects any binary center
+label in a genuine finite `G`-action to the `Gamma`-invariant subspace.  If
+its generator-invariance defect is `delta`, its displacement by the marked
+compressor is at most `4 delta/kappa^2`; the canonical A5 marked pair instead
+has displacement `35/72`.  Finite quotients therefore close the actor
+boundary only by erasing the mark.  The sole remaining lamp interface is
+simultaneous extraction of genuinely approximate actor permutations and A5
+labels from the unitary model; quotient-first or label-first constructions
+are both now fenced.
+
+The remaining unitary freedom on a fixed lamp chart is now quantified
+exactly.  `canonical-a5-window-leaves-a-partial-commutant-cocycle` first
+extracts the `1-o(1)` regular core of every canonical `A5^Y` microstate.  If
+an actor arrow is named only on `D subset Y`, its implementer is a partial
+coordinate permutation times a unitary in
+
+```text
+rho(A5^D)'' tensor B(ell^2(A5^(Y minus D)) tensor C^m),
+```
+
+up to a dimension-uniform error obtained by finite-group averaging and polar
+correction.  Actor products give a cocycle in these algebras, twisted by the
+chosen boundary-completion holonomy; canonical mixed traces do not shrink it.
+A fixed number of extra C2 address bits has only finitely many joint atoms
+and leaves a positive-density Fourier block.  The minimal relation which
+would force monomiality is therefore an actor-normalized, asymptotically
+separating copy Cartan, followed by the established cylinder-resolved trace
+argument to remove phases.  But that growing Cartan is precisely the finite
+probability carrier whose extraction is the open action-soficity step.  Thus
+fixed-window exactification is complete, and the last A5/C2 gate is now
+formally equivalent to equivariant Cartan completion rather than another
+finite-group stability estimate.  Replicating finitely many additional
+regular A5/C2 packets does not change this: their tensor model still admits
+an arbitrary external actor factor, which kills nonidentity mixed traces and
+carries the whole cocycle.  Any useful self-similarity must act on that tail
+factor itself, not merely split off another regular lamp tensorand.
+More strongly, amplification preserves every fixed group-word relation and
+puts a full matrix algebra in the commutant of all functorially extracted
+word projections.  Thus no fixed additional lamp relator can literally name
+the missing copy basis in all microstates; the remaining step must be an
+analytic invariant-diagonal selection theorem.
 
 The imported "quotient the local gauge first, then read the residual
 obstruction" calculus has now been run against the whole surviving frontier,
@@ -1314,6 +2025,62 @@ gate is `affine-frobenius-hecke-crt-shared-involution-interpolation`, which
 must produce one global involution per variable on several fixed,
 noncommuting large right ideals.  This is a conditional reduction, not yet
 an unconditional nonhyperlinear group.
+
+The two-context algebra inside that gate is now completely calibrated.
+`projection-crt-deficit-forces-common-meet` constructs rational
+noncommuting masks with rank-one deficit and one exact finite-support
+reflection, so noncommutativity of the right ideals is not by itself the
+barrier.  Conversely, every projection CRT solution with incidence pieces
+`r_i` and mask deficits `delta_i` satisfies
+
+```text
+tau(meet_i r_i)>=tau(p)-sum_i delta_i.
+```
+
+For two incidences, each negative piece outside their literal meet is bounded
+by the opposite mask deficit, and the rank-one cell attains equality.  Hence
+the strict-budget regime automatically creates a large common negative core
+for each variable, without any tight-frame ansatz.  The surviving
+affine-Frobenius problem is therefore global: correlate all fixed nonaffine
+context PVMs around those variable cores while leaving the finite
+Bass--Serre class.  Performing the same construction inside one finite
+packet would already be the forbidden finite-dimensional BCS certificate.
+
+That last statement now has an exact dimension-uniform ledger.
+`bcs-gap-blocks-vanishing-crt-mask-budget` shows that every finite-dimensional
+family of exact CRT cells obeys
+
+```text
+weighted forbidden mass + weighted consistency-mask deficit >= Delta.
+```
+
+If separate predicate masks annihilate the forbidden projections, their
+weighted codimension dominates that forbidden mass; therefore the total
+predicate-plus-consistency budget is at least `Delta`.  In particular no
+sequence of rational Frobenius cells can have total mask deficit `o(1)` while
+also hiding the forced predicate loss.  Vanishing consistency deficit instead
+preserves forbidden mass at least `Delta-o(1)`.  This closes the global finite
+matrix scaling question: the open construction must live in an ambient group
+whose canonical trace has the strict row certificate although its exact
+tracial model remains perfect, rather than in any growing family of finite
+packet algebras.
+
+The next Reynolds/Hecke energy step is also sharply fenced.
+`rf-reynolds-mask-deficit-is-not-relator-energy` proves that in every
+residually finite row system, one finite quotient regular representation can
+simultaneously make all group/HNN relators exact, match every fixed canonical
+word trace, and retain the exact canonical codimension of every finite-support
+mask.  Hence no positive sum of predicate and consistency mask deficits can
+be upper-bounded by ordinary relator energy in that class.  The countermodel
+still works for high-density complements of nontrivial finite-subgroup
+character idempotents, whose augmentation is one; changing the removed
+Fourier atom does not help.  Any successful row-energy compiler must instead
+make its deleted mask projections vanish in every finite-dimensional exact
+representation while remaining nonzero in the canonical group algebra, and
+must robustify that finite-dimensional radical in normalized HS norm.  Finite
+amalgams and finite-subgroup HNN covariance cannot create this.  The first
+load-bearing ingredient is therefore a non-Bass--Serre two-cell or infinite
+actor relation among the intertwiners, not another subgroup rank actuator.
 
 The breakout portfolio of 2026-08-21 is recorded in
 `research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md`. Its
@@ -1612,6 +2379,33 @@ type (ii) for `C = SL_n(Z)` asserts that Popa's theorem fails past
 amenability — the Gao--Junge open problem in its first arithmetic
 instance.
 
+The independent Haar-tag/Diracization version of type (i) now has an exact
+kernel audit.  `haar-tag-cancellation-retention-is-group-realizability`
+shows that the diagonal group generated by payload unitaries with arbitrary
+group-valued Haar tags has canonical trace precisely when the tag-zero kernel
+already has regular payload character.  A faithful tag map therefore erases
+the payload completely; a nonfaithful one either restores noncanonical
+payload moments or puts the cancellation sector inside an already regular
+kernel group factor.  Balanced tensor powers likewise have payload
+expectation `pi(w)|tau(w)|^(2k)`, scalarizing every fixed finite-word decoder.
+Thus a fixed-density recoverable non-CE corner would not be supplied by the
+tags: it would already be the terminal group-factor realization in the kernel
+identified by `fixed-density-polarization-retention-is-terminal`.
+
+The measured/algebraic version of type (i) is now closed against the native
+Manzoor actor.  `manzoor-native-haar-envelope-is-ce-after-corners` shows that
+every compact-abelian Haar action of the source free group has crossed
+product `L(A semidirect F)`, with `A semidirect F` sofic.  No non-CE Manzoor
+GNS or relation factor can embed there, even after matrix amplification or a
+nonzero finite corner; in a finite tracial algebra every trace-preserving
+inclusion is automatically expected.  The stabilizer realization used by
+Manzoor instead maps the free-action crossed product onto the relation
+algebra only through a singular orbit-arrow quotient.  Thus the algebraic-
+envelope compiler remains exact, but it must change the acting group.
+Producing that different algebraic action would already exhibit the non-
+hyperlinear dual semidirect product and is not hidden Bernoulli structure in
+the published construction.
+
 **Frontier map after the 2026-08-21 evening RE pass.**  The three
 independent standing routes each bottleneck at a core that is
 equivalent-to-or-harder-than a recognized open problem, and the by-hand
@@ -1636,6 +2430,15 @@ routes now share ONE analytic residual:
   Reduces to finite certificates over `A8 = GL_4(F2)` and collision `19243`
   (`atlas-a4-holonomy-coherence-gap` family); several are being computed
   directly.
+- *Binary-Leavitt singular-cover lift (state form).*  Full LLP is unnecessary
+  but the weaker endpoint remains goal-hard:
+  `fourier-local-sections-already-descend-amenable-trace` shows that ucp
+  sections only on finite Fourier word systems already descend the amenable
+  cover trace to the nonamenable regular quotient.  Infinite-cyclic systems
+  lift by functional calculus; the first missing datum is a multiword
+  positive lift which is collision-consistent for equal differences
+  `g^{-1}h`.  The near Gram matrix is positive but has that consistency only
+  modulo the trace-kernel ideal, so pure singularity supplies no section.
 - *MIP*=RE transfer (type i).*  `non-ru-bcs-is-satisfiable-in-a-group-factor`
   (weakest form; any corner of any group factor modelling the fixed non-RU
   BCS), equivalent by `character-group-realizability-parseval-criterion` to
@@ -1663,6 +2466,181 @@ route both reduce to the SAME rank-one core,
 CORE A:  flexible HS-stability of the rank-one pair SL_2(Z) < SL_2(Z[1/2])
          (Dogon--Vigdorovich Question 1.4, the Iwahori / BS(1,4) lane).
 ```
+
+The factorized form of CORE A has one less independent obstruction than it
+first appears.  `projective-dihedral-factorization-has-explicit-hs-retraction`
+shows that, after retaining one projective Weyl factor `A`, the relation
+`C=AB` together with `A^(-1)CA=C^(-1)` admits an explicit same-dimensional
+normalized-HS retraction: round `D=A^(-1)C` to the roots of
+`D^2=epsilon I`, at cost at most the reflection defect divided by `sqrt(2)`.
+Thus factor splitting itself is uniformly repairable.  The unresolved CORE A
+gate is the simultaneous intersection with `CXC^(-1)=X^4` and the two modular
+order-three rows.  Projecting a corrected BS pair back to the reflected locus
+reintroduces these residuals with absolute linear constants, so a proof still
+needs a dimension-uniform angle or flexible boundary reconciliation among the
+three exact loci; the known slow regular modes and compressed Weil packets do
+not supply that angle.
+
+The strict-angle option is now completely excluded.
+`iwahori-two-loci-have-zero-uniform-angle` puts the compressed even-Weil tuple
+exactly on the reflected `BS(1,4)` locus and, by simultaneous triangle
+rounding, finds an exact two-cubic tuple only `O(p^(-1/2))` away.  The
+same-dimensional intersection remains a fixed positive distance away.
+Therefore metric linear regularity, a globally uniform alternating-projection
+contraction, and residual-only Newton basin capture all fail.  The surviving
+CORE A endpoint is necessarily flexible: it must spend the rank-one boundary
+mass across packets rather than improve the strict intersection angle.
+
+For authenticated Weil mixtures, that flexible spending is now block-free.
+`weil-reservoir-mixing-has-energy-paid-completion` permits heterogeneous
+prime levels, arbitrary multiplicities, common basis changes, and arbitrary
+unitary mixing inside the whole deleted fixed-line reservoir.  The positive
+corner spectrum remains at most `1/sqrt(5)`, so the first cubic Frobenius
+energy pays a universal constant times the entire deleted rank.  Restoring
+that reservoir gives the exact endpoint with squared flexible displacement
+of the same order as energy density.  Consequently CORE A's remaining gate
+is no longer completion of arbitrary authenticated block sums; it is reverse
+authentication of a positive boundary reservoir or global congruence atom
+from the two residual carriers of a completely arbitrary near-solution.
+
+That reverse statement now has a necessary asymmetry.  The active carriers
+cannot authenticate the passive global endpoint type.
+`active-residuals-do-not-name-passive-endpoint` attaches an arbitrary
+growing `o(d)` sum of one fixed nonzero compressed Weil cell to each of two
+macroscopically separated cuspidally
+redistributed exact endpoints over the same literal BS core.  The resulting
+near tuples have identical exact cores and literally identical two-cubic
+residual operators, including all polar and principal-angle data, while the
+passive involutions remain a fixed distance apart modulo the core commutant.
+Both are completed by restoring the same energy-paid active boundary lines,
+but they retain different passive endpoint types.  Hence the surviving
+reverse theorem must restore a local energy-paid boundary cell and then use
+the supplied passive involution in a separate adaptive correction.  No map
+from “exact core plus active residual data” to one global congruence atom can
+prove CORE A.
+
+The surviving triangular statement is complete at every fixed coordinate.
+`fixed-core-passive-fiber-has-positive-basin` minimizes the two-cubic loss
+on the compact exact-inversion reflection locus over a fixed core `beta`.
+Away from the finite simultaneous endpoint fiber it has a positive minimum
+`delta_beta(eta)`, so a passive residual below that radius exactifies within
+`eta`; direct-summing the restored active cell then gives the exact endpoint.
+The unresolved uniform theorem is precisely that the moving passive
+residuals beat their moving radii.  Sublinear active restoration cannot
+force this, because it leaves the relative ultraproduct lifting class
+unchanged.
+
+A normalized tangent blow-up does not bypass this point.
+`moving-basin-blowup-needs-displacement-charge` proves that if `X` remains
+distance `eta` from every exact endpoint, then for every `tau<eta` the
+operator-`>tau` part of `X-Y` has relative rank at least
+`(eta^2-tau^2)/4`, for every endpoint `Y`.  The operator-small remainder
+cannot carry a nonzero normalized tangent, while discarding the large part
+costs positive-density padding.  Residual thresholding controls spectral
+projections of the cubic errors, not these endpoint-displacement
+projections.  Relating the two would itself be the missing global arithmetic
+error bound.  A fixed-degree scalar family with uniform derivative at every
+coordinate zero but a collapsing far-away residual shows that local tangent
+coercivity and bounded derivatives alone cannot provide it.
+
+The integer boundary bookkeeping is also complete at its first native face.
+`three-way-parity-hole-has-one-cell-repair` shows that the minimal
+determinant-two source/two-exit hole is repaired by one support-changing odd
+margin triple.  At level five,
+`a5-d10-restriction-keeps-parity-charge` computes the exact
+`A_5 -> D_10` table: exact atoms preserve the parity of
+`epsilon+rho_1+rho_2`, but one raw sign line gives
+
+```text
+epsilon+rho_1+rho_2+epsilon=res(3+3').
+```
+
+The line is energy-paid on that face
+(`a5-d10-parity-blocks-have-energy-paid-repair`).  More generally,
+`fixed-finite-core-face-has-energy-paid-completion` proves the same
+compactness/completion dichotomy for every fixed finite quotient and core
+type.  Thus the residual arithmetic obstruction is not fixed-level
+integrality; it is uniformity across moving authenticated faces.  The one
+remaining fourth case is a soft delocalized face with vanishing energy
+density but neither a uniform same-core basin, an `O(E)` internal carrier,
+nor an `O(E)` efficient native completion.  The known Weil packets have the
+last completion, while the known cohomological soft modes fail the exact-BS
+core hypothesis.
+
+A dyadic decomposition does not remove this quantifier by itself.
+`dyadic-face-repair-needs-cost-tail-tightness` proves that facewise bounds
+`r_lambda<=C_lambda e_lambda` sum only to
+
+```text
+total repaired rank/d <= L E/d
+  +mass{lambda:C_lambda>L}.
+```
+
+Thus pointwise finite-face compactness gives a qualitative global repair
+only under uniform tightness of the occupied repair-cost tails.  The scalar
+array supported on a type with `C_n->infinity` and energy density `1/C_n`
+is the exact failed diagonal implication.  Canonical trace does not give
+ordinary type tightness by conductor truncation: it sends every fixed
+shallow-conductor mass to zero.  A native cost bound or a distinct
+cost-tail theorem is still required.
+
+The natural core-level coarea repair is quantitatively false.
+`bs-core-coarea-cuts-have-full-legalization-cost` cuts an irreducible
+length-`m` fourth-power BS packet along half of its base spectrum.  The cut
+has unnormalized core boundary exactly two, but the joint core commutant is
+scalar, so replacing it by any exact core-reducing projection changes
+`Theta(m)` dimensions.  Property `(tau)` is available only after an
+endpoint atom has been selected.  A nonlinear proof must therefore use the
+two endpoint rows while authenticating that atom; it cannot first legalize
+residual layers using the amenable core alone.
+
+The endpoint rows themselves eliminate this particular hard-cut enemy once
+a same-core endpoint is known.  By
+`endpoint-triangle-charges-bs-sign-cut-volume`, multiplying an exact
+endpoint reflection by a spectral sign `1-2P` forces square-plus-first-
+cubic energy at least `2 rank(P)`; if the new reflection is still an
+involution, the first cubic alone costs `4 rank(P)`.  Thus a half-cycle cut
+has linear endpoint energy despite constant core boundary, and arbitrary
+unions of cyclic intervals satisfy the same volume charge.  What remains is
+authentication of the comparison endpoint, not cyclic isoperimetry inside
+an authenticated basin.
+
+A fixed comparison endpoint still cannot be used globally.
+`core-expectation-misses-exact-endpoint-zero-modes` amplifies the mod-three
+pair of exact same-core extenders whose relative gauge lies outside the
+core commutant.  Conditional-expectation transverse norm is then positive
+at exactly zero endpoint energy.  The `R`-commutant has no uniform gap on
+long BS cycles, while the endpoint intertwiner expectation has a gap only
+after a finite quotient type is known.  Thus the global objective is
+adaptive distance to the nonlinear union of restriction-ring fibers; a
+commutant-plus-transverse decomposition around one arbitrary baseline
+cannot prove it.
+
+After authentication, neither cross-packet mixing nor the first
+cross-stratum substitution remains open.
+`congruence-cross-type-mixing-has-uniform-polar-repair` applies property
+`(tau)` to the mixed intertwiner, averages it to an exact intertwiner, cuts
+its modulus at `1/2`, and polarizes.  The source and target complements have
+rank at most a universal constant times the relator energy, and padding by
+the opposite complements gives an exact support-changing completion.
+`metacyclic-cross-stratum-energy-is-inverse-dimensional` checks the smallest
+unauthenticated-looking substitution inside a regular endpoint: its three
+coset branches are orthogonal and its endpoint energy is `Theta(1/D)`, exactly
+the scale of the available same-space core correction, not `o(1/D)`.
+
+Direct central-idempotent decoding does not supply the missing
+authentication.  `raw-core-central-reynolds-authentication-is-circular`
+records two independent obstructions.  The exact BS core alone cannot choose
+the global central profile, because cuspidally redistributed exact endpoints
+can have the same literal core.  Evaluating a finite-quotient central
+idempotent on the raw tuple requires a word-section multiplication table;
+the cyclic core-character family gives nonuniform logarithmic filling cost
+for every frozen-core section.  Moving the core before evaluating that table
+is precisely the gauge-optimized theorem still being sought.  Thus the sole
+arithmetic gate is now accurately stated as **adaptive moving-core relative
+liftability**, or equivalently the gauge-optimized two-dimensional section
+energy estimate.  It is not conductor guessing, parity repair, packet
+mixing, or passive-type selection from the active residuals.
 
 The 2-adic tower residual is the `Lambda`-exact sub-case of CORE A; the
 weak-ucp outlier residual is the non-exact sub-case; the cusp computation
@@ -1726,3 +2704,325 @@ as an open hole while `cairn why` called it refuted; on re-check the claim
 was OPEN when that listing was taken and was refuted shortly afterwards by
 `atlas-14-core-q19243-gl5-countermodel`, and the frontier view now agrees.
 No tool defect.
+
+**Kun--Thom/Kahl--Schneider compression audit (2026-08-24).**  The actor-only
+route now has a complete countermodel.  For the actual residually finite
+Kun--Thom pair, `kun-thom-compression-survives-amenable-near-model` assembles
+the finite regular quotients of `G` into a faithful, essentially free,
+amenable **genuine** representation with its Kahl--Schneider basis charge.
+The strict inclusion `t Gamma t^(-1)<Gamma` survives faithfully in the direct
+sum, but in every finite block the two subgroup images are conjugate finite
+subgroups with one included in the other, hence equal.  Their fixed spaces
+therefore coincide exactly, the compressor normalizes the common fixed
+space, and its Reynolds projection has charge
+
+```text
+lim_n 1/|q_n(Gamma)|=0.
+```
+
+Thus neither amenability nor even exact multiplicativity turns the compression
+into a positive-charge child-only sector.  Bekka--Valette only returns a
+nonzero finite-dimensional subrepresentation, and every finite-rank projection
+in this witness is charge-null.  The full wreath and double are not modeled by
+this construction, so their hyperlinearity remains open.  What a successful
+transfer must additionally prove is lamp-sensitive **invariant Cartan
+completion**: recover a charge-visible abelian diagonal normalized by the
+actor.  Kahl--Schneider's invariant state `mu_bullet` does not provide this,
+because the near unitaries need not normalize the basis masa.  The compression
+geometry alone is therefore exhausted; the lamp/Cartan classicalization is
+the exact remaining interface.
+
+There is nevertheless a weaker pinned stability endpoint than invariant
+Cartan completion.  `kt-wreath-relative-canonical-actor-exactification` asks
+only that the **actor restriction** of canonical microstates of the explicit
+wreath be close, after negligible padding, to genuine finite-dimensional
+actor representations.  Property `(T)` rounds the base lamp into the actor
+commutant, and finite-dimensional commutant no-growth makes a strict
+compressor unable to create the distinct transported lamp required by the
+canonical trace.  Thus this actor-only, canonical-sequence exactification is
+already sufficient for a non-hyperlinear group; full wreath stability, lamp
+exactification, and monomialization are unnecessary.
+
+The updated Kun--Thom group double behaves differently.
+`kt-double-canonical-vertex-marginals-admit-large-amalgam-twists` uses the
+actual residual finite quotients of the Theorem E actor.  Diagonal random
+signs on left `q_n(Gamma)`-cosets commute with the amalgam exactly, while a
+fixed element detected through the `SL_d(Z)` quotient moves them by squared
+HS distance at least `2`.  Conjugating one finite regular vertex
+representation by these signs gives two exact copies, agreeing on `Gamma`
+and each converging to the regular actor character, yet uniformly unaligned.
+So vertex HS stability or vertex character rigidity alone cannot make
+hyperlinearity of the double imply residual finiteness.  The minimal surviving
+double lemma must constrain mixed reduced alternating-word characters—an
+amalgamated-freeness obstruction—not merely the two canonical marginals.
+
+The first direct attack on the new actor-only wreath endpoint produces a
+sharp firewall rather than a proof.  For every single positive Kun--Thom
+compressor, `kt-single-compressor-canonical-lamps-do-not-exactify-actor`
+uses the established soficity of the restricted coset action to build
+canonical **permutation** microstates of its binary wreath.  These models
+satisfy all Bernoulli cylinder and mixed lamp--actor traces, yet their actor
+legs stay a uniform normalized-HS distance from every genuine
+finite-dimensional representation after `o(d)` padding.  If they did not,
+Kazhdan averaging and finite-dimensional commutant no-growth would identify
+the lamps at `tGamma` and `gamma tGamma`, contradicting their canonical
+distance `sqrt(2)`.  Thus canonical lamp moments do not repair generic actor
+instability locally.  Any proof of the full
+`kt-wreath-relative-canonical-actor-exactification` must consume relations
+from at least two incompatible compressors—the same multi-compressor
+compatibility where Kun--Thom nonsoficity first appears.
+
+That lower bound has now been sharpened beyond “two.”  The natural pair
+`u_13,u_32`, whose commutator is the strict compressor `u_12`, generates an
+amenable Heisenberg compression monoid.
+`amenable-multi-compressors-have-a-joint-hs-telescope` indexes arbitrary
+coefficient representations by explicit Heisenberg Følner boxes and obtains
+simultaneous `O(L^(-1/2))` HS covariance for both compressors, their
+Steinberg commutator relation, and every fixed local lamp/Reynolds table.
+Thus noncommutativity and a commutator compressor do not exactify the actor.
+The surviving Kun--Thom seam is genuinely global: canonical mixed lamp
+correlations for a nonamenable generating family, or an equivalent
+lamp-algebra/Cartan recovery.  The telescope does not model those global
+moments and therefore does not decide hyperlinearity of the full wreath.
+
+Nonamenable cone expansion itself is now equally explicit.
+`opposite-transvections-are-free-but-finite-lamp-windows-close` proves that
+the two positive compressors `u_12,u_21` generate a free monoid, with total
+right boundary at least `2|F|` for every finite word set.  A depth-uniform
+lamp decoder on all wrong boundary matches would therefore give a constant
+HS floor.  But every fixed-radius positive cone embeds in a finite
+congruence quotient, whose finite Bernoulli wreath realizes all lamp moments
+in that window exactly.  Such models break only on the compressed
+`Gamma`-moved lamps, because every finite quotient makes the image of
+`Gamma` normal.  Hence the expansion is certified, but turning it into KRE2
+still requires a uniform stabilizer-sensitive decoder rather than bounded
+cone tests.
+
+The finite-depth stabilizer decoder itself is now explicit.
+`free-compressor-tree-has-constant-first-hit-mover-mass` assigns one lamp bit
+to every internal word of the opposite-transvection tree.  Its depth-`n`
+dyadic cylinders are orthogonal, their leaf exits are fixed by the child
+compression subgroup, and a parent-only stabilizer element moves them with
+aggregate squared normalized-HS mass exactly `1/2`, independently of `n`.
+This removes first-hit capacity as the local obstruction.  What remains is
+an adjoint-rank conversion: the `2^n` exit projections span normalized
+adjoint rank at most `2^n/d^2` at fixed depth, below the scope of the existing
+property-`(T)` positive-density theorem.  A depth-uniform aggregate
+Reynolds inequality `(FCT8)`, or equivalent lamp/Cartan recovery, is still
+needed; finite congruence windows fail precisely the `Gamma`-moved leaf
+correlation that carries the constant half-unit displacement.
+
+The natural categorical amplifier has also been audited and does not supply
+that inequality.  By `fct8-left-lift-and-rotated-defect-firewall`, the
+left-multiplication projections `L_(X_w)` have total normalized
+superoperator trace `1/2` and retain the mover norm exactly, but their ranges
+are only invariant under the child adjoint action, not pointwise fixed.
+Conversely, the pointwise-fixed rank-one lifts have total adjoint trace only
+`2^n/d^2`.  Dimension-free passage of relator defects through one or two
+adjoints does hold, so this is a categorical failure rather than a norm
+loss.  An exact permutation-block example shows more sharply that a sparse
+root defect can be rotated into all `2^n` orthogonal leaf blocks, forcing an
+exponential constant in any summation based only on conjugation and
+orthogonality.  The surviving FCT8 route must therefore recover genuinely
+joint prefix-unitary/lamp structure; vectorwise Kazhdan summation alone is
+insufficient.
+
+The exact aggregate boundary is now explicit.
+`aggregate-leaf-bessel-fails-after-prefix-transport` proves the perfect
+fixed-error identity
+`sum_w||E X_w||_2^2=tr(E^*E sum_w X_w)<=||E||_2^2`, but a prefix `v` rotates
+that error to `vEv^(-1)` on its own leaf. Rank-one coordinate blocks show a
+wall of squared mass `1/N` can thereby pay unit aggregate mass. The estimate
+is recovered exactly under the additional transported-frame condition
+`sum_w v^*X_wv<=C I`; no current relation supplies it. This is not merely an
+abstract packet: canonical one-compressor Kun--Thom wreath microstates contain
+a trace-`1/2` lamp projection asymptotically fixed by `t Gamma t^(-1)` but
+moved by `Gamma` with squared distance `1/2`. Thus property `(T)` and every
+fixed one-compressor relation fragment already fail to promote child
+invariance to parent invariance. Only the simultaneous incompatible
+compressor tables remain capable of enforcing the missing frame/common-Cartan
+condition.
+
+The global family can nevertheless be made minimal and completely explicit.
+`kt-two-positive-compressors-generate-full-obstruction` takes the cyclic
+coordinate permutation `C`, `B=I+E_12`, and `A=CB` in the `d=3` Theorem E
+pair.  Both `A` and `B` are positive strict compressors, while
+`C=AB^(-1)` and the cyclic conjugates of `B` generate all of `SL_3(Z)`;
+their conjugates of the polynomial elementary group generate the Laurent
+elementary group.  Hence `<Gamma,A,B>=G`.  Each one-compressor canonical
+permutation model exists, but no common actor restriction can carry all
+joint coset/lamp tables: such refinements would be a sofic approximation of
+the known nonsofic full action/wreath.  Thus the full permutation obstruction
+already lives on two named compressors.  What remains open is precisely the
+unitary upgrade: recovering this joint permutation incompatibility from
+canonical normalized-HS microstates.  Exact commutant indices do not supply
+it, since both strict directions have infinite growth in the Clifford model
+and that index is not HS-continuous.
+
+The first direct cylinder-PVM attack on this pair gives another exact fence.
+`kt-two-compressor-lamp-orbit-is-a-sofic-regular-wreath` observes that the
+`<A,B>=SL_3(Z)` orbit of the base coset is regular, because the external
+factor intersects `Gamma` trivially.  Its entire binary lamp semidirect
+product is therefore the ordinary regular wreath `C_2 wr SL_3(Z)`, which is
+residually finite.  Canonical permutation microstates already realize every
+finite `A,B`-orbit cylinder, all joint `A,B` multiplication, and all mixed
+traces with one invariant cylinder masa.  Thus an `A,B`-only normalizer
+transfer, even if perfect, cannot reach the Kun--Thom defect.  The first
+possibly decisive PVM must also encode how `Gamma` acts on transported
+cylinders—mixed incidences `gamma w Gamma`—and classicalize that nonnormal
+Kazhdan stabilizer table on the same masa.  This is a sharper target than
+generic invariant-Cartan completion, but it remains the unitary-HS seam.
+
+The first required mixed incidence is explicit and only two-site.
+`kt-ab-marked-return-is-the-first-mixed-cylinder` chooses
+`r=e_12(x_1) in Gamma` and an `A,B` word `L` with
+`Le_1=-(1,1,1)`.  Its return
+`h=LrL^(-1)=e_12((x_1x_2x_3)^(-1))` moves `Gamma` to the published marked
+site `hGamma`.  Once a common diagonal actor table exists, the two binary
+lamp projections have separation mass `1/2` (or `35/72` for the rational
+A5 center), and the established failure of marked two-point approximation
+is terminal.  So a positive proof needs no growing cylinder catalogue; it
+must make this single mixed Gamma--A,B return kill the two-site boundary
+multiplicity cocycle.  Separate covariance cannot do that, as the exact
+finite A5 boundary countermodel already shows.
+
+One visible root correlation is still too little.
+`kt-single-root-mixed-return-has-exact-finite-countermodels` reduces the
+Laurent exponent torus modulo `N`, takes the finite actor quotient, and
+wreathes its cosets by the cyclic subgroup generated by the image of `r`.
+These exact finite models satisfy every actor relation, `[a,r]=1`, and
+`b=hah^(-1)`, while the two lamp projections retain squared normalized-HS
+distance `1/2`.  Hence no single-correlation inequality attached only to
+`r` and `h` can provide the missing classicalization.  The next legitimate
+target must use a finite Gamma stabilizer packet jointly with the mixed lamp
+table; merely naming the arithmetic return does not remove its multiplicity
+cocycle.
+
+The required full stabilizer packet is explicit.
+`kt-elementary-kazhdan-packet-rounds-base-lamp` takes all constant elementary
+roots and the roots `e_ij(+-x_l)`.  Steinberg commutators generate the whole
+polynomial elementary group, so property `(T)` supplies a fixed Kazhdan
+constant.  In any genuine actor representation, a lamp projection commuting
+with this packet up to `delta` is within
+`sqrt(2) delta/kappa_K` of an actual projection in the Gamma commutant; the
+same estimate transports through the named word `h`.  This closes the
+relative lamp-rounding sublemma.  It does not exactify the actor or control
+the residual action of `h` on the commutant multiplicity, which remains the
+unitary-HS obstruction.
+
+The natural two-compressor irrep-flow refinement also has an exact firewall.
+`kt-two-compressor-irrep-flow-has-profinite-stationary-points` observes that
+in every finite quotient of the actor both strict compressor inclusions become
+automorphisms of the finite image of `Gamma`.  Its regular Plancherel vector is
+therefore stationary for both `A` and `B`, while finite quotient choice matches
+the canonical actor trace on any fixed window.  Moreover compressor
+precomposition can branch irreducible types, and the scalar type weights
+forget the entire matrix action on the commutant multiplicities where the
+lamp projection lives.  Thus no free-semigroup boundary inequality on irrep
+weights can close the seam.  The live target is a projection-valued,
+multiplicity-sensitive two-compressor inequality coupled to the marked-return
+lamp trace.
+
+**Free-compressor packet-covariance audit (2026-08-24).**  The strongest
+natural named-packet covariance still leaves the decisive tensor gauge.
+By `packet-covariant-kernel-gauge`, on every irreducible finite packet type a
+free generator has Schur form
+`X_i=pi(theta(x_i)) tensor W_i`; hence the finite packet factor cancels on
+`ker(theta)`.  Residual finite regular choices of `W_i` preserve the canonical
+actor moments and all outer BCS/Reynolds data while making the normalized
+kernel-fixed adjoint density exactly `1/|q_k(ker theta)| -> 0`.  Therefore the
+predicate-rank adjoint gap does not by itself reach the self-copy terminal.
+The exact surviving gate is payload-conditional control of the multiplicity
+representation: a uniform positive lower bound for its kernel commutant on
+the selected forbidden type.  Any finite attachment whose specialized active
+group remains residually finite with infinite kernel image has the explicit
+regular countermodel; forcing a uniform no-microstate floor instead would
+already supply the hard approximation obstruction.
+
+**Slofstra wagon-wheel quantitative audit (2026-08-24).**  The picture method
+is already normalized-HS quantitative in the only direction its algebraic
+embedding needs.  A fixed source relator with a wagon-wheel filling of area
+`A` has matrix defect at most `A` times the output relator defect, so an
+approximate-radical marked source transfers dimension-uniformly to the
+solution group.  `wagon-wheel-stops-before-bcs-groupification` shows why this
+does not consume the known nonaffine tracial/non-CE BCS directly.  Picture
+surgery begins with an exact van Kampen diagram and gives no decoder from
+small forbidden projection mass to group words.  In fact every finite local
+LCS/wagon fragment has an affine scalar boundary packet; if it preserves all
+allowed assignments of a nonaffine context, its affine hull contains an exact
+zero-defect forbidden assignment.  A trace-specific version avoids that
+countermodel exactly when each local trace support has affine hull inside the
+allowed set, the locally affine-support condition already equivalent to the
+perfect-LCS/nonhyperlinear endpoint.  The finite sufficient lemma is therefore
+a pre-wagon shared BCS-to-group decoder with forbidden mass bounded by group
+defect; no extra quantitative constellation theorem is missing.
+
+The exact finite-dimensional radical does not narrow that gate. The sharp
+firewall `wagon-wheel-exact-radical-has-hs-wall` occurs in Slofstra's own
+motivating solution group: its central sign is killed by every exact
+finite-dimensional representation, but explicit permutation tuples satisfy
+all defining relators asymptotically while keeping the sign at normalized-HS
+distance `sqrt(2)`. A subsequence meets any prescribed vanishing defect
+schedule. Thus the fixed `3l` wagon fillings give only the one-way modulus
+transfer `kappa_Gamma(delta)<=kappa_G(A delta)+B delta`; they do not make exact
+finite-dimensional invisibility continuous at zero across unbounded
+dimensions. Any nonhyperlinearity proof through this compiler must establish
+the approximate-radical modulus in the source before applying the wagon wheel.
+
+**Infinite-address nonstationarity audit (2026-08-24).**  A new periodic
+firewall closes the ordinary one-shift finite-state version.  By
+`one-dimensional-address-rules-have-periodic-models`, every nonempty active
+payload fiber defined by finitely many translation-invariant windows along a
+lamplighter/HNN address line has a periodic point.  Diagonal packet PVMs on
+that finite cyclic orbit, with the cyclic shift and `F=1`, satisfy every local
+conditional row exactly.  All equivariantly defined target supports repeat,
+so they can be neither infinitely pairwise orthogonal nor strictly expanding
+with a fixed positive factor.  The compressed Baumslag prefix has the analogous
+finite-field stationary models, and Baumslag--Solitar spectral clocks have
+periodic cyclic models as well.  Thus an address generator plus finite local
+memory cannot supply the missing matrix-only escape.  A live gadget must use
+genuinely branching/strongly aperiodic noncommutative data, or prove that its
+nonzero active fiber has a dimension-uniform matricial defect floor; the latter
+is already the hard obstruction rather than mere address bookkeeping.
+
+**Branching/aperiodic address audit (2026-08-24).**  Strong aperiodicity does
+not repair the HS normalization on an amenable two-dimensional host.
+`strong-aperiodic-z2-addresses-have-vanishing-hs-seams` copies any valid plane
+configuration onto `N by N` tori.  Only an `O(1/N)` seam fraction violates the
+fixed-radius rules, giving exact actor permutations, active payload `F=1`, and
+local word/projection defects `O(N^(-1/2))`.  Thus “no periodic tiling” is not
+a uniform finite-matrix obstruction.  The minimal expander successor has two
+separate requirements: a robust classical finite-action loss gap for the
+specific local rule, and a dimension-uniform active Cartan classicalization
+turning arbitrary unitary-HS microstates into those labeled permutation
+actions.  Property `(T)` can help only after the first relation has been made
+an actual local-testability/cosystolic theorem; it does not supply either
+requirement generically.  For the Kun--Thom action, permutation rigidity is
+the candidate classical gap, while `invariant-cartan-completion` remains the
+unitary bridge.  The actor compression by itself stays charge-null in exact
+residual finite blocks.
+
+**Pinned lamp active-Cartan audit (2026-08-24).**  The C2/A5 finite packet
+has now been pushed to its exact dimension-uniform endpoint.  On every fixed
+lamp window, canonical character exactification gives a `1-o(1)` regular
+packet.  A partial actor arrow is then a coordinate permutation times an
+arbitrary unitary in a right-regular/copy commutant; finitely many further
+lamp packets or binary labels leave a positive-density matrix block, and
+tensor amplification restores the whole cocycle.  Property `(T)` does not
+remove this freedom because it is a statement inside an already chosen
+actor representation, not an HS-stability theorem for the actor table.
+
+There is a useful opposite fence.  If the actor restriction *is* exactified
+on a positive-density reducing corner, finite-dimensional commutant
+no-growth turns the one-sided compressor inclusion into equality of
+commutants.  The transported marked lamp is then fixed by all of `Gamma`,
+collapsing the canonical C2 mark and the A5 center separation `35/72`.  Thus
+actor exactification is already a terminal contradiction
+(`kt-wreath-relative-canonical-actor-exactification`), not a preparatory route
+to monomialization.  The surviving Cartan route must instead extract
+genuinely approximate permutations and lamp labels simultaneously.
+Conditional on a coherent finite actor table on one common PVM,
+`finite-cylinder-mixed-traces-kill-normalizer-holonomy` does give a
+dimension-uniform `1-o(1)` permutation core.  Producing that table is exactly
+the active invariant-Cartan/action-soficity gate; neither the finite lamp
+algebra nor property `(T)` supplies it.

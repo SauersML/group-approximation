@@ -6,16 +6,17 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 512 |
-| `formalized` | 176 |
-| `structural` | 26 |
-| `definition` | 16 |
+| `ledger` | 507 |
+| `formalized` | 177 |
+| `unassigned` | 70 |
+| `structural` | 22 |
+| `definition` | 14 |
 | `attribution` | 10 |
 | `open` | 1 |
 | `partial` | 1 |
-| **total** | **742** |
+| **total** | **802** |
 
-Carrying a declaration or a ledger row: **705/742** (95.0%).
+Carrying a declaration or a ledger row: **699/802** (87.2%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,22 +24,94 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`open`**, line 401 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`unassigned`**, line 114 --- \draftnotice \noindent\textbf{Scope.} These notes record an earlier affine/Clifford construction.
+* **`unassigned`**, line 114 --- They are not a companion to the current manuscript \texttt{non\_mf\_groups\_exist.tex}, whose proof uses a different group and a different argument.
+* **`unassigned`**, line 114 --- Cross-references below refer to the earlier manuscript version and are retained only as part of this research record.
+* **`open`**, line 387 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 480 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 460 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
+* **`unassigned`**, line 1340 --- Uniformly in a finite presentation $P$ and a word $v$,
+* **`unassigned`**, line 1346 --- The same $\Sigma^0_2$ upper bound holds for the set of radical words after fixing $P$.
+* **`unassigned`**, line 1351 --- Let $D(P,v,n,d)$ assert the existence of $d$-dimensional generator unitaries with relator defect at most $2^{-n-10}$ and $\|v(U)-1\|\geq1/2$.
+* **`unassigned`**, line 1351 --- This is decidable over the real closed field.
+* **`unassigned`**, line 1351 --- Marked corona extraction and amplification, in one direction, and the diagonal norm-corona construction, in the other, give
+* **`unassigned`**, line 1361 --- and complementation proves the claim.
+* **`unassigned`**, line 1366 --- There is one fixed finitely presented non-MF group $U$ for which membership in $\operatorname{Res}_{\mathrm{MF}}(U)$ is undecidable.
+* **`unassigned`**, line 1371 --- Let $A$ be Kharlampovich's finitely presented solvable group of derived length three with undecidable word problem \cite{Kharlampovich}.
+* **`unassigned`**, line 1371 --- It is amenable and hence MF.
+* **`unassigned`**, line 1371 --- Set $U=E*A$.
+* **`unassigned`**, line 1371 --- This group is finitely presented and non-MF, since the free factor $E$ embeds in it.
+* **`unassigned`**, line 1376 --- Let $\pi_A\colon E*A\to A$ be the canonical retraction.
+* **`unassigned`**, line 1376 --- Since $A$ is MF, Proposition~\ref{prop:univquot} gives $\operatorname{Res}_{\mathrm{MF}}(A)=\{1\}$.
+* **`unassigned`**, line 1376 --- Functoriality therefore gives
+* **`unassigned`**, line 1382 --- For every $a\in A$ it follows that
+* **`unassigned`**, line 1387 --- Indeed the forward implication follows by applying $\pi_A$, and the reverse implication is trivial. The inclusion of words in the $A$ factor is computable, so a radical-membership algorithm for $U$ would decide the word problem of $A$.
+* **`unassigned`**, line 1393 --- Here actual residual membership varies.
+* **`unassigned`**, line 1393 --- A different phenomenon occurs even when membership in the residual is promised in advance.
+* **`unassigned`**, line 1898 --- The projection theorem above has a functional-calculus form which is both stronger and easier to apply.
+* **`unassigned`**, line 1898 --- It also identifies the exact quotient detected by finite-dimensional approximation in the affine-doubling wreath family.
+* **`unassigned`**, line 1898 --- These results are retained here rather than in the self-compression paper because their proofs use commuting projection orbits and rank-normalized Hilbert--Schmidt geometry.
+* **`unassigned`**, line 1948 --- Let
+* **`unassigned`**, line 1953 --- let $G_*$ be the ascending HNN extension of $\Gamma_*$ along $\alpha$, and put $X=G_*/\Gamma_*$.
+* **`unassigned`**, line 1953 --- The height homomorphism $h\colon G_*\to\mathbb Z$ induces a map $\eta\colon X\to\mathbb Z$.
+* **`unassigned`**, line 1953 --- For a finite group $K$, put
+* **`unassigned`**, line 1959 --- Writing $K_{\mathrm{ab}}=K/[K,K]$, define
+* **`unassigned`**, line 1964 --- by summing the abelianized lamp values over each height fibre.
+* **`unassigned`**, line 1968 --- For every finite group $K$, every homomorphism from $W_K$ to a norm matrix corona factors uniquely through $\Phi_K$.
+* **`unassigned`**, line 1968 --- Moreover
+* **`unassigned`**, line 1980 --- Equivalently, precomposition with $\Phi_K$ is a bijection on homomorphisms into norm matrix coronas, residually finite groups, finite-dimensional linear groups over arbitrary fields, and compact Hausdorff groups.
+* **`unassigned`**, line 1986 --- Theorem~\ref{thm:notes-spectral-motion}, applied to finite-order one-site lamps, identifies the images of lamps lying in a common height fibre.
+* **`unassigned`**, line 1986 --- Lamps at distinct sites commute, so the common image of a site copy of $K$ is abelian.
+* **`unassigned`**, line 1986 --- Every corona representation therefore retains only the total abelianized lamp value on each fibre and factors through $\Phi_K$.
+* **`unassigned`**, line 1992 --- The group $P_K$ is residually finite.
+* **`unassigned`**, line 1992 --- This gives the reverse containment for the finite residual and hence for the MF residual. The finite-dimensional unitary equality follows from the same factorization.
+* **`unassigned`**, line 1992 --- If $\rho\colon W_K\to\GL_d(F)$, the finitely generated image of $\rho$ is residually finite by Mal'cev's theorem, so $\rho$ also factors through $\Phi_K$.
+* **`unassigned`**, line 1992 --- Finally, Peter--Weyl point separation gives the compact-target statement.
+* **`unassigned`**, line 1992 --- Unique factorization is equivalent to $\ker\Phi_K\le\ker\rho$ because $\Phi_K$ is surjective.
+* **`unassigned`**, line 2004 --- Take $K=A_5$ and let $r$ be the one-site lamp with value $(12)(34)$.
+* **`unassigned`**, line 2004 --- Then
+* **`unassigned`**, line 2012 --- Thus $W_{A_5}$ is sofic and non-MF, while the quotient is residually finite and MF, although every homomorphism from $W_{A_5}$ to a norm matrix corona already maps $r$ to $1$.
+* **`unassigned`**, line 2018 --- The group $A_5$ is perfect, so $P_{A_5}=G_*$.
+* **`unassigned`**, line 2018 --- It is also simple, hence the normal closure of any nonidentity element in one site is the entire site copy.
+* **`unassigned`**, line 2018 --- Transitivity of the $G_*$-action on $X$ then gives the displayed normal-closure identity.
+* **`unassigned`**, line 2018 --- Theorem~\ref{thm:notes-visible-quotient} computes the MF radical. Telescope-window approximations make $W_{A_5}$ sofic, while congruence quotients make $G_*$ residually finite.
+* **`unassigned`**, line 2029 --- For every countable abelian group $A$,
+* **`unassigned`**, line 2038 --- If $A$ has nontrivial torsion, a finite-order one-site lamp has zero-dimensional spectrum in every corona representation.
+* **`unassigned`**, line 2038 --- Theorem \ref{thm:notes-spectral-motion} identifies its image with a distinct-site translate, producing a nontrivial word killed by every such representation.
+* **`unassigned`**, line 2043 --- If $A$ is torsion-free, it admits a separating family of characters which can be joined to the trivial character by paths.
+* **`unassigned`**, line 2043 --- Evaluate these paths against a slowly varying height function on finite telescope windows for the $G_*$-action.
+* **`unassigned`**, line 2043 --- The variation across every prescribed finite set tends to zero, while an appropriate character remains separated on each prescribed nonidentity lamp.
+* **`unassigned`**, line 2043 --- Combining these diagonal lamp models with the finite quotients of $G_*$ gives operator-norm microstates separating every finite subset of $A^{(X)}\rtimes G_*$.
+* **`unassigned`**, line 2302 --- The comparison with permutational wreath products and the possible sofic-action route were pointed out by Fournier-Facio, who also observed the close relation between the sign-free quotient and the construction shared by Eckhardt.
+  * anchor has 5 ledger rows; an explicit sentence-level assignment is required
+* **`unassigned`**, line 2520 --- For finite presentation codes,
+* **`unassigned`**, line 2526 --- Moreover the complement of the uniform word problem many-one reduces to $\mathrm{NONMF}_{\mathrm{fp}}$.
+* **`unassigned`**, line 2531 --- At scale $n$, label every word of length at most $n$ either by a finite normal-closure proof of triviality or by a separation requirement $\|w(U)-1\|\geq1/2$, and require relator defect at most $2^{-n-10}$.
+* **`unassigned`**, line 2531 --- Fixed-dimensional feasibility is decidable over the real closed field.
+* **`unassigned`**, line 2531 --- Separation-one normalization gives these certificates for MF groups.
+* **`unassigned`**, line 2531 --- Conversely, if $A$ bounds the normal-closure areas of the finitely many multiplication words for a finite test set, choosing $A\,2^{-n-10}<\varepsilon$ turns a certificate into a weak MF model, hence an MF model.
+* **`unassigned`**, line 2531 --- Therefore
+* **`unassigned`**, line 2545 --- for a recursive $C_{\mathrm{MF}}$.
+* **`unassigned`**, line 2545 --- Corollary~\ref{cor:undecidable} supplies properness over the first level and the displayed reduction.
+* **`unassigned`**, line 2549 --- The FIN/INF free-factor switch gives exact second-level completeness for recursive presentations.
+* **`unassigned`**, line 2549 --- Finite-presentation completeness remains open: generic Higman embedding does not preserve the MF branch.
+* **`unassigned`**, line 2650 --- There exists a torsion-free non-MF group.
+  * anchor has 7 ledger rows; an explicit sentence-level assignment is required
+* **`unassigned`**, line 2654 --- The construction in \cite[Section~2]{FFF} starts from a torsion-free double HNN extension and applies Hull's common-quotient theorem to obtain a torsion-free acylindrically hyperbolic property-\textup{(T)} quotient $G_0$.
+* **`unassigned`**, line 2674 --- The group $G$ is torsion-free by Theorem~7.1(e) and has property-\textup{(T)} because it is a quotient of $G_0$.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 4 | 0 |
+| (front matter) | 3 | 3 |
 | A literal presentation and affine certificate | 13 | 0 |
 | Property~\textup{(T) | 33 | 0 |
 | The presentation-level obstruction | 12 | 0 |
 | Consequences of the example | 3 | 0 |
 | The quotient by the central involution | 6 | 0 |
-| A stably finite non-MF group algebra | 14 | 0 |
+| A stably finite non-MF group algebra | 12 | 0 |
 | A sofic example | 9 | 0 |
 | A hyperlinear non-MF trace | 28 | 0 |
 | Weighted asymptotic-commutant invariance | 10 | 0 |
@@ -47,16 +120,19 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The normal-Kazhdan form of the obstruction | 47 | 0 |
 | The finite-dimensional obstruction | 18 | 0 |
 | The cyclic comparison | 48 | 0 |
-| The MF residual | 48 | 0 |
+| The MF residual | 76 | 18 |
 | Permanence and its failure | 18 | 0 |
 | Commuting orbits and the MF residual | 103 | 0 |
 | The exact residual of $E$ | 29 | 0 |
+| Spectral components and exact finite-lamp quotients | 3 | 3 |
+| Spectral-component rigidity | 14 | 0 |
+| The heightwise abelian quotient | 24 | 24 |
+| The abelian boundary | 7 | 7 |
 | The reduced group algebra of \texorpdfstring{$E$ | 14 | 0 |
 | The Clifford quotient and permanence | 28 | 0 |
-| Soficity of $E$ | 75 | 0 |
+| Soficity of $E$ | 76 | 1 |
 | A finite universal Horn obstruction | 10 | 0 |
-| Undecidability of MF recognition | 29 | 0 |
+| Undecidability of MF recognition | 40 | 11 |
 | Limitations of the operator-norm method | 21 | 0 |
-| A torsion-free finitely presented non-MF group | 26 | 0 |
+| A torsion-free non-MF group | 26 | 3 |
 | Open questions | 9 | 0 |
-| The maximal group \texorpdfstring{$C^*$ | 25 | 0 |

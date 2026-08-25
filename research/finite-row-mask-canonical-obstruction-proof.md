@@ -5,7 +5,7 @@ kind: route
 title: Evaluate the finite group-algebra packet in a canonical matrix ultraproduct
 target: finite-row-mask-group-algebra-certificate-forces-nonhyperlinear
 requires:
-  - independent-row-masks-transfer-bcs-gap-to-ambient-identity
+  - bcs-gap-blocks-vanishing-crt-mask-budget
   - finite-matrix-defect-zero-is-exact-ultraproduct-realizability
 ---
 
@@ -21,8 +21,9 @@ projections, and involutions with `o(1)` change.  The annihilation rows remain
 tr(1-q_j^(n))->tau_Gamma(1-q_j).                       (RMC4)
 ```
 
-Apply `independent-row-masks-transfer-bcs-gap-to-ambient-identity` and pass
-to the limit.  It yields `Delta<=D_row`, contradicting `(RMC3)`.
+Apply the robust form `(BCM11)` of
+`bcs-gap-blocks-vanishing-crt-mask-budget` and pass to the limit.  Its
+predicate-mask specialization gives `Delta<=D_row`, contradicting `(RMC3)`.
 
 All expressions and identities have finite support.  Compile them into one
 finite unitary polynomial-and-trace packet.  If its all-dimensional defect
@@ -30,4 +31,3 @@ infimum were zero, `finite-matrix-defect-zero-is-exact-ultraproduct-realizabilit
 would produce the forbidden exact ultraproduct tuple.  Hence its infimum is
 a positive `epsilon_0`.  Normalized trace and normalized Hilbert--Schmidt norm
 are unchanged by tensoring every matrix with an identity.
-

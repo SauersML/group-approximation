@@ -22,6 +22,15 @@ dimension-independent normalized-HS bound that
 is paid by the two cubic residual energies, the source-alignment Gram
 defect, and the discarded source mass.
 
+The continuous seam is now discharged **after** a common active source has
+been extracted.  `bs14-polar-exits-retain-the-common-physical-reflection`
+charges both exit equations by at most `8r`, where the active threshold
+already gives `r/d=O(e^(1/2))`; then
+`common-physical-reflection-pays-two-exit-gram-seam` yields `(M36)`.
+Accordingly this node remains open only to the extent that the two raw polar
+carriers have not yet been aligned to one typed common source.  There is no
+additional invariant-hull or mixed-moment obstruction afterward.
+
 The individual polar rows already supply their own source/exit
 compatibility.  By
 `two-exit-gram-swap-builds-low-rank-involution-surgery`, `(M36)` is exactly

@@ -94,12 +94,14 @@ recurrence as `(FAR3)`.  The fixed depth then contradicts total mass one.
   the actual BCS atom `Q_sigma P_i` to nontrivial spectral support of the
   central root `x_13(a_(sigma,i))`.
 
-The first half of that sentence is now its own minimal gate:
-`bcs-atom-detects-its-e5-central-root`.  Its inequality `(BZR2)` plus the
-two-pair extraspecial cell retains the fixed fraction `c_root p^(-2)` of a
-selected BCS atom in a spectator-trivial source fiber.  After that local
-step, the remaining Morita issue is compatibility of the parent subset
-across the finite outgoing branch menu.
+For the bare wordization, the first half of that sentence remains the gate
+`bcs-atom-detects-its-e5-central-root`.  On the canonical extended route,
+however, `canonical-bcs-root-detection-via-binary-tetrahedral-bridge` proves
+its analogue with `c_root=1/2`.  Combined with the characteristic-three
+two-pair cell, this retains `1/18` of a selected BCS atom in a
+spectator-trivial source fiber.  The remaining Morita issue is compatibility
+of the parent subset across the finite outgoing branch menu, or an
+unoriented return which bypasses that common subset entirely.
 
 There is now a clean way to delete that last **outgoing-branch** issue.
 `role-packed-bcs-gap-is-one-idempotent` places the `M` noncommuting forbidden

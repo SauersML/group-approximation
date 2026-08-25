@@ -7,6 +7,7 @@ target: finite-edge-hnn-closures-cannot-finish-the-nonce-atlas
 requires:
   - cycle-closure-cannot-remain-in-the-join-tree-group
   - finite-character-idempotents-have-exact-hnn-transport
+  - rf-reynolds-mask-deficit-is-not-relator-energy
 ---
 
 It is enough to prove one HNN step.  Let `G` be residually finite, let
@@ -29,3 +30,12 @@ residually finite.
 Finite induction proves the assertion for any finite sequence of such HNN
 steps.  Applying `cycle-closure-cannot-remain-in-the-join-tree-group` to the
 resulting hyperlinear group excludes a completed no-CE atlas.
+
+The stronger row-energy conclusion follows from
+`rf-reynolds-mask-deficit-is-not-relator-energy`.  Any finite family of
+transported Reynolds/character masks with positive canonical codimension has
+an exact finite-quotient regular model preserving that codimension and every
+fixed canonical word trace while all HNN relators have zero defect.  Hence no
+dimension-free inequality can charge the mask budget to those covariance
+relators.  This rules out the proposed relator-energy compiler even before
+one asks it to complete the whole atlas.

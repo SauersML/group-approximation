@@ -108,9 +108,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:trace": (
         "Sofic/TraceSeparationEndpoint",
         "GroupApproximation.manuscriptTraceSeparation"),
-    "prop:maximal-cstar": (
-        "Analysis/MaximalCStarAllUniverses",
-        "GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty"),
     "def:E": (
         "Sofic/LiteralNonMFPresentation",
         "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation"),
@@ -151,14 +148,25 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Computability/BooneWordProblemUndecidable",
         "GroupApproximation.Computability."
         "operatorMF_recognition_not_computable"),
+    "thm:fixed-radical-membership": (
+        "PAPER",
+        "Kharlampovich's finitely presented solvable group with undecidable "
+        "word problem"),
+    "thm:mf-radical-arithmetic": (
+        "PAPER",
+        "decidability of fixed-dimensional unitary feasibility over the real "
+        "closed field"),
+    "thm:mf-arithmetic": (
+        "PAPER",
+        "Adian--Rabin theorem; decidability of fixed-dimensional unitary "
+        "feasibility over the real closed field"),
+    "thm:fixed-radical-computer": (
+        "Computability/MFRadicalComputer",
+        "GroupApproximation.MFRadicalComputer.closed_package"),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers."
         "manuscriptHSInvisibleCharacterization",
-    ),
-    "prop:proper-isometry": (
-        "Analysis/ProperIsometryStrictOrder",
-        "GroupApproximation.manuscriptProperIsometryStrictOrder",
     ),
     "lem:kazhdan-gap": (
         "Sofic/UltraproductKazhdanProjection",
@@ -169,11 +177,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Analysis/PrintedCornerCompression",
         "GroupApproximation.PrintedCornerCompression."
         "manuscriptCornerAsymptoticRepresentation",
-    ),
-    "rem:maxinfinite": (
-        "Analysis/StrictCompressionFromPrinted",
-        "GroupApproximation.MaximalCStarPrintedHypotheses."
-        "manuscriptMaximalCStarRemarkFromPrintedHypotheses",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
@@ -192,6 +195,21 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ProjectionCompressionCollapse",
         "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
     ),
+    "thm:notes-spectral-motion": (
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.spectralCompressionTheorem",
+    ),
+    "thm:notes-visible-quotient": (
+        "PAPER",
+        "Mal'cev residual-finiteness theorem; Peter--Weyl point separation"),
+    "cor:notes-a5-relation": (
+        "PAPER",
+        "elementary structure of A_5 and the printed telescope-window "
+        "approximation"),
+    "thm:notes-abelian-boundary": (
+        "PAPER",
+        "character separation for torsion-free abelian groups and the "
+        "printed telescope-window approximation"),
     "lem:permanence": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.IsOperatorMF.subgroup",
@@ -259,7 +277,11 @@ SPECIALIZATION_IDENTITIES: dict[str, str] = {
 
 # No single declaration states these enumerated claims as one conjunction;
 # their margin declarations cover the printed clauses collectively.
-COLLECTIVE_CLAIMS = {"lem:permanence", "cor:undecidable"}
+COLLECTIVE_CLAIMS = {
+    "lem:permanence",
+    "cor:undecidable",
+    "thm:notes-spectral-motion",
+}
 
 
 # Dependencies are part of the paper's statement-level proof graph.  They are
@@ -308,11 +330,20 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:nofaithful": ["thm:A"],
     "lem:corner": ["lem:lift"],
     "lem:kazhdan-gap": [],
-    "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
     "thm:exact-mf-residual": ["thm:signfree", "cor:pullback",
                                "cor:exactradical"],
+    "thm:fixed-radical-membership": ["thm:A", "def:radical",
+                                      "lem:permanence"],
+    "thm:mf-radical-arithmetic": ["prop:mf-equivalences",
+                                   "lem:tensor-amplification"],
+    "thm:mf-arithmetic": ["cor:undecidable", "lem:permanence"],
+    "thm:fixed-radical-computer": ["thm:A", "def:radical"],
+    "thm:notes-spectral-motion": ["thm:projection-collapse"],
+    "thm:notes-visible-quotient": ["thm:notes-spectral-motion"],
+    "cor:notes-a5-relation": ["thm:notes-visible-quotient"],
+    "thm:notes-abelian-boundary": ["thm:notes-spectral-motion"],
     "thm:torsionfree": ["cor:intrinsic-nk"],
 }
 

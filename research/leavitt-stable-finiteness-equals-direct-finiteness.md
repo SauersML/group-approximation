@@ -46,12 +46,16 @@ Three things, and the third is the one that matters.
 2. **A proof of direct finiteness is automatically a proof of stable
    finiteness**, so the two targets need not be attacked separately from the
    positive side either.
-3. **Gottschalk and Kaplansky become the same problem for this group.**
-   `stable-finiteness-failure-refutes-surjunctivity` consumes the matrix
-   statement, so before this node it was possible in principle to refute
-   Gottschalk's conjecture for `R^x` with a witness at some `n >= 2` while
-   leaving Kaplansky's direct-finiteness conjecture open.  That escape is
-   gone: for `R^x`, either both fall together or neither does.
+3. **The negative Gottschalk and Kaplansky lanes collapse, but the positive
+   problems do not.**  `stable-finiteness-failure-refutes-surjunctivity`
+   consumes the matrix statement, and the present node turns every such matrix
+   failure into a scalar direct-finiteness failure.  Hence for `R^x` any
+   **linear** counterexample to Gottschalk coming from a group-ring one-sided
+   inverse simultaneously refutes Kaplansky.  In the other direction,
+   surjunctivity implies stable (hence direct) finiteness by
+   Bradford--Fournier-Facio Corollary 3.25.  But direct/stable finiteness does
+   not imply full surjunctivity: it controls linear/additive cellular automata,
+   not arbitrary nonlinear finite-alphabet rules.
 
 It follows that the sentence "Nothing in this graph reduces the matrix problem
 to the scalar one" in `leavitt-group-algebra-not-stably-finite` is no longer

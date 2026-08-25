@@ -126,3 +126,60 @@ variety.
   two cubic polar ranges without first taking an invariant hull.  This is
   the reverse active-dilation problem in
   `bs14-residual-polar-data-build-active-dilation`.
+- **The smallest cross-stratum test is a one-packet substitution in a
+  regular endpoint, and it has now been decided positively.**  Let
+  `N_m=4^m-1` and take the two inequivalent
+  length-`m` metacyclic core packets
+
+  ```text
+  b_m=(R_m,S_m),             c_m=(R_m,S_m^2)
+  ```
+
+  from `bs-root-strata-have-no-energy-paid-invariant-reconciliation`.
+  In the regular representation of a finite one-power endpoint containing
+  their metacyclic quotient, restrict to the core and select one reducing
+  copy of `c_m`.  Replace `c_m` there by `b_m`, leave the other core packets
+  unchanged, and keep the endpoint involution `X` fixed.  The new supplied
+  core is still exact and crosses one root-multiplicity stratum.  If the
+  ambient endpoint dimension is `D_m`, `(BSR2)` gives
+
+  ```text
+  ||b-c||_(2,D_m)^2=O(1/D_m).                         (UGO2)
+  ```
+
+  Choosing the original endpoint core as the optimized comparator makes
+  every section defect zero, so the left side of `(UGO1)` is `O(1/D_m)`.
+  Fixed-word telescoping gives the matching upper bound
+  `E_end=O(1/D_m)`.  On even `m` the two isolated
+  packet determinant fences are both `-1`, but the substitution ratios in
+  the cubic determinants are third/sixth powers and are neutral.  Hence a
+  determinant or invariant-type argument cannot decide whether
+
+  ```text
+  E_end >= c/D_m.                                    (UGO3)
+  ```
+
+  The missing off-diagonal datum can be computed in the regular endpoint.
+  `metacyclic-cross-stratum-energy-is-inverse-dimensional`
+  proves that the order-three word `a=xt` sends the selected packet through
+  the three distinct orthogonal cosets `B`, `aB`, and `a^2B`.  If `q` is the
+  packet change, then
+
+  ```text
+  (aq)^3=(aqa^(-1))(a^2qa^(-2))q,
+  ```
+
+  and the three nonidentity corners have orthogonal supports.  Consequently
+
+  ```text
+  ||(XT')^3-1||_(2,D_m)^2
+    =(3/D_m)||S_m^(-1)-1||_F^2,
+  ```
+
+  where the unnormalized packet norm is bounded above and below by positive
+  absolute constants.  Thus `(UGO3)` holds and
+  `E_end=Theta(1/D_m)`: there is no subsequential cubic cancellation.  This
+  smallest cross-stratum family satisfies `(UGO1)` at the right scale.  A
+  surviving obstruction must couple several core cosets/packets so that this
+  three-branch orthogonality is unavailable; isolated metacyclic substitution
+  is no longer an open stress test.

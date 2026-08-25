@@ -4,6 +4,8 @@ id: mf-safe-asymmetric-hnn-replacement
 kind: claim
 title: Replace an effective asymmetric HNN identification by MF-safe finite-presentation moves
 root: true
+artifacts:
+  - research/artifacts/fp-mf-pi2-compiler-audit-2026-08-25.md
 distinct_from:
   symmetric-double-weak-mf: that handles two identical copies and one common subalgebra; this must simulate two different embeddings used by effective Higman compilation.
   hnn-extension-finite-presentation-permanence: that preserves finite presentability, not the MF property.
@@ -19,3 +21,62 @@ central-HNN theorems do not currently supply this gadget.
 Replacing the HNN step by a symmetric double works only when the two embeddings
 agree up to the available symmetry; the general effective identification does
 not have that form.
+
+The full Higman compiler does not in fact require arbitrary HNN permanence.
+After the countable-to-finitely-generated bridge, the last rope edge has the
+special form
+
+```text
+< Gamma times Q, u |
+  u (s,1) u^-1 = (s,tau(s)),  s in S >,              (GH1)
+```
+
+where `S = F *_N F` is the symmetric double occurring inside the benign
+witness, `Q=F/N`, and `tau:S->Q` is the quotient map on the first copy and is
+trivial on the second.  Thus both edge embeddings retain the same faithful
+`Gamma` coordinate; only a graph-valued `Q` coordinate changes.  Proving MF
+permanence for `(GH1)` in the rope situation is sufficient and is strictly
+narrower than the claim's original generic formulation.
+
+- **Shulman's symmetric double does not apply.**  In arXiv:2603.13564v2 the
+  notation `A *_C A` explicitly means that the two copies use the identical
+  inclusion of `C`.  Theorem 10 therefore does not cover the two embeddings in
+  `(GH1)`.  The general criterion (Theorem 20 in v2) asks for compatible
+  matrix-corona embeddings; it does not manufacture them from MF of the two
+  vertex algebras.
+- **The trivial-quotient specialization is central but unavailable.**  If
+  `Q=1`, then `(GH1)` is a central HNN and Shulman's Theorem 25 applies.  The
+  recursive FIN switch is countably generated, however.  Every effective
+  countable-to-finitely-generated bridge leaves a nontrivial finitely generated
+  scaffold on the branch where the switch group itself collapses.  In the
+  explicit HNN bridge this scaffold is the central HNN of `F_2` over
+  `<x^-i y x^i : i>=0>`, so `Q` is MF but not trivial.
+- **Finite-generation compactness rules out killing the scaffold by a
+  monotone relator stream.**  In a finitely generated group, if an increasing
+  union of normal closures contains every member of one finite generating
+  set, one finite stage already contains them all.  Hence an indefinitely
+  delayed `INF` collapse cannot have literal triviality as its positive branch
+  after finite generation.
+- **A common retraction is not enough.**  If the two edge embeddings
+  `theta_0,theta_1:C->A` have a common retraction, representations factoring
+  through the retraction balance the two restrictions but lose the kernel of
+  the retraction.  Adding one faithful corona embedding creates an unmatched
+  operator-norm summand.  Multiplicity dilution repairs normalized traces, not
+  operator norm, so it does not satisfy Theorem 20's exact corona
+  compatibility.
+- **Boone packing does not remove the edge.**  Simpson's fixed finite
+  presentation packs all input configurations, and its last stable letter is
+  central over the lifted halting subgroup.  Before that central step it uses
+  finitely many asymmetric HNN identifications between scaled copies of
+  `Z * Z^2`.  Totality of the machine does not delete those vertex groups or
+  stable letters, so central-HNN permanence alone does not prove the total
+  branch MF.
+- **Lamp and graph-wreath packing leaves a finite-presentation obstruction.**
+  A commuting lamp base over the configuration cosets needs finitely many
+  diagonal orbits.  A graph-product base needs only finitely many edge orbits,
+  but a finite orbit of lamp generators cannot distinguish infinitely many
+  obligations without conjugating their normal closures together.  No finite
+  presentation gadget avoiding this collapse was found.
+
+The exact open analytic/group-theoretic subproblem is therefore `(GH1)` for
+the rope data, not generic MF preservation under arbitrary HNN extensions.

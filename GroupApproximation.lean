@@ -1722,7 +1722,12 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoordinatePassage
 import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceClosureAudit
 import GroupApproximation.Computability.FiniteDimensionalApproximationIncomplete
 import GroupApproximation.Computability.ArithmeticalHierarchy
+import GroupApproximation.Computability.MicrostateNaturalize
 import GroupApproximation.Endpoint.MFComputabilityPaperAudit
+import GroupApproximation.Sofic.SplitMFStability
+import GroupApproximation.Sofic.MFBlackHoleAttachment
+import GroupApproximation.Sofic.InvisibleExtensions
+import GroupApproximation.Endpoint.InvisibleExtensionsAudit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

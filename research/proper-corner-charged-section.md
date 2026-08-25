@@ -61,6 +61,13 @@ global reuse.
   covariance is restored by orbit-inducing the private Clifford gauges.
   What is missing is a word which detects intersection/orthogonal union, not
   merely another reflection transport.
+- This stationary obstruction is stable under every finite affine enlargement,
+  by `affine-reflection-normalizers-have-quarter-overlap`.
+  All finitely many commuting prefix signs and all linear connector actions
+  fit in one finite affine group whose regular trace leaves a quarter overlap
+  between distinct support halves.  Thus additional finite reflection levels
+  or Clifford-normalizer rows cannot turn XOR into the required proper
+  corner; the missing mixed support test must be non-affine/non-semisimple.
 - A reverse full Schur edge exposes the phase but generates the full branch
   `M_2`, by `two-chart-square-lift-recreates-schur-m2`.
 - A projective Atlas rectangle is either flat on the canonical common-`U`

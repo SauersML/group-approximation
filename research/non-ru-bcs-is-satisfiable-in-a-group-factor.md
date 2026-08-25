@@ -92,6 +92,20 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   reflection remains true for embeddings into positive group-factor corners,
   even though the forward free/wreath compiler is stated only for unital
   group-factor embeddings.
+- **Arbitrary Haar tags reduce exactly to their cancellation kernel.**
+  `haar-tag-cancellation-retention-is-group-realizability` takes any tag
+  homomorphism `eta:F(S)->H` and the diagonal tagged group
+  `G=im(w |-> (pi(w),eta(w)))`.  Its tensor-product trace is canonical
+  exactly when the payload character is regular on the tag-zero kernel
+  `N=ker(G->eta(F))`.  If `N` is trivial, the payload is erased and
+  `G~=eta(F)`.  If it is nontrivial and the trace is canonical, then
+  `L(N)=W*(pi(N)) subset M` already, and Fourier expectation onto `L(N)` is
+  precisely tag-cancellation.  Thus a recoverable non-CE corner in the
+  cancellation sector is already a solution of `(GFB1)` with host `N`.
+  Balanced tensor powers do not evade this: expectation of a tagged word
+  onto the retained payload coordinate is
+  `pi(w)|tau(w)|^(2k)`, which converges to a scalar on every fixed finite
+  word decoder.
 - **Embedding universality of group factors is open in the literature.**
   Chifan--Drimbe--Ioana's universality theorem for property-(T) factors
   leaves open (their Remark 1.1, as recorded in

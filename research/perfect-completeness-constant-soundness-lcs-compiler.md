@@ -206,3 +206,18 @@ Noncommuting auxiliary generators do not enlarge that scalar language.
 Accordingly, a successful perfect-completeness compiler for a non-affine
 source must retain genuinely pointed non-scalar data (or a non-reducing
 corner); searching for a richer scalar phase gadget is exhausted.
+
+**Wagon-wheel quantitative audit.**
+`wagon-wheel-stops-before-bcs-groupification` separates the two interfaces.
+Every fixed source relator has a bounded wagon-wheel filling, so restriction
+of an approximate output representation to the embedded source group has a
+dimension-independent linear defect bound.  That is already sufficient once
+an approximately radical source group exists.  It does not manufacture the
+source group from additive BCS projection relations: constellation surgery
+starts from an exact van Kampen picture, whereas small matrix norm supplies
+no such picture.  More sharply, any direct local LCS/wagon fragment preserving
+all allowed assignments has an affine scalar boundary packet.  A nonaffine
+predicate therefore has an exact zero-defect affine-hull ghost of forbidden
+mass one.  Restricting completeness to the support of one chosen trace avoids
+this countermodel exactly when the support's affine hull stays allowed, which
+is the already-equivalent locally affine-support/nonhyperlinear endpoint.

@@ -40,8 +40,22 @@ than the only conceivable one.
 
 ## Direction of travel
 
-Only this way.  Surjunctivity of `R^x` would **not** give direct finiteness of
-`F_2[R^x]`, and non-surjunctivity is not known to follow from anything weaker
-than the prerequisite.  The Kaplansky lane headed by
-`leavitt-unit-group-algebra-not-directly-finite` is therefore strictly upstream
-of the surjunctivity question, and closing it closes both.
+The negative implication used by this route is one-way, but the positive
+implication in the old text was backwards.  Bradford--Fournier-Facio,
+Corollary 3.25, proves that every surjunctive group satisfies Kaplansky **stable**
+finiteness over every field.  Consequently
+
+    Surj(G)  =>  SF(k[G])  =>  DF(k[G]).
+
+For the present Leavitt unit group,
+`leavitt-stable-finiteness-equals-direct-finiteness` strengthens the right-hand
+side to `SF(F_2[G]) <=> DF(F_2[G])`.  Thus a scalar one-sided inverse still
+refutes Gottschalk exactly as this route says, and conversely a proof that `G`
+is surjunctive would automatically prove both stable and direct finiteness of
+`F_2[G]`.
+
+What does **not** reverse is the last step: stable/direct finiteness of the
+group algebra gives linear/additive surjunctivity, not full surjunctivity for
+arbitrary finite alphabets and nonlinear local rules.  Thus the Kaplansky lane
+can refute Gottschalk, but a positive solution of the ring problem would leave
+the genuinely nonlinear Gottschalk problem alive.

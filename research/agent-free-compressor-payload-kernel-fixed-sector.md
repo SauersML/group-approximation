@@ -59,3 +59,11 @@ finite packet rank comparison or the one-sided self-copy endpoint.
   multiplicity.  A successful relation must therefore couple the payload to
   the actual kernel units, not merely to their finite-quotient action on a
   root packet.
+- Even exact named packet covariance leaves a canonical vanishing-density
+  kernel gauge.  `packet-covariant-kernel-gauge` writes each free generator as
+  `pi(theta(x_i)) tensor W_i`; on the quotient kernel only `W` remains.  In
+  finite regular quotients the normalized kernel-fixed adjoint density is
+  exactly `1/|q_k(N)| -> 0`, while the outer forbidden Reynolds gap and all
+  named covariance rows remain exact.  Thus the missing payload rows must
+  force a uniform positive commutant-density law for the multiplicity action;
+  matching the finite packet automorphism is not enough.

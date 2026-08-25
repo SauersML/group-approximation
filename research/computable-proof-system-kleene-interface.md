@@ -5,19 +5,21 @@ kind: claim
 title: Formal syntax for computably enumerable proof systems and a Kleene fixed-point operator
 distinct_from:
   threshold-free-mf-compiler-equivalence: that node records the semantic fixed-point argument externally; this asks for the reusable Lean syntax and recursion infrastructure itself.
+artifacts:
+  - GroupApproximation/Computability/MFRadicalGodel.lean
 ---
 
-Package a computably enumerable proof relation, formulas naming inequalities
-of coded words in a fixed finite presentation, restricted soundness for those
-formulas, and a recursion theorem producing an index for a program that can
-inspect its own code.  No group-theoretic or analytic theorem is missing; this
-is the explicit formal-computability interface needed by
-`mf-radical-godel-word`.
+`MFRadicalGodel.ProofSystem` packages a partial-recursive semidecision
+procedure on Mathlib partial-recursive codes.  A code `c` names the formula
+`MFRadicalComputer.codeWord c != 1`; `ProofSystem.Sound` records soundness only
+for that formula family.  `diagonalSearch_partrec₂` proves uniform partial
+recursiveness of proof search in the candidate self-code, and
+`exists_proofSearch_fixedPoint` applies Mathlib's Kleene second recursion
+theorem.
 
 ## Attempts
 
-The existing `reverseKleene_fixedPoint_logic` formalizes only the
-proposition-level contradiction and intentionally has no machine-code or proof
-enumerator type.  Reusing it would not produce an effective fixed point.  This
-interface is deferred until those objects are represented explicitly, rather
-than adding an opaque recursion-theorem assumption.
+The earlier `reverseKleene_fixedPoint_logic` remains the proposition-level
+semantic lemma.  The new interface is strictly stronger: it contains actual
+program codes, a partial-recursive proof search, and an effective fixed point,
+with no opaque recursion-theorem assumption.

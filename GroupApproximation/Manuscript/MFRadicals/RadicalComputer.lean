@@ -29,7 +29,8 @@ theorem manuscriptTheoremD :
       Group.IsFinitelyPresented G ∧ ¬ IsOperatorMF G ∧
         (∀ p, NormMFInvisible (w p)) ∧
         ¬ ComputablePred fun p : ℕ × ℕ => w p = 1 := by
-  obtain ⟨hfp, hnot, hinv, -, hcomp⟩ := MFRadicalComputer.closed_package
+  obtain ⟨hfp, hnot, _hraw, hinv, _hderived, _hspec, hcomp⟩ :=
+    MFRadicalComputer.closed_package
   exact ⟨MFRadicalComputer.Carrier, inferInstance, MFRadicalComputer.word,
     hfp, hnot, hinv, hcomp⟩
 

@@ -47,3 +47,62 @@ A positive proof would rule out the witness entirely: `tau` is amenable
 upstairs, and local liftability would make the regular trace amenable
 downstairs. Since `Q` is nonsofic and every amenable group is sofic, `Q` is
 nonamenable, so its reduced regular trace cannot be amenable.
+
+**Endpoint correction (2026-08-24).**
+`leavitt-singular-local-lift-iff-no-witness` proves
+that this claim is not an easier consequence of pure singularity.  For every
+hypothetical witness, the quotient in `(BLL1)` is necessarily **not** locally
+split, since local splitting would descend the amenable trace and contradict
+nonamenability of `Q`.  Therefore the universal assertion here holds if and
+only if no witness exists at all.  Pure singularity only factors the state
+through the Calkin algebra and factors `(BLL1)` as
+
+```text
+A ->> A/(A cap K(H)) ->> A/I_tau;
+```
+
+it supplies no local section of either arrow.  Any positive proof here is
+already, in logical content, a direct proof of witness nonexistence.
+
+## Fourier-only audit
+
+Full local lifting is stronger than the descent proof needs, but weakening it
+does not evade the endpoint.  By
+`fourier-local-sections-already-descend-amenable-trace`, it is enough that
+every finite Fourier word system
+
+```text
+span{lambda_g:g in F} subset C^*_r(Q)
+```
+
+have a ucp section through `(BLL1)`.  Composing those sections with the
+amenable-trace ucp approximants upstairs already makes the regular trace
+amenable.  Hence every hypothetical witness fails on some finite Fourier
+system; a generic LLP argument even on this cofinal family is circular.
+
+The binary Leavitt cover does lift every infinite-cyclic subsystem: for an
+infinite-order `g`, functional calculus sends the coordinate of `C(T)` to
+the unitary `pi(g)`.  The first obstruction is genuinely multiword.  The raw
+matrix `[pi(g)^*pi(h)]` is positive and has the correct regular image, but its
+entries need not agree upstairs for two pairs with the same difference
+`g^(-1)h`; they agree only modulo `I_tau`.  Constructing a collision-consistent
+completely positive replacement is exactly the remaining finite
+operator-system problem, not a consequence of trace-null multiplicative
+defect.
+
+The first attempted repair is now sharply screened by
+`equal-difference-gram-averaging-fails-at-four-free-words`.  Every Fourier
+system contained in one amenable subgroup lifts globally (by nuclearity, and
+by an explicit translation-orbit Gram average for finite subgroups).  But
+arithmetic averaging over equal-difference classes on a truncated index set
+is not positive: it sends one scalar unitary Gram matrix on the free four-word
+window `{1,a,b,ba}` to a matrix with quadratic value `-4`.  Since the binary
+Leavitt unit group contains such a free prefix window, its self-similar finite
+prefix symmetries do not by themselves supply the missing matrix order.  A
+positive proof must produce one common cp symmetry on the actual cover or
+verify the concrete Fourier operator-system orders directly; independent
+collision-class averaging cannot do it.  Nor can one global cp Toeplitzizer
+exist: a conditional expectation from all matrices onto the
+equal-difference group von Neumann algebra would imply injectivity, hence
+amenability of `Q`.  Only genuinely finite, noncoherent window constructions
+remain possible.

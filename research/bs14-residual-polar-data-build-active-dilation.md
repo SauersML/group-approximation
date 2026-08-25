@@ -7,6 +7,7 @@ distinct_from:
   bs14-flexible-cross-packet-boundary-reconciliation: that asks for the sharp global semigroup repair; this asks only for the weaker active/passive dilation sufficient for qualitative flexible stability.
   bs14-energy-threshold-active-passive-ledger: that starts from a known positive corner; this must construct the corner directly from a near-solution.
   bs14-residual-invariant-hull-has-unbounded-packet-loss: that rules out invariant hulling; this requires a non-invariant joint Gram completion instead.
+  projective-dihedral-factorization-has-explicit-hs-retraction: that repairs the involution/inversion factorization row alone with an explicit same-dimensional constant; this must make that repair simultaneous with the BS and both cubic rows.
 ---
 
 OPEN.  Let `(R,S)` be an exact finite-dimensional `BS(1,4)` core and let
@@ -37,6 +38,86 @@ so that its compression is within `O(e^(1/8))` normalized HS of the input
 tuple.
 
 ## Attempts
+
+- **The common-reflection Gram seam costs no invariant hull.**
+  `bs14-polar-exits-retain-the-common-physical-reflection` is now established
+  under the literal common-source hypothesis.  Both forward/backward exit
+  errors have total Frobenius square at most `8r`, and the active ledger has
+  `r/d=O(e^(1/2))`.  The mixed minus-three/six Gram seam therefore vanishes
+  after normalization by a one-line common-reflection identity.  The
+  correction lives on an `O(r)` non-invariant reflection surgery hull; the
+  disastrous full BS-invariant hull is never taken.  The reverse gate has
+  consequently narrowed to extracting one typed common source and choosing
+  its integral/global congruence cell.
+
+- **Once a mixed Weil reservoir is authenticated, both requested estimates
+  are automatic.**  `weil-reservoir-mixing-has-energy-paid-completion`
+  permits arbitrary heterogeneous levels and internal reservoir mixing.  A
+  single positive-corner cubic identity pays its full rank, and restoring it
+  gives the exact endpoint with the correct flexible displacement.  Thus the
+  present claim's missing work is entirely reverse: extract a positive fixed
+  source reservoir and its two exits from the residual polar data.  No
+  further blockwise determinant or energy calculation is needed afterward.
+- **Arbitrary cross-type mixing is uniformly repairable after global atoms
+  are authenticated.**
+  `congruence-cross-type-mixing-has-uniform-polar-repair` applies the uniform
+  congruence property-`(tau)` gap on the operator bimodule.  Averaging any
+  physical cross-packet unitary and cutting its polar part at singular value
+  `1/2` produces an exact endpoint partial intertwiner; both discarded
+  supports and squared displacement are `O(E)` with constants independent of
+  conductor and packet size.  Thus neither an `o(1/D)` cross-stratum sequence
+  nor a further joint-Gram obstruction survives **after** the two endpoint
+  multiplicity profiles are known.  This does not close the present reverse
+  gate: the raw exact BS core and two residual polars have not yet selected a
+  common congruence quotient or nonnegative restriction-fiber endpoint type,
+  so invoking the bimodule gap before that selection would be circular.
+
+- **Active residual carriers cannot name the passive endpoint.**
+  `active-residuals-do-not-name-passive-endpoint` adjoins the same fixed,
+  nonzero compressed Weil boundary cell to the two cuspidally redistributed
+  exact endpoints over one literal BS core.  The resulting near tuples have
+  identical exact cores and literally identical two-cubic residual
+  operators, hence identical polar carriers and active hulls, while their
+  passive involutions remain a fixed normalized-HS distance apart modulo
+  the core commutant.  Restoring the common boundary line completes both,
+  but to different exact endpoint types.  Thus reverse authentication must
+  be triangular: recover the local active cell, then preserve or adaptively
+  repair the supplied passive `X`.  Neither the regular spectral split nor
+  the active residual geometry selects a global congruence atom by itself.
+
+- **The passive reflection cannot be preserved as an exact compression.**
+  The unitary-compression observation in
+  `common-reflection-defect-is-holonomy-spectator` says that if an ambient
+  completion `X~` has `P X~ P` equal to the old passive reflection (hence a
+  unitary), then `P` reduces `X~`; every boundary coupling vanishes.  The
+  compressed Weil cores have no same-dimensional endpoint, so their
+  restoring line necessarily changes the old compression.  What is both
+  possible and sufficient is `o(1)` normalized-HS preservation: the full
+  Weil compression differs from the polar reflection by
+  `O(d^(-1/2))`.  Any triangular reverse theorem must therefore permit a
+  small passive movement; literal preservation is incompatible with the
+  boundary mechanism it is meant to reconstruct.
+
+- **The inversion/factorization row itself is uniformly retractable.**
+  Apply `projective-dihedral-factorization-has-explicit-hs-retraction` with
+  `A=X` and `C=R` after rounding `X^2=1`.  If
+
+  ```text
+  eta=||XRX-R^(-1)||_2,
+  ```
+
+  then spectral rounding of `D=XR` gives `R_0` with
+
+  ```text
+  XR_0X=R_0^(-1),             ||R_0-R||_2<=eta/sqrt(2).
+  ```
+
+  This changes the BS row by at most `sqrt(2)eta` and the second cubic row
+  by at most `3eta/sqrt(2)`, while leaving the first cubic row unchanged.
+  Thus no active dilation is needed merely to split the stable letter or
+  exactify inversion.  The obstruction is simultaneous intersection: this
+  retraction moves the already exact BS core and can recreate precisely the
+  residual carriers whose common source the present claim must realize.
 
 - `bs14-energy-threshold-active-passive-ledger` proves exactly these rates
   when the input is already known to be a polar compression of a positive

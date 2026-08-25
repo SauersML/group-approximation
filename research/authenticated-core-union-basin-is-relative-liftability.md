@@ -68,3 +68,15 @@ fiber does not prove the global union-basin theorem.  A failed flexible
 union-basin sequence is precisely a non-liftable relative ultraproduct
 extension `(AUL2)`.  Excluding such extensions, or reconstructing their
 energy-controlled boundary carriers, is the remaining arithmetic theorem.
+
+The literal central-idempotent shortcut is now fenced by
+`raw-core-central-reynolds-authentication-is-circular`.  The exact core does
+canonically reveal the finite level `N_n`, but not the point of the
+restriction fiber: exact cuspidal redistributions have the same core and
+different positive-density endpoint central profiles.  Evaluating the full
+central idempotents on the approximate tuple first requires a word-section
+multiplication table; the cyclic core character proves that every frozen-core
+section has nonuniform RMS filling cost.  Once a lift supplies such a table,
+uniform Reynolds/polar repair is already available.  Thus central averaging
+does not insert an intermediate theorem between `(AUL2)` and its coordinate
+lift.

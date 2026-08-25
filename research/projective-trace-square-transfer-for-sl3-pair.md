@@ -297,6 +297,20 @@ weakening consumed by the HNN marked word.
   differ on `h`.  Thus exact character/factor rigidity cannot prove the
   transfer; finite-dimensional approximability must enter essentially.
 
+- **The hyperfinite-limit sector does close.**
+  `sl3-projective-transfer-holds-on-hyperfinite-limit-sector` applies the
+  established character criterion for hyperfinite Hilbert--Schmidt
+  stability to the whole ambient tuple.  If an approximate assignment has
+  amenable generated ultraproduct algebra, it is flexibly `o(1)`-correctable
+  to exact finite-dimensional representations of `A`; padding the witness
+  unitary on the vanishing corner and applying the exact projective
+  co-density estimate proves `(PTS1)` sequentially in that sector.  Hence a
+  surviving enemy must have a genuinely nonamenable generated algebra.
+  This is the exact positive reach of character rigidity: the regular
+  character has GNS algebra `L(A)`, which is nonamenable, and residual-finite
+  tensor camouflage moves every universal enemy into precisely that
+  uncorrected sector without changing its energies.
+
 - **Character/Weil classification stops at the Schur-clock firewall.**
   `schur-clock-router-has-maximal-projective-leak` gives an exact finite
   calibration for the remaining dyadic-conductor strategy.  On any cyclic

@@ -51,3 +51,32 @@ these locally kernel-separable supports.
 `locally-affine-support-bcs-is-exactly-the-lcs-boundary` shows that this is
 an exact reformulation of the binary LCS endpoint, not a weaker consequence
 of the presently known non-CE BCS source.
+
+## Trace-modification audit
+
+`affine-ghosts-survive-recoverable-tracial-dilations` rules out the standard
+ways of modifying the supplied witness.  Any enlarged local support which
+affinely and surjectively decodes to the original support carries every
+original affine ghost.  Matrix amplification, finite central/direct sums,
+classical polarization, and tagged diagonal tensor products all have such a
+decoder.  Direct sums are worse: the hull of their union contains the hull
+of every summand.
+
+Discarding the tensor tag removes the decoder, but also removes the expected
+copy of the original contextual algebra, so non-CE of the output no longer
+follows from the input.  Inside one fixed tracial model, a support-shrinking
+compression remains tracial only on a central summand.  Hence the only live
+model-selection operation is to find a non-CE central/factor component whose
+supports already satisfy `(LSP4)`.  Otherwise one needs a genuinely global,
+nonrecoverable compiler with a new proof of non-CE; neither is furnished by
+amplification or polarization.
+
+Slofstra's wagon-wheel picture method does not weaken `(LSP4)`.
+`wagon-wheel-stops-before-bcs-groupification` proves that fixed wagon fillings
+give excellent dimension-free defect transfer **after** an ordinary source
+group has been constructed.  Before that step, scalar solutions of every
+finite local wagon/LCS fragment project to an affine visible packet.  Hence
+preserving the chosen trace support forces the packet to contain its affine
+hull, and excluding forbidden scalar solutions is possible only under
+`(LSP4)`.  Bounded local picture surgery therefore returns exactly to this
+claim rather than bypassing it.

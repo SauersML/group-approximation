@@ -72,3 +72,14 @@ source at level `n+1`; the recurrence then has unrelated `q_n`.  Reusing one
 stationary multiplicity atom repairs that identification but makes the exits
 overlap, so the bound on `sum r_n` fails.  A successful construction must
 encode both identifications in the same incidence system.
+
+- **The complete fixed-depth packet/HNN assembly has an exact marked matrix
+  countermodel.**  `balanced-schur-finite-depth-reuse-is-regular-absorbed`
+  observes that the balanced Schur square is contained in a finite
+  semidirect vertex packet and that dressing the Reynolds section adds no
+  second edge relation.  Full-child reuse and finite first-hit transports
+  are still only finite-subgroup HNN covariance.  Common negative regular
+  multiples therefore extend across every row and give an exact model with
+  payload sign `-I`.  Hence independent covariance rows cannot imply
+  `(BSR1)`; a load-bearing cross-edge multiplicity/support relation is
+  necessary.

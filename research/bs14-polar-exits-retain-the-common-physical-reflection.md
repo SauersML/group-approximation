@@ -9,7 +9,7 @@ distinct_from:
   bs14-residual-polar-data-build-active-dilation: that includes the later Gram completion, integer cells, and endpoint authentication; this is only the continuous physical-exit row.
 ---
 
-In the setup of
+**ESTABLISHED.**  In the setup of
 `bs14-residual-polar-data-build-active-dilation`, let `V` be the common
 source isometry obtained after the two polar source maps are aligned, let
 `P=1-VV^*`, and put
@@ -61,3 +61,6 @@ both rows to retain the same physical `X`.  Once `(PER2)` holds,
 `common-physical-reflection-pays-two-exit-gram-seam` proves the mixed moment
 `V^*S^(-3)V-V^*S^6V` tends to zero, and the joint Gram-swap completion
 applies on an `o(d)` surgery hull.
+
+DERIVATION
+bs14-common-reflection-exit-bound-proof

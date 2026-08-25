@@ -166,6 +166,58 @@ Ioana--Spaas--Wiersma mechanism), per
   relator does not contradict such a section: its lifted edge values may be
   `O(1)` away from the canonical group unitaries inside `I_N`, and complete
   positivity can store the cyclic holonomy there.
+- **Simultaneous balancing is necessarily macroscopic on a tree face
+  (2026-08-24).**  The one-face gap is not an artifact of requiring the
+  closing-face section to land in `C^*(E)`.
+  `three-face-ucp-balancing-needs-macroscopic-tree-motion` applies the same
+  kernel cycle to the concrete finite Fourier operator system
+
+  ```text
+  S_Delta=C^*(P_12)+C^*(P_23)+C^*(P_13) subset C^*(Lambda).
+  ```
+
+  If `n=a_1...a_L` is a nontrivial kernel word, every ucp map
+  `Phi:S_Delta->C^*(G_0)` obeys
+
+  ```text
+  max_j ||Phi(u_(q(a_j)))-u_(a_j)|| >= 2/L^2.
+  ```
+
+  No right-inverse hypothesis is needed.  Equivalently, the prefix Gram
+  matrix of the closed path is an explicit `(L+1)`-by-`(L+1)` positive
+  matrix-order witness, and every canonical-on-both-tree-faces linear lift is
+  at cb-distance at least `2/L^2` from the ucp cone.  Thus `(TL2)` cannot be
+  proved by a perturbatively small cp correction of the canonical tree-face
+  maps: at least one `P_12` or `P_23` entry must move by `O_L(1)` inside the
+  relator ideal.  This still does not refute the claim, because a genuinely
+  noncanonical balance is allowed; it sharply specifies the size and location
+  of the correction the live finite-reservoir route must supply.
+- **Independent macroscopic inner motion is also dead in an explicit
+  `(3,3,4)` instance (2026-08-24).**
+  `kernel-inner-tree-face-balancing-collapses` trees the triangle across
+  `P_2`, whose two adjacent finite vertices have type `A_2`.  The standard
+  rank-one edge group is self-normalizing on both sides, so Bass--Serre
+  fixed-tree rigidity gives `C_(G_0)(P_2)<=P_2`.  If the `P_12` and `P_23`
+  restrictions are canonical embeddings independently conjugated by relator
+  kernel elements, agreement on the shared `P_2` algebra forces the two
+  conjugators to coincide.  Removing that one global conjugation makes both
+  faces canonical and the kernel-cycle Gram floor applies.  Thus arbitrarily
+  long kernel words and norm-two inner movement do not provide the balance.
+  The claim remains open because a ucp face restriction need not be
+  multiplicative: at least one tree-face restriction in a successful balance
+  must be genuinely nonmultiplicative.
+- **A uniform finite-relator Laplacian cannot provide the required
+  nonmultiplicative movement (2026-08-24).**
+  `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal
+  relator-kernel pair `(G_0,K)` cannot have relative property `(T)`: the
+  quotient `Lambda` is Kazhdan, while relative `(T)` for the pair would make
+  the extension group `G_0` Kazhdan, contradicting its infinite virtually
+  free Haagerup action.  Consequently no fixed finite family of native
+  relator words has a dimension-uniform Poincare inverse on the complement of
+  the `K`-fixed space.  This rules out solving the simultaneous cp correction
+  by inverting a finite relator sum of squares.  It does not refute the claim:
+  the remaining reservoir route may use singular packet-dependent
+  coefficients and complete-positive geometry rather than coercivity.
 - **The operator-system colimit shortcut is also nonformal.**
   `operator-system-face-colimit-need-not-have-concrete-group-order` records the
   2026 operator-system calculation for the cross

@@ -98,9 +98,11 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   `regular-actor-balanced-swap-has-positive-second-fold-bias`.  On assignments
   whose `A`-restriction already has the regular character and whose swap is
   balanced, it asks only for `liminf Re tr(V^2)>0`, equivalently for the Gram
-  defect to stay a fixed amount below `1/16`.  This is weaker in conclusion
-  than `(SFS1)` but is still endpoint-equivalent on canonical microstates;
-  it must not be treated as an already available stability theorem.
+  defect to stay a fixed amount below `1/16`.  Congruence tensor
+  regularization removes its profile restriction, and slowly growing tensor
+  powers amplify a fixed positive bias to `Re tr(V^2)->1`.  Hence
+  `positive-second-fold-bias-amplifies-to-full-rigidity` proves that this
+  apparent weakening is actually equivalent to `(SFS1)`.
 
 - Fixed-depth arithmetic type refinement does not reach that narrower
   terminal.  Every fixed-depth Clifford graph is finite-fiber Folner, and

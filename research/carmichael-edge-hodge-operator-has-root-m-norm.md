@@ -68,6 +68,13 @@ because it is the shape a Hodge argument would produce.
 
 ## Attempts
 
+- **The scalar common mode refutes the bound.**
+  In `scalar-phase-refutes-r5-subquadratic-energy`, all conjugates of the
+  marked matrix equal `zI`, so the edge field is the nonzero constant field
+  `(z^4-1)I`.  Its squared norm is `Theta(M^2)`, while `(SF3)` is only
+  `O(M def_R(U)^2)`.  Thus the previously uncontrolled common mode is not
+  merely a technical gap: it is an exact counterexample to `(SF1)--(SF3)`.
+
 - **The gauge half is already understood, and it is empty.**
   `collective-centralizer-cycles-are-free-gauge-identities` proves the exact
   free identity `r_(ij)^(h_j^(-1)) = Q_j Q_i^(-1)` and hence that every

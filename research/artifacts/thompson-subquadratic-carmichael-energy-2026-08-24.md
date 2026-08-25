@@ -88,6 +88,23 @@ packing-rate problem.
 
 ## 3. Audit findings
 
+### (0) Subsequent decisive correction: the R5 compiler is false
+
+The marked word `b=(01 10 11)` is literally one generator of the
+three-generator Bleak--Quick presentation.  Assign it the scalar
+`z=exp(it)` and assign every other generator `1`.  Every relator has scalar
+defect `O(t)` because the relator set is finite.  But every conjugate of
+`B=zI` is again `B`, so for every proposed packet
+
+```text
+E_M=binom(M,2)|z^4-1|^2.
+```
+
+For any fixed sufficiently small `t` with `z^4!=1`, this is not `o(M^2)`.
+Thus `r5-subquadratic-carmichael-energy` and its Hodge operator route are
+refuted.  The collapse theorem audited below remains correct as a conditional
+matrix statement.
+
 ### (a) The theorem is genuinely new here, and `(CP)` is its reusable kernel
 
 `bounded-area-high-chromatic-conjugacy-collapse-proof` already performs the

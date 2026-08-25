@@ -48,6 +48,14 @@ and running it through the diagonal-coset construction closes GKP Question
 4.2 in the negative (`commuting-sofic-actions-need-not-combine`) — the first
 external open question this preprint settles through this repository.
 
+The unitary-stability audit now isolates a strictly weaker endpoint than
+full flexible stability.  `kt-wreath-relative-canonical-actor-exactification`
+asks only that the actor restriction of a canonical microstate sequence of
+the pinned wreath relations be close, after negligible padding, to genuine
+finite-dimensional actor representations.  Property `(T)` plus
+finite-dimensional commutant no-growth then already collapses the strict
+compressor lamp.  No lamp exactification or invariant Cartan is needed.
+
 **Priority. This paper is not the first nonsofic group and must never be
 cited as one.** Its own abstract opens: "This work builds on the breakthrough
 of OpenAI in finding the first nonsofic group. We analyze the underlying proof

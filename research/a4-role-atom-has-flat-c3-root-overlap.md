@@ -50,14 +50,17 @@ factor: if the BCS generators commute with the packet and `Q` lies in the
 selected block, every role atom has trace `3^(-k)tr(Q)` and `(AMR3)` remains
 valid after multiplication by the associated forbidden BCS projection.
 
-The lemma does **not** identify this auxiliary order-three word with the
-coefficient root `x_13(a)` of the adaptive Steinberg compiler.  In the
-perfect coefficient model the forbidden idempotent `a` is zero, hence
-`x_13(a)=1`, while `z` is nontrivial on the selected `A4` block.  Literal
-amalgamation therefore destroys that model.  A conditional bridge would
-have to make the A4 block itself vanish with `a`, and reflecting that
-conditional block from an abstract Steinberg microstate is exactly the
-payload-to-root problem again.
+The lemma alone does **not** identify this auxiliary order-three word with
+the coefficient root `x_13(a)` of the adaptive Steinberg compiler.  There is
+no representation-level obstruction to doing so by a cyclic amalgam when
+the coefficient root has exact order three: in the perfect coefficient
+model `a=0`, both the root and the whole `A4` factor may simply be represented
+trivially.  The selected `c_3` block is then absent from that particular
+model, which is harmless for canonical-microstate arguments.  What still has
+to be supplied is a positive initial carrier which remains in the selected
+block through all reached hulls, or a packet whose distinguished sector is
+selected by one common central word.  The binary-tetrahedral construction
+in `binary-tetrahedral-conditional-e5-root-bridge` supplies the latter.
 
 DERIVATION
 a4-role-atom-flat-c3-compression-proof

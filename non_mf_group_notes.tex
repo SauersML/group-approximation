@@ -425,12 +425,6 @@ Since $\Cred(E)$ is nonnuclear, this example does not address the
 nuclear form of the Blackadar--Kirchberg problem, whether every stably
 finite separable nuclear $C^*$-algebra is quasidiagonal.
 
-The maximal algebra behaves differently: $\Cmax(E)$ is not stably
-finite and has no faithful tracial state.  This holds for every group
-containing a property-\textup{(T)} subgroup properly conjugated into
-itself, and comes from a proper isometry built directly from the
-Kazhdan projection (Proposition~\ref{rem:maxinfinite}).
-
 \subsection*{A sofic example}
 
 \begin{mainthm}[the explicit group is sofic]\label{thm:Esofic}
@@ -442,9 +436,9 @@ The group $E$ of Definition~\ref{def:E} is sofic.
 Hence $E$ is hyperlinear.  LEF groups are MF \cite{CDE} and $E$ is not
 MF (Theorem~\ref{paper-thm:A}), so $E$ is not LEF; a residually finite group
 is LEF, so $E$ is not residually finite either.
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
-\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
+\leanverified{Sofic/LiteralSoficConsequences}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
+\leanverified{Sofic/LiteralSoficConsequences}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
+\leanverified{Sofic/LiteralSoficConsequences}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
 
 Let $E_0$ be the kernel of the exponent sum in $t$.  For every finite
 subset of $E_0$, the $T$-coordinates lie in a single level of the
@@ -1396,8 +1390,46 @@ computable, so a radical-membership algorithm for $U$ would decide the word
 problem of $A$.
 \end{proof}
 
-Unlike the fixed radical computer below, actual residual membership varies
-here.  This proves undecidability, not $\Sigma^0_2$-completeness.
+Here actual residual membership varies.  A different phenomenon occurs even
+when membership in the residual is promised in advance.
+
+\begin{theorem}[a fixed computer inside the MF residual]
+\label{thm:fixed-radical-computer}
+There are a fixed finitely presented non-MF group $V$ and a computable family
+of words $(r_p)_{p\in\N^2}$ such that
+\[
+ r_p\in
+ [\operatorname{Res}_{\mathrm{MF}}(V),V]
+ \subseteq\operatorname{Res}_{\mathrm{MF}}(V)
+ \qquad(p\in\N^2),
+\]
+but the set $\{p:r_p=1\text{ in }V\}$ is undecidable.
+\leanverified{Computability/MFRadicalComputer}{GroupApproximation.MFRadicalComputer.closed_package}
+\leanverified{Computability/MFRadicalComputer}{GroupApproximation.MFRadicalComputer.word_mem_commutator_residual}
+\end{theorem}
+
+\begin{proof}
+Choose a fixed finitely presented group $A$ with a computable family
+$(a_p)_{p\in\N^2}$ for which the predicate $a_p=1$ is undecidable
+\cite{Boone}.  Let $w\ne1$ be the marked element of $E$ lying in
+$\operatorname{Res}_{\mathrm{MF}}(E)$, put $V=E*A$, and define
+\[
+ r_p=[w,a_p],
+\]
+where the two entries are viewed in the corresponding free factors.
+Functoriality puts the image of $w$ in
+$\operatorname{Res}_{\mathrm{MF}}(V)$, so
+$r_p\in[\operatorname{Res}_{\mathrm{MF}}(V),V]$ for every $p$.
+Free-product normal form and $w\ne1$ give
+$[w,a_p]=1$ if and only if $a_p=1$.  Thus identity testing on the promised
+residual-valued family $(r_p)$ is undecidable.  Finally, $V$ is finitely
+presented and contains the non-MF free factor $E$, so it is not MF.
+\end{proof}
+
+Thus Theorem~\ref{thm:fixed-radical-membership} makes residual membership
+undecidable, whereas Theorem~\ref{thm:fixed-radical-computer} makes equality
+with the identity undecidable inside a computable family already known to
+lie in the residual.
 
 \begin{corollary}\label{cor:nofaithful}
 Let $A$ be a unital $C^*$-algebra admitting an injective, possibly
@@ -2279,6 +2311,10 @@ generalized wreath products of Kun--Thom \cite{KT}, to the sofic-action
 framework of Gao, Kunnawalkam Elayavalli, and Patchell \cite{GKEP}, and
 to the halo-product framework of Alekseev--Bradford
 \cite{AlekseevBradford}.
+The comparison with permutational wreath products and the possible
+sofic-action route were pointed out by Fournier-Facio, who also observed the
+close relation between the sign-free quotient and the construction shared by
+Eckhardt.
 
 \begin{lemma}[finite-site subgroups are residually finite]\label{lem:window}
 For every finite set $S$ of sites the subgroup $M_S$ is residually
@@ -2710,88 +2746,6 @@ identity?
 Theorems~\ref{thm:criterion},~\ref{thm:normal-kazhdan}
 and~\ref{thm:projection-collapse} compute the residual exactly?
 \end{enumerate}
-
-\section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
-
-For a countable group $H$, the maximal group $C^*$-algebra $\Cmax(H)$ is
-the completion of the group ring $\C[H]$ in the norm
-\[
- \lVert x\rVert_{\max}=\sup_\pi\lVert\pi(x)\rVert,
-\]
-the supremum taken over unitary representations of $H$; the supremum is
-finite because $\lVert\pi(\sum_h\lambda_hh)\rVert\le\sum_h|\lambda_h|$.
-Write $u_h$ for the canonical unitary of $h\in H$.
-
-\begin{proposition}[the universal property]
-\label{prop:maximal-cstar}
-The canonical map $h\mapsto u_h$ is injective, and for every unital
-$C^*$-algebra $B$ and every homomorphism $\rho\colon H\to\U(B)$,
-there is a unique unital $*$-homomorphism $\Cmax(H)\to B$ with
-$u_h\mapsto\rho(h)$ for every $h\in H$.
-\leanverified{Analysis/MaximalCStarAllUniverses}{GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty}
-\end{proposition}
-
-Injectivity follows from the left regular representation, and
-uniqueness follows from density of $\C[H]$.
-
-\begin{proposition}[a strictly dominated projection gives a proper isometry]\label{prop:proper-isometry}
-Let $A$ be a unital $C^*$-algebra containing a projection $p$ and a
-unitary $u$ with $p<upu^{*}$.  Then $A$
-contains an isometry that is not a unitary; consequently $A$ is not
-stably finite and has no faithful tracial state.
-\leanverified{Analysis/ProperIsometryStrictOrder}{GroupApproximation.manuscriptProperIsometryStrictOrder}
-\end{proposition}
-
-\begin{proof}
-Write $q=upu^{*}$, so $q$ is a projection with $pq=qp=p$, and put
-$r=pu^{*}$.  Then
-\[
- r^{*}r=up\,pu^{*}=upu^{*}=q,\qquad rr^{*}=pu^{*}up=p .
-\]
-Put $s=r+(1-q)$.  Since $p(1-q)=0$ and $(1-q)p=0$,
-\[
- s^{*}s=r^{*}r+(1-q)=q+(1-q)=1,
-\]
-and since $pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=pu^{*}-pu^{*}=0$ and
-likewise $(1-q)up=0$,
-\[
- ss^{*}=rr^{*}+(1-q)=p+(1-q)=1-(q-p).
-\]
-Thus $s^{*}s=1$ but $ss^{*}=1-(q-p)\ne1$, so $s$ is a nonunitary
-isometry.  A unital $C^*$-algebra containing a
-nonunitary isometry is not finite, hence not stably finite.  If $\tau$
-were a faithful tracial state then
-$\tau(1-ss^{*})=\tau(1)-\tau(s^{*}s)=0$ while $1-ss^{*}=q-p$ is a
-nonzero positive element, contradicting faithfulness.
-\end{proof}
-
-\begin{proposition}[the maximal algebra under proper one-sided conjugation]
-\label{rem:maxinfinite}
-Let $G$ be a countable group containing a property-\textup{(T)}
-subgroup $\Gamma$ and an element $t$ with
-$t\Gamma t^{-1}\subsetneq\Gamma$.  Then $\Cmax(G)$ is not stably
-finite, has no faithful tracial state, and is in particular neither
-residually finite-dimensional nor MF\@.
-\leanverified{Analysis/QuasiRegularWitness}{GroupApproximation.QuasiRegularWitness.baseVector_apply_base}
-\leanverified{Analysis/StrictCompressionFromPrinted}{GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses}
-\end{proposition}
-
-\begin{proof}
-Let $P\in\Cmax(G)$ be the spectral projection at $1$ of
-the Hermitian Kazhdan average $\tfrac1{2|S|}\sum_{s\in S}(u_s+u_s^{*})$,
-which exists by Lemma~\ref{paper-lem:kazhdan-gap}.  Then
-$P\le u_tPu_t^{*}$.  This inequality is strict.  In the quasi-regular
-representation on $\ell^2(G/t\Gamma t^{-1})$, the point mass at the
-base coset is fixed by $t\Gamma t^{-1}$ and moved by every element of
-$\Gamma\setminus t\Gamma t^{-1}$.  Thus the two fixed-space projections
-are distinct in this representation.  Now apply
-Proposition~\ref{prop:proper-isometry}.
-\end{proof}
-
-The base subgroup of $E$ and the element $t$ form such a pair, so
-$\Cmax(E)$ is not stably finite.  The reduced algebra behaves
-differently: its canonical trace is faithful and it is stably finite,
-despite being non-MF (Theorem~\ref{thm:reduced}).
 
 \begin{thebibliography}{GKEMP}
 \frenchspacing

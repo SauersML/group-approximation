@@ -27,3 +27,13 @@ algebra-distance estimate.  The finite noncommutative packet route is recorded
 separately at `finite-noncommutative-packet-compression-collapse`: it repairs
 the failure with rank-weighted Hilbert--Schmidt geometry and Kazhdan transport,
 so it does not establish this deliberately no-renormalization endpoint.
+
+Topological aperiodicity is also insufficient after changing the norm to
+normalized Hilbert--Schmidt.  By
+`strong-aperiodic-z2-addresses-have-vanishing-hs-seams`, every nonempty finite
+two-dimensional local rule, including a strongly aperiodic one, has torus
+models with only `O(1/N)` violated checks and hence `O(N^(-1/2))` normalized-HS
+defect.  The live finite-memory alternative must therefore prove a robust
+finite-action loss gap, not merely absence of exact periodic states; on a
+unitary route it additionally needs a dimension-uniform diagonal/Cartan
+classicalization.

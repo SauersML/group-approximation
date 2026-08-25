@@ -70,6 +70,37 @@ the cross-packet multiplicity boundary for one `X`.
 
 ## Attempts
 
+- **Arbitrary authenticated Weil reservoirs now satisfy the full ledger.**
+  `weil-reservoir-mixing-has-energy-paid-completion` starts from any
+  heterogeneous sum of full even-Weil endpoints, transports the total fixed
+  reservoir by an arbitrary common basis change, and permits arbitrary
+  unitary mixing inside that reservoir before compression.  The corner
+  `QXQ` remains positive with spectrum at most `1/sqrt(5)`.  The block-free
+  first-cubic identity therefore gives
+
+  ```text
+  E_cubic >= f(1/sqrt(5)) rank(Q).
+  ```
+
+  Restoring `Q` is an exact completion and has squared flexible displacement
+  `O(rank(Q)/(d+rank(Q)))`.  Hence `(FBR2)` is proved without retained block
+  labels for every authenticated mixed Weil boundary.  What remains is only
+  reverse authentication: produce such a positive fixed reservoir or an
+  equivalent global atom from the two residual carriers of an arbitrary
+  near-solution.
+
+- **Strict alternating projection cannot expose the flexible boundary.**
+  `iwahori-two-loci-have-zero-uniform-angle` uses the compressed even-Weil
+  family to put one tuple exactly on the reflected BS locus and another
+  `O(p^(-1/2))` away on the exact simultaneous-cubic locus, while their
+  same-dimensional intersection stays a fixed distance away.  Thus no
+  uniform metric-angle, global alternating contraction, or residual-only
+  Newton basin theorem can be used before padding.  The added Weil line is
+  not a technical convenience: it changes the ambient intersection variety.
+  Any proof of `(FBR2)` must therefore reconstruct an energy-paid boundary
+  carrier (or an equivalent support-changing global atom) before invoking
+  local angle/Newton estimates.
+
 - **Every canonical compressed even-Weil block obeys the exact ledger.**  If
   `p=5 mod 8`,
   `even-weil-second-cubic-has-a-rank-six-determinant-gap` proves
@@ -310,6 +341,144 @@ the cross-packet multiplicity boundary for one `X`.
   saturation exponent does not prove `(FBR2)`.  The analytic repair must
   either change rounded packet types at energy-controlled cost or exhibit a
   native support-enlarging cell which cancels every torsion charge.
+
+- **The minimal parity hole costs exactly one support-changing cell.**
+  `three-way-parity-hole-has-one-cell-repair` explicitly inverts the
+  two-by-two-by-two even-parity incidence tetrahedron.  Its four cell
+  multiplicities are one half of four nonnegative numerators which always
+  have a common parity.  If that parity is odd, adjoining the margins of
+  any one odd-parity triple changes three numerators by `+1` and the fourth
+  by `-1`; all become nonnegative even integers.  Thus every integral hole
+  in this cone is repaired at exact additive cost one, and the six-unit
+  determinant-two example is sharp.  This removes the abstract parity
+  tetrahedron as an unbounded flexible-padding obstruction.  It does not
+  close `(FBR2)`: the added odd triple is deliberately outside the old
+  support, so the native BS packet/Gram relations must still realize that
+  one type change with energy-controlled displacement.
+
+- **The first native congruence face has no additive odd cell.**
+  `a5-d10-restriction-keeps-parity-charge` computes the complete restriction
+  table from `A_5=PSL_2(F_5)` to the level-five BS image `D_10`.  If its
+  irreducibles are `1,epsilon,rho_1,rho_2`, every exact restriction has
+
+  ```text
+  m_epsilon+m_(rho_1)+m_(rho_2)=0 mod 2.
+  ```
+
+  The integral type `epsilon+rho_1+rho_2` is half the sum of the restricted
+  `3,3',4` irreducibles, but lies outside the restriction lattice and stays
+  outside after arbitrary exact level-five padding.  Hence the abstract odd
+  triple above cannot be realized by a same-level exact atom.  The table
+  also shows the correct one-line operation:
+  `epsilon+rho_1+rho_2-epsilon+1=res(5)`.  Native reconciliation must pay a
+  **type flip** of an existing boundary line (or change congruence level),
+  not merely append an exact atom.  The remaining analytic gate is to charge
+  that flip and its joint Gram surgery to `(FBR1)` uniformly over moving
+  levels.
+
+- **The level-five type flip is energy-paid, including possible level
+  change.**  `a5-d10-parity-blocks-have-energy-paid-repair` fixes the native
+  core `h=epsilon+rho_1+rho_2` and considers its full four-relator energy on
+  `U(5)`.  If some exact Iwahori endpoint at any level restricts to `h`,
+  compactness gives a same-core correction modulus.  Otherwise the energy
+  has a positive minimum `delta_h`; adjoining one sign line gives
+  `h+epsilon=res(3+3')`, so one exact `A_5` endpoint repairs the block and
+  `1<=E/delta_h`.  Block-diagonal sums therefore have padding linear in
+  unnormalized energy and vanishing normalized displacement.  This proves
+  the desired native support change and joint Gram completion on the first
+  finite face.  The constants are fixed-level compactness constants, and
+  the proof does not survive moving levels or an unauthenticated `X` mixing
+  the native blocks; uniform moving-level energy charge remains the gate.
+
+- **Every fixed finite core face has a complete energy-paid dichotomy.**
+  `fixed-finite-core-face-has-energy-paid-completion` removes any residual
+  ambiguity about what fixed-level compactness can prove.  For a fixed
+  finite quotient `G`, core image `H`, and authenticated `H`-type `sigma`,
+  either the exact extension zero set is nonempty and compactness gives a
+  same-core correction modulus, or its energy has a positive minimum
+  `delta_sigma`.  In the latter case, complete `sigma` inside
+  `res_H^G(M lambda_G)=M[G:H]lambda_H`; the complement has fixed dimension
+  `k_sigma` and
+
+  ```text
+  k_sigma<=(k_sigma/delta_sigma)E.
+  ```
+
+  This automatically satisfies every joint Gram relation.  Finite lists of
+  authenticated faces therefore obey `(FBR2)` with face-dependent constants.
+  The moving-level problem is exactly uniform control of
+  `k_sigma/delta_sigma` by a **native efficient** completion, plus recovery
+  of the blocks when `X` cross-mixes them.  Regular completion cannot supply
+  that uniformity: its dimension has the quotient-index blowup already
+  exhibited by the rank-one Weil boundary.
+
+- **The proposed uniform trichotomy has one exact fourth case.**  On an
+  authenticated moving face, the three useful outcomes are: (i) a uniform
+  same-core correction modulus; (ii) an exact internal replacement supported
+  on `O(E)` old dimensions; or (iii) a native exact completion using `O(E)`
+  added/support-changed dimensions whose compression is close to the input.
+  Each outcome gives the required flexible repair by the standard
+  low/high-energy direct-sum split.  If none holds, the surviving enemy is a
+  **soft delocalized nonextendible face**: a sequence with
+
+  ```text
+  E_n/d_n ->0,
+  dist(input_n, same-core exact zeros) not ->0,
+  ```
+
+  for which no `O(E_n)`-rank internal carrier and no `O(E_n)` native
+  boundary completion has vanishing compression displacement.  This is the
+  exact fourth case omitted by a bare compactness argument.  The known
+  families do not realize it: compressed Weil packets satisfy (iii) with
+  one line, long return-phase packets admit a cheap same-dimensional reset,
+  and the Dadarlat/rational-`H^2` soft modes which defeat a strict
+  operator-norm basin have exact torsion rows rather than the required exact
+  BS-and-inversion core.  Excluding this fourth case for the native
+  congruence faces is equivalent to the remaining moving-level content of
+  `(FBR2)`; no present finite-face theorem excludes it.
+
+- **A dyadic diagonal does not by itself exclude the fourth case.**
+  `dyadic-face-repair-needs-cost-tail-tightness` gives the exact summation
+  criterion.  Splitting face repair constants at `L` gives
+
+  ```text
+  repaired rank/d <= L E/d
+    +mass{lambda:C_lambda>L}.
+  ```
+
+  A qualitative diagonal proof therefore requires uniform tightness of the
+  occupied repair-cost tails.  Pointwise finite-face compactness supplies
+  no such estimate: mass on a type with `C_n->infinity` and energy density
+  `1/C_n` defeats every cutoff.  Canonical character convergence also
+  cannot give ordinary conductor tightness, since it forces every fixed
+  shallow-conductor mass to vanish.  This is a quantifier firewall, not a
+  native counterexample; the remaining arithmetic input must be a uniform
+  native cost bound or an independent repair-cost tail theorem.
+
+- **Uniformly energy-paid faces cannot delocalize by mixing levels.**
+  `energy-paid-flexible-completions-aggregate` sums the padding, leakage and
+  generator Frobenius ledgers before normalization.  If every occupied
+  authenticated face has one level-independent energy-to-completion
+  constant, then arbitrary heterogeneous direct sums over moving levels
+  have padding and squared flexible displacement `O(E/d)`.  This rules out
+  diffuse sums of compressed positive-corner Weil packets, arbitrary
+  passive cuspidal redistributions plus those packets, and sums of the
+  isolated metacyclic substitutions.  Long return phases can first be reset
+  at global cost `pi/M`, while the rational-`H^2` index has vanishing
+  normalized density and is not exact on the required core.  Therefore the
+  fourth case, if real, must be genuinely cross-atom before authentication,
+  or occur on single native faces with unbounded efficient-completion cost;
+  it cannot arise merely by spreading the known local enemies over levels.
+
+- **Cross-packet Frobenius mass is not gauge-invariant.**
+  `exact-cuspidal-hadamard-mixing-has-macroscopic-cross-blocks` gives an
+  exact zero-energy endpoint over two identical BS restrictions whose
+  extender has a fixed positive fraction of off-diagonal mass relative to
+  the duplicated cyclic-packet decomposition.  The mixing is a Hadamard in
+  the full core commutant between two inequivalent cuspidal global labels.
+  Thus no estimate can pay all raw `X` blocks joining preselected packet
+  copies.  Compatibility must first quotient the exact restriction-fiber
+  gauge; only its normal complement can carry endpoint energy.
 
 - **Long return phases admit an explicit support-enlarging reset.**
   `bs14-long-packet-monodromy-reset-creates-fixed-sources` replaces the

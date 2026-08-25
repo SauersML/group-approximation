@@ -39,3 +39,12 @@ Thus the torsionization route has one exact remaining algebraic test after a
 projective basis is found: compute the class on the finite residual of the
 Schur multiplier.  A nonzero value there is a decisive obstruction to this
 density argument; vanishing closes the non-hyperlinear-group problem.
+
+The source-order audit
+`current-nonce-sources-do-not-supply-a-finite-cocycle-sector` emphasizes that
+this is a **downstream conditional gate**, not yet a computable invariant of
+the published CDI/Manzoor construction: the scalar projective quotient
+`Gamma` is unavailable until the projective-word gate is solved.  Local
+finite-exponent Clifford packets do not define that quotient; they merely add
+a finite spectator grading and move the same question to a finite-index
+kernel.

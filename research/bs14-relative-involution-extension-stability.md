@@ -7,6 +7,7 @@ distinct_from:
   iwahori-outlier-repair: that is formulated through low-energy edge intertwiners for two modular vertices; this is the equivalent relative one-involution problem after the amenable BS(1,4) core has been repaired.
   iwahori-newton-closes-near-sector: that handles a fixed torsion-multiplicity tube by differential rigidity; this asks for a global packetwise repair over arbitrary periodic BS cycle packets.
   bs14-unitary-representations-are-periodic-cycle-packets: that classifies the exact core; this is the open uniform repair theorem for the remaining involution.
+  projective-dihedral-factorization-has-explicit-hs-retraction: that gives an explicit same-dimensional retraction onto the single reflection/factorization row; this claim additionally requires simultaneous preservation of the BS dynamics and both modular cubic rows.
 ---
 
 OPEN.  Let `R,S in U(d)` be an exact representation of `BS(1,4)`,
@@ -82,6 +83,36 @@ commuting with `T`.  The surviving issue is to authenticate the exact
 congruence `(R,T)` core and align the extending involution.
 
 ## Attempts
+
+- **The literal factorization/reflection row has an explicit uniform
+  retraction.**  In the factorized presentation write `C=AB`, retain `A^2 =
+  epsilon I`, and set `D=A^(-1)C`.  The identity
+
+  ```text
+  ||D^2-epsilon I||_2=||A^(-1)CA-C^(-1)||_2
+  ```
+
+  lets one spectrally round `D` to `D_0^2=epsilon I` with movement at most
+  the reflection defect divided by `sqrt(2)`; then `B_0=D_0` and `C_0=AB_0`
+  restore the factorization and reflection relation exactly.  Thus
+  `projective-dihedral-factorization-has-explicit-hs-retraction` removes the
+  literal splitting `C=AB` as an independent stability gate, with no padding
+  or multiplicity hypothesis.  It does **not** close this claim: if a
+  standalone exact BS correction moves `C` by `delta`, projecting it back to
+  the reflected locus can reintroduce BS residual `2 sqrt(2) delta` and cubic
+  residual `3 sqrt(2) delta`.  The remaining problem is therefore a uniform
+  intersection-angle/flexible boundary-reconciliation theorem for the exact
+  reflected, BS, and two-cubic loci, not a factorization correction.
+
+  The strict angle version is now ruled out explicitly.
+  `iwahori-two-loci-have-zero-uniform-angle` places the compressed even-Weil
+  tuple exactly on the reflected BS locus and uses simultaneous triangle
+  rounding to place a second tuple `O(p^(-1/2))` away on the exact two-cubic
+  locus.  Their same-dimensional intersection remains a fixed positive
+  distance away.  Hence there is no dimension-uniform metric
+  linear-regularity constant, global alternating contraction, or
+  residual-only Newton basin capture.  This leaves only the flexible
+  cross-packet boundary reconciliation option already allowed by this claim.
 
 - **Both triangle rows exactify in one common square-free tuple.**
   `iwahori-two-triangle-torsion-normal-form` first rounds `A=XT` to order

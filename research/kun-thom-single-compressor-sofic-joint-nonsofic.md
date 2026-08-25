@@ -31,3 +31,14 @@ is nonsofic.
 Thus the nonsoficity of the Kun--Thom coordinate action is a genuinely
 **multi-compressor compatibility phenomenon**: it is not already visible in
 any one positive ascending-HNN direction.
+
+The normalized-HS consequence is equally sharp.
+`kt-single-compressor-canonical-lamps-do-not-exactify-actor` applies GKP
+wreath permanence to each one-compressor action and obtains canonical
+permutation microstates of its binary wreath.  Their actor restrictions stay
+a uniform distance, after negligible padding, from every exact
+finite-dimensional actor representation.  Otherwise property `(T)` and
+finite-dimensional commutant no-growth would collapse two canonically
+separated coordinate lamps.  Hence even the full mixed Bernoulli trace for
+one compressor does not supply actor exactification; only simultaneous
+multi-compressor compatibility can possibly close the unitary route.

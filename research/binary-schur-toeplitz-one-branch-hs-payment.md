@@ -56,6 +56,14 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
 - **Use both branches only.**  Iterating `(BST8)` gives `2^n` equal-scale
   descendants, but matrices may grow exponentially and realize stationary
   regular flow.  Binary branching without a paid exit is not a contradiction.
+- **Even independent binary descendants have a stationary exact law.**
+  `binary-toeplitz-root-refinement-has-a-bernoulli-haar-fixed-point` proves in
+  the canonical group trace that all defect roots `w_j` are iid Haar `C_p`
+  variables and that `t^n w_0 t^-n=product_(j<2^n)w_j`.  Hence conjugating a
+  parent to the product of two transverse independent children gives the
+  idempotent law `mu=mu star mu`, whose nontrivial Haar solution is realized
+  exactly.  Any payment must distinguish one oriented child using matricial
+  information; independence or a spectral functional equation cannot do so.
 - **Canonical packet type weights do not authenticate the return
   reservoir.**  `binary-schur-canonical-weights-have-half-reservoir-escape`
   realizes the parent `M_(2D)` type with multiplicity `m` and the two target
@@ -113,6 +121,49 @@ decoding the whole root-kernel quotient as a linear-sofic algebra.
   HS loss is exactly one half of the square-clause defect.  This avoids the
   branch-flip Morita cancellation.  The remaining construction gate is raw-
   lift exposure: the current Atlas interface names only `[W] in PGL`.
+- **The one-bit BCS selector supplies the raw square locally, but not the
+  Schur incidence.**  `selector-product-is-a-payload-corner-square-root`
+  observes that the literal word `d_a=p_aq_a` satisfies
+  `P_aQ_-d_a^2=JP_aQ_-`; equivalently its global square differs from `J` by
+  an assignment-subgroup generator which is one on the selected atom.  This
+  completely avoids the PGL phase ambiguity on that corner and has an exact
+  perfect-model extension.  But tensoring the selector packet with the
+  stationary equal-child Schur model leaves both child multiplicities
+  unpaid at zero defect.  A full-carrier identification recreates the Morita
+  `M_2`.  The remaining row is therefore a compressed proper-corner
+  incidence identifying this selector word with the actual Schur return,
+  not another square or phase relation.
+  Directly amalgamating it to the coefficient Whitehead word is not that
+  incidence: when the forbidden coefficient vanishes, the Whitehead word is
+  one, so the amalgam forces the selector square
+  `J^(1-a(v))x_v` to be one globally.  This either contradicts the perfect
+  trace on its allowed support or assumes a literal packet detector already.
+- **Two selector-dressed Reynolds edges still have one range.**  The explicit
+  words `U_0=Up_a`, `U_1=Uq_a` expose relative holonomy `p_aq_a`; its square
+  and a commutator with `U_0` both equal the odd payload sign on the selected
+  atom.  Yet `two-reynolds-edges-absorb-selector-holonomy-at-one-range`
+  proves `U_0e_CU_0^*=U_1e_CU_1^*` exactly and gives a finite regular packet
+  model with positive forbidden mass.  Thus even a phase-sensitive two-edge
+  cycle does not pay a Schur child unless the relation reads a noncentral
+  target-support observable.
+- **The minimal noncentral target observable is regularly stationary.**  In
+  `C_2^2 rtimes S_3`, two actor words send one nontrivial character atom to
+  two orthogonal target atoms, and one target involution distinguishes them
+  with squared HS gap `tau(F)/2` on payload `F`.  Thus
+  `smallest-target-sign-split-is-regularly-absorbed` supplies a genuine
+  one-step branch split.  Its exact regular model contains the full
+  three-character orbit and saturates after that step; fresh packets prepay
+  `4^(-N)` source density.  A reusable payment must therefore attach a
+  nonstationary target label rather than another finite character packet.
+- **The Baumslag infinite label remains Bernoulli-stationary even with the
+  raw selector phase.**  `selector-baumslag-orbits-overlap-or-prepay` gives
+  exact finite-field models at every prescribed finite depth.  On the
+  positive selected atom, raw address halves retain mass but overlap by the
+  stationary `1/4` fraction; their first-hit refinements are orthogonal only
+  after paying `2^(-n)`.  The Pauli selector product still squares to `-1`
+  on that atom and does not alter the ledger.  Thus the needed Schur payment
+  must exclude this active finite-field profile by a genuinely
+  payload-dependent incidence.
 - **Compress the Toeplitz stable letter from one child into the full head.**
   This gives an exact rectangular section, but it does not wordize the
   phase-payment cell. For a closed unitary word `h` and source cut `p`,

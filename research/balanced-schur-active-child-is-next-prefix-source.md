@@ -72,3 +72,15 @@ unitary between the retained child and the next source.
   `N eta q_0>1`.  The companion-free seam must itself contain a genuinely
   matrix-only multiplicity selection (false in the regular factor), not just
   an exact finite-chart incidence.
+- **Finite-depth concatenation of all established local cells is still
+  regular-absorbed.**
+  `balanced-schur-finite-depth-reuse-is-regular-absorbed` includes the
+  payload square and Reynolds proper-corner dressing in finite semidirect
+  vertex packets, then applies common negative regular multiples to every
+  child-reuse and first-hit HNN edge.  For every fixed depth this gives an
+  exact finite-dimensional model with payload sign `-I` and every
+  forbidden/child/address type present.  Enlarging an associated subgroup so
+  the same edge also carries the next prefix does not help.  The missing seam
+  must constrain two edge intertwiners on their external multiplicity spaces;
+  another independent finite-chart covariance row cannot establish the four
+  simultaneous incidences.

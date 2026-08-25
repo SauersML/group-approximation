@@ -48,6 +48,18 @@ Nothing weaker than this statement makes `G_3` the witness.
   centraliser of a property-(T) subalgebra of `R^omega`
   (Gao--Junge arXiv:2012.07940 record the amalgamated-free-product
   embeddability question as open).
+- **The stable letter's natural Popa deformation has the wrong
+  compactness.**
+  `central-hnn-haar-leg-has-only-base-relative-compactness` diagonalizes
+  the Poisson maps on
+  `L(C) tensor_bar L(Z)`: they are compact relative to `L(C)` but fix the
+  whole infinite-dimensional `L^2(L(C))`, so they are not scalar compact.
+  This algebra has no nonzero scalar-amenable corner, although the
+  inclusion over `L(C)` is relatively amenable.  Thus the candidate Haar
+  unitary itself produces neither an amenable corner nor the scalar-compact
+  deformation needed for a property-`(T)` contradiction.  Any Popa proof
+  must extract additional scalar tightness from the matrix coordinates of
+  the joint extension.
 - **1-bounded entropy cannot decide it.**  The pair `k, u_h k u_h^*` would
   be free Haar unitaries inside the centraliser of the property-(T)
   algebra `L(C cap hCh^-1)`, and Hayes' normaliser bound keeps the

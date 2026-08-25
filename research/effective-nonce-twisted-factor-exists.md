@@ -54,3 +54,7 @@ only on `N`.
   RACG factor.  A recursive diagonal or free-label scheme must therefore
   prove a new non-CE retention theorem inside the projective-regular generated
   algebra, not merely in its ambient tensor product.
+- Dropping every effectivity requirement does not make the finite-cocycle
+  sector available: `current-nonce-sources-do-not-supply-a-finite-cocycle-sector`
+  audits the strictly weaker bare endpoint.  All cited sources still stop at
+  the projective-basis gate; recursive enumerability is a later obstruction.

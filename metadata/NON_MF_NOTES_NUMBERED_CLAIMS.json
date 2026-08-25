@@ -648,6 +648,72 @@
       ]
     },
     {
+      "id": "thm:mf-radical-arithmetic",
+      "environment": "theorem",
+      "title": "complexity of MF-radical membership",
+      "statement_sha256": "16b1ff39a1704a468b5a547e038a3ef995c3ca3f5e2c8f0a364d20621ebe6a99",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "prop:mf-equivalences",
+        "lem:tensor-amplification"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "decidability of fixed-dimensional unitary feasibility over the real closed field"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:fixed-radical-membership",
+      "environment": "theorem",
+      "title": "undecidable radical membership in one fixed group",
+      "statement_sha256": "fca705a586c200d4f1b661607c3a3c3e6c8f0fdaf934d7c8aa520ff943973b1e",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:A",
+        "def:radical",
+        "lem:permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Kharlampovich's finitely presented solvable group with undecidable word problem"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:fixed-radical-computer",
+      "environment": "theorem",
+      "title": "a fixed computer inside the MF residual",
+      "statement_sha256": "5f4fe5ad3a4c164e5dac46a14184701924dcd5f77aff46f620f1ab5f06b6990d",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "def:radical"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Computability/MFRadicalComputer",
+          "declaration": "GroupApproximation.MFRadicalComputer.closed_package",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/MFRadicalComputer",
+          "declaration": "GroupApproximation.MFRadicalComputer.word_mem_commutator_residual",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:nofaithful",
       "environment": "corollary",
       "title": "",
@@ -833,6 +899,85 @@
       "lean": []
     },
     {
+      "id": "thm:notes-spectral-motion",
+      "environment": "theorem",
+      "title": "spectral-component motion",
+      "statement_sha256": "e7e78571a38209a29cb98d7130604e13d66dbfac3963e40145d39aea2fb61ddd",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:projection-collapse"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.spectralCompressionTheorem",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/SpectralPaper/MainTheorems",
+          "declaration": "GroupApproximation.SpectralPaper.zeroDimensionalSpectralCollapseTheorem",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "thm:notes-visible-quotient",
+      "environment": "theorem",
+      "title": "exact finite-lamp quotient",
+      "statement_sha256": "5602a00e569d30c8e1aa028d8d97dbc26efaaeba5f013248522d83a7ee9fc395",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:notes-spectral-motion"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Mal'cev residual-finiteness theorem; Peter--Weyl point separation"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:notes-a5-relation",
+      "environment": "corollary",
+      "title": "one relation changes the MF property",
+      "statement_sha256": "ca87df7ad8ec4b061793a518ad2759f021e852d775f8da7a6d65dc422153a924",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:notes-visible-quotient"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "elementary structure of A_5 and the printed telescope-window approximation"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:notes-abelian-boundary",
+      "environment": "theorem",
+      "title": "",
+      "statement_sha256": "0db1a30bb905f8d2632e715ea78f7880af8adb1e1609875eb3ae447dbdcb811c",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:notes-spectral-motion"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "character separation for torsion-free abelian groups and the printed telescope-window approximation"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "lem:faithfultrace",
       "environment": "lemma",
       "title": "",
@@ -1002,10 +1147,28 @@
       ]
     },
     {
+      "id": "thm:mf-arithmetic",
+      "environment": "theorem",
+      "title": "arithmetical complexity of MF recognition",
+      "statement_sha256": "f8a2f98470a2e9fea79cadb2ca834fc2425c1338a8d186c832466ebb6343907c",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "dependencies": [
+        "cor:undecidable",
+        "lem:permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Adian--Rabin theorem; decidability of fixed-dimensional unitary feasibility over the real closed field"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "thm:torsionfree",
       "environment": "theorem",
       "title": "a torsion-free example",
-      "statement_sha256": "9d6783978466356410cd7486b17c219ee16d51584be541adaa1c8c03975f7bd5",
+      "statement_sha256": "f4ccacc6d17f3123fbcd9b129ef03cec228401c4c37749b35605592cc8007511",
       "status": "literature-input",
       "object_identity": "The printed environment consumes the stated literature input; its machine-checked inputs are badged in the surrounding discussion.",
       "dependencies": [
@@ -1017,75 +1180,6 @@
       ],
       "coverage_gap": "The literature input itself is not formalized.",
       "lean": []
-    },
-    {
-      "id": "prop:maximal-cstar",
-      "environment": "proposition",
-      "title": "the universal property",
-      "statement_sha256": "7108b280fbf939cbd544410fcba8365978af3adf89c6cc628f6b88cf2b28b95c",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/MaximalCStarAllUniverses",
-          "declaration": "GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:proper-isometry",
-      "environment": "proposition",
-      "title": "a strictly dominated projection gives a proper isometry",
-      "statement_sha256": "af0fbcd75508bcd30dd77faa8d68b3ecb429e3312941499e0d0dd983c5f95fe6",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/ProperIsometryStrictOrder",
-          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "rem:maxinfinite",
-      "environment": "proposition",
-      "title": "the maximal algebra under proper one-sided conjugation",
-      "statement_sha256": "1ffdf62b6e21e761d49d5e4b7c6cb3a7f9caf2e80e0c77e398b6c44447b0df2a",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:proper-isometry",
-        "prop:maximal-cstar"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/QuasiRegularWitness",
-          "declaration": "GroupApproximation.QuasiRegularWitness.baseVector_apply_base",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Analysis/StrictCompressionFromPrinted",
-          "declaration": "GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses",
-          "covers": "the complete printed proposition"
-        }
-      ]
     }
   ]
 }

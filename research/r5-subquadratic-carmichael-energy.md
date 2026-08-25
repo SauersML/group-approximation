@@ -58,6 +58,15 @@ the edge count.
 
 ## Attempts
 
+- **Decisive scalar-phase countermodel.**
+  `scalar-phase-refutes-r5-subquadratic-energy` assigns the literal generator
+  `b` a scalar `z=e^(it)` and every other Bleak--Quick generator the identity.
+  The finite presentation defect is `O(t)`, but every word conjugate of
+  `B=zI` is still `B`.  Therefore
+  `E_M=binom(M,2)|z^4-1|^2`, which is not `o(M^2)` for any small fixed
+  `t` with `z^4!=1`.  This refutes `(ACE)` as stated; no choice of long or
+  model-dependent conjugating words can evade centrality.
+
 - **The hypothesis is stronger than the endpoint it feeds, not weaker.**
   `(ACE)` implies `thompson-v-one-word-strict-hs-ceiling` `(TV2)`, but `(TV2)`
   does not visibly imply `(ACE)`: `(TV2)` gives only `||B-I||_2<=C delta`, and

@@ -183,6 +183,18 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   formal operator-system colimit: the elementary `Z^2` cross in
   `operator-system-face-colimit-need-not-have-concrete-group-order` already
   separates the universal colimit order from the concrete group order.
+- **Even a perturbative three-face repair is closed (2026-08-24).**
+  `three-face-ucp-balancing-needs-macroscopic-tree-motion` upgrades the
+  finite-face holonomy estimate to the full finite Fourier system formed by
+  all three face algebras.  For a length-`L` kernel cycle, every ucp map into
+  `C^*(G_0)` moves at least one canonical `P_1`/`P_3` letter by `2/L^2`, hence
+  moves an entry of the `P_12` or `P_23` tree face by that amount.  The witness
+  is the explicit positive prefix Gram matrix of the closed cycle.  Therefore
+  a successful LLP proof must be genuinely nonperturbative already on this
+  first finite system: the ideal correction cannot be confined to the third
+  face and cannot be small on both tree faces.  Macroscopic simultaneous
+  balancing remains logically possible and is exactly what the finite
+  relator-reservoir route asks to construct.
 - **No known positive LLP theorem reaches a Kazhdan group.**  LLP is known
   for nuclear algebras, `C^*(F)` (Kirchberg), free products and amalgams
   over finite-dimensional subalgebras, and is inherited by quotients only

@@ -7,6 +7,9 @@ distinct_from:
   sl3-swap-extension-has-defect-only-fold-square-rigidity: that asks for the fold square to converge to one in every approximate representation; this assumes the much narrower regular-actor and balanced-swap trace profile and asks only for a fixed positive real second moment.
   canonical-arithmetic-swap-fold-gram-is-arcsine: that computes zero second-fold bias in every hypothetical fully canonical microstate; this open claim would contradict that computation from only the actor character, swap balance, and presentation relations.
   canonical-sl3-double-microstates-are-uniform-two-vertex-outliers: that excludes correction to exact finite-dimensional vertex representations inside an extant canonical microstate; this asks for a direct scalar bias in precisely that two-outlier sector.
+  free-coset-swap-factor-has-zero-second-fold-bias: that gives an exact zero-bias model in the possibly non-Connes-embeddable group factor; this asks to exclude matrix approximations having only the indicated actor/swap trace profile.
+  congruence-tensor-regularizes-sl3-swap-profile: that proves the actor-regular and swap-balanced hypotheses can be imposed on any approximate model by harmless tensor amplification; this is the scalar lower bound still needed after that regularization.
+  positive-second-fold-bias-amplifies-to-full-rigidity: that proves this fixed positive lower bound tensor-amplifies back to full fold-square rigidity; this is the open bound itself.
 ---
 
 **OPEN CANONICAL-PROFILE TERMINAL.**  Put
@@ -50,8 +53,15 @@ limsup_n tr(Q_nP_nQ_n-(Q_nP_nQ_n)^2)
 
 This is a strictly weaker **conclusion** than defect-only fold-square
 rigidity: it asks neither that `V_n^2` approach one nor that the Gram defect
-approach zero.  Its hypotheses are correspondingly narrower.  It is not
-known to be an easier existence problem.  If a fully canonical microstate
+approach zero.  Although its written hypotheses are narrower,
+`congruence-tensor-regularizes-sl3-swap-profile` proves that they can be
+imposed on every approximate model without changing any fold moment.
+Consequently the claim is equivalent to a defect-only uniform positive
+second-fold bias over all approximate assignments.  Moreover
+`positive-second-fold-bias-amplifies-to-full-rigidity` shows that slowly
+growing tensor powers upgrade any such bias to full fold-square rigidity.
+Thus the present terminal is equivalent to `(SFS1)`, not merely a weaker
+route to the endpoint.  If a fully canonical microstate
 sequence of `E` exists, then `(RBS1)` holds, while
 `canonical-arithmetic-swap-fold-gram-is-arcsine` gives
 
@@ -64,6 +74,21 @@ Thus `(RBS2)` already excludes canonical microstates and reaches the same
 non-hyperlinearity endpoint.
 
 ## Attempts and exact boundary of the known methods
+
+There is no dimension-blind tracial proof.  By
+`free-coset-swap-factor-has-zero-second-fold-bias`, the canonical group
+factor `L(E)` satisfies the complete presentation exactly, its actor has the
+regular character, its swap is balanced, and nevertheless
+
+```text
+Re tau((hsh^(-1)s)^2)=0.
+```
+
+Thus every group-algebra positivity/SOS argument and every universal
+finite-tracial inequality fails on an exact admissible model.  The terminal
+must use finite matrix coordinates strongly enough to exclude this packet
+from a tracial matrix ultraproduct; that is a relative-embeddability
+obstruction, not another consequence of the arithmetic word identities.
 
 The near-exact sector is already controlled.  Translate an `E` assignment
 to the two vertex assignments of `A*_C A` by

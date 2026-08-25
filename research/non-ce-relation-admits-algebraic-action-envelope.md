@@ -196,6 +196,19 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Manzoor actor is CE, even for infinitely related/non-residually-finite
   modules, and even if the desired inclusion is non-Cartan.  Any surviving
   algebraic envelope must change the acting group.
+- **Expected embeddings, corners and amplifications do not reopen the native
+  actor (source audit, 2026-08-24).**
+  `manzoor-native-haar-envelope-is-ce-after-corners` applies Fourier duality
+  directly to every algebraic action of Manzoor's free source group.  The
+  ambient algebra is `L(A semidirect F)` with `A` abelian, hence CE because
+  the group is sofic.  CE passes to subalgebras, matrix amplifications and
+  finite corners, and every finite tracial inclusion is automatically
+  expected.  Therefore neither the non-CE IRS GNS algebra nor its relation
+  factor can embed in such an ambient algebra under any of these relaxations.
+  The actual orbit-action construction reaches the relation algebra only by
+  a singular quotient which forgets stabilizers.  A surviving envelope must
+  change the actor; constructing it would already make the dual semidirect
+  product non-hyperlinear.
 - **Branch (b) collapses onto the Kun--Thom coset module (2026-08-21,
   third pass).**  Following the design box constructively: non-r.f.
   duals with positive-trace elements exist cheaply in the ABELIAN

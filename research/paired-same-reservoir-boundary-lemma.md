@@ -281,6 +281,45 @@ floor only by leaving the block.  The missing mixed theorem may therefore
 be stated as payment for that explicit off-type leakage.  More local
 Clifford exactification is not needed.
 
+The primitive split also yields a strictly weaker sufficient return than
+same-orientation reservoir closure.
+`odd-row-unoriented-fine-return-has-quarter-floor` proves, with `e` the
+coarse half atom, `f` the fine quarter atom, and `W` the signed Whitehead
+word,
+
+```text
+tau(z_+)/4
+ <=||(1-f(z_++z_-))W e z_+||_2^2
+   +(1/4)||t-WrW^*||_2^2+O(packet error).              (PSR15)
+```
+
+Thus the typed coefficient decoder need only return `e z_+` into the union
+of the two fine orientation types.  Those two fine pieces have exactly the
+same canonical trace `1/8` as the source, so this relaxation does not assume
+the desired rank contradiction.  The ordinary odd row then charges fine
+mass in the wrong orientation, leaving only the pure `fz_+` quarter capacity.
+The remaining first-step word theorem is the single unoriented support
+estimate in the first term of `(PSR15)`.
+
+This return has an exact finite-subgroup formulation, but that formulation
+also locates why a literal HNN edge cannot finish it.
+`primitive-clifford-balanced-atoms-have-hnn-obstruction` writes
+
+```text
+e z_+=e_(<J,Z_1,tZ_2>,chi_s),
+f(z_++z_-)=e_(<J,Z_1,Z_2>,chi_t),                      (PSR16)
+```
+
+for two character projections of isomorphic `C_2^3` subgroups.  Both have
+canonical trace `1/8`, and an explicit character-preserving isomorphism
+gives a regular-safe HNN transport.  But the same transporter cannot obey
+the odd Whitehead row `WZ_1W^*=t`: its source is `Z_1=-1`, whereas the target
+contains the block `fz_-` of trace `1/16` on which `t=+1`.  A separate HNN
+letter transports the balanced atom; identifying it with `W` recreates
+exactly the mass paid in `(PSR15)`.  Hence the last gate is not finite-group
+order or character matching, but finite-matrix authentication of the native
+Whitehead occurrence as the unoriented signed-Reynolds transport.
+
 The remaining finite-dimensional PI option has now been audited exactly in
 `controlled-fine-reflection-superrank-orientation-law`.  On the marked
 two-qubit packet, adjoining the twisted fine reflection

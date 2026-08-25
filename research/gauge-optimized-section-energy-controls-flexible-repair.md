@@ -60,3 +60,126 @@ statement.  It is a concrete sufficient strengthening: a flexible endpoint
 could in principle require an enlarged-space core which is not the dilation
 of any nearby same-space `beta'`.  Therefore failure of `(GOS1)` would kill
 this induced strategy without refuting flexible stability itself.
+
+## Same-space versus padded competitors
+
+The displayed claim is the **same-space** form of the optimized estimate.
+It is stronger than the optional-padded formulation in
+`uniform-gauge-optimized-induced-energy`.  If `G_N^0` denotes the infimum
+in `(GOS1)` and `G_N^flex` the infimum after allowing an exact competitor
+core on `d+k` dimensions and charging `k/(d+k)`, then tautologically
+
+```text
+G_N^flex <= G_N^0.                                    (GOS3)
+```
+
+There is no converse reduction in the current graph.  An exact padded BS
+core cannot in general be compressed to dimension `d`: finite-dimensional
+BS representations are semisimple sums of periodic cycle packets, and a
+nonzero vector in an irreducible length-`m` packet has invariant hull of
+dimension `m`.  The explicit packets in
+`bs-root-strata-have-no-energy-paid-invariant-reconciliation` show that
+even cores at squared normalized-HS distance `O(1/m)` can require `m`
+dimensions of invariant type reconciliation.  Hence deleting the charged
+`k` coordinates is not an exact-core operation unless the padded packet
+multiplicity vector happens to contain a `d`-dimensional subrepresentation.
+
+This is a formulation firewall, not a counterexample to `(GOS1)` or
+`(UGO1)`.  The isolated long packets fail the Iwahori determinant fence and
+therefore do not supply a full endpoint enemy.  It does mean that a proof
+of the padded estimate must not be cited as a proof of `(GOS1)` without a
+new endpoint-specific invariant-splitting lemma.  Conversely, proving the
+same-space `(GOS1)` would immediately prove the padded target by `(GOS3)`.
+
+The smallest same-space root-multiplicity stress test does not refute
+`(GOS1)`.  In `metacyclic-cross-stratum-energy-is-inverse-dimensional`, one
+copy of `(R_m,S_m^2)` inside a regular finite endpoint is replaced by the
+inequivalent close core `(R_m,S_m)`.  The original regular core is an allowed
+same-space comparator of cost `alpha_m/D_m`, while orthogonal branching of
+the first cubic through `B`, `(xt)B`, and `(xt)^2B` gives the exact energy
+`3 alpha_m/D_m`.  Hence this cross-stratum packet satisfies `(GOS1)` with
+constant `1/3`.  The remaining global-basin problem must involve coupled
+packet/coset motion for which this three-coset decomposition does not isolate
+the core change.
+
+More generally, cross-mixing among **already authenticated endpoint atoms**
+has a uniform support-changing repair.  By
+`congruence-cross-type-mixing-has-uniform-polar-repair`, property `(tau)` on
+the endpoint operator bimodule, followed by a `1/2` polar cut, produces an
+exact partial endpoint intertwiner and charges both missing supports by
+`O(E_R d)`.  This estimate permits arbitrary irreducible multiplicity
+mismatch and is uniform in the common congruence level.  It narrows `(GOS1)`
+to selecting the compatible endpoint atoms/conductor from the raw exact BS
+core and approximate `X`; once that selection exists, cross-stratum polar
+repair itself has no moving-packet loss.
+
+The remaining scalar/cb Green divergence also does not furnish a
+normalized-HS countersequence.  `tangent-green-divergence-is-flexibly-rank-paid`
+combines the uniform tangent `L2` gap with spectral truncation: every
+infinity-normalized Green enemy with output operator norm `epsilon` has
+input HS norm `O(epsilon)`, and every general tangent splits into a
+coordinatewise operator-soft part plus hard spectral supports of total
+trace `O(||dF||_2^2/theta^2)`.  The soft part obeys the nonlinear estimate
+inside a selected endpoint tube by the mixed Taylor bound.  This proves
+that the logarithmic proper-torus Green family refutes cb/operator-norm
+Newton only; it cannot be amplified into a soft-delocalized failure of
+`(GOS1)`.  The implication still fails at one exact point: coordinatewise
+hard-tail truncation need not preserve the exact BS/core tangent constraints,
+and before an endpoint is selected there is no normal coordinate to truncate.
+
+Nor can a global enemy be manufactured by taking heterogeneous orthogonal
+sums of the explicit local packets.  The additivity theorem
+`energy-paid-flexible-completions-aggregate` shows that any uniform
+unnormalized energy-to-padding/leakage estimate survives arbitrary moving
+levels after division by the total dimension.  It covers the compressed
+positive-corner Weil packets, passive cuspidal redistributions combined
+with them, and block sums of the isolated metacyclic substitution.  The
+surviving failure mode must therefore involve cross-atom mixing by `X`
+*before* a native endpoint decomposition is available, or a sequence of
+single native faces whose efficient completion constants diverge.
+
+Raw cross-block size is not itself the missing quotient-normal energy.
+`exact-cuspidal-hadamard-mixing-has-macroscopic-cross-blocks` aligns two
+inequivalent cuspidal irreducibles with identical BS restriction and then
+applies a core-commuting Hadamard on their duplicate carriers.  The resulting
+exact endpoint has off-diagonal `X` mass at least `kappa^2/4`, while every
+row energy is zero.  Hence a blockwise proof must minimize over the full
+core-commutant/restriction-fiber gauge before declaring a cross-atom block
+incompatible.  The open component is cross mixing transverse to that exact
+kernel gauge, not arbitrary off-diagonal packet mass.
+
+That failure cannot be repaired by a core-level coarea/Poincare step.
+`bs-core-coarea-cuts-have-full-legalization-cost` uses one irreducible
+length-`m` fourth-power packet and a half-interval spectral projection.
+The projection commutes with the base unitary and has unnormalized shift
+commutator square exactly two, but the exact core commutant is scalar, so
+every legal reducing projection differs on `floor(m/2)` dimensions.
+Endpoint property `(tau)` rounds such a cut only after the endpoint
+representation has been selected; invoking it before atom selection is
+circular.  A proof of `(GOS1)` must make the two endpoint rows charge these
+interval cuts, or build the endpoint action simultaneously with truncation.
+
+Once such an endpoint has been authenticated, the interval cut is fully
+paid.  `endpoint-triangle-charges-bs-sign-cut-volume` multiplies the exact
+reflection by `1-2P` and applies the global same-core finite-difference
+identity.  The square and first cubic have combined energy at least
+`2 rank(P)`; if the modified reflection is still an involution, the first
+cubic alone has energy at least `4 rank(P)`.  For an arbitrary subset of a
+cyclic packet, the core commutator sees only its cyclic boundary while the
+endpoint rows see its entire volume.  Hence no interval/Folner hard cut
+survives in an authenticated basin.  The remaining issue in `(GOS1)` is
+exactly producing that baseline endpoint without assuming the desired
+coordinate lift.
+
+Nor can one globalize the authenticated estimate by projecting an arbitrary
+relative gauge `c=XX_0` onto the full core commutant.
+`core-expectation-misses-exact-endpoint-zero-modes` uses the exact mod-three
+fiber: two zero-defect extenders over the same core have relative gauge
+outside that commutant.  Its transverse conditional-expectation norm stays
+positive under amplification while endpoint energy is zero.  Projection
+onto the `R`-commutant instead has no uniform Poincare constant on long BS
+cycles.  The only gapped expectation is onto an authenticated finite-
+quotient endpoint intertwiner space, which presupposes the atom/type that
+`(GOS1)` must select.  The correct target is therefore distance to the
+nonlinear union of restriction-ring endpoint fibers, not transverse norm
+to any fixed core algebra.

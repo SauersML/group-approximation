@@ -43,6 +43,12 @@ incomparable: the uniform family bounds every edge but only at the scale
 aggregate energy to be sublinear in the edge count.  Both routes stand, and
 neither prerequisite subsumes the other.
 
+The implication in this route remains correct, but its R5 premise is false:
+`scalar-phase-refutes-r5-subquadratic-energy` gives arbitrarily accurate
+one-dimensional Bleak--Quick tuples for which every conjugate of `U(b)` is the
+same scalar and the aggregate energy is exactly quadratic.  Accordingly this
+route is recorded only as a conditional implication and is no longer live.
+
 Note also what this route does **not** need.  It uses no Gowers--Hatami
 exactification, no representation-dimension bound, no finite-group
 multiplication table, and no bound on the length of the conjugating words —

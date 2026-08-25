@@ -29,3 +29,16 @@ By `gao-hyperfinite-carriers-do-not-give-popa-compactness`, this is not a
 formal consequence of hyperfiniteness of the coordinates.  It must use the
 arithmetic inclusion and its simultaneous Hecke fusion data to prevent the
 finite-dimensional approximation ranks from escaping with `k`.
+
+## Attempts
+
+- **Use the HNN commutant unitary to produce the deformation.**
+  `central-hnn-haar-leg-has-only-base-relative-compactness` computes the
+  resulting Poisson maps exactly.  On
+  `L(SL_3(Z)) tensor_bar L(Z)` they are compact relative to the lattice
+  factor, but fix its whole infinite-dimensional `L^2` space and hence are
+  never compact over the scalars.  The generated algebra has no nonzero
+  scalar-amenable corner, although its inclusion over the lattice
+  factor is relatively amenable.  Thus neither the stable letter nor
+  property `(T)` supplies the maps asserted here; a proof must extract
+  scalar tightness from the finite-coordinate Gao carrier itself.

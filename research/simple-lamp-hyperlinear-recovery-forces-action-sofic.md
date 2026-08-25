@@ -131,6 +131,26 @@ but do not prove `(SHA2)`.  A positive argument must still provide one of:
 
 Minimal normality alone supplies none of these.
 
+The fixed-window residue is now explicit rather than qualitative.  By
+`canonical-a5-window-leaves-a-partial-commutant-cocycle`, canonical
+microstates exactify `A5^Y` to a `1-o(1)` regular core.  For an actor arrow
+defined on `D subset Y`, every implementer is, up to dimension-free HS loss,
+a chosen partial coordinate permutation times a unitary in
+
+```text
+rho(A5^D)'' tensor B(ell^2(A5^(Y minus D)) tensor C^m).
+```
+
+Actor multiplication makes these unitaries a cocycle twisted by the
+boundary-completion holonomy.  Canonical mixed traces remain compatible with
+tensoring this entire factor by an arbitrary canonical actor microstate.
+Thus exactifying the lamp window has already extracted everything it can.
+The smallest sufficient extra datum is an actor-normalized, asymptotically
+separating copy Cartan; a fixed finite number of additional C2 labels leaves
+a positive-density matrix block and cannot monomialize the cocycle.  Such a
+growing Cartan is itself the missing finite probability carrier, so this
+extra relation is action classicalization in equivalent form.
+
 Property `(T)` of the Kun--Thom actor does not remove the exact fiber in the
 current argument.  Property-`(T)` groups can have nontrivial finite-dimensional
 unitary representations, and such a representation can be placed entirely
@@ -192,3 +212,11 @@ a hidden invocation of the refuted two-point approximation.
   section cocycle valued in the finite-index kernel.  That kernel is
   nonamenable and carries the original arbitrary actor representation, so
   amenable lamp classicalization cannot remove it.
+- **Use exact finite quotient expanders as a non-path carrier.**  This closes
+  the word-path boundary but destroys the marked lamp profile.
+  `exact-expander-a5-carriers-collapse-marked-center` proves uniformly that
+  a `delta`-almost-`Gamma`-invariant binary center label in any genuine
+  finite actor action has `h`-displacement at most `4 delta/kappa^2`, whereas
+  the canonical two-site A5 field has displacement `35/72`.  Thus exact actor
+  expansion is the wrong order of operations.  A live proof must extract the
+  approximate actor permutations and the center labels together.

@@ -46,6 +46,18 @@ adjoining the relations in `ker(theta)` globally collapses the parent to the
 finite packet and makes the HNN conjugacy impossible; merely commuting an
 independent packet with `F` leaves the tensor-decoupled countermodel.
 
+Signed character projections do not weaken this operation.  By
+`finite-reynolds-carriers-have-only-finite-pointwise-stabilizer`, every
+nonzero finite packet/selector coefficient has finite pointwise stabilizer
+in the regular representation.  Putting all child generators in that
+stabilizer collapses the injective infinite child; asking only that they
+normalize the character projection makes its left ideal invariant but not
+pointwise fixed under the adjoint action.  The explicit free-square
+self-copy already realizes an orthogonally moved parent character atom, so
+finite generation and parent motion are not missing.  The remaining
+equations are precisely the payload-conditional coefficient rows
+`(alpha(s)-1)P_f=0`, together with control of their multiplicity commutant.
+
 Only a finite conditional relation list is needed.  Choose finite words
 `r_1,...,r_s` normally generating `ker(theta)`.  If the extracted carrier is
 invariant under the parent generators and every `r_j` acts trivially on it,
@@ -142,3 +154,34 @@ Adding a Kazhdan source cannot repair this alternative.  By
 kernel with finite quotient in any property-`(T)` source makes the entire
 centralized quotient finite.  Hence a Kazhdan correction step leaves no
 proper injective compressor on which to run the return argument.
+
+## Packet-covariant Schur refinement
+
+Requiring every free generator to implement the same automorphism of a named
+finite packet as its image in `B_f` still does not localize the kernel.
+`packet-covariant-kernel-gauge` proves the exact and robust Schur form
+
+```text
+X_i=pi(theta(x_i)) tensor W_i + O_2(epsilon).
+```
+
+For `n in ker(theta)` the outer packet factor cancels, leaving
+`X(n)=1 tensor W(n)`.  Free residual finite regular gauges can be chosen so
+that the image `H_k` of the kernel has `|H_k| -> infinity`; their normalized
+kernel-fixed adjoint density is exactly `1/|H_k| -> 0`.  Tensoring these gauges
+behind the canonical finite packet preserves the forbidden Reynolds gap, all
+named covariance equations, and canonical word moments.
+
+Consequently the missing conditional rows must force a genuinely new uniform
+law on the multiplicity action,
+
+```text
+dim Comm(W(ker theta))/dim(W)^2 >= c>0,
+```
+
+on the predicate-selected type, together with invariance of that commutant
+sector.  Any specialized active multiplicity presentation which remains
+residually finite with infinite kernel image has the same regular countermodel.
+Eliminating all such models by a dimension-uniform defect floor would already
+import the hard nonhyperlinear obstruction rather than derive it from packet
+covariance.

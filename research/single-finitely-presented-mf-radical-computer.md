@@ -12,8 +12,8 @@ distinct_from:
   authenticated-opnorm-challenge-compiler: that is a machine-indexed presentation compiler; this is a fixed-carrier exact algebraic computer.
 ---
 
-There is one fixed finitely presented group `U_MF`, one fixed modular machine
-with undecidable configuration halting, and a computable family of elements
+There is one fixed finitely presented group `U_MF`, one fixed universal
+modular machine, and a computable family of elements
 `r_p in U_MF` such that
 
 ```text
@@ -27,8 +27,9 @@ belongs to the MF radical.  Every `r_p` lies in
 artifact.  The carrier is non-MF because it contains the literal non-MF group
 as a free factor.
 
-The Lean construction chooses the fixed controller from the repository's
-closed modular-machine theorem, uses the already formalized explicit Boone
-word, and gates it with the literal MF-invisible mark.  The closed endpoint is
+The Lean construction retains an exact computable map from Mathlib
+partial-recursive program codes to configurations of the fixed controller,
+uses the already formalized explicit Boone word, and gates it with the literal
+MF-invisible mark.  The closed endpoint is
 `MFRadicalComputer.closed_package`; its theorem statement has no caller input,
 literature premise, or conditional construction datum.

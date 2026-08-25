@@ -62,3 +62,12 @@ correction, bounds the total loss in `(PSR1)--(PSR2)` by a
 dimension-independent constant times the square root of presentation
 energy.  The finite base embeds in the HNN extension, so its representations
 with `K=-1` give exact infinite models with nontrivial payload sign.
+
+There is a smaller source of the same **corner square**:
+`selector-product-is-a-payload-corner-square-root` gives
+`d_a=p_aq_a` and `P_aQ_-d_a^2=JP_aQ_-` directly from the one-bit selector.
+It does not replace `(PSR2)`.  Without a relation identifying its compression
+with the two actual Schur return paths, it tensors independently with the
+stationary equal-child model.  Thus the Schur-flip construction above remains
+the established return-incidence implementation, while the selector product
+is a useful minimal falsification/alternative input.

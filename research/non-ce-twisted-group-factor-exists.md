@@ -32,6 +32,14 @@ non-CE relation/game algebra already constitutes the complete breakthrough.
 - Groupify the finite non-CE BCS algebra.  Current finite phase packets do not
   exclude forbidden selector sectors, so they do not preserve the robust
   finite-dimensional energy gap.
+- The complete 2026-08-24 source audit is now
+  `current-nonce-sources-do-not-supply-a-finite-cocycle-sector`.  In the
+  Manzoor lane, `zero-one-irs-character-is-normal-dirac` shows that removing
+  every intermediate native coefficient would make the IRS a normal Dirac
+  mass and already produce the desired quotient group.  CDI transfers rather
+  than creates this projective-word gate, while MIP-star/BCS provides no
+  unrelated projective basis.  Thus finite-image cocycle extraction is not
+  latent in the current data.
 
 ## Route hygiene
 

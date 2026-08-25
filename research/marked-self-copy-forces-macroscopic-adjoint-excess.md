@@ -38,6 +38,16 @@ charge the spectator multiplicity itself.
   route `macroscopic-self-copy-via-localized-free-quotient` isolates the
   remaining operation as shared-BCS carrier-localized annihilation of the
   quotient kernel.
+- **Signed Reynolds fixedness stops at normalization.**
+  `finite-reynolds-carriers-have-only-finite-pointwise-stabilizer` gives the
+  smallest explicit proper self-copy shadow: squaring the generators of
+  `F_2` makes the child centralize `C_2^2`, while one parent generator swaps
+  two orthogonal character atoms.  This produces full physical displacement
+  and is vacuous after multiplying by a zero forbidden atom.  But a nonzero
+  finite-support Reynolds coefficient has only a finite pointwise left
+  stabilizer.  Normalizer rows therefore create an invariant left ideal, not
+  a pointwise-fixed positive-density adjoint sector; the external kernel
+  multiplicity remains arbitrary.
 - **Live attack.**  Make every spectator multiplicity sector carry a new
   authenticated packet or first-hit exit, and prove that survival of the mark
   forces a fixed fraction of the complete adjoint space to enter before the

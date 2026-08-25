@@ -119,6 +119,18 @@ active child carriers and place their exits in summable first-hit layers.
 - **A trace-functorial infinite tail is impossible.**  If its exit lower bound
   held in every finite tracial algebra, applying it to `L(Gamma)` would kill
   the initial carrier by `exact-first-hit-ladder-kills-regular-carrier`.
+- **The Baumslag register compresses the whole prefix table, but not
+  persistence.**
+  `baumslag-binomial-prefix-centralizer`
+  derives every translated commutator with earlier lamps from the two rows
+  `[v,c]=[v,B_(-1)]=1`, with polynomial normalized-HS cost.  Thus infinite
+  address naming and prefix preservation are not the open obstruction.
+  `baumslag-address-geometric-stationary-profile` evaluates the
+  same rows in unbounded finite-field affine quotients: the first `m` lamps
+  are independent and `tau(C_n)=2^(-n)`, so a positive structural BCS payload
+  simply decays geometrically.  FHC3 holds while FHC1 fails at zero relator
+  defect.  A payload-dependent active-child/proper-corner row must exclude
+  this exact stationary profile.
 - **Fixed density is not the missing step.**
   `central-sign-reynolds-atoms-have-fixed-canonical-density` gives
   `tau(e_(H_a)Q_-)=2^(-(k+1))` in every canonical microstate.  Therefore the

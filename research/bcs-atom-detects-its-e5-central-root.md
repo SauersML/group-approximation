@@ -10,9 +10,10 @@ distinct_from:
   hs-steinberg-bcs-corner-kernel-is-linear-sofic: That reconstructs a rank-metric model of the whole conditional coefficient quotient; this asks only for one overlap inequality on the finite adaptive menu.
 ---
 
-**OPEN PAYLOAD-TO-ROOT INTERFACE.**  In a normalized-HS microstate of the
-rank-five wordization of `finite-adaptive-selected-atom-ring-tree`, fix one
-node and forbidden type and write
+**OPEN PAYLOAD-TO-ROOT INTERFACE FOR THE BARE WORDIZATION.**  In a
+normalized-HS microstate of the unextended rank-five wordization of
+`finite-adaptive-selected-atom-ring-tree`, fix one node and forbidden type
+and write
 
 ```text
 E=Q_sigma P_i,              a=a_(sigma,i),
@@ -21,15 +22,18 @@ S_Z=1-P_(Z,1),                                      (BZR1)
 ```
 
 where `E` is formed from the rounded shared BCS tuple and `P_(Z,1)` is the
-`1`-eigenspace projection of the exactified order-`p` root word `Z`.
-Prove, with constants independent of matrix dimension,
+`1`-eigenspace projection of the exactified order-`p` root word `Z`.  The
+bare target is, with constants independent of matrix dimension,
 
 ```text
 tr(E S_Z)>=c_root tr(E)-C sqrt(E_pres),                (BZR2)
 ```
 
 for one fixed `c_root>0`.  The same estimate is required only for the finite
-menu of sources up to the chosen contradiction depth.
+menu of sources up to the chosen contradiction depth.  This stronger bare
+statement remains open.  The extended canonical-microstate version is now
+established separately by
+`canonical-bcs-root-detection-via-binary-tetrahedral-bridge`.
 
 The algebraic transverse packet is already present.  By
 `e5-idempotent-root-has-two-pair-extraspecial-cell`, the four canonical
@@ -44,13 +48,14 @@ p^(-2) tr(E S_Z).                                     (BZR3)
 Thus `(BZR2)` supplies the conditioned-source mass which the bare additive
 table lacks.
 
-This claim is not a consequence of root spectral density alone.  The group
+The bare statement is not a consequence of root spectral density alone.  The group
 microstate is an abstract unitary representation of the Steinberg
 wordization, not the canonical elementary-matrix representation of the
 coefficient star algebra.  Root relations make the common root kernel a
-two-sided coefficient ideal, but they do not presently reflect the
-operator-valued BCS projection into the complement of that kernel.  Proving
-that reflection is the local finite-menu version of the metric decoder.
+two-sided coefficient ideal, but they do not reflect the operator-valued
+BCS projection into the complement of that kernel.  The binary-tetrahedral
+extension is one additional mixed relation which performs that reflection
+on its canonical negative central sector.
 
 The most direct multiplicative-covariance proof is now ruled out exactly.
 `root-scaling-covariance-does-not-detect-bcs-atom` observes that the
@@ -62,7 +67,7 @@ imply `(BZR2)`.  A successful estimate must use a mixed row which prevents
 the coefficient `a` from entering the root kernel on the physical BCS
 carrier.
 
-There is one exact canonical-trace subcase.  By
+Before the mixed bridge, there was one exact canonical-trace subcase.  By
 `coprime-root-reynolds-prefix-overlap`, if
 `E` is itself a character idempotent of a fixed finite two-group and `Z`
 has exact odd prime order `p`, then coprimality gives
@@ -98,10 +103,11 @@ the second assertion following from the elementary-matrix image
 `1+aE_13`.  In characteristic zero the same root is generally infinite
 order, so the finite Fourier projection in `(BZR1)` is not available.
 The required base change and nonvanishing audit are now supplied by
-`odd-characteristic-adaptive-tree-wordization`.  Thus exact root order is no
-longer part of this open claim, but it must be imported through that node
-rather than silently from the characteristic-zero compiler.  The only open
-content here is the metric payload reflection on nonliteral carriers.
+`odd-characteristic-adaptive-tree-wordization`.  Here choose `p=3`; the
+Boolean and two-primary packet denominators are prime to three, and a finite
+extension of `F_3` supplies any required splitting scalars.  Thus exact root
+order is imported through that node rather than silently from the
+characteristic-zero compiler.
 
 There is now a useful exact control experiment showing that **analyticity of
 the carrier is not by itself the obstruction**.
@@ -112,20 +118,29 @@ projection.  The identity remains exact after multiplication by an arbitrary
 projection in the `A4` commutant, so it applies to analytic reducing hulls
 and decoded multiplicity corners without canonical trace moments.
 
-What it does not do is make the auxiliary `C3` generator equal to the root
-`x_13(a)`.  In the perfect model `a=0` and the latter root is `1`, whereas
-the auxiliary generator remains nontrivial on the selected `A4` block.
-Literal identification therefore breaks perfect completeness.  Making the
-finite block collapse conditionally with `a` merely restates the missing
-Steinberg payload reflection.  The remaining obstruction is consequently
-not "nonliteral carrier versus finite Fourier polynomial"; it is the
-**conditional identity of the detected odd root with the coefficient root
-that vanishes when the payload vanishes**.
+The auxiliary `C3` generator is identified with `x_13(a)` by a
+cyclic amalgam once the latter has exact order three.  The perfect model is
+not an obstruction: when `a=0`, represent the whole auxiliary factor
+trivially.  The remaining issue for the bare `A4` version is selecting its
+three-dimensional block coherently along all reached carriers.  The
+binary-tetrahedral bridge replaces that block by the negative sector
+of one common central involution and gives a uniform estimate on every
+irreducible type in that sector.
 
-Even `(BZR2)` is not by itself the final theorem: the edgewise oriented
+The use of the fresh sign is specific to canonical microstates.  An
+arbitrary approximate representation which only keeps the old mark `J`
+separated may send `ell` to one.  Hyperlinearity, however, supplies
+microstates of the canonical group trace, and the embedded nontrivial
+involution `ell` then has asymptotic negative mass `1/2`.  Thus the bridge is
+valid for a direct nonhyperlinearity contradiction, but it does not prove a
+stronger marked-profile statement quantifying over all approximate
+representations.
+
+Even the extended form of `(BZR2)` is not by itself the final theorem: the edgewise oriented
 tables must still assign one common mass to the same parent carrier across
 all outgoing types.  It separates the two remaining issues cleanly:
 
 ```text
-payload-to-root detection,       then       global common orientation.
+payload-to-root detection (closed after the canonical extension),
+then global common orientation.
 ```

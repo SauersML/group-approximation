@@ -49,6 +49,25 @@ on the shared-context atom itself.
   lamplighter or elementary-abelian character cylinder.  This authenticates
   the destination but not its position relative to the invariant hull of the
   shared BCS tuple: tensor-product exact models make the overlap arbitrary.
+- **One-shift finite-state nonstationarity.**  Encode payload-conditioned
+  permitted windows along a lamplighter/HNN address orbit, hoping that every
+  active orbit remains fresh.  By
+  `one-dimensional-address-rules-have-periodic-models`, every nonempty active
+  one-dimensional finite-type fiber has a periodic point.  Its finite cyclic
+  PVM model has `F=1`, zero presentation defect, and periodically repeating
+  target supports.  Thus it refutes both infinite pairwise orthogonality and
+  any strict positive exact carrier recurrence.  A successful address rule
+  must leave the one-dimensional finite-state class or make the active fiber
+  itself uniformly matricially obstructed.
+- **Strongly aperiodic plane/tree successor.**  Passing from a line to a
+  strongly aperiodic `Z^2` finite-type rule removes exact periodic points but
+  not approximate matrices.  `strong-aperiodic-z2-addresses-have-vanishing-hs-seams`
+  wraps one valid plane tiling on `N by N` tori: only `O(1/N)` checks fail, so
+  the active `F=1` models have `O(N^(-1/2))` normalized-HS defect.  A
+  nonamenable/expander successor would need both a robust finite-action local
+  testability gap and unitary-to-diagonal actor classicalization.  Property
+  `(T)` alone supplies neither the chosen rule's soundness nor the invariant
+  Cartan needed to charge it.
 - **Orthogonal role copies.**  A finite matrix/extraspecial role packet does
   turn the noncommuting forbidden family into the genuine projection
   `sum_i R_i P_i`.  However

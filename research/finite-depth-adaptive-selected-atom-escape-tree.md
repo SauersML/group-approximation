@@ -101,6 +101,28 @@ carrier. Even exact depolarization only gives escape fraction
 than a fixed-factor overshoot. A valid actuator must therefore consume the
 forbidden-character semantics, not merely mix a projection of the same rank.
 
+The local coefficient-root part can now be removed on a canonical extended
+route.  By `canonical-bcs-root-detection-via-binary-tetrahedral-bridge`, add
+one shared fresh central involution `ell`, attach a binary-tetrahedral packet
+to every named source root, replace the seed by the common reducing hull of
+
+```text
+Q_-(1+B)/2 (1-ell)/2,
+```
+
+and include all attached packets in every subsequent reducing hull.  The raw
+seed has canonical trace `1/8`, every carrier lies below the common
+`J=-1,ell=-1` sector, and each selected atom has at least half its mass on
+the nontrivial spectrum of its actual E5 source root.  But
+`binary-tetrahedral-packet-hull-saturates-unprotected-seed-sign` shows that
+the common hull under the unprotected packets already fills that sector.
+The capacity ratio in `(FAT2)` now survives by the seed-protected amalgam
+repair `protected-adaptive-btb-wordization-preserves-canonical-budget`:
+the finite edge two-group contains `H_i,J,B`, and every source root commutes
+with it.  Even with that repair, `(FAT1)` remains open: the detected root packet still has to
+be oriented through the established three-line/Morita table so that a fixed
+fraction lands outside the current carrier.
+
 There is also a strictly shorter sufficient route which does not establish
 this claim: `finite-bad-character-packing-extension` asks for enough static
 orthogonal conjugates of the maximal root character idempotent.

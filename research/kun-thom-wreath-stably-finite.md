@@ -63,6 +63,25 @@ reduction, because by `stable-finiteness-reduces-to-prime-field` the
 prime-field statement is *equivalent* to this one, so it renames the problem
 instead of reducing it.
 
+
+## Citation firewall: the locally-finite-kernel shortcut is not established here
+
+There is a tempting apparent closure in M. Shahryari's withdrawn preprint
+*“A note on surjunctive groups”* (arXiv:2002.05352), whose abstract states that
+a semidirect product of a locally finite group by a surjunctive group is
+surjunctive.  Do **not** use that abstract as a proof of this node.  The
+peer-reviewed Arzhantseva--Gal theorem cited in that circle of ideas proves the
+semidirect-extension statement for a **finitely generated residually finite**
+kernel.  The lamp kernel
+
+    N = directSum_(G/Gamma) Z/2Z
+
+is locally finite but, in the Kun--Thom examples of interest, infinite and not
+finitely generated.  Thus the published theorem does not apply.  Until the
+withdrawn argument is independently reconstructed or another extension theorem
+is supplied, the locally-finite-kernel route remains a gap rather than a
+closure.
+
 ## What would count
 
 A lifting theorem for locally finite kernels that does not go through the

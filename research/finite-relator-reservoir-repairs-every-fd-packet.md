@@ -61,6 +61,28 @@ genuine failure of local splitting must take.
 
 ## Attempts
 
+- **No proof by a uniform relator-Laplacian inverse is possible.**
+  `km-triangle-relator-kernel-has-no-relative-gap` proves that the normal
+  kernel pair `(G_0,K)` lacks relative property `(T)`.  Otherwise quotient
+  property `(T)` would force the infinite virtually free group `G_0` itself
+  to be Kazhdan.  Hence every fixed finite relator reservoir admits unitary
+  representations with almost invariant unit vectors, no `K`-fixed vector,
+  and arbitrarily small reservoir energy.  In particular `(RR2)` cannot be
+  proved by applying a dimension-uniform Moore--Penrose/Poincare inverse to a
+  finite relator sum of squares.  This does not refute `(RR2)`: its finite
+  packets and correction coefficients vary, and it asks for cp repair rather
+  than a coercive estimate.  A proof must exploit that noncoercive
+  packet-dependent geometry.
+- **The reservoir cannot act only by independent inner gauges on the tree
+  faces.**  In the explicit `(3,3,4)` Kac--Moody triangle,
+  `kernel-inner-tree-face-balancing-collapses` proves that conjugating the two
+  canonical tree-face embeddings by arbitrary relator-kernel elements
+  collapses, through Bass--Serre edge rigidity, to one common conjugation; the
+  kernel-cycle Gram obstruction then survives unchanged.  Thus a successful
+  `d_R` cannot merely encode two facewise inner gauges.  It must make at least
+  one corrected tree-face restriction genuinely nonmultiplicative while
+  preserving compatibility on the shared `P_2` algebra.  This is the
+  sharpest live positive subproblem inside `(RR2)`.
 - **The packetwise statement is already a theorem; only uniformity in the
   packet is open.**  Fix a finite packet `R` and put `rho=(+)_(rho in R) rho`,
   a finite-dimensional representation.  Then `rho(I_N)` is a

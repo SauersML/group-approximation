@@ -66,3 +66,33 @@ with small weighted canonical codimensions.  This is the **Hecke CRT** gate.
   `affine-frobenius-packets-solve-local-row-mask-storage`.  What remains is
   one global algebraic involution per variable acting as the prescribed
   marginals on its several noncommuting large right ideals.
+- The exact global finite-dimensional budget is now closed.
+  `bcs-gap-blocks-vanishing-crt-mask-budget` proves that any family of exact
+  projection-CRT consistency cells satisfies
+
+  ```text
+  V_forbidden+D_consistency>=Delta.
+  ```
+
+  If predicate masks kill the forbidden projections, their weighted deficit
+  is at least `V_forbidden`, and the total predicate-plus-consistency mask
+  budget is at least `Delta`.  Hence no scalable rational matrix construction
+  can approach `(HCRT2)`: consistency deficit `o(1)` forces forbidden mass at
+  least `Delta-o(1)`.  The desired ordinary group-algebra certificate must
+  exploit the canonical trace of a non-hyperlinear ambient group; it cannot
+  be assembled and verified inside finite matrix packets.  Variablewise
+  common meets exist by the projection-CRT theorem, but they need not commute
+  and are not needed for this lower bound because the CRT reflections already
+  form the global shared tuple.
+- A pure finite Reynolds/HNN energy compiler cannot bridge that budget.
+  `rf-reynolds-mask-deficit-is-not-relator-energy` chooses one finite quotient
+  regular representation which preserves every finite-support mask's
+  canonical codimension and every prescribed finite canonical word moment,
+  while all presentation and finite-subgroup covariance relators have defect
+  zero.  This applies even to augmentation-safe complements of nontrivial
+  character idempotents.  Therefore any successful ordinary-group row system
+  must make each deleted mask projection nonzero canonically but invisible in
+  every exact finite-dimensional representation, with a dimension-uniform HS
+  modulus.  Finite amalgams and finite-subgroup HNN rows over the residually
+  finite Frobenius packets do not do this; a non-Bass--Serre relation among
+  intertwiners or an infinite actor is load-bearing.

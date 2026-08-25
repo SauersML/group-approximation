@@ -82,6 +82,55 @@ two-site carrier.
   `35/72` even at zero presentation defect.  Hence a positive construction
   must retain path/boundary memory in its finite state space; it cannot form
   actor products by composing conditional kernels on one fixed lamp window.
+- **The obstruction already occurs in a finite canonical matrix packet on
+  the full marked pair.**
+  `two-site-a5-center-has-exact-boundary-countermodel` takes four `A5` lamp
+  sites and an involution which moves the marked pair to the disjoint pair
+  and back.  In the finite regular representation all group relators,
+  canonical mixed word traces, rational center identities, and shared
+  conjugation relations hold exactly, but the compressed four-atom coupling
+  of the mover and its inverse has total-variation composition defect
+  `3815/5184`.  Therefore fixed two-site center data cannot by themselves
+  force an equivariant multiplicity table in normalized Hilbert--Schmidt
+  norm.  A positive proof must retain boundary/path labels or independently
+  extract a coherent actor table; the example does not rule out either
+  enlargement.
+- **Full word-path memory has a positive interior lemma, but a uniform
+  non-Folner boundary.**
+  `full-a5-path-memory-kills-holonomy-but-not-reiter-boundary` puts a separate
+  transported center PVM and transported atomwise basis over every retained
+  actor word.  Every internal arrow is then a literal block permutation, with
+  dimension-free normalized-HS control in the approximate case.  With
+  arbitrary path multiplicities, however, the largest matched part for a
+  generator `s` has mass
+  `1-(1/2)||s mu-mu||_1`.  Making all these losses vanish is exactly Reiter
+  amenability, impossible for the pinned property-`(T)` actor.  Thus path
+  enlargement removes local holonomy but cannot supply the near-total table;
+  a genuinely non-path finite chart carrier, with the matrix model closing
+  its boundary, is still required.
+- **Fixed lamp exactification leaves a quantified partial-commutant
+  cocycle.**  `canonical-a5-window-leaves-a-partial-commutant-cocycle`
+  exactifies every fixed `A5^Y` window to a regular core and shows that an
+  arrow defined on `D subset Y` still carries the full unitary algebra
+  `rho(A5^D)'' tensor B(ell^2(A5^(Y minus D)) tensor C^m)`.  Boundary
+  completions contribute a permutation holonomy, and actor multiplication
+  only turns the residual unitaries into the corresponding twisted cocycle.
+  A fixed finite family of extra binary labels leaves a positive-density
+  matrix block.  Only a growing actor-normalized copy Cartan forces
+  monomiality, but extracting that Cartan is already the missing finite
+  action carrier.
+- **Exact expander and finite-quotient carriers close the boundary by
+  collapsing the mark.**
+  `exact-expander-a5-carriers-collapse-marked-center` gives the direct
+  Kazhdan estimate.  In every genuine finite `G`-action, an A5 center label
+  which is `delta`-invariant under the fixed generators of `Gamma` differs
+  from its `h`-translate on at most `4 delta/kappa^2` of the carrier.  The
+  canonical marked lamps instead differ on mass `35/72`.  Hence one cannot
+  exactify the actor to a finite quotient/expander action first and attach
+  the center field afterward.  The actor permutations and lamp labels must
+  be extracted simultaneously as a genuinely approximate table; the
+  finite-quotient kernel cocycle is the obstruction to doing this by Fell
+  untwisting.
 - **Positive physical rank is not an adjoint amplifier.**  The exclusive-or
   carrier has trace `35/72`, so left multiplication by it is a projection of
   adjoint rank `35/72`.  Its range is only invariant under a stabilizer which
@@ -92,3 +141,32 @@ two-site carrier.
   feed `macroscopic-child-only-adjoint-sector-is-terminal` without a genuinely
   new multiplicity-charging operation.  Rephrasing the physical projection
   as a superoperator does not supply that operation.
+- **Exactifying the actor on the active corner is already terminal, not a
+  classicalization step.**  Suppose a positive-density reducing corner of a
+  proposed microstate is replaced by a genuine finite-dimensional actor
+  representation `pi`.  For the pinned compressor
+  `t Gamma t^(-1)<Gamma`, conjugation gives an inclusion
+
+  ```text
+  pi(t) pi(Gamma)' pi(t)^* subset pi(Gamma)'.
+  ```
+
+  Both algebras have the same finite vector-space dimension, so the inclusion
+  is equality.  This is the commutant form of
+  `compression-defect-dies-in-finite-dimensions`.  The source lamp at
+  `Gamma` lies in `pi(Gamma)'`; hence its `t`-translate at `tGamma` lies in
+  the same commutant and is fixed by every `gamma in Gamma`.  Choosing
+  `gamma` which moves `tGamma` collapses the two distinct lamp coordinates,
+  contrary to the canonical C2 profile and, after applying the rational
+  central idempotent, to the A5 separation mass `35/72`.
+
+  Thus there are two sharply different outputs.  A **genuine exact** actor
+  representation on the active corner immediately proves the desired
+  contradiction, as formalized by
+  `kt-wreath-relative-canonical-actor-exactification`; a useful
+  **classicalization** must instead produce genuinely approximate
+  permutations and labels simultaneously.  Property `(T)` supplies the
+  Kazhdan estimate after one of those carrier structures is present, but is
+  not a normalized-HS stability theorem producing either structure.  This
+  rules out the intermediate proposal “property `(T)` first exactifies the
+  actor, then the finite lamp packet selects a monomial basis.”

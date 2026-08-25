@@ -28,3 +28,12 @@ two residually finite Kazhdan groups over a common (T) subgroup -- a
 second nonsofic family from the same mechanism.  Trust surface: an
 unrefereed preprint, like the wreath statement; the priority note of
 `kun-thom-nonsofic-wreath` applies verbatim.
+
+The corresponding vertex-stability shortcut is now ruled out exactly.
+`kt-double-canonical-vertex-marginals-admit-large-amalgam-twists` constructs
+exact finite-dimensional representations of both copies whose characters
+converge to the regular character of `G`, agree exactly on `Gamma`, but remain
+at distance at least `sqrt(2)` on one fixed actor element.  Hence exactifying
+the two vertex restrictions cannot by itself promote hyperlinearity of the
+double to residual finiteness or soficity.  A successful unitary proof must
+control genuinely mixed reduced alternating characters.

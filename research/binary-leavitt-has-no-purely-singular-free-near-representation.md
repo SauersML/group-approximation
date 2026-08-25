@@ -32,3 +32,11 @@ operator-norm mismatch.  The stronger established property `(TT)/T` of `Q`
 is therefore relevant only if one can manufacture a genuine unitary
 representation and a quasi-cocycle from the singular near-state without
 assuming the desired exactification.
+
+The apparent local-lifting endpoint is now known to be an exact
+reformulation, not a weaker terminal:
+`leavitt-singular-local-lift-iff-no-witness` proves
+that every hypothetical witness has a nonlocally-split regular quotient, so
+the assertion that all such quotients locally split is true precisely when
+there are no witnesses.  Singularity gives a state on the Calkin algebra but
+does not embed the regular quotient there and does not produce ucp lifts.

@@ -48,3 +48,29 @@ Fourier-block calculation shows the upgrade cannot follow from abelianness or
 from finite-dimensional simultaneous diagonalization alone: all possible
 exoticity is stored in growing multiplicity fibers, which are invisible to the
 lamp algebra and to the trace.
+
+`strong-aperiodic-z2-addresses-have-vanishing-hs-seams` places this gate after
+the aperiodic/expander audit.  Strong aperiodicity on an amenable grid still
+has vanishing-seam HS models.  On a Kazhdan/expander actor one instead needs a
+robust finite permutation-action loss `(ZSA4)`, but that loss charges unitary
+microstates only after the lamp/site algebra has been placed in an invariant
+diagonal ultraproduct.  Thus property `(T)` can strengthen the classical
+finite-action side without supplying the present Cartan completion; the two
+hypotheses are complementary, not interchangeable.
+
+There is also no property-`(T)` shortcut through exact actor rounding.  On a
+finite-dimensional corner, the one-sided inclusion
+`t Gamma t^(-1)<Gamma` gives an inclusion of the corresponding commutants;
+finite dimension upgrades it to equality.  Consequently the transported
+base lamp is already `Gamma`-fixed and the marked two-site lamp difference
+collapses.  This is a valid terminal contradiction if actor exactification
+can be proved (`kt-wreath-relative-canonical-actor-exactification`), but it
+does not construct the diagonal ultraproduct asked for here.  Conversely,
+fixed A5 or C2 packet exactification leaves the full partial-commutant cocycle
+computed in `canonical-a5-window-leaves-a-partial-commutant-cocycle`.
+Property `(T)` estimates vectors after a representation or permutation
+carrier has been fixed; it neither turns an arbitrary unitary-HS actor
+microstate into an exact representation nor selects a Cartan inside that
+cocycle.  Hence active-corner Cartan classicalization and actor
+exactification are two alternative hard bridges, not consecutive routine
+rounding steps.

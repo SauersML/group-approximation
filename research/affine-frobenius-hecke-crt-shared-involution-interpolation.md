@@ -114,3 +114,15 @@ load-bearing parts of this open claim.
   agreement is equivalent to full agreement for the reducing Frobenius
   masks.  The remaining algebraic target is isolated as
   `affine-frobenius-algebraic-projection-crt`.
+- The smallest noncommuting CRT cell is not the obstruction.
+  `projection-crt-deficit-forces-common-meet` gives an explicit rational
+  matrix construction with two noncommuting masks, deficit `1/d` per mask,
+  and one finite-support reflecting involution.  It also proves the converse
+  high-density law: any projection CRT solution forces a common negative
+  meet of trace at least the CRT projection trace minus the total mask
+  deficit.  Thus the several right ideals may remain noncommuting, but their
+  prescribed negative pieces cannot remain independently placed.  Scaling
+  the local cell across all variables requires the fixed context PVMs to be
+  finite-rank perturbations of common variable carriers; achieving that below
+  the BCS gap is precisely the unresolved global correlation, not another
+  two-context interpolation identity.

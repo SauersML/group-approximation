@@ -199,6 +199,18 @@ work into a metric decoder, rather than mixing it with Toeplitz algebra.
   `binary-schur-toeplitz-one-branch-hs-payment`.  Merely iterating the binary
   shift is insufficient, because exponentially growing matrices realize the
   stationary regular branch flow.
+- **The exact binary spectral functional equation has a nontrivial fixed
+  point.**  `binary-toeplitz-root-refinement-has-a-bernoulli-haar-fixed-point`
+  computes the canonical trace on the defect roots
+  `w_j=x_12(x^jP_fy^j)`.  They are iid commuting Haar `C_p` unitaries, while
+  stable-letter covariance gives
+  `t^n w_0 t^-n=product_(j<2^n)w_j`.  Thus even the strongest hoped-for exact
+  statement--one copy is conjugate to a product of two independent copies--
+  only yields `mu=mu star mu`.  Its two prime-order solutions are the identity
+  mass and Haar measure, and the faithful regular model realizes Haar with
+  `||w_0-1||_2^2=2`.  Spectral/trace identities cannot select the trivial
+  fixed point; the missing argument must use the matricial lift or an oriented
+  branch payment.
 - **The affine sign gives only a two-cycle.**
   `affine-sign-twist-swaps-active-blocks-but-is-stationary` computes the one
   nontrivial internal holonomy made available by the affine `S_3`: it

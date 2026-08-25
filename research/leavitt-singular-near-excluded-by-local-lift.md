@@ -33,3 +33,11 @@ established theorem `openai-leavitt-unit-nonsofic`.
 Thus the local-lifting terminal alone excludes every singular free near-state;
 no normalized-HS stability, `(TT)/T` exactification, or finite-dimensional
 representation theory is used.
+
+**Reverse implication (2026-08-24).**
+`leavitt-singular-local-lift-iff-no-witness` proves
+that any actual witness makes its quotient nonlocally split.  Hence the local
+lifting hypothesis consumed here is equivalent to nonexistence of witnesses,
+not an independently weaker consequence of Calkin support.  The route remains
+formally correct, but it does not lower the mathematical difficulty of the
+target without a new Leavitt-specific lifting theorem.
