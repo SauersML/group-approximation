@@ -48,6 +48,17 @@ positive matrix-range separator for the selected lattice tuple.
   the intrinsic `W^*(T)` part: a positive-gap tuple must have definite
   off-spectral mass in `T' cap M`.  Hence scalar Fourier analysis of the
   Haar letter cannot settle `(LCG3)`.
+- **The one-letter multiplicity/Choi conversion is exactly neutral.**
+  `letter-central-matrix-range-separation-is-morita-neutral` shows that,
+  after finite-order rounding of `T`, both the support function and the gap
+  split as weighted sums over the spectral multiplicity blocks.  Conversely
+  every ordinary gap amplifies beneath an asymptotically Haar central letter
+  with the same off-spectral mass.  This invalidates
+  `sl3-central-dual-via-letter-multiplicity-stinespring`: blockwise
+  Stinespring actors presuppose the ucp points whose existence is the claim.
+  Any positive proof must use the S-arithmetic extension, concretely a
+  coupling between the `T` blocks and the conjugate-letter blocks of
+  `phi(h)Tphi(h)^*`, not the commutant of `T` alone.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

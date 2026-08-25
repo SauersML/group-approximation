@@ -62,3 +62,20 @@ fixing that whole face and all selector commutators while changing the
 missing arm.  Hence the required interacting diagram must couple the two
 extension multiplicity spaces, not merely enlarge the subgroup on which the
 charts agree.
+
+The finite coupling relation is now identified exactly.
+`mixed-r2-cell-couples-shared-s5-extension-multiplicities` shows that one R2
+triangle using the input arm from the first S6 extension and the transported
+arm from the second has defect **equal** to the missing-arm mismatch.  In the
+normalized depth-three words it is the ordinary R2 shape
+
+```text
+(010 001) (010 000) (010 001)=(000 001).
+```
+
+This also detects the explicit S5 multiplicity rotation, whereas every
+chart-separable relation is blind to it.  The remaining word-geometric leaf
+is `bleak-quick-adjacent-seam-retains-one-mixed-r2-cell`: certify that this
+one triangle can mix the two contextual occurrences with bounded R1--R5
+cost.  `mixed-r2-occurrence-builds-finite-selector-packet` then recovers the
+whole selector packet from either private S6 chart.
