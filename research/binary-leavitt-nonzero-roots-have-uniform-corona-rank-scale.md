@@ -49,12 +49,14 @@ marked root, suppose its active projection has normalized rank at least
 liminf rank(p_a)/d >= 1/(4L_0).                         (URR4)
 ```
 
-There is also a uniform direct cross-overlap consequence.  Let `p_a,p_q` be
-as in `(URR2)`.  The first double-commutator output commutes with both of its
+There is also a uniform direct cross-overlap consequence for every root
+position disjoint from the two indices of the marked root.  In particular,
+let `p_a` be the active projection of `x_42(a)` and let `p_q` be that of
+`x_13(q)`.  The displayed double-commutator output commutes with both of its
 conjugating roots, so
 
 ```text
-tau(p_a p_q) >= tau(p_a)/16 >= tau(p_q)/64.            (URR5)
+tau(p_a p_q) >= tau(p_a)/4 >= tau(p_q)/16.             (URR5)
 ```
 
 in an exact finite-dimensional representation.  For rounded involutions in
@@ -69,10 +71,12 @@ representation of an infinite elementary abelian root group gives every
 nonzero involution active trace `1/2`, fully compatible with `(URR4)`.  Also,
 the coordinate after which `(URR3)` holds may depend on `a`; the theorem does
 not permit choosing a coefficient after inspecting the matrix coordinate.
-Even `(URR5)` does not identify the two native scale transports with one
-another: two root carriers can each have a positive but disjoint slice inside
-the much larger marked carrier.  The remaining decoder must use the uniform
-rank/overlap scale together with a mixed-root return or a uniformly
+The rank comparisons `(URR2)--(URR4)` still apply to every root position;
+only the direct marked overlap `(URR5)` uses a position disjoint from
+`{1,3}`.  Even there it does not identify two native scale transports with
+one another: two root carriers can each have a positive but disjoint slice
+inside the much larger marked carrier.  The remaining decoder must use the
+uniform rank/overlap scale together with a mixed-root return or a uniformly
 authenticated moving coefficient, rather than infer an atom or a common
 gauge from the density floor alone.
 

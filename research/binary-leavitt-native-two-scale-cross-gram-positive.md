@@ -50,6 +50,20 @@ Thus the new route may be closed either by a direct overlap calculation or
 by any native binary packet flag giving a strict capacity deficit.  Merely
 meeting the doubled rectangular capacity is critical and gives no overlap.
 
+There is now a second sufficient front end with no capacity surplus.  By
+`root-valued-relative-transport-forces-cross-gram`, if the two stabilized
+native transports are the restrictions `S_i=g_iP_source` of full group
+unitaries and
+
+```text
+(g_1^(-1)g_2) z (g_1^(-1)g_2)^(-1)=x_42(a),    a!=0,   (NCG1a)
+```
+
+then `(NCG1)` holds with `gamma=1/4`.  Consequently the scalar estimate is
+finished once this root-valued relative-word typing is authenticated for the
+actual selector occurrences.  A relative identity for unrelated unitary
+completions does not qualify.
+
 Positive-density active-core reblocking does not make this inequality
 strict.  `active-core-density-keeps-rectangular-capacity-critical`
 places the exact nested Pauli rectangular model inside the whole active
@@ -142,13 +156,31 @@ their own prescribed common target.
 Normal saturation now supplies a direct common ambient carrier, but not yet
 the required mutual overlap.  In the uniform binary-Leavitt double
 commutator the output commutes with both conjugators, so
-`commuting-double-commutator-has-direct-mark-overlap` puts at least `1/16` of
-every nonzero output root carrier directly inside the original marked
-carrier.  Two such slices may nevertheless be disjoint while each occupies
-only `1/64` of the marked mass.  Moreover, these root spectral slices are not
-yet the prescribed selector transport Grams.  Thus the result removes the
-conjugate-selection ambiguity and provides a canonical ambient corner for an
-occurrence decoder, but does not itself instantiate `(NCG1)`.
+`commuting-double-commutator-has-direct-mark-overlap` puts at least `1/4` of
+every nonzero `x_42(a)` output root carrier, and every marked-index-disjoint
+Weyl translate, directly inside the original marked carrier.  Two such
+slices may nevertheless be disjoint while each occupies only `1/16` of the
+marked mass.  Moreover, these root spectral slices are not yet the prescribed
+selector transport Grams.  Thus the result removes the conjugate-selection
+ambiguity on the disjoint root rectangle and provides a canonical ambient
+corner for an occurrence decoder, but does not itself instantiate `(NCG1)`.
+
+Equivalently, the remaining algebraic shortcut is now sharply testable: show
+that the actual two stabilized selector transports satisfy `(NCG1a)`.
+The direct/composite coefficient equality `(NCG2)` alone does not do this,
+because its rectangular completions need not be restrictions of two full
+unitaries on the marked source projection.  This is precisely the typing
+loophole realized by the existing Morita model.
+
+There is nevertheless now a fixed nonadaptive common carrier available for
+an occurrence compiler.  `seventeen-root-star-has-marked-triple-overlap`
+proves that the prescribed roots `x_42(q)` and `x_52(q)` have triple overlap
+at least `(13/256)tau(P_z)` with the mark.  Weyl two-transitivity, rather than
+coordinatewise pair selection, supplies this pair.  These are same-coefficient
+root-position channels, so substituting their Weyl maps for the two native
+unequal-scale coefficient transports would erase the selector semantics.
+The remaining task is to install the actual two scale rows on this common
+root carrier or authenticate `(NCG1a)` for their own relative word.
 
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
