@@ -153,6 +153,16 @@ the `Gamma`-moved compressed-site correlation is exactly the additional
 datum needed for `(FCT5)--(FCT6)`.  No claim is made that these congruence
 models satisfy that additional datum.
 
+The same blindness persists even after inserting one shared algebraic base
+coefficient into both compressor covariance rows.
+`profinite-free-compressors-retain-coefficient-residual` implements both
+proper endomorphisms exactly as automorphisms of one common finite regular
+quotient and retains the full canonical `L2` norm of that named coefficient.
+An independent finite quotient of the free stable-letter group preserves
+any fixed free-word window.  Thus the missing datum in `(FCT5)` cannot be
+replaced by a coefficient occurrence which lives entirely in the base: it
+must couple that coefficient to the `Gamma`-moved leaf correlation itself.
+
 `fct8-left-lift-and-rotated-defect-firewall` audits the most tempting way to
 bridge `(FCT6)` and `(FCT8)`.  The rank-one projector onto `C X_w` has
 pointwise child-fixed range but only `1/d^2` adjoint trace.  Left

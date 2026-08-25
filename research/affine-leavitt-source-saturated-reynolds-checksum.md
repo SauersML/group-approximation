@@ -190,6 +190,24 @@ source/target pair and obtain any payload-conditional estimate
 This reformulates the remaining object-erasure as a strict target-capacity
 deficit, not necessarily equality of source and target reservoirs.
 
+That scalar deficit is now explicit.
+`dyadic-pauli-payload-flags-supply-strict-target-capacity` extends each
+forbidden atom by `n` independent Pauli signs and names projections `E,F_n`
+for which
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E),                            (ASR5c)
+```
+
+also after compression by a reducing carrier.  A maximal atom makes `E`
+positive in finite BCS microstates, while both projections vanish in the
+perfect model.  Hence one may take any fixed dyadic
+`kappa=2^(1-n)>0`; no orientation-flow or target-rank construction remains.
+The same claim's regular-trace fence shows why this is not already a proof:
+the two inverse maps and crossed product cannot be universal packet-word
+consequences on `(E,F_n)`.  Their matrix-only occurrence synchronization is
+the sole surviving three-row compiler.
+
 Nor can the two native branches be rescued by summing their return
 energies.  `leavitt-target-return-channel-count-firewall` proves for every
 pair of approximation-dependent contractions supported from `R_s` to

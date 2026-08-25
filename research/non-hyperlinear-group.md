@@ -608,6 +608,37 @@ the threshold exactly at `tau(F)=2tau(E)`.  The remaining finite-presentation
 task is consequently a strict payload-conditioned target-capacity deficit,
 not full recovery of an identical reservoir.
 
+The nonlinear BCS front end supplies exactly the scalar deficit once its
+maximal atom is made into a forbidden target channel.
+`bcs-deficit-plus-three-row-cell-kills-source` puts the shared BCS on a
+target `T` of capacity at most `2tau(E)`, selects a forbidden atom `A` with
+mass at least `(beta/M)tau(T)-O(sqrt(E_B))`, and takes `F=T-A`.  The BCS
+upper bound on `tau(F)` and the rectangular three-row lower bound differ by
+`2(beta/M)tau(E)`, yielding a dimension-independent carrier collapse.  In
+the perfect infinite model `A=0`, so the sharp doubled Morita target remains
+exact.  The remaining groupification interface is therefore one explicit
+row: authenticate the three selected coefficient maps through the complement
+of the maximal forbidden Reynolds atom.  Simultaneous transport of all
+forbidden types and literal same-object recovery are both unnecessary.
+
+The scalar capacity part of that task is now solved with arbitrary slack.
+`dyadic-pauli-payload-flags-supply-strict-target-capacity` adjoins `n`
+independent Pauli signs to a maximal forbidden atom, takes its first half as
+the source `E`, and removes one depth-`n` dyadic atom from the target.  The
+result is literal finite-packet data satisfying
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E),
+```
+
+and both projections vanish in the perfect BCS model.  Thus any fixed
+positive dyadic `kappa=2^(1-n)`, however small, is available.  The same
+theorem proves the sharp regular-trace fence: the two inverse rows and crossed
+row cannot be universal word consequences on this pair, since the left
+regular factor would violate the factor-two capacity law.  The remaining
+breakthrough is only a finite-coordinate occurrence-synchronization theorem
+placing the native Leavitt maps through these named payload flags.
+
 The most direct finite orientation pin for that mixed row also fails.
 `packet-controller-orbit-products-have-orientation-dichotomy` considers a
 product of packet conjugates of the rank-one controlled phase and compares

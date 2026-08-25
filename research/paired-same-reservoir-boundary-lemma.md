@@ -42,6 +42,22 @@ is the sharp capacity statement which a boundary payment must create.  Full
 identification `F=E` is one sufficient way to obtain it, but is no longer the
 minimal target.
 
+Moreover the strict capacity pair itself is no longer hypothetical.
+`dyadic-pauli-payload-flags-supply-strict-target-capacity` gives, on every
+maximal forbidden atom and for any fixed `n`, literal packet projections
+`E,F_n` with
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E).
+```
+
+They vanish in the perfect BCS model.  The open boundary theorem has therefore
+narrowed again: it must decode the two inverse occurrences and one crossed
+occurrence through this same named dyadic pair.  A functorial packet decoder
+is impossible by the left-regular trace, so the load-bearing step is only the
+finite-coordinate occurrence synchronization, not construction of a scalar
+capacity deficit.
+
 Once branch (1) holds, no further near-bijection theorem is needed:
 `bistochastic-diagonal-return-forces-aligned-permutation` rounds the square
 forward/return pair, and the robust paired `1/36` floor charges the crossed

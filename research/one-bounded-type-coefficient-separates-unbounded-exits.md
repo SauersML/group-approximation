@@ -89,3 +89,20 @@ This requires no stationary quotient for the endomorphism.  Therefore a
 self-copy route must contain an additional payload-sensitive two-cell; the
 ordinary covariance relation contributes no payment toward the coefficient
 residual.
+
+Neither free joint holonomy nor the most direct stabilizer-sensitive
+annihilator supplies that payment.  The opposite Kun--Thom compressors have
+common profinite automorphic models by
+`profinite-free-compressors-retain-coefficient-residual`.  After adding the
+full Gamma stabilizer packet,
+`kt-payload-annihilator-mixed-return-has-profinite-countermodels` still has
+exact finite models with
+
+```text
+z(1-a)(ell-h ell h^(-1))=0
+```
+
+and the residual floor `(BTC5)`: finite quotient blindness makes
+`h ell h^(-1)=ell`.  Hence a live cell must be an oriented coefficient
+reflection which prevents the site collapse, not a coefficient multiple of
+a vanishing moved-site commutator.

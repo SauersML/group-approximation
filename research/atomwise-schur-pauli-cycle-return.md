@@ -45,6 +45,22 @@ use another finite-matrix invariant that fixes the common multiplicity
 reservoir.  Finite-group exactification, phase covariance, and the literal
 Pauli formulas alone do not prove `(ASR1)`.
 
+The target-capacity reformulation makes the available front end stronger.
+By `dyadic-pauli-payload-flags-supply-strict-target-capacity`, finitely many
+additional baseline Pauli pairs name, on the same atom, a source half `E` and
+a target `F_n` with
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E)
+```
+
+for arbitrary fixed `n`.  Combining this with
+`rectangular-three-row-cell-forces-double-target-capacity` would require only
+two diagonal inverse rows and one crossed-zero row through that pair; no exact
+half-to-quarter conjugacy or full menu permutation is necessary.  The
+regular-trace fence remains identical: those three rows must be decoded only
+in finite canonical microstates, not imposed as literal packet identities.
+
 ## Attempts
 
 - The relative and baseline Pauli words remove the additive-selector and

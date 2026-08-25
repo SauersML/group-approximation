@@ -138,6 +138,17 @@ right-Følner telescope exists.  Merely adding a second stable letter, a
 commutator, a nilpotent Hall--Witt table, or a shared coefficient occurrence
 does not cross the matrix-only gate.
 
+The free-holonomy edge of that frontier is now fenced as well under the
+natural simultaneous profinite hypothesis.
+`profinite-free-compressors-retain-coefficient-residual` shows that if the
+proper endomorphisms become automorphisms on common finite quotients, then
+the free multiple-HNN covariance presentation has **exact** finite models
+retaining every prescribed base coefficient.  This applies to the opposite
+Kun--Thom transvections.  Hence the first unfenced cell must use a
+stabilizer-sensitive mixed return or another relation that fails on those
+common profinite automorphic foldings; nonamenability of the stable-letter
+monoid alone is not sufficient.
+
 ## Bounded-type specialization
 
 For the bounded-type coefficient `b=z(1-a)` of

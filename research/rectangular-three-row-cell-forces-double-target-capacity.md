@@ -89,5 +89,20 @@ to have any fixed conditional trace deficit below `2q`.  Conversely no
 argument using only the currently named typed Morita rows can yield such a
 deficit, since their exact model saturates `(RTC4)`.
 
+The scalar deficit can in fact be named without solving the row decoder.
+`dyadic-pauli-payload-flags-supply-strict-target-capacity` attaches `n`
+independent Pauli signs to one forbidden atom and produces literal source and
+target projections with
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E).
+```
+
+Thus arbitrary fixed dyadic `kappa>0` is available and vanishes harmlessly
+with the forbidden atom in the perfect model.  The regular-trace part of that
+claim proves the sharp remaining fence: the three rectangular maps cannot be
+universal packet-word consequences on this pair.  Only their finite-matrix,
+payload-coupled occurrence synchronization remains open.
+
 DERIVATION
 rectangular-three-row-capacity-proof
