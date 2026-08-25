@@ -215,6 +215,16 @@ the globally consistent odd-subset profiles introduced by `(ESF7)` still
 cannot live in `R^U`.  The mere availability of an extreme non-CE trace gives
 neither statement.
 
+Nor can global support minimality or even uniqueness of the satisfying trace
+be used as a black-box selector.  By
+`matrix-conj-forces-unsafe-support`, one
+may adjoin to any tracial non-`R^U` source a finite magic-square block whose
+unique trace has a full graph-of-AND context.  Every trace of the enlarged
+source then contains the same odd-xor ghost, while restriction preserves the
+non-`R^U` obstruction.  Thus the sufficient condition `(ESF8)` is genuinely
+source/presentation specific and is not stable under harmless finite matrix
+conjunctions.
+
 ## Attempts
 
 - **Published Taller--Vidick test, unmodified.** Their completeness loss comes
