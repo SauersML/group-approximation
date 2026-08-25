@@ -19,7 +19,7 @@ For the uniform-assignment/role packet, positivity in `(AKT4)` is the fixed
 character-idempotent trace computation in
 `role-packed-bcs-gap-is-one-idempotent`.
 
-For `(AKT7)`, enumerate the auxiliary occurrences of a reduced representative
+For `(AKT10)`, enumerate the auxiliary occurrences of a reduced representative
 of `r` and replace them one at a time by the identity.  Left and right
 multiplication by unitaries preserve normalized Hilbert--Schmidt norm, so
 each replacement costs at most
@@ -30,7 +30,7 @@ max_(a in A)||rho(a)-1||_2.
 
 After all replacements the word is `epsilon(r)`.  The triangle inequality
 first compares `rho(epsilon(r))` with `rho(r)` and then `rho(r)` with one,
-giving `(AKT7)`.
+giving `(AKT10)`.
 
 Finally, every `V_4` lamp word becomes one when its lamp generators are
 killed.  Taking also `z=1` turns `(AKT5)` into

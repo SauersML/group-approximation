@@ -79,6 +79,55 @@ exactly, with the selected source in `(AKT6)` replaced by zero.  The robust
 zero-compression theorem is correct; the lamp-to-shared-payload identification
 is the entire missing statement.
 
+The countermodel survives the natural parity synchronization rows.  Write
+`Omega=F_2^k`, use bits `a_j`, and distinguish the marked-cycle grading `c`
+from the lamp generators `z_a,b_a`.  The selected realization satisfies
+
+```text
+product_a z_a=J,
+product_(a:a_j=1) z_a=x_j,                 1<=j<=k,
+product_a b_a=B.                                       (AKT7)
+```
+
+Assume that both the forbidden set `F` and its complement are nonempty.  For
+**every** scalar context assignment
+
+```text
+J=-1,       x_j=(-1)^(t_j),       B=(-1)^b,            (AKT8)
+```
+
+there are scalar lamp signs satisfying `(AKT7)` and
+
+```text
+r_(F,s)=1.                                             (AKT9)
+```
+
+Indeed, in additive `F_2` notation the equations on the `z_a` have coefficient
+columns
+
+```text
+(1,a_1,...,a_k),             a in F_2^k.
+```
+
+These span `F_2^(k+1)`: the column at `a=0` gives the first basis vector and
+its sum with the columns at the standard basis assignments gives every other
+basis vector.  Thus choose the `z_a` with the required total parity and visible
+parities.  Their contribution to `r_(F,s)` is now one scalar sign `d`.  Choose
+the product of the `b_a` over allowed coordinates to be `d`, making
+`r_(F,s)=1`; because there is at least one forbidden coordinate, choose the
+product of the remaining `b_a` to make the total product equal to `B`.
+
+Taking `c=1` makes the marked two-cycle relation
+
+```text
+W c W^(-1)=r_(F,s)c
+```
+
+exact.  Direct-summing these scalar lifts over all assignments produces a
+finite diagonal model with positive forbidden mass and zero relator defect.
+Thus the obvious group-word synchronizations recover the visible parities but
+not the one-hot assignment PVM; they do not authenticate the lamp reflection.
+
 There is also a dimension-free quantitative version of the substitution.
 For a relator `r`, let `N_A(r)` count occurrences of auxiliary letters.  For
 any unitary tuple,
@@ -86,7 +135,7 @@ any unitary tuple,
 ```text
 ||rho(epsilon(r))-1||_2
  <=||rho(r)-1||_2
-   +N_A(r) max_(a in A)||rho(a)-1||_2.                 (AKT7)
+   +N_A(r) max_(a in A)||rho(a)-1||_2.                (AKT10)
 ```
 
 This is the usual telescoping estimate, including inverse occurrences since
@@ -110,10 +159,10 @@ Thus the smallest surviving non-Bass--Serre gate is sharply constrained:
 one mixed relation with a nontrivial residual base word,
 trivial in the perfect BCS trace,
 and carrying a dimension-independent defect on every positive-payload
-finite matrix model.                                  (AKT8)
+finite matrix model.                                 (AKT11)
 ```
 
-Constructing `(AKT8)` is precisely the shared nonlinear BCS-to-group word
+Constructing `(AKT11)` is precisely the shared nonlinear BCS-to-group word
 detector.  Pure lamp/root/Whitehead/marked-two-cycle syntax whose residual
 word is trivial cannot supply it.
 
