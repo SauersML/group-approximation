@@ -64,6 +64,35 @@ longer part of the problem either.
   move it.  Repeated compression introduces boundary terms, and positive
   density alone does not make the two inverse relations exact in the corona.
 
+- **Choose one nonzero irreducible summand at each growing finite window.**
+  A rank-one projection on infinitely many coordinates already defines a
+  nonzero finitely generated projective `Q_d`-module, so vanishing normalized
+  density is not the obstruction here.  The obstruction is algebraic: an
+  irreducible representation of one finite Heisenberg window supplies root
+  unitaries and their multiplicity, but it does not canonically supply a
+  unital map `R -> End_(Q_d)(P)` on the selected summand.  The exactifying
+  conjugator and the selected summand may change with the window, and the
+  coefficient arrows need not preserve their diagonal selection.
+
+- **Iterate the branch until multiplicity outruns the matrix dimension.**
+  At every fixed depth `N`, the transverse shear gives a rank inequality of
+  the form
+
+  ```text
+  2^N rank(P_n) <= d_n
+  ```
+
+  on sufficiently late coordinates.  Letting `N` tend to infinity only after
+  the corona-coordinate limit forces normalized character mass to zero; it
+  does not make the operator norm of a surviving rank-one projection small.
+  Choosing `N=N(n)` after seeing `d_n` is not justified by pointwise corona
+  relations: the relator defect can converge arbitrarily slowly compared with
+  `d_n`, and simultaneous exactification constants grow with the moving
+  window.  Such a moving-depth argument would need the same bounded-cost
+  prototype or return-row control isolated in
+  `binary-leavitt-three-row-atomic-compiler` and
+  `opnorm-leavitt-coarse-fine-return-row`.
+
 The unresolved statement is an intertwiner-coherence theorem: compatible
 finite Heisenberg multiplicities, already aligned inside one fixed Morita
 carrier, must admit a common summand on which the coefficient products act
