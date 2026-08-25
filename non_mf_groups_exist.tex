@@ -2258,8 +2258,13 @@ treats diagonal matrices separately and divides the nondiagonal case according
 to whether the relevant entry of the inverse matrix is zero.
 The formalized simplicity proof uses the concrete two-sided sandwich and the
 fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
-$1$.  It does not formalize Preusser's general theorem about normal subgroups
-or a general theory of pure infiniteness.
+$1$; it does not route through Preusser's general theorem.  That theorem is
+formalized separately in the development, over the hypothesis that the
+coefficient ring admits finite right exchange partitions; the development
+derives the one-element exchange condition from that hypothesis but does not
+prove the two equivalent, so the formalized statement may rest on a stronger
+assumption than Preusser's.  No general theory of pure infiniteness is
+formalized.
 
 \begin{thebibliography}{99}
 \frenchspacing
