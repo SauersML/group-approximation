@@ -185,3 +185,4 @@
 32791781457	2026-08-25T00:00:23Z	GroupApproximation/Sofic/AscendingHNNFullTelescopeRadical.lean	lampDiff_inv
 32799281854	2026-08-25T01:54:17Z	GroupApproximation/Sofic/AscendingHNNIteratedCosetAction.lean	builds
 32804356998	2026-08-25T03:14:07Z	GroupApproximation/Sofic/AscendingHNNNotKazhdan.lean	heightHom_surjective
+32807438009	2026-08-25T04:03:14Z	GroupApproximation/Sofic/AscendingHNNProfiniteClosure.lean	finiteQuotient_level_mem_base
