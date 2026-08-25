@@ -24,7 +24,8 @@ def actualCoronaMFVisibleQuotientMap (f : G →* H) :
     G ⧸ actualCoronaMFResidual G →*
       H ⧸ actualCoronaMFResidual H :=
   QuotientGroup.map (actualCoronaMFResidual G)
-    (actualCoronaMFResidual H) f (map_actualCoronaMFResidual_le f)
+    (actualCoronaMFResidual H) f
+    (Subgroup.map_le_iff_le_comap.mp (map_actualCoronaMFResidual_le f))
 
 @[simp]
 theorem actualCoronaMFVisibleQuotientMap_mk
@@ -41,9 +42,10 @@ theorem actualCoronaMFVisibleQuotientMap_comp
     actualCoronaMFVisibleQuotientMap (g.comp f) =
       (actualCoronaMFVisibleQuotientMap g).comp
         (actualCoronaMFVisibleQuotientMap f) := by
-  ext z
-  obtain ⟨x, rfl⟩ :=
+  refine MonoidHom.ext fun z => ?_
+  obtain ⟨x, hx⟩ :=
     QuotientGroup.mk'_surjective (actualCoronaMFResidual G) z
+  rw [← hx]
   rfl
 
 /-- A surjection with MF-invisible kernel induces a bijection on the
@@ -57,10 +59,11 @@ theorem actualCoronaMFVisibleQuotientMap_bijective_of_invisibleKernel
       f hf hker
   constructor
   · intro a b hab
-    obtain ⟨x, rfl⟩ :=
+    obtain ⟨x, hx⟩ :=
       QuotientGroup.mk'_surjective (actualCoronaMFResidual G) a
-    obtain ⟨y, rfl⟩ :=
+    obtain ⟨y, hy⟩ :=
       QuotientGroup.mk'_surjective (actualCoronaMFResidual G) b
+    rw [← hx, ← hy] at hab ⊢
     apply QuotientGroup.eq_iff_div_mem.mpr
     have hfy : f x / f y ∈ actualCoronaMFResidual H :=
       QuotientGroup.eq_iff_div_mem.mp hab
@@ -69,10 +72,12 @@ theorem actualCoronaMFVisibleQuotientMap_bijective_of_invisibleKernel
       simpa using hfy
     rwa [← hpull] at hxy
   · intro z
-    obtain ⟨h, rfl⟩ :=
+    obtain ⟨h, hh⟩ :=
       QuotientGroup.mk'_surjective (actualCoronaMFResidual H) z
-    obtain ⟨g, rfl⟩ := hf h
-    exact ⟨QuotientGroup.mk' (actualCoronaMFResidual G) g, rfl⟩
+    obtain ⟨g, hg⟩ := hf h
+    refine ⟨QuotientGroup.mk' (actualCoronaMFResidual G) g, ?_⟩
+    rw [← hh, ← hg]
+    rfl
 
 /-- The canonical isomorphism of universal MF-visible quotients induced by
 a surjection with MF-invisible kernel. -/
