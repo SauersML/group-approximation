@@ -62,11 +62,14 @@ faces are held at scalar augmentation.  Any simultaneous correction of the
 large centered closing component in `(CGT4)` must make at least one tree-face
 restriction non-scalar.
 
-**Exact residual.**  The theorem does not give a quantitative lower bound on
-that necessary non-scalar tree motion.  The remaining finite problem is to
-control how rapidly the singleton Choi face `(CGT6)` opens when the two tree
-restrictions are allowed small completely bounded perturbations.  This is a
-specific finite-face modulus, not the generic LLP statement.
+**Quantitative closure of the scalar-tree residual.**
+`scalar-tree-perturbations-force-square-root-closing-control` proves that if
+both tree restrictions are within `eta<=1` in cb norm of scalar augmentation,
+then the closing restriction is within `C_Delta sqrt(eta)` of scalar
+augmentation.  Hence fixed closing movement forces tree movement at least
+`min{1,(r/C_Delta)^2}`.  What remains is not this finite-face modulus but the
+primal/dual bridge: the large signed separator evaluation `(CGT4)` does not by
+itself select a ucp repair with a quantitatively large closing movement.
 
 Proof: `split-the-centered-gap-and-collapse-the-scalar-tree-choi-face`.
 
