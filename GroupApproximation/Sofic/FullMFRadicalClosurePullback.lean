@@ -80,6 +80,67 @@ theorem actualCoronaMFClosure_eq_comap_map_of_surjective_of_kernel_eq_top
   exact map_actualCoronaMFResidual_le f.ker.subtype
     (Subgroup.mem_map_of_mem f.ker.subtype hx')
 
+/-- Across a surjection with invisible kernel, the MF-closed normal subgroups
+of the source are exactly the inverse images of the MF-closed normal subgroups
+of the target. -/
+theorem actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
+    (f : G →* H) (hf : Function.Surjective f)
+    (hker : f.ker ≤ actualCoronaMFResidual G)
+    (N : Subgroup G) [N.Normal] :
+    actualCoronaMFClosure N = N ↔
+      f.ker ≤ N ∧
+        @actualCoronaMFClosure H _ (N.map f)
+          (Subgroup.Normal.map inferInstance f hf) = N.map f := by
+  letI : (N.map f).Normal :=
+    Subgroup.Normal.map inferInstance f hf
+  have hpull :=
+    actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le f hf hker N
+  constructor
+  · intro hclosed
+    refine ⟨?_, ?_⟩
+    · intro x hx
+      have hxClosure : x ∈ actualCoronaMFClosure N :=
+        actualCoronaMFResidual_le_actualCoronaMFClosure N (hker hx)
+      rwa [hclosed] at hxClosure
+    · apply le_antisymm
+      · intro y hy
+        obtain ⟨x, rfl⟩ := hf y
+        have hx : x ∈ actualCoronaMFClosure N := by
+          rw [hpull, Subgroup.mem_comap]
+          exact hy
+        rw [hclosed] at hx
+        exact Subgroup.mem_map_of_mem f hx
+      · exact le_actualCoronaMFClosure (N.map f)
+  · rintro ⟨hkerN, hclosed⟩
+    apply le_antisymm
+    · intro x hx
+      rw [hpull, Subgroup.mem_comap, hclosed] at hx
+      obtain ⟨n, hn, hfn⟩ := hx
+      have hxn : x * n⁻¹ ∈ f.ker := by
+        rw [MonoidHom.mem_ker, map_mul, map_inv, hfn]
+        simp
+      have hmem := N.mul_mem (hkerN hxn) hn
+      simpa using hmem
+    · exact le_actualCoronaMFClosure N
+
+/-- Consequently, every MF quotient of the source that kills the invisible
+kernel is obtained from, and only from, the corresponding MF quotient of the
+target. -/
+theorem isCDEOperatorMF_quotient_iff_map_of_surjective_of_ker_le
+    [Countable G] [Countable H]
+    (f : G →* H) (hf : Function.Surjective f)
+    (hker : f.ker ≤ actualCoronaMFResidual G)
+    (N : Subgroup G) [N.Normal] :
+    IsCDEOperatorMF (G ⧸ N) ↔
+      f.ker ≤ N ∧
+        IsCDEOperatorMF (H ⧸ (N.map f : Subgroup H)) := by
+  letI : (N.map f).Normal :=
+    Subgroup.Normal.map inferInstance f hf
+  rw [← actualCoronaMFClosure_eq_self_iff N,
+    ← actualCoronaMFClosure_eq_self_iff (N.map f)]
+  exact actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
+    f hf hker N
+
 end
 
 end GroupApproximation
