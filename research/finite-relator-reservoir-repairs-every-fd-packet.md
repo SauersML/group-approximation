@@ -138,6 +138,22 @@ genuine failure of local splitting must take.
   packets -- a statement about how far into the relator ideal the *correction*
   must reach, not about how much of the ideal a representation sees.  No
   attempt here yet produces such a bound; this is where the work is.
+- **The non-inner Kraus problem is now one exact ideal-block Choi slice.**
+  `finite-packet-triangle-repair-is-ideal-block-choi-feasibility` uses minimal
+  almost periodicity of the simple Kac--Moody quotient.  For a packet sum
+  `rho`, put `B=rho(A)`, `J=rho(I_N)`, and let `z` be the unit of `J`.  The
+  quotient block `B/J` is forced to be the augmentation character, so a repair
+  in `L_W` exists exactly when
+
+  ```text
+  [z rho o t + rho_* L_sa(E,L_W)] intersect UCP_z(E,J) != empty.
+  ```
+
+  This is a finite-dimensional necessary-and-sufficient feasibility problem,
+  not an inner-gauge ansatz.  It removes every quotient-side variable and
+  locates all genuinely non-inner Kraus freedom in the ideal block.  The open
+  uniform-depth task is precisely to make these affine Choi slices nonempty
+  for every packet using one `W`; no argument here proves that.
 - **Why the two recorded no-gos do not apply.**  The window/Folner no-go
   `position-window-ucp-sections-collapse-to-folner-vectors` kills corrections
   indexed by group positions with a right-translation reindexing; `(RR1)` is

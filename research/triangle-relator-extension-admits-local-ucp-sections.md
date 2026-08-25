@@ -255,6 +255,17 @@ Ioana--Spaas--Wiersma mechanism), per
   correction which asymptotically puts both word-valued tree faces in the
   multiplicative domain.  A positive construction must retain a macroscopic
   Stinespring off-corner or a genuinely non-word face value.
+- **Finite packets reduce exactly to an ideal-block Choi intersection
+  (2026-08-25).**
+  `finite-packet-triangle-repair-is-ideal-block-choi-feasibility` uses that the
+  simple Kac--Moody quotient has only the trivial finite-dimensional
+  representation.  For a packet sum `rho`, all quotient-side matrix values
+  are therefore forced scalars.  A prescribed finite reservoir `L` repairs
+  the packet if and only if the affine space
+  `z rho o t+rho_*L_sa(E,L)` meets `UCP_z(E,rho(I_N))`, where `z` is the ideal
+  support.  This is the exact genuinely non-inner Kraus feasibility problem:
+  it neither assumes multiplicativity nor convex-inner form.  The unresolved
+  step is uniform nonemptiness for one relator depth across all packets.
 - **A uniform finite-relator Laplacian cannot provide the required
   nonmultiplicative movement (2026-08-24).**
   `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal
