@@ -206,7 +206,7 @@ def psiCEquiv : F₃ ≃* F₃ where
 def psiBTop : ↥(⊤ : Subgroup F₃) ≃* ↥(⊤ : Subgroup F₃) :=
   (Subgroup.topEquiv).trans (psiBEquiv.trans (Subgroup.topEquiv).symm)
 
-theorem coe_psiBTop (x : ↥(⊤ : Subgroup F₃)) :
+@[simp] theorem coe_psiBTop (x : ↥(⊤ : Subgroup F₃)) :
     ((psiBTop x : ↥(⊤ : Subgroup F₃)) : F₃) = psiB (x : F₃) := rfl
 
 /-- `F₃ ⋊_{ψ_b} ℤ`. -/

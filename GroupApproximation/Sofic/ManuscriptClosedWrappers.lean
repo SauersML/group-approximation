@@ -10,6 +10,7 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.WeakMFVectorGNS
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Closed forms of the parameterized manuscript badges — SUPERSEDED
@@ -50,12 +51,10 @@ open scoped commutatorElement
 
 noncomputable section
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.TorsionSpectralCollapse`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-! ## Proper compression in a unital algebra -/
 

@@ -120,7 +120,7 @@ theorem higmanGenerated_sigmaOp_iterate (n : ℕ) {B : Set E} (h : HigmanGenerat
 coordinate unconstrained. -/
 def pinAt (d c : ℤ) : Set E := {f | f d = c}
 
-theorem pinAt_zero (c : ℤ) : pinAt 0 c = pinZero c := rfl
+@[simp] theorem pinAt_zero (c : ℤ) : pinAt 0 c = pinZero c := rfl
 
 /-- `σⁿ` moves a pin `n` steps to the right. -/
 theorem sigmaOp_iterate_pinZero (n : ℕ) (c : ℤ) :

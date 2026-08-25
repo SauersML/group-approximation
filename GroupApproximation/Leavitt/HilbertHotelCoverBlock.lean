@@ -162,7 +162,7 @@ corner cover. -/
 noncomputable def gammaGen (j : Fin gammaGeneratorCount) : Gamma :=
   gammaQuotient (PresentedGroup.of j)
 
-theorem freeToGamma_of (j : Fin gammaGeneratorCount) :
+@[simp] theorem freeToGamma_of (j : Fin gammaGeneratorCount) :
     freeToGamma (FreeGroup.of j) = gammaGen j := rfl
 
 /-! ## The widened alphabet -/
@@ -446,12 +446,12 @@ noncomputable abbrev wordInCoverGroup₂ (C : CoverInputs)
     (B : CoverBlockResiduals) : FreeGroup Letter →* CoverGroup₂ C B :=
   PresentedGroup.mk _
 
-theorem of_inl_eq (C : CoverInputs) (B : CoverBlockResiduals)
+@[simp] theorem of_inl_eq (C : CoverInputs) (B : CoverBlockResiduals)
     (i : Fin generatorCount) :
     (PresentedGroup.of (Sum.inl i) : CoverGroup₂ C B) =
       wordInCoverGroup₂ C B (modelLetter i) := rfl
 
-theorem of_inr_eq (C : CoverInputs) (B : CoverBlockResiduals)
+@[simp] theorem of_inr_eq (C : CoverInputs) (B : CoverBlockResiduals)
     (j : Fin gammaGeneratorCount) :
     (PresentedGroup.of (Sum.inr j) : CoverGroup₂ C B) =
       wordInCoverGroup₂ C B (cornerLetter j) := rfl
@@ -626,7 +626,7 @@ noncomputable def coverCore (C : CoverInputs) (B : CoverBlockResiduals) :
   compresses := coverCompresses C B
   comm_c := coverCommMark C B
 
-theorem coverCore_transported (C : CoverInputs) (B : CoverBlockResiduals) :
+@[simp] theorem coverCore_transported (C : CoverInputs) (B : CoverBlockResiduals) :
     (coverCore C B).transported =
       wordInCoverGroup₂ C B tauWord * wordInCoverGroup₂ C B markWord *
         (wordInCoverGroup₂ C B tauWord)⁻¹ := rfl

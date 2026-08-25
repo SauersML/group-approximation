@@ -138,10 +138,10 @@ noncomputable def flen (M : Microstate c)
 noncomputable def len (M : Microstate c) (w : List (ℕ × Bool)) : ℝ :=
   M.flen (wordOf c w)
 
-theorem flen_def (M : Microstate c) (x : FreeGroup (Fin (genCount c))) :
+@[simp] theorem flen_def (M : Microstate c) (x : FreeGroup (Fin (genCount c))) :
     M.flen x = opLength M.model (M.hom x) := rfl
 
-theorem len_def (M : Microstate c) (w : List (ℕ × Bool)) :
+@[simp] theorem len_def (M : Microstate c) (w : List (ℕ × Bool)) :
     M.len w = opLength M.model (M.hom (wordOf c w)) := rfl
 
 /-- Reverse triangle inequality for displacement: an element is displaced no

@@ -113,7 +113,7 @@ def listProd (l : List (Σ i, M i)) : CoprodI M :=
     listProd (p :: l) = CoprodI.of p.2 * listProd l := by
   simp [listProd]
 
-theorem word_prod_eq_listProd (w : Word M) : Word.prod w = listProd w.toList := rfl
+@[simp] theorem word_prod_eq_listProd (w : Word M) : Word.prod w = listProd w.toList := rfl
 
 /-- Two steps of an alternating list return to the starting index. -/
 theorem altList_cons_cons (s : Fin 2) (a b : A) (l : List A) :

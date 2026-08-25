@@ -153,6 +153,7 @@ function notationTokens(node, result = []) {
 
 assert.equal(coveredFormulas.length, 24);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
+rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
   const formula = coveredFormulas[group];
   const candidates = declarations.filter(declaration => declaration.group === group);
@@ -204,6 +205,21 @@ assert.match(glossaryByTerm.get('MF').explanation, /matricial field/,
   'the initials MF must be expanded');
 assert.match(glossaryByTerm.get('corona').explanation, /nothing to do with the Sun/,
   'corona must be disambiguated from the everyday meaning');
+
+assert.deepEqual(
+  api.termMatches(
+    'A countable group is MF if it embeds in the unitary group of a norm matrix corona'
+  ).map(match => [match.text, match.term]),
+  [
+    ['countable', 'countable'],
+    ['group', 'group'],
+    ['MF', 'MF'],
+    ['embeds', 'embedding'],
+    ['unitary group', 'unitary group'],
+    ['norm matrix corona', 'norm matrix corona']
+  ],
+  'every specialist phrase in the opening sentence needs its own explanation'
+);
 
 const reachableTerms = new Set();
 const queue = [...rootExplanations];

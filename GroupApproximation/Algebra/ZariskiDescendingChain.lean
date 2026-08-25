@@ -8,7 +8,7 @@ import Mathlib.RingTheory.SimpleModule.Basic
 /-!
 # The descending chain condition for Zariski closed subgroups of `GL(V)`
 
-`non_mf_groups_exist.tex` carried, in a `\begin{remark}[chain conditions
+`non_mf_group_notes.tex` carried, in a `\begin{remark}[chain conditions
 suffice]` of `\section{The finite-dimensional obstruction}`
 (`\ref{sec:findim}`), this sentence about the algebraic envelope:
 

@@ -3,6 +3,7 @@ import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.LiteralBaseAffineQuotient
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The sign-free commuting-lamp quotient is not MF
@@ -101,12 +102,10 @@ instance signZpowers_normal {Γ : Type} [Group Γ] {α : Γ →* Γ}
   rw [h1]
   exact Subgroup.zpow_mem _ (Subgroup.mem_zpowers _) n
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 variable {Γ : Type} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
 

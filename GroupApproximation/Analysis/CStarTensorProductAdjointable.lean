@@ -7,7 +7,7 @@ import Mathlib.Analysis.InnerProductSpace.Adjoint
 ## Why this file exists
 
 This is the first layer of the missing foundation for the *minimal (spatial)
-tensor product* of C⋆-algebras, which `non_mf_groups_exist.tex` needs twice:
+tensor product* of C⋆-algebras, which `non_mf_group_notes.tex` needs twice:
 once for the exactness of a reduced group C⋆-algebra (`The algebra is also
 exact, by the block normal form of`, beneath `\ref{thm:reduced}`) and
 once for the failure of nuclearity (`is not nuclear \cite{Lance}`).  Neither statement is currently

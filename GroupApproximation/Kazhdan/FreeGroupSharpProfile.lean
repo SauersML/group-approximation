@@ -46,27 +46,28 @@ namespace Hyperbolic
 
 /-- **A free group on a nonempty basis is infinite.**  Reduced length is
 surjective onto `ℕ`. -/
-theorem infinite_freeGroup (α : Type) [DecidableEq α] [Nonempty α] :
+theorem infinite_freeGroup (α : Type) [DecidableEq α] (hα : Nonempty α) :
     Infinite (FreeGroup α) :=
+  haveI := hα
   Infinite.of_surjective FreeGroup.norm FreeGroup.norm_surjective
 
 /-- **Four of the five clauses of `SharpExistence`, for a concrete group.**
 Only property `(T)` is missing. -/
 theorem freeGroup_sharpProfile (α : Type) [Fintype α] [DecidableEq α]
-    [Nonempty α] :
+    (hα : Nonempty α) :
     Infinite (FreeGroup α) ∧ Group.IsFinitelyPresented (FreeGroup α) ∧
       IsPowerTorsionFree (FreeGroup α) ∧ IsHyperbolicGroup (FreeGroup α) :=
-  ⟨infinite_freeGroup α, inferInstance, IsPowerTorsionFree.of_isMulTorsionFree,
-    isHyperbolicGroup_freeGroup α⟩
+  ⟨infinite_freeGroup α hα, inferInstance,
+    IsPowerTorsionFree.of_isMulTorsionFree, isHyperbolicGroup_freeGroup α⟩
 
 /-- **A free group is not Kazhdan.**  It surjects onto the infinite cyclic
 group, property `(T)` passes to quotients, and the infinite cyclic group is not
 Kazhdan.  So the fifth clause fails, and fails for a reason no repair can
 remove. -/
 theorem not_hasKazhdanPropertyT_freeGroup (α : Type) [DecidableEq α]
-    [Nonempty α] : ¬ HasKazhdanPropertyT.{0, 0} (FreeGroup α) := by
+    (hα : Nonempty α) : ¬ HasKazhdanPropertyT.{0, 0} (FreeGroup α) := by
   intro hT
-  obtain ⟨a⟩ := ‹Nonempty α›
+  obtain ⟨a⟩ := hα
   set φ : FreeGroup α →* Multiplicative ℤ :=
     FreeGroup.lift (fun _ : α => Multiplicative.ofAdd (1 : ℤ)) with hφ
   have hof : φ (FreeGroup.of a) = Multiplicative.ofAdd (1 : ℤ) := by
@@ -86,11 +87,11 @@ every clause of `SharpExistence` except property `(T)`, and fails that one.
 This is the exact sense in which the remaining work is a certificate for a
 *different* group and not more hyperbolicity theory. -/
 theorem freeGroup_sharpProfile_and_not_kazhdan (α : Type) [Fintype α]
-    [DecidableEq α] [Nonempty α] :
+    [DecidableEq α] (hα : Nonempty α) :
     (Infinite (FreeGroup α) ∧ Group.IsFinitelyPresented (FreeGroup α) ∧
         IsPowerTorsionFree (FreeGroup α) ∧ IsHyperbolicGroup (FreeGroup α)) ∧
       ¬ HasKazhdanPropertyT.{0, 0} (FreeGroup α) :=
-  ⟨freeGroup_sharpProfile α, not_hasKazhdanPropertyT_freeGroup α⟩
+  ⟨freeGroup_sharpProfile α hα, not_hasKazhdanPropertyT_freeGroup α hα⟩
 
 end Hyperbolic
 end GroupApproximation

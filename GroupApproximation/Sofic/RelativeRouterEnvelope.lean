@@ -302,11 +302,11 @@ def emb : U →* D.Routed :=
 def partnerHom : B →* D.Routed :=
   (factorMap (relatorSubgroup D.relators) true).comp D.partnerEquiv.toMonoidHom
 
-theorem emb_apply (x : U) :
+@[simp] theorem emb_apply (x : U) :
     D.emb x = QuotientGroup.mk' (relatorSubgroup D.relators)
       (CoprodI.of (D.sourceEquiv x)) := rfl
 
-theorem partnerHom_apply (x : B) :
+@[simp] theorem partnerHom_apply (x : B) :
     D.partnerHom x = QuotientGroup.mk' (relatorSubgroup D.relators)
       (CoprodI.of (D.partnerEquiv x)) := rfl
 
@@ -680,7 +680,7 @@ def design (H : P.Obligations) : RelativeRouterDesign U B G where
 
 /-- The design's family is the blueprint's, on the nose — so a hypothesis about
 one is a hypothesis about the other with no transport. -/
-theorem design_relators (H : P.Obligations) :
+@[simp] theorem design_relators (H : P.Obligations) :
     (P.design H).relators = P.relators := rfl
 
 /-- **The sixth obligation: the partner tie.**  Each source generator is

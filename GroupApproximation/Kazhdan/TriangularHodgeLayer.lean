@@ -1275,6 +1275,7 @@ noncomputable instance instDecidableLinkCertificateChecks {Row : Type}
   classical
   infer_instance
 
+omit [Nonempty Generator] in
 theorem linkGap_identity_of_checks {Row : Type} [Fintype Row]
     {T : TriangleIndex → Triangle (Generator := Generator)}
     {regularDegree : ℕ} {gap : ℚ}
@@ -1287,6 +1288,7 @@ theorem linkGap_identity_of_checks {Row : Type} [Fintype Row]
   unfold linkGapResidual at hz
   linarith
 
+omit [Nonempty Generator] in
 theorem linkGap_gt_half_of_checks {Row : Type} [Fintype Row]
     {T : TriangleIndex → Triangle (Generator := Generator)}
     {regularDegree : ℕ} {gap : ℚ}
@@ -1440,6 +1442,7 @@ noncomputable def linkGramPullback {Row : Type} [Fintype Row]
       MonoidAlgebra.single 1 (gramMatrix q u v) *
         orientedCoefficient T v l
 
+omit [Nonempty Generator] in
 /-- Rational scalars supported at the group identity are central. -/
 theorem single_one_comm
     (T : TriangleIndex → Triangle (Generator := Generator))
@@ -1449,6 +1452,7 @@ theorem single_one_comm
     a * algebraMap ℚ (RatGroupRing (Presented T)) c
   exact Algebra.commutes c a
 
+omit [Nonempty Generator] in
 theorem single_one_mul_single_one
     (T : TriangleIndex → Triangle (Generator := Generator)) (a b : ℚ) :
     (MonoidAlgebra.single 1 a : RatGroupRing (Presented T)) *
@@ -1456,6 +1460,7 @@ theorem single_one_mul_single_one
   rw [MonoidAlgebra.single_mul_single]
   simp only [one_mul]
 
+omit [Nonempty Generator] in
 theorem mul_mul_single_one
     (T : TriangleIndex → Triangle (Generator := Generator))
     (x y : RatGroupRing (Presented T)) (c : ℚ) :
@@ -1463,11 +1468,13 @@ theorem mul_mul_single_one
       MonoidAlgebra.single 1 c * (x * y) := by
   rw [← mul_assoc, ← single_one_comm]
 
+omit [Nonempty Generator] in
 theorem single_one_one
     (T : TriangleIndex → Triangle (Generator := Generator)) :
     (MonoidAlgebra.single 1 (1 : ℚ) : RatGroupRing (Presented T)) = 1 := by
   rfl
 
+omit [Nonempty Generator] in
 theorem nested_mul_single_pair
     (T : TriangleIndex → Triangle (Generator := Generator))
     (x y : RatGroupRing (Presented T)) (a b : ℚ) :
@@ -1476,6 +1483,7 @@ theorem nested_mul_single_pair
   rw [← mul_assoc, single_one_mul_single_one]
   exact (single_one_comm T (a * b) (x * y)).symm
 
+omit [Nonempty Generator] in
 /-- Scaling every Fox row by `1/d` scales its Gram matrix by `1/d²`. -/
 theorem sum_scaledBoundary_gram
     (T : TriangleIndex → Triangle (Generator := Generator))
@@ -1505,6 +1513,7 @@ theorem sum_comm_three {A B C M : Type*}
   intro b hb
   rw [Finset.sum_comm]
 
+omit [Nonempty Generator] in
 theorem adjoint_unscaledLinkRow {Row : Type} [Fintype Row]
     (T : TriangleIndex → Triangle (Generator := Generator))
     (q : Row → SignedGenerator (Generator := Generator) → ℚ)
@@ -1519,6 +1528,7 @@ theorem adjoint_unscaledLinkRow {Row : Type} [Fintype Row]
   rw [ExactHodgeCertificate.adjoint_mul, adjoint_single]
   simp only [inv_one]
 
+omit [Nonempty Generator] in
 theorem unscaledLinkRow_gram_row {Row : Type} [Fintype Row]
     (T : TriangleIndex → Triangle (Generator := Generator))
     (q : Row → SignedGenerator (Generator := Generator) → ℚ)
@@ -1540,6 +1550,7 @@ theorem unscaledLinkRow_gram_row {Row : Type} [Fintype Row]
   simp [single_one_comm, mul_assoc]
   rw [mul_comm]
 
+omit [Nonempty Generator] in
 /-- Expanding the pulled-back rational rows gives the link Gram pullback. -/
 theorem sum_unscaledLinkRow_gram {Row : Type} [Fintype Row]
     (T : TriangleIndex → Triangle (Generator := Generator))
@@ -1564,6 +1575,7 @@ theorem sum_unscaledLinkRow_gram {Row : Type} [Fintype Row]
       (MonoidAlgebra.singleAddHom (R := ℚ) (M := Presented T) 1)
       (fun row ↦ q row u * q row v) Finset.univ).symm)
 
+omit [Nonempty Generator] in
 /-- The `d` copies of rows scaled by `1/d` have total Gram coefficient
 `1/d`. -/
 theorem sum_liftedLinkRow_gram {Row : Type} [Fintype Row]
@@ -1666,6 +1678,7 @@ theorem sum_coboundaryFactor_gram {Row : Type} [Fintype Row]
     z * (generatorCoboundary (generator T) i *
       adjoint (generatorCoboundary (generator T) l))) hsum
 
+omit [Nonempty Generator] in
 /-- Pullback of the identity matrix on signed-link coordinates. -/
 theorem signedIdentity_pullback
     (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
@@ -1704,6 +1717,7 @@ theorem signedIdentity_pullback
   simp_rw [hrow]
   exact hdiag
 
+omit [Nonempty Generator] in
 /-- Pullback of a constant scalar matrix factors as the product of the two
 signed-coordinate sums. -/
 theorem signedConstant_pullback
@@ -1724,6 +1738,7 @@ theorem signedConstant_pullback
   simp only [adjoint_neg, adjoint_adjoint, neg_mul, mul_neg, neg_neg]
   rw [← mul_assoc, ← single_one_comm, mul_assoc]
 
+omit [Nonempty Generator] in
 /-- Pullback of the mean-zero projector. -/
 theorem meanZeroProjector_pullback
     (T : TriangleIndex → Triangle (Generator := Generator)) (i l : Generator) :
@@ -1750,6 +1765,7 @@ noncomputable def pulledScalarEntry
   adjoint (orientedCoefficient T u i) *
     MonoidAlgebra.single 1 c * orientedCoefficient T v l
 
+omit [Nonempty Generator] in
 theorem single_mul_pulledScalarEntry
     (T : TriangleIndex → Triangle (Generator := Generator))
     (i l : Generator)
@@ -1759,6 +1775,7 @@ theorem single_mul_pulledScalarEntry
   simp [pulledScalarEntry, single_one_comm, mul_assoc]
   rw [mul_comm]
 
+omit [Nonempty Generator] in
 theorem pulledScalarEntry_add
     (T : TriangleIndex → Triangle (Generator := Generator))
     (i l : Generator)
@@ -1767,6 +1784,7 @@ theorem pulledScalarEntry_add
       pulledScalarEntry T i l u v (a + b) := by
   simp [pulledScalarEntry, MonoidAlgebra.single_add, mul_add, add_mul]
 
+omit [Nonempty Generator] in
 theorem single_mul_pulledScalarSum
     (T : TriangleIndex → Triangle (Generator := Generator))
     (i l : Generator) (a : ℚ)
@@ -1789,6 +1807,7 @@ theorem sum_two_components {A B M : Type*}
       ∑ x, ∑ y, (a x y + b x y) := by
   simp only [Finset.sum_add_distrib]
 
+omit [Nonempty Generator] in
 /-- Pulling back the checked normalized link identity. -/
 theorem normalizedLink_pullback {Row : Type} [Fintype Row]
     (T : TriangleIndex → Triangle (Generator := Generator))

@@ -34,7 +34,7 @@ machine.
 `GroupApproximation/Computability/AdianRabinMarkovProperty.lean` records the
 debt of the manuscript's undecidability corollary --- `\label{cor:undecidable}`
 inside `\subsection{Undecidability of MF recognition}` of `sec:consequences` in
-`non_mf_groups_exist.tex` --- as items `D1`--`D5`, of which `D3` is
+`non_mf_group_notes.tex` --- as items `D1`--`D5`, of which `D3` is
 Markov--Post.  **No declaration in these four modules certifies a manuscript
 statement**, and none is used by any manuscript-facing theorem.  They exist
 because the manuscript's corollary rests, through Adian--Rabin and

@@ -151,7 +151,7 @@ def adjoint (T : Adjointable E F) : Adjointable F E where
     (adjoint T).toFun y = T.adj y := rfl
 
 /-- The adjoint is an involution. -/
-theorem adjoint_adjoint (T : Adjointable E F) :
+@[simp] theorem adjoint_adjoint (T : Adjointable E F) :
     (adjoint (adjoint T)).toFun = T.toFun := rfl
 
 /-- Sum of adjointable operators. -/
@@ -205,7 +205,7 @@ def rankOne (x : F.carrier) (y : E.carrier) : Adjointable E F where
 
 /-- The adjoint of a rank-one operator is the rank-one operator with the
 vectors exchanged. -/
-theorem adjoint_rankOne (x : F.carrier) (y : E.carrier) (w : F.carrier) :
+@[simp] theorem adjoint_rankOne (x : F.carrier) (y : E.carrier) (w : F.carrier) :
     (adjoint (rankOne x y)).toFun w = (rankOne y x).toFun w := rfl
 
 end Adjointable
@@ -245,7 +245,7 @@ theorem ofElem_add (b c : B) (x : B) :
   rw [add_mul]
 
 /-- The embedding carries the adjoint of `B` to the adjoint of `M(B)`. -/
-theorem ofElem_star (b x : B) :
+@[simp] theorem ofElem_star (b x : B) :
     (ofElem (star b)).toFun x = (Adjointable.adjoint (ofElem b)).toFun x := rfl
 
 /-- **The embedding is injective**, which is the statement that `B` sits

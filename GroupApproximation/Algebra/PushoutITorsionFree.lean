@@ -67,7 +67,7 @@ theorem reduced_toWord {d : NormalWord.Transversal φ} (w : NormalWord d) :
   exact notMem_range_of_mem_set (w.normalized i g hg) (w.toWord.ne_one _ hg)
 
 /-- The product of a normal word, spelled out. -/
-theorem normalWord_prod {d : NormalWord.Transversal φ} (w : NormalWord d) :
+@[simp] theorem normalWord_prod {d : NormalWord.Transversal φ} (w : NormalWord d) :
     w.prod = base φ w.head * ofCoprodI w.toWord.prod := rfl
 
 /-! ## 2.  A nonempty word avoiding the base is nontrivial -/

@@ -128,9 +128,9 @@ are untouched, the group entries are moved. -/
 def mapList (ι : H →* G) (l : List (ℤˣ × H)) : List (ℤˣ × G) :=
   l.map (fun p : ℤˣ × H => (p.1, ι p.2))
 
-theorem mapList_nil (ι : H →* G) : mapList ι ([] : List (ℤˣ × H)) = [] := rfl
+@[simp] theorem mapList_nil (ι : H →* G) : mapList ι ([] : List (ℤˣ × H)) = [] := rfl
 
-theorem mapList_cons (ι : H →* G) (x : ℤˣ × H) (l : List (ℤˣ × H)) :
+@[simp] theorem mapList_cons (ι : H →* G) (x : ℤˣ × H) (l : List (ℤˣ × H)) :
     mapList ι (x :: l) = (x.1, ι x.2) :: mapList ι l := rfl
 
 theorem mapList_ne_nil (ι : H →* G) {l : List (ℤˣ × H)} (hl : l ≠ []) :
@@ -388,7 +388,7 @@ def restrictEquiv (hst : Higman.HNNDescent.Stable φ Z) :
     exact congrArg (fun x : ↥B => (x : G)) e
 
 /-- The restriction, evaluated. -/
-theorem restrictEquiv_apply (hst : Higman.HNNDescent.Stable φ Z)
+@[simp] theorem restrictEquiv_apply (hst : Higman.HNNDescent.Stable φ Z)
     (a : ↥(A.subgroupOf Z)) :
     restrictEquiv φ hst a = restrictFwd φ hst a := rfl
 

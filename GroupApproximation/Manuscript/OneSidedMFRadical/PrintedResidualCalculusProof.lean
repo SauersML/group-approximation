@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.ResidualCalculus
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 import GroupApproximation.Sofic.NormMFUniversalCorona
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The printed proof of `prop:mf-residual-calculus`, sentence by sentence
@@ -68,13 +69,10 @@ open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
-/-- The quotient of a countable group is countable.  The same local instance
-carries the corresponding statements in `Sofic/ActualCoronaMFRadical.lean` and
-`Manuscript/OneSidedMFRadical/PrintedFullKernelPullback.lean`. -/
-local instance quotientGroupCountable {G : Type*} [Group G] (N : Subgroup G)
-    [hN : N.Normal] [Countable G] :
-    Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-! ## Sentence 1 -/
 

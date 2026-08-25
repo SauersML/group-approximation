@@ -14,7 +14,7 @@ This is the first module of the Novikov--Boone chain (step **D4** of the debt
 ledger in `GroupApproximation.Computability.AdianRabinMarkovProperty`), which
 that ledger records as item **(b)** of the literature input behind the
 manuscript corollary `\label{cor:undecidable}` inside `sec:consequences` of
-`non_mf_groups_exist.tex` (the subsection
+`non_mf_group_notes.tex` (the subsection
 `\subsection{Undecidability of MF recognition}`; line numbers drift under
 concurrent edit, so only the stable anchors are quoted).
 

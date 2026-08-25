@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 /-!
 # Diagonalizing the approximate coboundary primitives of the collapse
 
-**Manuscript reference.** `non_mf_groups_exist.tex`,
+**Manuscript reference.** `non_mf_group_notes.tex`,
 `\subsection{Orbit collapse and defect saturation}\label{subsec:collapse}`,
 Theorem `thm:collapse`, Steps 5 and 6 of the printed proof sketch, together
 with the discussion after that weighted transport theorem ("the collapse proof of

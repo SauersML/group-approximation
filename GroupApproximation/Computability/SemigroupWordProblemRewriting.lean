@@ -16,7 +16,7 @@ simulation in `SemigroupWordProblemSimulation` consumes.
 `GroupApproximation/Computability/AdianRabinMarkovProperty.lean` records the
 debt of the manuscript's undecidability corollary --- `\label{cor:undecidable}`
 inside `\subsection{Undecidability of MF recognition}` of `sec:consequences` in
-`non_mf_groups_exist.tex` --- as five items `D1`--`D5`.  Item **`D3`** is:
+`non_mf_group_notes.tex` --- as five items `D1`--`D5`.  Item **`D3`** is:
 
 > **D3. Undecidability of the word problem for finitely presented semigroups**
 > (Markov--Post).  Simulate a Turing machine [...] by a semi-Thue system; prove

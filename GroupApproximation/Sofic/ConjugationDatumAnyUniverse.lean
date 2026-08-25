@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.KazhdanTransportAnyUniverse
 /-!
 # `def:pattern` with the Kazhdan source in any universe
 
-`non_mf_groups_exist.tex` introduces the object all of `\section{Obstructions
+`non_mf_group_notes.tex` introduces the object all of `\section{Obstructions
 from a one-sided conjugation datum}` (`\label{sec:conj}`) is stated about:
 
 > Let `H` be a countable group.  A *Kazhdan conjugation datum* in `H` is a tuple

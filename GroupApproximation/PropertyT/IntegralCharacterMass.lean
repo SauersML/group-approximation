@@ -1,0 +1,456 @@
+import GroupApproximation.PropertyT.A2System
+import GroupApproximation.PropertyT.A2Kazhdan
+import GroupApproximation.PropertyT.FreeRootPlane
+import GroupApproximation.PropertyT.FreeElementaryPropertyT
+import GroupApproximation.Kazhdan.KazhdanControl
+import GroupApproximation.Kazhdan.KazhdanFixedSpace
+import Mathlib.Algebra.Module.Submodule.Equiv
+import Mathlib.LinearAlgebra.Dimension.Constructions
+import Mathlib.LinearAlgebra.Finsupp.VectorSpace
+import Mathlib.RingTheory.Finiteness.Finsupp
+
+/-!
+# Integral coefficients: what survives of the finite-field character mass
+
+`PropertyT/CharacterMass.lean` and `PropertyT/FreeRootPlaneMass.lean` run the
+Ershov--Jaikin-Zapirain plane estimate by summing a complex additive character
+over the *finite* dual of a *finite* degree stage.  Over `ℤ⟨X⟩` the degree
+stages are infinite, so those finite sums have no literal analogue: the dual of
+a stage is a torus and the sum becomes an integral.  This file separates the
+part of the route that is genuinely independent of that analysis from the part
+that is not, and it does so without assuming anything that is not proved here.
+
+## What is proved
+
+* `ColumnPlaneMassBound` names, over an arbitrary coefficient ring, exactly the
+  quantitative plane estimate that the finite-field Fourier layer produces:
+  a finite control set forces the moving projection onto a common-terminal-index
+  root plane to be small.  It is a hypothesis, never an assumption in force.
+* `controlsRootSet_of_columnPlaneMassBound` proves, unconditionally and for an
+  arbitrary ring, that this single estimate already yields the
+  `ControlsSubsetDisplacement` half of the EJZ certificate, with constant
+  `2 * C + 1`.  Nothing about characteristic, finiteness, or Fourier analysis
+  enters this step.
+* `columnPlaneMassBound_char_two` proves that the hypothesis is *satisfiable*:
+  the existing characteristic-two route supplies it with `C = 6|X| + 6`, and
+  `charTwo_controlsRootSet` then recovers the repository's own constant
+  `2 * (6|X| + 6) + 1 = 12|X| + 13` from the generic reduction.
+* `integral_controlsRootSet_of_columnPlaneMassBound`,
+  `integral_isKazhdanPair_of_columnPlaneMassBound` and
+  `integral_hasKazhdanPropertyT_of_columnPlaneMassBound` assemble the integral
+  base case from the two open halves, so that the exact remaining obligations
+  are visible as explicit binders.
+* `IntegralDegree.infinite_degreeLE` and
+  `IntegralDegree.infinite_rootPlaneDegreeSubgroup` prove that the objects the
+  finite-field route counts are genuinely infinite over `ℤ`, so
+  `FreeAlgebraDegree.finite_degreeLE` and
+  `FreeRootPlane.finite_rootPlaneDegreeSubgroup` have no integral instance.
+* `IntegralDegree.degreeLEEquivFinsupp` identifies every degree stage with the
+  finitely supported functions on the words of length at most `n`, whence
+  `IntegralDegree.finrank_degreeLE_int`: over `ℤ` a stage is free of rank
+  `(freeWordsLE X n).card`.  Its Pontryagin dual is therefore the torus of that
+  explicit dimension, which is what an integral character mass would integrate
+  over.
+* `norm_commutator_displacement_le` and
+  `norm_displacement_wordMonomial_le` give the only *unconditional* integral
+  control statement available without the missing analysis: the Steinberg
+  commutator relation bounds displacement by the root element of a word
+  monomial of length `m` by `(3 * 2 ^ m - 2) * δ`.
+
+## What is not proved, and why
+
+`ColumnPlaneMassBound` over `FreeAlgebra ℤ X` is **not** proved here, and no
+statement in this file assumes it silently.  The finite-field proof of it
+factors through `CharacterMass.sum_dual_apply`, a sum over the finite dual of a
+finite stage; over `ℤ` the corresponding object is a Haar integral over the
+torus `IntegralDegree.finrank_degreeLE_int` identifies, and the estimate needed
+is an equidistribution statement for the shear action on that torus.  There is
+no such statement in this repository, and the author of this file did not find
+the machinery for it in Mathlib either.  The monomial bound
+`norm_displacement_wordMonomial_le` is exactly what the elementary commutator
+calculus gives on its own, and its constant grows with the degree, which is
+precisely the uniformity that the torus estimate would have to supply.
+
+The other half of the certificate, `IsKazhdanSubset` for the root set, is also
+left as an explicit hypothesis: it is the exponent-free class-two orthogonality
+problem, not a character-mass problem, and it is untouched here.
+-/
+
+namespace GroupApproximation
+
+namespace IntegralCharacterMass
+
+universe u v
+
+open scoped commutatorElement
+
+/-! ### The plane estimate, named over an arbitrary coefficient ring -/
+
+/-- The quantitative plane estimate produced by the Fourier layer of the
+Ershov--Jaikin-Zapirain argument, isolated as a named property of a finite
+control set `S` and a constant `C`: whenever `S` moves a vector by less than
+`δ`, the moving projection onto the plane spanned by two root subgroups with a
+common terminal index has norm at most `C * δ`.
+
+This is a hypothesis, not an assumption in force anywhere in this file.  It is
+satisfiable: `columnPlaneMassBound_char_two` proves it for the free
+characteristic-two algebra with `C = 6 * Fintype.card X + 6`. -/
+def ColumnPlaneMassBound (R : Type u) [Ring R]
+    (S : Finset (elementaryGroup (Fin 3) R)) (C : ℝ) : Prop :=
+  ∀ (E : Type v) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E],
+    ∀ (rho : elementaryGroup (Fin 3) R →* (E ≃ₗᵢ[ℝ] E)) (z : E) (δ : ℝ),
+      0 < δ → (∀ s ∈ S, ‖rho s z - z‖ < δ) →
+        ∀ (i j k : Fin 3) (_hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k),
+          ‖KazhdanFixedSpace.subgroupMovingProjection rho
+              (elementaryRootSubgroup i k hik ⊔
+                elementaryRootSubgroup j k hjk) z‖ ≤ C * δ
+
+/-- **The plane estimate alone gives the control half of the certificate.**
+No hypothesis on the characteristic, the finiteness or the cardinality of the
+coefficient ring is used: the plane estimate is the only input, and the
+resulting control constant is `2 * C + 1`. -/
+theorem controlsRootSet_of_columnPlaneMassBound
+    {R : Type u} [Ring R] {S : Finset (elementaryGroup (Fin 3) R)} {C : ℝ}
+    (hplane : ColumnPlaneMassBound.{u, v} R S C) :
+    ControlsSubsetDisplacement.{u, v} (elementaryGroup (Fin 3) R) S
+      (elementaryA2System R).rootSet (2 * C + 1) := by
+  intro E _ _ _ rho z _hz δ hδ hnear g hg
+  obtain ⟨a, hga⟩ := ((elementaryA2System R).mem_rootSet_iff g).mp hg
+  let i := a.1.1
+  let k := a.1.2
+  let j := a2ThirdIndex i k
+  have hij : i ≠ j := (a2ThirdIndex_ne_left i k a.2).symm
+  have hjk : j ≠ k := a2ThirdIndex_ne_right i k a.2
+  let H : Subgroup (elementaryGroup (Fin 3) R) :=
+    elementaryRootSubgroup i k a.2 ⊔ elementaryRootSubgroup j k hjk
+  have hbound : ‖KazhdanFixedSpace.subgroupMovingProjection rho H z‖ ≤ C * δ :=
+    hplane E rho z δ hδ hnear i j k hij a.2 hjk
+  have hgH : g ∈ H :=
+    (show elementaryRootSubgroup i k a.2 ≤ H from le_sup_left) hga
+  have hdisplacement :=
+    KazhdanFixedSpace.norm_displacement_le_two_mul_norm_subgroupMovingProjection_of_mem
+      rho H hgH z
+  calc
+    ‖rho g z - z‖ ≤
+        2 * ‖KazhdanFixedSpace.subgroupMovingProjection rho H z‖ :=
+      hdisplacement
+    _ ≤ 2 * (C * δ) := by linarith
+    _ < (2 * C + 1) * δ := by nlinarith
+
+/-! ### The hypothesis is satisfiable: the characteristic-two instance -/
+
+/-- The existing characteristic-two Fourier route supplies the plane estimate
+with `C = 6 * Fintype.card X + 6`.  This is what makes `ColumnPlaneMassBound`
+a statement about a real quantity rather than an unsatisfiable placeholder. -/
+theorem columnPlaneMassBound_char_two (X : Type u) [Fintype X] :
+    ColumnPlaneMassBound.{u, v} (FreeRootFiltration.FreeRing X)
+      (FreeElementaryPropertyT.controlSet X)
+      (6 * Fintype.card X + 6 : ℝ) := by
+  intro E _ _ _ rho z δ hδ hnear i j k hij hik hjk
+  exact FreeElementaryPropertyT.norm_columnPlaneMovingProjection_le X
+    i j k hij hik hjk rho z hδ hnear
+
+/-- Running the generic reduction on the characteristic-two instance returns
+the repository's own control constant `12 * Fintype.card X + 13`, since
+`2 * (6 * Fintype.card X + 6) + 1` is that number. -/
+theorem charTwo_controlsRootSet (X : Type u) [Fintype X] :
+    ControlsSubsetDisplacement.{u, v}
+      (elementaryGroup (Fin 3) (FreeRootFiltration.FreeRing X))
+      (FreeElementaryPropertyT.controlSet X)
+      (elementaryA2System (FreeRootFiltration.FreeRing X)).rootSet
+      (2 * (6 * Fintype.card X + 6 : ℝ) + 1) :=
+  controlsRootSet_of_columnPlaneMassBound
+    (columnPlaneMassBound_char_two.{u, v} X)
+
+/-! ### The integral control set and the conditional integral base case -/
+
+noncomputable section
+
+/-- Coefficients of the integral control set: the unit and the free
+generators of `ℤ⟨X⟩`. -/
+def integralControlCoefficient (X : Type u) (q : Option X) :
+    FreeAlgebra ℤ X :=
+  match q with
+  | none => 1
+  | some x => FreeAlgebra.ι ℤ x
+
+/-- One member of the integral control set. -/
+def integralControlElement (X : Type u) [Fintype X]
+    (p : A2Root × Option X) : elementaryGroup (Fin 3) (FreeAlgebra ℤ X) :=
+  elementaryRoot p.1.1.1 p.1.1.2 p.1.2 (integralControlCoefficient X p.2)
+
+/-- Unit and free-generator coefficients in every ordered elementary root,
+over the integers.  This is the `ℤ` analogue of
+`FreeElementaryPropertyT.controlSet`. -/
+def integralControlSet (X : Type u) [Fintype X] :
+    Finset (elementaryGroup (Fin 3) (FreeAlgebra ℤ X)) := by
+  classical
+  exact (Finset.univ : Finset (A2Root × Option X)).image
+    (integralControlElement X)
+
+theorem integralControlElement_mem (X : Type u) [Fintype X]
+    (p : A2Root × Option X) :
+    integralControlElement X p ∈ integralControlSet X := by
+  classical
+  exact Finset.mem_image.mpr ⟨p, Finset.mem_univ _, rfl⟩
+
+end
+
+/-- The integral control half of the EJZ certificate, conditional on the
+integral plane estimate and on nothing else. -/
+theorem integral_controlsRootSet_of_columnPlaneMassBound
+    (X : Type u) [Fintype X] {C : ℝ}
+    (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
+      (integralControlSet X) C) :
+    ControlsSubsetDisplacement.{u, v}
+      (elementaryGroup (Fin 3) (FreeAlgebra ℤ X)) (integralControlSet X)
+      (elementaryA2System (FreeAlgebra ℤ X)).rootSet (2 * C + 1) :=
+  controlsRootSet_of_columnPlaneMassBound hplane
+
+/-- The integral base case, with both open halves of the certificate carried
+as explicit hypotheses: the plane estimate on the left, the Kazhdan-subset
+property of the root set on the right. -/
+theorem integral_isKazhdanPair_of_columnPlaneMassBound
+    (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
+    (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
+      (integralControlSet X) C)
+    (hroot : IsKazhdanSubset.{u, v}
+      (elementaryGroup (Fin 3) (FreeAlgebra ℤ X))
+      (elementaryA2System (FreeAlgebra ℤ X)).rootSet kappa) :
+    IsKazhdanPair.{u, v} (elementaryGroup (Fin 3) (FreeAlgebra ℤ X))
+      (integralControlSet X) (kappa / (2 * (2 * C + 1))) :=
+  IsKazhdanSubset.to_pair_of_controls hroot (by linarith)
+    (integral_controlsRootSet_of_columnPlaneMassBound X hplane)
+
+/-- Property `(T)` for the rank-three elementary group over `ℤ⟨X⟩`, conditional
+on the same two hypotheses.  This is the statement the general
+Ershov--Jaikin-Zapirain theorem needs as its base case; both hypotheses are
+open in this repository. -/
+theorem integral_hasKazhdanPropertyT_of_columnPlaneMassBound
+    (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
+    (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
+      (integralControlSet X) C)
+    (hroot : IsKazhdanSubset.{u, v}
+      (elementaryGroup (Fin 3) (FreeAlgebra ℤ X))
+      (elementaryA2System (FreeAlgebra ℤ X)).rootSet kappa) :
+    HasKazhdanPropertyT.{u, v}
+      (elementaryGroup (Fin 3) (FreeAlgebra ℤ X)) :=
+  ⟨integralControlSet X, kappa / (2 * (2 * C + 1)),
+    integral_isKazhdanPair_of_columnPlaneMassBound X hC hplane hroot⟩
+
+/-! ### The integral degree stages are infinite, free, and of explicit rank -/
+
+namespace IntegralDegree
+
+open FreeAlgebraDegree
+
+variable (X : Type*) [Fintype X]
+
+/-- The unit lies in every degree stage. -/
+theorem one_mem_degreeLE (k : Type*) [CommSemiring k] (n : ℕ) :
+    (1 : FreeAlgebra k X) ∈ degreeLE X k n := by
+  have h := (wordMonomialInDegree X k n 1).2
+  rwa [wordMonomialInDegree_one_val X k n] at h
+
+/-- Every integer scalar lies in every integral degree stage. -/
+theorem algebraMap_mem_degreeLE (m : ℤ) (n : ℕ) :
+    algebraMap ℤ (FreeAlgebra ℤ X) m ∈ degreeLE X ℤ n := by
+  rw [Algebra.algebraMap_eq_smul_one]
+  exact (degreeLE X ℤ n).smul_mem m (one_mem_degreeLE X ℤ n)
+
+/-- **The finiteness instance of the finite-field route has no integral
+instance.**  Every integral degree stage contains a copy of `ℤ`, so
+`FreeAlgebraDegree.finite_degreeLE` cannot be instantiated at `ℤ`. -/
+instance infinite_degreeLE (n : ℕ) : Infinite (degreeLE X ℤ n) := by
+  apply Infinite.of_injective
+    (fun m : ℤ ↦
+      (⟨algebraMap ℤ (FreeAlgebra ℤ X) m, algebraMap_mem_degreeLE X m n⟩ :
+        degreeLE X ℤ n))
+  intro m m' hmm
+  exact (FreeAlgebra.algebraMap_leftInverse (R := ℤ) (X := X)).injective
+    (congrArg Subtype.val hmm)
+
+/-- An elementary root map is injective in its coefficient. -/
+theorem elementaryRoot_injective {R : Type*} [Ring R] (i j : Fin 3)
+    (hij : i ≠ j) :
+    Function.Injective (elementaryRoot (I := Fin 3) (R := R) i j hij) := by
+  intro a b hab
+  exact elementaryUnit_injective i j hij (congrArg Subtype.val hab)
+
+/-- **The finiteness instance of the coefficient plane has no integral
+instance either.** -/
+instance infinite_rootPlaneDegreeSubgroup (i j k : Fin 3) (hij : i ≠ j)
+    (hik : i ≠ k) (hjk : j ≠ k) (n : ℕ) :
+    Infinite (FreeRootPlane.rootPlaneDegreeSubgroup X ℤ i j k hij hik hjk n) := by
+  apply Infinite.of_injective
+    (FreeRootPlane.firstCoordinate X ℤ i j k hij hik hjk n)
+  intro a b hab
+  apply Subtype.ext
+  exact elementaryRoot_injective (R := FreeAlgebra ℤ X) i k hik
+    (congrArg Subtype.val hab)
+
+/-- Every degree stage is the module of finitely supported coefficient
+families on the words of length at most `n`.  Over a finite coefficient ring
+this re-proves `FreeAlgebraDegree.finite_degreeLE`; over `ℤ` it exhibits the
+stage as a free module of finite rank, whose Pontryagin dual is a torus. -/
+noncomputable def degreeLEEquivFinsupp (k : Type*) [CommSemiring k] (n : ℕ) :
+    degreeLE X k n ≃ₗ[k]
+      (↥(freeWordsLE X n : Set (FreeMonoid X)) →₀ k) :=
+  (LinearEquiv.ofSubmodule'
+      (FreeAlgebra.equivMonoidAlgebraFreeMonoid (R := k) (X := X)).toLinearEquiv
+      (MonoidAlgebra.supported k k
+        (freeWordsLE X n : Set (FreeMonoid X)))).trans
+    (MonoidAlgebra.supportedEquivFinsupp (R := k) (S := k)
+      (freeWordsLE X n : Set (FreeMonoid X)))
+
+theorem module_free_degreeLE (k : Type*) [CommSemiring k] (n : ℕ) :
+    Module.Free k (degreeLE X k n) :=
+  Module.Free.of_equiv (degreeLEEquivFinsupp X k n).symm
+
+theorem module_finite_degreeLE (k : Type*) [CommSemiring k] (n : ℕ) :
+    Module.Finite k (degreeLE X k n) :=
+  Module.Finite.equiv (degreeLEEquivFinsupp X k n).symm
+
+/-- **The dimension of the torus.**  Over `ℤ` the degree-`n` stage is free of
+rank the number of free words of length at most `n`, so the character group
+that an integral character mass would integrate over is the torus of that
+dimension. -/
+theorem finrank_degreeLE_int_card (n : ℕ) :
+    Module.finrank ℤ (degreeLE X ℤ n) =
+      Fintype.card ↥(freeWordsLE X n : Set (FreeMonoid X)) := by
+  rw [(degreeLEEquivFinsupp X ℤ n).finrank_eq, Module.finrank_finsupp_self]
+
+/-- The number of words of length at most `n`, as a cardinality. -/
+theorem card_freeWordsLE_coe (n : ℕ) :
+    Fintype.card ↥(freeWordsLE X n : Set (FreeMonoid X)) =
+      (freeWordsLE X n).card := by
+  simp
+
+/-- The rank of the integral degree stage, as a `Finset` cardinality. -/
+theorem finrank_degreeLE_int (n : ℕ) :
+    Module.finrank ℤ (degreeLE X ℤ n) = (freeWordsLE X n).card := by
+  rw [finrank_degreeLE_int_card X n, card_freeWordsLE_coe X n]
+
+end IntegralDegree
+
+/-! ### The unconditional integral control that the commutator calculus gives -/
+
+section Displacement
+
+variable {G : Type u} [Group G]
+variable {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+
+/-- An element and its inverse displace a vector equally. -/
+theorem norm_inv_displacement (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) (g : G) :
+    ‖rho g⁻¹ x - x‖ = ‖rho g x - x‖ := by
+  calc
+    ‖rho g⁻¹ x - x‖ = ‖rho g (rho g⁻¹ x - x)‖ := ((rho g).norm_map _).symm
+    _ = ‖x - rho g x‖ := by simp [map_sub]
+    _ = ‖rho g x - x‖ := norm_sub_rev _ _
+
+/-- Displacement by a commutator is at most twice the displacement of each of
+its entries.  This is the real-orthogonal counterpart of
+`norm_unitary_commutator_sub_le`. -/
+theorem norm_commutator_displacement_le (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E)
+    (g h : G) :
+    ‖rho ⁅g, h⁆ x - x‖ ≤ 2 * ‖rho g x - x‖ + 2 * ‖rho h x - x‖ := by
+  rw [commutatorElement_def]
+  have h1 := A2System.norm_mul_displacement_le rho x (g * h * g⁻¹) h⁻¹
+  have h2 := A2System.norm_mul_displacement_le rho x (g * h) g⁻¹
+  have h3 := A2System.norm_mul_displacement_le rho x g h
+  have h4 := norm_inv_displacement rho x g
+  have h5 := norm_inv_displacement rho x h
+  linarith
+
+end Displacement
+
+section MonomialControl
+
+variable (X : Type*) [Fintype X] (R : Type*) [CommRing R]
+variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+
+open FreeAlgebraDegree
+
+omit [Fintype X] in
+/-- The Steinberg relation turns a product coefficient into a commutator, so
+displacement by a product root is controlled by displacement by the two factor
+roots. -/
+theorem norm_elementaryRoot_mul_displacement_le
+    (rho : elementaryGroup (Fin 3) (FreeAlgebra R X) →* (E ≃ₗᵢ[ℝ] E)) (z : E)
+    (i j k : Fin 3) (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
+    (a b : FreeAlgebra R X) :
+    ‖rho (elementaryRoot i k hik (a * b)) z - z‖ ≤
+      2 * ‖rho (elementaryRoot i j hij a) z - z‖ +
+        2 * ‖rho (elementaryRoot j k hjk b) z - z‖ := by
+  rw [← elementaryRoot_commutator i j k hij hjk hik a b]
+  exact norm_commutator_displacement_le rho z _ _
+
+omit [Fintype X] in
+/-- The degree recursion, stated with an exact word length so that no
+monotonicity of the bound is needed. -/
+theorem norm_displacement_wordMonomial_aux
+    (rho : elementaryGroup (Fin 3) (FreeAlgebra R X) →* (E ≃ₗᵢ[ℝ] E)) (z : E)
+    (δ : ℝ)
+    (hunit : ∀ (i j : Fin 3) (hij : i ≠ j),
+      ‖rho (elementaryRoot i j hij 1) z - z‖ ≤ δ)
+    (hgen : ∀ (i j : Fin 3) (hij : i ≠ j) (x : X),
+      ‖rho (elementaryRoot i j hij (FreeAlgebra.ι R x)) z - z‖ ≤ δ) :
+    ∀ (n : ℕ) (w : FreeMonoid X), freeWordLength X w = n →
+      ∀ (i j : Fin 3) (hij : i ≠ j),
+        ‖rho (elementaryRoot i j hij (wordMonomial X R w)) z - z‖ ≤
+          (3 * 2 ^ n - 2) * δ := by
+  intro n
+  induction n with
+  | zero =>
+      intro w hw i j hij
+      rw [wordMonomial_eq_one_of_freeWordLength_eq_zero X R w hw]
+      have hval : (3 : ℝ) * 2 ^ 0 - 2 = 1 := by norm_num
+      rw [hval, one_mul]
+      exact hunit i j hij
+  | succ n ih =>
+      intro w hw i j hij
+      have hpos : 0 < freeWordLength X w := by omega
+      obtain ⟨x, v, hword, hmono⟩ :=
+        wordMonomial_eq_generator_mul_of_freeWordLength_pos X R w hpos
+      have hlen : freeWordLength X v = n := by
+        have hlift := congrArg (freeWordLength X) hword
+        rw [freeWordLength_mul X, freeWordLength_of X] at hlift
+        omega
+      have him : i ≠ a2ThirdIndex i j := (a2ThirdIndex_ne_left i j hij).symm
+      have hmj : a2ThirdIndex i j ≠ j := a2ThirdIndex_ne_right i j hij
+      have hstep := norm_elementaryRoot_mul_displacement_le X R rho z
+        i (a2ThirdIndex i j) j him hmj hij (FreeAlgebra.ι R x)
+        (wordMonomial X R v)
+      have hgenb := hgen i (a2ThirdIndex i j) him x
+      have hind := ih v hlen (a2ThirdIndex i j) j hmj
+      have hexpand : (3 : ℝ) * 2 ^ (n + 1) - 2 = 2 + 2 * (3 * 2 ^ n - 2) := by
+        ring
+      rw [hmono, hexpand]
+      linarith
+
+omit [Fintype X] in
+/-- **The only unconditional integral control the commutator calculus gives.**
+If every unit root and every free-generator root moves `z` by at most `δ`, then
+the root element of a word monomial of length `m` moves `z` by at most
+`(3 * 2 ^ m - 2) * δ`.  The constant grows with the degree; making it uniform
+in the degree is exactly what the missing torus estimate would have to do, and
+this bound is stated here so that the gap is visible rather than implicit. -/
+theorem norm_displacement_wordMonomial_le
+    (rho : elementaryGroup (Fin 3) (FreeAlgebra R X) →* (E ≃ₗᵢ[ℝ] E)) (z : E)
+    (δ : ℝ)
+    (hunit : ∀ (i j : Fin 3) (hij : i ≠ j),
+      ‖rho (elementaryRoot i j hij 1) z - z‖ ≤ δ)
+    (hgen : ∀ (i j : Fin 3) (hij : i ≠ j) (x : X),
+      ‖rho (elementaryRoot i j hij (FreeAlgebra.ι R x)) z - z‖ ≤ δ)
+    (w : FreeMonoid X) (i j : Fin 3) (hij : i ≠ j) :
+    ‖rho (elementaryRoot i j hij (wordMonomial X R w)) z - z‖ ≤
+      (3 * 2 ^ (freeWordLength X w) - 2) * δ :=
+  norm_displacement_wordMonomial_aux X R rho z δ hunit hgen
+    (freeWordLength X w) w rfl i j hij
+
+end MonomialControl
+
+end IntegralCharacterMass
+
+end GroupApproximation

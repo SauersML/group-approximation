@@ -3,6 +3,7 @@ import GroupApproximation.Sofic.CollapseProfileBoundNumeric
 import GroupApproximation.Sofic.CollapseTransportEndpoint
 import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The unconditional involutive compression collapse
@@ -814,12 +815,10 @@ open TorsionCompressionCollapse
 
 variable {E : Type} [Group E]
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable (N : Subgroup E) [hN : N.Normal]
-    [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- An involutive torsion compression witness: an involution centralized
 by the `s`-compressed copy of `L` whose `L`-conjugation orbit commutes

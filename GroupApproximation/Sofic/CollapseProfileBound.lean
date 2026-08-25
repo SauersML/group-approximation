@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.InvolutionCollapseCocycle
 /-!
 # The limiting profile is bounded by its generator values
 
-`non_mf_groups_exist.tex` used to prove orbit collapse through an
+`non_mf_group_notes.tex` used to prove orbit collapse through an
 approximate-cocycle estimate, and Step 5 of that proof sketch read:
 
 > the spectral gap of `(S,\kappa)` bounds the limiting profile

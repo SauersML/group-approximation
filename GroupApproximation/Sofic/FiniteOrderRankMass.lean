@@ -207,9 +207,10 @@ theorem rank_le_sq_norm_torsionAntiderivative_mul_matMass
       ScaledKazhdanTransport.matMass_mul_le_right (R - 1) Q
 
 /-- A geometric sum of powers of a unitary has norm at most its length. -/
-theorem norm_geom_sum_le [Nonempty Y]
+theorem norm_geom_sum_le (hY : Nonempty Y)
     (R : Matrix.unitaryGroup Y ℂ) (k : ℕ) :
     ‖∑ j ∈ Finset.range k, ((R : Matrix Y Y ℂ) ^ j)‖ ≤ (k : ℝ) := by
+  haveI := hY
   calc
     ‖∑ j ∈ Finset.range k, ((R : Matrix Y Y ℂ) ^ j)‖ ≤
         ∑ j ∈ Finset.range k, ‖((R : Matrix Y Y ℂ) ^ j)‖ :=
@@ -222,8 +223,9 @@ theorem norm_geom_sum_le [Nonempty Y]
 
 /-- The polynomial antiderivative has the uniform bound `‖Q‖ ≤ m`. -/
 theorem norm_torsionAntiderivative_le
-    [Nonempty Y] (R : Matrix.unitaryGroup Y ℂ) (m : ℕ) (hm : 0 < m) :
+    (hY : Nonempty Y) (R : Matrix.unitaryGroup Y ℂ) (m : ℕ) (hm : 0 < m) :
     ‖torsionAntiderivative (R : Matrix Y Y ℂ) m‖ ≤ (m : ℝ) := by
+  haveI := hY
   unfold torsionAntiderivative
   have hsum :
       ‖∑ k ∈ Finset.range m,
@@ -238,7 +240,7 @@ theorem norm_torsionAntiderivative_le
       _ ≤ ∑ _k ∈ Finset.range m, (m : ℝ) := by
         apply Finset.sum_le_sum
         intro k hk
-        exact (norm_geom_sum_le R k).trans (by
+        exact (norm_geom_sum_le hY R k).trans (by
           exact_mod_cast Nat.le_of_lt (Finset.mem_range.mp hk))
       _ = (m : ℝ) * (m : ℝ) := by simp
   have hmR : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -257,7 +259,7 @@ theorem norm_torsionAntiderivative_le
 positive integer `m`, then its displacement has Frobenius mass at least its
 active rank divided by `m²`. -/
 theorem rank_le_order_sq_mul_matMass
-    [Nonempty Y] (R : Matrix.unitaryGroup Y ℂ) (m : ℕ) (hm : 0 < m)
+    (hY : Nonempty Y) (R : Matrix.unitaryGroup Y ℂ) (m : ℕ) (hm : 0 < m)
     (hpow : R ^ m = 1) :
     ((((R : Matrix Y Y ℂ) - 1).rank : ℝ)) ≤
       (m : ℝ) ^ 2 *
@@ -268,7 +270,7 @@ theorem rank_le_order_sq_mul_matMass
     rfl
   have hbase := rank_le_sq_norm_torsionAntiderivative_mul_matMass
     (R : Matrix Y Y ℂ) m hm hpowM
-  have hnorm := norm_torsionAntiderivative_le R m hm
+  have hnorm := norm_torsionAntiderivative_le hY R m hm
   have hsq : ‖torsionAntiderivative (R : Matrix Y Y ℂ) m‖ ^ 2 ≤
       (m : ℝ) ^ 2 := by
     nlinarith [norm_nonneg (torsionAntiderivative (R : Matrix Y Y ℂ) m)]
@@ -461,12 +463,13 @@ theorem activeCore_reblocking_dimension_and_hsGap
   have hEpos : 0 < E.rank := hrank.trans_le hretain
   have hcardpos : 0 < Fintype.card S := by
     exact hEpos.trans_le (Matrix.rank_le_card_width E)
-  letI : Nonempty (TorsionActiveCore.ActiveCoreIndex W) :=
+  have hSne : Nonempty (TorsionActiveCore.ActiveCoreIndex W) :=
     Fintype.card_pos_iff.mp hcardpos
+  letI : Nonempty (TorsionActiveCore.ActiveCoreIndex W) := hSne
   have hpowU : U ^ m = 1 := activeCoreMatrix_pow_eq_one W i₀ m hpowW
   have hmass : (E.rank : ℝ) ≤
       (m : ℝ) ^ 2 * ScaledKazhdanTransport.matMass E := by
-    exact rank_le_order_sq_mul_matMass U m hm hpowU
+    exact rank_le_order_sq_mul_matMass hSne U m hm hpowU
   have hmassEq : ScaledKazhdanTransport.matMass E =
       (Fintype.card S : ℝ) * hsNormSq S E := by
     rw [UltraproductScaledTransport.hsNormSq_eq_matMass_div]

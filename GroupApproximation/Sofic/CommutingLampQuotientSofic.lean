@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.SoficMarkedCompression
 import GroupApproximation.Sofic.CommutingLampCollapse
 import GroupApproximation.Sofic.LiteralWitnessConsequences
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The sign-free quotient is sofic
@@ -669,12 +670,10 @@ section Literal
 
 open LiteralNonMFLinearWitness ExplicitLinearModel
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **The literal commuting-lamp quotient is sofic.** -/
 theorem literalSignFreeQuotient_isSofic :

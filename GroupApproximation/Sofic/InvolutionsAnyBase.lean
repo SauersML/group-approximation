@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.KazhdanCliffordConstruction
 /-!
 # The adjoined involution, over an arbitrary base
 
-`non_mf_groups_exist.tex`, `\begin{remark}[a small-cancellation realization]`
+`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`
 (`\label{rem:ff-realization}`; grep the phrase "has torsion even though", never
 a line number, the file being under concurrent edit) closes with
 

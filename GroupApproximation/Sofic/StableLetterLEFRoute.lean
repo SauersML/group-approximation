@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.SoficByAmenablePermanence
 /-!
 # `thm:Esofic` along the route it prints: `E₀` is LEF, and `E = E₀ ⋊ ℤ`
 
-`non_mf_groups_exist.tex`, `\begin{mainthm}[a finitely presented sofic non-MF
+`non_mf_group_notes.tex`, `\begin{mainthm}[a finitely presented sofic non-MF
 group]` (`\label{thm:Esofic}`) and its proof in
 `\subsection{Soficity of the literal group}` (`\label{sec:Esofic}`).  Grep the
 phrase "the kernel of the exponent sum", never a line number.  The printed

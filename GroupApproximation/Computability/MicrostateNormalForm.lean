@@ -186,7 +186,7 @@ def toMicrostate (NM : NormModel (Carrier c) F 1 ε) : Microstate c where
   card_pos := NM.nonempty
   gen := fun j => umap NM (ev c [((j : ℕ), true)])
 
-theorem toMicrostate_len (NM : NormModel (Carrier c) F 1 ε)
+@[simp] theorem toMicrostate_len (NM : NormModel (Carrier c) F 1 ε)
     (w : List (ℕ × Bool)) :
     (toMicrostate NM).len w
       = opLength NM.carrier (modelHom NM (wordOf c w)) := rfl

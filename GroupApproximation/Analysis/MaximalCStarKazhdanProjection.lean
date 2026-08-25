@@ -395,7 +395,7 @@ def trivialRep (Λ : Type u) [Group Λ] (B : Type v) [CStarAlgebra B] :
   map_one' := rfl
   map_mul' _ _ := (mul_one (1 : unitary B)).symm
 
-theorem trivialRep_coe (Λ : Type u) [Group Λ] (B : Type v) [CStarAlgebra B]
+@[simp] theorem trivialRep_coe (Λ : Type u) [Group Λ] (B : Type v) [CStarAlgebra B]
     (gamma : Λ) : ((trivialRep Λ B gamma : unitary B) : B) = 1 := rfl
 
 /-! ## The image of the Kazhdan projection in an arbitrary target -/

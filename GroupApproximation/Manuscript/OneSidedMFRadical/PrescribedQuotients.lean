@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.MFCamouflageRadical
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Prescribed MF quotients
@@ -24,11 +25,10 @@ namespace GroupApproximation
 namespace Manuscript
 namespace OneSidedMFRadical
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance prescribedQuotientCountable {G : Type*} [Group G]
-    (N : Subgroup G) [hN : N.Normal] [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **The split projection of `sec:prescribed-quotients`.** For the amalgam
 `W_Q = B *_A (Q × A)` with `A = ⟨d⟩`, the two vertex maps to `Q` — trivial

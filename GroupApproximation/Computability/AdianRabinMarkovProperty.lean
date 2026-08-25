@@ -11,7 +11,7 @@ theorem, the Novikov--Boone theorem, or any reduction data standing in for
 them.  Nothing here is conditional: every declaration below is a closed
 theorem with no premise that encodes an unformalized result.
 
-Manuscript location, by stable anchors only --- `non_mf_groups_exist.tex` is
+Manuscript location, by stable anchors only --- `non_mf_group_notes.tex` is
 under concurrent edit and line numbers drift:
 `\subsection{Undecidability of MF recognition}` inside section
 `sec:consequences`; the corollary is `\label{cor:undecidable}`; the discussion

@@ -53,7 +53,7 @@ noncomputable def shiftSeq (f : E) : E :=
   rw [Finsupp.equivMapDomain_apply]
   rfl
 
-theorem shiftSeq_support (f : E) :
+@[simp] theorem shiftSeq_support (f : E) :
     (shiftSeq f).support = f.support.map (Equiv.addRight (1 : ℤ)).toEmbedding := rfl
 
 /-- The shift on the free group of the index set. -/

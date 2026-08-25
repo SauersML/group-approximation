@@ -119,7 +119,7 @@ theorem mem_Row_of_xi_mem_Row (l : ℤ) {x : F₀} (h : xi l x ∈ Row) : x ∈ 
 def mapIdx (l : ℤ) : FreeGroup ℤ →* FreeGroup ℤ :=
   FreeGroup.map (fun i : ℤ => 2 * i + l)
 
-theorem mapIdx_of (l i : ℤ) : mapIdx l (FreeGroup.of i) = FreeGroup.of (2 * i + l) := rfl
+@[simp] theorem mapIdx_of (l i : ℤ) : mapIdx l (FreeGroup.of i) = FreeGroup.of (2 * i + l) := rfl
 
 theorem xi_basisHom (l : ℤ) (V : FreeGroup ℤ) :
     xi l (basisHom V) = basisHom (mapIdx l V) := by

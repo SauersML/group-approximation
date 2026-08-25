@@ -36,11 +36,11 @@ variable {ι : Type*} {G : ι → Type*} {H : Type*} [∀ i, Group (G i)] [Group
 `PushoutITorsionFree.exists_conj_into_factor` returns the base case separately;
 it is the factor case as well, because the base embeds in every factor and `ι`
 is nonempty. -/
-theorem exists_conj_into_factor_of_pow [Nonempty ι]
+theorem exists_conj_into_factor_of_pow (hι : Nonempty ι)
     (hφ : ∀ i, Function.Injective (φ i)) {x : PushoutI φ} {n : ℕ} (hn : 0 < n)
     (hxn : x ^ n = 1) :
     ∃ (c : PushoutI φ) (i : ι) (g : G i), x = c * of (φ := φ) i g * c⁻¹ := by
-  have i₀ : ι := Classical.arbitrary ι
+  obtain ⟨i₀⟩ := hι
   rcases PushoutITorsionFree.exists_conj_into_factor hφ hn hxn with
     ⟨h, rfl⟩ | ⟨c, j, m, hc⟩
   · refine ⟨1, i₀, φ i₀ h, ?_⟩

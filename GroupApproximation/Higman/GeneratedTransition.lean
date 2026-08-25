@@ -61,7 +61,7 @@ noncomputable def windowAt (m : ℕ) (s : ℤ) (f : E) : E :=
       if j ∈ Finset.Ico (0 : ℤ) (m : ℤ) then f (s + j) else 0 := rfl
 
 /-- `blockAt` is the window at a multiple of the block length. -/
-theorem blockAt_eq_windowAt (m : ℕ) (i : ℤ) (f : E) :
+@[simp] theorem blockAt_eq_windowAt (m : ℕ) (i : ℤ) (f : E) :
     blockAt m i f = windowAt m (m * i) f := rfl
 
 /-! ## Iterated shift -/

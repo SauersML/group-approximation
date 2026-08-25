@@ -228,7 +228,7 @@ private theorem eval_triple (l₁ l₂ l₃ : Letter) :
   rw [eval_cons, eval_pair']
   group
 
-private theorem letterVal_mk (i : Fin 6) (c : ℤ) :
+@[simp] private theorem letterVal_mk (i : Fin 6) (c : ℤ) :
     letterVal (i, c) = x i c := rfl
 
 private theorem unit_neg {c : ℤ} (hc : c = 1 ∨ c = -1) :
@@ -365,11 +365,11 @@ private theorem pi_w23_neg : x 3 (-1) * x 5 1 * x 3 (-1) = w23⁻¹ :=
   w23_inv_word.symm
 
 /-- The positive-led braid words are the swaps, definitionally. -/
-private theorem pi_w_pos : x 0 1 * x 2 (-1) * x 0 1 = w := rfl
+@[simp] private theorem pi_w_pos : x 0 1 * x 2 (-1) * x 0 1 = w := rfl
 
-private theorem pi_w13_pos : x 1 1 * x 4 (-1) * x 1 1 = w13 := rfl
+@[simp] private theorem pi_w13_pos : x 1 1 * x 4 (-1) * x 1 1 = w13 := rfl
 
-private theorem pi_w23_pos : x 3 1 * x 5 (-1) * x 3 1 = w23 := rfl
+@[simp] private theorem pi_w23_pos : x 3 1 * x 5 (-1) * x 3 1 = w23 := rfl
 
 /-- The inverted braid relations, from the displayed ones. -/
 private theorem braid_neg :

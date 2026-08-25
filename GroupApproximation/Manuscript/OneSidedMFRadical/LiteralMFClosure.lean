@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.RadicalFunctoriality
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The literal MF closure of a normal subgroup
@@ -56,10 +57,10 @@ namespace OneSidedMFRadical
 
 noncomputable section
 
-/-- Quotients of countable groups are countable. -/
-local instance literalQuotientCountable {G : Type} [Group G]
-    (N : Subgroup G) [hN : N.Normal] [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- The kernels intersected by the manuscript's MF closure of `N`: the kernels
 of the homomorphisms from `G` into MF groups that kill `N`. -/

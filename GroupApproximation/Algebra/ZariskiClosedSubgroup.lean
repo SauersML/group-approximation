@@ -7,7 +7,7 @@ import Mathlib.RingTheory.Nullstellensatz
 /-!
 # Zariski closed subgroups of `GL(V)`
 
-The manuscript's envelope remark — `non_mf_groups_exist.tex`,
+The manuscript's envelope remark — `non_mf_group_notes.tex`,
 `\begin{remark}[chain conditions suffice]` inside
 `\section{The finite-dimensional obstruction}` (`\ref{sec:findim}`) — took the
 invariant of a subgroup to be *the

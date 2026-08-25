@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureAnalysis
 import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanSentenceAudit
 import GroupApproximation.Manuscript.OneSidedMFRadical.ShadowResidual
 import GroupApproximation.Manuscript.OneSidedMFRadical.CorrectedCornerGramSequence
+import GroupApproximation.Manuscript.OneSidedMFRadical.CorrectedCornerProvenanceData
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaKazhdanOrder
 
 /-!
@@ -52,7 +53,11 @@ it.
   observation that `D.cornerRepresentation` *is* an `OpAlmostRepresentation`
   whose model and map are `D.cornerModel` and `D.cornerMap` definitionally, so
   `K₂(D.cornerRepresentation)` is a condition on exactly the quantity the
-  detection theorem bounds from below.
+  detection theorem bounds from below.  The sentence crosses two groups and so
+  does the statement: the Kazhdan datum is a `KazhdanData K` for the normal
+  subgroup, reaching the ambient corner data through
+  `printedCornerDataPrecomp D K.subtype`, while the residual is `R_{∞→2}(G)`.
+  Property (T) is therefore never imposed on `G`.
 
 * **`lem:stable-finite`, "For all sufficiently large `n`, the matrix `x_n` is
   invertible, and the unitary `x_n(x_n^*x_n)^{-1/2}` differs from `x_n` by
@@ -105,12 +110,26 @@ identity.
 `PrintedCornerFinalContradiction` is a *refutation*: its content is that the
 listed hypotheses cannot all hold, which is what "This contradicts …" asserts.
 Its first conclusion is stated positively -- some element of the Kazhdan set
-is **not** in `R_{∞→2}(G)` -- so that the declaration says which conclusion
-the printed contradiction establishes and is not merely an implication into
-`False`.  Each hypothesis is separately satisfiable: `PrintedCornerData` is
-produced by `manuscriptCentralCoronaCorner`, `KazhdanData` by
-`exists_kazhdanData`, and `CorrectedCornerKazhdanProjectionZero` by
-`CorrectedCornerProjectionZeroAssembly`.
+of `K` is, in `G`, **not** in `R_{∞→2}(G)` -- so that the declaration says
+which conclusion the printed contradiction establishes and is not merely an
+implication into `False`.
+
+Its hypothesis block is satisfiable **in the printed situation**, which is the
+point of the two-group scoping: property (T) is imposed on the normal subgroup
+`K` and never on `G`.  An earlier version of this declaration quantified over
+`KazhdanData G`; since a `KazhdanData Λ` carries `IsKazhdanPair Λ S κ` *and*
+`Subgroup.closure S = ⊤` for `Λ` itself, that version silently demanded
+property (T) and finite generation of the ambient group, so it carried the
+printed sentence only in the degenerate case `K = G` and its hypotheses were
+not satisfiable for a countable `G` with no (T) assumption.  In the present
+form the pieces come from where the development actually produces them:
+`PrintedCornerData G model` from `manuscriptCentralCoronaCorner`,
+`KazhdanData K` from `exists_kazhdanData` applied to the property-(T) subgroup,
+and `CorrectedCornerKazhdanProjectionZero` for the *restricted* corner
+`printedCornerDataPrecomp D K.subtype` from
+`CorrectedCornerProjectionZeroAssembly.exists_correctedCornerKazhdanProjectionZero`,
+whose conclusion is stated for `P.subgroupCorner K`, i.e. for that same
+restriction.
 
 ## Manuscript status
 
@@ -287,51 +306,71 @@ section FinalContradiction
 
 /-- **"This contradicts `s₀ ∈ K ≤ D ≤ R_{∞→2}(G)`."**
 
-From the corrected-corner projection-zero interface, the printed subsequence
-argument produces a fixed `s₀` of the Kazhdan set whose normalized
-Hilbert--Schmidt displacement from the corner identity stays above
-`κ²/(2|S|) > 0` along a strictly increasing sequence of coordinates.  The
-corner representation is an `OpAlmostRepresentation`, so membership of `s₀` in
-the shadow residual `R_{∞→2}(G)` would force that displacement to tend to `0`.
-Hence:
+**The sentence crosses two groups, and so does this statement.**  The Kazhdan
+datum belongs to the *normal subgroup* `K`, not to the ambient group: a
+`KazhdanData Λ` is property (T) for `Λ` *together with* generation of `Λ` by
+its Kazhdan set (`Analysis/MaximalCStarKazhdanProjection.lean`, fields
+`kazhdan` and `generates`), so a `KazhdanData G` would impose property (T) on
+`G` itself, which `thm:normal-kazhdan` never assumes.  The residual, by
+contrast, is the ambient `R_{∞→2}(G)`.  Accordingly the corner data below is
+ambient (`D : PrintedCornerData G model`) and is restricted to `K` along
+`K.subtype` before the Kazhdan datum meets it, which is exactly the shape of
+`CorrectedCornerProvenanceData.subgroupCorner` and of the unconditional
+closure that consumes it.
 
-* some element of the Kazhdan set is **not** in `R_{∞→2}(G)`;
-* the printed chain `s₀ ∈ K ≤ D ≤ R_{∞→2}(G)`, read as "every element of the
-  Kazhdan set lies in the residual", is contradictory.
+From the corrected-corner projection-zero interface for the restricted corner,
+the printed subsequence argument produces a fixed `s₀ ∈ S ⊆ K` whose
+normalized Hilbert--Schmidt displacement from the corner identity stays above
+`κ²/(2|S|) > 0` along a strictly increasing sequence of coordinates.  The
+*ambient* corner representation `D.cornerRepresentation` is an
+`OpAlmostRepresentation G`, and the restricted corner map at `s₀` is by
+definition the ambient one at `(s₀ : G)`, so membership of `(s₀ : G)` in
+`R_{∞→2}(G)` would force that displacement to tend to `0`.  Hence:
+
+* some element of the Kazhdan set of `K` is, as an element of `G`, **not** in
+  `R_{∞→2}(G)`;
+* the printed chain `s₀ ∈ K ≤ D ≤ R_{∞→2}(G)` -- used only through its
+  consequence `K ≤ R_{∞→2}(G)` -- is contradictory.
 
 The first conclusion is the informative form and the second is the printed
-"this contradicts".  The printed chain enters only through its consequence
-`S ⊆ R_{∞→2}(G)`: `S ⊆ K` is the choice of a Kazhdan set inside `K`, and
-`K ≤ D ≤ R_{∞→2}(G)` is the standing hypothesis of `thm:normal-kazhdan`. -/
+"this contradicts".  Normality of `K` is *not* a hypothesis: it is needed
+upstream, to produce the corner data, and not by this step. -/
 def PrintedCornerFinalContradiction : Prop :=
   ∀ (G : Type) [Group G] (model : ℕ → FiniteModel)
-    (D : PrintedCornerData G model) (omega : Ultrafilter ℕ)
-    (homega : (omega : Filter ℕ) ≤ cofinite) (K : KazhdanData G),
-    CorrectedCornerKazhdanProjectionZero D omega homega K →
-      (∃ s0 ∈ K.S, s0 ∉ opToHSShadowResidual G) ∧
-        ((∀ s ∈ K.S, s ∈ opToHSShadowResidual G) → False)
+    (D : PrintedCornerData G model) (K : Subgroup G) (omega : Ultrafilter ℕ)
+    (homega : (omega : Filter ℕ) ≤ cofinite) (KD : KazhdanData K),
+    CorrectedCornerKazhdanProjectionZero
+        (printedCornerDataPrecomp D K.subtype) omega homega KD →
+      (∃ s0 ∈ KD.S, (s0 : G) ∉ opToHSShadowResidual G) ∧
+        (K ≤ opToHSShadowResidual G → False)
 
 /-- Closed proof of the printed final contradiction of `thm:normal-kazhdan`. -/
 theorem manuscriptPrintedCornerFinalContradiction :
     PrintedCornerFinalContradiction := by
-  intro G _ model D omega homega K hzero
+  intro G _ model D K omega homega KD hzero
   obtain ⟨s0, hs0, phi, hphi, hbound⟩ :=
-    manuscriptSentence156_correctedCornerKazhdanDetection D omega homega K hzero
-  have houtside : s0 ∉ opToHSShadowResidual G := by
+    manuscriptSentence156_correctedCornerKazhdanDetection
+      (printedCornerDataPrecomp D K.subtype) omega homega KD hzero
+  have houtside : (s0 : G) ∉ opToHSShadowResidual G := by
     intro hmem
-    have hker : s0 ∈ hsKernel D.cornerRepresentation :=
-      (mem_opToHSShadowResidual_iff_forall_hsKernel s0).mp hmem
+    have hker : (s0 : G) ∈ hsKernel D.cornerRepresentation :=
+      (mem_opToHSShadowResidual_iff_forall_hsKernel (s0 : G)).mp hmem
         D.cornerRepresentation
-    have hnull : IsHSNull D.cornerRepresentation s0 := hker
-    have hpos : 0 < K.kappa ^ 2 / (2 * K.S.card) := (hbound 0).1
+    have hnull : IsHSNull D.cornerRepresentation (s0 : G) := hker
+    have hpos : 0 < KD.kappa ^ 2 / (2 * KD.S.card) := (hbound 0).1
     obtain ⟨N, hN⟩ := hnull _ hpos
     have hsmall := hN (phi N) hphi.le_apply
     have hsmall' : hsNormSq (D.cornerModel (phi N))
-        ((D.cornerMap (phi N) s0 :
+        ((D.cornerMap (phi N) (s0 : G) :
           Matrix (D.cornerModel (phi N)) (D.cornerModel (phi N)) ℂ) - 1)
-        < K.kappa ^ 2 / (2 * K.S.card) := hsmall
-    exact absurd hsmall' (not_lt.mpr (hbound N).2)
-  exact ⟨⟨s0, hs0, houtside⟩, fun hall ↦ houtside (hall s0 hs0)⟩
+        < KD.kappa ^ 2 / (2 * KD.S.card) := hsmall
+    have hlarge : KD.kappa ^ 2 / (2 * KD.S.card) ≤
+        hsNormSq (D.cornerModel (phi N))
+          ((D.cornerMap (phi N) (s0 : G) :
+            Matrix (D.cornerModel (phi N)) (D.cornerModel (phi N)) ℂ) - 1) :=
+      (hbound N).2
+    exact absurd hsmall' (not_lt.mpr hlarge)
+  exact ⟨⟨s0, hs0, houtside⟩, fun hall ↦ houtside (hall s0.2)⟩
 
 end FinalContradiction
 

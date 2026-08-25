@@ -7,7 +7,7 @@ import GroupApproximation.Sofic.CollapseJointCorner
 a finite commuting family of exact involutions by composing the block averages
 of the individual two-block cuts.  This file justifies calling that composite a
 *block compression along the joint corner structure*, in the sense of Step 1 of
-the proof sketch of `\ref{thm:collapse}` that `non_mf_groups_exist.tex` used to
+the proof sketch of `\ref{thm:collapse}` that `non_mf_group_notes.tex` used to
 print (`block compression along the finite commutative corner structure`).  That
 sketch was replaced in commit `3a45fa60`; see the header of
 `Sofic/CollapseJointCorner.lean` for what the manuscript prints instead.

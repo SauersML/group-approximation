@@ -156,7 +156,7 @@ def filter (keep : β → Bool) : DTree β → DTree β
 @[simp] theorem filter_nil (keep : β → Bool) :
     (nil : DTree β).filter keep = nil := rfl
 
-theorem filter_wrap (keep : β → Bool) (a b : β) (A B : DTree β) :
+@[simp] theorem filter_wrap (keep : β → Bool) (a b : β) (A B : DTree β) :
     (wrap a b A B).filter keep =
       if keep a then wrap a b (A.filter keep) (B.filter keep)
       else (A.filter keep).append (B.filter keep) := rfl

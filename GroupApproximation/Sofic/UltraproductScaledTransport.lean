@@ -4,9 +4,9 @@ import GroupApproximation.Sofic.UltraproductKazhdanTransport
 /-!
 # Transport at every Hilbertian scale: the printed proof of that weighted transport theorem
 
-This file replays Theorem the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed)
+This file replays Theorem `\ref{thm:transport-variants}`
 ("one-sided conjugation at an arbitrary weight") of `non_mf_groups_exist.tex`,
-inside `\section{Transport at an arbitrary weight}` (that superseded section).
+inside `\section{Weighted asymptotic-commutant invariance}` (`\ref{supp:transport-variants}`).
 The route is the one the manuscript prints: "the ultraproduct proof of Theorem
 the Kazhdan transport result applies with `\tr_{d_n}` replaced by
 `\operatorname{Tr}(\,\cdot\,)/\nu_n`".
@@ -17,7 +17,7 @@ dimension; commit `fd45b050` deleted that remark as an unused application, so
 the dimension-weight material below (`## The dimension weight`) now has no
 printed counterpart.  What survives of the specializations is
 `Taking $\nu_n=k_n$`, the rank of the projection lift in the proof of
-the superseded projection-collapse theorem.
+`\ref{thm:projection-collapse}`.
 
 ## STATUS: THE ROUTE IS NOT YET CLOSED
 
@@ -588,7 +588,7 @@ theorem weightNull_atTop_of_forall_free_ultrafilter
 /-! ## The printed statement of that weighted transport theorem, clause 1, -/
 
 /-- **Transport at every Hilbertian scale.**
-`non_mf_groups_exist.tex`, Theorem the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed), part (1),
+`non_mf_group_notes.tex`, Theorem `\ref{thm:transport-variants}`, part (1),
 with its printed proof.
 
 Let `Γ`, `H`, `ι`, `s` be as in the Kazhdan transport result, let `(U_n)` be as
@@ -726,7 +726,7 @@ theorem scaled_transport_both_of_ambient
 /-! ## The dimension weight
 
 A Lean-side specialization with no printed counterpart.  The manuscript closed
-that superseded section with a remark taking the weight to be the
+`\ref{supp:transport-variants}` with a remark taking the weight to be the
 dimension, and commit `fd45b050` deleted it as an unused application; the
 surviving specialization is to the rank `k_n` of the projection lift, not to
 `d_n`.  The declarations here are kept because the weight dictionary they

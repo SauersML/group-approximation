@@ -138,7 +138,7 @@ recognizing the low filter as `blockAt m 0`. -/
 noncomputable def tailFrom (m : ℕ) (f : E) : E :=
   Finsupp.filter (fun i : ℤ => ¬ i ≤ (m : ℤ) - 1) f
 
-theorem tailFrom_eq (m : ℕ) (f : E) :
+@[simp] theorem tailFrom_eq (m : ℕ) (f : E) :
     tailFrom m f = Finsupp.filter (fun i : ℤ => ¬ i ≤ (m : ℤ) - 1) f := rfl
 
 theorem tailFrom_apply_of_lt {m : ℕ} {f : E} {i : ℤ} (h : i < (m : ℤ)) :

@@ -126,7 +126,7 @@ def choiWitness (n : ℕ) (N : CStarMatrix (Fin n) (Fin n) A) :
     CStarMatrix (Fin n) (Fin n) B :=
   CStarMatrix.ofMatrix (Matrix.of fun i j => S.root * S.hom (N i j))
 
-theorem choiWitness_apply (n : ℕ) (N : CStarMatrix (Fin n) (Fin n) A)
+@[simp] theorem choiWitness_apply (n : ℕ) (N : CStarMatrix (Fin n) (Fin n) A)
     (i j : Fin n) : S.choiWitness n N i j = S.root * S.hom (N i j) := rfl
 
 /-- The entrywise computation behind complete positivity: the `(i,j)` entry of

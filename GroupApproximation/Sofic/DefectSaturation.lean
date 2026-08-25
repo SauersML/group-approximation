@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.InvolutionCollapseEndpoint
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Defect saturation: full MF radicals from saturated collapse defects
@@ -34,12 +35,10 @@ open scoped commutatorElement
 
 variable {E : Type} [Group E]
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable (N : Subgroup E) [hN : N.Normal]
-    [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **Unconditional MF-kernel absorption.**  Even without saturation,
 the involutive collapse defect dies in every homomorphism to a countable

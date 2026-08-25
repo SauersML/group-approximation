@@ -672,7 +672,7 @@ attribute [instance] FGOvergroup.group
 
 /-- **Higman--Neumann--Neumann: every countable group embeds in a
 three-generator group.** -/
-theorem nonempty_fgOvergroup (A : Type) [Group A] [Countable A] [Nonempty A] :
+theorem nonempty_fgOvergroup (A : Type) [Group A] [Countable A] :
     Nonempty (FGOvergroup A) := by
   obtain ⟨g, hg⟩ := exists_surjective_nat A
   exact ⟨{ Carrier := Ext g

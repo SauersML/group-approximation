@@ -3,7 +3,7 @@ import GroupApproximation.Analysis.OmegaConjugationOperators
 /-!
 # The printed reverse step of `cor:generaltransport`
 
-`non_mf_groups_exist.tex`, the proof of
+`non_mf_group_notes.tex`, the proof of
 `\begin{corollary}[one-sided conjugators preserve the commutant under
 conjugation and inverse conjugation]` (`\label{cor:generaltransport}`), reads:
 

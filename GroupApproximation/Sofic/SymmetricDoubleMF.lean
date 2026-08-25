@@ -312,7 +312,7 @@ abbrev sigmaUnit : SigmaGroup := iotaVertical alpha conjD_injective v1G
 /-- **The half-translation** `s = t⁻¹ v₁ t`, at telescope level one. -/
 abbrev escapeElement : SigmaGroup := sigmaStable⁻¹ * sigmaUnit * sigmaStable
 
-theorem escapeElement_eq :
+@[simp] theorem escapeElement_eq :
     escapeElement = sigmaStable⁻¹ * sigmaUnit * sigmaStable := rfl
 
 theorem sigmaUnit_mem_sigmaBase : sigmaUnit ∈ sigmaBase :=

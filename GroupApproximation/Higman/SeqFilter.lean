@@ -67,7 +67,7 @@ theorem eltOn_congr {L : List ℤ} {f g : E} (h : ∀ i ∈ L, f i = g i) :
   refine congrArg List.prod ?_
   exact List.map_congr_left fun i hi => by rw [h i hi]
 
-theorem elt_eq_eltOn_support (f : E) : elt f = eltOn (f.support.sort (· ≤ ·)) f := rfl
+@[simp] theorem elt_eq_eltOn_support (f : E) : elt f = eltOn (f.support.sort (· ≤ ·)) f := rfl
 
 /-! ## 2.  Zero exponents may be dropped -/
 

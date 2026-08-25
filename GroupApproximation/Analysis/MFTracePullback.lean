@@ -115,7 +115,7 @@ the faithful tracial state of the reduced algebra.
 Both sides unfold to `canonicalCoefficientAtOne G (q a)`: the maximal trace is
 defined that way, and `canonicalFaithfulTracialState` is that same functional
 with its faithfulness and traciality attached. -/
-theorem canonicalFaithfulTracialState_maximalGroupCStarToReduced
+@[simp] theorem canonicalFaithfulTracialState_maximalGroupCStarToReduced
     (a : MaximalGroupCStar G) :
     ReducedGroupCStarTrace.canonicalFaithfulTracialState G
         (maximalGroupCStarToReduced G a)

@@ -112,7 +112,7 @@ dependent pair out of every statement below. -/
 noncomputable def Carrier.gen (c : Carrier) (f : E) : ↥c.L :=
   ⟨c.emb (aElt f), c.mem_L f⟩
 
-theorem Carrier.coe_gen (c : Carrier) (f : E) :
+@[simp] theorem Carrier.coe_gen (c : Carrier) (f : E) :
     (c.gen f : c.K) = c.emb (aElt f) := rfl
 
 /-- **The coded conjugates are distinct in the carrier.** -/

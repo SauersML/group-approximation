@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.KazhdanCornerMatrices
 /-!
 # Finite-stage quantitative estimates for the robust spectral gap
 
-`non_mf_groups_exist.tex` used to prove the Kazhdan transport result a second
+`non_mf_group_notes.tex` used to prove the Kazhdan transport result a second
 time, in a section titled "The finite-stage transport proof",
 "quantitatively at each single coordinate `n` and with no
 ultrafilter", with a remark ("The ultrafilter gives no

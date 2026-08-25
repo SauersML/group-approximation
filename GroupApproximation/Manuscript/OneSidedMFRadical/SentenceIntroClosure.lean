@@ -160,7 +160,6 @@ theorem manuscriptIntroEveryDetectorDescends
 
 /-! ## Sentence 34: coordinate unitary lifts and vanishing defects -/
 
-set_option maxHeartbeats 800000 in
 /-- **Sentence 34.**  An arbitrary homomorphism into a genuine corona has
 coordinatewise unitary lifts representing every value, and every fixed
 multiplication defect of those lifts tends to zero. -/

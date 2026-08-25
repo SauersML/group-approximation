@@ -229,7 +229,7 @@ def genPair (h : ↥K) : F₃ × F₃ := ((h : F₃)⁻¹ * a * (h : F₃), (h :
 basis map `Conj.cbHom`; that is what makes it injective. -/
 def graphHom : FreeGroup ↥K →* F₃ × F₃ := cbHom.prod evalHom
 
-theorem graphHom_apply (w : FreeGroup ↥K) : graphHom w = (cbHom w, evalHom w) := rfl
+@[simp] theorem graphHom_apply (w : FreeGroup ↥K) : graphHom w = (cbHom w, evalHom w) := rfl
 
 theorem graphHom_of (h : ↥K) : graphHom (FreeGroup.of h) = genPair h := by
   unfold genPair

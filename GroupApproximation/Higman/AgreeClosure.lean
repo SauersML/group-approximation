@@ -81,9 +81,9 @@ open scoped Pointwise
 `p`. -/
 def agreeOp (p : ℤ → Prop) (B : Set E) : Set E := {f | ∃ g ∈ B, ∀ i, p i → f i = g i}
 
-theorem zetaOp_eq_agreeOp (B : Set E) : zetaOp B = agreeOp (fun i : ℤ => i ≠ 0) B := rfl
+@[simp] theorem zetaOp_eq_agreeOp (B : Set E) : zetaOp B = agreeOp (fun i : ℤ => i ≠ 0) B := rfl
 
-theorem piOp_eq_agreeOp (B : Set E) : piOp B = agreeOp (fun i : ℤ => i ≤ 0) B := rfl
+@[simp] theorem piOp_eq_agreeOp (B : Set E) : piOp B = agreeOp (fun i : ℤ => i ≤ 0) B := rfl
 
 /-! ## 2.  Subgroups of the row, inside `F₃` -/
 
@@ -94,7 +94,7 @@ theorem rowSub_le_K (V : Subgroup (FreeGroup ℤ)) : rowSub V ≤ K := by
   rintro _ ⟨w, _, rfl⟩
   exact rowHom_mem_K w
 
-theorem bElt_eq_rowHom (f : E) : bElt f = rowHom (elt f) := rfl
+@[simp] theorem bElt_eq_rowHom (f : E) : bElt f = rowHom (elt f) := rfl
 
 theorem bElt_image_subset_K (B : Set E) : bElt '' B ⊆ (K : Set F₃) := by
   rintro _ ⟨f, _, rfl⟩

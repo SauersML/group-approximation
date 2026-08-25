@@ -10,7 +10,7 @@ import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 /-!
 # The sharpness paragraph without Tikuisis--White--Winter
 
-`non_mf_groups_exist.tex`, `\section{The cyclic comparison}`
+`non_mf_group_notes.tex`, `\section{The cyclic comparison}`
 (`\label{sec:necessity}`), paragraph *Sharpness of the Kazhdan hypothesis*
 (grep `"hence MF by"`, never a line number: the file is edited concurrently).
 The paragraph needs exactly one thing:

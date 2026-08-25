@@ -116,7 +116,7 @@ def conjProjection (K : Submodule 𝕜 E) [K.HasOrthogonalProjection]
     (U : E ≃ₗᵢ[𝕜] E) : E →L[𝕜] E :=
   (conjSubmodule K U).starProjection
 
-theorem conjProjection_def (K : Submodule 𝕜 E) [K.HasOrthogonalProjection]
+@[simp] theorem conjProjection_def (K : Submodule 𝕜 E) [K.HasOrthogonalProjection]
     (U : E ≃ₗᵢ[𝕜] E) :
     conjProjection K U = (conjSubmodule K U).starProjection := rfl
 
@@ -323,7 +323,7 @@ instance hasOrthogonalProjection_invariantSubmodule
 
 /-- `KazhdanProjection.invariantProjection` is the orthogonal projection onto
 the invariant subspace, on the nose. -/
-theorem invariantProjection_eq_starProjection (rho : Γ →* (E ≃ₗᵢ[ℝ] E)) :
+@[simp] theorem invariantProjection_eq_starProjection (rho : Γ →* (E ≃ₗᵢ[ℝ] E)) :
     KazhdanProjection.invariantProjection rho
       = (KazhdanOrthogonal.invariantSubmodule rho).starProjection := rfl
 

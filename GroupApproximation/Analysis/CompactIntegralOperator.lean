@@ -333,7 +333,7 @@ noncomputable def elemAlg : StarSubalgebra ℂ C(C.carrier × C.carrier, ℂ) wh
     · intro r x _ hx
       simpa [star_smul] using Submodule.smul_mem _ (starRingEnd ℂ r) hx
 
-theorem elemAlg_coe :
+@[simp] theorem elemAlg_coe :
     (elemAlg C : Set C(C.carrier × C.carrier, ℂ))
       = (Submodule.span ℂ (elemSet C) : Set C(C.carrier × C.carrier, ℂ)) := rfl
 

@@ -3,6 +3,7 @@ import GroupApproximation.Sofic.MFCamouflageConsequences
 import GroupApproximation.Sofic.MFBlackHoleAttachment
 import GroupApproximation.Sofic.MatricialStabilityInstances
 import GroupApproximation.Sofic.SplitMFStability
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Invisible extensions in matricial approximation
@@ -25,8 +26,10 @@ namespace InvisibleExtensions
 
 open MatricialStabilityRadical MatricialStabilityInstances
 
-local instance multiplicativeIntCountable : Countable (Multiplicative ℤ) :=
-  Countable.of_equiv ℤ Multiplicative.toAdd
+/- `Multiplicative ℤ` is countable.  Proved once as
+`GroupApproximation.CountableInstances.multiplicativeIntCountable` and taken
+here with the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.multiplicativeIntCountable
 
 local instance quotientCountable
     {G : Type} [Group G] [Countable G] (N : Subgroup G) [N.Normal] :

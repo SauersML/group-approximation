@@ -78,10 +78,11 @@ concrete shape of `Primcodable ℤ` is touched; everything below is stated in
 terms of `Denumerable.ofNat`. -/
 
 /-- A non-negative integer has an even code. -/
-theorem encode_int_ofNat (a : ℕ) : (Encodable.encode (Int.ofNat a) : ℕ) = 2 * a := rfl
+@[simp] theorem encode_int_ofNat (a : ℕ) : (Encodable.encode (Int.ofNat a) : ℕ) = 2 * a := rfl
 
 /-- A negative integer has an odd code. -/
-theorem encode_int_negSucc (a : ℕ) : (Encodable.encode (Int.negSucc a) : ℕ) = 2 * a + 1 := rfl
+@[simp] theorem encode_int_negSucc (a : ℕ) :
+    (Encodable.encode (Int.negSucc a) : ℕ) = 2 * a + 1 := rfl
 
 /-- The even codes decode to the non-negative integers. -/
 theorem ofNat_two_mul (a : ℕ) : Denumerable.ofNat ℤ (2 * a) = (a : ℤ) := by
@@ -128,7 +129,7 @@ def encAdd (m k : ℕ) : ℕ :=
     if k % 2 = 0 then (if m < k then k - m - 1 else m - k)
     else m + k + 1
 
-theorem encAdd_def (m k : ℕ) :
+@[simp] theorem encAdd_def (m k : ℕ) :
     encAdd m k =
       if m % 2 = 0 then
         if k % 2 = 0 then m + k
@@ -185,7 +186,7 @@ for free: the code of `0` is `0`, and `0 - 1 = 0` in `ℕ`. -/
 /-- Negation of integers, transported to their codes. -/
 def encNeg (m : ℕ) : ℕ := if m % 2 = 0 then m - 1 else m + 1
 
-theorem encNeg_def (m : ℕ) : encNeg m = if m % 2 = 0 then m - 1 else m + 1 := rfl
+@[simp] theorem encNeg_def (m : ℕ) : encNeg m = if m % 2 = 0 then m - 1 else m + 1 := rfl
 
 theorem primrec_encNeg : Primrec encNeg := by
   have hmev : PrimrecPred fun m : ℕ => m % 2 = 0 :=

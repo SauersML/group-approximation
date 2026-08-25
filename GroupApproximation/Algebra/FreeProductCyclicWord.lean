@@ -68,7 +68,7 @@ def sylLength (g : CoprodI G) : ℕ := (Word.equiv g).toList.length
 `Word.equiv` is an `Equiv` whose inverse *is* `Word.prod`, definitionally.
 The three lemmas below are that fact in the three shapes the file uses. -/
 
-theorem equiv_symm_eq_prod (w : Word G) : Word.equiv.symm w = w.prod := rfl
+@[simp] theorem equiv_symm_eq_prod (w : Word G) : Word.equiv.symm w = w.prod := rfl
 
 theorem prod_equiv (g : CoprodI G) : (Word.equiv g).prod = g :=
   Word.equiv.symm_apply_apply g

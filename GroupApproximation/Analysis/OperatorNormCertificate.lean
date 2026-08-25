@@ -314,11 +314,12 @@ strict: the MF normal form supplies separation one, so rational perturbation
 leaves ample room above the checker threshold `1/2`. -/
 
 /-- **Soundness of a strict lower-bound certificate.** -/
-theorem opNorm_gt_of_certificate [Nonempty n] (A : Matrix n n ℂ) {q : ℝ}
+theorem opNorm_gt_of_certificate (hn : Nonempty n) (A : Matrix n n ℂ) {q : ℝ}
     (m : ℕ)
     (h : (Fintype.card n : ℝ) ^ 2 * q ^ 2 ^ (m + 2)
       < froSq ((Aᴴ * A) ^ 2 ^ m)) :
     q < ‖A‖ := by
+  haveI := hn
   let B := (Aᴴ * A) ^ 2 ^ m
   have hcard : (0 : ℝ) < (Fintype.card n : ℝ) ^ 2 := by
     have : 0 < Fintype.card n := Fintype.card_pos
@@ -334,10 +335,11 @@ theorem opNorm_gt_of_certificate [Nonempty n] (A : Matrix n n ℂ) {q : ℝ}
   exact lt_of_pow_lt_pow (norm_nonneg A) hp
 
 /-- **Completeness of strict lower-bound certificates.** -/
-theorem exists_certificate_of_lt_opNorm [Nonempty n] (A : Matrix n n ℂ)
+theorem exists_certificate_of_lt_opNorm (hn : Nonempty n) (A : Matrix n n ℂ)
     {q : ℝ} (hq : 0 ≤ q) (h : q < ‖A‖) :
     ∃ m : ℕ, (Fintype.card n : ℝ) ^ 2 * q ^ 2 ^ (m + 2)
       < froSq ((Aᴴ * A) ^ 2 ^ m) := by
+  haveI := hn
   set D : ℝ := (Fintype.card n : ℝ) with hD
   have hDpos : 0 < D := by
     rw [hD]

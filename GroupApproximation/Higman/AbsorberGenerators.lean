@@ -51,7 +51,7 @@ generator of the `(e n).1` coded group, in its own coordinate. -/
 noncomputable def sumGen (e : ℕ → CodedGenerator) : ℕ → CodedDirectSum :=
   fun n ↦ codedOf (e n).1 (PresentedGroup.of (e n).2)
 
-theorem sumGen_apply (e : ℕ → CodedGenerator) (n : ℕ) :
+@[simp] theorem sumGen_apply (e : ℕ → CodedGenerator) (n : ℕ) :
     sumGen e n = codedOf (e n).1 (PresentedGroup.of (e n).2) := rfl
 
 /-! ## 2.  It spans -/

@@ -421,7 +421,7 @@ theorem pair_mem_ae (s : Gamma w) (hs : s ∈ Sub w) :
   ⟨s, hs, rfl⟩
 
 /-- The underlying element of `graphEquiv` is the first coordinate. -/
-theorem coe_graphEquiv (z : ↥(Pinch.blockGraph w.L (Aemb w) (phi w))) :
+@[simp] theorem coe_graphEquiv (z : ↥(Pinch.blockGraph w.L (Aemb w) (phi w))) :
     ((Pinch.graphEquiv w.L (Aemb w) (phi w) (phi_kills w) z :
         ↥(Sub w)) : Gamma w) = (z : Gamma w × (F ⧸ N)).1 := rfl
 

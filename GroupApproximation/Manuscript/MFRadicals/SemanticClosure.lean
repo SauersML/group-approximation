@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.MFRelationClosure
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Theorem E: MF semantic closure
@@ -23,11 +24,10 @@ namespace GroupApproximation
 namespace Manuscript
 namespace MFRadicals
 
-/-- Quotients of countable groups are countable; mirrored locally, as in the
-implementation modules where the same instance is `local`. -/
-local instance quotientCountable {G : Type*} [Group G] (N : Subgroup G)
-    [hN : N.Normal] [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **Theorem E.**  `Cl_MF` is a closure operator on normal subgroups whose
 fixed points are exactly the relations with MF quotient. -/

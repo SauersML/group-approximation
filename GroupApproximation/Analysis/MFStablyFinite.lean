@@ -7,7 +7,7 @@ import Mathlib.Tactic.NoncommRing
 /-!
 # Every MF algebra is finite, and what stands between that and stably finite
 
-`non_mf_groups_exist.tex` opens the subsection *A stably finite non-MF group
+`non_mf_group_notes.tex` opens the subsection *A stably finite non-MF group
 algebra* with
 
 > Every MF algebra is stably finite \cite{BK}; the converse fails.

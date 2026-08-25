@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The actual C-star-corona MF radical
@@ -19,14 +20,10 @@ universe u v
 
 variable {G : Type u} [Group G]
 
-/-- The quotient of a countable group is countable. Mathlib does not install
-this globally because quotient presentations are not unique; every quotient
-in this module is the canonical `QuotientGroup` one. -/
-local instance quotientGroupCountable (N : Subgroup G)
-    [hN : N.Normal] [Countable G] :
-    Countable (G ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- An element is invisible in every genuine norm-matrix C-star corona with
 positive finite matrix coordinates. -/

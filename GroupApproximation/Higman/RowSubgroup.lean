@@ -136,7 +136,7 @@ theorem shift_row (i : ℤ) : shift (row i) = row (i + 1) := by
 def shiftTop : ↥(⊤ : Subgroup F₀) ≃* ↥(⊤ : Subgroup F₀) :=
   (Subgroup.topEquiv).trans (shift.trans (Subgroup.topEquiv).symm)
 
-theorem coe_shiftTop (x : ↥(⊤ : Subgroup F₀)) :
+@[simp] theorem coe_shiftTop (x : ↥(⊤ : Subgroup F₀)) :
     ((shiftTop x : ↥(⊤ : Subgroup F₀)) : F₀) = shift (x : F₀) := rfl
 
 /-- The ascending HNN extension along the shift. -/

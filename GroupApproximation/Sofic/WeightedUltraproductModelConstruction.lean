@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.UltraproductModelConstructionAssembly
 # The constructor for the weighted ultraproduct ambient
 
 `Sofic/UltraproductScaledTransport.lean` states the printed proof of
-the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed) in `non_mf_groups_exist.tex` relative to
+`\ref{thm:transport-variants}` in `non_mf_group_notes.tex` relative to
 `WeightedUltraproductAdjointModel`, the ambient of manuscript steps
 KT.01--KT.09 written at an arbitrary nonnegative weight `w` rather than at the
 dimension weight, and says of that signature that "**no instance exists yet**".
@@ -51,7 +51,7 @@ noncomputable section
 /-- **The weighted ultraproduct ambient exists**, at every nonnegative weight
 and every free ultrafilter.
 
-The hypotheses are those of the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed) itself: property
+The hypotheses are those of `\ref{thm:transport-variants}` itself: property
 `(T)` for `Γ`, the compression `s ι(Γ) s⁻¹ ⊆ ι(Γ)`, nonempty coordinate models,
 operator-norm asymptotic multiplicativity of `U`, nonnegativity of the weight,
 and freeness of the ultrafilter.  No field of the interface is left as an

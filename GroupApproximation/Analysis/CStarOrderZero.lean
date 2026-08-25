@@ -132,7 +132,7 @@ variable [NonUnitalCStarAlgebra C]
 homomorphism.  Isolated as a lemma because every proof below rewrites with
 it, and because it is the one step in this file whose failure would be
 invisible in the statement of the theorem it appears in. -/
-theorem coe_nonUnitalStarAlgHom_apply (f : A →⋆ₙₐ[ℂ] B) (a : A) :
+@[simp] theorem coe_nonUnitalStarAlgHom_apply (f : A →⋆ₙₐ[ℂ] B) (a : A) :
     (f : A →ₗ[ℂ] B) a = f a := rfl
 
 /-- `⋆`-homomorphisms carry positive elements to positive elements. -/

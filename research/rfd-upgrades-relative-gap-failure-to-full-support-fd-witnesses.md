@@ -34,7 +34,10 @@ Since `C^*(G_0)` is RFD, `pi` is weakly contained in the direct sum of the
 finite-dimensional representations of `G_0`.  The coefficient of `v` can
 therefore be approximated on the finite set needed to compute the displacement
 norms for `F union {k_0}` by a coefficient of a finite direct sum of
-finite-dimensional representations.  Hence there are a finite-dimensional
+finite-dimensional representations.  Indeed
+`||pi(g)v-v||^2=2-2 Re <pi(g)v,v>`, and the same identity holds for the
+approximating coefficient; including the identity in the finite set and then
+normalizing its vector preserves the approximation.  Hence there are a finite-dimensional
 representation `sigma` and a unit vector `w` such that
 
 ```text

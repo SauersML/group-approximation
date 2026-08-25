@@ -79,7 +79,6 @@ theorem quotient_mk_ambientWord
       rw [QuotientGroup.mk_mul, ih]
       rfl
 
-set_option maxHeartbeats 400000 in
 /-- Coordinate packet lifts of a corona representation respect every group
 word relation in operator norm. -/
 theorem ambientWordsRespectGroup_of_corona

@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.AscendingHNNTelescopeRadical
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The full telescope radical lies in the MF radical
@@ -43,8 +44,10 @@ open scoped commutatorElement
 variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.Injective β)
 variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
 
-local instance telescopeQuotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [Countable E] : Countable (E ⧸ N) := Quotient.countable
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-! ## The level tower -/
 

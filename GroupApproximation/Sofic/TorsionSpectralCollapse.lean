@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.TorsionCompressionCollapse
 import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Torsion witnesses collapse at every order
@@ -465,12 +466,10 @@ theorem actualCoronaMFInvisible_of_torsionWitness :
 
 /-! ## Unconditional endpoints -/
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type u} [Group E] (N : Subgroup E)
-    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **The full torsion-collapse defect lies in the MF radical**, with no
 analytic hypothesis: the collapse gate of

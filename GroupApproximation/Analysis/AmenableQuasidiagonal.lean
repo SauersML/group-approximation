@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.NormTraceGap
 # Why "amenable implies MF" needs quasidiagonality: permutation models are rigid
 in operator norm
 
-`non_mf_groups_exist.tex` is edited concurrently, so the sites below are given
+`non_mf_group_notes.tex` is edited concurrently, so the sites below are given
 by `\label` and by quoted phrase; grep for the quotation, never for a line
 number.  The implication *amenable `⟹` MF* occurs in three places:
 

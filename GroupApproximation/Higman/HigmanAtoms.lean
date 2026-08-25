@@ -172,14 +172,14 @@ theorem mem_freeAbove_iff (N : ℤ) (B : Set E) (f : E) :
 theorem mem_freeBelow_iff (N : ℤ) (B : Set E) (f : E) :
     f ∈ freeBelow N B ↔ ∃ g ∈ B, ∀ i : ℤ, N ≤ i → f i = g i := Iff.rfl
 
-theorem freeCoord_eq_agreeOp (c : ℤ) (B : Set E) :
+@[simp] theorem freeCoord_eq_agreeOp (c : ℤ) (B : Set E) :
     freeCoord c B = Agree.agreeOp (fun i : ℤ => i ≠ c) B := rfl
 
-theorem freeCoord_zero (B : Set E) : freeCoord 0 B = zetaOp B := rfl
+@[simp] theorem freeCoord_zero (B : Set E) : freeCoord 0 B = zetaOp B := rfl
 
-theorem freeAbove_zero (B : Set E) : freeAbove 0 B = piOp B := rfl
+@[simp] theorem freeAbove_zero (B : Set E) : freeAbove 0 B = piOp B := rfl
 
-theorem freeBelow_zero_eq_agreeOp (B : Set E) :
+@[simp] theorem freeBelow_zero_eq_agreeOp (B : Set E) :
     freeBelow 0 B = Agree.agreeOp (fun i : ℤ => 0 ≤ i) B := rfl
 
 theorem higmanGenerated_freeBelow_zero {B : Set E} (h : HigmanGenerated B) :
@@ -627,7 +627,7 @@ def succPair (k l : ℤ) : Set E := {f | f l = f k + 1}
 
 theorem mem_succPair_iff (k l : ℤ) (f : E) : f ∈ succPair k l ↔ f l = f k + 1 := Iff.rfl
 
-theorem succRel_eq_succPair (d : ℤ) : succRel d = succPair d (d + 1) := rfl
+@[simp] theorem succRel_eq_succPair (d : ℤ) : succRel d = succPair d (d + 1) := rfl
 
 /-- **A link copied into place.**  `m` and `m + 1` carry a fresh copy of the
 successor relation, which is tied to `k` and `l` by two equalities and then
@@ -789,13 +789,13 @@ theorem higmanGenerated_winRel_exists {ι : Type*} [DecidableEq ι] (n : ℕ) (s
 
 /-! ### The atoms -/
 
-theorem winRel_eqConst (n : ℕ) (k : Fin n) (c : ℤ) :
+@[simp] theorem winRel_eqConst (n : ℕ) (k : Fin n) (c : ℤ) :
     winRel n (fun v => v k = c) = windowSupport n ∩ pinAt (k.val : ℤ) c := rfl
 
-theorem winRel_eqVar (n : ℕ) (k l : Fin n) :
+@[simp] theorem winRel_eqVar (n : ℕ) (k l : Fin n) :
     winRel n (fun v => v k = v l) = windowSupport n ∩ eqRel (k.val : ℤ) (l.val : ℤ) := rfl
 
-theorem winRel_succVar (n : ℕ) (k l : Fin n) :
+@[simp] theorem winRel_succVar (n : ℕ) (k l : Fin n) :
     winRel n (fun v => v l = v k + 1)
       = windowSupport n ∩ succPair (k.val : ℤ) (l.val : ℤ) := rfl
 

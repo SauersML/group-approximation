@@ -37,7 +37,7 @@ private noncomputable def baseCompression : Base →* Base :=
   baseAffineEquiv.symm.toMonoidHom.comp
     (conjD.comp baseAffineEquiv.toMonoidHom)
 
-private theorem baseAffineEquiv_apply (g : Base) :
+@[simp] private theorem baseAffineEquiv_apply (g : Base) :
     baseAffineEquiv g = affineQuotient g := rfl
 
 private theorem baseCompression_injective : Function.Injective baseCompression := by

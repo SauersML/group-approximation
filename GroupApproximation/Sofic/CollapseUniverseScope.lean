@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.InvolutionCollapseEndpoint
 import Mathlib.Algebra.Group.TransferInstance
 import Mathlib.Data.Countable.Basic
 import Mathlib.Logic.Equiv.Set
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # `thm:collapse` at the manuscript's scope
@@ -51,12 +52,10 @@ open scoped commutatorElement
 
 universe u v
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type u} [Group E] (N : Subgroup E)
-    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-! ## Step 1: universe descent for countable groups -/
 

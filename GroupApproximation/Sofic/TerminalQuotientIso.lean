@@ -87,12 +87,12 @@ abbrev TerminalQuotient : Type := SignFreeQuotient ⧸ signFreePrintedDefect
 def quotHom : MarkedGroup →* TerminalQuotient :=
   (QuotientGroup.mk' signFreePrintedDefect).comp proj
 
-theorem quotHom_apply (g : MarkedGroup) :
+@[simp] theorem quotHom_apply (g : MarkedGroup) :
     quotHom g = QuotientGroup.mk' signFreePrintedDefect (proj g) := rfl
 
 /-- `terminalHom` undoes the projection: it is `amalgamHom` on representatives.
 This is `terminalHom_mk`, phrased at `quotHom`. -/
-theorem terminalHom_quotHom (g : MarkedGroup) :
+@[simp] theorem terminalHom_quotHom (g : MarkedGroup) :
     terminalHom (quotHom g) = amalgamHom g := rfl
 
 theorem quotHom_surjective : Function.Surjective quotHom := by
@@ -120,9 +120,9 @@ def lampHom : FlipC2 →* TerminalQuotient where
     · exact (mul_one (quotHom dee)).symm
     · exact quotHom_dee_sq.symm
 
-theorem lampHom_one : lampHom .one = 1 := rfl
+@[simp] theorem lampHom_one : lampHom .one = 1 := rfl
 
-theorem lampHom_swap : lampHom .swap = quotHom dee := rfl
+@[simp] theorem lampHom_swap : lampHom .swap = quotHom dee := rfl
 
 /-- `terminalHom` carries the order-two map back to the lamp of the amalgam. -/
 theorem terminalHom_lampHom (k : FlipC2) :
@@ -431,7 +431,7 @@ def terminalEquiv : TerminalQuotient ≃* TerminalAmalgam where
   right_inv := terminalHom_inverseHom
   map_mul' := map_mul terminalHom
 
-theorem terminalEquiv_apply (q : TerminalQuotient) :
+@[simp] theorem terminalEquiv_apply (q : TerminalQuotient) :
     terminalEquiv q = terminalHom q := rfl
 
 theorem terminalHom_injective : Function.Injective terminalHom :=

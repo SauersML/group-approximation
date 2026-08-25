@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.FullMFRadicalVisibleLocalization
 import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The printed full-kernel pullback proposition, sentence by sentence
@@ -30,13 +31,10 @@ namespace OneSidedMFRadical
 
 noncomputable section
 
-/-- The quotient of a countable group is countable.  The same local instance
-carries the corresponding statements in `Sofic/ActualCoronaMFRadical.lean` and
-`Sofic/FullMFRadicalClosurePullback.lean`. -/
-local instance quotientGroupCountable {G : Type*} [Group G] (N : Subgroup G)
-    [hN : N.Normal] [Countable G] :
-    Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **`prop:full-kernel-pullback`, the three printed displays.**  For a
 surjection `f : G → Q` of countable groups whose kernel is already inside the

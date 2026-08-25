@@ -20,7 +20,7 @@ what it costs.
 
 ## Manuscript location
 
-Navigate `non_mf_groups_exist.tex` by stable anchors only; the file is under
+Navigate `non_mf_group_notes.tex` by stable anchors only; the file is under
 concurrent edit and every offset drifts within minutes of being written down.
 
 * `\subsection{Undecidability of MF recognition}` inside `sec:consequences`;

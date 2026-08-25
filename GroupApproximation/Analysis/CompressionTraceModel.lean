@@ -88,7 +88,7 @@ elsewhere.  `ReducedGroupCStarTrace.deltaOne G` is this vector at `g = 1`. -/
 def pointMass (G : Type u) [Group G] (g : G) : GroupHilbert G :=
   lp.single 2 g (1 : ℂ)
 
-theorem pointMass_def (g : G) :
+@[simp] theorem pointMass_def (g : G) :
     pointMass G g = lp.single 2 g (1 : ℂ) := rfl
 
 /-- **The point masses are orthonormal.**

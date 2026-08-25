@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The MF radical and its universal quotient
@@ -31,11 +32,10 @@ namespace GroupApproximation
 namespace Manuscript
 namespace MFRadicals
 
-/-- Quotients of countable groups are countable; mirrored locally, as in the
-implementation modules where the same instance is `local`. -/
-local instance quotientCountable {G : Type*} [Group G] (N : Subgroup G)
-    [hN : N.Normal] [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **The universal MF-visible quotient.**  For every countable group the
 quotient by the MF radical is MF, and every homomorphism into a countable MF

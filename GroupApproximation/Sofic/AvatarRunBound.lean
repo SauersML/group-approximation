@@ -194,7 +194,7 @@ theorem runBounded_of_blockShape {A : ℕ} {w : List (Fin 2 × Bool)}
 /-- The word spelled by a list of exponents. -/
 def blockFlatten (es : List ℕ) : List (Fin 2 × Bool) := (es.map blockWord).flatten
 
-theorem blockFlatten_nil : blockFlatten [] = [] := rfl
+@[simp] theorem blockFlatten_nil : blockFlatten [] = [] := rfl
 
 theorem blockFlatten_cons (e : ℕ) (es : List ℕ) :
     blockFlatten (e :: es) = blockWord e ++ blockFlatten es := by

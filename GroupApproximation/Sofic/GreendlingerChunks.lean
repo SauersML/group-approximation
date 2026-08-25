@@ -262,7 +262,7 @@ not adjacent to. -/
 theorem not_consecutive_overrun {m q p E p' D T : ℕ}
     (hcover : m = q + p) (hhug : 2 * q ≤ T) (hpiece : 6 * p < T)
     (hkeep : m + E = T) (hsplit : E = p' + D)
-    (hp' : 6 * p' < T) (hD : 6 * D < T) (_ : 0 < T) : False := by
+    (hp' : 6 * p' < T) (hD : 6 * D < T) : False := by
   omega
 
 end SmallCancellationRouter

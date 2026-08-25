@@ -12,7 +12,7 @@ import Mathlib.Tactic.Ring
 /-!
 # The dyadic rationals `ℤ[1/2]` and the literal affine group `BS(1,2)`
 
-The manuscript's cyclic comparison --- `non_mf_groups_exist.tex`,
+The manuscript's cyclic comparison --- `non_mf_group_notes.tex`,
 `\section{The cyclic comparison}` (`\ref{sec:necessity}`), Theorem
 `\ref{thm:cyclic}`, its proof, and the paragraph
 `\paragraph{Sharpness of the Kazhdan hypothesis.}` --- realizes the marked

@@ -71,7 +71,7 @@ def blockWord (w : RawWord) (c : PresentationCode) : RawWord :=
   (w.filter fun p ↦ decide (blockOf p.1 = c)).map
     fun p ↦ (letterIndex p.1, p.2)
 
-theorem pcGen_eq (n : ℕ) :
+@[simp] theorem pcGen_eq (n : ℕ) :
     pcGen n =
       pcOf (blockOf n)
         (PresentedGroup.of (letterOf (blockOf n) (letterIndex n))) :=

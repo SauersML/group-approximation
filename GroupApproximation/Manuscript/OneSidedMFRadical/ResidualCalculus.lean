@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.RadicalFunctoriality
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # MF residual calculus for the one-sided Kazhdan manuscript
@@ -19,10 +20,10 @@ namespace OneSidedMFRadical
 
 universe u
 
-/-- Quotients of countable groups are countable. -/
-local instance quotientCountable {G : Type*} [Group G]
-    (N : Subgroup G) [hN : N.Normal] [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **Proposition `prop:mf-residual-calculus`.** The literal genuine-corona
 MF radical is fully invariant, its universal quotient is MF, MF quotients are

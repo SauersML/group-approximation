@@ -249,7 +249,7 @@ noncomputable def syllableLength : RelativeLength G where
 
 /-- The model's length is syllable length on the nose, so a statement at this
 model is a statement about `OsinSmallCancellation`'s metric with no transport. -/
-theorem syllableLength_len :
+@[simp] theorem syllableLength_len :
     (syllableLength G).len = FreeProductCyclic.sylLength := rfl
 
 /-- **The degeneracy, named.**  At the syllable model the partner factor is

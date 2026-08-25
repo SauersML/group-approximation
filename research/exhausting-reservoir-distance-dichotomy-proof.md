@@ -82,7 +82,11 @@ ell(t-phi)>=delta.                                        (6)
 ```
 
 Equation `(5)` says that `ell` factors through the quotient map on map
-spaces.  Writing the resulting functional as `bar ell`, equation `(6)` is
+spaces.  That map is onto: lift a finite real self-adjoint basis of `E` one
+coordinate at a time through `q`.  Its kernel is exactly `L_sa(E,I)`, so the
+induced quotient norm is a Banach-space norm on `L_sa(E,Q)` (and is equivalent
+to its usual operator norm because the latter space is finite-dimensional).
+Writing the resulting bounded functional as `bar ell`, equation `(6)` is
 exactly
 
 ```text

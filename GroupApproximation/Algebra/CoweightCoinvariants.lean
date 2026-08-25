@@ -100,7 +100,7 @@ action `(σ • v) i = v (σ⁻¹ i)`, kept as a plain function rather than a
 `MulAction` instance. -/
 def permute (σ : Equiv.Perm (Fin 3)) (v : Fin 3 → ℤ) : Fin 3 → ℤ := fun i ↦ v (σ⁻¹ i)
 
-theorem permute_apply (σ : Equiv.Perm (Fin 3)) (v : Fin 3 → ℤ) (i : Fin 3) :
+@[simp] theorem permute_apply (σ : Equiv.Perm (Fin 3)) (v : Fin 3 → ℤ) (i : Fin 3) :
     permute σ v i = v (σ⁻¹ i) := rfl
 
 theorem permute_sub (σ : Equiv.Perm (Fin 3)) (u w : Fin 3 → ℤ) :

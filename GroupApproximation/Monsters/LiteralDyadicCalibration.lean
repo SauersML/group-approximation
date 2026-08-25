@@ -12,7 +12,7 @@ import Mathlib.GroupTheory.Solvable
 The manuscript's proof of Theorem `\ref{thm:cyclic}` (cited as `thm:C` in older
 notes; that alias is no longer a `\label`), inside
 `\section{The cyclic comparison}` (`\ref{sec:necessity}`) of
-`non_mf_groups_exist.tex`, reads:
+`non_mf_group_notes.tex`, reads:
 
 > For nontriviality, use the affine realization of `BS(1,2)` and its coset
 > action.  The root site is fixed by the cyclic base, while the two sites

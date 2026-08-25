@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.ExactInvolutionLifts
 # Step 1 of the involutive collapse, run along the joint corner
 
 This file certifies Step 1 of a six-step proof sketch of `\ref{thm:collapse}`
-(*involutive collapse*) that `non_mf_groups_exist.tex` used to print in
+(*involutive collapse*) that `non_mf_group_notes.tex` used to print in
 `\ref{subsec:collapse}`, and specifically its sentence
 
 > "block compression along the finite commutative corner structure of the

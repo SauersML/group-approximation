@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.MFCamouflageConsequences
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The printed one-word quotient test
@@ -27,19 +28,15 @@ namespace OneSidedMFRadical
 
 noncomputable section
 
-/-- The quotient of a countable group is countable.  The same local instance
-carries the corresponding statements in `Sofic/ActualCoronaMFRadical.lean`. -/
-local instance quotientGroupCountable {G : Type*} [Group G] (N : Subgroup G)
-    [hN : N.Normal] [Countable G] :
-    Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
-/-- The visible group of the printed specialization is `ℤ`, written
-multiplicatively.  `Sofic/MFCamouflageConsequences.lean` installs the same
-instance locally; the countability of the camouflage group itself is the
-global `MFCamouflage.instCountable`. -/
-local instance multiplicativeIntCountable : Countable (Multiplicative ℤ) :=
-  Countable.of_equiv ℤ Multiplicative.toAdd
+/- `Multiplicative ℤ` is countable.  Proved once as
+`GroupApproximation.CountableInstances.multiplicativeIntCountable` and taken
+here with the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.multiplicativeIntCountable
 
 /-- **`eq:one-word-quotient-test`.**  With the visible group taken to be `ℤ`,
 a quotient of the camouflage group `W_ℤ` is MF exactly when the relation

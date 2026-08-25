@@ -135,8 +135,8 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `lem:stable-finite` stable finiteness and projection comparison | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite` | closed |
 | `lem:kazhdan-projection-order` one-sided order for the Kazhdan projection | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder` | closed |
 | Support for `lem:kazhdan-projection-order`: one projection in `C*_max(L)`, its universal image in every target, and the literal C*-order inequality | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder` | closed |
-| `thm:transport` one-sided Kazhdan transport, both conjugation directions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport` | closed |
-| Proof of `thm:transport`, both transported sequences again satisfy the bounded asymptotic-commutant hypotheses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage` | closed |
+| `thm:transport`: the bounded Hilbert--Schmidt asymptotic commutant is invariant under the one-sided compressor | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport` | closed |
+| Proof of `thm:transport`: conjugation and inverse conjugation again satisfy the bounded asymptotic-commutant conditions | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage` | closed |
 | Proof of `thm:transport`, transport iterated along every word in the compression group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport` | closed |
 | `thm:transport` with arbitrary-universe ambient group and a `Type 0` Kazhdan source | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportAnyAmbient` | closed |
 | `cor:defect-hs` defect generators lie in the shadow residual | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible` | closed |

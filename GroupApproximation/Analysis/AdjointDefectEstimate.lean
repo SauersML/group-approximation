@@ -92,7 +92,7 @@ the Hilbert--Schmidt norm, this is the map of the C⋆-algebra `M_d(ℂ)` to
 itself. -/
 def adConj {Y : FiniteModel} (U X : Matrix Y Y ℂ) : Matrix Y Y ℂ := U * X * Uᴴ
 
-theorem adConj_apply {Y : FiniteModel} (U X : Matrix Y Y ℂ) :
+@[simp] theorem adConj_apply {Y : FiniteModel} (U X : Matrix Y Y ℂ) :
     adConj U X = U * X * Uᴴ := rfl
 
 /-- `Ad` of the identity is the identity. -/
@@ -227,7 +227,7 @@ def naturalizeCoordinates (A : OpAlmostRepresentation G) :
       exact hN n hn
     exact hfinal
 
-theorem naturalizeCoordinates_model (A : OpAlmostRepresentation G)
+@[simp] theorem naturalizeCoordinates_model (A : OpAlmostRepresentation G)
     (n : ℕ) :
     A.naturalizeCoordinates.model n = naturalizedModel A.model n := rfl
 

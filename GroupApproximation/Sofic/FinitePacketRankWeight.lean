@@ -107,11 +107,12 @@ theorem displacementRank_le_wordNorm_mul
   rwa [hl.prod_eq, hlen] at h
 
 /-- A difference of two unitary matrices has operator norm at most `2`. -/
-theorem norm_sub_le_two_of_unitary [Nonempty Y]
+theorem norm_sub_le_two_of_unitary (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) :
     ‖A - B‖ ≤ 2 := by
+  haveI := hY
   have hAnorm : ‖A‖ = 1 := CStarRing.norm_of_mem_unitary hA
   have hBnorm : ‖B‖ = 1 := CStarRing.norm_of_mem_unitary hB
   calc
@@ -120,12 +121,12 @@ theorem norm_sub_le_two_of_unitary [Nonempty Y]
 
 /-- Frobenius mass is controlled by rank for a difference of packet
 unitaries. -/
-theorem displacementMass_le_four_mul_rank [Nonempty Y]
+theorem displacementMass_le_four_mul_rank (hY : Nonempty Y)
     (V : Γ → Matrix Y Y ℂ)
     (hV : ∀ g : Γ, V g ∈ Matrix.unitaryGroup Y ℂ) (g : Γ) :
     matMass (V g - V 1) ≤ 4 * displacementRank V g := by
   have hn : ‖V g - V 1‖ ≤ 2 :=
-    norm_sub_le_two_of_unitary (hV g) (hV 1)
+    norm_sub_le_two_of_unitary hY (hV g) (hV 1)
   have hsq : ‖V g - V 1‖ ^ 2 ≤ 4 := by
     nlinarith [norm_nonneg (V g - V 1)]
   calc
@@ -140,7 +141,7 @@ theorem displacementMass_le_four_mul_rank [Nonempty Y]
 
 /-- The paper's rank-weight mass estimate, with no commutativity hypothesis. -/
 theorem displacementMass_le_four_mul_wordNorm_mul_weight
-    [Nonempty Y]
+    (hY : Nonempty Y)
     (V : Γ → Matrix Y Y ℂ) (U : Γ → Matrix Y Y ℂ) (S : Finset Γ)
     (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
     (hV : ∀ g : Γ, V g ∈ Matrix.unitaryGroup Y ℂ)
@@ -149,7 +150,7 @@ theorem displacementMass_le_four_mul_wordNorm_mul_weight
     (g : Γ) :
     matMass (V g - V 1) ≤
       4 * WordMetric.wordNorm (S : Set Γ) g * generatorRankWeight V S := by
-  have hm := displacementMass_le_four_mul_rank V hV g
+  have hm := displacementMass_le_four_mul_rank hY V hV g
   have hr := displacementRank_le_wordNorm_mul V U S hgen hU hcov g
   calc
     matMass (V g - V 1) ≤ 4 * (displacementRank V g : ℝ) := hm

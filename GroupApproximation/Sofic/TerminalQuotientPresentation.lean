@@ -460,7 +460,7 @@ theorem markSubgroup_le_amalgamHom_ker : markSubgroup ≤ amalgamHom.ker :=
 def signFreeAmalgamHom : SignFreeQuotient →* TerminalAmalgam :=
   QuotientGroup.lift markSubgroup amalgamHom markSubgroup_le_amalgamHom_ker
 
-theorem signFreeAmalgamHom_proj (g : MarkedGroup) :
+@[simp] theorem signFreeAmalgamHom_proj (g : MarkedGroup) :
     signFreeAmalgamHom (proj g) = amalgamHom g := rfl
 
 theorem signFreeAmalgamHom_collapsedCommutator :
@@ -484,7 +484,7 @@ def terminalHom :
   QuotientGroup.lift signFreePrintedDefect signFreeAmalgamHom
     signFreePrintedDefect_le_ker
 
-theorem terminalHom_mk (g : MarkedGroup) :
+@[simp] theorem terminalHom_mk (g : MarkedGroup) :
     terminalHom (QuotientGroup.mk' signFreePrintedDefect (proj g)) =
       amalgamHom g := rfl
 

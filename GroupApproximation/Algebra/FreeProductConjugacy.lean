@@ -253,9 +253,10 @@ theorem length_eq_of_conj {i j i' j' : ι} (hij : i ≠ j) (hij' : i' ≠ j')
 forward direction is `torsion_conj_into_factor`; the converse is immediate,
 and together they say that the torsion of a free product is exactly the
 torsion of its factors, spread over conjugates. -/
-theorem isOfFinOrder_iff_conj_factor [Nonempty ι] {g : CoprodI G} :
+theorem isOfFinOrder_iff_conj_factor (hι : Nonempty ι) {g : CoprodI G} :
     IsOfFinOrder g ↔ ∃ (i : ι) (x : G i) (c : CoprodI G),
       IsOfFinOrder x ∧ g = c * CoprodI.of x * c⁻¹ := by
+  haveI := hι
   constructor
   · intro hfin
     obtain ⟨n, hn, hgn⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin

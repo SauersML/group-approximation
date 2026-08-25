@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.OperatorMFPositiveControls
 /-!
 # `INT.11`: "all amenable groups are MF, by quasidiagonality", as a typed input
 
-`non_mf_groups_exist.tex`, the introduction (grep `"quasidiagonality \cite{TWW}"`,
+`non_mf_group_notes.tex`, the introduction (grep `"quasidiagonality \cite{TWW}"`,
 never a line number --- the file is edited concurrently).  Proof-ledger row
 `INT.11` grades that clause `MISSING`/`literature-input`: it is the
 Tikuisis--White--Winter theorem, it is formalized in no proof assistant, and

@@ -206,7 +206,7 @@ namespace Cover
 
 /-- The cover file's formal conjugate product is the generic word at the defect
 word: the two definitions have the same body. -/
-theorem conjProduct_eq_conjWord (l : List (FreeGroup (Fin generatorCount) × Bool)) :
+@[simp] theorem conjProduct_eq_conjWord (l : List (FreeGroup (Fin generatorCount) × Bool)) :
     conjProduct l = ConjWord.conjWord defectWord l := rfl
 
 /-- The defect word represents the defect of the model, by the defining

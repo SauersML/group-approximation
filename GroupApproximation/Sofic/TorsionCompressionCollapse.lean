@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.ActualCoronaMFRadical
 import GroupApproximation.Criterion.CompressionCentralizerDefect
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Torsion compression collapse: the group-theoretic layer
@@ -44,12 +45,10 @@ universe u v
 
 variable {E : Type u} {Q : Type v} [Group E] [Group Q]
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable (N : Subgroup E) [hN : N.Normal]
-    [Countable E] : Countable (E ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective E _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-! ## The conjugation stabilizer of a marked element -/
 

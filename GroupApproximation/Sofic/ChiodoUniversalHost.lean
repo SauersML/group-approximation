@@ -244,7 +244,7 @@ def universalTorsionFreeHost (H : TorsionFreeHigmanHull ChiodoAbsorber) :
 
 /-- The construction changes nothing but the label: the universal group *is*
 the hull's carrier. -/
-theorem universalTorsionFreeHost_carrier
+@[simp] theorem universalTorsionFreeHost_carrier
     (H : TorsionFreeHigmanHull ChiodoAbsorber) :
     (universalTorsionFreeHost H).Carrier = H.Carrier := rfl
 

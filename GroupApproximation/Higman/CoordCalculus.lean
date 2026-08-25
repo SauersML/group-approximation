@@ -141,7 +141,7 @@ theorem Aset_le_ker {S : Set F₃} (hS : S ⊆ (K : Set F₃)) :
 /-- The index set, read inside the conjugating subgroup. -/
 def toK (S : Set F₃) : Set ↥K := Subtype.val ⁻¹' S
 
-theorem toK_inter (S T : Set F₃) : toK (S ∩ T) = toK S ∩ toK T := rfl
+@[simp] theorem toK_inter (S T : Set F₃) : toK (S ∩ T) = toK S ∩ toK T := rfl
 
 theorem Aset_eq_map {S : Set F₃} (hS : S ⊆ (K : Set F₃)) :
     Aset S = (Subgroup.closure (FreeGroup.of '' toK S)).map cbHom := by

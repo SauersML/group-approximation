@@ -6,7 +6,7 @@ import Mathlib.Logic.Equiv.Nat
 # `KC.21`: the `ContainsSquare` datum, its satisfiability, and the step the
 remark compresses
 
-`non_mf_groups_exist.tex`, `\begin{remark}[a small-cancellation realization]`
+`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`
 (`\label{rem:ff-realization}`).  The remark's first sentence is Fournier-Facio's
 theorem, cited to `\cite[\S2]{FFF}`: a finitely presented torsion-free
 property-`(T)` group `P` contains every finitely presented torsion-free group,

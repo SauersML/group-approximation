@@ -83,7 +83,7 @@ private theorem elementaryEquivGL4_comp_coreEmbedding
   ext g
   rfl
 
-private theorem stabilizationIndexEquiv_last :
+@[simp] private theorem stabilizationIndexEquiv_last :
     RankFour.stabilizationIndexEquiv (Sum.inr ()) = (3 : Fin 4) := rfl
 
 /-- Under `GL₃ = EL₃` and `GL₄ = EL₄`, the stabilized elementary core is

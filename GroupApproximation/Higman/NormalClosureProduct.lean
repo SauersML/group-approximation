@@ -137,7 +137,7 @@ theorem mem_normalClosure_iff_conjProd {S : Set A}
 /-- The set the tower's step is the normal closure of. -/
 def torsionSet (N : Subgroup A) : Set A := {g : A | ∃ n : ℕ, 0 < n ∧ g ^ n ∈ N}
 
-theorem torsionStep_eq (N : Subgroup A) :
+@[simp] theorem torsionStep_eq (N : Subgroup A) :
     Chiodo.torsionStep N = Subgroup.normalClosure (torsionSet N) := rfl
 
 /-- **The torsion set is symmetric**, which is what

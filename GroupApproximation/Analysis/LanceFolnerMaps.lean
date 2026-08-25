@@ -66,7 +66,7 @@ def deltaLine (g : G) : ℂ →L[ℂ] GroupHilbert G :=
     (norm_single_one g)).toContinuousLinearMap
 
 omit [Group G] in
-theorem deltaLine_apply (g : G) (z : ℂ) :
+@[simp] theorem deltaLine_apply (g : G) (z : ℂ) :
     deltaLine g z = z • (lp.single 2 g (1 : ℂ) : GroupHilbert G) := rfl
 
 def folnerIncl {k : ℕ} (e : Fin k → G) :
@@ -140,7 +140,7 @@ def compressionLM {k : ℕ}
     simp
 
 omit [Group G] in
-theorem compressionLM_apply {k : ℕ}
+@[simp] theorem compressionLM_apply {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) (v : EuclideanSpace ℂ (Fin k)) :
     compressionLM J a v = ContinuousLinearMap.adjoint J (a (J v)) :=
@@ -236,7 +236,7 @@ def folnerUp {k : ℕ} (e : Fin k → G) (c : Fin k → ℂ) :
       (GroupHilbert G →L[ℂ] GroupHilbert G) :=
   choiMap (folnerTuple e c)
 
-theorem folnerUp_apply {k : ℕ} (e : Fin k → G) (c : Fin k → ℂ)
+@[simp] theorem folnerUp_apply {k : ℕ} (e : Fin k → G) (c : Fin k → ℂ)
     (T : EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :
     folnerUp e c T
       = ∑ p : Fin k, ∑ q : Fin k,

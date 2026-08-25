@@ -78,7 +78,7 @@ def euclideanEntryLM (k : ℕ) (p q : Fin k) :
   map_smul' r T := by
     simp
 
-theorem euclideanEntryLM_apply {k : ℕ} (p q : Fin k)
+@[simp] theorem euclideanEntryLM_apply {k : ℕ} (p q : Fin k)
     (T : EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :
     euclideanEntryLM k p q T
       = ⟪(EuclideanSpace.single p (1 : ℂ) : EuclideanSpace ℂ (Fin k)),
@@ -135,7 +135,7 @@ def choiMap {k : ℕ} (b : Fin k → B) :
   map_smul' r T := by
     simp [map_smul, smul_smul, Finset.smul_sum]
 
-theorem choiMap_apply {k : ℕ} (b : Fin k → B)
+@[simp] theorem choiMap_apply {k : ℕ} (b : Fin k → B)
     (T : EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :
     choiMap b T
       = ∑ p : Fin k, ∑ q : Fin k,

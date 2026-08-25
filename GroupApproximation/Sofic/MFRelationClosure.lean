@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The MF radical of relations as a closure operator
@@ -30,11 +31,10 @@ universe u
 
 variable {G : Type u} [Group G]
 
-/-- Quotients of countable groups are countable; mirrored locally from
-`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance mfClosureQuotientCountable (N : Subgroup G) [hN : N.Normal]
-    [Countable G] : Countable (G ⧸ N) :=
-  Function.Surjective.countable (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- The MF closure of a normal subgroup: the pullback of the literal
 genuine-corona MF radical of the quotient. -/

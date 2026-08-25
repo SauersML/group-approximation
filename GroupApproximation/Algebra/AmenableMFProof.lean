@@ -7,7 +7,7 @@ import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 /-!
 # The Følner route to MF certifies exactly the LEF groups
 
-`non_mf_groups_exist.tex`, `\section{The cyclic comparison}`
+`non_mf_group_notes.tex`, `\section{The cyclic comparison}`
 `\label{sec:necessity}`, paragraph *Sharpness of the Kazhdan hypothesis*
 (grep `"hence MF by"`, not a line number --- the file is edited
 concurrently): the realized Clifford quotient of Theorem C "is a subgroup of

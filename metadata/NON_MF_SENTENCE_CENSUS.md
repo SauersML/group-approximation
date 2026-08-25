@@ -6,15 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 268 |
-| `definition` | 40 |
+| `formalized` | 260 |
+| `definition` | 43 |
 | `structural` | 14 |
-| `attribution` | 10 |
+| `attribution` | 8 |
+| `unassigned` | 6 |
 | `partial` | 2 |
 | `provenance` | 1 |
-| **total** | **335** |
+| **total** | **334** |
 
-Carrying a declaration or a ledger row: **310/335** (92.5%).
+Carrying a declaration or a ledger row: **305/334** (91.3%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -22,10 +23,16 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 424 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
-  * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
-* **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
-  * the rank-three theorem is proved in-repo for EVERY finite-type algebra over EVERY finite field, and the binary Leavitt case for all ranks >= 2; the printed statement's residue is characteristic zero and higher rank over a general finitely generated ring, which is a research programme, not a gap in this paper
+* **`partial`**, line 489 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
+  * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved. Preusser's normal-subgroup theorem is now proved in-repo as well: manuscriptPreusserNormalSubgroupTheorem gives, for 3 <= card iota over any ring with the finite right-exchange refinement (derived from right exchange by ExchangeRefinement.hasFiniteRightExchangePartitions_of_hasRightExchange, so this is a theorem over exchange rings), a UNIQUE two-sided ideal I sandwiching every normal N <= EL_iota(R) between EL_iota(R,I) and C_iota(R,I) -- existence from PreusserAssembly.preusser_sandwich, uniqueness from PreusserLevel.eq_normalLevel_of_sandwich. STILL PARTIAL: Preusser's Theorem 3 classifies every subgroup of GL_iota(R) NORMALIZED BY EL_iota(R), where this classifies the normal subgroups of EL_iota(R) themselves; that generalization is not formalized.
+* **`partial`**, line 489 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+  * the rank-three theorem is proved in-repo for EVERY finite-type algebra over EVERY finite field, the binary Leavitt case for all ranks >= 2, and charTwoGeneralRankElementaryPropertyT now gives property (T) for EL_n(R) in EVERY rank n >= 3 over EVERY finite-type ZMod 2-algebra, via the rectangular block A_2 system inside the elementary group. STILL PARTIAL: the printed statement's residue is characteristic zero and a general finitely generated coefficient ring, which is a research programme, not a gap in this paper
+* **`unassigned`**, line 665 --- Lemma~\ref{lem:stable-finite} therefore gives $U^*PU=P$, so $U$ commutes with $P$.
+* **`unassigned`**, line 665 --- Hence both $U\xi$ and $U^*\xi$ are fixed by $\sigma(L)$.
+* **`unassigned`**, line 665 --- Since $\omega$ was arbitrary, the corresponding Hilbert--Schmidt commutators converge ordinarily to zero.
+* **`unassigned`**, line 665 --- Thus $\operatorname{Ad}(V(u))$ and its inverse both preserve $\mathcal C_2(V,L)$, which proves the equality.
+* **`unassigned`**, line 697 --- If $c\in C_G(L)$, then $(V_n(c))\in\mathcal C_2(V,L)$.
+* **`unassigned`**, line 697 --- By Theorem~\ref{thm:transport}, the same is true of $(V_n(u)V_n(c)V_n(u)^*)$.
 
 ## By section
 
@@ -33,9 +40,9 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | --- | --- | --- |
 | (front matter) | 5 | 0 |
 | Introduction | 62 | 0 |
-| Relation to prior work | 16 | 0 |
+| Relation to prior work | 13 | 0 |
 | One-sided compression in finite dimension | 14 | 0 |
-| Kazhdan transport in normalized Hilbert--Schmidt norm | 59 | 0 |
+| Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 6 |
 | Normal Kazhdan subgroups and the MF radical | 66 | 0 |
 | The binary Leavitt self-compression | 12 | 0 |
 | The binary Leavitt group has full MF radical | 70 | 0 |

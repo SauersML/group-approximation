@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.KazhdanCliffordConstruction
 /-!
 # The realization reduction of `rem:ff-realization`
 
-`non_mf_groups_exist.tex`, `\begin{remark}[a small-cancellation realization]`
+`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`
 (`\label{rem:ff-realization}`), reads:
 
 > Fournier-Facio has pointed out (personal communication, 2026) that the affine

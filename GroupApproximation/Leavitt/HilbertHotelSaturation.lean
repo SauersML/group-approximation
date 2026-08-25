@@ -181,7 +181,7 @@ def frame16 : Fin 2 × (Fin 2 × Fin 4) ≃ Fin 16 where
 /-- The corner embedding `Fin 4 ↪ Fin 16` of the first `m`-block. -/
 def corner (i : Fin 4) : Fin 16 := ⟨i.val, by have := i.isLt; omega⟩
 
-theorem frame16_corner (i : Fin 4) : frame16 (0, (0, i)) = corner i := rfl
+@[simp] theorem frame16_corner (i : Fin 4) : frame16 (0, (0, i)) = corner i := rfl
 
 theorem corner_injective : Function.Injective corner := by
   intro i j h

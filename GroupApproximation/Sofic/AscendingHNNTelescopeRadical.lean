@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.AscendingHNNSplitExtension
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # The lamp differences of the first collapse stage lie in the MF radical
@@ -41,8 +42,10 @@ open scoped commutatorElement
 variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.Injective β)
 variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
 
-local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [Countable E] : Countable (E ⧸ N) := Quotient.countable
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- The lamp difference: the value `k` at one site against the same value at
 another.  Every collapse commutator of the witness lamp has this shape. -/

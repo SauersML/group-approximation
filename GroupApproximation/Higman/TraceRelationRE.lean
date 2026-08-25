@@ -213,9 +213,9 @@ def loOf (l : List (ℤ × ℤ)) : ℤ := (l.map Prod.fst).foldr min 0
 /-- The right end. -/
 def hiOf (l : List (ℤ × ℤ)) : ℤ := (l.map Prod.fst).foldr max 0
 
-theorem loIdx_eq (c : ℕ → List (ℤ × ℤ)) (r : ℕ) : loIdx c r = loOf (c r) := rfl
+@[simp] theorem loIdx_eq (c : ℕ → List (ℤ × ℤ)) (r : ℕ) : loIdx c r = loOf (c r) := rfl
 
-theorem hiIdx_eq (c : ℕ → List (ℤ × ℤ)) (r : ℕ) : hiIdx c r = hiOf (c r) := rfl
+@[simp] theorem hiIdx_eq (c : ℕ → List (ℤ × ℤ)) (r : ℕ) : hiIdx c r = hiOf (c r) := rfl
 
 theorem primrec_firsts : Primrec fun l : List (ℤ × ℤ) => l.map Prod.fst := by
   refine (Primrec.list_map Primrec.id ?_).of_eq fun _ => rfl

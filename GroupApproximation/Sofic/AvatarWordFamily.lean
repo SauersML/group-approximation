@@ -443,12 +443,12 @@ def padHomOf : FreeGroup (Fin n) →* FreeGroup (Fin (n + 1)) :=
   FreeGroup.map Fin.castSucc
 
 /-- The embedding is `padList` on spelled words. -/
-theorem padHomOf_mk (w : List (Fin n × Bool)) :
+@[simp] theorem padHomOf_mk (w : List (Fin n × Bool)) :
     (padHomOf : FreeGroup (Fin n) →* _) (FreeGroup.mk w) = FreeGroup.mk (padList w) :=
   rfl
 
 /-- The embedding on generators. -/
-theorem padHomOf_of (i : Fin n) :
+@[simp] theorem padHomOf_of (i : Fin n) :
     (padHomOf : FreeGroup (Fin n) →* _) (FreeGroup.of i) = FreeGroup.of i.castSucc :=
   rfl
 
@@ -628,15 +628,15 @@ def pad (long : List (Fin P.card × Bool)) : WordPresentation G where
   ker_le := P.padHom_ker_le long
 
 /-- The padded alphabet has one more letter. -/
-theorem pad_card (long : List (Fin P.card × Bool)) :
+@[simp] theorem pad_card (long : List (Fin P.card × Bool)) :
     (P.pad long).card = P.card + 1 := rfl
 
 /-- The padded presentation map, unfolded. -/
-theorem pad_hom (long : List (Fin P.card × Bool)) :
+@[simp] theorem pad_hom (long : List (Fin P.card × Bool)) :
     (P.pad long).hom = P.padHom long := rfl
 
 /-- The padded relator family, unfolded. -/
-theorem pad_rel (long : List (Fin P.card × Bool)) :
+@[simp] theorem pad_rel (long : List (Fin P.card × Bool)) :
     (P.pad long).rel = P.padRel long := rfl
 
 /-- **Padding preserves the presented group.**  On words in the old
@@ -706,7 +706,7 @@ def kernelWords : Set (List (Fin (P.card + P.card) × Bool)) :=
 def pairWord (i : Fin P.card) : List (Fin (P.card + P.card) × Bool) :=
   [(unbar P i, true), (bar P i, true)]
 
-private theorem mk_positive_singleton (j : Fin (P.card + P.card)) :
+@[simp] private theorem mk_positive_singleton (j : Fin (P.card + P.card)) :
     FreeGroup.mk [(j, true)] = FreeGroup.of j := rfl
 
 theorem mk_pairWord (i : Fin P.card) :
@@ -1359,10 +1359,10 @@ def srcPres : WordPresentation E := D.src.pres
 def parPres : WordPresentation B := D.par.pres
 
 /-- The source alphabet. -/
-theorem srcPres_card : D.srcPres.card = D.src.pres.card := rfl
+@[simp] theorem srcPres_card : D.srcPres.card = D.src.pres.card := rfl
 
 /-- The partner alphabet. -/
-theorem parPres_card : D.parPres.card = D.par.pres.card := rfl
+@[simp] theorem parPres_card : D.parPres.card = D.par.pres.card := rfl
 
 /-- Source relators are positive, by the convention. -/
 theorem srcPres_rel_positive :

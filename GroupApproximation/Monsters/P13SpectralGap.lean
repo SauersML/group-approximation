@@ -8,7 +8,7 @@ import Mathlib.Analysis.Normed.Operator.Banach
 /-!
 # The spectral localization of the P13 Kazhdan Laplacian
 
-Manuscript: `non_mf_groups_exist.tex`, Proposition `\ref{prop:literal-base-T}`
+Manuscript: `non_mf_group_notes.tex`, Proposition `\ref{prop:literal-base-T}`
 (subsection *Property (T) of the base*), **Step 1**.  The two sentences
 formalized here were
 

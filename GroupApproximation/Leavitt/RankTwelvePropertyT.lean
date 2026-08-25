@@ -96,7 +96,7 @@ def frame : (Fin 2 × Fin 2) × Fin 3 ≃ Fin 12 where
     omega
 
 /-- `frame` is the printed index formula `6a + 3b + c`. -/
-theorem frame_val (x : (Fin 2 × Fin 2) × Fin 3) :
+@[simp] theorem frame_val (x : (Fin 2 × Fin 2) × Fin 3) :
     (frame x).val = 6 * x.1.1.val + 3 * x.1.2.val + x.2.val := rfl
 
 /-- The reindexing isomorphism between the nested and flat rank-twelve

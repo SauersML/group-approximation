@@ -4,7 +4,7 @@ import GroupApproximation.Analysis.AmenableMFInput
 /-!
 # `CY.12c`: "the realized Clifford quotient, being amenable, is itself MF"
 
-`non_mf_groups_exist.tex`, `\section{The cyclic comparison}`
+`non_mf_group_notes.tex`, `\section{The cyclic comparison}`
 (`\label{sec:necessity}`), paragraph *Sharpness of the Kazhdan hypothesis*
 (grep `"hence MF by"`, never a line number --- the file is edited
 concurrently).  The aside was restored to the print on 2026-08-18 so that the

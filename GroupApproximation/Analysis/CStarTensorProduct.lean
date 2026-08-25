@@ -6,7 +6,7 @@ import GroupApproximation.Analysis.CStarTensorProductAlgebra
 
 ## The gap this addresses
 
-`non_mf_groups_exist.tex` makes two operator-algebraic assertions that are not
+`non_mf_group_notes.tex` makes two operator-algebraic assertions that are not
 merely unproved in this development but **unstatable** at the pinned Mathlib
 revision:
 

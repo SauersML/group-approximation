@@ -248,7 +248,7 @@ noncomputable def standardModule (ι : Type u) (B : Type v) [NonUnitalCStarAlgeb
     ((standardModule ι B).act f b).1 = fun i => f.1 i * b := rfl
 
 /-- The norm of `H_B`: `‖f‖² = ‖∑ᵢ f(i)⋆f(i)‖`. -/
-theorem standardModule_norm {ι : Type u} (f : ↥(summableSubmodule ι B)) :
+@[simp] theorem standardModule_norm {ι : Type u} (f : ↥(summableSubmodule ι B)) :
     (standardModule ι B).norm f
       = Real.sqrt ‖∑' i, star (f.1 i) * f.1 i‖ := rfl
 

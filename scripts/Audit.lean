@@ -80,7 +80,11 @@ example : SeededSelfAwareMFCompiler.HasLogicalSelfAwareMFCompiler :=
 example :
     Group.IsFinitelyPresented MFRadicalComputer.Carrier ∧
       ¬ IsOperatorMF MFRadicalComputer.Carrier ∧
+      Computable MFRadicalComputer.controlRawWord ∧
       (∀ p, NormMFInvisible (MFRadicalComputer.word p)) ∧
+      (∀ p, MFRadicalComputer.word p ∈
+        ⁅normMFResidual MFRadicalComputer.Carrier,
+          (⊤ : Subgroup MFRadicalComputer.Carrier)⁆) ∧
       (∀ p, MFRadicalComputer.word p = 1 ↔
         MFRadicalComputer.controlMachine.Halts p) ∧
       ¬ ComputablePred fun p : ℕ × ℕ => MFRadicalComputer.word p = 1 :=

@@ -155,7 +155,7 @@ letter conjugates by. -/
 def xiTop : ↥(⊤ : Subgroup F₀) ≃* ↥((xi 0).range) :=
   (Subgroup.topEquiv).trans (xiEmb 0)
 
-theorem coe_xiTop (a : ↥(⊤ : Subgroup F₀)) :
+@[simp] theorem coe_xiTop (a : ↥(⊤ : Subgroup F₀)) :
     ((xiTop a : ↥((xi 0).range)) : F₀) = xi 0 (a : F₀) := rfl
 
 theorem xi_coe_xiTop_symm (u : ↥((xi 0).range)) :

@@ -189,22 +189,22 @@ term carries the whole `Subtype`/`Units`/`Matrix` coercion tower over
 small `rfl` steps below crosses exactly one layer of it. -/
 
 /-- The stable letter, in the unit group. -/
-theorem tauModel_val :
+@[simp] theorem tauModel_val :
     ((tauModel : Model) : (Matrix (Fin 16) (Fin 16) Binary.R)ˣ) = Tunit Binary.L := rfl
 
 /-- The mark, in the unit group. -/
-theorem markModel_val :
+@[simp] theorem markModel_val :
     ((markModel : Model) : (Matrix (Fin 16) (Fin 16) Binary.R)ˣ)
       = elementaryUnit (4 : Fin 16) 5 (by decide) 1 := rfl
 
 /-- The defect, in the unit group. -/
-theorem defectModel_val :
+@[simp] theorem defectModel_val :
     ((defectModel : Model) : (Matrix (Fin 16) (Fin 16) Binary.R)ˣ)
       = elementaryUnit (0 : Fin 16) 2 (by decide) Binary.L.p1 := rfl
 
 /-- The transported root of the core is `τ c τ⁻¹`.  Stated at the model level,
 so that no coercion is unfolded at this step. -/
-theorem modelCore_transported_eq :
+@[simp] theorem modelCore_transported_eq :
     modelCore.transported = tauModel * markModel * tauModel⁻¹ := rfl
 
 /-- The corner generator's image, at the model level. -/

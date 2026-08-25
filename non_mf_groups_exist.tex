@@ -137,8 +137,8 @@ in operator norm and which asymptotically separate its nonidentity elements:
 for each $g\ne1$, the quantity
 $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend
 on $g$.
-Throughout, \emph{MF group} means this operator-norm notion of
-Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}.
+Throughout, \emph{MF group} means the operator-norm notion introduced by
+Carri\'on--Dadarlat--Eckhardt~\cite[Definition~2.7]{CDE}.
 
 For a countable group $G$, define its MF radical by
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G that every allowed matrix model erases">
@@ -470,8 +470,9 @@ for every MF group $M$.
 
 \subsection*{Relation to prior work}
 
-The group-MF framework used here is developed by
-Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}.
+Carri\'on--Dadarlat--Eckhardt introduced the group-MF framework used
+here~\cite{CDE}; Korchagin subsequently developed permanence and local
+approximation results for MF groups~\cite{Korchagin}.
 Shulman proves MF permanence for doubles $G*_H G$ of MF groups and, separately,
 MF full group $C^*$-algebra results for several classes of amalgamated and
 semidirect products~\cite{Shulman}.  The operator-norm case
@@ -484,14 +485,6 @@ representation in a second norm matrix corona.  Its Kazhdan projection makes
 the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
 compressor.  Section~4 then proves that a normal property-\textup{(T)} subgroup
 contained in the defect lies in the MF radical.
-
-A closely related $C^*$-algebraic phenomenon appears in Tseng's work
-\cite{Tseng}: a proper one-sided compression of a property-\textup{(T)}
-subgroup makes its Kazhdan projection infinite in the full group
-$C^*$-algebra.  That result obstructs MF-ness of the full group
-$C^*$-algebra.  The present argument instead applies stable finiteness to the
-corona representation formed by coordinatewise conjugation and obtains an
-obstruction to the group-MF property itself.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -575,6 +568,19 @@ where $V$ ranges over all operator-norm asymptotic representations of $G$.
 An element is universally Hilbert--Schmidt trivial precisely when it belongs
 to $R_{\infty\to2}(G)$.
 
+For $L\le G$, let
+\[
+ \mathcal C_2(V,L)
+ =\left\{(x_n)\ \middle|\
+   \begin{aligned}
+    &\sup_n\opnorm{x_n}<\infty,\\
+    &\hsnorm{[V_n(\ell),x_n]}\longrightarrow0 &&(\ell\in L)
+   \end{aligned}\right\}
+\]
+be the bounded Hilbert--Schmidt asymptotic commutant of $V(L)$.  Coordinatewise
+conjugation by $V_n(g)$ defines a bijection, denoted $\operatorname{Ad}(V(g))$,
+of the bounded matrix sequences.
+
 \begin{lemma}\label{lem:stable-finite}
 For every sequence $(m_n)$, the norm matrix corona
 \[
@@ -630,23 +636,16 @@ of the representation gives the same projection inequality in $B$.
 \begin{theorem}[one-sided Kazhdan transport]\label{thm:transport}
 Let $L\le G$ have property~\textup{(T)}, and let $u\in G$ satisfy
 $uLu^{-1}\le L$.  Let $(V_n)$ be an operator-norm asymptotic
-representation of $G$, and let $(x_n)$ be uniformly bounded in operator
-norm.  If
+representation of $G$.  Then
 \[
- \hsnorm{V_n(\ell)x_nV_n(\ell)^*-x_n}\longrightarrow0
- \qquad(\ell\in L),
+ \operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)
+ =\mathcal C_2(V,L).
 \]
-then, for every $\ell\in L$,
-\begin{align*}
- \hsnorm{V_n(\ell)V_n(u)x_nV_n(u)^*V_n(\ell)^*
-          -V_n(u)x_nV_n(u)^*}&\longrightarrow0,\\
- \hsnorm{V_n(\ell)V_n(u)^*x_nV_n(u)V_n(\ell)^*
-          -V_n(u)^*x_nV_n(u)}&\longrightarrow0.
-\end{align*}
 \end{theorem}
 
 \begin{proof}
-Let $\omega$ be a free ultrafilter.  Regard $M_{d_n}(\C)$ as a Hilbert
+Fix $x=(x_n)\in\mathcal C_2(V,L)$ and let $\omega$ be a free ultrafilter.
+Regard $M_{d_n}(\C)$ as a Hilbert
 space with its normalized Hilbert--Schmidt inner product, and form the
 Hilbert-space ultraproduct $\mathcal K_\omega$.  Conjugation by the $V_n(g)$
 defines a unitary representation $\sigma$ of $G$ on $\mathcal K_\omega$.
@@ -656,8 +655,8 @@ Indeed, for unitaries $A,B$ one has
  \le2\opnorm{A-B},
 \]
 so the operator-norm multiplicative defects of $(V_n)$ also make the
-conjugation actions multiplicative modulo $c_0$.
-The class $\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
+conjugation actions multiplicative modulo $c_0$.  The class
+$\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
 
 For $g\in G$, let $\widetilde\sigma(g)$ be the class of the coordinate
 operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
@@ -679,11 +678,11 @@ $uLu^{-1}\le L$, the unitary $U=\widetilde\sigma(u)$ satisfies the
 hypothesis of Lemma~\ref{lem:kazhdan-projection-order}, and hence
 $U^*PU\le P$ inside $\mathcal B$.
 The two projections are unitarily equivalent.  Lemma~\ref{lem:stable-finite}
-therefore gives $U^*PU=P$.  Hence both $U$ and $U^*$ preserve
-$\operatorname{Fix}\sigma(L)$, so $U\xi$ and $U^*\xi$ are fixed by
-$\sigma(L)$.  The two limits in the statement therefore vanish along
-$\omega$.  Since this holds for every free ultrafilter, both sequences
-converge ordinarily.
+therefore gives $U^*PU=P$, so $U$ commutes with $P$.  Hence both $U\xi$ and
+$U^*\xi$ are fixed by $\sigma(L)$.  Since $\omega$ was arbitrary, the
+corresponding Hilbert--Schmidt commutators converge ordinarily to zero.
+Thus $\operatorname{Ad}(V(u))$ and its inverse both preserve
+$\mathcal C_2(V,L)$, which proves the equality.
 \end{proof}
 
 \begin{corollary}\label{cor:defect-hs}
@@ -697,9 +696,8 @@ $c\in C_G(L)$.  Then
 
 \begin{proof}
 Let $(V_n)$ be an operator-norm asymptotic representation.  If
-$c\in C_G(L)$, the sequence $(V_n(c))$ asymptotically commutes with
-$V_n(L)$ in operator norm and hence in normalized Hilbert--Schmidt norm.
-Theorem~\ref{thm:transport} shows that the same is true of
+$c\in C_G(L)$, then $(V_n(c))\in\mathcal C_2(V,L)$.  By
+Theorem~\ref{thm:transport}, the same is true of
 $(V_n(u)V_n(c)V_n(u)^*)$.  Asymptotic multiplicativity identifies this
 sequence in operator norm with $(V_n(ucu^{-1}))$; explicitly,
 \[
@@ -1553,11 +1551,5 @@ Proceedings of the International Congress of Mathematicians---Rio de
 Janeiro 2018,
 \href{https://arxiv.org/abs/1712.01052}{arXiv:1712.01052}.
 
-\bibitem[Ts]{Tseng}
-Tseng,
-\emph{Infinite projections in full group $C^*$-algebras of
-$S$-arithmetic groups},
-preprint, 2026,
-\doi{10.5281/zenodo.21939762}.
 \end{thebibliography}
 \end{document}

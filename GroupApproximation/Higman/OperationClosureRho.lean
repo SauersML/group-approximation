@@ -138,7 +138,7 @@ noncomputable def rhoSeq (f : E) : E := Finsupp.equivMapDomain negEquiv f
   rw [Finsupp.equivMapDomain_apply]
   rfl
 
-theorem rhoSeq_support (f : E) :
+@[simp] theorem rhoSeq_support (f : E) :
     (rhoSeq f).support = f.support.map negEquiv.toEmbedding := rfl
 
 /-- The reflection on the free group of the index set.  The generator goes to

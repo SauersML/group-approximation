@@ -20,7 +20,7 @@ the infimum attained.
 
 This is the object written `|\gamma|_S` in Step 3 and Step 4 of the proof
 sketch of the involutive collapse theorem `\ref{thm:collapse}` that
-`non_mf_groups_exist.tex` printed until commit `3a45fa60`, where the
+`non_mf_group_notes.tex` printed until commit `3a45fa60`, where the
 displacement
 bound `d_n(1,\gamma) \le |\gamma|_S\,k_n` and the mass estimate
 `\|b_n(\gamma)\|_{\mathrm F}^2 \le 4|\gamma|_S` were both stated against

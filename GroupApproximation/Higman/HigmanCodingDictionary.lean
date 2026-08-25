@@ -173,7 +173,7 @@ noncomputable def coordSeq (n : ℕ) (v : Fin n → ℤ) : E := seqOfList (listO
 /-- The window coordinates of a sequence. -/
 def windowCoords (n : ℕ) (f : E) : Fin n → ℤ := fun i => f ((i : ℕ) : ℤ)
 
-theorem windowCoords_mk (n : ℕ) (f : E) (m : ℕ) (hm : m < n) :
+@[simp] theorem windowCoords_mk (n : ℕ) (f : E) (m : ℕ) (hm : m < n) :
     windowCoords n f ⟨m, hm⟩ = f (m : ℤ) := rfl
 
 theorem coordSeq_apply (n : ℕ) (v : Fin n → ℤ) (j : ℤ) :
@@ -622,7 +622,7 @@ theorem primrec_listOfCoords (n : ℕ) : Primrec (listOfCoords n) :=
     Primrec.pair (Primrec.const (((i : ℕ) : ℤ)))
       (Primrec.fin_app.comp Primrec.id (Primrec.const i))
 
-theorem seqOfList_listOfCoords (n : ℕ) (v : Fin n → ℤ) :
+@[simp] theorem seqOfList_listOfCoords (n : ℕ) (v : Fin n → ℤ) :
     seqOfList (listOfCoords n v) = coordSeq n v := rfl
 
 /-! ## 6.  The transfer -/

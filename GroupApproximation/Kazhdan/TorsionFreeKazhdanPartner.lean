@@ -193,7 +193,7 @@ def gamma3Partner : TorsionFreeKazhdanPartner where
   kazhdan := gamma3_kazhdan
 
 /-- The partner's carrier is `Γ(3)` on the nose. -/
-theorem gamma3Partner_B : gamma3Partner.B = ↥gamma3 := rfl
+@[simp] theorem gamma3Partner_B : gamma3Partner.B = ↥gamma3 := rfl
 
 end CongruenceSubgroup
 

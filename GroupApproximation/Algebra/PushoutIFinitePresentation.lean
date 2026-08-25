@@ -142,8 +142,9 @@ def toPush : Q φ i₀ S →* PushoutI φ :=
     toPush φ i₀ (S := S) (QuotientGroup.mk' (Rel φ i₀ S) x) =
       PushoutI.ofCoprodI x := rfl
 
-theorem toPush_comp_fromPush [Nonempty ι] (hS : Subgroup.closure S = ⊤) :
+theorem toPush_comp_fromPush (hι : Nonempty ι) (hS : Subgroup.closure S = ⊤) :
     (toPush φ i₀ (S := S)).comp (fromPush φ i₀ hS) = MonoidHom.id _ := by
+  haveI := hι
   refine PushoutI.hom_ext_nonempty ?_
   intro i
   refine MonoidHom.ext fun g ↦ ?_
@@ -168,7 +169,7 @@ theorem fromPush_comp_toPush (hS : Subgroup.closure S = ⊤) :
   exact congrArg (fun f : CoprodI G →* Q φ i₀ S ↦ f x) key
 
 /-- The candidate presentation really does present the pushout. -/
-def quotientEquiv [Nonempty ι] (hS : Subgroup.closure S = ⊤) :
+def quotientEquiv (hι : Nonempty ι) (hS : Subgroup.closure S = ⊤) :
     Q φ i₀ S ≃* PushoutI φ where
   toFun := toPush φ i₀
   invFun := fromPush φ i₀ hS
@@ -177,7 +178,7 @@ def quotientEquiv [Nonempty ι] (hS : Subgroup.closure S = ⊤) :
       (fromPush_comp_toPush φ i₀ hS)
   right_inv x :=
     congrArg (fun f : PushoutI φ →* PushoutI φ ↦ f x)
-      (toPush_comp_fromPush φ i₀ hS)
+      (toPush_comp_fromPush φ i₀ hι hS)
   map_mul' := map_mul _
 
 end Quotient
@@ -188,15 +189,15 @@ end Quotient
 generated group is finitely presented.**  In particular an amalgamated free
 product `G₁ *_H G₂` of finitely presented groups over a finitely generated
 subgroup is finitely presented. -/
-theorem isFinitelyPresented_pushoutI [Finite ι] [Nonempty ι]
+theorem isFinitelyPresented_pushoutI [Finite ι] (hι : Nonempty ι)
     [∀ i, Group.IsFinitelyPresented (G i)] [Group.FG H] :
     Group.IsFinitelyPresented (PushoutI φ) := by
-  obtain ⟨j⟩ := ‹Nonempty ι›
+  obtain ⟨j⟩ := hι
   obtain ⟨S, hclosure, hfinite⟩ := Group.fg_iff.mp (inferInstance : Group.FG H)
   haveI : Group.IsFinitelyPresented (Q φ j S) :=
     Group.IsFinitelyPresented.quotient (Rel φ j S)
       ⟨relators φ j S, relators_finite φ j hfinite, rfl⟩
-  exact Group.IsFinitelyPresented.equiv (quotientEquiv φ j hclosure)
+  exact Group.IsFinitelyPresented.equiv (quotientEquiv φ j ⟨j⟩ hclosure)
 
 end PushoutIFinitePresentation
 end GroupApproximation

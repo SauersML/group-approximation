@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefinitions
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedRemarks
 import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Sentence closure for the introductory definitions and calculus
@@ -16,13 +17,10 @@ namespace OneSidedMFRadical
 
 universe u
 
-/-- The quotient occurring in sentence 24 is countable because its canonical
-projection is surjective. -/
-local instance sentence24QuotientCountable
-    {G : Type} [Group G] [Countable G]
-    (N : Subgroup G) [hN : N.Normal] : Countable (G ⧸ N) :=
-  Function.Surjective.countable
-    (@QuotientGroup.mk'_surjective G _ N hN)
+/- Quotients of countable groups are countable.  Proved once as
+`GroupApproximation.CountableInstances.quotientCountable` and taken here with
+the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
 /-- **Sentence 11.**  The printed MF definition is embedding into a genuine
 norm-matrix C-star corona with positive increasing dimensions. -/

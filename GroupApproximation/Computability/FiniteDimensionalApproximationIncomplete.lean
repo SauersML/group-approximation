@@ -5,6 +5,7 @@ import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.MicrostateNaturalize
 import GroupApproximation.Sofic.MFCamouflageConsequences
 import GroupApproximation.Sofic.NormMFUniversalCorona
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Finite-dimensional representations can be computationally blind
@@ -25,8 +26,10 @@ namespace FiniteDimensionalApproximationIncomplete
 
 open PresentationCodes
 
-local instance multiplicativeIntCountable : Countable (Multiplicative ℤ) :=
-  Countable.of_equiv ℤ Multiplicative.toAdd
+/- `Multiplicative ℤ` is countable.  Proved once as
+`GroupApproximation.CountableInstances.multiplicativeIntCountable` and taken
+here with the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.multiplicativeIntCountable
 
 /-! ## The headline fixed-group theorem -/
 

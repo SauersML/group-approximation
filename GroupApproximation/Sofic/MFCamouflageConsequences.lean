@@ -6,6 +6,7 @@ import GroupApproximation.Sofic.MFCamouflageRadical
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.UniversalFactorization
 import Mathlib.GroupTheory.SpecificGroups.Cyclic
+import GroupApproximation.Algebra.CountableInstances
 
 /-!
 # Quotient phase transitions and two-tier invisibility
@@ -62,8 +63,10 @@ local instance consequenceQuotientCountable
     Countable (Q ⧸ M) :=
   Function.Surjective.countable (QuotientGroup.mk'_surjective M)
 
-local instance multiplicativeIntCountable : Countable (Multiplicative ℤ) :=
-  Countable.of_equiv ℤ Multiplicative.toAdd
+/- `Multiplicative ℤ` is countable.  Proved once as
+`GroupApproximation.CountableInstances.multiplicativeIntCountable` and taken
+here with the same `local` scope the mirrored copy had. -/
+attribute [local instance] GroupApproximation.CountableInstances.multiplicativeIntCountable
 
 /-- Every countable cyclic group is operator-MF: Mathlib identifies it with
 `Multiplicative (ZMod n)`; `n = 0` is the integers and `n ≠ 0` is finite. -/

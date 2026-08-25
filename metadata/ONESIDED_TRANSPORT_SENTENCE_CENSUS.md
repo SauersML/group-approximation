@@ -58,18 +58,17 @@ that landed afterwards (`PrintedSectorProof`, `SentenceNormalKazhdanClosure`,
 Every stored tex line number below predates the current manuscript and can be
 stale by up to ninety lines.
 
-Of the five rows that remain `PARTIAL`, **exactly one is load-bearing**: the
+Of the four rows that remain `PARTIAL`, **exactly one is load-bearing**: the
 passage from the Hilbert-space Kazhdan inequality to the operator order
 `b ≥ (κ²/|S|)q` *inside the corner corona*, which
 `Manuscript/OneSidedMFRadical/CornerCoordinatePassage.lean` states explicitly
-that it does not claim and takes as a hypothesis.  The other four are
+that it does not claim and takes as a hypothesis.  The other three are
 literature attributions that no numbered statement rests on: the general
 Ershov--Jaikin-Zapirain theorem (only the instance the paper uses is proved
 in-repo), Leavitt's historical module-rank statement together with a general
 `PurelyInfinite` predicate (the operative sandwich property is proved),
-Tseng's theorem (the present corona route is proved instead), and Preusser's
-general normal-subgroup theorem (the direct root extraction is proved
-instead).
+and Preusser's general normal-subgroup theorem (the direct root extraction is
+proved instead).
 
 **Snapshot.**  Counts are as of the working tree containing
 `Manuscript/OneSidedMFRadical/{PrintedDefinitions, PrintedLeavittEquations,
@@ -124,7 +123,7 @@ proves simplicity without his theorem.  See the ranked list after the table.
 | 13 | 118–122 | Display: `⊕_n M_{d_n}(C) = {(x_n) : ‖x_n‖ → 0}`. | `Analysis.IsNullMatrixSequence` (at `cofinite`); `PrintedDefinitions.manuscriptCoronaDenominator`, `normMatrixCStarCoronaMk_eq_zero_iff_tendsto` | CARRIED |
 | 14 | 123 | "is the `c_0`-direct sum" | same as #13 (`PrintedDefinitions.manuscriptCoronaDenominator`) | CARRIED |
 | 15 | 123–126 | "Equivalently, an MF group admits finite-dimensional unitary models whose multiplicative defects tend to zero in operator norm and which asymptotically separate its nonidentity elements." | `Sofic.isCDEOperatorMF_iff_isOperatorMF`; `PrintedDefinitions.manuscriptMFUnitaryModels`, `isCDEOperatorMF_exists_separating_unitary_models` | CARRIED |
-| 16 | 127–129 | "Throughout, *MF group* means this operator-norm notion of Carrión–Dadarlat–Eckhardt and Korchagin." | — | CITED (CDE; Korchagin) |
+| 16 | 127–129 | "Throughout, *MF group* means the operator-norm notion introduced by Carrión–Dadarlat–Eckhardt." | — | CITED (CDE, Definition 2.7) |
 | 17 | 153–157 | Display: `Rad_MF(G) = ⋂_d ⋂_π ker π`. | `Sofic.manuscriptCoronaMFResidual` | CARRIED |
 | 18 | 158 | "The group `G` is MF precisely when `Rad_MF(G)` is trivial." | `Sofic.isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot` | CARRIED |
 | 19 | 158–160 | "If `Rad_MF(G)=G`, every homomorphism from `G` to an MF group is trivial." | `manuscriptFullRadicalKillsMFTargets` | CARRIED |
@@ -239,12 +238,11 @@ proves simplicity without his theorem.  See the ranked list after the table.
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 86 | 402–406 | "The group-MF framework used here is developed by Carrión–Dadarlat–Eckhardt and Korchagin; permanence results are due to Shulman." | — | CITED (CDE; Korchagin; Shulman) |
+| 86 | 402–406 | "Carrión–Dadarlat–Eckhardt introduced the group-MF framework; Korchagin subsequently developed permanence and local approximation results; permanence results for amalgamated constructions are due to Shulman." | — | CITED (CDE; Korchagin; Shulman) |
 | 87 | 406–408 | "The operator-norm case remained open after non-approximability had been established for finite Schatten norms." | — | CITED (DGLT; LubotzkyOppenheim; Thom) |
 | 88 | 409–410 | "Bachner–Dogon–Lubotzky study an operator–Hilbert–Schmidt stability condition as a possible source of non-MF groups." | — | CITED (BDL) |
 | 89 | 411–412 | Operator-norm control makes coordinatewise conjugation a representation in a second norm matrix corona. | `Analysis.AdjointDefectEstimate.adConj_asymptoticallyMultiplicative`, `printedAdjointParagraph` | CARRIED |
 | 90 | 412–415 | Its Kazhdan projection controls the Hilbert–Schmidt asymptotic commutant, and Section 4 puts a normal Kazhdan subgroup in the MF radical. | `Sofic.UltraproductKazhdanProjection.kt_08_kazhdan_projection`; `Sofic.ultraproductKazhdanTransport`; `manuscriptNormalKazhdanRadical` | CARRIED |
-| 91 | 417–423 | Tseng's related result makes the Kazhdan projection infinite under a proper one-sided compression and obstructs MF-ness of the full group `C*`-algebra; the present proof instead uses corona stable finiteness to obstruct the group-MF property. | `manuscriptNormMatrixCoronaStableFinite`; `manuscriptOneSidedKazhdanTransport`; `manuscriptNormalKazhdanRadical` | PARTIAL / CITED (Tseng) — the present comparison endpoint is formalized; Tseng's literature theorem is not |
 | 92 | 425–428 | Leavitt introduced `L_K(1,n)` as nonunique-rank rings; the binary algebra is purely infinite simple. | `LeavittFamily.rankSuccEquiv`; `BinaryLeavitt.hasSingleSandwichDivision`; `HasSingleSandwichDivision.isSimpleRing` | PARTIAL / CITED (Leavitt; AbramsAranda) — related positive-rank equivalences, the exact sandwich property, and ring simplicity are formalized; the historical module-rank statement and a general pure-infiniteness predicate are not |
 | 93 | 428 | "hence an exchange ring" | `ExchangePrerequisite.HasRightExchange`; `BinaryLeavitt.hasRightExchange` | CARRIED |
 | 94 | 429 | "and its center is the base field" | `BinaryLeavitt.center_eq_bot`, `eq_smul_one_of_central` | CARRIED |
@@ -277,6 +275,7 @@ proves simplicity without his theorem.  See the ranked list after the table.
 | 111 | 495 | "so `K_2(V)` is a normal subgroup of `G`" | `hsKernel_normal` (instance); `manuscriptShadowResidualIsIntersectionOfHSKernels` cl. 2 | CARRIED |
 | 112 | 496–499 | `eq:shadow-residual`: `R_{∞→2}(G) = ⋂_V K_2(V)`. | `opToHSShadowResidual_eq_iInf_hsKernel`; `manuscriptShadowResidualIsIntersectionOfHSKernels` cl. 3 | CARRIED |
 | 113 | 500–501 | "An element is universally Hilbert–Schmidt trivial precisely when it belongs to `R_{∞→2}(G)`." | `mem_opToHSShadowResidual_iff_forall_hsKernel` | CARRIED |
+| 113a | 571–581 | Definition of the bounded Hilbert–Schmidt asymptotic commutant `C_2(V,L)` and coordinatewise conjugation `Ad(V(g))`. | `IsUniformlyBounded`; `IsAsymptoticCommutantOf`; `adjointSequence`; `coadjointSequence` | CARRIED |
 
 ## §3 `lem:stable-finite` (ll. 503–510) and its proof (ll. 512–522)
 
@@ -308,7 +307,7 @@ proves simplicity without his theorem.  See the ranked list after the table.
 
 | # | tex line | Claim | Lean declaration | Status |
 | --- | --- | --- | --- | --- |
-| 130 | 556–570 | Statement: both conjugation directions of the transport. | `manuscriptOneSidedKazhdanTransport`; `TransportAssembly.manuscriptOneSidedKazhdanTransportPackage`, `manuscriptOneSidedKazhdanTransportAnyAmbient` | CARRIED |
+| 130 | 635–642 | Statement: the bounded Hilbert–Schmidt asymptotic commutant is invariant under coordinatewise conjugation by the one-sided compressor. | `manuscriptOneSidedKazhdanTransport`; `TransportAssembly.manuscriptOneSidedKazhdanTransportPackage`, `manuscriptOneSidedKazhdanTransportAnyAmbient` | CARRIED |
 | 131 | 574–576 | "Regard `M_{d_n}(C)` as a Hilbert space with its normalized Hilbert–Schmidt inner product, and form the Hilbert-space ultraproduct `K_ω`." | `Sofic.AdjointMatrix.rowVec`/`rowMat`; `Analysis.CollapseUltraproductRepresentation.conjIsometryEquiv` | CARRIED |
 | 132 | 576–577 | "Conjugation by the `V_n(g)` defines a unitary representation `σ` of `G` on `K_ω`." | `Analysis.CollapseUltraproductRepresentation.conjRep`; `Sofic.AdjointMatrix.adjoint` | CARRIED |
 | 133 | 578–582 | Display: `‖Ad(A) − Ad(B)‖ ≤ 2‖A − B‖` for unitaries `A,B`. | `Sofic.AdjointMatrix.l2_opNorm_conjDouble_sub_le_two`; `Analysis.AdjointDefectEstimate.opNorm_adConj_sub_le_two_mul` | CARRIED |
@@ -323,8 +322,8 @@ proves simplicity without his theorem.  See the ranked list after the table.
 | 142 | 602–605 | "`U = σ̃(u)` satisfies the hypothesis of `lem:kazhdan-projection-order`, and hence `U*PU ≤ P` inside `B`." | `Sofic.UltraproductKazhdanProjection.kt_09_one_sided_compression`, `kt_09_conjugate_mul_proj`, `kt_09_proj_mul_conjugate` | CARRIED |
 | 143 | 606 | "The two projections are unitarily equivalent." | `Analysis.MurrayVonNeumannEquiv.of_isometry_conjugate` | CARRIED |
 | 144 | 606–607 | "`lem:stable-finite` therefore gives `U*PU = P`." | `Sofic.UltraproductKazhdanTransport.kt_10_finiteness_reverses_conjugate`, `UltraproductAdjointModel.kt_10_conjugate_eq` | CARRIED |
-| 145 | 607–608 | "Hence both `U` and `U*` preserve `Fix σ(L)`, so `Uξ` and `U*ξ` are fixed by `σ(L)`." | `Sofic.UltraproductAdjointModel.starModel`, `act_pi_iota_of_act_P`, `pi_mul_P` | CARRIED |
-| 146 | 608–611 | "The two limits vanish along `ω`. Since this holds for every free ultrafilter, both sequences converge ordinarily." | `Sofic.UltraproductKazhdanTransport.tendsto_along_free_ultrafilters`, `tendsto_of_sqrt_le` | CARRIED |
+| 145 | 680–681 | "Hence both `Uξ` and `U*ξ` are fixed by `σ(L)`." | `Sofic.UltraproductAdjointModel.starModel`, `act_pi_iota_of_act_P`, `pi_mul_P` | CARRIED |
+| 146 | 681–684 | Vanishing along every free ultrafilter gives ordinary convergence, so conjugation and inverse conjugation preserve `C_2(V,L)`. | `Sofic.UltraproductKazhdanTransport.tendsto_along_free_ultrafilters`, `tendsto_of_sqrt_le`; `manuscriptOneSidedKazhdanTransportPackage` | CARRIED |
 
 ## §3 `cor:defect-hs` (ll. 614–621) and its proof (ll. 623–639)
 
@@ -639,12 +638,11 @@ direct root-extraction statements rather than Preusser's general theorem.
 
 | # | tex line | Claim | Paper | In-repo status |
 | --- | --- | --- | --- | --- |
-| 16 | 127–129 | "*MF group* means this operator-norm notion." | Carrión–Dadarlat–Eckhardt (`CDE`); Korchagin (`Korchagin`) | Definition is formalized (`Sofic.IsCDEOperatorMF`); the citation is attribution only |
+| 16 | 127–129 | "*MF group* means this operator-norm notion." | Carrión–Dadarlat–Eckhardt (`CDE`, Definition 2.7) | Definition is formalized (`Sofic.IsCDEOperatorMF`); the citation is attribution only |
 | 52 | 275–277 | "Whether every countable group is MF … remained open." | `CDE`; `Korchagin`; Thom (`Thom`); Shulman (`Shulman`) | Historical claim; nothing to formalize |
-| 86 | 402–406 | Framework and permanence results. | `CDE`; `Korchagin`; `Shulman` | Attribution only |
+| 86 | 402–406 | Introduction of the framework and later permanence/local approximation results. | `CDE`; `Korchagin`; `Shulman` | Attribution only |
 | 87 | 406–408 | Non-approximability for finite Schatten norms. | `DGLT`; `LubotzkyOppenheim`; `Thom` | Not in repo; not used by any proof |
 | 88 | 409–410 | Operator–Hilbert–Schmidt stability as a possible source of non-MF groups. | Bachner–Dogon–Lubotzky (`BDL`) | Not in repo; not used |
-| 91 | 417–423 | One-sided compression makes a Kazhdan projection infinite in the full group `C*`-algebra; comparison with the present corona argument. | Tseng (`Tseng`) | **PARTIAL** — the present stable-finite corona route is formalized; Tseng's theorem is not |
 | 92 / 227 | 425–428, 912 | Leavitt rank behavior and pure infinite simplicity / the operative sandwich form. | Leavitt (`Leavitt`); Abrams–Aranda Pino (`AbramsAranda`) | **PARTIAL** — positive-rank equivalences, `BinaryLeavitt.hasSingleSandwichDivision`, and `HasSingleSandwichDivision.isSimpleRing` are proved; the historical module-rank statement and a general `PurelyInfinite` predicate are not |
 | 93 | 428 | "hence an exchange ring" | Ara (`AraExchange`) | **DISCHARGED IN-REPO** — `BinaryLeavitt.hasRightExchange` proves the standard one-element right-ideal exchange-ring property |
 | 94 / 228 | 429, 913–915 | The center is the base field; over `F_2` the only central unit is `1`. | Aranda Pino–Crow (`ArandaCrow`) | **DISCHARGED IN-REPO** — `BinaryLeavitt.center_eq_bot`, `eq_smul_one_of_central`, and `central_units_trivial` |

@@ -8,7 +8,7 @@ import GroupApproximation.Sofic.WeakMFUltraproduct
 /-!
 # The normal-Kazhdan obstruction along the printed corona-image route
 
-`non_mf_groups_exist.tex`, Theorem~\ref{thm:normal-kazhdan}, in
+`non_mf_group_notes.tex`, Theorem~\ref{thm:normal-kazhdan}, in
 `\subsection{The normal-Kazhdan form of the obstruction}` of
 `\section{The compression defect and its obstruction theorems}`
 (`\label{sec:conj}`).  The manuscript is under concurrent revision, so this

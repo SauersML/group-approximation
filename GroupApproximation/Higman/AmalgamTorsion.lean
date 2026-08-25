@@ -229,13 +229,14 @@ theorem pow_eq_one_of_conj {c y : PushoutI φ} {n : ℕ}
 /-- **An amalgamated free product of torsion-free groups is torsion-free.**
 
 The base group needs no hypothesis of its own: it embeds in a factor, which is
-what `[Nonempty ι]` is buying.  See this file's header for what stood here
-before, and why the reduction it was gated on was deleted rather than
-proved. -/
-theorem isPowerTorsionFree_pushoutI [Nonempty ι]
+what the explicit `hι : Nonempty ι` hypothesis is buying.  See this file's
+header for what stood here before, and why the reduction it was gated on was
+deleted rather than proved. -/
+theorem isPowerTorsionFree_pushoutI (hι : Nonempty ι)
     (hφ : ∀ i, Function.Injective (φ i))
     (htf : ∀ i, IsPowerTorsionFree (G i)) :
     IsPowerTorsionFree (PushoutI φ) :=
+  haveI := hι
   PushoutITorsionFree.isPowerTorsionFree_pushoutI_of_nonempty hφ htf
 
 /-! ## 5.  Every element is a factor element or a reduced word
@@ -277,10 +278,12 @@ def wordOfList (l : List (Σ i, G i)) (hnb : ∀ y ∈ l, y.2 ∉ (φ y.1).range
 
 /-- **Absorbing the head base element.**  Every element of the amalgam is
 either an element of a factor or the product of a nonempty reduced word. -/
-theorem exists_word_or_factor [Nonempty ι] (hφ : ∀ i, Function.Injective (φ i))
+theorem exists_word_or_factor (hι : Nonempty ι)
+    (hφ : ∀ i, Function.Injective (φ i))
     (x : PushoutI φ) :
     (∃ (i : ι) (g : G i), x = of i g) ∨
     (∃ w : Word G, Reduced φ w ∧ w.toList ≠ [] ∧ x = ofCoprodI w.prod) := by
+  haveI := hι
   obtain ⟨d⟩ := NormalWord.transversal_nonempty φ hφ
   have hx : x = base φ (NormalWord.equiv (d := d) x).head *
       ofCoprodI (NormalWord.equiv (d := d) x).toWord.prod := (prod_equiv x).symm

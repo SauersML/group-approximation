@@ -4,7 +4,7 @@ import GroupApproximation.Monsters.UniversalFinitelyPresentedTorsionFreeGroup
 /-!
 # `KC.21`: Fournier-Facio's universal group, resolved into its inputs
 
-`non_mf_groups_exist.tex`, `\begin{remark}[a small-cancellation realization]`
+`non_mf_group_notes.tex`, `\begin{remark}[a small-cancellation realization]`
 (`\label{rem:ff-realization}`), opens with a citation:
 
 > His finitely presented torsion-free property-`(T)` group `P` contains every
