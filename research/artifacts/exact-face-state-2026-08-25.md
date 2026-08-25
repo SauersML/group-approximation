@@ -96,6 +96,25 @@ established exactification).  Everything else on the large-prime edge is
 proved.  Section 5 below is superseded on the exact face at `p >= 11`; it
 still describes `p <= 7` and rank one.
 
+## 4c. The involution route: outlier confinement and the weakest leaf
+
+Rounding the stable letter (sector functions of the Haar unitary) shows a
+hyperlinear `G_p` would make every `Gamma *_Lambda (Lambda x C_m)`
+hyperlinear; the binary case `E_p` is the double-swap group, equivalent to
+the arithmetic double.  Running sections 4-4b against the swap involution
+gives an unconditional theorem: at `p >= 11` the involution is confined to
+uniform lattice outliers (the fold mark `[h, s]` would otherwise have trace
+1 against canonical 0).  The route through `E_p` therefore rests on the
+single open leaf `sl3-outliers-carry-no-balanced-free-involution`, implied
+by weak ucp-stability and not conversely -- the weakest leaf wired to the
+goal.  Two fences protect it: free involutions maximally anticommute with
+their twists, so abelian-carried leaks (wreath coordinates, K-orbit cells)
+can never satisfy the pattern; and the Weyl reverser `x_0 = h w_13`
+(an involution of `Gamma` inverting the twist word `z = s hsh^-1`) refutes
+the naive enemy descent to depth one by an exact identity, leaving only a
+dihedral form.  One rigidity -- `w_13 h w_13^-1 = h^-1` -- thus closes the
+coprime face AND blocks enemy regeneration.
+
 ## 5. What remains, precisely
 
 - **Ultra-deep towers.**  Orthogonal projection replaces the old linear
@@ -120,3 +139,8 @@ still describes `p <= 7` and rank one.
   (`dim H^1(B) ~ (p+1)n^2/12` against `2 n^2/12` from the two vertex groups)
   shows the two restriction images are far from transverse, so nothing is
   decided by dimension counting.
+
+Addendum (late 2026-08-25): with 4c, "what remains" for the involution
+route is exactly one statement -- no uniform lattice outlier carries a
+balanced free central involution.  Everything else on that route is
+established and unconditional.

@@ -3377,3 +3377,26 @@ refutes `lamp-coupled-relative-bimodule-correction` and invalidates the
 relative-Kazhdan correction route.  Any surviving character-actor proof must
 use an infinite dilation or a different positive-definite kernel, and still
 must connect its displacement back to the original finite presentation.
+
+**Double-swap route audit (2026-08-25, late).**  The day closed with a third
+reduction, strictly weaker at the leaf than the two stability reductions.
+`hnn-stable-letter-rounds-to-finite-order` rounds the Haar stable letter of
+any hyperlinear co-dense HNN group to exact central letters of every finite
+order, so the binary swap group `E_p = Gamma *_Lambda (Lambda x C_2)` is the
+universal receiver of the lane.  `sl3-double-swap-involution-is-outlier-carried`
+then proves UNCONDITIONALLY that at `p >= 11` the swap involution cannot ride
+the `Lambda`-exact face -- the depth-free, robustness and odd-congruence
+theorems force the fold mark to trace `1` there against its canonical `0` --
+so every canonical `E_p`-model restricts to uniform lattice outliers.  The
+route `non-hyperlinear-from-sl3-double-swap` therefore needs only
+`sl3-outliers-carry-no-balanced-free-involution`: no repair of outliers, just
+that one moment pattern (a trace-half `Lambda`-central projection whose
+`h`-translate is trace-independent) cannot occur on them.  Two structural
+constraints on any refuter are in place: the enemy involution maximally
+anticommutes with its twist (`swap-involution-enemy-is-never-abelian-carried`),
+so no abelian/Cartan carrier -- Bernoulli wreath and homogeneous quotient
+included -- can feed it; and the naive regeneration of enemies one congruence
+floor down is refuted by an exact Weyl identity
+(`weyl-reverser-blocks-naive-swap-twist-descent`), the same rank-two rigidity
+that closes the coprime sector.  The surviving descent is dihedral only.
+
