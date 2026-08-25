@@ -13,6 +13,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
   - GroupApproximation/Sofic/FullMFRadicalPullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean
 ---
 
 # Proof
@@ -222,5 +223,34 @@ This proves (19).  If the target residual is trivial, functoriality gives the
 upper inclusion in (20).  For the reverse inclusion, the inclusion
 `ker(f) --> G` maps the full residual of the kernel into `Rad_MF(G)`.  Hence
 the residual equals the kernel, without a surjectivity assumption.
+
+For the closure pullback, let `N` be normal in `G`.  An element of
+`Cl_MF^G(N)` is killed by every corona representation of `G` that kills `N`.
+Composing a representation of `H` that kills `f(N)` with `f` proves
+
+```text
+Cl_MF^G(N) <= f^(-1)(Cl_MF^H(f(N))).
+```
+
+Conversely, `ker(f) <= Rad_MF(G)` makes every corona representation of `G`
+factor through `f`.  If such a representation kills `N`, its factor on `H`
+kills `f(N)`.  Therefore every element of the displayed preimage is killed,
+which proves (21).
+
+If `Cl_MF^G(N)=N`, then the residual containment
+`Rad_MF(G) <= Cl_MF^G(N)` gives `ker(f) <= N`.  Mapping (21) onto `H` gives
+`Cl_MF^H(f(N))=f(N)`.  Conversely, these two conditions turn (21) into
+
+```text
+Cl_MF^G(N)=f^(-1)(f(N))=N,
+```
+
+which proves (22).  For countable groups, applying the characterization
+
+```text
+Cl_MF^G(N)=N  <=>  G/N is MF
+```
+
+on both sides of (22) proves (23).
 
 The Lean proof follows these steps directly.

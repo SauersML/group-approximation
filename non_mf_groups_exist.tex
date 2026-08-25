@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] One-Sided Kazhdan Compression and the Failure of MF Approximation},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: one-sided Kazhdan compression and MF approximation},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] MF Radicals and Non-MF Groups},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: MF radicals and non-MF groups},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -53,20 +53,19 @@
   \medskip}
 
 \begin{document}
-\title{One-Sided Kazhdan Compression and the Failure of MF Approximation}
+\title{MF Radicals and Non-MF Groups}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
 Not every countable group is MF in the operator-norm approximation sense.
-We identify an obstruction arising when conjugation sends a
-property~\textup{(T)} subgroup into itself.  The resulting normal subgroup is
-invisible to finite-dimensional representations, and every normal
-property~\textup{(T)} subgroup that it contains is invisible to MF
-representations.  When these subgroups normally generate the group, every MF
-representation is trivial.  Applying this criterion gives a simple
-property~\textup{(T)} group that is not MF.
+We prove a one-sided compression criterion that places normal
+property~\textup{(T)} subgroups in the MF radical, and normal generation can
+make that radical equal the whole group.  An elementary group over the binary
+Leavitt algebra satisfies the criterion, giving a simple property~\textup{(T)}
+group that is not MF.  We also prove exact pullback formulas showing that an
+MF-invisible kernel preserves the complete family of MF quotients above it.
 \end{abstract}
 
 \maketitle
@@ -1104,6 +1103,28 @@ $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
 \]
 In particular, the conclusion holds whenever
 $\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
+More generally, for every normal subgroup $N\trianglelefteq G$,
+%<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="all MF consequences of the relations N are pulled back from Q">
+% The subgroup on the left contains every element that must become trivial
+% whenever an MF-target map from G makes every element of N trivial.  Because
+% every such map factors uniquely through f, those forced relations are exactly
+% the preimage of the relations forced by f(N) inside Q.
+%</webmath>
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).
+\]
+Consequently,
+%<webmath object="quotient-correspondence-general" when="G/N\text{ is MF}\Longleftrightarrow\ker f\le N\text{ and }Q/f(N)\text{ is MF}" title="MF quotients of G correspond exactly to MF quotients of Q above the kernel">
+% The quotient G/N can be represented faithfully by finite-matrix limits
+% precisely when N already removes every element lost by f and the remaining
+% quotient Q/f(N) has such a faithful finite-matrix-limit representation.
+%</webmath>
+\[
+ G/N\text{ is MF}
+ \quad\Longleftrightarrow\quad
+ \ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.
+\]
 \end{proposition}
 
 \begin{proof}
@@ -1113,6 +1134,18 @@ with $f$ gives one of $G$.  The two families of kernels have the displayed
 intersection.  For the final assertion, functoriality of the MF radical under
 the inclusion $\ker f\to G$ gives
 $\ker f\le\Rad_{\mathrm{MF}}(G)$.
+
+The same factorization, restricted to homomorphisms that kill $N$, gives the
+closure formula.  If this closure equals $N$, then it contains $\ker f$, and
+mapping the equality onto $Q$ shows that
+$\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
+conditions give
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =f^{-1}(f(N))=N.
+\]
+The final equivalence now follows from
+Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 \end{proof}
 
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let

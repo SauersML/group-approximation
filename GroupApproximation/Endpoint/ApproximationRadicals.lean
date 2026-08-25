@@ -18,6 +18,7 @@ import GroupApproximation.Sofic.FullMFRadicalCore
 import GroupApproximation.Sofic.FullMFRadicalExactness
 import GroupApproximation.Sofic.FullMFRadicalReflection
 import GroupApproximation.Sofic.FullMFRadicalPullback
+import GroupApproximation.Sofic.FullMFRadicalClosurePullback
 
 /-!
 # Approximation radicals: the reading path
@@ -278,7 +279,11 @@ export GroupApproximation
     fullMFRadicalCore_eq_comap_of_surjective_of_kernel_eq_top
     fullMFRadicalCore_eq_ker_of_kernel_eq_top_of_target_eq_bot
     actualCoronaMFResidual_eq_comap_of_surjective_of_kernel_eq_top
-    actualCoronaMFResidual_eq_ker_of_kernel_eq_top_of_target_eq_bot)
+    actualCoronaMFResidual_eq_ker_of_kernel_eq_top_of_target_eq_bot
+    actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
+    actualCoronaMFClosure_eq_comap_map_of_surjective_of_kernel_eq_top
+    actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
+    isCDEOperatorMF_quotient_iff_map_of_surjective_of_ker_le)
 
 end Internal
 

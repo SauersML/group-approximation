@@ -11,6 +11,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
   - GroupApproximation/Sofic/FullMFRadicalPullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -212,14 +213,42 @@ Rad_MF(H)=1 and Rad_MF(ker(f))=ker(f)
 Thus a homomorphism with an intrinsically invisible kernel and a fully visible
 target computes the invisible part of its source exactly.
 
-The construction and equations (1)--(20) are formalized in
+The pullback formula extends from the radical to every normal relation
+subgroup.  If `f : G --> H` is onto and
+`ker(f) <= Rad_MF(G)`, then for every normal `N <= G`,
+
+```text
+Cl_MF^G(N) = f^(-1)(Cl_MF^H(f(N))).                  (21)
+```
+
+Consequently, the MF-closed normal subgroups of `G` are exactly the inverse
+images of the MF-closed normal subgroups of `H`:
+
+```text
+Cl_MF^G(N)=N
+  <=> ker(f) <= N and Cl_MF^H(f(N))=f(N).            (22)
+```
+
+For countable groups, the fixed points of this closure are precisely the
+normal subgroups with MF quotient.  Hence
+
+```text
+G/N is MF
+  <=> ker(f) <= N and H/f(N) is MF.                  (23)
+```
+
+Thus an MF-invisible kernel preserves not only the universal visible quotient,
+but the complete family of MF quotients above that kernel.
+
+The construction and equations (1)--(23) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
 `GroupApproximation/Sofic/FullMFRadicalProducts.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExtensions.lean` and
 `GroupApproximation/Sofic/FullMFRadicalLocalization.lean` and
-`GroupApproximation/Sofic/FullMFRadicalPullback.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalPullback.lean` and
+`GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION
