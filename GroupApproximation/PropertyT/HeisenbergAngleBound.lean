@@ -103,7 +103,7 @@ theorem abs_inner_le_of_correlation_nonpos
     ring
   have hnormeq : ‖rho x v‖ = ‖v‖ := (rho x).norm_map v
   have hsymm : (inner ℝ v (rho x v) : ℝ) = inner ℝ (rho x v) v :=
-    real_inner_comm v (rho x v)
+    real_inner_comm (rho x v) v
   have hs2 : ‖v + rho x v‖ ^ 2 ≤ 2 * ‖v‖ ^ 2 := by
     rw [norm_add_sq_real, hnormeq, hsymm]
     linarith
@@ -306,7 +306,14 @@ theorem inner_translate_eq_zero [CompleteSpace E]
         (rho x v) : E) := by
     have h0 := (((repOperator rho ⁅y, x⁆).eqLocus (1 : E →L[ℝ] E)).orthogonalProjectionOnto
       (rho x v)).2
-    simpa [LinearMap.mem_eqLocus] using h0
+    -- membership in an `eqLocus` is definitionally the equation it names
+    have h1 : repOperator rho ⁅y, x⁆
+        (((repOperator rho ⁅y, x⁆).eqLocus (1 : E →L[ℝ] E)).orthogonalProjectionOnto
+          (rho x v) : E)
+        = (1 : E →L[ℝ] E)
+          (((repOperator rho ⁅y, x⁆).eqLocus (1 : E →L[ℝ] E)).orthogonalProjectionOnto
+            (rho x v) : E) := h0
+    simpa using h1
   -- so the limit lies in the subspace to which `v` is orthogonal
   have hlimW :
       (((repOperator rho ⁅y, x⁆).eqLocus (1 : E →L[ℝ] E)).orthogonalProjectionOnto
@@ -660,9 +667,9 @@ theorem abs_inner_le_of_commutatorList [CompleteSpace E]
           · refine Or.inr ?_
             have hgp : g = ⁅p.1, p.2⁆ := by rw [← hqg, hq']
             rw [hgp]
-            exact le_sup_right (Subgroup.subset_closure rfl)
+            exact Subgroup.mem_sup_right (Subgroup.subset_closure rfl)
           · exact Or.inl ⟨q, hq', hqg⟩
-        · exact Or.inr (le_sup_left hg)
+        · exact Or.inr (Subgroup.mem_sup_left hg)
       have hclos' : ∀ y ∈ Y, ∀ x ∈ X, ⁅y, x⁆ ∈
           Subgroup.closure ({g : G | ∃ q ∈ L, ⁅q.1, q.2⁆ = g}
             ∪ ((N ⊔ Subgroup.closure ({⁅p.1, p.2⁆} : Set G) : Subgroup G) : Set G)) :=
