@@ -92,5 +92,14 @@ nonautomorphic renewal           ->  matrix-only unequal-carrier compression.
 Finite holonomy is already countermodeled, and a tracially functorial proper
 corner is already collapsed.  Neither is a third route.
 
+The ordinary-group compilation of the surviving infinite stabilizer is now
+fully audited by `s3-projective-radical-central-extension-has-exact-robust-fork`.
+Its finite packet cocycle gives a finitely presented finite central extension.
+Exact projective finite-dimensional invisibility only makes the chosen central
+character invisible in exact matrices and is compatible with soficity.  The
+dimension-uniform modulus proved above, however, makes that explicit central
+extension nonhyperlinear.  Thus there is no missing central-extension trick
+after `(SRD4)`, and no valid shortcut from the exact radical before `(SRD4)`.
+
 DERIVATION
 reusable-s3-renewal-twisted-radical-proof

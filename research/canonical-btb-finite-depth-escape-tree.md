@@ -175,6 +175,16 @@ remains in this modified route.
   matrix-coordinate source-Gram authentication asked for by the native
   proper-corner nodes.
 
+  The central-extension step does not reduce this burden.
+  `s3-projective-radical-central-extension-has-exact-robust-fork` constructs
+  the finite central extension of the active stabilizer explicitly.  Exact
+  projective invisibility merely kills its chosen central character in exact
+  finite-dimensional representations, a condition known to occur in a
+  finitely presented sofic group.  Once the indefinite recurrence supplies
+  the uniform HS modulus, central spectral cutting immediately makes this
+  extension nonhyperlinear.  Hence the robust stabilizer lemma is already a
+  complete ordinary-group proof, while its exact endpoint is insufficient.
+
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity
   part of this idea.  For a fixed menu size `L` with
