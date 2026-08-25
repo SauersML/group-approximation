@@ -53,9 +53,11 @@ Thus the complete graph on the vertices `{b_m:m>=0}` is an exact
 conjugacy-difference code for `z`, and has infinite chromatic number.
 
 This is an algebraic clique only.  The standard proof of `(NPC4)` uses
-`k-j` prefix leaves, and the finite-presentation area of `(NPC2)--(NPC5)` is
-not shown to be uniform.  The quantitative question is isolated in
-`leavitt-nested-prefix-conjugacy-uniform-area`.
+`k-j` prefix leaves.  Moreover
+`nested-prefix-clique-forces-centralizer-area-divergence` proves that no
+choice of representatives can make the finite-presentation areas of all
+edge conjugacies uniform: exponent-two clique triangles would otherwise
+give a forbidden bounded section of a fixed involution's centralizer.
 
 DERIVATION
 leavitt-nested-prefix-conjugacy-clique-proof

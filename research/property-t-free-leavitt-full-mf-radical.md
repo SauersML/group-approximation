@@ -200,8 +200,9 @@ depend on the coefficient.  A successful return must preserve this uniform
 rank scale while authenticating a moving coefficient or mixed-root orbit
 fold.
 
-The seventh route supplies a concrete moving-coefficient family without the
-refuted fixed-centralizer commutator tables.
+The seventh route supplies a concrete moving-coefficient family, but is now
+also refuted by fixed-centralizer properness after an exponent-two triangle
+reduction.
 `leavitt-nested-prefix-conjugacy-clique` takes
 the nested idempotents `e_m=s_(0^m)t_(0^m)`.  For `j<k`, their
 characteristic-two difference is the nonzero annulus projection
@@ -217,11 +218,12 @@ the annulus leaves with a complete prefix code below `q`.  Thus every
 form an actual infinite clique.  The general established criterion
 `bounded-area-conjugacy-difference-code-kills-mf-mark` turns this directly
 into MF collapse if those edge conjugacies have one uniform presentation
-area.  The remaining leaf
-`leavitt-nested-prefix-conjugacy-uniform-area` asks
-exactly for that bound.  Standard leafwise verification costs `k-j`; unlike
-the earlier tables, no fixed-root centralizer section currently refutes a
-self-similar fold of the whole annulus.
+area.  That quantitative leaf is refuted.  Relative to `b_0`, the three
+edge cells `(0,1)`, `(0,m)`, and `(1,m)` would uniformly fill the commutator
+of two basepoint differences.  Those differences are commuting involutions
+in infinitely many distinct cosets modulo the fixed first one, contradicting
+`finite-mark-centralizer-commutator-area-is-proper`.  Thus even a
+self-similar fold of the whole annulus cannot make this clique uniform.
 
 On the atomic/controlled-reflection branch, the multiplicity orientation is
 now separated from the actual carrier problem.  An adaptive eigenspace cut
