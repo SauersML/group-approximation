@@ -1,0 +1,27 @@
+---
+rg: 2
+id: property-t-free-el20-full-mf-radical
+kind: claim
+title: The binary-Leavitt elementary group EL20 has full MF radical without Property T
+distinct_from:
+  property-t-free-leavitt-full-mf-radical: that concerns St20 and must control its central Steinberg kernel; this is the direct elementary-group statement sufficient for the rank-twelve manuscript through prefix-code rank equivalence.
+---
+
+For `R=L_(F_2)(1,2)`, prove
+
+```text
+Rad_MF(EL_20(R))=EL_20(R)                               (EMF1)
+```
+
+using only the operator-norm native cross-Gram/selector contradiction and
+the internal simplicity or normal generation of `EL_20(R)`.  No Property
+`(T)`, Kazhdan projection, canonical trace profile, or literature theorem is
+permitted.
+
+## Attempts
+
+The direct route below has no remaining algebraic or normal-generation
+input: simplicity of `EL_20(R)` and the affine rank contradiction are
+internal and established.  It is blocked exactly at
+`binary-leavitt-el20-arbitrary-profile-native-cross-gram`, now reduced by the
+order-seven anchor to the finite-coordinate leakage estimate `(OCI5)`.
