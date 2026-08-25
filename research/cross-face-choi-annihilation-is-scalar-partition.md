@@ -105,6 +105,14 @@ alone.  A live theorem must use how one externally fixed lift varies across
 an exhausting family of representations, not another finite-packet
 cross-face marginal identity.
 
+`fixed-section-positive-packet-gaps-escape-bounded-dimension` now determines
+the compact part of that remaining quantifier.  For one externally fixed
+section, every bounded-dimensional packet family has normalized gap tending
+to zero, uniformly over the representation.  Moreover all externally fixed
+sections have the same asymptotic gap.  Thus the only surviving family is an
+unbounded-dimensional diagonal of ideal blocks; the packet-dependent section
+used in `(CFA7)--(CFA9)` cannot simply be repeated to realize it.
+
 Proof: `derive-choi-input-marginals-and-share-one-hard-edge`.
 
 DERIVATION

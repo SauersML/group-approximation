@@ -408,6 +408,20 @@ Ioana--Spaas--Wiersma mechanism), per
   finite-packet shared-edge/unit identity forces a soft moment.  The live
   gate is genuinely asymptotic: control one section chosen independently of
   the exhausting representation packets.
+- **Fixing the quotient section closes exactly the bounded-dimensional
+  diagonal, and no more (2026-08-25).**
+  `fixed-section-positive-packet-gaps-escape-bounded-dimension` fixes one
+  unital self-adjoint quotient section before the exhausting reservoirs and
+  compacts the representation variety in every bounded matrix dimension.
+  The singleton-packet section theorem then heals that fixed section
+  uniformly: every dimension-uniformly bounded family of positive native
+  witnesses has normalized affine gap tending to zero.  The result is
+  unchanged if every ideal image is the full simple block `M_d`, and any two
+  externally fixed sections have asymptotically identical gaps even when the
+  dimensions grow.  Consequently the finite-packet hard-energy example
+  cannot be diagonalized at bounded dimension.  The precise surviving gate
+  is an unbounded-dimensional family of simple ideal blocks; RFD, maximal
+  support, and external fixation of the section provide no compactness there.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
