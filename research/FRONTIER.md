@@ -6030,7 +6030,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **linton-radical-sofic** [1 live route(s) need it; on no live path to a goal] [The maximal rationally perfect radical of a one-relator group is sofic](linton-radical-sofic.md) — unclaimed
 - **magnus-staggered-chain-sofic** [1 live route(s) need it; on no live path to a goal] [The staggered Magnus chain of a one-relator kernel is sofic](magnus-staggered-chain-sofic.md) — ⚑ last missing for one-relator-sofic-via-magnus-staggered-amalgam → one-relator-groups-sofic — unclaimed
 - **matrix-restricted-burnside-gap** [1 live route(s) need it; on no live path to a goal] [Approximate exponent-N power laws force the restricted Burnside relators, dimension-free](matrix-restricted-burnside-gap.md) — ⚑ last missing for corona-burnside-from-power-law-moduli → operator-norm-restricted-burnside — unclaimed
-- **mf-safe-asymmetric-hnn-replacement** [1 live route(s) need it; on no live path to a goal] [Replace an effective asymmetric HNN identification by MF-safe finite-presentation moves](mf-safe-asymmetric-hnn-replacement.md) — ⚑ last missing for mf-safe-finite-presentation-compiler-via-doubles → mf-safe-finite-presentation-compiler — 🔒 claimed (109m44s remaining)
+- **mf-safe-asymmetric-hnn-replacement** [1 live route(s) need it; on no live path to a goal] [Replace an effective asymmetric HNN identification by MF-safe finite-presentation moves](mf-safe-asymmetric-hnn-replacement.md) — ⚑ last missing for mf-safe-finite-presentation-compiler-via-doubles → mf-safe-finite-presentation-compiler — 🔒 claimed (108m47s remaining)
 - **minimal-marked-graph-crossed-product-ce** [1 live route(s) need it; on no live path to a goal] [Connes embeddability of the minimal marked graph's Clifford crossed product](minimal-marked-graph-crossed-product-ce.md) — ⚑ last missing for invariant-graph-ce-from-minimal-graph → invariant-graph-crossed-product-ce — unclaimed
 - **non-rf-relatively-hyperbolic-with-rf-peripherals** [1 live route(s) need it; on no live path to a goal] [A relatively hyperbolic group that is not residually finite, with residually finite peripherals](non-rf-relatively-hyperbolic-with-rf-peripherals.md) — ⚑ last missing for non-rf-hyperbolic-via-relative-dehn-filling → non-residually-finite-hyperbolic-group — unclaimed
 - **opnorm-depthwise-same-mark-return** [1 live route(s) need it; on no live path to a goal] [Return every activated operator-norm challenge to one fixed marked word](opnorm-depthwise-same-mark-return.md) — unclaimed
@@ -6277,15 +6277,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-25 · non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
 - 2026-08-25 · atlas-six-relator-nontrivial-quotients-inject-charts [ESTABLISHED] Every nontrivial quotient of the six-relator group injects both marked A8 charts
 - 2026-08-25 · atlas-six-relator-hyperlinear-quotient-proof [COMPLETE] Pass between exact regular ultraproduct charts and a bridge-retaining hyperlinear image
 - 2026-08-25 · atlas-six-relator-hyperlinear-escape-test [ESTABLISHED] The exact six-relator matrix-ultraproduct escape is exactly a bridge-retaining hyperlinear quotient
 - 2026-08-25 · atlas-six-relator-chart-injection-proof [COMPLETE] Evaluate the asymmetric one-chart relators in an arbitrary quotient
+- 2026-08-25 · non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
 - 2026-08-25 · nonhyperlinear-six-relator-group-from-five-row-lift [OPEN] The five-row phase lift directly makes the six-relator Atlas quotient nonhyperlinear
 - 2026-08-25 · finite-positive-root-fragments-have-marked-regular-models [ESTABLISHED] Every finite positive-root Leavitt fragment has a marked finite regular model
 - 2026-08-25 · finite-positive-root-fragment-regular-proof [COMPLETE] Close a finite positive-root fragment inside a finite nilpotent algebra group
 
 ## Active claims
 
-- 🔒 mf-safe-asymmetric-hnn-replacement — 109m44s remaining
+- 🔒 mf-safe-asymmetric-hnn-replacement — 108m47s remaining

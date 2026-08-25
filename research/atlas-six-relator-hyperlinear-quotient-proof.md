@@ -8,9 +8,17 @@ requires:
   - atlas-19243-centrality-forces-s3-distance
   - regular-atlas-linearized-h-coercivity
   - atlas-charts-overlap-trivially
+  - atlas-six-relator-nontrivial-quotients-inject-charts
 ---
 
-Suppose first that an exact common-orbit model is given.  Write it as
+The equivalence between items 2 and 3 first uses
+`atlas-six-relator-nontrivial-quotients-inject-charts`: every nontrivial
+quotient injects both factors.  If all four bridges vanished in a hyperlinear
+quotient, its canonical regular microstates would put the relative frame in
+the `H` commutant, contradicting the exact `19243` floor below.  Hence a
+fixed bridge survives.
+
+Suppose now that an exact common-orbit model is given.  Write it as
 
 ```text
 Phi:Gamma_6 -> U(M_omega),
@@ -86,6 +94,28 @@ In the coordinates `(HUQP5)`, this is precisely the `t_ell` covariance norm.
 Applying `(HUQP3)` yields five-row additive energy at least `2/C_lin`, hence
 strictly positive.  This proves the reverse implication and also shows that
 no unrecorded choice of character is being used.
+
+For completeness, evaluate the intrinsic element `(HUQ4)`.  In the common
+frame `(HUQP5)`,
+
+```text
+pi_n(i_1(g)i_2(g)^(-1))
+ =lambda(g)U_n lambda(g)^*U_n^*.
+```
+
+Summing with the coefficients of `z_j` gives
+
+```text
+pi_n(Z_j)=(rho(z_j)U_n)U_n^*.
+```
+
+Normalized Hilbert--Schmidt norm is invariant under the final right unitary,
+so `tau(pi(h_5))=A(U)` in the ultraproduct.  A CE trace in the regular locus
+produces the hyperlinear GNS image used above; conversely the canonical trace
+of any hyperlinear quotient injecting the factors pulls back to such a CE
+trace.  This proves the trace-locus formulation `(HUQ6)`.  The canonical
+Leavitt trace supplies the asserted non-CE point by
+`atlas-six-relator-leavitt-tracial-countermodel`.
 
 Finally, `Gamma_6` maps onto the binary Leavitt group `Q`.  Both `A8` factors
 embed in `Q`, and `atlas-charts-overlap-trivially` makes, for example, the
