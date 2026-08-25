@@ -18,6 +18,10 @@ universe u v
 
 variable {G : Type u} [Group G] {H : Type v} [Group H]
 
+local instance quotientCountable {K : Type} [Group K]
+    (N : Subgroup K) [hN : N.Normal] [Countable K] : Countable (K ⧸ N) :=
+  Function.Surjective.countable (@QuotientGroup.mk'_surjective K _ N hN)
+
 /-- Across a surjection whose kernel is already invisible in the source, the
 MF closure of every normal subgroup is the inverse image of the closure of its
 image. -/
@@ -130,12 +134,10 @@ theorem isCDEOperatorMF_quotient_iff_map_of_surjective_of_ker_le
     [Countable G] [Countable H]
     (f : G →* H) (hf : Function.Surjective f)
     (hker : f.ker ≤ actualCoronaMFResidual G)
-    (N : Subgroup G) [N.Normal] :
+    (N : Subgroup G) [N.Normal] [(N.map f).Normal] :
     IsCDEOperatorMF (G ⧸ N) ↔
       f.ker ≤ N ∧
         IsCDEOperatorMF (H ⧸ (N.map f : Subgroup H)) := by
-  letI : (N.map f).Normal :=
-    Subgroup.Normal.map inferInstance f hf
   rw [← actualCoronaMFClosure_eq_self_iff N,
     ← actualCoronaMFClosure_eq_self_iff (N.map f)]
   exact actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
