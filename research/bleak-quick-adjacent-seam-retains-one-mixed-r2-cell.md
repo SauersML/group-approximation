@@ -127,3 +127,19 @@ Thus the only surviving global energy must overlap the missing letter across
 the two extensions.  A cross R2 cell does exactly that; a cross R3 split
 could do so only after authenticating a common child.  Disjointness cells
 cannot replace the analytic occurrence theorem.
+
+The R3 alternative also has no one-child shortcut.
+`one-common-r3-child-leaves-the-s5-extension-gauge` constructs an exact
+twelve-point model in which the common S5 face and one complementary child
+are literal, and both private splits hold, while the other children remain
+separated by the same multiplicity rotation.  Algebraically a common child
+only gives
+
+```text
+||X_0-X_1||_2=||C_0-C_1||_2
+```
+
+for the two coarse parents.  Thus a mixed R3 proof must authenticate both
+the common parent and the complementary child.  Once both are known, unitary
+cancellation is already the desired seam estimate; R3 has not produced a
+weaker occurrence problem than mixed R2.
