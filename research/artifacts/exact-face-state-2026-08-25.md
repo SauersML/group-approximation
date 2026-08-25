@@ -26,14 +26,16 @@ profinite algebras over a finite-index base.  Nodes:
 ## 2. Near-genuine microstates of M are deep flat towers (n = 3)
 
 One Kazhdan projection on `C_0 = C cap h^-1 C h` gives an exact intertwiner
-`T`; `T^k` transports isotypic weights along `Ad(h^k)` with additive error
-`12 k epsilon/kappa_0`; Bass--Milnor--Serre passes from two root subgroups to
+`T`; Pythagoras and the contraction-defect identity show that `T^k`
+transports isotypic weights along `Ad(h^k)` with overlap deficit
+`O(k epsilon^2/kappa_0^2)`; Bass--Milnor--Serre passes from two root subgroups to
 `Gamma(p^(a-k)m')`; compressing the equivariant cell family onto the fixed
-subspace gives the upper bound.  Result: depth x defect bounded below, top
-segments of levels carry `O(epsilon)` weight per level.  Node:
-`homogeneous-quotient-near-genuine-microstates-are-deep`.  The naive
+subspace gives the upper bound.  Result: depth times squared defect bounded
+below, top segments of levels carry `O(epsilon^2)` weight per level.  Nodes:
+`homogeneous-quotient-near-genuine-microstates-are-deep` and
+`orthogonal-kazhdan-powers-have-quadratic-depth-loss`.  The naive
 level-by-level descent loses `sqrt(delta)` per level and reaches only
-`log log(1/epsilon)` levels; the additive version is essential.
+`log log(1/epsilon)` levels; the all-depth orthogonal version is essential.
 
 ## 3. Atkin--Lehner: the exact matching condition in rank one
 
@@ -54,23 +56,56 @@ perturbation-stable, so this describes only the congruence sub-face there.
 ## 4. Rank two: the p-divisible Lambda-exact sector is ultra-deep or negligible
 
 For genuine `rho'` of level `p^D m'` and `H` epsilon-intertwining the
-`h`-twist on `C_0`: `c_p (1 - nu_0) <= 12 D epsilon/kappa_0`, with
+`h`-twist on `C_0`: `c_p (1 - nu_0) <= D epsilon^2/kappa_0^2`, with
 `c_p = 1 - (p^2+p-2)/(p^3-1) - 1/(p+1) > 0` for every prime (uniform
 coadjoint-orbit count of `Y_21 = 0`).  Together with the graph's
 coprime-level closure (`odd-congruence-lambda-exact-sector-collapses`), the
 Lambda-exact face of `(RC3)` is confined to towers of depth
-`>= c_p kappa_0 (1 - nu_0)/(12 epsilon)`.  Node:
-`lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible`.
+`>= c_p kappa_0^2 (1 - nu_0)/epsilon^2`.  Nodes:
+`lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` and
+`orthogonal-kazhdan-powers-have-quadratic-depth-loss`.
+
+## 4b. Depth-free: the p-divisible sector is EMPTY at p >= 11
+
+Track each `C_0`-constituent by `(beta, gamma)` = (upper, lower) simple-root
+depths.  The twist by `J h` acts as `(beta, gamma) |-> (gamma - 1, beta + 1)`
+and moves every diagonal type off the diagonal; Clifford balancing over
+`sl_3(F_p)` (plus Weyl symmetry) puts `>= 2 c_p - 1` of each positive level
+on the diagonal and `<= 2(1 - c_p)` off it.  Hence
+`(4 c_p - 3)(1 - nu_0) <= 12 epsilon/kappa_0` with NO depth: for `p >= 11`
+the `p`-divisible weight of any near-genuine microstate is `O(epsilon)`,
+ultra-deep towers included, and the homogeneous-quotient crossed product has
+no near-genuine microstates at all.  The coprime closure is robust to an
+`o(1)` admixture (a vanishing-weight summand is invisible in the tracial
+ultraproduct), so the whole `Lambda`-exact face of `(RC3)` at `p >= 11` is
+closed.  Nodes: `p-divisible-lambda-exact-mass-vanishes-at-large-primes`,
+`coprime-sector-collapse-is-robust-to-small-p-admixture`,
+`sl3-large-prime-pair-relative-commutant-collapse`,
+`sl3-large-prime-collapse-from-weak-ucp-stability`,
+`non-hyperlinear-from-sl3-large-prime-collapse`.
+
+**Net effect on the goal.**  `cairn impact sl3-z-weakly-ucp-stable`: if weak
+ucp-stability of `SL_3(Z)` on regular-type hyperlinear approximations were
+established, `non-hyperlinear-group` would flip to ESTABLISHED along two
+independent edges (the earlier thin-subgroup edge consuming host stability,
+and the large-prime edge consuming subgroup stability through the
+established exactification).  Everything else on the large-prime edge is
+proved.  Section 5 below is superseded on the exact face at `p >= 11`; it
+still describes `p <= 7` and rank one.
 
 ## 5. What remains, precisely
 
-- **Ultra-deep towers.**  The chained defect is linear in `k`, so the depth-`k`
-  constraint dies at `k ~ kappa_0/epsilon`; towers deeper than that evade every
-  bound above.  A construction would need a level-`p^D` representation of
-  `SL_3(Z)` with `D ~ 1/epsilon` and an `epsilon`-intertwiner for the
+- **Ultra-deep towers.**  Orthogonal projection replaces the old linear
+  norm telescope by the sharp square function `k epsilon^2/kappa_0^2`, so
+  the depth-`k` constraint dies at `k ~ kappa_0^2/epsilon^2`; towers deeper
+  than that evade every bound above.  A construction would need a
+  level-`p^D` representation of `SL_3(Z)` with `D ~ 1/epsilon^2` and an
+  `epsilon`-intertwiner for the
   `h`-twist; the natural candidate (truncating the `A`-action on the level-`D`
   vertex set `L/K_D`) fails because that Schreier graph has exponential
-  growth.  Nothing rules them out.
+  growth.  The abstract truncated cyclic shift saturates the square-function
+  inequality, so one projected intertwiner alone cannot do better.  Nothing
+  rules out the arithmetic towers.
 - **Outliers.**  Microstates whose `SL_3(Z)`-part is uniformly far from every
   genuine representation.  Their existence for `SL_3(Z)` is
   `sl3-z-weakly-ucp-stable` (open); the graph's earlier remark that infinite
