@@ -299,6 +299,24 @@ Ioana--Spaas--Wiersma mechanism), per
   both anchors.  It still leaves a genuinely noncanonical middle region of
   the Choi cone, which is exactly where a successful uniform-reservoir repair
   would have to live.
+- **The noncanonical middle cannot be decided by the two local floors alone
+  (2026-08-25).**
+  `overlap-and-kernel-floors-do-not-exclude-splitting` adjoins a split quotient
+  summand to the same triangle extension.  The diagonal copy of `G_0` still
+  carries the identical nontrivial kernel word and therefore the exact
+  `2/L^2` Gram floor; the finite face overlaps and linear scalar-tree bound
+  are unchanged.  Yet
+
+  ```text
+  x |-> (epsilon(x)1,x)
+  ```
+
+  is a global star-homomorphic section living far from both tree anchors.
+  This does not settle the actual extension: the enlarged algebra is not RFD
+  and its kernel is larger than the native relator ideal.  It proves that the
+  next theorem must use precisely those missing global features—RFD plus
+  native-ideal/support control—rather than another combination of overlap and
+  kernel-cycle estimates.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
