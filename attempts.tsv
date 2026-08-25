@@ -189,3 +189,4 @@
 32810779148	2026-08-25T04:55:43Z	GroupApproximation/Sofic/AscendingHNNSeparableCosetAction.lean	isSoficAction_vertical_cosets_of_separable_base
 32814349953	2026-08-25T05:49:53Z	GroupApproximation/Sofic/AscendingHNNSoficDescent.lean	compressedStabilizer_eq_of_conj
 32820283628	2026-08-25T07:10:46Z	GroupApproximation/Sofic/AscendingHNNSplitExtension.lean	rightHom_inr_apply
+32824376283	2026-08-25T08:00:52Z	GroupApproximation/Sofic/AscendingHNNStabilizer.lean	iotaVertical_range_smul_tSite
