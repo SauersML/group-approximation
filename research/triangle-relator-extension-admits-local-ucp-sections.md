@@ -274,7 +274,13 @@ Ioana--Spaas--Wiersma mechanism), per
   optimization for every finite-dimensional codomain.  It does not yet force
   the centered separator's **dual** closing value onto a tree component: that
   last inference would require a complementary-slackness/primal-selection
-  theorem not supplied by the present separation argument.
+  theorem not supplied by the present separation argument.  Moreover
+  `supporting-choi-component-does-not-force-primal-motion` gives a
+  three-point state-simplex countermodel in which a norm-attaining separator
+  has its whole centered value on a closing coordinate while every closest
+  feasible Choi point keeps that coordinate scalar.  Thus generic finite
+  Choi duality cannot provide the missing inference; the remaining estimate
+  must use triangle-specific transversality of the liftable Choi image.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
