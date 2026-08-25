@@ -21,4 +21,3 @@ variables, so the lift preserves the original CE algebra and all visible
 overlaps.  Private auxiliary sets and constant answer size let this explicit
 choice replace the arbitrary NP gadget without changing the published
 constant-soundness reduction.
-

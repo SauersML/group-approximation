@@ -66,4 +66,3 @@ Auxiliaries are private between source contexts, so the old visible overlaps
 are unchanged.  Since the DFNQXY answer length is constant, the number of
 rows in each gadget is uniformly bounded and the usual Culf--Mastel
 classical-homomorphism and subdivision estimates retain constant soundness.
-
