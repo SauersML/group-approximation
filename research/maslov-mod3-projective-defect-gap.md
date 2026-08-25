@@ -82,3 +82,11 @@ presentation coordinates.
   zero defect at each fixed dimension, but a dimension-uniform positive gap
   is already precisely non-hyperlinearity of the cover.  Property (T) does
   not by itself bridge that quantifier change.
+- **Tensor-cube/adjoint neutralization has no inverse.**  Cubing an
+  `alpha`-projective tuple or passing to its adjoint cancels the scalar
+  cocycle and produces an ordinary almost representation.  Ordinary HS
+  correction of the resulting tuple does not keep the correction inside the
+  diagonal tensor-cube or inner-adjoint locus, so it supplies no projective
+  tensor root.  `order-three-tensor-neutralization-loses-projective-root`
+  records the exact `C_3 x C_3` Weyl model and the determinant discontinuity
+  which rule out obtaining the gap from cocycle order or determinant alone.
