@@ -7,7 +7,7 @@ distinct_from:
   jnvwy-canonical-halt-strategy-is-affine-unsafe: that computes the support of one honest completeness strategy; this proves that every perfect PCC, synchronous commuting, or Connes-embeddable tracial strategy for the same introspection verifier has the relevant full seed support.
   dfnqxy-halt-completeness-support-is-not-canonically-specified: that leaves open whether a different perfect strategy repairs the support; this closes that freedom at the JNVWY introspection stage and isolates the later answer-reduction stage as the only remaining freedom.
   jnvwy-low-degree-pcp-reflects-affine-unsafety: that follows honest perfect proof refinements through the later answer reduction; this uses only the exact Pauli, Pair, Magic-Square, Pauli--Sample, and Intro--Sample acceptance equations before that reduction.
-  jnvwy-exact-proof-atom-decoder-is-not-affine: that permits exact proof-table extraction downstream but identifies the nonadditive Boolean-cube decoder which prevents the immediate return to this stage.
+  jnvwy-active-output-has-no-affine-safe-perfect-model: that uses source-specific proof-atom Booleanity and oracle-marginal reflection to carry any hypothetical affine-safe perfect answer-reduced model back to this stage.
   revealing-cl-controls-breaks-compression: that rules out a modification which reveals the nonlinear sampler control; this keeps the verifier unchanged and proves rigidity of all of its perfect tracial models.
 ---
 
@@ -177,12 +177,13 @@ serialized payloads is not a legal payload encoding, it is rejected even
 earlier, so variable payload syntax creates no escape.  This proves the
 affine-unsafety assertion.
 
-The remaining quantifier gap is downstream and sharply located.  Exact
-line--point acceptance does let one jointly diagonalize the `POINT_6` views
-of an arbitrary perfect answer-reduced strategy and extract genuine
-proof-table atoms.  However,
-`jnvwy-exact-proof-atom-decoder-is-not-affine` shows that the published
-Boolean-cube decoding map is not additive on arbitrary low-degree atoms.
-Thus existing odd-xor reflection for honest canonical proofs does not yet
-show that every exotic perfect strategy of the already answer-reduced
-verifier returns to one of these Intro--Sample atoms.
+The former downstream quantifier gap is closed.  Exact line--point acceptance
+jointly diagonalizes the `POINT_6` views of an arbitrary perfect
+answer-reduced strategy and extracts genuine proof-table atoms.  The abstract
+Boolean-cube decoder is nonadditive on arbitrary legal low-degree tables, but
+the explicit padded succinct-decider clauses force the first two tables of
+every everywhere-accepted atom to be Boolean.  Therefore
+`jnvwy-active-output-has-no-affine-safe-perfect-model` shows
+that every exotic affine-safe perfect strategy of the already answer-reduced
+verifier would return to an affine-safe model at these Intro--Sample atoms,
+contradicting the present theorem.

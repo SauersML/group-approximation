@@ -7,7 +7,7 @@ distinct_from:
   jnvwy-canonical-halt-strategy-is-affine-unsafe: that follows one explicitly chosen honest completeness chain; this excludes every alternative perfect PCC, synchronous commuting, or CE tracial strategy at the same introspection stage.
   jnvwy-perfect-introspection-forces-full-seed-support: that is the general rigidity theorem conditional on one nonlinear source marginal; this applies it to the concrete nonlinear marginal of ComputeSampler.
   dfnqxy-halt-completeness-support-is-not-canonically-specified: that records a strategy-choice gap in the published completeness theorem; this closes that gap before the first answer reduction, but not yet for exotic perfect strategies existing only after answer reduction.
-  jnvwy-exact-proof-atom-decoder-is-not-affine: that shows why exact extraction of later proof-table atoms alone does not close the downstream support-reflection seam.
+  jnvwy-active-output-has-no-affine-safe-perfect-model: that combines this source obstruction with exact safety reflection through both oracularization and answer reduction.
 ---
 
 **ESTABLISHED AT THE INTROSPECTION STAGE.**  In every genuine recursive
@@ -22,11 +22,11 @@ Exact Pauli introspection forces all three seeds to occur with positive weight
 in every perfect model, and the Intro--Sample acceptance equation then turns
 them into three accepted graph points whose odd xor is rejected.
 
-This settles the proposed freedom to choose a different perfect HALT strategy
-for the **same introspection verifier**.  It does not by itself classify
-perfect strategies which might exist only for the later oracularized and
-answer-reduced verifier.  Exact extraction of low-degree proof atoms is
-possible, but `jnvwy-exact-proof-atom-decoder-is-not-affine` shows that the
-published Boolean-cube decoder is not additive on those atoms.  A Booleanity
-theorem for positive perfect proof atoms, or a different support-level
-argument, remains the exact downstream degree of freedom.
+This first settles the proposed freedom to choose a different perfect HALT
+strategy for the **same introspection verifier**.  The former downstream
+degree of freedom is now closed as well:
+`jnvwy-positive-perfect-proof-atoms-have-boolean-input-cubes` proves the
+missing Booleanity theorem for arbitrary positive perfect answer-reduction
+atoms.  Together with exact oracle-marginal reflection,
+`jnvwy-active-output-has-no-affine-safe-perfect-model` now
+carries affine safety all the way back to this source stage.

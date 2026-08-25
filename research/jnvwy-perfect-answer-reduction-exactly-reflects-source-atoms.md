@@ -4,7 +4,7 @@ id: jnvwy-perfect-answer-reduction-exactly-reflects-source-atoms
 kind: claim
 title: Perfect JNVWY answer reduction is an exact classical low-degree mixture and reflects every source atom
 distinct_from:
-  jnvwy-exact-proof-atom-decoder-is-not-affine: that identifies why this exact atomwise decoder does not transport affine unsafety; this isolates the general exact table/atom decoder and the sharp failure of additive decoding or coherent-section uniqueness.
+  jnvwy-positive-perfect-proof-atoms-have-boolean-input-cubes: that adds the source-specific Booleanity of the first two tables and makes this exact atomwise decoder odd-additive on the accepted perfect-atom domain.
   jnvwy-low-degree-pcp-reflects-affine-unsafety: that follows arbitrary honest completeness proofs forward to preserve an odd-xor obstruction; this decodes every atom of an arbitrary perfect strategy backward through the answer reduction.
   dfnqxy-halt-completeness-support-is-not-canonically-specified: that records the absence of a canonical chosen completeness support; this proves exact atomwise decoding without choosing a canonical proof or identifying supports belonging to different source outcomes.
   finite-affine-profile-or-removes-pcpp-section-gate: that replaces a later PCPP by profile-dispatched linear proofs; this concerns the unmodified JNVWY v3 low-individual-degree PCP and proves no affine or coherent-section property.

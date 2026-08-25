@@ -2,14 +2,16 @@
 rg: 2
 id: jnvwy-exact-proof-atom-decoder-is-not-affine
 kind: claim
-title: Exact JNVWY proof-table extraction stops at a nonadditive Boolean-cube decoder
+title: The abstract JNVWY Boolean-cube decoder is nonadditive off the accepted PCP domain
 distinct_from:
   jnvwy-low-degree-pcp-reflects-affine-unsafety: that starts with honest proof tables whose first two polynomials are canonical linear encodings; this obstruction concerns arbitrary positive proof atoms extracted from a perfect answer-reduced strategy.
   dfnqxy-pcpp-contract-allows-nonlinear-proof-views: that appends a nonlinear proof bit to an abstract PCPP contract; this is the literal decoding map and literal low-degree proof domain in JNVWY Theorem 10.25.
   jnvwy-perfect-introspection-forces-full-seed-support: that proves every source perfect model is affine-unsafe; this explains why exact atomwise decoding of a later model does not yet transport that conclusion.
+  jnvwy-positive-perfect-proof-atoms-have-boolean-input-cubes: that uses the explicit padded succinct-decider clause families to show that the first two tables of every everywhere-accepted proof atom lie in the Boolean domain on which the decoder is linear.
 ---
 
-**ESTABLISHED OBSTRUCTION TO THE PROPOSED SUPPORT PROJECTION.**  At perfect
+**ESTABLISHED DOMAIN WARNING, NOT AN OBSTRUCTION ON PERFECT ACCEPTED
+ATOMS.**  At perfect
 success the JNVWY line--point acceptance equations do yield more than the
 paper's robust low-degree theorem.  For a fixed oracle question, exact
 diagonal line consistency makes every pair of `POINT_6` PVMs commute, because
@@ -27,7 +29,8 @@ JNVWY Theorem 10.25 decodes `g_1,g_2` to an accepted source answer pair.  This
 is an exact atomwise decoder and requires no limiting or robust strategy
 theorem.
 
-It is **not an affine support map**.  JNVWY defines
+On the full legal low-degree domain this decoder is **not an affine map**.
+JNVWY defines
 
 ```text
 Dec_{0,1}(g)_y = g(y) if g(y) is 0 or 1, and 0 otherwise (NAD2)
@@ -52,9 +55,9 @@ So restriction/evaluation of proof tables is linear, but the source-answer
 decoder used in Theorem 10.25 is not even odd-additive on the exact legal proof
 domain.
 
-The literal PCP checks do not include a separate Booleanity test for all
-values `g_i(y)`.  Pointwise perfect acceptance implies the polynomial
-identities
+The two displayed algebraic PCP checks, viewed without the special form of
+the succinct circuit, do not include a separate Booleanity equation for all
+values `g_i(y)`.  Pointwise perfect acceptance implies the identities
 
 ```text
 c_0 = phi_arith product_i(g_i-o_i),
@@ -62,27 +65,24 @@ c_0 = sum_j c_j zero(z_j),                              (NAD5)
 ```
 
 and hence that on every selected Boolean clause at least one `g_i(x_i)` equals
-its Boolean literal.  It does not state that every other `g_i(x_i)` belongs to
-`{0,1}`.  The soundness proof deliberately applies `(NAD2)` to those other
-values.  Consequently Theorem 10.25 only says that each atom decodes to some
-accepted source pair; it supplies no identity
+its Boolean literal.  For a generic clause system this need not state that
+every other `g_i(x_i)` belongs to `{0,1}`.  On that abstract domain it supplies
+no identity
 
 ```text
 Dec(sum_i g_i) = xor_i Dec(g_i).                        (NAD6)
 ```
 
-This is exactly where the tempting odd-xor reflection fails.  Given an unsafe
-odd list of decoded source atoms, one may choose positive proof atoms above
-them and add their tables.  Affine safety of every output point support would
-force the sum view to pass every point check, and PCP soundness would decode
-the sum proof to **an** accepted source pair.  Without `(NAD6)`, that pair need
-not be the rejected xor of the component pairs.  Noncanonical extensions and
-auxiliary proof data therefore cannot be discarded by a support projection.
+Thus exact atomwise decoding plus *generic* low-degree linearity would not be
+enough for odd-xor reflection.
 
-This result does not construct an affine-safe perfect strategy for the actual
-answer-reduced HALT verifier, so it does not refute the desired conclusion
-itself.  It refutes the claimed derivation from exact atomwise decoding plus
-linearity.  Closing the seam requires one additional source-specific fact:
-either every positive perfect proof atom is Boolean on the first two cubes, or
-the set of positive atoms admits an odd-additive choice of representatives, or
-a different output-support witness bypasses `Dec` altogether.
+For the literal JNVWY verifier, however, the missing source-specific fact is
+true.  The equality and unit-clause families of `PaddedSuccinctDecider` force
+`g_1,g_2` to be Boolean on their cubes for every everywhere-accepted proof
+atom; see `jnvwy-positive-perfect-proof-atoms-have-boolean-input-cubes`.
+Therefore `(NAD3)--(NAD4)` cannot occur on the accepted perfect-atom domain,
+`(NAD6)` does hold there, and
+`jnvwy-perfect-answer-reduction-reflects-affine-safety` closes the former
+support-projection seam.  The warning remains relevant only when one replaces
+the explicit JNVWY clause generator by an arbitrary PCP contract or considers
+legal low-degree tables not accepted everywhere.

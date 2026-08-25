@@ -202,6 +202,15 @@ is compatible with the JNVWY compression soundness theorem.  Therefore
 "the base HALT proof is deterministic" alone does not yet establish
 `(FAP2)` for the final MIP*=RE verifier.
 
+There is now a strategy-independent obstruction for the **unchanged**
+pipeline: `jnvwy-active-output-has-no-affine-safe-perfect-model`
+proves that every perfect model of an active recursive output is
+affine-unsafe, including exotic models not arising from the honest
+completeness strategy.  Thus profile enumeration remains a valid conditional
+compiler, but it cannot be fed the literal JNVWY active-round output.  The
+required change is genuinely upstream (a new recursive sampler/proof
+interface) or must bypass affine support entirely.
+
 Primary-source interfaces used above:
 
 - Dong--Fu--Natarajan--Qin--Xu--Yao, arXiv:2312.04360v3,
