@@ -9,7 +9,6 @@ artifacts:
   - research/fano-actor-holonomy-countermodel-proof.md
 distinct_from:
   middle-index-order-seven-orbit-cut-is-native-scale-neutral: that computes the fixed constant atom and its scale collapse; this permits moving character cuts and isolates their remaining multiplicity holonomy.
-  moving-order-seven-stage-gauges-have-coboundary-drift: that shows separate stage charts have seven coboundary gauges; this exactifies the full dual Fano packet, which reduces those gauges to one actor representation but still permits a nontrivial order-seven holonomy.
   growing-multicut-el20-order-seven-inheritance: that asks for coefficient-sensitive typing which identifies the moving actor gauge with one native/Hecke involution; this rules out deriving that identification from the Fano packet alone.
 ---
 
