@@ -17,6 +17,27 @@ monotone size the compression collapses (invariant-size-collapse); the `II₁` b
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
 
+## Arithmetic exact face confined to ultra-deep towers (2026-08-25)
+
+The top frontier hole (`projective-trace-square-transfer-for-sl3-pair`) and
+the collapse claims now have an explicit refutation gate: Connes
+embeddability of the homogeneous-quotient crossed product
+`L^infinity(SL_3(Q_2)/Lambda') rtimes SL_3(Z[1/2])`
+(`homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`), a much
+more concrete enemy than the coset wreath because every compact-subgroup
+piece acts profinitely.  On the affirmative side the Lambda-exact face of
+`(RC3)` is now confined: coprime levels were already closed, and
+`lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` proves
+`c_p (1 - nu_0) <= 12 D epsilon/kappa_0` (Atkin--Lehner-type twist `J h^D`,
+one Kazhdan projection, Clifford count over `sl_3(F_p)`), so p-divisible
+levels are invisible unless the tower is deeper than `1/epsilon`.  The
+surviving exact-face enemy is the ultra-deep tower; the other survivor is the
+outlier sector (`sl3-z-weakly-ucp-stable`).  In rank one the same twist is
+the Atkin--Lehner involution and single vertex-orbit levels are maximally
+asymmetric (`atkin-lehner-twist-of-vertex-orbit-representation-is-disjoint`,
+TV `= 2 - 2p^-k`, verified numerically).  Synthesis:
+`research/artifacts/exact-face-state-2026-08-25.md`.
+
 ## Positive-density finite-memory frontier (2026-08-24)
 
 The strongest currently isolated matrix-only endpoint is
