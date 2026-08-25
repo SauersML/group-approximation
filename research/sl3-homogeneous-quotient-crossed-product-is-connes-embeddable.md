@@ -71,6 +71,10 @@ union of level-`(m + O(1))` cells.
   matrix model must embed `L^infinity(X)` non-Cartanly.  The soficity of the
   action is therefore expected to fail by the same mechanism as Kun--Thom
   Corollary D, but that is not proved here and would not decide `(SH1)`.
+  The exact common-level obstruction is proved separately by
+  `homogeneous-k-orbit-factor-has-no-finite-a-refinement`:
+  the nontrivial finite `K`-orbit factor has no finite `A`-equivariant
+  refinement.  This does not exclude non-Cartan matrix microstates.
 - **Amalgamated-free-product permanence.**  Brown--Dykema--Jung's theorem
   needs a hyperfinite base; for `n = 3` there is no amalgam decomposition
   at all, and for the `n = 2` sibling the base `L^infinity(X) rtimes (C cap g C g^-1)`

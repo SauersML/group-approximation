@@ -65,4 +65,10 @@ produces a nonhyperlinear group directly.
   approach; the obstruction is that the two stabilisers' congruence
   filtrations of `X` are different (adjacent maximal compacts are not
   commensurable in a way that respects the `C`-orbit labels), so no
-  common finite level exists at which both act.  Deferred.
+  common finite level exists at which both act.  This is now isolated and
+  proved as
+  `homogeneous-k-orbit-factor-has-no-finite-a-refinement`:
+  no finite equivariant refinement of the `K`-orbit label exists.  The theorem
+  only excludes exact Cartan/common-level models; compatible non-Cartan
+  tracial-ultraproduct embeddings remain the live constructive possibility.
+  Deferred.
