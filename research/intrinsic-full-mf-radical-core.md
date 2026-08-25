@@ -6,6 +6,7 @@ title: Every group has a largest subgroup that is intrinsically invisible to fin
 artifacts:
   - GroupApproximation/Sofic/FullMFRadicalCore.lean
   - GroupApproximation/Sofic/FullMFRadicalExactness.lean
+  - GroupApproximation/Sofic/FullMFRadicalReflection.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -117,9 +118,26 @@ every homomorphism from an intrinsically full group to a core-free group is
 trivial.  Conversely, a group is intrinsically full exactly when every map
 from it to every core-free group is trivial.
 
-The construction and equations (1)--(10) are formalized in
+The quotient is universal in the stronger Hom-set sense.  For every core-free
+group `H`, precomposition with the quotient map gives a bijection
+
+```text
+Hom(G/Core_MF(G), H)  ≅  Hom(G, H).                  (11)
+```
+
+Every homomorphism `f : G --> H` induces a canonical map
+
+```text
+CoreFree(f) : G/Core_MF(G) --> H/Core_MF(H),          (12)
+```
+
+and these maps preserve identities and composition.  Thus passage to the
+core-free quotient is a functor and (11) is its universal property.
+
+The construction and equations (1)--(12) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
-`GroupApproximation/Sofic/FullMFRadicalExactness.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
+`GroupApproximation/Sofic/FullMFRadicalReflection.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION

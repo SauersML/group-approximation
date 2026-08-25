@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - GroupApproximation/Sofic/FullMFRadicalCore.lean
   - GroupApproximation/Sofic/FullMFRadicalExactness.lean
+  - GroupApproximation/Sofic/FullMFRadicalReflection.lean
 ---
 
 # Proof
@@ -125,5 +126,23 @@ if `C(G)=1` and `K ≤ G`, functoriality of the inclusion `K --> G` forces
 `C(K)=1`; thus the core-free class is subgroup-closed.  The orthogonality
 characterization follows by applying any proposed orthogonality condition to
 the canonical core-free quotient `G --> G/C(G)`.
+
+For the universal property, every map `f : G --> H` with `C(H)=1` kills
+`C(G)`, so quotient lifting gives a factor
+
+```text
+G/C(G) --> H.
+```
+
+The factor is unique because the quotient map is onto.  Applying the same
+lifting construction to the composite
+
+```text
+G --> H --> H/C(H)
+```
+
+defines the map induced by an arbitrary homomorphism `G --> H`.  Equality of
+induced maps can be checked after precomposition with the quotient map; this
+proves preservation of identity maps and composition.
 
 The Lean proof follows these steps directly.
