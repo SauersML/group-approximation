@@ -7,6 +7,8 @@ distinct_from:
   center-chain-mixed-hecke-overlap-is-common-pauli-source: that establishes the exact Hecke common source, common range, relative polar, and Pauli-commutant factorization; this asks for the remaining comparison with the separately prescribed native selector rows.
   center-chain-hecke-flags-authenticate-native-occurrences: that refuted claim asks for a fixed exact ordinary-word identification on a nonzero regular corner; this permits only matrix-model-dependent cuts whose discarded mass is controlled by the canonical microstate defects.
   center-chain-mixed-hecke-polars-share-a1-tail: that identifies the two polar-word squares with the literal coefficient roots; a square-root identity alone does not identify the selector source and controlled-target projections.
+  vanishing-loss-center-chain-authentication-hits-affine-firewall: that proves any successful vanishing-loss comparison converges to the fixed regular corner and hence immediately contradicts the affine rank equations; this leaf must derive that impossible comparison from the ordinary relation defects.
+  projective-row-data-do-not-authenticate-hecke-polars: that proves squares, supports, and separate conjugation covariances retain an independent balanced spectator gauge; this claim can only be closed by a mixed odd-parity occurrence anchor which removes that gauge.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -50,6 +52,16 @@ occurrences.  A fixed group-algebra comparison is forbidden by
 must use a genuinely coordinate-dependent spectral or polar choice whose
 loss vanishes with the ordinary relation defect.
 
+The word “coordinate-dependent” does not provide a separate escape from the
+regular firewall.  By
+`vanishing-loss-center-chain-authentication-hits-affine-firewall`, cuts with
+vanishing ambient trace loss represent exactly `Q,P` in the tracial
+ultraproduct, and the robust affine gap then rules out the requested
+`o(1)` comparison.  Therefore establishing this claim is already a direct
+no-microstate theorem.  A proof must find an ordinary relation-defect
+estimate forcing the comparison; it cannot justify the comparison merely
+by saying that the cuts vary with the matrix coordinate.
+
 ## Square-root fence
 
 The identities
@@ -71,7 +83,15 @@ two polar-square identities.
 - **Use the polar squares as occurrence certificates.**  This stops at the
   square-root fence above: the identities determine the coefficient roots
   but not the source and controlled-target projections of either native
-  row.
+  row.  More strongly,
+  `projective-row-data-do-not-authenticate-hecke-polars`
+  tensors each proposed native transport by an independent balanced
+  spectator involution.  This preserves its square, supports, and every
+  separate conjugation covariance with zero defect, while keeping it at
+  squared normalized Hilbert--Schmidt distance `2t` from every ungauged
+  Hecke map on source mass `t`.  Thus the missing relation must have odd
+  transport parity and tie the actual coefficient occurrence to the packet;
+  no projective polar/covariance calculation can suffice.
 - **Use the exact common source as a fixed native carrier.**  This is
   forbidden by `fixed-center-chain-hecke-occurrence-is-regularly-impossible`.
   On a fixed positive regular corner the two native affine equations force

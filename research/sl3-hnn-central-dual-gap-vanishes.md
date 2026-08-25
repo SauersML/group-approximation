@@ -70,6 +70,19 @@ positive matrix-range separator for the selected lattice tuple.
   transport by `phi(h)` of the full endpoint generators outside `C`, not
   merely the two spectral block systems, their canonical pair moments, or
   their common Iwahori actor.
+- **Even a canonical full-endpoint finite actor is Morita-neutral.**
+  `endpoint-matched-amplification-is-matrix-range-neutral`
+  proves an exact support-function identity for the matched amplification
+  `X_s -> v(s) tensor X_s`, `B_s -> v(s) tensor B_s`.  The proof compresses
+  the contragredient tensor by a maximally entangled vector.  Thus a finite
+  representation of the entire S-arithmetic base may carry every transport
+  `v(h lambda h^(-1))=v(h)v(lambda)v(h)^*`, and residual-finite regular
+  actors may make any fixed base-word window canonical, without decreasing
+  a separator gap.  This invalidates
+  `sl3-central-dual-via-canonical-full-endpoint-amplification`.  The usable
+  input is narrower still: the canonical **mixed Britton-word** moments
+  tying the stable-letter multiplicity to the base actor, not canonical
+  base moments or full endpoint transport in a separate tensor factor.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

@@ -106,3 +106,14 @@ audit cannot be a search through the second private R2 star.  It must build a
 genuinely interacting bounded diagram which retains or manufactures the
 first-chart endpoint `(i q)` in the second contextual occurrence before the
 two gauges split.
+
+Nor can a bounded multi-cell splice manufacture that endpoint merely by
+renaming exact transpositions in the fixed six-leaf packet.
+`fixed-leaf-semantics-forbid-mixed-r2-splice` retains the second contextual
+three-cycle and common pivot and proves that they uniquely force its private
+input/output pair `(j p),(j q)`.  That output centralizes `(i p)`, so the
+mixed triangle still fails.  Hence the surviving interpretation of
+"manufactures" is necessarily analytic: the R1--R5 defects must force the
+two contextual matrix occurrences to collapse.  There is no remaining exact
+finite-permutation word splice which proves the claim first and then transfers
+it to matrices.
