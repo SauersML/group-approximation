@@ -168,22 +168,31 @@ theorem ker_comp_le_actualCoronaMFResidual
   rw [MonoidHom.mem_ker]
   exact MonoidHom.mem_ker.mp hx
 
-/-- The order isomorphisms on MF quotient kernels respect composition. -/
-theorem MFClosedNormalSubgroup.orderIsoOfInvisibleKernel_comp
+/-- The composite of two surjective group homomorphisms is surjective as a
+group homomorphism. -/
+theorem surjective_monoidHom_comp
+    (f : G →* H) (g : H →* K)
+    (hf : Function.Surjective f) (hg : Function.Surjective g) :
+    Function.Surjective (g.comp f) := by
+  intro z
+  obtain ⟨y, rfl⟩ := hg z
+  obtain ⟨x, rfl⟩ := hf y
+  exact ⟨x, rfl⟩
+
+/-- The image correspondence on MF quotient kernels respects composition. -/
+theorem MFClosedNormalSubgroup.mapOfInvisibleKernel_comp
     (f : G →* H) (g : H →* K)
     (hf : Function.Surjective f) (hg : Function.Surjective g)
     (hkerF : f.ker ≤ actualCoronaMFResidual G)
-    (hkerG : g.ker ≤ actualCoronaMFResidual H) :
-    MFClosedNormalSubgroup.orderIsoOfInvisibleKernel
-        (g.comp f) (hg.comp hf)
+    (hkerG : g.ker ≤ actualCoronaMFResidual H)
+    (N : MFClosedNormalSubgroup G) :
+    MFClosedNormalSubgroup.mapOfInvisibleKernel
+        (g.comp f) (surjective_monoidHom_comp f g hf hg)
         (ker_comp_le_actualCoronaMFResidual f g hf hkerF hkerG) =
-      (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hkerF).trans
-        (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel g hg hkerG) := by
-  apply OrderIso.ext
-  funext N
+      MFClosedNormalSubgroup.mapOfInvisibleKernel g hg hkerG
+        (MFClosedNormalSubgroup.mapOfInvisibleKernel f hf hkerF N) := by
   apply MFClosedNormalSubgroup.ext
-  simp only [MFClosedNormalSubgroup.mapOfInvisibleKernel_carrier,
-    OrderIso.trans_apply, MFClosedNormalSubgroup.orderIsoOfInvisibleKernel]
+  simp only [MFClosedNormalSubgroup.mapOfInvisibleKernel_carrier]
   rw [Subgroup.map_map]
 
 end
