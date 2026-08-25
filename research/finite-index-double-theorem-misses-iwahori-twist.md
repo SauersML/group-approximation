@@ -49,6 +49,11 @@ is not.  Consequently the published theorem for identical edge embeddings
 Bass--Serre action nor refutes Iwahori stability.  A theorem allowing the
 nonextendable edge twist is genuinely additional.
 
+Shrinking the edge does not turn the twisted amalgam into a common finite
+group extension either: `iwahori-edge-has-no-common-finite-index-normal-core`
+proves that no finite-index subgroup of the Iwahori edge is normal in both
+vertex groups.
+
 Primary source scope: Gao--Kunnawalkam Elayavalli--Mj,
 [*On soficity for certain fundamental groups of graphs of groups*](https://arxiv.org/abs/2408.11724),
 Theorem 1.2, Corollary 1.3, and the identical-embedding hypothesis in the

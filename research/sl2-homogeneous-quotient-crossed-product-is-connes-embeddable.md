@@ -72,3 +72,22 @@ produces a nonhyperlinear group directly.
   only excludes exact Cartan/common-level models; compatible non-Cartan
   tracial-ultraproduct embeddings remain the live constructive possibility.
   Deferred.
+- **Finite index does not promote the exact-level obstruction.**
+  `iwahori-index-data-does-not-block-ultraproduct-gluing`
+  writes each vertex algebra trace-preservingly in `M_3(B)` and identifies
+  the residual as stable unitary equivalence of the two induced embeddings
+  of `B` after reindexing and amplification.  The centers form the finite
+  edge--vertex incidence diagram and admit an exact common matrix model; the
+  two local index-three Jones towers are isomorphic.  Thus trace, center,
+  Pimsner--Popa, and separate local standard-invariant data cannot turn
+  `homogeneous-k-orbit-factor-has-no-finite-a-refinement` into a non-Cartan
+  ultraproduct no-go.  The remaining datum is global cycle holonomy, namely
+  the free lattice's right-translation return maps in `(DT2)`.
+- **A common finite normal edge core does not exist.**  One might try to
+  replace the index-three edge by a further finite-index subgroup normal in
+  both vertices, turning both faces into finite-group extensions of one
+  shared base.  `iwahori-edge-has-no-common-finite-index-normal-core` rules
+  this out: such a core would be normal in all of `SL_2(Z[1/2])`, and the
+  S-arithmetic normal-subgroup theorem would contradict the infinite index
+  of the vertex group.  Thus finite-depth/Morita reduction does not bypass
+  the nonamenable amalgam; ultraproduct-level compatibility remains open.
