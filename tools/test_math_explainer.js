@@ -39,9 +39,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 108, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 91,
-  'the contextual explanations must remain attached to 91 formula groups');
+assert.equal(declarations.length, 112, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 92,
+  'the contextual explanations must remain attached to 92 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -135,6 +135,7 @@ assert.equal(api.notationExplanation('?'), null,
   'unknown notation must not receive a vague fallback explanation');
 
 const coveredFormulas = [
+  String.raw`H=\EL_{12}(L_{\F_2}(1,2)).`,
   String.raw`\mathcal Q_{\mathbf d}=\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).`,
   String.raw`\bigoplus_nM_{d_n}(\C)=\{(x_n)\in\prod_nM_{d_n}(\C):\opnorm{x_n}\longrightarrow0\}`,
   String.raw`\Rad_{\mathrm{MF}}(G)=\bigcap_{\mathbf d}\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.`,
@@ -243,7 +244,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 91);
+assert.equal(coveredFormulas.length, 92);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
