@@ -7,6 +7,7 @@ distinct_from:
   normal-state-free-near-representation-forces-factorization: that puts the support projection inside B(H), so the genuine corner remains a Hilbert subrepresentation carrying an invariant normal state on all its bounded operators; this works in B(H)** for an arbitrary state and does not preserve that amenability conclusion.
   singular-near-defects-vanish-on-canonical-genuine-sector: that constructs the regular cyclic GNS sector and observes that defect vectors vanish there; this identifies the intrinsic support corner in the bidual and proves that the whole compressed group law is exact.
   invariant-free-near-state-is-amenable-regular-cover: that exactifies after quotienting the generated C-star algebra by its tracial null ideal; this exactifies by a support projection before taking that quotient and identifies why the result does not imply factorization or hyperlinearity.
+  state-support-corner-qwep-recovers-hyperlinearity: that applies QWEP permanence to the expected corner and shows that the construction does imply Connes embeddability; this node is the algebraic support-corner construction itself.
 ---
 
 **ESTABLISHED.**  Let `pi:G->U(H)` and a state `phi` on `B(H)` satisfy the
@@ -52,21 +53,26 @@ E:sMs -> W^*(rho(G)) ~= L(G).                            (BSC5)
 For a purely singular state the projection `s` lies in the singular summand
 of `B(H)**`; in particular it need not belong to `B(H)`.  Consequently
 `(BSC2)` is not a genuine subrepresentation on a closed subspace of the
-original `H`.  More importantly, the `rho(G)`-central state on `sMs` need not
-extend to a `rho(G)`-central state on all of `B(K)` for a Hilbert-space
-realization `sMs subset B(K)`.  Such an extension is precisely the missing
-amenability/factorization input.  The support-corner exactification therefore
-does not imply that `G` is hyperlinear.
+original `H`.  The `rho(G)`-central state on `sMs` need not extend to a
+`rho(G)`-central state on all of `B(K)` for a Hilbert-space realization
+`sMs subset B(K)`.  Thus the construction does not imply amenability of the
+regular trace or Kirchberg factorization.
+
+It nevertheless **does imply hyperlinearity**.  The ambient bidual
+`B(H)**` is QWEP, QWEP passes to the corner `sMs` and through the expectation
+`(BSC5)`, and a finite QWEP von Neumann algebra is Connes embeddable.  Hence
+`L(G)` embeds trace preservingly in `R^omega`.  This permanence consequence is
+recorded separately in
+`state-support-corner-qwep-recovers-hyperlinearity`.
 
 For the binary Leavitt unit group this pins down the singular-near frontier:
-any hypothetical Kahl--Schneider witness already contains a genuine regular
-copy of `L(G)` in a singular bidual corner.  A contradiction must show that
-this particular corner, or its inclusion, has an amenability or matricial
-property unavailable to an arbitrary singular summand.  Even expectedness
-is automatic; the missing input would have to make the singular support
-corner injective, matricially approximable in a trace-compatible way, or
-otherwise constrain that expectation.  Merely propagating the group law to
-the support cannot be the missing theorem.
+any hypothetical Kahl--Schneider witness already contains a genuine expected
+regular copy of `L(G)` in a QWEP singular bidual corner, and hence proves the
+group hyperlinear.  This recovers the forward implication in the
+Kahl--Schneider characterization; it does not decide whether the witness
+exists.  A contradiction still needs an enhancement from QWEP/Connes
+embeddability to amenability, injectivity, or locally liftable descent.
+Expectedness alone supplies none of those enhancements.
 
 Proof: `state-support-corner-exactification-proof`.
 
