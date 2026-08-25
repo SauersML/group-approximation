@@ -238,6 +238,16 @@ Ioana--Spaas--Wiersma mechanism), per
   defect to have zero augmentation kills this entire value.  Hence support
   control now requires a second separator estimate modulo the augmentation
   Choi face; neither positivity nor the existing tree value forces it.
+- **The global separator survives modulo augmentation (2026-08-25).**
+  `global-triangle-separator-survives-mod-augmentation` supplies the required
+  second comparison: the scalar augmentation map is itself ucp and liftable,
+  so the separator evaluates `id-E_epsilon` by at least `delta`.  This defect
+  is augmentation-zero.  After finite face decomposition, Choi
+  positivization, RFD approximation, and deletion of the now-invisible
+  trivial summand, one obtains full-ideal-support finite-dimensional packets
+  retaining a fixed positive face defect while paying arbitrarily small
+  prescribed ideal vector moments.  The selected face need not be a tree
+  face, and the control is still one-vector rather than operator-level.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

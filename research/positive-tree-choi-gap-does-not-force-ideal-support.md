@@ -69,6 +69,12 @@ the tree Choi dual by all augmentation-supported functionals (or a second
 observable vanishing in the trivial representation).  Positive Choi duality
 and low ideal moments alone cannot supply it.
 
+The global separator does supply such a second observable, though not on a
+prescribed tree face: `global-triangle-separator-survives-mod-augmentation`
+tests it against the liftable scalar augmentation map and obtains an
+augmentation-zero face witness with full-ideal-support finite-dimensional
+packets.
+
 Proof: `evaluate-the-tree-fourier-defect-on-the-trivial-source-block`.
 
 DERIVATION
