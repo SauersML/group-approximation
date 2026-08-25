@@ -64,21 +64,21 @@ universe u v
 
 section Defs
 
-variable (A : Type u) [Ring A] [StarRing A] [Algebra ℂ A]
-
 /-- **Residual finite-dimensionality.**  The finite-dimensional
 ⋆-representations of `A` separate points: every nonzero element survives some
 unital ⋆-homomorphism into a matrix algebra.  For a unital C⋆-algebra this is
 the standard definition, a finite-dimensional representation being exactly a
 ⋆-homomorphism into the operators on some `ℂ ^ n`. -/
-def IsResiduallyFiniteDimensional : Prop :=
+def IsResiduallyFiniteDimensional (A : Type u) [Ring A] [StarRing A]
+    [Algebra ℂ A] : Prop :=
   ∀ a : A, a ≠ 0 → ∃ (n : ℕ) (π : A →⋆ₐ[ℂ] Matrix (Fin n) (Fin n) ℂ), π a ≠ 0
 
 /-- The variant of `IsResiduallyFiniteDimensional` in which the separating
 finite-dimensional ⋆-homomorphisms are *not* required to be unital, i.e. the
 representations are allowed to be degenerate.  It is a priori weaker, so the
 obstructions proved for it below are correspondingly stronger. -/
-def HasSeparatingFiniteDimensionalStarHoms : Prop :=
+def HasSeparatingFiniteDimensionalStarHoms (A : Type u) [Ring A] [StarRing A]
+    [Algebra ℂ A] : Prop :=
   ∀ a : A, a ≠ 0 → ∃ (n : ℕ) (π : A →⋆ₙₐ[ℂ] Matrix (Fin n) (Fin n) ℂ), π a ≠ 0
 
 end Defs
