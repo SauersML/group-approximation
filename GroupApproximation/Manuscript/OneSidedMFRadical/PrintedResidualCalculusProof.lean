@@ -95,7 +95,9 @@ def PrintedIntersectionOfKernelsIsNormal : Prop :=
 theorem manuscriptPrintedIntersectionOfKernelsIsNormal :
     PrintedIntersectionOfKernelsIsNormal := by
   intro G _
-  refine ⟨fun x ↦ ⟨?_, ?_⟩, actualCoronaMFResidual_normal⟩
+  refine ⟨?_, actualCoronaMFResidual_normal⟩
+  intro x
+  constructor
   · intro hx X hX
     letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
     intro rho
@@ -156,8 +158,8 @@ theorem manuscriptPrintedEnumerationsOfTheQuotient :
     PrintedEnumerationsOfTheQuotient := by
   intro G _ _
   constructor
-  · rintro ⟨y, hy⟩
-    haveI : Nonempty {y : G ⧸ actualCoronaMFResidual G // y ≠ 1} := ⟨⟨y, hy⟩⟩
+  · rintro ⟨z, hz⟩
+    haveI : Nonempty {y : G ⧸ actualCoronaMFResidual G // y ≠ 1} := ⟨⟨z, hz⟩⟩
     exact exists_surjective_nat {y : G ⧸ actualCoronaMFResidual G // y ≠ 1}
   · haveI : Nonempty
         ((G ⧸ actualCoronaMFResidual G) × (G ⧸ actualCoronaMFResidual G)) :=
@@ -189,7 +191,9 @@ theorem manuscriptPrintedCoronaDetectorAtEachMarkedClass :
   letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro pi
   by_contra hpi
-  refine hcon ⟨X, hX, pi, norm_sub_pos_iff.mpr ?_⟩
+  apply hcon
+  refine ⟨X, hX, pi, ?_⟩
+  refine norm_sub_pos_iff.mpr ?_
   intro hval
   exact hpi (Subtype.ext hval)
 
@@ -291,8 +295,9 @@ theorem manuscriptPrintedStageDirectSum : PrintedStageDirectSum := by
   · intro B hB hpos
     exact card_blockListModel_pos_of_mem hB hpos
   · intro n g h hdefect
-    exact norm_blockListMap_mul_sub_le G Bs g h
-      (div_nonneg zero_le_one (Nat.cast_nonneg n)) hdefect
+    have htol : (0 : ℝ) ≤ 1 / (n : ℝ) :=
+      div_nonneg zero_le_one (Nat.cast_nonneg n)
+    exact norm_blockListMap_mul_sub_le G Bs g h htol hdefect
   · intro B hB delta x hdelta
     have hle := norm_blockListMap_sub_ge_of_mem hB x 1
     have hnn : (0 : ℝ) ≤ ‖blockListMap Bs x - blockListMap Bs 1‖ :=
@@ -322,7 +327,7 @@ def PrintedCoordinatesExistArbitrarilyFarOut : Prop :=
         (∀ p ∈ S,
           ‖(A.map n (p.1 * p.2) : Matrix (A.model n) (A.model n) ℂ) -
             (A.map n p.1 : Matrix (A.model n) (A.model n) ℂ) *
-              (A.map n p.2 : Matrix (A.model n) (A.model n) ℂ)‖ ≤ eps) ∧
+              A.map n p.2‖ ≤ eps) ∧
         A.separation ≤
           ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) ∧
     (∀ (Y : ℕ → Type) [∀ n, Fintype (Y n)] [∀ n, DecidableEq (Y n)]
@@ -338,7 +343,7 @@ theorem manuscriptPrintedCoordinatesExistArbitrarilyFarOut :
     have hall : ∀ᶠ n in Filter.atTop, ∀ p ∈ S,
         ‖(A.map n (p.1 * p.2) : Matrix (A.model n) (A.model n) ℂ) -
           (A.map n p.1 : Matrix (A.model n) (A.model n) ℂ) *
-            (A.map n p.2 : Matrix (A.model n) (A.model n) ℂ)‖ ≤ eps := by
+            A.map n p.2‖ ≤ eps := by
       rw [Filter.eventually_all_finset]
       intro p _
       exact Filter.eventually_atTop.mpr

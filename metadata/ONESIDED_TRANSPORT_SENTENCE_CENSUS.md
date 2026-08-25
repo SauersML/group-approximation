@@ -3,7 +3,7 @@
 An exhaustive, sentence-level sweep of `non_mf_groups_exist.tex`
 (*Not Every Group Is MF*) from `\begin{abstract}` to
 `\section*{Acknowledgments}`, against the Lean development.  The current
-manuscript has 1362 lines; the direct simplicity proof and every later row have
+manuscript has 1452 lines; the direct simplicity proof and every later row have
 been re-keyed to the current text, and every status and declaration below has
 been rechecked against the current Lean tree.
 
@@ -40,11 +40,36 @@ uncarried while the ledger stays green.
 
 | Status | Rows |
 | --- | --- |
-| `CARRIED` | 242 |
-| `PARTIAL` | 34 |
+| `CARRIED` | 269 |
+| `PARTIAL` | 5 |
 | `MISSING` | 12 |
 | `CITED` | 6 |
-| **Total** | **294** |
+| **Total** | **292** |
+
+**2026-08-24 re-verification.**  Only the `PARTIAL` rows were re-checked in
+this pass, one at a time, against the current 1452-line manuscript and the
+current tree: **27 are now `CARRIED`**, **5 remain `PARTIAL`**, and **2 are
+`RETIRED`** because the printed sentence they graded is no longer in the
+manuscript (hence the total drops by two).  The `CARRIED`, `MISSING` and
+`CITED` rows were *not* re-checked in this pass and their counts are carried
+over unchanged; several `MISSING` rows are believed to be carried by modules
+that landed afterwards (`PrintedSectorProof`, `SentenceNormalKazhdanClosure`,
+`PrintedResidualCalculusProof`), and that belief is not yet verified here.
+Every stored tex line number below predates the current manuscript and can be
+stale by up to ninety lines.
+
+Of the five rows that remain `PARTIAL`, **exactly one is load-bearing**: the
+passage from the Hilbert-space Kazhdan inequality to the operator order
+`b ≥ (κ²/|S|)q` *inside the corner corona*, which
+`Manuscript/OneSidedMFRadical/CornerCoordinatePassage.lean` states explicitly
+that it does not claim and takes as a hypothesis.  The other four are
+literature attributions that no numbered statement rests on: the general
+Ershov--Jaikin-Zapirain theorem (only the instance the paper uses is proved
+in-repo), Leavitt's historical module-rank statement together with a general
+`PurelyInfinite` predicate (the operative sandwich property is proved),
+Tseng's theorem (the present corona route is proved instead), and Preusser's
+general normal-subgroup theorem (the direct root extraction is proved
+instead).
 
 **Snapshot.**  Counts are as of the working tree containing
 `Manuscript/OneSidedMFRadical/{PrintedDefinitions, PrintedLeavittEquations,
