@@ -190,26 +190,31 @@ completely reproduced.  They are listed because the per-label ledger cannot
 show them: a row can be closed and unconditional while a sentence of its
 printed argument has no declaration.
 
-* **`thm:normal-kazhdan`, the coordinate passage.**  `PrintedSectorProof`
-  carries five of the six printed steps -- the corner Kazhdan projection
-  vanishing (both the algebraic and the fixed-vector reading), the corner
-  Kazhdan inequality `b >= (kappa^2/|S|) q`, its normalized-trace consequence,
-  the persistent-index selection, and the faithful-representation bridge
-  `le_of_le_in_faithful_rep`.  What is NOT derived is the manuscript's sentence
-  "the coordinate elements `b_n` represent `b`", i.e.
+* ~~**`thm:normal-kazhdan`, the coordinate passage.**~~  **Now supplied.**
+  `PrintedSectorProof` carries five of the six printed steps -- the corner
+  Kazhdan projection vanishing in both the algebraic and the fixed-vector
+  reading, the corner Kazhdan inequality `b >= (kappa^2/|S|) q`, its
+  normalized-trace consequence, the persistent index as a literal strictly
+  monotone subsequence, and the faithful-representation bridge
+  `le_of_le_in_faithful_rep`.  The sixth, the manuscript's "the coordinate
+  elements `b_n` represent `b`", is `CornerCoordinatePassage`, in two halves:
 
-  ```text
-  forall eps > 0, eventually in n, forall x,
-    (kappa^2 - eps) * ||x||^2 <= sum_(s in S) ||W_n(s) x - x||^2.
-  ```
+  1. **Restriction of scalars**, exactly and with no loss.  The repository's
+     `IsKazhdanPair` quantifies over REAL Hilbert spaces while the corner
+     representation is complex; `realifyHom` reads the latter on the same
+     underlying set with the same norm, so `||pi(s) x - x||` is one real number
+     read in either structure and the constant is unchanged.
+  2. **Corona order to an eventual coordinate inequality**, which is the half
+     that is not a triviality: at the coordinate level the corner maps form only
+     an ASYMPTOTIC representation, so no Kazhdan pair applies to them directly.
+     The device is `norm_filterMatrixCorona_mk_eq_limsup` -- the quotient norm
+     is a limsup of coordinate norms, and a limsup below a bound is eventually
+     below it.  That is the whole of the printed "with an `o(1)` loss".
 
-  This is not a scalar-restriction triviality: at the coordinate level `W_n` is
-  only an asymptotic representation, so no Kazhdan pair applies to it directly.
-  It needs the corona quotient together with restriction of scalars from the
-  complex corner to the real Hilbert spaces the repository's `IsKazhdanPair`
-  is stated over.  The theorem itself is closed by the moving-corner route
-  (`manuscriptNormalKazhdanRadical`), so this is a fidelity gap in the printed
-  argument, not a hole in the result.
+  The order is transported in its norm spelling, `c <= b` iff
+  `||t*1 - b|| <= t - c` for large `t`, and only the direction that follows from
+  Cauchy--Schwarz is used, so no `[PartialOrder]` / `[StarOrderedRing]` instance
+  is installed.  Endpoint: `eventually_printed_corner_trace_inequality`.
 
 * **Order phrasing in the corner inequality.**  `b` is a positive element of the
   corner, not a projection, so the absorption spelling used elsewhere for
