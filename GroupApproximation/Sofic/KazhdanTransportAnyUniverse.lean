@@ -105,7 +105,7 @@ field is property `(T)`, which supplies a finite generating set, so the `Type 0`
 model of the source always exists and no countability hypothesis is owed of it.
 This is the compression-datum analogue of
 `countable_of_hasKazhdanPropertyTComplex`, and it is what a universe descent for
-the Kazhdan source of `thm:transport-variants` consumes. -/
+the Kazhdan source of that weighted transport theorem consumes. -/
 theorem KazhdanCompressionCore.countable_source {Γ : Type v} [Group Γ]
     {E : Type u} [Group E] (C : KazhdanCompressionCore Γ E) : Countable Γ := by
   obtain ⟨S, -, -, hS⟩ :=

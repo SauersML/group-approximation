@@ -8,10 +8,9 @@ import GroupApproximation.Sofic.MarkedCompressionProperness
 /-!
 # The base of `E` is such a pair
 
-`Analysis/MaximalCStarParagraphEndpoint` proves the manuscript remark *the
-maximal algebra under proper one-sided conjugation* (`\label{rem:maxinfinite}`)
-for an arbitrary `StrictKazhdanCompression`.  The remark also names its
-instance, in an aside the badge line has to cover.  As of 2026-08-16 it reads:
+`Analysis/MaximalCStarParagraphEndpoint` proves the maximal-algebra consequence
+for an arbitrary `StrictKazhdanCompression`.  The previously printed discussion
+also named its concrete instance:
 *"Let `G` contain a property-(T) subgroup `Γ` and an element `t` with
 `t Γ t⁻¹ ⊊ Γ`; the base of `E` is such a pair."*  That aside is a claim about
 the literal eight-generator group of Definition `def:E`, not about the chosen

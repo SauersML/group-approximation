@@ -22,7 +22,7 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
   Hilbert-space structure are deliberately not built.  `Delorme`'s fixed-point
   theorem sits in the repository, proved, with no `K_omega` to apply it to.
 * **The rank-weight assertion**, printed in the discussion after
-  `thm:transport-variants`: "the collapse proof of Theorem `thm:collapse` uses
+  that weighted transport theorem: "the collapse proof of Theorem `thm:collapse` uses
   a rank weight, which normalizes a defect at its own scale."  That is the
   assertion this module certifies, by actually invoking
   `ScaledKazhdanTransport.scaled_transport_both` at the weight `w_n = k_n`

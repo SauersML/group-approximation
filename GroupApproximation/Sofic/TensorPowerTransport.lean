@@ -10,7 +10,7 @@ group, and its header names the fixed-tensor instance `B₁ = U^{⊗p}`,
 `B₂ = U^{⊗q}` as the intended application.  This file builds that
 instance.  (The manuscript's fixed-tensor sentence was an instantiation of
 this theorem until 2026-08-18, when the paragraph was cut together with the
-intertwiner clause of `thm:transport-variants`; the mathematics stands on its
+intertwiner clause of that weighted transport theorem; the mathematics stands on its
 own.)
 
 The analytic input is already available: `l2_opNorm_opTensorPow_sub_le`

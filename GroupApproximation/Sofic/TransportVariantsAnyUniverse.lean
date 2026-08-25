@@ -3,9 +3,9 @@ import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 import GroupApproximation.Sofic.KazhdanTransportAnyUniverse
 
 /-!
-# `thm:transport-variants` for groups in any universe
+# that weighted transport theorem for groups in any universe
 
-`thm:transport-variants` opens
+that weighted transport theorem opens
 
 > Let `Γ`, `H`, `ι`, and `s` be as in Theorem `thm:kazhdan-transport`
 
@@ -98,7 +98,7 @@ theorem intertwinerOf_of_precomp {Γ₁ : Type v} {Γ₂ : Type v'} [Group Γ₁
 
 /-! ## The three variants at any universe -/
 
-/-- **`thm:transport-variants`(1) with the Kazhdan source at an arbitrary
+/-- **that weighted transport theorem, clause 1, with the Kazhdan source at an arbitrary
 universe.**  Transport of the `w`-scaled asymptotic commutant through the
 compressor, in both directions, at every nonnegative weight — with no
 countability and no universe hypothesis on the source, as printed.
@@ -135,7 +135,7 @@ theorem scaled_transport_both_anyUniverse :
   exact ⟨commutantOf_of_precomp C.iota e h1, commutantOf_of_precomp C.iota e h2⟩
 
 /-- **The intertwiner transport variant with the Kazhdan source at an arbitrary
-universe** (printed as `thm:transport-variants`(2) until the clause was cut on
+universe** (printed as that weighted transport theorem, clause 2, until the clause was cut on
 2026-08-18).  Intertwiner transport at the `d¹ₙ + d²ₙ` normalization, with no
 countability and no universe hypothesis on either group.
 

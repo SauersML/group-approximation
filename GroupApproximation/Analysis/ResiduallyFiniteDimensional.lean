@@ -6,16 +6,11 @@ import Mathlib.LinearAlgebra.Matrix.SemiringInverse
 /-!
 # Residual finite-dimensionality, and its failure under proper compression
 
-This file supplies one of the two clauses of the manuscript remark *the
-maximal algebra under proper one-sided conjugation*, which is
-`\begin{remark}...\label{rem:maxinfinite}` inside the appendix
-`\label{app:maxcstar}` of `non_mf_groups_exist.tex` (navigate by the label as of
-2026-08-16, but that file is under active concurrent edit: navigate by the
-label, or grep the sentence quoted below).  The central sentence reads
+This file supplies the residual-finite-dimensional clause of the
+maximal-algebra consequence of proper one-sided conjugation:
 
-> By Proposition~\ref{prop:proper-isometry}, `C*_max(G)` is then not stably
-> finite, has no faithful trace, and in particular is neither residually
-> finite-dimensional nor MF.
+> `C*_max(G)` is not stably finite, has no faithful trace, and in particular
+> is neither residually finite-dimensional nor MF.
 
 The failure of stable finiteness and the absence of a faithful trace are
 already machine checked in `Analysis/ProperIsometryFromCompression` and

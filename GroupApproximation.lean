@@ -51,6 +51,7 @@ import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.MFRadicalComputer
+import GroupApproximation.Computability.MFRadicalGodel
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
@@ -1719,6 +1720,9 @@ import GroupApproximation.Leavitt.RootDetectionBinary
 import GroupApproximation.Leavitt.DiagonalNormalExtraction
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoordinatePassage
 import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceClosureAudit
+import GroupApproximation.Computability.FiniteDimensionalApproximationIncomplete
+import GroupApproximation.Computability.ArithmeticalHierarchy
+import GroupApproximation.Endpoint.MFComputabilityPaperAudit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

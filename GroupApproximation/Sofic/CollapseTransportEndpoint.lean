@@ -18,7 +18,7 @@ estimate inline.  The divergence this route does *not* close is recorded in the
 docstring of that module: `thm:collapse` Step 6 as printed transports inside the
 Hilbert-space ultraproduct, which this development does not contain; what is
 certified here is the rank-weight assertion the manuscript makes after
-`thm:transport-variants`.
+that weighted transport theorem.
 
 The three inputs, all already proved:
 

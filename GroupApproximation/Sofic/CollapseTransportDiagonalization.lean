@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 **Manuscript reference.** `non_mf_groups_exist.tex`,
 `\subsection{Orbit collapse and defect saturation}\label{subsec:collapse}`,
 Theorem `thm:collapse`, Steps 5 and 6 of the printed proof sketch, together
-with the discussion after `thm:transport-variants` ("the collapse proof of
+with the discussion after that weighted transport theorem ("the collapse proof of
 Theorem `thm:collapse` uses a rank weight, which normalizes a defect at its
 own scale").  In the step-for-step audit `notes/COLLAPSE_STEP_AUDIT.md` this
 is finding **R1**, route **(b)**.
@@ -14,7 +14,7 @@ is finding **R1**, route **(b)**.
 **The defect this module closes.**  Step 5 of the sketch produces an
 approximate primitive for the displacement cocycle, and Step 6 transports it
 "as in Theorem `thm:kazhdan-transport`", i.e. at the rank weight through
-`thm:transport-variants`(1).  In Lean the Step-5 primitive is
+that weighted transport theorem, clause 1,.  In Lean the Step-5 primitive is
 `InvolutionCollapseCenter.exists_approximate_coboundary`, which delivers a
 bounded sequence whose coboundary defect is below **one tolerance `δ` fixed
 in advance**; whereas the cited transport theorem
@@ -434,13 +434,13 @@ theorem exists_cofinal_vanishing_coboundary_primitive
   exact ⟨φ, fun j ↦ w (φ j), hφ, fun j ↦ hwn (φ j),
     fun a haT j ↦ hφgood j a haT⟩
 
-/-! ## Rank-weight packaging for `thm:transport-variants`(1)
+/-! ## Rank-weight packaging for that weighted transport theorem, clause 1,
 
 With `xⱼ = √wⱼ · unflat(Wⱼ)` at weight `wⱼ` (in the collapse
 `wⱼ = k_{φ j}`, the rank weight), the two hypotheses of
 `ScaledKazhdanTransport.scaled_transport_both` are discharged.  The mass
 bound holds at *every* stage, so the finitely many stages with `kₙ = 0` are
-covered by the convention of `thm:transport-variants`(1) — there
+covered by the convention of that weighted transport theorem, clause 1, — there
 `xⱼ = 0 • unflat(Wⱼ) = 0`, which is
 `UltraproductScaledTransport.eq_zero_of_weight_zero`.
 

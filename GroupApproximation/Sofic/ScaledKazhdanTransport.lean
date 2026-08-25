@@ -1099,7 +1099,8 @@ theorem scaled_transport_both :
 
 /-! ## The dimension weight
 
-The manuscript records, immediately after the transport-variants theorem, that
+The superseded manuscript revision recorded, immediately after its weighted
+transport theorem, that
 the dimension weight `w n = d n` recovers the unscaled transport theorem with
 the uniform operator-norm bound relaxed to mass boundedness.  The two halves of
 that sentence are proved here: at the dimension weight the scaled commutant

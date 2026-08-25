@@ -1,5 +1,6 @@
 import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Computability.MFRadicalComputer
+import GroupApproximation.Computability.MFRadicalGodel
 import GroupApproximation.Computability.SeededSelfAwareMFCompiler
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.MarkedMFClosed
@@ -87,6 +88,8 @@ Fournier--Facio--Hull routing construction as a closed Lean witness.
 #audit_closed_axioms GroupApproximation.SeededSelfAwareMFCompiler.literal_hasLogicalSelfAwareMFCompiler
 #audit_closed_axioms GroupApproximation.MFRadicalComputer.closed_package
 #audit_closed_axioms GroupApproximation.MFRadicalComputer.promised_word_problem_not_computable
+#audit_axioms GroupApproximation.MFRadicalGodel.exists_true_unprovable_radical_word
+#audit_closed_axioms GroupApproximation.MFRadicalGodel.closed_package
 #audit_closed_axioms GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package
 #audit_closed_axioms GroupApproximation.LiteralNonMFEndpoint.literal_not_isOperatorMF
 #audit_closed_axioms GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction

@@ -2,11 +2,11 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
 
 /-!
-# Transport at every Hilbertian scale: the printed proof of `thm:transport-variants`
+# Transport at every Hilbertian scale: the printed proof of that weighted transport theorem
 
-This file replays Theorem `\ref{thm:transport-variants}`
+This file replays Theorem the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed)
 ("one-sided conjugation at an arbitrary weight") of `non_mf_groups_exist.tex`,
-inside `\section{Transport at an arbitrary weight}` (`\ref{supp:transport-variants}`).
+inside `\section{Transport at an arbitrary weight}` (that superseded section).
 The route is the one the manuscript prints: "the ultraproduct proof of Theorem
 the Kazhdan transport result applies with `\tr_{d_n}` replaced by
 `\operatorname{Tr}(\,\cdot\,)/\nu_n`".
@@ -17,7 +17,7 @@ dimension; commit `fd45b050` deleted that remark as an unused application, so
 the dimension-weight material below (`## The dimension weight`) now has no
 printed counterpart.  What survives of the specializations is
 `Taking $\nu_n=k_n$`, the rank of the projection lift in the proof of
-`\ref{thm:projection-collapse}`.
+the superseded projection-collapse theorem.
 
 ## STATUS: THE ROUTE IS NOT YET CLOSED
 
@@ -28,7 +28,7 @@ and `scaled_transport_both_of_ambient` each take an `ambient` argument: a
 an instance of that structure is constructed from the real ambient, the
 endpoints are vacuous** — true, but about an empty hypothesis class — and this
 file is an unfinished target, not a formalization of
-`thm:transport-variants`(1).  The structure is retained only because it is
+that weighted transport theorem, clause 1,.  The structure is retained only because it is
 scheduled to be discharged: it is an interface awaiting its construction, not a
 standing assumption.  **The signature of `WeightedUltraproductAdjointModel` is
 frozen**: the construction is being built against it as written, so it must not
@@ -132,7 +132,7 @@ intertwiner reduction can be substituted directly with no reindexing bridge.
 `Y = B.model`, `U = B.map` recovers the `OpAlmostRepresentation` convention of
 `Sofic.ScaledKazhdanTransport`; that specialization is
 `scaled_transport_both_of_ambient`, the exact statement consumed by
-`thm:transport-variants`(2).
+that weighted transport theorem, clause 2,.
 
 The trap of `notes/NOTEPAD.md:548` is avoided exactly as in the unweighted
 file: no step uses a Hilbert--Schmidt bound on the *unitaries*.  Almost
@@ -267,7 +267,7 @@ inner product of a Hilbert space by a positive constant leaves the operator
 norm, hence the algebra `B(K_n)` and its norm ultraproduct, unchanged.
 
 One field is added relative to the unweighted interface, `act_star_pi_cls`,
-because the printed conclusion of `thm:transport-variants`(1) asserts the
+because the printed conclusion of that weighted transport theorem, clause 1, asserts the
 statement for `U_n(s)* x_n U_n(s)` as well as for `U_n(s) x_n U_n(s)*`.  It is
 not a new hypothesis about the theorem: the adjoint of the unitary `Ad U_n(g)`
 of `K_n` is exactly `Ad (U_n(g)*)`, coordinate by coordinate.
@@ -585,10 +585,10 @@ theorem weightNull_atTop_of_forall_free_ultrafilter
   obtain ⟨n, hn1, hn2⟩ := (hbadev.and hgood).exists
   exact absurd hn2 (not_le.mpr hn1)
 
-/-! ## The printed statement of `thm:transport-variants`(1) -/
+/-! ## The printed statement of that weighted transport theorem, clause 1, -/
 
 /-- **Transport at every Hilbertian scale.**
-`non_mf_groups_exist.tex`, Theorem `\ref{thm:transport-variants}`, part (1),
+`non_mf_groups_exist.tex`, Theorem the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed), part (1),
 with its printed proof.
 
 Let `Γ`, `H`, `ι`, `s` be as in the Kazhdan transport result, let `(U_n)` be as
@@ -672,7 +672,7 @@ theorem transport_variants_one
 `IsScaledMassBounded` and `IsScaledAsymptoticCommutantOf`, over an
 `OpAlmostRepresentation`.  Taking `Y = B.model` and `U = B.map` turns
 `transport_variants_one` into exactly that statement, which is the form the
-intertwiner reduction of `thm:transport-variants`(2) consumes. -/
+intertwiner reduction of that weighted transport theorem, clause 2, consumes. -/
 
 /-- The printed defect condition along `atTop` is `ScaledMassVanishing`. -/
 theorem weightNull_atTop_iff_scaledMassVanishing
@@ -685,7 +685,7 @@ theorem weightNull_atTop_iff_scaledMassVanishing
   · intro h ε hε
     exact Filter.eventually_atTop.mpr (h ε hε)
 
-/-- **`thm:transport-variants`(1) in coordinate form.**  A one-sided compressor
+/-- **that weighted transport theorem, clause 1, in coordinate form.**  A one-sided compressor
 of a Kazhdan image acts in both directions on the `w`-mass-bounded, `w`-scaled
 asymptotic commutant, for every nonnegative weight, by the printed ultraproduct
 proof.  This is the same assertion as
@@ -726,7 +726,7 @@ theorem scaled_transport_both_of_ambient
 /-! ## The dimension weight
 
 A Lean-side specialization with no printed counterpart.  The manuscript closed
-`\ref{supp:transport-variants}` with a remark taking the weight to be the
+that superseded section with a remark taking the weight to be the
 dimension, and commit `fd45b050` deleted it as an unused application; the
 surviving specialization is to the rank `k_n` of the projection lift, not to
 `d_n`.  The declarations here are kept because the weight dictionary they

@@ -12,6 +12,7 @@ import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.AlternatingLampNoncommensurable
 import GroupApproximation.Computability.MFRadicalComputer
+import GroupApproximation.Computability.MFRadicalGodel
 import GroupApproximation.Sofic.FreeProductMFRadicalRetraction
 import GroupApproximation.Sofic.KazhdanCompressionLayers
 import GroupApproximation.Sofic.FullMFRadicalCore
@@ -176,6 +177,9 @@ questions, and the answers are not tame.
   `promised_word_problem_not_computable` — the three clauses separately.
 * `MFRadicalComputer.word_mem_commutator_residual` — the hard words lie in
   `[Res_MF, U_MF]`, so the phenomenon is not a central or abelian artifact.
+* `MFRadicalGodel.exists_true_unprovable_radical_word` — every computably
+  axiomatized proof system sound for the code-indexed nontriviality statements
+  misses a true statement whose word still lies in `[Res_MF, U_MF]`.
 * `FreeProductMFRadicalRetraction.inr_mem_normMFResidual_iff_of_isOperatorMF`
   — actual radical membership on an MF retracting free factor is exactly
   equality with one.
@@ -352,6 +356,9 @@ export GroupApproximation.MFRadicalComputer
   (closed_package word_normMFInvisible word_eq_one_iff_halts
     word_mem_commutator_residual promised_word_problem_not_computable
     carrier_isFinitelyPresented carrier_not_isOperatorMF)
+export GroupApproximation.MFRadicalGodel
+  (ProofSystem exists_proofSearch_fixedPoint
+    exists_true_unprovable_radical_word)
 export GroupApproximation.FreeProductMFRadicalRetraction
   (rightRetraction inr_mem_normMFResidual_iff_of_residual_eq_bot
     inr_mem_normMFResidual_iff_of_isOperatorMF

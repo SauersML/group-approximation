@@ -7,12 +7,8 @@ import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 /-!
 # The maximal algebra under proper one-sided conjugation: the printed paragraph
 
-This file is the paragraph-level endpoint for the manuscript remark *the
-maximal algebra under proper one-sided conjugation*, which is
-`\begin{remark}...\label{rem:maxinfinite}` inside the appendix
-`\label{app:maxcstar}` of `non_mf_groups_exist.tex` — navigate by the label,
-never by line number, since that file is under active concurrent edit.  The remark asserts, for a group
-carrying a strict Kazhdan compression `t Γ t⁻¹ ⊊ Γ`, that
+This file packages the maximal-algebra consequence of a strict Kazhdan
+compression `t Γ t⁻¹ ⊊ Γ`.  It asserts that
 
 1. the Kazhdan projection `p_Γ` exists in the maximal algebra;
 2. conjugation by `u_t` dominates it, on both sides;
@@ -280,8 +276,7 @@ strict Kazhdan compression, but not that the paper's own group has one.
 first conjunct is then read off at it, including the residually
 finite-dimensional clause.
 
-This is the paragraph-level counterpart of the remark labelled
-`rem:maxinfinite` in `non_mf_groups_exist.tex`. -/
+This is the combined endpoint for the strict-compression consequence. -/
 theorem manuscriptMaximalCStarStrictCompressionRemark :
     (∀ {Γ : Type w} {E : Type u} [Group Γ] [Group E]
       (D : StrictKazhdanCompression Γ E),

@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
 # The scaled asymptotic commutant is detected on a generating set
 
 **Manuscript reference.** `non_mf_groups_exist.tex`, Theorem
-`thm:transport-variants`(1) and Step 6 of the proof sketch of
+that weighted transport theorem, clause 1, and Step 6 of the proof sketch of
 `thm:collapse`.  The printed Step 6 checks that the compressed primitive is
 "almost fixed by every `a ∈ S`", `S` the Kazhdan generating set; the
 formalized hypothesis of the transport theorem

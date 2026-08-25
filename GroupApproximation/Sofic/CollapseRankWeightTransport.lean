@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.TransportVariantsAnyUniverse
 # The transport theorem at the collapse proof's rank weight
 
 Proof-ledger row `CO.14c`.  The sentence is the one that follows
-`thm:transport-variants` in `non_mf_groups_exist.tex` (navigate by the label;
+that weighted transport theorem in `non_mf_groups_exist.tex` (navigate by the label;
 the file is under concurrent edit):
 
 > Taking `ν_n = d_n` gives Theorem `thm:kazhdan-transport` with the uniform
@@ -25,7 +25,7 @@ This file supplies that invocation.  `rankTransportWeight B Q` is literally
 `n ↦ rank (Q n)`, the rank of the projection lift `Q_n` of the collapse
 proof's Step 3, and:
 
-* `rank_weight_transport_both` is `thm:transport-variants`(1) at that weight,
+* `rank_weight_transport_both` is that weighted transport theorem, clause 1, at that weight,
   obtained by instantiating `scaled_transport_both_anyUniverse` — no new
   argument, and in particular no inline re-derivation;
 * `isScaledMassBounded_rankWeight_of_rank_le` is the hypothesis feed: the
@@ -65,7 +65,7 @@ theorem rankTransportWeight_nonneg (B : OpAlmostRepresentation E)
     (Q : ∀ n, Matrix (B.model n) (B.model n) ℂ) :
     ∀ n, 0 ≤ rankTransportWeight B Q n := fun _ ↦ Nat.cast_nonneg _
 
-/-- **`thm:transport-variants`(1) at `ν_n = k_n`.**  The two-sided scaled
+/-- **that weighted transport theorem, clause 1, at `ν_n = k_n`.**  The two-sided scaled
 transport theorem, read at the rank of the projection lift.  This is the
 printed *"taking `ν_n = k_n` … gives the normalization used there"*: the
 statement is an instance of the already-proved theorem, not a re-derivation. -/
@@ -86,7 +86,7 @@ theorem rank_weight_transport_both (B : OpAlmostRepresentation E)
 /-- **The printed mass bound at the rank weight.**  `Tr(x_n* x_n) ≤ C k_n`
 holds for any coordinate family of uniformly bounded operator norm whose rank
 is `O(k_n)`, by `eq:rank-frobenius`.  This is what makes the hypothesis of
-`thm:transport-variants`(1) available at `ν_n = k_n`. -/
+that weighted transport theorem, clause 1, available at `ν_n = k_n`. -/
 theorem isScaledMassBounded_rankWeight_of_rank_le (B : OpAlmostRepresentation E)
     (Q x : ∀ n, Matrix (B.model n) (B.model n) ℂ) (r : ℕ) (Cop : ℝ)
     (hrank : ∀ n, (x n).rank ≤ r * (Q n).rank)
@@ -114,7 +114,7 @@ theorem isScaledMassBounded_rankWeight_of_rank_le (B : OpAlmostRepresentation E)
 with uniformly bounded operator norm and asymptotically commuting with the
 Kazhdan image at the rank weight, is transported by the compressor on both
 sides.  The rank bound is `rank_idealSum_le`, the mass bound is
-`eq:rank-frobenius`, and the transport is `thm:transport-variants`(1). -/
+`eq:rank-frobenius`, and the transport is that weighted transport theorem, clause 1,. -/
 theorem rank_weight_transport_both_of_idealSum (B : OpAlmostRepresentation E)
     (C : KazhdanCompressionCore Γ E)
     (Q : ∀ n, Matrix (B.model n) (B.model n) ℂ) (r : ℕ) (Cop : ℝ)

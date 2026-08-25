@@ -24,17 +24,12 @@ only `lem:faithfultrace` — already machine-checked as
 other four occurrences of "stably finite" in the manuscript are statements or
 history, all supplied by the same faithful trace.
 
-**Its one real use is already machine-checked, by a route that needs no
-literature at all.**  In `rem:maxinfinite` the manuscript writes that
-`Cmax(G)` "is then not stably finite, has no faithful trace, and in particular
-is neither residually finite-dimensional nor MF" — and *that* inference is the
-contrapositive of the Blackadar--Kirchberg sentence.  It is badged, and the
-conjunct `¬ HasMFEmbedding (MaximalGroupCStar E)` of
-`MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark`
-is discharged by `ProperProjectionCompression.not_hasMFEmbedding`, which
-proves it directly: correct the proper isometry's image by the corner
-complement `e s + (1 - e 1)`, use that every isometry of the corona is a
-unitary, and conclude by faithfulness.  No citation is consumed.
+**The proper-isometry consequence is already machine-checked, by a route that
+needs no literature at all.**  The contrapositive of the
+Blackadar--Kirchberg sentence is discharged directly by
+`ProperProjectionCompression.not_hasMFEmbedding`: correct the proper
+isometry's image by the corner complement `e s + (1 - e 1)`, use that every
+isometry of the corona is a unitary, and conclude by faithfulness.
 
 So the mathematical content of the `k = 1` half of the quoted sentence was
 already in this repository, inlined at the instance where the manuscript needs
@@ -63,8 +58,7 @@ is unconditional and uses only what the repository already has:
 `not_hasMFEmbedding_of_isometry_ne_unitary` is the contrapositive: a C-star
 algebra containing a proper isometry is not MF.  That is
 `ProperProjectionCompression.not_hasMFEmbedding` with the compression data
-stripped away, and it is the form the manuscript's `rem:maxinfinite`
-inference actually needs.
+stripped away.
 
 ## What is not proved, and exactly why
 
@@ -222,9 +216,8 @@ theorem mul_star_eq_one_of_hasMFEmbedding {A : Type u} [CStarAlgebra A]
   exact he (hcomp.trans hmain)
 
 /-- **A proper isometry obstructs MF.**  The contrapositive of
-`mul_star_eq_one_of_hasMFEmbedding`, and the form the manuscript's
-`rem:maxinfinite` inference needs: if `A` contains an isometry that is not a
-unitary, `A` has no MF embedding.
+`mul_star_eq_one_of_hasMFEmbedding`: if `A` contains an isometry that is not
+a unitary, `A` has no MF embedding.
 
 `ProperProjectionCompression.not_hasMFEmbedding` is this statement at the
 compression datum that supplies the proper isometry, proved there by the same

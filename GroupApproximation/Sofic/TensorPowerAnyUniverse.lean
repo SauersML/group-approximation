@@ -5,25 +5,25 @@ import GroupApproximation.Sofic.TransportVariantsAnyUniverse
 # The fixed-tensor sentence with the Kazhdan source in any universe
 
 **The fixed-tensor paragraph was cut from the manuscript on 2026-08-18**,
-with the intertwiner clause of `thm:transport-variants` (see the change-history
+with the intertwiner clause of that weighted transport theorem (see the change-history
 table of `notes/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.  The
 quotation below is kept as a record.  The paragraph read
 
 > Invariant tensors of type `(p,q)` may be identified with Hilbert--Schmidt
 > intertwiners from the `q`th to the `p`th tensor power. … tensor powers of an
 > operator-norm asymptotic representation are again operator-norm asymptotic
-> representations, and Theorem~\ref{thm:transport-variants}(2) applies to every
+> representations, and Theorem~the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed)(2) applies to every
 > pair of them: at each fixed tensor type and each weight, a sequence
 > asymptotically invariant for the conjugate copy of the Kazhdan image is
 > already asymptotically invariant for the whole of it.
 
-and `thm:transport-variants` inherits its groups from `thm:kazhdan-transport`,
+and that weighted transport theorem inherits its groups from `thm:kazhdan-transport`,
 which says only "let `Γ` and `H` be groups" — no countability, no universe.
 `TensorPowerTransport.manuscriptFixedTensorTransport` fixed the source at
 `Type 0`; that was ledger row `TV.12`, retired with the paragraph.
 
 The row closes with no new mathematics, because the paragraph is explicit that
-it *is* `thm:transport-variants`(2) instantiated at `B₁ = U^{⊗p}`,
+it *is* that weighted transport theorem, clause 2, instantiated at `B₁ = U^{⊗p}`,
 `B₂ = U^{⊗q}`, and that variant is already available at every source universe as
 `TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse` (the retired ledger
 rows `TV.02`/`TV.03`).  The tensor-power construction

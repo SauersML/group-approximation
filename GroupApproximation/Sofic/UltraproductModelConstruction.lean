@@ -970,7 +970,7 @@ theorem act_pi_cls (hw : ∀ n, 0 ≤ w n)
 
 /-- **KT.01 and KT.03, adjoint form.**  `(π g)*` acts by the reverse
 conjugation `ξ ↦ U_n(g)* ξ U_n(g)`, which is what the second conclusion of
-`thm:transport-variants`(1) needs. -/
+that weighted transport theorem, clause 1, needs. -/
 theorem act_star_pi_cls (hw : ∀ n, 0 ≤ w n)
     (hω : (ω : Filter ℕ) ≤ Filter.cofinite) (g : H) (ξ : MatFam Y) :
     act Y w ω (star (piHom Y U hU g)) (cls Y w ω ξ) =

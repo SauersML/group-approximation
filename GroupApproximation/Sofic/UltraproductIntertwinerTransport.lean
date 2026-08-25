@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 
 This file proves the intertwiner transport variant by the block reduction
 feeding the **ultraproduct** proof of the Kazhdan transport result.  **The printed
-clause was cut from the manuscript on 2026-08-18**: `thm:transport-variants`
+clause was cut from the manuscript on 2026-08-18**: that weighted transport theorem
 now states the weighted variant alone, and neither the intertwiner statement
 nor its six-step proof is printed any more (see the change-history table of
 `notes/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.
@@ -48,7 +48,7 @@ transport theorem it needs as an explicit hypothesis
 proving it.  What is genuinely established there is only the *reduction*:
 that the rectangular statement follows from the square one.  **None of these
 four may carry a `\leanverified` badge**, because none of them proves
-`thm:transport-variants`(2) outright.
+that weighted transport theorem, clause 2, outright.
 
 The hypotheses are not vacuous — `UltraproductTransportFor Γ E` is exactly
 the statement of `KazhdanAsymptoticCommutant.transport` and
@@ -108,7 +108,7 @@ abbrev UltraproductTransportFor (Γ E : Type) [Group Γ] [Group E] : Prop :=
         (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ)
 
 /-- **The IT.06 input — an UNPROVED hypothesis, not a theorem of this file.**
-Part (1) of `\ref{thm:transport-variants}`: the same transport at an arbitrary
+Part (1) of the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed): the same transport at an arbitrary
 nonnegative Hilbertian weight `w`, again by the ultraproduct argument --- "the
 ultraproduct proof of the Kazhdan transport result applies with
 `\tr_{d_n}` replaced by `\operatorname{Tr}(\,\cdot\,)/\nu_n`", in the printed
@@ -290,7 +290,7 @@ What is *not* proved: `hUP`.  The manuscript discharges it by the
 ultraproduct argument printed under the Kazhdan transport result in
 the former transport argument, which is not yet available in this
 repository.  Until it is, this declaration does not certify
-`\ref{thm:transport-variants}`(2) and must not be badged. -/
+the weighted transport theorem of the superseded manuscript revision (the section it lived in, and its label, are no longer printed)(2) and must not be badged. -/
 theorem it_05_intertwiner_transport
     (hUP : UltraproductTransportFor Γ E)
     (B₁ B₂ : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
@@ -329,7 +329,7 @@ theorem it_05_intertwiner_transport
 /-- **IT.06 — NOT CLOSED.  This is a reduction, not a proof of the step.**
 
 What is proved: the block reduction is weight-blind, so *if* part (1) of
-`thm:transport-variants` holds (hypothesis `hUPs`), running IT.01--IT.04
+that weighted transport theorem holds (hypothesis `hUPs`), running IT.01--IT.04
 against it transports asymptotic intertwiners at every nonnegative weight.
 
 What is *not* proved: `hUPs`.  Same situation as IT.05, at every weight.
@@ -376,7 +376,7 @@ end BlockReduction
 
 universe uK
 
-/-- **`thm:transport-variants`(2), in the exact manuscript coordinates, by
+/-- **that weighted transport theorem, clause 2,, in the exact manuscript coordinates, by
 the ultraproduct route — NOT CLOSED.  Do not badge this declaration.**
 
 It carries the hypothesis `_hUP`, the unproved statement of
@@ -519,7 +519,7 @@ theorem manuscriptUltraproductIntertwinerTransport :
   rw [Real.sqrt_sq hε.le] at hsqrt
   exact hsqrt
 
-/-- **`thm:transport-variants`(2) at every weight, by the ultraproduct
+/-- **that weighted transport theorem, clause 2, at every weight, by the ultraproduct
 route — NOT CLOSED.  Do not badge this declaration.**
 
 "The same reduction through (1) gives the intertwiner transport at every

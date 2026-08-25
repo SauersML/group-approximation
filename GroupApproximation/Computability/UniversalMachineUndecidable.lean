@@ -38,27 +38,38 @@ namespace Computability
 
 open Turing Turing.PartrecToTM2
 
+/-- A `ToPartrec` code which runs the numeral-indexed universal partial
+function on the fixed input `n`.  Unlike the undecidability corollary below,
+this retains the pointwise simulation theorem needed by later fixed-point
+constructions. -/
+theorem exists_toPartrec_universal_code (n : ℕ) :
+    ∃ c : ToPartrec.Code, ∀ m : ℕ,
+      (ToPartrec.Code.eval c [m]).Dom ↔
+        (Nat.Partrec.Code.eval
+          (Denumerable.ofNat Nat.Partrec.Code m) n).Dom := by
+  have hpartrec :
+      Partrec fun m : ℕ =>
+        Nat.Partrec.Code.eval (Denumerable.ofNat Nat.Partrec.Code m) n := by
+    have hcode : Computable fun m : ℕ => Denumerable.ofNat Nat.Partrec.Code m :=
+      Computable.ofNat Nat.Partrec.Code
+    exact (Nat.Partrec.Code.eval_part.comp hcode (Computable.const n)).of_eq
+      fun m => by simp
+  obtain ⟨c, hc⟩ :=
+    ToPartrec.Code.exists_code (Nat.Partrec'.part_iff₁.mpr hpartrec)
+  refine ⟨c, fun m => ?_⟩
+  have h := hc ⟨[m], rfl⟩
+  simp only [List.Vector.head] at h
+  rw [h]
+  simp
+
 /-- **A `ToPartrec` code whose halting is undecidable.**  The code runs the
 `m`-th partial recursive code on a fixed input, so deciding whether it halts
 would decide which codes halt. -/
 theorem exists_toPartrec_code_not_computablePred (n : ℕ) :
     ∃ c : ToPartrec.Code,
       ¬ ComputablePred fun m : ℕ => (ToPartrec.Code.eval c [m]).Dom := by
-  have hpartrec :
-      Partrec fun m : ℕ => Nat.Partrec.Code.eval (Denumerable.ofNat Nat.Partrec.Code m) n := by
-    have hcode : Computable fun m : ℕ => Denumerable.ofNat Nat.Partrec.Code m :=
-      Computable.ofNat Nat.Partrec.Code
-    exact (Nat.Partrec.Code.eval_part.comp hcode (Computable.const n)).of_eq fun m => by simp
-  obtain ⟨c, hc⟩ := ToPartrec.Code.exists_code (Nat.Partrec'.part_iff₁.mpr hpartrec)
+  obtain ⟨c, hdom⟩ := exists_toPartrec_universal_code n
   refine ⟨c, fun hcomp => ?_⟩
-  -- the two halting predicates coincide
-  have hdom : ∀ m : ℕ, (ToPartrec.Code.eval c [m]).Dom ↔
-      (Nat.Partrec.Code.eval (Denumerable.ofNat Nat.Partrec.Code m) n).Dom := by
-    intro m
-    have := hc ⟨[m], rfl⟩
-    simp only [List.Vector.head] at this
-    rw [this]
-    simp
   have hstep : ComputablePred fun m : ℕ =>
       (Nat.Partrec.Code.eval (Denumerable.ofNat Nat.Partrec.Code m) n).Dom := by
     have : (fun m : ℕ => (ToPartrec.Code.eval c [m]).Dom) =

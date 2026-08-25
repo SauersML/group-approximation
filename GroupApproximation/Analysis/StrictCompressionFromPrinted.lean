@@ -4,10 +4,9 @@ import GroupApproximation.Kazhdan.KazhdanGenerators
 import GroupApproximation.Kazhdan.KazhdanUniverse
 
 /-!
-# The printed hypotheses of `rem:maxinfinite`, without the compression datum
+# Strict compression from the group-theoretic hypotheses
 
-Proof-ledger row `MC.07`.  The remark labelled `rem:maxinfinite` inside the
-appendix `\label{app:maxcstar}` of `non_mf_groups_exist.tex` opens with
+The group-theoretic hypothesis is:
 
 > Let `G` contain a property-(T) subgroup `Γ` and an element `t` with
 > `t Γ t⁻¹ ⊊ Γ`
@@ -113,7 +112,7 @@ theorem exists_strictKazhdanCompression {G : Type u} [Group G]
            compresses := hcomp
            strict := hstrict }, rfl⟩
 
-/-- **The remark `rem:maxinfinite` from its printed hypotheses.**
+/-- **The maximal-algebra consequence from its group-theoretic hypotheses.**
 
 The header of the printed remark is exactly the three hypotheses below: `Γ`
 is a subgroup of `G`, it has property (T), and `t Γ t⁻¹ ⊊ Γ`.  No Kazhdan

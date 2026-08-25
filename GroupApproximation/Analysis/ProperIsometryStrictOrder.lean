@@ -2,10 +2,9 @@ import Mathlib.Analysis.CStarAlgebra.Projection
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 
 /-!
-# `prop:proper-isometry` in its printed form: `p < u p u*`
+# Proper isometries from strict projection compression
 
-The proposition labelled `prop:proper-isometry` in `non_mf_groups_exist.tex`
-(navigate by the label; the file is under concurrent edit) now reads
+The basic statement is:
 
 > Let `A` be a unital C*-algebra containing a projection `p` and a unitary
 > `u` with `p < u p u*`.  Then `A` contains an isometry that is not a
@@ -88,9 +87,9 @@ theorem lt_iff {p u : A} (hp : IsStarProjection p) (hu : u ∈ unitary A) :
   · rintro ⟨hleft, -, hne⟩
     exact lt_of_le_of_ne ((hp.le_iff_mul_eq_left hq).mpr hleft) (Ne.symm hne)
 
-/-- **`prop:proper-isometry`, printed header.**  A projection `p` and a
-unitary `u` with `p < u p u*` give a proper projection compression, hence all
-the conclusions of `Analysis/ProperIsometryFromCompression`. -/
+/-- A projection `p` and a unitary `u` with `p < u p u*` give a proper
+projection compression, hence all the conclusions of
+`Analysis/ProperIsometryFromCompression`. -/
 def ofStrictLT {p u : A} (hp : IsStarProjection p) (hu : u ∈ unitary A)
     (hlt : p < u * p * star u) : ProperProjectionCompression A where
   p := p
@@ -107,15 +106,15 @@ end Order
 
 end ProperProjectionCompression
 
-/-- **`prop:proper-isometry`, in full and in its printed form.**
+/-- **Strict projection compression produces a proper isometry.**
 
 > Let `A` be a unital C*-algebra containing a projection `p` and a unitary
 > `u` with `p < u p u*`.  Then `A` contains an isometry that is not a
 > unitary; consequently `A` is not stably finite and has no faithful tracial
 > state.
 
-The three conclusions are, in the printed order, the nonunitary isometry, the
-failure of stable finiteness, and the absence of a faithful tracial state. -/
+The three conclusions are the nonunitary isometry, the failure of stable
+finiteness, and the absence of a faithful tracial state. -/
 theorem manuscriptProperIsometryStrictOrder :
     ∀ (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
       (p u : A), IsStarProjection p → u ∈ unitary A →
