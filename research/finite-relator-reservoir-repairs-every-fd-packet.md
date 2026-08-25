@@ -73,6 +73,16 @@ genuine failure of local splitting must take.
   packets and correction coefficients vary, and it asks for cp repair rather
   than a coercive estimate.  A proof must exploit that noncoercive
   packet-dependent geometry.
+- **The low-spectrum obstruction already occurs in finite-dimensional full-support packets.**
+  `km-triangle-relative-gap-failure-has-fd-full-support-witnesses` uses RFD of
+  the virtually free ambient algebra to approximate the relative-gap witnesses
+  by genuine finite-dimensional representations, then removes their
+  `K`-fixed summand.  The resulting packets have ideal support `z_rho=1` and
+  arbitrarily small Rayleigh energy for every prescribed finite relator
+  reservoir.  Thus the spectral no-go cannot be evaded by restricting `(RR2)`
+  to finite-dimensional packets.  Conversely, these packets exist
+  independently of whether `(RR2)` or local splitting holds, so their mere
+  existence is not a counterexample to the Choi-slice intersection.
 - **The reservoir cannot act only by independent inner gauges on the tree
   faces.**  In the explicit `(3,3,4)` Kac--Moody triangle,
   `kernel-inner-tree-face-balancing-collapses` proves that conjugating the two
@@ -154,6 +164,20 @@ genuine failure of local splitting must take.
   locates all genuinely non-inner Kraus freedom in the ideal block.  The open
   uniform-depth task is precisely to make these affine Choi slices nonempty
   for every packet using one `W`; no argument here proves that.
+- **An exhausting sequence has a sharp lift-versus-separator endpoint.**
+  `exhausting-ideal-reservoirs-have-lift-or-quotient-separator` defines the
+  distance from `t+L(E,L_W)` to the global ucp cone.  If those distances tend
+  to zero as the reservoirs exhaust `I_N`, point-norm lifting closure already
+  gives the desired exact local section, even if no one finite depth works.
+  If the distances stay bounded below, Hahn--Banach functionals annihilating
+  deeper and deeper reservoirs have a tail cluster point which annihilates
+  all of `I_N` and strictly separates `id_E` from every liftable ucp map in the
+  quotient.  For packet Choi certificates the analogous ultralimit is valid
+  only after pullback by `s |-> z_rho rho o s` and only with a uniform
+  normalized gap; moving packet dimensions and support projections otherwise
+  destroy compactness.  Hence failure of one uniform depth is not itself a
+  negative result: vanishing depth-dependent gaps are exactly compatible with
+  a positive local lift.
 - **Why the two recorded no-gos do not apply.**  The window/Folner no-go
   `position-window-ucp-sections-collapse-to-folner-vectors` kills corrections
   indexed by group positions with a right-translation reindexing; `(RR1)` is

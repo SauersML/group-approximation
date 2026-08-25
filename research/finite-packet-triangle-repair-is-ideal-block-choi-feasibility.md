@@ -84,5 +84,16 @@ basis.  It exposes the coupled positivity condition that a finite-reservoir
 construction must preserve across all three faces.  It does not prove those
 intersections are nonempty for one uniform `L_W`.
 
+**Exhausting-depth endpoint.**  For an increasing sequence of relator
+reservoirs dense in `I`,
+`exhausting-ideal-reservoirs-have-lift-or-quotient-separator` explains exactly
+how the dual certificates may be passed to a limit.  One must first pull
+`F_m` back to the fixed map space by `s |-> F_m(z_m rho_m o s)`.  A uniform
+normalized gap then gives a quotient-level separator; without that
+conditioning the signed Choi certificates have no positive-vector or
+low-spectrum limit.  The invariant global reservoir-to-ucp distances either
+tend to zero, which already gives an exact local lift, or stay positive, which
+produces the quotient separator directly.
+
 DERIVATION
 ideal-block-choi-feasibility-proof

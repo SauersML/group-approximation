@@ -73,5 +73,14 @@ finite-dimensional.  Thus the surviving positive route must use precisely
 noncoercive, packet-dependent complete-positive geometry rather than a
 relative-Kazhdan projection.
 
+**Finite-dimensional upgrade.**  The final caveat is removed for this
+virtually free ambient group by
+`km-triangle-relative-gap-failure-has-fd-full-support-witnesses`: RFD
+coefficient approximation followed by deletion of the trivial quotient
+summand produces genuine finite-dimensional witnesses with `H_rho^K=0`,
+ideal support `z_rho=1`, and arbitrarily small energy for every fixed
+reservoir.  This strengthens the spectral no-go but still does not refute the
+packet-dependent Choi repair claim.
+
 DERIVATION
 property-t-extension-dichotomy-kills-relator-gap

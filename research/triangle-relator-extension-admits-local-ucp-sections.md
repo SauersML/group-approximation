@@ -166,6 +166,27 @@ Ioana--Spaas--Wiersma mechanism), per
   relator does not contradict such a section: its lifted edge values may be
   `O(1)` away from the canonical group unitaries inside `I_N`, and complete
   positivity can store the cyclic holonomy there.
+- **Growing relator depth now has an exact endpoint.**
+  `exhausting-ideal-reservoirs-have-lift-or-quotient-separator` shows that it
+  is not necessary for one finite relator reservoir to work exactly.  For any
+  increasing finite-dimensional reservoirs dense in `I_N`, if the distance
+  from the associated affine lifts to the ucp cone tends to zero, the maps
+  obtained from the nearby ucp points satisfy `(TL2)` and point-norm closure
+  gives the exact local section.  If the distance does not tend to zero, a
+  tail limit of Hahn--Banach functionals annihilates all of `I_N` and descends
+  to a strict quotient-level separator of `id`.  The finite-packet Choi
+  certificates realize this limit only when their pulled-back normalized gaps
+  are uniformly positive; raw certificates cannot be ultralimited across
+  varying dimensions and varying ideal supports.
+- **Finite-dimensional low-relator spectrum is real but not decisive.**
+  `km-triangle-relative-gap-failure-has-fd-full-support-witnesses` upgrades the
+  absence of a relative relator gap to genuine finite-dimensional
+  representations with `z_rho=1` and arbitrarily small energy for every fixed
+  relator reservoir.  This closes the finite-dimensionality caveat in the
+  earlier spectral no-go.  It does not refute the target: these packets exist
+  independently of whether the exhausting-reservoir distance tends to zero
+  or stays positive, and a general signed Choi separator cannot be converted
+  into such a positive vector witness without an additional theorem.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
