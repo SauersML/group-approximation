@@ -184,6 +184,18 @@ fixed `M` are compatible with sparse escape and still fall short of
 can return the sparse carrier.  The load-bearing mixed-root row must fold
 this intrinsically infinite orbit back to one finite projective reservoir.
 
+The rank scale along that orbit is now uniform.
+`binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
+two-commutator saturation formula and, in the reverse direction, a sandwich
+`uav=1` inside two more Steinberg commutators.  Every nonzero elementary root
+and the marked root are products of four conjugates of one another.  Hence
+after active-core reblocking every fixed nonzero coefficient root has a
+common positive normalized-rank floor.  This rules out coefficient-dependent
+rank decay but not diffuse Haar escape, and the eventual coordinate may still
+depend on the coefficient.  A successful return must preserve this uniform
+rank scale while authenticating a moving coefficient or mixed-root orbit
+fold.
+
 On the atomic/controlled-reflection branch, the multiplicity orientation is
 now separated from the actual carrier problem.  An adaptive eigenspace cut
 of the multiplicity involution makes either `T` or its central-sign correction

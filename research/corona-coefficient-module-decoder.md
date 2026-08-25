@@ -131,6 +131,18 @@ the problem.
   the required `2[P]<=[P]`.  Thus the mixed-root return must fold an infinite
   orbit, not close a bounded menu of atoms.
 
+- **Let pair-dependent root ranks vanish.**
+  `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` removes this
+  possibility.  Two explicit Steinberg commutators and one sandwich
+  `uav=1` show that every nonzero elementary root and the marked root are
+  products of four conjugates of one another.  After active-core reblocking,
+  every fixed nonzero coefficient root therefore has one common positive
+  density floor.  This does not atomize the root algebra: Haar spectrum has
+  active mass `1/2` for every nonzero coefficient.  Nor is the estimate
+  coordinate-uniform over a coefficient chosen after seeing the matrix.  The
+  missing mixed-root return must exploit the common rank scale without
+  exchanging those quantifiers.
+
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
   the form
