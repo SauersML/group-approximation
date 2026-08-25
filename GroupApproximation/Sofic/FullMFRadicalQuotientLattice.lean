@@ -180,7 +180,7 @@ theorem MFClosedNormalSubgroup.orderIsoOfInvisibleKernel_comp
       (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hkerF).trans
         (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel g hg hkerG) := by
   apply OrderIso.ext
-  intro N
+  funext N
   apply MFClosedNormalSubgroup.ext
   simp only [MFClosedNormalSubgroup.mapOfInvisibleKernel_carrier,
     OrderIso.trans_apply, MFClosedNormalSubgroup.orderIsoOfInvisibleKernel]
