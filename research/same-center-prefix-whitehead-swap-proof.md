@@ -68,5 +68,6 @@ in the claim.
 Finally `W_m` commutes with both spectral involutions defining `F`, so its
 compression to `F` is a unitary.  Hence `S_m^*S_m=S_mS_m^*=F`, and inserting
 this twice gives `(SCW5)`.  Removing the fixed adjacent swaps from `(SCW4)`
-leaves `V_1^*V_2` in the full Pauli commutant, so the two mixed commutators
-are zero.
+leaves `V_1^*V_2` in the full Pauli commutant.  This is a statement about the
+two one-quarter transport labels; it does not attach either reservoir factor
+to the separately required one-eighth controlled selector.

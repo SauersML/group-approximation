@@ -7,7 +7,7 @@ artifacts:
   - research/same-center-prefix-whitehead-swap-proof.md
 distinct_from:
   marked-root-star-carries-three-anchored-cells: that uses three distinct commuting q-center roots to place the coefficient factorizations on one carrier; this uses one common q-center root and computes the exact label action of the adjacent partial-Whitehead transports.
-  binary-leavitt-native-two-scale-cross-gram-positive: that asks for the cross-Gram and mixed-Pauli estimates for the two actual selector transports; this identifies those literal partial-Whitehead words on one reducing carrier and computes their transport-label normal forms.
+  binary-leavitt-native-two-scale-cross-gram-positive: that needs the cross-Gram and mixed-Pauli estimates for the two actual selector transports; this proves that the most direct common-center construction has two one-quarter transport labels and does not authenticate the one-eighth selector occurrence.
 ---
 
 Put `R=L_(F_2)(1,2)`, `q=s_1t_1`, and, for `m=1,2,3`,
@@ -73,11 +73,9 @@ ordinary adjacent swaps.  Each has a two-dimensional negative eigenspace in
 the eight-dimensional label factor, hence negative fraction `1/4`.
 
 This `1/4,1/4` calculation is not the selector-rank pair.  The controlled
-selector groupifications attached to the two rows have the separate fixed
-label factors `C_(1/4)` and `C_(1/8)`; their external multiplicity unitaries
-are the `V_1,V_2` carried by the coefficient transports in `(SCW4)`.  The
-role of `(SCW4)` is to put those transports, and hence those gauges, on one
-physical carrier.
+selector groupifications required downstream have separate fixed label
+factors `C_(1/4)` and `C_(1/8)`.  No displayed word identity proves that
+those controlled rows inherit the `V_1,V_2` appearing in `(SCW4)`.
 
 Indeed, after the fixed packet relabelings used by the selector rows, put
 
@@ -92,11 +90,14 @@ are unitaries on `FH`, and therefore
 tau(S_1^*S_2S_2^*S_1)=tau(F).                         (SCW5)
 ```
 
-After removing the two canonical adjacent swaps, the relative polar gauge
-is `V_1^*V_2` in the common three-qubit Pauli commutant.  Its two mixed
-source-Pauli commutators vanish exactly.  Thus `(SCW1)` and `(SCW5)` provide
-the native two-scale cross-Gram front end; they do not replace or alter the
-controlled `1/4,1/8` selector label factors.
+After removing the two canonical adjacent swaps, the relative unitary is
+`V_1^*V_2` in the common three-qubit Pauli commutant.  Equation `(SCW5)` is
+nevertheless only the tautological Gram of two full unitaries reducing the
+same carrier.  By
+`same-center-whitehead-gram-is-not-native-selector-gram`, it does not provide
+the native unequal-scale selector cross Gram.  A successful second row still
+needs a genuinely controlled three-bit occurrence or another nonseparated
+matrix-only authentication.
 
 No Property T, stability input, or literature theorem is used.
 

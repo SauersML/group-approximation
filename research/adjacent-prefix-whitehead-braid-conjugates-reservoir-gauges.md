@@ -39,13 +39,12 @@ In particular they are unitarily conjugate:
 V_2=(V_1V_2)V_1(V_1V_2)^(-1).                         (APB4)
 ```
 
-Thus the literal Leavitt prefix chain already contains an exact, entirely
-Property-T-free same-gauge mechanism.  The adjacent swaps in `(APB2)` are
-the fixed label normalizations of the **coefficient transports**, not the
-controlled selector reflections.  The latter retain their separate
-`C_(1/4)` and `C_(1/8)` label factors while inheriting the conjugate external
-gauges `(APB4)`.  In particular the braid is an exact strengthening of the
-positive cross-Gram/polar comparison, not a competing selector-rank model.
+Thus the literal Leavitt prefix chain contains an exact, entirely
+Property-T-free same-gauge mechanism for these two adjacent one-quarter
+transport labels.  It does **not** prove that the separate controlled
+selector reflections with label fractions `1/4` and `1/8` inherit those
+reservoir factors.  That attachment is the occurrence-typing gap isolated by
+`same-center-whitehead-gram-is-not-native-selector-gram`.
 
 DERIVATION
 adjacent-prefix-whitehead-braid-proof

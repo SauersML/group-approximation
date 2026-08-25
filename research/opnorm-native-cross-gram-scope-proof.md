@@ -12,7 +12,8 @@ The proof route
 `same-center-whitehead-cross-gram-closes-native-two-scale` explicitly invokes
 `opnorm-packet-exactification-is-dimension-free` and begins with the active
 core furnished by an operator-norm asymptotic representation.  These are the
-hypotheses of the corrected NCG statement.
+hypotheses of an operator-norm surrogate, not of the normalized-HS NCG
+statement.
 
 By definition a canonical hyperlinear microstate controls relators only in
 normalized Hilbert--Schmidt norm.  Operator norm dominates normalized HS
@@ -22,6 +23,7 @@ plateau calculation in
 failure on the Leavitt carrier geometry: an error may have operator norm one
 while its normalized HS norm tends to zero with carrier density.
 
-Therefore hyperlinearity does not imply the premise of the operator-norm
-NCG theorem.  The proposed direct route applies a theorem outside its
-quantified domain, so its conclusion does not follow.
+Therefore hyperlinearity does not imply the premise of an operator-norm NCG
+theorem.  Such a proof would not establish the HS claim required by the
+direct route to nonhyperlinearity.  This is a quantifier fence, not an
+invalidation of that direct route once the HS claim is actually proved.

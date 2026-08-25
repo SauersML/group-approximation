@@ -8,10 +8,10 @@ distinct_from:
   affine-leavitt-source-saturated-reynolds-checksum: that asks for a source-sized adjoint Reynolds overlap in an odd affine packet; this permits any fixed positive direct polar Gram overlap in the binary packet.
 ---
 
-**OPEN SCALAR HOLONOMY CLAIM.**  On the positive-density active core of a
-binary-Leavitt Steinberg microstate, exactify the fixed depth-one and
-next-refinement Pauli packets and stabilize their two scale-changing
-coefficient transports to contractions
+**NORMALIZED-HS SCALAR HOLONOMY CLAIM.**  On the positive-density active core
+of a canonical-trace binary-Leavitt Steinberg microstate, exactify the fixed
+depth-one and next-refinement Pauli packets and stabilize their two
+scale-changing coefficient transports to contractions
 
 ```text
 S_1,S_2 : P_source H -> P_target H.
@@ -172,6 +172,24 @@ because its rectangular completions need not be restrictions of two full
 unitaries on the marked source projection.  This is precisely the typing
 loophole realized by the existing Morita model.
 
+There is a broader finite-character version of the same test.
+`binary-native-selector-atom-hecke-dichotomy` adjoins the commuting
+nine-root packet to the marked root and cuts by one character atom.  If the
+two actual selector contractions are restrictions `g_i e_chi` of their
+fixed group words, then the cross-Gram is computed exactly by
+
+```text
+I=H intersect (g_1^(-1)g_2)H(g_1^(-1)g_2)^(-1).
+```
+
+Compatible transported characters give `(NCG1)` with
+`gamma>=2^(-9)`; incompatible characters make the Gram exactly zero.  This
+removes every multiplicity-reservoir ambiguity after occurrence typing, but
+does not supply that typing or the relative-action calculation.  In
+particular the proposed tridiagonal sign atom is invariant under reversal,
+not under the adjacent-swap three-cycle, so its overlap cannot be assumed
+without computing the actual relative selector action.
+
 There is nevertheless now a fixed nonadaptive common carrier available for
 an occurrence compiler.  `seventeen-root-star-has-marked-triple-overlap`
 proves that the prescribed roots `x_42(q)` and `x_52(q)` have triple overlap
@@ -198,6 +216,76 @@ is that the separate root occurrences of its factors compose as the two
 selector transport operators on that carrier; that is now the exact
 same-occurrence row to authenticate.
 
+There is a sharp incidence obstruction to the minimal literal-root repair.
+`literal-selector-roots-force-center-chain`
+shows that typing `[B_(m+1),A_m]` as the root carrying
+`b_(m+1)a_m` forces the consecutive own-cell `q`-centers to be composable;
+their commutator is a nonzero `q`-root.  Hence the same three arms cannot
+simultaneously expose both selector coefficients by those literal cross
+commutators and retain the pairwise commuting centers and simultaneous
+reducing Pauli carrier needed by `(NCG3)`.  In the explicit chained model the
+later center also fails to commute with the earlier arm, so this is stronger
+than merely observing that the center subgroup is nonabelian.  A true-word
+construction must therefore use a duplicated arm, a nonliteral Whitehead
+composite, or another occurrence compiler rather than merely changing the
+root indices in `(NCG3)`.
+
+The first two named escapes are now fenced at their minimal algebraic form.
+`duplicate-selector-transports-retain-occurrence-seam` proves that one common
+transport of duplicated arms preserves their original zero cross commutator,
+whereas two separate transports leave an uncontrolled relative word equal
+to the missing occurrence holonomy.  Building the coefficient directly by
+its three-elementary Whitehead word avoids the center chain, but authenticates
+only equal typed prefix corners.  Cutting those full words by a disjoint
+compatible Hecke atom makes their Gram maximal for the tautological reason
+that both reduce the atom; it still does not identify the native `1/4` and
+`1/8` selector rows.  Hence any duplicated-arm repair must control the
+relative transporter on a matrix-dependent reducing subcorner, rather than
+only add fixed Weyl words and a finite character cut.
+
+There is a useful partial salvage of that chained model.
+`center-chain-character-atom-gives-scalar-gram` cuts the nonabelian
+`UT_4(F_2)` center chain by the one-dimensional character which is negative
+on all three simple centers and positive on their derived roots.  The two
+literal selector roots commute with this atom, so their scalar cross-Gram is
+exactly its trace `1/64`.  But the preceding Pauli arms move the atom through
+nonzero cross roots.  Thus the scalar overlap is no longer the obstruction
+in the literal chained model; the missing datum is precisely simultaneous
+Pauli reduction and hence the mixed-commutator/selector-label authentication
+required by `(NCG1)`.
+
+The existing polar-cut machinery cannot repair this carrier after the fact.
+`center-chain-scalar-gram-polar-cut-returns-moving-atom` computes that the
+positive cross-Gram square is exactly `e_chi`, so every nonzero spectral cut
+is again `e_chi`.  Moreover the two relevant arm commutator costs are the
+fixed values `3/128` and `1/64` in squared normalized HS norm.  Thus the
+shared-packet covariance hypothesis of
+`two-transport-cross-gram-has-a-fixed-mass-reducing-corner` fails by a fixed
+amount, while applying that theorem without the Pauli packet merely returns
+the same moving atom.  The mixed-Pauli gauge theorem also starts after a
+common reducing carrier has been authenticated and cannot create one from
+this scalar overlap.  A valid chained-center repair must therefore supply a
+different positive subcorner whose mass is not obtained as a spectral cut of
+this scalar Gram operator.
+
+The moving-arm Hecke coefficients themselves now exhibit the two target
+dyadic masses.  By `center-chain-hecke-arms-have-native-masses`, on the same
+nonabelian character atom
+
+```text
+||eA_1e||_2^2=(1/4)tau(e),
+||eA_2A_1e||_2^2=(1/8)tau(e).
+```
+
+The index-four and index-eight values come from three explicit vanished
+unitriangular coordinates, not from an assumed selector tensor factor.  This
+does not yet close `(NCG1)`: Hilbert--Schmidt mass does not determine polar
+support rank or authenticate the two controlled label actions.  It does,
+however, reduce the remaining chained-arm question to a concrete spectral
+one—polarize these two named Hecke operators on one positive subcorner and
+control the mixed Pauli commutators—rather than searching for the dyadic
+fractions abstractly.
+
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
 a third balance pair can equate the two gauge ranks only after its cyclic
@@ -208,14 +296,39 @@ coefficient triangles while leaving it absent.  The two-oriented version
 assumes an even stronger input, namely one literal hidden gauge projection
 shared by both returns.
 
-## Direct hyperlinearity endpoint
+The adjacent-prefix braid identifies why a purely relational repair cannot
+compare the unequal controlled label factors.  By
+`unequal-label-ranks-forbid-relational-reservoir-conjugacy`, an exact
+separated tensor relation which conjugates the reservoir factors would also
+conjugate the `1/4` and `1/8` label involutions, which is impossible.
 
-Although this claim also feeds the property-`(T)`-free MF compiler, its norm
-and density quantifiers are already the ones needed for hyperlinearity.  In a
-canonical-trace microstate of `St_20(L_2(F_2))`, the fixed nonzero involutory
-root mark has a nontrivial spectral carrier of trace `1/2+o(1)`.  Applying
-`(NCG1)` on that carrier, the established cross-Gram cutoff, mixed-Pauli
-gauge lock, and affine rank floor give a fixed normalized-HS relator defect.
-Thus `nonhyperlinear-from-binary-leavitt-native-cross-gram` sends this single
-open scalar holonomy claim directly to `non-hyperlinear-group`; no
-operator-norm return row, MF radical, or Property `(T)` argument intervenes.
+The attempted same-center closure is invalidated by
+`same-center-whitehead-gram-is-not-native-selector-gram`.  Compressing the
+two Whitehead words to their common reducing carrier makes both maps
+unitaries, so their full Gram equals the carrier trace for the tautological
+reason `S_m^*S_m=F`.  Their proved label actions are still the two
+one-quarter adjacent swaps.  No word in that calculation authenticates the
+separate one-eighth controlled selector or makes it inherit the second
+reservoir gauge.  Consequently the common carrier and braid are real
+progress, but they do not close `(NCG1)`.
+
+Nor can one repair the missing inheritance by enlarging the finite packet
+until the two adjacent swaps and the one-eighth reflection are literal
+label words, removing each Whitehead label action to expose an
+identity-outer gauge, and then imposing both selector covariances on the
+whole packet isotypic carrier.  The exact firewall
+`exact-whitehead-selector-gauge-attachment-collapses-packet` applies the two
+affine rank equations in the left regular representation and forces that
+carrier to vanish.  Such a construction destroys the embedded packet rather
+than producing a finite-matrix obstruction.  The positive bridge must align
+the gauges only on a representation-dependent reducing subcorner and pay
+for the discarded mass; this is precisely why the open cross-Gram estimate
+is formulated with a finite-coordinate polar cut.
+
+## Norm scope
+
+The claim itself is normalized-Hilbert--Schmidt and is meant to apply to
+canonical-trace microstates.  Operator-norm packet exactification may be used
+in the separate MF-radical lane, but it cannot serve as the occurrence
+authentication here.  A valid route must supply its own HS estimate on the
+actual selector occurrences.
