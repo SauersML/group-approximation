@@ -48,6 +48,18 @@ Under `(BSC3)` this trace is the regular group character.  Its GNS vectors
 of `phi_s` on the generated von Neumann algebra identifies that algebra
 trace preservingly with `L(G)`.  This proves `(BSC4)`.
 
+Every `rho(g)` belongs to the centralizer of `phi_s`, so the modular
+automorphism group of `phi_s` fixes `W^*(rho(G))` pointwise.  The restriction
+of `phi_s` to that algebra is the finite faithful regular trace.  Takesaki's
+conditional-expectation theorem therefore gives a unique `phi_s`-preserving
+normal conditional expectation
+
+```text
+sMs -> W^*(rho(G)),
+```
+
+which is `(BSC5)`.
+
 If `phi` is purely singular, it vanishes on `K(H)`.  Equivalently its normal
 extension is supported on the singular central summand of `B(H)**`, so the
 support projection need not be represented by a projection in the original

@@ -40,7 +40,14 @@ then `phi_s(rho(g))=delta_(g,e)` and
 W^*(rho(G)) ~= L(G)                                      (BSC4)
 ```
 
-trace preservingly.
+trace preservingly.  Moreover this copy is not merely a subalgebra.  Since
+`W^*(rho(G))` lies in the centralizer of the faithful normal state `phi_s`,
+Takesaki's theorem supplies a `phi_s`-preserving normal conditional
+expectation
+
+```text
+E:sMs -> W^*(rho(G)) ~= L(G).                            (BSC5)
+```
 
 For a purely singular state the projection `s` lies in the singular summand
 of `B(H)**`; in particular it need not belong to `B(H)`.  Consequently
@@ -55,8 +62,11 @@ For the binary Leavitt unit group this pins down the singular-near frontier:
 any hypothetical Kahl--Schneider witness already contains a genuine regular
 copy of `L(G)` in a singular bidual corner.  A contradiction must show that
 this particular corner, or its inclusion, has an amenability or matricial
-property unavailable to an arbitrary singular summand.  Merely propagating
-the group law to the support is automatic and cannot be the missing theorem.
+property unavailable to an arbitrary singular summand.  Even expectedness
+is automatic; the missing input would have to make the singular support
+corner injective, matricially approximable in a trace-compatible way, or
+otherwise constrain that expectation.  Merely propagating the group law to
+the support cannot be the missing theorem.
 
 Proof: `state-support-corner-exactification-proof`.
 
