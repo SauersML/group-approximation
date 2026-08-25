@@ -230,6 +230,17 @@ construction must therefore use a duplicated arm, a nonliteral Whitehead
 composite, or another occurrence compiler rather than merely changing the
 root indices in `(NCG3)`.
 
+There is a useful partial salvage of that chained model.
+`center-chain-character-atom-gives-scalar-gram` cuts the nonabelian
+`UT_4(F_2)` center chain by the one-dimensional character which is negative
+on all three simple centers and positive on their derived roots.  The two
+literal selector roots commute with this atom, so their scalar cross-Gram is
+exactly its trace `1/64`.  But the preceding Pauli arms move the atom through
+nonzero cross roots.  Thus the scalar overlap is no longer the obstruction
+in the literal chained model; the missing datum is precisely simultaneous
+Pauli reduction and hence the mixed-commutator/selector-label authentication
+required by `(NCG1)`.
+
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
 a third balance pair can equate the two gauge ranks only after its cyclic
