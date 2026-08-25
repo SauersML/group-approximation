@@ -227,6 +227,17 @@ no-Fano-line support conclusion.
   positive route must choose a particular PCPP with an affine perfect-proof
   section (or prove affine safety of its sampled views); generic PCPP
   completeness does not supply it.
+- `affine-halt-support-and-pcpp-section-close-nonhyperlinear-chain` audits
+  every arrow after precisely that proposed input.  Affine safety of each
+  pre-PCPP positive support together with a coherent affine perfect-proof
+  section on its whole affine hull makes every `Verify` view affine-safe.
+  The universal truth-table `R_*` gadgets, finite cap-profile LCS OR, native
+  central sign, proof-search fixed point, and canonical regular-trace
+  contradiction then produce a finitely presented nonhyperlinear group.
+  Thus there is no later conditional hole hidden behind FC-char: the first
+  unproved theorem is exactly the existence of those source-specific HALT
+  supports and coherent affine proof sections (or the direct viewwise
+  affine-safety conclusion).
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities
