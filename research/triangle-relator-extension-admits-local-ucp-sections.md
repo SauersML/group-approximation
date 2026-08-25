@@ -218,9 +218,12 @@ Ioana--Spaas--Wiersma mechanism), per
   Gram floor applies.  Thus a successful balance cannot be obtained by
   searching over more elaborate group-word lifts of the two finite faces;
   at least one face must use non-group-unitary operator values or be genuinely
-  nonmultiplicative.  Verifying the stated maximal-finite and normalizer
-  hypotheses for a chosen Kac--Moody triangle is a separate finite-subgroup
-  task; the theorem does not assume that verification for every candidate.
+  nonmultiplicative.  Caprace--Muehlherr's maximal-bounded classification
+  verifies the maximal-finite and self-normalizer hypotheses for the explicit
+  `(3,3,4)` instance, while the existing Bass--Serre computation verifies the
+  edge-centralizer hypothesis there.  Thus this enlarged no-go is
+  unconditional at that candidate, though it still leaves arbitrary
+  nonmultiplicative ucp face maps untouched.
 - **A uniform finite-relator Laplacian cannot provide the required
   nonmultiplicative movement (2026-08-24).**
   `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal

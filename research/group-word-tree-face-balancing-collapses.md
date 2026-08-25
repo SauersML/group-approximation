@@ -3,13 +3,16 @@ rg: 2
 id: group-word-tree-face-balancing-collapses
 kind: claim
 title: Group-word multiplicative balancing of both tree faces collapses to one kernel conjugation
+artifacts:
+  - research/artifacts/caprace-muehlherr-maximal-bounded-ucp-audit-2026-08-25.md
 distinct_from:
   kernel-inner-tree-face-balancing-collapses: that starts by assuming the two tree-face embeddings are kernel conjugates and verifies the collapse in one explicit A2-A2 triangle; this gives a Bass-Serre criterion forcing every group-word-valued multiplicative lift of either tree face to have that form before applying the same collapse.
   three-face-ucp-balancing-needs-macroscopic-tree-motion: that rules out a small correction of the canonical tree-face values for arbitrary ucp maps; this permits arbitrarily large group-word motion and rules it out by classifying the finite subgroup lifts.
   triangle-relator-extension-admits-local-ucp-sections: that permits genuinely nonmultiplicative ucp restrictions and remains open; this eliminates the larger class in which both finite tree-face restrictions are star homomorphisms whose canonical group unitaries remain group unitaries.
 ---
 
-**ESTABLISHED (conditional Bass--Serre no-go).**  Use the triangle notation
+**ESTABLISHED (and unconditional at the `(3,3,4)` instance).**  Use the
+triangle notation
 
 ```text
 G_0=P_12 *_(P_2) P_23,       K=ker(G_0 ->> Lambda),
@@ -53,6 +56,18 @@ Agreement of the two restrictions on `C^*(P_2)` implies
 contradicting `three-face-ucp-balancing-needs-macroscopic-tree-motion`.
 
 Proof: `group-word-tree-face-lift-classification-proof`.
+
+The hypotheses are not merely formal.  They hold for the explicit
+`(3,3,4)` Kac--Moody triangle in
+`kernel-inner-tree-face-balancing-collapses`.  Caprace--Muehlherr's
+classification of maximal bounded subgroups, together with their theorem
+that bounded equals finite over a finite field, makes each maximal spherical
+rank-two Levi a maximal finite subgroup.  Its unique stabilized pair of
+opposite maximal spherical residues makes it self-normalizing, and distinct
+residue types make `P_12` and `P_23` nonconjugate.  These properties pass to
+the centre-free quotient.  Finally `(IK5)` of the cited node gives `(GW3)`.
+Thus the no-go applies to that concrete simple Kazhdan lattice, with no
+unverified group-theoretic hypothesis left there.
 
 **What remains.**  This strictly enlarges the inner-gauge no-go: the
 conjugators are not part of the hypothesis but are forced from the apparently

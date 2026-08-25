@@ -6,6 +6,9 @@ title: Classify finite group-word lifts in the Bass-Serre tree and collapse thei
 target: group-word-tree-face-balancing-collapses
 requires:
   - three-face-ucp-balancing-needs-macroscopic-tree-motion
+  - kernel-inner-tree-face-balancing-collapses
+artifacts:
+  - research/artifacts/caprace-muehlherr-maximal-bounded-ucp-audit-2026-08-25.md
 ---
 
 Write `A=P_12`, `B=P_23`, `C=P_2`, and let
@@ -83,3 +86,36 @@ Psi(u_(q_E(a_j)))=u_(a_j)       for every j.               (6)
 Equation `(6)` contradicts
 `three-face-ucp-balancing-needs-macroscopic-tree-motion`, which forces one
 of these values to move by at least `2/L^2`.  This proves the claim.
+
+It remains to verify that this criterion applies to the explicit example,
+rather than leave the theorem conditional.  Start before quotienting by the
+finite centre.  For a maximal spherical subset `I` of the rank-three Coxeter
+set, the standard finite-type Levi `L_I` is the intersection of the
+stabilizers of a pair of opposite maximal spherical residues of type `I`.
+The converse direction of Caprace--Muehlherr Theorem 4.1 says that this
+intersection is a maximal bounded subgroup and is in case (i).  Their
+Corollary 3.8 says that bounded subgroups are exactly finite subgroups over
+the finite field.  Hence every `L_I` is maximal finite.
+
+The same theorem says that the positive and negative residues stabilized by
+`L_I` are unique.  If `g` normalizes `L_I`, then `g` permutes each singleton
+set of stabilized residues, hence fixes both residues and belongs to their
+stabilizer intersection `L_I`.  Therefore `N(L_I)=L_I`.  Also, conjugation
+by the Kac--Moody group preserves residue type.  Since `{1,2}` and `{2,3}`
+are distinct maximal spherical types, `L_12` and `L_23` are not conjugate.
+
+All three statements pass through the finite central quotient.  Indeed, the
+full inverse image of a finite subgroup containing the image of `L_I` is a
+finite subgroup containing `L_I`, proving maximality; the full inverse image
+of a normalizer is a normalizer modulo the common centre, proving
+self-normalization; and a conjugacy downstairs lifts to a conjugacy of the
+full inverse images, contradicting the type argument.  Thus `(GW1)--(GW2)`
+hold for the centre-free `(3,3,4)` lattice.  Finally
+`kernel-inner-tree-face-balancing-collapses` proves
+
+```text
+C_(G_0)(P_2)<=P_2,              K intersect P_2={1},
+```
+
+and hence `(GW3)`.  The abstract argument above is therefore unconditional
+at that instance.
