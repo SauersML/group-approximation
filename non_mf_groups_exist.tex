@@ -781,6 +781,14 @@ Represent $B$ faithfully and nondegenerately on a Hilbert space
 $\mathcal H$.  The represented projection $P$ is the orthogonal projection
 onto $\operatorname{Fix}\pi(L)$.  If $\xi$ is $L$-fixed and $\ell\in L$,
 then
+%<webmath object="whole" when="\pi(\ell)U^*\xi" title="why U star of a fixed vector is still fixed">
+% The calculation checks whether \(U^*\xi\) is fixed by L.  The first line
+% applies \(\pi(\ell)\) to that vector.  The first equality inserts
+% \(U^*U=1\) and groups the factors so that \(U\pi(\ell)U^*\) appears.  That
+% operator belongs to \(\pi(L)\), and \(\xi\) is fixed by every operator in
+% \(\pi(L)\), so it can be removed when acting on \(\xi\).  The final result
+% is \(U^*\xi\), exactly the equation required for an L-fixed vector.
+%</webmath>
 \[
  \pi(\ell)U^*\xi
  =U^*\bigl(U\pi(\ell)U^*\bigr)\xi
@@ -796,6 +804,16 @@ of the representation gives the same projection inequality in $B$.
 Let $L\le G$ have property~\textup{(T)}, and let $u\in G$ satisfy
 $uLu^{-1}\le L$.  Let $(V_n)$ be an operator norm asymptotic
 representation of $G$.  Then
+%<webmath object="whole" when="\operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)" title="conjugation by V of u preserves the entire asymptotic commutant">
+% The notation \(\operatorname{Ad}(V(u))\) means conjugate each matrix
+% sequence by the matrices assigned to u.  Its input here is the full
+% [[asymptotic commutant]] \(\mathcal C_2(V,L)\): bounded sequences that
+% almost commute with the represented subgroup L in normalized
+% [[Hilbert–Schmidt norm]].  The equality says conjugation carries this set
+% onto itself.  Both directions matter: every eligible sequence remains
+% eligible after conjugation, and every eligible sequence is the conjugate of
+% another eligible sequence.
+%</webmath>
 \[
  \operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)
  =\mathcal C_2(V,L).
@@ -809,6 +827,15 @@ space with its normalized Hilbert--Schmidt inner product, and form the
 ultraproduct of Hilbert spaces $\mathcal K_\omega$.  Conjugation by the $V_n(g)$
 defines a unitary representation $\sigma$ of $G$ on $\mathcal K_\omega$.
 Indeed, for unitaries $A,B$ one has
+%<webmath object="whole" when="\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}" title="close unitaries give close conjugation operators">
+% The left side measures the operator-norm distance between two operations on
+% matrices: conjugation by A and conjugation by B.  The right side is twice
+% the operator-norm distance between A and B themselves.  The inequality says
+% that changing the conjugating unitary by an error of size \(\varepsilon\)
+% changes the entire conjugation operation by at most \(2\varepsilon\).  This
+% bound transfers the multiplication errors of the maps \(V_n\) to the
+% corresponding conjugation actions.
+%</webmath>
 \[
  \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}
  \le2\opnorm{A-B},
@@ -819,6 +846,15 @@ $\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
 
 For $g\in G$, let $\widetilde\sigma(g)$ be the class of the coordinate
 operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
+%<webmath object="whole" when="\mathcal B=\prod_nB(M_{d_n}(\C))" title="the corona of operators acting on the matrix spaces">
+% The symbol \(\mathcal B\) names a [[norm matrix corona]].  At stage n,
+% \(B(M_{d_n}(\mathbb C))\) is the set of all linear operators acting on the
+% vector space of \(d_n\)-by-\(d_n\) complex matrices.  The product contains
+% bounded sequences of such operators.  The direct sum contains the sequences
+% whose operator norms tend to zero.  Taking the [[quotient]] treats two
+% bounded operator sequences as equal when their difference tends to zero in
+% operator norm.
+%</webmath>
 \[
  \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)).
 \]
@@ -847,6 +883,15 @@ $\mathcal C_2(V,L)$, which proves the equality.
 \begin{corollary}\label{cor:defect-hs}
 Let $L\le G$ have property~\textup{(T)}, let $uLu^{-1}\le L$, and let
 $c\in C_G(L)$.  Then
+%<webmath object="whole" when="[ucu^{-1},\ell]\in R_{\infty\to2}(G)" title="the compression commutator is invisible in every Hilbert--Schmidt shadow">
+% For each \(\ell\in L\), form the [[commutator]] of \(ucu^{-1}\) and
+% \(\ell\).  Membership in \(R_{\infty\to2}(G)\) says that every operator-norm
+% [[asymptotic representation]] sends this group element toward the identity
+% in normalized [[Hilbert–Schmidt norm]].  The conclusion holds because c
+% commutes with L before conjugation and the transport theorem says
+% conjugation by the one-sided compressor u preserves the Hilbert–Schmidt
+% asymptotic commutant.
+%</webmath>
 \[
  [ucu^{-1},\ell]\in R_{\infty\to2}(G)
  \qquad(\ell\in L).
@@ -859,10 +904,29 @@ $c\in C_G(L)$, then $(V_n(c))\in\mathcal C_2(V,L)$.  By
 Theorem~\ref{thm:transport}, the same is true of
 $(V_n(u)V_n(c)V_n(u)^*)$.  Asymptotic multiplicativity identifies this
 sequence in operator norm with $(V_n(ucu^{-1}))$; explicitly,
+%<webmath object="whole" when="\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}" title="the matrix product approximates the matrix assigned to the group product">
+% The first matrix product uses the separate assignments to u, c, and
+% \(u^{-1}\); because \(V_n(u)^*\) is the inverse of the unitary \(V_n(u)\),
+% it represents the conjugation pattern.  The second matrix is assigned
+% directly to the group element \(ucu^{-1}\).  The expression inside the
+% norm is their [[multiplication error]].  The arrow to zero says the two
+% descriptions become arbitrarily close in [[operator norm]] as n grows,
+% which follows by applying asymptotic multiplicativity a fixed number of
+% times.
+%</webmath>
 \[
  \opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\longrightarrow0.
 \]
 Therefore
+%<webmath object="whole" when="\hsnorm{V_n([ucu^{-1},\ell])-1}" title="the represented commutator approaches the identity in Hilbert--Schmidt norm">
+% The matrix \(V_n([ucu^{-1},\ell])\) is the nth assignment to the displayed
+% group [[commutator]].  Subtracting the identity matrix 1 measures how far
+% that assignment is from being trivial.  The double bars use normalized
+% [[Hilbert–Schmidt norm]], and the arrow to zero says this distance becomes
+% arbitrarily small for every fixed \(\ell\in L\).  Since the asymptotic
+% representation was arbitrary, this convergence proves that each
+% commutator belongs to the universal infinity-to-two kernel.
+%</webmath>
 \[
  \hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0
  \qquad(\ell\in L).
@@ -884,6 +948,15 @@ countable group, and let \(q\in\mathcal Q_{\mathbf d}\) be a nonzero
 projection commuting with \(\rho(G)\).  Then, after passing to an infinite
 coordinate subsequence, there are nonzero projections
 \(q_n\in M_{d_n}(\C)\) and an operator norm asymptotic representation
+%<webmath object="whole" when="W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)" title="the compressed matrices form a new asymptotic representation">
+% For each stage n, the map \(W_n\) assigns every element of G a unitary
+% operator on the smaller vector space selected by the [[projection]] \(q_n\).
+% The expression \(q_nM_{d_n}(\mathbb C)q_n\) is a [[corner]]: matrices are
+% multiplied by \(q_n\) on both sides so that they act only on the range of
+% \(q_n\).  The symbol \(\mathcal U\) selects the unitary elements of that
+% corner.  Calling the sequence \((W_n)\) an asymptotic representation also
+% requires its multiplication errors to tend to zero in operator norm.
+%</webmath>
 \[
  W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
 \]
@@ -897,6 +970,15 @@ lifting follows by applying polar correction to any lift,
 since its two unitarity defects
 converge to zero in operator norm.  The commutation relation in the corona
 gives
+%<webmath object="whole" when="\opnorm{q_nU_n(g)-U_n(g)q_n}" title="the lifted projection and lifted representation almost commute">
+% The two products differ only in the order of \(q_n\) and \(U_n(g)\).
+% Their difference is therefore the [[commutator]] of those matrices, written
+% without bracket notation.  The operator norm tending to zero says that the
+% two orders become arbitrarily close at late stages.  This follows because q
+% commutes exactly with \(\rho(g)\) in the quotient corona: any failure of
+% their chosen lifts to commute represents the zero corona class and hence
+% must vanish in operator norm.
+%</webmath>
 \[
  \opnorm{q_nU_n(g)-U_n(g)q_n}\longrightarrow0
  \qquad(g\in G).
@@ -904,6 +986,15 @@ gives
 Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity
 defects converging to zero.  Its polar correction \(W_n(g)\) is unitary and
 satisfies
+%<webmath object="whole" when="\opnorm{W_n(g)-q_nU_n(g)q_n}" title="polar correction changes the compressed matrix by a vanishing amount">
+% The matrix \(q_nU_n(g)q_n\) is the direct compression of the lifted unitary
+% to the range of \(q_n\), but at a finite stage it may not be exactly
+% unitary on that range.  [[polar correction|Polar correction]] replaces it by the exactly
+% unitary matrix \(W_n(g)\).  The displayed operator norm is the size of the
+% change made by that correction.  Its convergence to zero says the exact
+% unitary replacement represents the same [[corona class]] as the original
+% compressed sequence.
+%</webmath>
 \[
  \opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
 \]
@@ -915,6 +1006,15 @@ nonzero; retain those coordinates.
 \begin{theorem}[normal Kazhdan radical theorem]\label{thm:normal-kazhdan}
 Let \(G\) be countable, let \(D\le R_{\infty\to2}(G)\), and let
 \(K\trianglelefteq G\) have property~\textup{(T)} with \(K\le D\).  Then
+%<webmath object="whole" when="K\le\Rad_{\mathrm{MF}}(G)" title="the normal property-(T) subgroup is erased by every MF model">
+% The sign \(\le\) states that the subgroup K is contained in the [[MF
+% radical]] of G.  By definition, this means every [[homomorphism]] from G to
+% every [[norm matrix corona]] sends each element of K to the identity.  The
+% hypotheses supply two ingredients: K has [[property (T)]], and K lies in D,
+% which itself lies in the universal infinity-to-two kernel.  The proof uses
+% property (T) to turn Hilbert–Schmidt invisibility into total invisibility in
+% every operator-norm matrix model.
+%</webmath>
 \[
  K\le\Rad_{\mathrm{MF}}(G).
 \]
@@ -936,6 +1036,15 @@ Let \(p_K\in C^*_{\max}(K)\) be the Kazhdan projection and let \(p\) be its
 image in \(\mathcal Q_{\mathbf d}\).  Thus \(p\) is the projection onto the
 \(K\)-fixed vectors in every faithful representation of the corona.
 Normality of \(K\) gives
+%<webmath object="whole" when="\Theta(g)p\Theta(g)^*=p" title="normality makes the Kazhdan projection commute with the whole group">
+% The map \(\Theta\) represents G in the norm matrix corona, and p projects
+% onto the vectors fixed by K.  Conjugating p by the unitary \(\Theta(g)\)
+% gives the projection onto the moved fixed-vector space.  Because K is a
+% [[normal subgroup]], conjugation by g rearranges K itself, so the moved
+% K-fixed space is the original K-fixed space.  The equality of projections
+% states this invariance.  Equivalently, p commutes with every
+% \(\Theta(g)\).
+%</webmath>
 \[
  \Theta(g)p\Theta(g)^*=p
  \qquad(g\in G).
@@ -951,11 +1060,29 @@ corners \(q_nM_{d_n}(\C)q_n\).
 Choose a finite symmetric Kazhdan set \(S\subseteq K\) and a Kazhdan
 constant \(\kappa>0\).  In the corner \(q\mathcal Q_{\mathbf d}q\), the
 Kazhdan projection is zero.  Hence the positive element
+%<webmath object="whole" when="b=\frac1{|S|}\sum_{s\in S}" title="b averages the squared movement caused by the Kazhdan set">
+% For each element s in the finite [[Kazhdan set]] S, the operator
+% \(q\Theta(s)q-q\) measures how far the compressed representation of s is
+% from the corner identity q.  Multiplying its [[adjoint]] by itself produces
+% a positive operator measuring squared movement.  The summation adds these
+% operators for every s in S, and division by \(|S|\), the number of elements
+% in S, takes their average.  The result b is therefore the average squared
+% displacement operator for the chosen Kazhdan set.
+%</webmath>
 \[
  b=\frac1{|S|}\sum_{s\in S}
        (q\Theta(s)q-q)^*(q\Theta(s)q-q)
 \]
 satisfies
+%<webmath object="whole" when="b\ge\frac{\kappa^2}{|S|}\,q" title="the average movement has a uniform positive lower bound">
+% The inequality compares positive operators in the corner.  The right side
+% is the corner identity q multiplied by the positive number
+% \(\kappa^2/|S|\), where \(\kappa\) is the [[Kazhdan constant]] and \(|S|\)
+% is the size of the finite Kazhdan set.  Saying b is at least this operator
+% means every vector in the corner is moved, on average, by a squared amount
+% bounded below by that constant times its squared length.  This lower bound
+% follows because the corner contains no nonzero K-fixed vector.
+%</webmath>
 \[
  b\ge\frac{\kappa^2}{|S|}\,q.
 \]
@@ -963,11 +1090,30 @@ Indeed, in every representation of the corner there are no \(K\)-fixed
 vectors, so the defining Kazhdan inequality gives this operator inequality.
 
 The coordinate elements
+%<webmath object="whole" when="b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*" title="b sub n is the finite-stage version of the average movement operator">
+% This repeats the definition of b at matrix stage n.  The corner identity is
+% now \(q_n\), and \(W_n(s)\) is the exactly unitary compressed matrix
+% assigned to s.  For each s, the product
+% \((W_n(s)-q_n)^*(W_n(s)-q_n)\) is a positive matrix measuring squared
+% displacement.  Summing over the finite set S and dividing by its size gives
+% the average \(b_n\).  The sequence \((b_n)\) represents b in the quotient
+% corona because the \(W_n(s)\) represent the compressed action.
+%</webmath>
 \[
  b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*(W_n(s)-q_n)
 \]
 represent \(b\).  Taking the normalized trace on
 \(q_nM_{d_n}(\C)q_n\) yields
+%<webmath object="whole" when="\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}" title="the average squared Hilbert--Schmidt movement stays positive">
+% Each squared norm on the left is the normalized [[Hilbert–Schmidt norm]] of
+% \(W_n(s)-q_n\), squared.  Averaging over s gives the normalized trace of
+% \(b_n\).  The right side is the fixed positive number
+% \(\kappa^2/|S|\) minus an error denoted \(o(1)\), meaning a numerical
+% sequence that tends to zero.  Thus the average squared distance from the
+% corner identity cannot tend to zero.  Consequently, after choosing a
+% subsequence, at least one fixed element of S remains a definite distance
+% from the identity.
+%</webmath>
 \[
  \frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}
  \ge \frac{\kappa^2}{|S|}-o(1).
@@ -985,10 +1131,28 @@ homomorphism kills \(K\), as required.
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
 For every $u\in\operatorname{Comp}_G(L)$, $c\in C_G(L)$, and $\ell\in L$,
 Corollary~\ref{cor:defect-hs} gives
+%<webmath object="whole" when="[ucu^{-1},\ell]\in R_{\infty\to2}(G)" title="each generator of the defect is universally Hilbert--Schmidt trivial">
+% The element inside brackets is one of the [[commutator|commutators]] used to
+% generate \(\mathfrak D_G(L)\).  The membership sign says this element lies
+% in the universal infinity-to-two kernel: every operator-norm asymptotic
+% representation sends it toward the identity in normalized
+% [[Hilbert–Schmidt norm]].  The statement applies to every permitted u, c,
+% and \(\ell\).  It is exactly the conclusion of the preceding corollary,
+% now applied simultaneously to all generators of the defect subgroup.
+%</webmath>
 \[
  [ucu^{-1},\ell]\in R_{\infty\to2}(G).
 \]
 Normality of \(R_{\infty\to2}(G)\) therefore gives
+%<webmath object="whole" when="\mathfrak D_G(L)\le R_{\infty\to2}(G)" title="the entire defect subgroup is universally Hilbert--Schmidt trivial">
+% The left side is the [[normal closure]] of all compression commutators from
+% the preceding display.  Every one of those generators lies in
+% \(R_{\infty\to2}(G)\), and that kernel is a [[normal subgroup]], so it also
+% contains all products, inverses, and conjugates used to form their normal
+% closure.  The containment therefore says every element of the full defect
+% subgroup is sent toward the identity in normalized Hilbert–Schmidt norm by
+% every operator-norm asymptotic representation.
+%</webmath>
 \[
  \mathfrak D_G(L)\le R_{\infty\to2}(G).
 \]
@@ -1006,6 +1170,15 @@ Theorem~\ref{thm:commutant} kills every generator of
 Let $L\le G$ and put $D=\mathfrak D_G(L)$.
 
 If $f\colon G\to Q$ is a homomorphism, then
+%<webmath object="whole" when="f(D)\le\mathfrak D_{f(G)}(f(L))" title="a homomorphism sends the defect into the defect of the images">
+% The set \(f(D)\) is the [[image]] of the defect subgroup D under f.  The
+% right side is the defect subgroup formed inside the image group \(f(G)\)
+% using the image subgroup \(f(L)\).  The containment says every f-image of a
+% compression commutator from G belongs to the defect built after applying f.
+% The statement promises containment, not equality, because a general
+% homomorphism may merge elements and the image data may have additional
+% defect generators.
+%</webmath>
 \begin{equation}\label{eq:defect-functoriality}
  f(D)\le\mathfrak D_{f(G)}(f(L)).
 \end{equation}
@@ -1013,17 +1186,43 @@ If $S\le G$ is a nontrivial simple subgroup and $D\cap S\ne1$, then
 $S\le D$.  If in addition the normal closure of $S$ in $G$ is all of $G$,
 then $D=G$.  If moreover $G$ is countable and both $L$ and $G$ have
 property~\textup{(T)}, then
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(G)=G" title="every element of G is erased by every MF model">
+% The [[MF radical]] contains exactly the elements sent to the identity by
+% every homomorphism from G into a norm matrix corona.  Equality with G says
+% it contains every element, so every such homomorphism is trivial.  The
+% preceding hypotheses make the compression defect equal G by normal
+% generation.  Since both the compressor subgroup L and the normal subgroup
+% K chosen as G have property (T), the compression criterion places all of G
+% in its MF radical.
+%</webmath>
 \[
  \Rad_{\mathrm{MF}}(G)=G.
 \]
 
 Suppose instead that $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
 $f(S)$ normally generates $Q$.  Then
+%<webmath object="whole" when="\mathfrak D_Q(f(L))=Q" title="the image defect is all of Q">
+% The left side is the compression-centralizer defect formed in Q from the
+% subgroup \(f(L)\).  Functoriality places the nontrivial simple group
+% \(f(S)\) inside this defect.  The defect is a [[normal subgroup]], so it
+% contains the [[normal closure]] of \(f(S)\).  By hypothesis that normal
+% closure is all of Q.  The displayed equality records the result: every
+% element of Q lies in the defect determined by \(f(L)\).
+%</webmath>
 \[
  \mathfrak D_Q(f(L))=Q.
 \]
 If, in addition, $G$ is countable and both $L$ and $G$ have
 property~\textup{(T)}, then
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(Q)=Q" title="every element of Q is erased by every MF model">
+% The equality says every element of Q belongs to its [[MF radical]], so every
+% homomorphism from Q into a [[norm matrix corona]] is trivial.  Property (T)
+% passes from G and L to their images Q and \(f(L)\).  The preceding equality
+% says the compression defect formed from \(f(L)\) is the whole group Q.
+% Applying the compression criterion inside Q therefore places Q inside its
+% own radical; the reverse containment holds because the radical is a
+% subgroup of Q.
+%</webmath>
 \[
  \Rad_{\mathrm{MF}}(Q)=Q.
 \]

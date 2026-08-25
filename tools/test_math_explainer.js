@@ -19,9 +19,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 57, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 40,
-  'the contextual explanations must remain attached to 40 formula groups');
+assert.equal(declarations.length, 79, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 62,
+  'the contextual explanations must remain attached to 62 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -140,6 +140,28 @@ const coveredFormulas = [
   String.raw`\prod_nM_{m_n}(\C)\big/\bigoplus_nM_{m_n}(\C)`,
   String.raw`U\pi(L)U^*\subseteq\pi(L),`,
   String.raw`U^*PU\le P.`,
+  String.raw`\pi(\ell)U^*\xi=U^*\bigl(U\pi(\ell)U^*\bigr)\xi=U^*\xi,`,
+  String.raw`\operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)=\mathcal C_2(V,L).`,
+  String.raw`\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B},`,
+  String.raw`\mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)).`,
+  String.raw`[ucu^{-1},\ell]\in R_{\infty\to2}(G)\qquad(\ell\in L).`,
+  String.raw`\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\longrightarrow0.`,
+  String.raw`\hsnorm{V_n([ucu^{-1},\ell])-1}\longrightarrow0\qquad(\ell\in L).`,
+  String.raw`W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)`,
+  String.raw`\opnorm{q_nU_n(g)-U_n(g)q_n}\longrightarrow0\qquad(g\in G).`,
+  String.raw`\opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.`,
+  String.raw`K\le\Rad_{\mathrm{MF}}(G).`,
+  String.raw`\Theta(g)p\Theta(g)^*=p\qquad(g\in G).`,
+  String.raw`b=\frac1{|S|}\sum_{s\in S}(q\Theta(s)q-q)^*(q\Theta(s)q-q)`,
+  String.raw`b\ge\frac{\kappa^2}{|S|}\,q.`,
+  String.raw`b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*(W_n(s)-q_n)`,
+  String.raw`\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}\ge\frac{\kappa^2}{|S|}-o(1).`,
+  String.raw`[ucu^{-1},\ell]\in R_{\infty\to2}(G).`,
+  String.raw`\mathfrak D_G(L)\le R_{\infty\to2}(G).`,
+  String.raw`f(D)\le\mathfrak D_{f(G)}(f(L)).`,
+  String.raw`\Rad_{\mathrm{MF}}(G)=G.`,
+  String.raw`\mathfrak D_Q(f(L))=Q.`,
+  String.raw`\Rad_{\mathrm{MF}}(Q)=Q.`,
   String.raw`L=\EL_3(R)\le H`,
   String.raw`c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.`,
   String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
@@ -167,7 +189,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 40);
+assert.equal(coveredFormulas.length, 62);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {

@@ -529,6 +529,8 @@
       'In this paper, the object on the left is a [[subgroup]] contained in the [[group]] on the right. This is not a comparison of numerical size.', '\\le'),
     '<': entry('strictly less than',
       'The numerical quantity on the left is smaller than the quantity on the right.', '<'),
+    '≥': entry('greater than or equal to',
+      'For numbers, the quantity on the left is at least the one on the right. For positive operators here, their difference is a positive operator.', '\\ge'),
     '⊴': entry('normal-subgroup containment',
       'The object on the left is a [[normal subgroup]] of the [[group]] on the right, so conjugating its elements by any element of the larger group keeps them inside it.', '\\trianglelefteq'),
     '⊆': entry('subset containment',
@@ -598,12 +600,21 @@
     'T': entry('the target group T', 'T is the [[group]] receiving the [[homomorphism|homomorphisms]] in this statement.', 'T'),
     'M': entry('the MF target M', 'M is an [[MF group]] receiving a [[homomorphism]].', 'M'),
     'P': entry('the Kazhdan projection P', 'P is the [[projection]] onto the vectors fixed by every represented element of the property-(T) subgroup L.', 'P'),
+    'p': entry('the Kazhdan projection p', 'p is the [[projection]] onto the vectors fixed by every represented element of the normal property-(T) subgroup K.', 'p'),
+    'b': entry('the average movement operator b', 'b is the positive operator obtained by averaging the squared displacement caused by the elements of the chosen [[Kazhdan set]].', 'b'),
+    'bn': entry('the stage-n average movement matrix b n', 'The [[subscript]] n selects the finite-stage positive matrix representing the average movement operator b.', 'b_n'),
+    'o': entry('a quantity tending to zero', 'The notation \(o(1)\), read “little o of one,” means a numerical [[sequence]] whose [[limit]] is zero.', 'o(1)'),
+    'S': entry('the Kazhdan set S', 'S is the chosen finite symmetric [[Kazhdan set]] inside K.', 'S'),
+    's': entry('an element s of the Kazhdan set', 's is one [[element]] of the finite [[Kazhdan set]] S.', 's'),
     'R': entry('the ring R', 'R is the [[ring]], here a binary [[Leavitt algebra]], used for matrix entries.', 'R'),
     'S': entry('the ring S', 'S is a [[ring]] used for matrix entries.', 'S'),
     'N': entry('the subgroup N', 'N is a [[normal subgroup]] whose elements will be treated as the [[identity]] in a [[quotient group]].', 'N'),
     'f': entry('the map f', 'f is the [[surjective]] [[homomorphism]] from G onto Q.', 'f'),
     'π': entry('the map pi', 'The Greek letter pi names a [[homomorphism]] or [[representation]].', '\\pi'),
     'ρ': entry('the representation rho', 'The Greek letter rho names the [[representation]] that assigns an invertible linear operator to each element of G.', '\\rho'),
+    'Θ': entry('the corona representation Theta', 'The Greek letter Theta names the [[homomorphism]] from G into the unitary group of a [[norm matrix corona]].', '\\Theta'),
+    'κ': entry('the Kazhdan constant kappa', 'The Greek letter kappa names a positive [[Kazhdan constant]] for the finite Kazhdan set S.', '\\kappa'),
+    'ξ': entry('the vector xi', 'The Greek letter xi names a [[vector]] fixed by the represented subgroup L.', '\\xi'),
     'τ': entry('the matrix tau', 'The [[Greek letter]] tau names the [[invertible]] [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),
     'ℓ': entry('the element ell', 'The Greek letter ell names an [[element]] of the [[subgroup]] L.', '\\ell'),
     'u': entry('the element u', 'u is a [[group]] element used for [[conjugation]].', 'u'),
@@ -616,6 +627,9 @@
     'g': entry('the element g', 'g is an arbitrary [[element]] of the [[group]] G.', 'g'),
     'V': entry('the asymptotic representation V', 'V names the complete [[sequence]] of finite-matrix maps in an [[asymptotic representation]].', 'V'),
     'Vn': entry('the stage-n map V n', 'The [[subscript]] n selects the nth finite-matrix map in the [[asymptotic representation]] V.', 'V_n'),
+    'Wn': entry('the compressed stage-n map W n', 'The [[subscript]] n selects the nth exactly unitary map acting on the smaller [[corner]] chosen by the projection \(q_n\).', 'W_n'),
+    'Un': entry('the lifted stage-n unitary U n', 'The [[subscript]] n selects a unitary matrix lift of the represented group element at stage n.', 'U_n'),
+    'qn': entry('the stage-n corner projection q n', 'The [[subscript]] n selects the [[projection]] whose range is the smaller matrix [[corner]] used at stage n.', 'q_n'),
     'm': entry('the matrix-size variable m', 'm is a positive whole number used as the number of rows and columns in a square [[matrix]].', 'm'),
     'mn': entry('the stage-n matrix size m n', 'The [[subscript]] n selects the matrix size used at stage n of the [[sequence]].', 'm_n'),
     'Mmn': entry('the matrices of size m n', 'This is the [[set]] of square complex [[matrix|matrices]] having \(m_n\) rows and \(m_n\) columns.', 'M_{m_n}'),
@@ -647,6 +661,8 @@
       'M names a [[set]] of square [[matrix|matrices]]. Its subscript gives the number of rows and columns.', 'M');
     if (symbol === 'd' && /\\mathbf\s*d/.test(tex || '')) return entry('the matrix-size sequence d',
       'The [[bold letter]] d names the [[sequence]] of matrix sizes. Its nth entry is written \\(d_n\\).', '\\mathbf d');
+    if (symbol === 'q' && /q_n|q\\Theta|\\mathcal Q|q-q/.test(tex || '')) return entry('the complementary projection q',
+      'q is the [[projection]] complementary to p, defined by \(q=1-p\). It is the identity element of the smaller [[corner]] used in the argument.', 'q');
     if (NAMED_OBJECTS[symbol]) return NAMED_OBJECTS[symbol];
     if (/^[ndij][∏⊕⨁∩⋂]$/.test(symbol)) {
       var operation = symbol.slice(-1).replace('⨁', '⊕').replace('⋂', '∩');
@@ -669,6 +685,16 @@
       'The parenthesis begins the input to a [[function]], and the square bracket begins the [[commutator]] placed inside that input.', '([');
     if (symbol === '])') return entry('commutator and function closing marks',
       'The square bracket ends the [[commutator]], and the parenthesis ends the input supplied to the surrounding [[function]].', '])');
+    if (symbol === '0.') return entry('zero followed by end punctuation',
+      'Zero is the stated [[limit]], and the period ends the mathematical sentence.', '0.');
+    if (symbol === '∣S∣1' || symbol === '∣S∣' || symbol === '∣') return entry('reciprocal of the size of S',
+      'The vertical bars around S mean the number of elements in the finite [[set]] S. The fraction (1/|S|) divides by that number to form an average.', '\\frac1{|S|}');
+    if (symbol === 's∈S∑' || symbol === 's∈S' || symbol === '∑') return entry('sum over the elements of S',
+      'Add one copy of the following expression for every [[element]] s belonging to the finite [[set]] S.', '\\sum_{s\\in S}');
+    if (symbol === 'κ2') return entry('the squared Kazhdan constant',
+      'The superscript 2 means multiply the positive [[Kazhdan constant]] kappa by itself.', '\\kappa^2');
+    if (symbol === '∣S∣κ2') return entry('Kazhdan lower-bound coefficient',
+      'This is the squared [[Kazhdan constant]] divided by the number of elements in the finite Kazhdan set S.', '\\frac{\\kappa^2}{|S|}');
     if (symbol === '∥') return entry('operator-norm bars',
       'The double bars ask for the [[operator norm]] of the matrix written between them.', '\\lVert x\\rVert');
     if (/^(uL|τL)$/.test(symbol)) {
@@ -691,6 +717,8 @@
       'The letters ker abbreviate [[kernel]]: all inputs that the following map sends to the [[identity]].', '\\ker');
     if (symbol === 'Hom') return entry('homomorphism-set abbreviation',
       'The letters Hom name the [[set]] of all [[homomorphism|homomorphisms]] from the group listed first to the group listed second.', '\\operatorname{Hom}');
+    if (symbol === 'Ad') return entry('conjugation operation Ad',
+      'The abbreviation Ad means [[conjugation]]. Applied to a unitary A, it is the operation sending each matrix x to \(AxA^*\).', '\\operatorname{Ad}');
     if (symbol === 'trd' || symbol === 'tr') return entry('normalized trace',
       'This is the [[trace]] divided by the matrix size d. It averages the diagonal entries instead of summing them, so matrices of different sizes can be compared.', '\\operatorname{tr}_d');
     if (symbol === 'Tr') return entry('ordinary trace',
@@ -721,8 +749,12 @@
       'The [[Greek letter]] pi names a [[homomorphism]] from the [[group]] G to the [[unitary matrix|unitary elements]] of the [[norm matrix corona]].', '\\pi\\colon G\\to\\mathcal U(\\mathcal Q_{\\mathbf d})');
     if (symbol === 'Comp' || symbol === 'CompG') return entry('the compression-set label',
       'Comp abbreviates the [[set]] of group elements whose [[conjugation]] sends L back inside L. A subscript G names the surrounding [[group]].', '\\operatorname{Comp}_G');
-    if (symbol === 'D') return entry('the compression-defect label',
+    if (symbol === 'D' || symbol === 'DG' || symbol === 'DQ') return entry('the compression-defect label',
       'The [[fraktur letter|ornate D]] is the chosen name for the [[normal closure]] of the compression [[commutator|commutators]].', '\\mathfrak D');
+    if (symbol === 'Df(G)') return entry('the defect inside the image group',
+      'This is the compression-centralizer defect formed inside the [[image]] group \(f(G)\), using the subgroup \(f(L)\).', '\\mathfrak D_{f(G)}');
+    if (symbol === 'f(G)') return entry('the image group f of G',
+      'This is the [[subgroup]] consisting of all outputs \(f(g)\) as g ranges over G.', 'f(G)');
     if (symbol === 'CG') return entry('the centralizer in G',
       'This is the [[centralizer]] of L computed inside the [[group]] G.', 'C_G');
     if (symbol === '⟨' || symbol === '⟩') return entry('normal-closure bracket',
