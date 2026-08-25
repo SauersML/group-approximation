@@ -12,6 +12,8 @@ distinct_from:
   tracial-word-authentication-is-regular-firewalled: that proves an odd literal occurrence anchor is still insufficient when the proposed quantitative estimate uses only dimension-free tracial operations; the surviving step must be genuinely finite-coordinate.
   fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall: that rules out two nominally finite-coordinate escapes, namely a matrix-dependent subset of whole types from one fixed native packet and activation by raw dimension, kernel rank, or anonymous multiplicity; this claim still permits an authenticated mixed-word kernel or a genuinely growing relation-controlled packet.
   mark-fixed-relative-words-do-not-coerce-native-hecke-kernel: that audits the two newly established relative-word identities and proves that their commutator kernels are trivial selectors; a common spectator gauge cancels from the full relative word while keeping every near-full native row far from its Hecke map.
+  primitive-native-hecke-relators-have-no-odd-mixed-occurrence: that audits the primitive Steinberg and coefficient relators and finds that the Hecke triangles authenticate only the twice-occurring Whitehead factors; it explicitly leaves room for the now-established derived order-seven anchor.
+  order-seven-anchor-stops-at-whitehead-compression-leakage: that applies the new derived odd anchor and proves it kills the reservoir gauge after compression; the only remaining input is a matrix-only spectral estimate making the Hecke source nearly reduce both literal Whiteheads.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -141,3 +143,28 @@ two polar-square identities.
   operator.  It must come from a new odd occurrence relation coupling an
   individual native row to an unequal-scale Hecke word; neither mark-fixing
   identity supplies it.
+- **Find the required odd mixed occurrence among the primitive presentation
+  relators.**  The literal audit
+  `primitive-native-hecke-relators-have-no-odd-mixed-occurrence` finds only
+  `[B_2,A_1]=X_1` and `[B_3,A_2]=X_2`.  These authenticate the factors
+  appearing twice in `J_i=X_iY_iX_i`; the odd factors `Y_i` occur in no
+  unequal-scale Hecke triangle.  All named rectangles avoid root indices
+  `1,3`, so their marked-root relations are commutations.  Hence the fixed
+  menu cannot yield `(MFK6)` by occurrence parity.  A new derived word or
+  added relator must couple one `Y_i` (or the whole `J_i` oddly) to the
+  unequal-scale Hecke map and provide a normalized spectral payment.  This
+  primitive audit is not the final word: the derived relations
+  `(J_1u_1)^7=1` and `(J_2u_2A_1)^7=1` now provide exactly the missing odd
+  parity.
+- **Use the derived order-seven anchor without controlling compression.**
+  This genuinely removes the common spectator sign, but only on a carrier
+  reducing the native Whitehead.  By
+  `order-seven-anchor-stops-at-whitehead-compression-leakage`, compressing
+  the seventh power costs at most six times the off-corner Whitehead
+  leakage, and the exact gauge estimate is `(OSC2)`.  The remaining target
+  is `(OSC4)`: a model-dependent near-full subcut of `Q_n` on which
+  the pulled-back return leakage
+  `Q_nv_i^*J_i(1-Q_n)J_iv_iQ_n` has vanishing spectral mass, for
+  `v_1=u_1` and `v_2=u_2A_1`.  This leakage is positive in the regular
+  representation, so obtaining `(OSC4)` from finite coordinates is
+  precisely the surviving no-microstate step.

@@ -186,3 +186,32 @@ reflections has the same four-character blindness.  The remaining
 compressed-covariance target is therefore the oriented support block
 `(1-F)TE=0`, or a matrix-only payment for its mirror exit; the reflection
 normalizer word does not express it.
+
+There is a sharp positive endpoint once that orientation is genuinely
+authenticated.  `fanizza-full-reflection-row-has-sharp-mirror-floor` proves
+the exact identity
+
+```text
+||R_F U R_E U^*-I||_2^2
+ =8 tr(E-EU^*FUE)-4 tr(H) >=4 tr(H).
+```
+
+Equality is attained precisely by the balanced mirror exit `UEU^*=F+C`
+with `tr(C)=tr(H)`.  Thus the full selected reflection row charges even the
+optimal mirror by `2 sqrt(tr(H))`, giving `1/sqrt(2)-o(1)` on the native
+guard.  This reduces the remaining finite-matrix theorem to authenticating
+that one **selected oriented row**.  It does not permit adding the row as a
+literal relator: regular-trace faithfulness would then kill `H`.  The matrix
+coordinate must therefore be identified by mixed chord--reset data before
+the row estimate is invoked.
+
+The already installed mixed menu does not perform that identification.
+`existing-fanizza-mixed-menu-leaves-balanced-mirror-exit` combines the
+scalar-ray spectator with the sharp reflection formula: the translation
+reset, diagonal-difference Toeplitz incidences, all source-corner
+coefficient tests, and range-reflection commutation are simultaneously
+exact, while the selected oriented row has squared defect `4 tr(H)=1/2`.
+Full-label chord normalization detects this model but destroys the proper
+infinite return.  Hence the remaining decoder must introduce a new
+finite-coordinate incidence; it cannot be obtained by recombining the
+existing chord--reset relations.
