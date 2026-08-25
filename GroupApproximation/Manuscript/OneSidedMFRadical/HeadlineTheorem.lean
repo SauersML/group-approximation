@@ -9,9 +9,9 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveSimplicity
 property `(T)`, and satisfies `Rad_MF(H) = H`; equivalently every homomorphism
 from `H` to an MF group is trivial, and in particular `H` is not MF.
 
-`BinaryLeavittFullRadical` is every clause of that statement **except**
-simplicity, with all of its quantifiers inside a single proposition, and
-`manuscriptBinaryLeavittFullRadical` proves it with no hypotheses whatsoever.
+`BinaryLeavittFullRadical` packages the radical and approximation clauses,
+while `manuscriptBinaryLeavittHeadline` proves the entire printed conclusion,
+including simplicity, without hypotheses.
 
 ## Why the headline does not depend on simplicity
 
@@ -30,20 +30,16 @@ the Steinberg commutator relations.  Its rank-twelve instance is
 full-radical calculation, the triviality of every MF-target homomorphism, and
 the failure of MF-ness are all obtained here with no simplicity input at all.
 
-## The one clause this development does not discharge
+## Simplicity
 
-Simplicity of `H` is a strictly different statement, and the manuscript's proof
-of it (`prop:simple`) runs on Preusser's normal-subgroup theorem, on pure
-infiniteness and the exchange property of `L_{𝔽₂}(1,2)`, and on the computation
-of the centre of that algebra.  The ring-side simplicity and centre inputs are
-now formalized, but the Preusser normal-structure/root-detection bridge is not;
-**nothing in this file proves that `H` is simple.**
-
-What is recorded instead is `BinaryLeavittSimplicityClause`: an *implication*
-whose leading hypothesis `NormalRootDetection` names the missing input exactly
-(every nontrivial normal subgroup of `H` contains a nontrivial elementary
-root).  Its antecedent is unproved here and is not proved anywhere in this
-development.  `BinaryLeavittFullRadical` neither mentions nor uses it.
+`RankTwelveEndpoint.manuscriptPropositionSimple` proves simplicity by direct
+root extraction.  For a nonidentity element of a normal subgroup, the diagonal
+case is reduced to triviality of central units.  An off-diagonal entry is split
+according to whether the matching inverse entry vanishes; the zero branch uses
+the sparse double-commutator calculation, and the nonzero branch uses the
+Leavitt relations to annihilate the forward coefficient while preserving a
+nonzero reversed coefficient.  The resulting row-supported commutator contains
+a nonzero elementary root, which normally generates the whole group.
 -/
 
 namespace GroupApproximation
@@ -103,56 +99,14 @@ theorem manuscriptBinaryLeavittFullRadical : BinaryLeavittFullRadical := by
     exact manuscriptFullRadicalKillsMFTargets (G := H) (M := M) hmanuscript hM f x
   · exact not_isCDEOperatorMF_of_actualCoronaMFResidual_eq_top hactual
 
-/-! ## The simplicity clause, which is *not* proved
+/-! ## The complete headline -/
 
-Everything below is conditional.  `NormalRootDetection` is an assumption, not a
-theorem of this development.
--/
-
-/-- **The missing input, named.**  Every nontrivial normal subgroup of
-`H = EL₁₂(L_{𝔽₂}(1,2))` contains a nontrivial elementary root.
-
-This is what the manuscript extracts from Preusser's normal-subgroup theorem
-together with pure infiniteness, the exchange property, and the centre
-computation for `L_{𝔽₂}(1,2)`.  The latter ring-side ingredients are now
-formalized; the normal-subgroup implication is still an unproved assumption
-here.  No declaration in this repository establishes it, and no unconditional
-statement in this file depends on it. -/
-def NormalRootDetection : Prop :=
-  ∀ (N : Subgroup H), N.Normal → N ≠ ⊥ →
-    ∃ (i j : Fin 12) (hij : i ≠ j) (a : R),
-      a ≠ 0 ∧ elementaryRoot i j hij a ∈ N
-
-/-- **The one clause of `thm:headline` this development does not discharge.**
-
-This proposition is an *implication*, and only the implication is proved
-(`manuscriptBinaryLeavittSimplicityClause`).  Its hypothesis
-`NormalRootDetection` is the unavailable normal-subgroup theorem, kept in
-leading position so that the conditionality cannot be lost by reformulation.
-Reading `BinaryLeavittSimplicityClause` as a proof that `H` is simple would be
-a mistake: what is proved is only that root detection *would* imply simplicity,
-and root detection is assumed, not established.
-
-The headline does not depend on this: `BinaryLeavittFullRadical` is proved
-outright and does not mention `IsSimpleGroup`. -/
-def BinaryLeavittSimplicityClause : Prop :=
-  NormalRootDetection → IsSimpleGroup H
-
-/-- The implication is genuine — all the work after a root has been detected is
-`RankTwelveEndpoint.normal_eq_top_of_nonzero_elementaryRoot_mem`.  The
-antecedent remains an assumption; this theorem asserts nothing about whether
-`H` is simple. -/
-theorem manuscriptBinaryLeavittSimplicityClause : BinaryLeavittSimplicityClause := by
-  intro hdetect
-  exact isSimpleGroup_of_normal_root_detection hdetect
-
-/-- The *entire* printed conclusion of `thm:headline`, simplicity included,
-under the single named hypothesis `NormalRootDetection`.  The name records the
-dependency: this is a conditional statement, and the unconditional content of
-the theorem is `manuscriptBinaryLeavittFullRadical`. -/
-theorem headlineConclusion_of_normalRootDetection (hdetect : NormalRootDetection) :
-    HeadlineConclusion :=
-  headlineConclusion_of (manuscriptBinaryLeavittSimplicityClause hdetect)
+/-- **Theorem B (`thm:headline`), fully and unconditionally.**  The exact
+rank-twelve binary Leavitt elementary group is nontrivial and simple, has
+property `(T)`, has full MF radical, kills every homomorphism to a countable MF
+group, and is not MF. -/
+theorem manuscriptBinaryLeavittHeadline : HeadlineConclusion :=
+  headlineConclusion_of RankTwelveEndpoint.manuscriptPropositionSimple
     rankTwelve_actualCoronaMFResidual_eq_top
 
 end OneSidedMFRadical

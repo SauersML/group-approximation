@@ -13,10 +13,10 @@ manuscript needs
 > central in `GL_ι(R)`, then `N` contains a nontrivial elementary transvection.
 
 This file develops the group- and matrix-theoretic calculus behind (P) and
-proves the statement in the two structurally distinct configurations that the
-classical argument distinguishes.  Everything below is over an arbitrary unital
-ring and an arbitrary finite index type; nothing is specific to Leavitt
-algebras.
+proves the statement in the line-preserving, vanishing-entry, and dense-entry
+configurations.  The matrix calculus is over an arbitrary unital ring; the
+dense coefficient-separation step additionally takes a Leavitt family and the
+two-sided division property as explicit inputs.
 
 ## What is proved
 
@@ -39,7 +39,7 @@ algebras.
   group-theoretic remark that `⁅g e g⁻¹, f⁆ ∈ N` whenever `g ∈ N ⊴ G` and `e`
   commutes with `f`; combined with the square-zero calculus this puts a large
   family of explicitly computed matrices inside `N`.
-* **(P) in two configurations.**
+* **(P) in three configurations.**
   `exists_elGen_mem_of_conjSingle_eq` settles the case in which conjugation by
   `g` preserves the line of `E_{ij}`: the commutator `⁅g, e_{ij}(a)⁆` is then
   *literally* a transvection.  In particular this covers every invertible
@@ -48,6 +48,11 @@ algebras.
   `exists_elGen_mem_of_inv_entry_zero` settles the configuration in which some
   off-diagonal entry of `g⁻¹` vanishes while the matching entry of `g` does not:
   a double commutator is then a one-row unipotent and row extraction applies.
+  `exists_elGen_mem_of_dense_entries` settles the complementary dense
+  configuration whenever nonzero off-diagonal entries of `g` and `g⁻¹` can be
+  chosen with the four commuting-root index inequalities.  Its coefficient
+  separation is intrinsic to a Leavitt family and the already proved
+  two-sided division property.
 * **Noncentrality is a statement about elementary matrices.**
   `commute_of_forall_single`: a matrix commuting with every `E_{ij}(a)`, `i ≠ j`,
   is a central scalar and therefore commutes with everything.  Hence a `g` which
@@ -57,13 +62,13 @@ algebras.
 
 ## What is *not* proved
 
-The remaining configuration is the one in which `g` has a nonzero off-diagonal
-entry but neither `g` nor `g⁻¹` has any zero entry at a usable position.  The
-double commutator `⁅g e_{ij}(a) g⁻¹, e_{kl}(b)⁆` is then the full six-term
-expression of `unipotent_commutator` with both `(g⁻¹)_{jk}` and `g_{li}` nonzero,
-and it is neither row- nor column-supported; the classical treatment passes
-through the level ideal of `g` rather than through a single commutator.  No
-statement about that configuration is asserted here.
+The dense scalar obstruction is no longer a gap: Leavitt coefficient
+separation makes the double commutator row-supported even when the relevant
+entries are nonzero.  What is not supplied here is the final exhaustive index
+case split for an arbitrary noncentral matrix, especially sparse patterns for
+which the available nonzero entries do not satisfy the four commuting-root
+inequalities simultaneously.  Consequently no unconditional `RootDetection`
+or `IsSimpleGroup` theorem is asserted.
 -/
 
 namespace GroupApproximation
@@ -354,6 +359,24 @@ theorem row_supported_commutator (v : Matrix ι ι R) {k : ι}
       (hv.mul_self hd) (single_mul_self_eq_zero m n hmn c) hBA,
     row_mul_single v hv m n c]
 
+/-- **Row extraction with square-zero supplied directly.**  A row-supported
+defect produced by a degenerate commutator already comes with a proof that its
+square is zero.  In that situation no separate vanishing of the diagonal entry
+is needed: the second elementary matrix still annihilates the defect on the
+left, and the commutator is a single transvection. -/
+theorem row_supported_commutator_of_sq_zero (v : Matrix ι ι R) {k : ι}
+    (hv : IsRowSupported v k) (hsq : v * v = 0) {m n : ι}
+    (hnk : n ≠ k) (hmn : m ≠ n) (c : R) :
+    ⁅sqZeroUnit v hsq, elementaryUnit m n hmn c⁆
+      = elementaryUnit k n (Ne.symm hnk) (v k m * c) := by
+  apply Units.ext
+  have hBA : Matrix.single m n c * v = 0 := single_mul_row_eq_zero v hv hnk c
+  show (1 + v) * (1 + Matrix.single m n c) * (1 - v) *
+      (1 - Matrix.single m n c) = 1 + Matrix.single k n (v k m * c)
+  rw [unipotent_commutator_of_right_annihilates v (Matrix.single m n c)
+      hsq (single_mul_self_eq_zero m n hmn c) hBA,
+    row_mul_single v hv m n c]
+
 theorem isRowSupported_single_mul (M : Matrix ι ι R) (k l : ι) (b : R) :
     IsRowSupported (-(Matrix.single k l b * M)) k := by
   intro s t hs
@@ -483,6 +506,90 @@ theorem exists_elGen_mem_of_conjSingle_eq
   rw [heq] at hmem
   exact hmem
 
+/-! ### Leavitt coefficient separation
+
+The apparent dense-case obstruction is the coefficient
+`a (g⁻¹)_{jk} b`: setting it to zero must not also kill the reversed
+coefficient `b g_{li} a (g⁻¹)_{jm}`.  The Leavitt relations supply exactly the
+asymmetry needed.  The elementary lemma below first produces `x w y = 0` with
+`y x ≠ 0`; the second absorbs arbitrary nonzero outer factors by the strong
+two-sided division property of a purely infinite simple ring. -/
+
+/-- In a ring with a Leavitt family and two-sided division of nonzero
+coefficients, every coefficient admits a zero product whose reversed product
+is nonzero. -/
+theorem exists_reversing_zero_product [Nontrivial R] (L : LeavittFamily R)
+    (hdiv : ∀ z : R, z ≠ 0 → ∃ c d : R, c * z * d = 1) (w : R) :
+    ∃ x y : R, x * w * y = 0 ∧ y * x ≠ 0 := by
+  have hs0t1 : L.s0 * L.t1 ≠ 0 := by
+    intro hzero
+    have honezero : (1 : R) = 0 := by
+      calc
+        1 = (L.t0 * L.s0) * (L.t1 * L.s1) := by
+          rw [L.t0_s0, L.t1_s1, one_mul]
+        _ = L.t0 * (L.s0 * L.t1) * L.s1 := by noncomm_ring
+        _ = 0 := by rw [hzero, mul_zero, zero_mul]
+    exact one_ne_zero honezero
+  by_cases hw : w = 0
+  · refine ⟨1, 1, ?_, ?_⟩
+    · rw [hw, mul_zero, zero_mul]
+    · rw [one_mul]
+      exact one_ne_zero
+  · obtain ⟨c, d, hcwd⟩ := hdiv w hw
+    refine ⟨L.t1 * c, d * L.s0, ?_, ?_⟩
+    · calc
+        (L.t1 * c) * w * (d * L.s0)
+            = L.t1 * (c * w * d) * L.s0 := by noncomm_ring
+        _ = 0 := by rw [hcwd, mul_one, L.t1_s0]
+    · intro hzero
+      apply hs0t1
+      calc
+        L.s0 * L.t1 = 1 * (L.s0 * L.t1) * 1 := by simp
+        _ = (c * w * d) * (L.s0 * L.t1) * (c * w * d) := by rw [hcwd]
+        _ = (c * w) * ((d * L.s0) * (L.t1 * c)) * (w * d) := by
+              noncomm_ring
+        _ = 0 := by rw [hzero, mul_zero, zero_mul]
+
+/-- **Coefficient separation for the dense commutator.**  Given nonzero
+`r,s`, choose `a,b` so that `a r b = 0` but `b s a r ≠ 0`.  This is the exact
+pair of scalar conditions needed by the row-extraction argument below. -/
+theorem exists_annihilate_preserve_reverse (L : LeavittFamily R)
+    (hdiv : ∀ z : R, z ≠ 0 → ∃ c d : R, c * z * d = 1)
+    {r s : R} (hr : r ≠ 0) (hs : s ≠ 0) :
+    ∃ a b : R, a * r * b = 0 ∧ b * s * a * r ≠ 0 := by
+  letI : Nontrivial R := ⟨⟨r, 0, hr⟩⟩
+  obtain ⟨cr, dr, hcr⟩ := hdiv r hr
+  have hdr : dr ≠ 0 := by
+    intro hdr
+    rw [hdr, mul_zero] at hcr
+    exact zero_ne_one hcr
+  have hcrr : cr * r ≠ 0 := by
+    intro hz
+    rw [hz, zero_mul] at hcr
+    exact zero_ne_one hcr
+  obtain ⟨ed, fd, hdf⟩ := hdiv dr hdr
+  obtain ⟨es, fs, hsf⟩ := hdiv s hs
+  obtain ⟨et, ft, htf⟩ := hdiv (cr * r) hcrr
+  obtain ⟨x, y, hxy, hyx⟩ := exists_reversing_zero_product L hdiv (et * fd)
+  refine ⟨fs * x * et * cr, dr * fd * y * es, ?_, ?_⟩
+  · calc
+      (fs * x * et * cr) * r * (dr * fd * y * es)
+          = fs * x * et * (cr * r * dr) * fd * y * es := by noncomm_ring
+      _ = fs * x * (et * fd) * y * es := by rw [hcr]; noncomm_ring
+      _ = fs * (x * (et * fd) * y) * es := by noncomm_ring
+      _ = 0 := by rw [hxy, mul_zero, zero_mul]
+  · intro hzero
+    apply hyx
+    have hrecover :
+        ed * ((dr * fd * y * es) * s * (fs * x * et * cr) * r) * ft
+          = y * x := by
+      calc
+        ed * ((dr * fd * y * es) * s * (fs * x * et * cr) * r) * ft
+            = (ed * dr * fd) * y * (es * s * fs) * x *
+                (et * (cr * r) * ft) := by noncomm_ring
+        _ = y * x := by rw [hdf, hsf, htf]; simp
+    rw [← hrecover, hzero, mul_zero, zero_mul]
+
 /-! ### Configuration 2: a vanishing entry of `g⁻¹` -/
 
 /-- A nonzero entry of `u` is never annihilated by the whole of the matching row
@@ -540,6 +647,103 @@ theorem exists_elGen_mem_of_row_supported (hcard : 3 ≤ Fintype.card ι)
       exact row_supported_commutator v hv hd hnk (Ne.symm hnm) 1
     rw [heq] at hmem
     exact hmem
+
+/-- Row extraction when square-zero is known independently of the diagonal.
+This is the form used for dense double commutators. -/
+theorem exists_elGen_mem_of_row_supported_sq_zero
+    (hcard : 3 ≤ Fintype.card ι)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal]
+    {z : elementaryGroup ι R} (hz : z ∈ N) {v : Matrix ι ι R} {k : ι}
+    (hv : IsRowSupported v k) (hsq : v * v = 0)
+    (hzv : (z : (Matrix ι ι R)ˣ) = sqZeroUnit v hsq)
+    {m : ι} (hvm : v k m ≠ 0) :
+    ∃ (p q : ι) (hpq : p ≠ q) (x : R), x ≠ 0 ∧ elGen p q hpq x ∈ N := by
+  obtain ⟨n, hnk, hnm⟩ := exists_third_index hcard k m
+  refine ⟨k, n, Ne.symm hnk, v k m, hvm, ?_⟩
+  have hmem : ⁅z, elGen m n (Ne.symm hnm) (1 : R)⁆ ∈ N :=
+    commutator_mem_left N hz _
+  have heq : ⁅z, elGen m n (Ne.symm hnm) (1 : R)⁆
+      = elGen k n (Ne.symm hnk) (v k m) := by
+    apply Subtype.ext
+    show ⁅(z : (Matrix ι ι R)ˣ), elementaryUnit m n (Ne.symm hnm) (1 : R)⁆
+        = elementaryUnit k n (Ne.symm hnk) (v k m)
+    rw [hzv]
+    simpa only [mul_one] using
+      row_supported_commutator_of_sq_zero v hv hsq hnk (Ne.symm hnm) 1
+  rw [heq] at hmem
+  exact hmem
+
+/-- **Direct extraction with annihilating coefficients.**  This is the general
+double-commutator configuration: `a (u⁻¹)_{jk} b = 0` makes the first product
+degenerate, while a nonzero reversed coefficient survives in the resulting
+one-row defect. -/
+theorem exists_elGen_mem_of_annihilating_coefficients
+    (hcard : 3 ≤ Fintype.card ι)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal]
+    {g : elementaryGroup ι R} (hg : g ∈ N)
+    {i j k l m : ι} (hij : i ≠ j) (hkl : k ≠ l)
+    (hjk : j ≠ k) (hli : l ≠ i) {a b : R}
+    (hzero : a * (((g : (Matrix ι ι R)ˣ)⁻¹ : (Matrix ι ι R)ˣ) :
+        Matrix ι ι R) j k * b = 0)
+    (hne : b * ((g : (Matrix ι ι R)ˣ) : Matrix ι ι R) l i * a *
+        (((g : (Matrix ι ι R)ˣ)⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j m ≠ 0) :
+    ∃ (p q : ι) (hpq : p ≠ q) (x : R), x ≠ 0 ∧ elGen p q hpq x ∈ N := by
+  classical
+  let u : (Matrix ι ι R)ˣ := (g : (Matrix ι ι R)ˣ)
+  let A : Matrix ι ι R := conjSingle u i j a
+  let B : Matrix ι ι R := Matrix.single k l b
+  have hAB : A * B = 0 := by
+    ext s t
+    change (conjSingle u i j a * Matrix.single k l b) s t = 0
+    rw [matrix_mul_single_apply]
+    by_cases ht : t = l
+    · rw [if_pos ht, conjSingle_apply]
+      calc
+        (u : Matrix ι ι R) s i * a *
+              (((u⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j k) * b
+            = (u : Matrix ι ι R) s i *
+                (a * (((u⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j k * b)) := by
+                  simp only [mul_assoc]
+        _ = 0 := by
+          have hz : a * (((u⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j k * b) = 0 := by
+            simpa only [u, mul_assoc] using hzero
+          rw [hz, mul_zero]
+    · rw [if_neg ht]
+  let v : Matrix ι ι R := -(B * A)
+  have hsq : v * v = 0 := by
+    exact neg_mul_sq_eq_zero_of_left_annihilates A B hAB
+  let z : elementaryGroup ι R :=
+    ⁅g * elGen i j hij a * g⁻¹, elGen k l hkl b⁆
+  have hz : z ∈ N := doubleCommutator_mem N hg hij hkl hjk hli a b
+  have hzv : (z : (Matrix ι ι R)ˣ) = sqZeroUnit v hsq := by
+    exact doubleCommutator_eq_sqZeroUnit u hij hkl a b hAB
+  have hrow : IsRowSupported v k := isRowSupported_single_mul A k l b
+  have hvm : v k m ≠ 0 := by
+    change (-(Matrix.single k l b * conjSingle u i j a)) k m ≠ 0
+    rw [Matrix.neg_apply, matrix_single_mul_apply, if_pos rfl,
+      conjSingle_apply, neg_ne_zero]
+    simpa only [u, mul_assoc] using hne
+  exact exists_elGen_mem_of_row_supported_sq_zero hcard N hz hrow hsq hzv hvm
+
+/-- **The formerly dense configuration.**  If `g` and `g⁻¹` supply nonzero
+off-diagonal entries, the Leavitt relations choose coefficients that annihilate
+the bad product but preserve its reversal.  The preceding double-commutator
+then extracts a genuine nonzero elementary root. -/
+theorem exists_elGen_mem_of_dense_entries (hcard : 3 ≤ Fintype.card ι)
+    (L : LeavittFamily R)
+    (hdiv : ∀ z : R, z ≠ 0 → ∃ c d : R, c * z * d = 1)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal]
+    {g : elementaryGroup ι R} (hg : g ∈ N)
+    {i j k l : ι} (hij : i ≠ j) (hkl : k ≠ l)
+    (hjk : j ≠ k) (hli : l ≠ i)
+    (hinv : (((g : (Matrix ι ι R)ˣ)⁻¹ : (Matrix ι ι R)ˣ) :
+        Matrix ι ι R) j k ≠ 0)
+    (hgentry : ((g : (Matrix ι ι R)ˣ) : Matrix ι ι R) l i ≠ 0) :
+    ∃ (p q : ι) (hpq : p ≠ q) (x : R), x ≠ 0 ∧ elGen p q hpq x ∈ N := by
+  obtain ⟨a, b, hzero, hreverse⟩ :=
+    exists_annihilate_preserve_reverse L hdiv hinv hgentry
+  exact exists_elGen_mem_of_annihilating_coefficients hcard N hg hij hkl hjk hli
+    hzero hreverse
 
 /-- **(P) in the vanishing-entry configuration.**  If `N` contains a `g` for which
 some off-diagonal entry of `g⁻¹` vanishes while the *same* entry of `g` does not,

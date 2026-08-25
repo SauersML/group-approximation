@@ -54,21 +54,9 @@ therefore live inside named propositions -- `OneSidedCompressionCriterion`,
 `PrescribedMFQuotients`, `PropositionDefect`, ... -- where the binder check is
 supposed to find them, and not in front.
 
-Three groups of declarations are printed with the weaker `#audit_axioms`,
+Two groups of declarations are printed with the weaker `#audit_axioms`,
 which reports the closure without the binder check:
 
-* the **conditional simplicity/headline declarations**.  The older
-  `headlineConclusion_of` takes `PropositionSimple` directly; the exact
-  current wrappers `manuscriptBinaryLeavittSimplicityClause` and
-  `headlineConclusion_of_normalRootDetection` expose the weaker named
-  `NormalRootDetection` premise.  The repository proves neither premise; the
-  manuscript obtains the missing root-detection input from Preusser's
-  normal-subgroup theorem.  A green build here checks only the implications'
-  proof dependencies.  It does not erase their displayed hypotheses, and no
-  closed endpoint above or below depends on them -- in particular
-  `rankTwelve_actualCoronaMFResidual_eq_top`, the displayed conclusion
-  `Rad_MF(H) = H` of Theorem B, is closed and is proved through normal
-  generation of the single element `d = e02(q)`, not through simplicity.
 * the **printed definitions and the lemmas over arbitrary data** -- the
   compression-centralizer defect, the compression `Psi`, the corner
   conjugation, the amalgam.  These take the manuscript's own data (a group, a
@@ -182,16 +170,10 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedQuotientRelationCalculus
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.ClosurePullback.manuscriptMFClosurePullbackAlongFactorization
 
-/-! ## The conditional simplicity and headline endpoints
+/-! ## Simplicity and the complete headline -/
 
-`prop:simple` has no proof in this repository.  The ordinary audit deliberately
-prints both the exact root-detection reduction and the resulting conditional
-headline, so the missing premise remains visible.  The older direct
-`PropositionSimple` wrapper is retained as a second view of the same gap. -/
-
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.headlineConclusion_of_normalRootDetection
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.headlineConclusion_of
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline
 
 /-! ## Printed definitions and statements over arbitrary manuscript data
 
@@ -239,14 +221,13 @@ only place their axiom closure is checked. -/
 #audit_axioms GroupApproximation.BinaryLeavitt.center_eq_bot
 #audit_axioms GroupApproximation.BinaryLeavitt.central_units_trivial
 
--- Generic partial root extraction.  The first two theorems close the
--- line-preserving and inverse-entry-zero configurations, and the third
--- detects noncentrality on an off-diagonal single-entry matrix.  They do not
--- cover the remaining dense configuration and therefore do not prove the
--- manuscript's `NormalRootDetection` premise.
+-- Generic root extraction support.  The dense-entry theorem and exhaustive
+-- Leavitt-family case split close the branch that was formerly missing.
 #audit_axioms GroupApproximation.exists_elGen_mem_of_conjSingle_eq
 #audit_axioms GroupApproximation.exists_elGen_mem_of_inv_entry_zero
+#audit_axioms GroupApproximation.exists_elGen_mem_of_dense_entries
 #audit_axioms GroupApproximation.exists_noncommuting_single_of_not_central
+#audit_axioms GroupApproximation.rootDetection_of_leavittFamily
 
 -- The two congruence-level endpoints, the full-linear-group centre
 -- computation, and the exact reduction of simplicity to Preusser's sandwich.

@@ -28,14 +28,10 @@ row is unconditional: the manuscript's quantifiers live inside a named `Prop`,
 and nothing is accepted as mathematical input from a caller.
 
 `conditional` — the declaration is printed with the weaker `#audit_axioms` and
-is **not** printed with the closed macro.  Its type begins with a binder.  Six
+is **not** printed with the closed macro.  Its type begins with a binder.  Five
 different things put a binder there, and this ledger separates them by name
 rather than by status, because the status vocabulary cannot:
 
-* **an undischarged mathematical hypothesis.**  Two rows expose the same gap:
-  the explicit simplicity reduction and `thm:headline`.  Their exact wrappers
-  take `NormalRootDetection`, which has no proof in the repository; see
-  *Deliberately not claimed*.
 * **manuscript data the statement is universally quantified over** — the
   ambient group, the coefficient ring, the Leavitt family, the homomorphism.
   Rows `eq:intrinsic-defect`, `eq:matrix-compression`,
@@ -60,35 +56,36 @@ rather than by status, because the status vocabulary cannot:
   simplicity or discharges root detection.
 * **generic partial root-extraction support.**  The transvection-extraction
   theorems quantify over the ring, index type, normal subgroup, and their
-  explicit matrix configurations.  They close the line-preserving and
-  inverse-entry-zero configurations and detect noncentrality on a single-entry
-  matrix, but do not cover the remaining dense configuration or establish
-  general root detection.
+  explicit matrix configurations.  Together with the separately proved dense
+  and diagonal branches they feed the closed generic root-detection theorem;
+  these individual configuration lemmas remain conditional only because their
+  arbitrary input data occur as leading binders.
 * **generic congruence-subgroup support.**  The relative-elementary and
   congruence endpoints, the `GL` centre computation, and the final simplicity
   assembly quantify over the ring and index type.  The assembly retains
   Preusser's normal-subgroup sandwich as an explicit leading hypothesis; it is
   a precise reduction, not a proof of the manuscript's simplicity claim.
 
-`MISSING` — no declaration in the development proves the row.  A `MISSING`
+`MISSING` — no declaration in the development proves the row.  No current row
+has this status.  A `MISSING`
 row's target may exist as a *statement* (a `def ... : Prop`); the gate refuses
 to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
 Manuscript state pinned at authoring time: 1234 lines,
 `sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 88 rows
--- 66 `closed`, 21 `conditional`, 1 `MISSING`, naming 87 distinct declarations.
+-- 69 `closed`, 19 `conditional`, 0 `MISSING`, naming 86 distinct declarations.
 One row appears for each label, and fifty-nine further rows either split a
 printed theorem into separately audited constituents or cover an unnumbered
-printed sentence. One declaration appears twice, because the introduction
-displays a corollary that Section 3 then states.
+printed sentence. Two declarations each appear twice: the introduction repeats
+a Section 3 corollary, and the simplicity input is recorded both where Theorem
+B consumes it and where Proposition `prop:simple` is printed.
 
-Among the manuscript's **15 numbered statements**, exactly **13 are closed**.
-The two exceptions are `prop:simple`, whose target is `MISSING`, and full
-Theorem B `thm:headline`, whose exact wrapper is `conditional` on the same
-root-detection/simplicity input. The separate closed row
-`manuscriptBinaryLeavittFullRadical` proves every headline clause except
-simplicity and therefore does not increase the numbered-statement count.
+All **15 of the manuscript's 15 numbered statements are closed**.
+`RankTwelveEndpoint.manuscriptPropositionSimple` proves `prop:simple`, and
+`manuscriptBinaryLeavittHeadline` proves full Theorem B including simplicity.
+The separate closed row `manuscriptBinaryLeavittFullRadical` remains useful as
+the hypothesis-free package of every headline clause except simplicity.
 Re-pin after reviewing the rows an edit to the `.tex` touches.
 
 ## Rows
@@ -109,8 +106,8 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Theorem A, the three MF-radical clauses | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion` | closed |
 | Theorem A, fourth clause: every finite-dimensional linear representation over every field kills the defect | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility` | closed |
 | `eq:leavitt` the binary Leavitt relations, at the manuscript's ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.leavittFamily` | closed |
-| `prop:simple`, exact reduction from the missing root-detection input | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause` | conditional |
-| Theorem B `thm:headline`, every printed clause, simplicity included | `GroupApproximation.Manuscript.OneSidedMFRadical.headlineConclusion_of_normalRootDetection` | conditional |
+| Theorem B, closed simplicity input from `prop:simple` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple` | closed |
+| Theorem B `thm:headline`, every printed clause, simplicity included | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline` | closed |
 | Theorem B minus the simplicity clause, hypothesis-free | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical` | closed |
 | Abstract headline, existence of a countable non-MF group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonMFGroupExists` | closed |
 | Abstract headline, refutation of “every countable group is MF” | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF` | closed |
@@ -163,7 +160,7 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Section 5, combined printed-equation fidelity package | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSectionFiveEquations` | closed |
 | `eq:corner-conjugation` `tau diag(A, I) tau^-1 = diag(Psi(A), I)` | `GroupApproximation.RankTwelve.tau_fullCorner_tauInv` | conditional |
 | `eq:compresses-L` `tau L tau^-1` is contained in `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration` | closed |
-| `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.PropositionSimple` | MISSING |
+| `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple` | closed |
 | Support for `prop:simple`: the centre of the binary Leavitt algebra is its scalar field | `GroupApproximation.BinaryLeavitt.center_eq_bot` | conditional |
 | Support for `prop:simple`: every central unit over `ZMod 2` is trivial | `GroupApproximation.BinaryLeavitt.central_units_trivial` | conditional |
 | Support for `prop:simple`: line-preserving conjugation extracts a nonzero elementary transvection | `GroupApproximation.exists_elGen_mem_of_conjSingle_eq` | conditional |
@@ -221,47 +218,17 @@ printed argument has no declaration.
   which is both what the printed proof produces and what the printed use
   consumes.  No order instance is installed.
 
-## Deliberately not claimed
+## Historically withheld, now closed
 
-* **`prop:simple`, simplicity of `H = EL_12(L_F2(1,2))`.**  The manuscript
-  proves it from Preusser's normal-subgroup theorem for general linear groups
-  over exchange rings, together with pure infiniteness and simplicity of the
-  binary Leavitt algebra and triviality of its unit-scalar center.  None of
-  the decisive normal-structure bridge exists in the repository: relative
-  elementary and congruence subgroups and both level endpoints are now
-  formalized, but there is no theorem which assigns to every normal subgroup a
-  level ideal satisfying Preusser's two sandwich inclusions.  Consequently
-  there is still no unconditional `IsSimpleGroup` instance for the manuscript's
-  elementary group.  The statement is kept as the named proposition
-  `RankTwelveEndpoint.PropositionSimple` so that no audit can confuse it with
-  what *is* proved, namely that every nonzero elementary root normally generates `H`
-  (`RankTwelveEndpoint.normalClosure_defect_eq_top`).  Root normal generation
-  is strictly weaker and is not a substitute.  The generic extraction module
-  additionally handles the line-preserving and inverse-entry-zero
-  configurations and detects noncentrality on a single-entry matrix; it
-  explicitly leaves the dense all-usable-entries-nonzero configuration open,
-  so it does not discharge this row.
-
-  **One row, originally nine obligations.**  A sentence-level census
-  (`metadata/ONESIDED_TRANSPORT_SENTENCE_CENSUS.md`) counted what this single
-  row actually stands for.  `prop:simple`'s printed proof is five sentences
-  long and each needs an object the repository does not have: pure infinite
-  simplicity of `R`; the exchange property (the string "exchange ring" does not
-  occur in the tree); Preusser's sandwich theorem; the `I = R` and `I = 0`
-  endpoints of the case split; `Z(R) = F_2`; `z = lambda I`; `lambda` central;
-  and `Z(GL_12(R)) = 1`.  The relative/congruence objects, level endpoints,
-  scalar-matrix calculation, and generic conditional assembly have since been
-  closed; see `CongruenceSubgroups.lean`.  The row remains missing because the
-  Preusser sandwich itself has not been proved, not because those support
-  declarations amount to an unconditional endpoint.
-  The headline-minus-simplicity conclusions do not depend on it:
-  `Rad_MF(H) = H` is a closed row above
-  (`rankTwelve_actualCoronaMFResidual_eq_top`), proved through normal
-  generation of the single element `d = e02(q)` rather than through simplicity.
-  Triviality of every homomorphism to a countable MF group is also an
-  unconditional conjunct of `manuscriptBinaryLeavittFullRadical`, derived from
-  the full radical. What remains conditional is the simplicity conjunct and
-  hence the full Theorem B conjunction containing it.
+* ~~**`prop:simple`, simplicity of `H = EL_12(L_F2(1,2))`.**~~
+  **No longer withheld.**  The direct extraction route avoids the missing
+  Preusser citation.  `rootDetection_of_leavittFamily` exhausts the diagonal,
+  matching-inverse-zero, and dense-entry cases; the exact rank-twelve wrapper
+  `RankTwelveEndpoint.manuscriptPropositionSimple` and the complete headline
+  `manuscriptBinaryLeavittHeadline` both pass the closed audit.  The separate
+  congruence-subgroup development remains a faithful conditional
+  formalization of the manuscript's cited route, but is not needed for the
+  closed result.
 * ~~**The amenable clause of the Section 1 sterility paragraph.**~~
   **No longer withheld.**  "If `G` is amenable, its property-(T) subgroup `L`
   is finite" is cited to Bekka--de la Harpe--Valette in the manuscript and is

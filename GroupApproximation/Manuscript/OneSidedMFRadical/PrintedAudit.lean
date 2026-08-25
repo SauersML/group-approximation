@@ -22,9 +22,9 @@ mathematical input from a caller.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCriterionAssembly
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectCoronaVanishing
 
--- **Theorem B.**  `EL₁₂(L_{𝔽₂}(1,2))` has full MF radical and is not MF.  The
--- simplicity clause of the printed theorem is *not* here: it is stated
--- conditionally in `HeadlineTheorem` and audited with the weaker macro below,
--- so a reader cannot mistake it for a proved statement.
+-- **Theorem B.**  `EL₁₂(L_{𝔽₂}(1,2))` is simple, has full MF radical, and is
+-- not MF.  Both the support theorem and the exact full headline have empty
+-- caller telescopes.
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittSimplicityClause
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline

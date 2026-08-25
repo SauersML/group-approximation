@@ -1,4 +1,5 @@
 import GroupApproximation.Leavitt.ElementaryNoFiniteQuotients
+import GroupApproximation.Leavitt.ElementaryNormalGeneration
 import Mathlib.GroupTheory.Subgroup.Center
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.RingTheory.SimpleRing.Basic
@@ -208,6 +209,102 @@ theorem relativeElementary_top :
       exact Subgroup.inv_mem _ ihx
 
 end RelativeElementary
+
+/-! ### The level ideal of a normal subgroup
+
+For a normal subgroup `N ◁ EL_ι(R)`, its elementary level consists of the
+coefficients occurring in every root subgroup of `N`.  Three indices suffice
+to prove that this additive set is a two-sided ideal: the Steinberg
+commutator relation implements multiplication on either side.  This is the
+canonical candidate level in Preusser's sandwich and makes the lower sandwich
+inclusion unconditional. -/
+
+section NormalLevel
+
+variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+
+/-- The elementary level ideal of a normal subgroup of `EL_ι(R)`. -/
+def normalLevel (hcard : 3 ≤ Fintype.card ι)
+    (N : Subgroup (elementaryGroup ι R)) [hN : N.Normal] : TwoSidedIdeal R :=
+  TwoSidedIdeal.mk'
+    {a | ∀ (i j : ι) (hij : i ≠ j), elGen i j hij a ∈ N}
+  (by
+    intro i j hij
+    rw [elGen_zero]
+    exact N.one_mem)
+  (by
+    intro a b ha hb i j hij
+    rw [← elGen_mul]
+    exact N.mul_mem (ha i j hij) (hb i j hij))
+  (by
+    intro a ha i j hij
+    have heq : elGen i j hij (-a) = (elGen i j hij a)⁻¹ := by
+      calc
+        elGen i j hij (-a) = 1 * elGen i j hij (-a) := (one_mul _).symm
+        _ = ((elGen i j hij a)⁻¹ * elGen i j hij a) *
+              elGen i j hij (-a) := by simp
+        _ = (elGen i j hij a)⁻¹ *
+              (elGen i j hij a * elGen i j hij (-a)) := by
+                rw [mul_assoc]
+        _ = (elGen i j hij a)⁻¹ := by
+              rw [elGen_mul, add_neg_cancel, elGen_zero, mul_one]
+    rw [heq]
+    exact N.inv_mem (ha i j hij))
+  (by
+    intro r a ha i j hij
+    obtain ⟨k, hki, hkj⟩ := exists_third_index hcard i j
+    have hik : i ≠ k := Ne.symm hki
+    have hkj' : k ≠ j := hkj
+    have hy : elGen k j hkj' a ∈ N := ha k j hkj'
+    rw [← elGen_commutator i k j hik hkj' hij r a]
+    exact N.mul_mem (hN.conj_mem _ hy (elGen i k hik r)) (N.inv_mem hy))
+  (by
+    intro a r ha i j hij
+    obtain ⟨k, hki, hkj⟩ := exists_third_index hcard i j
+    have hik : i ≠ k := Ne.symm hki
+    have hkj' : k ≠ j := hkj
+    have hx : elGen i k hik a ∈ N := ha i k hik
+    rw [← elGen_commutator i k j hik hkj' hij a r]
+    have heq : elGen i k hik a * elGen k j hkj' r *
+          (elGen i k hik a)⁻¹ * (elGen k j hkj' r)⁻¹ =
+        elGen i k hik a *
+          (elGen k j hkj' r * (elGen i k hik a)⁻¹ *
+            (elGen k j hkj' r)⁻¹) := by simp only [mul_assoc]
+    rw [heq]
+    exact N.mul_mem hx
+      (hN.conj_mem _ (N.inv_mem hx) (elGen k j hkj' r)))
+
+theorem mem_normalLevel_iff (hcard : 3 ≤ Fintype.card ι)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal] {a : R} :
+    a ∈ normalLevel hcard N ↔
+      ∀ (i j : ι) (hij : i ≠ j), elGen i j hij a ∈ N :=
+  by simp [normalLevel]
+
+/-- The lower half of Preusser's sandwich holds for the canonical level ideal
+without any external normal-structure theorem. -/
+theorem relativeElementary_normalLevel_le (hcard : 3 ≤ Fintype.card ι)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal] :
+    relativeElementary ι (normalLevel hcard N) ≤ N := by
+  apply Subgroup.normalClosure_le_normal
+  rintro g ⟨i, j, hij, a, ha, rfl⟩
+  exact (mem_normalLevel_iff hcard N).mp ha i j hij
+
+/-- If the canonical level is nonzero and every nonzero coefficient has a
+two-sided unit sandwich, normal generation of one root makes `N` everything. -/
+theorem normal_eq_top_of_normalLevel_ne_bot
+    (hcard : 3 ≤ Fintype.card ι)
+    (hdiv : ∀ x : R, x ≠ 0 → ∃ a b : R, a * x * b = 1)
+    (N : Subgroup (elementaryGroup ι R)) [N.Normal]
+    (hlevel : normalLevel hcard N ≠ ⊥) : N = ⊤ := by
+  obtain ⟨a, ha, ha0⟩ := SetLike.exists_of_lt (bot_lt_iff_ne_bot.mpr hlevel)
+  obtain ⟨i, j, hij⟩ := Fintype.exists_pair_of_one_lt_card (by omega :
+    1 < Fintype.card ι)
+  have hamem : ∀ (i j : ι) (hij : i ≠ j), elGen i j hij a ∈ N :=
+    (mem_normalLevel_iff hcard N).mp ha
+  exact elementaryGroup_normal_eq_top_of_elGen_mem hcard N hij
+    (hamem i j hij) (hdiv a ha0)
+
+end NormalLevel
 
 /-! ### The full congruence subgroup `C_ι(R, I)` -/
 
