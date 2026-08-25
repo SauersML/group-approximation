@@ -10,6 +10,7 @@ push with no separate content pipeline.  Stdlib only; no toolchain.
 """
 import argparse
 import base64
+import html
 import json
 import os
 import re
@@ -25,7 +26,6 @@ EDITIONS = {
         'claims': 'metadata/NON_MF_NUMBERED_CLAIMS.json',
         'ledger': 'metadata/NON_MF_PROOF_LEDGER.md',
         'census': 'metadata/NON_MF_SENTENCE_CENSUS.tsv',
-        'title': 'Not Every Group Is MF',
         'tab': 'Paper',
         'links': '<a href="../non_mf_groups_exist.pdf">Download the paper (PDF)</a>',
     },
@@ -34,6 +34,63 @@ EDITIONS = {
 
 def read(p):
     return Path(p).read_text(encoding='utf-8')
+
+
+def required_tex_argument(source, command):
+    """Return the balanced braced argument of a required TeX command."""
+    match = re.search(r'\\' + re.escape(command) + r'\s*\{', source)
+    if not match:
+        sys.exit(f'missing required \\{command}{{...}} metadata')
+    start = match.end() - 1
+    depth = 0
+    index = start
+    while index < len(source):
+        char = source[index]
+        if char == '\\':
+            index += 2
+            continue
+        if char == '{':
+            depth += 1
+        elif char == '}':
+            depth -= 1
+            if depth == 0:
+                return source[start + 1:index]
+        index += 1
+    sys.exit(f'unclosed \\{command}{{...}} metadata')
+
+
+def required_tex_key(source, command, key):
+    """Read a required top-level key={value} from a TeX key/value command."""
+    payload = required_tex_argument(source, command)
+    fields = []
+    start = 0
+    depth = 0
+    for index, char in enumerate(payload):
+        if char == '{':
+            depth += 1
+        elif char == '}':
+            depth -= 1
+        elif char == ',' and depth == 0:
+            fields.append(payload[start:index])
+            start = index + 1
+    fields.append(payload[start:])
+    for field in fields:
+        name, separator, value = field.partition('=')
+        if separator and name.strip() == key:
+            value = value.strip()
+            if value.startswith('{') and value.endswith('}'):
+                value = value[1:-1]
+            if value:
+                return value
+    sys.exit(f'missing required {key}=... in \\{command}')
+
+
+def plain_tex_metadata(value, label):
+    """Require web-facing title metadata to be literal text, then HTML-escape it."""
+    value = re.sub(r'\s+', ' ', value.replace('~', ' ')).strip()
+    if not value or re.search(r'[{}\\]', value):
+        sys.exit(f'{label} must be literal text without TeX commands: {value!r}')
+    return html.escape(value, quote=True)
 
 
 def validate_authored_styles(css):
@@ -436,6 +493,11 @@ def main():
     template = read(HERE / 'template.html')
     explanation_source = read(REPO / edition['source'])
     tex = strip_tex_comments(explanation_source)
+    document_title = plain_tex_metadata(
+        required_tex_argument(tex, 'title'), '\\title')
+    metadata_title = plain_tex_metadata(
+        required_tex_key(tex, 'hypersetup', 'pdftitle'),
+        '\\hypersetup pdftitle')
     claims_data = json.loads(read(REPO / edition['claims']))
     labels = set(re.findall(r'\\label\{([^}]*)\}', tex))
     claims_data['manuscript'] = edition['source']
@@ -523,7 +585,8 @@ def main():
 
 
     out = template
-    out = out.replace('__DOCUMENT_TITLE__', edition['title'])
+    out = out.replace('__DOCUMENT_META_TITLE__', metadata_title)
+    out = out.replace('__DOCUMENT_TITLE__', document_title)
     out = out.replace('__DOCUMENT_TAB__', edition['tab'])
     out = out.replace('__DOCUMENT_LINKS__', edition['links'])
     for name, payload in [

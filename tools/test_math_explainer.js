@@ -3,6 +3,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const katex = require('./paper_site/katex/katex.min.js');
+const macros = require('./math_macros.js');
 
 const tex = fs.readFileSync('non_mf_groups_exist.tex', 'utf8');
 global.window = { PAPER_EXPLANATION_SOURCE: tex, katex };
@@ -18,22 +19,34 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.ok(declarations.length >= 25, 'the TeX source should carry in-place explanations');
+assert.equal(declarations.length, 40, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 24,
+  'the contextual explanations must remain attached to 24 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
   assert.ok(Number.isInteger(declaration.group));
   assert.ok(declaration.name);
-  assert.ok(declaration.explanation.length >= 80,
-    `${declaration.name} needs a substantive explanation`);
+  assert.ok(declaration.explanation.length >= 250,
+    `${declaration.name} needs a self-contained explanation`);
+  for (const match of declaration.explanation.matchAll(/\[\[([^|\]]+)/g)) {
+    assert.ok(api.explainTerm(match[1]),
+      `${declaration.name} links missing glossary term ${match[1]}`);
+  }
+  for (const match of declaration.explanation.matchAll(/\\\(([\s\S]*?)\\\)/g)) {
+    const node = { innerHTML: '' };
+    api.renderTex(node, match[1]);
+    assert.match(node.innerHTML, /class="katex"/,
+      `${declaration.name} contains invalid inline explanation math`);
+  }
 }
 
 const corona = source('Qd', '\\mathcal Q_{\\mathbf d}');
 assert.equal(corona.name,
-  'the norm matrix corona used in the definition of MF');
+  'the matrix-sequence world used to test MF');
 assert.equal(corona.tex, '\\mathcal Q_{\\mathbf d}');
 assert.match(corona.explanation,
-  /bounded sequences of matrices.*operator norm/);
+  /bounded sequence\|bounded sequences.*operator norm/);
 assert.match(corona.explanation, /\\\(\\mathbf d=.*\\\)/,
   'math inside source explanations must be marked for KaTeX rendering');
 const coronaHtml = katex.renderToString(corona.tex, { throwOnError: true });
@@ -57,24 +70,24 @@ assert.match(inlineNode.innerHTML, /class="mord mathbf/,
 assert.match(inlineNode.innerHTML, /msub/,
   'the matrix-size sequence in the explanation must preserve its subscripts');
 assert.equal(source('Mdn', 'M_{d_n}(\\C)').name,
-  'the matrices in the nth finite model');
+  'the square matrices used at stage n');
 assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,
-  'the elements of G invisible to every finite-matrix limit');
+  'the elements of G that every allowed matrix model erases');
 assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(H)=H').name,
-  'every element of H is invisible to every MF-target representation');
+  'why every allowed map erases all of H');
 assert.match(source('LF2', 'L_{\\F_2}(1,2)').explanation,
-  /two copies of a free module.*recover the two inputs/);
+  /free module.*self-copying rule/);
 assert.match(source('d', 'd=e_{02}(q)').explanation,
-  /row 0, column 2.*not the identity/);
+  /row 0, column 2.*normal closure/);
 assert.equal(source('πQ', '\\pi_Q\\colon W_Q\\longrightarrow Q').name,
-  'the map that forgets the attached B and A parts and returns Q');
+  'the map that discards B and A and keeps Q');
 assert.equal(source('∗A', 'W_Q=B*_A(Q\\times A)').name,
-  'joining B and Q times A along their common subgroup A');
+  'the operation that joins the two groups along A');
 
 const qGroup = declarations.find(d => d.object === 'Qd').group;
 assert.equal(declarations.find(d => d.object === 'Mdn').group, qGroup,
   'annotations immediately before one formula must share a source group');
-assert.notEqual(declarations.find(d => d.name === 'the sequences discarded by the quotient').group, qGroup);
+assert.notEqual(declarations.find(d => d.name === 'the sequences treated as zero').group, qGroup);
 
 for (const syntax of ['=', '(', ')', '[', ']', '{', '}', '⟨', '⟩', '‖', ',', '.']) {
   assert.equal(source(syntax, 'f(x)=x'), null,
@@ -85,16 +98,83 @@ for (const unknown of ['π', 'x', 'Y', 'n', 'i', 'j', 'G']) {
     `${unknown} must not receive an inferred explanation`);
 }
 
+for (const [symbol, name] of [
+  ['=', 'equals sign'], ['∈', 'belongs to'], ['≤', 'subgroup containment'],
+  ['∩', 'intersection sign'], ['⊕', 'direct-sum sign'], ['G', 'the group G'],
+  ['π', 'the map pi'], ['7', 'the number 7']
+]) {
+  assert.equal(api.notationExplanation(symbol).name, name,
+    `${symbol} needs a high-school-level notation explanation`);
+}
+assert.equal(api.notationExplanation('?'), null,
+  'unknown notation must not receive a vague fallback explanation');
+
+const coveredFormulas = [
+  String.raw`\mathcal Q_{\mathbf d}=\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).`,
+  String.raw`\bigoplus_nM_{d_n}(\C)=\{(x_n)\in\prod_nM_{d_n}(\C):\opnorm{x_n}\longrightarrow0\}`,
+  String.raw`\Rad_{\mathrm{MF}}(G)=\bigcap_{\mathbf d}\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.`,
+  String.raw`\operatorname{Comp}_G(L)=\{u\in G:uLu^{-1}\le L\}`,
+  String.raw`\mathfrak D_G(L)=\normal{[ucu^{-1},\ell]:u\in\operatorname{Comp}_G(L),\ c\in C_G(L),\ \ell\in L}_G.`,
+  String.raw`K\le\Rad_{\mathrm{MF}}(G).`,
+  String.raw`L_{\F_2}(1,2)`,
+  String.raw`t_i s_j=\delta_{ij},\qquad s_0t_0+s_1t_1=1.`,
+  String.raw`e_{ij}(a)=1+aE_{ij}`,
+  String.raw`H=\EL_{12}(R)`,
+  String.raw`\Rad_{\mathrm{MF}}(H)=H.`,
+  String.raw`\tau L\tau^{-1}\le L`,
+  String.raw`d=e_{02}(s_1t_1).`,
+  String.raw`\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
+  String.raw`L=\EL_3(R)\le H`,
+  String.raw`c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.`,
+  String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
+  String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).`,
+  String.raw`G/N\text{ is MF}\quad\Longleftrightarrow\quad\ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.`,
+  String.raw`G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q).`,
+  String.raw`W_Q=B*_A(Q\times A),`,
+  String.raw`\pi_Q\colon W_Q\longrightarrow Q.`,
+  String.raw`\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).`,
+  String.raw`\ker\pi_Q=\normal d_{W_Q}.`
+];
+
+function treeText(node) {
+  if (node.text != null) return node.text;
+  return (node.children || []).map(treeText).join('');
+}
+
+function notationTokens(node, result = []) {
+  const classes = node.classes || [];
+  if (classes.some(name => ['mord', 'mop', 'mbin', 'mrel', 'mopen', 'mclose', 'mpunct'].includes(name))) {
+    const value = treeText(node).replace(/[\u200b\s]+/g, '').trim();
+    if (value) result.push(value);
+  }
+  for (const child of node.children || []) notationTokens(child, result);
+  return result;
+}
+
+assert.equal(coveredFormulas.length, 24);
+for (let group = 0; group < coveredFormulas.length; group++) {
+  const formula = coveredFormulas[group];
+  const candidates = declarations.filter(declaration => declaration.group === group);
+  const tree = katex.__renderToHTMLTree(formula, {
+    macros: Object.assign({}, macros), displayMode: true, strict: false
+  });
+  const unexplained = [...new Set(notationTokens(tree))].filter(token =>
+    !api.sourceExplanation(token, formula, candidates) &&
+    !api.notationExplanation(token, formula));
+  assert.deepEqual(unexplained, [],
+    `formula group ${group} contains unexplained notation: ${unexplained.join(', ')}`);
+}
+
 assert.equal(api.explainTerm('homomorphism').name, 'homomorphism');
 assert.equal(api.explainTerm('MF group').name, 'MF group');
+assert.equal(api.explainTerm('set-builder notation').name, 'set-builder notation');
+assert.equal(api.explainTerm('amalgamated free product').name, 'amalgamated free product');
 assert.match(api.explainTerm('Leavitt algebra').explanation,
-  /split one free module into two copies/);
+  /free module.*two copies/);
 
 const sourceCode = fs.readFileSync(require.resolve('./math_explainer.js'), 'utf8');
-assert.doesNotMatch(sourceCode,
-  /formulaExplanation|compoundObject|namedObject|localRole|scriptItem|scriptedTokenInfo|nearbyDefinition|grouping mark|subscript d|ambient group|measures failure|measures whether|TERM_PATTERN|ALIASES/);
-assert.doesNotMatch(sourceCode, /math\.setAttribute\('tabindex'/);
 assert.match(sourceCode, /parseSourceExplanations/);
+assert.match(sourceCode, /math-formula-help/);
 assert.match(sourceCode, /math-term-help/);
 
 console.log(`math explainer: ${declarations.length} in-place TeX explanations passed`);

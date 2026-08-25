@@ -75,43 +75,55 @@ MF-invisible kernel preserves the complete family of MF quotients above it.
 
 A countable group is \emph{MF} if it embeds in the unitary group of a norm
 matrix corona
-%<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the norm matrix corona used in the definition of MF">
-% \(\mathbf d=(d_1,d_2,d_3,\ldots)\) records the matrix size used at each
-% stage of the approximation.
-% The quotient contains bounded sequences of matrices of those sizes.  It
-% treats two sequences as the same when their [[operator norm|operator-norm]] difference tends
-% to zero.  Embedding a [[group]] here means representing every group element by
-% such a matrix sequence without losing the identity of any element.
+%<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the matrix-sequence world used to test MF">
+% Read \(\mathbf d=(d_1,d_2,d_3,\ldots)\) as a [[sequence]] of positive whole
+% numbers: \(d_n\) is the number of rows and columns in the nth [[matrix]].
+% The calligraphic Q is simply the name of the object being defined.  On the
+% right of the equals sign, \(\prod_n\) means an [[infinite product]] of matrix
+% choices and \(\bigoplus_n\) means the [[direct sum]] of choices that shrink
+% to zero.  The slash forms a [[quotient]], so two [[bounded sequence|bounded
+% sequences]] count as equal when the [[operator norm]] of their difference
+% has [[limit]] zero.  A [[group]] embeds here when it has a [[faithful]]
+% [[representation]] by these matrix sequences.
 %</webmath>
-%<webmath object="Mdn" when="M_{d_n}(\C)" title="the matrices in the nth finite model">
-% This is the algebra of all \(d_n\)-by-\(d_n\) matrices with complex entries.
-% The integer \(d_n\) may increase with \(n\), so later models may use larger
-% matrices.
+%<webmath object="Mdn" when="M_{d_n}(\C)" title="the square matrices used at stage n">
+% \(M_{d_n}(\C)\) is the [[set]] of all square [[matrix|matrices]] with
+% \(d_n\) rows and \(d_n\) columns and with [[complex number|complex-number]]
+% entries.  The subscript n is an [[index]] selecting one stage.  The whole
+% number \(d_n\) may grow as n grows, so later stages may use larger matrices.
 %</webmath>
-%<webmath object="∏n" when="\prod_nM_{d_n}(\C)" title="one bounded matrix sequence across all finite models">
-% An element of this product chooses one matrix from each \(M_{d_n}(\C)\),
-% with a single bound on all their operator norms.  Addition and multiplication
-% are performed coordinate by coordinate.
+%<webmath object="n∏" when="\prod_nM_{d_n}(\C)" title="one bounded matrix sequence across all finite models">
+% The large product sign \(\prod_n\) means: choose one [[matrix]] from every
+% indexed matrix set \(M_{d_n}(\C)\).  One choice from each stage makes a
+% [[sequence]].  Only [[bounded sequence|bounded sequences]] are allowed here:
+% one fixed number must be at least as large as every matrix's [[operator
+% norm]].  Two sequences are added or multiplied position by position.
 %</webmath>
-%<webmath object="⨁n" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences whose size tends to zero">
-% This direct sum contains exactly the sequences whose operator norms tend to
-% zero.  Dividing by it makes every uniformly disappearing error equal to zero
-% in the norm matrix corona.
+%<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences that shrink to zero">
+% The large circled-plus sign \(\bigoplus_n\) names the [[direct sum]].  It
+% contains exactly the matrix [[sequence|sequences]] whose [[operator norm|operator
+% norms]] have [[limit]] zero.  Placing it after the slash means forming a
+% [[quotient]]: any error sequence that shrinks to zero is treated as exactly
+% zero in the [[norm matrix corona]].
 %</webmath>
-%<webmath object="C" when="M_{d_n}(\C)" title="complex entries in the finite matrices">
-% \(\C\) denotes the complex numbers, which include both real numbers and
-% imaginary numbers.  Unitary matrices naturally act on vector spaces over
-% \(\C\).
+%<webmath object="C" when="M_{d_n}(\C)" title="the number system used for matrix entries">
+% The blackboard-style C, \(\C\), means the [[complex number|complex numbers]].
+% They include ordinary real numbers and numbers involving \(i\), where
+% \(i^2=-1\).  They are the entries used in the paper's [[unitary matrix|unitary
+% matrices]] and the coordinates in its [[vector space|vector spaces]].
 %</webmath>
 \[
  \mathcal Q_{\mathbf d}
  =\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).
 \]
 Here
-%<webmath object="⨁n" when="\bigoplus_nM_{d_n}(\C)" title="the sequences discarded by the quotient">
-% The displayed set says exactly what belongs to this direct sum: a matrix
-% sequence \((x_n)\) is discarded when the operator norm of \(x_n\) tends to
-% zero.
+%<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the sequences treated as zero">
+% The braces use [[set-builder notation]].  Before the colon,
+% \((x_n)\in\prod_nM_{d_n}(\C)\) says that \((x_n)\) is a matrix [[sequence]]
+% chosen from the [[infinite product]].  After the colon,
+% \(\lVert x_n\rVert\longrightarrow0\) says that the [[operator norm]] of its
+% nth matrix has [[limit]] zero.  Exactly those sequences form the [[direct
+% sum]] and are treated as zero by the [[quotient]].
 %</webmath>
 \[
  \bigoplus_nM_{d_n}(\C)
@@ -127,26 +139,32 @@ Throughout, \emph{MF group} means this operator-norm notion of
 Carri\'on--Dadarlat--Eckhardt and Korchagin~\cite{CDE,Korchagin}.
 
 For a countable group $G$, define its MF radical by
-%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G invisible to every finite-matrix limit">
-% This is a [[subgroup]] of G.  An element belongs to it when every [[homomorphism]]
-% from G into every [[norm matrix corona]] sends that element to the [[identity]].
-% Thus the MF radical records precisely what operator-norm finite-matrix
-% representations can never distinguish from doing nothing.
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G that every allowed matrix model erases">
+% \(\Rad_{\mathrm{MF}}(G)\), read “the MF radical of G,” is a [[normal
+% subgroup]] of the [[group]] G.  It contains exactly the elements that every
+% [[homomorphism]] from G into every [[norm matrix corona]] sends to the
+% [[identity]].  In plainer words, these are the group moves that no allowed
+% finite-matrix experiment can distinguish from doing nothing.
 %</webmath>
-%<webmath object="⋂d" when="\bigcap_{\mathbf d}" title="requiring the condition for every choice of matrix sizes">
-% The bold d runs through all sequences d_1,d_2,....  An element survives this
-% intersection only when no possible choice of finite matrix sizes can detect
-% it.
+%<webmath object="d⋂" when="\bigcap_{\mathbf d}" title="requiring the condition for every choice of matrix sizes">
+% The symbol \(\bigcap\) means [[intersection]].  The bold d underneath it
+% runs through every [[sequence]] \(\mathbf d=(d_1,d_2,\ldots)\) of matrix
+% sizes.  An element lies in this intersection only if the stated condition
+% holds for every possible choice of finite matrix sizes.
 %</webmath>
-%<webmath object="⋂π:G→U(Qd)" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}" title="requiring the condition for every representation of G in that corona">
-% For the chosen sizes, pi runs through all multiplication-preserving maps from
-% G to the unitary elements of the norm matrix corona.  The intersection keeps
-% only the group elements erased by every one of those maps.
+%<webmath object="π:G→U(Qd)⋂" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}" title="checking every allowed map from G">
+% After a matrix-size [[sequence]] is chosen, the Greek letter \(\pi\) names a
+% [[homomorphism]].  The notation \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\)
+% says that its inputs come from the [[group]] G and its outputs are [[unitary
+% matrix|unitary elements]] of the [[norm matrix corona]].  The second
+% \(\bigcap\) is another [[intersection]], so the condition must hold for every
+% such map \(\pi\).
 %</webmath>
-%<webmath object="ker" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi" title="the elements that one representation sends to the identity">
-% The [[kernel]] of pi is the set of elements of G represented by the [[identity]].
-% Intersecting these kernels over every pi and every matrix-size sequence gives
-% the MF radical.
+%<webmath object="ker" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi" title="the elements that one map erases">
+% \(\ker\pi\) means the [[kernel]] of the map \(\pi\): all elements of G that
+% \(\pi\) sends to the [[identity]].  The complete formula takes an
+% [[intersection]] over every map \(\pi\) and every matrix-size [[sequence]].
+% What remains is exactly the [[MF radical]].
 %</webmath>
 \[
  \Rad_{\mathrm{MF}}(G)
@@ -211,26 +229,35 @@ is the asserted closure criterion.
 \end{proof}
 
 For a subgroup $L\le G$, put
-%<webmath object="CompG" when="\operatorname{Comp}_G(L)" title="the elements of G that send L back inside itself">
-% Comp_G(L) consists of those u in G for which conjugation sends every element
-% of L to another element of L.  The image uLu^{-1} may be a proper smaller
-% copy of L; equality is not required.
+%<webmath object="CompG" when="\operatorname{Comp}_G(L)" title="the elements of G that carry L back inside L">
+% \(\operatorname{Comp}_G(L)\) is the name of a [[set]] of elements u inside
+% the [[group]] G.  The braces use [[set-builder notation]]: u is included when
+% \(uLu^{-1}\le L\).  Here \(u^{-1}\) is the [[inverse]] of u,
+% \(uLu^{-1}\) is the result of [[conjugation|conjugating]] every element of L,
+% and \(\le\) means “is a [[subgroup]] of.”  The result may be smaller than L;
+% equality is not required.
 %</webmath>
-%<webmath object="L" when="uLu^{-1}\le L" title="the subgroup carried into itself by conjugation">
-% Here L is the subgroup to which property (T) will be applied.  The inclusion
-% means that u ell u^{-1} belongs to L for every ell in L, even if conjugation
-% by u does not reach every element of L.
+%<webmath object="L" when="uLu^{-1}\le L" title="the collection L carried back inside itself">
+% L is a [[subgroup]] of G.  The symbol \(\le\) means subgroup containment,
+% not numerical comparison.  Thus \(uLu^{-1}\le L\) says that
+% \(u\ell u^{-1}\) belongs to L for every element \(\ell\) in L.  The exponent
+% \(-1\) means [[inverse]], and the three-factor expression is [[conjugation]].
+% The paper later uses the rigidity property called [[property (T)]] for L.
 %</webmath>
 \[
  \operatorname{Comp}_G(L)=\{u\in G:uLu^{-1}\le L\}
 \]
 and define its \emph{compression--centralizer defect} by
-%<webmath object="DG" when="\mathfrak D_G(L)" title="the normal subgroup generated by all compression commutators">
-% Choose u that sends L into itself, c that commutes with every element of L,
-% and ell in L.  Form [ucu^{-1},ell], namely
-% ucu^{-1} ell u c^{-1}u^{-1}ell^{-1}.  D_G(L) is the smallest normal subgroup
-% of G containing every element obtained this way.  The theorem below proves
-% that certain rigid normal subgroups lying here vanish in every MF target.
+%<webmath object="DG" when="\mathfrak D_G(L)" title="everything forced by the listed failures to commute">
+% The decorated letter \(\mathfrak D_G(L)\) names the [[normal closure]] in G
+% of the listed [[commutator|commutators]].  Inside the braces, the colon means
+% “subject to”: u lies in \(\operatorname{Comp}_G(L)\), c lies in the
+% [[centralizer]] \(C_G(L)\), and \(\ell\) lies in L.  The bracket
+% \([ucu^{-1},\ell]\) abbreviates
+% \(ucu^{-1}\ell u c^{-1}u^{-1}\ell^{-1}\).  The double angle brackets mean
+% “take the smallest [[normal subgroup]] of G containing every such result.”
+% The theorem shows that certain rigid subgroups inside it are erased by every
+% map to an [[MF group]].
 %</webmath>
 \begin{equation}\label{eq:intrinsic-defect}
  \mathfrak D_G(L)
@@ -244,10 +271,11 @@ and define its \emph{compression--centralizer defect} by
 Let $G$ be countable and let $L\le G$ have property~\textup{(T)}.  If
 $K\trianglelefteq G$ has property~\textup{(T)} and
 $K\le\mathfrak D_G(L)$, then
-%<webmath object="K" when="K\le\Rad_{\mathrm{MF}}(G)" title="the normal property-(T) subgroup forced to disappear in every MF target">
-% K is the normal subgroup assumed above to have property (T) and to lie in
-% the compression defect.  This conclusion says that every [[homomorphism]] from
-% G into every [[norm matrix corona]] sends every element of K to the [[identity]].
+%<webmath object="K" when="K\le\Rad_{\mathrm{MF}}(G)" title="the subgroup K that every allowed matrix model erases">
+% K is the [[normal subgroup]] assumed in the theorem, and it has [[property
+% (T)]].  The symbol \(\le\) means that K is contained as a subgroup in the
+% [[MF radical]] of G.  Equivalently, every [[homomorphism]] from G into every
+% [[norm matrix corona]] sends every element of K to the [[identity]].
 %</webmath>
 \[
  K\le\Rad_{\mathrm{MF}}(G).
@@ -272,47 +300,77 @@ remained open~\cite{CDE,Korchagin,Thom,Shulman}.  Applying
 Theorem~\ref{thm:compression-criterion} to the binary Leavitt construction
 below answers the question.
 
-%<webmath object="LF2" when="L_{\F_2}(1,2)" title="the binary Leavitt algebra used to build the group">
-% This [[Leavitt algebra|algebra]] is generated by four symbols s_0,s_1,t_0,t_1 subject to the
-% two displayed families of equations.  Those equations let s_0 and s_1 put
-% two copies of a free module inside one copy, while t_0 and t_1 recover the
-% two inputs.  The proof uses this exact self-copying algebra to construct the
-% matrix tau that sends the subgroup L back inside itself.
+%<webmath object="LF2" when="L_{\F_2}(1,2)" title="the self-copying system used to build H">
+% \(L_{\F_2}(1,2)\) names a particular [[Leavitt algebra]].  The subscript
+% \(\F_2\) names its two-number [[field]], and \((1,2)\) records that one
+% [[free module]] can behave like two copies of itself.  The algebra is
+% [[generated by relations]] from four elements \(s_0,s_1,t_0,t_1\).  Their
+% subscripts are [[index|indices]], not powers.  The equations below say that
+% the t elements recover inputs placed by the s elements.  The proof uses this
+% self-copying rule to construct the [[matrix]] \(\tau\).
 %</webmath>
-%<webmath object="F2" when="L_{\F_2}(1,2)" title="the two-element coefficient field">
-% F_2 has only the numbers 0 and 1, and 1+1=0.  Its only nonzero scalar is 1.
-% Later, that fact rules out a nonidentity scalar matrix in the center of H,
-% which is needed to prove that H is simple.
+%<webmath object="F2" when="L_{\F_2}(1,2)" title="the number system containing only 0 and 1">
+% \(\F_2\), read “F two,” is the [[field]] containing only 0 and 1.  Its
+% arithmetic has \(1+1=0\), so its only nonzero [[scalar]] is 1.  The subscript
+% 2 records the number of elements in the field.  Later this prevents a
+% [[scalar]] multiple of the [[identity matrix]] from hiding in the
+% [[centralizer|center]] of H, which helps prove that H is a [[simple group]].
 %</webmath>
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
+%<webmath object="ti" when="t_i s_j=\delta_{ij}" title="the two rules that make one copy behave like two">
+% The letters \(s_0,s_1,t_0,t_1\) are four named elements of the [[Leavitt
+% algebra]], and their subscripts 0 and 1 are [[index|indices]], not powers.
+% Writing two letters side by side means multiply them in that order.  In the
+% first equation, i and j can each be 0 or 1, and the [[Kronecker delta]]
+% \(\delta_{ij}\) is 1 when \(i=j\) and 0 otherwise.  Thus \(t_i\) reverses
+% the matching \(s_i\) and cancels the other s.  The comma separates the two
+% rules.  The second equation says the two pieces \(s_0t_0\) and \(s_1t_1\)
+% add up to the [[identity]] 1.
+%</webmath>
+%<webmath object="δij" when="t_i s_j=\delta_{ij}" title="a symbol that chooses 1 when i equals j and 0 otherwise">
+% The Greek letter \(\delta\), read “delta,” is the [[Kronecker delta]].  The
+% subscripts i and j are [[index|indices]].  The expression \(\delta_{ij}\)
+% equals 1 when i and j are the same index and equals 0 when they are different.
+% Consequently, the equation \(t_i s_j=\delta_{ij}\) is a short way to state
+% four equations: \(t_0s_0=1\), \(t_1s_1=1\), \(t_0s_1=0\), and
+% \(t_1s_0=0\).
+%</webmath>
 \begin{equation}\label{eq:leavitt}
  t_i s_j=\delta_{ij},
  \qquad s_0t_0+s_1t_1=1.
 \end{equation}
-%<webmath object="eij" when="e_{ij}(a)" title="an elementary matrix carrying the coefficient a">
-% The matrix e_ij(a) has 1 on every diagonal position, the ring element a in
-% row i and column j, and 0 in every other off-diagonal position.  Products
-% and commutators of these matrices encode addition and multiplication in R.
+%<webmath object="eij" when="e_{ij}(a)" title="the identity matrix with one extra entry a">
+% \(e_{ij}(a)=1+aE_{ij}\) is an [[elementary matrix]].  The letters i and j
+% are [[index|indices]] naming different rows and columns.  Here 1 means the
+% [[identity matrix]], while \(E_{ij}\) has a single 1 in row i, column j and
+% zeros elsewhere.  Multiplying by the [[ring]] element a replaces that one
+% entry by a.  Thus \(e_{ij}(a)\) is the identity matrix with the extra entry
+% a in row i, column j.  Products and [[commutator|commutators]] of these
+% matrices reproduce addition and multiplication in R.
 %</webmath>
 For a unital ring $R$, write $e_{ij}(a)=1+aE_{ij}$ and let
 $\EL_n(R)$ be the subgroup of $\GL_n(R)$ generated by the elements
 $e_{ij}(a)$, $i\ne j$.
 
 \begin{mainthm}[the binary Leavitt group]\label{thm:headline}
-%<webmath object="EL12" when="H=\EL_{12}(R)" title="the elementary-matrix group H studied in the theorem">
-% EL_12(R) is generated by 12-by-12 elementary matrices with entries from the
-% binary Leavitt algebra R.  The theorem proves that this group H is nontrivial
-% and simple, has property (T), and has no nontrivial homomorphism to any MF
-% group.
+%<webmath object="EL12" when="H=\EL_{12}(R)" title="the group H made from 12-by-12 matrices">
+% The equation \(H=\EL_{12}(R)\) gives the [[group]] a short name, H.  The
+% notation \(\EL_{12}(R)\) means the [[elementary group]] made from 12-by-12
+% [[elementary matrix|elementary matrices]] whose entries lie in the [[ring]]
+% R.  Here R is the binary [[Leavitt algebra]].  The theorem says H contains
+% something besides the [[identity]], is a [[simple group]], has [[property
+% (T)]], and every [[homomorphism]] from H to an [[MF group]] is the [[trivial
+% homomorphism]].
 %</webmath>
 Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is nontrivial, simple,
 has property~\textup{(T)}, and
-%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(H)" title="every element of H is invisible to every MF-target representation">
-% The MF radical of H consists of the elements sent to the identity by every
-% homomorphism from H into every norm matrix corona.  Equality with H says
-% that all elements are sent to the identity, so every such homomorphism is
-% trivial and H cannot itself be MF.
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(H)" title="why every allowed map erases all of H">
+% \(\Rad_{\mathrm{MF}}(H)\) is the [[MF radical]] of the [[group]] H.  The
+% equals sign says this [[normal subgroup]] is all of H, not merely part of it.
+% Therefore every element of H is sent to the [[identity]] by every
+% [[homomorphism]] into a [[norm matrix corona]].  Every such map is the
+% [[trivial homomorphism]], so H cannot be an [[MF group]].
 %</webmath>
 \[
  \Rad_{\mathrm{MF}}(H)=H.
@@ -321,21 +379,26 @@ Equivalently, every homomorphism from $H$ to an MF group is trivial.
 In particular, $H$ is non-MF.
 \end{mainthm}
 
-%<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the explicit matrix that sends L into a copy inside L">
-% Tau is a particular invertible 12-by-12 elementary matrix constructed later.
-% Conjugating every element of L by tau gives another element of L.  This is
-% the one-sided inclusion used by the property-(T) argument.
+%<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the matrix tau that carries L back inside L">
+% The Greek letter \(\tau\), read “tau,” names a particular invertible
+% 12-by-12 [[matrix]] constructed later.  The exponent \(-1\) means
+% [[inverse]].  The product \(\tau L\tau^{-1}\) means apply [[conjugation]] by
+% tau to every element of the [[subgroup]] L.  The symbol \(\le\) says every
+% result still lies in L, although not every element of L must be reached.
+% This one-way containment is what the [[property (T)]] argument needs.
 %</webmath>
 Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
 the upper-left subgroup $L\cong\EL_3(R)$.  The element $c=e_{34}(1)$
 centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
-%<webmath object="d" when="d=e_{02}(s_1t_1)" title="the concrete nonidentity commutator inside H">
-% Here d is the result of comparing tau c tau^{-1} ell with
-% ell tau c tau^{-1}.  The calculation gives an elementary matrix whose
-% off-diagonal entry is s_1t_1.  The Leavitt relations show that this entry is
-% nonzero, so d is not the identity.  The unit sandwich
-% t_1(s_1t_1)s_1=1 and the elementary commutator relations show directly that
-% d normally generates H.
+%<webmath object="d" when="d=e_{02}(s_1t_1)" title="a concrete non-do-nothing element of H">
+% The letter d names a [[commutator]] comparing the products
+% \(\tau c\tau^{-1}\ell\) and \(\ell\tau c\tau^{-1}\).  The equality says d
+% is the [[elementary matrix]] \(e_{02}(s_1t_1)\): an [[identity matrix]] with
+% \(s_1t_1\) added in row 0, column 2.  The 0 and 2 are row and column
+% [[index|indices]]; this paper numbers from 0.  The [[Leavitt algebra]]
+% equations imply \(s_1t_1\ne0\), so d is not the identity.  The equation
+% \(t_1(s_1t_1)s_1=1\), together with elementary-matrix [[commutator]] rules,
+% shows that the [[normal closure]] of d is the whole group H.
 %</webmath>
 \[
 d=e_{02}(s_1t_1).
@@ -375,11 +438,14 @@ countable group $Q$, define
 \]
 Then the map $\pi_Q\colon W_Q\to Q$ which kills $B$ and projects the second
 vertex group onto $Q$ is a split epimorphism, and
-%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(W_Q)" title="the part of W_Q invisible to every MF-target representation">
-% The formula computes exactly which elements of W_Q every norm-corona
-% representation sends to the identity: they are precisely the elements whose
-% image under pi_Q lies in the MF radical of Q.  If Q is MF, this reduces to
-% the kernel of pi_Q.
+%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(W_Q)" title="the elements of W_Q that every allowed matrix model erases">
+% The left side is the [[MF radical]] of the [[group]] \(W_Q\).  On the right,
+% \(\pi_Q^{-1}\) means [[preimage]], not “divide by \(\pi_Q\)”: collect every
+% input whose output lies in the MF radical of Q.  Thus an element of \(W_Q\)
+% is erased by every finite-matrix [[representation]] exactly when its
+% [[image]] under \(\pi_Q\) is erased in Q.  If Q is an [[MF group]], its MF
+% radical contains only the [[identity]], so this preimage is the [[kernel]]
+% of \(\pi_Q\).
 %</webmath>
 \[
  \Rad_{\mathrm{MF}}(W_Q)
@@ -871,10 +937,13 @@ Since $Y=X^{-1}$, \eqref{eq:whitehead-factorization} proves
 $\tau\in\EL_{12}(R)$.
 
 Let $H=\EL_{12}(R)$ and let
-%<webmath object="EL3" when="L=\EL_3(R)" title="the upper-left elementary subgroup used for property (T)">
-% L is the copy of the 3-by-3 elementary group occupying the first three rows
-% and columns of H.  It has property (T).  The explicit matrix tau sends this
-% whole [[subgroup]] into another copy contained in L.
+%<webmath object="EL3" when="L=\EL_3(R)" title="the 3-by-3 matrix collection L">
+% This equation defines L to be \(\EL_3(R)\), the [[elementary group]] made
+% from 3-by-3 [[elementary matrix|elementary matrices]] over the [[ring]] R.
+% It sits in the first three rows and columns of the 12-by-12 group H.  The
+% symbol \(\le\) means L is a [[subgroup]] of H.  This L has [[property (T)]],
+% and the explicit matrix \(\tau\) sends the whole subgroup into a copy still
+% contained in L.
 %</webmath>
 $L=\EL_3(R)\le H$ be the upper-left corner.
 Both groups have property~\textup{(T)} by the theorem of Ershov and
@@ -1025,19 +1094,27 @@ Let
  d=[\tau c\tau^{-1},\ell]
 \]
 in $H$.  Then
-%<webmath object="d" when="d=e_{02}(q)" title="the nonidentity element produced by the compression calculation">
-% The commutator d is exactly the elementary matrix with q in row 0, column 2.
-% Since q is nonzero, d is not the identity.  It lies in the compression defect,
-% and the identity t_1 q s_1=1 makes the normal subgroup generated by d equal
-% to H through elementary commutators.
+%<webmath object="d" when="d=e_{02}(q)" title="three facts about c, d, and H">
+% The three statements are separated by commas.  First,
+% \(c\in C_H(L)\) says c belongs to the [[centralizer]] of L in H.  Second,
+% \(d=e_{02}(q)\ne1\) says the [[commutator]] d is an [[elementary matrix]]
+% with q in row 0, column 2 and is not the [[identity]].  Third,
+% \(\normal d_H=H\) says the [[normal closure]] of d is the whole [[group]] H.
+% The equation \(t_1qs_1=1\) and elementary-matrix commutator rules prove that
+% last statement.
 %</webmath>
-%<webmath object="e02" when="d=e_{02}(q)" title="the elementary matrix with q in row 0 and column 2">
-% This is the 12-by-12 identity matrix with one additional entry q in row 0,
-% column 2.  It differs from the identity exactly because q is nonzero.
+%<webmath object="e02" when="d=e_{02}(q)" title="the identity matrix with q added in row 0, column 2">
+% \(e_{02}(q)\) is an [[elementary matrix]]: the 12-by-12 [[identity matrix]]
+% with one additional entry q in row 0, column 2.  The subscript 02 gives those
+% two [[index|indices]].  Because \(q\ne0\), the extra entry is nonzero and the
+% matrix is not the identity.
 %</webmath>
-%<webmath object="q" when="d=e_{02}(q)" title="the nonzero Leavitt-algebra entry in d">
-% Here q=s_1t_1.  The relation t_1 q s_1=1 proves that q cannot be zero.  Its
-% occurrence off the diagonal is therefore enough to prove d is nonidentity.
+%<webmath object="q" when="d=e_{02}(q)" title="why the extra matrix entry q is not zero">
+% The letter q abbreviates the [[Leavitt algebra]] product \(s_1t_1\).  If q
+% were zero, multiplying it on the left by \(t_1\) and on the right by \(s_1\)
+% would still give zero.  But the defining equations give \(t_1qs_1=1\), so
+% q cannot be zero.  Its nonzero position away from the main diagonal makes d
+% different from the [[identity matrix]].
 %</webmath>
 \[
  c\in C_H(L),\qquad d=e_{02}(q)\ne1,
@@ -1091,11 +1168,14 @@ MF-invisible.
 \begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
 Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
 $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
-%<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="the MF-invisible part of G is exactly the preimage of the MF-invisible part of Q">
-% The assumption says that every finite-matrix-limit representation of G
-% already erases the kernel of f.  Such a representation therefore descends
-% uniquely to Q.  An element of G is erased by every representation precisely
-% when its image in Q is erased by every representation of Q.
+%<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="how the erased elements of G are read from Q">
+% The [[homomorphism]] \(f\colon G\to Q\) is [[surjective]], and its [[kernel]]
+% is already inside the [[MF radical]] of G.  Therefore every allowed
+% finite-matrix [[representation]] of G ignores the kernel and [[factors
+% through]] Q.  On the right, \(f^{-1}\) means [[preimage]].  The equality says
+% that an element of G is erased by every representation exactly when its
+% [[image]] in Q is erased by every representation of Q.  This is a [[pullback]]
+% formula.
 %</webmath>
 \[
  \Rad_{\mathrm{MF}}(G)
@@ -1104,21 +1184,28 @@ $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
 In particular, the conclusion holds whenever
 $\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
 More generally, for every normal subgroup $N\trianglelefteq G$,
-%<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="all MF consequences of the relations N are pulled back from Q">
-% The subgroup on the left contains every element that must become trivial
-% whenever an MF-target map from G makes every element of N trivial.  Because
-% every such map factors uniquely through f, those forced relations are exactly
-% the preimage of the relations forced by f(N) inside Q.
+%<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="how relations forced in G are read from Q">
+% \(\operatorname{cl}_{\mathrm{MF}}^G(N)\) is an MF [[closure operation]] on
+% the [[normal subgroup]] N inside G: it adds every element that all
+% [[homomorphism|homomorphisms]] to [[MF group|MF groups]] are forced to erase
+% once they erase N.  The superscript G names the surrounding group and the
+% subscript MF names the condition.  The expression \(f(N)\) is the [[image]]
+% of N in Q, while \(f^{-1}\) takes a [[preimage]].  The equality says that the
+% forced elements in G are exactly the pullback of the forced elements in Q.
 %</webmath>
 \[
  \operatorname{cl}_{\mathrm{MF}}^G(N)
  =f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).
 \]
 Consequently,
-%<webmath object="quotient-correspondence-general" when="G/N\text{ is MF}\Longleftrightarrow\ker f\le N\text{ and }Q/f(N)\text{ is MF}" title="MF quotients of G correspond exactly to MF quotients of Q above the kernel">
-% The quotient G/N can be represented faithfully by finite-matrix limits
-% precisely when N already removes every element lost by f and the remaining
-% quotient Q/f(N) has such a faithful finite-matrix-limit representation.
+%<webmath object="quotient-correspondence-general" when="G/N\text{ is MF}\Longleftrightarrow\ker f\le N\text{ and }Q/f(N)\text{ is MF}" title="exactly when matrices can model G divided by N without losing information">
+% The slash in \(G/N\) forms a [[quotient group]] by treating every element of
+% the [[normal subgroup]] N as the [[identity]].  The double arrow
+% \(\Longleftrightarrow\) means “if and only if,” so the two sides are exactly
+% equivalent.  The condition \(\ker f\le N\) says N contains the [[kernel]] of
+% f.  The expression \(Q/f(N)\) is another quotient group, using the [[image]]
+% of N.  Thus \(G/N\) is an [[MF group]] exactly when N removes everything f
+% forgets and the remaining quotient of Q is MF.
 %</webmath>
 \[
  G/N\text{ is MF}
@@ -1152,12 +1239,13 @@ Thus image under $f$ and inverse image under $f$ give mutually inverse,
 inclusion-preserving correspondences between the normal subgroups that define
 MF quotients of $G$ and of $Q$.  The map induced by $f$ on the largest
 MF-visible quotients is an isomorphism:
-%<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="removing an MF-invisible kernel leaves the largest MF-visible quotient unchanged">
-% The quotient on each side removes exactly the elements erased by every
-% finite-matrix-limit representation of that group.  The assumption on the
-% kernel of f makes every such representation descend through f, so the two
-% quotients contain exactly the same group information and the map induced by
-% f is an isomorphism.
+%<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
+% Each slash forms a [[quotient group]] by removing the corresponding [[MF
+% radical]].  The symbol \(\cong\) means there is an [[isomorphism]]: a
+% reversible structure-preserving pairing between the two quotients.  Because
+% the [[kernel]] of f is already MF-invisible, every finite-matrix
+% [[representation]] of G [[factors through]] f.  After the invisible elements
+% are removed, G and Q therefore retain exactly the same group structure.
 %</webmath>
 \[
  G/\Rad_{\mathrm{MF}}(G)
@@ -1169,31 +1257,39 @@ MF-invisible kernels.
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
 countable group $Q$, define
-%<webmath object="WQ" when="W_Q=B*_A(Q\times A)" title="the group obtained by attaching an MF-invisible part to Q">
-% W_Q joins B to Q times A while identifying the copy of A in each group.
-% Every homomorphism from B to an MF group is trivial, so every MF-target map
-% from W_Q contains exactly the information supplied by Q and nothing extra
-% from B.
+%<webmath object="WQ" when="W_Q=B*_A(Q\times A)" title="the group formed by attaching B to Q times A">
+% The equation defines a new [[group]] called \(W_Q\); the subscript Q records
+% which chosen group Q was used.  The symbol \(\times\) forms the [[direct
+% product]] \(Q\times A\), whose elements are pairs \((q,a)\).  The starred
+% symbol \(*_A\) forms an [[amalgamated free product]], joining B to
+% \(Q\times A\) while identifying their copies of the [[subgroup]] A.  Every
+% [[homomorphism]] from B to an [[MF group]] is the [[trivial homomorphism]], so
+% an MF target receives only the information coming from Q.
 %</webmath>
-%<webmath object="∗A" when="B*_A(Q\times A)" title="joining B and Q times A along their common subgroup A">
-% This amalgamated free product starts with both groups and identifies their
-% two copies of A.  Apart from that identification, it imposes no relations
-% between elements coming from the two sides.
+%<webmath object="∗A" when="B*_A(Q\times A)" title="the operation that joins the two groups along A">
+% The starred symbol with subscript A, \(*_A\), means [[amalgamated free
+% product]].  Start with the [[group]] B and the [[direct product]]
+% \(Q\times A\), identify the copy of the [[subgroup]] A in each, and impose no
+% additional equations connecting the two sides.  The subscript A records the
+% shared subgroup used for the attachment.
 %</webmath>
-%<webmath object="B" when="B*_A(Q\times A)" title="the attached group invisible to every MF target">
-% B has full MF radical, meaning every homomorphism from B to any MF group is
-% trivial.  It supplies the non-MF kernel in W_Q while remaining invisible in
-% every finite-matrix-limit representation.
+%<webmath object="B" when="B*_A(Q\times A)" title="the attached group B that allowed matrix models cannot detect">
+% B is the attached [[group]].  Its [[MF radical]] equals all of B, meaning
+% every [[homomorphism]] from B to any [[MF group]] is the [[trivial
+% homomorphism]].  Inside \(W_Q\), B supplies elements that finite-matrix
+% [[representation|representations]] cannot detect.
 %</webmath>
-%<webmath object="Q" when="B*_A(Q\times A)" title="the chosen group retained as the visible quotient">
-% Q is an arbitrary countable group chosen before constructing W_Q.  The map
-% pi_Q recovers this Q, and every homomorphism from W_Q to an MF target factors
-% uniquely through it.
+%<webmath object="Q" when="B*_A(Q\times A)" title="the chosen group Q that remains detectable">
+% Q is any chosen [[group]] with a listable number of elements.  The
+% construction builds \(W_Q\) around this Q.  The [[homomorphism]] \(\pi_Q\)
+% recovers Q, and every homomorphism from \(W_Q\) to an [[MF group]] [[factors
+% through]] \(\pi_Q\).  Thus the MF target receives exactly the Q-part.
 %</webmath>
-%<webmath object="A" when="B*_A(Q\times A)" title="the cyclic subgroup used to attach B to Q times A">
-% A is generated by d.  The construction identifies this subgroup inside B
-% with the second coordinate of Q times A.  Making d equal to the identity
-% then removes B and the A coordinate, leaving Q.
+%<webmath object="A" when="B*_A(Q\times A)" title="the part A used to attach the two groups">
+% A is the [[cyclic subgroup]] made from d and its [[inverse]].  The construction
+% identifies this copy of A inside B with the second coordinate of the [[direct
+% product]] \(Q\times A\).  Treating d as the [[identity]] collapses A; because
+% the [[normal closure]] of d is B, it collapses B as well and leaves Q.
 %</webmath>
 \begin{equation}\label{eq:amalgam}
  W_Q=B*_A(Q\times A),
@@ -1201,10 +1297,13 @@ countable group $Q$, define
 where $A\to Q\times A$ is the inclusion into the second factor.  The maps
 from $B$ and $Q\times A$ to $Q$ that are respectively trivial and the
 projection onto $Q$ agree on $A$.  They therefore define an epimorphism
-%<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that forgets the attached B and A parts and returns Q">
-% Pi_Q sends every element coming from B to the identity, sends (q,a) from
-% Q times A to q, and reaches every element of Q.  Its kernel is the normal
-% subgroup generated by d.
+%<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
+% The Greek letter \(\pi\), read “pi,” names a [[homomorphism]], and the
+% subscript Q records its destination.  The colon and arrow say its inputs are
+% in \(W_Q\) and its outputs are in Q.  It sends every B-element to the
+% [[identity]] and sends each ordered pair \((q,a)\) in the [[direct product]]
+% \(Q\times A\) to q.  Every q is reached, so the map is [[surjective]].  Its
+% [[kernel]] is the [[normal closure]] of d.
 %</webmath>
 \[
  \pi_Q\colon W_Q\longrightarrow Q.
@@ -1216,20 +1315,24 @@ theorem for amalgamated free products shows that both vertex maps in
 \begin{proposition}[universal factorization]\label{prop:universal-factorization}
 Let $T$ be a group such that every homomorphism $B\to T$ is trivial.  Then
 precomposition with $\pi_Q$ is a bijection
-%<webmath object="Hom" when="\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T)" title="the same collection of maps into T, described from Q or from W_Q">
-% Hom(Q,T) is the collection of multiplication-preserving maps from Q to T.
-% The bijection says that every such map gives exactly one map from W_Q to T,
-% and every map from W_Q to T arises this way.  Thus T receives no information
-% from W_Q beyond the quotient Q.
+%<webmath object="Hom" when="\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T)" title="maps into T can be described using Q alone">
+% \(\operatorname{Hom}(Q,T)\) is the [[set]] of all [[homomorphism|homomorphisms]]
+% from the [[group]] Q to the group T.  The arrow sends such a map h to the
+% two-stage map \(h\circ\pi_Q\) from \(W_Q\) to T; this is called
+% precomposition with \(\pi_Q\).  The statement says this arrow is a
+% [[bijection]]: every map on either side corresponds to exactly one map on the
+% other side.  Consequently, T receives no information from \(W_Q\) beyond Q.
 %</webmath>
 \[
  \operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).
 \]
 Furthermore,
-%<webmath object="ker" when="\ker\pi_Q=\normal d_{W_Q}" title="all elements removed when W_Q is mapped onto Q">
-% The kernel of pi_Q contains exactly the elements sent to the identity in Q.
-% The equality says this kernel is the smallest normal subgroup of W_Q that
-% contains d.
+%<webmath object="ker" when="\ker\pi_Q=\normal d_{W_Q}" title="the elements discarded by the map to Q">
+% \(\ker\pi_Q\) is the [[kernel]] of \(\pi_Q\): exactly the elements of
+% \(W_Q\) sent to the [[identity]] in Q.  The double angle brackets
+% \(\normal d_{W_Q}\) mean the [[normal closure]] of d inside \(W_Q\).  The
+% equals sign says these are the same [[normal subgroup]]: erasing d erases
+% exactly what the map \(\pi_Q\) erases, no more and no less.
 %</webmath>
 \[
  \ker\pi_Q=\normal d_{W_Q}.

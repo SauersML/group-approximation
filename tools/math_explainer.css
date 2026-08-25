@@ -4,6 +4,15 @@
   transition: background-color 100ms ease, box-shadow 100ms ease;
 }
 
+.math-formula-help {
+  cursor: help;
+}
+
+.math-formula-help:focus-visible {
+  outline: 2px solid rgba(163, 58, 28, 0.62);
+  outline-offset: 4px;
+}
+
 .math-symbol-help:hover {
   background: rgba(163, 58, 28, 0.12);
   box-shadow: 0 0 0 0.12em rgba(163, 58, 28, 0.12);
