@@ -117,5 +117,13 @@ holonomy.  Therefore a renewing two-level cell must leave the finite
 cross-edge holonomy class by supplying one of those two substantive inputs;
 another finite `S_3`, Clifford, cocycle, or triangle-face coupling is fenced.
 
+The first infinite actors beyond this scope are now fenced as well.
+`minimal-s3-one-letter-actors-have-twisted-countermodels` treats the commuting
+and free one-letter extensions `S_3 x Z` and `S_3 * Z`, and more generally
+every virtually free active stabilizer, by retaining its finite Schur center
+in a finite quotient.  It also gives twisted-regular microstate countermodels
+for every amenable active stabilizer.  Thus "infinite" is not enough: the
+residual twist must already be nonamenable and non-CE.
+
 DERIVATION
 finite-s3-cross-edge-holonomy-countermodel-proof

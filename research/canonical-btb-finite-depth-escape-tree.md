@@ -185,6 +185,18 @@ remains in this modified route.
   extension nonhyperlinear.  Hence the robust stabilizer lemma is already a
   complete ordinary-group proof, while its exact endpoint is insufficient.
 
+  The smallest concrete infinite actors do not approach that endpoint.
+  `minimal-s3-one-letter-actors-have-twisted-countermodels` tests the
+  commuting and free renewal letters, giving `S_3 x Z` and `S_3 * Z`.
+  Their active stabilizers are virtually cyclic or virtually free; the finite
+  Schur extension is residually finite and a finite quotient retains the
+  required inverse-projective central character.  More generally every
+  amenable active stabilizer has hyperfinite twisted regular algebra, whose
+  microstates tensor and induce back to a positive-density countermodel.
+  Therefore the surviving infinite automorphic actor must already have a
+  nonamenable, non-CE inverse twist; a one-letter free, commuting, finite-edge,
+  or amenable compressor presentation is absorbed.
+
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity
   part of this idea.  For a fixed menu size `L` with
