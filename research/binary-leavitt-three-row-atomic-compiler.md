@@ -14,7 +14,11 @@ artifacts:
 **OPEN.** In the finite presentation of
 `St_20(L_(F_2)(1,2))`, find finitely many fixed prototype discrepancy words
 `q_1,...,q_N`, a constant `C`, and a finite-matrix selection rule with the
-following property.
+following property.  Each `q_j` must lie in the normal closure of the fixed
+defining relators and must be supplied with one fixed expression as a product
+of conjugates of those relators and their inverses.  In particular, every
+prototype has a fixed relator-area bound independent of matrix dimension,
+selected address and coefficient window.
 
 Whenever the rounded nontrivial spectral atom `p_U` of `z=x_13(s_1t_1)` is
 nonzero, the rule may inspect the matrix coordinate and select an arbitrary
@@ -37,6 +41,16 @@ Every check at the selected address must be a literal unitary conjugate of a
 prototype, so its defect is independent of address length.  This formulation
 allows the depth and window to depend on the actual matrix dimension without
 asking for a full multiplication table or a coherent inverse-limit module.
+
+The phrase "finite presentation" need not assume a separate finite-
+presentation theorem for the literal Steinberg group.  By
+`finite-saturated-table-cover-removes-literal-group-presentation`, the
+finitely many prototypes, every finite coefficient identity used by the
+compiler, and finite normal-generation certificates for `z` define a
+finitely presented cover surjecting onto the literal group.  It is enough to
+prove `(BAC1)` for that cover: collapse of its normally generating lift of
+`z` descends through the surjection.  This finite-cover formulation is the
+input intended here.
 
 ## Attempts
 
