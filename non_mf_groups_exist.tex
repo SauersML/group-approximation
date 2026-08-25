@@ -650,7 +650,7 @@ infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
 and its center is the base field~\cite{ArandaCrow}.  Preusser's work gives
 general theorems about normal subgroups of linear groups over exchange
 rings~\cite{Preusser}; the simplicity proof below instead extracts an
-elementary root directly from a nonidentity normal element.
+elementary transvection directly from a nonidentity normal element.
 Ershov--Jaikin-Zapirain give property~\textup{(T)} for
 $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
@@ -1395,14 +1395,15 @@ endomorphism
  \Psi(A)=qI_3+s_0A t_0.
 \end{equation}
 Here $s_0At_0$ denotes the matrix $(s_0a_{ij}t_0)_{ij}$.  The relations
-$qs_0=t_0q=0$ and $t_0s_0=1$ show that $\Psi$ is multiplicative and unital.
-The identity $t_0\Psi(A)s_0=A$ proves injectivity.  The term $qI_3$ is needed
-for unitality because the map $A\mapsto s_0At_0$ sends $I_3$ to $pI_3$.
+$qs_0=t_0q=0$ and $t_0s_0=1$ show that $\Psi$ is multiplicative.  Moreover,
+\[
+ \Psi(I_3)=qI_3+s_0I_3t_0=qI_3+pI_3=(p+q)I_3=I_3,
+\]
+so $\Psi$ is unital.  Finally, $t_0\Psi(A)s_0=A$, and hence $\Psi$ is
+injective.
 
-We now realize the algebraic compression $A\mapsto\Psi(A)$ as conjugation by
-an elementary matrix.  The following matrices provide the required change of
-coordinates.  Set
-
+To implement $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
+define the following $6\times6$ block matrices:
 %<webmath object="whole" when="X=\begin{pmatrix}s_0I_3" title="the block matrices X and Y that implement the compression">
 % X and Y are 6-by-6 [[block matrix|block matrices]], written as 2-by-2 arrays
 % of 3-by-3 blocks.  They are not arbitrary.  The entries involving
@@ -1433,7 +1434,7 @@ $Y=X^{-1}$.  Put
  \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R).
 \end{equation}
 
-The purpose of $\tau$ is the identity
+A direct block multiplication gives
 %<webmath object="whole" when="\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}" title="tau turns A into its compressed copy Psi(A)">
 % The middle matrix places A in the first 3-by-3 block and acts as the
 % [[identity matrix]] on the other nine coordinates.  Conjugating it by tau
@@ -1448,10 +1449,12 @@ The purpose of $\tau$ is the identity
  =\operatorname{diag}(\Psi(A),I_9).
 \end{equation}
 
-In fact, $\tau$ lies in the elementary group, not merely in the general
-linear group.
-\begin{proof}[Elementary membership of $\tau$]
-Writing $I=I_6$, the Whitehead factorization is
+\begin{lemma}\label{lem:tau-elementary}
+The matrix $\tau$ defined in \eqref{eq:tau} belongs to $\EL_{12}(R)$.
+\end{lemma}
+
+\begin{proof}
+Put $I=I_6$.  The Whitehead factorization gives
 %<webmath object="whole" when="\operatorname{diag}(X,X^{-1})" title="the block diagonal matrix is factored into six elementary block matrices">
 % This display is a membership certificate, not another compression formula.
 % Its left side is tau because \(Y=X^{-1}\).  Every factor on the right has
@@ -1470,26 +1473,33 @@ Writing $I=I_6$, the Whitehead factorization is
    \begin{pmatrix}I&-I\\0&I\end{pmatrix}
    \begin{pmatrix}I&0\\I&I\end{pmatrix}.
 \end{align}
-Each factor is a product of elementary $12\times12$ matrices: its
-off-diagonal $6\times6$ block can be inserted one entry at a time because the
-corresponding matrix units have pairwise zero products.  Since $Y=X^{-1}$,
-\eqref{eq:whitehead-factorization} proves $\tau\in\EL_{12}(R)$.
+If $B=(b_{rs})_{r,s=0}^5\in M_6(R)$, then
+\[
+ \begin{pmatrix}I&B\\0&I\end{pmatrix}
+   =\prod_{r,s=0}^5e_{r,6+s}(b_{rs}),
+ \qquad
+ \begin{pmatrix}I&0\\B&I\end{pmatrix}
+   =\prod_{r,s=0}^5e_{6+r,s}(b_{rs}).
+\]
+In either product, distinct off-diagonal matrix units have product zero, so
+no cross-terms occur.  Every factor on the right-hand side of
+\eqref{eq:whitehead-factorization} therefore belongs to $\EL_{12}(R)$.
+Since $Y=X^{-1}$, its left-hand side is $\tau$, and the result follows.
 \end{proof}
 
-Let $H=\EL_{12}(R)$ and let
+Set $H=\EL_{12}(R)$, and let
 %<webmath object="EL3" when="L=\EL_3(R)" title="the 3-by-3 matrix collection L">
 % This equation defines L to be \(\EL_3(R)\), the [[elementary group]] made
 % from 3-by-3 [[elementary matrix|elementary matrices]] over the [[ring]] R.
-% It sits in the first three rows and columns of the 12-by-12 group H.  The
-% symbol \(\le\) means L is a [[subgroup]] of H.  This L has [[property (T)]],
-% and the explicit matrix \(\tau\) sends the whole subgroup into a copy still
-% contained in L.
+% It is embedded in H by placing a 3-by-3 matrix in the upper-left block and
+% the 9-by-9 identity in the complementary block.  The symbol \(\le\) means
+% that the resulting image is a [[subgroup]] of H.
 %</webmath>
-$L=\EL_3(R)\le H$ be the corner in the upper left.
-Both groups have property~\textup{(T)} by the theorem of Ershov and
-Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
-For every $i\ne j$ and $a\in R$,
-$\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
+$L=\EL_3(R)\le H$ denote the image of the embedding
+$A\mapsto\operatorname{diag}(A,I_9)$.
+
+\begin{proposition}\label{prop:leavitt-compression}
+The groups $H$ and $L$ have property~\textup{(T)}, and $\tau\in H$ satisfies
 %<webmath object="whole" when="\tau L\tau^{-1}\le L" title="tau sends every element of L back inside L">
 % The product \(\tau L\tau^{-1}\) means conjugate every element of the
 % subgroup L by tau.  The containment sign says every result still lies in L;
@@ -1502,84 +1512,84 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
 \begin{equation}\label{eq:compresses-L}
  \tau L\tau^{-1}\le L.
 \end{equation}
-
-The field $\F_2$ is used in the diagonal branch of the simplicity argument
-below: the only central unit of $R$ is then $1$.  The dimension $12$ comes
-from applying the $6\times6$ Whitehead factorization to the $3\times3$
-Kazhdan corner.
-
-\section{The binary Leavitt group has full MF radical}
-
-\begin{proposition}\label{prop:simple}
-The group $H=\EL_{12}(R)$ is simple.
 \end{proposition}
 
 \begin{proof}
-We use two concrete ring facts.  First, for every $0\ne x\in R$ there are
+The ring $R$ is generated by $s_0,s_1,t_0,t_1$ as a unital ring.  The theorem
+of Ershov and Jaikin-Zapirain therefore gives property~\textup{(T)} for
+$\EL_{12}(R)$ and $\EL_3(R)$~\cite[Theorem~1.1]{EJZ}.  Lemma
+\ref{lem:tau-elementary} gives $\tau\in H$.
+
+For $i\ne j$ and $a\in R$, equations \eqref{eq:corner-conjugation} and
+\eqref{eq:matrix-compression} give
+\[
+ \tau e_{ij}(a)\tau^{-1}=e_{ij}(s_0at_0)\in L,
+\]
+where the elementary matrices are viewed in the embedded copy of $L$.
+These matrices generate $L$, so \eqref{eq:compresses-L} follows.
+\end{proof}
+
+\section{Simplicity and the full MF radical}
+
+We first prove that $H$ is simple.  The argument uses the following
+consequence of pure infiniteness.  For every $0\ne x\in R$, there are
 $a,b\in R$ such that
 %<webmath object="whole" when="axb=1" title="a nonzero ring element can be sandwiched to produce the identity">
 % The letters a and b are chosen ring elements placed on the left and right
 % of the given nonzero element x.  Their ordered product equals the
 % multiplicative [[identity]] 1.  The order matters because the Leavitt
-% algebra is generally noncommutative.  This property is the exact consequence
-% of pure infiniteness used in the proof: once a matrix root has nonzero
-% coefficient x, commutators using b and then a turn it into a root with
-% coefficient 1, which normally generates the elementary group.
+% algebra is generally noncommutative.  This consequence of pure infiniteness
+% turns an elementary transvection with parameter x into one with parameter
+% 1 by taking two commutators.
 %</webmath>
 \begin{equation}\label{eq:two-sided-sandwich}
  axb=1.
 \end{equation}
-This is the form of pure infiniteness needed here~\cite{AbramsAranda}.
-Second, the only central unit of $R$ is $1$: indeed
-$Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow} and
-$\F_2^\times=\{1\}$.
+Indeed, $R$ is purely infinite simple, so this follows from
+\cite[Proposition~10(v)]{AbramsAranda} by taking the target element to be
+$1$.
 
-\paragraph{Normal generation from one root.}
-We first record that a nonzero root normally generates the elementary group.
-More generally, let $S$ be a unital ring, let $n\ge3$, and suppose
-$a,x,b\in S$ satisfy $axb=1$.  If a normal subgroup of $\EL_n(S)$ contains
-$e_{ij}(x)$, choose $k$ different from $i$ and $j$.  The elementary
+\begin{lemma}[Normal generation by an elementary transvection]
+\label{lem:normal-generation-transvection}
+Let $S$ be a unital ring, let $n\ge3$, and let
+$N\trianglelefteq\EL_n(S)$.  Suppose that $e_{ij}(x)\in N$ and that
+$axb=1$ for some $a,b\in S$.  Then $N=\EL_n(S)$.
+\end{lemma}
+
+\begin{proof}
+Choose $k$ different from $i$ and $j$.  Normality of $N$ and the elementary
 commutator relations give
-%<webmath object="whole" when="[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb)" title="two commutators turn a nonzero root coefficient into 1">
+%<webmath object="whole" when="[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb)" title="two commutators produce an elementary transvection with parameter 1">
 % The first commutator combines two elementary matrices whose column and row
 % indices meet at j.  The result is an elementary matrix in position
 % \((i,k)\) with coefficient xb.  The second commutator meets at i and
 % multiplies that coefficient on the left by a, producing coefficient
 % \(axb=1\) in position \((j,k)\).  Because a normal subgroup containing the
-% first root also contains its commutators with arbitrary group elements,
-% these identities show it contains the unit root \(e_{jk}(1)\).
+% first elementary transvection also contains its commutators with arbitrary
+% group elements, these identities show that it contains \(e_{jk}(1)\).
 %</webmath>
 \[
  [e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad
  [e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),
 \]
-so the normal subgroup contains a unit root.  From any $e_{uv}(1)$ in the
-normal subgroup and any third index
-$w$, the relations
-%<webmath object="whole" when="[e_{wu}(r),e_{uv}(1)]=e_{wv}(r)" title="unit roots move arbitrary coefficients to new matrix positions">
-% In the first identity, the matching index u lets the commutator multiply
-% coefficients r and 1 and place r in position \((w,v)\).  In the second,
-% the matching index v places the arbitrary coefficient r in position
-% \((u,w)\).  The three indices u, v, and w are distinct, so the standard
-% elementary-matrix commutator rule applies.  Repeating these source and
-% target moves transports any coefficient to every off-diagonal position,
-% proving that one unit root normally generates all elementary matrices.
-%</webmath>
-\[
- [e_{wu}(r),e_{uv}(1)]=e_{wv}(r),\qquad
- [e_{uv}(1),e_{vw}(r)]=e_{uw}(r)
-\]
-show that the normal subgroup contains the corresponding source and target
-moves for every coefficient $r\in S$.  Repeating these moves, using a third
-index when needed, gives every elementary generator.  Thus, by
-\eqref{eq:two-sided-sandwich}, it remains to prove that every nontrivial
-normal subgroup $N\trianglelefteq H$ contains a nonzero elementary root.
+so $e_{jk}(1)\in N$.
 
-\paragraph{Separating two coefficients.}
-We also need the following coefficient-separation consequence of the Leavitt
-relations.  Its purpose is to make one matrix product vanish while the
-reverse product retains a nonzero entry.  If $r,s\in R$ are nonzero, then
-there are $a,b\in R$ such that
+Products of the generalized permutation matrices
+\[
+ w_{uv}=e_{uv}(1)e_{vu}(-1)e_{uv}(1)
+\]
+conjugate $e_{jk}(1)$ to $e_{uv}(1)$ or its inverse for any $u\ne v$.
+Normality of $N$, and taking inverses if necessary, therefore gives
+$e_{uv}(1)\in N$ for every $u\ne v$.  Given $r\in S$ and $u\ne v$, choose
+$h$ different from $u$ and $v$.  Then
+\[
+ [e_{uh}(r),e_{hv}(1)]=e_{uv}(r)\in N.
+\]
+Thus $N$ contains every elementary generator of $\EL_n(S)$.
+\end{proof}
+
+\begin{lemma}\label{lem:coefficient-separation}
+If $r,s\in R$ are nonzero, then there exist $a,b\in R$ such that
 %<webmath object="whole" when="arb=0" title="a and b kill one ordered product but keep the reversed product nonzero">
 % The first relation says that inserting a before r and b after r makes the
 % product zero.  The second relation reverses the central order to bsar and
@@ -1592,17 +1602,18 @@ there are $a,b\in R$ such that
 \begin{equation}\label{eq:coefficient-separation}
  arb=0,\qquad bsar\ne0.
 \end{equation}
-For every $w\in R$ there are $x,y\in R$ with
+\end{lemma}
+
+\begin{proof}
+We first claim that for every $w\in R$ there are $x,y\in R$ with
 $xwy=0$ and $yx\ne0$.  This is immediate with $x=y=1$ if $w=0$.
 Otherwise choose $c,d$ with $cwd=1$ and put $x=t_1c$, $y=ds_0$.
 Then $xwy=t_1s_0=0$.  Also $t_0(s_0t_1)s_1=1$, so $s_0t_1\ne0$.
 If $yx=ds_0t_1c$ were zero, multiplying this equality on the left by $cw$
 and on the right by $wd$, and using $cwd=1$, would force $s_0t_1=0$.
 Therefore $yx\ne0$.
-To obtain \eqref{eq:coefficient-separation}, we choose four sandwich
-factorizations.  They serve one bookkeeping purpose: if the desired reverse
-product $bsar$ were zero, the outer factors below would reduce that equality
-to the contradiction $yx=0$.
+
+Using \eqref{eq:two-sided-sandwich}, choose elements satisfying
 %<webmath object="whole" when="c_r\,r\,d_r=1" title="four sandwich factorizations prepare the coefficient-separation construction">
 % Each equality uses the sandwich property to turn a specified nonzero ring
 % element into the identity by multiplying it on the left and right.  The
@@ -1616,7 +1627,7 @@ to the contradiction $yx=0$.
  c_r\,r\,d_r=1,\quad e_d\,d_r\,f_d=1,\quad
  e_s\,s\,f_s=1,\quad e_t(c_r r)f_t=1,
 \]
-Apply the preceding construction to $w=e_tf_d$.  Set
+and apply the claim to $w=e_tf_d$.  For the resulting $x,y$, set
 %<webmath object="whole" when="a=f_s x e_t c_r" title="the products a and b assemble the coefficient-separation witnesses">
 % This line defines a and b by multiplying the auxiliary factors in the
 % displayed order, which matters in the noncommutative ring R.  Substitution
@@ -1631,33 +1642,46 @@ Apply the preceding construction to $w=e_tf_d$.  Set
 \]
 Then $arb=0$.  If $bsar=0$, multiplication on the left by $e_d$ and on the
 right by $f_t$ gives $yx=0$, a contradiction.
+\end{proof}
 
-\paragraph{Extracting a root from a normal subgroup.}
-Now let $N\trianglelefteq H$ be nontrivial and choose $1\ne g\in N$.
-Suppose first that $g$ is diagonal.  If $g$ commuted with every $e_{ij}(a)$,
+\begin{proposition}\label{prop:simple}
+The group $H=\EL_{12}(R)$ is nontrivial and simple.
+\end{proposition}
+
+\begin{proof}
+Let $N\trianglelefteq H$ be nontrivial.  By
+\eqref{eq:two-sided-sandwich} and Lemma
+\ref{lem:normal-generation-transvection}, it is enough to find
+$i\ne j$ and $0\ne x\in R$ such that $e_{ij}(x)\in N$.
+
+\paragraph{The diagonal case.}
+Choose $1\ne g\in N$ and suppose first that $g$ is diagonal.
+If $g$ commuted with every $e_{ij}(a)$,
 then commuting with the $e_{ij}(1)$ would force $g=\lambda I_{12}$.
 Commuting with arbitrary $e_{ij}(a)$ would then make $\lambda$ a central
-unit.  Hence $g=1$, a
-contradiction.  Thus for some $i\ne j$ and $a\in R$, conjugation by $g$ sends
+unit.  But $Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow}, so
+$\lambda\in\F_2^\times=\{1\}$ and $g=1$, a contradiction.  Thus for some
+$i\ne j$ and $a\in R$, conjugation by $g$ sends
 $e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.  Consequently
-%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(y-a)" title="a noncentral diagonal element produces a nonzero elementary root">
+%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(y-a)" title="a noncentral diagonal element produces a nontrivial elementary transvection">
 % The commutator compares g with the elementary matrix \(e_{ij}(a)\).
-% Conjugation by the diagonal matrix g changes that root's coefficient from a
-% to y, so multiplying by the inverse root subtracts a and leaves
+% Conjugation by the diagonal matrix g changes its parameter from a to y, so
+% multiplying by the inverse elementary matrix subtracts a and leaves
 % \(e_{ij}(y-a)\).  The result belongs to N because g lies in the [[normal
 % subgroup]] N and commutators of its elements with arbitrary group elements
 % remain in N.  Since \(y\ne a\), the coefficient \(y-a\) is nonzero, so this
-% is the nonzero elementary root needed for normal generation.
+% is the nontrivial elementary transvection needed for normal generation.
 %</webmath>
 \[
  [g,e_{ij}(a)]=e_{ij}(y-a)\in N
 \]
-is a nonzero root.
+is the required elementary transvection.
 
-Suppose next that $g$ is not diagonal, and choose $\ell\ne i$ with
+\paragraph{The nondiagonal case.}
+Suppose now that $g$ is not diagonal, and choose $\ell\ne i$ with
 $g_{\ell i}\ne0$.  In both remaining cases, the goal is to manufacture an
 element $1+v\in N$ whose nonzero square-zero defect $v$ is supported in one
-row; one final commutator will then extract a nonzero elementary root.  Put
+row; one final commutator will then produce an elementary transvection.  Put
 $r=(g^{-1})_{\ell i}$.
 
 If $r=0$, set
@@ -1681,7 +1705,7 @@ Then $AB=0$, and the double commutator
 % \(1-BA\).  This element belongs to N by normality.  The product BA is
 % supported only in row i and satisfies \((BA)^2=0\), so the result is a
 % unipotent matrix whose nonzero defect can later be converted into an
-% elementary root.
+% elementary transvection.
 %</webmath>
 \begin{equation}\label{eq:row-unipotent-sparse}
  [g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA
@@ -1693,7 +1717,7 @@ $(\ell,\ell)$ entry of $g^{-1}g=1$ would give $g_{\ell i}=0$.
 Thus the $(i,m)$ entry of the defect in
 \eqref{eq:row-unipotent-sparse} is nonzero.
 
-If $r\ne0$, apply \eqref{eq:coefficient-separation} to
+If $r\ne0$, apply Lemma~\ref{lem:coefficient-separation} to
 $r$ and $s=g_{\ell i}$, obtaining $a,b$ with
 $arb=0$ and $bsar\ne0$.  This time put
 %<webmath object="whole" when="A=g(aE_{i\ell})g^{-1}" title="scaled matrix units prepare the dense case while forcing AB to vanish">
@@ -1709,7 +1733,7 @@ $arb=0$ and $bsar\ne0$.  This time put
  A=g(aE_{i\ell})g^{-1},\qquad B=bE_{i\ell}.
 \]
 Again $AB=0$, because its potentially nonzero coefficient contains $arb$.
-As the two elementary roots commute, reduction modulo $N$ shows that
+As $e_{i\ell}(a)$ and $e_{i\ell}(b)$ commute, reduction modulo $N$ shows that
 %<webmath object="whole" when="[g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA" title="the dense case also produces an identity plus a one-row square-zero defect">
 % Conjugating \(e_{i\ell}(a)=1+aE_{i\ell}\) by g replaces its added part by
 % A, while \(e_{i\ell}(b)=1+B\).  The facts \(A^2=B^2=AB=0\) make the
@@ -1725,26 +1749,25 @@ As the two elementary roots commute, reduction modulo $N$ shows that
 The defect is square-zero and supported in row $i$, while its $(i,i)$ entry
 is $-bsar\ne0$.
 
-Both off-diagonal cases therefore produce an element $1+v\in N$ with
+Both nondiagonal cases therefore produce an element $1+v\in N$ with
 $v^2=0$.  The matrix $v$ is supported in a single row $i$ and has some
 nonzero entry $v_{im}$.
 Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
-$m=i$).  Direct multiplication gives the identity that extracts one row,
-%<webmath object="whole" when="[1+v,e_{mn}(1)]=e_{in}(v_{im})" title="a commutator extracts one nonzero entry as an elementary root">
+$m=i$).  Direct multiplication gives
+%<webmath object="whole" when="[1+v,e_{mn}(1)]=e_{in}(v_{im})" title="a commutator produces a nontrivial elementary transvection">
 % The matrix v is supported in row i and satisfies \(v^2=0\).  Commuting
 % \(1+v\) with the elementary matrix \(e_{mn}(1)\) selects the entry
 % \(v_{im}\) and moves it to position \((i,n)\); all other possible terms
 % vanish because of the row support and the choice of n.  The result is the
 % elementary matrix \(e_{in}(v_{im})\).  It lies in N, and its coefficient is
-% nonzero by the choice of m.  The earlier normal-generation argument then
-% forces N to contain the entire elementary group H.
+% nonzero by the choice of m.  The normal-generation lemma then forces N to
+% contain the entire elementary group H.
 %</webmath>
 \[
  [1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.
 \]
-This is a nonzero root, so the argument about normal generation above gives
-$N=H$.  Hence every normal subgroup of $H$ is trivial or all of $H$.
-Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+Since $v_{im}\ne0$, Lemma~\ref{lem:normal-generation-transvection} gives
+$N=H$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
 
 \begin{proposition}\label{prop:defect}
@@ -1791,12 +1814,12 @@ in $H$.  Then
 \end{proposition}
 
 \begin{proof}
-Every elementary generator of the $3\times3$ corner in the upper left has both
-indices in $\{0,1,2\}$.  The elementary commutator relations show that each
-such generator commutes with $c=e_{34}(1)$, so $c\in C_H(L)$.
+Every elementary generator of the embedded subgroup $L$ has both indices in
+$\{0,1,2\}$.  The elementary commutator relations show that each such
+generator commutes with $c=e_{34}(1)$, so $c\in C_H(L)$.
 
 Direct multiplication of the matrices in \eqref{eq:tau} gives
-%<webmath object="whole" when="\tau c\tau^{-1}=e_{01}(q)e_{34}(1)" title="conjugating c by tau creates one new q root and keeps the old root">
+%<webmath object="whole" when="\tau c\tau^{-1}=e_{01}(q)e_{34}(1)" title="conjugating c by tau produces a second elementary transvection">
 % The left side conjugates the elementary matrix c by the explicit matrix
 % tau.  Direct block multiplication yields the product of two elementary
 % matrices on the right.  The factor \(e_{01}(q)\) has the Leavitt element q
@@ -1810,9 +1833,9 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 \end{equation}
 The second factor commutes with $\ell=e_{12}(1)$.  The identity
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ therefore gives $d=e_{02}(q)$, which is
-nontrivial because $q\ne0$.  Since $t_1qs_1=1$, the normal-generation argument
-following \eqref{eq:two-sided-sandwich} applied to $e_{02}(q)$ gives
-$\normal d_H=H$.
+nontrivial because $q\ne0$.  Since $t_1qs_1=1$,
+Lemma~\ref{lem:normal-generation-transvection}, applied to $e_{02}(q)$,
+gives $\normal d_H=H$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
@@ -2176,9 +2199,9 @@ exploration, proof development, manuscript drafting, literature navigation,
 Lean formalization, and editorial revision.  The Lean development checks the
 one-sided transport theorem and the normal property-\textup{(T)} radical
 criterion.  It also checks the rank 12 compression and commutator calculation,
-direct normal generation by a nonzero elementary root, and the resulting full
-MF radical conclusion.  For Proposition~\ref{prop:simple}, it checks the
-exhaustive root extraction argument for diagonal matrices, zero inverse
+direct normal generation by a nontrivial elementary transvection, and the
+resulting full MF radical conclusion.  For Proposition~\ref{prop:simple}, it checks the
+exhaustive transvection-extraction argument for diagonal matrices, zero inverse
 entries, and dense entries.
 The formalized simplicity proof uses the concrete two-sided sandwich and the
 fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
