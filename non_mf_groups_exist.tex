@@ -15,7 +15,7 @@
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
 \fi
-\hypersetup{pdftitle={[DRAFT] One-sided Kazhdan compression and MF radicals},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: structural obstructions to norm-matrix-corona representations},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] Kazhdan self-compression obstructs operator-norm approximation},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: Kazhdan self-compression and finite-matrix approximation},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \allowdisplaybreaks
 \raggedbottom
@@ -53,20 +53,19 @@
   \medskip}
 
 \begin{document}
-\title{One-sided Kazhdan compression and MF radicals}
+\title{Kazhdan self-compression obstructs operator-norm approximation}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-Not every countable group can be faithfully approximated, in operator norm,
-by finite-dimensional unitary matrices.  We prove this by identifying a
-structural obstruction: a one-sided self-compression of a property~\textup{(T)}
-subgroup can force a normal property~\textup{(T)} subgroup to disappear in
-every norm matrix corona.  If the associated commutators normally generate
-the group, every homomorphism from that group to an MF group is trivial.  A
-construction over the binary Leavitt algebra realizes these hypotheses in a
-simple property~\textup{(T)} group.
+Not every countable group is MF in the operator-norm approximation sense.
+We prove that a one-sided self-compression of a property~\textup{(T)} subgroup
+creates a subgroup that every finite-matrix limit must erase.  A normal
+property~\textup{(T)} subgroup contained there lies in the universal kernel of
+all MF representations; if it normally generates the group, every MF
+representation is trivial.  The criterion yields, in particular, a simple
+property~\textup{(T)} group that is not MF.
 \end{abstract}
 
 \maketitle
@@ -413,6 +412,14 @@ representation in a second norm matrix corona.  Its Kazhdan projection makes
 the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
 compressor.  Section~4 then proves that a normal property-\textup{(T)} subgroup
 contained in the defect lies in the MF radical.
+
+A closely related $C^*$-algebraic phenomenon appears in Tseng's work
+\cite{Tseng}: a proper one-sided compression of a property-\textup{(T)}
+subgroup makes its Kazhdan projection infinite in the full group
+$C^*$-algebra.  That result obstructs MF-ness of the full group
+$C^*$-algebra.  The present argument instead applies stable finiteness to the
+corona representation formed by coordinatewise conjugation and obtains an
+obstruction to the group-MF property itself.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
@@ -887,7 +894,7 @@ vanishes.  The dimension $12$ comes from applying the $6\times6$ Whitehead
 factorization to the $3\times3$ Kazhdan corner.  We do not claim that $12$ is
 minimal.
 
-\section{The full MF radical}
+\section{The binary Leavitt group has full MF radical}
 
 \begin{proposition}\label{prop:simple}
 The group $H=\EL_{12}(R)$ is simple.
@@ -1266,5 +1273,12 @@ A.~Thom,
 Proceedings of the International Congress of Mathematicians---Rio de
 Janeiro 2018,
 \href{https://arxiv.org/abs/1712.01052}{arXiv:1712.01052}.
+
+\bibitem[Ts]{Tseng}
+Tseng,
+\emph{Infinite projections in full group $C^*$-algebras of
+$S$-arithmetic groups},
+preprint, 2026,
+\doi{10.5281/zenodo.21939762}.
 \end{thebibliography}
 \end{document}
