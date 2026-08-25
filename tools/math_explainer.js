@@ -16,13 +16,47 @@
     'set': entry('set',
       'A collection of objects. An object either belongs to the set or it does not.'),
     'element': entry('element',
-      'One object belonging to a [[set]].'),
+      'One object belonging to a [[set]]. For example, each individual move in a [[group]] is an element of that group.'),
     'sequence': entry('sequence',
-      'A list in a fixed order: first, second, third, and so on. A subscript such as n names a position in the list.'),
+      'A list in a fixed order: first, second, third, and so on. A [[subscript]] such as n names a position in the list.'),
     'index': entry('index',
-      'A label, often a small number written below a letter, that selects one position, row, column, or item.'),
+      'A label that selects one position, [[row]], [[column]], or item. It is often written as a small [[subscript]] below a letter.'),
+    'symbol': entry('symbol',
+      'A written mark used as a mathematical name or instruction, such as G, +, or \\(\\le\\).'),
+    'variable': entry('variable',
+      'A letter or [[symbol]] used as a name whose value is specified by the surrounding sentence.'),
+    'expression': entry('expression',
+      'A piece of mathematical writing made from numbers, names, and operation [[symbol|symbols]], such as \\(a+bi\\). It need not make a claim by itself.'),
+    'equation': entry('equation',
+      'A statement with an equals sign saying that the [[expression|expressions]] on its two sides have the same value.'),
+    'subscript': entry('subscript',
+      'A small label written below and to the right of a [[symbol]]. It selects a version, position, row, column, or stage; it is not multiplication.'),
+    'superscript': entry('superscript',
+      'A small label written above and to the right of a [[symbol]]. It can mean a power, an [[inverse]], or another qualifier explained by context.'),
+    'calligraphic letter': entry('calligraphic letter',
+      'A letter drawn in a decorative script, such as \\(\\mathcal Q\\). The style distinguishes its mathematical role; it does not change the alphabetic letter.'),
+    'blackboard-bold letter': entry('blackboard-bold letter',
+      'A doubled-stroke letter such as \\(\\mathbb C\\) or \\(\\mathbb F\\), conventionally used to name familiar number systems.'),
+    'bold letter': entry('bold letter',
+      'A thickened letter such as \\(\\mathbf d\\). Here it names a whole [[sequence]] rather than one entry of that sequence.'),
+    'fraktur letter': entry('fraktur letter',
+      'A letter drawn in an ornate blackletter style, such as \\(\\mathfrak D\\). The style helps distinguish this object from an ordinary letter D.'),
+    'Greek letter': entry('Greek letter',
+      'A letter from the Greek alphabet used as a mathematical name. For example, \\(\\pi\\) is read “pi,” \\(\\tau\\) is “tau,” and \\(\\ell\\) is “ell.”'),
+    'circled-plus sign': entry('circled-plus sign',
+      'The symbol \\(\\bigoplus\\). Here it names the [[direct sum]], not ordinary addition.'),
     'function': entry('function',
-      'A rule that assigns exactly one output to each allowed input. This paper also uses the word map for a function.'),
+      'A rule that assigns exactly one output to each allowed input. Its [[domain]] is the allowed-input [[set]], and this paper also calls a function a map.'),
+    'map': entry('map',
+      'Another word for a [[function]], especially when the inputs and outputs are mathematical objects.'),
+    'domain': entry('domain',
+      'The [[set]] of allowed inputs of a [[function]].'),
+    'target': entry('target',
+      'The [[set]] in which a [[function]] is required to place its outputs.'),
+    'composition': entry('composition',
+      'Performing one [[function]] and then feeding its output into a second function. The notation \\(h\\circ f\\) means do f first and h second.'),
+    'precomposition': entry('precomposition',
+      'Changing a [[function]] by doing another function before it. Precomposing h with f gives the [[composition]] \\(h\\circ f\\), whose rule is \\(x\\mapsto h(f(x))\\).'),
     'image': entry('image',
       'The output of a [[function]], or the [[set]] of outputs obtained from several inputs.'),
     'preimage': entry('preimage',
@@ -32,13 +66,15 @@
     'bijection': entry('bijection',
       'A perfect pairing between two [[set|sets]]: every object on either side is paired with exactly one object on the other side.'),
     'isomorphism': entry('isomorphism',
-      'A reversible [[homomorphism]]. It shows that two [[group|groups]] have the same structure even when their elements have different names.'),
+      'A reversible [[homomorphism]]: a pairing that preserves multiplication and can be undone. It shows that two [[group|groups]] have the same multiplication pattern even when their elements have different names.'),
+    'embedding': entry('embedding',
+      'A [[faithful]] [[homomorphism]] that places one mathematical object inside another without merging any two of its elements.'),
     'intersection': entry('intersection',
       'The objects shared by every [[set]] being considered.'),
     'infinite product': entry('infinite product',
       'A [[set]] of [[sequence|sequences]] made by choosing one entry from each set in an endless list of sets.'),
     'direct sum': entry('direct sum',
-      'In this paper, the [[sequence|sequences]] of matrices whose sizes, measured by [[operator norm]], have [[limit]] zero.'),
+      'In this paper, the [[sequence|sequences]] of matrices whose [[operator norm|operator norms]] have [[limit]] zero. These are the error sequences that eventually become negligible.'),
     'quotient': entry('quotient',
       'A construction that declares selected differences to count as zero. Objects that differ only by one of those ignored differences are then treated as equal.'),
     'set-builder notation': entry('set-builder notation',
@@ -47,8 +83,28 @@
       'A [[sequence]] whose entries never grow past one fixed size.'),
     'limit': entry('limit',
       'The value that a changing quantity approaches. Saying a sequence tends to zero means its entries can be made as small as desired by going far enough along the sequence.'),
+    'approximation': entry('approximation',
+      'A simpler or finite substitute that is not perfectly exact but can be made as close to exact as required.'),
+    'model': entry('model',
+      'A concrete object used to imitate the behavior of another object. Here the concrete objects are finite [[matrix|matrices]] that imitate group multiplication.'),
+    'finite-matrix model': entry('finite-matrix model',
+      'A [[model]] that assigns a finite square [[matrix]] to each relevant [[group]] element, arranged so that multiplying matrices almost matches multiplying group elements.'),
+    'multiplication error': entry('multiplication error',
+      'The difference between the matrix obtained by multiplying two assigned matrices and the matrix assigned to the corresponding product in the [[group]].'),
+    'countable': entry('countable',
+      'Able to be placed in a [[sequence]], so the elements can be listed first, second, third, and so on. A finite [[set]] is countable too.'),
     'group': entry('group',
       'A collection of reversible moves. Two moves can be performed in succession, there is a do-nothing move, and every move can be undone.'),
+    'commute': entry('commute',
+      'Two moves commute when doing the first and then the second gives the same result as doing them in the opposite order.'),
+    'nontrivial': entry('nontrivial',
+      'Not reduced to only the do-nothing case. A nontrivial [[group]] contains at least one element besides the [[identity]].'),
+    'nonzero': entry('nonzero',
+      'Different from zero. A nonzero number, [[vector]], or [[matrix]] has at least one part that is not zero.'),
+    'nonidentity': entry('nonidentity',
+      'Different from the [[identity]], so it is not the do-nothing group element or matrix.'),
+    'rigidity': entry('rigidity',
+      'A condition saying that approximate behavior is forced to come from exact behavior; small errors cannot create genuinely new possibilities.'),
     'identity': entry('identity',
       'The do-nothing [[element]] of a [[group]]. In a matrix group it is the identity matrix.'),
     'inverse': entry('inverse',
@@ -62,7 +118,7 @@
     'homomorphism': entry('homomorphism',
       'A [[function]] between [[group|groups]] that respects succession of moves and sends the [[identity]] to the identity.'),
     'representation': entry('representation',
-      'A [[homomorphism]] that replaces abstract [[group]] elements with concrete matrices or other operations.'),
+      'A [[homomorphism]] that assigns a concrete [[matrix]] or [[operator]] to every [[group]] element, so combining group elements matches combining their assigned actions.'),
     'faithful': entry('faithful',
       'A [[homomorphism]] is faithful when different inputs always have different outputs, so it loses no information.'),
     'trivial homomorphism': entry('trivial homomorphism',
@@ -77,60 +133,94 @@
       'The smallest [[normal subgroup]] containing the listed elements. The notation \\(\\langle\\!\\langle d\\rangle\\!\\rangle_G\\) means the normal closure of d inside G.'),
     'centralizer': entry('centralizer',
       'The [[subgroup]] of elements that commute with a chosen set: doing either move first gives the same result.'),
+    'center': entry('center',
+      'All elements that [[commute]] with every other element of the surrounding [[group]], [[ring]], or [[algebra]].'),
     'commutator': entry('commutator',
       'For elements a and b, \\([a,b]=aba^{-1}b^{-1}\\). It equals the [[identity]] exactly when doing a then b gives the same result as doing b then a.'),
     'simple group': entry('simple group',
       'A nontrivial [[group]] whose only [[normal subgroup|normal subgroups]] are the identity alone and the whole group.'),
     'matrix': entry('matrix',
-      'A rectangular table of numbers or algebraic entries, arranged in rows and columns.'),
+      'A rectangular table of entries arranged in horizontal [[row|rows]] and vertical [[column|columns]]. An entry may be an ordinary number or an element of a [[ring]].'),
+    'row': entry('row',
+      'A horizontal line of entries in a [[matrix]].'),
+    'column': entry('column',
+      'A vertical line of entries in a [[matrix]], read from top to bottom.'),
+    'coordinate': entry('coordinate',
+      'One numbered position in a list or [[vector]]. In an [[ordered pair]] \\((q,a)\\), q is the first coordinate and a is the second.'),
+    'ordered pair': entry('ordered pair',
+      'Two objects written as \\((q,a)\\), where position matters: q is the first [[coordinate]] and a is the second.'),
+    'diagonal': entry('diagonal',
+      'The positions in a square [[matrix]] where the row number equals the column number.'),
+    'off-diagonal': entry('off-diagonal',
+      'A position in a square [[matrix]] where the row number and column number are different.'),
+    'invertible': entry('invertible',
+      'Able to be undone. An invertible [[matrix]] has another matrix that multiplies with it to give the [[identity matrix]].'),
+    'transpose': entry('transpose',
+      'The [[matrix]] obtained by exchanging rows with columns.'),
+    'complex conjugate': entry('complex conjugate',
+      'For \\(a+bi\\), change the sign of the imaginary part to obtain \\(a-bi\\).'),
     'identity matrix': entry('identity matrix',
-      'A square [[matrix]] with 1 on its main diagonal and 0 everywhere else. Multiplying by it changes nothing.'),
+      'A square [[matrix]] with 1 on its main [[diagonal]] and 0 everywhere else. Multiplying by it changes nothing.'),
+    'real number': entry('real number',
+      'A number represented by a point on the ordinary number line, including whole numbers, fractions, and irrational numbers such as \\(\\sqrt2\\).'),
     'complex number': entry('complex number',
-      'A number of the form \\(a+bi\\), where a and b are real numbers and \\(i^2=-1\\).'),
+      'A number of the form \\(a+bi\\), where a and b are [[real number|real numbers]] and the new number i satisfies \\(i^2=-1\\).'),
     'vector space': entry('vector space',
-      'A collection of vectors that can be added and scaled while staying in the collection.'),
+      'A collection of [[vector|vectors]] that can be added and multiplied by [[scalar|scalars]] while staying in the collection.'),
+    'vector': entry('vector',
+      'An ordered list of [[coordinate|coordinates]], often pictured as an arrow. [[matrix|Matrices]] act on vectors by combining their coordinates.'),
     'operator': entry('operator',
-      'A [[function]] that takes a vector as input and returns a vector as output.'),
+      'A [[function]] that takes a [[vector]] as input and returns a vector as output.'),
     'operator norm': entry('operator norm',
       'The largest stretch factor of a [[matrix]] or [[operator]]. A small operator norm means every input vector is changed by only a small amount.'),
     'unitary matrix': entry('unitary matrix',
-      'A square [[matrix]] over the [[complex number|complex numbers]] that preserves lengths and angles. Its [[inverse]] is obtained by transposing it and replacing each entry by its complex conjugate.'),
+      'An [[invertible]] square [[matrix]] over the [[complex number|complex numbers]] that preserves lengths and angles. Its [[inverse]] is obtained by taking the [[transpose]] and replacing every entry by its [[complex conjugate]].'),
     'ring': entry('ring',
-      'A number-like system in which addition, subtraction, and multiplication are allowed, although multiplication need not commute.'),
+      'A number-like system in which addition, subtraction, and multiplication are allowed. Unlike ordinary-number multiplication, its multiplication need not [[commute]].'),
     'field': entry('field',
-      'A number system in which addition, subtraction, multiplication, and division by nonzero numbers are allowed.'),
+      'A number system in which addition, subtraction, multiplication, and division by [[nonzero]] numbers are allowed.'),
     'Kronecker delta': entry('Kronecker delta',
       'The symbol \\(\\delta_{ij}\\): it equals 1 when the [[index|indices]] i and j are equal, and 0 when they are different.'),
     'algebra': entry('algebra',
       'A [[ring]] whose elements can also be multiplied by numbers from a chosen [[field]].'),
     'scalar': entry('scalar',
-      'A number used to multiply every coordinate of a vector or every entry of a matrix.'),
+      'A number used to multiply every [[coordinate]] of a [[vector]] or every entry of a [[matrix]].'),
     'module': entry('module',
-      'A vector-space-like object whose scalars come from a [[ring]] instead of necessarily coming from a field.'),
+      'A [[vector space|vector-space-like]] object whose [[scalar|scalars]] come from a [[ring]] instead of necessarily coming from a [[field]].'),
     'free module': entry('free module',
       'A [[module]] with independent coordinate directions, analogous to ordinary coordinate space.'),
     'generated by relations': entry('generated by relations',
-      'Start with named symbols and allow every expression made from them, while declaring the listed equations to be true.'),
+      'Start with named [[generator|generators]] and allow every expression made from them, while requiring the listed [[relation|relations]] to be true.'),
+    'generator': entry('generator',
+      'One of a chosen collection of building blocks from which every other element can be formed using the allowed operations.'),
+    'relation': entry('relation',
+      'An [[equation]] that the chosen [[generator|generators]] are required to satisfy.'),
     'elementary matrix': entry('elementary matrix',
       'An [[identity matrix]] with one additional entry away from the main diagonal.'),
     'elementary group': entry('elementary group',
       'The [[group]] formed by multiplying [[elementary matrix|elementary matrices]] of a fixed size.'),
     'property (T)': entry('property (T)',
-      'A rigidity feature of a [[group]]. Roughly, if the group moves some vectors only a tiny amount, then some nonzero vector must be left completely fixed.'),
+      'A [[rigidity]] feature of a [[group]]. Roughly, if the group moves some [[vector|vectors]] only a tiny amount, then some [[nonzero]] vector must be left completely fixed.'),
+    'corona': entry('corona',
+      'Here “corona” is a conventional name for a [[quotient]] of [[sequence|sequences]]: it keeps their long-run behavior but treats two sequences as equal when their difference has [[limit]] zero. It has nothing to do with the Sun.'),
     'norm matrix corona': entry('norm matrix corona',
-      'An object made from [[bounded sequence|bounded sequences]] of finite [[matrix|matrices]]. Two sequences count as the same when the [[operator norm]] of their difference has [[limit]] zero.'),
+      'A [[corona]] made from [[bounded sequence|bounded sequences]] of finite [[matrix|matrices]]. Two sequences count as the same when the [[operator norm]] of their difference has [[limit]] zero.'),
+    'MF': entry('MF',
+      'MF stands for “matricial field,” the historical name for this finite-matrix [[approximation]] rule. To pass the MF test, [[multiplication error|multiplication errors]] must shrink to zero and different [[group]] elements must remain distinguishable.'),
     'MF group': entry('MF group',
-      'A [[group]] that can be represented faithfully by increasingly large finite [[unitary matrix|unitary matrices]], with multiplication errors having [[operator norm]] that tends to zero.'),
+      'A [[group]] that has a [[faithful]] [[representation]] by sequences of finite [[unitary matrix|unitary matrices]] in a [[norm matrix corona]]. Equivalently, its [[multiplication error|multiplication errors]] approach zero in [[operator norm]] without merging distinct group elements.'),
     'MF radical': entry('MF radical',
-      'The [[normal subgroup]] of elements erased by every [[homomorphism]] from the group into every [[norm matrix corona]].'),
+      'The [[radical]] for the MF test: the [[normal subgroup]] of elements erased by every [[homomorphism]] from the group into every [[norm matrix corona]].'),
+    'radical': entry('radical',
+      'In this paper, “radical” means the largest part of a [[group]] that all allowed tests erase. It is unrelated to a square-root sign.'),
     'Leavitt algebra': entry('Leavitt algebra',
       'A particular [[algebra]] built from four named elements \\(s_0,s_1,t_0,t_1\\) and two families of equations. Those equations let one [[free module]] behave like two copies of itself.'),
     'direct product': entry('direct product',
-      'The [[group]] of ordered pairs \\((q,a)\\), with the first coordinates combined together and the second coordinates combined together.'),
+      'The [[group]] of [[ordered pair|ordered pairs]] \\((q,a)\\), with the first [[coordinate|coordinates]] combined together and the second coordinates combined together.'),
     'amalgamated free product': entry('amalgamated free product',
-      'A [[group]] made by joining two groups along copies of a shared [[subgroup]], without adding relations beyond those already present and the required identification.'),
+      'A [[group]] made by joining two groups along copies of a shared [[subgroup]], without adding [[relation|relations]] beyond those already present and the equations identifying the two copies.'),
     'factors through': entry('factors through',
-      'A [[function]] factors through another map when it can be performed in two stages through that map. The middle output retains everything the final function needs.'),
+      'A [[function]] factors through another [[map]] when it can be performed as a [[composition]] of two maps. The middle output retains everything the final function needs.'),
     'closure operation': entry('closure operation',
       'A rule that enlarges a [[set]] by adding everything forced by a chosen condition, and adds nothing further when applied a second time.'),
     'pullback': entry('pullback',
@@ -234,7 +324,7 @@
     '×': entry('direct-product sign',
       'Form ordered pairs, taking one entry from each of the two [[group|groups]].', '\\times'),
     '*': entry('free-product star',
-      'Join groups without imposing cross-relations. A subscript names the shared [[subgroup]] that is identified.', '*'),
+      'Join groups without adding [[relation|equations]] that mix the two sides. A [[subscript]] names the shared [[subgroup]] that is identified.', '*'),
     '+': entry('addition sign',
       'Add the expressions on the two sides using the addition rule of the surrounding number system, [[ring]], or [[matrix]] space.', '+'),
     '−': entry('minus sign',
@@ -282,7 +372,7 @@
     'N': entry('the subgroup N', 'N is a [[normal subgroup]] whose elements will be treated as the [[identity]] in a [[quotient group]].', 'N'),
     'f': entry('the map f', 'f is the [[surjective]] [[homomorphism]] from G onto Q.', 'f'),
     'π': entry('the map pi', 'The Greek letter pi names a [[homomorphism]] or [[representation]].', '\\pi'),
-    'τ': entry('the matrix tau', 'The Greek letter tau names the invertible [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),
+    'τ': entry('the matrix tau', 'The [[Greek letter]] tau names the [[invertible]] [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),
     'ℓ': entry('the element ell', 'The Greek letter ell names an [[element]] of the [[subgroup]] L.', '\\ell'),
     'u': entry('the element u', 'u is a [[group]] element used for [[conjugation]].', 'u'),
     'c': entry('the element c', 'c is a [[group]] element that commutes with every element of L.', 'c'),
@@ -304,15 +394,15 @@
     if (symbol === '⨁') symbol = '⊕';
     if (NOTATION[symbol]) return NOTATION[symbol];
     if (symbol === 'Q' && /\\mathcal\s*Q/.test(tex || '')) return entry('the corona symbol Q',
-      'The calligraphic Q is the chosen name for this [[norm matrix corona]].', '\\mathcal Q');
+      'The [[calligraphic letter|calligraphic]] Q is the chosen name for this [[norm matrix corona]].', '\\mathcal Q');
     if (symbol === 'C' && /\\C|\\mathbb\s*\{?C/.test(tex || '')) return entry('the complex-number symbol C',
-      'The blackboard-style C names the [[complex number|complex numbers]].', '\\mathbb C');
+      'The [[blackboard-bold letter|blackboard-style]] C names the [[complex number|complex numbers]].', '\\mathbb C');
     if (symbol === 'C' && /C_[GH]/.test(tex || '')) return entry('the centralizer symbol C',
       'Here C names a [[centralizer]] inside the group shown as its subscript.', 'C');
     if (symbol === 'M' && /M_\{?d_n/.test(tex || '')) return entry('the matrix-set symbol M',
       'M names a [[set]] of square [[matrix|matrices]]. Its subscript gives the number of rows and columns.', 'M');
     if (symbol === 'd' && /\\mathbf\s*d/.test(tex || '')) return entry('the matrix-size sequence d',
-      'The bold letter d names the [[sequence]] of matrix sizes. Its nth entry is written \\(d_n\\).', '\\mathbf d');
+      'The [[bold letter]] d names the [[sequence]] of matrix sizes. Its nth entry is written \\(d_n\\).', '\\mathbf d');
     if (NAMED_OBJECTS[symbol]) return NAMED_OBJECTS[symbol];
     if (/^[ndij][∏⊕⨁∩⋂]$/.test(symbol)) {
       var operation = symbol.slice(-1).replace('⨁', '⊕').replace('⋂', '∩');
@@ -346,7 +436,7 @@
     if (symbol === '−1') return entry('inverse exponent',
       'A superscript −1 means [[inverse]]: the operation that undoes the named group element, matrix, or map.', '^{-1}');
     if (symbol === 'RadMF' || symbol === 'Rad' || symbol === 'MF') return entry('the MF-radical label',
-      'These letters are parts of the symbol for the [[MF radical]]. MF names the approximation rule and Rad abbreviates radical.', '\\operatorname{Rad}_{\\mathrm{MF}}');
+      'These letters are parts of the symbol for the [[MF radical]]. [[MF]] names the approximation rule and “Rad” abbreviates [[radical]].', '\\operatorname{Rad}_{\\mathrm{MF}}');
     if (symbol === 'ker') return entry('kernel abbreviation',
       'The letters ker abbreviate [[kernel]]: all inputs that the following map sends to the [[identity]].', '\\ker');
     if (symbol === 'isMF') return entry('is an MF group',
@@ -356,21 +446,21 @@
     if (symbol === 'Mdn') return entry('the matrix set at stage n',
       'This is the [[set]] of square [[matrix|matrices]] with \\(d_n\\) rows and columns and [[complex number|complex-number]] entries.', 'M_{d_n}(\\mathbb C)');
     if (symbol === 'Qd') return entry('the chosen norm matrix corona',
-      'The calligraphic Q names a [[norm matrix corona]], and the subscript d records its [[sequence]] of matrix sizes.', '\\mathcal Q_{\\mathbf d}');
+      'The [[calligraphic letter|calligraphic]] Q names a [[norm matrix corona]], and the [[subscript]] d records its [[sequence]] of matrix sizes.', '\\mathcal Q_{\\mathbf d}');
     if (symbol === 'U') return entry('the unitary-elements symbol U',
       'U selects the [[unitary matrix|unitary elements]] inside the surrounding matrix object.', '\\mathcal U');
     if (/^π:G→U\(Qd\)$/.test(symbol)) return entry('a representation pi from G',
-      'The Greek letter pi names a [[homomorphism]] from the [[group]] G to the unitary elements of the [[norm matrix corona]].', '\\pi\\colon G\\to\\mathcal U(\\mathcal Q_{\\mathbf d})');
+      'The [[Greek letter]] pi names a [[homomorphism]] from the [[group]] G to the [[unitary matrix|unitary elements]] of the [[norm matrix corona]].', '\\pi\\colon G\\to\\mathcal U(\\mathcal Q_{\\mathbf d})');
     if (symbol === 'Comp' || symbol === 'CompG') return entry('the compression-set label',
       'Comp abbreviates the [[set]] of group elements whose [[conjugation]] sends L back inside L. A subscript G names the surrounding [[group]].', '\\operatorname{Comp}_G');
     if (symbol === 'D') return entry('the compression-defect label',
-      'The decorated D is the chosen name for the [[normal closure]] of the compression [[commutator|commutators]].', '\\mathfrak D');
+      'The [[fraktur letter|ornate D]] is the chosen name for the [[normal closure]] of the compression [[commutator|commutators]].', '\\mathfrak D');
     if (symbol === 'CG') return entry('the centralizer in G',
       'This is the [[centralizer]] of L computed inside the [[group]] G.', 'C_G');
     if (symbol === '⟨' || symbol === '⟩') return entry('normal-closure bracket',
       'The doubled angle brackets enclose generators of a [[normal closure]]. A following subscript names the surrounding group.', '\\langle\\!\\langle d\\rangle\\!\\rangle');
     if (symbol === 'F') return entry('the field symbol F',
-      'The blackboard-style F names a [[field]]. The following subscript tells which field.', '\\mathbb F');
+      'The [[blackboard-bold letter|blackboard-style]] F names a [[field]]. The following [[subscript]] tells which field.', '\\mathbb F');
     if (symbol === 'EL') return entry('the elementary-group label EL',
       'EL names an [[elementary group]]. Its subscript gives the matrix size and its parenthesized input gives the entry [[ring]].', '\\operatorname{EL}');
     if (symbol === 'e') return entry('the elementary-matrix letter e',
@@ -463,6 +553,54 @@
       }
     }
     return null;
+  }
+
+  function linkedTerms(value, excludedTerm) {
+    var result = [];
+    var seen = {};
+
+    function add(term) {
+      if (!TERMS[term] || term === excludedTerm || seen[term]) return;
+      seen[term] = true;
+      result.push(term);
+    }
+
+    function scanPlainText(value) {
+      var text = String(value || '');
+      var cursor = 0;
+      while (cursor < text.length) {
+        var match = termAt(text, cursor, excludedTerm);
+        if (!match) {
+          cursor++;
+          continue;
+        }
+        add(match.term);
+        cursor += match.length;
+      }
+    }
+
+    var text = String(value || '');
+    var cursor = 0;
+    var pattern = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]|\\\(([\s\S]*?)\\\)/g;
+    var match;
+    while ((match = pattern.exec(text))) {
+      if (match.index > cursor) scanPlainText(text.slice(cursor, match.index));
+      if (match[3] == null) add(clean(match[1]));
+      cursor = pattern.lastIndex;
+    }
+    if (cursor < text.length) scanPlainText(text.slice(cursor));
+    return result;
+  }
+
+  function glossaryEntries() {
+    return Object.keys(TERMS).map(function (term) {
+      return {
+        term: term,
+        name: TERMS[term].name,
+        explanation: TERMS[term].explanation,
+        tex: TERMS[term].tex
+      };
+    });
   }
 
   function appendLinkedPlainText(node, value, excludedTerm) {
@@ -691,6 +829,8 @@
     sourceExplanation: sourceExplanation,
     notationExplanation: notationExplanation,
     explainTerm: explainTerm,
+    linkedTerms: linkedTerms,
+    glossaryEntries: glossaryEntries,
     renderTex: renderTex,
     decorate: decorate
   };

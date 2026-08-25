@@ -78,13 +78,14 @@ matrix corona
 %<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the matrix-sequence world used to test MF">
 % Read \(\mathbf d=(d_1,d_2,d_3,\ldots)\) as a [[sequence]] of positive whole
 % numbers: \(d_n\) is the number of rows and columns in the nth [[matrix]].
-% The calligraphic Q is simply the name of the object being defined.  On the
+% The [[calligraphic letter|calligraphic]] Q is simply the name of the object
+% being defined.  On the
 % right of the equals sign, \(\prod_n\) means an [[infinite product]] of matrix
 % choices and \(\bigoplus_n\) means the [[direct sum]] of choices that shrink
 % to zero.  The slash forms a [[quotient]], so two [[bounded sequence|bounded
 % sequences]] count as equal when the [[operator norm]] of their difference
-% has [[limit]] zero.  A [[group]] embeds here when it has a [[faithful]]
-% [[representation]] by these matrix sequences.
+% has [[limit]] zero.  A [[group]] has an [[embedding]] here when it has a
+% [[faithful]] [[representation]] by these matrix sequences.
 %</webmath>
 %<webmath object="Mdn" when="M_{d_n}(\C)" title="the square matrices used at stage n">
 % \(M_{d_n}(\C)\) is the [[set]] of all square [[matrix|matrices]] with
@@ -107,7 +108,8 @@ matrix corona
 % zero in the [[norm matrix corona]].
 %</webmath>
 %<webmath object="C" when="M_{d_n}(\C)" title="the number system used for matrix entries">
-% The blackboard-style C, \(\C\), means the [[complex number|complex numbers]].
+% The [[blackboard-bold letter|blackboard-style]] C, \(\C\), means the
+% [[complex number|complex numbers]].
 % They include ordinary real numbers and numbers involving \(i\), where
 % \(i^2=-1\).  They are the entries used in the paper's [[unitary matrix|unitary
 % matrices]] and the coordinates in its [[vector space|vector spaces]].
@@ -144,7 +146,8 @@ For a countable group $G$, define its MF radical by
 % subgroup]] of the [[group]] G.  It contains exactly the elements that every
 % [[homomorphism]] from G into every [[norm matrix corona]] sends to the
 % [[identity]].  In plainer words, these are the group moves that no allowed
-% finite-matrix experiment can distinguish from doing nothing.
+% [[finite-matrix model|finite-matrix experiment]] can distinguish from doing
+% nothing.
 %</webmath>
 %<webmath object="d⋂" when="\bigcap_{\mathbf d}" title="requiring the condition for every choice of matrix sizes">
 % The symbol \(\bigcap\) means [[intersection]].  The bold d underneath it
@@ -153,8 +156,9 @@ For a countable group $G$, define its MF radical by
 % holds for every possible choice of finite matrix sizes.
 %</webmath>
 %<webmath object="π:G→U(Qd)⋂" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}" title="checking every allowed map from G">
-% After a matrix-size [[sequence]] is chosen, the Greek letter \(\pi\) names a
-% [[homomorphism]].  The notation \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\)
+% After a matrix-size [[sequence]] is chosen, the [[Greek letter]] \(\pi\),
+% read “pi,” names a [[homomorphism]].  The notation
+% \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\)
 % says that its inputs come from the [[group]] G and its outputs are [[unitary
 % matrix|unitary elements]] of the [[norm matrix corona]].  The second
 % \(\bigcap\) is another [[intersection]], so the condition must hold for every
@@ -249,15 +253,16 @@ For a subgroup $L\le G$, put
 \]
 and define its \emph{compression--centralizer defect} by
 %<webmath object="DG" when="\mathfrak D_G(L)" title="everything forced by the listed failures to commute">
-% The decorated letter \(\mathfrak D_G(L)\) names the [[normal closure]] in G
-% of the listed [[commutator|commutators]].  Inside the braces, the colon means
+% The [[fraktur letter|ornate letter]] \(\mathfrak D_G(L)\) names the [[normal
+% closure]] in G of the listed [[commutator|commutators]].  Inside the braces,
+% the colon means
 % “subject to”: u lies in \(\operatorname{Comp}_G(L)\), c lies in the
 % [[centralizer]] \(C_G(L)\), and \(\ell\) lies in L.  The bracket
 % \([ucu^{-1},\ell]\) abbreviates
 % \(ucu^{-1}\ell u c^{-1}u^{-1}\ell^{-1}\).  The double angle brackets mean
 % “take the smallest [[normal subgroup]] of G containing every such result.”
-% The theorem shows that certain rigid subgroups inside it are erased by every
-% map to an [[MF group]].
+% The theorem shows that certain [[rigidity|rigid]] subgroups inside it are
+% erased by every map to an [[MF group]].
 %</webmath>
 \begin{equation}\label{eq:intrinsic-defect}
  \mathfrak D_G(L)
@@ -310,11 +315,12 @@ below answers the question.
 % self-copying rule to construct the [[matrix]] \(\tau\).
 %</webmath>
 %<webmath object="F2" when="L_{\F_2}(1,2)" title="the number system containing only 0 and 1">
-% \(\F_2\), read “F two,” is the [[field]] containing only 0 and 1.  Its
+% \(\F_2\), read “F two,” uses a [[blackboard-bold letter]] F and is the
+% [[field]] containing only 0 and 1.  Its
 % arithmetic has \(1+1=0\), so its only nonzero [[scalar]] is 1.  The subscript
 % 2 records the number of elements in the field.  Later this prevents a
 % [[scalar]] multiple of the [[identity matrix]] from hiding in the
-% [[centralizer|center]] of H, which helps prove that H is a [[simple group]].
+% [[center]] of H, which helps prove that H is a [[simple group]].
 %</webmath>
 Let $L_{\F_2}(1,2)$ denote the binary Leavitt algebra.  It is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
@@ -329,7 +335,7 @@ $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to
 % add up to the [[identity]] 1.
 %</webmath>
 %<webmath object="δij" when="t_i s_j=\delta_{ij}" title="a symbol that chooses 1 when i equals j and 0 otherwise">
-% The Greek letter \(\delta\), read “delta,” is the [[Kronecker delta]].  The
+% The [[Greek letter]] \(\delta\), read “delta,” is the [[Kronecker delta]].  The
 % subscripts i and j are [[index|indices]].  The expression \(\delta_{ij}\)
 % equals 1 when i and j are the same index and equals 0 when they are different.
 % Consequently, the equation \(t_i s_j=\delta_{ij}\) is a short way to state
@@ -380,8 +386,8 @@ In particular, $H$ is non-MF.
 \end{mainthm}
 
 %<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the matrix tau that carries L back inside L">
-% The Greek letter \(\tau\), read “tau,” names a particular invertible
-% 12-by-12 [[matrix]] constructed later.  The exponent \(-1\) means
+% The [[Greek letter]] \(\tau\), read “tau,” names a particular [[invertible]]
+% 12-by-12 [[matrix]] constructed later.  The [[superscript]] \(-1\) means
 % [[inverse]].  The product \(\tau L\tau^{-1}\) means apply [[conjugation]] by
 % tau to every element of the [[subgroup]] L.  The symbol \(\le\) says every
 % result still lies in L, although not every element of L must be reached.
@@ -1113,8 +1119,8 @@ in $H$.  Then
 % The letter q abbreviates the [[Leavitt algebra]] product \(s_1t_1\).  If q
 % were zero, multiplying it on the left by \(t_1\) and on the right by \(s_1\)
 % would still give zero.  But the defining equations give \(t_1qs_1=1\), so
-% q cannot be zero.  Its nonzero position away from the main diagonal makes d
-% different from the [[identity matrix]].
+% q cannot be zero.  Its [[nonzero]] [[off-diagonal|position away from the main
+% diagonal]] makes d different from the [[identity matrix]].
 %</webmath>
 \[
  c\in C_H(L),\qquad d=e_{02}(q)\ne1,
@@ -1242,7 +1248,8 @@ MF-visible quotients is an isomorphism:
 %<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
 % Each slash forms a [[quotient group]] by removing the corresponding [[MF
 % radical]].  The symbol \(\cong\) means there is an [[isomorphism]]: a
-% reversible structure-preserving pairing between the two quotients.  Because
+% reversible pairing that preserves multiplication between the two quotients.
+% Because
 % the [[kernel]] of f is already MF-invisible, every finite-matrix
 % [[representation]] of G [[factors through]] f.  After the invisible elements
 % are removed, G and Q therefore retain exactly the same group structure.
@@ -1280,7 +1287,8 @@ countable group $Q$, define
 % [[representation|representations]] cannot detect.
 %</webmath>
 %<webmath object="Q" when="B*_A(Q\times A)" title="the chosen group Q that remains detectable">
-% Q is any chosen [[group]] with a listable number of elements.  The
+% Q is any chosen [[countable]] [[group]], meaning its elements can be put in a
+% list.  The
 % construction builds \(W_Q\) around this Q.  The [[homomorphism]] \(\pi_Q\)
 % recovers Q, and every homomorphism from \(W_Q\) to an [[MF group]] [[factors
 % through]] \(\pi_Q\).  Thus the MF target receives exactly the Q-part.
@@ -1298,8 +1306,8 @@ where $A\to Q\times A$ is the inclusion into the second factor.  The maps
 from $B$ and $Q\times A$ to $Q$ that are respectively trivial and the
 projection onto $Q$ agree on $A$.  They therefore define an epimorphism
 %<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
-% The Greek letter \(\pi\), read “pi,” names a [[homomorphism]], and the
-% subscript Q records its destination.  The colon and arrow say its inputs are
+% The [[Greek letter]] \(\pi\), read “pi,” names a [[homomorphism]], and the
+% [[subscript]] Q records its destination.  The colon and arrow say its inputs are
 % in \(W_Q\) and its outputs are in Q.  It sends every B-element to the
 % [[identity]] and sends each ordered pair \((q,a)\) in the [[direct product]]
 % \(Q\times A\) to q.  Every q is reached, so the map is [[surjective]].  Its
@@ -1319,7 +1327,7 @@ precomposition with $\pi_Q$ is a bijection
 % \(\operatorname{Hom}(Q,T)\) is the [[set]] of all [[homomorphism|homomorphisms]]
 % from the [[group]] Q to the group T.  The arrow sends such a map h to the
 % two-stage map \(h\circ\pi_Q\) from \(W_Q\) to T; this is called
-% precomposition with \(\pi_Q\).  The statement says this arrow is a
+% [[precomposition]] with \(\pi_Q\).  The statement says this arrow is a
 % [[bijection]]: every map on either side corresponds to exactly one map on the
 % other side.  Consequently, T receives no information from \(W_Q\) beyond Q.
 %</webmath>

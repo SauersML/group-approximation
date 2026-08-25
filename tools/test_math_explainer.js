@@ -152,18 +152,74 @@ function notationTokens(node, result = []) {
 }
 
 assert.equal(coveredFormulas.length, 24);
+const rootExplanations = declarations.map(declaration => declaration.explanation);
 for (let group = 0; group < coveredFormulas.length; group++) {
   const formula = coveredFormulas[group];
   const candidates = declarations.filter(declaration => declaration.group === group);
   const tree = katex.__renderToHTMLTree(formula, {
     macros: Object.assign({}, macros), displayMode: true, strict: false
   });
-  const unexplained = [...new Set(notationTokens(tree))].filter(token =>
-    !api.sourceExplanation(token, formula, candidates) &&
-    !api.notationExplanation(token, formula));
+  const unexplained = [];
+  for (const token of [...new Set(notationTokens(tree))]) {
+    const info = api.sourceExplanation(token, formula, candidates) ||
+      api.notationExplanation(token, formula);
+    if (!info) unexplained.push(token);
+    else rootExplanations.push(info.explanation);
+  }
   assert.deepEqual(unexplained, [],
     `formula group ${group} contains unexplained notation: ${unexplained.join(', ')}`);
 }
+
+const glossary = api.glossaryEntries();
+const glossaryByTerm = new Map(glossary.map(item => [item.term, item]));
+assert.ok(glossary.length >= 100,
+  'the explainer needs a foundational glossary, not only paper-specific jargon');
+for (const item of glossary) {
+  assert.equal(item.name, item.term, item.term + ' must use its familiar name');
+  assert.ok(item.explanation.length >= 45,
+    item.term + ' needs more than a circular label');
+  for (const match of item.explanation.matchAll(/\[\[([^|\]]+)/g)) {
+    assert.ok(glossaryByTerm.has(match[1]),
+      item.term + ' links missing glossary term ' + match[1]);
+  }
+  for (const match of item.explanation.matchAll(/\\\(([\s\S]*?)\\\)/g)) {
+    const node = { innerHTML: '' };
+    api.renderTex(node, match[1]);
+    assert.match(node.innerHTML, /class="katex"/,
+      item.term + ' contains invalid inline explanation math');
+  }
+}
+
+for (const term of [
+  'approximation', 'blackboard-bold letter', 'bold letter', 'calligraphic letter',
+  'complex conjugate', 'coordinate', 'corona', 'countable', 'diagonal',
+  'embedding', 'equation', 'finite-matrix model', 'fraktur letter', 'Greek letter',
+  'invertible', 'MF', 'model', 'multiplication error', 'nonidentity', 'nonzero',
+  'off-diagonal', 'ordered pair', 'precomposition', 'radical', 'rigidity',
+  'subscript', 'superscript', 'symbol', 'transpose', 'variable'
+]) {
+  assert.ok(glossaryByTerm.has(term), term + ' needs a followable explanation');
+}
+assert.match(glossaryByTerm.get('MF').explanation, /matricial field/,
+  'the initials MF must be expanded');
+assert.match(glossaryByTerm.get('corona').explanation, /nothing to do with the Sun/,
+  'corona must be disambiguated from the everyday meaning');
+
+const reachableTerms = new Set();
+const queue = [...rootExplanations];
+while (queue.length) {
+  const explanation = queue.shift();
+  for (const term of api.linkedTerms(explanation)) {
+    if (reachableTerms.has(term)) continue;
+    reachableTerms.add(term);
+    queue.push(glossaryByTerm.get(term).explanation);
+  }
+}
+const unreachableTerms = glossary
+  .map(item => item.term)
+  .filter(term => !reachableTerms.has(term));
+assert.deepEqual(unreachableTerms, [],
+  'remove or connect unused glossary terms: ' + unreachableTerms.join(', '));
 
 assert.equal(api.explainTerm('homomorphism').name, 'homomorphism');
 assert.equal(api.explainTerm('MF group').name, 'MF group');
