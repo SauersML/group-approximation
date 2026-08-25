@@ -172,6 +172,16 @@ because its rectangular completions need not be restrictions of two full
 unitaries on the marked source projection.  This is precisely the typing
 loophole realized by the existing Morita model.
 
+There is nevertheless now a fixed nonadaptive common carrier available for
+an occurrence compiler.  `seventeen-root-star-has-marked-triple-overlap`
+proves that the prescribed roots `x_42(q)` and `x_52(q)` have triple overlap
+at least `(13/256)tau(P_z)` with the mark.  Weyl two-transitivity, rather than
+coordinatewise pair selection, supplies this pair.  These are same-coefficient
+root-position channels, so substituting their Weyl maps for the two native
+unequal-scale coefficient transports would erase the selector semantics.
+The remaining task is to install the actual two scale rows on this common
+root carrier or authenticate `(NCG1a)` for their own relative word.
+
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
 a third balance pair can equate the two gauge ranks only after its cyclic

@@ -33,6 +33,7 @@ artifacts:
   - research/commuting-double-commutator-has-direct-mark-overlap.md
   - research/involution-normal-product-forces-one-factor-overlap.md
   - research/root-valued-relative-transport-forces-cross-gram.md
+  - research/seventeen-root-star-has-marked-triple-overlap.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -229,6 +230,23 @@ floor proves `(NCG1)` with `gamma=1/4`.  What remains is therefore an exact
 occurrence-typing question: the two native stabilized selector maps must be
 those full-unitary restrictions.  The rectangular countermodel shows that
 coefficient-path equality without this typing is insufficient.
+
+The direct floor also creates a prescribed positive common carrier for two
+ordinary root-position channels.  The seventeen commuting roots
+`x_(i,2)(q)`, `4<=i<=20`, are two-transitively permuted by Weyl words fixing
+`z`.  `seventeen-root-star-has-marked-triple-overlap` combines that symmetry
+with a second moment to prove
+
+```text
+tau(P_z P_(x_42(q)) P_(x_52(q))) >= (13/256)tau(P_z).
+```
+
+This removes both adaptive pair selection and vanishing carrier mass for a
+fixed two-channel root packet.  The two channels are still same-coefficient
+root-position transports, not the unequal-scale coefficient transports in
+the selector rows.  The next construction must make those scale rows act on
+this fixed triple carrier, or prove that their native relative word has the
+root-valued form above.
 
 The seventh route supplies a concrete moving-coefficient family, but is now
 also refuted by fixed-centralizer properness after an exponent-two triangle
