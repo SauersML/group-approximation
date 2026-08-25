@@ -12,6 +12,10 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
+  - GroupApproximation/Sofic/FullMFRadicalPullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalQuotientLattice.lean
+  - GroupApproximation/Sofic/FullMFRadicalVisibleLocalization.lean
 ---
 
 # Proof
@@ -191,5 +195,98 @@ H --> G/C(G).
 The target is core-free, so the universal property factors this map through
 `H/C(H)`.  The resulting map is a left inverse to the map induced by `f`.
 Surjectivity of `f` makes the induced map onto, hence it is an isomorphism.
+
+The same hypotheses determine the source core before quotienting.  Functoriality
+gives
+
+```text
+C(G) <= f^(-1)(C(H)).
+```
+
+For the reverse inclusion, take `x` with `f(x)` in `C(H)`.  Exactness of the
+core image supplies `c in C(G)` with `f(c)=f(x)`.  Then `x c^(-1)` lies in the
+kernel, hence in `C(G)`, and therefore `x` lies in `C(G)`.  This proves the
+pullback formula (17).
+
+If the target is core-free, functoriality first gives `C(G) <= ker(f)`.  When
+the kernel is intrinsically full, maximality gives the reverse inclusion.
+This proves (18) without requiring `f` to be onto.
+
+For the genuine corona residual, intrinsic fullness of the kernel first puts
+`ker(f)` inside `Rad_MF(G)`.  Every corona representation of `G` therefore
+factors uniquely through the surjection `f`.  Intersecting kernels before and
+after factorization gives
+
+```text
+Rad_MF(G) = f^(-1)(Rad_MF(H)).
+```
+
+This proves (19).  If the target residual is trivial, functoriality gives the
+upper inclusion in (20).  For the reverse inclusion, the inclusion
+`ker(f) --> G` maps the full residual of the kernel into `Rad_MF(G)`.  Hence
+the residual equals the kernel, without a surjectivity assumption.
+
+For the closure pullback, let `N` be normal in `G`.  An element of
+`Cl_MF^G(N)` is killed by every corona representation of `G` that kills `N`.
+Composing a representation of `H` that kills `f(N)` with `f` proves
+
+```text
+Cl_MF^G(N) <= f^(-1)(Cl_MF^H(f(N))).
+```
+
+Conversely, `ker(f) <= Rad_MF(G)` makes every corona representation of `G`
+factor through `f`.  If such a representation kills `N`, its factor on `H`
+kills `f(N)`.  Therefore every element of the displayed preimage is killed,
+which proves (21).
+
+If `Cl_MF^G(N)=N`, then the residual containment
+`Rad_MF(G) <= Cl_MF^G(N)` gives `ker(f) <= N`.  Mapping (21) onto `H` gives
+`Cl_MF^H(f(N))=f(N)`.  Conversely, these two conditions turn (21) into
+
+```text
+Cl_MF^G(N)=f^(-1)(f(N))=N,
+```
+
+which proves (22).  For countable groups, applying the characterization
+
+```text
+Cl_MF^G(N)=N  <=>  G/N is MF
+```
+
+on both sides of (22) proves (23).
+
+For (24), regard an MF-closed normal subgroup together with its normality and
+closure equation as one ordered object.  Formula (22) shows that image along
+`f` and inverse image along `f` preserve these objects.  The subgroup identities
+
+```text
+f(f^(-1)(M)) = M,
+f^(-1)(f(N)) = N  when ker(f) <= N
+```
+
+show that the two operations are mutually inverse.  The same identities show
+that they preserve and reflect inclusion.
+
+For (25), apply the radical pullback formula to `f`.  If `g(f(x))=1`, then
+`f(x)` lies in `ker(g)`, hence in `Rad_MF(H)`.  Pulling this membership back
+along `f` puts `x` in `Rad_MF(G)`.  Images of subgroups satisfy
+
+```text
+(g o f)(N) = g(f(N)),
+```
+
+so the two order isomorphisms compose.
+
+Every homomorphism `f : G --> H` induces a map
+
+```text
+G/Rad_MF(G) --> H/Rad_MF(H)
+```
+
+by functoriality of the radical.  Under the hypotheses above, surjectivity of
+`f` makes this map onto.  If the class of `x` maps to the identity, then
+`f(x)` lies in `Rad_MF(H)`; the pullback formula puts `x` in `Rad_MF(G)`, so
+its original class was already the identity.  The induced map is therefore
+bijective and hence an isomorphism, proving (26).
 
 The Lean proof follows these steps directly.

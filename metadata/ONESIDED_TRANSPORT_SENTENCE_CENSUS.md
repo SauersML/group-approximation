@@ -1,7 +1,7 @@
 # One-sided transport: sentence-level formalization census
 
 An exhaustive, sentence-level sweep of `non_mf_groups_exist.tex`
-(*Groups invisible to finite-matrix limits*) from `\begin{abstract}` to
+(*Not Every Group Is MF*) from `\begin{abstract}` to
 `\section*{Acknowledgments}`, against the Lean development.  The current
 manuscript has 1362 lines; the direct simplicity proof and every later row have
 been re-keyed to the current text, and every status and declaration below has

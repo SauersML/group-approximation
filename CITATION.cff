@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "Please cite this repository."
-title: "An explicit sofic group that is not MF"
+title: "Not Every Group Is MF"
 type: software
 authors:
   - family-names: "Sauers"
 version: 0.3.0
-date-released: 2026-08-20
+date-released: 2026-08-24
 license: Apache-2.0
 repository-code: "https://github.com/SauersML/group-approximation"

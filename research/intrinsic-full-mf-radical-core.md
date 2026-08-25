@@ -10,6 +10,10 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
+  - GroupApproximation/Sofic/FullMFRadicalPullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean
+  - GroupApproximation/Sofic/FullMFRadicalQuotientLattice.lean
+  - GroupApproximation/Sofic/FullMFRadicalVisibleLocalization.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -178,13 +182,105 @@ is an isomorphism.  Thus adjoining or removing an intrinsically full kernel
 does not change the core-free image.  Full-kernel extensions become
 equivalences after applying the core-free reflection.
 
-The construction and equations (1)--(16) are formalized in
+The core itself satisfies the corresponding pullback formula.  If `f : G --> H`
+is onto and `ker(f)` is intrinsically full, then
+
+```text
+Core_MF(G) = f^(-1)(Core_MF(H)).                     (17)
+```
+
+Consequently, if the target is core-free, the source core is exactly the
+kernel:
+
+```text
+Core_MF(H)=1 and Core_MF(ker(f))=ker(f)
+    => Core_MF(G)=ker(f).                             (18)
+```
+
+Surjectivity is not needed in (18).  The genuine norm-matrix-corona residual
+obeys the full pullback formula as well.  Under the hypotheses of (17),
+
+```text
+Rad_MF(G) = f^(-1)(Rad_MF(H)).                        (19)
+```
+
+For a core-free target, the resulting exact kernel formula does not require
+surjectivity:
+
+```text
+Rad_MF(H)=1 and Rad_MF(ker(f))=ker(f)
+    => Rad_MF(G)=ker(f).                              (20)
+```
+
+Thus a homomorphism with an intrinsically invisible kernel and a fully visible
+target computes the invisible part of its source exactly.
+
+The pullback formula extends from the radical to every normal relation
+subgroup.  If `f : G --> H` is onto and
+`ker(f) <= Rad_MF(G)`, then for every normal `N <= G`,
+
+```text
+Cl_MF^G(N) = f^(-1)(Cl_MF^H(f(N))).                  (21)
+```
+
+Consequently, the MF-closed normal subgroups of `G` are exactly the inverse
+images of the MF-closed normal subgroups of `H`:
+
+```text
+Cl_MF^G(N)=N
+  <=> ker(f) <= N and Cl_MF^H(f(N))=f(N).            (22)
+```
+
+For countable groups, the fixed points of this closure are precisely the
+normal subgroups with MF quotient.  Hence
+
+```text
+G/N is MF
+  <=> ker(f) <= N and H/f(N) is MF.                  (23)
+```
+
+Thus an MF-invisible kernel preserves not only the universal visible quotient,
+but the complete family of MF quotients above that kernel.
+
+Image and inverse image preserve inclusion and are mutually inverse on the
+MF-closed normal subgroups.  They therefore give an order isomorphism
+
+```text
+{N normal in G : G/N is MF}
+    ~= {M normal in H : H/M is MF}.                  (24)
+```
+
+The class of surjections with MF-invisible kernel is closed under composition,
+and the order isomorphism for a composite is the composite of the two order
+isomorphisms:
+
+```text
+ker(f) <= Rad_MF(G), ker(g) <= Rad_MF(H)
+  => ker(g o f) <= Rad_MF(G),                        (25)
+```
+
+with the corresponding quotient-kernel identifications composed in the same
+order.  Finally, the induced map on the universal visible quotients is an
+isomorphism:
+
+```text
+G/Rad_MF(G)  ~=  H/Rad_MF(H).                        (26)
+```
+
+Thus MF-invisible surjections are inverted simultaneously by the universal
+visible quotient and by the complete ordered family of MF quotients.
+
+The construction and equations (1)--(26) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
 `GroupApproximation/Sofic/FullMFRadicalProducts.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExtensions.lean` and
-`GroupApproximation/Sofic/FullMFRadicalLocalization.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalLocalization.lean` and
+`GroupApproximation/Sofic/FullMFRadicalPullback.lean` and
+`GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean` and
+`GroupApproximation/Sofic/FullMFRadicalQuotientLattice.lean` and
+`GroupApproximation/Sofic/FullMFRadicalVisibleLocalization.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION
