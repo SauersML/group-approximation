@@ -1086,6 +1086,35 @@ $H$ were MF, its identity homomorphism would contradict this conclusion.
 
 \section{MF-visible quotients}\label{sec:prescribed-quotients}
 
+The MF radical is exact across every surjection whose kernel is already
+MF-invisible.
+
+\begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
+Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
+$\ker f\le\Rad_{\mathrm{MF}}(G)$, then
+%<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="the MF-invisible part of G is exactly the preimage of the MF-invisible part of Q">
+% The assumption says that every finite-matrix-limit representation of G
+% already erases the kernel of f.  Such a representation therefore descends
+% uniquely to Q.  An element of G is erased by every representation precisely
+% when its image in Q is erased by every representation of Q.
+%</webmath>
+\[
+ \Rad_{\mathrm{MF}}(G)
+ =f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
+\]
+In particular, the conclusion holds whenever
+$\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
+\end{proposition}
+
+\begin{proof}
+Every corona homomorphism from $G$ kills $\ker f$ and therefore factors
+uniquely through $f$.  Conversely, composing a corona homomorphism of $Q$
+with $f$ gives one of $G$.  The two families of kernels have the displayed
+intersection.  For the final assertion, functoriality of the MF radical under
+the inclusion $\ker f\to G$ gives
+$\ker f\le\Rad_{\mathrm{MF}}(G)$.
+\end{proof}
+
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
 countable group $Q$, define
