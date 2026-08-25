@@ -38,7 +38,7 @@ Indeed the word on the left freely reduces to the conjugate by `D_u` of the
 one base discrepancy `[c,h]z^(-1)`.
 
 Suppose, in addition, that there is one constant `A_times` such that for all
-binary tails `a,b` and unequal bits `i!=j`,
+binary tails `a,b` of the same length and unequal bits `i!=j`,
 
 ```text
 Area([c_(ia),h_(jb)])<=A_times.                           (MTR4)
@@ -73,5 +73,9 @@ right coefficient context around the single defining ring relation
 in the vertex definitions.
 
 The reduction does not identify exact context absorption with bounded area.
-That quantitative comparison is precisely
-`binary-leavitt-first-mismatch-morita-area-cell`.
+Its quantitative premise is refuted by
+`level-synchronous-first-mismatch-area-is-centralizer-impossible`: freezing
+one column at each level and conjugating it to the base involution produces
+arbitrarily large bounded-area centralizer sections.  The stronger
+asynchronous premise is separately refuted by
+`unsynchronized-first-mismatch-area-is-centralizer-impossible`.

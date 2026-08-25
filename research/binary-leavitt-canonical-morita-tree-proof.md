@@ -29,8 +29,9 @@ reduction,
  =D_p[c_(ia),h_(jb)]D_p^(-1).                            (2)
 ```
 
-Hence the assumed first-mismatch bound `(MTR4)` pays every off-diagonal cell
-with the same number of defining relators.
+The two tails in `(2)` have the same length because the original vertices do.
+Hence the assumed level-synchronous first-mismatch bound `(MTR4)` pays every
+off-diagonal cell with the same number of defining relators.
 
 Finally `(SMI2)` says that the outer branch `D_i` multiplies an `X`-root
 coefficient on the right by `t_i`, while `D_j` multiplies a `Y`-root
