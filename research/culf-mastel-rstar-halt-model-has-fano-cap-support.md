@@ -44,6 +44,16 @@ no-Fano-line support conclusion.
   copies of the full seven-point relation are already a pruning fixed point.
 - Passing to an extreme trace does not force it either; see
   `extreme-traces-and-local-pruning-do-not-select-fano-caps`.
+- Even uniqueness and global support minimality do not force the needed
+  property by any black-box principle.
+  `matrix-conj-forces-unsafe-support`
+  appends a uniquely tracial `M_4` magic-square AND block to a tracial
+  non-`R^U` source, so every trace has the same affine-unsafe context.
+  `rstar-cap-selection-unstable-under-matrix-conj`
+  then pushes that context through the exact `R_*` witness-section
+  obstruction and shows that every lifted trace has a non-cap occurrence.
+  This does not decide the particular HALT family, but it eliminates trace
+  uniqueness/support minimality as a generic proof of FC-char.
 - Minimal-support selection may shrink a particular satisfying face, but no
   theorem currently shows that a support-minimal perfect CE model of the
   Culf--Mastel instance cannot retain a forced Fano line.  This is the exact
