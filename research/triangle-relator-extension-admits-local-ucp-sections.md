@@ -229,6 +229,15 @@ Ioana--Spaas--Wiersma mechanism), per
   the control is on one vector rather than the whole packet, and a trivial
   quotient summand cannot be removed because the tree defect need not have
   zero augmentation.
+- **Scalar quotient leakage is exact, not merely a caveat (2026-08-25).**
+  `positive-tree-choi-gap-does-not-force-ideal-support` evaluates the tree
+  Fourier defect on the trivial source block of `C^*(H)` and then by the
+  augmentation of `Q`.  The resulting positive Choi state has value exactly
+  `1-[H:H intersect P_13]^(-1)>0`, but its pullback is the one-dimensional
+  trivial representation and has zero ideal support.  Post-centering the
+  defect to have zero augmentation kills this entire value.  Hence support
+  control now requires a second separator estimate modulo the augmentation
+  Choi face; neither positivity nor the existing tree value forces it.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.

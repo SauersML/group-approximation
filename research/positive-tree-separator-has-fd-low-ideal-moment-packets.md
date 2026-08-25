@@ -61,7 +61,10 @@ does not close the finite-reservoir problem for three independent reasons.
    vanishing on the whole finite-dimensional packet.
 2. The packet may contain a quotient/trivial summand.  The tree defect
    `id-M_(P_13)` need not vanish under the augmentation character, so deleting
-   that summand can destroy `(PTF3)`.
+   that summand can destroy `(PTF3)`.  In fact
+   `positive-tree-choi-gap-does-not-force-ideal-support` gives a canonical
+   positive Choi state supported entirely on augmentation with tree value
+   `1-[H:H intersect P_13]^(-1)`.
 3. The uniform repair problem asks that one affine ideal reservoir meet the
    relative-unital Choi cone for **every** packet.  Producing one low-moment
    vector packet for each reservoir gives neither feasibility nor
