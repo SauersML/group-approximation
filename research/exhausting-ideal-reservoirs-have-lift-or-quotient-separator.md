@@ -103,5 +103,14 @@ do exist, but for the independent reason proved in
 on both sides of `(ERD4)` and therefore cannot serve as a diagnostic for
 failure of uniform reservoir depth.
 
+On the concrete three-face system, the complementary separator branch is
+further constrained by
+`three-face-quotient-separators-retain-a-tree-face-component`: compatible
+symmetry averaging preserves the separation gap, but no resulting separator
+can be supported on one face.  In particular it cannot collapse to the
+closing-face prefix Gram/cyclic-holonomy witness, because the closing-face
+Fourier expectation has an explicit ucp lift.  A positive-distance separator
+must retain a genuinely transverse tree-face component.
+
 DERIVATION
 exhausting-reservoir-distance-dichotomy-proof

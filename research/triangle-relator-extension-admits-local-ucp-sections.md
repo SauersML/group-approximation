@@ -187,6 +187,21 @@ Ioana--Spaas--Wiersma mechanism), per
   independently of whether the exhausting-reservoir distance tends to zero
   or stays positive, and a general signed Choi separator cannot be converted
   into such a positive vector witness without an additional theorem.
+- **Symmetry averaging cannot reduce a quotient separator to the kernel-cycle face.**
+  `three-face-quotient-separators-retain-a-tree-face-component` starts from a
+  persistent-distance separator `(ERD3)` on `S_Delta` and averages it over any
+  finite compatible triangle symmetries.  The gap survives unchanged.  But
+  every subgroup Fourier expectation onto `P_12`, `P_23`, or `P_13` is ucp
+  and liftable; for `P_13` the lift is exactly the explicit finite-face
+  section.  Testing the separator on these three maps proves that it cannot
+  factor through restriction to any one face.  In particular the finite
+  prefix Gram/cyclic-holonomy functional is `P_13`-local and cannot be the
+  averaged separator.  At the `(3,3,4)` diagram, compatible inner averaging
+  reduces to the common `P_0` action (up to diagram automorphisms), and every
+  diagram symmetry fixes the unique type-`4` closing face.  The surviving
+  normal form therefore contains an essential symmetry-invariant tree-face
+  component.  This rules out the hoped-for one-face dual contradiction and
+  identifies the genuinely multi-face functional that remains to be killed.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
