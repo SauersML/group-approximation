@@ -276,6 +276,13 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Sec. 7: "The resulting quotient is `Q`, with quotient map induced by `\pi_Q`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCamouflageQuotientIsVisibleGroup` | closed |
 | `thm:commutant`, the displayed three-line conjugation computation, in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugationDisplay` | closed |
 | `thm:commutant`: "Thus `\rho(u)^{-1}C\rho(u)\subseteq C`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugationInclusion` | closed |
+| `thm:commutant`, the composition step of the printed conjugation chain | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugationChain` | closed |
+| `thm:commutant`: "Thus `\rho(u)^{-1}C\rho(u)\subseteq C`", by the fixed-submodule route | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugateInclusion` | closed |
+| Proof of `lem:stable-finite`: the printed polar correction on one matrix block at the `L^2` operator norm | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOneSidedPolarCorrection` | closed |
+| Proof of `lem:stable-finite`: "Thus `v` is represented by unitaries and `vv^*=1`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOneSidedUnitaryRepresentatives` | closed |
+| Proof of `thm:normal-kazhdan`: "The commutation relation in the corona gives" the vanishing displacement | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaCommutationVanishing` | closed |
+| Proof of `thm:normal-kazhdan`: both unitarity defects of the compressed corner converge to zero | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBothCornerUnitarityDefects` | closed |
+| Sec. 5: the binary Leavitt algebra is purely infinite simple, proved in-repo rather than cited | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedBinaryLeavittPurelyInfiniteSimple` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
