@@ -55,7 +55,8 @@ step is to assemble those germs into one nonzero finitely generated
 projective corona module carrying a unital action of `R`.  Rank-germ
 Hilbert-hotel cancellation would then force that module to vanish.
 
-There are now seven sharply separated routes.
+There are now seven sharply separated analyzed routes; the seventh is
+refuted below.
 
 1. Assemble finite root germs into one finite-projective norm-corona
    coefficient module and apply rank-germ Hilbert-hotel cancellation.
@@ -75,9 +76,9 @@ There are now seven sharply separated routes.
    scale-changing selector rows whose controlled groupifications retain one
    common multiplicity involution; their incompatible affine rank equations
    then force a fixed normalized-HS defect.
-7. Use the nested prefix idempotent roots as an infinite complete graph whose
-   pairwise differences are conjugate to the mark, and prove a uniform
-   filling-area bound for those conjugacy-difference identities.
+7. The refuted nested-prefix route uses idempotent roots as an infinite
+   complete graph whose pairwise differences are conjugate to the mark; its
+   required uniform filling-area bound is algebraically impossible.
 
 The fourth route proves that positive carrier density, global module gluing,
 off-diagonal Leavitt rows and exact `M_2/M_4` packet ranks are unnecessary at
@@ -90,9 +91,9 @@ The fifth route has a different open seam.  Infinite orbit geometry is not
 enough: choosing representatives introduces stabilizer holonomy whose
 relator cost can grow with address length.  It needs a bounded-area section
 or another finite-coordinate coherence mechanism.  Thus the two live
-frontiers are now explicit: authenticate a Leavitt return on one prescribed
-atom, or authenticate an infinite-chromatic commutator code at bounded
-presentation cost.
+frontiers for these branches are explicit: authenticate a Leavitt return on
+one prescribed atom, or authenticate an infinite-chromatic commutator code
+at bounded presentation cost.
 
 The tempting composition with the already proved Leavitt nonsoficity theorem
 has also been audited.  A surviving torsion mark does reblock to a faithful
