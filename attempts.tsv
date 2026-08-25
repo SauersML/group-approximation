@@ -201,3 +201,4 @@
 32869503061	2026-08-25T16:02:59Z	GroupApproximation/Sofic/AvatarRouterInstance.lean	avatarLength_le_srcAvatarWord
 32875009653	2026-08-25T16:58:05Z	GroupApproximation/Sofic/AvatarRunBound.lean	infix_cons_cases
 32879888351	2026-08-25T17:49:44Z	GroupApproximation/Sofic/AvatarWordFamily.lean	mem_wordSubgroup
+32882919286	2026-08-25T18:18:23Z	GroupApproximation/Sofic/AvatarWordFamily.lean	pad_hom_padList
