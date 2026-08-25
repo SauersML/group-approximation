@@ -10,7 +10,7 @@ distinct_from:
   oracular-affine-support-replacement-has-no-intermediate-regime: that compiles affine profile branches directly to LCS and proves this endpoint is goal-equivalent; this audits the proposed intervening linear-PCPP/Hadamard route and its compatibility with DFNQXY.
 ---
 
-**ESTABLISHED PROFILE COMPILER.**  Let `V` be one finite two-prover
+**ESTABLISHED PROFILE COMPILER.**  Let `V` be one finite oracular two-prover
 verifier with binary answer strings.  Refine the verifier's private coins
 into its question-pair label, so every sampled pair `q=(x_0,x_1)` has one
 deterministic accepting relation
@@ -31,7 +31,9 @@ depending only on `V` and not on the strategy, with these properties:
 
 1. one branch has a perfect strategy whose every positive local support is
    affine-safe;
-2. a perfect matrix-ultraproduct model of any branch yields one for `V`;
+2. for every fixed source gap `val^*(V)<=s<1`, the DFNQXY amplification
+   parameter can be chosen so that no branch has a perfect
+   matrix-ultraproduct model;
 3. after the established cap-safe `R_*` compilation and the exact finite
    LCS OR, the menu becomes one finite LCS with the same completeness and
    matrix-ultraproduct soundness.
@@ -103,10 +105,15 @@ different pairs.
 
 The published answer-reduction soundness proof is conditional on a fixed
 `q` before invoking PCPP proximity soundness.  It therefore applies
-unchanged to this finite dispatched family.  In particular, a sequence of
-strategies for the answer-reduced `V_P` with values tending to one decodes
-to strategies for `V_P` whose values exceed the fixed source soundness
-threshold.  By `(FAP4)` these are also strategies for `V`.
+unchanged to this finite dispatched family.  More precisely, DFNQXY give
+constants `K_1,K_2` such that value `1-epsilon` for the answer-reduced
+`V_P` gives value at least `1-K_1-K_2 epsilon^(1/128)` for `V_P`; their
+free repetition parameter is chosen so that `1-K_1>s`.  Hence a sequence
+of branch strategies with values tending to one produces, for all large
+indices, a `V_P` strategy with value greater than `s`.  By `(FAP4)` the
+same measurements are a `V` strategy with at least that value.  Notice
+that this is a fixed-gap implication, not a claim that a perfect target
+model decodes to a perfect source model.
 
 For completeness, use the affine honest proof map for `L_q`.  Hadamard
 encoding, proof encoding, and restriction to a sampled view are affine.
@@ -139,8 +146,9 @@ Do this for every global affine profile `P`, and apply
 The branch selected by `(FAP5)` supplies HALT completeness.  On a NONHALT
 input, a negative marked matrix-ultraproduct model of the OR decodes on a
 nonzero selector corner to one cap branch, then to one answer-reduced
-`V_P`, then by answer-reduction soundness and `(FAP4)` to a forbidden source
-strategy.  Thus all soundness implications are valid for quantum and
+`V_P`, then by answer-reduction soundness and `(FAP4)` to a source strategy
+whose value exceeds the promised NONHALT threshold.  Thus all soundness
+implications are valid for quantum and
 ultraproduct strategies; no classical choice of the unknown support is
 made inside a quantum model.
 
