@@ -219,6 +219,14 @@ no-Fano-line support conclusion.
   support simultaneously.  Thus no trace-dependent pp selection remains.
   The exact remaining gate at this seam is only affine safety of the actual
   PCPP `Verify` supports.
+- `dfnqxy-pcpp-contract-allows-nonlinear-proof-views` shows that even affine
+  safety immediately before the PCPP is not, by itself, a preservation
+  theorem for the PCPP contract used in Theorem 6.9.  One may append a forced
+  AND proof bit, retaining every stated PCPP parameter, and create an
+  affine-unsafe honest `Verify` view over a four-point affine source.  Thus a
+  positive route must choose a particular PCPP with an affine perfect-proof
+  section (or prove affine safety of its sampled views); generic PCPP
+  completeness does not supply it.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

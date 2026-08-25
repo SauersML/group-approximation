@@ -7,6 +7,7 @@ distinct_from:
   dfnqxy-answer-reduction-does-not-preserve-affine-safe-support: that gives one three-outcome counterexample and leaves the particular PCPP views as a finite audit; this proves the general contrapositive for every affine-unsafe positive source answer support and every choice of perfect PCPP proofs.
   fano-cap-witness-sections-force-source-affine-safety: that concerns the later classical pp reduction to R-star; this concerns the preceding Hadamard-PCPP answer reduction itself.
   cmps-copying-is-support-neutral: that substitutes copied binary observables in 3SAT clauses; this follows positive joint answers through the earlier constant-answer compiler.
+  dfnqxy-pcpp-contract-allows-nonlinear-proof-views: that starts with an affine source and lets a permitted nonlinear proof bit create the first unsafe view; this starts with an unsafe source and proves that every perfect proof selection must expose it.
 ---
 
 **ESTABLISHED.**  Fix a question pair `(x_0,x_1)` of the verifier `V` fed
@@ -68,3 +69,9 @@ earlier odd-xor violation.  This does not prove `(HPR4)` or its negation for
 the particular MIP-star-equals-RE HALT strategy; it moves the remaining
 source-specific audit strictly before the final PCPP layer.
 
+This necessity statement is not a sufficiency statement for the generic
+PCPP contract.  As
+`dfnqxy-pcpp-contract-allows-nonlinear-proof-views` shows, a permitted PCPP
+can introduce a nonlinear forced proof bit even over an affine source.  A
+positive construction must control both the pre-PCPP support and the chosen
+perfect-proof section.
