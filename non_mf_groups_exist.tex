@@ -1644,31 +1644,31 @@ Let $N\trianglelefteq H$ be nontrivial.  By
 $i\ne j$ and $0\ne x\in R$ such that $e_{ij}(x)\in N$.
 
 \paragraph{The diagonal case.}
-Choose $1\ne g\in N$ and suppose first that $g$ is diagonal.
-If $g$ commuted with every $e_{ij}(a)$,
-then commuting with the $e_{ij}(1)$ would force $g=\lambda I_{12}$.
-Commuting with arbitrary $e_{ij}(a)$ would then make $\lambda$ a central
-unit.  But $Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow}, so
-$\lambda\in\F_2^\times=\{1\}$ and $g=1$, a contradiction.  Thus for some
-$i\ne j$ and $a\in R$, conjugation by $g$ sends
-$e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.  Consequently
-%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(y-a)" title="a noncentral diagonal element produces a nontrivial elementary transvection">
-% The commutator compares g with the elementary matrix \(e_{ij}(a)\).
-% Conjugation by the diagonal matrix g changes its parameter from a to y, so
-% multiplying by the inverse elementary matrix subtracts a and leaves
-% \(e_{ij}(y-a)\).  The result belongs to N because g lies in the [[normal
-% subgroup]] N and commutators of its elements with arbitrary group elements
-% remain in N.  Since \(y\ne a\), the coefficient \(y-a\) is nonzero, so this
-% is the nontrivial elementary transvection needed for normal generation.
+Choose $1\ne g\in N$ and write
+$g=\operatorname{diag}(\lambda_0,\ldots,\lambda_{11})$.
+If $g$ commutes with every $e_{ij}(a)$, then the relations with $a=1$ give
+$\lambda_i=\lambda_j$ for all $i\ne j$.  Hence $g=\lambda I_{12}$ for some
+unit $\lambda\in R$.  The relations for arbitrary $a\in R$ then give
+$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.  Since
+$Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow}, this forces
+$\lambda=1$, contrary to the choice of $g$.
+
+It follows that $[g,e_{ij}(a)]\ne1$ for some $i\ne j$ and $a\in R$.  Set
+$x=\lambda_i a\lambda_j^{-1}-a$.  Then $x\ne0$, and normality of $N$ gives
+%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(x)" title="a noncentral diagonal matrix gives a nontrivial elementary matrix">
+% Conjugation by the diagonal matrix g multiplies the coefficient a on the
+% left by lambda_i and on the right by the inverse of lambda_j.  Multiplying
+% by e_ij(-a) therefore gives the displayed commutator with coefficient x.
+% This coefficient is nonzero because the commutator is not the identity, and
+% the commutator belongs to N by normality.
 %</webmath>
 \[
- [g,e_{ij}(a)]=e_{ij}(y-a)\in N
+ [g,e_{ij}(a)]=e_{ij}(x)\in N.
 \]
-is the required elementary transvection.
 
 \paragraph{The nondiagonal case.}
-Suppose now that $g$ is not diagonal, and choose $\ell\ne i$ with
-$g_{\ell i}\ne0$.  Put $r=(g^{-1})_{\ell i}$.
+Suppose now that $g$ is not diagonal.  Choose distinct $i,\ell$ such that
+$g_{\ell i}\ne0$, and put $r=(g^{-1})_{\ell i}$.
 
 If $r=0$, set
 %<webmath object="whole" when="A=gE_{i\ell}g^{-1}" title="A is a conjugated matrix unit and B is the original matrix unit">
@@ -1739,9 +1739,8 @@ $e_{i\ell}(b)$, hence is trivial.  Therefore $1-BA\in N$.  The defect is
 square-zero and supported in row $i$, while its $(i,i)$ entry is
 $-b g_{\ell i}a(g^{-1})_{\ell i}=-bsar\ne0$.
 
-Both nondiagonal cases therefore produce an element $1+v\in N$ with
-$v^2=0$.  The matrix $v$ is supported in a single row $i$ and has some
-nonzero entry $v_{im}$.
+Thus in either nondiagonal case, $N$ contains $1+v$ for some matrix $v$
+supported in row $i$, with $v^2=0$ and $v_{im}\ne0$ for some $m$.
 Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
 $m=i$).  Direct multiplication gives
 %<webmath object="whole" when="[1+v,e_{mn}(1)]=e_{in}(v_{im})" title="a commutator produces a nontrivial elementary transvection">
