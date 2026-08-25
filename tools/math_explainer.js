@@ -669,6 +669,34 @@
       'The [[bold letter]] d names the [[sequence]] of matrix sizes. Its nth entry is written \\(d_n\\).', '\\mathbf d');
     if (symbol === 'q' && /q_n|q\\Theta|\\mathcal Q|q-q/.test(tex || '')) return entry('the complementary projection q',
       'q is the [[projection]] complementary to p, defined by \(q=1-p\). It is the identity element of the smaller [[corner]] used in the argument.', 'q');
+    if (symbol === 'p' && /p=s_0t_0|p\+q=1/.test(tex || '')) return entry('the Leavitt element p',
+      'p abbreviates the product \(s_0t_0\) in the binary [[Leavitt algebra]]. Together with q it satisfies \(p+q=1\).', 'p');
+    if (symbol === 'A' && /A=g|1-BA|AB=0/.test(tex || '')) return entry('the conjugated matrix-unit part A',
+      'A is the conjugate by g of a matrix unit, possibly multiplied by a ring coefficient. It is chosen so that its product AB is zero.', 'A');
+    if (symbol === 'B' && /B=(?:b)?E|1-BA|AB=0/.test(tex || '')) return entry('the original matrix-unit part B',
+      'B is a matrix unit, possibly multiplied by a ring coefficient, chosen so that AB is zero while BA retains a useful row.', 'B');
+    if (symbol === 'b' && /axb=1|arb=0|a=f_s/.test(tex || '')) return entry('the right sandwich factor b',
+      'b is a [[ring]] element chosen as a right-hand multiplier in the displayed sandwich or coefficient-separation identity.', 'b');
+    if (symbol === 'c' && /cwd|t_1c|t_1c/.test(tex || '')) return entry('the left sandwich factor c',
+      'c is a [[ring]] element chosen so that multiplying w by c on the left and d on the right gives the identity.', 'c');
+    if (symbol === 'd' && /cwd|ds_0/.test(tex || '')) return entry('the right sandwich factor d',
+      'd is a [[ring]] element chosen so that multiplying w by c on the left and d on the right gives the identity.', 'd');
+    if (symbol === 'w' && /e_\{(?:wu|vw|uw)\}/.test(tex || '')) return entry('the third matrix index w',
+      'w is a row or column [[index]] chosen different from u and v so that the elementary-matrix commutator rule applies.', 'w');
+    if (symbol === 'w') return entry('the ring element w',
+      'w is the [[ring]] element to which the coefficient-separation construction is being applied.', 'w');
+    if (symbol === 'v' && /1\+v|v_\{im\}/.test(tex || '')) return entry('the one-row square-zero matrix v',
+      'v is the nonzero [[matrix]] supported in row i whose square is zero. The element \(1+v\) belongs to the normal subgroup N.', 'v');
+    if (symbol === 'v') return entry('the matrix index v',
+      'v is a row or column [[index]] on the displayed elementary matrices.', 'v');
+    if (symbol === 'vim') return entry('the i-m entry of v',
+      'This is the entry of the [[matrix]] v in row i and column m, chosen to be nonzero.', 'v_{im}');
+    if (symbol === 'im') return entry('row i and column m',
+      'The first letter i selects a matrix row and the second letter m selects a matrix column.', 'im');
+    if (symbol === 'r') return entry('the ring coefficient r',
+      'r is an arbitrary [[ring]] element used as the coefficient of the displayed elementary matrices.', 'r');
+    if (symbol === 'y') return entry('the auxiliary ring element y',
+      'y is the [[ring]] element constructed as part of the coefficient-separation argument.', 'y');
     if (NAMED_OBJECTS[symbol]) return NAMED_OBJECTS[symbol];
     if (/^[ndij][∏⊕⨁∩⋂]$/.test(symbol)) {
       var operation = symbol.slice(-1).replace('⨁', '⊕').replace('⋂', '∩');
@@ -691,6 +719,8 @@
       'The parenthesis begins the input to a [[function]], and the square bracket begins the [[commutator]] placed inside that input.', '([');
     if (symbol === '])') return entry('commutator and function closing marks',
       'The square bracket ends the [[commutator]], and the parenthesis ends the input supplied to the surrounding [[function]].', '])');
+    if (symbol === ')]') return entry('function and commutator closing marks',
+      'The parenthesis ends the coefficient supplied to the [[elementary matrix]], and the square bracket ends the surrounding [[commutator]].', ')]');
     if (symbol === '0.') return entry('zero followed by end punctuation',
       'Zero is the stated [[limit]], and the period ends the mathematical sentence.', '0.');
     if (symbol === '∣S∣1' || symbol === '∣S∣' || symbol === '∣') return entry('reciprocal of the size of S',
@@ -769,6 +799,16 @@
       'This is an entry, row, or complete flattened view of a block [[matrix]]. Adjacent Leavitt symbols are multiplied in order, and \(I_3\) is the 3-by-3 [[identity matrix]].', symbol);
     if (/^[IX0−1]+$/.test(symbol) && symbol.length > 1) return entry('entries of a Whitehead block factor',
       'These are the entries of one 2-by-2 block [[matrix]] in the Whitehead factorization. I is the 6-by-6 [[identity matrix]], 0 is the zero block, and a minus sign takes an additive opposite.', symbol);
+    if (/^e[a-zℓ]{2}$/.test(symbol)) return entry('an elementary-matrix symbol',
+      'The letter e names an [[elementary matrix]], and the two following letters give its row and column [[index|indices]]. The coefficient appears in parentheses after it.', symbol);
+    if (/^E[a-zℓ]{2}$/.test(symbol)) return entry('a matrix-unit symbol',
+      'The capital E names a [[matrix unit]] with one entry equal to 1 and all other entries zero. The two following symbols give its row and column.', symbol);
+    if (symbol === 'iℓ') return entry('row i and column ell',
+      'The first symbol i selects the row and the second symbol ell selects the column of the surrounding [[matrix unit]] or [[elementary matrix]].', 'i\\ell');
+    if (/^[a-zℓ]{2}$/.test(symbol) && ((tex || '').indexOf('e_{' + symbol + '}') >= 0 || (tex || '').indexOf('E_{' + symbol + '}') >= 0)) return entry('row and column indices',
+      'The first letter selects the row and the second selects the column of the extra entry in the surrounding [[elementary matrix]].', symbol);
+    if (/^(?:c|d|e|f)[rdst]$/.test(symbol)) return entry('a labeled sandwich factor',
+      'The main letter names a chosen [[ring]] multiplier. Its [[subscript]] records which element or factorization that choice belongs to, so the several auxiliary multipliers remain distinct.', symbol);
     if (symbol === 'CG') return entry('the centralizer in G',
       'This is the [[centralizer]] of L computed inside the [[group]] G.', 'C_G');
     if (symbol === '⟨' || symbol === '⟩') return entry('normal-closure bracket',

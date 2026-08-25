@@ -61,11 +61,11 @@
 \begin{abstract}
 Not every countable group is MF in the operator norm approximation sense.
 We prove a one-sided compression criterion that places normal
-property~\textup{(T)} subgroups in the MF radical, and normal generation can
+property~\textup{(T)} subgroups in the MF radical.  Normal generation can
 make that radical equal the whole group.  An elementary group over the binary
 Leavitt algebra satisfies the criterion, giving a simple property~\textup{(T)}
-group that is not MF.  We also prove exact pullback formulas showing that an
-a kernel invisible to MF preserves the complete family of MF quotients above it.
+group that is not MF.  We also prove exact pullback formulas showing that a
+kernel invisible to MF preserves the complete family of MF quotients above it.
 \end{abstract}
 
 \maketitle
@@ -131,9 +131,9 @@ Here
  \bigoplus_nM_{d_n}(\C)
  =\{(x_n)\in\prod_nM_{d_n}(\C):\opnorm{x_n}\longrightarrow0\}
 \]
-is the $c_0$-direct sum.  Equivalently, an MF group admits
-finite-dimensional unitary models whose multiplicative defects tend to zero
-in operator norm and which asymptotically separate its nonidentity elements:
+is the $c_0$-direct sum.  Equivalently, an MF group admits finite-dimensional
+unitary models whose multiplicative defects tend to zero in operator norm.
+These models asymptotically separate its nonidentity elements:
 for each $g\ne1$, the quantity
 $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend
 on $g$.
@@ -175,7 +175,7 @@ For a countable group $G$, define its MF radical by
  =\bigcap_{\mathbf d}
    \bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.
 \]
-Proposition~\ref{prop:mf-residual-calculus} below proves that $G$ is MF
+Proposition~\ref{prop:mf-residual-calculus} shows that $G$ is MF
 precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
 $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
@@ -232,7 +232,7 @@ then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
 which proves full invariance.
 
 Put $R=\Rad_{\mathrm{MF}}(G)$ and enumerate the nonidentity elements of
-$G/R$ as $(x_j)_{j\ge1}$, and enumerate the pairs in $(G/R)^2$.  For each
+$G/R$ as $(x_j)_{j\ge1}$ and the pairs in $(G/R)^2$.  For each
 $x_j$, the definition of $R$ supplies a corona homomorphism whose value at
 $x_j$ has positive distance from the identity.  Every such homomorphism
 kills $R$ and therefore descends to $G/R$.  Choose coordinate unitary lifts,
@@ -304,7 +304,7 @@ $K\le\mathfrak D_G(L)$, then
 \[
  K\le\Rad_{\mathrm{MF}}(G).
 \]
-In particular, a nontrivial such $K$ makes $G$ non-MF; if $G$ has
+In particular, a nontrivial such $K$ makes $G$ non-MF.  If $G$ has
 property~\textup{(T)} and $\mathfrak D_G(L)=G$, then
 $\Rad_{\mathrm{MF}}(G)=G$.
 \end{mainthm}
@@ -314,13 +314,14 @@ by normalized Hilbert--Schmidt norm.  If a corona representation were
 nontrivial on $K$, normality of $K$ would make its Kazhdan projection commute
 with the image of $G$.  The complementary corner would then contain no
 $K$-fixed vectors.  A Kazhdan inequality gives an element of $K$ whose
-Hilbert--Schmidt distance from the identity is bounded below there, contrary
-to the first conclusion.  Independently, Theorem~\ref{thm:commutant} shows
+Hilbert--Schmidt distance from the identity is bounded below there.  This
+contradicts the Hilbert--Schmidt triviality of the defect elements.
+Independently, Theorem~\ref{thm:commutant} shows
 that every finite-dimensional linear representation over every field kills
 $\mathfrak D_G(L)$.
 
-Whether every countable group is MF was asked in the literature on MF groups and
-remained open~\cite{CDE,Korchagin,Thom,Shulman}.  Applying
+The question whether every countable group is MF remained
+open~\cite{CDE,Korchagin,Thom,Shulman}.  Applying
 Theorem~\ref{thm:compression-criterion} to the binary Leavitt construction
 below answers the question.
 
@@ -454,7 +455,7 @@ conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt
 approximations do not provide the operator norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
 
-Full MF radicals determine prescribed quotients visible to MF as follows.
+A full MF radical also lets us prescribe the quotient visible to MF.
 
 \begin{mainthm}[prescribed quotients visible to MF]\label{thm:prescribed-quotients}
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
@@ -530,17 +531,19 @@ for every MF group $M$.
 Carri\'on--Dadarlat--Eckhardt introduced the framework for MF groups used
 here~\cite{CDE}; Korchagin subsequently developed permanence and local
 approximation results for MF groups~\cite{Korchagin}.
-Shulman proves MF permanence for doubles $G*_H G$ of MF groups and, separately,
-MF full group $C^*$-algebra results for several classes of amalgamated and
-semidirect products~\cite{Shulman}.  The operator norm case
+Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
+Separately, Shulman proves MF full group $C^*$-algebra results for several
+classes of amalgamated and semidirect products~\cite{Shulman}.  The operator norm case
 remained open after failure of approximation had been established for finite
 Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
 Bachner--Dogon--Lubotzky study stability between the operator and
 Hilbert--Schmidt norms as a possible source of non-MF groups~\cite{BDL}.  Here
 operator norm control implies that coordinatewise conjugation defines a
-representation in a second norm matrix corona.  Its Kazhdan projection makes
+representation in a second norm matrix corona.  The Kazhdan projection of
+this conjugation representation makes
 the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
-compressor.  Section~4 then proves that a normal property-\textup{(T)} subgroup
+compressor.  Theorem~\ref{thm:normal-kazhdan} then proves that a normal
+property-\textup{(T)} subgroup
 contained in the defect lies in the MF radical.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
@@ -617,8 +620,8 @@ to $C$ is therefore surjective, so the inclusion is equality.  Conjugating
 by $\rho(u)$ gives $\rho(u)C\rho(u)^{-1}=C$.
 
 If $c\in C_G(L)$, then $\rho(c)\in C$, hence
-$\rho(ucu^{-1})\in C$.  It commutes with every $\rho(\ell)$,
-$\ell\in L$, which proves the last assertion.
+$\rho(ucu^{-1})\in C$.  Therefore
+$\rho([ucu^{-1},\ell])=1$ for every $\ell\in L$.
 \end{proof}
 
 The finite-dimensional hypothesis is essential here.  On an
@@ -686,8 +689,6 @@ Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
  R_{\infty\to2}(G)=\bigcap_V K_2(V),
 \end{equation}
 where $V$ ranges over all operator norm asymptotic representations of $G$.
-An element is universally Hilbert--Schmidt trivial precisely when it belongs
-to $R_{\infty\to2}(G)$.
 
 For $L\le G$, let
 %<webmath object="whole" when="\mathcal C_2(V,L)=" title="the bounded sequences that almost commute with V of L">
@@ -738,8 +739,8 @@ $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from
 $x_n$ by $o(1)$.  Thus $v$ is represented by unitaries and $vv^*=1$.  The
 same argument applies to every matrix amplification of the corona.  If $A$
 is a stably finite unital $C^*$-algebra, equivalent projections $p\le q$ satisfy
-$p=q$: if $w^*w=q$ and $ww^*=p$, then $w\in qAq$ is an isometry in the
-corner.  The corner is finite because $w+(1-q)$ is an isometry in $A$.
+$p=q$.  Indeed, if $w^*w=q$ and $ww^*=p$, then $w\in qAq$ is an isometry in
+the corner.  The corner is finite because $w+(1-q)$ is an isometry in $A$.
 Consequently $ww^*=q$, and hence $p=q$.
 \end{proof}
 
@@ -875,7 +876,8 @@ $U^*PU\le P$ inside $\mathcal B$.
 The two projections are unitarily equivalent.  Lemma~\ref{lem:stable-finite}
 therefore gives $U^*PU=P$, so $U$ commutes with $P$.  Hence both $U\xi$ and
 $U^*\xi$ are fixed by $\sigma(L)$.  Since $\omega$ was arbitrary, the
-corresponding Hilbert--Schmidt commutators converge ordinarily to zero.
+corresponding Hilbert--Schmidt commutators converge to zero along the full
+sequence.
 Thus $\operatorname{Ad}(V(u))$ and its inverse both preserve
 $\mathcal C_2(V,L)$, which proves the equality.
 \end{proof}
@@ -965,9 +967,8 @@ whose corona class is the corner representation \(g\mapsto q\rho(g)\).
 
 \begin{proof}
 Lift \(q\) to projections \(q_n\), and lift each \(\rho(g)\) to unitaries
-\(U_n(g)\).  Projection lifting follows by spectral rounding.  Unitary
-lifting follows by applying polar correction to any lift,
-since its two unitarity defects
+\(U_n(g)\).  The first lift is obtained by spectral rounding; the second is
+obtained by polar correction, since the two unitarity defects of any lift
 converge to zero in operator norm.  The commutation relation in the corona
 gives
 %<webmath object="whole" when="\opnorm{q_nU_n(g)-U_n(g)q_n}" title="the lifted projection and lifted representation almost commute">
@@ -1033,8 +1034,8 @@ the quotient map from the original group, is such a representation of the
 original group.
 
 Let \(p_K\in C^*_{\max}(K)\) be the Kazhdan projection and let \(p\) be its
-image in \(\mathcal Q_{\mathbf d}\).  Thus \(p\) is the projection onto the
-\(K\)-fixed vectors in every faithful representation of the corona.
+image in \(\mathcal Q_{\mathbf d}\).  Under any faithful representation of the
+corona, \(p\) is the projection onto the \(K\)-fixed vectors.
 Normality of \(K\) gives
 %<webmath object="whole" when="\Theta(g)p\Theta(g)^*=p" title="normality makes the Kazhdan projection commute with the whole group">
 % The map \(\Theta\) represents G in the norm matrix corona, and p projects
@@ -1052,8 +1053,9 @@ Normality of \(K\) gives
 Indeed, in a faithful representation of the corona the two projections have
 ranges \(\Theta(g)\operatorname{Fix}\Theta(K)\) and
 \(\operatorname{Fix}\Theta(K)\); these agree because \(gKg^{-1}=K\).
-Put \(q=1-p\).  The projection \(q\) is nonzero, since \(p=1\) would imply
-that every element of \(K\) has trivial image.  Lemma~\ref{lem:central-corona-corner}
+Put \(q=1-p\).  The projection \(q\) is nonzero: if \(p=1\), then every vector
+is fixed by \(K\), so every element of \(K\) has trivial corona image.
+Lemma~\ref{lem:central-corona-corner}
 gives an operator norm asymptotic representation \((W_n)\) on nonzero
 corners \(q_nM_{d_n}(\C)q_n\).
 
@@ -1120,8 +1122,8 @@ represent \(b\).  Taking the normalized trace on
 \]
 Here the Hilbert--Schmidt norms use the normalized trace of the corner.  The
 order inequality for $b$ says that the negative part of
-$b_n-(\kappa^2/|S|)q_n$ converges to zero in operator norm, which gives the
-displayed trace inequality.
+$b_n-(\kappa^2/|S|)q_n$ converges to zero in operator norm.  Taking normalized
+traces gives the displayed inequality.
 After passing to a subsequence, one fixed \(s_0\in S\) therefore stays a
 positive Hilbert--Schmidt distance from the corner identity.  This
 contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).  Thus every corona
@@ -1157,8 +1159,9 @@ Normality of \(R_{\infty\to2}(G)\) therefore gives
  \mathfrak D_G(L)\le R_{\infty\to2}(G).
 \]
 Theorem~\ref{thm:normal-kazhdan} now gives
-\(K\le\Rad_{\mathrm{MF}}(G)\).  The two stated consequences follow by taking
-\(K\ne1\), or \(K=G=\mathfrak D_G(L)\), respectively.
+\(K\le\Rad_{\mathrm{MF}}(G)\).  Taking a nontrivial $K$ gives the non-MF
+conclusion.  Taking $K=G=\mathfrak D_G(L)$ gives
+$\Rad_{\mathrm{MF}}(G)=G$.
 
 For a finite-dimensional linear representation over an arbitrary field,
 Theorem~\ref{thm:commutant} kills every generator of
@@ -1199,7 +1202,7 @@ property~\textup{(T)}, then
  \Rad_{\mathrm{MF}}(G)=G.
 \]
 
-Suppose instead that $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
+Alternatively, suppose that $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
 $f(S)$ normally generates $Q$.  Then
 %<webmath object="whole" when="\mathfrak D_Q(f(L))=Q" title="the image defect is all of Q">
 % The left side is the compression-centralizer defect formed in Q from the
@@ -1230,16 +1233,17 @@ property~\textup{(T)}, then
 
 \begin{proof}
 If $u\in\operatorname{Comp}_G(L)$, then
-$f(u)f(L)f(u)^{-1}\le f(L)$; if $c\in C_G(L)$, then
+$f(u)f(L)f(u)^{-1}\le f(L)$.  If $c\in C_G(L)$, then
 $f(c)\in C_{f(G)}(f(L))$.  Therefore $f$ takes every defining generator of
 $D$ into a defining generator of $\mathfrak D_{f(G)}(f(L))$.  This proves
 \eqref{eq:defect-functoriality}.
 
 The subgroup $D$ is normal in $G$, so $D\cap S$ is normal in $S$.
 Simplicity and $D\cap S\ne1$ give $D\cap S=S$, hence $S\le D$.  Since $D$
-is normal in $G$, it then contains the normal closure of $S$.  Under the
-second hypothesis this is $G$.  The direct radical assertion is
-Theorem~\ref{thm:compression-criterion} with $K=G$.
+is normal in $G$, it then contains the normal closure of $S$.  When the normal
+closure of $S$ is $G$, this proves $D=G$.  Under the property~\textup{(T)}
+hypotheses, Theorem~\ref{thm:compression-criterion} with $K=G$ then gives
+$\Rad_{\mathrm{MF}}(G)=G$.
 
 For the image statement, \eqref{eq:defect-functoriality} gives
 $f(S)\le\mathfrak D_Q(f(L))$.  The latter subgroup is normal in $Q$, so it
@@ -1278,7 +1282,7 @@ The relations \eqref{eq:leavitt} give
 \end{equation}
 In particular $q\ne0$.
 
-We use indices $0,\ldots,11$ for $12\times12$ matrices and identify
+We use indices $0,\ldots,11$ for $12\times12$ matrices.  We identify
 $\GL_3(R)$ with the subgroup of $\GL_{12}(R)$ consisting of the matrices
 $\operatorname{diag}(A,I_9)$.  On $M_3(R)$ consider the unital injective
 endomorphism
@@ -1345,8 +1349,8 @@ Writing $I=I_6$, the Whitehead factorization is
    \begin{pmatrix}I&0\\I&I\end{pmatrix}.
 \end{align}
 Each unipotent block factor is a product of elementary $12\times12$
-matrices: its off-diagonal $6\times6$ block may be inserted one entry at a
-time, and the corresponding matrix units have pairwise zero products.
+matrices.  Its off-diagonal $6\times6$ block may be inserted one entry at a
+time because the corresponding matrix units have pairwise zero products.
 Since $Y=X^{-1}$, \eqref{eq:whitehead-factorization} proves
 $\tau\in\EL_{12}(R)$.
 
@@ -1393,9 +1397,8 @@ $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
 
 The field $\F_2$ is used in the diagonal branch of the simplicity argument
 below: the only central unit of $R$ is then $1$.  The dimension $12$ comes
-from applying the $6\times6$ Whitehead
-factorization to the $3\times3$ Kazhdan corner.  We do not claim that $12$ is
-minimal.
+from applying the $6\times6$ Whitehead factorization to the $3\times3$
+Kazhdan corner.
 
 \section{The binary Leavitt group has full MF radical}
 
@@ -1406,6 +1409,15 @@ The group $H=\EL_{12}(R)$ is simple.
 \begin{proof}
 We use two concrete ring facts.  First, for every $0\ne x\in R$ there are
 $a,b\in R$ such that
+%<webmath object="whole" when="axb=1" title="a nonzero ring element can be sandwiched to produce the identity">
+% The letters a and b are chosen ring elements placed on the left and right
+% of the given nonzero element x.  Their ordered product equals the
+% multiplicative [[identity]] 1.  The order matters because the Leavitt
+% algebra is generally noncommutative.  This property is the exact consequence
+% of pure infiniteness used in the proof: once a matrix root has nonzero
+% coefficient x, commutators using b and then a turn it into a root with
+% coefficient 1, which normally generates the elementary group.
+%</webmath>
 \begin{equation}\label{eq:two-sided-sandwich}
  axb=1.
 \end{equation}
@@ -1419,6 +1431,15 @@ More generally, let $S$ be a unital ring, let $n\ge3$, and suppose
 $a,x,b\in S$ satisfy $axb=1$.  If a normal subgroup of $\EL_n(S)$ contains
 $e_{ij}(x)$, choose $k$ different from $i$ and $j$.  The elementary
 commutator relations give
+%<webmath object="whole" when="[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb)" title="two commutators turn a nonzero root coefficient into 1">
+% The first commutator combines two elementary matrices whose column and row
+% indices meet at j.  The result is an elementary matrix in position
+% \((i,k)\) with coefficient xb.  The second commutator meets at i and
+% multiplies that coefficient on the left by a, producing coefficient
+% \(axb=1\) in position \((j,k)\).  Because a normal subgroup containing the
+% first root also contains its commutators with arbitrary group elements,
+% these identities show it contains the unit root \(e_{jk}(1)\).
+%</webmath>
 \[
  [e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad
  [e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),
@@ -1426,39 +1447,91 @@ commutator relations give
 so the normal subgroup contains a unit root.  From any $e_{uv}(1)$ in the
 normal subgroup and any third index
 $w$, the relations
+%<webmath object="whole" when="[e_{wu}(r),e_{uv}(1)]=e_{wv}(r)" title="unit roots move arbitrary coefficients to new matrix positions">
+% In the first identity, the matching index u lets the commutator multiply
+% coefficients r and 1 and place r in position \((w,v)\).  In the second,
+% the matching index v places the arbitrary coefficient r in position
+% \((u,w)\).  The three indices u, v, and w are distinct, so the standard
+% elementary-matrix commutator rule applies.  Repeating these source and
+% target moves transports any coefficient to every off-diagonal position,
+% proving that one unit root normally generates all elementary matrices.
+%</webmath>
 \[
  [e_{wu}(r),e_{uv}(1)]=e_{wv}(r),\qquad
  [e_{uv}(1),e_{vw}(r)]=e_{uw}(r)
 \]
-put the corresponding source and target moves, with arbitrary coefficient
-$r\in S$, in the normal subgroup.  Repeating these moves, using a third
+show that the normal subgroup contains the corresponding source and target
+moves for every coefficient $r\in S$.  Repeating these moves, using a third
 index when needed, gives every elementary generator.  Thus, by
 \eqref{eq:two-sided-sandwich}, it remains to prove that every nontrivial
 normal subgroup $N\trianglelefteq H$ contains a nonzero elementary root.
 
 We also need the following coefficient-separation consequence of the Leavitt
 relations.  If $r,s\in R$ are nonzero, then there are $a,b\in R$ such that
+%<webmath object="whole" when="arb=0" title="a and b kill one ordered product but keep the reversed product nonzero">
+% The first relation says that inserting a before r and b after r makes the
+% product zero.  The second relation reverses the central order to bsar and
+% requires that product to remain nonzero.  Since the ring need not be
+% commutative, these requirements can hold simultaneously.  The later
+% dense-row argument uses \(arb=0\) to make one product of rank-one matrices
+% vanish, while \(bsar\ne0\) guarantees that the surviving matrix has a
+% nonzero diagonal entry.
+%</webmath>
 \begin{equation}\label{eq:coefficient-separation}
  arb=0,\qquad bsar\ne0.
 \end{equation}
-Here is a direct proof.  For every $w\in R$ there are $x,y\in R$ with
+For every $w\in R$ there are $x,y\in R$ with
 $xwy=0$ and $yx\ne0$.  This is immediate with $x=y=1$ if $w=0$.
 Otherwise choose $c,d$ with $cwd=1$ and put $x=t_1c$, $y=ds_0$.
-Then $xwy=t_1s_0=0$.  Moreover $s_0t_1\ne0$, since
+Then $xwy=t_1s_0=0$.  The equality
+%<webmath object="whole" when="1=(t_0s_0)(t_1s_1)" title="the Leavitt relations force s zero t one to be nonzero">
+% Each factor \(t_0s_0\) and \(t_1s_1\) equals 1 by the defining Leavitt
+% relation, so their product is 1.  Reassociating the four factors gives
+% \(t_0(s_0t_1)s_1\).  If the middle product \(s_0t_1\) were zero, this whole
+% expression would be zero, contradicting its equality with 1.  Therefore
+% \(s_0t_1\) is nonzero.  The calculation changes only the parentheses and
+% does not commute any factors.
+%</webmath>
 \[
  1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1,
 \]
-and $yx=ds_0t_1c=0$ would imply
+shows that $s_0t_1\ne0$.  If $yx=ds_0t_1c$ were zero, then
+%<webmath object="whole" when="s_0t_1=(cwd)(s_0t_1)(cwd)" title="assuming yx is zero would force the known nonzero product to be zero">
+% Because \(cwd=1\), multiplying \(s_0t_1\) by cwd on both sides leaves it
+% unchanged, giving the first equality.  The next equality only regroups the
+% factors so that \((ds_0)(t_1c)=yx\) appears in the middle.  Under the
+% temporary assumption \(yx=0\), that middle factor is zero, so the entire
+% product is zero.  This contradicts the preceding proof that \(s_0t_1\ne0\)
+% and therefore establishes \(yx\ne0\).
+%</webmath>
 \[
  s_0t_1=(cwd)(s_0t_1)(cwd)
        =(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.
 \]
 To obtain \eqref{eq:coefficient-separation}, choose factorizations
+%<webmath object="whole" when="c_r\,r\,d_r=1" title="four sandwich factorizations prepare the coefficient-separation construction">
+% Each equality uses the sandwich property to turn a specified nonzero ring
+% element into the identity by multiplying it on the left and right.  The
+% first does this for r, the second for \(d_r\), the third for s, and the
+% fourth for \(c_rr\).  The decorated subscripts distinguish the chosen
+% multipliers; they are names rather than powers.  These identities later
+% cancel outer factors so that a hypothetical equation \(bsar=0\) would
+% force the already nonzero product yx to vanish.
+%</webmath>
 \[
  c_r\,r\,d_r=1,\quad e_d\,d_r\,f_d=1,\quad
  e_s\,s\,f_s=1,\quad e_t(c_r r)f_t=1,
 \]
-apply the preceding construction to $w=e_tf_d$, and set
+Apply the preceding construction to $w=e_tf_d$.  Set
+%<webmath object="whole" when="a=f_s x e_t c_r" title="the products a and b assemble the coefficient-separation witnesses">
+% This line defines a and b by multiplying the auxiliary factors in the
+% displayed order, which matters in the noncommutative ring R.  Substitution
+% into arb places the deliberately vanishing product
+% \(x(e_tf_d)y=xwy=0\) in the middle.  Substitution into bsar and use of the
+% four sandwich equalities leaves yx after multiplication by suitable outer
+% factors.  Since \(yx\ne0\), these definitions yield \(arb=0\) while keeping
+% \(bsar\ne0\), exactly as required.
+%</webmath>
 \[
  a=f_s x e_t c_r,\qquad b=d_r f_d y e_s.
 \]
@@ -1466,12 +1539,21 @@ Then $arb=0$.  If $bsar=0$, multiplication on the left by $e_d$ and on the
 right by $f_t$ gives $yx=0$, a contradiction.
 
 Now let $N\trianglelefteq H$ be nontrivial and choose $1\ne g\in N$.
-Suppose first that $g$ is diagonal.  Its inverse is
-also diagonal.  If $g$ commuted with every $e_{ij}(a)$, then commuting with
-the $e_{ij}(1)$ would force $g=\lambda I_{12}$, and commuting with arbitrary
-$e_{ij}(a)$ would make $\lambda$ a central unit.  Hence $g=1$, a
+Suppose first that $g$ is diagonal.  If $g$ commuted with every $e_{ij}(a)$,
+then commuting with the $e_{ij}(1)$ would force $g=\lambda I_{12}$.
+Commuting with arbitrary $e_{ij}(a)$ would then make $\lambda$ a central
+unit.  Hence $g=1$, a
 contradiction.  Thus for some $i\ne j$ and $a\in R$, conjugation by $g$ sends
 $e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.  Consequently
+%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(y-a)" title="a noncentral diagonal element produces a nonzero elementary root">
+% The commutator compares g with the elementary matrix \(e_{ij}(a)\).
+% Conjugation by the diagonal matrix g changes that root's coefficient from a
+% to y, so multiplying by the inverse root subtracts a and leaves
+% \(e_{ij}(y-a)\).  The result belongs to N because g lies in the [[normal
+% subgroup]] N and commutators of its elements with arbitrary group elements
+% remain in N.  Since \(y\ne a\), the coefficient \(y-a\) is nonzero, so this
+% is the nonzero elementary root needed for normal generation.
+%</webmath>
 \[
  [g,e_{ij}(a)]=e_{ij}(y-a)\in N
 \]
@@ -1479,10 +1561,28 @@ is a nonzero root.
 
 Suppose next that $g$ is not diagonal, and choose $\ell\ne i$ with
 $g_{\ell i}\ne0$.  Put $r=(g^{-1})_{\ell i}$.  If $r=0$, set
+%<webmath object="whole" when="A=gE_{i\ell}g^{-1}" title="A is a conjugated matrix unit and B is the original matrix unit">
+% The symbol \(E_{i\ell}\) is the matrix unit having 1 in row i, column
+% \(\ell\), and zero elsewhere.  The matrix A is obtained from it by
+% [[conjugation]] with g, while B is the original matrix unit.  Under the
+% current assumption \((g^{-1})_{\ell i}=0\), direct matrix-unit
+% multiplication gives \(AB=0\).  These definitions let the following
+% commutator simplify to an identity matrix plus a square-zero defect
+% concentrated in one row.
+%</webmath>
 \[
  A=gE_{i\ell}g^{-1},\qquad B=E_{i\ell}.
 \]
 Then $AB=0$, and the double commutator
+%<webmath object="whole" when="[g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA" title="the sparse case produces an identity plus a one-row square-zero defect">
+% Each \(e_{i\ell}(1)\) is \(1+E_{i\ell}\).  Conjugating the first one by g
+% changes its added matrix unit to A, while the second uses B.  Because
+% \(A^2=B^2=AB=0\), expanding the [[commutator]] cancels every term except
+% \(1-BA\).  This element belongs to N by normality.  The product BA is
+% supported only in row i and satisfies \((BA)^2=0\), so the result is a
+% unipotent matrix whose nonzero defect can later be converted into an
+% elementary root.
+%</webmath>
 \begin{equation}\label{eq:row-unipotent-sparse}
  [g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA
 \end{equation}
@@ -1496,11 +1596,29 @@ Thus the $(i,m)$ entry of the defect in
 It remains to treat $r\ne0$.  Apply \eqref{eq:coefficient-separation} to
 $r$ and $s=g_{\ell i}$, obtaining $a,b$ with
 $arb=0$ and $bsar\ne0$.  This time put
+%<webmath object="whole" when="A=g(aE_{i\ell})g^{-1}" title="scaled matrix units prepare the dense case while forcing AB to vanish">
+% This time the matrix unit is multiplied by the ring coefficient a before
+% conjugation by g, giving A, and the original matrix unit is multiplied by b,
+% giving B.  Matrix multiplication shows that the only potentially nonzero
+% coefficient of AB contains the product \(arb\), which was chosen to be
+% zero.  Hence \(AB=0\).  The reversed product BA instead contains \(bsar\),
+% chosen to be nonzero, so the commutator will have a detectable entry even
+% though the simpler unscaled construction was unavailable.
+%</webmath>
 \[
  A=g(aE_{i\ell})g^{-1},\qquad B=bE_{i\ell}.
 \]
 Again $AB=0$, because its potentially nonzero coefficient contains $arb$.
 As the two elementary roots commute, reduction modulo $N$ shows that
+%<webmath object="whole" when="[g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA" title="the dense case also produces an identity plus a one-row square-zero defect">
+% Conjugating \(e_{i\ell}(a)=1+aE_{i\ell}\) by g replaces its added part by
+% A, while \(e_{i\ell}(b)=1+B\).  The facts \(A^2=B^2=AB=0\) make the
+% commutator expansion collapse to \(1-BA\), just as in the sparse case.
+% This element lies in N.  Its defect is supported in row i, is square-zero,
+% and has diagonal entry \(-bsar\), which is nonzero by coefficient
+% separation.  Thus the dense case produces the same useful kind of
+% one-row unipotent element.
+%</webmath>
 \begin{equation}\label{eq:row-unipotent-dense}
  [g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA\in N.
 \end{equation}
@@ -1508,9 +1626,19 @@ The defect is square-zero and supported in row $i$, while its $(i,i)$ entry
 is $-bsar\ne0$.
 
 Both off-diagonal cases therefore produce an element $1+v\in N$ with
-$v^2=0$, supported in a single row $i$, and with some $v_{im}\ne0$.
+$v^2=0$.  The matrix $v$ is supported in a single row $i$ and has some
+nonzero entry $v_{im}$.
 Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
 $m=i$).  Direct multiplication gives the identity that extracts one row,
+%<webmath object="whole" when="[1+v,e_{mn}(1)]=e_{in}(v_{im})" title="a commutator extracts one nonzero entry as an elementary root">
+% The matrix v is supported in row i and satisfies \(v^2=0\).  Commuting
+% \(1+v\) with the elementary matrix \(e_{mn}(1)\) selects the entry
+% \(v_{im}\) and moves it to position \((i,n)\); all other possible terms
+% vanish because of the row support and the choice of n.  The result is the
+% elementary matrix \(e_{in}(v_{im})\).  It lies in N, and its coefficient is
+% nonzero by the choice of m.  The earlier normal-generation argument then
+% forces N to contain the entire elementary group H.
+%</webmath>
 \[
  [1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.
 \]
@@ -1521,6 +1649,14 @@ Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 
 \begin{proposition}\label{prop:defect}
 Let
+%<webmath object="whole" when="c=e_{34}(1)" title="the concrete elements c, ell, and d used in the defect">
+% This display defines three elements of H.  The elementary matrix c has its
+% extra 1 in row 3, column 4, while \(\ell\) has its extra 1 in row 1,
+% column 2.  Their separated positions make c commute with the upper-left
+% 3-by-3 subgroup L.  The element d is the [[commutator]] of \(\tau
+% c\tau^{-1}\) with \(\ell\).  Thus d is exactly one of the generators
+% allowed in the compression-centralizer defect associated with L.
+%</webmath>
 \[
  c=e_{34}(1),\qquad \ell=e_{12}(1),\qquad
  d=[\tau c\tau^{-1},\ell]
@@ -1556,18 +1692,27 @@ in $H$.  Then
 
 \begin{proof}
 Every elementary generator of the $3\times3$ corner in the upper left has both
-indices in $\{0,1,2\}$.  The elementary commutator relations show that it
-commutes with $c=e_{34}(1)$, so $c\in C_H(L)$.
+indices in $\{0,1,2\}$.  The elementary commutator relations show that each
+such generator commutes with $c=e_{34}(1)$, so $c\in C_H(L)$.
 
 Direct multiplication of the matrices in \eqref{eq:tau} gives
+%<webmath object="whole" when="\tau c\tau^{-1}=e_{01}(q)e_{34}(1)" title="conjugating c by tau creates one new q root and keeps the old root">
+% The left side conjugates the elementary matrix c by the explicit matrix
+% tau.  Direct block multiplication yields the product of two elementary
+% matrices on the right.  The factor \(e_{01}(q)\) has the Leavitt element q
+% in row 0, column 1; the factor \(e_{34}(1)\) is the original c.  These two
+% factors commute because their row and column positions do not meet.  In the
+% next commutator with \(e_{12}(1)\), the second factor disappears and the
+% first produces \(e_{02}(q)\).
+%</webmath>
 \begin{equation}\label{eq:moved-mark}
  \tau c\tau^{-1}=e_{01}(q)e_{34}(1).
 \end{equation}
-The second factor commutes with $\ell=e_{12}(1)$, and
-$[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ gives
-$d=e_{02}(q)$.  This is nontrivial because $q\ne0$.  Since
-$t_1qs_1=1$, the preceding argument using a root sandwiched on both sides gives
-$\normal d_H=H$ directly.
+The second factor commutes with $\ell=e_{12}(1)$.  The identity
+$[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ therefore gives $d=e_{02}(q)$, which is
+nontrivial because $q\ne0$.  Since $t_1qs_1=1$, the normal-generation argument
+following \eqref{eq:two-sided-sandwich} applied to $e_{02}(q)$ gives
+$\normal d_H=H$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
@@ -1587,7 +1732,7 @@ Independently of this radical calculation, Proposition~\ref{prop:simple}
 shows that $H$ is nontrivial and simple.
 
 If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
-faithful homomorphism from $M$ to a norm matrix corona.  Since
+faithful corona embedding of $M$.  Since
 $\Rad_{\mathrm{MF}}(H)=H$, this composition and hence $f$ are trivial.  If
 $H$ were MF, its identity homomorphism would contradict this conclusion.
 \end{proof}
@@ -1649,14 +1794,15 @@ Consequently,
 \begin{proof}
 Every corona homomorphism from $G$ kills $\ker f$ and therefore factors
 uniquely through $f$.  Conversely, composing a corona homomorphism of $Q$
-with $f$ gives one of $G$.  The two families of kernels have the displayed
-intersection.  For the final assertion, functoriality of the MF radical under
+with $f$ gives one of $G$.  Intersecting these two corresponding families of
+kernels gives the displayed MF radical pullback.  For the final assertion,
+functoriality of the MF radical under
 the inclusion $\ker f\to G$ gives
 $\ker f\le\Rad_{\mathrm{MF}}(G)$.
 
 The same factorization, restricted to homomorphisms that kill $N$, gives the
-closure formula.  If this closure equals $N$, then it contains $\ker f$, and
-mapping the equality onto $Q$ shows that
+closure formula.  If this closure equals $N$, then it contains $\ker f$.
+Mapping the equality onto $Q$ shows that
 $\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
 conditions give
 \[
@@ -1667,9 +1813,9 @@ The final equivalence now follows from
 Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 \end{proof}
 
-Thus image under $f$ and inverse image under $f$ give mutually inverse,
-correspondences that preserve inclusion between the normal subgroups that define
-MF quotients of $G$ and of $Q$.  The map induced by $f$ on the largest
+Thus image under $f$ and inverse image under $f$ give mutually inverse
+correspondences, preserving inclusion between the normal subgroups with MF
+quotient in $G$ and in $Q$.  The map induced by $f$ on the largest
 quotients visible to MF is an isomorphism:
 %<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
 % Each slash forms a [[quotient group]] by removing the corresponding [[MF
@@ -1729,9 +1875,9 @@ countable group $Q$, define
 \begin{equation}\label{eq:amalgam}
  W_Q=B*_A(Q\times A),
 \end{equation}
-where $A\to Q\times A$ is the inclusion into the second factor.  The maps
-from $B$ and $Q\times A$ to $Q$ that are respectively trivial and the
-projection onto $Q$ agree on $A$.  They therefore define an epimorphism
+where $A\to Q\times A$ is the inclusion into the second factor.  The trivial
+map $B\to Q$ and the projection $Q\times A\to Q$ agree on $A$.  They
+therefore define an epimorphism
 %<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
 % The [[Greek letter]] \(\pi\), read “pi,” names a [[homomorphism]], and the
 % [[subscript]] Q records its destination.  The colon and arrow say its inputs are
@@ -1743,8 +1889,8 @@ projection onto $Q$ agree on $A$.  They therefore define an epimorphism
 \[
  \pi_Q\colon W_Q\longrightarrow Q.
 \]
-It is split by the inclusion $Q\to Q\times A\to W_Q$.  The theorem about
-normal forms for amalgamated free products shows that both vertex maps in
+It is split by the inclusion $Q\to Q\times A\to W_Q$.  The normal-form
+theorem for amalgamated free products shows that both vertex maps in
 \eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
 
 \begin{proposition}[universal factorization]\label{prop:universal-factorization}
@@ -1787,8 +1933,8 @@ factors through $\pi_Q$.  The factorization is unique because $\pi_Q$ is
 surjective.
 
 The element $d$ belongs to $\ker\pi_Q$.  Conversely, quotienting $W_Q$ by
-$\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the second
-factor $A$ in $Q\times A$.  The resulting quotient is $Q$, with quotient map
+$\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the $A$-factor
+of $Q\times A$.  The resulting quotient is $Q$, with quotient map
 induced by $\pi_Q$.  Hence $\ker\pi_Q=\normal d_{W_Q}$.
 \end{proof}
 
@@ -1833,8 +1979,7 @@ and \eqref{eq:closure-pullback} give
  Q/\pi_Q(N)\text{ is MF}.
 \]
 Here, if $\ker\pi_Q\le N$, then
-$N=\pi_Q^{-1}(\pi_Q(N))$; this is the only additional observation needed
-for the displayed equivalence.
+$N=\pi_Q^{-1}(\pi_Q(N))$.
 
 Taking $Q=\mathbb Z$ makes the quotient criterion especially concrete:
 for every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
@@ -1849,26 +1994,27 @@ $\ker\pi_{\mathbb Z}=\normal d_{W_{\mathbb Z}}$.
 \section*{Acknowledgments}
 
 The author thanks Francesco Fournier-Facio for early advice and detailed
-comments on earlier drafts, Alon Dogon for organizing the ensuing discussion
-and for comments on the surrounding literature, Tatiana Shulman for
-clarifying the terminology and historical context of the MF question, and
-Caleb Eckhardt for discussions of MF representations and matrix norms.
+comments on earlier drafts, and Alon Dogon for organizing the ensuing
+discussion and for comments on the surrounding literature.  The author also
+thanks Tatiana Shulman for clarifying the terminology and historical context
+of the MF question, and Caleb Eckhardt for discussions of MF representations
+and matrix norms.
 
 \section*{Use of AI and formal methods}
 
 Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical
 exploration, proof development, manuscript drafting, literature navigation,
 Lean formalization, and editorial revision.  The Lean development checks the
-one-sided transport theorem, the normal property-\textup{(T)} radical
-criterion, the rank 12 compression and commutator calculation, direct
-normal generation by a nonzero elementary root, the exhaustive
-root extraction proof covering diagonal matrices, zero inverse entries, and
-dense entries in
-Proposition~\ref{prop:simple}, and the resulting full MF radical conclusion.
-The formalized simplicity proof uses the concrete two-sided sandwich and
-statements about central units for the binary Leavitt algebra; it does not formalize
-Preusser's general theorem about normal subgroups or a general theory of pure
-infiniteness.
+one-sided transport theorem and the normal property-\textup{(T)} radical
+criterion.  It also checks the rank 12 compression and commutator calculation,
+direct normal generation by a nonzero elementary root, and the resulting full
+MF radical conclusion.  For Proposition~\ref{prop:simple}, it checks the
+exhaustive root extraction argument for diagonal matrices, zero inverse
+entries, and dense entries.
+The formalized simplicity proof uses the concrete two-sided sandwich and the
+fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
+$1$.  It does not formalize Preusser's general theorem about normal subgroups
+or a general theory of pure infiniteness.
 
 \begin{thebibliography}{99}
 \frenchspacing

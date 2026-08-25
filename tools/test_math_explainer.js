@@ -19,9 +19,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 87, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 70,
-  'the contextual explanations must remain attached to 70 formula groups');
+assert.equal(declarations.length, 103, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 86,
+  'the contextual explanations must remain attached to 86 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -171,7 +171,23 @@ const coveredFormulas = [
   String.raw`L=\EL_3(R)\le H`,
   String.raw`\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}=\operatorname{diag}(\Psi(A),I_9).`,
   String.raw`\tau L\tau^{-1}\le L.`,
+  String.raw`axb=1.`,
+  String.raw`[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad[e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),`,
+  String.raw`[e_{wu}(r),e_{uv}(1)]=e_{wv}(r),\qquad[e_{uv}(1),e_{vw}(r)]=e_{uw}(r)`,
+  String.raw`arb=0,\qquad bsar\ne0.`,
+  String.raw`1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1,`,
+  String.raw`s_0t_1=(cwd)(s_0t_1)(cwd)=(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.`,
+  String.raw`c_r\,r\,d_r=1,\quad e_d\,d_r\,f_d=1,\quad e_s\,s\,f_s=1,\quad e_t(c_r r)f_t=1,`,
+  String.raw`a=f_s x e_t c_r,\qquad b=d_r f_d y e_s.`,
+  String.raw`[g,e_{ij}(a)]=e_{ij}(y-a)\in N`,
+  String.raw`A=gE_{i\ell}g^{-1},\qquad B=E_{i\ell}.`,
+  String.raw`[g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA`,
+  String.raw`A=g(aE_{i\ell})g^{-1},\qquad B=bE_{i\ell}.`,
+  String.raw`[g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA\in N.`,
+  String.raw`[1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.`,
+  String.raw`c=e_{34}(1),\qquad \ell=e_{12}(1),\qquad d=[\tau c\tau^{-1},\ell]`,
   String.raw`c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.`,
+  String.raw`\tau c\tau^{-1}=e_{01}(q)e_{34}(1).`,
   String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
   String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).`,
   String.raw`G/N\text{ is MF}\quad\Longleftrightarrow\quad\ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.`,
@@ -197,7 +213,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 70);
+assert.equal(coveredFormulas.length, 86);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
