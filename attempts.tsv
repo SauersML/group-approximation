@@ -194,3 +194,4 @@
 32834259973	2026-08-25T09:53:04Z	GroupApproximation/Sofic/AscendingHNNWreathSofic.lean	isSofic_vertical
 32839280252	2026-08-25T10:51:32Z	GroupApproximation/Sofic/AscendingHNNWreathWitness.lean	mem_baseSub_iff
 32843945274	2026-08-25T11:45:58Z	GroupApproximation/Sofic/Asymptotics.lean	eventually_pos
+32846702483	2026-08-25T12:17:12Z	GroupApproximation/Sofic/AugmentationExtension.lean	reducedDifference_ne_zero
