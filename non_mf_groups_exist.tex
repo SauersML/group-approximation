@@ -1502,31 +1502,10 @@ there are $a,b\in R$ such that
 For every $w\in R$ there are $x,y\in R$ with
 $xwy=0$ and $yx\ne0$.  This is immediate with $x=y=1$ if $w=0$.
 Otherwise choose $c,d$ with $cwd=1$ and put $x=t_1c$, $y=ds_0$.
-Then $xwy=t_1s_0=0$.  The equality
-%<webmath object="whole" when="1=(t_0s_0)(t_1s_1)" title="the Leavitt relations force s zero t one to be nonzero">
-% Each factor \(t_0s_0\) and \(t_1s_1\) equals 1 by the defining Leavitt
-% relation, so their product is 1.  Reassociating the four factors gives
-% \(t_0(s_0t_1)s_1\).  If the middle product \(s_0t_1\) were zero, this whole
-% expression would be zero, contradicting its equality with 1.  Therefore
-% \(s_0t_1\) is nonzero.  The calculation changes only the parentheses and
-% does not commute any factors.
-%</webmath>
-\[
- 1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1,
-\]
-shows that $s_0t_1\ne0$.  If $yx=ds_0t_1c$ were zero, then
-%<webmath object="whole" when="s_0t_1=(cwd)(s_0t_1)(cwd)" title="assuming yx is zero would force the known nonzero product to be zero">
-% Because \(cwd=1\), multiplying \(s_0t_1\) by cwd on both sides leaves it
-% unchanged, giving the first equality.  The next equality only regroups the
-% factors so that \((ds_0)(t_1c)=yx\) appears in the middle.  Under the
-% temporary assumption \(yx=0\), that middle factor is zero, so the entire
-% product is zero.  This contradicts the preceding proof that \(s_0t_1\ne0\)
-% and therefore establishes \(yx\ne0\).
-%</webmath>
-\[
- s_0t_1=(cwd)(s_0t_1)(cwd)
-       =(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.
-\]
+Then $xwy=t_1s_0=0$.  Also $t_0(s_0t_1)s_1=1$, so $s_0t_1\ne0$.
+If $yx=ds_0t_1c$ were zero, multiplying this equality on the left by $cw$
+and on the right by $wd$, and using $cwd=1$, would force $s_0t_1=0$.
+Therefore $yx\ne0$.
 To obtain \eqref{eq:coefficient-separation}, we choose four sandwich
 factorizations.  They serve one bookkeeping purpose: if the desired reverse
 product $bsar$ were zero, the outer factors below would reduce that equality

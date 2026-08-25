@@ -39,9 +39,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 110, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 93,
-  'the contextual explanations must remain attached to 93 formula groups');
+assert.equal(declarations.length, 108, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 91,
+  'the contextual explanations must remain attached to 91 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -200,8 +200,6 @@ const coveredFormulas = [
   String.raw`[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad[e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),`,
   String.raw`[e_{wu}(r),e_{uv}(1)]=e_{wv}(r),\qquad[e_{uv}(1),e_{vw}(r)]=e_{uw}(r)`,
   String.raw`arb=0,\qquad bsar\ne0.`,
-  String.raw`1=(t_0s_0)(t_1s_1)=t_0(s_0t_1)s_1,`,
-  String.raw`s_0t_1=(cwd)(s_0t_1)(cwd)=(cw)\bigl((ds_0)(t_1c)\bigr)(wd)=0.`,
   String.raw`c_r\,r\,d_r=1,\quad e_d\,d_r\,f_d=1,\quad e_s\,s\,f_s=1,\quad e_t(c_r r)f_t=1,`,
   String.raw`a=f_s x e_t c_r,\qquad b=d_r f_d y e_s.`,
   String.raw`[g,e_{ij}(a)]=e_{ij}(y-a)\in N`,
@@ -245,7 +243,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 93);
+assert.equal(coveredFormulas.length, 91);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
