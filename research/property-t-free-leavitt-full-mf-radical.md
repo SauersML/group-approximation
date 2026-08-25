@@ -30,6 +30,7 @@ artifacts:
   - research/positive-density-critical-capacity-proof.md
   - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
   - research/local-morita-sibling-cells-have-a-two-qubit-periodic-absorber.md
+  - research/involution-normal-product-forces-one-factor-overlap.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -202,6 +203,17 @@ rank decay but not diffuse Haar escape, and the eventual coordinate may still
 depend on the coefficient.  A successful return must preserve this uniform
 rank scale while authenticating a moving coefficient or mixed-root orbit
 fold.
+
+The same four-conjugate formula now gives more than rank comparison.
+`involution-normal-product-forces-one-factor-overlap` telescopes a product of
+`k` involutions on the output's nontrivial spectral carrier and proves that
+one input carrier has at least a `1/k^2` share of its trace there.  Thus every
+nonzero binary-Leavitt root carrier has at least `1/16` of its mass in one
+addressed conjugate of the marked carrier, robustly for matrix microstates.
+This is a genuine fixed positive overlap, but the selected conjugate depends
+on the coefficient/normal word.  It does not yet identify the two prescribed
+native scale transports, so it strengthens rather than closes the scalar
+holonomy leaf.
 
 The seventh route supplies a concrete moving-coefficient family, but is now
 also refuted by fixed-centralizer properness after an exponent-two triangle

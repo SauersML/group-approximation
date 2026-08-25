@@ -6,6 +6,7 @@ title: Sandwich a nonzero coefficient through two Steinberg commutators
 target: binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale
 requires:
   - finite-order-normal-generation-controls-corona-rank-scale
+  - involution-normal-product-forces-one-factor-overlap
   - torsion-normal-generator-has-full-support-corona-core
 ---
 
@@ -56,3 +57,9 @@ rank(p_a)>=rank(p_q)/4>=d/(4L_0)
 ```
 
 for every fixed `a!=0`, proving `(URR4)`.
+
+Finally apply `involution-normal-product-forces-one-factor-overlap` to either
+four-factor normal word.  In the exact case it gives `(URR5)` directly.  For
+rounded matrix representatives, the normal-word discrepancy is `o(1)` in
+normalized Hilbert--Schmidt norm; the robust form of that lemma gives
+`tau(q p_j)>=tau(q)/16-o(1)` after passing to the maximizing factor.

@@ -9,6 +9,7 @@ distinct_from:
   torsion-normal-generator-has-full-support-corona-core: that reblocks one torsion normal generator to positive density; this shows that after that reblocking every fixed nonzero elementary root has a common positive density floor.
 artifacts:
   - research/binary-leavitt-uniform-root-rank-proof.md
+  - research/involution-normal-product-forces-one-factor-overlap.md
 ---
 
 Let `L=L_(F_2)(1,2)`, put `q=s_1t_1`, and let `n>=4`.  For every nonzero
@@ -47,6 +48,18 @@ marked root, suppose its active projection has normalized rank at least
 liminf rank(p_a)/d >= 1/(4L_0).                         (URR4)
 ```
 
+There is also a uniform cross-overlap consequence.  In either four-conjugate
+normal word from `(URR1)`, let `p_1,...,p_4` be the four conjugates of the
+input root's active projection.  If `q` is the output root's active
+projection, then one factor satisfies
+
+```text
+tau(q p_j) >= tau(q)/16                                (URR5)
+```
+
+in an exact finite-dimensional representation.  For rounded involutions in
+an asymptotic matrix model, the right side is `tau(q)/16-o(1)`.
+
 No Property T, stability, trace expansion, or literature input is used.
 
 This still does not collapse a diffuse root spectrum.  The Haar
@@ -54,9 +67,12 @@ representation of an infinite elementary abelian root group gives every
 nonzero involution active trace `1/2`, fully compatible with `(URR4)`.  Also,
 the coordinate after which `(URR3)` holds may depend on `a`; the theorem does
 not permit choosing a coefficient after inspecting the matrix coordinate.
-The remaining decoder must use the uniform rank scale together with a
-mixed-root return or a uniformly authenticated moving coefficient, rather
-than infer an atom from the density floor alone.
+Likewise, the successful conjugate in `(URR5)` may depend on the coefficient
+and on the chosen normal word.  The theorem therefore does not identify the
+two native scale transports on one common carrier.  The remaining decoder
+must use the uniform rank/overlap scale together with a mixed-root return or
+a uniformly authenticated moving coefficient, rather than infer an atom or
+a common gauge from the density floor alone.
 
 DERIVATION
 binary-leavitt-uniform-root-rank-proof

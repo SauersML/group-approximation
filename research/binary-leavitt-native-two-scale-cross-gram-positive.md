@@ -139,6 +139,15 @@ claim.  A valid proof must still exhibit a word-visible row that couples the
 two actual scale-changing occurrences, or calculate strict capacity for
 their own prescribed common target.
 
+The normal-saturation overlap floor also has the wrong synchronization type.
+`involution-normal-product-forces-one-factor-overlap`, applied to the uniform
+four-conjugate binary-Leavitt normal words, puts at least `1/16` of every
+nonzero output root carrier inside one conjugate of the marked carrier.  The
+successful conjugate is selected separately for each coefficient word; it
+need not be either prescribed selector transport, much less the same
+transport choice at both scales.  Hence this new positive overlap is useful
+input for an occurrence decoder but does not itself instantiate `(NCG1)`.
+
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
 a third balance pair can equate the two gauge ranks only after its cyclic
