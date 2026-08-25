@@ -67,6 +67,25 @@ theorem actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
     have heval := DFunLike.congr_fun hfactor x
     exact heval.symm.trans hvisible
 
+/-- The radical itself is the bottom case of the closure pullback theorem. -/
+theorem actualCoronaMFResidual_eq_comap_of_surjective_of_ker_le
+    (f : G →* H) (hf : Function.Surjective f)
+    (hker : f.ker ≤ actualCoronaMFResidual G) :
+    actualCoronaMFResidual G =
+      (actualCoronaMFResidual H).comap f := by
+  have hpull :=
+    actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
+      f hf hker (⊥ : Subgroup G)
+  have hG :
+      actualCoronaMFClosure (⊥ : Subgroup G) =
+        actualCoronaMFResidual G :=
+    actualCoronaMFClosure_eq_residual_of_le (⊥ : Subgroup G) bot_le
+  have hH :
+      actualCoronaMFClosure (⊥ : Subgroup H) =
+        actualCoronaMFResidual H :=
+    actualCoronaMFClosure_eq_residual_of_le (⊥ : Subgroup H) bot_le
+  simpa [hG, hH] using hpull
+
 /-- Intrinsic fullness of the kernel is a sufficient hypothesis for exact
 pullback of every MF closure. -/
 theorem actualCoronaMFClosure_eq_comap_map_of_surjective_of_kernel_eq_top

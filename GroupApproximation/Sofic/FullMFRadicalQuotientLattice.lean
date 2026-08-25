@@ -42,8 +42,12 @@ theorem ext {N M : MFClosedNormalSubgroup G}
   rfl
 
 instance : PartialOrder (MFClosedNormalSubgroup G) where
-  le_refl N := le_rfl
-  le_trans _ _ _ hNM hMP := hNM.trans hMP
+  le_refl N := by
+    change N.carrier ≤ N.carrier
+    exact le_rfl
+  le_trans N M P hNM hMP := by
+    change N.carrier ≤ P.carrier
+    exact hNM.trans hMP
   le_antisymm N M hNM hMN := ext (le_antisymm hNM hMN)
 
 /-- The image of an MF quotient kernel across an invisible-kernel
@@ -75,7 +79,8 @@ def comapOfInvisibleKernel (f : G →* H) (hf : Function.Surjective f)
   have hpull :=
     actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
       f hf hker (M.carrier.comap f)
-  rw [hpull, Subgroup.map_comap_eq_self_of_surjective hf, M.closed]
+  simpa only [Subgroup.map_comap_eq_self_of_surjective hf, M.closed]
+    using hpull
 
 @[simp]
 theorem mapOfInvisibleKernel_carrier (f : G →* H)
@@ -83,7 +88,9 @@ theorem mapOfInvisibleKernel_carrier (f : G →* H)
     (hker : f.ker ≤ actualCoronaMFResidual G)
     (N : MFClosedNormalSubgroup G) :
     (mapOfInvisibleKernel f hf hker N).carrier = N.carrier.map f :=
-  rfl
+  by
+    unfold mapOfInvisibleKernel
+    rfl
 
 @[simp]
 theorem comapOfInvisibleKernel_carrier (f : G →* H)
@@ -91,7 +98,9 @@ theorem comapOfInvisibleKernel_carrier (f : G →* H)
     (hker : f.ker ≤ actualCoronaMFResidual G)
     (M : MFClosedNormalSubgroup H) :
     (comapOfInvisibleKernel f hf hker M).carrier = M.carrier.comap f :=
-  rfl
+  by
+    unfold comapOfInvisibleKernel
+    rfl
 
 /-- Image and inverse image give an order isomorphism between all MF quotient
 kernels of the source and target. -/
@@ -102,14 +111,14 @@ def orderIsoOfInvisibleKernel (f : G →* H) (hf : Function.Surjective f)
   invFun := comapOfInvisibleKernel f hf hker
   left_inv N := by
     apply ext
-    change (N.carrier.map f).comap f = N.carrier
+    rw [comapOfInvisibleKernel_carrier, mapOfInvisibleKernel_carrier]
     have hkN :=
       ((actualCoronaMFClosure_eq_self_iff_map_of_surjective_of_ker_le
         f hf hker N.carrier).mp N.closed).1
     exact Subgroup.comap_map_eq_self hkN
   right_inv M := by
     apply ext
-    change (M.carrier.comap f).map f = M.carrier
+    rw [mapOfInvisibleKernel_carrier, comapOfInvisibleKernel_carrier]
     exact Subgroup.map_comap_eq_self_of_surjective hf M.carrier
   map_rel_iff' := by
     intro N M
@@ -137,6 +146,44 @@ theorem map_le_map_iff_of_invisibleKernel
   (orderIsoOfInvisibleKernel f hf hker).le_iff_le
 
 end MFClosedNormalSubgroup
+
+universe w
+
+variable {G : Type u} [Group G] {H : Type v} [Group H]
+  {K : Type w} [Group K]
+
+/-- Surjections with MF-invisible kernel are closed under composition. -/
+theorem ker_comp_le_actualCoronaMFResidual
+    (f : G →* H) (g : H →* K)
+    (hf : Function.Surjective f)
+    (hkerF : f.ker ≤ actualCoronaMFResidual G)
+    (hkerG : g.ker ≤ actualCoronaMFResidual H) :
+    (g.comp f).ker ≤ actualCoronaMFResidual G := by
+  have hpull :=
+    actualCoronaMFResidual_eq_comap_of_surjective_of_ker_le
+      f hf hkerF
+  intro x hx
+  rw [hpull, Subgroup.mem_comap]
+  apply hkerG
+  rw [MonoidHom.mem_ker]
+  exact MonoidHom.mem_ker.mp hx
+
+/-- The order isomorphisms on MF quotient kernels respect composition. -/
+theorem MFClosedNormalSubgroup.orderIsoOfInvisibleKernel_comp
+    (f : G →* H) (g : H →* K)
+    (hf : Function.Surjective f) (hg : Function.Surjective g)
+    (hkerF : f.ker ≤ actualCoronaMFResidual G)
+    (hkerG : g.ker ≤ actualCoronaMFResidual H) :
+    MFClosedNormalSubgroup.orderIsoOfInvisibleKernel
+        (g.comp f) (hg.comp hf)
+        (ker_comp_le_actualCoronaMFResidual f g hf hkerF hkerG) =
+      (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hkerF).trans
+        (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel g hg hkerG) := by
+  ext N
+  apply MFClosedNormalSubgroup.ext
+  simp only [MFClosedNormalSubgroup.mapOfInvisibleKernel_carrier,
+    OrderIso.trans_apply, MFClosedNormalSubgroup.orderIsoOfInvisibleKernel]
+  rw [Subgroup.map_map]
 
 end
 
