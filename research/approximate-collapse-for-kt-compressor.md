@@ -41,6 +41,33 @@ sibling claims):**
   of finite-dimensional representation theory, not a generic
   property (`ccr-for-coordinate-collapsing-models` supplies the
   (T)-uniformity step).
+- The explicit full-packet Majorana endpoint is now quantitative in that
+  genuine-coordinate regime.  For the Kazhdan packet `K` and mixed return
+  `h=L e_12(x_1)L^(-1)`,
+
+  ```text
+  ||[X,rho(h)]||_2
+   <= (2/kappa_K) max_(s in K)||[X,rho(s)]||_2
+  ```
+
+  for every genuine finite-dimensional actor representation; see
+  `kt-full-kazhdan-majorana-return-collapses-in-fd`.  Thus the exact finite
+  Clifford quotient countermodels stop precisely when all packet rows are
+  imposed: finite-image compression puts `rho(h)` in `rho(Gamma)`, so the
+  returned Clifford site coincides with the original.  What remains here is
+  exactly the addition of a normalized-HS actor-relator error term to this
+  inequality.  The exact endpoint hides no further multiplicity obstruction.
+  `kt-local-actor-correction-pays-majorana-return` computes the terminal
+  perturbation explicitly: correction by `epsilon` only on `K union {h}`
+  gives the Majorana floor
+
+  ```text
+  2-(4/kappa_K)delta_K-(8/kappa_K+4)epsilon.
+  ```
+
+  Therefore the presentation/window-to-representation modulus is now the
+  only unnamed term; calling it a consequence of property `(T)` would be a
+  hidden stability assumption.
 - The group-algebra slice cannot break it (`ccr-group-algebra-slice`:
   `FC_Λ(G) = Z`), nor can coarse-bimodule content, amplification,
   finite quotients, small-block gluing, or the bicommutant shortcut
