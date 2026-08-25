@@ -5,11 +5,11 @@ kind: route
 title: Combine the ComputeSampler nonlinear triple with exact full-seed rigidity
 target: jnvwy-introspection-has-no-affine-safe-perfect-model
 requires:
-  - jnvwy-canonical-halt-strategy-is-affine-unsafe
+  - jnvwy-compute-sampler-has-nonlinear-role-marginal
   - jnvwy-perfect-introspection-forces-full-seed-support
 ---
 
-The first required claim proves, independently of PCP witness choices, that a
+The first required claim proves directly from the fixed sampler, independently of strategy and PCP witness choices, that a
 role marginal `L` of the unchanged recursive `ComputeSampler(lambda)` has
 seeds `z_0,z_1,z_2` satisfying
 
