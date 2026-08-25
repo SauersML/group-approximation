@@ -6,11 +6,11 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 250 |
+| `formalized` | 254 |
 | `definition` | 39 |
 | `structural` | 21 |
-| `partial` | 13 |
 | `attribution` | 11 |
+| `partial` | 9 |
 | `provenance` | 1 |
 | **total** | **335** |
 
@@ -28,22 +28,14 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * the far-out choice and the 1/n defect bound are literal, but the quantity retained is half the marked model's own separation constant, not half the corona norm ||pi(x_j)-1||; the arithmetic link between the two is explicitly not asserted
 * **`partial`**, line 260 --- A Kazhdan inequality gives an element of $K$ whose Hilbert--Schmidt distance from the identity is bounded below there, contrary to the first conclusion.
   * the three printed steps exist separately, but printed_corner_trace_inequality takes the coordinate quadratic-form inequality as a hypothesis: the bridge from the abstract corner Kazhdan inequality to the coordinate form for the asymptotic W_n is explicitly not claimed, so the unconditional route is the moving-corner GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
-* **`partial`**, line 424 --- The binary Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange}, and its center is the base field~\cite{ArandaCrow}.
-  * exchange ring and centre = base field are exact; 'purely infinite simple' is carried only as single-sandwich division plus IsSimpleRing, there being no pure-infiniteness predicate in the tree
 * **`partial`**, line 424 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
   * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
 * **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * proved only for R = the binary Leavitt algebra over F_2 (all ranks >= 2, universe 0); the printed 'n >= 3 and any finitely generated unital associative R' is not in the tree
 * **`partial`**, line 516 --- For all sufficiently large $n$, the matrix $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from $x_n$ by $o(1)$.
   * the o(1) estimate needs only the one-sided Gram bound, but the invertibility and unitarity clauses are proved only when BOTH Gram defects vanish, whereas the printed sentence derives them from x_n^* x_n -> 1 alone by finite dimension
-* **`partial`**, line 516 --- Thus $v$ is represented by unitaries and $vv^*=1$.
-  * v v^* = 1 is exact; 'v is represented by unitaries' is not the Lean route, which corrects by a Neumann/Dedekind-finiteness argument rather than by unitary representatives
 * **`partial`**, line 543 --- Represent $B$ faithfully and nondegenerately on a Hilbert space $\mathcal H$.
   * WEAKENING: the faithful representation is an INPUT in both (`faithfulRep : B ->*_alg (E ->L[C] E)` plus injectivity), never produced. No Gelfand-Naimark instance for an arbitrary unital C*-algebra exists in the tree (Analysis/MaximalCStarKazhdanProjection.lean:106 states this explicitly), and 'nondegenerately' is nowhere stated. Closing statement needed: `forall (B) [CStarAlgebra B], exists (E) (_ : InnerProductSpace C E) (pi : B ->*_alg (E ->L[C] E)), Function.Injective pi`.
-* **`partial`**, line 665 --- The commutation relation in the corona gives
-  * WEAKENING: no standalone lemma states 'commutation in the corona ==> coordinate commutator norms vanish'. It is the inline `hcommCof`/`hcommOmega` block of `manuscriptCentralCoronaCorner` (CentralCoronaCorner.lean:94-110), assembled from `normMatrixCStarCoronaMk_eq_zero_iff` and `commutator_coord`. Downstream it is a structure FIELD (`PrintedCornerData.commutator_vanishing`), i.e. an assumption for every consumer. Closing statement: a named lemma `rho g * q = q * rho g in the corona -> Tendsto (fun n => ||V n g * Q n - Q n * V n g||) cofinite (nhds 0)`. [field commutator_vanishing]
-* **`partial`**, line 674 --- Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity defects converging to zero.
-  * WEAKENING: only ONE of the two printed unitarity defects is bounded -- `||cornerGram C - 1|| <= ||V q - q V||^2` with `cornerGram C = C^H * C`. Nothing states `||C C^H - 1|| -> 0`. The Lean polar correction (`polarCorrectUnitary`) needs only the C^H C defect, so the second half of the printed sentence is both unused and unformalized. (Also PRIOR NAME WRONG: it is `GroupApproximation.KazhdanCornerMatrices.cornerGram`, not `Sofic.KazhdanCornerPolar.cornerGram`.)
 * **`partial`**, line 739 --- represent \(b\).
   * WEAKENING: nothing proves that the class of (b_n) equals the printed b built from Theta. In the corrected-corner route the corona element is DEFINED as the class of (b_n) (correctedCornerGramClass), so 'represent b' is definitional there and carries no content; the identification with unitaryGram S (q Theta(s) q) is taken as the HYPOTHESIS hclass of GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder clause 3. The missing lemma would push manuscriptCornerCoronaClass's corona-class equation through the Gram expression: filterMatrixCStarCoronaMk (correctedCornerSectorGramSequence D S) = unitaryGram S (coronaRep ... ).
 * **`partial`**, line 745 --- This contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).
