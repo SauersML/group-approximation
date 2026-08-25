@@ -26,6 +26,7 @@ artifacts:
   - research/property-t-free-leavitt-via-two-shared-gauge-rows.md
   - research/binary-leavitt-native-two-scale-cross-gram-positive.md
   - research/two-scale-cross-gram-implies-shared-gauge-compiler.md
+  - research/canonical-cross-gram-does-not-close-arbitrary-mf-active-profile.md
   - research/active-core-density-keeps-rectangular-capacity-critical.md
   - research/positive-density-critical-capacity-proof.md
   - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
@@ -341,6 +342,21 @@ The alternative trace-cyclic triangle bookkeeping does not bypass this leaf:
 that its third balance edge must first authenticate the two actual gauge
 projections on equal normalized carriers, which is itself the missing
 object-erasing occurrence coupling.
+
+There is now an additional MF-specific quantifier fence on this sixth route.
+The current statement of
+`binary-leavitt-native-two-scale-cross-gram-positive` is restricted to
+canonical-trace normalized-HS microstates.  Active-core reblocking of an
+arbitrary norm-corona representation supplies HS-small relator defects and
+positive marked mass, but not the canonical trace moments of the other
+packet words.  This is
+`canonical-cross-gram-does-not-close-arbitrary-mf-active-profile`, which
+invalidates the current route from that canonical scalar claim to the
+arbitrary-profile shared-gauge compiler.  Consequently the four center-chain
+Hecke fractions and any canonical cross-Gram closure remain relevant to the
+non-hyperlinear lane, but they do not close this MF goal.  The MF repair must
+prove the native estimate uniformly over arbitrary active trace profiles or
+derive the needed profile intrinsically from the surviving mark.
 
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
