@@ -98,5 +98,14 @@ normalized-HS profile would already settle the ordinary-Leavitt
 nonhyperlinearity fork.  Known property `(T)`, character, and hyperfinite
 stability results do not decide that fork.
 
+The exact spectral location of the surviving fork is now known.
+`ordinary-leavitt-parabolic-atomic-spectrum-is-trivial` proves that in every
+finite tracial representation of `Q`, the full last-column root module acts
+trivially on the atomic part of its generated von Neumann algebra.  Hence any
+pulled-back model in `(OLW6)` must carry its marked root entirely on a diffuse
+root-column summand.  The full-occurrence profile must rule out that
+matrix-ultraproduct diffuse summand; no further finite-edge or semisimple
+packet identity can reach it.
+
 DERIVATION
 whitehead-active-profile-descends-to-ordinary-leavitt-quotient

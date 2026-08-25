@@ -102,3 +102,13 @@ in finite canonical microstates, not imposed as literal packet identities.
   ordinary Leavitt quotient nonhyperlinear.  Thus the unresolved actuator is
   a noncentral payload-to-coefficient coupling beyond the finite edge, not a
   missing local Whitehead multiplication identity.
+
+- The non-semisimple vertex itself now has a complete atomic/diffuse audit.
+  `ordinary-leavitt-parabolic-atomic-spectrum-is-trivial` proves that the full
+  parabolic root-column algebra acts trivially on its entire atomic summand
+  in every exact finite tracial representation of the ordinary quotient.
+  Therefore any surviving canonical matrix-ultraproduct model puts the
+  marked occurrence wholly in a diffuse root-column summand.  A successful
+  actuator must prevent that coordinatewise atom-to-diffuse escape; merely
+  adding all coefficient-vertex relations and then passing to the tracial
+  limit loses exactly the needed information.
