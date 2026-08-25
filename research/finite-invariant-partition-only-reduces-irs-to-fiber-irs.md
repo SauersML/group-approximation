@@ -51,6 +51,16 @@ have a genuinely random stabilizer.  Compressing to that object corner keeps
 the bad trace, but generally keeps it as an IRS trace rather than the
 canonical trace of the isotropy group.
 
+If the original random stabilizer is infinite almost surely, conditioning on
+an atom `Y` preserves that property, and its intersection with the
+finite-index group `Delta` is still infinite.  Therefore
+`infinite-irs-characters-defeat-finite-haar-tags` applies on every positive
+fiber: `psi` cannot be the regular character `delta_e` of `Delta`, and no
+further finite quotient tag of `Delta` can make its tag-zero restriction
+regular.  The only terminal version of `(FIP2)` is consequently a genuine
+normal-Dirac collapse to a nontrivial random subgroup `K`, not freeness
+created by the finite readable partition.
+
 For the perfect ZPC gap, the witness may be chosen ergodic: perfect value and
 all ZPC structural equations are probability-one conditions, so they hold on
 almost every ergodic component, while quantum soundness excludes a CE
