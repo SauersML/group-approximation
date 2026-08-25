@@ -158,6 +158,16 @@ obstruction after actor exactification; the live gap is precisely the
 normalized-HS passage from approximate actor relations to this genuine-actor
 inequality.
 
+Moreover this passage cannot fail only on a negligible actor corner.
+`kt-majorana-wall-certifies-macroscopic-actor-instability` gives the explicit
+reverse estimate: vanishing packet and Majorana-row defects force a fixed
+`K union {h}` distance `>=2/(8/kappa_K+4)` from every genuine actor.  The
+same lower bound survives `o(d)` padding, and a positive lower bound survives
+every bounded amplification ratio.  Thus a full-wall countermodel, if it
+exists, is automatically a positive-density witness to source-specific
+Laurent-actor instability; an unbounded amplification is the only remaining
+way to dilute that witness during exactification.
+
 Gamma-only exactification does not bypass this gate through polar rounding.
 `kt-kazhdan-polar-compressor-rounding-is-directional` applies property `(T)`
 to the Hom representation for one strict compressor and obtains a partial

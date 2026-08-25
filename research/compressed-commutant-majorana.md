@@ -69,6 +69,17 @@ making anticommutation maximally false.  The remaining issue is now sharply
 approximate: prove this inequality with an additional term controlled by the
 normalized-HS actor relator defect, without assuming actor stability.
 
+This failure of exactification is quantitatively macroscopic, not a thin
+corner artifact.  `kt-majorana-wall-certifies-macroscopic-actor-instability`
+solves the genuine-actor inequality for the correction distance: a full
+packet wall with vanishing anticommutator defect stays at least `2/C_K` from
+every exact actor on `K union {h}`.  The lower bound remains positive under
+every uniformly bounded amplification and is still `2/C_K` under `o(d)`
+padding.  Hence ordinary flexible stabilization cannot discard the wall;
+only an amplification factor tending to infinity can make this particular
+obstruction microscopic.  This is a necessary condition, not the missing
+actor-defect modulus.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends
