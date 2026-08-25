@@ -98,6 +98,16 @@ no-Fano-line support conclusion.
   transformation does not preserve affine safety in general.  Thus the
   cited perfectness/oracularizability argument cannot close this node: one
   must inspect the particular HALT strategy's positive PCPP view images.
+- `dfnqxy-nonverify-rows-have-cap-safe-rstar-pp-compilers` strengthens that
+  audit at the exact NP/pp seam.  Pinning `z=0,o=1` with
+  `R_*(z,o,o,o)` makes `R_*(u,v,w,o)` a ternary xor row, always inside the
+  fixed cap `x_4=1`.  Hence every affine non-`Verify` predicate has an
+  explicit constant-size cap-safe `R_*` pp gadget, realized by products of
+  the original commuting observables.  We may choose these gadgets in the
+  Culf--Mastel reduction, so equality, consistency, cross-check, and
+  Hadamard code/subset rows leave the dense kernel entirely.  Only pp rows
+  descending from PCPP `Verify` contexts still need a source-specific cap
+  profile.
 - The alternative Lemma-20 source in
   `cmps-two-oracular-rstar-lift-has-commuting-context-stars` closes the
   mutual-neighbor hypothesis: its `2`-oracularizable completeness strategy

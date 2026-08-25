@@ -60,3 +60,11 @@ the internal rows of the constant `CSP(R_*)` gadgets, so it determines no
 canonical two-tail kernel or induced affine cover.  See
 `culf-mastel-rstar-two-tail-core-is-not-specified` and
 `rstar-core-character-profiles-induce-an-exact-affine-cover`.
+
+There is now one source-specific exception to this blindness.
+`dfnqxy-nonverify-rows-have-cap-safe-rstar-pp-compilers` explicitly replaces
+the arbitrary gadgets for all affine non-`Verify` predicates of the final
+Hadamard protocol by pinned xor gadgets whose rows lie in `x_4=1`.  Thus the
+unspecified pp-core issue can be confined to PCPP `Verify` contexts; it is no
+longer present in the equality, consistency, cross-check, or Hadamard
+code/subset rows.
