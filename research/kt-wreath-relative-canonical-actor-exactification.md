@@ -140,8 +140,8 @@ stabilizer-rounding portion no longer requires an unspecified packet.  What
 remains is exactly the KRE actor exactification and the subsequent control of
 the action of `pi(h)` on the multiplicity commutant.
 
-For a genuine representation of the **complete** actor, that subsequent
-control is also automatic.  By
+Already for a genuine representation of the Laurent elementary actor, that
+subsequent control is automatic.  By
 `kt-full-kazhdan-majorana-return-collapses-in-fd`, finite-dimensional
 compression invisibility gives `pi(h) in pi(Gamma)`, and therefore
 

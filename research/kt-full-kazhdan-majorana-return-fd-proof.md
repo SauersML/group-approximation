@@ -12,9 +12,8 @@ requires:
 
 Write `E=EL_3(F_2[x_1^(+-1),x_2^(+-1),x_3^(+-1)])` and let
 `Lambda<Gamma` be any of the positive compressed elementary subgroups used
-in the Kun--Thom pair.  Restrict a genuine finite-dimensional
-representation `rho:G->U(D)` to `E`.  By
-`fd-invisibility-of-compression`,
+in the Kun--Thom pair.  Let `rho:E->U(D)` be a genuine finite-dimensional
+representation.  By `fd-invisibility-of-compression`,
 
 ```text
 rho(E)=rho(Lambda) <= rho(Gamma).                           (FKM4)
@@ -52,7 +51,7 @@ cd+dc-2 = c(d-c)+(d-c)c,
 so its norm is at most `2||d-c||_2`.  The reverse triangle inequality and
 `||2I||_2=2` prove `(FKM3)`.
 
-For the finite-quotient interpretation, if `theta:G->F` is any finite
+For the finite-quotient interpretation, if `theta:E->F` is any finite
 quotient, `(FKM4)` says `theta(h) in theta(Gamma)`, and `K` generates
 `Gamma`.  Hence the cosets fixed by `theta(K)` are also fixed by `theta(h)`.
 The two supposed Clifford labels in the one-root construction coincide;

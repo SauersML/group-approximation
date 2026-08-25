@@ -55,7 +55,7 @@ the mixed `A,B` return; the one visible root cannot replace that packet.
 
 The full packet does kill the exact finite-dimensional endpoint.
 `kt-full-kazhdan-majorana-return-collapses-in-fd` proves that for every
-genuine finite-dimensional representation of the complete actor,
+genuine finite-dimensional representation of the Laurent elementary actor,
 
 ```text
 ||[c,rho(h)]||_2
