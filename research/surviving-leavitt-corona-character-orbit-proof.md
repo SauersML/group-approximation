@@ -2,10 +2,9 @@
 rg: 2
 id: surviving-leavitt-corona-character-orbit-proof
 kind: route
-title: Exclude finite character orbits using the root-kernel finite-quotient argument
+title: Make one root orbit infinite using the Leavitt module dimension equation
 target: surviving-leavitt-corona-character-has-infinite-parabolic-orbit
-requires:
-  - steinberg-cover-fd-triviality
+requires: []
 ---
 
 For `h in H`, conjugating `(PCO1)` shows that
@@ -26,37 +25,57 @@ subprojections of the opposite eigenspaces of the same involution `rho(v)`.
 Also one nonzero projection cannot carry two distinct characters.  Therefore
 the projection orbit and the character orbit have the same cardinality.
 
-Suppose this orbit is finite.  Permuting it gives a homomorphism
-
-```text
-H -> Sym(H chi).                                        (PCP2)
-```
-
-Composing with the permutation-matrix representation is a
-finite-dimensional unitary representation of `St_(n-1)(L)`.  Since
-`n-1>=3`, `steinberg-cover-fd-triviality` makes `(PCP2)` trivial.  Thus
-`h chi=chi` for every `h in H`.
-
 Write a character of `N=(L,+)^(n-1)` as
 
 ```text
-chi(v_1,...,v_(n-1))=product_i chi_i(v_i).              (PCP3)
+chi(v_1,...,v_(n-1))=product_i chi_i(v_i).              (PCP2)
 ```
 
-For distinct `i,j<n`, conjugation by `x_ij(r)` performs the elementary
-column shear
+Choose `i` for which `chi_i` is nontrivial and choose `j!=i`.  For `r in L`,
+the upper-left transvection `u_r=x_ij(r)` performs the elementary column
+shear
 
 ```text
-(v_i,v_j) |-> (v_i+r v_j,v_j)                           (PCP4)
+(v_i,v_j) |-> (v_i+r v_j,v_j)                           (PCP3)
 ```
 
-up to the immaterial characteristic-two convention.  Apply invariance to a
-column with `v_j=1` and all other entries zero.  Equations `(PCP3)--(PCP4)`
-give
+up to the immaterial characteristic-two inverse convention.  Therefore the
+`j`th coordinate of `u_r chi` differs from that of `chi` by
 
 ```text
-chi_i(r)=1                         for every r in L.     (PCP5)
+a |-> chi_i(r a).                                       (PCP4)
 ```
 
-For every `i` there is a distinct `j`, so all `chi_i` are trivial.  Hence
-`chi` is trivial, contrary to the hypothesis.  The orbit is infinite.
+The kernel of the additive map
+
+```text
+L -> dual(L,+),       r |-> (a |-> chi_i(r a))          (PCP5)
+```
+
+is the right ideal
+
+```text
+K={r:chi_i(r a)=1 for every a in L}.                    (PCP6)
+```
+
+It is proper because `chi_i` is nontrivial.  If the image in `(PCP5)` were
+finite, `L/K` would be a nonzero finite-dimensional right `L`-module over
+`F_2`.  If `R_a` denotes right multiplication by `a`, put
+`S_i=R_(t_i)` and `T_i=R_(s_i)`.  Since composition reverses coefficient
+order, these endomorphisms satisfy
+
+```text
+T_i S_j=delta_(ij)I,          S_0T_0+S_1T_1=I.         (PCP7)
+```
+
+The two maps `S_i` are injective with disjoint ranges whose direct sum is the
+whole module.  Hence
+
+```text
+dim(L/K)=2 dim(L/K),                                  (PCP8)
+```
+
+forcing `L/K=0`, a contradiction.  Thus `(PCP5)` has infinite image, so the
+single root subgroup `{u_r:r in L}` already gives infinitely many character
+translates and, by the first paragraph, infinitely many pairwise orthogonal
+conjugates of `P`.
