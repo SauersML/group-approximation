@@ -63,11 +63,11 @@ large centered closing component in `(CGT4)` must make at least one tree-face
 restriction non-scalar.
 
 **Quantitative closure of the scalar-tree residual.**
-`scalar-tree-perturbations-force-square-root-closing-control` proves that if
-both tree restrictions are within `eta<=1` in cb norm of scalar augmentation,
-then the closing restriction is within `C_Delta sqrt(eta)` of scalar
-augmentation.  Hence fixed closing movement forces tree movement at least
-`min{1,(r/C_Delta)^2}`.  What remains is not this finite-face modulus but the
+`scalar-tree-perturbations-linearly-control-closing-face` proves that if both
+tree restrictions are within `eta` in cb norm of scalar augmentation, then
+the closing restriction is within `C_Delta eta` of scalar augmentation.
+Hence fixed closing movement forces tree movement at least `r/C_Delta`.
+What remains is not this finite-face modulus but the
 primal/dual bridge: the large signed separator evaluation `(CGT4)` does not by
 itself select a ucp repair with a quantitatively large closing movement.
 `supporting-choi-component-does-not-force-primal-motion` shows that this

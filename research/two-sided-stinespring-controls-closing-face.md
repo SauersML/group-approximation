@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: finite-word-stinespring-controls-closing-face
+id: two-sided-stinespring-controls-closing-face
 kind: route
-title: Accumulate the Stinespring defect along a shortest closing-face word
-target: scalar-tree-perturbations-force-square-root-closing-control
+title: Pair both Stinespring off-corners and accumulate only linear word error
+target: scalar-tree-perturbations-linearly-control-closing-face
 requires: []
 ---
 
@@ -35,25 +35,48 @@ Since `theta(u)` is a contraction and is within `eta` of `1`,
 ```
 
 The square of the norm of the left off-corner in `(2)` is bounded by the
-left side of `(3)`.  Hence
-
-```text
-||theta(ux)-theta(u)theta(x)||<=sqrt(2eta).                (4)
-```
-
-For `g in P_13`, choose a shortest expression
+left side of `(3)`.  The previous square-root estimate stopped here.  The
+closing word supplies a second small off-corner.  For `g in P_13`, choose a
+shortest expression
 
 ```text
 g=p_1...p_l,       p_j in P_1 union P_3,       l<=R_13.
 ```
 
-Iterating `(4)` from the left, and then telescoping the product of the
-`theta(u_(p_j))` against `1`, gives
+Write `u_j=u_(p_j)` and `x=u_2...u_l`.  Then
 
 ```text
-||theta(u_g)-1||
- <=(l-1)sqrt(2eta)+l eta
- <=(R_13-1)sqrt(2eta)+R_13 eta.                            (5)
+||(1-P)pi(x)V||
+ <=||pi(x)V-V||
+ <=sum_(j=2)^l ||(pi(u_j)-1)V||
+ <=(l-1)sqrt(2eta).                                       (4)
+```
+
+The last inequality follows from
+
+```text
+||(pi(u_j)-1)V||^2
+ =||2-theta(u_j)-theta(u_j)^*||<=2eta.
+```
+
+Pairing the two off-corners in `(2)` therefore gives
+
+```text
+||theta(u_1x)-theta(u_1)theta(x)||<=2(l-1)eta.             (5)
+```
+
+Iterating `(5)` from the left yields
+
+```text
+||theta(u_1...u_l)-theta(u_1)...theta(u_l)||
+ <=2eta sum_(k=1)^(l-1)k=l(l-1)eta.                       (6)
+```
+
+The product of the contractions `theta(u_j)` is within `l eta` of `1` by
+telescoping.  Consequently
+
+```text
+||theta(u_g)-1||<=l^2 eta<=R_13^2 eta.                    (7)
 ```
 
 It remains only to pass from the Fourier basis to cb norm; no compactness is
@@ -69,17 +92,16 @@ With `tau` the canonical normalized trace,
 A_g=(id tensor tau)(X(1 tensor u_g^*)),
 ```
 
-so `||A_g||<=||X||`.  Applying `(5)` entrywise therefore yields
+so `||A_g||<=||X||`.  Applying `(7)` entrywise therefore yields
 
 ```text
 ||(id_(M_m) tensor (theta-E_epsilon^D))(X)||
  <=sum_g ||A_g|| ||theta(u_g)-1||
- <=d_13((R_13-1)sqrt(2eta)+R_13 eta)||X||.                 (6)
+ <=d_13 R_13^2 eta ||X||.                                 (8)
 ```
 
-Taking the supremum over `m` proves the first inequality in `(STQ3)`; for
-`eta<=1`, the second follows from `eta<=sqrt(eta)`.  If `eta>1`, `(STQ4)` is
-automatic, while if `eta<=1`, it follows by rearranging `(STQ3)`.
+Taking the supremum over `m` proves `(STQ3)`, and `(STQ4)` follows by
+rearranging it.  No smallness assumption on `eta` is needed.
 
 The proof is uniform in the codomain.  When `D` is finite-dimensional, ucp
 maps from the fixed finite-dimensional operator system are represented by

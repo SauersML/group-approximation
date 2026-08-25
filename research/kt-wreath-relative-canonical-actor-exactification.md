@@ -181,6 +181,15 @@ lamp separation; neither full actor extendability nor the abstract wreath
 relations can be substituted for it.  Local instability is strict, so this
 paragraph does not itself rule out flexible correction after the doubling.
 
+For the canonical deleted-line instability witnesses that caveat is
+decisive in the opposite direction.  `kt-deleted-line-instability-cannot-carry-majorana-wall`
+adds back the single missing dimension, compares with the original genuine
+actor representation, and obtains an explicit lower bound forcing the
+returned anticommutator norm to `2`.  Thus the known local-instability
+construction cannot satisfy the canonical two-site Majorana row.  Any
+countermodel to `(KRE2)` must be a new macroscopic unstable sector, not the
+standard codimension-one Kazhdan witness.
+
 Gamma-only exactification does not bypass this gate through polar rounding.
 `kt-kazhdan-polar-compressor-rounding-is-directional` applies property `(T)`
 to the Hom representation for one strict compressor and obtains a partial

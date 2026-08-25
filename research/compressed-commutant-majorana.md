@@ -90,6 +90,15 @@ giving product trace one instead of the canonical separated-site moment.
 Thus any surviving proof must consume the positive-density Majorana/Bernoulli
 return relation, not merely the full actor extension.
 
+The explicit deleted-line microstates used to prove Kazhdan local
+instability fail that return relation in the strongest possible way.
+`kt-deleted-line-instability-cannot-carry-majorana-wall` restores their one
+missing dimension and feeds the resulting exact actor correction into the
+full-packet estimate.  Packet centrality then forces the returned
+anticommutator norm to converge to `2`, not `0`.  Thus generic full-actor
+instability exists, but its standard source construction lies outside the
+positive-density Majorana-correlated locus.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends

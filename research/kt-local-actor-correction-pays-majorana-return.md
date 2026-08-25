@@ -61,9 +61,11 @@ rank where the actor presentation is known finite (for this programme,
 `r>=5`).
 
 The estimate also survives flexible correction explicitly.  Let `D>=d`,
-`q=d/D`, put `u_tilde(g)=u_g direct_sum I_(D-d)` and
+`q=d/D`, choose **arbitrary** complementary unitaries `v_g in U(D-d)` for
+`g in K union {h}`, put `u_tilde(g)=u_g direct_sum v_g` and
 `c_tilde=c direct_sum I_(D-d)`, and suppose `(LAC1)` holds for these padded
-matrices in normalized `D`-dimensional norm.  Then
+matrices in normalized `D`-dimensional norm.  The `v_g` need not form a
+representation.  Then
 
 ```text
 ||cd+dc||_(2,d)

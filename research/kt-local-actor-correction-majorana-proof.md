@@ -46,8 +46,9 @@ Substitute `(LAC6)` to obtain `(LAC2)`.  All constants are independent of
 representation in `(LAC1)` is an explicit hypothesis, and `(LAC3)` names
 exactly the additional theorem needed to produce it from actor defects.
 
-For the flexible statement, apply `(LAC2)` in `M_D` to `c_tilde`.  Its packet
-row defect is `q^(1/2)delta_K`, and its returned anticommutator is
+For the flexible statement, apply `(LAC2)` in `M_D` to `c_tilde`.  Every
+complementary unitary `v_g` commutes with the identity block of `c_tilde`, so
+its packet row defect is `q^(1/2)delta_K`, and its returned anticommutator is
 
 ```text
 (cd+dc) direct_sum 2I_(D-d).
