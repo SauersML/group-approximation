@@ -10,6 +10,7 @@ artifacts:
   - research/property-t-free-leavitt-via-full-support-hs-decoder.md
   - research/property-t-free-leavitt-via-opnorm-return-row.md
   - research/property-t-free-leavitt-via-atomic-morita-return.md
+  - research/property-t-free-leavitt-via-chromatic-code.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
 
@@ -36,7 +37,7 @@ step is to assemble those germs into one nonzero finitely generated
 projective corona module carrying a unital action of `R`.  Rank-germ
 Hilbert-hotel cancellation would then force that module to vanish.
 
-There are now four sharply separated routes.
+There are now five sharply separated routes.
 
 1. Assemble finite root germs into one finite-projective norm-corona
    coefficient module and apply rank-germ Hilbert-hotel cancellation.
@@ -48,6 +49,10 @@ There are now four sharply separated routes.
 4. Return only the two diagonal inverse rows and completeness row of one
    binary Leavitt cell to the prescribed nontrivial `z`-spectral atom and
    apply the Atomic Leavitt Gap.
+5. Avoid projection decoding entirely: compile the marked root into an
+   infinite-chromatic diagonal/off-diagonal commutator code whose discrepancy
+   words have uniformly bounded relator area, and apply operator-norm
+   compactness in each frozen matrix coordinate.
 
 The fourth route proves that positive carrier density, global module gluing,
 off-diagonal Leavitt rows and exact `M_2/M_4` packet ranks are unnecessary at
@@ -55,3 +60,11 @@ the terminal MF step.  Its unresolved content is still a genuine
 finite-matrix same-atom decoder: the algebraic root presentation does not by
 itself identify the returned coefficient arrows with that prescribed
 spectral projection.
+
+The fifth route has a different open seam.  Infinite orbit geometry is not
+enough: choosing representatives introduces stabilizer holonomy whose
+relator cost can grow with address length.  It needs a bounded-area section
+or another finite-coordinate coherence mechanism.  Thus the two live
+frontiers are now explicit: authenticate a Leavitt return on one prescribed
+atom, or authenticate an infinite-chromatic commutator code at bounded
+presentation cost.

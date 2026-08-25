@@ -40,6 +40,19 @@ The corresponding diffuse limit is realized: an infinite CAR/UHF-type model of
 the Leavitt relations has exactly this behaviour, `(MD)` holds there, and it is
 vacuous.
 
+There are two exact refinements of this diagnosis.
+
+* `finite-branch-closure-erases-transverse-character` proves that a finite
+  coefficient packet which is literally closed under the injective branch
+  cannot retain the nonzero dual-kernel direction used by the shear.  Thus
+  making one fixed window branch-invariant destroys the doubling input.
+* `norm-corona-sparse-global-character-atom` shows that operator norm can
+  nevertheless select a nonzero global character projection from a surviving
+  elementary-abelian involution.  The obstruction is therefore not mere
+  absence of atoms: the selected sparse atom need not be the whole returned
+  multiplicity sector, so the two branch copies can escape into a larger
+  reservoir.
+
 Two consequences worth stating separately.
 
 1. **Full orthogonal self-copy, elementary commutator calculus, and normal
@@ -68,3 +81,6 @@ hypothesis instead of deriving it.
   `(MD)`: the translation `tau` is not constant on the coarsening, so the
   companion character can collapse onto the original and the doubling is
   lost.
+- Selecting a sparse global operator-norm atom: this succeeds, but branch and
+  shear return equivalent copies only inside a larger character sector and do
+  not prove that the selected atom is properly infinite.

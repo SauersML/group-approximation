@@ -117,3 +117,32 @@ multiplicity, finite rank, determinant on an extensive family of bounded
 blocks, or an equivalent non-tracial-functorial compactness failure.  A
 fixed block linearization does not provide that inference; it merely hides
 the regular-representation contradiction in notation.
+
+## Marked-involution specialization
+
+Let `z!=1` be an involution and let `lambda` be the left regular
+representation.  Then
+
+```text
+p=(1-lambda(z))/2
+```
+
+is a nonzero projection with canonical trace `tau(p)=1/2`.  Hence no
+functorial group-algebra decoder can force two operators `v_0,v_1` to satisfy
+
+```text
+v_i^*v_i=p,
+v_0v_0^* perpendicular_to v_1v_1^*,
+v_0v_0^*+v_1v_1^* <= p.                                  (UBR6)
+```
+
+Indeed, traciality gives `tau(v_iv_i^*)=tau(p)=1/2` for both `i`, whereas
+orthogonality and containment in `p` give
+
+```text
+1/2=tau(p) >= tau(v_0v_0^*)+tau(v_1v_1^*)=1.
+```
+
+Thus a Cuntz/Leavitt decoder for the marked spectral atom must use a
+finite-coordinate operation unavailable in the regular finite trace; it
+cannot be a universal formula in the group unitaries.
