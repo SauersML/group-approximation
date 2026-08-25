@@ -2,7 +2,7 @@
 version: "v0.4"
 
 project:
-  name: "Kazhdan self-compression obstructs operator-norm approximation"
+  name: "Kazhdan Self-Compression and Non-MF Groups"
   description: >-
     The project formalizes the one-sided Kazhdan compression criterion, its
     normal property-(T) MF-radical consequence, the rank-twelve Leavitt
@@ -17,7 +17,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "Kazhdan self-compression obstructs operator-norm approximation"
+  - title: "Kazhdan Self-Compression and Non-MF Groups"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."
