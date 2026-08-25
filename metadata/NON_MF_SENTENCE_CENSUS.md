@@ -6,38 +6,77 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 181 |
-| `formalized` | 95 |
-| `attribution` | 36 |
-| `definition` | 25 |
-| `structural` | 19 |
-| `provenance` | 6 |
-| **total** | **362** |
+| `formalized` | 241 |
+| `definition` | 39 |
+| `partial` | 22 |
+| `structural` | 21 |
+| `attribution` | 11 |
+| `provenance` | 1 |
+| **total** | **335** |
 
-Carrying a declaration or a ledger row: **301/362** (83.1%).
+Carrying a declaration or a ledger row: **302/335** (90.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
-Every sentence carries a declaration, a ledger row, or a reason no declaration applies.
+These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
+
+* **`partial`**, line 120 --- Equivalently, an MF group admits finite-dimensional unitary models whose multiplicative defects tend to zero in operator norm and which asymptotically separate its nonidentity elements: for each $g\ne1$, the quantity $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend on $g$.
+  * the equivalence is proved only with all-pairs, eventually-delta separation; the printed nonidentity/limsup form is delivered forward-only and its converse is explicitly not proved
+* **`partial`**, line 193 --- Choose each coordinate far enough out that the first $n$ multiplication defects are at most $1/n$ and the designated value at $x_j$ retains at least half of its corona-norm separation.
+  * the far-out choice and the 1/n defect bound are literal, but the quantity retained is half the marked model's own separation constant, not half the corona norm ||pi(x_j)-1||; the arithmetic link between the two is explicitly not asserted
+* **`partial`**, line 260 --- A Kazhdan inequality gives an element of $K$ whose Hilbert--Schmidt distance from the identity is bounded below there, contrary to the first conclusion.
+  * the three printed steps exist separately, but printed_corner_trace_inequality takes the coordinate quadratic-form inequality as a hypothesis: the bridge from the abstract corner Kazhdan inequality to the coordinate form for the asymptotic W_n is explicitly not claimed, so the unconditional route is the moving-corner GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
+* **`partial`**, line 424 --- The binary Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange}, and its center is the base field~\cite{ArandaCrow}.
+  * exchange ring and centre = base field are exact; 'purely infinite simple' is carried only as single-sandwich division plus IsSimpleRing, there being no pure-infiniteness predicate in the tree
+* **`partial`**, line 424 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
+  * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
+* **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+  * proved only for R = the binary Leavitt algebra over F_2 (all ranks >= 2, universe 0); the printed 'n >= 3 and any finitely generated unital associative R' is not in the tree
+* **`partial`**, line 456 --- If $x\in C$, $h\in L$, and $h'=uhu^{-1}\in L$, then
+  * the printed three-line chain rho(h)rho(u)^-1 x rho(u) = ... is not a named step; Lean gets the same inclusion from adjointRep_conj_fixed_iff instead
+* **`partial`**, line 464 --- Thus $\rho(u)^{-1}C\rho(u)\subseteq C$.
+  * the inclusion appears only as one direction of an iff stated under a FiniteDimensional hypothesis the printed inclusion does not need; there is no standalone rho(u)^-1 C rho(u) <= C lemma
+* **`partial`**, line 516 --- For all sufficiently large $n$, the matrix $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from $x_n$ by $o(1)$.
+  * the o(1) estimate needs only the one-sided Gram bound, but the invertibility and unitarity clauses are proved only when BOTH Gram defects vanish, whereas the printed sentence derives them from x_n^* x_n -> 1 alone by finite dimension
+* **`partial`**, line 516 --- Thus $v$ is represented by unitaries and $vv^*=1$.
+  * v v^* = 1 is exact; 'v is represented by unitaries' is not the Lean route, which corrects by a Neumann/Dedekind-finiteness argument rather than by unitary representatives
+* **`partial`**, line 543 --- Represent $B$ faithfully and nondegenerately on a Hilbert space $\mathcal H$.
+  * WEAKENING: the faithful representation is an INPUT in both (`faithfulRep : B ->*_alg (E ->L[C] E)` plus injectivity), never produced. No Gelfand-Naimark instance for an arbitrary unital C*-algebra exists in the tree (Analysis/MaximalCStarKazhdanProjection.lean:106 states this explicitly), and 'nondegenerately' is nowhere stated. Closing statement needed: `forall (B) [CStarAlgebra B], exists (E) (_ : InnerProductSpace C E) (pi : B ->*_alg (E ->L[C] E)), Function.Injective pi`.
+* **`partial`**, line 665 --- The commutation relation in the corona gives
+  * WEAKENING: no standalone lemma states 'commutation in the corona ==> coordinate commutator norms vanish'. It is the inline `hcommCof`/`hcommOmega` block of `manuscriptCentralCoronaCorner` (CentralCoronaCorner.lean:94-110), assembled from `normMatrixCStarCoronaMk_eq_zero_iff` and `commutator_coord`. Downstream it is a structure FIELD (`PrintedCornerData.commutator_vanishing`), i.e. an assumption for every consumer. Closing statement: a named lemma `rho g * q = q * rho g in the corona -> Tendsto (fun n => ||V n g * Q n - Q n * V n g||) cofinite (nhds 0)`. [field commutator_vanishing]
+* **`partial`**, line 674 --- Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity defects converging to zero.
+  * WEAKENING: only ONE of the two printed unitarity defects is bounded -- `||cornerGram C - 1|| <= ||V q - q V||^2` with `cornerGram C = C^H * C`. Nothing states `||C C^H - 1|| -> 0`. The Lean polar correction (`polarCorrectUnitary`) needs only the C^H C defect, so the second half of the printed sentence is both unused and unformalized. (Also PRIOR NAME WRONG: it is `GroupApproximation.KazhdanCornerMatrices.cornerGram`, not `Sofic.KazhdanCornerPolar.cornerGram`.)
+* **`partial`**, line 739 --- represent \(b\).
+  * WEAKENING: nothing proves that the class of (b_n) equals the printed b built from Theta. In the corrected-corner route the corona element is DEFINED as the class of (b_n) (correctedCornerGramClass), so 'represent b' is definitional there and carries no content; the identification with unitaryGram S (q Theta(s) q) is taken as the HYPOTHESIS hclass of GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder clause 3. The missing lemma would push manuscriptCornerCoronaClass's corona-class equation through the Gram expression: filterMatrixCStarCoronaMk (correctedCornerSectorGramSequence D S) = unitaryGram S (coronaRep ... ).
+* **`partial`**, line 745 --- This contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).
+  * WEAKENING: no declaration derives False on the PRINTED corner route. mem_opToHSShadowResidual_iff gives the membership half (s0 in R_{inf->2}(G) forces the HS ultraproduct image to be 1 for every OpAlmostRepresentation, and D.cornerRepresentation is one), and manuscriptSentence182_correctedCorner... gives the positive lower bound, but nothing puts them together; grep shows no module mentions both cornerRepresentation and opToHSShadowResidual. The unconditional contradiction in the repository is the moving-corner one behind manuscriptNormalKazhdanRadical.
+* **`partial`**, line 950 --- and $yx=ds_0t_1c=0$ would imply
+  * The displayed chain s_0 t_1 = (cwd)(s_0 t_1)(cwd) = (cw)((d s_0)(t_1 c))(wd) = 0 is a calc block INSIDE the second-conjunct proof of both named theorems; only its contrapositive conclusion (d s_0)(t_1 c) != 0 is a named statement. The implication itself has no declaration.
+* **`partial`**, line 955 --- To obtain \eqref{eq:coefficient-separation}, choose factorizations
+  * PRIOR SAID PARTIAL for the same reason and is right in substance, but names only `exists_annihilate_preserve_reverse`. Exact weakening: the four factorizations are proof-internal `obtain`s (hcr, hdf, hsf, htf) inside `exists_annihilate_preserve_reverse`, together with the internal nonvanishing facts dr != 0 and cr * r != 0 that justify applying hdiv to them; `manuscript_coefficient_separation_explicit` takes the four as HYPOTHESES rather than producing them.
+* **`partial`**, line 967 --- Thus for some $i\ne j$ and $a\in R$, conjugation by $g$ sends $e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.
+  * PRIOR WRONG (off by one): prior gave `center_elementaryGroup_eq_bot_of_units` / `exists_elGen_mem_of_diagonal`, i.e. the previous sentence plus the composite endpoint. Exact weakening: `conjSingle_eq_single_of_concentrated` names the line-preserving conjugation formula (conjugate of E_ij(a) is E_ij(g_ii a (g^{-1})_jj)) and `exists_noncommuting_single_of_not_central` names the existence of a noncommuting single-entry matrix, but the combined assertion 'for some i != j and a, y != a' is the proof-internal `hya` of `exists_elGen_mem_of_diagonal`; only the downstream root existence is named.
+* **`partial`**, line 988 --- Thus the $(i,m)$ entry of the defect in \eqref{eq:row-unipotent-sparse} is nonzero.
+  * PRIOR EMPTY. Exact weakening: for the sparse configuration the nonvanishing of the (i,m) defect entry is the proof-internal `hvm` of `exists_elGen_mem_of_inv_entry_zero`. The general named form is the hypothesis `hvm : v k m != 0` of `exists_elGen_mem_of_row_supported_sq_zero` / `manuscriptSentence251_rowExtraction`; no declaration states it for the sparse instance.
+* **`partial`**, line 1001 --- Again $AB=0$, because its potentially nonzero coefficient contains $arb$.
+  * PRIOR EMPTY. Exact weakening: the printed reason (A B = 0 because its only possibly nonzero coefficient contains a r b) is the proof-internal `hAB` calc of `exists_elGen_mem_of_annihilating_coefficients`. What IS named is its hypothesis `hzero : a * (g^{-1})_{jk} * b = 0`, from which A B = 0 is derived, and `doubleCommutator_eq_sqZeroUnit` which consumes A B = 0.
+* **`partial`**, line 1251 --- Conversely, quotienting $W_Q$ by $\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the second factor $A$ in $Q\times A$.
+  * PARTIAL: the printed step 'quotienting W_Q by <<d>> kills B (since <<d>>_B = B) and kills the second factor A' is the anonymous local hypothesis hkill inside the proof of MFCamouflage.projection_ker_eq_normalClosure; no declaration states it. Missing Lean statement: theorem quotient_by_defect_kills_blackHole (d : B) (Q : Type) [Group Q] (hgen : Subgroup.normalClosure ({d} : Set B) = top) : (QuotientGroup.mk' (Subgroup.normalClosure ({MFCamouflage.defect d Q} : Set (MFCamouflage.Camouflage d Q)))).comp (MFCamouflage.blackHole d Q) = 1. The A-coordinate half is carried by product_edge_eq_blackHole.
+* **`partial`**, line 1251 --- The resulting quotient is $Q$, with quotient map induced by $\pi_Q$.
+  * PARTIAL: the two ingredients are named and the first isomorphism theorem is immediate, but no declaration states the isomorphism. Missing Lean statement: noncomputable def camouflageQuotientEquiv (d : B) (Q : Type) [Group Q] (hgen : Subgroup.normalClosure ({d} : Set B) = top) : MFCamouflage.Camouflage d Q (quotient by) Subgroup.normalClosure ({MFCamouflage.defect d Q} : Set (MFCamouflage.Camouflage d Q)) ~=* Q, built as QuotientGroup.quotientKerEquivOfSurjective (MFCamouflage.projection d Q) (MFCamouflage.projection_surjective d Q) transported along projection_ker_eq_normalClosure.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 6 | 0 |
-| Introduction | 13 | 0 |
-| The result | 8 | 0 |
-| Outline of the proof | 30 | 0 |
-| Relation to prior work | 26 | 0 |
-| Matrix quotients | 79 | 0 |
-| One-sided conjugation in matrix models | 23 | 0 |
-| The exact case | 16 | 0 |
-| The asymptotic case | 44 | 0 |
-| The central involution obstruction | 54 | 0 |
-| The basic non-MF construction | 33 | 0 |
-| The explicit affine example | 19 | 0 |
-| Further results | 2 | 0 |
-| Acknowledgements | 3 | 0 |
-| AI and computational resource usage | 6 | 0 |
+| (front matter) | 5 | 0 |
+| Introduction | 62 | 0 |
+| Relation to prior work | 16 | 0 |
+| One-sided compression in finite dimension | 14 | 0 |
+| Kazhdan transport in normalized Hilbert--Schmidt norm | 59 | 0 |
+| Normal Kazhdan subgroups and the MF radical | 66 | 0 |
+| The binary Leavitt self-compression | 12 | 0 |
+| The binary Leavitt group has full MF radical | 70 | 0 |
+| MF-visible quotients | 31 | 0 |
