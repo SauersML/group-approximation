@@ -27,6 +27,8 @@ artifacts:
   - research/binary-leavitt-native-two-scale-cross-gram-positive.md
   - research/two-scale-cross-gram-implies-shared-gauge-compiler.md
   - research/canonical-cross-gram-does-not-close-arbitrary-mf-active-profile.md
+  - research/binary-leavitt-arbitrary-profile-native-cross-gram.md
+  - research/arbitrary-profile-cross-gram-implies-shared-gauge-compiler.md
   - research/active-core-density-keeps-rectangular-capacity-critical.md
   - research/positive-density-critical-capacity-proof.md
   - research/trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence.md
@@ -357,6 +359,10 @@ Hecke fractions and any canonical cross-Gram closure remain relevant to the
 non-hyperlinear lane, but they do not close this MF goal.  The MF repair must
 prove the native estimate uniformly over arbitrary active trace profiles or
 derive the needed profile intrinsically from the surviving mark.
+The repaired scalar target is now named
+`binary-leavitt-arbitrary-profile-native-cross-gram`, and
+`arbitrary-profile-cross-gram-implies-shared-gauge-compiler` records the
+valid route from that stronger input to the shared-gauge compiler.
 
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
