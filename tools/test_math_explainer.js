@@ -43,7 +43,7 @@ for (const declaration of declarations) {
 
 const corona = source('Qd', '\\mathcal Q_{\\mathbf d}');
 assert.equal(corona.name,
-  'the matrix-sequence world used to test MF');
+  'the matrix sequence world used to test MF');
 assert.equal(corona.tex, '\\mathcal Q_{\\mathbf d}');
 assert.match(corona.explanation,
   /bounded sequence\|bounded sequences.*operator norm/);
@@ -76,7 +76,7 @@ assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(G)').name,
 assert.equal(source('RadMF', '\\Rad_{\\mathrm{MF}}(H)=H').name,
   'why every allowed map erases all of H');
 assert.match(source('LF2', 'L_{\\F_2}(1,2)').explanation,
-  /free module.*self-copying rule/);
+  /free module.*rule for copying itself/);
 assert.match(source('d', 'd=e_{02}(q)').explanation,
   /row 0, column 2.*normal closure/);
 assert.equal(source('πQ', '\\pi_Q\\colon W_Q\\longrightarrow Q').name,

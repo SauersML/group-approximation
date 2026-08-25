@@ -167,36 +167,48 @@ theorem centralizerSequence_mem_boundedHSCommutant
   · intro gamma
     have hcomm := manuscriptSentence148_centralizerSequence B L.subtype c
       (fun g ↦ hc g g.property) gamma
+    -- The printed commutator, squared back from its Hilbert--Schmidt norm.
     have hsq : Tendsto
         (fun n ↦ hsNormSq (B.model n)
           ((B.map n c : Matrix (B.model n) (B.model n) ℂ) *
               B.map n (L.subtype gamma) -
             (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) *
               B.map n c)) atTop (nhds 0) := by
-      have := hcomm.2.pow 2
-      simpa [Real.sq_sqrt, hsNormSq_nonneg] using this
+      have h2 : Tendsto
+          (fun n ↦ (Real.sqrt (hsNormSq (B.model n)
+            ((B.map n c : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n (L.subtype gamma) -
+              (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n c))) ^ 2) atTop (nhds 0) := by
+        simpa using hcomm.2.pow 2
+      exact h2.congr (fun n ↦ Real.sq_sqrt (hsNormSq_nonneg _ _))
     intro ε hε
     obtain ⟨N, hN⟩ :=
-      (tendsto_order.mp hsq).2 ε hε |>.exists_forall_of_atTop
+      ((tendsto_order.mp hsq).2 ε hε).exists_forall_of_atTop
     refine ⟨N, fun n hn ↦ ?_⟩
-    have hkey : hsNormSq (B.model n)
-        ((B.map n c : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) *
-            B.map n c *
-            (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
-        = hsNormSq (B.model n)
-          ((B.map n c : Matrix (B.model n) (B.model n) ℂ) *
+    -- Unitary invariance: `A V − V A = (A − V A V⋆) V`.
+    have hV : (B.map n (L.subtype gamma) :
+        Matrix (B.model n) (B.model n) ℂ) ∈
+        Matrix.unitaryGroup (B.model n) ℂ := (B.map n (L.subtype gamma)).2
+    have hVstarV : (B.map n (L.subtype gamma) :
+          Matrix (B.model n) (B.model n) ℂ)ᴴ *
+        (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) = 1 := by
+      simpa [Matrix.star_eq_conjTranspose] using Unitary.star_mul_self_of_mem hV
+    have hfactor :
+        (B.map n c : Matrix (B.model n) (B.model n) ℂ) *
               B.map n (L.subtype gamma) -
             (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) *
-              B.map n c) := by
-      rw [← hsDistSq_conj_eq_hsNormSq_commutator (B.model n)
-        (B.map n (L.subtype gamma)).2
-        (B.map n c : Matrix (B.model n) (B.model n) ℂ)]
-      rw [hsDistSq]
-      rw [← hsNormSq_neg]
-      ring_nf
-    rw [hkey]
-    exact (hN n hn).le
+              B.map n c
+          = ((B.map n c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n c *
+                (B.map n (L.subtype gamma) :
+                  Matrix (B.model n) (B.model n) ℂ)ᴴ) *
+            (B.map n (L.subtype gamma) : Matrix (B.model n) (B.model n) ℂ) := by
+      noncomm_ring [hVstarV]
+    have hkey := hN n hn
+    rw [hfactor, hsNormSq_mul_right _ hV] at hkey
+    exact hkey.le
 
 end OneSidedMFRadical
 end Manuscript

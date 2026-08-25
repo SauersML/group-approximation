@@ -59,13 +59,13 @@
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-Not every countable group is MF in the operator-norm approximation sense.
+Not every countable group is MF in the operator norm approximation sense.
 We prove a one-sided compression criterion that places normal
 property~\textup{(T)} subgroups in the MF radical, and normal generation can
 make that radical equal the whole group.  An elementary group over the binary
 Leavitt algebra satisfies the criterion, giving a simple property~\textup{(T)}
 group that is not MF.  We also prove exact pullback formulas showing that an
-MF-invisible kernel preserves the complete family of MF quotients above it.
+a kernel invisible to MF preserves the complete family of MF quotients above it.
 \end{abstract}
 
 \maketitle
@@ -75,7 +75,7 @@ MF-invisible kernel preserves the complete family of MF quotients above it.
 
 A countable group is \emph{MF} if it embeds in the unitary group of a norm
 matrix corona
-%<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the matrix-sequence world used to test MF">
+%<webmath object="Qd" when="\mathcal Q_{\mathbf d}" title="the matrix sequence world used to test MF">
 % Read \(\mathbf d=(d_1,d_2,d_3,\ldots)\) as a [[sequence]] of positive whole
 % numbers: \(d_n\) is the number of rows and columns in the nth [[matrix]].
 % The [[calligraphic letter|calligraphic]] Q is simply the name of the object
@@ -89,7 +89,7 @@ matrix corona
 %</webmath>
 %<webmath object="Mdn" when="M_{d_n}(\C)" title="the square matrices used at stage n">
 % \(M_{d_n}(\C)\) is the [[set]] of all square [[matrix|matrices]] with
-% \(d_n\) rows and \(d_n\) columns and with [[complex number|complex-number]]
+% \(d_n\) rows and \(d_n\) columns and with [[complex number|complex number]]
 % entries.  The subscript n is an [[index]] selecting one stage.  The whole
 % number \(d_n\) may grow as n grows, so later stages may use larger matrices.
 %</webmath>
@@ -101,14 +101,14 @@ matrix corona
 % norm]].  Two sequences are added or multiplied position by position.
 %</webmath>
 %<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences that shrink to zero">
-% The large circled-plus sign \(\bigoplus_n\) names the [[direct sum]].  It
+% The large circled plus sign \(\bigoplus_n\) names the [[direct sum]].  It
 % contains exactly the matrix [[sequence|sequences]] whose [[operator norm|operator
 % norms]] have [[limit]] zero.  Placing it after the slash means forming a
 % [[quotient]]: any error sequence that shrinks to zero is treated as exactly
 % zero in the [[norm matrix corona]].
 %</webmath>
 %<webmath object="C" when="M_{d_n}(\C)" title="the number system used for matrix entries">
-% The [[blackboard-bold letter|blackboard-style]] C, \(\C\), means the
+% The [[blackboard-bold letter|blackboard bold]] C, \(\C\), means the
 % [[complex number|complex numbers]].
 % They include ordinary real numbers and numbers involving \(i\), where
 % \(i^2=-1\).  They are the entries used in the paper's [[unitary matrix|unitary
@@ -137,7 +137,7 @@ in operator norm and which asymptotically separate its nonidentity elements:
 for each $g\ne1$, the quantity
 $\limsup_n\opnorm{V_n(g)-1}$ is positive, with a lower bound that may depend
 on $g$.
-Throughout, \emph{MF group} means the operator-norm notion introduced by
+Throughout, \emph{MF group} means the operator norm notion introduced by
 Carri\'on--Dadarlat--Eckhardt~\cite[Definition~2.7]{CDE}.
 
 For a countable group $G$, define its MF radical by
@@ -146,7 +146,7 @@ For a countable group $G$, define its MF radical by
 % subgroup]] of the [[group]] G.  It contains exactly the elements that every
 % [[homomorphism]] from G into every [[norm matrix corona]] sends to the
 % [[identity]].  In plainer words, these are the group moves that no allowed
-% [[finite-matrix model|finite-matrix experiment]] can distinguish from doing
+% [[finite-matrix model|finite matrix experiment]] can distinguish from doing
 % nothing.
 %</webmath>
 %<webmath object="d⋂" when="\bigcap_{\mathbf d}" title="requiring the condition for every choice of matrix sizes">
@@ -156,7 +156,7 @@ For a countable group $G$, define its MF radical by
 % holds for every possible choice of finite matrix sizes.
 %</webmath>
 %<webmath object="π:G→U(Qd)⋂" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}" title="checking every allowed map from G">
-% After a matrix-size [[sequence]] is chosen, the [[Greek letter]] \(\pi\),
+% After a matrix size [[sequence]] is chosen, the [[Greek letter]] \(\pi\),
 % read “pi,” names a [[homomorphism]].  The notation
 % \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\)
 % says that its inputs come from the [[group]] G and its outputs are [[unitary
@@ -167,7 +167,7 @@ For a countable group $G$, define its MF radical by
 %<webmath object="ker" when="\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi" title="the elements that one map erases">
 % \(\ker\pi\) means the [[kernel]] of the map \(\pi\): all elements of G that
 % \(\pi\) sends to the [[identity]].  The complete formula takes an
-% [[intersection]] over every map \(\pi\) and every matrix-size [[sequence]].
+% [[intersection]] over every map \(\pi\) and every matrix size [[sequence]].
 % What remains is exactly the [[MF radical]].
 %</webmath>
 \[
@@ -180,7 +180,7 @@ precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
 $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
 
-More generally, for $N\trianglelefteq G$ define its \emph{MF-kernel closure}
+More generally, for $N\trianglelefteq G$ define its \emph{MF kernel closure}
 by
 \[
  \operatorname{cl}_{\mathrm{MF}}^G(N)
@@ -222,13 +222,13 @@ $n$, take a direct
 sum of one coordinate from each of the first $n$ models.  Choose each
 coordinate far enough out that the first $n$ multiplication defects are at
 most $1/n$ and the designated value at $x_j$ retains at least half of its
-corona-norm separation.  Such coordinates exist arbitrarily far out: the
+corona norm separation.  Such coordinates exist arbitrarily far out: the
 defects converge to zero, while the quotient norm is a limsup.  The resulting
-operator-norm asymptotic representation detects every $x_j$, so its corona
+operator norm asymptotic representation detects every $x_j$, so its corona
 homomorphism is faithful on $G/R$.  Thus $G/R$ is MF.
 
 Applied to $G/N$, the same argument says that $G/N$ is MF exactly when the
-intersection of the kernels of all MF-target maps killing $N$ is $N$, which
+intersection of the kernels of all maps into MF groups that kill $N$ is $N$, which
 is the asserted closure criterion.
 \end{proof}
 
@@ -245,7 +245,7 @@ For a subgroup $L\le G$, put
 % L is a [[subgroup]] of G.  The symbol \(\le\) means subgroup containment,
 % not numerical comparison.  Thus \(uLu^{-1}\le L\) says that
 % \(u\ell u^{-1}\) belongs to L for every element \(\ell\) in L.  The exponent
-% \(-1\) means [[inverse]], and the three-factor expression is [[conjugation]].
+% \(-1\) means [[inverse]], and the product of three factors is [[conjugation]].
 % The paper later uses the rigidity property called [[property (T)]] for L.
 %</webmath>
 \[
@@ -300,22 +300,23 @@ to the first conclusion.  Independently, Theorem~\ref{thm:commutant} shows
 that every finite-dimensional linear representation over every field kills
 $\mathfrak D_G(L)$.
 
-Whether every countable group is MF was asked in the group-MF literature and
+Whether every countable group is MF was asked in the literature on MF groups and
 remained open~\cite{CDE,Korchagin,Thom,Shulman}.  Applying
 Theorem~\ref{thm:compression-criterion} to the binary Leavitt construction
 below answers the question.
 
-%<webmath object="LF2" when="L_{\F_2}(1,2)" title="the self-copying system used to build H">
+%<webmath object="LF2" when="L_{\F_2}(1,2)" title="the system that copies itself and is used to build H">
 % \(L_{\F_2}(1,2)\) names a particular [[Leavitt algebra]].  The subscript
-% \(\F_2\) names its two-number [[field]], and \((1,2)\) records that one
+% \(\F_2\) names its [[field]] with two numbers, and \((1,2)\) records that one
 % [[free module]] can behave like two copies of itself.  The algebra is
 % [[generated by relations]] from four elements \(s_0,s_1,t_0,t_1\).  Their
 % subscripts are [[index|indices]], not powers.  The equations below say that
 % the t elements recover inputs placed by the s elements.  The proof uses this
-% self-copying rule to construct the [[matrix]] \(\tau\).
+% rule for copying itself to construct the [[matrix]] \(\tau\).
 %</webmath>
 %<webmath object="F2" when="L_{\F_2}(1,2)" title="the number system containing only 0 and 1">
-% \(\F_2\), read “F two,” uses a [[blackboard-bold letter]] F and is the
+% \(\F_2\), read “F two,” uses a [[blackboard-bold letter|blackboard bold
+% letter]] F and is the
 % [[field]] containing only 0 and 1.  Its
 % arithmetic has \(1+1=0\), so its only nonzero [[scalar]] is 1.  The subscript
 % 2 records the number of elements in the field.  Later this prevents a
@@ -391,19 +392,20 @@ In particular, $H$ is non-MF.
 % [[inverse]].  The product \(\tau L\tau^{-1}\) means apply [[conjugation]] by
 % tau to every element of the [[subgroup]] L.  The symbol \(\le\) says every
 % result still lies in L, although not every element of L must be reached.
-% This one-way containment is what the [[property (T)]] argument needs.
+% This containment in only one direction is what the [[property (T)]] argument
+% needs.
 %</webmath>
 Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
-the upper-left subgroup $L\cong\EL_3(R)$.  The element $c=e_{34}(1)$
+the subgroup $L\cong\EL_3(R)$ in the upper left.  The element $c=e_{34}(1)$
 centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
-%<webmath object="d" when="d=e_{02}(s_1t_1)" title="a concrete non-do-nothing element of H">
+%<webmath object="d" when="d=e_{02}(s_1t_1)" title="a concrete nonidentity element of H">
 % The letter d names a [[commutator]] comparing the products
 % \(\tau c\tau^{-1}\ell\) and \(\ell\tau c\tau^{-1}\).  The equality says d
 % is the [[elementary matrix]] \(e_{02}(s_1t_1)\): an [[identity matrix]] with
 % \(s_1t_1\) added in row 0, column 2.  The 0 and 2 are row and column
 % [[index|indices]]; this paper numbers from 0.  The [[Leavitt algebra]]
 % equations imply \(s_1t_1\ne0\), so d is not the identity.  The equation
-% \(t_1(s_1t_1)s_1=1\), together with elementary-matrix [[commutator]] rules,
+% \(t_1(s_1t_1)s_1=1\), together with elementary matrix [[commutator]] rules,
 % shows that the [[normal closure]] of d is the whole group H.
 %</webmath>
 \[
@@ -428,14 +430,14 @@ $uLu^{-1}=L$, so
 $ucu^{-1}$ centralizes $L$ for every
 $u\in\operatorname{Comp}_G(L)$, and again $\mathfrak D_G(L)=1$.
 
-The argument is specific to operator-norm approximation and gives no
+The argument is specific to operator norm approximation and gives no
 conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt
-approximations do not provide the operator-norm control used to construct the
+approximations do not provide the operator norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
 
-Full MF radicals determine prescribed MF-visible quotients as follows.
+Full MF radicals determine prescribed quotients visible to MF as follows.
 
-\begin{mainthm}[prescribed MF-visible quotients]\label{thm:prescribed-quotients}
+\begin{mainthm}[prescribed quotients visible to MF]\label{thm:prescribed-quotients}
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$ and, for a
 countable group $Q$, define
@@ -448,7 +450,7 @@ vertex group onto $Q$ is a split epimorphism, and
 % The left side is the [[MF radical]] of the [[group]] \(W_Q\).  On the right,
 % \(\pi_Q^{-1}\) means [[preimage]], not “divide by \(\pi_Q\)”: collect every
 % input whose output lies in the MF radical of Q.  Thus an element of \(W_Q\)
-% is erased by every finite-matrix [[representation]] exactly when its
+% is erased by every finite matrix [[representation]] exactly when its
 % [[image]] under \(\pi_Q\) is erased in Q.  If Q is an [[MF group]], its MF
 % radical contains only the [[identity]], so this preimage is the [[kernel]]
 % of \(\pi_Q\).
@@ -470,17 +472,17 @@ for every MF group $M$.
 
 \subsection*{Relation to prior work}
 
-Carri\'on--Dadarlat--Eckhardt introduced the group-MF framework used
+Carri\'on--Dadarlat--Eckhardt introduced the framework for MF groups used
 here~\cite{CDE}; Korchagin subsequently developed permanence and local
 approximation results for MF groups~\cite{Korchagin}.
 Shulman proves MF permanence for doubles $G*_H G$ of MF groups and, separately,
 MF full group $C^*$-algebra results for several classes of amalgamated and
-semidirect products~\cite{Shulman}.  The operator-norm case
-remained open after non-approximability had been established for finite
+semidirect products~\cite{Shulman}.  The operator norm case
+remained open after failure of approximation had been established for finite
 Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
-Bachner--Dogon--Lubotzky study an operator--Hilbert--Schmidt stability
-condition as a possible source of non-MF groups~\cite{BDL}.  Here
-operator-norm control implies that coordinatewise conjugation defines a
+Bachner--Dogon--Lubotzky study stability between the operator and
+Hilbert--Schmidt norms as a possible source of non-MF groups~\cite{BDL}.  Here
+operator norm control implies that coordinatewise conjugation defines a
 representation in a second norm matrix corona.  Its Kazhdan projection makes
 the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
 compressor.  Section~4 then proves that a normal property-\textup{(T)} subgroup
@@ -491,7 +493,7 @@ nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
 internal compression used here.  The binary Leavitt algebra is purely
 infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
 and its center is the base field~\cite{ArandaCrow}.  Preusser's work gives
-general normal-subgroup theorems for linear groups over exchange
+general theorems about normal subgroups of linear groups over exchange
 rings~\cite{Preusser}; the simplicity proof below instead extracts an
 elementary root directly from a nonidentity normal element.
 Ershov--Jaikin-Zapirain give property~\textup{(T)} for
@@ -540,7 +542,7 @@ The finite-dimensional hypothesis is essential here.  On an
 infinite-dimensional space an injective endomorphism of the commutant need
 not be surjective.  In Section~3 the Kazhdan projection places the analogous
 endomorphism inside a norm matrix corona, where stable finiteness supplies
-the missing surjectivity at the level of fixed-space projections.
+the missing surjectivity for projections onto fixed vectors.
 
 \section{Kazhdan transport in normalized Hilbert--Schmidt norm}
 
@@ -549,7 +551,7 @@ For $a\in M_d(\C)$ write
  \hsnorm{a}=\tr_d(a^*a)^{1/2},
  \qquad \tr_d=\frac1d\operatorname{Tr}.
 \]
-An \emph{operator-norm asymptotic representation} of a countable group $G$
+An \emph{operator norm asymptotic representation} of a countable group $G$
 is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
 \[
  \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
@@ -559,12 +561,12 @@ For such a sequence put
 \[
  K_2(V)=\{g\in G:\hsnorm{V_n(g)-1}\longrightarrow0\}.
 \]
-The operator-norm defects also tend to zero in normalized
+The operator norm defects also tend to zero in normalized
 Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
 \begin{equation}\label{eq:shadow-residual}
  R_{\infty\to2}(G)=\bigcap_V K_2(V),
 \end{equation}
-where $V$ ranges over all operator-norm asymptotic representations of $G$.
+where $V$ ranges over all operator norm asymptotic representations of $G$.
 An element is universally Hilbert--Schmidt trivial precisely when it belongs
 to $R_{\infty\to2}(G)$.
 
@@ -635,7 +637,7 @@ of the representation gives the same projection inequality in $B$.
 
 \begin{theorem}[one-sided Kazhdan transport]\label{thm:transport}
 Let $L\le G$ have property~\textup{(T)}, and let $u\in G$ satisfy
-$uLu^{-1}\le L$.  Let $(V_n)$ be an operator-norm asymptotic
+$uLu^{-1}\le L$.  Let $(V_n)$ be an operator norm asymptotic
 representation of $G$.  Then
 \[
  \operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)
@@ -647,14 +649,14 @@ representation of $G$.  Then
 Fix $x=(x_n)\in\mathcal C_2(V,L)$ and let $\omega$ be a free ultrafilter.
 Regard $M_{d_n}(\C)$ as a Hilbert
 space with its normalized Hilbert--Schmidt inner product, and form the
-Hilbert-space ultraproduct $\mathcal K_\omega$.  Conjugation by the $V_n(g)$
+ultraproduct of Hilbert spaces $\mathcal K_\omega$.  Conjugation by the $V_n(g)$
 defines a unitary representation $\sigma$ of $G$ on $\mathcal K_\omega$.
 Indeed, for unitaries $A,B$ one has
 \[
  \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}
  \le2\opnorm{A-B},
 \]
-so the operator-norm multiplicative defects of $(V_n)$ also make the
+so the operator norm multiplicative defects of $(V_n)$ also make the
 conjugation actions multiplicative modulo $c_0$.  The class
 $\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
 
@@ -695,7 +697,7 @@ $c\in C_G(L)$.  Then
 \end{corollary}
 
 \begin{proof}
-Let $(V_n)$ be an operator-norm asymptotic representation.  If
+Let $(V_n)$ be an operator norm asymptotic representation.  If
 $c\in C_G(L)$, then $(V_n(c))\in\mathcal C_2(V,L)$.  By
 Theorem~\ref{thm:transport}, the same is true of
 $(V_n(u)V_n(c)V_n(u)^*)$.  Asymptotic multiplicativity identifies this
@@ -724,7 +726,7 @@ Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
 countable group, and let \(q\in\mathcal Q_{\mathbf d}\) be a nonzero
 projection commuting with \(\rho(G)\).  Then, after passing to an infinite
 coordinate subsequence, there are nonzero projections
-\(q_n\in M_{d_n}(\C)\) and an operator-norm asymptotic representation
+\(q_n\in M_{d_n}(\C)\) and an operator norm asymptotic representation
 \[
  W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
 \]
@@ -734,7 +736,8 @@ whose corona class is the corner representation \(g\mapsto q\rho(g)\).
 \begin{proof}
 Lift \(q\) to projections \(q_n\), and lift each \(\rho(g)\) to unitaries
 \(U_n(g)\).  Projection lifting follows by spectral rounding.  Unitary
-lifting follows by polar-correcting any lift, since its two unitarity defects
+lifting follows by applying polar correction to any lift,
+since its two unitarity defects
 converge to zero in operator norm.  The commutation relation in the corona
 gives
 \[
@@ -747,7 +750,7 @@ satisfies
 \[
  \opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
 \]
-The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator-norm
+The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator norm
 asymptotic representation.  Since \(q\ne0\), infinitely many \(q_n\) are
 nonzero; retain those coordinates.
 \end{proof}
@@ -768,7 +771,7 @@ the resulting inclusion into the corona again by \(\Theta\).  The new \(K\)
 is a nontrivial normal property-\textup{(T)} subgroup, since
 property~\textup{(T)} passes to quotients.  Every one of its
 elements remains in the universal Hilbert--Schmidt kernel, because any
-operator-norm asymptotic representation of \(\Theta(G)\), precomposed with
+operator norm asymptotic representation of \(\Theta(G)\), precomposed with
 the quotient map from the original group, is such a representation of the
 original group.
 
@@ -785,7 +788,7 @@ ranges \(\Theta(g)\operatorname{Fix}\Theta(K)\) and
 \(\operatorname{Fix}\Theta(K)\); these agree because \(gKg^{-1}=K\).
 Put \(q=1-p\).  The projection \(q\) is nonzero, since \(p=1\) would imply
 that every element of \(K\) has trivial image.  Lemma~\ref{lem:central-corona-corner}
-gives an operator-norm asymptotic representation \((W_n)\) on nonzero
+gives an operator norm asymptotic representation \((W_n)\) on nonzero
 corners \(q_nM_{d_n}(\C)q_n\).
 
 Choose a finite symmetric Kazhdan set \(S\subseteq K\) and a Kazhdan
@@ -934,7 +937,7 @@ Writing $I=I_6$, the Whitehead factorization is
    \begin{pmatrix}I&-I\\0&I\end{pmatrix}
    \begin{pmatrix}I&0\\I&I\end{pmatrix}.
 \end{align}
-Each block-unipotent factor is a product of elementary $12\times12$
+Each unipotent block factor is a product of elementary $12\times12$
 matrices: its off-diagonal $6\times6$ block may be inserted one entry at a
 time, and the corresponding matrix units have pairwise zero products.
 Since $Y=X^{-1}$, \eqref{eq:whitehead-factorization} proves
@@ -949,7 +952,7 @@ Let $H=\EL_{12}(R)$ and let
 % and the explicit matrix \(\tau\) sends the whole subgroup into a copy still
 % contained in L.
 %</webmath>
-$L=\EL_3(R)\le H$ be the upper-left corner.
+$L=\EL_3(R)\le H$ be the corner in the upper left.
 Both groups have property~\textup{(T)} by the theorem of Ershov and
 Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
 Block multiplication yields
@@ -1082,11 +1085,11 @@ is $-bsar\ne0$.
 Both off-diagonal cases therefore produce an element $1+v\in N$ with
 $v^2=0$, supported in a single row $i$, and with some $v_{im}\ne0$.
 Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
-$m=i$).  Direct multiplication gives the row-extraction identity
+$m=i$).  Direct multiplication gives the identity that extracts one row,
 \[
  [1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.
 \]
-This is a nonzero root, so the normal-generation argument above gives
+This is a nonzero root, so the argument about normal generation above gives
 $N=H$.  Hence every normal subgroup of $H$ is trivial or all of $H$.
 Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
@@ -1104,7 +1107,7 @@ in $H$.  Then
 % \(d=e_{02}(q)\ne1\) says the [[commutator]] d is an [[elementary matrix]]
 % with q in row 0, column 2 and is not the [[identity]].  Third,
 % \(\normal d_H=H\) says the [[normal closure]] of d is the whole [[group]] H.
-% The equation \(t_1qs_1=1\) and elementary-matrix commutator rules prove that
+% The equation \(t_1qs_1=1\) and elementary matrix commutator rules prove that
 % last statement.
 %</webmath>
 %<webmath object="e02" when="d=e_{02}(q)" title="the identity matrix with q added in row 0, column 2">
@@ -1127,7 +1130,7 @@ in $H$.  Then
 \end{proposition}
 
 \begin{proof}
-Every elementary generator of the upper-left $3\times3$ corner has both
+Every elementary generator of the $3\times3$ corner in the upper left has both
 indices in $\{0,1,2\}$.  The elementary commutator relations show that it
 commutes with $c=e_{34}(1)$, so $c\in C_H(L)$.
 
@@ -1138,7 +1141,7 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 The second factor commutes with $\ell=e_{12}(1)$, and
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ gives
 $d=e_{02}(q)$.  This is nontrivial because $q\ne0$.  Since
-$t_1qs_1=1$, the preceding sandwiched-root argument gives
+$t_1qs_1=1$, the preceding argument using a root sandwiched on both sides gives
 $\normal d_H=H$ directly.
 \end{proof}
 
@@ -1164,10 +1167,10 @@ $\Rad_{\mathrm{MF}}(H)=H$, this composition and hence $f$ are trivial.  If
 $H$ were MF, its identity homomorphism would contradict this conclusion.
 \end{proof}
 
-\section{MF-visible quotients}\label{sec:prescribed-quotients}
+\section{Quotients visible to MF}\label{sec:prescribed-quotients}
 
 The MF radical is exact across every surjection whose kernel is already
-MF-invisible.
+invisible to MF.
 
 \begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
 Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
@@ -1175,7 +1178,7 @@ $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
 %<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="how the erased elements of G are read from Q">
 % The [[homomorphism]] \(f\colon G\to Q\) is [[surjective]], and its [[kernel]]
 % is already inside the [[MF radical]] of G.  Therefore every allowed
-% finite-matrix [[representation]] of G ignores the kernel and [[factors
+% finite matrix [[representation]] of G ignores the kernel and [[factors
 % through]] Q.  On the right, \(f^{-1}\) means [[preimage]].  The equality says
 % that an element of G is erased by every representation exactly when its
 % [[image]] in Q is erased by every representation of Q.  This is a [[pullback]]
@@ -1240,15 +1243,15 @@ Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 \end{proof}
 
 Thus image under $f$ and inverse image under $f$ give mutually inverse,
-inclusion-preserving correspondences between the normal subgroups that define
+correspondences that preserve inclusion between the normal subgroups that define
 MF quotients of $G$ and of $Q$.  The map induced by $f$ on the largest
-MF-visible quotients is an isomorphism:
+quotients visible to MF is an isomorphism:
 %<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
 % Each slash forms a [[quotient group]] by removing the corresponding [[MF
 % radical]].  The symbol \(\cong\) means there is an [[isomorphism]]: a
 % reversible pairing that preserves multiplication between the two quotients.
 % Because
-% the [[kernel]] of f is already MF-invisible, every finite-matrix
+% the [[kernel]] of f is already invisible to MF, every finite matrix
 % [[representation]] of G [[factors through]] f.  After the invisible elements
 % are removed, G and Q therefore retain exactly the same group structure.
 %</webmath>
@@ -1257,7 +1260,7 @@ MF-visible quotients is an isomorphism:
  \cong Q/\Rad_{\mathrm{MF}}(Q).
 \]
 These correspondences respect composition of surjective homomorphisms with
-MF-invisible kernels.
+kernels invisible to MF.
 
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
@@ -1281,7 +1284,7 @@ countable group $Q$, define
 %<webmath object="B" when="B*_A(Q\times A)" title="the attached group B that allowed matrix models cannot detect">
 % B is the attached [[group]].  Its [[MF radical]] equals all of B, meaning
 % every [[homomorphism]] from B to any [[MF group]] is the [[trivial
-% homomorphism]].  Inside \(W_Q\), B supplies elements that finite-matrix
+% homomorphism]].  Inside \(W_Q\), B supplies elements that finite matrix
 % [[representation|representations]] cannot detect.
 %</webmath>
 %<webmath object="Q" when="B*_A(Q\times A)" title="the chosen group Q that remains detectable">
@@ -1289,7 +1292,8 @@ countable group $Q$, define
 % list.  The
 % construction builds \(W_Q\) around this Q.  The [[homomorphism]] \(\pi_Q\)
 % recovers Q, and every homomorphism from \(W_Q\) to an [[MF group]] [[factors
-% through]] \(\pi_Q\).  Thus the MF target receives exactly the Q-part.
+% through]] \(\pi_Q\).  Thus the MF target receives exactly the information
+% from Q.
 %</webmath>
 %<webmath object="A" when="B*_A(Q\times A)" title="the part A used to attach the two groups">
 % A is the [[cyclic subgroup]] made from d and its [[inverse]].  The construction
@@ -1306,7 +1310,7 @@ projection onto $Q$ agree on $A$.  They therefore define an epimorphism
 %<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
 % The [[Greek letter]] \(\pi\), read “pi,” names a [[homomorphism]], and the
 % [[subscript]] Q records its destination.  The colon and arrow say its inputs are
-% in \(W_Q\) and its outputs are in Q.  It sends every B-element to the
+% in \(W_Q\) and its outputs are in Q.  It sends every element of B to the
 % [[identity]] and sends each ordered pair \((q,a)\) in the [[direct product]]
 % \(Q\times A\) to q.  Every q is reached, so the map is [[surjective]].  Its
 % [[kernel]] is the [[normal closure]] of d.
@@ -1314,8 +1318,8 @@ projection onto $Q$ agree on $A$.  They therefore define an epimorphism
 \[
  \pi_Q\colon W_Q\longrightarrow Q.
 \]
-It is split by the inclusion $Q\to Q\times A\to W_Q$.  The normal-form
-theorem for amalgamated free products shows that both vertex maps in
+It is split by the inclusion $Q\to Q\times A\to W_Q$.  The theorem about
+normal forms for amalgamated free products shows that both vertex maps in
 \eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
 
 \begin{proposition}[universal factorization]\label{prop:universal-factorization}
@@ -1324,7 +1328,7 @@ precomposition with $\pi_Q$ is a bijection
 %<webmath object="Hom" when="\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T)" title="maps into T can be described using Q alone">
 % \(\operatorname{Hom}(Q,T)\) is the [[set]] of all [[homomorphism|homomorphisms]]
 % from the [[group]] Q to the group T.  The arrow sends such a map h to the
-% two-stage map \(h\circ\pi_Q\) from \(W_Q\) to T; this is called
+% map in two stages \(h\circ\pi_Q\) from \(W_Q\) to T; this is called
 % [[precomposition]] with \(\pi_Q\).  The statement says this arrow is a
 % [[bijection]]: every map on either side corresponds to exactly one map on the
 % other side.  Consequently, T receives no information from \(W_Q\) beyond Q.
@@ -1393,7 +1397,7 @@ If $N\trianglelefteq W_Q$, the same factorization gives
    \operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))
   \right).
 \end{equation}
-Indeed, an MF-target homomorphism from $W_Q$ kills $N$ exactly when its
+Indeed, a homomorphism from $W_Q$ to an MF group kills $N$ exactly when its
 unique factor through $Q$ kills $\pi_Q(N)$.  Proposition~\ref{prop:mf-residual-calculus}
 and \eqref{eq:closure-pullback} give
 \[
@@ -1431,14 +1435,15 @@ Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical
 exploration, proof development, manuscript drafting, literature navigation,
 Lean formalization, and editorial revision.  The Lean development checks the
 one-sided transport theorem, the normal property-\textup{(T)} radical
-criterion, the rank-twelve compression and commutator calculation, direct
+criterion, the rank 12 compression and commutator calculation, direct
 normal generation by a nonzero elementary root, the exhaustive
-diagonal/inverse-entry-zero/dense-entry root-extraction proof of
-Proposition~\ref{prop:simple}, and the resulting full MF-radical conclusion.
+root extraction proof covering diagonal matrices, zero inverse entries, and
+dense entries in
+Proposition~\ref{prop:simple}, and the resulting full MF radical conclusion.
 The formalized simplicity proof uses the concrete two-sided sandwich and
-central-unit statements for the binary Leavitt algebra; it does not formalize
-Preusser's general normal-subgroup theorem or a general pure-infiniteness
-theory.
+statements about central units for the binary Leavitt algebra; it does not formalize
+Preusser's general theorem about normal subgroups or a general theory of pure
+infiniteness.
 
 \begin{thebibliography}{99}
 \frenchspacing

@@ -747,6 +747,7 @@
   }
 
   var TERM_ALIASES = {
+    'circled-plus sign': ['circled plus sign', 'circled plus signs'],
     'embedding': ['embed', 'embeds', 'embedded', 'embedding'],
     'unitary matrix': ['unitary', 'unitaries'],
     'faithful': ['faithful', 'faithfully', 'faithfulness'],
@@ -783,6 +784,10 @@
     'universal Hilbert–Schmidt kernel': [
       'universal Hilbert–Schmidt kernel', 'universal Hilbert--Schmidt kernel'
     ],
+    'Hilbert-space ultraproduct': [
+      'Hilbert-space ultraproduct', 'ultraproduct of Hilbert spaces'
+    ],
+    'non-approximability': ['non-approximability', 'failure of approximation'],
     'double of a group': ['double', 'doubles'],
     'root extraction': ['root extraction', 'root-extraction'],
     'purely infinite simple': ['purely infinite simple', 'pure infiniteness'],
@@ -806,8 +811,8 @@
     'property (T)': ['property (T)', 'property-(T)'],
     'MF': ['MF', 'non-MF', 'MF-ness', 'group-MF'],
     'MF group': ['MF group', 'MF groups'],
-    'MF-visible': ['MF-visible', 'MF visible'],
-    'MF-invisible': ['MF-invisible', 'MF invisible'],
+    'MF-visible': ['MF-visible', 'MF visible', 'visible to MF'],
+    'MF-invisible': ['MF-invisible', 'MF invisible', 'invisible to MF'],
     'MF radical': ['MF radical', 'MF radicals', 'MF-radical'],
     'norm matrix corona': ['norm matrix corona', 'norm matrix coronas'],
     'c0-direct sum': ['c0-direct sum', 'c₀-direct sum'],
