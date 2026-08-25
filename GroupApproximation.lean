@@ -1752,6 +1752,10 @@ import GroupApproximation.Sofic.MFBlackHoleAttachment
 import GroupApproximation.Sofic.InvisibleExtensions
 import GroupApproximation.Endpoint.InvisibleExtensionsAudit
 import GroupApproximation.Analysis.KOmegaHilbertSpaceEndpoint
+import GroupApproximation.Analysis.ReducedGroupCStarStablyFinite
+import GroupApproximation.Analysis.ReducedGroupCStarMFAlgebra
+import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarConsequence
+import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarNotNuclear
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
