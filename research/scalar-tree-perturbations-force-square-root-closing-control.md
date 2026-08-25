@@ -64,10 +64,13 @@ inf {eta(Phi): Phi in UCP(S_Delta,D), r_13(Phi)>=r}.       (STQ5)
 `(CGT6)`, but it does not by itself turn the large dual number `c_13` in
 `(CGT4)` into a lower bound for `c_12` or `c_23`.  Equation `(CGT4)` is an
 evaluation of a signed separator component on the fixed centered map, whereas
-`(STQ3)` is a primal constraint on one ucp map.  The present graph contains no
-complementary-slackness statement selecting a ucp map whose `r_13` is bounded
-below by `c_13`.  What `(STQ4)` proves is exactly what any primal repair in the
-closing branch must pay: macroscopic tree motion.
+`(STQ3)` is a primal constraint on one ucp map.
+`supporting-choi-component-does-not-force-primal-motion` proves by a
+three-point state-simplex countermodel that even a norm-attaining closest-point
+separator does not supply such a selection through generic complementary
+slackness.  What `(STQ4)` proves is exactly what any primal repair in the
+closing branch must pay once a triangle-specific lower bound on `r_13` is
+available: macroscopic tree motion.
 
 Proof: `finite-word-stinespring-controls-closing-face`.
 

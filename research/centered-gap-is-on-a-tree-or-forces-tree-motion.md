@@ -70,6 +70,10 @@ augmentation.  Hence fixed closing movement forces tree movement at least
 `min{1,(r/C_Delta)^2}`.  What remains is not this finite-face modulus but the
 primal/dual bridge: the large signed separator evaluation `(CGT4)` does not by
 itself select a ucp repair with a quantitatively large closing movement.
+`supporting-choi-component-does-not-force-primal-motion` shows that this
+selection cannot be obtained from closest-point Choi duality alone, even in a
+three-point scalar state simplex; a triangle-specific transversality estimate
+is required.
 
 Proof: `split-the-centered-gap-and-collapse-the-scalar-tree-choi-face`.
 
