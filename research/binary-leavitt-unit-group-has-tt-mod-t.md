@@ -72,3 +72,11 @@ being that the bounded error in the cocycle identity accumulates along a long
 word, so finite generation alone gives no global bound.  It says nothing about
 normalized Hilbert--Schmidt models, so it leaves
 [[binary-leavitt-unit-group-hyperlinear]] exactly where it was.
+
+For the Kahl--Schneider singular near-state formulation, the precise failure
+of the naive defect-to-quasi-cocycle bridge is established in
+`singular-near-defects-vanish-on-canonical-genuine-sector`: the canonical GNS
+sector on which the near unitaries become a genuine representation kills the
+entire two-sided `L2` defect module, while outside that sector the same
+unitaries do not define a representation.  Thus `(TT)/T` cannot be applied to
+the raw near defects without a new singular-sector propagation theorem.
