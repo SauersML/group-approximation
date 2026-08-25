@@ -12,21 +12,20 @@ finite-order root `rho(x_ij(r_0))` survives.  By
 the active spectral projection of this root has normalized coordinate rank
 bounded below by one positive constant.
 
-Construct a nonzero finitely generated projective `Q_d`-module `P_rho` and a
-unital ring homomorphism
+Let `P_rho Q_d` be the common nonzero reducing projective carrier supplied by
+`finite-root-windows-share-one-reducing-corona-carrier`.  Construct on that
+carrier a unital ring homomorphism
 
 ```text
 R -> End_(Q_d)(P_rho).
 ```
 
 The finite additive and Heisenberg multiplicity germs already provide exact
-finite restrictions of the desired action.  The missing content is a
-finite-projective coherence theorem assembling the compatible restrictions
-on one common module of positive rank density.  Sparse escape of the marked
-root is no longer part of the problem.  Moreover the active corner is a
-uniform Morita generator: every finite packet projection embeds into one
-fixed finite amplification of it.  Growth of the stabilization size is no
-longer part of the problem either.
+finite restrictions of the desired action inside this literal common corner.
+The missing content is a coefficient-intertwiner coherence theorem assembling
+those compatible restrictions into the four Leavitt arrows.  Sparse escape,
+carrier movement, and growth of the stabilization size are no longer part of
+the problem.
 
 ## Structural reductions
 
