@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 274 |
-| `definition` | 45 |
-| `structural` | 21 |
+| `formalized` | 275 |
+| `definition` | 50 |
+| `structural` | 24 |
 | `attribution` | 7 |
 | `partial` | 3 |
 | `provenance` | 1 |
-| **total** | **351** |
+| **total** | **360** |
 
-Carrying a declaration or a ledger row: **322/351** (91.7%).
+Carrying a declaration or a ledger row: **328/360** (91.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -22,19 +22,19 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 535 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
+* **`partial`**, line 560 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
   * NOT proved in-repo. The sentence states a specific theorem -- G MF implies the double G *_H G is MF -- so it is not bare attribution, but nothing in the corpus establishes it: metadata/LITERATURE_QUARANTINE.md lists the Shulman amalgamated-double theorem as an unproved input, and Sofic/SymmetricDoubleShulman.lean proves only that IsOperatorMF (SymmetricDouble SigmaGroup sigmaBase) is EQUIVALENT to the exact-radical endpoint, explicitly declining to prove it. No declaration may be named without laundering that input
-* **`partial`**, line 535 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
+* **`partial`**, line 560 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
   * one clause is a dated status claim with no mathematical content -- 'the operator norm case remained open' -- and the paper closes it. The other clause reports the DGLT / Lubotzky-Oppenheim / Thom non-approximability theorems for finite Schatten norms, which IS a proposition and is NOT formalized: grep over GroupApproximation finds no Schatten-norm stability content at all
-* **`partial`**, line 553 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+* **`partial`**, line 578 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * generalRankFiniteFieldElementaryPropertyT now proves the printed statement for every rank n >= 3 over every finite-type algebra over every finite field, hence for every ring of prime characteristic -- via the identity-padding homomorphism EL_3 -> EL_n (Steinberg.ElementaryIndexPadding), which was the entire blocker. STILL PARTIAL, and this is the residue: characteristic zero, and positive characteristic that is not prime. The Kazhdan-subset half is characteristic-free, but the control half needs a coefficient FIELD (CharacterMass.gap and the finite-dual sum), and in characteristic zero the finite character sum becomes a Haar integral over a torus needing an equidistribution estimate. Ershov--Jaikin-Zapirain do not prove that half either: they import Kassabov's relative (T) for (EL_2(R) semidirect R^2, R^2), which is not in this tree or in Mathlib
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 5 | 0 |
-| Introduction | 65 | 0 |
+| (front matter) | 10 | 0 |
+| Introduction | 69 | 0 |
 | Relation to prior work | 14 | 0 |
 | One-sided compression in finite dimension | 14 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
