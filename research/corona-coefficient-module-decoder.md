@@ -85,6 +85,17 @@ longer part of the problem either.
   a joint-coupling theorem for the two uniquely labelled branch projections,
   not as another character-separation lemma.
 
+- **Make the sparse central atom reduce the self-copy subsystem.**
+  `norm-corona-sparse-character-atom-reduces-pointwise-centralizer` strengthens
+  sparse atom selection by slowing the moving character window until its full
+  cylinder projection commutes with any prescribed countable pointwise
+  centralizer.  Applied to the common central root, one nonzero projective
+  carrier therefore reduces both Morita branch actors and every Heisenberg
+  root in the self-copy subsystem.  What remains is not carrier invariance:
+  the two reducing branch representations may still use independent tensor
+  coordinates.  A coefficient-module decoder must turn their uniquely
+  labelled joint action into the four Leavitt arrows on this carrier.
+
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
   the form
