@@ -48,6 +48,8 @@ MANUSCRIPT = REPO_ROOT / "non_mf_groups_exist.tex"
 ROW_RE = re.compile(r"^\|(?P<paper>[^|]+)\|\s*`(?P<decl>[^`]+)`\s*\|(?P<status>[^|]+)\|\s*$")
 AUDIT_RE = re.compile(r"^#audit_closed_axioms\s+(?P<decl>\S+)\s*$")
 AUDIT_OPEN_RE = re.compile(r"^#audit_axioms\s+(?P<decl>\S+)\s*$")
+AUDIT_MACROS = ("#audit_closed_axioms", "#audit_axioms")
+DECL_TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_'.]*")
 LABEL_RE = re.compile(r"\\label\{(?P<label>[^}]+)\}")
 
 STATUSES = ("closed", "conditional", "MISSING")
@@ -74,26 +76,58 @@ def ledger_rows() -> list[tuple[str, str, str]]:
     return rows
 
 
-def audited_decls() -> tuple[list[str], list[str]]:
+def audited_decls() -> tuple[list[str], list[str], list[str]]:
     """Declarations printed by the audit, split by which macro prints them.
 
     The first list is the closed endpoints (`#audit_closed_axioms`, which also
     rejects a leading binder); the second is those printed with the weaker
     `#audit_axioms`, which permits a displayed hypothesis or a statement over
-    caller-supplied data.
+    caller-supplied data.  The third is macro invocations this scanner could
+    not read, which are a failure rather than a skip -- see below.
+
+    ## Why an unreadable macro line is a failure
+
+    `AUDIT_RE` requires the declaration on the SAME line as the macro.  Lean
+    does not: `#audit_closed_axioms` followed by the name on a continuation
+    line elaborates identically, and so does a line carrying a trailing `--`
+    comment.  Both were silently skipped, and a skip is not neutral here.  A
+    name the scanner cannot see is absent from `closed`, so check 3 -- "the
+    audit prints a closed endpoint the ledger does not list" -- stops firing
+    for it, and an unrowed endpoint passes the gate.  That is silent
+    under-enforcement in the strictest direction this gate has.
+
+    (The mirror direction fails loudly and always did: a `closed` row whose
+    name the scanner cannot see reports "not printed by
+    #audit_closed_axioms".  Only the audit-to-ledger direction was blind.)
+
+    Block comments are stripped first, so a macro name quoted inside a module
+    docstring is not mistaken for an invocation.
     """
     if not AUDIT.exists():
         raise SystemExit(f"missing audit file: {AUDIT}")
-    closed, opened = [], []
-    for line in AUDIT.read_text(encoding="utf-8").splitlines():
-        m = AUDIT_RE.match(line.strip())
-        if m:
-            closed.append(m.group("decl"))
+    closed, opened, malformed = [], [], []
+    text = _strip_block_comments(AUDIT.read_text(encoding="utf-8"))
+    for number, raw in enumerate(text.splitlines(), 1):
+        line = raw.strip()
+        macro = next((m for m in AUDIT_MACROS if line.startswith(m)), None)
+        if macro is None:
             continue
-        m = AUDIT_OPEN_RE.match(line.strip())
-        if m:
-            opened.append(m.group("decl"))
-    return closed, opened
+        rest = line[len(macro):]
+        if rest and not rest[0].isspace():
+            # `#audit_axiomsFoo` is a different token, not this macro.
+            continue
+        rest = rest.split("--", 1)[0].strip()
+        tokens = rest.split()
+        if len(tokens) != 1 or DECL_TOKEN_RE.fullmatch(tokens[0]) is None:
+            malformed.append(
+                f"{AUDIT.relative_to(REPO_ROOT)}:{number}: `{macro}` names "
+                f"{'no declaration' if not tokens else str(len(tokens)) + ' tokens'}"
+                f" on its own line, so this scanner cannot see what it audits;"
+                f" put exactly one declaration on the same line as the macro"
+            )
+            continue
+        (closed if macro == "#audit_closed_axioms" else opened).append(tokens[0])
+    return closed, opened, malformed
 
 
 def manuscript_labels() -> list[str]:
@@ -251,9 +285,9 @@ def main() -> int:
         return 1
 
     index = build_index()
-    closed, opened = audited_decls()
+    closed, opened, malformed = audited_decls()
     prop_bodies, proved_props = _prop_universe(REPO_ROOT)
-    failures: list[str] = []
+    failures: list[str] = list(malformed)
 
     for paper, decl, status in rows:
         if status not in STATUSES:

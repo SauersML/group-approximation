@@ -169,12 +169,13 @@ jobs:
             --decls metadata/NON_MF_PAPER_CLAIM_DECLS.txt \
             --check-decls \
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
+            --require-graded metadata/NON_MF_SENTENCE_MAP.tsv \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
-              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
             --require-verified \
-              Sofic/KazhdanCliffordConstruction \
-              GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction
+              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
+              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
@@ -225,30 +226,57 @@ jobs:
       # unnoticed; both are facts about whether the published document and the
       # development it advertises still describe each other.  This workflow is
       # the last place that can be checked before the PDF is attested.
-      - name: Proof-step ledger and manuscript-source synchronization
+      # RETIRED 2026-08-25: the paper's proof-step ledger graded the manuscript
+      # *A non-MF group*, which no longer exists in this repository.  All
+      # thirty-six of its anchors resolve zero times in either live source, and
+      # re-pinning it is undefined rather than merely stale --
+      # `--repin-digests` matches no label and rewrites nothing.  The
+      # invocation is therefore removed rather than repointed;
+      # `metadata/NON_MF_PROOF_LEDGER.md` is kept as a record of what was
+      # audited, and `draft-non-mf-notes-pdf.yml` still runs the same script
+      # against `metadata/NON_MF_NOTES_PROOF_LEDGER.md`, which is live.
+      #
+      # STOPPED BEING ENFORCED HERE: the ledger's badge-coverage invariant --
+      # every `\leanverified` badge must be cited by a recorded grading.  That
+      # invariant was real and is NOT dropped: it moved to
+      # `check_non_mf_refs.py --require-graded` above, which asks the same
+      # question of the sentence-census overlay, the grading record that is
+      # still alive.  Do not remove that flag without replacing the invariant.
+      #
+      # NOW ENFORCED MORE STRONGLY: the census below grades every *sentence*,
+      # not only the steps of numbered environments, and re-keys itself on
+      # every edit, so a reworded sentence loses its assignment automatically.
+      - name: Manuscript-source synchronization
         run: |
-          python3 scripts/check_non_mf_proof_ledger.py --self-test
-          python3 scripts/check_non_mf_proof_ledger.py \
-            --tex "$TEX_FILE" \
-            --ledger metadata/NON_MF_PROOF_LEDGER.md
           python3 scripts/check_manuscript_claims.py --self-test
           python3 scripts/check_manuscript_claims.py \
             --tex "$TEX_FILE" \
             --companion-tex non_mf_group_notes.tex \
             --strict
 
-      # The ledger grades claims and the manifest reads numbered environments,
-      # so a claim asserted in a paragraph and in no theorem is invisible to
-      # both.  The census descends to the sentence: every sentence of the
-      # manuscript carries either the declarations that prove it, the ledger
-      # row that grades it, or a reason no declaration can.  A manuscript edit
-      # that adds a sentence turns this step red until the sentence is
-      # assigned, which is the whole point of it.
+      # The manifest reads numbered environments, so a claim asserted in a
+      # paragraph and in no theorem is invisible to it.  The census descends to
+      # the sentence: every sentence of the manuscript carries either the
+      # declarations that prove it or a reason no declaration can.  A
+      # manuscript edit that adds or rewords a sentence turns this step red
+      # until the sentence is assigned, which is the whole point of it.
+      #
+      # Since the paper's proof ledger was retired on 2026-08-25 this is the
+      # paper's only proof-level gate, and the `ledger` status no census row
+      # now carries is dead vocabulary for this manuscript.
+      # `--badges-need-rows` is required for the paper and only for the paper.
+      # A badge is the manuscript certifying itself; that was harmless while the
+      # proof ledger separately demanded a recorded grading for every
+      # `\leanverified`, and the ledger was retired on 2026-08-25.  Without the
+      # flag a badged sentence would be marked `formalized` off its own badge,
+      # which is the 2026-08-18 regression in a new place.  The notes census
+      # deliberately does NOT pass it: its ledger is live and still carries the
+      # obligation, and 128 of its sentences are assigned from badges today.
       - name: Sentence-level census
         run: |
-          python3 scripts/sentence_census.py --check
-          python3 scripts/sentence_census.py --verify-decls
-          python3 scripts/sentence_census.py --verify-unconditional
+          python3 scripts/sentence_census.py --check --badges-need-rows
+          python3 scripts/sentence_census.py --verify-decls --badges-need-rows
+          python3 scripts/sentence_census.py --verify-unconditional --badges-need-rows
 
       # A conditional formalization does not count, and neither does a
       # literature input: a theorem available only to a caller who supplies a

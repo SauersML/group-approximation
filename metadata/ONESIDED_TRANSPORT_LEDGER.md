@@ -61,6 +61,16 @@ rather than by status, because the status vocabulary cannot:
   the closed generic root-detection theorem; these individual configuration
   lemmas remain conditional only because their arbitrary input data occur as
   leading binders.
+* **a printed lemma whose own hypotheses are its leading binders.**  Lemma
+  `lem:normal-generation-transvection` is printed over an arbitrary unital ring
+  `S`, an arbitrary index set of size at least three, and an arbitrary normal
+  subgroup, *and* it supposes `e_{ij}(x)` to lie in that subgroup and `x` to
+  admit a unit sandwich `a x b = 1`.
+  `manuscriptSentence229_sandwichedRoot_normalGenerates` keeps all of that in
+  front of the colon, so nothing is assumed that the printed lemma does not
+  also suppose, and nothing printed is left out.  Folding the two suppositions
+  into a named `Prop` would let the row read `closed`; it is deliberately not
+  done here, because the row is more informative with the hypotheses visible.
 * **generic congruence-subgroup support.**  The relative-elementary and
   congruence endpoints, the `GL` centre computation, and the final simplicity
   assembly quantify over the ring and index type.  The assembly retains
@@ -73,22 +83,33 @@ row's target may exist as a *statement* (a `def ... : Prop`); the gate refuses
 to let it be printed in the audit under either macro, and refuses to let it
 become a `theorem` without the row being updated.
 
-Manuscript state pinned at authoring time: 1234 lines,
-`sha256 0cc88f62...d8d7a778a`, 29 labelled statements.  The table has 94 rows
--- 70 `closed`, 24 `conditional`, 0 `MISSING`, naming 90 distinct declarations.
-One row appears for each label, and sixty-five further rows either split a
-printed theorem into separately audited constituents or cover an unnumbered
-printed sentence. Four declarations each appear twice: the introduction repeats
-a Section 3 corollary, the simplicity input is recorded both where Theorem B
-consumes it and where Proposition `prop:simple` is printed, and the same generic
-double-commutator computation and membership lemma instantiate both the sparse
-and dense displayed equations.
+Manuscript state pinned at commit `4ac310ca4`: 2336 lines,
+`sha256 dba872e0...12b309c6d`, 38 labelled statements, 20 of them numbered.
+The table has 215 rows -- 142 `closed`, 73 `conditional`, 0 `MISSING`, naming
+210 distinct declarations.  Every label carries at least one row, and the
+remaining rows either split a printed theorem into separately audited
+constituents or cover an unnumbered printed sentence.  Five declarations each
+appear twice: the introduction repeats a Section 3 corollary, the simplicity
+input is recorded both where Theorem B consumes it and where Proposition
+`prop:simple` is printed, the closed structural profile carries both Theorem
+B's structural clauses and `prop:leavitt-compression`'s property-(T) clause for
+`H`, and the same generic double-commutator computation and membership lemma
+instantiate both displayed row-unipotent equations.
 
-All **15 of the manuscript's 15 numbered statements are closed**.
-`RankTwelveEndpoint.manuscriptPropositionSimple` proves `prop:simple`, and
-`manuscriptBinaryLeavittHeadline` proves full Theorem B including simplicity.
+**19 of the manuscript's 20 numbered statements are closed.**
+`RankTwelveEndpoint.manuscriptPropositionSimple` proves `prop:simple`.  The
+whole of Theorem B as printed is `manuscriptPrintedHeadline`, and only that:
+`manuscriptBinaryLeavittHeadline` proves the six clauses of
+`HeadlineConclusion` -- simplicity included -- but `HeadlineConclusion` carries
+neither countability, which the printed theorem states first, nor the
+reduced-C* clause added on 2026-08-25, so it is a proper subclaim of the label.
 The separate closed row `manuscriptBinaryLeavittFullRadical` remains useful as
-the hypothesis-free package of every headline clause except simplicity.
+the package carrying countability and BOTH readings of the radical --
+`manuscriptCoronaMFResidual` and `actualCoronaMFResidual` -- which
+`HeadlineConclusion` does not: it carries the basis-free reading alone.
+The one numbered statement without a `closed` row is
+`lem:normal-generation-transvection`, whose declaration keeps the lemma's own
+two suppositions as leading binders; see the fourth `conditional` bullet above.
 Re-pin after reviewing the rows an edit to the `.tex` touches.
 
 ## Rows
@@ -110,7 +131,7 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Theorem A, fourth clause: every finite-dimensional linear representation over every field kills the defect | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility` | closed |
 | `eq:leavitt` the binary Leavitt relations, at the manuscript's ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.leavittFamily` | closed |
 | Theorem B, closed simplicity input from `prop:simple` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple` | closed |
-| Theorem B `thm:headline`, every printed clause, simplicity included | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline` | closed |
+| Theorem B `thm:headline`, the six clauses of `HeadlineConclusion`: nontrivial, simple, property (T), `Rad_MF(H) = H` in the basis-free reading, triviality of every homomorphism to a countable MF group, and failure of MF-ness. NOT every printed clause -- `HeadlineConclusion` carries neither the countability the theorem states first nor the reduced-C* clause the theorem now ends with; the whole printed statement is `manuscriptPrintedHeadline` below | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline` | closed |
 | Theorem B minus the simplicity clause, hypothesis-free | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittFullRadical` | closed |
 | Abstract headline, existence of a countable non-MF group | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCountableNonMFGroupExists` | closed |
 | Abstract headline, refutation of “every countable group is MF” | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF` | closed |
@@ -156,20 +177,22 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `eq:matrix-compression` the unital injective endomorphism `Psi` | `GroupApproximation.LeavittFamily.matrixCompression` | conditional |
 | `eq:tau` `tau = diag(X, Y)` as a unit of the twelve-by-twelve matrix ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL` | closed |
 | `eq:whitehead-factorization` the six block-unipotent factors | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tauUnit_eq_six_elementary` | closed |
-| Sec. 5, `tau` belongs to the elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem` | closed |
-| Sec. 5, the upper-left corner has property (T) | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.corner_hasKazhdanPropertyT` | closed |
+| `lem:tau-elementary` the printed `tau` of `eq:tau` belongs to `EL_12(R)` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem` | closed |
+| `prop:leavitt-compression`, property (T) for the upper-left corner `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.corner_hasKazhdanPropertyT` | closed |
+| `prop:leavitt-compression`, property (T) for `H`, as one conjunct of the closed structural profile | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.closedStructuralProfile` | closed |
 | Section 5, all concrete ring-and-matrix equations in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedLeavittAlgebraEquations` | closed |
 | Section 5, all concrete compressor equations in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCompressorEquations` | closed |
 | Section 5, combined printed-equation fidelity package | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSectionFiveEquations` | closed |
 | `eq:corner-conjugation` `tau diag(A, I) tau^-1 = diag(Psi(A), I)` | `GroupApproximation.RankTwelve.tau_fullCorner_tauInv` | conditional |
-| `eq:compresses-L` `tau L tau^-1` is contained in `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration` | closed |
+| `eq:compresses-L`, the compression clause of `prop:leavitt-compression`: `tau` lies in `H` and `tau L tau^-1` is contained in `L` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration` | closed |
 | `prop:simple` simplicity of the rank-twelve elementary group | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple` | closed |
 | `eq:two-sided-sandwich` every nonzero coefficient in the manuscript's exact ring has `a * x * b = 1` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.coefficientRing_hasSingleSandwichDivision` | closed |
 | `eq:coefficient-separation` Leavitt coefficient separation gives `a * r * b = 0` while `b * s * a * r ≠ 0` | `GroupApproximation.exists_annihilate_preserve_reverse` | conditional |
-| `eq:row-unipotent-sparse`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
-| `eq:row-unipotent-sparse`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
-| `eq:row-unipotent-dense`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
-| `eq:row-unipotent-dense`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
+| `eq:row-unipotent-zero-inverse`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
+| `eq:row-unipotent-zero-inverse`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
+| `eq:row-unipotent-nonzero-inverse`, the degenerate double commutator is exactly the square-zero unit `1 - BA` | `GroupApproximation.doubleCommutator_eq_sqZeroUnit` | conditional |
+| `eq:row-unipotent-nonzero-inverse`, the displayed double commutator belongs to the normal subgroup | `GroupApproximation.doubleCommutator_mem` | conditional |
+| `lem:normal-generation-transvection` a normal subgroup of `EL_n(S)` containing `e_ij(x)` with `a x b = 1` in `S` is the whole elementary group, at the printed generality | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence229_sandwichedRoot_normalGenerates` | conditional |
 | Support for `prop:simple`: the centre of the binary Leavitt algebra is its scalar field | `GroupApproximation.BinaryLeavitt.center_eq_bot` | conditional |
 | Support for `prop:simple`: every central unit over `ZMod 2` is trivial | `GroupApproximation.BinaryLeavitt.central_units_trivial` | conditional |
 | Support for `prop:simple`: line-preserving conjugation extracts a nonzero elementary transvection | `GroupApproximation.exists_elGen_mem_of_conjSingle_eq` | conditional |
@@ -266,10 +289,10 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Proof of `prop:simple`: "To obtain `\eqref{eq:coefficient-separation}`, choose factorizations" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationFactorizations` | closed |
 | Proof of `prop:simple`: the printed recipe `a=f_s x e_t c_r`, `b=d_r f_d y e_s` and the two products it forces | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationRecipe` | closed |
 | `eq:coefficient-separation`, the complete printed derivation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparation` | closed |
-| `eq:coefficient-separation` at the manuscript's own coefficient ring | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationAtBinaryLeavitt` | closed |
+| `lem:coefficient-separation`, the lemma's own statement: `eq:coefficient-separation` at the manuscript's own coefficient ring | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationAtBinaryLeavitt` | closed |
 | Proof of `prop:simple`: "conjugation by `g` sends `e_{ij}(a)` to `e_{ij}(y)` with `y\ne a`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDiagonalConjugationMovesRoot` | closed |
 | The same sentence at the manuscript's own coefficient ring | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDiagonalConjugationMovesRootAtBinaryLeavitt` | closed |
-| Proof of `prop:simple`: "the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-sparse}` is nonzero" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedSparseDefectEntryNonzero` | closed |
+| Proof of `prop:simple`: "the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-zero-inverse}` is nonzero" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedSparseDefectEntryNonzero` | closed |
 | Proof of `prop:simple`: "Again `AB=0`, because its potentially nonzero coefficient contains `arb`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDenseAnnihilatingProduct` | closed |
 | The five printed coefficient calculations of `prop:simple` as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedLeavittCoefficientCalculations` | closed |
 | Sec. 7: quotienting `W_Q` by the normal closure of `d` kills the hidden vertex and the second factor | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCamouflageQuotientKillsBothVertices` | closed |
@@ -306,6 +329,12 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | The two printed Ershov--Jaikin-Zapirain uses inside the paper's own mathematics -- "Both groups have property (T) by the theorem of Ershov and Jaikin-Zapirain" (`H = EL_12(R)` and the corner `L = EL_3(R)`) -- each as a direct instance of the formalized EJZ theorem at its own rank, rather than by a Leavitt-specific route | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedBothGroupsHaveKazhdanPropertyT` | closed |
 | The printed hypothesis "the ring `R` is **finitely generated**" of the `thm:headline` proof, as a Lean condition rather than a proxy: `IsFinitelyGeneratedRing` (finite `Subring.closure`, no commutativity), proved equivalent to `Algebra.FiniteType` over any base whose image lies in every subring -- so over `ZMod p` and over `Z`. Mathlib has no notion of "finitely generated as a ring", so this had to be defined; it is calibrated by a witness (`ZMod p`) carried through to a concrete property-(T) conclusion, because a definition nothing satisfies makes every theorem stated with it vacuous and the closed-axiom guard cannot see that | `GroupApproximation.primeCharFinitelyGeneratedRingElementaryPropertyT` | closed |
 | `K_omega` really is a Hilbert space: completeness together with the orthogonal-complement consequences that only hold in a complete inner product space. Guards the printed phrase "the Hilbert-space ultraproduct", which no single constant asserted before -- `InnerProductSpace` and `CompleteSpace` were separate instances | `GroupApproximation.KOmegaHilbertSpaceEndpoint.manuscriptKOmegaIsHilbertSpace` | closed |
+| `thm:headline` final printed clause, at the manuscript's own `H = EL_12(L_F2(1,2))`: the concrete reduced group C*-algebra is separable, is stably finite, and is not an MF C*-algebra. Stably finite is read operator-algebraically (every isometry in every finite matrix amplification is a unitary), NOT as mathlib's `IsStablyFiniteRing`; the equivalence of the two for C*-algebras is not formalized here. The printed simplicity clause of `thm:headline` is used nowhere on this route | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence` | closed |
+| Relation to prior work, existence form: some separable stably finite C*-algebra is not MF. NO priority is claimed for this statement and the manuscript claims none -- the negative solution of the Connes embedding problem already supplies such algebras. It is listed because it is the shape in which the Blackadar--Kirchberg MF question is asked; what is new is that the witness is a reduced GROUP C*-algebra, which is the row above | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists` | closed |
+| Relation to prior work, refutation form: the Blackadar--Kirchberg MF problem answered negatively -- it is NOT the case that every separable stably finite C*-algebra is MF. This carries no nuclearity hypothesis and therefore says nothing about the 1994 Oberwolfach suggestion that every separable NUCLEAR stably finite C*-algebra is NF, which did carry one; non-nuclearity of the witness is not formalized in this repository | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF` | closed |
+| `thm:headline` exactly as printed, in one proposition: `H` is countable, nontrivial, simple, has property (T), `Rad_MF(H) = H` -- equivalently every homomorphism from `H` to an MF group is trivial, so `H` is not MF -- and `C*_r(H)` is separable and stably finite but not MF. Proves nothing that is not already proved upstream: it is the conjunction of `RankTwelveEndpoint.countable`, `manuscriptBinaryLeavittHeadline` (which is where simplicity enters) and `manuscriptReducedCStarConsequence`. It exists because the printed label lost its single Lean target when the reduced-C* sentence was added to the theorem | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline` | closed |
+| Relation to prior work, the scope boundary of the reduced-C* answer, unconditional half: `H` is infinite, is not amenable, has no invariant mean, and `C*_r(H)` fails the translation-tested completely positive approximation property. Every clause is a theorem here; nothing is cited and nothing is assumed. This is NOT non-nuclearity, which is the conditional row below | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptRankTwelveNonNuclearityProfile` | closed |
+| Relation to prior work, the scope boundary, conditional half: `C*_r(H)` is not nuclear. OPEN STEP, carried as the leading binder `TranslationCPAPReductionInput` -- the passage from the corpus-wide completely positive approximation property of `C*_lambda(Gamma)` to the translation-tested unital matrix-algebra form, quantified over every discrete group, hiding finite-dimensional injectivity and the contractive-to-unital repair. This is why the negative answer to the broad Blackadar--Kirchberg MF problem does not touch the 1994 Oberwolfach suggestion about separable NUCLEAR stably finite algebras; the caveat is recorded, not proved | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarNotNuclear` | conditional |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
@@ -354,8 +383,10 @@ printed argument has no declaration.
   **No longer withheld.**  The direct extraction route avoids the missing
   Preusser citation.  `rootDetection_of_leavittFamily` exhausts the diagonal,
   matching-inverse-zero, and dense-entry cases; the exact rank-twelve wrapper
-  `RankTwelveEndpoint.manuscriptPropositionSimple` and the complete headline
-  `manuscriptBinaryLeavittHeadline` both pass the closed audit.  The separate
+  `RankTwelveEndpoint.manuscriptPropositionSimple` and the headline package
+  `manuscriptBinaryLeavittHeadline` that consumes it both pass the closed
+  audit.  (The COMPLETE printed theorem is `manuscriptPrintedHeadline`; see the
+  note on that row.)  The separate
   congruence-subgroup development remains a faithful conditional
   formalization of the manuscript's cited route, but is not needed for the
   closed result.

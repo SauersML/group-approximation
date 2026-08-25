@@ -250,8 +250,17 @@ theorem residual_eq_top_of_configuration
       hasKazhdanPropertyT htop
   rwa [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual] at hfull
 
-/-- The exact conclusion of `thm:headline`, including both readings of the
-full MF radical asserted in the manuscript. -/
+/-- The six structural clauses of `thm:headline`: `H` is nontrivial, simple,
+has property `(T)`, has full MF radical in the basis-free reading
+`actualCoronaMFResidual`, kills every homomorphism to a countable MF group, and
+is not MF.
+
+This is NOT the whole printed theorem.  It carries neither the countability the
+theorem states first nor the reduced-C⋆ clause it now ends with; the complete
+printed statement is `manuscriptPrintedHeadline`.  Both readings of the radical
+-- the literal natural-dimension `manuscriptCoronaMFResidual` and the basis-free
+`actualCoronaMFResidual` -- are conjoined in `BinaryLeavittFullRadical`, not
+here: this definition carries the basis-free reading alone. -/
 def HeadlineConclusion : Prop :=
   Nontrivial H ∧
     IsSimpleGroup H ∧

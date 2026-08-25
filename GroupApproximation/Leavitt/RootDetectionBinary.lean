@@ -167,6 +167,99 @@ theorem conj_elGen_of_diagonal (g : elementaryGroup ι R)
         rw [elMat_mul_inv,
           conj_single_of_diagonal (elMat g) (elMat (g⁻¹)) hg hginv k l a]
 
+/-- **The printed relations, read on the diagonal.**  For a diagonal `g`,
+`conj_elGen_of_diagonal` turns the printed hypothesis "`g` commutes with
+`e_{uv}(a)`" into the coefficient relation `λ_u a λ_v⁻¹ = a`, and conversely.
+Both directions are used: the relations are what the printed argument computes
+with, and the commuting form is what it assumes. -/
+theorem commute_elGen_iff_diag_relation (g : elementaryGroup ι R)
+    (hg : ∀ u v : ι, u ≠ v → elMat g u v = 0) {u v : ι} (huv : u ≠ v) (a : R) :
+    g * elGen u v huv a = elGen u v huv a * g
+      ↔ elMat g u u * (a * elMat (g⁻¹) v v) = a := by
+  constructor
+  · intro hcomm
+    have hconj : g * elGen u v huv a * g⁻¹ = elGen u v huv a := by
+      rw [hcomm, mul_assoc, mul_inv_cancel, mul_one]
+    rw [conj_elGen_of_diagonal g hg huv a] at hconj
+    have hone : elGen u v huv
+        (elMat g u u * (a * elMat (g⁻¹) v v) - a) = 1 := by
+      rw [sub_eq_add_neg, ← elGen_mul, hconj, elGen_mul, add_neg_cancel,
+        elGen_zero]
+    exact sub_eq_zero.mp ((LeavittMark.elGen_eq_one_iff u v huv _).mp hone)
+  · intro hrel
+    have hconj : g * elGen u v huv a * g⁻¹ = elGen u v huv a := by
+      rw [conj_elGen_of_diagonal g hg huv a, hrel]
+    calc g * elGen u v huv a
+        = g * elGen u v huv a * g⁻¹ * g := by
+          rw [mul_assoc, inv_mul_cancel, mul_one]
+      _ = elGen u v huv a * g := by rw [hconj]
+
+/-- **`prop:simple`, diagonal case, first printed step.**  "If `g` commutes with
+every `e_{ij}(a)`, then the relations with `a = 1` give `λ_i = λ_j` for all
+`i ≠ j`." -/
+theorem elMat_diag_eq_of_commute_elGen (g : elementaryGroup ι R)
+    (hg : ∀ u v : ι, u ≠ v → elMat g u v = 0)
+    (hcomm : ∀ (u v : ι) (huv : u ≠ v) (a : R),
+      g * elGen u v huv a = elGen u v huv a * g)
+    {i j : ι} (hij : i ≠ j) :
+    elMat g i i = elMat g j j := by
+  have h1 : elMat g i i * elMat (g⁻¹) j j = 1 := by
+    have h2 := (commute_elGen_iff_diag_relation g hg hij 1).mp (hcomm i j hij 1)
+    rwa [one_mul] at h2
+  calc elMat g i i
+      = elMat g i i * (elMat (g⁻¹) j j * elMat g j j) := by
+        rw [elMat_inv_diag_mul g hg j, mul_one]
+    _ = elMat g i i * elMat (g⁻¹) j j * elMat g j j := by rw [← mul_assoc]
+    _ = elMat g j j := by rw [h1, one_mul]
+
+/-- **`prop:simple`, diagonal case, second printed step.**  "Hence
+`g = λ I₁₂` for some unit `λ ∈ R`."  The scalar is the common diagonal entry
+supplied by the previous step, and its inverse is the corresponding diagonal
+entry of `g⁻¹`. -/
+theorem exists_unit_elMat_eq_diagonal_of_commute_elGen [Nontrivial ι]
+    (g : elementaryGroup ι R)
+    (hg : ∀ u v : ι, u ≠ v → elMat g u v = 0)
+    (hcomm : ∀ (u v : ι) (huv : u ≠ v) (a : R),
+      g * elGen u v huv a = elGen u v huv a * g) :
+    ∃ lam : R, (∃ mu : R, lam * mu = 1 ∧ mu * lam = 1) ∧
+      elMat g = Matrix.diagonal fun _ : ι => lam := by
+  obtain ⟨k, -, -⟩ := exists_pair_ne ι
+  refine ⟨elMat g k k, ⟨elMat (g⁻¹) k k, elMat_diag_mul_inv g hg k,
+    elMat_inv_diag_mul g hg k⟩, ?_⟩
+  ext u v
+  rw [Matrix.diagonal_apply]
+  by_cases huv : u = v
+  · rw [if_pos huv, ← huv]
+    by_cases hu : u = k
+    · rw [hu]
+    · exact elMat_diag_eq_of_commute_elGen g hg hcomm hu
+  · rw [if_neg huv]
+    exact hg u v huv
+
+/-- **`prop:simple`, diagonal case, third printed step.**  "The relations for
+arbitrary `a ∈ R` then give `λ a = a λ`, so `λ ∈ Z(R)^×`."  Both halves of the
+membership are stated: the scalar commutes with every coefficient, and it is a
+two-sided unit. -/
+theorem elMat_diag_central_unit_of_commute_elGen [Nontrivial ι]
+    (g : elementaryGroup ι R)
+    (hg : ∀ u v : ι, u ≠ v → elMat g u v = 0)
+    (hcomm : ∀ (u v : ι) (huv : u ≠ v) (a : R),
+      g * elGen u v huv a = elGen u v huv a * g) (u : ι) :
+    (∀ x : R, elMat g u u * x = x * elMat g u u) ∧
+      ∃ mu : R, elMat g u u * mu = 1 ∧ mu * elMat g u u = 1 := by
+  obtain ⟨v, hvu⟩ := exists_ne u
+  have huv : u ≠ v := Ne.symm hvu
+  refine ⟨fun x => ?_, elMat (g⁻¹) u u, elMat_diag_mul_inv g hg u,
+    elMat_inv_diag_mul g hg u⟩
+  have hrel := (commute_elGen_iff_diag_relation g hg huv x).mp (hcomm u v huv x)
+  calc elMat g u u * x
+      = elMat g u u * (x * (elMat (g⁻¹) v v * elMat g v v)) := by
+        rw [elMat_inv_diag_mul g hg v, mul_one]
+    _ = elMat g u u * (x * elMat (g⁻¹) v v) * elMat g v v := by noncomm_ring
+    _ = x * elMat g v v := by rw [hrel]
+    _ = x * elMat g u u := by
+        rw [elMat_diag_eq_of_commute_elGen g hg hcomm huv]
+
 /-- **Root detection, diagonal branch.**  A normal subgroup containing a
 nontrivial *diagonal* element contains a nonzero elementary root, as soon as the
 coefficient ring has no nontrivial central unit. -/
@@ -177,45 +270,32 @@ theorem exists_elGen_mem_of_diagonal [Nontrivial ι]
     (g : elementaryGroup ι R) (hg : g ∈ N) (hgne : g ≠ 1)
     (hdiag : ∀ u v : ι, u ≠ v → elMat g u v = 0) :
     ∃ (i j : ι) (hij : i ≠ j) (x : R), x ≠ 0 ∧ elGen i j hij x ∈ N := by
-  obtain ⟨k, l, hkl⟩ := exists_pair_ne ι
   by_cases hall : ∀ u v : ι, u ≠ v → ∀ a : R,
       elMat g u u * (a * elMat (g⁻¹) v v) = a
   · -- Every conjugation is trivial, so `g` is a central scalar, so `g = 1`.
     exfalso
     apply hgne
-    have hdiagconst : ∀ u : ι, elMat g u u = elMat g k k := by
-      intro u
-      by_cases hu : u = k
-      · rw [hu]
-      · have h1 : elMat g u u * elMat (g⁻¹) k k = 1 := by
-          have h2 := hall u k hu 1
-          rwa [one_mul] at h2
-        calc elMat g u u
-            = elMat g u u * (elMat (g⁻¹) k k * elMat g k k) := by
-              rw [elMat_inv_diag_mul g hdiag k, mul_one]
-          _ = elMat g u u * elMat (g⁻¹) k k * elMat g k k := by rw [← mul_assoc]
-          _ = elMat g k k := by rw [h1, one_mul]
-    have hcen : ∀ x : R, elMat g k k * x = x * elMat g k k := by
+    have hcomm : ∀ (u v : ι) (huv : u ≠ v) (a : R),
+        g * elGen u v huv a = elGen u v huv a * g := fun u v huv a =>
+      (commute_elGen_iff_diag_relation g hdiag huv a).mpr (hall u v huv a)
+    obtain ⟨lam, ⟨mu, hlm, hml⟩, hscal⟩ :=
+      exists_unit_elMat_eq_diagonal_of_commute_elGen g hdiag hcomm
+    obtain ⟨k, -, -⟩ := exists_pair_ne ι
+    have hk : elMat g k k = lam := by
+      rw [hscal, Matrix.diagonal_apply, if_pos (rfl : k = k)]
+    have hcen : ∀ x : R, lam * x = x * lam := by
       intro x
-      have hx := hall k l hkl x
-      calc elMat g k k * x
-          = elMat g k k * (x * (elMat (g⁻¹) l l * elMat g l l)) := by
-            rw [elMat_inv_diag_mul g hdiag l, mul_one]
-        _ = elMat g k k * (x * elMat (g⁻¹) l l) * elMat g l l := by noncomm_ring
-        _ = x * elMat g l l := by rw [hx]
-        _ = x * elMat g k k := by rw [hdiagconst l]
-    have hlam : elMat g k k = 1 :=
-      hcentral (elMat g k k) hcen
-        ⟨elMat (g⁻¹) k k, elMat_diag_mul_inv g hdiag k,
-          elMat_inv_diag_mul g hdiag k⟩
+      have h := (elMat_diag_central_unit_of_commute_elGen g hdiag hcomm k).1 x
+      rwa [hk] at h
+    have hlam : lam = 1 := hcentral lam hcen ⟨mu, hlm, hml⟩
     apply elMat_injective
     rw [elMat_one]
     ext u v
+    rw [hscal, Matrix.diagonal_apply, Matrix.one_apply]
     by_cases huv : u = v
-    · rw [Matrix.one_apply, if_pos huv, ← huv, hdiagconst u]
+    · rw [if_pos huv, if_pos huv]
       exact hlam
-    · rw [Matrix.one_apply, if_neg huv]
-      exact hdiag u v huv
+    · rw [if_neg huv, if_neg huv]
   · -- Some conjugation moves a root, and the commutator is that moved root.
     push Not at hall
     obtain ⟨u, v, huv, a, ha⟩ := hall
