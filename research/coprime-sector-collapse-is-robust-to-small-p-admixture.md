@@ -8,30 +8,26 @@ distinct_from:
   p-divisible-lambda-exact-mass-vanishes-at-large-primes: that is the theorem producing the o(1) admixture; this is the lemma needed to consume it.
 ---
 
-**OPEN (technical).**  Let `pi : Gamma = SL_3(Z[1/p]) -> U(M)` be the
-restriction of a hyperlinear approximation of `G_p = <Gamma, t | [t, Lambda] = 1>`
-(`Lambda = SL_3(Z)`), with microstates `rho_n` whose `Lambda`-parts are genuine
-representations `rho'_n = rho'_(n,0) (+) rho'_(n,p)`, where `rho'_(n,0)` is of
-level coprime to `p` and the `p`-divisible part `rho'_(n,p)` has normalized
-dimension `delta_n -> 0`.  Then the collapse `(RC3)` holds:
+**ESTABLISHED (corollary of the coprime theorem; proof in
+`coprime-sector-robustness-proof`).**  Let `pi : Gamma = SL_3(Z[1/p]) -> U(M)`
+be the restriction of a hyperlinear approximation of
+`G_p = <Gamma, t | [t, Lambda] = 1>` (`Lambda = SL_3(Z)`), with microstates
+`rho_n` whose `Lambda`-parts are genuine representations
+`rho'_n = rho'_(n,0) (+) rho'_(n,p)`, where `rho'_(n,0)` is of level coprime
+to `p` and the `p`-divisible part `rho'_(n,p)` has normalized dimension
+`delta_n -> 0`.  Then the collapse `(RC3)` holds:
 `pi(Lambda)' cap M = pi(Gamma)' cap M`.
 
-**Expected proof.**  Compress to the range `V_n` of `rho'_(n,0)`: the
-projection `P_n` onto it lies in `rho'_n(Lambda)'`, so a unitary
-`k in pi(Lambda)' cap M` has lifts `k_n` with `||k_n - P_n k_n P_n - (1-P_n) k_n (1-P_n)||_2 <= 2 sqrt(delta_n)`
-and `||(1 - P_n) k_n||_2^2 <= delta_n`.  The compressed corrector
-`P_n rho_n(h) P_n` is within `O(sqrt(delta_n))` of a unitary on `V_n`
-(both `rho_n(h)` and `P_n` are almost respected by the relators), and on
-`V_n` the exact slot `rho'_(n,0)(h-bar)` exists.  The Weyl-relation
-evaluation of `odd-congruence-lambda-exact-sector-collapses` then runs with
-errors `O(sqrt(delta_n)) + o(1)` and forces the compressed corrector to `1`,
-whence `k_n` commutes with `rho_n(h)` up to `o(1)`.  The only new content is
-bookkeeping of the `O(sqrt(delta_n))` cross terms through that evaluation,
-which uses finitely many relators.
+**Why it is immediate.**  Replacing `rho'_(n,p)` by the identity changes
+each `rho_n(lambda)` by at most `2 delta_n^(1/2)` in normalized
+Hilbert--Schmidt norm, so it does not change `pi` at all; the modified
+representatives are `Lambda`-exact of coprime congruence type, and
+`odd-congruence-lambda-exact-sector-collapses` applies to them verbatim.
+The bookkeeping of cross terms that a matrix-level argument would need is
+absorbed by the tracial ultraproduct.
 
-## Attempts
-
-- Deferred pending a line-by-line pass through the Weyl-relation argument
-  with the compressed corrector; no obstruction is visible, since every step
-  of that argument is an identity in finitely many matrices perturbed by
-  `O(sqrt(delta_n))`.
+**Use.**  With `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
+(which delivers `delta_n = O(epsilon_n)` for `p >= 11` regardless of depth)
+this closes the entire `Lambda`-exact face of the collapse at primes
+`p >= 11`; see `sl3-large-prime-collapse-from-weak-ucp-stability`, whose
+only remaining open input is `sl3-z-weakly-ucp-stable`.
