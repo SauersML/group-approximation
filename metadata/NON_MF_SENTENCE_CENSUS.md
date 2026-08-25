@@ -29,7 +29,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`partial`**, line 424 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
   * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
 * **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
-  * proved only for R = the binary Leavitt algebra over F_2 (all ranks >= 2, universe 0); the printed 'n >= 3 and any finitely generated unital associative R' is not in the tree
+  * the rank-three theorem is proved in-repo for EVERY finite-type algebra over EVERY finite field, and the binary Leavitt case for all ranks >= 2; the printed statement's residue is characteristic zero and higher rank over a general finitely generated ring, which is a research programme, not a gap in this paper
 
 ## By section
 
