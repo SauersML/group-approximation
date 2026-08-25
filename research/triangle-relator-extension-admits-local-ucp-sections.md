@@ -248,6 +248,18 @@ Ioana--Spaas--Wiersma mechanism), per
   retaining a fixed positive face defect while paying arbitrarily small
   prescribed ideal vector moments.  The selected face need not be a tree
   face, and the control is still one-vector rather than operator-level.
+- **The remaining centered pattern is a two-branch finite Choi problem
+  (2026-08-25).**
+  `centered-gap-is-on-a-tree-or-forces-tree-motion` fixes a face splitting.
+  Either a centered tree component is at least `delta/6`, in which case the
+  full-support packet theorem is tree-specific, or the centered closing
+  component is at least `2delta/3`.  In the latter branch the Choi face of ucp
+  maps whose two tree restrictions are scalar is a singleton: compatibility
+  makes the closing restriction scalar on `P_1` and `P_3`, and the
+  multiplicative domain then makes it scalar on all of `P_13`.  Thus a
+  closing correction necessarily moves a tree face.  The open residual is a
+  quantitative modulus for how that singleton face opens under small tree
+  perturbations.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
