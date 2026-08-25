@@ -333,6 +333,24 @@ Ioana--Spaas--Wiersma mechanism), per
   tangent to the relator-zero locus.  The live middle problem is consequently
   narrower again—the required estimate must couple the **specific affine
   Choi discrepancy** to positivity, not merely to `z_rho=1`.
+- **Actual affine packet failure does have a positive native-ideal witness
+  (2026-08-25).**
+  `ideal-block-infeasibility-has-positive-reservoir-witness` performs exactly
+  that coupling.  For a fixed finite packet and reservoir, first restrict the
+  reservoir direction space to maps vanishing at the unit, since these are
+  the only corrections which can meet the relative-unital Choi slice.  A
+  signed separator of an infeasible affine slice is split over the three
+  fixed finite face algebras and each component is shifted by its positive
+  unit marginal.  Summing those Choi-positive components preserves the strict
+  affine gap exactly, still annihilates every admissible reservoir correction,
+  and costs only a fixed constant `C_Delta`, independent of the packet
+  dimension.  The positive witness lives in the same native ideal
+  block `rho(I_N)`, so neither quotient leakage nor an unrelated GNS
+  representation remains.  Signedness and dimension conditioning are
+  therefore no longer obstructions for an individual affine packet
+  certificate.  The next exact target is to correlate these positive
+  certificates across growing reservoir depths, or with one low-relator
+  vector inside each native packet.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
