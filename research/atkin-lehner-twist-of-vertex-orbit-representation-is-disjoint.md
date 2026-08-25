@@ -4,6 +4,7 @@ id: atkin-lehner-twist-of-vertex-orbit-representation-is-disjoint
 kind: claim
 artifacts:
   - research/artifacts/atkin_lehner_tv.py
+  - research/artifacts/al_tower_mix.py
 title: The Atkin--Lehner twist of a vertex-orbit representation of Gamma_0(p^2k) shares only its unipotent-trivial constituents
 distinct_from:
   homogeneous-quotient-near-genuine-microstates-are-deep: that is the rank-two (T) descent theorem bounding depth and level weights of near-genuine microstates; this is an exact rank-one computation of the isotypic mismatch that the same matching condition imposes on a single congruence level.
@@ -69,3 +70,28 @@ exact face is larger than its congruence part.  The rank-two analogue
 (`C_0 = SL_3(Z) cap h^-1 SL_3(Z) h`, `g = J^-1 h` for a Weyl element `J`)
 has the same kernel structure and needs no `(tau)` caveat by the congruence
 subgroup property; its constants are not computed here.
+
+**Mixtures of levels do not help (2026-08-25, `research/artifacts/al_tower_mix.py`).**
+Minimizing `TV(sum_j w_j w(S(o,2j)), sum_j w_j w(S(o,2j)^g))` over
+probability weights on the levels `S(o,2k), ..., S(o,2J)` (grid of step
+`1/40`) returns the single shallowest level every time:
+
+```text
+p=2 k=1 levels 2,4,6:  single-level TV 1.0, 1.5, 1.875;  min over mixtures 1.0 at S(o,2)
+p=3 k=1 levels 2,4:    single-level TV 4/3, 16/9;        min over mixtures 4/3 at S(o,2)
+p=2 k=2 levels 4,6:    single-level TV 1.5, 1.75;        min over mixtures 1.5 at S(o,4)
+```
+
+The reason is exact.  The twist of the far part of `S(o,2j)` is the piece of
+`S(o, 2j+2k)` beyond `v_(-k)` (the same `Gamma_0(p^(2k))`-set), which is only
+a `(p-1)/((p+1) p^(2k))` fraction of that level, whereas the far part is a
+`p/(p+1)` fraction of level `j`; the remaining constituents of level `j+k` at
+the same lower-unipotent depth have the wrong upper-unipotent depth and are
+different irreducibles.  Matching therefore forces
+`w_(j+k) ~ p^(2k+1)/(p-1) . w_j`, a geometric cascade whose top level is
+mostly unmatched far part, and the infimum over vertex-orbit towers of any
+length is attained at a single level.  Deeper single levels are more
+asymmetric, not less (`S(o,2j)` at depth `1`: `1.0, 1.5, 1.875` for `p = 2`).
+Hence no tower built from vertex-orbit (parabolically induced) representations
+approaches Atkin--Lehner symmetry at any fixed depth; the congruence exact
+face, if nonempty, must use constituents outside every `l^2(S(o,2j))`.
