@@ -106,6 +106,12 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   onto the retained payload coordinate is
   `pi(w)|tau(w)|^(2k)`, which converges to a scalar on every fixed finite
   word decoder.
+  For the Manzoor IRS source there is a stronger exact finite-tag fence:
+  `infinite-irs-characters-defeat-finite-haar-tags` shows that its character
+  is nonregular on every finite-index subgroup.  Hence no homomorphism to a
+  finite tag group can satisfy the regular tag-zero-kernel condition at all.
+  This excludes a nested search through larger finite tags; every stage fails
+  for an off-identity kernel word of positive IRS trace.
 - **Embedding universality of group factors is open in the literature.**
   Chifan--Drimbe--Ioana's universality theorem for property-(T) factors
   leaves open (their Remark 1.1, as recorded in

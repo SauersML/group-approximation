@@ -99,3 +99,10 @@ retention hypothesis of `fixed-density-polarization-retention-is-terminal`;
 it would itself produce a canonical non-CE quotient rather than supplying a
 formal tagging trick.
 
+For infinite-subgroup IRS characters the finite-tag case is ruled out before
+any decoder is considered.  `infinite-irs-characters-defeat-finite-haar-tags`
+proves that the IRS character is nonregular on every finite-index subgroup.
+Thus if the tag image is finite, its tag-zero kernel can never satisfy
+`(HTC4)`.  This applies in particular to the Manzoor IRS and excludes every
+finite quotient/tag regularization of its character, not merely one chosen
+tag table.

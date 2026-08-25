@@ -52,4 +52,14 @@ generator system at all).
 This is a sharp boundary rather than a general no-embedding theorem. Finite
 or infinite actor-grade mixtures can have nonzero intermediate trace, so the
 argument deliberately leaves that concrete Fourier-mixing route open.
+
+Finite quotient tags do not enlarge that boundary.  By
+`infinite-irs-characters-defeat-finite-haar-tags`, the Manzoor character is
+nonregular on the kernel of every map of the free actor to a finite group.
+Combining this with
+`haar-tag-cancellation-retention-is-group-realizability` shows that no finite
+tag can regularize the mixed representation: a cancelling kernel word always
+retains positive IRS trace.  A viable Fourier-mixing envelope must therefore
+be genuinely internal to an infinite non-Haagerup actor crossed product, not
+a finite tagged copy of the native generators.
 ---
