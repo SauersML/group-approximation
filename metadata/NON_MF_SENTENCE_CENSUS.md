@@ -6,10 +6,10 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 241 |
+| `formalized` | 250 |
 | `definition` | 39 |
-| `partial` | 22 |
 | `structural` | 21 |
+| `partial` | 13 |
 | `attribution` | 11 |
 | `provenance` | 1 |
 | **total** | **335** |
@@ -34,10 +34,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
 * **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * proved only for R = the binary Leavitt algebra over F_2 (all ranks >= 2, universe 0); the printed 'n >= 3 and any finitely generated unital associative R' is not in the tree
-* **`partial`**, line 456 --- If $x\in C$, $h\in L$, and $h'=uhu^{-1}\in L$, then
-  * the printed three-line chain rho(h)rho(u)^-1 x rho(u) = ... is not a named step; Lean gets the same inclusion from adjointRep_conj_fixed_iff instead
-* **`partial`**, line 464 --- Thus $\rho(u)^{-1}C\rho(u)\subseteq C$.
-  * the inclusion appears only as one direction of an iff stated under a FiniteDimensional hypothesis the printed inclusion does not need; there is no standalone rho(u)^-1 C rho(u) <= C lemma
 * **`partial`**, line 516 --- For all sufficiently large $n$, the matrix $x_n$ is invertible, and the unitary $x_n(x_n^*x_n)^{-1/2}$ differs from $x_n$ by $o(1)$.
   * the o(1) estimate needs only the one-sided Gram bound, but the invertibility and unitarity clauses are proved only when BOTH Gram defects vanish, whereas the printed sentence derives them from x_n^* x_n -> 1 alone by finite dimension
 * **`partial`**, line 516 --- Thus $v$ is represented by unitaries and $vv^*=1$.
@@ -52,20 +48,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * WEAKENING: nothing proves that the class of (b_n) equals the printed b built from Theta. In the corrected-corner route the corona element is DEFINED as the class of (b_n) (correctedCornerGramClass), so 'represent b' is definitional there and carries no content; the identification with unitaryGram S (q Theta(s) q) is taken as the HYPOTHESIS hclass of GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder clause 3. The missing lemma would push manuscriptCornerCoronaClass's corona-class equation through the Gram expression: filterMatrixCStarCoronaMk (correctedCornerSectorGramSequence D S) = unitaryGram S (coronaRep ... ).
 * **`partial`**, line 745 --- This contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).
   * WEAKENING: no declaration derives False on the PRINTED corner route. mem_opToHSShadowResidual_iff gives the membership half (s0 in R_{inf->2}(G) forces the HS ultraproduct image to be 1 for every OpAlmostRepresentation, and D.cornerRepresentation is one), and manuscriptSentence182_correctedCorner... gives the positive lower bound, but nothing puts them together; grep shows no module mentions both cornerRepresentation and opToHSShadowResidual. The unconditional contradiction in the repository is the moving-corner one behind manuscriptNormalKazhdanRadical.
-* **`partial`**, line 950 --- and $yx=ds_0t_1c=0$ would imply
-  * The displayed chain s_0 t_1 = (cwd)(s_0 t_1)(cwd) = (cw)((d s_0)(t_1 c))(wd) = 0 is a calc block INSIDE the second-conjunct proof of both named theorems; only its contrapositive conclusion (d s_0)(t_1 c) != 0 is a named statement. The implication itself has no declaration.
-* **`partial`**, line 955 --- To obtain \eqref{eq:coefficient-separation}, choose factorizations
-  * PRIOR SAID PARTIAL for the same reason and is right in substance, but names only `exists_annihilate_preserve_reverse`. Exact weakening: the four factorizations are proof-internal `obtain`s (hcr, hdf, hsf, htf) inside `exists_annihilate_preserve_reverse`, together with the internal nonvanishing facts dr != 0 and cr * r != 0 that justify applying hdiv to them; `manuscript_coefficient_separation_explicit` takes the four as HYPOTHESES rather than producing them.
-* **`partial`**, line 967 --- Thus for some $i\ne j$ and $a\in R$, conjugation by $g$ sends $e_{ij}(a)$ to $e_{ij}(y)$ with $y\ne a$.
-  * PRIOR WRONG (off by one): prior gave `center_elementaryGroup_eq_bot_of_units` / `exists_elGen_mem_of_diagonal`, i.e. the previous sentence plus the composite endpoint. Exact weakening: `conjSingle_eq_single_of_concentrated` names the line-preserving conjugation formula (conjugate of E_ij(a) is E_ij(g_ii a (g^{-1})_jj)) and `exists_noncommuting_single_of_not_central` names the existence of a noncommuting single-entry matrix, but the combined assertion 'for some i != j and a, y != a' is the proof-internal `hya` of `exists_elGen_mem_of_diagonal`; only the downstream root existence is named.
-* **`partial`**, line 988 --- Thus the $(i,m)$ entry of the defect in \eqref{eq:row-unipotent-sparse} is nonzero.
-  * PRIOR EMPTY. Exact weakening: for the sparse configuration the nonvanishing of the (i,m) defect entry is the proof-internal `hvm` of `exists_elGen_mem_of_inv_entry_zero`. The general named form is the hypothesis `hvm : v k m != 0` of `exists_elGen_mem_of_row_supported_sq_zero` / `manuscriptSentence251_rowExtraction`; no declaration states it for the sparse instance.
-* **`partial`**, line 1001 --- Again $AB=0$, because its potentially nonzero coefficient contains $arb$.
-  * PRIOR EMPTY. Exact weakening: the printed reason (A B = 0 because its only possibly nonzero coefficient contains a r b) is the proof-internal `hAB` calc of `exists_elGen_mem_of_annihilating_coefficients`. What IS named is its hypothesis `hzero : a * (g^{-1})_{jk} * b = 0`, from which A B = 0 is derived, and `doubleCommutator_eq_sqZeroUnit` which consumes A B = 0.
-* **`partial`**, line 1251 --- Conversely, quotienting $W_Q$ by $\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the second factor $A$ in $Q\times A$.
-  * PARTIAL: the printed step 'quotienting W_Q by <<d>> kills B (since <<d>>_B = B) and kills the second factor A' is the anonymous local hypothesis hkill inside the proof of MFCamouflage.projection_ker_eq_normalClosure; no declaration states it. Missing Lean statement: theorem quotient_by_defect_kills_blackHole (d : B) (Q : Type) [Group Q] (hgen : Subgroup.normalClosure ({d} : Set B) = top) : (QuotientGroup.mk' (Subgroup.normalClosure ({MFCamouflage.defect d Q} : Set (MFCamouflage.Camouflage d Q)))).comp (MFCamouflage.blackHole d Q) = 1. The A-coordinate half is carried by product_edge_eq_blackHole.
-* **`partial`**, line 1251 --- The resulting quotient is $Q$, with quotient map induced by $\pi_Q$.
-  * PARTIAL: the two ingredients are named and the first isomorphism theorem is immediate, but no declaration states the isomorphism. Missing Lean statement: noncomputable def camouflageQuotientEquiv (d : B) (Q : Type) [Group Q] (hgen : Subgroup.normalClosure ({d} : Set B) = top) : MFCamouflage.Camouflage d Q (quotient by) Subgroup.normalClosure ({MFCamouflage.defect d Q} : Set (MFCamouflage.Camouflage d Q)) ~=* Q, built as QuotientGroup.quotientKerEquivOfSurjective (MFCamouflage.projection d Q) (MFCamouflage.projection_surjective d Q) transported along projection_ker_eq_normalClosure.
 
 ## By section
 
