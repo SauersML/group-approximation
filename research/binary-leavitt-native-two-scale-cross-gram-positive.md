@@ -333,6 +333,29 @@ the gauges only on a representation-dependent reducing subcorner and pay
 for the discarded mass; this is precisely why the open cross-Gram estimate
 is formulated with a finite-coordinate polar cut.
 
+Putting the Heisenberg packet directly on the selector middle indices does
+remove one arbitrary-profile ambiguity, but stops at the same seam.
+`middle-index-marked-heisenberg-packet-is-whitehead-equivariant` uses
+
+```text
+X_m=x_(1,k_m)(s_1t_(0^m)),
+Y_m=x_(k_m,3)(s_(0^m)t_1),       k_m=7,8,9,
+```
+
+so that the common center is the mark `z` and the two literal prefix
+Whiteheads permute the three pairs.  Every marked representation therefore
+has eight equal character atoms, and either constant-sign atom gives a
+common Whitehead Gram of relative mass `1/8`, with no regular-trace
+hypothesis.  This is a genuine arbitrary-profile result for those two
+words.  Their label actions are nevertheless still the two one-quarter
+adjacent swaps, not the required quarter/eighth pair.  Moreover
+`middle-index-heisenberg-packet-is-not-center-chain-invariant` computes six
+nonzero root-coordinate ejections under the literal center-chain arms.
+Thus the packet cannot simultaneously reduce the Hecke occurrences which
+carry the unequal coefficients.  It isolates the remaining obstruction as
+selector occurrence authentication, not profile regularization or scalar
+overlap for the Whitehead pair.
+
 ## Norm scope
 
 The claim itself is normalized-Hilbert--Schmidt and is meant to apply to
