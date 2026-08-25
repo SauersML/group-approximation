@@ -63,9 +63,14 @@ Gate outcomes (2026-08-18, second sweep pass — both executed):
   interchange under uniform weak spectral gap (𝒞_T remark) — the
   right template for any (CCR) drafting; (iii) Thm 5.2,
   coordinatewise deformations of (T) subfactors with factorial
-  relative commutant are inner — a second intertwiner mechanism for
-  the assembly, closer to the compressor picture than DV Lem 3.1
-  (note its factorial-relative-commutant hypothesis is load-bearing);
+  relative commutant are inner.  This is **not** a compressor-collapse
+  mechanism: `peterson-innerness-does-not-collapse-kt-compressor`
+  calibrates it on the exact `q=2` Kun--Thom pair, where the relative
+  commutant in `L(G)^omega` is scalar but `Ad(u_t)` still maps
+  `L(Gamma)` properly into `L(t Gamma t^(-1))`.  In a matrix model the
+  ambient automorphism is already coordinatewise inner, and Theorem 5.2
+  merely returns another implementer differing by the relative commutant;
+  it supplies no surjectivity or range comparison;
   (iv) ∀∃-expressibility of relative-commutant statements for
   finitely presented (T) groups (Jekel remark) — a model-theoretic
   lever: such statements transfer along elementary equivalence, so

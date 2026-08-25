@@ -210,8 +210,14 @@ complete; verification ledger below).**
    statement to the (CCR) shape, genuine coordinates; (iii) his
    Thm 5.2: coordinatewise deformations of a (T) subfactor with
    factorial relative commutant are INNER (Connes rigidity in the
-   ultraproduct) — a second intertwiner-transport mechanism, closer
-   to the compressor picture than DV Lem 3.1; (iv) the Jekel remark:
+   ultraproduct).  This does **not** transport the compressor range:
+   `peterson-innerness-does-not-collapse-kt-compressor` applies it to
+   the exact `q=2` model with scalar relative commutant in `L(G)^omega`,
+   where `Ad(u_t)L(Gamma)=L(t Gamma t^(-1))` remains proper.  The
+   coordinate automorphism is already inner, and all returned
+   implementers differ by the relative commutant, so none can upgrade
+   the one-sided inclusion to equality.  Thus this item is a source-
+   verified no-go, not a second (AC) mechanism.  (iv) the Jekel remark:
    relative-commutant statements about images of finitely presented
    (T) groups in ultraproducts are ∀∃-expressible, hence transfer
    along elementary equivalence — a model-theoretic attack surface on
