@@ -10,6 +10,7 @@ distinct_from:
   vanishing-loss-center-chain-authentication-hits-affine-firewall: that proves any successful vanishing-loss comparison converges to the fixed regular corner and hence immediately contradicts the affine rank equations; this leaf must derive that impossible comparison from the ordinary relation defects.
   projective-row-data-do-not-authenticate-hecke-polars: that proves squares, supports, and separate conjugation covariances retain an independent balanced spectator gauge; this claim can only be closed by a mixed odd-parity occurrence anchor which removes that gauge.
   tracial-word-authentication-is-regular-firewalled: that proves an odd literal occurrence anchor is still insufficient when the proposed quantitative estimate uses only dimension-free tracial operations; the surviving step must be genuinely finite-coordinate.
+  fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall: that rules out two nominally finite-coordinate escapes, namely a matrix-dependent subset of whole types from one fixed native packet and activation by raw dimension, kernel rank, or anonymous multiplicity; this claim still permits an authenticated mixed-word kernel or a genuinely growing relation-controlled packet.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -110,3 +111,19 @@ two polar-square identities.
   canonical support leakage `1/16`.  Hence the remaining anchor must be
   coupled to a genuinely matricial kernel, rank, or moving representation-
   type selection; a larger tracial word menu is not enough.
+- **Move among the representation types of one fixed native packet.**  This
+  is still insufficient even if the chosen subset depends arbitrarily on
+  the full matrix coordinate.  By
+  `fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall`, there are
+  only finitely many whole-type cuts, so a subsequence freezes the choice.
+  Vanishing Hecke loss then forces that fixed central cut to contain the
+  entire regular source and range, returning to the affine firewall.
+  A proper multiplicity subcut requires an already-authenticated mixed
+  block; separate packet calculi cannot choose or match it.
+- **Trigger a deeper comparison from absolute matrix rank or anonymous
+  packet multiplicity.**  Spectator amplification multiplies these raw
+  integers while preserving every normalized word trace and relator defect.
+  Hence ordinary relations cannot read this trigger.  The remaining exact
+  survivor is a normalized kernel/spectral selector built from a named mixed
+  native occurrence, with a coercivity estimate derived from relations, or
+  a genuinely growing packet whose level is itself relation-controlled.

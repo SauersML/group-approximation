@@ -105,6 +105,17 @@ positive matrix-range separator for the selected lattice tuple.
   task is no longer “add more mixed moments”: it is a matrix-order
   obstruction to every coherent finite atlas for that action, or an
   equivalent specifically arithmetic failure of actor/lamp covariance.
+- **Exact arithmetic action atlases are uniformly excluded at every prime.**
+  `sl3-prime-permutation-codensity` makes the integral stabilizer profinitely
+  dense in the full S-arithmetic actor, and
+  `sl3-prime-coset-action-exact-atlas-firewall` combines this with the
+  Kazhdan gap to put every exact finite-action atlas a fixed Hamming distance
+  away.  Therefore neither subgroup separability, congruence actions, nor
+  unlabelled finite building quotients can produce the actor-covariant
+  enemy.  But this is a fence, not `(LCG3)`: a sofic model, if one exists,
+  must be a genuinely noncorrectable coherent approximate deck-cocycle
+  atlas.  Ruling out precisely those outliers is the remaining dynamical
+  obstruction.
 - Property T cannot act directly on `B_n`: the lattice tuple is still an
   almost-representation, while `B_n` centralizes the stable letter rather
   than a genuine lattice representation.  Producing a Stinespring actor at

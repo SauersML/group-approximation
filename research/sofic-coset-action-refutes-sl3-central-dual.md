@@ -46,5 +46,15 @@ for that action produces the full finite-coordinate enemy, including the
 same actor matrices permuting the lamp frame and transporting the lattice
 tuple.
 
+The fork is now sharply fenced by
+`sl3-prime-coset-action-exact-atlas-firewall`.  Permutation co-density holds
+for every prime, so no exact finite arithmetic action can model even the
+two-site orbit window: every positive atlas must be uniformly
+noncorrectable.  Locally-finite/amenable stabilizer criteria,
+subgroup-separability, ordinary congruence quotients, and the Kun--Thom
+compression theorem are all inapplicable.  Thus the positive side requires
+coherent approximate deck-cocycle labels; the negative side must rule out
+that outlier sector itself.
+
 DERIVATION
 sofic-action-free-wreath-counterexample-proof
