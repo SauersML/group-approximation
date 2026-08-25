@@ -2,8 +2,8 @@
 rg: 2
 id: symmetrize-separator-and-test-liftable-face-expectations
 kind: route
-title: Average only compatible automorphisms and test the separator on each liftable face expectation
-target: three-face-quotient-separators-retain-a-tree-face-component
+title: Average only compatible automorphisms and rule out one-face-local separators
+target: three-face-quotient-separators-are-not-one-face-local
 requires:
   - explicit-finite-face-ucp-section-is-edge-equivariant
   - group-word-tree-face-balancing-collapses
@@ -77,18 +77,21 @@ of the kernel prefix Gram matrix belongs to `C^*(P_13)`, every scalar linear
 functional obtained by pairing that matrix with a matrix functional factors
 through the `P_13` restriction and is excluded.
 
-## 3. Face normal form and the actual symmetry group
+## 3. Scope of the conclusion and the actual symmetry group
 
-Choose a scalar linear basis of `S_Delta` from the union of bases of the three
-face algebras, assigning each basis vector to one face in which it occurs.
-This gives a bounded linear splitting of the restriction embedding and hence
-the decomposition `(SQS7)`.  Averaging the three component functionals over
-`Omega` gives an equivariant decomposition of `ell_Omega`.  If only one face
-component were essential, the functional would be local on that face,
-contrary to `(SQS6)`.  The unique Coxeter label `4` in the `(3,3,4)` diagram
-forces every diagram automorphism to fix the `13` face and permits at most the
-swap of the two type-`3` faces, giving the stated closing-plus-tree normal
-form.
+No face-component decomposition is used here.  In particular, although
+`S_Delta` is the algebraic vector-space sum of the three face algebras, it is
+infinite-dimensional.  Assigning a Hamel basis vector to one face does not
+produce a bounded splitting of the restriction map, so it does not decompose
+a bounded functional on `L_sa(S_Delta,Q)` into bounded face functionals.
+The valid conclusion is exactly `(SQS6)`: `ell` cannot factor boundedly
+through any single face restriction.
+
+The unique Coxeter label `4` in the `(3,3,4)` diagram forces every actual
+diagram automorphism to fix the `13` face and permits at most the swap of the
+two type-`3` faces.  This constrains the averaging group but, without a
+separate bounded-splitting theorem, does not yield a closing-plus-tree normal
+form for the averaged functional.
 
 For completeness, consider inner symmetries of the marked triangle.  The
 maximal spherical rank-two parabolics are self-normalizing in the explicit

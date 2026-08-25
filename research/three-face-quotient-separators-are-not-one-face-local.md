@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: three-face-quotient-separators-retain-a-tree-face-component
+id: three-face-quotient-separators-are-not-one-face-local
 kind: claim
-title: Symmetrized three-face quotient separators retain an essential tree-face component
+title: Three-face quotient separators are not local to any one face
 distinct_from:
   exhausting-ideal-reservoirs-have-lift-or-quotient-separator: that produces an abstract quotient-level separator when exhausting reservoir distance stays positive; this analyzes such a separator on the concrete three-face system and proves that symmetry averaging cannot concentrate it on one face.
   explicit-finite-face-ucp-section-is-edge-equivariant: that constructs a ucp section on the closing finite face; this uses that section, after the subgroup Fourier expectation, to rule out every closing-face-supported separator.
-  three-face-ucp-balancing-needs-macroscopic-tree-motion: that gives a positive Gram obstruction to canonical tree-face values; this is a dual-functional normal form showing that the same closing-face Gram cycle cannot by itself be a quotient nonliftability separator.
+  three-face-ucp-balancing-needs-macroscopic-tree-motion: that gives a positive Gram obstruction to canonical tree-face values; this shows only that the same closing-face Gram cycle cannot by itself be a quotient nonliftability separator.
   equal-difference-gram-averaging-fails-at-four-free-words: that shows truncated equal-difference averaging need not preserve positivity; this averages a linear separator only over genuine compatible automorphisms, for which the ucp comparison class is invariant.
 ---
 
@@ -86,30 +86,6 @@ functional.  The explicit one-face section does not contradict a genuine
 separator; it proves that a genuine separator must retain information
 transverse to that face.
 
-There is a useful finite normal form.  Since `S_Delta` is the vector-space
-sum of its three face algebras, every bounded functional on its map space can
-be written
-
-```text
-ell(psi)=ell_12(psi|_(C^*(P_12)))
-        +ell_23(psi|_(C^*(P_23)))
-        +ell_13(psi|_(C^*(P_13))),                         (SQS7)
-```
-
-with the usual nonuniqueness on face intersections.  An `Omega`-invariant
-separator admits an equivariant such decomposition by averaging a
-decomposition.  Equation `(SQS6)` says that no decomposition can have only
-one essential face term.  At the `(3,3,4)` diagram every diagram symmetry
-fixes the unique type-`4` face `P_13` and at most swaps `P_12` with `P_23`.
-Thus a symmetrized separator has the normal form
-
-```text
-closing-face term + symmetric (or separately invariant) tree-face terms,
-```
-
-and at least one tree-face term is essential.  This is the component that the
-one-face Boca/finite-section construction does not control.
-
 Finally, there is no larger independent parabolic averaging hidden here.
 The common standard inner conjugations which preserve all three marked face
 algebras factor through `P_0`; up to actual diagram automorphisms, the
@@ -120,12 +96,19 @@ comparison problem `(SQS2)`.
 
 Proof: `symmetrize-separator-and-test-liftable-face-expectations`.
 
-**What survives.**  The result does not rule out `(SQS2)` and hence does not
-prove local splitting.  It rules out the hoped-for one-face reduction and
-isolates the remaining dual object: a symmetry-invariant, genuinely
-multi-face functional coupling at least one tree-face order to the closing
-face.  Any contradiction must control that transverse component, not merely
-the finite kernel-cycle Gram matrix.
+**Scope warning.**  The result does not supply a bounded decomposition of
+`ell` into three face functionals.  The operator system `S_Delta` and its face
+algebras are infinite-dimensional; choosing a Hamel basis from the union of
+face bases does not give a bounded splitting of the restriction map.  Thus
+`(SQS6)` proves only that the separator does not factor boundedly through one
+face.  It does **not** by itself prove the existence of a bounded or
+quantitatively nonzero tree-face component.
+
+The result therefore does not rule out `(SQS2)` and does not prove local
+splitting.  It rules out the hoped-for reduction to a functional of one face,
+including the finite closing-face cyclic-holonomy witness.  Any stronger
+face-component normal form requires a separate Banach/operator-space
+closed-range or complementation theorem.
 
 DERIVATION
 symmetrize-separator-and-test-liftable-face-expectations
