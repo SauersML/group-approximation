@@ -58,3 +58,48 @@ non-hyperlinear group through `non-hyperlinear-from-sl3-double-swap`.
   enemy propagates down a binary tree of corners.  A refutation by
   construction must therefore build outliers at every scale
   simultaneously; no finite modification of a genuine model can do it.
+- **Quantitative collapse on the exact face, by (T)-averaging alone
+  (2026-08-25, late).**  On a genuine congruence model
+  `pi = lambda_(SL_3(Z/m))`, if `|| [q, pi(s)] ||_2 <= delta` on a Kazhdan
+  set of `Lambda` with constant `kappa`, then averaging over the finite
+  image group (contraction controlled by the spectral gap of the
+  conjugation representation) yields `q~` in the right-regular algebra with
+  `|| q~ - q ||_2 <= 2 delta / kappa`, and `q~` commutes with `pi(h)`
+  exactly, so
+
+  ```text
+  tau(q u_h q u_h^*) >= 1/2 - O(delta/kappa),
+  ```
+
+  against the enemy's `1/4`.  This is the involution-level shadow of the
+  sector collapse and pins the entire enemy budget on the outlier sector,
+  where no group to average over exists and only the robust Kazhdan
+  projection for the approximate conjugation representation survives.
+- **Two equivalent forms of the claim (2026-08-25, late).**  (i)
+  Subspace form: with `V_n(C)` the near-invariant subspace of the
+  approximate conjugation representation of a subgroup `C`, congruence
+  models have `V_n(Lambda) = V_n(Gamma)` EXACTLY (equal images, by
+  co-density); the claim says the approximate version of this co-density
+  equality persists on uniform outliers -- the enemy needs
+  `V_n(Lambda)` to contain a balanced projection far from
+  `V_n(Gamma)`.  (ii) ucp form: the enemy compression
+  `Phi(a) = q pi(a) q` is exactly multiplicative on `C^*(Lambda)` and has
+  Stinespring defect of trace exactly `1/4` at `h`
+  (`tau(q u_h q u_h^* q) = 1/4` by the freeness moments); so the claim
+  says no ucp deformation of the regular character of `Gamma` can be a
+  corner homomorphism on the Kazhdan subgroup while carrying the maximal
+  `h`-defect, once its carrier is an outlier.  Both forms meet the same
+  wall, as they must, but each exposes different tools: (i) the robust
+  Kazhdan projection and principal angles, (ii) the Stinespring dilation
+  and the graph's ucp-stability lane.
+- **The descent tower constraint (2026-08-25, late).**  By
+  `asymmetric-twist-descends-to-congruence-hnn-enemy` composed with the
+  rounding theorem, one enemy forces balanced free central involutions
+  over the whole descending chain of co-dense cores
+  `Lambda supset C_0(g) supset ...` inside one microstate sequence, with
+  zero defect in the ultraproduct.  The tower alone cannot self-destruct
+  (each deeper witness is a spectral function of the original data), but
+  any future exclusion theorem proved for ONE deeper pair kills the
+  entire enemy class at once; the deepest-available pair is therefore the
+  cheapest place to attack.
+
