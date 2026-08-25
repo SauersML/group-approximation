@@ -92,22 +92,34 @@ theorem manuscriptPrintedFullKernelPullbackFromFullKernel :
 /-- **"Thus image under `f` and inverse image under `f` give mutually inverse,
 inclusion-preserving correspondences between the normal subgroups that define
 MF quotients of `G` and of `Q`."**  The two operations assemble into an order
-isomorphism of the two lattices of MF-closed normal subgroups. -/
+isomorphism of the two lattices of MF-closed normal subgroups.  The statement
+names the two maps explicitly -- image and inverse image along `f` -- and says
+that each undoes the other, because "mutually inverse" is what the sentence
+printed; asserting only that *some* order isomorphism exists would be weaker
+than the printed claim.  Countability is required because `MFClosedNormalSubgroup`
+is the lattice of closure-fixed normal subgroups, and it is exactly for
+countable groups that those are the kernels with MF quotient. -/
 def PrintedMFQuotientCorrespondence : Prop :=
-  ∀ (G : Type) [Group G] (Q : Type) [Group Q]
-    (f : G →* Q) (_hf : Function.Surjective f)
-    (_hker : f.ker ≤ actualCoronaMFResidual G),
-      Nonempty (MFClosedNormalSubgroup G ≃o MFClosedNormalSubgroup Q) ∧
-      ∀ N M : MFClosedNormalSubgroup G,
-        (N.carrier.map f ≤ M.carrier.map f ↔ N.carrier ≤ M.carrier)
+  ∀ (G : Type) [Group G] [Countable G] (Q : Type) [Group Q] [Countable Q]
+    (f : G →* Q) (hf : Function.Surjective f)
+    (hker : f.ker ≤ actualCoronaMFResidual G),
+      (∀ N : MFClosedNormalSubgroup G,
+          MFClosedNormalSubgroup.comapOfInvisibleKernel f hf hker
+            (MFClosedNormalSubgroup.mapOfInvisibleKernel f hf hker N) = N) ∧
+        (∀ M : MFClosedNormalSubgroup Q,
+          MFClosedNormalSubgroup.mapOfInvisibleKernel f hf hker
+            (MFClosedNormalSubgroup.comapOfInvisibleKernel f hf hker M) = M) ∧
+        (∀ N M : MFClosedNormalSubgroup G,
+          (N.carrier.map f ≤ M.carrier.map f ↔ N.carrier ≤ M.carrier))
 
 /-- Closed proof of the correspondence sentence. -/
 theorem manuscriptPrintedMFQuotientCorrespondence :
     PrintedMFQuotientCorrespondence := by
-  intro G _ Q _ f hf hker
-  exact ⟨⟨MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hker⟩,
-    fun N M =>
-      MFClosedNormalSubgroup.map_le_map_iff_of_invisibleKernel f hf hker N M⟩
+  intro G _ _ Q _ _ f hf hker
+  refine ⟨fun N => ?_, fun M => ?_, fun N M =>
+    MFClosedNormalSubgroup.map_le_map_iff_of_invisibleKernel f hf hker N M⟩
+  · exact (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hker).left_inv N
+  · exact (MFClosedNormalSubgroup.orderIsoOfInvisibleKernel f hf hker).right_inv M
 
 /-- **"The map induced by `f` on the largest MF-visible quotients is an
 isomorphism: `G/Rad_MF(G) ≅ Q/Rad_MF(Q)`."** -/

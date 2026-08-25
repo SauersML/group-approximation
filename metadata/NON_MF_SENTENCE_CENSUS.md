@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 261 |
-| `definition` | 39 |
-| `structural` | 21 |
-| `attribution` | 11 |
+| `formalized` | 268 |
+| `definition` | 40 |
+| `structural` | 14 |
+| `attribution` | 10 |
 | `partial` | 2 |
 | `provenance` | 1 |
 | **total** | **335** |
 
-Carrying a declaration or a ledger row: **302/335** (90.1%).
+Carrying a declaration or a ledger row: **310/335** (92.5%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
