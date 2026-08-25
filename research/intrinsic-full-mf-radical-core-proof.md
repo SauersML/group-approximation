@@ -7,6 +7,7 @@ target: intrinsic-full-mf-radical-core
 requires: []
 artifacts:
   - GroupApproximation/Sofic/FullMFRadicalCore.lean
+  - GroupApproximation/Sofic/FullMFRadicalExactness.lean
 ---
 
 # Proof
@@ -104,4 +105,25 @@ among the generators defining `C(G)`.  Hence
 C(G)=G  <=>  Rad_MF(G)=G.                             (6)
 ```
 
-The Lean proof follows these six steps directly.
+For exactness, let `f : G --> H` be onto with full-radical kernel, and let
+`K ≤ H` be full-radical.  Its preimage `P=f^{-1}(K)` fits into
+
+```text
+1 --> ker(f) --> P --> K --> 1.
+```
+
+Closure under extensions makes `P` full-radical, hence `P ≤ C(G)`.  Every
+element of `K` lifts to `P`, so `K ≤ f(C(G))`.  Functoriality gives the
+reverse inclusion and therefore
+
+```text
+f(C(G)) = C(H).                                       (7)
+```
+
+For a full-radical normal subgroup `N`, apply (7) to `G --> G/N`.  Finally,
+if `C(G)=1` and `K ≤ G`, functoriality of the inclusion `K --> G` forces
+`C(K)=1`; thus the core-free class is subgroup-closed.  The orthogonality
+characterization follows by applying any proposed orthogonality condition to
+the canonical core-free quotient `G --> G/C(G)`.
+
+The Lean proof follows these steps directly.

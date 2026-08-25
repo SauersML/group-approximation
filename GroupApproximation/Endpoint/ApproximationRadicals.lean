@@ -15,6 +15,7 @@ import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Sofic.FreeProductMFRadicalRetraction
 import GroupApproximation.Sofic.KazhdanCompressionLayers
 import GroupApproximation.Sofic.FullMFRadicalCore
+import GroupApproximation.Sofic.FullMFRadicalExactness
 
 /-!
 # Approximation radicals: the reading path
@@ -249,7 +250,12 @@ export GroupApproximation
     fullMFRadicalCore_quotient_eq_bot
     fullMFRadicalCore_le_ker_of_target_eq_bot
     hom_eq_one_of_fullMFRadicalCore_eq_top_of_target_eq_bot
-    eq_fullMFRadicalCore_of_residual_eq_top_of_quotient_core_eq_bot)
+    eq_fullMFRadicalCore_of_residual_eq_top_of_quotient_core_eq_bot
+    map_fullMFRadicalCore_eq_of_surjective_of_kernel_eq_top
+    map_fullMFRadicalCore_quotient_eq
+    fullMFRadicalCore_subgroup_eq_bot_of_eq_bot
+    hom_eq_one_of_source_core_eq_top_of_target_core_eq_bot
+    fullMFRadicalCore_eq_top_iff_maps_to_coreFree_eq_one)
 
 end Internal
 

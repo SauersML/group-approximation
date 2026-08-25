@@ -5,6 +5,7 @@ kind: claim
 title: Every group has a largest subgroup that is intrinsically invisible to finite-matrix limits
 artifacts:
   - GroupApproximation/Sofic/FullMFRadicalCore.lean
+  - GroupApproximation/Sofic/FullMFRadicalExactness.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -91,8 +92,34 @@ Core_MF(G)=G  <=>  Rad_MF(G)=G.                       (8)
 Thus the intrinsic core recognizes full MF collapse exactly, while retaining
 strictly more internal information when the ambient radical is only partial.
 
-The construction and equations (1)--(8) are formalized in
-`GroupApproximation/Sofic/FullMFRadicalCore.lean` and re-exported by
+The core is exact across every surjection whose kernel is intrinsically full.
+If `f : G --> H` is onto and `Rad_MF(ker f)=ker f`, then
+
+```text
+f(Core_MF(G)) = Core_MF(H).                           (9)
+```
+
+In particular, for an intrinsically full normal subgroup `N`,
+
+```text
+Core_MF(G/N) = image(Core_MF(G) --> G/N).             (10)
+```
+
+Core-free groups are closed under subgroups.  Together with (5), (6), and
+(9), this gives a hereditary torsion decomposition:
+
+```text
+1 --> Core_MF(G) --> G --> G/Core_MF(G) --> 1,
+```
+
+where the left group is intrinsically full, the quotient is core-free, and
+every homomorphism from an intrinsically full group to a core-free group is
+trivial.  Conversely, a group is intrinsically full exactly when every map
+from it to every core-free group is trivial.
+
+The construction and equations (1)--(10) are formalized in
+`GroupApproximation/Sofic/FullMFRadicalCore.lean` and
+`GroupApproximation/Sofic/FullMFRadicalExactness.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION
