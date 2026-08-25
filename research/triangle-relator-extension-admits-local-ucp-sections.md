@@ -224,6 +224,27 @@ Ioana--Spaas--Wiersma mechanism), per
   edge-centralizer hypothesis there.  Thus this enlarged no-go is
   unconditional at that candidate, though it still leaves arbitrary
   nonmultiplicative ucp face maps untouched.
+- **The surviving nonmultiplicativity/non-word behavior has a fixed norm
+  scale (2026-08-25).**
+  `tree-face-balance-pays-word-or-multiplicative-defect` quantifies the last
+  no-go.  For any ucp right inverse on the three-face system, let `mu_V` be
+  its multiplication defect on a tree face and `gamma_V` the maximum distance
+  of its face generators from all group-unitary lifts with the correct
+  quotient image.  At the explicit `(3,3,4)` triangle,
+
+  ```text
+  max_V (mu_V+3 gamma_V) >= min{sqrt(2),6/L^2}.
+  ```
+
+  The proof uses the `sqrt(2)` reduced-trace separation of distinct group
+  unitaries: below that threshold, independently chosen near-word values
+  automatically form honest group homomorphisms.  Their common-edge values
+  also agree below that threshold, so Bass--Serre rigidity collapses them to
+  one kernel conjugation; conjugating the original ucp map then invokes the
+  `2/L^2` three-face Gram floor.  Hence no limiting or packet-dependent
+  construction can make both tree faces asymptotically multiplicative and
+  word-valued.  The live balance must remain genuinely operator-algebraic at
+  macroscopic norm.
 - **A uniform finite-relator Laplacian cannot provide the required
   nonmultiplicative movement (2026-08-24).**
   `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal

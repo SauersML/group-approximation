@@ -93,6 +93,18 @@ genuine failure of local splitting must take.
   non-group-unitary operator values or destroy multiplicativity on at least
   one tree face.  This does not refute `(RR2)`, which allows exactly that
   operator-algebraic behavior.
+- **That operator-algebraic behavior cannot shrink away with the packet.**
+  `tree-face-balance-pays-word-or-multiplicative-defect` gives the explicit
+  dichotomy
+  `max_V(mu_V+3 gamma_V)>=min{sqrt(2),6/L^2}` for every ucp right inverse on
+  the three-face system of the `(3,3,4)` candidate, where `L` is one fixed
+  nontrivial closing-face kernel-relator length.  Here `mu_V` is the tree-face
+  multiplication defect and `gamma_V` is distance to all group-unitary lifts
+  with the correct quotient image.  Thus a proposed sequence of packet repairs
+  cannot converge through increasingly accurate group-word gauges; one face
+  retains a macroscopic nonmultiplicative or non-word component.  `(RR2)`
+  remains open because its finite reservoir may still support exactly such a
+  component.
 - **The packetwise statement is already a theorem; only uniformity in the
   packet is open.**  Fix a finite packet `R` and put `rho=(+)_(rho in R) rho`,
   a finite-dimensional representation.  Then `rho(I_N)` is a
