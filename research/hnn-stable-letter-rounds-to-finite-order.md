@@ -55,24 +55,22 @@ letters `a_i in A - C`.
 
 ## Attempts
 
-- **Can the involution rebuild the Haar letter?  A descent structure,
-  not a converse.**  One involution generates only `C_2`.  But inside a
-  model of `E_2` for the arithmetic pair, `s` and `u_h s u_h^*` are
-  free self-adjoint unitaries (alternating words reduce in the amalgam),
-  so `z = s u_h s u_h^*` is distributed as the generator product of
-  `C_2 * C_2 = D_infinity`: a HAAR unitary.  And `z` commutes with the
-  group image of `C_0 = C cap hCh^(-1)`, a finite-index congruence
-  subgroup that is again co-dense in `A` by strong approximation.  So an
-  involution enemy over `(C, A)` appears to manufacture a Haar enemy
-  over the deeper co-dense pair `(C_0, A)` -- an infinite descent
-  through the congruence lattice which no stability hypothesis sees.
-  What is NOT yet verified is the amalgamated freeness of
-  `(L(A), W*(L(C_0), z))` over `L(C_0)`, equivalently the marked
-  subgroup identification `<A, z> ~= A *_(C') (C' x Z)` inside `E_2`
-  with `C'` the exact centraliser; the sample cancellations checked so
-  far all terminate harmlessly, and a Bass--Serre argument on the
-  `E_2`-tree is the natural proof.  Until that is done the descent is a
-  direction, not a theorem.
+- **Can the involution rebuild the Haar letter?  A descent that turned
+  dihedral.**  One involution generates only `C_2`.  Inside a model of
+  `E_2` for the arithmetic pair, `s` and `u_h s u_h^*` are free
+  self-adjoint unitaries, so `z = s u_h s u_h^*` is a Haar unitary
+  commuting with the image of `C_0 = C cap hCh^(-1)`, a co-dense
+  congruence core -- and `swap-twist-centralizer-is-the-congruence-core`
+  shows `C_0` is exactly its centralizer in the S-arithmetic group.
+  The NAIVE descent -- `z` as an amalgamated-free HNN letter over
+  `C_0` -- is REFUTED: `weyl-reverser-blocks-naive-swap-twist-descent`
+  exhibits the involution `x_0 = h w_13 in Gamma - C_0` with
+  `x_0 z x_0 = z^(-1)`, so the four-letter freeness moment equals `1`
+  in every model, by an exact group identity.  What survives is the
+  dihedral form: `z` Haar, `C_0`-central, inverted by `pi(x_0)`.  The
+  Weyl relation that closes the coprime exact face is the same one that
+  blocks the naive regeneration of enemies one congruence floor down.
+
 - **Why not amplify to two mutually free involutions instead?**
   Producing a second involution free from the first over the
   NON-amenable `L(C)` is exactly the relative free-independence
