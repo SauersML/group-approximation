@@ -8,6 +8,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalExactness.lean
   - GroupApproximation/Sofic/FullMFRadicalReflection.lean
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
+  - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -146,11 +147,31 @@ It follows that a product is intrinsically full exactly when both factors are
 intrinsically full, and is core-free exactly when both factors are core-free.
 Equivalently, the core-free reflection preserves binary products.
 
-The construction and equations (1)--(13) are formalized in
+Both sides of the decomposition also satisfy extension laws.  If
+`f : G --> H` is onto and both `ker(f)` and `H` are intrinsically full, then
+
+```text
+Core_MF(G)=G.                                         (14)
+```
+
+In the other direction, surjectivity is unnecessary: if `H` and `ker(f)` are
+core-free for any homomorphism `f : G --> H`, then
+
+```text
+Core_MF(G)=1.                                         (15)
+```
+
+In particular, an extension of a core-free group by a core-free group is
+core-free.  The intrinsic MF core therefore supplies a hereditary,
+product-stable decomposition whose full and core-free classes are both closed
+under extensions.
+
+The construction and equations (1)--(15) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
-`GroupApproximation/Sofic/FullMFRadicalProducts.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalProducts.lean` and
+`GroupApproximation/Sofic/FullMFRadicalExtensions.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION

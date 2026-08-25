@@ -10,6 +10,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalExactness.lean
   - GroupApproximation/Sofic/FullMFRadicalReflection.lean
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
+  - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
 ---
 
 # Proof
@@ -158,5 +159,25 @@ For the converse, the two coordinate inclusions carry `C(G)` and `C(H)` into
 core, and their product is `(g,h)`.  The full-core and core-free product
 criteria follow by setting the three cores equal to the top or bottom
 subgroups.
+
+Closure of the full-core class under extensions is the corresponding closure
+theorem for the genuine-corona MF residual, translated through
+
+```text
+C(G)=G  <=>  Rad_MF(G)=G.
+```
+
+For the core-free extension law, let `f : G --> H` have core-free target and
+core-free kernel.  Functoriality gives `C(G) ≤ ker(f)`.  Regard this inclusion
+as a homomorphism
+
+```text
+C(G) --> ker(f).
+```
+
+Its source is intrinsically full by idempotence, while its target is
+core-free, so orthogonality makes the inclusion trivial.  Hence `C(G)=1`.
+Taking `f` to be a quotient map gives closure of the core-free class under
+extensions.
 
 The Lean proof follows these steps directly.

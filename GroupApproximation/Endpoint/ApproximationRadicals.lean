@@ -18,6 +18,7 @@ import GroupApproximation.Sofic.FullMFRadicalCore
 import GroupApproximation.Sofic.FullMFRadicalExactness
 import GroupApproximation.Sofic.FullMFRadicalReflection
 import GroupApproximation.Sofic.FullMFRadicalProducts
+import GroupApproximation.Sofic.FullMFRadicalExtensions
 import GroupApproximation.Sofic.FullMFRadicalProducts
 
 /-!
@@ -270,7 +271,10 @@ export GroupApproximation
     mem_fullMFRadicalCore_prod_iff
     fullMFRadicalCore_prod_eq_top_iff
     fullMFRadicalCore_prod_eq_bot_iff
-    actualCoronaMFResidual_prod_eq_top_iff)
+    actualCoronaMFResidual_prod_eq_top_iff
+    fullMFRadicalCore_eq_top_of_surjective_kernel
+    fullMFRadicalCore_eq_bot_of_target_eq_bot_of_ker_eq_bot
+    fullMFRadicalCore_eq_bot_of_normal_and_quotient_eq_bot)
 
 end Internal
 
