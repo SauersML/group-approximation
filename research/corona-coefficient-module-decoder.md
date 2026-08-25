@@ -124,12 +124,12 @@ the problem.
   `surviving-leavitt-corona-character-has-infinite-parabolic-orbit` rules this
   out exactly.  For the full last-column root module, every nontrivial global
   character atom has infinitely many pairwise orthogonal conjugates under
-  the upper-left binary-Leavitt Steinberg vertex.  A finite orbit would give
-  a finite permutation representation of that vertex and force the
-  character to be trivial.  The corona can absorb the infinite orbit at
-  vanishing coordinate density, so the conclusion is not yet collapse; it
-  shows that the mixed-root return must fold an infinite orbit, not close a
-  bounded menu of atoms.
+  just one upper-left root subgroup.  Finiteness would create a nonzero
+  finite-dimensional right module over the binary Leavitt algebra.  The
+  corona can absorb the infinite orbit at vanishing coordinate density: the
+  resulting projective inequalities are `M[P]<=[1]` for every fixed `M`, not
+  the required `2[P]<=[P]`.  Thus the mixed-root return must fold an infinite
+  orbit, not close a bounded menu of atoms.
 
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of

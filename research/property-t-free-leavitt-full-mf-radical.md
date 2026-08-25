@@ -176,9 +176,11 @@ There is an exact orbit obstruction inside that remaining corona seam.
 `surviving-leavitt-corona-character-has-infinite-parabolic-orbit` proves that
 every nontrivial global character atom for a last-column root module has an
 infinite orbit of pairwise orthogonal equivalent projections under the
-upper-left Steinberg vertex.  Finite orbit closure would produce a finite
-permutation quotient and transvection invariance would trivialize the
-character.  Thus no bounded character menu or finite parabolic atom cycle
+upper-left Steinberg vertex; one elementary root subgroup already suffices.
+A finite orbit would produce a nonzero finite-dimensional right module over
+the binary Leavitt algebra.  The resulting inequalities `M[P]<=[1]` for all
+fixed `M` are compatible with sparse escape and still fall short of
+`2[P]<=[P]`.  Thus no bounded character menu or finite parabolic atom cycle
 can return the sparse carrier.  The load-bearing mixed-root row must fold
 this intrinsically infinite orbit back to one finite projective reservoir.
 
