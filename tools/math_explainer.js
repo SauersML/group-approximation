@@ -197,6 +197,8 @@
       'All inputs that a [[homomorphism]] sends to the [[identity]]. A large kernel means the map forgets many elements.'),
     'quotient group': entry('quotient group',
       'The [[group]] obtained by treating every element of a chosen [[normal subgroup]] as the [[identity]].'),
+    'group of integers': entry('group of integers',
+      'The whole numbers \\(\ldots,-2,-1,0,1,2,\ldots\\) viewed as a [[group]] under addition. Its [[identity]] is 0, and the [[inverse]] of an integer is its negative.'),
     'cyclic subgroup': entry('cyclic subgroup',
       'A [[subgroup]] made from one element by repeatedly combining that element and its [[inverse]].'),
     'normal closure': entry('normal closure',
@@ -667,6 +669,14 @@
       'M names a [[set]] of square [[matrix|matrices]]. Its subscript gives the number of rows and columns.', 'M');
     if (symbol === 'd' && /\\mathbf\s*d/.test(tex || '')) return entry('the matrix-size sequence d',
       'The [[bold letter]] d names the [[sequence]] of matrix sizes. Its nth entry is written \\(d_n\\).', '\\mathbf d');
+    if (symbol === 'f' && /f\(q,a\)/.test(tex || '')) return entry('the map f from W sub Q to T',
+      'Here f is an arbitrary [[homomorphism]] from the constructed group \\(W_Q\\) to the target group T. The calculation shows that it ignores the A-coordinate.', 'f');
+    if (symbol === 'q' && /f\(q,a\)/.test(tex || '')) return entry('the Q-coordinate q',
+      'Here q is an arbitrary [[element]] of the group Q and is the first coordinate of the [[ordered pair]] \\((q,a)\\). It is unrelated to the Leavitt-algebra element also named q.', 'q');
+    if (symbol === 'a' && /f\(q,a\)/.test(tex || '')) return entry('the A-coordinate a',
+      'Here a is an arbitrary [[element]] of the subgroup A and is the second coordinate of the [[ordered pair]] \\((q,a)\\). The map f sends this coordinate to the identity.', 'a');
+    if ((symbol === 'Z' || symbol === 'ℤ') && /\\mathbb\s*\{?Z/.test(tex || '')) return entry('the group of integers',
+      'The blackboard-style letter \\(\mathbb Z\\) names the [[group of integers]] under addition.', '\\mathbb Z');
     if (symbol === 'q' && /q_n|q\\Theta|\\mathcal Q|q-q/.test(tex || '')) return entry('the complementary projection q',
       'q is the [[projection]] complementary to p, defined by \(q=1-p\). It is the identity element of the smaller [[corner]] used in the argument.', 'q');
     if (symbol === 'p' && /p=s_0t_0|p\+q=1/.test(tex || '')) return entry('the Leavitt element p',
@@ -839,12 +849,16 @@
       'The letter e names an [[elementary matrix]]. Its subscript gives the row and column [[index|indices]] of the extra entry.', 'e_{ij}');
     if (/^WQ$/.test(symbol)) return entry('the group W sub Q',
       'This is the [[group]] W built from the chosen group Q. The small Q is a subscript naming that choice.', 'W_Q');
+    if (/^WZ$/.test(symbol) && /\\mathbb\s*\{?Z/.test(tex || '')) return entry('the group W sub Z',
+      'This is the constructed [[group]] W built using the [[group of integers]] \\(\mathbb Z\\). The subscript records that concrete choice of Q.', 'W_{\\mathbb Z}');
     if (/^πQ$/.test(symbol)) return entry('the map pi sub Q',
       'This [[homomorphism]] sends the group \\(W_Q\\) onto Q. The subscript Q names its destination.', '\\pi_Q');
     if (/^CH$/.test(symbol)) return entry('the centralizer in H',
       'This is the [[centralizer]] computed inside the [[group]] H.', 'C_H');
     if (/^clMFG$/.test(symbol)) return entry('MF closure inside G',
       'This symbol names the MF [[closure operation]] performed inside the [[group]] G.', '\\operatorname{cl}_{\\mathrm{MF}}^G');
+    if (/^clMFWQ$/.test(symbol)) return entry('MF closure inside W sub Q',
+      'This symbol names the MF [[closure operation]] performed inside the constructed [[group]] \\(W_Q\\).', '\\operatorname{cl}_{\\mathrm{MF}}^{W_Q}');
     if (symbol === 'cl' || symbol === 'clMFQ') return entry('MF-closure label',
       'The letters cl abbreviate the MF [[closure operation]]. A superscript names the surrounding [[group]].', '\\operatorname{cl}_{\\mathrm{MF}}');
     if (symbol === '))') return entry('two closing parentheses',

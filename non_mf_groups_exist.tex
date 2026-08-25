@@ -1805,6 +1805,15 @@ closure formula.  If this closure equals $N$, then it contains $\ker f$.
 Mapping the equality onto $Q$ shows that
 $\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
 conditions give
+%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}(f(N))=N" title="the two closure conditions force the MF closure to be exactly N">
+% Start with N and take its image (f(N)) in Q.  The hypothesis says that
+% (f(N)) is already [[MF closure|MF-closed]] in Q, so pulling that closure
+% back gives (f^{-1}(f(N))).  Because N contains the [[kernel]] of f, this
+% [[preimage]] is exactly N rather than a larger subgroup.  The chain of two
+% equals signs therefore proves that applying MF closure inside G adds no new
+% elements to N.  By the earlier criterion, this is equivalent to the
+% [[quotient group]] (G/N) being an [[MF group]].
+%</webmath>
 \[
  \operatorname{cl}_{\mathrm{MF}}^G(N)
  =f^{-1}(f(N))=N.
@@ -1924,6 +1933,15 @@ Furthermore,
 Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $B$ is
 trivial, so its restriction to the amalgamated subgroup $A$ is trivial.  For
 $(q,a)\in Q\times A$, we then have
+%<webmath object="whole" when="f(q,a)=f(q,1)f(1,a)=f(q,1)" title="the map f ignores the A-coordinate of each pair">
+% The pair ((q,a)) in the [[direct product]] (Q\times A) can be factored
+% as ((q,1)(1,a)): one factor carries only the Q-coordinate and the other
+% carries only the A-coordinate.  Because f is a [[homomorphism]], it turns
+% that product into (f(q,1)f(1,a)).  The restriction of f to A is trivial,
+% so (f(1,a)) is the [[identity]] and disappears from the product.  Thus the
+% value of f depends only on q.  This is exactly why f [[factors through]] the
+% projection from (Q\times A) onto Q.
+%</webmath>
 \[
  f(q,a)=f(q,1)f(1,a)=f(q,1).
 \]
@@ -1948,6 +1966,15 @@ every homomorphism from $B$ to $\U(\mathcal Q_{\mathbf d})$ is trivial.
 Applying Proposition~\ref{prop:universal-factorization} with
 $T=\U(\mathcal Q_{\mathbf d})$ shows that every corona homomorphism from
 $W_Q$ factors uniquely through $\pi_Q$.  Intersecting their kernels gives
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}" title="the MF radical of W sub Q is pulled back from Q">
+% Every homomorphism from (W_Q) to a [[norm matrix corona]] factors uniquely
+% through the map (pi_Qcolon W_Q\to Q).  Therefore an element of (W_Q)
+% is erased by every such homomorphism exactly when its image in Q lies in the
+% [[MF radical]] of Q.  The notation (pi_Q^{-1}) means [[preimage]], not an
+% inverse function: it collects all elements whose image has the stated
+% property.  The equality says that the complete invisible part of (W_Q) is
+% precisely the pullback of the invisible part of Q.
+%</webmath>
 \[
  \Rad_{\mathrm{MF}}(W_Q)
  =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
@@ -1955,6 +1982,15 @@ $W_Q$ factors uniquely through $\pi_Q$.  Intersecting their kernels gives
 The kernel of $\pi_Q$ belongs to this radical, and it contains the
 nonidentity element $d$.  Thus $W_Q$ is non-MF.  If $Q$ is MF, its MF radical
 is trivial, and the displayed equality becomes
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}" title="when Q is MF, the invisible part is exactly the normal closure of d">
+% If Q is an [[MF group]], its [[MF radical]] contains only the identity.
+% Pulling that one-element subgroup back through (pi_Q) gives the
+% [[kernel]] of (pi_Q), namely all elements of (W_Q) sent to the identity
+% in Q.  The preceding proposition identifies this kernel with the [[normal
+% closure]] of d in (W_Q).  Thus all three expressions name the same
+% [[normal subgroup]].  In particular d is nontrivial but invisible to every
+% allowed matrix model, so (W_Q) is not MF.
+%</webmath>
 \[
  \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.
 \]
@@ -1962,6 +1998,15 @@ is trivial, and the displayed equality becomes
 \end{proof}
 
 If $N\trianglelefteq W_Q$, the same factorization gives
+%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)=\pi_Q^{-1}" title="MF closure in W sub Q is the pullback of MF closure in Q">
+% First send the [[normal subgroup]] N into Q, obtaining (pi_Q(N)).  Take
+% the [[MF closure]] of that image inside Q, which adds every element that all
+% MF-target maps must erase once they erase (pi_Q(N)).  Finally take the
+% [[preimage]] under (pi_Q), bringing the result back to (W_Q).  The
+% equality says this three-step procedure gives exactly the MF closure of N
+% computed directly inside (W_Q).  It works because every relevant
+% [[homomorphism]] from (W_Q) factors uniquely through Q.
+%</webmath>
 \begin{equation}\label{eq:closure-pullback}
  \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
  =\pi_Q^{-1}\!\left(
@@ -1971,6 +2016,16 @@ If $N\trianglelefteq W_Q$, the same factorization gives
 Indeed, a homomorphism from $W_Q$ to an MF group kills $N$ exactly when its
 unique factor through $Q$ kills $\pi_Q(N)$.  Proposition~\ref{prop:mf-residual-calculus}
 and \eqref{eq:closure-pullback} give
+%<webmath object="whole" when="W_Q/N\text{ is MF}" title="the two exact conditions for the quotient W sub Q over N to be MF">
+% The double arrow means the statement on the left holds exactly when both
+% conditions on the right hold.  First, N must contain the [[kernel]] of
+% (pi_Q); otherwise the quotient would retain a nontrivial element that all
+% MF models erase.  Second, after mapping N into Q, the [[quotient group]]
+% (Q/\pi_Q(N)) must itself be an [[MF group]].  Together these conditions
+% say that (W_Q/N) has discarded the entire invisible attached part and that
+% the remaining quotient inherited from Q admits the required finite-matrix
+% approximations.
+%</webmath>
 \[
  W_Q/N\text{ is MF}
  \quad\Longleftrightarrow\quad
@@ -1983,6 +2038,15 @@ $N=\pi_Q^{-1}(\pi_Q(N))$.
 
 Taking $Q=\mathbb Z$ makes the quotient criterion especially concrete:
 for every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
+%<webmath object="whole" when="W_{\mathbb Z}/N\text{ is MF}" title="for this concrete group, the quotient is MF exactly when N contains d">
+% Here (mathbb Z) is the [[group of integers]] under addition, and every
+% quotient of it is MF.  The general two-condition criterion therefore loses
+% its second condition.  What remains is that N must contain the element d,
+% or equivalently contain its [[normal closure]], which is the kernel of the
+% map from (W_{\mathbb Z}) to (mathbb Z).  The double arrow means both
+% directions hold: containing d is sufficient for the [[quotient group]] to
+% be an [[MF group]], and any MF quotient must contain d.
+%</webmath>
 \begin{equation}\label{eq:one-word-quotient-test}
  W_{\mathbb Z}/N\text{ is MF}
  \quad\Longleftrightarrow\quad

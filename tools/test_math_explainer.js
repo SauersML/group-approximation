@@ -19,9 +19,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 103, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 86,
-  'the contextual explanations must remain attached to 86 formula groups');
+assert.equal(declarations.length, 110, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 93,
+  'the contextual explanations must remain attached to 93 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -191,11 +191,18 @@ const coveredFormulas = [
   String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
   String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).`,
   String.raw`G/N\text{ is MF}\quad\Longleftrightarrow\quad\ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.`,
+  String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}(f(N))=N.`,
   String.raw`G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q).`,
   String.raw`W_Q=B*_A(Q\times A),`,
   String.raw`\pi_Q\colon W_Q\longrightarrow Q.`,
   String.raw`\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).`,
-  String.raw`\ker\pi_Q=\normal d_{W_Q}.`
+  String.raw`\ker\pi_Q=\normal d_{W_Q}.`,
+  String.raw`f(q,a)=f(q,1)f(1,a)=f(q,1).`,
+  String.raw`\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
+  String.raw`\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.`,
+  String.raw`\operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)=\pi_Q^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))\right).`,
+  String.raw`W_Q/N\text{ is MF}\quad\Longleftrightarrow\quad\ker\pi_Q\le N\text{ and }Q/\pi_Q(N)\text{ is MF}.`,
+  String.raw`W_{\mathbb Z}/N\text{ is MF}\quad\Longleftrightarrow\quad d\in N.`
 ];
 
 function treeText(node) {
@@ -213,7 +220,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 86);
+assert.equal(coveredFormulas.length, 93);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
