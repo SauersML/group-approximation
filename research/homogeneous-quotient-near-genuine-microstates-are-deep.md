@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **THEOREM (established here; proof in
-`homogeneous-quotient-deep-tower-proof`).**  Let `n = 3`, `p` a prime,
+`homogeneous-quotient-deep-tower-proof`, with the sharper orthogonal form in
+`orthogonal-kazhdan-powers-have-quadratic-depth-loss`).**  Let `n = 3`, `p` a prime,
 `A = SL_3(Z[1/p])`, `C = SL_3(Z)`, `h = diag(p,1,1/p)`,
 `C_0 = C cap h^-1 C h`, and let `M = L^infinity(X) rtimes A` be the
 crossed product of `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`
@@ -44,20 +45,32 @@ at most `C_1 epsilon / kappa_0` -- and its `p`-adic depth satisfies
 microstate sequence with defect `epsilon_k -> 0` the depth `a_k -> infinity`
 at least like `1/epsilon_k`.  No regular-trace hypothesis is used.
 
+In fact orthogonality of the Kazhdan projection strengthens `(DT1)` and
+`(DT3)`: for another absolute constant `C_square`,
+
+```text
+(DT1-square)  F(p^(a-k)m') >= 1-C_square k epsilon^2/kappa_0^2,
+(DT3-square)  a >= j + (kappa_0^2/(C_square epsilon^2))
+                  . (1/(8|Y_(j+1)|)-C_2|Y_(j+1)|epsilon/kappa).
+```
+
+Thus the strongest established depth scale is `Omega(epsilon^(-2))`, and
+the average top-level weight is `O(epsilon^2)`.  The linear bounds displayed
+first remain valid but are no longer sharp.
+
 **Consequences.**
 - The exact face of `sl3-homogeneous-quotient-crossed-product-is-connes-embeddable`
   consists only of deep flat towers: prime-to-`p` congruence microstates
   (the face on which `arithmetic-pair-is-not-relatively-embeddable` reduces
   to its one-unitary system) cannot carry the homogeneous action at all,
-  and towers of bounded depth, or of depth `o(1/epsilon)`, cannot either.
-- The obstruction is additive across levels: the descent `(DT1)` costs
-  `C_1 epsilon/kappa_0` per level, not a multiplicative constant, because the
-  intertwining projection is taken once on `C_0` and then restricted to the
-  nested subgroups `h^i (cap_(m<=k) h^-m C h^m) h^-i subset C_0`.  This is why
-  the bound is depth times defect, and why nothing smaller than a tower with
-  `Omega(1/epsilon)` levels of weight `O(epsilon)` each is excluded.
+  and towers of bounded depth, or of depth `o(1/epsilon^2)`, cannot either.
+- The sharp generic obstruction is additive in **squared** defect across
+  levels: Pythagoras for the one Kazhdan projection and the contraction
+  identity for `T^k` cost `C_square epsilon^2/kappa_0^2` per level.  The
+  truncated-shift example in `orthogonal-kazhdan-powers-have-quadratic-depth-loss`
+  shows this `k epsilon^2` square function is sharp for one intertwiner.
 - Nothing here excludes such towers.  Whether a flat tower of depth
-  `~ 1/epsilon` can be completed to a microstate of `M` (with the
+  `~ 1/epsilon^2` or greater can be completed to a microstate of `M` (with the
   `h`-covariance of the cells and the relators of `A`) is exactly the open
   content of the exact face; it is the homogeneous-quotient form of the
   flat multi-scale enemy recorded on `coset-wreath-is-hyperlinear`.
