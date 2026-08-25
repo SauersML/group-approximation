@@ -19,12 +19,12 @@ E_i=P Q_i
 are commuting projections supported on `P`.
 
 Permutations of the seventeen indices `4,...,20`, fixing `1,2,3`, lift to
-Weyl words.  They fix `x_13(q)` and act two-transitively on the ordered roots
-`x_(i,2)(q)`.  Traciality therefore gives constants `a,t` such that
+Weyl words.  They fix `x_13(q)` and act `k`-transitively on ordered distinct
+roots for every `k<=17`.  Traciality therefore makes the trace of
+`P Q_(i_1)...Q_(i_k)` depend only on `k`; call it `t_k`, and put
 
 ```text
-tau(E_i)=a,
-tau(E_iE_j)=t                       for every i!=j.     (SRP1)
+tau(E_i)=a.                                               (SRP1)
 ```
 
 Each `x_(i,2)(q)` is globally Weyl-conjugate to `x_13(q)`, so
@@ -36,26 +36,38 @@ rectangle to get
 a=tau(PQ_i)>=tau(P)/4.                                (SRP2)
 ```
 
-Put `X=sum_(i=4)^20 E_i`.  Since `X=PXP`, tracial Cauchy--Schwarz gives
+Put `N=sum_(i=4)^20 E_i`.  The commuting projections make `N` an
+integer-valued operator on `PH`, with
 
 ```text
-tau(X^2)>=tau(X)^2/tau(P).
+tau(N)=17a >= (17/4)tau(P).                             (SRP3)
 ```
 
-Using `(SRP1)` on the seventeen diagonal and `17*16=272` ordered
-off-diagonal terms,
+For `2<=k<=5`, functional calculus and `k`-transitivity give
 
 ```text
-17a+272t >= 289a^2/tau(P).                             (SRP3)
+tau(binomial(N,k))=binomial(17,k)t_k.                  (SRP4)
 ```
 
-The right side after solving for `t` is increasing for
-`a>=tau(P)/4`.  Substitution of `(SRP2)` yields
+On every integer `n>=0`, the following supporting-line inequalities hold:
 
 ```text
-t >= [(289/16)-(17/4)]tau(P)/272
-  = 221 tau(P)/4352
-  = 13 tau(P)/256,                                     (SRP4)
+binomial(n,2)>=4n-10,        binomial(n,3)>=6n-20,
+binomial(n,4)>=4n-15,        binomial(n,5)>=n-4.        (SRP5)
+```
+
+Apply `(SRP5)` to `N`, use `(SRP3)`, and divide by the corresponding values
+
+```text
+binomial(17,2)=136,     binomial(17,3)=680,
+binomial(17,4)=2380,    binomial(17,5)=6188.
+```
+
+This gives respectively
+
+```text
+t_2>=7tau(P)/136,          t_3>=11tau(P)/1360,
+t_4>=tau(P)/1190,          t_5>=tau(P)/24752,          (SRP6)
 ```
 
 which is `(SRS2)`.  There are only seventeen fixed roots and finitely many

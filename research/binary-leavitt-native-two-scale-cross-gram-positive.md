@@ -175,12 +175,28 @@ loophole realized by the existing Morita model.
 There is nevertheless now a fixed nonadaptive common carrier available for
 an occurrence compiler.  `seventeen-root-star-has-marked-triple-overlap`
 proves that the prescribed roots `x_42(q)` and `x_52(q)` have triple overlap
-at least `(13/256)tau(P_z)` with the mark.  Weyl two-transitivity, rather than
+at least `(7/136)tau(P_z)` with the mark.  Weyl two-transitivity, rather than
 coordinatewise pair selection, supplies this pair.  These are same-coefficient
 root-position channels, so substituting their Weyl maps for the two native
 unequal-scale coefficient transports would erase the selector semantics.
 The remaining task is to install the actual two scale rows on this common
 root carrier or authenticate `(NCG1a)` for their own relative word.
+
+Moreover the prescribed intersection with `x_62(q)` remains positive.
+`marked-root-star-carries-three-anchored-cells` uses it to put three
+cross-commuting `q`-centered Heisenberg cells on one carrier.  Their arm
+coefficients factor the two native scale arrows as
+
+```text
+s_(00)t_0=(s_(00)t_1)(s_1t_0),
+s_(000)t_(00)=(s_(000)t_1)(s_1t_(00)).                 (NCG3)
+```
+
+Thus neither common positive carrier nor simultaneous finite packet syntax
+is still missing for these anchored arms.  What `(NCG3)` does not yet prove
+is that the separate root occurrences of its factors compose as the two
+selector transport operators on that carrier; that is now the exact
+same-occurrence row to authenticate.
 
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that

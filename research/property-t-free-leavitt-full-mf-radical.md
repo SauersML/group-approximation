@@ -34,6 +34,7 @@ artifacts:
   - research/involution-normal-product-forces-one-factor-overlap.md
   - research/root-valued-relative-transport-forces-cross-gram.md
   - research/seventeen-root-star-has-marked-triple-overlap.md
+  - research/marked-root-star-carries-three-anchored-cells.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -238,7 +239,7 @@ ordinary root-position channels.  The seventeen commuting roots
 with a second moment to prove
 
 ```text
-tau(P_z P_(x_42(q)) P_(x_52(q))) >= (13/256)tau(P_z).
+tau(P_z P_(x_42(q)) P_(x_52(q))) >= (7/136)tau(P_z).
 ```
 
 This removes both adaptive pair selection and vanishing carrier mass for a
@@ -247,6 +248,24 @@ root-position transports, not the unequal-scale coefficient transports in
 the selector rows.  The next construction must make those scale rows act on
 this fixed triple carrier, or prove that their native relative word has the
 root-valued form above.
+
+The root-star symmetry extends through five prescribed roots.  In particular
+the four-root carrier for `z,x_42(q),x_52(q),x_62(q)` has mass at least
+`(11/1360)tau(P_z)`.  On it,
+`marked-root-star-carries-three-anchored-cells` realizes three cross-commuting
+Heisenberg pairs from the factorizations
+
+```text
+q=(s_1t_(0^m))(s_(0^m)t_1),             m=1,2,3.
+```
+
+Their cross-products are exactly `s_(00)t_0` and `s_(000)t_(00)`, the two
+native scale arrows.  This puts the three arm cells and a literal `M_8`
+packet on one fixed positive carrier.  The remaining occurrence seam is now
+the comparison between the cross-product coefficient occurrences and their
+selector-word occurrences; the index layout making the three Heisenberg
+cells cross-commute does not itself make those cross-products operator
+products on the carrier.
 
 The seventh route supplies a concrete moving-coefficient family, but is now
 also refuted by fixed-centralizer properness after an exponent-two triangle
