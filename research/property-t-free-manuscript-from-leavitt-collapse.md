@@ -6,6 +6,7 @@ title: Rebuild the manuscript from the intrinsic Leavitt collapse and algebraic 
 target: property-t-free-manuscript-results
 requires:
   - property-t-free-leavitt-full-mf-radical
+  - property-t-free-st20-collapse-transfers-to-el12
   - mf-radical-functoriality
   - countable-mf-groups-are-epireflective
   - compression-defect-dies-in-finite-dimensions
@@ -17,8 +18,12 @@ artifacts:
   - GroupApproximation/Sofic/PropertyTFreeMFCollapse.lean
 ---
 
-Once `property-t-free-leavitt-full-mf-radical` supplies the intrinsic seed,
-the remainder is algebraic assembly.
+Once `property-t-free-leavitt-full-mf-radical` supplies the intrinsic
+rank-twenty Steinberg seed,
+`property-t-free-st20-collapse-transfers-to-el12` carries it through the
+canonical elementary quotient and the explicit Leavitt rank equivalence to
+the manuscript's literal group `EL_12(R)`.  The remainder is algebraic
+assembly.
 
 * Full radical gives non-MF because the binary-Leavitt group is nontrivial.
 * Root normal generation and simplicity turn the killed marked root into
