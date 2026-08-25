@@ -53,5 +53,14 @@ the source-specific strict actor countermodels above.  This does **not** say
 that the fixed-doubled tuples stay far from exact representations: that would
 be a flexible-stability statement, and is not supplied by local instability.
 
+The standard source proof does not secretly provide the missing correlation.
+`kt-deleted-line-instability-cannot-carry-majorana-wall` restores the one
+dimension deleted in the Becker--Lubotzky/FFGS construction and applies the
+exact-actor return inequality.  Every full-packet involution in those
+microstates has returned anticommutator norm tending to `2`, whereas a
+Majorana wall requires it to tend to `0`.  Hence the desired correlated
+countermodel must use a different, bounded-amplification-resistant unstable
+sector.
+
 DERIVATION
 kt-full-actor-local-instability-proof
