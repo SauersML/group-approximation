@@ -5,7 +5,7 @@ kind: claim
 title: A norm-attaining Choi separator component need not produce primal motion in that component
 distinct_from:
   centered-gap-is-on-a-tree-or-forces-tree-motion: that isolates a large centered closing component for the concrete triangle separator; this gives a finite Choi countermodel to the proposed generic dual-to-primal inference from that component.
-  scalar-tree-perturbations-force-square-root-closing-control: that constrains the restrictions of each primal ucp triangle map; this shows a large dual component need not select any primal map to which that constraint applies nontrivially.
+  scalar-tree-perturbations-linearly-control-closing-face: that constrains the restrictions of each primal ucp triangle map; this shows a large dual component need not select any primal map to which that constraint applies nontrivially.
   exhausting-ideal-reservoirs-have-lift-or-quotient-separator: that constructs a normalized supporting functional from persistent distance; this shows that even choosing the distance-normalized functional and a closest feasible point supplies no componentwise primal displacement.
 ---
 
@@ -44,8 +44,8 @@ cannot follow from finite-dimensional Choi duality and separator
 normalization alone.  A proof of `(SCP3)` for the triangle would need an
 additional triangle-specific transversality/error-bound property of the
 liftable Choi image.  Once such an `r(delta)` is available,
-`scalar-tree-perturbations-force-square-root-closing-control` converts it to
-tree motion at least `min{1,(r(delta)/C_Delta)^2}`.
+`scalar-tree-perturbations-linearly-control-closing-face` converts it to tree
+motion at least `r(delta)/C_Delta`.
 
 Proof: `three-point-choi-face-no-primal-motion`.
 

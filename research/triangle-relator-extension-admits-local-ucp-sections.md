@@ -258,19 +258,19 @@ Ioana--Spaas--Wiersma mechanism), per
   makes the closing restriction scalar on `P_1` and `P_3`, and the
   multiplicative domain then makes it scalar on all of `P_13`.  Thus a
   closing correction necessarily moves a tree face.
-- **The scalar-tree singleton has an explicit square-root modulus
+- **The scalar-tree singleton has an explicit linear error bound
   (2026-08-25).**
-  `scalar-tree-perturbations-force-square-root-closing-control` proves that if
-  both tree restrictions of a ucp triangle map are within `eta<=1` in cb norm
-  of scalar augmentation, then finite word diameter of `P_13`, together with
-  the Stinespring multiplicative-domain estimate, gives
+  `scalar-tree-perturbations-linearly-control-closing-face` proves that if
+  both tree restrictions of a ucp triangle map are within `eta` in cb norm of
+  scalar augmentation, then finite word diameter of `P_13`, together with a
+  two-sided Stinespring off-corner estimate, gives
 
   ```text
-  ||Phi_13-E_epsilon||_cb<=C_Delta sqrt(eta).
+  ||Phi_13-E_epsilon||_cb<=C_Delta eta.
   ```
 
-  Equivalently, closing movement `r` costs at least
-  `min{1,(r/C_Delta)^2}` on one tree face.  This is a literal finite Choi
+  Equivalently, closing movement `r` costs at least `r/C_Delta` on one tree
+  face.  This is a literal finite Choi
   optimization for every finite-dimensional codomain.  It does not yet force
   the centered separator's **dual** closing value onto a tree component: that
   last inference would require a complementary-slackness/primal-selection
