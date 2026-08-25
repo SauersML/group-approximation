@@ -9,6 +9,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalReflection.lean
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
+  - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
   - GroupApproximation/Endpoint/ApproximationRadicals.lean
   - research/intrinsic-full-mf-radical-core-proof.md
 ---
@@ -166,12 +167,24 @@ core-free.  The intrinsic MF core therefore supplies a hereditary,
 product-stable decomposition whose full and core-free classes are both closed
 under extensions.
 
-The construction and equations (1)--(15) are formalized in
+The reflection also identifies quotient maps that it inverts.  If
+`f : G --> H` is onto and `ker(f)` is intrinsically full, then the induced map
+
+```text
+G/Core_MF(G) --> H/Core_MF(H)                        (16)
+```
+
+is an isomorphism.  Thus adjoining or removing an intrinsically full kernel
+does not change the core-free image.  Full-kernel extensions become
+equivalences after applying the core-free reflection.
+
+The construction and equations (1)--(16) are formalized in
 `GroupApproximation/Sofic/FullMFRadicalCore.lean` and
 `GroupApproximation/Sofic/FullMFRadicalExactness.lean` and
 `GroupApproximation/Sofic/FullMFRadicalReflection.lean` and
 `GroupApproximation/Sofic/FullMFRadicalProducts.lean` and
-`GroupApproximation/Sofic/FullMFRadicalExtensions.lean`, and re-exported by
+`GroupApproximation/Sofic/FullMFRadicalExtensions.lean` and
+`GroupApproximation/Sofic/FullMFRadicalLocalization.lean`, and re-exported by
 `GroupApproximation/Endpoint/ApproximationRadicals.lean`.
 
 DERIVATION

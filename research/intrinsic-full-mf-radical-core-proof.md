@@ -11,6 +11,7 @@ artifacts:
   - GroupApproximation/Sofic/FullMFRadicalReflection.lean
   - GroupApproximation/Sofic/FullMFRadicalProducts.lean
   - GroupApproximation/Sofic/FullMFRadicalExtensions.lean
+  - GroupApproximation/Sofic/FullMFRadicalLocalization.lean
 ---
 
 # Proof
@@ -179,5 +180,16 @@ Its source is intrinsically full by idempotence, while its target is
 core-free, so orthogonality makes the inclusion trivial.  Hence `C(G)=1`.
 Taking `f` to be a quotient map gives closure of the core-free class under
 extensions.
+
+Finally, suppose `f : G --> H` is onto with intrinsically full kernel.  Since
+`ker(f) ≤ C(G)`, the quotient map `G --> G/C(G)` descends along `f` to a map
+
+```text
+H --> G/C(G).
+```
+
+The target is core-free, so the universal property factors this map through
+`H/C(H)`.  The resulting map is a left inverse to the map induced by `f`.
+Surjectivity of `f` makes the induced map onto, hence it is an isomorphism.
 
 The Lean proof follows these steps directly.
