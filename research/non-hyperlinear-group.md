@@ -560,6 +560,19 @@ same-reservoir relation must leave the positive unipotent radical, through an
 opposite-root, Weyl/Whitehead, or genuinely global return in the full
 presentation.
 
+The first mixed-root enlargement is now fenced as well.
+`scalar-active-mixed-shell-has-marked-regular-model` embeds
+the complete positive-and-negative elementary shell over the literal scalar
+active corner `kA` into the finite group `E_n(k)`.  Its regular representation
+keeps the active root at HS distance `sqrt(2)` while satisfying every
+rank-one braid, Weyl/Whitehead conjugacy, and same-object return internal to
+that shell exactly.  Hence an opposite root or active Weyl word is not yet
+the missing relation.  The first potentially load-bearing row must contain
+a genuinely non-scalar Leavitt coefficient and simultaneously forbid the
+rectangular change of coefficient object.  The full signed Whitehead
+occurrence table does eliminate exact marked matrix models, but its uniform
+HS version remains precisely the unresolved same-reservoir payment.
+
 The most direct finite orientation pin for that mixed row also fails.
 `packet-controller-orbit-products-have-orientation-dichotomy` considers a
 product of packet conjugates of the rank-one controlled phase and compares

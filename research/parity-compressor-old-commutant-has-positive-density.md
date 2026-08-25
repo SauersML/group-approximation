@@ -131,6 +131,17 @@ part of the remaining hole.
   non-surjectivity plus transport cannot by itself prove `(PCD1)`; the live
   matrix-only statement must quantitatively use positive forbidden-head
   mass to exclude precisely this congruence collapse.
+- Regular multiplicity is not the source of this dilution.
+  `high-type-irreducibles-retain-finite-packet-mass` proves that every
+  unbounded residual quotient tower in which a finite packet survives has
+  individual irreducible blocks of dimension tending to infinity on which
+  any prescribed nonzero packet projection keeps at least half its regular
+  trace.  Their old commutant density is exactly `1/d^2`.  If the quotient
+  tower is stationary under the compressor endomorphism, these blocks extend
+  across the ascending HNN with stable letter one and directly refute
+  `(PCD1)`.  Hence the live coefficient cell must visibly destroy packet
+  survival, quotient stationarity, or extension of these single-block
+  representations; passing from regular quotients to factors cannot help.
 - The bounded-type formulation does provide a sharp one-coefficient
   separator.  `one-bounded-type-coefficient-separates-unbounded-exits`
   chooses one finite `a in C[Lambda]` approximating `p_<=K` and proves

@@ -80,6 +80,19 @@ factor in the earlier fold countermodel is not the real loophole.  The
 load-bearing payment relation must leave the positive unipotent radical—for
 example through an opposite-root, Weyl/Whitehead, or global return row.
 
+Leaving the positive radical is necessary but not by itself sufficient.
+`scalar-active-mixed-shell-has-marked-regular-model` includes
+all positive and negative elementary roots whose coefficients lie in the
+literal scalar active corner `kA`.  The resulting shell is an embedded copy
+of the finite elementary group over `k`; its regular representation satisfies
+every rank-one braid, Weyl/Whitehead conjugacy, and same-object identity in
+that shell exactly while the active root remains at distance `sqrt(2)`.
+Thus the first possible payment row must not merely be mixed-root: it must
+contain a genuinely non-scalar Leavitt coefficient (`s_i,t_i`, a prefix
+partial equivalence, or equivalent data) and must prevent the typed Morita
+object change.  This is exactly the boundary between the harmless active
+Weyl shell and the full signed Whitehead occurrence system.
+
 The full-presentation check identifies the exact surviving gate.  The
 Leavitt identities already give the two orthogonal branch embeddings and the
 exponential prefix Heisenberg packet, all reproduced by the calibration
