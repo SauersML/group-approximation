@@ -613,6 +613,7 @@
     'π': entry('the map pi', 'The Greek letter pi names a [[homomorphism]] or [[representation]].', '\\pi'),
     'ρ': entry('the representation rho', 'The Greek letter rho names the [[representation]] that assigns an invertible linear operator to each element of G.', '\\rho'),
     'Θ': entry('the corona representation Theta', 'The Greek letter Theta names the [[homomorphism]] from G into the unitary group of a [[norm matrix corona]].', '\\Theta'),
+    'Ψ': entry('the compression map Psi', 'The Greek letter Psi names the injective [[endomorphism]] that compresses a 3-by-3 matrix A into one Leavitt piece and uses q on the complementary diagonal piece.', '\\Psi'),
     'κ': entry('the Kazhdan constant kappa', 'The Greek letter kappa names a positive [[Kazhdan constant]] for the finite Kazhdan set S.', '\\kappa'),
     'ξ': entry('the vector xi', 'The Greek letter xi names a [[vector]] fixed by the represented subgroup L.', '\\xi'),
     'τ': entry('the matrix tau', 'The [[Greek letter]] tau names the [[invertible]] [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),
@@ -633,6 +634,11 @@
     'm': entry('the matrix-size variable m', 'm is a positive whole number used as the number of rows and columns in a square [[matrix]].', 'm'),
     'mn': entry('the stage-n matrix size m n', 'The [[subscript]] n selects the matrix size used at stage n of the [[sequence]].', 'm_n'),
     'Mmn': entry('the matrices of size m n', 'This is the [[set]] of square complex [[matrix|matrices]] having \(m_n\) rows and \(m_n\) columns.', 'M_{m_n}'),
+    'I': entry('an identity matrix I', 'I denotes an [[identity matrix]] whose size is determined by the surrounding block-matrix formula.', 'I'),
+    'I3': entry('the 3-by-3 identity matrix', 'The [[subscript]] 3 specifies that this is the [[identity matrix]] with three rows and three columns.', 'I_3'),
+    'I9': entry('the 9-by-9 identity matrix', 'The [[subscript]] 9 specifies that this is the [[identity matrix]] with nine rows and nine columns.', 'I_9'),
+    'X': entry('the block matrix X', 'X is the 6-by-6 [[matrix]] defined from four 3-by-3 blocks using the Leavitt generators; the following calculation shows that Y is its [[inverse]].', 'X'),
+    'Y': entry('the block matrix Y', 'Y is the 6-by-6 [[matrix]] defined from four 3-by-3 blocks and is the [[inverse]] of X.', 'Y'),
     'K2': entry('the Hilbert–Schmidt kernel K two', 'This is the [[normal subgroup]] of elements that the chosen asymptotic representation V sends toward the [[identity]] in normalized [[Hilbert–Schmidt norm]].', 'K_2'),
     'R∞→2': entry('the universal infinity-to-two kernel', 'This [[normal subgroup]] contains the elements that every operator-norm [[asymptotic representation]] sends toward the [[identity]] in normalized [[Hilbert–Schmidt norm]].', 'R_{\\infty\\to2}'),
     'C2': entry('the asymptotic commutant C two', 'This symbol names the [[asymptotic commutant]] of the representation V and the subgroup L, measured using normalized [[Hilbert–Schmidt norm]].', '\\mathcal C_2'),
@@ -717,6 +723,10 @@
       'The letters ker abbreviate [[kernel]]: all inputs that the following map sends to the [[identity]].', '\\ker');
     if (symbol === 'Hom') return entry('homomorphism-set abbreviation',
       'The letters Hom name the [[set]] of all [[homomorphism|homomorphisms]] from the group listed first to the group listed second.', '\\operatorname{Hom}');
+    if (symbol === 'diag') return entry('block-diagonal construction',
+      'Place the listed [[matrix|matrices]] along the main [[diagonal]] as blocks and fill every off-diagonal block with zeros.', '\\operatorname{diag}');
+    if (symbol === 'GL' || /^GL\d+$/.test(symbol)) return entry('general linear group',
+      'The letters GL name the [[general linear group]] of all invertible square matrices of the indicated size over the indicated ring.', '\\operatorname{GL}');
     if (symbol === 'Ad') return entry('conjugation operation Ad',
       'The abbreviation Ad means [[conjugation]]. Applied to a unitary A, it is the operation sending each matrix x to \(AxA^*\).', '\\operatorname{Ad}');
     if (symbol === 'trd' || symbol === 'tr') return entry('normalized trace',
@@ -755,6 +765,10 @@
       'This is the compression-centralizer defect formed inside the [[image]] group \(f(G)\), using the subgroup \(f(L)\).', '\\mathfrak D_{f(G)}');
     if (symbol === 'f(G)') return entry('the image group f of G',
       'This is the [[subgroup]] consisting of all outputs \(f(g)\) as g ranges over G.', 'f(G)');
+    if (/^[stI0-3]+$/.test(symbol) && /[st][01]/.test(symbol)) return entry('a Leavitt block-matrix entry',
+      'This is an entry, row, or complete flattened view of a block [[matrix]]. Adjacent Leavitt symbols are multiplied in order, and \(I_3\) is the 3-by-3 [[identity matrix]].', symbol);
+    if (/^[IX0−1]+$/.test(symbol) && symbol.length > 1) return entry('entries of a Whitehead block factor',
+      'These are the entries of one 2-by-2 block [[matrix]] in the Whitehead factorization. I is the 6-by-6 [[identity matrix]], 0 is the zero block, and a minus sign takes an additive opposite.', symbol);
     if (symbol === 'CG') return entry('the centralizer in G',
       'This is the [[centralizer]] of L computed inside the [[group]] G.', 'C_G');
     if (symbol === '⟨' || symbol === '⟩') return entry('normal-closure bracket',

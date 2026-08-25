@@ -19,9 +19,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 79, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 62,
-  'the contextual explanations must remain attached to 62 formula groups');
+assert.equal(declarations.length, 87, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 70,
+  'the contextual explanations must remain attached to 70 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -162,7 +162,15 @@ const coveredFormulas = [
   String.raw`\Rad_{\mathrm{MF}}(G)=G.`,
   String.raw`\mathfrak D_Q(f(L))=Q.`,
   String.raw`\Rad_{\mathrm{MF}}(Q)=Q.`,
+  String.raw`p=s_0t_0,\qquad q=s_1t_1.`,
+  String.raw`p+q=1,\qquad t_1qs_1=1.`,
+  String.raw`\Psi(A)=qI_3+s_0A t_0.`,
+  String.raw`X=\begin{pmatrix}s_0I_3&s_1t_0I_3\\0&t_1I_3\end{pmatrix},\qquad Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.`,
+  String.raw`\tau=\operatorname{diag}(X,Y)\in\GL_{12}(R).`,
+  String.raw`\operatorname{diag}(X,X^{-1})=\begin{pmatrix}I&X\\0&I\end{pmatrix}\begin{pmatrix}I&0\\-X^{-1}&I\end{pmatrix}\begin{pmatrix}I&X\\0&I\end{pmatrix}\begin{pmatrix}I&0\\I&I\end{pmatrix}\begin{pmatrix}I&-I\\0&I\end{pmatrix}\begin{pmatrix}I&0\\I&I\end{pmatrix}.`,
   String.raw`L=\EL_3(R)\le H`,
+  String.raw`\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}=\operatorname{diag}(\Psi(A),I_9).`,
+  String.raw`\tau L\tau^{-1}\le L.`,
   String.raw`c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.`,
   String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
   String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).`,
@@ -189,7 +197,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 62);
+assert.equal(coveredFormulas.length, 70);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {

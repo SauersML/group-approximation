@@ -1252,10 +1252,27 @@ last assertion.
 \section{The binary Leavitt self-compression}
 
 Throughout this section $R=L_{\F_2}(1,2)$ and
+%<webmath object="whole" when="p=s_0t_0" title="the two complementary Leavitt pieces are named p and q">
+% This display introduces abbreviations.  The element p is the product
+% \(s_0t_0\), and q is the product \(s_1t_1\), inside the binary [[Leavitt
+% algebra]] R.  The subscripts 0 and 1 are [[index|indices]], not powers.
+% Writing the letters next to one another means multiplication in the given
+% order.  The defining Leavitt relation says these two elements add to the
+% identity, so they behave as complementary idempotent pieces used by the
+% compression construction.
+%</webmath>
 \[
  p=s_0t_0,\qquad q=s_1t_1.
 \]
 The relations \eqref{eq:leavitt} give
+%<webmath object="whole" when="p+q=1" title="p and q split the identity, and q contains a copy of the identity">
+% The first equation says the two Leavitt elements p and q add to the
+% [[identity]] 1.  The second says that multiplying q on the left by \(t_1\)
+% and on the right by \(s_1\) gives 1.  Using \(q=s_1t_1\), it becomes
+% \(t_1s_1t_1s_1=1\), which follows from \(t_1s_1=1\).  In particular q
+% cannot be zero.  The two facts let q provide the unchanged part of the
+% matrix compression while the p part carries the compressed copy.
+%</webmath>
 \begin{equation}\label{eq:pq}
  p+q=1,\qquad t_1qs_1=1.
 \end{equation}
@@ -1265,6 +1282,14 @@ We use indices $0,\ldots,11$ for $12\times12$ matrices and identify
 $\GL_3(R)$ with the subgroup of $\GL_{12}(R)$ consisting of the matrices
 $\operatorname{diag}(A,I_9)$.  On $M_3(R)$ consider the unital injective
 endomorphism
+%<webmath object="whole" when="\Psi(A)=qI_3+s_0A t_0" title="Psi compresses A into one Leavitt piece and fills the other with identity">
+% The Greek letter \(\Psi\), read “psi,” names a map from 3-by-3 matrices to
+% 3-by-3 matrices.  The term \(s_0At_0\) multiplies every entry of A by
+% \(s_0\) on the left and \(t_0\) on the right, placing a copy of A in the p
+% part of the Leavitt algebra.  The term \(qI_3\) places q on the three
+% diagonal positions and zero elsewhere.  Adding it supplies the unchanged q
+% part, making the map send the identity matrix to the identity matrix.
+%</webmath>
 \begin{equation}\label{eq:matrix-compression}
  \Psi(A)=qI_3+s_0A t_0.
 \end{equation}
@@ -1274,16 +1299,42 @@ The identity $t_0\Psi(A)s_0=A$ proves injectivity.  The term $qI_3$ is needed
 for unitality because the map $A\mapsto s_0At_0$ sends $I_3$ to $pI_3$.
 
 Set
+%<webmath object="whole" when="X=\begin{pmatrix}s_0I_3" title="the block matrices X and Y that implement the compression">
+% X and Y are 6-by-6 matrices written as 2-by-2 arrays of 3-by-3 blocks.
+% Each occurrence of \(I_3\) is the 3-by-3 [[identity matrix]], and 0 is the
+% 3-by-3 zero matrix.  The Leavitt elements multiply those identity blocks.
+% Direct block multiplication using \(t_is_j=\delta_{ij}\) and
+% \(s_0t_0+s_1t_1=1\) gives \(XY=YX=I_6\).  Therefore Y is the inverse of X,
+% which makes the later block-diagonal matrix tau invertible.
+%</webmath>
 \[
  X=\begin{pmatrix}s_0I_3&s_1t_0I_3\\0&t_1I_3\end{pmatrix},
  \qquad
  Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.
 \]
 A direct calculation using \eqref{eq:leavitt} gives $XY=YX=I_6$.  Put
+%<webmath object="whole" when="\tau=\operatorname{diag}(X,Y)" title="tau places X and its inverse on the block diagonal">
+% The matrix \(\tau\) is defined to be block diagonal, with the 6-by-6 matrix
+% X in the first diagonal block and the 6-by-6 matrix Y in the second.  This
+% produces a 12-by-12 matrix over R.  Since \(Y=X^{-1}\), the block diagonal
+% matrix is invertible, so it belongs to the [[general linear group]]
+% \(\operatorname{GL}_{12}(R)\).  The next factorization proves the stronger
+% fact that it belongs to the [[elementary group]].
+%</webmath>
 \begin{equation}\label{eq:tau}
  \tau=\operatorname{diag}(X,Y)\in\GL_{12}(R).
 \end{equation}
 Writing $I=I_6$, the Whitehead factorization is
+%<webmath object="whole" when="\operatorname{diag}(X,X^{-1})" title="the block diagonal matrix is factored into six elementary block matrices">
+% The left side is block diagonal with X and its inverse as 6-by-6 diagonal
+% blocks.  The right side multiplies six 12-by-12 block matrices, each having
+% identity blocks on its diagonal and only one possibly nonzero off-diagonal
+% block.  Multiplying the six factors gives the left side; this identity is
+% called the Whitehead factorization.  Each factor can in turn be written as
+% a product of [[elementary matrix|elementary matrices]], so the equality
+% proves that \(\operatorname{diag}(X,X^{-1})\) lies in
+% \(\operatorname{EL}_{12}(R)\).
+%</webmath>
 \begin{align}\label{eq:whitehead-factorization}
  \operatorname{diag}(X,X^{-1})
  &=\begin{pmatrix}I&X\\0&I\end{pmatrix}
@@ -1312,12 +1363,30 @@ $L=\EL_3(R)\le H$ be the corner in the upper left.
 Both groups have property~\textup{(T)} by the theorem of Ershov and
 Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
 Block multiplication yields
+%<webmath object="whole" when="\tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}" title="conjugating the upper-left A block applies the compression Psi">
+% The middle matrix places the 3-by-3 matrix A in the first diagonal block
+% and the 9-by-9 identity in the remaining coordinates.  Multiplication by
+% \(\tau\) and \(\tau^{-1}\) performs [[conjugation]].  The equality says that
+% this conjugation changes A exactly to its compressed image \(\Psi(A)\) and
+% leaves the remaining nine coordinates unchanged.  This calculation is the
+% bridge between the explicit 12-by-12 matrix tau and the algebra
+% endomorphism Psi.
+%</webmath>
 \begin{equation}\label{eq:corner-conjugation}
  \tau\,\operatorname{diag}(A,I_9)\,\tau^{-1}
  =\operatorname{diag}(\Psi(A),I_9).
 \end{equation}
 For every $i\ne j$ and $a\in R$,
 $\Psi(e_{ij}(a))=e_{ij}(s_0at_0)$.  Therefore
+%<webmath object="whole" when="\tau L\tau^{-1}\le L" title="tau sends every element of L back inside L">
+% The product \(\tau L\tau^{-1}\) means conjugate every element of the
+% subgroup L by tau.  The containment sign says every result still lies in L;
+% equality is not claimed.  It follows because L is generated by the
+% elementary matrices \(e_{ij}(a)\), and the preceding calculation sends
+% each generator to \(e_{ij}(s_0at_0)\), another elementary matrix in L.
+% This one-way self-compression is the hypothesis needed by the property-(T)
+% transport argument.
+%</webmath>
 \begin{equation}\label{eq:compresses-L}
  \tau L\tau^{-1}\le L.
 \end{equation}
