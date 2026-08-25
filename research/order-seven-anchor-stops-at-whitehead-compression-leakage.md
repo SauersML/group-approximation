@@ -58,7 +58,7 @@ L_n=sum_(i=1)^2
  Q_n v_(i,n)^*J_(i,n)(1-Q_n)J_(i,n)v_(i,n)Q_n.        (OSC3)
 ```
 
-A sufficient finite-coordinate input, parallel to `(MFK6)`, is
+A necessary first-exit finite-coordinate input, parallel to `(MFK6)`, is
 
 ```text
 tau_n(Q_n 1_((C delta_n^(2alpha)),infinity)(L_n))
@@ -66,10 +66,12 @@ tau_n(Q_n 1_((C delta_n^(2alpha)),infinity)(L_n))
 ```
 
 On the resulting low spectral source cut `E_n<=Q_n`, both terms
-`||(1-Q_n)T_(i,n)E_n||_2` are `O(delta_n^alpha)`; `(OSC2)` kills the common
-reservoir involution on the compressed return.  The already exact Hecke
-source/range relabelings and Pauli factorization can then be used for the
-native comparison.
+`||(1-Q_n)T_(i,n)E_n||_2` are `O(delta_n^alpha)`.  This is not the boundary
+appearing in `(OSC2)`, which is `||(1-E_n)T_(i,n)E_n||_2`.
+`order-seven-first-exit-is-not-seven-step-leakage` gives an exact
+seven-dimensional counterexample to the omitted inference.  One must
+additionally control the exits from the moving cut at all seven stages, or
+directly control the full `E_n` boundary.
 
 Neither `T^7=1` nor native involutivity proves `(OSC4)`.  The order-seven
 relator is exact in the canonical regular representation, while the fixed
@@ -80,9 +82,10 @@ only to dimension-free tracial word defects is impossible; `(OSC4)` must be
 a genuinely finite-coordinate no-microstate theorem.
 
 The affirmative frontier has nevertheless narrowed: occurrence parity is
-closed by the order-seven anchor.  The sole remaining step for this anchor
-is a model-dependent near-full Hecke cut with vanishing Whitehead leakage,
-or an equivalent normalized coercivity estimate.
+closed by the order-seven anchor.  The remaining step is the typed moving
+return in `growing-multicut-el20-order-seven-inheritance`.  The first-exit
+tail estimate `(OSC4)` may be part of such a construction, but is not
+equivalent to the full compression boundary.
 
 DERIVATION
-order-seven-compression-telescope-proof
+order-seven-compression-boundary-proof

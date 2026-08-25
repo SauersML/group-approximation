@@ -225,3 +225,20 @@ coordinate swaps its guarded slice into an equal-rank complement and leaves
 all existing relations exact.  The new finite-coordinate ingredient must
 therefore be a **row-sensitive mixed incidence on the selected block**, not
 only a rule selecting which block to test.
+
+There is, however, a genuinely chord-sensitive moving-coordinate alternative
+to authenticating the full row.  For `Q=UEU^*`, the positive complement exit
+
+```text
+A=(1-E)Q(1-E)
+```
+
+has trace at least `tr(H)-||QH||_2^2`.  The theorem
+`wandering-complement-contractions-pay-fanizza-mirror` shows that `N` nearly
+orthogonal unitary conjugates of `A` force
+`tr(A)<=1/N+o(1)`.  The infinite Hilbert-hotel model has `Q=F` and `A=0`, so
+this test preserves exact completeness while excluding the finite balanced
+mirror.  The remaining syntax is isolated in
+`fanizza-mirror-exit-wanders-through-toeplitz-cells`: ordinary relations
+must place the decoded exit, not merely its Gram commutant, into an extensive
+family of addressed Toeplitz cells.

@@ -35,6 +35,10 @@ For `(OSC4)`, take the low spectral projection `E_n` of the positive sum
  =tau_n(E_n v_(i,n)^*J_(i,n)(1-Q_n)J_(i,n)v_(i,n)E_n)
 ```
 
-is bounded by the spectral threshold.  The established regular-model
-calculation shows why no zero-defect tracial estimate can supply this last
-spectral bound.
+is bounded by the spectral threshold.  This controls the exit from `Q_n`,
+not the exit from `E_n`, so it cannot be inserted into `(1)` with `E=E_n`
+without a separate boundary theorem.  The exact counterexample in
+`order-seven-first-exit-is-not-seven-step-leakage` shows this distinction is
+sharp.  The established regular-model calculation independently shows why
+no zero-defect tracial estimate can supply even this first-exit spectral
+bound.

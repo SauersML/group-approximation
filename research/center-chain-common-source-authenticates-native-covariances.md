@@ -13,7 +13,7 @@ distinct_from:
   fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall: that rules out two nominally finite-coordinate escapes, namely a matrix-dependent subset of whole types from one fixed native packet and activation by raw dimension, kernel rank, or anonymous multiplicity; this claim still permits an authenticated mixed-word kernel or a genuinely growing relation-controlled packet.
   mark-fixed-relative-words-do-not-coerce-native-hecke-kernel: that audits the two newly established relative-word identities and proves that their commutator kernels are trivial selectors; a common spectator gauge cancels from the full relative word while keeping every near-full native row far from its Hecke map.
   primitive-native-hecke-relators-have-no-odd-mixed-occurrence: that audits the primitive Steinberg and coefficient relators and finds that the Hecke triangles authenticate only the twice-occurring Whitehead factors; it explicitly leaves room for the now-established derived order-seven anchor.
-  order-seven-anchor-stops-at-whitehead-compression-leakage: that applies the new derived odd anchor and proves it kills the reservoir gauge after compression; the only remaining input is a matrix-only spectral estimate making the Hecke source nearly reduce both literal Whiteheads.
+  order-seven-anchor-stops-at-whitehead-compression-leakage: that proves the odd anchor kills the reservoir gauge once the full compression boundary is controlled; its former one-step spectral estimate is only necessary, and the surviving input is a typed moving seven-step return.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
