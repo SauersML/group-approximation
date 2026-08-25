@@ -95,3 +95,14 @@ a three-cycle.  This invalidates
 `canonical-depth-three-private-triangles-close-mixed-r2`.  The still-live
 fixed local audit must therefore retain a different second-chart endpoint;
 the canonical label-flipped `t_j` cannot be the transported arm in `(BMR2)`.
+
+There is now a sharp restriction on what "different" can mean.
+`common-pivot-r2-output-transposition-is-unique` proves that, with the input
+`(i p)` and pivot `(p q)` fixed, the only transposition output satisfying the
+R2 triangle is `(i q)` itself.  Thus no alternative private endpoint from the
+second chart's label-`j` star can work; this invalidates
+`different-private-r2-endpoint-closes-fixed-mixed-cell`.  The remaining local
+audit cannot be a search through the second private R2 star.  It must build a
+genuinely interacting bounded diagram which retains or manufactures the
+first-chart endpoint `(i q)` in the second contextual occurrence before the
+two gauges split.
