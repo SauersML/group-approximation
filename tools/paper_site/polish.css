@@ -11,7 +11,7 @@ code { font-family: var(--font-mono); font-size: 0.9em; }
 .topbar {
   min-height: 50px;
   box-sizing: border-box;
-  background: rgba(255,255,255,0.94);
+  background: #ffffff;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

@@ -2,7 +2,7 @@
 :root {
   --bg: #ffffff;
   --bg-panel: #ffffff;
-  --bg-inset: #f6f6f4;
+  --bg-inset: #ffffff;
   --ink: #1c1e21;
   --ink-soft: #50545b;
   --ink-faint: #8d9199;
@@ -11,8 +11,8 @@
   --link: #2557c7;
   --link-hover: #16388f;
   --verified: #0e7a6f;
-  --verified-bg: #eaf3f0;
-  --flash: #fdf3d0;
+  --verified-bg: #ffffff;
+  --flash: #ffffff;
   --shadow: 0 10px 32px rgba(24, 28, 38, 0.14), 0 2px 8px rgba(24, 28, 38, 0.10);
   --font-body: "STIX Two Text", "Times New Roman", Georgia, serif;
 }
@@ -382,7 +382,7 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 }
 .ls-grade { flex: 0 0 auto; font-size: 12px; border-radius: 0; padding: 0 8px; white-space: nowrap; }
 .lg-exact { color: var(--verified); background: var(--verified-bg); }
-.lg-mismatch { color: #8a6100; background: #f7efdc; }
+.lg-mismatch { color: #8a6100; background: #ffffff; }
 .lg-missing, .lg-underspecified { color: var(--ink-faint); background: var(--bg-inset); }
 .ls-claim { flex: 1 1 260px; }
 .ls-decls { flex: 1 1 100%; padding-left: 2px; }
@@ -400,7 +400,7 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
   vertical-align: 0.12em; line-height: 1.4;
 }
 .lean-chip:hover { border-color: var(--verified); }
-.lean-chip-mismatch { color: #8a6100; background: #f7efdc; border-color: rgba(138, 97, 0, 0.35); }
+.lean-chip-mismatch { color: #8a6100; background: #ffffff; border-color: rgba(138, 97, 0, 0.35); }
 .lean-chip-mismatch:hover { border-color: #8a6100; }
 .lean-chip-missing { color: var(--ink-faint); background: var(--bg-inset); border-color: var(--rule); }
 .lean-chip-missing:hover { border-color: var(--ink-soft); }

@@ -6,6 +6,8 @@ const katex = require('./paper_site/katex/katex.min.js');
 const macros = require('./math_macros.js');
 
 const tex = fs.readFileSync('non_mf_groups_exist.tex', 'utf8');
+const explainerScript = fs.readFileSync('tools/math_explainer.js', 'utf8');
+const explainerCss = fs.readFileSync('tools/math_explainer.css', 'utf8');
 global.window = { PAPER_EXPLANATION_SOURCE: tex, katex };
 global.document = { readyState: 'loading', addEventListener() {} };
 global.MutationObserver = function MutationObserver() {};
@@ -13,6 +15,19 @@ global.MutationObserver = function MutationObserver() {};
 require('./math_explainer.js');
 const api = window.__cairnMathExplainer;
 assert.ok(api, 'math explainer API was not installed');
+
+assert.doesNotMatch(explainerScript, /lastObject\.focus/,
+  'closing must not refocus and immediately reopen the triggering term');
+assert.match(explainerScript, /document\.activeElement === opener\) opener\.blur\(\)/,
+  'outside-click dismissal must remove focus from the triggering term');
+assert.match(explainerScript, /addEventListener\('mouseout',[\s\S]*?closePanel\(\)/,
+  'a transient mouseover explanation must close when the pointer leaves');
+assert.match(explainerScript, /addEventListener\('focusout',[\s\S]*?closePanel\(\)/,
+  'a keyboard preview must close when focus leaves');
+assert.match(explainerCss, /math-explainer-formula[\s\S]*?90rem/,
+  'whole formulas need a wide explanation panel');
+assert.doesNotMatch(explainerCss, /#fcfcfb|#f6f6f4/,
+  'explainer surfaces must be pure white rather than off-white');
 
 function source(object, formula) {
   return api.sourceExplanation(object, formula);

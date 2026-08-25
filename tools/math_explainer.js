@@ -8,6 +8,7 @@
   var lastObject;
   var history = [];
   var current;
+  var pinned = false;
 
   /* Words inside an explanation may be followed to these short definitions.
      TeX declarations supply contextual explanations; the notation table below
@@ -1192,6 +1193,7 @@
   function render(state) {
     var box = ensurePanel();
     current = state;
+    box.classList.toggle('math-explainer-formula', Boolean(state.wholeFormula));
     var symbol = box.querySelector('.math-explainer-symbol');
     symbol.textContent = '';
     if (state.info.tex) renderTex(symbol, state.info.tex);
@@ -1203,11 +1205,12 @@
     box.hidden = false;
   }
 
-  function openTerm(term) {
+  function openTerm(term, pin) {
     var canonical = clean(term);
     var info = explainTerm(canonical);
     if (!info) return;
-    if (current) history.push(current);
+    if (current && current.term !== canonical) history.push(current);
+    pinned = Boolean(pin);
     render({ symbol: canonical, info: info, term: canonical });
   }
 
@@ -1218,16 +1221,26 @@
   function closePanel() {
     if (!panel) return;
     panel.hidden = true;
+    panel.classList.remove('math-explainer-formula');
     history = [];
     current = null;
-    if (lastObject && lastObject.focus) lastObject.focus({ preventScroll: true });
+    pinned = false;
+    var opener = lastObject;
+    lastObject = null;
+    if (opener && opener.blur && document.activeElement === opener) opener.blur();
   }
 
   function openObject(node, math) {
     var info = node.__mathExplanation;
     if (!info) return;
     history = [];
-    render({ symbol: clean(node.textContent), info: info, term: '' });
+    pinned = true;
+    render({
+      symbol: clean(node.textContent),
+      info: info,
+      term: '',
+      wholeFormula: node.classList.contains('math-formula-help')
+    });
     lastObject = node;
   }
 
@@ -1297,7 +1310,7 @@
     if (term) {
       event.preventDefault(); event.stopPropagation();
       lastObject = term;
-      openTerm(term.getAttribute('data-term')); return;
+      openTerm(term.getAttribute('data-term'), true); return;
     }
     if (event.target.closest && event.target.closest('.math-explainer')) return;
     var object = event.target.closest && event.target.closest('.math-symbol-help, .math-formula-help');
@@ -1305,16 +1318,17 @@
     if (object && math) {
       event.preventDefault(); event.stopPropagation(); openObject(object, math); return;
     }
-    if (panel && !panel.hidden && !event.target.closest('.math-help-prompt')) closePanel();
+    if (panel && !panel.hidden) closePanel();
   }, true);
 
   function previewPaperTerm(node) {
-    if (!node) return;
+    if (!node || pinned) return;
     var canonical = clean(node.getAttribute('data-term'));
     var info = explainTerm(canonical);
     if (!info) return;
     lastObject = node;
     history = [];
+    pinned = false;
     render({ symbol: canonical, info: info, term: canonical });
   }
 
@@ -1322,8 +1336,20 @@
     previewPaperTerm(event.target.closest && event.target.closest('.paper-term-help'));
   }, true);
 
+  document.addEventListener('mouseout', function (event) {
+    var term = event.target.closest && event.target.closest('.paper-term-help');
+    if (!term || pinned || (event.relatedTarget && term.contains(event.relatedTarget))) return;
+    closePanel();
+  }, true);
+
   document.addEventListener('focusin', function (event) {
     previewPaperTerm(event.target.closest && event.target.closest('.paper-term-help'));
+  }, true);
+
+  document.addEventListener('focusout', function (event) {
+    var term = event.target.closest && event.target.closest('.paper-term-help');
+    if (!term || pinned || (event.relatedTarget && term.contains(event.relatedTarget))) return;
+    closePanel();
   }, true);
 
   document.addEventListener('keydown', function (event) {

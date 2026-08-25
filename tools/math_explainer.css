@@ -14,8 +14,8 @@
 }
 
 .math-symbol-help:hover {
-  background: rgba(163, 58, 28, 0.12);
-  box-shadow: 0 0 0 0.12em rgba(163, 58, 28, 0.12);
+  background: #fff;
+  box-shadow: none;
 }
 
 .math-symbol-help:focus-visible {
@@ -31,7 +31,7 @@
   padding: 0.42rem 0.7rem;
   border: 1px solid rgba(23, 23, 20, 0.22);
   border-radius: 0;
-  background: #fcfcfb;
+  background: #fff;
   color: rgba(23, 23, 20, 0.76);
   font: 600 0.78rem/1.25 var(--font-body);
 }
@@ -41,7 +41,7 @@
   z-index: 10000;
   right: 1rem;
   bottom: 1rem;
-  width: min(27rem, calc(100vw - 2rem));
+  width: min(32rem, calc(100vw - 2rem));
   max-height: min(42rem, calc(100dvh - 2rem));
   box-sizing: border-box;
   overflow-y: auto;
@@ -53,6 +53,10 @@
   color: #171714;
   box-shadow: 0 16px 48px rgba(23, 23, 20, 0.18), 0 3px 12px rgba(23, 23, 20, 0.10);
   font: 0.94rem/1.5 var(--font-body);
+}
+
+.math-explainer.math-explainer-formula {
+  width: min(90rem, calc(100vw - 2rem));
 }
 
 .math-explainer[hidden] {
@@ -101,6 +105,10 @@
   font: 2rem/1.2 "STIX Two Text", "Times New Roman", Georgia, serif;
 }
 
+.math-explainer-formula .math-explainer-symbol {
+  font-size: clamp(0.68rem, 1.2vw, 1rem);
+}
+
 .math-explainer h2 {
   margin: 0 0 0.35rem;
   padding: 0;
@@ -130,7 +138,7 @@
 
 .math-term-help:hover,
 .math-term-help:focus-visible {
-  background: rgba(163, 58, 28, 0.08);
+  background: #fff;
   color: #a33a1c;
 }
 
@@ -145,7 +153,8 @@
 }
 
 @media (max-width: 600px) {
-  .math-explainer {
+  .math-explainer,
+  .math-explainer.math-explainer-formula {
     right: 0;
     bottom: 0;
     width: 100%;
