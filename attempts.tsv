@@ -192,3 +192,4 @@
 32824376283	2026-08-25T08:00:52Z	GroupApproximation/Sofic/AscendingHNNStabilizer.lean	iotaVertical_range_smul_tSite
 32829687919	2026-08-25T09:02:01Z	GroupApproximation/Sofic/AscendingHNNTelescopeRadical.lean	lampDiff_self
 32834259973	2026-08-25T09:53:04Z	GroupApproximation/Sofic/AscendingHNNWreathSofic.lean	isSofic_vertical
+32839280252	2026-08-25T10:51:32Z	GroupApproximation/Sofic/AscendingHNNWreathWitness.lean	mem_baseSub_iff
