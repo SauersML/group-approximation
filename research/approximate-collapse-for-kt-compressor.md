@@ -103,6 +103,22 @@ thread.
 **Two fences and the designated method (2026-08-18, final
 sharpening).**
 
+- *Intrinsic-index firewall (2026-08-25):* Jones/Pimsner--Popa index,
+  the standard invariant, and the abstract `L(Lambda)<L(Gamma)` bimodule
+  data cannot decide (AC).  For the explicit `q=2`, `d=3` pair the same
+  infinite-index subgroup-factor inclusion has scalar equal ambient
+  commutants in the constant copy inside `L(G)^omega`, but strict
+  infinite-index ambient commutant growth in the canonical Clifford
+  crossed product.  The two embeddings also agree on every finite tracial
+  `*`-moment and normalized-`L2` polynomial statistic of the subgroup
+  inclusion.  See
+  `kt-intrinsic-subfactor-data-does-not-see-ambient-wall`.  A successful
+  invariant must therefore inspect the matrix-ultraproduct ambient
+  complement, not merely the intrinsic subfactor or its standard
+  correspondence.  The ambient growth index does inspect the complement,
+  but is normalized-HS discontinuous and so does not yield a microstate
+  inequality.
+
 - *Self-similarity fence:* bridging `σ(Λ)'` to a torus-shifted copy
   through the common subcone fails structurally — the intersection
   cone is finitely generated (Gordan), its elementary group is again
