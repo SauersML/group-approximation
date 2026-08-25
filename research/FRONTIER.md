@@ -5136,7 +5136,7 @@ property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF col
   ├ property-t-free-leavitt-via-atomic-morita-return [OPEN] Return one coefficient cell to the root atom, apply the one-third gap, and saturate
     binary-leavitt-atomic-morita-return [OPEN] Return one binary Leavitt coefficient cell to the marked root spectral atom
       ├ binary-leavitt-atomic-return-via-three-row-compiler [OPEN] Use lossless moving addresses to instantiate Atomic Morita Return
-        binary-leavitt-three-row-atomic-compiler [OPEN] 🔒 Compile three bounded prototype rows into one returned binary Leavitt atom
+        binary-leavitt-three-row-atomic-compiler [OPEN] Compile three bounded prototype rows into one returned binary Leavitt atom
         bounded-prototype-rows-imply-atomic-morita-return [✓] Finitely many losslessly addressed prototype rows imply Atomic Morita Return
           ├ bounded-prototype-row-compiler-proof [✓] Telescope finitely many prototype fillings and use conjugacy isometry
             atomic-morita-return-kills-finite-order-mf-mark [✓] Atomic Morita Return kills a finite-order mark in every norm matrix corona
@@ -5226,7 +5226,7 @@ property-t-free-manuscript-results [OPEN] Reprove the non-MF manuscript endpoint
       ├ property-t-free-leavitt-via-atomic-morita-return [OPEN] Return one coefficient cell to the root atom, apply the one-third gap, and saturate
         binary-leavitt-atomic-morita-return [OPEN] Return one binary Leavitt coefficient cell to the marked root spectral atom
           ├ binary-leavitt-atomic-return-via-three-row-compiler [OPEN] Use lossless moving addresses to instantiate Atomic Morita Return
-            binary-leavitt-three-row-atomic-compiler [OPEN] 🔒 Compile three bounded prototype rows into one returned binary Leavitt atom
+            binary-leavitt-three-row-atomic-compiler [OPEN] Compile three bounded prototype rows into one returned binary Leavitt atom
             bounded-prototype-rows-imply-atomic-morita-return [✓] Finitely many losslessly addressed prototype rows imply Atomic Morita Return
             conjugacy-addressed-opnorm-challenges-are-lossless [✓] Conjugacy-addressed operator-norm challenges have zero depth loss
         atomic-morita-return-kills-finite-order-mf-mark [✓] Atomic Morita Return kills a finite-order mark in every norm matrix corona
@@ -6016,7 +6016,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **binary-leavitt-arbitrary-profile-native-cross-gram** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [The native binary transports overlap on every surviving operator-norm active profile](binary-leavitt-arbitrary-profile-native-cross-gram.md) — ⚑ last missing for arbitrary-profile-cross-gram-implies-shared-gauge-compiler → binary-leavitt-two-shared-gauge-selector-compiler — unclaimed
 - **binary-leavitt-bounded-area-chromatic-code** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile the marked Leavitt root into a bounded-area infinite-chromatic commutator code](binary-leavitt-bounded-area-chromatic-code.md) — ⚑ last missing for property-t-free-leavitt-via-chromatic-code → property-t-free-leavitt-full-mf-radical — unclaimed
 - **binary-leavitt-near-regular-quotient-is-locally-liftable** [1 live route(s) need it; toward: non-hyperlinear-group] [Every singular free near-state cover of the binary Leavitt group has a locally liftable regular quotient](binary-leavitt-near-regular-quotient-is-locally-liftable.md) — ⚑ last missing for leavitt-singular-near-excluded-by-local-lift → binary-leavitt-has-no-purely-singular-free-near-representation — unclaimed
-- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — 🔒 claimed (38m09s remaining)
+- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — unclaimed
 - **binary-schur-toeplitz-one-branch-hs-payment** [1 live route(s) need it; toward: non-hyperlinear-group] [Charge one retained Schur child in the binary Toeplitz head by ordinary group-relator energy](binary-schur-toeplitz-one-branch-hs-payment.md) — ⚑ last missing for nonhyperlinear-via-binary-schur-toeplitz-payment → non-hyperlinear-group — unclaimed
 - **bleak-quick-a6-seam-exposes-shared-label-arm-anchor** [1 live route(s) need it; toward: non-hyperlinear-group] [Adjacent Bleak--Quick A5 charts expose a genuinely shared label arm](bleak-quick-a6-seam-exposes-shared-label-arm-anchor.md) — ⚑ last missing for shared-label-arm-anchor-closes-thompson-a6-seam → thompson-v-r5-a6-seam-pointwise-synchronization — unclaimed
 - **bleak-quick-adjacent-seam-retains-one-mixed-r2-cell** [1 live route(s) need it; toward: non-hyperlinear-group] [An adjacent Bleak--Quick seam retains one cross-chart R2 triangle](bleak-quick-adjacent-seam-retains-one-mixed-r2-cell.md) — ⚑ last missing for mixed-r2-occurrence-builds-finite-selector-packet → bleak-quick-adjacent-seam-retains-finite-selector-packet — unclaimed
@@ -6500,4 +6500,4 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-- 🔒 binary-leavitt-three-row-atomic-compiler — 38m07s remaining
+*(none)*
