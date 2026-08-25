@@ -23,7 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from lean_decls import build_index  # noqa: E402
+from lean_decls import _strip_block_comments, build_index  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LEDGER = REPO_ROOT / "metadata" / "MF_RADICAL_PAPER_LEDGER.md"
@@ -32,6 +32,8 @@ AUDIT = REPO_ROOT / "GroupApproximation" / "Endpoint" / "MFRadicalPaperAudit.lea
 ROW_RE = re.compile(r"^\|(?P<paper>[^|]+)\|\s*`(?P<decl>[^`]+)`\s*\|(?P<status>[^|]+)\|\s*$")
 AUDIT_RE = re.compile(r"^#audit_closed_axioms\s+(?P<decl>\S+)\s*$")
 AUDIT_OPEN_RE = re.compile(r"^#audit_axioms\s+(?P<decl>\S+)\s*$")
+AUDIT_MACROS = ("#audit_closed_axioms", "#audit_axioms")
+DECL_TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_'.]*")
 
 
 def ledger_rows() -> list[tuple[str, str, str]]:
@@ -58,19 +60,40 @@ def audited_decls() -> tuple[list[str], list[str]]:
     The first list is the closed endpoints (`#audit_closed_axioms`, which also
     rejects a leading binder); the second is those printed with the weaker
     `#audit_axioms`, which permits a displayed hypothesis.
+
+    Any `#audit_*` line this scanner cannot read is a FAILURE, not a skip.
+    `AUDIT_RE` wants the declaration on the same line as the macro; Lean also
+    accepts it on a continuation line, and accepts a trailing `--` comment.
+    Skipping such a line drops the name from `closed`, which silently disables
+    failure mode 3 -- "the audit prints a closed endpoint the ledger does not
+    list" -- for exactly that name.  The mirror direction always failed loudly,
+    so only this one was blind.  Same defect and same fix as
+    `check_onesided_transport_ledger.py`.
     """
     if not AUDIT.exists():
         raise SystemExit(f"missing audit file: {AUDIT}")
-    closed, opened = [], []
-    for line in AUDIT.read_text(encoding="utf-8").splitlines():
-        m = AUDIT_RE.match(line.strip())
-        if m:
-            closed.append(m.group("decl"))
+    closed, opened, malformed = [], [], []
+    text = _strip_block_comments(AUDIT.read_text(encoding="utf-8"))
+    for number, raw in enumerate(text.splitlines(), 1):
+        line = raw.strip()
+        macro = next((m for m in AUDIT_MACROS if line.startswith(m)), None)
+        if macro is None:
             continue
-        m = AUDIT_OPEN_RE.match(line.strip())
-        if m:
-            opened.append(m.group("decl"))
-    return closed, opened
+        rest = line[len(macro):]
+        if rest and not rest[0].isspace():
+            continue
+        rest = rest.split("--", 1)[0].strip()
+        tokens = rest.split()
+        if len(tokens) != 1 or DECL_TOKEN_RE.fullmatch(tokens[0]) is None:
+            malformed.append(
+                f"{AUDIT.relative_to(REPO_ROOT)}:{number}: `{macro}` names "
+                f"{'no declaration' if not tokens else str(len(tokens)) + ' tokens'}"
+                f" on its own line, so this scanner cannot see what it audits;"
+                f" put exactly one declaration on the same line as the macro"
+            )
+            continue
+        (closed if macro == "#audit_closed_axioms" else opened).append(tokens[0])
+    return closed, opened, malformed
 
 
 def main() -> int:
@@ -80,8 +103,8 @@ def main() -> int:
         return 1
 
     index = build_index()
-    closed, opened = audited_decls()
-    failures: list[str] = []
+    closed, opened, malformed = audited_decls()
+    failures: list[str] = list(malformed)
 
     for paper, decl, status in rows:
         if decl not in index:

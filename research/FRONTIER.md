@@ -5999,7 +5999,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **bcs-to-lcs-exact-support-gap** [1 live route(s) need it; toward: non-hyperlinear-group] [A tracial non-RU BCS admits an exact robust LCS sub-menu with approximate soundness](bcs-to-lcs-exact-support-gap.md) — unclaimed
 - **binary-leavitt-bounded-area-chromatic-code** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile the marked Leavitt root into a bounded-area infinite-chromatic commutator code](binary-leavitt-bounded-area-chromatic-code.md) — ⚑ last missing for property-t-free-leavitt-via-chromatic-code → property-t-free-leavitt-full-mf-radical — unclaimed
 - **binary-leavitt-near-regular-quotient-is-locally-liftable** [1 live route(s) need it; toward: non-hyperlinear-group] [Every singular free near-state cover of the binary Leavitt group has a locally liftable regular quotient](binary-leavitt-near-regular-quotient-is-locally-liftable.md) — ⚑ last missing for leavitt-singular-near-excluded-by-local-lift → binary-leavitt-has-no-purely-singular-free-near-representation — unclaimed
-- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — 🔒 claimed (80m13s remaining)
+- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — 🔒 claimed (77m18s remaining)
 - **binary-leavitt-two-shared-gauge-selector-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Share one multiplicity involution across two incompatible binary selector rows](binary-leavitt-two-shared-gauge-selector-compiler.md) — ⚑ last missing for property-t-free-leavitt-via-two-shared-gauge-rows → property-t-free-leavitt-full-mf-radical — unclaimed
 - **binary-schur-toeplitz-one-branch-hs-payment** [1 live route(s) need it; toward: non-hyperlinear-group] [Charge one retained Schur child in the binary Toeplitz head by ordinary group-relator energy](binary-schur-toeplitz-one-branch-hs-payment.md) — ⚑ last missing for nonhyperlinear-via-binary-schur-toeplitz-payment → non-hyperlinear-group — unclaimed
 - **bleak-quick-a6-seam-exposes-shared-label-arm-anchor** [1 live route(s) need it; toward: non-hyperlinear-group] [Adjacent Bleak--Quick A5 charts expose a genuinely shared label arm](bleak-quick-a6-seam-exposes-shared-label-arm-anchor.md) — ⚑ last missing for shared-label-arm-anchor-closes-thompson-a6-seam → thompson-v-r5-a6-seam-pointwise-synchronization — unclaimed
@@ -6470,15 +6470,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-25 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
+- 2026-08-25 · canonical-cross-gram-mf-profile-audit-proof [COMPLETE] Compare the canonical character hypothesis with active-core reblocking
+- 2026-08-25 · canonical-cross-gram-does-not-close-arbitrary-mf-active-profile [ESTABLISHED] A canonical-trace native cross-Gram estimate does not apply to an arbitrary MF active core
 - 2026-08-25 · thompson-v-r5-a6-seam-pointwise-synchronization [OPEN] R5 synchronizes adjacent Carmichael A5 charts across their A6 seam
 - 2026-08-25 · sl3-large-prime-pair-relative-commutant-collapse [OPEN] Relative-commutant collapse for the SL3 pair at a prime p at least 11
 - 2026-08-25 · sl3-large-prime-hnn-matrix-range-capture [OPEN] Lattice restrictions of large-prime arithmetic HNN microstates approach the full SL3 group matrix range
 - 2026-08-25 · sl3-large-prime-collapse-from-hnn-matrix-range [OPEN] Exactify only HNN-selected lattice tuples and apply the closed large-prime face
 - 2026-08-25 · sl3-hnn-central-dual-gap-vanishes [OPEN] Stable-letter-central dual tuples have no positive SL3 matrix-range separation gap
-- 2026-08-25 · sl3-hnn-central-dual-gap-implies-matrix-range-capture [OPEN] Centralize a Hahn-Banach separator under the HNN letter
-- 2026-08-25 · sl3-hnn-capture-via-universal-generator-lp [INVALIDATED] Give the SL3 generator system a universal lifting property and lift the HNN restriction
-- 2026-08-25 · sl3-generator-system-has-no-universal-lp [ESTABLISHED] The canonical SL3 generator operator system has no universal lifting property
 
 ## Active claims
 
-- 🔒 binary-leavitt-three-row-atomic-compiler — 80m11s remaining
+- 🔒 binary-leavitt-three-row-atomic-compiler — 77m15s remaining
