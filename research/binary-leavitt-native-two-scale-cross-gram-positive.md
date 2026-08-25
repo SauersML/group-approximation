@@ -93,3 +93,48 @@ branch swaps, or the direct/composite prefix equality alone.  It requires
 one genuinely object-erasing mixed row, a strict target-capacity packet, or
 a finite-coordinate polar choice whose loss is charged by an ordinary word
 defect.
+
+## Existing Pauli Gram floors do not instantiate `(NCG1)`
+
+There are two established positive-overlap calculations nearby, but their
+types do not match the two selector transports.
+
+First, `pauli-canonical-return-gram-floor` uses
+
+```text
+A_0=EU:R_0H -> EH,             A_1=ERU:R_1H -> EH,
+```
+
+where `R_0R_1=0` and `tau(R_0)=tau(R_1)=tau(E)=1/8`.  Its maximal Gram
+energy comes from the common **final** projection `E`; the two initial
+projections are distinct orthogonal Pauli children.  Thus `A_0^*A_1` is an
+arrow from `R_1H` to `R_0H`, not a relative endomorphism of the one prescribed
+source packet carrying both selector gauges.  Identifying either child with
+that source would be precisely an additional object-erasing return.
+
+Second, `pauli-packet-incoming-mass-exceeds-corner-capacity` gives
+
+```text
+X_i=Q(comb^*B_i comb)Q:QH -> QH
+```
+
+and forces total ordered cross-Gram mass `5/32`.  These two maps do have one
+source and target, but they are same-scale compressed raw/comb involutions,
+not the depth-one and next-refinement coefficient transports used in the
+`1/2 -> 1/4` and `1/4 -> 1/8` selector rows.  The exact finite Atlas packet
+already pays this overlap while retaining the unlabelled relative
+multiplicity freedom; `pauli-overlap-floor-is-subcritical-for-extension-authentication`
+records that even its positive spectral corner does not authenticate a
+labelled transport gauge.
+
+Finally, `dyadic-pauli-payload-flags-supply-strict-target-capacity` supplies
+a strict scalar capacity deficit only for a separately named BCS flag pair.
+Its sharp regular-trace fence proves that functorially attaching the three
+Leavitt rectangular rows to that pair is impossible.  The attachment is the
+same occurrence-synchronization problem, not an available strict-capacity
+front end for `(NCG1)`.
+
+Consequently none of these three established Pauli results closes the live
+claim.  A valid proof must still exhibit a word-visible row that couples the
+two actual scale-changing occurrences, or calculate strict capacity for
+their own prescribed common target.
