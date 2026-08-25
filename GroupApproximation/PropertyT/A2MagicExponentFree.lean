@@ -44,15 +44,26 @@ angle supplied exponent-freely.
 
 ## Main results
 
-* `rootFixedSubspaces_epsilonOrthogonal` -- the `1 / sqrt 2` vertex angle for
-  an arbitrary `A₂` system, no exponent.
+Everything below is in the namespace `A2MagicExponentFree`.
+
+* `rootFixedSubspaces_epsilonOrthogonal_restricted` -- the `1 / sqrt 2` vertex
+  angle for an arbitrary `A₂` system, no exponent.
 * `exists_rootSet_isKazhdan` -- **the union of the six `A₂` root subgroups is
   a Kazhdan subset of any group carrying a strongly graded `A₂` system.**  No
   hypothesis whatsoever beyond the system itself.
 * `elementary_exists_rootSet_isKazhdan` -- the rank-three elementary
-  instance, for **every** ring, characteristic zero included.
+  instance, for **every** ring, characteristic zero included.  Note
+  `A2MagicHilbert` has a declaration of the same short name carrying
+  `CharP R p`; this one is `A2MagicExponentFree.`-qualified and carries
+  nothing.
 * `blockElementary_exists_rootSet_isKazhdan` -- the rank-`n` rectangular
   block instance, for every `n ≥ 3` and every ring.
+* `GeneralCoefficientBlockRootSetKazhdan` and
+  `generalCoefficientBlockRootSetKazhdan` -- the advertised endpoint.
+* `integral_hasKazhdanPropertyT_of_columnPlaneMassBound` -- the
+  characteristic-zero base case, now carrying ONE hypothesis where
+  `IntegralCharacterMass.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`
+  carries two.
 
 ## What this does and does not give in characteristic zero
 
@@ -576,7 +587,14 @@ theorem exists_rootSet_isKazhdan (A : A2System G) :
 
 end A2MagicExponentFree
 
-/-! ### The elementary instances, over every ring -/
+/-! ### The elementary instances, over every ring
+
+These live in the same namespace, but outside the `open A2MagicGraph`
+/ `A2MagicEnergy` / `A2MagicHilbert` block above: `A2MagicHilbert` already has
+a declaration called `elementary_exists_rootSet_isKazhdan`, and keeping that
+namespace open here would make the short name ambiguous. -/
+
+namespace A2MagicExponentFree
 
 /-- **For every ring, with no characteristic hypothesis, the union of the six
 elementary rank-three root subgroups is a Kazhdan subset.**  This is
@@ -643,5 +661,7 @@ theorem integral_hasKazhdanPropertyT_of_columnPlaneMassBound
     elementary_exists_rootSet_isKazhdan.{u, v} (FreeAlgebra ℤ X)
   exact IntegralCharacterMass.integral_hasKazhdanPropertyT_of_columnPlaneMassBound
     X hC hplane hkappa
+
+end A2MagicExponentFree
 
 end GroupApproximation

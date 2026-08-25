@@ -224,8 +224,17 @@ theorem finiteFieldGeneralRankElementary_hasKazhdanPropertyT
 /-- The general-rank, finite-coefficient-field form of the
 Ershov--Jaikin-Zapirain theorem proved in this file.
 
-The printed Ershov--Jaikin-Zapirain statement is stronger in the base ring:
-it allows every finitely generated unital associative ring, in particular
+Equivalently, by `primeCharGeneralRankElementary_hasKazhdanPropertyT`, this is
+the theorem for every finitely generated ring of **prime** characteristic:
+such a ring is an algebra over the finite field `ZMod p`.
+
+Positive characteristic that is not prime is **not** covered.  A `ZMod 4`-algebra
+satisfies the Kazhdan-subset half -- that half accepts any `0 < p` -- but not the
+control half, which needs a coefficient **field**, because `CharacterMass.gap`
+and the finite-dual sum of `PropertyT/CharacterMass.lean` are defined over one.
+
+The printed Ershov--Jaikin-Zapirain statement is stronger in the base ring: it
+allows every finitely generated unital associative ring, in particular
 characteristic zero.  Nothing here addresses that axis; see the module
 docstring. -/
 def GeneralRankFiniteFieldElementaryPropertyT : Prop :=

@@ -239,9 +239,15 @@ theorem integral_controlsRootSet_of_columnPlaneMassBound
       (elementaryA2System (FreeAlgebra ℤ X)).rootSet (2 * C + 1) :=
   controlsRootSet_of_columnPlaneMassBound hplane
 
-/-- The integral base case, with both open halves of the certificate carried
-as explicit hypotheses: the plane estimate on the left, the Kazhdan-subset
-property of the root set on the right. -/
+/-- The integral base case, with both halves of the certificate carried as
+explicit hypotheses: the plane estimate on the left, the Kazhdan-subset
+property of the root set on the right.
+
+Only the first is still open.  The second is now a theorem --
+`A2MagicExponentFree.elementary_exists_rootSet_isKazhdan`, for every ring and
+with no hypothesis at all -- so a caller should prefer
+`A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`,
+which asks only for the plane estimate. -/
 theorem integral_isKazhdanPair_of_columnPlaneMassBound
     (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
     (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
@@ -256,8 +262,14 @@ theorem integral_isKazhdanPair_of_columnPlaneMassBound
 
 /-- Property `(T)` for the rank-three elementary group over `ℤ⟨X⟩`, conditional
 on the same two hypotheses.  This is the statement the general
-Ershov--Jaikin-Zapirain theorem needs as its base case; both hypotheses are
-open in this repository. -/
+Ershov--Jaikin-Zapirain theorem needs as its base case.
+
+**Only one of the two hypotheses is open.**  This docstring used to say both
+were.  `hroot` is now discharged for every ring by
+`A2MagicExponentFree.elementary_exists_rootSet_isKazhdan`; the one-hypothesis
+form is `A2MagicExponentFree.integral_hasKazhdanPropertyT_of_columnPlaneMassBound`.
+What remains open is `hplane`, the `ColumnPlaneMassBound` over `ℤ⟨X⟩`, which is
+the input Ershov and Jaikin-Zapirain import rather than prove. -/
 theorem integral_hasKazhdanPropertyT_of_columnPlaneMassBound
     (X : Type u) [Fintype X] {C kappa : ℝ} (hC : 0 ≤ C)
     (hplane : ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
