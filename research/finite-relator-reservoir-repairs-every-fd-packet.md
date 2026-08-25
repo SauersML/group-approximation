@@ -105,6 +105,17 @@ genuine failure of local splitting must take.
   retains a macroscopic nonmultiplicative or non-word component.  `(RR2)`
   remains open because its finite reservoir may still support exactly such a
   component.
+- **The nonmultiplicative branch is genuine Stinespring leakage.**
+  `tree-face-balance-pays-stinespring-loss-or-word-distance` replaces `mu_V`
+  by the diagonal Kadison--Schwarz slack `sigma_V`.  With
+  `delta_L=min{sqrt(2),6/L^2}`, some tree face obeys
+  `sigma_V>=delta_L^2/4` or `gamma_V>=delta_L/6`.  In a Stinespring dilation,
+  `sigma_V` is the squared operator norm with which a face unitary exits the
+  Stinespring corner.  Hence a positive reservoir proof cannot be a Newton
+  correction converging to a word-valued multiplicative face: it must retain
+  a fixed off-corner or a fixed non-word component.  This still does not
+  refute `(RR2)`, which may deliberately store its correction in that
+  off-corner.
 - **The packetwise statement is already a theorem; only uniformity in the
   packet is open.**  Fix a finite packet `R` and put `rho=(+)_(rho in R) rho`,
   a finite-dimensional representation.  Then `rho(I_N)` is a

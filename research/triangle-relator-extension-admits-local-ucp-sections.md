@@ -245,6 +245,16 @@ Ioana--Spaas--Wiersma mechanism), per
   construction can make both tree faces asymptotically multiplicative and
   word-valued.  The live balance must remain genuinely operator-algebraic at
   macroscopic norm.
+- **That norm defect has an intrinsic Stinespring form (2026-08-25).**
+  `tree-face-balance-pays-stinespring-loss-or-word-distance` defines
+  `sigma_V=max_g||1-Phi(u_g)^*Phi(u_g)||`.  The Stinespring corner identity
+  bounds the face multiplication defect by `sqrt(sigma_V)`, so with
+  `delta_L=min{sqrt(2),6/L^2}` some tree face has
+  `sigma_V>=delta_L^2/4` or stays at word distance at least `delta_L/6`.
+  Thus the arbitrary-ucp survivor cannot be reached by a Choi/Newton
+  correction which asymptotically puts both word-valued tree faces in the
+  multiplicative domain.  A positive construction must retain a macroscopic
+  Stinespring off-corner or a genuinely non-word face value.
 - **A uniform finite-relator Laplacian cannot provide the required
   nonmultiplicative movement (2026-08-24).**
   `km-triangle-relator-kernel-has-no-relative-gap` observes that the normal
