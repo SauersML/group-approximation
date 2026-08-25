@@ -197,6 +197,19 @@ remains in this modified route.
   nonamenable, non-CE inverse twist; a one-letter free, commuting, finite-edge,
   or amenable compressor presentation is absorbed.
 
+  Passing to the smallest nonamenable property-`(T)` actors does not make the
+  finite packet itself an amplifier.  By
+  `s3-packet-dressing-preserves-projective-microstate-gap`, fixed inverse
+  packet twist, restriction to the active fibre, and finite-orbit induction
+  identify full-cell microstates with projective microstates of the infinite
+  stabilizer, up to fixed constants.  Thom's LEF Kazhdan central fibre
+  therefore still gives positive-density packet countermodels.  Imposing
+  finite presentation leaves `S_3 x E_3`, with `E_3` Deligne's triple cover,
+  as the first concrete property-`(T)` survivor; but its robust packet
+  recurrence is exactly the all-dimensional mod-three Maslov sector gap,
+  already equivalent to non-hyperlinearity of `E_3`.  The complete `S_3`
+  orbit supplies no additional HS rigidity.
+
 - **Use a fixed menu of compressed pairwise antiphase tests.**
   `compressed-antiphase-menu-implies-btb-escape` closes the matrix-capacity
   part of this idea.  For a fixed menu size `L` with

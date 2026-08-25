@@ -68,5 +68,15 @@ active stabilizer whose inverse twisted regular trace itself has no matrix
 microstates; adding a free, commuting, finite-edge HNN, or amenable compressor
 letter cannot provide the recurrence.
 
+The first property-`(T)` audit is now separated cleanly by
+`s3-packet-dressing-preserves-projective-microstate-gap`.  Thom's nonamenable
+LEF Kazhdan central fibre still has projective regular microstates, and fixed
+packet tensoring plus finite-orbit induction preserves them at positive
+density.  Requiring finite presentation points to Deligne's triple cover,
+but the resulting `S_3` packet cell has a uniform HS gap if and only if the
+bare mod-three Maslov projective sector does.  Hence nonamenability and
+property `(T)` move the problem beyond amenable absorption but do not let the
+finite packet manufacture the missing radical.
+
 DERIVATION
 minimal-s3-one-letter-twisted-countermodel-proof

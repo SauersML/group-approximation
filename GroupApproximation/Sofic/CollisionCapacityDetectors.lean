@@ -37,7 +37,7 @@ packet is approximately `A * Bv = Z * Bv * A`, the cross packet approximately
 commutes `A` with `Bw`, and `Bv` and `Bw` collide, then `Z` is close to the
 identity. -/
 theorem collision_kills_phase {Y : Type*} [Fintype Y] [DecidableEq Y]
-    [Nonempty Y]
+    (hY : Nonempty Y)
     {A Bv Bw Z : Matrix Y Y ℂ} {ε δ : ℝ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hBv : Bv ∈ Matrix.unitaryGroup Y ℂ)
@@ -45,6 +45,7 @@ theorem collision_kills_phase {Y : Type*} [Fintype Y] [DecidableEq Y]
     (hcross : ‖A * Bw - Bw * A‖ ≤ ε)
     (hclose : ‖Bv - Bw‖ ≤ δ) :
     ‖Z - 1‖ ≤ 2 * δ + 2 * ε := by
+  haveI := hY
   have hAone : ‖A‖ = 1 := CStarRing.norm_of_mem_unitary hA
   have hclose' : ‖Bw - Bv‖ ≤ δ := by
     rwa [norm_sub_rev]
@@ -117,7 +118,7 @@ colors with same-color diameter at most `δ`, a challenge defeating that
 palette supplies an adjacent collision and the packet estimate forces the
 phase close to `1`. -/
 theorem phase_close_of_palette_overflow
-    {Y V C : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {Y V C : Type*} [Fintype Y] [DecidableEq Y] (hY : Nonempty Y)
     {Adjacent : V → V → Prop}
     (hchallenge : DefeatsPalette (C := C) Adjacent)
     (A B : V → Matrix Y Y ℂ) (Z : Matrix Y Y ℂ)
@@ -132,7 +133,7 @@ theorem phase_close_of_palette_overflow
   obtain ⟨v, w, hadj, hclose⟩ :=
     exists_adjacent_close_of_defeatsPalette hchallenge B color
       (fun X Y ↦ ‖X - Y‖) hsame
-  exact collision_kills_phase (hA v) (hB v)
+  exact collision_kills_phase hY (hA v) (hB v)
     (hlocal v) (hcross v w hadj) hclose
 
 /-! ## The post-coordinate capacity diagonal -/
@@ -156,10 +157,11 @@ to the identity in operator norm.  Compactness of the bounded power orbit is
 enough here; the sharper explicit bound `m ≤ Q ^ d` used in the paper route is
 not needed by the Power-Return contradiction. -/
 theorem exists_positive_power_opNorm_sub_one_lt
-    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (hY : Nonempty Y)
     {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {ε : ℝ} (hε : 0 < ε) :
     ∃ m : ℕ, 0 < m ∧ ‖W ^ m - 1‖ < ε := by
+  haveI := hY
   have hpow_unitary : ∀ n : ℕ, W ^ n ∈ Matrix.unitaryGroup Y ℂ :=
     fun n ↦ (Matrix.unitaryGroup Y ℂ).pow_mem hW n
   have hpow_mem : ∀ n : ℕ, W ^ n ∈ Metric.closedBall (0 : Matrix Y Y ℂ) 1 := by
@@ -204,12 +206,13 @@ such an exponent for every finite-dimensional unitary is the separate
 finite-spectrum recurrence lemma; compiling all corresponding word checks
 with one error budget is the open UPR interface. -/
 theorem recurrent_power_far_from_unitary_conjugate
-    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (_hY : Nonempty Y)
     {A W : Matrix Y Y ℂ} {m : ℕ} {β : ℝ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hsep : β ≤ ‖W - 1‖)
     (hreturn : ‖W ^ m - 1‖ ≤ β / 4) :
     3 * β / 4 ≤ ‖A * W * Aᴴ - W ^ m‖ := by
+  haveI := _hY
   have hconj_matrix : A * W * Aᴴ - 1 = A * (W - 1) * Aᴴ := by
     have hAA : A * Aᴴ = 1 := Unitary.mul_star_self_of_mem hA
     calc
@@ -243,7 +246,7 @@ This is the formally checked post-coordinate argument used by the Cairn node
 `spectral-recurrence-power-return-non-mf-criterion`.  It has no trace,
 property-`(T)`, projection, central-sign, or literature hypothesis. -/
 theorem no_model_of_recurrent_uniform_power_return
-    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (hY : Nonempty Y)
     {A W : Matrix Y Y ℂ} {m : ℕ} {β C defect : ℝ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hβ : 0 < β)
@@ -252,7 +255,7 @@ theorem no_model_of_recurrent_uniform_power_return
     (hauth : ‖A * W * Aᴴ - W ^ m‖ ≤ C * defect)
     (hbudget : C * defect < β / 2) : False := by
   have hlower : 3 * β / 4 ≤ ‖A * W * Aᴴ - W ^ m‖ :=
-    recurrent_power_far_from_unitary_conjugate hA hsep hreturn
+    recurrent_power_far_from_unitary_conjugate hY hA hsep hreturn
   linarith
 
 /-- **Spectral-recurrence Power-Return criterion at one coordinate.**  A
@@ -262,7 +265,7 @@ budget.  The recurrent exponent is selected by the proof after this finite
 coordinate is fixed; neither the challenge family nor a program has to read
 the dimension. -/
 theorem no_model_of_uniform_power_return
-    {Y : Type*} [Fintype Y] [DecidableEq Y] [Nonempty Y]
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (hY : Nonempty Y)
     {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     (A : ℕ → Matrix Y Y ℂ)
     (hA : ∀ m, A m ∈ Matrix.unitaryGroup Y ℂ)
@@ -271,14 +274,14 @@ theorem no_model_of_uniform_power_return
     (hauth : ∀ m, 2 ≤ m → ‖A m * W * (A m)ᴴ - W ^ m‖ ≤ C * defect)
     (hbudget : C * defect < β / 2) : False := by
   obtain ⟨m, hm, hreturn⟩ :=
-    exists_positive_power_opNorm_sub_one_lt hW (show 0 < β / 4 by positivity)
+    exists_positive_power_opNorm_sub_one_lt hY hW (show 0 < β / 4 by positivity)
   have hm_ne_one : m ≠ 1 := by
     intro hm_one
     subst m
     simp only [pow_one] at hreturn
     linarith
   have hm_two : 2 ≤ m := by omega
-  exact no_model_of_recurrent_uniform_power_return (hA m) hβ hsep hreturn.le
+  exact no_model_of_recurrent_uniform_power_return hY (hA m) hβ hsep hreturn.le
     (hauth m hm_two) hbudget
 
 /-! ## Rank monodromy -/
