@@ -148,6 +148,30 @@ pair-dependent vertex charts: it is the narrower question whether this one
 growing triangular basis change admits a fixed-cell self-similar fold instead
 of a length-`M` elementary-row telescope.
 
+That proposed repair is now fenced for the existing vertex words.
+`leavitt-chromatic-tables-have-area-divergence` freezes one adjacent column
+in the cumulative table and obtains infinitely many distinct cosets in the
+centralizer of a fixed involution, so no self-similar rewording of those same
+rows can make their edge areas uniform.  The canonical Morita-tree variant
+also fails even after synchronizing the two tail depths:
+`level-synchronous-first-mismatch-area-is-centralizer-impossible` conjugates
+one column at each level back to a fixed involution and produces
+exponentially many bounded-area centralizer cosets.  A viable chromatic route
+therefore needs genuinely different vertex data, not a faster proof of the
+cumulative or canonical-tree commutators.
+
+The corona route has likewise crossed a precise language boundary.  The
+range-sum fold is object-erasing but remains a positive-unipotent word.
+`finite-positive-root-fragments-have-marked-regular-models` gives exact
+marked finite regular models for every finite positive-root fragment with
+all literal coefficient occurrences, including that fold; its identity
+carrier is already common and reducing.  A single non-scalar signed
+Whitehead cell is still finite-model compatible by
+`partial-whitehead-cell-has-marked-finite-model`.  Consequently the remaining
+corona return must be a two-branch non-scalar mixed/opposite-root occurrence
+which destroys the scalar Whitehead specialization and couples directly to
+the Heisenberg multiplicity payload.
+
 On the atomic/controlled-reflection branch, the multiplicity orientation is
 now separated from the actual carrier problem.  An adaptive eigenspace cut
 of the multiplicity involution makes either `T` or its central-sign correction
