@@ -24,8 +24,13 @@ assert.match(explainerScript, /addEventListener\('mouseout',[\s\S]*?closePanel\(
   'a transient mouseover explanation must close when the pointer leaves');
 assert.match(explainerScript, /addEventListener\('focusout',[\s\S]*?closePanel\(\)/,
   'a keyboard preview must close when focus leaves');
-assert.match(explainerCss, /math-explainer-formula[\s\S]*?90rem/,
-  'whole formulas need a wide explanation panel');
+assert.match(explainerCss, /math-explainer-formula-width/,
+  'whole-formula panels must size themselves to the rendered equation');
+assert.doesNotMatch(explainerCss, /math-explainer-formula[\s\S]{0,120}?90rem/,
+  'short whole-formula explanations must not open an almost viewport-wide panel');
+assert.match(explainerScript,
+  /formulaWidth[\s\S]*?getBoundingClientRect\(\)[\s\S]*?math-explainer-formula-width/,
+  'long formulas must widen the panel only as far as their rendered width requires');
 assert.doesNotMatch(explainerCss, /#fcfcfb|#f6f6f4/,
   'explainer surfaces must be pure white rather than off-white');
 
@@ -102,7 +107,12 @@ assert.equal(source('∗A', 'W_Q=B*_A(Q\\times A)').name,
 const qGroup = declarations.find(d => d.object === 'Qd').group;
 assert.equal(declarations.find(d => d.object === 'Mdn').group, qGroup,
   'annotations immediately before one formula must share a source group');
-assert.notEqual(declarations.find(d => d.name === 'the sequences treated as zero').group, qGroup);
+const fadingSequences = declarations.find(
+  d => d.name === 'the matrix sequences that fade to zero');
+assert.notEqual(fadingSequences.group, qGroup);
+assert.match(fadingSequences.explanation,
+  /need not ever equal the zero matrix.*difference.*approaches zero/s,
+  'the direct-sum equation needs a whole-equation translation, not only syntax');
 
 for (const syntax of ['=', '(', ')', '[', ']', '{', '}', '⟨', '⟩', '‖', ',', '.']) {
   assert.equal(source(syntax, 'f(x)=x'), null,

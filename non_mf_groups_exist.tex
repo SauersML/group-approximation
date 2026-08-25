@@ -119,13 +119,17 @@ matrix corona
  =\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).
 \]
 Here
-%<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the sequences treated as zero">
-% The braces use [[set-builder notation]].  Before the colon,
-% \((x_n)\in\prod_nM_{d_n}(\C)\) says that \((x_n)\) is a matrix [[sequence]]
-% chosen from the [[infinite product]].  After the colon,
-% \(\lVert x_n\rVert\longrightarrow0\) says that the [[operator norm]] of its
-% nth matrix has [[limit]] zero.  Exactly those sequences form the [[direct
-% sum]] and are treated as zero by the [[quotient]].
+%<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences that fade to zero">
+% The left side is a short name for the [[set]] described on the right.  A
+% member is a [[sequence]] \((x_1,x_2,x_3,\ldots)\) in which \(x_n\) is a
+% \(d_n\)-by-\(d_n\) matrix of [[complex number|complex numbers]].  The final
+% condition, \(\lVert x_n\rVert\longrightarrow0\), says that the matrices
+% become arbitrarily small in [[operator norm]] as n grows.  They need not ever
+% equal the zero matrix; their effect only has to approach zero.  The [[direct
+% sum]] is exactly the collection of these fading sequences.  In the [[norm
+% matrix corona]], the [[quotient]] ignores such a sequence, so two bounded
+% matrix sequences count as the same when the operator norm of their difference
+% approaches zero.
 %</webmath>
 \[
  \bigoplus_nM_{d_n}(\C)

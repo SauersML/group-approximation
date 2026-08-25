@@ -56,7 +56,7 @@
 }
 
 .math-explainer.math-explainer-formula {
-  width: min(90rem, calc(100vw - 2rem));
+  width: min(max(32rem, var(--math-explainer-formula-width, 32rem)), calc(100vw - 2rem));
 }
 
 .math-explainer[hidden] {

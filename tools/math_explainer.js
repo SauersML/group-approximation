@@ -1194,6 +1194,7 @@
     var box = ensurePanel();
     current = state;
     box.classList.toggle('math-explainer-formula', Boolean(state.wholeFormula));
+    box.style.removeProperty('--math-explainer-formula-width');
     var symbol = box.querySelector('.math-explainer-symbol');
     symbol.textContent = '';
     if (state.info.tex) renderTex(symbol, state.info.tex);
@@ -1203,6 +1204,13 @@
       state.info.explanation, state.term || '');
     box.querySelector('.math-explainer-back').hidden = history.length === 0;
     box.hidden = false;
+    if (state.wholeFormula) {
+      var renderedFormula = symbol.firstElementChild;
+      var formulaWidth = renderedFormula ? renderedFormula.getBoundingClientRect().width : symbol.scrollWidth;
+      var panelChrome = box.getBoundingClientRect().width - symbol.getBoundingClientRect().width;
+      box.style.setProperty('--math-explainer-formula-width',
+        Math.ceil(formulaWidth + panelChrome + 8) + 'px');
+    }
   }
 
   function openTerm(term, pin) {
@@ -1222,6 +1230,7 @@
     if (!panel) return;
     panel.hidden = true;
     panel.classList.remove('math-explainer-formula');
+    panel.style.removeProperty('--math-explainer-formula-width');
     history = [];
     current = null;
     pinned = false;
