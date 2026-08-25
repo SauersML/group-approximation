@@ -291,6 +291,10 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | The corona quotient-norm identity: the norm of a class is the `limsup` of the coordinate norms | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormIsLimsup` | closed |
 | Proof of `prop:mf-residual-calculus`: the printed far-out coordinate choice, retaining half the corona-norm separation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparation` | closed |
 | The printed choice together with its printed reason, as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparationParagraph` | closed |
+| Proof of `thm:normal-kazhdan`: "In the corner `q\mathcal Q q`, the Kazhdan projection is zero", on the polar-corrected corner | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrectedCornerKazhdanProjectionZero` | closed |
+| Proof of `thm:normal-kazhdan`: the Kazhdan inequality bounds an element of `K` away from the identity in Hilbert--Schmidt distance | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrectedCornerKazhdanDetection` | closed |
+| Proof of `thm:normal-kazhdan`: the printed final contradiction, stated as its positive conclusion | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdanCoronaTriviality` | closed |
+| The corrected-corner sentences of the printed normal-Kazhdan proof, in printed order, as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdanCornerParagraph` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows

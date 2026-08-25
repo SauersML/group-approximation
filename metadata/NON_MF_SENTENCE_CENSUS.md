@@ -6,11 +6,11 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 260 |
+| `formalized` | 261 |
 | `definition` | 39 |
 | `structural` | 21 |
 | `attribution` | 11 |
-| `partial` | 3 |
+| `partial` | 2 |
 | `provenance` | 1 |
 | **total** | **335** |
 
@@ -22,8 +22,6 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 260 --- A Kazhdan inequality gives an element of $K$ whose Hilbert--Schmidt distance from the identity is bounded below there, contrary to the first conclusion.
-  * the three printed steps exist separately, but printed_corner_trace_inequality takes the coordinate quadratic-form inequality as a hypothesis: the bridge from the abstract corner Kazhdan inequality to the coordinate form for the asymptotic W_n is explicitly not claimed, so the unconditional route is the moving-corner GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
 * **`partial`**, line 424 --- Preusser's work gives general normal-subgroup theorems for linear groups over exchange rings~\cite{Preusser}; the simplicity proof below instead extracts an elementary root directly from a nonidentity normal element.
   * the 'instead' clause (direct elementary-root extraction from a nonidentity normal element) is fully proved; Preusser's general exchange-ring normal-subgroup theorem is cited only
 * **`partial`**, line 424 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
