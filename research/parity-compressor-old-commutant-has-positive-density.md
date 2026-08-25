@@ -173,3 +173,18 @@ part of the remaining hole.
   other finite-index attachment can be the matrix-only coefficient cell.
   The remaining search must be genuinely infinite-index or
   payload-conditional in a way that excludes these induced high-type orbits.
+- A bare infinite-index self-copy is also insufficient; stationary quotients
+  are not needed for the countermodel.  In
+  `rf-hnn-telescope-retains-coefficient-residual`, residual finiteness chooses
+  a new regular quotient at telescope depth `L`, separating the support of
+  every `alpha^j(z(1-a))`.  The single HNN covariance has energy
+  `O(1/L)`, but
+
+  ```text
+  ||z(1-a)||_2 >= (1-epsilon)sqrt(q)
+  ```
+
+  on the complete telescope.  Hence the smallest remaining infinite-index
+  candidate is not an ascending HNN relation itself; it is an additional
+  payload-sensitive two-cell which destroys these regular telescope models
+  while remaining vacuous in the exact perfect trace.

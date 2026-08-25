@@ -75,3 +75,17 @@ eta >= (1-epsilon)sqrt(q/(2m))
 and zero overgroup-relator energy.  Thus the missing compiler cannot use any
 finite-index attachment, including a finite automorphism crossed product or
 its finite projective variant; it must escape finite-index induction.
+
+Nor does a bare infinite-index ascending HNN escape.  If the old group is
+residually finite, `rf-hnn-telescope-retains-coefficient-residual` constructs
+length-`L` regular quotient telescopes with HNN energy `O(1/L)` while the same
+residual satisfies
+
+```text
+eta >= (1-epsilon)sqrt(q).
+```
+
+This requires no stationary quotient for the endomorphism.  Therefore a
+self-copy route must contain an additional payload-sensitive two-cell; the
+ordinary covariance relation contributes no payment toward the coefficient
+residual.
