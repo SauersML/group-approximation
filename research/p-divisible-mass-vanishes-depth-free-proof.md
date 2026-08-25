@@ -53,10 +53,18 @@ For `a>=2`, the last layer
 `Gamma(p^(a-1))/Gamma(p^a) = sl_3(F_p)` is abelian.  Step 4 of
 `lambda-exact-p-divisible-ultra-deep-proof` shows that the normalized
 dimension fixed by `e_12(p^(a-1)m')` is at most `1-c_p`.  A restricted
-constituent with `beta<=a-1` lies in that fixed subspace, so `beta=a` has
-weight at least `c_p nu_a`.  Weyl symmetry gives the same conclusion for
-`gamma=a`.  Since all restricted constituents have `beta,gamma<=a`, the
-union bound gives
+constituent with `beta<=a-1` lies in that fixed subspace: in the last-layer
+orbit language,
+
+```text
+{beta<=a-1}={Y_21=0 and Y_32=0} subset {Y_21=0}.
+```
+
+Thus the orbits supported only in the nonsimple `e_13` direction are already
+inside the `1-c_p` exceptional budget; no separate `e_13` estimate is
+needed.  It follows that `beta=a` has weight at least `c_p nu_a`.  Weyl
+symmetry gives the same conclusion for `gamma=a` (using `Y_12`).  Since all
+restricted constituents have `beta,gamma<=a`, the union bound gives
 
 ```text
 weight of type (a,a)              >= (2 c_p-1) nu_a,
@@ -140,5 +148,8 @@ TV(w_1,w_2) <= epsilon^2/kappa_0^2.
 ```
 
 Combining either upper bound with `(DP5)` proves `(PV1)` and
-`(PV1-square)`.  No depth, cell structure, or regular-trace hypothesis
-enters.
+`(PV1-square)`.  This argument uses only the single twist `g=Jh` and one
+Kazhdan projection.  It never iterates `T^k` and never transports mass down
+to `Gamma(N)`.  Consequently the sharp `k epsilon^2` loss for powers of a
+projected intertwiner constrains the older ultra-deep mechanism but does not
+appear here.  No depth, cell structure, or regular-trace hypothesis enters.

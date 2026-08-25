@@ -210,3 +210,27 @@ an isotypic intertwiner.
 Applying even a surviving replacement to the outlier sector still
 requires an approximate arithmetic-hexagon/band decoder; no such decoder
 follows from the scalar root relations alone.
+
+There is a strictly selected-vector spectral endpoint short of weak
+ucp-stability.  `tempered-selected-conjugation-vector-obeys-rcc` shows that,
+for a proposed witness `U`, it is enough that the cyclic `A`-module generated
+by the component of `U` orthogonal to the `A`-invariants in the conjugation
+representation be weakly contained in `lambda_A`.  Nonamenability of
+`Lambda` then applies its reduced Laplacian directly and gives
+
+```text
+||[U,rho(h)]-1||_2
+ <= 2 kappa_Lambda^(-1/2)
+      (sum_(s in S_Lambda)||[U,rho(s)]-1||_2^2)^(1/2).
+```
+
+Thus the HNN-specific wall does not require correcting the whole lattice
+microstate: proving discrete temperedness of this one selected orbit would
+close it.  This is a localization, not a solution.  Matrix-ultraproduct
+origin is not known to imply the weak containment, and every leak
+automatically produces a non-tempered selected module.  In particular the
+regular HNN enemy produces `lambda_(A/Lambda)`, which is not weakly
+contained in `lambda_A` because `Lambda` is nonamenable.  Consequently a
+multiple-denominator/Weyl argument must genuinely exclude that
+non-tempered orbit; merely identifying the locally compact spherical
+packet as tempered does not suffice.

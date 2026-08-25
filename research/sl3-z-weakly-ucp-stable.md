@@ -118,3 +118,14 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   `H^2`, which `SL_3(Z)` lacks (`abelian-lifting-obstruction-vanishes-for-sl-n-z`
   is the companion hole on the flexible side).  No attack on the ucp form
   is recorded anywhere in the graph; this node parks it.
+- **Global adjoint temperedness is false even in the exact congruence model.**
+  `canonical-congruence-adjoint-complement-is-not-tempered` embeds a fixed
+  finite-quotient mean-zero Koopman representation into the adjoint
+  complement of a residual-chain regular embedding.  Its finite-index kernel
+  acts trivially, so Hulanicki's criterion forbids weak containment in the
+  regular representation.  Thus exactness, CSP, factorization, and character
+  rigidity cannot prove this claim by making the whole adjoint complement
+  tempered.  The strictly narrower selected-vector lemma
+  `tempered-selected-conjugation-vector-obeys-rcc` remains valid, but deriving
+  its hypothesis for a lattice-fixed leak is already the HNN-specific
+  no-spherical-leak problem.

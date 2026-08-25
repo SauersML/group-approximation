@@ -50,6 +50,10 @@ acts by
 so `(a,a)` maps to `(a-1,a+1)`.  For levels `a>=2`, Clifford theory on the
 last congruence layer puts at least `2c_p-1` of the restricted mass on
 `(a,a)` and at most `2(1-c_p)` on all off-diagonal types.
+The possible nonsimple-root-only (`e_13`) orbits create no gap: the event
+`beta<=a-1` requires both relevant lower simple-root coordinates to vanish
+and is contained in the single-coordinate zero event already bounded by
+`1-c_p`; the lower-depth statement is symmetric.
 
 Level one is not a Lie layer.  The three conjugate transvection subgroups
 `U_12,U_23,U_31` generate `SL_3(F_p)`.  Their common fixed space in a
@@ -68,8 +72,10 @@ TV(w_1,w_2) >= (4c_p-3) sum_(a>=2) nu_a + (1/3)nu_1
              >= a_p(1-nu_0),
 ```
 
-proving the depth-free lower bound.  A single Kazhdan projection gives the
-two upper bounds.
+proving the depth-free lower bound.  A single Kazhdan projection for the one
+twist `g=Jh` gives the two upper bounds.  No power `T^k` occurs, so the
+otherwise sharp `k epsilon^2` accumulation from the ultra-deep argument is
+irrelevant here.
 
 **Consequences.**
 
