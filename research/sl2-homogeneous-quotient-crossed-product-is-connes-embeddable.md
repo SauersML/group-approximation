@@ -91,3 +91,12 @@ produces a nonhyperlinear group directly.
   S-arithmetic normal-subgroup theorem would contradict the infinite index
   of the vertex group.  Thus finite-depth/Morita reduction does not bypass
   the nonamenable amalgam; ultraproduct-level compatibility remains open.
+- **The stable crossed-product residual is exactly joint spatialization.**
+  `free-lattice-ce-is-joint-ultrapower-spatialization` compresses `(DT2)` to
+  one finite corner `N_q` and proves that `(S2H1)` is Connes embeddable iff
+  there is a single embedding `pi:N_q->R^omega` in which all free-generator
+  return automorphisms become inner simultaneously.  Every one-generator
+  condition holds separately by amenable crossed-product permanence.  Thus
+  neither a local return nor a separate choice of vertex microstates can
+  decide the problem; the live datum is the common embedding for the entire
+  free-lattice packet.
