@@ -80,6 +80,16 @@ only an amplification factor tending to infinity can make this particular
 obstruction microscopic.  This is a necessary condition, not the missing
 actor-defect modulus.
 
+Nor is extension across the named `A,B` compressors an actor-correction
+principle by itself.  `kt-full-actor-extension-is-locally-hs-unstable`
+applies local normalized-HS instability to the complete residually finite
+Kazhdan actor `G`, on the explicit generating set `K union {h,A,B}`.  Those
+bad microstates can satisfy every abstract wreath relation with a trace-zero
+central lamp; they fail only because the two marked lamp sites coincide,
+giving product trace one instead of the canonical separated-site moment.
+Thus any surviving proof must consume the positive-density Majorana/Bernoulli
+return relation, not merely the full actor extension.
+
 ## Acceptance test for block-monomial candidates
 
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends

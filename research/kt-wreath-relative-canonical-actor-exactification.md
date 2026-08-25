@@ -168,6 +168,19 @@ exists, is automatically a positive-density witness to source-specific
 Laurent-actor instability; an unbounded amplification is the only remaining
 way to dilute that witness during exactification.
 
+Adding the entire external actor does not remove generic local instability.
+`kt-full-actor-extension-is-locally-hs-unstable` applies the local-HS
+instability theorem directly to the full residually finite Kazhdan group
+`G`, using the generating set `K union {h,A,B}`.  It produces bad actor
+microstates already satisfying both compressor directions and all semidirect
+relations.  They extend through every binary wreath relation with a balanced
+central lamp after a fixed doubling, but all lamp sites then coincide and
+their distinct-site product trace is `1` rather than `0`.  Therefore the
+genuine extra restriction in `(KRE2)` is exactly canonical positive-density
+lamp separation; neither full actor extendability nor the abstract wreath
+relations can be substituted for it.  Local instability is strict, so this
+paragraph does not itself rule out flexible correction after the doubling.
+
 Gamma-only exactification does not bypass this gate through polar rounding.
 `kt-kazhdan-polar-compressor-rounding-is-directional` applies property `(T)`
 to the Hom representation for one strict compressor and obtains a partial
