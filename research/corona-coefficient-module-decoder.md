@@ -74,6 +74,17 @@ longer part of the problem either.
   conjugator and the selected summand may change with the window, and the
   coefficient arrows need not preserve their diagonal selection.
 
+- **Use both branch character labels to remove the marginal ambiguity.**
+  `binary-leavitt-two-branch-character-restriction-is-faithful` proves that
+  the pair of global restrictions `(F_0 chi,F_1 chi)` determines `chi`
+  exactly: additively `R=Rt_0 directSum Rt_1`.  This removes label ambiguity
+  but not projection coupling.  The two branch conjugators carry the selected
+  atom into projections which need not lie in one common abelian spectral
+  algebra, and the group relations give no controlled nonzero meet or common
+  intertwiner.  The missing decoder can therefore be stated more sharply as
+  a joint-coupling theorem for the two uniquely labelled branch projections,
+  not as another character-separation lemma.
+
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
   the form
