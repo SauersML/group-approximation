@@ -109,33 +109,18 @@ jobs:
       - name: Build the site
         run: bin/cairn site
 
-      # The web edition of the manuscript, at /paper/.  Non-fatal by design:
-      # a broken paper build must not stop the research site from
-      # publishing, so failure degrades to a site without /paper plus a
-      # warning annotation on the run.
+      # The web edition of the manuscript, at /paper/.  This is part of the
+      # public site contract, so a broken paper build must stop deployment.
       - name: Build the paper edition
         run: |
-          paper_built=false
-          if node tools/paper_site/test_inline.js \
-            && node tools/test_math_explainer.js \
-            && node tools/test_math_macros.js \
-            && python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html; then
-            paper_built=true
-            echo "paper edition built"
-            install -m 0644 non_mf_groups_exist.pdf .cairn/site/non_mf_groups_exist.pdf
-          else
-            echo "::warning::paper edition build failed; publishing the research graph without /paper"
-          fi
+          node tools/paper_site/test_inline.js
+          node tools/test_math_explainer.js
+          node tools/test_math_macros.js
+          python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html
+          install -m 0644 non_mf_groups_exist.pdf .cairn/site/non_mf_groups_exist.pdf
 
-          # Cross-link the edition after a successful build.  This edits
-          # the generated page, not bin/cairn or tools/cairn.py.
-          edition_links=""
-          if [ "$paper_built" = true ]; then
-            edition_links='<a href="paper/">paper</a>'
-          fi
-          if [ -n "$edition_links" ]; then
-            sed -i "s|<header><span class=\"stats\">|<header>${edition_links}<span class=\"stats\">|" .cairn/site/index.html
-          fi
+          # Cross-link the edition from the generated research page.
+          sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><span class="stats">|' .cairn/site/index.html
 
       - name: Fold in the latest API docs, if published
         run: |

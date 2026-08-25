@@ -62,3 +62,24 @@ dimension remains four.  Thus a viable off-diagonal loop must use the
 coefficient range-sum/parent-generation occurrence to detect cousin reuse;
 another locally conjugated sibling Pauli check cannot control the
 completeness row in `(BAC1)`.
+
+There is a sharper language boundary for the prototype list.  By
+`finite-positive-root-fragments-have-marked-regular-models`, every finite
+collection of positive-root addition, multiplication, shared-occurrence and
+range-sum-fold rows has an exact finite regular model with the mark
+surviving.  By `partial-whitehead-cell-has-marked-finite-model`, adjoining
+one complete non-scalar prefix Whitehead cell still has an exact marked
+finite model.  Therefore the finitely many prototypes in `(BAC1)` cannot all
+belong to either class.  At least one prototype must simultaneously couple
+both binary branches through a mixed/opposite-root occurrence and attach that
+occurrence to the packet payload on the prescribed `p_U` corner.  Merely
+adding the scalar range-sum fold to one Whitehead actuator is below the known
+finite-model firewall.
+
+The exact finite-dimensional collapse of the full signed occurrence system
+shows that such a two-branch fragment exists algebraically, but its proof
+intersects coordinate-dependent additive root kernels.  Turning that
+intersection into `(BAC1)` without a depth-dependent word-area loss is now
+the precise operator-norm task: the selected kernel coefficient may depend
+on the matrix coordinate, while every return check must still be a literal
+conjugate of one of finitely many fixed prototype discrepancies.

@@ -6013,7 +6013,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **binary-leavitt-arbitrary-profile-native-cross-gram** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [The native binary transports overlap on every surviving operator-norm active profile](binary-leavitt-arbitrary-profile-native-cross-gram.md) — ⚑ last missing for arbitrary-profile-cross-gram-implies-shared-gauge-compiler → binary-leavitt-two-shared-gauge-selector-compiler — unclaimed
 - **binary-leavitt-bounded-area-chromatic-code** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile the marked Leavitt root into a bounded-area infinite-chromatic commutator code](binary-leavitt-bounded-area-chromatic-code.md) — ⚑ last missing for property-t-free-leavitt-via-chromatic-code → property-t-free-leavitt-full-mf-radical — unclaimed
 - **binary-leavitt-near-regular-quotient-is-locally-liftable** [1 live route(s) need it; toward: non-hyperlinear-group] [Every singular free near-state cover of the binary Leavitt group has a locally liftable regular quotient](binary-leavitt-near-regular-quotient-is-locally-liftable.md) — ⚑ last missing for leavitt-singular-near-excluded-by-local-lift → binary-leavitt-has-no-purely-singular-free-near-representation — unclaimed
-- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — 🔒 claimed (74m47s remaining)
+- **binary-leavitt-three-row-atomic-compiler** [1 live route(s) need it; toward: property-t-free-leavitt-full-mf-radical, property-t-free-manuscript-results] [Compile three bounded prototype rows into one returned binary Leavitt atom](binary-leavitt-three-row-atomic-compiler.md) — ⚑ last missing for binary-leavitt-atomic-return-via-three-row-compiler → binary-leavitt-atomic-morita-return — 🔒 claimed (48m29s remaining)
 - **binary-schur-toeplitz-one-branch-hs-payment** [1 live route(s) need it; toward: non-hyperlinear-group] [Charge one retained Schur child in the binary Toeplitz head by ordinary group-relator energy](binary-schur-toeplitz-one-branch-hs-payment.md) — ⚑ last missing for nonhyperlinear-via-binary-schur-toeplitz-payment → non-hyperlinear-group — unclaimed
 - **bleak-quick-a6-seam-exposes-shared-label-arm-anchor** [1 live route(s) need it; toward: non-hyperlinear-group] [Adjacent Bleak--Quick A5 charts expose a genuinely shared label arm](bleak-quick-a6-seam-exposes-shared-label-arm-anchor.md) — ⚑ last missing for shared-label-arm-anchor-closes-thompson-a6-seam → thompson-v-r5-a6-seam-pointwise-synchronization — unclaimed
 - **bleak-quick-adjacent-seam-retains-finite-selector-packet** [1 live route(s) need it; toward: non-hyperlinear-group] [An adjacent Bleak--Quick seam retains one jointly named finite S6 selector packet](bleak-quick-adjacent-seam-retains-finite-selector-packet.md) — ⚑ last missing for finite-selector-packet-closes-thompson-a6-seam → thompson-v-r5-a6-seam-pointwise-synchronization — unclaimed
@@ -6484,15 +6484,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-25 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
+- 2026-08-25 · binary-leavitt-three-row-atomic-compiler [OPEN] Compile three bounded prototype rows into one returned binary Leavitt atom
 - 2026-08-25 · binary-leavitt-arbitrary-profile-native-cross-gram [OPEN] The native binary transports overlap on every surviving operator-norm active profile
+- 2026-08-25 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
 - 2026-08-25 · arbitrary-profile-cross-gram-implies-shared-gauge-compiler [OPEN] Polar-align arbitrary-profile native transports and apply the affine rank floor
 - 2026-08-25 · canonical-cross-gram-mf-profile-audit-proof [COMPLETE] Compare the canonical character hypothesis with active-core reblocking
 - 2026-08-25 · canonical-cross-gram-does-not-close-arbitrary-mf-active-profile [ESTABLISHED] A canonical-trace native cross-Gram estimate does not apply to an arbitrary MF active core
 - 2026-08-25 · thompson-v-r5-a6-seam-pointwise-synchronization [OPEN] R5 synchronizes adjacent Carmichael A5 charts across their A6 seam
 - 2026-08-25 · sl3-large-prime-pair-relative-commutant-collapse [OPEN] Relative-commutant collapse for the SL3 pair at a prime p at least 11
-- 2026-08-25 · sl3-large-prime-hnn-matrix-range-capture [OPEN] Lattice restrictions of large-prime arithmetic HNN microstates approach the full SL3 group matrix range
 
 ## Active claims
 
-- 🔒 binary-leavitt-three-row-atomic-compiler — 74m45s remaining
+- 🔒 binary-leavitt-three-row-atomic-compiler — 48m27s remaining

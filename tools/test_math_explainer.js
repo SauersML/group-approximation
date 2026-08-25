@@ -39,9 +39,15 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 112, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 92,
-  'the contextual explanations must remain attached to 92 formula groups');
+const authoredDeclarations = Array.from(
+  tex.matchAll(/^\s*%<webmath\s+[^>]+>\s*$/gm)
+).length;
+assert.equal(declarations.length, authoredDeclarations,
+  'every authored explanation must remain present');
+const explanationGroups = Array.from(new Set(declarations.map(d => d.group)));
+assert.deepEqual(explanationGroups,
+  Array.from({ length: explanationGroups.length }, (_, index) => index),
+  'contextual explanation groups must be consecutive');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);

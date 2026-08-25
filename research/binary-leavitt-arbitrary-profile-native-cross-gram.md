@@ -57,3 +57,20 @@ target projections.  Fixed center-chain Hecke fractions computed from
 No Property `(T)`, Kazhdan projection, canonical-trace hypothesis, or
 literature theorem is permitted in this claim.
 
+## Attempts
+
+- **Import the center-chain Hecke fractions.**  This fails at the quantifier:
+  their values use the regular character atom `tau(e_chi)=1/64`, whereas an
+  arbitrary active norm-corona profile may concentrate on different finite
+  packet types.  Operator-norm exactification preserves that multiplicity
+  vector rather than regularizing it.
+- **Use only the uniform direct root-overlap floor.**  This gives a fixed
+  positive slice of each named nonzero root inside the marked carrier, but
+  two such slices can remain disjoint and are not yet the source/target Grams
+  of the native selector occurrences.  The typed rectangular packet realizes
+  this escape.
+- The live attack is therefore an arbitrary-profile occurrence compiler:
+  couple the literal unequal-scale coefficient roots to the fixed marked-root
+  overlaps by a mixed/opposite-root row, or prove a strict capacity deficit
+  for their own exactified source and target projections.  This is deferred
+  while the operator-norm atomic three-row route is tested in parallel.
