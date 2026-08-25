@@ -5,11 +5,10 @@ import GroupApproximation.Analysis.PrintedDiagonalSubsequence
 /-!
 # Final sentence audit for the printed normal-Kazhdan corner route
 
-This file attaches the green corrected-corner assembly to the last sentence
-of the unchanged proof.  The only hypothesis retained is the honest algebraic
-seam `CorrectedCornerKazhdanProjectionZero`: the relabelled, polar-corrected
-corner representation must still be identified with compression by the
-complement of the original Kazhdan projection.
+This file records the sentence-level consequences of the corrected-corner
+projection-zero interface.  `CorrectedCornerProjectionZeroAssembly` supplies
+that interface unconditionally for the constructed provenance-rich corner,
+and `NormalKazhdanUnconditionalClosure` composes it with these consequences.
 -/
 
 namespace GroupApproximation
@@ -119,8 +118,9 @@ theorem exists_fixedElementSubsequence_of_eventually_average
 
 /-- Sentences 178--181 on the actual polar-corrected maps.  The former
 quadratic-form and coordinate-representative premises have both been
-constructed internally; only the explicitly named complementary-projection
-identification remains. -/
+constructed internally.  `CorrectedCornerProjectionZeroAssembly` supplies the
+named complementary-projection identification unconditionally, and
+`NormalKazhdanUnconditionalClosure` composes it with this theorem. -/
 theorem manuscriptSentences178_181_correctedCornerTrace
     (D : PrintedCornerData G model) (ω : Ultrafilter ℕ)
     (hω : (ω : Filter ℕ) ≤ cofinite) (K : KazhdanData G)
@@ -181,8 +181,9 @@ theorem manuscriptSentence182_correctedCornerFixedElementSubsequence
 /-- **Sentence 156 on the actual finite-dimensional corner sector.**  The
 Kazhdan inequality detects the corrected corona image by a fixed element of
 the Kazhdan set whose normalized Hilbert--Schmidt displacement has a strictly
-positive lower bound along a subsequence.  The sole remaining premise is the
-honestly isolated complementary-projection identification. -/
+positive lower bound along a subsequence.  The complementary-projection input
+is supplied unconditionally by `CorrectedCornerProjectionZeroAssembly` and
+composed with this detection theorem in `NormalKazhdanUnconditionalClosure`. -/
 theorem manuscriptSentence156_correctedCornerKazhdanDetection
     (D : PrintedCornerData G model) (ω : Ultrafilter ℕ)
     (hω : (ω : Filter ℕ) ≤ cofinite) (K : KazhdanData G)
