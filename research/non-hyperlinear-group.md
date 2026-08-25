@@ -31,8 +31,29 @@ piece acts profinitely.  On the affirmative side the Lambda-exact face of
 `c_p (1 - nu_0) <= 12 D epsilon/kappa_0` (Atkin--Lehner-type twist `J h^D`,
 one Kazhdan projection, Clifford count over `sl_3(F_p)`), so p-divisible
 levels are invisible unless the tower is deeper than `1/epsilon`.  The
-surviving exact-face enemy is the ultra-deep tower; the other survivor is the
-outlier sector (`sl3-z-weakly-ucp-stable`).  In rank one the same twist is
+surviving exact-face enemy was the ultra-deep tower; the other survivor is the
+outlier sector (`sl3-z-weakly-ucp-stable`).
+
+Later the same day the ultra-deep tower fell too, at large primes:
+`p-divisible-lambda-exact-mass-vanishes-at-large-primes` tracks each
+constituent of the restriction to `C_0 = SL_3(Z) cap h^-1 SL_3(Z) h` by its
+(upper, lower) simple-root depths, the twist by `J h` acts as
+`(beta, gamma) |-> (gamma - 1, beta + 1)` and so moves every diagonal type
+off the diagonal, while Clifford balancing over `sl_3(F_p)` puts at least
+`2 c_p - 1` of every positive level on the diagonal; hence
+`(4 c_p - 3)(1 - nu_0) <= 12 epsilon/kappa_0` with no depth dependence, and
+for `p >= 11` the `p`-divisible `Lambda`-exact sector is empty.  With the
+coprime closure (`odd-congruence-lambda-exact-sector-collapses`, made robust
+by `coprime-sector-collapse-is-robust-to-small-p-admixture`), the whole
+`Lambda`-exact face of the collapse at `p >= 11` is closed, and
+`sl3-large-prime-collapse-from-weak-ucp-stability` reduces the collapse --
+hence, through `non-hyperlinear-from-sl3-large-prime-collapse`, this goal --
+to the single hypothesis `sl3-z-weakly-ucp-stable`.  `cairn impact` confirms
+that establishing that hypothesis flips this goal to ESTABLISHED along two
+independent edges (the earlier thin-subgroup edge consumes stability of the
+host, this one stability of the subgroup through the established
+exactification).  The affirmative program is therefore exactly: weak
+ucp-stability of `SL_3(Z)` on regular-type hyperlinear approximations.  In rank one the same twist is
 the Atkin--Lehner involution and single vertex-orbit levels are maximally
 asymmetric (`atkin-lehner-twist-of-vertex-orbit-representation-is-disjoint`,
 TV `= 2 - 2p^-k`, verified numerically).  Synthesis:
