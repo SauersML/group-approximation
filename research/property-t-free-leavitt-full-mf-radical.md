@@ -172,6 +172,16 @@ corona return must be a two-branch non-scalar mixed/opposite-root occurrence
 which destroys the scalar Whitehead specialization and couples directly to
 the Heisenberg multiplicity payload.
 
+There is an exact orbit obstruction inside that remaining corona seam.
+`surviving-leavitt-corona-character-has-infinite-parabolic-orbit` proves that
+every nontrivial global character atom for a last-column root module has an
+infinite orbit of pairwise orthogonal equivalent projections under the
+upper-left Steinberg vertex.  Finite orbit closure would produce a finite
+permutation quotient and transvection invariance would trivialize the
+character.  Thus no bounded character menu or finite parabolic atom cycle
+can return the sparse carrier.  The load-bearing mixed-root row must fold
+this intrinsically infinite orbit back to one finite projective reservoir.
+
 On the atomic/controlled-reflection branch, the multiplicity orientation is
 now separated from the actual carrier problem.  An adaptive eigenspace cut
 of the multiplicity involution makes either `T` or its central-sign correction

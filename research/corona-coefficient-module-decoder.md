@@ -120,6 +120,17 @@ the problem.
   returned.  This is a strictly narrower target than an unspecified
   coefficient-intertwiner coherence theorem.
 
+- **Close the sparse character in a finite parabolic orbit.**
+  `surviving-leavitt-corona-character-has-infinite-parabolic-orbit` rules this
+  out exactly.  For the full last-column root module, every nontrivial global
+  character atom has infinitely many pairwise orthogonal conjugates under
+  the upper-left binary-Leavitt Steinberg vertex.  A finite orbit would give
+  a finite permutation representation of that vertex and force the
+  character to be trivial.  The corona can absorb the infinite orbit at
+  vanishing coordinate density, so the conclusion is not yet collapse; it
+  shows that the mixed-root return must fold an infinite orbit, not close a
+  bounded menu of atoms.
+
 - **Iterate the branch until multiplicity outruns the matrix dimension.**
   At every fixed depth `N`, the transverse shear gives a rank inequality of
   the form
