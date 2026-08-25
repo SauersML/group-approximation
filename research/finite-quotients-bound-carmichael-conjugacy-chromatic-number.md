@@ -5,6 +5,7 @@ kind: claim
 title: A finite quotient separating the mark bounds every Carmichael conjugacy graph
 distinct_from:
   bounded-area-high-chromatic-conjugacy-collapse: that uses matrix compactness and uniformly bounded presentation area to obstruct hyperlinearity; this is an exact group-theoretic coloring obstruction requiring no presentation or area bound.
+  rf-conjugacy-difference-graphs-finitely-colorable: that colors the actor itself whenever edge differences lie in finitely many conjugacy classes; this colors conjugate Carmichael labels and uses their order-three/order-two edge relations, even when actor differences have no such finite prototype description.
   literal-one-cell-carmichael-cliques-are-uniformly-finite: that uses free-group axis geometry to rule out one-cell word templates; this colors any exact Carmichael graph through one finite quotient, regardless of its word representatives.
   finite-normalizer-star-no-go: that bounds a packet produced inside one finite normalizer; this applies to arbitrary conjugates once the marked element survives in any finite quotient.
 ---
@@ -40,4 +41,3 @@ sofic or amenable) finitely presented group, the exact graphs may still
 exist, but `bounded-area-high-chromatic-conjugacy-collapse` forces their
 maximum defining-relator area to diverge along every sequence whose
 chromatic number tends to infinity.
-

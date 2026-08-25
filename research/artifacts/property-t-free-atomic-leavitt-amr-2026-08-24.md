@@ -354,3 +354,91 @@ compilers:
 
 The exact unresolved object is therefore a finite-coordinate authenticated
 return, not another exact finite-dimensional contradiction.
+
+## 11. The formal predicate has a cardinal-width boundary
+
+The Lean predicate `IsOperatorMF` is universe-polymorphic and uses a sequence
+indexed by the natural numbers.  Its unrestricted set-theoretic consequence
+is now represented by:
+
+- `finite-matrix-quotient-cardinality-width-bound`;
+- `sequential-operator-mf-continuum-cardinality-bound`.
+
+For an index set `J`, every quotient of `product_(j in J) U(d_j)` has
+cardinality at most
+
+```text
+continuum^|J|.
+```
+
+In particular every sequential norm matrix corona has at most continuum many
+unitaries.  Hence a group satisfying the unrestricted formal predicate has
+cardinality at most the continuum.
+
+This distinction does not alter the standard countable MF theorem or the
+countable Leavitt frontier.  It records that extending a sequential predicate
+to arbitrary-cardinality groups introduces an information-width obstruction
+that is invisible on countable sources.
+
+## 12. An unconditional uncountable example
+
+The claim
+`huge-elementary-abelian-two-group-is-not-sequential-operator-mf` records the
+exact consequence.  If `|I|>continuum`, then
+
+```text
+E_I=directSum_(i in I) C_2
+```
+
+cannot embed in a sequential matrix corona.  It is nevertheless abelian,
+exponent two, locally finite, amenable and residually finite.  It has no
+property `(T)`: every finite candidate Kazhdan set uses only finitely many
+coordinates, while a character on a fresh coordinate fixes that set exactly
+and remains nontrivial.
+
+This is an unconditional theorem for the unrestricted formal predicate, not
+a solution of the countable problem.  The graph keeps those scopes separate
+in the claim title, statement and `distinct_from` field.
+
+## 13. A structural non-Kazhdan wrapper
+
+The established claim
+`non-mf-times-infinite-cyclic-is-non-mf-and-nonkazhdan` says that for any
+countable non-MF seed `B`,
+
+```text
+B x Z
+```
+
+is again non-MF and does not have property `(T)`.  Non-MF follows by
+restricting any hypothetical embedding to `B`; failure of property `(T)` is
+witnessed directly by characters of the cyclic coordinate.  Finite generation
+and finite presentation are preserved.
+
+The node explicitly records the provenance boundary: this makes the resulting
+group non-Kazhdan but does not replace whichever analytic argument established
+the seed's non-MF property.
+
+## 14. Residual finiteness blocks pure conjugacy hashing
+
+The new general no-go theorem is
+`rf-conjugacy-difference-graphs-finitely-colorable`.
+For a residually finite actor `H` and finitely many nonidentity prototypes
+`w_1,...,w_r`, join `x,y in H` when `x^(-1)y` is conjugate to one of the
+`w_i^(+1 or -1)`.  A product of finite quotients separating all prototypes
+colors this graph properly.
+
+This is stronger in one direction and weaker in another than
+`finite-quotients-bound-carmichael-conjugacy-chromatic-number`.  It needs no
+Carmichael relations but assumes the edge relation comes from finitely many
+literal conjugacy differences.  Together with the regular-trace firewall it
+creates two clean design walls:
+
+```text
+universal exact proper-infinite branching   blocked by regular trace;
+finite pure-conjugacy chromatic hashing     blocked by residual finiteness.
+```
+
+The live countable corridor therefore requires an approximation-specific
+return, bounded-area holonomy beyond pure conjugacy differences, a suitable
+stability theorem, or another finite-coordinate mechanism.
