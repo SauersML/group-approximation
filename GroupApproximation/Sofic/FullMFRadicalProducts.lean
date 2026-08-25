@@ -28,12 +28,12 @@ theorem mem_fullMFRadicalCore_prod_iff (x : G × H) :
       map_mul' := fun _ _ => rfl }
   let ι₁ : G →* G × H :=
     { toFun := fun g => (g, 1)
-      map_one' := rfl
-      map_mul' := fun _ _ => rfl }
+      map_one' := by simp
+      map_mul' := by simp }
   let ι₂ : H →* G × H :=
     { toFun := fun h => (1, h)
-      map_one' := rfl
-      map_mul' := fun _ _ => rfl }
+      map_one' := by simp
+      map_mul' := by simp }
   constructor
   · intro hx
     constructor
