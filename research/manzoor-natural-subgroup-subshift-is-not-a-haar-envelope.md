@@ -63,6 +63,15 @@ Pr(J in H)=0,          Pr(J in N_F(H))=1.               (MSH5)
 The natural conjugation action changes the witness trace at the distinguished
 generator itself and cannot realize Manzoor's IRS.
 
+The same probability-one inclusion has one useful positive consequence:
+[[manzoor-relator-quotient-has-infinitely-generated-isotropy]] factors both
+the IRS and its unchanged non-CE GNS algebra through the concrete finitely
+presented quotient `F/N`.  It also shows that `N` has infinite index and is
+infinitely generated as a subgroup.  Unless the desired group endpoint is
+already reached, the residual random subgroup `H/N` and the full deterministic
+IRS core are infinitely generated as well.  Thus `(MSH4)` supplies neither a
+finite-index core nor a hidden atomic quotient.
+
 Second, the finite objects in Manzoor Section 3.2 are distributions on
 **random pseudo-subgroups in finite word windows**.  They are solutions of
 successive linear programs, not finite actions, finite groups, or uniform

@@ -63,3 +63,13 @@ and already produces a non-hyperlinear quotient.  Thus, unless the endpoint
 is already reached, almost every stabilizer in this witness is infinitely
 generated.  Finite-quotient image partitions can then pin only profinite
 closure data and need not resolve the subgroup itself.
+
+For the actual finite strategy presentation, this can be sharpened before
+discarding the probability-one relators.  By
+[[manzoor-relator-quotient-has-infinitely-generated-isotropy]], their finite
+normal closure `N` lies in almost every stabilizer and the witness descends,
+with the same non-CE GNS algebra, to the finitely presented quotient `F/N`.
+That quotient is infinite; `N` is infinitely generated as a subgroup; and,
+unless the group endpoint is already solved, the residual stabilizer `H/N`
+is infinitely generated almost surely.  In particular the structural
+relations do not conceal a finite-index normal core or an atomic quotient.

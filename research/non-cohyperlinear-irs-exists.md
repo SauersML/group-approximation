@@ -44,3 +44,11 @@ ergodic witness is already terminal.  In the genuinely unresolved branch,
 the IRS is therefore nonatomic and almost surely supported on infinitely
 generated subgroups; resolving all finite-quotient images need not atomize
 such a law.
+
+In the explicit Manzoor/ZPC source one can first factor all probability-one
+structural relators.  The result
+[[manzoor-relator-quotient-has-infinitely-generated-isotropy]] is a
+finitely presented infinite quotient carrying the identical non-CE IRS
+character.  It also proves a source-specific terminal dichotomy: either an
+atomic quotient already yields a non-hyperlinear group, or both the residual
+random subgroup and the deterministic IRS core are infinitely generated.
