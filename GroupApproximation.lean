@@ -1718,6 +1718,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedSectorProof
 import GroupApproximation.Leavitt.RootDetectionBinary
 import GroupApproximation.Leavitt.DiagonalNormalExtraction
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoordinatePassage
+import GroupApproximation.Manuscript.OneSidedMFRadical.SentenceClosureAudit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
