@@ -27,7 +27,7 @@ X_a=rho_a(x),        Y_a=rho_a(y),        R=rho_0(r)=rho_1(r).
 The within-chart R2 triangles are
 
 ```text
-Y_a X_a Y_a=R.                                                (MRC2)
+Y_a^* X_a Y_a=R.                                              (MRC2)
 ```
 
 If one additionally retains the **mixed** R2 triangle, using the input arm
@@ -35,7 +35,7 @@ of chart zero and the transported arm of chart one, then
 
 ```text
 ||X_0-X_1||_2
- =||Y_1 X_0 Y_1-R||_2.                                      (MRC3)
+ =||Y_1^* X_0 Y_1-R||_2.                                    (MRC3)
 ```
 
 More generally, for approximate involutions and an approximate chart-one
@@ -43,7 +43,7 @@ triangle,
 
 ```text
 ||X_0-X_1||_2
- <=||Y_1 X_0 Y_1-R||_2+||Y_1 X_1 Y_1-R||_2.                 (MRC4)
+ <=||Y_1^* X_0 Y_1-R||_2+||Y_1^* X_1 Y_1-R||_2.             (MRC4)
 ```
 
 Thus one mixed R2 cell kills the entire finite-dimensional multiplicity
@@ -80,4 +80,3 @@ The remaining issue is not which finite relation detects the gauge: it is
 whether one bounded Bleak--Quick diagram can retain the first occurrence of
 `s` and the second occurrence of `t` in the *same* conjugate of R2.  Internal
 R2 triangles in the two private charts do not do this.
-

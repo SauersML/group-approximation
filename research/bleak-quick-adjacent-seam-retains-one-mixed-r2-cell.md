@@ -18,25 +18,26 @@ Phi_a:S_6->U(d),             a=0,1,
 ```
 
 with all-pairs multiplicative defect at most `C delta`, together with
-contextual arms `X_a`, transported arms `Y_a`, and one common pivot `R`, such
-that
+contextual Carmichael matrices `C_a`, arms `X_a`, transported arms `Y_a`,
+and one common pivot `R`, such that
 
 ```text
 ||X_a-Phi_a((i p))||_2+||Y_a-Phi_a((i q))||_2 <= C delta,
 ||Phi_0(h)-Phi_1(h)||_2 <= C delta             (h in S_5),       (BMR1)
+||C_a-X_a R^* X_a R||_2 <= C delta,
 ```
 
 and the **mixed** R2 triangle obeys
 
 ```text
-||Y_1 X_0 Y_1-R||_2 <= C delta.                                (BMR2)
+||Y_1^* X_0 Y_1-R||_2 <= C delta.                              (BMR2)
 ```
 
 Every comparison in `(BMR1)--(BMR2)` must use a bounded number of literal
 conjugates of R1--R5, independent of addresses and matrix dimension.
 
 The point of `(BMR2)` is that the ordinary private chart-one triangle gives
-`Y_1 X_1 Y_1=R+O(delta)`.  Hence
+`Y_1^* X_1 Y_1=R+O(delta)`.  Hence
 `mixed-r2-cell-couples-shared-s5-extension-multiplicities` yields
 
 ```text
