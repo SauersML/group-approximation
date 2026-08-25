@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.FullMFRadicalVisibleLocalization
+import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
 
 /-!
 # The printed full-kernel pullback proposition, sentence by sentence
@@ -157,10 +158,46 @@ theorem manuscriptPrintedCorrespondenceRespectsComposition :
       MFClosedNormalSubgroup.mapOfInvisibleKernel_comp f g hf hg hkerF hkerG N,
     actualCoronaMFVisibleQuotientMap_comp f g⟩
 
+/-- **The first two printed displays at the manuscript's own objects.**  The
+statements above are phrased with the basis-free radical and closure; the
+manuscript prints the natural-dimension radical `Rad_MF` and the closure
+`cl_MF^G` of Section 1.  The two radicals are equal
+(`manuscriptCoronaMFResidual_eq_actualCoronaMFResidual`) and so are the two
+closures on countable groups (`literalMFClosure_eq_actualCoronaMFClosure`), so
+this is the same mathematics said about the printed objects -- which is what a
+referee checking the paper against the Lean needs to see. -/
+def PrintedFullKernelPullbackAtPrintedObjects : Prop :=
+  ∀ (G : Type) [Group G] [Countable G] (Q : Type) [Group Q] [Countable Q]
+    (f : G →* Q) (_hf : Function.Surjective f)
+    (_hker : f.ker ≤ manuscriptCoronaMFResidual G),
+      manuscriptCoronaMFResidual G = (manuscriptCoronaMFResidual Q).comap f ∧
+      ∀ (N : Subgroup G) (_hN : N.Normal),
+        literalMFClosure G N = (literalMFClosure Q (N.map f)).comap f
+
+/-- Closed proof of the two printed displays at the printed radical and the
+printed closure. -/
+theorem manuscriptPrintedFullKernelPullbackAtPrintedObjects :
+    PrintedFullKernelPullbackAtPrintedObjects := by
+  intro G _ _ Q _ _ f hf hker
+  have hkerA : f.ker ≤ actualCoronaMFResidual G := by
+    rw [← manuscriptCoronaMFResidual_eq_actualCoronaMFResidual (G := G)]
+    exact hker
+  refine ⟨?_, ?_⟩
+  · rw [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual (G := G),
+      manuscriptCoronaMFResidual_eq_actualCoronaMFResidual (G := Q)]
+    exact actualCoronaMFResidual_eq_comap_of_surjective_of_ker_le f hf hkerA
+  · intro N hN
+    letI := hN
+    letI : (N.map f).Normal := Subgroup.Normal.map hN f hf
+    rw [literalMFClosure_eq_actualCoronaMFClosure (G := G) N,
+      literalMFClosure_eq_actualCoronaMFClosure (G := Q) (N.map f)]
+    exact actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le f hf hkerA N
+
 /-- Every printed sentence of the full-kernel-pullback paragraph, in printed
 order, as one closed proposition. -/
 def PrintedFullKernelPullbackParagraph : Prop :=
   PrintedFullKernelPullback ∧
+    PrintedFullKernelPullbackAtPrintedObjects ∧
     PrintedFullKernelPullbackFromFullKernel ∧
     PrintedMFQuotientCorrespondence ∧
     PrintedVisibleQuotientIsomorphism ∧
@@ -170,6 +207,7 @@ def PrintedFullKernelPullbackParagraph : Prop :=
 theorem manuscriptPrintedFullKernelPullbackParagraph :
     PrintedFullKernelPullbackParagraph :=
   ⟨manuscriptPrintedFullKernelPullback,
+    manuscriptPrintedFullKernelPullbackAtPrintedObjects,
     manuscriptPrintedFullKernelPullbackFromFullKernel,
     manuscriptPrintedMFQuotientCorrespondence,
     manuscriptPrintedVisibleQuotientIsomorphism,
