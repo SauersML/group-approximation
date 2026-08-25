@@ -75,6 +75,23 @@ theorem then gives full MF collapse of `Delta`.
   compiler.  What remains unproved is whether the growing triangular basis
   change can be folded by a fixed number of presentation cells; ordinary
   elementary-row telescoping costs `M` and is not sufficient.
+* **Canonical stabilized Morita tree.**
+  `binary-leavitt-canonical-morita-tree-reduction` gives a second, sharper
+  complete-graph reduction.  Let the fixed inner Morita branch words
+  `D_0,D_1` name `c_u=D_ucD_u^(-1)` and `h_u=D_uhD_u^(-1)` for every binary
+  word `u`.  Diagonal discrepancies are literal conjugates of one base cell.
+  For two distinct equal-depth words, their longest common branch prefix
+  strips by free conjugation; at the first unequal bits `i!=j`, all remaining
+  tails occur only as coefficient contexts in
+  `r_a(t_i s_j)s_b=0`.  Consequently one uniform first-mismatch estimate
+  would realize `K_(2^n)` at every depth without a pair-dependent section.
+  The exact context vanishing follows from
+  `atlas-steinberg-context-absorption`, and its nested zero word has constant
+  area.  The live gap, recorded without conflation in
+  `binary-leavitt-first-mismatch-morita-area-cell`, is to compare the original
+  cross-branch commutator to that nested word at constant area.  The existing
+  spare-index completeness induction is qualitative and does not yet supply
+  that bound.
 * **The coefficient table has only two stabilized unit orbits.**
   `dual-prefix-heisenberg-table-has-two-simultaneous-unit-orbits` proves that
   one prefix-code unit simultaneously takes `(t_alpha,s_beta)` to
