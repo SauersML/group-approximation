@@ -11,6 +11,7 @@ artifacts:
   - research/property-t-free-leavitt-via-opnorm-return-row.md
   - research/property-t-free-leavitt-via-atomic-morita-return.md
   - research/property-t-free-leavitt-via-chromatic-code.md
+  - research/property-t-free-leavitt-via-nested-prefix-conjugacy-code.md
   - research/leavitt-nonsoficity-does-not-close-macroscopic-mf-branch.md
   - research/maximal-sparse-character-atom-does-not-return-multiplicity.md
   - research/three-active-atoms-do-not-form-binary-reynolds-frame.md
@@ -54,7 +55,7 @@ step is to assemble those germs into one nonzero finitely generated
 projective corona module carrying a unital action of `R`.  Rank-germ
 Hilbert-hotel cancellation would then force that module to vanish.
 
-There are now six sharply separated routes.
+There are now seven sharply separated routes.
 
 1. Assemble finite root germs into one finite-projective norm-corona
    coefficient module and apply rank-germ Hilbert-hotel cancellation.
@@ -74,6 +75,9 @@ There are now six sharply separated routes.
    scale-changing selector rows whose controlled groupifications retain one
    common multiplicity involution; their incompatible affine rank equations
    then force a fixed normalized-HS defect.
+7. Use the nested prefix idempotent roots as an infinite complete graph whose
+   pairwise differences are conjugate to the mark, and prove a uniform
+   filling-area bound for those conjugacy-difference identities.
 
 The fourth route proves that positive carrier density, global module gluing,
 off-diagonal Leavitt rows and exact `M_2/M_4` packet ranks are unnecessary at
@@ -195,6 +199,29 @@ rank decay but not diffuse Haar escape, and the eventual coordinate may still
 depend on the coefficient.  A successful return must preserve this uniform
 rank scale while authenticating a moving coefficient or mixed-root orbit
 fold.
+
+The seventh route supplies a concrete moving-coefficient family without the
+refuted fixed-centralizer commutator tables.
+`leavitt-nested-prefix-conjugacy-clique` takes
+the nested idempotents `e_m=s_(0^m)t_(0^m)`.  For `j<k`, their
+characteristic-two difference is the nonzero annulus projection
+
+```text
+e_j+e_k=sum_(ell=j)^(k-1)
+           s_(0^ell 1)t_(0^ell 1),
+```
+
+which is explicitly Murray--von Neumann equivalent to `q=s_1t_1` by matching
+the annulus leaves with a complete prefix code below `q`.  Thus every
+`x_12(e_j)^(-1)x_12(e_k)` is conjugate to the marked root, and the vertices
+form an actual infinite clique.  The general established criterion
+`bounded-area-conjugacy-difference-code-kills-mf-mark` turns this directly
+into MF collapse if those edge conjugacies have one uniform presentation
+area.  The remaining leaf
+`leavitt-nested-prefix-conjugacy-uniform-area` asks
+exactly for that bound.  Standard leafwise verification costs `k-j`; unlike
+the earlier tables, no fixed-root centralizer section currently refutes a
+self-similar fold of the whole annulus.
 
 On the atomic/controlled-reflection branch, the multiplicity orientation is
 now separated from the actual carrier problem.  An adaptive eigenspace cut
