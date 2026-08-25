@@ -8,6 +8,9 @@ invalidates:
   - nonhyperlinear-coset-wreath-from-commutant-collapse
   - sl2-amalgamated-free-exclusion-from-collapse
   - rcc-from-spherical-leak-exclusion
+  - exact-leak-refuted-by-projective-transfer
+  - projective-transfer-proves-canonical-iwahori-transfer
+  - sl3-coset-lamp-collapses-from-projective-transfer
 distinct_from:
   sl3-homogeneous-quotient-crossed-product-is-connes-embeddable: that is the higher-rank instance with a single gluing unitary and property (T); this is the rank-one instance, an amalgamated free product of two profinite algebras over a finite-index subalgebra, where the lattice is a free group and the quotient a finite Ramanujan graph.
   relative-commutant-collapse-for-sl2-pair: that is the collapse statement in every matrix ultraproduct; this is the embeddability of one explicit crossed product whose truth refutes it.
@@ -34,7 +37,8 @@ which `SL_2(Z)` and its conjugate act profinitely through two adjacent
 maximal compact subgroups of `SL_2(Q_2)`.
 
 **Stakes both ways.**  By the same theorem, `(S2H1)` embeddable refutes
-`relative-commutant-collapse-for-sl2-pair` and
+`relative-commutant-collapse-for-sl2-pair`,
+`projective-commutant-transfer-for-arithmetic-pair` and
 `no-spherical-leak-in-matrix-ultraproducts`, hence the `invalidates` keys.
 A proof of the collapse must instead show that this amalgamated free
 product of two embeddable algebras over a finite-index base is not

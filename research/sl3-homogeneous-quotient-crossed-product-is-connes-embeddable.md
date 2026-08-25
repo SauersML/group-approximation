@@ -12,6 +12,9 @@ invalidates:
   - sl3-regular-double-collapse-from-projective-transfer
   - projective-transfer-gives-universal-filtered-actuator
   - rcc-from-spherical-leak-exclusion
+  - exact-leak-refuted-by-projective-transfer
+  - projective-transfer-proves-canonical-iwahori-transfer
+  - sl3-coset-lamp-collapses-from-projective-transfer
 distinct_from:
   coset-wreath-is-hyperlinear: that asks for matrix models of the coset Bernoulli wreath group over SL_3(Z[1/3]), whose lamp algebra is weakly mixing for the lattice; this asks for matrix models of an explicit crossed product by SL_3(Z[1/2]) of a compact homogeneous quotient on which every compact-subgroup piece acts profinitely, and it is not a group von Neumann algebra.
   sl3-dyadic-building-vertex-action-is-sofic: that is soficity of the countable vertex action; this is Connes embeddability of the crossed product of the compact lattice quotient, and neither is known to imply the other.
@@ -33,8 +36,9 @@ is Connes embeddable.
 `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`, `(SH1)`
 embeddable refutes `sl3-pair-relative-commutant-route`,
 `projective-trace-square-transfer-for-sl3-pair` (the goal's top frontier
-hole, `(PTS1)`) and `no-spherical-leak-in-matrix-ultraproducts`; hence the
-`invalidates` keys on every route that consumes one of those three claims.
+hole, `(PTS1)`), `projective-commutant-transfer-for-arithmetic-pair`
+(`(PRT1)`) and `no-spherical-leak-in-matrix-ultraproducts`; hence the
+`invalidates` keys on every route that consumes one of those four claims.
 Conversely, any proof of the collapse must prove that the explicit algebra
 `(SH1)` has **no** matrix microstates, which would be the first explicit
 non-Connes-embeddable factor built from arithmetic alone, with no game or

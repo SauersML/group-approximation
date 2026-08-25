@@ -79,7 +79,10 @@ Then:
      and an almost-representation `rho_k` of the fixed finite presentation of
      `A` gives `sum_(c in S_C) (1 - |tr[U_k, rho_k(c)]|^2) -> 0` while
      `1 - |tr[U_k, rho_k(h)]|^2 -> 1 - |tau(W_h)|^2 > 0`, so no constant `K`
-     and modulus `eta(delta) -> 0` can satisfy `(PTS1)`.
+     and modulus `eta(delta) -> 0` can satisfy `(PTS1)`; the same lift
+     refutes the general-pair form `(PRT1)` of
+     `projective-commutant-transfer-for-arithmetic-pair` at every `(n, p)`
+     for which the crossed product embeds.
 5. **(structure of `M`)**  The restriction to `C` is an amplified profinite
    crossed product:
 
@@ -117,6 +120,21 @@ exactly the `c_0` spherical component that
 `no-spherical-leak-in-matrix-ultraproducts` must exclude, produced here by
 an explicit p.m.p. action rather than sought abstractly inside a
 commutant.
+
+**What the leak does NOT refute.**  Its coefficient profile
+`psi_U(g) = <U, g U>` on `L` is the automorphic spherical spectrum of the
+finite quotient `K \ L / Lambda'`: a finite sum of the trivial spherical
+function (weight `(mean U)^2 = ((r-2)/r)^2`) and tempered spherical
+functions.  It is never the exact quasi-regular profile `1_K` of
+`no-exact-quasi-regular-leak`, because `l^2(L/K)` is a direct integral of
+tempered spherical representations and `L^2(L/Lambda')` (cocompact
+`Lambda'`; every lattice of `SL_n(Q_p)` is cocompact) is a discrete sum of
+irreducibles with finite multiplicities, so no copy of `l^2(L/K)` exists
+inside it.  Likewise the exact-face Iwahori claims
+(`canonical-iwahori-projection-commutant-transfer`,
+`iwahori-unitary-commutant-transfer`) quantify over exact vertex
+representations and are untouched: embeddability of `M` produces
+microstates, not exact vertex representations.
 
 **Why this is a sharper firewall than the coset Bernoulli one.**  In
 `coset-bernoulli-ce-refutes-relative-commutant-collapse` the leak lives in a
