@@ -89,3 +89,16 @@ independent maps in Furstenberg-type measure rigidity
   hold the `Lambda`-part at definite distance from all exact models
   probe the live sector, which is the correct design for the next
   probe generation.
+- **The p-adic tower residue is now quantitatively bounded (2026-08-25).**
+  `lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` proves, for
+  every prime `p`, that a `Lambda`-exact microstate of level `p^D m'` with
+  `h`-twist defect `epsilon` on the Kazhdan subgroup `C_0` has `p`-divisible
+  weight at most `12 D epsilon/(c_p kappa_0)`, `c_p > 0` explicit.  So the
+  mixed-level sector above either collapses to the coprime sector (closed
+  here) up to negligible weight, or its `p`-adic depth exceeds
+  `c_p kappa_0/(12 epsilon)`: the residual enemy is an ultra-deep tower.
+  The mechanism is the Atkin--Lehner-type twist `J h^D` transported by one
+  Kazhdan projection; it does not use the exact slot, so it applies at the
+  prime `2` as well (with the weakest constant, `c_2 = 2/21`), and the
+  constants improve with `p` -- the pair is prime-generic, so the lane is not
+  pinned to `p = 2` by this residue.
