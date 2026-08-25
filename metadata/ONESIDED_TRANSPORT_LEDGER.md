@@ -262,6 +262,20 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Proof of `prop:mf-residual-calculus`, closing sentence: the same argument applied to `G/N` is the printed closure criterion | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedClosureCriterion` | closed |
 | The complete printed proof of `prop:mf-residual-calculus`, sentence by sentence, as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedResidualCalculusProof` | closed |
 | Printed proof of `thm:normal-kazhdan`: "in every representation of the corner there are no `K`-fixed vectors, so the defining Kazhdan inequality gives this operator inequality", in the norm form the coordinate passage consumes | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerCoronaKazhdanOrder` | closed |
+| Proof of `prop:simple`: "and `yx=ds_0t_1c=0` would imply" the vanishing the printed contradiction needs | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedReversedProductVanishingImplication` | closed |
+| Proof of `prop:simple`: "To obtain `\eqref{eq:coefficient-separation}`, choose factorizations" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationFactorizations` | closed |
+| Proof of `prop:simple`: the printed recipe `a=f_s x e_t c_r`, `b=d_r f_d y e_s` and the two products it forces | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationRecipe` | closed |
+| `eq:coefficient-separation`, the complete printed derivation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparation` | closed |
+| `eq:coefficient-separation` at the manuscript's own coefficient ring | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoefficientSeparationAtBinaryLeavitt` | closed |
+| Proof of `prop:simple`: "conjugation by `g` sends `e_{ij}(a)` to `e_{ij}(y)` with `y\ne a`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDiagonalConjugationMovesRoot` | closed |
+| The same sentence at the manuscript's own coefficient ring | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDiagonalConjugationMovesRootAtBinaryLeavitt` | closed |
+| Proof of `prop:simple`: "the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-sparse}` is nonzero" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedSparseDefectEntryNonzero` | closed |
+| Proof of `prop:simple`: "Again `AB=0`, because its potentially nonzero coefficient contains `arb`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDenseAnnihilatingProduct` | closed |
+| The five printed coefficient calculations of `prop:simple` as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedLeavittCoefficientCalculations` | closed |
+| Sec. 7: quotienting `W_Q` by the normal closure of `d` kills the hidden vertex and the second factor | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCamouflageQuotientKillsBothVertices` | closed |
+| Sec. 7: "The resulting quotient is `Q`, with quotient map induced by `\pi_Q`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCamouflageQuotientIsVisibleGroup` | closed |
+| `thm:commutant`, the displayed three-line conjugation computation, in printed order | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugationDisplay` | closed |
+| `thm:commutant`: "Thus `\rho(u)^{-1}C\rho(u)\subseteq C`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCommutantConjugationInclusion` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
