@@ -7,9 +7,10 @@ distinct_from:
   center-chain-hecke-flags-authenticate-native-occurrences: that invalidated claim asks for one fixed exact group-algebra carrier and row; this asks only for representation-dependent finite-matrix spectral cuts, with every discarded direction charged to approximate relation defects.
   center-chain-mixed-hecke-polars-share-a1-tail: that proves the exact polar words and identifies their selector-root squares, but also exposes why the common A1 suffix is not already a common gauge.
   fixed-center-chain-hecke-occurrence-is-regularly-impossible: that regular-trace firewall is a required boundary condition here; the cuts in this claim may depend on the matrix model and are not asserted to survive in the canonical regular representation.
+  center-chain-mixed-hecke-overlap-is-common-pauli-source: that now gives an exact common source and range, maximal polar overlap there, and a relative gauge whose sole Pauli action is the first selector root; this claim retains only the missing identification with the prescribed native selector covariances.
 ---
 
-**OPEN REPRESENTATION-DEPENDENT TYPING SEAM.**  For every sufficiently good
+**OPEN REPRESENTATION-DEPENDENT NATIVE-COVARIANCE SEAM.**  For every sufficiently good
 finite-dimensional normalized-Hilbert--Schmidt model of the fixed chained
 packet, take the four approximate Hecke compressions and the two mixed
 cross-Grams of `center-chain-mixed-hecke-polars-share-a1-tail`.  Construct
@@ -37,6 +38,19 @@ exactly what avoids the regular-trace contradiction.
 
 ## Attempts
 
+- **Exact common source and tail factorization.**
+  `center-chain-mixed-hecke-overlap-is-common-pauli-source` now proves that
+  the range-overlap product is a projection, that both pullbacks are one
+  source Pauli corner of relative trace `1/128`, and that the relative polar
+  factors as `B_2R`, where `R` lies exactly in the source-Pauli commutant and
+  the Pauli action of `B_2` is exactly the first selector root.  Thus scalar
+  overlap, spectral support, common-tail separation, and both mixed-Pauli
+  tests are no longer open inside the Hecke packet.  What remains is the
+  actual native-row covariance: correct Hecke ranks and literal selector
+  roots still do not identify the four Hecke flags with the prescribed
+  source and controlled-target projections of the two unequal selector
+  occurrences.
+
 - **Fixed exact flags.**  The four exact supports have precisely the desired
   ranks, but `fixed-center-chain-hecke-occurrence-is-regularly-impossible`
   proves that attaching both native rows to a fixed positive carrier forces
@@ -53,4 +67,3 @@ exactly what avoids the regular-trace contradiction.
   commutator into a quantitative defect payment or a model-dependent
   spectral split; declaring `A_1` a common tensor gauge repeats the refuted
   fixed-row argument.
-

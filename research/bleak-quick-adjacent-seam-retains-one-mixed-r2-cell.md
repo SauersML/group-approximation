@@ -73,7 +73,7 @@ mixed triangle, modulo one private R2 cell, as the commutator of `d` with the
 first input arm.  After conjugating that arm to a fixed prefix
 transposition, finite-mark Schreier properness rules out every construction
 whose relative corrections escape.  This invalidates
-`separate-endpoint-transport-closes-mixed-r2-occurrence`.
+`escaping-separate-endpoint-transport-closes-mixed-r2`.
 
 The same calculation leaves the genuinely interacting local route alive.
 When the entire adjacent seam is one conjugate of a fixed depth-three
@@ -82,3 +82,16 @@ properness lower bound is only a constant.  The remaining task is therefore
 exactly a fixed local word audit: find the null mixed boundary before the
 private gauges are separated, or prove that the normalized finite correction
 itself is nontrivial.
+
+For the obvious normalized splice, it is nontrivial.
+`mixed-r2-boundary-is-one-finite-mark-centralizer-commutator` computes
+
+```text
+(011 001)(010 000)(011 001)(000 001)
+ =(010 000)(000 001),
+```
+
+a three-cycle.  This invalidates
+`canonical-depth-three-private-triangles-close-mixed-r2`.  The still-live
+fixed local audit must therefore retain a different second-chart endpoint;
+the canonical label-flipped `t_j` cannot be the transported arm in `(BMR2)`.

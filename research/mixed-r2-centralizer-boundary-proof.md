@@ -32,3 +32,8 @@ Finally, under one common conjugation of a fixed local diagram,
 showing exactly why properness rules out the separated escaping construction
 but not an interacting fixed-local cancellation.
 
+For `(MRB7)`, `t_1=(j q)` has support disjoint from `(i p)=s_0`, so it
+centralizes `s_0`.  Cancelling `t_1^2` gives `(MRB8)`.  The two transpositions
+`(i p)` and `(p q)` share exactly `p`, and their product is a three-cycle.
+This proves the asserted nontriviality of the canonical mixed boundary.
+

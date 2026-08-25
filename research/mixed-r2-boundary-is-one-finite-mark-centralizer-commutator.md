@@ -4,7 +4,8 @@ id: mixed-r2-boundary-is-one-finite-mark-centralizer-commutator
 kind: claim
 title: The mixed R2 boundary is one finite-mark centralizer commutator
 invalidates:
-  - separate-endpoint-transport-closes-mixed-r2-occurrence
+  - escaping-separate-endpoint-transport-closes-mixed-r2
+  - canonical-depth-three-private-triangles-close-mixed-r2
 distinct_from:
   finite-mark-centralizer-commutator-area-is-proper: that supplies the general Schreier-distance lower bound for a commutator with a fixed finite mark; this identifies the exact centralizer element hidden in the mixed R2 boundary and also records the fixed-local-diagram case where no escape occurs.
   mixed-r2-cell-couples-shared-s5-extension-multiplicities: that is an operator cancellation showing why the mixed cell would close the multiplicity seam; this is a free-word and van Kampen-area identity determining when such a cell can have bounded R1--R5 cost.
@@ -50,7 +51,7 @@ Area_R(w) >= A d_(<b>\G)(<b>,<b>dbar)-B-A_0.                  (MRB5)
 ```
 
 Therefore a construction which forms the two transported endpoints
-separately and whose relative corrections `dbar` escape modulo `<b>` cannot
+separately **and whose relative corrections `dbar` escape modulo `<b>`** cannot
 prove the mixed-R2 occurrence claim with bounded R1--R5 cost.  This lower
 bound permits arbitrary interacting ambient diagrams; combining more R1--R5
 cells after the two endpoint gauges have been separated does not help.
@@ -68,3 +69,20 @@ has a bounded right-hand side, and finite-mark area properness supplies no
 obstruction.  A surviving proof must retain the mixed boundary before the
 two contextual output gauges are split, precisely as the open claim asks.
 
+The canonical label-flipped depth-three pair does not supply that local
+cancellation.  With
+
+```text
+s_0=(i p),       t_0=(i q),       t_1=(j q),       r=(p q),      (MRB7)
+```
+
+the swaps `t_1` and `s_0` are disjoint.  Hence its proposed mixed boundary is
+
+```text
+t_1s_0t_1r=s_0r=(i p)(p q),                                  (MRB8)
+```
+
+a three-cycle, not the identity.  Thus neither finite area nor a more clever
+filling exists for the direct mixture of the two canonical private R2
+triangles.  Any fixed-local proof must first alter which chart-one endpoint
+is retained; it cannot simply splice the label-flipped words.
