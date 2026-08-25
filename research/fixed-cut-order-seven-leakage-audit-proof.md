@@ -5,7 +5,7 @@ kind: route
 title: Audit every existing fixed finite-coordinate cut against the order-seven leakage operator
 target: fixed-cuts-do-not-control-order-seven-leakage
 requires:
-  - order-seven-anchor-stops-at-whitehead-compression-leakage
+  - order-seven-first-exit-is-not-seven-step-leakage
   - fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall
   - middle-index-heisenberg-packet-is-not-center-chain-invariant
   - nine-pair-marked-heisenberg-regularization-is-selector-spectator
