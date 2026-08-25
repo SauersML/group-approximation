@@ -3,6 +3,7 @@ rg: 2
 id: binary-leavitt-first-mismatch-morita-area-cell
 kind: claim
 title: Pay every contextual Morita first mismatch by one bounded Steinberg cell
+refuted_by: unsynchronized-first-mismatch-area-is-centralizer-impossible
 distinct_from:
   atlas-steinberg-context-absorption: that proves exact vanishing of root elements in arbitrary two-sided ring-relation contexts; this asks for a uniform area comparison from the original cross-branch commutator word to that nested context word.
   binary-leavitt-canonical-morita-tree-reduction: that proves this one estimate yields the full bounded-area complete-graph compiler; this is the remaining quantitative estimate itself.
@@ -11,7 +12,7 @@ artifacts:
   - research/binary-leavitt-bounded-area-chromatic-code.md
 ---
 
-**OPEN.**  In the fixed finite presentation of the stabilized
+**REFUTED AS STATED.**  In the fixed finite presentation of the stabilized
 binary-Leavitt Steinberg group, use the fixed branch words `D_0,D_1` and the
 canonical tail words of `(MTR2)`.  Prove that one constant `A_times` satisfies
 
@@ -21,6 +22,15 @@ Area([D_iD_acD_a^(-1)D_i^(-1),
 ```
 
 for all binary tails `a,b` and both unequal pairs `i!=j`.
+
+This quantification over unrelated tail lengths is impossible.  Fixing `b`
+and varying `a` produces infinitely many distinct elements of the
+centralizer of the fixed nontrivial involution `h_(j b)`, in distinct cosets
+modulo that involution, while `(FMA1)` would bound all their commutator areas.
+This contradicts `finite-mark-centralizer-commutator-area-is-proper`.
+
+The chromatic reduction only uses `|a|=|b|`.  Its corrected live leaf is
+`binary-leavitt-level-synchronous-first-mismatch-area-cell`.
 
 ## Exact reduction already available
 
@@ -59,9 +69,9 @@ must lower-bound the area of these particular first-mismatch words; the
 general infinite-stabilizer theorem does not apply because `(FMA1)` compares
 two moving branch words and never fills a centralizer of the fixed mark.
 
-Establishing `(FMA1)` closes the property-`(T)`-free proof through
-`binary-leavitt-canonical-morita-tree-reduction` and
-`infinite-chromatic-commutator-code-kills-mf-mark`.
+The exact reduction and the failed qualitative attempt remain relevant to
+the corrected level-synchronous claim, but cannot establish `(FMA1)` with
+the quantifiers displayed here.
 
 ## Attempts
 
@@ -74,3 +84,7 @@ Establishing `(FMA1)` closes the property-`(T)`-free proof through
   Hall--Witt diagram treating each entire tail root word as one variable; its
   auxiliary disjoint-root commutators must themselves occur only as
   conjugates of fixed relators, or the same growth returns.
+* **Fix one tail.**  This disproves the stated uniformity.  With `b` fixed,
+  the words `c_(ia)` form an infinite family in `C_G(h_(jb))` and escape
+  modulo the finite marked subgroup.  Properness of finite-mark centralizer
+  area forces their commutator fillings to diverge.

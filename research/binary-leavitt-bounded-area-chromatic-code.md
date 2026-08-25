@@ -55,10 +55,11 @@ theorem then gives full MF collapse of `Delta`.
   addresses.  The finite shift graphs have chromatic number at least
   `ceil(log_2 M)`, so their disjoint union is an exact infinite-chromatic
   marked table with canonical vertex words and no diagonal conjugators.  The
-  remaining question is sharply reduced to uniform filling area for these
-  pair and triple identities.  Pair-dependent prefix-code normalization does
-  not by itself pay that area, but unlike the complete table the compiler now
-  needs coherence only on the shift incidence pattern.
+  The uniform-area upgrade is now refuted for these words.  Freezing
+  `h_(0,1)` leaves all outgoing `c_(1,k)` in infinitely many distinct cosets
+  of one fixed involution's centralizer, so
+  `leavitt-chromatic-tables-have-area-divergence`
+  forces their edge areas to diverge.
 * **Cumulative-row complete-graph fold.**
   `binary-leavitt-cumulative-complete-graph-table` removes
   the pair-indexed vertex charts altogether.  With orthogonal corner pairs
@@ -69,12 +70,12 @@ theorem then gives full MF collapse of `Delta`.
   graph, with the prescribed mark on the diagonal and no diagonal
   conjugator.  The cumulative rows and adjacent columns are one pair of dual
   triangular bases, so a single finite-chart basis change normalizes the
-  whole table simultaneously.  This strictly sharpens the live wordization
-  gate: it is enough to give a uniform-area global triangular basis fold.
-  Pair-dependent endpoint sections are no longer part of the proposed
-  compiler.  What remains unproved is whether the growing triangular basis
-  change can be folded by a fixed number of presentation cells; ordinary
-  elementary-row telescoping costs `M` and is not sufficient.
+  whole table simultaneously.  This exact reduction does not admit the
+  required area upgrade: freeze `H_0` and all later cumulative rows give
+  distinct centralizer cosets with zero exact commutator.
+  `leavitt-chromatic-tables-have-area-divergence`
+  therefore forces their filling areas to diverge.  No self-similar
+  wordization of these same vertex words can make the area uniform.
 * **Canonical stabilized Morita tree.**
   `binary-leavitt-canonical-morita-tree-reduction` gives a second, sharper
   complete-graph reduction.  Let the fixed inner Morita branch words
@@ -87,11 +88,14 @@ theorem then gives full MF collapse of `Delta`.
   would realize `K_(2^n)` at every depth without a pair-dependent section.
   The exact context vanishing follows from
   `atlas-steinberg-context-absorption`, and its nested zero word has constant
-  area.  The live gap, recorded without conflation in
-  `binary-leavitt-first-mismatch-morita-area-cell`, is to compare the original
-  cross-branch commutator to that nested word at constant area.  The existing
-  spare-index completeness induction is qualitative and does not yet supply
-  that bound.
+  area.  This route is now refuted, not live.  The asynchronous strengthening
+  fails by `unsynchronized-first-mismatch-area-is-centralizer-impossible`,
+  and the exact equal-level estimate fails by
+  `level-synchronous-first-mismatch-area-is-centralizer-impossible`: freeze
+  one column per level, conjugate its `h`-word to the base involution, and the
+  exponentially many row words violate properness of finite-mark centralizer
+  area.  Thus the qualitative context-absorption comparison necessarily has
+  unbounded area on the canonical tree.
 * **The coefficient table has only two stabilized unit orbits.**
   `dual-prefix-heisenberg-table-has-two-simultaneous-unit-orbits` proves that
   one prefix-code unit simultaneously takes `(t_alpha,s_beta)` to
