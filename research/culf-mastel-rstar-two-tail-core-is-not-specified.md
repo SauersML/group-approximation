@@ -42,3 +42,12 @@ is precisely the dense part of the NP pp gadgets.
 Primary source: Culf--Mastel, arXiv:2410.21223v2, Corollary 6.7 and Theorem
 6.8, especially the NP-completeness invocation in the first sentence of the
 second paragraph of the proof of Theorem 6.8.
+
+This is a statement about the **published choice**, not an absence of an
+explicit alternative.
+`boolean-relations-have-affine-complete-rstar-pp-gadgets` supplies
+one computable constant-size gadget for every bounded-arity source truth
+table.  Its profile cover contains every affine-safe source support.  Using
+that alternative removes incidence noncanonicity from the cap-support
+program, although it still does not prove that the actual PCPP `Verify`
+supports are affine-safe.

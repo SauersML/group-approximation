@@ -212,10 +212,13 @@ no-Fano-line support conclusion.
   `Aff(S) subseteq C` is necessary and sufficient for **some** exact `R_*`
   pp presentation to have cap-valued witnesses on `S`.  Its protected-clause
   construction defines all of `C`, so matrix soundness is unchanged.  Thus
-  the local algebraic pp seam is closed once the source support is known;
-  what remains is proving affine safety for the actual PCPP `Verify`
-  supports and, for a uniform HALT family, selecting the support-tailored
-  gadgets effectively rather than after the trace is known.
+  the local algebraic pp seam is closed once the source support is known.
+  `boolean-relations-have-affine-complete-rstar-pp-gadgets`
+  strengthens this to one effective gadget per source truth table: its
+  all-character wide OR contains a cap-valued branch for every affine-safe
+  support simultaneously.  Thus no trace-dependent pp selection remains.
+  The exact remaining gate at this seam is only affine safety of the actual
+  PCPP `Verify` supports.
 - There is an exact local alternative rather than an intermediate case.
   By `fano-unsafe-support-compresses-to-a-full-nand-packet`, any context that
   is not cap-supported contains, on the sum of three line atoms, two parities

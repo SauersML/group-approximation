@@ -71,8 +71,11 @@ code/subset rows.
 
 More generally, `affine-safe-support-admits-a-tailored-rstar-cap-pp-lift`
 shows that profile compatibility is not intrinsically stronger than affine
-safety when the pp presentation may be chosen after the positive support is
-fixed.  Its protected forbidden-point presentation still defines the full
-source relation and has cap-valued witnesses on that support.  The published
-reduction remains support-blind because it neither proves affine safety of
-the PCPP `Verify` supports nor selects these trace-tailored gadgets uniformly.
+safety when the pp presentation may be changed.  Its protected
+forbidden-point presentation still defines the full source relation and has
+cap-valued witnesses on the chosen support.
+`boolean-relations-have-affine-complete-rstar-pp-gadgets` removes
+the apparent uniformity issue by putting every nonzero separating character
+in one gadget computed from the source truth table.  The published reduction
+remains support-blind in the substantive sense: it does not prove affine
+safety of the PCPP `Verify` supports.

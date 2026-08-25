@@ -7,6 +7,7 @@ distinct_from:
   fano-cap-witness-sections-force-source-affine-safety: that proves necessity for every fixed pp gadget; this proves sufficiency by choosing a new gadget tailored to the affine hull of the positive source support.
   source-affine-safety-does-not-imply-rstar-profile-compatibility: that fixes one three-row gadget whose profile cover misses an affine support; this changes the pp presentation while preserving its full visible relation.
   rstar-core-character-profiles-induce-an-exact-affine-cover: that classifies the profile pieces of a fixed gadget; this constructs a gadget whose cover contains the prescribed affine piece.
+  boolean-relations-have-affine-complete-rstar-pp-gadgets: that uses all nonzero characters in one relation-dependent gadget and therefore does not need the positive support when constructing it; this is its one-support precursor.
 ---
 
 **ESTABLISHED TAILORED-LIFT EQUIVALENCE.**  Let `C subseteq F_2^n` be a
@@ -97,8 +98,9 @@ points, so every target occurrence has cap range simultaneously.  This
 proves `(TAL2)`.
 
 For a fixed Culf--Mastel source context, this removes the dense-core
-compatibility issue **after its positive support is known to be
-affine-safe**.  It does not make the published reduction support-aware or
-computable uniformly from a HALT input: selecting `A` is still the exact
-source-trace gate.
-
+compatibility issue after its positive support is known to be affine-safe.
+The stronger
+`boolean-relations-have-affine-complete-rstar-pp-gadgets` places
+all possible separating characters into one relation-dependent gadget, so
+even the pp presentation can be selected uniformly before the support is
+known.  The remaining source-trace gate is affine safety itself.
