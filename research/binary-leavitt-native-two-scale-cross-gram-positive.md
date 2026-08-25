@@ -268,8 +268,8 @@ this scalar overlap.  A valid chained-center repair must therefore supply a
 different positive subcorner whose mass is not obtained as a spectral cut of
 this scalar Gram operator.
 
-The moving-arm Hecke coefficients themselves now exhibit the two target
-dyadic masses.  By `center-chain-hecke-arms-have-native-masses`, on the same
+The moving-arm Hecke coefficients themselves exhibit the two target dyadic
+masses.  By `center-chain-hecke-arms-have-native-masses`, on the same
 nonabelian character atom
 
 ```text
@@ -278,13 +278,21 @@ nonabelian character atom
 ```
 
 The index-four and index-eight values come from three explicit vanished
-unitriangular coordinates, not from an assumed selector tensor factor.  This
-does not yet close `(NCG1)`: Hilbert--Schmidt mass does not determine polar
-support rank or authenticate the two controlled label actions.  It does,
-however, reduce the remaining chained-arm question to a concrete spectral
-one—polarize these two named Hecke operators on one positive subcorner and
-control the mixed Pauli commutators—rather than searching for the dyadic
-fractions abstractly.
+unitriangular coordinates, not from an assumed selector tensor factor.  The
+spectral part is now also closed by
+`center-chain-hecke-polar-supports-are-nested-pauli-flags`: the two
+compressions are self-adjoint partial isometries with nested support
+projections of exactly those relative traces.  Their cross-Gram has relative
+mass `1/8`; its smaller support reduces the source Pauli pair, and its
+relative polar gauge has both mixed Pauli commutators exactly zero.
+
+Thus no finite spectral, polar-support, or Pauli-covariance question remains
+in this chained-arm candidate.  The sole missing input is the typed
+occurrence statement
+`center-chain-hecke-flags-authenticate-native-occurrences`: the Hecke maps
+must be identified with the actual stabilized transports for the two
+prescribed unequal-scale selector rows.  The correct support fractions do
+not by themselves make that identification.
 
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that

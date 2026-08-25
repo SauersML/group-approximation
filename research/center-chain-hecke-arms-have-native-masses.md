@@ -40,14 +40,17 @@ whose `(6,4)` and `(5,4)` matrix coordinates vanish.  Conjugation by
 character equals `chi`, so the finite-character Hecke formula gives `(CHA2)`.
 
 The numbers in `(CHA2)` are exactly the dyadic label fractions required by
-the two native selector rows.  This is not yet their authentication.  A
-general Hecke compression need not be a scalar multiple of a partial
-isometry, and its support trace is not determined by its Hilbert--Schmidt
-mass.  The remaining finite-coordinate question is whether the two
-compressions can be polarized on one positive subcorner so that their fixed
-packet actions become the controlled `1/4` and `1/8` selector labels while
-their relative polar gauge obeys the two mixed Pauli commutator estimates.
+the two native selector rows.  They are not, by themselves, an
+authentication: a general Hecke compression need not be a scalar multiple
+of a partial isometry, and its support trace is not determined by its
+Hilbert--Schmidt mass.  For these two named operators, however,
+`center-chain-hecke-polar-supports-are-nested-pauli-flags` now solves that
+spectral question completely.  Their squared absolute values are nested
+support projections of relative traces `1/4` and `1/8`; the smaller support
+reduces the source Pauli pair, and the relative polar gauge has both mixed
+Pauli commutators equal to zero.  The remaining question is only whether
+these exact Hecke flags are the prescribed stabilized occurrences of the
+two native selector rows.
 
 DERIVATION
 center-chain-hecke-mass-proof
-

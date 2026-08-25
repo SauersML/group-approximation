@@ -51,6 +51,19 @@ The vanishing admixture is absorbed by
 The route `sl3-large-prime-collapse-from-weak-ucp-stability` records the
 resulting conditional closure.
 
+The strictly narrower route
+`sl3-large-prime-collapse-from-hnn-matrix-range` uses only
+`sl3-large-prime-hnn-matrix-range-capture`: generator-level ucp matrix-range
+capture for lattice tuples that actually extend to canonical microstates of
+this HNN group.  Thus full weak ucp-stability is not the smallest remaining
+lemma on the large-prime edge; the selected matrix-range claim is.
+Its dual core is still smaller:
+`sl3-hnn-central-dual-gap-vanishes` asks only
+for exclusion of uniformly bounded Choi separators which asymptotically
+commute with the selected HNN letter.  Central-letter averaging proves that
+this restricted dual exclusion already implies the selected matrix-range
+claim.
+
 ## Attempts
 
 - **Exact face.**  Closed by the depth-free and robust coprime theorems;

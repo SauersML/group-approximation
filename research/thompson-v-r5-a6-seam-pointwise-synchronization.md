@@ -9,6 +9,8 @@ distinct_from:
   thompson-v-r5-uniform-common-pivot-centralizers: that false claim asks for bounded fillings of the individual escaping endpoint-centralizer loops; this permits one interacting R5 seam comparison and does not split it into separately filled centralizer corrections.
   a5-a4-overlap-has-two-seam-charges: that theorem shows why A4 restriction agreement alone is insufficient; this asks R5 to eliminate those two private seam directions quantitatively.
   bare-r5-a6-collision-does-not-synchronize-shared-labels: that exact five-dimensional countermodel shows that two local A5 packets plus the lone nonshared R5 collision do not control the shared contextual labels; this claim must additionally exploit a label-sensitive Bleak--Quick transport or split anchor coming from the fact that all occurrences are words in one approximate model.
+  common-pivot-r2-r3-data-preserve-a6-label-swap: that strengthens the five-dimensional firewall by adding exact contextual R2 arms and exact R3 binary refinements; this claim now specifically requires a genuinely shared label endpoint rather than a permutation-invariant common pivot.
+  finite-s6-selector-centralizer-pins-common-pivot-arm: that gives a positive fixed-packet alternative to literal endpoint sharing; this claim is completed by it only if the same three selector occurrences can be retained across both contextual charts.
 ---
 
 In the Bleak--Quick presentation of Thompson `V`, put
@@ -76,3 +78,16 @@ seam.  The concrete candidates in the Bleak--Quick presentation are R2,
 `(1 01)^(1 00)=(00 01)`, and R3,
 `(1 00)=(10 000)(11 001)`; R5 itself is only the disjoint-support commutator
 `[(000 010),(10 110)]=1` and cannot distinguish the two shared labels.
+
+The R2/R3 audit now has a sharp positive/negative boundary.  Merely adding a
+common pivot is still false: `common-pivot-r2-r3-data-preserve-a6-label-swap`
+extends the swap model by exact R2 arm transports on six points and exact R3
+binary splits on twelve points.  Conversely,
+`shared-endpoint-r2-r3-anchor-has-linear-seam-bound` proves that if the two
+contextual arms are transported to one literal common output, or share one
+literal coarse parent and complementary split child, their HS mismatch is at
+most the sum of the two relation defects.  Thus the remaining issue is the
+finite word-geometric claim
+`bleak-quick-a6-seam-exposes-shared-label-arm-anchor`: expose that same
+label-sensitive endpoint using boundedly many R1--R5 cells, without walking
+down the address tree or separating the endpoint centralizer gauges.
