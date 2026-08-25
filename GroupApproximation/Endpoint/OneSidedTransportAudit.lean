@@ -38,6 +38,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureQuotients
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureAnalysis
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureAnalysisTwo
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedModelSeparationConverse
+import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCoronaNormSeparation
 import GroupApproximation.Manuscript.OneSidedMFRadical.PartialClosureLeavitt
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerCoronaKazhdanOrder
 import GroupApproximation.Manuscript.OneSidedMFRadical.FaithfulCornerCoronaRepresentation
@@ -438,7 +439,7 @@ ordinary audit is what applies: these quantify over the manuscript's data in
 front, and the closed macro rejects any leading binder.  What a green build
 proves here is that no sentence endpoint reaches beyond `propext`,
 `Classical.choice` and `Quot.sound` -- in particular that none of them is
-resting on a `sorry`. -/
+resting on an unfinished proof placeholder. -/
 
 -- FaithfulCornerCoronaRepresentation
 #audit_axioms GroupApproximation.CStarState.universalGNSLinear_apply
@@ -736,3 +737,9 @@ resting on a `sorry`. -/
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoordinateGramRepresents
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerFinalContradiction
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedEventualInvertibilityAndPolarDistance
+
+-- The corona quotient-norm identity and the printed coordinate choice it
+-- justifies, which the diagonal construction of prop:mf-residual-calculus needs.
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormIsLimsup
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparation
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparationParagraph

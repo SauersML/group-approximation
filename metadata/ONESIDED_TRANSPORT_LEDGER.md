@@ -288,6 +288,9 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | Proof of `thm:normal-kazhdan`: the printed coordinate elements `b_n` represent the corona element `b` | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoordinateGramRepresents` | closed |
 | Proof of `thm:normal-kazhdan`, closing sentence: "This contradicts `s_0\in K\le D\le R_{\infty\to2}(G)`" | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCornerFinalContradiction` | closed |
 | Proof of `lem:stable-finite`: eventual invertibility of `x_n` and the `o(1)` polar distance | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedEventualInvertibilityAndPolarDistance` | closed |
+| The corona quotient-norm identity: the norm of a class is the `limsup` of the coordinate norms | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormIsLimsup` | closed |
+| Proof of `prop:mf-residual-calculus`: the printed far-out coordinate choice, retaining half the corona-norm separation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparation` | closed |
+| The printed choice together with its printed reason, as one closed proposition | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCoronaNormSeparationParagraph` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Known gaps inside carried rows
