@@ -46,6 +46,12 @@ theorem then gives full MF collapse of `Delta`.
   exact orthogonal Heisenberg pairs, but their pair relations occur at
   unbounded presentation area.  This is exact Clifford growth, not a bounded
   compiler.
+* **Finite literal conjugacy prototypes in a residually finite actor.**
+  `rf-conjugacy-difference-graphs-finitely-colorable`
+  supplies one finite quotient coloring, so this template cannot even produce
+  the required infinite-chromatic graph.  Bounded-area consequences must use
+  more than finitely many pure conjugacy differences, or the address actor
+  must escape that residual-finiteness argument.
 
 The next viable attack must construct a bounded-area orbit section directly,
 or replace representative coherence by a finite-coordinate selector whose
