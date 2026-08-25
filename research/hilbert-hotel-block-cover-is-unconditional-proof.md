@@ -2,7 +2,7 @@
 rg: 2
 id: hilbert-hotel-block-cover-is-unconditional-proof
 kind: route
-title: Both records are inhabited, so the endpoint theorem loses its arguments
+title: Both records are inhabited, yielding a closed Property-T-mediated endpoint
 target: hilbert-hotel-block-cover-is-unconditional
 requires: []
 artifacts:
@@ -10,8 +10,9 @@ artifacts:
   - GroupApproximation/Leavitt/HilbertHotelEndpoint.lean
 ---
 
-Machine-checked.  The chain is short because every step is already in the
-kernel-checked tree.
+Machine-checked and premise-free, but **not Property-`(T)`-free**.  The chain
+is short because every step is already in the kernel-checked tree; one of
+those steps is the normal-Kazhdan compression obstruction.
 
 **The generic endpoint.**  `hilbertHotel_finitelyPresented_endpoint` takes a
 `CoverInputs` and a `CoverBlockResiduals` and returns the whole profile ---
@@ -39,6 +40,10 @@ those two, so it has no arguments; the existence form
 `exists_finitelyPresented_kazhdan_full_mf_radical` packages it, and
 `Endpoint.hotelGroup_cdeMFResidual_eq_top` upgrades the corona statement to the
 literal Carrion--Dadarlat--Eckhardt residual.
+
+Accordingly, the empty Cairn prerequisite list certifies only that the
+Property-`(T)` proof is fully instantiated.  It does not certify the stronger
+requirement that Property `(T)` be absent from the proof.
 
 ## Why this is not the one-block cover restated
 

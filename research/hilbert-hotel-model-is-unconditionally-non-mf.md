@@ -2,7 +2,7 @@
 rg: 2
 id: hilbert-hotel-model-is-unconditionally-non-mf
 kind: claim
-title: The explicit matrix group E_16 over the binary Leavitt algebra is unconditionally non-sofic, non-MF, and equal to its own MF radical
+title: The explicit matrix group E_16 has a premise-free but Property-T-mediated non-MF proof
 distinct_from:
   hilbert-hotel-block-cover-is-unconditional: that claim is about the finitely presented two-block cover; this is about the model it covers, which is an explicit matrix group but only finitely generated, so the two endpoints are different groups with different profiles.
   hilbert-hotel-self-saturated-non-mf: that is a rank-20 Steinberg quotient whose inputs were never formalized; this is a concrete rank-16 elementary matrix group over a named ring, with every step in the kernel.
@@ -19,8 +19,9 @@ Let `R = L_(F_2)(1,2)` be the binary Leavitt algebra and
 Model := EL_16(R),
 ```
 
-the elementary subgroup of `GL_16(R)`, an explicit matrix group.  Then,
-unconditionally:
+the elementary subgroup of `GL_16(R)`, an explicit matrix group.  The current
+machine-checked proof has no declaration hypotheses, but it is **not**
+Property-`(T)`-free.  It proves:
 
 ```text
 Model is Kazhdan, finitely generated, infinite, nontrivial,
@@ -29,10 +30,13 @@ Model is not operator MF,
 coronaMFResidual Model = normMFResidual Model = cdeMFResidual Model = top.
 ```
 
-Every declaration is hypothesis-free: `Cover.not_isOperatorMF_model`,
+Every declaration is premise-free: `Cover.not_isOperatorMF_model`,
 `Cover.cdeMFResidual_model_eq_top`, `Endpoint.model_not_isSofic`,
 `Endpoint.model_full_profile`.  Nothing is stated relative to `CoverInputs` or
-`CoverResiduals`.
+`CoverResiduals`.  This premise-freeness must not be confused with a proof
+avoiding Property `(T)`: `Cover.modelCore` contains
+`gamma_hasKazhdanPropertyT`, and the MF-radical conclusion is obtained from
+the normal-Kazhdan compression theorem.
 
 The compression core is `Cover.modelCore`: `iota` is the corner embedding of
 `Gamma = E_4(R)` into the `16`-frame, the stable letter is `tauModel`, the mark
@@ -43,8 +47,12 @@ be taken to be `top`.
 
 ## What this does and does not settle
 
-It settles the **analytic** half outright: the obstruction needs no covering
-group, no imposed relator, and no open record.  What it does not give is
+It settles the **Property-`(T)`-mediated analytic** half outright: the
+obstruction needs no covering group, no imposed relator, and no open record.
+It does not settle
+`property-t-free-leavitt-full-mf-radical`, and it must not be cited as an
+unconditional non-MF proof in the stronger sense of avoiding Property `(T)`.
+It also does not give
 **finite presentability** --- `Model` is finitely generated and nothing here
 presents it finitely.  That is precisely why the cover layer exists, and the
 finitely presented endpoint is the separate group of

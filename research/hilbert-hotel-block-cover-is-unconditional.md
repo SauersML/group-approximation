@@ -2,7 +2,7 @@
 rg: 2
 id: hilbert-hotel-block-cover-is-unconditional
 kind: claim
-title: The two-block Hilbert-hotel cover is a finitely presented Kazhdan group equal to its own MF radical, with no open leaf
+title: The two-block cover has a premise-free but Property-T-mediated full MF-radical proof
 distinct_from:
   hilbert-hotel-self-saturated-non-mf: that claim is the rank-20 `St_20` quotient built from the lifted Whitehead word and a rank-five transport, and its inputs were never discharged in Lean; this is the rank-16 two-block cover over `E_16(L_2(F_2))`, and every record it consumes is inhabited, so the endpoint carries no hypothesis at all.
   normal-kazhdan-defect-non-mf: that is the general engine -- a normal Kazhdan subgroup inside a compression defect forces full MF radical; this is one specific group for which every hypothesis of that engine is discharged unconditionally.
@@ -22,15 +22,23 @@ G is not operator MF,
 cdeMFResidual G = top.
 ```
 
-and the proof of this carries **no hypothesis**: it is
+and the current proof carries **no declaration hypothesis**: it is
 `HilbertHotel.CoverBlock.exists_finitelyPresented_kazhdan_full_mf_radical`,
 whose witness is `HilbertHotel.CoverBlock.HotelGroup`, the two-block Shalom
 cover of the model `E_16(L_2(F_2))`.
+
+This is not a Property-`(T)`-free result.  Property `(T)` of the embedded
+corner is the rigidity input that turns the compression defect into MF
+invisibility.  The node records a closed instantiation of that theorem, not
+an alternative proof avoiding it.
 
 The two records the construction is stated against are both inhabited:
 `blockCoverInputs` from `HilbertHotel.Cover.coverInputs_nonempty`, and
 `coverBlockResiduals` from the four model-level facts of the block layer.  The
 block file's own "Open leaves" section reads "None."
+
+The absence of open record fields is unrelated to the separate open Cairn
+goal `property-t-free-leavitt-full-mf-radical`.
 
 ## Why the two-block cover and not the one-block one
 
