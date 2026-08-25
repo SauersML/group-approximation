@@ -351,6 +351,22 @@ Ioana--Spaas--Wiersma mechanism), per
   certificate.  The next exact target is to correlate these positive
   certificates across growing reservoir depths, or with one low-relator
   vector inside each native packet.
+- **The positive packet certificates have an exact gap-or-degeneration
+  endpoint (2026-08-25).**
+  `positive-packet-witness-gap-endpoint`
+  centers each native witness on the fixed Banach space of unit-zero maps.
+  The dimension-free norm bound from the positive conversion is then enough:
+  if the normalized affine gaps have a positive tail lower bound, a weak-star
+  limit annihilates the whole relator ideal and gives a quotient-level
+  nonliftability separator.  Conversely, an exact local ucp section forces
+  every such bounded witness sequence to have gap tending to zero.  Thus no
+  compatibility of the moving Choi matrices is additionally required; the
+  remaining compactness datum is exactly scalar gap degeneration.  An
+  explicit `C^2 -> M_2` example with reservoir `C I_2` has a positive affine
+  witness of gap `2` while every reservoir vector has energy `1`, proving
+  that positivity alone cannot correlate the certificate with a soft
+  relator vector.  Any triangle-specific completion must use a new identity
+  coupling the native relator coefficients to the affine Choi defect.
 - **Simultaneous balancing is necessarily macroscopic on a tree face
   (2026-08-24).**  The one-face gap is not an artifact of requiring the
   closing-face section to land in `C^*(E)`.
