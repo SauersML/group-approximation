@@ -59,5 +59,14 @@ arXiv:2012.07940.  It also explains why the exact compact-coordinate no-go in
 obstruction: `(FJS3)` is allowed to choose a noncanonical embedding `pi` and
 non-Cartan implementers `U_s`.
 
+## Combination audit
+
+`separate-return-models-do-not-force-a-common-base` proves that the separately
+valid cyclic spatializations cannot be combined formally by pointwise
+tensoring, scalar free products, or literal regular-orbit direct sums.
+Pointwise tensoring is not linear; scalar free products keep separate copies
+of the base; and regular-orbit sums require Folner weights.  Thus a positive
+proof still needs structure special to `N_q` and its return automorphisms.
+
 DERIVATION
 free-lattice-joint-spatialization-proof
