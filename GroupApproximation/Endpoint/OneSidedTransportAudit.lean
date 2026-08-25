@@ -1,5 +1,6 @@
 import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Analysis.MaximalCStarKazhdanProjection
+import GroupApproximation.Analysis.StrictCompressionFromPrinted
 import GroupApproximation.Manuscript.OneSidedMFRadical.LiteralMFClosure
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefinitions
 import GroupApproximation.Manuscript.OneSidedMFRadical.ResidualCalculus
@@ -26,6 +27,11 @@ import GroupApproximation.Leavitt.BinaryLeavittSimple
 import GroupApproximation.Leavitt.ExchangePrerequisite
 import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
 import GroupApproximation.Leavitt.CongruenceSubgroups
+import GroupApproximation.Leavitt.ExchangeRefinement
+import GroupApproximation.Leavitt.RowAnnihilatorTransvection
+import GroupApproximation.Leavitt.PreusserSandwichStep
+import GroupApproximation.Leavitt.PreusserAssembly
+import GroupApproximation.Steinberg.GeneralRankElementaryPropertyT
 import GroupApproximation.Manuscript.OneSidedMFRadical.HeadlineTheorem
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations
 import GroupApproximation.Manuscript.OneSidedMFRadical.CountableNonMF
@@ -174,6 +180,8 @@ which reports the closure without the binder check:
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanProjectionOrder
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder
+#audit_closed_axioms GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark
+#audit_closed_axioms GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportPackage
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionGroupKazhdanTransport
@@ -272,6 +280,21 @@ only place their axiom closure is checked. -/
 #audit_axioms GroupApproximation.BinaryLeavitt.center_eq_bot
 #audit_axioms GroupApproximation.BinaryLeavitt.central_units_trivial
 #audit_axioms GroupApproximation.BinaryLeavitt.hasRightExchange
+#audit_axioms GroupApproximation.ExchangePrerequisite.hasFiniteRightExchangePartitions_of_hasRightExchange
+#audit_axioms GroupApproximation.ExchangePrerequisite.exists_orthogonal_refinement
+#audit_axioms GroupApproximation.BinaryLeavitt.hasFiniteRightExchangePartitions
+#audit_axioms GroupApproximation.RowAnnihilator.elGen_mem_of_row_annihilator
+#audit_axioms GroupApproximation.PreusserSandwich.prop21Entry_of_prop20
+#audit_axioms GroupApproximation.PreusserSandwich.prop21DiagDiff_of_prop20
+#audit_axioms GroupApproximation.PreusserAssembly.rowAnnihilatorTransvection
+#audit_axioms GroupApproximation.PreusserAssembly.prop21Entry
+#audit_axioms GroupApproximation.PreusserAssembly.prop21DiagDiff
+#audit_axioms GroupApproximation.PreusserAssembly.preusser_sandwich
+#audit_axioms GroupApproximation.PreusserAssembly.isSimpleGroup_via_preusser
+#audit_axioms GroupApproximation.PreusserAssembly.isSimpleGroup_elementaryGroup_binaryLeavitt_via_preusser
+#audit_axioms GroupApproximation.BlockElementary.blockElementary_exists_rootSet_isKazhdan
+#audit_axioms GroupApproximation.BlockElementary.finiteTypeCharTwoElementary_hasKazhdanPropertyT
+#audit_closed_axioms GroupApproximation.BlockElementary.charTwoGeneralRankElementaryPropertyT
 
 -- The four new Section 6 displays and generic root extraction support.  The
 -- exact coefficient ring has closed single-sandwich division; coefficient
@@ -288,10 +311,10 @@ only place their axiom closure is checked. -/
 #audit_axioms GroupApproximation.rootDetection_of_leavittFamily
 
 -- The two congruence-level endpoints, the full-linear-group centre
--- computation, and the optional reduction of simplicity to Preusser's
--- sandwich.  That final support theorem retains the general upper sandwich as
--- a visible leading hypothesis; the exact manuscript simplicity theorem above
--- instead uses the unconditional direct root-extraction route.
+-- computation, and the generic reduction of simplicity to Preusser's
+-- sandwich.  `PreusserAssembly` below discharges that generic interface; the
+-- exact manuscript simplicity theorem above also has the independent direct
+-- root-extraction route.
 #audit_axioms GroupApproximation.relativeElementary_top
 #audit_axioms GroupApproximation.congruenceSubgroup_bot
 #audit_axioms GroupApproximation.center_eq_bot_of_central_units_trivial

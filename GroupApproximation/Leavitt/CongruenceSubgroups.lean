@@ -11,11 +11,13 @@ import Mathlib.Tactic.NoncommRing
 
 The manuscript's five-sentence proof of Proposition `prop:simple` quotes
 Preusser's normal-subgroup theorem for `GL_n` and then runs an elementary case
-split on the level ideal.  This file formalizes that cited route up to its
-upper-sandwich hypothesis: the two objects the sandwich is stated with, the two
-endpoints of the case split, and the manuscript's own two-step computation of
-the centre of `GL_ι(R)`.  The exact proposition is proved unconditionally
-elsewhere by the direct root-extraction route in `DiagonalNormalExtraction`.
+split on the level ideal.  This file isolates the generic upper-sandwich
+hypothesis and proves the rest of that route: the two objects the sandwich is
+stated with, the two endpoints of the case split, and the manuscript's own
+two-step computation of the centre of `GL_ι(R)`.  `PreusserAssembly`
+discharges the hypothesis for normal subgroups of `EL_ι(R)`; the direct
+root-extraction route remains independently available in
+`DiagonalNormalExtraction`.
 
 ## The two objects
 
@@ -54,9 +56,10 @@ Leavitt algebra the input is available inside this library.
 
 `isSimpleGroup_of_preusser_sandwich` assembles the four pieces.  It carries a
 single explicit hypothesis, `hpreusser`, which is Preusser's normal-subgroup
-theorem in the exact shape the printed proof quotes it.  The general upper
-sandwich therefore remains visible and unformalized in this optional route.
-It is not an assumption of the repository's final result:
+theorem in the exact shape the printed proof quotes it.  That generic interface
+is discharged in `PreusserAssembly` from the exchange refinement and the
+row-annihilator calculation.  It is not an assumption of the repository's
+final result:
 `DiagonalNormalExtraction.isSimpleGroup_of_leavittFamily_root_extraction`
 proves the needed simplicity directly from the Leavitt-family inputs.
 -/

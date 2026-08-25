@@ -8,11 +8,10 @@ Proposition `prop:simple` of `non_mf_groups_exist.tex` asserts that
 `H = EL₁₂(L_{𝔽₂}(1,2))` is simple.  The manuscript gets that from Preusser's
 normal-subgroup theorem (the sandwich classification
 `EL_n(R, I) ≤ N ≤ C_n(R, I)`) together with `Z(R) = 𝔽₂`.  The Preusser
-upper-sandwich theorem itself is not formalized in this repository.  The
-coefficient-ring centre and its central units are formalized separately in
-`BinaryLeavittSimple`, while `DiagonalNormalExtraction` closes the manuscript's
-exact simplicity claim by a direct exhaustive root-extraction argument that
-does not require the upper sandwich.
+upper-sandwich route is formalized in `PreusserAssembly`.  The coefficient-ring
+centre and its central units are formalized separately in `BinaryLeavittSimple`,
+while `DiagonalNormalExtraction` supplies a second proof of the manuscript's
+exact simplicity claim by direct exhaustive root extraction.
 
 What *is* in the repository is the strongest possible statement **after** a
 root has been detected: `elementaryGroup_normal_eq_top_of_elGen_mem`
@@ -69,9 +68,8 @@ their own: the double-commutator theorem in this file asks the caller to choose
 indices and coefficients satisfying explicit vanishing and nonvanishing
 conditions.  For a Leavitt family, those choices and the remaining case split
 are supplied in `ElementaryTransvectionExtraction` and
-`DiagonalNormalExtraction`.  Thus the general Preusser upper sandwich remains
-an optional, separately recorded route; it is not a missing premise of the
-unconditional manuscript theorem.
+`DiagonalNormalExtraction`.  The independent Preusser upper-sandwich route is
+assembled in `PreusserAssembly`; neither route is a premise of the other.
 -/
 
 namespace GroupApproximation
@@ -397,7 +395,7 @@ theorem conj_commutator_eq_of_commute {G : Type*} [Group G] (A t z : G)
 def elMat (g : elementaryGroup ι R) : Matrix ι ι R :=
   ((g : (Matrix ι ι R)ˣ) : Matrix ι ι R)
 
-theorem elMat_mul (g h : elementaryGroup ι R) :
+@[simp] theorem elMat_mul (g h : elementaryGroup ι R) :
     elMat (g * h) = elMat g * elMat h := rfl
 
 theorem elMat_mul_inv (g : elementaryGroup ι R) : elMat g * elMat (g⁻¹) = 1 :=
@@ -406,10 +404,10 @@ theorem elMat_mul_inv (g : elementaryGroup ι R) : elMat g * elMat (g⁻¹) = 1 
 theorem elMat_inv_mul (g : elementaryGroup ι R) : elMat (g⁻¹) * elMat g = 1 :=
   Units.inv_mul _
 
-theorem elMat_elGen (i j : ι) (hij : i ≠ j) (a : R) :
+@[simp] theorem elMat_elGen (i j : ι) (hij : i ≠ j) (a : R) :
     elMat (elGen i j hij a) = 1 + Matrix.single i j a := rfl
 
-theorem elMat_elGen_inv (i j : ι) (hij : i ≠ j) (a : R) :
+@[simp] theorem elMat_elGen_inv (i j : ι) (hij : i ≠ j) (a : R) :
     elMat ((elGen i j hij a)⁻¹) = 1 - Matrix.single i j a := rfl
 
 theorem elMat_injective :
@@ -645,7 +643,7 @@ theorem normal_eq_top_of_double_commutator
 
 /-! ## The centre -/
 
-theorem elMat_one : elMat (1 : elementaryGroup ι R) = 1 := rfl
+@[simp] theorem elMat_one : elMat (1 : elementaryGroup ι R) = 1 := rfl
 
 /-- Off-diagonal entries of a matrix commuting with every elementary matrix
 vanish. -/
