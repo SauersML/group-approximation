@@ -62,8 +62,8 @@ weakening consumed by the HNN marked word.
   viable arithmetic transfer inequality must see that shared root carrier,
   not just the five raw rank-one variables.
 
-- **Literal root additivity kills that smallest enemy, but only that
-  enemy.** `root-additivity-eliminates-the-s3-rank-one-leak` performs the
+- **Literal root additivity kills the `S_3` enemy, but an exact `S_4` leak
+  remains.** `root-additivity-eliminates-the-s3-rank-one-leak` performs the
   complete `S_3` case analysis after substituting
   `X=a^2`, `Y=b^(-2)`, `C=a^(-1)b a^(-1)` and requiring `U` to centralize
   `a,b`. If `U` is a transposition, its two-element centralizer makes the
@@ -71,10 +71,14 @@ weakening consumed by the HNN marked word.
   three-cycle, its centralizer is `A_3`; a noncentral `H` would invert that
   cyclic group, making the right side of the denominator identity lie in
   `A_3`, impossible for a transposition. Thus `[U,H]=1` in every `S_3`
-  realization. This neither proves a matrix inequality nor rules out larger
-  finite groups. It says the next falsification test should first search the
-  two-root rank-one packet in larger finite groups; rank-two Steinberg gluing
-  is justified only if that stronger packet still leaks.
+  realization. `literal-root-additivity-rank-one-packet-has-s4-leak` closes
+  the larger-finite-group test negatively: with
+  `a=U=(2 3 4)`, `b=a^(-1)`, and `H=(1 2)(3 4)`, the literal denominator
+  identity holds while `[U,H]` is nonidentity and hence has regular trace
+  zero. Therefore root additivity plus the rank-one packet still cannot imply
+  a matrix inequality. Any viable repair must use genuinely rank-two
+  Steinberg gluing or another arithmetic relation absent from that `S_4`
+  carrier.
 
 - **The bottom two-primary root face satisfies an explicit HS transfer
   inequality.** `involutory-opposite-root-face-obeys-projective-transfer`

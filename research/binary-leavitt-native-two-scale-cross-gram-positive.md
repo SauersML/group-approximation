@@ -8,10 +8,10 @@ distinct_from:
   affine-leavitt-source-saturated-reynolds-checksum: that asks for a source-sized adjoint Reynolds overlap in an odd affine packet; this permits any fixed positive direct polar Gram overlap in the binary packet.
 ---
 
-**OPEN SCALAR HOLONOMY CLAIM.**  On the positive-density active core of a
-binary-Leavitt Steinberg microstate, exactify the fixed depth-one and
-next-refinement Pauli packets and stabilize their two scale-changing
-coefficient transports to contractions
+**NORMALIZED-HS SCALAR HOLONOMY CLAIM.**  On the positive-density active core
+of a canonical-trace binary-Leavitt Steinberg microstate, exactify the fixed
+depth-one and next-refinement Pauli packets and stabilize their two
+scale-changing coefficient transports to contractions
 
 ```text
 S_1,S_2 : P_source H -> P_target H.
@@ -172,6 +172,24 @@ because its rectangular completions need not be restrictions of two full
 unitaries on the marked source projection.  This is precisely the typing
 loophole realized by the existing Morita model.
 
+There is a broader finite-character version of the same test.
+`binary-native-selector-atom-hecke-dichotomy` adjoins the commuting
+nine-root packet to the marked root and cuts by one character atom.  If the
+two actual selector contractions are restrictions `g_i e_chi` of their
+fixed group words, then the cross-Gram is computed exactly by
+
+```text
+I=H intersect (g_1^(-1)g_2)H(g_1^(-1)g_2)^(-1).
+```
+
+Compatible transported characters give `(NCG1)` with
+`gamma>=2^(-9)`; incompatible characters make the Gram exactly zero.  This
+removes every multiplicity-reservoir ambiguity after occurrence typing, but
+does not supply that typing or the relative-action calculation.  In
+particular the proposed tridiagonal sign atom is invariant under reversal,
+not under the adjacent-swap three-cycle, so its overlap cannot be assumed
+without computing the actual relative selector action.
+
 There is nevertheless now a fixed nonadaptive common carrier available for
 an occurrence compiler.  `seventeen-root-star-has-marked-triple-overlap`
 proves that the prescribed roots `x_42(q)` and `x_52(q)` have triple overlap
@@ -208,14 +226,26 @@ coefficient triangles while leaving it absent.  The two-oriented version
 assumes an even stronger input, namely one literal hidden gauge projection
 shared by both returns.
 
-## Direct hyperlinearity endpoint
+The adjacent-prefix braid identifies why a purely relational repair cannot
+compare the unequal controlled label factors.  By
+`unequal-label-ranks-forbid-relational-reservoir-conjugacy`, an exact
+separated tensor relation which conjugates the reservoir factors would also
+conjugate the `1/4` and `1/8` label involutions, which is impossible.
 
-Although this claim also feeds the property-`(T)`-free MF compiler, its norm
-and density quantifiers are already the ones needed for hyperlinearity.  In a
-canonical-trace microstate of `St_20(L_2(F_2))`, the fixed nonzero involutory
-root mark has a nontrivial spectral carrier of trace `1/2+o(1)`.  Applying
-`(NCG1)` on that carrier, the established cross-Gram cutoff, mixed-Pauli
-gauge lock, and affine rank floor give a fixed normalized-HS relator defect.
-Thus `nonhyperlinear-from-binary-leavitt-native-cross-gram` sends this single
-open scalar holonomy claim directly to `non-hyperlinear-group`; no
-operator-norm return row, MF radical, or Property `(T)` argument intervenes.
+The attempted same-center closure is invalidated by
+`same-center-whitehead-gram-is-not-native-selector-gram`.  Compressing the
+two Whitehead words to their common reducing carrier makes both maps
+unitaries, so their full Gram equals the carrier trace for the tautological
+reason `S_m^*S_m=F`.  Their proved label actions are still the two
+one-quarter adjacent swaps.  No word in that calculation authenticates the
+separate one-eighth controlled selector or makes it inherit the second
+reservoir gauge.  Consequently the common carrier and braid are real
+progress, but they do not close `(NCG1)`.
+
+## Norm scope
+
+The claim itself is normalized-Hilbert--Schmidt and is meant to apply to
+canonical-trace microstates.  Operator-norm packet exactification may be used
+in the separate MF-radical lane, but it cannot serve as the occurrence
+authentication here.  A valid route must supply its own HS estimate on the
+actual selector occurrences.

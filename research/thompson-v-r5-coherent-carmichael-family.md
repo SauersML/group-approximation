@@ -86,6 +86,21 @@ use their simultaneous realization as literal conjugates of the one fixed
 word `U(b)` in a model of the whole Bleak--Quick presentation, rather than
 independent context gauges.
 
+There is also no logical weakening merely from asking for the family instead
+of the marked-word estimate.  By
+`thompson-v-carmichael-compiler-is-linear-mark-collapse`, this claim is
+equivalent to the linear bound
+
+```text
+||U(b)-I||_2 <= K def_R(U).
+```
+
+The forward implication is the existing compact-packing collapse.  For the
+reverse implication take every `W_i=I`: the cube relator controls `B^3-I`,
+and `B^4-I=B(B^3-I)+(B-I)` controls every Carmichael edge.  Thus a proposed
+uniform synchronization proof must contain genuine marked-word collapse; the
+unbounded-family language alone does not make the endpoint easier.
+
 The tempting common-frame subroute is now closed negatively.
 `finite-mark-centralizer-commutator-area-is-proper` proves that the individual
 endpoint corrections in that reduction have filling area tending to infinity

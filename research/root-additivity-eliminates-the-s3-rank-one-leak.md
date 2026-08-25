@@ -40,7 +40,9 @@ two opposite-root variables and `U` centralizes those variables.
 This is only a smallest-enemy exclusion. It does **not** say root additivity
 suffices in arbitrary finite groups or matrices, and it does not yet use a
 genuine rank-two Steinberg relation. The next exact falsification target is
-therefore `(RAS1)--(RAS2)` in larger finite groups; only after that packet
-survives should one add the rank-two shared-root identity
-`a=[x_12(1),x_23(1)]` (and its opposite-root mate) on the same carrier.
-
+now closed negatively: `literal-root-additivity-rank-one-packet-has-s4-leak`
+gives an exact `S_4` realization of `(RAS1)--(RAS2)` with `[u,h] != 1` and
+regular trace zero. Thus the `S_3` exclusion does not extend dimension-freely;
+the next viable packet must add genuinely new data such as the rank-two
+shared-root identity `a=[x_12(1),x_23(1)]` (and its opposite-root mate) on the
+same carrier.

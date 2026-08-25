@@ -62,4 +62,12 @@ implementers of the same full matrix-algebra automorphism differ by a
 unitary in its commutant, proving `(SCW4)`.  A two-qubit swap has a
 three-dimensional positive symmetric space and a one-dimensional negative
 antisymmetric space.  Tensoring with the untouched qubit gives negative
-dimension `2` out of `8`, proving `(SCW5)`.
+dimension `2` out of `8`; this is the transport-label calculation recorded
+in the claim.
+
+Finally `W_m` commutes with both spectral involutions defining `F`, so its
+compression to `F` is a unitary.  Hence `S_m^*S_m=S_mS_m^*=F`, and inserting
+this twice gives `(SCW5)`.  Removing the fixed adjacent swaps from `(SCW4)`
+leaves `V_1^*V_2` in the full Pauli commutant.  This is a statement about the
+two one-quarter transport labels; it does not attach either reservoir factor
+to the separately required one-eighth controlled selector.

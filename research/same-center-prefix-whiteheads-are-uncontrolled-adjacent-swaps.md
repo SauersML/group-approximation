@@ -7,7 +7,7 @@ artifacts:
   - research/same-center-prefix-whitehead-swap-proof.md
 distinct_from:
   marked-root-star-carries-three-anchored-cells: that uses three distinct commuting q-center roots to place the coefficient factorizations on one carrier; this uses one common q-center root and computes the exact label action of the adjacent partial-Whitehead transports.
-  binary-leavitt-native-two-scale-cross-gram-positive: that needs native selector label fractions one quarter and one eighth; this proves that the most direct common-center transport construction has label fractions one quarter and one quarter.
+  binary-leavitt-native-two-scale-cross-gram-positive: that needs the cross-Gram and mixed-Pauli estimates for the two actual selector transports; this proves that the most direct common-center construction has two one-quarter transport labels and does not authenticate the one-eighth selector occurrence.
 ---
 
 Put `R=L_(F_2)(1,2)`, `q=s_1t_1`, and, for `m=1,2,3`,
@@ -68,19 +68,36 @@ rho(W_2)|_F=SWAP_(2,3) tensor V_2.                     (SCW4)
 ```
 
 If the chosen elementary lifts are involutions, then the `V_m` are
-involutions.  In either case the two fixed label actions are ordinary
-adjacent swaps.  Each has a two-dimensional negative eigenspace in the
-eight-dimensional label factor, hence negative fraction `1/4`.  Thus this
-literal common-carrier construction produces label fractions
+involutions.  In either case the two fixed **transport** label actions are
+ordinary adjacent swaps.  Each has a two-dimensional negative eigenspace in
+the eight-dimensional label factor, hence negative fraction `1/4`.
+
+This `1/4,1/4` calculation is not the selector-rank pair.  The controlled
+selector groupifications required downstream have separate fixed label
+factors `C_(1/4)` and `C_(1/8)`.  No displayed word identity proves that
+those controlled rows inherit the `V_1,V_2` appearing in `(SCW4)`.
+
+Indeed, after the fixed packet relabelings used by the selector rows, put
 
 ```text
-(q_1,q_2)=(1/4,1/4),                                  (SCW5)
+S_m=F rho(W_m) F : FH -> FH.
 ```
 
-not the native `(1/4,1/8)` pair required by the two-scale selector
-compiler.  A successful second row must contain a genuinely controlled
-three-bit incidence; merely shifting the common-center prefix factorization
-one level deeper cannot close `(NCG1)`.
+Because both `W_m` commute with the two defining involutions of `F`, these
+are unitaries on `FH`, and therefore
+
+```text
+tau(S_1^*S_2S_2^*S_1)=tau(F).                         (SCW5)
+```
+
+After removing the two canonical adjacent swaps, the relative unitary is
+`V_1^*V_2` in the common three-qubit Pauli commutant.  Equation `(SCW5)` is
+nevertheless only the tautological Gram of two full unitaries reducing the
+same carrier.  By
+`same-center-whitehead-gram-is-not-native-selector-gram`, it does not provide
+the native unequal-scale selector cross Gram.  A successful second row still
+needs a genuinely controlled three-bit occurrence or another nonseparated
+matrix-only authentication.
 
 No Property T, stability input, or literature theorem is used.
 
