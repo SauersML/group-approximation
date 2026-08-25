@@ -41,6 +41,22 @@ M_i^7 tensor D_i^7=1 tensor D_i+o_2(1),               (GMC3)
 while the literal elementary-group relation gives the identity.  Since
 `D_i^2=1`, conclude `D_i=1+o_2(1)`.
 
+Here **same** must mean equality in the fixed Hecke reservoir frame, not
+merely that the seven gauges are transported or unitarily conjugate copies
+of one involution.  By
+`moving-order-seven-stage-gauges-have-coboundary-drift`, the
+natural moving-frame telescope otherwise produces
+
+```text
+D_(i,6)...D_(i,0)
+```
+
+and this product can be the identity for seven conjugate nontrivial
+involutions.  Equivalently, the construction must prove asymptotic
+commutation of the initial discrepancy with the reservoir holonomy, or an
+equally strong fixed-frame synchronization theorem, before `(GMC3)` is
+available.
+
 The initial cut `E_0` must retain the two unequal native selector meanings,
 the common-source Hecke factorization, and the mixed Pauli gauge locks.  It
 must have a fixed positive fraction of the active core.  Intermediate cuts
@@ -58,12 +74,29 @@ canonical trace, or literature theorem is permitted.
 - The tautological orbit choice `E_(i,k)=T_i^kE_0T_i^(-k)` has zero
   transition boundary, but it does not authenticate the coefficient label at
   any intermediate stage and allows seven independent multiplicity gauges.
+  `moving-order-seven-stage-gauges-have-coboundary-drift` gives an exact
+  finite-packet model of this ambiguity: even with zero leakage and the
+  initial chart fixed, intermediate chart changes can realize
+  `(D_0,D_1,D_2,...,D_6)=(V,V,1,...,1)`.  The needed new input is therefore
+  a named family of full-EL20 coefficient intertwiners fixing all six chart
+  transitions, not merely seven separate occurrence typings.
 - Saturating one signed-Hecke cut under both heads cannot work: the exact
   EL20 commutator identity forces every such common reducing cut to be zero.
 - The fixed marked/Fano atom is a genuine finite packet, but on that packet
   both selector scales are `1/1`; it is orthogonal to the signed source and
   cannot retain the unequal selector meanings needed by the decoder.
+- Moving through the nonconstant Fano orbit does not repair the typing.
+  `fano-moving-packet-retains-actor-holonomy` tensors the full seven-pair
+  Schrodinger packet with the regular representation of its finite actor
+  group.  All moving boundaries vanish and the signed source has positive
+  mass, but the common reservoir return is an arbitrary order-seven actor
+  holonomy rather than the native/Hecke involution `D_i`.
 - What remains is a coefficient-sensitive growing atlas which retypes every
   transition while transporting one multiplicity involution around the
-  whole seven-cycle. No construction or finite countermodel is currently
-  known.
+  whole seven-cycle in the **fixed Hecke frame**.  A transported-conjugacy
+  construction is not enough: the moving-stage gauge fence gives an exact
+  seven-dimensional reservoir in which all moving boundaries vanish, all
+  stages have the right label matrix, and all gauges are conjugates of one
+  involution, but their norm product is one while the involution is
+  nontrivial.  No construction forcing the additional holonomy commutation
+  is currently known.
