@@ -27,7 +27,7 @@ u z u^(-1)=x_ij(a),     a!=0,     {i,j} disjoint {1,3}, (RTG2)
 then
 
 ```text
-tau(S_1^*S_2S_2^*S_1) >= tau(P)/16.                  (RTG3)
+tau(S_1^*S_2S_2^*S_1) >= tau(P)/4.                   (RTG3)
 ```
 
 The same statement holds with an `o(1)` loss for rounded involutions and

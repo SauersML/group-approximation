@@ -213,7 +213,7 @@ binary-Leavitt double commutator, the output commutes with both conjugating
 roots, so `commuting-double-commutator-has-direct-mark-overlap` makes all four
 factor overlaps equal.  Every nonzero coefficient in a root position
 disjoint from the marked indices—canonically `x_42(a)`—therefore puts at
-least `1/16` of its own mass, and at least `1/64` of the marked mass, directly
+least `1/4` of its own mass, and at least `1/16` of the marked mass, directly
 in the original marked carrier, robustly for matrix microstates.  This
 removes the conjugate-selection ambiguity on the disjoint root rectangle.
 It still does not force two native root slices to meet each other inside the
@@ -225,7 +225,7 @@ This direct floor also yields a concrete terminal interface.
 energy of two marked-root restrictions `g_1P_z,g_2P_z` as the overlap between
 `P_z` and its translate by `g_1^(-1)g_2`.  If that relative word conjugates
 `z` to a nonzero marked-index-disjoint root such as `x_42(a)`, the new direct
-floor proves `(NCG1)` with `gamma=1/16`.  What remains is therefore an exact
+floor proves `(NCG1)` with `gamma=1/4`.  What remains is therefore an exact
 occurrence-typing question: the two native stabilized selector maps must be
 those full-unitary restrictions.  The rectangular countermodel shows that
 coefficient-path equality without this typing is insufficient.

@@ -25,7 +25,7 @@ from `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` therefore
 gives
 
 ```text
-tau(P rho(u)P rho(u)^*) >= tau(P)/16,                  (RTP2)
+tau(P rho(u)P rho(u)^*) >= tau(P)/4,                   (RTP2)
 ```
 
 which proves `(RTG3)`.  Fixed-word telescoping, the robust direct-overlap

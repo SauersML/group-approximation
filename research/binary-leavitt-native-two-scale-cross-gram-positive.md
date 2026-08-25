@@ -59,7 +59,7 @@ unitaries and
 (g_1^(-1)g_2) z (g_1^(-1)g_2)^(-1)=x_42(a),    a!=0,   (NCG1a)
 ```
 
-then `(NCG1)` holds with `gamma=1/16`.  Consequently the scalar estimate is
+then `(NCG1)` holds with `gamma=1/4`.  Consequently the scalar estimate is
 finished once this root-valued relative-word typing is authenticated for the
 actual selector occurrences.  A relative identity for unrelated unitary
 completions does not qualify.
@@ -156,10 +156,10 @@ their own prescribed common target.
 Normal saturation now supplies a direct common ambient carrier, but not yet
 the required mutual overlap.  In the uniform binary-Leavitt double
 commutator the output commutes with both conjugators, so
-`commuting-double-commutator-has-direct-mark-overlap` puts at least `1/16` of
+`commuting-double-commutator-has-direct-mark-overlap` puts at least `1/4` of
 every nonzero `x_42(a)` output root carrier, and every marked-index-disjoint
 Weyl translate, directly inside the original marked carrier.  Two such
-slices may nevertheless be disjoint while each occupies only `1/64` of the
+slices may nevertheless be disjoint while each occupies only `1/16` of the
 marked mass.  Moreover, these root spectral slices are not yet the prescribed
 selector transport Grams.  Thus the result removes the conjugate-selection
 ambiguity on the disjoint root rectangle and provides a canonical ambient

@@ -56,7 +56,7 @@ let `p_a` be the active projection of `x_42(a)` and let `p_q` be that of
 conjugating roots, so
 
 ```text
-tau(p_a p_q) >= tau(p_a)/16 >= tau(p_q)/64.            (URR5)
+tau(p_a p_q) >= tau(p_a)/4 >= tau(p_q)/16.             (URR5)
 ```
 
 in an exact finite-dimensional representation.  For rounded involutions in

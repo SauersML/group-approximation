@@ -13,14 +13,14 @@ Let `A,B,z,r` be self-adjoint involutions in a finite tracial von Neumann
 algebra.  Suppose
 
 ```text
-r=[[A,z],B],                    [r,A]=[r,B]=1,
+r=[[A,z],B],                    [r,A]=[r,B]=[r,z]=1,
 P=(1-z)/2,                     Q=(1-r)/2.              (DCO1)
 ```
 
 Then
 
 ```text
-tau(QP) >= tau(Q)/16.                                  (DCO2)
+tau(QP) >= tau(Q)/4.                                   (DCO2)
 ```
 
 The same conclusion is robust: if the double-commutator identity and the two
@@ -28,7 +28,7 @@ commutations hold up to `o(1)` in normalized Hilbert--Schmidt norm for
 rounded involutions, then
 
 ```text
-tau(QP) >= tau(Q)/16-o(1).                             (DCO3)
+tau(QP) >= tau(Q)/4-o(1).                              (DCO3)
 ```
 
 Unlike a generic normal-generation rank comparison, `(DCO2)` names the
