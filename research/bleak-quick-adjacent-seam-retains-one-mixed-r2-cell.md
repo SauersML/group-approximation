@@ -65,3 +65,20 @@ conjugate of the displayed R2 relator when their private conjugator words
 differ.  The next attack must cancel those two conjugator boundaries inside
 one bounded diagram; separately transporting either endpoint pays the known
 unbounded centralizer-area cost.
+
+The boundary calculation is now exact.  If `t_0,t_1` are the two transported
+arms and `d=t_1t_0^(-1)`, then
+`mixed-r2-boundary-is-one-finite-mark-centralizer-commutator` rewrites the
+mixed triangle, modulo one private R2 cell, as the commutator of `d` with the
+first input arm.  After conjugating that arm to a fixed prefix
+transposition, finite-mark Schreier properness rules out every construction
+whose relative corrections escape.  This invalidates
+`separate-endpoint-transport-closes-mixed-r2-occurrence`.
+
+The same calculation leaves the genuinely interacting local route alive.
+When the entire adjacent seam is one conjugate of a fixed depth-three
+diagram, the normalized correction is fixed rather than escaping, so the
+properness lower bound is only a constant.  The remaining task is therefore
+exactly a fixed local word audit: find the null mixed boundary before the
+private gauges are separated, or prove that the normalized finite correction
+itself is nontrivial.

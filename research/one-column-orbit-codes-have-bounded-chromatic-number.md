@@ -11,7 +11,7 @@ distinct_from:
   rf-conjugacy-difference-graphs-finitely-colorable: that colors pure conjugacy-difference graphs using a finite quotient of a residually finite actor; this uses finite-order centralizer-area properness and does not assume residual finiteness.
 ---
 
-**ESTABLISHED ONE-ORBIT CHROMATIC FIREWALL.**  Let
+**ESTABLISHED ONE-ORBIT CHROMATIC FIREWALL.** Let
 `Gamma=<S|R>` be finitely presented and let `beta` represent a nontrivial
 finite-order element.  Suppose a family of finite graphs `G_n` carries words
 `c_v,h_v,b_v` and constants `A,B` with the following properties:
@@ -56,7 +56,7 @@ many edges, hence average degree at most `2D`.  It therefore has a vertex of
 degree at most `2D`; greedy deletion and reinsertion gives
 
 ```text
-chi(G_n) <= Delta(G_n)+1 <= 2D+1.                       (OCF5)
+chi(G_n) <= degeneracy(G_n)+1 <= 2D+1.                  (OCF5)
 ```
 
 Consequently separating the finite shift graphs into disjoint Leavitt
