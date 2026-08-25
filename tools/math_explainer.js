@@ -125,6 +125,8 @@
       'The amount by which a matrix fails to be [[unitary matrix|unitary]], measured by how far \\(A^*A\\) and \\(AA^*\\) are from the [[identity matrix]].'),
     'asymptotic representation': entry('asymptotic representation',
       'A [[sequence]] of finite-matrix [[model|models]] whose [[multiplication error|multiplication errors]] approach zero. It becomes more accurate at later stages, though no one finite stage must be exact.'),
+    'asymptotic commutant': entry('asymptotic commutant',
+      'A [[set]] of bounded matrix [[sequence|sequences]] that increasingly commute with a specified family: the chosen norm of each [[commutator]] tends to zero, even though the matrices need not commute exactly at any finite stage.'),
     'separate elements': entry('separate elements',
       'To send different [[element|elements]] to detectably different outputs. An approximation that separates elements does not accidentally make distinct group moves look identical.'),
     'permanence': entry('permanence',
@@ -525,6 +527,12 @@
       'The object on the left is an [[element]] of the [[set]] or [[group]] on the right.', '\\in'),
     '≤': entry('subgroup containment',
       'In this paper, the object on the left is a [[subgroup]] contained in the [[group]] on the right. This is not a comparison of numerical size.', '\\le'),
+    '<': entry('strictly less than',
+      'The numerical quantity on the left is smaller than the quantity on the right.', '<'),
+    '⊴': entry('normal-subgroup containment',
+      'The object on the left is a [[normal subgroup]] of the [[group]] on the right, so conjugating its elements by any element of the larger group keeps them inside it.', '\\trianglelefteq'),
+    '⊆': entry('subset containment',
+      'Every object belonging to the [[set]] on the left also belongs to the set on the right; the two sets are allowed to be equal.', '\\subseteq'),
     '→': entry('map or limit arrow',
       'Between named sets, this arrow shows the input and output of a [[function]]. After a changing quantity, it says the quantity has the stated [[limit]].', '\\longrightarrow'),
     '⟶': entry('map or limit arrow',
@@ -589,19 +597,31 @@
     'Q': entry('the group Q', 'Q is the chosen [[group]] that remains visible to maps into [[MF group|MF groups]].', 'Q'),
     'T': entry('the target group T', 'T is the [[group]] receiving the [[homomorphism|homomorphisms]] in this statement.', 'T'),
     'M': entry('the MF target M', 'M is an [[MF group]] receiving a [[homomorphism]].', 'M'),
+    'P': entry('the Kazhdan projection P', 'P is the [[projection]] onto the vectors fixed by every represented element of the property-(T) subgroup L.', 'P'),
     'R': entry('the ring R', 'R is the [[ring]], here a binary [[Leavitt algebra]], used for matrix entries.', 'R'),
     'S': entry('the ring S', 'S is a [[ring]] used for matrix entries.', 'S'),
     'N': entry('the subgroup N', 'N is a [[normal subgroup]] whose elements will be treated as the [[identity]] in a [[quotient group]].', 'N'),
     'f': entry('the map f', 'f is the [[surjective]] [[homomorphism]] from G onto Q.', 'f'),
     'π': entry('the map pi', 'The Greek letter pi names a [[homomorphism]] or [[representation]].', '\\pi'),
+    'ρ': entry('the representation rho', 'The Greek letter rho names the [[representation]] that assigns an invertible linear operator to each element of G.', '\\rho'),
     'τ': entry('the matrix tau', 'The [[Greek letter]] tau names the [[invertible]] [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),
     'ℓ': entry('the element ell', 'The Greek letter ell names an [[element]] of the [[subgroup]] L.', '\\ell'),
     'u': entry('the element u', 'u is a [[group]] element used for [[conjugation]].', 'u'),
     'c': entry('the element c', 'c is a [[group]] element that commutes with every element of L.', 'c'),
+    'h': entry('the element h', 'h is an arbitrary [[element]] of the [[subgroup]] L used in the displayed calculation.', 'h'),
     'd': entry('the element d', 'd is the concrete nonidentity [[group]] element whose [[normal closure]] becomes H.', 'd'),
     'q': entry('the algebra element q', 'q is the nonzero [[Leavitt algebra]] element \\(s_1t_1\\).', 'q'),
     'a': entry('the entry a', 'a is a variable [[element]], usually an entry from the surrounding [[ring]].', 'a'),
     'x': entry('the entry x', 'x is a variable [[element]] or one term in a [[sequence]], as specified by the surrounding formula.', 'x'),
+    'g': entry('the element g', 'g is an arbitrary [[element]] of the [[group]] G.', 'g'),
+    'V': entry('the asymptotic representation V', 'V names the complete [[sequence]] of finite-matrix maps in an [[asymptotic representation]].', 'V'),
+    'Vn': entry('the stage-n map V n', 'The [[subscript]] n selects the nth finite-matrix map in the [[asymptotic representation]] V.', 'V_n'),
+    'm': entry('the matrix-size variable m', 'm is a positive whole number used as the number of rows and columns in a square [[matrix]].', 'm'),
+    'mn': entry('the stage-n matrix size m n', 'The [[subscript]] n selects the matrix size used at stage n of the [[sequence]].', 'm_n'),
+    'Mmn': entry('the matrices of size m n', 'This is the [[set]] of square complex [[matrix|matrices]] having \(m_n\) rows and \(m_n\) columns.', 'M_{m_n}'),
+    'K2': entry('the Hilbert–Schmidt kernel K two', 'This is the [[normal subgroup]] of elements that the chosen asymptotic representation V sends toward the [[identity]] in normalized [[Hilbert–Schmidt norm]].', 'K_2'),
+    'R∞→2': entry('the universal infinity-to-two kernel', 'This [[normal subgroup]] contains the elements that every operator-norm [[asymptotic representation]] sends toward the [[identity]] in normalized [[Hilbert–Schmidt norm]].', 'R_{\\infty\\to2}'),
+    'C2': entry('the asymptotic commutant C two', 'This symbol names the [[asymptotic commutant]] of the representation V and the subgroup L, measured using normalized [[Hilbert–Schmidt norm]].', '\\mathcal C_2'),
     'n': entry('the index n', 'n is an [[index]] selecting a stage, matrix size, or position in a [[sequence]].', 'n'),
     'i': entry('the index i', 'i is an [[index]], usually selecting a matrix row.', 'i'),
     'j': entry('the index j', 'j is an [[index]], usually selecting a matrix column.', 'j')
@@ -621,6 +641,8 @@
       'The [[blackboard-bold letter|blackboard-style]] C names the [[complex number|complex numbers]].', '\\mathbb C');
     if (symbol === 'C' && /C_[GH]/.test(tex || '')) return entry('the centralizer symbol C',
       'Here C names a [[centralizer]] inside the group shown as its subscript.', 'C');
+    if (symbol === 'C' && /\\mathcal\s*C_2/.test(tex || '')) return entry('the asymptotic-commutant symbol C',
+      'The [[calligraphic letter|calligraphic]] C is the chosen name for this [[asymptotic commutant]].', '\\mathcal C');
     if (symbol === 'M' && /M_\{?d_n/.test(tex || '')) return entry('the matrix-set symbol M',
       'M names a [[set]] of square [[matrix|matrices]]. Its subscript gives the number of rows and columns.', 'M');
     if (symbol === 'd' && /\\mathbf\s*d/.test(tex || '')) return entry('the matrix-size sequence d',
@@ -643,6 +665,10 @@
       'The subscript n is an [[index]]. The symbol \\(x_n\\) is the matrix in position n of the [[sequence]].', 'x_n');
     if (symbol === '{(') return entry('the start of set-builder notation',
       'The brace begins a [[set]] description, and the parenthesis begins the notation for a [[sequence]].', '\\{(');
+    if (symbol === '([') return entry('function and commutator opening marks',
+      'The parenthesis begins the input to a [[function]], and the square bracket begins the [[commutator]] placed inside that input.', '([');
+    if (symbol === '])') return entry('commutator and function closing marks',
+      'The square bracket ends the [[commutator]], and the parenthesis ends the input supplied to the surrounding [[function]].', '])');
     if (symbol === '∥') return entry('operator-norm bars',
       'The double bars ask for the [[operator norm]] of the matrix written between them.', '\\lVert x\\rVert');
     if (/^(uL|τL)$/.test(symbol)) {
@@ -655,12 +681,32 @@
         'The superscript −1 means [[inverse]]. For a [[function]] such as f or pi, the surrounding set notation uses it to mean [[preimage]].',
         (base === 'τ' ? '\\tau' : base === 'πQ' ? '\\pi_Q' : base) + '^{-1}');
     }
-    if (symbol === '−1') return entry('inverse exponent',
-      'A superscript −1 means [[inverse]]: the operation that undoes the named group element, matrix, or map.', '^{-1}');
+    if (symbol.endsWith('−1')) return entry('inverse exponent',
+      'The superscript −1 means [[inverse]]: the operation that undoes the named group element, matrix, or map.', '^{-1}');
+    if (symbol.endsWith('′')) return entry('commutant prime',
+      'The prime mark after a represented [[subgroup]] means its [[commutant]]: all linear operators that commute with every represented element of that subgroup.', "'");
     if (symbol === 'RadMF' || symbol === 'Rad' || symbol === 'MF') return entry('the MF-radical label',
       'These letters are parts of the symbol for the [[MF radical]]. [[MF]] names the approximation rule and “Rad” abbreviates [[radical]].', '\\operatorname{Rad}_{\\mathrm{MF}}');
     if (symbol === 'ker') return entry('kernel abbreviation',
       'The letters ker abbreviate [[kernel]]: all inputs that the following map sends to the [[identity]].', '\\ker');
+    if (symbol === 'Hom') return entry('homomorphism-set abbreviation',
+      'The letters Hom name the [[set]] of all [[homomorphism|homomorphisms]] from the group listed first to the group listed second.', '\\operatorname{Hom}');
+    if (symbol === 'trd' || symbol === 'tr') return entry('normalized trace',
+      'This is the [[trace]] divided by the matrix size d. It averages the diagonal entries instead of summing them, so matrices of different sizes can be compared.', '\\operatorname{tr}_d');
+    if (symbol === 'Tr') return entry('ordinary trace',
+      'The capitalized letters Tr mean the [[trace]]: add all entries on the main [[diagonal]] of the square matrix.', '\\operatorname{Tr}');
+    if (symbol === 'sup' || symbol === 'nsup') return entry('supremum over n',
+      'Take the least numerical upper bound that works for the displayed quantities at every stage n. Requiring it to be finite says the entire [[sequence]] is [[uniformly bounded]].', '\\sup_n');
+    if (symbol === '∞→2') return entry('infinity-to-two norm label',
+      'This [[subscript]] says that the approximations are controlled in operator norm, conventionally called the infinity norm, while the conclusion is measured in the Schatten 2 or [[Hilbert–Schmidt norm]].', '\\infty\\to2');
+    if (symbol === '∞') return entry('infinity-norm label',
+      'Here infinity labels the [[operator norm]], which is also called the Schatten infinity norm.', '\\infty');
+    if (symbol.endsWith('∗')) return entry('adjoint star',
+      'The superscript star means the [[adjoint]], obtained by transposing the matrix and taking the complex conjugate of every entry.', '^*');
+    if (symbol === '1/2' || symbol === ')1/2') return entry('square-root exponent',
+      'Raising a nonnegative number to the power one half means taking its nonnegative square root.', '^{1/2}');
+    if (symbol === 'd1') return entry('normalizing factor one over d',
+      'This fraction is one divided by d, where d is the matrix size. Multiplying the ordinary trace by it produces the normalized trace.', '\\frac1d');
     if (symbol === 'isMF') return entry('is an MF group',
       'The preceding [[quotient group]] satisfies the definition of an [[MF group]].', '\\text{is MF}');
     if (symbol === 'and') return entry('logical and',

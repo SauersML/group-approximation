@@ -19,9 +19,9 @@ function source(object, formula) {
 }
 
 const declarations = api.parseSourceExplanations(tex);
-assert.equal(declarations.length, 40, 'every authored explanation must remain present');
-assert.equal(new Set(declarations.map(d => d.group)).size, 24,
-  'the contextual explanations must remain attached to 24 formula groups');
+assert.equal(declarations.length, 57, 'every authored explanation must remain present');
+assert.equal(new Set(declarations.map(d => d.group)).size, 40,
+  'the contextual explanations must remain attached to 40 formula groups');
 for (const declaration of declarations) {
   assert.ok(declaration.object);
   assert.ok(declaration.when);
@@ -113,6 +113,8 @@ const coveredFormulas = [
   String.raw`\mathcal Q_{\mathbf d}=\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).`,
   String.raw`\bigoplus_nM_{d_n}(\C)=\{(x_n)\in\prod_nM_{d_n}(\C):\opnorm{x_n}\longrightarrow0\}`,
   String.raw`\Rad_{\mathrm{MF}}(G)=\bigcap_{\mathbf d}\bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.`,
+  String.raw`\operatorname{cl}_{\mathrm{MF}}^G(N)=\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.`,
+  String.raw`G/N\text{ is MF}\quad\Longleftrightarrow\quad\operatorname{cl}_{\mathrm{MF}}^G(N)=N\qquad(N\trianglelefteq G).`,
   String.raw`\operatorname{Comp}_G(L)=\{u\in G:uLu^{-1}\le L\}`,
   String.raw`\mathfrak D_G(L)=\normal{[ucu^{-1},\ell]:u\in\operatorname{Comp}_G(L),\ c\in C_G(L),\ \ell\in L}_G.`,
   String.raw`K\le\Rad_{\mathrm{MF}}(G).`,
@@ -123,7 +125,21 @@ const coveredFormulas = [
   String.raw`\Rad_{\mathrm{MF}}(H)=H.`,
   String.raw`\tau L\tau^{-1}\le L`,
   String.raw`d=e_{02}(s_1t_1).`,
+  String.raw`W_Q=B*_A(Q\times A).`,
   String.raw`\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
+  String.raw`\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal{d}_{W_Q}.`,
+  String.raw`\operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)`,
+  String.raw`\rho(u)\rho(L)'\rho(u)^{-1}=\rho(L)',`,
+  String.raw`\rho([ucu^{-1},\ell])=1\qquad(\ell\in L).`,
+  String.raw`\rho(h)\rho(u)^{-1}x\rho(u)=\rho(u)^{-1}\rho(h')x\rho(u)=\rho(u)^{-1}x\rho(h')\rho(u)=\rho(u)^{-1}x\rho(u)\rho(h).`,
+  String.raw`\hsnorm{a}=\tr_d(a^*a)^{1/2},\qquad\tr_d=\frac1d\operatorname{Tr}.`,
+  String.raw`\opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0\qquad(g,h\in G).`,
+  String.raw`K_2(V)=\{g\in G:\hsnorm{V_n(g)-1}\longrightarrow0\}.`,
+  String.raw`R_{\infty\to2}(G)=\bigcap_V K_2(V),`,
+  String.raw`\mathcal C_2(V,L)=\left\{(x_n)\ \middle|\sup_n\opnorm{x_n}<\infty,\ \hsnorm{[V_n(\ell),x_n]}\longrightarrow0\ (\ell\in L)\right\}`,
+  String.raw`\prod_nM_{m_n}(\C)\big/\bigoplus_nM_{m_n}(\C)`,
+  String.raw`U\pi(L)U^*\subseteq\pi(L),`,
+  String.raw`U^*PU\le P.`,
   String.raw`L=\EL_3(R)\le H`,
   String.raw`c\in C_H(L),\qquad d=e_{02}(q)\ne1,\qquad \normal d_H=H.`,
   String.raw`\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).`,
@@ -151,7 +167,7 @@ function notationTokens(node, result = []) {
   return result;
 }
 
-assert.equal(coveredFormulas.length, 24);
+assert.equal(coveredFormulas.length, 40);
 const rootExplanations = declarations.map(declaration => declaration.explanation);
 rootExplanations.push(tex);
 for (let group = 0; group < coveredFormulas.length; group++) {
