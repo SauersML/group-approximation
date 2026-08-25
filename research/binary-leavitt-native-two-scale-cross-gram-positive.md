@@ -216,6 +216,20 @@ is that the separate root occurrences of its factors compose as the two
 selector transport operators on that carrier; that is now the exact
 same-occurrence row to authenticate.
 
+There is a sharp incidence obstruction to the minimal literal-root repair.
+`literal-selector-roots-force-center-chain`
+shows that typing `[B_(m+1),A_m]` as the root carrying
+`b_(m+1)a_m` forces the consecutive own-cell `q`-centers to be composable;
+their commutator is a nonzero `q`-root.  Hence the same three arms cannot
+simultaneously expose both selector coefficients by those literal cross
+commutators and retain the pairwise commuting centers and simultaneous
+reducing Pauli carrier needed by `(NCG3)`.  In the explicit chained model the
+later center also fails to commute with the earlier arm, so this is stronger
+than merely observing that the center subgroup is nonabelian.  A true-word
+construction must therefore use a duplicated arm, a nonliteral Whitehead
+composite, or another occurrence compiler rather than merely changing the
+root indices in `(NCG3)`.
+
 Abstract trace cyclicity does not supply that coupling either.
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence` shows that
 a third balance pair can equate the two gauge ranks only after its cyclic
@@ -241,6 +255,19 @@ one-quarter adjacent swaps.  No word in that calculation authenticates the
 separate one-eighth controlled selector or makes it inherit the second
 reservoir gauge.  Consequently the common carrier and braid are real
 progress, but they do not close `(NCG1)`.
+
+Nor can one repair the missing inheritance by enlarging the finite packet
+until the two adjacent swaps and the one-eighth reflection are literal
+label words, removing each Whitehead label action to expose an
+identity-outer gauge, and then imposing both selector covariances on the
+whole packet isotypic carrier.  The exact firewall
+`exact-whitehead-selector-gauge-attachment-collapses-packet` applies the two
+affine rank equations in the left regular representation and forces that
+carrier to vanish.  Such a construction destroys the embedded packet rather
+than producing a finite-matrix obstruction.  The positive bridge must align
+the gauges only on a representation-dependent reducing subcorner and pay
+for the discarded mass; this is precisely why the open cross-Gram estimate
+is formulated with a finite-coordinate polar cut.
 
 ## Norm scope
 

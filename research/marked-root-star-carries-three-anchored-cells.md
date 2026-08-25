@@ -52,5 +52,19 @@ carrier for all three anchored arm cells, not yet a proof that the group-word
 occurrences representing those two cross-products reduce `F` or equal the
 selector transports there.
 
+The most direct attempt to expose those products as literal root words is
+now fenced by
+`literal-selector-roots-force-center-chain`.
+If `[B_(m+1),A_m]` is typed to equal the root carrying
+`b_(m+1)a_m`, then the terminal index of `B_(m+1)` must equal the initial
+index of `A_m`.  The consecutive own-cell `q`-centers are then composable
+and have a nontrivial root commutator; in the explicit chained realization,
+the later center also has a nontrivial root commutator with the earlier arm.
+Thus the cross-commutation in `(ARC3)` is not an incidental choice: it is
+exactly what preserves the commuting center atom and simultaneous reducing
+three-Pauli carrier, at the cost of leaving the selector products
+unauthenticated.  The statement does not rule out common eigenvectors for an
+unrelated nonabelian center subgroup.
+
 DERIVATION
 three-anchored-root-cells-proof
