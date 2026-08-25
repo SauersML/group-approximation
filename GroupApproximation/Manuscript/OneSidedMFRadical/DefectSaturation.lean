@@ -248,9 +248,13 @@ end Sterility
 /-- **The Introduction's sterility consequences**, packaged as one closed
 proposition: a faithful finite-dimensional linear representation over any
 field, residual finiteness, and finiteness of `L` each force `𝔇_G(L) = 1`.
-The third clause is the group-theoretic half of the printed amenable case;
-the passage from amenability and property `(T)` to finiteness of `L` is the
-cited `BHV` input and is not formalized here. -/
+The third clause is the group-theoretic half of the printed amenable case.  The
+passage from amenability and property `(T)` to finiteness of `L` is carried as
+an explicit binder here, but it is **not** an unformalized input: it is proved
+in `Kazhdan/AmenableKazhdanFinite.finite_subgroup_of_isAmenable_of_kazhdan`, and
+`manuscriptAmenableKazhdanSterility` packages the printed clause
+hypothesis-free.  (This note previously called it "the cited `BHV` input ... not
+formalized here".) -/
 def PrintedDefectSterility : Prop :=
   (∀ (G : Type*) [Group G] (k V : Type*) [Field k] [AddCommGroup V]
       [Module k V] [FiniteDimensional k V] (rho : G →* (V ≃ₗ[k] V)),

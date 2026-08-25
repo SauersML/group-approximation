@@ -27,9 +27,18 @@ ring literature, this is the operative characterization of a unital purely
 infinite simple ring after the standard nontriviality and non-division-ring
 hypotheses are imposed.  The bare predicate intentionally records only the
 algebraic input used below: it also holds for division rings, and it is
-vacuously true for the zero ring.  Every paper-facing consumer therefore
-assumes `Nontrivial R` explicitly and never treats this predicate alone as a
-definition of pure infiniteness. -/
+vacuously true for the zero ring.  Consumers must therefore supply `Nontrivial R`
+themselves and must not treat this predicate alone as a definition of pure
+infiniteness.
+
+(This sentence used to assert that every paper-facing consumer *does* assume
+`Nontrivial R`.  That was a claim about the repository, and it is false:
+`Manuscript/OneSidedMFRadical/SentenceOperativePureInfinitenessClosure.OperativePureInfinitenessInput`
+is literally this predicate with no `Nontrivial` binder.  Nothing is unsound --
+it is instantiated at `L_{𝔽₂}(1,2)`, which is nontrivial, and nontriviality
+enters the simplicity chain independently through
+`isSimpleGroup_of_rootDetection` -- but the guarantee was not the repository's
+to give.) -/
 def HasSingleSandwichDivision (R : Type*) [Ring R] : Prop :=
   ∀ a : R, a ≠ 0 → ∃ x y : R, x * a * y = 1
 

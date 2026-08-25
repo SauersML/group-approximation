@@ -134,8 +134,13 @@ theorem manuscriptSentence48_central_complementary_corner :
   manuscriptCentralCoronaCorner
 
 /-- **Sentence 50.**  The contradiction argument's unconditional endpoint
-is the complete one-sided compression criterion.  This wrapper does not claim
-the separately missing printed inequality of sentence 49. -/
+is the complete one-sided compression criterion.  This wrapper does not itself
+claim the printed inequality of sentence 49, which is audited separately as
+`CorrectedCornerProjectionZero.manuscriptPrintedCorrectedCornerKazhdanDetection`.
+
+(Until 2026-08-25 this sentence read "the separately **missing** printed
+inequality".  That was wrong: the inequality is proved, hypothesis-free, and is
+the declaration the sentence census assigns to row 49.) -/
 theorem manuscriptSentence50_compressionCriterion_conclusion :
     CompleteOneSidedCompressionCriterion :=
   manuscriptCompleteOneSidedCompressionCriterion

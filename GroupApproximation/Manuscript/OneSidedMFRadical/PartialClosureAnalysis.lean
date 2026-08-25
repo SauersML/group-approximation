@@ -91,6 +91,25 @@ inequality of `thm:normal-kazhdan`); and the identification of the corrected
 corner Gram class with `unitaryGram` (for "represent `b`").  None of them is
 faked below.
 
+**Corrected 2026-08-25.  Two of those four are now closed**, and this paragraph
+understated the repository until today:
+
+* the converse of the Introduction's "equivalently" is
+  `PrintedModelSeparationConverse.manuscriptPrintedMFModelSeparation`, a genuine
+  `↔`;
+* the corner Kazhdan inequality is
+  `CorrectedCornerProjectionZero.manuscriptPrintedCorrectedCornerKazhdanDetection`,
+  proved hypothesis-free and carried on the `#audit_closed_axioms` roster of
+  `Endpoint/OneSidedTransportAudit.lean`.
+
+Preusser's normal-subgroup theorems are also no longer only cited: both forms of
+his Theorem 3 are proved in `Leavitt/PreusserNormalizedBy.lean` and
+`Leavitt/PreusserLevelUniqueness.lean`.  Ershov--Jaikin-Zapirain is proved for
+every rank `n ≥ 3` over every finite field
+(`Steinberg/GeneralRankFiniteFieldPropertyT.lean`); characteristic zero remains
+open.  What genuinely remains from the list above is the `ℓ²`-direct sum of the
+GNS family, and the "represent `b`" identification.
+
 ## Manuscript status
 
 Certifies six previously partial printed clauses.  No endpoint changes: every
