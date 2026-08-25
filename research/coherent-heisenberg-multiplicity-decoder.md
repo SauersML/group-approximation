@@ -67,6 +67,19 @@ the injections at a boundary escaping to infinity.  The missing relation must
 therefore come from the coefficient-return part of the full elementary group,
 not from more finite Heisenberg self-copy consistency.
 
+Literal synchronization of all occurrences inside that positive-root
+coefficient-return language is still insufficient.
+`finite-positive-root-fragments-have-marked-regular-models` proves that every
+finite collection of positive elementary roots in the actual Leavitt
+coefficient ring generates a finite unitriangular `p`-group.  Its regular
+representation satisfies all positive-root addition, Heisenberg
+multiplication, shared-occurrence, and range-sum-fold identities exactly while
+keeping any chosen nonzero root at normalized-HS distance `sqrt(2)` and on a
+nontrivial spectral carrier of trace `(p-1)/p`.  Thus the independent tensor
+factor in the earlier fold countermodel is not the real loophole.  The
+load-bearing payment relation must leave the positive unipotent radical—for
+example through an opposite-root, Weyl/Whitehead, or global return row.
+
 The full-presentation check identifies the exact surviving gate.  The
 Leavitt identities already give the two orthogonal branch embeddings and the
 exponential prefix Heisenberg packet, all reproduced by the calibration

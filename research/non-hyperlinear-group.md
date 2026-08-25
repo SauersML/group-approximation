@@ -546,6 +546,20 @@ plus scalar branching data.  A full proof must charge that difference to a
 mixed affine-Leavitt coefficient-return/Steinberg row not realized by the
 Schrödinger calibration.
 
+Even literal payload occurrence reuse does not make a finite positive-root
+row load bearing.  `finite-positive-root-fragments-have-marked-regular-models`
+observes that every finitely generated subgroup of `U_n^+(R)` over the
+characteristic-`p` Leavitt coefficient ring is finite: the strictly
+upper-triangular parts generate a finite-dimensional nilpotent `F_p`-algebra.
+The finite subgroup's regular representation satisfies an arbitrary finite
+positive-root diagram exactly—including all shared coefficient occurrences
+and the range-sum fold—while a chosen nonzero root stays at HS distance
+`sqrt(2)` with nontrivial spectral mass `(p-1)/p`.  Hence the earlier
+independent-`UT_4` factor was not the essential escape.  The decisive
+same-reservoir relation must leave the positive unipotent radical, through an
+opposite-root, Weyl/Whitehead, or genuinely global return in the full
+presentation.
+
 The most direct finite orientation pin for that mixed row also fails.
 `packet-controller-orbit-products-have-orientation-dichotomy` considers a
 product of packet conjugates of the rank-one controlled phase and compares

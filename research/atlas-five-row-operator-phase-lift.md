@@ -8,6 +8,7 @@ distinct_from:
   atlas-boundary-tangent-covariance-coercivity: that bounds covariance by the five linearized rows and is already global in the chart unitary; this asks for the missing nonlinear-to-linear comparison for those rows.
   atlas-a4-holonomy-coherence-gap: that exact-regular local-network ceiling is refuted by the multiplicity-two frame; this includes the full-atlas interior consequence which the local frame does not satisfy.
   atlas-independent-phase-incidence-is-not-coercive: that frees the twenty-seven phase-edge occurrences from the common conjugation orbit and gives an exact private-edge counterexample; this retains the orbit identities and asks whether they restore coercivity.
+  atlas-six-relator-hyperlinear-escape-test: that identifies the surviving exact branch with a bridge-retaining hyperlinear quotient of the six-relator group; this asks to exclude that branch by the uniform operator inequality.
 ---
 
 **OPEN.**  Let
@@ -89,3 +90,13 @@ cancellations which survive the five boundary products.
    vanish but the row-11 additive circulation has norm four.  Hence a proof
    must use the common-orbit identities `P_x=lambda(x)Ulambda(x)^*`, not just
    unitarity and the cycle products.
+
+## Exact qualitative endpoint
+
+By `atlas-five-row-blowup-branch-is-impossible` and
+`atlas-six-relator-hyperlinear-escape-test`, the
+remaining assertion is precisely that `Gamma_6` has no hyperlinear quotient
+which injects both marked `A8` factors and retains one of the four fixed
+standard `H`-bridge words.  In particular this claim, by itself, makes the
+finitely presented group `Gamma_6` nonhyperlinear; no separate passage
+through the full Leavitt packet is required.
