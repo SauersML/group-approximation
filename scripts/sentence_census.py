@@ -51,6 +51,35 @@ the census stays true after a manuscript edit.
 `attribution` and `open` are not excuses: a sentence may only carry them when
 it makes no mathematical assertion of its own.  The distinction is the one the
 ledger already draws between a step and a tombstone.
+
+## The census NAMES carriers.  It does not COMMISSION them.
+
+A row's `decls` must name a declaration that already earns its place in the
+development.  Authoring a new declaration *in order to* fill a row is the same
+move as writing a row from fuzzy alignment: it turns the gate green without
+adding knowledge.
+
+The concrete failure this rule exists to stop, measured 2026-08-25: of 175
+`theorem manuscriptSentence*` declarations under `GroupApproximation/
+Manuscript/`, **34 were pure aliases** -- the statement a bare named `Prop`
+that an existing theorem already states, and the proof term nothing but that
+theorem's name:
+
+    theorem manuscriptSentence19_fullRadical_kills_MFTargets :
+        FullRadicalKillsMFTargets :=
+      manuscriptFullRadicalKillsMFTargets
+
+That is a rename, not a formalization, and it is not free.  `scripts/Audit.lean`
+runs a `DUPLICATE` detector -- "same proposition already proved as X" -- so every
+alias is a finding, and the kernel audit was red on 2026-08-25 partly because of
+them.  Four wrappers aliased `manuscriptMaximalCStarKazhdanProjectionOrder`
+alone, and one aliased another alias.
+
+So: **point the row at the existing declaration.**  Write a new one only when
+the printed sentence is genuinely not stated by anything in the tree -- for
+instance at the reducible form the manuscript prints, where the existing
+theorem is stated in a normalised one.  When you do, the new statement must
+differ from the old, or `DUPLICATE` is correct and the row is wrong.
 """
 
 from __future__ import annotations
