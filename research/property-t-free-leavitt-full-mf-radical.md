@@ -105,6 +105,17 @@ the branch/shear image is a character atom in the corona but can split among
 arbitrarily many finer exact atoms at every moving coordinate.  The precise
 comparison failure is
 `maximal-sparse-character-atom-does-not-return-multiplicity`.
+On the positive side,
+`norm-corona-sparse-character-atom-reduces-pointwise-centralizer` shows that
+the sparse atom may be chosen to reduce both branch actors and the entire
+countable Heisenberg self-copy subsystem, since they fix the common central
+root pointwise.  Together with
+`binary-leavitt-two-branch-character-restriction-is-faithful`, this removes
+actor movement and global character-label ambiguity.  The remaining corona
+seam is strictly the joint multiplicity coupling: the two reducing branch
+representations can still occupy independent tensor coordinates, and no
+Leavitt coefficient action on the selected projective carrier has yet been
+decoded.
 
 The apparent `3+1` affine-packet shortcut has likewise been type-checked.
 Those four involution-character atoms are not the `p^2` adjoint Reynolds
