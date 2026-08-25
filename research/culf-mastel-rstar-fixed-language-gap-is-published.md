@@ -70,8 +70,15 @@ cliquifying the neighborhood.  Adding the missing `R_*` commutativity gadgets
 would impose a new condition on the perfect source model; Culf--Mastel do not
 prove that their HALT models admit it.
 
+For perfect-completeness support, however, the final commutativity rows are
+completely understood.  `cm-empty-replacement-is-fano-cap-safe` uses their
+two private coordinates to section every old joint two-bit atom through one
+fixed maximal Fano cap.  Thus these rows do not contribute to FC-char's
+local-support obstruction.  This does not repair the separate mutual
+neighbor--neighbor commutation failure in `(CRS3)` and does not control the
+genuine `R_*` pp-reduction rows created earlier in the proof.
+
 Hence the fixed relation, effective finiteness, perfect CE completeness,
 constant CE/matrix gap, and all **contextwise** commutation are settled.  The
 remaining Fano gate is precisely a uniform cap selector or a new theorem
 producing mutually commuting neighborhoods without destroying completeness.
-

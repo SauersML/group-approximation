@@ -171,6 +171,17 @@ no-Fano-line support conclusion.
   kernel.  Thus leaf peeling cannot by itself close FC-char; the remaining
   theorem is a finite cap-profile compatibility result on a chosen dense
   gadget core, together with source-specific control of the positive support.
+- The final non-TVF commutativity-gadget step is now removed from that core.
+  `cm-empty-replacement-is-fano-cap-safe` reads the actual last step of the
+  Culf--Mastel proof: every arity-two empty constraint is replaced by one
+  `R_*` row with exactly two retained variables and two private variables.
+  The two-retained-coordinate cap section extends its joint PVM inside one
+  fixed maximal cap, independently for every such row and without changing
+  any pre-existing row.  Thus FC-char for the final family is equivalent to
+  cap support on the genuine `R_*` rows immediately before empty-constraint
+  removal.  The remaining obstruction lies entirely in the chosen
+  constraintwise NP-reduction/subdivision rows, not in the last
+  commutativity replacements.
 - `rstar-core-character-profiles-induce-an-exact-affine-cover` states that
   compatibility result precisely for any fixed gadget.  Its `k` core rows
   induce an effectively enumerable cover of the source relation by at most
