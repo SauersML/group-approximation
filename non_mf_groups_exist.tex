@@ -647,10 +647,11 @@ Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
 nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
 internal compression used here.  The binary Leavitt algebra is purely
 infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
-and its center is the base field~\cite{ArandaCrow}.  Preusser's work gives
-general theorems about normal subgroups of linear groups over exchange
-rings~\cite{Preusser}; the simplicity proof below instead extracts an
-elementary transvection directly from a nonidentity normal element.
+and its center is the base field~\cite{ArandaCrow}.  Preusser classified the
+subgroups of $\GL_n$ over an exchange ring that are normalized by
+$\EL_n$~\cite{Preusser}.  In the present case, every nontrivial normal
+subgroup of $\EL_{12}(R)$ contains some $e_{ij}(x)$ with $i\ne j$ and
+$x\ne0$ (Proposition~\ref{prop:simple}).
 Ershov--Jaikin-Zapirain give property~\textup{(T)} for
 $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
@@ -2185,13 +2186,14 @@ and matrix norms.
 
 Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical
 exploration, proof development, manuscript drafting, literature navigation,
-Lean formalization, and editorial revision.  The Lean development checks the
+Lean formalization, and editorial revision.  The Lean development verifies the
 one-sided transport theorem and the normal property-\textup{(T)} radical
-criterion.  It also checks the rank 12 compression and commutator calculation,
-direct normal generation by a nontrivial elementary transvection, and the
-resulting full MF radical conclusion.  For Proposition~\ref{prop:simple}, it
-checks the exhaustive transvection-extraction argument for diagonal matrices
-and for zero and nonzero inverse entries.
+criterion.  It also verifies the rank 12 compression and commutator
+calculations and the resulting full MF radical conclusion.  For
+Proposition~\ref{prop:simple}, the formalization proves that every nontrivial
+normal subgroup contains an elementary matrix $e_{ij}(x)$ with $x\ne0$.  It
+treats diagonal matrices separately and divides the nondiagonal case according
+to whether the relevant entry of the inverse matrix is zero.
 The formalized simplicity proof uses the concrete two-sided sandwich and the
 fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
 $1$.  It does not formalize Preusser's general theorem about normal subgroups
