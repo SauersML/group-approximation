@@ -17,7 +17,7 @@ import GroupApproximation.Sofic.KazhdanCompressionLayers
 import GroupApproximation.Sofic.FullMFRadicalCore
 import GroupApproximation.Sofic.FullMFRadicalExactness
 import GroupApproximation.Sofic.FullMFRadicalReflection
-import GroupApproximation.Sofic.FullMFRadicalLocalization
+import GroupApproximation.Sofic.FullMFRadicalPullback
 
 /-!
 # Approximation radicals: the reading path

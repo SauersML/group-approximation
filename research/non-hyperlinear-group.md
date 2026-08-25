@@ -315,6 +315,17 @@ analogue.  Consequently the needed coupling must genuinely cross Leavitt
 scale (or be extracted from finite matrix coordinates); a finite controller
 orbit cannot supply it.
 
+The finite orientation ambiguity itself can be removed without solving the
+return.  `primitive-clifford-type-fixes-orientation-not-return` selects the
+positive primitive spin extension of the order-`64` controlled Pauli group.
+That central block has canonical trace `1/4`, and on it the controller is
+literally the desired rank-one reflection with no multiplicity involution.
+But the coarse and fine atoms on this same block have relative traces `1/2`
+and `1/4`, so every unitary coarse-to-fine return pays a quarter-block HS
+floor.  A Whitehead scale change can avoid the floor only by moving mass out
+of the primitive block.  Thus the remaining theorem is unambiguously a
+mixed **type-return/leakage payment**, not local Clifford orientation.
+
 Using the entire multiplication shear rather than one root does recover a
 genuine coefficient invariant, but it still does not cross this interface.
 `steinberg-shear-fixed-labels-recover-ideal-dimension` computes the common

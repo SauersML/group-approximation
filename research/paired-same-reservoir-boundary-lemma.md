@@ -267,6 +267,20 @@ either gauge-blind or incompatible with exact completeness.  A surviving
 odd coupling must genuinely change Leavitt scale, not merely traverse a
 finite packet orbit.
 
+There is one legitimate way to remove `V` locally, but it exposes rather
+than solves the boundary problem.
+`primitive-clifford-type-fixes-orientation-not-return` cuts the finite
+controlled-Clifford group by the primitive central block on which the stable
+controller is literally `C tensor I`.  This block has canonical trace
+`1/4`, so the orientation choice is macroscopic and dimension-free.  On the
+same block, however, the coarse and fine atoms still have relative traces
+`1/2` and `1/4`; every unitary return has squared HS error at least one
+quarter of the block trace.  Since the primitive idempotent is central only
+inside the finite packet, a scale-changing Whitehead word can evade this
+floor only by leaving the block.  The missing mixed theorem may therefore
+be stated as payment for that explicit off-type leakage.  More local
+Clifford exactification is not needed.
+
 The remaining finite-dimensional PI option has now been audited exactly in
 `controlled-fine-reflection-superrank-orientation-law`.  On the marked
 two-qubit packet, adjoining the twisted fine reflection
