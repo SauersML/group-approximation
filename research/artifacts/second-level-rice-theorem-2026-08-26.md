@@ -180,6 +180,32 @@ enumerated presentations it is `Pi^0_3`-hard, hence not `Sigma^0_3`, and
 in fact `Sigma^1_1`-complete already for computable torsion-free abelian
 groups (Downey--Montalban, J. Algebra 320 (2008) 2291--2300).
 
+## Theorem 11 (the fourth level; `residually-p-for-some-prime-is-sigma4-complete`)
+
+Rows `{p^(n!) + M! : ...}` are *selectively visible*: for every prime `q`
+other than the base, the exponent of the unit group of `Z/q^m` divides
+`n!` beyond a threshold uniform in the base, so all but finitely many
+elements of the whole union are congruent to `1` modulo `q^m` and every
+sequence of distinct elements converges to `1`; `p`-adically each infinite
+row converges to its own excluded shift.  Hence "residually a finite
+`p`-group for some prime" is `Sigma^0_4`-complete and "for every prime" is
+`Pi^0_4`-complete on two-generator recursive presentations, and the first
+four arithmetical levels are each realized by a natural group property.
+Arithmetic-progression rows cannot work: they are dense in every other
+`p`-adic topology.
+
+## Theorem 12 (what the remaining cells are)
+
+`RF_fp` is `Pi^0_2`-complete as soon as separability of finitely generated
+subgroups of `F x F` is `Pi^0_2`-hard, because `<K, v | [v, w_i] = 1>` is
+finitely presented and residually finite exactly when `<w>` is separable
+(`rf-fp-completeness-reduces-to-subgroup-separability-hardness`).  The
+sofic and hyperlinear finite-presentation cells are properties of one
+explicit group, inventoried in `the-mikhailova-rope-object-card`: finitely
+presented, MF, torsion-free, not residually finite, containing free
+subgroups, with soficity, LEF and hyperlinearity open and quotient models
+provably unable to settle soficity.
+
 ## Lean status (2026-08-26, 03:45)
 
 Kernel-checked on main: `Computability/HereditaryPropertySwitchCompleteness`
@@ -204,7 +230,9 @@ classification); `Computability/RFPresentationPi02` (`rf_fp_strict_position`);
 `IsoInvariantSwitchHardness` (property (T)), `ElementaryEnumeratedHardness`,
 `TrivialEnumeratedPi02`, `AbelianEnumeratedPi02`,
 `FreeSubgroupEnumeratedHardness`, `TorsionFreeEnumeratedHardness`,
-`PerfectEnumeratedHardness` --- twenty-one modules in all.
+`PerfectEnumeratedHardness`, and `ArithmeticalLedgerEndpoint`, whose
+`arithmeticalLedgerHolds` is the whole ledger as one closed proposition
+with a `#audit_closed_axioms` line --- twenty-two modules in all.
 
 ## What remains open
 
