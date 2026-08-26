@@ -14,8 +14,6 @@ artifacts:
   - non_mf_groups_exist.tex
   - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
   - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
-  - GroupApproximation/Sofic/LiteralSoficAssembly.lean
-  - GroupApproximation/Sofic/LiteralTheoremAPackage.lean
 ---
 
 The literal finitely presented group `E` is sofic.
@@ -42,11 +40,14 @@ re-derived from the presentation in
 split-`Z` step directly rather than citing Elek--Szabó (the same construction
 as Lean `SoficIntegerExtension.isSofic_int_semidirectProduct`).
 
-The formal endpoint is now closed.  Lean theorem
-`LiteralSoficAssembly.markedGroup_isSofic` proves `IsSofic MarkedGroup`
-without hypotheses, and `LiteralTheoremAPackage.manuscriptTheoremA_package`
-packages finite presentation, soficity, hyperlinearity, the invisible mark,
-and failure of MF for the same literal group term.
+Two things that are NOT settled by any of this.  No Lean declaration concludes
+`IsSofic` for the literal carrier — the endpoint drafts
+(`Sofic/Literal{LampKernelSplit,BlockGeometry,LampKernelAmalgam,TelescopeCoreLEF,SoficEndpoint}.lean`)
+do not compile into one closed theorem, so under the
+formalized-or-not-in-manuscript doctrine this cannot enter the manuscript yet.
+And `non_mf_groups_exist.tex` still says, at the line introducing the
+open-questions list, that "whether `E` itself is sofic is open" — the graph and
+the manuscript disagree, and the manuscript is the stale one.
 
 Consequences and dead ends recorded here so they are not retried:
 

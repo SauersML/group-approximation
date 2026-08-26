@@ -191,3 +191,20 @@ ultraproduct containing the lamp algebra is normalized by all `Θ(u_g)`. If
 that is true, `M_KT` is not Connes embeddable and this claim is refuted. It is
 the exact negation of `fiber-masa-free-cocycle` clause 3, and neither
 direction is known.
+
+**Constraints on any model, from the abstract-embedding pass (2026-08-26).**
+By `abstract-unitary-embedding-upgrades-to-hyperlinear` this claim is
+equivalent to an *abstract* unitary embedding of `W` into a Connes-embeddable
+algebra -- no canonical character, no Bernoulli values, only positive
+cylinders for the lamp projections.  That freedom is bounded on three sides:
+`amenable-kazhdan-models-absorb-compression` (the `Γ`-algebra of any faithful
+model is non-amenable -- never a direct sum of finite-dimensional
+representations, so Brown--Dykema--Jung/Popa amenable-base permanence can
+never adjoin the lamps, recorded dead at
+`kt-double-hyperlinear-via-hyperfinite-edge-model`);
+`finite-dimensional-gamma-part-of-a-model-is-compression-blind` and
+`tempered-gamma-part-of-a-model-is-compressor-invariant` (every model splits
+into an atomic corner where compression is absorbed, a corner where `Γ`
+carries its regular character mod center -- the setting of every route above
+-- and a remainder on which the `Γ`-action is weakly mixing and non-tempered,
+which is the only genuinely new regime the abstract form opens).
