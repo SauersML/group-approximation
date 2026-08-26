@@ -20,6 +20,8 @@ distinct_from:
   leavitt-hall-tensor-mf-trace-quotients-are-sofic: that proves the explicit Hall/tensor traces produce sofic GNS quotients even when the fold word survives; this asks for a different retained sector capable of producing the Leavitt quotient representation.
   uniformly-discrete-block-monomial-images-are-sofic: that proves the original coordinates have a sofic GNS group image under a uniform normalized-character gap; this asks for an adjoint-sector quotient representation, and soficity is not closed under quotients.
   nonsofic-block-monomial-images-force-soft-kernel-labels: that identifies the exact soft relator leakage necessary when the original block-monomial GNS image itself is nonsofic; this asks instead to construct an almost-reducing, almost-K-trivial adjoint sector with the compressed survival moment.
+  soft-cyclic-phases-can-support-all-ir-clauses: that proves collapsing finite phase gaps can satisfy IR1--IR3, exact commutant equality and positive-density unbounded-rank retention for the cyclic quotient `Z/2`; this requires the same phenomenon for the perfect simple Leavitt quotient.
+  perfect-quotient-ir-survival-requires-nonscalar-mass: that uses perfectness to show a successful retained Leavitt action cannot be asymptotically scalar on every generator; this remains the construction of a genuinely nonscalar almost-quotient sector.
   ir-survival-is-one-compressed-adjoint-moment: that rewrites IR3 as one scalar compressed trace gap once IR1--IR2 hold; this remains the open construction of a sector on which that scalar and both structural conditions hold together.
 ---
 
