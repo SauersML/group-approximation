@@ -1,5 +1,5 @@
 import GroupApproximation.Computability.ParametricRecursiveSwitchPresentation
-import GroupApproximation.Higman.BridgeEffectivity
+import GroupApproximation.Higman.BridgePresentation
 import GroupApproximation.Higman.MikhailovaGraphProductWitness
 import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCompiler
@@ -23,10 +23,9 @@ The propositions below quantify over all construction data internally.  Their
 theorems therefore have no caller-supplied hypotheses, and the final commands
 audit both closedness and the full axiom closure.
 
-This module does not claim the two effectivity statements that remain open in
-the current development: the presentation theorem for the HNN bridge and an
-effective Higman embedding compiler from a recursive presentation to a finite
-presentation with marked embedding words.
+This module does not claim the one effectivity statement that remains open in
+the current development: an effective Higman embedding compiler from a
+recursive presentation to a finite presentation with marked embedding words.
 -/
 
 namespace GroupApproximation
@@ -99,6 +98,15 @@ theorem manuscriptPrintedBridgeGroupTheoryPackage :
   exact ⟨Higman.HNNEmb.embA_injective g,
     Higman.BridgeEff.closure_gens_eq_top_of_spans g,
     Higman.BridgeEff.pi3_surjective g⟩
+
+/-- The repaired three-generator HNN bridge is effectively recursively
+presented from the word problem of a spanning recursive presentation. -/
+def PrintedEffectiveBridgePackage : Prop :=
+  Higman.BridgeEff.BridgeEffective
+
+theorem manuscriptPrintedEffectiveBridgePackage :
+    PrintedEffectiveBridgePackage :=
+  Higman.BridgePresentation.bridgeEffective
 
 /-! ## The Mikhailova subgroup -/
 
@@ -258,6 +266,7 @@ theorem manuscriptPrintedNonMFEmbeddingObstruction :
 
 #audit_closed_axioms manuscriptPrintedParametricSwitchPackage
 #audit_closed_axioms manuscriptPrintedBridgeGroupTheoryPackage
+#audit_closed_axioms manuscriptPrintedEffectiveBridgePackage
 #audit_closed_axioms manuscriptPrintedMikhailovaFiberProductPackage
 #audit_closed_axioms manuscriptPrintedRankThreeCutPackage
 #audit_closed_axioms manuscriptPrintedMikhailovaGraphProductPackage
