@@ -36,6 +36,16 @@ LLP pass from a group to its twisted algebras?) at its sharpest live
 instance: a positive answer to their question reduces this claim to the
 untwisted fibre.
 
+There is also a sharper trace-localized consequence which does not require
+the untwisted fibre.  By `llp-makes-hyperlinear-traces-amenable`, LLP of
+`A_alpha` would make every hyperlinear trace on it amenable.  But
+`odd-maslov-twisted-fibres-have-no-amenable-trace` excludes amenable traces,
+while Thom's central-corner criterion makes the canonical twisted trace
+hyperlinear whenever `E_3` is hyperlinear.  Thus this claim **alone** forces
+`E_3` non-hyperlinear through
+`nonhyperlinear-from-odd-maslov-fibre-llp`; the untwisted
+`sp2g-z-full-c-star-algebra-has-llp` gate is not part of that mouth.
+
 ## Attempts
 
 - **No tool reaches this algebra in either direction.**  The twisted
@@ -114,8 +124,19 @@ untwisted fibre.
   retract lane cannot perturb its hidden boundary toward a scalar/projective
   Morita bridge: any retract must kill a macroscopic positive coefficient
   boundary.  Such a genuinely nonfaithful macroscopic-boundary retract is
-  not ruled out and could still transfer LLP, but the proposed quantitative
-  scalarization gate is now closed negatively.
+  not ruled out for arbitrary nonhomogeneous embeddings, but the proposed
+  quantitative scalarization gate is now closed negatively.
+- **Exact matrix homogeneity is itself impossible for a split retract.**
+  `odd-maslov-homogeneous-split-ucp-retract-is-impossible` strengthens the
+  preceding defect gap.  If the embedding has exact homogeneous form
+  `i(u_g)=C_g tensor u_g`, then Schwarz equality puts every generator image
+  in the multiplicative domain of the arbitrary ucp left inverse.  The
+  support of its canonical coefficient state reduces all `C_g` and carries
+  a nonzero finite-dimensional projective representation with the odd
+  difference multiplier, contradicting Deligne invisibility.  No
+  homogeneity of the retraction is used, and a macroscopic killed boundary
+  does not escape.  A surviving split-retract proof must therefore break
+  exact homogeneity of the embedding itself.
 - **The Connes-embeddability of the fibres is also live.**  Thom's
   criterion (Lemma 3.4, `thom-central-corner-criterion`) makes
   hyperlinearity of `E_3` equivalent to Connes-embeddability of all

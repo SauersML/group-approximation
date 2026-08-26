@@ -47,12 +47,14 @@ ucp retracts can approach the scalar/projective homogeneous line by making
 its coefficient multiplicative defects tend to zero, regardless of how fast
 the matrix amplification grows.
 
-This does not by itself rule out a homogeneous split retract.  A nonfaithful
-retraction may still kill a positive boundary ideal of fixed macroscopic
-coefficient mass, just as abstract ucp countermodels can hide positive
-defect.  What `(OUF2)` rules out is precisely the proposed quantitative
-Maslov scalarization mechanism after matrix-homogeneous covariance: the
-hidden boundary cannot become asymptotically negligible.  Any positive LLP
-transfer through such a retract must use that macroscopic nonmultiplicative
-boundary rather than perturb it toward a scalar Morita bridge.
-
+The inequality `(OUF2)` alone does not formally rule out a homogeneous split
+retract: an abstract nonfaithful retraction can kill a positive boundary
+ideal of fixed macroscopic coefficient mass.  However the additional split
+identity does rule it out in the odd Maslov setting.
+`odd-maslov-homogeneous-split-ucp-retract-is-impossible` applies
+multiplicative-domain equality to the left inverse and extracts a forbidden
+finite projective coefficient on the support of its canonical coefficient
+state.  Thus `(OUF2)` remains the dimension-uniform defect theorem for
+homogeneous maps, while the stronger claim closes homogeneous **split**
+retracts altogether.  A surviving retract route must drop exact homogeneity,
+not merely hide a macroscopic boundary.

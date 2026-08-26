@@ -137,6 +137,19 @@ the fixed-depth nonhyperlinearity criterion.
   this growing-depth scalar moment with a dimension-free loss, or charge its
   failure to conductor exit; naive power telescoping still loses with `a`.
 
+- **Scalar transport followed by canonical target vanishing is not an
+  endpoint.**  `rank-one-last-layer-induced-tower-avoids-six-root-carrier`
+  constructs genuine representations induced from a rank-one character of
+  the last congruence kernel.  Their fixed-word characters converge to the
+  canonical trace, their six-root all-negative atom is exactly absent, and
+  their full sixfold parity coefficient is exactly `3/7`.  Even a perfect
+  scalar transport would therefore only put `3/7` on the staggered
+  `(4,4,8)` moving-depth word.  Canonical fixed moments do not force that
+  moving coefficient to vanish.  The explicit route
+  `six-root-scalar-transfer-then-canonical-target-vanishing` is invalidated;
+  the surviving estimate must retain a supported `h`-compatible carrier on
+  one reservoir or charge its first exit.
+
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
   no-leak branch with a dimension-independent modulus; this is

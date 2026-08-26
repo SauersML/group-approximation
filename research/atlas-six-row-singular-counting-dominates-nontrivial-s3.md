@@ -97,6 +97,14 @@ the finite arithmetic information lost by fixed Reynolds--Gram positivity.
   targets vanish and the collision initial/final spaces coincide at rank
   `1/2`.  Therefore even an incidence moving with `(U,t)` cannot simply join
   the residuals' initial and final high spaces and project the whole source
-  into that join.  A surviving proof of `(SCI3)` must permit bounded
-  multiplicity in a way not equivalent to one acute-angle injection; the
-  affine calibration still remains compatible with `C_rank>=2`.
+  into that join.  Moreover
+  `atlas-affine-collision-collapses-pure-polar-copies`
+  computes the full supported collision-polar algebra as `C Q`: every finite
+  repetition, relabelling, or postprocessing of those same slots factors
+  through `QP` and keeps a common kernel of dimension at least `d/4` or
+  `3d/8`.  Thus the bounded-pure-copy route is invalidated as well.  A
+  surviving bounded-multiplicity proof must introduce genuinely distinct
+  external pretransports `Q_r W_(r,j)P`; posttransports of `Q_rP` cannot
+  work.  The affine rank calibration requires at least `C_rank>=3/2` in the
+  orbit-three case and `C_rank>=7/4` in the orbit-six case, and does not by
+  itself refute `(SCI3)` with a larger constant.
