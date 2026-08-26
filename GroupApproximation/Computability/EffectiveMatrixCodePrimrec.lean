@@ -458,10 +458,9 @@ theorem primrecPred_entrySmall :
       (primrec_complexNormSq.comp Primrec.snd))
     (Primrec.const ratOne)
 
-set_option maxHeartbeats 2000000 in
-theorem primrecPred_matrixSmall :
-    PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
-      matrixSmall z.1.1 z.1.2 z.2 := by
+private theorem primrecRel_matrixSmallCell : PrimrecRel fun (j : ℕ)
+    (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+    entrySmall z.2.1.1 z.2.1.2 (entry z.2.1.1 z.2.2 z.1 j) := by
   let hd : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
       p.2.2.1.1 := Primrec.fst.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
   let hk : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
@@ -476,48 +475,52 @@ theorem primrecPred_matrixSmall :
     primrec_entry.comp (Primrec.pair
       (Primrec.pair (Primrec.pair hd hA) hi)
       Primrec.fst)
-  have hcol : PrimrecRel fun (j : ℕ)
-      (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      entrySmall z.2.1.1 z.2.1.2 (entry z.2.1.1 z.2.2 z.1 j) := by
-    exact primrecPred_entrySmall.comp (Primrec.pair (Primrec.pair hd hk) hentry)
-  have hrow : Primrec₂ fun (z : (ℕ × ℕ) × MatrixCode) (i : ℕ) =>
+  exact primrecPred_entrySmall.comp (Primrec.pair (Primrec.pair hd hk) hentry)
+
+private theorem primrec_matrixSmallRow : Primrec₂ fun
+    (z : (ℕ × ℕ) × MatrixCode) (i : ℕ) =>
       (List.range (dim z.1.1)).all fun j =>
         decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j)) := by
-    have hrange : Primrec fun p : ((ℕ × ℕ) × MatrixCode) × ℕ =>
-        List.range (dim p.1.1.1) :=
-      Primrec.list_range.comp
-        (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-    have hitem : Primrec₂ fun (p : ((ℕ × ℕ) × MatrixCode) × ℕ) (j : ℕ) =>
-        decide (entrySmall p.1.1.1 p.1.1.2 (entry p.1.1.1 p.1.2 p.2 j)) :=
-      hcol.decide.comp₂ Primrec₂.right
-        ((Primrec.pair (Primrec.snd.comp Primrec.fst)
-          (Primrec.fst.comp Primrec.fst)).to₂)
-    exact (primrec_listAll hrange hitem).to₂
-  have hcheck : Primrec fun z : (ℕ × ℕ) × MatrixCode =>
-      (List.range (dim z.1.1)).all fun i =>
-        (List.range (dim z.1.1)).all fun j =>
-          decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j)) :=
-    primrec_listAll
-      (Primrec.list_range.comp
-        (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) hrow
-  refine (Primrec.eq.comp hcheck (Primrec.const true)).of_eq ?_
+  have hrange : Primrec fun p : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      List.range (dim p.1.1.1) :=
+    Primrec.list_range.comp
+      (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+  have hitem : Primrec₂ fun (p : ((ℕ × ℕ) × MatrixCode) × ℕ) (j : ℕ) =>
+      decide (entrySmall p.1.1.1 p.1.1.2 (entry p.1.1.1 p.1.2 p.2 j)) :=
+    primrecRel_matrixSmallCell.decide.comp₂ Primrec₂.right
+      ((Primrec.pair (Primrec.snd.comp Primrec.fst)
+        (Primrec.fst.comp Primrec.fst)).to₂)
+  exact (primrec_listAll hrange hitem).to₂
+
+private theorem primrec_matrixSmallCheck : Primrec fun z : (ℕ × ℕ) × MatrixCode =>
+    (List.range (dim z.1.1)).all fun i =>
+      (List.range (dim z.1.1)).all fun j =>
+        decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j)) :=
+  primrec_listAll
+    (Primrec.list_range.comp
+      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) primrec_matrixSmallRow
+
+theorem primrecPred_matrixSmall :
+    PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
+      matrixSmall z.1.1 z.1.2 z.2 := by
+  refine (Primrec.eq.comp primrec_matrixSmallCheck (Primrec.const true)).of_eq ?_
   intro z
   simp only [List.all_eq_true, decide_eq_true_eq, List.mem_range, matrixSmall]
 
-set_option maxHeartbeats 2000000 in
+private theorem primrec_vectorWitnessLeft : Primrec fun
+    z : (ℕ × MatrixCode) × VectorCode => vectorNormSq z.1.1 z.2 :=
+  primrec_vectorNormSq.comp
+    (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
+
+private theorem primrec_vectorWitnessRight : Primrec fun
+    z : (ℕ × MatrixCode) × VectorCode =>
+    ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
+  primrec_ratMul.comp (Primrec.const (ratOfNat 9)) primrec_mulVecNormSq
+
 theorem primrecPred_vectorWitness :
     PrimrecPred fun z : (ℕ × MatrixCode) × VectorCode =>
-      vectorWitness z.1.1 z.1.2 z.2 := by
-  have hleft : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
-      vectorNormSq z.1.1 z.2 :=
-    primrec_vectorNormSq.comp
-      (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
-  have hnorm : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
-      mulVecNormSq z.1.1 z.1.2 z.2 := primrec_mulVecNormSq
-  have hright : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
-      ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
-    primrec_ratMul.comp (Primrec.const (ratOfNat 9)) hnorm
-  exact primrecRel_ratLt.comp hleft hright
+      vectorWitness z.1.1 z.1.2 z.2 :=
+  primrecRel_ratLt.comp primrec_vectorWitnessLeft primrec_vectorWitnessRight
 
 theorem primrec_matrixSmallDecision :
     Primrec fun z : (ℕ × ℕ) × MatrixCode =>
