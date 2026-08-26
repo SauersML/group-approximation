@@ -61,3 +61,10 @@ full tensor square of the defining module, and extension closure propagates
 the result to every module filtered by the degree-zero, degree-one, and this
 degree-two block.  Consequently the first polynomial nonlinear block is not
 the missing affine enemy either.
+
+`authenticated-mixed-loop-kills-bilinear-affine-modules` also closes the
+mixed tensor `M tensor M^*=End(M)`.  The calculation is uniform in every odd
+characteristic and does not split off the scalar summand, so it covers the
+adjoint-type corrector even in characteristic three.  The unresolved linear
+sector has therefore moved past all degree-two tensors of the defining and
+contragredient coordinates that have been checked explicitly.
