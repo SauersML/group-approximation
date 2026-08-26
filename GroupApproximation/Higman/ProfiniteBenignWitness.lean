@@ -181,6 +181,42 @@ namespace ProfiniteBenignWitness
 
 variable {H₁ H₂ : Subgroup G}
 
+/-- A finitely generated, profinitely closed subgroup of an RF finitely
+presented group has the tautological strengthened witness. -/
+def ofClosedFG [Group.IsFinitelyPresented G] [Group.ResiduallyFinite G]
+    {H : Subgroup G} (hfg : H.FG)
+    (hclosed : profiniteClosure H = H) : ProfiniteBenignWitness H where
+  witness := BenignWitness.ofFG hfg
+  ambientRF := by
+    change Group.ResiduallyFinite G
+    infer_instance
+  cutterClosed := hclosed
+  embCofinal := CofinalProfiniteEmbedding.id
+  embClosed := by
+    change profiniteClosure (MonoidHom.id G).range = (MonoidHom.id G).range
+    have hrange : (MonoidHom.id G).range = (⊤ : Subgroup G) := by
+      ext g
+      simp
+    rw [hrange]
+    exact profiniteClosure_top
+
+/-- A residually finite finitely presented group is its own profinitely full
+overgroup. -/
+def selfOvergroup [Group.IsFinitelyPresented G] [Group.ResiduallyFinite G] :
+    ProfiniteFPOvergroup G where
+  overgroup := FPOvergroup.self G
+  ambientRF := by
+    change Group.ResiduallyFinite G
+    infer_instance
+  embCofinal := CofinalProfiniteEmbedding.id
+  embClosed := by
+    change profiniteClosure (MonoidHom.id G).range = (MonoidHom.id G).range
+    have hrange : (MonoidHom.id G).range = (⊤ : Subgroup G) := by
+      ext g
+      simp
+    rw [hrange]
+    exact profiniteClosure_top
+
 /-- The intersection witness preserves all profinite data. -/
 def inf (u₁ : ProfiniteBenignWitness H₁)
     (u₂ : ProfiniteBenignWitness H₂) :
@@ -248,6 +284,46 @@ def congr {G' : Type} [Group G'] (e : G' ≃* G) {H : Subgroup G}
       (u.witness.emb.comp e.toMonoidHom).range
     rw [hrange]
     exact u.embClosed
+
+/-- **RF-safe image transport along a split embedding.**
+
+Instead of the generic amalgam witness from `BenignWitness.mapEmb`, intersect
+the preimage `r⁻¹(H)` with the closed retract range `theta(G)`.  The
+intersection is exactly `theta(H)`, and only the already-proved direct-product
+operations are used.  This is the image construction consumed by diagonal and
+factor inclusions in the concrete Higman compiler. -/
+def mapSplit {N : Type} [Group N] [Group.IsFinitelyPresented N]
+    [Group.ResiduallyFinite N] {H : Subgroup G}
+    (u : ProfiniteBenignWitness H) (theta : G →* N) (r : N →* G)
+    (hrt : r.comp theta = MonoidHom.id G)
+    (hrangeFG : theta.range.FG) : ProfiniteBenignWitness (H.map theta) := by
+  have hrangeClosed : profiniteClosure theta.range = theta.range := by
+    exact profiniteClosure_range_eq_range_of_retraction theta r hrt
+  let pre : ProfiniteBenignWitness (H.comap r) :=
+    comap (selfOvergroup (G := N)) r u
+  let ran : ProfiniteBenignWitness theta.range :=
+    ofClosedFG hrangeFG hrangeClosed
+  let both : ProfiniteBenignWitness (H.comap r ⊓ theta.range) := pre.inf ran
+  have heq : H.comap r ⊓ theta.range = H.map theta := by
+    ext n
+    constructor
+    · intro hn
+      obtain ⟨hnH, g, hgn⟩ := Subgroup.mem_inf.mp hn
+      have hrg : r (theta g) = g := by
+        have h := congrArg (fun f : G →* G ↦ f g) hrt
+        exact h
+      refine ⟨g, ?_, hgn⟩
+      change r n ∈ H at hnH
+      rwa [← hgn, hrg] at hnH
+    · rintro ⟨g, hgH, rfl⟩
+      apply Subgroup.mem_inf.mpr
+      constructor
+      · change r (theta g) ∈ H
+        have h := congrArg (fun f : G →* G ↦ f g) hrt
+        simpa using h ▸ hgH
+      · exact ⟨g, rfl⟩
+  rw [← heq]
+  exact both
 
 end ProfiniteBenignWitness
 
