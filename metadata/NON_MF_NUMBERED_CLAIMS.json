@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "non_mf_groups_exist.tex",
+  "manuscript": "o.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
