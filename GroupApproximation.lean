@@ -1682,7 +1682,6 @@ import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.OmegaTowerDescent
 import GroupApproximation.Higman.OmegaTowerStageTwo
 import GroupApproximation.Higman.OmegaTowerStageThree
-import GroupApproximation.Higman.OmegaTowerDescent
 import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.SwapWitnessTower
 import GroupApproximation.Higman.SwapCarrierFromTower
@@ -1863,6 +1862,7 @@ import GroupApproximation.Higman.MikhailovaRankThreeWitness
 import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
+import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.FreeLampFinitePresentation
 import GroupApproximation.Higman.PairedFoldKernel
 import GroupApproximation.Higman.PairedReturnFirstIntersection
