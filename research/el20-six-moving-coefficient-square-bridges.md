@@ -90,10 +90,19 @@ the coboundary drift of
   second genuinely gauged mixed/opposite-root occurrence whose reservoir
   action cancels `D` while its total label action still moves the signed
   Hecke source exactly once; pure normalizer dressing is not enough.
+- Adding that second gauge-bearing occurrence inside a larger **finite
+  normal extraspecial packet** also fails.  By
+  `finite-extraspecial-mixed-words-cannot-ungauge-singer-transport`, all
+  outer reservoir factors multiply to the projective operator indexed by
+  the total quotient element.  Moving `L_0` to `t_iL_0t_i^(-1)` forces that
+  quotient element to be nontrivial, while universal cancellation of the
+  reservoir factor forces it to be trivial.  This covers any finite number
+  of mixed normalizer letters, not merely one Whitehead plus label-only
+  dressing.
 
 The smallest remaining algebraic search is therefore explicit: find one
-genuinely mixed coefficient/root-opposite word with the full-Gram property
+genuinely nonnormal coefficient/root-opposite word with the full-Gram property
 `(ESB1)--(ESB2)` and verify its six Singer conjugate squares.  It must contain
-the second gauge-bearing occurrence just isolated, not only one Whitehead
-surrounded by label-only factors.  No Property `(T)`, canonical
+an occurrence which exits the finite extraspecial atom algebra, not only
+normalizer letters inside a larger finite packet.  No Property `(T)`, canonical
 trace profile, or tracial-von-Neumann extension is allowed.
