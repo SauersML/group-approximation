@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: coarse-fine-offdiagonal-loop-morita-proof
-kind: derivation
+kind: route
 title: Proof that the complete off-diagonal prefix chart remains Morita typed
 target: coarse-fine-offdiagonal-loops-are-morita-blind
 ---
