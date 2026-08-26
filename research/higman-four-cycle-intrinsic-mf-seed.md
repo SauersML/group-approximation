@@ -6,7 +6,7 @@ title: Higman's four-cycle is the concrete intrinsic torsion-free MF-seed test
 root: true
 distinct_from:
   torsion-free-fp-ah-mf-radical-seed: that asks for any intrinsic seed; this fixes Higman's four-generator presentation and identifies the exact marked point-operator-norm statement still missing.
-  map-matricial-stability-non-mf: that assumes full matricial stability of an arbitrary minimally almost periodic group; this candidate needs only collapse of one marked Higman generator and does not assume correction to exact representations.
+  map-matricial-stability-non-mf: that is a general implication from matricial stability and finite-dimensional sterility; here cyclic symmetry makes the one-mark statement exactly trivial-tuple stability for this finite presentation, so the candidate does not evade the stability problem but isolates it in four explicit relations.
   higman-hs-microstates-are-near-glued-exact-bs-cycles: that is a normalized-Hilbert--Schmidt reduction; this asks for operator-norm collapse and cannot consume HS-nearness of the four occurrences.
 artifacts:
   - research/artifacts/higman-cycle-bs-stability-gate-2026-08-21.md
@@ -64,6 +64,28 @@ a premise of the requested unconditional no-literature Lean endpoint.
 Exact finite-dimensional sterility is only a calibration and does not imply
 `(HMF3)`.
 
+## The marked statement is already full trivial-tuple stability
+
+For this cyclic presentation, `(HMF3)` is not materially weaker than
+point-operator-norm stability.  Applying the same statement after cyclically
+renaming the four generators makes every `U_i` converge to `1`; the trivial
+tuple is then an exact representation.  Conversely, correction to exact
+representations plus exact finite-dimensional sterility gives `(HMF3)`.
+
+Equivalently, the sequential statement is the dimension-uniform modulus:
+for every `epsilon>0` there is `delta>0` such that every finite-dimensional
+tuple with relator defect below `delta` satisfies
+
+```text
+max_i ||U_i-1|| < epsilon.                            (HMF5)
+```
+
+Failure of this modulus supplies a counterexample sequence by choosing the
+defect below `1/n` at one fixed positive distance; the converse is immediate.
+Thus the desired implication is exactly stability of this presentation
+toward its unique finite-dimensional representation, not merely a local
+marked estimate.
+
 ## The four-seam gate
 
 The established HS theorem
@@ -91,3 +113,11 @@ Consequently this node records a concrete candidate and an exact analytic
 seam, not a solution.  Establishing it, together with internal proofs of the
 background group facts, would provide the no-`(T)` input for the torsion-free
 routing saturation theorem.
+
+Two established calibrations narrow a possible countermodel further.
+`one-small-higman-generator-collapses-the-four-cycle` shows that every
+generator of a noncollapsing sequence must remain outside the operator-norm
+`sqrt(2)` basin.  For the concrete `3^n` clocks,
+`periodic-higman-clock-centralizer-has-linear-width` computes
+`dim_C {P}'=2q-1`; the clock degeneracies therefore do not supply an
+unrestricted quadratic-size gauge space for absorbing the fourth return.

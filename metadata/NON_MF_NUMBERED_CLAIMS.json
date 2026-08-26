@@ -11,7 +11,6 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:commutant",
         "cor:defect-hs",
         "thm:normal-kazhdan"
       ],
@@ -31,7 +30,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "952575355bb59ee9751be9a5243dea6169dfe73d5b119736dd12e999c0259965",
+      "statement_sha256": "4a0634991d998ddf57c701f408746046a24fa3b28f93d24200dd5bb2fd627009",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -108,26 +107,6 @@
           "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:commutant",
-      "environment": "theorem",
-      "title": "finite-dimensional commutant rigidity",
-      "statement_sha256": "a25bdabf8f2042808c8d911ac339bc4e507ba8ffc2416e4a334a42f421a2962b",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/FiniteDimensionalCommutant",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity",
           "covers": "the complete printed proposition"
         }
       ]

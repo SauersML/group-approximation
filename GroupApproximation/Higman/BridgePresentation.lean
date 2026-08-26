@@ -432,7 +432,7 @@ theorem map_cycle_hnnRaw (i : ℕ) :
   rw [hold]
   simp only [map_mul, map_inv, FreeGroup.map.of, cycle_two, cycle_add_three,
     HNNPresentation.stableWord, optionNatEquiv_none, tgtWord, hsrc]
-  rw [← MonoidHom.comp_apply, hemb, ← MonoidHom.comp_apply, hemb]
+  simp only [← MonoidHom.comp_apply, hemb]
 
 theorem numbered_base_relator (u : FreeGroup ℕ) :
     FreeGroup.map optionNatEquiv
