@@ -105,10 +105,18 @@ Thus the concrete open target is
 e ~ f in S:  find x in eSf and y in fSe with xy=e and yx=f.       (4)
 ```
 
-It is weaker than finding an inner conjugating group unit.  A solution of
-(4) satisfies the existing corner-lift claim immediately, because
-`pi(yx)=s_0t_0 != 1`, and padding by `1-e` gives a direct-finiteness
-counterexample.
+This target is now refuted by the canonical coefficient trace.  If
+`tau:S->F_2` denotes coefficient of the identity, then `tau(ab)=tau(ba)` for
+all `a,b in S`.  Since `g,g^2` are nonidentity while the support of `f`
+contains the identity exactly once,
+
+```text
+tau(e)=0,                    tau(f)=1.                  (4a)
+```
+
+Therefore no `x,y` anywhere in `S` can satisfy `xy=e`, `yx=f`.  The narrower
+corner supports in (4) cannot help.  See
+`group-algebra-coefficient-trace-separates-leavitt-corners`.
 
 ## 3. Global trace obstruction for the two-packet equation
 
@@ -267,8 +275,10 @@ Sources:
 
 ## Honest frontier
 
-No pair solving (8), no equivalence (4), and no proof of their impossibility
-is supplied.  The new theorem is the global trace/odd-intersection obstruction,
-and the new finite result is the independent mixed-root exhaustion through
-length four.  The live finite-support target is now exactly (4), or (8) under
-condition (10).
+No pair solving (8) is supplied.  Equivalence (4) is impossible by (4a), so
+it is no longer a live finite-support target.  The surviving direct-finiteness
+lane must use a pair of products with equal canonical coefficient trace; in
+the packet equation this leaves (8) under the odd-intersection condition
+(10).  The earlier theorem remains the global trace/odd-intersection
+obstruction, and the finite result remains the independent mixed-root
+exhaustion through length four.
