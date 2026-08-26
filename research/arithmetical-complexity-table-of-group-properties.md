@@ -4,6 +4,7 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/AbelianEnumeratedPi02.lean
   - GroupApproximation/Computability/TrivialEnumeratedPi02.lean
   - GroupApproximation/Computability/ElementaryEnumeratedHardness.lean
   - GroupApproximation/Computability/IsoInvariantSwitchHardness.lean
@@ -33,6 +34,7 @@ enumerated presentations.
 property           fp                          rec2 / rec                    enum
 -------------------------------------------------------------------------------------
 trivial            Sigma^0_1-complete (folk.)  Pi^0_2-complete (folk.)       Pi^0_2-complete
+abelian            Pi^0_2 (folk.)              Pi^0_2-complete (folk.)       Pi^0_2-complete
 sofic              Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [S]
 operator-MF        Pi^0_2-complete [MF]        Pi^0_2-complete               Pi^0_2-complete
@@ -95,3 +97,5 @@ Amenability's second-level lower bound on enumerated codes is `AmenableEnumerate
 The `trivial` row's second-level lower bound and finiteness are `ElementaryEnumeratedHardness.trivialCode_pi02Hard` / `finiteCode_pi02Hard`; property (T)'s enumerated lower bound is `IsoInvariantSwitchHardness.kazhdanCode_pi02Hard` (isomorphism invariance suffices for the switch, heredity is not needed).
 
 The `trivial` row on enumerated codes is fully kernel-checked: `TrivialEnumeratedPi02.trivial_enum_pi02Complete`.
+
+Commutativity on enumerated codes is fully kernel-checked: `AbelianEnumeratedPi02.comm_enum_pi02Complete`.
