@@ -1152,6 +1152,7 @@ noncomputable def upperUnitCharacterMeasurableEquiv
     ((P rho).rho (upperShear 1))
     (upperShear_forward rho 1) (upperShear_backward rho 1)).toMeasurableEquiv
 
+omit [Fintype X] in
 @[simp] theorem upperUnitCharacterMeasurableEquiv_apply
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (chi : Spectrum rho) :
@@ -1167,6 +1168,7 @@ noncomputable def lowerUnitCharacterMeasurableEquiv
     ((P rho).rho (lowerShear 1))
     (lowerShear_forward rho 1) (lowerShear_backward rho 1)).toMeasurableEquiv
 
+omit [Fintype X] in
 @[simp] theorem lowerUnitCharacterMeasurableEquiv_apply
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (chi : Spectrum rho) :
@@ -1837,7 +1839,7 @@ theorem measureReal_le_target_add_quasiInvariant_error
     {Omega : Type*} [MeasurableSpace Omega]
     (mu : Measure Omega) [IsFiniteMeasure mu] (epsilon : ℝ)
     (g : Omega ≃ᵐ Omega) {S T : Set Omega}
-    (hS : MeasurableSet S) (hT : MeasurableSet T)
+    (hS : MeasurableSet S)
     (hquasi :
       KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
         mu epsilon g)
@@ -1874,9 +1876,6 @@ theorem measureReal_A_union_B_le_ABC_of_upperUnit_quasiInvariant
     (upperUnitCharacterMeasurableEquiv rho)
   · exact (measurableSet_wordPairRegionSet rho n .A).union
       (measurableSet_wordPairRegionSet rho n .B)
-  · exact ((measurableSet_wordPairRegionSet rho n .A).union
-      (measurableSet_wordPairRegionSet rho n .B)).union
-      (measurableSet_wordPairRegionSet rho n .C)
   · exact hquasi
   · intro chi hchi
     change upperUnitCharacterAction rho chi ∈
@@ -1902,9 +1901,6 @@ theorem measureReal_B_union_C_le_ABC_of_lowerUnit_quasiInvariant
   apply measureReal_le_target_add_quasiInvariant_error mu epsilon
     (lowerUnitCharacterMeasurableEquiv rho)
   · exact (measurableSet_wordPairRegionSet rho n .B).union
-      (measurableSet_wordPairRegionSet rho n .C)
-  · exact ((measurableSet_wordPairRegionSet rho n .A).union
-      (measurableSet_wordPairRegionSet rho n .B)).union
       (measurableSet_wordPairRegionSet rho n .C)
   · exact hquasi
   · intro chi hchi
@@ -1932,8 +1928,10 @@ theorem columnPlaneSpectralMeasure_A_union_B_le_ABC
   apply measureReal_A_union_B_le_ABC_of_upperUnit_quasiInvariant
   have hq := upperShear_measurableQuasiInvariantAtScale
     X rho z hz delta hdelta hnear none
-  simpa only [columnPlaneSpectralMeasure, integralControlCoefficient,
-    upperUnitCharacterMeasurableEquiv] using hq
+  change KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
+    (columnPlaneSpectralMeasure rho z hz) delta
+      (upperUnitCharacterMeasurableEquiv rho) at hq
+  exact hq
 
 /-- The symmetric lower-unit inequality for the same full spectral measure. -/
 theorem columnPlaneSpectralMeasure_B_union_C_le_ABC
@@ -1953,8 +1951,10 @@ theorem columnPlaneSpectralMeasure_B_union_C_le_ABC
   apply measureReal_B_union_C_le_ABC_of_lowerUnit_quasiInvariant
   have hq := lowerShear_measurableQuasiInvariantAtScale
     X rho z hz delta hdelta hnear none
-  simpa only [columnPlaneSpectralMeasure, integralControlCoefficient,
-    lowerUnitCharacterMeasurableEquiv] using hq
+  change KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
+    (columnPlaneSpectralMeasure rho z hz) delta
+      (lowerUnitCharacterMeasurableEquiv rho) at hq
+  exact hq
 
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
@@ -2291,4 +2291,9 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms lowerUnitCharacterAction_mapsTo_B_union_A
 #audit_axioms upperUnitCharacterAction_mapsTo_A_union_B
 #audit_axioms lowerUnitCharacterAction_mapsTo_B_union_C
+#audit_axioms measureReal_le_target_add_quasiInvariant_error
+#audit_axioms measureReal_A_union_B_le_ABC_of_upperUnit_quasiInvariant
+#audit_axioms measureReal_B_union_C_le_ABC_of_lowerUnit_quasiInvariant
+#audit_axioms columnPlaneSpectralMeasure_A_union_B_le_ABC
+#audit_axioms columnPlaneSpectralMeasure_B_union_C_le_ABC
 #audit_axioms measurableSet_fullPlaneNontrivialSet
