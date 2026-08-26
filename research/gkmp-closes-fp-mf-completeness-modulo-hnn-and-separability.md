@@ -67,3 +67,34 @@ The digit/shift edges were shown incompatible with finite quotients
 quotients entirely.  The remaining task is not another obstruction audit but
 an adaptation of the GKMP proof to the HNN edge, which is analytic work of
 the same character as their Section 3--6 and is the correct next attack.
+
+## Honest limitations (checked 2026-08-26)
+
+* **The clean "virtually special" escape does not apply.**  GKMP Corollary
+  1.4 (virtually special ⟹ PFF) would give MF for free if the compiler output
+  were virtually special.  It is not: on `FIN` the output contains the literal
+  non-MF group `E` and on `INF` it contains `B2(1)`, neither hyperbolic, so
+  the output is not virtually special.  Corollary 1.4 is therefore not a
+  shortcut past (HNN); only Theorem 1.1 (with the product edge) is on point,
+  and it is stated for the amalgam, not the rope's stable letter.
+
+* **(SEP) is a real, unverified condition.**  Separability of the benign
+  subgroup `L` in the ambient `G` is not automatic.  The virtually-special
+  Chiodo--Vyas form of the Aanderaa--Cohen construction makes it *plausible*
+  (quasi-convex ⟹ separable there), but the specific benign `L` used by the
+  rope must be shown quasi-convex in a virtually special ambient, which is
+  not done.
+
+* **(HNN) is genuinely new.**  GKMP v4 states only the amalgam Theorem 1.1
+  and its corollaries; no HNN form appears.  The rope output
+  `< G x C, s | s(l,1)s^-1 = (l,phi(l))>` is not literally a GKMP amalgam,
+  and the naive embedding into `(G x C) *_{L x C} ((L x C) x Z) ≅
+  (*_{L x C}(G x C)) ⋊ Z` fails because the `Z` there shifts whole copies of
+  `G x C` over `L x C`, whereas the rope's `s` twists `L x 1` to `graph(phi)`
+  inside one copy — a different graph of groups.
+
+So the prize is reduced to, but not closed by, GKMP: it needs an HNN-edge
+form of their free-independence argument (their Sections 3--6), which is the
+correct next attack and is analytic work of the same character, not a further
+finite-quotient or bookkeeping step.
+
