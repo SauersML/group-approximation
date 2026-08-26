@@ -86,11 +86,12 @@ theorem concrete_preHull_inputs : ConcretePreHullInputs :=
 
 /-- The minimum coherent two-stage conclusion required from Hull 7.1.
 
-`partnerRoutes` is the first prescribed-target conclusion: the image of the
-Kazhdan factor is contained in the image of the explicit suitable subgroup.
-`finalPartnerSurjective` is the second prescribed-target conclusion.  Together
-they force that suitable subgroup, hence the whole compression defect, to map
-onto the final quotient.
+The first application produces a common quotient, recorded by
+`partnerSurjective`.  For the second application we carry the finite generating
+tuple actually selected as Hull's target set and the pointwise conclusion
+`secondRoutes`; saturation is derived below from those pointwise facts and the
+surjectivity of the second quotient map.  It is not stored as a renamed Hull
+conclusion.
 
 The two `finiteOrderLifts` fields are Hull 7.1(e), once at each stage.  The two
 `protected` fields are Hull 7.1(b), applied to the protected pair and then its
@@ -122,12 +123,20 @@ structure TwoStageHull71Output where
   /-- Hull 7.1(b) protects `1` and the marked source element at stage one. -/
   firstProtected : Set.InjOn ambient
     ({1, amplifiedDefectData.s} : Set Ambient)
-  /-- Hull 7.1(c), with targets selected in the suitable defect subgroup. -/
-  partnerRoutes : partner.range ≤ crossingSuitableCarrier.map ambient
+  /-- A finite generating tuple chosen as the target set for stage two. -/
+  stageOneCard : ℕ
+  /-- The chosen generators of the first quotient. -/
+  stageOneGen : Fin stageOneCard → StageOne
+  /-- The chosen tuple genuinely generates the first quotient. -/
+  stageOneGenerates : Subgroup.closure (Set.range stageOneGen) = ⊤
   /-- The second quotient map. -/
   finish : StageOne →* Final
-  /-- The second application makes the Kazhdan factor fill the final group. -/
-  finalPartnerSurjective : Function.Surjective (finish.comp partner)
+  /-- Hull's quotient map at the second stage. -/
+  finishSurjective : Function.Surjective finish
+  /-- Hull 7.1(c), one chosen target at a time. -/
+  secondRoutes : ∀ j : Fin stageOneCard,
+    finish (stageOneGen j) ∈
+      crossingSuitableCarrier.map (finish.comp ambient)
   /-- Hull 7.1(e) at the second stage. -/
   secondFiniteOrderLifts :
     ∀ (z : Final) (n : ℕ), 0 < n → orderOf z = n →
@@ -148,13 +157,36 @@ local instance : Group H.StageOne := H.stageOneGroup
 local instance : Group H.Final := H.finalGroup
 local instance : Countable H.Final := H.finalCountable
 
+/-- The pointwise routing clause extends from the chosen generators to the
+entire image of the second quotient map. -/
+theorem finish_range_le_suitable_map :
+    H.finish.range ≤
+      crossingSuitableCarrier.map (H.finish.comp H.ambient) := by
+  have hle : Subgroup.closure (Set.range H.stageOneGen) ≤
+      (crossingSuitableCarrier.map (H.finish.comp H.ambient)).comap H.finish := by
+    rw [Subgroup.closure_le]
+    rintro _ ⟨j, rfl⟩
+    exact H.secondRoutes j
+  intro z hz
+  obtain ⟨y, rfl⟩ := hz
+  have hy : y ∈ Subgroup.closure (Set.range H.stageOneGen) := by
+    rw [H.stageOneGenerates]
+    exact Subgroup.mem_top y
+  exact hle hy
+
 /-- The suitable two-generated carrier fills the final quotient.  This is the
 purely algebraic content of the two prescribed-target clauses. -/
 theorem suitable_map_eq_top :
-    crossingSuitableCarrier.map (H.finish.comp H.ambient) = ⊤ :=
-  HullPrescribedSaturation.map_eq_top_of_range_le_map_of_comp_surjective
-    crossingSuitableCarrier H.partner H.ambient H.finish
-      H.partnerRoutes H.finalPartnerSurjective
+    crossingSuitableCarrier.map (H.finish.comp H.ambient) = ⊤ := by
+  apply top_unique
+  rw [← MonoidHom.range_eq_top.mpr H.finishSurjective]
+  exact H.finish_range_le_suitable_map
+
+/-- The Kazhdan factor still fills the final quotient.  This is derived by
+composition of the two quotient maps, not carried as a separate Hull field. -/
+theorem finalPartnerSurjective :
+    Function.Surjective (H.finish.comp H.partner) :=
+  H.finishSurjective.comp H.partnerSurjective
 
 /-- Since the suitable carrier lies in the compression defect, the entire
 defect fills the final quotient. -/
