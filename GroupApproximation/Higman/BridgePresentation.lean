@@ -1,6 +1,7 @@
 import GroupApproximation.Algebra.HNNCongr
 import GroupApproximation.Algebra.HNNPresentation
 import GroupApproximation.Algebra.PresentedGroupRelabel
+import GroupApproximation.Computability.RabinConstructionSource
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.RecursivePresentationBridge
 
@@ -67,19 +68,25 @@ def baseCode : (ℕ ⊕ Fin 2) ≃ ℕ where
 
 /-- The relators before numbering: the word problem of `A` in the left block;
 the free group has no relators. -/
-def sumRels {A : Type} [Group A] (g : ℕ → A) : Set (FreeGroup (ℕ ⊕ Fin 2)) :=
+abbrev sumRels {A : Type} [Group A] (g : ℕ → A) : Set (FreeGroup (ℕ ⊕ Fin 2)) :=
   FreeGroup.map Sum.inl '' wordSet g ∪
     FreeGroup.map Sum.inr '' (∅ : Set (FreeGroup (Fin 2)))
 
 /-- The same relators on the numbered base alphabet. -/
-def baseRels {A : Type} [Group A] (g : ℕ → A) : Set (FreeGroup ℕ) :=
+abbrev baseRels {A : Type} [Group A] (g : ℕ → A) : Set (FreeGroup ℕ) :=
   PresentedGroupRelabel.relabelRels (baseCode : (ℕ ⊕ Fin 2) → ℕ) (sumRels g)
+
+/-- The empty relator set imposes no condition on the free-group lift. -/
+theorem freeCond (X : Type) :
+    ∀ r ∈ (∅ : Set (FreeGroup X)), FreeGroup.lift FreeGroup.of r = 1 := by
+  intro r hr
+  exact hr.elim
 
 /-- The presentation with no relators is the free group. -/
 def freePresentedEquiv (X : Type) :
     PresentedGroup (∅ : Set (FreeGroup X)) ≃* FreeGroup X :=
   MonoidHom.toMulEquiv
-    (PresentedGroup.toGroup (fun _ h => False.elim h))
+    (PresentedGroup.toGroup (freeCond X))
     (PresentedGroup.mk (∅ : Set (FreeGroup X)))
     (by
       refine PresentedGroup.ext fun x => ?_
@@ -94,8 +101,7 @@ def freePresentedEquiv (X : Type) :
     freePresentedEquiv X (PresentedGroup.of x) = FreeGroup.of x :=
   by
     unfold freePresentedEquiv
-    change PresentedGroup.toGroup (fun _ h => False.elim h) (PresentedGroup.of x) = _
-    rw [PresentedGroup.toGroup.of]
+    exact PresentedGroup.toGroup.of (freeCond X)
 
 /-- Isomorphisms of both factors induce an isomorphism of their free products. -/
 def coprodCongr {G H G' H' : Type} [Group G] [Group H] [Group G'] [Group H']
@@ -151,7 +157,16 @@ noncomputable def groupEquiv {A : Type} [Group A] (g : ℕ → A)
       (lift_surjective hspan))
       (QuotientGroup.quotientMulEquivOfEq (normalClosure_relatorSetOf g)
         (PresentedGroup.of k)) = g k
-  rfl
+  rw [show QuotientGroup.quotientMulEquivOfEq (normalClosure_relatorSetOf g)
+      (PresentedGroup.of k) =
+        (QuotientGroup.mk (FreeGroup.of k) :
+          FreeGroup ℕ ⧸ MonoidHom.ker (FreeGroup.lift g)) from rfl]
+  rw [show (QuotientGroup.quotientKerEquivOfSurjective (FreeGroup.lift g)
+      (lift_surjective hspan))
+      (QuotientGroup.mk (FreeGroup.of k) :
+        FreeGroup ℕ ⧸ MonoidHom.ker (FreeGroup.lift g)) =
+        FreeGroup.lift g (FreeGroup.of k) from rfl]
+  exact FreeGroup.lift_apply_of
 
 /-- The numbered presentation of `A * F₂`. -/
 noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
@@ -168,6 +183,10 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inr (0 : Fin 2)))) = _
   unfold baseEquiv
+  change coprodCongr (groupEquiv g hspan) (freePresentedEquiv (Fin 2))
+      (PresentedGroup.coprodPresentations (wordSet g) (∅ : Set (FreeGroup (Fin 2)))
+        ((PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+          (PresentedGroup.of (baseCode (Sum.inr (0 : Fin 2)))))) = _
   rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
       (PresentedGroup.of (baseCode (Sum.inr (0 : Fin 2)))) =
         PresentedGroup.of (Sum.inr (0 : Fin 2)) from
@@ -175,7 +194,10 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
   rw [show PresentedGroup.coprodPresentations (wordSet g)
       (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inr (0 : Fin 2))) =
         Monoid.Coprod.inr (PresentedGroup.of (0 : Fin 2)) from
-      PresentedGroup.toGroup.of _]
+      by
+        simpa [RabinConstructionSource.coprodEquiv, PresentedGroup.of] using
+          (RabinConstructionSource.coprodEquiv_mk_map_inr (wordSet g)
+            (∅ : Set (FreeGroup (Fin 2))) (FreeGroup.of (0 : Fin 2)))]
   rw [coprodCongr_inr, freePresentedEquiv_of]
   rfl
 
@@ -185,6 +207,10 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inr (1 : Fin 2)))) = _
   unfold baseEquiv
+  change coprodCongr (groupEquiv g hspan) (freePresentedEquiv (Fin 2))
+      (PresentedGroup.coprodPresentations (wordSet g) (∅ : Set (FreeGroup (Fin 2)))
+        ((PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+          (PresentedGroup.of (baseCode (Sum.inr (1 : Fin 2)))))) = _
   rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
       (PresentedGroup.of (baseCode (Sum.inr (1 : Fin 2)))) =
         PresentedGroup.of (Sum.inr (1 : Fin 2)) from
@@ -192,7 +218,10 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
   rw [show PresentedGroup.coprodPresentations (wordSet g)
       (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inr (1 : Fin 2))) =
         Monoid.Coprod.inr (PresentedGroup.of (1 : Fin 2)) from
-      PresentedGroup.toGroup.of _]
+      by
+        simpa [RabinConstructionSource.coprodEquiv, PresentedGroup.of] using
+          (RabinConstructionSource.coprodEquiv_mk_map_inr (wordSet g)
+            (∅ : Set (FreeGroup (Fin 2))) (FreeGroup.of (1 : Fin 2)))]
   rw [coprodCongr_inr, freePresentedEquiv_of]
   rfl
 
@@ -202,12 +231,19 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inl k))) = _
   unfold baseEquiv
+  change coprodCongr (groupEquiv g hspan) (freePresentedEquiv (Fin 2))
+      (PresentedGroup.coprodPresentations (wordSet g) (∅ : Set (FreeGroup (Fin 2)))
+        ((PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+          (PresentedGroup.of (baseCode (Sum.inl k))))) = _
   rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
       (PresentedGroup.of (baseCode (Sum.inl k))) = PresentedGroup.of (Sum.inl k) from
       PresentedGroupRelabel.relabelHomSymm_of baseCode (sumRels g) _]
   rw [show PresentedGroup.coprodPresentations (wordSet g)
       (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inl k)) =
-        Monoid.Coprod.inl (PresentedGroup.of k) from PresentedGroup.toGroup.of _]
+        Monoid.Coprod.inl (PresentedGroup.of k) from by
+      simpa [RabinConstructionSource.coprodEquiv, PresentedGroup.of] using
+        (RabinConstructionSource.coprodEquiv_mk_map_inl (wordSet g)
+          (∅ : Set (FreeGroup (Fin 2))) (FreeGroup.of k))]
   rw [coprodCongr_inl, groupEquiv_of]
   rfl
 
@@ -225,14 +261,19 @@ theorem baseEquiv_srcWord {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
     baseEquiv g hspan (PresentedGroup.mk (baseRels g) (srcWord i)) = aFam i := by
   unfold srcWord aFam
-  simp only [map_mul, map_zpow, PresentedGroup.of]
+  simp only [map_mul, map_zpow]
+  change (baseEquiv g hspan (PresentedGroup.of 0)) ^ (-(i : ℤ)) *
+      baseEquiv g hspan (PresentedGroup.of 1) *
+      (baseEquiv g hspan (PresentedGroup.of 0)) ^ (i : ℤ) = _
   rw [baseEquiv_of_zero, baseEquiv_of_one]
 
 theorem baseEquiv_tgtWord {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
     baseEquiv g hspan (PresentedGroup.mk (baseRels g) (tgtWord i)) = bFam g i := by
   unfold tgtWord bFam
-  simp only [map_mul, PresentedGroup.of]
+  simp only [map_mul]
+  change baseEquiv g hspan (PresentedGroup.of (i + 2)) *
+      baseEquiv g hspan (PresentedGroup.mk (baseRels g) (srcWord i)) = _
   rw [baseEquiv_of_add_two, baseEquiv_srcWord]
 
 theorem baseEquiv_symm_aFam {A : Type} [Group A] (g : ℕ → A)
@@ -266,8 +307,8 @@ theorem map_Asub {A : Type} [Group A] (g : ℕ → A)
         rw [baseEquiv_symm_aFam]
         exact HNNPresentation.srcGen_mem (baseRels g) srcWord i
     | one => exact Subgroup.one_mem (HNNPresentation.srcSub (baseRels g) srcWord)
-    | mul x y _ _ hx hy => exact Subgroup.mul_mem _ hx hy
-    | inv x _ hx => exact Subgroup.inv_mem _ hx
+    | mul x y _ _ hx hy => simpa only [map_mul] using Subgroup.mul_mem _ hx hy
+    | inv x _ hx => simpa only [map_inv] using Subgroup.inv_mem _ hx
   · rw [HNNPresentation.srcSub, Subgroup.closure_le]
     rintro y ⟨i, rfl⟩
     refine ⟨aFam i, aFam_mem_Asub i, ?_⟩
@@ -289,8 +330,8 @@ theorem map_Bsub {A : Type} [Group A] (g : ℕ → A)
         rw [baseEquiv_symm_bFam]
         exact HNNPresentation.tgtGen_mem (baseRels g) tgtWord i
     | one => exact Subgroup.one_mem (HNNPresentation.tgtSub (baseRels g) tgtWord)
-    | mul x y _ _ hx hy => exact Subgroup.mul_mem _ hx hy
-    | inv x _ hx => exact Subgroup.inv_mem _ hx
+    | mul x y _ _ hx hy => simpa only [map_mul] using Subgroup.mul_mem _ hx hy
+    | inv x _ hx => simpa only [map_inv] using Subgroup.inv_mem _ hx
   · rw [HNNPresentation.tgtSub, Subgroup.closure_le]
     rintro y ⟨i, rfl⟩
     refine ⟨bFam g i, bFam_mem_Bsub g i, ?_⟩
@@ -421,6 +462,7 @@ theorem map_cycle_hnnRaw (i : ℕ) :
     rw [evalRaw_append]
     simp only [evalRaw_cons, evalRaw_invRaw]
     rw [ha]
+    simp
     group
   have hemb :
       (FreeGroup.map optionNatEquiv).comp HNNPresentation.emb =
@@ -433,6 +475,7 @@ theorem map_cycle_hnnRaw (i : ℕ) :
   simp only [map_mul, map_inv, FreeGroup.map.of, cycle_two, cycle_add_three,
     HNNPresentation.stableWord, optionNatEquiv_none, tgtWord, hsrc]
   simp only [← MonoidHom.comp_apply, hemb]
+  simp only [FreeGroup.map.of]
 
 theorem numbered_base_relator (u : FreeGroup ℕ) :
     FreeGroup.map optionNatEquiv
@@ -635,12 +678,16 @@ theorem pi3_to_coded {A : Type} [Group A] (g : ℕ → A)
   rw [lift_rawToFree]
   change extEquivCoded g hspan
       (evalRaw (fun k : ℕ ↦ gen3 g ⟨k % 3, Nat.mod_lt _ (by omega)⟩) v) = _
+  change (extEquivCoded g hspan).toMonoidHom
+      (evalRaw (fun k : ℕ ↦ gen3 g ⟨k % 3, Nat.mod_lt _ (by omega)⟩) v) = _
   rw [map_evalRaw, evalRaw_relabel]
   refine congrArg (fun f : ℕ → PresentedGroup (codedRels g) ↦ evalRaw f v) ?_
   funext k
+  change extEquivCoded g hspan
+      (gen3 g ⟨k % 3, Nat.mod_lt _ (by omega)⟩) = PresentedGroup.of ((k + 1) % 3)
   rw [extEquivCoded_gen3]
   congr 1
-  omega
+  simp [Nat.add_mod]
 
 /-! ## 5. Enumerability and the unconditional bridge -/
 
