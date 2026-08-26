@@ -31,4 +31,8 @@ elementary abelian), which is finitely generated and has (T) (a direct
 product of a Kazhdan group and a finite group).  If `W_e` is coinfinite,
 `G_e` maps onto `(Z/2)^{(infinite)}`, which is not finitely generated, so
 `G_e` is neither finitely generated nor Kazhdan.  For `FINITE`, use
-`G_e = (Z/2)^{(N \ W_e)}` (drop `K`): finite iff `W_e` cofinite.
+`G_e = (Z/2)^{(N \ W_e)}` (drop `K`): finite iff `W_e` cofinite.  For `FP`,
+use the free product `*_{x notin W_e} Z/2` (generators `c_x` with `c_x^2 = 1`
+and `c_x = 1` for `x in W_e`): finitely presentable iff finitely generated
+iff `W_e` cofinite; the upper bound `exists finite generating set, exists
+finite relator subset, forall relators exists derivation` is `Sigma^0_3`.

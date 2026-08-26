@@ -13,10 +13,12 @@ ESTABLISHED.  For countably generated enumerated presentation codes,
 ```text
 FG_enum      (the group is finitely generated)   is Sigma^0_3-complete,
 FINITE_enum  (the group is finite)               is Sigma^0_3-complete,
-T_enum       (the group has property (T))        is Sigma^0_3-complete.   (EG1)
+T_enum       (the group has property (T))        is Sigma^0_3-complete,
+FP_enum      (the group is finitely presentable)  is Sigma^0_3-complete.   (EG1)
 ```
 
-Contrast: `TRIVIAL_enum` is `Pi^0_2`-complete and, on finitely generated
+Contrast: `TRIVIAL_enum` is `Pi^0_2`-complete, `FP_rec2` is only known to be
+`Sigma^0_2`-hard ([[finite-presentability-two-generator-recursive-is-sigma2-hard]]), and, on finitely generated
 syntax, finiteness and (T) are `Sigma^0_1`-complete.  The extra levels on
 enumerated syntax come from the quantifier "all but finitely many
 generators are redundant", which is `Sigma^0_3` and is exactly the shape
