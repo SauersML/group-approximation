@@ -58,9 +58,12 @@ norms: those tests quantify over one fixed coefficient vector before taking
 `n->infinity`, whereas `(KCG3)` permits an `n`-dependent unit vector in the
 whole edge algebra.  Consequently the relative-randomization route to the
 reduced double needs a separate **uniform no-moving-Gram-leak** estimate.
-Cross-block coupling is a genuine possible escape from the blockwise
-profinite-separation no-go precisely when it makes this supremum vanish; it
-is not supplied merely by canonical vertex marginals.
+Cross-block coupling can evade the blockwise profinite-separation argument
+only for genuinely approximate vertex maps:
+`kt-exact-kun-thom-edge-return-is-algebraically-absorbed` proves that every
+exact finite-dimensional representation has supremum exactly one for the
+chosen compressor return.  In either setting, vanishing is not supplied
+merely by canonical vertex marginals.
 
 DERIVATION
 kt-moving-coset-gram-expectation-proof
