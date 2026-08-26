@@ -34,3 +34,25 @@ the factorization `(SCT6)` and its arbitrary multiplicity involution.
 Internal `L_0` dressings act by `lambda_0` on `Q` and hence only contribute
 a scalar.  This proves the claimed exhaustive short-dressing and full-Gram
 fence.
+
+For the odd-anchor cross-check, use factor tuples in the repository's
+`(source,target,coefficient)` convention.  Therefore
+
+```text
+J_2=whitehead(8,9,2),
+```
+
+not `whitehead(9,8,2)`.  Sparse Leavitt matrix multiplication then verifies
+`M^7=C^5=1`.  Direct root incidence already proves that `n` commutes with
+`W,A_2`; multiplying the four remaining commutators proves `(SCT9)`.
+Comparison with the five powers of `C` shows that `nCn` is none of them,
+and the five exact conjugates `C^k n C^(-k)` are distinct.
+
+Finally enumerate the `8192` constant matrices of `L_0`, conjugate each by
+`M` and by `C`, and compare faithful Leavitt normal forms.  In each case only
+the identity returns to `L_0`, proving `(SCT10)`.  Since a compression
+`Q U Q` is a fixed-source operator only when `U` returns the signed source,
+`M` and `C` cannot turn their odd-order relations into an equation for
+`n|Q=N_59 tensor E_59`.  Multiplying the five conjugates in cyclic order
+gives a nonidentity word as well.  This proves the odd-anchor extension of
+the fence.

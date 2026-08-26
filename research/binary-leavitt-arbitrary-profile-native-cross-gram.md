@@ -12,6 +12,7 @@ distinct_from:
   two-endpoint-source-intersections-retain-character-square: that combines both actor endpoint intersections and all three exceptional detector classes but retains orthogonal character-twist source charts; this asks for the fixed-frame native Gram absent from that square.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
   endpoint-whitehead-hecke-flag-trichotomy: that exhausts every non-spectator coordinate placement and finds one fine-only collision, but its proper overlap can vanish in an exact two-dimensional profile and has no unequal-rank covariance.
+  endpoint-order-five-actor-has-half-gram: that adjoins the native order-seven head and forces a genuine half Gram on the four-root endpoint orbit in every representation; its exact GL4 actors all eject the signed K1 sheet needed for the prescribed p2 source.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism

@@ -6,6 +6,7 @@ title: A second mixed-cell transport exists but its relative loop is an external
 artifacts:
   - research/external-normalizer-dressed-cell-proof.md
   - experiments/second_mixed_cell_transport_normalizer_audit.py
+  - experiments/external_normalizer_order_five_cell_audit.py
 distinct_from:
   mixed-whitehead-cell-moves-signed-source: that constructs the undressed simultaneous transport and computes its moved signed source; this finds a second transport with a nontrivial source-normalizing relative loop.
   eight-external-returns-have-no-whitehead-gauge-lock: that exhausts each external root against the two native Whitehead/Singer rows; this singles out the unique external root centralizing the concrete g-star depth-two cell.
@@ -90,6 +91,45 @@ Therefore a nontrivial normalizing relative loop does exist, but it is a
 maximal-overlap spectator rather than the missing fixed-frame gauge lock.
 The next useful second transport must have a proper range Gram or a relative
 word whose finite label action removes, rather than introduces, `E_59`.
+
+The adjacent odd anchor does not remove this fence.  With the native
+orientation
+
+```text
+J_2=x_98(x_2)x_89(y_2)x_98(x_2),
+M=J_2B_3A_2,              C=WM,
+M^7=C^5=1,                                             (SCT8)
+```
+
+exact faithful Leavitt multiplication gives
+
+```text
+[n,W]=[n,A_2]=1,
+[n,J_2],[n,B_3],[n,M],[n,C] !=1,                      (SCT9)
+nCn notin <C>,              |Orb_<C>(n)|=5.
+```
+
+More decisively, both odd actors move the entire signed source group off
+itself:
+
+```text
+L_0 intersect ML_0M^(-1)={1},
+L_0 intersect CL_0C^(-1)={1}.                         (SCT10)
+```
+
+Thus neither `M` nor the order-five word `C` acts on `Q`; their relations
+compare distinct source frames and do not impose an equation on the
+multiplicity involution `E_59` in `(SCT6)`.  The ordered product of the five
+`C`-conjugates of `n` is also nonidentity, so the odd orbit has no
+tautological telescope returning that gauge to the initial frame.  A bounded
+reduced-word audit through length eight finds no expression for `n` in
+`<W,M>`; this last statement is only a short-profile fence, whereas
+`(SCT8)--(SCT10)` are exact.
+
+Tuple orientation is load-bearing in this audit: elementary-word tuples are
+`(source,target,coefficient)`.  Hence the native `J_2` above is the helper
+call `whitehead(8,9,2)`.  Reversing those arguments produces a different
+word for which the seventh- and fifth-power relations are false.
 No Property `(T)`, canonical trace, literature input, local computation, or
 Lean compilation is used.
 

@@ -534,6 +534,19 @@ equal-rank fine flag.  Thus neither changing endpoint coordinates nor using
 the first noncentral proper compression authenticates an unequal native
 row.
 
+The fine collision becomes genuinely positive before the signed-sheet cut.
+`endpoint-order-five-actor-has-half-gram` adjoins the actual native head
+`M=J_2B_3A_2`.  Its action with the endpoint word `W` on
+`<C_3,s,t,s'>~=C_2^4` is `GL_4(F_2)`, so nonzero-character multiplicities
+force the raw `W` cross Gram to retain exactly half of
+`1_(C_3=-1,s=+1)` in every finite-dimensional representation.  The same
+packet has the new odd relation `(WM)^5=1`.  This is an unconditional
+proper Gram, not a regular-trace artifact.  It does not yet descend to
+`p_2`: the head ejects `C_2` and `v`, and all eight finite actors capable
+of exchanging the two compensating `s'` sheets fail to normalize signed
+`K_1`.  The remaining task is therefore a finite `K_1`-sheet aggregation
+or return which preserves this half Gram.
+
 The original signed source and one endpoint-moved source have now also been
 compared exactly.  In
 `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` their
