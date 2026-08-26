@@ -49,6 +49,34 @@ is the smallest natural cross-packet occurrence after the common opposite
 return--one cross partial Whitehead and one constant stabilization already
 touch literal `s_0,s_1,t_0,t_1` occurrences in both directions.
 
+There is a canonical second implementation which does transport both
+complete packets.  Put
+
+```text
+K'=x_78(r)x_87(p)x_78(r),
+u=p+r,
+T=KK'=x_78(u)x_87(u)x_78(u),
+J=PT.                                                    (MCP5)
+```
+
+Then `J` is an involution and
+
+```text
+JS_iJ=U_(1-i),          JT_iJ=V_(1-i),
+JC_iJ=R_(1-i)                    for i=0,1.            (MCP6)
+```
+
+This is an exact identification of each positive child occurrence with the
+opposite returned child in the other branch.  Comparing the two literal
+implementations gives
+
+```text
+HJ=K'.                                                   (MCP7)
+```
+
+The comparison still does not force the relative implementation to be
+trivial on the reservoir.
+
 The added rows do not identify the two reservoir gauges.  Let
 
 ```text
@@ -59,37 +87,48 @@ and, in each copy, use
 
 ```text
 S=e_12,      T=e_23,      C=e_13,
-U=e_32,      V=e_21,      R=e_31,                     (MCP5)
+U=e_32,      V=e_21,      R=e_31,                     (MCP8)
 ```
 
 where `e_ab=I+E_ab`.  Let `phi` be conjugation by the permutation matrix
 which exchanges coordinates `1` and `3`.  Then
 
 ```text
-phi(S)=U,      phi(T)=V,      phi(C)=R.                (MCP6)
+phi(S)=U,      phi(T)=V,      phi(C)=R.                (MCP9)
 ```
 
 In the finite wreath-type group
 
 ```text
-G=(K_3 times K_3) semidirect <h>,
-h(g_0,g_1)h=(phi(g_1),phi(g_0)),        h^2=1,         (MCP7)
+G=((K_3 times K_3) semidirect <j>) times <z>,
+j(g_0,g_1)j=(phi(g_1),phi(g_0)),
+j^2=z^2=1,                 [z,G]=1.                  (MCP10)
 ```
 
-put every branch-`i` name from `(MCP5)` in factor `i`, retain the diagonal
-parents as in the common-opposite model, and send `H` to `h`.  Equations
-`(MCP1)--(MCP4)` hold exactly, including all matching and crossed child
-commutators from the previous table.  The prescribed marked child remains
+put every branch-`i` name from `(MCP8)` in factor `i`, retain the diagonal
+parents as in the common-opposite model, and send
 
 ```text
-C_1=(1,e_13) != 1.                                    (MCP8)
+J -> j,             H -> zj,             K' -> z,
+K -> 1,             T -> z,              P -> zj.     (MCP11)
 ```
 
-Hence one actual coefficient-sensitive cross-packet transporter upgrades
-the direct-product escape only to a finite wreath escape.  The next live
-occurrence must distinguish the two factor-swapping implementations--for
-example by comparing a returned child with a source child on one fixed
-packet--rather than merely transport native arms across the factors.
+Equations `(MCP1)--(MCP7)` hold exactly, including all matching and crossed
+child commutators from the previous table.  In particular `(MCP7)` holds
+while the relative gauge `K'` is the nontrivial central involution `z`.
+The prescribed marked child remains
+
+```text
+C_1=(1,e_13) != 1.                                   (MCP12)
+```
+
+Hence even the full coefficient-sensitive cross-packet identification and
+its comparison with one partial implementation upgrade the direct-product
+escape only to a finite wreath escape with one central relative bit.  The
+next live occurrence must make `K'` act nontrivially on a fixed named packet
+factor, or otherwise compare the two implementations after removing this
+central reservoir freedom; merely transporting every child across the
+factors is insufficient.
 
 This is a scoped occurrence-table model, not a finite representation of
 the full binary Leavitt Steinberg group.  No Property `(T)`, Kazhdan input,
