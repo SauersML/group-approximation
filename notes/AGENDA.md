@@ -6,6 +6,72 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-26: the two existence goals are now one property decision
+
+The object-search phase is over.  The binary Leavitt unit group, the
+Kun--Thom wreath products, and the Fournier--Facio torsion-free examples are
+explicit nonsofic groups.  Deciding hyperlinearity of any one of them closes
+exactly one of the two existence goals:
+
+```text
+candidate hyperlinear      => first hyperlinear nonsofic group,
+candidate nonhyperlinear   => first nonhyperlinear group.
+```
+
+This is the fork recorded at `binary-leavitt-unit-group-hyperlinear`; work
+should be ranked by whether it decides one of these held candidates, not by
+whether it manufactures another undecided group.  In particular, the known
+Connes-embeddability permanence tools represented in this repository all
+have sofic analogues on the relevant closure operations.  They can propagate
+a separation once one exists, but they do not originate the first one.  A
+positive solution must therefore build the candidate's canonical matrix
+microstates directly; a negative solution must give a genuinely tracial
+obstruction.
+
+The current positive Atlas target is already purified to one sequence
+
+```text
+U_i in U(20160 r_i),    r_i -> infinity,
+```
+
+whose block coefficients generate `M_(r_i)(C)`, remain order-one
+noncommuting, and satisfy the full relator packet asymptotically.  Permutation,
+block-monomial, bounded-subhomogeneous, asymptotically commuting, and generic
+Haar models are excluded.  The Fournier--Facio alternative is equivalently a
+purely singular invariant amenable near representation with regular
+character; it must be genuinely non-Cartan and cannot admit an equivariant
+coarse factor over the compression cosets.
+
+### 2026-08-26: honest scope of the Property-(T)-free MF project
+
+Property `(T)` enters the existing non-MF transport proof at one precise
+point: it makes the relative-commutant projection norm-corona visible.  This
+cannot be replaced by a bare corona lemma.  The established
+`corona-commutant-growth-witness` constructs explicit compression-driven
+growth even in faithful residually finite norm-corona models, while
+`trace-blindness-sharpness` explains why the corresponding II_1 inclusion
+has no invariant strictly monotone size.  Finite-dimensional commutant
+rigidity and the radical algebra remain Property-`(T)`-free; the missing
+assembly step does not.
+
+Accordingly, a genuine Property-`(T)`-free proof must fall on one side of a
+sharp dichotomy:
+
+1. it is norm-corona specific, using exact operator-norm/rank-germ or
+   K-theoretic information unavailable in `R^omega`; or
+2. it transfers to normalized-HS ultraproducts and thereby decides the
+   nonhyperlinearity half of the candidate fork rather than constituting a
+   separate project.
+
+Bounded-window rank divisibility cannot close the first branch:
+`finite-positive-root-fragments-have-marked-regular-models` supplies exact
+marked finite models for every such fragment, and the dyadic divisibility
+profile is compatible with regular/Haar-like mass escaping to increasing
+depth.  The live norm-corona target is therefore an unbounded-window
+spectral/Fourier or occurrence-authentication theorem, not another finite
+rank packet.  The live HS target is exactly the shared-reservoir occurrence
+compiler already isolated by the two-scale holonomy program.
+
 ### 2026-08-14: path-shaped PVM classicalization has no outcome loss
 
 For finite PVMs `P,Q`, compress `Q_j` into every `P_i` corner and apply
