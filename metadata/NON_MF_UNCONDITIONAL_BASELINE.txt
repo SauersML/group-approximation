@@ -31,4 +31,3 @@
 #
 # Both readings were checked against `--explain`, which reports every cited
 # declaration unconditional and no finding of any status.
-conditional-data GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect  -- row 15: the printed lemma is itself conditional; FournierFacioDefectData packages its printed hypotheses
