@@ -116,16 +116,13 @@ theorem exists_coded_openPasses {c : PresentationCode}
     simpa [U, V, C, EffectiveMicrostateSemantics.toMicrostate] using hcodeClose i
   have hNgen : N.gen = U := by rfl
   have hCgen : C.gen = V := by rfl
-  have hcloseN : ∀ i,
-      ‖(N.gen i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
-        (V i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ)‖ < η := by
-    intro i
-    rw [hNgen]
-    exact hclose i
   have hgap (w : List (ℕ × Bool)) :
       |N.len w - C.len w| ≤ (w.length : ℝ) * η := by
     rw [microstate_len_eq_tupleWord C w, hCgen]
-    exact abs_microstate_len_tupleWord_sub_le N V hcloseN w
+    apply abs_microstate_len_tupleWord_sub_le
+    intro i
+    rw [hNgen]
+    exact hclose i
   refine ⟨d, gens, hunitary, ?_, ?_⟩
   · intro r hr
     have hmarginη : (r.length : ℝ) * η <
