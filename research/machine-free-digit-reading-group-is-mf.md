@@ -71,3 +71,35 @@ change of tape all fail or relocate the edge.  Not attempted: a direct
 random-matrix or self-similar construction of `(X, T)` satisfying `(DR2)`
 approximately (for instance `X` a shift on a Cantor-like digit space and
 `T` a diagonal-plus-shift operator), which is the natural next attack.
+
+*What finite quotients can see.*  If `x` has order `r` in a quotient in
+which the `b_i` survive, periodicity forces `w_alpha(b) = w_(alpha+r)(b)`
+for all `alpha`; when `r | m - 1` the digit sum is a function of `alpha mod
+r`, and the assignment `b_i -> B^i` with `B^r = 1` satisfies every
+constraint.  Conversely the constraints force `beta_i = beta_(i+r)` and
+collapse products to digit sums, so the image of `F(b)` in any finite
+quotient of `Gamma^K` in which `x` has order `r` is cyclic of order dividing
+`r`.  In a solvable quotient `A x| Q` with `A` a torsion-free abelian normal
+subgroup containing `x`, the `b_j` die outright (`m b_j = b_j` from `[a_i,
+b_j] = 1`).  So every residual method — finite or solvable — is blind to the
+free structure of the word component, which is where the MF approximants
+must be genuinely non-exact.
+
+*Shift edge versus digit edge.*  Write `Gamma_2 = < F(x,t) * F(b,d), p |
+p t_alpha p^-1 = t_alpha w_alpha(b) d >`.  Then `Gamma_2 = HNN(P_0; x)` with
+`P_0 = (T * F(b,d)) *_psi` residually finite and `x` conjugating the free
+subgroup `T = < t_alpha : alpha in Z >` to itself by the shift `t_alpha ->
+t_(alpha+1)`.  A finite quotient of `P_0` synchronizes the shift exactly iff
+the kernel of `T -> Q` is shift-invariant, i.e. the shift induces an
+automorphism `phi` of the image, so `q(t_(alpha+1)) = phi(q(t_alpha))` and
+`alpha -> q(t_alpha)` is periodic of period `ord(phi)`; the digit edge then
+forces `w_alpha(b) = w_(alpha+N)(b)`.  So the shift edge and the digit edge
+cannot both be synchronized by one finite quotient, in any order.  What
+remains is the approximate version: the tuples `(lambda(q(t_alpha)))_(|alpha|
+<= A)` and `(lambda(q(t_(alpha+1))))` need only be conjugate up to `o(1)` in
+operator norm on windows `A -> oo`, with the digit refinement kept exact on
+the window.  Whether tuples of regular representations that are locally
+isomorphic up to length `L(A) -> oo` are asymptotically unitarily conjugate
+is the concrete operator-theoretic question; single unitaries of large
+order are (eigenvalue equidistribution), tuples are not known to be.
+
