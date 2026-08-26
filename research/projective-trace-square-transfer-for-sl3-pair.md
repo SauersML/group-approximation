@@ -603,3 +603,27 @@ weakening consumed by the HNN marked word.
   it must see the difference between the congruence filtration of
   `SL_3(Z_2)` and its `h`-conjugate, which is exactly what the profinite
   restriction of `M` to `C` erases.
+- **The first unbalanced torus closure kills the pure multiplicity-twist
+  enemy quantitatively.**
+  `unbalanced-torus-relator-closes-product-projective-sector` considers an
+  exact lattice amplification
+
+  ```text
+  X_g=I tensor sigma(g),       H=V tensor sigma(h).
+  ```
+
+  The fixed two-torus relator evaluates to `V^(-1) tensor I`.  Comparing
+  `H` with the exact denominator matrix `I tensor sigma(h)` and applying the
+  established exact projective co-density estimate gives, for every witness
+  unitary `U`,
+
+  ```text
+  e(U,H) <= K q_C(U)+8||ev(R_tor)-I||_2^2.
+  ```
+
+  Thus balanced denominator conjugacies really are blind to the
+  multiplicity twist, but this does not produce a full-presentation enemy:
+  one explicit unbalanced arithmetic consequence pays it with a
+  dimension-free quadratic bound.  The surviving problem is extracting a
+  product multiplicity coordinate from an arbitrary approximate actor, not
+  detecting it once exposed.
