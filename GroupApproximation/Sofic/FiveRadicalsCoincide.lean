@@ -18,10 +18,9 @@ and it joins the chain from two inclusions in opposite directions:
   compact target whose points finite-dimensional representations separate can
   therefore not see it.
 
-The second uses the analytic core of Peter--Weyl, which the pinned Mathlib does
-not have; it enters as the single named hypothesis `PeterWeyl.SeparatesPoints`,
-exactly as `Analysis/PeterWeylProfinite` isolates it.  So `five_radicals_eq`
-carries one classical input and nothing else.
+The second uses the analytic core of Peter--Weyl.  The reusable theorem
+`five_radicals_eq` accepts the separation statement explicitly, while
+`Analysis/PeterWeylSeparation` proves it from the vendored Tau Ceti development.
 
 For **profinite** targets no input is needed at all: van Dantzig gives the
 separation outright, so `five_radicals_eq_profinite` states the same conclusion
