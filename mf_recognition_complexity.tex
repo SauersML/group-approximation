@@ -82,9 +82,10 @@ finite presentation defines an MF group is $\Pi^0_2$-complete.  So it is
 impossible to construct an algorithm that decides from a finite
 presentation whether the group it defines is MF, and impossible even to
 enumerate the presentations of MF groups, or those of non-MF groups.  A
-presentation defines an MF group if and only if certificates exist at
-every scale; the certificates are finite, and checking one is decidable,
-by Tarski's theorem.  We also construct, computably from any program, a
+presentation defines an MF group if and only if, for every accuracy,
+finitely many unitary matrices satisfy its relators to within that
+accuracy while keeping prescribed nontrivial words away from the
+identity; whether such matrices exist is decidable, by Tarski's theorem.  We also construct, computably from any program, a
 finite presentation that defines an MF group if and only if the program
 halts on infinitely many inputs.  If the program halts on only finitely
 many inputs, the presented group contains the non-MF group
