@@ -4,6 +4,7 @@ id: torsion-freeness-recognition-is-pi2-complete
 kind: claim
 title: Torsion-freeness is Pi-zero-two complete for two-generator recursive presentations and for enumerated presentations
 artifacts:
+  - GroupApproximation/Computability/TorsionFreeEnumeratedHardness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   amenability-two-generator-recursive-is-pi2-complete: that classifies amenability, whose upper bound is Kesten's criterion; this classifies torsion-freeness, whose upper bound is a universal quantifier over a difference of two recursively enumerable events, and whose hardness needs only a finite forbidden seed rather than a right-angled Artin family.
@@ -40,3 +41,5 @@ operator-MF, LEF, amenability, commutativity and triviality all sit at
 finiteness at `Pi^0_3`.  See
 [[arithmetical-complexity-table-of-group-properties]] and
 [[natural-group-properties-realize-the-first-three-levels]].
+
+**Machine-checked hardness.**  `Computability/TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard` and `hasTorsionCode_sigma02Hard` are the second-level lower bounds on enumerated presentation codes, with `Z/2` as forbidden seed; the upper bound is paper-level.
