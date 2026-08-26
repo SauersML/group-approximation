@@ -54,6 +54,17 @@ untwisted fibre.
   an odd-fibre bridge would require a forbidden exact `1/3` or `1/6`
   coefficient.  Hence the half-shift retract cannot be iterated or Morita-
   amplified into a proof of `(TF3)`.
+- **A non-equivariant retract must be genuinely nonfaithful.**
+  `odd-maslov-ucp-retract-must-hide-generator-defect` applies Schwarz to any
+  split ucp pair from the odd fibre into a matrix amplification of the
+  untwisted or metaplectic fibre.  Every canonical generator's two
+  multiplicative defects are positive and killed by the retraction.  At
+  least one is nonzero, or multiplicative-domain plus an even-fibre finite
+  representation would contradict Deligne invisibility.  Thus faithful
+  retractions, conditional expectations, order-zero embeddings, and
+  generator-unitary complete-order models are all ruled out.  An arbitrary
+  nonfaithful ucp retract remains possible in principle, but must hide its
+  nonmultiplicativity in a positive kernel.
 - **The Connes-embeddability of the fibres is also live.**  Thom's
   criterion (Lemma 3.4, `thom-central-corner-criterion`) makes
   hyperlinearity of `E_3` equivalent to Connes-embeddability of all

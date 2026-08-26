@@ -147,6 +147,13 @@ the coboundary drift of
   calculation shows that a return to the constant Hecke normalizer forces
   `a+b=0`.  The returned normalizer is therefore the identity and cannot
   cancel the Whitehead reservoir gauge.
+- The equally literal pair obtained by reversing two distinct displayed
+  arrows of `L_0` also cannot return.  By
+  `two-distinct-reverse-hecke-roots-cannot-return`, the directed Hecke roots
+  determine an intrinsic four-step fixed-space filtration.  Each bare
+  reverse root raises that filtration, and two distinct such letters cannot
+  cancel the first raised coordinate.  This is only a fence on the bare
+  reverse-arrow menu, not on general two-channel coefficient words.
 - Different root channels do contain genuine returns, so the preceding
   same-channel fence must not be overgeneralized.  The exhaustive calculation
   `signed-hecke-normalizer-has-eight-external-root-returns` finds exactly
