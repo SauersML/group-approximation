@@ -380,3 +380,22 @@ pure top-prefix components--through a genuinely mixed `0`-to-`1`
 coefficient or through completeness before the noncommuting occurrence;
 one pure individual arm from each branch cannot produce a new `D/E`
 equation.
+
+The cross matrix units provide exactly that first off-diagonal actor, but it
+still has a finite wreath gauge.  With `p=s_0t_1`, `r=s_1t_0`, the literal
+partial Whiteheads
+
+```text
+K_0=x_78(p)x_87(r)x_78(p),
+K_1=x_78(r)x_87(p)x_78(r)
+```
+
+are commuting involutions whose product is `T=w_78(p+r)`.  The aggregate
+same-carrier rows send `P_i` to `R_(1-i)`, `R_i` to `P_(1-i)`, swap
+`V_0,V_1`, interchange `n,m`, and fix `w`.  By
+`cross-branch-partial-whiteheads-have-finite-wreath-gauge-model`, the full
+table is realized in `(S_3 times S_3) semidirect C_2`, with an extra central
+`C_2` factoring `T` into the two private involutions, while diagonal `DE`
+still has order three.  The next relation must type one individual `K_i`
+against a native occurrence on a common Hecke carrier before their product
+becomes the aggregate branch flip.

@@ -100,6 +100,13 @@ literature result is used.
   factors do not normalize the three-pair packet.  Treating their
   compression as an internal label operator discards exactly the nonzero
   coefficient ejections and assumes the desired leakage estimate.
+- **Recenter the Pauli center away from the marked root.**  Taking
+  `C=x_(18,19)(q)` makes the center-chain actors preserve the marked overlap
+  with `z=x_13(q)`, but it does not keep the three-pair label algebra.
+  `recentered-order-seven-heads-have-actor-holonomy` closes the two hub pairs
+  and obtains a five-pair algebra.  Tensoring its finite Singer actor group
+  by the regular representation keeps both seventh-power relations exact
+  while the `J_i` reservoir involutions remain nontrivial.
 
 DERIVATION
 same-center-whitehead-sign-quotient-proof

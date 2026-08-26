@@ -113,3 +113,12 @@ canonical trace, or literature theorem is permitted.
   operator-norm or polar argument based only on the actual order-seven heads;
   the independently ungauged occurrence typing in the six-bridge claim is
   load-bearing.
+- Recentering the Pauli center to `x_(18,19)(q)` does make the marked overlap
+  reduce both order-seven heads, so there is no moving-cut boundary.  It
+  instead enlarges the native label algebra by the two center-chain hub
+  pairs.  `recentered-order-seven-heads-have-actor-holonomy` tensors the
+  resulting finite `GL_5(F_2)` actor subgroup by its regular representation:
+  `T_i^7=1` then constrains only `(D_iE_i)^7`, where `E_i` is the independent
+  gauge of `v_i`, while `D_i` remains a nontrivial involution.  Thus even
+  this zero-boundary recentering still needs an ungauged typing of the
+  center-chain factor.
