@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.HNNCentralizer
+import GroupApproximation.Higman.AmalgamPushout
 import GroupApproximation.Sofic.FreeLampReduction
 
 /-!
@@ -352,6 +353,147 @@ theorem isFinitelyPresented_freeLamp_of_equiv [Group.IsFinitelyPresented G]
   exact Group.IsFinitelyPresented.equiv (freeLampEquivOfLampEquiv G L e).symm
 
 end Transport
+
+/-! ## The opposite Boolean convention used by `Amalgam.Push` -/
+
+section AmalgamSwap
+
+variable {K : Type} [Group K]
+
+/-- The factor maps from `Amalgam.Push L.subtype (inl L K)` to the free-lamp
+pushout, whose `Bool` convention lists the same two factors in reverse order. -/
+def amalgamToFreeLampFactors : ∀ b,
+    Higman.Amalgam.fam G (L × K) b →* FreeLamp G L K
+  | false => inAmbient G L K
+  | true => PushoutI.of (φ := lampMap G L K) false
+
+theorem amalgamToFreeLampFactors_comp : ∀ b,
+    (amalgamToFreeLampFactors (K := K) G L b).comp
+        (Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K) b) =
+      PushoutI.base (lampMap G L K) := by
+  intro b
+  cases b <;> ext l
+  · exact PushoutI.of_apply_eq_base (lampMap G L K) true l
+  · exact PushoutI.of_apply_eq_base (lampMap G L K) false l
+
+/-- Swap the two factors of the amalgam into free-lamp order. -/
+def amalgamToFreeLamp :
+    Higman.Amalgam.Push L.subtype (MonoidHom.inl L K) →* FreeLamp G L K :=
+  PushoutI.lift (amalgamToFreeLampFactors (K := K) G L)
+    (PushoutI.base (lampMap G L K))
+    (amalgamToFreeLampFactors_comp (K := K) G L)
+
+/-- The inverse factor maps, from free-lamp order back to amalgam order. -/
+def freeLampToAmalgamFactors : ∀ b,
+    LampFactor G L K b →*
+      Higman.Amalgam.Push L.subtype (MonoidHom.inl L K)
+  | true => PushoutI.of
+      (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) false
+  | false => PushoutI.of
+      (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) true
+
+theorem freeLampToAmalgamFactors_comp : ∀ b,
+    (freeLampToAmalgamFactors (K := K) G L b).comp (lampMap G L K b) =
+      PushoutI.base
+        (Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) := by
+  intro b
+  cases b <;> ext l
+  · exact PushoutI.of_apply_eq_base
+      (Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) true l
+  · exact PushoutI.of_apply_eq_base
+      (Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) false l
+
+/-- Swap free-lamp order back into `Amalgam.Push` order. -/
+def freeLampToAmalgam :
+    FreeLamp G L K →* Higman.Amalgam.Push L.subtype (MonoidHom.inl L K) :=
+  PushoutI.lift (freeLampToAmalgamFactors (K := K) G L)
+    (PushoutI.base
+      (Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)))
+    (freeLampToAmalgamFactors_comp (K := K) G L)
+
+@[simp] theorem amalgamToFreeLamp_left (g : G) :
+    amalgamToFreeLamp (K := K) G L
+      (PushoutI.of
+        (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) false g) =
+      inAmbient G L K g := by
+  exact PushoutI.lift_of _ _ _ _
+
+@[simp] theorem amalgamToFreeLamp_right (p : L × K) :
+    amalgamToFreeLamp (K := K) G L
+      (PushoutI.of
+        (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) true p) =
+      PushoutI.of (φ := lampMap G L K) false p := by
+  exact PushoutI.lift_of _ _ _ _
+
+@[simp] theorem freeLampToAmalgam_left (g : G) :
+    freeLampToAmalgam (K := K) G L (inAmbient G L K g) =
+      PushoutI.of
+        (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) false g := by
+  exact PushoutI.lift_of _ _ _ _
+
+@[simp] theorem freeLampToAmalgam_right (p : L × K) :
+    freeLampToAmalgam (K := K) G L
+      (PushoutI.of (φ := lampMap G L K) false p) =
+      PushoutI.of
+        (φ := Higman.Amalgam.famHom L.subtype (MonoidHom.inl L K)) true p := by
+  exact PushoutI.lift_of _ _ _ _
+
+theorem freeLampToAmalgam_comp_amalgamToFreeLamp :
+    (freeLampToAmalgam (K := K) G L).comp
+      (amalgamToFreeLamp (K := K) G L) =
+      MonoidHom.id (Higman.Amalgam.Push L.subtype (MonoidHom.inl L K)) := by
+  apply PushoutI.hom_ext_nonempty
+  intro b
+  cases b
+  · ext g
+    change G at g
+    simp only [MonoidHom.comp_apply, MonoidHom.id_apply,
+      amalgamToFreeLamp_left, freeLampToAmalgam_left]
+  · ext p
+    change L × K at p
+    simp only [MonoidHom.comp_apply, MonoidHom.id_apply,
+      amalgamToFreeLamp_right, freeLampToAmalgam_right]
+
+theorem amalgamToFreeLamp_comp_freeLampToAmalgam :
+    (amalgamToFreeLamp (K := K) G L).comp
+      (freeLampToAmalgam (K := K) G L) =
+      MonoidHom.id (FreeLamp G L K) := by
+  apply PushoutI.hom_ext_nonempty
+  intro b
+  cases b
+  · ext p
+    change L × K at p
+    simp only [MonoidHom.comp_apply, MonoidHom.id_apply,
+      freeLampToAmalgam_right, amalgamToFreeLamp_right]
+  · ext g
+    change G at g
+    change amalgamToFreeLamp (K := K) G L
+      (freeLampToAmalgam (K := K) G L (inAmbient G L K g)) =
+        inAmbient G L K g
+    simp only [
+      freeLampToAmalgam_left, amalgamToFreeLamp_left]
+
+/-- **The opposite `Bool` conventions define equivalent amalgams.** -/
+def swappedAmalgamEquivFreeLamp :
+    Higman.Amalgam.Push L.subtype (MonoidHom.inl L K) ≃* FreeLamp G L K where
+  toFun := amalgamToFreeLamp (K := K) G L
+  invFun := freeLampToAmalgam (K := K) G L
+  left_inv x := congrArg (fun f => f x)
+    (freeLampToAmalgam_comp_amalgamToFreeLamp (K := K) G L)
+  right_inv x := congrArg (fun f => f x)
+    (amalgamToFreeLamp_comp_freeLampToAmalgam (K := K) G L)
+  map_mul' := map_mul _
+
+/-- The `Amalgam.Push` spelling of rank-two free-lamp finite presentation. -/
+theorem isFinitelyPresented_swappedAmalgam_of_equiv
+    [Group.IsFinitelyPresented G] (hL : L.FG) (e : K ≃* FreeGroup (Fin 2)) :
+    Group.IsFinitelyPresented
+      (Higman.Amalgam.Push L.subtype (MonoidHom.inl L K)) := by
+  have hfp := isFinitelyPresented_freeLamp_of_equiv G L hL e
+  exact Group.IsFinitelyPresented.equiv
+    (swappedAmalgamEquivFreeLamp (K := K) G L).symm
+
+end AmalgamSwap
 
 end FreeLampFinitePresentation
 end GroupApproximation
