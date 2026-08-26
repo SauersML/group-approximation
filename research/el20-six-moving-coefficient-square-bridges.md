@@ -165,6 +165,13 @@ the coboundary drift of
   must tie one of those eight involutions to the Whitehead gauge by a mixed
   relation; merely observing that the output returns to the normalizer does
   not make it ungauged.
+- Even the coordinate-matched return `x_78(1)` is not authenticated by its
+  first Singer square.  By
+  `one-singer-square-does-not-identify-external-return-gauge`, that square
+  carries its multiplicity involution `E` to `DED^(-1)` on the target
+  carrier, where `D` is the Whitehead gauge.  A two-qubit exact model has
+  `D=Z tensor 1`, `E=1 tensor Z`, so coordinate overlap and one transport
+  square leave the gauges at distance `sqrt(2)`.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
@@ -175,3 +182,8 @@ Hecke atom normalizer.  The returned nonidentity normalizer must cancel the
 Whitehead gauge; normalizer letters inside a larger finite packet and a
 same-channel opposite-root pair are both insufficient.  No Property `(T)`,
 canonical trace profile, or tracial-von-Neumann extension is allowed.
+
+For the eight external returns, the gate is now sharper: exhibit a mixed
+closed full-EL20 word on one Hecke carrier in which `E_(s,t)` and the
+literal Whitehead gauge occur with unequal odd parity.  A normalization
+identity or a single Singer conjugacy square cannot supply that equality.
