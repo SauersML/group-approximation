@@ -18,7 +18,9 @@ distinct_from:
   endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that audits all four extra generators of the common Hecke source Q and finds a pointwise return, but its two-dimensional Pauli covariance permits the missing fine sign to remain negative.
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that enlarges the literal actor to GL5 and gives a profile-uniform Gram for the actual J2 compression; its stabilizer fixes the J1 support, so the two unequal rows are not yet attached.
   full-moving-hecke-packet-retains-q-kernel-profile: that extends the GL5 actor to the complete eight-summand Hecke chart and gives an exact 465-dimensional profile with Q nonzero but QWQ zero; this asks for the additional occurrence which must pay those states rather than another actor return.
-  endpoint-whitehead-star-braid-synchronizes-native-gauges: that supplies the missing odd J1--W and J2--W gauge synchronization on a common homogeneous carrier; its full signed-source normalizer calculation shows that no such return can make the first support positive.
+  endpoint-whitehead-star-braid-synchronizes-native-gauges: that supplies the missing odd J1--W and J2--W gauge synchronization on a common homogeneous carrier; its p2-only signed-source normalizer calculation does not see the additional B2 full-source arm.
+  b2-pairs-full-hecke-first-support: that proves the first native sign cut has exactly half the actual full Hecke source Q by the B2 commutator; the remaining task is to align that paid cut with the second typed transport on the same carrier.
+  b2-b3-pair-full-hecke-four-native-sectors: that sharpens both native source supports to rank one half and their joint source to rank one quarter of Q; this supplies the common positive carrier which the p2-only actor analysis could not force.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core

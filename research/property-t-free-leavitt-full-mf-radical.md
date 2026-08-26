@@ -59,6 +59,10 @@ artifacts:
   - research/full-moving-hecke-packet-retains-q-kernel-profile.md
   - research/full-moving-hecke-q-kernel-profile-proof.md
   - experiments/full_q_moving_gl8_permutation_audit.py
+  - research/b2-pairs-full-hecke-first-support.md
+  - research/b2-full-hecke-first-support-proof.md
+  - research/b2-b3-pair-full-hecke-four-native-sectors.md
+  - research/b2-b3-full-hecke-four-sector-proof.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -600,8 +604,9 @@ out specifically the attempt to prove `(APG1)` by using the full-source
 endpoint Gram `QWQ`; a new occurrence outside this packet must pay the four
 zero-Gram states.
 
-Adding the first native Whitehead strengthens the finite actor but remains
-one-sided.  `native-j1-extension-gives-gl5-but-only-second-whitehead-gram`
+Adding the first native Whitehead strengthens the bare finite actor but
+remains one-sided at the `p_2` level.
+`native-j1-extension-gives-gl5-but-only-second-whitehead-gram`
 identifies the literal five-projective-summand group as `GL_5(F_2)` without
 enumerating it.  Its `diag(I_3,GL_2)` signed-source return forces the actual
 `J_2` compression to retain at least one third of `p_2` in every profile.
@@ -612,6 +617,41 @@ coefficient roots of the full source `L_0`; the complete adjacent-character
 model above does, and retains a zero full-`Q` endpoint Gram.  Hence this is
 genuine native second-row progress, not yet the common two-row selector
 attachment.
+
+The additional full-source arm closes precisely that first-support gap.
+`b2-pairs-full-hecke-first-support` uses the already authenticated
+normalizer `B_2=x_84(b_2)` and
+
+```text
+[x_58(a_2),B_2]=x_54(q)=C_2,
+```
+
+where `C_2=-1` on `Q`.  Hence `B_2Q` exchanges the two spectral signs of
+`r=x_58(a_2)` on `Q`, and the actual first native support obeys
+
+```text
+rank(Q(1+r)/2)=rank(Q)/2.
+```
+
+So the full-source first row is now paid with the sharp universal fraction
+`1/2`, even though the same complete packet can have `QWQ=0`.
+
+The second arm supplies the missing common-source refinement.
+`b2-b3-pair-full-hecke-four-native-sectors` verifies that
+`t=x_69(a_3)` and `B_3=x_95(b_3)` also normalize `Q`, with
+`[t,B_3]=C_3` and `C_3=-1` on `Q`.  Since `B_2` commutes with `t`, it
+exchanges the two `r` signs separately inside each fixed `t` sector; the
+`B_3` flip balances the two total `t` marginals.  Hence all four joint
+`(r,t)` sectors have rank `rank(Q)/4`.  In particular the actual `J_1` and
+`J_2` compression supports meet on the literal common source
+
+```text
+F=Q(1+r)(1+t)/4,                 rank(F)=rank(Q)/4.
+```
+
+The live seam is therefore no longer positivity or common-source incidence.
+It is to carry the two typed outputs from this literal quarter source onto
+one common target with the synchronized reservoir gauge.
 
 There is no longer an independent **central gauge-parity** ambiguity on the
 first row.  `endpoint-whitehead-star-braid-synchronizes-native-gauges`
@@ -625,9 +665,11 @@ the desired algebraic gauge synchronization, but it does not supply the
 missing carrier: the signed-`K_2` actor normalizer sends `r` only to
 `rv^epsilon`, and
 `v=+1` on `p_2`.  Hence it preserves the `r`
-sign and permits the scoped profile `r=-1`, `q_1=0`.  The remaining first-row
-problem is therefore positive support/occurrence attachment, not a free
-central sign.  This is sharp already for the literal `J_1,W` moving table:
+sign and permits the scoped profile `r=-1`, `q_1=0` on `p_2`.  The full
+source `Q` excludes that profile by the `B_2` pairing above.  The remaining
+problem is therefore common-target occurrence attachment, not positive
+first support or a free central sign.  The coarser fence is sharp already
+for the literal `J_1,W` moving table:
 an exact three-character `C_2^6 semidirect S_3` model has maximal `W` Gram
 on `p_2` and zero `J_1` support.
 
