@@ -79,6 +79,20 @@ mixed rank-five multiplication triangles and then control these 41
 target-algebra placements.  The extraction cannot be replaced by literal
 word identities: those would also apply to the regular exact model.
 
+There is a smaller audit when the decoder respects the native packet
+factorization rather than transporting expanded support terms independently.
+By `five-factor-native-carrier-transport-certificate`, it is enough to place
+`q,T_0,T_1` in the raw returned algebra and `comb,Q_P` in the comb returned
+algebra.  The exact weighted obstruction is
+
+```text
+2 eta_q+2 eta_0+2 eta_1+2 eta_comb+eta_Q >= 1/8,
+```
+
+so five uniform `eta`-placements already force `eta>=1/72`.  This is the
+smallest known multiplicative packet audit; choosing the returned algebras
+and proving these factor placements remains the matrix-only step.
+
 ## Falsification gate
 
 An argument using only their traces, the compulsory `5/32` overlap, or the
