@@ -127,3 +127,17 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   run as a *diagnostic* — rapid degeneration of the smallest singular value
   would be evidence against any local coercivity mechanism — but a positive
   answer would carry no weight toward `(SFS1)`.
+
+- **The new unbalanced torus word does not close the swap terminal by
+  itself.**  `unbalanced-torus-and-swap-commutation-do-not-control-fold-square`
+  gives an exact `M_2` packet in which `R_tor=1`, the swap commutes with every
+  displayed coefficient, both rank-one root-doubling and
+  Weyl-word packages are exact, and nevertheless the fold square is `-I`
+  (Gram defect `1/8`).  The packet omits the remaining lattice consistency
+  making those packages one actor representation, so it is not a full actor
+  assignment.  It proves that the next mixed estimate must consume further
+  actor relations coupling the coefficients; combined with the bounded-depth
+  rank-one fences, a genuine `A_2` relation coupling the branches is the first
+  surviving candidate.  The unbalanced word plus the displayed separate
+  rank-one consistency does not extract the product-multiplicity coordinate
+  used by the established product-sector theorem.
