@@ -17,6 +17,7 @@ distinct_from:
   endpoint-odd-actor-retains-native-factor-gauge: that proves the order-five product and its positive cyclic aggregates cannot type an individual Hecke factor: a paired gauge cancels in the product while changing the exposed mixed Hecke word.
   endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that audits all four extra generators of the common Hecke source Q and finds a pointwise return, but its two-dimensional Pauli covariance permits the missing fine sign to remain negative.
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that enlarges the literal actor to GL5 and gives a profile-uniform Gram for the actual J2 compression; its stabilizer fixes the J1 support, so the two unequal rows are not yet attached.
+  endpoint-whitehead-star-braid-synchronizes-native-gauges: that supplies the missing odd J1--W and J2--W gauge synchronization on a common homogeneous carrier; its full signed-source normalizer calculation shows that no such return can make the first support positive.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -350,6 +351,21 @@ excluded by the regular-trace firewall.
   a gauge on either factor separately but not this cancelling pair.  Hence
   a continuation needs an ordinary occurrence with odd incidence in one
   exposed factor, or direct source/target-Gram typing of `u_2`.
+
+  Adjoining `J_1` does provide that odd incidence at the **gauge** level, but
+  not at the support level.  In
+  `endpoint-whitehead-star-braid-synchronizes-native-gauges`, the literal
+  relations `(J_1W)^3=(J_2W)^3=1` synchronize the two native Whitehead
+  reservoir spectra with the endpoint spectrum and kill an isolated paired
+  `J_1/u_1` central sign.  The same exact projective-incidence calculation
+  classifies every signed-`K_2` return: it sends the missing support root
+  `r=x_58(a_2)` only to `rv^epsilon`.  Since `v` is positive on `p_2`, the
+  `r=-1` sheet remains invariant and can carry all the source mass while the
+  actual `J_1` support is zero.  Thus the live input has sharpened to a
+  moving-sheet payment for `r`, not another gauge relation internal to the
+  returned actor.  The exact three-character model of the `J_1,W` semidirect
+  root packet shows this remains possible even when the endpoint `W` Gram is
+  maximal.
 
   Nor does intersecting one moved source with the original signed source
   create a fixed-frame subcorner.

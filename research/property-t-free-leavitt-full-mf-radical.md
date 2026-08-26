@@ -54,6 +54,8 @@ artifacts:
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
   - research/coarse-fine-offdiagonal-loops-are-morita-blind.md
   - research/single-root-completeness-attachments-are-exhausted.md
+  - research/endpoint-whitehead-star-braid-synchronizes-native-gauges.md
+  - research/endpoint-whitehead-star-braid-proof.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -587,6 +589,23 @@ five-projective-summand calculation does not model the four additional
 coefficient roots of the full source `L_0`; the separate exact return audit
 above remains the valid full-`Q` fence.  Hence this is genuine native
 second-row progress, not yet the common two-row selector attachment.
+
+There is no longer an independent **central gauge-parity** ambiguity on the
+first row.  `endpoint-whitehead-star-braid-synchronizes-native-gauges`
+observes that the three literal swaps `J_1,J_2,W` form a star on the `GL_5`
+block.  Their pairwise odd Coxeter rows make all three reservoir involutions
+unitarily conjugate on any common reducing homogeneous carrier.  In
+particular, the simultaneous central change `J_1 -> J_1D`, `u_1 -> u_1D`
+which evades `(J_1u_1)^7=1` is detected by `(J_1W)^3=1` unless the same `D`
+is carried by `W`, in which case it is one common endpoint gauge.  This is
+the desired algebraic gauge synchronization, but it does not supply the
+missing carrier: the full signed-source normalizer sends
+`r` only to `rv^epsilon`, and `v=+1` on `p_2`.  Hence it preserves the `r`
+sign and permits the scoped profile `r=-1`, `q_1=0`.  The remaining first-row
+problem is therefore positive support/occurrence attachment, not a free
+central sign.  This is sharp already for the literal `J_1,W` moving table:
+an exact three-character `C_2^6 semidirect S_3` model has maximal `W` Gram
+on `p_2` and zero `J_1` support.
 
 Passing to an odd-actor-invariant carrier does not lose all of this progress.
 `full-packet-cyclic-aggregates-retain-positive-endpoint-gram` joins the five

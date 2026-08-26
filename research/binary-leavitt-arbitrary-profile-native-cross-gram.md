@@ -15,6 +15,7 @@ distinct_from:
   endpoint-order-five-actor-has-half-gram: that adjoins the native order-seven head, realizes a literal GL4 block, and finds its signed-K1-returning GL3 subgroup; this forces at least one third of the actual p2 source to survive the endpoint Gram, but does not yet type that polar as a native unequal-selector occurrence.
   endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that checks the complete ten-generator common Hecke source and finds an exact return fixing it pointwise, but the return leaves the missing fine sign free and hence does not descend the p2 bound to Q.
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that adjoins J1 to obtain a literal GL5 block and proves a uniform one-third support for the actual J2 compression, but its signed stabilizer fixes the missing J1 root and gives no two-row attachment.
+  endpoint-whitehead-star-braid-synchronizes-native-gauges: that derives odd Coxeter rows coupling J1 and J2 to the positive endpoint W occurrence, eliminating an independent paired central sign; it also proves that every signed-source actor return preserves the missing J1 support sign, so gauge synchronization alone gives no first-row mass.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
