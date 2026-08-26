@@ -10,9 +10,9 @@ and, for each pair, append the relator
 
     t sourceWord t⁻¹ targetWord⁻¹.
 
-Iterating that operation gives literal finite codes for the `tau`, `d`, and
-`sigma` layers.  A fourth iteration with pairs `(w,w)` attaches a central HNN
-detector last.  These definitions make no semantic injectivity claim; those
+Iterating that operation gives literal finite codes for the `tau_j` family,
+followed by the `d` and `sigma` layers.  One final iteration with pairs `(w,w)`
+attaches a central HNN detector last.  These definitions make no semantic injectivity claim; those
 are precisely the explicit free-evaluation obligations isolated by
 `ExplicitFreeEdge.Data`.
 -/
@@ -185,9 +185,10 @@ theorem computable_edgeCode :
       edgeCode a.1 a.2) :=
   primrec_edgeCode.to_comp
 
-/-! ## The complete primitive-recursive compiler -/
+/-! ## The packed compiler -/
 
-/-- The finite syntactic input for the four edges. -/
+/-- The finite syntactic input for the `tau_j` family and the three final
+edges. -/
 abbrev TowerInput : Type :=
   PresentationCode ×
     (List (List (Raw × Raw)) ×
@@ -203,58 +204,9 @@ theorem primrec_centralEdges :
     Primrec (fun words : List Raw => centralEdges words) :=
   Primrec.list_map Primrec.id (Primrec.pair Primrec.snd Primrec.snd)
 
-set_option maxHeartbeats 800000 in
-/-- Iterating the one-edge code constructor over a finite family is primitive
-recursive. -/
-theorem primrec_multiEdgeCode :
-    Primrec₂ (fun (c : PresentationCode)
-      (layers : List (List (Raw × Raw))) => multiEdgeCode c layers) := by
-  change Primrec (fun a : PresentationCode × List (List (Raw × Raw)) =>
-    multiEdgeCode a.1 a.2)
-  have hedgeCode : Primrec
-      (fun a : PresentationCode × List (Raw × Raw) => edgeCode a.1 a.2) :=
-    primrec_edgeCode
-  have hstep : Primrec₂
-      (fun (z : (PresentationCode × List (List (Raw × Raw))) × PresentationCode)
-        (edges : List (Raw × Raw)) => edgeCode z.2 edges) := by
-    exact (hedgeCode.comp
-      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd)).to₂
-  have hfold : Primrec
-      (fun a : PresentationCode × List (List (Raw × Raw)) =>
-        a.2.foldl edgeCode a.1) :=
-    Primrec.list_foldl Primrec.snd Primrec.fst hstep
-  exact hfold
-
-/-- The full four-edge raw presentation compiler is primitive recursive. -/
-theorem primrec_compile : Primrec compile := by
-  have hedgeCode : Primrec
-      (fun a : PresentationCode × List (Raw × Raw) => edgeCode a.1 a.2) :=
-    primrec_edgeCode
-  have hmultiEdgeCode : Primrec
-      (fun a : PresentationCode × List (List (Raw × Raw)) =>
-        multiEdgeCode a.1 a.2) := primrec_multiEdgeCode
-  have hTau : Primrec (fun x : TowerInput => multiEdgeCode x.1 x.2.1) :=
-    hmultiEdgeCode.comp
-      (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
-  have hD : Primrec (fun x : TowerInput =>
-      edgeCode (multiEdgeCode x.1 x.2.1) x.2.2.1) :=
-    hedgeCode.comp
-      (Primrec.pair hTau
-        (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
-  have hSigma : Primrec (fun x : TowerInput =>
-      threeStageCode x.1 x.2.1 x.2.2.1 x.2.2.2.1) :=
-    hedgeCode.comp
-      (Primrec.pair hD
-        (Primrec.fst.comp
-          (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))))
-  have hDetector : Primrec (fun x : TowerInput =>
-      centralEdges x.2.2.2.2) :=
-    primrec_centralEdges.comp
-      (Primrec.snd.comp
-        (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
-  exact hedgeCode.comp (Primrec.pair hSigma hDetector)
-
-theorem computable_compile : Computable compile := primrec_compile.to_comp
+/-! Primitive recursiveness of the list fold and of `compile` is deliberately
+isolated in `FreeEdgeTowerCodePrimrec`.  Keeping that higher-order fold out of
+this syntax-and-semantics module makes both artifacts independently checkable. -/
 
 /-! ## Deliberately separate semantic obligations -/
 
