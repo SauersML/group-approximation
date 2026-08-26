@@ -108,10 +108,18 @@ the coboundary drift of
   preimage gauge is conjugated to the literal Whitehead gauge.  Exact
   finite amplifications retain any nontrivial involution on both sides.
   Iterating the preimage only pushes that gauge to greater prefix depth.
+- Nor can one append a single genuinely nonnormal opposite-root letter to
+  the known Whitehead.  By
+  `one-nonnormal-dressing-cannot-preserve-moving-full-gram`, all exact
+  transports from `Q` to `J_iQJ_i^(-1)` form the torsor
+  `J_i Norm(Q)`.  A relative factor outside the source normalizer changes
+  the range Gram.  Explicitly, `x_82(1)` conjugates the source root
+  `x_28(1)` to the `(2,8)` swap, which is not in `L_0`.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
 `(ESB1)--(ESB2)` and verify its six Singer conjugate squares.  It must contain
-an occurrence which exits the finite extraspecial atom algebra, not only
-normalizer letters inside a larger finite packet.  No Property `(T)`, canonical
+at least two occurrences which exit and then return to the Hecke atom
+normalizer, with the returned normalizer cancelling the Whitehead gauge; not
+only normalizer letters inside a larger finite packet.  No Property `(T)`, canonical
 trace profile, or tracial-von-Neumann extension is allowed.
