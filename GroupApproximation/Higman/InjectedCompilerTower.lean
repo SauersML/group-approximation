@@ -28,15 +28,15 @@ namespace InjectedCompilerTower
 open HNNExtension
 open ExplicitFreeEdge
 
-universe u v w z
+noncomputable section
 
-variable {G : Type u} [Group G]
+variable {G : Type} [Group G]
 
 /-! ## A shear transported through a free evaluation map -/
 
 /-- The Nielsen shear remains injective before it is evaluated in a base
 group. -/
-theorem shearForward_injective {X : Type v} (payload : FreeGroup X) :
+theorem shearForward_injective {X : Type} (payload : FreeGroup X) :
     Function.Injective (shearForward payload) := by
   intro a b hab
   have h := congrArg (shearBackward payload) hab
@@ -46,7 +46,7 @@ theorem shearForward_injective {X : Type v} (payload : FreeGroup X) :
 /-- Evaluate both sides of the Nielsen shear in an arbitrary group.  The
 target is injective for formal reasons once the displayed source evaluation
 is injective. -/
-def evaluatedShearData {X : Type v}
+def evaluatedShearData {X : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X) : Data (X ⊕ Unit) G where
   source := eval
@@ -54,16 +54,26 @@ def evaluatedShearData {X : Type v}
   source_injective := heval
   target_injective := heval.comp (shearForward_injective payload)
 
-@[simp] theorem evaluatedShearData_source {X : Type v}
+@[simp] theorem evaluatedShearData_source {X : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X) :
     (evaluatedShearData eval heval payload).source = eval := rfl
 
-@[simp] theorem evaluatedShearData_target {X : Type v}
+@[simp] theorem evaluatedShearData_target {X : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X) :
     (evaluatedShearData eval heval payload).target =
       eval.comp (shearForward payload) := rfl
+
+/-- The stable letter of the evaluated shear carries every source word to
+its Nielsen-sheared evaluation. -/
+theorem evaluatedShear_stable_conj {X : Type}
+    (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
+    (payload : FreeGroup X) (word : FreeGroup (X ⊕ Unit)) :
+    (t : Extension (evaluatedShearData eval heval payload)) *
+        of (eval word) * t⁻¹ = of (eval (shearForward payload word)) := by
+  simpa [evaluatedShearData] using
+    stable_conj_source (evaluatedShearData eval heval payload) word
 
 /-! ## Three composable HNN edges -/
 
@@ -71,24 +81,24 @@ def evaluatedShearData {X : Type v}
 field is a concrete `ExplicitFreeEdge.Data`, hence records two homomorphisms
 from a displayed free group and injectivity proofs for precisely those maps.
 -/
-structure ThreeStage (G : Type u) [Group G] where
-  TauIndex : Type v
+structure ThreeStage (G : Type) [Group G] where
+  TauIndex : Type
   tau : Data TauIndex G
-  DIndex : Type w
+  DIndex : Type
   d : Data DIndex (Extension tau)
-  SigmaIndex : Type z
+  SigmaIndex : Type
   sigma : Data SigmaIndex (Extension d)
 
 variable (T : ThreeStage G)
 
 /-- The group after the `tau` edge. -/
-abbrev Tau : Type (max u v) := Extension T.tau
+abbrev Tau : Type := Extension T.tau
 
 /-- The group after the `d` edge. -/
-abbrev D : Type (max u v w) := Extension T.d
+abbrev D : Type := Extension T.d
 
 /-- The group after the `sigma` edge. -/
-abbrev Top : Type (max u v w z) := Extension T.sigma
+abbrev Top : Type := Extension T.sigma
 
 /-- The literal base inclusion at the `tau` edge. -/
 def baseToTau : G →* Tau T := of
@@ -122,13 +132,13 @@ theorem baseToTop_injective : Function.Injective (baseToTop T) :=
 /-! ## The named `tau`--`d`--`sigma` constructor -/
 
 /-- The first layer obtained by evaluating the Nielsen shear. -/
-abbrev ShearTau {X : Type v}
+abbrev ShearTau {X : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X) : Type _ :=
   Extension (evaluatedShearData eval heval payload)
 
 /-- The second layer, using the explicit `d` evaluation maps. -/
-abbrev ShearD {X : Type v} {J : Type w}
+abbrev ShearD {X J : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X)
     (k0 : ShearTau eval heval payload)
@@ -147,7 +157,7 @@ The only hypotheses are injectivity of:
 
 Injectivity of the sheared target is derived automatically from the Nielsen
 inverse. -/
-def shearDSigmaTower {X : Type v} {J : Type w} {Y : Type z}
+def shearDSigmaTower {X J Y : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X)
     (k0 : ShearTau eval heval payload)
@@ -168,7 +178,7 @@ def shearDSigmaTower {X : Type v} {J : Type w} {Y : Type z}
 
 /-! ## The corrected detector, attached after the tower -/
 
-variable {F K : Type u} [Group F] [Group K]
+variable {F K : Type} [Group F] [Group K]
 
 /-- A three-stage compiler whose starting group is `K * ⟨q⟩`, realized as
 the HNN extension of `K` over the trivial subgroup. -/
@@ -248,6 +258,8 @@ theorem commute_outerStable_detectedWord_iff
     Commute (t : Outermost L T) (detectedWord L e T f) ↔ f ∈ N := by
   exact ConjugatedDetector.commute_freeStable_freeDetectedWord_iff
     N L e (baseToTop T) (baseToTop_injective T) hcut f
+
+end
 
 end InjectedCompilerTower
 end Higman
