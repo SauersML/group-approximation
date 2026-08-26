@@ -138,6 +138,30 @@ theorem hasMFEmbedding_of_normRecovery
   ⟨X, fun _ ↦ inferInstance, hpos, hmono, coronaHom M,
     coronaHom_injective_of_normRecovery M hrecover⟩
 
+/-- The repository's matrix-corona definition of bare MF embeddability is
+equivalent to the existence of a bounded asymptotic star model which recovers
+every source norm.  This is the exact finite-model interface used by gluing
+arguments: algebraic defects are handled coordinatewise, while faithfulness
+is precisely the norm-recovery clause. -/
+theorem hasMFEmbedding_iff_exists_normRecoveringModel :
+    HasMFEmbedding A ↔
+      ∃ (X : ℕ → FiniteModel) (hne : ∀ n, Nonempty (X n)),
+        letI : ∀ n, Nonempty (X n) := hne
+        (∀ n, 0 < Fintype.card (X n)) ∧
+          StrictMono (fun n ↦ Fintype.card (X n)) ∧
+            ∃ M : NormCoronaAsymptoticLift.Model (X := X) A,
+              ∀ a : A,
+                Filter.limsup (fun n ↦ ‖M.map n a‖) atTop = ‖a‖ := by
+  constructor
+  · rintro ⟨X, hne, hpos, hmono, e, he⟩
+    letI : ∀ n, Nonempty (X n) := hne
+    refine ⟨X, hne, hpos, hmono,
+      NormCoronaAsymptoticLift.model e, ?_⟩
+    exact NormCoronaAsymptoticLift.limsup_norm_model_eq e he
+  · rintro ⟨X, hne, hpos, hmono, M, hrecover⟩
+    letI : ∀ n, Nonempty (X n) := hne
+    exact hasMFEmbedding_of_normRecovery M hrecover hpos hmono
+
 end
 
 end AsymptoticModelMFEmbedding
