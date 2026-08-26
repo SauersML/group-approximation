@@ -55,7 +55,7 @@ Consequently the following are equivalent.
    the three-label relative unitary satisfies every packet word exactly in
    the tracial GNS representation.
 
-If these conditions hold for one non-torsion `z`, then the binary Leavitt
+If these conditions hold for one `z!=1`, then the binary Leavitt
 unit group is hyperlinear, hence is an explicit hyperlinear nonsofic group.
 Indeed the rational pairs `(OWA2)` are already the required matrix
 microstates in the canonical regular-A8 criterion.
@@ -72,13 +72,16 @@ so the commutator has full support and a singular-value floor tending to
 commutator norm, nor concentration on an `o(q_n)` corner excludes it.  The
 literal Laurent equations `(OWA4)` are the first unresolved test.
 
-No root of unity can satisfy all equations `(OWA4)`.  If `z` had finite
-order `q`, the `q`-dimensional irreducible Weyl pair would make every packet
-word a unitary of normalized trace one, hence the identity.  It would give a
-nontrivial finite-dimensional exact atlas model, contrary to the established
-finite-dimensional/ bounded-internal-complexity obstruction.  Therefore any
-positive common root is necessarily non-torsion.  The common-root set is
-also not the whole circle, because `z=1` is excluded by the commutative wall.
+The common-root search must include roots of unity different from one.  Even
+when the limit `z` has finite order, `(OWA1)` uses primitive phases whose
+orders `q_n` tend to infinity.  For the one fixed `q`-dimensional irreducible
+at phase `z`, additional monomials with exponent sums divisible by `q` can
+have nonzero trace, so that finite model is not evaluated by `(OWA4)`.
+Equivalently, the canonical trace of the rational rotation algebra integrates
+over its center and is not one fixed irreducible trace.  Finite-dimensional
+invisibility therefore does not exclude a torsion limit phase.  The
+common-root set is not the whole circle only because `z=1` is excluded by the
+commutative wall.
 
 The claim does not assert that a common root exists.  It turns this structured
 positive-density construction into a finite symbolic decision problem and

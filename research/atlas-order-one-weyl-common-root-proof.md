@@ -24,9 +24,12 @@ algebra has trace one only when it is the identity, `Re f_s(z)=1` is
 equivalent to `f_s(z)=1` and to exact satisfaction in that GNS
 representation.
 
-If `z` has finite order `q`, use the irreducible `q`-dimensional Weyl pair
-instead of approximants.  The same trace-one argument makes all packet words
-identities in a nonzero finite-dimensional regular-chart model, impossible
-by `(BMG2)` (or finite-dimensional invisibility).  The case `z=1` is also
-excluded by `(BMG2)` at internal size one.  Finally `(OWA6)` follows directly
-from `S_nD_n=z_nD_nS_n`, and all its singular values equal `|z_n-1|`.
+The preceding limit computation uses only `q_n->infinity`, so it remains
+valid when the limit `z` is a root of unity.  It must not be replaced in that
+case by one fixed irreducible Weyl representation: exponent sums which are
+nonzero integers but divisible by the fixed order then survive the trace,
+whereas they vanish eventually along `(OWA1)`.  Thus finite-dimensional
+invisibility supplies no torsion-root exclusion.  The case `z=1` is excluded
+by the established small-phase commutative wall.  Finally `(OWA6)` follows
+directly from `S_nD_n=z_nD_nS_n`, and all its singular values equal
+`|z_n-1|`.
