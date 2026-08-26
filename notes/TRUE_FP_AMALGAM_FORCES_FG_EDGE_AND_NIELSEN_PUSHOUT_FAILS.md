@@ -4,7 +4,7 @@
 
 This is a Cairn-only finite-support theorem and its exact application to the
 basepointed-Nielsen proposal for
-Higman.Star.ConjugatorGraph.graph_benign.
+`Higman.Star.ConjugatorGraph.graph_benign`.
 
 The conclusion is stronger than the status recorded in
 research/artifacts/conjugator-graph-basepointed-nielsen-envelope-2026-08-26.md:
@@ -19,14 +19,14 @@ presented**.
 
 The proof uses only repository-internal results:
 
-* Tietze.ker_isFinitelyNormallyGenerated from
-  GroupApproximation/Algebra/FinitePresentationKernel.lean;
-* Tietze.exists_finite_subset_subset_normalClosure from
-  GroupApproximation/Algebra/FinitePresentationTietze.lean;
+* `Tietze.ker_isFinitelyNormallyGenerated` from
+  `GroupApproximation/Algebra/FinitePresentationKernel.lean`;
+* `Tietze.exists_finite_subset_subset_normalClosure` from
+  `GroupApproximation/Algebra/FinitePresentationTietze.lean`;
 * the presented-amalgam/pushout identification in
-  GroupApproximation/Higman/AmalgamPushout.lean;
-* Amalgam.inf_range_eq_base_range from
-  GroupApproximation/Higman/BenignAmbient.lean.
+  `GroupApproximation/Higman/AmalgamPushout.lean`;
+* `Amalgam.inf_range_eq_base_range` from
+  `GroupApproximation/Higman/BenignAmbient.lean`.
 
 No Lean, build, MSI, or external input was used.
 
@@ -72,13 +72,13 @@ The canonical quotient \(q_A:C\twoheadrightarrow P\) has
   \tag{1.1}
 \]
 
-This is exactly the quotient Amalg in
-Higman/AmalgamPresentation.lean, identified with Mathlib's injective
-pushout by Amalgam.pushEquiv.
+This is exactly the quotient `Amalg` in
+`Higman/AmalgamPresentation.lean`, identified with Mathlib's injective
+pushout by `Amalgam.pushEquiv`.
 
 The free product \(C\) is finitely presented because \(G_1\) and \(G_2\) are.
 By the assumed finite presentability of \(P\),
-Tietze.ker_isFinitelyNormallyGenerated applied to \(q_A\) gives a finite set
+`Tietze.ker_isFinitelyNormallyGenerated` applied to \(q_A\) gives a finite set
 \(X\subseteq\ker q_A\) such that
 
 \[
@@ -87,7 +87,7 @@ Tietze.ker_isFinitelyNormallyGenerated applied to \(q_A\) gives a finite set
 \]
 
 Every \(x\in X\) lies in the normal closure in (1.1). Normal generation is
-compact: Tietze.exists_finite_subset_subset_normalClosure supplies one
+compact: `Tietze.exists_finite_subset_subset_normalClosure` supplies one
 finite subset \(R_0\subseteq R_A\) with
 
 \[
@@ -128,11 +128,11 @@ Equation (1.3) says that every \(r_a\), \(a\in A\), is already trivial in the
 smaller amalgam (1.4). Thus the two factor images of \(e_1(a)\) and \(e_2(a)\)
 coincide in \(G_1*_{B}G_2\).
 
-The normal-form identity Amalgam.inf_range_eq_base_range says that the
+The normal-form identity `Amalgam.inf_range_eq_base_range` says that the
 intersection of the two factor images in this injective amalgam is exactly the
 image of \(B\). Therefore there is \(b\in B\) whose two factor values equal
 the common value of \(a\). Injectivity of the factor maps
-(Amalgam.of_injective_push) and of \(e_1,e_2\) gives \(a=b\). Hence every
+(`Amalgam.of_injective_push`) and of \(e_1,e_2\) gives \(a=b\). Hence every
 \(a\in A\) lies in \(B\), so
 
 \[
@@ -152,9 +152,9 @@ For injective amalgams of finitely presented vertex groups,
 \]
 
 The forward implication is Theorem 1.1. The reverse implication is the
-repository theorem Amalgam.isFinitelyPresented_push.
+repository theorem `Amalgam.isFinitelyPresented_push`.
 
-Thus the [Group.FG G] hypothesis of that theorem is not merely a sufficient
+Thus the `[Group.FG G]` hypothesis of that theorem is not merely a sufficient
 hypothesis imposed by its proof. Under the injectivity hypotheses used by the
 benign calculus, it is necessary.
 
@@ -183,7 +183,7 @@ edge identifications.
 
 ## 3. Application to the conjugator graph
 
-Retain the notation of Higman/TransportStar.lean and of the Nielsen-envelope
+Retain the notation of `Higman/TransportStar.lean` and of the Nielsen-envelope
 artifact:
 
 \[
@@ -206,7 +206,7 @@ The map
   u_h\longmapsto\gamma_h
 \]
 
-is injective by Star.graphHom_injective; hence the displayed
+is injective by `Star.graphHom_injective`; hence the displayed
 \(\gamma_h\)'s are a free basis of \(\Gamma\).
 
 The basepointed-Nielsen artifact constructs the five-generator, two-relator,
@@ -330,11 +330,11 @@ The following statements are now proved simultaneously:
 4. no finite subset of those gluing relations presents the same group.
 
 Consequently the formal pushout cannot inhabit
-Higman.Star.ConjugatorGraph, and it cannot close
-Higman.Transport.UnConjugation through
-Star.unConjugation_of_graphBenign.
+`Higman.Star.ConjugatorGraph`, and it cannot close
+`Higman.Transport.UnConjugation` through
+`Star.unConjugation_of_graphBenign`.
 
-This result does not assert that graphSub is not benign. It rules out the
+This result does not assert that `graphSub` is not benign. It rules out the
 specific common-envelope mechanism exactly: any successful witness must use
 additional finite bridge relations that produce a different ambient group,
 not a finite presentation of \(D*_{\Gamma}M_0\).
