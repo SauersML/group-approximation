@@ -81,3 +81,13 @@ model.  Applying the atomic gap on its nonzero marked atom proves that no
 three-row output with a vanishing modulus follows from that finite menu.  A
 live compiler must add a relation coupling coefficient completeness to the
 prescribed atom, rather than only recombine `Z_i,H_i,W_i,J_i`.
+
+Nor can that new occurrence remain in the balanced-prefix coefficient core.
+By `degree-zero-leavitt-core-has-locally-finite-marked-models`, every fixed
+finite inventory in gauge degree zero lies in a finite matrix ring over
+`F_2`, so its elementary-word table has an exact finite model with the marked
+root surviving.  Thus the next viable atomic-return row must expose nonzero
+Leavitt gauge degree on the prescribed atom (an uncancelled `s_i`, `t_i`, or
+unequal-length prefix coefficient), or use genuinely unbounded adaptive
+depth.  Noncommuting balanced matrix units alone do not cross the finite-model
+firewall.

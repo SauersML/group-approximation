@@ -197,6 +197,18 @@ Thus a successful compiler must make a genuinely coordinate-dependent
 finite-matrix choice or prove the uniform prototype gap; it cannot extract
 the three rows by a fixed analytic polynomial inside the recovered packet.
 
+The coefficient boundary is now sharper than the earlier Boolean-window
+fence.  `degree-zero-leavitt-core-has-locally-finite-marked-models` identifies
+the whole balanced-prefix core as a nested union of finite matrix rings over
+`F_2`.  Consequently every fixed ordinary-word inventory whose coefficients
+are finite sums of equal-length prefix matrix units has one exact finite
+marked model, even when it contains `s_0t_1,s_1t_0`, arbitrary opposite-root
+Whiteheads, and mixed commutators.  A live prototype must therefore carry
+nonzero Leavitt gauge degree through the marked occurrence (for example an
+uncancelled `s_i` or `t_i`), or use genuinely unbounded adaptive depth.
+Replacing the Boolean range projections by more balanced prefix coefficients
+cannot prove `(BAC1)`.
+
 The first literal noncommuting depth-two payload loop is not enough.
 `depth-two-cousin-loop-has-finite-ut5-fusion-model` uses the shared-arm
 identity `t_(00)(s_(00)t_(11))s_(11)=A` as a four-arm nested Steinberg
@@ -390,3 +402,29 @@ Three cyclic copies add the full native `A_2` orbit and exact return.  Thus
 the missing lock must identify the cross-child opposite factors with the
 canonical noncommuting factors on one irreducible payload block; returned
 zero-product words alone allow finite Coxeter re-gauging.
+
+There is also a coefficient-wide fence beyond the returned Boolean window.
+`degree-zero-leavitt-core-has-locally-finite-marked-models` identifies all
+balanced prefix coefficients `s_u t_v`, `|u|=|v|=n`, with the matrix units
+of `M_(2^n)(F_2)`.  The nested union over `n` is locally finite.  Hence any
+fixed ordinary-word menu confined to gauge degree zero -- including the
+non-Boolean cross coefficients `s_0t_1,s_1t_0`, arbitrary opposite-root
+Whiteheads and arbitrary mixed commutators -- has a simultaneous finite
+exact elementary-group model with the mark surviving.  A live bounded
+prototype must therefore contain a coefficient of nonzero gauge degree,
+not merely a non-diagonal balanced prefix unit.  Literal `s_i,t_i` and
+unequal-length prefixes remain outside this fence; the native-arm models
+above show that their presence is necessary but not sufficient.
+
+The first literal nonzero-degree mixed completeness cell is also now
+fenced.  `aggregate-morita-row-column-fold-has-d8-square-model` puts
+`s_0,s_1` in one positive-root row and `t_0,t_1` in one composable column.
+Their aggregate commutator forms `s_0t_0+s_1t_1=1` internally, while one
+matching subcommutator is the marked `q_1` root occurrence.  The exact table
+still factorizes in `D_8 times D_8`, with the two child commutators as
+independent central directions and their product as the parent output.
+Thus even literal use of all four gauge-nonzero arms in one completeness
+word is insufficient.  The next occurrence must couple an opposite-root or
+returned payload to those two child directions on the prescribed mark
+carrier; another positive-root aggregate fold remains below the finite-model
+firewall.
