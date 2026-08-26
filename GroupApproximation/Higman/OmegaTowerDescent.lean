@@ -902,10 +902,103 @@ theorem slimBase_mul_gen_mul_rowInv_not_mem_slimLink
           of (Row.basisHom (elt l)) * (t : Cent1 (rowOut m)) ∈
         (of : Row.F₀ →* Cent1 (rowOut m)).range := by
     refine ⟨(Row.basisHom (elt β))⁻¹ * Seq.retract (q : F₃), ?_⟩
-    simpa [slimBaseCode, slimKBase, map_mul, map_inv,
+    simpa [slimBaseCode, slimKBase, slimGenCode, map_mul, map_inv,
       dropToCent1_genCode] using hdrop.symm
   exact basisHom_elt_not_mem_rowOut hi hli
     (mem_of_conj_mem_range (rowOut m) hbase)
+
+/-- The right-coset label of a row conjugator in the central second stage. -/
+noncomputable def slimRowLabel (m : ℕ) (q : ↥Conj.K) :
+    CentralHNNFreeLabel.Label (slimLink m) (slimTransversal m) :=
+  (((slimTransversal m).compl (1 : ℤˣ)).equiv (slimKBase m q)).2
+
+/-- The right-coset label read by the conjugator `b_l g_β`. -/
+noncomputable def slimCodeLabel (m : ℕ) (l β : E) :
+    CentralHNNFreeLabel.Label (slimLink m) (slimTransversal m) :=
+  (((slimTransversal m).compl (1 : ℤˣ)).equiv
+    (slimBaseCode m l * slimGenCode m β)).2
+
+/-- A bad active-window conjugator has a coset label outside the entire row
+label range. -/
+theorem slimCodeLabel_not_mem_rowLabel_range
+    {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) {i : ℤ}
+    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    slimCodeLabel m l β ∉ Set.range (slimRowLabel m) := by
+  rintro ⟨q, hq⟩
+  apply slimBase_mul_gen_mul_rowInv_not_mem_slimLink hβ hi hli q
+  apply (FiniteHNNFreeLabelAction.source_transversal_eq_iff
+    (A := slimLink m) (B := slimLink m) (slimTransversal m)
+    (slimBaseCode m l * slimGenCode m β * (slimKBase m q)⁻¹)
+    (slimKBase m q)).1
+  simpa [slimCodeLabel, slimRowLabel, mul_assoc] using hq.symm
+
+/-- The stage-two conjugate by `g_β` is the free stable conjugate indexed by
+the coset of `b_l g_β`. -/
+theorem slimGen_conj_aElt_eq_stableConj
+    (m : ℕ) (l β : E) :
+    (slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
+        slimPiOf m (slimGenCode m β) =
+      CentralHNNFreeLabel.stableConj (slimLink m) (slimTransversal m)
+        (slimCodeLabel m l β) := by
+  rw [CentralHNNFreeLabel.stableConj_eq_conj_of_label_eq
+    (slimLink m) (slimTransversal m) (slimCodeLabel m l β)
+    (slimBaseCode m l * slimGenCode m β) rfl]
+  unfold aElt
+  rw [map_mul, map_mul, map_inv, slimPiF3Hom_bElt, slimPiF3Hom_a,
+    map_mul, map_inv]
+  rw [show (of (slimBaseCode m l * slimGenCode m β) : SlimPi m) =
+      slimPiOf m (slimBaseCode m l) * slimPiOf m (slimGenCode m β) by
+    exact map_mul (slimPiOf m) _ _]
+  rfl
+
+/-- **Case-2 survival at the second stage.**  Conjugating `a_l` by a selected
+`g_β` cannot return to the embedded `F₃` when `l` has a nonzero coordinate
+in the active window. -/
+theorem slimGen_conj_aElt_not_mem_F3Range
+    {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) {i : ℤ}
+    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    (slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
+        slimPiOf m (slimGenCode m β) ∉ (slimPiF3Hom m).range := by
+  rintro ⟨x, hx⟩
+  have hbase : slimPiBaseRet m (slimPiF3Hom m x) = 1 := by
+    rw [hx, slimGen_conj_aElt_eq_stableConj]
+    exact CentralHNNFreeLabel.baseRet_stableConj
+      (slimLink m) (slimTransversal m) (slimCodeLabel m l β)
+  have hret : Coord.retK x = 1 := by
+    rw [← rowIntoF3_baseRet3_slimPiBaseRet_comp_slimPiF3Hom m,
+      MonoidHom.comp_apply, MonoidHom.comp_apply, MonoidHom.comp_apply,
+      hbase, map_one, map_one]
+  have hxker : x ∈ MonoidHom.ker Coord.retK := MonoidHom.mem_ker.mpr hret
+  rw [ker_retK_eq_cbHom_range] at hxker
+  obtain ⟨w, hw⟩ := hxker
+  let lift := CentralHNNFreeLabel.stableConjLift
+    (slimLink m) (slimTransversal m)
+  have hlift : lift (FreeGroup.of (slimCodeLabel m l β)) =
+      lift (slimLabelHom m w) := by
+    calc
+      lift (FreeGroup.of (slimCodeLabel m l β)) =
+          CentralHNNFreeLabel.stableConj (slimLink m) (slimTransversal m)
+            (slimCodeLabel m l β) := by
+              simp [lift, CentralHNNFreeLabel.stableConjLift]
+      _ = (slimPiOf m (slimGenCode m β))⁻¹ *
+          slimPiF3Hom m (aElt l) * slimPiOf m (slimGenCode m β) :=
+            (slimGen_conj_aElt_eq_stableConj m l β).symm
+      _ = slimPiF3Hom m x := hx.symm
+      _ = slimPiF3Hom m (Conj.cbHom w) := by rw [hw]
+      _ = lift (slimLabelHom m w) :=
+        DFunLike.congr_fun (slimPiF3Hom_comp_cbHom_eq_freeLabel m) w
+  have hword : FreeGroup.of (slimCodeLabel m l β) = slimLabelHom m w :=
+    CentralHNNFreeLabel.stableConjLift_injective
+      (slimLink m) (slimTransversal m) hlift
+  have hsupport : FreeGroup.of (slimCodeLabel m l β) ∈
+      Subgroup.closure (FreeGroup.of '' Set.range (slimRowLabel m)) := by
+    rw [hword]
+    change FreeGroup.map (slimRowLabel m) w ∈
+      Subgroup.closure (FreeGroup.of '' Set.range (slimRowLabel m))
+    exact CentralHNNFreeLabel.Coordinate.map_mem_closure_range
+      (slimRowLabel m) w
+  exact slimCodeLabel_not_mem_rowLabel_range hβ hi hli
+    (CentralHNNFreeLabel.Coordinate.index_mem_of_of_mem_closure hsupport)
 
 /-- Every element of the concrete `W` lies in the standard outer-HNN
 subgroup generated by the stage-two alphabet and the final stable letter.
