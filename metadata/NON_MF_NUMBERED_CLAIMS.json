@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1i.tex",
+  "manuscript": "paper1j.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -284,22 +284,17 @@
       "environment": "proposition",
       "title": "",
       "statement_sha256": "112f7da1ac22abefeb76ec79b5113a2db344d8ea31464aff73f5774e76f1debd",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
         "lem:tau-elementary"
       ],
       "extra_assumptions": [],
-      "external_inputs": [],
+      "external_inputs": [
+        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+      ],
       "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptCurrentLeavittCompressionProposition",
-          "covers": "the complete printed proposition"
-        }
-      ]
+      "lean": []
     },
     {
       "id": "prop:simple",
