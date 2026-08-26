@@ -210,8 +210,9 @@ theorem exists_coded_openPasses {c : PresentationCode}
       |N.len w - C.len w| ≤ (w.length : ℝ) * η := by
     rw [Microstate.len_def, Microstate.len_def,
       microstate_hom_wordOf_eq_tupleWord,
-      microstate_hom_wordOf_eq_tupleWord, hNgen, hCgen]
-    exact abs_tupleLength_sub_le U V hclose w
+      microstate_hom_wordOf_eq_tupleWord, hNgen, hCgen, opLength]
+    exact abs_tupleLength_sub_le
+      (c := c) (Y := naturalFiniteModel (dim d)) (η := η) U V hclose w
   refine ⟨d, gens, hunitary, ?_, ?_⟩
   · intro r hr
     have hmarginη : (r.length : ℝ) * η <
@@ -219,8 +220,9 @@ theorem exists_coded_openPasses {c : PresentationCode}
       (mul_le_mul_of_nonneg_left hηr_le (by positivity)).trans_lt
         (hrelMargin r hr)
     have habs := hgap r
+    rw [abs_sub_comm] at habs
     have hside : C.len r - N.len r ≤ (r.length : ℝ) * η :=
-      (le_abs_self _).trans habs
+      (le_abs_self (C.len r - N.len r)).trans habs
     linarith
   · intro w hw
     have hmarginη : (w.length : ℝ) * η < N.len w - 1 / 3 :=
