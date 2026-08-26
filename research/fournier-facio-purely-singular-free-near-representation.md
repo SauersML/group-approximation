@@ -29,3 +29,13 @@ invariant state is also impossible by the established minimal almost
 periodicity/pure-singularity reduction.  The remaining construction must use
 a genuinely singular finitely additive charge, and no such charge is presently
 known for the full Fournier--Facio compression group.
+
+Two broad singular-charge constructions are now excluded, not merely left
+untested.  `fournier-facio-compression-coset-charge-impossible` kills every
+induced or Banach-limit basis carrying an equivariant map to `G/Gamma`, since
+the charge would push down to a forbidden invariant mean.
+`fournier-facio-monomial-near-witness-impossible` kills every remaining
+phase-twisted Schreier/permutation basis: forgetting phases would give an
+essentially free amenable near action and hence soficity.  A positive witness
+must therefore be both singular and genuinely non-Cartan, mixing basis
+vectors on positive charge with no equivariant coarse coset factor.
