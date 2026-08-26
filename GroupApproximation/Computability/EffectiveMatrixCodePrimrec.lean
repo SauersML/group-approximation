@@ -324,6 +324,7 @@ theorem primrec_mulVecNormSq :
 
 /-! ## Flat Boolean matrix predicates -/
 
+set_option maxHeartbeats 800000 in
 private theorem primrecRel_matrixEqCell : PrimrecRel fun (j : ℕ)
     (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
     ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
@@ -355,6 +356,7 @@ def matrixCoordinates (d : ℕ) : List (ℕ × ℕ) :=
   (List.range (dim d)).flatMap fun i =>
     (List.range (dim d)).map fun j => (i, j)
 
+set_option maxHeartbeats 800000 in
 theorem primrec_matrixCoordinates : Primrec matrixCoordinates := by
   have hrange : Primrec fun d : ℕ => List.range (dim d) :=
     Primrec.list_range.comp primrec_dim
@@ -372,6 +374,7 @@ def matrixEqCheck (d : ℕ) (A B : MatrixCode) : Bool :=
   (matrixCoordinates d).foldr (fun ij ok =>
     decide (ComplexEq (entry d A ij.1 ij.2) (entry d B ij.1 ij.2)) && ok) true
 
+set_option maxHeartbeats 800000 in
 theorem primrec_matrixEqCheck :
     Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
       matrixEqCheck z.1.1 z.1.2 z.2 := by
@@ -474,6 +477,7 @@ theorem primrec_ratOfNat : Primrec ratOfNat :=
 def entrySmallCheck (d k : ℕ) (z : ComplexCode) : Bool :=
   decide (entrySmall d k z)
 
+set_option maxHeartbeats 800000 in
 theorem primrec_entrySmallCheck :
     Primrec fun z : (ℕ × ℕ) × ComplexCode =>
       entrySmallCheck z.1.1 z.1.2 z.2 := by
@@ -503,6 +507,7 @@ def matrixSmallCheck (d k : ℕ) (A : MatrixCode) : Bool :=
   (matrixCoordinates d).foldr (fun ij ok =>
     decide (entrySmall d k (entry d A ij.1 ij.2)) && ok) true
 
+set_option maxHeartbeats 800000 in
 theorem primrec_matrixSmallCheck :
     Primrec fun z : (ℕ × ℕ) × MatrixCode =>
       matrixSmallCheck z.1.1 z.1.2 z.2 := by
@@ -546,11 +551,13 @@ theorem matrixSmallCheck_eq_true_iff (d k : ℕ) (A : MatrixCode) :
     rcases List.mem_map.mp hij with ⟨j, hj, rfl⟩
     exact h i (List.mem_range.mp hi) j (List.mem_range.mp hj)
 
+set_option maxHeartbeats 800000 in
 private theorem primrec_vectorWitnessLeft : Primrec fun
     z : (ℕ × MatrixCode) × VectorCode => vectorNormSq z.1.1 z.2 :=
   primrec_vectorNormSq.comp
     (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
 
+set_option maxHeartbeats 800000 in
 private theorem primrec_vectorWitnessRight : Primrec fun
     z : (ℕ × MatrixCode) × VectorCode =>
     ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
@@ -561,6 +568,7 @@ def vectorWitnessCheck (d : ℕ) (A : MatrixCode) (v : VectorCode) : Bool :=
   decide (RatLt (vectorNormSq d v)
     (ratMul (ratOfNat 9) (mulVecNormSq d A v)))
 
+set_option maxHeartbeats 800000 in
 theorem primrec_vectorWitnessCheck :
     Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitnessCheck z.1.1 z.1.2 z.2 := by
