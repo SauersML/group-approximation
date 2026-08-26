@@ -7,6 +7,7 @@ artifacts:
   - research/paid-t00-signed-hecke-reynolds-dichotomy-proof.md
 distinct_from:
   native-t00-collision-first-hecke-attachment-has-gl10-model: that packet has no signed-Hecke source projection and therefore cannot test source incidence; this uses the actual signed character projection and replaces untyped escape by a finite menu of ordinary detector words.
+  paid-t00-carrier-can-miss-row2-source: that gives a scoped reducible model with zero incidence between the paid carrier and the larger row-two flag; this treats the full common signed source and allows exactly that outcome only through its detector-word branch.
   center-chain-common-source-authenticates-native-covariances: that asks for vanishing normalized-HS loss and both native covariance rows; this gives one operator-norm source incidence for the paid t00 discrepancy and no HS mass estimate.
   order-seven-anchor-stops-at-whitehead-compression-leakage: that needs a moving cut with all seven return boundaries small; this controls only the one-step distance of the paid carrier from the fixed signed source.
 ---
@@ -70,9 +71,9 @@ the native `T/Y` mismatch survives with operator norm greater than one after
 source compression.
 
 The inequality is C*-algebraic and therefore applies directly in a norm
-corona representation.  Coordinate lifts incur only `o(1)` after rounding
-the fixed involutions and exactifying the fixed finite source group; no
-trace profile or positive rank is required.
+corona representation.  Approximate coordinate representatives inherit it
+with `o(1)` loss by fixed-word telescoping, or after correction of the fixed
+finite tables; no trace profile or positive rank is required.
 
 This closes the formal operator-norm localization-or-payment dichotomy, but
 does not identify any `r_g` as a defining relator or prove that its localized

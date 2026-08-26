@@ -389,9 +389,15 @@ Hecke/return rows while storing the separation on transverse vertices.
 Likewise `fine-idempotent-biaction-return-has-gl10-model` names
 `e_00=s_00t_00` and both of its Morita absorption rows, but its literal root
 has half negative spectral rank rather than the physical quarter-corner
-rank.  The next live statement is therefore a spectral-source localization:
-force the paid marked carrier into the signed Hecke source, or make every
-escape from that source pay one fixed ordinary-word defect.
+rank.  The formal operator-norm localization alternative is now established
+by `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy`: signed Reynolds
+averaging either keeps the paid discrepancy above one half on the actual
+common source, or makes one member of a fixed `8192`-word detector menu pay
+at least one half on the paid carrier.  The remaining live statement is the
+ordinary occurrence step: derive smallness of those detector words from the
+presentation relators, or use the source-compressed discrepancy to recover
+the unequal native row.  The Reynolds estimate itself supplies neither
+implication.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
