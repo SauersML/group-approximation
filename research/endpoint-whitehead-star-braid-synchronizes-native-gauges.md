@@ -9,6 +9,7 @@ distinct_from:
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that constructs the literal GL5 block and proves a one-third lower bound for the actual J2 compression; this extracts the new odd J1--W and J2--W occurrence relations and then computes the full algebraic obstruction to obtaining the missing J1 support from a signed-source return.
   adjacent-prefix-whitehead-braid-conjugates-reservoir-gauges: that synchronizes the two adjacent prefix gauges after they have already been placed on one common Pauli carrier; this adds the endpoint Whitehead as a third literal actor and shows that a paired J1/u1 central sign cannot remain independent of the endpoint occurrence.
   endpoint-odd-actor-retains-native-factor-gauge: that leaves a paired gauge in the factorization M=J2(B3A2) when only the W,M actor is retained; this kills an isolated native-factor sign after J1 is adjoined, while recording that a simultaneous common endpoint sign is still allowed.
+  b2-pairs-full-hecke-first-support: that adjoins the literal B2 root and proves that the first r sign has exactly half the actual full Hecke source Q; this claim's zero-support profile is deliberately only the coarser p2 actor packet without that full-source normalizer.
 ---
 
 **ESTABLISHED ODD OCCURRENCE AND SUPPORT FENCE.**  Use the five literal
@@ -139,12 +140,14 @@ six-root semidirect packet, not of the full `GL_5` moving-root closure.
 
 Therefore `(EWS2)--(EWS7)` close the **gauge-parity** part of the first
 native occurrence: the first head cannot carry an independent paired
-central sign once it is coupled to `W`.  The surviving seam is support,
-not gauge.  A completion must supply a moving actor-sheet incidence which
-pays the `r=-1` sector, or a different literal row whose positive carrier
-already lies in `q_1`.  Another relation internal to the signed-source
-normalizer cannot do this by `(EWS9)`, and the bare `J_1,W` moving packet
-cannot do it by `(EWS13)`.
+central sign once it is coupled to `W`.  Equations `(EWS9)--(EWS13)` fence
+support only on the coarser `p_2` actor packet.  They do not extend to the
+full Hecke source `Q`: the additional literal root `B_2` normalizes `Q` and
+anticommutes there with `r`, so `b2-pairs-full-hecke-first-support` proves
+that the two `r` signs each occupy exactly half of `Q`.  What remains after
+that strengthening is to connect this paid first sign cut to the other
+typed transport on one common native carrier; it is no longer a question
+of whether the first cut itself can vanish on `Q`.
 
 No Property `(T)`, canonical trace, literature theorem, local computation,
 or Lean compilation is used.

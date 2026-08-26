@@ -48,3 +48,11 @@ comes from its regular-MF model; the finite maps are used only to conjugate
 the two edge restrictions exactly.  No trace-compatible matrix-corona model of
 `Gamma` is assumed: the proof first works in an `A`-valued reduced product and
 only then embeds its generated separable MF algebra into a matrix corona.
+
+The final MF implication is not a claim that an arbitrary compatible finite
+intertwiner separates Britton words.  It uses Shulman's
+arXiv:2603.13564v2, Theorem 16, after Ueda's matrix-corner realization: the
+two corner factors have faithful embeddings into the same matrix corona and
+agree exactly on the amalgam.  Group injectivity and the regular character
+then follow directly by mapping the universal HNN algebra to the left regular
+representation of the abstract group HNN.

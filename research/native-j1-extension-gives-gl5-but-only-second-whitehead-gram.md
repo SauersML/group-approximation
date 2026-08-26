@@ -8,6 +8,7 @@ artifacts:
 distinct_from:
   endpoint-order-five-actor-has-half-gram: that obtains GL4 and a one-third endpoint Gram from W and the second native head; this adjoins the first native Whitehead and computes a stabilizer which acts on both native Whitehead supports.
   native-whitehead-corner-collapses-hecke-flags: that computes the exact regular-profile supports q1 and q2 of the compressed native Whiteheads; this supplies a profile-uniform lower bound for q2 but fences the analogous q1 inference.
+  b2-pairs-full-hecke-first-support: that uses the four additional full-source roots absent from this bare GL5 block and proves that B2 balances the r sign exactly on Q; this claim's one-sided fence remains correct only at the p2 stabilizer level.
 ---
 
 **ESTABLISHED LITERAL BLOCK AND ONE-SIDED NATIVE GRAM.**  On the five
@@ -76,11 +77,12 @@ countermodel to every moving `GL_5` relation, but it prevents promotion of
 `(GFI5)` to a two-row theorem.
 
 Thus adding `J_1` gives a real `GL_5` strengthening and the native `J_2`
-bound `(GFI5)`, but not the first native Gram.  No claim about the complete
-signed Hecke source `Q` follows from this five-summand calculation: its four
-extra roots carry coefficient incidences not represented by the bare
-projective block.  That separate interface remains governed by
-`endpoint-order-five-return-leaves-full-hecke-fine-sign-free`.
+bound `(GFI5)`, but not the first native Gram on `p_2` from this stabilizer.
+The conclusion changes after adjoining the complete signed Hecke source:
+`b2-pairs-full-hecke-first-support` uses the literal `B_2`
+normalizer to prove that `Q` pays exactly half of `q_1`.  That information
+depends on the four extra coefficient incidences and is absent from the bare
+five-summand block computed here.
 
 No Property `(T)`, enumeration of `GL_5(F_2)`, canonical trace, local
 computation, or Lean compilation is used.
