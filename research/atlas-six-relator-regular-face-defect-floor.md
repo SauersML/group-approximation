@@ -7,6 +7,7 @@ distinct_from:
   atlas-six-relator-relative-h-bridge-gap: that asks the six nonlinear rows to control four relative H bridge words quadratically; this asks only for one scalar positive lower bound on the sum of the six nonlinear defects.
   atlas-six-relator-hyperlinear-escape-test: that identifies exact matrix-ultraproduct zeroes with nontrivial hyperlinear quotients; this is the finitary uniform-gap formulation on the regular common-frame matrix coordinates.
   atlas-five-row-operator-phase-lift: that compares the six nonlinear defects to five additive covariance rows; this contains no additive row and no bridge observable.
+  atlas-finite-nontrivial-s3-shell-pays-boundary: that deletes the collision word and asks the five boundary rows only to separate one fixed positive-mass shell in the nontrivial collision channels; collision centrality reduces the present target to that shell statement.
 ---
 
 **OPEN.** In the regular common-frame coordinates, put
@@ -62,3 +63,12 @@ No proof of `(RDF2)` is asserted here.
   screens finish. This removes one infinite finite-simple family, but
   arbitrary non-natural finite-simple targets and diffuse hyperlinear
   quotients remain.
+- **Collision-shell reduction.**
+  `atlas-collision-shell-boundary-floor-reduction` shows that it is enough to
+  prove `atlas-finite-nontrivial-s3-shell-pays-boundary`: if the collision
+  defect is at least `1/sqrt(2)` it already pays `1/2`, while below that
+  threshold the exact collision-distance and polar-rounding estimates force
+  `m_epsilon+m_sigma>=1/1024`.  The residual gate contains only the five
+  boundary maps on this fixed nontrivial-channel shell.  Its universal
+  finite-factor analogue is refuted by the exact Leavitt model, so the
+  missing input remains genuinely matricial.
