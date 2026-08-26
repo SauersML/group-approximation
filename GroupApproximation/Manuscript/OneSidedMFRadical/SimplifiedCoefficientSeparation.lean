@@ -1,11 +1,11 @@
 import GroupApproximation.Leavitt.BinaryLeavittSimple
 
 /-!
-# The simplified derivation of `\eqref{eq:coefficient-separation}`
+# The simplified derivation of the coefficient-separation identity
 
-`non_mf_groups_exist.tex` proves Lemma `lem:coefficient-separation` — for
+`non_mf_groups_exist.tex` formerly proved a coefficient-separation lemma (retired from the article in favour of Preusser's theorem; the statement stays formalized here) — for
 nonzero `r, s` there are `a, b` with `arb = 0` and `bsar ≠ 0` — from
-`\eqref{eq:two-sided-sandwich}` alone.  The printed proof chooses *two*
+the two-sided sandwich identity alone.  The printed proof chooses *two*
 factorizations
 
   `u r v = 1`,   `c s d = 1`,
@@ -195,7 +195,7 @@ theorem manuscriptPrintedSimplifiedCoefficientSeparationRecipe :
     manuscriptPrintedSimplifiedSeparationVanishingImplication S L r u v hurv
   exact ⟨hab, hba, himp⟩
 
-/-- **The whole simplified derivation of `\eqref{eq:coefficient-separation}`.**
+/-- **The whole simplified derivation of the coefficient-separation identity.**
 
 For nonzero `r, s` the two factorizations and the printed witnesses all exist
 together and satisfy `arb = 0`, `bsar ≠ 0`.  Two-sided division is the only
