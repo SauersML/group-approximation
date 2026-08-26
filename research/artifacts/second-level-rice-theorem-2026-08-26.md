@@ -130,6 +130,33 @@ negative branch is a *splitting*.
   needs only `mf-compiler-positive-branch-is-hyperlinear` (quasidiagonality
   of the regular trace of the MF compiler's positive branch).
 
+## Theorem 8 (finite presentations: one gate; `finite-presentation-rice-criterion-via-the-fixed-positive-rope`)
+
+The MF-safe compiler is uniform in its finitely presented seed and its
+`INF` branch is seed-independent, so every hereditary property that holds
+for the fixed positive rope and fails for some finite presentation is
+`Pi^0_2`-hard on finite presentations.  The rope is torsion-free
+(`mf-compiler-positive-branch-is-torsion-free`), which makes
+`TORSIONFREE_fp` `Pi^0_2`-complete
+(`torsion-freeness-of-finite-presentations-is-pi2-complete`) --- the first
+finite-presentation cell closed at the second level besides MF.  The rope
+is not amenable and not residually finite, so for those two cells the route
+is provably unavailable; for soficity and hyperlinearity the cells are
+exactly the questions whether the rope has the property.
+
+## Theorem 9 (separability; `centralizing-hnn-is-residually-finite-iff-edge-is-separable`, `enumerated-subgroup-separability-is-pi3-complete`)
+
+For `K` residually finite, `<K, v | [v, L] = 1>` is residually finite iff
+`L` is separable in `K`.  Separability of a recursively enumerated
+subgroup of `F_2` is itself `Pi^0_3`-complete, while finitely generated
+subgroups are always separable (M. Hall).  The quotient-model route to
+soficity of the compiler's rope is *equivalent* to separability of its
+edge, and Mikhailova edges are finitely generated with undecidable
+membership, hence non-separable
+(`centralizing-hnn-sofic-via-regular-edge-centralizer`): any sofic or LEF
+proof there must use models that do not restrict to homomorphisms onto
+finite quotients.
+
 ## Lean status (2026-08-26, 03:45)
 
 Kernel-checked on main: `Computability/HereditaryPropertySwitchCompleteness`
