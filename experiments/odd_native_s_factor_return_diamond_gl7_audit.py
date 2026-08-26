@@ -24,29 +24,39 @@ def main():
     t0_arm = transvection(nine, seven_0)
     s00_arm = transvection(eight_0, six)
 
-    transported_t0 = commutator(opposite_return, t0_arm)
-    odd_x = commutator(s00_arm, transported_t0)
+    returned_whitehead = multiply(
+        multiply(returned_root, opposite_return), returned_root
+    )
+    assert returned_whitehead == permutation((0, 6, 2, 3, 4, 5, 1))
+
+    transported_s00 = conjugate(returned_whitehead, s00_arm)
+    transported_t0 = conjugate(returned_whitehead, t0_arm)
+    odd_x_left = commutator(transported_s00, t0_arm)
+    odd_x_right = commutator(s00_arm, transported_t0)
+    assert transported_s00 == transvection(eight_0, nine)
     assert transported_t0 == transvection(six, seven_0)
-    assert odd_x == transvection(eight_0, seven_0)
+    assert odd_x_left == odd_x_right == transvection(eight_0, seven_0)
+    odd_x = odd_x_left
 
     native_label = permutation((2, 1, 0, 3, 4, 5, 6))
     s0_arm = conjugate(native_label, s00_arm)
+    t00_arm = conjugate(native_label, t0_arm)
+    transported_s0 = conjugate(returned_whitehead, s0_arm)
     transported_t00 = conjugate(native_label, transported_t0)
-    odd_y = commutator(s0_arm, transported_t00)
+    assert transported_t00 == conjugate(returned_whitehead, t00_arm)
+    odd_y_left = commutator(transported_s0, t00_arm)
+    odd_y_right = commutator(s0_arm, transported_t00)
     assert s0_arm == transvection(seven_0, six)
+    assert t00_arm == transvection(nine, eight_0)
+    assert transported_s0 == transvection(seven_0, nine)
     assert transported_t00 == transvection(six, eight_0)
-    assert odd_y == transvection(seven_0, eight_0)
+    assert odd_y_left == odd_y_right == transvection(seven_0, eight_0)
+    odd_y = odd_y_left
     assert conjugate(native_label, odd_x) == odd_y
 
     literal_j1 = multiply(multiply(odd_x, odd_y), odd_x)
     assert literal_j1 == native_label
     assert multiply(literal_j1, literal_j1) == ONE
-
-    # The returned-root Whitehead is available as an ordinary finite actor.
-    returned_whitehead = multiply(
-        multiply(returned_root, opposite_return), returned_root
-    )
-    assert conjugate(returned_whitehead, t0_arm) == transported_t0
 
     marked_child = transvection(seven_1, eight_1)
     assert marked_child != ONE

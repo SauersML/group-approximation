@@ -18,14 +18,26 @@ A=x_97(t_0),       B'=x_86(s_00),       [A,x_76(s_0)]=x_96(1).
 ```
 
 Put `bar M=x_69(1)`, the ordinary opposite root to the returned constant
-root.  The paths `6->9->7` and `8->6->7` give
+root, and
 
 ```text
-[x_69(1),A]=x_67(t_0),
-[B',x_67(t_0)]=x_87(s_00t_0)=X_1.                    (1)
+P=M bar M M=w_96(1).
 ```
 
-This uses only the ordinary nonopposite root law.  For completeness, the
+This ordinary Whitehead swaps root vertices `6,9`.  Therefore
+
+```text
+PB'P=x_89(s_00),       PAP=x_67(t_0).
+```
+
+The paths `8->9->7` and `8->6->7` now give the two literal factorizations
+
+```text
+[PB'P,A]=[B',PAP]=x_87(s_00t_0)=X_1.                 (1)
+```
+
+Only ordinary nonopposite root commutators occur in `(1)`.  For
+completeness, the
 `(7,8)` block of the first partial Whitehead is
 
 ```text
@@ -54,7 +66,16 @@ Commuting `(3)--(4)` along `7->6->8` yields
 [x_76(s_0),x_68(t_00)]=x_78(s_0t_00)=Y_1.            (5)
 ```
 
-Simultaneous conjugation of `(1)` proves `J_1X_1J_1=Y_1`.  The definition
+Because `P` and `J_1` have disjoint root vertices, they commute.  Thus the
+`J_1` conjugate of the first factorization in `(1)` is the second natural
+factorization
+
+```text
+[Px_76(s_0)P,x_98(t_00)]=[x_79(s_0),x_98(t_00)]=Y_1. (6)
+```
+
+Together `(5)--(6)` close both sides of the returned-root square and prove
+`J_1X_1J_1=Y_1`.  The definition
 of the native partial Whitehead is the additional literal relation
 `J_1=X_1Y_1X_1`.
 
@@ -62,21 +83,21 @@ In the existing seven-coordinate model, write `e_ab=I+E_ab`.  The new
 assignments are
 
 ```text
-bar M=e_(6,9),       x_67(t_0)=e_(6,7_0),
-X_1=e_(8_0,7_0),    x_68(t_00)=e_(6,8_0),
-Y_1=e_(7_0,8_0).                                      (6)
+bar M=e_(6,9),       P=(6 9),
+PAP=e_(6,7_0),       PB'P=e_(8_0,9),
+X_1=e_(8_0,7_0),    PA'P=e_(6,8_0),
+PBP=e_(7_0,9),       Y_1=e_(7_0,8_0).                 (7)
 ```
 
-All equations `(1)--(5)` are elementary path products, and
+All equations `(1)--(6)` are elementary path products, and
 
 ```text
-e_(8_0,7_0)e_(7_0,8_0)e_(8_0,7_0)=(7_0 8_0).         (7)
+e_(8_0,7_0)e_(7_0,8_0)e_(8_0,7_0)=(7_0 8_0).         (8)
 ```
 
 The previous model sends the scoped actor to `((7_0 8_0),c)` in
 `GL_7(F_2) times C_2`, while every factor in `(7)` has central coordinate
-zero.  The literal word equation therefore forces `c=0`.  Dropping that
+zero.  Equation `(8)` and the literal word equation therefore force `c=0`.  Dropping that
 coordinate gives an exact `GL_7(F_2)` model of the enlarged table, and the
 marked child `e_(7_1,8_1)` remains nonidentity.  The MSI-only artifact
-checks the preceding packet together with `(1)--(7)`.
-
+checks the preceding packet together with `(1)--(8)`.

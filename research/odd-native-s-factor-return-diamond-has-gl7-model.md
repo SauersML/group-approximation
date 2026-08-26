@@ -19,12 +19,14 @@ diamond write
 A=x_97(t_0),       B'=x_86(s_00),       M=x_96(1).
 ```
 
-Adjoin the ordinary opposite root `bar M=x_69(1)`.  Two ordinary
-nonopposite Steinberg commutators give
+Adjoin the ordinary opposite root `bar M=x_69(1)` and its returned-root
+Whitehead `P=M bar M M=w_96(1)`.  It swaps only the vertices `6,9` and
+commutes with `J_1`.  Transporting the two named arms through `P` and then
+using ordinary nonopposite Steinberg commutators gives
 
 ```text
-G=[bar M,A]=x_67(t_0),
-X=[B',G]=x_87(s_00t_0).                                (OSF1)
+PB'P=x_89(s_00),       PAP=x_67(t_0),
+X=[PB'P,A]=[B',PAP]=x_87(s_00t_0).                    (OSF1)
 ```
 
 Thus `X` is exactly the odd factor `X_1` of the literal native Whitehead,
@@ -32,8 +34,9 @@ not an analytic completion.  Conjugation by `J_1` closes the other side:
 
 ```text
 J_1B'J_1=x_76(s_0)=B,
-J_1GJ_1=x_68(t_00)=G',
-[B,G']=x_78(s_0t_00)=Y_1,
+J_1AJ_1=x_98(t_00)=A',
+PBP=x_79(s_0),         PA'P=x_68(t_00),
+Y=[PBP,A']=[B,PA'P]=x_78(s_0t_00)=Y_1,
 J_1XJ_1=Y_1.                                          (OSF2)
 ```
 
@@ -69,8 +72,8 @@ order
 (7_0,9,8_0,7_1,10,8_1,6)
 ```
 
-take `bar M=e_(6,9)`, so `(OSF1)--(OSF3)` are elementary path products and
-the standard two-transvection swap identity.  Every preceding cross-return,
+take `bar M=e_(6,9)`, so `P=(6 9)` and `(OSF1)--(OSF3)` are elementary
+path products and standard two-transvection swap identities.  Every preceding cross-return,
 native-diamond, and non-equivariant arm-match row remains exact, whereas
 the old marked child
 
@@ -90,4 +93,3 @@ computation, or Lean compilation is used.
 
 DERIVATION
 odd-native-s-factor-return-diamond-gl7-proof
-
