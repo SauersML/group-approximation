@@ -45,3 +45,15 @@ one needs to construct the `V_l` with the symmetry built in, for example as
 `(W P^2) V_k (W P^2)^* = Phi(u) V_k Phi(v)` for a `V_k` that stays free from
 `Phi(G_1)`.  This is a concrete conjugacy problem in the corona and is
 where the attack currently stops.
+
+*Reduction to one edge (2026-08-25, later).*  By
+[[boone-base-semidirect-product-is-hnn-over-free-subgroups]], after folding
+the machine states into tape letters, `C*(B x| F_I)` is MF as soon as the
+single HNN edge `q_1^-1 (u_i^-1 theta_i) q_1 = v_i theta_i` (`i in I`) over
+the symmetric amalgam `H_1 = *_(G_1) (G_1 x|_psi Z)` is MF-safe; the
+amalgam factor `G_1 x|_psi Z` is regularly MF by
+[[rotman-g1-is-central-hnn-of-baumslag-solitar]].  The edge is between two
+free subgroups of rank `|I|` whose bases have identical free-Haar
+distribution under the regular character, so the obstruction, if any, is not
+tracial.
+
