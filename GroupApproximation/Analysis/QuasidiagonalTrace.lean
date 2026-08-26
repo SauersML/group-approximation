@@ -410,10 +410,11 @@ def QuasidiagonalTraceModel.toMFTraceModel {τ : A → ℂ}
 
 /-- The proposition-level form: a quasidiagonal trace is an MF trace. -/
 theorem isMFTrace_of_isQuasidiagonalTrace {τ : A → ℂ}
-    (hucp : UCPContractive.{u}) (h : IsQuasidiagonalTrace τ) :
+    (hτ : IsTracialState τ) (hucp : UCPContractive.{u})
+    (h : IsQuasidiagonalTrace τ) :
     ShulmanTrace.IsMFTrace τ := by
   obtain ⟨M⟩ := h
-  exact ⟨M.toMFTraceModel hucp⟩
+  exact ⟨hτ, ⟨M.toMFTraceModel hucp⟩⟩
 
 end
 

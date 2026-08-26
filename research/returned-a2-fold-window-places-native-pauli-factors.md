@@ -63,3 +63,13 @@ gauge defect.  Once a Pauli carrier is exposed, two mixed commutators of that
 same relative word with its Pauli generators provide an explicit sufficient
 lock.  Those two authenticated rows are absent from the returned window
 above.
+
+There is now a whole-inventory strengthening of this fence.
+`returned-boolean-coefficient-window-has-finite-marked-model` observes that
+every root and relative Weyl word appearing here has coefficient in the
+finite Boolean ring `F_2[1,q_0,q_1]`.  Hence adjoining any further genuine
+mixed commutator rows among these returned range-idempotent occurrences
+still has one simultaneous finite exact marked model.  The missing rows
+cannot be found by enlarging the `q_0,q_1,A` return census: a live occurrence
+must expose an uncancelled `s_i` or `t_i` Morita arrow, or an equivalent
+non-Boolean prefix matrix unit, on the prescribed marked carrier.

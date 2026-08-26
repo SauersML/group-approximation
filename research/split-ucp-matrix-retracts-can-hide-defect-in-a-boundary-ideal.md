@@ -41,6 +41,3 @@ that fibre and the even target; it cannot follow from generic
 operator-system retract or C-star-envelope theory.
 
 The proof is `two-by-two-state-summand-retract-proof`.
-
-
-

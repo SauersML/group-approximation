@@ -356,6 +356,12 @@ def cornerCompression {q : Matrix Y Y ℂ} (hq : q.IsHermitian) (C : Matrix Y Y 
     Matrix {i : Y // cornerPredicate hq i} {i : Y // cornerPredicate hq i} ℂ :=
   principalBlock (cornerPredicate hq) (eigenbasisConj hq C)
 
+/-- Compression of the ambient identity is the identity of the corner. -/
+@[simp] theorem cornerCompression_one {q : Matrix Y Y ℂ} (hq : q.IsHermitian) :
+    cornerCompression hq (1 : Matrix Y Y ℂ) = 1 := by
+  rw [cornerCompression, eigenbasisConj, Matrix.mul_one,
+    eigenUnitary_conjTranspose_mul, principalBlock_one]
+
 theorem norm_cornerCompression_le {q : Matrix Y Y ℂ} (hq : q.IsHermitian)
     (C : Matrix Y Y ℂ) : ‖cornerCompression hq C‖ ≤ ‖C‖ :=
   (norm_principalBlock_le _ _).trans_eq (norm_eigenbasisConj hq C)
@@ -555,6 +561,13 @@ def cornerMap (n : ℕ) (g : G) : Matrix.unitaryGroup (D.cornerModel n) ℂ :=
     polarCorrectUnitary (D.compress n g) (cornerGram_isHermitian _) le_rfl h
   else 1
 
+/-- If the ambient model sends the group identity to the identity matrix, then
+its uncorrected compression is exactly the identity of the corner. -/
+@[simp] theorem compress_one_of_V_one (n : ℕ) (hV : D.V n (1 : G) = 1) :
+    D.compress n 1 = 1 := by
+  rw [compress, hV]
+  exact cornerCompression_one (D.qHermitian n)
+
 theorem cornerMap_eq_of_gramClose {n : ℕ} {g : G}
     (h : ‖cornerGram (D.compress n g) - 1‖ ≤ (1 / 2 : ℝ)) :
     (D.cornerMap n g : Matrix (D.cornerModel n) (D.cornerModel n) ℂ)
@@ -571,6 +584,24 @@ theorem norm_cornerMap_sub_compress_le {n : ℕ} {g : G}
   rw [D.cornerMap_eq_of_gramClose h]
   exact norm_polarCorrect_sub_le (D.compress n g) (cornerGram_isHermitian _)
     (D.norm_compress_le_one n g) (norm_nonneg _) h le_rfl
+
+/-- If the ambient model is normalized at the group identity, polar correction
+preserves that normalization exactly. -/
+@[simp] theorem cornerMap_one_of_V_one (n : ℕ) (hV : D.V n (1 : G) = 1) :
+    D.cornerMap n 1 = 1 := by
+  have hcompress : D.compress n (1 : G) = 1 := D.compress_one_of_V_one n hV
+  have hclose : ‖cornerGram (D.compress n (1 : G)) - 1‖ ≤ (1 / 2 : ℝ) := by
+    rw [hcompress]
+    simp [cornerGram]
+  apply Subtype.ext
+  have hle := D.norm_cornerMap_sub_compress_le hclose
+  rw [hcompress] at hle
+  have hzero : ‖((D.cornerMap n (1 : G) :
+      Matrix (D.cornerModel n) (D.cornerModel n) ℂ) - 1)‖ = 0 := by
+    apply le_antisymm
+    · exact hle.trans_eq (by simp [cornerGram])
+    · exact norm_nonneg _
+  exact sub_eq_zero.mp (norm_eq_zero.mp hzero)
 
 /-- **The polar correction is asymptotically the compression.** -/
 theorem cornerMap_sub_compress_tendsto (g : G) :
@@ -666,6 +697,13 @@ def cornerRepresentation : OpAlmostRepresentation G where
     have := hN n hn
     rw [Real.dist_eq, sub_zero] at this
     exact (le_abs_self _).trans this.le
+
+/-- The corner almost representation is exactly normalized whenever the
+ambient family is exactly normalized. -/
+@[simp] theorem cornerRepresentation_map_one_of_V_one (n : ℕ)
+    (hV : D.V n (1 : G) = 1) :
+    D.cornerRepresentation.map n 1 = 1 := by
+  exact D.cornerMap_one_of_V_one n hV
 
 @[simp]
 theorem cornerRepresentation_model (n : ℕ) :

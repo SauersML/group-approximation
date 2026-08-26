@@ -48,6 +48,3 @@ On `(SBR5)`, `r` is exactly the coordinate star-homomorphism
 operator system `i(A)` nevertheless has C-star envelope `A`: the extra
 summand is a boundary ideal erased by the complete-order inverse.  This is
 precisely the positive-kernel hiding allowed by `(OUR2)`.
-
-
-

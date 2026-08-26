@@ -274,7 +274,7 @@ jobs:
       # obligation, and 128 of its sentences are assigned from badges today.
       - name: Sentence-level census
         run: |
-          python3 scripts/sentence_census.py --check --badges-need-rows
+          python3 scripts/sentence_census.py --check --require-complete --badges-need-rows
           python3 scripts/sentence_census.py --verify-decls --badges-need-rows
           python3 scripts/sentence_census.py --verify-unconditional --badges-need-rows
 

@@ -66,13 +66,32 @@ theorem unitarySequenceToCorona_surjective :
 variable {E : Type} [Group E]
   (Θ : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
 
-/-- A chosen coordinatewise unitary lift of `Θ(g)`, one for each `g`. -/
+/-- A chosen coordinatewise unitary lift of `Θ(g)`, one for each `g`, normalized
+at the group identity. -/
 def liftFam (g : E) : ∀ n, Matrix.unitaryGroup (X n) ℂ :=
-  Classical.choose (unitarySequenceToCorona_surjective X (Θ g))
+  by
+    classical
+    exact if g = 1 then 1
+      else Classical.choose (unitarySequenceToCorona_surjective X (Θ g))
+
+/-- The chosen lift is exactly the identity sequence at the group identity. -/
+@[simp] theorem liftFam_one : liftFam X Θ (1 : E) = 1 := by
+  simp [liftFam]
+
+/-- Coordinate form of `liftFam_one`. -/
+@[simp] theorem liftFam_one_apply (n : ℕ) : liftFam X Θ (1 : E) n = 1 := by
+  rw [liftFam_one]
+  rfl
 
 theorem unitarySequenceToCorona_liftFam (g : E) :
     unitarySequenceToCorona X (liftFam X Θ g) = Θ g :=
-  Classical.choose_spec (unitarySequenceToCorona_surjective X (Θ g))
+  by
+    classical
+    by_cases hg : g = 1
+    · subst g
+      simp
+    · rw [liftFam, if_neg hg]
+      exact Classical.choose_spec (unitarySequenceToCorona_surjective X (Θ g))
 
 /-- The two lifts of `Θ(gh)` — the chosen one, and the product of the chosen
 lifts of `Θ(g)` and `Θ(h)` — have the same class, because `Θ` is a
@@ -146,6 +165,12 @@ def coronaAlmostRep : OpAlmostRepresentation E where
 
 @[simp] theorem coronaAlmostRep_map (n : ℕ) (g : E) :
     (coronaAlmostRep X Θ).map n g = liftFam X Θ g n := rfl
+
+/-- The almost representation obtained from the normalized lift sends the
+group identity to the identity matrix at every stage. -/
+@[simp] theorem coronaAlmostRep_map_one (n : ℕ) :
+    (coronaAlmostRep X Θ).map n (1 : E) = 1 := by
+  exact liftFam_one_apply X Θ n
 
 end
 

@@ -12,30 +12,30 @@ distinct_from:
   atlas-natural-a8-supports-collapse-before-collision: that uses all twelve cross-A4 packet relations to identify the supports before collision; this uses only s_0 from the six-relator quotient to force at least four points of support overlap.
 ---
 
-**ESTABLISHED.** Let `Omega` be any finite set and let
+**ESTABLISHED.**  Let `Omega` be any finite set and let
 
 ```text
 alpha,beta:A8 -> Sym(Omega)
 ```
 
 be marked natural embeddings: each chart has one natural eight-point orbit
-and fixes every other point. Then the six equalities
+and fixes every other point.  Then the six equalities
 
 ```text
 s_0=s_11=s_30=s_44=s_55=c_19243=1                  (NAT1)
 ```
 
-cannot all hold. Equivalently, no alternating group `A_n`, in any degree,
+cannot all hold.  Equivalently, no alternating group `A_n`, in any degree,
 is a finite-simple six-relator target through two natural-support copies of
 `A8`.
 
-The key is already the first word. In its exact free-product normal form,
+The key is already the first word.  In its exact free-product normal form,
 
 ```text
 s_0=x A x C x D,                                     (NAT2)
 ```
 
-where `x` belongs to the second chart and `A,C,D` to the first. In the
+where `x` belongs to the second chart and `A,C,D` to the first.  In the
 natural eight-point action, the certified exceptional-isomorphism table
 gives
 
@@ -43,18 +43,18 @@ gives
 x=(1 8)(2 5)(3 6)(4 7),                              (NAT3)
 ```
 
-up to relabeling. Thus `x` is a fixed-point-free involution.
+up to relabeling.  Thus `x` is a fixed-point-free involution.
 
-Let `S_1,S_2` be the two moving supports. If `|S_1 intersect S_2|<=3`, at
+Let `S_1,S_2` be the two moving supports.  If `|S_1 intersect S_2|<=3`, at
 most three of the four `x`-pairs meet `S_1`; hence one pair `{p,q}` lies
-entirely in `S_2 minus S_1`. The first-chart letters fix both points, and
+entirely in `S_2 minus S_1`.  The first-chart letters fix both points, and
 tracking `(NAT2)` gives
 
 ```text
 p --x--> q --A--> q --x--> p --C--> p --x--> q --D--> q.
 ```
 
-Therefore `s_0(p)=q!=p`, contradicting `(NAT1)`. Any survivor must satisfy
+Therefore `s_0(p)=q!=p`, contradicting `(NAT1)`.  Any survivor must satisfy
 
 ```text
 |S_1 intersect S_2|>=4,
@@ -62,13 +62,16 @@ Therefore `s_0(p)=q!=p`, contradicting `(NAT1)`. Any survivor must satisfy
 ```
 
 Because the supports overlap and each chart is transitive on its support,
-their union is one orbit of the generated group. If its size is at most
+their union is one orbit of the generated group.  If its size is at most
 eleven, `atlas-six-relator-natural-orbit-mixing-floor` says the component is
-pointwise fixed, a contradiction. If its size is twelve, extend by fixed
+pointwise fixed, a contradiction.  If its size is twelve, extend by fixed
 points if necessary and apply the complete marked-natural `A12` screen
-`atlas-six-relator-a12-has-no-marked-pair`. This proves the claim.
+`atlas-six-relator-a12-has-no-marked-pair`.  This proves the claim.
 
 The attached exact permutation audit independently checks all `8!` relative
 markings at union degrees `13,14,15,16`; every one fails already at `s_0`,
 as `(NAT2)--(NAT4)` predict.
+
+DERIVATION
+atlas-natural-alternating-six-relator-exclusion-proof
 

@@ -29,5 +29,3 @@ realizations are two-channel coefficient commutators through a spare
 coordinate, not products of two bare reverse-Hecke roots.  It also does not
 apply to a longer word or to an intervening coefficient/Whitehead
 occurrence.
-
-

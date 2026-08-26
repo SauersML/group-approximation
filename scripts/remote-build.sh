@@ -109,12 +109,14 @@ rsync -rlptz \
   "$LOCAL/formalization.yaml" \
   "$LOCAL/LICENSE" \
   "$LOCAL/non_mf_groups_exist.tex" \
+  "$LOCAL/mf_radical_tex_quine.tex" \
   "$LOCAL/README.md" \
   "$USER_MSI@$LOGIN_IP:$REMOTE/" || exit $?
 
 rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   --include='*/' --include='*.md' --include='*.txt' --include='*.json' \
+  --include='*.tsv' \
   --exclude='*' \
   "$LOCAL/notes/" "$USER_MSI@$LOGIN_IP:$REMOTE/notes/" || exit $?
 
@@ -133,6 +135,7 @@ rsync -rlptz --delete \
 rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   --include='*/' --include='*.md' --include='*.txt' --include='*.json' \
+  --include='*.tsv' \
   --exclude='*' \
   "$LOCAL/metadata/" "$USER_MSI@$LOGIN_IP:$REMOTE/metadata/" || exit $?
 
@@ -194,6 +197,7 @@ if [ -n "$RUN" ]; then
   rsync -rlptzu \
     -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
     --include='*/' --include='*.md' --include='*.txt' --include='*.json' \
+    --include='*.tsv' \
     --exclude='*' \
     "$USER_MSI@$LOGIN_IP:$REMOTE/metadata/" "$LOCAL/metadata/" || exit $?
   exit 0

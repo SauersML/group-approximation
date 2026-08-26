@@ -43,5 +43,3 @@ and using power telescoping on `P` gives
 which is the second.  Add `(RHP4)--(RHP5)`, take the positive part, and use
 `x^2+y^2>=(x+y)^2/2` to obtain `(RHF4)`.
 
-
-

@@ -76,9 +76,10 @@ Universe-polymorphic, and instantiated at `1` below because that is where
 one in the proposition would be an artifact of the witness rather than a
 reading of the text. -/
 def SeparableHyperlinearNonMFTrace : Prop :=
-  ∃ (A : Type u) (_inst : CStarAlgebra A) (τ : A → ℂ),
+  ∃ (A : Type u) (_inst : CStarAlgebra A) (τ : TracialState A),
     TopologicalSpace.SeparableSpace A ∧
-      ShulmanTrace.IsHyperlinearTrace τ ∧ ¬ ShulmanTrace.IsMFTrace τ
+      ShulmanTrace.IsHyperlinearTrace (fun a : A ↦ τ a) ∧
+        ¬ ShulmanTrace.IsMFTrace (fun a : A ↦ τ a)
 
 /-- **`thm:trace`, the whole printed statement.**  The canonical trace of
 `C*(E)` is hyperlinear and not MF, `C*(E)` is separable, and consequently some
@@ -99,7 +100,8 @@ theorem manuscriptTraceSeparation :
     SeparableHyperlinearNonMFTrace.{1} :=
   ⟨LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace,
     ⟨MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup, inferInstance,
-      fun a ↦ canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup a,
+      ShulmanTrace.canonicalMaximalTracialState
+        LiteralNonMFPresentation.MarkedGroup,
       LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.1,
       LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.2.1,
       LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.2.2⟩⟩

@@ -31,5 +31,3 @@ contradicts `deligne-triple-cover-fd-central-invisibility`; for
 `alpha=1/6,5/6` it contradicts the full order-three finite residual of `E_6`
 recorded in `maslov-mod3-gap-is-metaplectic-base-degree-six-gap`.  Hence
 `(SCR1)--(SCR2)` cannot exist.
-
-

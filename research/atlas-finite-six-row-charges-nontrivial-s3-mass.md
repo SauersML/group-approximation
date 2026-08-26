@@ -81,6 +81,11 @@ exclude the entire unitary locus without a witness.
   needed estimate must distinguish finite matrices from that factor.
 - Fixed congruence, determinant, parity, and bounded rank corrections vanish
   under external amplification and cannot supply `C_S3`.
+- A valid proof may work separately on the sign and standard central
+  idempotents, but both estimates must retain the collision residual or a
+  mixed boundary--collision coefficient.  Merely proving positive channel
+  mass from collision and then applying a boundary-only estimate repeats the
+  refuted shell route.
 - **Fixed Reynolds--Gram charging is refuted.**  The route
   `atlas-joint-s3-charge-from-fixed-reynolds-gram` allows the exact diagonal
   `S3` expectation, separate sign/standard blocks, fixed operator-valued
@@ -98,8 +103,3 @@ exclude the entire unitary locus without a witness.
   `(C_rank,kappa)` into `C_S3=C_rank kappa^(-2)`.  Unlike naive HS-to-rank
   decoding, this claim scales the residual threshold with the source
   threshold and does not attempt a multiplicative clipping.
-- A valid proof may work separately on the sign and standard central
-  idempotents, but both estimates must retain the collision residual or a
-  mixed boundary--collision coefficient.  Merely proving positive channel
-  mass from collision and then applying a boundary-only estimate repeats the
-  refuted shell route.

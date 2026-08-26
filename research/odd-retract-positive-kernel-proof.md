@@ -52,4 +52,3 @@ a star-homomorphism, so it is also impossible.  Finally a conditional
 expectation onto a star-subalgebra inclusion starts with a star-homomorphic
 `i`, already ruled out (and if the expectation is faithful, it is also ruled
 out directly by `(OUR2)`).
-

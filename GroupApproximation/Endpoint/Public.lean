@@ -20,6 +20,7 @@ import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.MFRecognitionImpossible
+import GroupApproximation.Computability.MFObserverBlindPromise
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
 import GroupApproximation.Computability.EffectiveMatrixCode
@@ -662,6 +663,12 @@ export GroupApproximation.Computability
 export GroupApproximation.WordProblemRE
   (rePred_wordProblemPred not_rePred_compl_wordProblemPred
     operatorMF_negative_side_not_re)
+export GroupApproximation.MFObserverBlindPromise
+  (Trivial Nontrivial StrictlyObserverBlind promise trivial_iff_halting
+    nontrivial_iff_nonhalting trivial_re nontrivial_not_re
+    trivial_not_computable no_triviality_decider
+    strictlyObserverBlind_iff_nonhalting strictlyObserverBlind_not_re
+    closed_package)
 
 /-! ### Analytic core of the MF arithmetical upper bound
 

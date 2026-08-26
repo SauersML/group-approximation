@@ -1,15 +1,15 @@
 """Exact six-relator screen for natural A8 pairs with union degree 13--16.
 
-Fix the first natural A8 on points 0,...,7. If the two eight-point supports
-have union of size n, their intersection has size 16-n. Natural A8 is
+Fix the first natural A8 on points 0,...,7.  If the two eight-point supports
+have union of size n, their intersection has size 16-n.  Natural A8 is
 6-transitive, so for n=13,...,16 there is one support position up to the
-first chart. Every labeling of the second chart is a bijection from the
+first chart.  Every labeling of the second chart is a bijection from the
 standard eight-point A8 set to that support; the 8! bijections include both
 inner and outer markings.
 
-The audit is pure exact permutation arithmetic. It uses the frozen six
+The audit is pure exact permutation arithmetic.  It uses the frozen six
 free-product words and the already certified exceptional-isomorphism table
-``atlas-a8-natural.json``. It does not enumerate any ambient alternating
+``atlas-a8-natural.json``.  It does not enumerate any ambient alternating
 group.
 """
 
@@ -117,4 +117,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

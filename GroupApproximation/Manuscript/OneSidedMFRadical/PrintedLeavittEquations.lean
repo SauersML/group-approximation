@@ -29,6 +29,12 @@ as a displayed equation, and a reason should be checked, not assumed.
   `printed_t0_mul_q`.
 * `t₀Ψ(A)s₀ = A`, hence injectivity of `Ψ` — *new*:
   `printed_matrixCompression_injective`, off `matrixCompression_recover`.
+* `Ψ(0) = qI₃ ≠ 0`, so `Ψ` is not additive — *new*:
+  `printed_matrixCompression_zero`, `printed_matrixCompression_zero_ne_zero`,
+  and `printed_matrixCompression_not_additive`.
+* the restriction of `Ψ` to `GL₃(R)` is an injective group homomorphism —
+  `printed_matrixCompressionHom_val` and
+  `printed_matrixCompressionHom_injective`.
 * "`A ↦ s₀At₀` sends `I₃` to `pI₃`" — *new*:
   `printed_scalarDiagonal_image_of_one`, with `printed_p0_ne_one` and
   `printed_scalarDiagonal_p0_ne_one` showing the `qI₃` term is really needed.
@@ -136,6 +142,52 @@ theorem printed_matrixCompression_injective :
       rw [h]
     _ = N := leavittFamily.matrixCompression_recover N
 
+/-- The repaired prose's computation `Ψ(0) = qI₃`. -/
+theorem printed_matrixCompression_zero :
+    LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily 0 =
+      LeavittFamily.scalarDiagonal (ι := Fin 3) q := by
+  simp [LeavittFamily.matrixCompression, q]
+
+/-- The repaired prose's strict inequality `Ψ(0) ≠ 0`. -/
+theorem printed_matrixCompression_zero_ne_zero :
+    LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily 0 ≠ 0 := by
+  rw [printed_matrixCompression_zero]
+  intro h
+  apply q_ne_zero
+  have hval := congrArg
+    (fun M : RankTwelve.Cell R => M (0 : Fin 3) (0 : Fin 3)) h
+  simpa [LeavittFamily.scalarDiagonal_apply] using hval
+
+/-- The repaired prose's conclusion that `Ψ` is not additive. -/
+theorem printed_matrixCompression_not_additive :
+    ¬ ∀ M N : RankTwelve.Cell R,
+        LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily (M + N) =
+          LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily M +
+            LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily N := by
+  intro hadd
+  apply printed_matrixCompression_zero_ne_zero
+  have hzero := hadd 0 0
+  simp only [zero_add] at hzero
+  apply add_left_cancel (a :=
+    LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily 0)
+  simpa only [add_zero] using hzero.symm
+
+/-- On units, the matrix compression is the underlying matrix of the specific
+group homomorphism `matrixCompressionHom`. -/
+theorem printed_matrixCompressionHom_val (u : (RankTwelve.Cell R)ˣ) :
+    (↑(LeavittFamily.matrixCompressionHom (ι := Fin 3) leavittFamily u) :
+        RankTwelve.Cell R) =
+      LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily
+        (↑u : RankTwelve.Cell R) :=
+  leavittFamily.matrixCompressionHom_val u
+
+/-- The repaired prose's injectivity assertion for the group homomorphism on
+`GL₃(R)`. -/
+theorem printed_matrixCompressionHom_injective :
+    Function.Injective
+      (LeavittFamily.matrixCompressionHom (ι := Fin 3) leavittFamily) :=
+  leavittFamily.matrixCompressionHom_injective
+
 /-- **The printed reason for the `qI₃` summand.**  The manuscript says that the
 term `qI₃` in `eq:matrix-compression` is needed for unitality *because* the map
 `A ↦ s₀At₀` sends `I₃` to `pI₃`.  This is that computation. -/
@@ -234,11 +286,14 @@ Conjuncts in printed order:
 14. `Ψ` is multiplicative;
 15. `t₀Ψ(A)s₀ = A`;
 16. `Ψ` is injective;
-17. `A ↦ s₀At₀` sends `I₃` to `pI₃`, and (18.–19.) `p ≠ 1`, `pI₃ ≠ I₃`, so the
+17.–19. `Ψ(0) = qI₃ ≠ 0`, hence `Ψ` is not additive;
+20.–21. its restriction to units is the injective group homomorphism
+    `matrixCompressionHom`;
+22. `A ↦ s₀At₀` sends `I₃` to `pI₃`, and `p ≠ 1`, `pI₃ ≠ I₃`, so the
     `qI₃` summand really is needed;
-20. `A ↦ diag(A, I₉)` is injective, which is the printed identification of
+23. `A ↦ diag(A, I₉)` is injective, which is the printed identification of
     `GL₃(R)` with a subgroup of `GL₁₂(R)`;
-21. the unit group of `𝔽₂` is trivial. -/
+24. the unit group of `𝔽₂` is trivial. -/
 def PrintedLeavittAlgebraEquations : Prop :=
   (∀ i j : Fin 2,
       ![leavittFamily.t0, leavittFamily.t1] i *
@@ -271,6 +326,20 @@ def PrintedLeavittAlgebraEquations : Prop :=
           LeavittFamily.scalarDiagonal (ι := Fin 3) leavittFamily.s0 = M) ∧
   Function.Injective
     (LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily) ∧
+  LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily 0 =
+      LeavittFamily.scalarDiagonal (ι := Fin 3) q ∧
+  LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily 0 ≠ 0 ∧
+  (¬ ∀ M N : RankTwelve.Cell R,
+      LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily (M + N) =
+        LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily M +
+          LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily N) ∧
+  Function.Injective
+    (LeavittFamily.matrixCompressionHom (ι := Fin 3) leavittFamily) ∧
+  (∀ u : (RankTwelve.Cell R)ˣ,
+      (↑(LeavittFamily.matrixCompressionHom (ι := Fin 3) leavittFamily u) :
+          RankTwelve.Cell R) =
+        LeavittFamily.matrixCompression (ι := Fin 3) leavittFamily
+          (↑u : RankTwelve.Cell R)) ∧
   (LeavittFamily.scalarDiagonal (ι := Fin 3) leavittFamily.s0 * 1 *
       LeavittFamily.scalarDiagonal (ι := Fin 3) leavittFamily.t0 =
     LeavittFamily.scalarDiagonal (ι := Fin 3) leavittFamily.p0) ∧
@@ -298,6 +367,11 @@ theorem manuscriptPrintedLeavittAlgebraEquations :
     fun M N => leavittFamily.matrixCompression_mul M N,
     fun M => leavittFamily.matrixCompression_recover M,
     printed_matrixCompression_injective,
+    printed_matrixCompression_zero,
+    printed_matrixCompression_zero_ne_zero,
+    printed_matrixCompression_not_additive,
+    printed_matrixCompressionHom_injective,
+    printed_matrixCompressionHom_val,
     printed_scalarDiagonal_image_of_one,
     printed_p0_ne_one,
     printed_scalarDiagonal_p0_ne_one,

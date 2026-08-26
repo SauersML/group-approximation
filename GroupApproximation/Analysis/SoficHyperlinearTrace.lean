@@ -536,7 +536,9 @@ theorem isHyperlinearTrace_canonicalMaximalTrace_of_lift
         - normTrace (X n) (p n)) atTop (nhds 0)) :
     IsHyperlinearTrace
       (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) := by
-  refine isHyperlinearTrace_of_representation Φ hadd hsmul hmul hstar ?_
+  refine isHyperlinearTrace_of_representation
+    (IsTracialState.of_bundled (canonicalMaximalTracialState G))
+    Φ hadd hsmul hmul hstar ?_
   intro a
   refine tendsto_norm_trace_qrep Φ hadd hsmul hnorm (canonicalMaximalTrace G)
     (Set.range (maximalGroupCStarGenerator G))

@@ -31,5 +31,3 @@ its derivation is tracially functorial.  Hence moving the spectral projections
 does not rescue this fixed-positivity route.  A matrix-only proof of the same
 pointwise inequality, or transversality proved directly after thresholding,
 remains live.
-
-

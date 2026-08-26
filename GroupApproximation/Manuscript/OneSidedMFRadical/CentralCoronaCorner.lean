@@ -36,7 +36,10 @@ The existential `PrintedCornerData` contains the actual polar-corrected maps;
 its `cornerRepresentation` is an `OpAlmostRepresentation`.  The penultimate
 clauses follow the field order of Lemma `lem:central-corona-corner`: `Q` lifts
 the printed `q`, `φ` is the infinite coordinate subsequence, `D.q` and `D.V`
-are the relabelled `q_n` and `U_n(g)`, and every `D.cornerModel` is nonzero.
+are the relabelled `q_n` and `U_n(g)`, with `U_n(1)=I`, and every
+`D.cornerModel` is nonzero.  In the concrete corner coordinates the identity
+matrix is the projection `q_n`; accordingly the two exact identity clauses for
+`cornerMap` and `cornerRepresentation.map` formalize `W_n(1)=q_n`.
 For each `g`, the final paired clause first identifies the uncorrected
 compression class with the displayed corner value `q rho(g)`, then states
 that the actual polar-corrected map `D.cornerRepresentation.map k g` differs
@@ -60,8 +63,11 @@ def CentralCoronaCorner : Prop :=
       (∀ k, D.q k = (Q : ∀ n, Matrix (X n) (X n) ℂ) (φ k)) ∧
       (∀ k g, (D.V k g : Matrix (X (φ k)) (X (φ k)) ℂ) =
         CollapseUnitaryLift.liftFam X rho g (φ k)) ∧
+      (∀ k, D.V k (1 : G) = 1) ∧
       (∀ k, 0 < Fintype.card (D.cornerModel k)) ∧
       (∀ k g, HEq (D.cornerRepresentation.map k g) (D.cornerMap k g)) ∧
+      (∀ k, D.cornerMap k (1 : G) = 1) ∧
+      (∀ k, D.cornerRepresentation.map k (1 : G) = 1) ∧
       (∀ g : G,
         normMatrixCStarCoronaMk (fun n ↦ X n)
               (Q * unitarySequenceBounded X
@@ -145,8 +151,14 @@ theorem manuscriptCentralCoronaCorner : CentralCoronaCorner := by
       ‖(D.cornerMap k g : Matrix (D.cornerModel k) (D.cornerModel k) ℂ)
         - D.compress k g‖) atTop (nhds 0) :=
     PrintedCornerData.cornerMap_sub_compress_tendsto D
-  exact ⟨Q, φ, D, hφmono, hQproj, hQmk, fun _ ↦ rfl, fun _ _ ↦ rfl,
+  have hVone : ∀ k, D.V k (1 : G) = 1 := by
+    intro k
+    change CollapseUnitaryLift.liftFam X rho (1 : G) (φ k) = 1
+    exact CollapseUnitaryLift.liftFam_one_apply X rho (φ k)
+  exact ⟨Q, φ, D, hφmono, hQproj, hQmk, fun _ ↦ rfl, fun _ _ ↦ rfl, hVone,
     PrintedCornerData.cornerModel_card_pos D, fun _ _ ↦ HEq.rfl,
+    fun k ↦ PrintedCornerData.cornerMap_one_of_V_one D k (hVone k),
+    fun k ↦ PrintedCornerData.cornerRepresentation_map_one_of_V_one D k (hVone k),
     fun g ↦ ⟨hcornerClass g, hcornerCorrection g⟩⟩
 
 end

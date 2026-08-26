@@ -10,8 +10,8 @@ requires:
 ---
 
 Use the exact normal form and support argument `(NAT2)--(NAT4)` in the
-claim. The first relator forces support union degree at most twelve. The
+claim.  The first relator forces support union degree at most twelve.  The
 degree-at-most-eleven component theorem excludes the smaller case, and the
-complete marked `A12` screen excludes equality. No ambient alternating
+complete marked `A12` screen excludes equality.  No ambient alternating
 group enumeration or CFSG cutoff is required.
 

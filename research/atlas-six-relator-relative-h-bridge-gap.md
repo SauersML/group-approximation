@@ -47,10 +47,10 @@ displacements replace the five signed sums in `Z[A8]`.
   tracial matrix-ultraproduct exact model retaining a bridge, equivalently a
   nontrivial hyperlinear quotient of `Gamma_6`.  No smaller Taylor remainder
   or local packet calculation remains.
-- **Scalar compression.** It is unnecessary to prove the four individual
-  bridge estimates in `(RHB1)`. The strictly smaller finitary statement
+- **Scalar compression.**  It is unnecessary to prove the four individual
+  bridge estimates in `(RHB1)`.  The strictly smaller finitary statement
   `atlas-six-relator-regular-face-defect-floor` asks only that the sum of the
   six nonlinear defects have a multiplicity-independent positive lower
-  bound. The fixed upper bound on five-row energy and the established
+  bound.  The fixed upper bound on five-row energy and the established
   blow-up inequality make that scalar floor quantitatively equivalent to
   the five-row lift.

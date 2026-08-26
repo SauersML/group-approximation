@@ -524,7 +524,7 @@ def CornerCoronaClass : Prop :=
 /-- Closed proof of the composed central-corona-corner lemma. -/
 theorem manuscriptCornerCoronaClass : CornerCoronaClass := by
   intro G _ _ X _ rho q hqstar hqid hqne hcentral
-  obtain ⟨Q, φ, D, hφmono, hQproj, hQmk, hDq, hDV, hcard, hHEq, hpair⟩ :=
+  obtain ⟨Q, φ, D, hφmono, hQproj, hQmk, hDq, hDV, _, hcard, hHEq, _, _, hpair⟩ :=
     manuscriptCentralCoronaCorner G X rho q hqstar hqid hqne hcentral
   refine ⟨φ, hφmono, Q, D, hQproj, hQmk, hDq, D.q_ne_zero, hcard, hHEq, ?_⟩
   intro g

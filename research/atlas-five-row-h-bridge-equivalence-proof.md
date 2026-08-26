@@ -50,3 +50,4 @@ Right multiplication by the unitary `rho(t_ell)U` turns
 `U rho(t_ell)-rho(t_ell)U`, proving equality of the normalized
 Hilbert--Schmidt norms.  Substitution into `(FBP2)` proves the final
 equivalence.
+

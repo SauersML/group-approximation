@@ -51,4 +51,3 @@ standard blocks, then applying fixed blockwise Gram positivity, is still
 inside the refuted calculus.  A viable proof must make a finite-coordinate
 selection whose definition or rank complexity depends on the ambient matrix
 dimension; fixed channel diagonalization is only an upstream localization.
-

@@ -29,4 +29,3 @@ metaplectic shifts never escape the already established half-shift orbit.
 The invalidation is scoped to this finite equivariant Morita/retract
 mechanism.  It does not refute the target LLP claim or a genuinely
 non-equivariant ucp construction.
-

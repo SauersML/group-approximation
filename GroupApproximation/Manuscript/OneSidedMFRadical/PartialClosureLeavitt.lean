@@ -19,7 +19,7 @@ import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
 * "Thus for some `i ≠ j` and `a ∈ R`, conjugation by `g` sends `e_{ij}(a)` to
   `e_{ij}(y)` with `y ≠ a`" — the internal `ha` of the diagonal branch of
   `RootDetectionBinary.exists_elGen_mem_of_diagonal`;
-* "Thus the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-sparse}` is
+* "Thus the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-zero-inverse}` is
   nonzero" — the internal `hvm` of `exists_elGen_mem_of_inv_entry_zero`;
 * "Again `AB = 0`, because its potentially nonzero coefficient contains `arb`"
   — the internal `hAB` of `exists_elGen_mem_of_annihilating_coefficients`.
@@ -322,13 +322,13 @@ theorem manuscriptPrintedDiagonalConjugationMovesRootAtBinaryLeavitt :
 `[g e_{iℓ}(1) g^{-1}, e_{iℓ}(1)] = 1 - BA` belongs to `N`.  Its defect `-BA` is
 square-zero and supported in row `i`.  There is an `m` for which
 `g_{ℓi}(g^{-1})_{ℓm} ≠ 0` ... Thus the `(i,m)` entry of the defect in
-`\eqref{eq:row-unipotent-sparse}` is nonzero." -/
+`\eqref{eq:row-unipotent-zero-inverse}` is nonzero." -/
 
 /-- **"Thus the `(i,m)` entry of the defect in
-`\eqref{eq:row-unipotent-sparse}` is nonzero."**
+`\eqref{eq:row-unipotent-zero-inverse}` is nonzero."**
 
 The graded sentence is the last conjunct.  The three that precede it are what
-pins down *which* object "the defect in `\eqref{eq:row-unipotent-sparse}`" is:
+pins down *which* object "the defect in `\eqref{eq:row-unipotent-zero-inverse}`" is:
 `AB = 0`, the printed value `1 - BA` of the double commutator, and
 row-support in row `i`.  Membership in `N` is a separate sentence and is
 already carried by `doubleCommutator_mem`, so no normal subgroup appears here.

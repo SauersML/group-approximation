@@ -75,8 +75,8 @@ def MFTraceModel.congr {τ σ : A → ℂ} (M : MFTraceModel τ)
 
 theorem IsMFTrace.congr {τ σ : A → ℂ} (h : IsMFTrace τ)
     (hσ : ∀ a : A, τ a = σ a) : IsMFTrace σ := by
-  obtain ⟨M⟩ := h
-  exact ⟨M.congr hσ⟩
+  obtain ⟨hτ, ⟨M⟩⟩ := h
+  exact ⟨hτ.congr hσ, ⟨M.congr hσ⟩⟩
 
 /-! ## Pullback along a `⋆`-homomorphism -/
 
@@ -102,8 +102,8 @@ def MFTraceModel.comp {τ : B → ℂ} (M : MFTraceModel τ) (π : A →⋆ₐ[�
 
 theorem IsMFTrace.comp {τ : B → ℂ} (h : IsMFTrace τ) (π : A →⋆ₐ[ℂ] B) :
     IsMFTrace (fun a : A ↦ τ (π a)) := by
-  obtain ⟨M⟩ := h
-  exact ⟨M.comp π⟩
+  obtain ⟨hτ, ⟨M⟩⟩ := h
+  exact ⟨hτ.compStarAlgHom π, ⟨M.comp π⟩⟩
 
 /-! ## The canonical traces of the two group C⋆-algebras -/
 

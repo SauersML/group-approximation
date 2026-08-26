@@ -44,4 +44,3 @@ two central characters of its `Z/2`, so their multiplier classes are `0` or
 `1/2`.  These classes form a subgroup and remain the only possibilities
 under all the listed finite tensor/Morita operations.  This proves the
 scoped no-go.
-

@@ -73,5 +73,3 @@ proving `(PCC3)` by fixed tracially valid positivity and then thresholding it.
 
 DERIVATION
 atlas-pointwise-column-coercivity-no-go-proof
-
-

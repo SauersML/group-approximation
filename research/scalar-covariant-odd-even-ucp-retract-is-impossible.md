@@ -43,5 +43,3 @@ covariance with such matrix coefficients does not suffice, as shown by
 `matrix-homogeneous-ucp-retracts-can-hide-defect`.
 
 The proof is `scalar-covariant-retract-multiplicative-domain-proof`.
-
-

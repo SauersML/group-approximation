@@ -83,6 +83,36 @@ theorem map_sub (τ : TracialState A) (x y : A) : τ (x - y) = τ x - τ y :=
 theorem map_smul (τ : TracialState A) (c : ℂ) (x : A) : τ (c • x) = c • τ x :=
   τ.toLinearMap.map_smul c x
 
+/-- Pull a tracial state back along a unital `⋆`-algebra homomorphism. -/
+def compStarAlgHom {B : Type*} [Ring B] [StarRing B] [Algebra ℂ B]
+    (τ : TracialState B) (π : A →⋆ₐ[ℂ] B) : TracialState A where
+  toLinearMap := τ.toLinearMap.comp π.toLinearMap
+  map_one := by
+    change τ.toLinearMap (π.toLinearMap 1) = 1
+    have hcoe : π.toLinearMap 1 = π.toRingHom 1 := rfl
+    rw [hcoe, π.toRingHom.map_one]
+    exact τ.map_one
+  map_star_mul_self_nonneg x := by
+    change 0 ≤ τ.toLinearMap (π.toLinearMap (star x * x))
+    have hcoe : π.toLinearMap (star x * x) = π.toRingHom (star x * x) := rfl
+    have hstar : π.toRingHom (star x) = star (π.toRingHom x) := by
+      exact map_star π x
+    rw [hcoe, π.toRingHom.map_mul, hstar]
+    exact τ.map_star_mul_self_nonneg (π.toRingHom x)
+  map_mul_comm x y := by
+    change τ.toLinearMap (π.toLinearMap (x * y)) =
+      τ.toLinearMap (π.toLinearMap (y * x))
+    have hxy : π.toLinearMap (x * y) = π.toRingHom (x * y) := rfl
+    have hyx : π.toLinearMap (y * x) = π.toRingHom (y * x) := rfl
+    rw [hxy, hyx, π.toRingHom.map_mul, π.toRingHom.map_mul]
+    exact τ.map_mul_comm (π.toRingHom x) (π.toRingHom y)
+
+@[simp]
+theorem compStarAlgHom_apply {B : Type*} [Ring B] [StarRing B] [Algebra ℂ B]
+    (τ : TracialState B) (π : A →⋆ₐ[ℂ] B) (x : A) :
+    τ.compStarAlgHom π x = τ (π x) :=
+  rfl
+
 @[simp]
 theorem apply_one (τ : TracialState A) : τ 1 = 1 :=
   τ.map_one
@@ -106,6 +136,39 @@ theorem coe_toTracialState (τ : FaithfulTracialState A) (x : A) :
   rfl
 
 end FaithfulTracialState
+
+/-! ## Tracial-state predicate and Shulman's MF trace -/
+
+variable {A : Type*} [Ring A] [StarRing A] [Algebra ℂ A]
+
+/-- A function is an actual tracial state when it is the underlying function
+of a bundled `TracialState`.  The approximation clauses below do not by
+themselves include normalization, positivity, or traciality, whereas the word
+"trace" in Shulman's definitions presupposes precisely this datum. -/
+def IsTracialState (τ : A → ℂ) : Prop :=
+  ∃ σ : TracialState A, ∀ a : A, σ a = τ a
+
+namespace IsTracialState
+
+/-- The underlying function of a bundled tracial state is a tracial state. -/
+theorem of_bundled (σ : TracialState A) :
+    IsTracialState (fun a : A ↦ σ a) :=
+  ⟨σ, fun _ ↦ rfl⟩
+
+/-- Tracial-state data is invariant under pointwise equality. -/
+theorem congr {τ υ : A → ℂ} (hτ : IsTracialState τ)
+    (h : ∀ a : A, τ a = υ a) : IsTracialState υ := by
+  obtain ⟨σ, hσ⟩ := hτ
+  exact ⟨σ, fun a ↦ (hσ a).trans (h a)⟩
+
+/-- Tracial states pull back along unital `⋆`-algebra homomorphisms. -/
+theorem compStarAlgHom {B : Type*} [Ring B] [StarRing B] [Algebra ℂ B]
+    {τ : B → ℂ} (hτ : IsTracialState τ) (π : A →⋆ₐ[ℂ] B) :
+    IsTracialState (fun a : A ↦ τ (π a)) := by
+  obtain ⟨σ, hσ⟩ := hτ
+  exact ⟨σ.compStarAlgHom π, fun a ↦ hσ (π a)⟩
+
+end IsTracialState
 
 /-! ## Shulman's MF trace -/
 
@@ -145,12 +208,13 @@ structure MFTraceModel (τ : A → ℂ) where
   tendsto_trace : ∀ a : A,
     Tendsto (fun n ↦ ‖τ a - normTrace (space n) (map n a)‖) atTop (nhds 0)
 
-/-- `τ` is an MF trace: matrix models in the sense of `MFTraceModel` exist. -/
+/-- `τ` is an MF trace: it is an actual tracial state and matrix models in the
+sense of `MFTraceModel` exist. -/
 def IsMFTrace (τ : A → ℂ) : Prop :=
-  Nonempty (MFTraceModel τ)
+  IsTracialState τ ∧ Nonempty (MFTraceModel τ)
 
 theorem isMFTrace_iff (τ : A → ℂ) :
-    IsMFTrace τ ↔ Nonempty (MFTraceModel τ) :=
+    IsMFTrace τ ↔ IsTracialState τ ∧ Nonempty (MFTraceModel τ) :=
   Iff.rfl
 
 /-- A real sequence tending to zero eventually sits below any positive bound.

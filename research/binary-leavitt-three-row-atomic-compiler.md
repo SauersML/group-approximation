@@ -428,3 +428,14 @@ word is insufficient.  The next occurrence must couple an opposite-root or
 returned payload to those two child directions on the prescribed mark
 carrier; another positive-root aggregate fold remains below the finite-model
 firewall.
+
+The first such opposite-root continuation is now fenced as well.
+`aggregate-morita-common-opposite-return-has-gl3-square-model` adjoins the
+literal common reverse parent `x_87(1)`, returns both native arms through
+it, and recovers reverse children `x_87(q_i)` whose product is that same
+parent.  This breaks the private central `D_8 times D_8` realization and
+places each positive child opposite a returned reverse child.  The table
+still factorizes in `GL_3(F_2) times GL_3(F_2)`, with the marked child
+nontrivial.  Thus a live occurrence must now mix the two returned
+three-coordinate packets by a coefficient-sensitive word; branchwise
+opposite-root braids and their common aggregate parent remain finite.

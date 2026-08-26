@@ -59,6 +59,3 @@ weaker form of canonical covariance strong enough to see the cocycle but not
 already covered by the equivariant Morita no-go.
 
 The proof is `v4-state-summand-twisted-retract-proof`.
-
-
-

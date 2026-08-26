@@ -69,5 +69,3 @@ transverse root operators and their half-period words occupy positive mass
 on the same carrier rather than on separately matched rectangular
 multiplicity spaces.
 
-
-

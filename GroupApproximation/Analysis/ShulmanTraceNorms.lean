@@ -29,7 +29,8 @@ modulus on `ℂ` in both.  So `TraceApproximationModel` takes the defect norm as
 a parameter and holds those two fixed.
 
 `ShulmanTraceClasses.MFTraceModel` is the operator-norm member of this family
-— `isMFTrace_iff_nonempty_opNorm` says so in both directions, by an identity
+— `isMFTrace_iff_isTracialState_and_nonempty_opNorm` says so in both directions,
+by an identity
 transfer of all five fields — and `IsHyperlinearTrace` is the
 Hilbert–Schmidt member.  Then
 
@@ -138,11 +139,13 @@ def TraceApproximationModel.toMFTraceModel {τ : A → ℂ}
 
 /-! ## The Hilbert–Schmidt member is the hyperlinear trace -/
 
-/-- **Shulman's hyperlinear trace**: the five clauses of `IsMFTrace` with the
-three defect clauses measured in the normalized Hilbert–Schmidt norm.  The
-boundedness and trace clauses are the same in both definitions. -/
+/-- **Shulman's hyperlinear trace**: an actual tracial state satisfying the
+five approximation clauses, with the three defect clauses measured in the
+normalized Hilbert–Schmidt norm.  The boundedness and trace clauses are the
+same as for an MF trace. -/
 def IsHyperlinearTrace (τ : A → ℂ) : Prop :=
-  Nonempty (TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
+  IsTracialState τ ∧
+    Nonempty (TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
 
 /-- The defect comparison, in the shape the five clauses consume it: an
 operator-norm null sequence of matrices is Hilbert–Schmidt null, by the first
@@ -181,22 +184,24 @@ def TraceApproximationModel.toHilbertSchmidt {l : Filter ℕ} {τ : A → ℂ}
 
 /-! ## The two statements the parameterization buys -/
 
-/-- `IsMFTrace` is exactly the operator-norm member of the parameterized
-family — both directions, by an identity transfer of all five clauses. -/
-theorem isMFTrace_iff_nonempty_opNorm (τ : A → ℂ) :
-    IsMFTrace τ ↔ Nonempty (TraceApproximationModel atTop (fun _ B ↦ ‖B‖) τ) := by
+/-- `IsMFTrace` is tracial-state data together with the operator-norm member
+of the parameterized family — both directions, by an identity transfer of all
+five approximation clauses. -/
+theorem isMFTrace_iff_isTracialState_and_nonempty_opNorm (τ : A → ℂ) :
+    IsMFTrace τ ↔ IsTracialState τ ∧
+      Nonempty (TraceApproximationModel atTop (fun _ B ↦ ‖B‖) τ) := by
   constructor
-  · rintro ⟨M⟩
-    exact ⟨M.toApproximationModel⟩
-  · rintro ⟨M⟩
-    exact ⟨M.toMFTraceModel⟩
+  · rintro ⟨hτ, ⟨M⟩⟩
+    exact ⟨hτ, ⟨M.toApproximationModel⟩⟩
+  · rintro ⟨hτ, ⟨M⟩⟩
+    exact ⟨hτ, ⟨M.toMFTraceModel⟩⟩
 
 /-- **Every MF trace is hyperlinear.**  The two definitions differ only in the
 norm on the three defect clauses, and `‖x‖₂ ≤ ‖x‖`. -/
 theorem isHyperlinearTrace_of_isMFTrace {τ : A → ℂ} (h : IsMFTrace τ) :
     IsHyperlinearTrace τ := by
-  obtain ⟨M⟩ := h
-  exact ⟨M.toApproximationModel.toHilbertSchmidt⟩
+  obtain ⟨hτ, ⟨M⟩⟩ := h
+  exact ⟨hτ, ⟨M.toApproximationModel.toHilbertSchmidt⟩⟩
 
 /-! ## The canonical trace of the full group C⋆-algebra, bundled -/
 

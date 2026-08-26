@@ -41,23 +41,23 @@ Write `ell(j)` for the first index with `e_j in C_(ell(j))`.  Every edge
 e_t |-> e_t+a e_s.                                    (DFP3)
 ```
 
-Take two distinct edges with `ell(t_1)<=ell(t_2)`, and let `Y` be
-their product in either order.
+Take two distinct edges and order them so that `ell(t_1)<=ell(t_2)`.
+For
 
-Test `e_(t_1)` modulo `C_(ell(t_1))`.
+```text
+Y=Y_(s_2,t_2)(b)Y_(s_1,t_1)(a),                       (DFP4)
+```
 
-* If `ell(t_1)<ell(t_2)`, the higher-target letter has no input coordinate
-  at level `ell(t_1)`.  If it occurs first it fixes `e_(t_1)`; if it
-  occurs second, the only possible cross term requires `t_2=s_1` and lies
-  in the independent, still-higher coordinate `e_(s_2)`.  In either order
-  the nonzero term `a e_(s_1)` survives above the tested filtration term.
+test `e_(t_1)` modulo `C_(ell(t_1))`.
+
+* If `ell(t_1)<ell(t_2)`, the second letter has no input coordinate at
+  level `ell(t_1)`.  The nonzero term `a e_(s_1)` survives above the tested
+  filtration term.  An additional cross term can occur only when
+  `t_2=s_1`; it lies still higher and cannot cancel `a e_(s_1)`.
 * If the levels agree and `t_1!=t_2`, the second letter does not act on
-  `e_(t_1)` in either order: its target is different, and it cannot target
-  `s_1` because `ell(s_1)>ell(t_1)=ell(t_2)`.  Again
-  `a e_(s_1)` survives.
+  `e_(t_1)`.  Again `a e_(s_1)` survives.
 * If `t_1=t_2`, then
-  `Ye_(t_1)=e_(t_1)+a e_(s_1)+b e_(s_2)` in either order: neither source
-  can equal the common lower-level target.  Distinct edges with the same
+  `Ye_(t_1)=e_(t_1)+a e_(s_1)+b e_(s_2)`.  Distinct edges with the same
   target have distinct sources, so freeness of the basis forces `a=b=0`.
 
 In the first two cases preservation of `C_(ell(t_1))` forces `a=0`.
@@ -74,4 +74,3 @@ does not conflict with the external normalizers from
 `signed-hecke-normalizer-has-eight-external-root-returns`, whose two
 coefficient roots pass through a spare coordinate rather than reversing
 two arrows in `(DOR1)`.
-

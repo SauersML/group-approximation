@@ -40,3 +40,10 @@ provides unitary HS microstates and one coefficient, not finite permutation
 atlases or all orbit multiplication statistics.  It isolates the precise
 remaining gap between the selected-unitary problem and the
 stability-in-finite-actions route.
+
+The exact missing family is now recorded by
+`gkp-sofic-action-is-liftable-hamming-chart-family`: density-one liftable
+label maps over a common permutation carrier.  The promotion claim
+`thin-quasiregular-profile-promotes-to-liftable-charts` is open, while
+`tensor-root-profile-adds-no-chart-coherence` proves
+that further scalar tensor amplification adds none of those coordinates.

@@ -29,5 +29,3 @@ distance `sqrt(2)` between the two gauges.
 The route remains viable only after adjoining another mixed full-EL20
 relation forming a closed loop with unequal odd occurrence parity.  That
 stronger route is not invalidated here.
-
-

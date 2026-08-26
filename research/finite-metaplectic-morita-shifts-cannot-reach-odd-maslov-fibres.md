@@ -59,4 +59,3 @@ intrinsic proof of odd-fibre LLP; those remain exactly
 `sp4-mod3-twisted-fibres-have-llp`.
 
 The proof is `finite-morita-shift-detects-projective-difference-proof`.
-

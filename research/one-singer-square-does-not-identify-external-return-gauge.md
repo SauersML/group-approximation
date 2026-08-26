@@ -93,5 +93,3 @@ von-Neumann-algebra extension is used.
 DERIVATION
 external-return-singer-groupoid-gauge-proof
 
-
-

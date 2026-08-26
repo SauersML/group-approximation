@@ -39,4 +39,3 @@ each scale.  The new claim is a strictly stronger but finite and directly
 checkable rank-incidence gate, not a reformulation of the original scalar
 floor.
 
-

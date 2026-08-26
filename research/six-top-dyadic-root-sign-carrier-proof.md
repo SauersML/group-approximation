@@ -46,5 +46,3 @@ Finally the elementary Steinberg commutator identities give, for distinct
 Since `D_a u_ik=-D_a`, equations `(SDC6)` follow.  All arguments are
 unchanged after regular external amplification.
 
-
-

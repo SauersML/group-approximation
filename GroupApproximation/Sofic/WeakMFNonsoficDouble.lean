@@ -12,12 +12,14 @@ namespace GroupApproximation
 
 open Monoid
 
-variable (G : Type) [Group G] (Γ : Subgroup G)
+universe u
+
+variable (G : Type u) [Group G] (Γ : Subgroup G)
 
 /-! ## The symmetric double -/
 
 /-- The two vertex groups of the symmetric amalgam. -/
-abbrev DoubleFactor : Bool → Type := fun _ ↦ G
+abbrev DoubleFactor : Bool → Type u := fun _ ↦ G
 
 instance doubleFactorGroup : ∀ b, Group (DoubleFactor G b) :=
   fun _ ↦ inferInstanceAs (Group G)
@@ -29,7 +31,7 @@ theorem doubleMap_injective : ∀ b, Function.Injective (doubleMap G Γ b) :=
   fun _ ↦ Γ.subtype_injective
 
 /-- The symmetric double `G *_Γ G`. -/
-abbrev SymmetricDouble : Type := PushoutI (doubleMap G Γ)
+abbrev SymmetricDouble : Type u := PushoutI (doubleMap G Γ)
 
 /-- One of the two canonical vertex-group embeddings. -/
 def inDouble (b : Bool) : G →* SymmetricDouble G Γ :=

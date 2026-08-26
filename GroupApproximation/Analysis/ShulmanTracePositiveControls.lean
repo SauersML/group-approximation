@@ -159,17 +159,20 @@ def normTraceMFTraceModel (Y : FiniteModel) : MFTraceModel (normTrace Y) where
     show ‖normTrace Y a - normTrace Y a‖ = 0
     rw [sub_self, norm_zero]
 
-/-- **Positive control for `IsMFTrace`.**  The normalized trace of `M_k(ℂ)` is
-an MF trace. -/
-theorem isMFTrace_normTrace (Y : FiniteModel) : IsMFTrace (normTrace Y) :=
-  ⟨normTraceMFTraceModel Y⟩
+/-- **Positive control for `IsMFTrace`.**  The normalized trace of a nonzero
+matrix algebra is an MF trace. -/
+theorem isMFTrace_normTrace (Y : FiniteModel) (hY : 0 < Fintype.card Y) :
+    IsMFTrace (normTrace Y) :=
+  ⟨IsTracialState.of_bundled (normTraceTracialState Y hY),
+    ⟨normTraceMFTraceModel Y⟩⟩
 
 /-- **Positive control for `IsHyperlinearTrace`.**  Free from the previous one
 through the comparison `‖x‖₂ ≤ ‖x‖`, which is what
 `isHyperlinearTrace_of_isMFTrace` is for. -/
-theorem isHyperlinearTrace_normTrace (Y : FiniteModel) :
+theorem isHyperlinearTrace_normTrace (Y : FiniteModel)
+    (hY : 0 < Fintype.card Y) :
     IsHyperlinearTrace (normTrace Y) :=
-  isHyperlinearTrace_of_isMFTrace (isMFTrace_normTrace Y)
+  isHyperlinearTrace_of_isMFTrace (isMFTrace_normTrace Y hY)
 
 /-- **Positive control for `IsFactoredHyperlinearTrace`.**  The factorization
 route asks the matrix sizes to be positive — `M_0(ℂ)` is not a matrix algebra
@@ -203,12 +206,12 @@ def twoDimTracialState : TracialState (Matrix twoDimModel twoDimModel ℂ) :=
 
 /-- **`IsMFTrace` is inhabited.** -/
 theorem isMFTrace_normTrace_twoDim : IsMFTrace (normTrace twoDimModel) :=
-  isMFTrace_normTrace twoDimModel
+  isMFTrace_normTrace twoDimModel card_twoDimModel_pos
 
 /-- **`IsHyperlinearTrace` is inhabited.** -/
 theorem isHyperlinearTrace_normTrace_twoDim :
     IsHyperlinearTrace (normTrace twoDimModel) :=
-  isHyperlinearTrace_normTrace twoDimModel
+  isHyperlinearTrace_normTrace twoDimModel card_twoDimModel_pos
 
 /-- **`IsFactoredHyperlinearTrace` is inhabited.** -/
 theorem isFactoredHyperlinearTrace_normTrace_twoDim :

@@ -27,5 +27,3 @@ finite-dimensional representation yields a forbidden odd one.  Allowing
 matrix-valued homogeneous coefficients avoids this exact argument, but
 `matrix-homogeneous-ucp-retracts-can-hide-defect` shows why it no longer
 forces multiplicativity.
-
-

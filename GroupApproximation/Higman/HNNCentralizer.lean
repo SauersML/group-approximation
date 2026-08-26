@@ -100,6 +100,28 @@ theorem conj_mem_range_iff (g : K) :
     rw [conj_eq_self_of_mem L hg]
     exact ⟨g, rfl⟩
 
+/-- **The stable letter detects membership by commutation.**  In the central
+HNN extension, the stable letter commutes with the image of a base element
+exactly when that element belongs to the associated subgroup.  This is the
+commutator form of `conj_mem_range_iff`: the reverse implication is Britton's
+lemma, not merely the defining HNN relation. -/
+theorem commute_t_of_iff (g : K) :
+    Commute (t : CentHNN L) (of g) ↔ g ∈ L := by
+  constructor
+  · intro hcomm
+    apply mem_of_conj_mem_range L
+    refine ⟨g, ?_⟩
+    calc
+      of g = (t : CentHNN L)⁻¹ * (t * of g) := by group
+      _ = (t : CentHNN L)⁻¹ * (of g * t) := by rw [hcomm.eq]
+      _ = (t : CentHNN L)⁻¹ * of g * t := by rw [mul_assoc]
+  · intro hg
+    have hconj := conj_eq_self_of_mem L hg
+    apply (commute_iff_eq _ _).2
+    calc
+      (t : CentHNN L) * of g = t * (t⁻¹ * of g * t) := by rw [hconj]; group
+      _ = of g * t := by group
+
 /-! ## The subgroup form -/
 
 /-- Conjugation by the stable letter, as an automorphism. -/

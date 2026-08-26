@@ -128,7 +128,11 @@ theorem markedGroup_canonicalReducedTrace_not_isQuasidiagonalTrace
   intro h
   exact LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace
     (ShulmanTrace.isMFTrace_canonicalMaximal_of_reducedTrace MarkedGroup
-      (Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace hucp h))
+      (Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace
+        (IsTracialState.of_bundled
+          (ReducedGroupCStarTrace.canonicalFaithfulTracialState
+            MarkedGroup).toTracialState)
+        hucp h))
 
 /-- **A second route to `RE.05`.**  Granting Tikuisis--White--Winter, and the
 UCT for this one algebra, the reduced C⋆-algebra of the marked group is not

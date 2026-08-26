@@ -36,6 +36,3 @@ matrix profiles from that tracial profile.
 The surviving Hall route must let the incidence itself move with `U` and
 `t`, or use unbounded dimension-dependent data.  Merely inserting the moving
 spectral ranks as capacities in a fixed type graph is insufficient.
-
-
-

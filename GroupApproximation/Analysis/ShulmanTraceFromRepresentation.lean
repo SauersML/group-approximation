@@ -322,6 +322,7 @@ convergence of the coordinate traces on the group unitaries with no
 ultrafilter anywhere, and `tendsto_trace_of_dense` carries it to the whole
 algebra. -/
 theorem isHyperlinearTrace_of_representation {τ : A → ℂ}
+    (hτ : IsTracialState τ)
     (Φ : A → TracialMatrixQuotient X atTop)
     (hadd : ∀ a b : A, Φ (a + b) = Φ a + Φ b)
     (hsmul : ∀ (c : ℂ) (a : A), Φ (c • a) = c • Φ a)
@@ -330,7 +331,7 @@ theorem isHyperlinearTrace_of_representation {τ : A → ℂ}
     (htrace : ∀ a : A,
       Tendsto (fun n ↦ ‖τ a - normTrace (X n) (qrep Φ a n)‖) atTop (nhds 0)) :
     IsHyperlinearTrace τ :=
-  ⟨modelOfRepresentation Φ hadd hsmul hmul hstar htrace⟩
+  ⟨hτ, ⟨modelOfRepresentation Φ hadd hsmul hmul hstar htrace⟩⟩
 
 end
 

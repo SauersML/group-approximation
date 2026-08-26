@@ -32,4 +32,3 @@ then produces a forbidden finite-dimensional odd-Maslov representation.
 The target claim remains open only for a genuinely nonfaithful ucp retract
 whose positive kernel absorbs nonzero generator defects, or for a proof not
 based on such a retract.
-

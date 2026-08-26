@@ -55,5 +55,3 @@ remains conjugacy transport by that product.  Thus one Singer move cannot
 turn the external gauge into the Whitehead gauge without another closed
 mixed relation.
 
-
-

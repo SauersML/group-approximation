@@ -39,5 +39,3 @@ t||xi||<=||Axi||<=L||Rxi||<L sqrt(6) kappa t||xi||.
 Taking `kappa<1/(L sqrt(6))` forces `xi=0`; codimension then proves `(SCI3)`
 with constant one.  Thus the calculation invalidates exactly the fixed
 tracial proof route, not the matrix-only pointwise target.
-
-

@@ -210,7 +210,10 @@ theorem isOperatorMF_of_isQuasidiagonalCanonicalTrace
     IsOperatorMF G :=
   ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal
     (ShulmanTrace.isMFTrace_canonicalMaximal_of_reducedTrace G
-      (Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace hucp h))
+      (Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace
+        (IsTracialState.of_bundled
+          (ReducedGroupCStarTrace.canonicalFaithfulTracialState G).toTracialState)
+        hucp h))
 
 /-! ## Steps 1--5: the theorem half, at the reduced algebra of an amenable
 group -/

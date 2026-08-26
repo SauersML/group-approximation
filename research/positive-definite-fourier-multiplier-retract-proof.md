@@ -30,5 +30,3 @@ For `G=Z/2`, the matrix `[[1,t],[t,1]]` is positive for `|t|<=1`, proving
 positive definiteness of `f_t`.  Formula `(MHR2)` then gives the stated
 operator-norm distance to the scalar homogeneous line and the nonzero defect
 at every `t<1`.
-
-

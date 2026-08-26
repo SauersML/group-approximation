@@ -47,6 +47,3 @@ target is finite dimensional.  Thus the claimed structural no-go cannot be
 derived from those properties.  The map is not generator-equivariant:
 `i(X)` is not unitary and its last three coordinates are scalar state data,
 which is exactly how `(VTR5)` evades the cocycle-difference argument.
-
-
-

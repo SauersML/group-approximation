@@ -16,6 +16,9 @@ declarations that formalize it, or an explicit reason why no declaration can.
 
     scripts/sentence_census.py                 regenerate the census
     scripts/sentence_census.py --check         fail on any unassigned sentence
+    scripts/sentence_census.py --require-complete
+                                              also fail on partial coverage
+                                              and prose-only proof provenance
     scripts/sentence_census.py --summary       print the counts and stop
 
 ## The two files
@@ -629,7 +632,7 @@ def write_md(records: list[dict], path: str) -> None:
     c = counts(records)
     total = len(records)
     done = (c.get("formalized", 0) + c.get("ledger", 0)
-            + c.get("definition", 0) + c.get("partial", 0))
+            + c.get("definition", 0))
     with open(path, "w", encoding="utf-8") as fh:
         fh.write("# Non-MF manuscript: sentence-level census\n\n")
         fh.write(
@@ -645,7 +648,7 @@ def write_md(records: list[dict], path: str) -> None:
         for k in sorted(c, key=lambda k: -c[k]):
             fh.write(f"| `{k}` | {c[k]} |\n")
         fh.write(f"| **total** | **{total}** |\n\n")
-        fh.write(f"Carrying a declaration or a ledger row: **{done}/{total}**"
+        fh.write(f"Completely formalized or definitional: **{done}/{total}**"
                  f" ({100.0 * done / max(total, 1):.1f}%).\n\n")
         fh.write(
             "A sentence under a single-row ledger anchor inherits that forced "
@@ -773,6 +776,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="exit nonzero if any sentence is unassigned")
+    ap.add_argument("--require-complete", action="store_true",
+                    help=("exit nonzero if any sentence is unassigned, only "
+                          "partially formalized, or carries prose-only proof "
+                          "provenance"))
     ap.add_argument("--summary", action="store_true")
     ap.add_argument("--list-unassigned", action="store_true")
     ap.add_argument("--json", action="store_true")
@@ -857,9 +864,17 @@ def main() -> int:
     for error in overlay_errors:
         print(f"OVERLAY ERROR: {error}")
 
-    if args.check and (c.get("unassigned") or overlay_errors):
+    incomplete = (c.get("unassigned", 0) + c.get("partial", 0) +
+                  c.get("provenance", 0))
+    if ((args.check and (c.get("unassigned") or overlay_errors)) or
+            (args.require_complete and (incomplete or overlay_errors))):
         if c.get("unassigned"):
             print(f"\nFAIL: {c['unassigned']} sentences carry no assignment.")
+        if args.require_complete and c.get("partial"):
+            print(f"FAIL: {c['partial']} sentences are only partially formalized.")
+        if args.require_complete and c.get("provenance"):
+            print(f"FAIL: {c['provenance']} proof-route sentences carry only "
+                  "prose provenance.")
         if overlay_errors:
             print(f"FAIL: {len(overlay_errors)} overlay integrity error(s).")
         return 1

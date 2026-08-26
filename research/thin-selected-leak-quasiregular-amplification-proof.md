@@ -48,3 +48,4 @@ and, on the first `n` enumerated group elements, `k_n` times the coordinate
 coefficient error also tends to zero.  The resulting tensor powers are
 normalized-HS asymptotic representations, and their distinguished vector
 coefficients converge pointwise to `(3)`.  This proves `(QRA2)`.
+

@@ -54,23 +54,20 @@ y_(s,t)(a)=I+aE_(s,t),                                 (DOR4)
 
 which sends `e_t` to `e_t+a e_s` and strictly raises filtration degree.
 Let `e_1=(s_1->t_1)` and `e_2=(s_2->t_2)` be distinct displayed edges.
-For either ordering of the two factors, if
+If
 
 ```text
-y is a product of y_(s_1,t_1)(a) and y_(s_2,t_2)(b), (DOR5)
+y=y_(s_2,t_2)(b)y_(s_1,t_1)(a)                        (DOR5)
 ```
 
 preserves `(DOR2)`, examine a basis vector at the least filtration level
-among `t_1,t_2`.  If the levels differ, the other factor either acts
-trivially on that vector before the lower exit or adds a second,
-strictly-higher basis coordinate after it; in neither ordering can it cancel
-the lower exit's `a e_(s_1)` term.  If the levels agree but
-`t_1!=t_2`, the two letters affect different basis vectors (and a target
-cannot equal the other source because every source has strictly greater
-filtration level).  If `t_1=t_2`, their raised coordinates
-`e_(s_1),e_(s_2)` are distinct because the edges are distinct.  In all
-cases the relevant coefficient vanishes; then the other letter is tested in
-its own least filtration term and its coefficient vanishes too.  Hence
+among `t_1,t_2`.  If the levels differ, its first raised coordinate forces
+the coefficient on the lower-level exit to vanish.  If the levels agree
+but `t_1!=t_2`, the two letters affect different basis vectors.  If
+`t_1=t_2`, their raised coordinates `e_(s_1),e_(s_2)` are distinct because
+the edges are distinct.  In all cases the relevant coefficient vanishes;
+then the other letter is tested in its own least filtration term and its
+coefficient vanishes too.  Hence
 
 ```text
 y in Norm(L_0)  implies  a=b=0.                        (DOR6)
@@ -96,4 +93,3 @@ von-Neumann-algebra extension is used.
 
 DERIVATION
 different-opposite-root-fixed-flag-proof
-

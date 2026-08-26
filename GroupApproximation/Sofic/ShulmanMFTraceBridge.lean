@@ -72,7 +72,7 @@ theorem isMFRegularCharacter_of_isMFTrace {A : Type*} [Ring A] [StarRing A]
     (hτne : ∀ g : G, g ≠ 1 → τ (u g) = 0)
     (h : IsMFTrace τ) : IsMFRegularCharacter G := by
   classical
-  obtain ⟨M⟩ := h
+  obtain ⟨M⟩ := h.2
   choose B hB using fun g : G ↦ M.bounded (u g)
   refine ⟨B, ?_⟩
   intro F ε hε
@@ -256,7 +256,7 @@ use. -/
 theorem isOperatorMF_of_isMFTrace_canonicalMaximal
     (h : IsMFTrace (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
     IsOperatorMF G := by
-  obtain ⟨M⟩ := h
+  obtain ⟨M⟩ := h.2
   obtain ⟨M', hcard⟩ := M.exists_shift (canonicalMaximalTrace_one G)
   obtain ⟨rho, hrho⟩ := exists_injective_coronaUnitaryHom G M' hcard
   exact ⟨M'.space, hcard, rho, hrho⟩
