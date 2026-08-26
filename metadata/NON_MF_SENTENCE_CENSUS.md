@@ -6,14 +6,14 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 337 |
-| `definition` | 63 |
+| `formalized` | 341 |
+| `definition` | 64 |
 | `structural` | 23 |
-| `attribution` | 12 |
+| `attribution` | 13 |
 | `partial` | 6 |
-| **total** | **441** |
+| **total** | **447** |
 
-Completely formalized or definitional: **400/441** (90.7%).
+Completely formalized or definitional: **405/447** (90.6%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -21,17 +21,17 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 654 --- Their 1997 paper developed these notions and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
+* **`partial`**, line 660 --- Their 1997 paper developed these notions and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
   * The corpus defines finite-local NF independently and proves that it implies separability and nuclearity, and in the unital case constructs a faithful matrix-corona embedding and hence proves MF. For the converse route, the finite-dimensional transported involution is represented by a self-adjoint conjugator; its inverse form is anisotropic; its eigenvalues have one sign; sign normalization and continuous functional calculus supply a positive invertible square root; and conjugation by that root corrects each matrix-block algebra equivalence to a star-algebra equivalence. What remains is to assemble the finite-dimensional Wedderburn blocks and connect those block models to the finite-local NF approximation predicate. The printed equivalence therefore remains partial.
-* **`partial`**, line 663 --- The negative solution of the Connes embedding problem~\cite{MIPRE} yields separable stably finite $C^*$-algebras that are not MF, as Goldbring and Hart observe~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}.
+* **`partial`**, line 669 --- The negative solution of the Connes embedding problem~\cite{MIPRE} yields separable stably finite $C^*$-algebras that are not MF, as Goldbring and Hart observe~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}.
   * The trace-ideal and nonunital support-corner arguments are formalized unconditionally. The historical implication remains partial because the corpus does not construct a non-Connes-embeddable II_1 factor from the negative solution of CEP or formalize the separable elementary-substructure transfer in Goldbring--Hart Remark 6.2.
-* **`partial`**, line 663 --- Shulman proves that $A*_C A$ is MF whenever $A$ is a separable MF $C^*$-algebra and $C\subseteq A$ is a $C^*$-subalgebra~\cite[Theorem~10]{Shulman}.
+* **`partial`**, line 669 --- Shulman proves that $A*_C A$ is MF whenever $A$ is a separable MF $C^*$-algebra and $C\subseteq A$ is a $C^*$-subalgebra~\cite[Theorem~10]{Shulman}.
   * Shulman's C-star-algebraic symmetric-amalgam theorem is stated accurately, but the repository does not construct the full C-star amalgamated free product or formalize Theorem 10. This literature statement is not used in the manuscript's proof.
-* **`partial`**, line 663 --- Nonapproximability was known for the unnormalized Schatten $p$-norms with $1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}.
+* **`partial`**, line 669 --- Nonapproximability was known for the unnormalized Schatten $p$-norms with $1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}.
   * The stability-to-residual-finiteness mechanism is formalized for every finite Schatten parameter, including the p = 2 specialization. The cited concrete nonapproximability constructions for 1 < p < infinity are not reproduced in the repository.
-* **`partial`**, line 663 --- Bachner--Dogon--Lubotzky later settled $p=1$~\cite{BDL}, while the operator norm case $p=\infty$ remained open.
-  * The abstract finite-p obstruction is formalized. Bachner--Dogon--Lubotzky's concrete p = 1 construction is a separate literature input not reproduced here. The dated p = infinity status clause is historical.
-* **`partial`**, line 697 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+* **`partial`**, line 669 --- Bachner--Dogon--Lubotzky later proved nonapproximability for $p=1$~\cite{BDL}.
+  * The abstract finite-p obstruction is formalized. Bachner--Dogon--Lubotzky's concrete p = 1 construction is a separate literature input not reproduced here.
+* **`partial`**, line 703 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * The printed statement is proved directly in every prime characteristic. Composite positive characteristic is not recovered from the prime-characteristic quotients, because property (T) descends to quotients and not conversely. The characteristic-zero reduction and rank propagation are already unconditional in printedEJZIntegralReduction and printedEJZColumnPlaneReduction. The scalar torus layer is now unconditional: the spectral measure satisfies all four shear quasi-invariance estimates, the sector transports and quadratic core estimate are explicit, and the vertical, horizontal, and punctured-mass bounds follow from the unit-root spectral displacement identities. The exact support comparison is also formalized: scalar punctured mass is at most the full-plane nontrivial mass. The finite word-region layer now includes exact A/B/C/D shear placements and the general quasi-invariant image-measure inequality. The resulting unit-shear bounds A-union-B <= A-union-B-union-C plus error and B-union-C <= A-union-B-union-C plus error are formally correct but algebraically tautological; they do not bound the missing D mass. The unresolved substantive step is the full Pontryagin-dual leading-letter partition with generator-dependent images landing in the opposite region unions and pairwise disjoint image memory. This is needed because the zero fiber of the two unit-coordinate characters can contain characters nontrivial on other coefficients, and equal-degree phases can cancel. The Kazhdan-subset half is already characteristic-free.
 
 ## By section
@@ -39,13 +39,13 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 11 | 0 |
-| Introduction | 79 | 0 |
-| Relation to prior work | 25 | 0 |
-| One-sided compression in finite dimension | 14 | 0 |
+| Introduction | 83 | 0 |
+| Relation to prior work | 26 | 0 |
+| One-sided compression in finite dimension | 13 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
-| Normal Kazhdan subgroups and the MF radical | 77 | 0 |
+| Normal Kazhdan subgroups and the MF radical | 78 | 0 |
 | The binary Leavitt self-compression | 34 | 0 |
-| Simplicity and the full MF radical | 78 | 0 |
+| Simplicity and the full MF radical | 79 | 0 |
 | Quotients visible to MF | 52 | 0 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 8 | 0 |

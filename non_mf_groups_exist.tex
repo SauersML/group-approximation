@@ -223,10 +223,12 @@ is the $c_0$-direct sum.
 A separable $C^*$-algebra is called MF if it embeds as a $C^*$-subalgebra of
 a norm matrix corona.  For every countable group $G$, the reduced group
 algebra $C^*_{\mathrm r}(G)$ is separable and has a faithful canonical trace,
-hence is stably finite.  If $C^*_{\mathrm r}(G)$ is MF, restricting an MF
-embedding to its canonical group unitaries shows that $G$ is MF.  Therefore a
-non-MF group automatically gives a separable stably finite reduced group
-$C^*$-algebra that is not MF.
+hence is stably finite.  Suppose that $e\colon C^*_{\mathrm r}(G)\to\mathcal
+Q_{\mathbf d}$ is an MF embedding and put $p=e(1)$.  Then
+$g\mapsto e(\lambda_g)+(1-p)$ is an injective homomorphism from $G$ into
+$\mathcal U(\mathcal Q_{\mathbf d})$, so $G$ is MF.  Therefore a non-MF group
+automatically gives a separable stably finite reduced group $C^*$-algebra that
+is not MF.
 
 For a countable group $G$, define its MF radical by
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G that every allowed matrix model erases">
@@ -291,7 +293,7 @@ Thus
 $\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
 $G/N$ is MF precisely when
 $\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
-\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFRadicalIsLiteralClosureOfTrivial}
+\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
 This is a closure operation on the normal subgroups of one fixed group; it is
 unrelated to topological closure of classes of marked groups.
 
@@ -324,13 +326,16 @@ $G$, $x\in\Rad_{\mathrm{MF}}(G)$, and $\pi$ is a corona homomorphism of $G$,
 then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
 which proves full invariance.
 
-Put $R=\Rad_{\mathrm{MF}}(G)$ and enumerate the nonidentity elements of
-$G/R$ as $(x_j)_{j\ge1}$ and the pairs in $(G/R)^2$.  For each
-$x_j$, the definition of $R$ supplies a corona homomorphism whose value at
-$x_j$ has positive distance from the identity.  Every such homomorphism
-kills $R$ and therefore descends to $G/R$.  Choose coordinate unitary lifts,
-using polar correction as in Lemma~\ref{lem:central-corona-corner}.  At stage
-$n$, take a direct
+Put $R=\Rad_{\mathrm{MF}}(G)$.  If $G/R$ is trivial, there is nothing to
+prove.  Otherwise, enumerate its nonidentity elements as $(x_j)_{j\ge1}$,
+repeating elements when the quotient is finite, and enumerate the pairs in
+$(G/R)^2$.  Choose a lift $g_j\in G$ of each $x_j$.  Since $g_j\notin R$, the
+definition of $R$ supplies a corona homomorphism $\pi_j$ of $G$ such that
+$\pi_j(g_j)$ has positive distance from the identity.  The homomorphism
+$\pi_j$ kills $R$, so it descends to a homomorphism $\overline\pi_j$ of $G/R$,
+and $\overline\pi_j(x_j)=\pi_j(g_j)$.  Choose coordinate unitary lifts of the
+$\overline\pi_j$, using polar correction as in
+Lemma~\ref{lem:central-corona-corner}.  At stage $n$, take a direct
 sum of one coordinate from each of the first $n$ models.  Choose each
 coordinate far enough out that the first $n$ multiplication defects are at
 most $1/n$ and the designated value at $x_j$ retains at least half of its
@@ -775,9 +780,8 @@ $\rho(ucu^{-1})\in C$.  Therefore
 $\rho([ucu^{-1},\ell])=1$ for every $\ell\in L$.
 \end{proof}
 
-The finite-dimensional hypothesis is essential here.  On an
-infinite-dimensional space an injective endomorphism of the commutant need
-not be surjective.
+This is where finite dimensionality enters the proof: an injective linear
+self-map of an infinite-dimensional commutant need not be surjective.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential}
 In Section~\ref{sec:transport} the Kazhdan projection places the analogous
 endomorphism inside a norm matrix corona, where stable finiteness supplies
@@ -868,7 +872,7 @@ conjugation by $V_n(g)$ defines a bijection, denoted $\operatorname{Ad}(V(g))$,
 of the bounded matrix sequences.
 
 \begin{lemma}\label{lem:stable-finite}
-For every sequence $(m_n)$, the norm matrix corona
+For every sequence of positive integers $(m_n)$, the norm matrix corona
 %<webmath object="whole" when="\prod_nM_{m_n}(\C)\big/\bigoplus_nM_{m_n}(\C)" title="the norm matrix corona whose stable finiteness is used here">
 % The numerator consists of bounded [[sequence|sequences]] of square complex
 % matrices, with an \(m_n\)-by-\(m_n\) matrix at stage n.  The denominator
@@ -930,7 +934,7 @@ then
 \[
  U^*PU\le P.
 \]
-\leanverified{Analysis/MaximalCStarKazhdanProjection}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder}
+\leanverified{Manuscript/OneSidedMFRadical/KazhdanProjectionOrderLiteral}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptLiteralMaximalCStarKazhdanProjectionOrder}
 \end{lemma}
 
 \begin{proof}
@@ -975,7 +979,7 @@ representation of $G$.  Then
  \operatorname{Ad}(V(u))\bigl(\mathcal C_2(V,L)\bigr)
  =\mathcal C_2(V,L).
 \]
-\leanverified{Manuscript/OneSidedMFRadical/KazhdanTransport}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport}
+\leanverified{Manuscript/OneSidedMFRadical/TransportCommutantEquality}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportCommutantEquality}
 \end{theorem}
 
 \begin{proof}
@@ -1947,9 +1951,11 @@ $\Rad_{\mathrm{MF}}(H)=H$, this composition and hence $f$ are trivial.  If
 $H$ were MF, its identity homomorphism would contradict this conclusion.
 
 Finally, $C^*_{\mathrm r}(H)$ is separable because $H$ is countable.  Its
-canonical trace is faithful, so it is stably finite.  If
-$C^*_{\mathrm r}(H)$ were MF, restricting an MF embedding to the canonical
-unitaries would make $H$ an MF group, a contradiction.
+canonical trace is faithful, so it is stably finite.  If an MF embedding
+$e\colon C^*_{\mathrm r}(H)\to\mathcal Q_{\mathbf d}$ existed and $p=e(1)$,
+then $h\mapsto e(\lambda_h)+(1-p)$ would embed $H$ in
+$\mathcal U(\mathcal Q_{\mathbf d})$.  This contradicts the fact that $H$ is
+not MF.
 \end{proof}
 
 \section{Quotients visible to MF}\label{sec:prescribed-quotients}
@@ -1975,7 +1981,7 @@ $\ker f\le\Rad_{\mathrm{MF}}(G)$, then
 \]
 In particular, the conclusion holds whenever
 $\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
-\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel}
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
 More generally, for every normal subgroup $N\trianglelefteq G$,
 %<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="how relations forced in G are read from Q">
 % \(\operatorname{cl}_{\mathrm{MF}}^G(N)\) is an MF [[closure operation]] on
@@ -2005,7 +2011,7 @@ Consequently,
  \quad\Longleftrightarrow\quad
  \ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.
 \]
-\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback}
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
 \end{proposition}
 
 \begin{proof}
