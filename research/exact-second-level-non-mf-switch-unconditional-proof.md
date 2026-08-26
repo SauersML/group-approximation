@@ -13,10 +13,10 @@ requires:
 ## Scope
 
 This note proves a zero-literature-input second-level completeness theorem for
-a uniform, code-indexed family of countably presented groups.  It also records
-the exact boundary of the result: it does **not** compile those presentations
-to finite presentations.  Consequently it does not prove the previously
-proposed `Π⁰₂`-completeness theorem over all finite-presentation codes.
+a uniform, code-indexed family of countably presented groups.  This route by
+itself does **not** compile those presentations to finite presentations; the
+separate Mikhailova benign compiler and tensor-synchronized rope now perform
+that later step.
 
 The only non-computability input is the already established literal non-MF
 seed: a fixed finitely presented group `E` with a fixed nontrivial element `w`
@@ -161,9 +161,8 @@ The Lean proof uses:
 It introduces no axiom, `sorry`, opaque compiler, Chiodo theorem, Higman
 embedding theorem, or literature-supplied completeness theorem.
 
-The finite-presentation boundary remains real.  Turning the infinite ray into
-a finite presentation while retaining `E` in the finite branch and forcing a
-torsion-free or MF target in the infinite branch requires an effective
-torsion-preserving embedding/compiler theorem.  The repository currently
-contains only uninhabited interfaces for the missing pieces.  They are not
-used here, and no finite-presentation hardness claim follows from this note.
+No finite-presentation hardness claim follows from this note alone.  The later
+route first passes through the residually finite bidirectional bridge, then
+uses the Mikhailova fiber-product benign compiler and tensor-synchronized rope.
+Those constructions preserve the two branches without altering this exact ray
+calculation.

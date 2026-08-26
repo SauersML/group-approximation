@@ -7,6 +7,7 @@ target: mikhailova-fiber-product-gives-regular-mf-benign-compiler
 requires:
   - mikaelian-explicit-higman-embedding
   - mf-positive-controls
+  - regular-mf-central-hnn-closure
 ---
 
 For the effective Higman output `H=<X|R>`, the subgroup of
@@ -22,5 +23,7 @@ times the Mikhailova subgroup makes membership equivalent to `w_f=1` in `H`,
 while the independent coordinate makes the input map injective.  Thus the
 intersection is exactly the recursively enumerable kernel.  The ambient group
 is a finite direct product of finite-rank free groups, hence finitely presented
-and residually finite; the cited positive control supplies a regular operator-MF
-realization.  All data are uniform in the effective Higman output.
+and residually finite.  A separating chain of finite quotients in their left
+regular representations supplies the regular operator-MF realization, as
+recorded explicitly in the central-HNN closure claim.  All data are uniform in
+the effective Higman output.
