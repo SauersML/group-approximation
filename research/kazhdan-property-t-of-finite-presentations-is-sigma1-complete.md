@@ -63,3 +63,15 @@ the relator `P w(P,Q)^{-1} = 1` exactly when a given program halts
 presents `SL_3(Z)` on halting and `SL_3(Z) x Z` otherwise; the latter maps
 onto `Z` and fails (T).  Semidecidability is unchanged, so `T_rec2` is
 `Sigma^0_1`-complete.
+
+**Kazhdan constants are not approximable.**  Fix the Rabin family with
+witness `SL_3(Z)` in place of the trivial group (the Rabin construction
+accepts any finitely presented positive witness `A`: `K(w) ~= A` when
+`w = 1`).  Then the spectral gap `lambda(K(w), S)` of the Laplacian on the
+standard generators equals a fixed positive constant `lambda_0` when
+`w = 1` and `0` otherwise.  An algorithm producing, from a finite
+presentation, a rational within `lambda_0 / 3` of the spectral gap would
+decide the word problem.  So no algorithm approximates the spectral gap
+(equivalently, the Kazhdan constant) of finitely presented groups to
+within any fixed additive error, even though the gap is left-r.e. by
+Ozawa's theorem.
