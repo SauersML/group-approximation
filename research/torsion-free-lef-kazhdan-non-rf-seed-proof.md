@@ -93,3 +93,7 @@ finite index and omitted it, then `N` has finite index in `J`; its core in
 `J` also has finite index.  Centrality says every conjugate of `N` omits the
 element, so the core omits it, contradicting finite-residual invisibility in
 `J`.  Therefore `K` is non-residually-finite, completing the proof.
+
+Finally LEF implies both soficity and operator-MF.  These implications are
+formalized in `isSofic_of_isLEF` and `isOperatorMF_of_isLEF`; no additional
+property of the construction is needed.
