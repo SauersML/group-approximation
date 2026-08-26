@@ -77,9 +77,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "manuscriptPropositionDefect"),
-    "prop:mf-upper-bound": (
-        "Computability/MFRecognitionPi02",
-        "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02"),
 }
 
 
@@ -90,36 +87,15 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:local-models": (
-        "Korchagin, Proposition 7 (amplification of the separation constant)",),
-    "lem:marked-closed": (),
-    "lem:rf-regular": (),
-    "thm:hnn-permanence": (
-        "Ueda, Proposition 2.4 (the universal HNN corner construction)",
-        "Shulman, Theorem 20 (the amalgam criterion for MF)",
-        "Britton's lemma",),
-    "cor:central-hnn": (),
-    "lem:seed": (
-        "Leavitt's normal form: the monomials without a factor s_1 t_1 are "
-        "an F_2-basis of L(1,2)",),
-    "lem:switch": (
-        "Bilanovic--Chubb--Roven, Theorem 3.1 (the construction pattern)",),
-    "lem:bridge": (
-        "Britton's lemma", "Reidemeister--Schreier rewriting",
-        "free basis of the normal closure of a basis element",),
-    "lem:mikhailova": (
-        "Higman's embedding theorem in Mikaelian's explicit form",
-        "Mikhailova's fibre product",),
-    "lem:central-rope": ("Britton's lemma",),
-    "lem:finite-rope": (),
-    "lem:negative-branch": ("Britton's lemma",),
-    "thm:recognition": (
-        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete",),
-    "lem:reduced-products": (
-        "Blackadar--Kirchberg: the standard diagonal permanence argument",
-        "Korchagin, proof of Proposition 6",),
-    "lem:tensor-sync": (),
-    "lem:positive-branch": (),
+    "thm:hull": (
+        "Hull, Theorem 7.1",),
+    "lem:saturation": (
+        "Osin, Lemma 7.1", "Hull, Theorem 3.12",
+        "Hull, Corollary 5.7 and Lemma 5.8"),
+    "lem:simple-in-defect": (
+        "Fournier-Facio, Section 2",),
+    "thm:torsion-free": (
+        "Fournier-Facio, Section 2", "Hull, Corollary 7.4"),
 }
 
 
@@ -148,29 +124,13 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:tau-elementary": [],
     "prop:leavitt-compression": ["lem:tau-elementary"],
     "prop:simple": [],
-    "prop:defect": [],
-    "lem:local-models": [],
-    "prop:mf-upper-bound": ["lem:local-models"],
-    "lem:marked-closed": ["lem:local-models"],
-    "lem:rf-regular": [],
-    "thm:hnn-permanence": [],
-    "cor:central-hnn": ["thm:hnn-permanence"],
-    "lem:seed": [],
-    "lem:switch": ["lem:seed"],
-    "lem:bridge": [],
-    "lem:mikhailova": ["lem:switch", "lem:bridge"],
-    "lem:central-rope": ["lem:mikhailova", "lem:bridge"],
-    "lem:finite-rope": ["lem:central-rope"],
-    "lem:negative-branch": [
-        "lem:switch", "lem:bridge", "lem:finite-rope", "thm:headline"],
-    "thm:recognition": [
-        "prop:mf-upper-bound", "lem:finite-rope", "lem:positive-branch",
-        "lem:negative-branch"],
-    "lem:reduced-products": [],
-    "lem:tensor-sync": ["lem:reduced-products", "thm:hnn-permanence"],
-    "lem:positive-branch": [
-        "lem:finite-rope", "lem:tensor-sync", "lem:central-rope",
-        "lem:rf-regular", "cor:central-hnn", "lem:bridge"],
+    "prop:defect": ["prop:simple", "prop:leavitt-compression"],
+    "thm:hull": [],
+    "lem:saturation": ["thm:hull"],
+    "lem:simple-in-defect": [],
+    "thm:torsion-free": [
+        "thm:compression-criterion", "lem:saturation",
+        "lem:simple-in-defect"],
 }
 
 

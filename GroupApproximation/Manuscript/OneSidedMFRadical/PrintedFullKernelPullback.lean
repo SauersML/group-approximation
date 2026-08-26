@@ -6,7 +6,7 @@ import GroupApproximation.Algebra.CountableInstances
 # The printed full-kernel pullback proposition, sentence by sentence
 
 `non_mf_groups_exist.tex`, `\section{MF-visible quotients}`: the opening
-sentence, `\begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}`
+sentence, `\begin{proposition}[full-kernel pullback]`
 with its three displays, and the three sentences that close the paragraph
 (the mutually inverse correspondences, the isomorphism of largest MF-visible
 quotients, and compatibility with composition).
@@ -36,7 +36,7 @@ noncomputable section
 the same `local` scope the mirrored copy had. -/
 attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
-/-- **`prop:full-kernel-pullback`, the three printed displays.**  For a
+/-- **the full-kernel pullback proposition, the three printed displays.**  For a
 surjection `f : G → Q` of countable groups whose kernel is already inside the
 MF radical of `G`:
 
@@ -59,7 +59,7 @@ def PrintedFullKernelPullback : Prop :=
           (IsCDEOperatorMF (G ⧸ N) ↔
             f.ker ≤ N ∧ IsCDEOperatorMF (Q ⧸ (N.map f : Subgroup Q))))
 
-/-- Closed proof of the three printed displays of `prop:full-kernel-pullback`. -/
+/-- Closed proof of the three printed displays of the full-kernel pullback proposition. -/
 theorem manuscriptPrintedFullKernelPullback : PrintedFullKernelPullback := by
   intro G _ _ Q _ _ f hf hker
   refine ⟨actualCoronaMFResidual_eq_comap_of_surjective_of_ker_le f hf hker,

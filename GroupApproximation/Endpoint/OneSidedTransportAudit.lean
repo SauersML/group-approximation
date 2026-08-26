@@ -540,7 +540,7 @@ only place their axiom closure is checked. -/
 -- no literature dependence.
 #audit_closed_axioms GroupApproximation.manuscriptAmenableKazhdanSterility
 
-/-! ## Section 7, `prop:full-kernel-pullback` and its closing paragraph
+/-! ## Section 7, the full-kernel pullback proposition and its closing paragraph
 
 The general statements live in `Sofic/FullMFRadicalClosurePullback.lean`,
 `Sofic/FullMFRadicalQuotientLattice.lean` and

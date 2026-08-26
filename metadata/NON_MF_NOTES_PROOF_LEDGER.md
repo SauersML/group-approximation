@@ -6,10 +6,10 @@ Spec document: `non_mf_group_notes.tex`. Formal development: `GroupApproximation
 
 | | |
 | --- | --- |
-| commit | the paper/notes split of 2026-08-22 |
-| `git hash-object non_mf_group_notes.tex` | `853b2582b69314396b0d4ddedbca145861cb060e` |
-| sha256 of the file | `92be580d1f4c4fb29a7ac52a5f9f6f96f2a5d6e4b50ca2a2063de15c6769b26c` |
-| `wc -l` | 3150 |
+| commit | the Theorem C promotion of 2026-08-26 |
+| `git hash-object non_mf_group_notes.tex` | `9eb78111078d549f0a347907344ed0ce9ce30929` |
+| sha256 of the file | `d551e1d37abdac3a3be285b0b0595bd6be09f0fc1d55ef6f1cc96d98d6a831d2` |
+| `wc -l` | 3154 |
 
 The three checkable rows are enforced by
 `scripts/check_non_mf_proof_ledger.py`. Re-pinning is deliberate and follows
