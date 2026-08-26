@@ -36,6 +36,18 @@ non-MF recognition problem. -/
 abbrev NonMFCode (c : PresentationCode) : Prop :=
   ¬ MFCode c
 
+/-- The finite-presentation MF predicate has the unconditional second-level
+universal upper bound supplied by the concrete matrix checker. -/
+theorem mfCode_pi02 : Pi02 MFCode := by
+  change Pi02 (fun c : PresentationCode ↦ IsOperatorMF (Carrier c))
+  exact MFRecognitionPi02.operatorMFCode_pi02
+
+/-- Complementing the same checker gives the unconditional second-level
+existential upper bound for non-MF recognition. -/
+theorem nonMFCode_sigma02 : Sigma02 NonMFCode := by
+  change Sigma02 (fun c : PresentationCode ↦ ¬ IsOperatorMF (Carrier c))
+  exact MFRecognitionPi02.nonOperatorMFCode_sigma02
+
 /-- The exact finite-output compiler datum needed by the hardness proof.
 Its correctness clause says that the compiled finite presentation is MF
 exactly when the source partial program has infinite domain. -/
@@ -49,7 +61,7 @@ theorem mfCode_pi02Complete_of_compiler (C : MFCompiler) :
     Pi02Complete MFCode := by
   change Pi02Complete
     (AdianRabinGeneral.codeProperty OperatorMFProperty)
-  exact ⟨MFRecognitionPi02.operatorMFCode_pi02,
+  exact ⟨mfCode_pi02,
     finiteCodeProperty_pi02Hard_of_compiler C⟩
 
 /-- The reverse classification needs no new construction: complementing the
