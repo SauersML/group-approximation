@@ -590,3 +590,64 @@ theorem exists_matrixAnswerCheck_iff (c : PresentationCode)
     obtain ⟨d, gens, hunitary, hpass⟩ := exists_coded_openPasses M hM
     exact exists_matrixAnswerCheck_of_coded_openPasses
       c W k d gens hunitary hpass
+
+/-! ## Joining the void and matrix branches -/
+
+/-- The total finite-answer checker for one presentation and one challenge. -/
+def answerCheck (c : PresentationCode) (W : List (List (ℕ × Bool)))
+    (k : ℕ) : MFAnswerCertificate → Bool
+  | Sum.inl a => voidAnswerCheck c W a
+  | Sum.inr a => matrixAnswerCheck c W k a
+
+/-- Existential exactness of the complete finite answer type. -/
+theorem exists_answerCheck_iff (c : PresentationCode)
+    (W : List (List (ℕ × Bool))) (k : ℕ) :
+    (∃ a : MFAnswerCertificate, answerCheck c W k a = true) ↔
+      AnswersOpen c W k := by
+  rw [AnswersOpen, ← exists_voidAnswerCheck_iff,
+    ← exists_matrixAnswerCheck_iff]
+  constructor
+  · rintro ⟨a, ha⟩
+    cases a with
+    | inl a => exact Or.inl ⟨a, ha⟩
+    | inr a => exact Or.inr ⟨a, ha⟩
+  · rintro (⟨a, ha⟩ | ⟨a, ha⟩)
+    · exact ⟨Sum.inl a, ha⟩
+    · exact ⟨Sum.inr a, ha⟩
+
+/-- Decode both the challenge and its proposed answer from natural numbers. -/
+def codedAnswerCheck (c : PresentationCode) (q a : ℕ) : Bool :=
+  answerCheck c (challengeWords (challengeAt q))
+    (challengeScale (challengeAt q)) (answerCertificateAt a)
+
+/-- The natural-number answer search is exactly the open analytic answer. -/
+theorem exists_codedAnswerCheck_iff (c : PresentationCode) (q : ℕ) :
+    (∃ a, codedAnswerCheck c q a = true) ↔
+      AnswersOpen c (challengeWords (challengeAt q))
+        (challengeScale (challengeAt q)) := by
+  rw [codedAnswerCheck]
+  constructor
+  · rintro ⟨a, ha⟩
+    exact (exists_answerCheck_iff _ _ _).1
+      ⟨answerCertificateAt a, ha⟩
+  · intro h
+    obtain ⟨a, ha⟩ := (exists_answerCheck_iff _ _ _).2 h
+    exact ⟨Encodable.encode a, by simpa using ha⟩
+
+/-- Before the computability audit, the finite checker already has the exact
+global logical normal form required for Operator-MF recognition. -/
+theorem isOperatorMF_iff_forall_exists_codedAnswerCheck
+    (c : PresentationCode) :
+    IsOperatorMF (Carrier c) ↔
+      ∀ q, ∃ a, codedAnswerCheck c q a = true := by
+  rw [isOperatorMF_iff_forall_openAnswers]
+  constructor
+  · intro h q
+    exact (exists_codedAnswerCheck_iff c q).2
+      (h (challengeWords (challengeAt q))
+        (challengeScale (challengeAt q)))
+  · intro h W k
+    have hq := (exists_codedAnswerCheck_iff c
+      (Encodable.encode ((W, k) : Challenge))).1
+      (h (Encodable.encode ((W, k) : Challenge)))
+    simpa using hq
