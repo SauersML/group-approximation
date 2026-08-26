@@ -80,6 +80,15 @@ to the target, and is a restatement rather than a reduction.
   `all-abelian-uniform-hs-rounding-gives-global-pvm` already settles from a
   uniform hypothesis.  Neither says anything about the conjugation relations,
   and `(DLT2)` is a statement about them.
+- **Sparse-corner normalization does not recover `(DLT2)`.**  The explicit
+  model `sparse-marked-lamp-corner-has-unit-relative-leakage` has a fixed
+  two-lamp spectral projection of constant nonzero rank, pointwise
+  operator-norm covariance which is eventually exact, and active characters
+  with trivial stabilizer and a common positive Schreier gap.  Its ambient
+  leakage tends to zero, but leakage divided by the marked corner trace is
+  identically one.  Thus neither the nonzero rank germ nor normalization by
+  the sparse visible corner upgrades pointwise covariance to the relative
+  transport estimate needed here.
 - **This hole can never be a finite template.**  A Tarski monster is a torsion
   group, so a finitely presented one would be a finitely presented infinite
   torsion group, and Ol'shanskii's construction is by an infinite presentation.
