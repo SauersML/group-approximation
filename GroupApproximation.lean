@@ -1170,6 +1170,7 @@ import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNPresentation
+import GroupApproximation.Algebra.HNNPresentationQuotient
 import GroupApproximation.Algebra.RabinVariantPresentation
 import GroupApproximation.Computability.RabinVariantMF
 import GroupApproximation.Algebra.RabinVariantTower
