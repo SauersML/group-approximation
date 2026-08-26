@@ -42,3 +42,22 @@ exactly when the base is.  Applying it to the compiler's output preserves
 both branches --- torsion-free on `INF`, and containing `Z/2` on `FIN` ---
 so `INF` reduces to torsion-freeness of two-generator finite
 presentations.
+
+## The whole order family, at once
+
+For each integer `n >= 2` the property "has no element of order `n`" is
+hereditary, isomorphism invariant, holds for the rope (which is
+torsion-free) and fails for `Z/n`, which is finitely presented.  So the
+same criterion gives
+
+```text
+{ P : Carrier(P) has no element of order n }   is Pi^0_2-complete,     (TFN)
+```
+
+for every `n >= 2`, with the `Pi^0_2` upper bound as in
+[[torsion-freeness-recognition-is-pi2-complete]] (universal quantifier
+over words of a difference of two r.e. events, with the exponent fixed).
+Taking the intersection over `n` recovers torsion-freeness; taking `n`
+prime recovers "no `p`-torsion".  All of these cells are therefore closed
+at the second level on finite presentations, which is the widest family of
+finite-presentation cells now settled.
