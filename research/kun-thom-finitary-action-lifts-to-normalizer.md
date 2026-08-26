@@ -3,6 +3,8 @@ rg: 2
 id: kun-thom-finitary-action-lifts-to-normalizer
 kind: claim
 title: The explicit Kun--Thom action on the finitary symmetric factor has a trace-correct homomorphic lift to the normalizer of R in its ultrapower
+invalidates:
+  - nonhyperlinear-from-kun-thom-finitary-normalizer-obstruction
 artifacts:
   - notes/HYPERLINEAR_NONSOFIC_ATTEMPT_2026-08-26.md
 distinct_from:
