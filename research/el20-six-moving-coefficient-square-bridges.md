@@ -445,6 +445,18 @@ does not return the cut; the next search must use an asymmetric/unmatched
 three-factor word, a coefficient sum, greater depth, or two additional
 nonnormal occurrences.
 
+Using two additional depth-one root channels instead of one deeper
+occurrence is also fenced.  `two-depth-one-nonnormal-roots-do-not-return-cross-whitehead`
+enumerates all `89984` ordered pairs of individually nonnormal depth-one
+roots in distinct actor positions, for both branches and both targets.  The
+`J_1` target has no `x_28(1)` survivor.  The source target has one survivor
+per branch, but its product with `K_i` cancels to the single nonnormal root
+`x_78(p)` or `x_78(r)`, which fails the remaining signed signature.  All
+`359936` full cases therefore fail.  This leaves unmatched three-factor
+words, deeper two-occurrence coefficients, or the first genuine
+three-channel factorization; a pair of elementary depth-one exits is not
+enough.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
@@ -493,3 +505,23 @@ ordinary return word, regardless of full Leavitt coefficient sums.  A live
 independent factorization now needs at least three rank-two occurrences or
 one genuinely three-coordinate occurrence; dyadic same-pair fusion and
 normalizer dressing remain excluded.
+
+The first live three-channel factorization exists, but its complementary
+fusion does not have the advertised constant coefficients.
+`stabilized-cross-braid-has-s3-square-gauge-fence` verifies the exact
+ordinary identities
+
+```text
+K_i=P_iQ_iP_i=Q_iP_iQ_i
+```
+
+through stable coordinate `9`, together with all complementary cross
+commutations.  Only `P_0P_1=w_79(1)` is constant: direct multiplication
+gives `Q_0Q_1=w_89(p+r)` and `K_0K_1=w_78(p+r)`, where the branch-flip unit
+`p+r` is not one.  The full corrected table has an exact
+`S_3 times S_3` reservoir model, with the two complementary braid packets
+in separate factors and their fusions diagonal.  The diagonal product of
+the first two fused gauges remains order three.  Thus a three-coordinate
+braid alone still does not authenticate a shared selector; the next word
+must form a genuine coefficient sum before complementary separation or add
+a same-carrier relation between the two private factors.
