@@ -142,3 +142,13 @@ literature theorem is permitted in this claim.
   selector source.  The new sharp target is to multiply or compress this
   discrepancy by an actual center-chain source occurrence, or charge its
   escape from that source to a row defect.
+- **Attach the paid discrepancy to the literal first Hecke arm.**  The
+  ordinary commutator with the actual `B_2=x_84(s_00t_1)` occurrence ejects
+  `x_74(t_1)`, whose coefficient has a one-sided inverse.  Thus the paid
+  discrepancy is not an auxiliary spectator: it directly meets the native
+  Hecke word packet.  However
+  `native-t00-collision-first-hecke-attachment-has-gl10-model` realizes this
+  attachment, the order-seven head, and the surviving marked discrepancy in
+  one exact `GL_10(F_2)` chart.  The attachment still does not name the
+  signed-Hecke source cut.  A mass-incidence or source-escape relation,
+  rather than another uncompressed mixed commutator, remains necessary.

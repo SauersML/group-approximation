@@ -29,6 +29,7 @@ requires:
   - spectator-dressed-gram-does-not-share-selector-gauges
   - native-t00-y1-collision-pays-marked-opnorm
   - marked-t00-separation-has-gl10-model
+  - native-t00-collision-first-hecke-attachment-has-gl10-model
   - fine-idempotent-biaction-return-has-gl10-model
   - property-t-free-manuscript-theorem-dependency-audit
 ---
@@ -60,6 +61,10 @@ the signed-Hecke source.  Likewise, naming `e_00=s_00t_00` and both of its
 Morita absorption rows does not turn its root spectrum into the physical
 quarter corner.  The missing row is therefore a spectral-source incidence
 or an ordinary source-escape payment.
+The paid discrepancy has now also been commuted with the literal first
+Hecke arm.  Its full-rank-scale ejection survives in the same marked
+`GL_10(F_2)` fence, so this incidence has to be projection-typed: an
+uncompressed Hecke commutator is still below the source-carrier seam.
 The manuscript dependency audit then separates this open
 MF-collapse input from the already established downstream algebraic theorem
 package.  Therefore the proposed proof has exactly the safe status stated in
