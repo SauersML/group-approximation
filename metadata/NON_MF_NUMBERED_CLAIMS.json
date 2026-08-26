@@ -340,71 +340,6 @@
       ]
     },
     {
-      "id": "thm:prescribed-quotients",
-      "environment": "theorem",
-      "title": "prescribed quotients visible to MF",
-      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:full-kernel-pullback",
-        "prop:universal-factorization"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:full-kernel-pullback",
-      "environment": "proposition",
-      "title": "full-kernel pullback",
-      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
-      "status": "exact",
-      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
-      "dependencies": [
-        "prop:mf-residual-calculus"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
-          "covers": "one printed clause; the listed declarations are collective"
-        }
-      ]
-    },
-    {
-      "id": "prop:universal-factorization",
-      "environment": "proposition",
-      "title": "universal factorization",
-      "statement_sha256": "d68ff5d921d874282bb59f4ea01c16c43b91865482fe3bb8480aa63113b16bfe",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/UniversalFactorization",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "lem:local-models",
       "environment": "lemma",
       "title": "locality with fixed separation",
@@ -673,6 +608,71 @@
       "external_inputs": [],
       "coverage_gap": "",
       "lean": []
+    },
+    {
+      "id": "thm:prescribed-quotients",
+      "environment": "theorem",
+      "title": "prescribed quotients visible to MF",
+      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:full-kernel-pullback",
+        "prop:universal-factorization"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:full-kernel-pullback",
+      "environment": "proposition",
+      "title": "full-kernel pullback",
+      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "prop:universal-factorization",
+      "environment": "proposition",
+      "title": "universal factorization",
+      "statement_sha256": "d68ff5d921d874282bb59f4ea01c16c43b91865482fe3bb8480aa63113b16bfe",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/UniversalFactorization",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization",
+          "covers": "the complete printed proposition"
+        }
+      ]
     }
   ]
 }
