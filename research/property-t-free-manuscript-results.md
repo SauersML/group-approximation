@@ -7,6 +7,8 @@ root: true
 goal: true
 artifacts:
   - non_mf_groups_exist.tex
+  - research/proposed-property-t-free-whitehead-proof-safe-prefix-audit.md
+  - research/proposed-property-t-free-whitehead-proof-safe-prefix-route.md
 ---
 
 **OPEN.**  Produce a replacement proof of the results advertised by

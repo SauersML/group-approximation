@@ -6,6 +6,8 @@ title: Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
 root: true
 goal: true
 artifacts:
+  - research/proposed-property-t-free-whitehead-proof-safe-prefix-audit.md
+  - research/proposed-property-t-free-whitehead-proof-safe-prefix-route.md
   - research/property-t-free-leavitt-via-corona-module-decoder.md
   - research/property-t-free-leavitt-via-full-support-hs-decoder.md
   - research/property-t-free-leavitt-via-opnorm-return-row.md
