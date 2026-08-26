@@ -357,9 +357,9 @@ theorem primrecPred_matrixEq :
       (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
       ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
         (entry z.2.1.1 z.2.2 z.1 j) :=
-    PrimrecRel.comp hcoord
+    hcoord.comp (Primrec.pair
       (Primrec.pair (Primrec.fst.comp Primrec.snd) Primrec.fst)
-      (Primrec.snd.comp Primrec.snd)
+      (Primrec.snd.comp Primrec.snd))
   have hcols : PrimrecRel fun (L : List ℕ)
       (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
       ∀ j ∈ L, ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
@@ -369,18 +369,18 @@ theorem primrecPred_matrixEq :
       (z : (ℕ × MatrixCode) × MatrixCode) =>
       ∀ j ∈ List.range (dim z.1.1),
         ComplexEq (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
-    PrimrecRel.comp hcols
+    hcols.comp (Primrec.pair
       (Primrec.list_range.comp (primrec_dim.comp
         (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))))
-      (Primrec.pair Primrec.fst Primrec.snd)
+      (Primrec.pair Primrec.fst Primrec.snd))
   have hrows : PrimrecRel fun (L : List ℕ)
       (z : (ℕ × MatrixCode) × MatrixCode) =>
       ∀ i ∈ L, ∀ j ∈ List.range (dim z.1.1),
         ComplexEq (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
     PrimrecRel.forall_mem_list hrow
-  refine (PrimrecRel.comp hrows
+  refine (hrows.comp (Primrec.pair
     (Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) Primrec.id).of_eq ?_
+      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) Primrec.id)).of_eq ?_
   intro z
   constructor
   · intro h i hi j hj
@@ -401,7 +401,8 @@ theorem primrecPred_generatorsUnitary :
     PrimrecPred fun z : ℕ × List MatrixCode => generatorsUnitary z.1 z.2 := by
   have hitem : PrimrecRel fun (A : MatrixCode) (d : ℕ) => isUnitary d A :=
     primrecPred_isUnitary.comp (Primrec.pair Primrec.snd Primrec.fst)
-  exact PrimrecRel.comp (PrimrecRel.forall_mem_list hitem) Primrec.snd Primrec.fst
+  exact (PrimrecRel.forall_mem_list hitem).comp
+    (Primrec.pair Primrec.snd Primrec.fst)
 
 theorem primrec_matrixEqDecision :
     Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
@@ -477,9 +478,9 @@ theorem primrecPred_matrixSmall :
   have hcol : PrimrecRel fun (j : ℕ)
       (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
       entrySmall z.2.1.1 z.2.1.2 (entry z.2.1.1 z.2.2 z.1 j) :=
-    PrimrecRel.comp hcoord
+    hcoord.comp (Primrec.pair
       (Primrec.pair (Primrec.fst.comp Primrec.snd) Primrec.fst)
-      (Primrec.snd.comp Primrec.snd)
+      (Primrec.snd.comp Primrec.snd))
   have hcols : PrimrecRel fun (L : List ℕ)
       (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
       ∀ j ∈ L, entrySmall z.2.1.1 z.2.1.2
@@ -488,17 +489,17 @@ theorem primrecPred_matrixSmall :
   have hrow : PrimrecRel fun (i : ℕ) (z : (ℕ × ℕ) × MatrixCode) =>
       ∀ j ∈ List.range (dim z.1.1),
         entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j) :=
-    PrimrecRel.comp hcols
+    hcols.comp (Primrec.pair
       (Primrec.list_range.comp (primrec_dim.comp
-        (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)))))
-      (Primrec.pair Primrec.fst Primrec.snd)
+        (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))))
+      (Primrec.pair Primrec.fst Primrec.snd))
   have hrows : PrimrecRel fun (L : List ℕ) (z : (ℕ × ℕ) × MatrixCode) =>
       ∀ i ∈ L, ∀ j ∈ List.range (dim z.1.1),
         entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j) :=
     PrimrecRel.forall_mem_list hrow
-  refine (PrimrecRel.comp hrows
+  refine (hrows.comp (Primrec.pair
     (Primrec.list_range.comp (primrec_dim.comp
-      (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))) Primrec.id).of_eq ?_
+      (Primrec.fst.comp Primrec.fst))) Primrec.id)).of_eq ?_
   intro z
   constructor
   · intro h i hi j hj
@@ -509,11 +510,16 @@ theorem primrecPred_matrixSmall :
 theorem primrecPred_vectorWitness :
     PrimrecPred fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitness z.1.1 z.1.2 z.2 := by
-  exact primrecRel_ratLt.comp
-    (primrec_vectorNormSq.comp (Primrec.pair
-      (Primrec.fst.comp Primrec.fst) Primrec.snd))
-    (primrec_ratMul.comp (Primrec.const (ratOfNat 9))
-      (primrec_mulVecNormSq.comp Primrec.id))
+  have hleft : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
+      vectorNormSq z.1.1 z.2 :=
+    primrec_vectorNormSq.comp
+      (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
+  have hnorm : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
+      mulVecNormSq z.1.1 z.1.2 z.2 := primrec_mulVecNormSq
+  have hright : Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
+      ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
+    primrec_ratMul.comp (Primrec.const (ratOfNat 9)) hnorm
+  exact primrecRel_ratLt.comp hleft hright
 
 theorem primrec_matrixSmallDecision :
     Primrec fun z : (ℕ × ℕ) × MatrixCode =>
