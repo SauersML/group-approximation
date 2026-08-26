@@ -4,6 +4,7 @@ id: residual-finiteness-of-enumerated-presentations-is-pi3-complete
 kind: claim
 title: Residual finiteness is Pi-zero-three complete for recursively enumerated presentations, one level above local embeddability
 artifacts:
+  - GroupApproximation/Computability/RFPresentationPi02.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   lef-recognition-has-a-pi2-upper-bound: that places LEF at the second level; this shows residual finiteness sits strictly one level higher on the same syntax, so the two properties that coincide for finitely presented groups are separated by the arithmetical hierarchy on recursive presentations.
@@ -63,3 +64,5 @@ via the shift right-angled Artin family
 [[shift-raag-family-is-rf-iff-symmetrized-index-set-closed]]; and
 `Pi^0_2`-completeness of `RF_fp` is the residually finite Higman problem,
 open in the literature.
+
+**Machine-checked (finite presentations).**  `Computability/RFPresentationPi02.pi02_residuallyFinite` is the `Pi^0_2` membership of `RF_fp` and `rf_fp_strict_position` the placement `Pi^0_2 \ Pi^0_1` / `Sigma^0_2 \ Sigma^0_1`, with the Markov data seeded by the finitely presented nonsofic group.
