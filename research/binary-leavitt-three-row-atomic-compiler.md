@@ -121,3 +121,13 @@ range through the complementary parent-sign sector.  Thus the next fixed
 prototype must authenticate an individual coefficient arm on the prescribed
 parent atom, not only the inverse and reverse **output commutators** and
 their exact range sum.
+
+Authenticating only one such arm is still insufficient.
+`one-arm-range-sum-whitehead-has-marked-model` fixes one full Pauli arm
+through each Whitehead, so the same named coefficient occurrence participates
+in both the inverse and reverse product rows and is non-scalar on the
+prescribed parent atom.  A twelve-dimensional exact model makes those fixed
+arms global while placing all three-character support motion in the
+complementary controlled arms.  Thus a viable prototype must authenticate
+both sides of at least one transported product, or use a mixed cross-arm row
+which forces the complementary range support back into the parent atom.
