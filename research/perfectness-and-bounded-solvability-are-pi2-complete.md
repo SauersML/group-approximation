@@ -4,6 +4,7 @@ id: perfectness-and-bounded-solvability-are-pi2-complete
 kind: claim
 title: Perfectness and each bounded nilpotency class or derived length are Pi-zero-two complete, while unbounded solvability and nilpotency are Sigma-zero-three
 artifacts:
+  - GroupApproximation/Computability/PerfectEnumeratedHardness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   amenability-two-generator-recursive-is-pi2-complete: that classifies amenability and metabelian, the derived length two case, through Kesten and a right-angled Artin family; this treats perfectness and every bounded class at once through the isomorphism-invariant switch, and separates the bounded from the unbounded versions.
@@ -46,3 +47,5 @@ length, so that a direct sum of switch outputs is solvable exactly when
 the set of surviving seeds is finite; finitely presented solvable groups
 of arbitrarily large derived length are known to exist (Abels), but the
 uniformity of such a family has not been checked in this graph.
+
+**Machine-checked.**  `Computability/PerfectEnumeratedHardness.perfectCode_pi02Hard` and `notPerfectCode_sigma02Hard` are the perfectness lower bounds on enumerated presentation codes, with the infinite cyclic group as forbidden seed.
