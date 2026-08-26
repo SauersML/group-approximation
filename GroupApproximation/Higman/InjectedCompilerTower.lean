@@ -111,11 +111,13 @@ def MarkedStage.addEdge {n : ℕ} (S : MarkedStage G n) {X : Type}
 
 @[simp] theorem MarkedStage.addEdge_stable_castSucc {n : ℕ}
     (S : MarkedStage G n) {X : Type} (E : Data X S.Carrier) (i : Fin n) :
-    (S.addEdge E).stable i.castSucc = of (S.stable i) := rfl
+    (S.addEdge E).stable i.castSucc = of (S.stable i) := by
+  simp [MarkedStage.addEdge]
 
 @[simp] theorem MarkedStage.addEdge_stable_last {n : ℕ}
     (S : MarkedStage G n) {X : Type} (E : Data X S.Carrier) :
-    (S.addEdge E).stable (Fin.last n) = t := rfl
+    (S.addEdge E).stable (Fin.last n) = t := by
+  simp [MarkedStage.addEdge]
 
 /-! ## A compiler tower over an arbitrary injected `tau_j` chain -/
 
