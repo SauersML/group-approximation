@@ -20,11 +20,12 @@ are precisely the explicit free-evaluation obligations isolated by
 namespace GroupApproximation
 namespace FreeEdgeTowerCode
 
-open PresentationCodes RawTransform
+open PresentationCodes RawTransform CoprodCode
+open GroupApproximation.RawWord
 open RawTransformPrimrec
 
 /-- A raw word in the concrete finite-presentation encoding. -/
-abbrev RawWord : Type := List (ℕ × Bool)
+abbrev Raw : Type := List (ℕ × Bool)
 
 /-- The new stable generator is placed immediately after the old alphabet. -/
 def stableIndex (c : PresentationCode) : ℕ := genCount c
@@ -33,52 +34,52 @@ def stableIndex (c : PresentationCode) : ℕ := genCount c
 `t source t⁻¹ target⁻¹`.  Old words are normalized before the alphabet is
 enlarged, so the total modulo convention of `PresentationCode` does not change
 their meaning. -/
-def edgeRelator (c : PresentationCode) (p : RawWord × RawWord) : RawWord :=
+def edgeRelator (c : PresentationCode) (p : Raw × Raw) : Raw :=
   [(stableIndex c, true)] ++ normWord c p.1 ++
     [(stableIndex c, false)] ++ invWord (normWord c p.2)
 
 /-- Adjoin one stable generator and finitely many HNN conjugation relators. -/
-def edgeCode (c : PresentationCode) (edges : List (RawWord × RawWord)) :
+def edgeCode (c : PresentationCode) (edges : List (Raw × Raw)) :
     PresentationCode :=
   (c.1 + 1,
     c.2.map (normWord c) ++ edges.map (edgeRelator c))
 
 @[simp] theorem edgeCode_genCount (c : PresentationCode)
-    (edges : List (RawWord × RawWord)) :
+    (edges : List (Raw × Raw)) :
     genCount (edgeCode c edges) = genCount c + 1 := by
   simp [edgeCode, genCount]
 
 @[simp] theorem edgeCode_relators (c : PresentationCode)
-    (edges : List (RawWord × RawWord)) :
+    (edges : List (Raw × Raw)) :
     (edgeCode c edges).2 =
       c.2.map (normWord c) ++ edges.map (edgeRelator c) := rfl
 
 /-- The three inner compiler layers in their intended order. -/
 def threeStageCode (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (RawWord × RawWord)) : PresentationCode :=
+    (tauEdges dEdges sigmaEdges : List (Raw × Raw)) : PresentationCode :=
   edgeCode (edgeCode (edgeCode c tauEdges) dEdges) sigmaEdges
 
 @[simp] theorem threeStageCode_genCount (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (RawWord × RawWord)) :
+    (tauEdges dEdges sigmaEdges : List (Raw × Raw)) :
     genCount (threeStageCode c tauEdges dEdges sigmaEdges) = genCount c + 3 := by
   simp [threeStageCode]
 
 /-- Turn a finite word list into identity edge pairs, so the new stable letter
 centralizes those words. -/
-def centralEdges (words : List RawWord) : List (RawWord × RawWord) :=
+def centralEdges (words : List Raw) : List (Raw × Raw) :=
   words.map fun w => (w, w)
 
 /-- The corrected ordering at code level: build all three inner layers first,
 then attach the central detector as the outermost HNN edge. -/
 def detectorLastCode (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (RawWord × RawWord))
-    (detectorWords : List RawWord) : PresentationCode :=
+    (tauEdges dEdges sigmaEdges : List (Raw × Raw))
+    (detectorWords : List Raw) : PresentationCode :=
   edgeCode (threeStageCode c tauEdges dEdges sigmaEdges)
     (centralEdges detectorWords)
 
 @[simp] theorem detectorLastCode_genCount (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (RawWord × RawWord))
-    (detectorWords : List RawWord) :
+    (tauEdges dEdges sigmaEdges : List (Raw × Raw))
+    (detectorWords : List Raw) :
     genCount (detectorLastCode c tauEdges dEdges sigmaEdges detectorWords) =
       genCount c + 4 := by
   simp [detectorLastCode]
@@ -90,7 +91,7 @@ theorem primrec_stableIndex :
   primrec_genCount
 
 theorem primrec_edgeRelator :
-    Primrec₂ (fun (c : PresentationCode) (p : RawWord × RawWord) =>
+    Primrec₂ (fun (c : PresentationCode) (p : Raw × Raw) =>
       edgeRelator c p) := by
   have hstablePos : Primrec (fun c : PresentationCode =>
       [(stableIndex c, true)]) :=
@@ -102,11 +103,11 @@ theorem primrec_edgeRelator :
     Primrec₂.comp Primrec.list_cons
       (Primrec.pair primrec_stableIndex (Primrec.const false))
       (Primrec.const [])
-  have hsource : Primrec (fun a : PresentationCode × (RawWord × RawWord) =>
+  have hsource : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.1) :=
     primrec_normWord.comp
       (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
-  have htarget : Primrec (fun a : PresentationCode × (RawWord × RawWord) =>
+  have htarget : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.2) :=
     primrec_normWord.comp
       (Primrec.pair Primrec.fst (Primrec.snd.comp Primrec.snd))
@@ -117,12 +118,12 @@ theorem primrec_edgeRelator :
 
 /-- Computing one finite HNN presentation layer is primitive recursive. -/
 theorem primrec_edgeCode :
-    Primrec₂ (fun (c : PresentationCode) (edges : List (RawWord × RawWord)) =>
+    Primrec₂ (fun (c : PresentationCode) (edges : List (Raw × Raw)) =>
       edgeCode c edges) := by
   have hnormalized : Primrec (fun c : PresentationCode =>
       c.2.map (normWord c)) := primrec_leftWords
   have hedgeRelators : Primrec
-      (fun a : PresentationCode × List (RawWord × RawWord) =>
+      (fun a : PresentationCode × List (Raw × Raw) =>
         a.2.map (edgeRelator a.1)) :=
     Primrec.list_map Primrec.snd primrec_edgeRelator
   exact Primrec.pair
@@ -132,7 +133,7 @@ theorem primrec_edgeCode :
 
 /-- The code-level HNN constructor is computable. -/
 theorem computable_edgeCode :
-    Computable (fun a : PresentationCode × List (RawWord × RawWord) =>
+    Computable (fun a : PresentationCode × List (Raw × Raw) =>
       edgeCode a.1 a.2) :=
   primrec_edgeCode.to_comp
 
@@ -141,9 +142,9 @@ theorem computable_edgeCode :
 /-- The finite syntactic input for the four edges. -/
 abbrev TowerInput : Type :=
   PresentationCode ×
-    (List (RawWord × RawWord) ×
-      (List (RawWord × RawWord) ×
-        (List (RawWord × RawWord) × List RawWord)))
+    (List (Raw × Raw) ×
+      (List (Raw × Raw) ×
+        (List (Raw × Raw) × List Raw)))
 
 /-- Compile a packed input by the fixed `tau`, `d`, `sigma`, detector-last
 sequence. -/
@@ -151,31 +152,29 @@ def compile (x : TowerInput) : PresentationCode :=
   detectorLastCode x.1 x.2.1 x.2.2.1 x.2.2.2.1 x.2.2.2.2
 
 theorem primrec_centralEdges :
-    Primrec (fun words : List RawWord => centralEdges words) :=
+    Primrec (fun words : List Raw => centralEdges words) :=
   Primrec.list_map Primrec.id (Primrec.pair Primrec.snd Primrec.snd)
 
 /-- The full four-edge raw presentation compiler is primitive recursive. -/
 theorem primrec_compile : Primrec compile := by
   have hTau : Primrec (fun x : TowerInput => edgeCode x.1 x.2.1) :=
-    primrec_edgeCode.comp
-      (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
+    Primrec₂.comp primrec_edgeCode Primrec.fst
+      (Primrec.fst.comp Primrec.snd)
   have hD : Primrec (fun x : TowerInput =>
       edgeCode (edgeCode x.1 x.2.1) x.2.2.1) :=
-    primrec_edgeCode.comp
-      (Primrec.pair hTau
-        (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
+    Primrec₂.comp primrec_edgeCode hTau
+      (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
   have hSigma : Primrec (fun x : TowerInput =>
       threeStageCode x.1 x.2.1 x.2.2.1 x.2.2.2.1) :=
-    primrec_edgeCode.comp
-      (Primrec.pair hD
-        (Primrec.fst.comp
-          (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))))
+    Primrec₂.comp primrec_edgeCode hD
+      (Primrec.fst.comp
+        (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
   have hDetector : Primrec (fun x : TowerInput =>
       centralEdges x.2.2.2.2) :=
     primrec_centralEdges.comp
       (Primrec.snd.comp
         (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
-  exact primrec_edgeCode.comp (Primrec.pair hSigma hDetector)
+  exact Primrec₂.comp primrec_edgeCode hSigma hDetector
 
 theorem computable_compile : Computable compile := primrec_compile.to_comp
 
