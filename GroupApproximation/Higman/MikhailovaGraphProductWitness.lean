@@ -22,29 +22,29 @@ open GroupApproximation.ProductFinitePresentation
 open MikhailovaRankThree
 
 /-- The graph map of a marked quotient representation. -/
-def graphHom {P : Type*} [Group P] (q : Source →* P) :
+def graphHom {P : Type} [Group P] (q : Source →* P) :
     Source →* Source × P :=
   (MonoidHom.id Source).prod q
 
-@[simp] theorem graphHom_apply {P : Type*} [Group P]
+@[simp] theorem graphHom_apply {P : Type} [Group P]
     (q : Source →* P) (f : Source) : graphHom q f = (f, q f) := rfl
 
 /-- The finitely generated graph cutting subgroup. -/
-def graphCutting {P : Type*} [Group P] (q : Source →* P) :
+def graphCutting {P : Type} [Group P] (q : Source →* P) :
     Subgroup (Source × P) :=
   (graphHom q).range
 
 /-- The source is embedded as the first direct-product factor. -/
-abbrev graphInput {P : Type*} [Group P] : Source →* Source × P :=
+abbrev graphInput {P : Type} [Group P] : Source →* Source × P :=
   MonoidHom.inl Source P
 
-theorem graphInput_injective {P : Type*} [Group P] :
+theorem graphInput_injective {P : Type} [Group P] :
     Function.Injective (graphInput (P := P)) := by
   intro f g hfg
   exact congrArg Prod.fst hfg
 
 /-- The graph cut pulls back to the kernel of `q`. -/
-theorem graphCutting_comap_eq_kernel {P : Type*} [Group P]
+theorem graphCutting_comap_eq_kernel {P : Type} [Group P]
     (q : Source →* P) :
     (graphCutting q).comap graphInput = q.ker := by
   ext f
@@ -60,17 +60,18 @@ theorem graphCutting_comap_eq_kernel {P : Type*} [Group P]
     have hq : q f = 1 := MonoidHom.mem_ker.mp hf
     apply Subgroup.mem_comap.mpr
     refine ⟨f, ?_⟩
-    exact Prod.ext rfl hq
+    change (f, q f) = (f, 1)
+    exact congrArg (fun p : P ↦ (f, p)) hq
 
 /-- The graph subgroup is finitely generated because the source has rank
 three. -/
-theorem graphCutting_fg {P : Type*} [Group P] (q : Source →* P) :
+theorem graphCutting_fg {P : Type} [Group P] (q : Source →* P) :
     (graphCutting q).FG := by
   letI : Group.FG Source := fg_of_isFinitelyPresented Source
   exact fg_range (graphHom q)
 
 /-- A concrete graph-shaped benign witness for `ker q`. -/
-def graphKernelWitness {P : Type*} [Group P]
+def graphKernelWitness {P : Type} [Group P]
     [Group.IsFinitelyPresented P] (q : Source →* P) :
     BenignWitness q.ker where
   K := Source × P
@@ -82,7 +83,7 @@ def graphKernelWitness {P : Type*} [Group P]
 
 /-- Injecting the quotient target into a finitely presented graph ambient
 does not change the marked kernel. -/
-theorem ker_comp_eq_of_injective {Q P : Type*} [Group Q] [Group P]
+theorem ker_comp_eq_of_injective {Q P : Type} [Group Q] [Group P]
     (q : Source →* Q) (j : Q →* P) (hj : Function.Injective j) :
     (j.comp q).ker = q.ker := by
   ext f
@@ -90,15 +91,16 @@ theorem ker_comp_eq_of_injective {Q P : Type*} [Group Q] [Group P]
   · intro hf
     apply MonoidHom.mem_ker.mpr
     apply hj
-    simpa only [map_one] using MonoidHom.mem_ker.mp hf
+    simpa only [MonoidHom.comp_apply, map_one] using MonoidHom.mem_ker.mp hf
   · intro hf
     apply MonoidHom.mem_ker.mpr
-    rw [MonoidHom.comp_apply, MonoidHom.mem_ker.mp hf, map_one]
+    change j (q f) = 1
+    rw [MonoidHom.mem_ker.mp hf, map_one]
 
 /-- The graph witness after an explicit embedding in a finitely presented
 group.  The intermediate quotient group need not itself be finitely
 presented. -/
-def embeddedGraphKernelWitness {Q P : Type*} [Group Q] [Group P]
+def embeddedGraphKernelWitness {Q P : Type} [Group Q] [Group P]
     [Group.IsFinitelyPresented P] (q : Source →* Q) (j : Q →* P)
     (hj : Function.Injective j) : BenignWitness q.ker := by
   let w := graphKernelWitness (j.comp q)
@@ -115,7 +117,7 @@ def embeddedGraphKernelWitness {Q P : Type*} [Group Q] [Group P]
 /-- **Mikhailova plus graph product witness.**  The graph factor leaves the
 source normal closure unchanged whenever it kills that closure. -/
 def normalClosureProductWitness
-    {X P : Type*} [Finite X] [Group P] [Group.IsFinitelyPresented P]
+    {X P : Type} [Finite X] [Group P] [Group.IsFinitelyPresented P]
     (S : Set Source) {R : Set (FreeGroup X)} (hR : R.Finite)
     (words : Source →* FreeGroup X)
     (i : PresentedGroup S →* PresentedGroup R) (hi : Function.Injective i)
@@ -136,7 +138,7 @@ def normalClosureProductWitness
 /-- Version where the graph target is first embedded in a finitely presented
 ambient group. -/
 def normalClosureProductWitnessOfEmbeddedGraph
-    {X Q P : Type*} [Finite X] [Group Q] [Group P]
+    {X Q P : Type} [Finite X] [Group Q] [Group P]
     [Group.IsFinitelyPresented P]
     (S : Set Source) {R : Set (FreeGroup X)} (hR : R.Finite)
     (words : Source →* FreeGroup X)
