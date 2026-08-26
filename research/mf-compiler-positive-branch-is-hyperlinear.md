@@ -46,3 +46,10 @@ torsion-free finite-presentation cell through
 [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]]; this
 claim is the analytic member of the same family of questions about one
 explicit group.
+
+**Covered by the universal implication.**  The branch is MF, so
+[[mf-implies-hyperlinear]] implies this claim
+([[compiler-branch-hyperlinear-from-mf-implies-hyperlinear]]).  That makes
+the stakes two-sided: if every MF group is hyperlinear, the
+finite-presentation cell of the hyperlinear row closes; if not, the
+offending MF group is a witness for the program goal.
