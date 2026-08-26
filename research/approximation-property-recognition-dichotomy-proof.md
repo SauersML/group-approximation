@@ -33,6 +33,13 @@ the completeness and strict-interval statements.
 implies that `HYP` is not the full set, i.e. (i); (v) implies (iv) because a
 `Pi^0_2`-complete set is not decidable.
 
+The hyperlinear finite-presentation core of this paragraph is now formal:
+`Covers/HyperlinearTableCover` proves `(i) <=> (ii)` (including the
+universe-polymorphic finitely generated extraction), and
+`Computability/HyperlinearMarkov` proves `(i) <=> (iii)` by constructing the
+general Adian--Rabin reduction from the forbidden table code.  Its converse
+installs the constant-true decision procedure under `not (i)`.
+
 **Other properties.**  Weakly sofic and linear sofic groups are defined by
 table models in finite groups with bi-invariant metrics, respectively in
 `GL_n` of a field with the normalized rank metric, so both are local

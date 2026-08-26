@@ -2,7 +2,7 @@
 rg: 2
 id: non-hyperlinear-from-sl3-z-weak-ucp-stability
 kind: route
-title: Weak ucp-stability of SL_3(Z) is flexible stability on its microstates, so the thin co-dense HNN extension is non-hyperlinear
+title: Weak ucp-stability of SL_3(Z) is full flexible stability, so the thin co-dense HNN extension is non-hyperlinear
 target: non-hyperlinear-group
 requires:
   - sl3-z-weakly-ucp-stable
@@ -43,12 +43,15 @@ gives `[t, r] != e` and hyperlinearity of `G` demands `tr phi_n([t, r])
 -> 0`.  Contradiction: `G` is not hyperlinear.
 
 **Relation to `non-hyperlinear-from-hnn-over-sln-z`.**  That route requires
-`sln-z-flexibly-hs-stable` -- flexible HS-stability of some `SL_n(Z)`,
-`n >= 3`, for ALL asymptotic homomorphisms.  This route requires only the
-`n = 3`, hyperlinear-approximation form, stated in Dogon's formally weaker
-ucp language; by the lemma the two forms coincide for Kazhdan groups, so
-the gain is exactly the quantifier restriction (separating sequences
-only), which is all the HNN mechanism ever used.  It supersedes the
+`sln-z-flexibly-hs-stable` for some `SL_n(Z)`, `n >= 3`.  The present route
+is exactly its `n=3` full-flexible instance, stated in Dogon's weak-ucp
+language.  The formerly claimed gain from restricting to separating
+sequences is removed by
+`residual-finite-regularization-removes-the-weak-ucp-quantifier`: exact
+regular congruence packets regularize every asymptotic representation and
+the maximally-entangled recovery untensors ucp corrections contractively.
+The HNN proof itself still consumes only the selected separating
+restriction.  This route supersedes the
 face-confinement consumption of `sl3-z-weakly-ucp-stable` through
 `kazhdan-subgroup-weak-ucp-exactifies-microstates`, which needed the
 `Lambda`-exact face closure in addition.

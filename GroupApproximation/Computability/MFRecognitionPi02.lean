@@ -423,35 +423,6 @@ def wordDefect (c : PresentationCode) (d : ℕ) (gens : List MatrixCode)
     (w : List (ℕ × Bool)) : MatrixCode :=
   matrixSub d (wordMatrix d c.1 gens w) (identity d)
 
-/-- A direct Boolean test for semantic equality of two coded matrices on the
-represented square. -/
-def matrixEqCheck (d : ℕ) (A B : MatrixCode) : Bool :=
-  decide (matrixEq d A B)
-
-@[simp] theorem matrixEqCheck_eq_true_iff (d : ℕ) (A B : MatrixCode) :
-    matrixEqCheck d A B = true ↔ matrixEq d A B := by
-  simp [matrixEqCheck]
-
-/-- Exact coded unitarity, expressed through the Boolean matrix equality
-test rather than an analytic oracle. -/
-def isUnitaryCheck (d : ℕ) (A : MatrixCode) : Bool :=
-  matrixEqCheck d (matrixMul d (conjTranspose d A) A) (identity d)
-
-@[simp] theorem isUnitaryCheck_eq_true_iff (d : ℕ) (A : MatrixCode) :
-    isUnitaryCheck d A = true ↔ isUnitary d A := by
-  simp [isUnitaryCheck, isUnitary]
-
-/-- Check the bounded tuple of generators named by a presentation.  Missing
-list entries are the coded identity, exactly as in `generator`. -/
-def generatorTupleCheck (c : PresentationCode) (d : ℕ)
-    (gens : List MatrixCode) : Bool :=
-  decide (GeneratorsUnitary c d gens)
-
-@[simp] theorem generatorTupleCheck_eq_true_iff (c : PresentationCode)
-    (d : ℕ) (gens : List MatrixCode) :
-    generatorTupleCheck c d gens = true ↔ GeneratorsUnitary c d gens := by
-  simp [generatorTupleCheck]
-
 /-- One strict upper certificate for each relator, with exact packet length. -/
 def UpperPacket (c : PresentationCode) (d k : ℕ)
     (gens : List MatrixCode) (certs : List ℕ) : Prop :=
@@ -615,102 +586,13 @@ theorem primrec_wordDefect :
       (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
 
 set_option maxSynthPendingDepth 1000 in
-theorem primrecPred_matrixEq :
-    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
-      matrixEq z.1.1 z.1.2 z.2 := by
-  have hcoord : PrimrecRel fun (ij : ℕ × ℕ)
-      (z : (ℕ × MatrixCode) × MatrixCode) =>
-      RationalComplexCode.ComplexEq
-        (entry z.1.1 z.1.2 ij.1 ij.2)
-        (entry z.1.1 z.2 ij.1 ij.2) := by
-    have hleft : Primrec fun p : (ℕ × ℕ) ×
-        ((ℕ × MatrixCode) × MatrixCode) =>
-        entry p.2.1.1 p.2.1.2 p.1.1 p.1.2 :=
-      primrec_entry.comp (Primrec.pair
-        (Primrec.pair
-          (Primrec.pair
-            (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
-            (Primrec.snd.comp (Primrec.fst.comp Primrec.snd)))
-          (Primrec.fst.comp Primrec.fst))
-        (Primrec.snd.comp Primrec.fst))
-    have hright : Primrec fun p : (ℕ × ℕ) ×
-        ((ℕ × MatrixCode) × MatrixCode) =>
-        entry p.2.1.1 p.2.2 p.1.1 p.1.2 :=
-      primrec_entry.comp (Primrec.pair
-        (Primrec.pair
-          (Primrec.pair
-            (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
-            (Primrec.snd.comp Primrec.snd))
-          (Primrec.fst.comp Primrec.fst))
-        (Primrec.snd.comp Primrec.fst))
-    exact RationalComplexCode.primrecRel_complexEq.comp hleft hright
-  have hcol : PrimrecRel fun (j : ℕ)
-      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
-      RationalComplexCode.ComplexEq
-        (entry z.2.1.1 z.2.1.2 z.1 j)
-        (entry z.2.1.1 z.2.2 z.1 j) :=
-    PrimrecRel.comp hcoord
-      (Primrec.pair (Primrec.fst.comp Primrec.snd) Primrec.fst)
-      (Primrec.snd.comp Primrec.snd)
-  have hcols : PrimrecRel fun (L : List ℕ)
-      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
-      ∀ j ∈ L,
-        RationalComplexCode.ComplexEq
-          (entry z.2.1.1 z.2.1.2 z.1 j)
-          (entry z.2.1.1 z.2.2 z.1 j) :=
-    PrimrecRel.forall_mem_list hcol
-  have hrow : PrimrecRel fun (i : ℕ)
-      (z : (ℕ × MatrixCode) × MatrixCode) =>
-      ∀ j ∈ List.range (dim z.1.1),
-        RationalComplexCode.ComplexEq
-          (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
-    PrimrecRel.comp hcols
-      (Primrec.list_range.comp (primrec_dim.comp
-        (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))))
-      (Primrec.pair Primrec.fst Primrec.snd)
-  have hrows : PrimrecRel fun (L : List ℕ)
-      (z : (ℕ × MatrixCode) × MatrixCode) =>
-      ∀ i ∈ L, ∀ j ∈ List.range (dim z.1.1),
-        RationalComplexCode.ComplexEq
-          (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
-    PrimrecRel.forall_mem_list hrow
-  refine (PrimrecRel.comp hrows
-    (Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) Primrec.id).of_eq ?_
-  intro z
-  constructor
-  · intro h i hi j hj
-    exact h i (List.mem_range.2 hi) j (List.mem_range.2 hj)
-  · intro h i hi j hj
-    exact h i (List.mem_range.1 hi) j (List.mem_range.1 hj)
-
-theorem primrec_matrixEqCheck :
-    Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
-      matrixEqCheck z.1.1 z.1.2 z.2 :=
-  primrecPred_matrixEq.decide
-
-theorem primrecPred_isUnitary :
-    PrimrecPred fun z : ℕ × MatrixCode => isUnitary z.1 z.2 := by
-  exact primrecPred_matrixEq.comp (Primrec.pair
-    (Primrec.pair Primrec.fst
-      (primrec_matrixMul.comp (Primrec.pair
-        (Primrec.pair Primrec.fst
-          (primrec_conjTranspose.comp Primrec.id)) Primrec.snd)))
-    (primrec_identity.comp Primrec.fst))
-
-theorem primrec_isUnitaryCheck :
-    Primrec fun z : ℕ × MatrixCode => isUnitaryCheck z.1 z.2 := by
-  exact primrecPred_isUnitary.decide.of_eq fun z => by
-    simp [isUnitaryCheck, matrixEqCheck, isUnitary]
-
-set_option maxSynthPendingDepth 1000 in
 theorem primrecPred_generatorsUnitary :
     PrimrecPred fun z : (PresentationCode × ℕ) × List MatrixCode =>
       GeneratorsUnitary z.1.1 z.1.2 z.2 := by
   have hitem : PrimrecRel fun (i : ℕ)
       (z : (PresentationCode × ℕ) × List MatrixCode) =>
       isUnitary z.1.2 (generator z.1.2 z.2 i) := by
-    exact primrecPred_isUnitary.comp (Primrec.pair
+    exact EffectiveMatrixCodePrimrec.primrecPred_isUnitary.comp (Primrec.pair
       (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))
       (primrec_generator.comp (Primrec.pair
         (Primrec.pair
@@ -720,7 +602,7 @@ theorem primrecPred_generatorsUnitary :
       (z : (PresentationCode × ℕ) × List MatrixCode) =>
       ∀ i ∈ L, isUnitary z.1.2 (generator z.1.2 z.2 i) :=
     PrimrecRel.forall_mem_list hitem
-  refine (PrimrecRel.comp hall
+  refine (hall.comp
     (Primrec.list_range.comp
       (primrec_genCount.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
     Primrec.id).of_eq ?_
@@ -730,11 +612,6 @@ theorem primrecPred_generatorsUnitary :
     exact h i (List.mem_range.2 i.isLt)
   · intro h i hi
     exact h ⟨i, List.mem_range.1 hi⟩
-
-theorem primrec_generatorTupleCheck :
-    Primrec fun z : (PresentationCode × ℕ) × List MatrixCode =>
-      generatorTupleCheck z.1.1 z.1.2 z.2 :=
-  primrecPred_generatorsUnitary.decide
 
 private abbrev UpperInput :=
   (((PresentationCode × ℕ) × ℕ) × List MatrixCode) × List ℕ
@@ -785,7 +662,7 @@ theorem primrecPred_upperPacket :
           (wordDefect z.1.1.1.1 z.1.1.1.2 z.1.2
             (z.1.1.1.1.2.getD i []))
           (z.2.getD i 0) :=
-    PrimrecRel.comp hall
+    hall.comp
       (Primrec.list_range.comp (Primrec.list_length.comp
         (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
           (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))))
@@ -852,7 +729,7 @@ theorem primrecPred_lowerPacket :
           (wordDefect z.1.1.1.1 z.1.1.2 z.1.2
             (z.1.1.1.2.getD i []))
           (z.2.getD i 0) :=
-    PrimrecRel.comp hall
+    hall.comp
       (Primrec.list_range.comp (Primrec.list_length.comp
         (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
           (Primrec.fst.comp Primrec.fst)))))) Primrec.id

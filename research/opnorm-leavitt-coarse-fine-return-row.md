@@ -138,3 +138,14 @@ to sit on one carrier.**
   return leakage exactly one.  A proof of `(OPLR)` must use a relation
   outside this finite normalizer menu which forces identity action on the
   selected type or rules the type out.
+* **Literal fine-idempotent biaction still does not wordize its support.**
+  `fine-idempotent-biaction-return-has-gl10-model` starts from the actual
+  row-two factors `a_2=s_1t_00`, `b_2=s_00t_1`, exposes their reverse product
+  `e_00=s_00t_00` as one literal root commutator, and then authenticates both
+  absorption identities `e_00s_00=s_00` and `t_00e_00=t_00` on the same
+  named Morita occurrences.  The entire table, together with both prefix
+  actors, order-seven heads and the marked-center return, still has an exact
+  marked `GL_10(F_2)` model.  Thus the next mixed row must attach this
+  coefficient occurrence to a spectral support incidence (or use full
+  completeness to exclude that type); another multiplication/action return
+  for the fine idempotent cannot imply `(OPLR)`.

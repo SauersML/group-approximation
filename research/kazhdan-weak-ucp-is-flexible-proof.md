@@ -2,16 +2,17 @@
 rg: 2
 id: kazhdan-weak-ucp-is-flexible-proof
 kind: route
-title: Average the Stinespring corner over a Kazhdan set to an invariant finite-rank projection of the same normalized rank
+title: Round one separating packet, tensor-regularize every packet, and round again
 target: kazhdan-weak-ucp-stability-is-flexible-stability
-requires: []
+requires:
+  - residual-finite-regularization-removes-the-weak-ucp-quantifier
 ---
 
 `(b) => (a)`: a finite-dimensional representation on `C^(D_n) supseteq
 C^(d_n)` is a dilation; nothing to prove.
 
 `(a) => (b)`.  Fix a Kazhdan pair `(S, kappa)` for `Gamma`, `S = S^(-1)`
-finite generating.  Let `phi_n : Gamma -> U(d_n)` be a hyperlinear
+finite generating.  First let `phi_n : Gamma -> U(d_n)` be a hyperlinear
 approximation and `pi_n : Gamma -> U(H^_n)`, `P_n` the projection onto
 `H_n = C^(d_n) subseteq H^_n`, with
 `|| phi_n(g) - P_n pi_n(g) P_n ||_(2,d_n) -> 0` for all `g`, as `(a)`
@@ -93,4 +94,23 @@ J_n^* pi'_n(g) J_n = W_n^* rho_n(g) W_n + (1 - q_n),
 
 using `(F3)`, `(F4)`, `|| W_n - P_n ||_(2,d_n) -> 0` and the hypothesis.
 After the unitary change of coordinates on `C^(D_n)` that carries `J_n` to
-the inclusion of the first `d_n` coordinates, this is exactly `(WF1)`.
+the inclusion of the first `d_n` coordinates, this is the required flexible
+correction for the separating packet `phi_n`.
+
+At this point the argument has corrected one separating approximation.  Its
+genuine corrections `pi'_n` still have regular normalized character: the
+compression occupies proportion `1-o(1)`, is close to `phi_n`, and the
+complement has proportion `o(1)`.  Hence
+
+```text
+tr_(D_n)(pi'_n(g)) -> 0,       g != e.                            (F6)
+```
+
+Now let `alpha_n` be an arbitrary asymptotic representation.  Apply
+`residual-finite-regularization-removes-the-weak-ucp-quantifier` with the
+exact regular packets `pi'_n`: the tensor
+`alpha_n tensor pi'_n` is hyperlinear, `(a)` corrects it by ucp maps, and
+maximally-entangled recovery gives ucp maps close to `alpha_n` with no
+normalized-HS loss.  Repeat Steps 1--4 for those Stinespring dilations.
+This produces flexible genuine finite-dimensional corrections of
+`alpha_n`, proving the full quantifier in `(b)`.

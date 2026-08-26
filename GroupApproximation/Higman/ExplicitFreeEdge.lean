@@ -156,6 +156,130 @@ theorem sigma_stable_conj_t0 (fixed : X → G) (t0 d : G)
   simpa [sigmaData] using stable_conj_source
     (sigmaData fixed t0 d hsource htarget) (FreeGroup.of (Sum.inr ()))
 
+/-! ## The explicit `d` edge -/
+
+variable {J : Type}
+
+def dSource (k0 : G) (s tau : J → G) : FreeGroup (Unit ⊕ J) →* G :=
+  FreeGroup.lift fun x ↦ x.elim (fun _ ↦ k0) (fun j ↦ s j * tau j)
+
+def dTarget (k0 : G) (s : J → G) : FreeGroup (Unit ⊕ J) →* G :=
+  FreeGroup.lift fun x ↦ x.elim (fun _ ↦ k0) s
+
+@[simp] theorem dSource_k0 (k0 : G) (s tau : J → G) :
+    dSource k0 s tau (FreeGroup.of (Sum.inl ())) = k0 := by simp [dSource]
+
+@[simp] theorem dSource_payload (k0 : G) (s tau : J → G) (j : J) :
+    dSource k0 s tau (FreeGroup.of (Sum.inr j)) = s j * tau j := by simp [dSource]
+
+@[simp] theorem dTarget_k0 (k0 : G) (s : J → G) :
+    dTarget k0 s (FreeGroup.of (Sum.inl ())) = k0 := by simp [dTarget]
+
+@[simp] theorem dTarget_payload (k0 : G) (s : J → G) (j : J) :
+    dTarget k0 s (FreeGroup.of (Sum.inr j)) = s j := by simp [dTarget]
+
+/-- Concrete `d` edge data.  The two fields are exactly the freeness
+obligations on the displayed tuples. -/
+def dData (k0 : G) (s tau : J → G)
+    (hsource : Function.Injective (dSource k0 s tau))
+    (htarget : Function.Injective (dTarget k0 s)) : Data (Unit ⊕ J) G where
+  source := dSource k0 s tau
+  target := dTarget k0 s
+  source_injective := hsource
+  target_injective := htarget
+
+theorem d_stable_conj_k0 (k0 : G) (s tau : J → G)
+    (hsource : Function.Injective (dSource k0 s tau))
+    (htarget : Function.Injective (dTarget k0 s)) :
+    (t : Extension (dData k0 s tau hsource htarget)) * of k0 * t⁻¹ = of k0 := by
+  simpa [dData] using stable_conj_source
+    (dData k0 s tau hsource htarget) (FreeGroup.of (Sum.inl ()))
+
+theorem d_stable_conj_payload (k0 : G) (s tau : J → G)
+    (hsource : Function.Injective (dSource k0 s tau))
+    (htarget : Function.Injective (dTarget k0 s)) (j : J) :
+    (t : Extension (dData k0 s tau hsource htarget)) *
+        of (s j * tau j) * t⁻¹ = of (s j) := by
+  simpa [dData] using stable_conj_source
+    (dData k0 s tau hsource htarget) (FreeGroup.of (Sum.inr j))
+
+/-! ## A hypothesis-free Nielsen shear for a `tau` layer -/
+
+def fixedInclusion : FreeGroup X →* FreeGroup (X ⊕ Unit) :=
+  FreeGroup.lift (fun x ↦ FreeGroup.of (Sum.inl x))
+
+def shearForward (payload : FreeGroup X) :
+    FreeGroup (X ⊕ Unit) →* FreeGroup (X ⊕ Unit) :=
+  FreeGroup.lift fun x ↦ x.elim (fun a ↦ FreeGroup.of (Sum.inl a))
+    (fun _ ↦ FreeGroup.of (Sum.inr ()) * (fixedInclusion payload)⁻¹)
+
+def shearBackward (payload : FreeGroup X) :
+    FreeGroup (X ⊕ Unit) →* FreeGroup (X ⊕ Unit) :=
+  FreeGroup.lift fun x ↦ x.elim (fun a ↦ FreeGroup.of (Sum.inl a))
+    (fun _ ↦ FreeGroup.of (Sum.inr ()) * fixedInclusion payload)
+
+@[simp] theorem shearForward_fixed (payload : FreeGroup X) (x : X) :
+    shearForward payload (FreeGroup.of (Sum.inl x)) = FreeGroup.of (Sum.inl x) := by
+  simp [shearForward]
+
+@[simp] theorem shearBackward_fixed (payload : FreeGroup X) (x : X) :
+    shearBackward payload (FreeGroup.of (Sum.inl x)) = FreeGroup.of (Sum.inl x) := by
+  simp [shearBackward]
+
+@[simp] theorem shearForward_k0 (payload : FreeGroup X) :
+    shearForward payload (FreeGroup.of (Sum.inr ())) =
+      FreeGroup.of (Sum.inr ()) * (fixedInclusion payload)⁻¹ := by
+  simp [shearForward]
+
+@[simp] theorem shearBackward_k0 (payload : FreeGroup X) :
+    shearBackward payload (FreeGroup.of (Sum.inr ())) =
+      FreeGroup.of (Sum.inr ()) * fixedInclusion payload := by
+  simp [shearBackward]
+
+theorem shearForward_comp_fixedInclusion (payload : FreeGroup X) :
+    (shearForward payload).comp fixedInclusion = fixedInclusion := by
+  apply FreeGroup.ext_hom
+  intro x
+  simp [fixedInclusion]
+
+theorem shearBackward_comp_fixedInclusion (payload : FreeGroup X) :
+    (shearBackward payload).comp fixedInclusion = fixedInclusion := by
+  apply FreeGroup.ext_hom
+  intro x
+  simp [fixedInclusion]
+
+theorem shearBackward_comp_shearForward (payload : FreeGroup X) :
+    (shearBackward payload).comp (shearForward payload) = MonoidHom.id _ := by
+  apply FreeGroup.ext_hom
+  intro x
+  rcases x with x | _
+  · simp
+  · simp [MonoidHom.comp_apply,
+      DFunLike.congr_fun (shearBackward_comp_fixedInclusion payload) payload]
+
+theorem shearForward_comp_shearBackward (payload : FreeGroup X) :
+    (shearForward payload).comp (shearBackward payload) = MonoidHom.id _ := by
+  apply FreeGroup.ext_hom
+  intro x
+  rcases x with x | _
+  · simp
+  · simp [MonoidHom.comp_apply,
+      DFunLike.congr_fun (shearForward_comp_fixedInclusion payload) payload]
+
+/-- The `tau`-layer shear is an actual automorphism, with no freeness input. -/
+noncomputable def shearEquiv (payload : FreeGroup X) :
+    FreeGroup (X ⊕ Unit) ≃* FreeGroup (X ⊕ Unit) :=
+  MonoidHom.toMulEquiv (shearForward payload) (shearBackward payload)
+    (shearBackward_comp_shearForward payload)
+    (shearForward_comp_shearBackward payload)
+
+noncomputable def shearData (payload : FreeGroup X) :
+    Data (X ⊕ Unit) (FreeGroup (X ⊕ Unit)) where
+  source := MonoidHom.id _
+  target := (shearEquiv payload).toMonoidHom
+  source_injective := Function.injective_id
+  target_injective := (shearEquiv payload).injective
+
 end ExplicitFreeEdge
 end Higman
 end GroupApproximation

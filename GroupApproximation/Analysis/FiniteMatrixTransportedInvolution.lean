@@ -166,11 +166,11 @@ theorem exists_conjugatingLinearEquiv_for_transportedInvolution
     (transportedInvolutionAutomorphism e)
 
 /-- Involutivity forces the product of the inverse-adjoint conjugator and
-the original conjugator to be scalar.  This is the precise algebraic phase
-normalization supplied by the center theorem for an endomorphism algebra. -/
+the original conjugator to be scalar.  This is the exact relation supplied
+by the center theorem for an endomorphism algebra. -/
 theorem exists_scalar_adjointInverse_trans_conjugator
     {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
-    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] [Nontrivial V]
     (e : D ≃ₐ[ℂ] Module.End ℂ V) (T : V ≃ₗ[ℂ] V)
     (hT : T.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e) :
     ∃ α : ℂˣ,
@@ -203,7 +203,7 @@ theorem exists_scalar_adjointInverse_trans_conjugator
     ((adjointLinearEquiv T.symm).trans T) (LinearEquiv.refl ℂ V) |>.mp hconj
 
 /-- The scalar relation supplied by the center theorem is equivalently a
-phase relation between the conjugator and its adjoint. -/
+unit-scalar relation between the conjugator and its adjoint. -/
 theorem conjugator_eq_smul_adjoint_of_adjointInverse_trans_eq_smul_refl
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     [FiniteDimensional ℂ V] (T : V ≃ₗ[ℂ] V) (α : ℂˣ)
@@ -213,13 +213,20 @@ theorem conjugator_eq_smul_adjoint_of_adjointInverse_trans_eq_smul_refl
     T = α • adjointLinearEquiv T := by
   ext x
   have hx := DFunLike.congr_fun hscalar (adjointLinearEquiv T x)
+  have hinv :
+      adjointLinearEquiv T.symm (adjointLinearEquiv T x) = x := by
+    simpa only [adjointLinearEquiv_symm] using
+      (adjointLinearEquiv T).symm_apply_apply x
+  change T (adjointLinearEquiv T.symm (adjointLinearEquiv T x)) =
+    (α • (LinearEquiv.refl ℂ V)) (adjointLinearEquiv T x) at hx
+  rw [hinv] at hx
   simpa using hx
 
 /-- Every Skolem--Noether conjugator for the transported involution is a
 unit scalar multiple of its adjoint. -/
 theorem exists_scalar_conjugator_eq_smul_adjoint
     {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
-    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] [Nontrivial V]
     (e : D ≃ₐ[ℂ] Module.End ℂ V) (T : V ≃ₗ[ℂ] V)
     (hT : T.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e) :
     ∃ α : ℂˣ, T = α • adjointLinearEquiv T := by

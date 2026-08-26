@@ -2,9 +2,9 @@
 rg: 2
 id: sl3-z-weakly-ucp-stable
 kind: claim
-title: SL_3(Z) is weakly ucp-stable, equivalently flexibly HS-stable on hyperlinear approximations
+title: SL_3(Z) is weakly ucp-stable, equivalently fully flexible HS-stable
 distinct_from:
-  sln-z-flexibly-hs-stable: that asks for flexible HS-stability of SL_n(Z) for SOME n at least three and for ALL asymptotic homomorphisms; this is the n = 3 instance restricted to hyperlinear approximations (separating sequences), stated in Dogon's weak-ucp language — by kazhdan-weak-ucp-stability-is-flexible-stability the infinite-dimensional dilations add nothing for a Kazhdan group, so the only difference is the quantifier restriction, which is all the HNN mechanism uses.
+  sln-z-flexibly-hs-stable: that asks for full flexible HS-stability of SL_n(Z) for SOME n at least three; this is exactly its n = 3 instance, stated in Dogon's weak-ucp language and identified with the full version by residual-finite-regularization-removes-the-weak-ucp-quantifier plus property T.
   sl3z-regular-microstates-are-congruence-correctable: that asks to correct the lattice restriction of regular microstates to genuine ODD-congruence representations, for consumption by the Weyl-slot sector theorem; this asks for correction of every hyperlinear approximation to genuine representations of unrestricted level, for consumption by the HNN theorem over a thin co-dense subgroup, and is stated in Dogon's dilation language.
 ---
 
@@ -22,9 +22,11 @@ is pointwise HS-asymptotic to the restriction to the group of a sequence
 of ucp maps `C^*(SL_3(Z)) -> M_(d_n)`, i.e. to matrix-valued positive
 definite functions on the group.
 
-**Stakes.**  By `kazhdan-weak-ucp-stability-is-flexible-stability` this
-claim is the same as flexible HS-stability of `SL_3(Z)` on hyperlinear
-approximations, which is exactly what the HNN theorem consumes.  So
+**Stakes.**  By `kazhdan-weak-ucp-stability-is-flexible-stability` and
+`residual-finite-regularization-removes-the-weak-ucp-quantifier`, this
+claim is the same as full flexible HS-stability of `SL_3(Z)` for all
+asymptotic representations.  The HNN theorem consumes only its restriction
+to one separating sequence.  Thus
 through `sln-z-thin-codense-tau-pair` and
 `hnn-over-codense-kazhdan-subgroup-not-hyperlinear` it makes the literal
 finitely presented group `< SL_3(Z), t | [t, a] = 1, [t, b] = 1 >`
@@ -35,19 +37,18 @@ the p = 3 HNN microstates to the `Lambda`-exact face
 
 ## Attempts
 
-- **Not weaker than flexible stability for this group (2026-08-21).**
+- **Not weaker than full flexible stability for this group (superseded
+  quantifier audit, 2026-08-26).**
   The first framing of this node called weak ucp-stability "strictly
   weaker" than flexible HS-stability, quoting Dogon p. 4.  That is true in
-  general (amenable non-RF groups separate them) but FALSE for Kazhdan
-  groups on hyperlinear approximations:
-  `kazhdan-weak-ucp-stability-is-flexible-stability` averages the
-  Stinespring corner over a Kazhdan set into an exactly invariant
-  finite-rank projection of the same normalized rank, so the dilation can
-  be taken finite dimensional.  The claim is therefore an honest
-  restatement of the `n = 3` flexible-stability hole on separating
-  sequences, not a relaxation of it; its one genuine weakening relative to
-  `sln-z-flexibly-hs-stable` is the quantifier (hyperlinear approximations
-  only).
+  general (amenable non-RF groups separate them) but FALSE for hyperlinear
+  Kazhdan groups.  Kazhdan averaging makes the ucp dilation
+  finite dimensional.  More importantly,
+  `residual-finite-regularization-removes-the-weak-ucp-quantifier` tensors
+  an arbitrary asymptotic representation with exact regular congruence
+  packets and untensors any ucp correction with constant one in normalized
+  HS norm.  Thus this claim is the full `n = 3` flexible-stability hole;
+  neither dilation nor input quantifier is a genuine relaxation.
 - **Implied by flexible HS-stability, not by residual finiteness.**
   Flexible HS-stability of `SL_3(Z)` (the `n = 3` case of
   `sln-z-flexibly-hs-stable`) implies this claim outright (Dogon p. 4).
@@ -97,8 +98,10 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   approximation and does not correct an arbitrary prescribed one.
 
   Hence no known LLP/property-`(T)` theorem in these sources establishes or
-  refutes this claim.  The precise open sector is prescribed regular-type
-  hyperlinear approximations: property `(T)` can turn an already supplied
+  refutes this claim.  Prescribed regular-type hyperlinear approximations
+  remain a complete test class, but only because the exact regularization
+  theorem transports their correction back to arbitrary asymptotic
+  representations.  Property `(T)` can turn an already supplied
   Stinespring corner into a nearby finite invariant corner (as in
   `kazhdan-subgroup-weak-ucp-exactification-proof`), but it does not produce
   the initial ucp approximation.
@@ -108,9 +111,11 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   character has amenable GNS are near genuine representations.  The
   hyperlinear approximations produced by the HNN/wreath microstates have
   limit character `delta_e` with GNS `L(SL_3(Z))`, non-amenable, so the
-  known theorem does not apply; the claim is exactly the regular-type
-  sector, the same sector as `sl3z-regular-microstates-are-congruence-correctable`
-  but with infinite-dimensional dilations allowed.
+  known theorem does not apply.  The regular-type sector is nevertheless a
+  complete test class for this claim by the tensor-regularization theorem;
+  it is the same input sector as
+  `sl3z-regular-microstates-are-congruence-correctable`, but with
+  infinite-dimensional ucp dilations allowed before Kazhdan rounding.
 - **The large-prime one-twist theorem is downstream, not an exactification
   theorem.**  `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
   begins with a genuine finite-dimensional representation `rho'` of
