@@ -37,6 +37,7 @@ theorem primrec_ratPow : Primrec₂ ratPow := by
 theorem primrec_matrixPow :
     Primrec fun z : (ℕ × MatrixCode) × ℕ =>
       matrixPow z.1.1 z.1.2 z.2 := by
+  change Primrec₂ fun p : ℕ × MatrixCode => matrixPow p.1 p.2
   have hbase : Primrec fun p : ℕ × MatrixCode => identity p.1 :=
     primrec_identity.comp Primrec.fst
   have hstep : Primrec₂ fun (p : ℕ × MatrixCode)
@@ -79,11 +80,12 @@ theorem primrec_froSqCode :
     Primrec.list_range.comp (primrec_dim.comp Primrec.fst)
   have hstep : Primrec₂ fun (z : ℕ × MatrixCode) (p : RatCode × ℕ) =>
       ratAdd p.1 (froRowSqCode z.1 z.2 p.2) := by
-    have hrow : Primrec fun q : (ℕ × MatrixCode) × (RatCode × ℕ) =>
-        froRowSqCode q.1.1 q.1.2 q.2.2 :=
-      primrec_froRowSqCode.comp
-        (Primrec.pair Primrec.fst (Primrec.snd.comp Primrec.snd))
-    exact (primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd) hrow).to₂
+    have hrow : Primrec₂ fun (z : ℕ × MatrixCode) (p : RatCode × ℕ) =>
+        froRowSqCode z.1 z.2 p.2 :=
+      (primrec_froRowSqCode.to₂).comp₂ Primrec₂.left
+        (Primrec.snd.comp₂ Primrec₂.right)
+    exact primrec_ratAdd.comp₂
+      (Primrec.fst.comp₂ Primrec₂.right) hrow
   exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
 
 theorem primrec_gramPowCode :

@@ -73,6 +73,14 @@ canonical microstates still pay its full normalized mass.
 - **Use a finite graph of finite groups.**  Stationary multiplicity flow
   realizes the return in finite dimensions; an infinite-order proper-corner
   actuator or another finite-rank asymmetry is required.
+- **Close a subgroup-HNN section into an exact same-filter stabilizer.**
+  `finite-character-one-sided-stabilizer-is-its-normalizer` shows that for a
+  one-dimensional character filter, already `q r q=r q` forces `r` to
+  normalize the finite packet and preserve that character.  Hence an exact
+  Bass--Serre stabilizer loop returns to the finite-normalizer lane.  The
+  live actuator must keep unequal source and target corners, use a
+  trace-cyclic chain of partial sections, or obtain `(TFP1)` only after
+  finite-matrix correction.
 - **Subgroup-Hecke HNN edges give an exact conditional rank actuator.**
   `subgroup-hecke-hnn-is-a-regular-safe-rank-actuator` proves
   `e_K u e_H=u e_H` and a sharp normalized-HS payment whenever `K` embeds in

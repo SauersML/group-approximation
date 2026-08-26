@@ -253,6 +253,20 @@ excluded by the regular-trace firewall.
   ordinary-word-authenticated moment remains `Q_sC_sEaEC_sQ_s`; the polar
   normalization itself is analytic and cannot be declared a typed row.
 
+  The detector-side root search is now finite and complete, but the same
+  typing seam remains.  `five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`
+  exhausts the `31` root-free positive classes: the three middle returns
+  cover `28`, and `x_12(s_1),x_14(s_1)` cover the other three.  None of the
+  useful first probes preserves `Q`; it only names one of `24` conjugate
+  source types.  On the three endpoint classes the exact mark scale profile
+  for every same-`g` occurrence is `{3}`, with no adjacent pair, because
+  `J_m` fixes `x_1r(a_m)` rather than carrying it to `x_1r(a_(m+1))`.
+  Therefore neither the complete root menu nor the existing braid controls
+  the reservoir coboundary in `(SNA2)`.  A continuation must add a fresh
+  endpoint-Whitehead `Jhat_(r,m)` carrying `x_1r(a_m)` to
+  `x_1r(a_(m+1))` and type its multiplicity action on the moving source/range
+  occurrence.
+
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The
   common-tail detector `K_Q=[A_1,H]` has a signed-character model in which

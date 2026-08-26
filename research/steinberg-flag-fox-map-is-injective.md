@@ -17,3 +17,8 @@ Weyl-character argument proves it, because the coefficient transformations
 do not preserve the standard apartment.  A proof must retain the root-group
 coordinates in the flag incidence system; a nonzero solution would instead
 be an explicit defining-characteristic affine-gauge counterexample.
+
+The established node `steinberg-cycles-have-big-cell-chord-coordinates`
+removes all panel variables: the claim is now equivalent to the two
+three-variable equations `(SBC5)`, whose exceptional transformed flags are
+fixed signed cut-sums in one explicit spanning tree.

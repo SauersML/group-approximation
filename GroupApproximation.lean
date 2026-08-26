@@ -1807,10 +1807,12 @@ import GroupApproximation.Computability.HereditaryPropertySwitchCompleteness
 import GroupApproximation.Computability.HyperlinearMarkov
 import GroupApproximation.Computability.HereditaryRecognitionPhaseDiagram
 import GroupApproximation.Computability.HyperlinearRecognitionSecondLevel
+import GroupApproximation.Computability.HyperlinearRecognitionHierarchy
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
 import GroupApproximation.Computability.SoficMicrostateNormalForm
 import GroupApproximation.Computability.SoficRecognitionPi02
 import GroupApproximation.Computability.SoficEnumeratedPi02
+import GroupApproximation.Computability.ProfinitelyClosedIndexSet
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

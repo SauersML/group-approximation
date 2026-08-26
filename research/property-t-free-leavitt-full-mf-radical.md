@@ -413,6 +413,25 @@ necessarily use external spare-index probes, which lose `Q`-typing.  Thus
 normal saturation alone is fenced; the live input remains a source-preserving
 occurrence relation or an upper bound on the detector defects.
 
+The external probe menu itself is now exhausted in
+`middle-pauli-probes-leave-three-hecke-classes-untyped` and
+`five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`.  The
+literal paid dual menu and the full primal middle menu leave exactly three
+endpoint classes, represented by matrices supported from actor sources
+`6,9` into targets `2,4`.  Adding `x_12(s_1),x_14(s_1)` closes that endpoint
+gap: together with the three middle `X_m` legs, the resulting `240`-cell
+menu extracts a nonzero elementary root from all `31` classes.  This is an
+algebraic moving-source cover, not the missing MF occurrence.  Exactly two
+paid-menu words preserve `(L_0,lambda_0)`, and both centralize it; every
+useful probe moves among `24` named conjugate sources with arbitrary
+multiplicity chart.  The three endpoint classes have exact mark profile
+only at depth `3`, and the current prefix Whitehead fixes the endpoint leg
+instead of transporting its coefficient to the adjacent depth.  The live
+detector seam is consequently narrower: construct a fresh endpoint-Whitehead
+`Jhat_(r,m)` carrying `x_1r(a_m)` to `x_1r(a_(m+1))`, and supply a
+source-preserving or multiplicity-typing occurrence for it on the already
+established moving `R_0 -> P` channel.
+
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
 commutator of the paid discrepancy with the actual `B_2` arm and ejects a

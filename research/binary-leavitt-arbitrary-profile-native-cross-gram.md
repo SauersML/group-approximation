@@ -217,6 +217,22 @@ literature theorem is permitted in this claim.
   cut to the actual unequal native row (or a relation-controlled upper bound
   for the paying detector).
 
+- **Exhaust the detector branch with typed finite probes.**
+  `five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`
+  gives a complete exact algebraic answer.  The paid `48`-word dual menu
+  followed by the three middle `X_m` legs covers `28/31` externally probed
+  classes; adding `x_12(s_1),x_14(s_1)` covers the remaining three, so a
+  `240`-cell menu extracts a nonzero elementary root from every class.
+  This does not prove `(APG1)`.  Only `1,Y_1` preserve the signed source and
+  both centralize `L_0`; every useful probe moves to one of `24` conjugate
+  source types with uncontrolled multiplicity chart.  Exact mark return on
+  the three endpoint classes occurs only at scale `m=3`, and the literal
+  Whitehead fixes the new endpoint leg instead of transporting
+  `a_m` to `a_(m+1)`.  The next viable occurrence is therefore a fresh
+  endpoint-Whitehead `Jhat_(r,m)` carrying `x_1r(a_m)` to
+  `x_1r(a_(m+1))`, together with source-preserving or multiplicity-typed
+  control on the prescribed moving `R_0 -> P` channel.
+
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is
   still insufficient.  It identifies the only authenticated raw relative

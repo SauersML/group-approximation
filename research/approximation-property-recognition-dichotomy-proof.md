@@ -58,6 +58,14 @@ and iff `NONHYP_rec` is `Sigma02Complete`.  Thus the analytic coding work needed
 for the upper bound is logically separated from the already checked phase
 transition and hardness compiler.
 
+The audited `Computability/HyperlinearRecognitionHierarchy` module composes
+these equivalences with the first-level Adian--Rabin results.  In particular it
+identifies `not ComputablePred HYP_fp` with `Pi02Hard HYP_rec`, identifies
+`not REPred NONHYP_fp` with `Sigma02Hard NONHYP_rec`, and makes inhabitation of
+both the Markov-data type and explicit reduction type equivalent to the same
+second-level condition.  The hierarchy-wide dichotomy records all of these
+conclusions simultaneously.
+
 **Other properties.**  Weakly sofic and linear sofic groups are defined by
 table models in finite groups with bi-invariant metrics, respectively in
 `GL_n` of a field with the normalized rank metric, so both are local

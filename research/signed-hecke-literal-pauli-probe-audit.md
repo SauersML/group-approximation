@@ -3,7 +3,7 @@ rg: 2
 id: signed-hecke-literal-pauli-probe-audit
 kind: route
 title: Enumerate literal middle-Pauli probe extractions on the root-free signed-Hecke classes
-target: middle-pauli-probes-leave-three-signed-hecke-detector-classes-untyped
+target: middle-pauli-probes-leave-three-hecke-classes-untyped
 requires:
   - signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped
   - paid-t00-reynolds-cut-is-whitehead-reducing

@@ -179,6 +179,16 @@ finite selector normalizer; a surviving transducer must either establish the
 block-monomial permutation criterion in its intended face or genuinely leave
 the selector normalizer.
 
+An exact subgroup-HNN/Bass--Serre stabilizer word cannot supply that escape.
+`finite-character-one-sided-stabilizer-is-its-normalizer` proves that for a
+one-dimensional finite-character atom `q=e_(H,chi)`, even the one-sided
+identity `q s q=s q` saturates the Hecke intersection norm and forces
+`sHs^-1=H` with `chi` preserved.  Thus every exact same-atom group-word
+stabilizer is already a packet normalizer.  The remaining escape must stay
+genuinely one-sided--a source-to-larger-target proper section with a paid
+complement--or infer the return only after finite-matrix correction; it
+cannot close the section to an exact same-atom stabilizer loop.
+
 For affine Fourier payloads, the SELECT side can now be made substantially
 smaller and representation-rigid.  `extraspecial-common-gauge-fourier-controller`
 uses only the rank-`k` Pauli packet: Stone--von Neumann uniqueness and the

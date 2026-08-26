@@ -1,12 +1,13 @@
 ---
 rg: 2
-id: middle-pauli-probes-leave-three-signed-hecke-detector-classes-untyped
+id: middle-pauli-probes-leave-three-hecke-classes-untyped
 kind: claim
-title: The literal middle-Pauli probe menu leaves three signed-Hecke detector classes untyped
+title: Literal middle-Pauli probes leave three signed-Hecke detector classes untyped
 artifacts:
   - experiments/signed_hecke_literal_pauli_probe_audit.py
   - experiments/signed_hecke_literal_pauli_probe_audit.sbatch
   - experiments/signed_hecke_middle_pauli_probe_audit.py
+  - experiments/signed-hecke-literal-pauli-probe-results.json
 distinct_from:
   signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped: that finds the 31 positive classes requiring external probes; this tests the complete literal 48-word middle-Pauli menu against those classes with faithful Leavitt coefficients and isolates the three surviving endpoint obstructions.
   paid-t00-reynolds-cut-is-whitehead-reducing: that uses the same 48 conjugators to localize paid mass on a Whitehead-reducing cut; this asks whether they source-type the external root extraction and proves that they do not.
@@ -104,11 +105,14 @@ representation-profile freedom exhibited by
 `(MPF4)`, the literal probe does not even reach that stage.
 
 This is an exact finite-menu obstruction, not a claim that no longer mixed
-word can work.  A successful extension must add a typed leg incident to
-actor target `2` or `4`, together with an occurrence relation controlling
-its moving-source multiplicity action.  No Property T, Kazhdan input,
-canonical trace, literature theorem, local computation, or Lean compilation
-is used.
+word can work.  In fact
+`five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge` adds the
+two incident legs `x_12(s_1),x_14(s_1)` and closes the elementary-root count
+for all `31` classes.  That extension also proves the remaining boundary:
+the current Whitehead does not transport the endpoint coefficient and no
+useful probe preserves the signed source, so the moving-source multiplicity
+action remains untyped.  No Property T, Kazhdan input, canonical trace,
+literature theorem, local computation, or Lean compilation is used.
 
 DERIVATION
 signed-hecke-literal-pauli-probe-audit
