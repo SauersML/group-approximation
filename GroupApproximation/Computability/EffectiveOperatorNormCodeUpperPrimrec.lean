@@ -15,6 +15,9 @@ private theorem primrec_upperDim : Primrec fun z : UpperInput => z.1.1.1 :=
 private theorem primrec_upperK : Primrec fun z : UpperInput => z.1.1.2 :=
   Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
 
+private theorem primrec_upperMatrix : Primrec fun z : UpperInput => z.1.2 :=
+  Primrec.snd.comp Primrec.fst
+
 private theorem primrec_upperDimPow : Primrec fun z : UpperInput =>
     (dim z.1.1.1) ^ 4 :=
   primrec_natPow.comp (primrec_dim.comp primrec_upperDim) (Primrec.const 4)
