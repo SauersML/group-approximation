@@ -78,17 +78,22 @@ theorem exists_inverseForm_isotropic_of_opposite_eigenvalues
       ((r : ℂ) * (lam : ℂ)⁻¹) • u +
         ((s : ℂ) * (mu : ℂ)⁻¹) • v := by
     dsimp [w]
+    change S.symm ((r : ℂ) • u + (s : ℂ) • v) = _
     rw [map_add, map_smul, map_smul, hSinvu, hSinvv, smul_smul, smul_smul]
+  have hstarR : star (r : ℂ) = (r : ℂ) := by
+    exact Complex.conj_ofReal r
+  have hstarS : star (s : ℂ) = (s : ℂ) := by
+    exact Complex.conj_ofReal s
   refine ⟨w, hwne, ?_⟩
   rw [hSinvw]
   change inner ℂ ((r : ℂ) • u + (s : ℂ) • v)
       (((r : ℂ) * (lam : ℂ)⁻¹) • u +
         ((s : ℂ) * (mu : ℂ)⁻¹) • v) = 0
   simp only [inner_add_left, inner_add_right, inner_smul_left,
-    inner_smul_right, starRingEnd_apply, Complex.star_def,
-    Complex.conj_ofReal, huu, hvv, huv, hvu, mul_zero, add_zero,
-    zero_mul, zero_add, mul_one]
-  exact hcomplex
+    inner_smul_right, starRingEnd_apply]
+  rw [hstarR, hstarS, huu, hvv, huv, hvu]
+  simp only [mul_zero, add_zero, zero_add, mul_one]
+  simpa [mul_comm, mul_left_comm, mul_assoc] using hcomplex
 
 /-- An anisotropic inverse quadratic form rules out opposite signs among
 the eigenvalues in the orthonormal eigenbasis of a self-adjoint operator. -/
