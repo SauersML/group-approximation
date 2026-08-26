@@ -116,6 +116,26 @@
       ]
     },
     {
+      "id": "thm:recognition",
+      "environment": "mainthm",
+      "title": "recognizing MF groups",
+      "statement_sha256": "e929035db2472425af5d5e04b606c435ea092b22785279fff143ea89e82e2068",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "prop:mf-upper-bound",
+        "lem:finite-rope",
+        "lem:positive-branch",
+        "lem:negative-branch"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "thm:commutant",
       "environment": "theorem",
       "title": "finite-dimensional commutant rigidity",
@@ -263,34 +283,6 @@
       ]
     },
     {
-      "id": "prop:defect-saturation",
-      "environment": "proposition",
-      "title": "functoriality and normal generation",
-      "statement_sha256": "531f440c51bb7025811bad20aec22bb14ab2fd71c9d69e4c1fe060379889d5bc",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:compression-criterion"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/DefectSaturation",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/CompleteDefectSaturation",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "lem:tau-elementary",
       "environment": "lemma",
       "title": "",
@@ -328,44 +320,13 @@
       "lean": []
     },
     {
-      "id": "lem:normal-generation-transvection",
-      "environment": "lemma",
-      "title": "Normal generation by an elementary transvection",
-      "statement_sha256": "094b15ab1493cd2caa1843c068a14207fe1c2c0cf2b7ed10297bb7737b8de118",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "lem:coefficient-separation",
-      "environment": "lemma",
-      "title": "Coefficient separation",
-      "statement_sha256": "f5dd8225f8bb4ca177a7a8bd904ed42c86e49504e6da24a9c1d9a4014aa34474",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Abrams--Aranda Pino, Proposition 10(v), through the preceding two-sided sandwich fact"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
       "id": "prop:simple",
       "environment": "proposition",
       "title": "",
       "statement_sha256": "d756a14fb63a07f8fafa6796911dfdae943499b6e97dc9f1287c8e5c306e9ce2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:normal-generation-transvection",
-        "lem:coefficient-separation"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -386,7 +347,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:normal-generation-transvection",
+        "prop:simple",
         "prop:leavitt-compression"
       ],
       "extra_assumptions": [],
@@ -646,6 +607,55 @@
       "external_inputs": [
         "Britton's lemma"
       ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:reduced-products",
+      "environment": "lemma",
+      "title": "reduced products of MF algebras",
+      "statement_sha256": "210c3086d4e60b6dbf9a42970f5f4409c0a7eb025adb9968a6de43cc4f11a878",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:tensor-sync",
+      "environment": "lemma",
+      "title": "tensor synchronization",
+      "statement_sha256": "fe4ce4853de4be83ff9db6f61f9da89c6f2fa65ec517d7d296113e7c1c096a72",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:reduced-products",
+        "thm:hnn-permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:positive-branch",
+      "environment": "lemma",
+      "title": "the positive branch",
+      "statement_sha256": "9e1092458357e04af9a315708661092a50b5a6ed3d2b362c5e40fd41e0227dc3",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:finite-rope",
+        "lem:tensor-sync",
+        "lem:central-rope",
+        "lem:rf-regular",
+        "cor:central-hnn",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
       "coverage_gap": "",
       "lean": []
     }

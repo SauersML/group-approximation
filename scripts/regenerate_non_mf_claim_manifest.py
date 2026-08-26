@@ -69,10 +69,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/NormalKazhdan",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptNormalKazhdanRadical"),
-    "prop:defect-saturation": (
-        "Manuscript/OneSidedMFRadical/CompleteDefectSaturation",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptCompleteDefectSaturation"),
     "lem:tau-elementary": (
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
@@ -106,10 +102,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:normal-generation-transvection": (),
-    "lem:coefficient-separation": (
-        "Abrams--Aranda Pino, Proposition 10(v), through the preceding "
-        "two-sided sandwich fact",),
     "lem:local-models": (),
     "lem:rf-regular": (),
     "thm:hnn-permanence": (
@@ -130,6 +122,11 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "lem:central-rope": ("Britton's lemma",),
     "lem:finite-rope": (),
     "lem:negative-branch": ("Britton's lemma",),
+    "thm:recognition": (
+        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete",),
+    "lem:reduced-products": (),
+    "lem:tensor-sync": (),
+    "lem:positive-branch": (),
 }
 
 
@@ -157,15 +154,10 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:defect-hs": ["thm:transport"],
     "lem:central-corona-corner": [],
     "thm:normal-kazhdan": ["lem:central-corona-corner"],
-    "prop:defect-saturation": ["thm:compression-criterion"],
     "lem:tau-elementary": [],
     "prop:leavitt-compression": ["lem:tau-elementary"],
-    "lem:normal-generation-transvection": [],
-    "lem:coefficient-separation": [],
-    "prop:simple": [
-        "lem:normal-generation-transvection", "lem:coefficient-separation"],
-    "prop:defect": [
-        "lem:normal-generation-transvection", "prop:leavitt-compression"],
+    "prop:simple": [],
+    "prop:defect": ["prop:simple", "prop:leavitt-compression"],
     "prop:full-kernel-pullback": ["prop:mf-residual-calculus"],
     "prop:universal-factorization": [],
     "lem:local-models": [],
@@ -181,6 +173,14 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:finite-rope": ["lem:central-rope"],
     "lem:negative-branch": [
         "lem:switch", "lem:bridge", "lem:finite-rope", "thm:headline"],
+    "thm:recognition": [
+        "prop:mf-upper-bound", "lem:finite-rope", "lem:positive-branch",
+        "lem:negative-branch"],
+    "lem:reduced-products": [],
+    "lem:tensor-sync": ["lem:reduced-products", "thm:hnn-permanence"],
+    "lem:positive-branch": [
+        "lem:finite-rope", "lem:tensor-sync", "lem:central-rope",
+        "lem:rf-regular", "cor:central-hnn", "lem:bridge"],
 }
 
 

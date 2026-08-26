@@ -118,5 +118,21 @@ to turn this explicit two-compressor **canonical permutation** incompatibility
 into actor exactification or active-Cartan recovery for arbitrary canonical
 unitary-HS microstates.
 
+There is nevertheless one dimension-free mixed-row law at this first full
+pair.  `kt-ab-normalizer-row-forces-wall-gauge-propagation` uses
+`C=AB^(-1)` and one `Gamma` covariance row to prove
+
+```text
+||h_0-h_1||_2
+ <=epsilon_(C,0)+epsilon_(C,1)+2||A_0-A_1||_2.
+```
+
+Thus a flat `B`-wall cannot be extended while the two `A` copies stay close:
+vanishing row defects force `||A_0-A_1||_2>=1/sqrt(2)-o(1)`.  This does not
+close the pair, because a coherent relative-commutant cocycle may carry the
+gauge on both generators.  It sharpens the remaining gate from an arbitrary
+two-compressor incompatibility to nonamenable multiplicity-cocycle
+extension/vanishing.
+
 DERIVATION
 kt-two-positive-compressors-generate-full-obstruction-proof

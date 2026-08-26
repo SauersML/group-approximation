@@ -52,6 +52,16 @@ gap still tends to two.  The first possible full-actor obstruction must
 therefore use a nonamenable compressor family or mixed stabilizer incidence
 beyond this A2 unipotent packet.
 
+At the first full nonamenable pair the gauge can no longer remain on one
+generator.  `kt-ab-normalizer-row-forces-wall-gauge-propagation` proves from
+the single mixed row for `C=AB^(-1)` that a squared `B`-fold gap tending to
+two forces either a fixed normalizer-row defect or an `A`-copy gap of squared
+size at least `1/2`.  Hence the one-compressor flat tower cannot be extended
+by a one-sided or boundary-only correction.  What remains possible is a
+coherent positive-density relative-commutant cocycle carried by both `A` and
+`B`; excluding or constructing that nonamenable cocycle is the full-actor
+problem.
+
 **This is packaging, not a reduction of the difficulty.**  Given a
 homomorphism `phi` of the free lamp `H_K=G *_Gamma (Gamma x K)` into a
 hyperlinear group with `phi(r)!=1`, put `pi=phi|_G` and `v=phi(k)`: that is a

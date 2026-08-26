@@ -442,6 +442,48 @@ theorem fiveList_cutting_input :
   rw [setOf_mem_fiveList_eq_fiveSet]
   rfl
 
+/-! ## Torsion-free benign-witness data
+
+The amalgam is torsion-free independently of finite presentability.  The
+theorem at the end packages all the semantic fields of the desired
+torsion-free benign witness except the still-separate finite-presentation
+instance for `Ambient`. -/
+
+theorem edge_torsionFree : IsPowerTorsionFree Edge :=
+  IsPowerTorsionFree.comap
+    (IsPowerTorsionFree.prod isPowerTorsionFree_freeGroup
+      isPowerTorsionFree_freeGroup)
+    edgeToP edgeToP_injective
+
+theorem sync_torsionFree : IsPowerTorsionFree Sync :=
+  IsPowerTorsionFree.comap isPowerTorsionFree_freeGroup K.subtype
+    Subtype.val_injective
+
+theorem ambient_torsionFree : IsPowerTorsionFree Ambient := by
+  refine PushoutITorsionFree.isPowerTorsionFree_pushoutI_of_nonempty
+    (Amalgam.famHom_injective edgeToP edgeToC edgeToP_injective
+      edgeToC_injective) ?_
+  intro side
+  cases side with
+  | false =>
+      exact IsPowerTorsionFree.prod isPowerTorsionFree_freeGroup
+        isPowerTorsionFree_freeGroup
+  | true =>
+      exact IsPowerTorsionFree.prod edge_torsionFree sync_torsionFree
+
+/-- Every non-finite-presentation field needed to make the five-generator
+cutter a torsion-free benign witness for `Star.graphSub`. -/
+theorem fiveCutter_torsionFree_benign_data :
+    Function.Injective
+        (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) ∧
+      fiveCutter.FG ∧
+      fiveCutter.comap
+          (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) = Star.graphSub ∧
+      IsPowerTorsionFree Ambient := by
+  exact ⟨Amalgam.of_injective_push edgeToP edgeToC edgeToP_injective
+      edgeToC_injective false,
+    fiveCutter_fg, fiveCutter_comap_left, ambient_torsionFree⟩
+
 end PairedReturnCutter
 end Higman
 end GroupApproximation

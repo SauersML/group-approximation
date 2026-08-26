@@ -70,5 +70,10 @@ The full-control local/global endpoint remains exactly that analytic
 question; scalar trace stationarity and the bounded Hessian scan still do not
 decide it.
 
+The canonical finite-factor evaluation is computed in
+`atlas-shortest-escapee-has-exact-leavitt-tracial-energy`: all relators vanish
+there while `E_w=18`.  Thus any surviving coercivity theorem must use finite
+dimensionality and would already select the nonhyperlinear branch.
+
 DERIVATION
 atlas-shortest-escapee-no-relator-telescope-proof
