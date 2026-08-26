@@ -42,5 +42,15 @@ some relation outside the local `(1,5,2)` CK cell must transport, compare, or
 eliminate those two multiplicity branches.  Repeating local Heisenberg or
 extraspecial rows cannot close `(HRM1)--(HRM3)`.
 
+The first such transverse direction is computed by
+`atlas-first-transverse-root-shear-leaves-fixed-character-face`.  The five
+rows `[x_12(a),x_23(1)]=x_13(a)` shear joint character labels by
+`(chi,eta) |-> (chi*eta,eta)`.  They balance the `eE/fF` branches on one
+nontrivial `eta` sector, but leave the trivial-`eta` face completely free and
+send the remaining sector through an order-two marked/unmarked cycle.  Thus
+one transverse root direction still does not close the model: a positive
+construction may live on its fixed face, while a negative argument must
+intersect at least two transverse shears or force mass out of that face.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear

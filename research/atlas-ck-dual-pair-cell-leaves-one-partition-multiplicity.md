@@ -7,6 +7,8 @@ distinct_from:
   atlas-root-triangle-is-heisenberg-character-fibers: that uses one coefficient-one Heisenberg triangle to split the first five central root words into D8 character fibers; this intersects four coefficient-dual triangles and identifies the exact two-qubit spin factor inside every negative fiber.
   e5-idempotent-root-has-two-pair-extraspecial-cell: that uses one idempotent coefficient on four different root positions; this uses the literal Leavitt dual pairs E,e and F,f on the same two side roots, then intersects them with the CK partition eE+fF=1.
   local-steinberg-heisenberg-packets-are-coefficient-rank-blind: that gives a general local rank-blindness countermodel; this computes the precise surviving multiplicity coordinate in the first Atlas CK cell.
+  orthogonal-steinberg-root-spectral-support-is-not-additive: that gives a full finite elementary-group model proving individual root supports are not additive; this identifies the two-qubit spin factor and exact multiplicity split in the literal Atlas dual-pair cell.
+  pauli-two-child-transfer-packet: that constructs two equal-trace partial-isometry branches in the raw/comb Pauli chart; this analyzes the rank-five CK root triangle and does not produce any partial-isometry transport between its two branches.
 ---
 
 **ESTABLISHED EXACT LOCAL NORMAL FORM AND LOCAL NO-GO.**  Continue with the
@@ -107,7 +109,8 @@ No consequence of this CK cell and the partition row alone can force the
 split to be balanced, make either branch vanish, or make the coefficient
 algebra commutative.  A successful next Atlas relation must transport or
 compare the two multiplicity branches outside this local extraspecial
-commutant.
+commutant.  In particular these rows preserve every old `Q_chi`; they refine
+the fibers but do not yet couple distinct characters.
 
 For asymptotically vanishing normalized-HS packet defect, the same statement
 holds in the tracial ultraproduct.  Representative-level `(CKP4)--(CKP6)`

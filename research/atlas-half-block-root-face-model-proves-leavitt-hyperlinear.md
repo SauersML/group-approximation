@@ -10,6 +10,7 @@ requires:
   - atlas-first-root-relator-is-half-block-commutant-face
   - atlas-root-triangle-is-heisenberg-character-fibers
   - atlas-ck-dual-pair-cell-leaves-one-partition-multiplicity
+  - atlas-first-transverse-root-shear-leaves-fixed-character-face
   - atlas-half-block-root-face-full-packet-model-exists
 ---
 
