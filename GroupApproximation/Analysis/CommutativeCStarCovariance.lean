@@ -76,6 +76,17 @@ noncomputable def restrictConjStarAlgEquiv
       Unitary.conjStarAlgAut ℂ A u x.1 :=
   rfl
 
+/-- Coercion formula for the inverse restricted conjugation equivalence. -/
+@[simp] theorem restrictConjStarAlgEquiv_symm_coe
+    (S : StarSubalgebra ℂ A) (u : unitary A)
+    (hforward : ∀ x : S, Unitary.conjStarAlgAut ℂ A u x.1 ∈ S)
+    (hbackward : ∀ x : S,
+      (Unitary.conjStarAlgAut ℂ A u).symm x.1 ∈ S)
+    (x : S) :
+    (((restrictConjStarAlgEquiv S u hforward hbackward).symm x : S) : A) =
+      (Unitary.conjStarAlgAut ℂ A u).symm x.1 :=
+  rfl
+
 section CharacterAction
 
 variable (S : StarSubalgebra ℂ A) [CompleteSpace S]
