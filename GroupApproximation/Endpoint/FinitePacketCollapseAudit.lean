@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.FiniteGroupUlamIteration
 import GroupApproximation.Sofic.FiniteGroupCoronaExactification
 import GroupApproximation.Sofic.FinitePacketRankWeight
 import GroupApproximation.Sofic.StarTranspositionRankMass
+import GroupApproximation.Sofic.FinitePacketDelormeCenter
 import GroupApproximation.Sofic.FinitePacketCollapseCore
 
 /-!
@@ -25,5 +26,6 @@ are formalized.
 #print axioms GroupApproximation.FinitePacketRankWeight.displacementRank_le_wordNorm_mul
 #print axioms GroupApproximation.FinitePacketRankWeight.displacementMass_le_four_mul_wordNorm_mul_weight
 #print axioms GroupApproximation.StarTranspositionRankMass.matMass_sub_eq_three_mul_rank
+#print axioms GroupApproximation.FinitePacketDelormeCenter.exists_approximate_coboundary
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_packetRankWeight_eq_zero_of_scaled_vanishing
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_generator_eq_base_of_scaled_vanishing
