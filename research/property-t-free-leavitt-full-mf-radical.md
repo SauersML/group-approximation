@@ -72,6 +72,7 @@ artifacts:
   - research/two-whitehead-face-has-haar-mf-character.md
   - research/leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam.md
   - research/leavitt-first-offdiagonal-core-is-marked-non-lef.md
+  - research/endpoint-first-raw-prefix-escape-hits-toeplitz-core.md
   - research/leavitt-first-offdiagonal-packet-has-jacobson-orbit-quotient.md
   - research/binary-jacobson-elementary-mark-is-finite-quotient-invisible.md
   - research/binary-jacobson-steinberg-head-root-is-mf-invisible.md
@@ -945,3 +946,18 @@ four native arms, both heads, and the actual mark `x_13(q)` in one exact
 `GL_40(F_2)` model.  Hence the first load-bearing endpoint relation must
 escape this two-tail coefficient model; adding the first crossing root or
 even the smallest inward-outward native package is not such a relation.
+
+The first literal escape and its exact cost are now identified.
+`endpoint-first-raw-prefix-escape-hits-toeplitz-core` shows that the raw
+word-length-one occurrence `x_87(s_0)` from the prefix compiler cannot
+preserve any finite common-tail carrier on which `x_13(q)` is nontrivial:
+finite invariance under `omega |-> 0omega` forces the sole tail `000...`,
+where `q` vanishes.  This does not reveal an intermediate finite gadget.
+Together with the already named inverse-prefix root `x_97(t_0)` and the
+diagonal elementary subgroup it generates `EL_5(<D,s_0,t_0>)`, containing
+the full binary Jacobson elementary core.  Every finite quotient of this
+continuation kills the mark.  Thus the endpoint route has a sharp boundary:
+the two-tail model persists through both native crossings, while the first
+raw forward prefix jumps directly to the existing Jacobson head-root MF
+problem.  It supplies no smaller marked finite model and no new proof of MF
+collapse.
