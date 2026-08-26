@@ -103,6 +103,18 @@ the fixed-depth nonhyperlinearity criterion.
   matrix-coordinate extraction which prevents their individually cheap
   cyclic matchings from living in different rectangular reservoirs.
 
+- **The fixed-depth payment is robust before exactification.**
+  `robust-half-period-a2-flip-pays-simultaneous-doubling` replaces the exact
+  primitive-central-character hypothesis by four literal half-period
+  commutator residuals.  If the pre-doubling transverse pair has negative
+  half-period commutators and the doubled targets have positive ones, then
+  their simultaneous doubling energy is at least
+  `2(1-Delta/4)_+^2/(2^(N-1)+1)^2`, uniformly in dimension and multiplicity.
+  Thus exactification of a selected deep band is not a remaining analytic
+  gate.  What remains is precisely joint carrier authentication: the two
+  half-period words must be retained on the same positive-mass rectangular
+  piece before this inequality can be applied.
+
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
   no-leak branch with a dimension-independent modulus; this is

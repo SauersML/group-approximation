@@ -119,6 +119,16 @@ weakening consumed by the HNN marked word.
   at least one opposite chamber, exactly where the full shared-root hexagon
   synchronization remains necessary.
 
+- **The first deep shared-carrier stratum has a robust dimension-free
+  floor.**  `robust-half-period-a2-flip-pays-simultaneous-doubling` treats a
+  fixed depth `2^N` without assuming an exact finite Heisenberg packet.  Four
+  explicit half-period commutator residuals force the two transverse root
+  doubling errors to have squared sum at least
+  `2(1-Delta/4)_+^2/(2^(N-1)+1)^2`.  This closes the analytic inequality once
+  a common primitive A2 carrier is present.  It does not solve the remaining
+  matrix-only step: authenticating positive common carrier mass around the
+  closed hexagon rather than allowing separate rectangular root matchings.
+
 - **Approximate perfectness removes the projective phases quantitatively.**
   This part of the exact proof survives presentation defect and is not the
   remaining obstruction.  Put

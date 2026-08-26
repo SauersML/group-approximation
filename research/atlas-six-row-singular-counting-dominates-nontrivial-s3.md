@@ -75,4 +75,11 @@ the finite arithmetic information lost by fixed Reynolds--Gram positivity.
   finite-coordinate incidence: select the spectral range of `|A|` at `t` and
   inject or Hall-match it into the six spectral ranges at `kappa t`, using
   integer matrix dimensions before normalizing.
-
+- The incidence cannot be frozen after this selection.  The scoped no-go
+  `atlas-fixed-packet-hall-cannot-prove-six-row-singular-counting` invalidates
+  a fixed finite packet-type graph whose capacities are only the ranks of the
+  named spectral atoms: rational multiplicity profiles are dense in the same
+  finite tracial Hall polytope, where the exact Leavitt profile violates the
+  desired cut.  Any surviving matching must make its neighbor relation depend
+  nonlinearly on the actual coordinate `U` and threshold `t`, or use a family
+  of packet data growing with dimension.
