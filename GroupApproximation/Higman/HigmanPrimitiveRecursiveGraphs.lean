@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.HigmanPlacement
+import GroupApproximation.Higman.HigmanCodingDictionary
 
 /-!
 # Primitive-recursive graphs are Higman-generated
@@ -70,6 +71,42 @@ def natGraph {n : ℕ} (F : List.Vector ℕ n → ℕ) : Set E :=
   {f | f ∈ windowSupport (n + 1) ∧
     (∀ i : Fin n, 0 ≤ f (i.val : ℤ)) ∧
     f (n : ℤ) = (F (List.Vector.ofFn fun i : Fin n => (f (i.val : ℤ)).toNat) : ℤ)}
+
+/-- The canonical sequence carrying the graph point `(x,F(x))`. -/
+def natGraphCoords {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : List.Vector ℕ n) : Fin (n + 1) → ℤ :=
+  Fin.lastCases (F x : ℤ) (fun i : Fin n => (x.get i : ℤ))
+
+noncomputable def natGraphSeq {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : List.Vector ℕ n) : E :=
+  coordSeq (n + 1) (natGraphCoords F x)
+
+@[simp] theorem natGraphSeq_input {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : List.Vector ℕ n) (i : Fin n) :
+    natGraphSeq F x (i.val : ℤ) = (x.get i : ℤ) := by
+  rw [natGraphSeq, coordSeq_apply_natCast (n + 1) (natGraphCoords F x) i.val (by omega)]
+  have hi : (⟨i.val, by omega⟩ : Fin (n + 1)) = i.castSucc := Fin.ext rfl
+  rw [hi]
+  simp [natGraphCoords]
+
+@[simp] theorem natGraphSeq_output {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : List.Vector ℕ n) :
+    natGraphSeq F x (n : ℤ) = (F x : ℤ) := by
+  rw [natGraphSeq, coordSeq_apply_natCast (n + 1) (natGraphCoords F x) n (by omega)]
+  have hn : (⟨n, by omega⟩ : Fin (n + 1)) = Fin.last n := Fin.ext rfl
+  rw [hn]
+  simp [natGraphCoords]
+
+/-- Every actual input tuple supplies a canonical member of its natural graph. -/
+theorem natGraphSeq_mem {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : List.Vector ℕ n) : natGraphSeq F x ∈ natGraph F := by
+  refine ⟨coordSeq_mem_windowSupport (n + 1) (natGraphCoords F x), ?_, ?_⟩
+  · intro i
+    simp
+  · rw [natGraphSeq_output]
+    congr 2
+    apply List.Vector.eq
+    simp
 
 /-- The zero graph is exactly a pin at the sole output coordinate. -/
 theorem natGraph_zero_eq :
