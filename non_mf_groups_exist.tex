@@ -74,10 +74,8 @@
 \begin{abstract}
 We show that not every countable group is MF, where MF means admitting
 finite-dimensional unitary models that are asymptotically multiplicative
-and asymptotically separate nonidentity elements in operator norm.
-Nonapproximable groups were known for the unnormalized Schatten
-$p$-norms, $1\le p<\infty$; the operator norm case, $p=\infty$, was open
-and is settled here.  The main tool is a one-sided compression criterion that places normal Kazhdan
+and asymptotically separate nonidentity elements in operator norm.  The
+main tool is a one-sided compression criterion that places normal Kazhdan
 subgroups in the MF radical.  Applied to the binary Leavitt group, it shows
 that the finitely generated simple property-\textup{(T)} group $H=\EL_{12}(L_{\F_2}(1,2))$
 has trivial image under every homomorphism to an MF group; consequently
@@ -147,7 +145,10 @@ and
  \qquad(g\in G\setminus\{1\}).
 \]
 This is the operator norm notion of MF group introduced by
-Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.
+Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.  Here, MF group
+always means this operator-norm local-approximation property.  The
+strong-convergence convention also requires the matrix models to recover
+the norms of the left regular representation~\cite{GaoEtAl,Schafhauser}.
 
 Equivalently, $G$ embeds in the unitary group of the norm matrix corona
 associated to the sequence $\mathbf d=(d_n)$,
@@ -497,22 +498,10 @@ normally generates the quotient (Section~\ref{sec:torsion-free}).  Thus
 the obstruction of Theorem~\ref{thm:compression-criterion} depends
 neither on torsion, nor on simplicity, nor on the Leavitt algebra.
 
-In a companion paper~\cite{SauersComplexity} we use $H$, together with an
-MF permanence theorem for HNN extensions, to show that recognizing MF
-groups from finite presentations is $\Pi^0_2$-complete.  The companion
-notes~\cite{SauersNotes} construct an explicit finitely presented group
-$E$ from the ascending HNN extension of
-$\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ by the doubling endomorphism
-of $\mathbb Z^3$, and prove that $E$ is sofic and not MF; so among finitely
-presented groups, MF is strictly stronger than sofic and than
-hyperlinear.
-
 \subsection*{Relation to prior work}
 
-Blackadar and Kirchberg introduced the notions of MF and NF algebras in a
-1994 Oberwolfach abstract~\cite{BK94}.  They wrote that the classes of NF,
-strong NF, and separable nuclear stably finite $C^*$-algebras might coincide.
-Their 1997 paper developed these notions and proved that a separable
+Blackadar and Kirchberg developed the notions of MF and NF algebras and
+proved that a separable
 $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.  It also
 asked whether every separable nuclear stably finite $C^*$-algebra is
 quasidiagonal.  This was a question about nuclear $C^*$-algebras, not about
@@ -559,14 +548,13 @@ associative ring~\cite[Theorem~1.1]{EJZ}.
 OpenAI used the binary Leavitt unit group to construct the first known
 nonsofic group~\cite[Chapter~3]{OAI}.  Khanh--Thanh's matrix-ring
 isomorphisms and their equality $\GL_n(R)=\EL_n(R)$ identify that group
-with the group $H$ studied here~\cite{KhanhThanh}.  The present argument
-applies the Leavitt compression to operator norm approximation.
+with the group $H$ studied
+here~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.  We apply the
+Leavitt compression to operator norm approximation.
 Related rigidity results for metric approximations of Kazhdan groups appear
 in~\cite{KT19,AlekseevThom,Dadarlat}.
 
 \section{One-sided compression and the MF radical}\label{sec:compression}
-
-This section proves Theorem~\ref{thm:compression-criterion}.
 
 \subsection{The MF radical}
 
@@ -590,8 +578,9 @@ $G$, $x\in\Rad_{\mathrm{MF}}(G)$, and $\pi$ is a corona homomorphism from $G$,
 then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
 which proves full invariance.
 
-Put $R=\Rad_{\mathrm{MF}}(G)$.  If $G/R$ is trivial, there is nothing to
-prove.  If $x\in G/R$ is nontrivial and $g\in G$ maps to $x$, then
+Put $R=\Rad_{\mathrm{MF}}(G)$.  The trivial group is MF.  If $G/R$ is
+nontrivial, let $x\in G/R$ be nontrivial and choose $g\in G$ mapping to $x$.
+Then
 $g\notin R$.  Some homomorphism from $G$ to an MF group therefore separates
 $g$ from the identity.  It kills $R$ and descends to a homomorphism from $G/R$
 that separates $x$.  Thus $G/R$ is residually MF, and hence MF by
@@ -664,10 +653,13 @@ by $\rho(u)$ gives $\rho(u)C\rho(u)^{-1}=C$.
 
 If $c\in C_G(L)$, then $\rho(c)\in C$, hence
 $\rho(ucu^{-1})\in C$.  Therefore
-$\rho([ucu^{-1},\ell])=1$ for every $\ell\in L$.
+\[
+ \rho([ucu^{-1},\ell])=1
+ \qquad(\ell\in L).
+\]
 \end{proof}
 
-The finite-dimensionality hypothesis cannot be dropped: an injective
+Finite dimensionality is essential: an injective
 linear self-map of an infinite-dimensional commutant need not be
 surjective.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential}
@@ -1247,7 +1239,7 @@ conjugation representation in Theorem~\ref{thm:transport}.
 
 \section{The binary Leavitt group}\label{sec:leavitt}
 
-This section proves Theorem~\ref{thm:headline}.  The relation
+The relation
 $s_0t_0+s_1t_1=1$ of the binary Leavitt algebra gives an element
 $\tau\in H$ with $\tau L\tau^{-1}\le L$ for a copy $L$ of $\EL_3(R)$,
 and a commutator $d\ne1$ in $\mathfrak D_H(L)$; since $d$ normally
@@ -1325,8 +1317,7 @@ define the following $6\times6$ block matrices:
  \qquad
  Y=\begin{pmatrix}t_0I_3&0\\s_0t_1I_3&s_1I_3\end{pmatrix}.
 \]
-A block multiplication using \eqref{eq:leavitt} gives $XY=YX=I_6$, so
-$Y=X^{-1}$.  Put
+A block multiplication using \eqref{eq:leavitt} gives $Y=X^{-1}$.  Put
 %<webmath object="whole" when="\tau=\operatorname{diag}(X,Y)" title="tau places X and its inverse on the block diagonal">
 % The matrix \(\tau\) puts the 6-by-6 change-of-coordinates matrix X and its
 % inverse Y on two diagonal blocks.  The doubling is deliberate: X by itself
@@ -1361,37 +1352,24 @@ The matrix $\tau$ defined in \eqref{eq:tau} belongs to $\EL_{12}(R)$.
 \end{lemma}
 
 \begin{proof}
-Put $I=I_6$.  The Whitehead factorization gives
-%<webmath object="whole" when="\operatorname{diag}(X,X^{-1})" title="the block diagonal matrix is factored into six elementary block matrices">
-% This display is a membership certificate, not another compression formula.
-% Its left side is tau because \(Y=X^{-1}\).  Every factor on the right has
-% identity blocks on the diagonal and a single off-diagonal block.  Such a
-% [[block-unipotent]] matrix is a product of ordinary [[elementary
-% matrix|elementary matrices]], one for each entry of that off-diagonal
-% block.  Therefore the six factors prove that tau is built entirely from
-% elementary matrices and hence belongs to \(\operatorname{EL}_{12}(R)\).
-%</webmath>
-\begin{align}\label{eq:whitehead-factorization}
- \operatorname{diag}(X,X^{-1})
- &=\begin{pmatrix}I&X\\0&I\end{pmatrix}
-   \begin{pmatrix}I&0\\-X^{-1}&I\end{pmatrix}
-   \begin{pmatrix}I&X\\0&I\end{pmatrix}
-   \begin{pmatrix}I&0\\I&I\end{pmatrix}
-   \begin{pmatrix}I&-I\\0&I\end{pmatrix}
-   \begin{pmatrix}I&0\\I&I\end{pmatrix}.
-\end{align}
-If $B=(b_{rs})_{r,s=0}^5\in M_6(R)$, then
+For $B\in M_6(R)$, the block matrices
+$\begin{psmallmatrix}I&B\\0&I\end{psmallmatrix}$ and
+$\begin{psmallmatrix}I&0\\B&I\end{psmallmatrix}$ lie in $\EL_{12}(R)$:
+they are the products of the elementary matrices $e_{r,6+s}(b_{rs})$,
+respectively $e_{6+r,s}(b_{rs})$, and no cross terms arise because
+distinct off-diagonal matrix units have product zero.  Whitehead's
+identity
 \[
- \begin{pmatrix}I&B\\0&I\end{pmatrix}
-   =\prod_{r,s=0}^5e_{r,6+s}(b_{rs}),
- \qquad
- \begin{pmatrix}I&0\\B&I\end{pmatrix}
-   =\prod_{r,s=0}^5e_{6+r,s}(b_{rs}).
+ \operatorname{diag}(X,X^{-1})
+ =\begin{pmatrix}I&X\\0&I\end{pmatrix}
+  \begin{pmatrix}I&0\\-X^{-1}&I\end{pmatrix}
+  \begin{pmatrix}I&X\\0&I\end{pmatrix}
+  \begin{pmatrix}I&0\\I&I\end{pmatrix}
+  \begin{pmatrix}I&-I\\0&I\end{pmatrix}
+  \begin{pmatrix}I&0\\I&I\end{pmatrix}
 \]
-In either product, distinct off-diagonal matrix units have product zero, so
-no cross-terms occur.  Every factor on the right-hand side of
-\eqref{eq:whitehead-factorization} therefore belongs to $\EL_{12}(R)$.
-Since $Y=X^{-1}$, its left-hand side is $\tau$, and the result follows.
+with $I=I_6$ therefore expresses $\tau$ as a product of six matrices of
+$\EL_{12}(R)$.
 \end{proof}
 
 Set $H=\EL_{12}(R)$, and let
@@ -1630,18 +1608,22 @@ torsion-free because $G$ is, and finitely presented because it is $G$ with
 $m$ relators added.
 \end{proof}
 
-We now recall the construction of Fournier-Facio~\cite[\S2]{FFF}; the
-references for the ingredients are given there.  Let $U$ be a universal
-finitely presented torsion-free group, one containing a copy of every
-finitely presented torsion-free group; let $S$ be a finitely presented
-infinite simple torsion-free group; and let $H_0$ be a torsion-free
-hyperbolic group with property~\textup{(T)}.  Small cancellation over the
-relatively hyperbolic pair $(U*H_0,U)$ embeds $U$ in a finitely presented
-torsion-free quotient $P$ of $H_0$, which therefore has
+Following Fournier-Facio~\cite[\S2]{FFF}, let $U$ be a universal finitely
+presented torsion-free group, one containing a copy of every finitely
+presented torsion-free group~\cite{Chiodo}; let $S$ be a finitely presented
+infinite simple torsion-free group~\cite{HydeLodha}; and let $H_0$ be a
+torsion-free hyperbolic group with property~\textup{(T)}~\cite{Kotowski}.
+Small cancellation over the relatively hyperbolic pair $(U*H_0,U)$ embeds
+$U$ in a finitely presented torsion-free quotient $P$ of $H_0$
+~\cite[Proposition~2.3]{FFFStability}; torsion-freeness is preserved by
+Osin's embedding theorem~\cite[Theorem~2.4(5)]{OsinSmallCancellation}.
+Consequently, $P$ has
 property~\textup{(T)}.  By universality, $P$ contains a subgroup
 $P_1\times P_2\times S$ with $P_i\cong P$.  Let $E$ be the double HNN
 extension of $P$ with stable letters $u_1,u_2$ and $u_iPu_i^{-1}=P_i$; it is
-finitely presented, torsion-free, and acylindrically hyperbolic.  Hull's
+finitely presented and torsion-free, and its Bass--Serre action makes it
+acylindrically hyperbolic by the tree criterion of
+Minasyan--Osin~\cite{MinasyanOsin}.  Hull's
 common quotient theorem~\cite[Corollary~7.4]{Hull} applied to $E$ and
 $H_0$ gives a surjection $\pi\colon E\to G_0$ onto a finitely presented
 torsion-free group with property~\textup{(T)}, injective on a prescribed
@@ -1747,12 +1729,6 @@ J. Algebra \textbf{702} (2026), 235--243,
 \doi{10.1016/j.jalgebra.2026.04.041},
 \href{https://arxiv.org/abs/2508.17392}{arXiv:2508.17392}.
 
-\bibitem[BK94]{BK94}
-B.~Blackadar and E.~Kirchberg,
-\emph{Generalized inductive limits of finite-dimensional $C^*$-algebras},
-in \emph{$C^*$-Algebren}, Tagungsbericht 6/1994,
-Mathematisches Forschungsinstitut Oberwolfach, 1994, p.~2.
-
 \bibitem[BK]{BK}
 B.~Blackadar and E.~Kirchberg,
 \emph{Generalized inductive limits of finite-dimensional $C^*$-algebras},
@@ -1764,6 +1740,12 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[Chi]{Chiodo}
+M.~Chiodo,
+\emph{On torsion in finitely presented groups},
+Groups Complex. Cryptol. \textbf{6} (2014), no.~1, 1--8,
+\href{https://arxiv.org/abs/1107.1489}{arXiv:1107.1489}.
 
 \bibitem[Dad]{Dadarlat}
 M.~Dadarlat,
@@ -1790,6 +1772,18 @@ F.~Fournier-Facio,
 preprint, 2026,
 \href{https://arxiv.org/abs/2608.02025}{arXiv:2608.02025}.
 
+\bibitem[FF2]{FFFStability}
+F.~Fournier-Facio,
+\emph{Stability, approximable quotients, and higher property~\textup{(T)}},
+preprint, 2025,
+\href{https://arxiv.org/abs/2512.09180}{arXiv:2512.09180}.
+
+\bibitem[GKM]{GaoEtAl}
+D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
+\emph{A new source of purely finite matricial fields},
+preprint, 2026,
+\href{https://arxiv.org/abs/2603.24502}{arXiv:2603.24502}.
+
 \bibitem[GH]{GoldbringHart}
 I.~Goldbring and B.~Hart,
 \emph{The universal theory of the hyperfinite $\mathrm{II}_1$ factor is not
@@ -1803,6 +1797,13 @@ M.~Hull,
 \emph{Small cancellation in acylindrically hyperbolic groups},
 Groups Geom. Dyn. \textbf{10} (2016), no.~4, 1077--1119,
 \doi{10.4171/GGD/377}.
+
+\bibitem[HL]{HydeLodha}
+J.~Hyde and Y.~Lodha,
+\emph{Finitely presented simple left-orderable groups in the landscape of
+Richard Thompson's groups},
+Ann. Sci. \`Ec. Norm. Sup\'er. (4) \textbf{58} (2025), no.~2, 419--432,
+\href{https://arxiv.org/abs/2302.04805}{arXiv:2302.04805}.
 
 \bibitem[JNVWY]{MIPRE}
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
@@ -1824,17 +1825,29 @@ Math. Notes \textbf{102} (2017), no.~2, 198--211,
 \doi{10.1134/S0001434617070227},
 \href{https://arxiv.org/abs/1704.06906}{arXiv:1704.06906}.
 
+\bibitem[KK]{Kotowski}
+M.~Kotowski and M.~Kotowski,
+\emph{Random groups and property~\textup{(T)}: \.{Z}uk's theorem revisited},
+J. Lond. Math. Soc. (2) \textbf{88} (2013), no.~2, 396--416,
+\href{https://arxiv.org/abs/1106.2242}{arXiv:1106.2242}.
+
 \bibitem[Lev]{Leavitt}
 W.~G.~Leavitt,
 \emph{The module type of a ring},
 Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130,
-\doi{10.1090/S0002-9947-1962-0132764-6}.
+\doi{10.1090/S0002-9947-1962-0132764-X}.
 
 \bibitem[LO]{LubotzkyOppenheim}
 A.~Lubotzky and I.~Oppenheim,
 \emph{Non $p$-norm approximated groups},
 J. Anal. Math. \textbf{141} (2020), no.~1, 305--321,
 \doi{10.1007/s11854-020-0119-2}.
+
+\bibitem[MO]{MinasyanOsin}
+A.~Minasyan and D.~Osin,
+\emph{Acylindrical hyperbolicity of groups acting on trees},
+Math. Ann. \textbf{362} (2015), no.~3--4, 1055--1105,
+\href{https://arxiv.org/abs/1310.6289}{arXiv:1310.6289}.
 
 \bibitem[KT]{KT19}
 G.~Kun and A.~Thom,
@@ -1855,22 +1868,25 @@ D.~Osin,
 Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
 \doi{10.1090/tran/6343}.
 
+\bibitem[OsSC]{OsinSmallCancellation}
+D.~Osin,
+\emph{Small cancellations over relatively hyperbolic groups and embedding
+theorems},
+Ann. of Math. (2) \textbf{172} (2010), no.~1, 1--39,
+\href{https://arxiv.org/abs/math/0411039}{arXiv:math/0411039}.
+
 \bibitem[Pre]{Preusser}
 R.~Preusser,
 \emph{On general linear groups over exchange rings},
 Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
 \doi{10.1080/03081087.2020.1743636}.
 
-\bibitem[Sa]{SauersComplexity}
-S.~Sauers,
-\emph{The complexity of recognizing MF groups from finite presentations},
-preprint, 2026.
-
-\bibitem[SaN]{SauersNotes}
-S.~Sauers,
-\emph{Non-MF group notes},
-companion notes, 2026,
-\url{https://github.com/SauersML/group-approximation}.
+\bibitem[Sch]{Schafhauser}
+C.~Schafhauser,
+\emph{Finite dimensional approximations of certain amalgamated free
+products of groups},
+preprint, 2023,
+\href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
