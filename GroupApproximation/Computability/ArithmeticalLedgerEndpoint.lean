@@ -2,6 +2,7 @@ import GroupApproximation.Computability.SoficEnumeratedPi02
 import GroupApproximation.Computability.LEFEnumeratedPi02
 import GroupApproximation.Computability.TrivialEnumeratedPi02
 import GroupApproximation.Computability.AbelianEnumeratedPi02
+import GroupApproximation.Computability.PerfectEnumeratedPi02
 import GroupApproximation.Computability.ProfinitelyClosedIndexSet
 import GroupApproximation.Computability.RFPresentationPi02
 import GroupApproximation.Computability.RFEnumeratedHardness
@@ -43,6 +44,8 @@ theorem arithmetical_ledger :
     Pi02Complete (fun c : PresentationCode ↦ IsLEF (Carrier c)) ∧
     Pi02Complete (fun c : PresentationCode ↦ Subsingleton (Carrier c)) ∧
     Pi02Complete AbelianEnumeratedPi02.IsCommCode ∧
+    Pi02Complete (fun c : PresentationCode ↦
+      PerfectEnumeratedHardness.IsPerfectGroup (Carrier c)) ∧
     -- second-level lower bounds
     Pi02Hard (fun c : PresentationCode ↦ Group.ResiduallyFinite (Carrier c)) ∧
     Pi02Hard (fun c : PresentationCode ↦ Amenability.IsAmenable (Carrier c)) ∧
@@ -66,6 +69,7 @@ theorem arithmetical_ledger :
    LEFEnumeratedPi02.lef_enum_pi02Complete,
    TrivialEnumeratedPi02.trivial_enum_pi02Complete,
    AbelianEnumeratedPi02.comm_enum_pi02Complete,
+   PerfectEnumeratedPi02.perfect_enum_pi02Complete,
    RFEnumeratedHardness.rfCode_pi02Hard,
    AmenableEnumeratedHardness.amenableCode_pi02Hard,
    TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard,
@@ -84,6 +88,8 @@ def ArithmeticalLedgerHolds : Prop :=
     Pi02Complete (fun c : PresentationCode ↦ IsLEF (Carrier c)) ∧
     Pi02Complete (fun c : PresentationCode ↦ Subsingleton (Carrier c)) ∧
     Pi02Complete AbelianEnumeratedPi02.IsCommCode ∧
+    Pi02Complete (fun c : PresentationCode ↦
+      PerfectEnumeratedHardness.IsPerfectGroup (Carrier c)) ∧
     ProfinitelyClosedIndexSet.Pi03Complete ProfinitelyClosedIndexSet.ClosedIndex
 
 theorem arithmeticalLedgerHolds : ArithmeticalLedgerHolds :=
@@ -91,6 +97,7 @@ theorem arithmeticalLedgerHolds : ArithmeticalLedgerHolds :=
    LEFEnumeratedPi02.lef_enum_pi02Complete,
    TrivialEnumeratedPi02.trivial_enum_pi02Complete,
    AbelianEnumeratedPi02.comm_enum_pi02Complete,
+   PerfectEnumeratedPi02.perfect_enum_pi02Complete,
    ProfinitelyClosedIndexSet.pi03Complete_closedIndex⟩
 
 #audit_closed_axioms GroupApproximation.ArithmeticalLedgerEndpoint.arithmeticalLedgerHolds
