@@ -496,6 +496,22 @@ identity.  Hence even two full-Gram authenticated returns reconstruct an
 external constant-normalizer gauge; a native occurrence must still type
 that fused output or one branch return individually.
 
+The obvious order-seven attachment through signed `L_0` is now excluded.
+`signed-l0-does-not-attach-cross-returns-to-order-seven-head` closes all
+`8192` signed-`L_0` matrices and finds that the elementary conjugacy orbit
+of each return position `6->8`, `9->8`, `6->7`, or `9->7` contains no other
+root position.  In particular the `r`-coefficient input is not conjugate to
+the native `A_1=x_47(r)` position `7->4`.  A complete depth-two monomial
+audit does find
+
+```text
+K_0x_(8,k)(s_10t_1)K_0=x_(7,k)(s_00t_1),
+```
+
+but neither side is conjugate to the native `B_2=x_84(s_00t_1)` position
+`4->8`.  Hence the order-three return gauge and order-seven head act on
+unidentified reservoir factors; coprimality supplies no collapse.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
