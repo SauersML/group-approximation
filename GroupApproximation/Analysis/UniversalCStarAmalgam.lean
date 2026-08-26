@@ -198,6 +198,43 @@ def universalCStarAmalgamEval
         (universalCStarAmalgamRight iA iB b) = R.right b :=
   rfl
 
+/-- The coordinate evaluations are jointly faithful. -/
+theorem universalCStarAmalgam_eq_of_forall_eval_eq
+    [Nonempty (CStarAmalgamRepresentation iA iB)]
+    {x y : UniversalCStarAmalgam iA iB}
+    (h : ∀ R : CStarAmalgamRepresentation iA iB,
+      universalCStarAmalgamEval iA iB R x =
+        universalCStarAmalgamEval iA iB R y) :
+    x = y := by
+  apply Subtype.ext
+  apply lp.ext
+  funext R
+  exact h R
+
+/-- A compatible coordinate faithful on the left factor makes the canonical
+left-factor map faithful. -/
+theorem universalCStarAmalgamLeft_injective_of_coordinate
+    [Nonempty (CStarAmalgamRepresentation iA iB)]
+    (R : CStarAmalgamRepresentation iA iB)
+    (hR : Function.Injective R.left) :
+    Function.Injective (universalCStarAmalgamLeft iA iB) := by
+  intro a a' haa
+  apply hR
+  have := congrArg (universalCStarAmalgamEval iA iB R) haa
+  simpa using this
+
+/-- A compatible coordinate faithful on the right factor makes the canonical
+right-factor map faithful. -/
+theorem universalCStarAmalgamRight_injective_of_coordinate
+    [Nonempty (CStarAmalgamRepresentation iA iB)]
+    (R : CStarAmalgamRepresentation iA iB)
+    (hR : Function.Injective R.right) :
+    Function.Injective (universalCStarAmalgamRight iA iB) := by
+  intro b b' hbb
+  apply hR
+  have := congrArg (universalCStarAmalgamEval iA iB R) hbb
+  simpa using this
+
 /-- Universal property of the concrete full C-star amalgam. -/
 theorem universalCStarAmalgam_existsUnique_lift
     [Nonempty (CStarAmalgamRepresentation iA iB)]
