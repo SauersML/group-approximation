@@ -4,6 +4,7 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - research/artifacts/arithmetical-complexity-note-2026-08-26.tex
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   second-level-rice-theorem-for-local-approximation-properties: that is one theorem; this is the ledger of all classifications, including the ones outside its scope (residual finiteness, amenability, property (T)), with every cell pointing at its proof and every open cell named.
