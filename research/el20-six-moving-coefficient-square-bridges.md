@@ -117,6 +117,22 @@ the coboundary drift of
   character object; appending one required signed-Hecke move restores a
   nontrivial transposition.  Hence the first genuine **closed**, non-chain
   full-Leavitt loop is also fenced.
+- Adding the smallest actual opposite-root relation beyond that closed
+  character table still does not collapse it.  The involutive Leavitt unit
+  `u=s_0t_1+s_1t_0` and Weyl word `w_ab(u)` swap both complete branch arms.
+  By `binary-branch-flip-weyl-has-s3-c2-model`, the three-character escape
+  extends exactly: the character transposition is accompanied by a swap of
+  the two Pauli reservoirs, enlarging the finite actor from `S_3` to
+  `S_3 x C_2`.  Thus literal symmetric branch exchange is not the missing
+  asymmetric payload return.
+- Closing the **entire depth-one actor menu** does not change that verdict.
+  `full-depth-one-leavitt-menu-has-finite-clifford-model` includes both
+  compression preimages, all inverse/cross-zero/fold rows, the branch flip,
+  every fixed root-position Weyl conjugacy used by ESB, their Singer role
+  translates, and every mixed naturality square.  They act through one
+  finite role-permutation/two-qubit-Clifford group whose regular model keeps
+  the marked involution nontrivial.  The next possible breaker must be an
+  address-sensitive asymmetric return beyond affine depth-one Pauli labels.
 - Nor can one append a single genuinely nonnormal opposite-root letter to
   the known Whitehead.  By
   `one-nonnormal-dressing-cannot-preserve-moving-full-gram`, all exact
