@@ -1890,6 +1890,7 @@ import GroupApproximation.Higman.MikhailovaGraphProductWitness
 import GroupApproximation.Higman.MikhailovaRankThreeWitness
 import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRankThreeCode
+import GroupApproximation.Higman.BridgeRelatorCode
 import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedReturnCutterCode
