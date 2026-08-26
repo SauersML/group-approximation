@@ -61,6 +61,21 @@ a finitely presented one exists iff `HYP_fp` is undecidable iff `HYP_rec2`
 is `Pi^0_2`-complete.  Same for weakly sofic and linear sofic
 (`Pi^0_2`-hard).
 
+## Theorem 5 (residual finiteness; `residual-finiteness-of-enumerated-presentations-is-pi3-complete`)
+
+On countably generated recursively enumerated presentations residual
+finiteness is `Pi^0_3`-complete, while LEF is `Pi^0_2`-complete on the same
+syntax; the two coincide on finite presentations.  Mechanism: for
+`a_j = b^j a b^-j` the central HNN extension
+`H_c = <a, b, s | [s, a_j] = 1, j < |W_c|>` is residually finite iff `W_c`
+is finite (a finitely generated subgroup of a free group is profinitely
+closed; the subgroup on all nonnegative conjugates has `b^-1 a b` in its
+closure, so `[s, b^-1 a b]` dies in every finite quotient), and countable
+free products encode the outer universal quantifier.  Upper bound by
+compactness of `Q^N`.  Open: the two-generator version (needs an effective
+Wilson envelope) and `Pi^0_2`-completeness of `RF_fp` (residually finite
+Higman).
+
 ## What remains open
 
 * `SOFIC_fp` `Pi^0_2`-complete: needs `sofic-safe-finite-presentation-compiler`.
