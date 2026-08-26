@@ -105,6 +105,33 @@ theorem comap_ambient_residuallyFinite
   change Group.ResiduallyFinite (u.K × w.K)
   infer_instance
 
+/-! ## Transport along an isomorphism -/
+
+variable {N' : Type} [Group N'] (equiv : N' ≃* N)
+
+/-- Changing only the embedded copy of the source group leaves the cutter
+literally unchanged. -/
+theorem congr_L_eq :
+    (BenignWitness.congr (G := N) (G' := N') (H := H) equiv w).L = w.L := rfl
+
+/-- Consequently, transport along an isomorphism preserves closedness of the
+cutter without any new profinite argument. -/
+theorem profiniteClosure_congr_L
+    (hL : profiniteClosure w.L = w.L) :
+    profiniteClosure
+        (BenignWitness.congr (G := N) (G' := N') (H := H) equiv w).L =
+      (BenignWitness.congr (G := N) (G' := N') (H := H) equiv w).L := by
+  change profiniteClosure w.L = w.L
+  exact hL
+
+/-- Transport along an isomorphism also leaves the witness ambient literally
+unchanged. -/
+theorem congr_ambient_residuallyFinite [Group.ResiduallyFinite w.K] :
+    Group.ResiduallyFinite
+      (BenignWitness.congr (G := N) (G' := N') (H := H) equiv w).K := by
+  change Group.ResiduallyFinite w.K
+  infer_instance
+
 end
 
 end BenignDirectProductResiduallyFinite
