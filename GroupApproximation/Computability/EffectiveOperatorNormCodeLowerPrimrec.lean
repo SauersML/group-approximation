@@ -12,9 +12,6 @@ private abbrev LowerInput := (ℕ × MatrixCode) × ℕ
 private theorem primrec_lowerDim : Primrec fun z : LowerInput => z.1.1 :=
   Primrec.fst.comp Primrec.fst
 
-private theorem primrec_lowerMatrix : Primrec fun z : LowerInput => z.1.2 :=
-  Primrec.snd.comp Primrec.fst
-
 private theorem primrec_lowerDimPow : Primrec fun z : LowerInput =>
     (dim z.1.1) ^ 2 :=
   primrec_natPow.comp (primrec_dim.comp primrec_lowerDim) (Primrec.const 2)
