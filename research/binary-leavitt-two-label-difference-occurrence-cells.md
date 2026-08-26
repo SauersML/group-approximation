@@ -103,6 +103,12 @@ No established finite packet supplies these two parity constraints.
    the two prefix Whiteheads has affine phase.  Adjoining a CZ covariance
    word changes the missing equation to the explicit cross-outer gauge lock
    `D V_1=I`; covariance alone does not prove it.
+7. `branch-flip-weyl-joins-complementary-q-child-to-native-head` gives the
+   first literal conjugacy from the complementary q-child root to a native
+   p-root.  The resulting common elementary carrier is `SL_13(F_2)`, but its
+   natural marked/star profile still has zero full-Hecke source.  Thus
+   common root-carrier membership is weaker than either label-only odd row
+   required in `(LDC2)--(LDC3)`.
 
 Accordingly the minimum unfenced packet is two odd incidence constraints,
 one involving each actual native selector occurrence.  They may be
@@ -140,6 +146,14 @@ the established fences.
   normalizer has an arbitrary multiplicity factor, so multiplying it by the
   first Whitehead only reduces the problem to authenticating their
   cross-outer gauge equality.
+- **Use the full branch flip `w=a_1+b_1` to return the complementary child.**
+  Its Steinberg Weyl word does conjugate `x_(7,10)(q)` to the native root
+  `x_(10,7)(p)`, so this is a genuine common-carrier occurrence rather than
+  another orthogonal attachment.  The complete thirteen-atom closure is
+  nevertheless `SL_13(F_2)`, whose natural finite model keeps the marked and
+  star projections nonzero while killing the full-Hecke source.  The flip
+  joins carriers but does not authenticate either spectator sign in
+  `(LDC3)`.
 
 No Property `(T)`, canonical-trace substitution, stability theorem,
 computation, or literature input is used.
