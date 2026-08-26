@@ -500,6 +500,30 @@ action against a selector factor or turn the repeated `K_i` occurrences
 into the native Whitehead occurrence; that odd occurrence attachment is
 the remaining seam.
 
+The complementary positive input fusion at `k=6` does not remove that
+seam.  In `two-positive-cross-fusions-leave-selector-seam`, the
+`(q_1,q_0)` inputs multiply to the positive generator `x_86(1)`, but this
+positivity is typed on `Q`, while the individual inputs in the two return
+rows live on the moved `K_iQK_i` cuts.  The aggregate chart
+`T=K_0K_1=w_78(p+r)` is not a signed-`L_0` normalizer: it sends
+`x_28(1)` to the nonconstant root `x_27(p+r)`.  The first fusion does give
+a shared `r,p` action on `TQT`, but these are equal-depth inverse
+coefficients, not the native unequal-depth `x_1,x_2` selector occurrences.
+An exact `C_2 times C_2` scoped model retains both individual `K_i` gauges
+through the complete two-cell table.
+
+Comparing the composite return path with the direct aggregate chart does
+cancel the common output action, but it also cancels every label movement.
+If `L_i=K_iR_i`, `P=L_1^(-1)L_0`, and `B=T^(-1)P`, then
+
+```text
+B=x_76(q_1)x_86(r)=K_0x_76(1)K_0.
+```
+
+It acts as the identity on `K_0QK_0`, because `x_76(1)` acts as the
+identity on `Q`.  Thus the direct and composite paths coincide on their
+source; the relative loop is not an ungauged nontrivial selector bridge.
+
 The obvious order-seven attachment through signed `L_0` is now excluded.
 `signed-l0-does-not-attach-cross-returns-to-order-seven-head` closes all
 `8192` signed-`L_0` matrices and finds that the elementary conjugacy orbit
@@ -535,6 +559,23 @@ These nested commutators also contain no odd literal `J_i` or `v_i`
 occurrence.  A live word must therefore add a genuinely new opposite-root
 carrier-return loop, not just the minimal coefficient multiplier and an
 `L_0` dressing.
+
+Allowing every constant external signed return does not change that
+conclusion.  `external-group-misses-native-t00-roots`
+works in
+
+```text
+G_X=<L_0, eight external roots>
+   =UT_(6,9,5,8,4,7,2)(F_2),       |G_X|=2097152,
+```
+
+and closes the exact conjugacy orbit of each of the ten converted root
+positions.  None reaches `x_89(y_2)` or `x_78(y_1)`.  Thus arbitrary
+constant external-return words and `L_0` dressings cannot place the
+converted coefficient on a native reverse Whitehead occurrence.  Since no
+such returned occurrence exists, the complementary positive-`L_0` fusion
+has no new gauge to cancel here; the next loop must itself contain a
+nonconstant opposite-root return.
 
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
