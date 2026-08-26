@@ -236,7 +236,6 @@ theorem primrec_letterMatrix :
     (Primrec.eq.comp (Primrec.snd.comp Primrec.snd) (Primrec.const true))
     hgen hconj
 
-set_option maxHeartbeats 800000 in
 theorem primrec_wordMatrix :
     Primrec fun z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool) =>
       wordMatrix z.1.1.1 z.1.1.2 z.1.2 z.2 := by
@@ -256,14 +255,13 @@ theorem primrec_wordMatrix :
             (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
           (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))) Primrec.snd).to₂
     exact Primrec.list_map Primrec.snd hletter
-  have hstep : Primrec fun
-      p : (((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool)) ×
-        (MatrixCode × MatrixCode) =>
-      matrixMul p.1.1.1.1 p.2.1 p.2.2 :=
-    primrec_matrixMul.comp <| Primrec.pair
+  have hstep : Primrec₂ fun
+      (z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool))
+      (p : MatrixCode × MatrixCode) => matrixMul z.1.1.1 p.1 p.2 := by
+    exact (primrec_matrixMul.comp <| Primrec.pair
       (Primrec.pair (hd.comp Primrec.fst) (Primrec.fst.comp Primrec.snd))
-      (Primrec.snd.comp Primrec.snd)
-  exact Primrec.list_foldl hmapped hinit hstep.to₂
+      (Primrec.snd.comp Primrec.snd)).to₂
+  exact Primrec.list_foldl hmapped hinit hstep
 
 theorem primrec_mulVecEntry :
     Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ =>
@@ -297,17 +295,16 @@ theorem primrec_vectorNormSq :
     Primrec fun z : ℕ × VectorCode => vectorNormSq z.1 z.2 := by
   have hrange : Primrec fun z : ℕ × VectorCode => List.range (dim z.1) :=
     Primrec.list_range.comp (primrec_dim.comp Primrec.fst)
-  have hstep : Primrec fun p : (ℕ × VectorCode) × (RatCode × ℕ) =>
-      ratAdd p.2.1 (complexNormSq (vectorEntry p.1.2 p.2.2)) := by
-    have hentry : Primrec fun p : (ℕ × VectorCode) × (RatCode × ℕ) =>
-        vectorEntry p.1.2 p.2.2 :=
-      primrec_vectorEntry.comp (Primrec.snd.comp Primrec.fst)
-        (Primrec.snd.comp Primrec.snd)
-    exact primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd)
-      (primrec_complexNormSq.comp hentry)
-  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep.to₂
+  have hstep : Primrec₂ fun (z : ℕ × VectorCode) (p : RatCode × ℕ) =>
+      ratAdd p.1 (complexNormSq (vectorEntry z.2 p.2)) := by
+    exact primrec_ratAdd.comp₂
+      (Primrec.fst.comp₂ Primrec₂.right)
+      (primrec_complexNormSq.comp₂
+        (primrec_vectorEntry.comp₂
+          (Primrec.snd.comp₂ Primrec₂.left)
+          (Primrec.snd.comp₂ Primrec₂.right)))
+  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
 
-set_option maxHeartbeats 800000 in
 theorem primrec_mulVecNormSq :
     Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
       mulVecNormSq z.1.1 z.1.2 z.2 := by
@@ -315,25 +312,15 @@ theorem primrec_mulVecNormSq :
       List.range (dim z.1.1) :=
     Primrec.list_range.comp
       (primrec_dim.comp (Primrec.fst.comp Primrec.fst))
-  have hstep : Primrec fun
-      p : ((ℕ × MatrixCode) × VectorCode) × (RatCode × ℕ) =>
-      ratAdd p.2.1 (complexNormSq (mulVecEntry p.1.1.1 p.1.1.2 p.1.2 p.2.2)) := by
-    let hd : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.1.1 :=
-      Primrec.fst.comp Primrec.fst
-    let hA : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.1.2 :=
-      Primrec.snd.comp Primrec.fst
-    let hv : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.2 :=
-      Primrec.snd
-    have hentry : Primrec fun
-        p : ((ℕ × MatrixCode) × VectorCode) × (RatCode × ℕ) =>
-        mulVecEntry p.1.1.1 p.1.1.2 p.1.2 p.2.2 :=
-      primrec_mulVecEntry.comp <| Primrec.pair
-        (Primrec.pair (Primrec.pair (hd.comp Primrec.fst) (hA.comp Primrec.fst))
-          (hv.comp Primrec.fst))
-        (Primrec.snd.comp Primrec.snd)
-    exact primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd)
-      (primrec_complexNormSq.comp hentry)
-  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep.to₂
+  have hstep : Primrec₂ fun (z : (ℕ × MatrixCode) × VectorCode)
+      (p : RatCode × ℕ) =>
+      ratAdd p.1 (complexNormSq (mulVecEntry z.1.1 z.1.2 z.2 p.2)) := by
+    exact primrec_ratAdd.comp₂
+      (Primrec.fst.comp₂ Primrec₂.right)
+      (primrec_complexNormSq.comp₂
+        ((primrec_mulVecEntry.to₂).comp₂ Primrec₂.left
+          (Primrec.snd.comp₂ Primrec₂.right)))
+  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
 
 end EffectiveMatrixCodePrimrec
 end GroupApproximation
