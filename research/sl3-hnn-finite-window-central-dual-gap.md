@@ -227,6 +227,22 @@ a finite mixed Britton window.  If the coset action
   datum: it is not a longer actor-free lamp window, but a genuinely
   non-product common actor covariance coupling the torus coefficients to
   the conjugate-letter frame.
+- **Finite sums and bounded Schmidt rank do not reopen the ambient face.**
+  `unbalanced-torus-forces-cross-gram-on-ambient-face` applies the intrinsic
+  relative-coordinate extraction before any block decomposition.  For an
+  arbitrary exact ambient representation and arbitrary block-mixing `H,T`,
+  it gives
+
+  ```text
+  1-|tr(T^*H^*TH)|^2
+   <=K q_C(T)+C_0 eta^2+C_0 alpha_+(H).
+  ```
+
+  Hence one cross-Gram excludes every finite direct sum and every bounded
+  or unbounded operator-Schmidt-rank spectator model on the ambient-exact
+  face.  The minimum surviving datum is sharper than “non-product”: the
+  lattice packet must be an ambient-extension outlier, so that no exact
+  ambient reference exists before the common actor covariance is tested.
 - **The exact finite-action atlas is excluded but approximate atlases remain.**
   Profinite co-density and the Kazhdan gap put every exact arithmetic atlas a
   fixed distance away, while a hypothetical sofic coset-action atlas would

@@ -7,6 +7,7 @@ distinct_from:
   finite-lamp-frame-is-matrix-range-neutral: that realizes every fixed free-lamp window after forgetting the common arithmetic actor and tensors an arbitrary separator through it; this proves that the same spectator tensor construction cannot also satisfy one unbalanced actor relation and the first conjugate-letter cross-Gram.
   unbalanced-torus-relator-closes-product-projective-sector: that uses the torus defect to control an arbitrary auxiliary projective commutator in a product-form exact ambient actor; this applies its exact multiplicity-coordinate evaluation to the HNN letter itself and obtains an incompatibility with one amalgamated-free mixed moment.
   two-conjugate-letter-overlap-data-is-morita-neutral: that preserves two free letter windows together with a common overlap actor but omits denominator transport outside the overlap; this identifies one fixed outside-overlap word which destroys precisely that spectator product escape.
+  unbalanced-torus-forces-cross-gram-on-ambient-face: that removes the pure tensor assumption altogether and allows arbitrary direct sums and cross-block mixing relative to any exact ambient actor; this is the elementary product-sector inequality with the sharp linear constant two.
 ---
 
 Let `sigma:A->U(K)` be an exact finite-dimensional representation for
@@ -63,3 +64,10 @@ packet, so that no unitary `V` can be peeled off as in `(SFL1)`.  The exact
 minimum moving datum is therefore the common actor covariance coupling the
 unbalanced torus coefficients to the conjugate-letter frame, not a larger
 collection of actor-free lamp moments.
+
+The product restriction is no longer the final ambient-face boundary.
+`unbalanced-torus-forces-cross-gram-on-ambient-face` upgrades the same
+conclusion to arbitrary direct sums and arbitrary block mixing, with no
+operator-Schmidt-rank bound, whenever the lattice packet has an exact
+ambient reference and the fixed overlap covariance is small.  What remains
+outside both statements is exactly the ambient-extension outlier sector.
