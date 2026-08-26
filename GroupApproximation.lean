@@ -1710,7 +1710,6 @@ import GroupApproximation.Sofic.MatchingStemFold
 import GroupApproximation.Sofic.SigmaCompressionPair
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Endpoint.MFRecognitionAudit
-import GroupApproximation.Sofic.PropertyTFreeMFCollapse
 import GroupApproximation.Sofic.PalindromicMinimalExpr
 import GroupApproximation.Sofic.MatchingFactorPair
 import GroupApproximation.Sofic.NonCrossingEdgeBound
@@ -1721,7 +1720,6 @@ import GroupApproximation.Sofic.MatchingFoldObstruction
 import GroupApproximation.Sofic.MatchingBlockOrder
 import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.MicrostateNormalForm
-import GroupApproximation.Computability.CodedWordTriviality
 import GroupApproximation.Computability.RationalComplexCode
 import GroupApproximation.Computability.EffectiveMatrixCode
 import GroupApproximation.Analysis.OperatorNormCertificate
@@ -1827,7 +1825,6 @@ import GroupApproximation.Analysis.FiniteMatrixSignNormalization
 import GroupApproximation.Computability.FreeEdgeTowerCodePrimrec
 import GroupApproximation.Computability.FreeEdgeTowerSemantics
 import GroupApproximation.Computability.EffectiveMatrixVectorWitnessComplete
-import GroupApproximation.Computability.LEFEnumeratedPi02
 import GroupApproximation.Computability.MFRecognitionPi02
 import GroupApproximation.Computability.MicrostateGeneratorEncoding
 import GroupApproximation.Computability.SoficPromiseMFRecognition
@@ -1837,9 +1834,6 @@ import GroupApproximation.Higman.TransportCodeRE
 import GroupApproximation.Leavitt.LeavittModuleRank
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerClassIdentificationAudit
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
-import GroupApproximation.Computability.SoficMicrostateNormalForm
-import GroupApproximation.Computability.SoficRecognitionPi02
-import GroupApproximation.Computability.SoficEnumeratedPi02
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
