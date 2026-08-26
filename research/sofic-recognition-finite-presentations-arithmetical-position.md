@@ -4,6 +4,7 @@ id: sofic-recognition-finite-presentations-arithmetical-position
 kind: claim
 title: Sofic finite presentations are Pi-zero-two but not Pi-zero-one, and nonsofic ones are Sigma-zero-two but not recursively enumerable
 artifacts:
+  - GroupApproximation/Computability/SoficRecognitionPi02.lean
   - GroupApproximation/Computability/SoficMarkov.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
@@ -28,3 +29,7 @@ half is `Computability/SoficMarkov.sofic_recognition_undecidable` and
 
 Whether `SOFIC_fp` is `Pi^0_2`-complete is
 [[sofic-recognition-finite-presentations-is-pi2-complete]].
+
+**Machine-checked.**  `SoficRecognitionPi02.sofic_fp_strict_position` is
+exactly (SP1): `Pi02` and not `Pi01` for sofic codes, `Sigma02` and not
+`Sigma01` for nonsofic codes.
