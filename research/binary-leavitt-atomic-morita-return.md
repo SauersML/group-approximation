@@ -62,8 +62,10 @@ The direct typed-packet attack fails: `rectangular-escape`,
 `typed-pi-superrank-data-do-not-decode-prescribed-leavitt-carrier` give exact
 finite models of every separately typed packet while keeping the source and
 target identities on different reservoirs.  A universal group-algebra
-selector also fails because the regular representation sees `z` inside a
-finite tracial algebra.  Finally, the existing normalized-Hilbert--Schmidt
+selector also fails by
+`fixed-group-algebra-polynomials-cannot-supply-atomic-return`: on the regular
+marked corner, arbitrary compressed root-word polynomials have total
+three-row defect at least one.  Finally, the existing normalized-Hilbert--Schmidt
 ledgers cannot be upgraded: a leakage row can have operator norm one on a
 vanishing-rank carrier while its ambient normalized-HS norm tends to zero.
 
@@ -71,3 +73,11 @@ The live attack is `binary-leavitt-three-row-atomic-compiler`: derive the
 three rows from finitely many prototype discrepancies at a
 coordinate-dependent, losslessly conjugated address.
 
+The authenticated support-idempotent returns do not by themselves furnish
+such prototypes.  `support-return-odd-loops-do-not-imply-atomic-return`
+retains both literal odd native factorizations, their transported Pauli-chart
+covariances, chart intersection and native braid in one exact finite marked
+model.  Applying the atomic gap on its nonzero marked atom proves that no
+three-row output with a vanishing modulus follows from that finite menu.  A
+live compiler must add a relation coupling coefficient completeness to the
+prescribed atom, rather than only recombine `Z_i,H_i,W_i,J_i`.

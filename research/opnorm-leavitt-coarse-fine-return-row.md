@@ -120,3 +120,13 @@ to sit on one carrier.**
   the off-diagonal corners of the `2 by 2` chart `(PSR1)` to build closed
   loops through both packets and ask whether the loop defect controls
   `||sum_i e_ii - sum_a f_aa||_op`, which is the one quantity `(EXA3)` needs.
+
+* **The authenticated support-return odd loops do not supply the row.**
+  `support-return-odd-loops-do-not-imply-atomic-return` keeps the two literal
+  `J_i=W_i(Z_iH_iZ_i)W_i` occurrences, their full transported-chart
+  covariance, their exact two-pair intersection and the native braid in a
+  finite marked model.  If those rows implied a common depth-one/depth-two
+  carrier and vanishing leakage, the exact norm-one rank floor would fail in
+  that model.  Hence a new coefficient-completeness-to-mark relation is
+  required; support-return recombination alone cannot recover the missing
+  additive packet identity.
