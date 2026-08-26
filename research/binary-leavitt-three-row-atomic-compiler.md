@@ -547,3 +547,23 @@ defect exactly two, with no smaller nonzero reducing carrier.  Thus the live
 MF input is an arbitrary-profile mixed occurrence which kills the actor
 holonomy or gives a root-valued identity-action return; active density,
 prefix normalizers, the braid, and order-seven anchoring cannot supply it.
+
+The first marked-coefficient action on row two and its independently factored
+return still lie below that boundary.  The literal identities
+
+```text
+C_3=[A_3,B_3]=x_65(q),
+[C_3,A_2]=x_68(qa_2)=x_68(a_2),
+w_65(1)A_2w_65(1)^(-1)=x_68(a_2)
+```
+
+make `q` act as the identity on the actual `a_2=s_1t_00` occurrence.
+`row2-parallel-a2-return-diamond-has-gl8-model` further supplies two literal
+`s_1,t_00` factorizations and a factorwise constant-Weyl comparison.  All of
+these rows still have one exact marked `GL_8(F_2)` model because separately
+named coefficients in the same root subgroup can coincide there.  Therefore
+a viable atomic prototype must next distinguish `t_00` from the existing
+same-root prefix coefficient by an additive or multiplicative occurrence
+attached to the marked carrier, or attach the returned arm directly to the
+unequal Hecke source.  Another root-position return diamond cannot yield
+`(BAC1)`.

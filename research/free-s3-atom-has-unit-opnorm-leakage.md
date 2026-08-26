@@ -69,5 +69,53 @@ binary-Leavitt relations not represented by that table.  No Property T,
 canonical trace, literature input, local computation, or Lean compilation
 is used.
 
+## Full-root payment audit
+
+Completing the signs by dual Heisenberg roots would pay this free orbit, but
+only if the duals belong to the **same occurrence packet**.  If nine
+involutions `D_ij` satisfied
+
+```text
+[C_ij,D_kl]=z^(delta_(i,k)delta_(j,l))
+```
+
+and the relative `S_3` actors simultaneously permuted both the `C` and `D`
+rows, the `D_ij` would flip the nine sign coordinates transitively.  Every
+marked character atom would then have the same rank in an arbitrary finite
+matrix profile.  A transposition has one fixed coordinate and four
+two-cycles on the nine ordered pairs, hence fixes `2^5=32` of the `2^9`
+characters.  Its fixed-atom return carrier would have rank exactly
+`rank(P_z)/16`, with zero operator-norm leakage.  Thus the abstract free
+orbit cannot survive as the entire active profile after such a same-packet
+dual completion.
+
+This observation does not add a new live relation.  The stronger literal
+three-pair version is already
+`middle-index-marked-heisenberg-packet-is-whitehead-equivariant`: its actual
+prefix duals are normalized by the actual Whiteheads and give a common
+fixed atom of mass `rank(P_z)/8`.  The auxiliary nine-pair frame of
+`nine-pair-marked-heisenberg-regularization-is-selector-spectator` commutes
+with the native selector occurrences and therefore leaves their reservoir
+overlap unchanged.
+
+Most importantly, the unequal center-chain selector occurrences do not
+normalize the literal three-pair frame.  By
+`middle-index-heisenberg-packet-is-not-center-chain-invariant` they eject
+the nonzero roots
+
+```text
+[A_m,Y_m]=x_(r_m,3)(q),       [X_m,B_m]=x_(1,s_m)(q).
+```
+
+Demanding same-frame normalization would force these coefficients, hence
+`q`, to vanish.  Closing the ejected roots instead gives the finite,
+scale-neutral packet of
+`middle-index-order-seven-orbit-cut-is-native-scale-neutral`.  Therefore
+the precise unresolved full-presentation datum is not the existence of
+dual roots or their prefix-Whitehead covariance; it is a new mixed
+occurrence that couples the unequal selector source while returning a
+positive part of this dual frame.  The known literal duals either remain a
+spectator or are ejected.
+
 DERIVATION
 free-s3-atom-opnorm-leakage-proof

@@ -21,6 +21,12 @@ requires:
   - prefix-order-seven-pair-retains-gl7-mark
   - free-s3-atom-has-unit-opnorm-leakage
   - row2-quarter-source-opnorm-two-fence
+  - native-local-occurrence-closure-fixes-mark
+  - external-weyl-dressed-native-pair-is-root-valued
+  - six-pair-chart-swap-retains-external-gauge
+  - row2-marked-center-action-return-has-gl8-model
+  - row2-parallel-a2-return-diamond-has-gl8-model
+  - spectator-dressed-gram-does-not-share-selector-gauges
   - property-t-free-manuscript-theorem-dependency-audit
 ---
 
@@ -35,7 +41,16 @@ Whitehead Gram does not type the unequal native rows, and
 support-return/Hecke menu does not supply the missing type by another literal
 occurrence.  The literal two-scale prefix and simultaneous order-seven fences
 show that fully typing the adjacent actors and both Hecke anchors still closes
-in the same marked `GL_7(F_2)` chart.  The manuscript dependency audit then separates this open
+in the same marked `GL_7(F_2)` chart.  The root-valued and marked-center
+audits then test the first genuinely external/mixed repairs: the current
+native closure fixes the mark; an external Weyl moves it but retains a scalar
+chart gauge even after both Pauli charts are adjoined; and the literal
+`qa_2=a_2` return plus two independent `A_2` factorizations still closes in
+marked `GL_8(F_2)`.  Finally, a dual-frame spectator can make dressed Grams
+maximal without changing the two incompatible raw affine gauges.  These
+results isolate an ordinary unequal-source occurrence, rather than another
+analytic dressing or root-position comparison, as the missing datum.
+The manuscript dependency audit then separates this open
 MF-collapse input from the already established downstream algebraic theorem
 package.  Therefore the proposed proof has exactly the safe status stated in
 the target claim.
