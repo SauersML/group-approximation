@@ -113,6 +113,21 @@ theorem rowOut_eq_map_indexSub (m : ℕ) :
   · rintro ⟨_, ⟨i, hi, rfl⟩, rfl⟩
     exact ⟨i, hi, (Row.basisHom_of i).symm⟩
 
+/-- Reflection of the outside subgroup through the free row basis. -/
+theorem rowOut_comap_basisHom (m : ℕ) :
+    (rowOut m).comap Row.basisHom =
+      RowDeletionGraph.indexSub
+        (fun i : ℤ => i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) := by
+  rw [rowOut_eq_map_indexSub]
+  exact Subgroup.comap_map_eq_self_of_injective Row.basisHom_injective _
+
+theorem basisHom_mem_rowOut_iff (m : ℕ) (w : FreeGroup ℤ) :
+    Row.basisHom w ∈ rowOut m ↔
+      w ∈ RowDeletionGraph.indexSub
+        (fun i : ℤ => i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) := by
+  change w ∈ (rowOut m).comap Row.basisHom ↔ _
+  rw [rowOut_comap_basisHom]
+
 /-- **Exact coordinate test for the outside row.** -/
 theorem row_mem_rowOut_iff (m : ℕ) (i : ℤ) :
     Row.row i ∈ rowOut m ↔ i ∉ Finset.Ico (0 : ℤ) (m : ℤ) := by
