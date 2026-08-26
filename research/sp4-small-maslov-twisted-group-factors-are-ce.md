@@ -6,6 +6,7 @@ title: A null sequence of nontrivial Maslov-twisted Sp4 group algebras is Connes
 distinct_from:
   sp4-isw-theorem-c-embeddable-twist-data-exists: that phrases the ISW toll using twisted Bernoulli crossed products and measurable cocycles; this is the exact remaining group-algebra statement after the Bernoulli CE equivalence and Jiang injection.
   sp4-mod3-twisted-fibres-have-llp: that asks for LLP of fixed finite-order twisted C-star fibres; this asks only Connes embeddability of a null sequence of scalar-twisted von Neumann group algebras.
+  maslov-ce-parameter-set-is-a-closed-subgroup: that proves this null-sequence claim is equivalent to CE of every parameter on the Maslov circle; this remains the open choice of which side of that dichotomy holds.
 ---
 
 OPEN. For `Gamma=Sp_4(Z)`, choose a nonzero real Maslov cocycle `b`. There
@@ -32,6 +33,18 @@ required by Theorem C and refutes LLP for `C^*(Sp_4(Z))`. If even one algebra
 in the Maslov circle is non-CE, it yields a countable nonhyperlinear central
 extension by `nonce-twisted-factor-gives-nonhyperlinear-group`.
 
+By `maslov-ce-parameter-set-is-a-closed-subgroup`, this claim is equivalent
+to the apparently much stronger statement
+
+```text
+L_(c_theta)(Sp_4(Z)) is CE for every theta in R/Z.        (SMT2)
+```
+
+Indeed any nontrivial CE parameters converging to zero force the closed CE
+subgroup of the Maslov circle to be infinite, hence the whole circle. Thus
+there is no perturbative small-parameter regime to attack separately: the
+claim includes the fixed mod-three Deligne sectors in full.
+
 ## Attempts
 
 Congruence/projective finite models do not attack `(SMT1)` for generic
@@ -45,4 +58,3 @@ construction. Conversely, proving that any one of these algebras is non-CE
 would already solve the nonhyperlinear-group problem through its central
 extension, so no general non-CE certificate is presently available. The
 attack is deferred at precisely this projective-microstate existence fork.
-
