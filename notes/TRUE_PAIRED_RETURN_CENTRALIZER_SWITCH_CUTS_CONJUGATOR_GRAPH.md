@@ -336,6 +336,21 @@ Let
 
 be the normal closure in \(M\).
 
+This is deliberately a **normal closure in \(M\)**, not the ordinary
+two-generated subgroup \(\langle\delta_b,\delta_c\rangle\).  Lemma 5.3 will
+prove the sharper identification
+
+\[
+  \Delta
+   =\left\langle\!\left\langle\delta_b,\delta_c
+     \right\rangle\!\right\rangle_M
+   =\langle\delta_h:h\in K\rangle.
+  \tag{4.5a}
+\]
+
+The equality is supplied by all \(M\)-conjugates and the Cayley-edge
+telescoping, not by \(\delta_b,\delta_c\) alone.
+
 ### Theorem 4.1 — transition matching returns exactly \(\Delta\)
 
 Under the identification \(C=M\times U\),
@@ -488,10 +503,10 @@ second coordinate is
 
 Thus both coordinates agree. \(\square\)
 
-### Lemma 5.3 — \(\Delta\) is contained in \(\Gamma\)
+### Lemma 5.3 — the normal closure is exactly the full difference subgroup
 
 \[
-  \boxed{\Delta\leq\Gamma.}
+  \boxed{\Delta=\langle\delta_h:h\in K\rangle\leq\Gamma.}
   \tag{5.7}
 \]
 
@@ -527,6 +542,21 @@ Therefore
   \delta_h=g(e_he_1^{-1})\in\Delta_0
   \qquad(h\in K).
   \tag{5.10}
+\]
+
+Conversely, every Cayley-edge generator (5.8) is
+
+\[
+  g(e_{s q}e_q^{-1})=\delta_{s q}\delta_q^{-1},
+  \tag{5.10a}
+\]
+
+so \(\Delta_0\leq\langle\delta_h:h\in K\rangle\).  Together with (5.10),
+this gives
+
+\[
+  \Delta_0=\langle\delta_h:h\in K\rangle.
+  \tag{5.10b}
 \]
 
 In particular \(\delta_k\in\Delta_0\), and
@@ -656,7 +686,7 @@ All clauses of `TorsionFreeBenignWitness Star.graphSub` are now explicit.
 
 The group \(F_3\) is a finite-rank free group, hence finitely presented in the
 repository's group-presentation framework, and
-`ProductFinitePresentation.isFinitelyPresented_prod` gives finite
+the repository instance `ProductFinitePresentation.instProd` gives finite
 presentation of
 
 \[
