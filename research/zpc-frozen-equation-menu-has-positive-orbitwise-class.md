@@ -6,11 +6,13 @@ title: The perfect gap ZPC strategy has a positive orbitwise frozen equation-men
 distinct_from:
   zpc-readable-control-freezing-to-lcs: that asks directly for a commuting LCS solution after freezing all readable bits; this asks only for one readable atom on whose entire unreadable orbit the finitely many equations selected at that atom remain valid.
   zpc-readable-variables-global-boolean-field: that constructs the finite measurable readable partition but gives no orbitwise invariance; this permits the partition labels to move whenever the selected frozen equation menu stays unchanged.
+  every-perfect-zpc-gap-witness-has-a-frozen-branch: that universal statement is refuted by finite magic-square padding; this asks whether one can specially select an unpadded TailoredMIP witness with the stronger orbitwise property.
 ---
 
-Let `G` and its perfect ZPC-IRS strategy be the witness from
-`perfect-zpc-irs-quantum-gap-game`.  Let `p_r` be the atoms of its finite
-global readable field.  For some `r` with positive measure, put
+The claim is that one can choose `G` and its perfect ZPC-IRS strategy among
+the existential witnesses of `perfect-zpc-irs-quantum-gap-game` so that the
+following holds.  Let `p_r` be the atoms of its finite global readable field.
+For some `r` with positive measure, put
 
 ```text
 P=p_r (1-J)/2.                                          (ZOM1)
@@ -36,6 +38,13 @@ positive resource exposed by
 the non-halting perfect-gap witness.
 
 ## Attempts
+
+- **Universal freezing is exactly false.**
+  `perfect-zpc-gap-padding-can-destroy-all-frozen-branches` gives a perfect
+  ZPC gap witness for which a remote Pauli reflection flips the two equation
+  menus and neither menu has a positive orbitwise part.  Hence `(ZOM2)` can
+  only follow from a special unpadded witness-selection theorem; it is not a
+  formal consequence of the gap and ZPC axioms.
 
 - **Perfect acceptance stops at the base atom.**  It proves `(ZOM2)` for
   `g=1`.  After translating by an unreadable word, the readable assignment

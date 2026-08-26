@@ -7,12 +7,14 @@ distinct_from:
   perfect-zpc-irs-quantum-gap-game: that established theorem supplies a finite tailored game with perfect ZPC-IRS completeness and a quantum gap; this is the remaining passage from its measurable classical control to one fixed linear branch.
   finite-linear-commutation-system-to-lcs: that exact compiler starts after a frozen operator solution is already available; this is the hard existence of a frozen branch.
   phase-safe-toric-gap-game-exists: that asks directly for a toric game witness; this uses the stronger semilinear structure now known to exist and asks only to eliminate the readable control.
+  every-perfect-zpc-gap-witness-has-a-frozen-branch: that universal formulation is false by finite magic-square padding; this is the surviving joint-selection claim for one specially chosen unpadded witness.
 artifacts:
   - research/artifacts/perfect-zpc-irs-gap-2026-08-18.md
   - notes/NONHYPERLINEAR_CHARACTER_REYNOLDS_INTEGRATION_2026-08-24.md
 ---
 
-Let `G` be a finite tailored game satisfying
+**OPEN JOINT-SELECTION CLAIM.**  One can choose the existential witness `G`
+and a value-one ZPC-IRS strategy in `perfect-zpc-irs-quantum-gap-game` so that
 
 ```text
 omega_ZIRS(G)=1,
@@ -31,8 +33,10 @@ L(G,r)=L(S_L,E_r,C),
 
 with the original equation rows and the commutation-ancilla rows.
 
-**Claim.**  For some global readable assignment `r`, `L(G,r)` has a perfect
-commuting-operator strategy.
+for some global readable assignment `r`, `L(G,r)` has a perfect
+commuting-operator strategy.  This is an existential assertion about a
+specially selected witness, not the false universal assertion that every
+perfect ZPC gap witness freezes.
 
 Once this holds, the quantum gap is automatic on that branch: if `L(G,r)` had
 a perfect finite-dimensional strategy, restrict its operator solution to the
@@ -41,6 +45,15 @@ answers `r`.  The resulting tailored strategy satisfies every selected linear
 constraint and would be perfect for `G`, contradicting `omega*(G)<1`.
 
 ## Attempts
+
+- **The abstract value/ZPC hypotheses do not suffice.**
+  `perfect-zpc-gap-padding-can-destroy-all-frozen-branches` appends a finite
+  signed-Pauli magic-square selector to any perfect ZPC gap witness.  The gap
+  and perfect strategy survive, but each selector value pins one member of an
+  anticommuting pair to a central scalar and hence forces `J=1`.  Therefore a
+  proof must select an unpadded witness using special TailoredMIP structure;
+  it cannot be a theorem about an arbitrary game satisfying the two value
+  inequalities.
 
 - **Ucp compression to an arbitrary readable atom does not descend.**
   Compressing the IRS representation to a positive readable atom does send
