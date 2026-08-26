@@ -326,6 +326,18 @@ literature theorem is permitted in this claim.
   exactly where a probe moves `Q` or an endpoint Whitehead introduces the
   already fenced chart gauge.
 
+  The audit over every positive actor does find a real but partial
+  two-scale occurrence.
+  `positive-signed-actor-two-scale-profile-is-partial-and-gauged` computes
+  all `511` positive nonidentity conjugacy classes: `184` have a depth
+  `(2,3)` endpoint profile and `327` do not; no class has the inverse-row
+  profile.  The explicit word `x_28(1)x_49(1)` gives two nested mark returns
+  on the fixed `Q`.  Yet every one of the `31` root-free classes lies among
+  the nonadjacent cases, and the explicit word's two cells factor through
+  independent commuting roots whose edge gauges can be dressed separately.
+  Hence this occurrence does not prove `(APG1)` for an arbitrary paying
+  detector or identify the two native targets.
+
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is
   still insufficient.  It identifies the only authenticated raw relative

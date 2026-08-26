@@ -52,6 +52,7 @@ artifacts:
   - research/signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
+  - research/coarse-fine-offdiagonal-loops-are-morita-blind.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -376,6 +377,18 @@ The repaired scalar target is now named
 `arbitrary-profile-cross-gram-implies-shared-gauge-compiler` records the
 valid route from that stronger input to the shared-gauge compiler.
 
+The alternate operator-norm prefix-loop probe has also been completed, with
+a negative result.  `coarse-fine-offdiagonal-loops-are-morita-blind` writes
+all crossed arrows between the depth-one `M_2` and depth-two `M_4` charts.
+Their shortest forward and reverse paths have three coefficient factors, and
+every ordinary non-opposite Steinberg loop obtained by pasting them is exact
+in a finite marked six-object model.  In that model the two packet identities
+are orthogonal and their difference has operator norm one.  Therefore neither
+route 3 nor route 4 can be closed by adding a fixed family of purely
+multiplicative off-diagonal loops.  The missing word must attach the additive
+coefficient-completeness occurrence, or an equivalent spectral support
+incidence, to the selected marked carrier.
+
 The first genuinely full-presentation operator-norm payment on this repaired
 route is now established.  `native-t00-y1-collision-pays-marked-opnorm`
 compares the actual row-two arm `x_78(t_00)` with the first prefix arm
@@ -515,6 +528,18 @@ depths on the original `Q`.  Producing an earlier depth necessarily leaves
 this subgroup and reintroduces either a moved signed source or the endpoint
 Whitehead coboundary.  This fence does not establish the full MF radical;
 it removes only the proposed bounded-product bypass.
+
+The larger finite actor audit gives a genuine occurrence without closing
+that bypass uniformly.
+`positive-signed-actor-two-scale-profile-is-partial-and-gauged` finds that
+`184/511` positive nonidentity classes admit adjacent endpoint depths and
+exhibits `x_28(1)x_49(1)` with exact depth-two and depth-three mark-return
+cells on the fixed signed source.  But `327` classes have no adjacent
+profile, including every one of the `31` hard root-free classes, and the
+explicit two-cell word splits into independently gauge-dressable commuting
+factors.  The full MF radical therefore remains open: this partial
+occurrence neither handles an arbitrary paying detector nor produces the
+common unequal native range.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the

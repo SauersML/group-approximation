@@ -9,6 +9,7 @@ distinct_from:
   endpoint-whitehead-profile-has-maximal-gram-overlap: that computes the complete Grams of the moved source profile; this adds the actual detector/probe commutator occurrence and proves that it is transported covariantly rather than cutting either incoming range.
   endpoint-whitehead-signed-source-has-only-relative-hecke-overlap: that computes the exact intersection of the original and endpoint-moved signed pairs and gives a zero-meet finite profile; this transports the whole detector cube around all six charts.
   exceptional-endpoint-detector-products-stay-at-depth-three: that closes all products of L0 conjugates of the three exceptional detectors and rules out a fixed-source adjacent-depth pair; this begins with one third-depth cell and moves it covariantly.
+  positive-signed-actor-two-scale-profile-is-partial-and-gauged: that finds a genuine fixed-source depth-two/depth-three cell outside the root-free frontier and proves all thirty-one root-free classes have no such profile; this treats the endpoint-Whitehead continuation of one root-free cell.
   five-return-legs-cover-hecke-detectors-not-source-gauge: that isolates the three depth-three endpoint returns and asks for a fresh endpoint Whitehead; this constructs that Whitehead and audits the extra occurrence information it supplies.
   same-center-prefix-whiteheads-are-uncontrolled-adjacent-swaps: that swaps the original middle-index Pauli cells; this swaps endpoint cells whose last member is the literal return extracted from a signed-Hecke detector.
 ---
@@ -114,6 +115,16 @@ native middle column; the first two columns are identically zero.  Hence no
 one positive actor on the fixed `Q` has adjacent mark-return depths.  The
 fresh Whitehead remains necessary to create the earlier cells, and then the
 coboundary fence of this claim applies.
+
+The complete positive actor table confirms that this obstruction is specific
+to the hard detector frontier, not to every signed actor.
+`positive-signed-actor-two-scale-profile-is-partial-and-gauged` finds the
+positive word `x_28(1)x_49(1)`, whose two fixed-`Q` nested commutators return
+`z` at depths two and three.  However, all `31` root-free detector classes
+have only depth-three or empty actor profiles, and the concrete two-depth
+word splits into two independent commuting factors with independently
+dressable edge gauges.  Thus it neither replaces the moved endpoint cell nor
+locks its reservoir frame.
 
 This is a scoped exact finite-occurrence fence, not a finite-dimensional
 representation of the full Steinberg group.  No Property `(T)`, canonical

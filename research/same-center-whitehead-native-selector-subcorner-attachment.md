@@ -341,6 +341,17 @@ excluded by the regular-trace firewall.
   `3`, so multiplication and `L_0` conjugacy cannot supply the two fixed-`Q`
   rows required by `(SNA2)`.
 
+  Exhausting all positive actors reveals exactly how far this fixed-source
+  idea goes.  By
+  `positive-signed-actor-two-scale-profile-is-partial-and-gauged`, `184` of
+  the `511` positive classes have a depth-two/depth-three endpoint incidence,
+  and `x_28(1)x_49(1)` gives an explicit pair of nested mark-return cells on
+  `Q`.  The remaining `327` classes include all `31` root-free detector
+  classes.  Moreover the explicit pair uses two independent commuting
+  factors and its two edge gauges admit independent spectator dressings.
+  It therefore supplies neither the uniform paying-detector alternative nor
+  the common target Gram required by `(SNA2)`.
+
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The
   common-tail detector `K_Q=[A_1,H]` has a signed-character model in which
