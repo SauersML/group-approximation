@@ -56,3 +56,11 @@ noncompact and has order-one norm on an infinite charge-null subspace.  A
 positive construction must therefore put genuinely delocalized,
 nonmonomial action on a set of **positive charge**; a charge-null non-Cartan
 reservoir cannot carry the missing hyperlinearity witness.
+
+Uniformly finite-dimensional delocalization is also insufficient.
+`fournier-facio-bounded-block-near-witness-impossible` allows arbitrary
+matrix-valued cocycles on a common charged block system and arbitrary
+charge-null errors, but uniform recurrence in `U(m)` forces the underlying
+block near action to be essentially free.  Hence any positive witness must
+have unbounded block sizes on positive charge or genuinely overlapping
+finite-band supports with no common bounded block decomposition.
