@@ -808,6 +808,7 @@ import GroupApproximation.Leavitt.Whitehead
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Covers.PresentedEnlargement
 import GroupApproximation.Covers.TableCover
+import GroupApproximation.Covers.HyperlinearTableCover
 import GroupApproximation.Leavitt.LeavittWords
 import GroupApproximation.Leavitt.PrefixCode
 import GroupApproximation.Leavitt.ElementaryGroup
@@ -1451,7 +1452,6 @@ import GroupApproximation.Higman.AmalgamPresentation
 import GroupApproximation.Higman.AmalgamPushout
 import GroupApproximation.Higman.CoprodTorsion
 import GroupApproximation.Higman.HNNCentralizer
-import GroupApproximation.Higman.ConjugatedDetector
 import GroupApproximation.Higman.BenignAmbient
 import GroupApproximation.Higman.BenignFamily
 import GroupApproximation.Higman.BenignJoin
@@ -1795,9 +1795,12 @@ import GroupApproximation.Analysis.ReducedGroupCStarMFAlgebra
 import GroupApproximation.Analysis.ReducedGroupCStarDedekindFinite
 import GroupApproximation.Analysis.BlackadarKirchbergFiniteDimensionalLift
 import GroupApproximation.Analysis.BlackadarKirchbergFiniteDirectSumLift
+import GroupApproximation.Analysis.BlackadarKirchbergStarEquivTransport
 import GroupApproximation.Analysis.GoldbringHartRoute
 import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarConsequence
 import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarNotNuclear
+import GroupApproximation.Computability.HereditaryPropertySwitchCompleteness
+import GroupApproximation.Computability.SoficRecognitionSecondLevel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

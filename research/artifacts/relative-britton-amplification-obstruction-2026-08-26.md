@@ -243,3 +243,163 @@ the missing relative \(B\)-bimodule/coset geometry or provide another direct
 finite-matrix separation mechanism.  Without that construction, the
 compatible-corona HNN/AFP gap remains real.
 
+## 7. A positive zero-literature theorem when finite coset geometry is present
+
+There is a clean finite-matrix Britton lemma for **finite group vertex
+models**.  It identifies exactly what the arbitrary-matrix argument lacks.
+
+### Theorem 7.1 — finite-base permutation separation
+
+Let \(K\) be a finite group, let \(A,B\leq K\), and let
+\(\alpha:A\to B\) be an isomorphism.  Put
+
+\[
+L=\langle K,t\mid tat^{-1}=\alpha(a)\ (a\in A)\rangle.
+\]
+
+For every finite family \(\mathcal W\) of nontrivial reduced HNN words there
+are a finite set \(X\) and a homomorphism
+
+\[
+\rho:L\longrightarrow \operatorname{Sym}(X)
+\]
+
+such that \(\rho(w)\neq1\) for every \(w\in\mathcal W\).  Moreover, in the
+permutation-matrix representation on \(\ell^2(X)\),
+
+\[
+\boxed{\|\rho(w)-I\|\geq\sqrt2\qquad(w\in\mathcal W).}
+\]
+
+### Proof for one word
+
+First suppose that the reduced word \(w\) contains a stable letter.  Let
+\(r\) be its number of stable-letter occurrences and take
+
+\[
+X=K\times\{0,1,\ldots,r\}.
+\]
+
+Let \(K\) act by left multiplication on the first coordinate.  An
+\(A\)-orbit is of the form
+
+\[
+A x\times\{j\},
+\]
+
+and a \(B\)-orbit is of the form
+
+\[
+B y\times\{j\}.
+\]
+
+The two orbit sets have the same cardinality because \(|A|=|B|\).  Any
+bijection from the set of \(A\)-orbits to the set of \(B\)-orbits, together
+with a chosen image of one point in each orbit, extends uniquely on that
+orbit by
+
+\[
+T(a x,j)=(\alpha(a)y,k).
+\]
+
+It therefore defines a permutation \(T\) of \(X\) satisfying
+
+\[
+T(a\cdot z)=\alpha(a)\cdot T(z)
+\qquad(a\in A,z\in X).
+\]
+
+We now construct only the finitely many orbit matches queried while evaluating
+\(w\) at \((1,0)\), reading the word in its action order.  At the first query,
+choose the matching orbit in copy \(1\).  At the \(j\)-th previously
+unassigned query, choose its matching orbit in the fresh copy \(j\).  This is
+always possible:
+
+* two successive stable letters with the same sign query the opposite kind
+  of orbit in a copy in which no orbit of that kind has yet been assigned;
+* after \(T\), then a vertex syllable \(g\), then \(T^{-1}\), the queried
+  \(B\)-orbit differs from the orbit just assigned unless \(g\in B\);
+* after \(T^{-1}\), then \(g\), then \(T\), the queried \(A\)-orbit differs
+  from the orbit just assigned unless \(g\in A\).
+
+The two excluded cases are exactly the two HNN pinches, and are absent because
+\(w\) is reduced.  To verify the middle bullet directly, for example,
+
+\[
+B(gy)=By\quad\Longleftrightarrow\quad g\in B;
+\]
+
+the copy coordinate is unchanged by the \(K\)-action.  The \(A\) calculation
+is identical.
+
+Thus every newly exposed stable transition can be sent into a copy coordinate
+not used earlier in the path.  The resulting partial matching of \(A\)-orbits
+with \(B\)-orbits is injective.  Since the two finite orbit sets have equal
+size, complete it arbitrarily to a bijection.  The resulting permutation
+\(T\), together with the left \(K\)-action, obeys all defining relations of
+\(L\), so it gives a homomorphism \(\rho_w:L\to\operatorname{Sym}(X)\).
+
+The path of \((1,0)\) under \(w\) ends in a nonzero copy coordinate, hence
+
+\[
+\rho_w(w)(1,0)\neq(1,0).
+\]
+
+If \(w\) has no stable letter, it is a nonidentity element of \(K\), and the
+left regular action of \(K\) already moves \((1,0)\).
+
+In either case, for the basis vector \(e_x\) at a moved point,
+
+\[
+\|(\rho_w(w)-I)e_x\|
+=\|e_{\rho_w(w)x}-e_x\|=\sqrt2.
+\]
+
+This proves the asserted operator-norm lower bound for one word.
+
+### A finite family
+
+Perform the preceding construction separately for each
+\(w\in\mathcal W\), and take the disjoint union of the finite permutation
+sets.  The block belonging to \(w\) witnesses
+\(\|\rho(w)-I\|\geq\sqrt2\).  This proves the theorem. \(\square\)
+
+## 8. The exact conditional repair for a finite-quotient rope
+
+The preceding theorem gives a complete zero-literature repair under one
+additional hypothesis.
+
+### Corollary 8.1 — normal-form-persistent finite quotients
+
+Let
+
+\[
+H=\langle G,t\mid t a t^{-1}=\alpha(a)\ (a\in A)\rangle.
+\]
+
+Suppose that for every finite family of nontrivial reduced words of \(H\), one
+can choose a homomorphism \(q:G\to K\) to a finite group such that:
+
+1. \(q\) carries \(A\) and \(B=\alpha(A)\) onto isomorphic subgroups and
+   \(\alpha\) descends to that isomorphism; and
+2. after applying \(q\) to all vertex syllables, every word in the family is
+   still a nontrivial reduced HNN word over \(K\).
+
+Then \(H\) is residually finite, hence it has exact finite permutation models
+with the uniform marked-word bound \(\sqrt2\).
+
+Indeed, apply Theorem 7.1 to the finite base \(K\) and compose the resulting
+permutation representation with the presentation homomorphism from \(H\).
+
+This condition is precisely **relative normal-form persistence**.  Ordinary
+point separation of \(G\) by the quotients \(q\) does not imply it: a vertex
+syllable outside \(A\) may enter \(q(A)\), with the witnessing preimage in
+\(A\) varying with the coordinate.  The regular-trace calculation in the
+tensor-synchronized rope separates each fixed nonidentity vertex element, but
+does not rule out that relative collapse.
+
+Accordingly, there is a valid elementary construction beyond the disproved
+amplification route, but only when finite **coset** geometry persists.  The
+currently audited rope hypotheses provide compatible finite edge images, not
+relative normal-form persistence, so Theorem 7.1 cannot close that endpoint
+without a new argument establishing condition 2.

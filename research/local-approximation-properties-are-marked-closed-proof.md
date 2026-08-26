@@ -44,4 +44,9 @@ non-effective, which is what the recognition results measure.
 
 The sofic case is `Covers.TableCover` verbatim: `TableModel G F eps` is the
 model predicate, `exists_table_obstruction` is the failing `(F, eps)`, and
-`tableGroup_not_isSofic` is step 4.
+`tableGroup_not_isSofic` is step 4.  The hyperlinear case is separately
+machine-checked in `Covers.HyperlinearTableCover`: the conditional naming map
+pulls any finite unitary model of `tableTestSet` back to the original table,
+and `exists_finitelyPresented_cover_of_not_isHyperlinear` enlarges the
+obstruction by a finite generating set so that `tableEvaluation` remains
+surjective.

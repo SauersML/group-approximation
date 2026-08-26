@@ -5,6 +5,7 @@ kind: claim
 title: Local approximation properties are hereditary, closed in the space of marked groups, and have finitely presented counterexamples
 artifacts:
   - GroupApproximation/Covers/TableCover.lean
+  - GroupApproximation/Covers/HyperlinearTableCover.lean
   - GroupApproximation/Sofic/Sofic.lean
   - GroupApproximation/Sofic/Hyperlinear.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
@@ -66,8 +67,12 @@ For every model predicate `M`:
 
 The sofic instance of 4 is machine-checked as
 `Covers.TableCover.tableGroup_not_isSofic` and
-`exists_finitelyPresented_cover_of_not_isSofic`; the argument below is the
-same proof with the model predicate left abstract.
+`exists_finitelyPresented_cover_of_not_isSofic`.  The hyperlinear instance is
+now independently machine-checked as
+`Covers.HyperlinearTableCover.tableGroup_not_isHyperlinear` and
+`exists_finitelyPresented_cover_of_not_isHyperlinear`, retaining the explicit
+surjection onto the original group.  The argument below is the same proof with
+the model predicate left abstract.
 
 ## Consequences used downstream
 
@@ -81,7 +86,10 @@ same proof with the model predicate left abstract.
   **one** finitely generated counterexample; clause 4 upgrades it to a
   finitely presented seed for the switch and for the Adian--Rabin
   construction.
-* Applied to hyperlinearity: a non-hyperlinear group exists iff a
-  **finitely presented** non-hyperlinear group exists.  This is the bridge
-  between [[non-hyperlinear-group]] and its recognition-theoretic
-  reformulation in [[approximation-property-recognition-dichotomy]].
+* Applied to hyperlinearity: a finitely generated non-hyperlinear group has a
+  finitely presented non-hyperlinear cover.  This implication is now checked
+  in Lean by `exists_finitelyPresented_cover_of_not_isHyperlinear`; locality
+  supplies the passage from an arbitrary counterexample to a finitely
+  generated one.  This is the bridge between [[non-hyperlinear-group]] and its
+  recognition-theoretic reformulation in
+  [[approximation-property-recognition-dichotomy]].

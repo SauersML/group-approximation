@@ -60,6 +60,55 @@ theorem map_conj_mem_towerSubgroup_iff (L : Subgroup K) (q x : K)
   · intro hx
     exact ⟨q * x * q⁻¹, (conj_mem_conjugateSubgroup_iff L q x).2 hx, rfl⟩
 
+/-! ## The free-letter separation behind `H ∩ F = 1` -/
+
+/-- A free letter over `K`, realized as the central HNN extension over the
+trivial subgroup.  This is the `K * ⟨q⟩` model for which Britton normal
+forms are already available in the repository. -/
+abbrev FreeLetterExtension (K : Type) [Group K] : Type :=
+  CentHNN (⊥ : Subgroup K)
+
+/-- The subgroup `q L q⁻¹` in `K * ⟨q⟩`. -/
+def freeLetterConjugateSubgroup (L : Subgroup K) :
+    Subgroup (FreeLetterExtension K) :=
+  (L.map (of : K →* FreeLetterExtension K)).map
+    (MulAut.conj (t : FreeLetterExtension K)).toMonoidHom
+
+/-- **A free conjugate of any subgroup misses the old base.**  In
+`K * ⟨q⟩`, one has `qLq⁻¹ ∩ K = 1`.  This is the precise separation
+used by the corrected detector; it is stronger than the required
+`qLq⁻¹ ∩ e(F) = 1`.
+
+The proof is a single Britton pinch: if `q l q⁻¹` lies in the base, then
+conjugating that base element back by `q` also lies in the base, forcing the
+base element into the trivial associated subgroup. -/
+theorem freeLetterConjugate_inf_base (L : Subgroup K) :
+    freeLetterConjugateSubgroup L ⊓
+        MonoidHom.range (of : K →* FreeLetterExtension K) = ⊥ := by
+  rw [Subgroup.eq_bot_iff_forall]
+  intro x hx
+  rcases hx.2 with ⟨k, hkx⟩
+  rcases hx.1 with ⟨y, ⟨l, hl, hly⟩, hyx⟩
+  have hconj :
+      (t : FreeLetterExtension K) * of l * t⁻¹ = of k := by
+    calc
+      (t : FreeLetterExtension K) * of l * t⁻¹ =
+          (MulAut.conj (t : FreeLetterExtension K)) y := by
+            rw [← hly]
+            rfl
+      _ = x := hyx
+      _ = of k := hkx.symm
+  have hbase :
+      (t : FreeLetterExtension K)⁻¹ * of k * t ∈
+        MonoidHom.range (of : K →* FreeLetterExtension K) := by
+    refine ⟨l, ?_⟩
+    rw [← hconj]
+    group
+  have hkbot : k ∈ (⊥ : Subgroup K) :=
+    mem_of_conj_mem_range (⊥ : Subgroup K) hbase
+  have hkone : k = 1 := by simpa using hkbot
+  rw [← hkx, hkone, map_one]
+
 /-- The outermost central HNN detector attached to the completed tower `P`. -/
 abbrev Extension (L : Subgroup K) (q : K) (j : K →* P) : Type _ :=
   CentHNN (towerSubgroup L q j)

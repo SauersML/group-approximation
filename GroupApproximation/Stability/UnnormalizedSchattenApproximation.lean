@@ -28,6 +28,7 @@ namespace GroupApproximation
 namespace UnnormalizedSchattenApproximation
 
 open Filter
+open scoped Matrix Matrix.Norms.L2Operator
 open scoped Matrix.Norms.L2Operator
 
 universe u
@@ -107,7 +108,7 @@ theorem schattenPNorm_mono_of_singularValues_le {p : ℝ} (hp : 1 ≤ p)
     apply Finset.sum_le_sum
     intro k hk
     exact Real.rpow_le_rpow (TA.singularValues_nonneg k)
-      (hAB ⟨k, Finset.mem_range.mp hk⟩) hp.le
+      (hAB ⟨k, Finset.mem_range.mp hk⟩) hp
   unfold schattenPNorm
   exact Real.rpow_le_rpow hsumA hsums (by positivity)
 
@@ -159,7 +160,7 @@ theorem operatorNorm_le_schattenPNorm {p : ℝ} (hp : 1 ≤ p)
     {d : PositiveDimension} (A : Matrix (Fin d.1) (Fin d.1) ℂ) :
     ‖A‖ ≤ schattenPNorm p A :=
   (operatorNorm_le_largestSingularValue d.2 A).trans
-    (singularValue_le_schattenPNorm hp A (0 : Fin d.1))
+    (singularValue_le_schattenPNorm hp A (⟨0, d.2⟩ : Fin d.1))
 
 /-- Scalar form of the approximate-involution estimate.  Inside the open
 unit ball about `1`, multiplication by `z + 1` cannot decrease the distance
@@ -177,7 +178,9 @@ theorem norm_sub_one_le_norm_sq_sub_one_of_norm_sub_one_lt_one
     ‖z - 1‖ ≤ ‖z - 1‖ * ‖z + 1‖ :=
       le_mul_of_one_le_right (norm_nonneg _) hplus.le
     _ = ‖(z - 1) * (z + 1)‖ := (norm_mul _ _).symm
-    _ = ‖z ^ 2 - 1‖ := by congr 1 <;> ring
+    _ = ‖z ^ 2 - 1‖ := by
+      congr 1
+      ring
 
 /-- Raising the scalar approximate-involution estimate to any nonnegative
 real power preserves it. -/
@@ -411,7 +414,7 @@ theorem schattenTwoStabilityPrinciple : SchattenTwoStabilityPrinciple := by
   · simpa [IsSchattenTwoStable] using hstable
 
 #audit_axioms dist_eq_schattenTwoDist
-#audit_closed_axioms operatorNorm_le_schattenPNorm
+#audit_axioms operatorNorm_le_schattenPNorm
 #audit_closed_axioms allFinitePStabilityForcesResidualFiniteness
 #audit_closed_axioms schattenTwoStabilityPrinciple
 

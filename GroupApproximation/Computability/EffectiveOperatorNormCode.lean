@@ -223,6 +223,20 @@ theorem exists_lowerThirdCert_of_one_third_lt_opNorm (d : ℕ)
     simpa only [Nat.cast_pow] using hr
   exact_mod_cast hrat
 
+/-- Exact completeness statement for the upper certificate search. -/
+theorem exists_upperNormCert_iff (d k : ℕ) (A : MatrixCode) :
+    (∃ m, upperNormCert d k A m) ↔
+      ‖toMatrix d A‖ < 1 / ((k : ℝ) + 1) :=
+  ⟨fun ⟨m, hm⟩ => opNorm_lt_invSucc_of_upperNormCert d k A m hm,
+    exists_upperNormCert_of_opNorm_lt_invSucc d k A⟩
+
+/-- Exact completeness statement for the lower-third certificate search. -/
+theorem exists_lowerThirdCert_iff (d : ℕ) (A : MatrixCode) :
+    (∃ m, lowerThirdCert d A m) ↔
+      (1 : ℝ) / 3 < ‖toMatrix d A‖ :=
+  ⟨fun ⟨m, hm⟩ => one_third_lt_opNorm_of_lowerThirdCert d A m hm,
+    exists_lowerThirdCert_of_one_third_lt_opNorm d A⟩
+
 /-! ## Boolean checkers -/
 
 def upperNormCertCheck (d k : ℕ) (A : MatrixCode) (m : ℕ) : Bool :=
@@ -240,6 +254,18 @@ def lowerThirdCertCheck (d : ℕ) (A : MatrixCode) (m : ℕ) : Bool :=
     (A : MatrixCode) (m : ℕ) :
     lowerThirdCertCheck d A m = true ↔ lowerThirdCert d A m := by
   simp [lowerThirdCertCheck]
+
+theorem exists_upperNormCertCheck_eq_true_iff (d k : ℕ) (A : MatrixCode) :
+    (∃ m, upperNormCertCheck d k A m = true) ↔
+      ‖toMatrix d A‖ < 1 / ((k : ℝ) + 1) := by
+  simpa only [upperNormCertCheck_eq_true_iff] using
+    exists_upperNormCert_iff d k A
+
+theorem exists_lowerThirdCertCheck_eq_true_iff (d : ℕ) (A : MatrixCode) :
+    (∃ m, lowerThirdCertCheck d A m = true) ↔
+      (1 : ℝ) / 3 < ‖toMatrix d A‖ := by
+  simpa only [lowerThirdCertCheck_eq_true_iff] using
+    exists_lowerThirdCert_iff d A
 
 /-! ## Primitive-recursive audit -/
 

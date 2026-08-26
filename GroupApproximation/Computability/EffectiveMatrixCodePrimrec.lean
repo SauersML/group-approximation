@@ -236,6 +236,7 @@ theorem primrec_letterMatrix :
     (Primrec.eq.comp (Primrec.snd.comp Primrec.snd) (Primrec.const true))
     hgen hconj
 
+set_option maxHeartbeats 800000 in
 theorem primrec_wordMatrix :
     Primrec fun z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool) =>
       wordMatrix z.1.1.1 z.1.1.2 z.1.2 z.2 := by
@@ -243,33 +244,38 @@ theorem primrec_wordMatrix :
       z.1.1.1 := Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
   have hinit : Primrec fun z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool) =>
       identity z.1.1.1 := primrec_identity.comp hd
+  have hmapped : Primrec fun
+      z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool) =>
+      z.2.map (letterMatrix z.1.1.1 z.1.1.2 z.1.2) := by
+    have hletter : Primrec₂ fun
+        (z : ((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool)) (p : ℕ × Bool) =>
+        letterMatrix z.1.1.1 z.1.1.2 z.1.2 p := by
+      exact (primrec_letterMatrix.comp <| Primrec.pair
+        (Primrec.pair
+          (Primrec.pair (hd.comp Primrec.fst)
+            (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+          (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))) Primrec.snd).to₂
+    exact Primrec.list_map Primrec.snd hletter
   have hstep : Primrec fun
       p : (((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool)) ×
-        (MatrixCode × (ℕ × Bool)) =>
-      matrixMul p.1.1.1.1 p.2.1
-        (letterMatrix p.1.1.1.1 p.1.1.1.2 p.1.1.2 p.2.2) := by
-    have hletter : Primrec fun
-        p : (((ℕ × ℕ) × List MatrixCode) × List (ℕ × Bool)) ×
-          (MatrixCode × (ℕ × Bool)) =>
-        letterMatrix p.1.1.1.1 p.1.1.1.2 p.1.1.2 p.2.2 :=
-      primrec_letterMatrix.comp <| Primrec.pair
-        (Primrec.pair
-          (Primrec.pair
-            (hd.comp Primrec.fst)
-            (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
-          (Primrec.snd.comp (Primrec.fst.comp Primrec.fst)))
-        (Primrec.snd.comp Primrec.snd)
-    exact primrec_matrixMul.comp <| Primrec.pair
-      (Primrec.pair (hd.comp Primrec.fst) (Primrec.fst.comp Primrec.snd)) hletter
-  refine (Primrec.list_foldl Primrec.snd hinit hstep).of_eq ?_
-  intro z
-  simp [wordMatrix, List.foldl_map]
+        (MatrixCode × MatrixCode) =>
+      matrixMul p.1.1.1.1 p.2.1 p.2.2 :=
+    primrec_matrixMul.comp <| Primrec.pair
+      (Primrec.pair (hd.comp Primrec.fst) (Primrec.fst.comp Primrec.snd))
+      (Primrec.snd.comp Primrec.snd)
+  exact Primrec.list_foldl hmapped hinit hstep.to₂
 
 theorem primrec_mulVecEntry :
     Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ =>
       mulVecEntry z.1.1.1 z.1.1.2 z.1.2 z.2 := by
   let hd : Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ => z.1.1.1 :=
     Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
+  let hA : Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ => z.1.1.2 :=
+    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+  let hv : Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ => z.1.2 :=
+    Primrec.snd.comp Primrec.fst
+  let hi : Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ => z.2 :=
+    Primrec.snd
   have hrange : Primrec fun z : ((ℕ × MatrixCode) × VectorCode) × ℕ =>
       List.range (dim z.1.1.1) :=
     Primrec.list_range.comp (primrec_dim.comp hd)
@@ -279,15 +285,11 @@ theorem primrec_mulVecEntry :
     have hentry : Primrec fun p : (((ℕ × MatrixCode) × VectorCode) × ℕ) × ℕ =>
         entry p.1.1.1.1 p.1.1.1.2 p.1.2 p.2 :=
       primrec_entry.comp <| Primrec.pair
-        (Primrec.pair
-          (Primrec.pair (hd.comp Primrec.fst)
-            (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
-          (Primrec.snd.comp Primrec.fst)) Primrec.snd
+        (Primrec.pair (Primrec.pair (hd.comp Primrec.fst) (hA.comp Primrec.fst))
+          (hi.comp Primrec.fst)) Primrec.snd
     have hvector : Primrec fun p : (((ℕ × MatrixCode) × VectorCode) × ℕ) × ℕ =>
         vectorEntry p.1.1.2 p.2 :=
-      primrec_vectorEntry.comp
-        (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-        Primrec.snd
+      primrec_vectorEntry.comp (hv.comp Primrec.fst) Primrec.snd
     exact (primrec_complexMul.comp hentry hvector).to₂
   exact primrec_complexSum.comp (Primrec.list_map hrange hterm)
 
@@ -303,8 +305,9 @@ theorem primrec_vectorNormSq :
         (Primrec.snd.comp Primrec.snd)
     exact primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd)
       (primrec_complexNormSq.comp hentry)
-  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
+  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep.to₂
 
+set_option maxHeartbeats 800000 in
 theorem primrec_mulVecNormSq :
     Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
       mulVecNormSq z.1.1 z.1.2 z.2 := by
@@ -315,19 +318,22 @@ theorem primrec_mulVecNormSq :
   have hstep : Primrec fun
       p : ((ℕ × MatrixCode) × VectorCode) × (RatCode × ℕ) =>
       ratAdd p.2.1 (complexNormSq (mulVecEntry p.1.1.1 p.1.1.2 p.1.2 p.2.2)) := by
+    let hd : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.1.1 :=
+      Primrec.fst.comp Primrec.fst
+    let hA : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.1.2 :=
+      Primrec.snd.comp Primrec.fst
+    let hv : Primrec fun z : (ℕ × MatrixCode) × VectorCode => z.2 :=
+      Primrec.snd
     have hentry : Primrec fun
         p : ((ℕ × MatrixCode) × VectorCode) × (RatCode × ℕ) =>
         mulVecEntry p.1.1.1 p.1.1.2 p.1.2 p.2.2 :=
       primrec_mulVecEntry.comp <| Primrec.pair
-        (Primrec.pair
-          (Primrec.pair
-            (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-            (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
-          (Primrec.snd.comp Primrec.fst))
+        (Primrec.pair (Primrec.pair (hd.comp Primrec.fst) (hA.comp Primrec.fst))
+          (hv.comp Primrec.fst))
         (Primrec.snd.comp Primrec.snd)
     exact primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd)
       (primrec_complexNormSq.comp hentry)
-  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
+  exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep.to₂
 
 end EffectiveMatrixCodePrimrec
 end GroupApproximation

@@ -1,5 +1,6 @@
 import GroupApproximation.PropertyT.IntegralColumnPlaneSpectralCoreBound
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+import Mathlib.Data.Finsupp.Encodable
 
 /-!
 # Scalar spectral mass bound for the integral column plane
@@ -145,6 +146,20 @@ local instance representedColumnPlaneSpectrumBorelSpace
     BorelSpace (Spectrum rho) :=
   ⟨rfl⟩
 
+/-- The integral free algebra on a finite alphabet is countable.  We expose
+this locally so countable unions over all coefficient coordinates can be
+used without adding a countability hypothesis to any theorem. -/
+noncomputable local instance integralFreeAlgebraCountable :
+    Countable (R (X := X)) := by
+  letI : Countable (FreeMonoid X) :=
+    Countable.of_equiv (List X) (FreeMonoid.ofList (α := X))
+  letI : Countable (MonoidAlgebra ℤ (FreeMonoid X)) :=
+    Countable.of_equiv ((FreeMonoid X) →₀ ℤ)
+      (MonoidAlgebra.coeffEquiv (R := ℤ) (M := FreeMonoid X)).symm
+  exact Countable.of_equiv (MonoidAlgebra ℤ (FreeMonoid X))
+    (FreeAlgebra.equivMonoidAlgebraFreeMonoid
+      (R := ℤ) (X := X)).symm.toEquiv
+
 noncomputable local instance scalarTorusMeasureIsFinite
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (z : E) (hz : ‖z‖ = 1) :
@@ -232,6 +247,242 @@ def finitePlaneNontrivialSet
     (s : Finset (Fin 2 × R (X := X))) : Set (Spectrum rho) :=
   {chi | ∃ q ∈ s, chi ((P rho).coordinate q) ≠ 1}
 
+/-- Enlarging a finite coefficient family by the coordinates needed to read
+the action of one upper shear.  Including the extra coordinate also for the
+fixed first-root coordinates keeps the construction uniform and harmless. -/
+noncomputable def upperFiniteCoefficientClosure
+    (r : R (X := X)) (s : Finset (Fin 2 × R (X := X))) :
+    Finset (Fin 2 × R (X := X)) := by
+  classical
+  exact s ∪ s.image (fun q ↦ ((0 : Fin 2), r * q.2))
+
+/-- Enlarging a finite coefficient family by the coordinates needed to read
+the action of one lower shear. -/
+noncomputable def lowerFiniteCoefficientClosure
+    (r : R (X := X)) (s : Finset (Fin 2 × R (X := X))) :
+    Finset (Fin 2 × R (X := X)) := by
+  classical
+  exact s ∪ s.image (fun q ↦ ((1 : Fin 2), r * q.2))
+
+/-- One simultaneous finite enlargement for every unit/free-generator shear
+in the integral control set.  Its size depends on the fixed alphabet but not
+on a polynomial degree stage. -/
+noncomputable def integralFiniteCoefficientClosure
+    (s : Finset (Fin 2 × R (X := X))) :
+    Finset (Fin 2 × R (X := X)) := by
+  classical
+  exact s ∪ (Finset.univ : Finset (Option X)).biUnion (fun q ↦
+    s.image (fun p ↦ ((0 : Fin 2), integralControlCoefficient X q * p.2)) ∪
+      s.image (fun p ↦ ((1 : Fin 2), integralControlCoefficient X q * p.2)))
+
+theorem upperFiniteCoefficientClosure_subset_integral
+    (q : Option X) (s : Finset (Fin 2 × R (X := X))) :
+    upperFiniteCoefficientClosure (integralControlCoefficient X q) s ⊆
+      integralFiniteCoefficientClosure s := by
+  classical
+  intro p hp
+  rw [upperFiniteCoefficientClosure, Finset.mem_union] at hp
+  rw [integralFiniteCoefficientClosure, Finset.mem_union]
+  rcases hp with hp | hp
+  · exact Or.inl hp
+  · right
+    apply Finset.mem_biUnion.mpr
+    refine ⟨q, Finset.mem_univ q, ?_⟩
+    exact Finset.mem_union.mpr (Or.inl hp)
+
+theorem lowerFiniteCoefficientClosure_subset_integral
+    (q : Option X) (s : Finset (Fin 2 × R (X := X))) :
+    lowerFiniteCoefficientClosure (integralControlCoefficient X q) s ⊆
+      integralFiniteCoefficientClosure s := by
+  classical
+  intro p hp
+  rw [lowerFiniteCoefficientClosure, Finset.mem_union] at hp
+  rw [integralFiniteCoefficientClosure, Finset.mem_union]
+  rcases hp with hp | hp
+  · exact Or.inl hp
+  · right
+    apply Finset.mem_biUnion.mpr
+    refine ⟨q, Finset.mem_univ q, ?_⟩
+    exact Finset.mem_union.mpr (Or.inr hp)
+
+/-- One round of all controlled shears enlarges a finite coordinate family by
+at most a factor depending only on the fixed alphabet, never on the degree
+of the coefficients already present. -/
+theorem card_integralFiniteCoefficientClosure_le
+    (s : Finset (Fin 2 × R (X := X))) :
+    (integralFiniteCoefficientClosure s).card ≤
+      (2 * Fintype.card (Option X) + 1) * s.card := by
+  classical
+  let f : Option X → Finset (Fin 2 × R (X := X)) := fun q ↦
+    s.image (fun p ↦ ((0 : Fin 2), integralControlCoefficient X q * p.2)) ∪
+      s.image (fun p ↦ ((1 : Fin 2), integralControlCoefficient X q * p.2))
+  have hf : ∀ q, (f q).card ≤ 2 * s.card := by
+    intro q
+    calc
+      (f q).card ≤
+          (s.image (fun p ↦
+            ((0 : Fin 2), integralControlCoefficient X q * p.2))).card +
+          (s.image (fun p ↦
+            ((1 : Fin 2), integralControlCoefficient X q * p.2))).card :=
+        Finset.card_union_le _ _
+      _ ≤ s.card + s.card :=
+        Nat.add_le_add Finset.card_image_le Finset.card_image_le
+      _ = 2 * s.card := by omega
+  rw [integralFiniteCoefficientClosure]
+  change (s ∪ (Finset.univ : Finset (Option X)).biUnion f).card ≤ _
+  calc
+    (s ∪ (Finset.univ : Finset (Option X)).biUnion f).card ≤
+        s.card + ((Finset.univ : Finset (Option X)).biUnion f).card :=
+      Finset.card_union_le _ _
+    _ ≤ s.card + ∑ q ∈ (Finset.univ : Finset (Option X)), (f q).card :=
+      Nat.add_le_add_left Finset.card_biUnion_le s.card
+    _ ≤ s.card + ∑ _q ∈ (Finset.univ : Finset (Option X)),
+          2 * s.card :=
+      Nat.add_le_add_left (Finset.sum_le_sum fun q _ ↦ hf q) s.card
+    _ = (2 * Fintype.card (Option X) + 1) * s.card := by
+      simp
+      ring
+
+omit [Fintype X] in
+/-- If an upper shear makes a character visible on a finite coordinate
+family, the original character is visible on the corresponding finite
+coefficient closure. -/
+theorem finitePlaneNontrivialSet_of_characterAction_upper_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (r : R (X := X)) (s : Finset (Fin 2 × R (X := X)))
+    (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (upperShear r))
+        (upperShear_forward rho r) (upperShear_backward rho r) chi ∈
+      finitePlaneNontrivialSet rho s) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (upperFiniteCoefficientClosure r s) := by
+  classical
+  rcases hchi with ⟨⟨b, a⟩, hmem, hnontrivial⟩
+  fin_cases b
+  · have hangle : coordinateAngle rho (0, a)
+        (CommutativeCStarCovariance.characterAction (P rho).algebra
+          ((P rho).rho (upperShear r))
+          (upperShear_forward rho r) (upperShear_backward rho r) chi) ≠ 0 :=
+      fun hzero ↦ hnontrivial
+        ((coordinateAngle_eq_zero_iff rho (0, a) _).mp hzero)
+    rw [coordinateAngle_characterAction_upper_zero] at hangle
+    refine ⟨(0, a), ?_, ?_⟩
+    · exact Finset.mem_union.mpr (Or.inl hmem)
+    · exact fun hzero ↦ hangle
+        ((coordinateAngle_eq_zero_iff rho (0, a) chi).mpr hzero)
+  · have hangle : coordinateAngle rho (1, a)
+        (CommutativeCStarCovariance.characterAction (P rho).algebra
+          ((P rho).rho (upperShear r))
+          (upperShear_forward rho r) (upperShear_backward rho r) chi) ≠ 0 :=
+      fun hzero ↦ hnontrivial
+        ((coordinateAngle_eq_zero_iff rho (1, a) _).mp hzero)
+    rw [coordinateAngle_characterAction_upper_one] at hangle
+    have hparts : coordinateAngle rho (0, r * a) chi ≠ 0 ∨
+        coordinateAngle rho (1, a) chi ≠ 0 := by
+      by_contra hboth
+      push_neg at hboth
+      exact hangle (by rw [hboth.1, hboth.2, zero_add])
+    rcases hparts with hleft | hright
+    · refine ⟨(0, r * a), ?_, ?_⟩
+      · apply Finset.mem_union.mpr
+        apply Or.inr
+        exact Finset.mem_image.mpr ⟨(1, a), hmem, rfl⟩
+      · exact fun hzero ↦ hleft
+          ((coordinateAngle_eq_zero_iff rho (0, r * a) chi).mpr hzero)
+    · refine ⟨(1, a), ?_, ?_⟩
+      · exact Finset.mem_union.mpr (Or.inl hmem)
+      · exact fun hzero ↦ hright
+          ((coordinateAngle_eq_zero_iff rho (1, a) chi).mpr hzero)
+
+omit [Fintype X] in
+/-- If a lower shear makes a character visible on a finite coordinate
+family, the original character is visible on the corresponding finite
+coefficient closure. -/
+theorem finitePlaneNontrivialSet_of_characterAction_lower_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (r : R (X := X)) (s : Finset (Fin 2 × R (X := X)))
+    (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (lowerShear r))
+        (lowerShear_forward rho r) (lowerShear_backward rho r) chi ∈
+      finitePlaneNontrivialSet rho s) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (lowerFiniteCoefficientClosure r s) := by
+  classical
+  rcases hchi with ⟨⟨b, a⟩, hmem, hnontrivial⟩
+  fin_cases b
+  · have hangle : coordinateAngle rho (0, a)
+        (CommutativeCStarCovariance.characterAction (P rho).algebra
+          ((P rho).rho (lowerShear r))
+          (lowerShear_forward rho r) (lowerShear_backward rho r) chi) ≠ 0 :=
+      fun hzero ↦ hnontrivial
+        ((coordinateAngle_eq_zero_iff rho (0, a) _).mp hzero)
+    rw [coordinateAngle_characterAction_lower_zero] at hangle
+    have hparts : coordinateAngle rho (1, r * a) chi ≠ 0 ∨
+        coordinateAngle rho (0, a) chi ≠ 0 := by
+      by_contra hboth
+      push_neg at hboth
+      exact hangle (by rw [hboth.1, hboth.2, zero_add])
+    rcases hparts with hleft | hright
+    · refine ⟨(1, r * a), ?_, ?_⟩
+      · apply Finset.mem_union.mpr
+        apply Or.inr
+        exact Finset.mem_image.mpr ⟨(0, a), hmem, rfl⟩
+      · exact fun hzero ↦ hleft
+          ((coordinateAngle_eq_zero_iff rho (1, r * a) chi).mpr hzero)
+    · refine ⟨(0, a), ?_, ?_⟩
+      · exact Finset.mem_union.mpr (Or.inl hmem)
+      · exact fun hzero ↦ hright
+          ((coordinateAngle_eq_zero_iff rho (0, a) chi).mpr hzero)
+  · have hangle : coordinateAngle rho (1, a)
+        (CommutativeCStarCovariance.characterAction (P rho).algebra
+          ((P rho).rho (lowerShear r))
+          (lowerShear_forward rho r) (lowerShear_backward rho r) chi) ≠ 0 :=
+      fun hzero ↦ hnontrivial
+        ((coordinateAngle_eq_zero_iff rho (1, a) _).mp hzero)
+    rw [coordinateAngle_characterAction_lower_one] at hangle
+    refine ⟨(1, a), ?_, ?_⟩
+    · exact Finset.mem_union.mpr (Or.inl hmem)
+    · exact fun hzero ↦ hangle
+        ((coordinateAngle_eq_zero_iff rho (1, a) chi).mpr hzero)
+
+/-- A single finite enlargement works for the pullback of a finite visible
+set under every controlled upper shear. -/
+theorem finitePlaneNontrivialSet_of_controlled_characterAction_upper_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (q : Option X) (s : Finset (Fin 2 × R (X := X)))
+    (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (upperShear (integralControlCoefficient X q)))
+        (upperShear_forward rho _) (upperShear_backward rho _) chi ∈
+      finitePlaneNontrivialSet rho s) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (integralFiniteCoefficientClosure s) := by
+  obtain ⟨p, hp, hnontrivial⟩ :=
+    finitePlaneNontrivialSet_of_characterAction_upper_mem rho
+      (integralControlCoefficient X q) s chi hchi
+  exact ⟨p, upperFiniteCoefficientClosure_subset_integral q s hp,
+    hnontrivial⟩
+
+/-- A single finite enlargement works for the pullback of a finite visible
+set under every controlled lower shear. -/
+theorem finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (q : Option X) (s : Finset (Fin 2 × R (X := X)))
+    (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (lowerShear (integralControlCoefficient X q)))
+        (lowerShear_forward rho _) (lowerShear_backward rho _) chi ∈
+      finitePlaneNontrivialSet rho s) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (integralFiniteCoefficientClosure s) := by
+  obtain ⟨p, hp, hnontrivial⟩ :=
+    finitePlaneNontrivialSet_of_characterAction_lower_mem rho
+      (integralControlCoefficient X q) s chi hchi
+  exact ⟨p, lowerFiniteCoefficientClosure_subset_integral q s hp,
+    hnontrivial⟩
+
 omit [Fintype X] in
 theorem finitePlaneNontrivialSet_mono
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
@@ -294,6 +545,15 @@ theorem iUnion_finitePlaneNontrivialSet
     apply Set.mem_iUnion.mpr
     refine ⟨({q} : Finset (Fin 2 × R (X := X))), ?_⟩
     exact ⟨q, Finset.mem_singleton_self q, hq⟩
+
+/-- The full moving part of the represented column-plane spectrum is Borel.
+Countability comes from the explicit monoid-algebra model of the integral
+free algebra, not from an additional assumption. -/
+theorem measurableSet_fullPlaneNontrivialSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
+    MeasurableSet (fullPlaneNontrivialSet rho) := by
+  rw [← iUnion_finitePlaneNontrivialSet rho]
+  exact MeasurableSet.iUnion fun s ↦ measurableSet_finitePlaneNontrivialSet rho s
 
 /-- Evaluation on a finite coefficient family gives an honest
 finite-dimensional additive torus. -/
@@ -581,3 +841,7 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms scalarTorusMeasure_verticalOuter_le
 #audit_axioms scalarTorusMeasure_horizontalOuter_le
 #audit_axioms scalarTorusMeasure_punctured_mass_le
+#audit_axioms card_integralFiniteCoefficientClosure_le
+#audit_axioms finitePlaneNontrivialSet_of_controlled_characterAction_upper_mem
+#audit_axioms finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
+#audit_axioms measurableSet_fullPlaneNontrivialSet
