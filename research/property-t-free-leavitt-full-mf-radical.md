@@ -459,6 +459,34 @@ coboundary gauge model.  The remaining theorem must create proper unequal
 subranges or lock this already-typed cell to one fixed native
 quarter/eighth frame.
 
+The obvious fixed-frame compression by the existing unequal Hecke flags is
+now also closed as a fence.
+`endpoint-whiteheads-are-center-chain-hecke-spectators` proves that the
+fresh endpoint braid on `(10,11,2)` centralizes the center-chain atom, its
+nested quarter/eighth supports, and both Hecke arms; the only possible
+index collision dies by the literal coefficient identity `q c_2=0`.
+Consequently its two compressed endpoint words have cross-Gram support
+exactly the one-eighth flag.  That attractive scalar match does not close
+the radical: it is a commuting spectator dressing, and the canonical
+regular Hecke model tensored with the regular `S_3` endpoint reservoir keeps
+nontrivial coboundary gauges while satisfying the complete compressed
+table.  The missing row must be a noncentral odd ordinary occurrence tied
+to an individual raw native/Hecke polar, not a fixed flag compression.
+
+The original signed source and one endpoint-moved source have now also been
+compared exactly.  In
+`endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` their
+signed subgroup intersection is the endpoint-isolating subgroup, of order
+`256` at endpoint `2` and `512` at endpoint `4`.  This gives canonical
+Hecke overlaps `tau(Q)/32` and `tau(Q)/16`, respectively, but no
+arbitrary-profile rank floor: an exact two-character profile realizes the
+same intersection table with orthogonal source projections.  Short
+normalizer dressings have maximal cross-Gram and no constant actor word
+removes the spare endpoint coefficients.  Hence the new finite overlap is
+not the missing unconditional MF occurrence; the required next input is
+still a proper unequal subrange or an independently positive fixed-frame
+row.
+
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
 commutator of the paid discrepancy with the actual `B_2` arm and ejects a

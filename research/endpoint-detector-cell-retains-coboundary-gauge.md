@@ -7,6 +7,7 @@ artifacts:
   - research/endpoint-detector-cell-coboundary-proof.md
 distinct_from:
   endpoint-whitehead-profile-has-maximal-gram-overlap: that computes the complete Grams of the moved source profile; this adds the actual detector/probe commutator occurrence and proves that it is transported covariantly rather than cutting either incoming range.
+  endpoint-whitehead-signed-source-has-only-relative-hecke-overlap: that computes the exact intersection of the original and endpoint-moved signed pairs and gives a zero-meet finite profile; this transports the whole detector cube around all six charts.
   five-return-legs-cover-hecke-detectors-not-source-gauge: that isolates the three depth-three endpoint returns and asks for a fresh endpoint Whitehead; this constructs that Whitehead and audits the extra occurrence information it supplies.
   same-center-prefix-whiteheads-are-uncontrolled-adjacent-swaps: that swaps the original middle-index Pauli cells; this swaps endpoint cells whose last member is the literal return extracted from a signed-Hecke detector.
 ---
@@ -92,6 +93,16 @@ lock that frame to `Q`, to the paid cut, or to the prescribed quarter/eighth
 Hecke targets.  A continuation needs an additional ordinary occurrence
 which produces proper unequal subranges or a nonmaximal cross Gram in one
 fixed source frame; another conjugate copy of `(EDC4)` cannot do so.
+
+The comparison with the original source is now exact as well.
+`endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` computes
+`L_0 intersect What_iL_0What_i^(-1)`: it is only the subgroup isolating the
+moved actor endpoint, of order `256` at endpoint `2` and `512` at endpoint
+`4`.  The resulting canonical Hecke overlaps `tau(Q)/32` and `tau(Q)/16`
+do not give arbitrary-profile meet mass.  A two-character finite profile
+has `Q` and `What_iQWhat_i^(-1)` orthogonal while satisfying the complete
+intersection table.  Thus even comparing one moved chart directly with
+the original chart leaves the same fixed-frame seam.
 
 This is a scoped exact finite-occurrence fence, not a finite-dimensional
 representation of the full Steinberg group.  No Property `(T)`, canonical
