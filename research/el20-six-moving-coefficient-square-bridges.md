@@ -517,6 +517,25 @@ but neither side is conjugate to the native `B_2=x_84(s_00t_1)` position
 still act on unidentified reservoir factors; no coprime-order collapse
 follows.
 
+The first coefficient-sensitive continuation also stops at a root-position
+fence.  With `N_9=x_79(1)`, the exact chains
+
+```text
+[B_2,[A_1,N_9]]=x_89(x_1),
+[[N_9,B_3],A_2]=x_78(x_2)
+```
+
+produce the forward native coefficients.  The missing reverse coefficients
+satisfy `x_1t_00=y_2` and `t_00x_2=y_1`, so the canonical degree-minus-two
+conversion is completely explicit.  But a Steinberg multiplication changes
+one endpoint.  `minimal-t00-conversion-cannot-return-native-whitehead-root`
+tests all ten possible actor endpoints against all `8192` signed-`L_0`
+matrices and finds no conjugator back to `x_89(y_2)` or `x_78(y_1)`.
+These nested commutators also contain no odd literal `J_i` or `v_i`
+occurrence.  A live word must therefore add a genuinely new opposite-root
+carrier-return loop, not just the minimal coefficient multiplier and an
+`L_0` dressing.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
