@@ -9,7 +9,7 @@ artifacts:
 distinct_from:
   cross-whitehead-sandwiches-branch-roots-into-signed-normalizer: that finds exact branch-root returns into the signed normalizer; this tests whether their literal root positions can be conjugated to either factor of the order-seven head.
   native-whitehead-hecke-head-has-order-seven-anchor: that proves `(J_1B_2A_1)^7=1` on the native three-corner packet; this proves the returned occurrences are not the native `A_1,B_2` occurrences and so the order-seven relation cannot be applied to their reservoir gauges.
-  fused-authenticated-cross-returns-retain-s3-square-gauge: that fuses the two returned coefficients to a constant normalizer root; this exhausts signed-`L_0` root-position conjugacy to the individual head factors before fusion.
+  fused-cross-returns-cancel-positive-l0-gauge: that fuses the two returned coefficients to a positive internal signed-`L_0` root and cancels their product gauge; this exhausts signed-`L_0` root-position conjugacy to the individual head factors before fusion.
 ---
 
 **ESTABLISHED ORDER-SEVEN ATTACHMENT NO-GO.**  In source-to-target
@@ -67,12 +67,13 @@ position `k->8` nor its output position `k->7` is signed-`L_0` conjugate to
 the native `B_2` position `4->8`.  The elementary part of the latter's own
 orbit is likewise only `{4->8}`.
 
-Consequently the order-seven relation cannot be combined with the
-order-three return gauge by a coprime-order argument: the two relations act
-on different, un-identified reservoir factors.  No single gauge is shown
-to have both orders three and seven.  A successful attachment must add a
-new ordinary word outside signed `L_0` that moves one of the exact return
-positions to the native head occurrence while preserving its carrier.
+Consequently the order-seven relation cannot be combined with the fused
+return cancellation: the branch action identified by that cancellation is
+not the reservoir factor of either native head arm.  No single gauge is
+shown to satisfy the fused branch relation and the order-seven relation.  A
+successful attachment must add a new ordinary word outside signed `L_0`
+that moves one exact branch occurrence to the native head occurrence while
+preserving its carrier.
 
 No Property T, Kazhdan input, trace hypothesis, literature theorem, local
 computation, or Lean compilation is used.
