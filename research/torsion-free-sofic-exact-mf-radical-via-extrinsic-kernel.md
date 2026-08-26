@@ -11,7 +11,8 @@ requires:
   - finite-outer-order-mapping-torus-is-virtually-product
 ---
 
-Choose `K,phi,L` satisfying `(EK1)` and put
+Choose `K,phi,L` satisfying `(EK1)`, including finite presentation of its
+mapping torus, and put
 
 ```text
 G = K semidirectProduct_phi Z.

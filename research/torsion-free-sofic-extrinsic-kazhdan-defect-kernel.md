@@ -13,21 +13,23 @@ artifacts:
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
 ---
 
-Construct a nontrivial finitely presented, torsion-free, sofic,
-non-residually-finite group `K` with property `(T)`, an automorphism
-`phi in Aut(K)`, and a finitely generated Kazhdan subgroup
+Construct a nontrivial torsion-free, sofic, non-residually-finite group `K`
+with property `(T)`, an automorphism `phi in Aut(K)`, and a finitely
+generated Kazhdan subgroup
 
 ```text
 L <= G = K semidirectProduct_phi Z
 ```
 
-carrying a one-sided compression configuration such that
+such that `G` is finitely presented and `L` carries a one-sided compression
+configuration with
 
 ```text
 D_G(L) = K x {0}.                                      (EK1)
 ```
 
-Preferably, one element normally generates `K` in `K`.
+Preferably, `K` is itself finitely presented and one element normally
+generates `K` in `K`.
 
 This is strictly weaker than constructing a sofic group `K` with
 `Rad_MF(K)=K`.  Indeed `K` may itself be MF: the compression defect in
@@ -58,11 +60,24 @@ together with `normal-kazhdan-defect-non-mf`.
 4. **Thom's LEF Kazhdan group.**
    `thom-hyperlinear-kazhdan-without-factorization` supplies exactly a sofic,
    non-residually-finite Kazhdan seed, but the concrete group is not finitely
-   presented and has a central element of finite order.  Finite presentation
-   cannot be added while retaining LEF, since finitely presented LEF groups
-   are residually finite.  A useful envelope theorem would have to preserve
-   soficity and torsion-freeness without preserving LEF.
-5. **Titz--Witzel simple lattices.**
+   presented and has a central element of finite order.  The first defect is
+   no longer fatal: the target only requires its mapping torus to be finitely
+   presented, so a finite automorphic presentation would suffice.  The known
+   shift on Thom's concrete quotient is surjective but not injective, however,
+   and the central torsion still rules that group out.  A useful variant must
+   be torsion-free and carry an actual automorphism whose mapping torus has a
+   finite presentation; it need not make `K` finitely presented.
+   Passing to finite index cannot remove the torsion: the central element lies
+   in the finite residual, so it lies in the kernel of the finite coset action
+   associated to every finite-index subgroup and hence belongs to every such
+   subgroup.
+5. **The de Cornulier--Thom finitely presented variant.**  This repairs finite
+   presentation but not the decisive clauses: its soficity is open and its
+   centre contains the Prüfer group `Z[1/p]/Z`.  Every map from that divisible
+   subgroup to a finite group is trivial, so every finite-index subgroup again
+   contains torsion.  Its surjective noninjective dilation is not an
+   automorphism and therefore does not define the required split extension.
+6. **Titz--Witzel simple lattices.**
    `titz-witzel-simple-kazhdan-cat0-lattices-exist` supplies the complementary
    package: explicit finite presentation, torsion-freeness, simplicity,
    property `(T)`, non-residual-finiteness and one-element normal generation.

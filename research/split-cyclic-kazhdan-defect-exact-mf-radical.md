@@ -14,16 +14,16 @@ artifacts:
   - GroupApproximation/Algebra/HNNFinitePresentation.lean
 ---
 
-Let `K` be a finitely presented, torsion-free, sofic group with property
-`(T)`, let `phi in Aut(K)`, and put
+Let `K` be a torsion-free, sofic group with property `(T)`, let
+`phi in Aut(K)`, and put
 
 ```text
 G = K semidirectProduct_phi Z.
 ```
 
-Suppose `G` contains a finitely generated Kazhdan subgroup `L` carrying a
-one-sided compression configuration for which the intrinsic compression
-defect is exactly the canonical kernel:
+Suppose `G` is finitely presented and contains a finitely generated Kazhdan
+subgroup `L` carrying a one-sided compression configuration for which the
+intrinsic compression defect is exactly the canonical kernel:
 
 ```text
 D_G(L) = K x {0}.                                      (SCZ1)
@@ -43,3 +43,10 @@ the complete MF-target representation functor of `G` is that of `Z`.
 
 If one element normally generates `K` inside `K`, the same element normally
 generates `Rad_MF(G)` inside `G`.
+
+The finite-presentation hypothesis is deliberately placed on `G`, not on
+`K`.  This is the exact hypothesis needed by the conclusion and permits an
+infinitely presented Kazhdan kernel with a finite automorphic presentation.
+If `K` is finitely presented, then the hypothesis on `G` is automatic from
+the usual mapping-torus presentation; finite presentation of `K` remains a
+preferred strengthening, not a prerequisite for the construction.

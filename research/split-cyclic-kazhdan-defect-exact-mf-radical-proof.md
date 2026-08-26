@@ -37,12 +37,13 @@ Together `(SCZ3)` and `(SCZ4)` prove the exact radical and quotient in
 factorization of every MF-target homomorphism, with uniqueness because
 `epsilon` is onto.
 
-The mapping-torus presentation adds one stable letter and finitely many
-relations implementing `phi` on a finite generating set of `K`, so finite
-presentation follows from `hnn-extension-finite-presentation-permanence`.
+Finite presentation is now a direct hypothesis on `G`; this is weaker than
+requiring `K` finitely presented.  In the useful special case where `K` is
+finitely presented, the mapping-torus presentation adds one stable letter
+and finitely many relations implementing `phi` on a finite generating set,
+so `hnn-extension-finite-presentation-permanence` supplies that hypothesis.
 If an element of `G` has finite order, its exponent in `Z` is zero and it
 lies in torsion-free `Kbar`, proving torsion-freeness.  Soficity follows from
 the sofic kernel `Kbar` and amenable quotient `Z`; hence `G` is hyperlinear.
 Finally, normal generation of `K` by `k` already uses conjugators in the
 subgroup `Kbar`, so `<<k>>^G=Kbar` as well.
-
