@@ -10,6 +10,7 @@ distinct_from:
   endpoint-b2-enlargement-has-native-s3-retract: that kills B2 in the quotient R/pR and retains the native S3; this shows exactly why adding the constant coefficient at the same root position defeats all diagonal locally constant refinements of that escape.
   endpoint-zero-tail-packet-has-marked-finite-model: that gives a GL40(F2) model of the complete inward-outward package and retains the actual mark; this classifies the failure of the narrower Cantor-diagonal weighted-corner ansatz and records the infinite depth-growing elementary subcore inside that finite-model-safe package.
   leavitt-diagonal-compression-is-elementary-amenable: that identifies the whole Cantor diagonal and its locally finite elementary group; this uses the Cantor-function model only to solve the exact commutation equations for one active weighted corner.
+  native-prefix-coefficient-core-is-rf-nonamenable: that classifies the infinite four-generator coefficient core isolated here as a nonamenable residually finite polynomial linear group; this claim supplies the corner collapse and unbounded-depth generation used by that classification.
 ---
 
 **ESTABLISHED DIAGONAL-CORNER BREAKER, NOT AN MF BREAKER.**  Let `D` be the
@@ -82,8 +83,10 @@ grading.  Thus the first corner-destroying package meets an unbounded-depth
 elementary core.  This still is not a same-carrier breaker:
 `endpoint-zero-tail-packet-has-marked-finite-model` supplies an exact
 `GL_40(F_2)` model of the whole inward-outward packet retaining the mark.
-No established node identifies the infinite abstract core as non-MF or as
-another known hard obstruction.
+The exact follow-up `native-prefix-coefficient-core-is-rf-nonamenable`
+identifies the infinite abstract core as a nonamenable residually finite
+subgroup of `GL_6(F_2[t])`.  Thus the depth growth here is genuine but is
+MF-safe; it is not another hidden Jacobson obstruction.
 
 No Property `(T)`, Kazhdan input, trace profile, stability theorem,
 finite-word computation, or numerical approximation is used.
