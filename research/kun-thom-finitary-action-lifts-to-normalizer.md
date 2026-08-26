@@ -58,7 +58,11 @@ valid specialization `q=2` every nonidentity actor automorphism is outer, so
 `(KFL1)` is automatic and only cocycle splitting remains.  Second,
 `kt-two-compressor-normalizer-cocycle-splits` constructs a trace-correct
 normalizer lift on `<A,B>=SL_3(Z)` itself.  Thus the two compressor lifts are
-not intrinsically incompatible: the first possible nonsplit class uses
-mixed relations with the nonnormal Kazhdan subgroup `Gamma`.  A full proof
-must extend the already split compressor lift across those mixed
-stabilizer/compression relations.
+not intrinsically incompatible.  Third,
+`kt-one-compressor-normalizer-cocycle-splits` constructs a trace-correct lift
+on each full ascending HNN subgroup `<Gamma,A>` and `<Gamma,B>`, acting on
+the entire ambient coset set rather than only its distinguished orbit.  Thus
+the first possible nonsplit class must use `Gamma` and at least two compressor
+directions simultaneously.  A full proof must extend these already split
+one-compressor lifts across a genuinely joint mixed
+stabilizer/compression relation.
