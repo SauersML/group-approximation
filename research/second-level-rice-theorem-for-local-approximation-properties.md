@@ -20,6 +20,15 @@ distinct_from:
   mf-recognition-undecidable: that is the first-level MF statement; this is the general theorem for all local approximation properties at both levels.
 ---
 
+**Attribution (2026-08-26).**  The countably generated case of clause (b),
+i.e. `Pi^0_2`-hardness on enumerated presentations, is Theorem 3.1 of
+Bilanovic--Chubb--Roven, Arch. Math. Logic 59 (2019) 293-312: every Markov
+property is `Pi^0_2`-hard on recursively presented groups, by the same
+kill-one-copy construction.  This node's contribution is the reduction of
+(H2) to a finitely presented seed via the marked cover, the two-generator
+bridge, the fixed ambient `V`, and the completeness clause (d) through the
+approximation-property upper bounds.
+
 ESTABLISHED.  Let `P = P_M` be a local approximation property in the sense of
 [[local-approximation-properties-are-marked-closed]] and assume
 
