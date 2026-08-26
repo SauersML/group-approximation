@@ -554,7 +554,7 @@ theorem pi02_residuallyFinite :
   · intro h n
     exact h (decodeWord n)
   · intro h w
-    have hn := h (Encodable.encode w)
+    have hn : Answers c (decodeWord (Encodable.encode w)) := h (Encodable.encode w)
     rwa [decodeWord_surjective w] at hn
 
 /-- **Recognising failure of residual finiteness from a finite presentation

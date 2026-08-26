@@ -95,6 +95,55 @@ forms are already available in the repository. -/
 abbrev FreeLetterExtension (K : Type) [Group K] : Type :=
   CentHNN (⊥ : Subgroup K)
 
+/-! The description as `K * Z` is not merely mnemonic.  The following maps
+identify the trivial-edge central HNN extension with the binary free product.
+Keeping this equivalence explicit isolates the analytic permanence theorem
+needed by the positive branch from the compiler's group-theoretic encoding. -/
+
+/-- Map the trivial-edge HNN extension to the free product, sending its stable
+letter to the generator of the infinite cyclic factor. -/
+noncomputable def freeLetterToCoprod :
+    FreeLetterExtension K →* Monoid.Coprod K (Multiplicative ℤ) :=
+  HNNExtension.lift Monoid.Coprod.inl
+    (Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ))) (by
+      intro a
+      have ha : (a : K) = 1 := Subgroup.mem_bot.mp a.property
+      simpa only [ha, map_one, mul_one, one_mul])
+
+/-- Map the free product to the trivial-edge HNN extension. -/
+def coprodToFreeLetter :
+    Monoid.Coprod K (Multiplicative ℤ) →* FreeLetterExtension K :=
+  Monoid.Coprod.lift HNNExtension.of
+    (zpowersHom (FreeLetterExtension K) HNNExtension.t)
+
+theorem freeLetterToCoprod_comp_coprodToFreeLetter :
+    (freeLetterToCoprod (K := K)).comp coprodToFreeLetter = MonoidHom.id _ := by
+  refine Monoid.Coprod.hom_ext ?_ ?_
+  · ext k
+    simp [freeLetterToCoprod, coprodToFreeLetter]
+  · refine MonoidHom.ext_mint ?_
+    simp [freeLetterToCoprod, coprodToFreeLetter]
+
+theorem coprodToFreeLetter_comp_freeLetterToCoprod :
+    (coprodToFreeLetter (K := K)).comp freeLetterToCoprod = MonoidHom.id _ := by
+  refine HNNExtension.hom_ext ?_ ?_
+  · ext k
+    simp [freeLetterToCoprod, coprodToFreeLetter]
+  · simp [freeLetterToCoprod, coprodToFreeLetter]
+
+/-- The free-letter extension is exactly the free product `K * Z`. -/
+noncomputable def freeLetterEquivCoprod :
+    FreeLetterExtension K ≃* Monoid.Coprod K (Multiplicative ℤ) where
+  toFun := freeLetterToCoprod
+  invFun := coprodToFreeLetter
+  left_inv x := congrArg (fun f : FreeLetterExtension K →* FreeLetterExtension K ↦ f x)
+    coprodToFreeLetter_comp_freeLetterToCoprod
+  right_inv x := congrArg
+    (fun f : Monoid.Coprod K (Multiplicative ℤ) →*
+      Monoid.Coprod K (Multiplicative ℤ) ↦ f x)
+    freeLetterToCoprod_comp_coprodToFreeLetter
+  map_mul' := map_mul _
+
 /-- The subgroup `q L q⁻¹` in `K * ⟨q⟩`. -/
 def freeLetterConjugateSubgroup (L : Subgroup K) :
     Subgroup (FreeLetterExtension K) :=

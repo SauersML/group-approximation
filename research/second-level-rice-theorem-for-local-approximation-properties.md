@@ -7,6 +7,7 @@ artifacts:
   - GroupApproximation/Computability/SoficRecognitionSecondLevel.lean
   - GroupApproximation/Computability/HereditaryRecognitionPhaseDiagram.lean
   - GroupApproximation/Computability/MarkovRecognitionHierarchy.lean
+  - GroupApproximation/Computability/RFRecognitionHierarchy.lean
   - GroupApproximation/Computability/HereditaryPropertySwitchCompleteness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Computability/ParametricFinInfSwitch.lean
@@ -97,3 +98,7 @@ For properties already equipped with full Adian--Rabin data,
 package simultaneously supplies finite-code undecidability, negative
 non-enumerability, global enumerated-code hardness, exact completeness on the
 canonical event-ray family, and the explicit uniform-word-problem reduction.
+`Computability/RFRecognitionHierarchy` is the residual-finiteness client: it
+combines that generic package with the independent finite-presentation
+`Pi02`/`Sigma02` upper bounds, while keeping the open finite-output Higman step
+out of the statement.

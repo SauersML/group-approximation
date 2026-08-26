@@ -13,6 +13,7 @@ distinct_from:
   two-endpoint-source-intersections-retain-character-square: that intersects both endpoint source types and retains an exact orthogonal four-character square even after all endpoint detector classes are imposed; this asks for the native attachment which must break that twist.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that places the endpoint braid on the literal quarter/eighth Hecke supports and gets the correct one-eighth cross-Gram, but only because the braid centralizes those supports; this asks for the noncentral raw-row attachment absent there.
   endpoint-whitehead-hecke-flag-trichotomy: that enumerates all coordinate collisions with the two Hecke flags; the unique fine-only collision has flexible, possibly zero overlap and leaves its polar gauge entirely in the reservoir.
+  endpoint-order-five-actor-has-half-gram: that removes this flexibility before signed-sheet conditioning by a GL4 character orbit and an odd order-five anchor; the actors which exchange the compensating sheets fail the literal K1 occurrence typing.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core

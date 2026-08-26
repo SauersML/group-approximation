@@ -4,6 +4,8 @@ id: residual-finiteness-of-enumerated-presentations-is-pi3-complete
 kind: claim
 title: Residual finiteness is Pi-zero-three complete for recursively enumerated presentations, one level above local embeddability
 artifacts:
+  - GroupApproximation/Computability/RFPresentationPi02.lean
+  - GroupApproximation/Computability/RFRecognitionHierarchy.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   lef-recognition-has-a-pi2-upper-bound: that places LEF at the second level; this shows residual finiteness sits strictly one level higher on the same syntax, so the two properties that coincide for finitely presented groups are separated by the arithmetical hierarchy on recursive presentations.
@@ -63,3 +65,15 @@ via the shift right-angled Artin family
 [[shift-raag-family-is-rf-iff-symmetrized-index-set-closed]]; and
 `Pi^0_2`-completeness of `RF_fp` is the residually finite Higman problem,
 open in the literature.
+
+**Machine-checked boundary.**
+`Computability/RFPresentationPi02.pi02_residuallyFinite` is the `Pi^0_2`
+membership of `RF_fp`, and `rf_fp_strict_position` is the placement
+`Pi^0_2 \ Pi^0_1` / `Sigma^0_2 \ Sigma^0_1`, with Markov data seeded by the
+finitely presented nonsofic group.  The closed package
+`Computability/RFRecognitionHierarchy.rf_recognition_hierarchy` connects that
+finite-code result to `Pi^0_2`/`Sigma^0_2` hardness on arbitrary enumerated
+codes, exact completeness on the canonical event-ray switch family, and an
+explicit Adian--Rabin reduction.  It intentionally does not claim
+`Pi^0_2`-hardness of `RF_fp`: crossing that final finite-output boundary is
+exactly `[RF-Higman]`.
