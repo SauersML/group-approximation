@@ -21,21 +21,22 @@ def power(matrix, exponent):
 
 def main():
     # Vertex order: (7_0, 9, 8_0, 7_1, 10, 8_1, 6).
-    seven_0, nine, eight_0, seven_1, _ten, eight_1, _six = range(7)
+    seven_0, nine, eight_0, seven_1, ten, eight_1, six = range(7)
 
     x1 = transvection(eight_0, seven_0)
     y1 = transvection(seven_0, eight_0)
     x2 = transvection(nine, eight_0)
     y2 = transvection(eight_0, nine)
-    u = transvection(nine, seven_0)
-
-    # The two literal Hecke heads fold into the same triangle:
-    # B2=Y2, A1=U and B3=U, A2=Y1.  Their commutators are precisely
-    # the two native first factors X1 and X2.
-    b2, a1 = y2, u
-    b3, a2 = u, y1
+    # Use two adjacent GL3 triangles.  This retains distinct occurrences for
+    # all four literal center-chain arms instead of identifying an arm with a
+    # prefix factor in the scoped model.
+    a1 = transvection(six, seven_0)
+    b2 = transvection(eight_0, six)
+    a2 = transvection(ten, eight_0)
+    b3 = transvection(nine, ten)
     assert commutator(b2, a1) == x1
     assert commutator(b3, a2) == x2
+    assert commutator(b3, a1) == ONE
 
     j1 = multiply(multiply(x1, y1), x1)
     j2 = multiply(multiply(x2, y2), x2)

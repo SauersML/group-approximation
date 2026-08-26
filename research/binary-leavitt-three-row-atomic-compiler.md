@@ -530,7 +530,20 @@ the authenticated adjacent-prefix triangle simultaneously.  Both seventh
 powers and the `J_1,J_2` braid hold in the same exact `GL_7(F_2)` model,
 with the marked child nonidentity.  Hence no further fixed order-seven or
 equal-type prefix relation can manufacture the required rank asymmetry.
-The live statement is precisely the pair of mixed source-return
-conjugacies from `quarter-whiteheads-lack-unequal-source-conjugacy`, proved
-with dimension-independent leakage control on one representation-dependent
-reducing carrier.
+The row-one word conjugacy itself is already literal:
+`J_1=X_1Y_1X_1=X_1Y_1X_1^(-1)`.  What remains is not another transport word,
+but arbitrary-profile source typing: the intended source must be
+half-negative on a positive `J_1`-reducing marked carrier.  The only current
+half-rank computation is canonical Hecke character data and cannot be
+imported into an arbitrary norm-corona profile.  Row two has the analogous
+quarter-source problem.
+
+The operator-norm fences are sharp.  `free-s3-atom-has-unit-opnorm-leakage`
+places the mark at `-1` on a full active type while every nonidentity prefix
+normalizer has leakage one on every nonzero adaptive subcut.
+`row2-quarter-source-opnorm-two-fence` uses an irreducible recentered actor
+reservoir to make every proposed quarter-source conjugacy to `J_2` have
+defect exactly two, with no smaller nonzero reducing carrier.  Thus the live
+MF input is an arbitrary-profile mixed occurrence which kills the actor
+holonomy or gives a root-valued identity-action return; active density,
+prefix normalizers, the braid, and order-seven anchoring cannot supply it.

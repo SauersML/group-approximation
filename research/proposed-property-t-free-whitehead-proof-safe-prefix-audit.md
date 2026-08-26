@@ -65,6 +65,20 @@ authenticate the missing row.  The support-return menu also does not repair
 the type: its literal normalizers are quarter swaps, its common chart
 intersection retains only two Pauli pairs, and the named Hecke reflections
 are analytic group-algebra elements rather than typed source reflections.
+The strengthened literal audit reaches the same boundary: both native
+Whitehead factors, their two-sided prefix refinement, the adjacent braid, and
+both order-seven Hecke heads have one exact marked `GL_7(F_2)` model.  The two
+actors are equal-type adjacent swaps there.  Thus neither literal factor
+typing nor seventh-power anchoring supplies the missing half/quarter source
+returns or the quarter/eighth controlled-target occurrence.
+For the operator-MF quantifier, the missing input is sharper than the
+canonical Hecke rank calculation: row one's conjugacy word is already
+literal, but its half-source fraction is known only on the canonical
+center-chain character type.  Arbitrary norm-corona active profiles need not
+contain that type.  A free marked `S_3` type has operator-norm leakage one on
+every nonzero adaptive subcut, and an irreducible recentered row-two type has
+quarter-source conjugacy defect two.  Hence positive active density does not
+regularize the packet profile or validate the asserted source ranks.
 Thus the statement called `finite covariance groupification and the reservoir
 gauge` in the proposal is valid as a conditional representation-theoretic
 lemma, but the assertion that the native Leavitt words satisfy its covariance
