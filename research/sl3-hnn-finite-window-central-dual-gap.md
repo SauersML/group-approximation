@@ -73,6 +73,21 @@ a finite mixed Britton window.  If the coset action
 
 ## Attempts
 
+- **The generator diagonal defeats word-orthogonality attacks.**
+  `generator-diagonal-is-a-central-matrix-range-separator` sets
+  `B_s=X_s/sqrt(|S|)`.  It is uniformly bounded, inherits the stable-letter
+  centrality defect exactly, and has gap at least
+
+  ```text
+  dist_(2,S)(X,MR_d)^2/(2sqrt(|S|)).
+  ```
+
+  Its source pairing is the fixed identity contribution `sqrt(|S|)`, so no
+  canonical trace window on nonidentity mixed Britton words can annihilate
+  it.  This invalidates `sl3-fdg-via-canonical-word-orthogonality`.  A proof
+  of `(FDG3)` must force the matrix-range support function upward -- in
+  substance it must build the nearby ucp point -- even on the quantified
+  actor-outlier stratum `(FDG-out)`.
 - **The exact actor sector needs only one mixed word.**
   `one-britton-commutator-excludes-exact-arithmetic-actor-sector` takes
   `W={[t,h]}`.  Property `(T)` moves an approximately `Lambda`-central letter
