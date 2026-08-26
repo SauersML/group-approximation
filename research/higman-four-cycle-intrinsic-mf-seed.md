@@ -124,8 +124,10 @@ unrestricted quadratic-size gauge space for absorbing the fourth return.
 The sharper `higman-fourth-return-jointly-centralizes-clock` observes that a
 successful return `K^4` must almost commute with both `P` and `D`, whose exact
 joint commutant is only `C^(n+1)`.  This still does not close the gate:
-dimension-independent operator-norm correction from simultaneous
-almost-centrality to that exact joint commutant is not known.
+`periodic-clock-p-commutant-has-uniform-joint-gap` gives a dimension-free
+correction once `K^4` commutes with `P` exactly, and a rate-dependent one when
+`3^n r->0`, but the gate assumes only `r->0` and still lacks a compatible
+fourth-root correction.
 On the other hand, `order-four-bs-matcher-builds-higman-opnorm-microstate`
 shows that matchers with both vanishing one-step error and
 `||K^4 P K^(-4)-P||->0` would immediately refute this node; no stronger return
