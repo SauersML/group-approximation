@@ -81,15 +81,13 @@ set.  Neither set is recursively enumerable: it is impossible to
 construct an algorithm that decides from a finite presentation whether
 the group it defines is MF\@.  Here a countable group is MF if it admits
 finite-dimensional unitary models that are asymptotically multiplicative
-and asymptotically separate nonidentity elements in operator norm.  A
-presentation defines an MF group if and only if it admits a finite
-certificate at every scale, and whether a candidate certificate is valid
-is decidable, by Tarski's theorem.  We construct a computable map
-$e\mapsto\widehat R_e$ into finite presentations such that
+and asymptotically separate nonidentity elements in operator norm.  Finite
+semialgebraic certificates characterize the MF condition.  We construct a
+computable map $e\mapsto\widehat R_e$ into finite presentations such that
 $\widehat R_e$ presents an MF group if and only if the $e$-th partial
-computable function has infinite domain: if the domain is finite,
-$\widehat R_e$ contains the non-MF group of~\cite{NonMF}; if it is
-infinite, $\widehat R_e$ is MF by a permanence theorem for HNN
+computable function has infinite domain.  If the domain is finite, the
+presented group contains the non-MF group of~\cite{NonMF}.  If the domain
+is infinite, the presented group is MF by a permanence theorem for HNN
 extensions whose edge isomorphism is implemented by a unitary of a norm
 matrix corona.
 \end{abstract}
@@ -111,9 +109,9 @@ $\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF
 groups is $\Sigma^0_2$-complete.  In particular, neither set is
 recursively enumerable: it is impossible to construct an algorithm that
 decides from a finite presentation whether the group it defines is
-MF\@.  There is a computable map $e\mapsto\widehat R_e$ such that
-$\widehat R_e$ presents an MF group if and only if the $e$-th partial
-computable function has infinite domain.
+MF\@.  There is a computable map $e\mapsto\widehat R_e$ into finite
+presentations such that $\widehat R_e$ presents an MF group if and only if
+the $e$-th partial computable function has infinite domain.
 \end{mainthm}
 
 \begin{figure}[htb]
@@ -152,25 +150,29 @@ $\mathrm{NONMF}_{\mathrm{fp}}$ (Section~\ref{sec:compiler}).}
 \label{fig:levels}
 \end{figure}
 
-A finite presentation defines an MF group if and only if, at every scale,
-it admits a finite certificate consisting of normal-closure witnesses and
-a system of polynomial equations and inequalities with a real solution.
-Whether such a system has a real solution is decidable, by Tarski's
-theorem, so
+For each $n$, a certificate consists of a dimension $d$, a label for every
+word of length at most $n$, and a normal-closure proof for every word
+labelled trivial.  It is valid if there are unitaries
+$U_1,\dots,U_k\in\U(d)$ such that $\opnorm{r_i(U)-1}\le2^{-n}$ for each
+relator $r_i$ and $\opnorm{w(U)-1}\ge1/4$ for every word labelled
+nontrivial.  These conditions are polynomial equations and inequalities
+over the real numbers, so Tarski's theorem decides whether a certificate
+is valid.  A finite presentation defines an MF group if and only if it has
+a valid certificate for every $n$.  Hence
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
 (Section~\ref{sec:local}).
 
 Given a program index $e$, we construct a finite presentation
-$\widehat R_e$ in Section~\ref{sec:compiler}.  If the corresponding partial
-function has finite domain, then $H\le\widehat R_e$, so $\widehat R_e$ is
-not MF\@.  If its domain is infinite, then $\widehat R_e$ satisfies the hypotheses of
-Theorem~\ref{thm:hnn-permanence}, an MF permanence theorem for HNN
-extensions whose edge isomorphism is implemented by a unitary of a norm
-matrix corona, and is MF (Sections~\ref{sec:hnn} and~\ref{sec:compiler}).
-The MF property is closed under direct limits, as Korchagin
-proved~\cite[Proposition~13]{Korchagin}, so every finitely generated
-group that is not MF is a quotient of a finitely presented one.
+$\widehat R_e$ in Section~\ref{sec:compiler}.  If the $e$-th partial function
+has finite domain, then the presented group contains $H$ and is not MF\@.
+If its domain is infinite, the edge isomorphism in the defining HNN
+extension is implemented by a unitary of a norm matrix corona.
+Theorem~\ref{thm:hnn-permanence} then shows that the presented group is MF
+(Sections~\ref{sec:hnn} and~\ref{sec:compiler}).
+Korchagin proved that the MF property is closed under direct
+limits~\cite[Proposition~13]{Korchagin}.  Consequently, every finitely
+generated non-MF group is a quotient of a finitely presented one.
 
 \subsection*{Relation to prior work}
 
@@ -555,37 +557,12 @@ $B$ is.
 \leanverified{Analysis/MFAlgebraMatrixAmplification}{GroupApproximation.MFAlgebraMatrixAmplification.isMFAlgebra_cstarMatrix}
 \end{lemma}
 
-\begin{proof}
-The second assertion holds because $M_k$ of a norm matrix corona is the
-norm matrix corona of the dimension sequence multiplied by $k$.  For the
-first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence
-$(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.  Choose for each
-$n$ an injective $*$-homomorphism $\eta_n$ of $B_n$ into a norm matrix
-corona, and lifts $(a_i^{(n,k)})_k$ of $\eta_n(a_i^{(n)})$ with
-$\sup_k\opnorm{a_i^{(n,k)}}\le\opnorm{a_i^{(n)}}+1$.  Enumerate the
-noncommutative $*$-polynomials with coefficients in $\mathbb Q(i)$ as
-$p_1,p_2,\dots$, and let $\mathcal P_n$ be the set of those among
-$p_1,\dots,p_n$ that involve only $a_1,\dots,a_n$, choosing $p_1=0$ so that
-$\mathcal P_n$ is nonempty.  For $p\in\mathcal P_n$
-the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$,
-since $\eta_n$ is isometric.  So there is $K_n$ such that
-$\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and
-$p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$
-with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.  Put
-\[
- b_i^{(n)}=\bigoplus_{p\in\mathcal P_n}a_i^{(n,k_p)},
-\]
-a block diagonal matrix.  For $p\in\mathcal P_n$ the norm of
-$p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over
-$p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and
-$\opnorm{p(a^{(n)})}+1/n$.  Every polynomial belongs to $\mathcal P_n$ for
-all large $n$, so
-$\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$
-for every $p$.  So $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
-isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$,
-which is dense in $A$, and it extends to an isometric $*$-homomorphism of
-$A$ into a norm matrix corona.
-\end{proof}
+The first assertion follows by diagonalization from the matrix-corona
+characterization of MF algebras (Blackadar--Kirchberg~\cite{BK}; see
+also~\cite[Chapter~11]{BrownOzawa}), and Korchagin uses it in this
+form~\cite[Proposition~6]{Korchagin}.  The second holds because $M_k$ of
+a norm matrix corona is the norm matrix corona of the dimension sequence
+multiplied by $k$.
 
 \begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
 Let $\Gamma$ be a countable group with a tracial MF realization
@@ -1144,6 +1121,12 @@ Math. Ann. \textbf{307} (1997), no.~3, 343--380,
 J.~L. Britton,
 \emph{The word problem},
 Ann. of Math. (2) \textbf{77} (1963), 16--32.
+
+\bibitem[BO]{BrownOzawa}
+N.~P. Brown and N.~Ozawa,
+\emph{$C^*$-algebras and finite-dimensional approximations},
+Graduate Studies in Mathematics \textbf{88},
+American Mathematical Society, Providence, RI, 2008.
 
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
