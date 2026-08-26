@@ -42,6 +42,14 @@ longer asks to correct an arbitrary lattice microstate, or even to test all
 dual directions; it asks only that the stable-letter commutant contain no
 positive matrix-range separator for the selected lattice tuple.
 
+There is an equivalent endpoint with no ultraproduct quantifier:
+`sl3-hnn-finite-window-central-dual-gap`.  For each operator-norm cutoff and
+target gap it asks for one finite canonical trace window and one tolerance
+forcing the support inequality in every matrix dimension.  The two
+diagonalization routes prove equivalence.  In particular, the remaining
+outlier question is a uniform finite matrix-range inequality, not an
+inherently infinitary strengthening of weak ucp-stability.
+
 ## Attempts
 
 - `hnn-matrix-range-obstruction-is-a-letter-multiplicity-coupling` removes
