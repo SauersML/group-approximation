@@ -10,6 +10,7 @@ distinct_from:
   paid-t00-carrier-can-miss-row2-source: that gives a scoped reducible model with zero incidence between the paid carrier and the larger row-two flag; this treats the full common signed source and allows exactly that outcome only through its detector-word branch.
   center-chain-common-source-authenticates-native-covariances: that asks for vanishing normalized-HS loss and both native covariance rows; this gives one operator-norm source incidence for the paid t00 discrepancy and no HS mass estimate.
   order-seven-anchor-stops-at-whitehead-compression-leakage: that needs a moving cut with all seven return boundaries small; this controls only the one-step distance of the paid carrier from the fixed signed source.
+  signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped: that audits all 8192 detector elements and uniformly returns every nonidentity one to the mark; this is the analytic dichotomy whose detector branch that saturation cannot source-type.
 ---
 
 **ESTABLISHED SIGNED-SOURCE OPNORM DICHOTOMY.**  Retain

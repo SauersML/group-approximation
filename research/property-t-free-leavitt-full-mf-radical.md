@@ -47,6 +47,7 @@ artifacts:
   - research/root-valued-relative-transport-forces-cross-gram.md
   - research/seventeen-root-star-has-marked-triple-overlap.md
   - research/marked-root-star-carries-three-anchored-cells.md
+  - research/signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped.md
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
 ---
@@ -399,6 +400,17 @@ presentation relators, or use the source-compressed discrepancy to recover
 the unequal native row.  The Reynolds estimate itself supplies neither
 implication.
 
+The full detector menu is now algebraically exhausted by
+`signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped`.  Apart
+from `r_1=1`, every detector normally saturates to `z` in at most sixteen
+conjugate occurrences, and conversely every detector is a uniformly bounded
+normal word in `z`.  This does not advance the missing occurrence estimate:
+the exact `8192`-element audit finds `31` positive-character conjugacy
+classes whose internal `L_0` normal closures contain no root.  Those branches
+necessarily use external spare-index probes, which lose `Q`-typing.  Thus
+normal saturation alone is fenced; the live input remains a source-preserving
+occurrence relation or an upper bound on the detector defects.
+
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
 commutator of the paid discrepancy with the actual `B_2` arm and ejects a
@@ -412,10 +424,18 @@ There is also a profile-uniform localization to the native middle-index
 packet.  `paid-t00-pauli-menu-hits-whitehead-constant-atom` averages the paid
 carrier over the eight literal Pauli-flip conjugates and places one conjugate
 on the constant atom preserved by both prefix Whiteheads, with a fixed mass
-floor.  This removes total avoidance of the Whitehead packet, but both label
-actions on that atom are quarter-scale.  Identifying the localized paid word
-with the unequal quarter/eighth selector output remains the final occurrence
-typing problem.
+floor.  Reynolds-averaging that compression over the six native `S_3` words
+and then taking a spectral high cut strengthens this in
+`paid-t00-reynolds-cut-is-whitehead-reducing`: one member of a fixed
+forty-eight-word menu has positive paid compression on a positive subcut
+which reduces both actual Whiteheads.  The exact `GL_8` model in
+`native-actor-normal-closure-does-not-localize-paid-t00-support` shows why
+the Pauli step is essential: conjugation only by `J_1,J_2` and the two
+order-seven heads can fix the constant atom pointwise while the discrepancy
+is paid entirely off it.  These results remove total avoidance of the
+Whitehead packet, but both label actions on that atom are quarter-scale.
+Identifying the localized paid word with the unequal quarter/eighth selector
+output remains the final occurrence-typing problem.
 
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
