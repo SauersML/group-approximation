@@ -63,12 +63,13 @@ No proof of `(RDF2)` is asserted here.
   screens finish. This removes one infinite finite-simple family, but
   arbitrary non-natural finite-simple targets and diffuse hyperlinear
   quotients remain.
-- **Collision-shell reduction.**
-  `atlas-collision-shell-boundary-floor-reduction` shows that it is enough to
-  prove `atlas-finite-nontrivial-s3-shell-pays-boundary`: if the collision
-  defect is at least `1/sqrt(2)` it already pays `1/2`, while below that
-  threshold the exact collision-distance and polar-rounding estimates force
-  `m_epsilon+m_sigma>=1/1024`.  The residual gate contains only the five
-  boundary maps on this fixed nontrivial-channel shell.  Its universal
-  finite-factor analogue is refuted by the exact Leavitt model, so the
-  missing input remains genuinely matricial.
+- **Discarding collision after channel localization is refuted.**  The
+  tempting route `atlas-collision-shell-boundary-floor-reduction` correctly
+  observes that collision defect below `1/sqrt(2)` forces
+  `m_epsilon+m_sigma>=1/1024`, but its boundary-only endpoint is false.
+  The finite characteristic-two affine frame kills all five boundary words,
+  has covariance energy `4`, and hence has
+  `m_epsilon+m_sigma>=1/2`.  Its macroscopic interior defect is exactly what
+  removes it from the six-row face.  Therefore a proof of `(RDF2)` must keep
+  a joint boundary--collision statistic; aggregate nontrivial-channel mass
+  is not enough.

@@ -3,6 +3,7 @@ rg: 2
 id: atlas-group-microstate-collapse-is-subgroup-containment
 kind: claim
 title: For microstates with a group chart unitary the two-S3 collapse is exactly a subgroup containment
+invalidates: [atlas-collision-shell-boundary-floor-reduction]
 distinct_from:
   atlas-two-s3-covariance-collapse: that is the open analytic claim for arbitrary chart unitaries at arbitrary multiplicity; this settles the sub-class whose chart unitary is a group element of an overgroup, where the statement has no analysis in it at all and the covariance is quantized.
   atlas-boundary-tangent-covariance-coercivity: that is the inequality between the two energies; this identifies both energies as delta functions of one stabilizer subgroup, which is what makes the sub-class decidable.
@@ -58,6 +59,19 @@ are, and because the trace is conjugation invariant.  Consequently:
    The computation puts a number on that failure -- `sum_s l_s^2 = 1372`
    there, so the constant of
    [[atlas-linear-energy-controlled-by-full-packet-defect]] is at least 686.
+
+4. **Nontrivial-channel mass cannot be charged by the boundary alone.**
+   The same affine frame has covariance energy `4`.  Since the diagonal
+   `S3` channel decomposition gives
+
+   ```text
+   e(U)<=8(m_epsilon(U)+m_sigma(U)),
+   ```
+
+   it has `m_epsilon+m_sigma>=1/2` while every boundary defect is zero.
+   This refutes `atlas-finite-nontrivial-s3-shell-pays-boundary` and
+   invalidates the route which tried to use collision only to enter a fixed
+   nontrivial-channel shell before discarding the interior word.
 
 The open content of the collapse claim is therefore entirely in the
 **non-inner** microstates, where the defects are genuinely continuous and no
