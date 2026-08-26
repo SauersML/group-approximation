@@ -166,6 +166,41 @@ abbrev RopeIndexEdgesInput : Type :=
 
 def presentationSkeleton (n : ℕ) : PresentationCode := (n, [])
 
+/-! ## The literal rank-three input shell
+
+The semantic bridge always uses the free group on three generators as its
+source.  Consequently a caller does not need to manufacture a source
+presentation or an arbitrary marked list: it only supplies the three ambient
+words spelling the images of those generators.  This shell is the concrete
+finite datum that the effective Higman/Mikhailova lane must produce. -/
+
+/-- Ambient representatives of the three marked source generators. -/
+abbrev RankThreeWords : Type := Raw × (Raw × Raw)
+
+/-- The remaining effective data for the rank-three rope code: an ambient
+finite presentation, its finite cutting list, and three ambient marked words. -/
+abbrev RankThreeInputData : Type :=
+  PresentationCode × (List Raw × RankThreeWords)
+
+/-- The positive one-letter raw word naming generator `i`. -/
+def rankThreeGeneratorWord (i : ℕ) : Raw := [(i, true)]
+
+/-- Pair the three free source generators with their supplied ambient words. -/
+def rankThreeMarked (words : RankThreeWords) : List (Raw × Raw) :=
+  [(rankThreeGeneratorWord 0, words.1),
+    (rankThreeGeneratorWord 1, words.2.1),
+    (rankThreeGeneratorWord 2, words.2.2)]
+
+/-- Assemble the exact raw input consumed by `compile`, with the relator-free
+rank-three source presentation filled in canonically. -/
+def rankThreeInput (d : RankThreeInputData) : Input :=
+  (d.1, (presentationSkeleton 3, (d.2.1, rankThreeMarked d.2.2)))
+
+/-- The rank-three finite-presentation compiler after canonical input
+assembly. -/
+def compileRankThree (d : RankThreeInputData) : PresentationCode :=
+  compile (rankThreeInput d)
+
 def ropeIndexParameters (p : RopeParameters) : RopeIndexParameters :=
   ((p.1.1.1, p.1.2.1), p.2.1)
 
@@ -192,6 +227,36 @@ def ropeBEdgesIndexed (p : RopeIndexParameters)
 
 theorem primrec_presentationSkeleton : Primrec presentationSkeleton :=
   Primrec.pair Primrec.id (Primrec.const [])
+
+theorem primrec_rankThreeGeneratorWord : Primrec rankThreeGeneratorWord :=
+  Primrec.list_cons.comp
+    (Primrec.pair Primrec.id (Primrec.const true)) (Primrec.const [])
+
+theorem primrec_rankThreeMarked : Primrec rankThreeMarked := by
+  have hzero : Primrec (fun words : RankThreeWords =>
+      (rankThreeGeneratorWord 0, words.1)) :=
+    Primrec.pair (Primrec.const (rankThreeGeneratorWord 0)) Primrec.fst
+  have hone : Primrec (fun words : RankThreeWords =>
+      (rankThreeGeneratorWord 1, words.2.1)) :=
+    Primrec.pair (Primrec.const (rankThreeGeneratorWord 1))
+      (Primrec.fst.comp Primrec.snd)
+  have htwo : Primrec (fun words : RankThreeWords =>
+      (rankThreeGeneratorWord 2, words.2.2)) :=
+    Primrec.pair (Primrec.const (rankThreeGeneratorWord 2))
+      (Primrec.snd.comp Primrec.snd)
+  exact Primrec₂.comp Primrec.list_cons hzero
+    (Primrec₂.comp Primrec.list_cons hone
+      (Primrec₂.comp Primrec.list_cons htwo (Primrec.const [])))
+
+theorem primrec_rankThreeInput : Primrec rankThreeInput := by
+  have hambient : Primrec (fun d : RankThreeInputData => d.1) := Primrec.fst
+  have hcutting : Primrec (fun d : RankThreeInputData => d.2.1) :=
+    Primrec.fst.comp Primrec.snd
+  have hwords : Primrec (fun d : RankThreeInputData => d.2.2) :=
+    Primrec.snd.comp Primrec.snd
+  exact Primrec.pair hambient
+    (Primrec.pair (Primrec.const (presentationSkeleton 3))
+      (Primrec.pair hcutting (primrec_rankThreeMarked.comp hwords)))
 
 theorem primrec_ropeIndexParameters : Primrec ropeIndexParameters :=
   Primrec.pair
@@ -373,6 +438,17 @@ theorem primrec_compile : Primrec compile := by
 theorem computable_compile : Computable compile :=
   primrec_compile.to_comp
 
+/-- Canonical rank-three input assembly followed by the rope compiler is
+primitive recursive. -/
+theorem primrec_compileRankThree : Primrec compileRankThree :=
+  primrec_compile.comp primrec_rankThreeInput
+
+theorem computable_rankThreeInput : Computable rankThreeInput :=
+  primrec_rankThreeInput.to_comp
+
+theorem computable_compileRankThree : Computable compileRankThree :=
+  primrec_compileRankThree.to_comp
+
 end MikhailovaRopeCode
 
 namespace MikhailovaRopeCompiler
@@ -388,6 +464,28 @@ abbrev finiteSyntax : FiniteSyntaxInput → PresentationCodes.PresentationCode :
 
 theorem computable_finiteSyntax : Computable finiteSyntax :=
   MikhailovaRopeCode.computable_compile
+
+/-- The reduced effective input still owed by the upstream marked-embedding
+construction. -/
+abbrev RankThreeFiniteSyntaxInput := MikhailovaRopeCode.RankThreeInputData
+
+/-- Canonical assembly of the source code and its three marked generators. -/
+abbrev rankThreeFiniteSyntaxInput :
+    RankThreeFiniteSyntaxInput → FiniteSyntaxInput :=
+  MikhailovaRopeCode.rankThreeInput
+
+/-- The actual finite code emitted from reduced rank-three input data. -/
+abbrev rankThreeFiniteSyntax :
+    RankThreeFiniteSyntaxInput → PresentationCodes.PresentationCode :=
+  MikhailovaRopeCode.compileRankThree
+
+theorem computable_rankThreeFiniteSyntaxInput :
+    Computable rankThreeFiniteSyntaxInput :=
+  MikhailovaRopeCode.computable_rankThreeInput
+
+theorem computable_rankThreeFiniteSyntax :
+    Computable rankThreeFiniteSyntax :=
+  MikhailovaRopeCode.computable_compileRankThree
 
 end MikhailovaRopeCompiler
 end Higman
