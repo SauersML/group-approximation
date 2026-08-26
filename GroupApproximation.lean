@@ -1849,6 +1849,7 @@ import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedFoldKernel
 import GroupApproximation.Higman.PairedReturnFirstIntersection
 import GroupApproximation.Higman.PairedReturnGraphIntersection
+import GroupApproximation.Higman.MatchedSubgroupAmalgam
 import GroupApproximation.Higman.TransportCodeRE
 import GroupApproximation.Leavitt.LeavittModuleRank
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerClassIdentificationAudit
