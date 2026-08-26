@@ -8,15 +8,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | --- | --- |
 | `ledger` | 511 |
 | `formalized` | 198 |
-| `structural` | 29 |
+| `structural` | 30 |
 | `definition` | 25 |
 | `partial` | 14 |
 | `unassigned` | 12 |
 | `attribution` | 11 |
-| `open` | 2 |
+| `open` | 1 |
 | **total** | **802** |
 
-Carrying a declaration or a ledger row: **748/802** (93.3%).
+Completely formalized or definitional: **734/802** (91.5%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -66,8 +66,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 2531 --- Fixed-dimensional feasibility is decidable over the real closed field.
 * **`unassigned`**, line 2545 --- for a recursive $C_{\mathrm{MF}}$.
 * **`unassigned`**, line 2549 --- The FIN/INF free-factor switch gives exact second-level completeness for recursive presentations.
-* **`open`**, line 2549 --- Finite-presentation completeness remains open: generic Higman embedding does not preserve the MF branch.
-  * records that second-level completeness for FINITE presentations is unsettled; the corpus has hardness only.  CAVEAT: the clause after the colon, that generic Higman embedding does not preserve the MF branch, is an assertion and is not proved anywhere in the corpus
 
 ## By section
 
