@@ -243,6 +243,55 @@ theorem placeConstruction_eq_placeAt (n q : ℕ) (c : ℕ → ℤ) (R : Set E)
     · intro i hi
       exact (overwriteAux_off n q f w hi).symm
 
+/-- A computable bound strictly above every one of the finitely many target
+coordinates. -/
+def placementFreshBase (n : ℕ) (c : ℕ → ℤ) : ℕ :=
+  1 + ∑ i ∈ Finset.range n, (c i).natAbs
+
+theorem target_lt_placementFreshBase (n : ℕ) (c : ℕ → ℤ) {i : ℕ}
+    (hi : i < n) : c i < (placementFreshBase n c : ℤ) := by
+  have hmem : i ∈ Finset.range n := Finset.mem_range.mpr hi
+  have hle : (c i).natAbs ≤ ∑ j ∈ Finset.range n, (c j).natAbs :=
+    Finset.single_le_sum (fun j _ => Nat.zero_le (c j).natAbs) hmem
+  have habs : c i ≤ ((c i).natAbs : ℤ) := by omega
+  have hle' : ((c i).natAbs : ℤ) ≤
+      ((∑ j ∈ Finset.range n, (c j).natAbs : ℕ) : ℤ) := by
+    exact_mod_cast hle
+  have hsum : c i ≤
+      ((∑ j ∈ Finset.range n, (c j).natAbs : ℕ) : ℤ) := habs.trans hle'
+  have hnat : (∑ j ∈ Finset.range n, (c j).natAbs) <
+      1 + ∑ j ∈ Finset.range n, (c j).natAbs := by omega
+  have hcast : ((∑ j ∈ Finset.range n, (c j).natAbs : ℕ) : ℤ) <
+      ((1 + ∑ j ∈ Finset.range n, (c j).natAbs : ℕ) : ℤ) := by
+    exact_mod_cast hnat
+  exact hsum.trans_lt hcast
+
+/-- **Finite-coordinate placement preserves generation.**  This discharges the
+placement premise of the primitive-recursion trace.  In fact injectivity of the
+target list is unnecessary for the construction. -/
+theorem higmanGenerated_placeAt (n : ℕ) (c : ℕ → ℤ) (R : Set E)
+    (hR : HigmanGenerated R) : HigmanGenerated (placeAt n c R) := by
+  let q := placementFreshBase n c
+  have hfresh : ∀ i : ℕ, i < n → ∀ j : ℕ, j < n →
+      c i ≠ ((q + j : ℕ) : ℤ) := by
+    intro i hi j hj heq
+    have hlt := target_lt_placementFreshBase n c hi
+    dsimp [q] at heq
+    omega
+  rw [← placeConstruction_eq_placeAt n q c R hfresh]
+  exact higmanGenerated_placeConstruction n q c hR
+
+/-- Primitive recursion preserves generation with every former coordinate
+placement premise discharged. -/
+theorem higmanGenerated_recGraph_of_generated (p k t : ℕ) (hk : p + 5 ≤ k)
+    (hkt : (2 : ℤ) ^ t = (k : ℤ)) (G H : Set E)
+    (hG : HigmanGenerated G) (hH : HigmanGenerated H) :
+    HigmanGenerated (recGraph p G H) := by
+  exact higmanGenerated_recGraph p k t hk hkt G H hG hH
+    (fun d₁ d₂ => by simpa [eqCoord, eqRel] using higmanGenerated_eqRel d₁ d₂)
+    (fun d₁ d₂ => by simpa [succCoord, succPair] using higmanGenerated_succPair d₁ d₂)
+    (fun n c _ R hR => higmanGenerated_placeAt n c R hR)
+
 end Seq
 end Higman
 end GroupApproximation
