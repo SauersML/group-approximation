@@ -1,4 +1,5 @@
 import GroupApproximation.Computability.MFRecognitionOpenCore
+import GroupApproximation.Computability.MicrostateGeneratorEncoding
 
 /-!
 # Finite-dimensional rational perturbation for MF microstates
@@ -31,14 +32,19 @@ theorem microstate_hom_wordOf_eq_tupleWord {c : PresentationCode}
     (M : Microstate c) (w : List (ℕ × Bool)) :
     M.hom (wordOf c w) = tupleWord M.gen w := by
   induction w with
-  | nil => simp [tupleWord]
+  | nil =>
+      rw [wordOf_nil, map_one]
+      rfl
   | cons p w ih =>
       obtain ⟨i, s⟩ := p
       cases s
       · rw [wordOf_cons_neg, map_mul, map_inv, ih]
-        simp [tupleWord, tupleLetter, letterOf]
+        simp only [tupleWord, tupleLetter, List.map_cons, List.prod_cons,
+          Bool.false_eq_true, if_false]
+        rw [Microstate.hom, FreeGroup.lift_apply_of]
       · rw [wordOf_cons_pos, map_mul, ih]
-        simp [tupleWord, tupleLetter, letterOf]
+        simp only [tupleWord, tupleLetter, List.map_cons, List.prod_cons, if_true]
+        rw [Microstate.hom, FreeGroup.lift_apply_of]
 
 private theorem tupleLetter_gap {c : PresentationCode} {Y : FiniteModel}
     (U V : Fin (genCount c) → Matrix.unitaryGroup Y ℂ) {η : ℝ}
@@ -186,27 +192,17 @@ theorem exists_coded_openPasses {c : PresentationCode}
     dsimp [η]
     have := min_le_right ηr ηw
     nlinarith
-  have hcodes : ∀ i : Fin (genCount c), ∃ C : MatrixCode,
-      isUnitary d C ∧
-        ‖(N.gen i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
-          toMatrix d C‖ < η := by
-    intro i
-    exact RationalMatrixEncoding.exists_unitary_matrixCode_close d
-      (N.gen i).2 hη
-  choose code hcodeUnit hcodeClose using hcodes
-  let gens : List MatrixCode := List.ofFn code
-  have hgenerator (i : Fin (genCount c)) : generator d gens i = code i := by
-    simp [generator, gens, List.getD_eq_getElem?_getD, i.isLt]
-  have hunitary : GeneratorsUnitary c d gens := by
-    intro i
-    rw [hgenerator]
-    exact hcodeUnit i
+  obtain ⟨gens, hunitary, hcodeClose⟩ :=
+    MicrostateGeneratorEncoding.exists_generatorCodes_close M d e hη
   let C : Microstate c := toMicrostate c d gens hunitary
   have hclose : ∀ i,
-      ‖(N.gen i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
-        (C.gen i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ)‖ < η := by
+      ‖(((N.gen i : Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+          Matrix (Fin (dim d)) (Fin (dim d)) ℂ)) -
+        (((C.gen i : Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+          Matrix (Fin (dim d)) (Fin (dim d)) ℂ))‖ < η := by
     intro i
-    simpa [C, toMicrostate, hgenerator i] using hcodeClose i
+    simpa [N, Microstate.reindex, C,
+      EffectiveMicrostateSemantics.toMicrostate] using hcodeClose i
   have hgap (w : List (ℕ × Bool)) :
       |N.len w - C.len w| ≤ (w.length : ℝ) * η := by
     rw [Microstate.len_def, Microstate.len_def,

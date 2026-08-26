@@ -8,6 +8,7 @@ artifacts:
 distinct_from:
   endpoint-whitehead-profile-has-maximal-gram-overlap: that computes the complete Grams of the moved source profile; this adds the actual detector/probe commutator occurrence and proves that it is transported covariantly rather than cutting either incoming range.
   endpoint-whitehead-signed-source-has-only-relative-hecke-overlap: that computes the exact intersection of the original and endpoint-moved signed pairs and gives a zero-meet finite profile; this transports the whole detector cube around all six charts.
+  exceptional-endpoint-detector-products-stay-at-depth-three: that closes all products of L0 conjugates of the three exceptional detectors and rules out a fixed-source adjacent-depth pair; this begins with one third-depth cell and moves it covariantly.
   five-return-legs-cover-hecke-detectors-not-source-gauge: that isolates the three depth-three endpoint returns and asks for a fresh endpoint Whitehead; this constructs that Whitehead and audits the extra occurrence information it supplies.
   same-center-prefix-whiteheads-are-uncontrolled-adjacent-swaps: that swaps the original middle-index Pauli cells; this swaps endpoint cells whose last member is the literal return extracted from a signed-Hecke detector.
 ---
@@ -103,6 +104,16 @@ do not give arbitrary-profile meet mass.  A two-character finite profile
 has `Q` and `What_iQWhat_i^(-1)` orthogonal while satisfying the complete
 intersection table.  Thus even comparing one moved chart directly with
 the original chart leaves the same fixed-frame seam.
+
+Multiplying the original exceptional detectors does not create the missing
+second cell before the source is moved.
+`exceptional-endpoint-detector-products-stay-at-depth-three` closes all
+products of their `L_0` conjugates to a positive elementary abelian group of
+order eight.  Every endpoint entry of every element lies in the third
+native middle column; the first two columns are identically zero.  Hence no
+one positive actor on the fixed `Q` has adjacent mark-return depths.  The
+fresh Whitehead remains necessary to create the earlier cells, and then the
+coboundary fence of this claim applies.
 
 This is a scoped exact finite-occurrence fence, not a finite-dimensional
 representation of the full Steinberg group.  No Property `(T)`, canonical

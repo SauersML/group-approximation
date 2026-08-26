@@ -132,12 +132,17 @@ theorem range_increasingEnumeration (S : Set ℕ) (hS : S.Infinite) :
     refine ⟨Nat.find hex, ?_⟩
     apply le_antisymm ?_ (Nat.find_spec hex)
     by_cases hzero : Nat.find hex = 0
-    · rw [hzero, increasingEnumeration_zero]
+    · rw [hzero]
+      change increasingEnumeration S hS 0 ≤ k
+      rw [increasingEnumeration_zero]
       exact leastMember_le S hS hk
     · obtain ⟨n, hn⟩ := Nat.exists_eq_succ_of_ne_zero hzero
       have hminimal : ¬ k ≤ f n := Nat.find_min hex (by omega)
       have hnlt : f n < k := Nat.lt_of_not_ge hminimal
-      rw [hn, increasingEnumeration_succ]
+      change increasingEnumeration S hS n < k at hnlt
+      rw [hn]
+      change increasingEnumeration S hS (n + 1) ≤ k
+      rw [increasingEnumeration_succ]
       exact nextMember_le S hS hk hnlt
 
 /-! ## Cofinite nullity along the full-support enumeration -/
@@ -193,6 +198,7 @@ omit [∀ n, Nonempty (Y n)] in
 /-- Cofinite nullity of a supported bounded matrix family is equivalent to
 cofinite nullity after relabelling by the full increasing enumeration of its
 support. -/
+omit [∀ n, Nonempty (Y n)] in
 theorem isNull_reindex_iff_of_supported
     (S : Set ℕ) (hS : S.Infinite)
     (x : BoundedMatrixSequence (fun n ↦ Y n))
@@ -298,6 +304,7 @@ theorem isNull_supportReindex_iff
   simpa [nonzeroSupport] using hn
 
 /-- Coordinate compression by `P` vanishes at every zero coordinate of `P`. -/
+omit [∀ n, Nonempty (Y n)] in
 theorem compressFamily_eq_zero_of_projection_eq_zero
     (P x : BoundedMatrixSequence (fun n ↦ Y n)) (n : ℕ)
     (hzero : (P n : Matrix (Y n) (Y n) ℂ) = 0) :
@@ -367,11 +374,11 @@ theorem cornerCompression_projection_eq_one
   · subst j
     simp [KazhdanCornerMatrices.principalBlock,
       KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
-      coordinateProjection, Matrix.one_apply, i.property]
+      coordinateProjection, i.property]
   · have hval : (i : Z) ≠ (j : Z) := fun h ↦ hij (Subtype.ext h)
     simp [KazhdanCornerMatrices.principalBlock,
       KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
-      coordinateProjection, Matrix.one_apply, hij, hval]
+      coordinateProjection, hij, hval]
 
 /-- Compression is multiplicative on two matrices which commute with the
 projection. -/
@@ -528,7 +535,8 @@ def cornerCompressSequence
     (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
     (x : BoundedMatrixSequence (fun n ↦ Y n)) :
-    BoundedMatrixSequence (relabelledCornerModel Y P hP hne) :=
+    BoundedMatrixSequence
+      (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) :=
   ⟨fun k ↦ cornerCompression
       (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
       (x (supportRelabelling Y P hne k)),
@@ -572,7 +580,8 @@ def cornerCompressSequenceLinear
     (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) :
     BoundedMatrixSequence (fun n ↦ Y n) →ₗ[ℂ]
-      BoundedMatrixSequence (relabelledCornerModel Y P hP hne) where
+      BoundedMatrixSequence
+        (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) where
   toFun := cornerCompressSequence Y P hP hne
   map_add' x y := by
     refine lp.ext (funext fun k ↦ ?_)
@@ -688,7 +697,8 @@ theorem isNull_cornerCompressSequence
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
     (x : BoundedMatrixSequence (fun n ↦ Y n))
     (hx : IsNullMatrixSequence (fun n ↦ Y n) cofinite x) :
-    IsNullMatrixSequence (relabelledCornerModel Y P hP hne) cofinite
+    IsNullMatrixSequence
+      (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) cofinite
       (cornerCompressSequence Y P hP hne x) := by
   rw [IsNullMatrixSequence, Nat.cofinite_eq_atTop] at hx ⊢
   apply squeeze_zero'
@@ -710,8 +720,10 @@ def cornerClass
     (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
     (x : BoundedMatrixSequence (fun n ↦ Y n)) :
-    NormMatrixCStarCorona (relabelledCornerModel Y P hP hne) :=
-  normMatrixCStarCoronaMk (relabelledCornerModel Y P hP hne)
+    NormMatrixCStarCorona
+      (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) :=
+  normMatrixCStarCoronaMk
+    (fun k ↦ (relabelledCornerModel Y P hP hne k : Type))
     (cornerCompressSequence Y P hP hne x)
 
 /-- Ambient null families have zero corner class. -/
@@ -723,7 +735,7 @@ theorem cornerClass_eq_zero_of_isNull
     (hx : IsNullMatrixSequence (fun n ↦ Y n) cofinite x) :
     cornerClass Y P hP hne x = 0 := by
   apply (normMatrixCStarCoronaMk_eq_zero_iff
-    (relabelledCornerModel Y P hP hne)
+    (fun k ↦ (relabelledCornerModel Y P hP hne k : Type))
     (cornerCompressSequence Y P hP hne x)).mpr
   exact isNull_cornerCompressSequence Y P hP hne x hx
 

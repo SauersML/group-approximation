@@ -4,6 +4,10 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/HyperlinearUndecidabilityRoute.lean
+  - GroupApproximation/Computability/ProfinitelyClosedIndexSet.lean
+  - GroupApproximation/Computability/LEFEnumeratedPi02.lean
+  - GroupApproximation/Computability/SoficEnumeratedPi02.lean
   - research/artifacts/arithmetical-complexity-note-2026-08-26.tex
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
@@ -74,3 +78,5 @@ bounded.  (2) On finite presentations the exact level is known for (T)
 (one, semidecidable) and unknown for every level-two candidate except MF,
 each open cell being a form of a Higman-embedding question for that
 property.
+
+**Machine-checked cells.**  On enumerated presentation codes the sofic and LEF rows are kernel-checked as `Pi02Complete` (`SoficEnumeratedPi02.sofic_enum_pi02Complete`, `LEFEnumeratedPi02.lef_enum_pi02Complete`), the computability core of the residual-finiteness row as `ProfinitelyClosedIndexSet.pi03Complete_closedIndex`, and the hyperlinear finite-presentation equivalence as `HyperlinearUndecidabilityRoute.not_computablePred_iff_exists_nonhyperlinear_code`.

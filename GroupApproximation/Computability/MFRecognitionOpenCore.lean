@@ -1,4 +1,5 @@
 import GroupApproximation.Computability.CodedMicrostateEncoding
+import GroupApproximation.Computability.ArithmeticalHierarchy
 import GroupApproximation.Computability.EffectiveMicrostateSemantics
 import GroupApproximation.Computability.EffectiveOperatorNormCode
 import GroupApproximation.Computability.MicrostateNaturalize
@@ -159,7 +160,7 @@ theorem isOperatorMF_iff_forall_openAnswers (c : PresentationCode) :
 
 /-! ## Finite-word perturbation and rationalization -/
 
-private theorem norm_inv_sub_inv_unitary {Y : FiniteModel}
+theorem norm_inv_sub_inv_unitary {Y : FiniteModel}
     (u v : Matrix.unitaryGroup Y ℂ) :
     ‖((u⁻¹ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) -
         ((v⁻¹ : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)‖ =
@@ -177,7 +178,7 @@ private theorem norm_inv_sub_inv_unitary {Y : FiniteModel}
       ((u : Matrix Y Y ℂ) - (v : Matrix Y Y ℂ))ᴴ := by simp
   rw [hsub, ← Matrix.star_eq_conjTranspose, norm_star]
 
-private theorem norm_mul_sub_mul_unitary_le {Y : FiniteModel}
+theorem norm_mul_sub_mul_unitary_le {Y : FiniteModel}
     (a b c d : Matrix.unitaryGroup Y ℂ) :
     ‖(a : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
         (b : Matrix Y Y ℂ) * (d : Matrix Y Y ℂ)‖ ≤
@@ -193,12 +194,18 @@ private theorem norm_mul_sub_mul_unitary_le {Y : FiniteModel}
     rw [← Matrix.mul_sub, CStarRing.norm_mem_unitary_mul _ b.2]
   calc
     ‖(a : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
-        (b : Matrix Y Y ℂ) * (d : Matrix Y Y ℂ)‖ ≤
+        (b : Matrix Y Y ℂ) * (d : Matrix Y Y ℂ)‖ =
+        ‖((a : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
+            (b : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ)) +
+          ((b : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
+            (b : Matrix Y Y ℂ) * (d : Matrix Y Y ℂ))‖ := by
+      rw [sub_add_sub_cancel]
+    _ ≤
         ‖(a : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
             (b : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ)‖ +
           ‖(b : Matrix Y Y ℂ) * (c : Matrix Y Y ℂ) -
             (b : Matrix Y Y ℂ) * (d : Matrix Y Y ℂ)‖ :=
-      norm_sub_le_add_norm_sub _ _ _
+      norm_add_le _ _
     _ = _ := by rw [h1, h2]
 
 

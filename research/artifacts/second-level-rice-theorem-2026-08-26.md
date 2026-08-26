@@ -144,9 +144,10 @@ machine-checked exact arithmetical classification of a group approximation
 property); `Computability/HyperlinearUndecidabilityRoute`
 (`not_computablePred_iff_exists_nonhyperlinear_code`, alongside a peer
 session's `exists_not_isHyperlinear_iff_codeProperty_not_computable`);
-`Covers/HyperlinearTableCover` (peer session).  In progress:
-`Computability/ProfinitelyClosedIndexSet` (`pi03Complete_closedIndex`, the
-computability core of the `Pi^0_3` residual-finiteness theorems).
+`Covers/HyperlinearTableCover` (peer session).  `Computability/ProfinitelyClosedIndexSet` (`pi03Complete_closedIndex`, the
+computability core of the `Pi^0_3` residual-finiteness theorems);
+`Computability/LEFEnumeratedPi02` (`lef_enum_pi02Complete`, the second exact
+classification).
 
 ## What remains open
 
