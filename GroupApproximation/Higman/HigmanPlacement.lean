@@ -444,6 +444,138 @@ noncomputable def nonnegativeValues : Set E := existsAt 1 2 natCounterGraph
 theorem higmanGenerated_nonnegativeValues : HigmanGenerated nonnegativeValues :=
   higmanGenerated_existsAt 1 2 higmanGenerated_natCounterGraph
 
+private theorem natCounterBaseAt_iff (x : ℕ → ℤ) (u : ℤ) :
+    recBaseAt 0 natCounterBase x u ↔ u = 0 := by
+  constructor
+  · rintro ⟨w, ⟨hwin, hzero⟩, hparams, hout⟩
+    exact hout.symm.trans hzero
+  · rintro rfl
+    refine ⟨0, ⟨?_, rfl⟩, fun j hj => by omega, rfl⟩
+    rw [mem_windowSupport_iff]
+    simp
+
+private noncomputable def tripleSeq (x y z : ℤ) : E :=
+  Finsupp.single 0 x + Finsupp.single 1 y + Finsupp.single 2 z
+
+@[simp] private theorem tripleSeq_zero (x y z : ℤ) : tripleSeq x y z 0 = x := by
+  simp [tripleSeq]
+
+@[simp] private theorem tripleSeq_one (x y z : ℤ) : tripleSeq x y z 1 = y := by
+  simp [tripleSeq]
+
+@[simp] private theorem tripleSeq_two (x y z : ℤ) : tripleSeq x y z 2 = z := by
+  simp [tripleSeq]
+
+private theorem tripleSeq_mem_windowSupport (x y z : ℤ) :
+    tripleSeq x y z ∈ windowSupport 3 := by
+  rw [mem_windowSupport_iff]
+  constructor
+  · intro i hi
+    have h0 : i ≠ 0 := by omega
+    have h1 : i ≠ 1 := by omega
+    have h2 : i ≠ 2 := by omega
+    simp [tripleSeq, h0, h1, h2]
+  · intro i hi
+    have h0 : i ≠ 0 := by omega
+    have h1 : i ≠ 1 := by omega
+    have h2 : i ≠ 2 := by omega
+    simp [tripleSeq, h0, h1, h2]
+
+private theorem natCounterStepAt_iff (x : ℕ → ℤ) (n u v : ℤ) :
+    recStepAt 0 natCounterStep x n u v ↔ v = u + 1 := by
+  constructor
+  · rintro ⟨w, ⟨hwin, hsucc⟩, hparams, hn, hu, hv⟩
+    change w 2 = w 1 + 1 at hsucc
+    calc
+      v = w 2 := hv.symm
+      _ = w 1 + 1 := hsucc
+      _ = u + 1 := by
+        have hu' : w 1 = u := by simpa using hu
+        rw [hu']
+  · intro huv
+    refine ⟨tripleSeq n u v, ⟨tripleSeq_mem_windowSupport _ _ _, ?_⟩,
+      fun j hj => by omega, by simp, by simp, by simp⟩
+    change tripleSeq n u v 2 = tripleSeq n u v 1 + 1
+    simpa using huv
+
+private theorem natCounterRun_iff (x : ℕ → ℤ) (y z : ℤ) :
+    recRun 0 natCounterBase natCounterStep x y z ↔ 0 ≤ y ∧ z = y := by
+  constructor
+  · rintro ⟨hy, v, hbase, hstep, hend⟩
+    have hv0 : v 0 = 0 := (natCounterBaseAt_iff x (v 0)).mp hbase
+    have hv : ∀ n : ℕ, (n : ℤ) ≤ y → v (n : ℤ) = (n : ℤ) := by
+      intro n
+      induction n with
+      | zero => intro _; exact hv0
+      | succ n ih =>
+          intro hn
+          have hprev : (n : ℤ) ≤ y := by omega
+          have hs := hstep (n : ℤ) (by omega) (by omega)
+          have hinc := (natCounterStepAt_iff x (n : ℤ) (v (n : ℤ))
+            (v ((n : ℤ) + 1))).mp hs
+          rw [ih hprev] at hinc
+          simpa only [Nat.cast_add, Nat.cast_one] using hinc
+    have hyNat : ((y.toNat : ℕ) : ℤ) = y := Int.toNat_of_nonneg hy
+    refine ⟨hy, ?_⟩
+    rw [← hend, ← hyNat]
+    exact hv y.toNat (by rw [hyNat])
+  · rintro ⟨hy, rfl⟩
+    refine ⟨hy, fun i : ℤ => i, (natCounterBaseAt_iff x 0).mpr rfl, ?_, rfl⟩
+    intro i hi hiy
+    exact (natCounterStepAt_iff x i i (i + 1)).mpr rfl
+
+/-- Exact semantics of the successor-from-zero trace. -/
+theorem mem_natCounterGraph_iff (f : E) :
+    f ∈ natCounterGraph ↔
+      f ∈ windowSupport 2 ∧ 0 ≤ f 0 ∧ f 1 = f 0 := by
+  unfold natCounterGraph recGraph
+  rw [mem_windowSupport_iff]
+  constructor
+  · rintro ⟨hlo, hhi, hrun⟩
+    have hr :=
+      (natCounterRun_iff (fun j : ℕ => f (j : ℤ)) (f 0) (f 1)).mp (by simpa using hrun)
+    exact ⟨⟨hlo, hhi⟩, hr⟩
+  · rintro ⟨⟨hlo, hhi⟩, hnonneg, heq⟩
+    have hr := (natCounterRun_iff (fun j : ℕ => f (j : ℤ)) (f 0) (f 1)).mpr
+      ⟨hnonneg, heq⟩
+    exact ⟨hlo, hhi, by simpa using hr⟩
+
+/-- Exact semantics of the projected natural-value domain. -/
+theorem mem_nonnegativeValues_iff (f : E) :
+    f ∈ nonnegativeValues ↔ f ∈ windowSupport 1 ∧ 0 ≤ f 0 := by
+  rw [nonnegativeValues, mem_existsAt_iff]
+  constructor
+  · rintro ⟨hwin2, hzero, y, hy⟩
+    have hy' := (mem_natCounterGraph_iff (f + Finsupp.single 1 y)).mp hy
+    have hwin1 : f ∈ windowSupport 1 := by
+      rw [mem_windowSupport_iff] at hwin2 ⊢
+      refine ⟨hwin2.1, fun i hi => ?_⟩
+      rcases eq_or_lt_of_le hi with rfl | hi
+      · exact hzero
+      · exact hwin2.2 i (by omega)
+    refine ⟨hwin1, ?_⟩
+    simpa using hy'.2.1
+  · rintro ⟨hwin1, hnonneg⟩
+    have hzero : f 1 = 0 := ((mem_windowSupport_iff 1 f).mp hwin1).2 1 (by norm_num)
+    have hwin2 : f ∈ windowSupport 2 := by
+      rw [mem_windowSupport_iff] at hwin1 ⊢
+      exact ⟨hwin1.1, fun i hi => hwin1.2 i (by omega)⟩
+    refine ⟨hwin2, hzero, f 0, ?_⟩
+    rw [mem_natCounterGraph_iff]
+    refine ⟨?_, ?_, ?_⟩
+    · rw [mem_windowSupport_iff]
+      constructor
+      · intro i hi
+        have hi1 : i ≠ 1 := by omega
+        have hf := (mem_windowSupport_iff 2 f).mp hwin2 |>.1 i hi
+        simp [hi1, hf]
+      · intro i hi
+        have hf := (mem_windowSupport_iff 2 f).mp hwin2 |>.2 i hi
+        have hi1 : i ≠ 1 := by omega
+        simp [hi1, hf]
+    · simpa using hnonneg
+    · simp [hzero]
+
 end Seq
 end Higman
 end GroupApproximation
