@@ -162,6 +162,9 @@ theorem hasMFEmbedding_iff_exists_normRecoveringModel :
     letI : ∀ n, Nonempty (X n) := hne
     exact hasMFEmbedding_of_normRecovery M hrecover hpos hmono
 
+#audit_axioms coronaHom_injective_of_normRecovery
+#audit_axioms hasMFEmbedding_iff_exists_normRecoveringModel
+
 end
 
 end AsymptoticModelMFEmbedding
