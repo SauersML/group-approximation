@@ -115,4 +115,16 @@ finitely presentable & -- & $\Sizt$-hard, $\Sith$
 \end{tabular}
 \end{center}
 Open cells (\path{open-cells-arithmetical-complexity-of-group-properties}): $\Pizt$-completeness of $\mathrm{SOFIC}_{fp}$ (needs a sofic-safe finite-presentation compiler: centralizing HNN extensions over non-amenable, non-profinitely-closed Mikhailova-type subgroups), of $\mathrm{HYP}_{fp}$ in case (B) (quasidiagonality of the MF compiler's regular trace), of $\mathrm{RF}_{fp}$ (the residually finite Higman problem) and of $\mathrm{AMENABLE}_{fp}$ (every Higman-type compiler introduces free subgroups); $\Sith$-completeness of $\mathrm{FP}_{rec2}$; and whether some group fails weak or linear soficity.
+
+\section{Machine-checked statements}
+The following are kernel-checked Lean~4 declarations on the \path{main} branch of the development (module names under \path{GroupApproximation/Computability/} unless noted).
+\begin{itemize}
+\item \path{HereditaryPropertySwitchCompleteness.enumeratedCodeProperty_pi02Hard}: for every hereditary property that holds for the trivial group and fails for one finitely presented seed, the property of enumerated presentation codes is $\Pizt$-hard (via the computable parametric switch \path{ParametricRecursiveSwitchPresentation}).
+\item \path{SoficRecognitionSecondLevel.soficCode_pi02Hard}, \path{nonsoficCode_sigma02Hard}: soficity of enumerated presentations is $\Pizt$-hard, nonsoficity $\Sizt$-hard.
+\item \path{SoficMicrostateNormalForm.isSofic_iff_forall_answers}, \path{SoficRecognitionPi02.pi02_isSofic}, \path{sofic_fp_strict_position}: the permutation void-challenge normal form, $\Pizt$ membership on finite presentation codes, and $\mathrm{SOFIC}_{fp}\in\Pizt\setminus\Pio$, $\mathrm{NONSOFIC}_{fp}\in\Sizt\setminus\Sio$.
+\item \path{SoficEnumeratedPi02.sofic_enum_pi02Complete}, \path{nonsofic_enum_sigma02Complete}: $\Pizt$-completeness of soficity and $\Sizt$-completeness of nonsoficity on enumerated presentation codes---the first machine-checked exact arithmetical classification of a group approximation property.
+\item \path{ProfinitelyClosedIndexSet.pi03Complete_closedIndex}: $\{e:\cl(W_e)=W_e\}$ is $\Pith$-complete, with the dyadic rows; this is the computability core of the $\Pith$ residual-finiteness theorems.
+\item \path{HyperlinearUndecidabilityRoute.not_computablePred_iff_exists_nonhyperlinear_code} (and, independently, a peer session's \path{exists_not_isHyperlinear_iff_codeProperty_not_computable}): hyperlinearity of finite presentation codes is undecidable iff some code presents a non-hyperlinear group, given undecidability of the word problem. \path{Covers/HyperlinearTableCover.exists_finitelyPresented_cover_of_not_isHyperlinear} (peer session): finitely presented non-hyperlinear covers.
+\end{itemize}
+The group-theoretic halves (bridge, Higman embedding, right-angled Artin kernels, Bass--Serre, Kesten, Ozawa) are paper-level in the research nodes cited above.
 \end{document}
