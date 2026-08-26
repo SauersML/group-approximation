@@ -81,9 +81,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptPrintedFullKernelPullbackParagraph"),
-    "prop:mf-upper-bound": (
-        "Computability/MFRecognitionPi02",
-        "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02"),
 }
 
 
@@ -94,33 +91,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:local-models": (
-        "Korchagin, Proposition 7 (amplification of the separation constant)",),
-    "lem:marked-closed": (),
-    "lem:rf-regular": (),
-    "thm:hnn-permanence": (
-        "Shulman, Theorem 16 (the amalgam criterion for MF)",
-        "Britton's lemma",),
-    "cor:central-hnn": (),
-    "lem:seed": (
-        "Leavitt's normal form: the monomials without a factor s_1 t_1 are "
-        "an F_2-basis of L(1,2)",),
-    "lem:switch": (
-        "Bilanovic--Chubb--Roven, Theorem 3.1 (the construction pattern)",),
-    "lem:bridge": (
-        "Britton's lemma", "Reidemeister--Schreier rewriting",
-        "free basis of the normal closure of a basis element",),
-    "lem:mikhailova": (
-        "Higman's embedding theorem in Mikaelian's explicit form",
-        "Mikhailova's fibre product",),
-    "lem:central-rope": ("Britton's lemma",),
-    "lem:finite-rope": (),
-    "lem:negative-branch": ("Britton's lemma",),
-    "thm:recognition": (
-        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete",),
-    "lem:reduced-products": (),
-    "lem:tensor-sync": (),
-    "lem:positive-branch": (),
 }
 
 
@@ -151,28 +121,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:simple": [],
     "prop:defect": ["prop:simple", "prop:leavitt-compression"],
     "prop:full-kernel-pullback": ["prop:mf-residual-calculus"],
-    "lem:local-models": [],
-    "prop:mf-upper-bound": ["lem:local-models"],
-    "lem:marked-closed": ["lem:local-models"],
-    "lem:rf-regular": [],
-    "thm:hnn-permanence": [],
-    "cor:central-hnn": ["thm:hnn-permanence"],
-    "lem:seed": [],
-    "lem:switch": ["lem:seed"],
-    "lem:bridge": [],
-    "lem:mikhailova": ["lem:switch", "lem:bridge"],
-    "lem:central-rope": ["lem:mikhailova", "lem:bridge"],
-    "lem:finite-rope": ["lem:central-rope"],
-    "lem:negative-branch": [
-        "lem:switch", "lem:bridge", "lem:finite-rope", "thm:headline"],
-    "thm:recognition": [
-        "prop:mf-upper-bound", "lem:finite-rope", "lem:positive-branch",
-        "lem:negative-branch"],
-    "lem:reduced-products": [],
-    "lem:tensor-sync": ["lem:reduced-products", "thm:hnn-permanence"],
-    "lem:positive-branch": [
-        "lem:finite-rope", "lem:tensor-sync", "lem:central-rope",
-        "lem:rf-regular", "cor:central-hnn", "lem:bridge"],
 }
 
 
