@@ -33,15 +33,16 @@ The native block `(IKT3)` acts on a row `(a,b)` by
 The binary prefix relations give
 
 ```text
-r(1-q_0)=r,       q_0x_1=x_1,
-ry_1=0,           q_0(1-e_00)=q_0+e_00,              (IKTP3)
+r(1-q_0)=0,       q_0x_1=x_1,
+ry_1=s_1t_00,     q_0(1-e_00)=q_0+e_00,              (IKTP3)
 
 p(1-q_0)=p,       q_1x_1=0,
 py_1=0,           q_1(1-e_00)=q_1.                   (IKTP4)
 ```
 
-Substitution in `(IKTP2)` proves `(IKT4)`.  The entries `r+x_1`,
-`q_0+e_00`, `p`, and `q_1` are nonconstant reduced Leavitt expressions, so
+Substitution in `(IKTP2)` proves `(IKT4)`.  The entries `x_1`,
+`s_1t_00+q_0+e_00`, `p`, and `q_1` are nonconstant reduced Leavitt
+expressions, so
 the same constant-matrix argument proves `(IKT5)`.  By the established
 native bridge table, `v_1` normalizes the signed pair and
 `t_1=J_1v_1`.  Therefore

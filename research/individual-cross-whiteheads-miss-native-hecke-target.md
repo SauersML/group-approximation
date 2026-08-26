@@ -46,7 +46,7 @@ Directly applying this block to `(IKT2)` gives
 
 ```text
 (J_1K_0)h(J_1K_0)^(-1)
-  =x_27(r+x_1)x_28(q_0+e_00),
+  =x_27(x_1)x_28(s_1t_00+q_0+e_00),
 (J_1K_1)h(J_1K_1)^(-1)
   =x_27(p)x_28(q_1).                                (IKT4)
 ```
