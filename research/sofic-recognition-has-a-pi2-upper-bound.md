@@ -4,6 +4,7 @@ id: sofic-recognition-has-a-pi2-upper-bound
 kind: claim
 title: Soficity is Pi-zero-two for recursive presentations, with a primitive recursive certificate checker
 artifacts:
+  - GroupApproximation/Computability/SoficEnumeratedPi02.lean
   - GroupApproximation/Computability/SoficRecognitionPi02.lean
   - GroupApproximation/Computability/SoficMicrostateNormalForm.lean
   - GroupApproximation/Sofic/Sofic.lean
@@ -53,3 +54,5 @@ checker is a computable Boolean predicate, and
 `SoficRecognitionPi02.pi02_isSofic` is the closed `Pi02` statement, with
 `sigma02_not_isSofic` for the complement; the recursive-presentation
 variant with a relator prefix is in progress.
+
+**Machine-checked on enumerated codes.**  `SoficEnumeratedPi02.isSofic_iff_forall_answersN` is (SOF1) with the relator prefix, and `pi02_isSofic_enum` is the closed `Pi02` statement on enumerated presentation codes.
