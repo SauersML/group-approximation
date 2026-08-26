@@ -281,6 +281,15 @@ theorem iUnion_finitePlaneNontrivialSet
   · rintro ⟨q, hq⟩
     exact ⟨{q}, q, Finset.mem_singleton_self q, hq⟩
 
+/-- For a finite generator type, the full nontrivial support is measurable:
+it is the countable union of its finite-coordinate pieces. -/
+theorem measurableSet_fullPlaneNontrivialSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
+    MeasurableSet (fullPlaneNontrivialSet rho) := by
+  rw [← iUnion_finitePlaneNontrivialSet rho]
+  exact MeasurableSet.iUnion fun s ↦
+    measurableSet_finitePlaneNontrivialSet rho s
+
 /-- Evaluation on a finite coefficient family gives an honest
 finite-dimensional additive torus. -/
 noncomputable def finitePlaneCoordinate
@@ -310,9 +319,13 @@ theorem finitePlaneCoordinate_preimage_punctured
   constructor
   · intro hchi
     have hne : finitePlaneCoordinate rho s chi ≠ 0 := hchi.2
-    simp only [Function.ne_iff, Pi.zero_apply, finitePlaneCoordinate] at hne
-    obtain ⟨q, hq⟩ := hne
-    exact ⟨q.1, q.2, mt (coordinateAngle_eq_zero_iff rho q.1 chi).mpr hq⟩
+    by_contra hnot
+    apply hne
+    funext q
+    apply (coordinateAngle_eq_zero_iff rho q.1 chi).mpr
+    by_contra hq
+    apply hnot
+    exact ⟨q.1, q.2, hq⟩
   · rintro ⟨q, hqs, hq⟩
     refine ⟨Set.mem_univ _, ?_⟩
     intro hzero
