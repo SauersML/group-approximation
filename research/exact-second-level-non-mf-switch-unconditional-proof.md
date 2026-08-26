@@ -1,3 +1,13 @@
+---
+rg: 2
+id: exact-second-level-non-mf-switch-unconditional-proof
+kind: route
+title: Compile FIN and INF by an explicit ray of fixed non-MF marked groups
+target: mf-recognition-recursive-presentations-is-second-level-complete
+requires:
+  - literal-central-mark-corona-invisible
+---
+
 # Exact second-level non-MF switch: unconditional proof
 
 ## Scope
@@ -157,4 +167,3 @@ torsion-free or MF target in the infinite branch requires an effective
 torsion-preserving embedding/compiler theorem.  The repository currently
 contains only uninhabited interfaces for the missing pieces.  They are not
 used here, and no finite-presentation hardness claim follows from this note.
-
