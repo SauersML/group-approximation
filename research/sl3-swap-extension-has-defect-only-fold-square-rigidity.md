@@ -177,3 +177,19 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   its central sign among the displayed slots.  This is an exact sector
   theorem, not `(SFS1)`: a surviving countermodel would need a noncentral
   multiplicity gauge or a genuinely non-congruence actor outlier.
+
+- **Arbitrary sheet operators reduce quantitatively to a uniformly
+  noncentral gauge.**  `rank-one-closure-reduces-to-noncentral-gauge` extracts
+  the exact braid/chamber algebra forced on the sheet operators.  It does not
+  scalarize them: the equations split over the two swap eigenspaces and admit
+  noncommutative congruence representations on either block.  But if all four
+  simple-root gauges are within `epsilon` of the block-scalar center, then
+  torus defect `eta` gives
+
+  ```text
+  ||V_fold^2-1||_2<=4(eta+184 epsilon),
+  Gram<= (1/2)(eta+184 epsilon)^2.
+  ```
+
+  Hence the surviving enemy must keep a fixed noncentral gauge distance; no
+  asymptotically scalar or central-sheet repair remains.

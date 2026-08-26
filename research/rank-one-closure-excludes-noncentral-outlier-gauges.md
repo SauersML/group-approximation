@@ -23,3 +23,10 @@ The exact central-sign sector is established.  What remains is a
 same-carrier theorem converting an arbitrary approximate actor outlier into
 that sector or directly charging its noncentral gauge.  No scalar sheet
 character remains available as a counterexample.
+
+`rank-one-closure-reduces-to-noncentral-gauge` now closes the larger
+near-central sector for arbitrary sheet operators: if their distance to the
+block-scalar center tends to zero, the fold-Gram defect tends to zero with an
+explicit dimension-free bound.  Thus this claim has been reduced to gauges
+which stay uniformly noncentral, together with genuinely non-congruence actor
+outliers.

@@ -7,6 +7,7 @@ target: sl3-ambient-outliers-carry-no-free-hnn-letter
 requires:
   - hnn-stable-letter-rounds-to-finite-order
   - rank-one-conjugacy-kills-c2-congruence-fold
+  - rank-one-closure-reduces-to-noncentral-gauge
   - rank-one-closure-excludes-noncentral-outlier-gauges
 ---
 
