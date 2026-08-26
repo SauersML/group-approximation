@@ -379,6 +379,40 @@ theorem fiveCutter_inf_leftRange :
   rw [fiveCutter_eq_matchedCutter]
   exact matchedCutter_inf_leftRange
 
+theorem fiveSet_finite : fiveSet.Finite := by
+  simp [fiveSet]
+
+/-- The cutter is finitely generated, witnessed by the literal five-element
+set rather than by an abstract finite generating family. -/
+theorem fiveCutter_fg : fiveCutter.FG :=
+  (Subgroup.fg_iff _).mpr ⟨fiveSet, rfl, fiveSet_finite⟩
+
+/-- Comap form of the cutter equality consumed by benign witnesses. -/
+theorem fiveCutter_comap_left :
+    fiveCutter.comap (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) =
+      Star.graphSub := by
+  ext z
+  constructor
+  · intro hz
+    have hinter :
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z ∈
+          fiveCutter ⊓
+            (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC).range :=
+      Subgroup.mem_inf.mpr ⟨hz, ⟨z, rfl⟩⟩
+    rw [fiveCutter_inf_leftRange] at hinter
+    obtain ⟨y, hy, heq⟩ := hinter
+    have hyz : y = z :=
+      (Amalgam.of_injective_push edgeToP edgeToC
+        edgeToP_injective edgeToC_injective false) heq
+    rwa [hyz] at hy
+  · intro hz
+    have hmap : MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z ∈
+        Star.graphSub.map
+          (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) :=
+      Subgroup.mem_map.mpr ⟨z, hz, rfl⟩
+    rw [← fiveCutter_inf_leftRange] at hmap
+    exact hmap.1
+
 end PairedReturnCutter
 end Higman
 end GroupApproximation
