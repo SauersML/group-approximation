@@ -20,9 +20,11 @@ level 2   sofic, LEF, operator-MF, amenable,
           trivial (and hyperlinear on side (B))      Pi^0_2-complete
 level 3   residual finiteness, residual p-finiteness Pi^0_3-complete
           solvability of the word problem            Sigma^0_3-complete
+level 4   residually p for some prime                Sigma^0_4-complete
+          residually p for every prime               Pi^0_4-complete
 ```
 
-so the first three levels of the arithmetical hierarchy are each realized
+so the first four levels of the arithmetical hierarchy are each realized
 by a natural, classically studied property of finitely generated groups,
 with the completeness proofs in
 [[kazhdan-property-t-of-finite-presentations-is-sigma1-complete]],
