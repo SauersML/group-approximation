@@ -21,3 +21,26 @@ The ambient zero-marginal space is now identified exactly by
 The root shears `q,s` generate a Heisenberg group acting simply transitively
 on its chord edges, but the Fox recurrence is a branched signed relation,
 not invariance under those shears.
+
+There is nevertheless a first noncancelling split:
+`steinberg-x-row-splits-zero-marginal-tree-sectors` shows that the two
+exceptional parts of the `X` row land in disjoint halves of the spanning
+tree.  It forces the two source-slice identities `(SXTS2)`, makes both
+summands separate zero-marginal circulations, and kills the whole line
+`f(1/2,b,1)`.  The remaining task is to iterate this split or combine it
+with `Y` so that every chord reaches a forced-zero slice without branched
+cancellation.
+
+The support-only iteration of that split is now fenced off exactly:
+`steinberg-separated-support-imposes-only-matching-zeros` computes
+`W_P+W_L` as the codimension-`p` kernel of restriction to the matching
+`{(1/2,b,1)}`.  Expanding more `T_1,T_2` words and regrouping by the outer
+letter gives no new support condition.  The derivative/preimage structure
+inside the two summands, or the second Fox row, is essential.
+
+The strongest current X-only formulation is
+`steinberg-x-plus-incidence-dual-is-surjective`: prove that the image of
+`X_ch^*` plus the endpoint-potential functions
+`alpha(a,b)+beta(c,ac-b)` is the whole chord space.  This is equivalent to
+`ker(X_ch) intersect ker(P,H)=0`; it remains open and is stronger than the
+two-row claim.
