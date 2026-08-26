@@ -117,13 +117,15 @@ theorem primrec_edgeRelator :
       (Primrec.pair Primrec.fst (Primrec.snd.comp Primrec.snd))
   have happend : Primrec (fun a : Raw × Raw => a.1 ++ a.2) :=
     Primrec.list_append
-  exact happend.comp
+  refine (happend.comp
     (Primrec.pair (hstablePos.comp Primrec.fst)
       (happend.comp
         (Primrec.pair hsource
           (happend.comp
             (Primrec.pair (hstableNeg.comp Primrec.fst)
-              (primrec_invWord.comp htarget))))))
+              (primrec_invWord.comp htarget))))))).of_eq ?_
+  intro a
+  simp [edgeRelator, List.append_assoc]
 
 /-- Computing one finite HNN presentation layer is primitive recursive. -/
 theorem primrec_edgeCode :
