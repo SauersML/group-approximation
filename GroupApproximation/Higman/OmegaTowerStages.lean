@@ -353,6 +353,39 @@ theorem commute_gen1 {P : Subgroup G₀} {x : G₀} (hx : x ∈ P) :
     (map_conj_eq_self (of : Cent2 P →* Cent3 P)
       (map_conj_eq_self (of : Cent1 P →* Cent2 P) (conj_eq_self_of_mem P hx)))
 
+/-- **The first Britton-survival fact for the omega descent.**  An in-window
+row does not commute with the first stable generator, even after the other two
+centralizing stages have been adjoined. -/
+theorem gen1_not_commute_window_row {m : ℕ} {i : ℤ}
+    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) :
+    ¬ Commute (gen1 (rowOut m)) (emb3 (rowOut m) (Row.row i)) := by
+  intro hcomm
+  let j : Cent1 (rowOut m) →* Cent3 (rowOut m) :=
+    (of : Cent2 (rowOut m) →* Cent3 (rowOut m)).comp
+      (of : Cent1 (rowOut m) →* Cent2 (rowOut m))
+  have hj : Function.Injective j :=
+    (of_injective_centHNN (push2 (rowOut m))).comp
+      (of_injective_centHNN (push1 (rowOut m)))
+  have htop := hcomm.eq
+  change j (t : Cent1 (rowOut m)) *
+      j (of (Row.row i) : Cent1 (rowOut m)) =
+    j (of (Row.row i) : Cent1 (rowOut m)) *
+      j (t : Cent1 (rowOut m)) at htop
+  have hbase : (t : Cent1 (rowOut m)) * of (Row.row i) =
+      of (Row.row i) * (t : Cent1 (rowOut m)) := by
+    apply hj
+    simpa only [map_mul] using htop
+  have hconj : (t : Cent1 (rowOut m))⁻¹ * of (Row.row i) * t =
+      of (Row.row i) := by
+    calc
+      t⁻¹ * of (Row.row i) * t = t⁻¹ * (of (Row.row i) * t) := by group
+      _ = t⁻¹ * (t * of (Row.row i)) := by rw [← hbase]
+      _ = of (Row.row i) := by group
+  have hmem : (t : Cent1 (rowOut m))⁻¹ * of (Row.row i) * t ∈
+      (of : Row.F₀ →* Cent1 (rowOut m)).range :=
+    ⟨Row.row i, hconj.symm⟩
+  exact row_not_mem_rowOut hi (mem_of_conj_mem_range (rowOut m) hmem)
+
 theorem commute_gen2 {P : Subgroup G₀} {x : G₀} (hx : x ∈ P) :
     Commute (gen2 P) (emb3 P x) :=
   commute_of_conj_eq
