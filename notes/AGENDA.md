@@ -87,6 +87,32 @@ incompatibility expressed as a nonabelian cocycle in
 `U(R' cap R^omega)`, not a permanence proof or an extension theorem for an
 already-known wreath embedding.
 
+The subgroup-pasting ambiguity in that reformulation is now removed.
+Writing `H_A=<Gamma,A>` and `S=<A,B>=SL_3(Z)`, one has
+`H_A cap S=<A>`.  Brown--Dykema--Jung permanence over the amenable edge
+`R rtimes <A>` gives a trace-correct normalizer lift of
+
+```text
+H_A *_<A> S.
+```
+
+Thus the established lifts on `H_A` and `S` can be made literally compatible
+on the compressor; the same holds with `B`.  The first genuinely mixed seam
+is instead the quotient kernel.  For a finite generating set `T` of `Gamma`,
+the words
+
+```text
+C gamma C^(-1) alpha_C(gamma)^(-1),   gamma in T,
+```
+
+are reduced nonidentity amalgam words but vanish in the full actor.  In the
+canonical CE amalgam paste each has squared HS distance exactly `2` from the
+identity.  The positive branch must therefore perform a macroscopic
+matrix-ultraproduct kernel closing; it is not a problem of aligning two
+independently chosen implementations of `A`.  See
+`kt-one-compressor-and-sl3-normalizer-lifts-paste` and
+`kt-c-normalization-is-the-first-finite-normalizer-seam`.
+
 ### 2026-08-26: honest scope of the Property-(T)-free MF project
 
 Property `(T)` enters the existing non-MF transport proof at one precise
