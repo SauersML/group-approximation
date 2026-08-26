@@ -20,20 +20,11 @@ candidate nonhyperlinear   => first nonhyperlinear group.
 
 This is the fork recorded at `binary-leavitt-unit-group-hyperlinear`; work
 should be ranked by whether it decides one of these held candidates, not by
-whether it manufactures another undecided group.  The standard
-Connes-embeddability permanence tools used here have sofic analogues on the
-relevant closure operations, so they propagate a separation but do not
-originate the first one.
-
-There is now one deliberately nonstandard exception:
-`exterior-hyperfinite-edge-model-amalgam-hyperlinear` uses an amenable
-subgroup *algebra in a noncanonical unitary model*, rather than an amenable
-edge group.  It therefore has no permutation analogue.  The theorem is
-vacuous for every strict compressed Kazhdan pair by
-`amenable-kazhdan-models-absorb-compression`; its only live use requires the
-new construction of an exterior atomic model for an incompressible pair,
-currently `sl3-pair-admits-exterior-atomic-model`.  Apart from such a new
-model, a positive solution must build the candidate's canonical matrix
+whether it manufactures another undecided group.  In particular, the known
+Connes-embeddability permanence tools represented in this repository all
+have sofic analogues on the relevant closure operations.  They can propagate
+a separation once one exists, but they do not originate the first one.  A
+positive solution must therefore build the candidate's canonical matrix
 microstates directly; a negative solution must give a genuinely tracial
 obstruction.
 

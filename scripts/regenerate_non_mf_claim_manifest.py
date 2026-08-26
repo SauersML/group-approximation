@@ -103,6 +103,7 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
     "lem:local-models": (),
+    "lem:marked-closed": (),
     "lem:rf-regular": (),
     "thm:hnn-permanence": (
         "Shulman, Theorem 16 (the amalgam criterion for MF)",
@@ -162,6 +163,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:universal-factorization": [],
     "lem:local-models": [],
     "prop:mf-upper-bound": ["lem:local-models"],
+    "lem:marked-closed": ["lem:local-models"],
     "lem:rf-regular": [],
     "thm:hnn-permanence": [],
     "cor:central-hnn": ["thm:hnn-permanence"],
