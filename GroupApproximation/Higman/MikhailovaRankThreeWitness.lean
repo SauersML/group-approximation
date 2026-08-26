@@ -31,40 +31,40 @@ open GroupApproximation.ProductFinitePresentation
 abbrev Source : Type := FreeGroup (Fin 3)
 
 /-- The product-of-free-groups ambient group. -/
-abbrev Ambient (X : Type*) : Type :=
+abbrev Ambient (X : Type) : Type :=
   Source × (FreeGroup X × FreeGroup X)
 
 /-- The quotient homomorphism named by a relator set. -/
-def quotientHom {X : Type*} (R : Set (FreeGroup X)) :
+def quotientHom {X : Type} (R : Set (FreeGroup X)) :
     FreeGroup X →* PresentedGroup R :=
   QuotientGroup.mk' (Subgroup.normalClosure R)
 
-@[simp] theorem quotientHom_apply {X : Type*} (R : Set (FreeGroup X))
+@[simp] theorem quotientHom_apply {X : Type} (R : Set (FreeGroup X))
     (w : FreeGroup X) :
     quotientHom R w = PresentedGroup.mk R w := rfl
 
 /-- Embed a source word together with its marked lift and a trivial second
 copy.  The independent source coordinate makes this map injective. -/
-def inputHom {X : Type*} (words : Source →* FreeGroup X) :
+def inputHom {X : Type} (words : Source →* FreeGroup X) :
     Source →* Ambient X :=
   (MonoidHom.id Source).prod (words.prod (1 : Source →* FreeGroup X))
 
-@[simp] theorem inputHom_apply {X : Type*} (words : Source →* FreeGroup X)
+@[simp] theorem inputHom_apply {X : Type} (words : Source →* FreeGroup X)
     (f : Source) : inputHom words f = (f, words f, 1) := rfl
 
-theorem inputHom_injective {X : Type*} (words : Source →* FreeGroup X) :
+theorem inputHom_injective {X : Type} (words : Source →* FreeGroup X) :
     Function.Injective (inputHom words) := by
   intro f g hfg
   exact congrArg Prod.fst hfg
 
 /-- The entire source factor times the Mikhailova subgroup. -/
-def cuttingSubgroup {X : Type*} (R : Set (FreeGroup X)) :
+def cuttingSubgroup {X : Type} (R : Set (FreeGroup X)) :
     Subgroup (Ambient X) :=
   (⊤ : Subgroup Source).prod (Mikhailova.freeSubgroup R)
 
 /-- Elementwise form of the cut: a marked source word is accepted exactly
 when its lift is trivial in the finite presentation. -/
-theorem input_mem_cutting_iff {X : Type*} (R : Set (FreeGroup X))
+theorem input_mem_cutting_iff {X : Type} (R : Set (FreeGroup X))
     (words : Source →* FreeGroup X) (f : Source) :
     inputHom words f ∈ cuttingSubgroup R ↔ quotientHom R (words f) = 1 := by
   rw [inputHom_apply, cuttingSubgroup, Subgroup.mem_prod]
@@ -76,7 +76,7 @@ theorem input_mem_cutting_iff {X : Type*} (R : Set (FreeGroup X))
 
 /-- **Exact rank-three cut.**  The cutting subgroup pulls back to the kernel
 of the marked quotient map. -/
-theorem comap_cutting_eq_kernel {X : Type*} (R : Set (FreeGroup X))
+theorem comap_cutting_eq_kernel {X : Type} (R : Set (FreeGroup X))
     (words : Source →* FreeGroup X) :
     (cuttingSubgroup R).comap (inputHom words) =
       ((quotientHom R).comp words).ker := by
@@ -85,7 +85,7 @@ theorem comap_cutting_eq_kernel {X : Type*} (R : Set (FreeGroup X))
   exact input_mem_cutting_iff R words f
 
 /-- The same exact cut as an intersection inside the product ambient group. -/
-theorem range_inf_cutting_eq_kernel_map {X : Type*}
+theorem range_inf_cutting_eq_kernel_map {X : Type}
     (R : Set (FreeGroup X)) (words : Source →* FreeGroup X) :
     (inputHom words).range ⊓ cuttingSubgroup R =
       ((quotientHom R).comp words).ker.map (inputHom words) := by
@@ -105,14 +105,14 @@ theorem range_inf_cutting_eq_kernel_map {X : Type*}
 
 /-- Finite target alphabet and relator data make the displayed cutting
 subgroup finitely generated. -/
-theorem cuttingSubgroup_fg {X : Type*} [Finite X]
+theorem cuttingSubgroup_fg {X : Type} [Finite X]
     {R : Set (FreeGroup X)} (hR : R.Finite) :
     (cuttingSubgroup R).FG := by
   letI : Group.FG Source := fg_of_isFinitelyPresented Source
   exact fg_prod fg_top (Mikhailova.freeSubgroup_fg hR)
 
 /-- The concrete Mikhailova benign witness for the kernel of a marked map. -/
-def kernelWitness {X : Type*} [Finite X]
+def kernelWitness {X : Type} [Finite X]
     {R : Set (FreeGroup X)} (hR : R.Finite)
     (words : Source →* FreeGroup X) :
     BenignWitness (((quotientHom R).comp words).ker) where
@@ -128,7 +128,7 @@ def kernelWitness {X : Type*} [Finite X]
 /-- An injective marked map between presented quotients identifies the kernel
 of its chosen word lifts with the source normal closure. -/
 theorem kernel_eq_normalClosure_of_markedEmbedding
-    {X : Type*} (S : Set Source) (R : Set (FreeGroup X))
+    {X : Type} (S : Set Source) (R : Set (FreeGroup X))
     (words : Source →* FreeGroup X) (i : PresentedGroup S →* PresentedGroup R)
     (hi : Function.Injective i)
     (hcomm : (quotientHom R).comp words = i.comp (quotientHom S)) :
@@ -149,13 +149,13 @@ theorem kernel_eq_normalClosure_of_markedEmbedding
     have hsource : quotientHom S f = 1 :=
       (QuotientGroup.eq_one_iff _).mpr hf
     have hpoint := DFunLike.congr_fun hcomm f
-    rw [hsource, map_one] at hpoint
+    simp only [MonoidHom.comp_apply, hsource, map_one] at hpoint
     exact hpoint
 
 /-- **Concrete benign compiler checkpoint.**  Finite marked embedding data
 produce a genuine benign witness cutting out the source relator kernel. -/
 def normalClosureWitnessOfMarkedEmbedding
-    {X : Type*} [Finite X] (S : Set Source) {R : Set (FreeGroup X)}
+    {X : Type} [Finite X] (S : Set Source) {R : Set (FreeGroup X)}
     (hR : R.Finite) (words : Source →* FreeGroup X)
     (i : PresentedGroup S →* PresentedGroup R) (hi : Function.Injective i)
     (hcomm : (quotientHom R).comp words = i.comp (quotientHom S)) :
@@ -170,7 +170,7 @@ def normalClosureWitnessOfMarkedEmbedding
 
 /-- The marked-embedding version of the exact ambient intersection. -/
 theorem range_inf_cutting_eq_normalClosure_map
-    {X : Type*} (S : Set Source) (R : Set (FreeGroup X))
+    {X : Type} (S : Set Source) (R : Set (FreeGroup X))
     (words : Source →* FreeGroup X) (i : PresentedGroup S →* PresentedGroup R)
     (hi : Function.Injective i)
     (hcomm : (quotientHom R).comp words = i.comp (quotientHom S)) :
