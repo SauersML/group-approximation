@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
+import Mathlib.GroupTheory.FinitelyPresentedGroup
 
 /-!
 # Operator-MF groups form a closed set in marked-group space
@@ -253,6 +254,124 @@ theorem isOperatorMF_of_tendsto
     IsOperatorMF M.Quotient := by
   letI : NeBot l := hl
   exact (isClosed_operatorMFLocus (k := k)).mem_of_tendsto hf hMF
+
+/-- Every finitely generated non-operator-MF group is a quotient of a
+finitely presented non-operator-MF group.
+
+The group is presented on the same finite marking.  Starting from a finite
+cylinder contained in the non-MF locus, retain exactly the relations from
+that cylinder which hold in the original group and take their normal
+closure.  The resulting finite presentation still lies in the cylinder, and
+its relation subgroup is contained in the original relation subgroup, which
+gives the displayed quotient map. -/
+theorem exists_finitelyPresented_nonMF_cover
+    (M : MarkedGroupSpace k) (hM : ¬ IsOperatorMF M.Quotient) :
+    ∃ N : MarkedGroupSpace k,
+      Group.IsFinitelyPresented N.Quotient ∧
+        ¬ IsOperatorMF N.Quotient ∧
+        ∃ q : N.Quotient →* M.Quotient, Function.Surjective q := by
+  classical
+  obtain ⟨F, hF⟩ := exists_cylinder_subset_compl_operatorMFLocus M hM
+  let R : Finset (FreeGroup (Fin k)) := F.filter fun w ↦ w ∈ M.relations
+  let N : MarkedGroupSpace k :=
+    { relations := Subgroup.normalClosure (R : Set (FreeGroup (Fin k)))
+      normal_relations := Subgroup.normalClosure_normal }
+  have hrelations : N.relations ≤ M.relations := by
+    apply Subgroup.normalClosure_le_normal
+    intro w hw
+    exact (Finset.mem_filter.mp hw).2
+  have hNcylinder : N ∈ cylinder M F := by
+    rw [mem_cylinder_iff]
+    intro w hwF
+    constructor
+    · exact fun hwN ↦ hrelations hwN
+    · intro hwM
+      apply Subgroup.subset_normalClosure
+      exact Finset.mem_filter.mpr ⟨hwF, hwM⟩
+  have hNnonMF : ¬ IsOperatorMF N.Quotient := by
+    have houtside := hF hNcylinder
+    change ¬ IsOperatorMF N.Quotient at houtside
+    exact houtside
+  haveI : Finite (R : Set (FreeGroup (Fin k))) := R.finite_toSet.to_subtype
+  have hNfp : Group.IsFinitelyPresented N.Quotient := by
+    change Group.IsFinitelyPresented
+      (PresentedGroup (R : Set (FreeGroup (Fin k))))
+    infer_instance
+  have hker : N.relations ≤ (QuotientGroup.mk' M.relations).ker := by
+    intro w hw
+    exact MonoidHom.mem_ker.mpr
+      ((QuotientGroup.eq_one_iff w).mpr (hrelations hw))
+  let q : N.Quotient →* M.Quotient :=
+    QuotientGroup.lift N.relations (QuotientGroup.mk' M.relations) hker
+  have hq : Function.Surjective q := by
+    intro y
+    obtain ⟨w, rfl⟩ := QuotientGroup.mk'_surjective M.relations y
+    refine ⟨QuotientGroup.mk' N.relations w, ?_⟩
+    exact QuotientGroup.lift_mk' N.relations hker w
+  exact ⟨N, hNfp, hNnonMF, q, hq⟩
+
+/-- Every finitely generated non-operator-MF group is a quotient of a finitely
+presented non-operator-MF group.
+
+This is the unmarked form of `exists_finitelyPresented_nonMF_cover`.  A finite
+generating set supplies a marking, the quotient by the kernel of the resulting
+free-group evaluation is identified with the original group, and the marked
+cover is then transported across that identification. -/
+theorem exists_finitelyPresented_nonMF_cover_of_fg
+    (G : Type) [Group G] [Group.FG G] (hG : ¬ IsOperatorMF G) :
+    ∃ (H : Type) (_ : Group H),
+      Group.IsFinitelyPresented H ∧
+        ¬ IsOperatorMF H ∧
+        ∃ q : H →* G, Function.Surjective q := by
+  classical
+  obtain ⟨S, hS, hSfinite⟩ :=
+    Group.fg_iff.mp (inferInstance : Group.FG G)
+  letI : Finite S := hSfinite.to_subtype
+  letI : Fintype S := Fintype.ofFinite S
+  let k := Fintype.card S
+  let eS : Fin k ≃ S := (Fintype.equivFin S).symm
+  let gen : Fin k → G := fun i ↦ eS i
+  have hrange : Set.range gen = S := by
+    ext g
+    constructor
+    · rintro ⟨i, rfl⟩
+      exact (eS i).property
+    · intro hg
+      let s : S := ⟨g, hg⟩
+      refine ⟨eS.symm s, ?_⟩
+      exact congrArg Subtype.val (eS.apply_symm_apply s)
+  let π : FreeGroup (Fin k) →* G := FreeGroup.lift gen
+  have hrangeπ : π.range = Subgroup.closure (Set.range gen) := by
+    refine le_antisymm ?_ ?_
+    · rintro _ ⟨w, rfl⟩
+      induction w using FreeGroup.induction_on with
+      | C1 => simp
+      | of i =>
+          simpa [π, FreeGroup.lift_apply_of] using
+            Subgroup.subset_closure (Set.mem_range_self i : gen i ∈ Set.range gen)
+      | inv_of i _ =>
+          simpa [π, FreeGroup.lift_apply_of] using
+            Subgroup.inv_mem _
+              (Subgroup.subset_closure
+                (Set.mem_range_self i : gen i ∈ Set.range gen))
+      | mul _ _ hw hv => simpa using Subgroup.mul_mem _ hw hv
+    · refine (Subgroup.closure_le _).mpr ?_
+      rintro _ ⟨i, rfl⟩
+      exact ⟨FreeGroup.of i, by simp [π, FreeGroup.lift_apply_of]⟩
+  have hπ : Function.Surjective π := by
+    rw [← MonoidHom.range_eq_top, hrangeπ, hrange, hS]
+  let M : MarkedGroupSpace k :=
+    { relations := π.ker
+      normal_relations := MonoidHom.normal_ker π }
+  let e : M.Quotient ≃* G :=
+    QuotientGroup.quotientKerEquivOfSurjective π hπ
+  have hM : ¬ IsOperatorMF M.Quotient := by
+    intro hMF
+    exact hG (hMF.comap e.symm.toMonoidHom e.symm.injective)
+  obtain ⟨N, hNfp, hNnonMF, q, hq⟩ :=
+    exists_finitelyPresented_nonMF_cover M hM
+  exact ⟨N.Quotient, inferInstance, hNfp, hNnonMF,
+    e.toMonoidHom.comp q, e.surjective.comp hq⟩
 
 end MarkedGroupSpace
 

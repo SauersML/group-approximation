@@ -5,6 +5,7 @@ kind: route
 title: Identify the unsquared-defect quotient, embed it in a Shulman double, and pull back
 target: literal-mf-radical-is-unsquared-defect
 requires:
+  - finitely-presented-sofic-non-mf
   - unsquared-defect-mf-invisible
   - symmetric-double-weak-mf
   - mf-positive-controls

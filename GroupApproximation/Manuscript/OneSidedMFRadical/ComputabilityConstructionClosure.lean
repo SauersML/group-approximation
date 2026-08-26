@@ -5,6 +5,7 @@ import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.RopeTrick
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Sofic.OperatorMFPositiveControls
 
 /-!
 # Closed checkpoints for the manuscript's computability construction
@@ -127,11 +128,11 @@ intersection is its image. -/
 def PrintedRankThreeCutPackage : Prop :=
   ∀ (X : Type) [Finite X]
     (S : Set Higman.MikhailovaRankThree.Source)
-    (R : Set (FreeGroup X)) (hR : R.Finite),
+    (R : Set (FreeGroup X)) (_hR : R.Finite),
     ∀ (words : Higman.MikhailovaRankThree.Source →* FreeGroup X)
       (i : PresentedGroup S →* PresentedGroup R)
-      (hi : Function.Injective i)
-      (hcomm : (Higman.MikhailovaRankThree.quotientHom R).comp words =
+      (_hi : Function.Injective i)
+      (_hcomm : (Higman.MikhailovaRankThree.quotientHom R).comp words =
         i.comp (Higman.MikhailovaRankThree.quotientHom S)),
       Function.Injective (Higman.MikhailovaRankThree.inputHom words) ∧
         (Higman.MikhailovaRankThree.cuttingSubgroup R).FG ∧
@@ -186,14 +187,14 @@ trick, giving a finitely presented overgroup of the source quotient. -/
 def PrintedMikhailovaRopeCompositionPackage : Prop :=
   ∀ (X P : Type) [Finite X] [Group P] [Group.IsFinitelyPresented P]
     (S : Set Higman.MikhailovaRankThree.Source)
-    (R : Set (FreeGroup X)) (hR : R.Finite)
+    (R : Set (FreeGroup X)) (_hR : R.Finite)
     (words : Higman.MikhailovaRankThree.Source →* FreeGroup X)
     (i : PresentedGroup S →* PresentedGroup R)
-    (hi : Function.Injective i)
-    (hcomm : (Higman.MikhailovaRankThree.quotientHom R).comp words =
+    (_hi : Function.Injective i)
+    (_hcomm : (Higman.MikhailovaRankThree.quotientHom R).comp words =
       i.comp (Higman.MikhailovaRankThree.quotientHom S))
     (q : Higman.MikhailovaRankThree.Source →* P)
-    (hSq : Subgroup.normalClosure S ≤ q.ker),
+    (_hSq : Subgroup.normalClosure S ≤ q.ker),
     Nonempty (Higman.FPOvergroup (PresentedGroup S))
 
 theorem manuscriptPrintedMikhailovaRopeCompositionPackage :
@@ -237,6 +238,24 @@ theorem manuscriptPrintedRopePackage : PrintedRopePackage := by
     Higman.Rope.isFinitelyPresented_ropeGroup w SF hSFfin hSF
   exact ⟨SF, hSFfin, hSF, ⟨Higman.Rope.ropeEquiv w SF hSF⟩, inferInstance⟩
 
+/-! ## The negative branch -/
+
+/-- The final implication in the finite branch, stated independently of the
+particular compiler: a countable group containing a countable non-MF group
+through an injective homomorphism cannot be MF. -/
+def PrintedNonMFEmbeddingObstruction : Prop :=
+  ∀ (H R : Type) [Group H] [Group R] [Countable H] [Countable R],
+    ¬ IsOperatorMF H →
+      ∀ i : H →* R, Function.Injective i → ¬ IsOperatorMF R
+
+/-- **The manuscript's negative-branch heredity argument.**  Restricting an
+operator-MF corona representation along the displayed embedding would make the
+source operator-MF, contradicting the hypothesis. -/
+theorem manuscriptPrintedNonMFEmbeddingObstruction :
+    PrintedNonMFEmbeddingObstruction := by
+  intro H R _ _ _ _ hH i hi hR
+  exact hH (hR.comap i hi)
+
 #audit_closed_axioms manuscriptPrintedParametricSwitchPackage
 #audit_closed_axioms manuscriptPrintedBridgeGroupTheoryPackage
 #audit_closed_axioms manuscriptPrintedMikhailovaFiberProductPackage
@@ -245,6 +264,7 @@ theorem manuscriptPrintedRopePackage : PrintedRopePackage := by
 #audit_closed_axioms manuscriptPrintedMikhailovaRopeCompositionPackage
 #audit_closed_axioms manuscriptPrintedRawRopeSyntaxCompilerIsComputable
 #audit_closed_axioms manuscriptPrintedRopePackage
+#audit_closed_axioms manuscriptPrintedNonMFEmbeddingObstruction
 
 end ComputabilityConstruction
 end OneSidedMFRadical

@@ -18,6 +18,8 @@ distinct_from:
   shulman-presentation-double-has-a-faithful-fold-trace-model: that proves even faithful operator-norm coordinates for the whole double can have the completely folded limiting trace; this asks for a separately selected trace-visible spectral band.
   leavitt-presentation-double-has-all-fold-mf-moments: that constructs canonical-marginal symmetric MF traces with every ordinary fold-word moment, including zero; this asks for the different compressed adjoint moment on an IR1--IR2 sector.
   leavitt-hall-tensor-mf-trace-quotients-are-sofic: that proves the explicit Hall/tensor traces produce sofic GNS quotients even when the fold word survives; this asks for a different retained sector capable of producing the Leavitt quotient representation.
+  uniformly-discrete-block-monomial-images-are-sofic: that proves the original coordinates have a sofic GNS group image under a uniform normalized-character gap; this asks for an adjoint-sector quotient representation, and soficity is not closed under quotients.
+  nonsofic-block-monomial-images-force-soft-kernel-labels: that identifies the exact soft relator leakage necessary when the original block-monomial GNS image itself is nonsofic; this asks instead to construct an almost-reducing, almost-K-trivial adjoint sector with the compressed survival moment.
   ir-survival-is-one-compressed-adjoint-moment: that rewrites IR3 as one scalar compressed trace gap once IR1--IR2 hold; this remains the open construction of a sector on which that scalar and both structural conditions hold together.
 ---
 

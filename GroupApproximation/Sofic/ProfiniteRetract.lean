@@ -97,6 +97,44 @@ theorem profiniteClosure_range_eq_range_of_retraction
     rw [map_mul, map_inv, heq, inv_mul_cancel]
   · exact le_profiniteClosure i.range
 
+/-! ## Functorial consequences -/
+
+variable {Q : Type*} [Group Q]
+
+/-- Profinite closure is functorial under preimages. -/
+theorem profiniteClosure_comap_le (L : Subgroup Q) (f : G →* Q) :
+    profiniteClosure (L.comap f) ≤ (profiniteClosure L).comap f := by
+  intro x hx
+  rw [Subgroup.mem_comap]
+  intro F _ _ psi
+  have hximage := hx F (psi.comp f)
+  obtain ⟨y, hy, hyx⟩ := hximage
+  refine ⟨f y, Subgroup.mem_comap.mp hy, ?_⟩
+  exact hyx
+
+/-- The preimage of a profinitely closed subgroup is profinitely closed. -/
+theorem profiniteClosure_comap_eq_of_closed (L : Subgroup Q) (f : G →* Q)
+    (hL : profiniteClosure L = L) :
+    profiniteClosure (L.comap f) = L.comap f := by
+  apply le_antisymm
+  · rw [← hL]
+    exact profiniteClosure_comap_le L f
+  · exact le_profiniteClosure (L.comap f)
+
+/-- The diagonal in the square of a residually finite group is profinitely
+closed. -/
+theorem profiniteClosure_diagonal_range [Group.ResiduallyFinite Q] :
+    let diagonal : Q →* Q × Q :=
+      (MonoidHom.id Q).prod (MonoidHom.id Q)
+    profiniteClosure diagonal.range = diagonal.range := by
+  let diagonal : Q →* Q × Q :=
+    (MonoidHom.id Q).prod (MonoidHom.id Q)
+  let first : Q × Q →* Q := MonoidHom.fst Q Q
+  have hret : first.comp diagonal = MonoidHom.id Q := by
+    ext q
+    rfl
+  exact profiniteClosure_range_eq_range_of_retraction diagonal first hret
+
 end
 
 end GroupApproximation

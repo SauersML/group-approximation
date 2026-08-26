@@ -747,6 +747,7 @@ def zeroInputEndpoints : List Name :=
    ``LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace,
    ``LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace,
    ``GroupApproximation.manuscriptMFTraceGroupBridge,
+   ``GroupApproximation.manuscriptTraceSeparation,
    ``ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic,
    -- The two closed involutive-collapse witnesses.  The second is the
    -- strongest statement of its kind in the tree: an explicit sofic group

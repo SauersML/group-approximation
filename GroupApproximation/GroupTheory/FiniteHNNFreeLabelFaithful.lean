@@ -216,6 +216,86 @@ theorem mk_labelWord_ne_one
   rw [FreeGroup.toWord_mk, (labelWord_isReduced phi d hl x).reduce_eq] at hw
   exact labelWord_ne_nil phi d hne x hw
 
+/-! ## Evaluation and faithfulness -/
+
+/-- A signed stable crossing emits the corresponding one-letter free word. -/
+theorem stablePerm_zpow_apply
+    (d : HNNExtension.NormalWord.TransversalPair G A B)
+    (u : ℤˣ) (x : G) (w : FreeGroup (Label d)) :
+    ((stablePerm phi d) ^ (u : ℤ)) (x, w) =
+      (crossBase phi d u x,
+        FreeGroup.mk [(crossLabel phi d u x, crossSign u)] * w) := by
+  rcases Int.units_eq_one_or u with rfl | rfl
+  · simp
+    rfl
+  · simp
+    rw [FreeGroup.of, FreeGroup.inv_mk]
+    rfl
+
+/-- Exact evaluation of the headless Britton spelling under the free-label
+action. -/
+theorem action_spell_apply
+    (d : HNNExtension.NormalWord.TransversalPair G A B)
+    (l : List (ℤˣ × G)) (x : G) (w : FreeGroup (Label d)) :
+    action phi d (HNNBritton.spell phi l) (x, w) =
+      (baseRun phi d l x, FreeGroup.mk (labelWord phi d l x) * w) := by
+  induction l with
+  | nil =>
+      change (x, w) = (x, FreeGroup.mk [] * w)
+      rw [← FreeGroup.one_eq_mk, one_mul]
+  | cons p l ih =>
+      rcases p with ⟨u, g⟩
+      rw [HNNBritton.spell_cons]
+      simp only [map_mul, Equiv.Perm.mul_apply, action_t, action_of, map_zpow,
+        basePerm_apply, ih, stablePerm_zpow_apply, baseRun_cons, labelWord_cons]
+      rw [show
+        (crossLabel phi d u (g * baseRun phi d l x), crossSign u) ::
+            labelWord phi d l x =
+          [(crossLabel phi d u (g * baseRun phi d l x), crossSign u)] ++
+            labelWord phi d l x from rfl]
+      rw [← FreeGroup.mul_mk]
+      rw [mul_assoc]
+
+/-- Evaluation of a full Britton word at the identity point. -/
+theorem action_wordProd_one
+    (d : HNNExtension.NormalWord.TransversalPair G A B)
+    (g : G) (l : List (ℤˣ × G)) :
+    action phi d (HNNBritton.wordProd phi g l)
+        (1, (1 : FreeGroup (Label d))) =
+      (g * baseRun phi d l 1, FreeGroup.mk (labelWord phi d l 1)) := by
+  rw [HNNBritton.wordProd, map_mul, Equiv.Perm.mul_apply, action_of,
+    action_spell_apply, basePerm_apply]
+  simp
+
+/-- An element acting trivially in the free-label model is the identity. -/
+theorem eq_one_of_action_eq_one
+    (d : HNNExtension.NormalWord.TransversalPair G A B)
+    {z : HNNExtension G A B phi} (hz : action phi d z = 1) : z = 1 := by
+  obtain ⟨g, l, hl, hprod⟩ := HNNBritton.exists_hasSpelling phi z
+  have happ := DFunLike.congr_fun hz ((1 : G), (1 : FreeGroup (Label d)))
+  rw [← hprod, action_wordProd_one] at happ
+  by_cases hnil : l = []
+  · subst l
+    have hg : g = 1 := by
+      simpa [baseRun] using congrArg Prod.fst happ
+    subst g
+    simpa using hprod.symm
+  · have hfree : FreeGroup.mk (labelWord phi d l 1) = 1 := by
+      simpa using congrArg Prod.snd happ
+    exact absurd hfree (mk_labelWord_ne_one phi d hnil hl 1)
+
+/-- The free-label permutation action of a finite-base HNN extension is
+faithful. -/
+theorem action_injective
+    (d : HNNExtension.NormalWord.TransversalPair G A B) :
+    Function.Injective (action phi d) := by
+  refine (MonoidHom.ker_eq_bot_iff (action phi d)).mp ?_
+  apply le_antisymm
+  · intro z hz
+    have hz1 := eq_one_of_action_eq_one phi d hz
+    simp [hz1]
+  · exact bot_le
+
 end
 
 end FiniteHNNFreeLabelAction
