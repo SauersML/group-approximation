@@ -40,8 +40,10 @@ private theorem complexZeroListCheck_eq_true_iff (L : List ComplexCode) :
   induction L with
   | nil => simp [complexZeroListCheck]
   | cons z L ih =>
-      simp only [complexZeroListCheck, List.foldr_cons, Bool.and_eq_true,
-        decide_eq_true_eq, List.mem_cons, forall_eq_or_imp, ih]
+      change ((decide (ComplexEq z complexZero) && complexZeroListCheck L) = true) ↔
+        ∀ w ∈ z :: L, ComplexEq w complexZero
+      simp only [Bool.and_eq_true, decide_eq_true_eq, List.mem_cons,
+        forall_eq_or_imp, ih]
 
 private theorem complexSub_eq_zero_iff (z w : ComplexCode) :
     ComplexEq (complexSub z w) complexZero ↔ ComplexEq z w := by
