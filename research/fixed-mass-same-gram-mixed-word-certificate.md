@@ -132,3 +132,15 @@ full moving-cut boundary `(1-E)TE`, or all six orbit exits through the seven
 stages.  This is the orbit-saturated mechanism of the existing growing
 multicut order-seven lane.  The actor is no longer the hole; positive-mass
 compression leakage is.
+
+The analytic six-exit step is now closed by
+`six-exit-moving-cut-seventh-power-telescope`.  For moving cuts
+`E_0,...,E_6`, the seven-factor compressed product differs from
+`E_0T^7E_0` by at most the sum of the six intermediate exit norms, hence by
+`sqrt(6)` times the square root of their total exit energy.  The remaining
+positive-mass extraction is therefore concrete rather than functional-
+analytic: find the ungauged full-Gram coefficient bridge of
+`el20-six-moving-coefficient-square-bridges`.  The fixed positive signed
+Hecke source already supplies the mass; `(ESB1)--(ESB2)` must transport all
+of it through the moving charts while the mixed squares lock one reservoir
+gauge.  No further telescope inequality is missing.

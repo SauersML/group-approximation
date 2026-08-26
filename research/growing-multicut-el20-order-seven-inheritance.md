@@ -71,6 +71,26 @@ canonical trace, or literature theorem is permitted.
 
 ## Attempts
 
+- **The six-exit operator telescope is complete.**
+  `six-exit-moving-cut-seventh-power-telescope` proves, for arbitrary moving
+  projections, that the seven-factor compressed product differs from
+  `E_0T^7E_0` by at most the sum of the six intermediate transition exits,
+  or by `sqrt(6)` times their total squared energy.  Thus `(GMC2)` has no
+  hidden analytic multiplication loss.  The remaining content is entirely
+  coefficient-sensitive: retain a positive typed initial source and prove
+  that the stage transitions carry one fixed-frame reservoir gauge.
+
+- **There is no separate abstract mass-extraction hole after a full-Gram
+  bridge.**  The signed Hecke source already has fixed positive mass.  A word
+  satisfying `(ESB1)--(ESB2)` in
+  `el20-six-moving-coefficient-square-bridges` transports that whole source
+  to the next moving cut and keeps its reservoir factor trivial; its six
+  conjugates preserve the mass automatically.  Together with the established
+  six-square gauge lock, this is exactly the missing positive-mass mechanism.
+  What is not known is the ordinary EL20 coefficient word with those full
+  source/range Grams and ungauged typing.  Merely selecting lower spectral
+  mass cannot replace it.
+
 - The tautological orbit choice `E_(i,k)=T_i^kE_0T_i^(-k)` has zero
   transition boundary, but it does not authenticate the coefficient label at
   any intermediate stage and allows seven independent multiplicity gauges.
