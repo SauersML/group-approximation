@@ -29,3 +29,14 @@ order-seven anchor to the moving-cut compiler
 leakage formulation is refuted; the remaining issue is a coefficient-word
 lock which makes all seven stage gauges equal in one fixed Hecke reservoir
 frame rather than merely conjugate with trivial cyclic product.
+
+The regular-character route now has one genuine operator-norm success and a
+matching fence.  `literal-compressor-excludes-augmentation-regular-approximants`
+shows that the natural augmentation irreducibles converge to the regular
+character on the degree-zero core but miss the literal compressor conjugacy
+by operator norm exactly `2`.  The same claim also proves that the single
+compressor restriction map has a rank-at-least-three representation-ring
+kernel, producing faithful nonregular exact extensions arbitrarily close to
+the regular profile.  Thus character convergence plus one compressor edge
+does not close the goal; an authenticated same-carrier holonomy or raw
+nonmonomial occurrence is still required.
