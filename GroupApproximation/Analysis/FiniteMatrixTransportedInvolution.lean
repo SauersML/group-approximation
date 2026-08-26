@@ -73,6 +73,7 @@ theorem star_conjAlgEquiv_apply
   change (T.toLinearMap ∘ₗ A ∘ₗ T.symm.toLinearMap).adjoint x =
     T.symm.toLinearMap.adjoint (A.adjoint (T.toLinearMap.adjoint x))
   rw [LinearMap.adjoint_comp, LinearMap.adjoint_comp]
+  rfl
 
 /-- The involution on the target transported through a complex algebra
 equivalence. -/
@@ -155,23 +156,31 @@ theorem transportedInvolution_smul
 an ordinary complex-algebra automorphism. -/
 def transportedInvolutionAutomorphism
     {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
-    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
+    [Algebra ℂ B] [StarModule ℂ B]
     (e : D ≃ₐ[ℂ] B) : B ≃ₐ[ℂ] B where
   toFun x := transportedInvolution e (star x)
   invFun x := star (transportedInvolution e x)
   left_inv x := by simp [transportedInvolution]
   right_inv x := by simp [transportedInvolution]
   map_add' x y := by
-    simp [transportedInvolution]
+    rw [star_add, transportedInvolution_add]
   map_mul' x y := by
-    simp [transportedInvolution]
+    rw [star_mul, transportedInvolution_mul]
   commutes' c := by
-    simp only [Algebra.algebraMap_eq_smul_one, star_smul, star_one,
-      transportedInvolution_smul, transportedInvolution_one, star_star]
+    change transportedInvolution e (star (algebraMap ℂ B c)) = algebraMap ℂ B c
+    calc
+      transportedInvolution e (star (algebraMap ℂ B c)) =
+          transportedInvolution e (star c • (1 : B)) := by
+        congr 1
+        rw [Algebra.algebraMap_eq_smul_one, star_smul, star_one]
+      _ = star (star c) • transportedInvolution e 1 :=
+        transportedInvolution_smul e (star c) 1
+      _ = c • (1 : B) := by rw [star_star, transportedInvolution_one]
+      _ = algebraMap ℂ B c := (Algebra.algebraMap_eq_smul_one c).symm
 
 @[simp] theorem transportedInvolutionAutomorphism_apply
     {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
-    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
+    [Algebra ℂ B] [StarModule ℂ B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolutionAutomorphism e x =
       transportedInvolution e (star x) := rfl
@@ -180,7 +189,7 @@ def transportedInvolutionAutomorphism
 algebra automorphism and the standard target involution. -/
 theorem transportedInvolution_eq_automorphism_star
     {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
-    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
+    [Algebra ℂ B] [StarModule ℂ B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolution e x = transportedInvolutionAutomorphism e (star x) := by
   rw [transportedInvolutionAutomorphism_apply, star_star]
@@ -216,7 +225,8 @@ theorem exists_scalar_adjointInverse_trans_conjugator
   have hconj :
       (U.trans T).conjAlgEquiv ℂ =
         (LinearEquiv.refl ℂ V).conjAlgEquiv ℂ := by
-    ext A
+    apply AlgEquiv.ext
+    intro A
     calc
       (U.trans T).conjAlgEquiv ℂ A =
           T.conjAlgEquiv ℂ (U.conjAlgEquiv ℂ A) := by
@@ -231,7 +241,7 @@ theorem exists_scalar_adjointInverse_trans_conjugator
       _ = A := by
         simp only [transportedInvolutionAutomorphism_apply, star_star,
           transportedInvolution_involutive]
-      _ = (LinearEquiv.refl ℂ V).conjAlgEquiv ℂ A := by simp
+      _ = (LinearEquiv.refl ℂ V).conjAlgEquiv ℂ A := by rfl
   exact LinearEquiv.conjAlgEquiv_ext_iff'
     ((adjointLinearEquiv T.symm).trans T) (LinearEquiv.refl ℂ V) |>.mp hconj
 
@@ -291,8 +301,7 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
           inner ℂ ((α : ℂ) • T.toLinearMap.adjoint x) (T x) := by
         exact congrArg (fun z ↦ inner ℂ z (T x)) (hpoint x)
       _ = star (α : ℂ) * inner ℂ (T.toLinearMap.adjoint x) (T x) := by
-        simpa only [starRingEnd_apply] using
-          (inner_smul_left (α : ℂ) (T.toLinearMap.adjoint x) (T x))
+        simp only [inner_smul_left, starRingEnd_apply]
       _ = star (α : ℂ) * inner ℂ x (T (T x)) := by
         congr 1
         exact LinearMap.adjoint_inner_left T.toLinearMap (T x) x
@@ -304,6 +313,8 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
         rw [inner_smul_right]
       _ = (star (α : ℂ) * (α : ℂ)) * inner ℂ (T x) (T x) := by
         rw [LinearMap.adjoint_inner_right T.toLinearMap x (T x)]
+        change star (α : ℂ) * ((α : ℂ) * inner ℂ (T x) (T x)) =
+          (star (α : ℂ) * (α : ℂ)) * inner ℂ (T x) (T x)
         ring
   have hinner_ne : inner ℂ (T x) (T x) ≠ 0 := by
     intro hzero
@@ -380,10 +391,9 @@ theorem adjointLinearEquiv_unit_smul_apply
     _ = (β : ℂ) * inner ℂ x (T y) := by rw [inner_smul_right]
     _ = (β : ℂ) * inner ℂ (adjointLinearEquiv T x) y := by
       congr 1
-      exact LinearMap.adjoint_inner_left T.toLinearMap y x
+      exact (LinearMap.adjoint_inner_left T.toLinearMap y x).symm
     _ = inner ℂ (star (β : ℂ) • adjointLinearEquiv T x) y := by
-      simpa only [starRingEnd_apply, star_star] using
-        (inner_smul_left (star (β : ℂ)) (adjointLinearEquiv T x) y).symm
+      simp only [inner_smul_left, starRingEnd_apply, star_star]
 
 /-- A scalar correction satisfying `βα = β̅` turns an
 `α`-self-adjoint conjugator into a genuinely self-adjoint one. -/
@@ -464,6 +474,7 @@ def innerRankOneEnd
     star (innerRankOneEnd w z) = innerRankOneEnd z w := by
   rw [LinearMap.star_eq_adjoint, innerRankOneEnd, LinearMap.adjoint_comp,
     LinearMap.adjoint_innerₛₗ_apply, LinearMap.adjoint_toSpanSingleton]
+  rfl
 
 /-- Any conjugator implementing a transported C-star involution has no
 nonzero isotropic vector for the inverse-conjugator form.  Otherwise the
