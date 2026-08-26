@@ -93,6 +93,73 @@ theorem precomp_equiv {G' : Type} [Group G'] {f : G →* K}
 
 end CofinalProfiniteEmbedding
 
+/-! ## Closed graph embeddings -/
+
+/-- A product embedding has closed range when its first coordinate has closed
+range and the full induced profinite topology, and the second target is
+residually finite.  The proof compares the second coordinate in a finite
+quotient, then uses cofinality of the first coordinate to make that comparison
+well-defined on a finite image of the first target. -/
+theorem profiniteClosure_prod_range
+    {K₂ : Type} [Group K₂] [Group.ResiduallyFinite K₂]
+    {f₁ : G →* K} {f₂ : G →* K₂}
+    (hcofinal : CofinalProfiniteEmbedding f₁)
+    (hclosed : profiniteClosure f₁.range = f₁.range) :
+    profiniteClosure (f₁.prod f₂).range = (f₁.prod f₂).range := by
+  apply le_antisymm
+  · intro z hz
+    have hzfst : z.1 ∈ profiniteClosure f₁.range := by
+      intro Q _ _ q
+      have hzq := hz Q (q.comp (MonoidHom.fst K K₂))
+      obtain ⟨y, ⟨g, rfl⟩, hy⟩ := hzq
+      refine ⟨f₁ g, ⟨g, rfl⟩, ?_⟩
+      exact hy
+    rw [hclosed] at hzfst
+    obtain ⟨g, hg⟩ := hzfst
+    refine ⟨g, Prod.ext hg ?_⟩
+    by_contra hsecond
+    have hd : (f₂ g)⁻¹ * z.2 ≠ 1 := by
+      intro hd
+      apply hsecond
+      exact inv_mul_eq_one.mp hd
+    obtain ⟨N, hN⟩ :=
+      Group.exists_finiteIndexNormalSubgroup_notMem ((f₂ g)⁻¹ * z.2) hd
+    letI := N.isNormal'
+    letI := N.isFiniteIndex'
+    let q : K₂ →* K₂ ⧸ N.toSubgroup := QuotientGroup.mk' N.toSubgroup
+    have hqd : q ((f₂ g)⁻¹ * z.2) ≠ 1 := by
+      intro hq
+      apply hN
+      exact (QuotientGroup.eq_one_iff ((f₂ g)⁻¹ * z.2)).mp hq
+    obtain ⟨R, hRgroup, hRfinite, p, hp⟩ :=
+      hcofinal (K₂ ⧸ N.toSubgroup) (q.comp f₂)
+    letI : Group R := hRgroup
+    letI : Finite R := hRfinite
+    let test : K × K₂ →* R × (K₂ ⧸ N.toSubgroup) :=
+      (p.comp (MonoidHom.fst K K₂)).prod
+        (q.comp (MonoidHom.snd K K₂))
+    have hztest := hz (R × (K₂ ⧸ N.toSubgroup)) test
+    obtain ⟨y, ⟨g', rfl⟩, hy⟩ := hztest
+    have hpEq : p (f₁ g') = p (f₁ g) := by
+      have := congrArg Prod.fst hy
+      simpa [test, hg] using this
+    have hpmem : g⁻¹ * g' ∈ p.ker.comap f₁ := by
+      change p (f₁ (g⁻¹ * g')) = 1
+      calc
+        p (f₁ (g⁻¹ * g')) = (p (f₁ g))⁻¹ * p (f₁ g') := by simp
+        _ = 1 := by rw [hpEq, inv_mul_cancel]
+    have hqmem := hp hpmem
+    change q (f₂ (g⁻¹ * g')) = 1 at hqmem
+    rw [map_mul, map_inv] at hqmem
+    have hqgg : q (f₂ g') = q (f₂ g) := (inv_mul_eq_one.mp hqmem).symm
+    have hqz : q (f₂ g') = q z.2 := by
+      have := congrArg Prod.snd hy
+      simpa [test] using this
+    have hqgz : q (f₂ g) = q z.2 := hqgg.symm.trans hqz
+    apply hqd
+    rw [map_mul, map_inv, hqgz, inv_mul_cancel]
+  · exact le_profiniteClosure (f₁.prod f₂).range
+
 /-- A benign witness carrying the three profinite invariants needed by the
 finite-quotient compiler. -/
 structure ProfiniteBenignWitness (H : Subgroup G) where
@@ -100,6 +167,7 @@ structure ProfiniteBenignWitness (H : Subgroup G) where
   ambientRF : Group.ResiduallyFinite witness.K
   cutterClosed : profiniteClosure witness.L = witness.L
   embCofinal : CofinalProfiniteEmbedding witness.emb
+  embClosed : profiniteClosure witness.emb.range = witness.emb.range
 
 /-- A finitely presented overgroup whose embedding induces the full profinite
 topology on the source. -/
@@ -107,6 +175,7 @@ structure ProfiniteFPOvergroup (G : Type) [Group G] where
   overgroup : FPOvergroup G
   ambientRF : Group.ResiduallyFinite overgroup.K
   embCofinal : CofinalProfiniteEmbedding overgroup.emb
+  embClosed : profiniteClosure overgroup.emb.range = overgroup.emb.range
 
 namespace ProfiniteBenignWitness
 
@@ -127,6 +196,9 @@ def inf (u₁ : ProfiniteBenignWitness H₁)
       u₁.witness u₂.witness u₁.cutterClosed u₂.cutterClosed
   embCofinal :=
     CofinalProfiniteEmbedding.prod_left u₁.embCofinal u₂.witness.emb
+  embClosed := by
+    letI : Group.ResiduallyFinite u₂.witness.K := u₂.ambientRF
+    exact profiniteClosure_prod_range u₁.embCofinal u₁.embClosed
 
 /-- The preimage witness preserves all profinite data when the chosen
 overgroup of the source already carries it. -/
@@ -145,6 +217,9 @@ def comap (u : ProfiniteFPOvergroup G) (phi : G →* N)
   embCofinal :=
     CofinalProfiniteEmbedding.prod_left u.embCofinal
       (v.witness.emb.comp phi)
+  embClosed := by
+    letI : Group.ResiduallyFinite v.witness.K := v.ambientRF
+    exact profiniteClosure_prod_range u.embCofinal u.embClosed
 
 /-- Transport along an isomorphism preserves all profinite data. -/
 def congr {G' : Type} [Group G'] (e : G' ≃* G) {H : Subgroup G}
@@ -159,6 +234,20 @@ def congr {G' : Type} [Group G'] (e : G' ≃* G) {H : Subgroup G}
     change profiniteClosure u.witness.L = u.witness.L
     exact u.cutterClosed
   embCofinal := CofinalProfiniteEmbedding.precomp_equiv u.embCofinal e
+  embClosed := by
+    have hrange : (u.witness.emb.comp e.toMonoidHom).range =
+        u.witness.emb.range := by
+      ext x
+      constructor
+      · rintro ⟨g, rfl⟩
+        exact ⟨e g, rfl⟩
+      · rintro ⟨g, rfl⟩
+        refine ⟨e.symm g, ?_⟩
+        simp
+    change profiniteClosure (u.witness.emb.comp e.toMonoidHom).range =
+      (u.witness.emb.comp e.toMonoidHom).range
+    rw [hrange]
+    exact u.embClosed
 
 end ProfiniteBenignWitness
 
@@ -190,6 +279,13 @@ theorem baseEmbedding_cofinal :
     CofinalProfiniteEmbedding (joinEmb u₁.witness u₂.witness) :=
   CofinalProfiniteEmbedding.prod_left u₁.embCofinal u₂.witness.emb
 
+/-- The diagonal source embedding into the product base has closed range. -/
+theorem baseEmbedding_closed :
+    profiniteClosure (joinEmb u₁.witness u₂.witness).range =
+      (joinEmb u₁.witness u₂.witness).range := by
+  letI : Group.ResiduallyFinite u₂.witness.K := u₂.ambientRF
+  exact profiniteClosure_prod_range u₁.embCofinal u₁.embClosed
+
 /-- The source embedding remains cofinal after both central HNN stages.  Both
 stable letters may be killed, so the two canonical base maps are split. -/
 theorem embedding_cofinal :
@@ -209,6 +305,43 @@ theorem embedding_cofinal :
       apply MonoidHom.ext
       intro g
       simp [CentralHNNFreeLabel.baseRet_of])
+
+/-- The source range stays closed through both split central HNN base maps. -/
+theorem embedding_closed :
+    profiniteClosure (joinEmb₂ u₁.witness u₂.witness).range =
+      (joinEmb₂ u₁.witness u₂.witness).range := by
+  letI : Group.ResiduallyFinite u₁.witness.K := u₁.ambientRF
+  letI : Group.ResiduallyFinite u₂.witness.K := u₂.ambientRF
+  letI : Group.ResiduallyFinite (JoinLevel1 u₁.witness u₂.witness) :=
+    BenignJoinResiduallyFinite.level1_residuallyFinite
+      u₁.witness u₂.witness u₁.cutterClosed
+  have hbase1 : profiniteClosure
+      ((joinEmb u₁.witness u₂.witness).range.map
+        (HNNExtension.of : JoinBase u₁.witness u₂.witness →*
+          JoinLevel1 u₁.witness u₂.witness)) =
+      (joinEmb u₁.witness u₂.witness).range.map HNNExtension.of :=
+    profiniteClosure_map_eq_of_split_closed
+      (HNNExtension.of : JoinBase u₁.witness u₂.witness →*
+        JoinLevel1 u₁.witness u₂.witness)
+      (CentralHNNFreeLabel.baseRet (joinM₁ u₁.witness u₂.witness))
+      (BenignJoinResiduallyFinite.baseRet_comp_of u₁.witness u₂.witness
+        (joinM₁ u₁.witness u₂.witness))
+      (joinEmb u₁.witness u₂.witness).range
+      (baseEmbedding_closed u₁ u₂)
+  letI : Group.ResiduallyFinite (JoinLevel2 u₁.witness u₂.witness) :=
+    ambient_residuallyFinite u₁ u₂
+  have hbase2 := profiniteClosure_map_eq_of_split_closed
+    (HNNExtension.of : JoinLevel1 u₁.witness u₂.witness →*
+      JoinLevel2 u₁.witness u₂.witness)
+    (CentralHNNFreeLabel.baseRet (joinM₂' u₁.witness u₂.witness))
+    (by
+      apply MonoidHom.ext
+      intro g
+      simp [CentralHNNFreeLabel.baseRet_of])
+    ((joinEmb u₁.witness u₂.witness).range.map
+      (HNNExtension.of : JoinBase u₁.witness u₂.witness →*
+        JoinLevel1 u₁.witness u₂.witness)) hbase1
+  simpa only [joinEmb₂, MonoidHom.range_comp] using hbase2
 
 /-!
 At this point the join has two of the three fields of a
@@ -238,7 +371,9 @@ def LiftingObligations : Prop :=
   Group.ResiduallyFinite (u.witness.mapEmb theta htheta).K ∧
     profiniteClosure (u.witness.mapEmb theta htheta).L =
       (u.witness.mapEmb theta htheta).L ∧
-    CofinalProfiniteEmbedding (u.witness.mapEmb theta htheta).emb
+    CofinalProfiniteEmbedding (u.witness.mapEmb theta htheta).emb ∧
+    profiniteClosure (u.witness.mapEmb theta htheta).emb.range =
+      (u.witness.mapEmb theta htheta).emb.range
 
 end ProfiniteBenignMapEmb
 
