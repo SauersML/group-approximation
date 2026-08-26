@@ -67,6 +67,16 @@ excluded by the regular-trace firewall.
   word equality authenticates the native Whitehead occurrences but does
   not attach them to the unequal controlled selector outputs.
 
+- **Find an odd relation using only the common Pauli carrier.**  This is
+  impossible at the group level:
+  `same-center-pauli-actors-have-whitehead-sign-quotient` maps every Pauli
+  actor to `+1` and both native adjacent Whiteheads to `-1`.  The exact
+  three-qubit sign twist preserves all internal packet rows while changing
+  each `J_i` by operator norm `2`.  The known odd order-seven heads evade
+  the quotient only by using center-chain actors which eject the packet;
+  compressing those actors back to this carrier is the unresolved moving
+  return/leakage problem.
+
 - **Dress one Whitehead transport by an ordinary root mover and cut the
   resulting positive cross Gram.**  The root-valued overlap theorem proves
   the scalar Gram only after the dressed full-word occurrences have been

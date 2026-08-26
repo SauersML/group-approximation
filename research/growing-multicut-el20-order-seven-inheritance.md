@@ -103,3 +103,13 @@ canonical trace, or literature theorem is permitted.
   their mixed squares force all stage gauges to agree.  The concrete word
   problem is isolated in `el20-six-moving-coefficient-square-bridges`; no
   such full-Gram bridge is currently known.
+- The exact gauge model
+  `order-seven-moving-cuts-realize-both-affine-profiles` also installs the
+  two precise positive-sign fractions forced by the quarter and eighth
+  selector rows.  Both affine covariances, both seventh-power telescopes,
+  and all moving boundaries can therefore be exact while the two initial
+  gauges remain nonconjugate.  Taking the native head itself as each
+  parallel bridge makes every mixed square tautological.  This rules out an
+  operator-norm or polar argument based only on the actual order-seven heads;
+  the independently ungauged occurrence typing in the six-bridge claim is
+  load-bearing.
