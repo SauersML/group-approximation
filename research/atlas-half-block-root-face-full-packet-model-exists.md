@@ -72,5 +72,14 @@ transverse root available from `12` in rank five, so the next row must be
 genuinely non-shear: it must compare the two degenerate orientation orbits,
 not merely add another adjacent coefficient-one target.
 
+The shortest apparent non-shear continuation is also exhausted by
+`atlas-target-gl3-preserves-the-fifteen-type-degeneracy`.  The roots
+`x_rs(1)`, `r,s in {3,4,5}`, generate simultaneous `GL_3(F_2)` basis changes
+on the three target sign vectors.  They preserve `u in span(w)` and split
+the fifteen types into strata of sizes `1,7,7`; each stratum still has two
+disjoint marked orientations.  Hence no coefficient-one target-basis word
+can close the face.  The next genuinely new family must carry a nontrivial
+coefficient on a moving target root or use a different incidence pattern.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear

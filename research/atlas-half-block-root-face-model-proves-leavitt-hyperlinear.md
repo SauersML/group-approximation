@@ -13,6 +13,7 @@ requires:
   - atlas-first-transverse-root-shear-leaves-fixed-character-face
   - atlas-two-transverse-shears-have-determinant-balance-test
   - atlas-three-transverse-shears-leave-fifteen-character-types
+  - atlas-target-gl3-preserves-the-fifteen-type-degeneracy
   - atlas-half-block-root-face-full-packet-model-exists
 ---
 
