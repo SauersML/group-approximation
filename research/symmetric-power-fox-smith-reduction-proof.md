@@ -66,3 +66,59 @@ rank-one Weyl substitutions exchange `x`- and `y`-degree and exchange
 `y`- and `z`-degree.  Consequently the calculations through degree four do
 not by themselves supply an induction on `n`; the unit Smith ideal is the
 precise remaining recurrence target.
+
+There is a sharper obstruction to the naive degree shift.  For any group-ring
+row
+
+```text
+R_0=sum_g c_g g
+```
+
+and any linear form `ell`, one has the exact identity
+
+```text
+R_0(ell P)-ell R_0(P)
+  =sum_g c_g (g.ell-ell)(g.P).                          (SPR5)
+```
+
+For `X`, the right side uses the five coefficient elements
+
+```text
+A, Aq, B, Bs, 1,                                       (SPR6)
+```
+
+with signs `+,-,+,-,-`; for `Y` it uses
+
+```text
+1,q,u,uq,h^(-1)r,h^(-1)                                (SPR7)
+```
+
+with signs `+,-,-,+,-,+`.  A linear form for which the degree-shift error
+vanishes identically can already be tested in degree zero.  Since
+
+```text
+T_0(1)=(-1,0),                                          (SPR8)
+```
+
+componentwise intertwining would require
+
+```text
+X ell=-ell,                    Y ell=0.                 (SPR9)
+```
+
+On the defining degree-one module, direct use of `(ANP4)--(ANP5)` and
+`(ANP8)` gives
+
+```text
+(X+1)(a,b,c)^T=(a,(a+b)/2,b/2)^T,
+Y(a,b,c)^T=(0,c,0)^T.                                  (SPR10)
+```
+
+Equations `(SPR9)--(SPR10)` force `a=b=c=0`.  Thus no nonzero multiplication
+map `P|->ell P` intertwines the stacked rows.
+
+This does not rule out a recurrence using several degree-shift maps and
+nontrivial correction terms.  It identifies the first exact obstruction:
+the ordinary graded-module induction is unavailable, and degree four shows
+that working only over `Q` loses real odd Smith torsion that the authenticated
+row must remove.

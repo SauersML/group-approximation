@@ -148,6 +148,22 @@ that this explicit algebra `M` has **no** matrix microstates: relative
 commutant collapse for the arithmetic pair is at least as strong as
 non-Connes-embeddability of `(HQ1)`.
 
+**The one-shell leak is quantized and Morita-neutral.**
+`homogeneous-quotient-has-a-quantized-hecke-dent` sharpens `(HQ3)` for
+`n=3`.  If `P` is one of the `r` compact-open `K`-orbits and
+`D=[K:K cap hKh^(-1)]=p(p+1)(p^2+p+1)`, then the common parahoric subgroup
+partitions `P` into `D` equal-measure pieces.  Since `hP != P`,
+
+```text
+||Ad(u_h)(1-2.1_P)-(1-2.1_P)||_2^2 >= 8/(rD),
+1-||S(1-2.1_P)||_2^2 >= 2/(rD).
+```
+
+Both quantities are unchanged by normalized finite matrix amplification.
+Thus the stable amplified-profinite presentation `(DT2)` does not dilute the
+spherical leak; its only unresolved content is whether the noncompact right
+lattice action preserves Connes embeddability.
+
 **Scope.**  The theorem uses only: density of `C` in `K` and of `A` in `L`
 (strong approximation), transitivity of `L` on `X`, torsion-freeness and
 cocompactness of `Lambda'`, and that `L` has no proper open subgroup of

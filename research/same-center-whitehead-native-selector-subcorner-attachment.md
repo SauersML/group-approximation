@@ -205,6 +205,22 @@ excluded by the regular-trace firewall.
   incidence; freezing one of the eight words along a subsequence is not
   occurrence typing.
 
+  The factor-level detection half is now established.
+  `row2-source-factor-detects-paid-pauli-sheet` descends through the literal
+  row relation `[S_57,T]=A_2` and obtains the nonzero cube face
+
+  ```text
+  [S_57,H]=[[S_57,D],Y_2]
+          =x_53(s_1t_1+s_1s_0t_1).
+  ```
+
+  Hence the authenticated factor closure distinguishes `D` from `DH` even
+  though every composite named above is blind.  This still does not prove
+  `(SNA2)`: the paid atom is not known to reduce `S_57`, and the new `x_53`
+  carrier has not been placed on the actual signed quarter/eighth source.
+  The remaining seam is precisely that source incidence or a quantitative
+  charge for the `S_57` leakage.
+
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.
   `six-pair-chart-swap-retains-external-gauge` gives a full `M_64(C)` label

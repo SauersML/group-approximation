@@ -146,6 +146,16 @@ payload-compatible auxiliary `s` which fixes the selected small atom.  A
 full finite-packet normalizer is too strong and reintroduces the established
 multiplicity-orientation obstruction.
 
+Nor can one replace selected-atom stabilization by the superficially simpler
+relations `[s,H]=1` for the whole finite selector packet `H`.
+`selector-packet-central-corrector-fails-on-a-three-cycle` gives the exact
+four-character countermodel: a three-cycle payload has zero compression to
+one character atom, but diagonal packet-central correctors preserve its
+three-cycle support and can never make the corrected payload involutive.  The
+unrestricted stabilizer corrector still exists there (and even normalizes the
+packet), so this closes only the packet-central wordization shortcut; the
+selected-stabilizer and typewise nontransport readout gates remain live.
+
 For affine Fourier payloads, the SELECT side can now be made substantially
 smaller and representation-rigid.  `extraspecial-common-gauge-fourier-controller`
 uses only the rank-`k` Pauli packet: Stone--von Neumann uniqueness and the

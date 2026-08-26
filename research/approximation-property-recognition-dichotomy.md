@@ -53,7 +53,11 @@ The complementary easy side is checked by
 transition: hyperlinearity admits Adian--Rabin Markov data precisely when a
 counterexample exists.  The still stronger audited endpoint
 `exists_not_isHyperlinear_iff_nonempty_adianRabinReduction` says the same for
-an explicit computable many-one reduction from the uniform word problem.
+an explicit computable many-one reduction from the uniform word problem.  The
+three parallel `exists_nonhyperlinear_code_iff_*` endpoints sharpen this to the
+actual finite-presentation coding: existence of a forbidden code is equivalent
+to undecidability, to non-r.e.-ness of the negative code set, and to inhabitation
+of the explicit reduction type.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

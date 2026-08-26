@@ -443,7 +443,7 @@ def innerRankOneEnd
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     (w z v : V) :
     innerRankOneEnd w z v = inner ℂ z v • w := by
-  rfl
+  simp [innerRankOneEnd]
 
 @[simp] theorem star_innerRankOneEnd
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
@@ -503,6 +503,7 @@ open GroupApproximation.BlackadarKirchberg
 
 #audit_axioms transportedInvolution_involutive
 #audit_axioms transportedInvolution_mul_self_eq_map_star_mul_self
+#audit_axioms transportedInvolution_mul_self_eq_zero_iff
 #audit_axioms transportedInvolutionAutomorphism
 #audit_axioms transportedInvolution_eq_automorphism_star
 #audit_axioms exists_conjugatingLinearEquiv_for_transportedInvolution

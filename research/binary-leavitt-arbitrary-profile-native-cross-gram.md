@@ -173,6 +173,24 @@ literature theorem is permitted in this claim.
   Hecke packet.  Thus the finite Pauli menu does not itself authenticate the
   quarter/eighth row; the next mixed occurrence must detect `H` or force one
   sheet onto the actual unequal source carrier.
+- **Descend from the composite row-two arm to its literal source factor.**
+  This finds the first exact sheet detector.
+  `row2-source-factor-detects-paid-pauli-sheet` uses the already
+  authenticated factorization `[S_57,T]=A_2` and proves
+
+  ```text
+  [S_57,H]=[[S_57,D],Y_2]
+          =x_53(s_1t_1+s_1s_0t_1) !=1.
+  ```
+
+  The two sheets therefore have distinct factor-level commutator
+  signatures, and the uniform nonzero-root theorem prevents this new face
+  from dying on the whole marked active model.  This resolves the search
+  for a native ordinary occurrence which merely detects `H`.  It does not
+  yet prove `(APG1)`: no current relation places the detector carrier on the
+  signed quarter/eighth source or controls the leakage of `S_57` from the
+  paid constant-atom cut.  The live target is that incidence/leakage
+  estimate, rather than a further root-position search.
 - **Project the paid carrier onto the fixed signed Hecke source.**  The exact
   Reynolds estimate
   `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` gives a sharp

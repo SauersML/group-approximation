@@ -176,6 +176,48 @@ theorem exists_not_isHyperlinear_iff_nonempty_adianRabinReduction :
   · rintro ⟨R⟩
     exact ⟨Carrier R.markov.negativeCode, inferInstance, R.markov.negative⟩
 
+/-- **Finite-presentation recognition equivalence.**  A forbidden finite
+presentation exists exactly when hyperlinearity recognition is undecidable.
+Unlike the group-level statement, this packages the negative witness in the
+same concrete code space on which recognition is formulated. -/
+theorem exists_nonhyperlinear_code_iff_codeProperty_not_computable :
+    (∃ c : PresentationCode, ¬ IsHyperlinear (Carrier c)) ↔
+      ¬ ComputablePred HyperlinearCodeProperty := by
+  constructor
+  · rintro ⟨c, hc⟩
+    exact hyperlinearCodeProperty_not_computable_of_exists
+      ⟨Carrier c, inferInstance, hc⟩
+  · intro h
+    exact exists_nonhyperlinear_code_of_exists
+      (exists_not_isHyperlinear_of_codeProperty_not_computable h)
+
+/-- A forbidden finite-presentation code exists exactly when the negative
+hyperlinearity code set fails to be recursively enumerable. -/
+theorem exists_nonhyperlinear_code_iff_nonhyperlinearCodeProperty_not_re :
+    (∃ c : PresentationCode, ¬ IsHyperlinear (Carrier c)) ↔
+      ¬ REPred (fun c ↦ ¬ HyperlinearCodeProperty c) := by
+  constructor
+  · rintro ⟨c, hc⟩
+    exact nonhyperlinearCodeProperty_not_re_of_exists
+      ⟨Carrier c, inferInstance, hc⟩
+  · intro h
+    exact exists_nonhyperlinear_code_of_exists
+      (exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re.mpr h)
+
+/-- The concrete forbidden-code formulation of the reduction dichotomy. -/
+theorem exists_nonhyperlinear_code_iff_nonempty_adianRabinReduction :
+    (∃ c : PresentationCode, ¬ IsHyperlinear (Carrier c)) ↔
+      Nonempty
+        (MarkovMFConsequences.AdianRabinReduction
+          AdianRabinWordProblem.wordProblemPred HyperlinearCodeProperty) := by
+  constructor
+  · rintro ⟨c, hc⟩
+    exact exists_not_isHyperlinear_iff_nonempty_adianRabinReduction.mp
+      ⟨Carrier c, inferInstance, hc⟩
+  · intro h
+    exact exists_nonhyperlinear_code_of_exists
+      (exists_not_isHyperlinear_iff_nonempty_adianRabinReduction.mpr h)
+
 end HyperlinearMarkov
 end GroupApproximation
 
@@ -189,3 +231,6 @@ open GroupApproximation.HyperlinearMarkov
 #audit_axioms no_counterexample_iff_nonhyperlinearCodeProperty_re
 #audit_axioms exists_not_isHyperlinear_iff_nonempty_markovData
 #audit_axioms exists_not_isHyperlinear_iff_nonempty_adianRabinReduction
+#audit_axioms exists_nonhyperlinear_code_iff_codeProperty_not_computable
+#audit_axioms exists_nonhyperlinear_code_iff_nonhyperlinearCodeProperty_not_re
+#audit_axioms exists_nonhyperlinear_code_iff_nonempty_adianRabinReduction

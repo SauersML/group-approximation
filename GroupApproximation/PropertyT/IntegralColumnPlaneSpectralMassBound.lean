@@ -1109,6 +1109,424 @@ theorem iUnion_wordPairRegionSet
     apply Set.mem_iUnion.mpr
     exact ⟨wordPairRegion rho n chi, rfl⟩
 
+/-! ### Exact placement under the unit shears -/
+
+/-- The dual action of the upper shear with coefficient `1`. -/
+noncomputable def upperUnitCharacterAction
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (chi : Spectrum rho) : Spectrum rho :=
+  CommutativeCStarCovariance.characterAction (P rho).algebra
+    ((P rho).rho (upperShear 1))
+    (upperShear_forward rho 1) (upperShear_backward rho 1) chi
+
+/-- The dual action of the lower shear with coefficient `1`. -/
+noncomputable def lowerUnitCharacterAction
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (chi : Spectrum rho) : Spectrum rho :=
+  CommutativeCStarCovariance.characterAction (P rho).algebra
+    ((P rho).rho (lowerShear 1))
+    (lowerShear_forward rho 1) (lowerShear_backward rho 1) chi
+
+theorem rootWordVisibleSet_upperUnit_zero_iff
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho) :
+    upperUnitCharacterAction rho chi ∈ rootWordVisibleSet rho 0 n ↔
+      chi ∈ rootWordVisibleSet rho 0 n := by
+  rw [mem_rootWordVisibleSet_iff, mem_rootWordVisibleSet_iff]
+  constructor
+  · rintro ⟨w, hw, hnonzero⟩
+    refine ⟨w, hw, ?_⟩
+    rwa [upperUnitCharacterAction,
+      coordinateAngle_characterAction_upper_zero] at hnonzero
+  · rintro ⟨w, hw, hnonzero⟩
+    refine ⟨w, hw, ?_⟩
+    rwa [upperUnitCharacterAction,
+      coordinateAngle_characterAction_upper_zero]
+
+theorem rootWordVisibleSet_lowerUnit_one_iff
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho) :
+    lowerUnitCharacterAction rho chi ∈ rootWordVisibleSet rho 1 n ↔
+      chi ∈ rootWordVisibleSet rho 1 n := by
+  rw [mem_rootWordVisibleSet_iff, mem_rootWordVisibleSet_iff]
+  constructor
+  · rintro ⟨w, hw, hnonzero⟩
+    refine ⟨w, hw, ?_⟩
+    rwa [lowerUnitCharacterAction,
+      coordinateAngle_characterAction_lower_one] at hnonzero
+  · rintro ⟨w, hw, hnonzero⟩
+    refine ⟨w, hw, ?_⟩
+    rwa [lowerUnitCharacterAction,
+      coordinateAngle_characterAction_lower_one]
+
+theorem rootWordVisibleSet_of_upperUnit_one_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hchi : upperUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 1 n) :
+    chi ∈ rootWordVisibleSet rho 0 n ∨
+      chi ∈ rootWordVisibleSet rho 1 n := by
+  obtain ⟨w, hw, hnonzero⟩ :=
+    (mem_rootWordVisibleSet_iff rho 1 n _).mp hchi
+  rw [upperUnitCharacterAction,
+    coordinateAngle_characterAction_upper_one, one_mul] at hnonzero
+  by_cases hzero : coordinateAngle rho
+      (0, FreeAlgebraDegree.wordMonomial X ℤ w) chi = 0
+  · right
+    apply (mem_rootWordVisibleSet_iff rho 1 n chi).mpr
+    refine ⟨w, hw, ?_⟩
+    intro hone
+    exact hnonzero (by rw [hzero, hone, zero_add])
+  · left
+    exact (mem_rootWordVisibleSet_iff rho 0 n chi).mpr ⟨w, hw, hzero⟩
+
+theorem upperUnit_one_mem_of_one_mem_of_zero_not_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hone : chi ∈ rootWordVisibleSet rho 1 n)
+    (hzero : chi ∉ rootWordVisibleSet rho 0 n) :
+    upperUnitCharacterAction rho chi ∈ rootWordVisibleSet rho 1 n := by
+  obtain ⟨w, hw, hnonzero⟩ :=
+    (mem_rootWordVisibleSet_iff rho 1 n chi).mp hone
+  apply (mem_rootWordVisibleSet_iff rho 1 n _).mpr
+  refine ⟨w, hw, ?_⟩
+  have hzeroAngle : coordinateAngle rho
+      (0, FreeAlgebraDegree.wordMonomial X ℤ w) chi = 0 := by
+    by_contra hne
+    exact hzero ((mem_rootWordVisibleSet_iff rho 0 n chi).mpr
+      ⟨w, hw, hne⟩)
+  rw [upperUnitCharacterAction,
+    coordinateAngle_characterAction_upper_one, one_mul, hzeroAngle, zero_add]
+  exact hnonzero
+
+theorem rootWordVisibleSet_of_lowerUnit_zero_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hchi : lowerUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 0 n) :
+    chi ∈ rootWordVisibleSet rho 1 n ∨
+      chi ∈ rootWordVisibleSet rho 0 n := by
+  obtain ⟨w, hw, hnonzero⟩ :=
+    (mem_rootWordVisibleSet_iff rho 0 n _).mp hchi
+  rw [lowerUnitCharacterAction,
+    coordinateAngle_characterAction_lower_zero, one_mul] at hnonzero
+  by_cases hone : coordinateAngle rho
+      (1, FreeAlgebraDegree.wordMonomial X ℤ w) chi = 0
+  · right
+    apply (mem_rootWordVisibleSet_iff rho 0 n chi).mpr
+    refine ⟨w, hw, ?_⟩
+    intro hzero
+    exact hnonzero (by rw [hone, hzero, zero_add])
+  · left
+    exact (mem_rootWordVisibleSet_iff rho 1 n chi).mpr ⟨w, hw, hone⟩
+
+theorem lowerUnit_zero_mem_of_zero_mem_of_one_not_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hzero : chi ∈ rootWordVisibleSet rho 0 n)
+    (hone : chi ∉ rootWordVisibleSet rho 1 n) :
+    lowerUnitCharacterAction rho chi ∈ rootWordVisibleSet rho 0 n := by
+  obtain ⟨w, hw, hnonzero⟩ :=
+    (mem_rootWordVisibleSet_iff rho 0 n chi).mp hzero
+  apply (mem_rootWordVisibleSet_iff rho 0 n _).mpr
+  refine ⟨w, hw, ?_⟩
+  have honeAngle : coordinateAngle rho
+      (1, FreeAlgebraDegree.wordMonomial X ℤ w) chi = 0 := by
+    by_contra hne
+    exact hone ((mem_rootWordVisibleSet_iff rho 1 n chi).mpr
+      ⟨w, hw, hne⟩)
+  rw [lowerUnitCharacterAction,
+    coordinateAngle_characterAction_lower_zero, one_mul, honeAngle, zero_add]
+  exact hnonzero
+
+theorem leastRootWordDegreeWithin_eq_of_visible_iff
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi psi : Spectrum rho)
+    (hvisible : ∀ d, psi ∈ rootWordVisibleSet rho b d ↔
+      chi ∈ rootWordVisibleSet rho b d) :
+    leastRootWordDegreeWithin rho b n psi =
+      leastRootWordDegreeWithin rho b n chi := by
+  by_cases hchi : chi ∈ rootWordVisibleSet rho b n
+  · have hpsi : psi ∈ rootWordVisibleSet rho b n :=
+      (hvisible n).mpr hchi
+    have hchiAt := leastRootWordDegreeWithin_mem rho b n chi hchi
+    have hpsiAt := leastRootWordDegreeWithin_mem rho b n psi hpsi
+    have hpsiLe : leastRootWordDegreeWithin rho b n psi ≤
+        leastRootWordDegreeWithin rho b n chi := by
+      by_contra hlt
+      exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho b n psi
+        (by omega)) ((hvisible _).mpr hchiAt)
+    have hchiLe : leastRootWordDegreeWithin rho b n chi ≤
+        leastRootWordDegreeWithin rho b n psi := by
+      by_contra hlt
+      exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho b n chi
+        (by omega)) ((hvisible _).mp hpsiAt)
+    exact Nat.le_antisymm hpsiLe hchiLe
+  · have hpsi : psi ∉ rootWordVisibleSet rho b n :=
+      fun h ↦ hchi ((hvisible n).mp h)
+    rw [leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n psi hpsi,
+      leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n chi hchi]
+
+theorem leastRootWordDegreeWithin_upperUnit_zero
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho) :
+    leastRootWordDegreeWithin rho 0 n (upperUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 0 n chi := by
+  apply leastRootWordDegreeWithin_eq_of_visible_iff rho 0 n
+  exact fun d ↦ rootWordVisibleSet_upperUnit_zero_iff rho d chi
+
+theorem leastRootWordDegreeWithin_lowerUnit_one
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho) :
+    leastRootWordDegreeWithin rho 1 n (lowerUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 1 n chi := by
+  apply leastRootWordDegreeWithin_eq_of_visible_iff rho 1 n
+  exact fun d ↦ rootWordVisibleSet_lowerUnit_one_iff rho d chi
+
+/-- Under the upper unit shear, a strictly earlier second-root term cannot
+cancel against the first-root term. -/
+theorem leastRootWordDegreeWithin_upperUnit_one_of_lt
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hlt : leastRootWordDegreeWithin rho 1 n chi <
+      leastRootWordDegreeWithin rho 0 n chi) :
+    leastRootWordDegreeWithin rho 1 n (upperUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 1 n chi := by
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  change b < a at hlt
+  have hale : a ≤ n + 1 := leastRootWordDegreeWithin_le_succ rho 0 n chi
+  have hble : b ≤ n := by omega
+  have hbVisibleN : chi ∈ rootWordVisibleSet rho 1 n := by
+    by_contra hnot
+    have hsentinel :=
+      leastRootWordDegreeWithin_eq_succ_of_not_mem rho 1 n chi hnot
+    change b = n + 1 at hsentinel
+    omega
+  have hbAt : chi ∈ rootWordVisibleSet rho 1 b := by
+    exact leastRootWordDegreeWithin_mem rho 1 n chi hbVisibleN
+  have haNotAt : chi ∉ rootWordVisibleSet rho 0 b :=
+    not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n chi hlt
+  have hactionAt : upperUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 1 b :=
+    upperUnit_one_mem_of_one_mem_of_zero_not_mem rho b chi hbAt haNotAt
+  have hactionN : upperUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 1 n :=
+    rootWordVisibleSet_mono rho 1 hble hactionAt
+  let c := leastRootWordDegreeWithin rho 1 n
+    (upperUnitCharacterAction rho chi)
+  have hcle : c ≤ b := by
+    by_contra hnot
+    exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n
+      (upperUnitCharacterAction rho chi) (by omega)) hactionAt
+  have hcAt : upperUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 1 c := by
+    exact leastRootWordDegreeWithin_mem rho 1 n _ hactionN
+  have hblec : b ≤ c := by
+    by_contra hnot
+    rcases rootWordVisibleSet_of_upperUnit_one_mem rho c chi hcAt with
+      hzero | hone
+    · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n chi
+        (by omega)) hzero
+    · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n chi
+        (by omega)) hone
+  exact Nat.le_antisymm hcle hblec
+
+/-- The symmetric noncancellation statement for the lower unit shear. -/
+theorem leastRootWordDegreeWithin_lowerUnit_zero_of_lt
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hlt : leastRootWordDegreeWithin rho 0 n chi <
+      leastRootWordDegreeWithin rho 1 n chi) :
+    leastRootWordDegreeWithin rho 0 n (lowerUnitCharacterAction rho chi) =
+      leastRootWordDegreeWithin rho 0 n chi := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change a < b at hlt
+  have hble : b ≤ n + 1 := leastRootWordDegreeWithin_le_succ rho 1 n chi
+  have hale : a ≤ n := by omega
+  have haVisibleN : chi ∈ rootWordVisibleSet rho 0 n := by
+    by_contra hnot
+    have hsentinel :=
+      leastRootWordDegreeWithin_eq_succ_of_not_mem rho 0 n chi hnot
+    change a = n + 1 at hsentinel
+    omega
+  have haAt : chi ∈ rootWordVisibleSet rho 0 a := by
+    exact leastRootWordDegreeWithin_mem rho 0 n chi haVisibleN
+  have hbNotAt : chi ∉ rootWordVisibleSet rho 1 a :=
+    not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n chi hlt
+  have hactionAt : lowerUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 0 a :=
+    lowerUnit_zero_mem_of_zero_mem_of_one_not_mem rho a chi haAt hbNotAt
+  have hactionN : lowerUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 0 n :=
+    rootWordVisibleSet_mono rho 0 hale hactionAt
+  let c := leastRootWordDegreeWithin rho 0 n
+    (lowerUnitCharacterAction rho chi)
+  have hcle : c ≤ a := by
+    by_contra hnot
+    exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n
+      (lowerUnitCharacterAction rho chi) (by omega)) hactionAt
+  have hcAt : lowerUnitCharacterAction rho chi ∈
+      rootWordVisibleSet rho 0 c := by
+    exact leastRootWordDegreeWithin_mem rho 0 n _ hactionN
+  have halec : a ≤ c := by
+    by_contra hnot
+    rcases rootWordVisibleSet_of_lowerUnit_zero_mem rho c chi hcAt with
+      hone | hzero
+    · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n chi
+        (by omega)) hone
+    · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n chi
+        (by omega)) hzero
+  exact Nat.le_antisymm hcle halec
+
+theorem wordPairRegionOfDegrees_A_data
+    (n a b : ℕ) (hregion : wordPairRegionOfDegrees n a b = .A) :
+    a ≠ 0 ∧ b ≠ 0 ∧ b < a := by
+  by_cases hboth : a = n + 1 ∧ b = n + 1
+  · rw [wordPairRegionOfDegrees, if_pos hboth] at hregion
+    cases hregion
+  · by_cases hzero : a = 0 ∨ b = 0
+    · rw [wordPairRegionOfDegrees, if_neg hboth, if_pos hzero] at hregion
+      cases hregion
+    · by_cases hlt : b < a
+      · exact ⟨(not_or.mp hzero).1, (not_or.mp hzero).2, hlt⟩
+      · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+          if_neg hlt] at hregion
+        split at hregion <;> cases hregion
+
+theorem wordPairRegionOfDegrees_C_data
+    (n a b : ℕ) (hregion : wordPairRegionOfDegrees n a b = .C) :
+    a ≠ 0 ∧ b ≠ 0 ∧ a < b := by
+  by_cases hboth : a = n + 1 ∧ b = n + 1
+  · rw [wordPairRegionOfDegrees, if_pos hboth] at hregion
+    cases hregion
+  · by_cases hzero : a = 0 ∨ b = 0
+    · rw [wordPairRegionOfDegrees, if_neg hboth, if_pos hzero] at hregion
+      cases hregion
+    · by_cases hba : b < a
+      · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+          if_pos hba] at hregion
+        cases hregion
+      · by_cases heq : a = b
+        · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+            if_neg hba, if_pos heq] at hregion
+          cases hregion
+        · exact ⟨(not_or.mp hzero).1, (not_or.mp hzero).2, by omega⟩
+
+theorem wordPairRegionOfDegrees_D_data
+    (n a b : ℕ) (hregion : wordPairRegionOfDegrees n a b = .D) :
+    a = 0 ∨ b = 0 := by
+  by_cases hboth : a = n + 1 ∧ b = n + 1
+  · rw [wordPairRegionOfDegrees, if_pos hboth] at hregion
+    cases hregion
+  · by_cases hzero : a = 0 ∨ b = 0
+    · exact hzero
+    · by_cases hba : b < a
+      · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+          if_pos hba] at hregion
+        cases hregion
+      · by_cases heq : a = b
+        · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+            if_neg hba, if_pos heq] at hregion
+          cases hregion
+        · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+            if_neg hba, if_neg heq] at hregion
+          cases hregion
+
+theorem wordPairRegionOfDegrees_eq_D_of_left_zero
+    (n a b : ℕ) (ha : a = 0) :
+    wordPairRegionOfDegrees n a b = .D := by
+  subst a
+  simp [wordPairRegionOfDegrees]
+
+theorem wordPairRegionOfDegrees_eq_D_of_right_zero
+    (n a b : ℕ) (hb : b = 0) :
+    wordPairRegionOfDegrees n a b = .D := by
+  subst b
+  simp [wordPairRegionOfDegrees]
+
+/-- Region `A` is preserved by the upper unit shear: its second-root leading
+term occurs strictly before any first-root term, so cancellation is
+impossible. -/
+theorem wordPairRegion_upperUnit_eq_A_of_eq_A
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .A) :
+    wordPairRegion rho n (upperUnitCharacterAction rho chi) = .A := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .A at hregion
+  have hlt : b < a := (wordPairRegionOfDegrees_A_data n a b hregion).2.2
+  change wordPairRegionOfDegrees n
+    (leastRootWordDegreeWithin rho 0 n (upperUnitCharacterAction rho chi))
+    (leastRootWordDegreeWithin rho 1 n (upperUnitCharacterAction rho chi)) = .A
+  rw [leastRootWordDegreeWithin_upperUnit_zero,
+    leastRootWordDegreeWithin_upperUnit_one_of_lt rho n chi hlt]
+  exact hregion
+
+/-- Region `C` is preserved by the lower unit shear, by the symmetric
+strict-degree argument. -/
+theorem wordPairRegion_lowerUnit_eq_C_of_eq_C
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .C) :
+    wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .C := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .C at hregion
+  have hlt : a < b := (wordPairRegionOfDegrees_C_data n a b hregion).2.2
+  change wordPairRegionOfDegrees n
+    (leastRootWordDegreeWithin rho 0 n (lowerUnitCharacterAction rho chi))
+    (leastRootWordDegreeWithin rho 1 n (lowerUnitCharacterAction rho chi)) = .C
+  rw [leastRootWordDegreeWithin_lowerUnit_zero_of_lt rho n chi hlt,
+    leastRootWordDegreeWithin_lowerUnit_one]
+  exact hregion
+
+/-- The degree-zero region is preserved by the upper unit shear. -/
+theorem wordPairRegion_upperUnit_eq_D_of_eq_D
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .D) :
+    wordPairRegion rho n (upperUnitCharacterAction rho chi) = .D := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .D at hregion
+  rcases wordPairRegionOfDegrees_D_data n a b hregion with ha | hb
+  · apply wordPairRegionOfDegrees_eq_D_of_left_zero
+    rw [leastRootWordDegreeWithin_upperUnit_zero]
+    exact ha
+  · by_cases ha : a = 0
+    · apply wordPairRegionOfDegrees_eq_D_of_left_zero
+      rw [leastRootWordDegreeWithin_upperUnit_zero]
+      exact ha
+    · have hlt : b < a := by omega
+      apply wordPairRegionOfDegrees_eq_D_of_right_zero
+      rw [leastRootWordDegreeWithin_upperUnit_one_of_lt rho n chi hlt]
+      exact hb
+
+/-- The degree-zero region is also preserved by the lower unit shear. -/
+theorem wordPairRegion_lowerUnit_eq_D_of_eq_D
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .D) :
+    wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .D := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .D at hregion
+  rcases wordPairRegionOfDegrees_D_data n a b hregion with ha | hb
+  · by_cases hb : b = 0
+    · apply wordPairRegionOfDegrees_eq_D_of_right_zero
+      rw [leastRootWordDegreeWithin_lowerUnit_one]
+      exact hb
+    · have hlt : a < b := by omega
+      apply wordPairRegionOfDegrees_eq_D_of_left_zero
+      rw [leastRootWordDegreeWithin_lowerUnit_zero_of_lt rho n chi hlt]
+      exact ha
+  · apply wordPairRegionOfDegrees_eq_D_of_right_zero
+    rw [leastRootWordDegreeWithin_lowerUnit_one]
+    exact hb
+
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
@@ -1434,4 +1852,8 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms measurableSet_wordPairRegionSet
 #audit_axioms disjoint_wordPairRegionSet
 #audit_axioms iUnion_wordPairRegionSet
+#audit_axioms wordPairRegion_upperUnit_eq_A_of_eq_A
+#audit_axioms wordPairRegion_lowerUnit_eq_C_of_eq_C
+#audit_axioms wordPairRegion_upperUnit_eq_D_of_eq_D
+#audit_axioms wordPairRegion_lowerUnit_eq_D_of_eq_D
 #audit_axioms measurableSet_fullPlaneNontrivialSet

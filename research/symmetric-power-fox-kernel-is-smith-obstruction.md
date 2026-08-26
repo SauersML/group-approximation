@@ -43,5 +43,12 @@ uniform left inverse over `R`.  Merely finding one nonzero rational minor is
 insufficient: degree four already has a natural generic minor with four odd
 prime divisors, all removed only by complementary minors.
 
+The simplest possible degree recurrence is unavailable.  Multiplication by
+no nonzero linear form intertwines `T_n` with `T_(n+1)`; the exact commutator
+is `(SPR5)` below.  Hence the certificates through degree four cannot be
+propagated merely by multiplying a left inverse or a kernel vector by one
+coordinate.  A successful induction must mix degree blocks or control the
+Smith torsion directly.
+
 DERIVATION
 symmetric-power-fox-smith-reduction-proof

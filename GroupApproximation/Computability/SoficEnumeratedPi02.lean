@@ -928,7 +928,8 @@ theorem len_eq_of_permCongr (M : NatMicrostate) {Y : FiniteModel}
     rw [hfun]
     exact (map_evalRaw (permCongrHom e) M.gen w).symm
   rw [hcong, show (1 : Equiv.Perm Y) = permCongrHom e 1 from
-    (map_one (permCongrHom e)).symm, hammingDistance_permCongrHom]
+    (map_one (permCongrHom e)).symm]
+  exact hammingDistance_permCongrHom M.carrier Y e (evalRaw M.gen w) 1
 
 /-- The certificate's microstate, with its carrier and generators named. -/
 theorem len_certMicrostate' (cert : PermCert) (w : List (ℕ × Bool)) :

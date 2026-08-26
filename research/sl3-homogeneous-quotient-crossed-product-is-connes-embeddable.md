@@ -89,6 +89,12 @@ union of level-`(m + O(1))` cells.
   embeddable II_infinity factor `N (x) B(l^2)` be approximately implementable
   on microstates; no general theorem applies, and the action is not
   approximately inner (it permutes the `K`-coset corners freely).
+  `homogeneous-quotient-has-a-quantized-hecke-dent` also shows that the
+  stabilization is quantitatively neutral: every normalized finite-rank
+  standard corner retains the orbit symmetry's Hecke dent, at least
+  `2/(rD)`.  Hence matrix amplification cannot turn this into a collapsed
+  profinite model; one must spatialize the genuinely noncompact lattice
+  return action.
 - **Exact-face stability.**  If `SL_3(Z)` were flexibly HS-stable, any
   microstate sequence of `M` would restrict on `SL_3(Z)` to near-genuine
   congruence representations, and `u_h` would reduce to the one-unitary

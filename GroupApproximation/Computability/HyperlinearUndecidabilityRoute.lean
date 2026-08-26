@@ -36,7 +36,7 @@ theorem computablePred_of_forall {α : Type} [Primcodable α] {p : α → Prop}
   exact (Computable.const true).of_eq (fun a => by simp [h a])
 
 /-- The hyperlinearity predicate on finite presentation codes. -/
-def hyperlinearCode : PresentationProperty PresentationCode :=
+def hyperlinearCode : PresentationCode → Prop :=
   codeProperty (fun (K : Type) (_ : Group K) ↦ IsHyperlinear K)
 
 /-- **If hyperlinearity of finitely presented groups is not computable, some

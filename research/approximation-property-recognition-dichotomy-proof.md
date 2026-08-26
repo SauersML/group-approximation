@@ -38,7 +38,12 @@ The hyperlinear finite-presentation core of this paragraph is now formal:
 universe-polymorphic finitely generated extraction), and
 `Computability/HyperlinearMarkov` proves `(i) <=> (iii)` by constructing the
 general Adian--Rabin reduction from the forbidden table code.  Its converse
-installs the constant-true decision procedure under `not (i)`.
+installs the constant-true decision procedure under `not (i)`.  The audited
+`exists_nonhyperlinear_code_iff_codeProperty_not_computable`,
+`exists_nonhyperlinear_code_iff_nonhyperlinearCodeProperty_not_re`, and
+`exists_nonhyperlinear_code_iff_nonempty_adianRabinReduction` endpoints state
+the same phase transition entirely inside the concrete finite-presentation
+code space.
 
 **Other properties.**  Weakly sofic and linear sofic groups are defined by
 table models in finite groups with bi-invariant metrics, respectively in

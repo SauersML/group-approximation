@@ -111,5 +111,19 @@ must contain an ordinary occurrence which detects `H` or places one sheet
 on the authenticated unequal source carrier.  No Property T, canonical
 trace, literature input, local computation, or Lean compilation is used.
 
+**FACTOR-CLOSURE UPDATE.**  The first alternative in the preceding sentence
+is now realized by `row2-source-factor-detects-paid-pauli-sheet`.  The
+literal factor `S_57=x_57(s_1)` of the already authenticated relation
+`[S_57,T]=A_2` satisfies
+
+```text
+[S_57,H]=x_53(s_1t_1+s_1s_0t_1) !=1.
+```
+
+Thus the blindness proved here belongs exactly to the displayed composite
+menu; it does not survive descent to all authenticated factors.  What
+remains open is no longer detection of `H`, but localization of this new
+nonzero root face on the actual signed quarter/eighth source.
+
 DERIVATION
 paid-pauli-menu-row2-sheet-fence-proof

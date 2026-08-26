@@ -1806,6 +1806,7 @@ import GroupApproximation.Computability.HyperlinearMarkov
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
 import GroupApproximation.Computability.SoficMicrostateNormalForm
 import GroupApproximation.Computability.SoficRecognitionPi02
+import GroupApproximation.Computability.SoficEnumeratedPi02
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
