@@ -17,7 +17,7 @@ namespace GroupApproximation
 namespace Higman
 namespace MikhailovaRopeCodeSemantics
 
-open PresentationCodes FreeEdgeTowerCode
+open PresentationCodes FreeEdgeTowerCode DirectProductCode CoprodCode
 open MikhailovaRopeCode
 open FreeEdgeTowerSemantics
 
@@ -155,6 +155,116 @@ noncomputable def outerBaseCodeEquivToRopeAmb
     (prodMulEquiv
       (firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting)
       sourceEquiv)
+
+theorem firstStageCodeEquivToGamma_oldWord
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (raw : MikhailovaRopeCode.Raw) :
+    firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting
+        (PresentedGroup.mk (codeRels (edgeCode ambient (centralEdges cuttingWords)))
+          (wordOf (edgeCode ambient (centralEdges cuttingWords)) (leftWord ambient raw))) =
+      HNNExtension.of
+        (ambientEquiv (PresentedGroup.mk (codeRels ambient) (wordOf ambient raw))) := by
+  change HNNCongr.congrEquiv
+      (centralSubgroupEquiv ambient cuttingWords) (MulEquiv.refl w.L)
+      ambientEquiv hcutting
+      (centralSubgroupEquiv_intertwines w ambient cuttingWords
+        ambientEquiv hcutting)
+      (firstStageCodeEquiv ambient cuttingWords
+        (PresentedGroup.mk (codeRels (edgeCode ambient (centralEdges cuttingWords)))
+          (wordOf (edgeCode ambient (centralEdges cuttingWords)) (leftWord ambient raw)))) = _
+  rw [show leftWord ambient raw = normWord ambient raw by rfl]
+  change HNNCongr.congrEquiv
+      (centralSubgroupEquiv ambient cuttingWords) (MulEquiv.refl w.L)
+      ambientEquiv hcutting
+      (centralSubgroupEquiv_intertwines w ambient cuttingWords
+        ambientEquiv hcutting)
+      (edgeCodeEquivOfSubgroupEquiv ambient (centralEdges cuttingWords)
+        (centralSubgroupEquiv ambient cuttingWords)
+        (centralSubgroupEquiv_gen ambient cuttingWords)
+        (PresentedGroup.mk (codeRels (edgeCode ambient (centralEdges cuttingWords)))
+          (wordOf (edgeCode ambient (centralEdges cuttingWords)) (normWord ambient raw)))) = _
+  rw [edgeCodeEquivOfSubgroupEquiv_oldWord]
+  change HNNCongr.congrHom
+      (centralSubgroupEquiv ambient cuttingWords) (MulEquiv.refl w.L)
+      ambientEquiv hcutting
+      (centralSubgroupEquiv_intertwines w ambient cuttingWords
+        ambientEquiv hcutting)
+      (HNNExtension.of
+        (PresentedGroup.mk (codeRels ambient) (wordOf ambient raw))) = _
+  rw [HNNCongr.congrHom_of]
+
+theorem outerBaseCodeEquivToRopeAmb_leftWord
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient source : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (raw : MikhailovaRopeCode.Raw) :
+    outerBaseCodeEquivToRopeAmb w ambient source cuttingWords
+        ambientEquiv sourceEquiv hcutting
+        (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
+            (productCode (firstStageCode ambient cuttingWords) source))
+          (wordOf (productCode (firstStageCode ambient cuttingWords) source)
+            (leftWord (firstStageCode ambient cuttingWords) raw))) =
+      (firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting
+          (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
+              (firstStageCode ambient cuttingWords))
+            (wordOf (firstStageCode ambient cuttingWords) raw)), 1) := by
+  change prodMulEquiv
+      (firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting)
+      sourceEquiv
+      (DirectProductCodeSemantics.productCodeEquiv
+        (firstStageCode ambient cuttingWords) source
+          (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
+              (productCode (firstStageCode ambient cuttingWords) source))
+            (wordOf (productCode (firstStageCode ambient cuttingWords) source)
+            (leftWord (firstStageCode ambient cuttingWords) raw)))) = _
+  rw [DirectProductCodeSemantics.productCodeEquiv_leftWord]
+  change (_, sourceEquiv 1) = _
+  simp
+
+theorem outerBaseCodeEquivToRopeAmb_rightWord
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient source : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (raw : MikhailovaRopeCode.Raw) :
+    outerBaseCodeEquivToRopeAmb w ambient source cuttingWords
+        ambientEquiv sourceEquiv hcutting
+        (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
+            (productCode (firstStageCode ambient cuttingWords) source))
+          (wordOf (productCode (firstStageCode ambient cuttingWords) source)
+            (rightWord (firstStageCode ambient cuttingWords) source raw))) =
+      (1, sourceEquiv (PresentedGroup.mk
+        (DirectProductCodeSemantics.codeRels source) (wordOf source raw))) := by
+  change prodMulEquiv
+      (firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting)
+      sourceEquiv
+      (DirectProductCodeSemantics.productCodeEquiv
+        (firstStageCode ambient cuttingWords) source
+          (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
+              (productCode (firstStageCode ambient cuttingWords) source))
+            (wordOf (productCode (firstStageCode ambient cuttingWords) source)
+            (rightWord (firstStageCode ambient cuttingWords) source raw)))) = _
+  rw [DirectProductCodeSemantics.productCodeEquiv_rightWord]
+  change (_, sourceEquiv _) = _
+  simp
 
 /-- The strongest unconditional semantic reading of the complete compiler.
 The sole remaining input is the actual equivalence between the two generated
