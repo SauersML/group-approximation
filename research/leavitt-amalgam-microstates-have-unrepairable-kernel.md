@@ -3,6 +3,7 @@ rg: 2
 id: leavitt-amalgam-microstates-have-unrepairable-kernel
 kind: claim
 title: Canonical amenable-amalgam microstates cannot be perturbatively repaired into models of the literal Leavitt join
+invalidates: [leavitt-hyperlinear-via-amenable-amalgam-hs-repair]
 distinct_from:
   leavitt-one-compressor-join-is-proper-amalgam-quotient: that proves only that the quotient kernel is nonzero; this gives the normalized-HS distance obstruction to repairing canonical amalgam models.
   reduced-amalgam-canonical-trace-is-mf: that asks for operator-norm MF trace selection on a different Kazhdan double; this uses only ordinary sofic/hyperlinear canonical microstates of an amenable-factor amalgam and proves a negative perturbation statement.
