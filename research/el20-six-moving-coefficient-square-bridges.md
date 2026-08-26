@@ -253,3 +253,31 @@ help, because the signed normalizer is a group.  The first surviving
 coefficient-sensitive word must contain at least two nonconstant root
 occurrences which both leave the normalizer and only jointly return; one
 asymmetric insertion plus a different constant return is impossible.
+
+The complete two-letter depth-one version of that next search is now closed
+as well.  `two-depth-one-leavitt-roots-return-only-constantly` tests all
+`42` root positions and all eight nonconstant depth-one matrix units for
+both factors.  Among the `92416` ordered pairs whose factors individually
+leave the signed normalizer, every returning product is a same-root identity
+or the constant fold `s_0t_0+s_1t_1=1`; there is no genuinely paired return.
+This is broader than the named depth-one actor menu.  A live two-exit word
+must therefore use depth-two address data, at least three prefix leaves, or
+more than two nonconstant root occurrences.
+
+The first such jointly returning coefficient packet is now explicit but
+still gauged.  `asymmetric-depth-two-fold-return-retains-external-gauge`
+uses the complete prefix code `{00,01,1}` and three private commutators to
+produce
+
+```text
+x_78(e_00)x_78(e_01)x_78(e_1)=x_78(1).
+```
+
+It is a literal asymmetric depth-two same-carrier return, but equality with
+the old external root means that its reservoir factor is still `E`.
+Conjugating the entire expanded word by the Whitehead or Singer head gives
+only `E'=DED^(-1)`.  The private arms do not separately reduce the Hecke
+cut, so Hall--Witt reassociation or occurrence counting cannot cancel their
+intermediate gauges.  The next live word must mix nonconstant root channels
+before the final return, rather than fold private prefix leaves additively
+inside one root subgroup.
