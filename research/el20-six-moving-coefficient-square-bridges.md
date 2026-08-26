@@ -99,6 +99,15 @@ the coboundary drift of
   reservoir factor forces it to be trivial.  This covers any finite number
   of mixed normalizer letters, not merely one Whitehead plus label-only
   dressing.
+- The first genuinely nonnormal full-Leavitt candidate is also now exact
+  and fenced.  Rootwise compression sends
+  `W_87(s_0,t_0)` to `J_1` and the depth-one analogue to `J_2`, so the
+  Hilbert-hotel conjugate has the correct full Gram.  By
+  `compression-preimage-whitehead-preserves-gauge`, however, the two
+  compression letters only change the source and range charts: the
+  preimage gauge is conjugated to the literal Whitehead gauge.  Exact
+  finite amplifications retain any nontrivial involution on both sides.
+  Iterating the preimage only pushes that gauge to greater prefix depth.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
