@@ -55,7 +55,7 @@ Consequently the following are equivalent.
    the three-label relative unitary satisfies every packet word exactly in
    the tracial GNS representation.
 
-If these conditions hold for one `z!=1`, then the binary Leavitt
+If these conditions hold for one non-torsion `z`, then the binary Leavitt
 unit group is hyperlinear, hence is an explicit hyperlinear nonsofic group.
 Indeed the rational pairs `(OWA2)` are already the required matrix
 microstates in the canonical regular-A8 criterion.
@@ -72,16 +72,18 @@ so the commutator has full support and a singular-value floor tending to
 commutator norm, nor concentration on an `o(q_n)` corner excludes it.  The
 literal Laurent equations `(OWA4)` are the first unresolved test.
 
-The common-root search must include roots of unity different from one.  Even
-when the limit `z` has finite order, `(OWA1)` uses primitive phases whose
-orders `q_n` tend to infinity.  For the one fixed `q`-dimensional irreducible
-at phase `z`, additional monomials with exponent sums divisible by `q` can
-have nonzero trace, so that finite model is not evaluated by `(OWA4)`.
-Equivalently, the canonical trace of the rational rotation algebra integrates
-over its center and is not one fixed irreducible trace.  Finite-dimensional
-invisibility therefore does not exclude a torsion limit phase.  The
-common-root set is not the whole circle only because `z=1` is excluded by the
-commutative wall.
+No root of unity can satisfy all equations `(OWA4)`, but the reason passes
+through the **rational rotation algebra**, not one fixed Weyl trace.  If `z`
+has finite order, its rotation algebra is a subhomogeneous continuous
+`M_q`-bundle and its canonical trace is faithful.  Conditions `(OWA4)` make
+every packet unitary have trace one, hence equal the identity in the faithful
+tracial GNS representation and therefore in the algebra itself.  Evaluation
+in any finite-dimensional fiber then gives a nontrivial exact frozen-A8
+atlas, contradicting finite-dimensional invisibility.  One cannot replace
+this argument by directly evaluating `(OWA4)` in a fixed irreducible Weyl
+pair: additional monomials with exponent sums divisible by `q` survive in
+that fiber, since the canonical rational-rotation trace integrates over the
+center.  In particular `z=1` is also excluded.
 
 The claim does not assert that a common root exists.  It turns this structured
 positive-density construction into a finite symbolic decision problem and

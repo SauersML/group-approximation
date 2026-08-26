@@ -66,3 +66,20 @@ the first possible nonsplit class must use `Gamma` and at least two compressor
 directions simultaneously.  A full proof must extend these already split
 one-compressor lifts across a genuinely joint mixed
 stabilizer/compression relation.
+
+The overlap itself is no longer part of the uncertainty.
+`kt-one-compressor-and-sl3-normalizer-lifts-paste` uses amenable-edge
+amalgamated-free-product permanence to put the lift of `<Gamma,A>` and the
+lift of the whole external `SL_3(Z)` in one matrix ultraproduct with the two
+copies of `A` literally equal (and likewise for `B`).  The quotient from
+that CE amalgam to `G` first kills the finite family
+
+```text
+C gamma C^(-1) alpha_C(gamma)^(-1),   gamma in T,
+```
+
+for a finite generating set `T` of `Gamma`.  By
+`kt-c-normalization-is-the-first-finite-normalizer-seam`, these words have
+squared HS distance exactly two from the identity in the canonical AFP
+paste.  Thus the remaining task is a genuinely macroscopic mixed-kernel
+closing problem, not alignment of independently chosen subgroup lifts.

@@ -25,11 +25,19 @@ equivalent to `f_s(z)=1` and to exact satisfaction in that GNS
 representation.
 
 The preceding limit computation uses only `q_n->infinity`, so it remains
-valid when the limit `z` is a root of unity.  It must not be replaced in that
-case by one fixed irreducible Weyl representation: exponent sums which are
-nonzero integers but divisible by the fixed order then survive the trace,
-whereas they vanish eventually along `(OWA1)`.  Thus finite-dimensional
-invisibility supplies no torsion-root exclusion.  The case `z=1` is excluded
-by the established small-phase commutative wall.  Finally `(OWA6)` follows
-directly from `S_nD_n=z_nD_nS_n`, and all its singular values equal
+valid when the limit `z` is a root of unity.  In that case the universal
+rotation algebra `A_z` is subhomogeneous with finite-dimensional fibers and
+its canonical Fourier-coefficient trace is faithful (equivalently, use the
+faithful conditional expectation onto one circle algebra followed by Haar
+integration).  If all `f_s(z)=1`, the corresponding packet unitaries have
+faithful trace one, hence are identities in `M_20160(A_z)`.  Composing with a
+finite-dimensional fiber representation gives an exact regular-A8 atlas,
+contradicting finite-dimensional invisibility.  This proves the torsion-root
+exclusion.
+
+It is essential not to substitute one fixed irreducible Weyl trace for the
+canonical trace in this proof.  Exponent sums which are nonzero integers but
+divisible by the fixed order survive in that fiber, whereas `(OWA4)` comes
+from the center-integrated canonical trace and kills them.  Finally `(OWA6)`
+follows directly from `S_nD_n=z_nD_nS_n`, and all its singular values equal
 `|z_n-1|`.

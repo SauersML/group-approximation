@@ -57,14 +57,8 @@ def word_to_json(word, lengths):
                      for f, m in word]}
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--emit", default="")
-    parser.add_argument("--merge", default="",
-                        help="existing family JSON to union with")
-    parser.add_argument("--emit-merged", default="")
-    args = parser.parse_args()
-
+def generate_relators(verify=True):
+    """Return nontrivial square relators and freely trivial names."""
     lengths = transvection_lengths()
     memo = {}
 
@@ -78,9 +72,26 @@ def main():
             if not square:
                 trivial.append((name, len(base)))
                 continue
-            if not leavitt_is_one(evaluate_word(square)):
+            if verify and not leavitt_is_one(evaluate_word(square)):
                 not_in_kernel.append(name)
             nontrivial.append((name, square))
+
+    if not_in_kernel:
+        raise AssertionError("involutivity words outside Rbar: %r"
+                             % not_in_kernel[:10])
+    return nontrivial, trivial, lengths
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--emit", default="")
+    parser.add_argument("--merge", default="",
+                        help="existing family JSON to union with")
+    parser.add_argument("--emit-merged", default="")
+    args = parser.parse_args()
+
+    nontrivial, trivial, lengths = generate_relators(verify=True)
+    not_in_kernel = []
 
     total = len(nontrivial) + len(trivial)
     print("involutivity relators considered:", total)
@@ -90,10 +101,6 @@ def main():
           len(nontrivial))
     print("  verified to lie in Rbar:                           ",
           len(nontrivial) - len(not_in_kernel), "of", len(nontrivial))
-    if not_in_kernel:
-        print("NOT IN KERNEL:", not_in_kernel[:10])
-        return 1
-
     if trivial:
         base_syllables = sorted({s for _n, s in trivial})
         print("  (the trivial ones are exactly the single-syllable dictionary")

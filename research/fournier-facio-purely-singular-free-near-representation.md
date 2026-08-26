@@ -85,7 +85,19 @@ Bare hyperfinite exhaustion does not eliminate the first survivor.
 singular amenable regular-character calibration whose support graph has one
 infinite component and is exhausted by uniformly finite nested relations.
 Each finite stage has boundary charge tending to zero but still strictly
-positive, whereas the cutoff theorem needs a fixed comparison unitary with
-exactly null boundary.  Closing this face requires a uniform null-boundary or
-Cartanization theorem, not only amenability/hyperfiniteness of the support
-relation.
+positive.  Even promoting this to one fixed null-boundary finite-block
+comparison would not suffice:
+`fournier-facio-dimension-at-infinity-escape-is-sharp` constructs such a
+comparison with every bounded block-size stratum of charge zero.  Closing
+this face therefore requires a **tight** Cartanization theorem, a uniform
+constraint on internal matrix dynamics as dimensions diverge, or a direct
+obstruction on the genuinely infinite support component.
+
+The first uniform internal constraint is now known.
+`fournier-facio-fixed-block-spectrum-escapes` uses nonsoficity to find a
+nontrivial group element fixing positive block charge and then uses
+torsion-free power recurrence to prove that its number of distinct internal
+eigenphases escapes every finite cutoff.  Thus dimension-at-infinity cannot
+be supplied merely by amplifying a bounded spectral model.  A positive
+common-block construction needs genuinely increasing spectral complexity on
+the fixed sector.
