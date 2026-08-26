@@ -327,26 +327,21 @@ then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
 which proves full invariance.
 
 Put $R=\Rad_{\mathrm{MF}}(G)$.  If $G/R$ is trivial, there is nothing to
-prove.  Otherwise, enumerate its nonidentity elements as $(x_j)_{j\ge1}$,
-repeating elements when the quotient is finite, and enumerate the pairs in
-$(G/R)^2$.  Choose a lift $g_j\in G$ of each $x_j$.  Since $g_j\notin R$, the
-definition of $R$ supplies a corona homomorphism $\pi_j$ of $G$ such that
-$\pi_j(g_j)$ has positive distance from the identity.  The homomorphism
-$\pi_j$ kills $R$, so it descends to a homomorphism $\overline\pi_j$ of $G/R$,
-and $\overline\pi_j(x_j)=\pi_j(g_j)$.  Choose coordinate unitary lifts of the
-$\overline\pi_j$, using polar correction as in
-Lemma~\ref{lem:central-corona-corner}.  At stage $n$, take a direct
-sum of one coordinate from each of the first $n$ models.  Choose each
-coordinate far enough out that the first $n$ multiplication defects are at
-most $1/n$ and the designated value at $x_j$ retains at least half of its
-corona norm separation.  Such coordinates exist arbitrarily far out: the
-defects converge to zero, while the quotient norm is a limsup.  The resulting
-operator norm asymptotic representation detects every $x_j$, so its corona
-homomorphism is faithful on $G/R$.  Thus $G/R$ is MF.
+prove.  If $x\in G/R$ is nontrivial and $g\in G$ maps to $x$, then
+$g\notin R$.  Some homomorphism from $G$ to an MF group therefore separates
+$g$ from the identity.  It kills $R$ and descends to a homomorphism of $G/R$
+that separates $x$.  Thus $G/R$ is residually MF, and hence MF by
+Korchagin~\cite[Proposition~6]{Korchagin}.
 
-Applied to $G/N$, the same argument says that $G/N$ is MF exactly when the
-intersection of the kernels of all maps into MF groups that kill $N$ is $N$, which
-is the asserted closure criterion.
+For $N\trianglelefteq G$, homomorphisms from $G/N$ to MF groups correspond
+to homomorphisms from $G$ to MF groups that kill $N$.  It follows directly
+that
+\[
+ \Rad_{\mathrm{MF}}(G/N)
+ =\operatorname{cl}_{\mathrm{MF}}^G(N)/N.
+\]
+Since a countable group is MF exactly when its MF radical is trivial, this
+identity gives the asserted closure criterion.
 \end{proof}
 
 For a subgroup $L\le G$, put
@@ -706,9 +701,9 @@ internal compression used here.  The binary Leavitt algebra is purely
 infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
 and its center is the base field~\cite{ArandaCrow}.  Preusser classified the
 subgroups of $\GL_n$ over an exchange ring that are normalized by
-$\EL_n$~\cite{Preusser}.  In the present case, every nontrivial normal
-subgroup of $\EL_{12}(R)$ contains some $e_{ij}(x)$ with $i\ne j$ and
-$x\ne0$ (Proposition~\ref{prop:simple}).
+$\EL_n$~\cite{Preusser}.  His sandwich theorem, together with the simplicity
+of the binary Leavitt algebra and the equality $Z(R)=\F_2$, implies that
+$\EL_{12}(R)$ is simple (Proposition~\ref{prop:simple}).
 Ershov--Jaikin-Zapirain give property~\textup{(T)} for
 $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
@@ -1625,236 +1620,28 @@ These matrices generate $L$, so \eqref{eq:compresses-L} follows.
 
 \section{Simplicity and the full MF radical}
 
-We first prove that $H$ is simple.  The argument uses the following
-consequence of pure infiniteness.  For every $0\ne x\in R$, there are
-$a,b\in R$ such that
-%<webmath object="whole" when="axb=1" title="a nonzero ring element can be sandwiched to produce the identity">
-% The letters a and b are chosen ring elements placed on the left and right
-% of the given nonzero element x.  Their ordered product equals the
-% multiplicative [[identity]] 1.  The order matters because the Leavitt
-% algebra is generally noncommutative.  This consequence of pure infiniteness
-% turns an elementary transvection with parameter x into one with parameter
-% 1 by taking two commutators.
-%</webmath>
-\begin{equation}\label{eq:two-sided-sandwich}
- axb=1.
-\end{equation}
-Indeed, $R$ is purely infinite simple, so this follows from
-\cite[Proposition~10(v)]{AbramsAranda} by taking the target element to be
-$1$.
-
-\begin{lemma}[Normal generation by an elementary transvection]
-\label{lem:normal-generation-transvection}
-Let $S$ be a unital ring, let $n\ge3$, and let
-$N\trianglelefteq\EL_n(S)$.  Suppose that $e_{ij}(x)\in N$ and that
-$axb=1$ for some $a,b\in S$.  Then $N=\EL_n(S)$.
-\end{lemma}
-
-\begin{proof}
-Choose $k$ different from $i$ and $j$.  Normality of $N$ and the elementary
-commutator relations give
-%<webmath object="whole" when="[e_{ij}(x),e_{jk}(b)]=e_{ik}(xb)" title="two commutators produce an elementary transvection with parameter 1">
-% The first commutator combines two elementary matrices whose column and row
-% indices meet at j.  The result is an elementary matrix in position
-% \((i,k)\) with coefficient xb.  The second commutator meets at i and
-% multiplies that coefficient on the left by a, producing coefficient
-% \(axb=1\) in position \((j,k)\).  Because a normal subgroup containing the
-% first elementary transvection also contains its commutators with arbitrary
-% group elements, these identities show that it contains \(e_{jk}(1)\).
-%</webmath>
-\[
- [e_{ij}(x),e_{jk}(b)]=e_{ik}(xb),\qquad
- [e_{ji}(a),e_{ik}(xb)]=e_{jk}(1),
-\]
-so $e_{jk}(1)\in N$.
-
-Products of the generalized permutation matrices
-\[
- w_{uv}=e_{uv}(1)e_{vu}(-1)e_{uv}(1)
-\]
-conjugate $e_{jk}(1)$ to $e_{uv}(1)$ or its inverse for any $u\ne v$.
-Normality of $N$, and taking inverses if necessary, therefore gives
-$e_{uv}(1)\in N$ for every $u\ne v$.  Given $r\in S$ and $u\ne v$, choose
-$h$ different from $u$ and $v$.  Then
-\[
- [e_{uh}(r),e_{hv}(1)]=e_{uv}(r)\in N.
-\]
-Thus $N$ contains every elementary generator of $\EL_n(S)$.
-\end{proof}
-
-\begin{lemma}[Coefficient separation]\label{lem:coefficient-separation}
-If $r,s\in R$ are nonzero, then there exist $a,b\in R$ such that
-%<webmath object="whole" when="arb=0" title="a and b separate two ordered products">
-% The first relation says that inserting a before r and b after r makes the
-% product zero.  The second relation requires a different ordered product,
-% involving s, to remain nonzero.  The later matrix calculation uses the
-% first identity to make one product vanish and the second to retain a
-% nonzero diagonal entry.
-%</webmath>
-\begin{equation}\label{eq:coefficient-separation}
- arb=0,\qquad bsar\ne0.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-By \eqref{eq:two-sided-sandwich}, choose $u,v,c,d\in R$ such that
-\[
- urv=1,\qquad csd=1,
-\]
-and set
-%<webmath object="whole" when="a=dt_1u" title="the coefficient-separation witnesses">
-% The factors u and v turn r into 1, while c and d turn s into 1.  Inserting
-% the Leavitt factors t1 and s0 between them makes arb vanish because
-% \(t_1s_0=0\).  In the other ordered product, the surviving factor
-% \(s_0t_1\) is nonzero.  These choices therefore distinguish the two
-% products by the order in which the same coefficients occur.
-%</webmath>
-\[
- a=dt_1u,\qquad b=vs_0c.
-\]
-The Leavitt relation $t_1s_0=0$ gives
-\[
- arb=dt_1(urv)s_0c=dt_1s_0c=0.
-\]
-On the other hand,
-\[
- bsar=vs_0(csd)t_1ur=vs_0t_1ur.
-\]
-If this element were zero, then
-\[
- 0=(ur)(vs_0t_1ur)v=(urv)s_0t_1(urv)=s_0t_1,
-\]
-contrary to $t_0(s_0t_1)s_1=1$.
-\end{proof}
-
 \begin{proposition}\label{prop:simple}
 The group $H=\EL_{12}(R)$ is nontrivial and simple.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveSimplicity}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple}
 \end{proposition}
 
 \begin{proof}
-Let $N\trianglelefteq H$ be nontrivial.  By
-\eqref{eq:two-sided-sandwich} and Lemma
-\ref{lem:normal-generation-transvection}, it is enough to find
-$i\ne j$ and $0\ne x\in R$ such that $e_{ij}(x)\in N$.
-Choose $1\ne g\in N$.  We distinguish according as $g$ is diagonal or
-nondiagonal.
-
-\paragraph{The diagonal case.}
-Suppose first that $g$ is diagonal, and write
-$g=\operatorname{diag}(\lambda_0,\ldots,\lambda_{11})$.
-If $g$ commutes with every $e_{ij}(a)$, then the relations with $a=1$ give
-$\lambda_i=\lambda_j$ for all $i\ne j$.  Hence $g=\lambda I_{12}$ for some
-unit $\lambda\in R$.  The relations for arbitrary $a\in R$ then give
-$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.  Since
-$Z(R)=\F_2$ by~\cite[Corollary~4.3]{ArandaCrow}, this forces
-$\lambda=1$, contrary to the choice of $g$.
-
-It follows that $[g,e_{ij}(a)]\ne1$ for some $i\ne j$ and $a\in R$.  Set
-$x=\lambda_i a\lambda_j^{-1}-a$.  Then $x\ne0$, and normality of $N$ gives
-%<webmath object="whole" when="[g,e_{ij}(a)]=e_{ij}(x)" title="a noncentral diagonal matrix gives a nontrivial elementary matrix">
-% Conjugation by the diagonal matrix g multiplies the coefficient a on the
-% left by lambda_i and on the right by the inverse of lambda_j.  Multiplying
-% by e_ij(-a) therefore gives the displayed commutator with coefficient x.
-% This coefficient is nonzero because the commutator is not the identity, and
-% the commutator belongs to N by normality.
-%</webmath>
+The ring $R$ is purely infinite simple~\cite{AbramsAranda}, and therefore is
+an exchange ring~\cite{AraExchange}.  Let $N\trianglelefteq H$.  Since
+$H=\EL_{12}(R)$, the subgroup $N\le\GL_{12}(R)$ is normalized by
+$\EL_{12}(R)$.  Preusser's sandwich theorem~\cite[Theorem~3]{Preusser}
+provides an ideal $I\trianglelefteq R$ such that
 \[
- [g,e_{ij}(a)]=e_{ij}(x)\in N.
+ \EL_{12}(R,I)\le N\le C_{12}(R,I).
 \]
-Lemma~\ref{lem:normal-generation-transvection} now gives $N=H$ in this case.
+Simplicity of $R$ gives $I=0$ or $I=R$.  If $I=R$, then
+$\EL_{12}(R,I)=H$, so $N=H$.
 
-\paragraph{The nondiagonal case.}
-Suppose instead that $g$ is not diagonal.  Choose distinct $i,\ell$ such that
-$g_{\ell i}\ne0$, and put $r=(g^{-1})_{\ell i}$.
-
-If $r=0$, set
-%<webmath object="whole" when="A=gE_{i\ell}g^{-1}" title="A is a conjugated matrix unit and B is the original matrix unit">
-% The symbol \(E_{i\ell}\) is the matrix unit having 1 in row i, column
-% \(\ell\), and zero elsewhere.  The matrix A is obtained from it by
-% [[conjugation]] with g, while B is the original matrix unit.  Under the
-% current assumption \((g^{-1})_{\ell i}=0\), direct matrix-unit
-% multiplication gives \(AB=0\).  These definitions let the following
-% commutator simplify to an identity matrix plus a square-zero defect
-% concentrated in one row.
-%</webmath>
-\[
- A=gE_{i\ell}g^{-1},\qquad B=E_{i\ell}.
-\]
-Here $A^2=B^2=AB=0$.  Expanding the commutator gives
-%<webmath object="whole" when="[g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA" title="the zero-inverse-entry case produces a one-row square-zero defect">
-% Each \(e_{i\ell}(1)\) is \(1+E_{i\ell}\).  Conjugating the first one by g
-% changes its added matrix unit to A, while the second uses B.  Because
-% \(A^2=B^2=AB=0\), expanding the [[commutator]] cancels every term except
-% \(1-BA\).  In the quotient by N, the commutator becomes that of
-% \(e_{i\ell}(1)\) with itself, so it is trivial.  The product BA is supported
-% only in row i and satisfies \((BA)^2=0\), so the result is a unipotent
-% matrix whose nonzero defect can later be converted into an elementary
-% transvection.
-%</webmath>
-\begin{equation}\label{eq:row-unipotent-zero-inverse}
- [g e_{i\ell}(1)g^{-1},e_{i\ell}(1)]=1-BA
-\end{equation}
-and its image in $H/N$ is $[e_{i\ell}(1),e_{i\ell}(1)]=1$.  Thus
-$1-BA\in N$.  Its defect $-BA$ is square-zero and supported in row $i$.
-There is an $m$ for which
-$g_{\ell i}(g^{-1})_{\ell m}\ne0$: otherwise the
-$(\ell,\ell)$ entry of $g^{-1}g=1$ would give $g_{\ell i}=0$.
-Thus the $(i,m)$ entry of the defect in
-\eqref{eq:row-unipotent-zero-inverse} is nonzero.
-
-If $r\ne0$, apply Lemma~\ref{lem:coefficient-separation} to
-$r$ and $s=g_{\ell i}$, obtaining $a,b$ with
-$arb=0$ and $bsar\ne0$.  Set
-%<webmath object="whole" when="A=g(aE_{i\ell})g^{-1}" title="scaled matrix units force AB to vanish when the inverse entry is nonzero">
-% The matrix unit is multiplied by a before conjugation by g, giving A, and
-% the original matrix unit is multiplied by b, giving B.  The relation
-% \(arb=0\) makes AB vanish, while \(bsar\ne0\) becomes a nonzero diagonal
-% entry of BA.
-%</webmath>
-\[
- A=g(aE_{i\ell})g^{-1},\qquad B=bE_{i\ell}.
-\]
-Every column of $AB$ except possibly column $\ell$ is zero, and
-\[
- (AB)_{k\ell}=g_{ki}arb=0
- \qquad(0\le k\le11).
-\]
-Thus $AB=0$.  Since $A^2=B^2=0$, direct expansion gives
-%<webmath object="whole" when="[g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA" title="the nonzero-inverse-entry case produces a one-row square-zero defect">
-% Conjugating \(e_{i\ell}(a)=1+aE_{i\ell}\) by g replaces its added part by
-% A, while \(e_{i\ell}(b)=1+B\).  The facts \(A^2=B^2=AB=0\) make the
-% commutator expansion collapse to \(1-BA\), as in the preceding case.
-% This element lies in N.  Its defect is supported in row i, is square-zero,
-% and has diagonal entry \(-bsar\), which is nonzero by coefficient
-% separation.
-%</webmath>
-\begin{equation}\label{eq:row-unipotent-nonzero-inverse}
- [g e_{i\ell}(a)g^{-1},e_{i\ell}(b)]=1-BA.
-\end{equation}
-In $H/N$, the left-hand side is the commutator of $e_{i\ell}(a)$ and
-$e_{i\ell}(b)$, hence is trivial.  Therefore $1-BA\in N$.  The defect is
-square-zero and supported in row $i$, while its $(i,i)$ entry is
-$-b g_{\ell i}a(g^{-1})_{\ell i}=-bsar\ne0$.
-
-Thus in either nondiagonal case, $N$ contains $1+v$ for some matrix $v$
-supported in row $i$, with $v^2=0$ and $v_{im}\ne0$ for some $m$.
-Choose $n$ different from both $i$ and $m$ (with only $n\ne i$ needed when
-$m=i$).  Direct multiplication gives
-%<webmath object="whole" when="[1+v,e_{mn}(1)]=e_{in}(v_{im})" title="a commutator produces a nontrivial elementary transvection">
-% The matrix v is supported in row i and satisfies \(v^2=0\).  Commuting
-% \(1+v\) with the elementary matrix \(e_{mn}(1)\) selects the entry
-% \(v_{im}\) and moves it to position \((i,n)\); all other possible terms
-% vanish because of the row support and the choice of n.  The result is the
-% elementary matrix \(e_{in}(v_{im})\).  It lies in N, and its coefficient is
-% nonzero by the choice of m.  The normal-generation lemma then forces N to
-% contain the entire elementary group H.
-%</webmath>
-\[
- [1+v,e_{mn}(1)]=e_{in}(v_{im})\in N.
-\]
-Since $v_{im}\ne0$, Lemma~\ref{lem:normal-generation-transvection} gives
-$N=H$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+Suppose that $I=0$.  Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.  A matrix that
+commutes with every elementary matrix $e_{ij}(a)$ is a scalar matrix
+$\lambda I_{12}$ with $\lambda\in Z(R)^\times$.  Since
+$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, its only central unit is $1$.
+Thus $N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
 
 \begin{proposition}\label{prop:defect}
@@ -2637,6 +2424,317 @@ $S$, with $\iota$ any injective $*$-homomorphism of $A$ into a norm matrix
 corona, and with $W=1$.
 \end{proof}
 
+\section{Compiling the halting hierarchy into finite presentations}\label{sec:compiler}
+
+Write $W_e$ for the domain of the $e$-th partial computable function and
+\[
+ \mathrm{INF}=\{e:W_e\text{ is infinite}\},
+ \qquad
+ \mathrm{FIN}=\{e:W_e\text{ is finite}\}.
+\]
+The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
+$\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  This section constructs a
+computable map $e\mapsto\widehat R_e$ into finite presentations such that
+the presented group is MF if and only if $e\in\mathrm{INF}$.  The
+construction has three moves.  A \emph{switch} turns $e$ into a
+recursively presented group that is trivial for $e\in\mathrm{INF}$ and
+contains $H$ for $e\in\mathrm{FIN}$.  A \emph{rope}, in the manner of
+Higman's embedding theorem, wraps the switch into a finitely presented
+group by two HNN extensions.  A \emph{synchronization} of finite quotients
+then supplies the corona conjugator that Theorem~\ref{thm:hnn-permanence}
+needs on the positive branch.  The first two moves are group theory and
+occupy this section up to Lemma~\ref{lem:negative-branch}; the third is
+carried out in the next section.
+
+\subsection*{The seed}
+
+\begin{lemma}[the seed is recursively presented]\label{lem:seed}
+The group $H=\EL_{12}(R)$ is finitely generated and has decidable word
+problem.  In particular, it has a recursive presentation on finitely many
+generators.
+\end{lemma}
+
+\begin{proof}
+Let $Y$ be the set of elements $e_{ij}(a)$ with $i\ne j$ and
+$a\in\{1,s_0,s_1,t_0,t_1\}$.  Since $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and
+$[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, and since every
+element of $R$ is a sum of monomials in the generators $s_0,s_1,t_0,t_1$,
+induction on the length of a monomial shows that every $e_{ij}(a)$ lies in
+the subgroup generated by $Y$; there is always an index $k\notin\{i,j\}$
+because $12\ge3$.  Thus $H=\langle Y\rangle$.  The monomials in
+$s_0,s_1,t_0,t_1$ containing no factor $s_1t_1$ form an $\F_2$-basis of
+$R$~\cite{Leavitt}, and the product of two basis monomials is computed from
+the defining relations by finitely many rewritings, so equality in $R$ is
+decidable.  A word in $Y^{\pm1}$ is therefore evaluated to an explicit
+$12\times12$ matrix over $R$, and it represents $1$ in $H$ exactly when
+that matrix is the identity.  The set of words representing $1$ is
+decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangle$
+is a recursive presentation of $H$.
+\end{proof}
+
+\subsection*{The switch}
+
+\begin{lemma}[the switch]\label{lem:switch}
+There is an algorithm that computes from $e$ a recursive presentation, on
+a computable set of generators, of a group $C_e$ such that $C_e$ is
+trivial if $e\in\mathrm{INF}$ and $H$ embeds in $C_e$ if
+$e\in\mathrm{FIN}$.
+\end{lemma}
+
+\begin{proof}
+This is the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
+with the trivial group as positive witness and $H$ as negative witness.
+Let $\langle Y\mid T\rangle$ be the recursive presentation of $H$ from
+Lemma~\ref{lem:seed}.  Take generators $y_{i,\ell}$ for $i\ge1$ and
+$\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all
+words of $T$ rewritten in each copy $Y_i$, together with every generator
+$y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.  The last family is
+recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its
+$i$-th element appears, enumerate all of $Y_i$.  The group presented is
+the free product of the copies $H_i\cong H$, $i\ge1$, with the first
+$\lvert W_e\rvert$ copies killed.  If $W_e$ is infinite every copy is
+killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product
+of the remaining copies and contains $H$.
+\end{proof}
+
+\subsection*{The bridge}
+
+Let $F=F(x,y,t)$ be the free group on $x,y,t$, and let
+$y_i=x^iyx^{-i}$ for $i\in\mathbb Z$.  For a countable group $C$ with a
+generating sequence $(c_i)_{i\ge1}$, put $c_i=1$ for $i\le0$ and
+\begin{equation}\label{eq:bridge}
+ B(C)=\bigl\langle C*F(x,y),\ t\ \bigm|\ ty_it^{-1}=c_iy_i\ (i\in\mathbb Z)\bigr\rangle.
+\end{equation}
+Let $H_0=B(1)=\langle x,y,t\mid[t,y_i]=1\ (i\in\mathbb Z)\rangle$, let
+$q_+\colon F\to H_0$ be the quotient map, and let $N_+=\ker q_+$.
+
+\begin{lemma}[the bridge]\label{lem:bridge}
+\begin{enumerate}
+\item $B(C)$ is an HNN extension of $C*F(x,y)$, so $C$ embeds in $B(C)$;
+it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on
+$x,y,t$ is computable from a recursive presentation of $C$.  We write
+$B(C)=F/N_C$ and $q_C\colon F\to B(C)$ for the quotient map.
+\item Killing $C$ induces a surjection $B(C)\to H_0$; hence
+$N_C\le N_+$, with equality when $C$ is trivial.
+\item The assignment $x\mapsto(x_1,x_2)$, $y\mapsto(y,1)$, $t\mapsto(1,t)$
+defines an injective homomorphism $j\colon H_0\to P=F(x_1,y)\times F(x_2,t)$.
+In particular, $H_0$ is residually finite.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) The elements $y_i$, $i\in\mathbb Z$, freely generate the normal
+closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}.  The retraction
+$C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so a nontrivial
+reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; hence
+the $c_iy_i$ freely generate a free subgroup, and $y_i\mapsto c_iy_i$ is an
+isomorphism between two free subgroups of the base.  Thus~\eqref{eq:bridge}
+is an HNN extension, and the base, hence $C$, embeds by Britton's lemma.
+The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate $B(C)$,
+and substituting this expression for $c_i$ into the relators of $C$ and
+into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$,
+uniformly in the presentation of $C$.
+
+(2) The relators of~\eqref{eq:bridge} map to the relators $[t,y_i]$ of
+$H_0$ when every $c_i$ is sent to $1$, and the map is the identity on
+$x,y,t$.
+
+(3) The relators $[t,y_i]$ are sent to $[(1,t),(x_1^iyx_1^{-i},1)]=1$, so
+$j$ is a homomorphism.  Let $N_0$ be the normal closure of $\{y,t\}$ in
+$H_0$.  Then $H_0/N_0=\langle x\rangle$ is infinite cyclic and the
+extension splits, so $H_0=N_0\rtimes\langle x\rangle$.  Rewriting the
+presentation of $H_0$ over the transversal $\{x^n\}$ by the
+Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents
+$N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$,
+with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is,
+all commutators $[t_m,y_n]$.  Hence $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
+Now $j(y_n)=(x_1^nyx_1^{-n},1)$ and $j(t_m)=(1,x_2^mtx_2^{-m})$, and the
+elements $x_1^nyx_1^{-n}$ freely generate the normal closure of $y$ in
+$F(x_1,y)$, and likewise for $t$; so $j$ restricted to $N_0$ is an
+isomorphism onto the product of these two normal closures.  Finally
+$j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$,
+because the exponent sum of $x_1$ in $j(x^kn)$ is $k$ for $n\in N_0$.
+Hence $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
+residually finite and residual finiteness passes to direct products and
+subgroups, so $H_0$ is residually finite.
+\end{proof}
+
+For $e\in\mathbb N$ let $Q_e=B(C_e)=F/N_e$ with $C_e$ the group of
+Lemma~\ref{lem:switch}, and write $q_e\colon F\to Q_e$.  By
+Lemmas~\ref{lem:switch} and~\ref{lem:bridge}, a recursive presentation of
+$Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$
+then $Q_e=H_0$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then
+$H\le C_e\le Q_e$.
+
+\subsection*{The cutting subgroup}
+
+\begin{lemma}[Higman embedding and the Mikhailova subgroup]\label{lem:mikhailova}
+There is an algorithm that computes from $e$ a finite presentation
+$\langle X_e\mid R_e\rangle$ of a group $\widehat H_e$, words
+$w_x,w_y,w_t\in F(X_e)$, and a finite generating set of a subgroup
+$M_e\le F(X_e)\times F(X_e)$, such that $x\mapsto w_x$, $y\mapsto w_y$,
+$t\mapsto w_t$ induces an embedding $Q_e\to\widehat H_e$, and
+$M_e=\{(u,v):u=v\text{ in }\widehat H_e\}$.  Consequently, with
+\[
+ K^0_e=F\times F(X_e)\times F(X_e),
+ \qquad
+ i_e(f)=(f,w_f,1),
+ \qquad
+ L^0_e=F\times M_e,
+\]
+where $w_f$ is the image of $f$ under $x\mapsto w_x$, $y\mapsto w_y$,
+$t\mapsto w_t$, the map $i_e\colon F\to K^0_e$ is injective and
+$i_e(f)\in L^0_e$ if and only if $f\in N_e$.
+\end{lemma}
+
+\begin{proof}
+Higman's embedding theorem~\cite{Higman} embeds every finitely generated
+recursively presented group in a finitely presented group, and its proof
+is effective; an explicit algorithm producing the finite presentation and
+the embedding words from a recursive presentation is given by
+Mikaelian~\cite{Mikaelian}.  Apply it to the presentation of $Q_e$.
+Following Mikhailova~\cite{Mikhailova}, let $M_e$ be the subgroup of
+$F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and
+$(r,1)$, $r\in R_e$.  If $(u,v)\in M_e$ then $u=v$ in $\widehat H_e$,
+since this holds for the generators.  Conversely, if $u=v$ in
+$\widehat H_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it
+is a product of conjugates $gr^{\pm1}g^{-1}$ with $r\in R_e$, and
+$(gr^{\pm1}g^{-1},1)=(g,g)(r^{\pm1},1)(g,g)^{-1}\in M_e$; hence
+$(u,v)=(uv^{-1},1)(v,v)\in M_e$.  The first coordinate makes $i_e$
+injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in
+$\widehat H_e$, if and only if $q_e(f)=1$ because the embedding is
+injective, if and only if $f\in N_e$.
+\end{proof}
+
+\subsection*{The ropes}
+
+Let $P=F(x_1,y)\times F(x_2,t)$ and $j\colon H_0\to P$ be as in
+Lemma~\ref{lem:bridge}.  Define the graph witness
+\[
+ K^{\mathrm g}=F\times P,
+ \qquad
+ L^{\mathrm g}=\{(f,\,jq_+(f)):f\in F\},
+\]
+and the product witness
+\[
+ K_e=K^0_e\times K^{\mathrm g},
+ \qquad
+ L_e=L^0_e\times L^{\mathrm g},
+ \qquad
+ i\colon F\to K_e,\quad i(f)=\bigl(i_e(f),(f,1)\bigr).
+\]
+Let
+\begin{equation}\label{eq:central-rope}
+ \Gamma_e=\bigl\langle K_e,\ v\ \bigm|\ [v,\ell]=1\ (\ell\in L_e)\bigr\rangle,
+ \qquad
+ S_e=\bigl\langle i(F),\ v\,i(F)\,v^{-1}\bigr\rangle\le\Gamma_e.
+\end{equation}
+
+\begin{lemma}[the central rope]\label{lem:central-rope}
+\begin{enumerate}
+\item $K_e$ is a direct product of free groups of finite rank, hence
+finitely presented and residually finite; $L_e$ is finitely generated;
+$i$ is injective; and $i(F)\cap L_e=i(N_e)$.
+\item $\Gamma_e$ is finitely presented, and a finite presentation is
+computable from $e$.  The natural map from the amalgamated free product
+$F*_{N_e}F$, in which $n\in N_e$ in the first copy is identified with
+$n$ in the second copy, onto $S_e$, sending the first copy to $i(F)$ and
+the second to $v\,i(F)\,v^{-1}$, is an isomorphism.
+\item There is a homomorphism $\tau_e\colon S_e\to Q_e$ with
+$\tau_e(i(f))=q_e(f)$ and $\tau_e(v\,i(f)\,v^{-1})=1$ for $f\in F$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) $K_e=F\times F(X_e)\times F(X_e)\times F\times P$ is a product of five
+free groups of finite rank, so it is finitely presented, and residually
+finite because free groups are.  The subgroup $L_e$ is generated by the
+basis of the first factor, the generators of $M_e$ from
+Lemma~\ref{lem:mikhailova}, and the elements $(a,jq_+(a))$ for
+$a\in\{x,y,t\}$, so it is finitely generated.  Injectivity of $i$ is clear
+from the first coordinate.  An element $i(f)$ lies in $L_e$ if and only if
+$i_e(f)\in L^0_e$ and $(f,1)\in L^{\mathrm g}$; the first holds if and only
+if $f\in N_e$ by Lemma~\ref{lem:mikhailova}, and the second if and only if
+$jq_+(f)=1$, that is, $f\in N_+$.  Since $N_e\le N_+$, the intersection is
+$i(N_e)$.
+
+(2) The presentation~\eqref{eq:central-rope} is finite once $[v,\ell]=1$ is
+imposed only for the finitely many generators $\ell$ of $L_e$, and it is
+computable from $e$ because $K_e$, $L_e$ and $i$ are.  It is an HNN
+extension of $K_e$ with both edge groups equal to $L_e$ and the identity
+as edge isomorphism.  The map from $F*_{N_e}F$ to $S_e$ is well defined
+because $i(n)\in L_e$ commutes with $v$ for $n\in N_e$.  A reduced word of
+the amalgamated free product alternates between elements of the two
+copies of $F$ lying outside $N_e$; its image is a word
+$i(f_0)\,v\,i(f_1)\,v^{-1}\,i(f_2)\cdots$ in which every letter between
+consecutive occurrences of $v^{\pm1}$ is some $i(f_k)$ with
+$f_k\notin N_e$, hence $i(f_k)\notin L_e$ by (1).  Such a word contains no
+pinch $v^{\pm1}\ell v^{\mp1}$ with $\ell\in L_e$, so it is nontrivial in
+$\Gamma_e$ by Britton's lemma.
+
+(3) Define $\tau_e$ on $F*_{N_e}F$ by $q_e$ on the first copy and by the
+trivial map on the second; both kill $N_e$, so the definition is
+consistent on the amalgamated subgroup, and (2) transports it to $S_e$.
+\end{proof}
+
+The second rope is the HNN extension
+\begin{equation}\label{eq:twisted-rope}
+ R_e=\bigl\langle\Gamma_e\times Q_e,\ u\ \bigm|\ u(s,1)u^{-1}=(s,\tau_e(s))\ (s\in S_e)\bigr\rangle,
+\end{equation}
+whose edge maps $s\mapsto(s,1)$ and $s\mapsto(s,\tau_e(s))$ are injective
+homomorphisms of $S_e$ into $\Gamma_e\times Q_e$; so
+$\Gamma_e\times Q_e$ embeds in $R_e$ by Britton's lemma.  The
+presentation~\eqref{eq:twisted-rope} lists the recursively enumerable
+relators of $Q_e$.  Its finite replacement is
+\begin{equation}\label{eq:finite-rope}
+ \widehat R_e=\Bigl\langle\Gamma_e\times F,\ u\ \Bigm|\ 
+ u\bigl(i(a),1\bigr)u^{-1}=\bigl(i(a),a\bigr),\ 
+ u\bigl(v\,i(a)\,v^{-1},1\bigr)u^{-1}=\bigl(v\,i(a)\,v^{-1},1\bigr)
+ \ (a\in\{x,y,t\})\Bigr\rangle,
+\end{equation}
+where $\Gamma_e\times F$ carries the finite presentation of
+Lemma~\ref{lem:central-rope}(2), the basis $x,y,t$ of $F$, and the
+commutation relators between the two factors.
+
+\begin{lemma}[the finite presentation]\label{lem:finite-rope}
+The groups $\widehat R_e$ and $R_e$ are isomorphic by the map that is the
+identity on $\Gamma_e$ and on $u$ and sends $F$ onto $Q_e$ by $q_e$.  A
+code of the finite presentation~\eqref{eq:finite-rope} is computable
+from $e$.
+\end{lemma}
+
+\begin{proof}
+Both maps $f\mapsto u(i(f),1)u^{-1}$ and $f\mapsto(i(f),f)$ are
+homomorphisms $F\to\widehat R_e$, and they agree on the basis, so
+$u(i(f),1)u^{-1}=(i(f),f)$ for all $f\in F$; likewise
+$u(v\,i(f)\,v^{-1},1)u^{-1}=(v\,i(f)\,v^{-1},1)$ for all $f$.  If
+$n\in N_e$, then $i(n)\in L_e$ by Lemma~\ref{lem:central-rope}(1), so
+$v\,i(n)\,v^{-1}=i(n)$ in $\Gamma_e$, and comparing the two relations
+gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.  Hence
+the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the
+relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\tau_e(s))$
+for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$
+of $S_e$, hence for all $s\in S_e$, since both sides are homomorphic in
+$s$.  This defines a homomorphism $R_e\to\widehat R_e$; conversely, the
+relations of~\eqref{eq:finite-rope} hold in $R_e$ after $F\to Q_e$,
+because $\tau_e(i(a))=q_e(a)$ and $\tau_e(v\,i(a)\,v^{-1})=1$.  The two
+homomorphisms are mutually inverse on generators.  Computability of the
+code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
+\end{proof}
+
+\begin{lemma}[the negative branch]\label{lem:negative-branch}
+If $e\in\mathrm{FIN}$, then $H$ embeds in $\widehat R_e$, and
+$\widehat R_e$ is not MF\@.
+\end{lemma}
+
+\begin{proof}
+For $e\in\mathrm{FIN}$ we have $H\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$
+by Lemmas~\ref{lem:switch}, \ref{lem:bridge}(1), \ref{lem:finite-rope} and
+Britton's lemma for~\eqref{eq:twisted-rope}.  Restricting MF models to a
+subgroup shows that subgroups of MF groups are MF, and $H$ is not MF by
+Theorem~\ref{thm:headline}.
+\end{proof}
+
 \section*{Acknowledgments}
 
 The author thanks Francesco Fournier-Facio for early advice and detailed
@@ -2699,6 +2797,12 @@ P.~Ara,
 Proc. Amer. Math. Soc. \textbf{132} (2004), no.~9, 2543--2547,
 \doi{10.1090/S0002-9939-04-07369-1}.
 
+\bibitem[BCR]{BCR}
+I.~Bilanovic, J.~Chubb, and S.~Roven,
+\emph{Detecting properties from descriptions of groups},
+Arch. Math. Logic \textbf{59} (2020), no.~3--4, 293--312,
+\doi{10.1007/s00153-019-00690-x}.
+
 \bibitem[BHV]{BHV}
 B.~Bekka, P.~de la Harpe, and A.~Valette,
 \emph{Kazhdan's Property (T)}, Cambridge University Press, 2008.
@@ -2759,6 +2863,11 @@ computable},
 preprint, 2021,
 \href{https://arxiv.org/abs/2006.05629}{arXiv:2006.05629}.
 
+\bibitem[Hig]{Higman}
+G.~Higman,
+\emph{Subgroups of finitely presented groups},
+Proc. Roy. Soc. London Ser. A \textbf{262} (1961), 455--475.
+
 \bibitem[JNVWY]{MIPRE}
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
@@ -2778,6 +2887,11 @@ W.~G.~Leavitt,
 \emph{Trans. Amer. Math. Soc.} \textbf{103} (1962), 113--130,
 \doi{10.1090/S0002-9947-1962-0132764-6}.
 
+\bibitem[LS]{LyndonSchupp}
+R.~C. Lyndon and P.~E. Schupp,
+\emph{Combinatorial group theory},
+Classics in Mathematics, Springer-Verlag, Berlin, 2001.
+
 \bibitem[LO]{LubotzkyOppenheim}
 A.~Lubotzky and I.~Oppenheim,
 \emph{Non $p$-norm approximated groups},
@@ -2789,6 +2903,17 @@ G.~Kun and A.~Thom,
 \emph{Inapproximability of actions and Kazhdan's property~\textup{(T)}},
 preprint, 2019,
 \href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
+
+\bibitem[Mik]{Mikaelian}
+V.~H. Mikaelian,
+\emph{An explicit algorithm for the Higman embedding theorem},
+preprint, 2025,
+\href{https://arxiv.org/abs/2507.04347}{arXiv:2507.04347}.
+
+\bibitem[Mih]{Mikhailova}
+K.~A. Mihailova,
+\emph{The occurrence problem for direct products of groups},
+Dokl. Akad. Nauk SSSR \textbf{119} (1958), 1103--1105.
 
 \bibitem[Pre]{Preusser}
 R.~Preusser,

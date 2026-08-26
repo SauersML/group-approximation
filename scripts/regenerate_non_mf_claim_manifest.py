@@ -116,6 +116,20 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Shulman, Theorem 16 (the amalgam criterion for MF)",
         "Britton's lemma",),
     "cor:central-hnn": (),
+    "lem:seed": (
+        "Leavitt's normal form: the monomials without a factor s_1 t_1 are "
+        "an F_2-basis of L(1,2)",),
+    "lem:switch": (
+        "Bilanovic--Chubb--Roven, Theorem 3.1 (the construction pattern)",),
+    "lem:bridge": (
+        "Britton's lemma", "Reidemeister--Schreier rewriting",
+        "free basis of the normal closure of a basis element",),
+    "lem:mikhailova": (
+        "Higman's embedding theorem in Mikaelian's explicit form",
+        "Mikhailova's fibre product",),
+    "lem:central-rope": ("Britton's lemma",),
+    "lem:finite-rope": (),
+    "lem:negative-branch": ("Britton's lemma",),
 }
 
 
@@ -159,6 +173,14 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:rf-regular": [],
     "thm:hnn-permanence": [],
     "cor:central-hnn": ["thm:hnn-permanence"],
+    "lem:seed": [],
+    "lem:switch": ["lem:seed"],
+    "lem:bridge": [],
+    "lem:mikhailova": ["lem:switch", "lem:bridge"],
+    "lem:central-rope": ["lem:mikhailova", "lem:bridge"],
+    "lem:finite-rope": ["lem:central-rope"],
+    "lem:negative-branch": [
+        "lem:switch", "lem:bridge", "lem:finite-rope", "thm:headline"],
 }
 
 

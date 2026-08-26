@@ -527,6 +527,127 @@
       "external_inputs": [],
       "coverage_gap": "",
       "lean": []
+    },
+    {
+      "id": "lem:seed",
+      "environment": "lemma",
+      "title": "the seed is recursively presented",
+      "statement_sha256": "ea98a3541f6359e405e36cf4cbc0c46e7b9ec175a302a471142dc453a6f5bed3",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Leavitt's normal form: the monomials without a factor s_1 t_1 are an F_2-basis of L(1,2)"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:switch",
+      "environment": "lemma",
+      "title": "the switch",
+      "statement_sha256": "fb956e3c28b27a1350f3832766b95d03df4311c6f1349b7b61f5157302125450",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:seed"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Bilanovic--Chubb--Roven, Theorem 3.1 (the construction pattern)"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:bridge",
+      "environment": "lemma",
+      "title": "the bridge",
+      "statement_sha256": "adf21b207d37875969522c470f6de1ed70be254d8da7d4d2f2b632f846ae7125",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma",
+        "Reidemeister--Schreier rewriting",
+        "free basis of the normal closure of a basis element"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:mikhailova",
+      "environment": "lemma",
+      "title": "Higman embedding and the Mikhailova subgroup",
+      "statement_sha256": "62afc9c0041819a76d5fde21b440f8f8dc00feb5eb02320490fbebe4f42e715b",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:switch",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Higman's embedding theorem in Mikaelian's explicit form",
+        "Mikhailova's fibre product"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:central-rope",
+      "environment": "lemma",
+      "title": "the central rope",
+      "statement_sha256": "68b5a4caab4d65362fe432990d81ff6c96e2245d28d36ebfd381687adddc4260",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:mikhailova",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:finite-rope",
+      "environment": "lemma",
+      "title": "the finite presentation",
+      "statement_sha256": "a616263ab734765316a3f1e983665d668834d169455519e446f8d316250253d4",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:central-rope"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:negative-branch",
+      "environment": "lemma",
+      "title": "the negative branch",
+      "statement_sha256": "c1e9dbb5a71bc7485ba08e0a310a50784a9c6fb7131e5b64d983fb5d5ecccb58",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:switch",
+        "lem:bridge",
+        "lem:finite-rope",
+        "thm:headline"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
     }
   ]
 }
