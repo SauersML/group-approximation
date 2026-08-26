@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: three-character-payload-defeats-every-selector-normalizer-corrector
+id: c3-payload-defeats-selector-normalizer-correctors
 kind: claim
 title: A three-character zero-compression payload defeats every selector-normalizer corrector
 invalidates:

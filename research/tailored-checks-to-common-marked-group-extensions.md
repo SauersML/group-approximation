@@ -169,7 +169,7 @@ normalizer wordization must certify this permutation condition for its
 specific packet; normalizer availability is not automatic.
 
 Outside the block-monomial face even the full selected-atom diagonal
-normalizer can fail.  `three-character-payload-defeats-every-selector-normalizer-corrector`
+normalizer can fail.  `c3-payload-defeats-selector-normalizer-correctors`
 gives a rational real-orthogonal `3 x 3` payload with `qWq=0` for the regular
 `C_3` character packet.  The only allowed row permutations are identity and
 the swap of the two nontrivial characters, and in both cases asymmetric

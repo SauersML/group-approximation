@@ -59,5 +59,10 @@ quotients.  Thus the Steinberg block requires a separate mixed-weight test;
 the apartment-cycle analogy alone is not a counterexample because the two
 Fox rows are noncentral and their common kernel is not an `SL_3`-submodule.
 
+The separate claim `steinberg-fox-kernel-is-flag-incidence` now identifies
+the exact test with injectivity of a stacked point--plane incidence/Fox map
+and shows why the six-chamber Weyl-sign quotient alone loses essential
+root-group data.
+
 DERIVATION
 symmetric-power-fox-smith-reduction-proof

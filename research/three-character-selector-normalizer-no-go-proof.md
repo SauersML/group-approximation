@@ -3,7 +3,7 @@ rg: 2
 id: three-character-selector-normalizer-no-go-proof
 kind: route
 title: Compare the asymmetric off-diagonal moduli under both C3 normalizer permutations
-target: three-character-payload-defeats-every-selector-normalizer-corrector
+target: c3-payload-defeats-selector-normalizer-correctors
 requires: []
 ---
 
