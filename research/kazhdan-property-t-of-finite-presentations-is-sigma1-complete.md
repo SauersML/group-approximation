@@ -1,0 +1,55 @@
+---
+rg: 2
+id: kazhdan-property-t-of-finite-presentations-is-sigma1-complete
+kind: claim
+title: Kazhdan's property (T) is Sigma-zero-one complete for finite presentations, so its failure cannot be certified
+artifacts:
+  - GroupApproximation/Computability/RabinConstruction.lean
+  - research/artifacts/second-level-rice-theorem-2026-08-26.md
+distinct_from:
+  operator-mf-is-a-markov-property: that applies the Adian--Rabin theorem to a hereditary property through the forbidden-subgroup clause; property (T) is not hereditary (free groups sit inside SL_3(Z)), so the Markov theorem does not apply and the argument here reads the geometry of the Rabin group instead: a nontrivial amalgam has no fixed point on its Bass--Serre tree.
+  mf-recognition-undecidable: that is undecidability of MF; this is the exact classification of property (T), which unlike MF is semidecidable.
+  bekka-valette-amenable-t-dichotomy: that is the amenable-versus-(T) dichotomy for a single group; this is a statement about the decision problem over all finite presentations.
+---
+
+ESTABLISHED.  For the recursive coding of finite group presentations,
+
+```text
+T_fp      is Sigma^0_1-complete,
+NOT-T_fp  is Pi^0_1-complete, hence not recursively enumerable.       (KT1)
+```
+
+So property (T) of a finitely presented group is semidecidable but not
+decidable: there is a procedure that halts exactly on the Kazhdan groups
+(Ozawa's sum-of-squares criterion), and no procedure that halts exactly on
+the non-Kazhdan ones.  The same holds for finitely generated recursive
+presentations.
+
+**Upper bound.**  Ozawa (J. Inst. Math. Jussieu 15 (2016)): a group with
+finite symmetric generating set `S` and Laplacian
+`Delta = |S| - sum_S s` has (T) iff `Delta^2 - lambda Delta` is a sum of
+hermitian squares in `R[Gamma]` for some `lambda > 0`; Netzer--Thom's
+stability lemma lets the certificate be rational.  A certificate is a
+finite identity in the group ring, i.e. finitely many word equalities in
+`Gamma`, each with a finite derivation from the relators.  Enumerating
+rational certificates and derivations semidecides (T).
+
+**Lower bound.**  The Rabin group `K(w)` of `Computability/RabinConstruction`
+attached to a word `w` of a fixed finitely presented group with unsolvable
+word problem is trivial when `w = 1` (machine-checked,
+`rabin_trivial_of_word_eq_one`) and, when `w != 1`, is the amalgamated
+free product of `G''` and `G_2` over the rank-two free subgroups
+`<u, [w, s_0]>` and `<a, c>`, both proper (Lyndon--Schupp IV.4.1).  A
+nontrivial amalgam acts on its Bass--Serre tree without a global fixed
+point, so it fails Serre's property FA; groups with (T) have FA
+(Watatani 1982).  Hence `K(w)` has (T) iff `w = 1`, and the word problem
+is `Sigma^0_1`-complete.
+
+**Remark.**  The Markov-property form of Adian--Rabin does not apply, since
+(T) is not inherited by subgroups.  What replaces heredity is that the
+Rabin construction's negative branch is a *splitting*, and (T) forbids
+splittings.  The same argument classifies every property that holds for
+the trivial group and fails for every nontrivial amalgam over `F_2`:
+property FA and property (T) among them.  A literature search on
+2026-08-26 found the semidecidability recorded (Ozawa; Rauzy 2021) but not
+the completeness.
