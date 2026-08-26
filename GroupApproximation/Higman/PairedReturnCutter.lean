@@ -216,6 +216,16 @@ def syncEquivFree : Sync ≃* FreeGroup (Fin 2) where
   right_inv w := DFunLike.congr_fun syncToFree_comp_freeToSync w
   map_mul' := map_mul syncToFree
 
+/-- The paired-return edge subgroup is finitely generated: it is the range of
+the two-copy free product of the rank-two synchronization group. -/
+theorem edgeSub_fg : PairedReturnGraphIntersection.M.FG := by
+  letI : Group.IsFinitelyPresented Sync :=
+    Group.IsFinitelyPresented.equiv syncEquivFree.symm
+  letI : Group.IsFinitelyPresented (Monoid.Coprod Sync Sync) := inferInstance
+  letI : Group.FG (Monoid.Coprod Sync Sync) :=
+    ProductFinitePresentation.fg_of_isFinitelyPresented _
+  exact fg_range PairedReturnGraphIntersection.mu
+
 /-- The switch element `x = γ₁ = (a,1)` in the left factor. -/
 def x : Ambient :=
   MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (Star.genPair 1)
