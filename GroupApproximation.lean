@@ -98,6 +98,7 @@ import GroupApproximation.Computability.BenignMapEmbCode
 import GroupApproximation.Computability.BenignInfCode
 import GroupApproximation.Computability.BenignSupCode
 import GroupApproximation.Computability.BenignComapCode
+import GroupApproximation.Computability.BenignComapThreeCode
 import GroupApproximation.Computability.BenignMapEmbRopeInput
 import GroupApproximation.Computability.DirectProductCodeSemantics
 import GroupApproximation.Computability.AdianRabinVariantTransform
@@ -1881,6 +1882,7 @@ import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.PairedReturnMapEmbCode
+import GroupApproximation.Higman.TransportStarCode
 import GroupApproximation.Endpoint.PairedReturnCutterCodeAudit
 import GroupApproximation.Higman.FreeLampFinitePresentation
 import GroupApproximation.Higman.PairedFoldKernel
